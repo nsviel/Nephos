@@ -6,10 +6,10 @@
 namespace vk::validation{
 
 //Constructor / Destructor
-Layer::Layer(vk::structure::Vulkan* struct_vulkan){
+Layer::Layer(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
+  this->vk_struct = vk_struct;
 
   this->validation_layers = {"VK_LAYER_KHRONOS_validation"};
   this->with_validation_layer = true;
@@ -38,7 +38,7 @@ void Layer::create_validation_layer(){
     VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
   create_info.pfnUserCallback = vk::validation::Callback;
 
-  VkResult result = create_debug_EXT(struct_vulkan->instance.instance, &create_info, nullptr, &EXT_debug);
+  VkResult result = create_debug_EXT(vk_struct->instance.instance, &create_info, nullptr, &EXT_debug);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to set up debug messenger!");
   }
@@ -49,7 +49,7 @@ void Layer::clean_layer(){
   //---------------------------
 
   if(with_validation_layer){
-    destroy_debug_EXT(struct_vulkan->instance.instance, EXT_debug, nullptr);
+    destroy_debug_EXT(vk_struct->instance.instance, EXT_debug, nullptr);
   }
 
   //---------------------------

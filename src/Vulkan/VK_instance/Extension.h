@@ -11,7 +11,7 @@ class Extension
 {
 public:
   //Constructor / Destructor
-  Extension(vk::structure::Vulkan* struct_vulkan);
+  Extension(vk::structure::Vulkan* vk_struct);
   ~Extension();
 
 public:
@@ -24,7 +24,7 @@ public:
   void extension_device();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

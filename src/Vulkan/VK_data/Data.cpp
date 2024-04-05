@@ -6,16 +6,16 @@
 namespace vk::data{
 
 //Constructor / Destructor
-Data::Data(vk::structure::Vulkan* struct_vulkan){
+Data::Data(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_buffer = new Buffer(struct_vulkan);
-  this->vk_texture = new vk::main::Texture(struct_vulkan);
-  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
-  this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
-  this->vk_uid = new vk::instance::UID(struct_vulkan);
-  this->vk_synchro = new vk::synchro::Synchro(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_buffer = new Buffer(vk_struct);
+  this->vk_texture = new vk::main::Texture(vk_struct);
+  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
+  this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
+  this->vk_uid = new vk::instance::UID(vk_struct);
+  this->vk_synchro = new vk::synchro::Synchro(vk_struct);
 
   //---------------------------
 }
@@ -47,7 +47,7 @@ void Data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
   vk_descriptor->create_binding(&vk_object->binding);
 
   //Insert data struct into set
-  struct_vulkan->data.list_vk_object.push_back(vk_object);
+  vk_struct->data.list_vk_object.push_back(vk_object);
 
   //---------------------------
 }
@@ -69,8 +69,8 @@ void Data::update_data(utl::type::Data* data, vk::structure::Object* vk_object){
 void Data::clean(){
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
-    vk::structure::Object* data = *next(struct_vulkan->data.list_vk_object.begin(),i);
+  for(int i=0; i<vk_struct->data.list_vk_object.size(); i++){
+    vk::structure::Object* data = *next(vk_struct->data.list_vk_object.begin(),i);
     this->clean_vk_object(data);
   }
 

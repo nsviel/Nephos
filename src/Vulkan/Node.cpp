@@ -10,13 +10,13 @@ namespace vk{
 Node::Node(utl::Node* node_utility){
   //---------------------------
 
-  this->struct_vulkan = new vk::structure::Vulkan(node_utility);
-  this->vk_graphical = new vk::main::Graphical(struct_vulkan);
-  this->vk_imgui = new vk::main::Imgui(struct_vulkan);
-  this->vk_info = new vk::main::Info(struct_vulkan);
-  this->vk_texture = new vk::main::Texture(struct_vulkan);
-  this->vk_synchro = new vk::synchro::Synchro(struct_vulkan);
-  this->vk_screenshot = new vk::image::Screenshot(struct_vulkan);
+  this->vk_struct = new vk::structure::Vulkan(node_utility);
+  this->vk_graphical = new vk::main::Graphical(vk_struct);
+  this->vk_imgui = new vk::main::Imgui(vk_struct);
+  this->vk_info = new vk::main::Info(vk_struct);
+  this->vk_texture = new vk::main::Texture(vk_struct);
+  this->vk_synchro = new vk::synchro::Synchro(vk_struct);
+  this->vk_screenshot = new vk::image::Screenshot(vk_struct);
 
   //---------------------------
 }

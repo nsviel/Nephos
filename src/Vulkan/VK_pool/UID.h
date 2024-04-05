@@ -11,7 +11,7 @@ class UID
 {
 public:
   //Constructor / Destructor
-  UID(vk::structure::Vulkan* struct_vulkan);
+  UID(vk::structure::Vulkan* vk_struct);
   ~UID();
 
 public:
@@ -19,7 +19,7 @@ public:
   int query_free_UID();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

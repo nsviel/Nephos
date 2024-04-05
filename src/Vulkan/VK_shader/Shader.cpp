@@ -8,10 +8,10 @@
 namespace vk::shader{
 
 //Constructor / Destructor
-Shader::Shader(vk::structure::Vulkan* struct_vulkan){
+Shader::Shader(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
+  this->vk_struct = vk_struct;
 
   this->path_output = "output.txt";
   utl::file::clear(path_output);
@@ -89,7 +89,7 @@ VkShaderModule Shader::create_shader_module(const std::vector<char>& code){
 
   //Shader module creation
   VkShaderModule shaderModule;
-  VkResult result = vkCreateShaderModule(struct_vulkan->device.handle, &create_info, nullptr, &shaderModule);
+  VkResult result = vkCreateShaderModule(vk_struct->device.handle, &create_info, nullptr, &shaderModule);
   if (result != VK_SUCCESS) {
     throw std::runtime_error("[error] failed to create shader module!");
   }

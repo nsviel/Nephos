@@ -14,7 +14,7 @@ class Info
 {
 public:
   //Constructor / Destructor
-  Info(vk::structure::Vulkan* struct_vulkan);
+  Info(vk::structure::Vulkan* vk_struct);
   ~Info();
 
 public:
@@ -29,7 +29,7 @@ public:
   bool is_gpu_discrete();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

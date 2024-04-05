@@ -14,7 +14,7 @@ class Attachment
 {
 public:
   //Constructor / Destructor
-  Attachment(vk::structure::Vulkan* struct_vulkan);
+  Attachment(vk::structure::Vulkan* vk_struct);
   ~Attachment();
 
 public:
@@ -29,7 +29,7 @@ public:
   void depth_reference(vk::structure::Attachment& depth);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::image::Color* vk_color;
   vk::image::Depth* vk_depth;
 };

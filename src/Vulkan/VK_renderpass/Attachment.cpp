@@ -18,12 +18,12 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-Attachment::Attachment(vk::structure::Vulkan* struct_vulkan){
+Attachment::Attachment(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_color = new vk::image::Color(struct_vulkan);
-  this->vk_depth = new vk::image::Depth(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_color = new vk::image::Color(vk_struct);
+  this->vk_depth = new vk::image::Depth(vk_struct);
 
   //---------------------------
 }
@@ -35,7 +35,7 @@ void Attachment::color_description(vk::structure::Attachment& color){
 
   VkAttachmentDescription description{};
   description.format = vk_color->find_color_format();
-  description.samples = struct_vulkan->device.physical_device.max_sample_count;
+  description.samples = vk_struct->device.physical_device.max_sample_count;
   description.loadOp = TYP_ATTACHMENT_LOADOP_CLEAR;
   description.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
   description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
@@ -89,7 +89,7 @@ void Attachment::depth_description(vk::structure::Attachment& depth){
 
   VkAttachmentDescription description{};
   description.format = vk_depth->find_depth_format();
-  description.samples = struct_vulkan->device.physical_device.max_sample_count;
+  description.samples = vk_struct->device.physical_device.max_sample_count;
   description.loadOp = TYP_ATTACHMENT_LOADOP_CLEAR;
   description.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
   description.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;

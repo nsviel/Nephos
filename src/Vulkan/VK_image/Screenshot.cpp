@@ -8,15 +8,15 @@
 namespace vk::image{
 
 //Constructor / Destructor
-Screenshot::Screenshot(vk::structure::Vulkan* struct_vulkan){
+Screenshot::Screenshot(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_image = new vk::image::Image(struct_vulkan);
-  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
-  this->vk_command_allocator = new vk::command::Allocator(struct_vulkan);
-  this->vk_mem_transfer = new vk::memory::Transfer(struct_vulkan);
-  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_image = new vk::image::Image(vk_struct);
+  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
+  this->vk_command_allocator = new vk::command::Allocator(vk_struct);
+  this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
+  this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
 
   //---------------------------
 }
@@ -26,7 +26,7 @@ Screenshot::~Screenshot(){}
 void Screenshot::make_screenshot(){
   //---------------------------
 
-  vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[1];
+  vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[1];
   this->export_image_to_jpeg(&renderpass->framebuffer->color);
 
   //---------------------------
@@ -43,7 +43,7 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
 
 
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&struct_vulkan->device.queue.transfer);
+  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.transfer);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "Screenshot";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
@@ -52,7 +52,7 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   vk_mem_transfer->copy_image_to_buffer(command_buffer, image, staging_buffer);
 
   vk_command_buffer->end_command_buffer(command_buffer);
-  struct_vulkan->queue.transfer->add_command(command_buffer);
+  vk_struct->queue.transfer->add_command(command_buffer);
 
 
 
@@ -63,17 +63,17 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
 
   // 3. Save staging buffer data to file
   void* mappedData;
-  vkMapMemory(struct_vulkan->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
+  vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   int channels = 4;  // Assuming RGBA data, adjust as needed
   std::string filename = "output.jpg";  // Adjust the file name and format as needed
   if (stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
     throw std::runtime_error("Failed to write PNG file!");
   }
-  vkUnmapMemory(struct_vulkan->device.handle, staging_mem);
+  vkUnmapMemory(vk_struct->device.handle, staging_mem);
 
   //Free memory
-  vkDestroyBuffer(struct_vulkan->device.handle, staging_buffer, nullptr);
-  vkFreeMemory(struct_vulkan->device.handle, staging_mem, nullptr);
+  vkDestroyBuffer(vk_struct->device.handle, staging_buffer, nullptr);
+  vkFreeMemory(vk_struct->device.handle, staging_mem, nullptr);
 
   //---------------------------
 }
@@ -88,7 +88,7 @@ void Screenshot::export_image_to_binary(vk::structure::Image* image){
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&struct_vulkan->device.queue.transfer);
+  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.transfer);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "Screenshot";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
@@ -97,7 +97,7 @@ void Screenshot::export_image_to_binary(vk::structure::Image* image){
   vk_mem_transfer->copy_image_to_buffer(command_buffer, image, staging_buffer);
 
   vk_command_buffer->end_command_buffer(command_buffer);
-  struct_vulkan->queue.transfer->add_command(command_buffer);
+  vk_struct->queue.transfer->add_command(command_buffer);
 
 
 
@@ -108,7 +108,7 @@ void Screenshot::export_image_to_binary(vk::structure::Image* image){
   // 3. Save staging buffer data to file
   void* mappedData;
   void* pixelData = malloc(bufferSize);
-  VkResult mapResult =vkMapMemory(struct_vulkan->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
+  VkResult mapResult =vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   //  memcpy(pixelData, mappedData, static_cast<size_t>(tex_size));
 
   if (mapResult == VK_SUCCESS) {
@@ -129,15 +129,15 @@ void Screenshot::export_image_to_binary(vk::structure::Image* image){
           fprintf(stderr, "Error opening file for writing: %s\n", "truc.bin");
       }
 
-      vkUnmapMemory(struct_vulkan->device.handle, staging_mem);
+      vkUnmapMemory(vk_struct->device.handle, staging_mem);
   } else {
       // Handle error if memory mapping fails
       fprintf(stderr, "Error mapping memory: %d\n", mapResult);
   }
 
   //Free memory
-  vkDestroyBuffer(struct_vulkan->device.handle, staging_buffer, nullptr);
-  vkFreeMemory(struct_vulkan->device.handle, staging_mem, nullptr);
+  vkDestroyBuffer(vk_struct->device.handle, staging_buffer, nullptr);
+  vkFreeMemory(vk_struct->device.handle, staging_mem, nullptr);
 
   //---------------------------
 }
@@ -148,13 +148,13 @@ VkDeviceSize Screenshot::calculate_image_size(VkFormat format, VkExtent3D extent
 
   // Get the number of bytes per pixel for the specified format
   VkFormatProperties formatProperties;
-  vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.physical_device.handle, format, &formatProperties);
+  vkGetPhysicalDeviceFormatProperties(vk_struct->device.physical_device.handle, format, &formatProperties);
 
   if ((formatProperties.linearTilingFeatures & VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT) == 0) {
     // Format does not support linear tiling, use optimal tiling instead
     // You may need to handle this differently based on your specific requirements
     // In this example, we'll assume optimal tiling support
-    vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.physical_device.handle, format, &formatProperties);
+    vkGetPhysicalDeviceFormatProperties(vk_struct->device.physical_device.handle, format, &formatProperties);
   }
 
   VkDeviceSize bytesPerPixel = 0;

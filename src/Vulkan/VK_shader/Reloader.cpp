@@ -6,12 +6,12 @@
 namespace vk::shader{
 
 //Constructor / Destructor
-Reloader::Reloader(vk::structure::Vulkan* struct_vulkan){
+Reloader::Reloader(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
-  this->vk_synchro = new vk::synchro::Synchro(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_pipeline = new vk::renderpass::Pipeline(vk_struct);
+  this->vk_synchro = new vk::synchro::Synchro(vk_struct);
 
   //---------------------------
 }
@@ -22,14 +22,14 @@ void Reloader::hot_shader_reload(string shader_1, string shader_2){
   //---------------------------
 
   if(shader_1 == "Scene"){
-    vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("scene");
+    vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("scene");
     if(renderpass == nullptr) return;
     vk::structure::Subpass* subpass = renderpass->vec_subpass[0];
     vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("point");
     this->recreate_pipeline(renderpass, pipeline);
   }
   if(shader_1 == "EDL"){
-    vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
+    vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");
     if(renderpass == nullptr) return;
     vk::structure::Subpass* subpass = renderpass->vec_subpass[0];
     vk::structure::Pipeline* pipeline = subpass->get_pipeline_byName("triangle_EDL");

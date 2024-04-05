@@ -18,11 +18,11 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-Subpass::Subpass(vk::structure::Vulkan* struct_vulkan){
+Subpass::Subpass(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_attachment = new Attachment(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_attachment = new Attachment(vk_struct);
 
   //---------------------------
 }

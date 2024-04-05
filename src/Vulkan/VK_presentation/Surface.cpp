@@ -6,10 +6,10 @@
 namespace vk::presentation{
 
 //Constructor / Destructor
-Surface::Surface(vk::structure::Vulkan* struct_vulkan){
+Surface::Surface(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
+  this->vk_struct = vk_struct;
 
   //---------------------------
 }
@@ -20,7 +20,7 @@ void Surface::init(){
   //---------------------------
 
   this->compute_window_dim();
-  VkResult result = glfwCreateWindowSurface(struct_vulkan->instance.instance, struct_vulkan->window.glfw_window, nullptr, &struct_vulkan->window.surface);
+  VkResult result = glfwCreateWindowSurface(vk_struct->instance.instance, vk_struct->window.glfw_window, nullptr, &vk_struct->window.surface);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create window surface!");
   }
@@ -30,7 +30,7 @@ void Surface::init(){
 void Surface::clean(){
   //---------------------------
 
-  vkDestroySurfaceKHR(struct_vulkan->instance.instance, struct_vulkan->window.surface, nullptr);
+  vkDestroySurfaceKHR(vk_struct->instance.instance, vk_struct->window.surface, nullptr);
 
   //---------------------------
 }
@@ -40,14 +40,14 @@ vec2 Surface::compute_window_dim(){
   //---------------------------
 
   int width, height;
-  glfwGetFramebufferSize(struct_vulkan->window.glfw_window, &width, &height);
-  struct_vulkan->window.window_dim = vec2(width, height);
+  glfwGetFramebufferSize(vk_struct->window.glfw_window, &width, &height);
+  vk_struct->window.window_dim = vec2(width, height);
 
   //---------------------------
-  return struct_vulkan->window.window_dim;
+  return vk_struct->window.window_dim;
 }
 void Surface::check_for_resizing(){
-  static vec2 window_dim = struct_vulkan->window.window_dim;
+  static vec2 window_dim = vk_struct->window.window_dim;
   //---------------------------
 
   bool is_resized = false;
@@ -58,7 +58,7 @@ void Surface::check_for_resizing(){
   }
 
   //---------------------------
-  struct_vulkan->window.is_resized = is_resized;
+  vk_struct->window.is_resized = is_resized;
 }
 
 }

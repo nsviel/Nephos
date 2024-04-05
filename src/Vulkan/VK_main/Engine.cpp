@@ -7,31 +7,31 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Engine::Engine(vk::structure::Vulkan* struct_vulkan){
+Engine::Engine(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_pool = new vk::instance::Pool(struct_vulkan);
-  this->vk_extension = new vk::instance::Extension(struct_vulkan);
-  this->vk_instance = new vk::instance::Instance(struct_vulkan);
-  this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
-  this->vk_surface = new vk::presentation::Surface(struct_vulkan);
-  this->vk_device = new vk::device::Logical(struct_vulkan);
-  this->vk_texture = new vk::main::Texture(struct_vulkan);
-  this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
-  this->vk_data = new vk::data::Data(struct_vulkan);
-  this->vk_swapchain = new vk::presentation::Swapchain(struct_vulkan);
-  this->vk_renderpass = new vk::renderpass::Renderpass(struct_vulkan);
-  this->vk_reload = new vk::shader::Reloader(struct_vulkan);
-  this->vk_frame = new vk::presentation::Frame(struct_vulkan);
-  this->vk_canvas = new vk::data::Canvas(struct_vulkan);
-  this->vk_drawing = new vk::draw::Graphical(struct_vulkan);
-  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
-  this->vk_imgui = new vk::main::Imgui(struct_vulkan);
-  this->vk_fence = new vk::synchro::Fence(struct_vulkan);
-  this->vk_semaphore = new vk::synchro::Semaphore(struct_vulkan);
-  this->vk_allocator = new vk::command::Allocator(struct_vulkan);
-  this->vk_queue = new vk::queue::Manager(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_pool = new vk::instance::Pool(vk_struct);
+  this->vk_extension = new vk::instance::Extension(vk_struct);
+  this->vk_instance = new vk::instance::Instance(vk_struct);
+  this->vk_viewport = new vk::draw::Viewport(vk_struct);
+  this->vk_surface = new vk::presentation::Surface(vk_struct);
+  this->vk_device = new vk::device::Logical(vk_struct);
+  this->vk_texture = new vk::main::Texture(vk_struct);
+  this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
+  this->vk_data = new vk::data::Data(vk_struct);
+  this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
+  this->vk_renderpass = new vk::renderpass::Renderpass(vk_struct);
+  this->vk_reload = new vk::shader::Reloader(vk_struct);
+  this->vk_frame = new vk::presentation::Frame(vk_struct);
+  this->vk_canvas = new vk::data::Canvas(vk_struct);
+  this->vk_drawing = new vk::draw::Graphical(vk_struct);
+  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
+  this->vk_imgui = new vk::main::Imgui(vk_struct);
+  this->vk_fence = new vk::synchro::Fence(vk_struct);
+  this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
+  this->vk_allocator = new vk::command::Allocator(vk_struct);
+  this->vk_queue = new vk::queue::Manager(vk_struct);
 
   //---------------------------
 }
@@ -45,8 +45,8 @@ void Engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose)
   //Check if data already in engine
   bool is_in_list = false;
   vk::structure::Object* vk_object;
-  for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
-    vk_object = *next(struct_vulkan->data.list_vk_object.begin(), i);
+  for(int i=0; i<vk_struct->data.list_vk_object.size(); i++){
+    vk_object = *next(vk_struct->data.list_vk_object.begin(), i);
 
     if(data->UID == vk_object->data->UID){
       vk_data->update_data(data, vk_object);
@@ -60,7 +60,7 @@ void Engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose)
   //---------------------------
 }
 void Engine::remove_data_in_engine(utl::type::Data* data){
-  std::list<vk::structure::Object*>& list_vk_object = struct_vulkan->data.list_vk_object;
+  std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
   //---------------------------
 
   bool is_in_list = false;
@@ -87,36 +87,36 @@ void Engine::reload_shader(string shader, string subshader){
 void Engine::add_renderpass_description(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  struct_vulkan->render.vec_renderpass.push_back(renderpass);
+  vk_struct->render.vec_renderpass.push_back(renderpass);
 
   //---------------------------
 }
 vk::structure::Renderpass* Engine::get_renderpass(int i){
   //---------------------------
 
-  return struct_vulkan->render.vec_renderpass[i];
+  return vk_struct->render.vec_renderpass[i];
 
   //---------------------------
 }
 vk::structure::Renderpass* Engine::get_renderpass_presentation(int i){
   //---------------------------
 
-  return struct_vulkan->render.get_renderpass_byName("gui");
+  return vk_struct->render.get_renderpass_byName("gui");
 
   //---------------------------
 }
 vk::structure::Object* Engine::get_canvas(){
   //---------------------------
 
-  return &struct_vulkan->data.canvas;
+  return &vk_struct->data.canvas;
 
   //---------------------------
 }
 std::list<vk::structure::Object*> Engine::get_list_data(){
-  return struct_vulkan->data.list_vk_object;
+  return vk_struct->data.list_vk_object;
 }
 void Engine::set_window(GLFWwindow* window){
-  struct_vulkan->window.glfw_window = window;
+  vk_struct->window.glfw_window = window;
 }
 
 }

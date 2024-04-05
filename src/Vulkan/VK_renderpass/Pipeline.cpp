@@ -6,13 +6,13 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-Pipeline::Pipeline(vk::structure::Vulkan* struct_vulkan){
+Pipeline::Pipeline(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
-  this->vk_shader = new vk::shader::Shader(struct_vulkan);
-  this->vk_data = new vk::data::Data(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
+  this->vk_shader = new vk::shader::Shader(vk_struct);
+  this->vk_data = new vk::data::Data(vk_struct);
 
   //---------------------------
 }
@@ -103,7 +103,7 @@ void Pipeline::create_pipeline_obj(vk::structure::Renderpass* renderpass, vk::st
   pipeline_info.basePipelineIndex = -1; // Optional
   pipeline->info.info = pipeline_info;
 
-  VkResult result = vkCreateGraphicsPipelines(struct_vulkan->device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->pipeline);
+  VkResult result = vkCreateGraphicsPipelines(vk_struct->device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->pipeline);
 
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create graphics pipeline!");
@@ -129,7 +129,7 @@ void Pipeline::create_pipeline_layout(vk::structure::Pipeline* pipeline){
   //pipeline_layout_info.pPushConstantRanges = &pushconstant_range;
 
   //Pipeline layout creation
-  VkResult result = vkCreatePipelineLayout(struct_vulkan->device.handle, &pipeline_layout_info, nullptr, &pipeline->layout);
+  VkResult result = vkCreatePipelineLayout(vk_struct->device.handle, &pipeline_layout_info, nullptr, &pipeline->layout);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create pipeline layout!");
   }
@@ -139,8 +139,8 @@ void Pipeline::create_pipeline_layout(vk::structure::Pipeline* pipeline){
 void Pipeline::clean_pipeline_struct(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  vkDestroyPipeline(struct_vulkan->device.handle, pipeline->pipeline, nullptr);
-  vkDestroyPipelineLayout(struct_vulkan->device.handle, pipeline->layout, nullptr);
+  vkDestroyPipeline(vk_struct->device.handle, pipeline->pipeline, nullptr);
+  vkDestroyPipelineLayout(vk_struct->device.handle, pipeline->layout, nullptr);
   vk_descriptor->clean_binding(&pipeline->binding);
 
   //---------------------------
@@ -150,8 +150,8 @@ void Pipeline::clean_pipeline_shader_module(vk::structure::Pipeline* pipeline){
 
   for(int i=0; i<pipeline->info.vec_shader_couple.size(); i++){
     pair<VkShaderModule, VkShaderModule> shader_couple = pipeline->info.vec_shader_couple[i];
-    vkDestroyShaderModule(struct_vulkan->device.handle, shader_couple.first, nullptr);
-    vkDestroyShaderModule(struct_vulkan->device.handle, shader_couple.second, nullptr);
+    vkDestroyShaderModule(vk_struct->device.handle, shader_couple.first, nullptr);
+    vkDestroyShaderModule(vk_struct->device.handle, shader_couple.second, nullptr);
   }
   pipeline->info.vec_shader_couple.clear();
   pipeline->info.shader_stage.clear();
@@ -185,9 +185,9 @@ void Pipeline::find_pipeline_viewport_state(vk::structure::Pipeline* pipeline){
   VkPipelineViewportStateCreateInfo viewport_state{};
   viewport_state.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
   viewport_state.viewportCount = 1;
-  viewport_state.pViewports = &struct_vulkan->render.viewport;
+  viewport_state.pViewports = &vk_struct->render.viewport;
   viewport_state.scissorCount = 1;
-  viewport_state.pScissors = &struct_vulkan->render.scissor;
+  viewport_state.pScissors = &vk_struct->render.scissor;
 
   //---------------------------
   pipeline->info.viewport_state = viewport_state;
@@ -217,7 +217,7 @@ void Pipeline::find_pipeline_multisampling_state(vk::structure::Pipeline* pipeli
   VkPipelineMultisampleStateCreateInfo multisampling{};
   multisampling.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
   multisampling.sampleShadingEnable = VK_FALSE;
-  multisampling.rasterizationSamples = struct_vulkan->device.physical_device.max_sample_count;
+  multisampling.rasterizationSamples = vk_struct->device.physical_device.max_sample_count;
   multisampling.minSampleShading = 1.0f; // Optional
   multisampling.pSampleMask = nullptr; // Optional
   multisampling.alphaToCoverageEnable = VK_FALSE; // Optional

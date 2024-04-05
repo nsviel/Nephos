@@ -34,7 +34,7 @@ class Engine
 {
 public:
   //Constructor / Destructor
-  Engine(vk::structure::Vulkan* struct_vulkan);
+  Engine(vk::structure::Vulkan* vk_struct);
   ~Engine();
 
 public:
@@ -57,7 +57,7 @@ public:
   void set_window(GLFWwindow* window);
 
 protected:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::instance::Extension* vk_extension;
   vk::presentation::Surface* vk_surface;
   vk::instance::Instance* vk_instance;

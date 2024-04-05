@@ -13,7 +13,7 @@ class Physical
 {
 public:
   //Constructor / Destructor
-  Physical(vk::structure::Vulkan* struct_vulkan);
+  Physical(vk::structure::Vulkan* vk_struct);
   ~Physical();
 
 public:
@@ -39,7 +39,7 @@ public:
   void find_max_usable_sample_count(vk::structure::Physical_device& dev_physical);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::device::Queue* vk_dev_queue;
 };
 

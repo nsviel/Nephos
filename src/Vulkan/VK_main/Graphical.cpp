@@ -7,7 +7,7 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Graphical::Graphical(vk::structure::Vulkan* struct_vulkan) : vk::main::Engine(struct_vulkan){
+Graphical::Graphical(vk::structure::Vulkan* vk_struct) : vk::main::Engine(vk_struct){
   //---------------------------
 
 

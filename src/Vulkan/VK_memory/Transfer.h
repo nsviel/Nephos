@@ -18,7 +18,7 @@ class Transfer
 {
 public:
   //Constructor / Destructor
-  Transfer(vk::structure::Vulkan* struct_vulkan);
+  Transfer(vk::structure::Vulkan* vk_struct);
   ~Transfer();
 
 public:
@@ -32,7 +32,7 @@ public:
   void copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize dataSize);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::image::Image* vk_image;
   vk::command::Command_buffer* vk_command_buffer;
   vk::command::Allocator* vk_allocator;

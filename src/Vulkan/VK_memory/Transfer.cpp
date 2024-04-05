@@ -6,13 +6,13 @@
 namespace vk::memory{
 
 //Constructor / Destructor
-Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
+Transfer::Transfer(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_image = new vk::image::Image(struct_vulkan);
-  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
-  this->vk_allocator = new vk::command::Allocator(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_image = new vk::image::Image(vk_struct);
+  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
+  this->vk_allocator = new vk::command::Allocator(vk_struct);
 
   //---------------------------
 }
@@ -29,12 +29,12 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
 
   //Copy data to stagging buffer
   void* staging_data;
-  vkMapMemory(struct_vulkan->device.handle, buffer->mem, 0, buffer->size, 0, &staging_data);
+  vkMapMemory(vk_struct->device.handle, buffer->mem, 0, buffer->size, 0, &staging_data);
   memcpy(staging_data, utl_image->data.data(), buffer->size);
-  vkUnmapMemory(struct_vulkan->device.handle, buffer->mem);
+  vkUnmapMemory(vk_struct->device.handle, buffer->mem);
 
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&struct_vulkan->device.queue.graphics);
+  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "transfer::texture";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
@@ -43,7 +43,7 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
   this->copy_buffer_to_image(command_buffer, image, buffer->vbo);
   vk_image->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   vk_command_buffer->end_command_buffer(command_buffer);
-  struct_vulkan->queue.graphics->add_command_thread(command_buffer);
+  vk_struct->queue.graphics->add_command_thread(command_buffer);
 
   //---------------------------
 }
@@ -86,12 +86,12 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data,
 
   // Map the buffer's memory and copy the data
   void* mappedMemory;
-  VkResult result = vkMapMemory(struct_vulkan->device.handle, buffer->mem, 0, data_size, 0, &mappedMemory);
+  VkResult result = vkMapMemory(vk_struct->device.handle, buffer->mem, 0, data_size, 0, &mappedMemory);
   if (result != VK_SUCCESS) {
     throw std::runtime_error("Failed to map buffer memory!");
   }
   memcpy(mappedMemory, data, static_cast<size_t>(data_size));
-  vkUnmapMemory(struct_vulkan->device.handle, buffer->mem);
+  vkUnmapMemory(vk_struct->device.handle, buffer->mem);
 
   //---------------------------
 }
@@ -101,15 +101,15 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Bu
 
   // Map the buffer's memory and copy the data
   void* mappedMemory;
-  VkResult result = vkMapMemory(struct_vulkan->device.handle, stagger->mem, 0, data_size, 0, &mappedMemory);
+  VkResult result = vkMapMemory(vk_struct->device.handle, stagger->mem, 0, data_size, 0, &mappedMemory);
   if (result != VK_SUCCESS) {
     throw std::runtime_error("Failed to map buffer memory!");
   }
   memcpy(mappedMemory, data, static_cast<size_t>(data_size));
-  vkUnmapMemory(struct_vulkan->device.handle, stagger->mem);
+  vkUnmapMemory(vk_struct->device.handle, stagger->mem);
 
   // Create command buffer to cpy on gpu
-  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&struct_vulkan->device.queue.transfer);
+  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->device.queue.transfer);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "transfer::data";
   if(command_buffer == nullptr) return;
@@ -121,7 +121,7 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Bu
   vkCmdCopyBuffer(command_buffer->command, stagger->vbo, buffer->vbo, 1, &copyRegion);
 
   vk_command_buffer->end_command_buffer(command_buffer);
-  struct_vulkan->queue.transfer->add_command(command_buffer);
+  vk_struct->queue.transfer->add_command(command_buffer);
 
   //---------------------------
 }

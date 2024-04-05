@@ -11,7 +11,7 @@ class Layer
 {
 public:
   //Constructor / Destructor
-  Layer(vk::structure::Vulkan* struct_vulkan);
+  Layer(vk::structure::Vulkan* vk_struct);
   ~Layer();
 
 public:
@@ -32,7 +32,7 @@ public:
   inline vector<const char*> get_validation_layers(){return validation_layers;};
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 
   vector<const char*> validation_layers;
   bool with_validation_layer;

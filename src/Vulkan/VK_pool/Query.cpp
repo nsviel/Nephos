@@ -6,10 +6,10 @@
 namespace vk::instance{
 
 //Constructor / Destructor
-Query::Query(vk::structure::Vulkan* struct_vulkan){
+Query::Query(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
+  this->vk_struct = vk_struct;
 
   //---------------------------
 }
@@ -27,7 +27,7 @@ vk::structure::Query Query::create_query_pool(){
   info.sType = VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO;
   info.queryType = VK_QUERY_TYPE_TIMESTAMP;
   info.queryCount = query_pool.nb_query; // Number of timestamp queries to perform
-  vkCreateQueryPool(struct_vulkan->device.handle, &info, nullptr, &query_pool.pool);
+  vkCreateQueryPool(vk_struct->device.handle, &info, nullptr, &query_pool.pool);
 
   //---------------------------
   return query_pool;
@@ -35,7 +35,7 @@ vk::structure::Query Query::create_query_pool(){
 void Query::clean_query_pool(vk::structure::Query* query_pool){
   //---------------------------
 
-  vkDestroyQueryPool(struct_vulkan->device.handle, query_pool->pool, nullptr);
+  vkDestroyQueryPool(vk_struct->device.handle, query_pool->pool, nullptr);
 
   //---------------------------
 }
@@ -64,15 +64,15 @@ void Query::find_query_timestamp(vk::structure::Command_buffer* command_buffer){
   vk::structure::Query* query = &command_buffer->query;
   //---------------------------
 
-  struct_vulkan->profiler->tasker_gpu->task_follow_begin(command_buffer->name);
+  vk_struct->profiler->tasker_gpu->task_follow_begin(command_buffer->name);
 
   uint64_t timestamps[query->nb_query];
-  vkGetQueryPoolResults(struct_vulkan->device.handle, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT);
+  vkGetQueryPoolResults(vk_struct->device.handle, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT);
 
-  float delta = float(timestamps[1] - timestamps[0]) * struct_vulkan->device.physical_device.timestamp_period / 1000000000.0f;
+  float delta = float(timestamps[1] - timestamps[0]) * vk_struct->device.physical_device.timestamp_period / 1000000000.0f;
   command_buffer->timestamp = delta;
 
-  struct_vulkan->profiler->tasker_gpu->task_follow_end(command_buffer->name, delta);
+  vk_struct->profiler->tasker_gpu->task_follow_end(command_buffer->name, delta);
 
   //---------------------------
 }

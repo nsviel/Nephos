@@ -14,7 +14,7 @@ class Uniform
 {
 public:
   //Constructor / Destructor
-  Uniform(vk::structure::Vulkan* struct_vulkan);
+  Uniform(vk::structure::Vulkan* vk_struct);
   ~Uniform();
 
 public:
@@ -27,7 +27,7 @@ public:
   template <typename T> void update_uniform(string uniform_name, vk::structure::Binding* binding, T value);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::memory::Allocator* vk_mem_allocator;
 };
 

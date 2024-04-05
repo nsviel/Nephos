@@ -6,13 +6,13 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-Headless::Headless(vk::structure::Vulkan* struct_vulkan){
+Headless::Headless(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_render = new vk::draw::Renderer(struct_vulkan);
-  this->vk_fence = new vk::synchro::Fence(struct_vulkan);
-  this->vk_semaphore = new vk::synchro::Semaphore(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_render = new vk::draw::Renderer(vk_struct);
+  this->vk_fence = new vk::synchro::Fence(vk_struct);
+  this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
 
   //---------------------------
 }
@@ -23,14 +23,14 @@ void Headless::draw_frame(){
   //---------------------------
 
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
-  struct_vulkan->queue.presentation->acquire_next_image(semaphore->end);
+  vk_struct->queue.presentation->acquire_next_image(semaphore->end);
 
   //Renderpass
-  int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
+  int nb_renderpass = vk_struct->render.vec_renderpass.size();
   for(int i=0; i<nb_renderpass; i++){
-    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+    vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
     string name = "eng::rp::" + renderpass->name;
-    struct_vulkan->profiler->tasker_main->task_begin(name);
+    vk_struct->profiler->tasker_main->task_begin(name);
 
     //Create command
     vk::structure::Command* command = new vk::structure::Command();
@@ -45,8 +45,8 @@ void Headless::draw_frame(){
     command->vec_semaphore_done.push_back(semaphore->end);
     command->vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
 
-    struct_vulkan->queue.graphics->add_command(command);
-    struct_vulkan->profiler->tasker_main->task_end(name);
+    vk_struct->queue.graphics->add_command(command);
+    vk_struct->profiler->tasker_main->task_end(name);
   }
 
   //---------------------------

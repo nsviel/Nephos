@@ -23,7 +23,7 @@ class Screenshot
 {
 public:
   //Constructor / Destructor
-  Screenshot(vk::structure::Vulkan* struct_vulkan);
+  Screenshot(vk::structure::Vulkan* vk_struct);
   ~Screenshot();
 
 public:
@@ -36,7 +36,7 @@ public:
   VkDeviceSize calculate_image_size(VkFormat format, VkExtent3D extent);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::image::Image* vk_image;
   vk::command::Command_buffer* vk_command_buffer;
   vk::command::Allocator* vk_command_allocator;

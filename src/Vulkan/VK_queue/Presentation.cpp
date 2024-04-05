@@ -6,12 +6,12 @@
 namespace vk::queue{
 
 //Constructor / Destructor
-Presentation::Presentation(vk::structure::Vulkan* struct_vulkan){
+Presentation::Presentation(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_swapchain = new vk::presentation::Swapchain(struct_vulkan);
-  this->vk_surface = new vk::presentation::Surface(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
+  this->vk_surface = new vk::presentation::Surface(vk_struct);
 
   //---------------------------
 }
@@ -19,11 +19,11 @@ Presentation::~Presentation(){}
 
 //Main function
 void Presentation::acquire_next_image(VkSemaphore& semaphore){
-  vk::structure::Swapchain* swapchain = &struct_vulkan->swapchain;
+  vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------
 
   //Acquiring an image from the swap chain
-  VkResult result = vkAcquireNextImageKHR(struct_vulkan->device.handle, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
+  VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     vk_swapchain->recreate_swapchain();
     return;
@@ -44,7 +44,7 @@ void Presentation::image_presentation(VkSemaphore& semaphore){
 
 //Subfunction
 void Presentation::submit_presentation(VkSemaphore& semaphore){
-  vk::structure::Swapchain* swapchain = &struct_vulkan->swapchain;
+  vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------
 
   VkPresentInfoKHR presentation_info{};
@@ -56,12 +56,12 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
   presentation_info.pImageIndices = &swapchain->frame_presentation_ID;
   presentation_info.pResults = nullptr; // Optional
 
-  VkQueue queue = struct_vulkan->device.queue.presentation.handle;
+  VkQueue queue = vk_struct->device.queue.presentation.handle;
   VkResult result = vkQueuePresentKHR(queue, &presentation_info);
 
   //Window resizing
   vk_surface->check_for_resizing();
-  if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || struct_vulkan->window.is_resized){
+  if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || vk_struct->window.is_resized){
     vk_swapchain->recreate_swapchain();
   }else if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to present swap chain image!");
@@ -70,11 +70,11 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
   //---------------------------
 }
 void Presentation::next_frame_ID(){
-  vk::structure::Swapchain* swapchain = &struct_vulkan->swapchain;
+  vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------
 
   int current_ID = swapchain->frame_presentation_ID;
-  current_ID = (current_ID + 1) % struct_vulkan->instance.max_frame_inflight;
+  current_ID = (current_ID + 1) % vk_struct->instance.max_frame_inflight;
   swapchain->frame_presentation_ID = current_ID;
 
   //---------------------------

@@ -7,10 +7,10 @@
 namespace vk::synchro{
 
 //Constructor / Destructor
-Fence::Fence(vk::structure::Vulkan* struct_vulkan){
+Fence::Fence(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
+  this->vk_struct = vk_struct;
 
   //---------------------------
 }
@@ -18,11 +18,11 @@ Fence::~Fence(){}
 
 //Pool function
 void Fence::init_pool(){
-  vk::pool::Fence* pool = &struct_vulkan->pools.fence;
+  vk::pool::Fence* pool = &vk_struct->pools.fence;
   //---------------------------
 
   //Number of fence
-  int number = struct_vulkan->device.physical_device.discrete_gpu ? 100 : 10;
+  int number = vk_struct->device.physical_device.discrete_gpu ? 100 : 10;
   pool->size = number;
 
   //Create a pool of fence number
@@ -38,10 +38,10 @@ void Fence::init_pool(){
   //---------------------------
 }
 void Fence::clean_pool(){
-  std::vector<vk::structure::Fence>& pool = struct_vulkan->pools.fence.tank;
+  std::vector<vk::structure::Fence>& pool = vk_struct->pools.fence.tank;
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->pools.fence.size; i++){
+  for(int i=0; i<vk_struct->pools.fence.size; i++){
     vk::structure::Fence* vk_fence = &pool[i];
 
     this->clean_fence(vk_fence);
@@ -58,7 +58,7 @@ void Fence::create_fence(vk::structure::Fence* fence){
   info.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
   info.flags = VK_FENCE_CREATE_SIGNALED_BIT;
 
-  VkResult result = vkCreateFence(struct_vulkan->device.handle, &info, nullptr, &fence->fence);
+  VkResult result = vkCreateFence(vk_struct->device.handle, &info, nullptr, &fence->fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create fence");
   }
@@ -68,7 +68,7 @@ void Fence::create_fence(vk::structure::Fence* fence){
 void Fence::clean_fence(vk::structure::Fence* fence){
   //---------------------------
 
-  vkDestroyFence(struct_vulkan->device.handle, fence->fence, nullptr);
+  vkDestroyFence(vk_struct->device.handle, fence->fence, nullptr);
 
   //---------------------------
 }
@@ -76,7 +76,7 @@ void Fence::reset_fence(vk::structure::Fence* fence){
   if(fence == nullptr) return;
   //---------------------------
 
-  VkResult result = vkResetFences(struct_vulkan->device.handle, 1, &fence->fence);
+  VkResult result = vkResetFences(vk_struct->device.handle, 1, &fence->fence);
   if(result != VK_SUCCESS){
     cout<<"[error] reseting fence"<<endl;
   }
@@ -88,7 +88,7 @@ void Fence::reset_fence(vk::structure::Fence* fence){
 
 //Subfunction
 vk::structure::Fence* Fence::query_free_fence(){
-  vk::pool::Fence* pool = &struct_vulkan->pools.fence;
+  vk::pool::Fence* pool = &vk_struct->pools.fence;
   //---------------------------
 
   // Random number generator setup
@@ -126,7 +126,7 @@ bool Fence::is_fence_available(vk::structure::Fence* fence){
 
   if(fence == nullptr) return true;
 
-  VkResult result = vkGetFenceStatus(struct_vulkan->device.handle, fence->fence);
+  VkResult result = vkGetFenceStatus(vk_struct->device.handle, fence->fence);
 
   //Operation completed
   if(result == VK_SUCCESS){

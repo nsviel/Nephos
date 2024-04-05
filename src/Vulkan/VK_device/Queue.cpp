@@ -6,10 +6,10 @@
 namespace vk::device{
 
 //Constructor / Destructor
-Queue::Queue(vk::structure::Vulkan* struct_vulkan){
+Queue::Queue(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
+  this->vk_struct = vk_struct;
 
   //---------------------------
 }
@@ -42,7 +42,7 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
     queue_family.sparseBinding = (queue_family.property.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? true : false;
 
     VkBool32 presentation_supported = false;
-    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, struct_vulkan->window.surface, &presentation_supported);
+    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, vk_struct->window.surface, &presentation_supported);
     queue_family.presentation = presentation_supported;
 
     physical_device.vec_queue_family.push_back(queue_family);
@@ -53,8 +53,8 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 void Queue::find_queue_family_assigment(){
   //---------------------------
 
-  std::vector<vk::structure::queue::Family>& vec_queue_family = struct_vulkan->device.physical_device.vec_queue_family;
-  vk::structure::queue::Pool& pool = struct_vulkan->device.queue;
+  std::vector<vk::structure::queue::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
+  vk::structure::queue::Pool& pool = vk_struct->device.queue;
 
   for(int i=0; vec_queue_family.size(); i++){
     vk::structure::queue::Family& family = vec_queue_family[i];
@@ -77,7 +77,7 @@ void Queue::find_queue_family_assigment(){
       }
 
       //Transfer if not discrete GPU
-      if(family.transfer && !struct_vulkan->device.physical_device.discrete_gpu){
+      if(family.transfer && !vk_struct->device.physical_device.discrete_gpu){
         pool.transfer.family_ID = i;
         pool.transfer.family_index = several_queue ? family.current_index++ : 0;
         family.vec_queue.push_back(&pool.transfer);
@@ -100,9 +100,9 @@ void Queue::find_queue_family_assigment(){
     cout<<"[error] in queue family assigment"<<endl;
   }
 
-  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, pool.graphics.family_ID);
-  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, pool.presentation.family_ID);
-  struct_vulkan->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, pool.transfer.family_ID);
+  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, pool.graphics.family_ID);
+  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, pool.presentation.family_ID);
+  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, pool.transfer.family_ID);
 
   //---------------------------
 }
@@ -112,12 +112,12 @@ void Queue::create_queue(vk::structure::Queue& queue){
   if(queue.family_ID == -1) return;
   //---------------------------
 
-  vkGetDeviceQueue(struct_vulkan->device.handle, queue.family_ID, queue.family_index, &queue.handle);
+  vkGetDeviceQueue(vk_struct->device.handle, queue.family_ID, queue.family_index, &queue.handle);
 
   //---------------------------
 }
 void Queue::create_queue_info(vector<VkDeviceQueueCreateInfo>& vec_queue_info){
-  std::vector<vk::structure::queue::Family>& vec_queue_family = struct_vulkan->device.physical_device.vec_queue_family;
+  std::vector<vk::structure::queue::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   //---------------------------
 
   for(int i=0; i<vec_queue_family.size(); i++){

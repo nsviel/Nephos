@@ -6,10 +6,10 @@
 namespace vk::instance{
 
 //Constructor / Destructor
-UID::UID(vk::structure::Vulkan* struct_vulkan){
+UID::UID(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
+  this->vk_struct = vk_struct;
 
   //---------------------------
 }
@@ -22,7 +22,7 @@ int UID::query_free_UID(){
 
 
   //---------------------------
-  return struct_vulkan->UID++;
+  return vk_struct->UID++;
 }
 
 }

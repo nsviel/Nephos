@@ -13,7 +13,7 @@ class Depth
 {
 public:
   //Constructor / Destructor
-  Depth(vk::structure::Vulkan* struct_vulkan);
+  Depth(vk::structure::Vulkan* vk_struct);
   ~Depth();
 
 public:
@@ -26,7 +26,7 @@ public:
   VkFormat find_depth_format();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::image::Image* vk_image;
 };
 

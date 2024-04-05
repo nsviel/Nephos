@@ -14,7 +14,7 @@ class Subpass
 {
 public:
   //Constructor / Destructor
-  Subpass(vk::structure::Vulkan* struct_vulkan);
+  Subpass(vk::structure::Vulkan* vk_struct);
   ~Subpass();
 
 public:
@@ -30,7 +30,7 @@ public:
   void create_subpass_description(vk::structure::Subpass* subpass);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::renderpass::Attachment* vk_attachment;
 };
 

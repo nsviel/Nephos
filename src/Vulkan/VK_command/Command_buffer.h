@@ -20,7 +20,7 @@ class Command_buffer
 {
 public:
   //Constructor / Destructor
-  Command_buffer(vk::structure::Vulkan* struct_vulkan);
+  Command_buffer(vk::structure::Vulkan* vk_struct);
   ~Command_buffer();
 
 public:
@@ -40,7 +40,7 @@ public:
   void end_command_buffer(vk::structure::Command_buffer* command_buffer);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::synchro::Fence* vk_fence;
   vk::command::Allocator* vk_allocator;
   vk::instance::Query* vk_query;

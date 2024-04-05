@@ -7,11 +7,11 @@
 namespace vk::binding{
 
 //Constructor / Destructor
-Uniform::Uniform(vk::structure::Vulkan* struct_vulkan){
+Uniform::Uniform(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
 
   //---------------------------
 }
@@ -50,7 +50,7 @@ vk::structure::Uniform* Uniform::create_uniform_buffer(string name, size_t size,
 
     vk_mem_allocator->create_gpu_buffer(size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
     vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
-    vkMapMemory(struct_vulkan->device.handle, uniform->mem, 0, size, 0, &uniform->mapped);
+    vkMapMemory(vk_struct->device.handle, uniform->mem, 0, size, 0, &uniform->mapped);
 
   //---------------------------
   return uniform;
@@ -60,8 +60,8 @@ void Uniform::clean_uniform(vk::structure::Binding* binding){
 
   for(int i=0; i<binding->vec_uniform.size(); i++){
     vk::structure::Uniform* uniform = binding->vec_uniform[i];
-    vkDestroyBuffer(struct_vulkan->device.handle, uniform->buffer, nullptr);
-    vkFreeMemory(struct_vulkan->device.handle, uniform->mem, nullptr);
+    vkDestroyBuffer(vk_struct->device.handle, uniform->buffer, nullptr);
+    vkFreeMemory(vk_struct->device.handle, uniform->mem, nullptr);
   }
 
   //---------------------------

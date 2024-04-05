@@ -28,7 +28,7 @@ public:
   void clean();
   void loop();
 
-  inline vk::structure::Vulkan* get_struct_vulkan(){return struct_vulkan;}
+  inline vk::structure::Vulkan* get_vk_struct(){return vk_struct;}
   inline vk::main::Graphical* get_vk_graphical(){return vk_graphical;}
   inline vk::main::Imgui* get_vk_imgui(){return vk_imgui;}
   inline vk::main::Info* get_vk_info(){return vk_info;}
@@ -36,7 +36,7 @@ public:
   inline vk::image::Screenshot* get_vk_screenshot(){return vk_screenshot;}
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::main::Graphical* vk_graphical;
   vk::main::Imgui* vk_imgui;
   vk::main::Info* vk_info;

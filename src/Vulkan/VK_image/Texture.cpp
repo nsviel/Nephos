@@ -7,16 +7,16 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Texture::Texture(vk::structure::Vulkan* struct_vulkan){
+Texture::Texture(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_image = new vk::image::Image(struct_vulkan);
-  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
-  this->vk_buffer = new vk::data::Buffer(struct_vulkan);
-  this->vk_mem_transfer = new vk::memory::Transfer(struct_vulkan);
-  this->vk_uid = new vk::instance::UID(struct_vulkan);
-  this->vk_screenshot = new vk::image::Screenshot(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_image = new vk::image::Image(vk_struct);
+  this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
+  this->vk_buffer = new vk::data::Buffer(vk_struct);
+  this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
+  this->vk_uid = new vk::instance::UID(vk_struct);
+  this->vk_screenshot = new vk::image::Screenshot(vk_struct);
 
   //---------------------------
 }
@@ -24,7 +24,7 @@ Texture::~Texture(){}
 
 //Main function
 void Texture::clean(){
-  list<vk::structure::Texture*>& list_vk_texture = struct_vulkan->data.list_vk_texture;
+  list<vk::structure::Texture*>& list_vk_texture = vk_struct->data.list_vk_texture;
   //---------------------------
 
   for(int i=0; i<list_vk_texture.size(); i++){
@@ -115,7 +115,7 @@ void Texture::create_texture(vk::structure::Texture* texture){
   //Make associated operation
   vk_mem_allocator->allocate_empty_stagger_buffer(&texture->stagger, texture->utl_image->size);
   vk_mem_transfer->copy_texture_to_gpu(texture);
-  struct_vulkan->data.list_vk_texture.push_back(texture);
+  vk_struct->data.list_vk_texture.push_back(texture);
 
   //---------------------------
 }
@@ -161,7 +161,7 @@ VkFormat Texture::find_texture_format(utl::media::Image* image){
   return format;
 }
 vk::structure::Texture* Texture::query_texture(int UID){
-  list<vk::structure::Texture*>& list_vk_texture = struct_vulkan->data.list_vk_texture;
+  list<vk::structure::Texture*>& list_vk_texture = vk_struct->data.list_vk_texture;
   //---------------------------
 
   for(int i=0; i<list_vk_texture.size(); i++){

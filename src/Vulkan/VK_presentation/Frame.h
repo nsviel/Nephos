@@ -15,7 +15,7 @@ class Frame
 {
 public:
   //Constructor / Destructor
-  Frame(vk::structure::Vulkan* struct_vulkan);
+  Frame(vk::structure::Vulkan* vk_struct);
   ~Frame();
 
 public:
@@ -24,7 +24,7 @@ public:
   void clean_frame();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::renderpass::Framebuffer* vk_framebuffer;
   vk::image::Image* vk_image;
   vk::image::Color* vk_color;

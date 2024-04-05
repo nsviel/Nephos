@@ -15,7 +15,7 @@ class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::structure::Vulkan* struct_vulkan);
+  Renderpass(vk::structure::Vulkan* vk_struct);
   ~Renderpass();
 
 public:
@@ -28,7 +28,7 @@ public:
   void clean_renderpass(vk::structure::Renderpass* renderpass);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::renderpass::Pipeline* vk_pipeline;
   vk::renderpass::Subpass* vk_subpass;
   vk::renderpass::Framebuffer* vk_framebuffer;

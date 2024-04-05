@@ -16,7 +16,7 @@ class Descriptor
 {
 public:
   //Constructor / Destructor
-  Descriptor(vk::structure::Vulkan* struct_vulkan);
+  Descriptor(vk::structure::Vulkan* vk_struct);
   ~Descriptor();
 
 public:
@@ -36,7 +36,7 @@ public:
   VkDescriptorSetLayout create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::binding::Uniform* vk_uniform;
   vk::binding::Sampler* vk_sampler;
 };

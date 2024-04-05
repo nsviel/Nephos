@@ -18,7 +18,7 @@ class Imgui
 {
 public:
   //Constructor / Destructor
-  Imgui(vk::structure::Vulkan* struct_vulkan);
+  Imgui(vk::structure::Vulkan* vk_struct);
   ~Imgui();
 
 public:
@@ -43,7 +43,7 @@ public:
   void load_font();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::structure::Command_buffer* command_buffer;
   vk::command::Allocator* vk_allocator;
   vk::command::Command_buffer* vk_command_buffer;

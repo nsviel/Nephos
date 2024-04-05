@@ -15,7 +15,7 @@ class Buffer
 {
 public:
   //Constructor / Destructor
-  Buffer(vk::structure::Vulkan* struct_vulkan);
+  Buffer(vk::structure::Vulkan* vk_struct);
   ~Buffer();
 
 public:
@@ -29,7 +29,7 @@ public:
   int get_size_buffer(vk::structure::Object* vk_object);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::memory::Allocator* vk_mem_allocator;
   vk::memory::Transfer* vk_mem_transfer;
 };

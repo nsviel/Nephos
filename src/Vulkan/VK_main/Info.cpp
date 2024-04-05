@@ -7,10 +7,10 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Info::Info(vk::structure::Vulkan* struct_vulkan){
+Info::Info(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
+  this->vk_struct = vk_struct;
 
   //---------------------------
 }
@@ -18,7 +18,7 @@ Info::~Info(){}
 
 //Profiler vulkan info
 void Info::fill_info(){
-  prf::vulkan::Profiler* prf_vulkan = struct_vulkan->profiler->prf_vulkan;
+  prf::vulkan::Profiler* prf_vulkan = vk_struct->profiler->prf_vulkan;
   //---------------------------
 
   this->fill_vulkan_info(prf_vulkan);
@@ -30,7 +30,7 @@ void Info::fill_vulkan_info(prf::vulkan::Profiler* prf_vulkan){
   prf::vulkan::Info* info_vulkan = prf_vulkan->get_info();
   //---------------------------
 
-  info_vulkan->selected_gpu = struct_vulkan->device.physical_device.name;
+  info_vulkan->selected_gpu = vk_struct->device.physical_device.name;
 
   //---------------------------
 }
@@ -38,8 +38,8 @@ void Info::fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan){
   vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->instance.vec_physical_device.size(); i++){
-    vk::structure::Physical_device& physical_device = struct_vulkan->instance.vec_physical_device[i];
+  for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){
+    vk::structure::Physical_device& physical_device = vk_struct->instance.vec_physical_device[i];
     prf::vulkan::Device device_info;
 
     device_info.name = physical_device.name;
@@ -68,13 +68,13 @@ void Info::fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan){
 
 //Subfunction
 string Info::get_gpu_name(){
-  return struct_vulkan->device.physical_device.name;
+  return vk_struct->device.physical_device.name;
 }
 vec4* Info::get_color_background(){
-  return &struct_vulkan->param.background_color;
+  return &vk_struct->param.background_color;
 }
 bool Info::is_gpu_discrete(){
-  return struct_vulkan->device.physical_device.discrete_gpu;
+  return vk_struct->device.physical_device.discrete_gpu;
 }
 
 }

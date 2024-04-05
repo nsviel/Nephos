@@ -15,7 +15,7 @@ class Graphical
 {
 public:
   //Constructor / Destructor
-  Graphical(vk::structure::Vulkan* struct_vulkan);
+  Graphical(vk::structure::Vulkan* vk_struct);
   ~Graphical();
 
 public:
@@ -27,7 +27,7 @@ public:
   void cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* data);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::draw::Renderer* vk_render;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;

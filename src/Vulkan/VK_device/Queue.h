@@ -13,7 +13,7 @@ class Queue
 {
 public:
   //Constructor / Destructor
-  Queue(vk::structure::Vulkan* struct_vulkan);
+  Queue(vk::structure::Vulkan* vk_struct);
   ~Queue();
 
 public:
@@ -30,7 +30,7 @@ public:
   bool suitability_for_graphics(vk::structure::Physical_device& physical_device);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

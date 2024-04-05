@@ -12,15 +12,15 @@ EDL::EDL(eng::render::Node* node_render){
   //---------------------------
 
   vk::Node* node_vulkan = node_render->get_node_vulkan();
-  vk::structure::Vulkan* struct_vulkan = node_vulkan->get_struct_vulkan();
+  vk::structure::Vulkan* vk_struct = node_vulkan->get_vk_struct();
 
   this->shader_edl = node_render->get_shader_edl();
   this->vk_graphical = node_vulkan->get_vk_graphical();
-  this->vk_pipeline = new vk::renderpass::Pipeline(struct_vulkan);
-  this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
-  this->vk_descriptor = new vk::binding::Descriptor(struct_vulkan);
-  this->vk_drawing = new vk::draw::Graphical(struct_vulkan);
-  this->vk_uniform = new vk::binding::Uniform(struct_vulkan);
+  this->vk_pipeline = new vk::renderpass::Pipeline(vk_struct);
+  this->vk_viewport = new vk::draw::Viewport(vk_struct);
+  this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
+  this->vk_drawing = new vk::draw::Graphical(vk_struct);
+  this->vk_uniform = new vk::binding::Uniform(vk_struct);
 
   //---------------------------
 }

@@ -6,12 +6,12 @@
 namespace vk::data{
 
 //Constructor / Destructor
-Canvas::Canvas(vk::structure::Vulkan* struct_vulkan){
+Canvas::Canvas(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_buffer = new Buffer(struct_vulkan);
-  this->vk_data = new vk::data::Data(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_buffer = new Buffer(vk_struct);
+  this->vk_data = new vk::data::Data(vk_struct);
 
   //---------------------------
 }
@@ -46,16 +46,16 @@ void Canvas::init(){
   data->size = xyz.size();
   data->topology.type = utl::topology::TRIANGLE;
 
-  struct_vulkan->data.canvas.data = data;
+  vk_struct->data.canvas.data = data;
 
-  vk_buffer->create_buffers(&struct_vulkan->data.canvas);
+  vk_buffer->create_buffers(&vk_struct->data.canvas);
 
   //---------------------------
 }
 void Canvas::clean(){
   //---------------------------
 
-  vk_buffer->clean_buffers(&struct_vulkan->data.canvas);
+  vk_buffer->clean_buffers(&vk_struct->data.canvas);
 
   //---------------------------
 }

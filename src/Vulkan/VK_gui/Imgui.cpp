@@ -6,15 +6,15 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Imgui::Imgui(vk::structure::Vulkan* struct_vulkan){
+Imgui::Imgui(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_pool = new vk::instance::Pool(struct_vulkan);
-  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
-  this->vk_allocator = new vk::command::Allocator(struct_vulkan);
-  this->vk_surface = new vk::presentation::Surface(struct_vulkan);
-  this->vk_texture = new vk::main::Texture(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_pool = new vk::instance::Pool(vk_struct);
+  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
+  this->vk_allocator = new vk::command::Allocator(vk_struct);
+  this->vk_surface = new vk::presentation::Surface(vk_struct);
+  this->vk_texture = new vk::main::Texture(vk_struct);
 
   //---------------------------
 }
@@ -95,8 +95,8 @@ ImTextureID Imgui::query_engine_texture(){
 
   bool has_been_resized = check_window_resize();
 
-  if(texture == 0 || struct_vulkan->window.is_resized || has_been_resized){
-    vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("edl");
+  if(texture == 0 || vk_struct->window.is_resized || has_been_resized){
+    vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");
     vk::structure::Image* image = &renderpass->framebuffer->color;
 
     VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
@@ -107,7 +107,7 @@ ImTextureID Imgui::query_engine_texture(){
   return texture;
 }
 void Imgui::create_context(){
-  vk::structure::Renderpass* renderpass = struct_vulkan->render.get_renderpass_byName("gui");
+  vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
   //---------------------------
 
   // Setup Dear ImGui context
@@ -117,19 +117,19 @@ void Imgui::create_context(){
   ImGui::StyleColorsDark();
 
   // Setup Platform/Renderer bindings
-  ImGui_ImplGlfw_InitForVulkan(struct_vulkan->window.glfw_window, true);
+  ImGui_ImplGlfw_InitForVulkan(vk_struct->window.glfw_window, true);
   ImGui_ImplVulkan_InitInfo init_info = {};
-  init_info.Instance = struct_vulkan->instance.instance;
-  init_info.PhysicalDevice = struct_vulkan->device.physical_device.handle;
-  init_info.Device = struct_vulkan->device.handle;
-  init_info.Queue = struct_vulkan->device.queue.graphics.handle;
-  init_info.DescriptorPool = struct_vulkan->pools.descriptor.memory;
+  init_info.Instance = vk_struct->instance.instance;
+  init_info.PhysicalDevice = vk_struct->device.physical_device.handle;
+  init_info.Device = vk_struct->device.handle;
+  init_info.Queue = vk_struct->device.queue.graphics.handle;
+  init_info.DescriptorPool = vk_struct->pools.descriptor.memory;
   init_info.PipelineCache = VK_NULL_HANDLE;
   init_info.MinImageCount = 2;
   init_info.ImageCount = 2;
   init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
   init_info.Subpass = 0;
-  init_info.QueueFamily = struct_vulkan->device.queue.graphics.family_ID;
+  init_info.QueueFamily = vk_struct->device.queue.graphics.family_ID;
   ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
 
   //---------------------------
@@ -202,7 +202,7 @@ void Imgui::select_font(){
 void Imgui::load_font(){
   //---------------------------
 
-  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&struct_vulkan->device.queue.graphics);
+  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
@@ -211,7 +211,7 @@ void Imgui::load_font(){
   vk_command_buffer->end_command_buffer(command_buffer);
   vk::structure::Command* command = new vk::structure::Command();
   command->vec_command_buffer.push_back(command_buffer);
-  struct_vulkan->queue.graphics->add_command(command);
+  vk_struct->queue.graphics->add_command(command);
 
   //---------------------------
 }

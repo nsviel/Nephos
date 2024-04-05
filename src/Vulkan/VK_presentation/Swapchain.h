@@ -17,7 +17,7 @@ class Swapchain
 {
 public:
   //Constructor / Destructor
-  Swapchain(vk::structure::Vulkan* struct_vulkan);
+  Swapchain(vk::structure::Vulkan* vk_struct);
   ~Swapchain();
 
 public:
@@ -34,7 +34,7 @@ public:
   void find_swapchain_presentation_mode();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::draw::Viewport* vk_viewport;
   vk::device::Physical* dev_physical;
   vk::presentation::Frame* vk_frame;

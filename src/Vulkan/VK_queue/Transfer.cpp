@@ -7,12 +7,12 @@
 namespace vk::queue{
 
 //Constructor / Destructor
-Transfer::Transfer(vk::structure::Vulkan* struct_vulkan){
+Transfer::Transfer(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_fence = new vk::synchro::Fence(struct_vulkan);
-  this->vk_query = new vk::instance::Query(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_fence = new vk::synchro::Fence(vk_struct);
+  this->vk_query = new vk::instance::Query(vk_struct);
 
   //---------------------------
   this->start_thread();
@@ -33,7 +33,7 @@ void Transfer::run_thread(){
   //---------------------------
 
   //Save thread information
-  struct_vulkan->profiler->prf_vulkan->add_thread("Transfer queue");
+  vk_struct->profiler->prf_vulkan->add_thread("Transfer queue");
 
   //Start thread loop
   this->thread_running = true;
@@ -63,7 +63,7 @@ void Transfer::wait_for_command(){
 
   this->queue_idle = true;
 
-  while(vec_command_prepa.empty() || struct_vulkan->queue.standby){
+  while(vec_command_prepa.empty() || vk_struct->queue.standby){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
@@ -103,7 +103,7 @@ void Transfer::queue_submission(){
   submit_info.commandBufferCount = vec_command_buffer.size();
   submit_info.pCommandBuffers = vec_command_buffer.data();
 
-  VkQueue queue = struct_vulkan->device.queue.transfer.handle;
+  VkQueue queue = vk_struct->device.queue.transfer.handle;
   VkResult result = vkQueueSubmit(queue, 1, &submit_info, fence->fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] graphics queue submission");
@@ -112,7 +112,7 @@ void Transfer::queue_submission(){
     throw std::runtime_error("[error] graphics queue submission timeout");
   }
 
-  vkWaitForFences(struct_vulkan->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
+  vkWaitForFences(vk_struct->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
   vk_fence->reset_fence(fence);
 
   //---------------------------

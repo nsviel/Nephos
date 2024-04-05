@@ -35,7 +35,7 @@ class Headless : public vk::main::Engine
 {
 public:
   //Constructor / Destructor
-  Headless(vk::structure::Vulkan* struct_vulkan);
+  Headless(vk::structure::Vulkan* vk_struct);
   ~Headless();
 
 public:
@@ -60,7 +60,7 @@ public:
   void set_window(GLFWwindow* window);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::instance::Extension* vk_extension;
   vk::presentation::Surface* vk_surface;
   vk::instance::Instance* vk_instance;

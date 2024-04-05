@@ -6,11 +6,11 @@
 namespace vk::device{
 
 //Constructor / Destructor
-Physical::Physical(vk::structure::Vulkan* struct_vulkan){
+Physical::Physical(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_dev_queue = new vk::device::Queue(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_dev_queue = new vk::device::Queue(vk_struct);
 
   //---------------------------
 }
@@ -29,26 +29,26 @@ void Physical::find_physical_device(){
 void Physical::compute_extent(){
   //---------------------------
 
-  if(struct_vulkan->param.headless){
-    struct_vulkan->window.extent.width = struct_vulkan->param.headless_dim.x;
-    struct_vulkan->window.extent.height = struct_vulkan->param.headless_dim.y;
+  if(vk_struct->param.headless){
+    vk_struct->window.extent.width = vk_struct->param.headless_dim.x;
+    vk_struct->window.extent.height = vk_struct->param.headless_dim.y;
   }
   else{
-    this->find_surface_capability(struct_vulkan->device.physical_device);
-    VkSurfaceCapabilitiesKHR capabilities = struct_vulkan->device.physical_device.capabilities;
+    this->find_surface_capability(vk_struct->device.physical_device);
+    VkSurfaceCapabilitiesKHR capabilities = vk_struct->device.physical_device.capabilities;
 
     if(capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()){
-      struct_vulkan->window.extent = capabilities.currentExtent;
+      vk_struct->window.extent = capabilities.currentExtent;
     }
     else{
-      glm::vec2 fbo_dim = struct_vulkan->window.window_dim;
-      struct_vulkan->window.extent = {
+      glm::vec2 fbo_dim = vk_struct->window.window_dim;
+      vk_struct->window.extent = {
         static_cast<uint32_t>(fbo_dim.x),
         static_cast<uint32_t>(fbo_dim.y)
       };
 
-      struct_vulkan->window.extent.width = std::clamp(struct_vulkan->window.extent.width, capabilities.minImageExtent.width, capabilities.maxImageExtent.width);
-      struct_vulkan->window.extent.height = std::clamp(struct_vulkan->window.extent.height, capabilities.minImageExtent.height, capabilities.maxImageExtent.height);
+      vk_struct->window.extent.width = std::clamp(vk_struct->window.extent.width, capabilities.minImageExtent.width, capabilities.maxImageExtent.width);
+      vk_struct->window.extent.height = std::clamp(vk_struct->window.extent.height, capabilities.minImageExtent.height, capabilities.maxImageExtent.height);
     }
   }
 
@@ -61,14 +61,14 @@ void Physical::find_all_physical_device(){
 
   //Find how many GPU are available
   uint32_t nb_device = 0;
-  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, nullptr);
+  vkEnumeratePhysicalDevices(vk_struct->instance.instance, &nb_device, nullptr);
   if(nb_device == 0){
     throw std::runtime_error("[error] failed to find GPUs with Vulkan support!");
   }
 
   //List all available GPU and take suitable one
   vector<VkPhysicalDevice> vec_physical_device(nb_device);
-  vkEnumeratePhysicalDevices(struct_vulkan->instance.instance, &nb_device, vec_physical_device.data());
+  vkEnumeratePhysicalDevices(vk_struct->instance.instance, &nb_device, vec_physical_device.data());
 
   //Store physical device properties
   for(VkPhysicalDevice device : vec_physical_device){
@@ -76,7 +76,7 @@ void Physical::find_all_physical_device(){
     physical_device.handle = device;
     this->find_physical_device_properties(physical_device);
     this->find_physical_device_limits(physical_device);
-    struct_vulkan->instance.vec_physical_device.push_back(physical_device);
+    vk_struct->instance.vec_physical_device.push_back(physical_device);
   }
 
   //---------------------------
@@ -86,20 +86,20 @@ void Physical::find_best_physical_device(){
 
   // Use an ordered map to automatically sort candidates by increasing score
   std::multimap<int, vk::structure::Physical_device> candidates;
-  for(int i=0; i<struct_vulkan->instance.vec_physical_device.size(); i++){
-    vk::structure::Physical_device& physical_device = struct_vulkan->instance.vec_physical_device[i];
+  for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){
+    vk::structure::Physical_device& physical_device = vk_struct->instance.vec_physical_device[i];
     this->rate_device_suitability(physical_device);
     candidates.insert(std::make_pair(physical_device.selection_score, physical_device));
   }
 
   //Select adequat GPU physical device
-  struct_vulkan->device.physical_device.handle = VK_NULL_HANDLE;
+  vk_struct->device.physical_device.handle = VK_NULL_HANDLE;
   if(candidates.rbegin()->first > 0){
-    struct_vulkan->device.physical_device = candidates.rbegin()->second;
+    vk_struct->device.physical_device = candidates.rbegin()->second;
   }else {
     throw std::runtime_error("failed to find a suitable GPU!");
   }
-  if(struct_vulkan->device.physical_device.handle == VK_NULL_HANDLE){
+  if(vk_struct->device.physical_device.handle == VK_NULL_HANDLE){
     throw std::runtime_error("[error] failed to find a suitable GPU!");
   }
 
@@ -117,7 +117,7 @@ void Physical::rate_device_suitability(vk::structure::Physical_device& physical_
 
   // Check if physical device is suitable
   bool device_suitable;
-  if(struct_vulkan->param.headless){
+  if(vk_struct->param.headless){
     device_suitable = device_suitability_offscreen(physical_device);
   }else{
     device_suitable = device_suitability_onscreen(physical_device);
@@ -130,7 +130,7 @@ void Physical::rate_device_suitability(vk::structure::Physical_device& physical_
   // Check if integrated GPU
   if(physical_device.type == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU){
     physical_device.discrete_gpu = true;
-    if(struct_vulkan->param.dedicated_gpu){
+    if(vk_struct->param.dedicated_gpu){
       score += 100000;
     }
     else{
@@ -261,7 +261,7 @@ void Physical::find_physical_device_support(vk::structure::Physical_device& phys
   vkEnumerateDeviceExtensionProperties(physical_device.handle, nullptr, &nb_extension, vec_extension.data());
 
   //Check if all required extension are in the list
-  std::set<std::string> requiredExtensions(struct_vulkan->instance.extension_device.begin(), struct_vulkan->instance.extension_device.end());
+  std::set<std::string> requiredExtensions(vk_struct->instance.extension_device.begin(), vk_struct->instance.extension_device.end());
   for(const auto& extension : vec_extension){
     requiredExtensions.erase(extension.extensionName);
   }
@@ -274,7 +274,7 @@ void Physical::find_surface_capability(vk::structure::Physical_device& physical_
 
   //Get basic surface capabilities
   VkSurfaceCapabilitiesKHR capabilities;
-  vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device.handle, struct_vulkan->window.surface, &capabilities);
+  vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physical_device.handle, vk_struct->window.surface, &capabilities);
 
   //---------------------------
   physical_device.capabilities = capabilities;
@@ -284,14 +284,14 @@ void Physical::find_surface_format(vk::structure::Physical_device& physical_devi
 
   //Get supported surface format number
   uint32_t nb_format;
-  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, struct_vulkan->window.surface, &nb_format, nullptr);
+  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, vk_struct->window.surface, &nb_format, nullptr);
   if(nb_format == 0){
     cout<<"[error] No physical device surface format"<<endl;
   }
 
   //Get supported surface format list
   vector<VkSurfaceFormatKHR> formats(nb_format);
-  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, struct_vulkan->window.surface, &nb_format, formats.data());
+  vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, vk_struct->window.surface, &nb_format, formats.data());
 
   //---------------------------
   physical_device.formats = formats;
@@ -301,14 +301,14 @@ void Physical::find_presentation_mode(vk::structure::Physical_device& physical_d
 
   //Get presentation mode number
   uint32_t nb_mode_presentation;
-  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.handle, struct_vulkan->window.surface, &nb_mode_presentation, nullptr);
+  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.handle, vk_struct->window.surface, &nb_mode_presentation, nullptr);
   if(nb_mode_presentation == 0){
     cout<<"[error] No physical device surface presentation mode"<<endl;
   }
 
   //Get presentation mode list
   vector<VkPresentModeKHR> presentation_mode(nb_mode_presentation);
-  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.handle, struct_vulkan->window.surface, &nb_mode_presentation, presentation_mode.data());
+  vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.handle, vk_struct->window.surface, &nb_mode_presentation, presentation_mode.data());
 
   //---------------------------
   physical_device.presentation_mode = presentation_mode;

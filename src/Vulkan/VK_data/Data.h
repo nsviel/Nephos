@@ -19,7 +19,7 @@ class Data
 {
 public:
   //Constructor / Destructor
-  Data(vk::structure::Vulkan* struct_vulkan);
+  Data(vk::structure::Vulkan* vk_struct);
   ~Data();
 
 public:
@@ -37,7 +37,7 @@ public:
   void pipeline_vertex_input_info(vk::structure::Pipeline* pipeline);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   Buffer* vk_buffer;
   vk::main::Texture* vk_texture;
   vk::command::Command_buffer* vk_command_buffer;

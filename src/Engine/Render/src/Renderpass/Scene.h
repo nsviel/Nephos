@@ -40,7 +40,7 @@ public:
 
 private:
   eng::render::Node* node_render;
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
   vk::draw::Graphical* vk_drawing;

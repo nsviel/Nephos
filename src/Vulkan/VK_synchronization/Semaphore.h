@@ -13,7 +13,7 @@ class Semaphore
 {
 public:
   //Constructor / Destructor
-  Semaphore(vk::structure::Vulkan* struct_vulkan);
+  Semaphore(vk::structure::Vulkan* vk_struct);
   ~Semaphore();
 
 public:
@@ -30,7 +30,7 @@ public:
   vk::structure::Semaphore* query_free_semaphore();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

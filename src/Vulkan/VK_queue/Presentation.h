@@ -14,7 +14,7 @@ class Presentation
 {
 public:
   //Constructor / Destructor
-  Presentation(vk::structure::Vulkan* struct_vulkan);
+  Presentation(vk::structure::Vulkan* vk_struct);
   ~Presentation();
 
 public:
@@ -27,7 +27,7 @@ public:
   void next_frame_ID();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::presentation::Surface* vk_surface;
   vk::presentation::Swapchain* vk_swapchain;
 };

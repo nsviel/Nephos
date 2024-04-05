@@ -15,7 +15,7 @@ class Reloader
 {
 public:
   //Constructor / Destructor
-  Reloader(vk::structure::Vulkan* struct_vulkan);
+  Reloader(vk::structure::Vulkan* vk_struct);
   ~Reloader();
 
 public:
@@ -24,7 +24,7 @@ public:
   void recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::renderpass::Pipeline* vk_pipeline;
   vk::synchro::Synchro* vk_synchro;
 };

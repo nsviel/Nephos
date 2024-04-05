@@ -6,13 +6,13 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-Framebuffer::Framebuffer(vk::structure::Vulkan* struct_vulkan){
+Framebuffer::Framebuffer(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_color = new vk::image::Color(struct_vulkan);
-  this->vk_depth = new vk::image::Depth(struct_vulkan);
-  this->vk_image = new vk::image::Image(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_color = new vk::image::Color(vk_struct);
+  this->vk_depth = new vk::image::Depth(vk_struct);
+  this->vk_image = new vk::image::Image(vk_struct);
 
   //---------------------------
 }
@@ -22,8 +22,8 @@ Framebuffer::~Framebuffer(){}
 void Framebuffer::create_framebuffers(){
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
-    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+  for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
+    vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
     this->create_framebuffer(renderpass);
   }
 
@@ -50,8 +50,8 @@ void Framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
 void Framebuffer::clean_framebuffers(){
   //---------------------------
 
-  for(int i=0; i<struct_vulkan->render.vec_renderpass.size(); i++){
-    vk::structure::Renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
+  for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
+    vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
     this->clean_framebuffer(renderpass);
   }
 
@@ -86,12 +86,12 @@ void Framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* rende
   framebufferInfo.renderPass = renderpass->renderpass;
   framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
   framebufferInfo.pAttachments = attachments.data();
-  framebufferInfo.width = struct_vulkan->window.extent.width;
-  framebufferInfo.height = struct_vulkan->window.extent.height;
+  framebufferInfo.width = vk_struct->window.extent.width;
+  framebufferInfo.height = vk_struct->window.extent.height;
   framebufferInfo.layers = 1;
 
   VkFramebuffer fbo;
-  VkResult result = vkCreateFramebuffer(struct_vulkan->device.handle, &framebufferInfo, nullptr, &fbo);
+  VkResult result = vkCreateFramebuffer(vk_struct->device.handle, &framebufferInfo, nullptr, &fbo);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create framebuffer!");
   }
@@ -113,12 +113,12 @@ void Framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* render
   framebufferInfo.renderPass = renderpass->renderpass;
   framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
   framebufferInfo.pAttachments = attachments.data();
-  framebufferInfo.width = struct_vulkan->window.extent.width;
-  framebufferInfo.height = struct_vulkan->window.extent.height;
+  framebufferInfo.width = vk_struct->window.extent.width;
+  framebufferInfo.height = vk_struct->window.extent.height;
   framebufferInfo.layers = 1;
 
   VkFramebuffer fbo;
-  VkResult result = vkCreateFramebuffer(struct_vulkan->device.handle, &framebufferInfo, nullptr, &fbo);
+  VkResult result = vkCreateFramebuffer(vk_struct->device.handle, &framebufferInfo, nullptr, &fbo);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create framebuffer!");
   }
@@ -129,7 +129,7 @@ void Framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* render
 void Framebuffer::clean_framebuffer_obj(VkFramebuffer& fbo){
   //---------------------------
 
-  vkDestroyFramebuffer(struct_vulkan->device.handle, fbo, nullptr);
+  vkDestroyFramebuffer(vk_struct->device.handle, fbo, nullptr);
 
   //---------------------------
 }

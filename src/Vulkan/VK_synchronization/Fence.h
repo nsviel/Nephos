@@ -12,7 +12,7 @@ class Fence
 {
 public:
   //Constructor / Destructor
-  Fence(vk::structure::Vulkan* struct_vulkan);
+  Fence(vk::structure::Vulkan* vk_struct);
   ~Fence();
 
 public:
@@ -30,7 +30,7 @@ public:
   bool is_fence_available(vk::structure::Fence* fence);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

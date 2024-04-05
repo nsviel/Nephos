@@ -15,7 +15,7 @@ class Allocator
 {
 public:
   //Constructor / Destructor
-  Allocator(vk::structure::Vulkan* struct_vulkan);
+  Allocator(vk::structure::Vulkan* vk_struct);
   ~Allocator();
 
 public:
@@ -33,7 +33,7 @@ public:
   vk::pool::Command_buffer* query_free_pool(vk::structure::Queue* queue);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::instance::Pool* vk_pool;
   vk::command::Command_buffer* vk_command_buffer;
 };

@@ -13,7 +13,7 @@ class Pool
 {
 public:
   //Constructor / Destructor
-  Pool(vk::structure::Vulkan* struct_vulkan);
+  Pool(vk::structure::Vulkan* vk_struct);
   ~Pool();
 
 public:
@@ -32,7 +32,7 @@ public:
   void clean_command_pool(vk::pool::Command_buffer* pool);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::main::Thread* vk_thread;
 };
 

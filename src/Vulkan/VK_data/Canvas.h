@@ -13,7 +13,7 @@ class Canvas
 {
 public:
   //Constructor / Destructor
-  Canvas(vk::structure::Vulkan* struct_vulkan);
+  Canvas(vk::structure::Vulkan* vk_struct);
   ~Canvas();
 
 public:
@@ -22,7 +22,7 @@ public:
   void clean();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   Buffer* vk_buffer;
   vk::data::Data* vk_data;
 };

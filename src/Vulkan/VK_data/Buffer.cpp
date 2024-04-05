@@ -6,12 +6,12 @@
 namespace vk::data{
 
 //Constructor / Destructor
-Buffer::Buffer(vk::structure::Vulkan* struct_vulkan){
+Buffer::Buffer(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_mem_allocator = new vk::memory::Allocator(struct_vulkan);
-  this->vk_mem_transfer = new vk::memory::Transfer(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_mem_allocator = new vk::memory::Allocator(vk_struct);
+  this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
 
   //---------------------------
 }
@@ -84,11 +84,11 @@ void Buffer::clean_buffer(vk::structure::Buffer* buffer){
   //---------------------------
 
   if(buffer->vbo != VK_NULL_HANDLE){
-    vkDestroyBuffer(struct_vulkan->device.handle, buffer->vbo, nullptr);
+    vkDestroyBuffer(vk_struct->device.handle, buffer->vbo, nullptr);
   }
 
   if(buffer->mem != VK_NULL_HANDLE){
-    vkFreeMemory(struct_vulkan->device.handle, buffer->mem, nullptr);
+    vkFreeMemory(vk_struct->device.handle, buffer->mem, nullptr);
   }
 
   //---------------------------

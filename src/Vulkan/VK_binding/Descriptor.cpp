@@ -6,12 +6,12 @@
 namespace vk::binding{
 
 //Constructor / Destructor
-Descriptor::Descriptor(vk::structure::Vulkan* struct_vulkan){
+Descriptor::Descriptor(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_uniform = new vk::binding::Uniform(struct_vulkan);
-  this->vk_sampler = new vk::binding::Sampler(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_uniform = new vk::binding::Uniform(vk_struct);
+  this->vk_sampler = new vk::binding::Sampler(vk_struct);
 
   //---------------------------
 }
@@ -31,7 +31,7 @@ void Descriptor::create_binding(vk::structure::Binding* binding){
 void Descriptor::clean_binding(vk::structure::Binding* binding){
   //---------------------------
 
-  vkDestroyDescriptorSetLayout(struct_vulkan->device.handle, binding->descriptor.layout, nullptr);
+  vkDestroyDescriptorSetLayout(vk_struct->device.handle, binding->descriptor.layout, nullptr);
   vk_uniform->clean_uniform(binding);
 
   //---------------------------
@@ -69,7 +69,7 @@ void Descriptor::update_descriptor_uniform(vk::structure::Binding* binding){
 
   //Update descriptor
   if(vec_descriptor_write.size() != 0){
-    vkUpdateDescriptorSets(struct_vulkan->device.handle, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
+    vkUpdateDescriptorSets(vk_struct->device.handle, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
   }
 
   //---------------------------
@@ -108,7 +108,7 @@ void Descriptor::update_descriptor_sampler(vk::structure::Binding* binding, vect
   }
 
   if(vec_descriptor_write.size() != 0){
-    vkUpdateDescriptorSets(struct_vulkan->device.handle, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
+    vkUpdateDescriptorSets(vk_struct->device.handle, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
   }
 
   //---------------------------
@@ -150,7 +150,7 @@ void Descriptor::update_descriptor_sampler(vk::structure::Binding* binding, vk::
   write_sampler.descriptorCount = 1;
   write_sampler.pImageInfo = &image_info;
 
-  vkUpdateDescriptorSets(struct_vulkan->device.handle, 1, &write_sampler, 0, nullptr);
+  vkUpdateDescriptorSets(vk_struct->device.handle, 1, &write_sampler, 0, nullptr);
 
   //---------------------------
 }
@@ -168,11 +168,11 @@ void Descriptor::allocate_descriptor_set(vk::structure::Binding* binding){
 
   VkDescriptorSetAllocateInfo allocation_info{};
   allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-  allocation_info.descriptorPool = struct_vulkan->pools.descriptor.memory;
+  allocation_info.descriptorPool = vk_struct->pools.descriptor.memory;
   allocation_info.descriptorSetCount = 1;
   allocation_info.pSetLayouts = &binding->descriptor.layout;
 
-  VkResult result = vkAllocateDescriptorSets(struct_vulkan->device.handle, &allocation_info, &binding->descriptor.set);
+  VkResult result = vkAllocateDescriptorSets(vk_struct->device.handle, &allocation_info, &binding->descriptor.set);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to allocate descriptor sets!");
   }
@@ -220,7 +220,7 @@ VkDescriptorSetLayout Descriptor::create_layout(vector<VkDescriptorSetLayoutBind
 
   //Descriptor set layout creation
   VkDescriptorSetLayout descriptor_layout;
-  VkResult result = vkCreateDescriptorSetLayout(struct_vulkan->device.handle, &layoutInfo, nullptr, &descriptor_layout);
+  VkResult result = vkCreateDescriptorSetLayout(vk_struct->device.handle, &layoutInfo, nullptr, &descriptor_layout);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create descriptor set layout!");
   }

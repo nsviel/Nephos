@@ -16,7 +16,7 @@ class Renderer
 {
 public:
   //Constructor / Destructor
-  Renderer(vk::structure::Vulkan* struct_vulkan);
+  Renderer(vk::structure::Vulkan* vk_struct);
   ~Renderer();
 
 public:
@@ -29,7 +29,7 @@ public:
   void draw_subpass(vk::structure::Renderpass* renderpass);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::command::Command_buffer* vk_command_buffer;
   vk::command::Allocator* vk_allocator;
 };

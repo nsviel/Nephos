@@ -6,12 +6,12 @@
 namespace vk::queue{
 
 //Constructor / Destructor
-Graphics::Graphics(vk::structure::Vulkan* struct_vulkan){
+Graphics::Graphics(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_fence = new vk::synchro::Fence(struct_vulkan);
-  this->vk_query = new vk::instance::Query(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_fence = new vk::synchro::Fence(vk_struct);
+  this->vk_query = new vk::instance::Query(vk_struct);
 
   //---------------------------
 }
@@ -31,7 +31,7 @@ void Graphics::run_thread(){
   //---------------------------
 
   //Save thread information
-  struct_vulkan->profiler->prf_vulkan->add_thread("Graphics queue");
+  vk_struct->profiler->prf_vulkan->add_thread("Graphics queue");
 
   //Start thread loop
   this->thread_running = true;
@@ -107,7 +107,7 @@ void Graphics::wait_for_command(){
 
   //IF FAUT TOUT METTRE DANS LE QUEUE THREAD
 //say("graphics off");
-  while(vec_command_prepa.empty() || struct_vulkan->queue.standby){
+  while(vec_command_prepa.empty() || vk_struct->queue.standby){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
@@ -174,13 +174,13 @@ void Graphics::queue_submission(){
   submit_info.commandBufferCount = vec_command_buffer.size();
   submit_info.pCommandBuffers = vec_command_buffer.data();
 
-  VkQueue queue = struct_vulkan->device.queue.graphics.handle;
+  VkQueue queue = vk_struct->device.queue.graphics.handle;
   VkResult result = vkQueueSubmit(queue, 1, &submit_info, fence->fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }
 
-  vkWaitForFences(struct_vulkan->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
+  vkWaitForFences(vk_struct->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
   vk_fence->reset_fence(fence);
 
   //---------------------------

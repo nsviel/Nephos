@@ -6,10 +6,10 @@
 namespace vk::queue{
 
 //Constructor / Destructor
-Manager::Manager(vk::structure::Vulkan* struct_vulkan){
+Manager::Manager(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
+  this->vk_struct = vk_struct;
 
   //---------------------------
 }
@@ -19,9 +19,9 @@ Manager::~Manager(){}
 void Manager::init(){
   //---------------------------
 
-  struct_vulkan->queue.transfer = new vk::queue::Transfer(struct_vulkan);
-  struct_vulkan->queue.graphics = new vk::queue::Graphics(struct_vulkan);
-  struct_vulkan->queue.presentation = new vk::queue::Presentation(struct_vulkan);
+  vk_struct->queue.transfer = new vk::queue::Transfer(vk_struct);
+  vk_struct->queue.graphics = new vk::queue::Graphics(vk_struct);
+  vk_struct->queue.presentation = new vk::queue::Presentation(vk_struct);
 
   //---------------------------
 }

@@ -6,11 +6,11 @@
 namespace vk::image{
 
 //Constructor / Destructor
-Depth::Depth(vk::structure::Vulkan* struct_vulkan){
+Depth::Depth(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_image = new vk::image::Image(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_image = new vk::image::Image(vk_struct);
 
   //---------------------------
 }
@@ -23,8 +23,8 @@ void Depth::create_depth_image(vk::structure::Image* depth){
   //Create frame depth image
   depth->name = "tex_depth";
   depth->format = find_depth_format();
-  depth->width = struct_vulkan->window.extent.width;
-  depth->height = struct_vulkan->window.extent.height;
+  depth->width = vk_struct->window.extent.width;
+  depth->height = vk_struct->window.extent.height;
   depth->aspect = VK_IMAGE_ASPECT_DEPTH_BIT;
 
   vk_image->create_image(depth);
@@ -54,7 +54,7 @@ VkFormat Depth::find_supported_format(const std::vector<VkFormat>& format_candid
 
   for(VkFormat format : format_candidates){
     VkFormatProperties property;
-    vkGetPhysicalDeviceFormatProperties(struct_vulkan->device.physical_device.handle, format, &property);
+    vkGetPhysicalDeviceFormatProperties(vk_struct->device.physical_device.handle, format, &property);
 
     //tiling
     bool tiling_ok;

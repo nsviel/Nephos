@@ -13,7 +13,7 @@ class Query
 {
 public:
   //Constructor / Destructor
-  Query(vk::structure::Vulkan* struct_vulkan);
+  Query(vk::structure::Vulkan* vk_struct);
   ~Query();
 
 public:
@@ -27,7 +27,7 @@ public:
   void find_query_timestamp(vk::structure::Command_buffer* command_buffer);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

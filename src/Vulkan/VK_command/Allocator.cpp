@@ -6,11 +6,11 @@
 namespace vk::command{
 
 //Constructor / Destructor
-Allocator::Allocator(vk::structure::Vulkan* struct_vulkan){
+Allocator::Allocator(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_pool = new vk::instance::Pool(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_pool = new vk::instance::Pool(vk_struct);
 
   //---------------------------
 }
@@ -18,27 +18,27 @@ Allocator::~Allocator(){}
 
 //Main function
 void Allocator::init(){
-  this->vk_command_buffer = new vk::command::Command_buffer(struct_vulkan);
+  this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   //---------------------------
 
-  this->create_command_buffer_pool(&struct_vulkan->device.queue.graphics);
-  this->create_command_buffer_pool(&struct_vulkan->device.queue.transfer);
+  this->create_command_buffer_pool(&vk_struct->device.queue.graphics);
+  this->create_command_buffer_pool(&vk_struct->device.queue.transfer);
 
   //---------------------------
 }
 void Allocator::reset(){
   //---------------------------
 
-  this->reset_command_buffer_pool(&struct_vulkan->device.queue.graphics);
-  this->reset_command_buffer_pool(&struct_vulkan->device.queue.transfer);
+  this->reset_command_buffer_pool(&vk_struct->device.queue.graphics);
+  this->reset_command_buffer_pool(&vk_struct->device.queue.transfer);
 
   //---------------------------
 }
 void Allocator::clean(){
   //---------------------------
 
-  this->clean_command_buffer_pool(&struct_vulkan->device.queue.graphics);
-  this->clean_command_buffer_pool(&struct_vulkan->device.queue.transfer);
+  this->clean_command_buffer_pool(&vk_struct->device.queue.graphics);
+  this->clean_command_buffer_pool(&vk_struct->device.queue.transfer);
 
   //---------------------------
 }
@@ -48,7 +48,7 @@ void Allocator::create_command_buffer_pool(vk::structure::Queue* queue){
   //---------------------------
 
   //Number of command buffer pool
-  int number = struct_vulkan->device.physical_device.discrete_gpu ? 100 : 10;
+  int number = vk_struct->device.physical_device.discrete_gpu ? 100 : 10;
 
   //Create a pool of command buffer pool number
   for(int i=0; i<number; i++){

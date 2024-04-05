@@ -11,7 +11,7 @@ class Surface
 {
 public:
   //Constructor / Destructor
-  Surface(vk::structure::Vulkan* struct_vulkan);
+  Surface(vk::structure::Vulkan* vk_struct);
   ~Surface();
 
 public:
@@ -24,7 +24,7 @@ public:
   vec2 compute_window_dim();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

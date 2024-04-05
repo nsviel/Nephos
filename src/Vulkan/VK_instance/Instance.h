@@ -12,7 +12,7 @@ class Instance
 {
 public:
   //Constructor / Destructor
-  Instance(vk::structure::Vulkan* struct_vulkan);
+  Instance(vk::structure::Vulkan* vk_struct);
   ~Instance();
 
 public:
@@ -25,7 +25,7 @@ public:
 
 private:
   vk::validation::Layer* vk_validation;
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

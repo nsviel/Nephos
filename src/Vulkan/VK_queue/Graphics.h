@@ -16,7 +16,7 @@ class Graphics
 {
 public:
   //Constructor / Destructor
-  Graphics(vk::structure::Vulkan* struct_vulkan);
+  Graphics(vk::structure::Vulkan* vk_struct);
   ~Graphics();
 
 public:
@@ -39,7 +39,7 @@ public:
   inline bool is_queue_idle(){return queue_idle;}
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::synchro::Fence* vk_fence;
   vk::instance::Query* vk_query;
 

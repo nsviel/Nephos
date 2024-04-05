@@ -13,7 +13,7 @@ class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(vk::structure::Vulkan* struct_vulkan);
+  Shader(vk::structure::Vulkan* vk_struct);
   ~Shader();
 
 public:
@@ -29,7 +29,7 @@ public:
   void run_recompilation(string path_glsl, string path_spir);
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 
   string path_output;
 };

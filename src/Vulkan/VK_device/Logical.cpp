@@ -6,12 +6,12 @@
 namespace vk::device{
 
 //Constructor / Destructor
-Logical::Logical(vk::structure::Vulkan* struct_vulkan){
+Logical::Logical(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->vk_dev_physical = new vk::device::Physical(struct_vulkan);
-  this->vk_dev_queue = new vk::device::Queue(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->vk_dev_physical = new vk::device::Physical(vk_struct);
+  this->vk_dev_queue = new vk::device::Queue(vk_struct);
 
   //---------------------------
 }
@@ -31,8 +31,8 @@ void Logical::init(){
 void Logical::clean(){
   //---------------------------
 
-  vkDestroyDevice(struct_vulkan->device.handle, nullptr);
-  struct_vulkan->device.handle = VK_NULL_HANDLE;
+  vkDestroyDevice(vk_struct->device.handle, nullptr);
+  vk_struct->device.handle = VK_NULL_HANDLE;
 
   //---------------------------
 }
@@ -55,12 +55,12 @@ void Logical::create_logical_device(){
   create_info.pQueueCreateInfos = vec_queue_info.data();
   create_info.queueCreateInfoCount = static_cast<uint32_t>(vec_queue_info.size());
   create_info.pEnabledFeatures = &device_features;
-  create_info.enabledExtensionCount = static_cast<uint32_t>(struct_vulkan->instance.extension_device.size());
-  create_info.ppEnabledExtensionNames = struct_vulkan->instance.extension_device.data();
+  create_info.enabledExtensionCount = static_cast<uint32_t>(vk_struct->instance.extension_device.size());
+  create_info.ppEnabledExtensionNames = vk_struct->instance.extension_device.data();
   create_info.enabledLayerCount = 0;
 
   //Creating the logical device
-  VkResult result = vkCreateDevice(struct_vulkan->device.physical_device.handle, &create_info, nullptr, &struct_vulkan->device.handle);
+  VkResult result = vkCreateDevice(vk_struct->device.physical_device.handle, &create_info, nullptr, &vk_struct->device.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create logical device!");
   }
@@ -68,7 +68,7 @@ void Logical::create_logical_device(){
   //---------------------------
 }
 void Logical::create_device_queue(){
-  vk::structure::queue::Pool& pool = struct_vulkan->device.queue;
+  vk::structure::queue::Pool& pool = vk_struct->device.queue;
   //---------------------------
 
   vk_dev_queue->create_queue(pool.graphics);

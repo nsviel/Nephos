@@ -11,7 +11,7 @@ class Synchro
 {
 public:
   //Constructor / Destructor
-  Synchro(vk::structure::Vulkan* struct_vulkan);
+  Synchro(vk::structure::Vulkan* vk_struct);
   ~Synchro();
 
 public:
@@ -20,7 +20,7 @@ public:
   void end_idle();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

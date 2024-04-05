@@ -6,16 +6,16 @@
 namespace vk::presentation{
 
 //Constructor / Destructor
-Swapchain::Swapchain(vk::structure::Vulkan* struct_vulkan){
+Swapchain::Swapchain(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
-  this->dev_physical = new vk::device::Physical(struct_vulkan);
-  this->vk_viewport = new vk::draw::Viewport(struct_vulkan);
-  this->vk_frame = new Frame(struct_vulkan);
-  this->vk_framebuffer = new vk::renderpass::Framebuffer(struct_vulkan);
-  this->vk_surface = new Surface(struct_vulkan);
-  this->vk_synchro = new vk::synchro::Synchro(struct_vulkan);
+  this->vk_struct = vk_struct;
+  this->dev_physical = new vk::device::Physical(vk_struct);
+  this->vk_viewport = new vk::draw::Viewport(vk_struct);
+  this->vk_frame = new Frame(vk_struct);
+  this->vk_framebuffer = new vk::renderpass::Framebuffer(vk_struct);
+  this->vk_surface = new Surface(vk_struct);
+  this->vk_synchro = new vk::synchro::Synchro(vk_struct);
 
   //---------------------------
 }
@@ -41,7 +41,7 @@ void Swapchain::recreate_swapchain(){
   //Minimization managment
   int width = 0, height = 0;
   while(width == 0 || height == 0){
-    glfwGetFramebufferSize(struct_vulkan->window.glfw_window, &width, &height);
+    glfwGetFramebufferSize(vk_struct->window.glfw_window, &width, &height);
     glfwWaitEvents();
   }
 
@@ -61,7 +61,7 @@ void Swapchain::recreate_swapchain(){
 void Swapchain::clean(){
   //---------------------------
 
-  vkDestroySwapchainKHR(struct_vulkan->device.handle, struct_vulkan->swapchain.swapchain, nullptr);
+  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, nullptr);
   vk_frame->clean_frame();
 
   //---------------------------
@@ -75,11 +75,11 @@ void Swapchain::create_swapchain_image(){
   //to get the correct image which are managed by the presentation engine
 
   //Empty swapchain image
-  vkGetSwapchainImagesKHR(struct_vulkan->device.handle, struct_vulkan->swapchain.swapchain, &struct_vulkan->swapchain.max_nb_frame, nullptr);
+  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, &vk_struct->swapchain.max_nb_frame, nullptr);
 
   //Fill swapchain image
-  struct_vulkan->swapchain.vec_swapchain_image.resize(struct_vulkan->swapchain.max_nb_frame);
-  vkGetSwapchainImagesKHR(struct_vulkan->device.handle, struct_vulkan->swapchain.swapchain, &struct_vulkan->swapchain.max_nb_frame, struct_vulkan->swapchain.vec_swapchain_image.data());
+  vk_struct->swapchain.vec_swapchain_image.resize(vk_struct->swapchain.max_nb_frame);
+  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, &vk_struct->swapchain.max_nb_frame, vk_struct->swapchain.vec_swapchain_image.data());
 
   //---------------------------
 }
@@ -87,12 +87,12 @@ void Swapchain::create_swapchain_obj(){
   //---------------------------
 
   uint32_t queueFamilyIndices[] = {
-    (unsigned int) struct_vulkan->device.queue.graphics.family_ID,
-    (unsigned int) struct_vulkan->device.queue.presentation.family_ID
+    (unsigned int) vk_struct->device.queue.graphics.family_ID,
+    (unsigned int) vk_struct->device.queue.presentation.family_ID
   };
 
   VkSwapchainCreateInfoKHR create_info{};
-  if(struct_vulkan->device.queue.graphics.family_ID != struct_vulkan->device.queue.presentation.family_ID){
+  if(vk_struct->device.queue.graphics.family_ID != vk_struct->device.queue.presentation.family_ID){
     create_info.imageSharingMode = VK_SHARING_MODE_CONCURRENT;
     create_info.queueFamilyIndexCount = 2;
     create_info.pQueueFamilyIndices = queueFamilyIndices;
@@ -103,22 +103,22 @@ void Swapchain::create_swapchain_obj(){
   }
 
   create_info.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
-  create_info.minImageCount = struct_vulkan->swapchain.max_nb_frame;
-  create_info.surface = struct_vulkan->window.surface;
-  create_info.imageFormat = struct_vulkan->swapchain.format.format;
-  create_info.imageColorSpace = struct_vulkan->swapchain.format.colorSpace;
-  create_info.imageExtent = struct_vulkan->window.extent;
+  create_info.minImageCount = vk_struct->swapchain.max_nb_frame;
+  create_info.surface = vk_struct->window.surface;
+  create_info.imageFormat = vk_struct->swapchain.format.format;
+  create_info.imageColorSpace = vk_struct->swapchain.format.colorSpace;
+  create_info.imageExtent = vk_struct->window.extent;
   create_info.imageArrayLayers = 1;
   create_info.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT; //VK_IMAGE_USAGE_TRANSFER_DST_BIT for post-processing
   create_info.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; //Ignore alpha channel
-  create_info.presentMode = struct_vulkan->swapchain.presentation_mode;
+  create_info.presentMode = vk_struct->swapchain.presentation_mode;
   create_info.clipped = VK_TRUE;
   create_info.oldSwapchain = VK_NULL_HANDLE;
 
-  VkSurfaceCapabilitiesKHR surface_capability = struct_vulkan->device.physical_device.capabilities;
+  VkSurfaceCapabilitiesKHR surface_capability = vk_struct->device.physical_device.capabilities;
   create_info.preTransform = surface_capability.currentTransform;
 
-  VkResult result = vkCreateSwapchainKHR(struct_vulkan->device.handle, &create_info, nullptr, &struct_vulkan->swapchain.swapchain);
+  VkResult result = vkCreateSwapchainKHR(vk_struct->device.handle, &create_info, nullptr, &vk_struct->swapchain.swapchain);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create swap chain!");
   }
@@ -126,7 +126,7 @@ void Swapchain::create_swapchain_obj(){
   //---------------------------
 }
 void Swapchain::find_swapchain_max_nb_image(){
-  VkSurfaceCapabilitiesKHR surface_capability = struct_vulkan->device.physical_device.capabilities;
+  VkSurfaceCapabilitiesKHR surface_capability = vk_struct->device.physical_device.capabilities;
   //---------------------------
 
   //Get swap chain image capacity (0 means no maximum)
@@ -136,26 +136,26 @@ void Swapchain::find_swapchain_max_nb_image(){
   }
 
   //---------------------------
-  struct_vulkan->swapchain.max_nb_frame = nb_image;
+  vk_struct->swapchain.max_nb_frame = nb_image;
 }
 void Swapchain::find_swapchain_surface_format(){
-  vector<VkSurfaceFormatKHR>& dev_format = struct_vulkan->device.physical_device.formats;
+  vector<VkSurfaceFormatKHR>& dev_format = vk_struct->device.physical_device.formats;
   VkSurfaceFormatKHR swapchain_format = dev_format[0];
   //---------------------------
 
   //Check if standar RGB is available
   for(const auto& format : dev_format){
-    if(format.format == struct_vulkan->render.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
+    if(format.format == vk_struct->render.required_image_format && format.colorSpace == VK_COLOR_SPACE_SRGB_NONLINEAR_KHR){
       swapchain_format = format;
       break;
     }
   }
 
   //---------------------------
-  struct_vulkan->swapchain.format = swapchain_format;
+  vk_struct->swapchain.format = swapchain_format;
 }
 void Swapchain::find_swapchain_presentation_mode(){
-  vector<VkPresentModeKHR>& dev_mode = struct_vulkan->device.physical_device.presentation_mode;
+  vector<VkPresentModeKHR>& dev_mode = vk_struct->device.physical_device.presentation_mode;
   //---------------------------
 
   //4 possible modes:
@@ -171,7 +171,7 @@ void Swapchain::find_swapchain_presentation_mode(){
   }
 
   //---------------------------
-  struct_vulkan->swapchain.presentation_mode = presentation_mode;
+  vk_struct->swapchain.presentation_mode = presentation_mode;
 }
 
 }

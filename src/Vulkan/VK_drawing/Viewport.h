@@ -11,7 +11,7 @@ namespace vk::draw{
 class Viewport
 {
 public:
-  Viewport(vk::structure::Vulkan* struct_vulkan);
+  Viewport(vk::structure::Vulkan* vk_struct);
   ~Viewport();
 
 public:
@@ -24,7 +24,7 @@ public:
   vk::structure::Viewport* create_viewport();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

@@ -11,7 +11,7 @@ class Manager
 {
 public:
   //Constructor / Destructor
-  Manager(vk::structure::Vulkan* struct_vulkan);
+  Manager(vk::structure::Vulkan* vk_struct);
   ~Manager();
 
 public:
@@ -19,7 +19,7 @@ public:
   void init();
   
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

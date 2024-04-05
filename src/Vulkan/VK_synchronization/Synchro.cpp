@@ -6,10 +6,10 @@
 namespace vk::synchro{
 
 //Constructor / Destructor
-Synchro::Synchro(vk::structure::Vulkan* struct_vulkan){
+Synchro::Synchro(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->struct_vulkan = struct_vulkan;
+  this->vk_struct = vk_struct;
 
   //---------------------------
 }
@@ -19,16 +19,16 @@ Synchro::~Synchro(){}
 void Synchro::wait_idle(){
   //---------------------------
 
-  struct_vulkan->queue.standby = true;
-  struct_vulkan->queue.transfer->wait_for_idle();
-  vkDeviceWaitIdle(struct_vulkan->device.handle);
+  vk_struct->queue.standby = true;
+  vk_struct->queue.transfer->wait_for_idle();
+  vkDeviceWaitIdle(vk_struct->device.handle);
 
   //---------------------------
 }
 void Synchro::end_idle(){
   //---------------------------
 
-  struct_vulkan->queue.standby = false;
+  vk_struct->queue.standby = false;
 
   //---------------------------
 }

@@ -13,7 +13,7 @@ class Logical
 {
 public:
   //Constructor / Destructor
-  Logical(vk::structure::Vulkan* struct_vulkan);
+  Logical(vk::structure::Vulkan* vk_struct);
   ~Logical();
 
 public:
@@ -26,7 +26,7 @@ public:
   void create_device_queue();
 
 private:
-  vk::structure::Vulkan* struct_vulkan;
+  vk::structure::Vulkan* vk_struct;
   vk::device::Physical* vk_dev_physical;
   vk::device::Queue* vk_dev_queue;
 };
