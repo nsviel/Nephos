@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace vk::main{class Imgui;}
-namespace vk::main{class Info;}
+namespace vk::main{class Interface;}
 namespace eng::render{class Node;}
 namespace eng::cam::gui{class Control;}
 namespace ope{class Node;}
@@ -33,7 +33,7 @@ private:
   ope::Node* node_operation;
   utl::element::Window* utl_window;
   vk::main::Imgui* vk_imgui;
-  vk::main::Info* vk_info;
+  vk::main::Interface* vk_interface;
 
   string name;
   bool has_been_initialized;

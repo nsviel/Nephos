@@ -55,7 +55,7 @@ void Object::update_data(){
   //----------------------------
 
   //Update own data
-  vk_engine->insert_data_in_engine(&data, &pose);
+  vk_engine->insert_data(&data, &pose);
 
   //----------------------------
 }
@@ -97,7 +97,7 @@ void Object::remove_entity(){
   }
 
   //Remove this data
-  vk_engine->remove_data_in_engine(&data);
+  vk_engine->remove_data(&data);
 
   //----------------------------
 }

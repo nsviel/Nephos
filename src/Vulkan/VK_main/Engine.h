@@ -3,20 +3,20 @@
 #include <Utility/Specific/Common.h>
 
 namespace vk::presentation{class Surface;}
-namespace vk::instance{class Instance;}
 namespace vk::presentation{class Swapchain;}
+namespace vk::presentation{class Frame;}
+namespace vk::instance{class Instance;}
+namespace vk::instance{class Extension;}
+namespace vk::instance{class Pool;}
 namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
 namespace vk::main{class Texture;}
-namespace vk::command{class Allocator;}
 namespace vk::main{class Imgui;}
 namespace vk::data{class Data;}
+namespace vk::data{class Canvas;}
 namespace vk::draw{class Viewport;}
 namespace vk::shader{class Reloader;}
-namespace vk::presentation{class Frame;}
-namespace vk::data{class Canvas;}
-namespace vk::instance{class Extension;}
-namespace vk::instance{class Pool;}
+namespace vk::command{class Allocator;}
 namespace vk::command{class Command_buffer;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
@@ -43,11 +43,10 @@ public:
   virtual void clean(){}
 
   //Data function
-  void insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose);
-  void remove_data_in_engine(utl::type::Data* data);
+  void insert_data(utl::type::Data* data, utl::type::Pose* pose);
+  void remove_data(utl::type::Data* data);
 
   //Renderpass function
-  void reload_shader(string shader, string subshader);
   void add_renderpass_description(vk::structure::Renderpass* renderpass);
   vk::structure::Renderpass* get_renderpass(int i);
   vk::structure::Renderpass* get_renderpass_presentation(int i);

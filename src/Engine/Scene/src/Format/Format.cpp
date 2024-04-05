@@ -13,7 +13,7 @@ Format::Format(eng::scene::Node* node_scene){
 
   eng::Node* node_engine = node_scene->get_node_engine();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
-  this->vk_info = node_vulkan->get_vk_info();
+  this->vk_interface = node_vulkan->get_vk_interface();
 
   this->insert_importer(new format::ply::Importer());
   this->insert_importer(new format::obj::Importer());
@@ -48,7 +48,7 @@ utl::file::Data* Format::import_from_path(utl::file::Path path){
 
     if(importer->format == format){
       //Check for discrete gpu requirement
-      if(importer->require_discrete_gpu && vk_info->is_gpu_discrete() == false){
+      if(importer->require_discrete_gpu && vk_interface->is_gpu_discrete() == false){
         cout<<"[error] no discrete GPU - could not load " + importer->format + " file"<<endl;
         continue;
       }

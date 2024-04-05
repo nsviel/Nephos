@@ -38,7 +38,7 @@ void Glyph::clear(){
   vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
 
-  vk_engine->remove_data_in_engine(&data);
+  vk_engine->remove_data(&data);
 
   //----------------------------
 }
@@ -48,7 +48,7 @@ void Glyph::update_data(){
   vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
 
-  vk_engine->insert_data_in_engine(&data, &pose);
+  vk_engine->insert_data(&data, &pose);
 
   //----------------------------
 }

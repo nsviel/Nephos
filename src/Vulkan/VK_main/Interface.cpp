@@ -1,4 +1,4 @@
-#include "Info.h"
+#include "Interface.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,17 +7,17 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Info::Info(vk::structure::Vulkan* vk_struct){
+Interface::Interface(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
 
   //---------------------------
 }
-Info::~Info(){}
+Interface::~Interface(){}
 
 //Profiler vulkan info
-void Info::fill_info(){
+void Interface::fill_info(){
   prf::vulkan::Profiler* prf_vulkan = vk_struct->profiler->prf_vulkan;
   //---------------------------
 
@@ -26,7 +26,7 @@ void Info::fill_info(){
 
   //---------------------------
 }
-void Info::fill_vulkan_info(prf::vulkan::Profiler* prf_vulkan){
+void Interface::fill_vulkan_info(prf::vulkan::Profiler* prf_vulkan){
   prf::vulkan::Info* info_vulkan = prf_vulkan->get_info();
   //---------------------------
 
@@ -34,7 +34,7 @@ void Info::fill_vulkan_info(prf::vulkan::Profiler* prf_vulkan){
 
   //---------------------------
 }
-void Info::fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan){
+void Interface::fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan){
   vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
   //---------------------------
 
@@ -67,13 +67,13 @@ void Info::fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan){
 }
 
 //Subfunction
-string Info::get_gpu_name(){
+string Interface::get_gpu_name(){
   return vk_struct->device.physical_device.name;
 }
-vec4* Info::get_color_background(){
+vec4* Interface::get_color_background(){
   return &vk_struct->param.background_color;
 }
-bool Info::is_gpu_discrete(){
+bool Interface::is_gpu_discrete(){
   return vk_struct->device.physical_device.discrete_gpu;
 }
 

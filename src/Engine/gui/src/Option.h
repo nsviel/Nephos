@@ -4,7 +4,7 @@
 
 namespace eng::gui{class Node;}
 namespace ope{class Wheel;}
-namespace vk::main{class Info;}
+namespace vk::main{class Interface;}
 
 
 namespace eng::gui{
@@ -27,7 +27,7 @@ public:
 
 private:
   ope::Wheel* ope_wheel;
-  vk::main::Info* vk_info;
+  vk::main::Interface* vk_interface;
 
   int width;
   string name;

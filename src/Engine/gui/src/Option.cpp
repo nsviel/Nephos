@@ -17,7 +17,7 @@ Option::Option(eng::gui::Node* node_gui, bool* show_window){
   ope::Node* node_operation = node_gui->get_node_operation();
 
   this->ope_wheel = node_operation->get_ope_wheel();
-  this->vk_info = node_vulkan->get_vk_info();
+  this->vk_interface = node_vulkan->get_vk_interface();
 
   this->width = 150;
   this->name = "Option";
@@ -58,7 +58,7 @@ void Option::option_color(){
   //---------------------------
 
   //Background color
-  vec4* screen_color = vk_info->get_color_background();
+  vec4* screen_color = vk_interface->get_color_background();
   ImGui::SetNextItemWidth(width);
   ImGui::ColorEdit4("Background", (float*)screen_color);
 

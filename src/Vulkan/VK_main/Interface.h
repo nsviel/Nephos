@@ -10,12 +10,12 @@ namespace prf::vulkan{class Profiler;}
 
 namespace vk::main{
 
-class Info
+class Interface
 {
 public:
   //Constructor / Destructor
-  Info(vk::structure::Vulkan* vk_struct);
-  ~Info();
+  Interface(vk::structure::Vulkan* vk_struct);
+  ~Interface();
 
 public:
   //Profiler vulkan info

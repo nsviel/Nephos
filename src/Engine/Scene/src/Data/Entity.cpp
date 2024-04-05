@@ -38,7 +38,7 @@ void Entity::init_entity(utl::type::Entity* entity){
   //Init entity
   sce_database->assign_UID(entity);
   sce_database->assign_UID(data);
-  vk_engine->insert_data_in_engine(data, pose);
+  vk_engine->insert_data(data, pose);
 
   //---------------------------
 }
@@ -46,7 +46,7 @@ void Entity::clear_entity(utl::type::Entity* entity){
   utl::type::Data* data = entity->get_data();
   //----------------------------
 
-  vk_engine->remove_data_in_engine(data);
+  vk_engine->remove_data(data);
 
   //----------------------------
 }

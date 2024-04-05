@@ -24,7 +24,7 @@ Renderer::Renderer(eng::render::Node* node_render){
   this->cam_control = node_camera->get_gui_control();
   this->utl_window = node_utility->get_utl_window();
   this->vk_imgui = node_vulkan->get_vk_imgui();
-  this->vk_info = node_vulkan->get_vk_info();
+  this->vk_interface = node_vulkan->get_vk_interface();
 
   this->name = "Renderer";
 

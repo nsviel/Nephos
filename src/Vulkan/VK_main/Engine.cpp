@@ -37,7 +37,7 @@ Engine::Engine(vk::structure::Vulkan* vk_struct){
 Engine::~Engine(){}
 
 //Data function
-void Engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose){
+void Engine::insert_data(utl::type::Data* data, utl::type::Pose* pose){
   if(data == nullptr) return;
   //---------------------------
 
@@ -58,7 +58,7 @@ void Engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose)
 
   //---------------------------
 }
-void Engine::remove_data_in_engine(utl::type::Data* data){
+void Engine::remove_data(utl::type::Data* data){
   std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
   //---------------------------
 
@@ -76,13 +76,6 @@ void Engine::remove_data_in_engine(utl::type::Data* data){
 }
 
 //Renderpass function
-void Engine::reload_shader(string shader, string subshader){
-  //---------------------------
-
-  vk_reload->hot_shader_reload(shader, subshader);
-
-  //---------------------------
-}
 void Engine::add_renderpass_description(vk::structure::Renderpass* renderpass){
   //---------------------------
 

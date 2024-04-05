@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng::scene{class Node;}
-namespace vk::main{class Info;}
+namespace vk::main{class Interface;}
 namespace format::obj{class Importer;}
 namespace format::csv{class Importer;}
 namespace format::ply{class Importer;}
@@ -34,7 +34,7 @@ public:
   void display_supported_format();
 
 private:
-  vk::main::Info* vk_info;
+  vk::main::Interface* vk_interface;
 
   vector<utl::type::Importer*> vec_importer;
   vector<utl::type::Exporter*> vec_exporter;
