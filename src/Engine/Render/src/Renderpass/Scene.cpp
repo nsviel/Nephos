@@ -20,7 +20,7 @@ Scene::Scene(eng::render::Node* node_render){
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
-  this->vk_drawing = new vk::draw::Graphical(vk_struct);
+  this->vk_drawer = new vk::draw::Drawer(vk_struct);
 
   //---------------------------
 }
@@ -116,7 +116,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
       vk_uniform->update_uniform("point_size", &vk_object->binding, data->topology.width);
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, vk_object->binding.descriptor.set);
-      vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_object);
+      vk_drawer->cmd_draw_data(subpass->command_buffer->command, vk_object);
     }
   }
 
@@ -138,8 +138,8 @@ void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
     if(check_data(data, utl::topology::LINE)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, vk_object->binding.descriptor.set);
-      vk_drawing->cmd_line_with(subpass->command_buffer->command, vk_object);
-      vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_object);
+      vk_drawer->cmd_line_with(subpass->command_buffer->command, vk_object);
+      vk_drawer->cmd_draw_data(subpass->command_buffer->command, vk_object);
     }
   }
 
@@ -161,7 +161,7 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
     if(check_data(data, utl::topology::TRIANGLE)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, vk_object->binding.descriptor.set);
-      vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_object);
+      vk_drawer->cmd_draw_data(subpass->command_buffer->command, vk_object);
     }
   }
 

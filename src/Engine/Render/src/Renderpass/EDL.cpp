@@ -19,7 +19,7 @@ EDL::EDL(eng::render::Node* node_render){
   this->vk_pipeline = new vk::renderpass::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
-  this->vk_drawing = new vk::draw::Graphical(vk_struct);
+  this->vk_drawer = new vk::draw::Drawer(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
 
   //---------------------------
@@ -99,7 +99,7 @@ void EDL::draw_canvas(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass->command_buffer->command);
-  vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_engine->get_canvas());
+  vk_drawer->cmd_draw_data(subpass->command_buffer->command, vk_engine->get_canvas());
 
   //---------------------------
 }

@@ -1,15 +1,14 @@
 #pragma once
 
-#include <Vulkan/VK_main/Engine.h>
+#include <Vulkan/VK_drawing/Drawer.h>
 #include <Utility/Specific/Common.h>
 
 namespace vk::structure{class Vulkan;}
-namespace vk::draw{class Headless;}
 
 
-namespace vk::main{
+namespace vk::draw{
 
-class Headless : public vk::main::Engine
+class Headless : public vk::draw::Drawer
 {
 public:
   //Constructor / Destructor
@@ -18,12 +17,9 @@ public:
 
 public:
   //Main functions
-  void init();
-  void loop();
-  void clean();
+  void draw_frame();
 
 private:
-  vk::draw::Headless* vk_drawer;
 };
 
 }

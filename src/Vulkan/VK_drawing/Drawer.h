@@ -11,22 +11,22 @@ namespace vk::structure{class Object;}
 
 namespace vk::draw{
 
-class Headless
+class Drawer
 {
 public:
   //Constructor / Destructor
-  Headless(vk::structure::Vulkan* vk_struct);
-  ~Headless();
+  Drawer(vk::structure::Vulkan* vk_struct);
+  ~Drawer();
 
 public:
   //Main functions
-  void draw_frame();
+  virtual void draw_frame(){}
 
   //Draw command
   void cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object* data);
   void cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* data);
 
-private:
+protected:
   vk::structure::Vulkan* vk_struct;
   vk::draw::Renderer* vk_render;
   vk::synchro::Fence* vk_fence;

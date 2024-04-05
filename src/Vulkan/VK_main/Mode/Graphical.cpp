@@ -10,6 +10,7 @@ namespace vk::main{
 Graphical::Graphical(vk::structure::Vulkan* vk_struct) : vk::main::Engine(vk_struct){
   //---------------------------
 
+  this->vk_drawer = new vk::draw::Graphical(vk_struct);
 
   //---------------------------
 }
@@ -43,7 +44,7 @@ void Graphical::init(){
 void Graphical::loop(){
   //---------------------------
 
-  vk_drawing->draw_frame();
+  vk_drawer->draw_frame();
   vk_semaphore->reset_pool();
 
   //---------------------------

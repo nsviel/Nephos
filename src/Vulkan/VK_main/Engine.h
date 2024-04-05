@@ -17,7 +17,6 @@ namespace vk::presentation{class Frame;}
 namespace vk::data{class Canvas;}
 namespace vk::instance{class Extension;}
 namespace vk::instance{class Pool;}
-namespace vk::draw{class Graphical;}
 namespace vk::command{class Command_buffer;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
@@ -73,7 +72,6 @@ protected:
   vk::shader::Reloader* vk_reload;
   vk::presentation::Frame* vk_frame;
   vk::data::Canvas* vk_canvas;
-  vk::draw::Graphical* vk_drawing;
   vk::main::Imgui* vk_imgui;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;

@@ -25,7 +25,6 @@ Engine::Engine(vk::structure::Vulkan* vk_struct){
   this->vk_reload = new vk::shader::Reloader(vk_struct);
   this->vk_frame = new vk::presentation::Frame(vk_struct);
   this->vk_canvas = new vk::data::Canvas(vk_struct);
-  this->vk_drawing = new vk::draw::Graphical(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   this->vk_imgui = new vk::main::Imgui(vk_struct);
   this->vk_fence = new vk::synchro::Fence(vk_struct);
