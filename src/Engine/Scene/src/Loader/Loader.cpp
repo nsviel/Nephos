@@ -52,7 +52,7 @@ utl::type::Data* Loader::load_data(string path){
   //---------------------------
   return data;
 }
-utl::type::Set* Loader::load_set(utl::Path file_path){
+utl::type::Set* Loader::load_dataset(utl::Path file_path){
   //---------------------------
 
   if(!check_file_path(file_path.data)) return nullptr;
@@ -124,38 +124,35 @@ bool Loader::check_file_path(std::string path){
   //---------------------------
   return true;
 }
-utl::entity::Object* Loader::create_object(utl::file::Data* file_data){
-  utl::file::Data* file_entity = dynamic_cast<utl::file::Data*>(file_data);
+utl::entity::Object* Loader::create_object(utl::file::Data* data){
   //---------------------------
 
-  utl::type::Data* data = create_data(file_data);
   utl::entity::Object* object = new utl::entity::Object(node_engine);
-  object->name = file_entity->name;
-  object->data = *data;
+  object->name = data->name;
+  object->data = *create_data(data);
 
   sce_entity->init_entity(object);
 
   //---------------------------
   return object;
 }
-utl::type::Data* Loader::create_data(utl::file::Data* file_data){
-  utl::file::Data* file_entity = dynamic_cast<utl::file::Data*>(file_data);
+utl::type::Data* Loader::create_data(utl::file::Data* file){
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();
-  data->name = file_entity->name;
-  data->path = file_entity->path.data;
-  data->file_format = utl::path::get_format_from_path(file_entity->path.data);
-  data->size = file_entity->xyz.size();
-  data->topology.type = file_entity->draw_type;
+  data->name = file->name;
+  data->path = file->path.data;
+  data->file_format = utl::path::get_format_from_path(file->path.data);
+  data->size = file->xyz.size();
+  data->topology.type = file->draw_type;
 
-  data->xyz = file_entity->xyz;
-  data->rgb = file_entity->rgb;
-  data->uv = file_entity->uv;
+  data->xyz = file->xyz;
+  data->rgb = file->rgb;
+  data->uv = file->uv;
 
   //If no color, fill it with white
   if(data->rgb.size() == 0){
-    for(int i=0; i<file_entity->xyz.size(); i++){
+    for(int i=0; i<file->xyz.size(); i++){
       data->rgb.push_back(vec4(1,1,1,1));
     }
   }
