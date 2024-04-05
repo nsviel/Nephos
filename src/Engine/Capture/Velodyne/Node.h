@@ -27,11 +27,13 @@ public:
   void gui();
   void clean();
 
+  inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline vld::structure::Main* get_vld_struct(){return vld_struct;}
 
 private:
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
+
   vld::gui::Velodyne* gui_velodyne;
   vld::structure::Main* vld_struct;
   vld::processing::Player* vld_player;

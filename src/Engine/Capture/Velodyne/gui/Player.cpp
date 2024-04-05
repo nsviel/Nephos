@@ -127,18 +127,20 @@ void Player::player_close(){
   //---------------------------
 }
 void Player::player_lock(){
+  utl::type::Set* set = vld_struct->data.current_set;
+  if(set == nullptr) return;
   //---------------------------
 
-  if(vld_struct->data.current_set->is_locked){
+  if(set->is_locked){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_LOCK "##399")){
-      vld_struct->data.current_set->is_locked = false;
+      set->is_locked = false;
     }
     ImGui::PopStyleColor();
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_UNLOCK "##399")){
-      vld_struct->data.current_set->is_locked = true;
+      set->is_locked = true;
     }
     ImGui::PopStyleColor();
   }

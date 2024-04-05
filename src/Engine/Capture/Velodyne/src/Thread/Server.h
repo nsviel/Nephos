@@ -2,6 +2,10 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace eng::scene{class Database;}
+namespace eng::scene{class Loader;}
+namespace eng::scene{class Set;}
+namespace vld{class Node;}
 namespace vld::structure{class Main;}
 namespace vld::processing{class Player;}
 namespace vld::processing{class Frame;}
@@ -15,7 +19,7 @@ class Server
 {
 public:
   //Constructor / Destructor
-  Server(vld::structure::Main* vld_struct);
+  Server(vld::Node* node_vld);
   ~Server();
 
 public:
@@ -26,8 +30,13 @@ public:
 
   //Subfunction
   void capture_data();
+  void create_object(utl::file::Entity* data);
 
 private:
+  eng::scene::Database* sce_database;
+  eng::scene::Loader* sce_loader;
+  eng::scene::Set* sce_set;
+
   vld::structure::Main* vld_struct;
   vld::processing::Player* vld_player;
   vld::processing::Frame* vld_frame;
@@ -39,7 +48,6 @@ private:
   bool thread_running = false;
   bool thread_idle = true;
   bool thread_paused = false;
-  bool new_data = false;
 };
 
 }

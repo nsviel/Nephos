@@ -33,7 +33,7 @@ Server::~Server(){
 }
 
 //Main function
-void Server::binding(int port, int packet_size){
+bool Server::binding(int port, int packet_size){
   bool is_binded = sock_server->get_is_binded();
   //---------------------------
 
@@ -44,6 +44,7 @@ void Server::binding(int port, int packet_size){
   sock_server->binding(port, packet_size);
 
   //---------------------------
+  return sock_server->get_is_binded();
 }
 void Server::disconnect(){
   //---------------------------

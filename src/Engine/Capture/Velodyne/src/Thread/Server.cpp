@@ -1,15 +1,22 @@
 #include "Server.h"
 
 #include <Velodyne/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace vld::thread{
 
 //Constructor / Destructor
-Server::Server(vld::structure::Main* vld_struct){
+Server::Server(vld::Node* node_vld){
   //---------------------------
 
-  this->vld_struct = vld_struct;
+  eng::scene::Node* node_scene = node_vld->get_node_scene();
+
+  this->sce_database = node_scene->get_scene_database();
+  this->sce_loader = node_scene->get_scene_loader();
+  this->sce_set = new eng::scene::Set();
+
+  this->vld_struct = node_vld->get_vld_struct();
   this->vld_server = new vld::utils::Server();
   this->vld_player = new vld::processing::Player(vld_struct);
   this->vld_frame = new vld::processing::Frame();
@@ -35,7 +42,8 @@ void Server::run_thread(){
   //---------------------------
 
   //First, bind socket server
-  vld_server->binding(vld_struct->server.port, vld_struct->server.mtu);
+  bool binded = vld_server->binding(vld_struct->server.port, vld_struct->server.mtu);
+  if(!binded) return;
   vld_struct->server.is_listening = true;
 
   //Data capture loop
@@ -77,10 +85,43 @@ void Server::capture_data(){
 
   // If frame revolution, make some ope
   if(frame_rev){
-    this->utl_file = *vld_frame->get_endedFrame();
-    this->new_data = true;
+    utl::file::Entity* data = vld_frame->get_endedFrame();
+    this->create_object(data);
   }
 
+  //---------------------------
+}
+void Server::create_object(utl::file::Entity* data){
+  //---------------------------
+
+  utl::type::Set* set_scene = sce_database->get_set_scene();
+  utl::type::Set* set_capture = sce_set->get_or_create_subset(set_scene, "Capture");
+
+
+
+  utl::entity::Object* object = sce_loader->create_object(data);
+  sce_set->insert_entity(set_capture, object);
+/*
+  //Cloud* new_subset = extractManager->extract_data(udp_capture);
+  //this->operation_new_subset(new_subset);
+  //Set new cloud identifieurs
+  cloud->name = "frame_" + to_string(collection_capture->ID_obj_last);
+  cloud->ID = collection_capture->ID_obj_last;
+  cloud->draw_point_size = point_size;
+  collection_capture->ID_obj_last++;
+
+  //Update cloud data
+  sceneManager->update_buffer_location(cloud);
+
+  //Insert the cloud inside the capture cloud
+  collection_capture->obj_add_new(cloud);
+
+  //Control object visibilities
+  visibilityManager->compute_visibility(collection, ID_object);
+
+  //Colorization
+  colorManager->make_colorization(collection, ID_object);
+*/
   //---------------------------
 }
 

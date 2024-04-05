@@ -18,7 +18,7 @@ public:
 
 public:
   //Main functions
-  void binding(int port, int packet_size);
+  bool binding(int port, int packet_size);
   void disconnect();
   vector<int> capture();
 
