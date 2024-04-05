@@ -1,4 +1,4 @@
-#include "Headless.h"
+#include "Engine.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Headless::Headless(vk::structure::Vulkan* struct_vulkan) : vk::main::Engine(struct_vulkan){
+Engine::Engine(vk::structure::Vulkan* struct_vulkan){
   //---------------------------
 
   this->struct_vulkan = struct_vulkan;
@@ -35,68 +35,10 @@ Headless::Headless(vk::structure::Vulkan* struct_vulkan) : vk::main::Engine(stru
 
   //---------------------------
 }
-Headless::~Headless(){}
-
-//Main function
-void Headless::init(){
-  //---------------------------
-
-  //Instance
-  vk_extension->init();
-  vk_instance->init();
-  vk_device->init();
-  vk_allocator->init();
-  vk_queue->init();
-  vk_pool->init();
-  vk_fence->init_pool();
-  vk_canvas->init();
-
-  //Render
-  vk_viewport->init();
-  vk_renderpass->init();
-  vk_imgui->init();
-  vk_semaphore->init_pool();
-
-  //---------------------------
-}
-void Headless::loop(){
-  //---------------------------
-
-  vk_drawing->draw_frame();
-  vk_semaphore->reset_pool();
-
-  //---------------------------
-}
-void Headless::clean(){
-  //---------------------------
-
-  vk_texture->clean();
-  vk_renderpass->clean();
-  vk_swapchain->clean();
-  vk_canvas->clean();
-  vk_data->clean();
-  vk_fence->clean_pool();
-  vk_semaphore->clean_pool();
-  vk_allocator->clean();
-  vk_pool->clean();
-  vk_device->clean();
-  vk_surface->clean();
-  vk_instance->clean();
-
-  //---------------------------
-}
-
-//Specific function
-void Headless::reload_shader(string shader, string subshader){
-  //---------------------------
-
-  vk_reload->hot_shader_reload(shader, subshader);
-
-  //---------------------------
-}
+Engine::~Engine(){}
 
 //Data function
-void Headless::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose){
+void Engine::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose){
   if(data == nullptr) return;
   //---------------------------
 
@@ -107,29 +49,27 @@ void Headless::insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pos
     vk_object = *next(struct_vulkan->data.list_vk_object.begin(), i);
 
     if(data->UID == vk_object->data->UID){
-      is_in_list = true;
-      break;
+      vk_data->update_data(data, vk_object);
+      return;
     }
   }
 
   //If not, insert it
-  if(is_in_list){
-    vk_data->update_data(data, vk_object);
-  }else{
-    vk_data->insert_data(data, pose);
-  }
+  vk_data->insert_data(data, pose);
 
   //---------------------------
 }
-void Headless::remove_data_in_engine(utl::type::Data* data){
+void Engine::remove_data_in_engine(utl::type::Data* data){
+  std::list<vk::structure::Object*>& list_vk_object = struct_vulkan->data.list_vk_object;
   //---------------------------
 
   bool is_in_list = false;
-  for(int i=0; i<struct_vulkan->data.list_vk_object.size(); i++){
-    vk::structure::Object* vk_object = *next(struct_vulkan->data.list_vk_object.begin(),i);
+  for(int i=0; i<list_vk_object.size(); i++){
+    vk::structure::Object* vk_object = *next(list_vk_object.begin(),i);
+
     if(data->UID == vk_object->data->UID){
+      list_vk_object.remove(vk_object);
       vk_data->clean_vk_object(vk_object);
-      struct_vulkan->data.list_vk_object.remove(vk_object);
     }
   }
 
@@ -137,38 +77,45 @@ void Headless::remove_data_in_engine(utl::type::Data* data){
 }
 
 //Renderpass function
-void Headless::add_renderpass_description(vk::structure::Renderpass* renderpass){
+void Engine::reload_shader(string shader, string subshader){
+  //---------------------------
+
+  vk_reload->hot_shader_reload(shader, subshader);
+
+  //---------------------------
+}
+void Engine::add_renderpass_description(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   struct_vulkan->render.vec_renderpass.push_back(renderpass);
 
   //---------------------------
 }
-vk::structure::Renderpass* Headless::get_renderpass(int i){
+vk::structure::Renderpass* Engine::get_renderpass(int i){
   //---------------------------
 
   return struct_vulkan->render.vec_renderpass[i];
 
   //---------------------------
 }
-vk::structure::Renderpass* Headless::get_renderpass_presentation(int i){
+vk::structure::Renderpass* Engine::get_renderpass_presentation(int i){
   //---------------------------
 
   return struct_vulkan->render.get_renderpass_byName("gui");
 
   //---------------------------
 }
-vk::structure::Object* Headless::get_canvas(){
+vk::structure::Object* Engine::get_canvas(){
   //---------------------------
 
   return &struct_vulkan->data.canvas;
 
   //---------------------------
 }
-std::list<vk::structure::Object*> Headless::get_list_data(){
+std::list<vk::structure::Object*> Engine::get_list_data(){
   return struct_vulkan->data.list_vk_object;
 }
-void Headless::set_window(GLFWwindow* window){
+void Engine::set_window(GLFWwindow* window){
   struct_vulkan->window.glfw_window = window;
 }
 

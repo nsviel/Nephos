@@ -122,10 +122,8 @@ utl::type::Set* Set::get_or_create_subset(utl::type::Set* set, std::string name)
 
 //Entity function
 void Set::insert_entity(utl::type::Set* set, utl::type::Entity* entity){
+  if(set == nullptr || entity == nullptr) return;
   //---------------------------
-
-  //Check before insertion
-  if(entity == nullptr) return;
 
   //Set entity info & first update
   entity->set_parent = set;
@@ -135,8 +133,7 @@ void Set::insert_entity(utl::type::Set* set, utl::type::Entity* entity){
   //Set set info
   set->list_entity.push_back(entity);
   set->nb_entity++;
-  set->selected_entity = entity;
-  set->set_parent->selected_entity = entity;
+  this->select_entity(set, entity);
 
   //---------------------------
 }
@@ -248,7 +245,7 @@ void Set::select_entity(utl::type::Set* set, utl::type::Entity* entity){
 
   // Propagate the selection to the parent sets
   utl::type::Set* current_parent = set->set_parent;
-  while (current_parent != nullptr) {
+  while(current_parent != nullptr){
     current_parent->selected_entity = entity;
     current_parent = current_parent->set_parent; // Move to the next parent set
   }

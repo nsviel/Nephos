@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Vulkan/VK_main/Engine.h>
 #include <Utility/Specific/Common.h>
 
 namespace vk::presentation{class Surface;}
@@ -30,7 +31,7 @@ namespace vk::queue{class Manager;}
 
 namespace vk::main{
 
-class Graphical
+class Graphical : public vk::main::Engine
 {
 public:
   //Constructor / Destructor
@@ -42,45 +43,6 @@ public:
   void init();
   void loop();
   void clean();
-
-  //Specific function
-  void reload_shader(string shader, string subshader);
-
-  //Data function
-  void insert_data_in_engine(utl::type::Data* data, utl::type::Pose* pose);
-  void remove_data_in_engine(utl::type::Data* data);
-
-  //Renderpass function
-  void add_renderpass_description(vk::structure::Renderpass* renderpass);
-  vk::structure::Renderpass* get_renderpass(int i);
-  vk::structure::Renderpass* get_renderpass_presentation(int i);
-  vk::structure::Object* get_canvas();
-  std::list<vk::structure::Object*> get_list_data();
-  void set_window(GLFWwindow* window);
-
-private:
-  vk::structure::Vulkan* struct_vulkan;
-  vk::instance::Extension* vk_extension;
-  vk::presentation::Surface* vk_surface;
-  vk::instance::Instance* vk_instance;
-  vk::device::Logical* vk_device;
-  vk::presentation::Swapchain* vk_swapchain;
-  vk::renderpass::Renderpass* vk_renderpass;
-  vk::command::Command_buffer* vk_command_buffer;
-  vk::binding::Descriptor* vk_descriptor;
-  vk::main::Texture* vk_texture;
-  vk::instance::Pool* vk_pool;
-  vk::data::Data* vk_data;
-  vk::draw::Viewport* vk_viewport;
-  vk::shader::Reloader* vk_reload;
-  vk::presentation::Frame* vk_frame;
-  vk::data::Canvas* vk_canvas;
-  vk::draw::Graphical* vk_drawing;
-  vk::main::Imgui* vk_imgui;
-  vk::synchro::Fence* vk_fence;
-  vk::synchro::Semaphore* vk_semaphore;
-  vk::command::Allocator* vk_allocator;
-  vk::queue::Manager* vk_queue;
 };
 
 }
