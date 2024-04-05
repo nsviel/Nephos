@@ -13,7 +13,7 @@ namespace utl::type{
 struct Importer{
   //---------------------------
 
-  virtual utl::file::Data* import(utl::file::Path path){return nullptr;}
+  virtual utl::File* import(utl::Path path){return nullptr;}
   virtual void insert(utl::entity::Object* object){}
   virtual void insert(utl::type::Set* set){}
 

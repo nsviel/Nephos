@@ -151,7 +151,7 @@ void Scene::draw_file_tree(){
     for(int row_i=0; row_i<set_main->list_subset.size(); row_i++){
       utl::type::Set* set = *next(set_main->list_subset.begin(), row_i);
 
-      if(set->nb_entity != 0 || set->nb_set != 0){
+      if(set->nb_entity != 0 || set->nb_subset != 0){
         ImGui::PushID(set->name.c_str());
         this->tree_set(set);
         ImGui::PopID();

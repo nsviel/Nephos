@@ -39,13 +39,13 @@ public:
 
 public:
   //Main functions
-  utl::file::Entity* import(utl::file::Path path);
+  utl::File* import(utl::Path path);
   bool Exporter(std::string pathFile);
 
   //Subfunctions
   void Loader_header(PTXCloud* cloud);
   void Loader_data(PTXCloud* cloud);
-  void Loader_assembling(utl::file::Entity* entity);
+  void Loader_assembling(utl::file::Data* entity);
   void Loader_cloudTransformation();
   void Loader_scannerAtOrigin();
 

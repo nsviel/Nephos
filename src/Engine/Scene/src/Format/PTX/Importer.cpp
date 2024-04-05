@@ -21,12 +21,12 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main functions
-utl::file::Entity* Importer::import(utl::file::Path path){
+utl::File* Importer::import(utl::Path path){
   list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;
   //---------------------------
 
-  utl::file::Entity* entity = new utl::file::Entity();
+  utl::file::Data* entity = new utl::file::Data();
   entity->name = utl::path::get_name_from_path(path.data);
   entity->path = path;
 
@@ -215,7 +215,7 @@ void Importer::Loader_data(PTXCloud* cloud){
 
   //---------------------------
 }
-void Importer::Loader_assembling(utl::file::Entity* entity){
+void Importer::Loader_assembling(utl::file::Data* entity){
   //Assemble into an unique cloud
   //---------------------------
 

@@ -17,7 +17,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::file::Entity* Importer::import(std::string pathFile){
+utl::File* Importer::import(std::string pathFile){
   //---------------------------
 /*
   std::ifstream file(pathFile);
@@ -25,7 +25,7 @@ utl::file::Entity* Importer::import(std::string pathFile){
 
   //At row level
   for(int i=0; i<csvFile.size(); i++){
-    utl::file::Entity* data_sub = new utl::file::Entity();
+    utl::file::Data* data_sub = new utl::file::Data();
     data_sub->path = pathFile;
 
     //At field level

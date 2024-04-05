@@ -1,46 +1,44 @@
 #pragma once
 
+#include <Utility/Base/Media/Path.h>
+
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
 
-
 namespace utl::file{
 
 enum Type{
-  ENTITY = 0,
-  SET = 1,
+  DATA = 0,
+  DATASET = 1,
 };
 
+}
 
-struct Path{
+namespace utl{
+
+struct File{
   //---------------------------
 
-  std::string data = "";
-  std::string transformation = "";
-
-  //---------------------------
-};
-
-struct Data{
-  //---------------------------
-
-  int type = utl::file::ENTITY;
+  int type = utl::file::DATA;
   std::string name = "";
-  utl::file::Path path;
+  utl::Path path;
 
   virtual void hello(){}
 
   //---------------------------
 };
 
-struct Entity : public utl::file::Data{
+}
+
+namespace utl::file{
+
+struct Data : public utl::File{
   //---------------------------
 
   //Info
   int nb_element = 0;
   int draw_type = utl::topology::POINT;
-  std::string path_texture = "";
 
   //Data
   std::vector<glm::vec3> xyz;
@@ -56,10 +54,11 @@ struct Entity : public utl::file::Data{
   //---------------------------
 };
 
-struct Set : public utl::file::Data{
+struct Dataset : public utl::File{
   //---------------------------
 
-  std::vector<utl::file::Entity*> vec_data;
+  //Data
+  std::vector<utl::file::Data*> vec_data;
 
   //---------------------------
 };

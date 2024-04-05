@@ -399,7 +399,7 @@ void Loader::operation_selection(){
   }
 
   for(int i=0; i<vec_path.size(); i++){
-    utl::file::Path path;
+    utl::Path path;
     path.data = vec_path[i];
 
     utl::entity::Object* object = sce_loader->load_object(path);
@@ -432,7 +432,7 @@ void Loader::operation_selection(string file_path){
       sce_set->remove_entity_all(set_scene);
     }
 
-    utl::file::Path path;
+    utl::Path path;
     path.data = file_path;
     utl::entity::Object* object = sce_loader->load_object(path);
 

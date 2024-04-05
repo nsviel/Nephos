@@ -37,13 +37,13 @@ public:
 
 public:
   //Main function
-  utl::file::Entity* import(utl::file::Path path);
+  utl::File* import(utl::Path path);
 
   //Subfunction
   void init_params();
   std::vector<Vertex> get_data_from_file(std::istream& in);
   void parse_mtl(std::string path_obj);
-  void fill_data_file(utl::file::Entity* data, std::vector<Vertex>& vertex_vec);
+  void fill_data_file(utl::file::Data* data, std::vector<Vertex>& vertex_vec);
 
 private:
   std::string file_mtl;

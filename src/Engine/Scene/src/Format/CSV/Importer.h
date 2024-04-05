@@ -13,7 +13,7 @@ public:
   ~Importer();
 
 public:
-  utl::file::Entity* import(std::string pathFile);
+  utl::File* import(std::string pathFile);
 
 private:
 };

@@ -22,10 +22,10 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main load functions
-utl::file::Entity* Importer::import(utl::file::Path path){
+utl::File* Importer::import(utl::Path path){
   //---------------------------
 
-  utl::file::Entity* entity = new utl::file::Entity();
+  utl::file::Data* entity = new utl::file::Data();
   entity->name = utl::path::get_name_from_path(path.data);
   entity->path = path;
   entity->draw_type = utl::topology::POINT;
@@ -57,10 +57,10 @@ utl::file::Entity* Importer::import(utl::file::Path path){
   //---------------------------
   return entity;
 }
-utl::file::Entity* Importer::import(utl::file::Path path, int lmin, int lmax){
+utl::File* Importer::import(utl::Path path, int lmin, int lmax){
   //---------------------------
 
-  utl::file::Entity* entity = new utl::file::Entity();
+  utl::file::Data* entity = new utl::file::Data();
   entity->name = utl::path::get_name_from_path(path.data);
   entity->path = path;
   entity->draw_type = utl::topology::POINT;
@@ -255,7 +255,7 @@ void Importer::Loader_configuration(){
   //---------------------------
   endParameters = true;
 }
-void Importer::Loader_data(utl::file::Entity* data, int FILE_config){
+void Importer::Loader_data(utl::file::Data* data, int FILE_config){
   std::istringstream iss(line);
   float x,y,z,r,g,b,I,nx,ny,nz;
   //---------------------------

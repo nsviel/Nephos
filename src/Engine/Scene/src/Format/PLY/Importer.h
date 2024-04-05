@@ -29,22 +29,22 @@ public:
 
 public:
   //Main functions
-  utl::file::Entity* import(utl::file::Path path);
+  utl::File* import(utl::Path path);
 
 private:
   //Loader data
   void parse_header(std::ifstream& file);
-  void parse_ascii(std::ifstream& file, utl::file::Entity* entity);
-  void parse_ascii_withface(std::ifstream& file, utl::file::Entity* entity);
-  void parse_bin_little_endian(std::ifstream& file, utl::file::Entity* entity);
-  void parse_bin_little_endian_withface(std::ifstream& file, utl::file::Entity* entity);
-  void parse_bin_big_endian(std::ifstream& file, utl::file::Entity* entity);
-  void parse_bin_big_endian_withface(std::ifstream& file, utl::file::Entity* entity);
+  void parse_ascii(std::ifstream& file, utl::file::Data* entity);
+  void parse_ascii_withface(std::ifstream& file, utl::file::Data* entity);
+  void parse_bin_little_endian(std::ifstream& file, utl::file::Data* entity);
+  void parse_bin_little_endian_withface(std::ifstream& file, utl::file::Data* entity);
+  void parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity);
+  void parse_bin_big_endian_withface(std::ifstream& file, utl::file::Data* entity);
 
   //Loader subfunctions
   float reverse_float(const float inFloat);
   int reverse_int(const int inInt);
-  void reorder_by_timestamp(utl::file::Entity* entity);
+  void reorder_by_timestamp(utl::file::Data* entity);
   int get_id_property(std::string name);
 
   //Binary to type

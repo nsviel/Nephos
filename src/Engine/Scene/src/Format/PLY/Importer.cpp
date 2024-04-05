@@ -14,10 +14,10 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main loader functions
-utl::file::Entity* Importer::import(utl::file::Path path){
+utl::File* Importer::import(utl::Path path){
   //---------------------------
 
-  utl::file::Entity* entity = new utl::file::Entity();
+  utl::file::Data* entity = new utl::file::Data();
   entity->name = utl::path::get_name_from_path(path.data);
   entity->path = path;
   entity->draw_type = utl::topology::POINT;
@@ -178,7 +178,7 @@ void Importer::parse_header(std::ifstream& file){
 
   //---------------------------
 }
-void Importer::parse_ascii(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_ascii(std::ifstream& file, utl::file::Data* entity){
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -229,7 +229,7 @@ void Importer::parse_ascii(std::ifstream& file, utl::file::Entity* entity){
   //---------------------------
   entity->nb_element = entity->xyz.size();
 }
-void Importer::parse_ascii_withface(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_ascii_withface(std::ifstream& file, utl::file::Data* entity){
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -306,7 +306,7 @@ void Importer::parse_ascii_withface(std::ifstream& file, utl::file::Entity* enti
   //---------------------------
   entity->nb_element = entity->xyz.size();
 }
-void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Data* entity){
   //---------------------------
 
   //Read data
@@ -396,7 +396,7 @@ void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Entity* e
 
   //---------------------------
 }
-void Importer::parse_bin_little_endian_withface(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_bin_little_endian_withface(std::ifstream& file, utl::file::Data* entity){
   //---------------------------
 
   //Read data
@@ -481,7 +481,7 @@ void Importer::parse_bin_little_endian_withface(std::ifstream& file, utl::file::
   //---------------------------
   entity->nb_element = entity->xyz.size();
 }
-void Importer::parse_bin_big_endian(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity){
   //---------------------------
 
   //Read data
@@ -532,7 +532,7 @@ void Importer::parse_bin_big_endian(std::ifstream& file, utl::file::Entity* enti
 
   //---------------------------
 }
-void Importer::parse_bin_big_endian_withface(std::ifstream& file, utl::file::Entity* entity){
+void Importer::parse_bin_big_endian_withface(std::ifstream& file, utl::file::Data* entity){
   //---------------------------
 
   //Read data
@@ -645,7 +645,7 @@ int Importer::reverse_int(const int inInt){
 
    return retVal;
 }
-void Importer::reorder_by_timestamp(utl::file::Entity* entity){
+void Importer::reorder_by_timestamp(utl::file::Data* entity){
   std::vector<glm::vec3> pos;
   std::vector<float> ts;
   std::vector<float> Is;

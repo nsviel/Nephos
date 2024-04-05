@@ -14,10 +14,10 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::file::Entity* Importer::import(utl::file::Path path){
+utl::File* Importer::import(utl::Path path){
   //---------------------------
 
-  utl::file::Entity* entity = new utl::file::Entity();
+  utl::file::Data* entity = new utl::file::Data();
   entity->name = utl::path::get_name_from_path(path.data);
   entity->path = path;
 
@@ -171,7 +171,7 @@ void Importer::parse_mtl(std::string path_obj){
 
   //---------------------------
 }
-void Importer::fill_data_file(utl::file::Entity* data, std::vector<Vertex>& vertex_vec){
+void Importer::fill_data_file(utl::file::Data* data, std::vector<Vertex>& vertex_vec){
   //---------------------------
 
   if(is_face){
@@ -181,7 +181,7 @@ void Importer::fill_data_file(utl::file::Entity* data, std::vector<Vertex>& vert
       data->uv.push_back(vertex_vec[i].texcoord);
     }
     data->draw_type = utl::topology::TRIANGLE;
-    data->path_texture = file_texture;
+    data->path.texture = file_texture;
   }else{
     for(int i=0; i<vertex_vec.size(); i++){
       data->xyz.push_back(vertex_vec[i].location);

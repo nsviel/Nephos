@@ -14,8 +14,8 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::file::Entity* Importer::import(utl::file::Path path){
-  utl::file::Entity* data = new utl::file::Entity();
+utl::File* Importer::import(utl::Path path){
+  utl::file::Data* data = new utl::file::Data();
   //---------------------------
 
   data->name = utl::path::get_name_from_path(path.data);

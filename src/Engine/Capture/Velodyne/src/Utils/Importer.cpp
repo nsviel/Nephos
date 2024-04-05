@@ -62,21 +62,21 @@ bool count_packets(const Tins::PDU &){
 }
 
 //Main function
-utl::file::Data* Importer::import(utl::file::Path path){
+utl::File* Importer::import(utl::Path path){
   file_packets.clear();
   //---------------------------
 
-  utl::file::Set* set = new utl::file::Set();
-  set->name = utl::path::get_name_from_path(path.data);
-  set->path.data = path.data;
-  set->type = utl::file::SET;
+  utl::file::Dataset* dataset = new utl::file::Dataset();
+  dataset->name = utl::path::get_name_from_path(path.data);
+  dataset->path.data = path.data;
+  dataset->type = utl::file::DATASET;
 
   this->importer_init(path.data);
   this->importer_sniffing(path.data);
-  this->importer_parsing(set, path.data);
+  this->importer_parsing(dataset, path.data);
 
   //---------------------------
-  return set;
+  return dataset;
 }
 void Importer::insert(utl::type::Set* set){
   //---------------------------
@@ -114,17 +114,17 @@ void Importer::importer_sniffing(std::string path){
 
   //---------------------------
 }
-void Importer::importer_parsing(utl::file::Set* set, std::string path){
+void Importer::importer_parsing(utl::file::Dataset* dataset, std::string path){
   //---------------------------
 
   //Parse data
   switch(lidar_model){
     case VLP_16:{
-      this->parser_vlp16(set, path);
+      this->parser_vlp16(dataset, path);
       break;
     }
     case HDL_32:{
-      this->parser_hdl32(set, path);
+      this->parser_hdl32(dataset, path);
       break;
     }
   }
@@ -133,19 +133,19 @@ void Importer::importer_parsing(utl::file::Set* set, std::string path){
 }
 
 //Subfunction
-void Importer::parser_vlp16(utl::file::Set* set, std::string path){
+void Importer::parser_vlp16(utl::file::Dataset* dataset, std::string path){
   vld::processing::Frame vld_frame;
   vld::parser::VLP16 parser;
   //---------------------------
 
   int cpt = 0;
   for(int i=0; i<file_packets.size(); i++){
-    utl::file::Entity* data = parser.parse_packet(file_packets[i]);
+    utl::file::Data* data = parser.parse_packet(file_packets[i]);
     bool frame_rev = vld_frame.build_frame(data);
 
     if(frame_rev){
-      utl::file::Entity* frame = vld_frame.get_endedFrame();
-      utl::file::Entity* entity = new utl::file::Entity();
+      utl::file::Data* frame = vld_frame.get_endedFrame();
+      utl::file::Data* entity = new utl::file::Data();
 
       entity->name = "frame_" + std::to_string(cpt); cpt++;
       entity->path.data = path;
@@ -159,24 +159,24 @@ void Importer::parser_vlp16(utl::file::Set* set, std::string path){
         entity->R.push_back(frame->R[j]);
       }
 
-      set->vec_data.push_back(entity);
+      dataset->vec_data.push_back(entity);
     }
   }
 
   //---------------------------
 }
-void Importer::parser_hdl32(utl::file::Set* set, std::string path){
+void Importer::parser_hdl32(utl::file::Dataset* dataset, std::string path){
   vld::processing::Frame vld_frame;
   vld::parser::HDL32 parser;
   //---------------------------
 
   for(int i=0; i<file_packets.size(); i++){
-    utl::file::Entity* data = parser.parse_packet(file_packets[i]);
+    utl::file::Data* data = parser.parse_packet(file_packets[i]);
     bool frame_rev = vld_frame.build_frame(data);
 
     if(frame_rev){
-      utl::file::Entity* frame = vld_frame.get_endedFrame();
-      utl::file::Entity* entity = new utl::file::Entity();
+      utl::file::Data* frame = vld_frame.get_endedFrame();
+      utl::file::Data* entity = new utl::file::Data();
 
       entity->path.data = path;
       entity->nb_element = frame->xyz.size();
@@ -189,7 +189,7 @@ void Importer::parser_hdl32(utl::file::Set* set, std::string path){
         entity->R.push_back(frame->R[j]);
       }
 
-      set->vec_data.push_back(entity);
+      dataset->vec_data.push_back(entity);
     }
   }
 

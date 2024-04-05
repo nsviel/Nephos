@@ -66,7 +66,7 @@ void Set::add_subset(utl::type::Set* set, utl::type::Set* subset){
 
   subset->set_parent = set;
   set->list_subset.push_back(subset);
-  set->nb_set++;
+  set->nb_subset++;
 
   if(subset->nb_entity != 0){
     set->selected_subset = subset;
@@ -82,7 +82,7 @@ utl::type::Set* Set::create_subset(utl::type::Set* set, std::string name){
   subset->set_parent = set;
   subset->is_suppressible = true;
 
-  set->nb_set++;
+  set->nb_subset++;
   set->selected_subset = subset;
   set->list_subset.push_back(subset);
 
@@ -125,12 +125,7 @@ void Set::insert_entity(utl::type::Set* set, utl::type::Entity* entity){
   if(set == nullptr || entity == nullptr) return;
   //---------------------------
 
-  //Set entity info & first update
   entity->set_parent = set;
-  entity->update_pose();
-  entity->update_data();
-
-  //Set set info
   set->list_entity.push_back(entity);
   set->nb_entity++;
   this->select_entity(set, entity);

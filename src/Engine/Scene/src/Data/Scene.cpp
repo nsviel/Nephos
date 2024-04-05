@@ -19,30 +19,30 @@ Scene::~Scene(){}
 void Scene::init(){
   //----------------------------
 
-  utl::file::Path path_1;
+  utl::Path path_1;
   path_1.data = "/home/aether/Desktop/versaille_0.mkv";
   path_1.transformation = "/home/aether/Desktop/versaille_0.json";
 
-  utl::file::Path path_2;
+  utl::Path path_2;
   path_2.data = "/home/aether/Desktop/versaille_2.mkv";
   path_2.transformation = "/home/aether/Desktop/versaille_2.json";
 
-  utl::file::Path path_3;
+  utl::Path path_3;
   path_3.data = "/home/aether/Desktop/output.mkv";
 
-  utl::file::Path path_4;
+  utl::Path path_4;
   path_4.data = "/home/aether/Desktop/cerfav_3_1.mkv";
 
-  utl::file::Path path_5;
+  utl::Path path_5;
   path_5.data = "/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply";
 
-  utl::file::Path path_6;
+  utl::Path path_6;
   path_6.data = "/home/aether/Desktop/sphere_test.mkv";
 
-  utl::file::Path path_7;
+  utl::Path path_7;
   path_7.data = "/home/aether/Desktop/bench_1.mkv";
 
-  utl::file::Path path_8;
+  utl::Path path_8;
   path_8.data = "/home/aether/Desktop/pcap_test.pcap";
 
   //Create playback list
@@ -51,6 +51,7 @@ void Scene::init(){
 
   //sce_loader->load_object(path_3);
   //sce_loader->load_object(path_4);
+  sce_loader->load_object(path_5);
   //sce_loader->load_object(path_6);
   //sce_loader->load_object(path_7);
   //sce_loader->load_set(path_8);

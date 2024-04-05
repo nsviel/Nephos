@@ -31,17 +31,17 @@ public:
 
 public:
   //Main function
-  utl::file::Data* import(utl::file::Path path);
+  utl::File* import(utl::Path path);
   void insert(utl::type::Set* set);
 
   //Subfunction
   void importer_init(std::string path);
   void importer_sniffing(std::string path);
-  void importer_parsing(utl::file::Set* set, std::string path);
+  void importer_parsing(utl::file::Dataset* dataset, std::string path);
 
-  void parser_vlp16(utl::file::Set* set, std::string pathFile);
-  void parser_hdl32(utl::file::Set* set, std::string pathFile);
-  int get_file_length(std::string pathFile);
+  void parser_vlp16(utl::file::Dataset* dataset, std::string path);
+  void parser_hdl32(utl::file::Dataset* dataset, std::string path);
+  int get_file_length(std::string path);
 
   inline void set_lidar_model(int value){this->lidar_model = value;}
   inline bool* get_packet_range_on(){return &packet_range_on;}

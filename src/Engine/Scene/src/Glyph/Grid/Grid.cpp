@@ -26,12 +26,11 @@ Grid::~Grid(){}
 void Grid::create(){
   //---------------------------
 
+  this->construct();
   mesh->create();
   axis->create();
   plane->create();
 
-  this->construct();
-  
   //---------------------------
 }
 void Grid::construct(){

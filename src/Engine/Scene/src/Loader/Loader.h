@@ -23,8 +23,8 @@ public:
 public:
   //Main functions
   utl::type::Data* load_data(string path);
-  utl::type::Set* load_set(utl::file::Path file_path);
-  utl::entity::Object* load_object(utl::file::Path file_path);
+  utl::type::Set* load_set(utl::Path file_path);
+  utl::entity::Object* load_object(utl::Path file_path);
 
   //Subfunction
   bool check_file_path(std::string path);

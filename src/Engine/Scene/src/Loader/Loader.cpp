@@ -34,78 +34,70 @@ utl::type::Data* Loader::load_data(string path){
   utl::type::Set* set = nullptr;
   //---------------------------
 
+  //Init
   if(!check_file_path(path)) return nullptr;
-
-  utl::file::Path utl_path;
+  utl::Path utl_path;
   utl_path.data = path;
 
   //Load data from path
-  utl::file::Data* file_data = sce_format->import_from_path(utl_path);
-  if(file_data == nullptr) return nullptr;
-  if(file_data->type != utl::file::ENTITY) return nullptr;
+  utl::File* file = sce_format->import_from_path(utl_path);
+  if(file == nullptr || file->type != utl::file::DATA) return nullptr;
+  utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
   utl::type::Data* data = create_data(file_data);
 
   //Delete raw data
-  delete file_data;
+  delete file;
 
   //---------------------------
   return data;
 }
-utl::type::Set* Loader::load_set(utl::file::Path file_path){
+utl::type::Set* Loader::load_set(utl::Path file_path){
   //---------------------------
 
   if(!check_file_path(file_path.data)) return nullptr;
 
   //Load data from path
-  utl::file::Data* file_data = sce_format->import_from_path(file_path);
-  if(file_data == nullptr) return nullptr;
-  if(file_data->type != utl::file::SET){
-    cout<<"[error] could only load set"<<endl;
-    return nullptr;
-  }
+  utl::File* file = sce_format->import_from_path(file_path);
+  if(file == nullptr || file->type != utl::file::DATASET) return nullptr;
+  utl::file::Dataset* dataset = dynamic_cast<utl::file::Dataset*>(file);
 
   //Insert loaded set into scene
   utl::type::Set* set_scene = sce_database->get_set_scene();
-  utl::file::Set* file_set = dynamic_cast<utl::file::Set*>(file_data);
-  utl::type::Set* set = sce_set->get_or_create_subset(set_scene, file_set->name);
+  utl::type::Set* set = sce_set->get_or_create_subset(set_scene, dataset->name);
   set->is_locked = true;
 
   //Insert all set objects into engine
-  for(int i=0; i<file_set->vec_data.size(); i++){
-    utl::entity::Object* object = create_object(file_set->vec_data[i]);
+  for(int i=0; i<dataset->vec_data.size(); i++){
+    utl::entity::Object* object = create_object(dataset->vec_data[i]);
     sce_set->insert_entity(set, object);
   }
 
   //Delete raw data
-  delete file_data;
+  delete file;
 
   sce_format->insert_from_path(file_path, set);
 
   //---------------------------
   return set;
 }
-utl::entity::Object* Loader::load_object(utl::file::Path file_path){
+utl::entity::Object* Loader::load_object(utl::Path file_path){
   //---------------------------
 
   if(!check_file_path(file_path.data)) return nullptr;
 
   //Load data from path
-  utl::file::Data* file_data = sce_format->import_from_path(file_path);
-  if(file_data == nullptr) return nullptr;
-  if(file_data->type != utl::file::ENTITY){
-    cout<<"[error] could only load entity"<<endl;
-    return nullptr;
-  }
+  utl::File* file = sce_format->import_from_path(file_path);
+  if(file == nullptr || file->type != utl::file::DATA) return nullptr;
+  utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
   //Data is an entity
   utl::type::Set* set_scene = sce_database->get_set_scene();
-  utl::file::Entity* file_entity = dynamic_cast<utl::file::Entity*>(file_data);
   utl::entity::Object* object = create_object(file_data);
   sce_set->insert_entity(set_scene, object);
 
   //Delete raw data
-  delete file_data;
+  delete file;
 
   //---------------------------
   return object;
@@ -133,7 +125,7 @@ bool Loader::check_file_path(std::string path){
   return true;
 }
 utl::entity::Object* Loader::create_object(utl::file::Data* file_data){
-  utl::file::Entity* file_entity = dynamic_cast<utl::file::Entity*>(file_data);
+  utl::file::Data* file_entity = dynamic_cast<utl::file::Data*>(file_data);
   //---------------------------
 
   utl::type::Data* data = create_data(file_data);
@@ -147,7 +139,7 @@ utl::entity::Object* Loader::create_object(utl::file::Data* file_data){
   return object;
 }
 utl::type::Data* Loader::create_data(utl::file::Data* file_data){
-  utl::file::Entity* file_entity = dynamic_cast<utl::file::Entity*>(file_data);
+  utl::file::Data* file_entity = dynamic_cast<utl::file::Data*>(file_data);
   //---------------------------
 
   utl::type::Data* data = new utl::type::Data();

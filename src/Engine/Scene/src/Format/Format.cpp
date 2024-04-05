@@ -37,8 +37,8 @@ Format::~Format(){
 }
 
 //Main functions
-utl::file::Data* Format::import_from_path(utl::file::Path path){
-  utl::file::Data* data = nullptr;
+utl::File* Format::import_from_path(utl::Path path){
+  utl::File* file = nullptr;
   //---------------------------
 
   std::string format = utl::path::get_format_from_path(path.data);
@@ -53,14 +53,14 @@ utl::file::Data* Format::import_from_path(utl::file::Path path){
         continue;
       }
 
-      data = importer->import(path);
+      file = importer->import(path);
     }
   }
 
   //---------------------------
-  return data;
+  return file;
 }
-void Format::insert_from_path(utl::file::Path path, utl::type::Set* set){
+void Format::insert_from_path(utl::Path path, utl::type::Set* set){
   //---------------------------
 
   std::string format = utl::path::get_format_from_path(path.data);

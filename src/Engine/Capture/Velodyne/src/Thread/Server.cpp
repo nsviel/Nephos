@@ -78,14 +78,14 @@ void Server::capture_data(){
   if(packet_dec.size() == 0) return;
 
   //Parse decimal packet into point cloud
-  utl::file::Entity* data = vld_vlp16->parse_packet(packet_dec);
+  utl::file::Data* data = vld_vlp16->parse_packet(packet_dec);
 
   //Iteratively build a complete frame
   bool frame_rev = vld_frame->build_frame(data);
 
   // If frame revolution, make some ope
   if(frame_rev){
-    utl::file::Entity* data = vld_frame->get_endedFrame();
+    utl::file::Data* data = vld_frame->get_endedFrame();
     this->create_object(data);
   }
 
@@ -93,7 +93,7 @@ void Server::capture_data(){
 }
 
 std::mutex creationMutex;
-void Server::create_object(utl::file::Entity* data){
+void Server::create_object(utl::file::Data* data){
   //---------------------------
 
   utl::type::Set* set_scene = sce_database->get_set_scene();

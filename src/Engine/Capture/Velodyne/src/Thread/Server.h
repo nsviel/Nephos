@@ -30,7 +30,7 @@ public:
 
   //Subfunction
   void capture_data();
-  void create_object(utl::file::Entity* data);
+  void create_object(utl::file::Data* data);
 
 private:
   eng::scene::Database* sce_database;
@@ -43,7 +43,7 @@ private:
   vld::utils::Server* vld_server;
   vld::parser::VLP16* vld_vlp16;
 
-  utl::file::Entity utl_file;
+  utl::file::Data utl_file;
   std::thread thread;
   bool thread_running = false;
   bool thread_idle = true;
