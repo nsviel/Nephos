@@ -13,7 +13,7 @@ GUI::GUI(eng::render::Node* node_render){
 
   vk::Node* node_vulkan = node_render->get_node_vulkan();
 
-  this->vk_graphical = node_vulkan->get_vk_graphical();
+  this->vk_engine = node_vulkan->get_vk_engine();
   this->vk_imgui = node_vulkan->get_vk_imgui();
 
   //---------------------------
@@ -33,7 +33,7 @@ void GUI::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  vk_graphical->add_renderpass_description(renderpass);
+  vk_engine->add_renderpass_description(renderpass);
 }
 void GUI::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------

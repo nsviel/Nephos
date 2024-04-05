@@ -4,7 +4,7 @@
 
 namespace utl{class Node;}
 namespace utl::element{class Window;}
-namespace vk::main{class Graphical;}
+namespace vk::main{class Engine;}
 namespace vk::main{class Imgui;}
 namespace vk::main{class Info;}
 namespace vk::main{class Texture;}
@@ -29,7 +29,7 @@ public:
   void loop();
 
   inline vk::structure::Vulkan* get_vk_struct(){return vk_struct;}
-  inline vk::main::Graphical* get_vk_graphical(){return vk_graphical;}
+  inline vk::main::Engine* get_vk_engine(){return vk_engine;}
   inline vk::main::Imgui* get_vk_imgui(){return vk_imgui;}
   inline vk::main::Info* get_vk_info(){return vk_info;}
   inline vk::main::Texture* get_vk_texture(){return vk_texture;}
@@ -37,7 +37,7 @@ public:
 
 private:
   vk::structure::Vulkan* vk_struct;
-  vk::main::Graphical* vk_graphical;
+  vk::main::Engine* vk_engine;
   vk::main::Imgui* vk_imgui;
   vk::main::Info* vk_info;
   vk::main::Texture* vk_texture;

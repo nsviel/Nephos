@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace vk::main{class Graphical;}
 namespace eng::scene{class Node;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class Entity;}
@@ -35,7 +34,6 @@ public:
 
 private:
   eng::Node* node_engine;
-  vk::main::Graphical* vk_graphical;
   eng::scene::Node* node_scene;
   eng::scene::Database* sce_database;
   eng::scene::Set* sce_set;

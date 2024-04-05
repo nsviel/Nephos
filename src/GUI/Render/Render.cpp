@@ -17,8 +17,6 @@ Render::Render(gui::Node* gui){
   utl::element::Window* utl_window = utility->get_utl_window();
 
   this->vulkan = engine->get_node_vulkan();
-  //this->vulkan = new Vulkan(utl_window);
-  this->vk_graphical = vulkan->get_vk_graphical();
   this->vk_imgui = vulkan->get_vk_imgui();
 
   //---------------------------

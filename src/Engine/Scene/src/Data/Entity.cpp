@@ -17,7 +17,7 @@ Entity::Entity(eng::scene::Node* node_scene){
 
   this->node_scene = node_scene;
   this->sce_database = node_scene->get_scene_database();
-  this->vk_graphical = node_vulkan->get_vk_graphical();
+  this->vk_engine = node_vulkan->get_vk_engine();
 
   //---------------------------
 }
@@ -38,7 +38,7 @@ void Entity::init_entity(utl::type::Entity* entity){
   //Init entity
   sce_database->assign_UID(entity);
   sce_database->assign_UID(data);
-  vk_graphical->insert_data_in_engine(data, pose);
+  vk_engine->insert_data_in_engine(data, pose);
 
   //---------------------------
 }
@@ -46,7 +46,7 @@ void Entity::clear_entity(utl::type::Entity* entity){
   utl::type::Data* data = entity->get_data();
   //----------------------------
 
-  vk_graphical->remove_data_in_engine(data);
+  vk_engine->remove_data_in_engine(data);
 
   //----------------------------
 }

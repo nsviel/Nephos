@@ -1,7 +1,6 @@
 #pragma once
 
 namespace vk{class Node;}
-namespace vk::main{class Graphical;}
 namespace vk::draw{class Renderer;}
 namespace vk::main{class Imgui;}
 namespace gui{class Node;}
@@ -27,7 +26,6 @@ public:
 
 private:
   vk::Node* vulkan;
-  vk::main::Graphical* vk_graphical;
   vk::draw::Renderer* vk_render;
   vk::main::Imgui* vk_imgui;
 };

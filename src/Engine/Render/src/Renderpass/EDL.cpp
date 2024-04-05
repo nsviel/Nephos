@@ -15,7 +15,7 @@ EDL::EDL(eng::render::Node* node_render){
   vk::structure::Vulkan* vk_struct = node_vulkan->get_vk_struct();
 
   this->shader_edl = node_render->get_shader_edl();
-  this->vk_graphical = node_vulkan->get_vk_graphical();
+  this->vk_engine = node_vulkan->get_vk_engine();
   this->vk_pipeline = new vk::renderpass::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
@@ -39,7 +39,7 @@ void EDL::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  vk_graphical->add_renderpass_description(renderpass);
+  vk_engine->add_renderpass_description(renderpass);
 }
 void EDL::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
@@ -77,7 +77,7 @@ void EDL::update_binding(vk::structure::Subpass* subpass){
   //---------------------------
 
   eng::shader::EDL_param* edl_param = shader_edl->get_edl_param();
-  vk::structure::Renderpass* renderpass_scene = vk_graphical->get_renderpass(0);
+  vk::structure::Renderpass* renderpass_scene = vk_engine->get_renderpass(0);
   vk::structure::Framebuffer* frame_scene = renderpass_scene->framebuffer;
   vk::structure::Pipeline* pipeline = subpass->get_pipeline();
 
@@ -99,7 +99,7 @@ void EDL::draw_canvas(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass->command_buffer->command);
-  vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_graphical->get_canvas());
+  vk_drawing->cmd_draw_data(subpass->command_buffer->command, vk_engine->get_canvas());
 
   //---------------------------
 }

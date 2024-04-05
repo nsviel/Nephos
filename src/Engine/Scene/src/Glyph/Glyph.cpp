@@ -15,7 +15,6 @@ Glyph::Glyph(eng::scene::Node* node_scene){
   vk::Node* node_vulkan = node_scene->get_node_vulkan();
 
   this->node_engine = node_scene->get_node_engine();
-  this->vk_graphical = node_vulkan->get_vk_graphical();
   this->sce_database = node_scene->get_scene_database();
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_loader = node_scene->get_scene_loader();

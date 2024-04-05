@@ -51,11 +51,11 @@ void Object::clear_data(){
   this->update_data();
 }
 void Object::update_data(){
-  vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
+  vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
 
   //Update own data
-  vk_graphical->insert_data_in_engine(&data, &pose);
+  vk_engine->insert_data_in_engine(&data, &pose);
 
   //----------------------------
 }
@@ -87,7 +87,7 @@ void Object::update_glyph(){
   //----------------------------
 }
 void Object::remove_entity(){
-  vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
+  vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
 
   //Remove glyph data
@@ -97,7 +97,7 @@ void Object::remove_entity(){
   }
 
   //Remove this data
-  vk_graphical->remove_data_in_engine(&data);
+  vk_engine->remove_data_in_engine(&data);
 
   //----------------------------
 }

@@ -1,7 +1,6 @@
 #include "Manager.h"
 
 #include <Engine/Node.h>
-#include <Vulkan/VK_main/Graphical.h>
 #include <Engine/Render/Namespace.h>
 
 

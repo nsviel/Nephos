@@ -35,20 +35,20 @@ void Glyph::init(){
   //----------------------------
 }
 void Glyph::clear(){
-  vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
+  vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
 
-  vk_graphical->remove_data_in_engine(&data);
+  vk_engine->remove_data_in_engine(&data);
 
   //----------------------------
 }
 
 //Subfunction
 void Glyph::update_data(){
-  vk::main::Graphical* vk_graphical = node_vulkan->get_vk_graphical();
+  vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
 
-  vk_graphical->insert_data_in_engine(&data, &pose);
+  vk_engine->insert_data_in_engine(&data, &pose);
 
   //----------------------------
 }
