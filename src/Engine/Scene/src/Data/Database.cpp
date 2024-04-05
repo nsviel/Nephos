@@ -45,7 +45,7 @@ void Database::reset(){
 void Database::clean(){
   //---------------------------
 
-  sce_set->delete_entity_all(set_main);
+  sce_set->remove_entity_all(set_main);
 
   //---------------------------
 }

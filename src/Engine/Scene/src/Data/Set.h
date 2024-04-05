@@ -27,9 +27,7 @@ public:
   //Entity function
   void insert_entity(utl::type::Set* set, utl::type::Entity* entity);
   void remove_entity(utl::type::Set* set, utl::type::Entity* entity);
-  void supress_entity(utl::type::Set* set, utl::type::Entity* entity);
-  void delete_entity(utl::type::Set* set, utl::type::Entity* entity);
-  void delete_entity_all(utl::type::Set* set);
+  void remove_entity_all(utl::type::Set* set);
   void select_entity_next(utl::type::Set* set);
   void select_entity(utl::type::Set* set, utl::type::Entity* entity);
   bool is_selected_entity(utl::type::Set* set, utl::type::Entity* entity);

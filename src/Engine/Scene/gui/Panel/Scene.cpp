@@ -74,7 +74,7 @@ void Scene::draw_button(){
       //sce_scene->delete_subset(set);
     }else if(set->is_locked){
       utl::type::Set* set_scene = sce_database->get_set_scene();
-      sce_set->delete_entity(set_scene, set->selected_entity);
+      sce_set->remove_entity(set_scene, set->selected_entity);
     }
   }
 

@@ -96,7 +96,7 @@ void Swarm::close_master(string name){
 void Swarm::close_master(k4n::dev::Master* master){
   //---------------------------
 
-  sce_set->delete_entity_all(master);
+  sce_set->remove_entity_all(master);
   k4n_struct->device.list_master.remove(master);
 
   //---------------------------
@@ -106,7 +106,7 @@ void Swarm::close_all_master(){
 
   for(int i=0; i<k4n_struct->device.list_sensor.size(); i++){
     k4n::dev::Master* master = *std::next(k4n_struct->device.list_master.begin(), i);
-    sce_set->delete_entity_all(master);
+    sce_set->remove_entity_all(master);
   }
 
   //---------------------------
@@ -198,7 +198,7 @@ void Swarm::manage_connected_device(){
   //Suppress all devices
   k4n::dev::Master* master = get_or_create_capture_master("capture");
   if(master == nullptr) return;
-  sce_set->delete_entity_all(master);
+  sce_set->remove_entity_all(master);
 
   //Create required number of new devices
   for(int i=0; i<k4n_struct->device.nb_connected_sensor; i++){

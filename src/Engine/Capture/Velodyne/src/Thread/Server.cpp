@@ -97,10 +97,11 @@ void Server::create_object(utl::file::Entity* data){
   utl::type::Set* set_scene = sce_database->get_set_scene();
   utl::type::Set* set_capture = sce_set->get_or_create_subset(set_scene, "Capture");
 
+  sce_set->remove_entity_all(set_capture);
+  //utl::entity::Object* object = sce_loader->create_object(data);
+  //sce_set->insert_entity(set_capture, object);
+  //std::this_thread::sleep_for(std::chrono::milliseconds(60));
 
-
-  utl::entity::Object* object = sce_loader->create_object(data);
-  sce_set->insert_entity(set_capture, object);
 /*
   //Cloud* new_subset = extractManager->extract_data(udp_capture);
   //this->operation_new_subset(new_subset);

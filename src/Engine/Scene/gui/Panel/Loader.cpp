@@ -395,7 +395,7 @@ void Loader::operation_selection(){
   //Apply loading and operations
   if(param_remove_old){
     utl::type::Set* set_scene = sce_database->get_set_scene();
-    sce_set->delete_entity_all(set_scene);
+    sce_set->remove_entity_all(set_scene);
   }
 
   for(int i=0; i<vec_path.size(); i++){
@@ -429,7 +429,7 @@ void Loader::operation_selection(string file_path){
     //Apply loading and operations
     if(param_remove_old){
       utl::type::Set* set_scene = sce_database->get_set_scene();
-      sce_set->delete_entity_all(set_scene);
+      sce_set->remove_entity_all(set_scene);
     }
 
     utl::file::Path path;
