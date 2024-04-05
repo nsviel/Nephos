@@ -96,12 +96,19 @@ std::mutex creationMutex;
 void Server::create_object(utl::file::Data* data){
   //---------------------------
 
+static int a = 0;
   utl::type::Set* set_scene = sce_database->get_set_scene();
   utl::type::Set* set_capture = sce_set->get_or_create_subset(set_scene, "Capture");
-/*
-  sce_set->remove_entity_all(set_capture);
-  utl::entity::Object* object = sce_loader->create_object(data);
+
+if(a < 2){say("---");
+  sce_set->remove_entity_all(set_capture);sayHello();
+  utl::entity::Object* object = sce_loader->create_object(data);sayHello();
   sce_set->insert_entity(set_capture, object);
+  sayHello();
+}
+
+a++;
+
 
   //std::this_thread::sleep_for(std::chrono::milliseconds(60));
 

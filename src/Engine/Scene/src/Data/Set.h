@@ -37,7 +37,6 @@ public:
   int compute_number_point(utl::type::Set* set);
 
 private:
-
 };
 
 }

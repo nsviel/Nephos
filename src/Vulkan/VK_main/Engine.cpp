@@ -67,7 +67,7 @@ void Engine::remove_data(utl::type::Data* data){
     vk::structure::Object* vk_object = *next(list_vk_object.begin(),i);
 
     if(data->UID == vk_object->data->UID){
-      list_vk_object.remove(vk_object);
+
       vk_data->clean_vk_object(vk_object);
     }
   }

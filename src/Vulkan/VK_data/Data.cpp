@@ -70,8 +70,8 @@ void Data::clean(){
   //---------------------------
 
   for(int i=0; i<vk_struct->data.list_vk_object.size(); i++){
-    vk::structure::Object* data = *next(vk_struct->data.list_vk_object.begin(),i);
-    this->clean_vk_object(data);
+    vk::structure::Object* vk_object = *next(vk_struct->data.list_vk_object.begin(),i);
+    this->clean_vk_object(vk_object);
   }
 
   //---------------------------
@@ -79,7 +79,11 @@ void Data::clean(){
 void Data::clean_vk_object(vk::structure::Object* vk_object){
   //---------------------------
 
+  std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
+
+
   vk_synchro->wait_idle();
+  list_vk_object.remove(vk_object);
   vk_buffer->clean_buffers(vk_object);
   vk_texture->clean_texture(vk_object);
   vk_descriptor->clean_binding(&vk_object->binding);

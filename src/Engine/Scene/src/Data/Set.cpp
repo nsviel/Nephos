@@ -166,6 +166,7 @@ void Set::remove_entity(utl::type::Set* set, utl::type::Entity* entity){
 
   //---------------------------
 }
+
 void Set::remove_entity_all(utl::type::Set* set){
   if(set->list_entity.size() == 0) return;
   //---------------------------
