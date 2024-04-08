@@ -31,10 +31,12 @@ void Font::init_font(){
 
 //Subfunction
 void Font::gui_select_font(){
-  ImGuiIO io = ImGui::GetIO();
-  static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+  if(utl::directory::is_exist("../media/") == false) return;
   //---------------------------
 
+  ImGuiIO io = ImGui::GetIO();
+  static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+  
   //Configuration - texte
   ImFontConfig config_text;
   config_text.GlyphExtraSpacing.x = 1.0f;

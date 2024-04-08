@@ -1,5 +1,7 @@
 #include "Config.h"
 
+#include <Utility/Namespace.h>
+
 
 namespace gui::style{
 
@@ -44,7 +46,7 @@ void Config::style_window(){
   style.WindowBorderSize = 0.0f;
 
   //IO parameters
-  io.IniFilename = "../media/config/imgui.ini";
+  io.IniFilename = "../config/imgui.ini";
   io.ConfigWindowsResizeFromEdges = true;
   io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
   io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows

@@ -152,9 +152,11 @@ bool Imgui::check_window_resize(){
 
 //Font
 void Imgui::select_font(){
+  if(utl::directory::is_exist("../media/") == false) return;
+  //---------------------------
+
   ImGuiIO io = ImGui::GetIO();
   static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
-  //---------------------------
 
   //Configuration - texte
   ImFontConfig config_text;

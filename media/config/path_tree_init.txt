@@ -1,2 +1,0 @@
-/home/aether/Desktop/Point_cloud
-/home/aether/Desktop/Point_cloud/ply
