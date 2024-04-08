@@ -36,8 +36,6 @@ void Screenshot::make_screenshot(){
 void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   //---------------------------
 
-  if(image->layout == VK_IMAGE_LAYOUT_UNDEFINED) say("coucouuu");
-
   //Create and fill stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
@@ -55,7 +53,7 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   void* mappedData;
   vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   int channels = 4;  // Assuming RGBA data
-  std::string filename = "output.jpg";
+  std::string filename = "temp.jpg";
   if(stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
     throw std::runtime_error("Failed to write PNG file!");
   }
@@ -64,6 +62,9 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   //Free memory
   vkDestroyBuffer(vk_struct->device.handle, staging_buffer, nullptr);
   vkFreeMemory(vk_struct->device.handle, staging_mem, nullptr);
+
+  std::string finalFilename = "/home/aether/Desktop/Dev/Obstacle/data/image/image";
+  std::filesystem::rename(filename, finalFilename); // Rename temporary file to final filename
 
   //---------------------------
 }

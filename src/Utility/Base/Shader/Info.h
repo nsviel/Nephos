@@ -10,6 +10,7 @@ struct Info{
 
   std::string title = "";
   std::string folder = "";
+
   std::string path_glsl_vs = "";
   std::string path_glsl_fs = "";
   std::string path_spir_vs = "";
