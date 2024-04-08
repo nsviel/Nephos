@@ -29,13 +29,13 @@ Server::~Server(){}
 //Main function
 void Server::start_thread(){
   //---------------------------
-/*
+
   if(!thread_running){
     this->thread = std::thread(&Server::run_thread, this);
   }
 
   //---------------------------
-  this->thread_idle = false;*/
+  this->thread_idle = false;
 }
 void Server::run_thread(){
   this->thread_running = true;
@@ -72,7 +72,7 @@ void Server::stop_thread(){
 //Subfunction
 void Server::capture_data(){
   //---------------------------
-/*
+
   //Receive data
   vector<int> packet_dec = vld_server->capture();
   if(packet_dec.size() == 0) return;
@@ -88,7 +88,7 @@ void Server::capture_data(){
     utl::file::Data* data = vld_frame->get_endedFrame();
     this->create_object(data);
   }
-*/
+
   //---------------------------
 }
 
