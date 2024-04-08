@@ -36,45 +36,27 @@ void Screenshot::make_screenshot(){
 void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   //---------------------------
 
-  //Create stagging buffer
+  if(image->layout == VK_IMAGE_LAYOUT_UNDEFINED) say("coucouuu");
+
+  //Create and fill stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
   VkDeviceSize tex_size = image->width * image->height * 4;
   vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+  vk_mem_transfer->copy_image_to_buffer(image, staging_buffer);
 
-
-
-  //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
-  command_buffer->name = "Screenshot";
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
-
-  // Image transition to transfer source optimal layout
-  vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_mem_transfer->copy_image_to_buffer(command_buffer, image, staging_buffer);
-  vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-
-  vk_command_buffer->end_command_buffer(command_buffer);
-
-  vk::structure::Command* command = new vk::structure::Command();
-  command->vec_command_buffer.push_back(command_buffer);
-  vk_struct->queue.graphics->add_command(command);
-
-
-
-
+  //Find image info
   VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
   VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
   if(bufferSize == 0) return;
 
-  // 3. Save staging buffer data to file
+  //Save staging buffer data to file
   void* mappedData;
   vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
-  int channels = 4;  // Assuming RGBA data, adjust as needed
-  std::string filename = "output.jpg";  // Adjust the file name and format as needed
-  if (stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
+  int channels = 4;  // Assuming RGBA data
+  std::string filename = "output.jpg";
+  if(stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
     throw std::runtime_error("Failed to write PNG file!");
   }
   vkUnmapMemory(vk_struct->device.handle, staging_mem);
@@ -88,37 +70,23 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
 void Screenshot::export_image_to_binary(vk::structure::Image* image){
   //---------------------------
 
-  //Create stagging buffer
+  //Create and fill stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
   VkDeviceSize tex_size = image->width * image->height * 4;
   vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
+  vk_mem_transfer->copy_image_to_buffer(image, staging_buffer);
 
-  //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.transfer);
-  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
-  command_buffer->name = "Screenshot";
-  vk_command_buffer->start_command_buffer_primary(command_buffer);
-
-  vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_mem_transfer->copy_image_to_buffer(command_buffer, image, staging_buffer);
-
-  vk_command_buffer->end_command_buffer(command_buffer);
-  vk_struct->queue.transfer->add_command(command_buffer);
-
-
-
-
+  //Find image info
   VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
   VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
 
-  // 3. Save staging buffer data to file
+  //Save staging buffer data to file
   void* mappedData;
   void* pixelData = malloc(bufferSize);
   VkResult mapResult =vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   //  memcpy(pixelData, mappedData, static_cast<size_t>(tex_size));
-
   if (mapResult == VK_SUCCESS) {
       // Use mappedData as needed
 
