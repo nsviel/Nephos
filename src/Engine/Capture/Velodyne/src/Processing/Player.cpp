@@ -3,7 +3,7 @@
 #include <Velodyne/Namespace.h>
 
 
-namespace vld::main{
+namespace vld::processing{
 
 //Constructor / Destructor
 Player::Player(vld::structure::Main* vld_struct){
@@ -16,22 +16,49 @@ Player::Player(vld::structure::Main* vld_struct){
 Player::~Player(){}
 
 //Main function
-void Player::start_playback(){
-  if(vld_struct->data.current_set == nullptr) return;
-  utl::type::Set* set = vld_struct->data.current_set;
+void Player::player_pause(bool value){
   //---------------------------
 
-  vld_struct->thread.playback->start_thread();
+  vld_struct->player.pause = value;
 
   //---------------------------
 }
-void Player::stop_playback(){
+void Player::player_play(){
   //---------------------------
 
-  vld_struct->thread.playback->stop_thread();
+  if(!vld_struct->player.play){
+    vld_struct->player.play = true;
+    vld_struct->player.pause = false;
+  }else{
+    vld_struct->player.pause = false;
+  }
 
   //---------------------------
 }
+void Player::player_stop(){
+  //---------------------------
+
+  vld_struct->player.play = false;
+  vld_struct->player.pause = true;
+  vld_struct->player.idx_cur = vld_struct->player.idx_beg;
+
+  //---------------------------
+}
+void Player::player_restart(){
+  //---------------------------
+
+  vld_struct->player.restart = !vld_struct->player.restart;
+
+  //---------------------------
+}
+void Player::player_close(){
+  //---------------------------
+
+
+  //---------------------------
+}
+
+//Subfunction
 void Player::determine_range(){
   if(vld_struct->data.current_set == nullptr) return;
   utl::type::Set* set = vld_struct->data.current_set;
@@ -80,47 +107,5 @@ void Player::forward_index(int index){
   //---------------------------
 }
 
-//Player function
-void Player::player_pause(bool value){
-  //---------------------------
-
-  vld_struct->player.pause = value;
-
-  //---------------------------
-}
-void Player::player_play(){
-  //---------------------------
-
-  if(!vld_struct->player.play){
-    vld_struct->player.play = true;
-    vld_struct->player.pause = false;
-  }else{
-    vld_struct->player.pause = false;
-  }
-
-  //---------------------------
-}
-void Player::player_stop(){
-  //---------------------------
-
-  vld_struct->player.play = false;
-  vld_struct->player.pause = true;
-  vld_struct->player.idx_cur = vld_struct->player.idx_beg;
-
-  //---------------------------
-}
-void Player::player_restart(){
-  //---------------------------
-
-  vld_struct->player.restart = !vld_struct->player.restart;
-
-  //---------------------------
-}
-void Player::player_close(){
-  //---------------------------
-
-
-  //---------------------------
-}
 
 }

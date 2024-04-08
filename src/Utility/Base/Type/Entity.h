@@ -13,6 +13,7 @@ namespace utl::type{
 struct Entity{
   //---------------------------
 
+  Entity(){}
   virtual ~Entity(){}
   virtual void update_data(){}
   virtual void update_pose(){}

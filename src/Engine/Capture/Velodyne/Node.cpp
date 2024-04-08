@@ -17,10 +17,8 @@ Node::Node(eng::capture::Node* node_capture){
   this->node_scene = node_engine->get_node_scene();
 
   this->vld_struct = new vld::structure::Main();
-  vld_struct->thread.playback = new vld::thread::Playback(vld_struct);
-  this->vld_manager = new vld::main::Manager(this);
-  this->vld_player = new vld::main::Player(vld_struct);
-  this->vld_server = new vld::thread::Server(this);
+  this->vld_capture = new vld::main::Capture(this);
+  this->vld_playback = new vld::main::Playback(vld_struct);
   this->gui_velodyne = new vld::gui::Velodyne(vld_struct, &panel->is_open);
 
   //---------------------------
@@ -39,8 +37,7 @@ void Node::config(){
 void Node::init(){
   //---------------------------
 
-  //vld_manager->init();
-  vld_server->start_thread();
+  vld_capture->init();
 
   //---------------------------
 }
@@ -54,8 +51,7 @@ void Node::gui(){
 void Node::clean(){
   //---------------------------
 
-  vld_player->stop_playback();
-  vld_server->stop_thread();
+  vld_playback->stop_playback();
 
   //---------------------------
 }

@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Velodyne/src/Main/Manager.h>
-#include <Velodyne/src/Main/Player.h>
+#include <Velodyne/src/Main/Capture.h>
+#include <Velodyne/src/Main/Playback.h>

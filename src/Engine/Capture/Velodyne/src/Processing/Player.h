@@ -5,7 +5,7 @@
 namespace vld::structure{class Main;}
 
 
-namespace vld::main{
+namespace vld::processing{
 
 class Player
 {
@@ -16,19 +16,17 @@ public:
 
 public:
   //Main function
-  void start_playback();
-  void stop_playback();
-  void determine_range();
-  void compute_visibility();
-  void forward_index(int index);
-
-  //Player function
   void player_pause(bool value);
   void player_play();
   void player_stop();
   void player_restart();
   void player_close();
 
+  //Subfunction
+  void determine_range();
+  void compute_visibility();
+  void forward_index(int index);
+  
 private:
   vld::structure::Main* vld_struct;
 };

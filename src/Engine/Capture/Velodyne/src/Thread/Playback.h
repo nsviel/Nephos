@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace vld::structure{class Main;}
-namespace vld::main{class Player;}
+namespace vld::processing{class Player;}
 
 
 namespace vld::thread{
@@ -26,7 +26,7 @@ public:
 
 private:
   vld::structure::Main* vld_struct;
-  vld::main::Player* vld_player;
+  vld::processing::Player* vld_player;
 
   std::thread thread;
   bool thread_running = false;

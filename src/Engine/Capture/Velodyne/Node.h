@@ -5,10 +5,9 @@
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::capture{class Node;}
-namespace vld::main{class Player;}
-namespace vld::main{class Manager;}
+namespace vld::main{class Capture;}
+namespace vld::main{class Playback;}
 namespace vld::structure{class Main;}
-namespace vld::thread{class Server;}
 namespace vld::gui{class Velodyne;}
 
 
@@ -28,6 +27,7 @@ public:
   void gui();
   void clean();
 
+  inline eng::Node* get_node_engine(){return node_engine;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline vld::structure::Main* get_vld_struct(){return vld_struct;}
 
@@ -35,11 +35,10 @@ private:
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
 
-  vld::main::Player* vld_player;
-  vld::main::Manager* vld_manager;
+  vld::main::Capture* vld_capture;
+  vld::main::Playback* vld_playback;
   vld::gui::Velodyne* gui_velodyne;
   vld::structure::Main* vld_struct;
-  vld::thread::Server* vld_server;
 };
 
 }

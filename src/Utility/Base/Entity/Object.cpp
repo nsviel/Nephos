@@ -60,6 +60,7 @@ void Object::update_data(){
   //----------------------------
 }
 void Object::update_pose(){
+  if(node_camera == nullptr) cout<<"[error] no vk engine connexion"<<endl;
   eng::cam::Control* cam_control = node_camera->get_camera_control();
   //----------------------------
 

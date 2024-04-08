@@ -17,7 +17,8 @@ Importer::Importer(vld::structure::Main* vld_struct){
   //---------------------------
 
   this->vld_struct = vld_struct;
-  this->vld_player = new vld::main::Player(vld_struct);
+  this->vld_player = new vld::processing::Player(vld_struct);
+  this->vld_playback = new vld::main::Playback(vld_struct);
 
   this->lidar_model = VLP_16;
   this->packet_range_on = false;
@@ -84,7 +85,7 @@ void Importer::insert(utl::type::Set* set){
   vld_struct->data.vec_set.push_back(set);
   vld_struct->data.current_set = set;
   vld_player->determine_range();
-  vld_player->start_playback();
+  vld_playback->start_playback();
 
   //---------------------------
 }

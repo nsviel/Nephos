@@ -53,7 +53,7 @@ public:
 public:
   //Dependancy
   vk::Node* node_vulkan;
-  eng::cam::Node* node_camera;
+  eng::cam::Node* node_camera = nullptr;
 };
 
 }

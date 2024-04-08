@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace vld::main{class Player;}
+namespace vld::processing{class Player;}
 namespace vld::structure{class Main;}
 
 
@@ -29,7 +29,7 @@ public:
 
 private:
   vld::structure::Main* vld_struct;
-  vld::main::Player* vld_player;
+  vld::processing::Player* vld_player;
 };
 
 }

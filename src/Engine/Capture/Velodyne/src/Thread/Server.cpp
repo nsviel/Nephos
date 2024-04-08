@@ -18,7 +18,7 @@ Server::Server(vld::Node* node_vld){
 
   this->vld_struct = node_vld->get_vld_struct();
   this->vld_server = new vld::utils::Server();
-  this->vld_player = new vld::main::Player(vld_struct);
+  this->vld_player = new vld::processing::Player(vld_struct);
   this->vld_frame = new vld::processing::Frame();
   this->vld_vlp16 = new vld::parser::VLP16();
 
