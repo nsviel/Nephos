@@ -3,7 +3,7 @@
 #include <Velodyne/Namespace.h>
 
 
-namespace vld::processing{
+namespace vld::main{
 
 //Constructor / Destructor
 Player::Player(vld::structure::Main* vld_struct){

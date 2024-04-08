@@ -17,7 +17,7 @@ Importer::Importer(vld::structure::Main* vld_struct){
   //---------------------------
 
   this->vld_struct = vld_struct;
-  this->vld_player = new vld::processing::Player(vld_struct);
+  this->vld_player = new vld::main::Player(vld_struct);
 
   this->lidar_model = VLP_16;
   this->packet_range_on = false;

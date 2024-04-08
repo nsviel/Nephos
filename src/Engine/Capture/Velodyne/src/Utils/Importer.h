@@ -11,7 +11,7 @@
 #include <stddef.h>
 #include <bitset>
 
-namespace vld::processing{class Player;}
+namespace vld::main{class Player;}
 namespace vld::structure{class Main;}
 
 
@@ -50,7 +50,7 @@ public:
 
 private:
   vld::structure::Main* vld_struct;
-  vld::processing::Player* vld_player;
+  vld::main::Player* vld_player;
 
   bool packet_range_on;
   int lidar_model;

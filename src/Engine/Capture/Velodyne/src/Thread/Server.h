@@ -7,7 +7,7 @@ namespace eng::scene{class Loader;}
 namespace eng::scene{class Set;}
 namespace vld{class Node;}
 namespace vld::structure{class Main;}
-namespace vld::processing{class Player;}
+namespace vld::main{class Player;}
 namespace vld::processing{class Frame;}
 namespace vld::utils{class Server;}
 namespace vld::parser{class VLP16;}
@@ -38,7 +38,7 @@ private:
   eng::scene::Set* sce_set;
 
   vld::structure::Main* vld_struct;
-  vld::processing::Player* vld_player;
+  vld::main::Player* vld_player;
   vld::processing::Frame* vld_frame;
   vld::utils::Server* vld_server;
   vld::parser::VLP16* vld_vlp16;
@@ -48,6 +48,7 @@ private:
   bool thread_running = false;
   bool thread_idle = true;
   bool thread_paused = false;
+  int frame_ID = 0;
 };
 
 }

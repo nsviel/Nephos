@@ -18,7 +18,7 @@ Server::Server(vld::Node* node_vld){
 
   this->vld_struct = node_vld->get_vld_struct();
   this->vld_server = new vld::utils::Server();
-  this->vld_player = new vld::processing::Player(vld_struct);
+  this->vld_player = new vld::main::Player(vld_struct);
   this->vld_frame = new vld::processing::Frame();
   this->vld_vlp16 = new vld::parser::VLP16();
 
@@ -31,7 +31,7 @@ void Server::start_thread(){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&Server::run_thread, this);
+    //this->thread = std::thread(&Server::run_thread, this);
   }
 
   //---------------------------
@@ -86,6 +86,7 @@ void Server::capture_data(){
   // If frame revolution, make some ope
   if(frame_rev){
     utl::file::Data* data = vld_frame->get_endedFrame();
+    data->name = "capture_" + to_string(frame_ID);
     this->create_object(data);
   }
 
@@ -101,10 +102,10 @@ static int a = 0;
   utl::type::Set* set_capture = sce_set->get_or_create_subset(set_scene, "Capture");
 
 if(a < 2){say("---");
-  //sce_set->remove_entity_all(set_capture);sayHello();
-  //utl::entity::Object* object = sce_loader->create_object(data);sayHello();
+  //sce_set->remove_entity_all(set_capture);say("---> delete");
+  //utl::entity::Object* object = sce_loader->create_object(data);
   //sce_set->insert_entity(set_capture, object);
-  sayHello();
+  //say("---> end");
 }
 
 a++;

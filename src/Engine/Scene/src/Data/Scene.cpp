@@ -51,7 +51,7 @@ void Scene::init(){
 
   //sce_loader->load_object(path_3);
   //sce_loader->load_object(path_4);
-  sce_loader->load_object(path_5);
+  //sce_loader->load_object(path_5);
   //sce_loader->load_object(path_6);
   //sce_loader->load_object(path_7);
   //sce_loader->load_dataset(path_8);

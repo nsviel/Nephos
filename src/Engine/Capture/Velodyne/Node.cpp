@@ -6,7 +6,6 @@
 #include <Velodyne/Namespace.h>
 
 
-
 namespace vld{
 
 //Constructor / Destructor
@@ -19,7 +18,8 @@ Node::Node(eng::capture::Node* node_capture){
 
   this->vld_struct = new vld::structure::Main();
   vld_struct->thread.playback = new vld::thread::Playback(vld_struct);
-  this->vld_player = new vld::processing::Player(vld_struct);
+  this->vld_manager = new vld::main::Manager(this);
+  this->vld_player = new vld::main::Player(vld_struct);
   this->vld_server = new vld::thread::Server(this);
   this->gui_velodyne = new vld::gui::Velodyne(vld_struct, &panel->is_open);
 
@@ -39,6 +39,7 @@ void Node::config(){
 void Node::init(){
   //---------------------------
 
+  //vld_manager->init();
   vld_server->start_thread();
 
   //---------------------------
