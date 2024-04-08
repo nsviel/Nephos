@@ -52,7 +52,7 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   // Image transition to transfer source optimal layout
-  vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
   vk_mem_transfer->copy_image_to_buffer(command_buffer, image, staging_buffer);
   vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
