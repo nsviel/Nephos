@@ -42,7 +42,7 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
   vk_mem_allocator->allocate_empty_stagger_buffer(&vk_object->buffer.uv_stagger, size);
 
   this->update_buffer(vk_object);
-
+  
   //---------------------------
 }
 void Buffer::update_buffer(vk::structure::Object* vk_object){
@@ -66,7 +66,6 @@ void Buffer::update_buffer(vk::structure::Object* vk_object){
 
   //---------------------------
 }
-
 void Buffer::clean_buffers(vk::structure::Object* vk_object){
   //---------------------------
 

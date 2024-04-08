@@ -19,7 +19,6 @@ Canvas::~Canvas(){}
 
 //Main function
 void Canvas::init(){
-  utl::type::Data* data = new utl::type::Data();
   //---------------------------
 
   //Generic quad coordinates and UV
@@ -41,13 +40,16 @@ void Canvas::init(){
   uv.push_back(vec2(1.0f,  0.0f));
   uv.push_back(vec2(0.0f,  1.0f));
 
+  //Canvas data
+  utl::type::Data* data = new utl::type::Data();
+  data->name = "vk::canvas";
   data->xyz = xyz;
   data->uv = uv;
   data->size = xyz.size();
   data->topology.type = utl::topology::TRIANGLE;
 
+  //Create vk object
   vk_struct->data.canvas.data = data;
-
   vk_buffer->create_buffers(&vk_struct->data.canvas);
 
   //---------------------------

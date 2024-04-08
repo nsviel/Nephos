@@ -29,13 +29,13 @@ Server::~Server(){}
 //Main function
 void Server::start_thread(){
   //---------------------------
-
+/*
   if(!thread_running){
     this->thread = std::thread(&Server::run_thread, this);
   }
 
   //---------------------------
-  this->thread_idle = false;
+  this->thread_idle = false;*/
 }
 void Server::run_thread(){
   this->thread_running = true;
@@ -72,7 +72,7 @@ void Server::stop_thread(){
 //Subfunction
 void Server::capture_data(){
   //---------------------------
-
+/*
   //Receive data
   vector<int> packet_dec = vld_server->capture();
   if(packet_dec.size() == 0) return;
@@ -88,7 +88,7 @@ void Server::capture_data(){
     utl::file::Data* data = vld_frame->get_endedFrame();
     this->create_object(data);
   }
-
+*/
   //---------------------------
 }
 
@@ -101,9 +101,9 @@ static int a = 0;
   utl::type::Set* set_capture = sce_set->get_or_create_subset(set_scene, "Capture");
 
 if(a < 2){say("---");
-  sce_set->remove_entity_all(set_capture);sayHello();
-  utl::entity::Object* object = sce_loader->create_object(data);sayHello();
-  sce_set->insert_entity(set_capture, object);
+  //sce_set->remove_entity_all(set_capture);sayHello();
+  //utl::entity::Object* object = sce_loader->create_object(data);sayHello();
+  //sce_set->insert_entity(set_capture, object);
   sayHello();
 }
 
