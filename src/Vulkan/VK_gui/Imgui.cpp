@@ -152,10 +152,9 @@ bool Imgui::check_window_resize(){
 
 //Font
 void Imgui::select_font(){
-  if(utl::directory::is_exist("../media/") == false) return;
+  ImGuiIO io = ImGui::GetIO();
   //---------------------------
 
-  ImGuiIO io = ImGui::GetIO();
   static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
 
   //Configuration - texte
@@ -178,8 +177,8 @@ void Imgui::select_font(){
   font_size = 10.0f;
   ImFont* font_gui;
   for(int i=0; i<15; i++){
-    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_text);
-    io.Fonts->AddFontFromFileTTF("../media/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../config/font/DroidSans.ttf", font_size, &config_text);
+    io.Fonts->AddFontFromFileTTF("../config/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
     font_size += 1.0f;
 
     if(i == 3){
@@ -189,7 +188,7 @@ void Imgui::select_font(){
 
   font_size = 13.0f;
   for(int i=0; i<10; i++){
-    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/font/DroidSans.ttf", font_size, &config_editor);
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../config/font/DroidSans.ttf", font_size, &config_editor);
     font_size += 1.0f;
   }
 
