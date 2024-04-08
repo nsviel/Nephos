@@ -30,7 +30,7 @@ public:
 
   //Subfunction
   void capture_data();
-  void create_object(utl::file::Data* data);
+  void update_object(utl::file::Data* data);
 
 private:
   eng::scene::Database* sce_database;

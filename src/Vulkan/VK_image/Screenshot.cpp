@@ -27,7 +27,8 @@ void Screenshot::make_screenshot(){
   //---------------------------
 
   vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[1];
-  this->export_image_to_jpeg(&renderpass->framebuffer->color);
+  vk::structure::Image image = renderpass->framebuffer->color;
+  this->export_image_to_jpeg(&image);
 
   //---------------------------
 }
@@ -42,17 +43,23 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
 
 
+
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.transfer);
+  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "Screenshot";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
+  // Image transition to transfer source optimal layout
   vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
   vk_mem_transfer->copy_image_to_buffer(command_buffer, image, staging_buffer);
+  vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   vk_command_buffer->end_command_buffer(command_buffer);
-  vk_struct->queue.transfer->add_command(command_buffer);
+
+  vk::structure::Command* command = new vk::structure::Command();
+  command->vec_command_buffer.push_back(command_buffer);
+  vk_struct->queue.graphics->add_command(command);
 
 
 

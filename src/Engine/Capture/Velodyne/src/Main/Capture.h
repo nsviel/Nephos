@@ -5,6 +5,7 @@
 namespace vld{class Node;}
 namespace vld::structure{class Main;}
 namespace vld::thread{class Server;}
+namespace vld::thread{class Screenshot;}
 namespace eng{class Node;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class Loader;}
@@ -29,7 +30,8 @@ public:
 private:
   eng::Node* node_engine;
   vld::structure::Main* vld_struct;
-  vld::thread::Server* vld_server;
+  vld::thread::Server* thread_server;
+  vld::thread::Screenshot* thread_screenshot;
   eng::scene::Database* sce_database;
   eng::scene::Loader* sce_loader;
   eng::scene::Set* sce_set;

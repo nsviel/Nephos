@@ -14,6 +14,9 @@ Object::Object(){
   this->entity_type = "entity::Object";
   this->data.unicolor = math::random();
 
+  this->node_vulkan = nullptr;
+  this->node_camera = nullptr;
+
   //---------------------------
 }
 Object::Object(eng::Node* node_engine){
@@ -51,6 +54,7 @@ void Object::clear_data(){
   this->update_data();
 }
 void Object::update_data(){
+  if(node_camera == nullptr) cout<<"[error] Object - no  engine initalization"<<endl;
   vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
 
@@ -60,7 +64,7 @@ void Object::update_data(){
   //----------------------------
 }
 void Object::update_pose(){
-  if(node_camera == nullptr) cout<<"[error] no vk engine connexion"<<endl;
+  if(node_camera == nullptr) cout<<"[error] Object - no engine initalization"<<endl;
   eng::cam::Control* cam_control = node_camera->get_camera_control();
   //----------------------------
 
