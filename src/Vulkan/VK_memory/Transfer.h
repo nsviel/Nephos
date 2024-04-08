@@ -4,7 +4,7 @@
 
 namespace vk::command{class Command_buffer;}
 namespace vk::command{class Allocator;}
-namespace vk::image{class Image;}
+namespace vk::image{class Transition;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
 namespace vk::structure{class Texture;}
@@ -33,7 +33,7 @@ public:
 
 private:
   vk::structure::Vulkan* vk_struct;
-  vk::image::Image* vk_image;
+  vk::image::Transition* vk_transition;
   vk::command::Command_buffer* vk_command_buffer;
   vk::command::Allocator* vk_allocator;
 };

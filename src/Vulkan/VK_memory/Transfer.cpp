@@ -10,7 +10,7 @@ Transfer::Transfer(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_image = new vk::image::Image(vk_struct);
+  this->vk_transition = new vk::image::Transition(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   this->vk_allocator = new vk::command::Allocator(vk_struct);
 
@@ -39,9 +39,9 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
   command_buffer->name = "transfer::texture";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
-  vk_image->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
+  vk_transition->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
   this->copy_buffer_to_image(command_buffer, image, buffer->vbo);
-  vk_image->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
   vk_command_buffer->end_command_buffer(command_buffer);
   vk_struct->queue.graphics->add_command_thread(command_buffer);
 

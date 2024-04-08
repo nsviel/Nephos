@@ -13,6 +13,7 @@ Screenshot::Screenshot(vk::structure::Vulkan* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_image = new vk::image::Image(vk_struct);
+  this->vk_transition = new vk::image::Transition(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   this->vk_command_allocator = new vk::command::Allocator(vk_struct);
   this->vk_mem_transfer = new vk::memory::Transfer(vk_struct);
@@ -51,9 +52,9 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   // Image transition to transfer source optimal layout
-  vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
   vk_mem_transfer->copy_image_to_buffer(command_buffer, image, staging_buffer);
-  vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   vk_command_buffer->end_command_buffer(command_buffer);
 
@@ -100,7 +101,7 @@ void Screenshot::export_image_to_binary(vk::structure::Image* image){
   command_buffer->name = "Screenshot";
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
-  vk_image->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
   vk_mem_transfer->copy_image_to_buffer(command_buffer, image, staging_buffer);
 
   vk_command_buffer->end_command_buffer(command_buffer);

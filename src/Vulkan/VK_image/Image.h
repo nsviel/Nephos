@@ -27,7 +27,6 @@ public:
   void create_image_sampler(vk::structure::Image* texture);
 
   //Subfunction
-  void image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout);
   void compute_mipmap(vk::structure::Image* image);
   void generate_mipmap(vk::structure::Image* image);
 
