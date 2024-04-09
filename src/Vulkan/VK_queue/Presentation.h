@@ -21,6 +21,7 @@ public:
   //Main functions
   void acquire_next_image(VkSemaphore& semaphore);
   void image_presentation(VkSemaphore& semaphore);
+  bool check_for_resizing();
 
   //Subfunction
   void submit_presentation(VkSemaphore& semaphore);

@@ -175,9 +175,7 @@ void Graphics::post_submission(VkSemaphore& semaphore_done){
 
   //If required, make image presentation
   if(with_presentation){
-    say("presen");
     vk_struct->queue.presentation->image_presentation(semaphore_done);
-    say("presen ok");
   }
 
   //---------------------------
