@@ -13,7 +13,7 @@ namespace vk::instance{class UID;}
 namespace vk::image{class Screenshot;}
 
 
-namespace vk::main{
+namespace vk::image{
 
 class Texture
 {

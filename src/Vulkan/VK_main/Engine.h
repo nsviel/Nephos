@@ -10,8 +10,8 @@ namespace vk::instance{class Extension;}
 namespace vk::instance{class Pool;}
 namespace vk::device{class Logical;}
 namespace vk::binding{class Descriptor;}
-namespace vk::main{class Texture;}
-namespace vk::main{class Imgui;}
+namespace vk::image{class Texture;}
+namespace vk::gui{class Imgui;}
 namespace vk::data{class Data;}
 namespace vk::data{class Canvas;}
 namespace vk::draw{class Viewport;}
@@ -64,14 +64,14 @@ protected:
   vk::renderpass::Renderpass* vk_renderpass;
   vk::command::Command_buffer* vk_command_buffer;
   vk::binding::Descriptor* vk_descriptor;
-  vk::main::Texture* vk_texture;
+  vk::image::Texture* vk_texture;
   vk::instance::Pool* vk_pool;
   vk::data::Data* vk_data;
   vk::draw::Viewport* vk_viewport;
   vk::shader::Reloader* vk_reload;
   vk::presentation::Frame* vk_frame;
   vk::data::Canvas* vk_canvas;
-  vk::main::Imgui* vk_imgui;
+  vk::gui::Imgui* vk_imgui;
   vk::synchro::Fence* vk_fence;
   vk::synchro::Semaphore* vk_semaphore;
   vk::command::Allocator* vk_allocator;

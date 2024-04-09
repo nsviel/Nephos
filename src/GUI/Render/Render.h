@@ -2,7 +2,7 @@
 
 namespace vk{class Node;}
 namespace vk::draw{class Renderer;}
-namespace vk::main{class Imgui;}
+namespace vk::gui{class Imgui;}
 namespace gui{class Node;}
 
 
@@ -27,7 +27,7 @@ public:
 private:
   vk::Node* vulkan;
   vk::draw::Renderer* vk_render;
-  vk::main::Imgui* vk_imgui;
+  vk::gui::Imgui* vk_imgui;
 };
 
 }

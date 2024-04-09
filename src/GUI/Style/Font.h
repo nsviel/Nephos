@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace gui{class Node;}
-namespace vk::main{class Imgui;}
+namespace vk::gui{class Imgui;}
 
 
 namespace gui::style{
@@ -33,7 +33,7 @@ public:
   inline void set_editor_font(ImFont* font){if(font!=nullptr)this->font_editor = font;}
 
 private:
-  vk::main::Imgui* vk_imgui;
+  vk::gui::Imgui* vk_imgui;
 
   vector<ImFont*> vec_font_editor;
   vector<ImFont*> vec_font_gui;

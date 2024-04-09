@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace vk::main{
+namespace vk::image{
 
 //Constructor / Destructor
 Texture::Texture(vk::structure::Vulkan* vk_struct){

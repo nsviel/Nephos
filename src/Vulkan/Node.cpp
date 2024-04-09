@@ -12,9 +12,9 @@ Node::Node(utl::Node* node_utility){
 
   this->vk_struct = new vk::structure::Vulkan(node_utility);
   this->vk_engine = new vk::main::Graphical(vk_struct);
-  this->vk_imgui = new vk::main::Imgui(vk_struct);
+  this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_interface = new vk::main::Interface(vk_struct);
-  this->vk_texture = new vk::main::Texture(vk_struct);
+  this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_screenshot = new vk::image::Screenshot(vk_struct);
 

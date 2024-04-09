@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::main{
+namespace vk::gui{
 
 //Constructor / Destructor
 Imgui::Imgui(vk::structure::Vulkan* vk_struct){
@@ -14,7 +14,7 @@ Imgui::Imgui(vk::structure::Vulkan* vk_struct){
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   this->vk_allocator = new vk::command::Allocator(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
-  this->vk_texture = new vk::main::Texture(vk_struct);
+  this->vk_texture = new vk::image::Texture(vk_struct);
 
   //---------------------------
 }

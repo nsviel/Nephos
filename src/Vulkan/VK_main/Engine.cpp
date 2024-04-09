@@ -17,7 +17,7 @@ Engine::Engine(vk::structure::Vulkan* vk_struct){
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_device = new vk::device::Logical(vk_struct);
-  this->vk_texture = new vk::main::Texture(vk_struct);
+  this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_data = new vk::data::Data(vk_struct);
   this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
@@ -26,7 +26,7 @@ Engine::Engine(vk::structure::Vulkan* vk_struct){
   this->vk_frame = new vk::presentation::Frame(vk_struct);
   this->vk_canvas = new vk::data::Canvas(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
-  this->vk_imgui = new vk::main::Imgui(vk_struct);
+  this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_fence = new vk::synchro::Fence(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
   this->vk_allocator = new vk::command::Allocator(vk_struct);

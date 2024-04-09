@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace vk::main{class Imgui;}
+namespace vk::gui{class Imgui;}
 namespace vk::main{class Interface;}
 namespace eng::render{class Node;}
 namespace eng::cam::gui{class Control;}
@@ -32,7 +32,7 @@ private:
   eng::cam::gui::Control* cam_control;
   ope::Node* node_operation;
   utl::element::Window* utl_window;
-  vk::main::Imgui* vk_imgui;
+  vk::gui::Imgui* vk_imgui;
   vk::main::Interface* vk_interface;
 
   string name;

@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace vk::data{class Buffer;}
-namespace vk::main{class Texture;}
+namespace vk::image{class Texture;}
 namespace vk::command{class Command_buffer;}
 namespace vk::binding{class Descriptor;}
 namespace vk::structure{class Vulkan;}
@@ -39,7 +39,7 @@ public:
 private:
   vk::structure::Vulkan* vk_struct;
   Buffer* vk_buffer;
-  vk::main::Texture* vk_texture;
+  vk::image::Texture* vk_texture;
   vk::command::Command_buffer* vk_command_buffer;
   vk::binding::Descriptor* vk_descriptor;
   vk::instance::UID* vk_uid;

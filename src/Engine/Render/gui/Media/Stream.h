@@ -3,8 +3,8 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace vk::main{class Texture;}
-namespace vk::main{class Imgui;}
+namespace vk::image{class Texture;}
+namespace vk::gui{class Imgui;}
 namespace vk::structure{class Texture;}
 
 
@@ -27,8 +27,8 @@ public:
   void render_image(utl::media::Image* utl_image, ImVec2& size);
 
 private:
-  vk::main::Texture* vk_texture;
-  vk::main::Imgui* vk_imgui;
+  vk::image::Texture* vk_texture;
+  vk::gui::Imgui* vk_imgui;
 };
 
 }

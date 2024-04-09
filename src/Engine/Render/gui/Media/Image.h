@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace vk::main{class Texture;}
+namespace vk::image{class Texture;}
 
 
 namespace eng::render::gui{
@@ -28,7 +28,7 @@ public:
   void display_image();
 
 private:
-  vk::main::Texture* vk_texture;
+  vk::image::Texture* vk_texture;
   utl::media::Image* utl_image;
 };
 

@@ -4,7 +4,7 @@
 
 namespace eng{class Node;}
 namespace vk::main{class Engine;}
-namespace vk::main{class Imgui;}
+namespace vk::gui{class Imgui;}
 namespace eng::render{class Node;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
@@ -28,7 +28,7 @@ public:
 
 private:
   vk::main::Engine* vk_engine;
-  vk::main::Imgui* vk_imgui;
+  vk::gui::Imgui* vk_imgui;
 };
 
 }

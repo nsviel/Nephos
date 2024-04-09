@@ -9,10 +9,10 @@ namespace vk::command{class Allocator;}
 namespace vk::presentation{class Surface;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command_buffer;}
-namespace vk::main{class Texture;}
+namespace vk::image{class Texture;}
 
 
-namespace vk::main{
+namespace vk::gui{
 
 class Imgui
 {
@@ -49,7 +49,7 @@ private:
   vk::command::Command_buffer* vk_command_buffer;
   vk::instance::Pool* vk_pool;
   vk::presentation::Surface* vk_surface;
-  vk::main::Texture* vk_texture;
+  vk::image::Texture* vk_texture;
 };
 
 }
