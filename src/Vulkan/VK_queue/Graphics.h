@@ -25,17 +25,15 @@ public:
   void run_thread();
   void wait_for_idle();
 
-  //Subfunction
+  //Command
   void wait_for_command();
   void add_command(vector<vk::structure::Command*> vec_command, bool with_presentation);
   void process_command();
+
+  //Submission
   void build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
   void make_submission(vector<VkSubmitInfo>& vec_info);
   void post_submission(VkSemaphore& semaphore_done);
-
-
-
-
 
   inline bool is_queue_idle(){return queue_idle;}
 

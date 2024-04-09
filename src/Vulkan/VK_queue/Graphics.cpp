@@ -55,7 +55,7 @@ void Graphics::wait_for_idle(){
   //---------------------------
 }
 
-//Subfunction
+//Command
 void Graphics::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
@@ -79,9 +79,11 @@ void Graphics::add_command(vector<vk::structure::Command*> vec_command, bool wit
 void Graphics::process_command(){
   //---------------------------
 
+  //Passing the command torch
   this->vec_command_onrun = vec_command_prepa;
   this->vec_command_prepa.clear();
 
+  //Submission stuff
   VkSemaphore flag;
   vector<VkSubmitInfo> vec_info;
   this->build_submission(vec_info, flag);
@@ -90,6 +92,8 @@ void Graphics::process_command(){
 
   //---------------------------
 }
+
+//Submission
 void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& done){
   //---------------------------
 
@@ -141,6 +145,7 @@ void Graphics::make_submission(vector<VkSubmitInfo>& vec_info){
 void Graphics::post_submission(VkSemaphore& semaphore_done){
   //---------------------------
 
+  //Reset all command buffers
   for(int i=0; i<vec_command_onrun.size(); i++){
     vk::structure::Command* command = vec_command_onrun[i];
 
@@ -159,17 +164,14 @@ void Graphics::post_submission(VkSemaphore& semaphore_done){
     }
   }
 
+  //If required, make image presentation
   if(with_presentation){
-
     vk_struct->queue.presentation->image_presentation(semaphore_done);
   }
 
   //---------------------------
   this->queue_idle = true;
 }
-
-
-
 
 
 }
