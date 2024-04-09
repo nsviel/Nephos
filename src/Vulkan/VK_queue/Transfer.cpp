@@ -60,13 +60,9 @@ void Transfer::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
 
-  this->queue_idle = true;
-
   while(vec_command_prepa.empty() || vk_struct->queue.standby){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-
-  this->queue_idle = false;
 
   //---------------------------
 }
@@ -78,6 +74,7 @@ void Transfer::add_command(vk::structure::Command_buffer* command){
   }
 
   //---------------------------
+  this->queue_idle = false;
 }
 void Transfer::process_command(){
   //---------------------------
@@ -144,6 +141,7 @@ void Transfer::post_submission(){
   this->vec_command_buffer.clear();
 
   //---------------------------
+  this->queue_idle = true;
 }
 
 }

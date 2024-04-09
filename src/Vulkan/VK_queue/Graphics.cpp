@@ -75,12 +75,12 @@ void Graphics::add_command(vk::structure::Command* command){
 
   //---------------------------
 }
-void Graphics::add_command(vector<vk::structure::Command*> vec_command, bool with_presentation){
+void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
   //---------------------------
 
   vec_command_prepa = vec_command;
   this->queue_idle = false;
-  this->with_presentation = with_presentation;
+  this->with_presentation = true;
 
 
   //---------------------------

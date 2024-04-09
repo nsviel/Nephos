@@ -19,6 +19,7 @@ void Graphical::draw_frame(){
   //---------------------------
 
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
+  vk_struct->queue.graphics->wait_for_idle();
   vk_struct->queue.presentation->acquire_next_image(semaphore->end);
 
   //Renderpass
@@ -47,8 +48,8 @@ void Graphical::draw_frame(){
   }
 
 
-  vk_struct->queue.graphics->add_command(vec_command, true);
-  vk_struct->queue.graphics->wait_for_idle();
+  vk_struct->queue.graphics->add_presentation(vec_command);
+
 
   //---------------------------
 }

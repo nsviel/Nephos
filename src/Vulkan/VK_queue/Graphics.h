@@ -28,7 +28,7 @@ public:
   //Command
   void wait_for_command();
   void add_command(vk::structure::Command* command);
-  void add_command(vector<vk::structure::Command*> vec_command, bool with_presentation);
+  void add_presentation(vector<vk::structure::Command*> vec_command);
   void process_command();
 
   //Submission
