@@ -22,13 +22,15 @@ public:
 public:
   //Main function
   void start_thread();
-  void run_thread();
   void add_command(vk::structure::Command* command);
-  void add_command(vector<vk::structure::Command*> vec_command);
   void add_command_thread(vk::structure::Command_buffer* command_buffer);
   void add_command_thread(vk::structure::Command* command);
   void wait_for_idle();
-  void make_image_presentation();
+
+  //WORK IN PROGRESS
+  void run_thread();
+  void add_command(vector<vk::structure::Command*> vec_command, bool with_presentation);
+  void process_command();
 
   //Subfunction
   void wait_for_command();
@@ -53,6 +55,7 @@ private:
   bool queue_idle = true;
   bool queue_standby = false;
   bool thread_running = false;
+  bool with_presentation = false;
   std::thread thread;
 };
 

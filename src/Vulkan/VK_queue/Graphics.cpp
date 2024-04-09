@@ -14,6 +14,7 @@ Graphics::Graphics(vk::structure::Vulkan* vk_struct){
   this->vk_query = new vk::instance::Query(vk_struct);
 
   //---------------------------
+  this->start_thread();
 
 }
 Graphics::~Graphics(){}
@@ -24,24 +25,6 @@ void Graphics::start_thread(){
 
   if(!thread_running){
     this->thread = std::thread(&Graphics::run_thread, this);
-  }
-
-  //---------------------------
-}
-void Graphics::run_thread(){
-  //---------------------------
-
-  //Save thread information
-  vk_struct->profiler->prf_vulkan->add_thread("Graphics queue");
-
-  //Start thread loop
-  this->thread_running = true;
-  while(thread_running){
-    this->wait_for_command();
-    this->reset_for_submission();
-    this->prepare_submission();
-    this->queue_submission();
-    this->post_submission();
   }
 
   //---------------------------
@@ -59,10 +42,61 @@ void Graphics::add_command(vk::structure::Command* command){
 
   //---------------------------
 }
-void Graphics::add_command(vector<vk::structure::Command*> vec_command){
+void Graphics::add_command_thread(vk::structure::Command_buffer* command_buffer){
+  //---------------------------
+
+  vk::structure::Command* command = new vk::structure::Command();
+  command->vec_command_buffer.push_back(command_buffer);
+  vec_command_prepa.push_back(command);
+
+  //---------------------------
+}
+void Graphics::add_command_thread(vk::structure::Command* command){
+  //---------------------------
+
+  vec_command_prepa.push_back(command);
+
+  //---------------------------
+}
+void Graphics::wait_for_idle(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(queue_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  //---------------------------
+}
+
+//WORK IN PROGRESS
+void Graphics::run_thread(){
+  //---------------------------
+
+  //Save thread information
+  vk_struct->profiler->prf_vulkan->add_thread("Graphics queue");
+
+  //Start thread loop
+  this->thread_running = true;
+  while(thread_running){
+    this->wait_for_command();
+    this->process_command();
+  }
+
+  //---------------------------
+}
+void Graphics::add_command(vector<vk::structure::Command*> vec_command, bool with_presentation){
   //---------------------------
 
   vec_command_prepa = vec_command;
+  this->queue_idle = false;
+  this->with_presentation = with_presentation;
+
+
+  //---------------------------
+}
+void Graphics::process_command(){
+  //---------------------------
 
   this->vec_command_onrun = vec_command_prepa;
   this->vec_command_prepa.clear();
@@ -70,6 +104,7 @@ void Graphics::add_command(vector<vk::structure::Command*> vec_command){
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
 
+  VkSemaphore semaphore_done;
   vector<VkSubmitInfo> vec_info;
   for(int i=0; i<vec_command_onrun.size(); i++){
     vk::structure::Command* command = vec_command_onrun[i];
@@ -83,6 +118,8 @@ void Graphics::add_command(vector<vk::structure::Command*> vec_command){
     submit_info.pSignalSemaphores = &command->vec_semaphore_done[0];
     submit_info.commandBufferCount = 1;
     submit_info.pCommandBuffers = &command->vec_command_buffer[0]->command;
+
+    semaphore_done = command->vec_semaphore_done[0];
 
     vec_info.push_back(submit_info);
   }
@@ -117,33 +154,12 @@ void Graphics::add_command(vector<vk::structure::Command*> vec_command){
     }
   }
 
-  //---------------------------
-}
-void Graphics::add_command_thread(vk::structure::Command_buffer* command_buffer){
-  //---------------------------
 
-  vk::structure::Command* command = new vk::structure::Command();
-  command->vec_command_buffer.push_back(command_buffer);
-  vec_command_prepa.push_back(command);
+
+    vk_struct->queue.presentation->image_presentation(semaphore_done);
 
   //---------------------------
-}
-void Graphics::add_command_thread(vk::structure::Command* command){
-  //---------------------------
-
-  vec_command_prepa.push_back(command);
-
-  //---------------------------
-}
-void Graphics::wait_for_idle(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(queue_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
+  this->queue_idle = true;
 }
 
 //Subfunction
@@ -151,7 +167,7 @@ void Graphics::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
 
-  this->queue_idle = true;
+
 
   //IF FAUT TOUT METTRE DANS LE QUEUE THREAD
 //say("graphics off");
@@ -160,7 +176,7 @@ void Graphics::wait_for_command(){
   }
 
 //say("graphics on");
-  this->queue_idle = false;
+
 
   //---------------------------
 }
