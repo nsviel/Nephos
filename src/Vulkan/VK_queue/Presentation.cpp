@@ -24,7 +24,7 @@ void Presentation::acquire_next_image(VkSemaphore& semaphore){
 
   //Acquiring an image from the swap chain
   VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
-  if(result == VK_ERROR_OUT_OF_DATE_KHR){
+  if(result == VK_ERROR_OUT_OF_DATE_KHR){say("SWAPCHAIN RECREATE");
     vk_swapchain->recreate_swapchain();
     return;
   }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){

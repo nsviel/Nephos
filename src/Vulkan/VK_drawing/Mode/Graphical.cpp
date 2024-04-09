@@ -17,9 +17,11 @@ Graphical::~Graphical(){}
 //Main function
 void Graphical::draw_frame(){
   //---------------------------
-
+say("---");
+vk_struct->queue.graphics->wait_for_idle();
+sayHello();
+  //Acquire next image
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
-  vk_struct->queue.graphics->wait_for_idle();
   vk_struct->queue.presentation->acquire_next_image(semaphore->end);
 
   //Renderpass
@@ -47,9 +49,9 @@ void Graphical::draw_frame(){
     vk_struct->profiler->tasker_main->task_end(name);
   }
 
+  //Submission
 
   vk_struct->queue.graphics->add_presentation(vec_command);
-
 
   //---------------------------
 }
