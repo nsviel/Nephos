@@ -25,5 +25,13 @@ void Manager::init(){
 
   //---------------------------
 }
+void Manager::clean(){
+  //---------------------------
+
+  vk_struct->queue.transfer->stop_thread();
+  vk_struct->queue.graphics->stop_thread();
+
+  //---------------------------
+}
 
 }

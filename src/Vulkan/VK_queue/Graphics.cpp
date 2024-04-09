@@ -44,6 +44,16 @@ void Graphics::run_thread(){
 
   //---------------------------
 }
+void Graphics::stop_thread(){
+  //---------------------------
+
+  this->thread_running = false;
+  if(thread.joinable()){
+    thread.join();
+  }
+
+  //---------------------------
+}
 void Graphics::wait_for_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
@@ -60,7 +70,7 @@ void Graphics::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
 
-  while(vec_command_prepa.empty() || vk_struct->queue.standby){
+  while((vec_command_prepa.empty() || vk_struct->queue.standby) && thread_running){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
@@ -69,6 +79,7 @@ void Graphics::wait_for_command(){
 void Graphics::add_command(vk::structure::Command* command){
   //---------------------------
 
+  this->wait_for_idle();
   vec_command_prepa.push_back(command);
   this->queue_idle = false;
   this->with_presentation = false;
@@ -78,14 +89,15 @@ void Graphics::add_command(vk::structure::Command* command){
 void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
   //---------------------------
 
+  this->wait_for_idle();
   vec_command_prepa = vec_command;
   this->queue_idle = false;
   this->with_presentation = true;
 
-
   //---------------------------
 }
 void Graphics::process_command(){
+  if(!thread_running) return;
   //---------------------------
 
   //Passing the command torch
@@ -100,6 +112,7 @@ void Graphics::process_command(){
   this->post_submission(flag);
 
   //---------------------------
+  this->queue_idle = true;
 }
 
 //Submission
@@ -179,7 +192,6 @@ void Graphics::post_submission(VkSemaphore& semaphore_done){
   }
 
   //---------------------------
-  this->queue_idle = true;
 }
 
 

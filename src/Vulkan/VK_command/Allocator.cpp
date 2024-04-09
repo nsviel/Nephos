@@ -75,11 +75,13 @@ void Allocator::reset_command_buffer_pool(vk::structure::Queue* queue){
 void Allocator::clean_command_buffer_pool(vk::structure::Queue* queue){
   vector<vk::pool::Command_buffer>& vec_pool = queue->vec_pool;
   //---------------------------
+  say("---");
+say(vec_pool.size());
 
-  for(int i=0; i<vec_pool.size(); i++){
-    vk::pool::Command_buffer& pool = vec_pool[i];
-    vk_command_buffer->clean_pool(&pool);
-    vk_pool->clean_command_pool(&pool);
+  for(int i=0; i<vec_pool.size(); i++){sayHello();
+    vk::pool::Command_buffer& pool = vec_pool[i];sayHello();
+    vk_command_buffer->clean_pool(&pool);sayHello();
+    vk_pool->clean_command_pool(&pool);say(i);
   }
 
   //---------------------------

@@ -25,7 +25,7 @@ void Screenshot::start_thread(){
   //---------------------------
 
   if(!thread_running){
-    //this->thread = std::thread(&Screenshot::run_thread, this);
+    this->thread = std::thread(&Screenshot::run_thread, this);
   }
 
   //---------------------------

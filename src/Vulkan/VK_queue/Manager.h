@@ -17,7 +17,8 @@ public:
 public:
   //Main functions
   void init();
-  
+  void clean();
+
 private:
   vk::structure::Vulkan* vk_struct;
 };

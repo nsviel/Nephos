@@ -58,6 +58,7 @@ void Headless::clean(){
   vk_semaphore->clean_pool();
   vk_allocator->clean();
   vk_pool->clean();
+  vk_queue->clean();
   vk_device->clean();
   vk_surface->clean();
   vk_instance->clean();

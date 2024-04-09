@@ -44,6 +44,16 @@ void Transfer::run_thread(){
 
   //---------------------------
 }
+void Transfer::stop_thread(){
+  //---------------------------
+
+  this->thread_running = false;
+  if(thread.joinable()){
+    thread.join();
+  }
+
+  //---------------------------
+}
 void Transfer::wait_for_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
@@ -60,7 +70,7 @@ void Transfer::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
 
-  while(vec_command_prepa.empty() || vk_struct->queue.standby){
+  while((vec_command_prepa.empty() || vk_struct->queue.standby) && thread_running){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
@@ -77,6 +87,7 @@ void Transfer::add_command(vk::structure::Command_buffer* command){
   this->queue_idle = false;
 }
 void Transfer::process_command(){
+  if(!thread_running) return;
   //---------------------------
 
   this->build_submission();
@@ -84,6 +95,7 @@ void Transfer::process_command(){
   this->post_submission();
 
   //---------------------------
+  this->queue_idle = true;
 }
 
 //Submission
@@ -141,7 +153,6 @@ void Transfer::post_submission(){
   this->vec_command_buffer.clear();
 
   //---------------------------
-  this->queue_idle = true;
 }
 
 }

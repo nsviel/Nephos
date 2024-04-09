@@ -22,6 +22,7 @@ public:
   //Main functions
   void start_thread();
   void run_thread();
+  void stop_thread();
   void wait_for_idle();
 
   //Command

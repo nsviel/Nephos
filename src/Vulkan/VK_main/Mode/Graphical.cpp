@@ -52,6 +52,7 @@ void Graphical::loop(){
 void Graphical::clean(){
   //---------------------------
 
+  vk_queue->clean();
   vk_texture->clean();
   vk_renderpass->clean();
   vk_swapchain->clean();
