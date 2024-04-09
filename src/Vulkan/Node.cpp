@@ -11,7 +11,7 @@ Node::Node(utl::Node* node_utility){
   //---------------------------
 
   this->vk_struct = new vk::structure::Vulkan(node_utility);
-  this->vk_engine = new vk::main::Graphical(vk_struct);
+  this->vk_engine = new vk::main::Headless(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_interface = new vk::main::Interface(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
