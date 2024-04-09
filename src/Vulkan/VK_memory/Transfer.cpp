@@ -39,7 +39,7 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
 }
 void Transfer::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer){
   //---------------------------
-
+/*
   //Image transition from undefined layout to read only layout
   vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
@@ -64,7 +64,7 @@ void Transfer::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer
   //End and submit command
   vk_command_buffer->end_command_buffer(command_buffer);
   vk_struct->queue.graphics->add_command_thread(command_buffer);
-
+*/
 
   //---------------------------
 }
@@ -92,7 +92,9 @@ void Transfer::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer
   vk_command_buffer->end_command_buffer(command_buffer);
   vk::structure::Command* command = new vk::structure::Command();
   command->vec_command_buffer.push_back(command_buffer);
-  vk_struct->queue.graphics->add_command(command);
+  vector<vk::structure::Command*> vec_command;
+  vec_command.push_back(command);
+  vk_struct->queue.graphics->add_command(vec_command, false);
 
   //---------------------------
 }

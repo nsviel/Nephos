@@ -212,7 +212,9 @@ void Imgui::load_font(){
   vk_command_buffer->end_command_buffer(command_buffer);
   vk::structure::Command* command = new vk::structure::Command();
   command->vec_command_buffer.push_back(command_buffer);
-  vk_struct->queue.graphics->add_command(command);
+  vector<vk::structure::Command*> vec_command;
+  vec_command.push_back(command);
+  vk_struct->queue.graphics->add_command(vec_command, false);
 
   //---------------------------
 }

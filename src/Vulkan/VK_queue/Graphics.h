@@ -22,22 +22,19 @@ public:
 public:
   //Main function
   void start_thread();
-  void add_command(vk::structure::Command* command);
-  void add_command_thread(vk::structure::Command_buffer* command_buffer);
-  void add_command_thread(vk::structure::Command* command);
-  void wait_for_idle();
-
-  //WORK IN PROGRESS
   void run_thread();
-  void add_command(vector<vk::structure::Command*> vec_command, bool with_presentation);
-  void process_command();
+  void wait_for_idle();
 
   //Subfunction
   void wait_for_command();
-  void reset_for_submission();
-  void prepare_submission();
-  void queue_submission();
-  void post_submission();
+  void add_command(vector<vk::structure::Command*> vec_command, bool with_presentation);
+  void process_command();
+  void build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
+  void postprocess_command(VkSemaphore& semaphore_done);
+
+
+
+
 
   inline bool is_queue_idle(){return queue_idle;}
 
@@ -48,10 +45,6 @@ private:
 
   std::vector<vk::structure::Command*> vec_command_onrun;
   std::vector<vk::structure::Command*> vec_command_prepa;
-  std::vector<VkCommandBuffer> vec_command_buffer;
-  std::vector<VkPipelineStageFlags> vec_wait_stage;
-  std::vector<VkSemaphore> vec_semaphore_processing;
-  std::vector<VkSemaphore> vec_semaphore_done;
   bool queue_idle = true;
   bool queue_standby = false;
   bool thread_running = false;

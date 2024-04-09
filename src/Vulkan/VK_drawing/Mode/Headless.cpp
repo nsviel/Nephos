@@ -17,7 +17,7 @@ Headless::~Headless(){}
 //Main function
 void Headless::draw_frame(){
   //---------------------------
-
+/*
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
   vk_struct->queue.presentation->acquire_next_image(semaphore->end);
 
@@ -44,7 +44,7 @@ void Headless::draw_frame(){
     vk_struct->queue.graphics->add_command(command);
     vk_struct->profiler->tasker_main->task_end(name);
   }
-
+*/
   //---------------------------
 }
 

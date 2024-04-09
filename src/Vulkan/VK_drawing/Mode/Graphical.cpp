@@ -47,17 +47,8 @@ void Graphical::draw_frame(){
   }
 
 
-  for(int i=0; i<vec_command.size(); i++){
-    vk::structure::Command* command = vec_command[i];
-    //vk_struct->queue.graphics->add_command(command);
-  }
-
   vk_struct->queue.graphics->add_command(vec_command, true);
-
   vk_struct->queue.graphics->wait_for_idle();
-
-
-  //vk_struct->queue.presentation->image_presentation(semaphore->end);
 
   //---------------------------
 }
