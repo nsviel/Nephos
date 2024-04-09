@@ -17,20 +17,12 @@ Graphical::~Graphical(){}
 //Main function
 void Graphical::draw_frame(){
   //---------------------------
-say("---");
-vk_struct->queue.graphics->wait_for_idle();
-
-
-if(vk_struct->queue.presentation->check_for_resizing()){say("return");
-  return;
-}
 
   //Acquire next image
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
-  vk_struct->queue.presentation->acquire_next_image(semaphore->end);
-  if(vk_struct->queue.presentation->check_for_resizing()){say("return 1");
-    return;
-  }
+  bool ok = vk_struct->queue.presentation->acquire_next_image(semaphore->end);
+  if(!ok) return;
+
   //Renderpass
   vector<vk::structure::Command*> vec_command;
   int nb_renderpass = vk_struct->render.vec_renderpass.size();
@@ -55,17 +47,10 @@ if(vk_struct->queue.presentation->check_for_resizing()){say("return");
 
     vk_struct->profiler->tasker_main->task_end(name);
   }
-  if(vk_struct->queue.presentation->check_for_resizing()){say("return 2");
-    return;
-  }
+
   //Submission
-  if(vk_struct->queue.presentation->check_for_resizing()){say("return 3");
-    return;
-  }
   vk_struct->queue.graphics->add_presentation(vec_command);
-  if(vk_struct->queue.presentation->check_for_resizing()){say("return 4");
-    return;
-  }
+
   //---------------------------
 }
 

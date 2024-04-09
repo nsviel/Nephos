@@ -18,20 +18,22 @@ Presentation::Presentation(vk::structure::Vulkan* vk_struct){
 Presentation::~Presentation(){}
 
 //Main function
-void Presentation::acquire_next_image(VkSemaphore& semaphore){
+bool Presentation::acquire_next_image(VkSemaphore& semaphore){
   vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------
 
   //Acquiring an image from the swap chain
+  vk_struct->queue.graphics->wait_for_idle();
   VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     vk_swapchain->recreate_swapchain();
-    return;
+    return false;
   }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
     throw std::runtime_error("[error] failed to acquire swap chain image!");
   }
 
   //---------------------------
+  return true;
 }
 bool Presentation::check_for_resizing(){
   vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
