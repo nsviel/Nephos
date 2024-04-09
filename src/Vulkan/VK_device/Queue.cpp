@@ -31,7 +31,7 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 
   // Count the number of each type of queue
   for(int i=0; i<nb_queue_family; i++){
-
+    //Queue family properties
     vk::structure::queue::Family queue_family;
     queue_family.ID = i;
     queue_family.property = queue_families[i];
@@ -41,9 +41,12 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
     queue_family.transfer = (queue_family.property.queueFlags & VK_QUEUE_TRANSFER_BIT) ? true : false;
     queue_family.sparseBinding = (queue_family.property.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? true : false;
 
-    VkBool32 presentation_supported = false;
-    vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, vk_struct->window.surface, &presentation_supported);
-    queue_family.presentation = presentation_supported;
+    //Presentation property
+    if(!vk_struct->param.headless){
+      VkBool32 presentation_supported = false;
+      vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, vk_struct->window.surface, &presentation_supported);
+      queue_family.presentation = presentation_supported;
+    }
 
     physical_device.vec_queue_family.push_back(queue_family);
   }
@@ -96,8 +99,14 @@ void Queue::find_queue_family_assigment(){
     }
   }
 
-  if(pool.graphics.family_ID == -1 || pool.presentation.family_ID == -1 || pool.transfer.family_ID == -1){
-    cout<<"[error] in queue family assigment"<<endl;
+  if(pool.graphics.family_ID == -1){
+    cout<<"[error] in graphics queue family assigment"<<endl;
+  }
+  if(pool.transfer.family_ID == -1){
+    cout<<"[error] in transfer queue family assigment"<<endl;
+  }
+  if(pool.presentation.family_ID == -1 && !vk_struct->param.headless){
+    cout<<"[error] in presentation queue family assigment"<<endl;
   }
 
   vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, pool.graphics.family_ID);
