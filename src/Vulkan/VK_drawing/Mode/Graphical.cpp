@@ -25,8 +25,7 @@ void Graphical::draw_frame(){
 
   //Renderpass
   vector<vk::structure::Command*> vec_command;
-  int nb_renderpass = vk_struct->render.vec_renderpass.size();
-  for(int i=0; i<nb_renderpass; i++){
+  for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
     vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
     string name = "eng::rp::" + renderpass->name;
     vk_struct->profiler->tasker_main->task_begin(name);
