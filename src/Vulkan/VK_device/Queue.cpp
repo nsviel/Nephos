@@ -115,6 +115,66 @@ void Queue::find_queue_family_assigment(){
 
   //---------------------------
 }
+/*
+void Queue::find_queue_family_assigment(){
+  //---------------------------
+
+  std::vector<vk::structure::queue::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
+  vk::structure::queue::Pool& pool = vk_struct->device.queue;
+
+  for(int i=0; vec_queue_family.size(); i++){
+    vk::structure::queue::Family& family = vec_queue_family[i];
+    bool several_queue = family.nb_queue > 1;
+
+    //Graphics
+    if(family.graphics && pool.graphics.family_ID == -1){
+      pool.graphics.family_ID = i;
+      pool.graphics.family_index = several_queue ? family.current_index++ : 0;
+      family.vec_queue.push_back(&pool.graphics);
+    }
+
+    //Presentation
+    if(family.presentation && pool.presentation.family_ID == -1){
+      pool.presentation.family_ID = i;
+      pool.presentation.family_index = several_queue ? family.current_index++ : 0;
+      family.vec_queue.push_back(&pool.presentation);
+    }
+
+    //Transfer
+    if(family.transfer && pool.transfer.family_ID == -1){
+      //Discrete GPU
+      if(vk_struct->device.physical_device.discrete_gpu && i != pool.graphics.family_ID && i==2){
+        pool.transfer.family_ID = i;
+        pool.transfer.family_index = several_queue ? family.current_index++ : 0;
+        family.vec_queue.push_back(&pool.transfer);
+      }
+      //Integrated GPU
+      else{
+        pool.transfer.family_ID = i;
+        pool.transfer.family_index = several_queue ? family.current_index++ : 0;
+        family.vec_queue.push_back(&pool.transfer);
+      }
+    }
+
+  }
+
+  if(pool.graphics.family_ID == -1){
+    cout<<"[error] in graphics queue family assigment"<<endl;
+  }
+  if(pool.transfer.family_ID == -1){
+    cout<<"[error] in transfer queue family assigment"<<endl;
+  }
+  if(pool.presentation.family_ID == -1 && !vk_struct->param.headless){
+    cout<<"[error] in presentation queue family assigment"<<endl;
+  }
+
+  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, pool.graphics.family_ID);
+  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, pool.presentation.family_ID);
+  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, pool.transfer.family_ID);
+
+  //---------------------------
+}
+*/
 
 //Queue object
 void Queue::create_queue(vk::structure::Queue& queue){
