@@ -30,7 +30,8 @@ public:
   void add_command(vector<vk::structure::Command*> vec_command, bool with_presentation);
   void process_command();
   void build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
-  void postprocess_command(VkSemaphore& semaphore_done);
+  void make_submission(vector<VkSubmitInfo>& vec_info);
+  void post_submission(VkSemaphore& semaphore_done);
 
 
 

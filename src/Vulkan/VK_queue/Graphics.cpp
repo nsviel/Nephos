@@ -82,22 +82,11 @@ void Graphics::process_command(){
   this->vec_command_onrun = vec_command_prepa;
   this->vec_command_prepa.clear();
 
-  vk::structure::Fence* fence = vk_fence->query_free_fence();
-
-  VkSemaphore semaphore_done;
+  VkSemaphore flag;
   vector<VkSubmitInfo> vec_info;
-  this->build_submission(vec_info, semaphore_done);
-
-  VkQueue queue = vk_struct->device.queue.graphics.handle;
-  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->fence);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] command buffer queue submission");
-  }
-
-  vkWaitForFences(vk_struct->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
-  vk_fence->reset_fence(fence);
-
-  this->postprocess_command(semaphore_done);
+  this->build_submission(vec_info, flag);
+  this->make_submission(vec_info);
+  this->post_submission(flag);
 
   //---------------------------
 }
@@ -133,7 +122,23 @@ void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& don
 
   //---------------------------
 }
-void Graphics::postprocess_command(VkSemaphore& semaphore_done){
+void Graphics::make_submission(vector<VkSubmitInfo>& vec_info){
+  //---------------------------
+
+  vk::structure::Fence* fence = vk_fence->query_free_fence();
+
+  VkQueue queue = vk_struct->device.queue.graphics.handle;
+  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->fence);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] command buffer queue submission");
+  }
+
+  vkWaitForFences(vk_struct->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
+  vk_fence->reset_fence(fence);
+
+  //---------------------------
+}
+void Graphics::post_submission(VkSemaphore& semaphore_done){
   //---------------------------
 
   for(int i=0; i<vec_command_onrun.size(); i++){
