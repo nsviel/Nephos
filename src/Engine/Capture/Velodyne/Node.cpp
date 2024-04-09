@@ -52,6 +52,7 @@ void Node::clean(){
   //---------------------------
 
   vld_playback->stop_playback();
+  vld_capture->clean();
 
   //---------------------------
 }
