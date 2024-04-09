@@ -208,5 +208,12 @@ void Graphics::post_submission(){
 
   //---------------------------
 }
+void Graphics::make_image_presentation(){
+  //---------------------------
+
+  //vk_struct->queue.presentation->image_presentation(semaphore->end);
+
+  //---------------------------
+}
 
 }

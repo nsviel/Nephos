@@ -28,6 +28,7 @@ public:
   void add_command_thread(vk::structure::Command_buffer* command_buffer);
   void add_command_thread(vk::structure::Command* command);
   void wait_for_idle();
+  void make_image_presentation();
 
   //Subfunction
   void wait_for_command();
