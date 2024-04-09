@@ -66,6 +66,15 @@ void Graphics::wait_for_command(){
 
   //---------------------------
 }
+void Graphics::add_command(vk::structure::Command* command){
+  //---------------------------
+
+  vec_command_prepa.push_back(command);
+  this->queue_idle = false;
+  this->with_presentation = false;
+
+  //---------------------------
+}
 void Graphics::add_command(vector<vk::structure::Command*> vec_command, bool with_presentation){
   //---------------------------
 
