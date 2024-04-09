@@ -39,24 +39,23 @@ void Transfer::run_thread(){
   this->thread_running = true;
   while(thread_running){
     this->wait_for_command();
-    this->prepare_submission();
-    this->queue_submission();
-    this->post_submission();
+    this->process_command();
   }
 
   //---------------------------
 }
-void Transfer::add_command(vk::structure::Command_buffer* command){
+void Transfer::wait_for_idle(){
+  //For external thread to wait this queue thread idle
   //---------------------------
 
-  if(command->is_recorded){
-    vec_command_prepa.push_back(command);
+  while(queue_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
   //---------------------------
 }
 
-//Subfunction
+//Command
 void Transfer::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
@@ -71,17 +70,27 @@ void Transfer::wait_for_command(){
 
   //---------------------------
 }
-void Transfer::wait_for_idle(){
-  //For external thread to wait this queue thread idle
+void Transfer::add_command(vk::structure::Command_buffer* command){
   //---------------------------
 
-  while(queue_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  if(command->is_recorded){
+    vec_command_prepa.push_back(command);
   }
 
   //---------------------------
 }
-void Transfer::prepare_submission(){
+void Transfer::process_command(){
+  //---------------------------
+
+  this->build_submission();
+  this->make_submission();
+  this->post_submission();
+
+  //---------------------------
+}
+
+//Submission
+void Transfer::build_submission(){
   //---------------------------
 
   this->vec_command_onrun = vec_command_prepa;
@@ -93,7 +102,7 @@ void Transfer::prepare_submission(){
 
   //---------------------------
 }
-void Transfer::queue_submission(){
+void Transfer::make_submission(){
   //---------------------------
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();

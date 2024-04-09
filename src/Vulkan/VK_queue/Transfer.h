@@ -22,13 +22,16 @@ public:
   //Main functions
   void start_thread();
   void run_thread();
-  void add_command(vk::structure::Command_buffer* command);
-
-  //Subfunction
-  void wait_for_command();
   void wait_for_idle();
-  void prepare_submission();
-  void queue_submission();
+
+  //Command
+  void wait_for_command();
+  void add_command(vk::structure::Command_buffer* command);
+  void process_command();
+
+  //Submission
+  void build_submission();
+  void make_submission();
   void post_submission();
 
   inline bool is_queue_idle(){return queue_idle;}
