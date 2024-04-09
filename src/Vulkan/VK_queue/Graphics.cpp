@@ -14,6 +14,7 @@ Graphics::Graphics(vk::structure::Vulkan* vk_struct){
   this->vk_query = new vk::instance::Query(vk_struct);
 
   //---------------------------
+
 }
 Graphics::~Graphics(){}
 
@@ -63,11 +64,58 @@ void Graphics::add_command(vector<vk::structure::Command*> vec_command){
 
   vec_command_prepa = vec_command;
 
-  //this->wait_for_command();
-  this->reset_for_submission();
-  this->prepare_submission();
-  this->queue_submission();
-  this->post_submission();
+  this->vec_command_onrun = vec_command_prepa;
+  this->vec_command_prepa.clear();
+
+
+  vk::structure::Fence* fence = vk_fence->query_free_fence();
+
+  vector<VkSubmitInfo> vec_info;
+  for(int i=0; i<vec_command_onrun.size(); i++){
+    vk::structure::Command* command = vec_command_onrun[i];
+
+    VkSubmitInfo submit_info{};
+    submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+    submit_info.waitSemaphoreCount = 1;
+    submit_info.pWaitSemaphores = &command->vec_semaphore_processing[0];
+    submit_info.pWaitDstStageMask = &command->vec_wait_stage[0];
+    submit_info.signalSemaphoreCount = 1;
+    submit_info.pSignalSemaphores = &command->vec_semaphore_done[0];
+    submit_info.commandBufferCount = 1;
+    submit_info.pCommandBuffers = &command->vec_command_buffer[0]->command;
+
+    vec_info.push_back(submit_info);
+  }
+
+
+
+  VkQueue queue = vk_struct->device.queue.graphics.handle;
+  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->fence);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] command buffer queue submission");
+  }
+
+  vkWaitForFences(vk_struct->device.handle, 1, &fence->fence, VK_TRUE, UINT64_MAX);
+  vk_fence->reset_fence(fence);
+
+
+  for(int i=0; i<vec_command_onrun.size(); i++){
+    vk::structure::Command* command = vec_command_onrun[i];
+
+    for(int i=0; i<command->vec_command_buffer.size(); i++){
+      vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
+
+      //Command buffer timestamp
+      vk_query->find_query_timestamp(command_buffer);
+
+      //Command buffer reset
+      if(command_buffer->is_resetable){
+        command_buffer->is_available = true;
+        command_buffer->is_recorded = false;
+        command_buffer->query.is_in_use = false;
+      }
+    }
+  }
 
   //---------------------------
 }
@@ -205,13 +253,6 @@ void Graphics::post_submission(){
       }
     }
   }
-
-  //---------------------------
-}
-void Graphics::make_image_presentation(){
-  //---------------------------
-
-  //vk_struct->queue.presentation->image_presentation(semaphore->end);
 
   //---------------------------
 }
