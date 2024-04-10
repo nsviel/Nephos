@@ -28,7 +28,7 @@ public:
 
   //Swap chain creation
   void create_swapchain_image();
-  void create_swapchain_obj();
+  void create_swapchain_handle();
   void find_swapchain_max_nb_image();
   void find_swapchain_surface_format();
   void find_swapchain_presentation_mode();

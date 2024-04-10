@@ -10,7 +10,7 @@ struct Swapchain{
   //---------------------------
 
   //Swapchain element
-  VkSwapchainKHR swapchain;
+  VkSwapchainKHR swapchain = VK_NULL_HANDLE;
   VkSurfaceFormatKHR format;
   VkPresentModeKHR presentation_mode;
 

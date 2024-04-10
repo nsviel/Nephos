@@ -36,16 +36,16 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
     queue_family.ID = i;
     queue_family.property = queue_families[i];
     queue_family.nb_queue = queue_family.property.queueCount;
-    queue_family.graphics = (queue_family.property.queueFlags & VK_QUEUE_GRAPHICS_BIT) ? true : false;
-    queue_family.compute = (queue_family.property.queueFlags & VK_QUEUE_COMPUTE_BIT) ? true : false;
-    queue_family.transfer = (queue_family.property.queueFlags & VK_QUEUE_TRANSFER_BIT) ? true : false;
-    queue_family.sparseBinding = (queue_family.property.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? true : false;
+    queue_family.capable_graphics = (queue_family.property.queueFlags & VK_QUEUE_GRAPHICS_BIT) ? true : false;
+    queue_family.capable_compute = (queue_family.property.queueFlags & VK_QUEUE_COMPUTE_BIT) ? true : false;
+    queue_family.capable_transfer = (queue_family.property.queueFlags & VK_QUEUE_TRANSFER_BIT) ? true : false;
+    queue_family.capable_sparseBinding = (queue_family.property.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? true : false;
 
     //Presentation property
     if(!vk_struct->param.headless){
       VkBool32 presentation_supported = false;
       vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, vk_struct->window.surface, &presentation_supported);
-      queue_family.presentation = presentation_supported;
+      queue_family.capable_presentation = presentation_supported;
     }
 
     physical_device.vec_queue_family.push_back(queue_family);
@@ -63,90 +63,30 @@ void Queue::find_queue_family_assigment(){
     vk::structure::queue::Family& family = vec_queue_family[i];
     bool several_queue = family.nb_queue > 1;
 
-    //Select graphics and presentation, optionnaly transfer
-    if(family.graphics && family.presentation){
-      //Graphics
-      if(pool.graphics.family_ID == -1){
-        pool.graphics.family_ID = i;
-        pool.graphics.family_index = several_queue ? family.current_index++ : 0;
-        family.vec_queue.push_back(&pool.graphics);
-      }
-
-      //Presentation
-      if(pool.presentation.family_ID == -1){
-        pool.presentation.family_ID = i;
-        pool.presentation.family_index = several_queue ? family.current_index++ : 0;
-        family.vec_queue.push_back(&pool.presentation);
-      }
-
-      //Transfer if not discrete GPU
-      if(family.transfer && !vk_struct->device.physical_device.discrete_gpu){
-        pool.transfer.family_ID = i;
-        pool.transfer.family_index = several_queue ? family.current_index++ : 0;
-        family.vec_queue.push_back(&pool.transfer);
-
-        break;
-      }
-    }
-
-    //Transfer if discrete GPU
-    if(family.transfer && i != pool.graphics.family_ID && i==2){
-      pool.transfer.family_ID = i;
-      pool.transfer.family_index = several_queue ? family.current_index++ : 0;
-      family.vec_queue.push_back(&pool.transfer);
-
-      break;
-    }
-  }
-
-  if(pool.graphics.family_ID == -1){
-    cout<<"[error] in graphics queue family assigment"<<endl;
-  }
-  if(pool.transfer.family_ID == -1){
-    cout<<"[error] in transfer queue family assigment"<<endl;
-  }
-  if(pool.presentation.family_ID == -1 && !vk_struct->param.headless){
-    cout<<"[error] in presentation queue family assigment"<<endl;
-  }
-
-  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, pool.graphics.family_ID);
-  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, pool.presentation.family_ID);
-  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, pool.transfer.family_ID);
-
-  //---------------------------
-}
-/*
-void Queue::find_queue_family_assigment(){
-  //---------------------------
-
-  std::vector<vk::structure::queue::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
-  vk::structure::queue::Pool& pool = vk_struct->device.queue;
-
-  for(int i=0; vec_queue_family.size(); i++){
-    vk::structure::queue::Family& family = vec_queue_family[i];
-    bool several_queue = family.nb_queue > 1;
-
     //Graphics
-    if(family.graphics && pool.graphics.family_ID == -1){
+    if(family.capable_graphics && pool.graphics.family_ID == -1){
       pool.graphics.family_ID = i;
       pool.graphics.family_index = several_queue ? family.current_index++ : 0;
       family.vec_queue.push_back(&pool.graphics);
     }
 
     //Presentation
-    if(family.presentation && pool.presentation.family_ID == -1){
+    if(family.capable_presentation && pool.presentation.family_ID == -1){
       pool.presentation.family_ID = i;
       pool.presentation.family_index = several_queue ? family.current_index++ : 0;
       family.vec_queue.push_back(&pool.presentation);
     }
 
     //Transfer
-    if(family.transfer && pool.transfer.family_ID == -1){
+    if(family.capable_transfer && pool.transfer.family_ID == -1){
       //Discrete GPU
-      if(vk_struct->device.physical_device.discrete_gpu && i != pool.graphics.family_ID && i==2){
-        pool.transfer.family_ID = i;
-        pool.transfer.family_index = several_queue ? family.current_index++ : 0;
-        family.vec_queue.push_back(&pool.transfer);
+      if(vk_struct->device.physical_device.discrete_gpu){
+        if(i != pool.graphics.family_ID && i==2){
+          pool.transfer.family_ID = i;
+          pool.transfer.family_index = several_queue ? family.current_index++ : 0;
+          family.vec_queue.push_back(&pool.transfer);
+          break;
+        }
       }
       //Integrated GPU
       else{
@@ -158,6 +98,7 @@ void Queue::find_queue_family_assigment(){
 
   }
 
+  //check for good assigment
   if(pool.graphics.family_ID == -1){
     cout<<"[error] in graphics queue family assigment"<<endl;
   }
@@ -174,7 +115,6 @@ void Queue::find_queue_family_assigment(){
 
   //---------------------------
 }
-*/
 
 //Queue object
 void Queue::create_queue(vk::structure::Queue& queue){
@@ -231,12 +171,12 @@ bool Queue::suitability_for_presentation(vk::structure::Physical_device& physica
     vk::structure::queue::Family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
-    if(queue_family.graphics && queue_family.presentation){
+    if(queue_family.capable_graphics && queue_family.capable_presentation){
       is_graphics_able = true;
     }
 
     //Querying for transfer family
-    if(queue_family.transfer){
+    if(queue_family.capable_transfer){
       is_transfer_able = true;
     }
   }
@@ -259,12 +199,12 @@ bool Queue::suitability_for_graphics(vk::structure::Physical_device& physical_de
     vk::structure::queue::Family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
-    if(queue_family.graphics){
+    if(queue_family.capable_graphics){
       is_graphics_able = true;
     }
 
     //Querying for transfer family
-    if(queue_family.transfer){
+    if(queue_family.capable_transfer){
       is_transfer_able = true;
     }
   }

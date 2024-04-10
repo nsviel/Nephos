@@ -29,7 +29,7 @@ void Swapchain::create_swapchain(){
   this->find_swapchain_surface_format();
   this->find_swapchain_max_nb_image();
   this->find_swapchain_presentation_mode();
-  this->create_swapchain_obj();
+  this->create_swapchain_handle();
   this->create_swapchain_image();
   vk_viewport->update_viewport();
 
@@ -83,7 +83,8 @@ void Swapchain::create_swapchain_image(){
 
   //---------------------------
 }
-void Swapchain::create_swapchain_obj(){
+void Swapchain::create_swapchain_handle(){
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   uint32_t queueFamilyIndices[] = {

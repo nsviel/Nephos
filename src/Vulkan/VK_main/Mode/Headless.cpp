@@ -22,10 +22,10 @@ void Headless::init(){
 
   //Instance
   vk_extension->init();
-  vk_instance->init();sayHello();
-  vk_device->init();sayHello();
-  vk_allocator->init();sayHello();
-  vk_queue->init();sayHello();
+  vk_instance->init();
+  vk_device->init();
+  vk_allocator->init();
+  vk_queue->init();
   vk_pool->init();
   vk_fence->init_pool();
   vk_canvas->init();

@@ -30,11 +30,11 @@ struct Family{
   int current_index = 0;
   int nb_queue = 0;
 
-  bool graphics = 0;
-  bool compute = 0;
-  bool transfer = 0;
-  bool sparseBinding = 0;
-  bool presentation = 0;
+  bool capable_graphics = 0;
+  bool capable_compute = 0;
+  bool capable_transfer = 0;
+  bool capable_sparseBinding = 0;
+  bool capable_presentation = 0;
 
   VkQueueFamilyProperties property;
   vector<vk::structure::Queue*> vec_queue;

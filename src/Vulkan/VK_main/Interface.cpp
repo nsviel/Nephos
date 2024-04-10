@@ -51,11 +51,11 @@ void Interface::fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan){
     for(int i=0; i<physical_device.vec_queue_family.size(); i++){
       prf::vulkan::Queue_family queue_family;
       queue_family.nb_queue = physical_device.vec_queue_family[i].nb_queue;
-      queue_family.graphics = physical_device.vec_queue_family[i].graphics;
-      queue_family.compute = physical_device.vec_queue_family[i].compute;
-      queue_family.transfer = physical_device.vec_queue_family[i].transfer;
-      queue_family.sparseBinding = physical_device.vec_queue_family[i].sparseBinding;
-      queue_family.presentation = physical_device.vec_queue_family[i].presentation;
+      queue_family.graphics = physical_device.vec_queue_family[i].capable_graphics;
+      queue_family.compute = physical_device.vec_queue_family[i].capable_compute;
+      queue_family.transfer = physical_device.vec_queue_family[i].capable_transfer;
+      queue_family.sparseBinding = physical_device.vec_queue_family[i].capable_sparseBinding;
+      queue_family.presentation = physical_device.vec_queue_family[i].capable_presentation;
 
       device_info.vec_queue_family.push_back(queue_family);
     }

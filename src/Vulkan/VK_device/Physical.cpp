@@ -192,6 +192,7 @@ bool Physical::device_suitability_offscreen(vk::structure::Physical_device& phys
 
   //Supported features
   this->find_physical_device_features(physical_device);
+  this->find_max_usable_sample_count(physical_device);
   bool msaa_ok = physical_device.features.samplerAnisotropy;
   bool line_ok = physical_device.features.wideLines;
   bool geom_ok = physical_device.features.geometryShader;
