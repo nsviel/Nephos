@@ -22,7 +22,6 @@ Node::Node(app::Node* node_app){
   else this->vk_engine = new vk::main::Graphical(vk_struct);
 
   this->vk_render = new vk::render::Manager(vk_struct);
-
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_interface = new vk::main::Interface(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);

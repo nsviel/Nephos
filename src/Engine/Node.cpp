@@ -42,17 +42,10 @@ Node::Node(app::Node* node_app){
 }
 Node::~Node(){}
 
-void Node::config(){
-  //---------------------------
-
-  node_capture->config();
-
-  //---------------------------
-}
 void Node::init(){
   //---------------------------
 
-  node_vulkan->init();
+  node_capture->config();
   node_scene->init();
   node_capture->init();
   node_camera->init();
