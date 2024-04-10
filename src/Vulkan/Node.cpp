@@ -35,7 +35,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  vk_window->create_window();
+  vk_window->init();
   vk_render->init();
   vk_engine->init();
   vk_interface->fill_info();
@@ -46,9 +46,7 @@ void Node::loop(){
   //---------------------------
 
   vk_engine->loop();
-  vk_window->manage_input();
-  vk_window->window_should_close();
-  vk_window->check_for_resizing();
+  vk_window->loop();
 
   //---------------------------
 }
@@ -58,7 +56,7 @@ void Node::clean(){
   vk_synchro->wait_idle();
   vk_engine->clean();
   vk_synchro->end_idle();
-  vk_window->destroy_window();
+  vk_window->clean();
 
   //---------------------------
 }

@@ -16,6 +16,31 @@ GLFW::GLFW(vk::structure::Vulkan* vk_struct){
 GLFW::~GLFW(){}
 
 //Main function
+void GLFW::init(){
+  //---------------------------
+
+  this->create_window();
+
+  //---------------------------
+}
+void GLFW::loop(){
+  //---------------------------
+
+  this->manage_input();
+  this->window_should_close();
+  this->check_for_resizing();
+
+  //---------------------------
+}
+void GLFW::clean(){
+  //---------------------------
+
+  this->destroy_window();
+
+  //---------------------------
+}
+
+//Subfunction
 void GLFW::create_window(){
   //---------------------------
 
@@ -51,8 +76,6 @@ void GLFW::destroy_window(){
 
   //---------------------------
 }
-
-//Subfunction
 void GLFW::set_window_size_minimum(int width, int height){
   //---------------------------
 

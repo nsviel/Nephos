@@ -28,8 +28,8 @@ public:
 public:
   //Main functions
   void init();
-  void clean();
   void loop();
+  void clean();
 
   inline vk::structure::Vulkan* get_vk_struct(){return vk_struct;}
   inline vk::main::Engine* get_vk_engine(){return vk_engine;}
