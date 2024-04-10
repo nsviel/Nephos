@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng::render{class Node;}
+namespace eng::render{class Manager;}
 namespace rnd::edl{class Structure;}
 namespace eng::cam{class Manager;}
 namespace utl::entity{class Camera;}
@@ -15,7 +15,7 @@ class Shader : public utl::shader::Base
 {
 public:
   //Contrustor / destructor
-  Shader(eng::render::Node* node_render);
+  Shader(eng::render::Manager* node_render);
   ~Shader();
 
   //Main function

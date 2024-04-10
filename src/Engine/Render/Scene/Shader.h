@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng::render{class Node;}
+namespace eng::render{class Manager;}
 namespace utl::element{class Window;}
 
 
@@ -11,7 +11,7 @@ namespace rnd::scene{
 class Shader : public utl::shader::Base
 {
 public:
-  Shader(eng::render::Node* node_render);
+  Shader(eng::render::Manager* node_render);
   ~Shader();
 
   //Main function

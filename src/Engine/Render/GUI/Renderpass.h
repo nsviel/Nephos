@@ -5,7 +5,7 @@
 namespace eng{class Node;}
 namespace vk::main{class Engine;}
 namespace vk::gui{class Imgui;}
-namespace eng::render{class Node;}
+namespace eng::render{class Manager;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
@@ -16,7 +16,7 @@ class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(eng::render::Node* node_render);
+  Renderpass(eng::render::Manager* node_render);
   ~Renderpass();
 
 public:

@@ -9,7 +9,7 @@ namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
 namespace vk::draw{class Drawer;}
-namespace eng::render{class Node;}
+namespace eng::render{class Manager;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
@@ -21,7 +21,7 @@ class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(eng::render::Node* node_render);
+  Renderpass(eng::render::Manager* node_render);
   ~Renderpass();
 
 public:
@@ -39,7 +39,7 @@ public:
   bool check_data(utl::type::Data* data, int typology);
 
 private:
-  eng::render::Node* node_render;
+  eng::render::Manager* node_render;
   vk::structure::Vulkan* vk_struct;
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;

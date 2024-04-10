@@ -8,7 +8,7 @@
 namespace rnd::edl{
 
 //Constructor / Destructor
-Renderpass::Renderpass(eng::render::Node* node_render){
+Renderpass::Renderpass(eng::render::Manager* node_render){
   //---------------------------
 
   vk::Node* node_vulkan = node_render->get_node_vulkan();

@@ -26,7 +26,7 @@ Node::Node(app::Node* node_app){
   this->node_scene = new eng::scene::Node(this);
   this->node_camera = new eng::cam::Node(this);
   this->node_operation = new ope::Node(this);
-  this->node_render = new eng::render::Node(this);
+  this->node_render = new eng::render::Manager(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_gui = new eng::gui::Node(this);
 
@@ -37,7 +37,6 @@ Node::Node(app::Node* node_app){
   this->add_node_panel(node_camera);
   this->add_node_panel(node_scene);
   this->add_node_panel(node_capture);
-  this->add_node_panel(node_render);
   this->add_node_panel(node_profiler);
   this->add_node_panel(node_gui);
 
@@ -82,7 +81,6 @@ void Node::gui(){
 
   tasker_main->task_begin("eng::gui");
   node_scene->gui();
-  node_render->gui();
   node_capture->gui();
   node_camera->gui();
   node_gui->gui();

@@ -7,7 +7,7 @@
 
 namespace rnd::scene{
 
-Shader::Shader(eng::render::Node* node_render){
+Shader::Shader(eng::render::Manager* node_render){
   //---------------------------
 
   utl::Node* node_utility = node_render->get_node_utility();

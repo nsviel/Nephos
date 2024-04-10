@@ -8,7 +8,7 @@ namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
 namespace vk::draw{class Drawer;}
-namespace eng::render{class Node;}
+namespace eng::render{class Manager;}
 namespace rnd::edl{class Shader;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
@@ -20,7 +20,7 @@ class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(eng::render::Node* node_render);
+  Renderpass(eng::render::Manager* node_render);
   ~Renderpass();
 
 public:

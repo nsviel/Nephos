@@ -8,7 +8,7 @@
 
 namespace rnd::edl{
 
-Shader::Shader(eng::render::Node* node_render){
+Shader::Shader(eng::render::Manager* node_render){
   //---------------------------
 
   utl::Node* utility = node_render->get_node_utility();

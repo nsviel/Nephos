@@ -10,7 +10,7 @@ namespace prf{class Node;}
 namespace prf::graph{class Tasker;}
 namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
-namespace eng::render{class Node;}
+namespace eng::render{class Manager;}
 namespace eng::capture{class Node;}
 namespace eng::gui{class Node;}
 
@@ -39,7 +39,6 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
-  inline eng::render::Node* get_node_render(){return node_render;}
   inline eng::capture::Node* get_node_capture(){return node_capture;}
   inline ope::Node* get_node_operation(){return node_operation;}
 
@@ -54,7 +53,7 @@ private:
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;
-  eng::render::Node* node_render;
+  eng::render::Manager* node_render;
   ope::Node* node_operation;
   eng::gui::Node* node_gui;
 };
