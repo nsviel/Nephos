@@ -6,13 +6,13 @@ namespace eng::render{class Node;}
 namespace utl::element{class Window;}
 
 
-namespace eng::shader{
+namespace rnd::scene{
 
-class SCE : public utl::shader::Base
+class Shader : public utl::shader::Base
 {
 public:
-  SCE(eng::render::Node* node_render);
-  ~SCE();
+  Shader(eng::render::Node* node_render);
+  ~Shader();
 
   //Main function
   void init_shader();

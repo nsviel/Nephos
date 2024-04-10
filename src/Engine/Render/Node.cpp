@@ -20,7 +20,7 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->shader_edl = new rnd::edl::Shader(this);
-  this->shader_scene = new eng::shader::SCE(this);
+  this->shader_scene = new rnd::scene::Shader(this);
   this->eng_renderpass = new eng::renderpass::Manager(this);
   this->gui_shader = new eng::render::gui::Shader(this, &sha_panel->is_open);
   this->gui_render = new eng::render::gui::Renderer(this);

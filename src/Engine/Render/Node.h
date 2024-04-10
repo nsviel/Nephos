@@ -11,7 +11,7 @@ namespace ope{class Node;}
 namespace eng::renderpass{class Manager;}
 namespace eng::render{class Profiler;}
 namespace rnd::edl{class Shader;}
-namespace eng::shader{class SCE;}
+namespace rnd::scene{class Shader;}
 namespace eng::render::gui{class Shader;}
 namespace eng::render::gui{class Renderer;}
 
@@ -35,7 +35,7 @@ public:
   inline ope::Node* get_node_operation(){return node_operation;}
 
   inline rnd::edl::Shader* get_shader_edl(){return shader_edl;}
-  inline eng::shader::SCE* get_shader_scene(){return shader_scene;}
+  inline rnd::scene::Shader* get_shader_scene(){return shader_scene;}
 
 private:
   //Dependancy
@@ -47,7 +47,7 @@ private:
   //Child
   eng::renderpass::Manager* eng_renderpass;
   rnd::edl::Shader* shader_edl;
-  eng::shader::SCE* shader_scene;
+  rnd::scene::Shader* shader_scene;
   eng::render::gui::Shader* gui_shader;
   eng::render::gui::Renderer* gui_render;
 };

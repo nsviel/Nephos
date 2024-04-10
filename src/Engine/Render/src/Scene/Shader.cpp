@@ -1,13 +1,13 @@
-#include "SCE.h"
+#include "Shader.h"
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Render/Namespace.h>
 
 
-namespace eng::shader{
+namespace rnd::scene{
 
-SCE::SCE(eng::render::Node* node_render){
+Shader::Shader(eng::render::Node* node_render){
   //---------------------------
 
   utl::Node* node_utility = node_render->get_node_utility();
@@ -17,10 +17,10 @@ SCE::SCE(eng::render::Node* node_render){
   //---------------------------
   this->init_shader();
 }
-SCE::~SCE(){}
+Shader::~Shader(){}
 
 //Main function
-void SCE::init_shader(){
+void Shader::init_shader(){
   utl::shader::Info* shader_info;
   //---------------------------
 

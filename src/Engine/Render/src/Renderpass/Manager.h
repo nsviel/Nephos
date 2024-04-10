@@ -4,7 +4,7 @@
 
 namespace eng::render{class Node;}
 namespace rnd::edl{class Renderpass;}
-namespace eng::renderpass{class Scene;}
+namespace rnd::scene{class Renderpass;}
 namespace eng::renderpass{class GUI;}
 
 
@@ -22,7 +22,7 @@ public:
   void init();
 
 private:
-  eng::renderpass::Scene* rp_scene;
+  rnd::scene::Renderpass* rp_scene;
   rnd::edl::Renderpass* rp_edl;
   eng::renderpass::GUI* rp_gui;
 };

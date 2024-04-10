@@ -15,14 +15,14 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
 
-namespace eng::renderpass{
+namespace rnd::scene{
 
-class Scene
+class Renderpass
 {
 public:
   //Constructor / Destructor
-  Scene(eng::render::Node* node_render);
-  ~Scene();
+  Renderpass(eng::render::Node* node_render);
+  ~Renderpass();
 
 public:
   //Init functions

@@ -1,14 +1,14 @@
-#include "Scene.h"
+#include "Renderpass.h"
 
 #include <Engine/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Engine/Render/Namespace.h>
 
 
-namespace eng::renderpass{
+namespace rnd::scene{
 
 //Constructor / Destructor
-Scene::Scene(eng::render::Node* node_render){
+Renderpass::Renderpass(eng::render::Node* node_render){
   //---------------------------
 
   vk::Node* node_vulkan = node_render->get_node_vulkan();
@@ -24,10 +24,10 @@ Scene::Scene(eng::render::Node* node_render){
 
   //---------------------------
 }
-Scene::~Scene(){}
+Renderpass::~Renderpass(){}
 
 //Init function
-void Scene::init_renderpass(){
+void Renderpass::init_renderpass(){
   //---------------------------
 
   //Renderpass
@@ -41,13 +41,13 @@ void Scene::init_renderpass(){
   //---------------------------
   vk_engine->add_renderpass_description(renderpass);
 }
-void Scene::create_subpass(vk::structure::Renderpass* renderpass){
-  eng::shader::SCE* shader_scene = node_render->get_shader_scene();
+void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
+  rnd::scene::Shader* shader_scene = node_render->get_shader_scene();
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = "shader";
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){Scene::draw_scene(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw_scene(subpass);};
 
   //Line pipeline
   vk::structure::Pipeline* pipeline;
@@ -89,7 +89,7 @@ void Scene::create_subpass(vk::structure::Renderpass* renderpass){
 }
 
 //Draw function
-void Scene::draw_scene(vk::structure::Subpass* subpass){
+void Renderpass::draw_scene(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass->command_buffer->command);
@@ -99,7 +99,7 @@ void Scene::draw_scene(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
+void Renderpass::cmd_draw_point(vk::structure::Subpass* subpass){
   list<vk::structure::Object*> list_data = vk_engine->get_list_data();
   //---------------------------
 
@@ -122,7 +122,7 @@ void Scene::cmd_draw_point(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
+void Renderpass::cmd_draw_line(vk::structure::Subpass* subpass){
   list<vk::structure::Object*> list_data = vk_engine->get_list_data();
   //---------------------------
 
@@ -145,7 +145,7 @@ void Scene::cmd_draw_line(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
+void Renderpass::cmd_draw_triangle(vk::structure::Subpass* subpass){
   list<vk::structure::Object*> list_data = vk_engine->get_list_data();
   //---------------------------
 
@@ -169,7 +169,7 @@ void Scene::cmd_draw_triangle(vk::structure::Subpass* subpass){
 }
 
 //Subfunction
-bool Scene::check_data(utl::type::Data* data, int topology){
+bool Renderpass::check_data(utl::type::Data* data, int topology){
   bool data_ok = false;
   //---------------------------
 
