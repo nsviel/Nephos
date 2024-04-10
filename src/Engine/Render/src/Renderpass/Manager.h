@@ -5,7 +5,7 @@
 namespace eng::render{class Node;}
 namespace rnd::edl{class Renderpass;}
 namespace rnd::scene{class Renderpass;}
-namespace eng::renderpass{class GUI;}
+namespace rnd::gui{class Renderpass;}
 
 
 namespace eng::renderpass{
@@ -24,7 +24,7 @@ public:
 private:
   rnd::scene::Renderpass* rp_scene;
   rnd::edl::Renderpass* rp_edl;
-  eng::renderpass::GUI* rp_gui;
+  rnd::gui::Renderpass* rp_gui;
 };
 
 }

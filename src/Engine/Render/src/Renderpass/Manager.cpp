@@ -12,7 +12,7 @@ Manager::Manager(eng::render::Node* node_render){
 
   this->rp_scene = new rnd::scene::Renderpass(node_render);
   this->rp_edl = new rnd::edl::Renderpass(node_render);
-  this->rp_gui = new eng::renderpass::GUI(node_render);
+  this->rp_gui = new rnd::gui::Renderpass(node_render);
 
   //---------------------------
 }

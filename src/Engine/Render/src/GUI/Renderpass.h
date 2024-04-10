@@ -10,14 +10,14 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
 
-namespace eng::renderpass{
+namespace rnd::gui{
 
-class GUI
+class Renderpass
 {
 public:
   //Constructor / Destructor
-  GUI(eng::render::Node* node_render);
-  ~GUI();
+  Renderpass(eng::render::Node* node_render);
+  ~Renderpass();
 
 public:
   //Main functions
