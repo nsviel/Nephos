@@ -13,7 +13,7 @@ Node::Node(app::Node* node_app){
   //---------------------------
 
   this->node_engine = node_app->get_node_engine();
-  this->node_utility = node_app->get_node_utility();
+  this->node_vulkan = node_app->get_node_vulkan();
 
   this->gui_render = new gui::Render(this);
   this->gui_style = new gui::style::Config(this);

@@ -4,7 +4,7 @@
 
 namespace gui{class Node;}
 namespace gui::interface{class Tab;}
-namespace utl::element{class Window;}
+namespace vk::window{class GLFW;}
 
 
 namespace gui::interface{
@@ -26,7 +26,7 @@ public:
   //Mouse
 
 private:
-  utl::element::Window* utl_window;
+  vk::window::GLFW* vk_window;
   gui::interface::Tab* gui_tab;
 };
 

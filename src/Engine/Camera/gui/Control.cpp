@@ -1,7 +1,7 @@
 #include "Control.h"
 
 #include <Camera/Namespace.h>
-#include <Utility/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace eng::cam::gui{
@@ -10,9 +10,9 @@ namespace eng::cam::gui{
 Control::Control(eng::cam::Node* node_camera){
   //---------------------------
 
-  utl::Node* node_utility = node_camera->get_node_utility();
+  vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
-  this->utl_window = node_utility->get_utl_window();
+  this->vk_window = node_vulkan->get_vk_window();
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
 
@@ -93,7 +93,7 @@ void Control::control_mouse(){
   ImVec2 center = ImVec2(center_x, center_y);
 
   utl::entity::Camera* camera = cam_manager->get_current_camera();
-  utl_window->set_window_center(vec2(center.x, center.y));
+  vk_window->set_center(vec2(center.x, center.y));
 
   //Right click - Camera movement
   this->enable_camera_view(center);
@@ -122,10 +122,10 @@ void Control::enable_camera_view( ImVec2 center){
   //----------------------------
 
   if(ImGui::IsMouseClicked(1)){
-    cursor_pose = utl_window->get_mouse_pose();
+    cursor_pose = vk_window->get_mouse_pose();
 
     ImGui::GetIO().MouseDrawCursor = false;
-    utl_window->set_mouse_pose(vec2(center.x, center.y));
+    vk_window->set_mouse_pose(vec2(center.x, center.y));
     camera->cam_move = true;
   }
 
@@ -136,7 +136,7 @@ void Control::disable_camera_view(){
   //----------------------------
 
   if(ImGui::IsMouseReleased(1) && camera->cam_move){
-    utl_window->set_mouse_pose(cursor_pose);
+    vk_window->set_mouse_pose(cursor_pose);
     camera->cam_move = false;
   }
 

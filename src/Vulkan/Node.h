@@ -37,6 +37,7 @@ public:
   inline vk::main::Interface* get_vk_interface(){return vk_interface;}
   inline vk::image::Texture* get_vk_texture(){return vk_texture;}
   inline vk::image::Screenshot* get_vk_screenshot(){return vk_screenshot;}
+  inline vk::window::GLFW* get_vk_window(){return vk_window;}
 
 private:
   vk::structure::Vulkan* vk_struct;

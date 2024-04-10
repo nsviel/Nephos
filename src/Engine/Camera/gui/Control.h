@@ -5,7 +5,7 @@
 namespace eng::cam{class Node;}
 namespace eng::cam{class Control;}
 namespace eng::cam{class Manager;}
-namespace utl::element{class Window;}
+namespace vk::window{class GLFW;}
 
 
 namespace eng::cam::gui{
@@ -33,7 +33,7 @@ public:
   void disable_camera_view();
 
 private:
-  utl::element::Window* utl_window;
+  vk::window::GLFW* vk_window;
   eng::cam::Control* cam_control;
   eng::cam::Manager* cam_manager;
 

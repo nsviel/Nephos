@@ -2,20 +2,19 @@
 
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
-#include <Utility/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace gui::interface{
 
 //Constructor / Destructor
-Control::Control(gui::Node* gui){
+Control::Control(gui::Node* node_gui){
   //---------------------------
 
-  utl::Node* utility = gui->get_node_utility();
-  eng::Node* engine = gui->get_node_engine();
+  vk::Node* node_vulkan = node_gui->get_node_vulkan();
 
-  this->utl_window = utility->get_utl_window();
-  this->gui_tab = gui->get_gui_tab();
+  this->vk_window = node_vulkan->get_vk_window();
+  this->gui_tab = node_gui->get_gui_tab();
 
   //---------------------------
 }
@@ -38,7 +37,7 @@ void Control::control_keyboard_oneAction(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Esc key - Close program
     if(ImGui::IsKeyPressed(ImGuiKey_Escape)){
-      utl_window->close_window();
+      vk_window->close_window();
     }
 
     //1 key - Next main tab

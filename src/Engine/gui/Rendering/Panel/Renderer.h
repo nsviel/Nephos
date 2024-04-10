@@ -7,7 +7,6 @@ namespace vk::main{class Interface;}
 namespace eng{class Node;}
 namespace eng::cam::gui{class Control;}
 namespace ope{class Node;}
-namespace utl::element{class Window;}
 
 
 namespace eng::gui{
@@ -31,7 +30,6 @@ public:
 private:
   eng::cam::gui::Control* cam_control;
   ope::Node* node_operation;
-  utl::element::Window* utl_window;
   vk::gui::Imgui* vk_imgui;
   vk::main::Interface* vk_interface;
 

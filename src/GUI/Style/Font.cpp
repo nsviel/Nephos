@@ -8,12 +8,12 @@
 namespace gui::style{
 
 //Constructor / Destructor
-Font::Font(gui::Node* gui){
+Font::Font(gui::Node* node_gui){
   //---------------------------
 
-  gui::Render* gui_render = gui->get_rnd_tab();
-  vk::Node* vulkan = gui_render->get_vulkan();
-  this->vk_imgui = vulkan->get_vk_imgui();
+  vk::Node* node_vulkan = node_gui->get_node_vulkan();
+
+  this->vk_imgui = node_vulkan->get_vk_imgui();
 
   //---------------------------
 }

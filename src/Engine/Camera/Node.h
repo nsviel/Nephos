@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 #include <Utility/Element/Namespace.h>
 
-namespace utl{class Node;}
+namespace vk{class Node;}
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::cam{class Control;}
@@ -28,7 +28,7 @@ public:
   void control();
   void reset();
 
-  inline utl::Node* get_node_utility(){return node_utility;}
+  inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
 
   inline eng::cam::gui::Control* get_gui_control(){return gui_control;}
@@ -37,7 +37,7 @@ public:
 
 private:
   //Dependancy
-  utl::Node* node_utility;
+  vk::Node* node_vulkan;
   eng::scene::Node* node_scene;
 
   //Child

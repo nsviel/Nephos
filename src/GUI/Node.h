@@ -4,8 +4,7 @@
 
 namespace app{class Node;}
 namespace eng{class Node;}
-namespace utl{class Node;}
-namespace utl::element{class Window;}
+namespace vk{class Node;}
 namespace gui::interface{class Control;}
 namespace gui::interface{class Docking;}
 namespace gui::interface{class Tab;}
@@ -29,7 +28,7 @@ public:
   void loop();
   void clean();
 
-  inline utl::Node* get_node_utility(){return node_utility;}
+  inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::Node* get_node_engine(){return node_engine;}
 
   inline gui::interface::Control* get_gui_control(){return gui_control;}
@@ -41,7 +40,7 @@ public:
 private:
   //Dependancy
   eng::Node* node_engine;
-  utl::Node* node_utility;
+  vk::Node* node_vulkan;
 
   //Child
   gui::interface::Control* gui_control;

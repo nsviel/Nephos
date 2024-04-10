@@ -14,7 +14,7 @@ Node::Node(eng::Node* node_engine){
   //---------------------------
 
   //Dependancy
-  this->node_utility = node_engine->get_node_utility();
+  this->node_vulkan = node_engine->get_node_vulkan();
   this->node_scene = node_engine->get_node_scene();
 
   //Child

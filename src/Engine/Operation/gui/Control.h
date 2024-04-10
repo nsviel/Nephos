@@ -10,7 +10,6 @@ namespace eng::scene{class Database;}
 namespace eng::scene{class Set;}
 namespace eng::cam{class Control;}
 namespace eng::cam{class Manager;}
-namespace utl::element{class Window;}
 
 
 namespace ope::gui{
@@ -35,7 +34,6 @@ public:
 
 private:
   eng::Node* node_engine;
-  utl::element::Window* utl_window;
   eng::scene::Database* sce_database;
   eng::scene::Set* sce_set;
   eng::cam::Control* cam_control;

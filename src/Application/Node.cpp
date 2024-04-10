@@ -42,7 +42,6 @@ void Node::init(){
   //---------------------------
 
   node_vulkan->init();
-  node_engine->config();
   node_engine->init();
   node_gui->init();
 

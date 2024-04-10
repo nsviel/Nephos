@@ -8,7 +8,7 @@ namespace vk::render{
 //Constructor / Destructor
 Manager::Manager(vk::structure::Vulkan* vk_struct){
   //---------------------------
-sayHello();
+
   this->shader_edl = new vk::render::edl::Shader(vk_struct);
   this->shader_scene = new vk::render::scene::Shader(vk_struct);
 

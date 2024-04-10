@@ -9,12 +9,11 @@
 namespace gui::interface{
 
 //Constructor / Destructor
-Menu::Menu(gui::Node* gui){
+Menu::Menu(gui::Node* node_gui){
   //---------------------------
 
-  this->node_utility = gui->get_node_utility();
-  this->gui = gui;
-  this->gui_font = gui->get_gui_font();
+  this->gui = node_gui;
+  this->gui_font = node_gui->get_gui_font();
   this->gui_git = new utl::element::gui::Git();
 
   this->show_demo = false;

@@ -17,7 +17,6 @@ Control::Control(ope::Node* node_operation){
   eng::scene::Node* node_scene = node_operation->get_node_scene();
   eng::cam::Node* node_camera = node_operation->get_node_camera();
 
-  this->utl_window = utility->get_utl_window();
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
   this->sce_database = node_scene->get_scene_database();

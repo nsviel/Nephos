@@ -32,6 +32,9 @@ public:
 
   //Mouse
   glm::vec2 get_mouse_pose();
+  glm::vec2 get_dimension();
+  glm::vec2 get_center();
+  void set_center(vec2 value);
   void set_mouse_pose(glm::vec2 pos);
 
 private:

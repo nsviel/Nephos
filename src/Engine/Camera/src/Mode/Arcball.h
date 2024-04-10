@@ -6,7 +6,7 @@
 
 namespace eng::cam{class Node;}
 namespace eng::cam::mode{class Base;}
-namespace utl::element{class Window;}
+namespace vk::window{class GLFW;}
 
 
 namespace eng::cam::mode{
@@ -37,7 +37,7 @@ public:
   void displace_camera_COM(utl::entity::Camera* camera, const vec3& displacement);
 
 private:
-  utl::element::Window* utl_window;
+  vk::window::GLFW* vk_window;
 
   vec3 origin;
 };

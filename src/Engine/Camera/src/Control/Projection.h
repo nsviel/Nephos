@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 #include <Utility/Element/Namespace.h>
 
+namespace vk::window{class GLFW;}
 namespace eng::cam{class Node;}
 
 
@@ -23,7 +24,7 @@ public:
   void ortho_zoom(utl::entity::Camera* camera, float value);
 
 private:
-  utl::element::Window* utl_window;
+  vk::window::GLFW* vk_window;
 };
 
 }

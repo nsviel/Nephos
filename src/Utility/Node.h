@@ -19,7 +19,6 @@ public:
 public:
 
 
-  inline utl::element::Window* get_utl_window(){return utl_window;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
 private:

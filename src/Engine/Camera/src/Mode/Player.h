@@ -6,7 +6,7 @@
 
 namespace eng::cam{class Node;}
 namespace eng::cam::mode{class Base;}
-namespace utl::element{class Window;}
+namespace vk::window{class GLFW;}
 
 
 namespace eng::cam::mode{
@@ -32,7 +32,7 @@ public:
   mat4 compute_camera_view(utl::entity::Camera* camera);
 
 private:
-  utl::element::Window* utl_window;
+  vk::window::GLFW* vk_window;
 
   vec2 mouse_pose_old;
 };

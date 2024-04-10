@@ -1,7 +1,7 @@
 #include "Player.h"
 
 #include <Camera/Namespace.h>
-#include <Utility/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace eng::cam::mode{
@@ -10,9 +10,9 @@ namespace eng::cam::mode{
 Player::Player(eng::cam::Node* node_camera){
   //---------------------------
 
-  utl::Node* node_utility = node_camera->get_node_utility();
+  vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
-  this->utl_window = node_utility->get_utl_window();
+  this->vk_window = node_vulkan->get_vk_window();
 
   this->mouse_pose_old = vec2(0.0f);
 
@@ -70,11 +70,11 @@ void Player::camera_mouse(utl::entity::Camera* camera){
   float& elevation = camera->angle_elevation;
 
   //Cursor movement
-  vec2 mouse_pose = utl_window->get_mouse_pose();
-  vec2 window_center = utl_window->get_window_center();
+  vec2 mouse_pose = vk_window->get_mouse_pose();
+  vec2 window_center = vk_window->get_center();
 
   if(mouse_pose != mouse_pose_old){
-    utl_window->set_mouse_pose(window_center);
+    vk_window->set_mouse_pose(window_center);
 
     // Compute new orientation
     azimuth += camera->player_mouse_sensibility.x * float(window_center.x - mouse_pose.x);

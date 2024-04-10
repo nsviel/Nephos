@@ -1,7 +1,7 @@
 #include "Projection.h"
 
 #include <Camera/Namespace.h>
-#include <Utility/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace eng::cam{
@@ -10,9 +10,9 @@ namespace eng::cam{
 Projection::Projection(eng::cam::Node* node_camera){
   //---------------------------
 
-  utl::Node* node_utility = node_camera->get_node_utility();
+  vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
-  this->utl_window = node_utility->get_utl_window();
+  this->vk_window = node_vulkan->get_vk_window();
 
   //---------------------------
 }
@@ -28,7 +28,7 @@ mat4 Projection::compute_proj_perspective(utl::entity::Camera* camera){
   float z_far = camera->clip_far;
   float fov = glm::radians(camera->fov);
 
-  vec2 window_dim = utl_window->get_window_dim();
+  vec2 window_dim = vk_window->compute_window_dim();
   float ratio = window_dim.x / window_dim.y;
 
   cam_proj = perspective(fov, ratio, z_near, z_far);

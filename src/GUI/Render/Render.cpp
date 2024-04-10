@@ -1,23 +1,18 @@
 #include "Render.h"
 
 #include <GUI/Namespace.h>
-#include <Engine/Namespace.h>
-#include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
 
 
 namespace gui{
 
 //Constructor / Destructor
-Render::Render(gui::Node* gui){
+Render::Render(gui::Node* node_gui){
   //---------------------------
 
-  utl::Node* utility = gui->get_node_utility();
-  eng::Node* engine = gui->get_node_engine();
-  utl::element::Window* utl_window = utility->get_utl_window();
+  vk::Node* node_vulkan = node_gui->get_node_vulkan();
 
-  this->vulkan = engine->get_node_vulkan();
-  this->vk_imgui = vulkan->get_vk_imgui();
+  this->vk_imgui = node_vulkan->get_vk_imgui();
 
   //---------------------------
 }

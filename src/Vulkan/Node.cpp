@@ -37,6 +37,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
+  vk_window->create_window();
   vk_render->init();
   vk_engine->init();
   vk_interface->fill_info();

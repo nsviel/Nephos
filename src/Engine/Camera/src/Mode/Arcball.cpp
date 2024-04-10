@@ -1,7 +1,7 @@
 #include "Arcball.h"
 
 #include <Camera/Namespace.h>
-#include <Utility/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace eng::cam::mode{
@@ -10,9 +10,9 @@ namespace eng::cam::mode{
 Arcball::Arcball(eng::cam::Node* node_camera){
   //---------------------------
 
-  utl::Node* node_utility = node_camera->get_node_utility();
+  vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
-  this->utl_window = node_utility->get_utl_window();
+  this->vk_window = node_vulkan->get_vk_window();
 
   this->origin = vec3(0, 0, 0);
 
@@ -66,9 +66,9 @@ void Arcball::camera_down(utl::entity::Camera* camera, float speed){
 void Arcball::camera_mouse(utl::entity::Camera* camera){
   //---------------------------
 
-  vec2 mouse_pose = utl_window->get_mouse_pose();
-  vec2 window_dim = utl_window->get_window_dim();
-  vec2 window_center = utl_window->get_window_center();
+  vec2 mouse_pose = vk_window->get_mouse_pose();
+  vec2 window_dim = vk_window->get_dimension();
+  vec2 window_center = vk_window->get_center();
 
   // step 1 : Calculate the amount of rotation given the mouse movement.
   float deltaAngleX = (2 * M_PI / window_dim.x); // a movement from left to right = 2*PI = 360 deg
@@ -78,7 +78,7 @@ void Arcball::camera_mouse(utl::entity::Camera* camera){
   vec2 angle = vec2(xAngle, yAngle);
 
   //Apply movement
-  utl_window->set_mouse_pose(utl_window->get_window_center());
+  vk_window->set_mouse_pose(vk_window->get_center());
   this->rotate_by_angle(camera, angle);
 
   //---------------------------
