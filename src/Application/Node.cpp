@@ -2,6 +2,7 @@
 #include "Configuration.h"
 
 #include <GUI/Node.h>
+#include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
@@ -17,6 +18,7 @@ Node::Node(){
   this->config = new Configuration();
   this->node_profiler = new prf::Node();
   this->node_utility = new utl::Node(this);
+  this->node_vulkan = new vk::Node(this);
   this->node_engine = new eng::Node(this);
   this->node_gui = new gui::Node(this);
 

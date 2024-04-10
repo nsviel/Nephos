@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace app{class Node;}
 namespace utl{class Node;}
 namespace utl::element{class Window;}
 namespace vk::main{class Engine;}
@@ -19,7 +20,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(utl::Node* node_utility);
+  Node(app::Node* node_app);
   ~Node();
 
 public:

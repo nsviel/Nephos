@@ -22,6 +22,7 @@ file(GLOB_RECURSE ALL_SOURCES
   VK_memory/*.cpp
   VK_pool/*.cpp
   VK_gui/*.cpp
+  VK_window/*.cpp
   Node.cpp
 )
 

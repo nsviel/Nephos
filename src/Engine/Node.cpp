@@ -20,10 +20,10 @@ Node::Node(app::Node* node_app){
   //Dependancy
   this->node_profiler = node_app->get_node_profiler();
   this->node_utility = node_app->get_node_utility();
+  this->node_vulkan = node_app->get_node_vulkan();
 
   //Child
   this->pool_thread = new eng::thread::Pool(this);
-  this->node_vulkan = new vk::Node(node_utility);
   this->node_scene = new eng::scene::Node(this);
   this->node_camera = new eng::cam::Node(this);
   this->node_operation = new ope::Node(this);
