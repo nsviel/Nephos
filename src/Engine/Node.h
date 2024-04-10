@@ -5,7 +5,6 @@
 namespace app{class Node;}
 namespace ope{class Node;}
 namespace vk{class Node;}
-namespace utl{class Node;}
 namespace prf{class Node;}
 namespace prf::graph{class Tasker;}
 namespace eng::cam{class Node;}
@@ -31,9 +30,7 @@ public:
   void clean();
   void reset();
 
-  inline utl::Node* get_node_utility(){return node_utility;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
-
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
@@ -41,12 +38,9 @@ public:
   inline ope::Node* get_node_operation(){return node_operation;}
 
 private:
-  //Dependancy
-  utl::Node* node_utility;
   prf::Node* node_profiler;
-
-  //Child
   vk::Node* node_vulkan;
+
   prf::graph::Tasker* tasker_main;
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;

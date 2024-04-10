@@ -18,7 +18,6 @@ Node::Node(app::Node* node_app){
 
   //Dependancy
   this->node_profiler = node_app->get_node_profiler();
-  this->node_utility = node_app->get_node_utility();
   this->node_vulkan = node_app->get_node_vulkan();
 
   //Child

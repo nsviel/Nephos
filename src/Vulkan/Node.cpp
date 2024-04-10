@@ -13,9 +13,8 @@ Node::Node(app::Node* node_app){
   //---------------------------
 
   prf::Node* node_profiler = node_app->get_node_profiler();
-  utl::Node* node_utility = node_app->get_node_utility();
 
-  this->vk_struct = new vk::structure::Vulkan(node_utility);
+  this->vk_struct = new vk::structure::Vulkan(node_profiler);
 
   vk_struct->param.headless = false;
   if(vk_struct->param.headless) this->vk_engine = new vk::main::Headless(vk_struct);

@@ -12,8 +12,8 @@ struct Vulkan{
   //---------------------------
 
   //Constructor
-  Vulkan(utl::Node* node_utility){
-    this->profiler = new vk::structure::Profiler(node_utility);
+  Vulkan(prf::Node* node_profiler){
+    this->profiler = new vk::structure::Profiler(node_profiler);
   }
 
   //General

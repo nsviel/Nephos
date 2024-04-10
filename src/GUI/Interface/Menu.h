@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace utl{class Node;}
 namespace utl::element::gui{class Git;}
 namespace gui{class Node;}
 namespace gui::style{class Font;}
@@ -25,7 +24,6 @@ public:
   void menu_git();
 
 private:
-  utl::Node* node_utility;
   utl::element::gui::Git* gui_git;
   gui::Node* gui;
   gui::style::Font* gui_font;

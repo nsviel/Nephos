@@ -16,7 +16,6 @@ namespace eng::gui{
 Renderer::Renderer(eng::Node* node_engine){
   //---------------------------
 
-  utl::Node* node_utility = node_engine->get_node_utility();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
   eng::cam::Node* node_camera = node_engine->get_node_camera();
 

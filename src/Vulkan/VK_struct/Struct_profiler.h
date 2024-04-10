@@ -10,8 +10,7 @@ namespace vk::structure{
 struct Profiler{
   //---------------------------
 
-  Profiler(utl::Node* node_utility){
-    prf::Node* node_profiler = node_utility->get_node_profiler();
+  Profiler(prf::Node* node_profiler){
     prf::Manager* prf_manager = node_profiler->get_prf_manager();
     prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
 

@@ -17,7 +17,6 @@ Node::Node(){
 
   this->config = new Configuration();
   this->node_profiler = new prf::Node();
-  this->node_utility = new utl::Node(this);
   this->node_vulkan = new vk::Node(this);
   this->node_engine = new eng::Node(this);
   this->node_gui = new gui::Node(this);
