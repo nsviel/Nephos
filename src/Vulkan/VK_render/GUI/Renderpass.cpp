@@ -1,20 +1,17 @@
 #include "Renderpass.h"
 
-#include <Engine/Node.h>
 #include <Vulkan/Namespace.h>
-#include <Engine/Render/Namespace.h>
 
 
-namespace rnd::gui{
+namespace vk::render::gui{
 
 //Constructor / Destructor
-Renderpass::Renderpass(eng::render::Manager* node_render){
+Renderpass::Renderpass(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  vk::Node* node_vulkan = node_render->get_node_vulkan();
-
-  this->vk_engine = node_vulkan->get_vk_engine();
-  this->vk_imgui = node_vulkan->get_vk_imgui();
+  this->vk_struct = vk_struct;
+  this->vk_engine = new vk::main::Engine(vk_struct);
+  this->vk_imgui = new vk::gui::Imgui(vk_struct);
 
   //---------------------------
 }

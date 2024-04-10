@@ -1,21 +1,17 @@
 #include "Renderpass.h"
 
-#include <Engine/Node.h>
 #include <Vulkan/Namespace.h>
-#include <Engine/Render/Namespace.h>
 
 
-namespace rnd::edl{
+namespace vk::render::edl{
 
 //Constructor / Destructor
-Renderpass::Renderpass(eng::render::Manager* node_render){
+Renderpass::Renderpass(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  vk::Node* node_vulkan = node_render->get_node_vulkan();
-  vk::structure::Vulkan* vk_struct = node_vulkan->get_vk_struct();
-
-  this->shader_edl = node_render->get_shader_edl();
-  this->vk_engine = node_vulkan->get_vk_engine();
+  this->vk_struct = vk_struct;
+  this->shader_edl = new vk::render::edl::Shader(vk_struct);
+  this->vk_engine = new vk::main::Engine(vk_struct);
   this->vk_pipeline = new vk::renderpass::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
@@ -57,7 +53,7 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.vec_data_name.push_back("tex_coord");
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_color", 0, 1, TYP_IMAGE_SAMPLER, TYP_SHADER_FS));
   pipeline->binding.vec_required_binding.push_back(std::make_tuple("tex_depth", 0, 4, TYP_IMAGE_SAMPLER, TYP_SHADER_FS));
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("EDL_param", sizeof(rnd::edl::Structure), 5, TYP_UNIFORM, TYP_SHADER_FS));
+  pipeline->binding.vec_required_binding.push_back(std::make_tuple("EDL_param", sizeof(vk::render::edl::Structure), 5, TYP_UNIFORM, TYP_SHADER_FS));
   subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
@@ -76,7 +72,7 @@ void Renderpass::draw_edl(vk::structure::Subpass* subpass){
 void Renderpass::update_binding(vk::structure::Subpass* subpass){
   //---------------------------
 
-  rnd::edl::Structure* edl_param = shader_edl->get_edl_param();
+  vk::render::edl::Structure* edl_struct = shader_edl->get_edl_struct();
   vk::structure::Renderpass* renderpass_scene = vk_engine->get_renderpass(0);
   vk::structure::Framebuffer* frame_scene = renderpass_scene->framebuffer;
   vk::structure::Pipeline* pipeline = subpass->get_pipeline();
@@ -88,7 +84,7 @@ void Renderpass::update_binding(vk::structure::Subpass* subpass){
   }
 
   shader_edl->update_shader();
-  vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_param);
+  vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_struct);
 
   vk_pipeline->cmd_bind_pipeline(subpass->command_buffer->command, pipeline);
   vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, pipeline->binding.descriptor.set);

@@ -12,6 +12,7 @@ namespace vk::image{class Texture;}
 namespace vk::structure{class Vulkan;}
 namespace vk::synchro{class Synchro;}
 namespace vk::image{class Screenshot;}
+namespace vk::render{class Manager;}
 namespace vk::window{class GLFW;}
 
 
@@ -39,6 +40,7 @@ public:
 
 private:
   vk::structure::Vulkan* vk_struct;
+  vk::render::Manager* vk_render;
   vk::main::Engine* vk_engine;
   vk::gui::Imgui* vk_imgui;
   vk::main::Interface* vk_interface;

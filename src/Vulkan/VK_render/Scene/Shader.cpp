@@ -1,18 +1,14 @@
 #include "Shader.h"
 
-#include <Engine/Namespace.h>
-#include <Utility/Namespace.h>
-#include <Render/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
-namespace rnd::scene{
+namespace vk::render::scene{
 
-Shader::Shader(eng::render::Manager* node_render){
+Shader::Shader(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  utl::Node* node_utility = node_render->get_node_utility();
-
-  this->utl_window = node_utility->get_utl_window();
+  this->vk_struct = vk_struct;
 
   //---------------------------
   this->init_shader();

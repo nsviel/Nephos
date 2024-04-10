@@ -2,21 +2,20 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng{class Node;}
 namespace vk::main{class Engine;}
 namespace vk::gui{class Imgui;}
-namespace eng::render{class Manager;}
+namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
 
-namespace rnd::gui{
+namespace vk::render::gui{
 
 class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(eng::render::Manager* node_render);
+  Renderpass(vk::structure::Vulkan* vk_struct);
   ~Renderpass();
 
 public:
@@ -27,6 +26,7 @@ public:
   void draw(vk::structure::Subpass* subpass);
 
 private:
+  vk::structure::Vulkan* vk_struct;
   vk::main::Engine* vk_engine;
   vk::gui::Imgui* vk_imgui;
 };

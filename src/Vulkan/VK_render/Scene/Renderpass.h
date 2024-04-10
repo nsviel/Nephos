@@ -8,19 +8,19 @@ namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
 namespace vk::draw{class Drawer;}
-namespace eng::render{class Manager;}
-namespace rnd::edl{class Shader;}
+namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
+namespace vk::render::scene{class Shader;}
 
 
-namespace rnd::edl{
+namespace vk::render::scene{
 
 class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(eng::render::Manager* node_render);
+  Renderpass(vk::structure::Vulkan* vk_struct);
   ~Renderpass();
 
 public:
@@ -29,18 +29,23 @@ public:
   void create_subpass(vk::structure::Renderpass* renderpass);
 
   //Draw function
-  void draw_edl(vk::structure::Subpass* subpass);
-  void update_binding(vk::structure::Subpass* subpass);
-  void draw_canvas(vk::structure::Subpass* subpass);
+  void draw_scene(vk::structure::Subpass* subpass);
+  void cmd_draw_point(vk::structure::Subpass* subpass);
+  void cmd_draw_line(vk::structure::Subpass* subpass);
+  void cmd_draw_triangle(vk::structure::Subpass* subpass);
+
+  //Subfunction
+  bool check_data(utl::type::Data* data, int typology);
 
 private:
-  rnd::edl::Shader* shader_edl;
-  vk::main::Engine* vk_engine;
-  vk::renderpass::Pipeline* vk_pipeline;
-  vk::draw::Viewport* vk_viewport;
+  vk::structure::Vulkan* vk_struct;
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
   vk::draw::Drawer* vk_drawer;
+  vk::main::Engine* vk_engine;
+  vk::renderpass::Pipeline* vk_pipeline;
+  vk::draw::Viewport* vk_viewport;
+  vk::render::scene::Shader* shader_scene;
 };
 
 }

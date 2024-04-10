@@ -1,22 +1,15 @@
 #include "Shader.h"
 
-#include <Engine/Namespace.h>
-#include <Utility/Namespace.h>
-#include <Camera/Namespace.h>
-#include <Render/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
-namespace rnd::edl{
+namespace vk::render::edl{
 
-Shader::Shader(eng::render::Manager* node_render){
+Shader::Shader(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  utl::Node* utility = node_render->get_node_utility();
-  eng::cam::Node* node_camera = node_render->get_node_camera();
-
-  this->cam_manager = node_camera->get_camera_manager();
-  this->utl_window = utility->get_utl_window();
-  this->edl_param = new rnd::edl::Structure();
+  this->vk_struct = vk_struct;
+  this->edl_struct = new vk::render::edl::Structure();
 
   //---------------------------
   this->init_shader();
@@ -28,9 +21,9 @@ void Shader::init_shader(){
   //---------------------------
 
   //Set parameter values
-  edl_param->activated = true;
-  edl_param->strength = 15.0;
-  edl_param->radius = 1.0;
+  edl_struct->activated = true;
+  edl_struct->strength = 15.0;
+  edl_struct->radius = 1.0;
 
   //Add shader info
   utl::shader::Info* shader_info = new utl::shader::Info();
@@ -48,17 +41,15 @@ void Shader::init_shader(){
   //---------------------------
 }
 void Shader::update_shader(){
-  utl::entity::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   // Depth setup
-  edl_param->z_near = camera->clip_near;
-  edl_param->z_far = camera->clip_far;
+  edl_struct->z_near = 0.001;
+  edl_struct->z_far = 1000;
 
   //Dimension
-  vec2 window_dim = utl_window->get_window_dim();
-  edl_param->tex_width = window_dim.x;
-  edl_param->tex_height = window_dim.y;
+  edl_struct->tex_width = vk_struct->window.dimension.x;
+  edl_struct->tex_height = vk_struct->window.dimension.y;
 
   //---------------------------
 }

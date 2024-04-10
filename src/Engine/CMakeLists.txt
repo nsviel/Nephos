@@ -5,7 +5,6 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 #-----------------
 add_subdirectory(Camera)
 add_subdirectory(Operation)
-add_subdirectory(Render)
 add_subdirectory(Capture)
 
 file(GLOB_RECURSE ALL_SOURCES
@@ -35,7 +34,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_VULKAN
   LIBRARY_CAPTURE
   LIBRARY_GUI
-  LIBRARY_ENGINE_RENDER
   LIBRARY_CAMERA
   LIBRARY_ENGINE_OPERATION
 

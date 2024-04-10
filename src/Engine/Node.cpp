@@ -8,7 +8,6 @@
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Capture/Namespace.h>
-#include <Render/Namespace.h>
 
 
 namespace eng{
@@ -26,7 +25,6 @@ Node::Node(app::Node* node_app){
   this->node_scene = new eng::scene::Node(this);
   this->node_camera = new eng::cam::Node(this);
   this->node_operation = new ope::Node(this);
-  this->node_render = new eng::render::Manager(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_gui = new eng::gui::Node(this);
 
@@ -54,7 +52,6 @@ void Node::config(){
 void Node::init(){
   //---------------------------
 
-  node_render->init();
   node_vulkan->init();
   node_scene->init();
   node_capture->init();

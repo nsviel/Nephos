@@ -10,7 +10,6 @@ namespace prf{class Node;}
 namespace prf::graph{class Tasker;}
 namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
-namespace eng::render{class Manager;}
 namespace eng::capture{class Node;}
 namespace eng::gui{class Node;}
 
@@ -53,7 +52,6 @@ private:
   eng::cam::Node* node_camera;
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;
-  eng::render::Manager* node_render;
   ope::Node* node_operation;
   eng::gui::Node* node_gui;
 };

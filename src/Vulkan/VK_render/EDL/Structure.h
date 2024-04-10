@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace rnd::edl{
+namespace vk::render::edl{
 
 struct Structure{
   //---------------------------

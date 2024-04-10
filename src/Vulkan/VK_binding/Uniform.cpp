@@ -1,7 +1,6 @@
 #include "Uniform.h"
 
 #include <Vulkan/Namespace.h>
-#include <Engine/Render/Namespace.h>
 
 
 namespace vk::binding{
@@ -100,6 +99,6 @@ template <typename T> void Uniform::update_uniform(string uniform_name, vk::stru
 }
 template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, glm::mat4 value);
 template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, int value);
-template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, rnd::edl::Structure value);
+template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, vk::render::edl::Structure value);
 
 }
