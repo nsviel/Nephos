@@ -12,8 +12,6 @@ namespace eng::renderpass{class Manager;}
 namespace eng::render{class Profiler;}
 namespace rnd::edl{class Shader;}
 namespace rnd::scene{class Shader;}
-namespace eng::render::gui{class Shader;}
-namespace eng::render::gui{class Renderer;}
 
 
 namespace eng::render{
@@ -48,8 +46,7 @@ private:
   eng::renderpass::Manager* eng_renderpass;
   rnd::edl::Shader* shader_edl;
   rnd::scene::Shader* shader_scene;
-  eng::render::gui::Shader* gui_shader;
-  eng::render::gui::Renderer* gui_render;
+
 };
 
 }

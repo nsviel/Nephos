@@ -6,6 +6,8 @@ namespace vk{class Node;}
 namespace eng{class Node;}
 namespace ope{class Node;}
 namespace eng::gui{class Option;}
+namespace eng::gui{class Shader;}
+namespace eng::gui{class Renderer;}
 
 
 namespace eng::gui{
@@ -19,6 +21,7 @@ public:
 
 public:
   //Main functions
+  void init();
   void gui();
 
   //Subfunction
@@ -38,6 +41,8 @@ private:
 
   //Child
   eng::gui::Option* gui_option;
+  eng::gui::Shader* gui_shader;
+  eng::gui::Renderer* gui_render;
 };
 
 }

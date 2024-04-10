@@ -19,10 +19,10 @@ Stream::Stream(k4n::Node* node_k4n, bool* show_window){
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->sce_set = new eng::scene::Set();
 
-  this->vec_gui_stream.push_back(new eng::render::gui::Stream(node_engine));
-  this->vec_gui_stream.push_back(new eng::render::gui::Stream(node_engine));
-  this->vec_gui_stream.push_back(new eng::render::gui::Stream(node_engine));
-  this->vec_gui_stream.push_back(new eng::render::gui::Stream(node_engine));
+  this->vec_gui_stream.push_back(new eng::gui::Stream(node_engine));
+  this->vec_gui_stream.push_back(new eng::gui::Stream(node_engine));
+  this->vec_gui_stream.push_back(new eng::gui::Stream(node_engine));
+  this->vec_gui_stream.push_back(new eng::gui::Stream(node_engine));
 
   this->show_window = show_window;
   this->name = "Stream";

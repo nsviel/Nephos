@@ -8,7 +8,7 @@ namespace vk::gui{class Imgui;}
 namespace vk::structure{class Texture;}
 
 
-namespace eng::render::gui{
+namespace eng::gui{
 
 class Stream
 {

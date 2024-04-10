@@ -4,18 +4,18 @@
 
 class Text;
 namespace vk::shader{class Reloader;}
-namespace eng::render{class Node;}
+namespace eng{class Node;}
 namespace utl::gui::widget{class Console;}
 namespace utl::gui::editor{class Text;}
 
 
-namespace eng::render::gui{
+namespace eng::gui{
 
 class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(eng::render::Node* node_render, bool* show_window);
+  Shader(eng::Node* node_engine, bool* show_window);
   ~Shader();
 
 public:
@@ -50,7 +50,7 @@ public:
 
 private:
   vk::shader::Reloader* vk_reload;
-  eng::render::Node* node_render;
+  eng::Node* node_engine;
   utl::gui::editor::Text* editor_vs;
   utl::gui::editor::Text* editor_fs;
   utl::gui::widget::Console* gui_console;

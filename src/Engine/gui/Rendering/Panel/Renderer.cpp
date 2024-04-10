@@ -10,17 +10,17 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace eng::render::gui{
+namespace eng::gui{
 
 //Constructor / Destructor
-Renderer::Renderer(eng::render::Node* node_render){
+Renderer::Renderer(eng::Node* node_engine){
   //---------------------------
 
-  utl::Node* node_utility = node_render->get_node_utility();
-  vk::Node* node_vulkan = node_render->get_node_vulkan();
-  eng::cam::Node* node_camera = node_render->get_node_camera();
+  utl::Node* node_utility = node_engine->get_node_utility();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  eng::cam::Node* node_camera = node_engine->get_node_camera();
 
-  this->node_operation = node_render->get_node_operation();
+  this->node_operation = node_engine->get_node_operation();
   this->cam_control = node_camera->get_gui_control();
   this->utl_window = node_utility->get_utl_window();
   this->vk_imgui = node_vulkan->get_vk_imgui();

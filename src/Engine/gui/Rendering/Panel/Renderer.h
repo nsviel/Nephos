@@ -4,19 +4,19 @@
 
 namespace vk::gui{class Imgui;}
 namespace vk::main{class Interface;}
-namespace eng::render{class Node;}
+namespace eng{class Node;}
 namespace eng::cam::gui{class Control;}
 namespace ope{class Node;}
 namespace utl::element{class Window;}
 
 
-namespace eng::render::gui{
+namespace eng::gui{
 
 class Renderer
 {
 public:
   //Constructor / Destructor
-  Renderer(eng::render::Node* node_render);
+  Renderer(eng::Node* node_engine);
   ~Renderer();
 
 public:

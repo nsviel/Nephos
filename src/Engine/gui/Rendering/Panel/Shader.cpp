@@ -7,17 +7,17 @@
 #include <Render/Namespace.h>
 
 
-namespace eng::render::gui{
+namespace eng::gui{
 
 //Constructor / Destructor
-Shader::Shader(eng::render::Node* node_render, bool* show_window){
+Shader::Shader(eng::Node* node_engine, bool* show_window){
   //---------------------------
 
-  vk::Node* node_vulkan = node_render->get_node_vulkan();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
   vk::structure::Vulkan* vk_struct = node_vulkan->get_vk_struct();
 
   this->vk_reload = new vk::shader::Reloader(vk_struct);
-  this->node_render = node_render;
+  this->node_engine = node_engine;
   this->editor_vs = new utl::gui::editor::Text();
   this->editor_fs = new utl::gui::editor::Text();
   this->gui_console = new utl::gui::widget::Console();
@@ -192,7 +192,7 @@ void Shader::shader_tabs(){
 //File selection
 void Shader::retrieve_shader_subclasses(){
   //---------------------------
-
+/*
   string selection = vec_shader_class[ID_class];
 
   vector<utl::shader::Info*> vec_shader_info;
@@ -210,7 +210,7 @@ void Shader::retrieve_shader_subclasses(){
     string title = vec_shader_info[i]->title;
     this->vec_shader_subclass.push_back(title);
   }
-
+*/
   //---------------------------
 }
 void Shader::shader_file_selection(){
@@ -232,7 +232,7 @@ string Shader::get_path_vs_from_selection(){
 
   string selection = vec_shader_class[ID_class];
   string path_vs = "";
-
+/*
   if(selection == "EDL"){
     rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
     path_vs = shader_edl->get_glsl_path_vs(ID_subclass);
@@ -241,7 +241,7 @@ string Shader::get_path_vs_from_selection(){
     rnd::scene::Shader* shader_scene = node_render->get_shader_scene();
     path_vs = shader_scene->get_glsl_path_vs(ID_subclass);
   }
-
+*/
   //---------------------------
   return path_vs;
 }
@@ -250,7 +250,7 @@ string Shader::get_path_fs_from_selection(){
 
   string selection = vec_shader_class[ID_class];
   string path_fs = "";
-
+/*
   if(selection == "EDL"){
     rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
     path_fs = shader_edl->get_glsl_path_fs(ID_subclass);
@@ -259,7 +259,7 @@ string Shader::get_path_fs_from_selection(){
     rnd::scene::Shader* shader_scene = node_render->get_shader_scene();
     path_fs = shader_scene->get_glsl_path_fs(ID_subclass);
   }
-
+*/
   //---------------------------
   return path_fs;
 }
@@ -275,7 +275,7 @@ void Shader::show_parameter(){
   //---------------------------
 }
 void Shader::parameter_EDL(){
-  rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
+  /*rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
   rnd::edl::Structure* edl_param = shader_edl->get_edl_param();
   //---------------------------
 
@@ -293,7 +293,7 @@ void Shader::parameter_EDL(){
   if(ImGui::SliderFloat("Strength", &edl_param->strength, 1.0f, 100.0f)){
       shader_edl->update_shader();
     }
-
+*/
   //---------------------------
 }
 

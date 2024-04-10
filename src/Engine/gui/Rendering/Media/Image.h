@@ -6,7 +6,7 @@ namespace eng{class Node;}
 namespace vk::image{class Texture;}
 
 
-namespace eng::render::gui{
+namespace eng::gui{
 
 class Image
 {

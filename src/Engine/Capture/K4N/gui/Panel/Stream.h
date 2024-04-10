@@ -7,7 +7,7 @@ namespace k4n{class Node;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::dev{class Master;}
-namespace eng::render::gui{class Stream;}
+namespace eng::gui{class Stream;}
 namespace k4n::structure{class Data;}
 namespace eng::scene{class Set;}
 
@@ -45,7 +45,7 @@ private:
   k4n::dev::Swarm* k4n_swarm;
   eng::scene::Set* sce_set;
 
-  vector<eng::render::gui::Stream*> vec_gui_stream;
+  vector<eng::gui::Stream*> vec_gui_stream;
   ImVec2 hovered_pixel;
   string open_tab = "";
   string name;

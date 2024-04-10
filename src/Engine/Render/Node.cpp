@@ -9,7 +9,6 @@
 namespace eng::render{
 
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* sha_panel = add_panel("Shader", ICON_FA_ROAD, false);
   //---------------------------
 
   //Dependancy
@@ -22,9 +21,6 @@ Node::Node(eng::Node* node_engine){
   this->shader_edl = new rnd::edl::Shader(this);
   this->shader_scene = new rnd::scene::Shader(this);
   this->eng_renderpass = new eng::renderpass::Manager(this);
-  this->gui_shader = new eng::render::gui::Shader(this, &sha_panel->is_open);
-  this->gui_render = new eng::render::gui::Renderer(this);
-
   //---------------------------
 }
 Node::~Node(){
@@ -40,7 +36,7 @@ Node::~Node(){
 void Node::init(){
   //---------------------------
 
-  gui_shader->init_panel();
+
   eng_renderpass->init();
 
   //---------------------------
@@ -48,8 +44,7 @@ void Node::init(){
 void Node::gui(){
   //---------------------------
 
-  gui_shader->run_panel();
-  gui_render->run_panel();
+
 
   //---------------------------
 }

@@ -11,6 +11,7 @@ namespace eng::gui{
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
   utl::gui::Panel* opt_panel = add_panel("Option##456", ICON_FA_COG, false);
+  utl::gui::Panel* sha_panel = add_panel("Shader", ICON_FA_ROAD, false);
   //---------------------------
 
   //Dependancy
@@ -20,17 +21,28 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->gui_option = new eng::gui::Option(this, &opt_panel->is_open);
+  this->gui_shader = new eng::gui::Shader(node_engine, &sha_panel->is_open);
+  this->gui_render = new eng::gui::Renderer(node_engine);
 
   //---------------------------
 }
 Node::~Node(){}
 
 //Main function
+void Node::init(){
+  //---------------------------
+
+  gui_shader->init_panel();
+
+  //---------------------------
+}
 void Node::gui(){
   //---------------------------
 
   this->draw_menu();
   gui_option->run_panel();
+  gui_shader->run_panel();
+  gui_render->run_panel();
 
   //---------------------------
 }
