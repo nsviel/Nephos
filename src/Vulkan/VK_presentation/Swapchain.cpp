@@ -41,7 +41,7 @@ void Swapchain::recreate_swapchain(){
   //Pause if window is minimized
   int width = 0, height = 0;
   while(width == 0 || height == 0){
-    glfwGetFramebufferSize(vk_struct->window.glfw_window, &width, &height);
+    glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
     glfwWaitEvents();
   }
 

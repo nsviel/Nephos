@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-class Configuration;
+namespace vk::structure{class Vulkan;}
 
 
 namespace vk::window{
@@ -11,7 +11,7 @@ class GLFW
 {
 public:
   //Constructor / Destructor
-  GLFW(Configuration* config);
+  GLFW(vk::structure::Vulkan* vk_struct);
   ~GLFW();
 
 public:
@@ -34,20 +34,8 @@ public:
   glm::vec2 get_mouse_pose();
   void set_mouse_pose(glm::vec2 pos);
 
-  inline GLFWwindow* get_window(){return window;}
-  inline vec2 get_window_dim(){return window_dim;}
-  inline vec2 get_window_center(){return window_center;}
-  inline void set_window_center(vec2 value){this->window_center = value;}
-
 private:
-  Configuration* config = nullptr;
-  GLFWwindow* window = nullptr;
-
-  vec2 window_dim;
-  vec2 window_dim_min;
-  vec2 window_dim_max;
-  vec2 window_center;
-  bool has_been_resized;
+  vk::structure::Vulkan* vk_struct;
 };
 
 }

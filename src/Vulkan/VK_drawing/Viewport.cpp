@@ -17,7 +17,7 @@ Viewport::~Viewport(){}
 
 //Main function
 void Viewport::init(){
-  vec2 win_dim = vk_struct->window.window_dim;
+  vec2 win_dim = vk_struct->window.dimension;
   //---------------------------
 
   //Viewport
@@ -48,7 +48,7 @@ void Viewport::cmd_viewport(VkCommandBuffer& command_buffer){
   //---------------------------
 }
 void Viewport::update_viewport(){
-  vec2 win_dim = vk_struct->window.window_dim;
+  vec2 win_dim = vk_struct->window.dimension;
   //---------------------------
 
   //Viewport scene
@@ -65,7 +65,7 @@ void Viewport::update_viewport(){
 
 //Subfunction
 vk::structure::Viewport* Viewport::create_viewport(){
-  vec2 win_dim = vk_struct->window.window_dim;
+  vec2 win_dim = vk_struct->window.dimension;
   //---------------------------
 
   //Viewport

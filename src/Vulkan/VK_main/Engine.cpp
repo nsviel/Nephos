@@ -108,7 +108,7 @@ std::list<vk::structure::Object*> Engine::get_list_data(){
   return vk_struct->data.list_vk_object;
 }
 void Engine::set_window(GLFWwindow* window){
-  vk_struct->window.glfw_window = window;
+  vk_struct->window.handle = window;
 }
 
 }

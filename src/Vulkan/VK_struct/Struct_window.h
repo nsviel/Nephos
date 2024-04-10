@@ -8,12 +8,16 @@ namespace vk::structure{
 struct Window{
   //---------------------------
 
-  //Window stuff
-  bool is_resized = false;
-  GLFWwindow* glfw_window;
-  vec2 window_dim;
+  //Window
+  std::string title = "Nephos";
+  GLFWwindow* handle;
 
-  //Vulkan stuff
+  //Dimension
+  bool resized = false;
+  glm::vec2 dimension =  glm::vec2(1024, 500);
+  glm::vec2 constraint_min = glm::vec2(500, 250);
+  glm::vec2 constraint_max = glm::vec2(4000, 4000);
+  glm::vec2 center = glm::vec2(0, 0);
   VkExtent2D extent;
   VkSurfaceKHR surface;
 

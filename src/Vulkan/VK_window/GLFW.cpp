@@ -1,16 +1,15 @@
 #include "GLFW.h"
 
-#include <Application/Configuration.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace vk::window{
 
 //Constructor / Destructor
-GLFW::GLFW(Configuration* config){
+GLFW::GLFW(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  this->config = config;
-  this->has_been_resized = false;
+  this->vk_struct = vk_struct;
 
   //---------------------------
 }
@@ -20,15 +19,15 @@ GLFW::~GLFW(){}
 void GLFW::create_window(){
   //---------------------------
 
-  int width  = config->window_dim.x;
-  int height = config->window_dim.y;
-  string title = config->window_title;
+  int width  = vk_struct->window.dimension.x;
+  int height = vk_struct->window.dimension.y;
+  string title = vk_struct->window.title;
 
   glfwInit();
   glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
-  this->window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
-  this->window_dim = glm::vec2(width, height);
+  vk_struct->window.handle = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+  vk_struct->window.dimension = glm::vec2(width, height);
 
   if (!glfwVulkanSupported()){
     printf("GLFW: Vulkan Not Supported\n");
@@ -40,14 +39,14 @@ void GLFW::create_window(){
 void GLFW::close_window(){
   //---------------------------
 
-  glfwSetWindowShouldClose(window, true);
+  glfwSetWindowShouldClose(vk_struct->window.handle, true);
 
   //---------------------------
 }
 void GLFW::destroy_window(){
   //---------------------------
 
-  glfwDestroyWindow(window);
+  glfwDestroyWindow(vk_struct->window.handle);
   glfwTerminate();
 
   //---------------------------
@@ -57,14 +56,14 @@ void GLFW::destroy_window(){
 void GLFW::set_window_size_minimum(int width, int height){
   //---------------------------
 
-  glfwSetWindowSizeLimits(window, width, height, GLFW_DONT_CARE, GLFW_DONT_CARE);
+  glfwSetWindowSizeLimits(vk_struct->window.handle, width, height, GLFW_DONT_CARE, GLFW_DONT_CARE);
 
   //---------------------------
 }
 void GLFW::set_window_size_maximum(int width, int height){
   //---------------------------
 
-  glfwSetWindowSizeLimits(window, GLFW_DONT_CARE, GLFW_DONT_CARE, width, height);
+  glfwSetWindowSizeLimits(vk_struct->window.handle, GLFW_DONT_CARE, GLFW_DONT_CARE, width, height);
 
   //---------------------------
 }
@@ -82,30 +81,31 @@ vec2 GLFW::compute_window_dim(){
   //---------------------------
 
   int width, height;
-  glfwGetFramebufferSize(window, &width, &height);
-  this->window_dim = vec2(width, height);
-  this->window_center = glm::vec2(width/2, height/2);
+  glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
+  vk_struct->window.dimension = vec2(width, height);
+  vk_struct->window.center = glm::vec2(width/2, height/2);
 
   //---------------------------
-  return window_dim;
+  return vk_struct->window.dimension;
 }
 bool GLFW::check_for_resizing(){
+  vk_struct->window.resized = false;
   //---------------------------
 
   vec2 dim = compute_window_dim();
-  if(dim.x != window_dim.x || dim.y != window_dim.y){
-    this->has_been_resized = true;
-    this->window_dim = dim;
+  if(dim.x != vk_struct->window.dimension.x || dim.y != vk_struct->window.dimension.y){
+    vk_struct->window.resized = true;
+    vk_struct->window.dimension = dim;
   }
 
   //---------------------------
-  return has_been_resized;
+  return vk_struct->window.resized;
 }
 bool GLFW::window_should_close(){
   //---------------------------
 
-  bool stop = glfwWindowShouldClose(window);
-  config->run_app = !stop;
+  bool stop = glfwWindowShouldClose(vk_struct->window.handle);
+  //config->run_app = !stop;
 
   //---------------------------
   return stop;
@@ -116,7 +116,7 @@ glm::vec2 GLFW::get_mouse_pose(){
   //---------------------------
 
   double xpos, ypos;
-  glfwGetCursorPos(window, &xpos, &ypos);
+  glfwGetCursorPos(vk_struct->window.handle, &xpos, &ypos);
   glm::vec2 pos = glm::vec2(xpos, ypos);
 
   //---------------------------
@@ -125,7 +125,7 @@ glm::vec2 GLFW::get_mouse_pose(){
 void GLFW::set_mouse_pose(glm::vec2 pos){
   //---------------------------
 
-  glfwSetCursorPos(window, pos.x, pos.y);
+  glfwSetCursorPos(vk_struct->window.handle, pos.x, pos.y);
 
   //---------------------------
 }

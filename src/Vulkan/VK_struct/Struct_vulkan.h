@@ -14,7 +14,7 @@ struct Vulkan{
   //Constructor
   Vulkan(utl::Node* node_utility){
     utl::element::Window* utl_window = node_utility->get_utl_window();
-    this->window.glfw_window = utl_window->get_window();
+    this->window.handle = utl_window->get_window();
     this->profiler = new vk::structure::Profiler(node_utility);
   }
 

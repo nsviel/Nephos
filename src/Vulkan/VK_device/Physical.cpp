@@ -41,7 +41,7 @@ void Physical::compute_extent(){
       vk_struct->window.extent = capabilities.currentExtent;
     }
     else{
-      glm::vec2 fbo_dim = vk_struct->window.window_dim;
+      glm::vec2 fbo_dim = vk_struct->window.dimension;
       vk_struct->window.extent = {
         static_cast<uint32_t>(fbo_dim.x),
         static_cast<uint32_t>(fbo_dim.y)

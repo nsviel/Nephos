@@ -20,7 +20,7 @@ void Surface::init(){
   //---------------------------
 
   this->compute_window_dim();
-  VkResult result = glfwCreateWindowSurface(vk_struct->instance.instance, vk_struct->window.glfw_window, nullptr, &vk_struct->window.surface);
+  VkResult result = glfwCreateWindowSurface(vk_struct->instance.instance, vk_struct->window.handle, nullptr, &vk_struct->window.surface);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create window surface!");
   }
@@ -40,14 +40,14 @@ vec2 Surface::compute_window_dim(){
   //---------------------------
 
   int width, height;
-  glfwGetFramebufferSize(vk_struct->window.glfw_window, &width, &height);
-  vk_struct->window.window_dim = vec2(width, height);
+  glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
+  vk_struct->window.dimension = vec2(width, height);
 
   //---------------------------
-  return vk_struct->window.window_dim;
+  return vk_struct->window.dimension;
 }
 void Surface::check_for_resizing(){
-  static vec2 window_dim = vk_struct->window.window_dim;
+  static vec2 window_dim = vk_struct->window.dimension;
   //---------------------------
 
   bool is_resized = false;
@@ -58,7 +58,7 @@ void Surface::check_for_resizing(){
   }
 
   //---------------------------
-  vk_struct->window.is_resized = is_resized;
+  vk_struct->window.resized = is_resized;
 }
 
 }

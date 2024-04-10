@@ -95,7 +95,7 @@ ImTextureID Imgui::query_engine_texture(){
 
   bool has_been_resized = check_window_resize();
 
-  if(texture == 0 || vk_struct->window.is_resized || has_been_resized){
+  if(texture == 0 || vk_struct->window.resized || has_been_resized){
     vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");
     vk::structure::Image* image = &renderpass->framebuffer->color;
 
@@ -117,7 +117,7 @@ void Imgui::create_context(){
   ImGui::StyleColorsDark();
 
   // Setup Platform/Renderer bindings
-  ImGui_ImplGlfw_InitForVulkan(vk_struct->window.glfw_window, true);
+  ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
   ImGui_ImplVulkan_InitInfo init_info = {};
   init_info.Instance = vk_struct->instance.instance;
   init_info.PhysicalDevice = vk_struct->device.physical_device.handle;
