@@ -100,6 +100,6 @@ template <typename T> void Uniform::update_uniform(string uniform_name, vk::stru
 }
 template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, glm::mat4 value);
 template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, int value);
-template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, eng::shader::EDL_param value);
+template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, rnd::edl::Structure value);
 
 }

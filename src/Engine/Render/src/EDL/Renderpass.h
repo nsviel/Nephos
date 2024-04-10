@@ -9,7 +9,7 @@ namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
 namespace vk::draw{class Drawer;}
 namespace eng::render{class Node;}
-namespace eng::shader{class EDL;}
+namespace rnd::edl{class Shader;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
@@ -34,7 +34,7 @@ public:
   void draw_canvas(vk::structure::Subpass* subpass);
 
 private:
-  eng::shader::EDL* shader_edl;
+  rnd::edl::Shader* shader_edl;
   vk::main::Engine* vk_engine;
   vk::renderpass::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;

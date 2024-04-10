@@ -3,30 +3,30 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng::render{class Node;}
-namespace eng::shader{class EDL_param;}
+namespace rnd::edl{class Structure;}
 namespace eng::cam{class Manager;}
 namespace utl::entity{class Camera;}
 namespace utl::element{class Window;}
 
 
-namespace eng::shader{
+namespace rnd::edl{
 
-class EDL : public utl::shader::Base
+class Shader : public utl::shader::Base
 {
 public:
   //Contrustor / destructor
-  EDL(eng::render::Node* node_render);
-  ~EDL();
+  Shader(eng::render::Node* node_render);
+  ~Shader();
 
   //Main function
   void init_shader();
   void update_shader();
 
-  inline eng::shader::EDL_param* get_edl_param(){return edl_param;}
+  inline rnd::edl::Structure* get_edl_param(){return edl_param;}
 
 private:
   eng::cam::Manager* cam_manager;
-  eng::shader::EDL_param* edl_param;
+  rnd::edl::Structure* edl_param;
   utl::entity::Camera* camera;
   utl::element::Window* utl_window;
 };

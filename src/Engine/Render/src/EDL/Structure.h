@@ -1,9 +1,9 @@
 #pragma once
 
 
-namespace eng::shader{
+namespace rnd::edl{
 
-struct EDL_param{
+struct Structure{
   //---------------------------
 
   bool activated;

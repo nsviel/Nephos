@@ -1,4 +1,4 @@
-#include "EDL.h"
+#include "Shader.h"
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
@@ -6,9 +6,9 @@
 #include <Render/Namespace.h>
 
 
-namespace eng::shader{
+namespace rnd::edl{
 
-EDL::EDL(eng::render::Node* node_render){
+Shader::Shader(eng::render::Node* node_render){
   //---------------------------
 
   utl::Node* utility = node_render->get_node_utility();
@@ -16,15 +16,15 @@ EDL::EDL(eng::render::Node* node_render){
 
   this->cam_manager = node_camera->get_camera_manager();
   this->utl_window = utility->get_utl_window();
-  this->edl_param = new eng::shader::EDL_param();
+  this->edl_param = new rnd::edl::Structure();
 
   //---------------------------
   this->init_shader();
 }
-EDL::~EDL(){}
+Shader::~Shader(){}
 
 //Main function
-void EDL::init_shader(){
+void Shader::init_shader(){
   //---------------------------
 
   //Set parameter values
@@ -47,7 +47,7 @@ void EDL::init_shader(){
 
   //---------------------------
 }
-void EDL::update_shader(){
+void Shader::update_shader(){
   utl::entity::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 

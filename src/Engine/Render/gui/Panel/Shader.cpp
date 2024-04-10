@@ -197,7 +197,7 @@ void Shader::retrieve_shader_subclasses(){
 
   vector<utl::shader::Info*> vec_shader_info;
   if(selection == "EDL"){
-    eng::shader::EDL* shader_edl = node_render->get_shader_edl();
+    rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
     vec_shader_info = shader_edl->get_vec_shader_info();
   }
   else if(selection == "Scene"){
@@ -234,7 +234,7 @@ string Shader::get_path_vs_from_selection(){
   string path_vs = "";
 
   if(selection == "EDL"){
-    eng::shader::EDL* shader_edl = node_render->get_shader_edl();
+    rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
     path_vs = shader_edl->get_glsl_path_vs(ID_subclass);
   }
   else if(selection == "Scene"){
@@ -252,7 +252,7 @@ string Shader::get_path_fs_from_selection(){
   string path_fs = "";
 
   if(selection == "EDL"){
-    eng::shader::EDL* shader_edl = node_render->get_shader_edl();
+    rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
     path_fs = shader_edl->get_glsl_path_fs(ID_subclass);
   }
   else if(selection == "Scene"){
@@ -275,8 +275,8 @@ void Shader::show_parameter(){
   //---------------------------
 }
 void Shader::parameter_EDL(){
-  eng::shader::EDL* shader_edl = node_render->get_shader_edl();
-  eng::shader::EDL_param* edl_param = shader_edl->get_edl_param();
+  rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
+  rnd::edl::Structure* edl_param = shader_edl->get_edl_param();
   //---------------------------
 
   ImGui::SetNextItemWidth(item_width);

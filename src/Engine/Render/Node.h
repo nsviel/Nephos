@@ -10,7 +10,7 @@ namespace ope{class Node;}
 
 namespace eng::renderpass{class Manager;}
 namespace eng::render{class Profiler;}
-namespace eng::shader{class EDL;}
+namespace rnd::edl{class Shader;}
 namespace eng::shader{class SCE;}
 namespace eng::render::gui{class Shader;}
 namespace eng::render::gui{class Renderer;}
@@ -34,7 +34,7 @@ public:
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline ope::Node* get_node_operation(){return node_operation;}
 
-  inline eng::shader::EDL* get_shader_edl(){return shader_edl;}
+  inline rnd::edl::Shader* get_shader_edl(){return shader_edl;}
   inline eng::shader::SCE* get_shader_scene(){return shader_scene;}
 
 private:
@@ -46,7 +46,7 @@ private:
 
   //Child
   eng::renderpass::Manager* eng_renderpass;
-  eng::shader::EDL* shader_edl;
+  rnd::edl::Shader* shader_edl;
   eng::shader::SCE* shader_scene;
   eng::render::gui::Shader* gui_shader;
   eng::render::gui::Renderer* gui_render;
