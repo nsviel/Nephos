@@ -12,6 +12,7 @@ namespace vk::image{class Texture;}
 namespace vk::structure{class Vulkan;}
 namespace vk::synchro{class Synchro;}
 namespace vk::image{class Screenshot;}
+namespace vk::window{class GLFW;}
 
 
 namespace vk{
@@ -44,6 +45,7 @@ private:
   vk::image::Texture* vk_texture;
   vk::synchro::Synchro* vk_synchro;
   vk::image::Screenshot* vk_screenshot;
+  vk::window::GLFW* vk_window;
 };
 
 }

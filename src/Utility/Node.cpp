@@ -23,35 +23,5 @@ Node::Node(app::Node* node_app){
 }
 Node::~Node(){}
 
-//Main function
-void Node::init(){
-  //---------------------------
-
-
-
-  //---------------------------
-}
-void Node::loop(){
-  //---------------------------
-
-  utl_window->manage_input();
-  utl_window->window_should_close();
-  utl_window->check_for_resizing();
-
-  //---------------------------
-}
-void Node::clean(){
-  //---------------------------
-
-  utl_window->destroy_window();
-
-  //---------------------------
-}
-void Node::gui(){
-  //---------------------------
-
-
-  //---------------------------
-}
 
 }

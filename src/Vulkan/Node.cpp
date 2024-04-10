@@ -26,6 +26,7 @@ Node::Node(app::Node* node_app){
   this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_screenshot = new vk::image::Screenshot(vk_struct);
+  this->vk_window = new vk::window::GLFW(vk_struct);
 
   //---------------------------
 }
@@ -44,6 +45,9 @@ void Node::loop(){
   //---------------------------
 
   vk_engine->loop();
+  vk_window->manage_input();
+  vk_window->window_should_close();
+  vk_window->check_for_resizing();
 
   //---------------------------
 }
@@ -53,6 +57,7 @@ void Node::clean(){
   vk_synchro->wait_idle();
   vk_engine->clean();
   vk_synchro->end_idle();
+  vk_window->destroy_window();
 
   //---------------------------
 }

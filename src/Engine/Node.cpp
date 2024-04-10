@@ -67,10 +67,6 @@ void Node::loop(){
   tasker_main->task_begin("eng");
   //---------------------------
 
-  tasker_main->task_begin("eng::vulkan");
-  node_vulkan->loop();
-  tasker_main->task_end("eng::vulkan");
-
   node_camera->loop();
   node_capture->loop();
 
@@ -103,7 +99,6 @@ void Node::clean(){
 
   node_capture->clean();
   node_scene->clean();
-  node_vulkan->clean();
 
   //---------------------------
 }

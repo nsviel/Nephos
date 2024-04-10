@@ -41,7 +41,6 @@ void Node::run(){
 void Node::init(){
   //---------------------------
 
-  node_utility->init();
   node_engine->config();
   node_engine->init();
   node_gui->init();
@@ -62,7 +61,7 @@ void Node::loop(){
     tasker_gpu->loop_begin();
 
     node_engine->loop();
-    node_utility->loop();
+    node_vulkan->loop();
     node_gui->loop();
 
     tasker_cpu->loop_end();
@@ -76,7 +75,7 @@ void Node::end(){
 
   node_gui->clean();
   node_engine->clean();
-  node_utility->clean();
+  node_vulkan->clean();
 
   //---------------------------
 }
