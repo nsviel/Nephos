@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Application/App_main.h>
+#include <Application/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
@@ -14,7 +14,7 @@
 namespace eng{
 
 //Constructor / Destructor
-Node::Node(App_main* node_app){
+Node::Node(app::Node* node_app){
   //---------------------------
 
   //Dependancy

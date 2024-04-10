@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Application/App_main.h>
+#include <Application/Node.h>
 #include <Engine/Namespace.h>
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
@@ -9,7 +9,7 @@
 namespace gui{
 
 //Constructor / Destructor
-Node::Node(App_main* node_app){
+Node::Node(app::Node* node_app){
   //---------------------------
 
   this->node_engine = node_app->get_node_engine();

@@ -1,4 +1,4 @@
-#include "App_main.h"
+#include "Node.h"
 #include "Configuration.h"
 
 #include <GUI/Node.h>
@@ -8,8 +8,10 @@
 #include <iostream>
 
 
+namespace app{
+
 //Constructor / Destructor
-App_main::App_main(){
+Node::Node(){
   //---------------------------
 
   this->config = new Configuration();
@@ -20,10 +22,10 @@ App_main::App_main(){
 
   //---------------------------
 }
-App_main::~App_main(){}
+Node::~Node(){}
 
 //Main function
-void App_main::run(){
+void Node::run(){
   //---------------------------
 
   this->init();
@@ -34,7 +36,7 @@ void App_main::run(){
 }
 
 //Subfunction
-void App_main::init(){
+void Node::init(){
   //---------------------------
 
   node_utility->init();
@@ -44,7 +46,7 @@ void App_main::init(){
 
   //---------------------------
 }
-void App_main::loop(){
+void Node::loop(){
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
   prf::graph::Tasker* tasker_cpu = profiler->get_or_create_tasker("cpu");
@@ -52,7 +54,8 @@ void App_main::loop(){
   //---------------------------
 
   auto start_time = std::chrono::steady_clock::now();
-  while(config->run_app){
+  this->running = true;
+  while(running){
     tasker_cpu->loop_begin(120);
     tasker_gpu->loop_begin();
 
@@ -66,7 +69,7 @@ void App_main::loop(){
 
   //---------------------------
 }
-void App_main::end(){
+void Node::end(){
   //---------------------------
 
   node_gui->clean();
@@ -74,4 +77,6 @@ void App_main::end(){
   node_utility->clean();
 
   //---------------------------
+}
+
 }

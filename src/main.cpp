@@ -1,16 +1,16 @@
-#include "Application/App_main.h"
+#include "Application/Node.h"
 
 #include <iostream>
 #include <stdexcept>
 
 
 int main(){
-  App_main app_main;
+  app::Node node_app;
   //---------------------------
 
   std::cout<<"--- \033[1;34mBegin program\033[0m ---"<<std::endl;
   try{
-    app_main.run();
+    node_app.run();
   }catch(const std::exception& e){
     std::cerr << e.what() << std::endl;
     return EXIT_FAILURE;

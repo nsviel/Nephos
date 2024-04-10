@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Application/App_main.h>
+#include <Application/Node.h>
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Application/Configuration.h>
@@ -9,7 +9,7 @@
 namespace utl{
 
 //Constructor / Destructor
-Node::Node(App_main* node_app){
+Node::Node(app::Node* node_app){
   //---------------------------
 
   Configuration* config = node_app->get_configuration();

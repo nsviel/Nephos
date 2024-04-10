@@ -7,12 +7,14 @@ namespace utl{class Node;}
 namespace gui{class Node;}
 
 
-class App_main
+namespace app{
+
+class Node
 {
 public:
   //Constructor / Destructor
-  App_main();
-  ~App_main();
+  Node();
+  ~Node();
 
 public:
   //Main functions
@@ -34,4 +36,8 @@ private:
   eng::Node* node_engine;
   utl::Node* node_utility;
   gui::Node* node_gui;
+
+  bool running;
 };
+
+}

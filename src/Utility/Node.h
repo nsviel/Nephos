@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-class App_main;
+namespace app{class Node;}
 namespace prf{class Node;}
 namespace utl::element{class Window;}
 
@@ -13,7 +13,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(App_main* node_app);
+  Node(app::Node* node_app);
   ~Node();
 
 public:
