@@ -12,7 +12,6 @@ namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::render{class Node;}
 namespace eng::capture{class Node;}
-namespace eng::thread{class Pool;}
 namespace eng::gui{class Node;}
 
 
@@ -50,7 +49,6 @@ private:
   prf::Node* node_profiler;
 
   //Child
-  eng::thread::Pool* pool_thread;
   vk::Node* node_vulkan;
   prf::graph::Tasker* tasker_main;
   eng::cam::Node* node_camera;

@@ -23,7 +23,6 @@ Node::Node(app::Node* node_app){
   this->node_vulkan = node_app->get_node_vulkan();
 
   //Child
-  this->pool_thread = new eng::thread::Pool(this);
   this->node_scene = new eng::scene::Node(this);
   this->node_camera = new eng::cam::Node(this);
   this->node_operation = new ope::Node(this);
