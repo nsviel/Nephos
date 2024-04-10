@@ -1,14 +1,14 @@
-#include "EDL.h"
+#include "Renderpass.h"
 
 #include <Engine/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Engine/Render/Namespace.h>
 
 
-namespace eng::renderpass{
+namespace rnd::edl{
 
 //Constructor / Destructor
-EDL::EDL(eng::render::Node* node_render){
+Renderpass::Renderpass(eng::render::Node* node_render){
   //---------------------------
 
   vk::Node* node_vulkan = node_render->get_node_vulkan();
@@ -24,10 +24,10 @@ EDL::EDL(eng::render::Node* node_render){
 
   //---------------------------
 }
-EDL::~EDL(){}
+Renderpass::~Renderpass(){}
 
 //Init function
-void EDL::init_renderpass(){
+void Renderpass::init_renderpass(){
   //---------------------------
 
   //Renderpass
@@ -41,12 +41,12 @@ void EDL::init_renderpass(){
   //---------------------------
   vk_engine->add_renderpass_description(renderpass);
 }
-void EDL::create_subpass(vk::structure::Renderpass* renderpass){
+void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = "shader";
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){EDL::draw_edl(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw_edl(subpass);};
 
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle_EDL";
@@ -65,7 +65,7 @@ void EDL::create_subpass(vk::structure::Renderpass* renderpass){
 }
 
 //Draw function
-void EDL::draw_edl(vk::structure::Subpass* subpass){
+void Renderpass::draw_edl(vk::structure::Subpass* subpass){
   //---------------------------
 
   this->update_binding(subpass);
@@ -73,7 +73,7 @@ void EDL::draw_edl(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void EDL::update_binding(vk::structure::Subpass* subpass){
+void Renderpass::update_binding(vk::structure::Subpass* subpass){
   //---------------------------
 
   eng::shader::EDL_param* edl_param = shader_edl->get_edl_param();
@@ -95,7 +95,7 @@ void EDL::update_binding(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-void EDL::draw_canvas(vk::structure::Subpass* subpass){
+void Renderpass::draw_canvas(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass->command_buffer->command);

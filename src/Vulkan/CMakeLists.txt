@@ -18,6 +18,7 @@ file(GLOB_RECURSE ALL_SOURCES
   VK_struct/*.cpp
   VK_validation/*.cpp
   VK_synchronization/*.cpp
+  VK_rendering/*.cpp
   VK_queue/*.cpp
   VK_memory/*.cpp
   VK_pool/*.cpp

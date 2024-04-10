@@ -14,14 +14,14 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
 
-namespace eng::renderpass{
+namespace rnd::edl{
 
-class EDL
+class Renderpass
 {
 public:
   //Constructor / Destructor
-  EDL(eng::render::Node* node_render);
-  ~EDL();
+  Renderpass(eng::render::Node* node_render);
+  ~Renderpass();
 
 public:
   //Init functions
