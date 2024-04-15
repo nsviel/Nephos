@@ -96,6 +96,7 @@ void Graphics::process_command(){
 
 //Command
 void Graphics::add_command(vk::structure::Command* command){
+  mutex.lock();
   //---------------------------
 
   this->wait_for_idle();
@@ -104,8 +105,10 @@ void Graphics::add_command(vk::structure::Command* command){
   this->with_presentation = false;
 
   //---------------------------
+  mutex.unlock();
 }
 void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
+  mutex.lock();
   //---------------------------
 
   this->wait_for_idle();
@@ -114,8 +117,10 @@ void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
   this->with_presentation = false;
 
   //---------------------------
+  mutex.unlock();
 }
 void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
+  mutex.lock();
   //---------------------------
 
   this->wait_for_idle();
@@ -124,6 +129,7 @@ void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
   this->with_presentation = true;
 
   //---------------------------
+  mutex.unlock();
 }
 
 //Submission
@@ -175,7 +181,6 @@ void Graphics::make_submission(vector<VkSubmitInfo>& vec_info){
   vk_fence->reset_fence(fence);
 
   //---------------------------
-  this->thread_idle = true;
 }
 void Graphics::post_submission(VkSemaphore& semaphore_done){
   //---------------------------
@@ -205,6 +210,7 @@ void Graphics::post_submission(VkSemaphore& semaphore_done){
   }
 
   //---------------------------
+  this->thread_idle = true;
 }
 
 

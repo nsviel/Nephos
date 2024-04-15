@@ -77,6 +77,7 @@ void Transfer::wait_for_command(){
   //---------------------------
 }
 void Transfer::add_command(vk::structure::Command_buffer* command){
+  mutex.lock();
   //---------------------------
 
   if(command->is_recorded){
@@ -85,6 +86,7 @@ void Transfer::add_command(vk::structure::Command_buffer* command){
 
   //---------------------------
   this->thread_idle = false;
+  mutex.unlock();
 }
 void Transfer::process_command(){
   if(!thread_running) return;

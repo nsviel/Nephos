@@ -24,7 +24,7 @@ public:
   void start_thread();
   void run_thread();
   void stop_thread();
-  
+
   //Processing
   void wait_for_idle();
   void wait_for_command();
@@ -53,6 +53,7 @@ private:
   bool thread_running = false;
   bool with_presentation = false;
   std::thread thread;
+  std::mutex mutex;
 };
 
 }

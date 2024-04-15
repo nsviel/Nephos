@@ -46,6 +46,7 @@ private:
   std::vector<vk::structure::Command_buffer*> vec_command_onrun;
   std::vector<VkCommandBuffer> vec_command_buffer;
   std::thread thread;
+  std::mutex mutex;
   bool thread_running = false;
   bool thread_idle = true;
 };
