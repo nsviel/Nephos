@@ -9,7 +9,7 @@ namespace vk::structure{
 struct Instance{
   //---------------------------
 
-  VkInstance instance;
+  VkInstance handle;
   vector<const char*> extension_instance;
   vector<const char*> extension_device;
   int max_frame_inflight = 2;

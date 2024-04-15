@@ -118,7 +118,7 @@ void Imgui::create_context(){
   // Setup Platform/Renderer bindings
   ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
   ImGui_ImplVulkan_InitInfo init_info = {};
-  init_info.Instance = vk_struct->instance.instance;
+  init_info.Instance = vk_struct->instance.handle;
   init_info.PhysicalDevice = vk_struct->device.physical_device.handle;
   init_info.Device = vk_struct->device.handle;
   init_info.Queue = vk_struct->device.queue.graphics.handle;

@@ -25,6 +25,7 @@ public:
   void close_window();
   void destroy_window();
   bool window_should_close();
+  void create_surface();
 
   //Sizing function
   vec2 update_window_dim();

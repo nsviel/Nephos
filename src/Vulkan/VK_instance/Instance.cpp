@@ -29,7 +29,7 @@ void Instance::clean(){
   //---------------------------
 
   vk_validation->clean_layer();
-  vkDestroyInstance(vk_struct->instance.instance, nullptr);
+  vkDestroyInstance(vk_struct->instance.handle, nullptr);
 
   //---------------------------
 }
@@ -59,7 +59,7 @@ void Instance::create_instance(){
   create_info.pNext = vk_validation->find_validation_extension();
 
   //Create instance
-  VkResult result = vkCreateInstance(&create_info, nullptr, &vk_struct->instance.instance);
+  VkResult result = vkCreateInstance(&create_info, nullptr, &vk_struct->instance.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create instance!");
   }

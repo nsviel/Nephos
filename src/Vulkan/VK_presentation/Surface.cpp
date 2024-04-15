@@ -20,18 +20,14 @@ Surface::~Surface(){}
 void Surface::init(){
   //---------------------------
 
-  vk_window->update_window_dim();
-  VkResult result = glfwCreateWindowSurface(vk_struct->instance.instance, vk_struct->window.handle, nullptr, &vk_struct->window.surface);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create window surface!");
-  }
+  vk_window->create_surface();
 
   //---------------------------
 }
 void Surface::clean(){
   //---------------------------
 
-  vkDestroySurfaceKHR(vk_struct->instance.instance, vk_struct->window.surface, nullptr);
+  vkDestroySurfaceKHR(vk_struct->instance.handle, vk_struct->window.surface, nullptr);
 
   //---------------------------
 }

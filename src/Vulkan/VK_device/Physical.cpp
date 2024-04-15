@@ -61,14 +61,14 @@ void Physical::find_all_physical_device(){
 
   //Find how many GPU are available
   uint32_t nb_device = 0;
-  vkEnumeratePhysicalDevices(vk_struct->instance.instance, &nb_device, nullptr);
+  vkEnumeratePhysicalDevices(vk_struct->instance.handle, &nb_device, nullptr);
   if(nb_device == 0){
     throw std::runtime_error("[error] failed to find GPUs with Vulkan support!");
   }
 
   //List all available GPU and take suitable one
   vector<VkPhysicalDevice> vec_physical_device(nb_device);
-  vkEnumeratePhysicalDevices(vk_struct->instance.instance, &nb_device, vec_physical_device.data());
+  vkEnumeratePhysicalDevices(vk_struct->instance.handle, &nb_device, vec_physical_device.data());
 
   //Store physical device properties
   for(VkPhysicalDevice device : vec_physical_device){

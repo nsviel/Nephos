@@ -89,6 +89,18 @@ bool GLFW::window_should_close(){
   //---------------------------
   return closing;
 }
+void GLFW::create_surface(){
+  if(vk_struct->window.handle == nullptr) return;
+  //---------------------------
+
+  this->update_window_dim();
+  VkResult result = glfwCreateWindowSurface(vk_struct->instance.handle, vk_struct->window.handle, nullptr, &vk_struct->window.surface);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to create window surface!");
+  }
+
+  //---------------------------
+}
 
 //Sizing function
 vec2 GLFW::update_window_dim(){
