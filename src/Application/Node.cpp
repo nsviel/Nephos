@@ -48,22 +48,14 @@ void Node::init(){
 }
 void Node::loop(){
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
-  prf::graph::Tasker* tasker_cpu = profiler->get_or_create_tasker("cpu");
-  prf::graph::Tasker* tasker_gpu = profiler->get_or_create_tasker("gpu");
   //---------------------------
 
-  auto start_time = std::chrono::steady_clock::now();
   while(app_config->running){
-    tasker_cpu->loop_begin(120);
-    tasker_gpu->loop_begin();
-
+    prf_manager->loop_begin(120);
     node_engine->loop();
     node_vulkan->loop();
     node_gui->loop();
-
-    tasker_cpu->loop_end();
-    tasker_gpu->loop_end();
+    prf_manager->loop_end();
   }
 
   //---------------------------

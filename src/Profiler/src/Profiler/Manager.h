@@ -23,6 +23,10 @@ public:
   void add_profiler(prf::type::Profiler* profiler);
   void remove_profiler(prf::type::Profiler* profiler);
 
+  //Subfunction
+  void loop_begin(int max_fps);
+  void loop_end();
+
   inline prf::graph::Profiler* get_profiler_main(){return profiler_main;}
   inline prf::vulkan::Profiler* get_profiler_vulkan(){return profiler_vulkan;}
   inline std::list<prf::type::Profiler*> get_list_profiler(){return list_profiler;}
