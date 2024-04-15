@@ -2,12 +2,12 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace vk::structure{class Vulkan;}
 namespace vk::render::edl{class Shader;}
 namespace vk::render::scene{class Shader;}
 namespace vk::render::edl{class Renderpass;}
 namespace vk::render::scene{class Renderpass;}
 namespace vk::render::gui{class Renderpass;}
-namespace vk::structure{class Vulkan;}
 
 
 namespace vk::render{
@@ -27,6 +27,7 @@ public:
   inline vk::render::scene::Shader* get_shader_scene(){return shader_scene;}
 
 private:
+  vk::structure::Vulkan* vk_struct;
   vk::render::edl::Shader* shader_edl;
   vk::render::scene::Shader* shader_scene;
 

@@ -96,8 +96,8 @@ void Physical::find_best_physical_device(){
   vk_struct->device.physical_device.handle = VK_NULL_HANDLE;
   if(candidates.rbegin()->first > 0){
     vk_struct->device.physical_device = candidates.rbegin()->second;
-  }else {
-    throw std::runtime_error("failed to find a suitable GPU!");
+  }else{
+    throw std::runtime_error("[error] failed to find a suitable GPU");
   }
   if(vk_struct->device.physical_device.handle == VK_NULL_HANDLE){
     throw std::runtime_error("[error] failed to find a suitable GPU!");
@@ -254,21 +254,22 @@ void Physical::find_physical_device_support(vk::structure::Physical_device& phys
   //---------------------------
 
   //Get physical_device extension number
-  uint32_t nb_extension;
-  vkEnumerateDeviceExtensionProperties(physical_device.handle, nullptr, &nb_extension, nullptr);
+  uint32_t num_ext;
+  vkEnumerateDeviceExtensionProperties(physical_device.handle, nullptr, &num_ext, nullptr);
 
   //List physical_device extension
-  std::vector<VkExtensionProperties> vec_extension(nb_extension);
-  vkEnumerateDeviceExtensionProperties(physical_device.handle, nullptr, &nb_extension, vec_extension.data());
+  std::vector<VkExtensionProperties> vec_ext_capable(num_ext);
+  vkEnumerateDeviceExtensionProperties(physical_device.handle, nullptr, &num_ext, vec_ext_capable.data());
 
   //Check if all required extension are in the list
-  std::set<std::string> requiredExtensions(vk_struct->instance.extension_device.begin(), vk_struct->instance.extension_device.end());
-  for(const auto& extension : vec_extension){
-    requiredExtensions.erase(extension.extensionName);
+  vector<const char*> vec_ext_required = vk_struct->instance.extension_device;
+  std::set<std::string> set_ext_required(vec_ext_required.begin(), vec_ext_required.end());
+  for(const auto& extension : vec_ext_capable){
+    set_ext_required.erase(extension.extensionName);
   }
 
   //---------------------------
-  physical_device.has_extension_support = requiredExtensions.empty();
+  physical_device.has_extension_support = set_ext_required.empty();
 }
 void Physical::find_surface_capability(vk::structure::Physical_device& physical_device){
   //---------------------------

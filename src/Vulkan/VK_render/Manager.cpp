@@ -9,6 +9,7 @@ namespace vk::render{
 Manager::Manager(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
+  this->vk_struct = vk_struct;
   this->shader_edl = new vk::render::edl::Shader(vk_struct);
   this->shader_scene = new vk::render::scene::Shader(vk_struct);
 
@@ -26,7 +27,7 @@ void Manager::init(){
 
   rp_scene->init_renderpass();
   rp_edl->init_renderpass();
-  rp_gui->init_renderpass();
+  if(!vk_struct->param.headless) rp_gui->init_renderpass();
 
   //---------------------------
 }

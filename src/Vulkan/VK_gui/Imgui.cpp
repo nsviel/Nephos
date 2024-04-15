@@ -106,7 +106,6 @@ ImTextureID Imgui::query_engine_texture(){
   return texture;
 }
 void Imgui::create_context(){
-  vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
   //---------------------------
 
   // Setup Dear ImGui context
@@ -116,20 +115,23 @@ void Imgui::create_context(){
   ImGui::StyleColorsDark();
 
   // Setup Platform/Renderer bindings
-  ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
-  ImGui_ImplVulkan_InitInfo init_info = {};
-  init_info.Instance = vk_struct->instance.handle;
-  init_info.PhysicalDevice = vk_struct->device.physical_device.handle;
-  init_info.Device = vk_struct->device.handle;
-  init_info.Queue = vk_struct->device.queue.graphics.handle;
-  init_info.DescriptorPool = vk_struct->pools.descriptor.memory;
-  init_info.PipelineCache = VK_NULL_HANDLE;
-  init_info.MinImageCount = 2;
-  init_info.ImageCount = 2;
-  init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
-  init_info.Subpass = 0;
-  init_info.QueueFamily = vk_struct->device.queue.graphics.family_ID;
-  ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
+  if(!vk_struct->param.headless){
+    vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
+    ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
+    ImGui_ImplVulkan_InitInfo init_info = {};
+    init_info.Instance = vk_struct->instance.handle;
+    init_info.PhysicalDevice = vk_struct->device.physical_device.handle;
+    init_info.Device = vk_struct->device.handle;
+    init_info.Queue = vk_struct->device.queue.graphics.handle;
+    init_info.DescriptorPool = vk_struct->pools.descriptor.memory;
+    init_info.PipelineCache = VK_NULL_HANDLE;
+    init_info.MinImageCount = 2;
+    init_info.ImageCount = 2;
+    init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
+    init_info.Subpass = 0;
+    init_info.QueueFamily = vk_struct->device.queue.graphics.family_ID;
+    ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
+  }
 
   //---------------------------
 }

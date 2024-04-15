@@ -49,7 +49,6 @@ public:
   //Renderpass function
   void add_renderpass_description(vk::structure::Renderpass* renderpass);
   vk::structure::Renderpass* get_renderpass(int i);
-  vk::structure::Renderpass* get_renderpass_presentation(int i);
   vk::structure::Object* get_canvas();
   std::list<vk::structure::Object*> get_list_data();
   void set_window(GLFWwindow* window);

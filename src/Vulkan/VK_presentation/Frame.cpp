@@ -21,11 +21,11 @@ Frame::~Frame(){}
 
 //Main function
 void Frame::create_frame(){
+  vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
+  if(renderpass == nullptr)return;
   //---------------------------
 
   for(int i=0; i<vk_struct->swapchain.vec_swapchain_image.size(); i++){
-    vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
-    if(renderpass == nullptr)return;
     vk::structure::Frame* frame = new vk::structure::Frame();
     frame->color.image = vk_struct->swapchain.vec_swapchain_image[i];
     frame->color.format = vk_color->find_color_format();

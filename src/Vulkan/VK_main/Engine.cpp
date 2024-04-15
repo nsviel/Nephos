@@ -90,13 +90,6 @@ vk::structure::Renderpass* Engine::get_renderpass(int i){
 
   //---------------------------
 }
-vk::structure::Renderpass* Engine::get_renderpass_presentation(int i){
-  //---------------------------
-
-  return vk_struct->render.get_renderpass_byName("gui");
-
-  //---------------------------
-}
 vk::structure::Object* Engine::get_canvas(){
   //---------------------------
 
