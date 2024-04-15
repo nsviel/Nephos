@@ -56,6 +56,7 @@ void Renderer::design_panel(){
 
 //Subfunction
 void Renderer::engine_texture(){
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   ImVec2 image_pose = ImGui::GetCursorScreenPos();

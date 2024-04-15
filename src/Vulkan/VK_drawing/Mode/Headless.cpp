@@ -46,27 +46,4 @@ void Headless::draw_frame(){
   //---------------------------
 }
 
-/*
-VkSemaphore semaphore_wait = struct_vulkan->synchro.semaphore_image_ready;
-VkSemaphore semaphore_done = struct_vulkan->synchro.vec_semaphore_render[0];
-
-//Renderpass
-int nb_renderpass = struct_vulkan->render.vec_renderpass.size();
-for(int i=0; i<nb_renderpass; i++){
-  Struct_vk_renderpass* renderpass = struct_vulkan->render.vec_renderpass[i];
-
-  vk_render->run_renderpass(renderpass);
-
-  Struct_vk_command& command = renderpass->command;
-  command.fence = (i == nb_renderpass-1) ? struct_vulkan->synchro.fence : VK_NULL_HANDLE;
-  vk_render->submit_command(renderpass);
-
-  semaphore_wait = struct_vulkan->synchro.vec_semaphore_render[i];
-  semaphore_done = struct_vulkan->synchro.vec_semaphore_render[i+1];
-}
-
-VkFence fence = struct_vulkan->synchro.fence;
-vk_render->wait_end_rendering(fence);
-*/
-
 }
