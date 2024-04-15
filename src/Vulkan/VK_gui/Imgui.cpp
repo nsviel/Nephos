@@ -138,8 +138,8 @@ bool Imgui::check_window_resize(){
   //---------------------------
 
   bool has_been_resized = false;
-  static vec2 dim_old = vk_surface->compute_window_dim();
-  vec2 dim_new = vk_surface->compute_window_dim();
+  static vec2 dim_old = vk_surface->update_window_dim();
+  vec2 dim_new = vk_surface->update_window_dim();
 
   if(dim_new.x != dim_old.x || dim_new.y != dim_old.y){
     has_been_resized = true;

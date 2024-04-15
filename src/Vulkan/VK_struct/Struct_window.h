@@ -10,7 +10,7 @@ struct Window{
 
   //Window
   std::string title = "Nephos";
-  GLFWwindow* handle;
+  GLFWwindow* handle = nullptr;
 
   //Dimension
   bool resized = false;

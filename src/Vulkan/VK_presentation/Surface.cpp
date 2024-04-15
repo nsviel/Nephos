@@ -19,7 +19,7 @@ Surface::~Surface(){}
 void Surface::init(){
   //---------------------------
 
-  this->compute_window_dim();
+  this->update_window_dim();
   VkResult result = glfwCreateWindowSurface(vk_struct->instance.instance, vk_struct->window.handle, nullptr, &vk_struct->window.surface);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create window surface!");
@@ -36,7 +36,7 @@ void Surface::clean(){
 }
 
 //Subfunction
-vec2 Surface::compute_window_dim(){
+vec2 Surface::update_window_dim(){
   //---------------------------
 
   int width, height;
@@ -51,7 +51,7 @@ void Surface::check_for_resizing(){
   //---------------------------
 
   bool is_resized = false;
-  vec2 last_dim = compute_window_dim();
+  vec2 last_dim = update_window_dim();
   if(last_dim.x != window_dim.x || last_dim.y != window_dim.y){
     is_resized = true;
     window_dim = last_dim;

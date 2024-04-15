@@ -42,6 +42,7 @@ void GLFW::clean(){
 
 //Window function
 void GLFW::create_window(){
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   int width  = vk_struct->window.dimension.x;
@@ -62,6 +63,7 @@ void GLFW::create_window(){
   //---------------------------
 }
 void GLFW::close_window(){
+  if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
   glfwSetWindowShouldClose(vk_struct->window.handle, true);
@@ -69,6 +71,7 @@ void GLFW::close_window(){
   //---------------------------
 }
 void GLFW::destroy_window(){
+  if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
   glfwDestroyWindow(vk_struct->window.handle);
@@ -77,42 +80,47 @@ void GLFW::destroy_window(){
   //---------------------------
 }
 bool GLFW::window_should_close(){
+  if(vk_struct->window.handle == nullptr) return false;
   //---------------------------
 
-  bool stop = glfwWindowShouldClose(vk_struct->window.handle);
+  bool closing = glfwWindowShouldClose(vk_struct->window.handle);
   //config->run_app = !stop;
 
   //---------------------------
-  return stop;
+  return closing;
 }
 
 //Sizing function
-vec2 GLFW::compute_window_dim(){
-  vec2 dim = vec2(0);
+vec2 GLFW::update_window_dim(){
+  if(vk_struct->window.handle == nullptr) return vec2(0, 0);
   //---------------------------
 
   int width, height;
   glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
-  vk_struct->window.dimension = vec2(width, height);
+  vec2 dimension = vec2(width, height);
+  vk_struct->window.dimension = dimension;
   vk_struct->window.center = glm::vec2(width/2, height/2);
 
   //---------------------------
-  return vk_struct->window.dimension;
+  return dimension;
 }
 bool GLFW::check_for_resizing(){
-  vk_struct->window.resized = false;
+  if(vk_struct->window.handle == nullptr) return false;
   //---------------------------
 
-  vec2 dim = compute_window_dim();
+  bool is_resized = false;
+  vec2 dim = update_window_dim();
   if(dim.x != vk_struct->window.dimension.x || dim.y != vk_struct->window.dimension.y){
-    vk_struct->window.resized = true;
-    vk_struct->window.dimension = dim;
+    is_resized = true;
   }
 
+  vk_struct->window.resized = is_resized;
+
   //---------------------------
-  return vk_struct->window.resized;
+  return is_resized;
 }
 void GLFW::set_window_constraint_min(int width, int height){
+  if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
   glfwSetWindowSizeLimits(vk_struct->window.handle, width, height, GLFW_DONT_CARE, GLFW_DONT_CARE);
@@ -120,6 +128,7 @@ void GLFW::set_window_constraint_min(int width, int height){
   //---------------------------
 }
 void GLFW::set_window_constraint_max(int width, int height){
+  if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
   glfwSetWindowSizeLimits(vk_struct->window.handle, GLFW_DONT_CARE, GLFW_DONT_CARE, width, height);
@@ -129,18 +138,31 @@ void GLFW::set_window_constraint_max(int width, int height){
 
 //Input function
 void GLFW::manage_input(){
+  if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
   glfwPollEvents();
 
   //---------------------------
 }
+void GLFW::set_center(glm::vec2 value){
+  vk_struct->window.center = value;
+}
+void GLFW::set_mouse_pose(glm::vec2 pos){
+  if(vk_struct->window.handle == nullptr) return;
+  //---------------------------
+
+  glfwSetCursorPos(vk_struct->window.handle, pos.x, pos.y);
+
+  //---------------------------
+}
 glm::vec2 GLFW::get_mouse_pose(){
+  if(vk_struct->window.handle == nullptr) return vec2(0, 0);
   //---------------------------
 
   double xpos, ypos;
   glfwGetCursorPos(vk_struct->window.handle, &xpos, &ypos);
-  glm::vec2 pos_1 = glm::vec2(xpos, ypos);
+  glm::vec2 pos = glm::vec2(xpos, ypos);
 
   //---------------------------
   return pos;
@@ -150,16 +172,6 @@ glm::vec2 GLFW::get_dimension(){
 }
 glm::vec2 GLFW::get_center(){
   return vk_struct->window.center;
-}
-void GLFW::set_center(glm::vec2 value){
-  vk_struct->window.center = value;
-}
-void GLFW::set_mouse_pose(glm::vec2 pos){
-  //---------------------------
-
-  glfwSetCursorPos(vk_struct->window.handle, pos.x, pos.y);
-
-  //---------------------------
 }
 
 }

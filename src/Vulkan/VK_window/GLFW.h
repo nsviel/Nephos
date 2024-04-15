@@ -27,18 +27,18 @@ public:
   bool window_should_close();
 
   //Sizing function
-  vec2 compute_window_dim();
+  vec2 update_window_dim();
   bool check_for_resizing();
   void set_window_constraint_min(int width, int height);
   void set_window_constraint_max(int width, int height);
 
   //Input function
   void manage_input();
+  void set_center(vec2 value);
+  void set_mouse_pose(glm::vec2 pos);
   glm::vec2 get_mouse_pose();
   glm::vec2 get_dimension();
   glm::vec2 get_center();
-  void set_center(vec2 value);
-  void set_mouse_pose(glm::vec2 pos);
 
 private:
   vk::structure::Vulkan* vk_struct;
