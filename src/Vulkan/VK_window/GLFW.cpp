@@ -40,7 +40,7 @@ void GLFW::clean(){
   //---------------------------
 }
 
-//Subfunction
+//Window function
 void GLFW::create_window(){
   //---------------------------
 
@@ -54,7 +54,7 @@ void GLFW::create_window(){
   vk_struct->window.handle = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
   vk_struct->window.dimension = glm::vec2(width, height);
 
-  if (!glfwVulkanSupported()){
+  if(!glfwVulkanSupported()){
     printf("GLFW: Vulkan Not Supported\n");
     exit(0);
   }
@@ -76,29 +76,17 @@ void GLFW::destroy_window(){
 
   //---------------------------
 }
-void GLFW::set_window_size_minimum(int width, int height){
+bool GLFW::window_should_close(){
   //---------------------------
 
-  glfwSetWindowSizeLimits(vk_struct->window.handle, width, height, GLFW_DONT_CARE, GLFW_DONT_CARE);
+  bool stop = glfwWindowShouldClose(vk_struct->window.handle);
+  //config->run_app = !stop;
 
   //---------------------------
-}
-void GLFW::set_window_size_maximum(int width, int height){
-  //---------------------------
-
-  glfwSetWindowSizeLimits(vk_struct->window.handle, GLFW_DONT_CARE, GLFW_DONT_CARE, width, height);
-
-  //---------------------------
+  return stop;
 }
 
 //Sizing function
-void GLFW::manage_input(){
-  //---------------------------
-
-  glfwPollEvents();
-
-  //---------------------------
-}
 vec2 GLFW::compute_window_dim(){
   vec2 dim = vec2(0);
   //---------------------------
@@ -124,23 +112,35 @@ bool GLFW::check_for_resizing(){
   //---------------------------
   return vk_struct->window.resized;
 }
-bool GLFW::window_should_close(){
+void GLFW::set_window_constraint_min(int width, int height){
   //---------------------------
 
-  bool stop = glfwWindowShouldClose(vk_struct->window.handle);
-  //config->run_app = !stop;
+  glfwSetWindowSizeLimits(vk_struct->window.handle, width, height, GLFW_DONT_CARE, GLFW_DONT_CARE);
 
   //---------------------------
-  return stop;
+}
+void GLFW::set_window_constraint_max(int width, int height){
+  //---------------------------
+
+  glfwSetWindowSizeLimits(vk_struct->window.handle, GLFW_DONT_CARE, GLFW_DONT_CARE, width, height);
+
+  //---------------------------
 }
 
-//Mouse position
+//Input function
+void GLFW::manage_input(){
+  //---------------------------
+
+  glfwPollEvents();
+
+  //---------------------------
+}
 glm::vec2 GLFW::get_mouse_pose(){
   //---------------------------
 
   double xpos, ypos;
   glfwGetCursorPos(vk_struct->window.handle, &xpos, &ypos);
-  glm::vec2 pos = glm::vec2(xpos, ypos);
+  glm::vec2 pos_1 = glm::vec2(xpos, ypos);
 
   //---------------------------
   return pos;

@@ -20,20 +20,20 @@ public:
   void loop();
   void clean();
 
-  //Subfunction
+  //Window function
   void create_window();
   void close_window();
   void destroy_window();
-  void set_window_size_minimum(int width, int height);
-  void set_window_size_maximum(int width, int height);
-
-  //Operation function
-  void manage_input();
-  vec2 compute_window_dim();
-  bool check_for_resizing();
   bool window_should_close();
 
-  //Mouse
+  //Sizing function
+  vec2 compute_window_dim();
+  bool check_for_resizing();
+  void set_window_constraint_min(int width, int height);
+  void set_window_constraint_max(int width, int height);
+
+  //Input function
+  void manage_input();
   glm::vec2 get_mouse_pose();
   glm::vec2 get_dimension();
   glm::vec2 get_center();

@@ -5,6 +5,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::draw{class Graphical;}
+namespace vk::window{class GLFW;}
 
 
 namespace vk::main{
@@ -24,6 +25,7 @@ public:
 
 private:
   vk::draw::Graphical* vk_drawer;
+  vk::window::GLFW* vk_window;
 };
 
 }
