@@ -86,10 +86,10 @@ void Control::control_mouse(){
   //----------------------------
 
   //Get center of the current panel
-  ImVec2 windowPos = ImGui::GetWindowPos();
-  ImVec2 windowSize = ImGui::GetWindowSize();
-  int center_x = windowPos.x + windowSize.x * 0.5f;
-  int center_y = windowPos.y + windowSize.y * 0.5f;
+  ImVec2 window_pose = ImGui::GetWindowPos();
+  ImVec2 window_size = ImGui::GetWindowSize();
+  int center_x = window_pose.x + window_size.x * 0.5f;
+  int center_y = window_pose.y + window_size.y * 0.5f;
   ImVec2 center = ImVec2(center_x, center_y);
 
   utl::entity::Camera* camera = cam_manager->get_current_camera();

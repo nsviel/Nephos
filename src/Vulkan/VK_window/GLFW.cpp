@@ -26,9 +26,9 @@ void GLFW::init(){
 void GLFW::loop(){
   //---------------------------
 
-  this->manage_input();
-  this->window_should_close();
-  this->check_for_resizing();
+  this->window_input();
+  this->window_closing();
+  this->window_resizing();
 
   //---------------------------
 }
@@ -79,12 +79,15 @@ void GLFW::destroy_window(){
 
   //---------------------------
 }
-bool GLFW::window_should_close(){
+bool GLFW::window_closing(){
   if(vk_struct->window.handle == nullptr) return false;
   //---------------------------
 
   bool closing = glfwWindowShouldClose(vk_struct->window.handle);
-  //config->run_app = !stop;
+  if(closing){
+    bool& running = *vk_struct->param.app_running;
+    running = false;
+  }
 
   //---------------------------
   return closing;
@@ -116,7 +119,7 @@ vec2 GLFW::update_window_dim(){
   //---------------------------
   return dimension;
 }
-bool GLFW::check_for_resizing(){
+bool GLFW::window_resizing(){
   if(vk_struct->window.handle == nullptr) return false;
   //---------------------------
 
@@ -157,7 +160,7 @@ void GLFW::wait_event(){
 
   //---------------------------
 }
-void GLFW::manage_input(){
+void GLFW::window_input(){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 

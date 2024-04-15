@@ -91,7 +91,7 @@ ImTextureID Imgui::create_imgui_texture(int UID){
 ImTextureID Imgui::query_engine_texture(){
   static ImTextureID texture = 0;
   //---------------------------
-say("2");
+
   bool has_been_resized = check_window_resize();
 
   if(texture == 0 || vk_struct->window.resized || has_been_resized){

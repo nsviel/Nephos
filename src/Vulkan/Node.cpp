@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Application/Node.h>
+#include <Application/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
@@ -10,13 +10,10 @@ namespace vk{
 
 //Constructor / Destructor
 Node::Node(app::Node* node_app){
-
   //---------------------------
 
-  prf::Node* node_profiler = node_app->get_node_profiler();
-
-  this->vk_struct = new vk::structure::Vulkan(node_profiler);
-  vk_struct->param.headless = true;
+  this->vk_struct = new vk::structure::Vulkan(node_app);
+  vk_struct->param.headless = false;
 
   this->vk_engine = vk_struct->param.headless ? static_cast<vk::main::Engine*>(new vk::main::Headless(vk_struct)) : static_cast<vk::main::Engine*>(new vk::main::Graphical(vk_struct));
   this->vk_render = new vk::render::Manager(vk_struct);

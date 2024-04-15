@@ -1,7 +1,7 @@
 #include "Node.h"
-#include "Configuration.h"
 
-#include <GUI/Node.h>
+#include <Application/Namespace.h>
+#include <GUI/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
@@ -15,7 +15,7 @@ namespace app{
 Node::Node(){
   //---------------------------
 
-  this->config = new Configuration();
+  this->app_config = new app::Configuration();
   this->node_profiler = new prf::Node();
   this->node_vulkan = new vk::Node(this);
   this->node_engine = new eng::Node(this);
@@ -54,8 +54,7 @@ void Node::loop(){
   //---------------------------
 
   auto start_time = std::chrono::steady_clock::now();
-  this->running = true;
-  while(running){
+  while(app_config->running){
     tasker_cpu->loop_begin(120);
     tasker_gpu->loop_begin();
 
