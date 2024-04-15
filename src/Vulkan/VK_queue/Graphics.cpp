@@ -54,18 +54,18 @@ void Graphics::stop_thread(){
 
   //---------------------------
 }
+
+//Processing
 void Graphics::wait_for_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(queue_idle == false){
+  while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
   //---------------------------
 }
-
-//Processing
 void Graphics::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
@@ -100,7 +100,7 @@ void Graphics::add_command(vk::structure::Command* command){
 
   this->wait_for_idle();
   vec_command_prepa.push_back(command);
-  this->queue_idle = false;
+  this->thread_idle = false;
   this->with_presentation = false;
 
   //---------------------------
@@ -110,7 +110,7 @@ void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
 
   this->wait_for_idle();
   vec_command_prepa = vec_command;
-  this->queue_idle = false;
+  this->thread_idle = false;
   this->with_presentation = false;
 
   //---------------------------
@@ -120,7 +120,7 @@ void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
 
   this->wait_for_idle();
   vec_command_prepa = vec_command;
-  this->queue_idle = false;
+  this->thread_idle = false;
   this->with_presentation = true;
 
   //---------------------------
@@ -160,7 +160,7 @@ void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& don
   //---------------------------
 }
 void Graphics::make_submission(vector<VkSubmitInfo>& vec_info){
-  this->queue_idle = false;
+  this->thread_idle = false;
   //---------------------------
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
@@ -175,7 +175,7 @@ void Graphics::make_submission(vector<VkSubmitInfo>& vec_info){
   vk_fence->reset_fence(fence);
 
   //---------------------------
-  this->queue_idle = true;
+  this->thread_idle = true;
 }
 void Graphics::post_submission(VkSemaphore& semaphore_done){
   //---------------------------

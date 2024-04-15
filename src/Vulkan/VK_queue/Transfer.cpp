@@ -58,7 +58,7 @@ void Transfer::wait_for_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(queue_idle == false){
+  while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
@@ -84,7 +84,7 @@ void Transfer::add_command(vk::structure::Command_buffer* command){
   }
 
   //---------------------------
-  this->queue_idle = false;
+  this->thread_idle = false;
 }
 void Transfer::process_command(){
   if(!thread_running) return;
@@ -111,7 +111,7 @@ void Transfer::build_submission(){
   //---------------------------
 }
 void Transfer::make_submission(){
-  this->queue_idle = false;
+  this->thread_idle = false;
   //---------------------------
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
@@ -134,7 +134,7 @@ void Transfer::make_submission(){
   vk_fence->reset_fence(fence);
 
   //---------------------------
-  this->queue_idle = true;
+  this->thread_idle = true;
 }
 void Transfer::post_submission(){
   //---------------------------

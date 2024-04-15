@@ -18,6 +18,16 @@ Presentation::Presentation(vk::structure::Vulkan* vk_struct){
 Presentation::~Presentation(){}
 
 //Main function
+void Presentation::wait_for_idle(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  //---------------------------
+}
 bool Presentation::acquire_next_image(VkSemaphore& semaphore){
   vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------
@@ -49,12 +59,14 @@ bool Presentation::check_for_resizing(){
   return false;
 }
 void Presentation::image_presentation(VkSemaphore& semaphore){
+  this->thread_idle = false;
   //---------------------------
 
   this->submit_presentation(semaphore);
   this->next_frame_ID();
 
   //---------------------------
+  this->thread_idle = true;
 }
 
 //Subfunction
@@ -77,6 +89,7 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
   //Window resizing
   vk_surface->check_for_resizing();
   if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || vk_struct->window.resized){
+    this->thread_idle = true;
     vk_swapchain->recreate_swapchain();
   }else if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to present swap chain image!");

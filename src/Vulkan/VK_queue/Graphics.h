@@ -24,9 +24,9 @@ public:
   void start_thread();
   void run_thread();
   void stop_thread();
-  void wait_for_idle();
-
+  
   //Processing
+  void wait_for_idle();
   void wait_for_command();
   void process_command();
 
@@ -40,7 +40,7 @@ public:
   void make_submission(vector<VkSubmitInfo>& vec_info);
   void post_submission(VkSemaphore& semaphore_done);
 
-  inline bool is_queue_idle(){return queue_idle;}
+  inline bool is_thread_idle(){return thread_idle;}
 
 private:
   vk::structure::Vulkan* vk_struct;
@@ -49,8 +49,7 @@ private:
 
   std::vector<vk::structure::Command*> vec_command_onrun;
   std::vector<vk::structure::Command*> vec_command_prepa;
-  bool queue_idle = true;
-  bool queue_standby = false;
+  bool thread_idle = true;
   bool thread_running = false;
   bool with_presentation = false;
   std::thread thread;

@@ -35,7 +35,7 @@ public:
   void make_submission();
   void post_submission();
 
-  inline bool is_queue_idle(){return queue_idle;}
+  inline bool is_thread_idle(){return thread_idle;}
 
 private:
   vk::structure::Vulkan* vk_struct;
@@ -47,8 +47,7 @@ private:
   std::vector<VkCommandBuffer> vec_command_buffer;
   std::thread thread;
   bool thread_running = false;
-  bool queue_idle = true;
-  bool queue_standby = false;
+  bool thread_idle = true;
 };
 
 }
