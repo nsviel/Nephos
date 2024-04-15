@@ -64,7 +64,7 @@ void Transfer::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer
   //End and submit command
   vk_command_buffer->end_command_buffer(command_buffer);
   vk::structure::Command* command = new vk::structure::Command();
-  command->vec_command_buffer.push_back(command_buffer);
+  command->command_buffer = command_buffer;
   vk_struct->queue.graphics->add_command(command);
 
   //---------------------------
@@ -92,7 +92,7 @@ void Transfer::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer
   //End and submit command buffer
   vk_command_buffer->end_command_buffer(command_buffer);
   vk::structure::Command* command = new vk::structure::Command();
-  command->vec_command_buffer.push_back(command_buffer);
+  command->command_buffer = command_buffer;
   vk_struct->queue.graphics->add_command(command);
 
   //---------------------------

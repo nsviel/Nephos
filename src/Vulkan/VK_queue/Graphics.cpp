@@ -145,24 +145,24 @@ void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& don
 
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-    if(command->vec_semaphore_processing.size() > 0){
+    if(command->semaphore_wait != VK_NULL_HANDLE){
       submit_info.waitSemaphoreCount = 1;
-      submit_info.pWaitSemaphores = &command->vec_semaphore_processing[0];
+      submit_info.pWaitSemaphores = &command->semaphore_wait;
     }
 
-    if(command->vec_wait_stage.size() > 0){
-      submit_info.pWaitDstStageMask = &command->vec_wait_stage[0];
-    }
-
-    if(command->vec_semaphore_done.size() > 0){
+    if(command->semaphore_done != VK_NULL_HANDLE){
       submit_info.signalSemaphoreCount = 1;
-      submit_info.pSignalSemaphores = &command->vec_semaphore_done[0];
+      submit_info.pSignalSemaphores = &command->semaphore_done;
 
-      done = command->vec_semaphore_done[0];
+      done = command->semaphore_done;
+    }
+
+    if(command->wait_stage != 0){
+      submit_info.pWaitDstStageMask = &command->wait_stage;
     }
 
     submit_info.commandBufferCount = 1;
-    submit_info.pCommandBuffers = &command->vec_command_buffer[0]->command;
+    submit_info.pCommandBuffers = &command->command_buffer->command;
 
     vec_info.push_back(submit_info);
   }
@@ -193,18 +193,14 @@ void Graphics::post_submission(VkSemaphore& semaphore_done){
   for(int i=0; i<vec_command_onrun.size(); i++){
     vk::structure::Command* command = vec_command_onrun[i];
 
-    for(int i=0; i<command->vec_command_buffer.size(); i++){
-      vk::structure::Command_buffer* command_buffer = command->vec_command_buffer[i];
+    //Command buffer timestamp
+    vk_query->find_query_timestamp(command->command_buffer);
 
-      //Command buffer timestamp
-      vk_query->find_query_timestamp(command_buffer);
-
-      //Command buffer reset
-      if(command_buffer->is_resetable){
-        command_buffer->is_available = true;
-        command_buffer->is_recorded = false;
-        command_buffer->query.is_in_use = false;
-      }
+    //Command buffer reset
+    if(command->command_buffer->is_resetable){
+      command->command_buffer->is_available = true;
+      command->command_buffer->is_recorded = false;
+      command->command_buffer->query.is_in_use = false;
     }
   }
 
