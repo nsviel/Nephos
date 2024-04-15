@@ -27,9 +27,9 @@ Screenshot::~Screenshot(){}
 void Screenshot::make_screenshot(){
   //---------------------------
 
-  vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[1];
-  vk::structure::Image image = renderpass->framebuffer->color;
-  this->export_image_to_jpeg(&image);
+  vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");
+  vk::structure::Image* image = &renderpass->framebuffer->color;
+  this->export_image_to_jpeg(image);
 
   //---------------------------
 }

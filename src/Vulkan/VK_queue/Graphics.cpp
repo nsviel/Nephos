@@ -96,40 +96,44 @@ void Graphics::process_command(){
 
 //Command
 void Graphics::add_command(vk::structure::Command* command){
-  mutex.lock();
   //---------------------------
 
   this->wait_for_idle();
+
+  mutex.lock();
   vec_command_prepa.push_back(command);
   this->thread_idle = false;
   this->with_presentation = false;
+  mutex.unlock();
 
   //---------------------------
-  mutex.unlock();
 }
 void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
-  mutex.lock();
   //---------------------------
 
   this->wait_for_idle();
+
+  mutex.lock();
   vec_command_prepa = vec_command;
   this->thread_idle = false;
   this->with_presentation = false;
+  mutex.unlock();
 
   //---------------------------
-  mutex.unlock();
+
 }
 void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
-  mutex.lock();
   //---------------------------
 
   this->wait_for_idle();
+
+  mutex.lock();
   vec_command_prepa = vec_command;
   this->thread_idle = false;
   this->with_presentation = true;
+  mutex.unlock();
 
   //---------------------------
-  mutex.unlock();
 }
 
 //Submission
