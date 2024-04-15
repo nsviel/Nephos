@@ -37,8 +37,8 @@ void Screenshot::run_thread(){
 
   //Playback thread
   while(thread_running){
-    //vk_screenshot->make_screenshot();
-    std::this_thread::sleep_for(std::chrono::milliseconds(60));
+    vk_screenshot->make_screenshot();
+    std::this_thread::sleep_for(std::chrono::milliseconds(30));
   }
 
   //---------------------------

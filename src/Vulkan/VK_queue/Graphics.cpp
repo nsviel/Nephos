@@ -66,6 +66,16 @@ void Graphics::wait_for_idle(){
 
   //---------------------------
 }
+void Graphics::wait_for_work(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(thread_idle){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  //---------------------------
+}
 void Graphics::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
@@ -104,6 +114,7 @@ void Graphics::add_command(vk::structure::Command* command){
   vec_command_prepa.push_back(command);
   this->thread_idle = false;
   this->with_presentation = false;
+  this->wait_for_work();
   mutex.unlock();
 
   //---------------------------
@@ -117,6 +128,7 @@ void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
   vec_command_prepa = vec_command;
   this->thread_idle = false;
   this->with_presentation = false;
+  this->wait_for_work();
   mutex.unlock();
 
   //---------------------------
@@ -131,6 +143,7 @@ void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
   vec_command_prepa = vec_command;
   this->thread_idle = false;
   this->with_presentation = true;
+  this->wait_for_work();
   mutex.unlock();
 
   //---------------------------

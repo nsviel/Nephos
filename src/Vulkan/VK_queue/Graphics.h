@@ -26,6 +26,7 @@ public:
   void stop_thread();
 
   //Processing
+  void wait_for_work();
   void wait_for_idle();
   void wait_for_command();
   void process_command();
