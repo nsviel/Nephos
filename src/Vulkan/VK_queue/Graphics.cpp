@@ -92,7 +92,6 @@ void Graphics::process_command(){
   this->post_submission(flag);
 
   //---------------------------
-  this->queue_idle = true;
 }
 
 //Command
@@ -161,6 +160,7 @@ void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& don
   //---------------------------
 }
 void Graphics::make_submission(vector<VkSubmitInfo>& vec_info){
+  this->queue_idle = false;
   //---------------------------
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
@@ -175,6 +175,7 @@ void Graphics::make_submission(vector<VkSubmitInfo>& vec_info){
   vk_fence->reset_fence(fence);
 
   //---------------------------
+  this->queue_idle = true;
 }
 void Graphics::post_submission(VkSemaphore& semaphore_done){
   //---------------------------

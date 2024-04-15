@@ -77,7 +77,7 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
   //Window resizing
   vk_surface->check_for_resizing();
   if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || vk_struct->window.resized){
-    //vk_swapchain->recreate_swapchain();
+    vk_swapchain->recreate_swapchain();
   }else if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to present swap chain image!");
   }

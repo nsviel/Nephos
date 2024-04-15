@@ -95,7 +95,6 @@ void Transfer::process_command(){
   this->post_submission();
 
   //---------------------------
-  this->queue_idle = true;
 }
 
 //Submission
@@ -112,6 +111,7 @@ void Transfer::build_submission(){
   //---------------------------
 }
 void Transfer::make_submission(){
+  this->queue_idle = false;
   //---------------------------
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
@@ -134,6 +134,7 @@ void Transfer::make_submission(){
   vk_fence->reset_fence(fence);
 
   //---------------------------
+  this->queue_idle = true;
 }
 void Transfer::post_submission(){
   //---------------------------
