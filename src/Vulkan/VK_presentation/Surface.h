@@ -21,7 +21,7 @@ public:
   void clean();
 
   //Subfunction
-  void check_for_resizing();
+  bool check_for_resizing();
 
 private:
   vk::structure::Vulkan* vk_struct;

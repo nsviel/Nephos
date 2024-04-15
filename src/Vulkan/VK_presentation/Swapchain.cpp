@@ -55,7 +55,7 @@ say("swapchain recreation");
   vk_frame->create_frame();
   vk_framebuffer->create_framebuffers();
   vk_synchro->end_idle();
-
+say("swapchain recreated !!!");
   //---------------------------
 }
 void Swapchain::clean(){

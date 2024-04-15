@@ -33,19 +33,17 @@ void Surface::clean(){
 }
 
 //Subfunction
-void Surface::check_for_resizing(){
-  static vec2 window_dim = vk_struct->window.dimension;
+bool Surface::check_for_resizing(){
   //---------------------------
 
-  bool is_resized = false;
-  vec2 last_dim = vk_window->update_window_dim();
-  if(last_dim.x != window_dim.x || last_dim.y != window_dim.y){
-    is_resized = true;
-    window_dim = last_dim;
+  vec2 current_dim = vk_window->get_window_dim();
+  if(current_dim.x != vk_struct->window.dimension.x || current_dim.y != vk_struct->window.dimension.y){
+    vk_struct->window.resized = true;
+    return true;
   }
 
   //---------------------------
-  vk_struct->window.resized = is_resized;
+  return false;
 }
 
 }

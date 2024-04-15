@@ -224,13 +224,28 @@ void Graphics::post_submission(VkSemaphore& semaphore_done){
       command->command_buffer->is_recorded = false;
       command->command_buffer->query.is_in_use = false;
     }
-
-    delete command;
   }
 
   //If required, make image presentation
   if(with_presentation){
     vk_struct->queue.presentation->image_presentation(semaphore_done);
+  }
+
+  //Reset all semaphore
+  for(int i=0; i<vec_command_onrun.size(); i++){
+    vk::structure::Command* command = vec_command_onrun[i];
+
+    //Command buffer timestamp
+    vk_query->find_query_timestamp(command->command_buffer);
+
+    //Command buffer reset
+    if(command->command_buffer->is_resetable){
+      command->command_buffer->is_available = true;
+      command->command_buffer->is_recorded = false;
+      command->command_buffer->query.is_in_use = false;
+    }
+
+    delete command;
   }
 
   //---------------------------

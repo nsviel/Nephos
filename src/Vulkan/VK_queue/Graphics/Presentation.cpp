@@ -50,8 +50,7 @@ bool Presentation::check_for_resizing(){
   vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------
 
-  vk_surface->check_for_resizing();
-  if(vk_struct->window.resized){
+  if(vk_surface->check_for_resizing()){
     vk_swapchain->recreate_swapchain();
     return true;
   }
@@ -89,6 +88,7 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
 
   //Window resizing
   if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR){
+    say("pas top");
     //this->thread_idle = true;
     //vk_swapchain->recreate_swapchain();
   }else if(result != VK_SUCCESS){

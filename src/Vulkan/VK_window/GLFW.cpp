@@ -119,6 +119,17 @@ vec2 GLFW::update_window_dim(){
   //---------------------------
   return dimension;
 }
+vec2 GLFW::get_window_dim(){
+  if(vk_struct->window.handle == nullptr) return vec2(0, 0);
+  //---------------------------
+
+  int width, height;
+  glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
+  vec2 dimension = vec2(width, height);
+
+  //---------------------------
+  return dimension;
+}
 bool GLFW::window_resizing(){
   if(vk_struct->window.handle == nullptr) return false;
   //---------------------------
