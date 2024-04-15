@@ -34,7 +34,7 @@ void Headless::draw_frame(){
     command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
     command->command_buffer = renderpass->command_buffer;
     semaphore = vk_semaphore->query_free_semaphore();
-    command->semaphore_done = semaphore->handle;
+    if(i < vk_struct->render.vec_renderpass.size() - 1) command->semaphore_done = semaphore->handle;
     vec_command.push_back(command);
   }
 
