@@ -23,7 +23,7 @@ struct Image{
   uint32_t mip_level = 1;
 
   //Image info
-  VkImage image = VK_NULL_HANDLE;
+  VkImage handle = VK_NULL_HANDLE;
   VkImageView view = VK_NULL_HANDLE;
   VkImageTiling tiling = VK_IMAGE_TILING_OPTIMAL;
   VkImageUsageFlags usage = 0;

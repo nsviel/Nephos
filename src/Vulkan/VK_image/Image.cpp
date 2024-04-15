@@ -34,7 +34,7 @@ void Image::clean_image(vk::structure::Image* image){
 
   if(image->view != nullptr)
   vkDestroyImageView(vk_struct->device.handle, image->view, nullptr);
-  vkDestroyImage(vk_struct->device.handle, image->image, nullptr);
+  vkDestroyImage(vk_struct->device.handle, image->handle, nullptr);
   vkFreeMemory(vk_struct->device.handle, image->mem, nullptr);
 
   //---------------------------
@@ -59,7 +59,7 @@ void Image::create_image_obj(vk::structure::Image* image){
   image_info.samples = vk_struct->device.physical_device.max_sample_count;
   image_info.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 
-  VkResult result = vkCreateImage(vk_struct->device.handle, &image_info, nullptr, &image->image);
+  VkResult result = vkCreateImage(vk_struct->device.handle, &image_info, nullptr, &image->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to create image!");
   }
@@ -79,7 +79,7 @@ void Image::create_image_view(vk::structure::Image* image){
   view_info.subresourceRange.baseArrayLayer = 0;
   view_info.subresourceRange.levelCount = image->mip_level;
   view_info.format = image->format;
-  view_info.image = image->image;
+  view_info.image = image->handle;
   view_info.flags = 0;
 
   VkResult result = vkCreateImageView(vk_struct->device.handle, &view_info, nullptr, &image->view);

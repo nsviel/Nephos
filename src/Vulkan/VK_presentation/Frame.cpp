@@ -27,7 +27,7 @@ void Frame::create_frame(){
 
   for(int i=0; i<vk_struct->swapchain.vec_swapchain_image.size(); i++){
     vk::structure::Frame* frame = new vk::structure::Frame();
-    frame->color.image = vk_struct->swapchain.vec_swapchain_image[i];
+    frame->color.handle = vk_struct->swapchain.vec_swapchain_image[i];
     frame->color.format = vk_color->find_color_format();
     frame->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
     frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;

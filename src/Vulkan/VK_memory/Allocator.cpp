@@ -20,7 +20,7 @@ void Allocator::allocate_image_memory(vk::structure::Image* image){
   //---------------------------
 
   VkMemoryRequirements memRequirements;
-  vkGetImageMemoryRequirements(vk_struct->device.handle, image->image, &memRequirements);
+  vkGetImageMemoryRequirements(vk_struct->device.handle, image->handle, &memRequirements);
 
   VkMemoryAllocateInfo allocInfo{};
   allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
@@ -31,7 +31,7 @@ void Allocator::allocate_image_memory(vk::structure::Image* image){
     throw std::runtime_error("failed to allocate image memory!");
   }
 
-  vkBindImageMemory(vk_struct->device.handle, image->image, image->mem, 0);
+  vkBindImageMemory(vk_struct->device.handle, image->handle, image->mem, 0);
 
   //---------------------------
 }
