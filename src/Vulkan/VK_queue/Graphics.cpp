@@ -145,11 +145,14 @@ void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& don
 
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+
+    //Semaphore wait
     if(command->semaphore_wait != VK_NULL_HANDLE){
       submit_info.waitSemaphoreCount = 1;
       submit_info.pWaitSemaphores = &command->semaphore_wait;
     }
 
+    //Semaphore done
     if(command->semaphore_done != VK_NULL_HANDLE){
       submit_info.signalSemaphoreCount = 1;
       submit_info.pSignalSemaphores = &command->semaphore_done;
@@ -157,12 +160,18 @@ void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& don
       done = command->semaphore_done;
     }
 
+    //Pipeline wait stage
     if(command->wait_stage != 0){
       submit_info.pWaitDstStageMask = &command->wait_stage;
     }
 
-    submit_info.commandBufferCount = 1;
-    submit_info.pCommandBuffers = &command->command_buffer->command;
+    //Command buffer
+    if(command->command_buffer->command != VK_NULL_HANDLE){
+      submit_info.commandBufferCount = 1;
+      submit_info.pCommandBuffers = &command->command_buffer->command;
+    }else{
+      cout<<"[error] command buffer is VK_NULL"<<endl;
+    }
 
     vec_info.push_back(submit_info);
   }
