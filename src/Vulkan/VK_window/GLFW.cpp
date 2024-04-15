@@ -137,6 +137,14 @@ void GLFW::set_window_constraint_max(int width, int height){
 }
 
 //Input function
+void GLFW::wait_event(){
+  if(vk_struct->window.handle == nullptr) return;
+  //---------------------------
+
+  glfwWaitEvents();
+
+  //---------------------------
+}
 void GLFW::manage_input(){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------

@@ -33,6 +33,7 @@ public:
   void set_window_constraint_max(int width, int height);
 
   //Input function
+  void wait_event();
   void manage_input();
   void set_center(vec2 value);
   void set_mouse_pose(glm::vec2 pos);

@@ -32,21 +32,20 @@ void Imgui::init(){
   //---------------------------
 }
 void Imgui::draw(vk::structure::Command_buffer* command_buffer){
+  if(vk_struct->param.headless) return;
   //---------------------------
 
-  ImDrawData* draw_data = ImGui::GetDrawData();
-  if(draw_data == nullptr) return;
+  ImDrawData* draw = ImGui::GetDrawData();
+  if(draw == nullptr) return;
 
-  ImGui_ImplVulkan_RenderDrawData(draw_data, command_buffer->command);
+  ImGui_ImplVulkan_RenderDrawData(draw, command_buffer->command);
 
   //---------------------------
 }
 void Imgui::clean(){
   //---------------------------
 
-  ImGui_ImplVulkan_DestroyFontUploadObjects();
-  ImGui_ImplVulkan_Shutdown();
-  ImGui_ImplGlfw_Shutdown();
+  this->glfw_clean();
   ImPlot::DestroyContext();
   ImGui::DestroyContext();
 
@@ -62,8 +61,7 @@ void Imgui::render(){
 void Imgui::new_frame(){
   //---------------------------
 
-  ImGui_ImplVulkan_NewFrame();
-  ImGui_ImplGlfw_NewFrame();
+  this->glfw_new_frame();
   ImGui::NewFrame();
 
   //---------------------------
@@ -202,6 +200,7 @@ void Imgui::select_font(){
   //---------------------------
 }
 void Imgui::load_font(){
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->device.queue.graphics);
@@ -214,6 +213,27 @@ void Imgui::load_font(){
   vk::structure::Command* command = new vk::structure::Command();
   command->vec_command_buffer.push_back(command_buffer);
   vk_struct->queue.graphics->add_command(command);
+
+  //---------------------------
+}
+
+//GLFW
+void Imgui::glfw_clean(){
+  if(vk_struct->param.headless) return;
+  //---------------------------
+
+  ImGui_ImplVulkan_DestroyFontUploadObjects();
+  ImGui_ImplVulkan_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+
+  //---------------------------
+}
+void Imgui::glfw_new_frame(){
+  if(vk_struct->param.headless) return;
+  //---------------------------
+
+  ImGui_ImplVulkan_NewFrame();
+  ImGui_ImplGlfw_NewFrame();
 
   //---------------------------
 }

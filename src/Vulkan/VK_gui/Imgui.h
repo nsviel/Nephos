@@ -43,6 +43,10 @@ public:
   void select_font();
   void load_font();
 
+  //GLFW
+  void glfw_clean();
+  void glfw_new_frame();
+
 private:
   vk::structure::Vulkan* vk_struct;
   vk::structure::Command_buffer* command_buffer;

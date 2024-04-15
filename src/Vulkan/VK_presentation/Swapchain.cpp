@@ -12,10 +12,11 @@ Swapchain::Swapchain(vk::structure::Vulkan* vk_struct){
   this->vk_struct = vk_struct;
   this->dev_physical = new vk::device::Physical(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
-  this->vk_frame = new Frame(vk_struct);
+  this->vk_frame = new vk::presentation::Frame(vk_struct);
   this->vk_framebuffer = new vk::renderpass::Framebuffer(vk_struct);
-  this->vk_surface = new Surface(vk_struct);
+  this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
+  this->vk_window = new vk::window::GLFW(vk_struct);
 
   //---------------------------
 }
@@ -39,10 +40,9 @@ void Swapchain::recreate_swapchain(){
   //---------------------------
 
   //Pause if window is minimized
-  int width = 0, height = 0;
-  while(width == 0 || height == 0){
-    glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
-    glfwWaitEvents();
+  vec2 dim = vk_window->update_window_dim();
+  while(dim == vec2(0, 0)){
+    vk_window->wait_event();
   }
 
   //Clean old swapchain
