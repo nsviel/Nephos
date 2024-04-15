@@ -11,16 +11,7 @@ struct Command{
   //---------------------------
 
   //Command
-  std::vector<vk::structure::Command_buffer*> vec_command_buffer;
-  std::vector<VkPipelineStageFlags> vec_wait_stage;
-
-  //Synchronization
-  std::vector<VkSemaphore> vec_semaphore_processing;
-  std::vector<VkSemaphore> vec_semaphore_done;
-
-
-
-  vk::structure::Command_buffer* command_buffer;
+  vk::structure::Command_buffer* command_buffer = nullptr;
   VkPipelineStageFlags wait_stage = 0;
 
   //Synchronization

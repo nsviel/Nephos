@@ -31,8 +31,8 @@ public:
   void process_command();
 
   //Submission
-  void build_submission();
-  void make_submission();
+  void build_submission(vector<VkSubmitInfo>& vec_info);
+  void make_submission(vector<VkSubmitInfo>& vec_info);
   void post_submission();
 
   inline bool is_thread_idle(){return thread_idle;}

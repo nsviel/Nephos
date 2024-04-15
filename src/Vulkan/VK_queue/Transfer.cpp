@@ -92,39 +92,42 @@ void Transfer::process_command(){
   if(!thread_running) return;
   //---------------------------
 
-  this->build_submission();
-  this->make_submission();
+  //Passing the command torch
+  this->vec_command_onrun = vec_command_prepa;
+  this->vec_command_prepa.clear();
+
+  //Submission stuff
+  vector<VkSubmitInfo> vec_info;
+  this->build_submission(vec_info);
+  this->make_submission(vec_info);
   this->post_submission();
 
   //---------------------------
 }
 
 //Submission
-void Transfer::build_submission(){
+void Transfer::build_submission(vector<VkSubmitInfo>& vec_info){
   //---------------------------
 
-  this->vec_command_onrun = vec_command_prepa;
-  this->vec_command_prepa.clear();
-
   for(int i=0; i<vec_command_onrun.size(); i++){
-    this->vec_command_buffer.push_back(vec_command_onrun[i]->command);
+    VkSubmitInfo submit_info{};
+    submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+    submit_info.commandBufferCount = 1;
+    submit_info.pCommandBuffers = &vec_command_onrun[i]->command;
+
+    vec_info.push_back(submit_info);
   }
 
   //---------------------------
 }
-void Transfer::make_submission(){
+void Transfer::make_submission(vector<VkSubmitInfo>& vec_info){
   this->thread_idle = false;
   //---------------------------
 
   vk::structure::Fence* fence = vk_fence->query_free_fence();
 
-  VkSubmitInfo submit_info{};
-  submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-  submit_info.commandBufferCount = vec_command_buffer.size();
-  submit_info.pCommandBuffers = vec_command_buffer.data();
-
   VkQueue queue = vk_struct->device.queue.transfer.handle;
-  VkResult result = vkQueueSubmit(queue, 1, &submit_info, fence->fence);
+  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->fence);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] graphics queue submission");
   }
