@@ -6,6 +6,7 @@
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Semaphore;}
 namespace vk::structure{class Command;}
+namespace vk::structure{class Renderpass;}
 
 
 namespace vk::draw{
@@ -22,7 +23,7 @@ public:
   void draw_frame();
 
   //Subfunction
-  void record_renderpass(vk::structure::Semaphore* semaphore, vector<vk::structure::Command*>& vec_command);
+  void record_renderpass(vk::structure::Renderpass* renderpass, vk::structure::Semaphore* semaphore, vector<vk::structure::Command*>& vec_command);
 
 private:
 };

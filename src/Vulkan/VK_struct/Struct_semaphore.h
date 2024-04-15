@@ -8,8 +8,7 @@ namespace vk::structure{
 struct Semaphore{
   //---------------------------
 
-  VkSemaphore begin = VK_NULL_HANDLE;
-  VkSemaphore end = VK_NULL_HANDLE;
+  VkSemaphore handle = VK_NULL_HANDLE;
   bool is_available = true;
 
   //---------------------------
