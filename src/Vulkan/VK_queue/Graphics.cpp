@@ -65,7 +65,7 @@ void Graphics::wait_for_idle(){
   //---------------------------
 }
 
-//Command
+//Processing
 void Graphics::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
@@ -73,26 +73,6 @@ void Graphics::wait_for_command(){
   while((vec_command_prepa.empty() || vk_struct->queue.standby) && thread_running){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-
-  //---------------------------
-}
-void Graphics::add_command(vk::structure::Command* command){
-  //---------------------------
-
-  this->wait_for_idle();
-  vec_command_prepa.push_back(command);
-  this->queue_idle = false;
-  this->with_presentation = false;
-
-  //---------------------------
-}
-void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
-  //---------------------------
-
-  this->wait_for_idle();
-  vec_command_prepa = vec_command;
-  this->queue_idle = false;
-  this->with_presentation = true;
 
   //---------------------------
 }
@@ -113,6 +93,38 @@ void Graphics::process_command(){
 
   //---------------------------
   this->queue_idle = true;
+}
+
+//Command
+void Graphics::add_command(vk::structure::Command* command){
+  //---------------------------
+
+  this->wait_for_idle();
+  vec_command_prepa.push_back(command);
+  this->queue_idle = false;
+  this->with_presentation = false;
+
+  //---------------------------
+}
+void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
+  //---------------------------
+
+  this->wait_for_idle();
+  vec_command_prepa = vec_command;
+  this->queue_idle = false;
+  this->with_presentation = false;
+
+  //---------------------------
+}
+void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
+  //---------------------------
+
+  this->wait_for_idle();
+  vec_command_prepa = vec_command;
+  this->queue_idle = false;
+  this->with_presentation = true;
+
+  //---------------------------
 }
 
 //Submission
@@ -137,7 +149,7 @@ void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& don
       submit_info.signalSemaphoreCount = 1;
       submit_info.pSignalSemaphores = &command->vec_semaphore_done[0];
 
-          done = command->vec_semaphore_done[0];
+      done = command->vec_semaphore_done[0];
     }
 
     submit_info.commandBufferCount = 1;

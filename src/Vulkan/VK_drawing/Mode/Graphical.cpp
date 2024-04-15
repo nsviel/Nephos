@@ -32,7 +32,6 @@ void Graphical::draw_frame(){
 
     //Create command
     vk::structure::Command* command = new vk::structure::Command();
-    vec_command.push_back(command);
     command->vec_semaphore_processing.push_back(semaphore->end);
 
     //Run renderpass
@@ -43,6 +42,7 @@ void Graphical::draw_frame(){
     command->vec_command_buffer.push_back(renderpass->command_buffer);
     command->vec_semaphore_done.push_back(semaphore->end);
     command->vec_wait_stage.push_back(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
+    vec_command.push_back(command);
 
     vk_struct->profiler->tasker_main->task_end(name);
   }

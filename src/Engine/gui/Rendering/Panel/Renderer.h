@@ -4,6 +4,7 @@
 
 namespace vk::gui{class Imgui;}
 namespace vk::main{class Interface;}
+namespace vk::structure{class Vulkan;}
 namespace eng{class Node;}
 namespace eng::cam::gui{class Control;}
 namespace ope{class Node;}
@@ -32,6 +33,7 @@ private:
   ope::Node* node_operation;
   vk::gui::Imgui* vk_imgui;
   vk::main::Interface* vk_interface;
+  vk::structure::Vulkan* vk_struct;
 
   string name;
   bool has_been_initialized;

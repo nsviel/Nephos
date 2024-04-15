@@ -23,6 +23,7 @@ Renderer::Renderer(eng::Node* node_engine){
   this->cam_control = node_camera->get_gui_control();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_interface = node_vulkan->get_vk_interface();
+  this->vk_struct = node_vulkan->get_vk_struct();
 
   this->name = "Renderer";
 
