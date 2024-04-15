@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
+#include <mutex>
 
 
 namespace vk::pool{
@@ -20,6 +21,7 @@ struct Command_buffer{
 struct Fence{
   //---------------------------
 
+  std::mutex mutex;
   std::vector<vk::structure::Fence> tank;
   uint32_t size = 100;
 
@@ -29,6 +31,7 @@ struct Fence{
 struct Semaphore{
   //---------------------------
 
+  std::mutex mutex;
   std::vector<vk::structure::Semaphore> tank;
   uint32_t size = 100;
 
@@ -39,6 +42,7 @@ struct Descriptor{
   //---------------------------
 
   VkDescriptorPool memory;
+  std::mutex mutex;
   std::vector<vk::structure::Descriptor> tank;
   uint32_t size = 100;
 

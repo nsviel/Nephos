@@ -33,13 +33,14 @@ bool Presentation::acquire_next_image(VkSemaphore& semaphore){
   //---------------------------
 
   //Acquiring an image from the swap chain
-  vk_struct->queue.graphics->wait_for_idle();
+  if(check_for_resizing()) return false;
   VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
-  if(result == VK_ERROR_OUT_OF_DATE_KHR){
+  if(result == VK_ERROR_OUT_OF_DATE_KHR){say("out of date");
     vk_swapchain->recreate_swapchain();
     return false;
   }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
     throw std::runtime_error("[error] failed to acquire swap chain image!");
+    return false;
   }
 
   //---------------------------
@@ -50,7 +51,7 @@ bool Presentation::check_for_resizing(){
   //---------------------------
 
   vk_surface->check_for_resizing();
-  if(vk_struct->window.resized){say("SWAPCHAIN RECREATE ici");
+  if(vk_struct->window.resized){
     vk_swapchain->recreate_swapchain();
     return true;
   }
@@ -87,10 +88,9 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
   VkResult result = vkQueuePresentKHR(queue, &presentation_info);
 
   //Window resizing
-  vk_surface->check_for_resizing();
-  if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR || vk_struct->window.resized){
-    this->thread_idle = true;
-    vk_swapchain->recreate_swapchain();
+  if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR){
+    //this->thread_idle = true;
+    //vk_swapchain->recreate_swapchain();
   }else if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to present swap chain image!");
   }

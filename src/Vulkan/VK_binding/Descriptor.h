@@ -26,7 +26,6 @@ public:
 
   //Descriptor set update
   void update_descriptor_uniform(vk::structure::Binding* binding);
-  void update_descriptor_sampler(vk::structure::Binding* binding, vector<vk::structure::Image*> vec_image);
   void update_descriptor_sampler(vk::structure::Binding* binding, vk::structure::Image* image);
 
   //Subfunction

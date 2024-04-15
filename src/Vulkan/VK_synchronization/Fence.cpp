@@ -91,13 +91,12 @@ vk::structure::Fence* Fence::query_free_fence(){
   vk::pool::Fence* pool = &vk_struct->pools.fence;
   //---------------------------
 
+  std::lock_guard<std::mutex> lock(pool->mutex);
+
   // Random number generator setup
   std::random_device rd;  // Seed for the random number generator
   std::mt19937 gen(rd()); // Mersenne Twister PRNG
   std::uniform_int_distribution<int> distr(0, pool->tank.size() - 1);
-
-  // Mutex for synchronization
-  static std::mutex mtx;
 
   //Find the first free command buffer
   int index;
@@ -106,8 +105,6 @@ vk::structure::Fence* Fence::query_free_fence(){
     index = distr(gen); // Generate a random index
     fence = &pool->tank[index];
 
-    // Lock the mutex before accessing and modifying the flag
-    std::lock_guard<std::mutex> lock(mtx);
     if(fence->is_available){
       fence->is_available = false;
       return fence;

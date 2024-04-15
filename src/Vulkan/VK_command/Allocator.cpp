@@ -100,6 +100,10 @@ vk::pool::Command_buffer* Allocator::query_free_pool(vk::structure::Queue* queue
     }
   }
 
+  // Mutex for synchronization
+  static std::mutex mtx;
+  std::lock_guard<std::mutex> lock(mtx);
+
   //Else give it a specific pool
   for(int i=0; i<vec_pool.size(); i++){
     vk::pool::Command_buffer* pool = &vec_pool[i];

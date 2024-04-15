@@ -111,9 +111,9 @@ void Graphics::add_command(vk::structure::Command* command){
   this->wait_for_idle();
 
   mutex.lock();
-  vec_command_prepa.push_back(command);
   this->thread_idle = false;
   this->with_presentation = false;
+  vec_command_prepa.push_back(command);
   this->wait_for_work();
   mutex.unlock();
 
@@ -125,9 +125,9 @@ void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
   this->wait_for_idle();
 
   mutex.lock();
-  vec_command_prepa = vec_command;
   this->thread_idle = false;
   this->with_presentation = false;
+  vec_command_prepa = vec_command;
   this->wait_for_work();
   mutex.unlock();
 
@@ -140,9 +140,9 @@ void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
   this->wait_for_idle();
 
   mutex.lock();
-  vec_command_prepa = vec_command;
   this->thread_idle = false;
   this->with_presentation = true;
+  vec_command_prepa = vec_command;
   this->wait_for_work();
   mutex.unlock();
 
@@ -224,6 +224,8 @@ void Graphics::post_submission(VkSemaphore& semaphore_done){
       command->command_buffer->is_recorded = false;
       command->command_buffer->query.is_in_use = false;
     }
+
+    delete command;
   }
 
   //If required, make image presentation

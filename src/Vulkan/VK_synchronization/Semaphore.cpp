@@ -81,11 +81,32 @@ void Semaphore::clean_semaphore(vk::structure::Semaphore* semaphore){
 
   //---------------------------
 }
+void Semaphore::reset_semaphore(vk::structure::Semaphore* semaphore){
+  //---------------------------
+
+  // Initialize semaphore signal info
+  VkSemaphoreSignalInfo signalInfo{};
+  signalInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO;
+  signalInfo.semaphore = semaphore->handle; // Assuming 'handle' is the Vulkan semaphore handle
+
+  // Call vkSignalSemaphoreKHR to signal (reset) the semaphore
+  VkResult result = vkSignalSemaphore(vk_struct->device.handle, &signalInfo);
+  if (result != VK_SUCCESS) {
+      throw std::runtime_error("Failed to reset semaphore!");
+  }
+
+  // Update the semaphore state if needed
+  semaphore->is_available = true;
+
+  //---------------------------
+}
 
 //Subfunction
 vk::structure::Semaphore* Semaphore::query_free_semaphore(){
   vk::pool::Semaphore* pool = &vk_struct->pools.semaphore;
   //---------------------------
+
+  std::lock_guard<std::mutex> lock(pool->mutex);
 
   //Find the first free command buffer
   for(int i=0; i<pool->tank.size(); i++){

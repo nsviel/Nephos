@@ -74,45 +74,6 @@ void Descriptor::update_descriptor_uniform(vk::structure::Binding* binding){
 
   //---------------------------
 }
-void Descriptor::update_descriptor_sampler(vk::structure::Binding* binding, vector<vk::structure::Image*> vec_image){
-  //---------------------------
-
-  //For each sampler struct in binding struct search for image with same name in vec_image
-  //and then update the corresponding shader sampler
-  vector<VkWriteDescriptorSet> vec_descriptor_write;
-  vector<VkDescriptorImageInfo> vec_descriptor_image_info;
-  for(int i=0; i<binding->vec_sampler.size(); i++){
-    vk::structure::Sampler* sampler = binding->vec_sampler[i];
-
-    for(int j=0; j<vec_image.size(); j++){
-      vk::structure::Image* image = vec_image[j];
-
-      if(sampler->name == image->name){
-        VkDescriptorImageInfo image_info = {};
-        image_info.imageLayout = image->layout;
-        image_info.imageView = image->view;
-        image_info.sampler = image->sampler;
-        vec_descriptor_image_info.push_back(image_info);
-
-        VkWriteDescriptorSet write_sampler = {};
-        write_sampler.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-        write_sampler.dstSet = binding->descriptor.set;
-        write_sampler.dstBinding = sampler->binding;
-        write_sampler.dstArrayElement = 0;
-        write_sampler.descriptorType = sampler->type;
-        write_sampler.descriptorCount = 1;
-        write_sampler.pImageInfo = &vec_descriptor_image_info[vec_descriptor_image_info.size()-1];
-        vec_descriptor_write.push_back(write_sampler);
-      }
-    }
-  }
-
-  if(vec_descriptor_write.size() != 0){
-    vkUpdateDescriptorSets(vk_struct->device.handle, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
-  }
-
-  //---------------------------
-}
 void Descriptor::update_descriptor_sampler(vk::structure::Binding* binding, vk::structure::Image* image){
   //---------------------------
 
