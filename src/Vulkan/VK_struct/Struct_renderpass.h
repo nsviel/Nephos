@@ -10,14 +10,15 @@ struct Renderpass{
   //---------------------------
 
   //Info
-  std::string name;
-  std::string target;
-  std::vector<vk::structure::Subpass*> vec_subpass;
-  vk::structure::Command_buffer* command_buffer;
+  std::string name = "";
+  std::string target = "";
 
   //Renderpass stuff
-  VkRenderPass renderpass;
-  vk::structure::Framebuffer* framebuffer;
+  VkRenderPass handle = VK_NULL_HANDLE;
+  VkPipelineStageFlags pipeline_flag = 0;
+  std::vector<vk::structure::Subpass*> vec_subpass;
+  vk::structure::Framebuffer* framebuffer = nullptr;
+  vk::structure::Command_buffer* command_buffer = nullptr;
 
   //---------------------------
 };

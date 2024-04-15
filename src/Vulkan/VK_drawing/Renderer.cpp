@@ -63,7 +63,7 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
 
   VkRenderPassBeginInfo renderpass_info{};
   renderpass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-  renderpass_info.renderPass = renderpass->renderpass;
+  renderpass_info.renderPass = renderpass->handle;
   renderpass_info.framebuffer = fbo;
   renderpass_info.renderArea.offset = {0, 0};
   renderpass_info.renderArea.extent = vk_struct->window.extent;

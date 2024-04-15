@@ -18,7 +18,7 @@ Headless::~Headless(){}
 void Headless::draw_frame(){
   //---------------------------
 
-  vk::structure::Semaphore* semaphore;
+  vk::structure::Semaphore* semaphore = nullptr;
 
   //Renderpass
   vector<vk::structure::Command*> vec_command;
@@ -30,7 +30,7 @@ void Headless::draw_frame(){
 
     //Create command
     vk::structure::Command* command = new vk::structure::Command();
-    if(i>0) command->semaphore_wait = semaphore->handle;
+    if(semaphore != nullptr) command->semaphore_wait = semaphore->handle;
     command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
     command->command_buffer = renderpass->command_buffer;
     semaphore = vk_semaphore->query_free_semaphore();

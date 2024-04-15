@@ -166,7 +166,7 @@ void Command_buffer::start_command_buffer_secondary(vk::structure::Renderpass* r
   VkCommandBufferInheritanceInfo inheritanceInfo = {};
   inheritanceInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_INFO;
   inheritanceInfo.pNext = nullptr;
-  inheritanceInfo.renderPass = renderpass->renderpass; // The render pass to inherit from
+  inheritanceInfo.renderPass = renderpass->handle; // The render pass to inherit from
   inheritanceInfo.subpass = 0;       // The subpass to inherit from
   inheritanceInfo.framebuffer = frame->fbo; // The framebuffer to inherit from
   inheritanceInfo.occlusionQueryEnable = VK_FALSE; // Whether to enable occlusion query

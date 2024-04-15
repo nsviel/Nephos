@@ -130,7 +130,7 @@ void Imgui::create_context(){
     init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
     init_info.Subpass = 0;
     init_info.QueueFamily = vk_struct->device.queue.graphics.family_ID;
-    ImGui_ImplVulkan_Init(&init_info, renderpass->renderpass);
+    ImGui_ImplVulkan_Init(&init_info, renderpass->handle);
   }
 
   //---------------------------

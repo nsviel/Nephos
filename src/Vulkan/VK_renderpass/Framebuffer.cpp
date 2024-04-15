@@ -83,7 +83,7 @@ void Framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* rende
 
   VkFramebufferCreateInfo framebufferInfo{};
   framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
-  framebufferInfo.renderPass = renderpass->renderpass;
+  framebufferInfo.renderPass = renderpass->handle;
   framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
   framebufferInfo.pAttachments = attachments.data();
   framebufferInfo.width = vk_struct->window.extent.width;
@@ -110,7 +110,7 @@ void Framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* render
 
   VkFramebufferCreateInfo framebufferInfo{};
   framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
-  framebufferInfo.renderPass = renderpass->renderpass;
+  framebufferInfo.renderPass = renderpass->handle;
   framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
   framebufferInfo.pAttachments = attachments.data();
   framebufferInfo.width = vk_struct->window.extent.width;
