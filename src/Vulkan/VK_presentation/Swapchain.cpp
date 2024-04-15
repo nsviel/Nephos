@@ -46,7 +46,7 @@ say("swapchain recreation");
   }
 
   //Clean old swapchain
-  vk_synchro->wait_idle();
+  vk_synchro->wait_idle_and_pause();
   vk_framebuffer->clean_framebuffers();
   this->clean();
 

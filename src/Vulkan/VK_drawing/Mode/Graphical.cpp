@@ -19,6 +19,8 @@ void Graphical::draw_frame(){
   //---------------------------
 
   //Acquire next image
+  vk_struct->queue.graphics->wait_for_idle();
+  vk_struct->queue.presentation->wait_for_idle();
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
   bool ok = vk_struct->queue.presentation->acquire_next_image(semaphore->handle);
   if(!ok) return;
