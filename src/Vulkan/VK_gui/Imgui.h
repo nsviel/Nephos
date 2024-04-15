@@ -10,6 +10,7 @@ namespace vk::presentation{class Surface;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::image{class Texture;}
+namespace vk::window{class GLFW;}
 
 
 namespace vk::gui{
@@ -50,6 +51,7 @@ private:
   vk::instance::Pool* vk_pool;
   vk::presentation::Surface* vk_surface;
   vk::image::Texture* vk_texture;
+  vk::window::GLFW* vk_window;
 };
 
 }

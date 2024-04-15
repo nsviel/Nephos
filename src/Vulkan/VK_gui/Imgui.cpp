@@ -14,6 +14,7 @@ Imgui::Imgui(vk::structure::Vulkan* vk_struct){
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   this->vk_allocator = new vk::command::Allocator(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
+  this->vk_window = new vk::window::GLFW(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
 
   //---------------------------
@@ -138,8 +139,8 @@ bool Imgui::check_window_resize(){
   //---------------------------
 
   bool has_been_resized = false;
-  static vec2 dim_old = vk_surface->update_window_dim();
-  vec2 dim_new = vk_surface->update_window_dim();
+  static vec2 dim_old = vk_window->update_window_dim();
+  vec2 dim_new = vk_window->update_window_dim();
 
   if(dim_new.x != dim_old.x || dim_new.y != dim_old.y){
     has_been_resized = true;

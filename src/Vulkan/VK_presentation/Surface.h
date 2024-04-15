@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace vk::structure{class Vulkan;}
+namespace vk::window{class GLFW;}
 
 
 namespace vk::presentation{
@@ -21,10 +22,10 @@ public:
 
   //Subfunction
   void check_for_resizing();
-  vec2 update_window_dim();
 
 private:
   vk::structure::Vulkan* vk_struct;
+  vk::window::GLFW* vk_window;
 };
 
 }
