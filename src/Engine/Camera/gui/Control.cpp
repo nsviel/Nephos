@@ -21,17 +21,17 @@ Control::Control(eng::cam::Node* node_camera){
 Control::~Control(){}
 
 //Main function
-void Control::run_control(){
+void Control::run_control(vec2 center){
   //---------------------------
 
   this->control_keyboard_camMove();
-  this->control_mouse();
+  this->control_mouse(center);
   this->control_mouse_wheel();
 
   //---------------------------
 }
 
-//Keyboard
+//Control
 void Control::control_keyboard_camMove(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
@@ -79,21 +79,9 @@ void Control::control_keyboard_camMove(){
 
   //---------------------------
 }
-
-//Mouse
-void Control::control_mouse(){
-  ImGuiIO io = ImGui::GetIO();
-  //----------------------------
-
-  //Get center of the current panel
-  ImVec2 window_pose = ImGui::GetWindowPos();
-  ImVec2 window_size = ImGui::GetWindowSize();
-  int center_x = window_pose.x + window_size.x * 0.5f;
-  int center_y = window_pose.y + window_size.y * 0.5f;
-  ImVec2 center = ImVec2(center_x, center_y);
-
+void Control::control_mouse(vec2 center){
   utl::entity::Camera* camera = cam_manager->get_current_camera();
-  vk_window->set_center(vec2(center.x, center.y));
+  //----------------------------
 
   //Right click - Camera movement
   this->enable_camera_view(center);
@@ -117,7 +105,7 @@ void Control::control_mouse_wheel(){
 }
 
 //Subfunction
-void Control::enable_camera_view( ImVec2 center){
+void Control::enable_camera_view(vec2 center){
   utl::entity::Camera* camera = cam_manager->get_current_camera();
   //----------------------------
 
@@ -125,8 +113,9 @@ void Control::enable_camera_view( ImVec2 center){
     cursor_pose = vk_window->get_mouse_pose();
 
     ImGui::GetIO().MouseDrawCursor = false;
-    vk_window->set_mouse_pose(vec2(center.x, center.y));
+    vk_window->set_mouse_pose(center);
     camera->cam_move = true;
+    camera->panel_center = center;
   }
 
   //----------------------------

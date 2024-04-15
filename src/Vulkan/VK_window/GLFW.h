@@ -36,11 +36,9 @@ public:
   //Input function
   void wait_event();
   void window_input();
-  void set_center(vec2 value);
   void set_mouse_pose(glm::vec2 pos);
   glm::vec2 get_mouse_pose();
   glm::vec2 get_dimension();
-  glm::vec2 get_center();
 
 private:
   vk::structure::Vulkan* vk_struct;

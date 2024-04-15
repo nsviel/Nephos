@@ -47,21 +47,22 @@ public:
   glm::vec3 cam_U = glm::vec3(0.0f); // Up
   glm::vec3 cam_P = glm::vec3(0.0f); // Pose
   glm::vec3 cam_COM = glm::vec3(0.0f);
-  float angle_azimuth;
-  float angle_elevation;
+  float angle_azimuth = 0;
+  float angle_elevation = 0;
   bool cam_move = false;
   bool cam_pose = false;
 
   //Camera paramater
   float fov = 0;
-  float velocity;
+  float velocity = 0;
   float zoom = 0;
-  float clip_near;
-  float clip_far;
-  glm::vec2 player_mouse_sensibility;
-  glm::vec2 arcball_mouse_sensibility;
-  int projection;
-  int mode;
+  float clip_near = 0;
+  float clip_far = 0;
+  glm::vec2 panel_center = glm::vec2(0, 0);
+  glm::vec2 player_mouse_sensibility = glm::vec2(0, 0);
+  glm::vec2 arcball_mouse_sensibility = glm::vec2(0, 0);
+  int projection = 0;
+  int mode = 0;
 
   //Camera matrix
   glm::mat4 mat_pose = glm::mat4(1);

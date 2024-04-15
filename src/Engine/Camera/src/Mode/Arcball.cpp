@@ -68,7 +68,7 @@ void Arcball::camera_mouse(utl::entity::Camera* camera){
 
   vec2 mouse_pose = vk_window->get_mouse_pose();
   vec2 window_dim = vk_window->get_dimension();
-  vec2 window_center = vk_window->get_center();
+  vec2 window_center = camera->panel_center;
 
   // step 1 : Calculate the amount of rotation given the mouse movement.
   float deltaAngleX = (2 * M_PI / window_dim.x); // a movement from left to right = 2*PI = 360 deg
@@ -78,7 +78,7 @@ void Arcball::camera_mouse(utl::entity::Camera* camera){
   vec2 angle = vec2(xAngle, yAngle);
 
   //Apply movement
-  vk_window->set_mouse_pose(vk_window->get_center());
+  vk_window->set_mouse_pose(window_center);
   this->rotate_by_angle(camera, angle);
 
   //---------------------------

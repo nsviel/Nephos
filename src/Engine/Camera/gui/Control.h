@@ -19,17 +19,15 @@ public:
 
 public:
   //Main function
-  void run_control();
+  void run_control(vec2 center);
 
-  //Keyboard
+  //Control
   void control_keyboard_camMove();
-
-  //Mouse
-  void control_mouse();
+  void control_mouse(vec2 center);
   void control_mouse_wheel();
 
   //Subfunction
-  void enable_camera_view(ImVec2 center);
+  void enable_camera_view(vec2 center);
   void disable_camera_view();
 
 private:

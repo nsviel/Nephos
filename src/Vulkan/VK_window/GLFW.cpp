@@ -168,14 +168,11 @@ void GLFW::window_input(){
 
   //---------------------------
 }
-void GLFW::set_center(glm::vec2 value){
-  vk_struct->window.center = value;
-}
-void GLFW::set_mouse_pose(glm::vec2 pos){
+void GLFW::set_mouse_pose(glm::vec2 pose){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
-  glfwSetCursorPos(vk_struct->window.handle, pos.x, pos.y);
+  glfwSetCursorPos(vk_struct->window.handle, pose.x, pose.y);
 
   //---------------------------
 }
@@ -192,9 +189,6 @@ glm::vec2 GLFW::get_mouse_pose(){
 }
 glm::vec2 GLFW::get_dimension(){
   return vk_struct->window.dimension;
-}
-glm::vec2 GLFW::get_center(){
-  return vk_struct->window.center;
 }
 
 }

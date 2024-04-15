@@ -71,7 +71,7 @@ void Player::camera_mouse(utl::entity::Camera* camera){
 
   //Cursor movement
   vec2 mouse_pose = vk_window->get_mouse_pose();
-  vec2 window_center = vk_window->get_center();
+  vec2 window_center = camera->panel_center;
 
   if(mouse_pose != mouse_pose_old){
     vk_window->set_mouse_pose(window_center);

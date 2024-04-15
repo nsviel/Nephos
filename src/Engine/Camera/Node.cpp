@@ -60,7 +60,7 @@ void Node::gui(){
 void Node::control(){
   //---------------------------
 
-  gui_control->run_control();
+  //gui_control->run_control();
 
   //---------------------------
 }

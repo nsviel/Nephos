@@ -64,8 +64,17 @@ void Renderer::engine_texture(){
   ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
   ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
   if(ImGui::IsItemHovered()){
+
+    //Get center of the current panel
+    ImVec2 panel_pose = ImGui::GetWindowPos();
+    ImVec2 panel_size = ImGui::GetWindowSize();
+    int center_x = panel_pose.x + panel_size.x * 0.5f;
+    int center_y = panel_pose.y + panel_size.y * 0.5f;
+    vec2 panel_center = vec2(center_x, center_y);
+
+
     node_operation->control();
-    cam_control->run_control();
+    cam_control->run_control(panel_center);
   }else{
     cam_control->disable_camera_view();
   }

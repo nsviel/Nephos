@@ -28,6 +28,7 @@ struct Vulkan{
   vk::structure::Profiler* profiler;
   vk::structure::Render render;
   vk::structure::Window window;
+  vk::structure::Panel panel;
   vk::structure::Instance instance;
   vk::structure::Device device;
   vk::structure::Swapchain swapchain;
