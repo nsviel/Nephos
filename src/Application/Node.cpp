@@ -55,6 +55,7 @@ void Node::loop(){
     node_engine->loop();
     node_vulkan->loop();
     node_gui->loop();
+    node_vulkan->reset();
     prf_manager->loop_end();
   }
 

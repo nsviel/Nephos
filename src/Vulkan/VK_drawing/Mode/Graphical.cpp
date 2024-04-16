@@ -31,7 +31,7 @@ void Graphical::draw_frame(){
     vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
     string name = "eng::rp::" + renderpass->name;
     vk_struct->profiler->tasker_main->task_begin(name);
-
+say(name);
     //Run renderpass
     vk_render->run_renderpass(renderpass);
 

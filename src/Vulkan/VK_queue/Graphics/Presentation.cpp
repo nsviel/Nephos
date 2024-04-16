@@ -34,8 +34,7 @@ bool Presentation::acquire_next_image(VkSemaphore& semaphore){
   //---------------------------
 
   //Acquiring an image from the swap chain
-  vk_window->update_window_dim();
-  if(vk_struct->window.resized){
+  if(vk_window->is_window_resized()){
     vk_swapchain->recreate_swapchain();
     return false;
   }

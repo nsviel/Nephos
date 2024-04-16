@@ -41,9 +41,16 @@ void Node::init(){
 }
 void Node::loop(){
   //---------------------------
-  //vk_struct->window.resized = false;
+say("---");
   vk_engine->loop();
   vk_window->loop();
+
+  //---------------------------
+}
+void Node::reset(){
+  //---------------------------
+
+  vk_window->update_window_dim();
 
   //---------------------------
 }

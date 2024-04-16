@@ -28,7 +28,6 @@ void GLFW::loop(){
 
   this->window_input();
   this->window_closing();
-  this->update_window_dim();
 
   //---------------------------
 }
@@ -53,7 +52,6 @@ void GLFW::create_window(){
   glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
   vk_struct->window.handle = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
-  vk_struct->window.dimension = glm::vec2(width, height);
 
   if(!glfwVulkanSupported()){
     printf("GLFW: Vulkan Not Supported\n");
@@ -109,20 +107,27 @@ void GLFW::create_surface(){
 void GLFW::update_window_dim(){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------
+say("update !!!");
+  int width, height;
+  glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
+
+  vk_struct->window.dimension = vec2(width, height);
+  vk_struct->window.center = glm::vec2(width/2, height/2);
+
+  //---------------------------
+}
+bool GLFW::is_window_resized(){
+  //---------------------------
 
   int width, height;
   glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
 
   if(width != vk_struct->window.dimension.x || height != vk_struct->window.dimension.y){
-    vk_struct->window.dimension = vec2(width, height);
-    vk_struct->window.center = glm::vec2(width/2, height/2);
-    vk_struct->window.resized = true;
+    return true;
   }
 
   //---------------------------
-}
-vec2 GLFW::get_window_dim(){
-  return vk_struct->window.dimension;
+  return false;
 }
 void GLFW::set_window_constraint_min(int width, int height){
   if(vk_struct->window.handle == nullptr) return;

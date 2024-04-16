@@ -34,17 +34,17 @@ void Imgui::init(){
 void Imgui::draw(vk::structure::Command_buffer* command_buffer){
   if(vk_struct->param.headless) return;
   //---------------------------
-
-  if(vk_struct->window.resized){
-      vk_struct->window.resized = false;
-      return;
-  }
+say(vk_window->is_window_resized());
+  if(vk_window->is_window_resized()) return;
 
   ImDrawData* draw = ImGui::GetDrawData();
   if(draw == nullptr) return;
 
-  ImGui_ImplVulkan_RenderDrawData(draw, command_buffer->command);
+  say(vk_window->is_window_resized());
+    if(vk_window->is_window_resized()) return;
 
+  ImGui_ImplVulkan_RenderDrawData(draw, command_buffer->command);
+sayHello();
   //---------------------------
 }
 void Imgui::clean(){
@@ -97,8 +97,7 @@ ImTextureID Imgui::query_engine_texture(){
   static ImTextureID texture = 0;
   //---------------------------
 
-  vk_window->update_window_dim();
-  bool has_been_resized = vk_struct->window.resized;
+  bool has_been_resized = vk_window->is_window_resized();
 
   if(texture == 0 || vk_struct->window.resized || has_been_resized){
     vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");

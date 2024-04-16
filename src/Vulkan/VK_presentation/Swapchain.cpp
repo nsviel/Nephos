@@ -61,8 +61,8 @@ say("swapchain recreated !!!");
 void Swapchain::clean(){
   //---------------------------
 
-  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, nullptr);
   vk_frame->clean_frame();
+  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, nullptr);
 
   //---------------------------
 }

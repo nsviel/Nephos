@@ -28,7 +28,7 @@ public:
   void create_surface();
 
   //Sizing function
-  vec2 get_window_dim();
+  bool is_window_resized();
   void update_window_dim();
   void set_window_constraint_min(int width, int height);
   void set_window_constraint_max(int width, int height);
