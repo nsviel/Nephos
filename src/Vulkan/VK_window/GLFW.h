@@ -42,4 +42,6 @@ public:
 
 private:
   vk::structure::Vulkan* vk_struct;
+};
+
 }

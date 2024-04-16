@@ -30,7 +30,7 @@ public:
   //Subfunction
   void create_framebuffer_renderpass(vk::structure::Renderpass* renderpass, vk::structure::Framebuffer* framebuffer);
   void create_framebuffer_swapchain(vk::structure::Renderpass* renderpass, vk::structure::Frame* frame);
-  void clean_framebuffer_obj(VkFramebuffer& fbo);
+  void clean_framebuffer_handle(VkFramebuffer& fbo);
 
 private:
   vk::structure::Vulkan* vk_struct;

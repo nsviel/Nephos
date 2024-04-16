@@ -20,7 +20,7 @@ Image::~Image(){}
 void Image::create_image(vk::structure::Image* image){
   //---------------------------
 
-  this->create_image_obj(image);
+  this->create_image_handle(image);
   vk_mem_allocator->allocate_image_memory(image);
   this->create_image_view(image);
   this->create_image_sampler(image);
@@ -41,7 +41,7 @@ void Image::clean_image(vk::structure::Image* image){
 }
 
 //Image vulkan creation
-void Image::create_image_obj(vk::structure::Image* image){
+void Image::create_image_handle(vk::structure::Image* image){
   //---------------------------
 
   VkImageCreateInfo image_info{};

@@ -50,7 +50,7 @@ void Node::loop(){
 void Node::reset(){
   //---------------------------
 
-  vk_window->update_window_dim();
+  
 
   //---------------------------
 }

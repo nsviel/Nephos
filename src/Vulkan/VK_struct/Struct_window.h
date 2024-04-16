@@ -20,6 +20,7 @@ struct Window{
   glm::vec2 center = glm::vec2(0, 0);
   VkExtent2D extent;
   VkSurfaceKHR surface;
+  int cpt = 0;
 
   //---------------------------
 };

@@ -22,8 +22,16 @@ Frame::~Frame(){}
 //Main function
 void Frame::create_frame(){
   vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
-  if(renderpass == nullptr)return;
   //---------------------------
+
+  if(renderpass == nullptr){
+    cout<<"[error] renderpass gui nullptr"<<endl;
+    return;
+  }
+  if(vk_struct->swapchain.vec_swapchain_image.size() == 0){
+    cout<<"[error] swapchain image size equal zero"<<endl;
+    return;
+  }
 
   for(int i=0; i<vk_struct->swapchain.vec_swapchain_image.size(); i++){
     vk::structure::Frame* frame = new vk::structure::Frame();
@@ -50,7 +58,7 @@ void Frame::clean_frame(){
     vk::structure::Frame* frame = vec_frame[i];
     vkDestroyImageView(vk_struct->device.handle, frame->color.view, nullptr);
     vk_image->clean_image(&frame->depth);
-    vk_framebuffer->clean_framebuffer_obj(frame->fbo);
+    vk_framebuffer->clean_framebuffer_handle(frame->fbo);
     delete frame;
   }
   vec_frame.clear();

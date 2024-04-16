@@ -64,7 +64,7 @@ void Framebuffer::clean_framebuffer(vk::structure::Renderpass* renderpass){
   vk_image->clean_image(&framebuffer->color);
   vk_image->clean_image(&framebuffer->color_resolve);
   vk_image->clean_image(&framebuffer->depth);
-  this->clean_framebuffer_obj(framebuffer->fbo);
+  this->clean_framebuffer_handle(framebuffer->handle);
   delete framebuffer;
 
   //---------------------------
@@ -97,7 +97,7 @@ void Framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* rende
   }
 
   //---------------------------
-  framebuffer->fbo = fbo;
+  framebuffer->handle = fbo;
 }
 void Framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* renderpass, vk::structure::Frame* frame){
   //---------------------------
@@ -126,7 +126,7 @@ void Framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* render
   //---------------------------
   frame->fbo = fbo;
 }
-void Framebuffer::clean_framebuffer_obj(VkFramebuffer& fbo){
+void Framebuffer::clean_framebuffer_handle(VkFramebuffer& fbo){
   //---------------------------
 
   vkDestroyFramebuffer(vk_struct->device.handle, fbo, nullptr);

@@ -46,6 +46,7 @@ say("swapchain recreation");
   }
 
   //Clean old swapchain
+  vk_window->update_window_dim();
   vk_synchro->wait_idle_and_pause();
   vk_framebuffer->clean_framebuffers();
   this->clean();
@@ -55,15 +56,17 @@ say("swapchain recreation");
   vk_frame->create_frame();
   vk_framebuffer->create_framebuffers();
   vk_synchro->end_idle();
+
+
 say("swapchain recreated !!!");
   //---------------------------
 }
 void Swapchain::clean(){
   //---------------------------
 
-  vk_frame->clean_frame();
-  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, nullptr);
 
+  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, nullptr);
+  vk_frame->clean_frame();
   //---------------------------
 }
 

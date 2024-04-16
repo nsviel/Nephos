@@ -22,7 +22,7 @@ public:
   void clean_image(vk::structure::Image* image);
 
   //Image vulkan creation
-  void create_image_obj(vk::structure::Image* image);
+  void create_image_handle(vk::structure::Image* image);
   void create_image_view(vk::structure::Image* image);
   void create_image_sampler(vk::structure::Image* texture);
 

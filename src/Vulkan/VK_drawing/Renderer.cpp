@@ -42,7 +42,7 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
 
   VkFramebuffer fbo;
   if(renderpass->target == "graphics" || renderpass->target == "transfert"){
-    fbo = renderpass->framebuffer->fbo;
+    fbo = renderpass->framebuffer->handle;
   }
   else if(renderpass->target == "presentation"){
     fbo = vk_struct->swapchain.get_frame_presentation()->fbo;
