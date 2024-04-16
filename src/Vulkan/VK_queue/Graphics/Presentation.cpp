@@ -39,7 +39,7 @@ bool Presentation::acquire_next_image(VkSemaphore& semaphore){
     return false;
   }
   VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
-  if(result == VK_ERROR_OUT_OF_DATE_KHR){say("out of date");
+  if(result == VK_ERROR_OUT_OF_DATE_KHR){
     vk_swapchain->recreate_swapchain();
     return false;
   }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
@@ -80,7 +80,6 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
 
   //Window resizing
   if(result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR){
-    say("pas top");
     //this->thread_idle = true;
     //vk_swapchain->recreate_swapchain();
   }else if(result != VK_SUCCESS){

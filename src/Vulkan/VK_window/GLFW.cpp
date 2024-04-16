@@ -113,8 +113,7 @@ void GLFW::update_window_dim(){
 
   vk_struct->window.dimension = vec2(width, height);
   vk_struct->window.center = glm::vec2(width/2, height/2);
-  say("update");
-say(vk_struct->window.dimension);
+
   //---------------------------
 }
 bool GLFW::is_window_resized(){
@@ -126,8 +125,7 @@ bool GLFW::is_window_resized(){
   if(width != vk_struct->window.dimension.x || height != vk_struct->window.dimension.y){
     return true;
   }
-  say("curent");
-say(vec2(width, height));
+
   //---------------------------
   return false;
 }

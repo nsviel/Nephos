@@ -40,9 +40,9 @@ void Imgui::draw(vk::structure::Command_buffer* command_buffer){
 
   ImDrawData* draw = ImGui::GetDrawData();
   if(draw == nullptr) return;
-say("tic");
+
   ImGui_ImplVulkan_RenderDrawData(draw, command_buffer->command);
-say("toc");
+
   //---------------------------
 }
 void Imgui::clean(){
