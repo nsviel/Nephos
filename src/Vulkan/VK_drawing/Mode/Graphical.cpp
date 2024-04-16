@@ -18,6 +18,9 @@ Graphical::~Graphical(){}
 void Graphical::draw_frame(){
   //---------------------------
 
+  vk::gui::Imgui vk_imgui =vk::gui::Imgui(vk_struct);
+  vk_imgui.resize_stuff();
+
   //Acquire next image
   vk_struct->queue.graphics->wait_for_idle();
   vk_struct->queue.presentation->wait_for_idle();
@@ -31,7 +34,7 @@ void Graphical::draw_frame(){
     vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
     string name = "eng::rp::" + renderpass->name;
     vk_struct->profiler->tasker_main->task_begin(name);
-say(name);
+
     //Run renderpass
     vk_render->run_renderpass(renderpass);
 

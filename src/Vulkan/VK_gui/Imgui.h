@@ -32,7 +32,8 @@ public:
 
   //Context
   void create_context();
-
+  void resize_stuff();
+  
   //Texture
   void load_texture(utl::media::Image* utl_image);
   ImTextureID create_imgui_texture(int UID);

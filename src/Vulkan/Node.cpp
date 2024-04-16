@@ -41,7 +41,7 @@ void Node::init(){
 }
 void Node::loop(){
   //---------------------------
-say("---");
+
   vk_engine->loop();
   vk_window->loop();
 

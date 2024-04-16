@@ -107,7 +107,7 @@ void GLFW::create_surface(){
 void GLFW::update_window_dim(){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------
-say("update !!!");
+
   int width, height;
   glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
 

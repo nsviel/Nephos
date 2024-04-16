@@ -13,7 +13,7 @@ struct Window{
   GLFWwindow* handle = nullptr;
 
   //Dimension
-  bool resized = false;
+  bool resizing = false;
   glm::vec2 dimension =  glm::vec2(1024, 500);
   glm::vec2 constraint_min = glm::vec2(500, 250);
   glm::vec2 constraint_max = glm::vec2(4000, 4000);

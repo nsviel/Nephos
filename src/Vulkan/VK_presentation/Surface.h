@@ -20,9 +20,6 @@ public:
   void init();
   void clean();
 
-  //Subfunction
-  bool check_for_resizing();
-
 private:
   vk::structure::Vulkan* vk_struct;
   vk::window::GLFW* vk_window;

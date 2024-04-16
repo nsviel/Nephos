@@ -34,17 +34,15 @@ void Imgui::init(){
 void Imgui::draw(vk::structure::Command_buffer* command_buffer){
   if(vk_struct->param.headless) return;
   //---------------------------
-say(vk_window->is_window_resized());
-  if(vk_window->is_window_resized()) return;
+
+  if(vk_struct->window.resizing) return;
+    if(vk_window->is_window_resized()) return;
 
   ImDrawData* draw = ImGui::GetDrawData();
   if(draw == nullptr) return;
 
-  say(vk_window->is_window_resized());
-    if(vk_window->is_window_resized()) return;
-
   ImGui_ImplVulkan_RenderDrawData(draw, command_buffer->command);
-sayHello();
+
   //---------------------------
 }
 void Imgui::clean(){
@@ -97,9 +95,7 @@ ImTextureID Imgui::query_engine_texture(){
   static ImTextureID texture = 0;
   //---------------------------
 
-  bool has_been_resized = vk_window->is_window_resized();
-
-  if(texture == 0 || vk_struct->window.resized || has_been_resized){
+  if(texture == 0 || vk_struct->window.resizing || vk_window->is_window_resized()){
     vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");
     vk::structure::Image* image = &renderpass->framebuffer->color;
 
@@ -226,6 +222,13 @@ void Imgui::glfw_new_frame(){
 
   ImGui_ImplVulkan_NewFrame();
   ImGui_ImplGlfw_NewFrame();
+
+  //---------------------------
+}
+
+
+void Imgui::resize_stuff(){
+  //---------------------------
 
   //---------------------------
 }

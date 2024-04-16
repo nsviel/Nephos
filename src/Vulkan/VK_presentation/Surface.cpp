@@ -32,18 +32,4 @@ void Surface::clean(){
   //---------------------------
 }
 
-//Subfunction
-bool Surface::check_for_resizing(){
-  //---------------------------
-
-  vec2 current_dim = vk_window->get_dimension();
-  if(current_dim.x != vk_struct->window.dimension.x || current_dim.y != vk_struct->window.dimension.y){
-    vk_struct->window.resized = true;
-    return true;
-  }
-
-  //---------------------------
-  return false;
-}
-
 }
