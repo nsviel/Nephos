@@ -53,7 +53,7 @@ say("swapchain recreation");
 
   //Create new swapchain
   this->create_swapchain();
-  vk_frame->create_frame();
+  vk_frame->create_swapchain_frame();
   vk_framebuffer->create_framebuffers();
   vk_synchro->end_idle();
 
@@ -64,9 +64,9 @@ say("swapchain recreated !!!");
 void Swapchain::clean(){
   //---------------------------
 
-
   vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, nullptr);
-  vk_frame->clean_frame();
+  vk_frame->clean_swapchain_frame();
+
   //---------------------------
 }
 

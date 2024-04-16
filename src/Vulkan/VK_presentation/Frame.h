@@ -20,8 +20,8 @@ public:
 
 public:
   //Main function
-  void create_frame();
-  void clean_frame();
+  void create_swapchain_frame();
+  void clean_swapchain_frame();
 
 private:
   vk::structure::Vulkan* vk_struct;

@@ -38,7 +38,7 @@ void Graphical::init(){
   vk_renderpass->init();
   vk_imgui->init();
   vk_semaphore->init_pool();
-  vk_frame->create_frame();
+  vk_frame->create_swapchain_frame();
 
   //---------------------------
 }

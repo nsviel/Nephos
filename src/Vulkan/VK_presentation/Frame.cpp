@@ -20,7 +20,7 @@ Frame::Frame(vk::structure::Vulkan* vk_struct){
 Frame::~Frame(){}
 
 //Main function
-void Frame::create_frame(){
+void Frame::create_swapchain_frame(){
   vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
   //---------------------------
 
@@ -35,21 +35,25 @@ void Frame::create_frame(){
 
   for(int i=0; i<vk_struct->swapchain.vec_swapchain_image.size(); i++){
     vk::structure::Frame* frame = new vk::structure::Frame();
+
+    //Color
     frame->color.handle = vk_struct->swapchain.vec_swapchain_image[i];
     frame->color.format = vk_color->find_color_format();
     frame->color.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
-    frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
-
-    vk_depth->create_depth_image(&frame->depth);
+    frame->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
     vk_image->create_image_view(&frame->color);
-    vk_framebuffer->create_framebuffer_swapchain(renderpass, frame);
 
+    //Depth
+    frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+    vk_depth->create_depth_image(&frame->depth);
+
+    vk_framebuffer->create_framebuffer_swapchain(renderpass, frame);
     vk_struct->swapchain.vec_frame.push_back(frame);
   }
 
   //---------------------------
 }
-void Frame::clean_frame(){
+void Frame::clean_swapchain_frame(){
   vector<vk::structure::Frame*>& vec_frame = vk_struct->swapchain.vec_frame;
   //---------------------------
 
@@ -57,6 +61,7 @@ void Frame::clean_frame(){
   for(int i=0; i<vec_frame.size(); i++){
     vk::structure::Frame* frame = vec_frame[i];
     vkDestroyImageView(vk_struct->device.handle, frame->color.view, nullptr);
+    //vk_image->clean_image(&frame->color);
     vk_image->clean_image(&frame->depth);
     vk_framebuffer->clean_framebuffer_handle(frame->fbo);
     delete frame;
