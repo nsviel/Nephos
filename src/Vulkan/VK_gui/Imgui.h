@@ -32,7 +32,6 @@ public:
 
   //Context
   void create_context();
-  bool check_window_resize();
 
   //Texture
   void load_texture(utl::media::Image* utl_image);

@@ -23,10 +23,8 @@ void Graphical::draw_frame(){
   vk_struct->queue.presentation->wait_for_idle();
   vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
   bool ok = vk_struct->queue.presentation->acquire_next_image(semaphore->handle);
-  if(!ok){
-    return;
-  }
-std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  if(!ok) return;
+
   //Renderpass
   vector<vk::structure::Command*> vec_command;
   for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){

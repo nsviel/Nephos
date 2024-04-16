@@ -40,7 +40,7 @@ void Swapchain::recreate_swapchain(){
   //---------------------------
 say("swapchain recreation");
   //Pause if window is minimized
-  vec2 dim = vk_window->update_window_dim();
+  vec2 dim = vk_struct->window.dimension;
   while(dim == vec2(0, 0)){
     vk_window->wait_event();
   }

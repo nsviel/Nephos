@@ -28,7 +28,7 @@ void GLFW::loop(){
 
   this->window_input();
   this->window_closing();
-  this->window_resizing();
+  this->update_window_dim();
 
   //---------------------------
 }
@@ -106,44 +106,23 @@ void GLFW::create_surface(){
 }
 
 //Sizing function
-vec2 GLFW::update_window_dim(){
-  if(vk_struct->window.handle == nullptr) return vec2(0, 0);
+void GLFW::update_window_dim(){
+  if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
   int width, height;
   glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
-  vec2 dimension = vec2(width, height);
-  vk_struct->window.dimension = dimension;
-  vk_struct->window.center = glm::vec2(width/2, height/2);
 
-  //---------------------------
-  return dimension;
-}
-vec2 GLFW::get_window_dim(){
-  if(vk_struct->window.handle == nullptr) return vec2(0, 0);
-  //---------------------------
-
-  int width, height;
-  glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
-  vec2 dimension = vec2(width, height);
-
-  //---------------------------
-  return dimension;
-}
-bool GLFW::window_resizing(){
-  if(vk_struct->window.handle == nullptr) return false;
-  //---------------------------
-
-  bool is_resized = false;
-  vec2 dim = update_window_dim();
-  if(dim.x != vk_struct->window.dimension.x || dim.y != vk_struct->window.dimension.y){
-    is_resized = true;
+  if(width != vk_struct->window.dimension.x || height != vk_struct->window.dimension.y){
+    vk_struct->window.dimension = vec2(width, height);
+    vk_struct->window.center = glm::vec2(width/2, height/2);
+    vk_struct->window.resized = true;
   }
 
-  vk_struct->window.resized = is_resized;
-
   //---------------------------
-  return is_resized;
+}
+vec2 GLFW::get_window_dim(){
+  return vk_struct->window.dimension;
 }
 void GLFW::set_window_constraint_min(int width, int height){
   if(vk_struct->window.handle == nullptr) return;

@@ -12,6 +12,7 @@ Presentation::Presentation(vk::structure::Vulkan* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
   this->vk_surface = new vk::presentation::Surface(vk_struct);
+  this->vk_window = new vk::window::GLFW(vk_struct);
 
   //---------------------------
 }
@@ -33,7 +34,11 @@ bool Presentation::acquire_next_image(VkSemaphore& semaphore){
   //---------------------------
 
   //Acquiring an image from the swap chain
-  if(check_for_resizing()) return false;
+  vk_window->update_window_dim();
+  if(vk_struct->window.resized){
+    vk_swapchain->recreate_swapchain();
+    return false;
+  }
   VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){say("out of date");
     vk_swapchain->recreate_swapchain();
@@ -45,18 +50,6 @@ bool Presentation::acquire_next_image(VkSemaphore& semaphore){
 
   //---------------------------
   return true;
-}
-bool Presentation::check_for_resizing(){
-  vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
-  //---------------------------
-
-  if(vk_surface->check_for_resizing()){
-    vk_swapchain->recreate_swapchain();
-    return true;
-  }
-
-  //---------------------------
-  return false;
 }
 void Presentation::image_presentation(VkSemaphore& semaphore){
   this->thread_idle = false;
