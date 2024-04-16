@@ -97,6 +97,77 @@ void Transfer::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer
 
   //---------------------------
 }
+void Transfer::copy_image_to_image(vk::structure::Image* image_src, vk::structure::Image* image_dst){
+  //---------------------------
+
+  // Image transition from undefined layout to transfer source layout
+  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
+  vk_command_buffer->start_command_buffer_primary(command_buffer);
+
+  // Image transition
+  vk_transition->image_layout_transition(command_buffer->command, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->command, image_dst, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+
+  // Copy image
+  VkImageCopy region{};
+  region.srcSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT; // or VK_IMAGE_ASPECT_DEPTH_BIT for depth images
+  region.srcSubresource.layerCount = 1;
+  region.dstSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT; // or VK_IMAGE_ASPECT_DEPTH_BIT for depth images
+  region.dstSubresource.layerCount = 1;
+  region.extent.width = image_src->width; // Width of the source image
+  region.extent.height = image_src->height; // Height of the source image
+  region.extent.depth = 1;
+  vkCmdCopyImage(command_buffer->command, image_src->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+
+  // Transition destination image to shader read-only optimal layout if needed
+  // vk_transition->imageLayoutTransition(commandBuffer.get(), dstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+
+  //End and submit command buffer
+  vk_command_buffer->end_command_buffer(command_buffer);
+  vk::structure::Command* command = new vk::structure::Command();
+  command->command_buffer = command_buffer;
+  vk_struct->queue.graphics->add_command(command);
+
+  //---------------------------
+}
+void Transfer::blit_image_to_image(vk::structure::Image* image_src, vk::structure::Image* image_dst){
+  //---------------------------
+
+  // Image transition from undefined layout to transfer source layout
+  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
+  vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
+  vk_command_buffer->start_command_buffer_primary(command_buffer);
+
+  // Image transition
+  vk_transition->image_layout_transition(command_buffer->command, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->command, image_dst, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+
+  // Blit image
+  VkImageBlit region{};
+  region.srcSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT; // or VK_IMAGE_ASPECT_DEPTH_BIT for depth images
+  region.srcSubresource.layerCount = 1;
+  region.srcOffsets[1].x = image_src->width; // Width of the source image
+  region.srcOffsets[1].y = image_src->height; // Height of the source image
+  region.srcOffsets[1].z = 1;
+  region.dstSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT; // or VK_IMAGE_ASPECT_DEPTH_BIT for depth images
+  region.dstSubresource.layerCount = 1;
+  region.dstOffsets[1].x = image_dst->width; // Width of the destination image
+  region.dstOffsets[1].y = image_dst->height; // Height of the destination image
+  region.dstOffsets[1].z = 1;
+  vkCmdBlitImage(command_buffer->command, image_src->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region, VK_FILTER_LINEAR);
+
+  // Transition destination image to shader read-only optimal layout if needed
+  // vk_transition->imageLayoutTransition(commandBuffer.get(), dstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+
+  //End and submit command buffer
+  vk_command_buffer->end_command_buffer(command_buffer);
+  vk::structure::Command* command = new vk::structure::Command();
+  command->command_buffer = command_buffer;
+  vk_struct->queue.graphics->add_command(command);
+
+  //---------------------------
+}
 
 //Buffer GPU function
 void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
@@ -135,9 +206,9 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Bu
 
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
-  VkBufferCopy copyRegion = {};
-  copyRegion.size = data_size;
-  vkCmdCopyBuffer(command_buffer->command, stagger->vbo, buffer->vbo, 1, &copyRegion);
+  VkBufferCopy region = {};
+  region.size = data_size;
+  vkCmdCopyBuffer(command_buffer->command, stagger->vbo, buffer->vbo, 1, &region);
 
   vk_command_buffer->end_command_buffer(command_buffer);
   vk_struct->queue.transfer->add_command(command_buffer);

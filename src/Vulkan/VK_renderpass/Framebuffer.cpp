@@ -41,7 +41,7 @@ void Framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
   vk_depth->create_depth_image(&framebuffer->depth);
   vk_color->create_color_image(&framebuffer->color);
   vk_color->create_color_image(&framebuffer->color_resolve);
-  this->create_framebuffer_renderpass(renderpass, framebuffer);
+  this->create_framebuffer_handle(renderpass, framebuffer);
 
   renderpass->framebuffer = framebuffer;
 
@@ -71,7 +71,7 @@ void Framebuffer::clean_framebuffer(vk::structure::Renderpass* renderpass){
 }
 
 //Subfunction
-void Framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* renderpass, vk::structure::Framebuffer* framebuffer){
+void Framebuffer::create_framebuffer_handle(vk::structure::Renderpass* renderpass, vk::structure::Framebuffer* framebuffer){
   //---------------------------
 
   //Create frambuffer
@@ -90,14 +90,12 @@ void Framebuffer::create_framebuffer_renderpass(vk::structure::Renderpass* rende
   framebufferInfo.height = vk_struct->window.extent.height;
   framebufferInfo.layers = 1;
 
-  VkFramebuffer fbo;
-  VkResult result = vkCreateFramebuffer(vk_struct->device.handle, &framebufferInfo, nullptr, &fbo);
+  VkResult result = vkCreateFramebuffer(vk_struct->device.handle, &framebufferInfo, nullptr, &framebuffer->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create framebuffer!");
   }
 
   //---------------------------
-  framebuffer->handle = fbo;
 }
 void Framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* renderpass, vk::structure::Frame* frame){
   //---------------------------
@@ -117,14 +115,12 @@ void Framebuffer::create_framebuffer_swapchain(vk::structure::Renderpass* render
   framebufferInfo.height = vk_struct->window.extent.height;
   framebufferInfo.layers = 1;
 
-  VkFramebuffer fbo;
-  VkResult result = vkCreateFramebuffer(vk_struct->device.handle, &framebufferInfo, nullptr, &fbo);
+  VkResult result = vkCreateFramebuffer(vk_struct->device.handle, &framebufferInfo, nullptr, &frame->fbo);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create framebuffer!");
   }
 
   //---------------------------
-  frame->fbo = fbo;
 }
 void Framebuffer::clean_framebuffer_handle(VkFramebuffer& fbo){
   //---------------------------
