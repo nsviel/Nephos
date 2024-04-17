@@ -40,12 +40,12 @@ void Renderer::run_renderpass(vk::structure::Renderpass* renderpass){
 void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  VkFramebuffer fbo;
+  VkFramebuffer framebuffer;
   if(renderpass->target == "graphics" || renderpass->target == "transfert"){
-    fbo = renderpass->framebuffer->handle;
+    framebuffer = renderpass->framebuffer->handle;
   }
   else if(renderpass->target == "presentation"){
-    fbo = vk_struct->swapchain.get_frame_presentation()->fbo;
+    framebuffer = vk_struct->swapchain.get_frame_presentation()->fbo;
   }
   else{
     cout<<"[error] Renderpass target not recognized ["<<renderpass->target<<"]"<<endl;
@@ -64,7 +64,7 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
   VkRenderPassBeginInfo renderpass_info{};
   renderpass_info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
   renderpass_info.renderPass = renderpass->handle;
-  renderpass_info.framebuffer = fbo;
+  renderpass_info.framebuffer = framebuffer;
   renderpass_info.renderArea.offset = {0, 0};
   renderpass_info.renderArea.extent = vk_struct->window.extent;
   renderpass_info.clearValueCount = static_cast<uint32_t>(clear_value.size());

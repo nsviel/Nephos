@@ -26,9 +26,10 @@ public:
   void copy_texture_to_gpu(vk::structure::Texture* texture);
   void copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer);
   void copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer);
-  void copy_image_to_image(vk::structure::Image* image_src, vk::structure::Image* image_dst);
+  void copy_image_to_image_standalone(vk::structure::Image* image_src, vk::structure::Image* image_dst);
   void blit_image_to_image(vk::structure::Image* image_src, vk::structure::Image* image_dst);
-  
+  vk::structure::Command_buffer* copy_image_to_image(vk::structure::Image* image_src, vk::structure::Image* image_dst);
+
   //Data copy function
   void copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize);
   void copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize dataSize);
