@@ -59,6 +59,7 @@ void Imgui::loop(){
   //---------------------------
 
   //this->new_frame();
+  update_render_descriptor();
 
   //---------------------------
 }
@@ -130,6 +131,16 @@ void Imgui::load_texture(utl::media::Image* utl_image){
 
   //---------------------------
 }
+void Imgui::update_render_descriptor(){
+  //---------------------------
+
+  vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");
+  vk::structure::Image* image = &renderpass->framebuffer->color;
+
+  vk_struct->render.descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+
+  //---------------------------
+}
 ImTextureID Imgui::create_imgui_texture(int UID){
   //---------------------------
 
@@ -144,16 +155,10 @@ ImTextureID Imgui::create_imgui_texture(int UID){
   return imgui_texture;
 }
 ImTextureID Imgui::query_engine_texture(){
-  static ImTextureID texture = 0;
+  if(vk_struct->render.descriptor == VK_NULL_HANDLE) return 0;
   //---------------------------
 
-  if(texture == 0 || vk_struct->window.resizing || vk_window->is_window_resized()){
-    vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");
-    vk::structure::Image* image = &renderpass->framebuffer->color;
-
-    VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-    texture = reinterpret_cast<ImTextureID>(descriptor);
-  }
+  ImTextureID texture = reinterpret_cast<ImTextureID>(vk_struct->render.descriptor);
 
   //---------------------------
   return texture;

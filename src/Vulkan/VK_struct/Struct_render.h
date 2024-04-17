@@ -12,6 +12,7 @@ struct Render{
   int nb_frame = 0;
   VkFormat required_image_format = VK_FORMAT_B8G8R8A8_UNORM; //VK_FORMAT_B8G8R8A8_SRGB
   std::vector<vk::structure::Renderpass*> vec_renderpass;
+  VkDescriptorSet descriptor = VK_NULL_HANDLE;
   VkViewport viewport = {};
   VkRect2D scissor = {};
 
