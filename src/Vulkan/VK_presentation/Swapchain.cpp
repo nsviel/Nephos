@@ -76,11 +76,11 @@ void Swapchain::create_swapchain_image(){
   //to get the correct image which are managed by the presentation engine
 
   //Empty swapchain image
-  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.handle, &vk_struct->swapchain.max_nb_frame, nullptr);
+  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.handle, &vk_struct->swapchain.max_frame, nullptr);
 
   //Fill swapchain image
-  vk_struct->swapchain.vec_swapchain_image.resize(vk_struct->swapchain.max_nb_frame);
-  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.handle, &vk_struct->swapchain.max_nb_frame, vk_struct->swapchain.vec_swapchain_image.data());
+  vk_struct->swapchain.vec_image.resize(vk_struct->swapchain.max_frame);
+  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.handle, &vk_struct->swapchain.max_frame, vk_struct->swapchain.vec_image.data());
 
   //---------------------------
 }
@@ -105,7 +105,7 @@ void Swapchain::create_swapchain_handle(){
   }
 
   create_info.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
-  create_info.minImageCount = vk_struct->swapchain.max_nb_frame;
+  create_info.minImageCount = vk_struct->swapchain.max_frame;
   create_info.surface = vk_struct->window.surface;
   create_info.imageFormat = vk_struct->swapchain.format.format;
   create_info.imageColorSpace = vk_struct->swapchain.format.colorSpace;
@@ -138,7 +138,7 @@ void Swapchain::find_swapchain_max_nb_image(){
   }
 
   //---------------------------
-  vk_struct->swapchain.max_nb_frame = nb_image;
+  vk_struct->swapchain.max_frame = nb_image;
 }
 void Swapchain::find_swapchain_surface_format(){
   vector<VkSurfaceFormatKHR>& dev_format = vk_struct->device.physical_device.formats;

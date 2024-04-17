@@ -38,7 +38,7 @@ bool Presentation::acquire_next_image(VkSemaphore& semaphore){
     vk_swapchain->recreate_swapchain();
     return false;
   }
-  VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->handle, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
+  VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->handle, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->current_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     vk_swapchain->recreate_swapchain();
     return false;
@@ -72,7 +72,7 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
   presentation_info.pWaitSemaphores = &semaphore;
   presentation_info.swapchainCount = 1;
   presentation_info.pSwapchains = &swapchain->handle;
-  presentation_info.pImageIndices = &swapchain->frame_presentation_ID;
+  presentation_info.pImageIndices = &swapchain->current_ID;
   presentation_info.pResults = nullptr; // Optional
 
   VkQueue queue = vk_struct->device.queue.presentation.handle;
@@ -92,9 +92,9 @@ void Presentation::next_frame_ID(){
   vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------
 
-  int current_ID = swapchain->frame_presentation_ID;
+  int current_ID = swapchain->current_ID;
   current_ID = (current_ID + 1) % vk_struct->instance.max_frame_inflight;
-  swapchain->frame_presentation_ID = current_ID;
+  swapchain->current_ID = current_ID;
 
   //---------------------------
 }

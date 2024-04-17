@@ -53,7 +53,7 @@ void Graphical::draw_frame(){
 
   //Copy renderpass to swapchain image
   vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
-  vk::structure::Command_buffer* command_buffer = vk_transfer->copy_image_to_image(&renderpass->framebuffer->color, &vk_struct->swapchain.vec_frame[vk_struct->swapchain.frame_presentation_ID]->color);
+  vk::structure::Command_buffer* command_buffer = vk_transfer->copy_image_to_image(&renderpass->framebuffer->color, &vk_struct->swapchain.vec_frame[vk_struct->swapchain.current_ID]->color);
   vk::structure::Command* command = new vk::structure::Command();
   command->semaphore_wait = semaphore->handle;
   command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;

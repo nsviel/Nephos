@@ -2,11 +2,9 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace vk::structure{class Vulkan;}
 namespace vk::image{class Image;}
 namespace vk::image{class Color;}
-namespace vk::renderpass{class Framebuffer;}
-namespace vk::image{class Depth;}
-namespace vk::structure{class Vulkan;}
 
 
 namespace vk::presentation{
@@ -25,10 +23,8 @@ public:
 
 private:
   vk::structure::Vulkan* vk_struct;
-  vk::renderpass::Framebuffer* vk_framebuffer;
   vk::image::Image* vk_image;
   vk::image::Color* vk_color;
-  vk::image::Depth* vk_depth;
 };
 
 }

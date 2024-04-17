@@ -25,7 +25,6 @@
 #include <Vulkan/VK_struct/Struct_profiler.h>
 #include <Vulkan/VK_struct/Struct_renderpass.h>
 #include <Vulkan/VK_struct/Struct_render.h>
-#include <Vulkan/VK_struct/Struct_frame.h>
 #include <Vulkan/VK_struct/Struct_swapchain.h>
 #include <Vulkan/VK_struct/Struct_viewport.h>
 #include <Vulkan/VK_struct/Struct_window.h>
