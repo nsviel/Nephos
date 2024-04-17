@@ -23,7 +23,6 @@ void Capture::init(){
   //---------------------------
 
   thread_server->start_thread();
-  thread_screenshot->start_thread();
 
   //---------------------------
 }
@@ -31,7 +30,6 @@ void Capture::clean(){
   //---------------------------
 
   thread_server->stop_thread();
-  thread_screenshot->stop_thread();
 
   //---------------------------
 }

@@ -22,7 +22,8 @@ Server::Server(vld::Node* node_vld){
   this->vld_frame = new vld::processing::Frame();
   this->vld_vlp16 = new vld::parser::VLP16();
   this->vld_data = new vld::main::Data(node_vld);
-
+  this->thread_screenshot = new vld::thread::Screenshot(node_vld);
+  
   //---------------------------
 }
 Server::~Server(){}
@@ -62,6 +63,7 @@ void Server::run_thread(){
 void Server::stop_thread(){
   //---------------------------
 
+  thread_screenshot->stop_thread();
   this->thread_running = false;
   if(thread.joinable()){
     thread.join();
@@ -78,6 +80,7 @@ void Server::capture_data(){
   vector<int> packet_dec = vld_server->capture();
   if(packet_dec.size() == 0) return;
   vld_data->create_object();
+  thread_screenshot->start_thread();
 
   //Parse decimal packet into point cloud
   utl::file::Data* data = vld_vlp16->parse_packet(packet_dec);
