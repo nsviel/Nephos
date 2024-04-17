@@ -95,11 +95,11 @@ void Graphics::process_command(){
   this->vec_command_prepa.clear();
 
   //Submission stuff
-  VkSemaphore flag;
+  VkSemaphore semaphore;
   vector<VkSubmitInfo> vec_info;
-  this->build_submission(vec_info, flag);
+  this->build_submission(vec_info, semaphore);
   this->make_submission(vec_info);
-  this->post_submission(flag);
+  this->post_submission(semaphore);
 
   //---------------------------
 }
@@ -150,7 +150,7 @@ void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
 }
 
 //Submission
-void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& done){
+void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
   //---------------------------
 
   for(int i=0; i<vec_command_onrun.size(); i++){
@@ -170,7 +170,7 @@ void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& don
       submit_info.signalSemaphoreCount = 1;
       submit_info.pSignalSemaphores = &command->semaphore_done;
 
-      done = command->semaphore_done;
+      semaphore = command->semaphore_done;
     }
 
     //Pipeline wait stage
@@ -208,7 +208,7 @@ void Graphics::make_submission(vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Graphics::post_submission(VkSemaphore& semaphore_done){
+void Graphics::post_submission(VkSemaphore& semaphore){
   //---------------------------
 
   //Reset all command buffers
@@ -228,7 +228,7 @@ void Graphics::post_submission(VkSemaphore& semaphore_done){
 
   //If required, make image presentation
   if(with_presentation){
-    vk_struct->queue.presentation->image_presentation(semaphore_done);
+    vk_struct->queue.presentation->image_presentation(semaphore);
   }
 
   //Reset all semaphore
