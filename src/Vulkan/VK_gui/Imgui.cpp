@@ -58,8 +58,7 @@ void Imgui::clean(){
 void Imgui::loop(){
   //---------------------------
 
-  //this->new_frame();
-  update_render_descriptor();
+  this->update_render_descriptor();
 
   //---------------------------
 }
