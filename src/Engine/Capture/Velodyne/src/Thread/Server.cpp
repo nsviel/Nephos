@@ -23,7 +23,7 @@ Server::Server(vld::Node* node_vld){
   this->vld_vlp16 = new vld::parser::VLP16();
   this->vld_data = new vld::main::Data(node_vld);
   this->thread_screenshot = new vld::thread::Screenshot(node_vld);
-  
+
   //---------------------------
 }
 Server::~Server(){}
