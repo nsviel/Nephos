@@ -15,10 +15,8 @@ public:
 
 public:
   //Main functions
-  void init();
-  void render();
-  void clean();
   void new_frame();
+  void end_frame();
 
 private:
   vk::gui::Imgui* vk_imgui;

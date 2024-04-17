@@ -19,30 +19,17 @@ Render::Render(gui::Node* node_gui){
 Render::~Render(){}
 
 // Main code
-void Render::init(){
-  //---------------------------
-
-
-  //---------------------------
-}
-void Render::render(){
-  //---------------------------
-
-  vk_imgui->render();
-
-  //---------------------------
-}
-void Render::clean(){
-  //---------------------------
-
-  vk_imgui->clean();
-
-  //---------------------------
-}
 void Render::new_frame(){
   //---------------------------
 
   vk_imgui->new_frame();
+
+  //---------------------------
+}
+void Render::end_frame(){
+  //---------------------------
+
+  vk_imgui->render();
 
   //---------------------------
 }

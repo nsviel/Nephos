@@ -26,7 +26,6 @@ public:
 public:
   void init();
   void loop();
-  void clean();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::Node* get_node_engine(){return node_engine;}

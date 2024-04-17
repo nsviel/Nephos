@@ -38,7 +38,6 @@ Node::~Node(){
 void Node::init(){
   //---------------------------
 
-  gui_render->init();
   gui_font->init_font();
   gui_style->init_style();
   gui_theme->init_theme();
@@ -52,14 +51,7 @@ void Node::loop(){
   gui_docking->docker_space_main();
   gui_tab->run_tab();
   gui_control->run_control();
-  gui_render->render();
-
-  //---------------------------
-}
-void Node::clean(){
-  //---------------------------
-
-  gui_render->clean();
+  gui_render->end_frame();
 
   //---------------------------
 }

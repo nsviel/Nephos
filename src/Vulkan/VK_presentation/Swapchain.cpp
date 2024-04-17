@@ -40,8 +40,8 @@ void Swapchain::init(){
 void Swapchain::clean(){
   //---------------------------
 
-  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.handle, nullptr);
   vk_frame->clean_frame();
+  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.handle, nullptr);
 
   //---------------------------
 }
@@ -63,7 +63,7 @@ void Swapchain::recreate_swapchain(){
   this->clean();
 
   //Create new swapchain
-  this->create_swapchain();
+  this->init();
   vk_framebuffer->create_framebuffers();
   vk_synchro->end_idle();
 
