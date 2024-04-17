@@ -131,6 +131,7 @@ void Imgui::load_texture(utl::media::Image* utl_image){
   //---------------------------
 }
 void Imgui::update_render_descriptor(){
+  if(vk_struct->param.headless) return;
   //---------------------------
 
   vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");

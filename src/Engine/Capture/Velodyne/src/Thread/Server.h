@@ -11,6 +11,7 @@ namespace vld::processing{class Player;}
 namespace vld::processing{class Frame;}
 namespace vld::utils{class Server;}
 namespace vld::parser{class VLP16;}
+namespace vld::main{class Data;}
 
 
 namespace vld::thread{
@@ -42,6 +43,7 @@ private:
   vld::processing::Frame* vld_frame;
   vld::utils::Server* vld_server;
   vld::parser::VLP16* vld_vlp16;
+  vld::main::Data* vld_data;
 
   utl::file::Data utl_file;
   std::thread thread;

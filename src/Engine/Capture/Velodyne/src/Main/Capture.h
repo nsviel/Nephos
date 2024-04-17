@@ -6,11 +6,6 @@ namespace vld{class Node;}
 namespace vld::structure{class Main;}
 namespace vld::thread{class Server;}
 namespace vld::thread{class Screenshot;}
-namespace eng{class Node;}
-namespace eng::scene{class Database;}
-namespace eng::scene{class Loader;}
-namespace eng::scene{class Set;}
-namespace eng::scene{class Entity;}
 
 
 namespace vld::main{
@@ -28,14 +23,9 @@ public:
   void clean();
 
 private:
-  eng::Node* node_engine;
   vld::structure::Main* vld_struct;
   vld::thread::Server* thread_server;
   vld::thread::Screenshot* thread_screenshot;
-  eng::scene::Database* sce_database;
-  eng::scene::Loader* sce_loader;
-  eng::scene::Set* sce_set;
-  eng::scene::Entity* sce_entity;
 };
 
 }

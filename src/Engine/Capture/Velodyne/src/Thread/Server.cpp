@@ -21,6 +21,7 @@ Server::Server(vld::Node* node_vld){
   this->vld_player = new vld::processing::Player(vld_struct);
   this->vld_frame = new vld::processing::Frame();
   this->vld_vlp16 = new vld::parser::VLP16();
+  this->vld_data = new vld::main::Data(node_vld);
 
   //---------------------------
 }
@@ -76,6 +77,7 @@ void Server::capture_data(){
   //Receive data
   vector<int> packet_dec = vld_server->capture();
   if(packet_dec.size() == 0) return;
+  vld_data->create_object();
 
   //Parse decimal packet into point cloud
   utl::file::Data* data = vld_vlp16->parse_packet(packet_dec);
@@ -95,7 +97,7 @@ void Server::update_object(utl::file::Data* data){
   //---------------------------
 
   string name = "capture_" + to_string(vld_struct->data.current_frame_ID++);
-  utl::entity::Object* object = &vld_struct->data.object;
+  utl::entity::Object* object = vld_struct->data.object;
   object->name = name;
   object->data.name = name + "::data";
   object->data.size = data->xyz.size();
