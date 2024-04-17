@@ -20,6 +20,7 @@ public:
   //Main function
   void create_image(vk::structure::Image* image);
   void clean_image(vk::structure::Image* image);
+  void clean_image_view(vk::structure::Image* image);
 
   //Image vulkan creation
   void create_image_handle(vk::structure::Image* image);

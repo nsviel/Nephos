@@ -29,7 +29,6 @@ public:
 
   //Subfunction
   void create_framebuffer_handle(vk::structure::Renderpass* renderpass, vk::structure::Framebuffer* framebuffer);
-  void create_framebuffer_swapchain(vk::structure::Renderpass* renderpass, vk::structure::Frame* frame);
   void clean_framebuffer_handle(VkFramebuffer& fbo);
 
 private:

@@ -47,7 +47,6 @@ void Frame::create_swapchain_frame(){
     frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
     vk_depth->create_depth_image(&frame->depth);
 
-    vk_framebuffer->create_framebuffer_swapchain(renderpass, frame);
     vk_struct->swapchain.vec_frame.push_back(frame);
   }
 
@@ -60,11 +59,9 @@ void Frame::clean_swapchain_frame(){
   //Vec images
   for(int i=0; i<vec_frame.size(); i++){
     vk::structure::Frame* frame = vec_frame[i];
-    vkDestroyImageView(vk_struct->device.handle, frame->color.view, nullptr);
-    //vk_image->clean_image(&frame->color);
+    vk_image->clean_image_view(&frame->color);
     vk_image->clean_image(&frame->depth);
 
-    vk_framebuffer->clean_framebuffer_handle(frame->fbo);
     delete frame;
   }
   vec_frame.clear();
