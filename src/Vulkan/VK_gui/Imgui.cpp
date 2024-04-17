@@ -36,8 +36,9 @@ void Imgui::draw(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
   if(vk_struct->window.resizing) return;
-    if(vk_window->is_window_resized()) return;
+  if(vk_window->is_window_resized()) return;
 
+  ImGui::Render();
   ImDrawData* draw = ImGui::GetDrawData();
   if(draw == nullptr) return;
 
@@ -54,10 +55,10 @@ void Imgui::clean(){
 
   //---------------------------
 }
-void Imgui::render(){
+void Imgui::loop(){
   //---------------------------
 
-  ImGui::Render();
+  //this->new_frame();
 
   //---------------------------
 }
@@ -70,7 +71,58 @@ void Imgui::new_frame(){
   //---------------------------
 }
 
-//Imgui with vulkan function
+//Context
+void Imgui::create_context(){
+  //---------------------------
+
+  // Setup Dear ImGui context
+  IMGUI_CHECKVERSION();
+  ImGui::CreateContext();
+  ImPlot::CreateContext();
+  ImGui::StyleColorsDark();
+
+  // Setup Platform/Renderer bindings
+  if(!vk_struct->param.headless){
+    vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
+    ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
+    ImGui_ImplVulkan_InitInfo init_info = {};
+    init_info.Instance = vk_struct->instance.handle;
+    init_info.PhysicalDevice = vk_struct->device.physical_device.handle;
+    init_info.Device = vk_struct->device.handle;
+    init_info.Queue = vk_struct->device.queue.graphics.handle;
+    init_info.DescriptorPool = vk_struct->pools.descriptor.memory;
+    init_info.PipelineCache = VK_NULL_HANDLE;
+    init_info.MinImageCount = 2;
+    init_info.ImageCount = 2;
+    init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
+    init_info.Subpass = 0;
+    init_info.QueueFamily = vk_struct->device.queue.graphics.family_ID;
+    ImGui_ImplVulkan_Init(&init_info, renderpass->handle);
+  }
+
+  //---------------------------
+}
+void Imgui::glfw_clean(){
+  if(vk_struct->param.headless) return;
+  //---------------------------
+
+  ImGui_ImplVulkan_DestroyFontUploadObjects();
+  ImGui_ImplVulkan_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+
+  //---------------------------
+}
+void Imgui::glfw_new_frame(){
+  if(vk_struct->param.headless) return;
+  //---------------------------
+
+  ImGui_ImplVulkan_NewFrame();
+  ImGui_ImplGlfw_NewFrame();
+
+  //---------------------------
+}
+
+//Texture
 void Imgui::load_texture(utl::media::Image* utl_image){
   //---------------------------
 
@@ -105,36 +157,6 @@ ImTextureID Imgui::query_engine_texture(){
 
   //---------------------------
   return texture;
-}
-void Imgui::create_context(){
-  //---------------------------
-
-  // Setup Dear ImGui context
-  IMGUI_CHECKVERSION();
-  ImGui::CreateContext();
-  ImPlot::CreateContext();
-  ImGui::StyleColorsDark();
-
-  // Setup Platform/Renderer bindings
-  if(!vk_struct->param.headless){
-    vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
-    ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
-    ImGui_ImplVulkan_InitInfo init_info = {};
-    init_info.Instance = vk_struct->instance.handle;
-    init_info.PhysicalDevice = vk_struct->device.physical_device.handle;
-    init_info.Device = vk_struct->device.handle;
-    init_info.Queue = vk_struct->device.queue.graphics.handle;
-    init_info.DescriptorPool = vk_struct->pools.descriptor.memory;
-    init_info.PipelineCache = VK_NULL_HANDLE;
-    init_info.MinImageCount = 2;
-    init_info.ImageCount = 2;
-    init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
-    init_info.Subpass = 0;
-    init_info.QueueFamily = vk_struct->device.queue.graphics.family_ID;
-    ImGui_ImplVulkan_Init(&init_info, renderpass->handle);
-  }
-
-  //---------------------------
 }
 
 //Font
@@ -201,34 +223,6 @@ void Imgui::load_font(){
   vk::structure::Command* command = new vk::structure::Command();
   command->command_buffer = command_buffer;
   vk_struct->queue.graphics->add_command(command);
-
-  //---------------------------
-}
-
-//GLFW
-void Imgui::glfw_clean(){
-  if(vk_struct->param.headless) return;
-  //---------------------------
-
-  ImGui_ImplVulkan_DestroyFontUploadObjects();
-  ImGui_ImplVulkan_Shutdown();
-  ImGui_ImplGlfw_Shutdown();
-
-  //---------------------------
-}
-void Imgui::glfw_new_frame(){
-  if(vk_struct->param.headless) return;
-  //---------------------------
-
-  ImGui_ImplVulkan_NewFrame();
-  ImGui_ImplGlfw_NewFrame();
-
-  //---------------------------
-}
-
-
-void Imgui::resize_stuff(){
-  //---------------------------
 
   //---------------------------
 }

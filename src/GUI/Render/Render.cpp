@@ -29,7 +29,7 @@ void Render::new_frame(){
 void Render::end_frame(){
   //---------------------------
 
-  vk_imgui->render();
+
 
   //---------------------------
 }

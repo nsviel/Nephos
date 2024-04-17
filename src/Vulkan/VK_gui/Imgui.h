@@ -27,13 +27,14 @@ public:
   void init();
   void draw(vk::structure::Command_buffer* command_buffer);
   void clean();
-  void render();
+  void loop();
   void new_frame();
 
   //Context
   void create_context();
-  void resize_stuff();
-  
+  void glfw_clean();
+  void glfw_new_frame();
+
   //Texture
   void load_texture(utl::media::Image* utl_image);
   ImTextureID create_imgui_texture(int UID);
@@ -42,10 +43,6 @@ public:
   //Font
   void select_font();
   void load_font();
-
-  //GLFW
-  void glfw_clean();
-  void glfw_new_frame();
 
 private:
   vk::structure::Vulkan* vk_struct;
