@@ -29,7 +29,6 @@ void Renderpass::init_renderpass(){
   //Renderpass
   vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
   renderpass->name = "edl";
-  renderpass->target = "graphics";
 
   //Pipeline
   this->create_subpass(renderpass);

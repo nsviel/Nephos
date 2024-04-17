@@ -11,7 +11,6 @@ struct Renderpass{
 
   //Info
   std::string name = "";
-  std::string target = "";
 
   //Renderpass stuff
   VkRenderPass handle = VK_NULL_HANDLE;

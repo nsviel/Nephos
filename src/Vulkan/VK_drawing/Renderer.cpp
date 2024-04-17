@@ -41,11 +41,7 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   VkFramebuffer framebuffer = renderpass->framebuffer->handle;
-  if(renderpass->target == "presentation"){
-    framebuffer = vk_struct->swapchain.get_frame_presentation()->fbo;
-  }
 
-  
   vk_command_buffer->start_command_buffer_primary(renderpass->command_buffer);
 
   std::array<VkClearValue, 2> clear_value{};

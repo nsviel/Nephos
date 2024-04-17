@@ -16,9 +16,6 @@ struct Frame{
   vk::structure::Image color;
   vk::structure::Image depth;
 
-  vk::structure::Image color_test;
-  vk::structure::Image depth_test;
-
   //---------------------------
 };
 
