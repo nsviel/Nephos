@@ -191,7 +191,7 @@ vk::structure::Command_buffer* Transfer::copy_image_to_image(vk::structure::Imag
   vkCmdCopyImage(command_buffer->command, image_src->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 
   // Transition destination image to shader read-only optimal layout if needed
-  // vk_transition->imageLayoutTransition(commandBuffer.get(), dstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->command, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_PRESENT_SRC_KHR);
 
   //End and submit command buffer
   vk_command_buffer->end_command_buffer(command_buffer);

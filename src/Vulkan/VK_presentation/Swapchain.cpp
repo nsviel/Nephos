@@ -111,7 +111,7 @@ void Swapchain::create_swapchain_handle(){
   create_info.imageColorSpace = vk_struct->swapchain.format.colorSpace;
   create_info.imageExtent = vk_struct->window.extent;
   create_info.imageArrayLayers = 1;
-  create_info.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT; //VK_IMAGE_USAGE_TRANSFER_DST_BIT for post-processing
+  create_info.imageUsage = VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT; //VK_IMAGE_USAGE_TRANSFER_DST_BIT for post-processing
   create_info.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR; //Ignore alpha channel
   create_info.presentMode = vk_struct->swapchain.presentation_mode;
   create_info.clipped = VK_TRUE;

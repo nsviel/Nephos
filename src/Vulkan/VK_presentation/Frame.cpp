@@ -47,7 +47,7 @@ void Frame::create_swapchain_frame(){
     frame->color_test.format = vk_color->find_color_format();
     frame->color_test.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
     frame->color_test.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
-    vk_color->create_color_image(&frame->color_test);
+    vk_image->create_image_view(&frame->color_test);
 
     //Depth
     frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;

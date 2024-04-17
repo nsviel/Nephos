@@ -50,7 +50,7 @@ void Graphical::draw_frame(){
 
     vk_struct->profiler->tasker_main->task_end(name);
   }
-
+/*
   //Copy renderpass to swapchain image
   vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
   vk::structure::Command_buffer* command_buffer = vk_transfer->copy_image_to_image(&renderpass->framebuffer->color, &vk_struct->swapchain.vec_frame[vk_struct->swapchain.frame_presentation_ID]->color_test);
@@ -61,7 +61,7 @@ void Graphical::draw_frame(){
   semaphore = vk_semaphore->query_free_semaphore();
   command->semaphore_done = semaphore->handle;
   vec_command.push_back(command);
-
+*/
   //Submission
   vk_struct->queue.graphics->add_presentation(vec_command);
 
