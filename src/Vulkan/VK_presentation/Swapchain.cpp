@@ -22,8 +22,8 @@ Swapchain::Swapchain(vk::structure::Vulkan* vk_struct){
 }
 Swapchain::~Swapchain(){}
 
-//Swap chain function
-void Swapchain::create_swapchain(){
+//Main function
+void Swapchain::init(){
   //---------------------------
 
   dev_physical->compute_extent();
@@ -33,9 +33,20 @@ void Swapchain::create_swapchain(){
   this->create_swapchain_handle();
   this->retrieve_swapchain_image();
   vk_viewport->update_viewport();
+  vk_frame->create_frame();
 
   //---------------------------
 }
+void Swapchain::clean(){
+  //---------------------------
+
+  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.handle, nullptr);
+  vk_frame->clean_frame();
+
+  //---------------------------
+}
+
+//Swapchain function
 void Swapchain::recreate_swapchain(){
   //---------------------------
 
@@ -53,22 +64,11 @@ void Swapchain::recreate_swapchain(){
 
   //Create new swapchain
   this->create_swapchain();
-  vk_frame->create_swapchain_frame();
   vk_framebuffer->create_framebuffers();
   vk_synchro->end_idle();
 
   //---------------------------
 }
-void Swapchain::clean(){
-  //---------------------------
-
-  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.handle, nullptr);
-  vk_frame->clean_swapchain_frame();
-
-  //---------------------------
-}
-
-//Swap chain creation
 void Swapchain::retrieve_swapchain_image(){
   //---------------------------
 

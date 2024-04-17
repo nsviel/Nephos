@@ -18,7 +18,7 @@ Frame::Frame(vk::structure::Vulkan* vk_struct){
 Frame::~Frame(){}
 
 //Main function
-void Frame::create_swapchain_frame(){
+void Frame::create_frame(){
   //---------------------------
 
   if(vk_struct->swapchain.vec_image.size() == 0){
@@ -39,7 +39,7 @@ void Frame::create_swapchain_frame(){
 
   //---------------------------
 }
-void Frame::clean_swapchain_frame(){
+void Frame::clean_frame(){
   vector<vk::structure::Frame*>& vec_frame = vk_struct->swapchain.vec_frame;
   //---------------------------
 

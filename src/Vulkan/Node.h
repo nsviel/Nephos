@@ -29,7 +29,6 @@ public:
   //Main functions
   void init();
   void loop();
-  void reset();
   void clean();
 
   inline vk::structure::Vulkan* get_vk_struct(){return vk_struct;}

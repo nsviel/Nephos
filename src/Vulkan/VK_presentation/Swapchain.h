@@ -23,11 +23,11 @@ public:
 
 public:
   //Main function
-  void create_swapchain();
-  void recreate_swapchain();
+  void init();
   void clean();
 
-  //Swap chain creation
+  //Swapchain function
+  void recreate_swapchain();
   void retrieve_swapchain_image();
   void create_swapchain_handle();
   void find_swapchain_max_nb_image();

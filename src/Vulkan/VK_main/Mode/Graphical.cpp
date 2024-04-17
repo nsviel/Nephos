@@ -33,12 +33,11 @@ void Graphical::init(){
   vk_canvas->init();
 
   //Render
-  vk_swapchain->create_swapchain();
+  vk_swapchain->init();
   vk_viewport->init();
   vk_renderpass->init();
   vk_imgui->init();
   vk_semaphore->init_pool();
-  vk_frame->create_swapchain_frame();
 
   //---------------------------
 }

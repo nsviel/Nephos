@@ -53,9 +53,8 @@ void Node::loop(){
   while(app_config->running){
     prf_manager->loop_begin(120);
     node_engine->loop();
-    node_vulkan->loop();
     node_gui->loop();
-    node_vulkan->reset();
+    node_vulkan->loop();
     prf_manager->loop_end();
   }
 
