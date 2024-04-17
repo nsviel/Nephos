@@ -10,11 +10,14 @@ struct Frame{
   //---------------------------
 
   //Main object
-  VkFramebuffer fbo;
+  VkFramebuffer fbo = VK_NULL_HANDLE;
 
   //Attachment
   vk::structure::Image color;
   vk::structure::Image depth;
+
+  vk::structure::Image color_test;
+  vk::structure::Image depth_test;
 
   //---------------------------
 };

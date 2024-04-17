@@ -22,12 +22,12 @@ namespace vk::structure{
 struct Uniform{
   //---------------------------
 
-  std::string name;
-  size_t size;
-  int binding;
-  VkBuffer buffer;
-  VkDeviceMemory mem;
-  void* mapped;
+  std::string name = "";
+  size_t size = 0;
+  int binding = 0;
+  VkBuffer buffer = VK_NULL_HANDLE;
+  VkDeviceMemory mem = VK_NULL_HANDLE;
+  void* mapped = nullptr;
 
   //---------------------------
 };
@@ -35,9 +35,9 @@ struct Uniform{
 struct Sampler{
   //---------------------------
 
-  std::string name;
-  int binding;
-  VkDescriptorType type;
+  std::string name = "";
+  int binding = 0;
+  VkDescriptorType type = VK_DESCRIPTOR_TYPE_SAMPLER;
 
   //---------------------------
 };
@@ -45,9 +45,9 @@ struct Sampler{
 struct Push_constant{
   //---------------------------
 
-  std::string name;
-  int binding;
-  VkShaderStageFlagBits stage;
+  std::string name = "";
+  int binding = 0;
+  VkShaderStageFlagBits stage = VK_SHADER_STAGE_VERTEX_BIT;
 
   //---------------------------
 };

@@ -21,7 +21,7 @@ struct Vulkan{
   }
 
   //General
-  std::string name;
+  std::string name = "";
   int UID = 0;
 
   //Structure

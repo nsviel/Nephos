@@ -43,9 +43,18 @@ void Frame::create_swapchain_frame(){
     frame->color.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
     vk_image->create_image_view(&frame->color);
 
+    frame->color_test.handle = vk_struct->swapchain.vec_swapchain_image[i];
+    frame->color_test.format = vk_color->find_color_format();
+    frame->color_test.aspect = VK_IMAGE_ASPECT_COLOR_BIT;
+    frame->color_test.usage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
+    vk_color->create_color_image(&frame->color_test);
+
     //Depth
     frame->depth.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
     vk_depth->create_depth_image(&frame->depth);
+
+    frame->depth_test.usage = VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT;
+    vk_depth->create_depth_image(&frame->depth_test);
 
     vk_framebuffer->create_framebuffer_swapchain(renderpass, frame);
     vk_struct->swapchain.vec_frame.push_back(frame);
@@ -63,6 +72,10 @@ void Frame::clean_swapchain_frame(){
     vkDestroyImageView(vk_struct->device.handle, frame->color.view, nullptr);
     //vk_image->clean_image(&frame->color);
     vk_image->clean_image(&frame->depth);
+
+    vk_image->clean_image(&frame->color_test);
+    vk_image->clean_image(&frame->depth_test);
+
     vk_framebuffer->clean_framebuffer_handle(frame->fbo);
     delete frame;
   }

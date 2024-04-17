@@ -25,7 +25,7 @@ struct Pipeline_definition{
 struct Pipeline_info{
   //---------------------------
 
-  VkGraphicsPipelineCreateInfo info;
+  VkGraphicsPipelineCreateInfo info = {};
 
   //Pipeline info elements
   std::vector<VkPipelineShaderStageCreateInfo> shader_stage;
@@ -34,15 +34,15 @@ struct Pipeline_info{
   std::vector<VkVertexInputAttributeDescription> attribut_description;
   std::vector<std::pair<VkShaderModule, VkShaderModule>> vec_shader_couple;
 
-  VkPipelineVertexInputStateCreateInfo vertex_input_info;
-  VkPipelineInputAssemblyStateCreateInfo input_assembly;
-  VkPipelineViewportStateCreateInfo viewport_state;
-  VkPipelineRasterizationStateCreateInfo rasterizer;
-  VkPipelineMultisampleStateCreateInfo multisampling;
-  VkPipelineDepthStencilStateCreateInfo depth_stencil;
-  VkPipelineColorBlendStateCreateInfo color_blend_info;
-  VkPipelineColorBlendAttachmentState color_blend_attachment;
-  VkPipelineDynamicStateCreateInfo dynamic_state;
+  VkPipelineVertexInputStateCreateInfo vertex_input_info = {};
+  VkPipelineInputAssemblyStateCreateInfo input_assembly = {};
+  VkPipelineViewportStateCreateInfo viewport_state = {};
+  VkPipelineRasterizationStateCreateInfo rasterizer = {};
+  VkPipelineMultisampleStateCreateInfo multisampling = {};
+  VkPipelineDepthStencilStateCreateInfo depth_stencil = {};
+  VkPipelineColorBlendStateCreateInfo color_blend_info = {};
+  VkPipelineColorBlendAttachmentState color_blend_attachment = {};
+  VkPipelineDynamicStateCreateInfo dynamic_state = {};
 
   //---------------------------
 };
@@ -52,8 +52,8 @@ namespace vk::structure{
 struct Pipeline{
   //---------------------------
 
-  VkPipeline pipeline;
-  VkPipelineLayout layout;
+  VkPipeline pipeline = VK_NULL_HANDLE;
+  VkPipelineLayout layout = VK_NULL_HANDLE;
 
   vk::structure::Binding binding;
   Pipeline_definition definition;

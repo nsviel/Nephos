@@ -9,8 +9,8 @@ namespace vk::structure{
 struct Viewport{
   //---------------------------
 
-  VkViewport viewport;
-  VkRect2D scissor;
+  VkViewport viewport = {};
+  VkRect2D scissor = {};
 
   //---------------------------
 };

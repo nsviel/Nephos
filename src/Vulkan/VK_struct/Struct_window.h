@@ -18,8 +18,8 @@ struct Window{
   glm::vec2 constraint_min = glm::vec2(500, 250);
   glm::vec2 constraint_max = glm::vec2(4000, 4000);
   glm::vec2 center = glm::vec2(0, 0);
-  VkExtent2D extent;
-  VkSurfaceKHR surface;
+  VkExtent2D extent = {};
+  VkSurfaceKHR surface = VK_NULL_HANDLE;
   int cpt = 0;
 
   //---------------------------

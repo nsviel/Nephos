@@ -58,7 +58,7 @@ void Fence::create_fence(vk::structure::Fence* fence){
   info.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
   info.flags = VK_FENCE_CREATE_SIGNALED_BIT;
 
-  VkResult result = vkCreateFence(vk_struct->device.handle, &info, nullptr, &fence->fence);
+  VkResult result = vkCreateFence(vk_struct->device.handle, &info, nullptr, &fence->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create fence");
   }
@@ -68,7 +68,7 @@ void Fence::create_fence(vk::structure::Fence* fence){
 void Fence::clean_fence(vk::structure::Fence* fence){
   //---------------------------
 
-  vkDestroyFence(vk_struct->device.handle, fence->fence, nullptr);
+  vkDestroyFence(vk_struct->device.handle, fence->handle, nullptr);
 
   //---------------------------
 }
@@ -76,7 +76,7 @@ void Fence::reset_fence(vk::structure::Fence* fence){
   if(fence == nullptr) return;
   //---------------------------
 
-  VkResult result = vkResetFences(vk_struct->device.handle, 1, &fence->fence);
+  VkResult result = vkResetFences(vk_struct->device.handle, 1, &fence->handle);
   if(result != VK_SUCCESS){
     cout<<"[error] reseting fence"<<endl;
   }
@@ -123,7 +123,7 @@ bool Fence::is_fence_available(vk::structure::Fence* fence){
 
   if(fence == nullptr) return true;
 
-  VkResult result = vkGetFenceStatus(vk_struct->device.handle, fence->fence);
+  VkResult result = vkGetFenceStatus(vk_struct->device.handle, fence->handle);
 
   //Operation completed
   if(result == VK_SUCCESS){

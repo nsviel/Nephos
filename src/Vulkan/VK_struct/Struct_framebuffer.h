@@ -10,7 +10,7 @@ struct Framebuffer{
   //---------------------------
 
   //Main object
-  VkFramebuffer handle;
+  VkFramebuffer handle = VK_NULL_HANDLE;
 
   //Attachment
   vk::structure::Image color;

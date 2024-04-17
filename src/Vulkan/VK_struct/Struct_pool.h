@@ -9,7 +9,7 @@ namespace vk::pool{
 struct Command_buffer{
   //---------------------------
 
-  VkCommandPool allocator;
+  VkCommandPool allocator = VK_NULL_HANDLE;
   std::vector<vk::structure::Command_buffer> tank;
   uint32_t size = 100;
   bool is_available = true;
@@ -41,7 +41,7 @@ struct Semaphore{
 struct Descriptor{
   //---------------------------
 
-  VkDescriptorPool memory;
+  VkDescriptorPool memory = VK_NULL_HANDLE;
   std::mutex mutex;
   std::vector<vk::structure::Descriptor> tank;
   uint32_t size = 100;

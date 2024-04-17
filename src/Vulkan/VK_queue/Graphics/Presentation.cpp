@@ -38,7 +38,7 @@ bool Presentation::acquire_next_image(VkSemaphore& semaphore){
     vk_swapchain->recreate_swapchain();
     return false;
   }
-  VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->swapchain, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
+  VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->handle, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->frame_presentation_ID);
   if(result == VK_ERROR_OUT_OF_DATE_KHR){
     vk_swapchain->recreate_swapchain();
     return false;
@@ -71,7 +71,7 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
   presentation_info.waitSemaphoreCount = 1;
   presentation_info.pWaitSemaphores = &semaphore;
   presentation_info.swapchainCount = 1;
-  presentation_info.pSwapchains = &swapchain->swapchain;
+  presentation_info.pSwapchains = &swapchain->handle;
   presentation_info.pImageIndices = &swapchain->frame_presentation_ID;
   presentation_info.pResults = nullptr; // Optional
 

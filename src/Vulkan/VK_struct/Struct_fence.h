@@ -8,7 +8,7 @@ namespace vk::structure{
 struct Fence{
   //---------------------------
 
-  VkFence fence = VK_NULL_HANDLE;
+  VkFence handle = VK_NULL_HANDLE;
   bool is_available = true;
 
   //---------------------------

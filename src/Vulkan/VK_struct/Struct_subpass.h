@@ -28,9 +28,9 @@ struct Subpass{
   }
 
   //Subpass info
-  std::string target;
-  VkSubpassDescription description;
-  VkSubpassDependency dependency;
+  std::string target = "";
+  VkSubpassDescription description = {};
+  VkSubpassDependency dependency = {};
   vk::structure::Command_buffer* command_buffer;
 
   //Attachment

@@ -26,9 +26,9 @@ struct Object{
   //---------------------------
 
   int UID = 0;
-  
-  utl::type::Data* data;
-  utl::type::Pose* pose;
+
+  utl::type::Data* data = nullptr;
+  utl::type::Pose* pose = nullptr;
 
   //Data
   bool has_xyz = false;
@@ -40,7 +40,7 @@ struct Object{
 
   //Binding
   std::list<vk::structure::Texture*> list_vk_texture;
-  VkCommandBuffer command_buffer_secondary;
+  VkCommandBuffer command_buffer_secondary = VK_NULL_HANDLE;
   vk::structure::Binding binding;
 
   //---------------------------

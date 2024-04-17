@@ -62,7 +62,7 @@ void Swapchain::recreate_swapchain(){
 void Swapchain::clean(){
   //---------------------------
 
-  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, nullptr);
+  vkDestroySwapchainKHR(vk_struct->device.handle, vk_struct->swapchain.handle, nullptr);
   vk_frame->clean_swapchain_frame();
 
   //---------------------------
@@ -76,11 +76,11 @@ void Swapchain::create_swapchain_image(){
   //to get the correct image which are managed by the presentation engine
 
   //Empty swapchain image
-  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, &vk_struct->swapchain.max_nb_frame, nullptr);
+  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.handle, &vk_struct->swapchain.max_nb_frame, nullptr);
 
   //Fill swapchain image
   vk_struct->swapchain.vec_swapchain_image.resize(vk_struct->swapchain.max_nb_frame);
-  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.swapchain, &vk_struct->swapchain.max_nb_frame, vk_struct->swapchain.vec_swapchain_image.data());
+  vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.handle, &vk_struct->swapchain.max_nb_frame, vk_struct->swapchain.vec_swapchain_image.data());
 
   //---------------------------
 }
@@ -120,7 +120,7 @@ void Swapchain::create_swapchain_handle(){
   VkSurfaceCapabilitiesKHR surface_capability = vk_struct->device.physical_device.capabilities;
   create_info.preTransform = surface_capability.currentTransform;
 
-  VkResult result = vkCreateSwapchainKHR(vk_struct->device.handle, &create_info, nullptr, &vk_struct->swapchain.swapchain);
+  VkResult result = vkCreateSwapchainKHR(vk_struct->device.handle, &create_info, nullptr, &vk_struct->swapchain.handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create swap chain!");
   }

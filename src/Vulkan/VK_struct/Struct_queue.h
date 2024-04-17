@@ -9,7 +9,7 @@ namespace vk::structure{
 struct Queue{
   //---------------------------
 
-  VkQueue handle;
+  VkQueue handle = VK_NULL_HANDLE;
   float priority = 1.0f;
   int family_ID = -1;
   int family_index = 0;
@@ -36,7 +36,7 @@ struct Family{
   bool capable_sparseBinding = 0;
   bool capable_presentation = 0;
 
-  VkQueueFamilyProperties property;
+  VkQueueFamilyProperties property = {};
   vector<vk::structure::Queue*> vec_queue;
 
   //---------------------------
