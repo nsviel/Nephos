@@ -31,7 +31,7 @@ void Swapchain::create_swapchain(){
   this->find_swapchain_max_nb_image();
   this->find_swapchain_presentation_mode();
   this->create_swapchain_handle();
-  this->create_swapchain_image();
+  this->retrieve_swapchain_image();
   vk_viewport->update_viewport();
 
   //---------------------------
@@ -69,13 +69,10 @@ void Swapchain::clean(){
 }
 
 //Swap chain creation
-void Swapchain::create_swapchain_image(){
+void Swapchain::retrieve_swapchain_image(){
   //---------------------------
 
-  //For swapchain image we use vkGetSwapchainImagesKHR instead of VkImageCreateInfo
-  //to get the correct image which are managed by the presentation engine
-
-  //Empty swapchain image
+  //Get number of swapchain images
   vkGetSwapchainImagesKHR(vk_struct->device.handle, vk_struct->swapchain.handle, &vk_struct->swapchain.max_frame, nullptr);
 
   //Fill swapchain image

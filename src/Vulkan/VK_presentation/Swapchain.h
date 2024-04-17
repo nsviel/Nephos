@@ -28,7 +28,7 @@ public:
   void clean();
 
   //Swap chain creation
-  void create_swapchain_image();
+  void retrieve_swapchain_image();
   void create_swapchain_handle();
   void find_swapchain_max_nb_image();
   void find_swapchain_surface_format();
