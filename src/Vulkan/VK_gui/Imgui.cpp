@@ -191,8 +191,8 @@ void Imgui::select_font(){
   font_size = 10.0f;
   ImFont* font_gui;
   for(int i=0; i<15; i++){
-    ImFont* font = io.Fonts->AddFontFromFileTTF("../config/font/DroidSans.ttf", font_size, &config_text);
-    io.Fonts->AddFontFromFileTTF("../config/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/config/font/DroidSans.ttf", font_size, &config_text);
+    io.Fonts->AddFontFromFileTTF("../media/config/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
     font_size += 1.0f;
 
     if(i == 3){
@@ -202,7 +202,7 @@ void Imgui::select_font(){
 
   font_size = 13.0f;
   for(int i=0; i<10; i++){
-    ImFont* font = io.Fonts->AddFontFromFileTTF("../config/font/DroidSans.ttf", font_size, &config_editor);
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/config/font/DroidSans.ttf", font_size, &config_editor);
     font_size += 1.0f;
   }
 

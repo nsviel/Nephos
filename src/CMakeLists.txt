@@ -14,7 +14,7 @@ add_subdirectory(Profiler)
 #-----------------
 # Compilation
 #-----------------
-add_executable(executable
+add_executable(${EXECUTABLE_NAME}
   main.cpp
 )
 

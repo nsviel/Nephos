@@ -1,5 +1,4 @@
-#include "Application/Node.h"
-
+#include <Application/Namespace.h>
 #include <iostream>
 #include <stdexcept>
 

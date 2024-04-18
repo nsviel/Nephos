@@ -11,7 +11,7 @@ namespace eng::scene{
 Bookmark::Bookmark(eng::scene::Node* node_scene){
   //---------------------------
 
-  this->path_bookmark_file = "../config/gui/bookmark.txt";
+  this->path_bookmark_file = "../media/config/gui/bookmark.txt";
 
   //---------------------------
 }

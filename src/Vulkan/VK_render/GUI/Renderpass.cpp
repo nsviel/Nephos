@@ -37,8 +37,8 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   utl::shader::Info* shader_info = new utl::shader::Info();
   shader_info->title = "Canvas";
   shader_info->folder = "Canvas";
-  shader_info->path_spir_vs = "../shader/Empty/spir/shader_empty_vs.spv";
-  shader_info->path_spir_fs = "../shader/Empty/spir/shader_empty_fs.spv";
+  shader_info->path_spir_vs = "../media/shader/Empty/spir/shader_empty_vs.spv";
+  shader_info->path_spir_fs = "../media/shader/Empty/spir/shader_empty_fs.spv";
   shader_info->compile_shader = false;
   shader_info->with_depth_test = false;
 
