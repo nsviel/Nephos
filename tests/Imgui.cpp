@@ -1,6 +1,6 @@
-#include <GLFW/glfw3.h>
-#include <glad/glad.h>
+#include "Imgui.h"
 
+#include <GLFW/glfw3.h>
 #include <imgui/core/imgui.h>
 #include <imgui/core/imgui_impl_glfw.h>
 #include <imgui/core/imgui_internal.h>
@@ -8,38 +8,38 @@
 
 
 
+namespace test{
+
+Imgui::Imgui(){
+  //---------------------------
+
+
+  //---------------------------
+}
+Imgui::~Imgui(){}
+
 // Callback function to handle GLFW errors
-void glfw_error_callback(int error, const char* description)
-{
+void glfw_error_callback(int error, const char* description){
     fprintf(stderr, "GLFW Error %d: %s\n", error, description);
 }
-
-int main()
-{
+void Imgui::window(){
     // Initialize GLFW
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())
-        return -1;
+        return;
 
     // Create a windowed mode window and its OpenGL context
     GLFWwindow* window = glfwCreateWindow(1280, 720, "ImGui Window", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
-        return -1;
+        return;
     }
 
     // Make the window's context current
     glfwMakeContextCurrent(window);
 
-    // Initialize GLAD
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        fprintf(stderr, "Failed to initialize GLAD\n");
-        return -1;
-    }
-
-    // Setup ImGui context
+    // Initialize ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -82,5 +82,6 @@ int main()
 
     glfwDestroyWindow(window);
     glfwTerminate();
-    return 0;
+}
+
 }
