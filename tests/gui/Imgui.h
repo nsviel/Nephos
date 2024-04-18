@@ -13,7 +13,12 @@ public:
 
 public:
   //Main function
-  void window();
+  void run();
+
+  //Subfunction
+  void init();
+  void loop();
+  void clean();
 
 private:
 
