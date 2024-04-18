@@ -1,6 +1,7 @@
 #pragma once
 
-
+#include <Utility/Specific/Common.h>
+#include <GLFW/glfw3.h>
 
 
 namespace test{
@@ -14,6 +15,7 @@ public:
 public:
   //Main function
   void run();
+  void design();
 
   //Subfunction
   void init();
@@ -21,7 +23,7 @@ public:
   void clean();
 
 private:
-
+  GLFWwindow* window = nullptr;
 };
 
 }
