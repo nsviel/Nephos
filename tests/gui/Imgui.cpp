@@ -49,8 +49,11 @@ void Imgui::design(){
   ImGui::BeginTable("Table", 2);
 
   // Table headers
-  ImGuiTableColumnFlags column_flag = ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoReorder | ImGuiTableColumnFlags_NoHide;
-  ImGui::TableSetupColumn("", column_flag | ImGuiTableColumnFlags_NoHeaderLabel, 20.0f);
+  ImGuiTableColumnFlags column_flag;
+  column_flag |= ImGuiTableColumnFlags_WidthFixed;
+  column_flag |= ImGuiTableColumnFlags_NoReorder;
+  column_flag |= ImGuiTableColumnFlags_NoHide;
+  ImGui::TableSetupColumn("", column_flag, 20.0f);
   ImGui::TableSetupColumn("Name", column_flag);
   ImGui::TableHeadersRow();
 
