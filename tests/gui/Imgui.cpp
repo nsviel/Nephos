@@ -46,21 +46,24 @@ void Imgui::design(){
   ImGui::Begin("##table", nullptr, flag);
 
   // Begin the table
-  ImGui::BeginTable("Table", 3); // 3 columns
+  ImGui::BeginTable("Table", 2);
 
   // Table headers
-  ImGui::TableSetupColumn("Column 1");
-  ImGui::TableSetupColumn("Column 2");
-  ImGui::TableSetupColumn("Column 3");
+  ImGuiTableColumnFlags column_flag = ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoReorder | ImGuiTableColumnFlags_NoHide;
+  ImGui::TableSetupColumn("", column_flag | ImGuiTableColumnFlags_NoHeaderLabel, 20.0f);
+  ImGui::TableSetupColumn("Name", column_flag);
   ImGui::TableHeadersRow();
 
   // Table content
   for(int row = 0; row < 5; row++){
-    ImGui::TableNextRow();
-    for(int col = 0; col < 3; col++){
-      ImGui::TableSetColumnIndex(col);
-      ImGui::Text("Row %d, Column %d", row + 1, col + 1);
-    }
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(46, 133, 45, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, IM_COL32(46, 133, 45, 255));
+    ImGui::Button("##state", ImVec2(15, 15));
+    ImGui::PopStyleColor(2);
+
   }
 
   // End the table
