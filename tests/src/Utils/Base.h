@@ -3,20 +3,20 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace test{
+namespace Base{
 
-class Manager
+class Base
 {
 public:
-  Manager();
-  ~Manager();
+  Base();
+  ~Base();
 
 public:
   //Main function
 
 
 private:
-  vector<test::Base*> vec_test;
+
 };
 
 }

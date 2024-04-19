@@ -22,27 +22,18 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 find_package(glfw3 REQUIRED)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
-find_package(SQLite3 REQUIRED)
-find_package(k4a REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
   LIBRARY_ENGINE
 
-  ${k4a_LIBS}
   Eigen3::Eigen # Eigen
-  -lSQLiteCpp   # sqlitecpp
-  -lpthread     # sqlitecpp
-  -ldl          # sqlitecpp
-  -lsqlite3     # sqlite
   -lgit2        # git
   -lstdc++fs    # std::experimental::filesystem
   -lglfw        # glfw
   -lsqlite3     # sqlite
   -ludev        # video device
   -lusb-1.0
-  -lk4a
-  -lk4arecord
 
   -lavformat    # ffmpeg
   -lavdevice    # ffmpeg
