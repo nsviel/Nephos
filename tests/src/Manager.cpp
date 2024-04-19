@@ -1,4 +1,5 @@
 #include "Manager.h"
+#include "../Namespace.h"
 
 
 namespace test{

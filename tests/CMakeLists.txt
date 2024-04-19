@@ -7,8 +7,9 @@ cmake_policy(SET CMP0072 NEW)
 # Source files
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
-  *.cpp
-  *.h
+  gui/*.cpp
+  src/Utils/*.cpp
+  src/Manager.cpp
 )
 
 #-----------------

@@ -97,10 +97,18 @@ void Physical::find_best_physical_device(){
   if(candidates.rbegin()->first > 0){
     vk_struct->device.physical_device = candidates.rbegin()->second;
   }else{
-    throw std::runtime_error("[error] failed to find a suitable GPU");
+    cout<<"[error] failed to find a suitable GPU"<<endl;
+    cout<<"-------------------------------------"<<endl;
+    cout<<"Detected physical devices:"<<endl;
+    for(auto it = candidates.begin(); it != candidates.end(); ++it){
+      int score = it->first;
+      const vk::structure::Physical_device& device = it->second;
+      std::cout<<"-> Physical_device: "<<device.name<< " << score "<<score<<std::endl;
+    }
+    exit(0);
   }
   if(vk_struct->device.physical_device.handle == VK_NULL_HANDLE){
-    throw std::runtime_error("[error] failed to find a suitable GPU!");
+    throw std::runtime_error("[error] problem retrieving a suitable GPU");
   }
 
   //---------------------------
@@ -109,7 +117,7 @@ void Physical::rate_device_suitability(vk::structure::Physical_device& physical_
   int score = 0;
   //---------------------------
 
-  // Get rid of llvmpipe
+  //If llvmpipe, set score to the minimum
   if(physical_device.vendorID == 65541){
     physical_device.selection_score = 0;
     return;

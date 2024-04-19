@@ -2,6 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace test{class Base;}
+
 
 namespace test{
 

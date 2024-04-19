@@ -13,7 +13,7 @@ public:
 
 public:
   //Main function
-
+  virtual void run(){}
 
 private:
 
