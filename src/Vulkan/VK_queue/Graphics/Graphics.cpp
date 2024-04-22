@@ -114,7 +114,6 @@ void Graphics::add_command(vk::structure::Command* command){
   this->thread_idle = false;
   this->with_presentation = false;
   vec_command_prepa.push_back(command);
-  this->wait_for_work();
   mutex.unlock();
 
   //---------------------------
@@ -128,7 +127,6 @@ void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
   this->thread_idle = false;
   this->with_presentation = false;
   vec_command_prepa = vec_command;
-  this->wait_for_work();
   mutex.unlock();
 
   //---------------------------
@@ -143,7 +141,6 @@ void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
   this->thread_idle = false;
   this->with_presentation = true;
   vec_command_prepa = vec_command;
-  this->wait_for_work();
   mutex.unlock();
 
   //---------------------------

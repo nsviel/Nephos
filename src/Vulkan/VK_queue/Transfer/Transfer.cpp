@@ -138,30 +138,25 @@ void Transfer::make_submission(vector<VkSubmitInfo>& vec_info){
   vk_fence->reset_fence(fence);
 
   //---------------------------
-  this->thread_idle = true;
 }
 void Transfer::post_submission(){
   //---------------------------
-    //say("-----");
+  //say("-----");
   //Reset command buffer
   for(int i=0; i<vec_command_onrun.size(); i++){
     vk::structure::Command_buffer* command_buffer = vec_command_onrun[i];
 
-
     //say(command_buffer->handle);
-
-
     if(command_buffer->is_resetable){
-      command_buffer->is_available = true;
       command_buffer->is_recorded = false;
       command_buffer->query.is_in_use = false;
+      command_buffer->is_available = true;
     }
   }
-
   this->vec_command_onrun.clear();
-  this->vec_command_buffer.clear();
 
   //---------------------------
+  this->thread_idle = true;
 }
 
 }

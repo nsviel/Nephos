@@ -38,6 +38,7 @@ public:
   void start_command_buffer_primary(vk::structure::Command_buffer* command_buffer);
   void start_command_buffer_secondary(vk::structure::Renderpass* renderpass);
   void end_command_buffer(vk::structure::Command_buffer* command_buffer);
+  int find_num_available_command(vk::pool::Command_buffer* pool);
 
 private:
   vk::structure::Vulkan* vk_struct;

@@ -28,6 +28,7 @@ void Imgui::init(){
   this->create_context();
   this->select_font();
   this->load_font();
+  this->update_render_descriptor();
 
   //---------------------------
 }
@@ -58,7 +59,7 @@ void Imgui::clean(){
 void Imgui::loop(){
   //---------------------------
 
-  this->update_render_descriptor();
+
 
   //---------------------------
 }
@@ -90,7 +91,7 @@ void Imgui::create_context(){
     init_info.PhysicalDevice = vk_struct->device.physical_device.handle;
     init_info.Device = vk_struct->device.handle;
     init_info.Queue = vk_struct->device.queue.graphics.handle;
-    init_info.DescriptorPool = vk_struct->pools.descriptor.memory;
+    init_info.DescriptorPool = vk_struct->pools.descriptor.allocator;
     init_info.PipelineCache = VK_NULL_HANDLE;
     init_info.MinImageCount = 2;
     init_info.ImageCount = 2;

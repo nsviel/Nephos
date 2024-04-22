@@ -120,6 +120,7 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::poo
 
   // Mutex for synchronization
   static std::mutex mtx;
+  std::lock_guard<std::mutex> lock(mtx);
 
   // Find a random available and unrecorded command buffer
   int index;
@@ -128,8 +129,6 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::poo
     index = distr(gen);
     command_buffer = &pool->tank[index];
 
-    // Lock the mutex before accessing and modifying the flag
-    std::lock_guard<std::mutex> lock(mtx);
     if(command_buffer->is_available){
       command_buffer->is_available = false;
       vkResetCommandBuffer(command_buffer->handle, 0);
@@ -200,6 +199,21 @@ void Command_buffer::end_command_buffer(vk::structure::Command_buffer* command_b
   command_buffer->is_recorded = true;
 
   //---------------------------
+}
+int Command_buffer::find_num_available_command(vk::pool::Command_buffer* pool){
+  int num = 0;
+  //---------------------------
+
+  for(int i=0; i<pool->tank.size(); i++){
+    vk::structure::Command_buffer* command_buffer = &pool->tank[i];
+
+    if(command_buffer->is_available){
+      num++;
+    }
+  }
+
+  //---------------------------
+  return num;
 }
 
 }

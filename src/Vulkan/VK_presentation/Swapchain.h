@@ -10,6 +10,7 @@ namespace vk::presentation{class Surface;}
 namespace vk::structure{class Vulkan;}
 namespace vk::synchro{class Synchro;}
 namespace vk::window{class GLFW;}
+namespace vk::gui{class Imgui;}
 
 
 namespace vk::presentation{
@@ -43,6 +44,7 @@ private:
   vk::presentation::Surface* vk_surface;
   vk::synchro::Synchro* vk_synchro;
   vk::window::GLFW* vk_window;
+  vk::gui::Imgui* vk_imgui;
 };
 
 }

@@ -129,7 +129,7 @@ void Descriptor::allocate_descriptor_set(vk::structure::Binding* binding){
 
   VkDescriptorSetAllocateInfo allocation_info{};
   allocation_info.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
-  allocation_info.descriptorPool = vk_struct->pools.descriptor.memory;
+  allocation_info.descriptorPool = vk_struct->pools.descriptor.allocator;
   allocation_info.descriptorSetCount = 1;
   allocation_info.pSetLayouts = &binding->descriptor.layout;
 

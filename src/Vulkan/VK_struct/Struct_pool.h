@@ -41,8 +41,8 @@ struct Semaphore{
 struct Descriptor{
   //---------------------------
 
-  VkDescriptorPool memory = VK_NULL_HANDLE;
   std::mutex mutex;
+  VkDescriptorPool allocator = VK_NULL_HANDLE;
   std::vector<vk::structure::Descriptor> tank;
   uint32_t size = 100;
 

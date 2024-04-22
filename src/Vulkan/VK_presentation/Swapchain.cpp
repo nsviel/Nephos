@@ -17,6 +17,7 @@ Swapchain::Swapchain(vk::structure::Vulkan* vk_struct){
   this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_window = new vk::window::GLFW(vk_struct);
+  this->vk_imgui = new vk::gui::Imgui(vk_struct);
 
   //---------------------------
 }
@@ -66,6 +67,7 @@ void Swapchain::recreate_swapchain(){
   this->init();
   vk_framebuffer->create_framebuffers();
   vk_synchro->end_idle();
+  vk_imgui->update_render_descriptor();
 
   //---------------------------
 }
