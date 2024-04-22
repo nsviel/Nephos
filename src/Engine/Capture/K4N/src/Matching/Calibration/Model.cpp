@@ -72,8 +72,6 @@ void Model::draw_model(){
     this->compute_model();
   //}
 
-  std::vector<std::vector<float>> x, y, z;
-
   // Generate values for x and y
   std::vector<float> x_values;
   for(float i = model->x.bound[0]; i <= model->x.bound[1]; i += 0.1){
@@ -86,18 +84,22 @@ void Model::draw_model(){
   }
 
   // Compute z values and fill x, y, and z vectors
-  for (float x_val : x_values) {
+  std::vector<std::vector<float>> x, y, z;
+  for(float x_val : x_values){
     std::vector<float> row_x, row_y, row_z;
-    for (float y_val : y_values) {
+    for(float y_val : y_values){
       row_x.push_back(x_val);
       row_y.push_back(y_val);
-      row_z.push_back(this->apply_model(x_val, y_val));
+
+      float z_value = apply_model(x_val, y_val);
+      row_z.push_back(z_value);
     }
     x.push_back(row_x);
     y.push_back(row_y);
     z.push_back(row_z);
   }
 
+  if(z.size() == 0) return;
   matplotlibcpp::plot_surface(x, y, z);
   matplotlibcpp::show();
 

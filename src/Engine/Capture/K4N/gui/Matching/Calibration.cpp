@@ -59,8 +59,12 @@ void Calibration::draw_calibration_player(k4n::dev::Sensor* sensor){
 void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  ImGui::BeginTable("Detection##table", 2);
   this->draw_calibration_measure(sensor);
   this->draw_calibration_model(sensor);
+  ImGui::EndTable();
+  ImGui::Separator();
+
   this->draw_measure(sensor);
 
   //---------------------------
@@ -69,93 +73,103 @@ void Calibration::draw_calibration_measure(k4n::dev::Sensor* sensor){
   k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   //---------------------------
 
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Measure");
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Measure");
 
-  //Path
-  if(ImGui::Button("...##path_measure")){
-    zenity::selection_file(measure->path);
-  }
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", measure->path.c_str());
+  ImGui::TableNextColumn();
+  if(ImGui::TreeNode("Parameter##Measure")){
+    //Path
+    if(ImGui::Button("...##path_measure")){
+      zenity::selection_file(measure->path);
+    }
+    ImGui::SameLine();
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", measure->path.c_str());
 
-  //Heatmap scale
-  ImGui::DragFloatRange2("Heatmap scale",&measure->IfRIt.z.min, &measure->IfRIt.z.max, 100, 0, 60000, "%.0f");
+    //Heatmap scale
+    ImGui::DragFloatRange2("Heatmap scale",&measure->IfRIt.z.min, &measure->IfRIt.z.max, 100, 0, 60000, "%.0f");
 
-  //Import / export / clear
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-  if(ImGui::Button("Import##measure", ImVec2(120, 0))){
-    k4n_measure->import_measure();
+    //Import / export / clear
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+    if(ImGui::Button("Import##measure", ImVec2(120, 0))){
+      k4n_measure->import_measure();
+    }
+    ImGui::PopStyleColor(2);
+    ImGui::SameLine();
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
+    if(ImGui::Button("Export##measure", ImVec2(120, 0))){
+      k4n_measure->export_measure();
+    }
+    ImGui::PopStyleColor(2);
+    ImGui::SameLine();
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
+    if(ImGui::Button("Clear##measure", ImVec2(120, 0))){
+      k4n_measure->clear_measure();
+    }
+    ImGui::PopStyleColor(2);
+
+    ImGui::TreePop();
   }
-  ImGui::PopStyleColor(2);
-  ImGui::SameLine();
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
-  if(ImGui::Button("Export##measure", ImVec2(120, 0))){
-    k4n_measure->export_measure();
-  }
-  ImGui::PopStyleColor(2);
-  ImGui::SameLine();
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
-  if(ImGui::Button("Clear##measure", ImVec2(120, 0))){
-    k4n_measure->clear_measure();
-  }
-  ImGui::PopStyleColor(2);
 
   //---------------------------
-  ImGui::Separator();
 }
 void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
 
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model");
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Model");
 
-  //Path
-  if(ImGui::Button("...##path_model")){
-    zenity::selection_file(model->path);
-  }
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", model->path.c_str());
+  ImGui::TableNextColumn();
+  if(ImGui::TreeNode("Parameter##Model")){
+    //Path
+    if(ImGui::Button("...##path_model")){
+      zenity::selection_file(model->path);
+    }
+    ImGui::SameLine();
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", model->path.c_str());
 
-  //Model parameter
-  ImGui::SetNextItemWidth(100);
-  ImGui::DragIntRange2("Degree", &model->degree_x, &model->degree_y, 1, 1, 10);
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", model->rmse);
-  ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm");
-  ImGui::DragFloatRange2("Range y",&model->y.bound[0], &model->y.bound[1], 1, 0, 90, "%.0f°", "%.0f°");
+    //Model parameter
+    ImGui::SetNextItemWidth(100);
+    ImGui::DragIntRange2("Degree", &model->degree_x, &model->degree_y, 1, 1, 10);
+    ImGui::SameLine();
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", model->rmse);
+    ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm");
+    ImGui::DragFloatRange2("Range y",&model->y.bound[0], &model->y.bound[1], 1, 0, 90, "%.0f°", "%.0f°");
 
-  //Model function
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
-  if(ImGui::Button("Compute##model", ImVec2(120, 0))){
-    k4n_model->compute_model();
-  }
-  ImGui::SameLine();
-  if(ImGui::Button("Plot##model", ImVec2(120, 0))){
-    k4n_model->draw_model();
-  }
-  ImGui::PopStyleColor(2);
+    //Model function
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
+    if(ImGui::Button("Compute##model", ImVec2(120, 0))){
+      k4n_model->compute_model();
+    }
+    ImGui::SameLine();
+    if(ImGui::Button("Plot##model", ImVec2(120, 0))){
+      k4n_model->draw_model();
+    }
+    ImGui::PopStyleColor(2);
 
-  //Model fitting & plotting
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-  if(ImGui::Button("Import##model", ImVec2(120, 0))){
-    k4n_model->import_model();
+    //Model fitting & plotting
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+    if(ImGui::Button("Import##model", ImVec2(120, 0))){
+      k4n_model->import_model();
+    }
+    ImGui::PopStyleColor(2);
+    ImGui::SameLine();
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
+    if(ImGui::Button("Export##model", ImVec2(120, 0))){
+      k4n_model->export_model();
+    }
+    ImGui::PopStyleColor(2);
+
+    ImGui::TreePop();
   }
-  ImGui::PopStyleColor(2);
-  ImGui::SameLine();
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
-  if(ImGui::Button("Export##model", ImVec2(120, 0))){
-    k4n_model->export_model();
-  }
-  ImGui::PopStyleColor(2);
 
   //---------------------------
-  ImGui::Separator();
 }
 
 //Subfunction

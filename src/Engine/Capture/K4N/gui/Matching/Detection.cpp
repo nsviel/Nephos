@@ -27,9 +27,14 @@ void Detection::draw_detection(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->detection_parameter(sensor);
+
+  ImGui::BeginTable("Detection##table", 2);
   this->canny_parameter(sensor);
   this->hough_parameter(sensor);
   this->ransac_parameter(sensor);
+  ImGui::EndTable();
+  ImGui::Separator();
+
   this->draw_result(sensor);
 
   //---------------------------
@@ -51,10 +56,14 @@ void Detection::canny_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Canny
-  ImGui::Checkbox("Canny", &k4n_struct->matching.canny.apply);
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Canny");
 
-  ImGui::SameLine();
+  ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Canny")){
+    //Activated
+    ImGui::Checkbox("##Canny", &k4n_struct->matching.canny.apply);
+
     //Lower threshold
     ImGui::SetNextItemWidth(125);
     ImGui::SliderInt("Lower threshold", &k4n_struct->matching.canny.lower_threshold, 0, 200);
@@ -71,9 +80,10 @@ void Detection::canny_parameter(k4n::dev::Sensor* sensor){
 void Detection::hough_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Hough");
 
-  ImGui::SameLine();
+  ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Hough")){
     //Mode
     int& mode = k4n_struct->matching.hough.mode;
@@ -122,9 +132,10 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
 void Detection::ransac_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Ransac");
 
-  ImGui::SameLine();
+  ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Ransac")){
     ImGui::SliderInt("Num iteration", &k4n_struct->matching.calibration.ransac_nb_iter, 1, 10000);
     ImGui::SliderFloat("Threshold sphere", &k4n_struct->matching.calibration.ransac_thres_sphere, 0.01f, 0.1f, "%.2f m");
@@ -136,7 +147,6 @@ void Detection::ransac_parameter(k4n::dev::Sensor* sensor){
   }
 
   //---------------------------
-  ImGui::Separator();
 }
 void Detection::draw_result(k4n::dev::Sensor* sensor){
   //---------------------------

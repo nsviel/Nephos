@@ -89,7 +89,11 @@ void Vulkan::draw_tab_queue(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim)
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
-  static ImGuiTableFlags flags = ImGuiTableFlags_BordersV | ImGuiTableFlags_BordersOuterH | ImGuiTableFlags_RowBg | ImGuiTableFlags_ContextMenuInBody;
+  ImGuiTableFlags flags;
+  flags |= ImGuiTableFlags_BordersV;
+  flags |= ImGuiTableFlags_BordersOuterH;
+  flags |= ImGuiTableFlags_RowBg;
+  flags |= ImGuiTableFlags_ContextMenuInBody;
   ImGui::BeginTable("vulkan_queue##table", 3, flags);
 
   //Family index
