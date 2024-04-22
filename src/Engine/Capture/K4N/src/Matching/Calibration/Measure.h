@@ -26,6 +26,7 @@ public:
   void init_plot();
   void reset_plot();
   void update_plot();
+  void clear_plot();
 
 private:
   k4n::structure::K4N* k4n_struct;

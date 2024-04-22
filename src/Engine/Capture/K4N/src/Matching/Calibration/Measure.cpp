@@ -42,7 +42,7 @@ void Measure::clear_measure(){
 
   //Import file model data
   measure->vec_data.clear();
-  this->reset_plot();
+  this->clear_plot();
 
   //---------------------------
 }
@@ -139,7 +139,6 @@ void Measure::reset_plot(){
   //I(R, It)
   for(int i=0; i<measure->IfRIt.z.data.size(); i++){
     measure->IfRIt.z.data[i] = 0;
-    measure->vec_data[i] = vec3(-1, -1, -1);
   }
 
   //---------------------------
@@ -148,6 +147,8 @@ void Measure::update_plot(){
   k4n::structure::Measure* measure = &k4n_struct->matching.measure;
   k4n::structure::Model* model = &k4n_struct->matching.model;
   //---------------------------
+
+  this->reset_plot();
 
   //Fill model plot data
   for(int i=0; i<measure->vec_data.size(); i++){
@@ -179,6 +180,34 @@ void Measure::update_plot(){
 
   //---------------------------
 }
+void Measure::clear_plot(){
+  k4n::structure::Model* model = &k4n_struct->matching.model;
+  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+  //---------------------------
 
+  //I(R)
+  for(int i=0; i<measure->IfR.x.data.size(); i++){
+    measure->IfR.x.data[i] = 0;
+  }
+  for(int i=0; i<measure->IfR.y.data.size(); i++){
+    measure->IfR.y.data[i] = 0;
+  }
+
+  //I(It)
+  for(int i=0; i<measure->IfIt.x.data.size(); i++){
+    measure->IfIt.x.data[i] = 0;
+  }
+  for(int i=0; i<measure->IfIt.y.data.size(); i++){
+    measure->IfIt.y.data[i] = 0;
+  }
+
+  //I(R, It)
+  for(int i=0; i<measure->IfRIt.z.data.size(); i++){
+    measure->IfRIt.z.data[i] = 0;
+    measure->vec_data[i] = vec3(-1, -1, -1);
+  }
+
+  //---------------------------
+}
 
 }

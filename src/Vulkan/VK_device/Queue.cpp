@@ -59,7 +59,7 @@ void Queue::find_queue_family_assigment(){
   std::vector<vk::structure::queue::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   vk::structure::queue::Pool& pool = vk_struct->device.queue;
 
-  for(int i=0; vec_queue_family.size(); i++){
+  for(int i=0; i<vec_queue_family.size(); i++){
     vk::structure::queue::Family& family = vec_queue_family[i];
     bool several_queue = family.nb_queue > 1;
 
@@ -78,7 +78,7 @@ void Queue::find_queue_family_assigment(){
     }
 
     //Transfer
-    if(family.capable_transfer && pool.transfer.family_ID == -1){
+    if(family.capable_transfer && pool.transfer.family_ID == -1){ // If transfer not assigned
       //Discrete GPU
       if(vk_struct->device.physical_device.discrete_gpu){
         if(i != pool.graphics.family_ID && i==2){
