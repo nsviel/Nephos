@@ -58,6 +58,8 @@ void GLFW::create_window(){
     exit(0);
   }
 
+  this->set_window_constraint_min(vk_struct->window.constraint_min);
+
   //---------------------------
 }
 void GLFW::close_window(){
@@ -129,19 +131,19 @@ bool GLFW::is_window_resized(){
   //---------------------------
   return false;
 }
-void GLFW::set_window_constraint_min(int width, int height){
+void GLFW::set_window_constraint_min(vec2 constraint){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
-  glfwSetWindowSizeLimits(vk_struct->window.handle, width, height, GLFW_DONT_CARE, GLFW_DONT_CARE);
+  glfwSetWindowSizeLimits(vk_struct->window.handle, constraint.x, constraint.y, GLFW_DONT_CARE, GLFW_DONT_CARE);
 
   //---------------------------
 }
-void GLFW::set_window_constraint_max(int width, int height){
+void GLFW::set_window_constraint_max(vec2 constraint){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
-  glfwSetWindowSizeLimits(vk_struct->window.handle, GLFW_DONT_CARE, GLFW_DONT_CARE, width, height);
+  glfwSetWindowSizeLimits(vk_struct->window.handle, GLFW_DONT_CARE, GLFW_DONT_CARE, constraint.x, constraint.y);
 
   //---------------------------
 }

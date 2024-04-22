@@ -2,4 +2,3 @@ build/*
 extern/shader/*
 doc/code/*
 media/record/*
-config/*

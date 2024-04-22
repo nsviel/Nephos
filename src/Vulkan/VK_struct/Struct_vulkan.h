@@ -18,6 +18,9 @@ struct Vulkan{
     this->profiler = new vk::structure::Profiler(node_profiler);
     this->param.headless = app_config->headless;
     this->param.app_running = &app_config->running;
+    this->window.dimension = app_config->window_dim;
+    this->window.constraint_min = app_config->window_dim_min;
+    this->window.title = app_config->window_title;
   }
 
   //General
