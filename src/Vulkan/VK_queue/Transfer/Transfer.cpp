@@ -92,8 +92,10 @@ void Transfer::process_command(){
   //---------------------------
 
   //Passing the command torch
+  mutex.lock();
   this->vec_command_onrun = vec_command_prepa;
   this->vec_command_prepa.clear();
+  mutex.unlock();
 
   //Submission stuff
   vector<VkSubmitInfo> vec_info;

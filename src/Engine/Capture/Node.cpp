@@ -31,7 +31,7 @@ void Node::config(){
   //---------------------------
 
   node_k4n->config();
-  node_velodyne->config();
+  //node_velodyne->config();
 
   //---------------------------
 }
@@ -39,7 +39,7 @@ void Node::init(){
   //---------------------------
 
   node_k4n->init();
-  node_velodyne->init();
+  //node_velodyne->init();
 
   //---------------------------
 }
@@ -54,7 +54,7 @@ void Node::gui(){
   //---------------------------
 
   node_k4n->gui();
-  node_velodyne->gui();
+  //node_velodyne->gui();
 
   //---------------------------
 }
@@ -62,7 +62,7 @@ void Node::clean(){
   //---------------------------
 
   node_k4n->clean();
-  node_velodyne->clean();
+  //node_velodyne->clean();
 
   //---------------------------
 }
