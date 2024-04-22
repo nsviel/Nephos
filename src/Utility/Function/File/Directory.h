@@ -6,6 +6,7 @@
 namespace utl::directory{
 
 //Directory operations
+void open(std::string path);
 void clean(const char *path);
 void remove(const std::string& path);
 void create(std::string path);

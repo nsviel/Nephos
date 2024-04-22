@@ -20,6 +20,19 @@
 namespace utl::directory{
 
 //Operation
+void open(std::string path){
+  //---------------------------
+
+  // Fork a child process
+  pid_t pid = fork();
+
+  if(pid == 0){
+    // Child process: execute nemo command
+    execlp("nemo", "nemo", path.c_str(), NULL);
+  }
+
+  //---------------------------
+}
 void create(std::string path){
   //---------------------------
 

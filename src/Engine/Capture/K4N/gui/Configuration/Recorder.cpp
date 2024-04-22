@@ -43,6 +43,10 @@ void Recorder::recorder_path(k4n::dev::Sensor* sensor){
 
     }
     ImGui::SameLine();
+    if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
+      utl::directory::open(sensor->master->recorder.folder);
+    }
+    ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.folder.c_str());
 
     //File
@@ -50,6 +54,10 @@ void Recorder::recorder_path(k4n::dev::Sensor* sensor){
     ImGui::Text("File"); ImGui::TableNextColumn();
     if(ImGui::Button("...##file_path")){
 
+    }
+    ImGui::SameLine();
+    if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
+      utl::directory::open(sensor->master->recorder.filename);
     }
     ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.filename.c_str());

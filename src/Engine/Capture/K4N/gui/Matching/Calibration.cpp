@@ -83,6 +83,10 @@ void Calibration::draw_calibration_measure(k4n::dev::Sensor* sensor){
       zenity::selection_file(measure->path);
     }
     ImGui::SameLine();
+    if(ImGui::Button(ICON_FA_FOLDER "##path_measure")){
+      utl::directory::open(measure->path);
+    }
+    ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", measure->path.c_str());
 
     //Heatmap scale
@@ -129,6 +133,10 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
       zenity::selection_file(model->path);
     }
     ImGui::SameLine();
+    if(ImGui::Button(ICON_FA_FOLDER "##path_model")){
+      utl::directory::open(model->path);
+    }
+    ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", model->path.c_str());
 
     //Model parameter
@@ -136,8 +144,12 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
     ImGui::DragIntRange2("Degree", &model->degree_x, &model->degree_y, 1, 1, 10);
     ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", model->rmse);
-    ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm");
-    ImGui::DragFloatRange2("Range y",&model->y.bound[0], &model->y.bound[1], 1, 0, 90, "%.0f°", "%.0f°");
+    if(ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
+      k4n_measure->update_plot();
+    }
+    if(ImGui::DragFloatRange2("Range y",&model->y.bound[0], &model->y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
+      k4n_measure->update_plot();
+    }
 
     //Model function
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));

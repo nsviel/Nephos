@@ -51,12 +51,18 @@ void Panel::cam_parameter(){
 
   //Camera parameters
   ImGui::SliderFloat("FOV (°)", &camera->fov, 100.0f, 1.0f);
-  if(camera->mode == CAMERA_MODE_PLAYER){
-    ImGui::DragFloatRange2("Sensibility", &camera->player_mouse_sensibility.x, &camera->arcball_mouse_sensibility.y, 0.01f, 0.01f, 10.0f, "X: %.2f", "Y: %.2f", ImGuiSliderFlags_AlwaysClamp);
+  vec2* sensibility;
+  switch(camera->mode){
+    case CAMERA_MODE_PLAYER:{
+      sensibility = &camera->player_mouse_sensibility;
+      break;
+    }
+    case CAMERA_MODE_ARCBALL:{
+      sensibility = &camera->arcball_mouse_sensibility;
+      break;
+    }
   }
-  if(camera->mode == CAMERA_MODE_ARCBALL){
-    ImGui::DragFloatRange2("Sensibility", &camera->arcball_mouse_sensibility.x, &camera->arcball_mouse_sensibility.y, 0.01f, 0.01f, 10.0f, "X: %.2f", "Y: %.2f", ImGuiSliderFlags_AlwaysClamp);
-  }
+  ImGui::DragFloatRange2("Sensibility", &sensibility->x, &sensibility->y, 0.01f, 0.01f, 10.0f, "X: %.2f", "Y: %.2f", ImGuiSliderFlags_AlwaysClamp);
   ImGui::DragFloatRange2("Clip", &camera->clip_near, &camera->clip_far, 0.01f, 0.01f, 1000.0f, "Near: %.2f", "Far: %.2f", ImGuiSliderFlags_AlwaysClamp);
   ImGui::Separator();
 
@@ -93,15 +99,25 @@ void Panel::cam_info(){
 
   //Camera position
   ImGui::Text("Pose");
-  float* floatArray = reinterpret_cast<float*>(&camera->cam_P);
-  ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f");
-  ImGui::SameLine();
-  if(ImGui::Button("R")){
-    camera->cam_P = vec3(0, 0, 0);
+  switch(camera->mode){
+    case CAMERA_MODE_PLAYER:{
+      float* floatArray = reinterpret_cast<float*>(&camera->cam_P);
+      ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f");
+      ImGui::SameLine();
+      if(ImGui::Button("R")){
+        camera->cam_P = vec3(0, 0, 0);
+      }
+      break;
+    }
+    case CAMERA_MODE_ARCBALL:{
+      ImGui::Text("%.2f   %.2f   %.2f", camera->cam_P[0], camera->cam_P[1], camera->cam_P[2]);
+      break;
+    }
   }
 
   //Camera angles
-  if(ImGui::BeginTable("angle##camera", 2)){
+  if(camera->mode == CAMERA_MODE_PLAYER){
+    ImGui::BeginTable("angle##camera", 2);
     ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 125.0f);
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();

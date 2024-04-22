@@ -258,6 +258,10 @@ void Master::show_recorder(k4n::dev::Master* master){
     zenity::selection_directory(master->recorder.folder);
   }
   ImGui::TableNextColumn();
+  if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
+    utl::directory::open(master->recorder.folder);
+  }
+  ImGui::SameLine();
   string path = (master->recorder.folder != "") ? master->recorder.folder : "(not defined)";
   ImGui::TextColored(color, "%s", path.c_str());
 

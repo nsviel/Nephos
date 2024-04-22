@@ -160,7 +160,8 @@ void Measure::update_plot(){
     measure->IfRIt.z.data[i] = I;
 
     //I(R)
-    if(It > model->y.current && It < model->y.current + 5){
+    if(R > model->x.bound[0] && R < model->x.bound[1]) // R inside user defined bounds
+    if(It > model->y.current && It < model->y.current + 5){ //All data between It current + 5 degrees
       int index = static_cast<int>(std::round(R / measure->IfR.x.resolution));
       measure->IfR.x.data[index] = R;
       measure->IfR.y.data[index] = I;
@@ -171,7 +172,8 @@ void Measure::update_plot(){
     }
 
     //I(It)
-    if(R > model->x.current && R < model->x.current + 0.05){
+    if(It > model->y.bound[0] && It < model->y.bound[1]) // It It inside user defined bounds
+    if(R > model->x.current && R < model->x.current + 0.05){ //All data between R current + 0.05m
       int index = static_cast<int>(std::round(It / measure->IfIt.x.resolution));
       measure->IfIt.x.data[index] = It;
       measure->IfIt.y.data[index] = I;
