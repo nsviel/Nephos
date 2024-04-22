@@ -113,7 +113,7 @@ void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
     }
   }
 
-  //ADdd into model data vector
+  //Add into model data vector
   int index = static_cast<int>(std::round(R / measure->IfR.x.resolution));
   if(index >= 0 && index < measure->IfR.x.data.size()){
     measure->IfR.x.data[index] = R;

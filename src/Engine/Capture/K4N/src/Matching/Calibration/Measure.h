@@ -24,6 +24,7 @@ public:
 
   //Plot function
   void init_plot();
+  void reset_plot();
   void update_plot();
 
 private:

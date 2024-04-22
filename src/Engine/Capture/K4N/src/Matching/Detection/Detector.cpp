@@ -25,7 +25,7 @@ void Detector::make_sphere_detection(k4n::dev::Sensor* sensor){
   this->detect_circle_in_image(sensor);
   this->draw_detection_image(sensor);
   this->draw_detection_glyph(sensor);
-  
+
   //---------------------------
 }
 
