@@ -85,16 +85,16 @@ void Renderpass::update_binding(vk::structure::Subpass* subpass){
   shader_edl->update_shader();
   vk_uniform->update_uniform("EDL_param", &pipeline->binding, *edl_struct);
 
-  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer->command, pipeline);
-  vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->command, pipeline, pipeline->binding.descriptor.set);
+  vk_pipeline->cmd_bind_pipeline(subpass->command_buffer->handle, pipeline);
+  vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->handle, pipeline, pipeline->binding.descriptor.set);
 
   //---------------------------
 }
 void Renderpass::draw_canvas(vk::structure::Subpass* subpass){
   //---------------------------
 
-  vk_viewport->cmd_viewport(subpass->command_buffer->command);
-  vk_drawer->cmd_draw_data(subpass->command_buffer->command, vk_engine->get_canvas());
+  vk_viewport->cmd_viewport(subpass->command_buffer->handle);
+  vk_drawer->cmd_draw_data(subpass->command_buffer->handle, vk_engine->get_canvas());
 
   //---------------------------
 }

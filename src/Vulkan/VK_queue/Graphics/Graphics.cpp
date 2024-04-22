@@ -179,9 +179,9 @@ void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& sem
     }
 
     //Command buffer
-    if(command->command_buffer->command != VK_NULL_HANDLE){
+    if(command->command_buffer->handle != VK_NULL_HANDLE){
       submit_info.commandBufferCount = 1;
-      submit_info.pCommandBuffers = &command->command_buffer->command;
+      submit_info.pCommandBuffers = &command->command_buffer->handle;
     }else{
       cout<<"[error] command buffer is VK_NULL"<<endl;
     }
@@ -211,7 +211,12 @@ void Graphics::make_submission(vector<VkSubmitInfo>& vec_info){
 void Graphics::post_submission(VkSemaphore& semaphore){
   //---------------------------
 
-  //Reset all command buffers
+  //If required, make image presentation
+  if(with_presentation){
+    vk_struct->queue.presentation->image_presentation(semaphore);
+  }
+
+  //Reset all command
   for(int i=0; i<vec_command_onrun.size(); i++){
     vk::structure::Command* command = vec_command_onrun[i];
 
@@ -224,16 +229,7 @@ void Graphics::post_submission(VkSemaphore& semaphore){
       command->command_buffer->is_recorded = false;
       command->command_buffer->query.is_in_use = false;
     }
-  }
 
-  //If required, make image presentation
-  if(with_presentation){
-    vk_struct->queue.presentation->image_presentation(semaphore);
-  }
-
-  //Reset all semaphore
-  for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command* command = vec_command_onrun[i];
 
     delete command;
   }

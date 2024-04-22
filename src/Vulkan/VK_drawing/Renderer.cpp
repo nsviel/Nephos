@@ -69,14 +69,14 @@ void Renderer::start_renderpass(vk::structure::Renderpass* renderpass){
     content = VK_SUBPASS_CONTENTS_INLINE;
   }
 
-  vkCmdBeginRenderPass(renderpass->command_buffer->command, &renderpass_info, content);
+  vkCmdBeginRenderPass(renderpass->command_buffer->handle, &renderpass_info, content);
 
   //---------------------------
 }
 void Renderer::stop_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
-  vkCmdEndRenderPass(renderpass->command_buffer->command);
+  vkCmdEndRenderPass(renderpass->command_buffer->handle);
 
   //---------------------------
 }

@@ -46,7 +46,7 @@ void Transfer::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   //Transition + copy
-  vk_transition->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
+  vk_transition->image_layout_transition(command_buffer->handle, image, TYP_IMAGE_LAYOUT_EMPTY, TYP_IMAGE_LAYOUT_TRANSFER_DST);
   VkBufferImageCopy region{};
   region.bufferOffset = 0;
   region.bufferRowLength = 0;
@@ -57,8 +57,8 @@ void Transfer::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer
   region.imageSubresource.layerCount = 1;
   region.imageOffset = {0, 0, 0};
   region.imageExtent = {image->width, image->height, 1};
-  vkCmdCopyBufferToImage(command_buffer->command, buffer, image->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
-  vk_transition->image_layout_transition(command_buffer->command, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vkCmdCopyBufferToImage(command_buffer->handle, buffer, image->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+  vk_transition->image_layout_transition(command_buffer->handle, image, TYP_IMAGE_LAYOUT_TRANSFER_DST, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //End and submit command
   vk_command_buffer->end_command_buffer(command_buffer);
@@ -77,7 +77,7 @@ void Transfer::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   // Image transition + copy
-  vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
   VkBufferImageCopy region{};
   region.bufferOffset = 0,
   region.bufferRowLength = 0,
@@ -85,8 +85,8 @@ void Transfer::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer
   region.imageSubresource = {VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1},
   region.imageOffset = {0, 0, 0},
   region.imageExtent = {image->width, image->height, 1};
-  vkCmdCopyImageToBuffer(command_buffer->command, image->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, buffer, 1, &region);
-  vk_transition->image_layout_transition(command_buffer->command, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  vkCmdCopyImageToBuffer(command_buffer->handle, image->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, buffer, 1, &region);
+  vk_transition->image_layout_transition(command_buffer->handle, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
   //End and submit command buffer
   vk_command_buffer->end_command_buffer(command_buffer);
@@ -105,8 +105,8 @@ void Transfer::copy_image_to_image_standalone(vk::structure::Image* image_src, v
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   // Image transition
-  vk_transition->image_layout_transition(command_buffer->command, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_transition->image_layout_transition(command_buffer->command, image_dst, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, image_dst, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
 
   // Copy image
   VkImageCopy region{};
@@ -117,7 +117,7 @@ void Transfer::copy_image_to_image_standalone(vk::structure::Image* image_src, v
   region.extent.width = image_src->width; // Width of the source image
   region.extent.height = image_src->height; // Height of the source image
   region.extent.depth = 1;
-  vkCmdCopyImage(command_buffer->command, image_src->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+  vkCmdCopyImage(command_buffer->handle, image_src->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 
   // Transition destination image to shader read-only optimal layout if needed
   // vk_transition->imageLayoutTransition(commandBuffer.get(), dstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
@@ -139,8 +139,8 @@ void Transfer::blit_image_to_image(vk::structure::Image* image_src, vk::structur
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   // Image transition
-  vk_transition->image_layout_transition(command_buffer->command, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_transition->image_layout_transition(command_buffer->command, image_dst, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, image_dst, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
 
   // Blit image
   VkImageBlit region{};
@@ -154,7 +154,7 @@ void Transfer::blit_image_to_image(vk::structure::Image* image_src, vk::structur
   region.dstOffsets[1].x = image_dst->width; // Width of the destination image
   region.dstOffsets[1].y = image_dst->height; // Height of the destination image
   region.dstOffsets[1].z = 1;
-  vkCmdBlitImage(command_buffer->command, image_src->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region, VK_FILTER_LINEAR);
+  vkCmdBlitImage(command_buffer->handle, image_src->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region, VK_FILTER_LINEAR);
 
   // Transition destination image to shader read-only optimal layout if needed
   // vk_transition->imageLayoutTransition(commandBuffer.get(), dstImage, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
@@ -176,8 +176,8 @@ vk::structure::Command_buffer* Transfer::copy_image_to_image(vk::structure::Imag
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
   // Image transition
-  vk_transition->image_layout_transition(command_buffer->command, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  vk_transition->image_layout_transition(command_buffer->command, image_dst, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, image_src, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+  vk_transition->image_layout_transition(command_buffer->handle, image_dst, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
 
   // Copy image
   VkImageCopy region{};
@@ -188,10 +188,10 @@ vk::structure::Command_buffer* Transfer::copy_image_to_image(vk::structure::Imag
   region.extent.width = image_src->width; // Width of the source image
   region.extent.height = image_src->height; // Height of the source image
   region.extent.depth = 1;
-  vkCmdCopyImage(command_buffer->command, image_src->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
+  vkCmdCopyImage(command_buffer->handle, image_src->handle, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 
   // Transition destination image to shader read-only optimal layout if needed
-  vk_transition->image_layout_transition(command_buffer->command, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_PRESENT_SRC_KHR);
+  vk_transition->image_layout_transition(command_buffer->handle, image_dst->handle, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_PRESENT_SRC_KHR);
 
   //End and submit command buffer
   vk_command_buffer->end_command_buffer(command_buffer);
@@ -239,7 +239,7 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Bu
 
   VkBufferCopy region = {};
   region.size = data_size;
-  vkCmdCopyBuffer(command_buffer->command, stagger->vbo, buffer->vbo, 1, &region);
+  vkCmdCopyBuffer(command_buffer->handle, stagger->vbo, buffer->vbo, 1, &region);
 
   vk_command_buffer->end_command_buffer(command_buffer);
   vk_struct->queue.transfer->add_command(command_buffer);

@@ -85,7 +85,6 @@ void Transfer::add_command(vk::structure::Command_buffer* command){
   }
 
   //---------------------------
-  this->thread_idle = false;
   mutex.unlock();
 }
 void Transfer::process_command(){
@@ -113,7 +112,7 @@ void Transfer::build_submission(vector<VkSubmitInfo>& vec_info){
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
     submit_info.commandBufferCount = 1;
-    submit_info.pCommandBuffers = &vec_command_onrun[i]->command;
+    submit_info.pCommandBuffers = &vec_command_onrun[i]->handle;
 
     vec_info.push_back(submit_info);
   }
@@ -143,10 +142,14 @@ void Transfer::make_submission(vector<VkSubmitInfo>& vec_info){
 }
 void Transfer::post_submission(){
   //---------------------------
-
+    //say("-----");
   //Reset command buffer
   for(int i=0; i<vec_command_onrun.size(); i++){
     vk::structure::Command_buffer* command_buffer = vec_command_onrun[i];
+
+
+    //say(command_buffer->handle);
+
 
     if(command_buffer->is_resetable){
       command_buffer->is_available = true;

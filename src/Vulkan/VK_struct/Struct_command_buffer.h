@@ -18,7 +18,7 @@ struct Command_buffer{
   string name = "";
   vk::structure::Query query;
   vk::structure::Fence* fence = nullptr;
-  VkCommandBuffer command = VK_NULL_HANDLE;
+  VkCommandBuffer handle = VK_NULL_HANDLE;
   float timestamp = 0;
   bool is_available = true;
   bool is_recorded = false;

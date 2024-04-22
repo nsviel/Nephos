@@ -46,17 +46,17 @@ void Query::begin_query_pass(vk::structure::Command_buffer* command_buffer){
 
   // Begin the query pass
   command_buffer->query.is_in_use = true;
-  vkCmdResetQueryPool(command_buffer->command, command_buffer->query.pool, 0, command_buffer->query.nb_query);
+  vkCmdResetQueryPool(command_buffer->handle, command_buffer->query.pool, 0, command_buffer->query.nb_query);
 
   // Insert vkCmdWriteTimestamp commands where needed
-  vkCmdWriteTimestamp(command_buffer->command, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, command_buffer->query.pool, 0);
+  vkCmdWriteTimestamp(command_buffer->handle, VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, command_buffer->query.pool, 0);
 
   //---------------------------
 }
 void Query::end_query_pass(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
-  vkCmdWriteTimestamp(command_buffer->command, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, command_buffer->query.pool, 1);
+  vkCmdWriteTimestamp(command_buffer->handle, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, command_buffer->query.pool, 1);
 
   //---------------------------
 }

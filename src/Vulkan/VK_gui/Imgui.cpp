@@ -42,7 +42,7 @@ void Imgui::draw(vk::structure::Command_buffer* command_buffer){
   ImDrawData* draw = ImGui::GetDrawData();
   if(draw == nullptr) return;
 
-  ImGui_ImplVulkan_RenderDrawData(draw, command_buffer->command);
+  ImGui_ImplVulkan_RenderDrawData(draw, command_buffer->handle);
 
   //---------------------------
 }
@@ -222,7 +222,7 @@ void Imgui::load_font(){
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
-  ImGui_ImplVulkan_CreateFontsTexture(command_buffer->command);
+  ImGui_ImplVulkan_CreateFontsTexture(command_buffer->handle);
 
   vk_command_buffer->end_command_buffer(command_buffer);
   vk::structure::Command* command = new vk::structure::Command();

@@ -65,7 +65,7 @@ void Command_buffer::clean_pool(vk::pool::Command_buffer* pool){
     vk::structure::Command_buffer* command_buffer = &pool->tank[i];
 
     vk_query->clean_query_pool(&command_buffer->query);
-    vkFreeCommandBuffers(vk_struct->device.handle, pool->allocator, 1, &command_buffer->command);
+    vkFreeCommandBuffers(vk_struct->device.handle, pool->allocator, 1, &command_buffer->handle);
   }
 
   //---------------------------
@@ -82,7 +82,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::Command_buffer* poo
   alloc_info.commandPool = pool->allocator;
   alloc_info.commandBufferCount = 1;
 
-  VkResult result = vkAllocateCommandBuffers(vk_struct->device.handle, &alloc_info, &command_buffer->command);
+  VkResult result = vkAllocateCommandBuffers(vk_struct->device.handle, &alloc_info, &command_buffer->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to allocate command buffers!");
   }
@@ -132,7 +132,7 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::poo
     std::lock_guard<std::mutex> lock(mtx);
     if(command_buffer->is_available){
       command_buffer->is_available = false;
-      vkResetCommandBuffer(command_buffer->command, 0);
+      vkResetCommandBuffer(command_buffer->handle, 0);
       return command_buffer;
     }
   }while(true);
@@ -149,7 +149,7 @@ void Command_buffer::start_command_buffer_primary(vk::structure::Command_buffer*
   VkCommandBufferBeginInfo begin_info{};
   begin_info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
   begin_info.flags = 0;
-  VkResult result = vkBeginCommandBuffer(command_buffer->command, &begin_info);
+  VkResult result = vkBeginCommandBuffer(command_buffer->handle, &begin_info);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to begin recording command buffer!");
   }
@@ -180,7 +180,7 @@ void Command_buffer::start_command_buffer_secondary(vk::structure::Renderpass* r
   begin_info.flags = VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT; // Optional flags
   begin_info.pInheritanceInfo = &inheritanceInfo;
 
-  VkResult result = vkBeginCommandBuffer(renderpasx<sqss->command_buffer->command, &begin_info);
+  VkResult result = vkBeginCommandBuffer(renderpasx<sqss->command_buffer->handle, &begin_info);
   if(result != VK_SUCCESS){
     throw std::runtime_error("failed to begin recording command buffer!");
   }
@@ -192,7 +192,7 @@ void Command_buffer::end_command_buffer(vk::structure::Command_buffer* command_b
 
   vk_query->end_query_pass(command_buffer);
 
-  VkResult result = vkEndCommandBuffer(command_buffer->command);
+  VkResult result = vkEndCommandBuffer(command_buffer->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to record command buffer!");
   }
