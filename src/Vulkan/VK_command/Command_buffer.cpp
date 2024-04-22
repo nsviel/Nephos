@@ -30,13 +30,13 @@ void Command_buffer::init_pool(vk::pool::Command_buffer* pool){
 
   //Create a pool of command buffer number
   for(int i=0; i<number; i++){
-    vk::structure::Command_buffer command_buffer;
-    command_buffer.is_available = true;
-    command_buffer.is_recorded = false;
-    command_buffer.UID = vk_uid->query_free_UID();
-    command_buffer.query = vk_query->create_query_pool();
+    vk::structure::Command_buffer* command_buffer = new vk::structure::Command_buffer();
+    command_buffer->is_available = true;
+    command_buffer->is_recorded = false;
+    command_buffer->UID = vk_uid->query_free_UID();
+    command_buffer->query = vk_query->create_query_pool();
 
-    this->create_command_buffer_primary(pool, &command_buffer);
+    this->create_command_buffer_primary(pool, command_buffer);
     pool->tank.push_back(command_buffer);
   }
 
@@ -47,7 +47,7 @@ void Command_buffer::reset_pool(vk::pool::Command_buffer* pool){
 
   //Clear all old command buffer
   for(int i=0; i<pool->size; i++){
-    vk::structure::Command_buffer* command_buffer = &pool->tank[i];
+    vk::structure::Command_buffer* command_buffer = pool->tank[i];
 
     if(command_buffer->is_resetable){
       command_buffer->is_available = true;
@@ -62,7 +62,7 @@ void Command_buffer::clean_pool(vk::pool::Command_buffer* pool){
 
   //Clear all old command buffer
   for(int i=0; i<pool->size; i++){
-    vk::structure::Command_buffer* command_buffer = &pool->tank[i];
+    vk::structure::Command_buffer* command_buffer = pool->tank[i];
 
     vk_query->clean_query_pool(&command_buffer->query);
     vkFreeCommandBuffers(vk_struct->device.handle, pool->allocator, 1, &command_buffer->handle);
@@ -118,18 +118,17 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::poo
   std::mt19937 gen(rd());
   std::uniform_int_distribution<int> distr(0, pool->size - 1);
 
-  // Mutex for synchronization
-  static std::mutex mtx;
-  std::lock_guard<std::mutex> lock(mtx);
-
   // Find a random available and unrecorded command buffer
   int index;
   vk::structure::Command_buffer* command_buffer;
   do{
     index = distr(gen);
-    command_buffer = &pool->tank[index];
+    command_buffer = pool->tank[index];
 
+    std::lock_guard<std::mutex> lock(command_buffer->mutex);
     if(command_buffer->is_available){
+      //say(index);
+      //say(command_buffer->handle);
       command_buffer->is_available = false;
       vkResetCommandBuffer(command_buffer->handle, 0);
       return command_buffer;
@@ -205,7 +204,7 @@ int Command_buffer::find_num_available_command(vk::pool::Command_buffer* pool){
   //---------------------------
 
   for(int i=0; i<pool->tank.size(); i++){
-    vk::structure::Command_buffer* command_buffer = &pool->tank[i];
+    vk::structure::Command_buffer* command_buffer = pool->tank[i];
 
     if(command_buffer->is_available){
       num++;

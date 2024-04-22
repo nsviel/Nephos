@@ -9,8 +9,9 @@ namespace vk::pool{
 struct Command_buffer{
   //---------------------------
 
+  std::mutex mutex;
   VkCommandPool allocator = VK_NULL_HANDLE;
-  std::vector<vk::structure::Command_buffer> tank;
+  std::vector<vk::structure::Command_buffer*> tank;
   uint32_t size = 100;
   bool is_available = true;
   std::thread::id thread_ID;

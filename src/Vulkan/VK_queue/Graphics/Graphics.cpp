@@ -222,11 +222,10 @@ void Graphics::post_submission(VkSemaphore& semaphore){
 
     //Command buffer reset
     if(command->command_buffer->is_resetable){
-      command->command_buffer->is_available = true;
       command->command_buffer->is_recorded = false;
-      command->command_buffer->query.is_in_use = false;
+      command->command_buffer->query.is_available = true;
+      command->command_buffer->is_available = true;
     }
-
 
     delete command;
   }

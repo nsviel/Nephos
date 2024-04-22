@@ -36,6 +36,7 @@ struct Vulkan{
   vk::structure::Parameter param;
   vk::structure::Pool pools;
   vk::structure::Command command;
+  vk::structure::Synchro synchro;
   vk::structure::queue::Class queue;
 
   //---------------------------

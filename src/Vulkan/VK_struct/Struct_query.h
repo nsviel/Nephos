@@ -10,7 +10,7 @@ struct Query{
 
   VkQueryPool pool = VK_NULL_HANDLE;
   int nb_query = 100;
-  bool is_in_use = false;
+  bool is_available = true;
 
   //---------------------------
 };

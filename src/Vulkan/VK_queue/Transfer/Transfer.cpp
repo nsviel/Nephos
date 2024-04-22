@@ -147,9 +147,10 @@ void Transfer::post_submission(){
     vk::structure::Command_buffer* command_buffer = vec_command_onrun[i];
 
     //say(command_buffer->handle);
+    std::lock_guard<std::mutex> lock(command_buffer->mutex);
     if(command_buffer->is_resetable){
       command_buffer->is_recorded = false;
-      command_buffer->query.is_in_use = false;
+      command_buffer->query.is_available = true;
       command_buffer->is_available = true;
     }
   }

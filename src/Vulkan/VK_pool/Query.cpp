@@ -45,7 +45,7 @@ void Query::begin_query_pass(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
   // Begin the query pass
-  command_buffer->query.is_in_use = true;
+  command_buffer->query.is_available = false;
   vkCmdResetQueryPool(command_buffer->handle, command_buffer->query.pool, 0, command_buffer->query.nb_query);
 
   // Insert vkCmdWriteTimestamp commands where needed
