@@ -6,7 +6,7 @@
 namespace prf::graph{class Tasker;}
 namespace k4n{class Node;}
 namespace k4n::processing{class Operation;}
-namespace radio::processing{class Calibration;}
+namespace radio::detection{class Ransac;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Operation;}
 namespace k4n::structure{class K4N;}
@@ -45,7 +45,7 @@ public:
 private:
   k4n::utils::Operation* k4n_operation;
   k4n::processing::Operation* k4n_processing;
-  radio::processing::Calibration* radio_calibration;
+  radio::detection::Ransac* radio_detection;
   k4n::thread::Pool* k4n_pool;
 
   std::vector<glm::vec3> vec_xyz;

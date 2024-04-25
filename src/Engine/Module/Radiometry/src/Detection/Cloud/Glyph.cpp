@@ -4,7 +4,8 @@
 #include <Scene/Namespace.h>
 #include <Radiometry/Namespace.h>
 
-namespace radio::model{
+
+namespace radio::detection::cloud{
 
 //Constructor / Destructor
 Glyph::Glyph(k4n::Node* node_k4n){

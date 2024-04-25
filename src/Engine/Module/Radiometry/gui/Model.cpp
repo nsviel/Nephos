@@ -34,7 +34,7 @@ void Model::draw_calibration_player(k4n::dev::Sensor* sensor){
 
   //Detection validation
   int step = radio_detection->get_step();
-  if(step == radio::model::WAIT_VALIDATION){
+  if(step == radio::detection::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){

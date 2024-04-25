@@ -9,7 +9,7 @@ namespace k4n::utils{class Transformation;}
 namespace eng::scene{class Glyph;}
 
 
-namespace radio::model{
+namespace radio::detection::cloud{
 
 class Glyph
 {
