@@ -1,6 +1,6 @@
 #include "Model.h"
 
-#include <K4N/Namespace.h>
+#include <Kinect/Namespace.h>
 #include <python/matplotlibcpp.h>
 #include <Utility/Function/File/Json.cpp>
 #include <Radiometry/Namespace.h>

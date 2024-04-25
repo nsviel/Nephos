@@ -1,6 +1,6 @@
 #include "Thread.h"
 
-#include <K4N/Namespace.h>
+#include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 

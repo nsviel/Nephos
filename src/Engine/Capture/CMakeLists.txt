@@ -3,7 +3,7 @@ set(LIBRARY_NAME LIBRARY_CAPTURE)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Lidar/K4N)
+add_subdirectory(Lidar/Kinect)
 add_subdirectory(Lidar/Velodyne)
 
 file(GLOB_RECURSE ALL_SOURCES

@@ -1,6 +1,6 @@
 #include "Detection.h"
 
-#include <K4N/Namespace.h>
+#include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 
