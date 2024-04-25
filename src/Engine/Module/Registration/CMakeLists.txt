@@ -1,13 +1,11 @@
-set(LIBRARY_NAME LIBRARY_MODULE)
+set(LIBRARY_NAME LIBRARY_REGISTRATION)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Radiometry)
-add_subdirectory(Registration)
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
+  *.cpp
+  *.h
 )
 
 #-----------------
@@ -23,6 +21,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_VULKAN
   LIBRARY_ENGINE
+  LIBRARY_K4N
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

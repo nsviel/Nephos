@@ -15,7 +15,6 @@ Radiometry::Radiometry(k4n::Node* node_k4n, bool* show_window){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->gui_detection = new k4n::gui::Detection(node_k4n);
   this->gui_calibration = new k4n::gui::Calibration(node_k4n);
-  this->gui_registration = new k4n::gui::Registration(node_k4n);
 
   this->show_window = show_window;
   this->name = "Radiometry";
@@ -62,7 +61,6 @@ void Radiometry::design_panel(k4n::dev::Master* master){
 
   this->tab_detection(sensor);
   this->tab_calibration(sensor);
-  this->tab_registration(sensor);
 
   ImGui::EndTabBar();
   ImGui::PopStyleColor(3);
@@ -103,18 +101,6 @@ void Radiometry::tab_calibration(k4n::dev::Sensor* sensor){
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
   if(ImGui::BeginTabItem("Calibration##matching")){
     gui_calibration->draw_calibration_tab(sensor);
-
-    ImGui::EndTabItem();
-  }
-
-  //---------------------------
-}
-void Radiometry::tab_registration(k4n::dev::Sensor* sensor){
-  //---------------------------
-
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
-  if(ImGui::BeginTabItem("Registration##matching")){
-    gui_registration->draw_registration(sensor);
 
     ImGui::EndTabItem();
   }
