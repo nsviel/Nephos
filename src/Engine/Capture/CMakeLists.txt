@@ -3,8 +3,8 @@ set(LIBRARY_NAME LIBRARY_CAPTURE)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(K4N)
-add_subdirectory(Velodyne)
+add_subdirectory(Lidar/K4N)
+add_subdirectory(Lidar/Velodyne)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

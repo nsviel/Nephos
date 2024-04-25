@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Capture/K4N/src/Device/Sensor.h>
+#include <K4N/Namespace.h>
 #include <Utility/Specific/Common.h>
 #include <k4arecord/playback.hpp>
 
