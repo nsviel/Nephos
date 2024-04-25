@@ -21,11 +21,11 @@ Node::Node(eng::capture::Node* node_capture){
   this->node_engine = node_capture->get_node_engine();
   this->node_scene = node_capture->get_node_scene();
   this->node_profiler = node_capture->get_node_profiler();
-  this->node_radio = new radio::Node(this);
 
   //Child
   this->k4n_pool = new k4n::thread::Pool(50);
   this->k4n_struct = new k4n::structure::K4N(this);
+  this->node_radio = new radio::Node(this);
   this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::thread::Connection(this);
   this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);
