@@ -5,14 +5,14 @@
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
-namespace k4n::calibration{class Glyph;}
+namespace radio::calibration{class Glyph;}
 namespace k4n::utils{class Transformation;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 namespace ope::attribut{class Normal;}
 
 
-namespace k4n::calibration{
+namespace radio::calibration{
 
 enum STEP{
   WAIT_VALIDATION = 0,
@@ -46,7 +46,7 @@ private:
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
   ope::attribut::Normal* ope_normal;
-  k4n::calibration::Glyph* k4n_glyph;
+  radio::calibration::Glyph* k4n_glyph;
   k4n::utils::Transformation* k4n_transfo;
   k4n::structure::K4N* k4n_struct;
   std::map<int, std::string> map_step;

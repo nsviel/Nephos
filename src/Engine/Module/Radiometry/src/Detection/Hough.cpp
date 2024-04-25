@@ -3,7 +3,7 @@
 #include <K4N/Namespace.h>
 #include <Radiometry/Namespace.h>
 
-namespace k4n::detection{
+namespace radio::detection{
 
 //Constructor / Destructor
 Hough::Hough(k4n::Node* node_k4n){

@@ -9,7 +9,7 @@ namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
 
 
-namespace k4n::calibration{
+namespace radio::calibration{
 
 class Model
 {

@@ -5,7 +5,7 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace k4n::gui{
+namespace radio::gui{
 
 //Constructor / Destructor
 Radiometry::Radiometry(k4n::Node* node_k4n, bool* show_window){
@@ -13,8 +13,8 @@ Radiometry::Radiometry(k4n::Node* node_k4n, bool* show_window){
 
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->k4n_struct = node_k4n->get_k4n_struct();
-  this->gui_detection = new k4n::gui::Detection(node_k4n);
-  this->gui_calibration = new k4n::gui::Calibration(node_k4n);
+  this->gui_detection = new radio::gui::Detection(node_k4n);
+  this->gui_calibration = new radio::gui::Calibration(node_k4n);
 
   this->show_window = show_window;
   this->name = "Radiometry";

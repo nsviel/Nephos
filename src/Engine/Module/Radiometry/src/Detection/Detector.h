@@ -5,12 +5,12 @@
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
-namespace k4n::detection{class Glyph;}
-namespace k4n::detection{class Hough;}
-namespace k4n::matching{class Image;}
+namespace radio::detection{class Glyph;}
+namespace radio::detection{class Hough;}
+namespace radio::matching{class Image;}
 
 
-namespace k4n::detection{
+namespace radio::detection{
 
 class Detector
 {
@@ -30,9 +30,9 @@ public:
 
 private:
   k4n::structure::K4N* k4n_struct;
-  k4n::detection::Glyph* k4n_glyph;
-  k4n::detection::Hough* k4n_hough;
-  k4n::matching::Image* k4n_image;
+  radio::detection::Glyph* k4n_glyph;
+  radio::detection::Hough* k4n_hough;
+  radio::matching::Image* k4n_image;
 };
 
 }

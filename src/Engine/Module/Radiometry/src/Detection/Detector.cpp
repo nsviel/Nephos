@@ -3,16 +3,16 @@
 #include <K4N/Namespace.h>
 #include <Radiometry/Namespace.h>
 
-namespace k4n::detection{
+namespace radio::detection{
 
 //Constructor / Destructor
 Detector::Detector(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_struct = node_k4n->get_k4n_struct();
-  this->k4n_glyph = new k4n::detection::Glyph(node_k4n);
-  this->k4n_image = new k4n::matching::Image(node_k4n);
-  this->k4n_hough = new k4n::detection::Hough(node_k4n);
+  this->k4n_glyph = new radio::detection::Glyph(node_k4n);
+  this->k4n_image = new radio::matching::Image(node_k4n);
+  this->k4n_hough = new radio::detection::Hough(node_k4n);
 
   //---------------------------
 }

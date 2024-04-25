@@ -5,15 +5,21 @@
 namespace prf{class Node;}
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
+namespace k4n{class Node;}
+namespace radio::detection{class Detector;}
+namespace radio::detection{class Hough;}
+namespace radio::calibration{class Model;}
+namespace radio::calibration{class Measure;}
+namespace radio::calibration{class Calibration;}
 
 
-namespace eng::capture{
+namespace radio{
 
 class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* engine);
+  Node(k4n::Node* node_k4n);
   ~Node();
 
 public:
@@ -28,6 +34,12 @@ public:
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
+  inline radio::detection::Detector* get_k4n_detector(){return k4n_detector;}
+  inline radio::detection::Hough* get_k4n_hough(){return k4n_hough;}
+  inline radio::calibration::Model* get_k4n_model(){return k4n_model;}
+  inline radio::calibration::Measure* get_k4n_measure(){return k4n_measure;}
+  inline radio::calibration::Calibration* get_k4n_calibration(){return k4n_calibration;}
+
 private:
   //Dependancy
   eng::Node* node_engine;
@@ -35,6 +47,11 @@ private:
   prf::Node* node_profiler;
 
   //Child
+  radio::detection::Detector* k4n_detector;
+  radio::detection::Hough* k4n_hough;
+  radio::calibration::Model* k4n_model;
+  radio::calibration::Measure* k4n_measure;
+  radio::calibration::Calibration* k4n_calibration;
 };
 
 }

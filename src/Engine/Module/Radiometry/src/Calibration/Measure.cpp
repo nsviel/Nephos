@@ -3,7 +3,7 @@
 #include <K4N/Namespace.h>
 #include <Radiometry/Namespace.h>
 
-namespace k4n::calibration{
+namespace radio::calibration{
 
 //Constructor / Destructor
 Measure::Measure(k4n::Node* node_k4n){

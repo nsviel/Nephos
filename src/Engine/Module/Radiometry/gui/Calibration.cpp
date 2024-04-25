@@ -5,13 +5,13 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace k4n::gui{
+namespace radio::gui{
 
 //Constructor / Destructor
 Calibration::Calibration(k4n::Node* node_k4n){
   //---------------------------
 
-  k4n::matching::Node* node_matching = node_k4n->get_node_matching();
+  radio::Node* node_matching = node_k4n->get_node_radio();
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_calibration = node_matching->get_k4n_calibration();
@@ -34,7 +34,7 @@ void Calibration::draw_calibration_player(k4n::dev::Sensor* sensor){
 
   //Detection validation
   int step = k4n_calibration->get_step();
-  if(step == k4n::calibration::WAIT_VALIDATION){
+  if(step == radio::calibration::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){

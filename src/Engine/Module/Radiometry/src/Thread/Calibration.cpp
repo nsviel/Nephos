@@ -4,13 +4,13 @@
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 
-namespace k4n::processing{
+namespace radio::processing{
 
 //Constructor / Destructor
 Calibration::Calibration(k4n::Node* node_k4n){
   //---------------------------
 
-  k4n::matching::Node* node_matching = node_k4n->get_node_matching();
+  radio::Node* node_matching = node_k4n->get_node_radio();
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_pool = node_k4n->get_k4n_pool();

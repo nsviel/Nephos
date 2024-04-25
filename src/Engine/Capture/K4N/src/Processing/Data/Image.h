@@ -8,7 +8,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::data{class Depth;}
 namespace k4n::data{class Infrared;}
 namespace k4n::config{class Configuration;}
-namespace k4n::processing{class Detection;}
+namespace radio::processing{class Detection;}
 namespace k4n::thread{class Pool;}
 
 
@@ -38,7 +38,7 @@ private:
   k4n::data::Depth* k4n_depth;
   k4n::data::Infrared* k4n_infrared;
   k4n::config::Configuration* k4n_config;
-  k4n::processing::Detection* k4n_detection;
+  radio::processing::Detection* k4n_detection;
 
   bool idle = true;
 };

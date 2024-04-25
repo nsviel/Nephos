@@ -4,21 +4,21 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace k4n::calibration{
+namespace radio::calibration{
 
 //Constructor / Destructor
 Calibration::Calibration(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_transfo = new k4n::utils::Transformation();
-  this->k4n_glyph = new k4n::calibration::Glyph(node_k4n);
+  this->k4n_glyph = new radio::calibration::Glyph(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();
-  this->map_step[k4n::calibration::WAIT_VALIDATION] = "Wait validation";
-  this->map_step[k4n::calibration::PROCESSING] = "Processing";
-  this->step = k4n::calibration::WAIT_VALIDATION;
+  this->map_step[radio::calibration::WAIT_VALIDATION] = "Wait validation";
+  this->map_step[radio::calibration::PROCESSING] = "Processing";
+  this->step = radio::calibration::WAIT_VALIDATION;
 
   this->radius = 0.5f;
 
@@ -31,12 +31,12 @@ void Calibration::next_step(k4n::dev::Sensor* sensor){
   //---------------------------
 
   switch(step){
-    case k4n::calibration::WAIT_VALIDATION:{
+    case radio::calibration::WAIT_VALIDATION:{
       this->validate_bbox(sensor);
       break;
     }
-    case k4n::calibration::PROCESSING:{
-      this->step = k4n::calibration::WAIT_VALIDATION;
+    case radio::calibration::PROCESSING:{
+      this->step = radio::calibration::WAIT_VALIDATION;
       break;
     }
   }
@@ -47,7 +47,7 @@ void Calibration::next_step(k4n::dev::Sensor* sensor){
 //Subfunction
 void Calibration::validate_bbox(k4n::dev::Sensor* sensor){
   if(sensor->detection.nb_detection == 0) return;
-  if(step != k4n::calibration::WAIT_VALIDATION) return;
+  if(step != radio::calibration::WAIT_VALIDATION) return;
   //---------------------------
 
   this->step++;
@@ -60,7 +60,7 @@ void Calibration::validate_bbox(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
-  if(step != k4n::calibration::PROCESSING) return;
+  if(step != radio::calibration::PROCESSING) return;
   //---------------------------
 
   vector<vec3>& vec_xyz = sensor->object.data.xyz;

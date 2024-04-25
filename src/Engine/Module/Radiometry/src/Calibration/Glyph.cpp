@@ -4,7 +4,7 @@
 #include <Scene/Namespace.h>
 #include <Radiometry/Namespace.h>
 
-namespace k4n::calibration{
+namespace radio::calibration{
 
 //Constructor / Destructor
 Glyph::Glyph(k4n::Node* node_k4n){

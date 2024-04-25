@@ -14,7 +14,7 @@ Image::Image(k4n::Node* node_k4n){
   this->k4n_depth = new k4n::data::Depth();
   this->k4n_infrared = new k4n::data::Infrared();
   this->k4n_config = new k4n::config::Configuration();
-  this->k4n_detection = new k4n::processing::Detection(node_k4n);
+  this->k4n_detection = new radio::processing::Detection(node_k4n);
   this->k4n_pool = node_k4n->get_k4n_pool();
 
   //---------------------------

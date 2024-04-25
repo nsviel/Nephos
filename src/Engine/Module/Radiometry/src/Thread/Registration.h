@@ -8,7 +8,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::thread{class Pool;}
 
 
-namespace k4n::processing{
+namespace radio::processing{
 
 class Registration
 {

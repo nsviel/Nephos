@@ -6,14 +6,14 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace k4n::gui{
+namespace radio::gui{
 
 //Constructor / Destructor
 Detection::Detection(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
-  k4n::matching::Node* node_matching = node_k4n->get_node_matching();
+  radio::Node* node_matching = node_k4n->get_node_radio();
 
   this->k4n_hough = node_matching->get_k4n_hough();
   this->k4n_struct = node_k4n->get_k4n_struct();
