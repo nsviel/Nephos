@@ -5,7 +5,7 @@
 #include <Utility/Function/File/Json.cpp>
 #include <Radiometry/Namespace.h>
 
-namespace radio::calibration{
+namespace radio{
 
 //Constructor / Destructor
 Model::Model(k4n::Node* node_k4n){

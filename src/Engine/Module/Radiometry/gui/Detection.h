@@ -31,7 +31,7 @@ public:
 
 private:
   k4n::structure::K4N* k4n_struct;
-  radio::detection::Hough* k4n_hough;
+  radio::detection::Hough* radio_hough;
   eng::gui::Stream* stream;
 };
 

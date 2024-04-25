@@ -30,7 +30,7 @@ public:
 private:
   k4n::thread::Pool* k4n_pool;
   k4n::structure::K4N* k4n_struct;
-  radio::detection::Detector* k4n_detector;
+  radio::detection::Detector* radio_detector;
 
   bool idle = true;
 };

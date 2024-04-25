@@ -15,8 +15,8 @@ Model::Model(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->radio_detection = node_radio->get_radio_detection();
-  this->k4n_measure = node_radio->get_k4n_measure();
-  this->k4n_model = node_radio->get_k4n_model();
+  this->k4n_measure = node_radio->get_model_measure();
+  this->radio_model = node_radio->get_radio_model();
   this->utl_plot = new utl::implot::Plot();
   this->gui_player = node_k4n->get_k4n_gui_player();
 
@@ -34,7 +34,7 @@ void Model::draw_calibration_player(k4n::dev::Sensor* sensor){
 
   //Detection validation
   int step = radio_detection->get_step();
-  if(step == radio::calibration::WAIT_VALIDATION){
+  if(step == radio::model::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
@@ -156,11 +156,11 @@ void Model::draw_calibration_model(k4n::dev::Sensor* sensor){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Compute##model", ImVec2(120, 0))){
-      k4n_model->compute_model();
+      radio_model->compute_model();
     }
     ImGui::SameLine();
     if(ImGui::Button("Plot##model", ImVec2(120, 0))){
-      k4n_model->draw_model();
+      radio_model->draw_model();
     }
     ImGui::PopStyleColor(2);
 
@@ -168,14 +168,14 @@ void Model::draw_calibration_model(k4n::dev::Sensor* sensor){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Import##model", ImVec2(120, 0))){
-      k4n_model->import_model();
+      radio_model->import_model();
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
     if(ImGui::Button("Export##model", ImVec2(120, 0))){
-      k4n_model->export_model();
+      radio_model->export_model();
     }
     ImGui::PopStyleColor(2);
 

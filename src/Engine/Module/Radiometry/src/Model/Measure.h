@@ -6,7 +6,7 @@ namespace k4n{class Node;}
 namespace k4n::structure{class K4N;}
 
 
-namespace radio::calibration{
+namespace radio::model{
 
 class Measure
 {

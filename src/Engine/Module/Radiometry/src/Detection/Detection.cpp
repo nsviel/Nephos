@@ -11,14 +11,14 @@ Detection::Detection(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_transfo = new k4n::utils::Transformation();
-  this->k4n_glyph = new radio::calibration::Glyph(node_k4n);
+  this->k4n_glyph = new radio::model::Glyph(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();
-  this->map_step[radio::calibration::WAIT_VALIDATION] = "Wait validation";
-  this->map_step[radio::calibration::PROCESSING] = "Processing";
-  this->step = radio::calibration::WAIT_VALIDATION;
+  this->map_step[radio::model::WAIT_VALIDATION] = "Wait validation";
+  this->map_step[radio::model::PROCESSING] = "Processing";
+  this->step = radio::model::WAIT_VALIDATION;
 
   this->radius = 0.5f;
 
@@ -31,12 +31,12 @@ void Detection::next_step(k4n::dev::Sensor* sensor){
   //---------------------------
 
   switch(step){
-    case radio::calibration::WAIT_VALIDATION:{
+    case radio::model::WAIT_VALIDATION:{
       this->validate_bbox(sensor);
       break;
     }
-    case radio::calibration::PROCESSING:{
-      this->step = radio::calibration::WAIT_VALIDATION;
+    case radio::model::PROCESSING:{
+      this->step = radio::model::WAIT_VALIDATION;
       break;
     }
   }
@@ -47,7 +47,7 @@ void Detection::next_step(k4n::dev::Sensor* sensor){
 //Subfunction
 void Detection::validate_bbox(k4n::dev::Sensor* sensor){
   if(sensor->detection.nb_detection == 0) return;
-  if(step != radio::calibration::WAIT_VALIDATION) return;
+  if(step != radio::model::WAIT_VALIDATION) return;
   //---------------------------
 
   this->step++;
@@ -60,7 +60,7 @@ void Detection::validate_bbox(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Detection::ransac_sphere(k4n::dev::Sensor* sensor){
-  if(step != radio::calibration::PROCESSING) return;
+  if(step != radio::model::PROCESSING) return;
   //---------------------------
 
   vector<vec3>& vec_xyz = sensor->object.data.xyz;

@@ -15,7 +15,7 @@ Detection::Detection(k4n::Node* node_k4n){
   eng::Node* node_engine = node_k4n->get_node_engine();
   radio::Node* node_radio = node_k4n->get_node_radio();
 
-  this->k4n_hough = node_radio->get_k4n_hough();
+  this->radio_hough = node_radio->get_radio_hough();
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->stream = new eng::gui::Stream(node_engine);
 
@@ -89,11 +89,11 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
     //Mode
     int& mode = k4n_struct->radio.detection.hough.mode;
     if(ImGui::RadioButton("Gradient", &mode, radio::hough::GRADIENT)){
-      k4n_hough->find_mode_parameter(mode);
+      radio_hough->find_mode_parameter(mode);
     }
     ImGui::SameLine();
     if(ImGui::RadioButton("Gradient Alt", &mode, radio::hough::GRADIENT_ALT)){
-      k4n_hough->find_mode_parameter(mode);
+      radio_hough->find_mode_parameter(mode);
     }
 
     //Lower threshold
