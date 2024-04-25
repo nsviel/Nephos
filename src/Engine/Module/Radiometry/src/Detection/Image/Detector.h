@@ -30,9 +30,9 @@ public:
 
 private:
   k4n::structure::K4N* k4n_struct;
-  radio::detection::Glyph* k4n_glyph;
-  radio::detection::Hough* k4n_hough;
-  radio::matching::Image* k4n_image;
+  radio::detection::Glyph* radio_glyph;
+  radio::detection::Hough* radio_hough;
+  radio::matching::Image* radio_image;
 };
 
 }

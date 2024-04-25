@@ -4,6 +4,7 @@
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 
+
 namespace radio::detection{
 
 //Constructor / Destructor
@@ -12,10 +13,10 @@ Ransac::Ransac(k4n::Node* node_k4n){
 
   radio::Node* node_radio = node_k4n->get_node_radio();
 
-  this->radio_glyph = new radio::detection::cloud::Glyph(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_pool = node_k4n->get_k4n_pool();
   this->radio_detection = node_radio->get_radio_detection();
+  this->radio_glyph = new radio::detection::cloud::Glyph(node_k4n);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();

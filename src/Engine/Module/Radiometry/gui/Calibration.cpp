@@ -15,7 +15,7 @@ Calibration::Calibration(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->radio_detection = node_radio->get_radio_detection();
-  this->k4n_measure = node_radio->get_model_measure();
+  this->radio_measure = node_radio->get_model_measure();
   this->radio_model = node_radio->get_radio_model();
   this->utl_plot = new utl::implot::Plot();
   this->gui_player = node_k4n->get_k4n_gui_player();
@@ -97,21 +97,21 @@ void Calibration::draw_calibration_measure(k4n::dev::Sensor* sensor){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Import##measure", ImVec2(120, 0))){
-      k4n_measure->import_measure();
+      radio_measure->import_measure();
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
     if(ImGui::Button("Export##measure", ImVec2(120, 0))){
-      k4n_measure->export_measure();
+      radio_measure->export_measure();
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Clear##measure", ImVec2(120, 0))){
-      k4n_measure->clear_measure();
+      radio_measure->clear_measure();
     }
     ImGui::PopStyleColor(2);
 
@@ -146,10 +146,10 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
     ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", model->rmse);
     if(ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
-      k4n_measure->update_plot();
+      radio_measure->update_plot();
     }
     if(ImGui::DragFloatRange2("Range y",&model->y.bound[0], &model->y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
-      k4n_measure->update_plot();
+      radio_measure->update_plot();
     }
 
     //Model function
@@ -223,7 +223,7 @@ void Calibration::plot_model_heatmap(k4n::dev::Sensor* sensor, float height){
   measure->IfRIt.dimension = ivec2(-1, height);
   bool need_update = utl_plot->plot_heatmap(&measure->IfRIt, &model->x, &model->y);
   if(need_update){
-    k4n_measure->update_plot();
+    radio_measure->update_plot();
   }
 
   //---------------------------

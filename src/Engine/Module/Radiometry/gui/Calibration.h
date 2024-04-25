@@ -38,7 +38,7 @@ private:
   k4n::gui::Player* gui_player;
   radio::Detection* radio_detection;
   radio::Model* radio_model;
-  radio::model::Measure* k4n_measure;
+  radio::model::Measure* radio_measure;
   k4n::structure::K4N* k4n_struct;
   utl::implot::Plot* utl_plot;
 };
