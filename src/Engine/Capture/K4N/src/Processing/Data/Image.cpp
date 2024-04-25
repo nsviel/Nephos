@@ -11,10 +11,12 @@ namespace k4n::processing{
 Image::Image(k4n::Node* node_k4n){
   //---------------------------
 
+  radio::Node* node_radio = node_k4n->get_node_radio();
+
   this->k4n_depth = new k4n::data::Depth();
   this->k4n_infrared = new k4n::data::Infrared();
   this->k4n_config = new k4n::config::Configuration();
-  this->k4n_detection = new radio::processing::Detection(node_k4n);
+  this->radio_identification = node_radio->get_radio_identification();
   this->k4n_pool = node_k4n->get_k4n_pool();
 
   //---------------------------
@@ -40,7 +42,7 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   this->copy_image(sensor);
 
   //Encode image as texture
-  k4n_detection->start_thread(sensor);
+  radio_identification->start_thread(sensor);
 
   //---------------------------
   this->idle = true;
@@ -52,7 +54,7 @@ void Image::wait_thread(){
   while(idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  k4n_detection->wait_thread();
+  radio_identification->wait_thread();
 
   //---------------------------
 }

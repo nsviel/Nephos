@@ -6,10 +6,10 @@
 namespace radio::matching{
 
 //Constructor / Destructor
-Image::Image(k4n::Node* node_k4n){
+Image::Image(radio::Structure* radio_struct){
   //---------------------------
 
-  this->k4n_struct = node_k4n->get_k4n_struct();
+  this->radio_struct = radio_struct;
 
   //---------------------------
 }
@@ -72,7 +72,7 @@ void Image::convert_into_subimage(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
   cv::Point& center = sensor->detection.cv_center;
-  float radius = (float)sensor->detection.cv_radius * k4n_struct->radio.detection.bbox.scale;
+  float radius = (float)sensor->detection.cv_radius * radio_struct->detection.bbox.scale;
 
   // Calculate the top-left corner coordinates of the bounding box
   int x = center.x - radius;
@@ -138,7 +138,7 @@ void Image::draw_bounding_box(cv::Mat& image, k4n::dev::Sensor* sensor){
   sensor->detection.cv_radius = cvRound(circle.radius);
 
   cv::Point& center = sensor->detection.cv_center;
-  float radius = (float)sensor->detection.cv_radius * k4n_struct->radio.detection.bbox.scale;
+  float radius = (float)sensor->detection.cv_radius * radio_struct->detection.bbox.scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size

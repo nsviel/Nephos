@@ -8,13 +8,13 @@
 namespace radio::gui{
 
 //Constructor / Destructor
-Radiometry::Radiometry(k4n::Node* node_k4n, bool* show_window){
+Radiometry::Radiometry(radio::Structure* radio_struct, bool* show_window){
   //---------------------------
 
-  this->k4n_swarm = node_k4n->get_k4n_swarm();
-  this->k4n_struct = node_k4n->get_k4n_struct();
-  this->gui_detection = new radio::gui::Detection(node_k4n);
-  this->gui_calibration = new radio::gui::Calibration(node_k4n);
+  //this->k4n_swarm = node_k4n->get_k4n_swarm();
+  this->radio_struct = radio_struct;
+  this->gui_detection = new radio::gui::Detection(radio_struct);
+  this->gui_calibration = new radio::gui::Calibration(radio_struct);
 
   this->show_window = show_window;
   this->name = "Radiometry";
@@ -25,11 +25,11 @@ Radiometry::~Radiometry(){}
 
 //Main function
 void Radiometry::run_panel(){
-  k4n::dev::Master* master = k4n_swarm->get_selected_master();
+/*  k4n::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
   if(*show_window && master != nullptr){
-    k4n_struct->radio.panel_open = true;
+    radio_struct->panel_open = true;
 
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
@@ -43,9 +43,9 @@ void Radiometry::run_panel(){
     ImGui::PopStyleVar();
     ImGui::PopStyleColor();
   }else{
-    k4n_struct->radio.panel_open = false;
+    radio_struct->panel_open = false;
   }
-
+*/
   //---------------------------
 }
 void Radiometry::design_panel(k4n::dev::Master* master){

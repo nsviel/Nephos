@@ -27,16 +27,17 @@ struct K4N{
     this->node_engine = node_k4n->get_node_engine();
     this->node_scene = node_k4n->get_node_scene();
     this->node_profiler = node_k4n->get_node_profiler();
+    this->node_radio = node_k4n->get_node_radio();
   }
 
   //Dependancies
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
   prf::Node* node_profiler;
+  radio::Node* node_radio;
 
   //Structure
   k4n::structure::Device device;
-  radio::Structure radio;
 
   //---------------------------
 };

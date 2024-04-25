@@ -8,13 +8,10 @@
 namespace radio::detection::cloud{
 
 //Constructor / Destructor
-Glyph::Glyph(k4n::Node* node_k4n){
+Glyph::Glyph(radio::Structure* radio_struct){
   //---------------------------
 
-  eng::scene::Node* node_scene = node_k4n->get_node_scene();
-
-  this->sce_glyph = node_scene->get_scene_glyph();
-  this->k4n_transfo = new k4n::utils::Transformation();
+  this->sce_glyph = radio_struct->node_scene->get_scene_glyph();
 
   //---------------------------
 }

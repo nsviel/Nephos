@@ -13,9 +13,11 @@ namespace k4n::processing{
 Cloud::Cloud(k4n::Node* node_k4n){
   //---------------------------
 
+  radio::Node* node_radio = node_k4n->get_node_radio();
+
   this->k4n_operation = new k4n::utils::Operation();
   this->k4n_processing = new k4n::processing::Operation(node_k4n);
-  this->radio_detection = new radio::detection::Ransac(node_k4n);
+  this->radio_ransac = node_radio->get_radio_ransac();
   this->k4n_pool = node_k4n->get_k4n_pool();
 
   //---------------------------
@@ -45,7 +47,7 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   k4n_processing->start_thread(sensor);
 
   //Update object data
-  radio_detection->start_thread(sensor);
+  radio_ransac->start_thread(sensor);
 
   //---------------------------
   this->idle = true;
@@ -58,7 +60,7 @@ void Cloud::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_processing->wait_thread();
-  radio_detection->wait_thread();
+  radio_ransac->wait_thread();
 
   //---------------------------
 }

@@ -13,11 +13,11 @@ struct Structure{
   //---------------------------
 
   //Constructor
-  /*Radio(radio::Node* node_radio){
+  Structure(radio::Node* node_radio){
     this->node_engine = node_radio->get_node_engine();
     this->node_scene = node_radio->get_node_scene();
     this->node_profiler = node_radio->get_node_profiler();
-  }*/
+  }
 
   //Dependancies
   eng::Node* node_engine;

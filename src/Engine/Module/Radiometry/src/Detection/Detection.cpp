@@ -7,13 +7,12 @@
 namespace radio{
 
 //Constructor / Destructor
-Detection::Detection(k4n::Node* node_k4n){
+Detection::Detection(radio::Structure* radio_struct){
   //---------------------------
 
   this->k4n_transfo = new k4n::utils::Transformation();
-  this->k4n_struct = node_k4n->get_k4n_struct();
-  
-  this->radio_glyph = new radio::detection::cloud::Glyph(node_k4n);
+  this->radio_struct = radio_struct;
+  this->radio_glyph = new radio::detection::cloud::Glyph(radio_struct);
 
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
@@ -75,17 +74,17 @@ void Detection::ransac_sphere(k4n::dev::Sensor* sensor){
     vec3& xyz = vec_xyz[i];
     float distance = math::distance(xyz, current_pose);
 
-    if(distance <= sensor->detection.sphere_diameter * k4n_struct->radio.detection.ransac.search_diameter_x){
+    if(distance <= sensor->detection.sphere_diameter * radio_struct->detection.ransac.search_diameter_x){
       sphere_xyz.push_back(xyz);
       sphere_i.push_back(vec_i[i]);
     }
   }
 
   //Apply least square fitting
-  ope_ransac->set_num_iteration(k4n_struct->radio.detection.ransac.nb_iter);
-  ope_ransac->set_threshold_sphere(k4n_struct->radio.detection.ransac.thres_sphere);
-  ope_ransac->set_threshold_pose(k4n_struct->radio.detection.ransac.thres_pose);
-  ope_ransac->set_threshold_radius(k4n_struct->radio.detection.ransac.thres_radius);
+  ope_ransac->set_num_iteration(radio_struct->detection.ransac.nb_iter);
+  ope_ransac->set_threshold_sphere(radio_struct->detection.ransac.thres_sphere);
+  ope_ransac->set_threshold_pose(radio_struct->detection.ransac.thres_pose);
+  ope_ransac->set_threshold_radius(radio_struct->detection.ransac.thres_radius);
   ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, sensor->detection.sphere_diameter/2);
 
   //Apply post-processing stuff
@@ -99,8 +98,8 @@ void Detection::ransac_sphere(k4n::dev::Sensor* sensor){
 
 //Data function
 void Detection::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
-  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
+  radio::structure::Optimization* model = &radio_struct->model.optim;
+  radio::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //Search for closest point
@@ -128,7 +127,7 @@ void Detection::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   //---------------------------
 }
 void Detection::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
+  radio::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //Search for closest point
@@ -140,7 +139,7 @@ void Detection::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
     vec3& xyz = sphere_xyz[i];
     float distance = math::distance(xyz, current_pose) - radius;
 
-    if(distance <= k4n_struct->radio.detection.ransac.thres_sphere){
+    if(distance <= radio_struct->detection.ransac.thres_sphere){
       I = sphere_i[i];
       Nxyz = normalize(xyz - current_pose);
       It = ope_normal->compute_It(xyz, Nxyz, root);
@@ -155,8 +154,8 @@ void Detection::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   //---------------------------
 }
 void Detection::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
-  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
+  radio::structure::Optimization* model = &radio_struct->model.optim;
+  radio::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //Search for closest point
@@ -169,7 +168,7 @@ void Detection::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
     vec3& xyz = sphere_xyz[i];
     float distance = math::distance(xyz, current_pose) - radius;
 
-    if(distance <= k4n_struct->radio.detection.ransac.thres_sphere){
+    if(distance <= radio_struct->detection.ransac.thres_sphere){
       I = sphere_i[i];
       Nxyz = normalize(xyz - current_pose);
       It = ope_normal->compute_It(xyz, Nxyz, root);

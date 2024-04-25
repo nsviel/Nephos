@@ -14,23 +14,21 @@ namespace k4n{
 Node::Node(eng::capture::Node* node_capture){
   utl::gui::Panel* ply_panel = add_panel("Player", ICON_FA_PLAY, true);
   utl::gui::Panel* str_panel = add_panel("Stream", ICON_FA_FILM, false);
-  utl::gui::Panel* cal_panel = add_panel("Radiometry", ICON_FA_FILM, true);
   //---------------------------
 
   //Dependancy
   this->node_engine = node_capture->get_node_engine();
   this->node_scene = node_capture->get_node_scene();
   this->node_profiler = node_capture->get_node_profiler();
+  this->node_radio = new radio::Node(node_engine);
 
   //Child
   this->k4n_pool = new k4n::thread::Pool(50);
   this->k4n_struct = new k4n::structure::K4N(this);
-  this->node_radio = new radio::Node(this);
   this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::thread::Connection(this);
   this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);
   this->gui_player = new k4n::gui::Player(this, &ply_panel->is_open);
-  this->gui_radiometry = new radio::gui::Radiometry(this, &cal_panel->is_open);
 
   //---------------------------
 }
@@ -65,7 +63,6 @@ void Node::gui(){
 
   gui_player->run_panel();
   gui_stream->run_panel();
-  gui_radiometry->run_panel();
 
   //---------------------------
 }

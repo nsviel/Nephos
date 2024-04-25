@@ -10,21 +10,24 @@
 namespace radio{
 
 //Constructor / Destructor
-Node::Node(k4n::Node* node_k4n){
+Node::Node(eng::Node* node_engine){
+  utl::gui::Panel* cal_panel = add_panel("Radiometry", ICON_FA_FILM, true);
   //---------------------------
 
   //Dependancy
-  this->node_engine = node_k4n->get_node_engine();
-  this->node_scene = node_k4n->get_node_scene();
-  this->node_profiler = node_k4n->get_node_profiler();
+  this->node_engine = node_engine;
+  this->node_scene = node_engine->get_node_scene();
+  this->node_profiler = node_engine->get_node_profiler();
 
-  this->radio_struct = new radio::Structure();
-  this->radio_detection = new radio::Detection(node_k4n);
-  this->radio_model = new radio::Model(node_k4n);
-
+  //Child
+  this->radio_struct = new radio::Structure(this);
+  this->radio_detection = new radio::Detection(radio_struct);
+  this->radio_model = new radio::Model(radio_struct);
   this->radio_hough = new radio::detection::Hough(radio_struct);
-  this->radio_detector = new radio::detection::Detector(node_k4n);
+  this->radio_ransac = new radio::detection::Ransac(radio_struct);
+  this->radio_identification = new radio::detection::Identification(radio_struct);
   this->radio_measure = new radio::model::Measure(radio_struct);
+  this->gui_radiometry = new radio::gui::Radiometry(radio_struct, &cal_panel->is_open);
 
   //---------------------------
 }
@@ -53,7 +56,7 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-
+  gui_radiometry->run_panel();
 
   //---------------------------
 }

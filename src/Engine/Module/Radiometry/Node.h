@@ -5,14 +5,15 @@
 namespace prf{class Node;}
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
-namespace k4n{class Node;}
 namespace radio{class Structure;}
 namespace radio{class Detection;}
 namespace radio{class Model;}
 
-namespace radio::detection{class Detector;}
+namespace radio::detection{class Identification;}
 namespace radio::detection{class Hough;}
+namespace radio::detection{class Ransac;}
 namespace radio::model{class Measure;}
+namespace radio::gui{class Radiometry;}
 
 
 namespace radio{
@@ -21,7 +22,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(k4n::Node* node_k4n);
+  Node(eng::Node* node_engine);
   ~Node();
 
 public:
@@ -40,8 +41,9 @@ public:
   inline radio::Detection* get_radio_detection(){return radio_detection;}
   inline radio::Model* get_radio_model(){return radio_model;}
 
-  inline radio::detection::Detector* get_radio_detector(){return radio_detector;}
+  inline radio::detection::Identification* get_radio_identification(){return radio_identification;}
   inline radio::detection::Hough* get_radio_hough(){return radio_hough;}
+  inline radio::detection::Ransac* get_radio_ransac(){return radio_ransac;}
   inline radio::model::Measure* get_model_measure(){return radio_measure;}
 
 
@@ -55,9 +57,11 @@ private:
   radio::Structure* radio_struct;
   radio::Detection* radio_detection;
   radio::Model* radio_model;
-  radio::detection::Detector* radio_detector;
+  radio::detection::Identification* radio_identification;
   radio::detection::Hough* radio_hough;
+  radio::detection::Ransac* radio_ransac;
   radio::model::Measure* radio_measure;
+  radio::gui::Radiometry* gui_radiometry;
 };
 
 }

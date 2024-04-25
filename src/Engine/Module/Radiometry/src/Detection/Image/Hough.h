@@ -3,8 +3,6 @@
 #include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
-namespace k4n{class Node;}
-namespace k4n::structure{class K4N;}
 namespace radio{class Structure;}
 namespace radio::structure{class Circle;}
 

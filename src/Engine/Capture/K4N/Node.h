@@ -9,7 +9,6 @@ namespace k4n::dev{class Swarm;}
 namespace k4n::thread{class Connection;}
 namespace k4n::gui{class Player;}
 namespace k4n::gui{class Stream;}
-namespace radio::gui{class Radiometry;}
 namespace k4n::structure{class K4N;}
 namespace k4n::thread{class Pool;}
 namespace k4n::calibration{class Model;}
@@ -57,7 +56,6 @@ private:
   k4n::thread::Connection* k4n_connection;
   k4n::gui::Player* gui_player;
   k4n::gui::Stream* gui_stream;
-  radio::gui::Radiometry* gui_radiometry;
 };
 
 }

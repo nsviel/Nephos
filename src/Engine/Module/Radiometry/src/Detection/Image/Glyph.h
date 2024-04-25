@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
+namespace radio{class Structure;}
 namespace radio::structure{class Circle;}
 namespace k4n::utils{class Transformation;}
 namespace eng::scene{class Glyph;}
@@ -15,7 +15,7 @@ class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(k4n::Node* node_k4n);
+  Glyph(radio::Structure* radio_struct);
   ~Glyph();
 
 public:

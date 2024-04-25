@@ -8,15 +8,12 @@
 namespace radio::detection{
 
 //Constructor / Destructor
-Ransac::Ransac(k4n::Node* node_k4n){
+Ransac::Ransac(radio::Structure* radio_struct){
   //---------------------------
 
-  radio::Node* node_radio = node_k4n->get_node_radio();
-
-  this->k4n_struct = node_k4n->get_k4n_struct();
-  this->k4n_pool = node_k4n->get_k4n_pool();
-  this->radio_detection = node_radio->get_radio_detection();
-  this->radio_glyph = new radio::detection::cloud::Glyph(node_k4n);
+  this->radio_struct = radio_struct;
+  //this->k4n_pool = node_k4n->get_k4n_pool();
+  this->radio_glyph = new radio::detection::cloud::Glyph(radio_struct);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();
@@ -33,7 +30,7 @@ void Ransac::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  k4n_pool->add_task(task_function);
+  //k4n_pool->add_task(task_function);
 
   //---------------------------
 }
@@ -78,17 +75,17 @@ void Ransac::ransac_sphere(k4n::dev::Sensor* sensor){
     vec3& xyz = vec_xyz[i];
     float distance = math::distance(xyz, current_pose);
 
-    if(distance <= sensor->detection.sphere_diameter * k4n_struct->radio.detection.ransac.search_diameter_x){
+    if(distance <= sensor->detection.sphere_diameter * radio_struct->detection.ransac.search_diameter_x){
       sphere_xyz.push_back(xyz);
       sphere_i.push_back(vec_i[i]);
     }
   }
 
   //Apply least square fitting
-  ope_ransac->set_num_iteration(k4n_struct->radio.detection.ransac.nb_iter);
-  ope_ransac->set_threshold_sphere(k4n_struct->radio.detection.ransac.thres_sphere);
-  ope_ransac->set_threshold_pose(k4n_struct->radio.detection.ransac.thres_pose);
-  ope_ransac->set_threshold_radius(k4n_struct->radio.detection.ransac.thres_radius);
+  ope_ransac->set_num_iteration(radio_struct->detection.ransac.nb_iter);
+  ope_ransac->set_threshold_sphere(radio_struct->detection.ransac.thres_sphere);
+  ope_ransac->set_threshold_pose(radio_struct->detection.ransac.thres_pose);
+  ope_ransac->set_threshold_radius(radio_struct->detection.ransac.thres_radius);
   ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, sensor->detection.sphere_diameter/2);
 
   //Apply post-processing stuff
