@@ -10,7 +10,7 @@ namespace radio::detection{class Detector;}
 namespace radio::detection{class Hough;}
 namespace radio::calibration{class Model;}
 namespace radio::calibration{class Measure;}
-namespace radio::calibration{class Calibration;}
+namespace radio{class Detection;}
 
 
 namespace radio{
@@ -38,7 +38,7 @@ public:
   inline radio::detection::Hough* get_k4n_hough(){return k4n_hough;}
   inline radio::calibration::Model* get_k4n_model(){return k4n_model;}
   inline radio::calibration::Measure* get_k4n_measure(){return k4n_measure;}
-  inline radio::calibration::Calibration* get_k4n_calibration(){return k4n_calibration;}
+  inline radio::Detection* get_radio_detection(){return radio_detection;}
 
 private:
   //Dependancy
@@ -51,7 +51,7 @@ private:
   radio::detection::Hough* k4n_hough;
   radio::calibration::Model* k4n_model;
   radio::calibration::Measure* k4n_measure;
-  radio::calibration::Calibration* k4n_calibration;
+  radio::Detection* radio_detection;
 };
 
 }

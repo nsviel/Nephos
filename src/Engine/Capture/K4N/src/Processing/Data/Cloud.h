@@ -45,7 +45,7 @@ public:
 private:
   k4n::utils::Operation* k4n_operation;
   k4n::processing::Operation* k4n_processing;
-  radio::processing::Calibration* k4n_calibration;
+  radio::processing::Calibration* radio_calibration;
   k4n::thread::Pool* k4n_pool;
 
   std::vector<glm::vec3> vec_xyz;

@@ -10,7 +10,7 @@ namespace radio::processing{
 Registration::Registration(k4n::Node* node_k4n){
   //---------------------------
 
-  radio::Node* node_matching = node_k4n->get_node_radio();
+  radio::Node* node_radio = node_k4n->get_node_radio();
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_pool = node_k4n->get_k4n_pool();

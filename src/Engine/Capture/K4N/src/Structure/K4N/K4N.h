@@ -1,8 +1,7 @@
 #pragma once
 
-#include <K4N/src/Structure/K4N/Device.h>
-#include <K4N/src/Structure/Matching/Matching.h>
 #include <Utility/Specific/Common.h>
+#include <Radiometry/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
@@ -37,7 +36,7 @@ struct K4N{
 
   //Structure
   k4n::structure::Device device;
-  k4n::structure::Matching matching;
+  radio::structure::Radio radio;
 
   //---------------------------
 };

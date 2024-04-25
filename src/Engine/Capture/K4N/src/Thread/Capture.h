@@ -40,7 +40,7 @@ public:
 private:
   k4n::processing::Data* k4n_data;
   k4n::config::Configuration* k4n_config;
-  k4n::config::Calibration* k4n_calibration;
+  k4n::config::Calibration* radio_calibration;
 
   std::thread thread;
   bool thread_running = false;

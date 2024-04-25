@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace k4n::hough{
+namespace radio::hough{
 
 enum Drawing{
   ALL = 0,
@@ -18,14 +18,14 @@ enum Mode{
 
 }
 
-namespace k4n::structure{
+namespace radio::structure{
 
 struct Hough{
   //---------------------------
 
   bool apply = true;
-  int drawing_mode = k4n::hough::ALL;
-  int mode = k4n::hough::GRADIENT_ALT;
+  int drawing_mode = radio::hough::ALL;
+  int mode = radio::hough::GRADIENT_ALT;
   int cv_mode = cv::HOUGH_GRADIENT;
 
   float param_1 = -1;

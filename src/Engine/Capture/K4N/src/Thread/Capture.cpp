@@ -12,7 +12,7 @@ Capture::Capture(k4n::Node* node_k4n){
 
   this->k4n_data = new k4n::processing::Data(node_k4n);
   this->k4n_config = new k4n::config::Configuration();
-  this->k4n_calibration = new k4n::config::Calibration();
+  this->radio_calibration = new k4n::config::Calibration();
 
   //---------------------------
 }
@@ -53,8 +53,8 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   //Configuration
   k4n_config->make_sensor_configuration(sensor);
   k4n_config->make_sensor_color_configuration(sensor);
-  k4n_calibration->make_capture_calibration(sensor);
-  k4n_calibration->make_transformation_from_calibration(sensor);
+  radio_calibration->make_capture_calibration(sensor);
+  radio_calibration->make_transformation_from_calibration(sensor);
   sensor->param.device.start_cameras(&sensor->param.configuration);
 
   //Start capture thread

@@ -18,7 +18,7 @@ Measure::~Measure(){}
 
 //Measure function
 void Measure::import_measure(){
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   //Import file model data
@@ -29,7 +29,7 @@ void Measure::import_measure(){
   //---------------------------
 }
 void Measure::export_measure(){
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   utl::file::write_vector(measure->path, measure->vec_data);
@@ -37,7 +37,7 @@ void Measure::export_measure(){
   //---------------------------
 }
 void Measure::clear_measure(){
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   //Import file model data
@@ -47,8 +47,8 @@ void Measure::clear_measure(){
   //---------------------------
 }
 void Measure::find_measure_bound(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   for(int i=0; i<measure->vec_data.size(); i++){
@@ -68,8 +68,8 @@ void Measure::find_measure_bound(){
 
 //Plot function
 void Measure::init_plot(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   //I(R)
@@ -116,8 +116,8 @@ void Measure::init_plot(){
   //---------------------------
 }
 void Measure::reset_plot(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   //I(R)
@@ -144,8 +144,8 @@ void Measure::reset_plot(){
   //---------------------------
 }
 void Measure::update_plot(){
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
-  k4n::structure::Model* model = &k4n_struct->matching.model;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
   //---------------------------
 
   this->reset_plot();
@@ -183,8 +183,8 @@ void Measure::update_plot(){
   //---------------------------
 }
 void Measure::clear_plot(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   //I(R)

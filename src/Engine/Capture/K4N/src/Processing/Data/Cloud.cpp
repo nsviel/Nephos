@@ -15,7 +15,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
 
   this->k4n_operation = new k4n::utils::Operation();
   this->k4n_processing = new k4n::processing::Operation(node_k4n);
-  this->k4n_calibration = new radio::processing::Calibration(node_k4n);
+  this->radio_calibration = new radio::processing::Calibration(node_k4n);
   this->k4n_pool = node_k4n->get_k4n_pool();
 
   //---------------------------
@@ -45,7 +45,7 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   k4n_processing->start_thread(sensor);
 
   //Update object data
-  k4n_calibration->start_thread(sensor);
+  radio_calibration->start_thread(sensor);
 
   //---------------------------
   this->idle = true;
@@ -58,7 +58,7 @@ void Cloud::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_processing->wait_thread();
-  k4n_calibration->wait_thread();
+  radio_calibration->wait_thread();
 
   //---------------------------
 }

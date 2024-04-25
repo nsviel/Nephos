@@ -44,12 +44,12 @@ void Detector::detect_circle_in_image(k4n::dev::Sensor* sensor){
 void Detector::draw_detection_image(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  switch(k4n_struct->matching.hough.drawing_mode){
-    case k4n::hough::ALL:{
+  switch(k4n_struct->radio.detection.hough.drawing_mode){
+    case radio::hough::ALL:{
       k4n_image->draw_all_sphere(sensor);
       break;
     }
-    case k4n::hough::BEST:{
+    case radio::hough::BEST:{
       k4n_image->draw_best_sphere(sensor);
       break;
     }
@@ -60,12 +60,12 @@ void Detector::draw_detection_image(k4n::dev::Sensor* sensor){
 void Detector::draw_detection_glyph(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  switch(k4n_struct->matching.hough.drawing_mode){
-    case k4n::hough::ALL:{
+  switch(k4n_struct->radio.detection.hough.drawing_mode){
+    case radio::hough::ALL:{
       k4n_glyph->draw_all_sphere_glyph(sensor);
       break;
     }
-    case k4n::hough::BEST:{
+    case radio::hough::BEST:{
       k4n_glyph->draw_best_sphere_glyph(sensor);
       break;
     }

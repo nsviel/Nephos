@@ -1,13 +1,13 @@
-#include "Calibration.h"
+#include "Detection.h"
 
 #include <K4N/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 
-namespace radio::calibration{
+namespace radio{
 
 //Constructor / Destructor
-Calibration::Calibration(k4n::Node* node_k4n){
+Detection::Detection(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_transfo = new k4n::utils::Transformation();
@@ -24,10 +24,10 @@ Calibration::Calibration(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Calibration::~Calibration(){}
+Detection::~Detection(){}
 
 //Main function
-void Calibration::next_step(k4n::dev::Sensor* sensor){
+void Detection::next_step(k4n::dev::Sensor* sensor){
   //---------------------------
 
   switch(step){
@@ -45,7 +45,7 @@ void Calibration::next_step(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Calibration::validate_bbox(k4n::dev::Sensor* sensor){
+void Detection::validate_bbox(k4n::dev::Sensor* sensor){
   if(sensor->detection.nb_detection == 0) return;
   if(step != radio::calibration::WAIT_VALIDATION) return;
   //---------------------------
@@ -59,7 +59,7 @@ void Calibration::validate_bbox(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
+void Detection::ransac_sphere(k4n::dev::Sensor* sensor){
   if(step != radio::calibration::PROCESSING) return;
   //---------------------------
 
@@ -73,17 +73,17 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
     vec3& xyz = vec_xyz[i];
     float distance = math::distance(xyz, current_pose);
 
-    if(distance <= sensor->detection.sphere_diameter * k4n_struct->matching.calibration.ransac_search_diameter_x){
+    if(distance <= sensor->detection.sphere_diameter * k4n_struct->radio.detection.ransac.search_diameter_x){
       sphere_xyz.push_back(xyz);
       sphere_i.push_back(vec_i[i]);
     }
   }
 
   //Apply least square fitting
-  ope_ransac->set_num_iteration(k4n_struct->matching.calibration.ransac_nb_iter);
-  ope_ransac->set_threshold_sphere(k4n_struct->matching.calibration.ransac_thres_sphere);
-  ope_ransac->set_threshold_pose(k4n_struct->matching.calibration.ransac_thres_pose);
-  ope_ransac->set_threshold_radius(k4n_struct->matching.calibration.ransac_thres_radius);
+  ope_ransac->set_num_iteration(k4n_struct->radio.detection.ransac.nb_iter);
+  ope_ransac->set_threshold_sphere(k4n_struct->radio.detection.ransac.thres_sphere);
+  ope_ransac->set_threshold_pose(k4n_struct->radio.detection.ransac.thres_pose);
+  ope_ransac->set_threshold_radius(k4n_struct->radio.detection.ransac.thres_radius);
   ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, sensor->detection.sphere_diameter/2);
 
   //Apply post-processing stuff
@@ -96,9 +96,9 @@ void Calibration::ransac_sphere(k4n::dev::Sensor* sensor){
 }
 
 //Data function
-void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+void Detection::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   //Search for closest point
@@ -125,8 +125,8 @@ void Calibration::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 
   //---------------------------
 }
-void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+void Detection::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   //Search for closest point
@@ -138,7 +138,7 @@ void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
     vec3& xyz = sphere_xyz[i];
     float distance = math::distance(xyz, current_pose) - radius;
 
-    if(distance <= k4n_struct->matching.calibration.ransac_thres_sphere){
+    if(distance <= k4n_struct->radio.detection.ransac.thres_sphere){
       I = sphere_i[i];
       Nxyz = normalize(xyz - current_pose);
       It = ope_normal->compute_It(xyz, Nxyz, root);
@@ -152,9 +152,9 @@ void Calibration::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 
   //---------------------------
 }
-void Calibration::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+void Detection::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   //Search for closest point
@@ -167,7 +167,7 @@ void Calibration::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
     vec3& xyz = sphere_xyz[i];
     float distance = math::distance(xyz, current_pose) - radius;
 
-    if(distance <= k4n_struct->matching.calibration.ransac_thres_sphere){
+    if(distance <= k4n_struct->radio.detection.ransac.thres_sphere){
       I = sphere_i[i];
       Nxyz = normalize(xyz - current_pose);
       It = ope_normal->compute_It(xyz, Nxyz, root);

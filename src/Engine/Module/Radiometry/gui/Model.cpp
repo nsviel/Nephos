@@ -1,4 +1,4 @@
-#include "Calibration.h"
+#include "Model.h"
 
 #include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,7 +8,7 @@
 namespace radio::gui{
 
 //Constructor / Destructor
-Calibration::Calibration(k4n::Node* node_k4n){
+Model::Model(k4n::Node* node_k4n){
   //---------------------------
 
   radio::Node* node_radio = node_k4n->get_node_radio();
@@ -22,10 +22,10 @@ Calibration::Calibration(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Calibration::~Calibration(){}
+Model::~Model(){}
 
 //Main function
-void Calibration::draw_calibration_player(k4n::dev::Sensor* sensor){
+void Model::draw_calibration_player(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Player
@@ -51,13 +51,13 @@ void Calibration::draw_calibration_player(k4n::dev::Sensor* sensor){
   }
   ImGui::SameLine();
 
-  //Calibration step
+  //Model step
   string step_str = radio_detection->get_step_str();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", step_str.c_str());
 
   //---------------------------
 }
-void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
+void Model::draw_calibration_tab(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::BeginTable("Detection##table", 2);
@@ -70,7 +70,7 @@ void Calibration::draw_calibration_tab(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Calibration::draw_calibration_measure(k4n::dev::Sensor* sensor){
+void Model::draw_calibration_measure(k4n::dev::Sensor* sensor){
   radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
@@ -120,7 +120,7 @@ void Calibration::draw_calibration_measure(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
+void Model::draw_calibration_model(k4n::dev::Sensor* sensor){
   radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
   //---------------------------
 
@@ -186,7 +186,7 @@ void Calibration::draw_calibration_model(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Calibration::draw_measure(k4n::dev::Sensor* sensor){
+void Model::draw_measure(k4n::dev::Sensor* sensor){
   //---------------------------
 
   float height = ImGui::GetContentRegionAvail().y / 3-3.33;
@@ -197,7 +197,7 @@ void Calibration::draw_measure(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Calibration::plot_measure_IfR(k4n::dev::Sensor* sensor, float height){
+void Model::plot_measure_IfR(k4n::dev::Sensor* sensor, float height){
   radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
@@ -206,7 +206,7 @@ void Calibration::plot_measure_IfR(k4n::dev::Sensor* sensor, float height){
 
   //---------------------------
 }
-void Calibration::plot_measure_IfIt(k4n::dev::Sensor* sensor, float height){
+void Model::plot_measure_IfIt(k4n::dev::Sensor* sensor, float height){
   radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
@@ -215,7 +215,7 @@ void Calibration::plot_measure_IfIt(k4n::dev::Sensor* sensor, float height){
 
   //---------------------------
 }
-void Calibration::plot_model_heatmap(k4n::dev::Sensor* sensor, float height){
+void Model::plot_model_heatmap(k4n::dev::Sensor* sensor, float height){
   radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
   //---------------------------

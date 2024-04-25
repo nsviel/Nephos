@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace k4n::structure{
+namespace radio::structure{
 
 struct Sphere{
   //---------------------------

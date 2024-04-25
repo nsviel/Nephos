@@ -19,12 +19,12 @@ enum STEP{
   PROCESSING = 1,
 };
 
-class Calibration
+class Ransac
 {
 public:
   //Constructor / Destructor
-  Calibration(k4n::Node* node_k4n);
-  ~Calibration();
+  Ransac(k4n::Node* node_k4n);
+  ~Ransac();
 
 public:
   //Main function

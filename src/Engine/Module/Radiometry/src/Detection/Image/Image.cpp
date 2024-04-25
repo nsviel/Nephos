@@ -33,7 +33,7 @@ void Image::draw_best_sphere(k4n::dev::Sensor* sensor){
   if(sensor->detection.cv_image.empty()) return;
   //------------------------
 
-  vector<k4n::structure::Circle> vec_circle;
+  vector<radio::structure::Circle> vec_circle;
   if(sensor->detection.vec_circle.size() > 0){
     vec_circle.push_back(sensor->detection.vec_circle[0]);
   }
@@ -72,7 +72,7 @@ void Image::convert_into_subimage(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
   cv::Point& center = sensor->detection.cv_center;
-  float radius = (float)sensor->detection.cv_radius * k4n_struct->matching.bbox.scale;
+  float radius = (float)sensor->detection.cv_radius * k4n_struct->radio.detection.bbox.scale;
 
   // Calculate the top-left corner coordinates of the bounding box
   int x = center.x - radius;
@@ -109,12 +109,12 @@ void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
 
   //------------------------
 }
-void Image::draw_circle(cv::Mat& image, vector<k4n::structure::Circle>& vec_circle){
+void Image::draw_circle(cv::Mat& image, vector<radio::structure::Circle>& vec_circle){
   if(vec_circle.size() == 0) return;
   //------------------------
 
   for(size_t i=0; i<vec_circle.size(); i++){
-    k4n::structure::Circle& circle = vec_circle[i];
+    radio::structure::Circle& circle = vec_circle[i];
     cv::Point center(cvRound(circle.center.x), cvRound(circle.center.y));
     int radius = cvRound(circle.radius);
 
@@ -130,15 +130,15 @@ void Image::draw_circle(cv::Mat& image, vector<k4n::structure::Circle>& vec_circ
 void Image::draw_bounding_box(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
-  vector<k4n::structure::Circle>& vec_circle = sensor->detection.vec_circle;
+  vector<radio::structure::Circle>& vec_circle = sensor->detection.vec_circle;
   if(vec_circle.size() == 0) return;
 
-  k4n::structure::Circle& circle = vec_circle[0];
+  radio::structure::Circle& circle = vec_circle[0];
   sensor->detection.cv_center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
   sensor->detection.cv_radius = cvRound(circle.radius);
 
   cv::Point& center = sensor->detection.cv_center;
-  float radius = (float)sensor->detection.cv_radius * k4n_struct->matching.bbox.scale;
+  float radius = (float)sensor->detection.cv_radius * k4n_struct->radio.detection.bbox.scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size

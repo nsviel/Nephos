@@ -21,7 +21,7 @@ Model::~Model(){}
 
 //Main function
 void Model::import_model(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
   //---------------------------
 
   model->serial_number = utl::json::read_value<string>(model->path, "serial_number");
@@ -35,7 +35,7 @@ void Model::import_model(){
   //---------------------------
 }
 void Model::export_model(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
   //---------------------------
 
   utl::json::write_value(model->path, "serial_number", model->serial_number);
@@ -65,7 +65,7 @@ void Model::compute_model(){
 
 //Subfunction
 void Model::draw_model(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
   //---------------------------
 
   //if(ope_surface->has_been_computed() == false){
@@ -106,8 +106,8 @@ void Model::draw_model(){
   //---------------------------
 }
 void Model::make_model(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   ope_surface->compute(measure->vec_data, model->x.bound, model->y.bound);
@@ -125,8 +125,8 @@ float Model::apply_model(float x, float y){
   return z;
 }
 float Model::validation_model(){
-  k4n::structure::Model* model = &k4n_struct->matching.model;
-  k4n::structure::Measure* measure = &k4n_struct->matching.measure;
+  radio::structure::Optimization* model = &k4n_struct->radio.model.optim;
+  radio::structure::Measure* measure = &k4n_struct->radio.model.measure;
   //---------------------------
 
   int N = measure->vec_data.size();

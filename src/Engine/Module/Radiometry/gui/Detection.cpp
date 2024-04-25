@@ -13,9 +13,9 @@ Detection::Detection(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
-  radio::Node* node_matching = node_k4n->get_node_radio();
+  radio::Node* node_radio = node_k4n->get_node_radio();
 
-  this->k4n_hough = node_matching->get_k4n_hough();
+  this->k4n_hough = node_radio->get_k4n_hough();
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->stream = new eng::gui::Stream(node_engine);
 
@@ -63,15 +63,15 @@ void Detection::canny_parameter(k4n::dev::Sensor* sensor){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Canny")){
     //Activated
-    ImGui::Checkbox("##Canny", &k4n_struct->matching.canny.apply);
+    ImGui::Checkbox("##Canny", &k4n_struct->radio.detection.canny.apply);
 
     //Lower threshold
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderInt("Lower threshold", &k4n_struct->matching.canny.lower_threshold, 0, 200);
+    ImGui::SliderInt("Lower threshold", &k4n_struct->radio.detection.canny.lower_threshold, 0, 200);
 
     //Upper threshold
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderInt("Upper threshold", &k4n_struct->matching.canny.upper_threshold, 0, 200);
+    ImGui::SliderInt("Upper threshold", &k4n_struct->radio.detection.canny.upper_threshold, 0, 200);
 
     ImGui::TreePop();
   }
@@ -87,43 +87,43 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Hough")){
     //Mode
-    int& mode = k4n_struct->matching.hough.mode;
-    if(ImGui::RadioButton("Gradient", &mode, k4n::hough::GRADIENT)){
+    int& mode = k4n_struct->radio.detection.hough.mode;
+    if(ImGui::RadioButton("Gradient", &mode, radio::hough::GRADIENT)){
       k4n_hough->find_mode_parameter(mode);
     }
     ImGui::SameLine();
-    if(ImGui::RadioButton("Gradient Alt", &mode, k4n::hough::GRADIENT_ALT)){
+    if(ImGui::RadioButton("Gradient Alt", &mode, radio::hough::GRADIENT_ALT)){
       k4n_hough->find_mode_parameter(mode);
     }
 
     //Lower threshold
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderFloat("Detector threshold", &k4n_struct->matching.hough.param_1, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
+    ImGui::SliderFloat("Detector threshold", &k4n_struct->radio.detection.hough.param_1, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
     //Upper threshold
     ImGui::SetNextItemWidth(125);
-    ImGui::SliderFloat("Accumulator threshold", &k4n_struct->matching.hough.param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
+    ImGui::SliderFloat("Accumulator threshold", &k4n_struct->radio.detection.hough.param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
     //Ratio
     ImGui::SetNextItemWidth(150);
-    ImGui::SliderInt("Ratio", &k4n_struct->matching.hough.ratio, 1, 100);
+    ImGui::SliderInt("Ratio", &k4n_struct->radio.detection.hough.ratio, 1, 100);
     ImGui::SetItemTooltip("This parameter affects the spacing of the accumulator cells, which in turn affects the sensitivity of the circle detection algorithm.");
 
     //Min distance
     ImGui::SetNextItemWidth(150);
-    ImGui::SliderInt("Min distance", &k4n_struct->matching.hough.min_dist, 1, 100);
+    ImGui::SliderInt("Min distance", &k4n_struct->radio.detection.hough.min_dist, 1, 100);
 
     //Radius range
-    int* min_radius = &k4n_struct->matching.hough.min_radius;
-    int* max_radius = &k4n_struct->matching.hough.max_radius;
+    int* min_radius = &k4n_struct->radio.detection.hough.min_radius;
+    int* max_radius = &k4n_struct->radio.detection.hough.max_radius;
     ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 100, "Min: %d px", "Max: %d px");
 
     //Circle drawing mode
     ImGui::Text("Draw");
     ImGui::SameLine();
-    ImGui::RadioButton("All sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::ALL);
+    ImGui::RadioButton("All sphere", &k4n_struct->radio.detection.hough.drawing_mode, radio::hough::ALL);
     ImGui::SameLine();
-    ImGui::RadioButton("Best sphere", &k4n_struct->matching.hough.drawing_mode, k4n::hough::BEST);
+    ImGui::RadioButton("Best sphere", &k4n_struct->radio.detection.hough.drawing_mode, radio::hough::BEST);
 
     ImGui::TreePop();
   }
@@ -138,11 +138,11 @@ void Detection::ransac_parameter(k4n::dev::Sensor* sensor){
 
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Ransac")){
-    ImGui::SliderInt("Num iteration", &k4n_struct->matching.calibration.ransac_nb_iter, 1, 10000);
-    ImGui::SliderFloat("Threshold sphere", &k4n_struct->matching.calibration.ransac_thres_sphere, 0.01f, 0.1f, "%.2f m");
-    ImGui::SliderFloat("Threshold pose", &k4n_struct->matching.calibration.ransac_thres_pose, 0.01f, 1.0f, "%.2f m");
-    ImGui::SliderFloat("Threshold radius", &k4n_struct->matching.calibration.ransac_thres_radius, 0.01f, 0.1f, "%.2f m");
-    ImGui::SliderFloat("Diamter x area", &k4n_struct->matching.calibration.ransac_search_diameter_x, 0.5f, 5.0f, "%.1f m");
+    ImGui::SliderInt("Num iteration", &k4n_struct->radio.detection.ransac.nb_iter, 1, 10000);
+    ImGui::SliderFloat("Threshold sphere", &k4n_struct->radio.detection.ransac.thres_sphere, 0.01f, 0.1f, "%.2f m");
+    ImGui::SliderFloat("Threshold pose", &k4n_struct->radio.detection.ransac.thres_pose, 0.01f, 1.0f, "%.2f m");
+    ImGui::SliderFloat("Threshold radius", &k4n_struct->radio.detection.ransac.thres_radius, 0.01f, 0.1f, "%.2f m");
+    ImGui::SliderFloat("Diamter x area", &k4n_struct->radio.detection.ransac.search_diameter_x, 0.5f, 5.0f, "%.1f m");
 
     ImGui::TreePop();
   }

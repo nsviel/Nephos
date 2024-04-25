@@ -10,11 +10,11 @@ namespace radio::processing{
 Calibration::Calibration(k4n::Node* node_k4n){
   //---------------------------
 
-  radio::Node* node_matching = node_k4n->get_node_radio();
+  radio::Node* node_radio = node_k4n->get_node_radio();
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_pool = node_k4n->get_k4n_pool();
-  this->k4n_calibration = node_matching->get_k4n_calibration();
+  this->radio_detection = node_radio->get_radio_detection();
 
   //---------------------------
 }
@@ -39,7 +39,7 @@ void Calibration::run_thread(k4n::dev::Sensor* sensor){
   tasker->loop_begin();
 
   tasker->task_begin("calibration");
-  k4n_calibration->ransac_sphere(sensor);
+  radio_detection->ransac_sphere(sensor);
   tasker->task_end("calibration");
 
   tasker->loop_end();

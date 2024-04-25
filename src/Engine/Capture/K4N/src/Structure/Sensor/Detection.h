@@ -1,7 +1,6 @@
 #pragma once
 
-#include <K4N/src/Structure/Matching/Sphere.h>
-#include <K4N/src/Structure/Matching/Circle.h>
+#include <Radiometry/Namespace.h>
 #include <Scene/Namespace.h>
 #include <opencv2/opencv.hpp>
 
@@ -18,8 +17,8 @@ struct Detection{
   int cv_radius = 0;
   int nb_detection = 0;
 
-  vector<k4n::structure::Circle> vec_circle;
-  vector<k4n::structure::Sphere> vec_sphere;
+  vector<radio::structure::Circle> vec_circle;
+  vector<radio::structure::Sphere> vec_sphere;
   vector<glyph::scene::Sphere*> vec_glyph_sphere;
   glyph::scene::Sphere* glyph_calibration;
 

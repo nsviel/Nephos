@@ -4,9 +4,9 @@
 #include <vector>
 
 
-namespace k4n::structure{
+namespace radio::structure{
 
-struct Model{
+struct Optimization{
   //---------------------------
 
   std::string path = "../media/record/calibration/model.json";

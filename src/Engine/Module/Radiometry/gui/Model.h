@@ -14,12 +14,12 @@ namespace utl::implot{class Plot;}
 
 namespace radio::gui{
 
-class Calibration
+class Model
 {
 public:
   //Constructor / Destructor
-  Calibration(k4n::Node* node_k4n);
-  ~Calibration();
+  Model(k4n::Node* node_k4n);
+  ~Model();
 
 public:
   //Main function

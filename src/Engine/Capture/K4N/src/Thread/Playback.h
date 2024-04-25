@@ -42,7 +42,7 @@ public:
 private:
   k4n::processing::Data* k4n_data;
   k4n::config::Configuration* k4n_configuration;
-  k4n::config::Calibration* k4n_calibration;
+  k4n::config::Calibration* radio_calibration;
   k4n::utils::Operation* k4n_operation;
 
   std::thread thread;

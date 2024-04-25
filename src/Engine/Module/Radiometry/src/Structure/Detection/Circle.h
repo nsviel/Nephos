@@ -1,12 +1,13 @@
 #pragma once
 
 
-namespace k4n::structure{
+namespace radio::structure{
 
-struct Bbox{
+struct Circle{
   //---------------------------
 
-  float scale = 2;
+  int radius;
+  glm::ivec2 center;
 
   //---------------------------
 };
