@@ -6,6 +6,7 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 add_subdirectory(Camera)
 add_subdirectory(Operation)
 add_subdirectory(Capture)
+add_subdirectory(Module)
 
 file(GLOB_RECURSE ALL_SOURCES
   Scene/*.cpp
@@ -35,7 +36,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_CAPTURE
   LIBRARY_GUI
   LIBRARY_CAMERA
-  LIBRARY_ENGINE_OPERATION
+  LIBRARY_OPERATION
 
   Eigen3::Eigen # Eigen
   tins          # Sniffer

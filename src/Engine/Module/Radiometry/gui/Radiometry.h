@@ -14,12 +14,12 @@ namespace k4n::gui{class Registration;}
 
 namespace k4n::gui{
 
-class Matching
+class Radiometry
 {
 public:
   //Constructor / Destructor
-  Matching(k4n::Node* node_k4n, bool* show_window);
-  ~Matching();
+  Radiometry(k4n::Node* node_k4n, bool* show_window);
+  ~Radiometry();
 
 public:
   //Main function

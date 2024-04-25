@@ -121,7 +121,8 @@ bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::typ
     ImPlot::PlotLine("Y current", x_width, y_current, 2);
 
     //Line floating text
-    ImPlot::PlotText("seg 1", x_axis->current, plot->y.max, ImVec2(5, 30), ImPlotTextFlags_Vertical);
+    ImPlot::PlotText(to_string(x_axis->current).c_str(), x_axis->current, plot->y.max, ImVec2(10, 50), ImPlotTextFlags_Vertical);
+    ImPlot::PlotText(to_string(y_axis->current).c_str(), plot->x.max, y_axis->current, ImVec2(-20, -10));
 
     // End the plot
     ImPlot::EndPlot();

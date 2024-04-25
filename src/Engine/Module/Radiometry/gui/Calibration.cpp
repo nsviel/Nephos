@@ -2,6 +2,7 @@
 
 #include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Radiometry/Namespace.h>
 
 
 namespace k4n::gui{
@@ -201,7 +202,7 @@ void Calibration::plot_measure_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   measure->IfR.dimension = ivec2(-1, height);
-  utl_plot->plot_scatter(&measure->IfR);
+  utl_plot->plot_regression(&measure->IfR);
 
   //---------------------------
 }
@@ -210,7 +211,7 @@ void Calibration::plot_measure_IfIt(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 
   measure->IfIt.dimension = ivec2(-1, height);
-  utl_plot->plot_scatter(&measure->IfIt);
+  utl_plot->plot_regression(&measure->IfIt);
 
   //---------------------------
 }

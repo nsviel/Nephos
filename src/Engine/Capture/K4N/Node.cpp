@@ -4,6 +4,7 @@
 #include <K4N/Namespace.h>
 #include <Capture/Namespace.h>
 #include <Scene/Namespace.h>
+#include <Radiometry/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -13,7 +14,7 @@ namespace k4n{
 Node::Node(eng::capture::Node* node_capture){
   utl::gui::Panel* ply_panel = add_panel("Player", ICON_FA_PLAY, true);
   utl::gui::Panel* str_panel = add_panel("Stream", ICON_FA_FILM, false);
-  utl::gui::Panel* cal_panel = add_panel("Matching", ICON_FA_FILM, true);
+  utl::gui::Panel* cal_panel = add_panel("Radiometry", ICON_FA_FILM, true);
   //---------------------------
 
   //Dependancy
@@ -29,7 +30,7 @@ Node::Node(eng::capture::Node* node_capture){
   this->k4n_connection = new k4n::thread::Connection(this);
   this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);
   this->gui_player = new k4n::gui::Player(this, &ply_panel->is_open);
-  this->gui_matching = new k4n::gui::Matching(this, &cal_panel->is_open);
+  this->gui_radiometry = new k4n::gui::Radiometry(this, &cal_panel->is_open);
 
   //---------------------------
 }
@@ -64,7 +65,7 @@ void Node::gui(){
 
   gui_player->run_panel();
   gui_stream->run_panel();
-  gui_matching->run_panel();
+  gui_radiometry->run_panel();
 
   //---------------------------
 }

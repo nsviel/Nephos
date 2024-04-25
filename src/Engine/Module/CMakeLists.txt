@@ -1,19 +1,18 @@
-set(LIBRARY_NAME LIBRARY_OPERATION)
+set(LIBRARY_NAME LIBRARY_MODULE)
 
 #-----------------
 # Source files
 #-----------------
+add_subdirectory(Radiometry)
 
 file(GLOB_RECURSE ALL_SOURCES
-  *.cpp
-  *.h
+  Node.cpp
 )
 
 #-----------------
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
-find_package( OpenCV REQUIRED )
 
 #-----------------
 # Dependencies
@@ -23,9 +22,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_VULKAN
   LIBRARY_ENGINE
-  LIBRARY_CAMERA
-
-  ${OpenCV_LIBS}
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

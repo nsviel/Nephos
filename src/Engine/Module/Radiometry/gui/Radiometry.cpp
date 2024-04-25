@@ -1,12 +1,14 @@
-#include "Matching.h"
+#include "Radiometry.h"
 
 #include <K4N/Namespace.h>
+#include <Utility/Namespace.h>
+#include <Radiometry/Namespace.h>
 
 
 namespace k4n::gui{
 
 //Constructor / Destructor
-Matching::Matching(k4n::Node* node_k4n, bool* show_window){
+Radiometry::Radiometry(k4n::Node* node_k4n, bool* show_window){
   //---------------------------
 
   this->k4n_swarm = node_k4n->get_k4n_swarm();
@@ -16,14 +18,14 @@ Matching::Matching(k4n::Node* node_k4n, bool* show_window){
   this->gui_registration = new k4n::gui::Registration(node_k4n);
 
   this->show_window = show_window;
-  this->name = "Matching";
+  this->name = "Radiometry";
 
   //---------------------------
 }
-Matching::~Matching(){}
+Radiometry::~Radiometry(){}
 
 //Main function
-void Matching::run_panel(){
+void Radiometry::run_panel(){
   k4n::dev::Master* master = k4n_swarm->get_selected_master();
   //---------------------------
 
@@ -47,7 +49,7 @@ void Matching::run_panel(){
 
   //---------------------------
 }
-void Matching::design_panel(k4n::dev::Master* master){
+void Radiometry::design_panel(k4n::dev::Master* master){
   k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->selected_entity);
   //---------------------------
 
@@ -69,12 +71,12 @@ void Matching::design_panel(k4n::dev::Master* master){
 }
 
 //Subfunction
-void Matching::matching_parameter(k4n::dev::Sensor* sensor){
+void Radiometry::matching_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
 
-  //Matching sphere radius
+  //Radiometry sphere radius
   ImGui::SetNextItemWidth(150);
   ImGui::SliderFloat("Sphere diameter", &sensor->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
 
@@ -83,7 +85,7 @@ void Matching::matching_parameter(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Matching::tab_detection(k4n::dev::Sensor* sensor){
+void Radiometry::tab_detection(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
@@ -95,7 +97,7 @@ void Matching::tab_detection(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Matching::tab_calibration(k4n::dev::Sensor* sensor){
+void Radiometry::tab_calibration(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
@@ -107,7 +109,7 @@ void Matching::tab_calibration(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Matching::tab_registration(k4n::dev::Sensor* sensor){
+void Radiometry::tab_registration(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
