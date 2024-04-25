@@ -1,4 +1,4 @@
 #pragma once
 
 #include <Engine/Node.h>
-#include <Engine/GUI/Namespace.h>
+#include <Engine/gui/Namespace.h>

@@ -6,3 +6,4 @@
 #include <GUI/Render/Namespace.h>
 #include <GUI/Utils/Namespace.h>
 #include <GUI/Plot/Namespace.h>
+#include <GUI/Tab/Namespace.h>
