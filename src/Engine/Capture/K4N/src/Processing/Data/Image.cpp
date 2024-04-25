@@ -3,7 +3,7 @@
 #include <K4N/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Operation/Namespace.h>
-
+#include <Radiometry/Namespace.h>
 
 namespace k4n::processing{
 

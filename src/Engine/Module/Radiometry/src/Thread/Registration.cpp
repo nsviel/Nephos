@@ -2,7 +2,7 @@
 
 #include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
-
+#include <Radiometry/Namespace.h>
 
 namespace k4n::processing{
 

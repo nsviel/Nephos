@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Radiometry/Namespace.h>
 
 
 namespace eng::capture{

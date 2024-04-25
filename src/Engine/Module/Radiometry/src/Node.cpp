@@ -1,6 +1,7 @@
 #include "Node.h"
 
 #include <K4N/Namespace.h>
+#include <Radiometry/Namespace.h>
 
 
 namespace k4n::matching{

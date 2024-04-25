@@ -3,6 +3,7 @@
 #include <K4N/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Radiometry/Namespace.h>
 #include <execution>
 
 

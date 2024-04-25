@@ -2,7 +2,7 @@
 
 #include <K4N/Namespace.h>
 #include <Scene/Namespace.h>
-
+#include <Radiometry/Namespace.h>
 
 namespace k4n::detection{
 
