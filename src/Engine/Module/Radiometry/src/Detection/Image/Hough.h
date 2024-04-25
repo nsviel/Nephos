@@ -5,6 +5,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::structure{class K4N;}
+namespace radio{class Structure;}
 namespace radio::structure{class Circle;}
 
 
@@ -13,7 +14,7 @@ namespace radio::detection{
 class Hough
 {
 public:
-  Hough(k4n::Node* node_k4n);
+  Hough(radio::Structure* radio_struct);
   ~Hough();
 
 public:
@@ -26,7 +27,7 @@ public:
   void find_mode_parameter(int mode);
 
 private:
-  k4n::structure::K4N* k4n_struct;
+  radio::Structure* radio_struct;
 
   vector<radio::structure::Circle> vec_circle;
 };

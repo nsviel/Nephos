@@ -18,11 +18,13 @@ Node::Node(k4n::Node* node_k4n){
   this->node_scene = node_k4n->get_node_scene();
   this->node_profiler = node_k4n->get_node_profiler();
 
-  this->radio_hough = new radio::detection::Hough(node_k4n);
-  this->radio_detector = new radio::detection::Detector(node_k4n);
+  this->radio_struct = new radio::Structure();
   this->radio_detection = new radio::Detection(node_k4n);
   this->radio_model = new radio::Model(node_k4n);
-  this->radio_measure = new radio::model::Measure(node_k4n);
+
+  this->radio_hough = new radio::detection::Hough(radio_struct);
+  this->radio_detector = new radio::detection::Detector(node_k4n);
+  this->radio_measure = new radio::model::Measure(radio_struct);
 
   //---------------------------
 }

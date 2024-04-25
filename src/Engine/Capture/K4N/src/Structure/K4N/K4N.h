@@ -36,7 +36,7 @@ struct K4N{
 
   //Structure
   k4n::structure::Device device;
-  radio::structure::Radio radio;
+  radio::Structure radio;
 
   //---------------------------
 };

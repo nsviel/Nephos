@@ -6,6 +6,7 @@ namespace prf{class Node;}
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace k4n{class Node;}
+namespace radio{class Structure;}
 namespace radio{class Detection;}
 namespace radio{class Model;}
 
@@ -35,6 +36,7 @@ public:
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
+  inline radio::Structure* get_radio_struct(){return radio_struct;}
   inline radio::Detection* get_radio_detection(){return radio_detection;}
   inline radio::Model* get_radio_model(){return radio_model;}
 
@@ -50,6 +52,7 @@ private:
   prf::Node* node_profiler;
 
   //Child
+  radio::Structure* radio_struct;
   radio::Detection* radio_detection;
   radio::Model* radio_model;
   radio::detection::Detector* radio_detector;

@@ -7,9 +7,9 @@
 #include <Scene/Namespace.h>
 #include <Radiometry/src/Structure/Detection/Detection.h>
 
-namespace radio::structure{
+namespace radio{
 
-struct Radio{
+struct Structure{
   //---------------------------
 
   //Constructor

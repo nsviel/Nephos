@@ -13,7 +13,7 @@ Detector::Detector(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->radio_glyph = new radio::detection::Glyph(node_k4n);
   this->radio_image = new radio::matching::Image(node_k4n);
-  this->radio_hough = new radio::detection::Hough(node_k4n);
+  //this->radio_hough = new radio::detection::Hough(node_k4n);
 
   //---------------------------
 }
@@ -37,7 +37,7 @@ void Detector::detect_circle_in_image(k4n::dev::Sensor* sensor){
   utl::media::Image* input = &sensor->image.ir;
   cv::Mat cv_input;
   radio_image->convert_into_cv_image(input, cv_input);
-  sensor->detection.vec_circle = radio_hough->sphere_detection(cv_input, sensor->detection.cv_image);
+  //sensor->detection.vec_circle = radio_hough->sphere_detection(cv_input, sensor->detection.cv_image);
   sensor->detection.nb_detection = sensor->detection.vec_circle.size();
 
   //---------------------------

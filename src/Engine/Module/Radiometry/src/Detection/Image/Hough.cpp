@@ -6,12 +6,10 @@
 namespace radio::detection{
 
 //Constructor / Destructor
-Hough::Hough(k4n::Node* node_k4n){
+Hough::Hough(radio::Structure* radio_struct){
   //---------------------------
 
-  this->k4n_struct = node_k4n->get_k4n_struct();
-
-
+  this->radio_struct = radio_struct;
 
   this->find_mode_parameter(radio::hough::GRADIENT_ALT);
 
@@ -39,10 +37,10 @@ vector<radio::structure::Circle> Hough::sphere_detection(cv::Mat& input, cv::Mat
 void Hough::preprocessing(cv::Mat& input, cv::Mat& output){
   //---------------------------
 
-  if(k4n_struct->radio.detection.canny.apply){
+  if(radio_struct->detection.canny.apply){
     // Perform canny edge detection
-    int& thresh_lower = k4n_struct->radio.detection.canny.lower_threshold;
-    int& thresh_upper = k4n_struct->radio.detection.canny.upper_threshold;
+    int& thresh_lower = radio_struct->detection.canny.lower_threshold;
+    int& thresh_upper = radio_struct->detection.canny.upper_threshold;
     cv::Canny(input, output, thresh_lower, thresh_upper);
   }else{
     // Convert the image to grayscale
@@ -56,13 +54,13 @@ void Hough::compute_hough_circle(cv::Mat& image){
   //---------------------------
 
   std::vector<cv::Vec3f> circles;
-  int& mode = k4n_struct->radio.detection.hough.cv_mode;
-  int& ratio = k4n_struct->radio.detection.hough.ratio;
-  int& min_dist = k4n_struct->radio.detection.hough.min_dist;
-  int& min_radius = k4n_struct->radio.detection.hough.min_radius;
-  int& max_radius = k4n_struct->radio.detection.hough.max_radius;
-  float& param_1 = k4n_struct->radio.detection.hough.param_1;
-  float& param_2 = k4n_struct->radio.detection.hough.param_2;
+  int& mode = radio_struct->detection.hough.cv_mode;
+  int& ratio = radio_struct->detection.hough.ratio;
+  int& min_dist = radio_struct->detection.hough.min_dist;
+  int& min_radius = radio_struct->detection.hough.min_radius;
+  int& max_radius = radio_struct->detection.hough.max_radius;
+  float& param_1 = radio_struct->detection.hough.param_1;
+  float& param_2 = radio_struct->detection.hough.param_2;
 
   cv::HoughCircles(image, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
 
@@ -80,15 +78,15 @@ void Hough::find_mode_parameter(int mode){
 
   switch(mode){
     case radio::hough::GRADIENT:{
-      k4n_struct->radio.detection.hough.param_1 = 100; //higher threshold for the Canny edge detector
-      k4n_struct->radio.detection.hough.param_2 = 40; //accumulator threshold for the circle centers at the detection stage
-      k4n_struct->radio.detection.hough.cv_mode = cv::HOUGH_GRADIENT;
+      radio_struct->detection.hough.param_1 = 100; //higher threshold for the Canny edge detector
+      radio_struct->detection.hough.param_2 = 40; //accumulator threshold for the circle centers at the detection stage
+      radio_struct->detection.hough.cv_mode = cv::HOUGH_GRADIENT;
       break;
     }
     case radio::hough::GRADIENT_ALT:{
-      k4n_struct->radio.detection.hough.param_1 = 300;
-      k4n_struct->radio.detection.hough.param_2 = 0.9;
-      k4n_struct->radio.detection.hough.cv_mode = cv::HOUGH_GRADIENT_ALT;
+      radio_struct->detection.hough.param_1 = 300;
+      radio_struct->detection.hough.param_2 = 0.9;
+      radio_struct->detection.hough.cv_mode = cv::HOUGH_GRADIENT_ALT;
       break;
     }
   }
