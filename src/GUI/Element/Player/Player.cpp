@@ -150,16 +150,16 @@ void Player::player_close(gui::player::Structure* ply){
 void Player::player_lock(gui::player::Structure* ply){
   //---------------------------
 
-  if(ply->set->is_locked){
+  if(ply->locked){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_LOCK "##399")){
-      ply->set->is_locked = false;
+      ply->locked = false;
     }
     ImGui::PopStyleColor();
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_UNLOCK "##399")){
-      ply->set->is_locked = true;
+      ply->locked = true;
     }
     ImGui::PopStyleColor();
   }

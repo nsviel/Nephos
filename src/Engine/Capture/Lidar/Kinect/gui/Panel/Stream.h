@@ -2,14 +2,15 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng{class Node;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::dev{class Master;}
-namespace eng::gui{class Stream;}
 namespace k4n::structure{class Data;}
+namespace eng{class Node;}
 namespace eng::scene{class Set;}
+namespace gui::element{class Stream;}
+namespace gui_element = gui::element;
 
 
 namespace k4n::gui{
@@ -45,7 +46,7 @@ private:
   k4n::dev::Swarm* k4n_swarm;
   eng::scene::Set* sce_set;
 
-  vector<eng::gui::Stream*> vec_gui_stream;
+  vector<gui_element::Stream*> vec_gui_stream;
   ImVec2 hovered_pixel;
   string open_tab = "";
   string name;

@@ -14,13 +14,13 @@ struct Structure{
   virtual void player_restart(){}
   virtual void player_record(){}
   virtual void player_close(){}
-
-  utl::type::Set* set = nullptr;
+  virtual void player_lock(){}
 
   bool play = true;
   bool pause = false;
   bool restart = true;
   bool record = false;
+  bool locked = false;
 
   float duration = -1;
   float ts_beg = -1;

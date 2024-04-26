@@ -5,7 +5,7 @@
 #include <GUI/Namespace.h>
 
 
-namespace eng::gui{
+namespace gui::element{
 
 //Constructor / Destructor
 Stream::Stream(eng::Node* engine){

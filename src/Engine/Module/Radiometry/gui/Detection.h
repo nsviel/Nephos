@@ -5,7 +5,8 @@
 namespace k4n::dev{class Sensor;}
 namespace radio{class Structure;}
 namespace radio::detection{class Hough;}
-namespace eng::gui{class Stream;}
+namespace gui::element{class Stream;}
+namespace gui_element = gui::element;
 
 
 namespace radio::gui{
@@ -31,7 +32,7 @@ public:
 private:
   radio::Structure* radio_struct;
   radio::detection::Hough* radio_hough;
-  eng::gui::Stream* stream;
+  gui_element::Stream* stream;
 };
 
 }
