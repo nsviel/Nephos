@@ -1,22 +1,22 @@
-#include "Tab.h"
+#include "Node.h"
 
-#include <Dev/gui/Namespace.h>
+#include <GUI/Namespace.h>
 
 
 namespace dev::gui{
 
 //Constructor / Destructor
-Tab::Tab(){
+Node::Node(){
   //---------------------------
 
   this->menu = new dev::gui::Menu(this);
 
   //---------------------------
 }
-Tab::~Tab(){}
+Node::~Node(){}
 
 //Main function
-void Tab::draw_tab(){
+void Node::draw_tab(){
   //---------------------------
 
   menu->run_tab_menu();
@@ -26,7 +26,7 @@ void Tab::draw_tab(){
 }
 
 //Subfunction
-void Tab::run_editors(){
+void Node::run_editors(){
   //---------------------------
 
 

@@ -7,12 +7,12 @@ namespace dev::gui{class Menu;}
 
 namespace dev::gui{
 
-class Tab
+class Node
 {
 public:
   //Constructor / Destructor
-  Tab();
-  ~Tab();
+  Node();
+  ~Node();
 
 public:
   //Main functions

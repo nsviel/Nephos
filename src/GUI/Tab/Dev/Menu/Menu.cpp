@@ -6,10 +6,10 @@
 namespace dev::gui{
 
 //Constructor / Destructor
-Menu::Menu(dev::gui::Tab* dev_tab){
+Menu::Menu(dev::gui::Node* tab_dev){
   //---------------------------
 
-  this->dev_tab = dev_tab;
+  this->tab_dev = tab_dev;
 
   //---------------------------
 }

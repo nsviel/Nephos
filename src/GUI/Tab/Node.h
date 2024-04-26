@@ -5,7 +5,7 @@
 namespace gui{class Node;}
 namespace eng{class Node;}
 namespace gui::interface{class Menu;}
-namespace dev::gui{class Tab;}
+namespace dev::gui{class Node;}
 namespace eng::gui{class Node;}
 
 
@@ -31,7 +31,7 @@ public:
 private:
   eng::Node* node_engine;
   gui::interface::Menu* gui_menu;
-  dev::gui::Tab* dev_tab;
+  dev::gui::Node* tab_dev;
   eng::gui::Node* tab_engine;
 
   vector<string> vec_tab;

@@ -1,6 +1,5 @@
 #include "Node.h"
 
-#include <Dev/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <GUI/Namespace.h>
@@ -13,7 +12,7 @@ Node::Node(gui::Node* gui){
   //---------------------------
 
   this->node_engine = gui->get_node_engine();
-  this->dev_tab = new dev::gui::Tab();
+  this->tab_dev = new dev::gui::Node();
   this->gui_menu = new gui::interface::Menu(gui);
   this->tab_engine = new eng::gui::Node(node_engine);
 
@@ -85,7 +84,7 @@ void Node::draw_tab(){
     node_engine->gui();
   }
   else if(active_tab == "Dev"){
-    dev_tab->draw_tab();
+    tab_dev->draw_tab();
   }
 
   //---------------------------
