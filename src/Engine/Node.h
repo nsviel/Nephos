@@ -11,6 +11,7 @@ namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::capture{class Node;}
 namespace eng::module{class Node;}
+namespace rnd{class Node;}
 
 
 namespace eng{
@@ -47,6 +48,7 @@ private:
   eng::capture::Node* node_capture;
   eng::module::Node* node_module;
   ope::Node* node_operation;
+  rnd::Node* node_rendering;
 };
 
 }

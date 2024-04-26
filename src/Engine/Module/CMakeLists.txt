@@ -5,7 +5,6 @@ set(LIBRARY_NAME LIBRARY_MODULE)
 #-----------------
 add_subdirectory(Radiometry)
 add_subdirectory(Registration)
-add_subdirectory(Rendering)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
@@ -24,7 +23,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_VULKAN
   LIBRARY_ENGINE
-  LIBRARY_RENDERING
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
