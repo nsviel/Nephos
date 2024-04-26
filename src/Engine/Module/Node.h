@@ -5,9 +5,10 @@
 namespace prf{class Node;}
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
+namespace rnd{class Node;}
 
 
-namespace eng::capture{
+namespace eng::module{
 
 class Node : public utl::type::Node
 {
@@ -33,8 +34,7 @@ private:
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
   prf::Node* node_profiler;
-
-  //Child
+  rnd::Node* node_rendering;
 };
 
 }

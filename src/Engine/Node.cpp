@@ -8,6 +8,7 @@
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Capture/Namespace.h>
+#include <Module/Node.h>
 
 
 namespace eng{
@@ -25,6 +26,7 @@ Node::Node(app::Node* node_app){
   this->node_camera = new eng::cam::Node(this);
   this->node_operation = new ope::Node(this);
   this->node_capture = new eng::capture::Node(this);
+  this->node_module = new eng::module::Node(this);
 
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
@@ -46,6 +48,7 @@ void Node::init(){
   node_scene->init();
   node_capture->init();
   node_camera->init();
+  node_module->init();
 
   //---------------------------
 }
@@ -70,6 +73,7 @@ void Node::gui(){
   node_scene->gui();
   node_capture->gui();
   node_camera->gui();
+  node_module->gui();
   tasker_main->task_end("eng::gui");
 
   tasker_main->task_begin("gui::profiler");

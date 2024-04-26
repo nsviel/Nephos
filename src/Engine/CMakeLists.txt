@@ -37,6 +37,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_GUI
   LIBRARY_CAMERA
   LIBRARY_OPERATION
+  LIBRARY_MODULE
 
   Eigen3::Eigen # Eigen
   tins          # Sniffer
