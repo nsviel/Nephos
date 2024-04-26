@@ -2,8 +2,9 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace rnd{class Node;}
 namespace eng{class Node;}
-namespace ope{class Wheel;}
+namespace rnd::gui{class Control;}
 namespace vk::main{class Interface;}
 
 
@@ -13,7 +14,7 @@ class Option
 {
 public:
   //Constructor / Destructor
-  Option(eng::Node* node_engine, bool* show_window);
+  Option(rnd::Node* node_rendering, bool* show_window);
   ~Option();
 
 public:
@@ -26,7 +27,7 @@ public:
   void option_wheel();
 
 private:
-  ope::Wheel* ope_wheel;
+  rnd::gui::Control* gui_control;
   vk::main::Interface* vk_interface;
 
   int width;

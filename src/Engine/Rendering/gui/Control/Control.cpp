@@ -4,24 +4,25 @@
 #include <Utility/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
+#include <Rendering/Namespace.h>
 
 
 namespace rnd::gui{
 
 //Constructor / Destructor
-Control::Control(ope::Node* node_rendering){
+Control::Control(rnd::Node* node_rendering){
   //---------------------------
 
   this->node_engine = node_rendering->get_node_engine();
-  eng::scene::Node* node_scene = node_rendering->get_node_scene();
-  eng::cam::Node* node_camera = node_rendering->get_node_camera();
+  eng::scene::Node* node_scene = node_engine->get_node_scene();
+  eng::cam::Node* node_camera = node_engine->get_node_camera();
 
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
   this->sce_database = node_scene->get_scene_database();
   this->sce_set = new eng::scene::Set();
   this->ope_operation = new ope::Operation();
-  this->ope_wheel = new ope::Wheel(node_engine);
+  this->gui_wheel = new rnd::gui::Wheel(node_rendering);
 
   //---------------------------
 }
@@ -133,16 +134,17 @@ void Control::control_mouse_wheel(){
 
   //Wheel click - Change mouse wheel mode
   if(ImGui::IsMouseClicked(2)){
-    ope_wheel->change_mode();
+    gui_wheel->change_mode();
   }
 
   //Wheel actions
   if(io.MouseWheel && io.MouseDownDuration[1] == -1){
     float direction = math::sign(io.MouseWheel);
-    ope_wheel->make_action(direction);
+    gui_wheel->make_action(direction);
   }
 
   //----------------------------
 }
+
 
 }

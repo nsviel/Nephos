@@ -5,15 +5,16 @@
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Rendering/Namespace.h>
 
 
 namespace rnd::gui{
 
 //Constructor / Destructor
-Shader::Shader(eng::Node* node_engine, bool* show_window){
+Shader::Shader(rnd::Node* node_rendering, bool* show_window){
   //---------------------------
 
-  vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  vk::Node* node_vulkan = node_rendering->get_node_vulkan();
   vk::structure::Vulkan* vk_struct = node_vulkan->get_vk_struct();
 
   this->vk_reload = new vk::shader::Reloader(vk_struct);

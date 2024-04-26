@@ -21,9 +21,9 @@ Node::Node(eng::Node* node_engine){
   this->node_operation = node_engine->get_node_operation();
 
   //Child
-  this->gui_option = new rnd::gui::Option(node_engine, &opt_panel->is_open);
-  this->gui_shader = new rnd::gui::Shader(node_engine, &sha_panel->is_open);
-  this->gui_render = new rnd::gui::Renderer(node_engine);
+  this->gui_option = new rnd::gui::Option(this, &opt_panel->is_open);
+  this->gui_shader = new rnd::gui::Shader(this, &sha_panel->is_open);
+  this->gui_render = new rnd::gui::Renderer(this);
 
   //---------------------------
 }

@@ -5,8 +5,7 @@
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::cam{class Node;}
-namespace ope{class Wheel;}
-namespace ope::gui{class Control;}
+
 
 
 namespace ope{
@@ -28,18 +27,12 @@ public:
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::cam::Node* get_node_camera(){return node_camera;}
 
-  inline ope::Wheel* get_ope_wheel(){return ope_wheel;}
-  inline ope::gui::Control* get_gui_control(){return gui_control;}
-
 private:
   //Dependancy
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
   eng::cam::Node* node_camera;
 
-  //Child
-  ope::Wheel* ope_wheel;
-  ope::gui::Control* gui_control;
 };
 
 }

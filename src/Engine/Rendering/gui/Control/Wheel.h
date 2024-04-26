@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace rnd{class Node;}
 namespace eng{class Node;}
 namespace ope{class Operation;}
 namespace eng::scene{class Database;}
@@ -15,13 +16,13 @@ enum Wheel_mode{
 };
 
 
-namespace ope{
+namespace rnd::gui{
 
 class Wheel
 {
 public:
   //Constructor / Destructor
-  Wheel(eng::Node* node_engine);
+  Wheel(rnd::Node* node_rendering);
   ~Wheel();
 
 public:

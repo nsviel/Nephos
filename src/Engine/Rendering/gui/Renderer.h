@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace rnd{class Node;}
 namespace vk::gui{class Imgui;}
 namespace vk::main{class Interface;}
 namespace vk::structure{class Vulkan;}
@@ -17,7 +18,7 @@ class Renderer
 {
 public:
   //Constructor / Destructor
-  Renderer(engine::Node* node_engine);
+  Renderer(rnd::Node* node_rendering);
   ~Renderer();
 
 public:

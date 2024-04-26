@@ -17,10 +17,6 @@ Node::Node(eng::Node* node_engine){
   this->node_scene = node_engine->get_node_scene();
   this->node_camera = node_engine->get_node_camera();
 
-  //Child
-  this->ope_wheel = new ope::Wheel(this);
-  this->gui_control = new ope::gui::Control(this);
-
   //---------------------------
 }
 Node::~Node(){}
@@ -42,7 +38,7 @@ void Node::gui(){
 void Node::control(){
   //---------------------------
 
-  gui_control->run_control();
+
 
   //---------------------------
 }

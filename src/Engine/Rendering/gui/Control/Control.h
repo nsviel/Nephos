@@ -2,9 +2,10 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace rnd{class Node;}
 namespace eng{class Node;}
 namespace ope{class Operation;}
-namespace ope{class Wheel;}
+namespace rnd::gui{class Wheel;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class Set;}
 namespace eng::cam{class Control;}
@@ -31,6 +32,8 @@ public:
   //Mouse
   void control_mouse_wheel();
 
+  inline rnd::gui::Wheel* get_gui_wheel(){return gui_wheel;}
+
 private:
   eng::Node* node_engine;
   eng::scene::Database* sce_database;
@@ -38,7 +41,7 @@ private:
   eng::cam::Control* cam_control;
   eng::cam::Manager* cam_manager;
   ope::Operation* ope_operation;
-  ope::Wheel* ope_wheel;
+  rnd::gui::Wheel* gui_wheel;
 };
 
 }

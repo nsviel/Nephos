@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 class Text;
+namespace rnd{class Node;}
 namespace vk::shader{class Reloader;}
 namespace eng{class Node;}
 namespace utl::gui::widget{class Console;}
@@ -16,7 +17,7 @@ class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(eng::Node* node_engine, bool* show_window);
+  Shader(rnd::Node* node_rendering, bool* show_window);
   ~Shader();
 
 public:
