@@ -37,6 +37,7 @@ Node::Node(app::Node* node_app){
   this->add_node_panel(node_scene);
   this->add_node_panel(node_capture);
   this->add_node_panel(node_profiler);
+  this->add_node_panel(node_rendering);
 
   //---------------------------
 }
