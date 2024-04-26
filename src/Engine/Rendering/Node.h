@@ -26,6 +26,7 @@ public:
 
   //Subfunction
 
+  inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline ope::Node* get_node_operation(){return node_operation;}
 

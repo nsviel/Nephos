@@ -8,10 +8,9 @@
 namespace ope{
 
 //Constructor / Destructor
-Wheel::Wheel(ope::Node* node_operation){
+Wheel::Wheel(eng::Node* node_engine){
   //---------------------------
 
-  eng::Node* node_engine = node_operation->get_node_engine();
   eng::scene::Node* node_scene = node_operation->get_node_scene();
   eng::cam::Node* node_camera = node_operation->get_node_camera();
 

@@ -3,7 +3,6 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace ope{class Node;}
 namespace ope{class Operation;}
 namespace eng::scene{class Database;}
 namespace eng::cam{class Control;}
@@ -22,7 +21,7 @@ class Wheel
 {
 public:
   //Constructor / Destructor
-  Wheel(ope::Node* node_operation);
+  Wheel(eng::Node* node_engine);
   ~Wheel();
 
 public:

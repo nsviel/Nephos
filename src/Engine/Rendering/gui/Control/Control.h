@@ -3,7 +3,6 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace ope{class Node;}
 namespace ope{class Operation;}
 namespace ope{class Wheel;}
 namespace eng::scene{class Database;}
@@ -12,13 +11,13 @@ namespace eng::cam{class Control;}
 namespace eng::cam{class Manager;}
 
 
-namespace ope::gui{
+namespace rnd::gui{
 
 class Control
 {
 public:
   //Constructor / Destructor
-  Control(ope::Node* node_operation);
+  Control(rnd::Node* node_rendering);
   ~Control();
 
 public:
