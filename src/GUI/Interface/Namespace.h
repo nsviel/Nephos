@@ -1,5 +1,6 @@
 #pragma once
 
-#include <GUI/Interface/Control.h>
-#include <GUI/Interface/Docking.h>
 #include <GUI/Interface/Menu.h>
+#include <GUI/Interface/Control/Control.h>
+#include <GUI/Interface/Control/Docking.h>
+#include <GUI/Interface/Style/Namespace.h>
