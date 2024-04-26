@@ -12,15 +12,14 @@ Node::Node(gui::Node* gui){
   //---------------------------
 
   this->node_engine = gui->get_node_engine();
-  this->tab_dev = new dev::gui::Node();
   this->gui_menu = new gui::interface::Menu(gui);
-  this->tab_engine = new eng::gui::Node(node_engine);
+  this->dev_menu = new gui::tab::dev::Menu();
+  this->eng_menu = new gui::tab::eng::Menu(gui);
 
   this->active_tab = "Engine";
   this->tab_to_open = "";
   this->vec_tab.push_back("Engine");
   this->vec_tab.push_back("Dev");
-  this->add_node_panel(tab_engine);
 
   //---------------------------
 }
@@ -28,16 +27,6 @@ Node::~Node(){}
 
 //Main function
 void Node::loop(){
-  //---------------------------
-
-  this->run_tab();
-  tab_engine->gui();
-
-  //---------------------------
-}
-
-//Subfunction
-void Node::run_tab(){
   //---------------------------
 
   //Draw main menu bar
@@ -82,9 +71,10 @@ void Node::draw_tab(){
   //Draw selected tab panels
   if(active_tab == "Engine"){
     node_engine->gui();
+    eng_menu->draw();
   }
   else if(active_tab == "Dev"){
-    tab_dev->draw_tab();
+    dev_menu->draw();
   }
 
   //---------------------------

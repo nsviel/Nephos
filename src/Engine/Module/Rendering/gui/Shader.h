@@ -6,10 +6,11 @@ class Text;
 namespace vk::shader{class Reloader;}
 namespace eng{class Node;}
 namespace utl::gui::widget{class Console;}
-namespace utl::gui::editor{class Text;}
+namespace gui::element::editor{class Text;}
+namespace gui_element = gui::element;
 
 
-namespace eng::gui{
+namespace rnd::gui{
 
 class Shader
 {
@@ -51,8 +52,8 @@ public:
 private:
   vk::shader::Reloader* vk_reload;
   eng::Node* node_engine;
-  utl::gui::editor::Text* editor_vs;
-  utl::gui::editor::Text* editor_fs;
+  gui_element::editor::Text* editor_vs;
+  gui_element::editor::Text* editor_fs;
   utl::gui::widget::Console* gui_console;
 
   vector<string> vec_shader_class;

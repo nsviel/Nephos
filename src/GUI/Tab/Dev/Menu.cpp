@@ -3,20 +3,19 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace dev::gui{
+namespace gui::tab::dev{
 
 //Constructor / Destructor
-Menu::Menu(dev::gui::Node* tab_dev){
+Menu::Menu(){
   //---------------------------
 
-  this->tab_dev = tab_dev;
 
   //---------------------------
 }
 Menu::~Menu(){}
 
 //Main function
-void Menu::run_tab_menu(){
+void Menu::draw(){
   //---------------------------
 
   ImGui::BeginMainMenuBar();

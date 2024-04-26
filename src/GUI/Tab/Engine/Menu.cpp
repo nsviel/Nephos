@@ -1,4 +1,4 @@
-#include "Node.h"
+#include "Menu.h"
 
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
@@ -6,49 +6,21 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace eng::gui{
+namespace gui::tab::eng{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* opt_panel = add_panel("Option##456", ICON_FA_COG, false);
-  utl::gui::Panel* sha_panel = add_panel("Shader", ICON_FA_ROAD, false);
+Menu::Menu(gui::Node* gui){
   //---------------------------
 
-  //Dependancy
-  this->node_engine = node_engine;
+  this->node_engine = gui->get_node_engine();
   this->node_vulkan = node_engine->get_node_vulkan();
-  this->node_operation = node_engine->get_node_operation();
-
-  //Child
-  this->gui_option = new eng::gui::Option(this, &opt_panel->is_open);
-  this->gui_shader = new eng::gui::Shader(node_engine, &sha_panel->is_open);
-  this->gui_render = new eng::gui::Renderer(node_engine);
 
   //---------------------------
 }
-Node::~Node(){}
+Menu::~Menu(){}
 
 //Main function
-void Node::init(){
-  //---------------------------
-
-  gui_shader->init_panel();
-
-  //---------------------------
-}
-void Node::gui(){
-  //---------------------------
-
-  this->draw_menu();
-  gui_option->run_panel();
-  gui_shader->run_panel();
-  gui_render->run_panel();
-
-  //---------------------------
-}
-
-//Subfunction
-void Node::draw_menu(){
+void Menu::draw(){
   //---------------------------
 
   ImGui::BeginMainMenuBar();
@@ -66,7 +38,9 @@ void Node::draw_menu(){
 
   //---------------------------
 }
-void Node::menu_panel(){
+
+//Subfunction
+void Menu::menu_panel(){
   vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
   //---------------------------
 
@@ -78,7 +52,7 @@ void Node::menu_panel(){
 
   //---------------------------
 }
-void Node::menu_loader(){
+void Menu::menu_loader(){
   vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
   //---------------------------
 
@@ -90,7 +64,7 @@ void Node::menu_loader(){
 
   //---------------------------
 }
-void Node::menu_screenshot(){
+void Menu::menu_screenshot(){
   vk::image::Screenshot* vk_screenshot = node_vulkan->get_vk_screenshot();
   //---------------------------
 

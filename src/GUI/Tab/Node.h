@@ -5,8 +5,9 @@
 namespace gui{class Node;}
 namespace eng{class Node;}
 namespace gui::interface{class Menu;}
-namespace dev::gui{class Node;}
-namespace eng::gui{class Node;}
+namespace gui::tab::dev{class Menu;}
+namespace gui::tab::eng{class Menu;}
+namespace engine = eng;
 
 
 namespace gui::tab{
@@ -21,7 +22,6 @@ public:
 public:
   //Main function
   void loop();
-  void run_tab();
 
   //Tab function
   void draw_tab_menu();
@@ -29,10 +29,10 @@ public:
   void next_tab();
 
 private:
-  eng::Node* node_engine;
+  engine::Node* node_engine;
   gui::interface::Menu* gui_menu;
-  dev::gui::Node* tab_dev;
-  eng::gui::Node* tab_engine;
+  gui::tab::dev::Menu* dev_menu;
+  gui::tab::eng::Menu* eng_menu;
 
   vector<string> vec_tab;
   string active_tab;

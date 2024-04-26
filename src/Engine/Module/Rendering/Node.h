@@ -5,12 +5,12 @@
 namespace vk{class Node;}
 namespace eng{class Node;}
 namespace ope{class Node;}
-namespace eng::gui{class Option;}
-namespace eng::gui{class Shader;}
-namespace eng::gui{class Renderer;}
+namespace rnd::gui{class Option;}
+namespace rnd::gui{class Shader;}
+namespace rnd::gui{class Renderer;}
 
 
-namespace eng::gui{
+namespace rnd{
 
 class Node : public utl::type::Node
 {
@@ -25,24 +25,18 @@ public:
   void gui();
 
   //Subfunction
-  void draw_menu();
-  void menu_panel();
-  void menu_loader();
-  void menu_screenshot();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline ope::Node* get_node_operation(){return node_operation;}
 
 private:
-  //Dependancy
   eng::Node* node_engine;
   vk::Node* node_vulkan;
   ope::Node* node_operation;
 
-  //Child
-  eng::gui::Option* gui_option;
-  eng::gui::Shader* gui_shader;
-  eng::gui::Renderer* gui_render;
+  rnd::gui::Option* gui_option;
+  rnd::gui::Shader* gui_shader;
+  rnd::gui::Renderer* gui_render;
 };
 
 }

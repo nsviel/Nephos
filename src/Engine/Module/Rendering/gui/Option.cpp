@@ -7,14 +7,14 @@
 #include <Operation/Namespace.h>
 
 
-namespace eng::gui{
+namespace rnd::gui{
 
 //Constructor / Destructor
-Option::Option(eng::gui::Node* node_gui, bool* show_window){
+Option::Option(eng::Node* node_engine, bool* show_window){
   //---------------------------
 
-  vk::Node* node_vulkan = node_gui->get_node_vulkan();
-  ope::Node* node_operation = node_gui->get_node_operation();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  ope::Node* node_operation = node_engine->get_node_operation();
 
   this->ope_wheel = node_operation->get_ope_wheel();
   this->vk_interface = node_vulkan->get_vk_interface();

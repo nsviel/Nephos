@@ -8,15 +8,16 @@ namespace vk::structure{class Vulkan;}
 namespace eng{class Node;}
 namespace eng::cam::gui{class Control;}
 namespace ope{class Node;}
+namespace engine = eng;
 
 
-namespace eng::gui{
+namespace rnd::gui{
 
 class Renderer
 {
 public:
   //Constructor / Destructor
-  Renderer(eng::Node* node_engine);
+  Renderer(engine::Node* node_engine);
   ~Renderer();
 
 public:
@@ -29,7 +30,7 @@ public:
   void resize();
 
 private:
-  eng::cam::gui::Control* cam_control;
+  engine::cam::gui::Control* cam_control;
   ope::Node* node_operation;
   vk::gui::Imgui* vk_imgui;
   vk::main::Interface* vk_interface;

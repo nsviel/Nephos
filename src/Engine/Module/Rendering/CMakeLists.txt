@@ -1,14 +1,10 @@
-set(LIBRARY_NAME LIBRARY_MODULE)
+set(LIBRARY_NAME LIBRARY_RENDERING)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Radiometry)
-add_subdirectory(Registration)
-add_subdirectory(Rendering)
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
+  *.cpp
 )
 
 #-----------------
@@ -19,11 +15,13 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_EXTERN
   LIBRARY_UTILITY
   LIBRARY_VULKAN
-  LIBRARY_ENGINE
+
+  Eigen3::Eigen # Eigen
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

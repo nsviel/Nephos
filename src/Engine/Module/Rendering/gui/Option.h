@@ -2,18 +2,18 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng::gui{class Node;}
+namespace eng{class Node;}
 namespace ope{class Wheel;}
 namespace vk::main{class Interface;}
 
 
-namespace eng::gui{
+namespace rnd::gui{
 
 class Option
 {
 public:
   //Constructor / Destructor
-  Option(eng::gui::Node* node_gui, bool* show_window);
+  Option(eng::Node* node_engine, bool* show_window);
   ~Option();
 
 public:

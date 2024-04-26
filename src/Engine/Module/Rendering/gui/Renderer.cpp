@@ -10,14 +10,14 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace eng::gui{
+namespace rnd::gui{
 
 //Constructor / Destructor
-Renderer::Renderer(eng::Node* node_engine){
+Renderer::Renderer(engine::Node* node_engine){
   //---------------------------
 
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
-  eng::cam::Node* node_camera = node_engine->get_node_camera();
+  engine::cam::Node* node_camera = node_engine->get_node_camera();
 
   this->node_operation = node_engine->get_node_operation();
   this->cam_control = node_camera->get_gui_control();

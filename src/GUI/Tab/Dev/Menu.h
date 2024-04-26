@@ -3,27 +3,24 @@
 #include <Utility/Specific/Common.h>
 #include <GUI/Namespace.h>
 
-namespace dev::gui{class Node;}
 
-
-namespace dev::gui{
+namespace gui::tab::dev{
 
 class Menu
 {
 public:
   //Constructor / Destructor
-  Menu(dev::gui::Node* tab_dev);
+  Menu();
   ~Menu();
 
 public:
   //Main function
-  void run_tab_menu();
+  void draw();
 
   //Subfunctions
   void open_panels();
 
 private:
-  dev::gui::Node* tab_dev;
 
 };
 

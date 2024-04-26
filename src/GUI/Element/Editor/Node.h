@@ -4,7 +4,7 @@
 #include <imgui/node/imgui_node_editor.h>
 
 
-namespace utl::gui::editor{
+namespace gui::element::editor{
 
 class Node : public utl::type::Node
 {
