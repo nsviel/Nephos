@@ -1,4 +1,4 @@
-#include "Tab.h"
+#include "Node.h"
 
 #include <Dev/Namespace.h>
 #include <Engine/Namespace.h>
@@ -6,27 +6,39 @@
 #include <GUI/Namespace.h>
 
 
-namespace gui::interface{
+namespace gui::tab{
 
 //Constructor / Destructor
-Tab::Tab(gui::Node* gui){
+Node::Node(gui::Node* gui){
   //---------------------------
 
   this->node_engine = gui->get_node_engine();
   this->dev_tab = new dev::gui::Tab();
   this->gui_menu = new gui::interface::Menu(gui);
+  this->tab_engine = new eng::gui::Node(node_engine);
 
   this->active_tab = "Engine";
   this->tab_to_open = "";
   this->vec_tab.push_back("Engine");
   this->vec_tab.push_back("Dev");
+  this->add_node_panel(tab_engine);
 
   //---------------------------
 }
-Tab::~Tab(){}
+Node::~Node(){}
 
 //Main function
-void Tab::run_tab(){
+void Node::loop(){
+  //---------------------------
+
+  this->run_tab();
+  tab_engine->gui();
+
+  //---------------------------
+}
+
+//Subfunction
+void Node::run_tab(){
   //---------------------------
 
   //Draw main menu bar
@@ -42,7 +54,7 @@ void Tab::run_tab(){
 }
 
 //Tab function
-void Tab::draw_tab_menu(){
+void Node::draw_tab_menu(){
   ImGuiTabItemFlags flag;
   //---------------------------
 
@@ -65,7 +77,7 @@ void Tab::draw_tab_menu(){
 
   //---------------------------
 }
-void Tab::draw_tab(){
+void Node::draw_tab(){
   //---------------------------
 
   //Draw selected tab panels
@@ -78,7 +90,7 @@ void Tab::draw_tab(){
 
   //---------------------------
 }
-void Tab::next_tab(){
+void Node::next_tab(){
   //---------------------------
 
   for(int i=0; i<vec_tab.size(); i++){

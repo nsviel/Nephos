@@ -25,7 +25,6 @@ Node::Node(app::Node* node_app){
   this->node_camera = new eng::cam::Node(this);
   this->node_operation = new ope::Node(this);
   this->node_capture = new eng::capture::Node(this);
-  this->node_gui = new eng::gui::Node(this);
 
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
@@ -35,7 +34,6 @@ Node::Node(app::Node* node_app){
   this->add_node_panel(node_scene);
   this->add_node_panel(node_capture);
   this->add_node_panel(node_profiler);
-  this->add_node_panel(node_gui);
 
   //---------------------------
 }
@@ -72,7 +70,6 @@ void Node::gui(){
   node_scene->gui();
   node_capture->gui();
   node_camera->gui();
-  node_gui->gui();
   tasker_main->task_end("eng::gui");
 
   tasker_main->task_begin("gui::profiler");

@@ -6,19 +6,21 @@ namespace gui{class Node;}
 namespace eng{class Node;}
 namespace gui::interface{class Menu;}
 namespace dev::gui{class Tab;}
+namespace eng::gui{class Node;}
 
 
-namespace gui::interface{
+namespace gui::tab{
 
-class Tab
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Tab(gui::Node* gui);
-  ~Tab();
+  Node(gui::Node* gui);
+  ~Node();
 
 public:
-  //Main functions
+  //Main function
+  void loop();
   void run_tab();
 
   //Tab function
@@ -30,6 +32,7 @@ private:
   eng::Node* node_engine;
   gui::interface::Menu* gui_menu;
   dev::gui::Tab* dev_tab;
+  eng::gui::Node* tab_engine;
 
   vector<string> vec_tab;
   string active_tab;

@@ -10,7 +10,6 @@ namespace prf::graph{class Tasker;}
 namespace eng::cam{class Node;}
 namespace eng::scene{class Node;}
 namespace eng::capture{class Node;}
-namespace eng::gui{class Node;}
 
 
 namespace eng{
@@ -46,7 +45,6 @@ private:
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;
   ope::Node* node_operation;
-  eng::gui::Node* node_gui;
 };
 
 }

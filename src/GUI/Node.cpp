@@ -19,16 +19,18 @@ Node::Node(app::Node* node_app){
   this->gui_style = new gui::style::Config(this);
   this->gui_font = new gui::style::Font(this);
   this->gui_theme = new gui::style::Theme(this);
-  this->gui_tab = new gui::interface::Tab(this);
+  this->node_tab = new gui::tab::Node(this);
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
+
+  this->add_node_panel(node_tab);
 
   //---------------------------
 }
 Node::~Node(){
   //---------------------------
 
-  delete gui_tab;
+  delete node_tab;
   delete gui_control;
 
   //---------------------------
@@ -49,7 +51,7 @@ void Node::loop(){
 
   gui_render->new_frame();
   gui_docking->docker_space_main();
-  gui_tab->run_tab();
+  node_tab->loop();
   gui_control->run_control();
   gui_render->end_frame();
 

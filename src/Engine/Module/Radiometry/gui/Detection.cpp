@@ -4,6 +4,7 @@
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <GUI/Namespace.h>
 
 
 namespace radio::gui{
