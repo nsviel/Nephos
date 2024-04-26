@@ -11,7 +11,6 @@ namespace gui::tab{class Node;}
 namespace gui::style{class Config;}
 namespace gui::style{class Font;}
 namespace gui::style{class Theme;}
-namespace gui{class Render;}
 
 
 namespace gui{
@@ -34,7 +33,6 @@ public:
   inline gui::style::Config* get_gui_style(){return gui_style;}
   inline gui::tab::Node* get_node_tab(){return node_tab;}
   inline gui::style::Font* get_gui_font(){return gui_font;}
-  inline gui::Render* get_rnd_tab(){return gui_render;}
 
 private:
   //Dependancy
@@ -48,7 +46,6 @@ private:
   gui::style::Config* gui_style;
   gui::style::Font* gui_font;
   gui::style::Theme* gui_theme;
-  gui::Render* gui_render;
 };
 
 }

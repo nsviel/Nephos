@@ -42,7 +42,6 @@ void Node::loop(){
 
   vk_engine->loop();
   vk_window->loop();
-  vk_imgui->loop();
 
   //---------------------------
 }

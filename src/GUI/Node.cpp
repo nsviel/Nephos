@@ -4,6 +4,7 @@
 #include <Engine/Namespace.h>
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace gui{
@@ -14,12 +15,11 @@ Node::Node(app::Node* node_app){
 
   this->node_engine = node_app->get_node_engine();
   this->node_vulkan = node_app->get_node_vulkan();
-
-  this->gui_render = new gui::Render(this);
+  this->node_tab = new gui::tab::Node(this);
+  
   this->gui_style = new gui::style::Config(this);
   this->gui_font = new gui::style::Font(this);
   this->gui_theme = new gui::style::Theme(this);
-  this->node_tab = new gui::tab::Node(this);
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
 
@@ -47,13 +47,13 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
+  vk::gui::Imgui* vk_imgui = node_vulkan->get_vk_imgui();
   //---------------------------
 
-  gui_render->new_frame();
+  vk_imgui->new_frame();
   gui_docking->docker_space_main();
   node_tab->loop();
   gui_control->run_control();
-  gui_render->end_frame();
 
   //---------------------------
 }

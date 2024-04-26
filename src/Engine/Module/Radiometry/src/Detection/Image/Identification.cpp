@@ -21,13 +21,13 @@ Identification::~Identification(){}
 //Main function
 void Identification::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
-
+/*
   this->idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  //k4n_pool->add_task(task_function);
-
+  k4n_pool->add_task(task_function);
+*/
   //---------------------------
 }
 void Identification::run_thread(k4n::dev::Sensor* sensor){
