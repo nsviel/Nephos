@@ -5,6 +5,7 @@
 namespace prf{class Node;}
 namespace eng{class Node;}
 namespace eng::scene{class Node;}
+namespace radio{class Node;}
 
 
 namespace eng::module{
@@ -33,6 +34,7 @@ private:
   eng::Node* node_engine;
   eng::scene::Node* node_scene;
   prf::Node* node_profiler;
+  radio::Node* node_radio;
 };
 
 }
