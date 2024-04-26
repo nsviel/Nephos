@@ -25,7 +25,6 @@ Node::Node(app::Node* node_app){
   //Child
   this->node_scene = new eng::scene::Node(this);
   this->node_camera = new eng::cam::Node(this);
-  this->node_operation = new ope::Node(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_module = new eng::module::Node(this);
   this->node_rendering = new rnd::Node(this);

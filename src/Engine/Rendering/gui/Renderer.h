@@ -8,7 +8,7 @@ namespace vk::main{class Interface;}
 namespace vk::structure{class Vulkan;}
 namespace eng{class Node;}
 namespace eng::cam::gui{class Control;}
-namespace ope{class Node;}
+namespace rnd::gui{class Control;}
 namespace engine = eng;
 
 
@@ -32,7 +32,7 @@ public:
 
 private:
   engine::cam::gui::Control* cam_control;
-  ope::Node* node_operation;
+  rnd::gui::Control* gui_control;
   vk::gui::Imgui* vk_imgui;
   vk::main::Interface* vk_interface;
   vk::structure::Vulkan* vk_struct;

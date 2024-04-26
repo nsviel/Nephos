@@ -16,7 +16,7 @@ Option::Option(rnd::Node* node_rendering, bool* show_window){
 
   vk::Node* node_vulkan = node_rendering->get_node_vulkan();
 
-  this->gui_control = new rnd::gui::Control(node_rendering);
+  this->gui_control = node_rendering->get_gui_control();
   this->vk_interface = node_vulkan->get_vk_interface();
 
   this->width = 150;

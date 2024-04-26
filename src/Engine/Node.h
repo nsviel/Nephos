@@ -36,7 +36,6 @@ public:
   inline eng::cam::Node* get_node_camera(){return node_camera;}
   inline eng::scene::Node* get_node_scene(){return node_scene;}
   inline eng::capture::Node* get_node_capture(){return node_capture;}
-  inline ope::Node* get_node_operation(){return node_operation;}
 
 private:
   prf::Node* node_profiler;
@@ -47,7 +46,6 @@ private:
   eng::scene::Node* node_scene;
   eng::capture::Node* node_capture;
   eng::module::Node* node_module;
-  ope::Node* node_operation;
   rnd::Node* node_rendering;
 };
 

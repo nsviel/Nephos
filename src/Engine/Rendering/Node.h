@@ -4,10 +4,10 @@
 
 namespace vk{class Node;}
 namespace eng{class Node;}
-namespace ope{class Node;}
 namespace rnd::gui{class Option;}
 namespace rnd::gui{class Shader;}
 namespace rnd::gui{class Renderer;}
+namespace rnd::gui{class Control;}
 
 
 namespace rnd{
@@ -28,13 +28,13 @@ public:
 
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
-  inline ope::Node* get_node_operation(){return node_operation;}
+  inline rnd::gui::Control* get_gui_control(){return gui_control;}
 
 private:
   eng::Node* node_engine;
   vk::Node* node_vulkan;
-  ope::Node* node_operation;
 
+  rnd::gui::Control* gui_control;
   rnd::gui::Option* gui_option;
   rnd::gui::Shader* gui_shader;
   rnd::gui::Renderer* gui_render;

@@ -18,9 +18,9 @@ Node::Node(eng::Node* node_engine){
   //Dependancy
   this->node_engine = node_engine;
   this->node_vulkan = node_engine->get_node_vulkan();
-  this->node_operation = node_engine->get_node_operation();
 
   //Child
+  this->gui_control = new rnd::gui::Control(this);
   this->gui_option = new rnd::gui::Option(this, &opt_panel->is_open);
   this->gui_shader = new rnd::gui::Shader(this, &sha_panel->is_open);
   this->gui_render = new rnd::gui::Renderer(this);

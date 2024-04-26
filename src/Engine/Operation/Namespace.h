@@ -1,4 +1,7 @@
 #pragma once
 
-#include <Operation/Node.h>
-#include <Operation/src/Namespace.h>
+#include <Operation/Attribut/Namespace.h>
+#include <Operation/Transformation/Namespace.h>
+#include <Operation/Color/Namespace.h>
+#include <Operation/Tree/Namespace.h>
+#include <Operation/Fitting/Namespace.h>

@@ -21,7 +21,7 @@ Renderer::Renderer(rnd::Node* node_rendering){
   vk::Node* node_vulkan = node_rendering->get_node_vulkan();
   engine::cam::Node* node_camera = node_engine->get_node_camera();
 
-  this->node_operation = node_engine->get_node_operation();
+  this->gui_control = node_rendering->get_gui_control();
   this->cam_control = node_camera->get_gui_control();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_interface = node_vulkan->get_vk_interface();
@@ -76,7 +76,7 @@ void Renderer::engine_texture(){
     vec2 panel_center = vec2(center_x, center_y);
 
 
-    node_operation->control();
+    gui_control->run_control();
     cam_control->run_control(panel_center);
   }else{
     cam_control->disable_camera_view();
