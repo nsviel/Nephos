@@ -9,7 +9,7 @@
 namespace ldr{
 
 //Constructor / Destructor
-Bookmark::Bookmark(ldr::Node* node_scene){
+Bookmark::Bookmark(ldr::Node* node_loader){
   //---------------------------
 
   this->path_bookmark_file = "../media/config/gui/bookmark.txt";

@@ -44,7 +44,7 @@ private:
   eng::Node* node_engine;
   sce::gui::Entity* rnd_object;
   sce::gui::Set* rnd_set;
-  dat::Database* sce_database;
+  dat::Database* dat_database;
   dat::Set* sce_set;
   cam::Control* cam_control;
   ope::Operation* ope_operation;

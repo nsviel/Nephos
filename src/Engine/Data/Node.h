@@ -32,9 +32,9 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
-  inline dat::Database* get_scene_database(){return sce_database;}
+  inline dat::Database* get_scene_database(){return dat_database;}
   inline gly::Node* get_scene_glyph(){return node_glyph;}
-  inline dat::Entity* get_scene_entity(){return sce_entity;}
+  inline dat::Entity* get_scene_entity(){return dat_entity;}
 
 private:
   //Dependancy
@@ -42,11 +42,11 @@ private:
   vk::Node* node_vulkan;
 
   //Child
-  dat::Database* sce_database;
+  dat::Database* dat_database;
   gly::Node* node_glyph;
   sce::Graph* sce_graph;
   sce::gui::Graph* gui_scene;
-  dat::Entity* sce_entity;
+  dat::Entity* dat_entity;
   eng::module::Node* node_module;
 
   bool show_scene = true;

@@ -16,7 +16,7 @@ class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(ldr::Node* node_scene);
+  Loader(ldr::Node* node_loader);
   ~Loader();
 
 public:
@@ -33,8 +33,8 @@ public:
 private:
   eng::Node* node_engine;
   ldr::Format* ldr_format;
-  dat::Entity* sce_entity;
-  dat::Database* sce_database;
+  dat::Entity* dat_entity;
+  dat::Database* dat_database;
   dat::Set* sce_set;
 };
 

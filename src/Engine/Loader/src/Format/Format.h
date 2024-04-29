@@ -19,7 +19,7 @@ class Format
 {
 public:
   //Constructor / Destructor
-  Format(ldr::Node* node_scene);
+  Format(ldr::Node* node_loader);
   ~Format();
 
 public:

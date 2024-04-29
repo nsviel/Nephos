@@ -27,10 +27,10 @@ public:
 private:
   eng::Node* node_engine;
   vld::structure::Main* vld_struct;
-  dat::Database* sce_database;
+  dat::Database* dat_database;
   ldr::Loader* ldr_loader;
   dat::Set* sce_set;
-  dat::Entity* sce_entity;
+  dat::Entity* dat_entity;
 };
 
 }

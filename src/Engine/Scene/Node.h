@@ -38,12 +38,12 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
   inline ldr::Format* get_scene_format(){return ldr_format;}
-  inline dat::Database* get_scene_database(){return sce_database;}
+  inline dat::Database* get_scene_database(){return dat_database;}
   inline ldr::Loader* get_scene_loader(){return ldr_loader;}
   inline ldr::Exporter* get_scene_exporter(){return ldr_exporter;}
   inline gly::Node* get_scene_glyph(){return node_glyph;}
   inline ldr::Bookmark* get_scene_bookmark(){return ldr_bookmark;}
-  inline dat::Entity* get_scene_entity(){return sce_entity;}
+  inline dat::Entity* get_scene_entity(){return dat_entity;}
 
 private:
   //Dependancy
@@ -51,7 +51,7 @@ private:
   vk::Node* node_vulkan;
 
   //Child
-  dat::Database* sce_database;
+  dat::Database* dat_database;
   gly::Node* node_glyph;
   ldr::Loader* ldr_loader;
   ldr::Exporter* ldr_exporter;
@@ -60,7 +60,7 @@ private:
   sce::Graph* sce_graph;
   sce::gui::Graph* gui_scene;
   ldr::gui::Loader* gui_loader;
-  dat::Entity* sce_entity;
+  dat::Entity* dat_entity;
   eng::module::Node* node_module;
 
   bool show_scene = true;

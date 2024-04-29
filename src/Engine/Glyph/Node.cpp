@@ -17,8 +17,8 @@ Node::Node(sce::Node* node_scene){
   vk::Node* node_vulkan = node_scene->get_node_vulkan();
 
   this->node_engine = node_scene->get_node_engine();
-  this->sce_database = node_scene->get_scene_database();
-  this->sce_entity = node_scene->get_scene_entity();
+  this->dat_database = node_scene->get_scene_database();
+  this->dat_entity = node_scene->get_scene_entity();
   this->ldr_loader = node_scene->get_scene_loader();
   this->sce_set = new dat::Set();
 
@@ -37,7 +37,7 @@ void Node::init(){
 
 //Glyph init
 void Node::create_glyph_world(){
-  utl::type::Set* set_world = sce_database->get_set_world();
+  utl::type::Set* set_world = dat_database->get_set_world();
   //---------------------------
 
   this->create_glyph(set_world, new gly::element::grid::Grid(node_engine));

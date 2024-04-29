@@ -15,10 +15,10 @@ Data::Data(vld::Node* node_vld){
 
   this->node_engine = node_vld->get_node_engine();
   this->vld_struct = node_vld->get_vld_struct();
-  this->sce_database = node_scene->get_scene_database();
+  this->dat_database = node_scene->get_scene_database();
   this->ldr_loader = node_scene->get_scene_loader();
   this->sce_set = new dat::Set();
-  this->sce_entity = node_scene->get_scene_entity();
+  this->dat_entity = node_scene->get_scene_entity();
 
   //---------------------------
 }
@@ -35,9 +35,9 @@ void Data::create_object(){
   vld_struct->data.object->data.topology.type = utl::topology::POINT;
   vld_struct->data.object->data.nb_data_max = 1000000;
   vld_struct->data.object->pose.model[2][3] = 1;
-  sce_entity->init_entity(vld_struct->data.object);
+  dat_entity->init_entity(vld_struct->data.object);
 
-  utl::type::Set* set_scene = sce_database->get_set_scene();
+  utl::type::Set* set_scene = dat_database->get_set_scene();
   utl::type::Set* set_capture = sce_set->get_or_create_subset(set_scene, "Data");
   sce_set->insert_entity(set_capture, vld_struct->data.object);
 

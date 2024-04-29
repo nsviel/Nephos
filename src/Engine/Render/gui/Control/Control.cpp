@@ -21,7 +21,7 @@ Control::Control(rnd::Node* node_render){
 
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
-  this->sce_database = node_scene->get_scene_database();
+  this->dat_database = node_scene->get_scene_database();
   this->sce_set = new dat::Set();
   this->ope_operation = new ope::Operation();
   this->gui_wheel = new rnd::gui::Wheel(node_render);
@@ -46,18 +46,18 @@ void Control::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  utl::type::Set* set_main = sce_database->get_set_main();
+  utl::type::Set* set_main = dat_database->get_set_main();
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      utl::type::Set* set_scene = sce_database->get_set_scene();
+      utl::type::Set* set_scene = dat_database->get_set_scene();
       sce_set->select_entity_next(set_scene);
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      utl::type::Set* set_scene = sce_database->get_set_scene();
+      utl::type::Set* set_scene = dat_database->get_set_scene();
       sce_set->remove_entity(set_scene, set_scene->selected_entity);
       break;
     }
@@ -75,10 +75,10 @@ void Control::control_keyboard_translation(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  utl::type::Set* set_main = sce_database->get_set_main();
+  utl::type::Set* set_main = dat_database->get_set_main();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
-      utl::type::Set* set_scene = sce_database->get_set_scene();
+      utl::type::Set* set_scene = dat_database->get_set_scene();
       utl::type::Entity* entity = set_scene->selected_entity;
 
       //Shift speed up

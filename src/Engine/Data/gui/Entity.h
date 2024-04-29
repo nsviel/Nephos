@@ -43,7 +43,7 @@ public:
 private:
   ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
-  dat::Database* sce_database;
+  dat::Database* dat_database;
   dat::Set* sce_set;
 
   utl::type::Entity* entity;

@@ -14,7 +14,7 @@ namespace ldr::gui{
 Loader::Loader(ldr::Node* node_scene, bool* show_window){
   //---------------------------
 
-  this->sce_database = node_scene->get_scene_database();
+  this->dat_database = node_scene->get_scene_database();
   this->ldr_loader = node_scene->get_scene_loader();
   this->sce_set = new dat::Set();
   this->ldr_format = node_scene->get_scene_format();
@@ -396,7 +396,7 @@ void Loader::operation_selection(){
 
   //Apply loading and operations
   if(param_remove_old){
-    utl::type::Set* set_scene = sce_database->get_set_scene();
+    utl::type::Set* set_scene = dat_database->get_set_scene();
     sce_set->remove_entity_all(set_scene);
   }
 
@@ -430,7 +430,7 @@ void Loader::operation_selection(string file_path){
 
     //Apply loading and operations
     if(param_remove_old){
-      utl::type::Set* set_scene = sce_database->get_set_scene();
+      utl::type::Set* set_scene = dat_database->get_set_scene();
       sce_set->remove_entity_all(set_scene);
     }
 

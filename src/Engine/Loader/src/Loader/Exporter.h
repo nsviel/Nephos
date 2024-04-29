@@ -12,7 +12,7 @@ class Exporter
 {
 public:
   //Constructor / Destructor
-  Exporter(ldr::Node* node_scene);
+  Exporter(ldr::Node* node_loader);
   ~Exporter();
 
 public:

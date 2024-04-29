@@ -28,10 +28,10 @@ Glyph::~Glyph(){}
 
 //Main function
 void Glyph::init(){
-  dat::Entity* sce_entity = node_scene->get_scene_entity();
+  dat::Entity* dat_entity = node_scene->get_scene_entity();
   //----------------------------
 
-  sce_entity->init_entity(this);
+  dat_entity->init_entity(this);
 
   //----------------------------
 }

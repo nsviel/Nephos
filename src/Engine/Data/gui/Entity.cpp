@@ -12,7 +12,7 @@ namespace dat::gui{
 Entity::Entity(sce::Node* node_scene, bool* panel_show){
   //---------------------------
 
-  this->sce_database = node_scene->get_scene_database();
+  this->dat_database = node_scene->get_scene_database();
   this->sce_set = new dat::Set();
   this->ope_location = new ope::attribut::Location();
   this->ope_operation = new ope::Operation();
@@ -76,7 +76,7 @@ void Entity::entity_button(utl::type::Entity* entity){
 
   //Suppression
   if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
-    utl::type::Set* set_scene = sce_database->get_set_scene();
+    utl::type::Set* set_scene = dat_database->get_set_scene();
     sce_set->remove_entity(set_scene, entity);
     this->close_panel();
     return;

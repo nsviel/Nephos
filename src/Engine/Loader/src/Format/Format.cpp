@@ -10,10 +10,10 @@
 namespace ldr{
 
 //Constructor / Destructor
-Format::Format(ldr::Node* node_scene){
+Format::Format(ldr::Node* node_loader){
   //---------------------------
 
-  eng::Node* node_engine = node_scene->get_node_engine();
+  eng::Node* node_engine = node_loader->get_node_engine();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
   this->vk_interface = node_vulkan->get_vk_interface();
 

@@ -35,7 +35,7 @@ public:
   void update_object(utl::file::Data* data);
 
 private:
-  dat::Database* sce_database;
+  dat::Database* dat_database;
   ldr::Loader* ldr_loader;
   dat::Set* sce_set;
 

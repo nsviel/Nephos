@@ -15,7 +15,7 @@ Graph::Graph(sce::Node* node_scene, bool* show_window){
   //---------------------------
 
   this->node_engine = node_scene->get_node_engine();
-  this->sce_database = node_scene->get_scene_database();
+  this->dat_database = node_scene->get_scene_database();
   this->sce_set = new dat::Set();
   this->rnd_set = new sce::gui::Set(&show_panel_set);
   this->rnd_object = new sce::gui::Entity(node_scene, &show_panel_entity);
@@ -61,7 +61,7 @@ void Graph::design_panel(){
 
 //Subfunction
 void Graph::draw_button(){
-  utl::type::Set* set_scene = sce_database->get_set_scene();
+  utl::type::Set* set_scene = dat_database->get_set_scene();
   utl::type::Entity* entity = set_scene->selected_entity;
   if(entity == nullptr) return;
   //-------------------------------
@@ -74,7 +74,7 @@ void Graph::draw_button(){
     if(set->is_locked){
       //sce_graph->delete_subset(set);
     }else if(set->is_locked){
-      utl::type::Set* set_scene = sce_database->get_set_scene();
+      utl::type::Set* set_scene = dat_database->get_set_scene();
       sce_set->remove_entity(set_scene, set->selected_entity);
     }
   }
@@ -134,7 +134,7 @@ void Graph::draw_window_background(){
   //-------------------------------
 }
 void Graph::draw_file_tree(){
-  utl::type::Set* set_main = sce_database->get_set_main();
+  utl::type::Set* set_main = dat_database->get_set_main();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;

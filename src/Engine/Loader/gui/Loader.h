@@ -44,7 +44,7 @@ public:
   void operation_entity(utl::type::Entity* entity);
 
 private:
-  dat::Database* sce_database;
+  dat::Database* dat_database;
   ldr::Loader* ldr_loader;
   ldr::Bookmark* ldr_bookmark;
   ldr::Format* ldr_format;

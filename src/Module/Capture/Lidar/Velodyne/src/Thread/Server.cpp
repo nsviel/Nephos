@@ -13,7 +13,7 @@ Server::Server(vld::Node* node_vld){
 
   sce::Node* node_scene = node_vld->get_node_scene();
 
-  this->sce_database = node_scene->get_scene_database();
+  this->dat_database = node_scene->get_scene_database();
   this->ldr_loader = node_scene->get_scene_loader();
   this->sce_set = new dat::Set();
 

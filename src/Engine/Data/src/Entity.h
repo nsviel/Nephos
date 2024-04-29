@@ -26,7 +26,7 @@ public:
 private:
   sce::Node* node_scene;
   vk::main::Engine* vk_engine;
-  dat::Database* sce_database;
+  dat::Database* dat_database;
   gly::Node* node_glyph;
 };
 

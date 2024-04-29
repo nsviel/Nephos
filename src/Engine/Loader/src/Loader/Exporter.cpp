@@ -7,10 +7,10 @@
 namespace ldr{
 
 //Constructor / Destructor
-Exporter::Exporter(ldr::Node* node_scene){
+Exporter::Exporter(ldr::Node* node_loader){
   //---------------------------
 
-  this->ldr_format = node_scene->get_scene_format();
+  this->ldr_format = node_loader->get_scene_format();
 
   //---------------------------
 }

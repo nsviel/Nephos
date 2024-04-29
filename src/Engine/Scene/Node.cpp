@@ -23,8 +23,8 @@ Node::Node(eng::Node* node_engine){
 
   //Child
 
-  this->sce_database = new dat::Database(this);
-  this->sce_entity = new dat::Entity(this);
+  this->dat_database = new dat::Database(this);
+  this->dat_entity = new dat::Entity(this);
   this->ldr_format = new ldr::Format(this);
   this->ldr_loader = new ldr::Loader(this);
   this->node_glyph = new gly::Node(this);
@@ -41,7 +41,7 @@ Node::Node(eng::Node* node_engine){
 Node::~Node(){
   //---------------------------
 
-  delete sce_database;
+  delete dat_database;
   delete node_glyph;
   delete ldr_loader;
 
@@ -53,7 +53,7 @@ void Node::init(){
 
   node_module->config();
   ldr_bookmark->init();
-  sce_database->init();
+  dat_database->init();
   sce_graph->init();
   node_glyph->init();
   node_module->init();
@@ -63,7 +63,7 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  sce_database->loop();
+  dat_database->loop();
   node_module->loop();
 
   //---------------------------
@@ -71,7 +71,7 @@ void Node::loop(){
 void Node::clean(){
   //---------------------------
 
-  sce_database->clean();
+  dat_database->clean();
   node_module->clean();
 
   //---------------------------
@@ -88,7 +88,7 @@ void Node::gui(){
 void Node::reset(){
   //---------------------------
 
-  sce_database->reset();
+  dat_database->reset();
 
   //---------------------------
 }

@@ -36,7 +36,7 @@ public:
   inline int* get_mode(){return &mode;}
 
 private:
-  dat::Database* sce_database;
+  dat::Database* dat_database;
   cam::Control* cam_control;
   ope::Operation* ope_operation;
 

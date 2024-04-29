@@ -13,7 +13,7 @@ class Bookmark
 {
 public:
   //Constructor / Destructor
-  Bookmark(ldr::Node* node_scene);
+  Bookmark(ldr::Node* node_loader);
   ~Bookmark();
 
 public:

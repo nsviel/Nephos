@@ -18,7 +18,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->node_engine = node_k4n->get_node_engine();
-  this->sce_entity = node_scene->get_scene_entity();
+  this->dat_entity = node_scene->get_scene_entity();
   this->sce_set = new dat::Set();
   this->node_glyph = node_scene->get_scene_glyph();
   this->k4n_capture = new k4n::thread::Capture(node_k4n);
@@ -59,7 +59,7 @@ void Sensor::init(){
   object.data.topology.type = utl::topology::POINT;
   object.data.nb_data_max = 10000000;
   object.pose.model[2][3] = 1;
-  sce_entity->init_entity(&object);
+  dat_entity->init_entity(&object);
 
   //Sensor glyph
   for(int i=0; i<20; i++){
