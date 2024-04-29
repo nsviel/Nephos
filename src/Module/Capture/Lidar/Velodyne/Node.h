@@ -5,7 +5,6 @@
 namespace ldr{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
-namespace sce{class Node;}
 namespace cap{class Node;}
 namespace vld::main{class Capture;}
 namespace vld::main{class Playback;}
@@ -31,12 +30,10 @@ public:
 
   inline dat::Node* get_node_data(){return node_data;}
   inline eng::Node* get_node_engine(){return node_engine;}
-  inline sce::Node* get_node_scene(){return node_scene;}
   inline vld::structure::Main* get_vld_struct(){return vld_struct;}
 
 private:
   eng::Node* node_engine;
-  sce::Node* node_scene;
   dat::Node* node_data;
   ldr::Node* node_loader;
 

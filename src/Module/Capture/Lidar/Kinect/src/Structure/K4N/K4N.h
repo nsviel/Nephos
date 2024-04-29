@@ -25,14 +25,12 @@ struct K4N{
   //Constructor
   K4N(k4n::Node* node_k4n){
     this->node_engine = node_k4n->get_node_engine();
-    this->node_scene = node_k4n->get_node_scene();
     this->node_profiler = node_k4n->get_node_profiler();
     this->node_radio = node_k4n->get_node_radio();
   }
 
   //Dependancies
   eng::Node* node_engine;
-  sce::Node* node_scene;
   prf::Node* node_profiler;
   rad::Node* node_radio;
 

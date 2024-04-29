@@ -4,7 +4,6 @@
 
 namespace prf{class Node;}
 namespace eng{class Node;}
-namespace sce{class Node;}
 namespace k4n{class Node;}
 namespace vld{class Node;}
 
@@ -27,7 +26,6 @@ public:
   void clean();
 
   inline eng::Node* get_node_engine(){return node_engine;}
-  inline sce::Node* get_node_scene(){return node_scene;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline k4n::Node* get_node_k4n(){return node_k4n;}
@@ -35,7 +33,6 @@ public:
 private:
   //Dependancy
   eng::Node* node_engine;
-  sce::Node* node_scene;
   prf::Node* node_profiler;
 
   //Child

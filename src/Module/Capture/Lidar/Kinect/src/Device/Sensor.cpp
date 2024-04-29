@@ -15,7 +15,6 @@ Sensor::Sensor(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
-  sce::Node* node_scene = node_engine->get_node_scene();
   dat::Node* node_data = node_engine->get_node_data();
 
   this->k4n_struct = node_k4n->get_k4n_struct();

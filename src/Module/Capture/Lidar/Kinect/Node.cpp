@@ -20,7 +20,6 @@ Node::Node(cap::Node* node_capture){
 
   //Dependancy
   this->node_engine = node_capture->get_node_engine();
-  this->node_scene = node_capture->get_node_scene();
   this->node_loader = node_engine->get_node_loader();
   this->node_profiler = node_capture->get_node_profiler();
   this->node_radio = new rad::Node(node_engine);

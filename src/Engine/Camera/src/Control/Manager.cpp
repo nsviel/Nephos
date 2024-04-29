@@ -25,7 +25,6 @@ Manager::~Manager(){}
 void Manager::create_camera(){
   //---------------------------
 
-  sce::Node* node_scene = node_engine->get_node_scene();
   dat::Node* node_data = node_engine->get_node_data();
 
   dat::Glyph* dat_glyph = node_data->get_glyph();
