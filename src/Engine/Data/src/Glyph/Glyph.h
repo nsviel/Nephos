@@ -5,9 +5,8 @@
 namespace eng{class Node;}
 namespace sce{class Node;}
 namespace dat{class Database;}
-namespace dat{class Entity;}
 namespace dat{class Set;}
-namespace ldr{class Loader;}
+namespace dat{class Node;}
 namespace cam{class Control;}
 namespace cam{class Entity;}
 
@@ -18,7 +17,7 @@ class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(eng::Node* node_engine);
+  Glyph(dat::Node* node_data);
   ~Glyph();
 
 public:
@@ -39,8 +38,6 @@ private:
   sce::Node* node_scene;
   dat::Database* dat_database;
   dat::Set* dat_set;
-  dat::Entity* dat_entity;
-  ldr::Loader* ldr_loader;
   cam::Control* cam_control;
 };
 

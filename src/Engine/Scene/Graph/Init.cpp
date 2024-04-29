@@ -11,10 +11,8 @@ namespace sce{
 Init::Init(sce::Node* node_scene){
   //---------------------------
 
-  eng::Node* node_engine = node_scene->get_node_engine();
-  ldr::Node* node_loader = node_engine->get_node_loader();
+  node_engine = node_scene->get_node_engine();
 
-  this->ldr_loader = node_loader->get_loader();
 
 
   //---------------------------
@@ -24,7 +22,9 @@ Init::~Init(){}
 //Main function
 void Init::init(){
   //----------------------------
+  ldr::Node* node_loader = node_engine->get_node_loader();
 
+  this->ldr_loader = node_loader->get_loader();
   utl::Path versaille_0;
   versaille_0.data = "/home/aether/Desktop/versaille_0.mkv";
   versaille_0.transformation = "/home/aether/Desktop/versaille_0.json";

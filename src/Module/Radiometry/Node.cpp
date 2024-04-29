@@ -4,6 +4,7 @@
 #include <Engine/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace rad{
@@ -15,7 +16,7 @@ Node::Node(eng::Node* node_engine){
 
   //Dependancy
   this->node_engine = node_engine;
-  this->node_glyph = node_engine->get_node_glyph();
+  this->node_data = node_engine->get_node_data();
   this->node_profiler = node_engine->get_node_profiler();
 
   //Child

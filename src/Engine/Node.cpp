@@ -27,7 +27,6 @@ Node::Node(app::Node* node_app){
   this->node_camera = new cam::Node(this);
   this->node_render = new rnd::Node(this);
   this->node_loader = new ldr::Node(this);
-  this->node_glyph = new gly::Node(this);
   this->node_scene = new sce::Node(this);
 
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
@@ -49,7 +48,6 @@ void Node::init(){
 
   node_data->init();
   node_loader->init();
-  node_glyph->init();
   node_scene->init();
   node_camera->init();
   node_render->init();

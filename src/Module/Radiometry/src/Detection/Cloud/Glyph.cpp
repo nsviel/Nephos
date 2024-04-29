@@ -11,7 +11,7 @@ namespace rad::detection::cloud{
 Glyph::Glyph(rad::Structure* radio_struct){
   //---------------------------
 
-  this->node_glyph = radio_struct->node_glyph;
+  this->dat_glyph = radio_struct->node_data->get_glyph();
 
   //---------------------------
 }

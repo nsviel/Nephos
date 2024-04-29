@@ -4,7 +4,7 @@
 
 namespace k4n::dev{class Sensor;}
 namespace rad{class Structure;}
-namespace gly{class Node;}
+namespace dat{class Glyph;}
 
 
 namespace rad::detection::cloud{
@@ -25,7 +25,7 @@ public:
   void draw_glyph(k4n::dev::Sensor* sensor, vec3 pose, float radius);
 
 private:
-  gly::Node* node_glyph;
+  dat::Glyph* dat_glyph;
 };
 
 }

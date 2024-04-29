@@ -6,7 +6,7 @@ namespace k4n::dev{class Sensor;}
 namespace rad{class Structure;}
 namespace rad::structure{class Circle;}
 namespace k4n::utils{class Transformation;}
-namespace gly{class Node;}
+namespace dat{class Glyph;}
 
 
 namespace rad::detection{
@@ -29,7 +29,7 @@ public:
 
 private:
   k4n::utils::Transformation* k4n_transfo;
-  gly::Node* node_glyph;
+  dat::Glyph* dat_glyph;
 };
 
 }

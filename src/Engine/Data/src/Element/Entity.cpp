@@ -17,6 +17,7 @@ Entity::Entity(dat::Node* node_data){
 
   this->node_engine = node_engine;
   this->dat_database = node_data->get_database();
+  this->dat_glyph = node_data->get_glyph();
   this->vk_engine = node_vulkan->get_vk_engine();
 
   //---------------------------
@@ -31,9 +32,7 @@ void Entity::init_entity(utl::type::Entity* entity){
 
   //If object; create dedicated glyphs
   if(utl::entity::Object* object = dynamic_cast<utl::entity::Object*>(entity)){
-    //this->node_glyph = node_data->get_node_glyph();
-    this->node_glyph = new gly::Node(node_engine);
-    node_glyph->create_glyph_object(object);
+    dat_glyph->create_glyph_object(object);
   }
 
   //Init entity

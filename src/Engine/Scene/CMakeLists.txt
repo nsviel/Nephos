@@ -17,7 +17,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
-  LIBRARY_GLYPH
+  LIBRARY_DATA
   LIBRARY_LOADER
 )
 

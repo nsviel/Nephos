@@ -4,7 +4,7 @@
 
 namespace vk::main{class Engine;}
 namespace dat{class Node;}
-namespace gly{class Node;}
+namespace dat{class Glyph;}
 namespace eng{class Node;}
 namespace sce{class Operation;}
 namespace dat{class Database;}
@@ -28,7 +28,7 @@ private:
   eng::Node* node_engine;
   vk::main::Engine* vk_engine;
   dat::Database* dat_database;
-  gly::Node* node_glyph;
+  dat::Glyph* dat_glyph;
 };
 
 }

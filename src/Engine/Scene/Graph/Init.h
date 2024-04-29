@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace eng{class Node;}
 namespace sce{class Node;}
 namespace ldr{class Loader;}
 namespace utl::type{class Selection;}
@@ -21,6 +22,7 @@ public:
   void init();
 
 private:
+  eng::Node* node_engine;
   ldr::Loader* ldr_loader;
   utl::type::Selection* selection = nullptr;
 };

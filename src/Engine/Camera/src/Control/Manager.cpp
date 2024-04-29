@@ -28,7 +28,7 @@ void Manager::create_camera(){
   sce::Node* node_scene = node_engine->get_node_scene();
   dat::Node* node_data = node_engine->get_node_data();
 
-  gly::Node* node_glyph = node_scene->get_node_glyph();
+  dat::Glyph* dat_glyph = node_data->get_glyph();
   dat::Database* dat_database = node_data->get_database();
   utl::type::Set* set_main = dat_database->get_set_main();
   utl::type::Set* set_world = dat_set->get_subset(set_main, "World");
@@ -37,7 +37,7 @@ void Manager::create_camera(){
   camera->name = "camera_" + to_string(camera_ID++);
   camera->is_suppressible = false;
   camera->is_movable = false;
-  node_glyph->create_glyph_camera(camera);
+  dat_glyph->create_glyph_camera(camera);
   dat_set->insert_entity(set_world, camera);
 
   this->vec_camera.push_back(camera);

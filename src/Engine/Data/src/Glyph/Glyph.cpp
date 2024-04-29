@@ -5,23 +5,20 @@
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Data/Namespace.h>
-#include <Loader/Namespace.h>
 
 
 namespace dat{
 
 //Constructor / Destructor
-Glyph::Glyph(eng::Node* node_engine){
+Glyph::Glyph(dat::Node* node_data){
   //---------------------------
 
+  eng::Node* node_engine = node_data->get_node_engine();
   ldr::Node* node_loader = node_engine->get_node_loader();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
-  dat::Node* node_data = node_engine->get_node_data();
 
   this->node_engine = node_engine;
   this->dat_database = node_data->get_database();
-  this->dat_entity = node_data->get_entity();
-  this->ldr_loader = node_loader->get_loader();
   this->dat_set = new dat::Set();
 
   //---------------------------
