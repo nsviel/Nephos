@@ -1,14 +1,12 @@
-set(LIBRARY_NAME LIBRARY_SCENE)
+set(LIBRARY_NAME LIBRARY_GLYPH)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Glyph)
 
 file(GLOB_RECURSE ALL_SOURCES
-  Base/*.cpp
-  Graph/*.cpp
-  Loader/*.cpp
+  *.cpp
+  *.h
 )
 
 #-----------------
@@ -22,7 +20,6 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_CAMERA
-  LIBRARY_GLYPH
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
