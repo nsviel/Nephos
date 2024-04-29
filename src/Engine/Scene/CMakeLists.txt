@@ -3,7 +3,6 @@ set(LIBRARY_NAME LIBRARY_SCENE)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Glyph)
 add_subdirectory(Graph)
 add_subdirectory(Loader)
 
@@ -21,7 +20,6 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
-  LIBRARY_CAMERA
   LIBRARY_GLYPH
   LIBRARY_LOADER
   LIBRARY_GRAPH

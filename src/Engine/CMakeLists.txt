@@ -5,6 +5,7 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 #-----------------
 add_subdirectory(Camera)
 add_subdirectory(Operation)
+add_subdirectory(Glyph)
 add_subdirectory(Capture)
 add_subdirectory(Module)
 add_subdirectory(Rendering)
