@@ -2,7 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Operation/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Glyph/Namespace.h>
 #include <Vulkan/Namespace.h>
 
@@ -10,14 +10,14 @@
 namespace dat{
 
 //Constructor / Destructor
-Entity::Entity(sce::Node* node_scene){
+Entity::Entity(dat::Node* node_data){
   //---------------------------
 
-  eng::Node* node_engine = node_scene->get_node_engine();
+  eng::Node* node_engine = node_data->get_node_engine();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
-  this->node_scene = node_scene;
-  this->dat_database = node_scene->get_database();
+  this->node_engine = node_engine;
+  this->dat_database = node_data->get_database();
   this->vk_engine = node_vulkan->get_vk_engine();
 
   //---------------------------
@@ -32,7 +32,8 @@ void Entity::init_entity(utl::type::Entity* entity){
 
   //If object; create dedicated glyphs
   if(utl::entity::Object* object = dynamic_cast<utl::entity::Object*>(entity)){
-    this->node_glyph = node_scene->get_node_glyph();
+    //this->node_glyph = node_data->get_node_glyph();
+    this->node_glyph = new gly::Node(node_engine);
     node_glyph->create_glyph_object(object);
   }
 

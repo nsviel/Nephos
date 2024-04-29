@@ -9,6 +9,8 @@
 #include <Scene/Namespace.h>
 #include <Render/Namespace.h>
 #include <Data/Namespace.h>
+#include <Loader/Namespace.h>
+#include <Glyph/Namespace.h>
 
 
 namespace eng{
@@ -23,10 +25,11 @@ Node::Node(app::Node* node_app){
 
   //Child
   this->node_data = new dat::Node(this);
-  this->node_scene = new sce::Node(this);
   this->node_camera = new cam::Node(this);
   this->node_render = new rnd::Node(this);
   this->node_loader = new ldr::Node(this);
+  this->node_glyph = new gly::Node(this);
+  this->node_scene = new sce::Node(this);
 
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   prf::graph::Profiler* profiler = prf_manager->get_profiler_main();

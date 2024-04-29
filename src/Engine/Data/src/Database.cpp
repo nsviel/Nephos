@@ -1,12 +1,12 @@
 #include "Database.h"
 
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace dat{
 
 //Constructor / Destructor
-Database::Database(sce::Node* node_scene){
+Database::Database(dat::Node* node_data){
   //---------------------------
 
   this->set_main = new utl::type::Set();

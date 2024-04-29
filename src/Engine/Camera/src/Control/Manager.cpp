@@ -1,8 +1,9 @@
 #include "Manager.h"
 
+#include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Glyph/Namespace.h>
 
 
@@ -12,7 +13,7 @@ namespace cam{
 Manager::Manager(cam::Node* node_camera){
   //---------------------------
 
-  this->node_scene = node_camera->get_node_scene();
+  this->node_engine = node_camera->get_node_engine();
   this->dat_set = new dat::Set();
 
   this->camera_ID = 0;
@@ -25,8 +26,11 @@ Manager::~Manager(){}
 void Manager::create_camera(){
   //---------------------------
 
+  sce::Node* node_scene = node_engine->get_node_scene();
+  dat::Node* node_data = node_engine->get_node_data();
+
   gly::Node* node_glyph = node_scene->get_node_glyph();
-  dat::Database* dat_database = node_scene->get_database();
+  dat::Database* dat_database = node_data->get_database();
   utl::type::Set* set_main = dat_database->get_set_main();
   utl::type::Set* set_world = dat_set->get_subset(set_main, "World");
 

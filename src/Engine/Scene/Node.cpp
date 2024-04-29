@@ -18,9 +18,9 @@ Node::Node(eng::Node* node_engine){
   //Dependancy
   this->node_engine = node_engine;
   this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_glyph = node_engine->get_node_glyph();
 
   //Child
-  this->node_glyph = new gly::Node(this);
   this->node_module = new eng::module::Node(node_engine);
 
   //---------------------------

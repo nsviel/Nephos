@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace sce{class Node;}
+namespace eng{class Node;}
 namespace dat{class Set;}
 namespace cam{class Node;}
 namespace cam{class Entity;}
@@ -26,7 +26,7 @@ public:
 
 private:
   dat::Set* dat_set;
-  sce::Node* node_scene;
+  eng::Node* node_engine;
   vector<cam::Entity*> vec_camera;
   cam::Entity* current_camera;
 

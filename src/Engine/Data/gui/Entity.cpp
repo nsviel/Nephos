@@ -1,7 +1,7 @@
 #include "Entity.h"
 
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Operation/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
@@ -9,10 +9,10 @@
 namespace dat::gui{
 
 //Constructor / Destructor
-Entity::Entity(sce::Node* node_scene, bool* panel_show){
+Entity::Entity(dat::Node* node_data, bool* panel_show){
   //---------------------------
 
-  this->dat_database = node_scene->get_database();
+  this->dat_database = node_data->get_database();
   this->dat_set = new dat::Set();
   this->ope_location = new ope::attribut::Location();
   this->ope_operation = new ope::Operation();

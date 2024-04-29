@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace sce{class Node;}
+namespace dat{class Node;}
 namespace dat{class Set;}
 
 
@@ -12,7 +12,7 @@ class Database
 {
 public:
   //Constructor / Destructor
-  Database(sce::Node* node_scene);
+  Database(dat::Node* node_data);
   ~Database();
 
   //Main function

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace sce{class Node;}
+namespace dat{class Node;}
 namespace dat{class Database;}
 namespace dat{class Set;}
 namespace ope::attribut{class Location;}
@@ -15,7 +15,7 @@ class Entity
 {
 public:
   //Constructor / Destructor
-  Entity(sce::Node* node_scene, bool* show_window);
+  Entity(dat::Node* node_data, bool* show_window);
   ~Entity();
 
   //Main function

@@ -4,7 +4,7 @@
 
 namespace prf{class Node;}
 namespace eng{class Node;}
-namespace sce{class Node;}
+namespace gly{class Node;}
 namespace rad{class Structure;}
 namespace rad{class Detection;}
 namespace rad{class Model;}
@@ -34,7 +34,7 @@ public:
   void clean();
 
   inline eng::Node* get_node_engine(){return node_engine;}
-  inline sce::Node* get_node_scene(){return node_scene;}
+  inline gly::Node* get_node_glyph(){return node_glyph;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline rad::Structure* get_radio_struct(){return radio_struct;}
@@ -50,7 +50,7 @@ public:
 private:
   //Dependancy
   eng::Node* node_engine;
-  sce::Node* node_scene;
+  gly::Node* node_glyph;
   prf::Node* node_profiler;
 
   //Child

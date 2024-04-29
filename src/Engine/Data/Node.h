@@ -5,12 +5,8 @@
 namespace vk{class Node;}
 namespace eng{class Node;}
 namespace dat{class Database;}
-namespace gly{class Node;}
-namespace sce{class Operation;}
 namespace dat{class Entity;}
-namespace sce{class Graph;}
-namespace sce::gui{class Graph;}
-namespace eng::module{class Node;}
+namespace dat::gui{class Graph;}
 
 
 namespace dat{
@@ -42,11 +38,8 @@ private:
 
   //Child
   dat::Database* dat_database;
-  gly::Node* node_glyph;
-  sce::Graph* sce_graph;
-  sce::gui::Graph* gui_graph;
+  dat::gui::Graph* gui_graph;
   dat::Entity* dat_entity;
-  eng::module::Node* node_module;
 
   bool show_scene = true;
   bool show_loader = true;

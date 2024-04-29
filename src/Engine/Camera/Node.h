@@ -29,7 +29,7 @@ public:
   void reset();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
-  inline sce::Node* get_node_scene(){return node_scene;}
+  inline eng::Node* get_node_engine(){return node_engine;}
 
   inline cam::gui::Control* get_gui_control(){return gui_control;}
   inline cam::Control* get_control(){return cam_control;}
@@ -38,7 +38,7 @@ public:
 private:
   //Dependancy
   vk::Node* node_vulkan;
-  sce::Node* node_scene;
+  eng::Node* node_engine;
 
   //Child
   cam::Control* cam_control;

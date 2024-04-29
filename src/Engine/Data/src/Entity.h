@@ -3,8 +3,9 @@
 #include <Utility/Specific/Common.h>
 
 namespace vk::main{class Engine;}
-namespace sce{class Node;}
+namespace dat{class Node;}
 namespace gly{class Node;}
+namespace eng{class Node;}
 namespace sce{class Operation;}
 namespace dat{class Database;}
 
@@ -15,7 +16,7 @@ class Entity
 {
 public:
   //Constructor / Destructor
-  Entity(sce::Node* node_scene);
+  Entity(dat::Node* node_data);
   ~Entity();
 
 public:
@@ -24,7 +25,7 @@ public:
   void clear_entity(utl::type::Entity* entity);
 
 private:
-  sce::Node* node_scene;
+  eng::Node* node_engine;
   vk::main::Engine* vk_engine;
   dat::Database* dat_database;
   gly::Node* node_glyph;

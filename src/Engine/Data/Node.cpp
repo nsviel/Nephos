@@ -23,7 +23,7 @@ Node::Node(eng::Node* node_engine){
   //Child
   this->dat_database = new dat::Database(this);
   this->dat_entity = new dat::Entity(this);
-  this->gui_graph = new sce::gui::Graph(this, &dat_panel->is_open);
+  this->gui_graph = new dat::gui::Graph(this, &dat_panel->is_open);
 
   //---------------------------
 }

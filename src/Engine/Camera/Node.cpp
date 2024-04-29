@@ -15,7 +15,7 @@ Node::Node(eng::Node* node_engine){
 
   //Dependancy
   this->node_vulkan = node_engine->get_node_vulkan();
-  this->node_scene = node_engine->get_node_scene();
+  this->node_engine = node_engine;
 
   //Child
   this->cam_manager = new cam::Manager(this);

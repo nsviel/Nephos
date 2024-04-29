@@ -3,23 +3,22 @@
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
-#include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Glyph/Namespace.h>
+#include <Loader/Namespace.h>
 
 
 namespace gly{
 
 //Constructor / Destructor
-Node::Node(sce::Node* node_scene){
+Node::Node(eng::Node* node_engine){
   //---------------------------
 
-  eng::Node* node_engine = node_scene->get_node_engine();
   dat::Node* node_data = node_engine->get_node_data();
   ldr::Node* node_loader = node_engine->get_node_loader();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
-  this->node_engine = node_scene->get_node_engine();
+  this->node_engine = node_engine;
   this->dat_database = node_data->get_database();
   this->dat_entity = node_data->get_entity();
   this->ldr_loader = node_loader->get_loader();

@@ -33,9 +33,9 @@ private:
   //Dependancy
   eng::Node* node_engine;
   vk::Node* node_vulkan;
+  gly::Node* node_glyph;
 
   //Child
-  gly::Node* node_glyph;
   eng::module::Node* node_module;
 
   bool show_scene = true;

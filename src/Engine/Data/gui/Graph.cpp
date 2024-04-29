@@ -1,7 +1,7 @@
 #include "Graph.h"
 
 #include <Engine/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Operation/Namespace.h>
@@ -11,14 +11,14 @@
 namespace dat::gui{
 
 //Constructor / Destructor
-Graph::Graph(sce::Node* node_scene, bool* show_window){
+Graph::Graph(dat::Node* node_data, bool* show_window){
   //---------------------------
 
-  this->node_engine = node_scene->get_node_engine();
-  this->dat_database = node_scene->get_database();
+  this->node_engine = node_data->get_node_engine();
+  this->dat_database = node_data->get_database();
   this->dat_set = new dat::Set();
-  this->rnd_set = new sce::gui::Set(&show_panel_set);
-  this->rnd_object = new sce::gui::Entity(node_scene, &show_panel_entity);
+  this->rnd_set = new dat::gui::Set(&show_panel_set);
+  this->rnd_object = new dat::gui::Entity(node_data, &show_panel_entity);
 
   this->ope_operation = new ope::Operation();
 

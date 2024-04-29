@@ -18,7 +18,7 @@ class Node
 {
 public:
   //Constructor / Destructor
-  Node(sce::Node* node_scene);
+  Node(eng::Node* node_engine);
   ~Node();
 
 public:

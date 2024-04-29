@@ -22,6 +22,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_VULKAN
   LIBRARY_ENGINE
   LIBRARY_GLYPH
+  LIBRARY_DATA
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
