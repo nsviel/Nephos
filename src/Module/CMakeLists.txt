@@ -3,6 +3,7 @@ set(LIBRARY_NAME LIBRARY_MODULE)
 #-----------------
 # Source files
 #-----------------
+add_subdirectory(Capture)
 add_subdirectory(Radiometry)
 add_subdirectory(Registration)
 

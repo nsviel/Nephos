@@ -9,6 +9,7 @@ add_subdirectory(Engine)
 add_subdirectory(GUI)
 add_subdirectory(Vulkan)
 add_subdirectory(Profiler)
+add_subdirectory(Module)
 
 #-----------------
 # Compilation
