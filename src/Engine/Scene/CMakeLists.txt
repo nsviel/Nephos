@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_CAMERA)
+set(LIBRARY_NAME LIBRARY_SCENE)
 
 #-----------------
 # Source files
@@ -18,9 +18,9 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
+  LIBRARY_EXTERN
   LIBRARY_UTILITY
   LIBRARY_VULKAN
-  LIBRARY_SCENE
   LIBRARY_ENGINE
 )
 

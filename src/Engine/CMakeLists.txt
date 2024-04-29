@@ -8,11 +8,9 @@ add_subdirectory(Operation)
 add_subdirectory(Capture)
 add_subdirectory(Module)
 add_subdirectory(Rendering)
+add_subdirectory(Scene)
 
 file(GLOB_RECURSE ALL_SOURCES
-  Scene/*.cpp
-  Thread/*.cpp
-  gui/*cpp
   Node.cpp
 )
 
@@ -40,6 +38,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_OPERATION
   LIBRARY_MODULE
   LIBRARY_RENDERING
+  LIBRARY_SCENE
 
   Eigen3::Eigen # Eigen
   tins          # Sniffer
