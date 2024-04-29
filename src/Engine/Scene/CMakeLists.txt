@@ -9,7 +9,6 @@ add_subdirectory(Loader)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
-  Base/*.cpp
 )
 
 #-----------------
