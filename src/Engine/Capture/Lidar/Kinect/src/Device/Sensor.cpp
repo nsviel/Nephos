@@ -20,7 +20,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->node_engine = node_k4n->get_node_engine();
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_set = new scene::Set();
-  this->sce_glyph = node_scene->get_scene_glyph();
+  this->node_glyph = node_scene->get_scene_glyph();
   this->k4n_capture = new k4n::thread::Capture(node_k4n);
   this->k4n_playback = new k4n::thread::Playback(node_k4n);
 
@@ -64,7 +64,7 @@ void Sensor::init(){
   //Sensor glyph
   for(int i=0; i<20; i++){
     gly::element::object::Sphere* sphere = new gly::element::object::Sphere(node_engine);
-    sce_glyph->create_glyph(&object, sphere);
+    node_glyph->create_glyph(&object, sphere);
     vec4 color = math::random(i);
     sphere->construct(color);
 
@@ -72,7 +72,7 @@ void Sensor::init(){
   }
   gly::element::object::Sphere* sphere = new gly::element::object::Sphere(node_engine);
   this->detection.glyph_calibration = sphere;
-  sce_glyph->create_glyph(&object, sphere);
+  node_glyph->create_glyph(&object, sphere);
   sphere->construct(vec4(0, 1, 0, 1));
 
   //---------------------------

@@ -40,7 +40,7 @@ public:
   inline scene::Database* get_scene_database(){return sce_database;}
   inline scene::Loader* get_scene_loader(){return sce_loader;}
   inline scene::Exporter* get_scene_exporter(){return sce_exporter;}
-  inline gly::Node* get_scene_glyph(){return sce_glyph;}
+  inline gly::Node* get_scene_glyph(){return node_glyph;}
   inline scene::Bookmark* get_scene_bookmark(){return sce_bookmark;}
   inline scene::Entity* get_scene_entity(){return sce_entity;}
 
@@ -51,7 +51,7 @@ private:
 
   //Child
   scene::Database* sce_database;
-  gly::Node* sce_glyph;
+  gly::Node* node_glyph;
   scene::Loader* sce_loader;
   scene::Exporter* sce_exporter;
   scene::Format* sce_format;

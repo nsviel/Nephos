@@ -33,8 +33,8 @@ void Entity::init_entity(utl::type::Entity* entity){
 
   //If object; create dedicated glyphs
   if(utl::entity::Object* object = dynamic_cast<utl::entity::Object*>(entity)){
-    this->sce_glyph = node_scene->get_scene_glyph();
-    sce_glyph->create_glyph_object(object);
+    this->node_glyph = node_scene->get_scene_glyph();
+    node_glyph->create_glyph_object(object);
   }
 
   //Init entity

@@ -29,7 +29,7 @@ public:
 
 private:
   k4n::utils::Transformation* k4n_transfo;
-  gly::Node* sce_glyph;
+  gly::Node* node_glyph;
 };
 
 }

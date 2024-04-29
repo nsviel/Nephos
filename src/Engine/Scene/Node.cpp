@@ -25,7 +25,7 @@ Node::Node(eng::Node* node_engine){
   this->sce_entity = new scene::Entity(this);
   this->sce_format = new scene::Format(this);
   this->sce_loader = new scene::Loader(this);
-  this->sce_glyph = new gly::Node(this);
+  this->node_glyph = new gly::Node(this);
   this->sce_exporter = new scene::Exporter(this);
   this->sce_bookmark = new scene::Bookmark(this);
   this->sce_scene = new scene::Scene(this);
@@ -38,7 +38,7 @@ Node::~Node(){
   //---------------------------
 
   delete sce_database;
-  delete sce_glyph;
+  delete node_glyph;
   delete sce_loader;
 
   //---------------------------
@@ -50,7 +50,7 @@ void Node::init(){
   sce_bookmark->init();
   sce_database->init();
   sce_scene->init();
-  sce_glyph->init();
+  node_glyph->init();
 
   //---------------------------
 }

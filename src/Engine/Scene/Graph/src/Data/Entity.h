@@ -27,7 +27,7 @@ private:
   scene::Node* node_scene;
   vk::main::Engine* vk_engine;
   scene::Database* sce_database;
-  gly::Node* sce_glyph;
+  gly::Node* node_glyph;
 };
 
 }

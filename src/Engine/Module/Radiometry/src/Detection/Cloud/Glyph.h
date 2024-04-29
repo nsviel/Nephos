@@ -25,7 +25,7 @@ public:
   void draw_glyph(k4n::dev::Sensor* sensor, vec3 pose, float radius);
 
 private:
-  gly::Node* sce_glyph;
+  gly::Node* node_glyph;
 };
 
 }
