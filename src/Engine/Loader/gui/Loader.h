@@ -4,16 +4,17 @@
 
 namespace sce{class Node;}
 namespace sce{class Database;}
-namespace sce{class Loader;}
-namespace sce{class Bookmark;}
-namespace sce{class Format;}
+namespace ldr{class Loader;}
+namespace ldr{class Item;}
+namespace ldr{class Bookmark;}
+namespace ldr{class Format;}
 namespace sce{class Set;}
 namespace eng::loader{class Item;}
 namespace ope{class Transformation;}
 namespace ope{class Operation;}
 
 
-namespace sce::gui{
+namespace ldr::gui{
 
 class Loader
 {
@@ -34,7 +35,7 @@ public:
 
   //Other stuff
   void draw_header();
-  void draw_bookmark_button(eng::loader::Item& item);
+  void draw_bookmark_button(ldr::Item& item);
   void draw_bookmark_tab();
 
   //Subfunction
@@ -44,15 +45,15 @@ public:
 
 private:
   sce::Database* sce_database;
-  sce::Loader* sce_loader;
-  sce::Bookmark* sce_bookmark;
-  sce::Format* sce_format;
+  ldr::Loader* sce_loader;
+  ldr::Bookmark* sce_bookmark;
+  ldr::Format* sce_format;
   sce::Set* sce_set;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 
-  vector<eng::loader::Item> vec_item_folder;
-  vector<eng::loader::Item> vec_item_file;
+  vector<ldr::Item> vec_item_folder;
+  vector<ldr::Item> vec_item_file;
   ImVector<int> file_selection;
   string default_dir;
   string current_dir;

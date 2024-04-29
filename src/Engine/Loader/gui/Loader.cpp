@@ -8,7 +8,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace sce::gui{
+namespace ldr::gui{
 
 //Constructor / Destructor
 Loader::Loader(sce::Node* node_scene, bool* show_window){
@@ -149,9 +149,9 @@ void Loader::draw_file_content(){
   flags |= ImGuiTableFlags_Sortable;
   if (ImGui::BeginTable("init_tree", 4, flags)){
     // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
-    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, eng::loader::NAME);
-    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, eng::loader::FORMAT);
-    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, eng::loader::WEIGHT);
+    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ldr::NAME);
+    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, ldr::FORMAT);
+    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, ldr::WEIGHT);
     ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
     ImGui::TableHeadersRow();
 
@@ -160,7 +160,7 @@ void Loader::draw_file_content(){
     vec_item_folder.clear();
     vec_item_file.clear();
     for(int i=0; i<vec_current_files.size(); i++){
-      eng::loader::Item item;
+      ldr::Item item;
       string file = vec_current_files[i];
       string filename = utl::path::get_filename_from_path(file);
       //Remove hidden files
@@ -168,8 +168,8 @@ void Loader::draw_file_content(){
 
       //Get file info
       item.ID = ID++;
-      item.type = utl::directory::is_directory(file) ? eng::loader::FOLDER : eng::loader::FILE;
-      if(item.type == eng::loader::FOLDER){
+      item.type = utl::directory::is_directory(file) ? ldr::FOLDER : ldr::FILE;
+      if(item.type == ldr::FOLDER){
         item.name = utl::path::get_filename_from_path(file);
         item.path = file;
         item.icon = string(ICON_FA_FOLDER);
@@ -179,7 +179,7 @@ void Loader::draw_file_content(){
         item.color_icon = ImVec4(0.5f, 0.63f, 0.75f, 0.9f);
         item.color_text = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_item_folder.push_back(item);
-      }else if(item.type == eng::loader::FILE){
+      }else if(item.type == ldr::FILE){
         item.path = file;
         item.name = utl::path::get_name_from_path(file);
         item.icon = string(ICON_FA_FILE);
@@ -194,8 +194,8 @@ void Loader::draw_file_content(){
 
     // Sort data
     if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-      eng::loader::Item::sort_item_by_specs(sort_specs, vec_item_folder);
-      eng::loader::Item::sort_item_by_specs(sort_specs, vec_item_file);
+      ldr::Item::sort_item_by_specs(sort_specs, vec_item_folder);
+      ldr::Item::sort_item_by_specs(sort_specs, vec_item_file);
     }
 
     // Populate the table - Folder
@@ -204,7 +204,7 @@ void Loader::draw_file_content(){
     flags |= ImGuiSelectableFlags_AllowOverlap;
     flags |= ImGuiSelectableFlags_AllowDoubleClick;
     for(int i=0; i<vec_item_folder.size(); i++){
-      eng::loader::Item& item = vec_item_folder[i];
+      ldr::Item& item = vec_item_folder[i];
 
       ImGui::TableNextColumn();
       ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
@@ -242,7 +242,7 @@ void Loader::draw_file_content(){
 
     // Populate the table - File
     for(int i=0; i<vec_item_file.size(); i++){
-      eng::loader::Item& item = vec_item_file[i];
+      ldr::Item& item = vec_item_file[i];
 
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
@@ -290,7 +290,7 @@ void Loader::draw_file_content(){
 }
 
 //Other stuff
-void Loader::draw_bookmark_button(eng::loader::Item& item){
+void Loader::draw_bookmark_button(ldr::Item& item){
   //---------------------------
 
   //Button background if already bookmarked
@@ -317,11 +317,11 @@ void Loader::draw_bookmark_button(eng::loader::Item& item){
   //---------------------------
 }
 void Loader::draw_bookmark_tab(){
-  list<eng::loader::Item> list_bookmark = sce_bookmark->get_list_bookmark();
+  list<ldr::Item> list_bookmark = sce_bookmark->get_list_bookmark();
   //---------------------------
 
   for(int i=0; i<list_bookmark.size(); i++){
-    eng::loader::Item& item = *next(list_bookmark.begin(), i);
+    ldr::Item& item = *next(list_bookmark.begin(), i);
 
     //File type icon
     ImGui::TextColored(item.color_icon, "%s", item.icon.c_str());
@@ -385,7 +385,7 @@ void Loader::operation_selection(){
   //Retrieve all good selected files to load
   vector<string> vec_path;
   for(int i=0; i<vec_item_file.size(); i++){
-    eng::loader::Item& item = vec_item_file[i];
+    ldr::Item& item = vec_item_file[i];
     if(file_selection.contains(item.ID)){
       if(sce_format->is_format_supported(item.format)){
         vec_path.push_back(item.path);

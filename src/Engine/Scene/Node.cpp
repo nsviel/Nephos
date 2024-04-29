@@ -23,13 +23,13 @@ Node::Node(eng::Node* node_engine){
   //Child
   this->sce_database = new sce::Database(this);
   this->sce_entity = new sce::Entity(this);
-  this->sce_format = new sce::Format(this);
-  this->sce_loader = new sce::Loader(this);
+  this->sce_format = new ldr::Format(this);
+  this->sce_loader = new ldr::Loader(this);
   this->node_glyph = new gly::Node(this);
-  this->sce_exporter = new sce::Exporter(this);
-  this->sce_bookmark = new sce::Bookmark(this);
+  this->sce_exporter = new ldr::Exporter(this);
+  this->sce_bookmark = new ldr::Bookmark(this);
   this->sce_graph = new sce::Graph(this);
-  this->gui_loader = new sce::gui::Loader(this, &ldr_panel->is_open);
+  this->gui_loader = new ldr::gui::Loader(this, &ldr_panel->is_open);
   this->gui_scene = new sce::gui::Graph(this, &sce_panel->is_open);
 
   //---------------------------

@@ -5,12 +5,12 @@
 namespace eng{class Node;}
 namespace sce{class Entity;}
 namespace sce{class Database;}
-namespace sce{class Format;}
+namespace ldr{class Format;}
 namespace sce{class Node;}
 namespace sce{class Set;}
 
 
-namespace sce{
+namespace ldr{
 
 class Loader
 {
@@ -32,7 +32,7 @@ public:
 
 private:
   eng::Node* node_engine;
-  sce::Format* sce_format;
+  ldr::Format* sce_format;
   sce::Entity* sce_entity;
   sce::Database* sce_database;
   sce::Set* sce_set;

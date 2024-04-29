@@ -13,7 +13,7 @@ namespace format::xyz{class Importer;}
 namespace format::ply{class Exporter;}
 
 
-namespace sce{
+namespace ldr{
 
 class Format
 {

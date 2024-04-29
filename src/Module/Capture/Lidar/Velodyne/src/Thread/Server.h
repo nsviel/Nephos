@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace sce{class Database;}
-namespace sce{class Loader;}
+namespace ldr{class Loader;}
 namespace sce{class Set;}
 namespace vld{class Node;}
 namespace vld::structure{class Main;}
@@ -36,7 +36,7 @@ public:
 
 private:
   sce::Database* sce_database;
-  sce::Loader* sce_loader;
+  ldr::Loader* sce_loader;
   sce::Set* sce_set;
 
   vld::structure::Main* vld_struct;

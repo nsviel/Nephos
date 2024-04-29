@@ -4,9 +4,10 @@
 
 namespace eng::loader{class Item;}
 namespace sce{class Node;}
+namespace ldr{class Item;}
 
 
-namespace sce{
+namespace ldr{
 
 class Bookmark
 {
@@ -29,10 +30,10 @@ public:
   void sort_list_bookmark();
   void save_on_file();
 
-  inline list<eng::loader::Item> get_list_bookmark(){return list_bookmark;}
+  inline list<ldr::Item> get_list_bookmark(){return list_bookmark;}
 
 private:
-  list<eng::loader::Item> list_bookmark;
+  list<ldr::Item> list_bookmark;
   string path_bookmark_file;
 };
 

@@ -7,7 +7,7 @@ namespace sce{class Node;}
 namespace sce{class Database;}
 namespace sce{class Entity;}
 namespace sce{class Set;}
-namespace sce{class Loader;}
+namespace ldr{class Loader;}
 namespace cam{class Control;}
 namespace cam{class Entity;}
 
@@ -40,7 +40,7 @@ private:
   sce::Database* sce_database;
   sce::Set* sce_set;
   sce::Entity* sce_entity;
-  sce::Loader* sce_loader;
+  ldr::Loader* sce_loader;
   cam::Control* cam_control;
 };
 

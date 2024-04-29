@@ -3,10 +3,10 @@
 #include <Utility/Specific/Common.h>
 
 namespace sce{class Node;}
-namespace sce{class Format;}
+namespace ldr{class Format;}
 
 
-namespace sce{
+namespace ldr{
 
 class Exporter
 {
@@ -20,7 +20,7 @@ public:
   void export_data(utl::type::Data* data);
 
 private:
-  sce::Format* sce_format;
+  ldr::Format* sce_format;
 };
 
 }

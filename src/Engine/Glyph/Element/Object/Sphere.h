@@ -3,7 +3,7 @@
 #include <Glyph/Control/Glyph.h>
 
 namespace ope{class Transformation;}
-namespace sce{class Loader;}
+namespace ldr{class Loader;}
 
 
 namespace gly::element::object{
@@ -26,7 +26,7 @@ public:
   void move_sphere(vec3 pose, float diameter);
 
 private:
-  sce::Loader* sce_loader;
+  ldr::Loader* sce_loader;
   ope::Transformation* ope_transform;
 
   int size = 20;

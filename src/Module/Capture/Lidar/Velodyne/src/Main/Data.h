@@ -6,7 +6,7 @@ namespace vld{class Node;}
 namespace vld::structure{class Main;}
 namespace eng{class Node;}
 namespace sce{class Database;}
-namespace sce{class Loader;}
+namespace ldr{class Loader;}
 namespace sce{class Set;}
 namespace sce{class Entity;}
 
@@ -28,7 +28,7 @@ private:
   eng::Node* node_engine;
   vld::structure::Main* vld_struct;
   sce::Database* sce_database;
-  sce::Loader* sce_loader;
+  ldr::Loader* sce_loader;
   sce::Set* sce_set;
   sce::Entity* sce_entity;
 };

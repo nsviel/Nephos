@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace eng::loader{
+namespace ldr{
 
 enum ColumnID{
   NAME,
@@ -21,7 +21,7 @@ struct Item{
 
   //Item stuff
   int ID = -1;
-  int type = eng::loader::FILE;
+  int type = ldr::FILE;
   std::string path = "";
   std::string name = "";
   std::string format = "";

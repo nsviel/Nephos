@@ -4,7 +4,7 @@
 #include <Scene/Namespace.h>
 
 
-namespace sce{
+namespace ldr{
 
 //Constructor / Destructor
 Exporter::Exporter(sce::Node* node_scene){

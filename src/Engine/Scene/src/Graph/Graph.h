@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace sce{class Node;}
-namespace sce{class Loader;}
+namespace ldr{class Loader;}
 namespace utl::type{class Selection;}
 
 
@@ -21,7 +21,7 @@ public:
   void init();
 
 private:
-  sce::Loader* sce_loader;
+  ldr::Loader* sce_loader;
   utl::type::Selection* selection = nullptr;
 };
 

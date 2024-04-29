@@ -8,7 +8,7 @@
 #include <Capture/Namespace.h>
 
 
-namespace sce{
+namespace ldr{
 
 //Constructor / Destructor
 Loader::Loader(sce::Node* node_scene){
