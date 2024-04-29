@@ -48,6 +48,9 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
+  node_data->init();
+  node_loader->init();
+  node_glyph->init();
   node_scene->init();
   node_camera->init();
   node_render->init();
