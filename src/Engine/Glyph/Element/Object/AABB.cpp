@@ -1,7 +1,7 @@
 #include "AABB.h"
 
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace gly::element::object{

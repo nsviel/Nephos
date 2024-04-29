@@ -20,7 +20,7 @@ class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(ldr::Node* node_scene, bool* show_window);
+  Loader(ldr::Node* node_loader, bool* show_window);
   ~Loader();
 
 public:
@@ -48,7 +48,7 @@ private:
   ldr::Loader* ldr_loader;
   ldr::Bookmark* ldr_bookmark;
   ldr::Format* ldr_format;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 

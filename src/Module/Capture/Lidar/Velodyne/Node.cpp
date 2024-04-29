@@ -3,7 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Capture/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Velodyne/Namespace.h>
 #include <Loader/Namespace.h>
 
@@ -16,7 +16,8 @@ Node::Node(cap::Node* node_capture){
   //---------------------------
 
   this->node_engine = node_capture->get_node_engine();
-  this->node_scene = node_engine->get_node_scene();
+  this->node_loader = node_engine->get_node_loader();
+  this->node_data = node_engine->get_node_data();
 
   this->vld_struct = new vld::structure::Main();
   this->vld_capture = new vld::main::Capture(this);
@@ -29,7 +30,7 @@ Node::~Node(){}
 
 //Main function
 void Node::config(){
-  ldr::Format* ldr_format = node_scene->get_scene_format();
+  ldr::Format* ldr_format = node_loader->get_format();
   //---------------------------
 
   ldr_format->insert_importer(new vld::utils::Importer(vld_struct));

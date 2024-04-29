@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Render/Namespace.h>
 #include <Operation/Namespace.h>
 
@@ -15,14 +15,15 @@ namespace rnd::gui{
 Control::Control(rnd::Node* node_render){
   //---------------------------
 
-  this->node_engine = node_render->get_node_engine();
-  sce::Node* node_scene = node_engine->get_node_scene();
+  eng::Node* node_engine = node_render->get_node_engine();
+  dat::Node* node_data = node_engine->get_node_data();
   cam::Node* node_camera = node_engine->get_node_camera();
 
-  this->cam_manager = node_camera->get_camera_manager();
-  this->cam_control = node_camera->get_camera_control();
-  this->dat_database = node_scene->get_scene_database();
-  this->sce_set = new dat::Set();
+  this->node_engine = node_engine;
+  this->cam_manager = node_camera->get_manager();
+  this->cam_control = node_camera->get_control();
+  this->dat_database = node_data->get_database();
+  this->dat_set = new dat::Set();
   this->ope_operation = new ope::Operation();
   this->gui_wheel = new rnd::gui::Wheel(node_render);
 
@@ -51,14 +52,14 @@ void Control::control_keyboard_oneAction(){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
       utl::type::Set* set_scene = dat_database->get_set_scene();
-      sce_set->select_entity_next(set_scene);
+      dat_set->select_entity_next(set_scene);
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
       utl::type::Set* set_scene = dat_database->get_set_scene();
-      sce_set->remove_entity(set_scene, set_scene->selected_entity);
+      dat_set->remove_entity(set_scene, set_scene->selected_entity);
       break;
     }
 

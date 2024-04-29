@@ -14,13 +14,15 @@ namespace k4n::dev{
 Sensor::Sensor(k4n::Node* node_k4n){
   //---------------------------
 
-  sce::Node* node_scene = node_k4n->get_node_scene();
+  eng::Node* node_engine = node_k4n->get_node_engine();
+  sce::Node* node_scene = node_engine->get_node_scene();
+  dat::Node* node_data = node_engine->get_node_data();
 
   this->k4n_struct = node_k4n->get_k4n_struct();
-  this->node_engine = node_k4n->get_node_engine();
-  this->dat_entity = node_scene->get_scene_entity();
-  this->sce_set = new dat::Set();
-  this->node_glyph = node_scene->get_scene_glyph();
+  this->node_engine = node_engine;
+  this->dat_entity = node_data->get_entity();
+  this->dat_set = new dat::Set();
+  this->node_glyph = node_scene->get_node_glyph();
   this->k4n_capture = new k4n::thread::Capture(node_k4n);
   this->k4n_playback = new k4n::thread::Playback(node_k4n);
 

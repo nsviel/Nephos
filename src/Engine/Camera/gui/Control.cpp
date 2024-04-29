@@ -13,8 +13,8 @@ Control::Control(cam::Node* node_camera){
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
   this->vk_window = node_vulkan->get_vk_window();
-  this->cam_manager = node_camera->get_camera_manager();
-  this->cam_control = node_camera->get_camera_control();
+  this->cam_manager = node_camera->get_manager();
+  this->cam_control = node_camera->get_control();
 
   //---------------------------
 }

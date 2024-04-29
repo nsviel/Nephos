@@ -1,7 +1,7 @@
 #include "Loader.h"
 
 #include <Engine/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Scene/Namespace.h>
@@ -17,10 +17,10 @@ Loader::Loader(ldr::Node* node_loader){
   dat::Node* node_data = node_loader->get_node_data();
 
   this->node_engine = node_loader->get_node_engine();
-  this->dat_entity = node_data->get_scene_entity();
-  this->dat_database = node_data->get_scene_database();
-  this->ldr_format = node_loader->get_scene_format();
-  this->sce_set = new dat::Set();
+  this->ldr_format = node_loader->get_format();
+  this->dat_entity = node_data->get_entity();
+  this->dat_database = node_data->get_database();
+  this->dat_set = new dat::Set();
 
   //---------------------------
 }
@@ -67,13 +67,13 @@ utl::type::Set* Loader::load_dataset(utl::Path file_path){
 
   //Insert loaded set into scene
   utl::type::Set* set_scene = dat_database->get_set_scene();
-  utl::type::Set* set = sce_set->get_or_create_subset(set_scene, dataset->name);
+  utl::type::Set* set = dat_set->get_or_create_subset(set_scene, dataset->name);
   set->is_locked = true;
 
   //Insert all set objects into engine
   for(int i=0; i<dataset->vec_data.size(); i++){
     utl::entity::Object* object = create_object(dataset->vec_data[i]);
-    sce_set->insert_entity(set, object);
+    dat_set->insert_entity(set, object);
   }
 
   //Delete raw data
@@ -97,7 +97,7 @@ utl::entity::Object* Loader::load_object(utl::Path file_path){
   //Data is an entity
   utl::type::Set* set_scene = dat_database->get_set_scene();
   utl::entity::Object* object = create_object(file_data);
-  sce_set->insert_entity(set_scene, object);
+  dat_set->insert_entity(set_scene, object);
 
   //Delete raw data
   delete file;

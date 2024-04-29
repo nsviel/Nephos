@@ -3,7 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -20,7 +20,7 @@ Glyph::Glyph(eng::Node* node_engine){
 
   this->node_vulkan = node_engine->get_node_vulkan();
   this->node_camera = node_engine->get_node_camera();
-  this->node_scene = node_engine->get_node_scene();
+  this->node_data = node_engine->get_node_data();
 
   //---------------------------
 }
@@ -28,7 +28,7 @@ Glyph::~Glyph(){}
 
 //Main function
 void Glyph::init(){
-  dat::Entity* dat_entity = node_scene->get_scene_entity();
+  dat::Entity* dat_entity = node_data->get_entity();
   //----------------------------
 
   dat_entity->init_entity(this);
@@ -54,7 +54,7 @@ void Glyph::update_data(){
   //----------------------------
 }
 void Glyph::update_pose(){
-  cam::Control* cam_control = node_camera->get_camera_control();
+  cam::Control* cam_control = node_camera->get_control();
   //----------------------------
 
   cam_control->compute_camera_mvp(&pose);

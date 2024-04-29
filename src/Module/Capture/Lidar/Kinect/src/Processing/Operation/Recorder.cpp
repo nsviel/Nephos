@@ -2,7 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Loader/Namespace.h>
 
@@ -13,10 +13,11 @@ namespace k4n::processing{
 Recorder::Recorder(k4n::Node* node_k4n){
   //---------------------------
 
-  sce::Node* node_scene = node_k4n->get_node_scene();
+  eng::Node* node_engine = node_k4n->get_node_engine();
+  ldr::Node* node_loader = node_engine->get_node_loader();
 
   this->k4n_struct = node_k4n->get_k4n_struct();
-  this->ldr_exporter = node_scene->get_scene_exporter();
+  this->ldr_exporter = node_loader->get_exporter();
   this->ply_exporter = new format::ply::Exporter();
   this->k4n_pool = node_k4n->get_k4n_pool();
 

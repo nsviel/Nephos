@@ -1,5 +1,6 @@
 #include "Graph.h"
 
+#include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Loader/Namespace.h>
 
@@ -10,7 +11,10 @@ namespace sce{
 Graph::Graph(sce::Node* node_scene){
   //---------------------------
 
-  this->ldr_loader = node_scene->get_scene_loader();
+  eng::Node* node_engine = node_scene->get_node_engine();
+  ldr::Node* node_loader = node_engine->get_node_loader();
+
+  this->ldr_loader = node_loader->get_loader();
 
   //---------------------------
 }

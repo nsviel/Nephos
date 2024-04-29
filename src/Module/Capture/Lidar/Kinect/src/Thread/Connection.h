@@ -26,7 +26,7 @@ public:
 private:
   k4n::structure::K4N* k4n_struct;
   k4n::dev::Swarm* k4n_swarm;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
 
   std::thread thread;
   bool thread_running = false;

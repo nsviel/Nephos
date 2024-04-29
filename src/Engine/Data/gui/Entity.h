@@ -44,7 +44,7 @@ private:
   ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
   dat::Database* dat_database;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
 
   utl::type::Entity* entity;
   string panel_name;

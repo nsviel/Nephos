@@ -37,7 +37,7 @@ public:
 private:
   dat::Database* dat_database;
   ldr::Loader* ldr_loader;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
 
   vld::structure::Main* vld_struct;
   vld::processing::Player* vld_player;

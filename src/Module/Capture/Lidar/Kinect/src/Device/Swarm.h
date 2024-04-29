@@ -45,7 +45,7 @@ public:
 private:
   prf::Manager* profiler;
   dat::Database* dat_database;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
   k4n::Node* node_k4n;
   k4n::utils::Transformation* k4n_transfo;
   k4n::structure::K4N* k4n_struct;

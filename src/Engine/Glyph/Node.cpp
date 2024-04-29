@@ -14,13 +14,16 @@ namespace gly{
 Node::Node(sce::Node* node_scene){
   //---------------------------
 
-  vk::Node* node_vulkan = node_scene->get_node_vulkan();
+  eng::Node* node_engine = node_scene->get_node_engine();
+  dat::Node* node_data = node_engine->get_node_data();
+  ldr::Node* node_loader = node_engine->get_node_loader();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
   this->node_engine = node_scene->get_node_engine();
-  this->dat_database = node_scene->get_scene_database();
-  this->dat_entity = node_scene->get_scene_entity();
-  this->ldr_loader = node_scene->get_scene_loader();
-  this->sce_set = new dat::Set();
+  this->dat_database = node_data->get_database();
+  this->dat_entity = node_data->get_entity();
+  this->ldr_loader = node_loader->get_loader();
+  this->dat_set = new dat::Set();
 
   //---------------------------
 }
@@ -67,7 +70,7 @@ void Node::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
   //---------------------------
 
   glyph->create();
-  sce_set->insert_entity(set, glyph);
+  dat_set->insert_entity(set, glyph);
 
   //---------------------------
 }

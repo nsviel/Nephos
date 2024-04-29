@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace app{class Node;}
+namespace ldr{class Node;}
 namespace vk{class Node;}
 namespace prf{class Node;}
 namespace prf::graph{class Tasker;}
@@ -34,11 +35,13 @@ public:
   inline cam::Node* get_node_camera(){return node_camera;}
   inline sce::Node* get_node_scene(){return node_scene;}
   inline dat::Node* get_node_data(){return node_data;}
+  inline ldr::Node* get_node_loader(){return node_loader;}
 
 private:
   prf::Node* node_profiler;
   vk::Node* node_vulkan;
 
+  ldr::Node* node_loader;
   dat::Node* node_data;
   prf::graph::Tasker* tasker_main;
   cam::Node* node_camera;

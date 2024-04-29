@@ -44,7 +44,7 @@ public:
 private:
   k4n::Node* node_k4n;
   k4n::dev::Swarm* k4n_swarm;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
 
   vector<gui_element::Stream*> vec_gui_stream;
   ImVec2 hovered_pixel;

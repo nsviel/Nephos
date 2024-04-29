@@ -35,7 +35,7 @@ private:
   ldr::Format* ldr_format;
   dat::Entity* dat_entity;
   dat::Database* dat_database;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
 };
 
 }

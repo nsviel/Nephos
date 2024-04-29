@@ -37,7 +37,7 @@ private:
   k4n::dev::Swarm* k4n_swarm;
   k4n::config::Configuration* k4n_config;
   k4n::structure::K4N* k4n_struct;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
 
   int item_width;
 };

@@ -15,8 +15,8 @@ Graph::Graph(sce::Node* node_scene, bool* show_window){
   //---------------------------
 
   this->node_engine = node_scene->get_node_engine();
-  this->dat_database = node_scene->get_scene_database();
-  this->sce_set = new dat::Set();
+  this->dat_database = node_scene->get_database();
+  this->dat_set = new dat::Set();
   this->rnd_set = new sce::gui::Set(&show_panel_set);
   this->rnd_object = new sce::gui::Entity(node_scene, &show_panel_entity);
 
@@ -75,7 +75,7 @@ void Graph::draw_button(){
       //sce_graph->delete_subset(set);
     }else if(set->is_locked){
       utl::type::Set* set_scene = dat_database->get_set_scene();
-      sce_set->remove_entity(set_scene, set->selected_entity);
+      dat_set->remove_entity(set_scene, set->selected_entity);
     }
   }
 
@@ -95,7 +95,7 @@ void Graph::draw_button(){
   ImGui::SameLine();
   if(ImGui::Button(ICON_FA_CAMERA "##camera123")){
     cam::Node* node_camera = node_engine->get_node_camera();
-    this->cam_control = node_camera->get_camera_control();
+    this->cam_control = node_camera->get_control();
     cam_control->set_next_camera_mode();
   }
 
@@ -171,7 +171,7 @@ int Graph::tree_set(utl::type::Set* set) {
   int nb_row = 0;
   //---------------------------
 
-  int nb_entity = sce_set->compute_number_entity(set);
+  int nb_entity = dat_set->compute_number_entity(set);
   if(set->is_suppressible && nb_entity == 0) return 0;
 
   //Set node elements
@@ -253,7 +253,7 @@ void Graph::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   nb_row++;
 
   //Entity row element
-  bool is_selected = sce_set->is_selected_entity(set, entity);
+  bool is_selected = dat_set->is_selected_entity(set, entity);
   ImGuiTreeNodeFlags flag_leaf;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
   flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
@@ -271,7 +271,7 @@ void Graph::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
 
   // If entity clicked
   if(ImGui::IsItemClicked()){
-    sce_set->select_entity(set, entity);
+    dat_set->select_entity(set, entity);
   }
 
   // If entity double-clicked
@@ -285,7 +285,7 @@ void Graph::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
   string tag = string(ICON_FA_XMARK) + "##" + entity->name;
   if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){
-    sce_set->remove_entity(set, entity);
+    dat_set->remove_entity(set, entity);
   }
   ImGui::PopStyleColor(2);
 

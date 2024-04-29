@@ -30,7 +30,7 @@ public:
   inline utl::type::Set* get_set_world(){return set_world;}
 
 private:
-  dat::Set* sce_set;
+  dat::Set* dat_set;
 
   utl::type::Set* set_main;
   utl::type::Set* set_scene;

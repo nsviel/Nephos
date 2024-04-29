@@ -32,10 +32,10 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
 
-  inline ldr::Format* get_scene_format(){return ldr_format;}
-  inline ldr::Loader* get_scene_loader(){return ldr_loader;}
-  inline ldr::Exporter* get_scene_exporter(){return ldr_exporter;}
-  inline ldr::Bookmark* get_scene_bookmark(){return ldr_bookmark;}
+  inline ldr::Format* get_format(){return ldr_format;}
+  inline ldr::Loader* get_loader(){return ldr_loader;}
+  inline ldr::Exporter* get_exporter(){return ldr_exporter;}
+  inline ldr::Bookmark* get_bookmark(){return ldr_bookmark;}
 
 private:
   //Dependancy

@@ -11,7 +11,7 @@ namespace rad::detection{
 Glyph::Glyph(rad::Structure* radio_struct){
   //---------------------------
 
-  this->node_glyph = radio_struct->node_scene->get_scene_glyph();
+  this->node_glyph = radio_struct->node_scene->get_node_glyph();
   this->k4n_transfo = new k4n::utils::Transformation();
 
   //---------------------------

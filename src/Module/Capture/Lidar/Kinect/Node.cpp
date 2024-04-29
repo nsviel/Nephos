@@ -21,6 +21,7 @@ Node::Node(cap::Node* node_capture){
   //Dependancy
   this->node_engine = node_capture->get_node_engine();
   this->node_scene = node_capture->get_node_scene();
+  this->node_loader = node_engine->get_node_loader();
   this->node_profiler = node_capture->get_node_profiler();
   this->node_radio = new rad::Node(node_engine);
 
@@ -38,7 +39,7 @@ Node::~Node(){}
 
 //Main function
 void Node::config(){
-  ldr::Format* ldr_format = node_scene->get_scene_format();
+  ldr::Format* ldr_format = node_loader->get_format();
   //---------------------------
 
   ldr_format->insert_importer(new k4n::Importer(this));

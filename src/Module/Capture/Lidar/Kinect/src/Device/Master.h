@@ -52,7 +52,7 @@ public:
   void visibility_normal();
 
 public:
-  dat::Set* sce_set;
+  dat::Set* dat_set;
   k4n::config::Configuration* k4n_config;
 
   k4n::structure::Player player;

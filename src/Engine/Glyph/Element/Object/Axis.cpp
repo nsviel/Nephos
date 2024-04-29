@@ -1,7 +1,7 @@
 #include "Axis.h"
 
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Camera/Namespace.h>
 
 
@@ -42,7 +42,7 @@ void Axis::update_pose(utl::type::Entity* entity){
   utl::type::Pose* entity_pose = entity->get_pose();
   pose.model = entity_pose->model;
 
-  cam::Control* cam_control = node_camera->get_camera_control();
+  cam::Control* cam_control = node_camera->get_control();
   cam_control->compute_camera_mvp(&pose);
 
   //---------------------------

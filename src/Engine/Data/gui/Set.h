@@ -25,7 +25,7 @@ public:
   inline void set_selected_set(utl::type::Set* set){this->set_selected = set;}
 
 private:
-  dat::Set* sce_set;
+  dat::Set* dat_set;
 
   utl::type::Set* set_selected;
   string panel_name;

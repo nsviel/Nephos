@@ -2,7 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Glyph/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Module/Namespace.h>
@@ -13,7 +13,7 @@ namespace dat{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* sce_panel = add_panel("Graph", ICON_FA_FILE, true);
+  utl::gui::Panel* dat_panel = add_panel("Graph", ICON_FA_FILE, true);
   //---------------------------
 
   //Dependancy
@@ -23,33 +23,16 @@ Node::Node(eng::Node* node_engine){
   //Child
   this->dat_database = new dat::Database(this);
   this->dat_entity = new dat::Entity(this);
-  this->node_glyph = new gly::Node(this);
-  this->sce_graph = new sce::Graph(this);
-  this->gui_scene = new sce::gui::Graph(this, &sce_panel->is_open);
-  this->node_module = new eng::module::Node(node_engine);
-
+  this->gui_graph = new sce::gui::Graph(this, &dat_panel->is_open);
 
   //---------------------------
 }
-Node::~Node(){
-  //---------------------------
-
-  delete dat_database;
-  delete node_glyph;
-  delete ldr_loader;
-
-  //---------------------------
-}
+Node::~Node(){}
 
 void Node::init(){
   //---------------------------
 
-  node_module->config();
-  ldr_bookmark->init();
   dat_database->init();
-  sce_graph->init();
-  node_glyph->init();
-  node_module->init();
 
   //---------------------------
 }
@@ -57,7 +40,6 @@ void Node::loop(){
   //---------------------------
 
   dat_database->loop();
-  node_module->loop();
 
   //---------------------------
 }
@@ -65,16 +47,13 @@ void Node::clean(){
   //---------------------------
 
   dat_database->clean();
-  node_module->clean();
 
   //---------------------------
 }
 void Node::gui(){
   //---------------------------
 
-  gui_loader->run_panel();
-  gui_scene->run_panel();
-  node_module->gui();
+  gui_graph->run_panel();
 
   //---------------------------
 }

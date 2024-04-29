@@ -25,7 +25,7 @@ public:
   inline cam::Entity* get_current_camera(){return current_camera;}
 
 private:
-  dat::Set* sce_set;
+  dat::Set* dat_set;
   sce::Node* node_scene;
   vector<cam::Entity*> vec_camera;
   cam::Entity* current_camera;

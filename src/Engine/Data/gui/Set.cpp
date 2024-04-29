@@ -10,7 +10,7 @@ namespace dat::gui{
 Set::Set(bool* show_window){
   //---------------------------
 
-  this->sce_set = new dat::Set();
+  this->dat_set = new dat::Set();
 
   this->panel_show = show_window;
   this->panel_name = "Set";
@@ -62,7 +62,7 @@ void Set::set_parameter(utl::type::Set* set){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Visibility"); ImGui::TableNextColumn();
     if(ImGui::Checkbox("##4555", &set->is_visible)){
-      sce_set->visibility_set(set, set->is_visible);
+      dat_set->visibility_set(set, set->is_visible);
     }
 
     //Name
@@ -84,7 +84,7 @@ void Set::set_parameter(utl::type::Set* set){
     //Number of object
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Point No"); ImGui::TableNextColumn();
-    int nb_point = sce_set->compute_number_point(set);
+    int nb_point = dat_set->compute_number_point(set);
     string number = math::thousand_separator(nb_point);
     ImGui::Text("%s", number.c_str());
 

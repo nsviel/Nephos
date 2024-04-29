@@ -13,14 +13,15 @@ namespace k4n::dev{
 Swarm::Swarm(k4n::Node* node_k4n){
   //---------------------------
 
-  sce::Node* node_scene = node_k4n->get_node_scene();
+  eng::Node* node_engine = node_k4n->get_node_engine();
+  dat::Node* node_data = node_engine->get_node_data();
   prf::Node* node_profiler = node_k4n->get_node_profiler();
 
   this->node_k4n = node_k4n;
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->profiler = node_profiler->get_prf_manager();
-  this->dat_database = node_scene->get_scene_database();
-  this->sce_set = new dat::Set();
+  this->dat_database = node_data->get_database();
+  this->dat_set = new dat::Set();
   this->k4n_transfo = new k4n::utils::Transformation();
   this->k4n_config = new k4n::config::Configuration();
 
@@ -35,7 +36,7 @@ void Swarm::create_sensor_playback(utl::Path path){
 
   //Associated master
   k4n::dev::Master* master = get_or_create_playback_master("Playback");
-  int index = sce_set->compute_number_entity(master);
+  int index = dat_set->compute_number_entity(master);
 
   //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
@@ -97,7 +98,7 @@ void Swarm::close_master(string name){
 void Swarm::close_master(k4n::dev::Master* master){
   //---------------------------
 
-  sce_set->remove_entity_all(master);
+  dat_set->remove_entity_all(master);
   k4n_struct->device.list_master.remove(master);
 
   //---------------------------
@@ -107,7 +108,7 @@ void Swarm::close_all_master(){
 
   for(int i=0; i<k4n_struct->device.list_sensor.size(); i++){
     k4n::dev::Master* master = *std::next(k4n_struct->device.list_master.begin(), i);
-    sce_set->remove_entity_all(master);
+    dat_set->remove_entity_all(master);
   }
 
   //---------------------------
@@ -130,7 +131,7 @@ k4n::dev::Master* Swarm::get_or_create_playback_master(string name){
   master->is_lockable = true;
   master->mode = k4n::dev::PLAYBACK;
 
-  sce_set->add_subset(set_scene, master);
+  dat_set->add_subset(set_scene, master);
   k4n_struct->device.list_master.push_back(master);
   k4n_struct->device.selected_master = master;
 
@@ -156,7 +157,7 @@ k4n::dev::Master* Swarm::get_or_create_capture_master(string name){
   master->mode = k4n::dev::CAPTURE;
 
   k4n_config->make_master_configuration_initial(master);
-  sce_set->add_subset(set_scene, master);
+  dat_set->add_subset(set_scene, master);
   k4n_struct->device.list_master.push_back(master);
   k4n_struct->device.selected_master = master;
 
@@ -199,7 +200,7 @@ void Swarm::manage_connected_device(){
   //Suppress all devices
   k4n::dev::Master* master = get_or_create_capture_master("capture");
   if(master == nullptr) return;
-  sce_set->remove_entity_all(master);
+  dat_set->remove_entity_all(master);
 
   //Create required number of new devices
   for(int i=0; i<k4n_struct->device.nb_connected_sensor; i++){

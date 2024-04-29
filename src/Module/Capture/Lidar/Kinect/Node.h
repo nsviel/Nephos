@@ -14,6 +14,7 @@ namespace k4n::structure{class K4N;}
 namespace k4n::thread{class Pool;}
 namespace k4n::calibration{class Model;}
 namespace rad{class Node;}
+namespace ldr{class Node;}
 
 
 namespace k4n{
@@ -45,6 +46,7 @@ public:
 
 private:
   //Dependancy
+  ldr::Node* node_loader;
   eng::Node* node_engine;
   sce::Node* node_scene;
   prf::Node* node_profiler;

@@ -32,8 +32,8 @@ public:
   inline sce::Node* get_node_scene(){return node_scene;}
 
   inline cam::gui::Control* get_gui_control(){return gui_control;}
-  inline cam::Control* get_camera_control(){return cam_control;}
-  inline cam::Manager* get_camera_manager(){return cam_manager;}
+  inline cam::Control* get_control(){return cam_control;}
+  inline cam::Manager* get_manager(){return cam_manager;}
 
 private:
   //Dependancy

@@ -11,14 +11,16 @@
 namespace ldr::gui{
 
 //Constructor / Destructor
-Loader::Loader(ldr::Node* node_scene, bool* show_window){
+Loader::Loader(ldr::Node* node_loader, bool* show_window){
   //---------------------------
 
-  this->dat_database = node_scene->get_scene_database();
-  this->ldr_loader = node_scene->get_scene_loader();
-  this->sce_set = new dat::Set();
-  this->ldr_format = node_scene->get_scene_format();
-  this->ldr_bookmark = node_scene->get_scene_bookmark();
+  dat::Node* node_data = node_loader->get_node_data();
+
+  this->dat_database = node_data->get_database();
+  this->dat_set = new dat::Set();
+  this->ldr_loader = node_loader->get_loader();
+  this->ldr_format = node_loader->get_format();
+  this->ldr_bookmark = node_loader->get_bookmark();
   this->ope_transform = new ope::Transformation();
   this->ope_operation = new ope::Operation();
 
@@ -397,7 +399,7 @@ void Loader::operation_selection(){
   //Apply loading and operations
   if(param_remove_old){
     utl::type::Set* set_scene = dat_database->get_set_scene();
-    sce_set->remove_entity_all(set_scene);
+    dat_set->remove_entity_all(set_scene);
   }
 
   for(int i=0; i<vec_path.size(); i++){
@@ -431,7 +433,7 @@ void Loader::operation_selection(string file_path){
     //Apply loading and operations
     if(param_remove_old){
       utl::type::Set* set_scene = dat_database->get_set_scene();
-      sce_set->remove_entity_all(set_scene);
+      dat_set->remove_entity_all(set_scene);
     }
 
     utl::Path path;

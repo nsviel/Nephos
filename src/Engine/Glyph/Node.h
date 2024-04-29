@@ -38,7 +38,7 @@ private:
   eng::Node* node_engine;
   sce::Node* node_scene;
   dat::Database* dat_database;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
   dat::Entity* dat_entity;
   ldr::Loader* ldr_loader;
   cam::Control* cam_control;

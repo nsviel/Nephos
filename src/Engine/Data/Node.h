@@ -32,9 +32,8 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
-  inline dat::Database* get_scene_database(){return dat_database;}
-  inline gly::Node* get_scene_glyph(){return node_glyph;}
-  inline dat::Entity* get_scene_entity(){return dat_entity;}
+  inline dat::Database* get_database(){return dat_database;}
+  inline dat::Entity* get_entity(){return dat_entity;}
 
 private:
   //Dependancy
@@ -45,7 +44,7 @@ private:
   dat::Database* dat_database;
   gly::Node* node_glyph;
   sce::Graph* sce_graph;
-  sce::gui::Graph* gui_scene;
+  sce::gui::Graph* gui_graph;
   dat::Entity* dat_entity;
   eng::module::Node* node_module;
 

@@ -4,23 +4,26 @@
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Glyph/Namespace.h>
+#include <Loader/Namespace.h>
 
 
 namespace sce{
 
 //Constructor / Destructor
-Manager::Manager(sce::Node* node_scene){
+Manager::Manager(eng::Node* node_engine){
   //---------------------------
 
-  vk::Node* node_vulkan = node_scene->get_node_vulkan();
+  ldr::Node* node_loader = node_engine->get_node_loader();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  dat::Node* node_data = node_engine->get_node_data();
 
-  this->node_engine = node_scene->get_node_engine();
-  this->dat_database = node_scene->get_scene_database();
-  this->dat_entity = node_scene->get_scene_entity();
-  this->ldr_loader = node_scene->get_scene_loader();
-  this->sce_set = new dat::Set();
+  this->node_engine = node_engine;
+  this->dat_database = node_data->get_database();
+  this->dat_entity = node_data->get_entity();
+  this->ldr_loader = node_loader->get_loader();
+  this->dat_set = new dat::Set();
 
   //---------------------------
 }
@@ -67,7 +70,7 @@ void Manager::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
   //---------------------------
 
   glyph->create();
-  sce_set->insert_entity(set, glyph);
+  dat_set->insert_entity(set, glyph);
 
   //---------------------------
 }

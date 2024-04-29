@@ -12,7 +12,7 @@ namespace k4n::dev{
 Master::Master(){
   //---------------------------
 
-  this->sce_set = new dat::Set();
+  this->dat_set = new dat::Set();
   this->k4n_config = new k4n::config::Configuration();
 
   //this->engine = engine;
@@ -35,7 +35,7 @@ void Master::insert_sensor(k4n::dev::Sensor* sensor){
     return;
   }
 
-  sce_set->insert_entity(this, sensor);
+  dat_set->insert_entity(this, sensor);
 
   //---------------------------
 }
@@ -260,7 +260,7 @@ void Master::player_close(){
   switch(mode){
     //If playback, close selected one
     case k4n::dev::PLAYBACK:{
-      sce_set->remove_entity(this, selected_entity);
+      dat_set->remove_entity(this, selected_entity);
       break;
     }
     //If capture, stop all sensor threads

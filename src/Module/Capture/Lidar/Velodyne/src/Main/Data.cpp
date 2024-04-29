@@ -1,8 +1,10 @@
 #include "Data.h"
 
 #include <Velodyne/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Data/Namespace.h>
+#include <Loader/Namespace.h>
 
 
 namespace vld::main{
@@ -11,14 +13,16 @@ namespace vld::main{
 Data::Data(vld::Node* node_vld){
   //---------------------------
 
-  sce::Node* node_scene = node_vld->get_node_scene();
+  eng::Node* node_engine = node_vld->get_node_engine();
+  dat::Node* node_data = node_engine->get_node_data();
+  ldr::Node* node_loader = node_engine->get_node_loader();
 
   this->node_engine = node_vld->get_node_engine();
   this->vld_struct = node_vld->get_vld_struct();
-  this->dat_database = node_scene->get_scene_database();
-  this->ldr_loader = node_scene->get_scene_loader();
-  this->sce_set = new dat::Set();
-  this->dat_entity = node_scene->get_scene_entity();
+  this->dat_database = node_data->get_database();
+  this->ldr_loader = node_loader->get_loader();
+  this->dat_set = new dat::Set();
+  this->dat_entity = node_data->get_entity();
 
   //---------------------------
 }
@@ -38,8 +42,8 @@ void Data::create_object(){
   dat_entity->init_entity(vld_struct->data.object);
 
   utl::type::Set* set_scene = dat_database->get_set_scene();
-  utl::type::Set* set_capture = sce_set->get_or_create_subset(set_scene, "Data");
-  sce_set->insert_entity(set_capture, vld_struct->data.object);
+  utl::type::Set* set_capture = dat_set->get_or_create_subset(set_scene, "Data");
+  dat_set->insert_entity(set_capture, vld_struct->data.object);
 
   //---------------------------
 }

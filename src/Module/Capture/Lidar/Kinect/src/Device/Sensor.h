@@ -78,7 +78,7 @@ public:
 private:
   eng::Node* node_engine;
   dat::Entity* dat_entity;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
   gly::Node* node_glyph;
   k4n::thread::Capture* k4n_capture;
   k4n::thread::Playback* k4n_playback;

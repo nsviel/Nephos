@@ -1,7 +1,8 @@
 #include "Server.h"
 
 #include <Velodyne/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Engine/Namespace.h>
+#include <Loader/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -11,11 +12,13 @@ namespace vld::thread{
 Server::Server(vld::Node* node_vld){
   //---------------------------
 
-  sce::Node* node_scene = node_vld->get_node_scene();
+  eng::Node* node_engine = node_vld->get_node_engine();
+  dat::Node* node_data = node_engine->get_node_data();
+  ldr::Node* node_loader = node_engine->get_node_loader();
 
-  this->dat_database = node_scene->get_scene_database();
-  this->ldr_loader = node_scene->get_scene_loader();
-  this->sce_set = new dat::Set();
+  this->dat_database = node_data->get_database();
+  this->ldr_loader = node_loader->get_loader();
+  this->dat_set = new dat::Set();
 
   this->vld_struct = node_vld->get_vld_struct();
   this->vld_server = new vld::utils::Server();

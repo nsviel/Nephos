@@ -10,7 +10,7 @@ Database::Database(sce::Node* node_scene){
   //---------------------------
 
   this->set_main = new utl::type::Set();
-  this->sce_set = new dat::Set();
+  this->dat_set = new dat::Set();
 
   //---------------------------
 }
@@ -20,10 +20,10 @@ Database::~Database(){}
 void Database::init(){
   //---------------------------
 
-  set_world = sce_set->create_subset(set_main, "World");
+  set_world = dat_set->create_subset(set_main, "World");
   set_world->is_suppressible = false;
 
-  set_scene = sce_set->create_subset(set_main, "Scene");
+  set_scene = dat_set->create_subset(set_main, "Scene");
   set_scene->is_suppressible = false;
 
   //---------------------------
@@ -31,21 +31,21 @@ void Database::init(){
 void Database::loop(){
   //----------------------------
 
-  sce_set->update_set(set_main);
+  dat_set->update_set(set_main);
 
   //----------------------------
 }
 void Database::reset(){
   //---------------------------
 
-  sce_set->reset_set(set_main);
+  dat_set->reset_set(set_main);
 
   //---------------------------
 }
 void Database::clean(){
   //---------------------------
 
-  sce_set->remove_entity_all(set_main);
+  dat_set->remove_entity_all(set_main);
 
   //---------------------------
 }

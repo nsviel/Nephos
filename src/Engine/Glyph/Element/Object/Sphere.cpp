@@ -1,7 +1,7 @@
 #include "Sphere.h"
 
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Camera/Namespace.h>
@@ -14,8 +14,9 @@ namespace gly::element::object{
 Sphere::Sphere(eng::Node* node_engine) : Glyph(node_engine){
   //---------------------------
 
-  sce::Node* node_scene = node_engine->get_node_scene();
-  this->ldr_loader = node_scene->get_scene_loader();
+  ldr::Node* node_loader = node_engine->get_node_loader();
+
+  this->ldr_loader = node_loader->get_loader();
   this->ope_transform = new ope::Transformation();
 
   this->name = "object::sphere";
@@ -52,7 +53,7 @@ void Sphere::update_pose(utl::type::Entity* entity){
     utl::type::Pose* entity_pose = entity->get_pose();
     pose.model = truc * entity_pose->model;
 
-    cam::Control* cam_control = node_camera->get_camera_control();
+    cam::Control* cam_control = node_camera->get_control();
     cam_control->compute_camera_mvp(&pose);
   }
 

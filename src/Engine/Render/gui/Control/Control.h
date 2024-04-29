@@ -37,7 +37,7 @@ public:
 private:
   eng::Node* node_engine;
   dat::Database* dat_database;
-  dat::Set* sce_set;
+  dat::Set* dat_set;
   cam::Control* cam_control;
   cam::Manager* cam_manager;
   ope::Operation* ope_operation;

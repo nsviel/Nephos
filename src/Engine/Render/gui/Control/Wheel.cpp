@@ -3,7 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Render/Namespace.h>
 
@@ -15,11 +15,11 @@ Wheel::Wheel(rnd::Node* node_render){
   //---------------------------
 
   eng::Node* node_engine = node_render->get_node_engine();
-  sce::Node* node_scene = node_engine->get_node_scene();
+  dat::Node* node_data = node_engine->get_node_data();
   cam::Node* node_camera = node_engine->get_node_camera();
 
-  this->cam_control = node_camera->get_camera_control();
-  this->dat_database = node_scene->get_scene_database();
+  this->cam_control = node_camera->get_control();
+  this->dat_database = node_data->get_database();
   this->ope_operation = new ope::Operation();
 
   this->mode = WHEEL_CAM_Z;
