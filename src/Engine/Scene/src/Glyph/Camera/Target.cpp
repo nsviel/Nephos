@@ -46,7 +46,7 @@ void Target::update_pose(utl::type::Entity* entity){
     pose.model = translation;
     data.is_visible = is_visible;
 
-    eng::cam::Control* cam_control = node_camera->get_camera_control();
+    cam::Control* cam_control = node_camera->get_camera_control();
     cam_control->compute_camera_mvp(&pose);
   }
 

@@ -4,17 +4,17 @@
 #include <Utility/Specific/Common.h>
 #include <Utility/Element/Namespace.h>
 
-namespace eng::cam{class Node;}
-namespace eng::cam::mode{class Base;}
+namespace cam{class Node;}
+namespace cam::mode{class Base;}
 namespace vk::window{class GLFW;}
 
 
-namespace eng::cam::mode{
+namespace cam::mode{
 
-class Player : public eng::cam::mode::Base
+class Player : public cam::mode::Base
 {
 public:
-  Player(eng::cam::Node* node_camera);
+  Player(cam::Node* node_camera);
   ~Player();
 
 public:

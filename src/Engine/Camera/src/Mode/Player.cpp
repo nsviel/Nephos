@@ -4,10 +4,10 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace eng::cam::mode{
+namespace cam::mode{
 
 //Constructor / Destructor
-Player::Player(eng::cam::Node* node_camera){
+Player::Player(cam::Node* node_camera){
   //---------------------------
 
   vk::Node* node_vulkan = node_camera->get_node_vulkan();

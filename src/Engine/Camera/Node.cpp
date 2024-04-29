@@ -6,7 +6,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace eng::cam{
+namespace cam{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
@@ -18,10 +18,10 @@ Node::Node(eng::Node* node_engine){
   this->node_scene = node_engine->get_node_scene();
 
   //Child
-  this->cam_manager = new eng::cam::Manager(this);
-  this->cam_control = new eng::cam::Control(this);
-  this->gui_control = new eng::cam::gui::Control(this);
-  this->gui_panel = new eng::cam::gui::Panel(this, &cam_panel->is_open);
+  this->cam_manager = new cam::Manager(this);
+  this->cam_control = new cam::Control(this);
+  this->gui_control = new cam::gui::Control(this);
+  this->gui_panel = new cam::gui::Panel(this, &cam_panel->is_open);
 
   //---------------------------
 }

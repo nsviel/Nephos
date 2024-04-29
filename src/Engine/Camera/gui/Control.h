@@ -2,19 +2,19 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng::cam{class Node;}
-namespace eng::cam{class Control;}
-namespace eng::cam{class Manager;}
+namespace cam{class Node;}
+namespace cam{class Control;}
+namespace cam{class Manager;}
 namespace vk::window{class GLFW;}
 
 
-namespace eng::cam::gui{
+namespace cam::gui{
 
 class Control
 {
 public:
   //Constructor / Destructor
-  Control(eng::cam::Node* node_camera);
+  Control(cam::Node* node_camera);
   ~Control();
 
 public:
@@ -32,8 +32,8 @@ public:
 
 private:
   vk::window::GLFW* vk_window;
-  eng::cam::Control* cam_control;
-  eng::cam::Manager* cam_manager;
+  cam::Control* cam_control;
+  cam::Manager* cam_manager;
 
   vec2 cursor_pose = vec2(0, 0);
 };

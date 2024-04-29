@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace eng::cam::mode{
+namespace cam::mode{
 
 class Base
 {

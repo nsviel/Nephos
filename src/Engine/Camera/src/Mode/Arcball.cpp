@@ -4,10 +4,10 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace eng::cam::mode{
+namespace cam::mode{
 
 //Constructor / Destructor
-Arcball::Arcball(eng::cam::Node* node_camera){
+Arcball::Arcball(cam::Node* node_camera){
   //---------------------------
 
   vk::Node* node_vulkan = node_camera->get_node_vulkan();

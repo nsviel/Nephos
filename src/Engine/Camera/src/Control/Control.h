@@ -3,17 +3,17 @@
 #include <Utility/Specific/Common.h>
 #include <Utility/Element/Namespace.h>
 
-namespace eng::cam{class Node;}
-namespace eng::cam{class Projection;}
-namespace eng::cam::mode{class Base;}
+namespace cam{class Node;}
+namespace cam{class Projection;}
+namespace cam::mode{class Base;}
 
 
-namespace eng::cam{
+namespace cam{
 
 class Control
 {
 public:
-  Control(eng::cam::Node* node_camera);
+  Control(cam::Node* node_camera);
   ~Control();
 
 public:
@@ -38,10 +38,10 @@ public:
   void set_next_camera_mode();
 
 private:
-  eng::cam::Projection* cam_proj;
+  cam::Projection* cam_proj;
 
-  vector<eng::cam::mode::Base*> vec_mode;
-  eng::cam::mode::Base* active_mode;
+  vector<cam::mode::Base*> vec_mode;
+  cam::mode::Base* active_mode;
   utl::entity::Camera* camera = nullptr;
 };
 

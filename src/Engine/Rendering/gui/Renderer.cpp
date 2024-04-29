@@ -19,7 +19,7 @@ Renderer::Renderer(rnd::Node* node_rendering){
 
   eng::Node* node_engine = node_rendering->get_node_engine();
   vk::Node* node_vulkan = node_rendering->get_node_vulkan();
-  engine::cam::Node* node_camera = node_engine->get_node_camera();
+  cam::Node* node_camera = node_engine->get_node_camera();
 
   this->gui_control = node_rendering->get_gui_control();
   this->cam_control = node_camera->get_gui_control();

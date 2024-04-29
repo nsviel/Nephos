@@ -7,9 +7,8 @@ namespace vk::gui{class Imgui;}
 namespace vk::main{class Interface;}
 namespace vk::structure{class Vulkan;}
 namespace eng{class Node;}
-namespace eng::cam::gui{class Control;}
+namespace cam::gui{class Control;}
 namespace rnd::gui{class Control;}
-namespace engine = eng;
 
 
 namespace rnd::gui{
@@ -31,7 +30,7 @@ public:
   void resize();
 
 private:
-  engine::cam::gui::Control* cam_control;
+  cam::gui::Control* cam_control;
   rnd::gui::Control* gui_control;
   vk::gui::Imgui* vk_imgui;
   vk::main::Interface* vk_interface;

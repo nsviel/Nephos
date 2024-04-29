@@ -15,7 +15,7 @@
 
 namespace vk{class Node;}
 namespace eng{class Node;}
-namespace eng::cam{class Node;}
+namespace cam{class Node;}
 namespace utl::entity{class Glyph;}
 
 
@@ -53,7 +53,7 @@ public:
 public:
   //Dependancy
   vk::Node* node_vulkan;
-  eng::cam::Node* node_camera = nullptr;
+  cam::Node* node_camera = nullptr;
 };
 
 }

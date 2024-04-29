@@ -50,7 +50,7 @@ void Sphere::update_pose(utl::type::Entity* entity){
     utl::type::Pose* entity_pose = entity->get_pose();
     pose.model = truc * entity_pose->model;
 
-    eng::cam::Control* cam_control = node_camera->get_camera_control();
+    cam::Control* cam_control = node_camera->get_camera_control();
     cam_control->compute_camera_mvp(&pose);
   }
 

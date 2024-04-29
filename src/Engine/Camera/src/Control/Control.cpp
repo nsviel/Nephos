@@ -4,16 +4,16 @@
 #include <Utility/Namespace.h>
 
 
-namespace eng::cam{
+namespace cam{
 
 //Constructor / Destructor
-Control::Control(eng::cam::Node* node_camera){
+Control::Control(cam::Node* node_camera){
   //---------------------------
 
-  this->cam_proj = new eng::cam::Projection(node_camera);
+  this->cam_proj = new cam::Projection(node_camera);
 
-  this->vec_mode.push_back(new eng::cam::mode::Player(node_camera));
-  this->vec_mode.push_back(new eng::cam::mode::Arcball(node_camera));
+  this->vec_mode.push_back(new cam::mode::Player(node_camera));
+  this->vec_mode.push_back(new cam::mode::Arcball(node_camera));
   this->active_mode = vec_mode[0];
 
   //---------------------------

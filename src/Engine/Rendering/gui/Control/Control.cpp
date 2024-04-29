@@ -15,7 +15,7 @@ Control::Control(rnd::Node* node_rendering){
 
   this->node_engine = node_rendering->get_node_engine();
   eng::scene::Node* node_scene = node_engine->get_node_scene();
-  eng::cam::Node* node_camera = node_engine->get_node_camera();
+  cam::Node* node_camera = node_engine->get_node_camera();
 
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();

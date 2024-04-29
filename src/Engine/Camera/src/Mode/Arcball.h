@@ -4,17 +4,17 @@
 #include <Utility/Specific/Common.h>
 #include <Utility/Element/Namespace.h>
 
-namespace eng::cam{class Node;}
-namespace eng::cam::mode{class Base;}
+namespace cam{class Node;}
+namespace cam::mode{class Base;}
 namespace vk::window{class GLFW;}
 
 
-namespace eng::cam::mode{
+namespace cam::mode{
 
-class Arcball : public eng::cam::mode::Base
+class Arcball : public cam::mode::Base
 {
 public:
-  Arcball(eng::cam::Node* node_camera);
+  Arcball(cam::Node* node_camera);
   ~Arcball();
 
 public:

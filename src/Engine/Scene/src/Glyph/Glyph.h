@@ -7,7 +7,7 @@ namespace eng::scene{class Database;}
 namespace eng::scene{class Entity;}
 namespace eng::scene{class Set;}
 namespace eng::scene{class Loader;}
-namespace eng::cam{class Control;}
+namespace cam{class Control;}
 
 
 namespace eng::scene{
@@ -39,7 +39,7 @@ private:
   eng::scene::Set* sce_set;
   eng::scene::Entity* sce_entity;
   eng::scene::Loader* sce_loader;
-  eng::cam::Control* cam_control;
+  cam::Control* cam_control;
 };
 
 }

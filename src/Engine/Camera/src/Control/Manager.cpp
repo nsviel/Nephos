@@ -4,10 +4,10 @@
 #include <Scene/Namespace.h>
 
 
-namespace eng::cam{
+namespace cam{
 
 //Constructor / Destructor
-Manager::Manager(eng::cam::Node* node_camera){
+Manager::Manager(cam::Node* node_camera){
   //---------------------------
 
   this->node_scene = node_camera->get_node_scene();

@@ -4,15 +4,15 @@
 #include <Utility/Element/Namespace.h>
 
 namespace vk::window{class GLFW;}
-namespace eng::cam{class Node;}
+namespace cam{class Node;}
 
 
-namespace eng::cam{
+namespace cam{
 
 class Projection
 {
 public:
-  Projection(eng::cam::Node* node_camera);
+  Projection(cam::Node* node_camera);
   ~Projection();
 
 public:

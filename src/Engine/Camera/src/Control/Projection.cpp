@@ -4,10 +4,10 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace eng::cam{
+namespace cam{
 
 //Constructor / Destructor
-Projection::Projection(eng::cam::Node* node_camera){
+Projection::Projection(cam::Node* node_camera){
   //---------------------------
 
   vk::Node* node_vulkan = node_camera->get_node_vulkan();

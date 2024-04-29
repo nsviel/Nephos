@@ -2,18 +2,18 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng::cam{class Node;}
-namespace eng::cam{class Control;}
-namespace eng::cam{class Manager;}
+namespace cam{class Node;}
+namespace cam{class Control;}
+namespace cam{class Manager;}
 
 
-namespace eng::cam::gui{
+namespace cam::gui{
 
 class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(eng::cam::Node* node_camera, bool* show_window);
+  Panel(cam::Node* node_camera, bool* show_window);
   ~Panel();
 
   //Main function
@@ -27,8 +27,8 @@ public:
 
 private:
   Panel* gui_render_panel;
-  eng::cam::Control* cam_control;
-  eng::cam::Manager* cam_manager;
+  cam::Control* cam_control;
+  cam::Manager* cam_manager;
 
   int item_width;
   bool* show_window;

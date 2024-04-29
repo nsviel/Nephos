@@ -3,10 +3,10 @@
 #include <Camera/Namespace.h>
 
 
-namespace eng::cam::gui{
+namespace cam::gui{
 
 //Constructor / Destructor
-Panel::Panel(eng::cam::Node* node_camera, bool* show_window){
+Panel::Panel(cam::Node* node_camera, bool* show_window){
   //---------------------------
 
   this->cam_control = node_camera->get_camera_control();

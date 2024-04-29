@@ -4,15 +4,15 @@
 
 namespace eng::scene{class Node;}
 namespace eng::scene{class Set;}
-namespace eng::cam{class Node;}
+namespace cam{class Node;}
 
 
-namespace eng::cam{
+namespace cam{
 
 class Manager
 {
 public:
-  Manager(eng::cam::Node* node_camera);
+  Manager(cam::Node* node_camera);
   ~Manager();
 
 public:

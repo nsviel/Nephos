@@ -4,10 +4,10 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace eng::cam::gui{
+namespace cam::gui{
 
 //Constructor / Destructor
-Control::Control(eng::cam::Node* node_camera){
+Control::Control(cam::Node* node_camera){
   //---------------------------
 
   vk::Node* node_vulkan = node_camera->get_node_vulkan();

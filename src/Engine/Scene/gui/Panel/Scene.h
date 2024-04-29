@@ -8,7 +8,7 @@ namespace eng::scene{class Database;}
 namespace eng::scene{class Set;}
 namespace eng::scene::gui{class Entity;}
 namespace eng::scene::gui{class Set;}
-namespace eng::cam{class Control;}
+namespace cam{class Control;}
 namespace ope{class Operation;}
 
 
@@ -46,7 +46,7 @@ private:
   eng::scene::gui::Set* rnd_set;
   eng::scene::Database* sce_database;
   eng::scene::Set* sce_set;
-  eng::cam::Control* cam_control;
+  cam::Control* cam_control;
   ope::Operation* ope_operation;
 
   string name;

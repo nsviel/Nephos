@@ -5,7 +5,7 @@
 
 namespace vk{class Node;}
 namespace eng{class Node;}
-namespace eng::cam{class Node;}
+namespace cam{class Node;}
 namespace eng::scene{class Node;}
 
 
@@ -43,7 +43,7 @@ public:
 protected:
   //Dependancy
   vk::Node* node_vulkan;
-  eng::cam::Node* node_camera;
+  cam::Node* node_camera;
   eng::scene::Node* node_scene;
 
   //Child

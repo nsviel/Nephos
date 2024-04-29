@@ -8,8 +8,8 @@ namespace ope{class Operation;}
 namespace rnd::gui{class Wheel;}
 namespace eng::scene{class Database;}
 namespace eng::scene{class Set;}
-namespace eng::cam{class Control;}
-namespace eng::cam{class Manager;}
+namespace cam{class Control;}
+namespace cam{class Manager;}
 
 
 namespace rnd::gui{
@@ -38,8 +38,8 @@ private:
   eng::Node* node_engine;
   eng::scene::Database* sce_database;
   eng::scene::Set* sce_set;
-  eng::cam::Control* cam_control;
-  eng::cam::Manager* cam_manager;
+  cam::Control* cam_control;
+  cam::Manager* cam_manager;
   ope::Operation* ope_operation;
   rnd::gui::Wheel* gui_wheel;
 };
