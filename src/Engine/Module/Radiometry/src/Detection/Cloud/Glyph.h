@@ -4,7 +4,7 @@
 
 namespace k4n::dev{class Sensor;}
 namespace radio{class Structure;}
-namespace eng::scene{class Glyph;}
+namespace scene{class Glyph;}
 
 
 namespace radio::detection::cloud{
@@ -25,7 +25,7 @@ public:
   void draw_glyph(k4n::dev::Sensor* sensor, vec3 pose, float radius);
 
 private:
-  eng::scene::Glyph* sce_glyph;
+  scene::Glyph* sce_glyph;
 };
 
 }

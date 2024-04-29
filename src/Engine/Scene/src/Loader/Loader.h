@@ -3,21 +3,21 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace eng::scene{class Entity;}
-namespace eng::scene{class Database;}
-namespace eng::scene{class Format;}
-namespace eng::scene{class Node;}
-namespace eng::scene{class Parameter;}
-namespace eng::scene{class Set;}
+namespace scene{class Entity;}
+namespace scene{class Database;}
+namespace scene{class Format;}
+namespace scene{class Node;}
+namespace scene{class Parameter;}
+namespace scene{class Set;}
 
 
-namespace eng::scene{
+namespace scene{
 
 class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(eng::scene::Node* node_scene);
+  Loader(scene::Node* node_scene);
   ~Loader();
 
 public:
@@ -33,11 +33,11 @@ public:
 
 private:
   eng::Node* node_engine;
-  eng::scene::Format* sce_format;
-  eng::scene::Entity* sce_entity;
-  eng::scene::Database* sce_database;
-  eng::scene::Parameter* sce_param;
-  eng::scene::Set* sce_set;
+  scene::Format* sce_format;
+  scene::Entity* sce_entity;
+  scene::Database* sce_database;
+  scene::Parameter* sce_param;
+  scene::Set* sce_set;
 };
 
 }

@@ -3,10 +3,10 @@
 #include <Scene/Namespace.h>
 
 
-namespace eng::scene{
+namespace scene{
 
 //Constructor / Destructor
-Scene::Scene(eng::scene::Node* node_scene){
+Scene::Scene(scene::Node* node_scene){
   //---------------------------
 
   this->sce_loader = node_scene->get_scene_loader();

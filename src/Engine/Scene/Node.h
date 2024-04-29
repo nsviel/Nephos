@@ -4,21 +4,21 @@
 
 namespace vk{class Node;}
 namespace eng{class Node;}
-namespace eng::scene{class Parameter;}
-namespace eng::scene{class Database;}
-namespace eng::scene{class Loader;}
-namespace eng::scene{class Exporter;}
-namespace eng::scene{class Format;}
-namespace eng::scene{class Glyph;}
-namespace eng::scene{class Operation;}
-namespace eng::scene{class Bookmark;}
-namespace eng::scene{class Entity;}
-namespace eng::scene{class Scene;}
-namespace eng::scene::gui{class Scene;}
-namespace eng::scene::gui{class Loader;}
+namespace scene{class Parameter;}
+namespace scene{class Database;}
+namespace scene{class Loader;}
+namespace scene{class Exporter;}
+namespace scene{class Format;}
+namespace scene{class Glyph;}
+namespace scene{class Operation;}
+namespace scene{class Bookmark;}
+namespace scene{class Entity;}
+namespace scene{class Scene;}
+namespace scene::gui{class Scene;}
+namespace scene::gui{class Loader;}
 
 
-namespace eng::scene{
+namespace scene{
 
 class Node : public utl::type::Node
 {
@@ -37,14 +37,14 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
-  inline eng::scene::Parameter* get_scene_param(){return sce_param;}
-  inline eng::scene::Format* get_scene_format(){return sce_format;}
-  inline eng::scene::Database* get_scene_database(){return sce_database;}
-  inline eng::scene::Loader* get_scene_loader(){return sce_loader;}
-  inline eng::scene::Exporter* get_scene_exporter(){return sce_exporter;}
-  inline eng::scene::Glyph* get_scene_glyph(){return sce_glyph;}
-  inline eng::scene::Bookmark* get_scene_bookmark(){return sce_bookmark;}
-  inline eng::scene::Entity* get_scene_entity(){return sce_entity;}
+  inline scene::Parameter* get_scene_param(){return sce_param;}
+  inline scene::Format* get_scene_format(){return sce_format;}
+  inline scene::Database* get_scene_database(){return sce_database;}
+  inline scene::Loader* get_scene_loader(){return sce_loader;}
+  inline scene::Exporter* get_scene_exporter(){return sce_exporter;}
+  inline scene::Glyph* get_scene_glyph(){return sce_glyph;}
+  inline scene::Bookmark* get_scene_bookmark(){return sce_bookmark;}
+  inline scene::Entity* get_scene_entity(){return sce_entity;}
 
 private:
   //Dependancy
@@ -52,17 +52,17 @@ private:
   vk::Node* node_vulkan;
 
   //Child
-  eng::scene::Parameter* sce_param;
-  eng::scene::Database* sce_database;
-  eng::scene::Glyph* sce_glyph;
-  eng::scene::Loader* sce_loader;
-  eng::scene::Exporter* sce_exporter;
-  eng::scene::Format* sce_format;
-  eng::scene::Bookmark* sce_bookmark;
-  eng::scene::Scene* sce_scene;
-  eng::scene::gui::Scene* gui_scene;
-  eng::scene::gui::Loader* gui_loader;
-  eng::scene::Entity* sce_entity;
+  scene::Parameter* sce_param;
+  scene::Database* sce_database;
+  scene::Glyph* sce_glyph;
+  scene::Loader* sce_loader;
+  scene::Exporter* sce_exporter;
+  scene::Format* sce_format;
+  scene::Bookmark* sce_bookmark;
+  scene::Scene* sce_scene;
+  scene::gui::Scene* gui_scene;
+  scene::gui::Loader* gui_loader;
+  scene::Entity* sce_entity;
 
   bool show_scene = true;
   bool show_loader = true;

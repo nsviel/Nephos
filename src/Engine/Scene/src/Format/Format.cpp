@@ -5,10 +5,10 @@
 #include <Engine/Namespace.h>
 
 
-namespace eng::scene{
+namespace scene{
 
 //Constructor / Destructor
-Format::Format(eng::scene::Node* node_scene){
+Format::Format(scene::Node* node_scene){
   //---------------------------
 
   eng::Node* node_engine = node_scene->get_node_engine();

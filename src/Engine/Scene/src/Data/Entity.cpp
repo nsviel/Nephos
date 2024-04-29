@@ -6,10 +6,10 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace eng::scene{
+namespace scene{
 
 //Constructor / Destructor
-Entity::Entity(eng::scene::Node* node_scene){
+Entity::Entity(scene::Node* node_scene){
   //---------------------------
 
   eng::Node* node_engine = node_scene->get_node_engine();

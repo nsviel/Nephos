@@ -11,7 +11,7 @@ namespace k4n::processing{
 Recorder::Recorder(k4n::Node* node_k4n){
   //---------------------------
 
-  eng::scene::Node* node_scene = node_k4n->get_node_scene();
+  scene::Node* node_scene = node_k4n->get_node_scene();
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->sce_exporter = node_scene->get_scene_exporter();

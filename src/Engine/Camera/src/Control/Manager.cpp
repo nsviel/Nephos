@@ -11,7 +11,7 @@ Manager::Manager(cam::Node* node_camera){
   //---------------------------
 
   this->node_scene = node_camera->get_node_scene();
-  this->sce_set = new eng::scene::Set();
+  this->sce_set = new scene::Set();
 
   this->camera_ID = 0;
 
@@ -23,8 +23,8 @@ Manager::~Manager(){}
 void Manager::create_camera(){
   //---------------------------
 
-  eng::scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
-  eng::scene::Database* sce_database = node_scene->get_scene_database();
+  scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
+  scene::Database* sce_database = node_scene->get_scene_database();
   utl::type::Set* set_main = sce_database->get_set_main();
   utl::type::Set* set_world = sce_set->get_subset(set_main, "World");
 

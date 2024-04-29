@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace eng::scene{
+namespace scene{
 
 struct Parameter : public utl::type::Parameter{
   //---------------------------

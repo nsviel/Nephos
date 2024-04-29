@@ -3,22 +3,22 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace eng::scene{class Node;}
-namespace eng::scene{class Database;}
-namespace eng::scene{class Entity;}
-namespace eng::scene{class Set;}
-namespace eng::scene{class Loader;}
+namespace scene{class Node;}
+namespace scene{class Database;}
+namespace scene{class Entity;}
+namespace scene{class Set;}
+namespace scene{class Loader;}
 namespace cam{class Control;}
 namespace cam{class Entity;}
 
 
-namespace eng::scene{
+namespace scene{
 
 class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(eng::scene::Node* node_scene);
+  Glyph(scene::Node* node_scene);
   ~Glyph();
 
 public:
@@ -36,11 +36,11 @@ public:
 
 private:
   eng::Node* node_engine;
-  eng::scene::Node* node_scene;
-  eng::scene::Database* sce_database;
-  eng::scene::Set* sce_set;
-  eng::scene::Entity* sce_entity;
-  eng::scene::Loader* sce_loader;
+  scene::Node* node_scene;
+  scene::Database* sce_database;
+  scene::Set* sce_set;
+  scene::Entity* sce_entity;
+  scene::Loader* sce_loader;
   cam::Control* cam_control;
 };
 

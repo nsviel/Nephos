@@ -2,18 +2,18 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng::scene{class Node;}
-namespace eng::scene{class Loader;}
+namespace scene{class Node;}
+namespace scene{class Loader;}
 namespace utl::type{class Selection;}
 
 
-namespace eng::scene{
+namespace scene{
 
 class Scene
 {
 public:
   //Constructor / Destructor
-  Scene(eng::scene::Node* node_scene);
+  Scene(scene::Node* node_scene);
   ~Scene();
 
 public:
@@ -21,7 +21,7 @@ public:
   void init();
 
 private:
-  eng::scene::Loader* sce_loader;
+  scene::Loader* sce_loader;
   utl::type::Selection* selection = nullptr;
 };
 

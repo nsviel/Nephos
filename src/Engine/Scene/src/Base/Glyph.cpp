@@ -27,7 +27,7 @@ Glyph::~Glyph(){}
 
 //Main function
 void Glyph::init(){
-  eng::scene::Entity* sce_entity = node_scene->get_scene_entity();
+  scene::Entity* sce_entity = node_scene->get_scene_entity();
   //----------------------------
 
   sce_entity->init_entity(this);

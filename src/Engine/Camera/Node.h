@@ -5,7 +5,7 @@
 
 namespace vk{class Node;}
 namespace eng{class Node;}
-namespace eng::scene{class Node;}
+namespace scene{class Node;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
 namespace cam::gui{class Control;}
@@ -29,7 +29,7 @@ public:
   void reset();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
-  inline eng::scene::Node* get_node_scene(){return node_scene;}
+  inline scene::Node* get_node_scene(){return node_scene;}
 
   inline cam::gui::Control* get_gui_control(){return gui_control;}
   inline cam::Control* get_camera_control(){return cam_control;}
@@ -38,7 +38,7 @@ public:
 private:
   //Dependancy
   vk::Node* node_vulkan;
-  eng::scene::Node* node_scene;
+  scene::Node* node_scene;
 
   //Child
   cam::Control* cam_control;

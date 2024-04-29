@@ -3,19 +3,19 @@
 #include <Utility/Specific/Common.h>
 
 namespace vk::main{class Engine;}
-namespace eng::scene{class Node;}
-namespace eng::scene{class Glyph;}
-namespace eng::scene{class Operation;}
-namespace eng::scene{class Database;}
+namespace scene{class Node;}
+namespace scene{class Glyph;}
+namespace scene{class Operation;}
+namespace scene{class Database;}
 
 
-namespace eng::scene{
+namespace scene{
 
 class Entity
 {
 public:
   //Constructor / Destructor
-  Entity(eng::scene::Node* node_scene);
+  Entity(scene::Node* node_scene);
   ~Entity();
 
 public:
@@ -24,10 +24,10 @@ public:
   void clear_entity(utl::type::Entity* entity);
 
 private:
-  eng::scene::Node* node_scene;
+  scene::Node* node_scene;
   vk::main::Engine* vk_engine;
-  eng::scene::Database* sce_database;
-  eng::scene::Glyph* sce_glyph;
+  scene::Database* sce_database;
+  scene::Glyph* sce_glyph;
 };
 
 }

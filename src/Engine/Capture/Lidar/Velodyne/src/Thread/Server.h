@@ -2,9 +2,9 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng::scene{class Database;}
-namespace eng::scene{class Loader;}
-namespace eng::scene{class Set;}
+namespace scene{class Database;}
+namespace scene{class Loader;}
+namespace scene{class Set;}
 namespace vld{class Node;}
 namespace vld::structure{class Main;}
 namespace vld::processing{class Player;}
@@ -35,9 +35,9 @@ public:
   void update_object(utl::file::Data* data);
 
 private:
-  eng::scene::Database* sce_database;
-  eng::scene::Loader* sce_loader;
-  eng::scene::Set* sce_set;
+  scene::Database* sce_database;
+  scene::Loader* sce_loader;
+  scene::Set* sce_set;
 
   vld::structure::Main* vld_struct;
   vld::processing::Player* vld_player;

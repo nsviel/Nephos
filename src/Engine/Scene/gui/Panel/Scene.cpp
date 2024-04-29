@@ -7,17 +7,17 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace eng::scene::gui{
+namespace scene::gui{
 
 //Constructor / Destructor
-Scene::Scene(eng::scene::Node* node_scene, bool* show_window){
+Scene::Scene(scene::Node* node_scene, bool* show_window){
   //---------------------------
 
   this->node_engine = node_scene->get_node_engine();
   this->sce_database = node_scene->get_scene_database();
-  this->sce_set = new eng::scene::Set();
-  this->rnd_set = new eng::scene::gui::Set(&show_panel_set);
-  this->rnd_object = new eng::scene::gui::Entity(node_scene, &show_panel_entity);
+  this->sce_set = new scene::Set();
+  this->rnd_set = new scene::gui::Set(&show_panel_set);
+  this->rnd_object = new scene::gui::Entity(node_scene, &show_panel_entity);
 
   this->ope_operation = new ope::Operation();
 

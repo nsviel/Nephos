@@ -45,18 +45,18 @@ void Glyph::draw_best_sphere_glyph(k4n::dev::Sensor* sensor){
 
 //Subfunction
 void Glyph::reset_all_sphere(k4n::dev::Sensor* sensor){
-  vector<glyph::scene::Sphere*>& vec_glyph_sphere = sensor->detection.vec_glyph_sphere;
+  vector<glyph::object::Sphere*>& vec_glyph_sphere = sensor->detection.vec_glyph_sphere;
   //---------------------------
 
   for(int i=0; i<vec_glyph_sphere.size(); i++){
-    glyph::scene::Sphere* sphere = vec_glyph_sphere[i];
+    glyph::object::Sphere* sphere = vec_glyph_sphere[i];
     sphere->reset_glyph();
   }
 
   //---------------------------
 }
 void Glyph::draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<radio::structure::Circle>& vec_circle){
-  vector<glyph::scene::Sphere*>& vec_glyph_sphere = sensor->detection.vec_glyph_sphere;
+  vector<glyph::object::Sphere*>& vec_glyph_sphere = sensor->detection.vec_glyph_sphere;
   //---------------------------
 
   for(int i=0; i<vec_circle.size(); i++){

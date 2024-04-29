@@ -6,7 +6,7 @@ namespace k4n{class Node;}
 namespace k4n::structure{class K4N;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::thread{class Pool;}
-namespace eng::scene{class Exporter;}
+namespace scene{class Exporter;}
 namespace format::ply{class Exporter;}
 
 
@@ -32,7 +32,7 @@ public:
 private:
   k4n::thread::Pool* k4n_pool;
   k4n::structure::K4N* k4n_struct;
-  eng::scene::Exporter* sce_exporter;
+  scene::Exporter* sce_exporter;
   format::ply::Exporter* ply_exporter;
 
   bool idle = true;

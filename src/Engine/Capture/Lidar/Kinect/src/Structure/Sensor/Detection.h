@@ -19,8 +19,8 @@ struct Detection{
 
   vector<radio::structure::Circle> vec_circle;
   vector<radio::structure::Sphere> vec_sphere;
-  vector<glyph::scene::Sphere*> vec_glyph_sphere;
-  glyph::scene::Sphere* glyph_calibration;
+  vector<glyph::object::Sphere*> vec_glyph_sphere;
+  glyph::object::Sphere* glyph_calibration;
 
   //---------------------------
 };

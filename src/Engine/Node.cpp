@@ -23,7 +23,7 @@ Node::Node(app::Node* node_app){
   this->node_vulkan = node_app->get_node_vulkan();
 
   //Child
-  this->node_scene = new eng::scene::Node(this);
+  this->node_scene = new scene::Node(this);
   this->node_camera = new cam::Node(this);
   this->node_capture = new eng::capture::Node(this);
   this->node_module = new eng::module::Node(this);
@@ -62,9 +62,9 @@ void Node::loop(){
   node_camera->loop();
   node_capture->loop();
 
-  tasker_main->task_begin("eng::scene");
+  tasker_main->task_begin("scene");
   node_scene->loop();
-  tasker_main->task_end("eng::scene");
+  tasker_main->task_end("scene");
 
   //---------------------------
   tasker_main->task_end("eng");

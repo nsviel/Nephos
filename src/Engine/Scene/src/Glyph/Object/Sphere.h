@@ -3,10 +3,10 @@
 #include <Scene/src/Base/Glyph.h>
 
 namespace ope{class Transformation;}
-namespace eng::scene{class Loader;}
+namespace scene{class Loader;}
 
 
-namespace glyph::scene{
+namespace glyph::object{
 
 class Sphere : public utl::entity::Glyph
 {
@@ -26,7 +26,7 @@ public:
   void move_sphere(vec3 pose, float diameter);
 
 private:
-  eng::scene::Loader* sce_loader;
+  scene::Loader* sce_loader;
   ope::Transformation* ope_transform;
 
   int size = 20;

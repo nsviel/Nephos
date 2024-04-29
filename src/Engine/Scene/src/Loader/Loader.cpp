@@ -6,10 +6,10 @@
 #include <Capture/Namespace.h>
 
 
-namespace eng::scene{
+namespace scene{
 
 //Constructor / Destructor
-Loader::Loader(eng::scene::Node* node_scene){
+Loader::Loader(scene::Node* node_scene){
   //---------------------------
 
   this->sce_param = node_scene->get_scene_param();
@@ -17,7 +17,7 @@ Loader::Loader(eng::scene::Node* node_scene){
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_database = node_scene->get_scene_database();
   this->sce_format = node_scene->get_scene_format();
-  this->sce_set = new eng::scene::Set();
+  this->sce_set = new scene::Set();
 
   //---------------------------
 }

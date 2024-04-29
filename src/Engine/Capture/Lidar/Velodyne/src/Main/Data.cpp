@@ -10,13 +10,13 @@ namespace vld::main{
 Data::Data(vld::Node* node_vld){
   //---------------------------
 
-  eng::scene::Node* node_scene = node_vld->get_node_scene();
+  scene::Node* node_scene = node_vld->get_node_scene();
 
   this->node_engine = node_vld->get_node_engine();
   this->vld_struct = node_vld->get_vld_struct();
   this->sce_database = node_scene->get_scene_database();
   this->sce_loader = node_scene->get_scene_loader();
-  this->sce_set = new eng::scene::Set();
+  this->sce_set = new scene::Set();
   this->sce_entity = node_scene->get_scene_entity();
 
   //---------------------------

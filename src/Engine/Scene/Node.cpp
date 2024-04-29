@@ -5,7 +5,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace eng::scene{
+namespace scene{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
@@ -18,17 +18,17 @@ Node::Node(eng::Node* node_engine){
   this->node_vulkan = node_engine->get_node_vulkan();
 
   //Child
-  this->sce_param = new eng::scene::Parameter();
-  this->sce_database = new eng::scene::Database(this);
-  this->sce_entity = new eng::scene::Entity(this);
-  this->sce_format = new eng::scene::Format(this);
-  this->sce_loader = new eng::scene::Loader(this);
-  this->sce_glyph = new eng::scene::Glyph(this);
-  this->sce_exporter = new eng::scene::Exporter(this);
-  this->sce_bookmark = new eng::scene::Bookmark(this);
-  this->sce_scene = new eng::scene::Scene(this);
-  this->gui_loader = new eng::scene::gui::Loader(this, &ldr_panel->is_open);
-  this->gui_scene = new eng::scene::gui::Scene(this, &sce_panel->is_open);
+  this->sce_param = new scene::Parameter();
+  this->sce_database = new scene::Database(this);
+  this->sce_entity = new scene::Entity(this);
+  this->sce_format = new scene::Format(this);
+  this->sce_loader = new scene::Loader(this);
+  this->sce_glyph = new scene::Glyph(this);
+  this->sce_exporter = new scene::Exporter(this);
+  this->sce_bookmark = new scene::Bookmark(this);
+  this->sce_scene = new scene::Scene(this);
+  this->gui_loader = new scene::gui::Loader(this, &ldr_panel->is_open);
+  this->gui_scene = new scene::gui::Scene(this, &sce_panel->is_open);
 
   //---------------------------
 }

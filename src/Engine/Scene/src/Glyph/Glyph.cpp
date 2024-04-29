@@ -6,10 +6,10 @@
 #include <Scene/Namespace.h>
 
 
-namespace eng::scene{
+namespace scene{
 
 //Constructor / Destructor
-Glyph::Glyph(eng::scene::Node* node_scene){
+Glyph::Glyph(scene::Node* node_scene){
   //---------------------------
 
   vk::Node* node_vulkan = node_scene->get_node_vulkan();
@@ -18,7 +18,7 @@ Glyph::Glyph(eng::scene::Node* node_scene){
   this->sce_database = node_scene->get_scene_database();
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_loader = node_scene->get_scene_loader();
-  this->sce_set = new eng::scene::Set();
+  this->sce_set = new scene::Set();
 
   //---------------------------
 }

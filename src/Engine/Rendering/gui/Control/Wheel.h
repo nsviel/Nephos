@@ -5,7 +5,7 @@
 namespace rnd{class Node;}
 namespace eng{class Node;}
 namespace ope{class Operation;}
-namespace eng::scene{class Database;}
+namespace scene{class Database;}
 namespace cam{class Control;}
 
 enum Wheel_mode{
@@ -36,7 +36,7 @@ public:
   inline int* get_mode(){return &mode;}
 
 private:
-  eng::scene::Database* sce_database;
+  scene::Database* sce_database;
   cam::Control* cam_control;
   ope::Operation* ope_operation;
 

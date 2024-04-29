@@ -3,7 +3,7 @@
 #include <Scene/Namespace.h>
 
 
-namespace eng::scene{
+namespace scene{
 
 //Constructor / Destructor
 Set::Set(){

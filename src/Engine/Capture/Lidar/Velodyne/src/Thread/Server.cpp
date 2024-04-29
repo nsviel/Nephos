@@ -10,11 +10,11 @@ namespace vld::thread{
 Server::Server(vld::Node* node_vld){
   //---------------------------
 
-  eng::scene::Node* node_scene = node_vld->get_node_scene();
+  scene::Node* node_scene = node_vld->get_node_scene();
 
   this->sce_database = node_scene->get_scene_database();
   this->sce_loader = node_scene->get_scene_loader();
-  this->sce_set = new eng::scene::Set();
+  this->sce_set = new scene::Set();
 
   this->vld_struct = node_vld->get_vld_struct();
   this->vld_server = new vld::utils::Server();

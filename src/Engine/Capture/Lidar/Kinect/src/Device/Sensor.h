@@ -4,9 +4,9 @@
 #include <Kinect/src/Structure/Namespace.h>
 
 namespace eng{class Node;}
-namespace eng::scene{class Entity;}
-namespace eng::scene{class Set;}
-namespace eng::scene{class Glyph;}
+namespace scene{class Entity;}
+namespace scene{class Set;}
+namespace scene{class Glyph;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::thread{class Capture;}
@@ -75,9 +75,9 @@ public:
 
 private:
   eng::Node* node_engine;
-  eng::scene::Entity* sce_entity;
-  eng::scene::Set* sce_set;
-  eng::scene::Glyph* sce_glyph;
+  scene::Entity* sce_entity;
+  scene::Set* sce_set;
+  scene::Glyph* sce_glyph;
   k4n::thread::Capture* k4n_capture;
   k4n::thread::Playback* k4n_playback;
   k4n::structure::K4N* k4n_struct;

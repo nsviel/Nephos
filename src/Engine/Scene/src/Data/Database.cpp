@@ -3,14 +3,14 @@
 #include <Scene/Namespace.h>
 
 
-namespace eng::scene{
+namespace scene{
 
 //Constructor / Destructor
-Database::Database(eng::scene::Node* node_scene){
+Database::Database(scene::Node* node_scene){
   //---------------------------
 
   this->set_main = new utl::type::Set();
-  this->sce_set = new eng::scene::Set();
+  this->sce_set = new scene::Set();
 
   //---------------------------
 }
