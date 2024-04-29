@@ -8,6 +8,7 @@ add_subdirectory(Operation)
 add_subdirectory(Glyph)
 add_subdirectory(Rendering)
 add_subdirectory(Scene)
+add_subdirectory(Loader)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

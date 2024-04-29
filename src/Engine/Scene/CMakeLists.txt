@@ -4,7 +4,7 @@ set(LIBRARY_NAME LIBRARY_SCENE)
 # Source files
 #-----------------
 add_subdirectory(Graph)
-add_subdirectory(Loader)
+
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
