@@ -17,7 +17,7 @@ class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(rnd::Node* node_rendering, bool* show_window);
+  Shader(rnd::Node* node_render, bool* show_window);
   ~Shader();
 
 public:

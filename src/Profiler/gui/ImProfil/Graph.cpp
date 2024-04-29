@@ -120,7 +120,7 @@ void Graph::rebuild_task_stats(size_t bar_end){
   //---------------------------
 }
 
-//Rendering
+//Render
 void Graph::render_graph(ImVec2 dimension){
   const glm::vec2 widget_pose = glm::vec2(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y);
   //---------------------------

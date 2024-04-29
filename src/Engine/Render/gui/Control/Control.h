@@ -18,7 +18,7 @@ class Control
 {
 public:
   //Constructor / Destructor
-  Control(rnd::Node* node_rendering);
+  Control(rnd::Node* node_render);
   ~Control();
 
 public:

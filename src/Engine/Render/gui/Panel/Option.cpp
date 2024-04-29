@@ -5,18 +5,18 @@
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Operation/Namespace.h>
-#include <Rendering/Namespace.h>
+#include <Render/Namespace.h>
 
 
 namespace rnd::gui{
 
 //Constructor / Destructor
-Option::Option(rnd::Node* node_rendering, bool* show_window){
+Option::Option(rnd::Node* node_render, bool* show_window){
   //---------------------------
 
-  vk::Node* node_vulkan = node_rendering->get_node_vulkan();
+  vk::Node* node_vulkan = node_render->get_node_vulkan();
 
-  this->gui_control = node_rendering->get_gui_control();
+  this->gui_control = node_render->get_gui_control();
   this->vk_interface = node_vulkan->get_vk_interface();
 
   this->width = 150;

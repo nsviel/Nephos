@@ -45,7 +45,7 @@ private:
   sce::Node* node_scene;
   eng::capture::Node* node_capture;
   eng::module::Node* node_module;
-  rnd::Node* node_rendering;
+  rnd::Node* node_render;
 };
 
 }

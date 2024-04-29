@@ -22,7 +22,7 @@ class Wheel
 {
 public:
   //Constructor / Destructor
-  Wheel(rnd::Node* node_rendering);
+  Wheel(rnd::Node* node_render);
   ~Wheel();
 
 public:

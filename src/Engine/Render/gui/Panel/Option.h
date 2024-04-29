@@ -14,7 +14,7 @@ class Option
 {
 public:
   //Constructor / Destructor
-  Option(rnd::Node* node_rendering, bool* show_window);
+  Option(rnd::Node* node_render, bool* show_window);
   ~Option();
 
 public:

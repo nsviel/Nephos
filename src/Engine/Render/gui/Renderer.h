@@ -17,7 +17,7 @@ class Renderer
 {
 public:
   //Constructor / Destructor
-  Renderer(rnd::Node* node_rendering);
+  Renderer(rnd::Node* node_render);
   ~Renderer();
 
 public:

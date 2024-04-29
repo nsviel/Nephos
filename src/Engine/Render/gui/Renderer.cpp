@@ -7,21 +7,21 @@
 #include <Camera/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Rendering/Namespace.h>
+#include <Render/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
 namespace rnd::gui{
 
 //Constructor / Destructor
-Renderer::Renderer(rnd::Node* node_rendering){
+Renderer::Renderer(rnd::Node* node_render){
   //---------------------------
 
-  eng::Node* node_engine = node_rendering->get_node_engine();
-  vk::Node* node_vulkan = node_rendering->get_node_vulkan();
+  eng::Node* node_engine = node_render->get_node_engine();
+  vk::Node* node_vulkan = node_render->get_node_vulkan();
   cam::Node* node_camera = node_engine->get_node_camera();
 
-  this->gui_control = node_rendering->get_gui_control();
+  this->gui_control = node_render->get_gui_control();
   this->cam_control = node_camera->get_gui_control();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_interface = node_vulkan->get_vk_interface();

@@ -22,7 +22,7 @@ public:
   void load_graph_data(const std::vector<prf::graph::Task>& vec_task);
   void rebuild_task_stats(size_t endFrame);
 
-  //Rendering
+  //Render
   void render_graph(ImVec2 size);
   void render_serie(ImDrawList *draw_list);
   void render_legend(ImDrawList *draw_list);
