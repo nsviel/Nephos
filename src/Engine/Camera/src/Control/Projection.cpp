@@ -19,7 +19,7 @@ Projection::Projection(cam::Node* node_camera){
 Projection::~Projection(){}
 
 //Main function
-mat4 Projection::compute_proj_perspective(cam::Camera* camera){
+mat4 Projection::compute_proj_perspective(cam::Entity* camera){
   glm::mat4 cam_proj = glm::mat4(1.0f);
   if(camera == nullptr) return cam_proj;
   //---------------------------
@@ -39,7 +39,7 @@ mat4 Projection::compute_proj_perspective(cam::Camera* camera){
   //---------------------------
   return cam_proj;
 }
-mat4 Projection::compute_proj_ortho(cam::Camera* camera){
+mat4 Projection::compute_proj_ortho(cam::Entity* camera){
   glm::mat4 cam_proj = glm::mat4(1.0f);
   if(camera == nullptr) return cam_proj;
   //---------------------------
@@ -58,7 +58,7 @@ mat4 Projection::compute_proj_ortho(cam::Camera* camera){
 }
 
 //Subfunction
-void Projection::ortho_zoom(cam::Camera* camera, float value){
+void Projection::ortho_zoom(cam::Entity* camera, float value){
   //---------------------------
 
   camera->zoom -= value / 10;

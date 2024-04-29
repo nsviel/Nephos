@@ -36,7 +36,7 @@ void Target::create(){
 void Target::update_pose(utl::type::Entity* entity){
   //---------------------------
 
-  if(cam::Camera* camera = dynamic_cast<cam::Camera*>(entity)){
+  if(cam::Entity* camera = dynamic_cast<cam::Entity*>(entity)){
     camera->mode == CAMERA_MODE_ARCBALL ? is_visible = true : is_visible = false;
 
     glm::mat4 translation(1.0);

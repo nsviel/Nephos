@@ -30,12 +30,12 @@ namespace utl::entity{class Glyph;}
 
 namespace cam{
 
-class Camera : public utl::type::Entity
+class Entity : public utl::type::Entity
 {
 public:
   //Constructor / Destructor
-  Camera();
-  ~Camera();
+  Entity();
+  ~Entity();
 
   //Main function
   void update_pose();

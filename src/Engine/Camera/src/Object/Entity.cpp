@@ -1,21 +1,21 @@
-#include "Camera.h"
+#include "Entity.h"
 
 
 namespace cam{
 
 //Constructor / Destructor
-Camera::Camera(){
+Entity::Entity(){
   //---------------------------
 
   this->reset_entity();
-  this->entity_type = "entity::Camera";
+  this->entity_type = "cam::Entity";
 
   //---------------------------
 }
-Camera::~Camera(){}
+Entity::~Entity(){}
 
 //Main function
-void Camera::update_pose(){
+void Entity::update_pose(){
   //----------------------------
 
   for(int i=0; i<list_glyph.size(); i++){
@@ -25,7 +25,7 @@ void Camera::update_pose(){
 
   //----------------------------
 }
-void Camera::reset_entity(){
+void Entity::reset_entity(){
   //---------------------------
 
   this->angle_azimuth = M_PI/4;

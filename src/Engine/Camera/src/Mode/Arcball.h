@@ -7,7 +7,7 @@
 namespace cam{class Node;}
 namespace cam::mode{class Base;}
 namespace vk::window{class GLFW;}
-namespace cam{class Camera;}
+namespace cam{class Entity;}
 
 
 namespace cam::mode{
@@ -20,22 +20,22 @@ public:
 
 public:
   //Camera movement
-  void camera_forward(cam::Camera* camera, float speed);
-  void camera_backward(cam::Camera* camera, float speed);
-  void camera_right(cam::Camera* camera, float speed);
-  void camera_left(cam::Camera* camera, float speed);
-  void camera_up(cam::Camera* camera, float speed);
-  void camera_down(cam::Camera* camera, float speed);
-  void camera_mouse(cam::Camera* camera);
-  void camera_wheel(cam::Camera* camera, float speed);
-  void camera_zoom(cam::Camera* camera, float speed);
+  void camera_forward(cam::Entity* camera, float speed);
+  void camera_backward(cam::Entity* camera, float speed);
+  void camera_right(cam::Entity* camera, float speed);
+  void camera_left(cam::Entity* camera, float speed);
+  void camera_up(cam::Entity* camera, float speed);
+  void camera_down(cam::Entity* camera, float speed);
+  void camera_mouse(cam::Entity* camera);
+  void camera_wheel(cam::Entity* camera, float speed);
+  void camera_zoom(cam::Entity* camera, float speed);
 
   //Camera matrix
-  mat4 compute_camera_view(cam::Camera* camera);
+  mat4 compute_camera_view(cam::Entity* camera);
 
   //Subfunction
-  void rotate_by_angle(cam::Camera* camera, vec2 angle);
-  void displace_camera_COM(cam::Camera* camera, const vec3& displacement);
+  void rotate_by_angle(cam::Entity* camera, vec2 angle);
+  void displace_camera_COM(cam::Entity* camera, const vec3& displacement);
 
 private:
   vk::window::GLFW* vk_window;

@@ -5,7 +5,7 @@
 
 namespace vk::window{class GLFW;}
 namespace cam{class Node;}
-namespace cam{class Camera;}
+namespace cam{class Entity;}
 
 
 namespace cam{
@@ -18,11 +18,11 @@ public:
 
 public:
   //Main function
-  mat4 compute_proj_perspective(cam::Camera* camera);
-  mat4 compute_proj_ortho(cam::Camera* camera);
+  mat4 compute_proj_perspective(cam::Entity* camera);
+  mat4 compute_proj_ortho(cam::Entity* camera);
 
   //Subfunction
-  void ortho_zoom(cam::Camera* camera, float value);
+  void ortho_zoom(cam::Entity* camera, float value);
 
 private:
   vk::window::GLFW* vk_window;

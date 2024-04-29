@@ -8,7 +8,7 @@ namespace eng::scene{class Entity;}
 namespace eng::scene{class Set;}
 namespace eng::scene{class Loader;}
 namespace cam{class Control;}
-namespace cam{class Camera;}
+namespace cam{class Entity;}
 
 
 namespace eng::scene{
@@ -27,7 +27,7 @@ public:
   //Glyph init
   void create_glyph_world();
   void create_glyph_object(utl::entity::Object* object);
-  void create_glyph_camera(cam::Camera* camera);
+  void create_glyph_camera(cam::Entity* camera);
 
   //Glyph creation
   void create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph);

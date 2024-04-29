@@ -164,7 +164,7 @@ mat4 Control::compute_camera_pose(){
 }
 
 //Camera parameter
-void Control::set_camera(cam::Camera* camera){
+void Control::set_camera(cam::Entity* camera){
   //---------------------------
 
   this->camera = camera;
@@ -186,7 +186,7 @@ void Control::set_camera_COM(vec3 value){
 
   //---------------------------
 }
-void Control::set_camera_mode(cam::Camera* camera){
+void Control::set_camera_mode(cam::Entity* camera){
   //---------------------------
 
   switch(camera->mode){
@@ -202,7 +202,7 @@ void Control::set_camera_mode(cam::Camera* camera){
 
   //---------------------------
 }
-void Control::set_camera_proj(cam::Camera* camera, int projection){
+void Control::set_camera_proj(cam::Entity* camera, int projection){
   //---------------------------
 
   switch(projection){

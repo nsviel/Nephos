@@ -80,7 +80,7 @@ void Control::control_keyboard_camMove(){
   //---------------------------
 }
 void Control::control_mouse(vec2 center){
-  cam::Camera* camera = cam_manager->get_current_camera();
+  cam::Entity* camera = cam_manager->get_current_camera();
   //----------------------------
 
   //Right click - Camera movement
@@ -106,7 +106,7 @@ void Control::control_mouse_wheel(){
 
 //Subfunction
 void Control::enable_camera_view(vec2 center){
-  cam::Camera* camera = cam_manager->get_current_camera();
+  cam::Entity* camera = cam_manager->get_current_camera();
   //----------------------------
 
   if(ImGui::IsMouseClicked(1)){
@@ -121,7 +121,7 @@ void Control::enable_camera_view(vec2 center){
   //----------------------------
 }
 void Control::disable_camera_view(){
-  cam::Camera* camera = cam_manager->get_current_camera();
+  cam::Entity* camera = cam_manager->get_current_camera();
   //----------------------------
 
   if(ImGui::IsMouseReleased(1) && camera->cam_move){
