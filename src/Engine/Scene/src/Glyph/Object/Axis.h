@@ -1,8 +1,7 @@
 #pragma once
 
-#include <Utility/Base/Entity/Glyph.h>
-
-#include <Operation/Transformation/Transformation.h>
+#include <Operation/Namespace.h>
+#include <Scene/src/Base/Glyph.h>
 
 
 namespace glyph::object{

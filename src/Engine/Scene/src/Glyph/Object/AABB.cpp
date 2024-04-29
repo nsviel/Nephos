@@ -1,5 +1,7 @@
 #include "AABB.h"
 
+#include <Scene/Namespace.h>
+
 
 namespace glyph::object{
 

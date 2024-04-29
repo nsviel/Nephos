@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace prf{class Node;}
+namespace eng{class Node;}
 namespace eng::capture{class Node;}
 namespace eng::scene{class Node;}
 namespace k4n::dev{class Swarm;}

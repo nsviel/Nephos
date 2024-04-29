@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 #include <Utility/Base/Media/File.h>
-#include <Utility/Base/Entity/Object.h>
+#include <Utility/Base/Type/Entity.h>
 #include <Utility/Base/Type/Set.h>
 
 namespace utl::entity{class Object;}
@@ -14,7 +14,7 @@ struct Importer{
   //---------------------------
 
   virtual utl::File* import(utl::Path path){return nullptr;}
-  virtual void insert(utl::entity::Object* object){}
+  virtual void insert(utl::type::Entity* entity){}
   virtual void insert(utl::type::Set* set){}
 
   utl::file::Data* data = nullptr;

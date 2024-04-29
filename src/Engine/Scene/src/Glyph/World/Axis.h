@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Entity/Glyph.h>
+#include <Scene/src/Base/Glyph.h>
 
 
 namespace glyph::world{

@@ -1,5 +1,7 @@
 #include "Axis.h"
 
+#include <Scene/Namespace.h>
+
 
 namespace glyph::grid{
 

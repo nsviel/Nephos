@@ -1,6 +1,7 @@
 #include "Axis.h"
 
-#include <Engine/Camera/Namespace.h>
+#include <Scene/Namespace.h>
+#include <Camera/Namespace.h>
 
 
 namespace glyph::object{
@@ -31,7 +32,7 @@ void Axis::create(){
 
   this->construct();
   this->init();
-  
+
   //---------------------------
 }
 void Axis::update_pose(utl::type::Entity* entity){

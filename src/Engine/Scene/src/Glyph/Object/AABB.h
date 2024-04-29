@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
-
+#include <Scene/src/Base/Glyph.h>
 
 
 namespace glyph::object{
