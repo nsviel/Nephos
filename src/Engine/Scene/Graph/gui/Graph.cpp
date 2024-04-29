@@ -1,4 +1,4 @@
-#include "Scene.h"
+#include "Graph.h"
 
 #include <Engine/Namespace.h>
 #include <Graph/Namespace.h>
@@ -11,7 +11,7 @@
 namespace scene::gui{
 
 //Constructor / Destructor
-Scene::Scene(scene::Node* node_scene, bool* show_window){
+Graph::Graph(scene::Node* node_scene, bool* show_window){
   //---------------------------
 
   this->node_engine = node_scene->get_node_engine();
@@ -22,15 +22,15 @@ Scene::Scene(scene::Node* node_scene, bool* show_window){
 
   this->ope_operation = new ope::Operation();
 
-  this->name = "Scene";
+  this->name = "Graph";
   this->show_window = show_window;
 
   //---------------------------
 }
-Scene::~Scene(){}
+Graph::~Graph(){}
 
 //Main function
-void Scene::run_panel(){
+void Graph::run_panel(){
   //---------------------------
 
   if(*show_window){
@@ -46,7 +46,7 @@ void Scene::run_panel(){
 
   //---------------------------
 }
-void Scene::design_panel(){
+void Graph::design_panel(){
   //---------------------------
 
   rnd_object->run_panel();
@@ -60,7 +60,7 @@ void Scene::design_panel(){
 }
 
 //Subfunction
-void Scene::draw_button(){
+void Graph::draw_button(){
   utl::type::Set* set_scene = sce_database->get_set_scene();
   utl::type::Entity* entity = set_scene->selected_entity;
   if(entity == nullptr) return;
@@ -104,7 +104,7 @@ void Scene::draw_button(){
 
   //-------------------------------
 }
-void Scene::draw_window_background(){
+void Graph::draw_window_background(){
   //-------------------------------
 
   float x1 = ImGui::GetCurrentWindow()->WorkRect.Min.x;
@@ -133,7 +133,7 @@ void Scene::draw_window_background(){
 
   //-------------------------------
 }
-void Scene::draw_file_tree(){
+void Graph::draw_file_tree(){
   utl::type::Set* set_main = sce_database->get_set_main();
   //---------------------------
 
@@ -167,7 +167,7 @@ void Scene::draw_file_tree(){
 }
 
 //File tree
-int Scene::tree_set(utl::type::Set* set) {
+int Graph::tree_set(utl::type::Set* set) {
   int nb_row = 0;
   //---------------------------
 
@@ -214,7 +214,7 @@ int Scene::tree_set(utl::type::Set* set) {
   //---------------------------
   return nb_row;
 }
-void Scene::tree_set_double_click(utl::type::Set* set){
+void Graph::tree_set_double_click(utl::type::Set* set){
   //---------------------------
 
   // If set is double-clicked
@@ -225,7 +225,7 @@ void Scene::tree_set_double_click(utl::type::Set* set){
 
   //---------------------------
 }
-void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
+void Graph::tree_set_open(utl::type::Set* set, int& nb_row){
   //---------------------------
 
   ImGuiTreeNodeFlags flag_leaf;
@@ -247,7 +247,7 @@ void Scene::tree_set_open(utl::type::Set* set, int& nb_row){
 
   //---------------------------
 }
-void Scene::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_row){
+void Graph::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_row){
   //---------------------------
 
   nb_row++;

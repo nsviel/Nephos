@@ -12,7 +12,7 @@ namespace scene{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* sce_panel = add_panel("Scene", ICON_FA_FILE, true);
+  utl::gui::Panel* sce_panel = add_panel("Graph", ICON_FA_FILE, true);
   utl::gui::Panel* ldr_panel = add_panel("Loader", ICON_FA_FOLDER, false);
   //---------------------------
 
@@ -30,7 +30,7 @@ Node::Node(eng::Node* node_engine){
   this->sce_bookmark = new scene::Bookmark(this);
   this->sce_scene = new scene::Scene(this);
   this->gui_loader = new scene::gui::Loader(this, &ldr_panel->is_open);
-  this->gui_scene = new scene::gui::Scene(this, &sce_panel->is_open);
+  this->gui_scene = new scene::gui::Graph(this, &sce_panel->is_open);
 
   //---------------------------
 }

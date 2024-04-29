@@ -13,7 +13,7 @@ namespace scene{class Operation;}
 namespace scene{class Bookmark;}
 namespace scene{class Entity;}
 namespace scene{class Scene;}
-namespace scene::gui{class Scene;}
+namespace scene::gui{class Graph;}
 namespace scene::gui{class Loader;}
 
 
@@ -57,7 +57,7 @@ private:
   scene::Format* sce_format;
   scene::Bookmark* sce_bookmark;
   scene::Scene* sce_scene;
-  scene::gui::Scene* gui_scene;
+  scene::gui::Graph* gui_scene;
   scene::gui::Loader* gui_loader;
   scene::Entity* sce_entity;
 

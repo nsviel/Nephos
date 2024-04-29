@@ -14,12 +14,12 @@ namespace ope{class Operation;}
 
 namespace scene::gui{
 
-class Scene
+class Graph
 {
 public:
   //Constructor / Destructor
-  Scene(scene::Node* node_scene, bool* show_window);
-  ~Scene();
+  Graph(scene::Node* node_scene, bool* show_window);
+  ~Graph();
 
 public:
   //Main function
