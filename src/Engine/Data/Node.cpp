@@ -3,7 +3,6 @@
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Data/Namespace.h>
-#include <Glyph/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Module/Namespace.h>
 #include <image/IconsFontAwesome6.h>
@@ -23,6 +22,7 @@ Node::Node(eng::Node* node_engine){
   //Child
   this->dat_database = new dat::Database(this);
   this->dat_entity = new dat::Entity(this);
+  this->dat_glyph = new dat::Glyph(this);
   this->gui_graph = new dat::gui::Graph(this, &dat_panel->is_open);
 
   //---------------------------

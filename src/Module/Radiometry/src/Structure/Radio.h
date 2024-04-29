@@ -4,7 +4,7 @@
 #include <Radiometry/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
-#include <Glyph/Namespace.h>
+#include <Data/Namespace.h>
 #include <Radiometry/src/Structure/Detection/Detection.h>
 
 namespace rad{

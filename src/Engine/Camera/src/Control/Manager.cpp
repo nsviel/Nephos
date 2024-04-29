@@ -4,7 +4,6 @@
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Data/Namespace.h>
-#include <Glyph/Namespace.h>
 
 
 namespace cam{

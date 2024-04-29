@@ -2,8 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
-#include <Glyph/Namespace.h>
+#include <Data/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Module/Namespace.h>
 #include <image/IconsFontAwesome6.h>

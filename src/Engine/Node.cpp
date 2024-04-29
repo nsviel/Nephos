@@ -10,7 +10,6 @@
 #include <Render/Namespace.h>
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
-#include <Glyph/Namespace.h>
 
 
 namespace eng{

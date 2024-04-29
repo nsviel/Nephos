@@ -6,6 +6,7 @@ namespace vk{class Node;}
 namespace eng{class Node;}
 namespace dat{class Database;}
 namespace dat{class Entity;}
+namespace dat{class Glyph;}
 namespace dat::gui{class Graph;}
 
 
@@ -30,6 +31,7 @@ public:
 
   inline dat::Database* get_database(){return dat_database;}
   inline dat::Entity* get_entity(){return dat_entity;}
+  inline dat::Glyph* get_glyph(){return dat_glyph;}
 
 private:
   //Dependancy
@@ -40,6 +42,7 @@ private:
   dat::Database* dat_database;
   dat::gui::Graph* gui_graph;
   dat::Entity* dat_entity;
+  dat::Glyph* dat_glyph;
 
   bool show_scene = true;
   bool show_loader = true;

@@ -2,7 +2,7 @@
 
 #include <Radiometry/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Glyph/Namespace.h>
+#include <Data/Namespace.h>
 #include <opencv2/opencv.hpp>
 
 
@@ -20,8 +20,8 @@ struct Detection{
 
   vector<rad::structure::Circle> vec_circle;
   vector<rad::structure::Sphere> vec_sphere;
-  vector<gly::element::object::Sphere*> vec_glyph_sphere;
-  gly::element::object::Sphere* glyph_calibration;
+  vector<dat::glyph::object::Sphere*> vec_glyph_sphere;
+  dat::glyph::object::Sphere* glyph_calibration;
 
   //---------------------------
 };

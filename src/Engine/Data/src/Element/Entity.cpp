@@ -3,7 +3,6 @@
 #include <Engine/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Data/Namespace.h>
-#include <Glyph/Namespace.h>
 #include <Vulkan/Namespace.h>
 
 
