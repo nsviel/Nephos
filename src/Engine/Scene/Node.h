@@ -3,9 +3,10 @@
 #include <Utility/Specific/Common.h>
 
 namespace vk{class Node;}
+namespace sce{class Init;}
 namespace eng{class Node;}
 namespace gly{class Node;}
-namespace eng::module{class Node;}
+namespace mod{class Node;}
 
 
 namespace sce{
@@ -36,7 +37,8 @@ private:
   gly::Node* node_glyph;
 
   //Child
-  eng::module::Node* node_module;
+  sce::Init* sce_init;
+  mod::Node* node_module;
 
   bool show_scene = true;
   bool show_loader = true;

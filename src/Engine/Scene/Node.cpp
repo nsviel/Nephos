@@ -21,7 +21,8 @@ Node::Node(eng::Node* node_engine){
   this->node_glyph = node_engine->get_node_glyph();
 
   //Child
-  this->node_module = new eng::module::Node(node_engine);
+  this->node_module = new mod::Node(node_engine);
+  this->sce_init = new sce::Init(this);
 
   //---------------------------
 }
@@ -31,8 +32,8 @@ void Node::init(){
   //---------------------------
 
   node_module->config();
-  node_glyph->init();
   node_module->init();
+  sce_init->init();
 
   //---------------------------
 }

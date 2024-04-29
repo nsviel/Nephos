@@ -7,7 +7,7 @@
 #include <Capture/Namespace.h>
 
 
-namespace eng::module{
+namespace mod{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){

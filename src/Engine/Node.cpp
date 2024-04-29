@@ -61,8 +61,9 @@ void Node::loop(){
   tasker_main->task_begin("eng");
   //---------------------------
 
+  node_data->loop();
+  node_loader->loop();
   node_camera->loop();
-
 
   tasker_main->task_begin("scene");
   node_scene->loop();
@@ -77,7 +78,8 @@ void Node::gui(){
   tasker_main->task_begin("eng::gui");
   node_scene->gui();
   node_camera->gui();
-
+  node_data->gui();
+  node_loader->gui();
   node_render->gui();
   tasker_main->task_end("eng::gui");
 
@@ -91,6 +93,8 @@ void Node::clean(){
   //---------------------------
 
   node_scene->clean();
+  node_data->clean();
+  node_loader->clean();
 
   //---------------------------
 }
