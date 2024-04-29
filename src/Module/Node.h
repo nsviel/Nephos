@@ -6,6 +6,7 @@ namespace prf{class Node;}
 namespace eng{class Node;}
 namespace sce{class Node;}
 namespace radio{class Node;}
+namespace cap{class Node;}
 
 
 namespace eng::module{
@@ -28,6 +29,7 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline sce::Node* get_node_scene(){return node_scene;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
+  inline cap::Node* get_node_capture(){return node_capture;}
 
 private:
   //Dependancy
@@ -35,6 +37,7 @@ private:
   sce::Node* node_scene;
   prf::Node* node_profiler;
   radio::Node* node_radio;
+  cap::Node* node_capture;
 };
 
 }

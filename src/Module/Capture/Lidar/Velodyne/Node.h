@@ -4,7 +4,7 @@
 
 namespace eng{class Node;}
 namespace sce{class Node;}
-namespace eng::capture{class Node;}
+namespace cap{class Node;}
 namespace vld::main{class Capture;}
 namespace vld::main{class Playback;}
 namespace vld::structure{class Main;}
@@ -17,7 +17,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::capture::Node* node_capture);
+  Node(cap::Node* node_capture);
   ~Node();
 
 public:

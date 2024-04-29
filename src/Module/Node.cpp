@@ -4,6 +4,7 @@
 #include <Scene/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Capture/Namespace.h>
 
 
 namespace eng::module{
@@ -17,6 +18,9 @@ Node::Node(eng::Node* node_engine){
   this->node_scene = node_engine->get_node_scene();
   this->node_profiler = node_engine->get_node_profiler();
   this->node_radio = new radio::Node(node_engine);
+  this->node_capture = new cap::Node(node_engine);
+
+  this->add_node_panel(node_capture);
 
   //---------------------------
 }
@@ -26,20 +30,21 @@ Node::~Node(){}
 void Node::config(){
   //---------------------------
 
+  node_capture->config();
 
   //---------------------------
 }
 void Node::init(){
   //---------------------------
 
-
+  node_capture->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-
+  node_capture->loop();
 
   //---------------------------
 }
@@ -47,12 +52,14 @@ void Node::gui(){
   //---------------------------
 
   node_radio->gui();
+  node_capture->gui();
 
   //---------------------------
 }
 void Node::clean(){
   //---------------------------
 
+  node_capture->clean();
 
   //---------------------------
 }

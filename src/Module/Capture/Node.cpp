@@ -6,7 +6,7 @@
 #include <Velodyne/Namespace.h>
 
 
-namespace eng::capture{
+namespace cap{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){

@@ -4,7 +4,7 @@
 
 namespace prf{class Node;}
 namespace eng{class Node;}
-namespace eng::capture{class Node;}
+namespace cap{class Node;}
 namespace sce{class Node;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::thread{class Connection;}
@@ -22,7 +22,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::capture::Node* node_capture);
+  Node(cap::Node* node_capture);
   ~Node();
 
 public:

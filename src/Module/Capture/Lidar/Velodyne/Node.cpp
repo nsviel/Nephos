@@ -11,7 +11,7 @@
 namespace vld{
 
 //Constructor / Destructor
-Node::Node(eng::capture::Node* node_capture){
+Node::Node(cap::Node* node_capture){
   utl::gui::Panel* panel = add_panel("Velodyne", ICON_FA_PLAY, true);
   //---------------------------
 

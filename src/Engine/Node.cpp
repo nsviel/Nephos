@@ -1,13 +1,13 @@
 #include "Node.h"
 
-#include <Application/Node.h>
+#include <Application/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Capture/Namespace.h>
+
 #include <Module/Node.h>
 #include <Render/Namespace.h>
 
@@ -25,7 +25,7 @@ Node::Node(app::Node* node_app){
   //Child
   this->node_scene = new sce::Node(this);
   this->node_camera = new cam::Node(this);
-  this->node_capture = new eng::capture::Node(this);
+
   this->node_module = new eng::module::Node(this);
   this->node_render = new rnd::Node(this);
 
@@ -35,7 +35,7 @@ Node::Node(app::Node* node_app){
 
   this->add_node_panel(node_camera);
   this->add_node_panel(node_scene);
-  this->add_node_panel(node_capture);
+
   this->add_node_panel(node_profiler);
   this->add_node_panel(node_render);
 
@@ -46,11 +46,10 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_capture->config();
+  node_module->config();
   node_scene->init();
-  node_capture->init();
-  node_camera->init();
   node_module->init();
+  node_camera->init();
   node_render->init();
 
   //---------------------------
@@ -60,7 +59,7 @@ void Node::loop(){
   //---------------------------
 
   node_camera->loop();
-  node_capture->loop();
+  node_module->loop();
 
   tasker_main->task_begin("scene");
   node_scene->loop();
@@ -74,7 +73,6 @@ void Node::gui(){
 
   tasker_main->task_begin("eng::gui");
   node_scene->gui();
-  node_capture->gui();
   node_camera->gui();
   node_module->gui();
   node_render->gui();
@@ -89,7 +87,7 @@ void Node::gui(){
 void Node::clean(){
   //---------------------------
 
-  node_capture->clean();
+  node_module->clean();
   node_scene->clean();
 
   //---------------------------

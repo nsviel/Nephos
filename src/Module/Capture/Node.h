@@ -9,7 +9,7 @@ namespace k4n{class Node;}
 namespace vld{class Node;}
 
 
-namespace eng::capture{
+namespace cap{
 
 class Node : public utl::type::Node
 {
