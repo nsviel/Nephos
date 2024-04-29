@@ -4,7 +4,6 @@
 
 namespace vk{class Node;}
 namespace eng{class Node;}
-namespace scene{class Parameter;}
 namespace scene{class Database;}
 namespace scene{class Loader;}
 namespace scene{class Exporter;}
@@ -37,7 +36,6 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
-  inline scene::Parameter* get_scene_param(){return sce_param;}
   inline scene::Format* get_scene_format(){return sce_format;}
   inline scene::Database* get_scene_database(){return sce_database;}
   inline scene::Loader* get_scene_loader(){return sce_loader;}
@@ -52,7 +50,6 @@ private:
   vk::Node* node_vulkan;
 
   //Child
-  scene::Parameter* sce_param;
   scene::Database* sce_database;
   scene::Glyph* sce_glyph;
   scene::Loader* sce_loader;

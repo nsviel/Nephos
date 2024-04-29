@@ -14,7 +14,6 @@ namespace scene{
 Loader::Loader(scene::Node* node_scene){
   //---------------------------
 
-  this->sce_param = node_scene->get_scene_param();
   this->node_engine = node_scene->get_node_engine();
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_database = node_scene->get_scene_database();

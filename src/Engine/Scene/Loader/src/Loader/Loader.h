@@ -7,7 +7,6 @@ namespace scene{class Entity;}
 namespace scene{class Database;}
 namespace scene{class Format;}
 namespace scene{class Node;}
-namespace scene{class Parameter;}
 namespace scene{class Set;}
 
 
@@ -36,7 +35,6 @@ private:
   scene::Format* sce_format;
   scene::Entity* sce_entity;
   scene::Database* sce_database;
-  scene::Parameter* sce_param;
   scene::Set* sce_set;
 };
 

@@ -21,7 +21,6 @@ Node::Node(eng::Node* node_engine){
   this->node_vulkan = node_engine->get_node_vulkan();
 
   //Child
-  this->sce_param = new scene::Parameter();
   this->sce_database = new scene::Database(this);
   this->sce_entity = new scene::Entity(this);
   this->sce_format = new scene::Format(this);
