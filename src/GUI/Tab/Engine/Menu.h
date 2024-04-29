@@ -5,7 +5,6 @@
 namespace gui{class Node;}
 namespace vk{class Node;}
 namespace eng{class Node;}
-namespace ope{class Node;}
 namespace engine = eng;
 
 
@@ -30,7 +29,6 @@ public:
 private:
   engine::Node* node_engine;
   vk::Node* node_vulkan;
-  ope::Node* node_operation;
 };
 
 }

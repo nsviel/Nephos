@@ -3,7 +3,6 @@
 #include <Utility/Specific/Common.h>
 
 namespace app{class Node;}
-namespace ope{class Node;}
 namespace vk{class Node;}
 namespace prf{class Node;}
 namespace prf::graph{class Tasker;}
