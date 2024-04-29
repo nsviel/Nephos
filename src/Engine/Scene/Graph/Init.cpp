@@ -16,6 +16,7 @@ Init::Init(sce::Node* node_scene){
 
   this->ldr_loader = node_loader->get_loader();
 
+
   //---------------------------
 }
 Init::~Init(){}

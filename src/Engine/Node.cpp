@@ -36,8 +36,8 @@ Node::Node(app::Node* node_app){
   this->tasker_main =  profiler->get_or_create_tasker("cpu");
 
   this->add_node_panel(node_camera);
-  this->add_node_panel(node_scene);
-
+  this->add_node_panel(node_loader);
+  this->add_node_panel(node_data);
   this->add_node_panel(node_profiler);
   this->add_node_panel(node_render);
 
