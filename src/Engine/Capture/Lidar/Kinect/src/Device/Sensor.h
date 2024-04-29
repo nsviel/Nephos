@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Scene/Namespace.h>
 #include <Utility/Specific/Common.h>
 #include <Kinect/src/Structure/Namespace.h>
 
@@ -21,6 +22,7 @@ namespace k4n::structure{class IMU;}
 namespace k4n::structure{class Image;}
 namespace k4n::structure{class Calibration;}
 namespace prf::graph{class Profiler;}
+namespace utl::entity{class Object;}
 
 
 namespace k4n::dev{

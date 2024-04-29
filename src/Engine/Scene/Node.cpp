@@ -1,7 +1,10 @@
 #include "Node.h"
 
 #include <Engine/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Scene/Namespace.h>
+#include <Glyph/Namespace.h>
+#include <Loader/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 

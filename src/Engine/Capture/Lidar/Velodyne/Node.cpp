@@ -2,8 +2,10 @@
 
 #include <Engine/Namespace.h>
 #include <Capture/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Velodyne/Namespace.h>
+#include <Loader/Namespace.h>
 
 
 namespace vld{

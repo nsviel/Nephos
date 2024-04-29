@@ -1,6 +1,8 @@
 #include "Loader.h"
 
 #include <Engine/Namespace.h>
+#include <Graph/Namespace.h>
+#include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Capture/Namespace.h>

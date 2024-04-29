@@ -1,6 +1,7 @@
 #include "Normal.h"
 
 #include <Scene/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Camera/Namespace.h>
 
 

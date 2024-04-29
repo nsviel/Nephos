@@ -1,6 +1,7 @@
 #include "Tree.h"
 
 #include <Scene/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace glyph::object{

@@ -1,5 +1,6 @@
 #include "Entity.h"
 
+#include <Graph/Namespace.h>
 #include <Scene/Namespace.h>
 
 

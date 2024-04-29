@@ -2,7 +2,7 @@
 
 #include <Velodyne/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace vld::gui{

@@ -1,6 +1,7 @@
 #include "Grid.h"
 
-#include <Scene/Namespace.h>
+#include <Graph/Namespace.h>
+#include <Glyph/Namespace.h>
 
 
 namespace glyph::grid{

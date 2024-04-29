@@ -1,5 +1,6 @@
 #include "Importer.h"
 
+#include <Graph/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Utility/Function/File/File.h>
 

@@ -3,7 +3,6 @@ set(LIBRARY_NAME LIBRARY_GLYPH)
 #-----------------
 # Source files
 #-----------------
-
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
   *.h

@@ -1,6 +1,8 @@
 #include "Format.h"
 
 #include <Scene/Namespace.h>
+#include <Graph/Namespace.h>
+#include <Loader/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 

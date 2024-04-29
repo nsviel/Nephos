@@ -1,6 +1,7 @@
 #include "Scene.h"
 
 #include <Engine/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Operation/Namespace.h>

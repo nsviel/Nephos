@@ -1,6 +1,6 @@
 #include "Axis.h"
 
-#include <Scene/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace glyph::world{

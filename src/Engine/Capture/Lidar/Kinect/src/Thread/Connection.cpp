@@ -1,7 +1,7 @@
 #include "Connection.h"
 
 #include <Utility/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <chrono>
 

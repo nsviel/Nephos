@@ -2,7 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Engine/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Radiometry/Namespace.h>
 

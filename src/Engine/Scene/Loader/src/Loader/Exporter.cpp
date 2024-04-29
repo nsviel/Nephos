@@ -1,5 +1,6 @@
 #include "Exporter.h"
 
+#include <Graph/Namespace.h>
 #include <Scene/Namespace.h>
 
 

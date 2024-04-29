@@ -1,6 +1,7 @@
 #include "Bookmark.h"
 
-#include <Scene/Namespace.h>
+#include <Loader/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Utility/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 

@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Kinect/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>

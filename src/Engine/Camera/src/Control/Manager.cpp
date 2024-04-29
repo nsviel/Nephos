@@ -1,7 +1,9 @@
 #include "Manager.h"
 
 #include <Camera/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Scene/Namespace.h>
+#include <Glyph/Namespace.h>
 
 
 namespace cam{

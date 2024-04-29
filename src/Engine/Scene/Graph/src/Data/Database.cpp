@@ -1,5 +1,6 @@
 #include "Database.h"
 
+#include <Graph/Namespace.h>
 #include <Scene/Namespace.h>
 
 

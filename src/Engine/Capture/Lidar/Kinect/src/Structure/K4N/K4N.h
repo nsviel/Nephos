@@ -4,7 +4,7 @@
 #include <Radiometry/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace k4n::structure{
