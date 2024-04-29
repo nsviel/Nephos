@@ -28,7 +28,7 @@ void Manager::create_camera(){
   utl::type::Set* set_main = sce_database->get_set_main();
   utl::type::Set* set_world = sce_set->get_subset(set_main, "World");
 
-  utl::entity::Camera* camera = new utl::entity::Camera();
+  cam::Camera* camera = new cam::Camera();
   camera->name = "camera_" + to_string(camera_ID++);
   camera->is_suppressible = false;
   camera->is_movable = false;
@@ -44,7 +44,7 @@ void Manager::reset(){
   //---------------------------
 
   for(int i=0; i<vec_camera.size(); i++){
-    utl::entity::Camera* camera = vec_camera[i];
+    cam::Camera* camera = vec_camera[i];
     camera->reset_entity();
   }
 

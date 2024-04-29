@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 
-namespace utl::entity{
+namespace cam{
 
 //Constructor / Destructor
 Camera::Camera(){

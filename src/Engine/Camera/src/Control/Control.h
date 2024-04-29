@@ -6,7 +6,7 @@
 namespace cam{class Node;}
 namespace cam{class Projection;}
 namespace cam::mode{class Base;}
-namespace utl::entity{class Camera;}
+namespace cam{class Camera;}
 
 
 namespace cam{
@@ -32,10 +32,10 @@ public:
   mat4 compute_camera_pose();
 
   //Camera parameter
-  void set_camera(utl::entity::Camera* camera);
+  void set_camera(cam::Camera* camera);
   void set_camera_COM(vec3 value);
-  void set_camera_mode(utl::entity::Camera* camera);
-  void set_camera_proj(utl::entity::Camera* camera, int projection);
+  void set_camera_mode(cam::Camera* camera);
+  void set_camera_proj(cam::Camera* camera, int projection);
   void set_next_camera_mode();
 
 private:
@@ -43,7 +43,7 @@ private:
 
   vector<cam::mode::Base*> vec_mode;
   cam::mode::Base* active_mode;
-  utl::entity::Camera* camera = nullptr;
+  cam::Camera* camera = nullptr;
 };
 
 }

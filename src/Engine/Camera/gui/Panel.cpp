@@ -46,7 +46,7 @@ void Panel::design_panel(){
 
 //Subfunction
 void Panel::cam_parameter(){
-  utl::entity::Camera* camera = cam_manager->get_current_camera();
+  cam::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   //Camera parameters
@@ -94,7 +94,7 @@ void Panel::cam_parameter(){
   //---------------------------
 }
 void Panel::cam_info(){
-  utl::entity::Camera* camera = cam_manager->get_current_camera();
+  cam::Camera* camera = cam_manager->get_current_camera();
   //---------------------------
 
   //Camera position

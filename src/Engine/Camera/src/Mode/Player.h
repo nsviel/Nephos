@@ -7,7 +7,7 @@
 namespace cam{class Node;}
 namespace cam::mode{class Base;}
 namespace vk::window{class GLFW;}
-namespace utl::entity{class Camera;}
+namespace cam{class Camera;}
 
 
 namespace cam::mode{
@@ -20,17 +20,17 @@ public:
 
 public:
   //Camera movement
-  void camera_forward(utl::entity::Camera* camera, float speed);
-  void camera_backward(utl::entity::Camera* camera, float speed);
-  void camera_right(utl::entity::Camera* camera, float speed);
-  void camera_left(utl::entity::Camera* camera, float speed);
-  void camera_up(utl::entity::Camera* camera, float speed);
-  void camera_down(utl::entity::Camera* camera, float speed);
-  void camera_mouse(utl::entity::Camera* camera);
-  void camera_zoom(utl::entity::Camera* camera, float speed);
+  void camera_forward(cam::Camera* camera, float speed);
+  void camera_backward(cam::Camera* camera, float speed);
+  void camera_right(cam::Camera* camera, float speed);
+  void camera_left(cam::Camera* camera, float speed);
+  void camera_up(cam::Camera* camera, float speed);
+  void camera_down(cam::Camera* camera, float speed);
+  void camera_mouse(cam::Camera* camera);
+  void camera_zoom(cam::Camera* camera, float speed);
 
   //Camera matrix
-  mat4 compute_camera_view(utl::entity::Camera* camera);
+  mat4 compute_camera_view(cam::Camera* camera);
 
 private:
   vk::window::GLFW* vk_window;

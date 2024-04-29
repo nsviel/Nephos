@@ -3,7 +3,7 @@
 #include <Utility/Base/Entity/Glyph.h>
 
 
-namespace glyph::camera{
+namespace cam::glyph{
 
 class Target : public utl::entity::Glyph
 {

@@ -52,10 +52,10 @@ void Glyph::create_glyph_object(utl::entity::Object* object){
 
   //---------------------------
 }
-void Glyph::create_glyph_camera(utl::entity::Camera* camera){
+void Glyph::create_glyph_camera(cam::Camera* camera){
   //---------------------------
 
-  this->create_glyph(camera, new glyph::camera::Target(node_engine));
+  this->create_glyph(camera, new cam::glyph::Target(node_engine));
 
   //---------------------------
 }

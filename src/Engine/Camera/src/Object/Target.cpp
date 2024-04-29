@@ -3,7 +3,7 @@
 #include <Camera/Namespace.h>
 
 
-namespace glyph::camera{
+namespace cam::glyph{
 
 //Constructor / destructor
 Target::Target(eng::Node* node_engine) : Glyph(node_engine){
@@ -36,7 +36,7 @@ void Target::create(){
 void Target::update_pose(utl::type::Entity* entity){
   //---------------------------
 
-  if(utl::entity::Camera* camera = dynamic_cast<utl::entity::Camera*>(entity)){
+  if(cam::Camera* camera = dynamic_cast<cam::Camera*>(entity)){
     camera->mode == CAMERA_MODE_ARCBALL ? is_visible = true : is_visible = false;
 
     glm::mat4 translation(1.0);
