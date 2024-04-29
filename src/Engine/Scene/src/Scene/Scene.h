@@ -4,6 +4,7 @@
 
 namespace eng::scene{class Node;}
 namespace eng::scene{class Loader;}
+namespace utl::type{class Selection;}
 
 
 namespace eng::scene{
@@ -21,6 +22,7 @@ public:
 
 private:
   eng::scene::Loader* sce_loader;
+  utl::type::Selection* selection = nullptr;
 };
 
 }

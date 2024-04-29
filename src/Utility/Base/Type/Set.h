@@ -8,7 +8,7 @@ namespace utl::type{class Entity;}
 
 namespace utl::type{
 
-struct Set{
+struct Set : public utl::type::Selection{
   //---------------------------
 
   //Info

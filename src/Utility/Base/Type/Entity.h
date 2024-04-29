@@ -10,7 +10,7 @@ namespace utl::type{struct Pose;}
 
 namespace utl::type{
 
-struct Entity{
+struct Entity : public utl::type::Selection{
   //---------------------------
 
   Entity(){}
