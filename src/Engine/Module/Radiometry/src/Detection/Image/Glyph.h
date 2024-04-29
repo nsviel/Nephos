@@ -6,7 +6,7 @@ namespace k4n::dev{class Sensor;}
 namespace radio{class Structure;}
 namespace radio::structure{class Circle;}
 namespace k4n::utils{class Transformation;}
-namespace scene{class Glyph;}
+namespace gly{class Node;}
 
 
 namespace radio::detection{
@@ -29,7 +29,7 @@ public:
 
 private:
   k4n::utils::Transformation* k4n_transfo;
-  scene::Glyph* sce_glyph;
+  gly::Node* sce_glyph;
 };
 
 }

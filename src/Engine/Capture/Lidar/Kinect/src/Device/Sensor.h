@@ -7,7 +7,7 @@
 namespace eng{class Node;}
 namespace scene{class Entity;}
 namespace scene{class Set;}
-namespace scene{class Glyph;}
+namespace gly{class Node;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::thread{class Capture;}
@@ -79,7 +79,7 @@ private:
   eng::Node* node_engine;
   scene::Entity* sce_entity;
   scene::Set* sce_set;
-  scene::Glyph* sce_glyph;
+  gly::Node* sce_glyph;
   k4n::thread::Capture* k4n_capture;
   k4n::thread::Playback* k4n_playback;
   k4n::structure::K4N* k4n_struct;

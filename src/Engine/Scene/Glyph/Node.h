@@ -12,14 +12,14 @@ namespace cam{class Control;}
 namespace cam{class Entity;}
 
 
-namespace scene{
+namespace gly{
 
-class Glyph
+class Node
 {
 public:
   //Constructor / Destructor
-  Glyph(scene::Node* node_scene);
-  ~Glyph();
+  Node(scene::Node* node_scene);
+  ~Node();
 
 public:
   //Main function

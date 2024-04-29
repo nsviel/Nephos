@@ -1,10 +1,9 @@
 #pragma once
 
-#include <Operation/Namespace.h>
 #include <Glyph/Control/Glyph.h>
 
 
-namespace glyph::object{
+namespace gly::element::grid{
 
 class Axis : public utl::entity::Glyph
 {
@@ -16,15 +15,12 @@ public:
 public:
   //Main function
   void create();
-  void update_pose(utl::type::Entity* entity);
 
-  //Subfunctions
-  void construct();
+  //Subfunction
+  void construct(int nb_cell);
 
 private:
-  ope::Transformation* ope_transform;
-
-  bool is_visible;
+  vec4 color;
 };
 
 }

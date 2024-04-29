@@ -63,14 +63,14 @@ void Sensor::init(){
 
   //Sensor glyph
   for(int i=0; i<20; i++){
-    glyph::object::Sphere* sphere = new glyph::object::Sphere(node_engine);
+    gly::element::object::Sphere* sphere = new gly::element::object::Sphere(node_engine);
     sce_glyph->create_glyph(&object, sphere);
     vec4 color = math::random(i);
     sphere->construct(color);
 
     this->detection.vec_glyph_sphere.push_back(sphere);
   }
-  glyph::object::Sphere* sphere = new glyph::object::Sphere(node_engine);
+  gly::element::object::Sphere* sphere = new gly::element::object::Sphere(node_engine);
   this->detection.glyph_calibration = sphere;
   sce_glyph->create_glyph(&object, sphere);
   sphere->construct(vec4(0, 1, 0, 1));

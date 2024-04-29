@@ -4,7 +4,7 @@
 
 namespace vk::main{class Engine;}
 namespace scene{class Node;}
-namespace scene{class Glyph;}
+namespace gly{class Node;}
 namespace scene{class Operation;}
 namespace scene{class Database;}
 
@@ -27,7 +27,7 @@ private:
   scene::Node* node_scene;
   vk::main::Engine* vk_engine;
   scene::Database* sce_database;
-  scene::Glyph* sce_glyph;
+  gly::Node* sce_glyph;
 };
 
 }

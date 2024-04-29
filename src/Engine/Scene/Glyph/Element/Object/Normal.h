@@ -3,7 +3,7 @@
 #include <Glyph/Control/Glyph.h>
 
 
-namespace glyph::object{
+namespace gly::element::object{
 
 class Normal : public utl::entity::Glyph
 {

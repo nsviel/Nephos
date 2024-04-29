@@ -6,7 +6,7 @@ namespace ope{class Transformation;}
 namespace scene{class Loader;}
 
 
-namespace glyph::object{
+namespace gly::element::object{
 
 class Sphere : public utl::entity::Glyph
 {

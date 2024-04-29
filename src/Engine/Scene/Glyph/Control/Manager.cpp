@@ -40,17 +40,17 @@ void Manager::create_glyph_world(){
   utl::type::Set* set_world = sce_database->get_set_world();
   //---------------------------
 
-  this->create_glyph(set_world, new glyph::grid::Grid(node_engine));
-  this->create_glyph(set_world, new glyph::world::Axis(node_engine));
+  this->create_glyph(set_world, new gly::element::grid::Grid(node_engine));
+  this->create_glyph(set_world, new gly::element::world::Axis(node_engine));
 
   //---------------------------
 }
 void Manager::create_glyph_object(utl::entity::Object* object){
   //---------------------------
 
-  this->create_glyph(object, new glyph::object::Axis(node_engine));
-  this->create_glyph(object, new glyph::object::AABB(node_engine));
-  this->create_glyph(object, new glyph::object::Normal(node_engine));
+  this->create_glyph(object, new gly::element::object::Axis(node_engine));
+  this->create_glyph(object, new gly::element::object::AABB(node_engine));
+  this->create_glyph(object, new gly::element::object::Normal(node_engine));
 
   //---------------------------
 }

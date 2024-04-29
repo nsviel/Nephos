@@ -1,4 +1,4 @@
-#include "Glyph.h"
+#include "Node.h"
 
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
@@ -8,10 +8,10 @@
 #include <Glyph/Namespace.h>
 
 
-namespace scene{
+namespace gly{
 
 //Constructor / Destructor
-Glyph::Glyph(scene::Node* node_scene){
+Node::Node(scene::Node* node_scene){
   //---------------------------
 
   vk::Node* node_vulkan = node_scene->get_node_vulkan();
@@ -24,10 +24,10 @@ Glyph::Glyph(scene::Node* node_scene){
 
   //---------------------------
 }
-Glyph::~Glyph(){}
+Node::~Node(){}
 
 //Main function
-void Glyph::init(){
+void Node::init(){
   //---------------------------
 
   this->create_glyph_world();
@@ -36,25 +36,25 @@ void Glyph::init(){
 }
 
 //Glyph init
-void Glyph::create_glyph_world(){
+void Node::create_glyph_world(){
   utl::type::Set* set_world = sce_database->get_set_world();
   //---------------------------
 
-  this->create_glyph(set_world, new glyph::grid::Grid(node_engine));
-  this->create_glyph(set_world, new glyph::world::Axis(node_engine));
+  this->create_glyph(set_world, new gly::element::grid::Grid(node_engine));
+  this->create_glyph(set_world, new gly::element::world::Axis(node_engine));
 
   //---------------------------
 }
-void Glyph::create_glyph_object(utl::entity::Object* object){
+void Node::create_glyph_object(utl::entity::Object* object){
   //---------------------------
 
-  this->create_glyph(object, new glyph::object::Axis(node_engine));
-  this->create_glyph(object, new glyph::object::AABB(node_engine));
-  this->create_glyph(object, new glyph::object::Normal(node_engine));
+  this->create_glyph(object, new gly::element::object::Axis(node_engine));
+  this->create_glyph(object, new gly::element::object::AABB(node_engine));
+  this->create_glyph(object, new gly::element::object::Normal(node_engine));
 
   //---------------------------
 }
-void Glyph::create_glyph_camera(cam::Entity* camera){
+void Node::create_glyph_camera(cam::Entity* camera){
   //---------------------------
 
   this->create_glyph(camera, new cam::glyph::Target(node_engine));
@@ -63,7 +63,7 @@ void Glyph::create_glyph_camera(cam::Entity* camera){
 }
 
 //Glyph creation
-void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
+void Node::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
   //---------------------------
 
   glyph->create();
@@ -71,7 +71,7 @@ void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
 
   //---------------------------
 }
-void Glyph::create_glyph(utl::type::Entity* entity, utl::entity::Glyph* glyph){
+void Node::create_glyph(utl::type::Entity* entity, utl::entity::Glyph* glyph){
   //---------------------------
 
   glyph->create();

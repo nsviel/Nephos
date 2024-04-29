@@ -4,7 +4,7 @@
 #include <Graph/Namespace.h>
 
 
-namespace glyph::object{
+namespace gly::element::object{
 
 //Constructor / destructor
 Tree::Tree(eng::Node* node_engine) : Glyph(node_engine){

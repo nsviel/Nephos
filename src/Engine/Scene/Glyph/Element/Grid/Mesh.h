@@ -3,7 +3,7 @@
 #include <Glyph/Control/Glyph.h>
 
 
-namespace glyph::grid{
+namespace gly::element::grid{
 
 class Mesh : public utl::entity::Glyph
 {

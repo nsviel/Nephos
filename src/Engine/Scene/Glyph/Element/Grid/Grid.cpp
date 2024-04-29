@@ -4,7 +4,7 @@
 #include <Glyph/Namespace.h>
 
 
-namespace glyph::grid{
+namespace gly::element::grid{
 
 //Constructor / destructor
 Grid::Grid(eng::Node* node_engine) : Glyph(node_engine){
@@ -15,9 +15,9 @@ Grid::Grid(eng::Node* node_engine) : Glyph(node_engine){
   this->is_suppressible = false;
   this->is_movable = false;
 
-  this->mesh = new glyph::grid::Mesh(node_engine);
-  this->axis = new glyph::grid::Axis(node_engine);
-  this->plane = new glyph::grid::Plane(node_engine);
+  this->mesh = new gly::element::grid::Mesh(node_engine);
+  this->axis = new gly::element::grid::Axis(node_engine);
+  this->plane = new gly::element::grid::Plane(node_engine);
 
   //---------------------------
 }

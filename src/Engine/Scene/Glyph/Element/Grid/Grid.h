@@ -2,12 +2,12 @@
 
 #include <Glyph/Control/Glyph.h>
 
-namespace glyph::grid{class Mesh;}
-namespace glyph::grid{class Axis;}
-namespace glyph::grid{class Plane;}
+namespace gly::element::grid{class Mesh;}
+namespace gly::element::grid{class Axis;}
+namespace gly::element::grid{class Plane;}
 
 
-namespace glyph::grid{
+namespace gly::element::grid{
 
 class Grid : public utl::entity::Glyph
 {
@@ -25,9 +25,9 @@ public:
   void set_visibility(bool value);
 
 private:
-  glyph::grid::Mesh* mesh;
-  glyph::grid::Axis* axis;
-  glyph::grid::Plane* plane;
+  gly::element::grid::Mesh* mesh;
+  gly::element::grid::Axis* axis;
+  gly::element::grid::Plane* plane;
 
   int nb_cell;
 };

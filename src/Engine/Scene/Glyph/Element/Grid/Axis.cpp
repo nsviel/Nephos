@@ -3,7 +3,7 @@
 #include <Graph/Namespace.h>
 
 
-namespace glyph::grid{
+namespace gly::element::grid{
 
 //Constructor / destructor
 Axis::Axis(eng::Node* node_engine) : Glyph(node_engine){

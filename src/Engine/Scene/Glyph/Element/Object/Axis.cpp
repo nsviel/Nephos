@@ -5,7 +5,7 @@
 #include <Camera/Namespace.h>
 
 
-namespace glyph::object{
+namespace gly::element::object{
 
 //Constructor / destructor
 Axis::Axis(eng::Node* node_engine) : Glyph(node_engine){

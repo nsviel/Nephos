@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Glyph/Glyph.h>
-#include <Glyph/Glyph/Namespace.h>
+#include <Glyph/Node.h>
+#include <Glyph/Element/Namespace.h>
 #include <Glyph/Control/Namespace.h>

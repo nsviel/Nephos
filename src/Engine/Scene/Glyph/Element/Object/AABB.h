@@ -4,7 +4,7 @@
 #include <Glyph/Control/Glyph.h>
 
 
-namespace glyph::object{
+namespace gly::element::object{
 
 class AABB : public utl::entity::Glyph
 {

@@ -25,7 +25,7 @@ Node::Node(eng::Node* node_engine){
   this->sce_entity = new scene::Entity(this);
   this->sce_format = new scene::Format(this);
   this->sce_loader = new scene::Loader(this);
-  this->sce_glyph = new scene::Glyph(this);
+  this->sce_glyph = new gly::Node(this);
   this->sce_exporter = new scene::Exporter(this);
   this->sce_bookmark = new scene::Bookmark(this);
   this->sce_scene = new scene::Scene(this);

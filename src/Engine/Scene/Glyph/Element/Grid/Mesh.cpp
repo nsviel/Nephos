@@ -3,7 +3,7 @@
 #include <Graph/Namespace.h>
 
 
-namespace glyph::grid{
+namespace gly::element::grid{
 
 //Constructor / destructor
 Mesh::Mesh(eng::Node* node_engine) : Glyph(node_engine){

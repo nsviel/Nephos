@@ -3,21 +3,21 @@
 #include <Glyph/Control/Glyph.h>
 
 
-namespace glyph::grid{
+namespace gly::element::world{
 
-class Plane : public utl::entity::Glyph
+class Axis : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Plane(eng::Node* node_engine);
-  ~Plane();
+  Axis(eng::Node* node_engine);
+  ~Axis();
 
 public:
   //Main function
   void create();
 
   //Subfunction
-  void construct(int nb_cell);
+  void construct();
 
 private:
 };

@@ -8,7 +8,7 @@ namespace scene{class Database;}
 namespace scene{class Loader;}
 namespace scene{class Exporter;}
 namespace scene{class Format;}
-namespace scene{class Glyph;}
+namespace gly{class Node;}
 namespace scene{class Operation;}
 namespace scene{class Bookmark;}
 namespace scene{class Entity;}
@@ -40,7 +40,7 @@ public:
   inline scene::Database* get_scene_database(){return sce_database;}
   inline scene::Loader* get_scene_loader(){return sce_loader;}
   inline scene::Exporter* get_scene_exporter(){return sce_exporter;}
-  inline scene::Glyph* get_scene_glyph(){return sce_glyph;}
+  inline gly::Node* get_scene_glyph(){return sce_glyph;}
   inline scene::Bookmark* get_scene_bookmark(){return sce_bookmark;}
   inline scene::Entity* get_scene_entity(){return sce_entity;}
 
@@ -51,7 +51,7 @@ private:
 
   //Child
   scene::Database* sce_database;
-  scene::Glyph* sce_glyph;
+  gly::Node* sce_glyph;
   scene::Loader* sce_loader;
   scene::Exporter* sce_exporter;
   scene::Format* sce_format;

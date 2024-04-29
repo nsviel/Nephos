@@ -25,7 +25,7 @@ Manager::~Manager(){}
 void Manager::create_camera(){
   //---------------------------
 
-  scene::Glyph* sce_glyph = node_scene->get_scene_glyph();
+  gly::Node* sce_glyph = node_scene->get_scene_glyph();
   scene::Database* sce_database = node_scene->get_scene_database();
   utl::type::Set* set_main = sce_database->get_set_main();
   utl::type::Set* set_world = sce_set->get_subset(set_main, "World");

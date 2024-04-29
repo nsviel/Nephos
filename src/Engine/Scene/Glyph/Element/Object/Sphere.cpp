@@ -8,7 +8,7 @@
 #include <Loader/Namespace.h>
 
 
-namespace glyph::object{
+namespace gly::element::object{
 
 //Constructor / destructor
 Sphere::Sphere(eng::Node* node_engine) : Glyph(node_engine){
