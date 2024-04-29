@@ -2,19 +2,19 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace radio{class Structure;}
+namespace rad{class Structure;}
 namespace k4n::dev{class Sensor;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
 
 
-namespace radio{
+namespace rad{
 
 class Model
 {
 public:
   //Constructor / Destructor
-  Model(radio::Structure* radio_struct);
+  Model(rad::Structure* radio_struct);
   ~Model();
 
 public:
@@ -30,7 +30,7 @@ public:
   void draw_model();
 
 private:
-  radio::Structure* radio_struct;
+  rad::Structure* radio_struct;
   ope::fitting::Polyfit* ope_polyfit;
   ope::fitting::Surface* ope_surface;
 };

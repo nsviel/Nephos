@@ -18,8 +18,8 @@ struct Detection{
   int cv_radius = 0;
   int nb_detection = 0;
 
-  vector<radio::structure::Circle> vec_circle;
-  vector<radio::structure::Sphere> vec_sphere;
+  vector<rad::structure::Circle> vec_circle;
+  vector<rad::structure::Sphere> vec_sphere;
   vector<gly::element::object::Sphere*> vec_glyph_sphere;
   gly::element::object::Sphere* glyph_calibration;
 

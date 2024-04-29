@@ -4,21 +4,21 @@
 
 namespace k4n::dev{class Sensor;}
 namespace k4n::gui{class Player;}
-namespace radio{class Structure;}
-namespace radio{class Detection;}
-namespace radio{class Model;}
-namespace radio::model{class Measure;}
+namespace rad{class Structure;}
+namespace rad{class Detection;}
+namespace rad{class Model;}
+namespace rad::model{class Measure;}
 
 namespace utl::implot{class Plot;}
 
 
-namespace radio::gui{
+namespace rad::gui{
 
 class Model
 {
 public:
   //Constructor / Destructor
-  Model(radio::Structure* radio_struct);
+  Model(rad::Structure* radio_struct);
   ~Model();
 
 public:
@@ -36,10 +36,10 @@ public:
 
 private:
   k4n::gui::Player* gui_player;
-  radio::Detection* radio_detection;
-  radio::Model* radio_model;
-  radio::model::Measure* radio_measure;
-  radio::Structure* radio_struct;
+  rad::Detection* radio_detection;
+  rad::Model* radio_model;
+  rad::model::Measure* radio_measure;
+  rad::Structure* radio_struct;
   utl::implot::Plot* utl_plot;
 };
 

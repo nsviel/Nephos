@@ -7,13 +7,13 @@
 #include <Scene/Namespace.h>
 #include <Radiometry/src/Structure/Detection/Detection.h>
 
-namespace radio{
+namespace rad{
 
 struct Structure{
   //---------------------------
 
   //Constructor
-  Structure(radio::Node* node_radio){
+  Structure(rad::Node* node_radio){
     this->node_engine = node_radio->get_node_engine();
     this->node_scene = node_radio->get_node_scene();
     this->node_profiler = node_radio->get_node_profiler();
@@ -28,8 +28,8 @@ struct Structure{
   string state = "Wait validation";
 
   //Structure
-  radio::structure::Detection detection;
-  radio::structure::Model model;
+  rad::structure::Detection detection;
+  rad::structure::Model model;
 
   //---------------------------
 };

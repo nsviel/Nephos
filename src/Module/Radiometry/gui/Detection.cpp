@@ -7,14 +7,14 @@
 #include <GUI/Namespace.h>
 
 
-namespace radio::gui{
+namespace rad::gui{
 
 //Constructor / Destructor
-Detection::Detection(radio::Structure* radio_struct){
+Detection::Detection(rad::Structure* radio_struct){
   //---------------------------
 
   this->radio_struct = radio_struct;
-  this->radio_hough = new radio::detection::Hough(radio_struct);
+  this->radio_hough = new rad::detection::Hough(radio_struct);
   this->stream = new gui_element::Stream(radio_struct->node_engine);
 
   //---------------------------
@@ -86,11 +86,11 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
   if(ImGui::TreeNode("Parameter##Hough")){
     //Mode
     int& mode = radio_struct->detection.hough.mode;
-    if(ImGui::RadioButton("Gradient", &mode, radio::hough::GRADIENT)){
+    if(ImGui::RadioButton("Gradient", &mode, rad::hough::GRADIENT)){
       radio_hough->find_mode_parameter(mode);
     }
     ImGui::SameLine();
-    if(ImGui::RadioButton("Gradient Alt", &mode, radio::hough::GRADIENT_ALT)){
+    if(ImGui::RadioButton("Gradient Alt", &mode, rad::hough::GRADIENT_ALT)){
       radio_hough->find_mode_parameter(mode);
     }
 
@@ -119,9 +119,9 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
     //Circle drawing mode
     ImGui::Text("Draw");
     ImGui::SameLine();
-    ImGui::RadioButton("All sphere", &radio_struct->detection.hough.drawing_mode, radio::hough::ALL);
+    ImGui::RadioButton("All sphere", &radio_struct->detection.hough.drawing_mode, rad::hough::ALL);
     ImGui::SameLine();
-    ImGui::RadioButton("Best sphere", &radio_struct->detection.hough.drawing_mode, radio::hough::BEST);
+    ImGui::RadioButton("Best sphere", &radio_struct->detection.hough.drawing_mode, rad::hough::BEST);
 
     ImGui::TreePop();
   }

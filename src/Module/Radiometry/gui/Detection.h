@@ -3,19 +3,19 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n::dev{class Sensor;}
-namespace radio{class Structure;}
-namespace radio::detection{class Hough;}
+namespace rad{class Structure;}
+namespace rad::detection{class Hough;}
 namespace gui::element{class Stream;}
 namespace gui_element = gui::element;
 
 
-namespace radio::gui{
+namespace rad::gui{
 
 class Detection
 {
 public:
   //Constructor / Destructor
-  Detection(radio::Structure* radio_struct);
+  Detection(rad::Structure* radio_struct);
   ~Detection();
 
 public:
@@ -30,8 +30,8 @@ public:
   void draw_result(k4n::dev::Sensor* sensor);
 
 private:
-  radio::Structure* radio_struct;
-  radio::detection::Hough* radio_hough;
+  rad::Structure* radio_struct;
+  rad::detection::Hough* radio_hough;
   gui_element::Stream* stream;
 };
 

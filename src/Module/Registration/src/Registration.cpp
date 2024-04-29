@@ -4,13 +4,13 @@
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 
-namespace radio::processing{
+namespace rad::processing{
 
 //Constructor / Destructor
 Registration::Registration(k4n::Node* node_k4n){
   //---------------------------
 
-  radio::Node* node_radio = node_k4n->get_node_radio();
+  rad::Node* node_radio = node_k4n->get_node_radio();
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->k4n_pool = node_k4n->get_k4n_pool();

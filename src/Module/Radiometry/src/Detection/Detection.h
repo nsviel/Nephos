@@ -3,15 +3,15 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n::dev{class Sensor;}
-namespace radio{class Structure;}
-namespace radio::detection::cloud{class Glyph;}
+namespace rad{class Structure;}
+namespace rad::detection::cloud{class Glyph;}
 namespace k4n::utils{class Transformation;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 namespace ope::attribut{class Normal;}
 
 
-namespace radio::detection{
+namespace rad::detection{
 
 enum STEP{
   WAIT_VALIDATION = 0,
@@ -20,13 +20,13 @@ enum STEP{
 
 }
 
-namespace radio{
+namespace rad{
 
 class Detection
 {
 public:
   //Constructor / Destructor
-  Detection(radio::Structure* radio_struct);
+  Detection(rad::Structure* radio_struct);
   ~Detection();
 
 public:
@@ -49,9 +49,9 @@ private:
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
   ope::attribut::Normal* ope_normal;
-  radio::detection::cloud::Glyph* radio_glyph;
+  rad::detection::cloud::Glyph* radio_glyph;
   k4n::utils::Transformation* k4n_transfo;
-  radio::Structure* radio_struct;
+  rad::Structure* radio_struct;
   std::map<int, std::string> map_step;
 
   int step;

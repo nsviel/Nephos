@@ -13,7 +13,7 @@ namespace k4n::gui{class Stream;}
 namespace k4n::structure{class K4N;}
 namespace k4n::thread{class Pool;}
 namespace k4n::calibration{class Model;}
-namespace radio{class Node;}
+namespace rad{class Node;}
 
 
 namespace k4n{
@@ -36,7 +36,7 @@ public:
   inline sce::Node* get_node_scene(){return node_scene;}
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
-  inline radio::Node* get_node_radio(){return node_radio;}
+  inline rad::Node* get_node_radio(){return node_radio;}
 
   inline k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
   inline k4n::thread::Pool* get_k4n_pool(){return k4n_pool;}
@@ -48,7 +48,7 @@ private:
   eng::Node* node_engine;
   sce::Node* node_scene;
   prf::Node* node_profiler;
-  radio::Node* node_radio;
+  rad::Node* node_radio;
 
   //Child
   k4n::thread::Pool* k4n_pool;

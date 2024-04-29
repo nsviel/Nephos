@@ -8,15 +8,15 @@
 #include <Radiometry/src/Structure/Model/Model.h>
 
 
-namespace radio::structure{
+namespace rad::structure{
 
 struct Detection{
   //---------------------------
 
-  radio::structure::Hough hough;
-  radio::structure::Canny canny;
-  radio::structure::Bbox bbox;
-  radio::structure::Ransac ransac;
+  rad::structure::Hough hough;
+  rad::structure::Canny canny;
+  rad::structure::Bbox bbox;
+  rad::structure::Ransac ransac;
 
   //---------------------------
 };

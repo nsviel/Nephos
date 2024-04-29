@@ -4,22 +4,22 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace radio{
+namespace rad{
 
 //Constructor / Destructor
-Detection::Detection(radio::Structure* radio_struct){
+Detection::Detection(rad::Structure* radio_struct){
   //---------------------------
 
   this->k4n_transfo = new k4n::utils::Transformation();
   this->radio_struct = radio_struct;
-  this->radio_glyph = new radio::detection::cloud::Glyph(radio_struct);
+  this->radio_glyph = new rad::detection::cloud::Glyph(radio_struct);
 
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();
-  this->map_step[radio::detection::WAIT_VALIDATION] = "Wait validation";
-  this->map_step[radio::detection::PROCESSING] = "Processing";
-  this->step = radio::detection::WAIT_VALIDATION;
+  this->map_step[rad::detection::WAIT_VALIDATION] = "Wait validation";
+  this->map_step[rad::detection::PROCESSING] = "Processing";
+  this->step = rad::detection::WAIT_VALIDATION;
 
   this->radius = 0.5f;
 
@@ -32,12 +32,12 @@ void Detection::next_step(k4n::dev::Sensor* sensor){
   //---------------------------
 
   switch(step){
-    case radio::detection::WAIT_VALIDATION:{
+    case rad::detection::WAIT_VALIDATION:{
       this->validate_bbox(sensor);
       break;
     }
-    case radio::detection::PROCESSING:{
-      this->step = radio::detection::WAIT_VALIDATION;
+    case rad::detection::PROCESSING:{
+      this->step = rad::detection::WAIT_VALIDATION;
       break;
     }
   }
@@ -48,7 +48,7 @@ void Detection::next_step(k4n::dev::Sensor* sensor){
 //Subfunction
 void Detection::validate_bbox(k4n::dev::Sensor* sensor){
   if(sensor->detection.nb_detection == 0) return;
-  if(step != radio::detection::WAIT_VALIDATION) return;
+  if(step != rad::detection::WAIT_VALIDATION) return;
   //---------------------------
 
   this->step++;
@@ -61,7 +61,7 @@ void Detection::validate_bbox(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Detection::ransac_sphere(k4n::dev::Sensor* sensor){
-  if(step != radio::detection::PROCESSING) return;
+  if(step != rad::detection::PROCESSING) return;
   //---------------------------
 
   vector<vec3>& vec_xyz = sensor->object.data.xyz;
@@ -98,8 +98,8 @@ void Detection::ransac_sphere(k4n::dev::Sensor* sensor){
 
 //Data function
 void Detection::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  radio::structure::Optimization* model = &radio_struct->model.optim;
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //Search for closest point
@@ -127,7 +127,7 @@ void Detection::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   //---------------------------
 }
 void Detection::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //Search for closest point
@@ -154,8 +154,8 @@ void Detection::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   //---------------------------
 }
 void Detection::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  radio::structure::Optimization* model = &radio_struct->model.optim;
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //Search for closest point

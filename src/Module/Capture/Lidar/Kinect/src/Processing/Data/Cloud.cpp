@@ -13,7 +13,7 @@ namespace k4n::processing{
 Cloud::Cloud(k4n::Node* node_k4n){
   //---------------------------
 
-  radio::Node* node_radio = node_k4n->get_node_radio();
+  rad::Node* node_radio = node_k4n->get_node_radio();
 
   this->k4n_operation = new k4n::utils::Operation();
   this->k4n_processing = new k4n::processing::Operation(node_k4n);

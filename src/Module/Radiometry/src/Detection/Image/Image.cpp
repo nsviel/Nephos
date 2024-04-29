@@ -3,10 +3,10 @@
 #include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
 
-namespace radio::matching{
+namespace rad::matching{
 
 //Constructor / Destructor
-Image::Image(radio::Structure* radio_struct){
+Image::Image(rad::Structure* radio_struct){
   //---------------------------
 
   this->radio_struct = radio_struct;
@@ -33,7 +33,7 @@ void Image::draw_best_sphere(k4n::dev::Sensor* sensor){
   if(sensor->detection.cv_image.empty()) return;
   //------------------------
 
-  vector<radio::structure::Circle> vec_circle;
+  vector<rad::structure::Circle> vec_circle;
   if(sensor->detection.vec_circle.size() > 0){
     vec_circle.push_back(sensor->detection.vec_circle[0]);
   }
@@ -109,12 +109,12 @@ void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
 
   //------------------------
 }
-void Image::draw_circle(cv::Mat& image, vector<radio::structure::Circle>& vec_circle){
+void Image::draw_circle(cv::Mat& image, vector<rad::structure::Circle>& vec_circle){
   if(vec_circle.size() == 0) return;
   //------------------------
 
   for(size_t i=0; i<vec_circle.size(); i++){
-    radio::structure::Circle& circle = vec_circle[i];
+    rad::structure::Circle& circle = vec_circle[i];
     cv::Point center(cvRound(circle.center.x), cvRound(circle.center.y));
     int radius = cvRound(circle.radius);
 
@@ -130,10 +130,10 @@ void Image::draw_circle(cv::Mat& image, vector<radio::structure::Circle>& vec_ci
 void Image::draw_bounding_box(cv::Mat& image, k4n::dev::Sensor* sensor){
   //------------------------
 
-  vector<radio::structure::Circle>& vec_circle = sensor->detection.vec_circle;
+  vector<rad::structure::Circle>& vec_circle = sensor->detection.vec_circle;
   if(vec_circle.size() == 0) return;
 
-  radio::structure::Circle& circle = vec_circle[0];
+  rad::structure::Circle& circle = vec_circle[0];
   sensor->detection.cv_center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
   sensor->detection.cv_radius = cvRound(circle.radius);
 

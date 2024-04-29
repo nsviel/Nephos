@@ -2,16 +2,16 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace radio{class Structure;}
+namespace rad{class Structure;}
 
 
-namespace radio::model{
+namespace rad::model{
 
 class Measure
 {
 public:
   //Constructor / Destructor
-  Measure(radio::Structure* radio_struct);
+  Measure(rad::Structure* radio_struct);
   ~Measure();
 
 public:
@@ -28,7 +28,7 @@ public:
   void clear_plot();
 
 private:
-  radio::Structure* radio_struct;
+  rad::Structure* radio_struct;
 };
 
 }

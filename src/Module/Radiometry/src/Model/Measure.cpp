@@ -3,10 +3,10 @@
 #include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
 
-namespace radio::model{
+namespace rad::model{
 
 //Constructor / Destructor
-Measure::Measure(radio::Structure* radio_struct){
+Measure::Measure(rad::Structure* radio_struct){
   //---------------------------
 
   this->radio_struct = radio_struct;
@@ -18,7 +18,7 @@ Measure::~Measure(){}
 
 //Measure function
 void Measure::import_measure(){
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //Import file model data
@@ -29,7 +29,7 @@ void Measure::import_measure(){
   //---------------------------
 }
 void Measure::export_measure(){
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   utl::file::write_vector(measure->path, measure->vec_data);
@@ -37,7 +37,7 @@ void Measure::export_measure(){
   //---------------------------
 }
 void Measure::clear_measure(){
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //Import file model data
@@ -47,8 +47,8 @@ void Measure::clear_measure(){
   //---------------------------
 }
 void Measure::find_measure_bound(){
-  radio::structure::Optimization* model = &radio_struct->model.optim;
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   for(int i=0; i<measure->vec_data.size(); i++){
@@ -68,8 +68,8 @@ void Measure::find_measure_bound(){
 
 //Plot function
 void Measure::init_plot(){
-  radio::structure::Optimization* model = &radio_struct->model.optim;
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //I(R)
@@ -116,8 +116,8 @@ void Measure::init_plot(){
   //---------------------------
 }
 void Measure::reset_plot(){
-  radio::structure::Optimization* model = &radio_struct->model.optim;
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //I(R)
@@ -144,8 +144,8 @@ void Measure::reset_plot(){
   //---------------------------
 }
 void Measure::update_plot(){
-  radio::structure::Measure* measure = &radio_struct->model.measure;
-  radio::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &radio_struct->model.optim;
   //---------------------------
 
   this->reset_plot();
@@ -183,8 +183,8 @@ void Measure::update_plot(){
   //---------------------------
 }
 void Measure::clear_plot(){
-  radio::structure::Optimization* model = &radio_struct->model.optim;
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   //I(R)

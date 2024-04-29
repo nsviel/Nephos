@@ -5,10 +5,10 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace radio::detection{
+namespace rad::detection{
 
 //Constructor / Destructor
-Glyph::Glyph(radio::Structure* radio_struct){
+Glyph::Glyph(rad::Structure* radio_struct){
   //---------------------------
 
   this->node_glyph = radio_struct->node_scene->get_scene_glyph();
@@ -20,7 +20,7 @@ Glyph::~Glyph(){}
 
 //Main function
 void Glyph::draw_all_sphere_glyph(k4n::dev::Sensor* sensor){
-  vector<radio::structure::Circle>& vec_circle = sensor->detection.vec_circle;
+  vector<rad::structure::Circle>& vec_circle = sensor->detection.vec_circle;
   //---------------------------
 
   this->reset_all_sphere(sensor);
@@ -29,10 +29,10 @@ void Glyph::draw_all_sphere_glyph(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Glyph::draw_best_sphere_glyph(k4n::dev::Sensor* sensor){
-  vector<radio::structure::Circle>& vec_circle = sensor->detection.vec_circle;
+  vector<rad::structure::Circle>& vec_circle = sensor->detection.vec_circle;
   //---------------------------
 
-  vector<radio::structure::Circle> best_circle;
+  vector<rad::structure::Circle> best_circle;
   if(sensor->detection.vec_circle.size() > 0){
     best_circle.push_back(sensor->detection.vec_circle[0]);
   }
@@ -55,13 +55,13 @@ void Glyph::reset_all_sphere(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Glyph::draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<radio::structure::Circle>& vec_circle){
+void Glyph::draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<rad::structure::Circle>& vec_circle){
   vector<gly::element::object::Sphere*>& vec_glyph_sphere = sensor->detection.vec_glyph_sphere;
   //---------------------------
 
   for(int i=0; i<vec_circle.size(); i++){
     if(i >= vec_glyph_sphere.size()) return;
-    radio::structure::Circle& circle = vec_circle[i];
+    rad::structure::Circle& circle = vec_circle[i];
 
     //Add sphere radius to the detected circle center
     vec3 pose = k4n_transfo->convert_depth_2d_to_3d(sensor, circle.center);

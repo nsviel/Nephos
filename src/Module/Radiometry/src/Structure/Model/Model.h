@@ -6,13 +6,13 @@
 #include <vector>
 
 
-namespace radio::structure{
+namespace rad::structure{
 
 struct Model{
   //---------------------------
 
-  radio::structure::Measure measure;
-  radio::structure::Optimization optim;
+  rad::structure::Measure measure;
+  rad::structure::Optimization optim;
 
   //---------------------------
 };

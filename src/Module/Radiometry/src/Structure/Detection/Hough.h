@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace radio::hough{
+namespace rad::hough{
 
 enum Drawing{
   ALL = 0,
@@ -18,14 +18,14 @@ enum Mode{
 
 }
 
-namespace radio::structure{
+namespace rad::structure{
 
 struct Hough{
   //---------------------------
 
   bool apply = true;
-  int drawing_mode = radio::hough::ALL;
-  int mode = radio::hough::GRADIENT_ALT;
+  int drawing_mode = rad::hough::ALL;
+  int mode = rad::hough::GRADIENT_ALT;
   int cv_mode = cv::HOUGH_GRADIENT;
 
   float param_1 = -1;

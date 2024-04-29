@@ -4,7 +4,7 @@
 #include <vector>
 
 
-namespace radio::structure{
+namespace rad::structure{
 
 struct Optimization{
   //---------------------------

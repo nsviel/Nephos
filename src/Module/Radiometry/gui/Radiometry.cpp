@@ -5,16 +5,16 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace radio::gui{
+namespace rad::gui{
 
 //Constructor / Destructor
-Radiometry::Radiometry(radio::Structure* radio_struct, bool* show_window){
+Radiometry::Radiometry(rad::Structure* radio_struct, bool* show_window){
   //---------------------------
 
   //this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->radio_struct = radio_struct;
-  this->gui_detection = new radio::gui::Detection(radio_struct);
-  this->gui_calibration = new radio::gui::Calibration(radio_struct);
+  this->gui_detection = new rad::gui::Detection(radio_struct);
+  this->gui_calibration = new rad::gui::Calibration(radio_struct);
 
   this->show_window = show_window;
   this->name = "Radiometry";

@@ -5,10 +5,10 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace radio::detection::cloud{
+namespace rad::detection::cloud{
 
 //Constructor / Destructor
-Glyph::Glyph(radio::Structure* radio_struct){
+Glyph::Glyph(rad::Structure* radio_struct){
   //---------------------------
 
   this->node_glyph = radio_struct->node_scene->get_scene_glyph();

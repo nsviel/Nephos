@@ -5,15 +5,15 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace radio::detection{
+namespace rad::detection{
 
 //Constructor / Destructor
-Ransac::Ransac(radio::Structure* radio_struct){
+Ransac::Ransac(rad::Structure* radio_struct){
   //---------------------------
 
   this->radio_struct = radio_struct;
   //this->k4n_pool = node_k4n->get_k4n_pool();
-  this->radio_glyph = new radio::detection::cloud::Glyph(radio_struct);
+  this->radio_glyph = new rad::detection::cloud::Glyph(radio_struct);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();
@@ -62,7 +62,7 @@ void Ransac::wait_thread(){
 
 //Subfunction
 void Ransac::ransac_sphere(k4n::dev::Sensor* sensor){
-  //if(step != radio::detection::PROCESSING) return;
+  //if(step != rad::detection::PROCESSING) return;
   //---------------------------
 
   vector<vec3>& vec_xyz = sensor->object.data.xyz;

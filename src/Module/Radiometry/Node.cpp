@@ -7,7 +7,7 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace radio{
+namespace rad{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
@@ -20,14 +20,14 @@ Node::Node(eng::Node* node_engine){
   this->node_profiler = node_engine->get_node_profiler();
 
   //Child
-  this->radio_struct = new radio::Structure(this);
-  this->radio_detection = new radio::Detection(radio_struct);
-  this->radio_model = new radio::Model(radio_struct);
-  this->radio_hough = new radio::detection::Hough(radio_struct);
-  this->radio_ransac = new radio::detection::Ransac(radio_struct);
-  this->radio_identification = new radio::detection::Identification(radio_struct);
-  this->radio_measure = new radio::model::Measure(radio_struct);
-  this->gui_radiometry = new radio::gui::Radiometry(radio_struct, &cal_panel->is_open);
+  this->radio_struct = new rad::Structure(this);
+  this->radio_detection = new rad::Detection(radio_struct);
+  this->radio_model = new rad::Model(radio_struct);
+  this->radio_hough = new rad::detection::Hough(radio_struct);
+  this->radio_ransac = new rad::detection::Ransac(radio_struct);
+  this->radio_identification = new rad::detection::Identification(radio_struct);
+  this->radio_measure = new rad::model::Measure(radio_struct);
+  this->gui_radiometry = new rad::gui::Radiometry(radio_struct, &cal_panel->is_open);
 
   //---------------------------
 }

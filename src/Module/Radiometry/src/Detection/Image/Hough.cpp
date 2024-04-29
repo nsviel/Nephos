@@ -3,22 +3,22 @@
 #include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
 
-namespace radio::detection{
+namespace rad::detection{
 
 //Constructor / Destructor
-Hough::Hough(radio::Structure* radio_struct){
+Hough::Hough(rad::Structure* radio_struct){
   //---------------------------
 
   this->radio_struct = radio_struct;
 
-  this->find_mode_parameter(radio::hough::GRADIENT_ALT);
+  this->find_mode_parameter(rad::hough::GRADIENT_ALT);
 
   //---------------------------
 }
 Hough::~Hough(){}
 
 //Main function
-vector<radio::structure::Circle> Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
+vector<rad::structure::Circle> Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
   vec_circle.clear();
   if(input.empty()) return vec_circle;
   //------------------------
@@ -65,7 +65,7 @@ void Hough::compute_hough_circle(cv::Mat& image){
   cv::HoughCircles(image, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
 
   for(int i=0; i<circles.size(); i++){
-    radio::structure::Circle circle;
+    rad::structure::Circle circle;
     circle.center = glm::ivec2(circles[i][0], circles[i][1]);
     circle.radius = circles[i][2];
     vec_circle.push_back(circle);
@@ -77,13 +77,13 @@ void Hough::find_mode_parameter(int mode){
   //---------------------------
 
   switch(mode){
-    case radio::hough::GRADIENT:{
+    case rad::hough::GRADIENT:{
       radio_struct->detection.hough.param_1 = 100; //higher threshold for the Canny edge detector
       radio_struct->detection.hough.param_2 = 40; //accumulator threshold for the circle centers at the detection stage
       radio_struct->detection.hough.cv_mode = cv::HOUGH_GRADIENT;
       break;
     }
-    case radio::hough::GRADIENT_ALT:{
+    case rad::hough::GRADIENT_ALT:{
       radio_struct->detection.hough.param_1 = 300;
       radio_struct->detection.hough.param_2 = 0.9;
       radio_struct->detection.hough.cv_mode = cv::HOUGH_GRADIENT_ALT;

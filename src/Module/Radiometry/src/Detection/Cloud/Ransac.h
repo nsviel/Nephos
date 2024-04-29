@@ -3,22 +3,22 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n{class Node;}
-namespace radio{class Structure;}
+namespace rad{class Structure;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::thread{class Pool;}
-namespace radio::detection::cloud{class Glyph;}
+namespace rad::detection::cloud{class Glyph;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 namespace ope::attribut{class Normal;}
 
 
-namespace radio::detection{
+namespace rad::detection{
 
 class Ransac
 {
 public:
   //Constructor / Destructor
-  Ransac(radio::Structure* radio_struct);
+  Ransac(rad::Structure* radio_struct);
   ~Ransac();
 
 public:
@@ -32,8 +32,8 @@ public:
 
 private:
   k4n::thread::Pool* k4n_pool;
-  radio::Structure* radio_struct;
-  radio::detection::cloud::Glyph* radio_glyph;
+  rad::Structure* radio_struct;
+  rad::detection::cloud::Glyph* radio_glyph;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
   ope::attribut::Normal* ope_normal;

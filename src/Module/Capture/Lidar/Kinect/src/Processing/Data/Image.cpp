@@ -11,7 +11,7 @@ namespace k4n::processing{
 Image::Image(k4n::Node* node_k4n){
   //---------------------------
 
-  radio::Node* node_radio = node_k4n->get_node_radio();
+  rad::Node* node_radio = node_k4n->get_node_radio();
 
   this->k4n_depth = new k4n::data::Depth();
   this->k4n_infrared = new k4n::data::Infrared();

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace radio::structure{
+namespace rad::structure{
 
 struct Ransac{
   //---------------------------

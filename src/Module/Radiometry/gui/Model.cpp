@@ -5,16 +5,16 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace radio::gui{
+namespace rad::gui{
 
 //Constructor / Destructor
-Model::Model(radio::Structure* radio_struct){
+Model::Model(rad::Structure* radio_struct){
   //---------------------------
 
   this->radio_struct = radio_struct;
-  this->radio_detection = new radio::Detection(radio_struct);
-  this->radio_measure = new radio::model::Measure(radio_struct);
-  this->radio_model = new radio::Model(radio_struct);
+  this->radio_detection = new rad::Detection(radio_struct);
+  this->radio_measure = new rad::model::Measure(radio_struct);
+  this->radio_model = new rad::Model(radio_struct);
   this->utl_plot = new utl::implot::Plot();
   //this->gui_player = node_k4n->get_k4n_gui_player();
 
@@ -32,7 +32,7 @@ void Model::draw_calibration_player(k4n::dev::Sensor* sensor){
 
   //Detection validation
   int step = radio_detection->get_step();
-  if(step == radio::detection::WAIT_VALIDATION){
+  if(step == rad::detection::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
@@ -69,7 +69,7 @@ void Model::draw_calibration_tab(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Model::draw_calibration_measure(k4n::dev::Sensor* sensor){
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -119,7 +119,7 @@ void Model::draw_calibration_measure(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Model::draw_calibration_model(k4n::dev::Sensor* sensor){
-  radio::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Optimization* model = &radio_struct->model.optim;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -196,7 +196,7 @@ void Model::draw_measure(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Model::plot_measure_IfR(k4n::dev::Sensor* sensor, float height){
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   measure->IfR.dimension = ivec2(-1, height);
@@ -205,7 +205,7 @@ void Model::plot_measure_IfR(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 }
 void Model::plot_measure_IfIt(k4n::dev::Sensor* sensor, float height){
-  radio::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
   measure->IfIt.dimension = ivec2(-1, height);
@@ -214,8 +214,8 @@ void Model::plot_measure_IfIt(k4n::dev::Sensor* sensor, float height){
   //---------------------------
 }
 void Model::plot_model_heatmap(k4n::dev::Sensor* sensor, float height){
-  radio::structure::Measure* measure = &radio_struct->model.measure;
-  radio::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &radio_struct->model.optim;
   //---------------------------
 
   measure->IfRIt.dimension = ivec2(-1, height);

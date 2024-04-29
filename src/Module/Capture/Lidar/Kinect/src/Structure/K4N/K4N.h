@@ -34,7 +34,7 @@ struct K4N{
   eng::Node* node_engine;
   sce::Node* node_scene;
   prf::Node* node_profiler;
-  radio::Node* node_radio;
+  rad::Node* node_radio;
 
   //Structure
   k4n::structure::Device device;

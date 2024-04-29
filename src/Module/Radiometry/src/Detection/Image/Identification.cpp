@@ -5,10 +5,10 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace radio::detection{
+namespace rad::detection{
 
 //Constructor / Destructor
-Identification::Identification(radio::Structure* radio_struct){
+Identification::Identification(rad::Structure* radio_struct){
   //---------------------------
 
   this->radio_struct = radio_struct;
@@ -81,11 +81,11 @@ void Identification::draw_detection_image(k4n::dev::Sensor* sensor){
   //---------------------------
 
   switch(radio_struct->detection.hough.drawing_mode){
-    case radio::hough::ALL:{
+    case rad::hough::ALL:{
       radio_image->draw_all_sphere(sensor);
       break;
     }
-    case radio::hough::BEST:{
+    case rad::hough::BEST:{
       radio_image->draw_best_sphere(sensor);
       break;
     }
@@ -97,11 +97,11 @@ void Identification::draw_detection_glyph(k4n::dev::Sensor* sensor){
   //---------------------------
 
   switch(radio_struct->detection.hough.drawing_mode){
-    case radio::hough::ALL:{
+    case rad::hough::ALL:{
       radio_glyph->draw_all_sphere_glyph(sensor);
       break;
     }
-    case radio::hough::BEST:{
+    case rad::hough::BEST:{
       radio_glyph->draw_best_sphere_glyph(sensor);
       break;
     }

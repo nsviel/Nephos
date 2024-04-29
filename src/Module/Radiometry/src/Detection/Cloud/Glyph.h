@@ -3,17 +3,17 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n::dev{class Sensor;}
-namespace radio{class Structure;}
+namespace rad{class Structure;}
 namespace gly{class Node;}
 
 
-namespace radio::detection::cloud{
+namespace rad::detection::cloud{
 
 class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(radio::Structure* radio_struct);
+  Glyph(rad::Structure* radio_struct);
   ~Glyph();
 
 public:

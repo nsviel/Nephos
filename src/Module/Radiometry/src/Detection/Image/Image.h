@@ -3,17 +3,17 @@
 #include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
-namespace radio{class Structure;}
-namespace radio::structure{class Circle;}
+namespace rad{class Structure;}
+namespace rad::structure{class Circle;}
 namespace k4n::dev{class Sensor;}
 
 
-namespace radio::matching{
+namespace rad::matching{
 
 class Image
 {
 public:
-  Image(radio::Structure* radio_struct);
+  Image(rad::Structure* radio_struct);
   ~Image();
 
 public:
@@ -26,11 +26,11 @@ public:
   void convert_into_rgba(cv::Mat& input, cv::Mat& output);
   void convert_into_subimage(cv::Mat& image, k4n::dev::Sensor* sensor);
   void convert_into_utl_image(cv::Mat& input, utl::media::Image* output);
-  void draw_circle(cv::Mat& image, vector<radio::structure::Circle>& vec_circle);
+  void draw_circle(cv::Mat& image, vector<rad::structure::Circle>& vec_circle);
   void draw_bounding_box(cv::Mat& image, k4n::dev::Sensor* sensor);
 
 private:
-  radio::Structure* radio_struct;
+  rad::Structure* radio_struct;
 };
 
 }

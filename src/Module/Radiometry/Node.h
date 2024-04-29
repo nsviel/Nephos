@@ -5,18 +5,18 @@
 namespace prf{class Node;}
 namespace eng{class Node;}
 namespace sce{class Node;}
-namespace radio{class Structure;}
-namespace radio{class Detection;}
-namespace radio{class Model;}
+namespace rad{class Structure;}
+namespace rad{class Detection;}
+namespace rad{class Model;}
 
-namespace radio::detection{class Identification;}
-namespace radio::detection{class Hough;}
-namespace radio::detection{class Ransac;}
-namespace radio::model{class Measure;}
-namespace radio::gui{class Radiometry;}
+namespace rad::detection{class Identification;}
+namespace rad::detection{class Hough;}
+namespace rad::detection{class Ransac;}
+namespace rad::model{class Measure;}
+namespace rad::gui{class Radiometry;}
 
 
-namespace radio{
+namespace rad{
 
 class Node : public utl::type::Node
 {
@@ -37,14 +37,14 @@ public:
   inline sce::Node* get_node_scene(){return node_scene;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
-  inline radio::Structure* get_radio_struct(){return radio_struct;}
-  inline radio::Detection* get_radio_detection(){return radio_detection;}
-  inline radio::Model* get_radio_model(){return radio_model;}
+  inline rad::Structure* get_radio_struct(){return radio_struct;}
+  inline rad::Detection* get_radio_detection(){return radio_detection;}
+  inline rad::Model* get_radio_model(){return radio_model;}
 
-  inline radio::detection::Identification* get_radio_identification(){return radio_identification;}
-  inline radio::detection::Hough* get_radio_hough(){return radio_hough;}
-  inline radio::detection::Ransac* get_radio_ransac(){return radio_ransac;}
-  inline radio::model::Measure* get_model_measure(){return radio_measure;}
+  inline rad::detection::Identification* get_radio_identification(){return radio_identification;}
+  inline rad::detection::Hough* get_radio_hough(){return radio_hough;}
+  inline rad::detection::Ransac* get_radio_ransac(){return radio_ransac;}
+  inline rad::model::Measure* get_model_measure(){return radio_measure;}
 
 
 private:
@@ -54,14 +54,14 @@ private:
   prf::Node* node_profiler;
 
   //Child
-  radio::Structure* radio_struct;
-  radio::Detection* radio_detection;
-  radio::Model* radio_model;
-  radio::detection::Identification* radio_identification;
-  radio::detection::Hough* radio_hough;
-  radio::detection::Ransac* radio_ransac;
-  radio::model::Measure* radio_measure;
-  radio::gui::Radiometry* gui_radiometry;
+  rad::Structure* radio_struct;
+  rad::Detection* radio_detection;
+  rad::Model* radio_model;
+  rad::detection::Identification* radio_identification;
+  rad::detection::Hough* radio_hough;
+  rad::detection::Ransac* radio_ransac;
+  rad::model::Measure* radio_measure;
+  rad::gui::Radiometry* gui_radiometry;
 };
 
 }
