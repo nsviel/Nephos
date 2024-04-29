@@ -1,16 +1,16 @@
 #pragma once
 
-#include <Scene/Base/Glyph.h>
+#include <Glyph/Control/Glyph.h>
 
 
 namespace glyph::grid{
 
-class Plane : public utl::entity::Glyph
+class Axis : public utl::entity::Glyph
 {
 public:
   //Constructor / Destructor
-  Plane(eng::Node* node_engine);
-  ~Plane();
+  Axis(eng::Node* node_engine);
+  ~Axis();
 
 public:
   //Main function
@@ -20,6 +20,7 @@ public:
   void construct(int nb_cell);
 
 private:
+  vec4 color;
 };
 
 }
