@@ -15,6 +15,10 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_GUI
+  LIBRARY_PROFILER
+  LIBRARY_ENGINE
+  LIBRARY_GUI
+
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
