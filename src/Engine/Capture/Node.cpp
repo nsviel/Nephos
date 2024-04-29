@@ -2,7 +2,8 @@
 
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Capture/Namespace.h>
+#include <Kinect/Namespace.h>
+#include <Velodyne/Namespace.h>
 
 
 namespace eng::capture{
