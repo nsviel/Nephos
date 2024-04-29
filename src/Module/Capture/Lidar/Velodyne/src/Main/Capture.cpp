@@ -1,7 +1,7 @@
 #include "Capture.h"
 
 #include <Velodyne/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Scene/Namespace.h>
 #include <Scene/Namespace.h>
 
 

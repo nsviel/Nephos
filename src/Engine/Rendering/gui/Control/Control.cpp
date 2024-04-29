@@ -3,7 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Camera/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Scene/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Rendering/Namespace.h>
 #include <Operation/Namespace.h>

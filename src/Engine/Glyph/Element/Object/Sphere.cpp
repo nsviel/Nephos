@@ -1,7 +1,7 @@
 #include "Sphere.h"
 
 #include <Scene/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Scene/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Camera/Namespace.h>

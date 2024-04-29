@@ -1,6 +1,6 @@
 #include "Set.h"
 
-#include <Graph/Namespace.h>
+#include <Scene/Namespace.h>
 #include <Scene/Namespace.h>
 
 

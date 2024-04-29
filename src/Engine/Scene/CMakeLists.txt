@@ -3,11 +3,8 @@ set(LIBRARY_NAME LIBRARY_SCENE)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Graph)
-
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
+  *.cpp
 )
 
 #-----------------
@@ -22,7 +19,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_GLYPH
   LIBRARY_LOADER
-  LIBRARY_GRAPH
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

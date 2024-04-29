@@ -3,7 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <Capture/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Scene/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Radiometry/Namespace.h>

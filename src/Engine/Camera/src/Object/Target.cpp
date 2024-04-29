@@ -1,7 +1,7 @@
 #include "Target.h"
 
 #include <Camera/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace cam::glyph{

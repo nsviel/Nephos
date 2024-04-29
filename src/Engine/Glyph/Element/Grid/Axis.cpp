@@ -1,6 +1,6 @@
 #include "Axis.h"
 
-#include <Graph/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace gly::element::grid{
