@@ -20,27 +20,15 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
-find_package(glfw3 REQUIRED)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
-  LIBRARY_ENGINE
+  LIBRARY_CAMERA
 
   Eigen3::Eigen # Eigen
   -lgit2        # git
   -lstdc++fs    # std::experimental::filesystem
-  -lglfw        # glfw
-  -lsqlite3     # sqlite
-  -ludev        # video device
-  -lusb-1.0
-
-  -lavformat    # ffmpeg
-  -lavdevice    # ffmpeg
-  -lavcodec     # ffmpeg
-  -lswresample  # ffmpeg
-  -lswscale     # ffmpeg
-  -lavutil      # ffmpeg
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

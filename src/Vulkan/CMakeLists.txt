@@ -35,6 +35,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
+find_package(glfw3 REQUIRED)
 find_package(Vulkan REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
@@ -42,6 +43,8 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
 
   ${Vulkan_LIBRARIES}
+
+  -lglfw        # glfw
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
