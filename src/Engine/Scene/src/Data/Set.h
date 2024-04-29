@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace scene{
+namespace sce{
 
 class Set
 {

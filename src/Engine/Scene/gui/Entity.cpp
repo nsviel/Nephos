@@ -6,14 +6,14 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace scene::gui{
+namespace sce::gui{
 
 //Constructor / Destructor
-Entity::Entity(scene::Node* node_scene, bool* panel_show){
+Entity::Entity(sce::Node* node_scene, bool* panel_show){
   //---------------------------
 
   this->sce_database = node_scene->get_scene_database();
-  this->sce_set = new scene::Set();
+  this->sce_set = new sce::Set();
   this->ope_location = new ope::attribut::Location();
   this->ope_operation = new ope::Operation();
 

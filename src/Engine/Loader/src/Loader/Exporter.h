@@ -2,17 +2,17 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace scene{class Node;}
-namespace scene{class Format;}
+namespace sce{class Node;}
+namespace sce{class Format;}
 
 
-namespace scene{
+namespace sce{
 
 class Exporter
 {
 public:
   //Constructor / Destructor
-  Exporter(scene::Node* node_scene);
+  Exporter(sce::Node* node_scene);
   ~Exporter();
 
 public:
@@ -20,7 +20,7 @@ public:
   void export_data(utl::type::Data* data);
 
 private:
-  scene::Format* sce_format;
+  sce::Format* sce_format;
 };
 
 }

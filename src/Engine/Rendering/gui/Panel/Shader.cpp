@@ -202,7 +202,7 @@ void Shader::retrieve_shader_subclasses(){
     vec_shader_info = shader_edl->get_vec_shader_info();
   }
   else if(selection == "Scene"){
-    rnd::scene::Shader* shader_scene = node_render->get_shader_scene();
+    rnd::sce::Shader* shader_scene = node_render->get_shader_scene();
     vec_shader_info = shader_scene->get_vec_shader_info();
   }
 
@@ -239,7 +239,7 @@ string Shader::get_path_vs_from_selection(){
     path_vs = shader_edl->get_glsl_path_vs(ID_subclass);
   }
   else if(selection == "Scene"){
-    rnd::scene::Shader* shader_scene = node_render->get_shader_scene();
+    rnd::sce::Shader* shader_scene = node_render->get_shader_scene();
     path_vs = shader_scene->get_glsl_path_vs(ID_subclass);
   }
 */
@@ -257,7 +257,7 @@ string Shader::get_path_fs_from_selection(){
     path_fs = shader_edl->get_glsl_path_fs(ID_subclass);
   }
   else if(selection == "Scene"){
-    rnd::scene::Shader* shader_scene = node_render->get_shader_scene();
+    rnd::sce::Shader* shader_scene = node_render->get_shader_scene();
     path_fs = shader_scene->get_glsl_path_fs(ID_subclass);
   }
 */

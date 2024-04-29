@@ -3,11 +3,11 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace scene{class Node;}
-namespace scene{class Database;}
-namespace scene{class Entity;}
-namespace scene{class Set;}
-namespace scene{class Loader;}
+namespace sce{class Node;}
+namespace sce{class Database;}
+namespace sce{class Entity;}
+namespace sce{class Set;}
+namespace sce{class Loader;}
 namespace cam{class Control;}
 namespace cam{class Entity;}
 
@@ -18,7 +18,7 @@ class Node
 {
 public:
   //Constructor / Destructor
-  Node(scene::Node* node_scene);
+  Node(sce::Node* node_scene);
   ~Node();
 
 public:
@@ -36,11 +36,11 @@ public:
 
 private:
   eng::Node* node_engine;
-  scene::Node* node_scene;
-  scene::Database* sce_database;
-  scene::Set* sce_set;
-  scene::Entity* sce_entity;
-  scene::Loader* sce_loader;
+  sce::Node* node_scene;
+  sce::Database* sce_database;
+  sce::Set* sce_set;
+  sce::Entity* sce_entity;
+  sce::Loader* sce_loader;
   cam::Control* cam_control;
 };
 

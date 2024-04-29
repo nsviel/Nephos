@@ -4,13 +4,13 @@
 #include <Scene/Namespace.h>
 
 
-namespace scene::gui{
+namespace sce::gui{
 
 //Constructor / Destructor
 Set::Set(bool* show_window){
   //---------------------------
 
-  this->sce_set = new scene::Set();
+  this->sce_set = new sce::Set();
 
   this->panel_show = show_window;
   this->panel_name = "Set";

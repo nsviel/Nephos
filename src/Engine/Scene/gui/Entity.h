@@ -2,20 +2,20 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace scene{class Node;}
-namespace scene{class Database;}
-namespace scene{class Set;}
+namespace sce{class Node;}
+namespace sce{class Database;}
+namespace sce{class Set;}
 namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
 
 
-namespace scene::gui{
+namespace sce::gui{
 
 class Entity
 {
 public:
   //Constructor / Destructor
-  Entity(scene::Node* node_scene, bool* show_window);
+  Entity(sce::Node* node_scene, bool* show_window);
   ~Entity();
 
   //Main function
@@ -43,8 +43,8 @@ public:
 private:
   ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
-  scene::Database* sce_database;
-  scene::Set* sce_set;
+  sce::Database* sce_database;
+  sce::Set* sce_set;
 
   utl::type::Entity* entity;
   string panel_name;

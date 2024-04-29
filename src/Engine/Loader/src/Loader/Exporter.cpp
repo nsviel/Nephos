@@ -4,10 +4,10 @@
 #include <Scene/Namespace.h>
 
 
-namespace scene{
+namespace sce{
 
 //Constructor / Destructor
-Exporter::Exporter(scene::Node* node_scene){
+Exporter::Exporter(sce::Node* node_scene){
   //---------------------------
 
   this->sce_format = node_scene->get_scene_format();

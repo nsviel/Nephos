@@ -8,17 +8,17 @@
 #include <Capture/Namespace.h>
 
 
-namespace scene{
+namespace sce{
 
 //Constructor / Destructor
-Loader::Loader(scene::Node* node_scene){
+Loader::Loader(sce::Node* node_scene){
   //---------------------------
 
   this->node_engine = node_scene->get_node_engine();
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_database = node_scene->get_scene_database();
   this->sce_format = node_scene->get_scene_format();
-  this->sce_set = new scene::Set();
+  this->sce_set = new sce::Set();
 
   //---------------------------
 }

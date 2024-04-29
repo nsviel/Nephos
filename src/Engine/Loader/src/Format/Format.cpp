@@ -7,10 +7,10 @@
 #include <Engine/Namespace.h>
 
 
-namespace scene{
+namespace sce{
 
 //Constructor / Destructor
-Format::Format(scene::Node* node_scene){
+Format::Format(sce::Node* node_scene){
   //---------------------------
 
   eng::Node* node_engine = node_scene->get_node_engine();

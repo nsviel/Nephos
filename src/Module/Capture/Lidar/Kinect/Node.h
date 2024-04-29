@@ -5,7 +5,7 @@
 namespace prf{class Node;}
 namespace eng{class Node;}
 namespace eng::capture{class Node;}
-namespace scene{class Node;}
+namespace sce{class Node;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::thread{class Connection;}
 namespace k4n::gui{class Player;}
@@ -33,7 +33,7 @@ public:
   void gui();
   void clean();
 
-  inline scene::Node* get_node_scene(){return node_scene;}
+  inline sce::Node* get_node_scene(){return node_scene;}
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline radio::Node* get_node_radio(){return node_radio;}
@@ -46,7 +46,7 @@ public:
 private:
   //Dependancy
   eng::Node* node_engine;
-  scene::Node* node_scene;
+  sce::Node* node_scene;
   prf::Node* node_profiler;
   radio::Node* node_radio;
 

@@ -12,7 +12,7 @@ namespace k4n::dev{
 Master::Master(){
   //---------------------------
 
-  this->sce_set = new scene::Set();
+  this->sce_set = new sce::Set();
   this->k4n_config = new k4n::config::Configuration();
 
   //this->engine = engine;

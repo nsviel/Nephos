@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace scene{class Node;}
+namespace sce{class Node;}
 namespace eng::capture{class Node;}
 namespace vld::main{class Capture;}
 namespace vld::main{class Playback;}
@@ -28,12 +28,12 @@ public:
   void clean();
 
   inline eng::Node* get_node_engine(){return node_engine;}
-  inline scene::Node* get_node_scene(){return node_scene;}
+  inline sce::Node* get_node_scene(){return node_scene;}
   inline vld::structure::Main* get_vld_struct(){return vld_struct;}
 
 private:
   eng::Node* node_engine;
-  scene::Node* node_scene;
+  sce::Node* node_scene;
 
   vld::main::Capture* vld_capture;
   vld::main::Playback* vld_playback;

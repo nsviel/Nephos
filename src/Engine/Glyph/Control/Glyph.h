@@ -6,7 +6,7 @@
 namespace vk{class Node;}
 namespace eng{class Node;}
 namespace cam{class Node;}
-namespace scene{class Node;}
+namespace sce{class Node;}
 
 
 namespace utl::entity{
@@ -44,7 +44,7 @@ protected:
   //Dependancy
   vk::Node* node_vulkan;
   cam::Node* node_camera;
-  scene::Node* node_scene;
+  sce::Node* node_scene;
 
   //Child
   string path = "";

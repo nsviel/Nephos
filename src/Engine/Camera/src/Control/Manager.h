@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace scene{class Node;}
-namespace scene{class Set;}
+namespace sce{class Node;}
+namespace sce{class Set;}
 namespace cam{class Node;}
 namespace cam{class Entity;}
 
@@ -25,8 +25,8 @@ public:
   inline cam::Entity* get_current_camera(){return current_camera;}
 
 private:
-  scene::Set* sce_set;
-  scene::Node* node_scene;
+  sce::Set* sce_set;
+  sce::Node* node_scene;
   vector<cam::Entity*> vec_camera;
   cam::Entity* current_camera;
 

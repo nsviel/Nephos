@@ -8,17 +8,17 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace scene::gui{
+namespace sce::gui{
 
 //Constructor / Destructor
-Graph::Graph(scene::Node* node_scene, bool* show_window){
+Graph::Graph(sce::Node* node_scene, bool* show_window){
   //---------------------------
 
   this->node_engine = node_scene->get_node_engine();
   this->sce_database = node_scene->get_scene_database();
-  this->sce_set = new scene::Set();
-  this->rnd_set = new scene::gui::Set(&show_panel_set);
-  this->rnd_object = new scene::gui::Entity(node_scene, &show_panel_entity);
+  this->sce_set = new sce::Set();
+  this->rnd_set = new sce::gui::Set(&show_panel_set);
+  this->rnd_object = new sce::gui::Entity(node_scene, &show_panel_entity);
 
   this->ope_operation = new ope::Operation();
 
@@ -72,7 +72,7 @@ void Graph::draw_button(){
   utl::type::Set* set = entity->set_parent;
   if(ImGui::Button(ICON_FA_TRASH "##supressionentity")){
     if(set->is_locked){
-      //sce_scene->delete_subset(set);
+      //sce_graph->delete_subset(set);
     }else if(set->is_locked){
       utl::type::Set* set_scene = sce_database->get_set_scene();
       sce_set->remove_entity(set_scene, set->selected_entity);

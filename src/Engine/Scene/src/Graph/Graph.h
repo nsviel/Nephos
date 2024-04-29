@@ -2,26 +2,26 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace scene{class Node;}
-namespace scene{class Loader;}
+namespace sce{class Node;}
+namespace sce{class Loader;}
 namespace utl::type{class Selection;}
 
 
-namespace scene{
+namespace sce{
 
-class Scene
+class Graph
 {
 public:
   //Constructor / Destructor
-  Scene(scene::Node* node_scene);
-  ~Scene();
+  Graph(sce::Node* node_scene);
+  ~Graph();
 
 public:
   //Main function
   void init();
 
 private:
-  scene::Loader* sce_loader;
+  sce::Loader* sce_loader;
   utl::type::Selection* selection = nullptr;
 };
 

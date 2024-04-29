@@ -4,7 +4,7 @@
 #include <Scene/Namespace.h>
 
 
-namespace scene{
+namespace sce{
 
 //Constructor / Destructor
 Set::Set(){

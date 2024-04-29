@@ -2,17 +2,17 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace scene{class Node;}
-namespace scene{class Set;}
+namespace sce{class Node;}
+namespace sce{class Set;}
 
 
-namespace scene{
+namespace sce{
 
 class Database
 {
 public:
   //Constructor / Destructor
-  Database(scene::Node* node_scene);
+  Database(sce::Node* node_scene);
   ~Database();
 
   //Main function
@@ -30,7 +30,7 @@ public:
   inline utl::type::Set* get_set_world(){return set_world;}
 
 private:
-  scene::Set* sce_set;
+  sce::Set* sce_set;
 
   utl::type::Set* set_main;
   utl::type::Set* set_scene;

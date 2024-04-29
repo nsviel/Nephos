@@ -3,16 +3,16 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng::loader{class Item;}
-namespace scene{class Node;}
+namespace sce{class Node;}
 
 
-namespace scene{
+namespace sce{
 
 class Bookmark
 {
 public:
   //Constructor / Destructor
-  Bookmark(scene::Node* node_scene);
+  Bookmark(sce::Node* node_scene);
   ~Bookmark();
 
 public:

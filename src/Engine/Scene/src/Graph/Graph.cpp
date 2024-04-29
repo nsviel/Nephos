@@ -1,24 +1,23 @@
-#include "Scene.h"
+#include "Graph.h"
 
-#include <Scene/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Loader/Namespace.h>
 
 
-namespace scene{
+namespace sce{
 
 //Constructor / Destructor
-Scene::Scene(scene::Node* node_scene){
+Graph::Graph(sce::Node* node_scene){
   //---------------------------
 
   this->sce_loader = node_scene->get_scene_loader();
 
   //---------------------------
 }
-Scene::~Scene(){}
+Graph::~Graph(){}
 
 //Main function
-void Scene::init(){
+void Graph::init(){
   //----------------------------
 
   utl::Path versaille_0;

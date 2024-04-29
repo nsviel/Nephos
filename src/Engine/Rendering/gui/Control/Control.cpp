@@ -16,13 +16,13 @@ Control::Control(rnd::Node* node_rendering){
   //---------------------------
 
   this->node_engine = node_rendering->get_node_engine();
-  scene::Node* node_scene = node_engine->get_node_scene();
+  sce::Node* node_scene = node_engine->get_node_scene();
   cam::Node* node_camera = node_engine->get_node_camera();
 
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
   this->sce_database = node_scene->get_scene_database();
-  this->sce_set = new scene::Set();
+  this->sce_set = new sce::Set();
   this->ope_operation = new ope::Operation();
   this->gui_wheel = new rnd::gui::Wheel(node_rendering);
 

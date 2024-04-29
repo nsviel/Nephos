@@ -6,10 +6,10 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace scene{
+namespace sce{
 
 //Constructor / Destructor
-Bookmark::Bookmark(scene::Node* node_scene){
+Bookmark::Bookmark(sce::Node* node_scene){
   //---------------------------
 
   this->path_bookmark_file = "../media/config/gui/bookmark.txt";

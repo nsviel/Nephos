@@ -29,7 +29,7 @@ Node::~Node(){}
 
 //Main function
 void Node::config(){
-  scene::Format* sce_format = node_scene->get_scene_format();
+  sce::Format* sce_format = node_scene->get_scene_format();
   //---------------------------
 
   sce_format->insert_importer(new vld::utils::Importer(vld_struct));

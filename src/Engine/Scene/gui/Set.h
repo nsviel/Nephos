@@ -2,10 +2,10 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace scene{class Set;}
+namespace sce{class Set;}
 
 
-namespace scene::gui{
+namespace sce::gui{
 
 class Set
 {
@@ -25,7 +25,7 @@ public:
   inline void set_selected_set(utl::type::Set* set){this->set_selected = set;}
 
 private:
-  scene::Set* sce_set;
+  sce::Set* sce_set;
 
   utl::type::Set* set_selected;
   string panel_name;

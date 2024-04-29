@@ -32,7 +32,7 @@ struct K4N{
 
   //Dependancies
   eng::Node* node_engine;
-  scene::Node* node_scene;
+  sce::Node* node_scene;
   prf::Node* node_profiler;
   radio::Node* node_radio;
 

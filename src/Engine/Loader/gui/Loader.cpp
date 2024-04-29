@@ -8,15 +8,15 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace scene::gui{
+namespace sce::gui{
 
 //Constructor / Destructor
-Loader::Loader(scene::Node* node_scene, bool* show_window){
+Loader::Loader(sce::Node* node_scene, bool* show_window){
   //---------------------------
 
   this->sce_database = node_scene->get_scene_database();
   this->sce_loader = node_scene->get_scene_loader();
-  this->sce_set = new scene::Set();
+  this->sce_set = new sce::Set();
   this->sce_format = node_scene->get_scene_format();
   this->sce_bookmark = node_scene->get_scene_bookmark();
   this->ope_transform = new ope::Transformation();

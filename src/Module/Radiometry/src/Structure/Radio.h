@@ -21,7 +21,7 @@ struct Structure{
 
   //Dependancies
   eng::Node* node_engine;
-  scene::Node* node_scene;
+  sce::Node* node_scene;
   prf::Node* node_profiler;
 
   bool panel_open = false;

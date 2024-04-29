@@ -2,24 +2,24 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace scene{class Node;}
-namespace scene{class Database;}
-namespace scene{class Loader;}
-namespace scene{class Bookmark;}
-namespace scene{class Format;}
-namespace scene{class Set;}
+namespace sce{class Node;}
+namespace sce{class Database;}
+namespace sce{class Loader;}
+namespace sce{class Bookmark;}
+namespace sce{class Format;}
+namespace sce{class Set;}
 namespace eng::loader{class Item;}
 namespace ope{class Transformation;}
 namespace ope{class Operation;}
 
 
-namespace scene::gui{
+namespace sce::gui{
 
 class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(scene::Node* node_scene, bool* show_window);
+  Loader(sce::Node* node_scene, bool* show_window);
   ~Loader();
 
 public:
@@ -43,11 +43,11 @@ public:
   void operation_entity(utl::type::Entity* entity);
 
 private:
-  scene::Database* sce_database;
-  scene::Loader* sce_loader;
-  scene::Bookmark* sce_bookmark;
-  scene::Format* sce_format;
-  scene::Set* sce_set;
+  sce::Database* sce_database;
+  sce::Loader* sce_loader;
+  sce::Bookmark* sce_bookmark;
+  sce::Format* sce_format;
+  sce::Set* sce_set;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 

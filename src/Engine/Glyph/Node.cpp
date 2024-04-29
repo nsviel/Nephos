@@ -11,7 +11,7 @@
 namespace gly{
 
 //Constructor / Destructor
-Node::Node(scene::Node* node_scene){
+Node::Node(sce::Node* node_scene){
   //---------------------------
 
   vk::Node* node_vulkan = node_scene->get_node_vulkan();
@@ -20,7 +20,7 @@ Node::Node(scene::Node* node_scene){
   this->sce_database = node_scene->get_scene_database();
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_loader = node_scene->get_scene_loader();
-  this->sce_set = new scene::Set();
+  this->sce_set = new sce::Set();
 
   //---------------------------
 }

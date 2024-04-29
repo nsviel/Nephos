@@ -13,14 +13,14 @@ namespace k4n::dev{
 Swarm::Swarm(k4n::Node* node_k4n){
   //---------------------------
 
-  scene::Node* node_scene = node_k4n->get_node_scene();
+  sce::Node* node_scene = node_k4n->get_node_scene();
   prf::Node* node_profiler = node_k4n->get_node_profiler();
 
   this->node_k4n = node_k4n;
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->profiler = node_profiler->get_prf_manager();
   this->sce_database = node_scene->get_scene_database();
-  this->sce_set = new scene::Set();
+  this->sce_set = new sce::Set();
   this->k4n_transfo = new k4n::utils::Transformation();
   this->k4n_config = new k4n::config::Configuration();
 

@@ -3,22 +3,22 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace scene{class Node;}
-namespace scene{class Database;}
-namespace scene{class Set;}
-namespace scene::gui{class Entity;}
-namespace scene::gui{class Set;}
+namespace sce{class Node;}
+namespace sce{class Database;}
+namespace sce{class Set;}
+namespace sce::gui{class Entity;}
+namespace sce::gui{class Set;}
 namespace cam{class Control;}
 namespace ope{class Operation;}
 
 
-namespace scene::gui{
+namespace sce::gui{
 
 class Graph
 {
 public:
   //Constructor / Destructor
-  Graph(scene::Node* node_scene, bool* show_window);
+  Graph(sce::Node* node_scene, bool* show_window);
   ~Graph();
 
 public:
@@ -42,10 +42,10 @@ public:
 
 private:
   eng::Node* node_engine;
-  scene::gui::Entity* rnd_object;
-  scene::gui::Set* rnd_set;
-  scene::Database* sce_database;
-  scene::Set* sce_set;
+  sce::gui::Entity* rnd_object;
+  sce::gui::Set* rnd_set;
+  sce::Database* sce_database;
+  sce::Set* sce_set;
   cam::Control* cam_control;
   ope::Operation* ope_operation;
 
