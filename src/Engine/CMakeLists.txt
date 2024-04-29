@@ -9,6 +9,7 @@ add_subdirectory(Glyph)
 add_subdirectory(Render)
 add_subdirectory(Scene)
 add_subdirectory(Loader)
+add_subdirectory(Data)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

@@ -11,21 +11,21 @@
 namespace ldr{
 
 //Constructor / Destructor
-Loader::Loader(sce::Node* node_scene){
+Loader::Loader(ldr::Node* node_scene){
   //---------------------------
 
   this->node_engine = node_scene->get_node_engine();
   this->sce_entity = node_scene->get_scene_entity();
   this->sce_database = node_scene->get_scene_database();
-  this->sce_format = node_scene->get_scene_format();
-  this->sce_set = new sce::Set();
+  this->ldr_format = node_scene->get_scene_format();
+  this->sce_set = new dat::Set();
 
   //---------------------------
 }
 Loader::~Loader(){
   //---------------------------
 
-  delete sce_format;
+  delete ldr_format;
 
   //---------------------------
 }
@@ -41,7 +41,7 @@ utl::type::Data* Loader::load_data(string path){
   utl_path.data = path;
 
   //Load data from path
-  utl::File* file = sce_format->import_from_path(utl_path);
+  utl::File* file = ldr_format->import_from_path(utl_path);
   if(file == nullptr || file->type != utl::file::DATA) return nullptr;
   utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
@@ -59,7 +59,7 @@ utl::type::Set* Loader::load_dataset(utl::Path file_path){
   if(!check_file_path(file_path.data)) return nullptr;
 
   //Load data from path
-  utl::File* file = sce_format->import_from_path(file_path);
+  utl::File* file = ldr_format->import_from_path(file_path);
   if(file == nullptr || file->type != utl::file::DATASET) return nullptr;
   utl::file::Dataset* dataset = dynamic_cast<utl::file::Dataset*>(file);
 
@@ -77,7 +77,7 @@ utl::type::Set* Loader::load_dataset(utl::Path file_path){
   //Delete raw data
   delete file;
 
-  sce_format->insert_from_path(file_path, set);
+  ldr_format->insert_from_path(file_path, set);
 
   //---------------------------
   return set;
@@ -88,7 +88,7 @@ utl::entity::Object* Loader::load_object(utl::Path file_path){
   if(!check_file_path(file_path.data)) return nullptr;
 
   //Load data from path
-  utl::File* file = sce_format->import_from_path(file_path);
+  utl::File* file = ldr_format->import_from_path(file_path);
   if(file == nullptr || file->type != utl::file::DATA) return nullptr;
   utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
@@ -116,9 +116,9 @@ bool Loader::check_file_path(std::string path){
 
   //Check file format
   string format = utl::path::get_format_from_path(path);
-  if(!sce_format->is_format_supported(format)){
+  if(!ldr_format->is_format_supported(format)){
     cout<<"[error] '"<<format<<"' file format not supported"<<endl;
-    sce_format->display_supported_format();
+    ldr_format->display_supported_format();
     return false;
   }
 

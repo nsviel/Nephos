@@ -1,7 +1,7 @@
 #include "Importer.h"
 
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Function/File/File.h>
 
 

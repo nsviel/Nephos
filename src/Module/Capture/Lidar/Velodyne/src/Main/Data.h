@@ -5,10 +5,10 @@
 namespace vld{class Node;}
 namespace vld::structure{class Main;}
 namespace eng{class Node;}
-namespace sce{class Database;}
 namespace ldr{class Loader;}
-namespace sce{class Set;}
-namespace sce{class Entity;}
+namespace dat{class Database;}
+namespace dat{class Set;}
+namespace dat{class Entity;}
 
 
 namespace vld::main{
@@ -27,10 +27,10 @@ public:
 private:
   eng::Node* node_engine;
   vld::structure::Main* vld_struct;
-  sce::Database* sce_database;
-  ldr::Loader* sce_loader;
-  sce::Set* sce_set;
-  sce::Entity* sce_entity;
+  dat::Database* sce_database;
+  ldr::Loader* ldr_loader;
+  dat::Set* sce_set;
+  dat::Entity* sce_entity;
 };
 
 }

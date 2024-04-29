@@ -4,15 +4,15 @@
 
 namespace eng{class Node;}
 namespace sce{class Node;}
-namespace sce{class Database;}
-namespace sce{class Set;}
+namespace dat{class Database;}
+namespace dat{class Set;}
 namespace sce::gui{class Entity;}
 namespace sce::gui{class Set;}
 namespace cam{class Control;}
 namespace ope{class Operation;}
 
 
-namespace sce::gui{
+namespace dat::gui{
 
 class Graph
 {
@@ -44,8 +44,8 @@ private:
   eng::Node* node_engine;
   sce::gui::Entity* rnd_object;
   sce::gui::Set* rnd_set;
-  sce::Database* sce_database;
-  sce::Set* sce_set;
+  dat::Database* sce_database;
+  dat::Set* sce_set;
   cam::Control* cam_control;
   ope::Operation* ope_operation;
 

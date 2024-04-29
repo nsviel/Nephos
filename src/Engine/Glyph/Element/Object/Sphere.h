@@ -26,7 +26,7 @@ public:
   void move_sphere(vec3 pose, float diameter);
 
 private:
-  ldr::Loader* sce_loader;
+  ldr::Loader* ldr_loader;
   ope::Transformation* ope_transform;
 
   int size = 20;

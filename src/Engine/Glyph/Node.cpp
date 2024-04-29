@@ -19,8 +19,8 @@ Node::Node(sce::Node* node_scene){
   this->node_engine = node_scene->get_node_engine();
   this->sce_database = node_scene->get_scene_database();
   this->sce_entity = node_scene->get_scene_entity();
-  this->sce_loader = node_scene->get_scene_loader();
-  this->sce_set = new sce::Set();
+  this->ldr_loader = node_scene->get_scene_loader();
+  this->sce_set = new dat::Set();
 
   //---------------------------
 }

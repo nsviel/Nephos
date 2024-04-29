@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng::loader{class Item;}
-namespace sce{class Node;}
+namespace ldr{class Node;}
 namespace ldr{class Item;}
 
 
@@ -13,7 +13,7 @@ class Bookmark
 {
 public:
   //Constructor / Destructor
-  Bookmark(sce::Node* node_scene);
+  Bookmark(ldr::Node* node_scene);
   ~Bookmark();
 
 public:

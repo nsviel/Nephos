@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace sce{class Node;}
+namespace ldr{class Node;}
 namespace ldr{class Format;}
 
 
@@ -12,7 +12,7 @@ class Exporter
 {
 public:
   //Constructor / Destructor
-  Exporter(sce::Node* node_scene);
+  Exporter(ldr::Node* node_scene);
   ~Exporter();
 
 public:
@@ -20,7 +20,7 @@ public:
   void export_data(utl::type::Data* data);
 
 private:
-  ldr::Format* sce_format;
+  ldr::Format* ldr_format;
 };
 
 }

@@ -4,9 +4,9 @@
 
 namespace eng{class Node;}
 namespace sce{class Node;}
-namespace sce{class Database;}
-namespace sce{class Entity;}
-namespace sce{class Set;}
+namespace dat{class Database;}
+namespace dat{class Entity;}
+namespace dat{class Set;}
 namespace ldr{class Loader;}
 namespace cam{class Control;}
 namespace cam{class Entity;}
@@ -37,10 +37,10 @@ public:
 private:
   eng::Node* node_engine;
   sce::Node* node_scene;
-  sce::Database* sce_database;
-  sce::Set* sce_set;
-  sce::Entity* sce_entity;
-  ldr::Loader* sce_loader;
+  dat::Database* sce_database;
+  dat::Set* sce_set;
+  dat::Entity* sce_entity;
+  ldr::Loader* ldr_loader;
   cam::Control* cam_control;
 };
 

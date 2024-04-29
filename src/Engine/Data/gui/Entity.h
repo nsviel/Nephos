@@ -3,13 +3,13 @@
 #include <Utility/Specific/Common.h>
 
 namespace sce{class Node;}
-namespace sce{class Database;}
-namespace sce{class Set;}
+namespace dat{class Database;}
+namespace dat{class Set;}
 namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
 
 
-namespace sce::gui{
+namespace dat::gui{
 
 class Entity
 {
@@ -43,8 +43,8 @@ public:
 private:
   ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
-  sce::Database* sce_database;
-  sce::Set* sce_set;
+  dat::Database* sce_database;
+  dat::Set* sce_set;
 
   utl::type::Entity* entity;
   string panel_name;

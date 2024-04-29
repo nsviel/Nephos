@@ -1,10 +1,9 @@
 #include "Set.h"
 
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
 
 
-namespace sce{
+namespace dat{
 
 //Constructor / Destructor
 Set::Set(){

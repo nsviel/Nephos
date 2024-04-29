@@ -3,12 +3,11 @@
 #include <Engine/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Glyph/Namespace.h>
 #include <Vulkan/Namespace.h>
 
 
-namespace sce{
+namespace dat{
 
 //Constructor / Destructor
 Entity::Entity(sce::Node* node_scene){

@@ -10,7 +10,7 @@ namespace sce{
 Init::Init(sce::Node* node_scene){
   //---------------------------
 
-  this->sce_loader = node_scene->get_scene_loader();
+  this->ldr_loader = node_scene->get_scene_loader();
 
   //---------------------------
 }
@@ -41,12 +41,12 @@ void Init::init(){
   pcap.data = "/home/aether/Desktop/pcap_test.pcap";
 
   //Create playback list
-  //sce_loader->load_object(versaille_0);
-  //sce_loader->load_object(versaille_2);
-  //sce_loader->load_object(cerfav);
-  //sce_loader->load_object(dragon);
-  sce_loader->load_object(sphere);
-  //sce_loader->load_dataset(pcap);
+  //ldr_loader->load_object(versaille_0);
+  //ldr_loader->load_object(versaille_2);
+  //ldr_loader->load_object(cerfav);
+  //ldr_loader->load_object(dragon);
+  ldr_loader->load_object(sphere);
+  //ldr_loader->load_dataset(pcap);
 
   //----------------------------
 }

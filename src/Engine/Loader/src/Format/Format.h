@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace sce{class Node;}
+namespace ldr{class Node;}
 namespace vk::main{class Interface;}
 namespace format::obj{class Importer;}
 namespace format::csv{class Importer;}
@@ -19,7 +19,7 @@ class Format
 {
 public:
   //Constructor / Destructor
-  Format(sce::Node* node_scene);
+  Format(ldr::Node* node_scene);
   ~Format();
 
 public:

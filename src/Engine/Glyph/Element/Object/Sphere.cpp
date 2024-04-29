@@ -15,7 +15,7 @@ Sphere::Sphere(eng::Node* node_engine) : Glyph(node_engine){
   //---------------------------
 
   sce::Node* node_scene = node_engine->get_node_scene();
-  this->sce_loader = node_scene->get_scene_loader();
+  this->ldr_loader = node_scene->get_scene_loader();
   this->ope_transform = new ope::Transformation();
 
   this->name = "object::sphere";
@@ -35,7 +35,7 @@ void Sphere::create(){
   //---------------------------
 
   //Retrieve data from file
-  data = *sce_loader->load_data(path);
+  data = *ldr_loader->load_data(path);
   data.name = "object::sphere::data";
   data.is_visible = false;
   data.topology.type = utl::topology::TRIANGLE;

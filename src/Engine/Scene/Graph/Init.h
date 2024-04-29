@@ -21,7 +21,7 @@ public:
   void init();
 
 private:
-  ldr::Loader* sce_loader;
+  ldr::Loader* ldr_loader;
   utl::type::Selection* selection = nullptr;
 };
 

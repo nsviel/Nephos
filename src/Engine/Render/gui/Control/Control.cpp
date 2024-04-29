@@ -22,7 +22,7 @@ Control::Control(rnd::Node* node_render){
   this->cam_manager = node_camera->get_camera_manager();
   this->cam_control = node_camera->get_camera_control();
   this->sce_database = node_scene->get_scene_database();
-  this->sce_set = new sce::Set();
+  this->sce_set = new dat::Set();
   this->ope_operation = new ope::Operation();
   this->gui_wheel = new rnd::gui::Wheel(node_render);
 

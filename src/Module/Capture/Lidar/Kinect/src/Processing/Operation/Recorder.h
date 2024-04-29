@@ -32,7 +32,7 @@ public:
 private:
   k4n::thread::Pool* k4n_pool;
   k4n::structure::K4N* k4n_struct;
-  ldr::Exporter* sce_exporter;
+  ldr::Exporter* ldr_exporter;
   format::ply::Exporter* ply_exporter;
 
   bool idle = true;

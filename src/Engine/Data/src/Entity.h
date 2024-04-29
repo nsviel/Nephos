@@ -6,10 +6,10 @@ namespace vk::main{class Engine;}
 namespace sce{class Node;}
 namespace gly{class Node;}
 namespace sce{class Operation;}
-namespace sce{class Database;}
+namespace dat{class Database;}
 
 
-namespace sce{
+namespace dat{
 
 class Entity
 {
@@ -26,7 +26,7 @@ public:
 private:
   sce::Node* node_scene;
   vk::main::Engine* vk_engine;
-  sce::Database* sce_database;
+  dat::Database* sce_database;
   gly::Node* node_glyph;
 };
 

@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace sce{class Node;}
-namespace sce{class Set;}
+namespace dat{class Set;}
 namespace cam{class Node;}
 namespace cam{class Entity;}
 
@@ -25,7 +25,7 @@ public:
   inline cam::Entity* get_current_camera(){return current_camera;}
 
 private:
-  sce::Set* sce_set;
+  dat::Set* sce_set;
   sce::Node* node_scene;
   vector<cam::Entity*> vec_camera;
   cam::Entity* current_camera;

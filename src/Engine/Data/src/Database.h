@@ -3,10 +3,10 @@
 #include <Utility/Specific/Common.h>
 
 namespace sce{class Node;}
-namespace sce{class Set;}
+namespace dat{class Set;}
 
 
-namespace sce{
+namespace dat{
 
 class Database
 {
@@ -30,7 +30,7 @@ public:
   inline utl::type::Set* get_set_world(){return set_world;}
 
 private:
-  sce::Set* sce_set;
+  dat::Set* sce_set;
 
   utl::type::Set* set_main;
   utl::type::Set* set_scene;

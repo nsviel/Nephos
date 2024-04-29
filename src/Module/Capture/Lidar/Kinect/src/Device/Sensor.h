@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Specific/Common.h>
 #include <Kinect/src/Structure/Namespace.h>
 
 namespace eng{class Node;}
-namespace sce{class Entity;}
-namespace sce{class Set;}
+namespace dat{class Entity;}
+namespace dat{class Set;}
 namespace gly{class Node;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
@@ -77,8 +77,8 @@ public:
 
 private:
   eng::Node* node_engine;
-  sce::Entity* sce_entity;
-  sce::Set* sce_set;
+  dat::Entity* sce_entity;
+  dat::Set* sce_set;
   gly::Node* node_glyph;
   k4n::thread::Capture* k4n_capture;
   k4n::thread::Playback* k4n_playback;

@@ -1,16 +1,16 @@
 #include "Exporter.h"
 
-#include <Scene/Namespace.h>
+#include <Loader/Namespace.h>
 #include <Scene/Namespace.h>
 
 
 namespace ldr{
 
 //Constructor / Destructor
-Exporter::Exporter(sce::Node* node_scene){
+Exporter::Exporter(ldr::Node* node_scene){
   //---------------------------
 
-  this->sce_format = node_scene->get_scene_format();
+  this->ldr_format = node_scene->get_scene_format();
 
   //---------------------------
 }

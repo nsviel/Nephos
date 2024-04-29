@@ -6,8 +6,8 @@ namespace rnd{class Node;}
 namespace eng{class Node;}
 namespace ope{class Operation;}
 namespace rnd::gui{class Wheel;}
-namespace sce{class Database;}
-namespace sce{class Set;}
+namespace dat{class Database;}
+namespace dat{class Set;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
 
@@ -36,8 +36,8 @@ public:
 
 private:
   eng::Node* node_engine;
-  sce::Database* sce_database;
-  sce::Set* sce_set;
+  dat::Database* sce_database;
+  dat::Set* sce_set;
   cam::Control* cam_control;
   cam::Manager* cam_manager;
   ope::Operation* ope_operation;

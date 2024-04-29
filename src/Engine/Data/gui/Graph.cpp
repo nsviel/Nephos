@@ -8,7 +8,7 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace sce::gui{
+namespace dat::gui{
 
 //Constructor / Destructor
 Graph::Graph(sce::Node* node_scene, bool* show_window){
@@ -16,7 +16,7 @@ Graph::Graph(sce::Node* node_scene, bool* show_window){
 
   this->node_engine = node_scene->get_node_engine();
   this->sce_database = node_scene->get_scene_database();
-  this->sce_set = new sce::Set();
+  this->sce_set = new dat::Set();
   this->rnd_set = new sce::gui::Set(&show_panel_set);
   this->rnd_object = new sce::gui::Entity(node_scene, &show_panel_entity);
 

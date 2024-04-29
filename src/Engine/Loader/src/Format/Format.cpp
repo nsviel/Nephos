@@ -1,7 +1,7 @@
 #include "Format.h"
 
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
@@ -10,7 +10,7 @@
 namespace ldr{
 
 //Constructor / Destructor
-Format::Format(sce::Node* node_scene){
+Format::Format(ldr::Node* node_scene){
   //---------------------------
 
   eng::Node* node_engine = node_scene->get_node_engine();

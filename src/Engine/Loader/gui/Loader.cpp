@@ -1,7 +1,7 @@
 #include "Loader.h"
 
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
@@ -11,14 +11,14 @@
 namespace ldr::gui{
 
 //Constructor / Destructor
-Loader::Loader(sce::Node* node_scene, bool* show_window){
+Loader::Loader(ldr::Node* node_scene, bool* show_window){
   //---------------------------
 
   this->sce_database = node_scene->get_scene_database();
-  this->sce_loader = node_scene->get_scene_loader();
-  this->sce_set = new sce::Set();
-  this->sce_format = node_scene->get_scene_format();
-  this->sce_bookmark = node_scene->get_scene_bookmark();
+  this->ldr_loader = node_scene->get_scene_loader();
+  this->sce_set = new dat::Set();
+  this->ldr_format = node_scene->get_scene_format();
+  this->ldr_bookmark = node_scene->get_scene_bookmark();
   this->ope_transform = new ope::Transformation();
   this->ope_operation = new ope::Operation();
 
@@ -187,7 +187,7 @@ void Loader::draw_file_content(){
         item.weight = utl::file::size(file);
         item.format = utl::path::get_format_from_path(file);
         item.color_icon = ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
-        item.color_text = sce_format->is_format_supported(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+        item.color_text = ldr_format->is_format_supported(item.format) ? ImVec4(0.0f, 1.0f, 1.0f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_item_file.push_back(item);
       }
     }
@@ -294,7 +294,7 @@ void Loader::draw_bookmark_button(ldr::Item& item){
   //---------------------------
 
   //Button background if already bookmarked
-  bool is_bookmarked = sce_bookmark->is_path_bookmarked(item.path);
+  bool is_bookmarked = ldr_bookmark->is_path_bookmarked(item.path);
   int bg_alpha;
   is_bookmarked ? bg_alpha = 255 : bg_alpha = 0;
 
@@ -305,11 +305,11 @@ void Loader::draw_bookmark_button(ldr::Item& item){
   ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
   if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark")){
     if(is_bookmarked){
-      sce_bookmark->remove_path(item.path);
+      ldr_bookmark->remove_path(item.path);
     }else{
-      sce_bookmark->add_abs_path(item.path);
+      ldr_bookmark->add_abs_path(item.path);
     }
-    sce_bookmark->save_on_file();
+    ldr_bookmark->save_on_file();
   }
   ImGui::PopStyleColor(2);
   ImGui::PopID();
@@ -317,7 +317,7 @@ void Loader::draw_bookmark_button(ldr::Item& item){
   //---------------------------
 }
 void Loader::draw_bookmark_tab(){
-  list<ldr::Item> list_bookmark = sce_bookmark->get_list_bookmark();
+  list<ldr::Item> list_bookmark = ldr_bookmark->get_list_bookmark();
   //---------------------------
 
   for(int i=0; i<list_bookmark.size(); i++){
@@ -344,8 +344,8 @@ void Loader::draw_bookmark_tab(){
       string ID = item.path + "##supressionbookmark";
       ImGui::PushID(ID.c_str());
       if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
-        sce_bookmark->remove_path(item.path);
-        sce_bookmark->save_on_file();
+        ldr_bookmark->remove_path(item.path);
+        ldr_bookmark->save_on_file();
       }
       ImGui::PopID();
     }
@@ -387,7 +387,7 @@ void Loader::operation_selection(){
   for(int i=0; i<vec_item_file.size(); i++){
     ldr::Item& item = vec_item_file[i];
     if(file_selection.contains(item.ID)){
-      if(sce_format->is_format_supported(item.format)){
+      if(ldr_format->is_format_supported(item.format)){
         vec_path.push_back(item.path);
       }
     }
@@ -404,7 +404,7 @@ void Loader::operation_selection(){
     utl::Path path;
     path.data = vec_path[i];
 
-    utl::entity::Object* object = sce_loader->load_object(path);
+    utl::entity::Object* object = ldr_loader->load_object(path);
 
     if(object != nullptr){
       this->operation_entity(object);
@@ -426,7 +426,7 @@ void Loader::operation_selection(string file_path){
     //File check
     string format = utl::path::get_format_from_path(file_path);
     if(!utl::file::is_exist(file_path)) return;
-    if(!sce_format->is_format_supported(format)) return;
+    if(!ldr_format->is_format_supported(format)) return;
 
     //Apply loading and operations
     if(param_remove_old){
@@ -436,7 +436,7 @@ void Loader::operation_selection(string file_path){
 
     utl::Path path;
     path.data = file_path;
-    utl::entity::Object* object = sce_loader->load_object(path);
+    utl::entity::Object* object = ldr_loader->load_object(path);
 
     if(object != nullptr){
       this->operation_entity(object);

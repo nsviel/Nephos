@@ -3,11 +3,11 @@
 #include <Utility/Specific/Common.h>
 
 namespace eng{class Node;}
-namespace sce{class Entity;}
-namespace sce{class Database;}
+namespace dat{class Entity;}
+namespace dat{class Database;}
 namespace ldr{class Format;}
-namespace sce{class Node;}
-namespace sce{class Set;}
+namespace ldr{class Node;}
+namespace dat{class Set;}
 
 
 namespace ldr{
@@ -16,7 +16,7 @@ class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(sce::Node* node_scene);
+  Loader(ldr::Node* node_scene);
   ~Loader();
 
 public:
@@ -32,10 +32,10 @@ public:
 
 private:
   eng::Node* node_engine;
-  ldr::Format* sce_format;
-  sce::Entity* sce_entity;
-  sce::Database* sce_database;
-  sce::Set* sce_set;
+  ldr::Format* ldr_format;
+  dat::Entity* sce_entity;
+  dat::Database* sce_database;
+  dat::Set* sce_set;
 };
 
 }

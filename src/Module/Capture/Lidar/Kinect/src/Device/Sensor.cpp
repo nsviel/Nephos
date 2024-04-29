@@ -3,7 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 
@@ -19,7 +19,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->node_engine = node_k4n->get_node_engine();
   this->sce_entity = node_scene->get_scene_entity();
-  this->sce_set = new sce::Set();
+  this->sce_set = new dat::Set();
   this->node_glyph = node_scene->get_scene_glyph();
   this->k4n_capture = new k4n::thread::Capture(node_k4n);
   this->k4n_playback = new k4n::thread::Playback(node_k4n);
