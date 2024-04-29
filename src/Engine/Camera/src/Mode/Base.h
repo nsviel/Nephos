@@ -2,6 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace utl::entity{class Camera;}
+
 
 namespace cam::mode{
 

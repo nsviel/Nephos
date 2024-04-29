@@ -1,6 +1,6 @@
 #include "Target.h"
 
-#include <Engine/Camera/Namespace.h>
+#include <Camera/Namespace.h>
 
 
 namespace glyph::camera{

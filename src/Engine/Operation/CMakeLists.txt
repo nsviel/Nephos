@@ -19,11 +19,7 @@ find_package( OpenCV REQUIRED )
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_EXTERN
   LIBRARY_UTILITY
-  LIBRARY_VULKAN
-  LIBRARY_ENGINE
-  LIBRARY_CAMERA
 
   ${OpenCV_LIBS}
 )

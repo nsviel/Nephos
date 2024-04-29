@@ -8,6 +8,7 @@ namespace eng::scene{class Entity;}
 namespace eng::scene{class Set;}
 namespace eng::scene{class Loader;}
 namespace cam{class Control;}
+namespace utl::entity{class Camera;}
 
 
 namespace eng::scene{

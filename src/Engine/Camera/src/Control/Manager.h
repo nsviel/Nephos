@@ -5,6 +5,7 @@
 namespace eng::scene{class Node;}
 namespace eng::scene{class Set;}
 namespace cam{class Node;}
+namespace utl::entity{class Camera;}
 
 
 namespace cam{

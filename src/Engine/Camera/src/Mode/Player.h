@@ -7,6 +7,7 @@
 namespace cam{class Node;}
 namespace cam::mode{class Base;}
 namespace vk::window{class GLFW;}
+namespace utl::entity{class Camera;}
 
 
 namespace cam::mode{

@@ -5,6 +5,7 @@
 
 namespace vk::window{class GLFW;}
 namespace cam{class Node;}
+namespace utl::entity{class Camera;}
 
 
 namespace cam{

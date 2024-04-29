@@ -17,8 +17,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_GUI
   LIBRARY_PROFILER
   LIBRARY_ENGINE
-  LIBRARY_GUI
-
+  LIBRARY_VULKAN
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

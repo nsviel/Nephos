@@ -6,6 +6,7 @@
 namespace cam{class Node;}
 namespace cam{class Projection;}
 namespace cam::mode{class Base;}
+namespace utl::entity{class Camera;}
 
 
 namespace cam{
