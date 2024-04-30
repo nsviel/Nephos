@@ -8,7 +8,6 @@ namespace dat{class Node;}
 namespace rad{class Structure;}
 namespace rad{class Detection;}
 namespace rad{class Model;}
-
 namespace rad::detection{class Identification;}
 namespace rad::detection{class Hough;}
 namespace rad::detection{class Ransac;}

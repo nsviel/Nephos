@@ -1,6 +1,7 @@
 #include "Normal.h"
 
 #include <Operation/Namespace.h>
+#include <Utility/Namespace.h>
 #include <cstdlib>
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Camera/src/Mode/Base.h>
+#include <Camera/src/Mode/Base.h>
 #include <glm/glm.hpp>
 
 namespace cam{class Node;}

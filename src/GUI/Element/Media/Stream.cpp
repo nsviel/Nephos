@@ -1,6 +1,6 @@
 #include "Stream.h"
 
-#include <Engine/Node.h>
+#include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <GUI/Namespace.h>
 

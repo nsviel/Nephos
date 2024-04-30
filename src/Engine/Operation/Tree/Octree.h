@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
+#include <vector>
 
 namespace dat::base{class Object;}
 
@@ -25,16 +26,16 @@ public:
   void remove_cube(ope::tree::Cube* cube);
   void build_root(dat::base::Object* object);
   void build_octree(ope::tree::Cube* cube_parent);
-  vector<vec3> compute_cube_location(vec3 min, vec3 max);
-  vector<vec4> compute_cube_color(int size);
-  vector<vec4> compute_cube_color(int size, vec4 rgb);
+  std::vector<glm::vec3> compute_cube_location(glm::vec3 min, glm::vec3 max);
+  std::vector<glm::vec4> compute_cube_color(int size);
+  std::vector<glm::vec4> compute_cube_color(int size, glm::vec4 rgb);
   void compute_cube_division(ope::tree::Cube* cube);
-  vector<int> compute_idx_from_point(vec3 min, vec3 max, ope::tree::Cube* cube_parent);
-  bool is_at_least_one_value(vector<int> vec);
+  std::vector<int> compute_idx_from_point(glm::vec3 min, glm::vec3 max, ope::tree::Cube* cube_parent);
+  bool is_at_least_one_value(std::vector<int> vec);
 
 private:
   ope::tree::Root* root;
-  vec4 octree_color;
+  glm::vec4 octree_color;
   bool with_rdm_color;
   int octree_time;
   int nb_level;

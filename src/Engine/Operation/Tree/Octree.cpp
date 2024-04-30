@@ -11,7 +11,7 @@ namespace ope::tree{
 Octree::Octree(){
   //---------------------------
 
-  this->octree_color = vec4(1, 1, 1, 0.7);
+  this->octree_color = glm::vec4(1, 1, 1, 0.7);
   this->with_rdm_color = false;
   this->nb_level = 6;
   this->root = nullptr;
@@ -80,7 +80,7 @@ void Octree::build_root(dat::base::Object* object){
   //---------------------------
 
   // Create a vector of indexes
-  vector<int> idx;
+  std::vector<int> idx;
   for(int i=0; i<cloud->xyz.size(); i++){
     idx.push_back(i);
   }
@@ -109,7 +109,7 @@ void Octree::build_root(dat::base::Object* object){
   //Apply color to each level
   if(with_rdm_color){
     for(int i=0; i<nb_level; i++){
-      vec4 rgb = random();
+      glm::vec4 rgb = random();
       root->level_rgb.push_back(rgb);
     }
   }else{
@@ -141,42 +141,42 @@ void Octree::build_octree(Cube* cube){
     //---------------------------
   }
 }
-vector<vec3> Octree::compute_cube_location(vec3 min, vec3 max){
-  vector<vec3> XYZ;
+std::vector<glm::vec3> Octree::compute_cube_location(glm::vec3 min, glm::vec3 max){
+  std::vector<glm::vec3> XYZ;
   //---------------------------
 
-  XYZ.push_back(vec3(min.x, min.y, min.z));
-  XYZ.push_back(vec3(max.x, min.y, min.z));
-  XYZ.push_back(vec3(max.x, min.y, min.z));
-  XYZ.push_back(vec3(max.x, max.y, min.z));
-  XYZ.push_back(vec3(max.x, max.y, min.z));
-  XYZ.push_back(vec3(min.x, max.y, min.z));
-  XYZ.push_back(vec3(min.x, max.y, min.z));
-  XYZ.push_back(vec3(min.x, min.y, min.z));
+  XYZ.push_back(glm::vec3(min.x, min.y, min.z));
+  XYZ.push_back(glm::vec3(max.x, min.y, min.z));
+  XYZ.push_back(glm::vec3(max.x, min.y, min.z));
+  XYZ.push_back(glm::vec3(max.x, max.y, min.z));
+  XYZ.push_back(glm::vec3(max.x, max.y, min.z));
+  XYZ.push_back(glm::vec3(min.x, max.y, min.z));
+  XYZ.push_back(glm::vec3(min.x, max.y, min.z));
+  XYZ.push_back(glm::vec3(min.x, min.y, min.z));
 
-  XYZ.push_back(vec3(min.x, min.y, max.z));
-  XYZ.push_back(vec3(max.x, min.y, max.z));
-  XYZ.push_back(vec3(max.x, min.y, max.z));
-  XYZ.push_back(vec3(max.x, max.y, max.z));
-  XYZ.push_back(vec3(max.x, max.y, max.z));
-  XYZ.push_back(vec3(min.x, max.y, max.z));
-  XYZ.push_back(vec3(min.x, max.y, max.z));
-  XYZ.push_back(vec3(min.x, min.y, max.z));
+  XYZ.push_back(glm::vec3(min.x, min.y, max.z));
+  XYZ.push_back(glm::vec3(max.x, min.y, max.z));
+  XYZ.push_back(glm::vec3(max.x, min.y, max.z));
+  XYZ.push_back(glm::vec3(max.x, max.y, max.z));
+  XYZ.push_back(glm::vec3(max.x, max.y, max.z));
+  XYZ.push_back(glm::vec3(min.x, max.y, max.z));
+  XYZ.push_back(glm::vec3(min.x, max.y, max.z));
+  XYZ.push_back(glm::vec3(min.x, min.y, max.z));
 
-  XYZ.push_back(vec3(min.x, min.y, min.z));
-  XYZ.push_back(vec3(min.x, min.y, max.z));
-  XYZ.push_back(vec3(max.x, min.y, min.z));
-  XYZ.push_back(vec3(max.x, min.y, max.z));
-  XYZ.push_back(vec3(max.x, max.y, min.z));
-  XYZ.push_back(vec3(max.x, max.y, max.z));
-  XYZ.push_back(vec3(min.x, max.y, min.z));
-  XYZ.push_back(vec3(min.x, max.y, max.z));
+  XYZ.push_back(glm::vec3(min.x, min.y, min.z));
+  XYZ.push_back(glm::vec3(min.x, min.y, max.z));
+  XYZ.push_back(glm::vec3(max.x, min.y, min.z));
+  XYZ.push_back(glm::vec3(max.x, min.y, max.z));
+  XYZ.push_back(glm::vec3(max.x, max.y, min.z));
+  XYZ.push_back(glm::vec3(max.x, max.y, max.z));
+  XYZ.push_back(glm::vec3(min.x, max.y, min.z));
+  XYZ.push_back(glm::vec3(min.x, max.y, max.z));
 
   return XYZ;
   //---------------------------
 }
-vector<vec4> Octree::compute_cube_color(int size){
-  vector<vec4> RGB;
+std::vector<glm::vec4> Octree::compute_cube_color(int size){
+  std::vector<glm::vec4> RGB;
   //---------------------------
 
   for(int i=0; i<size; i++){
@@ -186,8 +186,8 @@ vector<vec4> Octree::compute_cube_color(int size){
   //---------------------------
   return RGB;
 }
-vector<vec4> Octree::compute_cube_color(int size, vec4 rgb){
-  vector<vec4> RGB;
+std::vector<glm::vec4> Octree::compute_cube_color(int size, glm::vec4 rgb){
+  std::vector<glm::vec4> RGB;
   //---------------------------
 
   for(int i=0; i<size; i++){
@@ -198,11 +198,11 @@ vector<vec4> Octree::compute_cube_color(int size, vec4 rgb){
   return RGB;
 }
 void Octree::compute_cube_division(Cube* cube_parent){
-  vector<Cube> cube_vec;
+  std::vector<Cube> cube_vec;
   //---------------------------
 
   for(int i=0; i<8; i++){
-    vec3 min, max;
+    glm::vec3 min, max;
     if(i == 0){
       min = cube_parent->min;
       max = cube_parent->center;
@@ -248,7 +248,7 @@ void Octree::compute_cube_division(Cube* cube_parent){
       max = cube_parent->max;
     }
 
-    vector<int> idx = compute_idx_from_point(min, max, cube_parent);
+    std::vector<int> idx = compute_idx_from_point(min, max, cube_parent);
 
     if(idx.size() != 0){
       Cube* cube = new Cube();
@@ -260,8 +260,8 @@ void Octree::compute_cube_division(Cube* cube_parent){
       cube->idx_cube = idx;
       cube->idx_child = idx;
 
-      vector<vec3> cube_xyz = compute_cube_location(cube->min, cube->max);
-      vector<vec4> cube_rgb = compute_cube_color(cube_xyz.size(), root->level_rgb[cube->level]);
+      std::vector<glm::vec3> cube_xyz = compute_cube_location(cube->min, cube->max);
+      std::vector<glm::vec4> cube_rgb = compute_cube_color(cube_xyz.size(), root->level_rgb[cube->level]);
       root->xyz.insert(root->xyz.end(), cube_xyz.begin(), cube_xyz.end());
       root->rgb.insert(root->rgb.end(), cube_rgb.begin(), cube_rgb.end());
 
@@ -273,14 +273,14 @@ void Octree::compute_cube_division(Cube* cube_parent){
 
   //---------------------------
 }
-vector<int> Octree::compute_idx_from_point(vec3 min, vec3 max, Cube* cube_parent){
-  vector<int>& idx_parent = cube_parent->idx_child;
-  vector<vec3>* xyz = root->xyz_subset;
+std::vector<int> Octree::compute_idx_from_point(glm::vec3 min, glm::vec3 max, Cube* cube_parent){
+  std::vector<int>& idx_parent = cube_parent->idx_child;
+  std::vector<glm::vec3>* xyz = root->xyz_subset;
   //---------------------------
 
   //Prepare index vectors
-  vector<int> idx_cube;
-  vector<int> idx_parent_new;
+  std::vector<int> idx_cube;
+  std::vector<int> idx_parent_new;
   idx_cube.reserve(idx_parent.size());
   idx_parent_new.reserve(idx_parent.size());
 
