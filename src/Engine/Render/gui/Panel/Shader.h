@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
+#include <vector>
 
-class Text;
 namespace rnd{class Node;}
 namespace vk::shader{class Reloader;}
 namespace eng{class Node;}
@@ -47,8 +47,8 @@ public:
   //Subfunction
   void retrieve_shader_subclasses();
   void shader_file_selection();
-  string get_path_vs_from_selection();
-  string get_path_fs_from_selection();
+  std::string get_path_vs_from_selection();
+  std::string get_path_fs_from_selection();
 
 private:
   vk::shader::Reloader* vk_reload;
@@ -57,13 +57,13 @@ private:
   gui_element::editor::Text* editor_fs;
   utl::gui::widget::Console* gui_console;
 
-  vector<string> vec_shader_class;
-  vector<string> vec_shader_subclass;
-  string active_editor;
-  string reload;
-  string current_status;
-  string current_class;
-  string current_subclass;
+  std::vector<std::string> vec_shader_class;
+  std::vector<std::string> vec_shader_subclass;
+  std::string active_editor;
+  std::string reload;
+  std::string current_status;
+  std::string current_class;
+  std::string current_subclass;
   bool has_been_reloaded;
   bool read_only;
   bool read_only_forced;
@@ -71,7 +71,7 @@ private:
   int ID_class;
   int ID_subclass;
 
-  string name;
+  std::string name;
   bool* show_window;
 };
 

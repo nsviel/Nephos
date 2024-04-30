@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 namespace rnd{class Node;}
 namespace eng{class Node;}
@@ -30,8 +30,8 @@ private:
   rnd::gui::Control* gui_control;
   vk::main::Interface* vk_interface;
 
+  std::string name;
   int width;
-  string name;
   bool* show_window;
 };
 

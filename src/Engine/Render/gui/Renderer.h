@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 namespace rnd{class Node;}
 namespace vk::gui{class Imgui;}
@@ -36,7 +36,7 @@ private:
   vk::main::Interface* vk_interface;
   vk::structure::Vulkan* vk_struct;
 
-  string name;
+  std::string name;
   bool has_been_initialized;
 };
 

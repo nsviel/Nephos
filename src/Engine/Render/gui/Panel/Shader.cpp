@@ -81,7 +81,7 @@ void Shader::design_panel(){
   this->shader_control();
 
   /*
-  string message = LOG_shader::get_instance().get_shader_printf();
+  std::string message = LOG_shader::get_instance().get_shader_printf();
   gui_console->add_log(message);
   gui_console->add_file("error", "output.txt");
   gui_console->draw_console("truc");
@@ -148,8 +148,8 @@ void Shader::shader_command(){
   }
   ImGui::SameLine();
   if(ImGui::Button("Save to file", ImVec2(item_width, 0))){
-    string path_vs = get_path_vs_from_selection();
-    string path_fs = get_path_fs_from_selection();
+    std::string path_vs = get_path_vs_from_selection();
+    std::string path_fs = get_path_fs_from_selection();
     editor_vs->save_to_file(path_vs);
     editor_fs->save_to_file(path_fs);
     this->reload_vulkan_shader();
@@ -194,9 +194,9 @@ void Shader::shader_tabs(){
 void Shader::retrieve_shader_subclasses(){
   //---------------------------
 /*
-  string selection = vec_shader_class[ID_class];
+  std::string selection = vec_shader_class[ID_class];
 
-  vector<utl::shader::Info*> vec_shader_info;
+  std::vector<utl::shader::Info*> vec_shader_info;
   if(selection == "EDL"){
     rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
     vec_shader_info = shader_edl->get_vec_shader_info();
@@ -208,7 +208,7 @@ void Shader::retrieve_shader_subclasses(){
 
   this->vec_shader_subclass.clear();
   for(int i=0; i<vec_shader_info.size(); i++){
-    string title = vec_shader_info[i]->title;
+    std::string title = vec_shader_info[i]->title;
     this->vec_shader_subclass.push_back(title);
   }
 */
@@ -217,8 +217,8 @@ void Shader::retrieve_shader_subclasses(){
 void Shader::shader_file_selection(){
   //---------------------------
 
-  string path_vs = get_path_vs_from_selection();
-  string path_fs = get_path_fs_from_selection();
+  std::string path_vs = get_path_vs_from_selection();
+  std::string path_fs = get_path_fs_from_selection();
 
   //Load shader into editors
   if(path_vs != "" && path_fs != ""){
@@ -228,11 +228,11 @@ void Shader::shader_file_selection(){
 
   //---------------------------
 }
-string Shader::get_path_vs_from_selection(){
+std::string Shader::get_path_vs_from_selection(){
   //---------------------------
 
-  string selection = vec_shader_class[ID_class];
-  string path_vs = "";
+  std::string selection = vec_shader_class[ID_class];
+  std::string path_vs = "";
 /*
   if(selection == "EDL"){
     rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
@@ -246,11 +246,11 @@ string Shader::get_path_vs_from_selection(){
   //---------------------------
   return path_vs;
 }
-string Shader::get_path_fs_from_selection(){
+std::string Shader::get_path_fs_from_selection(){
   //---------------------------
 
-  string selection = vec_shader_class[ID_class];
-  string path_fs = "";
+  std::string selection = vec_shader_class[ID_class];
+  std::string path_fs = "";
 /*
   if(selection == "EDL"){
     rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
@@ -313,7 +313,7 @@ void Shader::check_reload(){
 void Shader::display_reload(){
   //---------------------------
 
-  string status;
+  std::string status;
   ImVec4 color;
   if(has_been_reloaded){
     color = ImVec4(0.4f,1.0f,0.4f,1.0f);
@@ -363,8 +363,8 @@ void Shader::reload_vulkan_shader(){
   //---------------------------
 
   gui_console->clear_log();
-  string shader_class = vec_shader_class[ID_class];
-  string shader_subclass = vec_shader_subclass[ID_subclass];
+  std::string shader_class = vec_shader_class[ID_class];
+  std::string shader_subclass = vec_shader_subclass[ID_subclass];
   vk_reload->hot_shader_reload(shader_class, shader_subclass);
   this->has_been_reloaded = true;
 

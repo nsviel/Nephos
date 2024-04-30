@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <glm/glm.hpp>
+#include <string>
 
 namespace cam{class Node;}
 namespace cam{class Control;}
@@ -30,9 +30,9 @@ private:
   cam::Control* cam_control;
   cam::Manager* cam_manager;
 
+  std::string name;
   int item_width;
   bool* show_window;
-  string name;
 };
 
 }

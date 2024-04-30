@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
+#include <vector>
 
 namespace rnd{class Node;}
 namespace eng{class Node;}
@@ -31,7 +32,7 @@ public:
   void make_action(float direction);
 
   //Subfunction
-  vector<const char*> get_vec_mode();
+  std::vector<const char*> get_vec_mode();
 
   inline int* get_mode(){return &mode;}
 

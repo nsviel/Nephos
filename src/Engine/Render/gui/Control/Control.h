@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace rnd{class Node;}
 namespace eng{class Node;}
 namespace ope{class Operation;}

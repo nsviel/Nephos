@@ -6,6 +6,7 @@
 #include <Data/Namespace.h>
 #include <Render/Namespace.h>
 #include <Operation/Namespace.h>
+#include <glm/glm.hpp>
 
 
 namespace rnd::gui{
@@ -89,37 +90,37 @@ void Control::control_keyboard_translation(){
 
       // Z key
       if(io.KeysDown[571]){
-        vec3 translation = vec3(translation_qtt, 0, 0);
+        glm::vec3 translation = glm::vec3(translation_qtt, 0, 0);
         ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
-        vec3 translation = vec3(-translation_qtt, 0, 0);
+        glm::vec3 translation = glm::vec3(-translation_qtt, 0, 0);
         ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
-        vec3 translation = vec3(0, translation_qtt, 0);
+        glm::vec3 translation = glm::vec3(0, translation_qtt, 0);
         ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
-        vec3 translation = vec3(0, -translation_qtt, 0);
+        glm::vec3 translation = glm::vec3(0, -translation_qtt, 0);
         ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
-        vec3 translation = vec3(0, 0, translation_qtt);
+        glm::vec3 translation = glm::vec3(0, 0, translation_qtt);
         ope_operation->make_translation(entity->set_parent, translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
-        vec3 translation = vec3(0, 0, -translation_qtt);
+        glm::vec3 translation = glm::vec3(0, 0, -translation_qtt);
         ope_operation->make_translation(entity->set_parent, translation);
         break;
       }

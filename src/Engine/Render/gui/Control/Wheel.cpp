@@ -41,27 +41,27 @@ void Wheel::make_action(float direction){
 
   //Rotation quantity
   float radian = 5 * M_PI/180 * 50;
-  vec3 R;
+  glm::vec3 R;
 
   switch (mode) {
     case WHEEL_R_Z:{
       dat::base::Set* set_scene = dat_database->get_set_graph();
       dat::base::Entity* entity = set_scene->selected_entity;
-      R = vec3(0, 0, direction * radian);
+      R = glm::vec3(0, 0, direction * radian);
       ope_operation->make_rotation(entity->set_parent, R);
       break;
     }
     case WHEEL_R_Y:{
       dat::base::Set* set_scene = dat_database->get_set_graph();
       dat::base::Entity* entity = set_scene->selected_entity;
-      R = vec3(0, direction * radian, 0);
+      R = glm::vec3(0, direction * radian, 0);
       ope_operation->make_rotation(entity->set_parent, R);
       break;
     }
     case WHEEL_R_X:{
       dat::base::Set* set_scene = dat_database->get_set_graph();
       dat::base::Entity* entity = set_scene->selected_entity;
-      R = vec3(direction * radian, 0, 0);
+      R = glm::vec3(direction * radian, 0, 0);
       ope_operation->make_rotation(entity->set_parent, R);
       break;
     }
@@ -77,8 +77,8 @@ void Wheel::make_action(float direction){
 }
 
 //Subfunction
-vector<const char*> Wheel::get_vec_mode(){
-  vector<const char*> vec_mode;
+std::vector<const char*> Wheel::get_vec_mode(){
+  std::vector<const char*> vec_mode;
   //---------------------------
 
   vec_mode.push_back("WHEEL_R_X");
