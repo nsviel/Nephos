@@ -41,7 +41,7 @@ void Data::create_object(){
   vld_struct->data.object->pose.model[2][3] = 1;
   dat_entity->init_entity(vld_struct->data.object);
 
-  utl::type::Set* set_scene = dat_database->get_set_scene();
+  utl::type::Set* set_scene = dat_database->get_set_graph();
   utl::type::Set* set_capture = dat_set->get_or_create_subset(set_scene, "Data");
   dat_set->insert_entity(set_capture, vld_struct->data.object);
 

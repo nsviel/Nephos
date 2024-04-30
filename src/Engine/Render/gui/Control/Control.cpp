@@ -51,14 +51,14 @@ void Control::control_keyboard_oneAction(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      utl::type::Set* set_scene = dat_database->get_set_scene();
+      utl::type::Set* set_scene = dat_database->get_set_graph();
       dat_set->select_entity_next(set_scene);
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      utl::type::Set* set_scene = dat_database->get_set_scene();
+      utl::type::Set* set_scene = dat_database->get_set_graph();
       dat_set->remove_entity(set_scene, set_scene->selected_entity);
       break;
     }
@@ -79,7 +79,7 @@ void Control::control_keyboard_translation(){
   utl::type::Set* set_main = dat_database->get_set_main();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
-      utl::type::Set* set_scene = dat_database->get_set_scene();
+      utl::type::Set* set_scene = dat_database->get_set_graph();
       utl::type::Entity* entity = set_scene->selected_entity;
 
       //Shift speed up

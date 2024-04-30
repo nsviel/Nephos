@@ -398,7 +398,7 @@ void Loader::operation_selection(){
 
   //Apply loading and operations
   if(param_remove_old){
-    utl::type::Set* set_scene = dat_database->get_set_scene();
+    utl::type::Set* set_scene = dat_database->get_set_graph();
     dat_set->remove_entity_all(set_scene);
   }
 
@@ -432,7 +432,7 @@ void Loader::operation_selection(string file_path){
 
     //Apply loading and operations
     if(param_remove_old){
-      utl::type::Set* set_scene = dat_database->get_set_scene();
+      utl::type::Set* set_scene = dat_database->get_set_graph();
       dat_set->remove_entity_all(set_scene);
     }
 

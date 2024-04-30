@@ -24,6 +24,7 @@ struct Set : public utl::type::Element{
   bool is_lockable = false;
   bool is_locked = false;
   bool is_suppressible = false;
+  bool is_open = true;
 
   //Data
   utl::type::Pose pose;

@@ -54,6 +54,7 @@ public:
   //Dependancy
   vk::Node* node_vulkan;
   cam::Node* node_camera = nullptr;
+  std::list<utl::entity::Glyph*> list_glyph;
 };
 
 }

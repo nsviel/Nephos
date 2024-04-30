@@ -66,7 +66,7 @@ utl::type::Set* Loader::load_dataset(utl::Path file_path){
   utl::file::Dataset* dataset = dynamic_cast<utl::file::Dataset*>(file);
 
   //Insert loaded set into scene
-  utl::type::Set* set_scene = dat_database->get_set_scene();
+  utl::type::Set* set_scene = dat_database->get_set_graph();
   utl::type::Set* set = dat_set->get_or_create_subset(set_scene, dataset->name);
   set->is_locked = true;
 
@@ -95,7 +95,7 @@ utl::entity::Object* Loader::load_object(utl::Path file_path){
   utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
   //Data is an entity
-  utl::type::Set* set_scene = dat_database->get_set_scene();
+  utl::type::Set* set_scene = dat_database->get_set_graph();
   utl::entity::Object* object = create_object(file_data);
   dat_set->insert_entity(set_scene, object);
 

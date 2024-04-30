@@ -30,7 +30,7 @@ void Manager::create_camera(){
   dat::Glyph* dat_glyph = node_data->get_glyph();
   dat::Database* dat_database = node_data->get_database();
   utl::type::Set* set_main = dat_database->get_set_main();
-  utl::type::Set* set_world = dat_set->get_subset(set_main, "World");
+  utl::type::Set* set_world = dat_set->get_subset(set_main, "Scene");
 
   cam::Entity* camera = new cam::Entity();
   camera->name = "camera_" + to_string(camera_ID++);

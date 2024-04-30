@@ -36,7 +36,7 @@ void Glyph::init(){
 
 //Glyph init
 void Glyph::create_glyph_world(){
-  utl::type::Set* set_world = dat_database->get_set_world();
+  utl::type::Set* set_world = dat_database->get_set_scene();
   //---------------------------
 
   this->create_glyph(set_world, new dat::glyph::grid::Grid(node_engine));

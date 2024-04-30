@@ -61,7 +61,7 @@ void Graph::design_panel(){
 
 //Subfunction
 void Graph::draw_button(){
-  utl::type::Set* set_scene = dat_database->get_set_scene();
+  utl::type::Set* set_scene = dat_database->get_set_graph();
   utl::type::Entity* entity = set_scene->selected_entity;
   if(entity == nullptr) return;
   //-------------------------------
@@ -74,7 +74,7 @@ void Graph::draw_button(){
     if(set->is_locked){
       //sce_graph->delete_subset(set);
     }else if(set->is_locked){
-      utl::type::Set* set_scene = dat_database->get_set_scene();
+      utl::type::Set* set_scene = dat_database->get_set_graph();
       dat_set->remove_entity(set_scene, set->selected_entity);
     }
   }
@@ -177,7 +177,7 @@ int Graph::tree_set(utl::type::Set* set) {
   //Set node elements
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
-  flag_node |= set->name != "World" ? ImGuiTreeNodeFlags_DefaultOpen : 0;
+  flag_node |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
   string name = set->icon + "   " + set->name;
 
   //Set row

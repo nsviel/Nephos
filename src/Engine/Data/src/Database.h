@@ -25,15 +25,15 @@ public:
   void assign_UID(utl::type::Element* element);
 
   inline utl::type::Set* get_set_main(){return set_main;}
+  inline utl::type::Set* get_set_graph(){return set_graph;}
   inline utl::type::Set* get_set_scene(){return set_scene;}
-  inline utl::type::Set* get_set_world(){return set_world;}
 
 private:
   dat::Set* dat_set;
 
   utl::type::Set* set_main;
+  utl::type::Set* set_graph;
   utl::type::Set* set_scene;
-  utl::type::Set* set_world;
 };
 
 }

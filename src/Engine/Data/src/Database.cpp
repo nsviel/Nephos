@@ -20,11 +20,12 @@ Database::~Database(){}
 void Database::init(){
   //---------------------------
 
-  set_world = dat_set->create_subset(set_main, "Scene");
-  set_world->is_suppressible = false;
-
-  set_scene = dat_set->create_subset(set_main, "Graph");
+  set_scene = dat_set->create_subset(set_main, "Scene");
   set_scene->is_suppressible = false;
+  set_scene->is_open = false;
+
+  set_graph = dat_set->create_subset(set_main, "Graph");
+  set_graph->is_suppressible = false;
 
   //---------------------------
 }

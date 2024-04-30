@@ -114,7 +114,7 @@ void Swarm::close_all_master(){
   //---------------------------
 }
 k4n::dev::Master* Swarm::get_or_create_playback_master(string name){
-  utl::type::Set* set_scene = dat_database->get_set_scene();
+  utl::type::Set* set_scene = dat_database->get_set_graph();
   //---------------------------
 
   //Check if already existing
@@ -139,7 +139,7 @@ k4n::dev::Master* Swarm::get_or_create_playback_master(string name){
   return master;
 }
 k4n::dev::Master* Swarm::get_or_create_capture_master(string name){
-  utl::type::Set* set_scene = dat_database->get_set_scene();
+  utl::type::Set* set_scene = dat_database->get_set_graph();
   //---------------------------
 
   //Check if already existing
