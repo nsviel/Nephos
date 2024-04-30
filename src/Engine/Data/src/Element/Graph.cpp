@@ -58,7 +58,7 @@ void Graph::assign_UID(utl::type::Element* element){
   //----------------------------
 
   if(element->UID == -1){
-    element->UID = dat_struct->set_main.UID++;
+    element->UID = dat_struct->UID++;
   }
 
   //----------------------------

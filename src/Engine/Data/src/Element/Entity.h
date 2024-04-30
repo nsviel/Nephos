@@ -5,7 +5,7 @@ namespace eng{class Node;}
 namespace sce{class Operation;}
 namespace dat{class Node;}
 namespace dat{class Glyph;}
-namespace dat{class Graph;}
+namespace dat{class Structure;}
 namespace dat::base{class Entity;}
 
 
@@ -26,8 +26,8 @@ public:
 private:
   eng::Node* node_engine;
   vk::main::Engine* vk_engine;
-  dat::Graph* dat_graph;
   dat::Glyph* dat_glyph;
+  dat::Structure* dat_struct;
 };
 
 }

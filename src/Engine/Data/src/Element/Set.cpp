@@ -9,7 +9,7 @@ namespace dat{
 Set::Set(dat::Node* node_data){
   //---------------------------
 
-  this->dat_graph = node_data->get_database();
+  this->dat_struct = node_data->get_struct();
 
   //---------------------------
 }
@@ -79,11 +79,11 @@ dat::base::Set* Set::create_subset(dat::base::Set* set, std::string name){
   //---------------------------
 
   dat::base::Set* subset = new dat::base::Set();
+  subset->UID = dat_struct->UID++;
   subset->name = name;
   subset->set_parent = set;
   subset->is_suppressible = true;
 
-  dat_graph->assign_UID(subset);
   set->nb_subset++;
   set->selected_subset = subset;
   set->list_subset.push_back(subset);

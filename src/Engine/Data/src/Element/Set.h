@@ -3,7 +3,7 @@
 #include <string>
 
 namespace dat{class Node;}
-namespace dat{class Graph;}
+namespace dat{class Structure;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
@@ -42,7 +42,7 @@ public:
   int compute_number_point(dat::base::Set* set);
 
 private:
-  dat::Graph* dat_graph;
+  dat::Structure* dat_struct;
 };
 
 }
