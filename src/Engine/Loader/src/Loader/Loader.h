@@ -1,15 +1,18 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 namespace eng{class Node;}
-namespace dat{class Entity;}
-namespace dat{class Database;}
 namespace ldr{class Format;}
 namespace ldr{class Node;}
+namespace dat{class Entity;}
+namespace dat{class Database;}
 namespace dat{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Object;}
+namespace utl::media{class Path;}
+namespace utl::type{class Data;}
+namespace utl::file{class Data;}
 
 
 namespace ldr{

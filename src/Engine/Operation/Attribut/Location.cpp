@@ -10,14 +10,14 @@ Location::Location(){}
 Location::~Location(){}
 
 //Main function
-vec3 Location::compute_centroid(dat::base::Set* set){
+glm::vec3 Location::compute_centroid(dat::base::Set* set){
   //---------------------------
 
-  vec3 centroid = vec3(0, 0, 0);
+  glm::vec3 centroid = glm::vec3(0, 0, 0);
 
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-    vec3 entity_COM = compute_centroid(entity);
+    glm::vec3 entity_COM = compute_centroid(entity);
 
     for(int j=0; j<3; j++){
       centroid[j] += entity_COM[j];
@@ -32,13 +32,13 @@ vec3 Location::compute_centroid(dat::base::Set* set){
   set->pose.COM = centroid;
   return centroid;
 }
-vec3 Location::compute_centroid(dat::base::Entity* entity){
+glm::vec3 Location::compute_centroid(dat::base::Entity* entity){
   utl::type::Data* data = entity->get_data();
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  vector<vec3>& XYZ = data->xyz;
-  vec3 centroid = vec3(0, 0, 0);
+  std::vector<glm::vec3>& XYZ = data->xyz;
+  glm::vec3 centroid = glm::vec3(0, 0, 0);
 
   for(int i=0; i<XYZ.size(); i++){
     vec4 xys_h = vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
@@ -59,9 +59,9 @@ vec3 Location::compute_centroid(dat::base::Entity* entity){
 void Location::compute_MinMax(dat::base::Set* set){
   //---------------------------
 
-  vec3 centroid = vec3(0, 0, 0);
-  vec3 min = vec3(1000000, 1000000, 1000000);
-  vec3 max = vec3(-1000000, -1000000, -1000000);
+  glm::vec3 centroid = glm::vec3(0, 0, 0);
+  glm::vec3 min = glm::vec3(1000000, 1000000, 1000000);
+  glm::vec3 max = glm::vec3(-1000000, -1000000, -1000000);
 
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
@@ -90,12 +90,12 @@ void Location::compute_MinMax(dat::base::Entity* entity){
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  vector<vec3>& XYZ = data->xyz;
+  std::vector<glm::vec3>& XYZ = data->xyz;
   if(XYZ.size() == 0) return;
 
-  vec3 centroid = vec3(0, 0, 0);
-  vec3 min = vec3(1000000, 1000000, 1000000);
-  vec3 max = vec3(-1000000, -1000000, -1000000);
+  glm::vec3 centroid = glm::vec3(0, 0, 0);
+  glm::vec3 min = glm::vec3(1000000, 1000000, 1000000);
+  glm::vec3 max = glm::vec3(-1000000, -1000000, -1000000);
 
   for(int i=0; i<XYZ.size(); i++){
     vec4 xys_h = vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
@@ -128,13 +128,13 @@ void Location::set_unicolor(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Location::retrieve_z_vector(dat::base::Entity* entity, vector<float>& z_vec){
+void Location::retrieve_z_vector(dat::base::Entity* entity, std::vector<float>& z_vec){
   utl::type::Data* data = entity->get_data();
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  vector<vec3>& xyz = data->xyz;
-  z_vec = vector<float>(xyz.size());
+  std::vector<glm::vec3>& xyz = data->xyz;
+  z_vec = std::vector<float>(xyz.size());
 
   #pragma omp parallel for
   for(int i=0; i<xyz.size(); i++){

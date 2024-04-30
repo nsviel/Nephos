@@ -1,10 +1,12 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
 
 namespace ope::color{class Heatmap;}
 namespace ope::color{class Colormap;}
 namespace dat::base{class Entity;}
+
+using namespace glm;
 
 
 namespace ope::color{
