@@ -1,6 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <imgui/core/imgui.h>
+#include <string>
+#include <vector>
 
 namespace ldr{class Node;}
 namespace dat{class Database;}
@@ -41,7 +43,7 @@ public:
 
   //Subfunction
   void operation_selection();
-  void operation_selection(string path);
+  void operation_selection(std::string path);
   void operation_entity(dat::base::Entity* entity);
 
 private:
@@ -53,17 +55,17 @@ private:
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 
-  vector<ldr::Item> vec_item_folder;
-  vector<ldr::Item> vec_item_file;
+  std::vector<ldr::Item> vec_item_folder;
+  std::vector<ldr::Item> vec_item_file;
+  std::string default_dir;
+  std::string current_dir;
   ImVector<int> file_selection;
-  string default_dir;
-  string current_dir;
   float param_scaling = 1;
   bool param_remove_old = true;
   bool param_centered = true;
   bool goto_file_tab = false;
 
-  string name;
+  std::string name;
   bool* show_window;
 };
 

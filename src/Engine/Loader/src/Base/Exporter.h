@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-#include <Utility/Base/Media/File.h>
+#include <Utility/Base/Type/Data.h>
+#include <string>
 
 
 namespace ldr::base{

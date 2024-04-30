@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Type/Element.h>
+#include <Utility/Base/Type/Topology.h>
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
 #include <Eigen/Dense>
@@ -12,27 +13,7 @@
 #include <mutex>
 
 
-namespace utl::topology{
-
-enum Type{
-  POINT = 0,
-  LINE = 1,
-  TRIANGLE = 2,
-  QUAD = 3,
-};
-
-}
-
 namespace utl::type{
-
-struct Topology{
-  //---------------------------
-
-  int type = utl::topology::POINT;
-  int width = 5;
-
-  //---------------------------
-};
 
 struct Data : public utl::type::Element{
   //---------------------------

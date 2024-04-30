@@ -23,7 +23,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main load functions
-utl::File* Importer::import(utl::Path path){
+utl::type::File* Importer::import(utl::Path path){
   //---------------------------
 
   utl::file::Data* entity = new utl::file::Data();
@@ -58,7 +58,7 @@ utl::File* Importer::import(utl::Path path){
   //---------------------------
   return entity;
 }
-utl::File* Importer::import(utl::Path path, int lmin, int lmax){
+utl::type::File* Importer::import(utl::Path path, int lmin, int lmax){
   //---------------------------
 
   utl::file::Data* entity = new utl::file::Data();

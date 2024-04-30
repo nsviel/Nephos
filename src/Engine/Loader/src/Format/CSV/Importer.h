@@ -14,7 +14,7 @@ public:
   ~Importer();
 
 public:
-  utl::File* import(std::string pathFile);
+  utl::type::File* import(std::string pathFile);
 
 private:
 };

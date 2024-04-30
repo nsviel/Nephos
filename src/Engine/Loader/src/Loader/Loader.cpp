@@ -41,7 +41,7 @@ utl::type::Data* Loader::load_data(string path){
   utl_path.data = path;
 
   //Load data from path
-  utl::File* file = ldr_format->import_from_path(utl_path);
+  utl::type::File* file = ldr_format->import_from_path(utl_path);
   if(file == nullptr || file->type != utl::file::DATA) return nullptr;
   utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
@@ -59,7 +59,7 @@ dat::base::Set* Loader::load_dataset(utl::Path file_path){
   if(!check_file_path(file_path.data)) return nullptr;
 
   //Load data from path
-  utl::File* file = ldr_format->import_from_path(file_path);
+  utl::type::File* file = ldr_format->import_from_path(file_path);
   if(file == nullptr || file->type != utl::file::DATASET) return nullptr;
   utl::file::Dataset* dataset = dynamic_cast<utl::file::Dataset*>(file);
 
@@ -88,7 +88,7 @@ dat::base::Object* Loader::load_object(utl::Path file_path){
   if(!check_file_path(file_path.data)) return nullptr;
 
   //Load data from path
-  utl::File* file = ldr_format->import_from_path(file_path);
+  utl::type::File* file = ldr_format->import_from_path(file_path);
   if(file == nullptr || file->type != utl::file::DATA) return nullptr;
   utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 

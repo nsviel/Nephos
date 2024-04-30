@@ -38,8 +38,8 @@ Format::~Format(){
 }
 
 //Main functions
-utl::File* Format::import_from_path(utl::Path path){
-  utl::File* file = nullptr;
+utl::type::File* Format::import_from_path(utl::Path path){
+  utl::type::File* file = nullptr;
   //---------------------------
 
   std::string format = utl::path::get_format_from_path(path.data);

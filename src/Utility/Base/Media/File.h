@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Media/Path.h>
-
+#include <Utility/Base/Type/Topology.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
@@ -15,7 +15,7 @@ enum Type{
 
 }
 
-namespace utl{
+namespace utl::type{
 
 struct File{
   //---------------------------
@@ -33,7 +33,7 @@ struct File{
 
 namespace utl::file{
 
-struct Data : public utl::File{
+struct Data : public utl::type::File{
   //---------------------------
 
   //Info
@@ -54,7 +54,7 @@ struct Data : public utl::File{
   //---------------------------
 };
 
-struct Dataset : public utl::File{
+struct Dataset : public utl::type::File{
   //---------------------------
 
   //Data

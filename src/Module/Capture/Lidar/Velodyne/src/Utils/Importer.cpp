@@ -63,7 +63,7 @@ bool count_packets(const Tins::PDU &){
 }
 
 //Main function
-utl::File* Importer::import(utl::Path path){
+utl::type::File* Importer::import(utl::Path path){
   file_packets.clear();
   //---------------------------
 

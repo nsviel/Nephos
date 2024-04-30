@@ -14,7 +14,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main loader functions
-utl::File* Importer::import(utl::Path path){
+utl::type::File* Importer::import(utl::Path path){
   //---------------------------
 
   utl::file::Data* entity = new utl::file::Data();

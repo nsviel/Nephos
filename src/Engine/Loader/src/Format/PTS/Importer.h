@@ -22,8 +22,8 @@ public:
 
 public:
   //Main functions
-  utl::File* import(utl::Path path);
-  utl::File* import(utl::Path path, int lmin, int lmax);
+  utl::type::File* import(utl::Path path);
+  utl::type::File* import(utl::Path path, int lmin, int lmax);
 
   bool Exporter(std::string path, dat::base::Object* object);
 

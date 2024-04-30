@@ -21,7 +21,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main functions
-utl::File* Importer::import(utl::Path path){
+utl::type::File* Importer::import(utl::Path path){
   list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;
   //---------------------------

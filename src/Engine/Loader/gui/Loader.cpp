@@ -120,7 +120,7 @@ void Loader::draw_file_header(){
   // Render buttons for each path element
   std::string element_path;
   for (int i = 0; i < pathElements.size(); ++i) {
-    string element = pathElements[i];
+    std::string element = pathElements[i];
     if(element == "") continue;
 
     ImGui::SameLine(0, 2);
@@ -138,7 +138,7 @@ void Loader::draw_file_header(){
   //---------------------------
 }
 void Loader::draw_file_content(){
-  vector<string> vec_current_files = utl::path::list_all_path(current_dir);
+  std::vector<std::string> vec_current_files = utl::path::list_all_path(current_dir);
   //---------------------------
 
   static ImGuiTableFlags flags;
@@ -162,8 +162,8 @@ void Loader::draw_file_content(){
     vec_item_file.clear();
     for(int i=0; i<vec_current_files.size(); i++){
       ldr::Item item;
-      string file = vec_current_files[i];
-      string filename = utl::path::get_filename_from_path(file);
+      std::string file = vec_current_files[i];
+      std::string filename = utl::path::get_filename_from_path(file);
       //Remove hidden files
       if(filename[0] == '.' && filename[1] != '.') continue;
 
@@ -173,7 +173,7 @@ void Loader::draw_file_content(){
       if(item.type == ldr::FOLDER){
         item.name = utl::path::get_filename_from_path(file);
         item.path = file;
-        item.icon = string(ICON_FA_FOLDER);
+        item.icon = std::string(ICON_FA_FOLDER);
         item.size = "---";
         item.weight = 0;
         item.format = "---";
@@ -183,7 +183,7 @@ void Loader::draw_file_content(){
       }else if(item.type == ldr::FILE){
         item.path = file;
         item.name = utl::path::get_name_from_path(file);
-        item.icon = string(ICON_FA_FILE);
+        item.icon = std::string(ICON_FA_FILE);
         item.size = utl::file::formatted_size(file);
         item.weight = utl::file::size(file);
         item.format = utl::path::get_format_from_path(file);
@@ -221,7 +221,7 @@ void Loader::draw_file_content(){
       //Selection stuff
       ImGui::SameLine();
       const bool item_is_selected = file_selection.contains(item.ID);
-      string name = "##" + to_string(item.ID);
+      std::string name = "##" + std::to_string(item.ID);
       if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
 
         if(ImGui::IsMouseDoubleClicked(0)){
@@ -260,7 +260,7 @@ void Loader::draw_file_content(){
       //Selection stuff
       ImGui::SameLine();
       const bool item_is_selected = file_selection.contains(item.ID);
-      string name = "##" + to_string(item.ID);
+      std::string name = "##" + std::to_string(item.ID);
       if (ImGui::Selectable(name.c_str(), item_is_selected, flags)){
         //Add selection to list
         if(ImGui::GetIO().KeyCtrl){
@@ -300,7 +300,7 @@ void Loader::draw_bookmark_button(ldr::Item& item){
   is_bookmarked ? bg_alpha = 255 : bg_alpha = 0;
 
   //Draw bookmark button
-  string ID = item.path + "##bookmarkbutton";
+  std::string ID = item.path + "##bookmarkbutton";
   ImGui::PushID(ID.c_str());
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
   ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
@@ -342,7 +342,7 @@ void Loader::draw_bookmark_tab(){
     //Bookmark supression
     if(item.is_supressible){
       ImGui::SameLine();
-      string ID = item.path + "##supressionbookmark";
+      std::string ID = item.path + "##supressionbookmark";
       ImGui::PushID(ID.c_str());
       if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
         ldr_bookmark->remove_path(item.path);
@@ -384,7 +384,7 @@ void Loader::operation_selection(){
   //---------------------------
 
   //Retrieve all good selected files to load
-  vector<string> vec_path;
+  std::vector<std::string> vec_path;
   for(int i=0; i<vec_item_file.size(); i++){
     ldr::Item& item = vec_item_file[i];
     if(file_selection.contains(item.ID)){
@@ -414,7 +414,7 @@ void Loader::operation_selection(){
 
   //---------------------------
 }
-void Loader::operation_selection(string file_path){
+void Loader::operation_selection(std::string file_path){
   //---------------------------
 
   //If selection is a directory go display his content
@@ -425,7 +425,7 @@ void Loader::operation_selection(string file_path){
   //If selection is a file go load it
   else{
     //File check
-    string format = utl::path::get_format_from_path(file_path);
+    std::string format = utl::path::get_format_from_path(file_path);
     if(!utl::file::is_exist(file_path)) return;
     if(!ldr_format->is_format_supported(format)) return;
 

@@ -27,7 +27,7 @@ public:
 
 public:
   //Main function
-  utl::File* import_from_path(utl::Path path);
+  utl::type::File* import_from_path(utl::Path path);
   void insert_from_path(utl::Path path, dat::base::Set* set);
 
   //Subfunction
