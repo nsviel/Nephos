@@ -5,6 +5,7 @@
 namespace dat{class Node;}
 namespace dat{class Graph;}
 namespace dat{class Set;}
+namespace dat{class Structure;}
 namespace dat::gui{class Entity;}
 namespace dat::gui{class Set;}
 namespace dat::base{class Set;}
@@ -33,7 +34,6 @@ public:
 
   //File tree
   int tree_set(dat::base::Set* set);
-  void tree_set_double_click(dat::base::Set* set);
   void tree_set_open(dat::base::Set* set, int& nb_row);
   void tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row);
 
@@ -45,6 +45,7 @@ private:
   dat::gui::Set* rnd_set;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
+  dat::Structure* dat_struct;
   ope::Operation* ope_operation;
 
   std::string name;

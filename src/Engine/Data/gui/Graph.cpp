@@ -15,6 +15,7 @@ Graph::Graph(dat::Node* node_data, bool* show_window){
 
   this->dat_graph = node_data->get_database();
   this->dat_set = node_data->get_set();
+  this->dat_struct = node_data->get_struct();
   this->rnd_set = new dat::gui::Set(node_data, &show_panel_set);
   this->rnd_object = new dat::gui::Entity(node_data, &show_panel_entity);
 
@@ -59,8 +60,8 @@ void Graph::design_panel(){
 
 //Subfunction
 void Graph::draw_button(){
-  dat::base::Set* set_scene = dat_graph->get_set_graph();
-  dat::base::Entity* entity = set_scene->selected_entity;
+  dat::base::Set* set_graph = dat_graph->get_set_graph();
+  dat::base::Entity* entity = set_graph->selected_entity;
   if(entity == nullptr) return;
   //-------------------------------
 
@@ -72,8 +73,8 @@ void Graph::draw_button(){
     if(set->is_locked){
       //sce_graph->delete_subset(set);
     }else if(set->is_locked){
-      dat::base::Set* set_scene = dat_graph->get_set_graph();
-      dat_set->remove_entity(set_scene, set->selected_entity);
+      dat::base::Set* set_graph = dat_graph->get_set_graph();
+      dat_set->remove_entity(set_graph, set->selected_entity);
     }
   }
 
@@ -127,10 +128,10 @@ void Graph::draw_file_tree(){
   dat::base::Set* set_main = dat_graph->get_set_main();
   //---------------------------
 
-  static ImGuiTableFlags flag_tree;
-  flag_tree |= ImGuiTableFlags_SizingFixedFit;
-  flag_tree |= ImGuiTableFlags_NoBordersInBody;
-  flag_tree |= ImGuiTableFlags_SizingFixedSame;
+  static ImGuiTableFlags flags;
+  flags |= ImGuiTableFlags_SizingFixedFit;
+  flags |= ImGuiTableFlags_NoBordersInBody;
+  flags |= ImGuiTableFlags_SizingFixedSame;
 
   ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, 10);
   ImGui::SetNextWindowSize(ImVec2(400, 400));
@@ -165,15 +166,20 @@ int Graph::tree_set(dat::base::Set* set){
   if(set->is_suppressible && nb_entity == 0) return 0;
 
   //Set node elements
-  ImGuiTreeNodeFlags flag_node;
-  flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
-  flag_node |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
+  ImGuiTreeNodeFlags flags;
+  flags |= ImGuiTreeNodeFlags_OpenOnArrow;
+  flags |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
+  flags |= (set == dat_struct->selection) ? ImGuiTreeNodeFlags_Selected : 0;
   std::string name = set->icon + "   " + set->name;
 
   //Set row
   ImGui::TableNextRow();
   ImGui::TableNextColumn();
-  bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag_node);
+  bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flags);
+
+  if(ImGui::IsItemClicked()){
+    dat_struct->selection = set;
+  }
 
   //Bin button
   ImGui::TableNextColumn();
@@ -194,8 +200,12 @@ int Graph::tree_set(dat::base::Set* set){
     ImGui::PopStyleColor(2);
   }
 
-  //Set sub elements
-  this->tree_set_double_click(set);
+  //If set is double-clicked, open set panel
+  if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
+    rnd_set->set_selected_set(set);
+    this->show_panel_set = true;
+  }
+  //If set open, display elements
   if(is_node_open){
     this->tree_set_open(set, nb_row);
     ImGui::TreePop();
@@ -204,33 +214,16 @@ int Graph::tree_set(dat::base::Set* set){
   //---------------------------
   return nb_row;
 }
-void Graph::tree_set_double_click(dat::base::Set* set){
-  //---------------------------
-
-  // If set is double-clicked
-  if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
-    rnd_set->set_selected_set(set);
-    this->show_panel_set = true;
-  }
-
-  //---------------------------
-}
 void Graph::tree_set_open(dat::base::Set* set, int& nb_row){
   //---------------------------
 
-  ImGuiTreeNodeFlags flag_leaf;
-  flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
-  flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
-  flag_leaf |= ImGuiTreeNodeFlags_Leaf;
-  flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
-  flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
-
+  //List all direct entities
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
     this->tree_entity(set, entity, nb_row);
   }
 
-  // Recursive call for nested sets
+  //Recursive call for nested sets
   for(dat::base::Set* subset : set->list_subset){
     nb_row += tree_set(subset);
   }
@@ -243,25 +236,25 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   nb_row++;
 
   //Entity row element
-  bool is_selected = dat_set->is_selected_entity(set, entity);
-  ImGuiTreeNodeFlags flag_leaf;
-  flag_leaf |= ImGuiTreeNodeFlags_OpenOnArrow;
-  flag_leaf |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
-  flag_leaf |= ImGuiTreeNodeFlags_Leaf;
-  flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
-  flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
-  flag_leaf |= (is_selected && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
+  ImGuiTreeNodeFlags flags;
+  flags |= ImGuiTreeNodeFlags_OpenOnArrow;
+  flags |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
+  flags |= ImGuiTreeNodeFlags_Leaf;
+  flags |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
+  flags |= ImGuiTreeNodeFlags_SpanFullWidth;
+  flags |= (entity == dat_struct->selection && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
   std::string icon = ICON_FA_FILE_O;
   std::string name = icon + "   " + entity->name;
 
   // Display leaf
   ImGui::TableNextRow();
   ImGui::TableNextColumn();
-  ImGui::TreeNodeEx(name.c_str(), flag_leaf);
+  ImGui::TreeNodeEx(name.c_str(), flags);
 
   // If entity clicked
   if(ImGui::IsItemClicked()){
-    dat_set->select_entity(set, entity);
+    //dat_set->select_entity(set, entity);
+    dat_struct->selection = entity;
   }
 
   // If entity double-clicked
