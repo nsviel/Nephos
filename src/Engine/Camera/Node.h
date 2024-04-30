@@ -4,6 +4,7 @@
 #include <Utility/Element/Namespace.h>
 
 namespace vk{class Node;}
+namespace dat{class Node;}
 namespace eng{class Node;}
 namespace sce{class Node;}
 namespace cam{class Control;}
@@ -30,6 +31,7 @@ public:
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::Node* get_node_engine(){return node_engine;}
+  inline dat::Node* get_node_data(){return node_data;}
 
   inline cam::gui::Control* get_gui_control(){return gui_control;}
   inline cam::Control* get_control(){return cam_control;}
@@ -39,6 +41,7 @@ private:
   //Dependancy
   vk::Node* node_vulkan;
   eng::Node* node_engine;
+  dat::Node* node_data;
 
   //Child
   cam::Control* cam_control;

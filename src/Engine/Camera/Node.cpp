@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Data/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -15,6 +16,7 @@ Node::Node(eng::Node* node_engine){
 
   //Dependancy
   this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_data = node_engine->get_node_data();
   this->node_engine = node_engine;
 
   //Child

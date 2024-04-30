@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng{class Node;}
+namespace dat{class Node;}
 namespace dat{class Set;}
 namespace cam{class Node;}
 namespace cam{class Entity;}
@@ -25,11 +25,11 @@ public:
   inline cam::Entity* get_current_camera(){return current_camera;}
 
 private:
+  dat::Node* node_data;
+
   dat::Set* dat_set;
-  eng::Node* node_engine;
   vector<cam::Entity*> vec_camera;
   cam::Entity* current_camera;
-
   int camera_ID;
 };
 
