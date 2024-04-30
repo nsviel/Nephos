@@ -15,14 +15,14 @@ enum Type{
 
 }
 
-namespace utl::type{
+namespace utl::media{
 
 struct File{
   //---------------------------
 
   int type = utl::file::DATA;
   std::string name = "";
-  utl::Path path;
+  utl::media::Path path;
 
   virtual void hello(){}
 
@@ -33,7 +33,7 @@ struct File{
 
 namespace utl::file{
 
-struct Data : public utl::type::File{
+struct Data : public utl::media::File{
   //---------------------------
 
   //Info
@@ -54,7 +54,7 @@ struct Data : public utl::type::File{
   //---------------------------
 };
 
-struct Dataset : public utl::type::File{
+struct Dataset : public utl::media::File{
   //---------------------------
 
   //Data

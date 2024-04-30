@@ -17,7 +17,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::type::File* Importer::import(std::string pathFile){
+utl::media::File* Importer::import(std::string pathFile){
   //---------------------------
 /*
   std::ifstream file(pathFile);

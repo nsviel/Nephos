@@ -30,7 +30,7 @@ public:
 
 public:
   //Main functions
-  utl::type::File* import(utl::Path path);
+  utl::media::File* import(utl::media::Path path);
 
 private:
   //Loader data

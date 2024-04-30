@@ -33,7 +33,7 @@ public:
 
 public:
   //Main function
-  utl::type::File* import(utl::Path path);
+  utl::media::File* import(utl::media::Path path);
   void insert(dat::base::Set* set);
 
   //Subfunction

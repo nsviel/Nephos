@@ -21,7 +21,7 @@ Importer::Importer(k4n::Node* node_k4n){
 Importer::~Importer(){}
 
 //Main function
-utl::type::File* Importer::import(utl::Path path){
+utl::media::File* Importer::import(utl::media::Path path){
   //---------------------------
 
   k4n_swarm->create_sensor_playback(path);

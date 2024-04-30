@@ -1,19 +1,15 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vector>
+#include <string>
 
-namespace ldr{class Node;}
 namespace vk::main{class Interface;}
-namespace format::obj{class Importer;}
-namespace format::csv{class Importer;}
-namespace format::ply{class Importer;}
-namespace format::pts{class Importer;}
-namespace format::ptx{class Importer;}
-namespace format::xyz{class Importer;}
-namespace format::ply{class Exporter;}
+namespace dat::base{class Set;}
+namespace utl::media{class File;}
+namespace utl::media{class Path;}
+namespace ldr{class Node;}
 namespace ldr::base{class Importer;}
 namespace ldr::base{class Exporter;}
-namespace dat::base{class Set;}
 
 
 namespace ldr{
@@ -27,20 +23,20 @@ public:
 
 public:
   //Main function
-  utl::type::File* import_from_path(utl::Path path);
-  void insert_from_path(utl::Path path, dat::base::Set* set);
+  utl::media::File* import_from_path(utl::media::Path path);
+  void insert_from_path(utl::media::Path path, dat::base::Set* set);
 
   //Subfunction
   void insert_importer(ldr::base::Importer* importer);
   void insert_exporter(ldr::base::Exporter* exporter);
-  bool is_format_supported(string format);
+  bool is_format_supported(std::string format);
   void display_supported_format();
 
 private:
   vk::main::Interface* vk_interface;
 
-  vector<ldr::base::Importer*> vec_importer;
-  vector<ldr::base::Exporter*> vec_exporter;
+  std::vector<ldr::base::Importer*> vec_importer;
+  std::vector<ldr::base::Exporter*> vec_exporter;
 };
 
 }

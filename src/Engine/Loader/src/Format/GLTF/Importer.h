@@ -21,7 +21,7 @@ public:
 
 public:
   //Main functions
-  utl::type::File* import(utl::Path path);
+  utl::media::File* import(utl::media::Path path);
 
   //Subfunction
   void load_file(std::string path);

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Loader/src/Base/Importer.h>
-#include <Utility/Specific/Common.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -40,7 +39,7 @@ public:
 
 public:
   //Main functions
-  utl::type::File* import(utl::Path path);
+  utl::media::File* import(utl::media::Path path);
   bool Exporter(std::string pathFile);
 
   //Subfunctions

@@ -25,7 +25,7 @@ public:
 
 public:
   //Sensor function
-  void create_sensor_playback(utl::Path path);
+  void create_sensor_playback(utl::media::Path path);
   void create_sensor_capture(int index);
 
   //Master function

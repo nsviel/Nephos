@@ -38,8 +38,8 @@ Format::~Format(){
 }
 
 //Main functions
-utl::type::File* Format::import_from_path(utl::Path path){
-  utl::type::File* file = nullptr;
+utl::media::File* Format::import_from_path(utl::media::Path path){
+  utl::media::File* file = nullptr;
   //---------------------------
 
   std::string format = utl::path::get_format_from_path(path.data);
@@ -61,7 +61,7 @@ utl::type::File* Format::import_from_path(utl::Path path){
   //---------------------------
   return file;
 }
-void Format::insert_from_path(utl::Path path, dat::base::Set* set){
+void Format::insert_from_path(utl::media::Path path, dat::base::Set* set){
   //---------------------------
 
   std::string format = utl::path::get_format_from_path(path.data);
@@ -92,7 +92,7 @@ void Format::insert_exporter(ldr::base::Exporter* exporter){
 
   //---------------------------
 }
-bool Format::is_format_supported(string format){
+bool Format::is_format_supported(std::string format){
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){

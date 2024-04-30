@@ -402,7 +402,7 @@ void Loader::operation_selection(){
   }
 
   for(int i=0; i<vec_path.size(); i++){
-    utl::Path path;
+    utl::media::Path path;
     path.data = vec_path[i];
 
     dat::base::Object* object = ldr_loader->load_object(path);
@@ -435,7 +435,7 @@ void Loader::operation_selection(std::string file_path){
       dat_set->remove_entity_all(set_scene);
     }
 
-    utl::Path path;
+    utl::media::Path path;
     path.data = file_path;
     dat::base::Object* object = ldr_loader->load_object(path);
 

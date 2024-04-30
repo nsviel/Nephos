@@ -13,7 +13,7 @@ namespace ldr::base{
 struct Importer{
   //---------------------------
 
-  virtual utl::type::File* import(utl::Path path){return nullptr;}
+  virtual utl::media::File* import(utl::media::Path path){return nullptr;}
   virtual void insert(dat::base::Entity* entity){}
   virtual void insert(dat::base::Set* set){}
 

@@ -37,7 +37,7 @@ public:
 
 public:
   //Main function
-  utl::type::File* import(utl::Path path);
+  utl::media::File* import(utl::media::Path path);
 
   //Subfunction
   void init_params();
