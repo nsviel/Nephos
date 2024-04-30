@@ -21,10 +21,13 @@ Graph::~Graph(){}
 void Graph::init(){
   //---------------------------
 
+  //Background permanent elements
   dat::base::Set* set_scene = dat_set->create_subset(&dat_struct->set_main, "Scene");
   set_scene->is_suppressible = false;
+  set_scene->is_selectable = false;
   set_scene->is_open = false;
 
+  //Engine active elements
   dat::base::Set* set_graph = dat_set->create_subset(&dat_struct->set_main, "Graph");
   set_graph->is_suppressible = false;
 
@@ -81,6 +84,9 @@ dat::base::Set* Graph::get_set_scene(){
 
   //----------------------------
   return set;
+}
+utl::type::Element* Graph::get_selection(){
+  return dat_struct->selection;
 }
 
 

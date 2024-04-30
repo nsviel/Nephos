@@ -294,5 +294,21 @@ int Set::compute_number_point(dat::base::Set* set){
   //---------------------------
   return nb_point;
 }
+bool Set::is_set_empty(dat::base::Set* set){
+  int nb_entity = 0;
+  //---------------------------
+
+  nb_entity += set->list_entity.size();
+  if(nb_entity > 0) return false;
+
+  for(int i=0; i<set->list_subset.size(); i++){
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+    nb_entity += compute_number_entity(subset);
+  }
+  if(nb_entity > 0) return false;
+
+  //---------------------------
+  return true;
+}
 
 }

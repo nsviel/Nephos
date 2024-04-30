@@ -18,84 +18,87 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Operation on set
-void Operation::center_object(dat::base::Set* set){
-  if(set == nullptr) return;
+void Operation::center_object(utl::type::Element* element){
+  if(element == nullptr) return;
   //---------------------------
 
-  if(set->is_locked){
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
     ope_location->compute_MinMax(set);
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
       this->center_object(entity, set->pose.COM);
       this->elevate_object(entity, set->pose.min);
     }
-  }else{
-    dat::base::Entity* entity = set->selected_entity;
+  }
+  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
     this->center_object(entity, entity->get_pose()->COM);
     this->elevate_object(entity, entity->get_pose()->min);
   }
 
   //---------------------------
 }
-void Operation::elevate_object(dat::base::Set* set){
-  if(set == nullptr) return;
+void Operation::elevate_object(utl::type::Element* element){
+  if(element == nullptr) return;
   //---------------------------
 
-  if(set->is_locked){
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
     ope_location->compute_MinMax(set);
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
       this->elevate_object(entity, set->pose.min);
     }
-  }else{
-    dat::base::Entity* entity = set->selected_entity;
+  }
+  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
     this->elevate_object(entity, entity->get_pose()->min);
   }
 
   //---------------------------
 }
-void Operation::make_rotation_X_90d(dat::base::Set* set, int value){
-  if(set == nullptr) return;
+void Operation::make_rotation_X_90d(utl::type::Element* element, int value){
+  if(element == nullptr) return;
   //---------------------------
 
-  if(set->is_locked){
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
       this->make_rotation_X_90d(entity, value);
     }
-  }else{
-    this->make_rotation_X_90d(set->selected_entity, value);
+  }
+  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    this->make_rotation_X_90d(entity, value);
   }
 
   //---------------------------
 }
-void Operation::make_translation(dat::base::Set* set, glm::vec3 value){
-  if(set == nullptr) return;
+void Operation::make_translation(utl::type::Element* element, glm::vec3 value){
+  if(element == nullptr) return;
   //---------------------------
 
-  if(set->is_locked){
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
       ope_transform->make_translation(entity, value);
     }
-  }else{
-    ope_transform->make_translation(set->selected_entity, value);
+  }
+  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    ope_transform->make_translation(entity, value);
   }
 
   //---------------------------
 }
-void Operation::make_rotation(dat::base::Set* set, glm::vec3 value){
-  if(set == nullptr) return;
+void Operation::make_rotation(utl::type::Element* element, glm::vec3 value){
+  if(element == nullptr) return;
   //---------------------------
 
-  if(set->is_locked){
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
     glm::vec3 COM = ope_location->compute_centroid(set);
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
       ope_transform->make_rotation(entity, COM, value);
     }
-  }else{
-    ope_transform->make_rotation(set->selected_entity, value);
+  }
+  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    ope_transform->make_rotation(entity, value);
   }
 
   //---------------------------

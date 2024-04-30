@@ -162,8 +162,8 @@ int Graph::tree_set(dat::base::Set* set){
   int nb_row = 0;
   //---------------------------
 
-  int nb_entity = dat_set->compute_number_entity(set);
-  if(set->is_suppressible && nb_entity == 0) return 0;
+  bool is_empty = dat_set->is_set_empty(set);
+  if(set->is_suppressible && is_empty) return 0;
 
   //Set node elements
   ImGuiTreeNodeFlags flags;
@@ -177,7 +177,8 @@ int Graph::tree_set(dat::base::Set* set){
   ImGui::TableNextColumn();
   bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flags);
 
-  if(ImGui::IsItemClicked()){
+  //Set selection
+  if(ImGui::IsItemClicked() && set->is_selectable){
     dat_struct->selection = set;
   }
 

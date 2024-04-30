@@ -37,6 +37,7 @@ void Wheel::change_mode(){
   //---------------------------
 }
 void Wheel::make_action(float direction){
+  utl::type::Element* element = dat_graph->get_selection();
   //---------------------------
 
   //Rotation quantity
@@ -45,24 +46,18 @@ void Wheel::make_action(float direction){
 
   switch (mode) {
     case WHEEL_R_Z:{
-      dat::base::Set* set_scene = dat_graph->get_set_graph();
-      dat::base::Entity* entity = set_scene->selected_entity;
       R = glm::vec3(0, 0, direction * radian);
-      ope_operation->make_rotation(entity->set_parent, R);
+      ope_operation->make_rotation(element, R);
       break;
     }
     case WHEEL_R_Y:{
-      dat::base::Set* set_scene = dat_graph->get_set_graph();
-      dat::base::Entity* entity = set_scene->selected_entity;
       R = glm::vec3(0, direction * radian, 0);
-      ope_operation->make_rotation(entity->set_parent, R);
+      ope_operation->make_rotation(element, R);
       break;
     }
     case WHEEL_R_X:{
-      dat::base::Set* set_scene = dat_graph->get_set_graph();
-      dat::base::Entity* entity = set_scene->selected_entity;
       R = glm::vec3(direction * radian, 0, 0);
-      ope_operation->make_rotation(entity->set_parent, R);
+      ope_operation->make_rotation(element, R);
       break;
     }
     case WHEEL_CAM_Z:{

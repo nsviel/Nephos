@@ -79,8 +79,7 @@ void Control::control_keyboard_translation(){
   dat::base::Set* set_main = dat_graph->get_set_main();
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
-      dat::base::Set* set_scene = dat_graph->get_set_graph();
-      dat::base::Entity* entity = set_scene->selected_entity;
+      utl::type::Element* element = dat_graph->get_selection();
 
       //Shift speed up
       float translation_qtt = 0.01;
@@ -91,37 +90,37 @@ void Control::control_keyboard_translation(){
       // Z key
       if(io.KeysDown[571]){
         glm::vec3 translation = glm::vec3(translation_qtt, 0, 0);
-        ope_operation->make_translation(entity->set_parent, translation);
+        ope_operation->make_translation(element, translation);
         break;
       }
       // S key
       if(io.KeysDown[564]){
         glm::vec3 translation = glm::vec3(-translation_qtt, 0, 0);
-        ope_operation->make_translation(entity->set_parent, translation);
+        ope_operation->make_translation(element, translation);
         break;
       }
       // D key
       if(io.KeysDown[549]){
         glm::vec3 translation = glm::vec3(0, translation_qtt, 0);
-        ope_operation->make_translation(entity->set_parent, translation);
+        ope_operation->make_translation(element, translation);
         break;
       }
       // Q key
       if(io.KeysDown[562]){
         glm::vec3 translation = glm::vec3(0, -translation_qtt, 0);
-        ope_operation->make_translation(entity->set_parent, translation);
+        ope_operation->make_translation(element, translation);
         break;
       }
       // A key
       if(io.KeysDown[546]){
         glm::vec3 translation = glm::vec3(0, 0, translation_qtt);
-        ope_operation->make_translation(entity->set_parent, translation);
+        ope_operation->make_translation(element, translation);
         break;
       }
       // E key
       if(io.KeysDown[550]){
         glm::vec3 translation = glm::vec3(0, 0, -translation_qtt);
-        ope_operation->make_translation(entity->set_parent, translation);
+        ope_operation->make_translation(element, translation);
         break;
       }
     }

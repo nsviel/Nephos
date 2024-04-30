@@ -47,7 +47,6 @@ public:
   //Dependancy
   vk::Node* node_vulkan;
   cam::Node* node_camera = nullptr;
-  std::list<dat::base::Glyph*> list_glyph;
 };
 
 }

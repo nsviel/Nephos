@@ -40,6 +40,7 @@ public:
   //Subfunction
   int compute_number_entity(dat::base::Set* set);
   int compute_number_point(dat::base::Set* set);
+  bool is_set_empty(dat::base::Set* set);
 
 private:
   dat::Structure* dat_struct;

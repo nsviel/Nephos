@@ -27,6 +27,7 @@ public:
 
   //Subfunction
   void assign_UID(utl::type::Element* element);
+  utl::type::Element* get_selection();
   dat::base::Set* get_set_main();
   dat::base::Set* get_set_graph();
   dat::base::Set* get_set_scene();
