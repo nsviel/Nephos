@@ -7,6 +7,7 @@ namespace cam{class Node;}
 namespace cam{class Projection;}
 namespace cam::mode{class Base;}
 namespace cam{class Entity;}
+namespace cam{class Structure;}
 namespace utl::type{class Pose;}
 
 
@@ -33,7 +34,6 @@ public:
   glm::mat4 compute_camera_pose();
 
   //Camera parameter
-  void set_camera(cam::Entity* camera);
   void set_camera_COM(glm::vec3 value);
   void set_camera_mode(cam::Entity* camera);
   void set_camera_proj(cam::Entity* camera, int projection);
@@ -41,10 +41,10 @@ public:
 
 private:
   cam::Projection* cam_proj;
+  cam::Structure* cam_struct;
 
   std::vector<cam::mode::Base*> vec_mode;
   cam::mode::Base* active_mode;
-  cam::Entity* camera = nullptr;
 };
 
 }

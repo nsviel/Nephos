@@ -5,6 +5,7 @@
 namespace cam{class Node;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
+namespace cam{class Structure;}
 namespace vk::window{class GLFW;}
 
 
@@ -34,6 +35,7 @@ private:
   vk::window::GLFW* vk_window;
   cam::Control* cam_control;
   cam::Manager* cam_manager;
+  cam::Structure* cam_struct;
 
   glm::vec2 cursor_pose = glm::vec2(0, 0);
 };

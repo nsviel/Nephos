@@ -13,6 +13,7 @@ Control::Control(cam::Node* node_camera){
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
   this->vk_window = node_vulkan->get_vk_window();
+  this->cam_struct = node_camera->get_struct();
   this->cam_manager = node_camera->get_manager();
   this->cam_control = node_camera->get_control();
 
@@ -80,7 +81,7 @@ void Control::control_keyboard_camMove(){
   //---------------------------
 }
 void Control::control_mouse(glm::vec2 center){
-  cam::Entity* camera = cam_manager->get_current_camera();
+  cam::Entity* camera = cam_struct->cam_current;
   //----------------------------
 
   //Right click - Camera movement
@@ -106,7 +107,7 @@ void Control::control_mouse_wheel(){
 
 //Subfunction
 void Control::enable_camera_view(glm::vec2 center){
-  cam::Entity* camera = cam_manager->get_current_camera();
+  cam::Entity* camera = cam_struct->cam_current;
   //----------------------------
 
   if(ImGui::IsMouseClicked(1)){
@@ -121,7 +122,7 @@ void Control::enable_camera_view(glm::vec2 center){
   //----------------------------
 }
 void Control::disable_camera_view(){
-  cam::Entity* camera = cam_manager->get_current_camera();
+  cam::Entity* camera = cam_struct->cam_current;
   //----------------------------
 
   if(ImGui::IsMouseReleased(1) && camera->cam_move){

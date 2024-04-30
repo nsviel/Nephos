@@ -6,6 +6,7 @@
 namespace cam{class Node;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
+namespace cam{class Structure;}
 
 
 namespace cam::gui{
@@ -29,6 +30,7 @@ public:
 private:
   cam::Control* cam_control;
   cam::Manager* cam_manager;
+  cam::Structure* cam_struct;
 
   std::string name;
   int item_width;

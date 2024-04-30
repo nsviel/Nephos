@@ -11,6 +11,7 @@ Panel::Panel(cam::Node* node_camera, bool* show_window){
 
   this->cam_control = node_camera->get_control();
   this->cam_manager = node_camera->get_manager();
+  this->cam_struct = node_camera->get_struct();
   this->show_window = show_window;
   this->name = "Camera";
 
@@ -46,7 +47,7 @@ void Panel::design_panel(){
 
 //Subfunction
 void Panel::cam_parameter(){
-  cam::Entity* camera = cam_manager->get_current_camera();
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
   //Camera parameters
@@ -94,7 +95,7 @@ void Panel::cam_parameter(){
   //---------------------------
 }
 void Panel::cam_info(){
-  cam::Entity* camera = cam_manager->get_current_camera();
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
   //Camera position
@@ -134,7 +135,7 @@ void Panel::cam_info(){
   //---------------------------
 }
 void Panel::cam_mode(){
-  cam::Entity* camera = cam_manager->get_current_camera();
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
   if(ImGui::Button(ICON_FA_CAMERA "##camera123")){

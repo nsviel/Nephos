@@ -21,8 +21,8 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->cam_struct = new cam::Structure();
-  this->cam_manager = new cam::Manager(this);
   this->cam_control = new cam::Control(this);
+  this->cam_manager = new cam::Manager(this);
   this->gui_control = new cam::gui::Control(this);
   this->gui_panel = new cam::gui::Panel(this, &cam_panel->is_open);
 
@@ -42,7 +42,6 @@ void Node::init(){
   //---------------------------
 
   cam_manager->create_camera();
-  cam_control->set_camera(cam_manager->get_current_camera());
 
   //---------------------------
 }

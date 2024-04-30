@@ -10,6 +10,7 @@ namespace cam{
 Control::Control(cam::Node* node_camera){
   //---------------------------
 
+  this->cam_struct = node_camera->get_struct();
   this->cam_proj = new cam::Projection(node_camera);
 
   this->vec_mode.push_back(new cam::mode::Player(node_camera));
@@ -22,6 +23,7 @@ Control::~Control(){}
 
 //Camera movement
 void Control::control_keyboard(int direction, bool fast){
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
   //Compute camera movment speed value
@@ -60,6 +62,7 @@ void Control::control_keyboard(int direction, bool fast){
   //---------------------------
 }
 void Control::control_mouse(){
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
   if(camera->cam_move){
@@ -70,6 +73,7 @@ void Control::control_mouse(){
   //---------------------------
 }
 void Control::control_zoom(float value){
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
   switch(camera->projection){
@@ -86,6 +90,7 @@ void Control::control_zoom(float value){
   //---------------------------
 }
 void Control::control_wheel(float value){
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
   active_mode->camera_wheel(camera, value);
@@ -95,18 +100,20 @@ void Control::control_wheel(float value){
 
 //Camera matrix
 glm::mat4 Control::compute_camera_view(){
-  glm::mat4 cam_view;
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
-  cam_view = active_mode->compute_camera_view(camera);
+  glm::mat4 cam_view = active_mode->compute_camera_view(camera);
 
   //---------------------------
   return cam_view;
 }
 glm::mat4 Control::compute_camera_proj(){
+  cam::Entity* camera = cam_struct->cam_current;
+  //---------------------------
+
   glm::mat4 projection = glm::mat4(1.0f);
   if(camera == nullptr) return projection;
-  //---------------------------
 
   switch(camera->projection){
     case CAMERA_PROJ_PERSPECTIVE:{
@@ -147,6 +154,7 @@ void Control::compute_camera_mvp(utl::type::Pose* pose){
   //---------------------------
 }
 glm::mat4 Control::compute_camera_pose(){
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
   glm::vec3 zaxis = normalize(camera->cam_F);
@@ -164,15 +172,8 @@ glm::mat4 Control::compute_camera_pose(){
 }
 
 //Camera parameter
-void Control::set_camera(cam::Entity* camera){
-  //---------------------------
-
-  this->camera = camera;
-  this->set_camera_mode(camera);
-
-  //---------------------------
-}
 void Control::set_camera_COM(glm::vec3 value){
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
   // Calculate the displacement vector
@@ -223,6 +224,7 @@ void Control::set_camera_proj(cam::Entity* camera, int projection){
   //---------------------------
 }
 void Control::set_next_camera_mode(){
+  cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
   switch(camera->mode){
