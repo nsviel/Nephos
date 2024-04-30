@@ -26,7 +26,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
   //Insert point and index into voxel map
   int cpt = 0;
   #pragma omp parallel for
-	for(const vec3& point : data->xyz){
+	for(const glm::vec3& point : data->xyz){
     int kx = static_cast<int>(point.x / voxel_size);
     int ky = static_cast<int>(point.y / voxel_size);
     int kz = static_cast<int>(point.z / voxel_size);

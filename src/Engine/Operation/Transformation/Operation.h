@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
 
 namespace ope{class Transformation;}
 namespace ope::attribut{class Location;}
@@ -22,14 +22,14 @@ public:
   void center_object(dat::base::Set* set);
   void elevate_object(dat::base::Set* set);
   void make_rotation_X_90d(dat::base::Set* set, int value);
-  void make_translation(dat::base::Set* set, vec3 value);
-  void make_rotation(dat::base::Set* set, vec3 value);
+  void make_translation(dat::base::Set* set, glm::vec3 value);
+  void make_rotation(dat::base::Set* set, glm::vec3 value);
 
   //Operation on entity
-  void center_object(dat::base::Entity* entity, vec3 COM);
-  void elevate_object(dat::base::Entity* entity, vec3 min);
+  void center_object(dat::base::Entity* entity, glm::vec3 COM);
+  void elevate_object(dat::base::Entity* entity, glm::vec3 min);
   void make_rotation_X_90d(dat::base::Entity* entity, int value);
-  void make_translation_from_root(dat::base::Entity* entity, vec3 new_root);
+  void make_translation_from_root(dat::base::Entity* entity, glm::vec3 new_root);
 
 private:
   ope::Transformation* ope_transform;

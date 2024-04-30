@@ -10,7 +10,7 @@ Transformation::Transformation(){}
 Transformation::~Transformation(){}
 
 // Translation
-void Transformation::make_translation(dat::base::Entity* entity, vec3 trans){
+void Transformation::make_translation(dat::base::Entity* entity, glm::vec3 trans){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
@@ -29,7 +29,7 @@ void Transformation::make_translation(dat::base::Entity* entity, mat4 translatio
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  vec3 trans = vec3(translation[0][3], translation[1][3], translation[2][3]);
+  glm::vec3 trans = glm::vec3(translation[0][3], translation[1][3], translation[2][3]);
 
   pose->COM += trans;
   pose->root += trans;
@@ -40,12 +40,12 @@ void Transformation::make_translation(dat::base::Entity* entity, mat4 translatio
 }
 
 //Rotation
-void Transformation::make_rotation(dat::base::Entity* entity, vec3 COM, vec3 degree){
+void Transformation::make_rotation(dat::base::Entity* entity, glm::vec3 COM, glm::vec3 degree){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  vec3 radian = math::degree_to_radian(degree);
+  glm::vec3 radian = math::degree_to_radian(degree);
   mat4 rotation = get_rotation_mat(radian);
   mat4 COM_mat = get_translation_mat_neye(COM);
   mat4 root_mat = get_translation_mat_neye(pose->root);
@@ -62,13 +62,13 @@ void Transformation::make_rotation(dat::base::Entity* entity, vec3 COM, vec3 deg
 
   //---------------------------
 }
-void Transformation::make_rotation(dat::base::Entity* entity, vec3 degree){
+void Transformation::make_rotation(dat::base::Entity* entity, glm::vec3 degree){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  vec3& COM = pose->COM;
-  vec3 radian = math::degree_to_radian(degree);
+  glm::vec3& COM = pose->COM;
+  glm::vec3 radian = math::degree_to_radian(degree);
   mat4 rotation = get_rotation_mat(radian);
   mat4 COM_mat = get_translation_mat_neye(COM);
 
@@ -84,12 +84,12 @@ void Transformation::make_rotation(dat::base::Entity* entity, vec3 degree){
 
   //---------------------------
 }
-void Transformation::make_rotation(dat::base::Entity* entity, vec3 COM, mat4 rotation){
+void Transformation::make_rotation(dat::base::Entity* entity, glm::vec3 COM, mat4 rotation){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
-  //vec3& COM = pose->COM;
+  //glm::vec3& COM = pose->COM;
   mat4 COM_mat = get_translation_mat_neye(COM);
 
   pose->rotat *= rotation;
@@ -147,10 +147,10 @@ void Transformation::make_scaling(dat::base::Entity* entity, float scale){
 }
 
 //Transformation
-void Transformation::make_transformation(utl::type::Pose* pose, vec3 COM, mat4 translation, mat4 rotation){
+void Transformation::make_transformation(utl::type::Pose* pose, glm::vec3 COM, glm::mat4 translation, glm::mat4 rotation){
   //---------------------------
 
-  mat4 COM_mat = get_translation_mat_neye(COM);
+  glm::mat4 COM_mat = get_translation_mat_neye(COM);
 
   pose->model = translation;
   pose->model -= COM_mat;
@@ -161,7 +161,7 @@ void Transformation::make_transformation(utl::type::Pose* pose, vec3 COM, mat4 t
 }
 
 //Subfunction
-mat4 Transformation::get_translation_mat(vec3 trans){
+glm::mat4 Transformation::get_translation_mat(vec3 trans){
   glm::mat4 translation(1.0);
   //---------------------------
 
@@ -172,7 +172,7 @@ mat4 Transformation::get_translation_mat(vec3 trans){
   //---------------------------
   return translation;
 }
-mat4 Transformation::get_translation_mat_neye(vec3 trans){
+glm::mat4 Transformation::get_translation_mat_neye(vec3 trans){
   glm::mat4 translation(0.0);
   //---------------------------
 
@@ -183,7 +183,7 @@ mat4 Transformation::get_translation_mat_neye(vec3 trans){
   //---------------------------
   return translation;
 }
-mat4 Transformation::get_rotation_mat(vec3 r){
+glm::mat4 Transformation::get_rotation_mat(vec3 r){
   glm::mat4 Rx(1.0);
   glm::mat4 Ry(1.0);
   glm::mat4 Rz(1.0);

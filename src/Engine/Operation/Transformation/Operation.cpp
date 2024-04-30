@@ -69,7 +69,7 @@ void Operation::make_rotation_X_90d(dat::base::Set* set, int value){
 
   //---------------------------
 }
-void Operation::make_translation(dat::base::Set* set, vec3 value){
+void Operation::make_translation(dat::base::Set* set, glm::vec3 value){
   if(set == nullptr) return;
   //---------------------------
 
@@ -84,12 +84,12 @@ void Operation::make_translation(dat::base::Set* set, vec3 value){
 
   //---------------------------
 }
-void Operation::make_rotation(dat::base::Set* set, vec3 value){
+void Operation::make_rotation(dat::base::Set* set, glm::vec3 value){
   if(set == nullptr) return;
   //---------------------------
 
   if(set->is_locked){
-    vec3 COM = ope_location->compute_centroid(set);
+    glm::vec3 COM = ope_location->compute_centroid(set);
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
       ope_transform->make_rotation(entity, COM, value);
@@ -102,22 +102,22 @@ void Operation::make_rotation(dat::base::Set* set, vec3 value){
 }
 
 //Operation on entity
-void Operation::center_object(dat::base::Entity* entity, vec3 COM){
+void Operation::center_object(dat::base::Entity* entity, glm::vec3 COM){
   if(entity == nullptr || !entity->is_movable) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
 
   ope_location->compute_MinMax(entity);
-  ope_transform->make_translation(entity, vec3(-pose->COM.x, -pose->COM.y, 0));
+  ope_transform->make_translation(entity, glm::vec3(-pose->COM.x, -pose->COM.y, 0));
 
   //---------------------------
 }
-void Operation::elevate_object(dat::base::Entity* entity, vec3 min){
+void Operation::elevate_object(dat::base::Entity* entity, glm::vec3 min){
   if(entity == nullptr || !entity->is_movable) return;
   //---------------------------
 
   ope_location->compute_MinMax(entity);
-  ope_transform->make_translation(entity, vec3(0, 0, -min.z));
+  ope_transform->make_translation(entity, glm::vec3(0, 0, -min.z));
 
   //---------------------------
 }
@@ -132,11 +132,11 @@ void Operation::make_rotation_X_90d(dat::base::Entity* entity, int value){
 
   //---------------------------
 }
-void Operation::make_translation_from_root(dat::base::Entity* entity, vec3 new_root){
+void Operation::make_translation_from_root(dat::base::Entity* entity, glm::vec3 new_root){
   if(entity == nullptr) return;
   //---------------------------
 
-  vec3 translation = new_root - entity->get_pose()->root;
+  glm::vec3 translation = new_root - entity->get_pose()->root;
   ope_transform->make_translation(entity, translation);
 
   //---------------------------

@@ -1,7 +1,9 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
 #include <tsl/robin_map.h>
+
+namespace utl::type{class Data;}
 
 typedef int key;
 typedef std::vector<glm::vec4> Voxel;
