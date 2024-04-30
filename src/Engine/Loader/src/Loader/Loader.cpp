@@ -17,7 +17,7 @@ Loader::Loader(ldr::Node* node_loader){
   this->node_engine = node_loader->get_node_engine();
   this->ldr_format = node_loader->get_format();
   this->dat_entity = node_data->get_entity();
-  this->dat_database = node_data->get_database();
+  this->dat_graph = node_data->get_database();
   this->dat_set = new dat::Set();
 
   //---------------------------
@@ -64,7 +64,7 @@ dat::base::Set* Loader::load_dataset(utl::media::Path file_path){
   utl::file::Dataset* dataset = dynamic_cast<utl::file::Dataset*>(file);
 
   //Insert loaded set into scene
-  dat::base::Set* set_scene = dat_database->get_set_graph();
+  dat::base::Set* set_scene = dat_graph->get_set_graph();
   dat::base::Set* set = dat_set->get_or_create_subset(set_scene, dataset->name);
   set->is_locked = true;
 
@@ -93,7 +93,7 @@ dat::base::Object* Loader::load_object(utl::media::Path file_path){
   utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
   //Data is an entity
-  dat::base::Set* set_scene = dat_database->get_set_graph();
+  dat::base::Set* set_scene = dat_graph->get_set_graph();
   dat::base::Object* object = create_object(file_data);
   dat_set->insert_entity(set_scene, object);
 

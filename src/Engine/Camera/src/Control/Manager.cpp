@@ -25,8 +25,8 @@ void Manager::create_camera(){
   //---------------------------
 
   dat::Glyph* dat_glyph = node_data->get_glyph();
-  dat::Database* dat_database = node_data->get_database();
-  dat::base::Set* set_main = dat_database->get_set_main();
+  dat::Graph* dat_graph = node_data->get_database();
+  dat::base::Set* set_main = dat_graph->get_set_main();
   dat::base::Set* set_world = dat_set->get_subset(set_main, "Scene");
 
   cam::Entity* camera = new cam::Entity();

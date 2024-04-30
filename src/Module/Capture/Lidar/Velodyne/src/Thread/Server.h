@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dat{class Database;}
+namespace dat{class Graph;}
 namespace ldr{class Loader;}
 namespace dat{class Set;}
 namespace vld{class Node;}
@@ -35,7 +35,7 @@ public:
   void update_object(utl::file::Data* data);
 
 private:
-  dat::Database* dat_database;
+  dat::Graph* dat_graph;
   ldr::Loader* ldr_loader;
   dat::Set* dat_set;
 

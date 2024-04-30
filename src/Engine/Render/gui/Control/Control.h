@@ -4,7 +4,7 @@ namespace rnd{class Node;}
 namespace eng{class Node;}
 namespace ope{class Operation;}
 namespace rnd::gui{class Wheel;}
-namespace dat{class Database;}
+namespace dat{class Graph;}
 namespace dat{class Set;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
@@ -34,7 +34,7 @@ public:
 
 private:
   eng::Node* node_engine;
-  dat::Database* dat_database;
+  dat::Graph* dat_graph;
   dat::Set* dat_set;
   cam::Control* cam_control;
   cam::Manager* cam_manager;

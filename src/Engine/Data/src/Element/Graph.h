@@ -11,12 +11,12 @@ namespace utl::type{class Element;}
 
 namespace dat{
 
-class Database
+class Graph
 {
 public:
   //Constructor / Destructor
-  Database(dat::Node* node_data);
-  ~Database();
+  Graph(dat::Node* node_data);
+  ~Graph();
 
   //Main function
   void init();

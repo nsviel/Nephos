@@ -3,7 +3,7 @@
 #include <string>
 
 namespace dat{class Node;}
-namespace dat{class Database;}
+namespace dat{class Graph;}
 namespace dat{class Set;}
 namespace dat::gui{class Entity;}
 namespace dat::gui{class Set;}
@@ -43,7 +43,7 @@ public:
 private:
   dat::gui::Entity* rnd_object;
   dat::gui::Set* rnd_set;
-  dat::Database* dat_database;
+  dat::Graph* dat_graph;
   dat::Set* dat_set;
   ope::Operation* ope_operation;
 

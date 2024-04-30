@@ -4,9 +4,10 @@
 
 namespace vk{class Node;}
 namespace eng{class Node;}
-namespace dat{class Database;}
+namespace dat{class Graph;}
 namespace dat{class Entity;}
 namespace dat{class Glyph;}
+namespace dat{class Structure;}
 namespace dat::gui{class Graph;}
 
 
@@ -29,7 +30,7 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
-  inline dat::Database* get_database(){return dat_database;}
+  inline dat::Graph* get_database(){return dat_graph;}
   inline dat::Entity* get_entity(){return dat_entity;}
   inline dat::Glyph* get_glyph(){return dat_glyph;}
 
@@ -39,7 +40,8 @@ private:
   vk::Node* node_vulkan;
 
   //Child
-  dat::Database* dat_database;
+  dat::Structure* dat_struct;
+  dat::Graph* dat_graph;
   dat::gui::Graph* gui_graph;
   dat::Entity* dat_entity;
   dat::Glyph* dat_glyph;

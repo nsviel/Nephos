@@ -16,7 +16,7 @@ Entity::Entity(dat::Node* node_data){
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
   this->node_engine = node_engine;
-  this->dat_database = node_data->get_database();
+  this->dat_graph = node_data->get_database();
   this->dat_glyph = node_data->get_glyph();
   this->vk_engine = node_vulkan->get_vk_engine();
 
@@ -36,8 +36,8 @@ void Entity::init_entity(dat::base::Entity* entity){
   }
 
   //Init entity
-  dat_database->assign_UID(entity);
-  dat_database->assign_UID(data);
+  dat_graph->assign_UID(entity);
+  dat_graph->assign_UID(data);
   vk_engine->insert_data(data, pose);
 
   //---------------------------

@@ -4,7 +4,7 @@
 
 namespace prf{class Manager;}
 namespace eng{class Node;}
-namespace dat{class Database;}
+namespace dat{class Graph;}
 namespace dat{class Set;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
@@ -44,7 +44,7 @@ public:
 
 private:
   prf::Manager* profiler;
-  dat::Database* dat_database;
+  dat::Graph* dat_graph;
   dat::Set* dat_set;
   k4n::Node* node_k4n;
   k4n::utils::Transformation* k4n_transfo;

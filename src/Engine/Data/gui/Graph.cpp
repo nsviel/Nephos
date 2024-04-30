@@ -13,7 +13,7 @@ namespace dat::gui{
 Graph::Graph(dat::Node* node_data, bool* show_window){
   //---------------------------
 
-  this->dat_database = node_data->get_database();
+  this->dat_graph = node_data->get_database();
   this->dat_set = new dat::Set();
   this->rnd_set = new dat::gui::Set(&show_panel_set);
   this->rnd_object = new dat::gui::Entity(node_data, &show_panel_entity);
@@ -59,7 +59,7 @@ void Graph::design_panel(){
 
 //Subfunction
 void Graph::draw_button(){
-  dat::base::Set* set_scene = dat_database->get_set_graph();
+  dat::base::Set* set_scene = dat_graph->get_set_graph();
   dat::base::Entity* entity = set_scene->selected_entity;
   if(entity == nullptr) return;
   //-------------------------------
@@ -72,7 +72,7 @@ void Graph::draw_button(){
     if(set->is_locked){
       //sce_graph->delete_subset(set);
     }else if(set->is_locked){
-      dat::base::Set* set_scene = dat_database->get_set_graph();
+      dat::base::Set* set_scene = dat_graph->get_set_graph();
       dat_set->remove_entity(set_scene, set->selected_entity);
     }
   }
@@ -124,7 +124,7 @@ void Graph::draw_window_background(){
   //-------------------------------
 }
 void Graph::draw_file_tree(){
-  dat::base::Set* set_main = dat_database->get_set_main();
+  dat::base::Set* set_main = dat_graph->get_set_main();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;

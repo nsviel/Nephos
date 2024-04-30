@@ -17,7 +17,7 @@ Glyph::Glyph(dat::Node* node_data){
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
   this->node_engine = node_engine;
-  this->dat_database = node_data->get_database();
+  this->dat_graph = node_data->get_database();
   this->dat_set = new dat::Set();
 
   //---------------------------
@@ -35,7 +35,7 @@ void Glyph::init(){
 
 //Glyph init
 void Glyph::create_glyph_world(){
-  dat::base::Set* set_world = dat_database->get_set_scene();
+  dat::base::Set* set_world = dat_graph->get_set_scene();
   //---------------------------
 
   this->create_glyph(set_world, new dat::glyph::grid::Grid(node_engine));

@@ -15,7 +15,7 @@ Loader::Loader(ldr::Node* node_loader, bool* show_window){
 
   dat::Node* node_data = node_loader->get_node_data();
 
-  this->dat_database = node_data->get_database();
+  this->dat_graph = node_data->get_database();
   this->dat_set = new dat::Set();
   this->ldr_loader = node_loader->get_loader();
   this->ldr_format = node_loader->get_format();
@@ -404,7 +404,7 @@ void Loader::operation_selection(){
 
   //Apply loading and operations
   if(param_remove_old){
-    dat::base::Set* set_scene = dat_database->get_set_graph();
+    dat::base::Set* set_scene = dat_graph->get_set_graph();
     dat_set->remove_entity_all(set_scene);
   }
 
@@ -438,7 +438,7 @@ void Loader::operation_selection(std::string file_path){
 
     //Apply loading and operations
     if(param_remove_old){
-      dat::base::Set* set_scene = dat_database->get_set_graph();
+      dat::base::Set* set_scene = dat_graph->get_set_graph();
       dat_set->remove_entity_all(set_scene);
     }
 

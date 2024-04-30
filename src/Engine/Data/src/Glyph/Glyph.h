@@ -4,7 +4,7 @@ namespace eng{class Node;}
 namespace sce{class Node;}
 namespace cam{class Control;}
 namespace cam{class Entity;}
-namespace dat{class Database;}
+namespace dat{class Graph;}
 namespace dat{class Set;}
 namespace dat{class Node;}
 namespace dat::base{class Entity;}
@@ -38,7 +38,7 @@ public:
 private:
   eng::Node* node_engine;
   sce::Node* node_scene;
-  dat::Database* dat_database;
+  dat::Graph* dat_graph;
   dat::Set* dat_set;
   cam::Control* cam_control;
 };

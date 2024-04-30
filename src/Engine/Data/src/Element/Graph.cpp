@@ -1,4 +1,4 @@
-#include "Database.h"
+#include "Graph.h"
 
 #include <Data/Namespace.h>
 #include <Camera/Namespace.h>
@@ -7,7 +7,7 @@
 namespace dat{
 
 //Constructor / Destructor
-Database::Database(dat::Node* node_data){
+Graph::Graph(dat::Node* node_data){
   //---------------------------
 
   this->set_main = new dat::base::Set();
@@ -15,10 +15,10 @@ Database::Database(dat::Node* node_data){
 
   //---------------------------
 }
-Database::~Database(){}
+Graph::~Graph(){}
 
 //Main function
-void Database::init(){
+void Graph::init(){
   //---------------------------
 
   set_scene = dat_set->create_subset(set_main, "Scene");
@@ -30,21 +30,21 @@ void Database::init(){
 
   //---------------------------
 }
-void Database::loop(){
+void Graph::loop(){
   //----------------------------
 
   dat_set->update_set(set_main);
 
   //----------------------------
 }
-void Database::reset(){
+void Graph::reset(){
   //---------------------------
 
   dat_set->reset_set(set_main);
 
   //---------------------------
 }
-void Database::clean(){
+void Graph::clean(){
   //---------------------------
 
   dat_set->remove_entity_all(set_main);
@@ -53,7 +53,7 @@ void Database::clean(){
 }
 
 //Subfunction
-void Database::assign_UID(utl::type::Element* element){
+void Graph::assign_UID(utl::type::Element* element){
   if(element == nullptr) return;
   //----------------------------
 

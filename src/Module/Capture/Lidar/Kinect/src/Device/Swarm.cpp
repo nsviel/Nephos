@@ -18,7 +18,7 @@ Swarm::Swarm(k4n::Node* node_k4n){
   this->node_k4n = node_k4n;
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->profiler = node_profiler->get_prf_manager();
-  this->dat_database = node_data->get_database();
+  this->dat_graph = node_data->get_database();
   this->dat_set = new dat::Set();
   this->k4n_transfo = new k4n::utils::Transformation();
   this->k4n_config = new k4n::config::Configuration();
@@ -49,7 +49,7 @@ void Swarm::create_sensor_playback(utl::media::Path path){
   sensor->init();
   master->insert_sensor(sensor);
   master->player_update();
-  dat_database->assign_UID(sensor);
+  dat_graph->assign_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, path.transformation);
   k4n_struct->device.list_sensor.push_back(sensor);
 
@@ -71,7 +71,7 @@ void Swarm::create_sensor_capture(int index){
   //Sensor initialization
   sensor->init();
   master->insert_sensor(sensor);
-  dat_database->assign_UID(sensor);
+  dat_graph->assign_UID(sensor);
   k4n_transfo->apply_transformation_capture(sensor);
   sensor->run_thread_capture();
   k4n_struct->device.list_sensor.push_back(sensor);
@@ -112,7 +112,7 @@ void Swarm::close_all_master(){
   //---------------------------
 }
 k4n::dev::Master* Swarm::get_or_create_playback_master(string name){
-  dat::base::Set* set_scene = dat_database->get_set_graph();
+  dat::base::Set* set_scene = dat_graph->get_set_graph();
   //---------------------------
 
   //Check if already existing
@@ -137,7 +137,7 @@ k4n::dev::Master* Swarm::get_or_create_playback_master(string name){
   return master;
 }
 k4n::dev::Master* Swarm::get_or_create_capture_master(string name){
-  dat::base::Set* set_scene = dat_database->get_set_graph();
+  dat::base::Set* set_scene = dat_graph->get_set_graph();
   //---------------------------
 
   //Check if already existing

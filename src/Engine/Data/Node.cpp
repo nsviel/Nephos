@@ -19,7 +19,8 @@ Node::Node(eng::Node* node_engine){
   this->node_vulkan = node_engine->get_node_vulkan();
 
   //Child
-  this->dat_database = new dat::Database(this);
+  this->dat_struct = new dat::Structure();
+  this->dat_graph = new dat::Graph(this);
   this->dat_glyph = new dat::Glyph(this);
   this->dat_entity = new dat::Entity(this);
 
@@ -32,7 +33,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  dat_database->init();
+  dat_graph->init();
   dat_glyph->init();
 
   //---------------------------
@@ -40,14 +41,14 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  dat_database->loop();
+  dat_graph->loop();
 
   //---------------------------
 }
 void Node::clean(){
   //---------------------------
 
-  dat_database->clean();
+  dat_graph->clean();
 
   //---------------------------
 }
@@ -61,7 +62,7 @@ void Node::gui(){
 void Node::reset(){
   //---------------------------
 
-  dat_database->reset();
+  dat_graph->reset();
 
   //---------------------------
 }

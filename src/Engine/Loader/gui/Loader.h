@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace ldr{class Node;}
-namespace dat{class Database;}
+namespace dat{class Graph;}
 namespace ldr{class Loader;}
 namespace ldr::gui{class Bookmark;}
 namespace ldr{class Bookmark;}
@@ -46,7 +46,7 @@ public:
   void operation_entity(dat::base::Entity* entity);
 
 private:
-  dat::Database* dat_database;
+  dat::Graph* dat_graph;
   ldr::Loader* ldr_loader;
   ldr::Bookmark* ldr_bookmark;
   ldr::Format* ldr_format;

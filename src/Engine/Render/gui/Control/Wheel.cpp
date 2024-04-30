@@ -18,7 +18,7 @@ Wheel::Wheel(rnd::Node* node_render){
   cam::Node* node_camera = node_engine->get_node_camera();
 
   this->cam_control = node_camera->get_control();
-  this->dat_database = node_data->get_database();
+  this->dat_graph = node_data->get_database();
   this->ope_operation = new ope::Operation();
 
   this->mode = WHEEL_CAM_Z;
@@ -45,21 +45,21 @@ void Wheel::make_action(float direction){
 
   switch (mode) {
     case WHEEL_R_Z:{
-      dat::base::Set* set_scene = dat_database->get_set_graph();
+      dat::base::Set* set_scene = dat_graph->get_set_graph();
       dat::base::Entity* entity = set_scene->selected_entity;
       R = glm::vec3(0, 0, direction * radian);
       ope_operation->make_rotation(entity->set_parent, R);
       break;
     }
     case WHEEL_R_Y:{
-      dat::base::Set* set_scene = dat_database->get_set_graph();
+      dat::base::Set* set_scene = dat_graph->get_set_graph();
       dat::base::Entity* entity = set_scene->selected_entity;
       R = glm::vec3(0, direction * radian, 0);
       ope_operation->make_rotation(entity->set_parent, R);
       break;
     }
     case WHEEL_R_X:{
-      dat::base::Set* set_scene = dat_database->get_set_graph();
+      dat::base::Set* set_scene = dat_graph->get_set_graph();
       dat::base::Entity* entity = set_scene->selected_entity;
       R = glm::vec3(direction * radian, 0, 0);
       ope_operation->make_rotation(entity->set_parent, R);
