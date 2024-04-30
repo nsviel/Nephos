@@ -5,6 +5,7 @@
 #include <Kinect/src/Structure/Master/Namespace.h>
 
 namespace dat{class Set;}
+namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::config{class Configuration;}
 namespace k4n::structure{class Player;}
@@ -23,7 +24,7 @@ class Master : public dat::base::Set
 {
 public:
   //Constructor / Destructor
-  Master();
+  Master(k4n::Node* node_k4n);
   ~Master();
 
 public:

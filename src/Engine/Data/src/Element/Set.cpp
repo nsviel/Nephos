@@ -6,9 +6,10 @@
 namespace dat{
 
 //Constructor / Destructor
-Set::Set(){
+Set::Set(dat::Node* node_data){
   //---------------------------
 
+  this->dat_graph = node_data->get_database();
 
   //---------------------------
 }

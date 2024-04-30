@@ -18,7 +18,7 @@ Server::Server(vld::Node* node_vld){
 
   this->dat_graph = node_data->get_database();
   this->ldr_loader = node_loader->get_loader();
-  this->dat_set = new dat::Set();
+  this->dat_set = node_data->get_set();
 
   this->vld_struct = node_vld->get_vld_struct();
   this->vld_server = new vld::utils::Server();

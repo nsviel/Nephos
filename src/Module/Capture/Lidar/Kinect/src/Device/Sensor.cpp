@@ -19,7 +19,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->node_engine = node_engine;
   this->dat_entity = node_data->get_entity();
-  this->dat_set = new dat::Set();
+  this->dat_set = node_data->get_set();
   this->dat_glyph = node_data->get_glyph();
   this->k4n_capture = new k4n::thread::Capture(node_k4n);
   this->k4n_playback = new k4n::thread::Playback(node_k4n);

@@ -4,6 +4,7 @@
 #include <Kinect/Namespace.h>
 #include <Capture/Namespace.h>
 #include <Loader/Namespace.h>
+#include <Data/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
@@ -20,6 +21,7 @@ Node::Node(cap::Node* node_capture){
   this->node_engine = node_capture->get_node_engine();
   this->node_loader = node_engine->get_node_loader();
   this->node_profiler = node_capture->get_node_profiler();
+  this->node_data = node_engine->get_node_data();
   this->node_radio = new rad::Node(node_engine);
 
   //Child

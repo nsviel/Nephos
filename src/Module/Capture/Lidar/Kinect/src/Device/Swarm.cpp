@@ -19,7 +19,7 @@ Swarm::Swarm(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->profiler = node_profiler->get_prf_manager();
   this->dat_graph = node_data->get_database();
-  this->dat_set = new dat::Set();
+  this->dat_set = node_data->get_set();
   this->k4n_transfo = new k4n::utils::Transformation();
   this->k4n_config = new k4n::config::Configuration();
 
@@ -124,7 +124,7 @@ k4n::dev::Master* Swarm::get_or_create_playback_master(string name){
   }
 
   //Create the master
-  k4n::dev::Master* master = new k4n::dev::Master();
+  k4n::dev::Master* master = new k4n::dev::Master(node_k4n);
   master->name = name;
   master->is_lockable = true;
   master->mode = k4n::dev::PLAYBACK;
@@ -149,7 +149,7 @@ k4n::dev::Master* Swarm::get_or_create_capture_master(string name){
   }
 
   //Create the master
-  k4n::dev::Master* master = new k4n::dev::Master();
+  k4n::dev::Master* master = new k4n::dev::Master(node_k4n);
   master->name = name;
   master->is_lockable = true;
   master->mode = k4n::dev::CAPTURE;

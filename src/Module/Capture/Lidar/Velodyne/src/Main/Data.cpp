@@ -20,7 +20,7 @@ Data::Data(vld::Node* node_vld){
   this->vld_struct = node_vld->get_vld_struct();
   this->dat_graph = node_data->get_database();
   this->ldr_loader = node_loader->get_loader();
-  this->dat_set = new dat::Set();
+  this->dat_set = node_data->get_set();
   this->dat_entity = node_data->get_entity();
 
   //---------------------------

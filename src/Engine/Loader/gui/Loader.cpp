@@ -16,7 +16,7 @@ Loader::Loader(ldr::Node* node_loader, bool* show_window){
   dat::Node* node_data = node_loader->get_node_data();
 
   this->dat_graph = node_data->get_database();
-  this->dat_set = new dat::Set();
+  this->dat_set = node_data->get_set();
   this->ldr_loader = node_loader->get_loader();
   this->ldr_format = node_loader->get_format();
   this->ldr_bookmark = node_loader->get_bookmark();

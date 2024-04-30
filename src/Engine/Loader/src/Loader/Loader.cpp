@@ -18,7 +18,7 @@ Loader::Loader(ldr::Node* node_loader){
   this->ldr_format = node_loader->get_format();
   this->dat_entity = node_data->get_entity();
   this->dat_graph = node_data->get_database();
-  this->dat_set = new dat::Set();
+  this->dat_set = node_data->get_set();
 
   //---------------------------
 }

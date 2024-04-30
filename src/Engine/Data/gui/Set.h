@@ -2,6 +2,7 @@
 
 #include <string>
 
+namespace dat{class Node;}
 namespace dat{class Set;}
 namespace dat::base{class Set;}
 
@@ -12,7 +13,7 @@ class Set
 {
 public:
   //Constructor / Destructor
-  Set(bool* show_window);
+  Set(dat::Node* node_data, bool* show_window);
   ~Set();
 
   //Main function

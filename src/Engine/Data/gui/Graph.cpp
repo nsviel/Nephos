@@ -14,8 +14,8 @@ Graph::Graph(dat::Node* node_data, bool* show_window){
   //---------------------------
 
   this->dat_graph = node_data->get_database();
-  this->dat_set = new dat::Set();
-  this->rnd_set = new dat::gui::Set(&show_panel_set);
+  this->dat_set = node_data->get_set();
+  this->rnd_set = new dat::gui::Set(node_data, &show_panel_set);
   this->rnd_object = new dat::gui::Entity(node_data, &show_panel_entity);
 
   this->ope_operation = new ope::Operation();
@@ -114,7 +114,7 @@ void Graph::draw_window_background(){
   ImGui::CalcListClipping(row_count, line_height, &row_display_start, &row_display_end);
   for (int row_n = row_display_start; row_n < row_display_end; row_n++){
     ImU32 col = (row_n & 1) ? col_odd : col_even;
-    if ((col & IM_COL32_A_MASK) == 0)
+    if((col & IM_COL32_A_MASK) == 0)
       continue;
     float y1 = y0 + (line_height * row_n);
     float y2 = y1 + line_height;
@@ -157,7 +157,7 @@ void Graph::draw_file_tree(){
 }
 
 //File tree
-int Graph::tree_set(dat::base::Set* set) {
+int Graph::tree_set(dat::base::Set* set){
   int nb_row = 0;
   //---------------------------
 
@@ -265,7 +265,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   }
 
   // If entity double-clicked
-  if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)) {
+  if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
     rnd_object->set_entity(entity);
     this->show_panel_entity = true;
   }

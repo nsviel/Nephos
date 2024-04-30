@@ -2,6 +2,8 @@
 
 #include <string>
 
+namespace dat{class Node;}
+namespace dat{class Graph;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
@@ -12,7 +14,7 @@ class Set
 {
 public:
   //Constructor / Destructor
-  Set();
+  Set(dat::Node* node_data);
   ~Set();
 
 public:
@@ -40,6 +42,7 @@ public:
   int compute_number_point(dat::base::Set* set);
 
 private:
+  dat::Graph* dat_graph;
 };
 
 }
