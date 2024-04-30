@@ -1,10 +1,13 @@
 #pragma once
 
 #include <Utility/Base/Type/Element.h>
-#include <Utility/Specific/Common.h>
+#include <Utility/Base/Type/Pose.h>
 #include <image/IconsFontAwesome6.h>
+#include <string>
+#include <list>
 
 namespace dat::base{class Entity;}
+namespace dat::base{class Set;}
 
 
 namespace dat::base{

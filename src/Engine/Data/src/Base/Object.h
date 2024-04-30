@@ -2,17 +2,9 @@
 
 #include <Data/src/Base/Entity.h>
 #include <Utility/Base/Type/Data.h>
-#include <Utility/Specific/Common.h>
-
 #include <glm/glm.hpp>
-#include <vulkan/vulkan.h>
-#include <Eigen/Dense>
-#include <iostream>
 #include <string>
-#include <vector>
 #include <list>
-#include <map>
-#include <mutex>
 
 namespace vk{class Node;}
 namespace eng{class Node;}
