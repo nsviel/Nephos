@@ -1,9 +1,11 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <imgui/core/imgui.h>
+#include <glm/glm.hpp>
+#include <string>
 
 
-namespace ldr{
+namespace ldr::item{
 
 enum ColumnID{
   NAME,
@@ -16,27 +18,25 @@ enum type{
   FILE = 1,
 };
 
+}
+
+namespace ldr{
+
 struct Item{
   //---------------------------
 
   //Item stuff
   int ID = -1;
-  int type = ldr::FILE;
+  int type = ldr::item::FILE;
   std::string path = "";
   std::string name = "";
   std::string format = "";
   std::string size = "";
   std::string icon = "";
-  ImVec4 color_icon;
-  ImVec4 color_text;
+  glm::vec4 color_icon;
+  glm::vec4 color_text;
   bool is_supressible = true;
   float weight = 0;
-
-
-  //Sorting stuff
-  static const ImGuiTableSortSpecs* current_sort_specs;
-  static bool compare_with_specs(const Item& a, const Item& b);
-  static void sort_item_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<Item>& vec_item);
 
   //---------------------------
 };

@@ -1,9 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace ldr{class Node;}
 namespace ldr{class Format;}
+namespace utl::type{class Data;}
 
 
 namespace ldr{

@@ -27,13 +27,13 @@ public:
 
   //Subfunction
   bool is_path_bookmarked(std::string path);
-  void sort_list_bookmark();
+  void sort_list_item();
   void save_on_file();
 
-  inline std::list<ldr::Item> get_list_bookmark(){return list_bookmark;}
+  inline std::list<ldr::Item> get_list_item(){return list_item;}
 
 private:
-  std::list<ldr::Item> list_bookmark;
+  std::list<ldr::Item> list_item;
   std::string path_bookmark_file;
 };
 

@@ -42,13 +42,13 @@ void Bookmark::add_abs_path(std::string path){
   ldr::Item item;
   item.path = path;
   item.name = utl::path::get_name_from_path(path);
-  item.type = utl::directory::is_directory(path) ? ldr::FOLDER : ldr::FILE;
+  item.type = utl::directory::is_directory(path) ? ldr::item::FOLDER : ldr::item::FILE;
   item.icon = utl::directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
-  item.color_icon = utl::directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+  item.color_icon = utl::directory::is_directory(path) ? glm::vec4(0.5f, 0.63f, 0.75f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = true;
 
-  this->list_bookmark.push_back(item);
-  this->sort_list_bookmark();
+  this->list_item.push_back(item);
+  this->sort_list_item();
 
   //---------------------------
 }
@@ -60,20 +60,20 @@ void Bookmark::add_relative_path(std::string path){
   item.path = utl::path::get_absolute_path(path);
   item.name = utl::path::get_name_from_path(path);
   item.icon = utl::directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
-  item.color_icon = utl::directory::is_directory(path) ? ImVec4(0.5f, 0.63f, 0.75f, 0.9f) : ImVec4(1.0f, 1.0f, 1.0f, 0.9f);
+  item.color_icon = utl::directory::is_directory(path) ? glm::vec4(0.5f, 0.63f, 0.75f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = false;
 
-  this->list_bookmark.push_back(item);
-  this->sort_list_bookmark();
+  this->list_item.push_back(item);
+  this->sort_list_item();
 
   //---------------------------
 }
 void Bookmark::remove_path(std::string path){
   //---------------------------
 
-  auto it = std::find_if(list_bookmark.begin(), list_bookmark.end(), [&](const ldr::Item& item) { return item.path == path; });
-  if(it != list_bookmark.end()){
-    list_bookmark.erase(it);
+  auto it = std::find_if(list_item.begin(), list_item.end(), [&](const ldr::Item& item) { return item.path == path; });
+  if(it != list_item.end()){
+    list_item.erase(it);
   }
 
   //---------------------------
@@ -84,8 +84,8 @@ void Bookmark::save_on_file(){
   //---------------------------
 
   vector<std::string> vec_path;
-  for(int i=0; i<list_bookmark.size(); i++){
-    ldr::Item& item = *next(list_bookmark.begin(), i);
+  for(int i=0; i<list_item.size(); i++){
+    ldr::Item& item = *next(list_item.begin(), i);
     if(item.is_supressible){
       vec_path.push_back(item.path);
     }
@@ -98,8 +98,8 @@ void Bookmark::save_on_file(){
 bool Bookmark::is_path_bookmarked(std::string path){
   //---------------------------
 
-  for(int i=0; i<list_bookmark.size(); i++){
-    ldr::Item& item = *next(list_bookmark.begin(), i);
+  for(int i=0; i<list_item.size(); i++){
+    ldr::Item& item = *next(list_item.begin(), i);
 
     if(path == item.path){
       return true;
@@ -109,21 +109,21 @@ bool Bookmark::is_path_bookmarked(std::string path){
   //---------------------------
   return false;
 }
-void Bookmark::sort_list_bookmark(){
+void Bookmark::sort_list_item(){
   //---------------------------
 
-  this->list_bookmark.sort([](const ldr::Item& a, const ldr::Item& b){
+  this->list_item.sort([](const ldr::Item& a, const ldr::Item& b){
     switch(a.type){
-      case ldr::FOLDER:{
-        if(b.type == ldr::FOLDER){
+      case ldr::item::FOLDER:{
+        if(b.type == ldr::item::FOLDER){
           return a.name < b.name;
         }else{
           return true;
         }
         break;
       }
-      case ldr::FILE:{
-        if(b.type == ldr::FOLDER){
+      case ldr::item::FILE:{
+        if(b.type == ldr::item::FOLDER){
           return false;
         }else{
           return a.name < b.name;

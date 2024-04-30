@@ -7,7 +7,7 @@
 namespace ldr{class Node;}
 namespace dat{class Database;}
 namespace ldr{class Loader;}
-namespace ldr{class Item;}
+namespace ldr::gui{class Bookmark;}
 namespace ldr{class Bookmark;}
 namespace ldr{class Format;}
 namespace dat{class Set;}
@@ -37,7 +37,7 @@ public:
 
   //Other stuff
   void draw_header();
-  void draw_bookmark_button(ldr::Item& item);
+  void draw_bookmark_button(ldr::gui::Bookmark& bookmark);
   void draw_bookmark_tab();
 
   //Subfunction
@@ -54,8 +54,8 @@ private:
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 
-  std::vector<ldr::Item> vec_item_folder;
-  std::vector<ldr::Item> vec_item_file;
+  std::vector<ldr::gui::Bookmark> vec_bookmark_folder;
+  std::vector<ldr::gui::Bookmark> vec_bookmark_file;
   std::string default_dir;
   std::string current_dir;
   ImVector<int> file_selection;
