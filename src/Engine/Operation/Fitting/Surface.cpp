@@ -16,7 +16,7 @@ Surface::Surface(){
 Surface::~Surface(){}
 
 //Main function
-void Surface::compute(vector<vec3>& data){
+void Surface::compute(std::vector<vec3>& data){
   Eigen::VectorXf E = Eigen::VectorXf::Zero(data.size());
   this->P = Eigen::VectorXf::Zero(num_param);
   int iter = 10;
@@ -47,7 +47,7 @@ void Surface::compute(vector<vec3>& data){
 
   //---------------------------
 }
-void Surface::compute(vector<vec3>& data, vec2& x_bound, vec2& y_bound){
+void Surface::compute(std::vector<vec3>& data, vec2& x_bound, vec2& y_bound){
   Eigen::VectorXf E = Eigen::VectorXf::Zero(data.size());
   this->P = Eigen::VectorXf::Zero(num_param);
   int iter = 10;
@@ -102,7 +102,7 @@ float Surface::evaluate(float x, float y){
 }
 
 //Subfunction
-Eigen::MatrixXf Surface::jacobian(vector<vec3>& data){
+Eigen::MatrixXf Surface::jacobian(std::vector<vec3>& data){
   Eigen::MatrixXf J = Eigen::MatrixXf::Zero(data.size(), num_param);
   //--------------------------
 
@@ -122,7 +122,7 @@ Eigen::MatrixXf Surface::jacobian(vector<vec3>& data){
   //---------------------------
   return J;
 }
-vector<float> Surface::get_coefficient(){
+std::vector<float> Surface::get_coefficient(){
   std::vector<float> result(P.size());
   //---------------------------
 

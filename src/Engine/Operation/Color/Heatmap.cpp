@@ -34,7 +34,7 @@ void Heatmap::heatmap_intensity(dat::base::Entity* entity, int diviser){
   //---------------------------
 
   //Prepare data
-  vector<float> Is = data->Is;
+  std::vector<float> Is = data->Is;
   math::divise(Is, diviser);
   math::normalize(Is, range_intensity);
 
@@ -48,7 +48,7 @@ void Heatmap::heatmap_height(dat::base::Entity* entity){
   //---------------------------
 
   //Prepare data
-  vector<float> z_vec;
+  std::vector<float> z_vec;
   ope_location->retrieve_z_vector(entity, z_vec);
   math::normalize(z_vec, range_height);
 
@@ -62,7 +62,7 @@ void Heatmap::heatmap_height(dat::base::Entity* entity, vec2 range){
   //---------------------------
 
   //Prepare data
-  vector<float> z_vec;
+  std::vector<float> z_vec;
   ope_location->retrieve_z_vector(entity, z_vec);
   math::normalize(z_vec, range);
 
@@ -76,7 +76,7 @@ void Heatmap::heatmap_range(dat::base::Entity* entity){
   //---------------------------
 
   //Prepare data
-  vector<float> R = data->R;
+  std::vector<float> R = data->R;
   math::normalize(R);
 
   //Compute heatmap
@@ -86,7 +86,7 @@ void Heatmap::heatmap_range(dat::base::Entity* entity){
 }
 
 //Processing functions
-void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
+void Heatmap::compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& heatmap){
   //---------------------------
 
   //Normalization of the input vector
@@ -95,12 +95,12 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
   }
 
   //Compute heatmap from input vector
-  vector<vec3>& colormap = ope_colormap->get_colormap_selected();
+  std::vector<vec3>& colormap = ope_colormap->get_colormap_selected();
   const size_t colormap_size = colormap.size();
 
   #pragma omp parallel for
   for(int i=0; i<heatmap.size(); i++){
-    vec4 color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+    glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
     if(v_in[i] != -1){
       float value = v_in[i] * (colormap_size - 1);        // Will multiply value by 3.
@@ -112,7 +112,7 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
       float green = ((colormap)[idx2][1] - (colormap)[idx1][1]) * fractBetween + (colormap)[idx1][1];
       float blue  = ((colormap)[idx2][2] - (colormap)[idx1][2]) * fractBetween + (colormap)[idx1][2];
 
-      color = vec4(red, green, blue, 1.0f);
+      color = glm::vec4(red, green, blue, 1.0f);
     }
 
     heatmap[i] = color;
@@ -120,9 +120,9 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
 
   //---------------------------
 }
-void Heatmap::heatmap_set(dat::base::Entity* entity, vector<float>& v_in){
+void Heatmap::heatmap_set(dat::base::Entity* entity, std::vector<float>& v_in){
   utl::type::Data* data = entity->get_data();
-  vector<vec4>& RGB = data->rgb;
+  std::vector<glm::vec4>& RGB = data->rgb;
   //---------------------------
 
   //Normalization of the input vector
@@ -133,7 +133,7 @@ void Heatmap::heatmap_set(dat::base::Entity* entity, vector<float>& v_in){
   //Compute heatmap from input vector
   for(int i=0; i<RGB.size(); i++){
     if(v_in[i] != -1 && isnan(v_in[i]) == false){
-      vector<vec3>& colormap = ope_colormap->get_colormap_selected();
+      std::vector<vec3>& colormap = ope_colormap->get_colormap_selected();
 
       float value = v_in[i] * (colormap.size()-1);        // Will multiply value by 3.
       float idx1  = floor(value);                  // Our desired color will be after this index.
@@ -144,10 +144,10 @@ void Heatmap::heatmap_set(dat::base::Entity* entity, vector<float>& v_in){
       float green = ((colormap)[idx2][1] - (colormap)[idx1][1]) * fractBetween + (colormap)[idx1][1];
       float blue  = ((colormap)[idx2][2] - (colormap)[idx1][2]) * fractBetween + (colormap)[idx1][2];
 
-      RGB[i] = vec4(red, green, blue, 1.0f);
+      RGB[i] = glm::vec4(red, green, blue, 1.0f);
     }
     else{
-      RGB[i] = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+      RGB[i] = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
     }
   }
 

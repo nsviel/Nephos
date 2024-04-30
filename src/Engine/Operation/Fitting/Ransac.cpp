@@ -29,7 +29,7 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
   srand(time(nullptr));
 
   // Perform RANSAC iters
-  vector<Sphere> vec_sphere;
+  std::vector<Sphere> vec_sphere;
   for(int iter=0; iter<num_iter; ++iter){
     // Randomly select three points
     std::vector<vec3> sample_points;

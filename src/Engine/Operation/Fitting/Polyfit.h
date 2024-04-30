@@ -1,6 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Eigen/Dense>
+#include <glm/glm.hpp>
+#include <vector>
 
 
 namespace ope::fitting{
@@ -14,11 +16,11 @@ public:
 public:
   //Main function
   void compute(const std::vector<glm::vec3>& points, int degree);
-  void compute(const std::vector<glm::vec3>& xyz, int degree, vec2 x_bound, vec2 y_bound);
+  void compute(const std::vector<glm::vec3>& xyz, int degree, glm::vec2 x_bound, glm::vec2 y_bound);
   float evaluate(float x, float y);
 
   //Subfunction
-  vector<float> get_coefficient();
+  std::vector<float> get_coefficient();
   void set_coefficients(const std::vector<float>& value);
 
   inline bool has_been_computed(){return (degree != 0);}

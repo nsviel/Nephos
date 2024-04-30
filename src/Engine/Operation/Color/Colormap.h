@@ -1,6 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
+#include <vector>
+#include <string>
 
 
 namespace ope::color{
@@ -14,15 +16,15 @@ public:
 
 public:
   void init();
-  void choose(string name);
-  vec4 random();
+  void choose(std::string name);
+  glm::vec4 random();
 
-  inline vector<vec3>& get_colormap_selected(){return colormap_selected;}
+  inline std::vector<glm::vec3>& get_colormap_selected(){return colormap_selected;}
 
 private:
-  vector<string> colormap_name;
-  vector<vector<vec3>> colormap_list;
-  vector<vec3> colormap_selected;
+  std::vector<std::string> colormap_name;
+  std::vector<std::vector<glm::vec3>> colormap_list;
+  std::vector<glm::vec3> colormap_selected;
 };
 
 }

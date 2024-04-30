@@ -23,7 +23,7 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree = 3){
   Eigen::VectorXf b;
 
   for(int i = 0; i < numPoints; ++i){
-    if(xyz[i] == vec3(-1, -1, -1)){
+    if(xyz[i] == glm::vec3(-1, -1, -1)){
       continue;
     }
 
@@ -60,7 +60,7 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree = 3){
 
   //---------------------------
 }
-void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree, vec2 x_bound, vec2 y_bound){
+void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree, glm::vec2 x_bound, glm::vec2 y_bound){
   this->degree = degree;
   //---------------------------
 
@@ -70,7 +70,7 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree, vec2 x_boun
   Eigen::VectorXf b;
 
   for(int i = 0; i < numPoints; ++i){
-    if(xyz[i] == vec3(-1, -1, -1)){
+    if(xyz[i] == glm::vec3(-1, -1, -1)){
       continue;
     }
 
@@ -127,7 +127,7 @@ float Polyfit::evaluate(float x, float y){
 }
 
 //Subfunction
-vector<float> Polyfit::get_coefficient(){
+std::vector<float> Polyfit::get_coefficient(){
   std::vector<float> result(P.size());
   //---------------------------
 

@@ -6,16 +6,14 @@ namespace ope::color{class Heatmap;}
 namespace ope::color{class Colormap;}
 namespace dat::base{class Entity;}
 
-using namespace glm;
-
 
 namespace ope::color{
 
 struct Configuration{
   //---------------------------
 
-  vec4 unicolor;
-  vec2 heatmap_range_height;
+  glm::vec4 unicolor;
+  glm::vec2 heatmap_range_height;
   float intensity_diviser;
   int color_mode;
   int heatmap_mode;

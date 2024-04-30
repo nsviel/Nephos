@@ -14,7 +14,7 @@ Sphere::Sphere(){
 Sphere::~Sphere(){}
 
 //Sphere fitting
-void Sphere::find_sphere_in_cloud(vector<vec3>& xyz, vec3& center, float& radius){
+void Sphere::find_sphere_in_cloud(std::vector<vec3>& xyz, vec3& center, float& radius){
   vec3 COM = math::centroid(xyz);
   //------------------------
 
