@@ -1,23 +1,24 @@
 #pragma once
 
 #include <Data/src/Base/Entity.h>
-#include <Utility/Specific/Common.h>
-
 #include <glm/glm.hpp>
 #include <string>
 #include <list>
 
-enum camera_mode{
+
+namespace cam{
+
+enum cam_mode{
   CAMERA_MODE_PLAYER = 0,
   CAMERA_MODE_ARCBALL = 1,
 };
 
-enum camera_projection{
+enum cam_projection{
   CAMERA_PROJ_PERSPECTIVE = 0,
   CAMERA_PROJ_ORTHOGRAPHIC = 1,
 };
 
-enum camera_direction{
+enum cam_direction{
   CAMERA_FORWARD = 0,
   CAMERA_BACKWARD = 1,
   CAMERA_RIGHT = 2,
@@ -25,11 +26,6 @@ enum camera_direction{
   CAMERA_UP = 4,
   CAMERA_DOWN = 5,
 };
-
-namespace dat::base{class Glyph;}
-
-
-namespace cam{
 
 class Entity : public dat::base::Entity
 {
