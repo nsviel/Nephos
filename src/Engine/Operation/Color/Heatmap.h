@@ -4,7 +4,7 @@
 
 namespace ope::color{class Colormap;}
 namespace ope::attribut{class Location;}
-namespace utl::type{class Entity;}
+namespace dat::base{class Entity;}
 
 
 namespace ope::color{
@@ -17,14 +17,14 @@ public:
   ~Heatmap();
 
   //Main function
-  void heatmap_intensity(utl::type::Entity* entity, int diviser);
-  void heatmap_height(utl::type::Entity* entity);
-  void heatmap_height(utl::type::Entity* entity, vec2 range);
-  void heatmap_range(utl::type::Entity* entity);
+  void heatmap_intensity(dat::base::Entity* entity, int diviser);
+  void heatmap_height(dat::base::Entity* entity);
+  void heatmap_height(dat::base::Entity* entity, vec2 range);
+  void heatmap_range(dat::base::Entity* entity);
 
   //Heatmap functions
   void compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap);
-  void heatmap_set(utl::type::Entity* entity, vector<float>& v_in);
+  void heatmap_set(dat::base::Entity* entity, vector<float>& v_in);
 
   inline vec2* get_range_height(){return &range_height;}
 

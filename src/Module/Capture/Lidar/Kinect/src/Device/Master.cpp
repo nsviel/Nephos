@@ -58,7 +58,7 @@ void Master::manage_color_control(){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       k4n_config->make_sensor_color_configuration(sensor);
@@ -73,7 +73,7 @@ void Master::manage_restart_thread(){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       sensor->reset_entity();
@@ -89,7 +89,7 @@ void Master::manage_restart(){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       //Set playback to begin
@@ -107,7 +107,7 @@ void Master::manage_forward(){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       float ts_forward = player.ts_cur + 5 * player.ts_forward;
@@ -129,7 +129,7 @@ void Master::manage_resynchronization(){
   //Should be set into another dedicated thread
 /*
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player.ts_cur));
@@ -144,7 +144,7 @@ void Master::manage_configuration(){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       sensor->color.config = config.color;
@@ -163,7 +163,7 @@ void Master::player_update(){
 
   //Search for min max timestamp
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       k4n::utils::Operation k4n_operation;
@@ -183,7 +183,7 @@ void Master::player_update(){
 
   //Apply min max timestamp to all sensors
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       sensor->run_thread_playback(sensor->param.path.data);
@@ -205,7 +205,7 @@ void Master::player_query_ts(float value){
 
   this->player.ts_seek = value;
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
@@ -236,7 +236,7 @@ void Master::player_stop(){
 
   //Wait for pause
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       sensor->wait_threads();
@@ -266,7 +266,7 @@ void Master::player_close(){
     //If capture, stop all sensor threads
     case k4n::dev::CAPTURE:{
       for(int i=0; i<list_entity.size(); i++){
-        utl::type::Entity* entity = *next(list_entity.begin(), i);
+        dat::base::Entity* entity = *next(list_entity.begin(), i);
 
         if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
           sensor->stop_threads();
@@ -291,7 +291,7 @@ void Master::visibility_normal(){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
-    utl::type::Entity* entity = *next(list_entity.begin(), i);
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       utl::entity::Object* object = sensor->get_object();

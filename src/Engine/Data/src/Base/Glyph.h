@@ -12,7 +12,7 @@ namespace dat{class Node;}
 
 namespace utl::entity{
 
-class Glyph : public utl::type::Entity
+class Glyph : public dat::base::Entity
 {
 public:
   //Constructor / Destructor
@@ -30,9 +30,9 @@ public:
   //Subfunction
   virtual void update_data();
   virtual void update_pose();
-  virtual void update_pose(utl::type::Entity* entity){}
+  virtual void update_pose(dat::base::Entity* entity){}
   virtual void update_glyph(){}
-  virtual void update_glyph(utl::type::Entity* entity){}
+  virtual void update_glyph(dat::base::Entity* entity){}
   virtual void set_visibility(bool value);
 
   inline vec4* get_color(){return &color;}

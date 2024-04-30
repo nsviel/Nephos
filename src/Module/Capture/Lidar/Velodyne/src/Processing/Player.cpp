@@ -77,7 +77,7 @@ void Player::compute_visibility(){
 
   //Set visibility just for wanted subsets
   for(int i=0; i<set->list_entity.size(); i++){
-    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(i >= vld_struct->player.idx_cur - vld_struct->player.idx_rng + 1 && i <= vld_struct->player.idx_cur){
       entity->set_visibility(true);

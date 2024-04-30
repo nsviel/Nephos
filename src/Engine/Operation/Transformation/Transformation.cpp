@@ -10,7 +10,7 @@ Transformation::Transformation(){}
 Transformation::~Transformation(){}
 
 // Translation
-void Transformation::make_translation(utl::type::Entity* entity, vec3 trans){
+void Transformation::make_translation(dat::base::Entity* entity, vec3 trans){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
@@ -24,7 +24,7 @@ void Transformation::make_translation(utl::type::Entity* entity, vec3 trans){
 
   //---------------------------
 }
-void Transformation::make_translation(utl::type::Entity* entity, mat4 translation){
+void Transformation::make_translation(dat::base::Entity* entity, mat4 translation){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
@@ -40,7 +40,7 @@ void Transformation::make_translation(utl::type::Entity* entity, mat4 translatio
 }
 
 //Rotation
-void Transformation::make_rotation(utl::type::Entity* entity, vec3 COM, vec3 degree){
+void Transformation::make_rotation(dat::base::Entity* entity, vec3 COM, vec3 degree){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
@@ -62,7 +62,7 @@ void Transformation::make_rotation(utl::type::Entity* entity, vec3 COM, vec3 deg
 
   //---------------------------
 }
-void Transformation::make_rotation(utl::type::Entity* entity, vec3 degree){
+void Transformation::make_rotation(dat::base::Entity* entity, vec3 degree){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
@@ -84,7 +84,7 @@ void Transformation::make_rotation(utl::type::Entity* entity, vec3 degree){
 
   //---------------------------
 }
-void Transformation::make_rotation(utl::type::Entity* entity, vec3 COM, mat4 rotation){
+void Transformation::make_rotation(dat::base::Entity* entity, vec3 COM, mat4 rotation){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
@@ -104,7 +104,7 @@ void Transformation::make_rotation(utl::type::Entity* entity, vec3 COM, mat4 rot
 
   //---------------------------
 }
-void Transformation::make_rotation_axe_X(utl::type::Entity* entity, float degree){
+void Transformation::make_rotation_axe_X(dat::base::Entity* entity, float degree){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
@@ -130,7 +130,7 @@ void Transformation::make_rotation_axe_X(utl::type::Entity* entity, float degree
 }
 
 //Scaling
-void Transformation::make_scaling(utl::type::Entity* entity, float scale){
+void Transformation::make_scaling(dat::base::Entity* entity, float scale){
   if(entity == nullptr) return;
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------

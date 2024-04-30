@@ -18,7 +18,7 @@ public:
 public:
   //Main function
   void create();
-  void update_pose(utl::type::Entity* entity);
+  void update_pose(dat::base::Entity* entity);
   void reset_glyph();
 
   //Subfunction

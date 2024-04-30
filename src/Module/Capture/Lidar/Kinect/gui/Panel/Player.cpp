@@ -54,7 +54,7 @@ void Player::design_panel(k4n::dev::Master* master){
 
     //Master sensor tabs -> click = sensor selection
     for(int i=0; i< master->list_entity.size(); i++){
-      utl::type::Entity* entity = *next(master->list_entity.begin(), i);
+      dat::base::Entity* entity = *next(master->list_entity.begin(), i);
 
       if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
         this->show_sensor_tab(sensor);

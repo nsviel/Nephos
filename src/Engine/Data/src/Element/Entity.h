@@ -8,7 +8,7 @@ namespace dat{class Glyph;}
 namespace eng{class Node;}
 namespace sce{class Operation;}
 namespace dat{class Database;}
-namespace utl::type{class Entity;}
+namespace dat::base{class Entity;}
 
 
 namespace dat{
@@ -22,8 +22,8 @@ public:
 
 public:
   //Main function
-  void init_entity(utl::type::Entity* entity);
-  void clear_entity(utl::type::Entity* entity);
+  void init_entity(dat::base::Entity* entity);
+  void clear_entity(dat::base::Entity* entity);
 
 private:
   eng::Node* node_engine;

@@ -14,7 +14,7 @@ public:
 
 public:
   void create();
-  void update_pose(utl::type::Entity* entity);
+  void update_pose(dat::base::Entity* entity);
 
   //Subfunction
   void construct();

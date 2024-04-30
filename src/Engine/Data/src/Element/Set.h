@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace utl::type{class Set;}
-namespace utl::type{class Entity;}
+namespace dat::base{class Entity;}
 
 
 namespace dat{
@@ -28,12 +28,12 @@ public:
   utl::type::Set* get_or_create_subset(utl::type::Set* set, string name);
 
   //Entity function
-  void insert_entity(utl::type::Set* set, utl::type::Entity* entity);
-  void remove_entity(utl::type::Set* set, utl::type::Entity* entity);
+  void insert_entity(utl::type::Set* set, dat::base::Entity* entity);
+  void remove_entity(utl::type::Set* set, dat::base::Entity* entity);
   void remove_entity_all(utl::type::Set* set);
   void select_entity_next(utl::type::Set* set);
-  void select_entity(utl::type::Set* set, utl::type::Entity* entity);
-  bool is_selected_entity(utl::type::Set* set, utl::type::Entity* entity);
+  void select_entity(utl::type::Set* set, dat::base::Entity* entity);
+  bool is_selected_entity(utl::type::Set* set, dat::base::Entity* entity);
 
   //Subfunction
   int compute_number_entity(utl::type::Set* set);

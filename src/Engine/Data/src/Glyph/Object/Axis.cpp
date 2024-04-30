@@ -36,7 +36,7 @@ void Axis::create(){
 
   //---------------------------
 }
-void Axis::update_pose(utl::type::Entity* entity){
+void Axis::update_pose(dat::base::Entity* entity){
   //---------------------------
 
   utl::type::Pose* entity_pose = entity->get_pose();

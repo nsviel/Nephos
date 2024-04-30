@@ -46,7 +46,7 @@ void Sphere::create(){
 
   //---------------------------
 }
-void Sphere::update_pose(utl::type::Entity* entity){
+void Sphere::update_pose(dat::base::Entity* entity){
   //---------------------------
 
   if(truc != mat4(1.0f)){

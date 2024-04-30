@@ -9,7 +9,7 @@ namespace dat{class Set;}
 namespace dat{class Node;}
 namespace cam{class Control;}
 namespace cam{class Entity;}
-namespace utl::type{class Entity;}
+namespace dat::base{class Entity;}
 namespace utl::type{class Set;}
 namespace utl::entity{class Glyph;}
 namespace utl::entity{class Object;}
@@ -35,7 +35,7 @@ public:
 
   //Glyph creation
   void create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph);
-  void create_glyph(utl::type::Entity* entity, utl::entity::Glyph* glyph);
+  void create_glyph(dat::base::Entity* entity, utl::entity::Glyph* glyph);
 
 private:
   eng::Node* node_engine;

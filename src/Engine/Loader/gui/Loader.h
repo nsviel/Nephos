@@ -12,7 +12,7 @@ namespace dat{class Set;}
 namespace eng::loader{class Item;}
 namespace ope{class Transformation;}
 namespace ope{class Operation;}
-namespace utl::type{class Entity;}
+namespace dat::base{class Entity;}
 
 
 namespace ldr::gui{
@@ -42,7 +42,7 @@ public:
   //Subfunction
   void operation_selection();
   void operation_selection(string path);
-  void operation_entity(utl::type::Entity* entity);
+  void operation_entity(dat::base::Entity* entity);
 
 private:
   dat::Database* dat_database;

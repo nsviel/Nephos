@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace utl::type{class Entity;}
+namespace dat::base{class Entity;}
 
 
 namespace ope{
@@ -16,17 +16,17 @@ public:
 
 public:
   // Translation
-  void make_translation(utl::type::Entity* entity, vec3 trans);
-  void make_translation(utl::type::Entity* entity, mat4 translation);
+  void make_translation(dat::base::Entity* entity, vec3 trans);
+  void make_translation(dat::base::Entity* entity, mat4 translation);
 
   // Rotation
-  void make_rotation(utl::type::Entity* entity, vec3 COM, vec3 degree);
-  void make_rotation(utl::type::Entity* entity, vec3 degree);
-  void make_rotation(utl::type::Entity* entity, vec3 COM, mat4 rotation);
-  void make_rotation_axe_X(utl::type::Entity* entity, float degree);
+  void make_rotation(dat::base::Entity* entity, vec3 COM, vec3 degree);
+  void make_rotation(dat::base::Entity* entity, vec3 degree);
+  void make_rotation(dat::base::Entity* entity, vec3 COM, mat4 rotation);
+  void make_rotation_axe_X(dat::base::Entity* entity, float degree);
 
   //Scaling
-  void make_scaling(utl::type::Entity* entity, float scale);
+  void make_scaling(dat::base::Entity* entity, float scale);
 
   //Transformation
   void make_transformation(utl::type::Pose* pose, vec3 COM, mat4 translation, mat4 rotation);

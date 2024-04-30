@@ -39,7 +39,7 @@ void Normal::create(){
 
   //---------------------------
 }
-void Normal::update_pose(utl::type::Entity* entity){
+void Normal::update_pose(dat::base::Entity* entity){
   //---------------------------
 
   utl::type::Pose* entity_pose = entity->get_pose();
@@ -50,7 +50,7 @@ void Normal::update_pose(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Normal::update_glyph(utl::type::Entity* entity){
+void Normal::update_glyph(dat::base::Entity* entity){
   //---------------------------
 
   this->construct(entity);
@@ -59,7 +59,7 @@ void Normal::update_glyph(utl::type::Entity* entity){
 }
 
 //Subfunction
-void Normal::construct(utl::type::Entity* entity){
+void Normal::construct(dat::base::Entity* entity){
   //---------------------------
 
   //Data glyph

@@ -62,7 +62,7 @@ void Graph::design_panel(){
 //Subfunction
 void Graph::draw_button(){
   utl::type::Set* set_scene = dat_database->get_set_graph();
-  utl::type::Entity* entity = set_scene->selected_entity;
+  dat::base::Entity* entity = set_scene->selected_entity;
   if(entity == nullptr) return;
   //-------------------------------
 
@@ -236,7 +236,7 @@ void Graph::tree_set_open(utl::type::Set* set, int& nb_row){
   flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
 
   for(int i=0; i<set->list_entity.size(); i++){
-    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
     this->tree_entity(set, entity, nb_row);
   }
 
@@ -247,7 +247,7 @@ void Graph::tree_set_open(utl::type::Set* set, int& nb_row){
 
   //---------------------------
 }
-void Graph::tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_row){
+void Graph::tree_entity(utl::type::Set* set, dat::base::Entity* entity, int& nb_row){
   //---------------------------
 
   nb_row++;

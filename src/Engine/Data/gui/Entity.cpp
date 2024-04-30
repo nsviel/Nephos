@@ -62,7 +62,7 @@ void Entity::close_panel(){
 }
 
 //Subfunction
-void Entity::entity_title(utl::type::Entity* entity){
+void Entity::entity_title(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -70,7 +70,7 @@ void Entity::entity_title(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Entity::entity_button(utl::type::Entity* entity){
+void Entity::entity_button(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -90,7 +90,7 @@ void Entity::entity_button(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Entity::entity_parameter(utl::type::Entity* entity){
+void Entity::entity_parameter(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -106,7 +106,7 @@ void Entity::entity_parameter(utl::type::Entity* entity){
 }
 
 //Parameter
-void Entity::entity_info(utl::type::Entity* entity){
+void Entity::entity_info(dat::base::Entity* entity){
   //---------------------------
 
   //Type
@@ -133,7 +133,7 @@ void Entity::entity_info(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Entity::data_info(utl::type::Entity* entity){
+void Entity::data_info(dat::base::Entity* entity){
   utl::type::Data* data = entity->get_data();
   if(data == nullptr) return;
   //---------------------------
@@ -174,7 +174,7 @@ void Entity::data_info(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Entity::pose_info(utl::type::Entity* entity){
+void Entity::pose_info(dat::base::Entity* entity){
   utl::type::Pose* pose = entity->get_pose();
   if(pose == nullptr) return;
   //---------------------------

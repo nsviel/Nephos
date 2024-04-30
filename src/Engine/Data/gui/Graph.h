@@ -11,7 +11,7 @@ namespace dat::gui{class Set;}
 namespace cam{class Control;}
 namespace ope{class Operation;}
 namespace utl::type{class Set;}
-namespace utl::type{class Entity;}
+namespace dat::base{class Entity;}
 
 
 namespace dat::gui{
@@ -37,7 +37,7 @@ public:
   int tree_set(utl::type::Set* set);
   void tree_set_double_click(utl::type::Set* set);
   void tree_set_open(utl::type::Set* set, int& nb_row);
-  void tree_entity(utl::type::Set* set, utl::type::Entity* entity, int& nb_row);
+  void tree_entity(utl::type::Set* set, dat::base::Entity* entity, int& nb_row);
 
   bool show_panel_entity   = false;
   bool show_panel_set      = false;

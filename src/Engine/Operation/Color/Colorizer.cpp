@@ -18,7 +18,7 @@ Colorizer::Colorizer(){
 Colorizer::~Colorizer(){}
 
 //Main function
-void Colorizer::make_colorization(utl::type::Entity* entity, ope::color::Configuration& config){
+void Colorizer::make_colorization(dat::base::Entity* entity, ope::color::Configuration& config){
   //---------------------------
 
   switch(config.color_mode){
@@ -44,7 +44,7 @@ void Colorizer::make_colorization(utl::type::Entity* entity, ope::color::Configu
 }
 
 //Subfunction
-void Colorizer::colorization_unicolor(utl::type::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_unicolor(dat::base::Entity* entity, ope::color::Configuration& config){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
@@ -52,7 +52,7 @@ void Colorizer::colorization_unicolor(utl::type::Entity* entity, ope::color::Con
 
   //---------------------------
 }
-void Colorizer::colorization_intensity(utl::type::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Configuration& config){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
@@ -63,7 +63,7 @@ void Colorizer::colorization_intensity(utl::type::Entity* entity, ope::color::Co
 
   //---------------------------
 }
-void Colorizer::colorization_heatmap(utl::type::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_heatmap(dat::base::Entity* entity, ope::color::Configuration& config){
   //---------------------------
 
   switch(config.heatmap_mode){
@@ -83,7 +83,7 @@ void Colorizer::colorization_heatmap(utl::type::Entity* entity, ope::color::Conf
 
   //---------------------------
 }
-void Colorizer::colorization_structure(utl::type::Entity* entity){
+void Colorizer::colorization_structure(dat::base::Entity* entity){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 

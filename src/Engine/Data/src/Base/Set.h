@@ -4,7 +4,7 @@
 #include <Utility/Specific/Common.h>
 #include <image/IconsFontAwesome6.h>
 
-namespace utl::type{class Entity;}
+namespace dat::base{class Entity;}
 
 
 namespace utl::type{
@@ -28,11 +28,11 @@ struct Set : public utl::type::Element{
 
   //Data
   utl::type::Pose pose;
-  utl::type::Entity* selected_entity = nullptr;
+  dat::base::Entity* selected_entity = nullptr;
   utl::type::Set* selected_subset = nullptr;
   utl::type::Set* set_parent = nullptr;
 
-  std::list<utl::type::Entity*> list_entity;
+  std::list<dat::base::Entity*> list_entity;
   std::list<utl::type::Set*> list_subset;
 
   //---------------------------

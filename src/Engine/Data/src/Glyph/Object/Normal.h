@@ -15,11 +15,11 @@ public:
 public:
   //Main function
   void create();
-  void update_pose(utl::type::Entity* entity);
-  void update_glyph(utl::type::Entity* entity);
+  void update_pose(dat::base::Entity* entity);
+  void update_glyph(dat::base::Entity* entity);
 
   //Construct
-  void construct(utl::type::Entity* entity);
+  void construct(dat::base::Entity* entity);
   glm::vec4 generate_random();
 
   inline int* get_size(){return &size;}

@@ -27,7 +27,7 @@ namespace utl::entity{class Object;}
 
 namespace k4n::dev{
 
-class Sensor : public utl::type::Entity
+class Sensor : public dat::base::Entity
 {
 public:
   //Constructor / Destructor

@@ -29,7 +29,7 @@ Heatmap::~Heatmap(){
 }
 
 //Main function
-void Heatmap::heatmap_intensity(utl::type::Entity* entity, int diviser){
+void Heatmap::heatmap_intensity(dat::base::Entity* entity, int diviser){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
@@ -43,7 +43,7 @@ void Heatmap::heatmap_intensity(utl::type::Entity* entity, int diviser){
 
   //---------------------------
 }
-void Heatmap::heatmap_height(utl::type::Entity* entity){
+void Heatmap::heatmap_height(dat::base::Entity* entity){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
@@ -57,7 +57,7 @@ void Heatmap::heatmap_height(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Heatmap::heatmap_height(utl::type::Entity* entity, vec2 range){
+void Heatmap::heatmap_height(dat::base::Entity* entity, vec2 range){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
@@ -71,7 +71,7 @@ void Heatmap::heatmap_height(utl::type::Entity* entity, vec2 range){
 
   //---------------------------
 }
-void Heatmap::heatmap_range(utl::type::Entity* entity){
+void Heatmap::heatmap_range(dat::base::Entity* entity){
   utl::type::Data* data = entity->get_data();
   //---------------------------
 
@@ -120,7 +120,7 @@ void Heatmap::compute_heatmap(vector<float>& v_in, vector<vec4>& heatmap){
 
   //---------------------------
 }
-void Heatmap::heatmap_set(utl::type::Entity* entity, vector<float>& v_in){
+void Heatmap::heatmap_set(dat::base::Entity* entity, vector<float>& v_in){
   utl::type::Data* data = entity->get_data();
   vector<vec4>& RGB = data->rgb;
   //---------------------------

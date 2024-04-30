@@ -25,7 +25,7 @@ Entity::Entity(dat::Node* node_data){
 Entity::~Entity(){}
 
 //Main function
-void Entity::init_entity(utl::type::Entity* entity){
+void Entity::init_entity(dat::base::Entity* entity){
   utl::type::Data* data = entity->get_data();
   utl::type::Pose* pose = entity->get_pose();
   //---------------------------
@@ -42,7 +42,7 @@ void Entity::init_entity(utl::type::Entity* entity){
 
   //---------------------------
 }
-void Entity::clear_entity(utl::type::Entity* entity){
+void Entity::clear_entity(dat::base::Entity* entity){
   utl::type::Data* data = entity->get_data();
   //----------------------------
 

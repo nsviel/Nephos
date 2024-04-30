@@ -11,7 +11,7 @@ namespace utl::type{struct Pose;}
 namespace utl::type{struct Element;}
 
 
-namespace utl::type{
+namespace dat::base{
 
 struct Entity : public utl::type::Element{
   //---------------------------

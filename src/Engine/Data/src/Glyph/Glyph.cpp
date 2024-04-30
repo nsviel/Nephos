@@ -70,7 +70,7 @@ void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
 
   //---------------------------
 }
-void Glyph::create_glyph(utl::type::Entity* entity, utl::entity::Glyph* glyph){
+void Glyph::create_glyph(dat::base::Entity* entity, utl::entity::Glyph* glyph){
   //---------------------------
 
   glyph->create();

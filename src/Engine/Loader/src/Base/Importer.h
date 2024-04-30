@@ -14,7 +14,7 @@ struct Importer{
   //---------------------------
 
   virtual utl::File* import(utl::Path path){return nullptr;}
-  virtual void insert(utl::type::Entity* entity){}
+  virtual void insert(dat::base::Entity* entity){}
   virtual void insert(utl::type::Set* set){}
 
   utl::file::Data* data = nullptr;

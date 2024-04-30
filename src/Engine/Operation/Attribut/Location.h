@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace utl::type{class Set;}
-namespace utl::type{class Entity;}
+namespace dat::base{class Entity;}
 
 
 namespace ope::attribut{
@@ -18,11 +18,11 @@ public:
 public:
   //Main functions
   vec3 compute_centroid(utl::type::Set* set);
-  vec3 compute_centroid(utl::type::Entity* entity);
+  vec3 compute_centroid(dat::base::Entity* entity);
   void compute_MinMax(utl::type::Set* set);
-  void compute_MinMax(utl::type::Entity* entity);
-  void set_unicolor(utl::type::Entity* entity);
-  void retrieve_z_vector(utl::type::Entity* entity, vector<float>& z_vec);
+  void compute_MinMax(dat::base::Entity* entity);
+  void set_unicolor(dat::base::Entity* entity);
+  void retrieve_z_vector(dat::base::Entity* entity, vector<float>& z_vec);
 
 private:
 };

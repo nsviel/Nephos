@@ -44,7 +44,7 @@ void Capture::list_device(k4n::dev::Master* master){
       ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
       ImGui::TableHeadersRow();
       for(int i=0; i<master->list_entity.size(); i++){
-        utl::type::Entity* entity = *next(master->list_entity.begin(), i);
+        dat::base::Entity* entity = *next(master->list_entity.begin(), i);
 
         if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
           ImGui::PushID(sensor->param.serial_number.c_str());

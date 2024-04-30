@@ -31,7 +31,7 @@ namespace utl::entity{class Glyph;}
 
 namespace cam{
 
-class Entity : public utl::type::Entity
+class Entity : public dat::base::Entity
 {
 public:
   //Constructor / Destructor

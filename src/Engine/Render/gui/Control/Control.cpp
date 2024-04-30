@@ -80,7 +80,7 @@ void Control::control_keyboard_translation(){
   for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
       utl::type::Set* set_scene = dat_database->get_set_graph();
-      utl::type::Entity* entity = set_scene->selected_entity;
+      dat::base::Entity* entity = set_scene->selected_entity;
 
       //Shift speed up
       float translation_qtt = 0.01;

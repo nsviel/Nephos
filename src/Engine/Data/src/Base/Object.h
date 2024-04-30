@@ -31,7 +31,7 @@ enum Glyph{
 
 namespace utl::entity{
 
-class Object : public utl::type::Entity
+class Object : public dat::base::Entity
 {
 public:
   //Constructor / Destructor

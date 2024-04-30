@@ -20,7 +20,7 @@ void Set::update_set(utl::type::Set* set){
 
   // Process entities within the current set
   for(int i=0; i<set->list_entity.size(); i++){
-    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
     entity->update_pose();
   }
 
@@ -37,7 +37,7 @@ void Set::reset_set(utl::type::Set* set){
 
   //Reset all associated entities
   for(int j=0; j<set->list_entity.size(); j++){
-    utl::type::Entity* entity = *next(set->list_entity.begin(), j);
+    dat::base::Entity* entity = *next(set->list_entity.begin(), j);
     entity->reset_entity();
   }
 
@@ -53,7 +53,7 @@ void Set::visibility_set(utl::type::Set* set, bool value){
   //---------------------------
 
   for(int i=0; i<set->list_entity.size(); i++){
-    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
     entity->set_visibility(value);
   }
 
@@ -121,7 +121,7 @@ utl::type::Set* Set::get_or_create_subset(utl::type::Set* set, std::string name)
 }
 
 //Entity function
-void Set::insert_entity(utl::type::Set* set, utl::type::Entity* entity){
+void Set::insert_entity(utl::type::Set* set, dat::base::Entity* entity){
   if(set == nullptr || entity == nullptr) return;
   //---------------------------
 
@@ -132,7 +132,7 @@ void Set::insert_entity(utl::type::Set* set, utl::type::Entity* entity){
 
   //---------------------------
 }
-void Set::remove_entity(utl::type::Set* set, utl::type::Entity* entity){
+void Set::remove_entity(utl::type::Set* set, dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -144,7 +144,7 @@ void Set::remove_entity(utl::type::Set* set, utl::type::Entity* entity){
 
   // Check if the current set has the query entity
   for(int i=0; i<set->list_entity.size(); i++){
-    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(set->selected_entity->UID == entity->UID){
       this->select_entity_next(set);
@@ -174,7 +174,7 @@ void Set::remove_entity_all(utl::type::Set* set){
   // Check if the current set has the query entity
   auto it = set->list_entity.begin();
   while(it != set->list_entity.end()){
-    utl::type::Entity* entity = *it;
+    dat::base::Entity* entity = *it;
 
     it = set->list_entity.erase(it);
     set->nb_entity--;
@@ -202,7 +202,7 @@ void Set::select_entity_next(utl::type::Set* set){
   // Check if the current set has a selected entity
   if(set->selected_entity != nullptr){
     for(auto it = set->list_entity.begin(); it != set->list_entity.end(); ++it){
-      utl::type::Entity* entity = *it;
+      dat::base::Entity* entity = *it;
 
       if(set->selected_entity->UID == entity->UID){
         auto next_it = std::next(it);
@@ -234,7 +234,7 @@ void Set::select_entity_next(utl::type::Set* set){
 
   //----------------------------
 }
-void Set::select_entity(utl::type::Set* set, utl::type::Entity* entity){
+void Set::select_entity(utl::type::Set* set, dat::base::Entity* entity){
   //---------------------------
 
   set->selected_entity = entity;
@@ -253,7 +253,7 @@ void Set::select_entity(utl::type::Set* set, utl::type::Entity* entity){
 
   //---------------------------
 }
-bool Set::is_selected_entity(utl::type::Set* set, utl::type::Entity* entity){
+bool Set::is_selected_entity(utl::type::Set* set, dat::base::Entity* entity){
   return entity->UID == set->selected_entity->UID;
 }
 
@@ -278,7 +278,7 @@ int Set::compute_number_point(utl::type::Set* set){
 
   // Add the points in the current set
   for(int i=0; i<set->list_entity.size(); i++){
-    utl::type::Entity* entity = *next(set->list_entity.begin(), i);
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
     utl::type::Data* data = entity->get_data();
     nb_point += data->size;
   }

@@ -34,7 +34,7 @@ void Target::create(){
 
   //---------------------------
 }
-void Target::update_pose(utl::type::Entity* entity){
+void Target::update_pose(dat::base::Entity* entity){
   //---------------------------
 
   if(cam::Entity* camera = dynamic_cast<cam::Entity*>(entity)){
