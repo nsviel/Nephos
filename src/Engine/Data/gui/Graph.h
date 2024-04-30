@@ -10,6 +10,8 @@ namespace dat::gui{class Entity;}
 namespace dat::gui{class Set;}
 namespace cam{class Control;}
 namespace ope{class Operation;}
+namespace utl::type{class Set;}
+namespace utl::type{class Entity;}
 
 
 namespace dat::gui{

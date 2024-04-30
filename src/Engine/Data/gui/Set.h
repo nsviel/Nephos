@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace dat{class Set;}
+namespace utl::type{class Set;}
 
 
 namespace dat::gui{

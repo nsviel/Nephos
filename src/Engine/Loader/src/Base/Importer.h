@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 #include <Utility/Base/Media/File.h>
-#include <Utility/Base/Type/Entity.h>
-#include <Utility/Base/Type/Set.h>
+#include <Data/src/Base/Entity.h>
+#include <Data/src/Base/Set.h>
 
 namespace utl::entity{class Object;}
 

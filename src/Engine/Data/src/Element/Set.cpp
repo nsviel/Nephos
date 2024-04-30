@@ -1,6 +1,6 @@
 #include "Set.h"
 
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace dat{

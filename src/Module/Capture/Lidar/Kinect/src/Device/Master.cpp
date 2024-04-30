@@ -2,7 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Scene/Namespace.h>
+#include <Data/Namespace.h>
 #include <Scene/Namespace.h>
 
 

@@ -4,6 +4,7 @@
 
 namespace ope::color{class Heatmap;}
 namespace ope::color{class Colormap;}
+namespace utl::type{class Entity;}
 
 
 namespace ope::color{

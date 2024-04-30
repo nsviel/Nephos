@@ -12,6 +12,7 @@ namespace dat{class Set;}
 namespace eng::loader{class Item;}
 namespace ope{class Transformation;}
 namespace ope{class Operation;}
+namespace utl::type{class Entity;}
 
 
 namespace ldr::gui{

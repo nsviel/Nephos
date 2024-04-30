@@ -4,6 +4,7 @@
 
 namespace dat{class Node;}
 namespace dat{class Set;}
+namespace utl::type{class Set;}
 
 
 namespace dat{

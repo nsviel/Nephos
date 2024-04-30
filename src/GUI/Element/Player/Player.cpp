@@ -1,6 +1,7 @@
 #include "Player.h"
 
 #include <GUI/Namespace.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace gui::element{

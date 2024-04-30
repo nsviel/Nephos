@@ -4,6 +4,7 @@
 
 namespace ope::color{class Colormap;}
 namespace ope::attribut{class Location;}
+namespace utl::type{class Entity;}
 
 
 namespace ope::color{

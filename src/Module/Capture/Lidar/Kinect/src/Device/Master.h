@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Data/src/Base/Set.h>
 #include <Utility/Specific/Common.h>
 #include <Kinect/src/Structure/Master/Namespace.h>
 

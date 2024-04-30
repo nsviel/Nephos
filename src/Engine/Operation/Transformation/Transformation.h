@@ -2,6 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace utl::type{class Entity;}
+
 
 namespace ope{
 

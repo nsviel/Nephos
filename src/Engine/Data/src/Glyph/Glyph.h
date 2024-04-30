@@ -9,6 +9,10 @@ namespace dat{class Set;}
 namespace dat{class Node;}
 namespace cam{class Control;}
 namespace cam{class Entity;}
+namespace utl::type{class Entity;}
+namespace utl::type{class Set;}
+namespace utl::entity{class Glyph;}
+namespace utl::entity{class Object;}
 
 
 namespace dat{

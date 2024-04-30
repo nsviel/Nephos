@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Utility/Base/Type/Data.h>
+#include <Utility/Base/Type/Pose.h>
 #include <Utility/Base/Type/Element.h>
 #include <image/IconsFontAwesome6.h>
 

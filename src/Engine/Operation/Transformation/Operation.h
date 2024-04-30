@@ -4,6 +4,8 @@
 
 namespace ope{class Transformation;}
 namespace ope::attribut{class Location;}
+namespace utl::type{class Set;}
+namespace utl::type{class Entity;}
 
 
 namespace ope{

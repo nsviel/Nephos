@@ -8,6 +8,7 @@ namespace dat{class Glyph;}
 namespace eng{class Node;}
 namespace sce{class Operation;}
 namespace dat{class Database;}
+namespace utl::type{class Entity;}
 
 
 namespace dat{

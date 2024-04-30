@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Data/src/Base/Entity.h>
 #include <Utility/Specific/Common.h>
 
 #include <glm/glm.hpp>

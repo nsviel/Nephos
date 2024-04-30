@@ -11,6 +11,9 @@ namespace format::pts{class Importer;}
 namespace format::ptx{class Importer;}
 namespace format::xyz{class Importer;}
 namespace format::ply{class Exporter;}
+namespace utl::type{class Importer;}
+namespace utl::type{class Exporter;}
+namespace utl::type{class Set;}
 
 
 namespace ldr{

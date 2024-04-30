@@ -1,6 +1,7 @@
 #include "Imgui.h"
 
 #include <Vulkan/Namespace.h>
+#include <image/IconsFontAwesome6.h>
 
 
 namespace vk::gui{

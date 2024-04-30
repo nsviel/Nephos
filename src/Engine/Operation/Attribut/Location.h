@@ -2,6 +2,9 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace utl::type{class Set;}
+namespace utl::type{class Entity;}
+
 
 namespace ope::attribut{
 

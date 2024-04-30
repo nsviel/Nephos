@@ -1,6 +1,7 @@
 #include "Colorizer.h"
 
 #include <Operation/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace ope::color{

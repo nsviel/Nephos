@@ -8,6 +8,8 @@ namespace dat{class Database;}
 namespace ldr{class Format;}
 namespace ldr{class Node;}
 namespace dat{class Set;}
+namespace utl::type{class Set;}
+namespace utl::entity{class Object;}
 
 
 namespace ldr{

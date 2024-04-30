@@ -1,5 +1,7 @@
 #include "Location.h"
 
+#include <Data/Namespace.h>
+
 
 namespace ope::attribut{
 

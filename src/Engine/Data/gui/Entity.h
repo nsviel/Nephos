@@ -7,6 +7,7 @@ namespace dat{class Database;}
 namespace dat{class Set;}
 namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
+namespace utl::type{class Entity;}
 
 
 namespace dat::gui{

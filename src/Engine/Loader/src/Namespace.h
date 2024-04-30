@@ -2,3 +2,4 @@
 
 #include <Loader/src/Format/Namespace.h>
 #include <Loader/src/Loader/Namespace.h>
+#include <Loader/src/Base/Namespace.h>
