@@ -83,6 +83,7 @@ dat::base::Set* Set::create_subset(dat::base::Set* set, std::string name){
   subset->set_parent = set;
   subset->is_suppressible = true;
 
+  dat_graph->assign_UID(subset);
   set->nb_subset++;
   set->selected_subset = subset;
   set->list_subset.push_back(subset);
