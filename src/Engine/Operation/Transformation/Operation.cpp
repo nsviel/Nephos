@@ -18,7 +18,7 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Operation on set
-void Operation::center_object(utl::type::Set* set){
+void Operation::center_object(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
 
@@ -37,7 +37,7 @@ void Operation::center_object(utl::type::Set* set){
 
   //---------------------------
 }
-void Operation::elevate_object(utl::type::Set* set){
+void Operation::elevate_object(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
 
@@ -54,7 +54,7 @@ void Operation::elevate_object(utl::type::Set* set){
 
   //---------------------------
 }
-void Operation::make_rotation_X_90d(utl::type::Set* set, int value){
+void Operation::make_rotation_X_90d(dat::base::Set* set, int value){
   if(set == nullptr) return;
   //---------------------------
 
@@ -69,7 +69,7 @@ void Operation::make_rotation_X_90d(utl::type::Set* set, int value){
 
   //---------------------------
 }
-void Operation::make_translation(utl::type::Set* set, vec3 value){
+void Operation::make_translation(dat::base::Set* set, vec3 value){
   if(set == nullptr) return;
   //---------------------------
 
@@ -84,7 +84,7 @@ void Operation::make_translation(utl::type::Set* set, vec3 value){
 
   //---------------------------
 }
-void Operation::make_rotation(utl::type::Set* set, vec3 value){
+void Operation::make_rotation(dat::base::Set* set, vec3 value){
   if(set == nullptr) return;
   //---------------------------
 

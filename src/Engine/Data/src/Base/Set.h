@@ -7,7 +7,7 @@
 namespace dat::base{class Entity;}
 
 
-namespace utl::type{
+namespace dat::base{
 
 struct Set : public utl::type::Element{
   //---------------------------
@@ -29,11 +29,11 @@ struct Set : public utl::type::Element{
   //Data
   utl::type::Pose pose;
   dat::base::Entity* selected_entity = nullptr;
-  utl::type::Set* selected_subset = nullptr;
-  utl::type::Set* set_parent = nullptr;
+  dat::base::Set* selected_subset = nullptr;
+  dat::base::Set* set_parent = nullptr;
 
   std::list<dat::base::Entity*> list_entity;
-  std::list<utl::type::Set*> list_subset;
+  std::list<dat::base::Set*> list_subset;
 
   //---------------------------
 };

@@ -36,7 +36,7 @@ void Glyph::init(){
 
 //Glyph init
 void Glyph::create_glyph_world(){
-  utl::type::Set* set_world = dat_database->get_set_scene();
+  dat::base::Set* set_world = dat_database->get_set_scene();
   //---------------------------
 
   this->create_glyph(set_world, new dat::glyph::grid::Grid(node_engine));
@@ -44,7 +44,7 @@ void Glyph::create_glyph_world(){
 
   //---------------------------
 }
-void Glyph::create_glyph_object(utl::entity::Object* object){
+void Glyph::create_glyph_object(dat::base::Object* object){
   //---------------------------
 
   this->create_glyph(object, new dat::glyph::object::Axis(node_engine));
@@ -62,7 +62,7 @@ void Glyph::create_glyph_camera(cam::Entity* camera){
 }
 
 //Glyph creation
-void Glyph::create_glyph(utl::type::Set* set, dat::base::Glyph* glyph){
+void Glyph::create_glyph(dat::base::Set* set, dat::base::Glyph* glyph){
   //---------------------------
 
   glyph->create();

@@ -88,7 +88,7 @@ void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
   ImGui::SetNextItemWidth(75);
   if(ImGui::BeginTabItem("Matrix##3443", NULL)){
     //Object model matrix
-    utl::entity::Object* object = sensor->get_object();
+    dat::base::Object* object = sensor->get_object();
     mat4& model = object->pose.model;
     ImGui::Columns(4, "ModelMat");
     for(int i=0; i<4; i++){

@@ -104,7 +104,7 @@ void Server::update_object(utl::file::Data* data){
   //---------------------------
 
   string name = "capture_" + to_string(vld_struct->data.current_frame_ID++);
-  utl::entity::Object* object = vld_struct->data.object;
+  dat::base::Object* object = vld_struct->data.object;
   object->name = name;
   object->data.name = name + "::data";
   object->data.size = data->xyz.size();

@@ -54,7 +54,7 @@ void Sensor::init(){
   prf_manager->add_profiler(profiler);
 
   //Sensor cloud
-  object = utl::entity::Object(node_engine);
+  object = dat::base::Object(node_engine);
   object.name = param.name;
   object.data.name = "sensor::object::data";
   object.data.topology.type = utl::topology::POINT;

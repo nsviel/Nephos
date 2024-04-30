@@ -25,7 +25,7 @@ public:
   utl::File* import(utl::Path path);
   utl::File* import(utl::Path path, int lmin, int lmax);
 
-  bool Exporter(std::string path, utl::entity::Object* object);
+  bool Exporter(std::string path, dat::base::Object* object);
 
   inline void set_IdataFormat(int value){this->IdataFormat = value;}
   inline void set_retrievingIntensity(bool value){this->retrieve_I = value;}

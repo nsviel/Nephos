@@ -61,7 +61,7 @@ void Graph::design_panel(){
 
 //Subfunction
 void Graph::draw_button(){
-  utl::type::Set* set_scene = dat_database->get_set_graph();
+  dat::base::Set* set_scene = dat_database->get_set_graph();
   dat::base::Entity* entity = set_scene->selected_entity;
   if(entity == nullptr) return;
   //-------------------------------
@@ -69,12 +69,12 @@ void Graph::draw_button(){
   ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
 
   //Suppression
-  utl::type::Set* set = entity->set_parent;
+  dat::base::Set* set = entity->set_parent;
   if(ImGui::Button(ICON_FA_TRASH "##supressionentity")){
     if(set->is_locked){
       //sce_graph->delete_subset(set);
     }else if(set->is_locked){
-      utl::type::Set* set_scene = dat_database->get_set_graph();
+      dat::base::Set* set_scene = dat_database->get_set_graph();
       dat_set->remove_entity(set_scene, set->selected_entity);
     }
   }
@@ -134,7 +134,7 @@ void Graph::draw_window_background(){
   //-------------------------------
 }
 void Graph::draw_file_tree(){
-  utl::type::Set* set_main = dat_database->get_set_main();
+  dat::base::Set* set_main = dat_database->get_set_main();
   //---------------------------
 
   static ImGuiTableFlags flag_tree;
@@ -150,7 +150,7 @@ void Graph::draw_file_tree(){
 
     //Database
     for(int row_i=0; row_i<set_main->list_subset.size(); row_i++){
-      utl::type::Set* set = *next(set_main->list_subset.begin(), row_i);
+      dat::base::Set* set = *next(set_main->list_subset.begin(), row_i);
 
       if(set->nb_entity != 0 || set->nb_subset != 0){
         ImGui::PushID(set->name.c_str());
@@ -167,7 +167,7 @@ void Graph::draw_file_tree(){
 }
 
 //File tree
-int Graph::tree_set(utl::type::Set* set) {
+int Graph::tree_set(dat::base::Set* set) {
   int nb_row = 0;
   //---------------------------
 
@@ -214,7 +214,7 @@ int Graph::tree_set(utl::type::Set* set) {
   //---------------------------
   return nb_row;
 }
-void Graph::tree_set_double_click(utl::type::Set* set){
+void Graph::tree_set_double_click(dat::base::Set* set){
   //---------------------------
 
   // If set is double-clicked
@@ -225,7 +225,7 @@ void Graph::tree_set_double_click(utl::type::Set* set){
 
   //---------------------------
 }
-void Graph::tree_set_open(utl::type::Set* set, int& nb_row){
+void Graph::tree_set_open(dat::base::Set* set, int& nb_row){
   //---------------------------
 
   ImGuiTreeNodeFlags flag_leaf;
@@ -241,13 +241,13 @@ void Graph::tree_set_open(utl::type::Set* set, int& nb_row){
   }
 
   // Recursive call for nested sets
-  for(utl::type::Set* subset : set->list_subset){
+  for(dat::base::Set* subset : set->list_subset){
     nb_row += tree_set(subset);
   }
 
   //---------------------------
 }
-void Graph::tree_entity(utl::type::Set* set, dat::base::Entity* entity, int& nb_row){
+void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row){
   //---------------------------
 
   nb_row++;

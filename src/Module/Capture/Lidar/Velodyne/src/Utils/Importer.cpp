@@ -79,7 +79,7 @@ utl::File* Importer::import(utl::Path path){
   //---------------------------
   return dataset;
 }
-void Importer::insert(utl::type::Set* set){
+void Importer::insert(dat::base::Set* set){
   //---------------------------
 
   vld_struct->data.vec_set.push_back(set);

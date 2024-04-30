@@ -22,7 +22,7 @@ namespace k4n::structure{class IMU;}
 namespace k4n::structure{class Image;}
 namespace k4n::structure{class Calibration;}
 namespace prf::graph{class Profiler;}
-namespace utl::entity{class Object;}
+namespace dat::base{class Object;}
 
 
 namespace k4n::dev{
@@ -55,7 +55,7 @@ public:
   bool is_playback_running();
   bool is_playback_paused();
 
-  inline utl::entity::Object* get_object(){return &object;}
+  inline dat::base::Object* get_object(){return &object;}
   inline utl::type::Data* get_data(){return &object.data;}
   inline utl::type::Pose* get_pose(){return &object.pose;}
 
@@ -63,7 +63,7 @@ public:
   prf::graph::Profiler* profiler;
   k4n::dev::Master* master;
 
-  utl::entity::Object object;
+  dat::base::Object object;
   k4n::structure::Image image;
 
   k4n::structure::Param param;

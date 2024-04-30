@@ -5,7 +5,7 @@
 #include <Data/src/Base/Entity.h>
 #include <Data/src/Base/Set.h>
 
-namespace utl::entity{class Object;}
+namespace dat::base{class Object;}
 
 
 namespace ldr::base{
@@ -15,7 +15,7 @@ struct Importer{
 
   virtual utl::File* import(utl::Path path){return nullptr;}
   virtual void insert(dat::base::Entity* entity){}
-  virtual void insert(utl::type::Set* set){}
+  virtual void insert(dat::base::Set* set){}
 
   utl::file::Data* data = nullptr;
   std::string format = "";

@@ -20,7 +20,7 @@ namespace cam{class Node;}
 namespace dat::base{class Glyph;}
 
 
-namespace utl::entity::object{
+namespace dat::object::glyph{
 enum Glyph{
   AABB = 0,
   AXIS = 1,
@@ -29,7 +29,7 @@ enum Glyph{
 };
 }
 
-namespace utl::entity{
+namespace dat::base{
 
 class Object : public dat::base::Entity
 {

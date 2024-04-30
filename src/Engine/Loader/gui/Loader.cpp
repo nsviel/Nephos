@@ -398,7 +398,7 @@ void Loader::operation_selection(){
 
   //Apply loading and operations
   if(param_remove_old){
-    utl::type::Set* set_scene = dat_database->get_set_graph();
+    dat::base::Set* set_scene = dat_database->get_set_graph();
     dat_set->remove_entity_all(set_scene);
   }
 
@@ -406,7 +406,7 @@ void Loader::operation_selection(){
     utl::Path path;
     path.data = vec_path[i];
 
-    utl::entity::Object* object = ldr_loader->load_object(path);
+    dat::base::Object* object = ldr_loader->load_object(path);
 
     if(object != nullptr){
       this->operation_entity(object);
@@ -432,13 +432,13 @@ void Loader::operation_selection(string file_path){
 
     //Apply loading and operations
     if(param_remove_old){
-      utl::type::Set* set_scene = dat_database->get_set_graph();
+      dat::base::Set* set_scene = dat_database->get_set_graph();
       dat_set->remove_entity_all(set_scene);
     }
 
     utl::Path path;
     path.data = file_path;
-    utl::entity::Object* object = ldr_loader->load_object(path);
+    dat::base::Object* object = ldr_loader->load_object(path);
 
     if(object != nullptr){
       this->operation_entity(object);

@@ -19,7 +19,7 @@ enum Mode{
   PLAYBACK = 1,
 };
 
-class Master : public utl::type::Set
+class Master : public dat::base::Set
 {
 public:
   //Constructor / Destructor

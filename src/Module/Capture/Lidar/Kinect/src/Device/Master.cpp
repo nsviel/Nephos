@@ -294,8 +294,8 @@ void Master::visibility_normal(){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      utl::entity::Object* object = sensor->get_object();
-      dat::base::Glyph* normal = object->get_glyph(utl::entity::object::NORMAL);
+      dat::base::Object* object = sensor->get_object();
+      dat::base::Glyph* normal = object->get_glyph(dat::object::glyph::NORMAL);
       normal->set_visibility(operation.normal_visible);
     }
   }

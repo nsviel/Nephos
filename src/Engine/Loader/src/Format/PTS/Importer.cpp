@@ -310,7 +310,7 @@ void Importer::Loader_data(utl::file::Data* data, int FILE_config){
 }
 
 //Main exporter functions
-bool Importer::Exporter(std::string path, utl::entity::Object* object){
+bool Importer::Exporter(std::string path, dat::base::Object* object){
   //---------------------------
 
   //Create file

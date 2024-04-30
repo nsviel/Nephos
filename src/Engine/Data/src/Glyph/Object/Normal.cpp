@@ -17,7 +17,7 @@ Normal::Normal(eng::Node* node_engine) : Glyph(node_engine){
   this->is_visible = false;
   this->color = vec4(0.11f, 0.35f, 0.69f, 1.0f);
   this->need_update = true;
-  this->type = utl::entity::object::NORMAL;
+  this->type = dat::object::glyph::NORMAL;
 
   //---------------------------
 }

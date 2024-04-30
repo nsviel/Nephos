@@ -10,7 +10,7 @@ Location::Location(){}
 Location::~Location(){}
 
 //Main function
-vec3 Location::compute_centroid(utl::type::Set* set){
+vec3 Location::compute_centroid(dat::base::Set* set){
   //---------------------------
 
   vec3 centroid = vec3(0, 0, 0);
@@ -56,7 +56,7 @@ vec3 Location::compute_centroid(dat::base::Entity* entity){
   //---------------------------
   return centroid;
 }
-void Location::compute_MinMax(utl::type::Set* set){
+void Location::compute_MinMax(dat::base::Set* set){
   //---------------------------
 
   vec3 centroid = vec3(0, 0, 0);

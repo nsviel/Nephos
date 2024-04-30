@@ -34,7 +34,7 @@ public:
 public:
   //Main function
   utl::File* import(utl::Path path);
-  void insert(utl::type::Set* set);
+  void insert(dat::base::Set* set);
 
   //Subfunction
   void importer_init(std::string path);

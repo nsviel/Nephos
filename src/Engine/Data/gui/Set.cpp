@@ -47,14 +47,14 @@ void Set::design_panel(){
 }
 
 //Subfunction
-void Set::set_info(utl::type::Set* set){
+void Set::set_info(dat::base::Set* set){
   //---------------------------
 
   this->panel_name = "[Set]  " + set->name;
 
   //---------------------------
 }
-void Set::set_parameter(utl::type::Set* set){
+void Set::set_parameter(dat::base::Set* set){
   //---------------------------
 
   if(ImGui::BeginTable("object##table", 2, ImGuiTableFlags_BordersInnerV)){

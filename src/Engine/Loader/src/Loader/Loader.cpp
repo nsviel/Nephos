@@ -34,7 +34,7 @@ Loader::~Loader(){
 
 //Main functions
 utl::type::Data* Loader::load_data(string path){
-  utl::type::Set* set = nullptr;
+  dat::base::Set* set = nullptr;
   //---------------------------
 
   //Init
@@ -55,7 +55,7 @@ utl::type::Data* Loader::load_data(string path){
   //---------------------------
   return data;
 }
-utl::type::Set* Loader::load_dataset(utl::Path file_path){
+dat::base::Set* Loader::load_dataset(utl::Path file_path){
   //---------------------------
 
   if(!check_file_path(file_path.data)) return nullptr;
@@ -66,13 +66,13 @@ utl::type::Set* Loader::load_dataset(utl::Path file_path){
   utl::file::Dataset* dataset = dynamic_cast<utl::file::Dataset*>(file);
 
   //Insert loaded set into scene
-  utl::type::Set* set_scene = dat_database->get_set_graph();
-  utl::type::Set* set = dat_set->get_or_create_subset(set_scene, dataset->name);
+  dat::base::Set* set_scene = dat_database->get_set_graph();
+  dat::base::Set* set = dat_set->get_or_create_subset(set_scene, dataset->name);
   set->is_locked = true;
 
   //Insert all set objects into engine
   for(int i=0; i<dataset->vec_data.size(); i++){
-    utl::entity::Object* object = create_object(dataset->vec_data[i]);
+    dat::base::Object* object = create_object(dataset->vec_data[i]);
     dat_set->insert_entity(set, object);
   }
 
@@ -84,7 +84,7 @@ utl::type::Set* Loader::load_dataset(utl::Path file_path){
   //---------------------------
   return set;
 }
-utl::entity::Object* Loader::load_object(utl::Path file_path){
+dat::base::Object* Loader::load_object(utl::Path file_path){
   //---------------------------
 
   if(!check_file_path(file_path.data)) return nullptr;
@@ -95,8 +95,8 @@ utl::entity::Object* Loader::load_object(utl::Path file_path){
   utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
   //Data is an entity
-  utl::type::Set* set_scene = dat_database->get_set_graph();
-  utl::entity::Object* object = create_object(file_data);
+  dat::base::Set* set_scene = dat_database->get_set_graph();
+  dat::base::Object* object = create_object(file_data);
   dat_set->insert_entity(set_scene, object);
 
   //Delete raw data
@@ -127,10 +127,10 @@ bool Loader::check_file_path(std::string path){
   //---------------------------
   return true;
 }
-utl::entity::Object* Loader::create_object(utl::file::Data* data){
+dat::base::Object* Loader::create_object(utl::file::Data* data){
   //---------------------------
 
-  utl::entity::Object* object = new utl::entity::Object(node_engine);
+  dat::base::Object* object = new dat::base::Object(node_engine);
   object->name = data->name;
   object->data = *create_data(data);
 

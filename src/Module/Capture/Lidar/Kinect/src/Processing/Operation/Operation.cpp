@@ -141,7 +141,7 @@ void Operation::triangularize_object(k4n::dev::Sensor* sensor){
 void Operation::update_object(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  utl::entity::Object* object = sensor->get_object();
+  dat::base::Object* object = sensor->get_object();
   object->update_data();
   object->update_glyph();
 

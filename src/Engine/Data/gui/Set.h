@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace dat{class Set;}
-namespace utl::type{class Set;}
+namespace dat::base{class Set;}
 
 
 namespace dat::gui{
@@ -20,15 +20,15 @@ public:
   void design_panel();
 
   //Sub functions
-  void set_info(utl::type::Set* set);
-  void set_parameter(utl::type::Set* set);
+  void set_info(dat::base::Set* set);
+  void set_parameter(dat::base::Set* set);
 
-  inline void set_selected_set(utl::type::Set* set){this->set_selected = set;}
+  inline void set_selected_set(dat::base::Set* set){this->set_selected = set;}
 
 private:
   dat::Set* dat_set;
 
-  utl::type::Set* set_selected;
+  dat::base::Set* set_selected;
   string panel_name;
   bool* panel_show;;
   int item_width;

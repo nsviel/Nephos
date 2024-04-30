@@ -17,7 +17,7 @@ Tree::Tree(eng::Node* node_engine) : Glyph(node_engine){
   this->is_visible = false;
   this->color = vec4(1, 1, 1, 0.7);
   this->level = 6;
-  this->type = utl::entity::object::TREE;
+  this->type = dat::object::glyph::TREE;
 
   //---------------------------
 }

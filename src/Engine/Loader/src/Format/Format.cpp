@@ -62,7 +62,7 @@ utl::File* Format::import_from_path(utl::Path path){
   //---------------------------
   return file;
 }
-void Format::insert_from_path(utl::Path path, utl::type::Set* set){
+void Format::insert_from_path(utl::Path path, dat::base::Set* set){
   //---------------------------
 
   std::string format = utl::path::get_format_from_path(path.data);

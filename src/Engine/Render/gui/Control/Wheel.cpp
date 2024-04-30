@@ -46,21 +46,21 @@ void Wheel::make_action(float direction){
 
   switch (mode) {
     case WHEEL_R_Z:{
-      utl::type::Set* set_scene = dat_database->get_set_graph();
+      dat::base::Set* set_scene = dat_database->get_set_graph();
       dat::base::Entity* entity = set_scene->selected_entity;
       R = vec3(0, 0, direction * radian);
       ope_operation->make_rotation(entity->set_parent, R);
       break;
     }
     case WHEEL_R_Y:{
-      utl::type::Set* set_scene = dat_database->get_set_graph();
+      dat::base::Set* set_scene = dat_database->get_set_graph();
       dat::base::Entity* entity = set_scene->selected_entity;
       R = vec3(0, direction * radian, 0);
       ope_operation->make_rotation(entity->set_parent, R);
       break;
     }
     case WHEEL_R_X:{
-      utl::type::Set* set_scene = dat_database->get_set_graph();
+      dat::base::Set* set_scene = dat_database->get_set_graph();
       dat::base::Entity* entity = set_scene->selected_entity;
       R = vec3(direction * radian, 0, 0);
       ope_operation->make_rotation(entity->set_parent, R);

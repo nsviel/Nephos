@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace utl::entity{class Object;}
+namespace dat::base{class Object;}
 
 
 namespace ope::tree{
@@ -17,13 +17,13 @@ public:
   ~Octree();
 
 public:
-  void create_octree(utl::entity::Object* object);
-  void create_octree(utl::entity::Object* object, int level);
+  void create_octree(dat::base::Object* object);
+  void create_octree(dat::base::Object* object, int level);
   void remove_octree(ope::tree::Root* root);
 
   //Sub functions
   void remove_cube(ope::tree::Cube* cube);
-  void build_root(utl::entity::Object* object);
+  void build_root(dat::base::Object* object);
   void build_octree(ope::tree::Cube* cube_parent);
   vector<vec3> compute_cube_location(vec3 min, vec3 max);
   vector<vec4> compute_cube_color(int size);

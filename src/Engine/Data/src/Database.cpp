@@ -9,7 +9,7 @@ namespace dat{
 Database::Database(dat::Node* node_data){
   //---------------------------
 
-  this->set_main = new utl::type::Set();
+  this->set_main = new dat::base::Set();
   this->dat_set = new dat::Set();
 
   //---------------------------

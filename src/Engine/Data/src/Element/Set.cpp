@@ -15,7 +15,7 @@ Set::Set(){
 Set::~Set(){}
 
 //Set function
-void Set::update_set(utl::type::Set* set){
+void Set::update_set(dat::base::Set* set){
   //---------------------------
 
   // Process entities within the current set
@@ -26,13 +26,13 @@ void Set::update_set(utl::type::Set* set){
 
   // Recursively process nested sets
   for(int i=0; i<set->list_subset.size(); i++){
-    utl::type::Set* subset = *next(set->list_subset.begin(), i);
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->update_set(subset);
   }
 
   //---------------------------
 }
-void Set::reset_set(utl::type::Set* set){
+void Set::reset_set(dat::base::Set* set){
   //---------------------------
 
   //Reset all associated entities
@@ -43,13 +43,13 @@ void Set::reset_set(utl::type::Set* set){
 
   //Reset all associated sets
   for(int i=0; i<set->list_subset.size(); i++){
-    utl::type::Set* subset = *next(set->list_subset.begin(), i);
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->reset_set(subset);
   }
 
   //---------------------------
 }
-void Set::visibility_set(utl::type::Set* set, bool value){
+void Set::visibility_set(dat::base::Set* set, bool value){
   //---------------------------
 
   for(int i=0; i<set->list_entity.size(); i++){
@@ -61,7 +61,7 @@ void Set::visibility_set(utl::type::Set* set, bool value){
 }
 
 //Subset function
-void Set::add_subset(utl::type::Set* set, utl::type::Set* subset){
+void Set::add_subset(dat::base::Set* set, dat::base::Set* subset){
   //---------------------------
 
   subset->set_parent = set;
@@ -74,10 +74,10 @@ void Set::add_subset(utl::type::Set* set, utl::type::Set* subset){
 
   //---------------------------
 }
-utl::type::Set* Set::create_subset(utl::type::Set* set, std::string name){
+dat::base::Set* Set::create_subset(dat::base::Set* set, std::string name){
   //---------------------------
 
-  utl::type::Set* subset = new utl::type::Set();
+  dat::base::Set* subset = new dat::base::Set();
   subset->name = name;
   subset->set_parent = set;
   subset->is_suppressible = true;
@@ -89,11 +89,11 @@ utl::type::Set* Set::create_subset(utl::type::Set* set, std::string name){
   //---------------------------
   return subset;
 }
-utl::type::Set* Set::get_subset(utl::type::Set* set, std::string name){
+dat::base::Set* Set::get_subset(dat::base::Set* set, std::string name){
   //---------------------------
 
   for(int i=0; i<set->list_subset.size(); i++){
-    utl::type::Set* subset = *next(set->list_subset.begin(),i);
+    dat::base::Set* subset = *next(set->list_subset.begin(),i);
     if(subset->name == name){
       return subset;
     }
@@ -104,24 +104,24 @@ utl::type::Set* Set::get_subset(utl::type::Set* set, std::string name){
   //---------------------------
   return nullptr;
 }
-utl::type::Set* Set::get_or_create_subset(utl::type::Set* set, std::string name){
+dat::base::Set* Set::get_or_create_subset(dat::base::Set* set, std::string name){
   //---------------------------
 
   for(int i=0; i<set->list_subset.size(); i++){
-    utl::type::Set* subset_in_list = *next(set->list_subset.begin(),i);
+    dat::base::Set* subset_in_list = *next(set->list_subset.begin(),i);
     if(subset_in_list->name == name){
       return subset_in_list;
     }
   }
 
-  utl::type::Set* subset = create_subset(set, name);
+  dat::base::Set* subset = create_subset(set, name);
 
   //---------------------------
   return subset;
 }
 
 //Entity function
-void Set::insert_entity(utl::type::Set* set, dat::base::Entity* entity){
+void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
   if(set == nullptr || entity == nullptr) return;
   //---------------------------
 
@@ -132,7 +132,7 @@ void Set::insert_entity(utl::type::Set* set, dat::base::Entity* entity){
 
   //---------------------------
 }
-void Set::remove_entity(utl::type::Set* set, dat::base::Entity* entity){
+void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -160,14 +160,14 @@ void Set::remove_entity(utl::type::Set* set, dat::base::Entity* entity){
   }
 
   // Recursively call remove_entity for each nested set
-  for(utl::type::Set* subset : set->list_subset){
+  for(dat::base::Set* subset : set->list_subset){
     this->remove_entity(subset, entity);
   }
 
   //---------------------------
 }
 
-void Set::remove_entity_all(utl::type::Set* set){
+void Set::remove_entity_all(dat::base::Set* set){
   if(set->list_entity.size() == 0) return;
   //---------------------------
 
@@ -184,13 +184,13 @@ void Set::remove_entity_all(utl::type::Set* set){
   }
 
   // Recursively call remove_entity_recursive for each nested set
-  for(utl::type::Set* subset : set->list_subset){
+  for(dat::base::Set* subset : set->list_subset){
     this->remove_entity_all(subset);
   }
 
   //---------------------------
 }
-void Set::select_entity_next(utl::type::Set* set){
+void Set::select_entity_next(dat::base::Set* set){
   //----------------------------
 
   if(set->list_entity.size() == 0){
@@ -221,7 +221,7 @@ void Set::select_entity_next(utl::type::Set* set){
   }
 
   // Recursively call select_entity_next for each nested subset
-  for(utl::type::Set* subset : set->list_subset){
+  for(dat::base::Set* subset : set->list_subset){
     this->select_entity_next(subset);
 
     // Check if the selected entity is in the current subset
@@ -234,13 +234,13 @@ void Set::select_entity_next(utl::type::Set* set){
 
   //----------------------------
 }
-void Set::select_entity(utl::type::Set* set, dat::base::Entity* entity){
+void Set::select_entity(dat::base::Set* set, dat::base::Entity* entity){
   //---------------------------
 
   set->selected_entity = entity;
 
   // Propagate the selection to the parent sets
-  utl::type::Set* current_parent = set->set_parent;
+  dat::base::Set* current_parent = set->set_parent;
   while(current_parent != nullptr){
     current_parent->selected_entity = entity;
     current_parent = current_parent->set_parent; // Move to the next parent set
@@ -253,26 +253,26 @@ void Set::select_entity(utl::type::Set* set, dat::base::Entity* entity){
 
   //---------------------------
 }
-bool Set::is_selected_entity(utl::type::Set* set, dat::base::Entity* entity){
+bool Set::is_selected_entity(dat::base::Set* set, dat::base::Entity* entity){
   return entity->UID == set->selected_entity->UID;
 }
 
 //Subfunction
-int Set::compute_number_entity(utl::type::Set* set){
+int Set::compute_number_entity(dat::base::Set* set){
   int nb_entity = 0;
   //---------------------------
 
   nb_entity += set->list_entity.size();
 
   for(int i=0; i<set->list_subset.size(); i++){
-    utl::type::Set* subset = *next(set->list_subset.begin(), i);
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
     nb_entity += compute_number_entity(subset);
   }
 
   //---------------------------
   return nb_entity;
 }
-int Set::compute_number_point(utl::type::Set* set){
+int Set::compute_number_point(dat::base::Set* set){
   int nb_point = 0;
   //---------------------------
 
@@ -285,7 +285,7 @@ int Set::compute_number_point(utl::type::Set* set){
 
   // Recursively add points from nested subsets
   for(int i=0; i<set->list_subset.size(); i++){
-    utl::type::Set* subset = *next(set->list_subset.begin(), i);
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
     nb_point += compute_number_point(subset);
   }
 

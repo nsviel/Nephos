@@ -15,7 +15,7 @@ Axis::Axis(eng::Node* node_engine) : Glyph(node_engine){
   this->is_permanent = true;
   this->is_visible = true;
   this->ope_transform = new ope::Transformation();
-  this->type = utl::entity::object::AXIS;
+  this->type = dat::object::glyph::AXIS;
 
   //---------------------------
 }

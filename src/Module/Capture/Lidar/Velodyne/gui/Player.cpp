@@ -127,7 +127,7 @@ void Player::player_close(){
   //---------------------------
 }
 void Player::player_lock(){
-  utl::type::Set* set = vld_struct->data.current_set;
+  dat::base::Set* set = vld_struct->data.current_set;
   if(set == nullptr) return;
   //---------------------------
 

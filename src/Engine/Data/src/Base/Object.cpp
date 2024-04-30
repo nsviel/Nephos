@@ -5,7 +5,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace utl::entity{
+namespace dat::base{
 
 //Constructor / Destructor
 Object::Object(){

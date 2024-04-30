@@ -4,7 +4,7 @@
 
 namespace ope{class Transformation;}
 namespace ope::attribut{class Location;}
-namespace utl::type{class Set;}
+namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
 
@@ -19,11 +19,11 @@ public:
 
 public:
   //Operation on set
-  void center_object(utl::type::Set* set);
-  void elevate_object(utl::type::Set* set);
-  void make_rotation_X_90d(utl::type::Set* set, int value);
-  void make_translation(utl::type::Set* set, vec3 value);
-  void make_rotation(utl::type::Set* set, vec3 value);
+  void center_object(dat::base::Set* set);
+  void elevate_object(dat::base::Set* set);
+  void make_rotation_X_90d(dat::base::Set* set, int value);
+  void make_translation(dat::base::Set* set, vec3 value);
+  void make_rotation(dat::base::Set* set, vec3 value);
 
   //Operation on entity
   void center_object(dat::base::Entity* entity, vec3 COM);

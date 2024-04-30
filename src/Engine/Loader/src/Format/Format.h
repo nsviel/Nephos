@@ -13,7 +13,7 @@ namespace format::xyz{class Importer;}
 namespace format::ply{class Exporter;}
 namespace ldr::base{class Importer;}
 namespace ldr::base{class Exporter;}
-namespace utl::type{class Set;}
+namespace dat::base{class Set;}
 
 
 namespace ldr{
@@ -28,7 +28,7 @@ public:
 public:
   //Main function
   utl::File* import_from_path(utl::Path path);
-  void insert_from_path(utl::Path path, utl::type::Set* set);
+  void insert_from_path(utl::Path path, dat::base::Set* set);
 
   //Subfunction
   void insert_importer(ldr::base::Importer* importer);

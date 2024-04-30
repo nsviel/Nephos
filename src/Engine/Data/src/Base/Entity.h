@@ -6,9 +6,7 @@
 #include <image/IconsFontAwesome6.h>
 
 namespace dat::base{class Glyph;}
-namespace utl::type{struct Set;}
-namespace utl::type{struct Pose;}
-namespace utl::type{struct Element;}
+namespace dat::base{class Set;}
 
 
 namespace dat::base{
@@ -34,7 +32,7 @@ struct Entity : public utl::type::Element{
   std::string name = "";
   std::string entity_type = "base";
   std::string icon = ICON_FA_FILE;
-  utl::type::Set* set_parent = nullptr;
+  dat::base::Set* set_parent = nullptr;
 
   //Data
   utl::type::Pose pose;

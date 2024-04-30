@@ -8,8 +8,8 @@ namespace dat{class Database;}
 namespace ldr{class Format;}
 namespace ldr{class Node;}
 namespace dat{class Set;}
-namespace utl::type{class Set;}
-namespace utl::entity{class Object;}
+namespace dat::base{class Set;}
+namespace dat::base{class Object;}
 
 
 namespace ldr{
@@ -24,12 +24,12 @@ public:
 public:
   //Main functions
   utl::type::Data* load_data(string path);
-  utl::type::Set* load_dataset(utl::Path file_path);
-  utl::entity::Object* load_object(utl::Path file_path);
+  dat::base::Set* load_dataset(utl::Path file_path);
+  dat::base::Object* load_object(utl::Path file_path);
 
   //Subfunction
   bool check_file_path(std::string path);
-  utl::entity::Object* create_object(utl::file::Data* file_data);
+  dat::base::Object* create_object(utl::file::Data* file_data);
   utl::type::Data* create_data(utl::file::Data* file_data);
 
 private:

@@ -6,10 +6,10 @@ namespace vld::structure{
 struct Data{
   //---------------------------
 
-  vector<utl::type::Set*> vec_set;
-  utl::type::Set* current_set = nullptr;
+  vector<dat::base::Set*> vec_set;
+  dat::base::Set* current_set = nullptr;
 
-  utl::entity::Object* object = nullptr;
+  dat::base::Object* object = nullptr;
   int current_frame_ID = 0;
 
   //---------------------------

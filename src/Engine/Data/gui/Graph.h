@@ -10,7 +10,7 @@ namespace dat::gui{class Entity;}
 namespace dat::gui{class Set;}
 namespace cam{class Control;}
 namespace ope{class Operation;}
-namespace utl::type{class Set;}
+namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
 
@@ -34,10 +34,10 @@ public:
   void draw_file_tree();
 
   //File tree
-  int tree_set(utl::type::Set* set);
-  void tree_set_double_click(utl::type::Set* set);
-  void tree_set_open(utl::type::Set* set, int& nb_row);
-  void tree_entity(utl::type::Set* set, dat::base::Entity* entity, int& nb_row);
+  int tree_set(dat::base::Set* set);
+  void tree_set_double_click(dat::base::Set* set);
+  void tree_set_open(dat::base::Set* set, int& nb_row);
+  void tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row);
 
   bool show_panel_entity   = false;
   bool show_panel_set      = false;

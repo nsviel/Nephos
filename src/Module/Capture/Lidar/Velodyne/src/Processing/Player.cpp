@@ -61,7 +61,7 @@ void Player::player_close(){
 //Subfunction
 void Player::determine_range(){
   if(vld_struct->data.current_set == nullptr) return;
-  utl::type::Set* set = vld_struct->data.current_set;
+  dat::base::Set* set = vld_struct->data.current_set;
   //---------------------------
 
   vld_struct->player.idx_beg = 0;
@@ -72,7 +72,7 @@ void Player::determine_range(){
 }
 void Player::compute_visibility(){
   if(vld_struct->data.current_set == nullptr) return;
-  utl::type::Set* set = vld_struct->data.current_set;
+  dat::base::Set* set = vld_struct->data.current_set;
   //---------------------------
 
   //Set visibility just for wanted subsets
@@ -89,7 +89,7 @@ void Player::compute_visibility(){
   //---------------------------
 }
 void Player::forward_index(int index){
-  utl::type::Set* set = vld_struct->data.current_set;
+  dat::base::Set* set = vld_struct->data.current_set;
   //---------------------------
 
   if(index >= vld_struct->player.idx_end && vld_struct->player.restart){

@@ -4,7 +4,7 @@
 
 namespace dat{class Node;}
 namespace dat{class Set;}
-namespace utl::type{class Set;}
+namespace dat::base{class Set;}
 
 
 namespace dat{
@@ -25,16 +25,16 @@ public:
   //Subfunction
   void assign_UID(utl::type::Element* element);
 
-  inline utl::type::Set* get_set_main(){return set_main;}
-  inline utl::type::Set* get_set_graph(){return set_graph;}
-  inline utl::type::Set* get_set_scene(){return set_scene;}
+  inline dat::base::Set* get_set_main(){return set_main;}
+  inline dat::base::Set* get_set_graph(){return set_graph;}
+  inline dat::base::Set* get_set_scene(){return set_scene;}
 
 private:
   dat::Set* dat_set;
 
-  utl::type::Set* set_main;
-  utl::type::Set* set_graph;
-  utl::type::Set* set_scene;
+  dat::base::Set* set_main;
+  dat::base::Set* set_graph;
+  dat::base::Set* set_scene;
 };
 
 }

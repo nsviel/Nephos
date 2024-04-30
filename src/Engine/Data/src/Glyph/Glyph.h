@@ -10,9 +10,9 @@ namespace dat{class Node;}
 namespace cam{class Control;}
 namespace cam{class Entity;}
 namespace dat::base{class Entity;}
-namespace utl::type{class Set;}
+namespace dat::base{class Set;}
 namespace dat::base{class Glyph;}
-namespace utl::entity{class Object;}
+namespace dat::base{class Object;}
 
 
 namespace dat{
@@ -30,11 +30,11 @@ public:
 
   //Glyph init
   void create_glyph_world();
-  void create_glyph_object(utl::entity::Object* object);
+  void create_glyph_object(dat::base::Object* object);
   void create_glyph_camera(cam::Entity* camera);
 
   //Glyph creation
-  void create_glyph(utl::type::Set* set, dat::base::Glyph* glyph);
+  void create_glyph(dat::base::Set* set, dat::base::Glyph* glyph);
   void create_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph);
 
 private:

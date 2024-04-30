@@ -31,7 +31,7 @@ void Entity::init_entity(dat::base::Entity* entity){
   //---------------------------
 
   //If object; create dedicated glyphs
-  if(utl::entity::Object* object = dynamic_cast<utl::entity::Object*>(entity)){
+  if(dat::base::Object* object = dynamic_cast<dat::base::Object*>(entity)){
     dat_glyph->create_glyph_object(object);
   }
 
