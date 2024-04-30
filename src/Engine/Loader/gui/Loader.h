@@ -11,7 +11,6 @@ namespace ldr{class Item;}
 namespace ldr{class Bookmark;}
 namespace ldr{class Format;}
 namespace dat{class Set;}
-namespace eng::loader{class Item;}
 namespace ope{class Transformation;}
 namespace ope{class Operation;}
 namespace dat::base{class Entity;}

@@ -31,7 +31,7 @@ Loader::~Loader(){
 }
 
 //Main functions
-utl::type::Data* Loader::load_data(string path){
+utl::type::Data* Loader::load_data(std::string path){
   dat::base::Set* set = nullptr;
   //---------------------------
 
@@ -115,7 +115,7 @@ bool Loader::check_file_path(std::string path){
   }
 
   //Check file format
-  string format = utl::path::get_format_from_path(path);
+  std::string format = utl::path::get_format_from_path(path);
   if(!ldr_format->is_format_supported(format)){
     cout<<"[error] '"<<format<<"' file format not supported"<<endl;
     ldr_format->display_supported_format();

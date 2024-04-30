@@ -26,7 +26,7 @@ void Bookmark::init(){
 
   //Read existing bookmarks
   utl::file::check_or_create(path_bookmark_file);
-  vector<string> vec_path = utl::file::read_vec_path(path_bookmark_file);
+  vector<std::string> vec_path = utl::file::read_vec_path(path_bookmark_file);
   for(int i=0; i<vec_path.size(); i++){
     this->add_abs_path(vec_path[i]);
   }
@@ -35,7 +35,7 @@ void Bookmark::init(){
 }
 
 //Item management
-void Bookmark::add_abs_path(string path){
+void Bookmark::add_abs_path(std::string path){
   if(!utl::file::is_exist_silent(path)) return;
   //---------------------------
 
@@ -52,7 +52,7 @@ void Bookmark::add_abs_path(string path){
 
   //---------------------------
 }
-void Bookmark::add_relative_path(string path){
+void Bookmark::add_relative_path(std::string path){
   if(!utl::file::is_exist_silent(path)) return;
   //---------------------------
 
@@ -68,7 +68,7 @@ void Bookmark::add_relative_path(string path){
 
   //---------------------------
 }
-void Bookmark::remove_path(string path){
+void Bookmark::remove_path(std::string path){
   //---------------------------
 
   auto it = std::find_if(list_bookmark.begin(), list_bookmark.end(), [&](const ldr::Item& item) { return item.path == path; });
@@ -83,7 +83,7 @@ void Bookmark::remove_path(string path){
 void Bookmark::save_on_file(){
   //---------------------------
 
-  vector<string> vec_path;
+  vector<std::string> vec_path;
   for(int i=0; i<list_bookmark.size(); i++){
     ldr::Item& item = *next(list_bookmark.begin(), i);
     if(item.is_supressible){
@@ -95,7 +95,7 @@ void Bookmark::save_on_file(){
 
   //---------------------------
 }
-bool Bookmark::is_path_bookmarked(string path){
+bool Bookmark::is_path_bookmarked(std::string path){
   //---------------------------
 
   for(int i=0; i<list_bookmark.size(); i++){

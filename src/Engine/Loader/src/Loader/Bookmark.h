@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
+#include <list>
 
-namespace eng::loader{class Item;}
 namespace ldr{class Node;}
 namespace ldr{class Item;}
 
@@ -21,20 +21,20 @@ public:
   void init();
 
   //Item management
-  void add_abs_path(string path);
-  void add_relative_path(string path);
-  void remove_path(string path);
+  void add_abs_path(std::string path);
+  void add_relative_path(std::string path);
+  void remove_path(std::string path);
 
   //Subfunction
-  bool is_path_bookmarked(string path);
+  bool is_path_bookmarked(std::string path);
   void sort_list_bookmark();
   void save_on_file();
 
-  inline list<ldr::Item> get_list_bookmark(){return list_bookmark;}
+  inline std::list<ldr::Item> get_list_bookmark(){return list_bookmark;}
 
 private:
-  list<ldr::Item> list_bookmark;
-  string path_bookmark_file;
+  std::list<ldr::Item> list_bookmark;
+  std::string path_bookmark_file;
 };
 
 }

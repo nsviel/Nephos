@@ -22,7 +22,6 @@ Format::Format(ldr::Node* node_loader){
   this->insert_importer(new format::pts::Importer());
   this->insert_importer(new format::ptx::Importer());
   this->insert_importer(new format::xyz::Importer());
-
   this->insert_exporter(new format::ply::Exporter());
 
   //---------------------------

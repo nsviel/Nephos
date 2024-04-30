@@ -27,7 +27,7 @@ public:
   void clean();
   void gui();
   void reset();
-string name = "ok";
+
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
