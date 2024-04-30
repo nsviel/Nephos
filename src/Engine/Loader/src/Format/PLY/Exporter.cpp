@@ -15,7 +15,7 @@ Exporter::~Exporter(){}
 
 //Main exporter functions
 void Exporter::export_ascii(utl::type::Data* data, std::string path){
-  string format = "ascii";
+  std::string format = "ascii";
   //---------------------------
 
   std::ofstream file(path);
@@ -28,10 +28,10 @@ void Exporter::export_ascii(utl::type::Data* data, std::string path){
   //---------------------------
 }
 void Exporter::export_binary(utl::type::Data* data, utl::type::Pose* pose, std::string path){
-  string format = "binary_little_endian";
+  std::string format = "binary_little_endian";
   //---------------------------
 
-  std::ofstream file(path, ios::binary);
+  std::ofstream file(path, std::ios::binary);
 
   this->write_header(file, format, data);
   this->write_data_binary(file, data, pose);
@@ -48,22 +48,22 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::type::
   this->vec_property.clear();
 
   //Write header
-  file << "ply" << endl;
-  file << "format " + format + " 1.0" << endl;
-  file << "element vertex " << data->size << endl;
+  file << "ply" << std::endl;
+  file << "format " + format + " 1.0" << std::endl;
+  file << "element vertex " << data->size << std::endl;
 
-  file << "property float32 x" << endl;
-  file << "property float32 y" << endl;
-  file << "property float32 z" << endl;
+  file << "property float32 x" << std::endl;
+  file << "property float32 y" << std::endl;
+  file << "property float32 z" << std::endl;
   vec_property.push_back(format::ply::XYZ);
   vec_property.push_back(format::ply::EMPTY);
   vec_property.push_back(format::ply::EMPTY);
   this->property_number = 3;
 
   if(data->rgb.size() != 0){
-    file << "property uchar red" << endl;
-    file << "property uchar green" << endl;
-    file << "property uchar blue" << endl;
+    file << "property uchar red" << std::endl;
+    file << "property uchar green" << std::endl;
+    file << "property uchar blue" << std::endl;
 
     vec_property.push_back(format::ply::RGB);
     vec_property.push_back(format::ply::EMPTY);
@@ -71,9 +71,9 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::type::
     this->property_number += 3;
   }
   if(data->Nxyz.size() != 0){
-    file << "property float32 nx" << endl;
-    file << "property float32 ny" << endl;
-    file << "property float32 nz" << endl;
+    file << "property float32 nx" << std::endl;
+    file << "property float32 ny" << std::endl;
+    file << "property float32 nz" << std::endl;
 
     vec_property.push_back(format::ply::N);
     vec_property.push_back(format::ply::EMPTY);
@@ -81,53 +81,53 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::type::
     this->property_number += 3;
   }
   if(data->Is.size() != 0){
-    file << "property float32 scalar_field" << endl;
+    file << "property float32 scalar_field" << std::endl;
 
     vec_property.push_back(format::ply::I);
     property_number++;
   }
   if(data->ts.size() != 0){
-    file << "property float32 timestamp" << endl;
+    file << "property float32 timestamp" << std::endl;
 
     vec_property.push_back(format::ply::TS);
     property_number++;
   }
-  file << "end_header" <<endl;
+  file << "end_header" <<std::endl;
 
   //---------------------------
 }
 void Exporter::write_data_ascii(std::ofstream& file, utl::type::Data* data){
   //---------------------------
 
-  vector<vec3>& xyz = data->xyz;
-  vector<vec4>& rgb = data->rgb;
-  vector<vec3>& Nxyz = data->Nxyz;
-  vector<float>& Is = data->Is;
+  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec4>& rgb = data->rgb;
+  std::vector<glm::vec3>& Nxyz = data->Nxyz;
+  std::vector<float>& Is = data->Is;
   int precision = 6;
 
   //Write data in the file
   for(int i=0; i<xyz.size(); i++){
-    file << fixed;
+    file << std::fixed;
 
     //Location
-    file << setprecision(precision) << xyz[i].x <<" "<< xyz[i].y <<" "<< xyz[i].z <<" ";
+    file << std::setprecision(precision) << xyz[i].x <<" "<< xyz[i].y <<" "<< xyz[i].z <<" ";
 
     //Color
     if(rgb.size() != 0){
-      file << setprecision(0) << rgb[i].x * 255 <<" "<< rgb[i].y * 255 <<" "<< rgb[i].z * 255 <<" ";
+      file << std::setprecision(0) << rgb[i].x * 255 <<" "<< rgb[i].y * 255 <<" "<< rgb[i].z * 255 <<" ";
     }
 
     //Normal
     if(Nxyz.size() != 0){
-      file << setprecision(precision) << Nxyz[i].x <<" "<< Nxyz[i].y <<" "<< Nxyz[i].z <<" ";
+      file << std::setprecision(precision) << Nxyz[i].x <<" "<< Nxyz[i].y <<" "<< Nxyz[i].z <<" ";
     }
 
     //Intensity
     if(Is.size() != 0){
-      file << setprecision(precision) << Is[i] << " ";
+      file << std::setprecision(precision) << Is[i] << " ";
     }
 
-    file << endl;
+    file << std::endl;
   }
 
   //---------------------------
@@ -135,11 +135,11 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::type::Data* data){
 void Exporter::write_data_binary(std::ofstream& file, utl::type::Data* data, utl::type::Pose* pose){
   //---------------------------
 
-  vector<vec3>& xyz = data->xyz;
-  vector<vec4>& rgb = data->rgb;
-  vector<vec3>& Nxyz = data->Nxyz;
-  vector<float>& Is = data->Is;
-  vector<float>& ts = data->ts;
+  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec4>& rgb = data->rgb;
+  std::vector<glm::vec3>& Nxyz = data->Nxyz;
+  std::vector<float>& Is = data->Is;
+  std::vector<float>& ts = data->ts;
   int precision = 6;
 
   //Prepare data writing by blocks
@@ -155,9 +155,9 @@ void Exporter::write_data_binary(std::ofstream& file, utl::type::Data* data, utl
       switch(vec_property[j]){
         //Location
         case format::ply::XYZ:{
-          vec4 xyzw = vec4(xyz[i], 1.0) * pose->model;
-          memcpy(block_data + offset, &xyzw, sizeof(vec3));
-          offset += sizeof(vec3);
+          glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * pose->model;
+          memcpy(block_data + offset, &xyzw, sizeof(glm::vec3));
+          offset += sizeof(glm::vec3);
           break;
         }
 
@@ -180,8 +180,8 @@ void Exporter::write_data_binary(std::ofstream& file, utl::type::Data* data, utl
 
         //Normal
         case format::ply::N:{
-          memcpy(block_data + offset, &Nxyz[i], sizeof(vec3));
-          offset += sizeof(vec3);
+          memcpy(block_data + offset, &Nxyz[i], sizeof(glm::vec3));
+          offset += sizeof(glm::vec3);
           break;
         }
 

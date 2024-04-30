@@ -1,11 +1,13 @@
 #pragma once
 
 #include <Loader/src/Base/Exporter.h>
-#include <Utility/Specific/Common.h>
 #include <Utility/Function/File/Path.h>
+#include <Utility/Base/Type/Pose.h>
 #include <glm/glm.hpp>
+#include <fstream>
 #include <string>
 #include <vector>
+#include <iomanip> //setprecision
 
 
 namespace format::ply{
@@ -38,7 +40,7 @@ public:
 
 private:
   int property_number = 3;
-  vector<int> vec_property;
+  std::vector<int> vec_property;
 };
 
 }

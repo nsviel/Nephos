@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Loader/src/Base/Importer.h>
-#include <Utility/Specific/Common.h>
 #include <Utility/Function/File/Path.h>
+#include <Utility/Function/Math/Math.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
