@@ -1,9 +1,10 @@
 #pragma once
 
+#include <Data/src/Base/Set.h>
 #include <vector>
 
 namespace dat::base{class Set;}
-namespace cam{class Entity;}
+namespace utl::type{class Element;}
 
 
 namespace dat{
@@ -11,8 +12,8 @@ namespace dat{
 struct Structure{
   //---------------------------
 
-  std::vector<cam::Entity*> vec_camera;
-  dat::base::Set* set_main;
+  dat::base::Set set_main;
+  utl::type::Element* selection = nullptr;
 
   //---------------------------
 };

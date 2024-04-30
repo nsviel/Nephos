@@ -5,6 +5,7 @@
 namespace cam{class Entity;}
 namespace dat{class Node;}
 namespace dat{class Set;}
+namespace dat{class Structure;}
 namespace dat::base{class Set;}
 namespace utl::type{class Element;}
 
@@ -26,18 +27,15 @@ public:
 
   //Subfunction
   void assign_UID(utl::type::Element* element);
-
-  inline dat::base::Set* get_set_main(){return set_main;}
-  inline dat::base::Set* get_set_graph(){return set_graph;}
-  inline dat::base::Set* get_set_scene(){return set_scene;}
+  dat::base::Set* get_set_main();
+  dat::base::Set* get_set_graph();
+  dat::base::Set* get_set_scene();
 
 private:
   dat::Set* dat_set;
+  dat::Structure* dat_struct;
 
   std::vector<cam::Entity*> vec_camera;
-  dat::base::Set* set_main;
-  dat::base::Set* set_graph;
-  dat::base::Set* set_scene;
 };
 
 }

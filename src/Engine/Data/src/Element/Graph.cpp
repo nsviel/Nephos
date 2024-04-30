@@ -10,7 +10,7 @@ namespace dat{
 Graph::Graph(dat::Node* node_data){
   //---------------------------
 
-  this->set_main = new dat::base::Set();
+  this->dat_struct = node_data->get_struct();
   this->dat_set = new dat::Set();
 
   //---------------------------
@@ -21,11 +21,11 @@ Graph::~Graph(){}
 void Graph::init(){
   //---------------------------
 
-  set_scene = dat_set->create_subset(set_main, "Scene");
+  dat::base::Set* set_scene = dat_set->create_subset(&dat_struct->set_main, "Scene");
   set_scene->is_suppressible = false;
   set_scene->is_open = false;
 
-  set_graph = dat_set->create_subset(set_main, "Graph");
+  dat::base::Set* set_graph = dat_set->create_subset(&dat_struct->set_main, "Graph");
   set_graph->is_suppressible = false;
 
   //---------------------------
@@ -33,21 +33,21 @@ void Graph::init(){
 void Graph::loop(){
   //----------------------------
 
-  dat_set->update_set(set_main);
+  dat_set->update_set(&dat_struct->set_main);
 
   //----------------------------
 }
 void Graph::reset(){
   //---------------------------
 
-  dat_set->reset_set(set_main);
+  dat_set->reset_set(&dat_struct->set_main);
 
   //---------------------------
 }
 void Graph::clean(){
   //---------------------------
 
-  dat_set->remove_entity_all(set_main);
+  dat_set->remove_entity_all(&dat_struct->set_main);
 
   //---------------------------
 }
@@ -58,10 +58,30 @@ void Graph::assign_UID(utl::type::Element* element){
   //----------------------------
 
   if(element->UID == -1){
-    element->UID = set_main->UID++;
+    element->UID = dat_struct->set_main.UID++;
   }
 
   //----------------------------
 }
+dat::base::Set* Graph::get_set_main(){
+  return &dat_struct->set_main;
+}
+dat::base::Set* Graph::get_set_graph(){
+  //----------------------------
+
+  dat::base::Set* set = dat_set->get_subset(&dat_struct->set_main, "Graph");
+
+  //----------------------------
+  return set;
+}
+dat::base::Set* Graph::get_set_scene(){
+  //----------------------------
+
+  dat::base::Set* set = dat_set->get_subset(&dat_struct->set_main, "Scene");
+
+  //----------------------------
+  return set;
+}
+
 
 }

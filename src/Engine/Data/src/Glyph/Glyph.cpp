@@ -13,7 +13,6 @@ Glyph::Glyph(dat::Node* node_data){
   //---------------------------
 
   eng::Node* node_engine = node_data->get_node_engine();
-  ldr::Node* node_loader = node_engine->get_node_loader();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
   this->node_engine = node_engine;

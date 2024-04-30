@@ -33,6 +33,7 @@ public:
   inline dat::Graph* get_database(){return dat_graph;}
   inline dat::Entity* get_entity(){return dat_entity;}
   inline dat::Glyph* get_glyph(){return dat_glyph;}
+  inline dat::Structure* get_struct(){return dat_struct;}
 
 private:
   //Dependancy
