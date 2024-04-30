@@ -26,7 +26,7 @@ enum camera_direction{
   CAMERA_DOWN = 5,
 };
 
-namespace utl::entity{class Glyph;}
+namespace dat::base{class Glyph;}
 
 
 namespace cam{

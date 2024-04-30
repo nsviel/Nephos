@@ -6,7 +6,7 @@
 
 namespace dat::glyph::object{
 
-class AABB : public utl::entity::Glyph
+class AABB : public dat::base::Glyph
 {
 public:
   AABB(eng::Node* node_engine);

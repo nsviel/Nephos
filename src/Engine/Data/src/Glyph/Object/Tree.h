@@ -6,7 +6,7 @@
 
 namespace dat::glyph::object{
 
-class Tree : public utl::entity::Glyph
+class Tree : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor

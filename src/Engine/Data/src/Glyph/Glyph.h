@@ -11,7 +11,7 @@ namespace cam{class Control;}
 namespace cam{class Entity;}
 namespace dat::base{class Entity;}
 namespace utl::type{class Set;}
-namespace utl::entity{class Glyph;}
+namespace dat::base{class Glyph;}
 namespace utl::entity{class Object;}
 
 
@@ -34,8 +34,8 @@ public:
   void create_glyph_camera(cam::Entity* camera);
 
   //Glyph creation
-  void create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph);
-  void create_glyph(dat::base::Entity* entity, utl::entity::Glyph* glyph);
+  void create_glyph(utl::type::Set* set, dat::base::Glyph* glyph);
+  void create_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph);
 
 private:
   eng::Node* node_engine;

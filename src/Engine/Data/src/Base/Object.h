@@ -17,7 +17,7 @@
 namespace vk{class Node;}
 namespace eng{class Node;}
 namespace cam{class Node;}
-namespace utl::entity{class Glyph;}
+namespace dat::base{class Glyph;}
 
 
 namespace utl::entity::object{
@@ -49,13 +49,13 @@ public:
 
   //Subfunction
   void set_visibility(bool value);
-  utl::entity::Glyph* get_glyph(int type);
+  dat::base::Glyph* get_glyph(int type);
 
 public:
   //Dependancy
   vk::Node* node_vulkan;
   cam::Node* node_camera = nullptr;
-  std::list<utl::entity::Glyph*> list_glyph;
+  std::list<dat::base::Glyph*> list_glyph;
 };
 
 }

@@ -10,7 +10,7 @@ namespace cam{class Node;}
 namespace dat{class Node;}
 
 
-namespace utl::entity{
+namespace dat::base{
 
 class Glyph : public dat::base::Entity
 {

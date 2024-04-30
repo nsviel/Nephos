@@ -22,7 +22,7 @@ void Entity::update_pose(){
   //----------------------------
 
   for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_pose(this);
   }
 

@@ -5,7 +5,7 @@
 
 namespace dat::glyph::grid{
 
-class Mesh : public utl::entity::Glyph
+class Mesh : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor

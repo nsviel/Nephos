@@ -8,7 +8,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace utl::entity{
+namespace dat::base{
 
 //Constructor / Destructor
 Glyph::Glyph(eng::Node* node_engine){

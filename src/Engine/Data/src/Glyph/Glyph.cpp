@@ -62,7 +62,7 @@ void Glyph::create_glyph_camera(cam::Entity* camera){
 }
 
 //Glyph creation
-void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
+void Glyph::create_glyph(utl::type::Set* set, dat::base::Glyph* glyph){
   //---------------------------
 
   glyph->create();
@@ -70,7 +70,7 @@ void Glyph::create_glyph(utl::type::Set* set, utl::entity::Glyph* glyph){
 
   //---------------------------
 }
-void Glyph::create_glyph(dat::base::Entity* entity, utl::entity::Glyph* glyph){
+void Glyph::create_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph){
   //---------------------------
 
   glyph->create();

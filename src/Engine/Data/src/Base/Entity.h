@@ -5,7 +5,7 @@
 #include <Utility/Base/Type/Element.h>
 #include <image/IconsFontAwesome6.h>
 
-namespace utl::entity{class Glyph;}
+namespace dat::base{class Glyph;}
 namespace utl::type{struct Set;}
 namespace utl::type{struct Pose;}
 namespace utl::type{struct Element;}
@@ -39,7 +39,7 @@ struct Entity : public utl::type::Element{
   //Data
   utl::type::Pose pose;
   utl::type::Data data;
-  std::list<utl::entity::Glyph*> list_glyph;
+  std::list<dat::base::Glyph*> list_glyph;
 
   //---------------------------
 };

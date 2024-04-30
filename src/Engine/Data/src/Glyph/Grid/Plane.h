@@ -5,7 +5,7 @@
 
 namespace dat::glyph::grid{
 
-class Plane : public utl::entity::Glyph
+class Plane : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor

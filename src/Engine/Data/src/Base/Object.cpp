@@ -73,7 +73,7 @@ void Object::update_pose(){
 
   //Update own glyph pose
   for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_pose(this);
   }
 
@@ -84,7 +84,7 @@ void Object::update_glyph(){
 
   //Update own glyph data
   for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_glyph(this);
     glyph->update_data();
   }
@@ -97,7 +97,7 @@ void Object::remove_entity(){
 
   //Remove glyph data
   for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->clear();
   }
 
@@ -132,18 +132,18 @@ void Object::set_visibility(bool value){
   data.is_visible = value;
 
   for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph = *next(list_glyph.begin(), i);
+    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->set_visibility(value);
   }
 
   //---------------------------
 }
-utl::entity::Glyph* Object::get_glyph(int type){
-  utl::entity::Glyph* glyph = nullptr;
+dat::base::Glyph* Object::get_glyph(int type){
+  dat::base::Glyph* glyph = nullptr;
   //---------------------------
 
   for(int i=0; i<list_glyph.size(); i++){
-    utl::entity::Glyph* glyph_vec = *next(list_glyph.begin(), i);
+    dat::base::Glyph* glyph_vec = *next(list_glyph.begin(), i);
     if(glyph_vec->get_type() == type){
       glyph = glyph_vec;
       break;

@@ -5,7 +5,7 @@
 
 namespace cam::glyph{
 
-class Target : public utl::entity::Glyph
+class Target : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor

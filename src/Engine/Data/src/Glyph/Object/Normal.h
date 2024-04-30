@@ -5,7 +5,7 @@
 
 namespace dat::glyph::object{
 
-class Normal : public utl::entity::Glyph
+class Normal : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor

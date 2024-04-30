@@ -6,7 +6,7 @@
 
 namespace dat::glyph::object{
 
-class Axis : public utl::entity::Glyph
+class Axis : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor

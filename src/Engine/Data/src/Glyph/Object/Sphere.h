@@ -8,7 +8,7 @@ namespace ldr{class Loader;}
 
 namespace dat::glyph::object{
 
-class Sphere : public utl::entity::Glyph
+class Sphere : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor
