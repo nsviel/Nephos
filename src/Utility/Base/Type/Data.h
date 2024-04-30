@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Base/Type/Element.h>
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
 #include <Eigen/Dense>
@@ -33,11 +34,10 @@ struct Topology{
   //---------------------------
 };
 
-struct Data{
+struct Data : public utl::type::Element{
   //---------------------------
 
   //State
-  int UID = -1;
   int nb_data_max = -1;
   int width = -1;
   int height = -1;

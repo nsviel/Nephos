@@ -22,8 +22,7 @@ public:
   void clean();
 
   //Subfunction
-  void assign_UID(utl::type::Entity* entity);
-  void assign_UID(utl::type::Data* data);
+  void assign_UID(utl::type::Element* element);
 
   inline utl::type::Set* get_set_main(){return set_main;}
   inline utl::type::Set* get_set_scene(){return set_scene;}

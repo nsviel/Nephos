@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Base/Type/Element.h>
 #include <Utility/Specific/Common.h>
 #include <image/IconsFontAwesome6.h>
 
@@ -8,7 +9,7 @@ namespace utl::type{class Entity;}
 
 namespace utl::type{
 
-struct Set : public utl::type::Selection{
+struct Set : public utl::type::Element{
   //---------------------------
 
   //Info
@@ -16,7 +17,6 @@ struct Set : public utl::type::Selection{
   std::string type = "set";
   std::string icon = ICON_FA_FOLDER;
 
-  int UID = 0;
   int nb_entity = 0;
   int nb_subset = 0;
 

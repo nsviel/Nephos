@@ -20,10 +20,10 @@ Database::~Database(){}
 void Database::init(){
   //---------------------------
 
-  set_world = dat_set->create_subset(set_main, "World");
+  set_world = dat_set->create_subset(set_main, "Scene");
   set_world->is_suppressible = false;
 
-  set_scene = dat_set->create_subset(set_main, "Scene");
+  set_scene = dat_set->create_subset(set_main, "Graph");
   set_scene->is_suppressible = false;
 
   //---------------------------
@@ -51,25 +51,12 @@ void Database::clean(){
 }
 
 //Subfunction
-void Database::assign_UID(utl::type::Entity* entity){
-  if(entity == nullptr) return;
+void Database::assign_UID(utl::type::Element* element){
+  if(element == nullptr) return;
   //----------------------------
 
-  if(entity->UID == -1){
-    entity->UID = set_main->UID++;
-  }
-
-  //----------------------------
-}
-void Database::assign_UID(utl::type::Data* data){
-  if(data == nullptr){
-    cout<<"[error] data is nullptr"<<endl;
-    return;
-  }
-  //----------------------------
-
-  if(data->UID == -1){
-    data->UID = set_main->UID++;
+  if(element->UID == -1){
+    element->UID = set_main->UID++;
   }
 
   //----------------------------

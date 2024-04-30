@@ -1,13 +1,12 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 
 namespace utl::type{
 
-struct Selection{
+struct Element{
   //---------------------------
 
+  int UID = -1;
 
   //---------------------------
 };

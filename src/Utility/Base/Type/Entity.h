@@ -1,16 +1,17 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Utility/Base/Type/Element.h>
 #include <image/IconsFontAwesome6.h>
 
 namespace utl::entity{class Glyph;}
 namespace utl::type{struct Set;}
 namespace utl::type{struct Pose;}
+namespace utl::type{struct Element;}
 
 
 namespace utl::type{
 
-struct Entity : public utl::type::Selection{
+struct Entity : public utl::type::Element{
   //---------------------------
 
   Entity(){}
@@ -24,7 +25,6 @@ struct Entity : public utl::type::Selection{
   virtual utl::type::Data* get_data(){return &data;}
 
   //Info
-  int UID = -1;
   bool is_suppressible = true;
   bool is_permanent = false;
   bool is_movable = true;
