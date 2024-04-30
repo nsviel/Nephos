@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
+#include <vector>
 
 namespace ope::fitting{class Sphere;}
 
@@ -15,7 +16,7 @@ public:
 
 public:
   //Ransac fitting
-  void ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& center, float& radius, float radius_to_find);
+  void ransac_sphere_in_cloud(std::vector<glm::vec3>& xyz, glm::vec3& center, float& radius, float radius_to_find);
 
   inline void set_num_iteration(int value){this->num_iter = value;}
   inline void set_threshold_sphere(float value){this->threshold_sphere = value;}

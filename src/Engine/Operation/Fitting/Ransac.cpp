@@ -1,6 +1,8 @@
 #include "Ransac.h"
 
 #include <Operation/Fitting/Sphere.h>
+#include <cstdlib> // for srand
+#include <ctime>   // for time and time_t
 
 
 namespace ope::fitting{
@@ -16,7 +18,7 @@ Ransac::Ransac(){
 Ransac::~Ransac(){}
 
 //Ransac fitting
-void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, float& best_radius, float radius_to_find){
+void Ransac::ransac_sphere_in_cloud(std::vector<glm::vec3>& xyz, glm::vec3& best_center, float& best_radius, float radius_to_find){
   if(xyz.size() == 0) return;
   //------------------------
 
@@ -32,7 +34,7 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
   std::vector<Sphere> vec_sphere;
   for(int iter=0; iter<num_iter; ++iter){
     // Randomly select three points
-    std::vector<vec3> sample_points;
+    std::vector<glm::vec3> sample_points;
     sample_points.reserve(50);
     for(int i=0; i<50; ++i){
       int random_index = rand() % xyz.size();
@@ -40,10 +42,10 @@ void Ransac::ransac_sphere_in_cloud(std::vector<vec3>& xyz, vec3& best_center, f
     }
 
     // Fit a sphere to the selected points
-    vec3 center;
+    glm::vec3 center;
     float radius;
     ope_sphere->find_sphere_in_cloud(sample_points, center, radius);
-    if(center == vec3(0, 0, 0) || radius == 0) continue;
+    if(center == glm::vec3(0, 0, 0) || radius == 0) continue;
 
     // Count inliers
     int num_inliers = 0;

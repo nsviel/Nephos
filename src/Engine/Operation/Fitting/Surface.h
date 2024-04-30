@@ -1,6 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Eigen/Dense>
+#include <glm/glm.hpp>
+#include <vector>
 
 
 namespace ope::fitting{
@@ -13,12 +15,12 @@ public:
 
 public:
   //Main function
-  void compute(std::vector<vec3>& data);
-  void compute(std::vector<vec3>& data, vec2& x_bound, vec2& y_bound);
+  void compute(std::vector<glm::vec3>& data);
+  void compute(std::vector<glm::vec3>& data, glm::vec2& x_bound, glm::vec2& y_bound);
   float evaluate(float x, float y);
 
   //Subfunction
-  Eigen::MatrixXf jacobian(std::vector<vec3>& data);
+  Eigen::MatrixXf jacobian(std::vector<glm::vec3>& data);
   std::vector<float> get_coefficient();
   void find_number_parameter();
   void set_coefficients(const std::vector<float>& value);

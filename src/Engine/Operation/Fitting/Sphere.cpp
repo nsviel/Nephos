@@ -1,5 +1,6 @@
 #include "Sphere.h"
 
+#include <Utility/Namespace.h>
 #include <opencv2/opencv.hpp>
 
 
@@ -14,16 +15,16 @@ Sphere::Sphere(){
 Sphere::~Sphere(){}
 
 //Sphere fitting
-void Sphere::find_sphere_in_cloud(std::vector<vec3>& xyz, vec3& center, float& radius){
-  vec3 COM = math::centroid(xyz);
+void Sphere::find_sphere_in_cloud(std::vector<glm::vec3>& xyz, glm::vec3& center, float& radius){
+  glm::vec3 COM = math::centroid(xyz);
   //------------------------
 
   // Compute the covariance matrix M of the Y[i] = X[i]-A and the
   // right-hand side R of the linear system M*(C-A) = R.
   float M00 = 0, M01 = 0, M02 = 0, M11 = 0, M12 = 0, M22 = 0;
-  vec3 R = {0, 0, 0};
+  glm::vec3 R = {0, 0, 0};
   for(int i=0; i<xyz.size(); i++){
-    vec3 Y = xyz[i] - COM;
+    glm::vec3 Y = xyz[i] - COM;
     float Y0Y0 = Y[0] * Y[0];
     float Y0Y1 = Y[0] * Y[1];
     float Y0Y2 = Y[0] * Y[2];
@@ -50,14 +51,14 @@ void Sphere::find_sphere_in_cloud(std::vector<vec3>& xyz, vec3& center, float& r
     float cof12 = M01 * M02 - M00 * M12;
     float cof22 = M00 * M11 - M01 * M01;
 
-    vec3 temp_center;
+    glm::vec3 temp_center;
     temp_center[0] = COM[0] + (cof00 * R[0] + cof01 * R[1] + cof02 * R[2]) / det;
     temp_center[1] = COM[1] + (cof01 * R[0] + cof11 * R[1] + cof12 * R[2]) / det;
     temp_center[2] = COM[2] + (cof02 * R[0] + cof12 * R[1] + cof22 * R[2]) / det;
 
     float rsqr = 0.0f;
     for(int i=0; i<xyz.size(); i++){
-      vec3 delta = xyz[i] - temp_center;
+      glm::vec3 delta = xyz[i] - temp_center;
       rsqr += math::dot_product(delta, delta);
     }
     float a = math::distance_from_origin(xyz[0]);
@@ -72,7 +73,7 @@ void Sphere::find_sphere_in_cloud(std::vector<vec3>& xyz, vec3& center, float& r
 
   //------------------------
 }
-void Sphere::find_sphere_in_image(utl::media::Image* image){
+void Sphere::find_circle_in_image(utl::media::Image* image){
   //------------------------
 
   // Create an OpenCV Mat object from the image data
@@ -139,7 +140,7 @@ void Sphere::find_sphere_in_image(utl::media::Image* image){
 
   //------------------------
 }
-void Sphere::find_sphere_in_image_with_canny(utl::media::Image* image){
+void Sphere::find_circle_in_image_with_canny(utl::media::Image* image){
   //------------------------
 
   // Create an OpenCV Mat object from the image data
