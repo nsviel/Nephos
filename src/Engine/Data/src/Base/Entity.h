@@ -29,7 +29,6 @@ struct Entity : public utl::type::Element{
   bool is_permanent = false;
   bool is_movable = true;
   bool is_visible = true;
-  std::string name = "";
   std::string entity_type = "base";
   std::string icon = ICON_FA_FILE;
   dat::base::Set* set_parent = nullptr;

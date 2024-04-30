@@ -16,7 +16,6 @@ struct Set : public utl::type::Element{
   //---------------------------
 
   //Info
-  std::string name;
   std::string type = "set";
   std::string icon = ICON_FA_FOLDER;
 
@@ -31,8 +30,8 @@ struct Set : public utl::type::Element{
 
   //Data
   utl::type::Pose pose;
-  dat::base::Entity* selected_entity = nullptr;
-  dat::base::Set* selected_subset = nullptr;
+  dat::base::Entity* active_entity = nullptr;
+  dat::base::Set* active_subset = nullptr;
   dat::base::Set* set_parent = nullptr;
 
   std::list<dat::base::Entity*> list_entity;

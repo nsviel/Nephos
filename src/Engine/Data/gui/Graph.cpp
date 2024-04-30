@@ -61,7 +61,7 @@ void Graph::design_panel(){
 //Subfunction
 void Graph::draw_button(){
   dat::base::Set* set_graph = dat_graph->get_set_graph();
-  dat::base::Entity* entity = set_graph->selected_entity;
+  dat::base::Entity* entity = set_graph->active_entity;
   if(entity == nullptr) return;
   //-------------------------------
 
@@ -74,7 +74,7 @@ void Graph::draw_button(){
       //sce_graph->delete_subset(set);
     }else if(set->is_locked){
       dat::base::Set* set_graph = dat_graph->get_set_graph();
-      dat_set->remove_entity(set_graph, set->selected_entity);
+      dat_set->remove_entity(set_graph, set->active_entity);
     }
   }
 
@@ -178,8 +178,8 @@ int Graph::tree_set(dat::base::Set* set){
   bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flags);
 
   //Set selection
-  if(ImGui::IsItemClicked() && set->is_selectable){
-    dat_struct->selection = set;
+  if(ImGui::IsItemClicked()){
+    dat_graph->select_element(set);
   }
 
   //Bin button
@@ -254,8 +254,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
 
   // If entity clicked
   if(ImGui::IsItemClicked()){
-    //dat_set->select_entity(set, entity);
-    dat_struct->selection = entity;
+    dat_graph->select_element(set);
   }
 
   // If entity double-clicked

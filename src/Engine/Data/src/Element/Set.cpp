@@ -70,7 +70,7 @@ void Set::add_subset(dat::base::Set* set, dat::base::Set* subset){
   set->nb_subset++;
 
   if(subset->nb_entity != 0){
-    set->selected_subset = subset;
+    set->active_subset = subset;
   }
 
   //---------------------------
@@ -85,7 +85,7 @@ dat::base::Set* Set::create_subset(dat::base::Set* set, std::string name){
   subset->is_suppressible = true;
 
   set->nb_subset++;
-  set->selected_subset = subset;
+  set->active_subset = subset;
   set->list_subset.push_back(subset);
 
   //---------------------------
@@ -148,7 +148,7 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(set->selected_entity->UID == entity->UID){
+    if(set->active_entity->UID == entity->UID){
       this->select_entity_next(set);
 
       set->list_entity.remove(entity);
@@ -196,27 +196,27 @@ void Set::select_entity_next(dat::base::Set* set){
   //----------------------------
 
   if(set->list_entity.size() == 0){
-    set->selected_entity = nullptr;
-    set->set_parent->selected_entity = nullptr;
+    set->active_entity = nullptr;
+    set->set_parent->active_entity = nullptr;
     return;
   }
 
   // Check if the current set has a selected entity
-  if(set->selected_entity != nullptr){
+  if(set->active_entity != nullptr){
     for(auto it = set->list_entity.begin(); it != set->list_entity.end(); ++it){
       dat::base::Entity* entity = *it;
 
-      if(set->selected_entity->UID == entity->UID){
+      if(set->active_entity->UID == entity->UID){
         auto next_it = std::next(it);
 
         if(next_it != set->list_entity.end()){
-          set->selected_entity = *next_it;
+          set->active_entity = *next_it;
         } else {
           // If at the end of the list, cycle back to the beginning
-          set->selected_entity = *set->list_entity.begin();
+          set->active_entity = *set->list_entity.begin();
         }
 
-        set->set_parent->selected_entity = set->selected_entity;
+        set->set_parent->active_entity = set->active_entity;
         return;
       }
     }
@@ -227,9 +227,9 @@ void Set::select_entity_next(dat::base::Set* set){
     this->select_entity_next(subset);
 
     // Check if the selected entity is in the current subset
-    if(subset->selected_entity != nullptr){
-      set->selected_entity = subset->selected_entity;
-      set->set_parent->selected_entity = set->selected_entity;
+    if(subset->active_entity != nullptr){
+      set->active_entity = subset->active_entity;
+      set->set_parent->active_entity = set->active_entity;
       return; // Stop searching if found in a subset
     }
   }
@@ -239,12 +239,12 @@ void Set::select_entity_next(dat::base::Set* set){
 void Set::select_entity(dat::base::Set* set, dat::base::Entity* entity){
   //---------------------------
 
-  set->selected_entity = entity;
+  set->active_entity = entity;
 
   // Propagate the selection to the parent sets
   dat::base::Set* current_parent = set->set_parent;
   while(current_parent != nullptr){
-    current_parent->selected_entity = entity;
+    current_parent->active_entity = entity;
     current_parent = current_parent->set_parent; // Move to the next parent set
   }
 
@@ -255,8 +255,8 @@ void Set::select_entity(dat::base::Set* set, dat::base::Entity* entity){
 
   //---------------------------
 }
-bool Set::is_selected_entity(dat::base::Set* set, dat::base::Entity* entity){
-  return entity->UID == set->selected_entity->UID;
+bool Set::is_active_entity(dat::base::Set* set, dat::base::Entity* entity){
+  return entity->UID == set->active_entity->UID;
 }
 
 //Subfunction

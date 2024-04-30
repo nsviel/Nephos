@@ -49,7 +49,7 @@ void Radiometry::run_panel(){
   //---------------------------
 }
 void Radiometry::design_panel(k4n::dev::Master* master){
-  k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->selected_entity);
+  k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->active_entity);
   //---------------------------
 
   this->matching_parameter(sensor);

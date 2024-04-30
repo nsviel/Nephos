@@ -261,7 +261,7 @@ void Master::player_close(){
   switch(mode){
     //If playback, close selected one
     case k4n::dev::PLAYBACK:{
-      dat_set->remove_entity(this, selected_entity);
+      dat_set->remove_entity(this, active_entity);
       break;
     }
     //If capture, stop all sensor threads

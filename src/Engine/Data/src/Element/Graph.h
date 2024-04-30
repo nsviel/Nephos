@@ -26,6 +26,7 @@ public:
   void clean();
 
   //Subfunction
+  void select_element(utl::type::Element* element);
   void assign_UID(utl::type::Element* element);
   utl::type::Element* get_selection();
   dat::base::Set* get_set_main();

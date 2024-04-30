@@ -56,6 +56,14 @@ void Graph::clean(){
 }
 
 //Subfunction
+void Graph::select_element(utl::type::Element* element){
+  if(element->is_selectable == false) return;
+  //----------------------------
+
+  dat_struct->selection = element;
+
+  //----------------------------
+}
 void Graph::assign_UID(utl::type::Element* element){
   if(element == nullptr) return;
   //----------------------------
