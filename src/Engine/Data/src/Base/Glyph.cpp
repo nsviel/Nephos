@@ -2,7 +2,6 @@
 
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Data/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>

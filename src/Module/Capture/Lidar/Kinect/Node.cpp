@@ -3,8 +3,6 @@
 #include <Engine/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <Capture/Namespace.h>
-#include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <image/IconsFontAwesome6.h>

@@ -1,7 +1,5 @@
 #include "Plane.h"
 
-#include <Scene/Namespace.h>
-
 
 namespace dat::glyph::grid{
 

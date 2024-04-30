@@ -3,7 +3,6 @@
 #include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Engine/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Loader/Namespace.h>
 
 

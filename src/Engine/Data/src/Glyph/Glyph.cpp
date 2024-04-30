@@ -3,7 +3,6 @@
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Data/Namespace.h>
 
 

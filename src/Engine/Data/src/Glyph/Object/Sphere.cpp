@@ -1,6 +1,5 @@
 #include "Sphere.h"
 
-#include <Scene/Namespace.h>
 #include <Data/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Operation/Namespace.h>

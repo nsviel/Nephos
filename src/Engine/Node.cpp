@@ -6,9 +6,9 @@
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Camera/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Render/Namespace.h>
 #include <Data/Namespace.h>
+#include <Scene/Namespace.h>
 #include <Loader/Namespace.h>
 
 

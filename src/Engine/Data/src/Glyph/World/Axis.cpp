@@ -1,7 +1,5 @@
 #include "Axis.h"
 
-#include <Scene/Namespace.h>
-
 
 namespace dat::glyph::world{
 

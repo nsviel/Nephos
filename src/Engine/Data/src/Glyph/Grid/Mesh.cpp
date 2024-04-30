@@ -1,7 +1,5 @@
 #include "Mesh.h"
 
-#include <Scene/Namespace.h>
-
 
 namespace dat::glyph::grid{
 

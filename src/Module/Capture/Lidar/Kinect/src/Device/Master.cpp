@@ -3,7 +3,6 @@
 #include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
-#include <Scene/Namespace.h>
 
 
 namespace k4n::dev{

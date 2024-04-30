@@ -1,7 +1,6 @@
 #include "Entity.h"
 
 #include <Data/Namespace.h>
-#include <Scene/Namespace.h>
 
 
 namespace cam{

@@ -1,6 +1,5 @@
 #include "Tree.h"
 
-#include <Scene/Namespace.h>
 #include <Data/Namespace.h>
 
 

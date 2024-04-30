@@ -1,6 +1,5 @@
 #include "Loader.h"
 
-#include <Scene/Namespace.h>
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Operation/Namespace.h>

@@ -1,8 +1,6 @@
 #include "Capture.h"
 
 #include <Velodyne/Namespace.h>
-#include <Scene/Namespace.h>
-#include <Scene/Namespace.h>
 
 
 namespace vld::main{

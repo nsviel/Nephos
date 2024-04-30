@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Radiometry/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Data/Namespace.h>
 #include <opencv2/opencv.hpp>
 

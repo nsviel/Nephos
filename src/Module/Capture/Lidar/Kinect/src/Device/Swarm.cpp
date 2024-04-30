@@ -2,9 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Kinect/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Profiler/Namespace.h>
-#include <Scene/Namespace.h>
 
 
 namespace k4n::dev{

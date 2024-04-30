@@ -1,7 +1,6 @@
 #include "Exporter.h"
 
 #include <Loader/Namespace.h>
-#include <Scene/Namespace.h>
 
 
 namespace ldr{

@@ -1,6 +1,5 @@
 #include "Axis.h"
 
-#include <Scene/Namespace.h>
 #include <Data/Namespace.h>
 #include <Camera/Namespace.h>
 
