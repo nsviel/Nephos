@@ -46,7 +46,7 @@ utl::File* Format::import_from_path(utl::Path path){
   std::string format = utl::path::get_format_from_path(path.data);
 
   for(int i=0; i<vec_importer.size(); i++){
-    utl::type::Importer* importer = vec_importer[i];
+    ldr::base::Importer* importer = vec_importer[i];
 
     if(importer->format == format){
       //Check for discrete gpu requirement
@@ -68,7 +68,7 @@ void Format::insert_from_path(utl::Path path, utl::type::Set* set){
   std::string format = utl::path::get_format_from_path(path.data);
 
   for(int i=0; i<vec_importer.size(); i++){
-    utl::type::Importer* importer = vec_importer[i];
+    ldr::base::Importer* importer = vec_importer[i];
 
     if(importer->format == format){
       importer->insert(set);
@@ -79,14 +79,14 @@ void Format::insert_from_path(utl::Path path, utl::type::Set* set){
 }
 
 //Subfunction
-void Format::insert_importer(utl::type::Importer* importer){
+void Format::insert_importer(ldr::base::Importer* importer){
   //---------------------------
 
   this->vec_importer.push_back(importer);
 
   //---------------------------
 }
-void Format::insert_exporter(utl::type::Exporter* exporter){
+void Format::insert_exporter(ldr::base::Exporter* exporter){
   //---------------------------
 
   this->vec_exporter.push_back(exporter);
@@ -97,7 +97,7 @@ bool Format::is_format_supported(string format){
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){
-    utl::type::Importer* importer = vec_importer[i];
+    ldr::base::Importer* importer = vec_importer[i];
 
     if(format == importer->format){
       return true;
@@ -112,7 +112,7 @@ void Format::display_supported_format(){
 
   cout<<"Supported file formats:"<<endl;
   for(int i=0; i<vec_importer.size(); i++){
-    utl::type::Importer* importer = vec_importer[i];
+    ldr::base::Importer* importer = vec_importer[i];
     cout<<"o "<<importer->format<<endl;
   }
 

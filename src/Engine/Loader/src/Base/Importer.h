@@ -8,7 +8,7 @@
 namespace utl::entity{class Object;}
 
 
-namespace utl::type{
+namespace ldr::base{
 
 struct Importer{
   //---------------------------

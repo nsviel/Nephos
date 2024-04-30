@@ -10,7 +10,7 @@ namespace k4n::dev{class Swarm;}
 
 namespace k4n{
 
-class Importer : public utl::type::Importer
+class Importer : public ldr::base::Importer
 {
 public:
   //Constructor / Destructor

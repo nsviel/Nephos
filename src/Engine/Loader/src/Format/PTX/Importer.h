@@ -31,7 +31,7 @@ struct PTXCloud{
 };
 
 
-class Importer : public utl::type::Importer
+class Importer : public ldr::base::Importer
 {
 public:
   //Constructor / Destructor
