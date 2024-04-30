@@ -14,7 +14,7 @@ Arcball::Arcball(cam::Node* node_camera){
 
   this->vk_window = node_vulkan->get_vk_window();
 
-  this->origin = vec3(0, 0, 0);
+  this->origin = glm::vec3(0, 0, 0);
 
   //---------------------------
 }
@@ -24,42 +24,42 @@ Arcball::~Arcball(){}
 void Arcball::camera_forward(cam::Entity* camera, float speed){
   //---------------------------
 
-  this->displace_camera_COM(camera, vec3(0, speed, 0));
+  this->displace_camera_COM(camera, glm::vec3(0, speed, 0));
 
   //---------------------------
 }
 void Arcball::camera_backward(cam::Entity* camera, float speed){
   //---------------------------
 
-  this->displace_camera_COM(camera, vec3(0, -speed, 0));
+  this->displace_camera_COM(camera, glm::vec3(0, -speed, 0));
 
   //---------------------------
 }
 void Arcball::camera_right(cam::Entity* camera, float speed){
   //---------------------------
 
-  this->displace_camera_COM(camera, vec3(speed, 0, 0));
+  this->displace_camera_COM(camera, glm::vec3(speed, 0, 0));
 
   //---------------------------
 }
 void Arcball::camera_left(cam::Entity* camera, float speed){
   //---------------------------
 
-  this->displace_camera_COM(camera, vec3(-speed, 0, 0));
+  this->displace_camera_COM(camera, glm::vec3(-speed, 0, 0));
 
   //---------------------------
 }
 void Arcball::camera_up(cam::Entity* camera, float speed){
   //---------------------------
 
-  this->displace_camera_COM(camera, vec3(0, 0, speed));
+  this->displace_camera_COM(camera, glm::vec3(0, 0, speed));
 
   //---------------------------
 }
 void Arcball::camera_down(cam::Entity* camera, float speed){
   //---------------------------
 
-  this->displace_camera_COM(camera, vec3(0, 0, -speed));
+  this->displace_camera_COM(camera, glm::vec3(0, 0, -speed));
 
   //---------------------------
 }
@@ -99,8 +99,8 @@ void Arcball::camera_zoom(cam::Entity* camera, float speed){
   //---------------------------
 
   // Perspective zoom
-  vec3 cam_forwardMove = camera->cam_F * speed * camera->velocity * vec3(0.1, 0.1, 0.1);
-  vec3 new_pose = camera->cam_P + cam_forwardMove;
+  glm::vec3 cam_forwardMove = camera->cam_F * speed * camera->velocity * glm::vec3(0.1, 0.1, 0.1);
+  glm::vec3 new_pose = camera->cam_P + cam_forwardMove;
 
   // Define the minimum distance to the COM to avoid getting too close
   float minDistanceToCOM = 0.1;
@@ -141,7 +141,7 @@ void Arcball::rotate_by_angle(cam::Entity* camera, vec2 angle){
 
   // step 2: Rotate the camera around the pivot point on the first axis.
   mat4x4 Rz(1.0f);
-  Rz = glm::rotate(Rz, angle.x, vec3(0, 0, 1));
+  Rz = glm::rotate(Rz, angle.x, glm::vec3(0, 0, 1));
   cam_P = (Rz * (cam_P - cam_COM)) + cam_COM;
   camera->cam_R = Rz * cam_R;
 
@@ -159,25 +159,25 @@ void Arcball::rotate_by_angle(cam::Entity* camera, vec2 angle){
 
   //---------------------------
 }
-void Arcball::displace_camera_COM(cam::Entity* camera, const vec3& displacement){
+void Arcball::displace_camera_COM(cam::Entity* camera, const glm::vec3& displacement){
   //---------------------------
 
   // Extract the camera's forward, right, and up vectors
-  vec3 forward = normalize(camera->cam_F);
-  vec3 right = normalize(camera->cam_R);
-  vec3 up = normalize(camera->cam_U);
+  glm::vec3 forward = normalize(camera->cam_F);
+  glm::vec3 right = normalize(camera->cam_R);
+  glm::vec3 up = normalize(camera->cam_U);
 
   // Displace camera COM
-  vec3 local_displacement = vec3(0);
+  glm::vec3 local_displacement = glm::vec3(0);
   local_displacement += displacement.y * forward;
   local_displacement += displacement.x * right;
-  local_displacement += displacement.z * vec3(0.0f, 0.0f, 1.0f);
+  local_displacement += displacement.z * glm::vec3(0.0f, 0.0f, 1.0f);
 
   // Keep the z position constant
   if(displacement.z == 0){
     local_displacement.z = 0.0f;
   }
-  vec3 COM_new = camera->cam_COM + local_displacement;
+  glm::vec3 COM_new = camera->cam_COM + local_displacement;
 
   // Displace camera accordingly
   if(COM_new.z >= 0){

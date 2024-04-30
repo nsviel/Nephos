@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
 
 namespace cam{class Node;}
 namespace cam{class Control;}
@@ -26,7 +27,6 @@ public:
   void cam_definedPosition();
 
 private:
-  Panel* gui_render_panel;
   cam::Control* cam_control;
   cam::Manager* cam_manager;
 

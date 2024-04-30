@@ -4,7 +4,6 @@
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Capture/Namespace.h>
 
 
 namespace ldr{

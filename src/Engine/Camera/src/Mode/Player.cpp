@@ -96,14 +96,14 @@ void Player::camera_zoom(cam::Entity* camera, float speed){
   //---------------------------
 
   //Perspective zoom
-  vec3 cam_forwardMove = camera->cam_F * speed * camera->velocity * vec3(0.1,0.1,0.1);
+  glm::vec3 cam_forwardMove = camera->cam_F * speed * camera->velocity * glm::vec3(0.1,0.1,0.1);
   camera->cam_P += cam_forwardMove;
 
   //---------------------------
 }
 
 //Camera matrix
-mat4 Player::compute_camera_view(cam::Entity* camera){
+glm::mat4 Player::compute_camera_view(cam::Entity* camera){
   glm::mat4 cam_view = glm::mat4(1.0f);
   if(camera == nullptr) return cam_view;
   //---------------------------
@@ -112,10 +112,10 @@ mat4 Player::compute_camera_view(cam::Entity* camera){
   float elevation = camera->angle_elevation;
 
   //Compute camera
-  camera->cam_R = normalize(vec3(cos(azimuth - M_PI/2.0f), sin(azimuth - M_PI/2.0f), 0));
-  camera->cam_F = vec3(cos(elevation) * cos(azimuth), cos(elevation) * sin(azimuth), sin(elevation));
+  camera->cam_R = normalize(glm::vec3(cos(azimuth - M_PI/2.0f), sin(azimuth - M_PI/2.0f), 0));
+  camera->cam_F = glm::vec3(cos(elevation) * cos(azimuth), cos(elevation) * sin(azimuth), sin(elevation));
   camera->cam_U = normalize(cross(camera->cam_R, camera->cam_F));
-  vec3 cam_target = camera->cam_P + camera->cam_F;
+  glm::vec3 cam_target = camera->cam_P + camera->cam_F;
 
   //Compute view matrix
   cam_view = lookAt(camera->cam_P, cam_target, camera->cam_U);

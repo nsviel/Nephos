@@ -11,7 +11,7 @@ Target::Target(eng::Node* node_engine) : Glyph(node_engine){
 
   this->name = "cam::target";
   this->is_permanent = true;
-  this->color = vec4(1.0f, 1.0f, 1.0f, 0.5f);
+  this->color = glm::vec4(1.0f, 1.0f, 1.0f, 0.5f);
   this->scale = 0.025;
 
   //---------------------------
@@ -26,7 +26,7 @@ void Target::create(){
   data.width = 2;
   data.is_visible = true;
   data.topology.type = utl::topology::LINE;
-  data.unicolor = vec4(1, 1, 1, 0.2f);
+  data.unicolor = glm::vec4(1, 1, 1, 0.2f);
 
   this->construct();
   this->init();
@@ -55,22 +55,22 @@ void Target::update_pose(dat::base::Entity* entity){
 
 //Subfunction
 void Target::construct(){
-  vector<vec3>& xyz = data.xyz;
-  vector<vec4>& rgb = data.rgb;
+  std::vector<glm::vec3>& xyz = data.xyz;
+  std::vector<glm::vec4>& rgb = data.rgb;
   //---------------------------
 
   xyz.clear();
   rgb.clear();
 
   //X axis
-  xyz.push_back(vec3(-1*scale, 0, 0));
-  xyz.push_back(vec3(1*scale, 0, 0));
+  xyz.push_back(glm::vec3(-1*scale, 0, 0));
+  xyz.push_back(glm::vec3(1*scale, 0, 0));
   rgb.push_back(color);
   rgb.push_back(color);
 
   //Y axis
-  xyz.push_back(vec3(0, -1*scale, 0));
-  xyz.push_back(vec3(0, 1*scale, 0));
+  xyz.push_back(glm::vec3(0, -1*scale, 0));
+  xyz.push_back(glm::vec3(0, 1*scale, 0));
   rgb.push_back(color);
   rgb.push_back(color);
 

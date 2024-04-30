@@ -1,13 +1,11 @@
 #pragma once
 
 #include <Engine/Camera/src/Mode/Base.h>
-#include <Utility/Specific/Common.h>
-#include <Utility/Element/Namespace.h>
+#include <glm/glm.hpp>
 
 namespace cam{class Node;}
-namespace cam::mode{class Base;}
-namespace vk::window{class GLFW;}
 namespace cam{class Entity;}
+namespace vk::window{class GLFW;}
 
 
 namespace cam::mode{
@@ -30,7 +28,7 @@ public:
   void camera_zoom(cam::Entity* camera, float speed);
 
   //Camera matrix
-  mat4 compute_camera_view(cam::Entity* camera);
+  glm::mat4 compute_camera_view(cam::Entity* camera);
 
 private:
   vk::window::GLFW* vk_window;

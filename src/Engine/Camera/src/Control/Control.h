@@ -1,12 +1,13 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-#include <Utility/Element/Namespace.h>
+#include <glm/glm.hpp>
+#include <vector>
 
 namespace cam{class Node;}
 namespace cam{class Projection;}
 namespace cam::mode{class Base;}
 namespace cam{class Entity;}
+namespace utl::type{class Pose;}
 
 
 namespace cam{
@@ -25,15 +26,15 @@ public:
   void control_zoom(float value);
 
   //Camera matrix
-  mat4 compute_camera_view();
-  mat4 compute_camera_proj();
-  mat4 compute_camera_mvp();
+  glm::mat4 compute_camera_view();
+  glm::mat4 compute_camera_proj();
+  glm::mat4 compute_camera_mvp();
   void compute_camera_mvp(utl::type::Pose* pose);
-  mat4 compute_camera_pose();
+  glm::mat4 compute_camera_pose();
 
   //Camera parameter
   void set_camera(cam::Entity* camera);
-  void set_camera_COM(vec3 value);
+  void set_camera_COM(glm::vec3 value);
   void set_camera_mode(cam::Entity* camera);
   void set_camera_proj(cam::Entity* camera, int projection);
   void set_next_camera_mode();
@@ -41,7 +42,7 @@ public:
 private:
   cam::Projection* cam_proj;
 
-  vector<cam::mode::Base*> vec_mode;
+  std::vector<cam::mode::Base*> vec_mode;
   cam::mode::Base* active_mode;
   cam::Entity* camera = nullptr;
 };

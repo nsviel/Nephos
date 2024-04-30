@@ -21,7 +21,7 @@ Control::Control(cam::Node* node_camera){
 Control::~Control(){}
 
 //Main function
-void Control::run_control(vec2 center){
+void Control::run_control(glm::vec2 center){
   //---------------------------
 
   this->control_keyboard_camMove();
@@ -79,7 +79,7 @@ void Control::control_keyboard_camMove(){
 
   //---------------------------
 }
-void Control::control_mouse(vec2 center){
+void Control::control_mouse(glm::vec2 center){
   cam::Entity* camera = cam_manager->get_current_camera();
   //----------------------------
 
@@ -105,7 +105,7 @@ void Control::control_mouse_wheel(){
 }
 
 //Subfunction
-void Control::enable_camera_view(vec2 center){
+void Control::enable_camera_view(glm::vec2 center){
   cam::Entity* camera = cam_manager->get_current_camera();
   //----------------------------
 

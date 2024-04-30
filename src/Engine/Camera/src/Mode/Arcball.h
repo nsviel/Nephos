@@ -1,13 +1,11 @@
 #pragma once
 
 #include <Engine/Camera/src/Mode/Base.h>
-#include <Utility/Specific/Common.h>
-#include <Utility/Element/Namespace.h>
+#include <glm/glm.hpp>
 
 namespace cam{class Node;}
-namespace cam::mode{class Base;}
-namespace vk::window{class GLFW;}
 namespace cam{class Entity;}
+namespace vk::window{class GLFW;}
 
 
 namespace cam::mode{
@@ -35,12 +33,12 @@ public:
 
   //Subfunction
   void rotate_by_angle(cam::Entity* camera, vec2 angle);
-  void displace_camera_COM(cam::Entity* camera, const vec3& displacement);
+  void displace_camera_COM(cam::Entity* camera, const glm::vec3& displacement);
 
 private:
   vk::window::GLFW* vk_window;
 
-  vec3 origin;
+  glm::vec3 origin;
 };
 
 }

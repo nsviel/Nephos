@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
+#include <vector>
 
 namespace dat{class Node;}
 namespace dat{class Set;}
@@ -28,7 +29,7 @@ private:
   dat::Node* node_data;
 
   dat::Set* dat_set;
-  vector<cam::Entity*> vec_camera;
+  std::vector<cam::Entity*> vec_camera;
   cam::Entity* current_camera;
   int camera_ID;
 };

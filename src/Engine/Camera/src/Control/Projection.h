@@ -1,7 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-#include <Utility/Element/Namespace.h>
+#include <glm/glm.hpp>
 
 namespace vk::window{class GLFW;}
 namespace cam{class Node;}
@@ -18,8 +17,8 @@ public:
 
 public:
   //Main function
-  mat4 compute_proj_perspective(cam::Entity* camera);
-  mat4 compute_proj_ortho(cam::Entity* camera);
+  glm::mat4 compute_proj_perspective(cam::Entity* camera);
+  glm::mat4 compute_proj_ortho(cam::Entity* camera);
 
   //Subfunction
   void ortho_zoom(cam::Entity* camera, float value);

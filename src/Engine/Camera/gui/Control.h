@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
 
 namespace cam{class Node;}
 namespace cam{class Control;}
@@ -19,15 +19,15 @@ public:
 
 public:
   //Main function
-  void run_control(vec2 center);
+  void run_control(glm::vec2 center);
 
   //Control
   void control_keyboard_camMove();
-  void control_mouse(vec2 center);
+  void control_mouse(glm::vec2 center);
   void control_mouse_wheel();
 
   //Subfunction
-  void enable_camera_view(vec2 center);
+  void enable_camera_view(glm::vec2 center);
   void disable_camera_view();
 
 private:
@@ -35,7 +35,7 @@ private:
   cam::Control* cam_control;
   cam::Manager* cam_manager;
 
-  vec2 cursor_pose = vec2(0, 0);
+  glm::vec2 cursor_pose = glm::vec2(0, 0);
 };
 
 }

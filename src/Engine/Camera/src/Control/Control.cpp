@@ -94,8 +94,8 @@ void Control::control_wheel(float value){
 }
 
 //Camera matrix
-mat4 Control::compute_camera_view(){
-  mat4 cam_view;
+glm::mat4 Control::compute_camera_view(){
+  glm::mat4 cam_view;
   //---------------------------
 
   cam_view = active_mode->compute_camera_view(camera);
@@ -103,7 +103,7 @@ mat4 Control::compute_camera_view(){
   //---------------------------
   return cam_view;
 }
-mat4 Control::compute_camera_proj(){
+glm::mat4 Control::compute_camera_proj(){
   glm::mat4 projection = glm::mat4(1.0f);
   if(camera == nullptr) return projection;
   //---------------------------
@@ -122,14 +122,14 @@ mat4 Control::compute_camera_proj(){
   //---------------------------
   return projection;
 }
-mat4 Control::compute_camera_mvp(){
+glm::mat4 Control::compute_camera_mvp(){
   //---------------------------
 
-  mat4 cam_modl = mat4(1);
-  mat4 cam_view = compute_camera_view();
-  mat4 cam_proj = compute_camera_proj();
+  glm::mat4 cam_modl = glm::mat4(1);
+  glm::mat4 cam_view = compute_camera_view();
+  glm::mat4 cam_proj = compute_camera_proj();
 
-  mat4 mvpMatrix = cam_proj * cam_view * cam_modl;
+  glm::mat4 mvpMatrix = cam_proj * cam_view * cam_modl;
 
   //---------------------------
   return mvpMatrix;
@@ -138,22 +138,22 @@ void Control::compute_camera_mvp(utl::type::Pose* pose){
   if(pose == nullptr) return;
   //---------------------------
 
-  mat4 cam_modl = glm::transpose(pose->model);
-  mat4 cam_view = compute_camera_view();
-  mat4 cam_proj = compute_camera_proj();
+  glm::mat4 cam_modl = glm::transpose(pose->model);
+  glm::mat4 cam_view = compute_camera_view();
+  glm::mat4 cam_proj = compute_camera_proj();
 
   pose->mvp = cam_proj * cam_view * cam_modl;
 
   //---------------------------
 }
-mat4 Control::compute_camera_pose(){
+glm::mat4 Control::compute_camera_pose(){
   //---------------------------
 
-  vec3 zaxis = normalize(camera->cam_F);
-  vec3 xaxis = normalize(cross(camera->cam_U, zaxis));
-  vec3 yaxis = cross(zaxis, xaxis);
+  glm::vec3 zaxis = normalize(camera->cam_F);
+  glm::vec3 xaxis = normalize(cross(camera->cam_U, zaxis));
+  glm::vec3 yaxis = cross(zaxis, xaxis);
 
-  mat4 absPose(
+  glm::mat4 absPose(
     xaxis[0], yaxis[0], zaxis[0], camera->cam_P[0],
     xaxis[1], yaxis[1], zaxis[1], camera->cam_P[1],
     xaxis[2], yaxis[2], zaxis[2], camera->cam_P[2],
@@ -172,11 +172,11 @@ void Control::set_camera(cam::Entity* camera){
 
   //---------------------------
 }
-void Control::set_camera_COM(vec3 value){
+void Control::set_camera_COM(glm::vec3 value){
   //---------------------------
 
   // Calculate the displacement vector
-  vec3 displacement = value - camera->cam_COM;
+  glm::vec3 displacement = value - camera->cam_COM;
 
   // Update the camera position (cam_P) to maintain the same relative position
   camera->cam_P += displacement;
