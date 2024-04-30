@@ -20,7 +20,7 @@ public:
   void construct(int nb_cell);
 
 private:
-  vec4 color;
+  glm::vec4 color;
 };
 
 }

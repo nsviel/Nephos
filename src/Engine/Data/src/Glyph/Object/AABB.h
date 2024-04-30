@@ -18,10 +18,10 @@ public:
   void update_glyph(utl::type::Pose* pose);
 
   //Subfunction
-  vector<vec3> build_box(vec3 min, vec3 max);
+  std::vector<glm::vec3> build_box(glm::vec3 min, glm::vec3 max);
 
 private:
-  vec4 color;
+  glm::vec4 color;
 };
 
 }

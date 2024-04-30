@@ -13,7 +13,6 @@ namespace dat::gui{
 Graph::Graph(dat::Node* node_data, bool* show_window){
   //---------------------------
 
-  this->node_engine = node_data->get_node_engine();
   this->dat_database = node_data->get_database();
   this->dat_set = new dat::Set();
   this->rnd_set = new dat::gui::Set(&show_panel_set);
@@ -88,14 +87,6 @@ void Graph::draw_button(){
   ImGui::SameLine();
   if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
     ope_operation->make_rotation_X_90d(set, 1);
-  }
-
-  //Camera mode
-  ImGui::SameLine();
-  if(ImGui::Button(ICON_FA_CAMERA "##camera123")){
-    cam::Node* node_camera = node_engine->get_node_camera();
-    this->cam_control = node_camera->get_control();
-    cam_control->set_next_camera_mode();
   }
 
   ImGui::PopStyleVar();
@@ -177,7 +168,7 @@ int Graph::tree_set(dat::base::Set* set) {
   ImGuiTreeNodeFlags flag_node;
   flag_node |= ImGuiTreeNodeFlags_OpenOnArrow;
   flag_node |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
-  string name = set->icon + "   " + set->name;
+  std::string name = set->icon + "   " + set->name;
 
   //Set row
   ImGui::TableNextRow();
@@ -260,8 +251,8 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   flag_leaf |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
   flag_leaf |= ImGuiTreeNodeFlags_SpanFullWidth;
   flag_leaf |= (is_selected && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
-  string icon = ICON_FA_FILE_O;
-  string name = icon + "   " + entity->name;
+  std::string icon = ICON_FA_FILE_O;
+  std::string name = icon + "   " + entity->name;
 
   // Display leaf
   ImGui::TableNextRow();
@@ -282,7 +273,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   ImGui::TableNextColumn();
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
-  string tag = string(ICON_FA_XMARK) + "##" + entity->name;
+  std::string tag = std::string(ICON_FA_XMARK) + "##" + entity->name;
   if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){
     dat_set->remove_entity(set, entity);
   }

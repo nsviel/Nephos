@@ -10,7 +10,7 @@ AABB::AABB(eng::Node* node_engine) : Glyph(node_engine){
 
   this->name = "object::AABB";
   this->is_permanent = true;
-  this->color = vec4(1.0f, 1.0f, 1.0f, 0.5f);
+  this->color = glm::vec4(1.0f, 1.0f, 1.0f, 0.5f);
   this->type = dat::object::glyph::AABB;
 
   //---------------------------
@@ -38,17 +38,17 @@ void AABB::create(){
 void AABB::update_glyph(utl::type::Pose* pose){
   //---------------------------
 
-  vec3 min = pose->min;
-  vec3 max = pose->max;
+  glm::vec3 min = pose->min;
+  glm::vec3 max = pose->max;
   data.xyz = build_box(min, max);
 
   //---------------------------
 }
 
 //Subfunction
-vector<vec3> AABB::build_box(vec3 min, vec3 max){
-  vector<vec3> XYZ;
-  vec3 l1, l2;
+std::vector<glm::vec3> AABB::build_box(glm::vec3 min, glm::vec3 max){
+  std::vector<glm::vec3> XYZ;
+  glm::vec3 l1, l2;
   //---------------------------
 
   for(int i=0; i<3; i++){

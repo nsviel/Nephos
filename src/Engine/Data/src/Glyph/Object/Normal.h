@@ -26,7 +26,7 @@ public:
 
 private:
   bool visibility;
-  vec4 color;
+  glm::vec4 color;
   int width;
   int size;
 };

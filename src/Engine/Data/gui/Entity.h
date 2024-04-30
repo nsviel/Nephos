@@ -1,13 +1,14 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 namespace dat{class Node;}
 namespace dat{class Database;}
 namespace dat{class Set;}
+namespace dat::base{class Entity;}
 namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
-namespace dat::base{class Entity;}
+namespace utl::type{class Data;}
 
 
 namespace dat::gui{
@@ -48,7 +49,7 @@ private:
   dat::Set* dat_set;
 
   dat::base::Entity* entity;
-  string panel_name;
+  std::string panel_name;
   bool* panel_show;;
   int item_width;
 };

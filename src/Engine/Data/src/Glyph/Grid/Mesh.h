@@ -22,8 +22,8 @@ public:
   void construct_submesh(int nb_cell);
 
 private:
-  vec4 color_mesh;
-  vec4 color_submesh;
+  glm::vec4 color_mesh;
+  glm::vec4 color_submesh;
   int nb_subcell;
 };
 

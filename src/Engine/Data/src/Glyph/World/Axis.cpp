@@ -34,28 +34,28 @@ void Axis::create(){
 
 //Subfunction
 void Axis::construct(){
-  vector<vec3>& xyz = data.xyz;
-  vector<vec4>& rgb = data.rgb;
+  std::vector<glm::vec3>& xyz = data.xyz;
+  std::vector<glm::vec4>& rgb = data.rgb;
   float z = 0;
   //---------------------------
 
   //X axis
-  xyz.push_back(vec3(0, 0, z));
-  xyz.push_back(vec3(1, 0, z));
-  rgb.push_back(vec4(1.0f, 0.0f, 0.0f, 1.0f));
-  rgb.push_back(vec4(1.0f, 0.0f, 0.0f, 1.0f));
+  xyz.push_back(glm::vec3(0, 0, z));
+  xyz.push_back(glm::vec3(1, 0, z));
+  rgb.push_back(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+  rgb.push_back(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 
   //Y axis
-  xyz.push_back(vec3(0, 0, z));
-  xyz.push_back(vec3(0, 1, z));
-  rgb.push_back(vec4(0.0f, 1.0f, 0.0f, 1.0f));
-  rgb.push_back(vec4(0.0f, 1.0f, 0.0f, 1.0f));
+  xyz.push_back(glm::vec3(0, 0, z));
+  xyz.push_back(glm::vec3(0, 1, z));
+  rgb.push_back(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
+  rgb.push_back(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 
   //Z axis
-  xyz.push_back(vec3(0, 0, z));
-  xyz.push_back(vec3(0, 0, 1));
-  rgb.push_back(vec4(0.0f, 0.0f, 1.0f, 1.0f));
-  rgb.push_back(vec4(0.0f, 0.0f, 1.0f, 1.0f));
+  xyz.push_back(glm::vec3(0, 0, z));
+  xyz.push_back(glm::vec3(0, 0, 1));
+  rgb.push_back(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
+  rgb.push_back(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
 
   //---------------------------
 }

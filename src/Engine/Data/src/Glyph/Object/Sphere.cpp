@@ -23,7 +23,7 @@ Sphere::Sphere(eng::Node* node_engine) : Glyph(node_engine){
   this->is_suppressible = false;
   this->is_movable = false;
   this->is_permanent = true;
-  this->color = vec4(1, 0, 0, 0.5);
+  this->color = glm::vec4(1, 0, 0, 0.5);
   this->path = "../media/glyph/sphere.obj";
 
   //---------------------------
@@ -48,7 +48,7 @@ void Sphere::create(){
 void Sphere::update_pose(dat::base::Entity* entity){
   //---------------------------
 
-  if(truc != mat4(1.0f)){
+  if(truc != glm::mat4(1.0f)){
     utl::type::Pose* entity_pose = entity->get_pose();
     pose.model = truc * entity_pose->model;
 
@@ -62,23 +62,23 @@ void Sphere::reset_glyph(){
   //---------------------------
 
   data.is_visible = false;
-  pose.model = mat4(1.0f);
+  pose.model = glm::mat4(1.0f);
 
   //---------------------------
 }
 
 //Subfunction
-void Sphere::construct(vec4 color){
+void Sphere::construct(glm::vec4 color){
   //---------------------------
 
-  vector<vec4>& rgb = data.rgb;
+  std::vector<glm::vec4>& rgb = data.rgb;
   for(int j=0; j<data.xyz.size(); j++){
     rgb[j] = color;
   }
 
   //---------------------------
 }
-void Sphere::move_sphere(vec3 coordinate, float diameter){
+void Sphere::move_sphere(glm::vec3 coordinate, float diameter){
   //---------------------------
 
   //Set scale (original sphere is 1m diameter)

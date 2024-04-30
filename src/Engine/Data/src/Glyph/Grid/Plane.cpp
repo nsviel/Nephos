@@ -9,7 +9,7 @@ Plane::Plane(eng::Node* node_engine) : Glyph(node_engine){
 
   this->name = "grid::plane";
   this->is_permanent = true;
-  this->color = vec4(0.2f, 0.2f, 0.2f, 1.0f);
+  this->color = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f);
 
   //---------------------------
 }
@@ -31,8 +31,8 @@ void Plane::create(){
 
 //Subfunction
 void Plane::construct(int nb_cell){
-  vector<vec3>& xyz = data.xyz;
-  vector<vec4>& rgb = data.rgb;
+  std::vector<glm::vec3>& xyz = data.xyz;
+  std::vector<glm::vec4>& rgb = data.rgb;
   float z = -0.004;
   //---------------------------
 
@@ -40,17 +40,17 @@ void Plane::construct(int nb_cell){
   rgb.clear();
 
   //Location
-  xyz.push_back(vec3(nb_cell, nb_cell, z));
-  xyz.push_back(vec3(-nb_cell, nb_cell, z));
-  xyz.push_back(vec3(-nb_cell, -nb_cell, z));
+  xyz.push_back(glm::vec3(nb_cell, nb_cell, z));
+  xyz.push_back(glm::vec3(-nb_cell, nb_cell, z));
+  xyz.push_back(glm::vec3(-nb_cell, -nb_cell, z));
 
-  xyz.push_back(vec3(-nb_cell, -nb_cell, z));
-  xyz.push_back(vec3(nb_cell, -nb_cell, z));
-  xyz.push_back(vec3(nb_cell, nb_cell, z));
+  xyz.push_back(glm::vec3(-nb_cell, -nb_cell, z));
+  xyz.push_back(glm::vec3(nb_cell, -nb_cell, z));
+  xyz.push_back(glm::vec3(nb_cell, nb_cell, z));
 
   //Color
   for(int j=0; j<xyz.size(); j++){
-    rgb.push_back(vec4(color.x, color.y, color.z, 1.0f));
+    rgb.push_back(glm::vec4(color.x, color.y, color.z, 1.0f));
   }
 
   //---------------------------

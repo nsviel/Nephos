@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 namespace dat{class Set;}
 namespace dat::base{class Set;}
@@ -29,7 +29,7 @@ private:
   dat::Set* dat_set;
 
   dat::base::Set* set_selected;
-  string panel_name;
+  std::string panel_name;
   bool* panel_show;;
   int item_width;
 };

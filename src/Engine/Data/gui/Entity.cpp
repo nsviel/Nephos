@@ -209,7 +209,7 @@ void Entity::primitive_line(utl::type::Data* data){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
-  string nb_point = math::thousand_separator(data->size / 2);
+  std::string nb_point = math::thousand_separator(data->size / 2);
   ImGui::Text("%s", nb_point.c_str());
 
   //Line width
@@ -245,7 +245,7 @@ void Entity::primitive_point(utl::type::Data* data){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
-  string nb_point = math::thousand_separator(data->size);
+  std::string nb_point = math::thousand_separator(data->size);
   ImGui::Text("%s", nb_point.c_str());
 
   //Point size
@@ -281,7 +281,7 @@ void Entity::primitive_triangle(utl::type::Data* data){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
-  string nb_point = math::thousand_separator(data->size / 3);
+  std::string nb_point = math::thousand_separator(data->size / 3);
   ImGui::Text("%s", nb_point.c_str());
 
   //---------------------------

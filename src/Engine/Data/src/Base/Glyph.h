@@ -2,7 +2,8 @@
 
 #include <Data/src/Base/Entity.h>
 #include <Utility/Base/Type/Data.h>
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
+#include <string>
 
 namespace vk{class Node;}
 namespace eng{class Node;}
@@ -35,10 +36,10 @@ public:
   virtual void update_glyph(dat::base::Entity* entity){}
   virtual void set_visibility(bool value);
 
-  inline vec4* get_color(){return &color;}
-  inline bool is_need_update(){return need_update;}
+  inline glm::vec4* get_color(){return &color;}
   inline std::string get_name(){return name;}
   inline std::string get_path(){return path;}
+  inline bool is_need_update(){return need_update;}
   inline int get_type(){return type;}
 
 protected:
@@ -48,9 +49,9 @@ protected:
   dat::Node* node_data;
 
   //Child
-  string path = "";
+  std::string path = "";
+  glm::vec4 color = glm::vec4(1, 1, 1, 1);
   bool need_update = false;
-  vec4 color = vec4(1, 1, 1, 1);
   int type = -1;
 };
 

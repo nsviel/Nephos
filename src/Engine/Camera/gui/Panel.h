@@ -24,7 +24,7 @@ public:
   //Sub functions
   void cam_parameter();
   void cam_info();
-  void cam_definedPosition();
+  void cam_mode();
 
 private:
   cam::Control* cam_control;

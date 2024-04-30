@@ -1,17 +1,15 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
-namespace eng{class Node;}
 namespace dat{class Node;}
 namespace dat{class Database;}
 namespace dat{class Set;}
 namespace dat::gui{class Entity;}
 namespace dat::gui{class Set;}
-namespace cam{class Control;}
-namespace ope{class Operation;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
+namespace ope{class Operation;}
 
 
 namespace dat::gui{
@@ -43,15 +41,13 @@ public:
   bool show_panel_set      = false;
 
 private:
-  eng::Node* node_engine;
   dat::gui::Entity* rnd_object;
   dat::gui::Set* rnd_set;
   dat::Database* dat_database;
   dat::Set* dat_set;
-  cam::Control* cam_control;
   ope::Operation* ope_operation;
 
-  string name;
+  std::string name;
   bool* show_window;
 };
 

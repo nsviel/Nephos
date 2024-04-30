@@ -14,7 +14,7 @@ Tree::Tree(eng::Node* node_engine) : Glyph(node_engine){
   this->name = "tree";
   this->is_permanent = true;
   this->is_visible = false;
-  this->color = vec4(1, 1, 1, 0.7);
+  this->color = glm::vec4(1, 1, 1, 0.7);
   this->level = 6;
   this->type = dat::object::glyph::TREE;
 

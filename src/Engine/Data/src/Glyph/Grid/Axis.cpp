@@ -9,7 +9,7 @@ Axis::Axis(eng::Node* node_engine) : Glyph(node_engine){
 
   this->name = "grid::axis";
   this->is_permanent = true;
-  this->color = vec4(0.4f, 0.4f, 0.4f, 1.0f);
+  this->color = glm::vec4(0.4f, 0.4f, 0.4f, 1.0f);
 
   //---------------------------
 }
@@ -31,8 +31,8 @@ void Axis::create(){
 
 //Subfunction
 void Axis::construct(int nb_cell){
-  vector<vec3>& xyz = data.xyz;
-  vector<vec4>& rgb = data.rgb;
+  std::vector<glm::vec3>& xyz = data.xyz;
+  std::vector<glm::vec4>& rgb = data.rgb;
   float z = -0.001;
   //---------------------------
 
@@ -41,16 +41,16 @@ void Axis::construct(int nb_cell){
   rgb.clear();
 
   //X axis
-  vec4 rgb_x = vec4(0.4f, 0.3f, 0.3f, 1.0f);
-  xyz.push_back(vec3(-nb_cell, 0, z));
-  xyz.push_back(vec3(nb_cell, 0, z));
+  glm::vec4 rgb_x = glm::vec4(0.4f, 0.3f, 0.3f, 1.0f);
+  xyz.push_back(glm::vec3(-nb_cell, 0, z));
+  xyz.push_back(glm::vec3(nb_cell, 0, z));
   rgb.push_back(rgb_x);
   rgb.push_back(rgb_x);
 
   //Y axis
-  vec4 rgb_y = vec4(0.3f, 0.4f, 0.3f, 1.0f);
-  xyz.push_back(vec3(0, -nb_cell, z));
-  xyz.push_back(vec3(0, nb_cell, z));
+  glm::vec4 rgb_y = glm::vec4(0.3f, 0.4f, 0.3f, 1.0f);
+  xyz.push_back(glm::vec3(0, -nb_cell, z));
+  xyz.push_back(glm::vec3(0, nb_cell, z));
   rgb.push_back(rgb_y);
   rgb.push_back(rgb_y);
 

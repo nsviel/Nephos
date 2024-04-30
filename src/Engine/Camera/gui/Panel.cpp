@@ -133,5 +133,15 @@ void Panel::cam_info(){
 
   //---------------------------
 }
+void Panel::cam_mode(){
+  cam::Entity* camera = cam_manager->get_current_camera();
+  //---------------------------
+
+  if(ImGui::Button(ICON_FA_CAMERA "##camera123")){
+    cam_control->set_next_camera_mode();
+  }
+
+  //---------------------------
+}
 
 }
