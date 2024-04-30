@@ -19,6 +19,9 @@ public:
   //Main function
   void init();
 
+  //Subfunction
+  void load_entity();
+
 private:
   eng::Node* node_engine;
   ldr::Loader* ldr_loader;

@@ -1,6 +1,7 @@
 #include "Database.h"
 
 #include <Data/Namespace.h>
+#include <Camera/Namespace.h>
 
 
 namespace dat{

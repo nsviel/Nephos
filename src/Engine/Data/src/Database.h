@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+
+namespace cam{class Entity;}
 namespace dat{class Node;}
 namespace dat{class Set;}
 namespace dat::base{class Set;}
@@ -31,6 +34,7 @@ public:
 private:
   dat::Set* dat_set;
 
+  std::vector<cam::Entity*> vec_camera;
   dat::base::Set* set_main;
   dat::base::Set* set_graph;
   dat::base::Set* set_scene;

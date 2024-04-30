@@ -22,6 +22,15 @@ Init::~Init(){}
 //Main function
 void Init::init(){
   //----------------------------
+
+  this->load_entity();
+
+  //----------------------------
+}
+
+//Subfunction
+void Init::load_entity(){
+  //----------------------------
   ldr::Node* node_loader = node_engine->get_node_loader();
 
   this->ldr_loader = node_loader->get_loader();
