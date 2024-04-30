@@ -3,7 +3,8 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-namespace dat{class Node;}
+namespace dat{class Glyph;}
+namespace dat{class Graph;}
 namespace dat{class Set;}
 namespace cam{class Node;}
 namespace cam{class Entity;}
@@ -26,9 +27,10 @@ public:
   inline cam::Entity* get_current_camera(){return current_camera;}
 
 private:
-  dat::Node* node_data;
-
+  dat::Glyph* dat_glyph;
+  dat::Graph* dat_graph;
   dat::Set* dat_set;
+
   std::vector<cam::Entity*> vec_camera;
   cam::Entity* current_camera;
   int camera_ID;

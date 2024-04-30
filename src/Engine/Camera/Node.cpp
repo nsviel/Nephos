@@ -20,6 +20,7 @@ Node::Node(eng::Node* node_engine){
   this->node_engine = node_engine;
 
   //Child
+  this->cam_struct = new cam::Structure();
   this->cam_manager = new cam::Manager(this);
   this->cam_control = new cam::Control(this);
   this->gui_control = new cam::gui::Control(this);

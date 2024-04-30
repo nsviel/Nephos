@@ -11,7 +11,10 @@ namespace cam{
 Manager::Manager(cam::Node* node_camera){
   //---------------------------
 
-  this->node_data = node_camera->get_node_data();
+  dat::Node* node_data = node_camera->get_node_data();
+
+  this->dat_glyph = node_data->get_glyph();
+  this->dat_graph = node_data->get_database();
   this->dat_set = new dat::Set();
 
   this->camera_ID = 0;
@@ -23,9 +26,6 @@ Manager::~Manager(){}
 //Main function
 void Manager::create_camera(){
   //---------------------------
-
-  dat::Glyph* dat_glyph = node_data->get_glyph();
-  dat::Graph* dat_graph = node_data->get_database();
   dat::base::Set* set_main = dat_graph->get_set_main();
   dat::base::Set* set_world = dat_set->get_subset(set_main, "Scene");
 
