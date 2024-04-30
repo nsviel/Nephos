@@ -62,6 +62,11 @@ void Graph::select_element(utl::type::Element* element){
 
   dat_struct->selection = element;
 
+  //If an entity, make it active
+  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    dat_set->active_entity(entity->set_parent, entity);
+  }
+
   //----------------------------
 }
 void Graph::assign_UID(utl::type::Element* element){

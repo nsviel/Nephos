@@ -52,7 +52,7 @@ void Control::control_keyboard_oneAction(){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
       dat::base::Set* set_scene = dat_graph->get_set_graph();
-      dat_set->select_entity_next(set_scene);
+      dat_set->active_next_entity(set_scene);
       break;
     }
 

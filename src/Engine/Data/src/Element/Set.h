@@ -33,8 +33,8 @@ public:
   void insert_entity(dat::base::Set* set, dat::base::Entity* entity);
   void remove_entity(dat::base::Set* set, dat::base::Entity* entity);
   void remove_entity_all(dat::base::Set* set);
-  void select_entity_next(dat::base::Set* set);
-  void select_entity(dat::base::Set* set, dat::base::Entity* entity);
+  void active_next_entity(dat::base::Set* set);
+  void active_entity(dat::base::Set* set, dat::base::Entity* entity);
   bool is_active_entity(dat::base::Set* set, dat::base::Entity* entity);
 
   //Subfunction

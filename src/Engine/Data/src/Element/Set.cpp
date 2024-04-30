@@ -130,7 +130,7 @@ void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
   entity->set_parent = set;
   set->list_entity.push_back(entity);
   set->nb_entity++;
-  this->select_entity(set, entity);
+  this->active_entity(set, entity);
 
   //---------------------------
 }
@@ -149,7 +149,7 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(set->active_entity->UID == entity->UID){
-      this->select_entity_next(set);
+      this->active_next_entity(set);
 
       set->list_entity.remove(entity);
       set->nb_entity--;
@@ -192,7 +192,7 @@ void Set::remove_entity_all(dat::base::Set* set){
 
   //---------------------------
 }
-void Set::select_entity_next(dat::base::Set* set){
+void Set::active_next_entity(dat::base::Set* set){
   //----------------------------
 
   if(set->list_entity.size() == 0){
@@ -222,9 +222,9 @@ void Set::select_entity_next(dat::base::Set* set){
     }
   }
 
-  // Recursively call select_entity_next for each nested subset
+  // Recursively call active_next_entity for each nested subset
   for(dat::base::Set* subset : set->list_subset){
-    this->select_entity_next(subset);
+    this->active_next_entity(subset);
 
     // Check if the selected entity is in the current subset
     if(subset->active_entity != nullptr){
@@ -236,7 +236,7 @@ void Set::select_entity_next(dat::base::Set* set){
 
   //----------------------------
 }
-void Set::select_entity(dat::base::Set* set, dat::base::Entity* entity){
+void Set::active_entity(dat::base::Set* set, dat::base::Entity* entity){
   //---------------------------
 
   set->active_entity = entity;
@@ -250,7 +250,7 @@ void Set::select_entity(dat::base::Set* set, dat::base::Entity* entity){
 
   // Recursively select the entity for all subsets
   for (auto subset : set->list_subset) {
-    this->select_entity(subset, entity);
+    this->active_entity(subset, entity);
   }
 
   //---------------------------
