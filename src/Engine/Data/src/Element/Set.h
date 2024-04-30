@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
@@ -25,7 +25,7 @@ public:
   void add_subset(dat::base::Set* set, dat::base::Set* subset);
   dat::base::Set* create_subset(dat::base::Set* set, std::string name);
   dat::base::Set* get_subset(dat::base::Set* set, std::string name);
-  dat::base::Set* get_or_create_subset(dat::base::Set* set, string name);
+  dat::base::Set* get_or_create_subset(dat::base::Set* set, std::string name);
 
   //Entity function
   void insert_entity(dat::base::Set* set, dat::base::Entity* entity);

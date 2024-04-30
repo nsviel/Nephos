@@ -1,14 +1,12 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace eng{class Node;}
 namespace sce{class Node;}
+namespace cam{class Control;}
+namespace cam{class Entity;}
 namespace dat{class Database;}
 namespace dat{class Set;}
 namespace dat{class Node;}
-namespace cam{class Control;}
-namespace cam{class Entity;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Set;}
 namespace dat::base{class Glyph;}

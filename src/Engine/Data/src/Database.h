@@ -1,10 +1,9 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace dat{class Node;}
 namespace dat{class Set;}
 namespace dat::base{class Set;}
+namespace utl::type{class Element;}
 
 
 namespace dat{

@@ -1,12 +1,10 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::main{class Engine;}
-namespace dat{class Node;}
-namespace dat{class Glyph;}
 namespace eng{class Node;}
 namespace sce{class Operation;}
+namespace dat{class Node;}
+namespace dat{class Glyph;}
 namespace dat{class Database;}
 namespace dat::base{class Entity;}
 
