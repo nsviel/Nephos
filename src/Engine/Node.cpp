@@ -10,6 +10,7 @@
 #include <Data/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Loader/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace eng{
@@ -29,6 +30,7 @@ Node::Node(app::Node* node_app){
   this->node_render = new rnd::Node(this);
   this->node_loader = new ldr::Node(this);
   this->node_scene = new sce::Node(this);
+  this->node_dynamic = new dyn::Node(this);
 
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   prf::graph::Profiler* profiler = prf_manager->get_profiler_main();

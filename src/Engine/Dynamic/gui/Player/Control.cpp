@@ -1,6 +1,6 @@
 #include "Control.h"
 
-#include <GUI/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace gui::player{

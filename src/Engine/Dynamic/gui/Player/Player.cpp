@@ -1,6 +1,6 @@
 #include "Player.h"
 
-#include <GUI/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 

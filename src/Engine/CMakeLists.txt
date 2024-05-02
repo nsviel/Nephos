@@ -32,6 +32,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_MODULE
   LIBRARY_RENDERING
   LIBRARY_SCENE
+  LIBRARY_DYNAMIC
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
