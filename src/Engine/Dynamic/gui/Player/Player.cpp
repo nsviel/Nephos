@@ -14,7 +14,8 @@ Player::Player(dyn::Node* node_dynamic, bool* show_window){
   dat::Node* node_data = node_dynamic->get_node_data();
 
   this->dat_graph = node_data->get_data_graph();
-  this->player_control = new dyn::gui::Control();
+  this->gui_control = new dyn::gui::Control();
+  this->dyn_struct = new dyn::player::Structure();
 
   this->show_window = show_window;
   this->name = "Player";
@@ -43,25 +44,10 @@ void Player::run_panel(){
 }
 void Player::design_panel(utl::type::Element* element){
   //---------------------------
-/*
-  //Master player
-  this->draw_player(master);
 
-  //Device info & configuration
-  if(master != nullptr && ImGui::BeginTabBar("devices_tab##4567")){
-    this->show_master_tab(master);
+  //Button player
+  this->draw_player(dyn_struct);
 
-    //Master sensor tabs -> click = sensor selection
-    for(int i=0; i< master->list_entity.size(); i++){
-      dat::base::Entity* entity = *next(master->list_entity.begin(), i);
-
-      if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-        this->show_sensor_tab(sensor);
-      }
-    }
-    ImGui::EndTabBar();
-  }
-*/
   //---------------------------
 }
 
@@ -100,7 +86,7 @@ void Player::player_start(dyn::player::Structure* ply){
   //---------------------------
 
   //If player start / pause button is appearing, allow keyboard control
-  player_control->run_control(ply);
+  gui_control->run_control(ply);
 
   //Play button -> if paused or not playing
   if(ply->pause){

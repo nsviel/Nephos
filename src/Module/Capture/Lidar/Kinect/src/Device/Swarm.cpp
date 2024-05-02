@@ -47,7 +47,7 @@ void Swarm::create_sensor_playback(utl::media::Path path){
 
   //Sensor initialization
   sensor->init();
-  master->insert_sensor(sensor);
+  dat_set->insert_entity(master, sensor);
   master->player_update();
   dat_graph->assign_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, path.transformation);
@@ -70,7 +70,7 @@ void Swarm::create_sensor_capture(int index){
 
   //Sensor initialization
   sensor->init();
-  master->insert_sensor(sensor);
+  dat_set->insert_entity(master, sensor);
   dat_graph->assign_UID(sensor);
   k4n_transfo->apply_transformation_capture(sensor);
   sensor->run_thread_capture();

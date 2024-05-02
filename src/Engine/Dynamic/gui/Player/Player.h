@@ -32,7 +32,8 @@ public:
   void player_lock(dyn::player::Structure* ply);
 
 private:
-  dyn::gui::Control* player_control;
+  dyn::gui::Control* gui_control;
+  dyn::player::Structure* dyn_struct;
   dat::Graph* dat_graph;
 
   bool* show_window;

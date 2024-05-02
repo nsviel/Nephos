@@ -29,8 +29,7 @@ public:
 
 public:
   //Main function
-  void insert_sensor(k4n::dev::Sensor* sensor);
-  void reset();
+  void reset_set();
 
   //Master function
   void manage_color_control();

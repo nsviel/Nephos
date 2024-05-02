@@ -15,6 +15,10 @@ namespace dat::base{
 struct Set : public utl::type::Element{
   //---------------------------
 
+  Set(){}
+  virtual ~Set(){}
+  virtual void reset_set(){}
+
   //Info
   std::string type = "set";
   std::string icon = ICON_FA_FOLDER;

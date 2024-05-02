@@ -27,20 +27,7 @@ Master::Master(k4n::Node* node_k4n){
 Master::~Master(){}
 
 //Main function
-void Master::insert_sensor(k4n::dev::Sensor* sensor){
-  //---------------------------
-
-  if(sensor == nullptr) return;
-  if(sensor->profiler == nullptr){
-    cout<<"[error] sensor must be initialized before added to master"<<endl;
-    return;
-  }
-
-  dat_set->insert_entity(this, sensor);
-
-  //---------------------------
-}
-void Master::reset(){
+void Master::reset_set(){
   //---------------------------
 
   if(mode == k4n::dev::PLAYBACK){

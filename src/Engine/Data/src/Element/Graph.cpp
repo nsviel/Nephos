@@ -29,6 +29,7 @@ void Graph::init(){
   //Engine active elements
   dat::base::Set* set_graph = dat_set->create_subset(&dat_struct->set_main, "Graph");
   set_graph->is_suppressible = false;
+  dat_struct->selection = set_graph;
 
   //---------------------------
 }

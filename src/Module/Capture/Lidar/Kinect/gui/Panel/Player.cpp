@@ -17,7 +17,7 @@ Player::Player(k4n::Node* node_k4n, bool* show_window){
   this->gui_control = new k4n::gui::Control(node_k4n);
 
   this->show_window = show_window;
-  this->name = "Player";
+  this->name = "Player_kinect";
 
   //---------------------------
 }
@@ -45,7 +45,7 @@ void Player::design_panel(k4n::dev::Master* master){
   //---------------------------
 
   //Master player
-  this->draw_player(master);
+  //this->draw_player(master);
 
   //Device info & configuration
   if(master != nullptr && ImGui::BeginTabBar("devices_tab##4567")){

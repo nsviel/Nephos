@@ -387,7 +387,7 @@ void Capture::configuration_button(k4n::dev::Master* master){
   //Refresh / reset buttons
   if(ImGui::Button("Restart")){
     master->manage_configuration();
-    master->reset();
+    master->reset_set();
   }
   ImGui::SameLine();
   if(ImGui::Button("Reset to default##RGB")){
