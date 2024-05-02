@@ -16,21 +16,21 @@ Node::Node(app::Node* node_app){
   this->node_engine = node_app->get_node_engine();
   this->node_vulkan = node_app->get_node_vulkan();
 
-  this->node_tab = new gui::tab::Node(this);
+  this->gui_tab = new gui::Tab(this);
   this->gui_style = new gui::style::Config(this);
   this->gui_font = new gui::style::Font(this);
   this->gui_theme = new gui::style::Theme(this);
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
 
-  this->add_node_panel(node_tab);
+//  this->add_node_panel(gui_tab);
 
   //---------------------------
 }
 Node::~Node(){
   //---------------------------
 
-  delete node_tab;
+  delete gui_tab;
   delete gui_control;
 
   //---------------------------
@@ -52,7 +52,7 @@ void Node::loop(){
 
   vk_imgui->new_frame();
   gui_docking->docker_space_main();
-  node_tab->loop();
+  gui_tab->loop();
   gui_control->run_control();
 
   //---------------------------

@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace gui{class Node;}
-namespace gui::tab{class Node;}
+namespace gui{class Tab;}
 namespace vk::window{class GLFW;}
 
 
@@ -27,7 +27,7 @@ public:
 
 private:
   vk::window::GLFW* vk_window;
-  gui::tab::Node* node_tab;
+  gui::Tab* gui_tab;
 };
 
 }

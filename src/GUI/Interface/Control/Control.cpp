@@ -14,7 +14,7 @@ Control::Control(gui::Node* node_gui){
   vk::Node* node_vulkan = node_gui->get_node_vulkan();
 
   this->vk_window = node_vulkan->get_vk_window();
-  this->node_tab = node_gui->get_node_tab();
+  this->gui_tab = node_gui->get_gui_tab();
 
   //---------------------------
 }
@@ -42,7 +42,7 @@ void Control::control_keyboard_oneAction(){
 
     //1 key - Next main tab
     if(ImGui::IsKeyPressed(ImGuiKey_LeftAlt)){
-      node_tab->next_tab();
+      gui_tab->next_tab();
     }
   }
 

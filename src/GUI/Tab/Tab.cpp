@@ -1,20 +1,20 @@
-#include "Node.h"
+#include "Tab.h"
 
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <GUI/Namespace.h>
 
 
-namespace gui::tab{
+namespace gui{
 
 //Constructor / Destructor
-Node::Node(gui::Node* gui){
+Tab::Tab(gui::Node* node_gui){
   //---------------------------
 
-  this->node_engine = gui->get_node_engine();
-  this->gui_menu = new gui::interface::Menu(gui);
+  this->node_engine = node_gui->get_node_engine();
+  this->gui_menu = new gui::interface::Menu(node_gui);
   this->dev_menu = new gui::tab::dev::Menu();
-  this->eng_menu = new gui::tab::eng::Menu(gui);
+  this->eng_menu = new gui::tab::eng::Menu(node_gui);
 
   this->active_tab = "Engine";
   this->tab_to_open = "";
@@ -23,10 +23,10 @@ Node::Node(gui::Node* gui){
 
   //---------------------------
 }
-Node::~Node(){}
+Tab::~Tab(){}
 
 //Main function
-void Node::loop(){
+void Tab::loop(){
   //---------------------------
 
   //Draw main menu bar
@@ -42,7 +42,7 @@ void Node::loop(){
 }
 
 //Tab function
-void Node::draw_tab_menu(){
+void Tab::draw_tab_menu(){
   ImGuiTabItemFlags flag;
   //---------------------------
 
@@ -65,7 +65,7 @@ void Node::draw_tab_menu(){
 
   //---------------------------
 }
-void Node::draw_tab(){
+void Tab::draw_tab(){
   //---------------------------
 
   //Draw selected tab panels
@@ -79,7 +79,7 @@ void Node::draw_tab(){
 
   //---------------------------
 }
-void Node::next_tab(){
+void Tab::next_tab(){
   //---------------------------
 
   for(int i=0; i<vec_tab.size(); i++){

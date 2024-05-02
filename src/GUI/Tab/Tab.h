@@ -7,17 +7,16 @@ namespace eng{class Node;}
 namespace gui::interface{class Menu;}
 namespace gui::tab::dev{class Menu;}
 namespace gui::tab::eng{class Menu;}
-namespace engine = eng;
 
 
-namespace gui::tab{
+namespace gui{
 
-class Node : public utl::type::Node
+class Tab
 {
 public:
   //Constructor / Destructor
-  Node(gui::Node* gui);
-  ~Node();
+  Tab(gui::Node* node_gui);
+  ~Tab();
 
 public:
   //Main function
@@ -29,7 +28,7 @@ public:
   void next_tab();
 
 private:
-  engine::Node* node_engine;
+  eng::Node* node_engine;
   gui::interface::Menu* gui_menu;
   gui::tab::dev::Menu* dev_menu;
   gui::tab::eng::Menu* eng_menu;
