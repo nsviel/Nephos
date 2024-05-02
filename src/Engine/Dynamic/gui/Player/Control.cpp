@@ -15,7 +15,7 @@ Control::Control(){
 Control::~Control(){}
 
 //Main function
-void Control::run_control(dyn::player::Structure* player){
+void Control::run_control(dyn::Player* player){
   //---------------------------
 
   this->control_keyboard(player);
@@ -24,7 +24,7 @@ void Control::run_control(dyn::player::Structure* player){
 }
 
 //Keyboard
-void Control::control_keyboard(dyn::player::Structure* player){
+void Control::control_keyboard(dyn::Player* player){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -32,19 +32,19 @@ void Control::control_keyboard(dyn::player::Structure* player){
 
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      player->player_pause(!player->pause);
+      player->player_pause();
       break;
     }
 
     //Left arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
-      player->ts_forward = -1;
+      //player->ts_forward = -1;
       break;
     }
 
     //Right arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
-      player->ts_forward = 1;
+      //player->ts_forward = 1;
       break;
     }
   }

@@ -32,21 +32,21 @@ void Control::control_keyboard(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     k4n::dev::Master* master = k4n_swarm->get_selected_master();
 
-    //Tab key
+    //Space key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      master->player_pause(!master->player->pause);
+      master->player->player_pause();
       break;
     }
 
     //Left arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
-      master->player->ts_forward = -1;
+    //  master->player->ts_forward = -1;
       break;
     }
 
     //Right arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
-      master->player->ts_forward = 1;
+    //  master->player->ts_forward = 1;
       break;
     }
   }

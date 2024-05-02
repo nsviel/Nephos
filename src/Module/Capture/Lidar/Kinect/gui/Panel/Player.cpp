@@ -90,8 +90,11 @@ void Player::player_slider(k4n::dev::Master* master){
 
   ImVec2 width = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(width.x);
-  if(ImGui::SliderFloat("##player_slider", &master->player->ts_cur, master->player->ts_beg, master->player->ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
-    master->player_query_ts(master->player->ts_cur);
+  float& ts_cur = master->player->get_ts_cur();
+  float& ts_beg = master->player->get_ts_beg();
+  float& ts_end = master->player->get_ts_cur();
+  if(ImGui::SliderFloat("##player_slider", &ts_cur, ts_beg, ts_cur, "%.2f s", ImGuiSliderFlags_NoInput)){
+    master->player_query_ts(ts_cur);
   }
 
   //---------------------------
@@ -103,11 +106,12 @@ void Player::player_start(k4n::dev::Master* master){
   gui_control->run_control();
 
   //Play button -> if paused or not playing
-  if(master->player->pause){
+  bool& is_pause = master->player->get_state_pause();
+  if(is_pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(46, 100, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##player_start")){
-      master->player_play();
+      master->player->player_play();
     }
     ImGui::PopStyleColor(2);
   }
@@ -116,7 +120,7 @@ void Player::player_start(k4n::dev::Master* master){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(45, 100, 100, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##player_pause")){
-      master->player_pause(true);
+      master->player->player_pause();
     }
     ImGui::PopStyleColor(2);
   }
@@ -126,7 +130,8 @@ void Player::player_start(k4n::dev::Master* master){
 void Player::player_stop(k4n::dev::Master* master){
   //---------------------------
 
-  if(!master->player->pause){
+  bool& is_pause = master->player->get_state_pause();
+  if(!is_pause){
     //Player is running
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
@@ -147,18 +152,19 @@ void Player::player_stop(k4n::dev::Master* master){
 void Player::player_repeat(k4n::dev::Master* master){
   //---------------------------
 
-  if(master->player->restart){
+  bool& is_restart = master->player->get_state_restart();
+  if(is_restart){
     //Repeat activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      master->player_restart();
+      master->player->player_restart();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Repeat desactivated
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      master->player_restart();
+      master->player->player_restart();
     }
   }
 
@@ -167,18 +173,19 @@ void Player::player_repeat(k4n::dev::Master* master){
 void Player::player_record(k4n::dev::Master* master){
   //---------------------------
 
-  if(master->player->record){
+  bool is_record = master->player->get_state_record();
+  if(is_record){
     //Record activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if(ImGui::Button(ICON_FA_CIRCLE "##37")){
-      master->player_record();
+      master->player->player_record();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Record desactivated
     if(ImGui::Button(ICON_FA_CIRCLE "##37")){
-      master->player_record();
+      master->player->player_record();
     }
   }
 

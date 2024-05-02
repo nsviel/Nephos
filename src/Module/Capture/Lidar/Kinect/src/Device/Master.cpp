@@ -22,8 +22,8 @@ Master::Master(k4n::Node* node_k4n){
   this->icon = ICON_FA_USER;
   this->is_locked = true;
   this->is_suppressible = true;
-  this->player = new k4n::structure::Player();
-//say(player->name);
+  this->player = new k4n::dev::Player();
+
   //---------------------------
 }
 Master::~Master(){}
@@ -56,7 +56,7 @@ void Master::manage_color_control(){
   }
 
   //---------------------------
-  player->ts_cur = player->ts_beg;
+  player->player_query_ts(player->get_ts_beg());
 }
 void Master::manage_restart_thread(){
   if(mode == k4n::dev::PLAYBACK) return;
@@ -72,7 +72,7 @@ void Master::manage_restart_thread(){
   }
 
   //---------------------------
-  player->ts_cur = player->ts_beg;
+  player->player_query_ts(player->get_ts_beg());
 }
 void Master::manage_restart(){
   if(mode == k4n::dev::CAPTURE) return;
@@ -83,26 +83,32 @@ void Master::manage_restart(){
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       //Set playback to begin
-      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player->ts_beg));
+      float& ts_beg = player->get_ts_beg();
+      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_beg));
       sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
       sensor->param.index_cloud = 0;
     }
   }
 
   //---------------------------
-  player->ts_cur = player->ts_beg;
+  player->player_query_ts(player->get_ts_beg());
 }
 void Master::manage_forward(){
   if(mode == k4n::dev::CAPTURE) return;
   //---------------------------
 
+  float& ts_cur = player->get_ts_cur();
+  float& ts_beg = player->get_ts_beg();
+  float& ts_end = player->get_ts_end();
+  float& ts_for = player->get_ts_forward();
+
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      float ts_forward = player->ts_cur + 5 * player->ts_forward;
-      if(ts_forward > player->ts_end) ts_forward = player->ts_end;
-      if(ts_forward < player->ts_beg) ts_forward = player->ts_beg;
+      float ts_forward = ts_cur + 5 * ts_for;
+      if(ts_forward > ts_end) ts_forward = ts_end;
+      if(ts_forward < ts_beg) ts_forward = ts_beg;
 
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_forward));
       sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
@@ -151,18 +157,23 @@ void Master::player_update(){
   if(mode == k4n::dev::CAPTURE) return;
   //---------------------------
 
+  float& ts_cur = player->get_ts_cur();
+  float& ts_beg = player->get_ts_beg();
+  float& ts_end = player->get_ts_end();
+  float& ts_for = player->get_ts_forward();
+
   //Search for min max timestamp
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       k4n::utils::Operation k4n_operation;
-      float ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.path.data);
-      float ts_end = k4n_operation.find_mkv_ts_end(sensor->param.path.data);
+      float mkv_ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.path.data);
+      float mkv_ts_end = k4n_operation.find_mkv_ts_end(sensor->param.path.data);
 
-      this->player->ts_beg = (player->ts_beg != -1) ? std::max(player->ts_beg, ts_beg) : ts_beg;
-      this->player->ts_end = (player->ts_end != -1) ? std::min(player->ts_end, ts_end) : ts_end;
-      this->player->duration = player->ts_end - player->ts_beg;
+      ts_beg = (ts_beg != -1) ? std::max(ts_beg, mkv_ts_beg) : mkv_ts_beg;
+      ts_end = (ts_end != -1) ? std::min(ts_end, mkv_ts_end) : mkv_ts_end;
+      player->set_duration(ts_end - ts_beg);
       /*}else{
         this->player->ts_beg = 0;
         this->player->ts_end = 0;
@@ -182,18 +193,10 @@ void Master::player_update(){
 
   //---------------------------
 }
-void Master::player_pause(bool value){
-  //---------------------------
-
-  this->player->pause = value;
-
-  //---------------------------
-}
 void Master::player_query_ts(float value){
   if(mode == k4n::dev::CAPTURE) return;
   //---------------------------
 
-  this->player->ts_seek = value;
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
@@ -205,24 +208,12 @@ void Master::player_query_ts(float value){
 
   //---------------------------
 }
-void Master::player_play(){
-  //---------------------------
-
-  if(!player->play){
-    player->play = true;
-    player->pause = false;
-  }else{
-    player->pause = false;
-  }
-
-  //---------------------------
-}
 void Master::player_stop(){
   //---------------------------
 
   //Pause playback thread
-  player->play = false;
-  player->pause = true;
+  //player->play = false;
+  //player->pause = true;
 
   //Wait for pause
   for(int i=0; i<list_entity.size(); i++){
@@ -234,13 +225,6 @@ void Master::player_stop(){
   }
 
   this->manage_restart();
-
-  //---------------------------
-}
-void Master::player_restart(){
-  //---------------------------
-
-  player->restart = !player->restart;
 
   //---------------------------
 }
@@ -265,13 +249,6 @@ void Master::player_close(){
       break;
     }
   }
-
-  //---------------------------
-}
-void Master::player_record(){
-  //---------------------------
-
-  player->record = !player->record;
 
   //---------------------------
 }

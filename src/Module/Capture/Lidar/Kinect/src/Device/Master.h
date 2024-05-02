@@ -9,7 +9,7 @@ namespace dat{class Set;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::config{class Configuration;}
-namespace dyn::player{class Structure;}
+namespace dyn{class Player;}
 namespace k4n::structure{class Operation;}
 namespace k4n::structure{class Recorder;}
 namespace k4n::structure{class Configuration;}
@@ -42,12 +42,8 @@ public:
 
   //Player function
   void player_update();
-  void player_play();
-  void player_pause(bool value);
   void player_query_ts(float value);
   void player_stop();
-  void player_restart();
-  void player_record();
   void player_close();
 
   //Subfunction
