@@ -24,7 +24,6 @@ void Graph::init(){
   //Background permanent elements
   dat::base::Set* set_scene = dat_set->create_subset(&dat_struct->set_main, "Scene");
   set_scene->is_suppressible = false;
-  set_scene->is_selectable = false;
   set_scene->is_open = false;
 
   //Engine active elements
@@ -50,7 +49,7 @@ void Graph::reset(){
 void Graph::clean(){
   //---------------------------
 
-  dat_set->remove_entity_all(&dat_struct->set_main);
+  dat_set->remove_all_entity(&dat_struct->set_main);
 
   //---------------------------
 }

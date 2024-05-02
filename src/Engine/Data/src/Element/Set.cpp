@@ -140,7 +140,7 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
 
   //If set locked, remove all
   if(set->is_locked){
-    this->remove_entity_all(set);
+    this->remove_all_entity(set);
     return;
   }
 
@@ -168,8 +168,7 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
 
   //---------------------------
 }
-
-void Set::remove_entity_all(dat::base::Set* set){
+void Set::remove_all_entity(dat::base::Set* set){
   if(set->list_entity.size() == 0) return;
   //---------------------------
 
@@ -187,7 +186,7 @@ void Set::remove_entity_all(dat::base::Set* set){
 
   // Recursively call remove_entity_recursive for each nested set
   for(dat::base::Set* subset : set->list_subset){
-    this->remove_entity_all(subset);
+    this->remove_all_entity(subset);
   }
 
   //---------------------------
@@ -222,18 +221,6 @@ void Set::active_next_entity(dat::base::Set* set){
     }
   }
 
-  // Recursively call active_next_entity for each nested subset
-  for(dat::base::Set* subset : set->list_subset){
-    this->active_next_entity(subset);
-
-    // Check if the selected entity is in the current subset
-    if(subset->active_entity != nullptr){
-      set->active_entity = subset->active_entity;
-      set->set_parent->active_entity = set->active_entity;
-      return; // Stop searching if found in a subset
-    }
-  }
-
   //----------------------------
 }
 void Set::active_entity(dat::base::Set* set, dat::base::Entity* entity){
@@ -248,14 +235,9 @@ void Set::active_entity(dat::base::Set* set, dat::base::Entity* entity){
     current_parent = current_parent->set_parent; // Move to the next parent set
   }
 
-  // Recursively select the entity for all subsets
-  for (auto subset : set->list_subset) {
-    this->active_entity(subset, entity);
-  }
-
   //---------------------------
 }
-bool Set::is_active_entity(dat::base::Set* set, dat::base::Entity* entity){
+bool Set::is_entity_active(dat::base::Set* set, dat::base::Entity* entity){
   return entity->UID == set->active_entity->UID;
 }
 

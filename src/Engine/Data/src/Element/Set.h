@@ -32,10 +32,10 @@ public:
   //Entity function
   void insert_entity(dat::base::Set* set, dat::base::Entity* entity);
   void remove_entity(dat::base::Set* set, dat::base::Entity* entity);
-  void remove_entity_all(dat::base::Set* set);
+  void remove_all_entity(dat::base::Set* set);
   void active_next_entity(dat::base::Set* set);
   void active_entity(dat::base::Set* set, dat::base::Entity* entity);
-  bool is_active_entity(dat::base::Set* set, dat::base::Entity* entity);
+  bool is_entity_active(dat::base::Set* set, dat::base::Entity* entity);
 
   //Subfunction
   int compute_number_entity(dat::base::Set* set);

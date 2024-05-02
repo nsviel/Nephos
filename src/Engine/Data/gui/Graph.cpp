@@ -254,7 +254,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
 
   // If entity clicked
   if(ImGui::IsItemClicked()){
-    dat_graph->select_element(set);
+    dat_graph->select_element(entity);
   }
 
   // If entity double-clicked

@@ -15,6 +15,7 @@ Glyph::Glyph(eng::Node* node_engine){
 
   this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
   this->is_visible = true;
+  this->is_selectable = false;
   this->entity_type = "entity::Glyph";
 
   this->node_vulkan = node_engine->get_node_vulkan();

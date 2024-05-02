@@ -405,7 +405,7 @@ void Loader::operation_selection(){
   //Apply loading and operations
   if(param_remove_old){
     dat::base::Set* set_scene = dat_graph->get_set_graph();
-    dat_set->remove_entity_all(set_scene);
+    dat_set->remove_all_entity(set_scene);
   }
 
   for(int i=0; i<vec_path.size(); i++){
@@ -439,7 +439,7 @@ void Loader::operation_selection(std::string file_path){
     //Apply loading and operations
     if(param_remove_old){
       dat::base::Set* set_scene = dat_graph->get_set_graph();
-      dat_set->remove_entity_all(set_scene);
+      dat_set->remove_all_entity(set_scene);
     }
 
     utl::media::Path path;
