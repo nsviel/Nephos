@@ -45,8 +45,10 @@ void Player::run_panel(){
 void Player::design_panel(utl::type::Element* element){
   //---------------------------
 
-  //Button player
-  this->draw_player(dyn_struct);
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
+    //Button player
+    this->draw_player(&set->player);
+  }
 
   //---------------------------
 }

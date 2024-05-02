@@ -2,6 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
 
 
