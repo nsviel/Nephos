@@ -3,7 +3,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace dyn::gui::player{
+namespace dyn::gui{
 
 //Constructor / Destructor
 Control::Control(){
@@ -15,7 +15,7 @@ Control::Control(){
 Control::~Control(){}
 
 //Main function
-void Control::run_control(gui::player::Structure* player){
+void Control::run_control(dyn::player::Structure* player){
   //---------------------------
 
   this->control_keyboard(player);
@@ -24,7 +24,7 @@ void Control::run_control(gui::player::Structure* player){
 }
 
 //Keyboard
-void Control::control_keyboard(gui::player::Structure* player){
+void Control::control_keyboard(dyn::player::Structure* player){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 

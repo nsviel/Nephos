@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace dyn::gui::player{
+namespace dyn::player{
 
 struct Structure{
   //---------------------------

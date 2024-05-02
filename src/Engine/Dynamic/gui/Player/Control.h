@@ -2,10 +2,10 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dyn::gui::player{class Structure;}
+namespace dyn::player{class Structure;}
 
 
-namespace dyn::gui::player{
+namespace dyn::gui{
 
 class Control
 {
@@ -16,10 +16,10 @@ public:
 
 public:
   //Main function
-  void run_control(dyn::gui::player::Structure* player);
+  void run_control(dyn::player::Structure* player);
 
   //Keyboard
-  void control_keyboard(dyn::gui::player::Structure* player);
+  void control_keyboard(dyn::player::Structure* player);
 
 private:
 };

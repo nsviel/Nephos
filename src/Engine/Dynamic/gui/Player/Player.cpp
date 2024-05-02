@@ -14,7 +14,7 @@ Player::Player(dyn::Node* node_dynamic, bool* show_window){
   dat::Node* node_data = node_dynamic->get_node_data();
 
   this->dat_graph = node_data->get_data_graph();
-  this->player_control = new dyn::gui::player::Control();
+  this->player_control = new dyn::gui::Control();
 
   this->show_window = show_window;
   this->name = "Player";
@@ -66,7 +66,7 @@ void Player::design_panel(utl::type::Element* element){
 }
 
 //Player function
-void Player::draw_player(dyn::gui::player::Structure* ply){
+void Player::draw_player(dyn::player::Structure* ply){
   //---------------------------
 
   this->player_slider(ply);
@@ -85,7 +85,7 @@ void Player::draw_player(dyn::gui::player::Structure* ply){
 
   //---------------------------
 }
-void Player::player_slider(dyn::gui::player::Structure* ply){
+void Player::player_slider(dyn::player::Structure* ply){
   //---------------------------
 
   ImVec2 width = ImGui::GetContentRegionAvail();
@@ -96,7 +96,7 @@ void Player::player_slider(dyn::gui::player::Structure* ply){
 
   //---------------------------
 }
-void Player::player_start(dyn::gui::player::Structure* ply){
+void Player::player_start(dyn::player::Structure* ply){
   //---------------------------
 
   //If player start / pause button is appearing, allow keyboard control
@@ -123,7 +123,7 @@ void Player::player_start(dyn::gui::player::Structure* ply){
 
   //---------------------------
 }
-void Player::player_stop(dyn::gui::player::Structure* ply){
+void Player::player_stop(dyn::player::Structure* ply){
   //---------------------------
 
   if(!ply->pause){
@@ -144,7 +144,7 @@ void Player::player_stop(dyn::gui::player::Structure* ply){
 
   //---------------------------
 }
-void Player::player_repeat(dyn::gui::player::Structure* ply){
+void Player::player_repeat(dyn::player::Structure* ply){
   //---------------------------
 
   if(ply->restart){
@@ -164,7 +164,7 @@ void Player::player_repeat(dyn::gui::player::Structure* ply){
 
   //---------------------------
 }
-void Player::player_record(dyn::gui::player::Structure* ply){
+void Player::player_record(dyn::player::Structure* ply){
   //---------------------------
 
   if(ply->record){
@@ -184,7 +184,7 @@ void Player::player_record(dyn::gui::player::Structure* ply){
 
   //---------------------------
 }
-void Player::player_close(dyn::gui::player::Structure* ply){
+void Player::player_close(dyn::player::Structure* ply){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
@@ -195,7 +195,7 @@ void Player::player_close(dyn::gui::player::Structure* ply){
 
   //---------------------------
 }
-void Player::player_lock(dyn::gui::player::Structure* ply){
+void Player::player_lock(dyn::player::Structure* ply){
   //---------------------------
 
   if(ply->locked){
