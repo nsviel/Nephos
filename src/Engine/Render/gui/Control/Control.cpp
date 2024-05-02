@@ -22,7 +22,7 @@ Control::Control(rnd::Node* node_render){
   this->node_engine = node_engine;
   this->cam_manager = node_camera->get_manager();
   this->cam_control = node_camera->get_control();
-  this->dat_graph = node_data->get_database();
+  this->dat_graph = node_data->get_data_graph();
   this->dat_set = node_data->get_set();
   this->ope_operation = new ope::Operation();
   this->gui_wheel = new rnd::gui::Wheel(node_render);

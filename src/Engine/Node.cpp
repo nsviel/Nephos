@@ -41,6 +41,7 @@ Node::Node(app::Node* node_app){
   this->add_node_panel(node_data);
   this->add_node_panel(node_profiler);
   this->add_node_panel(node_render);
+  this->add_node_panel(node_dynamic);
 
   //---------------------------
 }
@@ -81,6 +82,7 @@ void Node::gui(){
   node_data->gui();
   node_loader->gui();
   node_render->gui();
+  node_dynamic->gui();
   tasker_main->task_end("eng::gui");
 
   tasker_main->task_begin("gui::profiler");

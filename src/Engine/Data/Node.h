@@ -31,7 +31,7 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
-  inline dat::Graph* get_database(){return dat_graph;}
+  inline dat::Graph* get_data_graph(){return dat_graph;}
   inline dat::Entity* get_entity(){return dat_entity;}
   inline dat::Set* get_set(){return dat_set;}
   inline dat::Glyph* get_glyph(){return dat_glyph;}

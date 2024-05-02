@@ -18,7 +18,7 @@ Wheel::Wheel(rnd::Node* node_render){
   cam::Node* node_camera = node_engine->get_node_camera();
 
   this->cam_control = node_camera->get_control();
-  this->dat_graph = node_data->get_database();
+  this->dat_graph = node_data->get_data_graph();
   this->ope_operation = new ope::Operation();
 
   this->mode = WHEEL_CAM_Z;

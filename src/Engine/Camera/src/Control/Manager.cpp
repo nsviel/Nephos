@@ -16,7 +16,7 @@ Manager::Manager(cam::Node* node_camera){
   this->cam_struct = node_camera->get_struct();
   this->cam_control = node_camera->get_control();
   this->dat_glyph = node_data->get_glyph();
-  this->dat_graph = node_data->get_database();
+  this->dat_graph = node_data->get_data_graph();
   this->dat_set = node_data->get_set();
 
   //---------------------------

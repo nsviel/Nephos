@@ -2,33 +2,38 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace gui::player{class Control;}
-namespace gui::player{class Structure;}
+namespace dat{class Graph;}
+namespace dyn{class Node;}
+namespace dyn::gui::player{class Control;}
+namespace dyn::gui::player{class Structure;}
 
 
-namespace gui::element{
+namespace dyn::gui{
 
 class Player
 {
 public:
   //Constructor / Destructor
-  Player(bool* show_window);
+  Player(dyn::Node* node_dynamic, bool* show_window);
   ~Player();
 
   //Main function
-  void draw_player(gui::player::Structure* ply);
+  void run_panel();
+  void design_panel(utl::type::Element* element);
 
   //Player function
-  void player_slider(gui::player::Structure* ply);
-  void player_start(gui::player::Structure* ply);
-  void player_stop(gui::player::Structure* ply);
-  void player_repeat(gui::player::Structure* ply);
-  void player_record(gui::player::Structure* ply);
-  void player_close(gui::player::Structure* ply);
-  void player_lock(gui::player::Structure* ply);
+  void draw_player(dyn::gui::player::Structure* ply);
+  void player_slider(dyn::gui::player::Structure* ply);
+  void player_start(dyn::gui::player::Structure* ply);
+  void player_stop(dyn::gui::player::Structure* ply);
+  void player_repeat(dyn::gui::player::Structure* ply);
+  void player_record(dyn::gui::player::Structure* ply);
+  void player_close(dyn::gui::player::Structure* ply);
+  void player_lock(dyn::gui::player::Structure* ply);
 
 private:
-  gui::player::Control* player_control;
+  dyn::gui::player::Control* player_control;
+  dat::Graph* dat_graph;
 
   bool* show_window;
   string name;

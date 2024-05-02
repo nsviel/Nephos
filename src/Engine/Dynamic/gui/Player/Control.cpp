@@ -3,7 +3,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace gui::player{
+namespace dyn::gui::player{
 
 //Constructor / Destructor
 Control::Control(){
