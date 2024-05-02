@@ -8,12 +8,14 @@
 namespace rad::detection{
 
 //Constructor / Destructor
-Ransac::Ransac(rad::Structure* radio_struct){
+Ransac::Ransac(rad::Node* node_radio){
   //---------------------------
 
-  this->radio_struct = radio_struct;
-  //this->k4n_pool = node_k4n->get_k4n_pool();
-  this->radio_glyph = new rad::detection::cloud::Glyph(radio_struct);
+  eng::Node* node_engine = node_radio->get_node_engine();
+
+  this->radio_struct = node_radio->get_radio_struct();
+  //this->thread_pool = node_engine->get_thread_pool();
+  this->radio_glyph = new rad::detection::cloud::Glyph(node_radio);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();
@@ -30,7 +32,7 @@ void Ransac::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  k4n_pool->add_task(task_function);
+  thread_pool->add_task(task_function);
 */
   //---------------------------
 }

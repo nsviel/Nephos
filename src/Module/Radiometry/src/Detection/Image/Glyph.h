@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n::dev{class Sensor;}
+namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::structure{class Circle;}
 namespace k4n::utils{class Transformation;}
@@ -15,7 +16,7 @@ class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(rad::Structure* radio_struct);
+  Glyph(rad::Node* node_radio);
   ~Glyph();
 
 public:

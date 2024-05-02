@@ -10,10 +10,11 @@ namespace rad::processing{
 Registration::Registration(k4n::Node* node_k4n){
   //---------------------------
 
+  eng::Node* node_engine = node_k4n->get_node_engine();
   rad::Node* node_radio = node_k4n->get_node_radio();
 
   this->k4n_struct = node_k4n->get_k4n_struct();
-  this->k4n_pool = node_k4n->get_k4n_pool();
+  this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
 }
@@ -27,7 +28,7 @@ void Registration::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  k4n_pool->add_task(task_function);
+  thread_pool->add_task(task_function);
 
   //---------------------------
 }

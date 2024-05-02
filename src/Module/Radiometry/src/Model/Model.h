@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace rad{class Structure;}
+namespace rad{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
@@ -14,7 +15,7 @@ class Model
 {
 public:
   //Constructor / Destructor
-  Model(rad::Structure* radio_struct);
+  Model(rad::Node* node_radio);
   ~Model();
 
 public:

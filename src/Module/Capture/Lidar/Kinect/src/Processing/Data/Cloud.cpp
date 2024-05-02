@@ -1,6 +1,7 @@
 #include "Cloud.h"
 
 #include <Kinect/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Radiometry/Namespace.h>
@@ -13,12 +14,13 @@ namespace k4n::processing{
 Cloud::Cloud(k4n::Node* node_k4n){
   //---------------------------
 
+  eng::Node* node_engine = node_k4n->get_node_engine();
   rad::Node* node_radio = node_k4n->get_node_radio();
 
   this->k4n_operation = new k4n::utils::Operation();
   this->k4n_processing = new k4n::processing::Operation(node_k4n);
   this->radio_ransac = node_radio->get_radio_ransac();
-  this->k4n_pool = node_k4n->get_k4n_pool();
+  this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
 }
@@ -32,7 +34,7 @@ void Cloud::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  k4n_pool->add_task(task_function);
+  thread_pool->add_task(task_function);
 
   //---------------------------
 }

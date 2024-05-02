@@ -18,7 +18,7 @@ Recorder::Recorder(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->ldr_exporter = node_loader->get_exporter();
   this->ply_exporter = new format::ply::Exporter();
-  this->k4n_pool = node_k4n->get_k4n_pool();
+  this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
 }
@@ -32,7 +32,7 @@ void Recorder::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  k4n_pool->add_task(task_function);
+  thread_pool->add_task(task_function);
 
   //---------------------------
 }

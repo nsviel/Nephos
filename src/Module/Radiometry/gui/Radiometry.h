@@ -5,6 +5,7 @@
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::dev{class Swarm;}
+namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::gui{class Detection;}
 namespace rad::gui{class Calibration;}
@@ -16,7 +17,7 @@ class Radiometry
 {
 public:
   //Constructor / Destructor
-  Radiometry(rad::Structure* radio_struct, bool* show_window);
+  Radiometry(rad::Node* node_radio, bool* show_window);
   ~Radiometry();
 
 public:

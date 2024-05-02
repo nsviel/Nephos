@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
+namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::structure{class Circle;}
 
@@ -12,7 +13,7 @@ namespace rad::detection{
 class Hough
 {
 public:
-  Hough(rad::Structure* radio_struct);
+  Hough(rad::Node* node_radio);
   ~Hough();
 
 public:

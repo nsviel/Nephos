@@ -11,7 +11,7 @@ namespace k4n::data{class Depth;}
 namespace k4n::data{class Infrared;}
 namespace k4n::processing{class Cloud;}
 namespace k4n::processing{class Image;}
-namespace k4n::thread{class Pool;}
+namespace utl::thread{class Pool;}
 
 
 namespace k4n::processing{
@@ -53,7 +53,7 @@ private:
   k4n::data::Infrared* k4n_infrared;
   k4n::processing::Cloud* k4n_cloud;
   k4n::processing::Image* k4n_image;
-  k4n::thread::Pool* k4n_pool;
+  utl::thread::Pool* thread_pool;
 
   tjhandle tj_handle;
   bool idle = true;

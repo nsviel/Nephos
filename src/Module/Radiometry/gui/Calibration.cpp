@@ -8,13 +8,13 @@
 namespace rad::gui{
 
 //Constructor / Destructor
-Calibration::Calibration(rad::Structure* radio_struct){
+Calibration::Calibration(rad::Node* node_radio){
   //---------------------------
 
-  this->radio_struct = radio_struct;
-  this->radio_detection = new rad::Detection(radio_struct);
-  this->radio_measure = new rad::model::Measure(radio_struct);
-  this->radio_model = new rad::Model(radio_struct);
+  this->radio_struct = node_radio->get_radio_struct();
+  this->radio_detection = new rad::Detection(node_radio);
+  this->radio_measure = new rad::model::Measure(node_radio);
+  this->radio_model = new rad::Model(node_radio);
   this->utl_plot = new utl::implot::Plot();
   //this->gui_player = node_k4n->get_k4n_gui_player();
 

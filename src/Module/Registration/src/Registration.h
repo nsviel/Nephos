@@ -5,7 +5,7 @@
 namespace k4n{class Node;}
 namespace k4n::structure{class K4N;}
 namespace k4n::dev{class Sensor;}
-namespace k4n::thread{class Pool;}
+namespace utl::thread{class Pool;}
 
 
 namespace rad::processing{
@@ -27,7 +27,7 @@ public:
 
 
 private:
-  k4n::thread::Pool* k4n_pool;
+  utl::thread::Pool* thread_pool;
   k4n::structure::K4N* k4n_struct;
 
   bool idle = true;

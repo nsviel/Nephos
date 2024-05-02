@@ -4,6 +4,7 @@
 
 namespace k4n::dev{class Sensor;}
 namespace k4n::gui{class Player;}
+namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad{class Detection;}
 namespace rad{class Model;}
@@ -18,7 +19,7 @@ class Model
 {
 public:
   //Constructor / Destructor
-  Model(rad::Structure* radio_struct);
+  Model(rad::Node* node_radio);
   ~Model();
 
 public:

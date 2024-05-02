@@ -8,11 +8,13 @@
 namespace rad::detection{
 
 //Constructor / Destructor
-Identification::Identification(rad::Structure* radio_struct){
+Identification::Identification(rad::Node* node_radio){
   //---------------------------
 
-  this->radio_struct = radio_struct;
-  //this->k4n_pool = node_k4n->get_k4n_pool();
+  eng::Node* node_engine = node_radio->get_node_engine();
+
+  this->radio_struct = node_radio->get_radio_struct();
+  //this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
 }
@@ -26,7 +28,7 @@ void Identification::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  k4n_pool->add_task(task_function);
+  thread_pool->add_task(task_function);
 */
   //---------------------------
 }

@@ -6,10 +6,10 @@
 namespace rad::model{
 
 //Constructor / Destructor
-Measure::Measure(rad::Structure* radio_struct){
+Measure::Measure(rad::Node* node_radio){
   //---------------------------
 
-  this->radio_struct = radio_struct;
+  this->radio_struct = node_radio->get_radio_struct();
 
   //---------------------------
   this->init_plot();

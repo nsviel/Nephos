@@ -1,31 +1,33 @@
-#pragma once
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <queue>
+#include <functional>
 
-#include <Utility/Specific/Common.h>
 
-namespace eng{class Node;}
-namespace eng::thread{class Thread;}
-
-
-namespace eng::thread{
+namespace utl::thread{
 
 class Pool
 {
 public:
-  //Constructor / Destructor
-  Pool(eng::Node* node_engine);
+  Pool(int nb_thread);
   ~Pool();
 
 public:
   //Main function
-  void init();
-  void clean();
+  void add_task(std::function<void()> task);
+  void add_task(std::function<void()> task, bool& done);
 
 private:
-  vector<eng::thread::Thread> vec_thread;
+  //Subfunction
+  void worker_thread();
 
+private:
+  std::vector<std::thread> vec_thread;
+  std::queue<std::function<void()>> queue_task;
+  std::mutex mutex;
+  std::condition_variable condition;
   bool running;
-  int size;
 };
-
 
 }

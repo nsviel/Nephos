@@ -8,10 +8,10 @@
 namespace rad{
 
 //Constructor / Destructor
-Model::Model(rad::Structure* radio_struct){
+Model::Model(rad::Node* node_radio){
   //---------------------------
 
-  this->radio_struct = radio_struct;
+  this->radio_struct = node_radio->get_radio_struct();
   this->ope_polyfit = new ope::fitting::Polyfit();
   this->ope_surface = new ope::fitting::Surface();
 

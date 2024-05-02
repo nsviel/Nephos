@@ -1,43 +1,86 @@
 #include "Pool.h"
 
-#include <Utility/Namespace.h>
-#include <Profiler/Namespace.h>
-#include <Engine/Namespace.h>
 
-
-namespace eng::thread{
+namespace utl::thread{
 
 //Constructor / Destructor
-Pool::Pool(eng::Node* node_engine){
+Pool::Pool(int nb_thread){
   //---------------------------
 
-  this->size = 100;
   this->running = true;
+  for(size_t i=0; i<nb_thread; i++){
+    vec_thread.emplace_back(&Pool::worker_thread, this);
+  }
 
   //---------------------------
-  this->init();
 }
-Pool::~Pool(){}
+Pool::~Pool(){
+  //---------------------------
+
+  {
+    std::unique_lock<std::mutex> lock(mutex);
+    running = false;
+  }
+
+  // Notify all vec_thread to stop
+  condition.notify_all();
+  for(auto& thread : vec_thread){
+    thread.join();
+  }
+
+  //---------------------------
+}
 
 //Main function
-void Pool::init(){
+void Pool::add_task(std::function<void()> task){
   //---------------------------
-/*
-  this->vec_thread = std::vector<eng::thread::Thread>(size);
 
-  for(int i=0; i<vec_thread.size(); i++){
-    eng::thread::Thread& thread = vec_thread[i];
-    thread.start();
-  }
-*/
+  std::unique_lock<std::mutex> lock(mutex);
+  queue_task.push([task](){
+    // Execute the original task
+    task();
+  });
+
+  // Notify one thread to pick up the task
+  condition.notify_one();
+
   //---------------------------
 }
-void Pool::clean(){
+void Pool::add_task(std::function<void()> task, bool& done){
   //---------------------------
 
-  for(int i=0; i<vec_thread.size(); i++){
-    eng::thread::Thread& thread = vec_thread[i];
-    thread.stop();
+  std::unique_lock<std::mutex> lock(mutex);
+  queue_task.push([task, &done](){
+    // Execute the original task
+    task();
+
+    // Set the taskDone flag to true when the task is done
+    done = true;
+  });
+
+  // Notify one thread to pick up the task
+  condition.notify_one();
+
+  //---------------------------
+}
+
+//Subfunction
+void Pool::worker_thread(){
+  //---------------------------
+
+  while(true){
+    std::function<void()> task;
+
+    {
+      std::unique_lock<std::mutex> lock(mutex);
+      condition.wait(lock, [&] { return !queue_task.empty() || !running; });
+      if(!running) return;
+      task = std::move(queue_task.front());
+      queue_task.pop();
+    }
+
+    // Execute the task outside the lock
+    task();
   }
 
   //---------------------------

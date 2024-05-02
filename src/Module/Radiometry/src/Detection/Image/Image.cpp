@@ -6,10 +6,10 @@
 namespace rad::matching{
 
 //Constructor / Destructor
-Image::Image(rad::Structure* radio_struct){
+Image::Image(rad::Node* node_radio){
   //---------------------------
 
-  this->radio_struct = radio_struct;
+  this->radio_struct = node_radio->get_radio_struct();
 
   //---------------------------
 }

@@ -9,7 +9,7 @@ namespace k4n::data{class Depth;}
 namespace k4n::data{class Infrared;}
 namespace k4n::config{class Configuration;}
 namespace rad::detection{class Identification;}
-namespace k4n::thread{class Pool;}
+namespace utl::thread{class Pool;}
 
 
 namespace k4n::processing{
@@ -34,7 +34,7 @@ public:
   void copy_image_ir(k4n::dev::Sensor* sensor);
 
 private:
-  k4n::thread::Pool* k4n_pool;
+  utl::thread::Pool* thread_pool;
   k4n::data::Depth* k4n_depth;
   k4n::data::Infrared* k4n_infrared;
   k4n::config::Configuration* k4n_config;

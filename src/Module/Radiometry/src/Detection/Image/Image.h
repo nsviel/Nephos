@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
+namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::structure{class Circle;}
 namespace k4n::dev{class Sensor;}
@@ -13,7 +14,7 @@ namespace rad::matching{
 class Image
 {
 public:
-  Image(rad::Structure* radio_struct);
+  Image(rad::Node* node_radio);
   ~Image();
 
 public:

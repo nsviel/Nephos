@@ -21,13 +21,13 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->radio_struct = new rad::Structure(this);
-  this->radio_detection = new rad::Detection(radio_struct);
-  this->radio_model = new rad::Model(radio_struct);
-  this->radio_hough = new rad::detection::Hough(radio_struct);
-  this->radio_ransac = new rad::detection::Ransac(radio_struct);
-  this->radio_identification = new rad::detection::Identification(radio_struct);
-  this->radio_measure = new rad::model::Measure(radio_struct);
-  this->gui_radiometry = new rad::gui::Radiometry(radio_struct, &cal_panel->is_open);
+  this->radio_detection = new rad::Detection(this);
+  this->radio_model = new rad::Model(this);
+  this->radio_hough = new rad::detection::Hough(this);
+  this->radio_ransac = new rad::detection::Ransac(this);
+  this->radio_identification = new rad::detection::Identification(this);
+  this->radio_measure = new rad::model::Measure(this);
+  this->gui_radiometry = new rad::gui::Radiometry(this, &cal_panel->is_open);
 
   //---------------------------
 }

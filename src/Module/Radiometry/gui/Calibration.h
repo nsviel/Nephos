@@ -4,6 +4,7 @@
 
 namespace k4n::dev{class Sensor;}
 namespace k4n::gui{class Player;}
+namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad{class Detection;}
 namespace rad{class Model;}
@@ -17,7 +18,7 @@ class Calibration
 {
 public:
   //Constructor / Destructor
-  Calibration(rad::Structure* radio_struct);
+  Calibration(rad::Node* node_radio);
   ~Calibration();
 
 public:

@@ -10,12 +10,14 @@
 namespace rad::gui{
 
 //Constructor / Destructor
-Detection::Detection(rad::Structure* radio_struct){
+Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
-  this->radio_struct = radio_struct;
-  this->radio_hough = new rad::detection::Hough(radio_struct);
-  this->stream = new gui_element::Stream(radio_struct->node_engine);
+  eng::Node* node_engine = node_radio->get_node_engine();
+
+  this->radio_struct = node_radio->get_radio_struct();
+  this->radio_hough = new rad::detection::Hough(node_radio);
+  this->stream = new gui_element::Stream(node_engine);
 
   //---------------------------
 }

@@ -12,13 +12,15 @@ namespace k4n::processing{
 Operation::Operation(k4n::Node* node_k4n){
   //---------------------------
 
+  eng::Node* node_engine = node_k4n->get_node_engine();
+
   this->ope_voxelizer = new ope::Voxelizer();
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::attribut::Normal();
   this->k4n_operation = new k4n::utils::Operation();
   this->k4n_recorder = new k4n::processing::Recorder(node_k4n);
-  this->k4n_pool = node_k4n->get_k4n_pool();
+  this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
 }
@@ -33,7 +35,7 @@ void Operation::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  k4n_pool->add_task(task_function);
+  thread_pool->add_task(task_function);
 
   //---------------------------
 }

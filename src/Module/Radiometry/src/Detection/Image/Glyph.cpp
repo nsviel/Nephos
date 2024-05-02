@@ -7,10 +7,12 @@
 namespace rad::detection{
 
 //Constructor / Destructor
-Glyph::Glyph(rad::Structure* radio_struct){
+Glyph::Glyph(rad::Node* node_radio){
   //---------------------------
 
-  this->dat_glyph = radio_struct->node_data->get_glyph();
+  dat::Node* node_data = node_radio->get_node_data();
+
+  this->dat_glyph = node_data->get_glyph();
   this->k4n_transfo = new k4n::utils::Transformation();
 
   //---------------------------

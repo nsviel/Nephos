@@ -6,10 +6,10 @@
 namespace rad::detection{
 
 //Constructor / Destructor
-Hough::Hough(rad::Structure* radio_struct){
+Hough::Hough(rad::Node* node_radio){
   //---------------------------
 
-  this->radio_struct = radio_struct;
+  this->radio_struct = node_radio->get_radio_struct();
 
   this->find_mode_parameter(rad::hough::GRADIENT_ALT);
 

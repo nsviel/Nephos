@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n::dev{class Sensor;}
+namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection{class Hough;}
 namespace gui::element{class Stream;}
@@ -15,7 +16,7 @@ class Detection
 {
 public:
   //Constructor / Destructor
-  Detection(rad::Structure* radio_struct);
+  Detection(rad::Node* node_radio);
   ~Detection();
 
 public:

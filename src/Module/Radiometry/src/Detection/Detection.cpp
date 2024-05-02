@@ -7,12 +7,12 @@
 namespace rad{
 
 //Constructor / Destructor
-Detection::Detection(rad::Structure* radio_struct){
+Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
   this->k4n_transfo = new k4n::utils::Transformation();
-  this->radio_struct = radio_struct;
-  this->radio_glyph = new rad::detection::cloud::Glyph(radio_struct);
+  this->radio_struct = node_radio->get_radio_struct();
+  this->radio_glyph = new rad::detection::cloud::Glyph(node_radio);
 
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();

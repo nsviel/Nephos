@@ -11,13 +11,14 @@ namespace k4n::processing{
 Image::Image(k4n::Node* node_k4n){
   //---------------------------
 
+  eng::Node* node_engine = node_k4n->get_node_engine();
   rad::Node* node_radio = node_k4n->get_node_radio();
 
   this->k4n_depth = new k4n::data::Depth();
   this->k4n_infrared = new k4n::data::Infrared();
   this->k4n_config = new k4n::config::Configuration();
   this->radio_identification = node_radio->get_radio_identification();
-  this->k4n_pool = node_k4n->get_k4n_pool();
+  this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
 }
@@ -32,7 +33,7 @@ void Image::start_thread(k4n::dev::Sensor* sensor){
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
-  k4n_pool->add_task(task_function);
+  thread_pool->add_task(task_function);
 
   //---------------------------
 }

@@ -2,9 +2,10 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace k4n::dev{class Sensor;}
-namespace k4n::thread{class Pool;}
+namespace utl::thread{class Pool;}
 namespace rad::detection{class Glyph;}
 namespace rad::detection{class Hough;}
 namespace rad::matching{class Image;}
@@ -16,7 +17,7 @@ class Identification
 {
 public:
   //Constructor / Destructor
-  Identification(rad::Structure* radio_struct);
+  Identification(rad::Node* node_radio);
   ~Identification();
 
 public:
@@ -32,7 +33,7 @@ public:
   void draw_detection_glyph(k4n::dev::Sensor* sensor);
 
 private:
-  k4n::thread::Pool* k4n_pool;
+  utl::thread::Pool* thread_pool;
   rad::Structure* radio_struct;
   rad::detection::Glyph* radio_glyph;
   rad::detection::Hough* radio_hough;
