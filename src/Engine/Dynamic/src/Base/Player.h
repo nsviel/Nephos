@@ -1,6 +1,9 @@
 #pragma once
 
+#include <Data/src/Base/Set.h>
 #include <Utility/Specific/Common.h>
+
+namespace dat::base{class Set;}
 
 
 namespace dyn{
@@ -8,6 +11,10 @@ namespace dyn{
 class Player
 {
 public:
+  //Constructor / Destructor
+  Player(dat::base::Set* set){this->set = set;}
+  ~Player(){}
+
   //Main function
   virtual void player_update(){}
   virtual void player_play(){}
@@ -32,6 +39,8 @@ public:
   inline void set_duration(float value){this->duration = value;}
 
 private:
+  dat::base::Set* set = nullptr;
+
   bool play = true;
   bool pause = false;
   bool restart = true;

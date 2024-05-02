@@ -10,7 +10,7 @@ class Player : public dyn::Player
 {
 public:
   //Constructor / Destructor
-  Player();
+  Player(dat::base::Set* set);
   ~Player();
 
   //Main function

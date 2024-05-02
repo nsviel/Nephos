@@ -8,7 +8,7 @@
 namespace k4n::dev{
 
 //Constructor / Destructor
-Player::Player(){
+Player::Player(dat::base::Set* set) : dyn::Player(set){
   //---------------------------
 
 
