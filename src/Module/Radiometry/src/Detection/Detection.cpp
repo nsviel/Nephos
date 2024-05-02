@@ -28,7 +28,7 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::next_step(k4n::dev::Sensor* sensor){
+void Detection::next_step(dat::base::Sensor* sensor){
   //---------------------------
 
   switch(step){
@@ -46,24 +46,24 @@ void Detection::next_step(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Detection::validate_bbox(k4n::dev::Sensor* sensor){
-  if(sensor->detection.nb_detection == 0) return;
+void Detection::validate_bbox(dat::base::Sensor* sensor){
+  if(radio_struct->detection.nb_detection == 0) return;
   if(step != rad::detection::WAIT_VALIDATION) return;
   //---------------------------
-
+/*
   this->step++;
-  ivec2 point_2d = sensor->detection.vec_circle[0].center;
+  ivec2 point_2d = radio_struct->detection.vec_circle[0].center;
   vec3 truc = k4n_transfo->convert_depth_2d_to_3d(sensor, point_2d);
   vec4 machin = vec4(truc.x, truc.y, truc.z, 1);
   truc = sensor->object.pose.model * machin;
   this->current_pose = vec3(truc.x, truc.y, truc.z);
-
+*/
   //---------------------------
 }
-void Detection::ransac_sphere(k4n::dev::Sensor* sensor){
+void Detection::ransac_sphere(dat::base::Sensor* sensor){
   if(step != rad::detection::PROCESSING) return;
   //---------------------------
-
+/*
   vector<vec3>& vec_xyz = sensor->object.data.xyz;
   vector<float>& vec_i = sensor->object.data.Is;
 
@@ -74,7 +74,7 @@ void Detection::ransac_sphere(k4n::dev::Sensor* sensor){
     vec3& xyz = vec_xyz[i];
     float distance = math::distance(xyz, current_pose);
 
-    if(distance <= sensor->detection.sphere_diameter * radio_struct->detection.ransac.search_diameter_x){
+    if(distance <= radio_struct->detection.sphere_diameter * radio_struct->detection.ransac.search_diameter_x){
       sphere_xyz.push_back(xyz);
       sphere_i.push_back(vec_i[i]);
     }
@@ -85,14 +85,14 @@ void Detection::ransac_sphere(k4n::dev::Sensor* sensor){
   ope_ransac->set_threshold_sphere(radio_struct->detection.ransac.thres_sphere);
   ope_ransac->set_threshold_pose(radio_struct->detection.ransac.thres_pose);
   ope_ransac->set_threshold_radius(radio_struct->detection.ransac.thres_radius);
-  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, sensor->detection.sphere_diameter/2);
+  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, radio_struct->detection.sphere_diameter/2);
 
   //Apply post-processing stuff
   radio_glyph->draw_sphere_glyph(sensor, current_pose, radius);
   this->data_IfR(sphere_xyz, sphere_i);
   this->data_IfIt(sphere_xyz, sphere_i);
   this->data_model(sphere_xyz, sphere_i);
-
+*/
   //---------------------------
 }
 

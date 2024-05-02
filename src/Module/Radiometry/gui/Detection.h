@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace k4n::dev{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection{class Hough;}
@@ -21,14 +21,14 @@ public:
 
 public:
   //Main function
-  void draw_detection(k4n::dev::Sensor* sensor);
+  void draw_detection(dat::base::Sensor* sensor);
 
   //Subfunction
-  void detection_parameter(k4n::dev::Sensor* sensor);
-  void canny_parameter(k4n::dev::Sensor* sensor);
-  void hough_parameter(k4n::dev::Sensor* sensor);
-  void ransac_parameter(k4n::dev::Sensor* sensor);
-  void draw_result(k4n::dev::Sensor* sensor);
+  void detection_parameter(dat::base::Sensor* sensor);
+  void canny_parameter(dat::base::Sensor* sensor);
+  void hough_parameter(dat::base::Sensor* sensor);
+  void ransac_parameter(dat::base::Sensor* sensor);
+  void draw_result(dat::base::Sensor* sensor);
 
 private:
   rad::Structure* radio_struct;

@@ -2,10 +2,9 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace k4n{class Node;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace k4n::dev{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace rad::detection::cloud{class Glyph;}
 namespace ope::fitting{class Sphere;}
@@ -24,12 +23,12 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor);
-  void run_thread(k4n::dev::Sensor* sensor);
+  void start_thread(dat::base::Sensor* sensor);
+  void run_thread(dat::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void ransac_sphere(k4n::dev::Sensor* sensor);
+  void ransac_sphere(dat::base::Sensor* sensor);
 
 private:
   utl::thread::Pool* thread_pool;

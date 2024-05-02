@@ -43,7 +43,7 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   this->copy_image(sensor);
 
   //Encode image as texture
-  radio_identification->start_thread(sensor);
+  //radio_identification->start_thread(sensor);
 
   //---------------------------
   this->idle = true;
@@ -55,7 +55,7 @@ void Image::wait_thread(){
   while(idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  radio_identification->wait_thread();
+  //radio_identification->wait_thread();
 
   //---------------------------
 }

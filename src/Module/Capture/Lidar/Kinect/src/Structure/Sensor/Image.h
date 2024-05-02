@@ -14,7 +14,6 @@ struct Image{
   utl::media::Image color;
   utl::media::Image depth;
   utl::media::Image ir;
-  utl::media::Image hough;
 
   //---------------------------
 };

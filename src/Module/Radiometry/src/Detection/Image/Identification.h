@@ -4,7 +4,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace k4n::dev{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace rad::detection{class Glyph;}
 namespace rad::detection{class Hough;}
@@ -22,15 +22,15 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor);
-  void run_thread(k4n::dev::Sensor* sensor);
+  void start_thread(dat::base::Sensor* sensor);
+  void run_thread(dat::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void make_sphere_detection(k4n::dev::Sensor* sensor);
-  void detect_circle_in_image(k4n::dev::Sensor* sensor);
-  void draw_detection_image(k4n::dev::Sensor* sensor);
-  void draw_detection_glyph(k4n::dev::Sensor* sensor);
+  void make_sphere_detection(dat::base::Sensor* sensor);
+  void detect_circle_in_image(dat::base::Sensor* sensor);
+  void draw_detection_image(dat::base::Sensor* sensor);
+  void draw_detection_glyph(dat::base::Sensor* sensor);
 
 private:
   utl::thread::Pool* thread_pool;

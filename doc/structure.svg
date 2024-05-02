@@ -24,8 +24,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.67793911"
-     inkscape:cx="587.8109"
-     inkscape:cy="483.08173"
+     inkscape:cx="750.06736"
+     inkscape:cy="660.08878"
      inkscape:window-width="1880"
      inkscape:window-height="1168"
      inkscape:window-x="40"
@@ -156,10 +156,10 @@
        x="-160.50186"
        y="95.889885" />
     <rect
-       style="fill:#74774a;fill-opacity:1;stroke:none;stroke-width:3.12388"
+       style="fill:#74774a;fill-opacity:1;stroke:none;stroke-width:5.24852"
        id="rect33963-1-4-6"
-       width="78.540871"
-       height="49.482059"
+       width="132.5309"
+       height="82.777336"
        x="-81.960991"
        y="95.889885" />
     <rect
@@ -343,24 +343,71 @@
        id="rect896-17-4"
        width="42.243725"
        height="30.461723"
-       x="-73.557869"
-       y="104.75075" />
+       x="-61.754368"
+       y="102.00462" />
     <text
        xml:space="preserve"
        style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-       x="-53.231415"
-       y="116.02493"
+       x="-41.427914"
+       y="113.27881"
        id="text1714-8-1"><tspan
          sodipodi:role="line"
          id="tspan1712-57-8"
          style="text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-         x="-53.231415"
-         y="116.02493">Device</tspan><tspan
+         x="-41.427914"
+         y="113.27881">Sensor</tspan><tspan
          sodipodi:role="line"
          style="text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-         x="-53.231415"
-         y="124.84438"
+         x="-41.427914"
+         y="122.09826"
          id="tspan25914">(base sensor)</tspan></text>
+    <rect
+       style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-opacity:1"
+       id="rect896-17-4-4"
+       width="42.243725"
+       height="30.461723"
+       x="-77.841293"
+       y="144.58298" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
+       x="-57.319698"
+       y="161.12151"
+       id="text1714-8-1-3"><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
+         x="-57.319698"
+         y="161.12151"
+         id="tspan25914-4">Kinect</tspan></text>
+    <rect
+       style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-opacity:1"
+       id="rect896-17-4-42"
+       width="42.243725"
+       height="30.461723"
+       x="-22.007212"
+       y="144.00317" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
+       x="-0.77496642"
+       y="160.96164"
+       id="text1714-8-1-2"><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
+         x="-0.7749663"
+         y="160.96164"
+         id="tspan25914-41">Lidar</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
+       x="31.190428"
+       y="162.05925"
+       id="text1714-8-1-2-8"><tspan
+         sodipodi:role="line"
+         style="text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
+         x="31.190428"
+         y="162.05925"
+         id="tspan25914-41-9">...</tspan></text>
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-opacity:1"
        id="rect896-17-4-1"

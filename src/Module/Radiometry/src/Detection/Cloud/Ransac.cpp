@@ -25,7 +25,7 @@ Ransac::Ransac(rad::Node* node_radio){
 Ransac::~Ransac(){}
 
 //Main function
-void Ransac::start_thread(k4n::dev::Sensor* sensor){
+void Ransac::start_thread(dat::base::Sensor* sensor){
   //---------------------------
 /*
   this->idle = false;
@@ -36,8 +36,8 @@ void Ransac::start_thread(k4n::dev::Sensor* sensor){
 */
   //---------------------------
 }
-void Ransac::run_thread(k4n::dev::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("calibration");
+void Ransac::run_thread(dat::base::Sensor* sensor){
+  /*prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("calibration");
   //---------------------------
 
   tasker->loop_begin();
@@ -49,7 +49,7 @@ void Ransac::run_thread(k4n::dev::Sensor* sensor){
   tasker->loop_end();
 
   //---------------------------
-  this->idle = true;
+  this->idle = true;*/
 }
 void Ransac::wait_thread(){
   //For external thread to wait this queue thread idle
@@ -63,10 +63,10 @@ void Ransac::wait_thread(){
 }
 
 //Subfunction
-void Ransac::ransac_sphere(k4n::dev::Sensor* sensor){
+void Ransac::ransac_sphere(dat::base::Sensor* sensor){
   //if(step != rad::detection::PROCESSING) return;
   //---------------------------
-
+/*
   vector<vec3>& vec_xyz = sensor->object.data.xyz;
   vector<float>& vec_i = sensor->object.data.Is;
 
@@ -77,7 +77,7 @@ void Ransac::ransac_sphere(k4n::dev::Sensor* sensor){
     vec3& xyz = vec_xyz[i];
     float distance = math::distance(xyz, current_pose);
 
-    if(distance <= sensor->detection.sphere_diameter * radio_struct->detection.ransac.search_diameter_x){
+    if(distance <= radio_struct->detection.sphere_diameter * radio_struct->detection.ransac.search_diameter_x){
       sphere_xyz.push_back(xyz);
       sphere_i.push_back(vec_i[i]);
     }
@@ -88,7 +88,7 @@ void Ransac::ransac_sphere(k4n::dev::Sensor* sensor){
   ope_ransac->set_threshold_sphere(radio_struct->detection.ransac.thres_sphere);
   ope_ransac->set_threshold_pose(radio_struct->detection.ransac.thres_pose);
   ope_ransac->set_threshold_radius(radio_struct->detection.ransac.thres_radius);
-  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, sensor->detection.sphere_diameter/2);
+  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, radio_struct->detection.sphere_diameter/2);
 
   //Apply post-processing stuff
   radio_glyph->draw_sphere_glyph(sensor, current_pose, radius);

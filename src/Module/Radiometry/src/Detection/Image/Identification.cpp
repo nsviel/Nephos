@@ -21,7 +21,7 @@ Identification::Identification(rad::Node* node_radio){
 Identification::~Identification(){}
 
 //Main function
-void Identification::start_thread(k4n::dev::Sensor* sensor){
+void Identification::start_thread(dat::base::Sensor* sensor){
   //---------------------------
 /*
   this->idle = false;
@@ -32,8 +32,8 @@ void Identification::start_thread(k4n::dev::Sensor* sensor){
 */
   //---------------------------
 }
-void Identification::run_thread(k4n::dev::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("calibration");
+void Identification::run_thread(dat::base::Sensor* sensor){
+  /*prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("calibration");
   //---------------------------
 
   tasker->loop_begin();
@@ -45,7 +45,7 @@ void Identification::run_thread(k4n::dev::Sensor* sensor){
   tasker->loop_end();
 
   //---------------------------
-  this->idle = true;
+  this->idle = true;*/
 }
 void Identification::wait_thread(){
   //For external thread to wait this queue thread idle
@@ -59,7 +59,7 @@ void Identification::wait_thread(){
 }
 
 //Subfunction
-void Identification::make_sphere_detection(k4n::dev::Sensor* sensor){
+void Identification::make_sphere_detection(dat::base::Sensor* sensor){
   //---------------------------
 
   this->detect_circle_in_image(sensor);
@@ -68,18 +68,18 @@ void Identification::make_sphere_detection(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Identification::detect_circle_in_image(k4n::dev::Sensor* sensor){
+void Identification::detect_circle_in_image(dat::base::Sensor* sensor){
   //---------------------------
-
+/*
   utl::media::Image* input = &sensor->image.ir;
   cv::Mat cv_input;
   radio_image->convert_into_cv_image(input, cv_input);
-  //sensor->detection.vec_circle = radio_hough->sphere_detection(cv_input, sensor->detection.cv_image);
-  sensor->detection.nb_detection = sensor->detection.vec_circle.size();
-
+  //radio_struct->detection.vec_circle = radio_hough->sphere_detection(cv_input, radio_struct->detection.cv_image);
+  radio_struct->detection.nb_detection = radio_struct->detection.vec_circle.size();
+*/
   //---------------------------
 }
-void Identification::draw_detection_image(k4n::dev::Sensor* sensor){
+void Identification::draw_detection_image(dat::base::Sensor* sensor){
   //---------------------------
 
   switch(radio_struct->detection.hough.drawing_mode){
@@ -95,7 +95,7 @@ void Identification::draw_detection_image(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Identification::draw_detection_glyph(k4n::dev::Sensor* sensor){
+void Identification::draw_detection_glyph(dat::base::Sensor* sensor){
   //---------------------------
 
   switch(radio_struct->detection.hough.drawing_mode){

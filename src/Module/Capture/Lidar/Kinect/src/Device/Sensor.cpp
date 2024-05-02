@@ -61,6 +61,7 @@ void Sensor::init(){
   object.pose.model[2][3] = 1;
   dat_entity->init_entity(&object);
 
+/*
   //Sensor glyph
   for(int i=0; i<20; i++){
     dat::glyph::object::Sphere* sphere = new dat::glyph::object::Sphere(node_engine);
@@ -74,7 +75,7 @@ void Sensor::init(){
   this->detection.glyph_calibration = sphere;
   dat_glyph->create_glyph(&object, sphere);
   sphere->construct(vec4(0, 1, 0, 1));
-
+*/
   //---------------------------
 }
 void Sensor::reset(){

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace k4n::dev{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection::cloud{class Glyph;}
@@ -32,11 +32,11 @@ public:
 
 public:
   //Main function
-  void next_step(k4n::dev::Sensor* sensor);
+  void next_step(dat::base::Sensor* sensor);
 
   //Subfunction
-  void validate_bbox(k4n::dev::Sensor* sensor);
-  void ransac_sphere(k4n::dev::Sensor* sensor);
+  void validate_bbox(dat::base::Sensor* sensor);
+  void ransac_sphere(dat::base::Sensor* sensor);
 
   //Data function
   void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);

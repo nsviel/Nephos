@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace k4n::dev{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::structure{class Circle;}
@@ -21,16 +21,17 @@ public:
 
 public:
   //Main function
-  void draw_all_sphere_glyph(k4n::dev::Sensor* sensor);
-  void draw_best_sphere_glyph(k4n::dev::Sensor* sensor);
+  void draw_all_sphere_glyph(dat::base::Sensor* sensor);
+  void draw_best_sphere_glyph(dat::base::Sensor* sensor);
 
   //Subfunction
-  void reset_all_sphere(k4n::dev::Sensor* sensor);
-  void draw_sphere_from_circle(k4n::dev::Sensor* sensor, vector<rad::structure::Circle>& vec_circle);
+  void reset_all_sphere(dat::base::Sensor* sensor);
+  void draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::structure::Circle>& vec_circle);
 
 private:
   k4n::utils::Transformation* k4n_transfo;
   dat::Glyph* dat_glyph;
+  rad::Structure* radio_struct;
 };
 
 }

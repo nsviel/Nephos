@@ -4,7 +4,6 @@
 
 namespace rad{class Structure;}
 namespace rad{class Node;}
-namespace k4n::dev{class Sensor;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
 

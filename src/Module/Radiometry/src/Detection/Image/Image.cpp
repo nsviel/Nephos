@@ -16,34 +16,34 @@ Image::Image(rad::Node* node_radio){
 Image::~Image(){}
 
 //Main function
-void Image::draw_all_sphere(k4n::dev::Sensor* sensor){
-  if(sensor->detection.cv_image.empty()) return;
+void Image::draw_all_sphere(dat::base::Sensor* sensor){
+  if(radio_struct->detection.cv_image.empty()) return;
   //------------------------
 
   cv::Mat result;
-  this->convert_into_rgba(sensor->detection.cv_image, result);
-  this->draw_circle(result, sensor->detection.vec_circle);
+  this->convert_into_rgba(radio_struct->detection.cv_image, result);
+  this->draw_circle(result, radio_struct->detection.vec_circle);
   this->draw_bounding_box(result, sensor);
   this->convert_into_subimage(result, sensor);
-  this->convert_into_utl_image(result, &sensor->image.hough);
+  this->convert_into_utl_image(result, &radio_struct->detection.hough.image);
 
   //------------------------
 }
-void Image::draw_best_sphere(k4n::dev::Sensor* sensor){
-  if(sensor->detection.cv_image.empty()) return;
+void Image::draw_best_sphere(dat::base::Sensor* sensor){
+  if(radio_struct->detection.cv_image.empty()) return;
   //------------------------
 
   vector<rad::structure::Circle> vec_circle;
-  if(sensor->detection.vec_circle.size() > 0){
-    vec_circle.push_back(sensor->detection.vec_circle[0]);
+  if(radio_struct->detection.vec_circle.size() > 0){
+    vec_circle.push_back(radio_struct->detection.vec_circle[0]);
   }
 
   cv::Mat result;
-  this->convert_into_rgba(sensor->detection.cv_image, result);
+  this->convert_into_rgba(radio_struct->detection.cv_image, result);
   this->draw_circle(result, vec_circle);
   this->draw_bounding_box(result, sensor);
   this->convert_into_subimage(result, sensor);
-  this->convert_into_utl_image(result, &sensor->image.hough);
+  this->convert_into_utl_image(result, &radio_struct->detection.hough.image);
 
   //------------------------
 }
@@ -68,11 +68,11 @@ void Image::convert_into_rgba(cv::Mat& input, cv::Mat& output){
 
   //------------------------
 }
-void Image::convert_into_subimage(cv::Mat& image, k4n::dev::Sensor* sensor){
+void Image::convert_into_subimage(cv::Mat& image, dat::base::Sensor* sensor){
   //------------------------
 
-  cv::Point& center = sensor->detection.cv_center;
-  float radius = (float)sensor->detection.cv_radius * radio_struct->detection.bbox.scale;
+  cv::Point& center = radio_struct->detection.cv_center;
+  float radius = (float)radio_struct->detection.cv_radius * radio_struct->detection.bbox.scale;
 
   // Calculate the top-left corner coordinates of the bounding box
   int x = center.x - radius;
@@ -84,7 +84,7 @@ void Image::convert_into_subimage(cv::Mat& image, k4n::dev::Sensor* sensor){
     cv::Rect bounding_box(x, y, radius * 2, radius * 2);
 
     // Extract the subimage from the original image using the bounding box
-    sensor->detection.cv_subimage = image(bounding_box).clone();
+    radio_struct->detection.cv_subimage = image(bounding_box).clone();
   }
 
   //------------------------
@@ -127,18 +127,18 @@ void Image::draw_circle(cv::Mat& image, vector<rad::structure::Circle>& vec_circ
 
   //------------------------
 }
-void Image::draw_bounding_box(cv::Mat& image, k4n::dev::Sensor* sensor){
+void Image::draw_bounding_box(cv::Mat& image, dat::base::Sensor* sensor){
   //------------------------
 
-  vector<rad::structure::Circle>& vec_circle = sensor->detection.vec_circle;
+  vector<rad::structure::Circle>& vec_circle = radio_struct->detection.vec_circle;
   if(vec_circle.size() == 0) return;
 
   rad::structure::Circle& circle = vec_circle[0];
-  sensor->detection.cv_center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
-  sensor->detection.cv_radius = cvRound(circle.radius);
+  radio_struct->detection.cv_center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
+  radio_struct->detection.cv_radius = cvRound(circle.radius);
 
-  cv::Point& center = sensor->detection.cv_center;
-  float radius = (float)sensor->detection.cv_radius * radio_struct->detection.bbox.scale;
+  cv::Point& center = radio_struct->detection.cv_center;
+  float radius = (float)radio_struct->detection.cv_radius * radio_struct->detection.bbox.scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size

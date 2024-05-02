@@ -68,7 +68,6 @@ public:
 
   k4n::structure::Param param;
   k4n::structure::Playback playback;
-  k4n::structure::Detection detection;
 
   k4n::structure::Color color;
   k4n::structure::Depth depth;

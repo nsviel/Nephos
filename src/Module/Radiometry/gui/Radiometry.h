@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n::dev{class Master;}
-namespace k4n::dev{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace k4n::dev{class Swarm;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
@@ -26,9 +26,9 @@ public:
   void design_panel(k4n::dev::Master* master);
 
   //Subfunction
-  void matching_parameter(k4n::dev::Sensor* sensor);
-  void tab_detection(k4n::dev::Sensor* sensor);
-  void tab_calibration(k4n::dev::Sensor* sensor);
+  void matching_parameter(dat::base::Sensor* sensor);
+  void tab_detection(dat::base::Sensor* sensor);
+  void tab_calibration(dat::base::Sensor* sensor);
 
 private:
   k4n::dev::Swarm* k4n_swarm;

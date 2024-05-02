@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace k4n::dev{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace dat{class Glyph;}
@@ -19,14 +19,15 @@ public:
 
 public:
   //Main function
-  void draw_sphere_glyph(k4n::dev::Sensor* sensor, vec3 pose, float radius);
+  void draw_sphere_glyph(dat::base::Sensor* sensor, vec3 pose, float radius);
 
   //Subfunction
-  void reset_glyph(k4n::dev::Sensor* sensor);
-  void draw_glyph(k4n::dev::Sensor* sensor, vec3 pose, float radius);
+  void reset_glyph(dat::base::Sensor* sensor);
+  void draw_glyph(dat::base::Sensor* sensor, vec3 pose, float radius);
 
 private:
   dat::Glyph* dat_glyph;
+  rad::Structure* radio_struct;
 };
 
 }

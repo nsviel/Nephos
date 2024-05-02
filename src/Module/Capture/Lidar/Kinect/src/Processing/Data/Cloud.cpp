@@ -49,7 +49,7 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   k4n_processing->start_thread(sensor);
 
   //Update object data
-  radio_ransac->start_thread(sensor);
+  //radio_ransac->start_thread(sensor);
 
   //---------------------------
   this->idle = true;
@@ -62,7 +62,7 @@ void Cloud::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_processing->wait_thread();
-  radio_ransac->wait_thread();
+  //radio_ransac->wait_thread();
 
   //---------------------------
 }

@@ -1,6 +1,5 @@
 #include "Radiometry.h"
 
-#include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 
@@ -49,7 +48,7 @@ void Radiometry::run_panel(){
   //---------------------------
 }
 void Radiometry::design_panel(k4n::dev::Master* master){
-  k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->active_entity);
+  /*dat::base::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->active_entity);
   //---------------------------
 
   this->matching_parameter(sensor);
@@ -63,27 +62,27 @@ void Radiometry::design_panel(k4n::dev::Master* master){
   this->tab_calibration(sensor);
 
   ImGui::EndTabBar();
-  ImGui::PopStyleColor(3);
+  ImGui::PopStyleColor(3);*/
 
   //---------------------------
 }
 
 //Subfunction
-void Radiometry::matching_parameter(k4n::dev::Sensor* sensor){
+void Radiometry::matching_parameter(dat::base::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
 
   //Radiometry sphere radius
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderFloat("Sphere diameter", &sensor->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
+  ImGui::SliderFloat("Sphere diameter", &radio_struct->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
 
   gui_calibration->draw_calibration_player(sensor);
 
   //---------------------------
   ImGui::Separator();
 }
-void Radiometry::tab_detection(k4n::dev::Sensor* sensor){
+void Radiometry::tab_detection(dat::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
@@ -95,7 +94,7 @@ void Radiometry::tab_detection(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Radiometry::tab_calibration(k4n::dev::Sensor* sensor){
+void Radiometry::tab_calibration(dat::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);

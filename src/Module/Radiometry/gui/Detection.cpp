@@ -1,7 +1,5 @@
 #include "Detection.h"
 
-#include <Kinect/Namespace.h>
-#include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <GUI/Namespace.h>
@@ -24,7 +22,7 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::draw_detection(k4n::dev::Sensor* sensor){
+void Detection::draw_detection(dat::base::Sensor* sensor){
   //---------------------------
 
   this->detection_parameter(sensor);
@@ -42,18 +40,18 @@ void Detection::draw_detection(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Detection::detection_parameter(k4n::dev::Sensor* sensor){
+void Detection::detection_parameter(dat::base::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Parameter");
 
   //Pixel diviser
-  ImGui::SetNextItemWidth(150);
-  ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
+  //ImGui::SetNextItemWidth(150);
+  //ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
 
   //---------------------------
 }
-void Detection::canny_parameter(k4n::dev::Sensor* sensor){
+void Detection::canny_parameter(dat::base::Sensor* sensor){
   //---------------------------
 
   //Canny
@@ -78,7 +76,7 @@ void Detection::canny_parameter(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::hough_parameter(k4n::dev::Sensor* sensor){
+void Detection::hough_parameter(dat::base::Sensor* sensor){
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -130,7 +128,7 @@ void Detection::hough_parameter(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::ransac_parameter(k4n::dev::Sensor* sensor){
+void Detection::ransac_parameter(dat::base::Sensor* sensor){
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -149,20 +147,20 @@ void Detection::ransac_parameter(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::draw_result(k4n::dev::Sensor* sensor){
+void Detection::draw_result(dat::base::Sensor* sensor){
   //---------------------------
 
   //Display number of detected spheres
-  string nb_detection = to_string(sensor->detection.nb_detection);
+  string nb_detection = to_string(radio_struct->detection.nb_detection);
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
 
   //Display image with detected spheres
-  if(sensor->image.hough.size == 0) return;
+  if(radio_struct->detection.hough.image.size == 0) return;
   ImVec2 image_size = ImGui::GetContentRegionAvail();
   image_size.y -= 5;
-  stream->draw_stream(&sensor->image.hough, image_size);
+  stream->draw_stream(&radio_struct->detection.hough.image, image_size);
 
   //---------------------------
   ImGui::Separator();
