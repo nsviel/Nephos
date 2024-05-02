@@ -38,7 +38,7 @@ public:
   inline float& get_ts_forward(){return ts_forward;}
   inline void set_duration(float value){this->duration = value;}
 
-private:
+protected:
   dat::base::Set* set = nullptr;
 
   bool play = true;

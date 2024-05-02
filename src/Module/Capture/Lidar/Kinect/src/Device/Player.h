@@ -24,6 +24,9 @@ public:
   void player_close();
   void player_lock();
 
+  //Subfunction
+  void manage_restart();
+
 private:
   bool play = true;
   bool pause = false;

@@ -208,26 +208,6 @@ void Master::player_query_ts(float value){
 
   //---------------------------
 }
-void Master::player_stop(){
-  //---------------------------
-
-  //Pause playback thread
-  //player->play = false;
-  //player->pause = true;
-
-  //Wait for pause
-  for(int i=0; i<list_entity.size(); i++){
-    dat::base::Entity* entity = *next(list_entity.begin(), i);
-
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      sensor->wait_threads();
-    }
-  }
-
-  this->manage_restart();
-
-  //---------------------------
-}
 void Master::player_close(){
   //---------------------------
 

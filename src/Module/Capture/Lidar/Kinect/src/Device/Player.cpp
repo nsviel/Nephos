@@ -2,6 +2,7 @@
 
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
+#include <Kinect/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -49,6 +50,21 @@ void Player::player_query_ts(float value){
 void Player::player_stop(){
   //---------------------------
 
+  //Pause playback thread
+  this->play = false;
+  this->pause = true;
+
+  //Wait for pause
+  for(int i=0; i<set->list_entity.size(); i++){
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      sensor->wait_threads();
+    }
+  }
+
+  this->manage_restart();
+
   //---------------------------
 }
 void Player::player_restart(){
@@ -74,6 +90,27 @@ void Player::player_lock(){
   //---------------------------
 
   //---------------------------
+}
+
+//Subfunction
+void Player::manage_restart(){
+  /*if(mode == k4n::dev::CAPTURE) return;
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
+
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      //Set playback to begin
+      float& ts_beg = player->get_ts_beg();
+      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_beg));
+      sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+      sensor->param.index_cloud = 0;
+    }
+  }
+
+  //---------------------------
+  player->player_query_ts(player->get_ts_beg());*/
 }
 
 }

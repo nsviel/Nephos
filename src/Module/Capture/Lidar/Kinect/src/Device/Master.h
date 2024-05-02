@@ -43,7 +43,6 @@ public:
   //Player function
   void player_update();
   void player_query_ts(float value);
-  void player_stop();
   void player_close();
 
   //Subfunction
