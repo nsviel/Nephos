@@ -58,7 +58,7 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
     }
   }
 
-  if(!master->player.record){
+  if(!master->player->record){
     tasker->reset();
   }
 
@@ -81,7 +81,7 @@ void Recorder::wait_thread(){
 //Subfunction
 void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
   k4n::dev::Master* master = sensor->master;
-  if(!master->player.record) return;
+  if(!master->player->record) return;
   //---------------------------
 
   //Check if directory exists, if not create it
@@ -115,7 +115,7 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
   if(master->mode == k4n::dev::PLAYBACK) return;
 
   //Start recording
-  if(master->player.record && !recorder.is_valid()){
+  if(master->player->record && !recorder.is_valid()){
     //Check if directory exists, if not create it
     string path_dir = sensor->master->recorder.folder;
     if(!utl::directory::is_exist(path_dir)){
@@ -134,18 +134,18 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
     //Set info
     master->recorder.path = path;
     master->recorder.file_size = 0;
-    master->recorder.ts_beg = master->player.ts_cur;
+    master->recorder.ts_beg = master->player->ts_cur;
   }
 
   //Recording
-  else if(master->player.record && recorder.is_valid()){
+  else if(master->player->record && recorder.is_valid()){
     recorder.write_capture(*capture);
-    master->recorder.ts_rec = master->player.ts_cur - master->recorder.ts_beg;
+    master->recorder.ts_rec = master->player->ts_cur - master->recorder.ts_beg;
     master->recorder.file_size = utl::file::size(master->recorder.path);
   }
 
   //Flush to file when finish
-  else if(!master->player.record && recorder.is_valid()){
+  else if(!master->player->record && recorder.is_valid()){
     recorder.flush();
     recorder.close();
   }

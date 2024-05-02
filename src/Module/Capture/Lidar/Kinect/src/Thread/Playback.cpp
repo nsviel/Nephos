@@ -149,8 +149,8 @@ void Playback::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  bool& is_paused = sensor->master->player.pause;
-  if(is_paused || !sensor->master->player.play){
+  bool& is_paused = sensor->master->player->pause;
+  if(is_paused || !sensor->master->player->play){
     //Clear thread profiler and wait subthread fulfillment
     sensor->profiler->reset();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -168,10 +168,10 @@ void Playback::manage_pause(k4n::dev::Sensor* sensor){
 void Playback::manage_restart(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  if(sensor->color.data.timestamp == sensor->master->player.ts_end){
+  if(sensor->color.data.timestamp == sensor->master->player->ts_end){
     sensor->master->manage_restart();
-    sensor->master->player.play = true;
-    sensor->master->player.pause = false;
+    sensor->master->player->play = true;
+    sensor->master->player->pause = false;
   }
 
   //---------------------------

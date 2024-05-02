@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Utility/Specific/Common.h>
+
 
 namespace dyn::player{
 
@@ -7,8 +9,8 @@ struct Structure{
   //---------------------------
 
   virtual void player_update(){}
-  virtual void player_play(){}
-  virtual void player_pause(bool value){}
+  virtual void player_play(){sayHello();}
+  virtual void player_pause(bool value){sayHello();}
   virtual void player_query_ts(float value){}
   virtual void player_stop(){}
   virtual void player_restart(){}

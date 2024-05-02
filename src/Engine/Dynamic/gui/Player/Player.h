@@ -33,7 +33,6 @@ public:
 
 private:
   dyn::gui::Control* gui_control;
-  dyn::player::Structure* dyn_struct;
   dat::Graph* dat_graph;
 
   bool* show_window;

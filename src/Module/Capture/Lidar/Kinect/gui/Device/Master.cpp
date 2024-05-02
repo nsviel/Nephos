@@ -59,7 +59,7 @@ void Master::show_info(k4n::dev::Master* master){
     ImGui::TextColored(color, "%s", type.c_str());
 
     //Recording time
-    if(master->player.record && master->recorder.mode == k4n::recorder::MKV){
+    if(master->player->record && master->recorder.mode == k4n::recorder::MKV){
       //Recording time
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Record"); ImGui::TableNextColumn();

@@ -34,19 +34,19 @@ void Control::control_keyboard(){
 
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      master->player_pause(!master->player.pause);
+      master->player_pause(!master->player->pause);
       break;
     }
 
     //Left arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
-      master->player.ts_forward = -1;
+      master->player->ts_forward = -1;
       break;
     }
 
     //Right arrow key
     if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
-      master->player.ts_forward = 1;
+      master->player->ts_forward = 1;
       break;
     }
   }

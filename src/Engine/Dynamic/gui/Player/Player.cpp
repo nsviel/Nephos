@@ -15,7 +15,6 @@ Player::Player(dyn::Node* node_dynamic, bool* show_window){
 
   this->dat_graph = node_data->get_data_graph();
   this->gui_control = new dyn::gui::Control();
-  this->dyn_struct = new dyn::player::Structure();
 
   this->show_window = show_window;
   this->name = "Player";
@@ -46,8 +45,9 @@ void Player::design_panel(utl::type::Element* element){
   //---------------------------
 
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
+    if(set->player == nullptr) return;
     //Button player
-    this->draw_player(&set->player);
+    this->draw_player(set->player);
   }
 
   //---------------------------
