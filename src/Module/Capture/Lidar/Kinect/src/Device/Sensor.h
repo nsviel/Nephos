@@ -24,7 +24,7 @@ namespace k4n::structure{class Image;}
 namespace k4n::structure{class Calibration;}
 namespace prf::graph{class Profiler;}
 namespace dat::base{class Object;}
-namespace k4n::gui{class Player;}
+namespace k4n::gui{class Sensor;}
 
 
 namespace k4n::dev{
@@ -68,7 +68,7 @@ public:
 
   dat::base::Object object;
   k4n::structure::Image image;
-    k4n::gui::Player* k4n_gui_player;
+  k4n::gui::Sensor* gui_sensor;
 
   k4n::structure::Param param;
   k4n::structure::Playback playback;

@@ -13,7 +13,7 @@ namespace k4n::structure{class Operation;}
 namespace k4n::structure{class Recorder;}
 namespace k4n::structure{class Configuration;}
 namespace k4n::playback{class Importer;}
-namespace k4n::gui{class Player;}
+namespace k4n::gui{class Master;}
 
 
 namespace k4n::dev{
@@ -54,7 +54,7 @@ public:
   dat::Set* dat_set;
   k4n::utils::Configuration* k4n_config;
   k4n::playback::Importer* k4n_importer;
-  k4n::gui::Player* k4n_gui_player;
+  k4n::gui::Master* gui_master;
 
   k4n::structure::Operation operation;
   k4n::structure::Recorder recorder;

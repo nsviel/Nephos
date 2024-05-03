@@ -13,7 +13,6 @@ namespace k4n{
 
 //Constructor / Destructor
 Node::Node(cap::Node* node_capture){
-  utl::gui::Panel* ply_panel = add_panel("Player", ICON_FA_PLAY, true);
   //---------------------------
 
   //Dependancy
@@ -27,7 +26,6 @@ Node::Node(cap::Node* node_capture){
   this->k4n_struct = new k4n::structure::K4N(this);
   this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::capture::Connection(this);
-  this->gui_player = new k4n::gui::Player(this, &ply_panel->is_open);
 
   //---------------------------
 }
@@ -53,13 +51,6 @@ void Node::loop(){
   //---------------------------
 
   k4n_swarm->manage_connected_device();
-
-  //---------------------------
-}
-void Node::gui(){
-  //---------------------------
-
-  gui_player->run_panel();
 
   //---------------------------
 }

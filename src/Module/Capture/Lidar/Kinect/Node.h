@@ -8,7 +8,6 @@ namespace eng{class Node;}
 namespace cap{class Node;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::capture{class Connection;}
-namespace k4n::gui{class Player;}
 namespace k4n::structure{class K4N;}
 namespace utl::thread{class Pool;}
 namespace k4n::calibration{class Model;}
@@ -31,7 +30,6 @@ public:
   void config();
   void init();
   void loop();
-  void gui();
   void clean();
 
   inline eng::Node* get_node_engine(){return node_engine;}
@@ -41,7 +39,6 @@ public:
 
   inline k4n::dev::Swarm* get_k4n_swarm(){return k4n_swarm;}
   inline k4n::structure::K4N* get_k4n_struct(){return k4n_struct;}
-  inline k4n::gui::Player* get_k4n_gui_player(){return gui_player;}
 
 private:
   //Dependancy
@@ -56,7 +53,6 @@ private:
   k4n::structure::K4N* k4n_struct;
   k4n::dev::Swarm* k4n_swarm;
   k4n::capture::Connection* k4n_connection;
-  k4n::gui::Player* gui_player;
 };
 
 }

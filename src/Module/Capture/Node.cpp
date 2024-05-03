@@ -52,7 +52,6 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-  node_k4n->gui();
   //node_velodyne->gui();
 
   //---------------------------

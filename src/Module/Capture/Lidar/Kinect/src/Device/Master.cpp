@@ -16,7 +16,7 @@ Master::Master(k4n::Node* node_k4n){
 
   this->dat_set = node_data->get_data_set();
   this->k4n_config = new k4n::utils::Configuration();
-  this->k4n_importer = new k4n::playback::Importer(node_k4n);
+  this->gui_master = new k4n::gui::Master(node_k4n);
 
   //this->engine = engine;
   this->type = "k4n::device::Master";
@@ -24,7 +24,6 @@ Master::Master(k4n::Node* node_k4n){
   this->is_locked = true;
   this->is_suppressible = true;
   this->player = new k4n::dev::Player(this);
-  this->k4n_gui_player = node_k4n->get_k4n_gui_player();
 
   //---------------------------
 }
@@ -46,7 +45,7 @@ void Master::reset_set(){
 void Master::info(){
   //---------------------------
 
-  k4n_gui_player->design_panel();
+  gui_master->show_master_info(this);
 
   //---------------------------
 }
