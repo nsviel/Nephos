@@ -11,7 +11,7 @@ namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Transformation;}
 namespace k4n::structure{class K4N;}
-namespace k4n::config{class Configuration;}
+namespace k4n::utils{class Configuration;}
 
 
 namespace k4n::dev{
@@ -49,7 +49,7 @@ private:
   k4n::Node* node_k4n;
   k4n::utils::Transformation* k4n_transfo;
   k4n::structure::K4N* k4n_struct;
-  k4n::config::Configuration* k4n_config;
+  k4n::utils::Configuration* k4n_config;
 };
 
 }

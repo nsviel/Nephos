@@ -6,7 +6,7 @@
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Data;}
-namespace k4n::config{class Configuration;}
+namespace k4n::utils{class Configuration;}
 namespace rad::detection{class Identification;}
 namespace utl::thread{class Pool;}
 
@@ -35,7 +35,7 @@ public:
 private:
   utl::thread::Pool* thread_pool;
   k4n::utils::Data* k4n_data;
-  k4n::config::Configuration* k4n_config;
+  k4n::utils::Configuration* k4n_config;
   rad::detection::Identification* radio_identification;
 
   bool idle = true;

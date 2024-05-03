@@ -14,7 +14,7 @@ Capture::Capture(k4n::Node* node_k4n){
 
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
-  this->k4n_config = new k4n::config::Configuration();
+  this->k4n_config = new k4n::utils::Configuration();
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->dat_set = node_data->get_data_set();
 

@@ -15,7 +15,7 @@ Image::Image(k4n::Node* node_k4n){
   rad::Node* node_radio = node_k4n->get_node_radio();
 
   this->k4n_data = new k4n::utils::Data();
-  this->k4n_config = new k4n::config::Configuration();
+  this->k4n_config = new k4n::utils::Configuration();
   this->radio_identification = node_radio->get_radio_identification();
   this->thread_pool = node_engine->get_thread_pool();
 

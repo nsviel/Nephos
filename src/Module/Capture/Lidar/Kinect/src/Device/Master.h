@@ -8,7 +8,7 @@
 namespace dat{class Set;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
-namespace k4n::config{class Configuration;}
+namespace k4n::utils{class Configuration;}
 namespace dyn::base{class Player;}
 namespace k4n::structure{class Operation;}
 namespace k4n::structure{class Recorder;}
@@ -50,7 +50,7 @@ public:
 
 public:
   dat::Set* dat_set;
-  k4n::config::Configuration* k4n_config;
+  k4n::utils::Configuration* k4n_config;
 
   k4n::structure::Operation operation;
   k4n::structure::Recorder recorder;

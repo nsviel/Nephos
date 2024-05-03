@@ -3,7 +3,7 @@
 #include <Kinect/Namespace.h>
 
 
-namespace k4n::config{
+namespace k4n::utils{
 
 //Constructor / Destructor
 Configuration::Configuration(){
@@ -14,7 +14,7 @@ Configuration::Configuration(){
 }
 Configuration::~Configuration(){}
 
-//Capture configuration
+//Configuration function
 void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
   k4n::dev::Master* master = sensor->master;
   //---------------------------
@@ -79,8 +79,6 @@ void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
 
   //---------------------------
 }
-
-//Playback configuration
 void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
   k4a_record_configuration_t configuration = sensor->param.playback.get_record_configuration();
   //---------------------------
@@ -117,6 +115,31 @@ void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
   sensor->ir.config.enabled = configuration.ir_track_enabled;
   sensor->imu.config.enabled = configuration.imu_track_enabled;
   sensor->param.playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
+
+  //---------------------------
+}
+
+//Calibration function
+void Configuration::make_transformation_from_calibration(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  sensor->param.transformation = k4a::transformation(sensor->param.calibration);
+
+  //---------------------------
+}
+void Configuration::make_capture_calibration(k4n::dev::Sensor* sensor){
+  k4n::dev::Master* master = sensor->master;
+  k4a::device& device = sensor->param.device;
+  //---------------------------
+
+  sensor->param.calibration = device.get_calibration(master->config.depth.mode, master->config.color.resolution);
+
+  //---------------------------
+}
+void Configuration::find_playback_calibration(k4n::dev::Sensor* sensor){
+  //---------------------------
+
+  sensor->param.calibration = sensor->param.playback.get_calibration();
 
   //---------------------------
 }

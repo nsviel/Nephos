@@ -8,19 +8,18 @@ namespace eng{class Node;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::processing{class Data;}
-namespace k4n::config{class Configuration;}
-namespace k4n::config{class Calibration;}
+namespace k4n::utils{class Configuration;}
 namespace k4n::structure{class K4N;}
 
 
-namespace k4n::thread{
+namespace k4n::capture{
 
-class Capture
+class Thread
 {
 public:
   //Constructor / Destructor
-  Capture(k4n::Node* node_k4n);
-  ~Capture();
+  Thread(k4n::Node* node_k4n);
+  ~Thread();
 
 public:
   //Main function
@@ -39,8 +38,7 @@ public:
 
 private:
   k4n::processing::Data* k4n_data;
-  k4n::config::Configuration* k4n_config;
-  k4n::config::Calibration* radio_calibration;
+  k4n::utils::Configuration* k4n_config;
 
   std::thread thread;
   bool thread_running = false;

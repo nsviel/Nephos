@@ -7,7 +7,7 @@ namespace dat{class Node;}
 namespace eng{class Node;}
 namespace cap{class Node;}
 namespace k4n::dev{class Swarm;}
-namespace k4n::thread{class Connection;}
+namespace k4n::capture{class Connection;}
 namespace k4n::gui{class Player;}
 namespace k4n::structure{class K4N;}
 namespace utl::thread{class Pool;}
@@ -55,7 +55,7 @@ private:
   utl::thread::Pool* thread_pool;
   k4n::structure::K4N* k4n_struct;
   k4n::dev::Swarm* k4n_swarm;
-  k4n::thread::Connection* k4n_connection;
+  k4n::capture::Connection* k4n_connection;
   k4n::gui::Player* gui_player;
 };
 

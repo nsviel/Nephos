@@ -8,7 +8,7 @@ namespace k4n::structure{class K4N;}
 namespace dat{class Set;}
 
 
-namespace k4n::thread{
+namespace k4n::capture{
 
 class Connection
 {

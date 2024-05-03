@@ -1,22 +1,21 @@
-#include "Capture.h"
+#include "Thread.h"
 
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
 
 
-namespace k4n::thread{
+namespace k4n::capture{
 
 //Constructor / Destructor
-Capture::Capture(k4n::Node* node_k4n){
+Thread::Thread(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_data = new k4n::processing::Data(node_k4n);
-  this->k4n_config = new k4n::config::Configuration();
-  this->radio_calibration = new k4n::config::Calibration();
+  this->k4n_config = new k4n::utils::Configuration();
 
   //---------------------------
 }
-Capture::~Capture(){
+Thread::~Thread(){
   //---------------------------
 
   this->stop_thread();
@@ -25,19 +24,19 @@ Capture::~Capture(){
 }
 
 //Main function
-void Capture::start_thread(k4n::dev::Sensor* sensor){
+void Thread::start_thread(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&Capture::run_thread, this, sensor);
+    this->thread = std::thread(&Thread::run_thread, this, sensor);
   }
 
   //---------------------------
   this->thread_running = true;
   this->thread_idle = false;
 }
-void Capture::run_thread(k4n::dev::Sensor* sensor){
+void Thread::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("capture");
   k4n::dev::Master* master = sensor->master;
   //---------------------------
@@ -53,8 +52,8 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   //Configuration
   k4n_config->make_sensor_configuration(sensor);
   k4n_config->make_sensor_color_configuration(sensor);
-  radio_calibration->make_capture_calibration(sensor);
-  radio_calibration->make_transformation_from_calibration(sensor);
+  k4n_config->make_capture_calibration(sensor);
+  k4n_config->make_transformation_from_calibration(sensor);
   sensor->param.device.start_cameras(&sensor->param.configuration);
 
   //Start capture thread
@@ -90,7 +89,7 @@ void Capture::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
   this->thread_idle = true;
 }
-void Capture::stop_thread(){
+void Thread::stop_thread(){
   //---------------------------
 
   this->thread_running = false;
@@ -102,7 +101,7 @@ void Capture::stop_thread(){
   //---------------------------
 
 }
-void Capture::wait_thread(){
+void Thread::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
@@ -114,7 +113,7 @@ void Capture::wait_thread(){
 }
 
 //Subfunction
-k4a::capture* Capture::manage_new_capture(k4n::dev::Sensor* sensor){
+k4a::capture* Thread::manage_new_capture(k4n::dev::Sensor* sensor){
   //---------------------------
 
   k4a::capture* capture = new k4a::capture();
@@ -127,7 +126,7 @@ k4a::capture* Capture::manage_new_capture(k4n::dev::Sensor* sensor){
   //---------------------------
   return capture;
 }
-void Capture::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture){
+void Thread::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture){
   static std::queue<k4a::capture*> capture_queue;
   //---------------------------
 
@@ -147,7 +146,7 @@ void Capture::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture
 
   //---------------------------
 }
-void Capture::manage_pause(k4n::dev::Sensor* sensor){
+void Thread::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread

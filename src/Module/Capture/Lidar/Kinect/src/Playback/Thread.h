@@ -9,8 +9,7 @@ namespace eng{class Node;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::processing{class Data;}
-namespace k4n::config{class Configuration;}
-namespace k4n::config{class Calibration;}
+namespace k4n::utils{class Configuration;}
 namespace k4n::utils{class Operation;}
 namespace k4n::structure{class K4N;}
 
@@ -38,8 +37,7 @@ public:
 
 private:
   k4n::processing::Data* k4n_data;
-  k4n::config::Configuration* k4n_configuration;
-  k4n::config::Calibration* radio_calibration;
+  k4n::utils::Configuration* k4n_config;
   k4n::utils::Operation* k4n_operation;
 };
 

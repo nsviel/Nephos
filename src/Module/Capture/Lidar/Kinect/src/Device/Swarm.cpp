@@ -21,7 +21,7 @@ Swarm::Swarm(k4n::Node* node_k4n){
   this->dat_graph = node_data->get_data_graph();
   this->dat_set = node_data->get_data_set();
   this->k4n_transfo = new k4n::utils::Transformation();
-  this->k4n_config = new k4n::config::Configuration();
+  this->k4n_config = new k4n::utils::Configuration();
 
   //---------------------------
 }

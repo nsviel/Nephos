@@ -13,8 +13,7 @@ Thread::Thread(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_data = new k4n::processing::Data(node_k4n);
-  this->k4n_configuration = new k4n::config::Configuration();
-  this->radio_calibration = new k4n::config::Calibration();
+  this->k4n_config = new k4n::utils::Configuration();
   this->k4n_operation= new k4n::utils::Operation();
 
   //---------------------------
@@ -40,9 +39,9 @@ void Thread::thread_init(dat::base::Sensor* sensor){
     return;
   }
 
-  k4n_configuration->find_playback_configuration(k4n_sensor);
-  radio_calibration->find_playback_calibration(k4n_sensor);
-  radio_calibration->make_transformation_from_calibration(k4n_sensor);
+  k4n_config->find_playback_configuration(k4n_sensor);
+  k4n_config->find_playback_calibration(k4n_sensor);
+  k4n_config->make_transformation_from_calibration(k4n_sensor);
 
   //---------------------------
 }
