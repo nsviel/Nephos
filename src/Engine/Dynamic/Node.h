@@ -6,6 +6,7 @@ namespace eng{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace dyn::gui{class Player;}
+namespace dyn::gui{class Stream;}
 
 
 namespace dyn{
@@ -31,6 +32,7 @@ private:
   eng::Node* node_engine;
   dat::Node* node_data;
   dyn::gui::Player* gui_player;
+  dyn::gui::Stream* gui_stream;
 };
 
 }

@@ -15,7 +15,7 @@ Stream::Stream(k4n::Node* node_k4n, bool* show_window){
 
   eng::Node* node_engine = node_k4n->get_node_engine();
   dat::Node* node_data = node_k4n->get_node_data();
-  
+
   this->node_k4n = node_k4n;
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->dat_set = node_data->get_data_set();
@@ -26,7 +26,7 @@ Stream::Stream(k4n::Node* node_k4n, bool* show_window){
   this->vec_gui_stream.push_back(new gui_element::Stream(node_engine));
 
   this->show_window = show_window;
-  this->name = "Stream";
+  this->name = "Stream_kinect";
 
   //---------------------------
 }

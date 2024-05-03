@@ -23,17 +23,14 @@ public:
   ~Stream();
 
   //Main function
+  void init();
   void run_panel();
   void design_panel(utl::type::Element* element);
 
   //All devices
-  void vec_device_tab(dat::base::Set* set);
-  void vec_stream_tab(dat::base::Entity* entity);
-
-  //Device capture windows
-  void draw_camera_color(dat::base::Entity* entity, ImVec2 image_size);
-  void draw_camera_depth(dat::base::Entity* entity, ImVec2 image_size);
-  void draw_camera_ir(dat::base::Entity* entity, ImVec2 image_size);
+  void draw_set_tabbar(dat::base::Set* set);
+  void draw_stream_tabbar(dat::base::Entity* entity);
+  void draw_stream_image(utl::media::Image* image, ImVec2 image_size);
 
   //Overlay
   void compute_hovered_pixel(utl::media::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
@@ -42,10 +39,11 @@ public:
   void overlay_pixel(utl::media::Image* image, ImVec2 image_size);
 
 private:
+  eng::Node* node_engine;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
 
-  vector<gui_element::Stream*> vec_gui_stream;
+  vector<gui_element::Stream*> vec_stream;
   ImVec2 hovered_pixel;
   string open_tab = "";
   string name;
