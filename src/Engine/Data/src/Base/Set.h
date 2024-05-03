@@ -10,6 +10,7 @@
 namespace dat::base{class Entity;}
 namespace dat::base{class Set;}
 namespace dyn::base{class Player;}
+namespace dyn::gui{class Player;}
 
 
 namespace dat::base{

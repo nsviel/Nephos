@@ -24,6 +24,7 @@ Master::Master(k4n::Node* node_k4n){
   this->is_locked = true;
   this->is_suppressible = true;
   this->player = new k4n::dev::Player(this);
+  this->k4n_gui_player = node_k4n->get_k4n_gui_player();
 
   //---------------------------
 }
@@ -39,6 +40,13 @@ void Master::reset_set(){
   else if(mode == k4n::dev::CAPTURE){
     this->manage_restart_thread();
   }
+
+  //---------------------------
+}
+void Master::info(){
+  //---------------------------
+
+  k4n_gui_player->design_panel();
 
   //---------------------------
 }

@@ -12,7 +12,7 @@ struct Element{
   bool is_selectable = true;
   std::string name = "";
 
-  virtual void hello(){}
+  virtual void info(){}
 
   //---------------------------
 };

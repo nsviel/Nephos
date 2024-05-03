@@ -24,7 +24,8 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->dat_glyph = node_data->get_data_glyph();
   this->k4n_capture = new k4n::capture::Thread(node_k4n);
   this->k4n_playback = new k4n::playback::Thread(node_k4n);
-
+  this->k4n_gui_player = node_k4n->get_k4n_gui_player();
+  
   this->entity_type = "k4n::device::Sensor";
   this->icon = ICON_FA_CAMERA_RETRO;
 
@@ -91,6 +92,13 @@ void Sensor::reset(){
   //---------------------------
 
   object.reset_entity();
+
+  //---------------------------
+}
+void Sensor::info(){
+  //---------------------------
+
+  k4n_gui_player->design_panel();
 
   //---------------------------
 }
