@@ -145,6 +145,63 @@ vec3 Transformation::convert_depth_2d_to_3d(k4n::dev::Sensor* sensor, ivec2 poin
   //---------------------------
   return pose;
 }
+void Transformation::make_normal_from_depth_image(k4n::dev::Sensor* sensor){
+  uint8_t* depth = sensor->depth.data.buffer;
+  //---------------------------
+
+  utl::type::Data* data = sensor->get_data();
+
+  int width = sensor->depth.data.width;
+  int height = sensor->depth.data.height;
+  vector<vec3> Nxyz;
+
+ //BUT OBTENIR UNE NORMAL IMAGE FROM DEPTH IMAGE
+
+  for(int i=0; i<height; i++){
+    for(int j=0; j<width; j++){
+
+      int id_1 = i * width + j + 1;
+      int id_2 = i * width + j - 1;
+      uint16_t value_1 = depth[id_1 * 2] | (depth[id_1 * 2 + 1] << 8);
+      uint16_t value_2 = depth[id_2 * 2] | (depth[id_2 * 2 + 1] << 8);
+      float dzdx = (value_1 - value_2) / 2.0;
+
+      id_1 = (i + 1) * width + j;
+      id_2 = (i - 1) * width + j;
+      value_1 = depth[id_1 * 2] | (depth[id_1 * 2 + 1] << 8);
+      value_2 = depth[id_2 * 2] | (depth[id_2 * 2 + 1] << 8);
+      float dzdy = (value_1 - value_2) / 2.0;
+
+      vec3 d(-dzdx, -dzdy, 1.0f);
+      vec3 n = glm::normalize(d);
+
+      Nxyz.push_back(n);
+    }
+  }
+
+data->Nxyz = Nxyz;
+
+/*
+  for(int x = 0; x < depth.rows; ++x)
+  {
+      for(int y = 0; y < depth.cols; ++y)
+      {
+
+          float dzdx = (depth.at<float>(x+1, y) - depth.at<float>(x-1, y)) / 2.0;
+          float dzdy = (depth.at<float>(x, y+1) - depth.at<float>(x, y-1)) / 2.0;
+
+          Vec3f d(-dzdx, -dzdy, 1.0f);
+          Vec3f n = normalize(d);
+
+          normals.at<Vec3f>(x, y) = n;
+      }
+  }
+
+  imshow("depth", depth / 255);
+  imshow("normals", normals);
+*/
+  //---------------------------
+}
 
 //Subfunction
 bool Transformation::is_json_file(const std::string& path){

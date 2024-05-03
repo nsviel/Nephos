@@ -14,7 +14,6 @@ Thread::Thread(k4n::Node* node_k4n){
 
   this->k4n_data = new k4n::processing::Data(node_k4n);
   this->k4n_config = new k4n::utils::Configuration();
-  this->k4n_operation= new k4n::utils::Operation();
 
   //---------------------------
 }

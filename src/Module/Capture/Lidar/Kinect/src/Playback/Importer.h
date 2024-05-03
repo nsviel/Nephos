@@ -21,6 +21,10 @@ public:
   //Main function
   utl::media::File* import(utl::media::Path path);
 
+  //Subfunction
+  float find_mkv_ts_beg(string path);
+  float find_mkv_ts_end(string path);
+
 private:
   eng::Node* node_engine;
   k4n::dev::Swarm* k4n_swarm;

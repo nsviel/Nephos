@@ -21,7 +21,8 @@ public:
   void make_transformation_identity(k4n::dev::Sensor* sensor);
   void apply_transformation_capture(k4n::dev::Sensor* sensor);
   vec3 convert_depth_2d_to_3d(k4n::dev::Sensor* sensor, ivec2 point_2d);
-
+  void make_normal_from_depth_image(k4n::dev::Sensor* sensor);
+  
   //Subfunction
   bool is_json_file(const std::string& path);
 

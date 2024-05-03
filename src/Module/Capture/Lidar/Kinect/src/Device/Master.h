@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <Data/src/Base/Set.h>
 #include <Utility/Specific/Common.h>
 #include <Kinect/src/Structure/Master/Namespace.h>
@@ -13,6 +12,7 @@ namespace dyn::base{class Player;}
 namespace k4n::structure{class Operation;}
 namespace k4n::structure{class Recorder;}
 namespace k4n::structure{class Configuration;}
+namespace k4n::playback{class Importer;}
 
 
 namespace k4n::dev{
@@ -51,6 +51,7 @@ public:
 public:
   dat::Set* dat_set;
   k4n::utils::Configuration* k4n_config;
+  k4n::playback::Importer* k4n_importer;
 
   k4n::structure::Operation operation;
   k4n::structure::Recorder recorder;

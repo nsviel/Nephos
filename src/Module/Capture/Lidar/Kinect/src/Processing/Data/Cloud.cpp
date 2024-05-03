@@ -17,7 +17,6 @@ Cloud::Cloud(k4n::Node* node_k4n){
   eng::Node* node_engine = node_k4n->get_node_engine();
   rad::Node* node_radio = node_k4n->get_node_radio();
 
-  this->k4n_operation = new k4n::utils::Operation();
   this->k4n_processing = new k4n::processing::Operation(node_k4n);
   this->radio_ransac = node_radio->get_radio_ransac();
   this->thread_pool = node_engine->get_thread_pool();

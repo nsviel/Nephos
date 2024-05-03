@@ -10,7 +10,6 @@ namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::processing{class Data;}
 namespace k4n::utils{class Configuration;}
-namespace k4n::utils{class Operation;}
 namespace k4n::structure{class K4N;}
 
 
@@ -38,7 +37,6 @@ public:
 private:
   k4n::processing::Data* k4n_data;
   k4n::utils::Configuration* k4n_config;
-  k4n::utils::Operation* k4n_operation;
 };
 
 

@@ -16,6 +16,7 @@ Master::Master(k4n::Node* node_k4n){
 
   this->dat_set = node_data->get_data_set();
   this->k4n_config = new k4n::utils::Configuration();
+  this->k4n_importer = new k4n::playback::Importer(node_k4n);
 
   //this->engine = engine;
   this->type = "k4n::device::Master";
@@ -167,9 +168,8 @@ void Master::player_update(){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      k4n::utils::Operation k4n_operation;
-      float mkv_ts_beg = k4n_operation.find_mkv_ts_beg(sensor->param.path.data);
-      float mkv_ts_end = k4n_operation.find_mkv_ts_end(sensor->param.path.data);
+      float mkv_ts_beg = k4n_importer->find_mkv_ts_beg(sensor->param.path.data);
+      float mkv_ts_end = k4n_importer->find_mkv_ts_end(sensor->param.path.data);
 
       ts_beg = (ts_beg != -1) ? std::max(ts_beg, mkv_ts_beg) : mkv_ts_beg;
       ts_end = (ts_end != -1) ? std::min(ts_end, mkv_ts_end) : mkv_ts_end;

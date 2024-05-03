@@ -18,7 +18,6 @@ Operation::Operation(k4n::Node* node_k4n){
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::attribut::Normal();
-  this->k4n_operation = new k4n::utils::Operation();
   this->k4n_recorder = new k4n::processing::Recorder(node_k4n);
   this->thread_pool = node_engine->get_thread_pool();
 
