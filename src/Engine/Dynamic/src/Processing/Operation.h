@@ -14,7 +14,7 @@ namespace ope::color{class Colorizer;}
 namespace ope::attribut{class Normal;}
 
 
-namespace k4n::processing{
+namespace dyn::processing{
 
 class Operation
 {

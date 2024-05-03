@@ -6,7 +6,7 @@
 #include <Kinect/Namespace.h>
 
 
-namespace k4n::processing{
+namespace dyn::processing{
 
 //Constructor / Destructor
 Operation::Operation(k4n::Node* node_k4n){

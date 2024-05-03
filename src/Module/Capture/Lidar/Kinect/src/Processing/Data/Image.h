@@ -5,8 +5,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
-namespace k4n::data{class Depth;}
-namespace k4n::data{class Infrared;}
+namespace k4n::utils{class Data;}
 namespace k4n::config{class Configuration;}
 namespace rad::detection{class Identification;}
 namespace utl::thread{class Pool;}
@@ -35,8 +34,7 @@ public:
 
 private:
   utl::thread::Pool* thread_pool;
-  k4n::data::Depth* k4n_depth;
-  k4n::data::Infrared* k4n_infrared;
+  k4n::utils::Data* k4n_data;
   k4n::config::Configuration* k4n_config;
   rad::detection::Identification* radio_identification;
 
