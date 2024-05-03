@@ -136,14 +136,14 @@ void Player::player_stop(k4n::dev::Master* master){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button(ICON_FA_STOP "##37")){
-      master->player_stop();
+      master->player->player_stop();
     }
     ImGui::PopStyleColor(2);
   }
   else{
     //Player is stoped
     if(ImGui::Button(ICON_FA_STOP "##37")){
-      master->player_stop();
+      master->player->player_stop();
     }
   }
 

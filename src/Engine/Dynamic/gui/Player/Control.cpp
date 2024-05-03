@@ -15,7 +15,7 @@ Control::Control(){
 Control::~Control(){}
 
 //Main function
-void Control::run_control(dyn::Player* player){
+void Control::run_control(dyn::base::Player* player){
   //---------------------------
 
   this->control_keyboard(player);
@@ -24,7 +24,7 @@ void Control::run_control(dyn::Player* player){
 }
 
 //Keyboard
-void Control::control_keyboard(dyn::Player* player){
+void Control::control_keyboard(dyn::base::Player* player){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 

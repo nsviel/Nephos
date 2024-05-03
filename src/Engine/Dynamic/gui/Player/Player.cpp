@@ -54,7 +54,7 @@ void Player::design_panel(utl::type::Element* element){
 }
 
 //Player function
-void Player::draw_player(dyn::Player* ply){
+void Player::draw_player(dyn::base::Player* ply){
   //---------------------------
 
   this->player_slider(ply);
@@ -73,7 +73,7 @@ void Player::draw_player(dyn::Player* ply){
 
   //---------------------------
 }
-void Player::player_slider(dyn::Player* ply){
+void Player::player_slider(dyn::base::Player* ply){
   //---------------------------
 
   ImVec2 width = ImGui::GetContentRegionAvail();
@@ -87,7 +87,7 @@ void Player::player_slider(dyn::Player* ply){
 
   //---------------------------
 }
-void Player::player_start(dyn::Player* ply){
+void Player::player_start(dyn::base::Player* ply){
   //---------------------------
 
   //If player start / pause button is appearing, allow keyboard control
@@ -115,7 +115,7 @@ void Player::player_start(dyn::Player* ply){
 
   //---------------------------
 }
-void Player::player_stop(dyn::Player* ply){
+void Player::player_stop(dyn::base::Player* ply){
   //---------------------------
 
   bool& is_pause = ply->get_state_pause();
@@ -137,7 +137,7 @@ void Player::player_stop(dyn::Player* ply){
 
   //---------------------------
 }
-void Player::player_repeat(dyn::Player* ply){
+void Player::player_repeat(dyn::base::Player* ply){
   //---------------------------
 
   bool& is_restart = ply->get_state_restart();
@@ -158,7 +158,7 @@ void Player::player_repeat(dyn::Player* ply){
 
   //---------------------------
 }
-void Player::player_record(dyn::Player* ply){
+void Player::player_record(dyn::base::Player* ply){
   //---------------------------
 
   bool& is_record = ply->get_state_record();
@@ -179,7 +179,7 @@ void Player::player_record(dyn::Player* ply){
 
   //---------------------------
 }
-void Player::player_close(dyn::Player* ply){
+void Player::player_close(dyn::base::Player* ply){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
@@ -190,7 +190,7 @@ void Player::player_close(dyn::Player* ply){
 
   //---------------------------
 }
-void Player::player_lock(dyn::Player* ply){
+void Player::player_lock(dyn::base::Player* ply){
   //---------------------------
 
   bool& is_locked = ply->get_state_locked();

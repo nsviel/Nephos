@@ -6,7 +6,7 @@
 namespace dat::base{class Set;}
 
 
-namespace dyn{
+namespace dyn::base{
 
 class Player
 {

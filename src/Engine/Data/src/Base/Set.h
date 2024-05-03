@@ -9,7 +9,7 @@
 
 namespace dat::base{class Entity;}
 namespace dat::base{class Set;}
-namespace dyn{class Player;}
+namespace dyn::base{class Player;}
 
 
 namespace dat::base{
@@ -39,7 +39,7 @@ struct Set : public utl::type::Element{
   dat::base::Entity* active_entity = nullptr;
   dat::base::Set* active_subset = nullptr;
   dat::base::Set* set_parent = nullptr;
-  dyn::Player* player = nullptr;
+  dyn::base::Player* player = nullptr;
 
   std::list<dat::base::Entity*> list_entity;
   std::list<dat::base::Set*> list_subset;

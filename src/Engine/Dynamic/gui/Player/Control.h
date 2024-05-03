@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dyn{class Player;}
+namespace dyn::base{class Player;}
 
 
 namespace dyn::gui{
@@ -16,10 +16,10 @@ public:
 
 public:
   //Main function
-  void run_control(dyn::Player* player);
+  void run_control(dyn::base::Player* player);
 
   //Keyboard
-  void control_keyboard(dyn::Player* player);
+  void control_keyboard(dyn::base::Player* player);
 
 private:
 };

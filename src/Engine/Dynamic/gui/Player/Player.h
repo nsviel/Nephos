@@ -5,7 +5,7 @@
 namespace dat{class Graph;}
 namespace dyn{class Node;}
 namespace dyn::gui{class Control;}
-namespace dyn{class Player;}
+namespace dyn::base{class Player;}
 
 
 namespace dyn::gui{
@@ -22,14 +22,14 @@ public:
   void design_panel(utl::type::Element* element);
 
   //Player function
-  void draw_player(dyn::Player* ply);
-  void player_slider(dyn::Player* ply);
-  void player_start(dyn::Player* ply);
-  void player_stop(dyn::Player* ply);
-  void player_repeat(dyn::Player* ply);
-  void player_record(dyn::Player* ply);
-  void player_close(dyn::Player* ply);
-  void player_lock(dyn::Player* ply);
+  void draw_player(dyn::base::Player* ply);
+  void player_slider(dyn::base::Player* ply);
+  void player_start(dyn::base::Player* ply);
+  void player_stop(dyn::base::Player* ply);
+  void player_repeat(dyn::base::Player* ply);
+  void player_record(dyn::base::Player* ply);
+  void player_close(dyn::base::Player* ply);
+  void player_lock(dyn::base::Player* ply);
 
 private:
   dyn::gui::Control* gui_control;

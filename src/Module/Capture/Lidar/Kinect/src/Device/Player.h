@@ -3,14 +3,16 @@
 #include <Dynamic/src/Base/Player.h>
 #include <Utility/Specific/Common.h>
 
+namespace k4n::dev{class Master;}
+
 
 namespace k4n::dev{
 
-class Player : public dyn::Player
+class Player : public dyn::base::Player
 {
 public:
   //Constructor / Destructor
-  Player(dat::base::Set* set);
+  Player(k4n::dev::Master* master);
   ~Player();
 
   //Main function

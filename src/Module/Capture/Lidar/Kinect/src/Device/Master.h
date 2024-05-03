@@ -9,7 +9,7 @@ namespace dat{class Set;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::config{class Configuration;}
-namespace dyn{class Player;}
+namespace dyn::base{class Player;}
 namespace k4n::structure{class Operation;}
 namespace k4n::structure{class Recorder;}
 namespace k4n::structure{class Configuration;}
