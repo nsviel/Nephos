@@ -17,10 +17,8 @@ Player::Player(k4n::Node* node_k4n, bool* show_window){
   dat::Node* node_data = node_dynamic->get_node_data();
 
   this->k4n_swarm = node_k4n->get_k4n_swarm();
-  this->gui_recorder = new k4n::gui::Recorder(node_k4n);
   this->gui_master = new k4n::gui::Master(node_k4n);
   this->gui_sensor = new k4n::gui::Sensor(node_k4n);
-  this->gui_control = new k4n::gui::Control(node_k4n);
   this->dyn_player = node_dynamic->get_gui_player();
   this->dat_graph = node_data->get_data_graph();
 
@@ -113,7 +111,7 @@ void Player::player_start(k4n::dev::Master* master){
   //---------------------------
 
   //If player start / pause button is appearing, allow keyboard control
-  gui_control->run_control();
+  //gui_control->run_control();
 
   //Play button -> if paused or not playing
   bool& is_pause = master->player->get_state_pause();
@@ -256,7 +254,6 @@ void Player::show_sensor_tab(k4n::dev::Sensor* sensor){
   if(ImGui::BeginTabItem(name.c_str(), NULL)){
 
     gui_sensor->show_sensor(sensor);
-    //gui_recorder->show_sensor_recorder(sensor);
 
     ImGui::EndTabItem();
   }

@@ -163,35 +163,11 @@ k4n::dev::Master* Swarm::get_or_create_capture_master(string name){
   //---------------------------
   return master;
 }
-k4n::dev::Master* Swarm::get_master_by_name(string name){
-  //---------------------------
-
-  //Check if already existing
-  for(int i=0; i<k4n_struct->device.list_sensor.size(); i++){
-    k4n::dev::Master* master = *std::next(k4n_struct->device.list_master.begin(), i);
-    if(name == master->name){
-      return master;
-    }
-  }
-
-  //---------------------------
-  return nullptr;
-}
 k4n::dev::Master* Swarm::get_selected_master(){
   return k4n_struct->device.selected_master;
 }
 
 //Subfunction
-void Swarm::manage_resynchronization(){
-  //---------------------------
-
-  for(int i=0; i<k4n_struct->device.list_sensor.size(); i++){
-    k4n::dev::Master* master = *std::next(k4n_struct->device.list_master.begin(), i);
-    master->manage_resynchronization();
-  }
-
-  //---------------------------
-}
 void Swarm::manage_connected_device(){
   if(!k4n_struct->device.connected_device_change) return;
   //---------------------------

@@ -53,7 +53,6 @@ void Node::loop(){
   //---------------------------
 
   k4n_swarm->manage_connected_device();
-  k4n_swarm->manage_resynchronization();
 
   //---------------------------
 }
