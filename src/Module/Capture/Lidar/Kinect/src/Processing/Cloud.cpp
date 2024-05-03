@@ -5,6 +5,7 @@
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <execution>
 
 
