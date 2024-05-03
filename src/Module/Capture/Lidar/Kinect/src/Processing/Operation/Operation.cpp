@@ -18,7 +18,7 @@ Operation::Operation(k4n::Node* node_k4n){
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::attribut::Normal();
-  this->k4n_recorder = new k4n::processing::Recorder(node_k4n);
+
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
@@ -77,8 +77,7 @@ void Operation::run_thread(k4n::dev::Sensor* sensor){
     tasker->task_end("normal");
   }
 
-  //Export in ply
-  k4n_recorder->start_thread(sensor);
+
 
   //Update object data
   tasker->task_begin("update");
@@ -97,7 +96,7 @@ void Operation::wait_thread(){
   while(idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  k4n_recorder->wait_thread();
+
 
   //---------------------------
 }

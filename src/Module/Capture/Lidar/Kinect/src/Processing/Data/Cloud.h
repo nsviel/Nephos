@@ -10,6 +10,7 @@ namespace rad::detection{class Ransac;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
 namespace utl::thread{class Pool;}
+namespace k4n::processing{class Recorder;}
 
 
 namespace k4n::processing{
@@ -45,6 +46,7 @@ private:
   k4n::processing::Operation* k4n_processing;
   rad::detection::Ransac* radio_ransac;
   utl::thread::Pool* thread_pool;
+  k4n::processing::Recorder* k4n_recorder;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgb;

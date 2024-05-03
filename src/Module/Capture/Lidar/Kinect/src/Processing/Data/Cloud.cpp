@@ -20,6 +20,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
   this->k4n_processing = new k4n::processing::Operation(node_k4n);
   this->radio_ransac = node_radio->get_radio_ransac();
   this->thread_pool = node_engine->get_thread_pool();
+  this->k4n_recorder = new k4n::processing::Recorder(node_k4n);
 
   //---------------------------
 }
@@ -50,6 +51,9 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   //Update object data
   //radio_ransac->start_thread(sensor);
 
+  //Export in ply
+  k4n_recorder->start_thread(sensor);
+
   //---------------------------
   this->idle = true;
 }
@@ -60,6 +64,7 @@ void Cloud::wait_thread(){
   while(idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+  k4n_recorder->wait_thread();
   k4n_processing->wait_thread();
   //radio_ransac->wait_thread();
 

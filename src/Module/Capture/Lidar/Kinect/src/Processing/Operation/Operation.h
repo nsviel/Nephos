@@ -4,7 +4,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
-namespace k4n::processing{class Recorder;}
+
 namespace k4n::structure{class K4N;}
 namespace utl::thread{class Pool;}
 namespace ope{class Voxelizer;}
@@ -39,7 +39,7 @@ private:
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
   ope::attribut::Normal* ope_normal;
-  k4n::processing::Recorder* k4n_recorder;
+
   utl::thread::Pool* thread_pool;
 
   bool idle = true;
