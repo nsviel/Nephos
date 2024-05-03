@@ -2,6 +2,7 @@
 
 #include <Utility/Base/Type/Node.h>
 
+namespace eng{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace dyn::gui{class Player;}
@@ -23,9 +24,11 @@ public:
   void gui();
   void reset();
 
+  inline eng::Node* get_node_engine(){return node_engine;}
   inline dat::Node* get_node_data(){return node_data;}
-  
+
 private:
+  eng::Node* node_engine;
   dat::Node* node_data;
   dyn::gui::Player* gui_player;
 };

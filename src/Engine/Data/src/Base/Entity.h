@@ -3,6 +3,7 @@
 #include <Utility/Base/Type/Data.h>
 #include <Utility/Base/Type/Pose.h>
 #include <Utility/Base/Type/Element.h>
+#include <Utility/Base/Media/Image.h>
 #include <image/IconsFontAwesome6.h>
 
 namespace dat::base{class Glyph;}
@@ -37,6 +38,7 @@ struct Entity : public utl::type::Element{
   utl::type::Pose pose;
   utl::type::Data data;
   std::list<dat::base::Glyph*> list_glyph;
+  std::list<utl::media::Image*> list_image;
 
   //---------------------------
 };

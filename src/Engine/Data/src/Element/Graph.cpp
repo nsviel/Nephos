@@ -10,8 +10,8 @@ namespace dat{
 Graph::Graph(dat::Node* node_data){
   //---------------------------
 
-  this->dat_struct = node_data->get_struct();
-  this->dat_set = node_data->get_set();
+  this->dat_struct = node_data->get_data_struct();
+  this->dat_set = node_data->get_data_set();
 
   //---------------------------
 }

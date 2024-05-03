@@ -12,7 +12,7 @@ Entity::Entity(dat::Node* node_data, bool* panel_show){
   //---------------------------
 
   this->dat_graph = node_data->get_data_graph();
-  this->dat_set = node_data->get_set();
+  this->dat_set = node_data->get_data_set();
   this->ope_location = new ope::attribut::Location();
   this->ope_operation = new ope::Operation();
 

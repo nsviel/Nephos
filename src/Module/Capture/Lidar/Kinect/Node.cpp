@@ -14,7 +14,7 @@ namespace k4n{
 //Constructor / Destructor
 Node::Node(cap::Node* node_capture){
   utl::gui::Panel* ply_panel = add_panel("Player", ICON_FA_PLAY, true);
-  utl::gui::Panel* str_panel = add_panel("Stream", ICON_FA_FILM, false);
+  utl::gui::Panel* str_panel = add_panel("Stream", ICON_FA_FILM, true);
   //---------------------------
 
   //Dependancy

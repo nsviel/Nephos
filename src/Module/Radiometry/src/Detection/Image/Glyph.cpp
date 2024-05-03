@@ -13,7 +13,7 @@ Glyph::Glyph(rad::Node* node_radio){
   dat::Node* node_data = node_radio->get_node_data();
 
   this->radio_struct = node_radio->get_radio_struct();
-  this->dat_glyph = node_data->get_glyph();
+  this->dat_glyph = node_data->get_data_glyph();
   this->k4n_transfo = new k4n::utils::Transformation();
 
   //---------------------------

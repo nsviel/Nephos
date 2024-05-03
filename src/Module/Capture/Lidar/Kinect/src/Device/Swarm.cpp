@@ -19,7 +19,7 @@ Swarm::Swarm(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->profiler = node_profiler->get_prf_manager();
   this->dat_graph = node_data->get_data_graph();
-  this->dat_set = node_data->get_set();
+  this->dat_set = node_data->get_data_set();
   this->k4n_transfo = new k4n::utils::Transformation();
   this->k4n_config = new k4n::config::Configuration();
 

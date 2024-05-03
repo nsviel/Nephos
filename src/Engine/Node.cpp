@@ -42,6 +42,7 @@ Node::Node(app::Node* node_app){
   this->add_node_panel(node_profiler);
   this->add_node_panel(node_render);
   this->add_node_panel(node_dynamic);
+  this->add_node_panel(node_scene);
 
   //---------------------------
 }

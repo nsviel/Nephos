@@ -32,10 +32,10 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
   inline dat::Graph* get_data_graph(){return dat_graph;}
-  inline dat::Entity* get_entity(){return dat_entity;}
-  inline dat::Set* get_set(){return dat_set;}
-  inline dat::Glyph* get_glyph(){return dat_glyph;}
-  inline dat::Structure* get_struct(){return dat_struct;}
+  inline dat::Entity* get_data_entity(){return dat_entity;}
+  inline dat::Set* get_data_set(){return dat_set;}
+  inline dat::Glyph* get_data_glyph(){return dat_glyph;}
+  inline dat::Structure* get_data_struct(){return dat_struct;}
 
 private:
   //Dependancy
@@ -49,7 +49,7 @@ private:
   dat::Glyph* dat_glyph;
   dat::Set* dat_set;
   dat::gui::Graph* gui_graph;
-  
+
   bool show_scene = true;
   bool show_loader = true;
 };

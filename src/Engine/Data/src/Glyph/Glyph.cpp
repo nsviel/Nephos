@@ -17,7 +17,7 @@ Glyph::Glyph(dat::Node* node_data){
 
   this->node_engine = node_engine;
   this->dat_graph = node_data->get_data_graph();
-  this->dat_set = node_data->get_set();
+  this->dat_set = node_data->get_data_set();
 
   //---------------------------
 }

@@ -22,6 +22,8 @@ Node::Node(eng::Node* node_engine){
   this->node_module = new mod::Node(node_engine);
   this->sce_init = new sce::Init(this);
 
+  this->add_node_panel(node_module);
+
   //---------------------------
 }
 Node::~Node(){}

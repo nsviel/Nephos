@@ -28,7 +28,7 @@ Glyph::~Glyph(){}
 
 //Main function
 void Glyph::init(){
-  dat::Entity* dat_entity = node_data->get_entity();
+  dat::Entity* dat_entity = node_data->get_data_entity();
   //----------------------------
 
   dat_entity->init_entity(this);

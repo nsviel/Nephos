@@ -9,7 +9,7 @@ namespace dat::gui{
 Set::Set(dat::Node* node_data, bool* show_window){
   //---------------------------
 
-  this->dat_set = node_data->get_set();
+  this->dat_set = node_data->get_data_set();
 
   this->panel_show = show_window;
   this->panel_name = "Set";

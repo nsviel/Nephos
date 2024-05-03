@@ -23,8 +23,6 @@ Node::Node(app::Node* node_app){
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
 
-//  this->add_node_panel(gui_tab);
-
   //---------------------------
 }
 Node::~Node(){

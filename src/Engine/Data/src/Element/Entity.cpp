@@ -16,8 +16,8 @@ Entity::Entity(dat::Node* node_data){
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
   this->node_engine = node_engine;
-  this->dat_glyph = node_data->get_glyph();
-  this->dat_struct = node_data->get_struct();
+  this->dat_glyph = node_data->get_data_glyph();
+  this->dat_struct = node_data->get_data_struct();
   this->vk_engine = node_vulkan->get_vk_engine();
 
   //---------------------------
