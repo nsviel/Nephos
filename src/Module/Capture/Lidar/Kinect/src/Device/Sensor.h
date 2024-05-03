@@ -12,7 +12,7 @@ namespace dat{class Graph;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::thread{class Capture;}
-namespace k4n::thread{class Playback;}
+namespace k4n::playback{class Thread;}
 namespace k4n::structure{class Param;}
 namespace k4n::structure{class Playback;}
 namespace k4n::structure{class Recorder;}
@@ -82,7 +82,7 @@ private:
   dat::Glyph* dat_glyph;
   dat::Graph* dat_graph;
   k4n::thread::Capture* k4n_capture;
-  k4n::thread::Playback* k4n_playback;
+  k4n::playback::Thread* k4n_playback;
   k4n::structure::K4N* k4n_struct;
 
   bool thread_running = false;

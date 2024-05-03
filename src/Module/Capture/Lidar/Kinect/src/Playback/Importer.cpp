@@ -4,7 +4,7 @@
 #include <Kinect/Namespace.h>
 
 
-namespace k4n{
+namespace k4n::playback{
 
 //Constructor / Destructor
 Importer::Importer(k4n::Node* node_k4n){

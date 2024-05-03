@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Dynamic/src/Playback/Thread.h>
 #include <Utility/Specific/Common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
@@ -14,21 +15,20 @@ namespace k4n::utils{class Operation;}
 namespace k4n::structure{class K4N;}
 
 
-namespace k4n::thread{
+namespace k4n::playback{
 
-class Playback
+class Thread : public dyn::playback::Thread
 {
 public:
   //Constructor / Destructor
-  Playback(k4n::Node* node_k4n);
-  ~Playback();
+  Thread(k4n::Node* node_k4n);
+  ~Thread();
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor);
-  void run_thread(k4n::dev::Sensor* sensor);
-  void stop_thread();
-  void wait_thread();
+  void thread_init(dat::base::Sensor* sensor);
+  void thread_loop(dat::base::Sensor* sensor);
+  void thread_end(dat::base::Sensor* sensor);
 
   //Subfunction
   k4a::capture* manage_new_capture(k4n::dev::Sensor* sensor);
@@ -36,19 +36,11 @@ public:
   void manage_pause(k4n::dev::Sensor* sensor);
   void manage_restart(k4n::dev::Sensor* sensor);
 
-  inline bool is_thread_running(){return thread_running;}
-  inline bool is_thread_paused(){return thread_paused;}
-
 private:
   k4n::processing::Data* k4n_data;
   k4n::config::Configuration* k4n_configuration;
   k4n::config::Calibration* radio_calibration;
   k4n::utils::Operation* k4n_operation;
-
-  std::thread thread;
-  bool thread_running = false;
-  bool thread_idle = true;
-  bool thread_paused = false;
 };
 
 

@@ -8,7 +8,7 @@ namespace k4n{class Node;}
 namespace k4n::dev{class Swarm;}
 
 
-namespace k4n{
+namespace k4n::playback{
 
 class Importer : public ldr::base::Importer
 {

@@ -38,7 +38,7 @@ void Node::config(){
   ldr::Format* ldr_format = node_loader->get_format();
   //---------------------------
 
-  ldr_format->insert_importer(new k4n::Importer(this));
+  ldr_format->insert_importer(new k4n::playback::Importer(this));
 
   //---------------------------
 }
