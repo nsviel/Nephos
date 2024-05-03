@@ -33,7 +33,6 @@ void Player::run_panel(){
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
       this->design_panel(element);
-    //  this->info(element);
 
       ImGui::End();
     }
@@ -49,6 +48,7 @@ void Player::design_panel(utl::type::Element* element){
     if(set->player == nullptr) return;
     //Button player
     this->draw_player(set->player);
+    set->player->gui_info();
   }
 
   //---------------------------

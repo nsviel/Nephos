@@ -33,25 +33,23 @@ Player::~Player(){}
 
 //Main function
 void Player::run_panel(){
-
+  utl::type::Element* element = dat_graph->get_selection();
   //---------------------------
 
-  if(*show_window){
+  if(*show_window && element != nullptr){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel();
+      this->design_panel(element);
 
       ImGui::End();
     }
     ImGui::PopStyleColor();
   }
 
-    //dyn_player->info = design_panel;
-
   //---------------------------
 }
-void Player::design_panel(){
+void Player::design_panel(utl::type::Element* element){
   //---------------------------
 
   k4n::dev::Master* master = k4n_swarm->get_selected_master();

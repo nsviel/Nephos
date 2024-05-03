@@ -46,6 +46,7 @@ void Stream::run_panel(){
   //Chekc if it contain entities
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
     if(set->list_entity.size() == 0) return;
+    else if(set->active_entity->list_image.size() == 0) return;
   }
 
   if(*show_window && element != nullptr){

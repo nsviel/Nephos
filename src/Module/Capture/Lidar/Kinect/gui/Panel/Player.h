@@ -25,7 +25,7 @@ public:
 
   //Main function
   void run_panel();
-  void design_panel();
+  void design_panel(utl::type::Element* element);
 
   //Player function
   void draw_player(k4n::dev::Master* master);

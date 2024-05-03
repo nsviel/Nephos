@@ -25,6 +25,7 @@ public:
   void player_record();
   void player_close();
   void player_lock();
+  void gui_info();
 
   //Subfunction
   void manage_restart();

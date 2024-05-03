@@ -25,6 +25,8 @@ public:
   virtual void player_record(){}
   virtual void player_close(){}
   virtual void player_lock(){}
+  
+  virtual void gui_info(){}
 
   inline bool& get_state_play(){return play;}
   inline bool& get_state_pause(){return pause;}

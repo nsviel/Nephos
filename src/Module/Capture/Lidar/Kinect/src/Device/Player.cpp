@@ -92,6 +92,12 @@ void Player::player_lock(){
   //---------------------------
 }
 
+void Player::gui_info(){
+  //---------------------------
+
+  //---------------------------
+}
+
 //Subfunction
 void Player::manage_restart(){
   /*if(mode == k4n::dev::CAPTURE) return;
