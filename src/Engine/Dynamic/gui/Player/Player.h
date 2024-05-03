@@ -31,6 +31,9 @@ public:
   void player_close(dyn::base::Player* ply);
   void player_lock(dyn::base::Player* ply);
 
+  //Module function
+  std::function<void()> info;
+
 private:
   dyn::gui::Control* gui_control;
   dat::Graph* dat_graph;

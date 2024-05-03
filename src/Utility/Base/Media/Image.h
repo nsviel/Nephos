@@ -1,12 +1,13 @@
 #pragma once
 
+#include <Utility/Base/Type/Element.h>
 #include <string>
 #include <vector>
 
 
 namespace utl::media{
 
-struct Image{
+struct Image : public utl::type::Element{
   //---------------------------
 
   //Info

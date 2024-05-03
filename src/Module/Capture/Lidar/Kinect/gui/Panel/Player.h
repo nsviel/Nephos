@@ -10,6 +10,8 @@ namespace k4n::gui{class Control;}
 namespace k4n::dev{class Swarm;}
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
+namespace dyn::gui{class Player;}
+namespace dat{class Graph;}
 
 
 namespace k4n::gui{
@@ -23,7 +25,7 @@ public:
 
   //Main function
   void run_panel();
-  void design_panel(k4n::dev::Master* master);
+  void design_panel();
 
   //Player function
   void draw_player(k4n::dev::Master* master);
@@ -45,6 +47,8 @@ private:
   k4n::gui::Sensor* gui_sensor;
   k4n::gui::Control* gui_control;
   k4n::dev::Swarm* k4n_swarm;
+  dyn::gui::Player* dyn_player;
+  dat::Graph* dat_graph;
 
   bool* show_window;
   string name;

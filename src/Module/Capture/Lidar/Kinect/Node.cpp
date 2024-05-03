@@ -14,7 +14,6 @@ namespace k4n{
 //Constructor / Destructor
 Node::Node(cap::Node* node_capture){
   utl::gui::Panel* ply_panel = add_panel("Player", ICON_FA_PLAY, true);
-  utl::gui::Panel* str_panel = add_panel("Stream", ICON_FA_FILM, true);
   //---------------------------
 
   //Dependancy
@@ -28,7 +27,6 @@ Node::Node(cap::Node* node_capture){
   this->k4n_struct = new k4n::structure::K4N(this);
   this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::thread::Connection(this);
-  this->gui_stream = new k4n::gui::Stream(this, &str_panel->is_open);
   this->gui_player = new k4n::gui::Player(this, &ply_panel->is_open);
 
   //---------------------------
@@ -63,7 +61,6 @@ void Node::gui(){
   //---------------------------
 
   gui_player->run_panel();
-  gui_stream->run_panel();
 
   //---------------------------
 }

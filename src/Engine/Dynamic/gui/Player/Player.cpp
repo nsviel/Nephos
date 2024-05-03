@@ -33,6 +33,7 @@ void Player::run_panel(){
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
       this->design_panel(element);
+    //  this->info(element);
 
       ImGui::End();
     }

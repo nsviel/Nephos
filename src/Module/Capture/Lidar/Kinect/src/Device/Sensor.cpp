@@ -18,6 +18,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_struct();
   this->node_engine = node_engine;
+  this->dat_graph = node_data->get_data_graph();
   this->dat_entity = node_data->get_data_entity();
   this->dat_set = node_data->get_data_set();
   this->dat_glyph = node_data->get_data_glyph();
@@ -60,6 +61,14 @@ void Sensor::init(){
   object.data.nb_data_max = 10000000;
   object.pose.model[2][3] = 1;
   dat_entity->init_entity(&object);
+
+  image.color.name = "Color";
+  dat_graph->assign_UID(&image.color);
+  image.ir.name = "IR";
+  dat_graph->assign_UID(&image.ir);
+  image.depth.name = "Depth";
+  dat_graph->assign_UID(&image.depth);
+
 
 /*
   //Sensor glyph
@@ -155,7 +164,6 @@ void Sensor::stop_threads(){
   this->thread_running = false;
   this->object.clear_data();
   this->object.set_visibility(false);
-  this->image = {};
 
   //---------------------------
 }

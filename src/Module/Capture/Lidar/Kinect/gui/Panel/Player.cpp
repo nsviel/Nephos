@@ -2,6 +2,8 @@
 
 #include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Data/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace k4n::gui{
@@ -10,11 +12,17 @@ namespace k4n::gui{
 Player::Player(k4n::Node* node_k4n, bool* show_window){
   //---------------------------
 
+  eng::Node* node_engine = node_k4n->get_node_engine();
+  dyn::Node* node_dynamic = node_engine->get_node_dynamic();
+  dat::Node* node_data = node_dynamic->get_node_data();
+
   this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->gui_recorder = new k4n::gui::Recorder(node_k4n);
   this->gui_master = new k4n::gui::Master(node_k4n);
   this->gui_sensor = new k4n::gui::Sensor(node_k4n);
   this->gui_control = new k4n::gui::Control(node_k4n);
+  this->dyn_player = node_dynamic->get_gui_player();
+  this->dat_graph = node_data->get_data_graph();
 
   this->show_window = show_window;
   this->name = "Player_kinect";
@@ -25,24 +33,28 @@ Player::~Player(){}
 
 //Main function
 void Player::run_panel(){
-  k4n::dev::Master* master = k4n_swarm->get_selected_master();
+
   //---------------------------
 
-  if(*show_window && master != nullptr){
+  if(*show_window){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel(master);
+      this->design_panel();
 
       ImGui::End();
     }
     ImGui::PopStyleColor();
   }
 
+    //dyn_player->info = design_panel;
+
   //---------------------------
 }
-void Player::design_panel(k4n::dev::Master* master){
+void Player::design_panel(){
   //---------------------------
+
+  k4n::dev::Master* master = k4n_swarm->get_selected_master();
 
   //Master player
   //this->draw_player(master);

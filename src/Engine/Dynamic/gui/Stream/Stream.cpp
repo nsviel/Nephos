@@ -43,6 +43,11 @@ void Stream::run_panel(){
   utl::type::Element* element = dat_graph->get_selection();
   //---------------------------
 
+  //Chekc if it contain entities
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
+    if(set->list_entity.size() == 0) return;
+  }
+
   if(*show_window && element != nullptr){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
@@ -62,11 +67,11 @@ void Stream::run_panel(){
 void Stream::design_panel(utl::type::Element* element){
   //---------------------------
 
-  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-
-  }
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
     this->draw_set_tabbar(set);
+  }
+  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    this->draw_stream_tabbar(entity);
   }
 
   //---------------------------
@@ -117,7 +122,8 @@ void Stream::draw_stream_tabbar(dat::base::Entity* entity){
       utl::media::Image* image = *next(list_image.begin(), i);
 
       ImGui::SetNextItemWidth(100);
-      if (ImGui::BeginTabItem("Color##4567", NULL)){
+      string title = image->name + "##4567";
+      if(ImGui::BeginTabItem(title.c_str(), NULL)){
         this->draw_stream_image(image, size);
         ImGui::EndTabItem();
       }

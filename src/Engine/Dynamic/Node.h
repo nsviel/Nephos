@@ -27,6 +27,7 @@ public:
 
   inline eng::Node* get_node_engine(){return node_engine;}
   inline dat::Node* get_node_data(){return node_data;}
+  inline dyn::gui::Player* get_gui_player(){return gui_player;}
 
 private:
   eng::Node* node_engine;

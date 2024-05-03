@@ -10,7 +10,7 @@ namespace dyn{
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
   utl::gui::Panel* panel_player = add_panel("Player", ICON_FA_PLAY, true);
-  utl::gui::Panel* panel_stream = add_panel("Stream", ICON_FA_FILM, true);
+  utl::gui::Panel* panel_stream = add_panel("Stream", ICON_FA_FILM, false);
   //---------------------------
 
   this->node_engine = node_engine;

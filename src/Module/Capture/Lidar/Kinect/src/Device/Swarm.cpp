@@ -53,6 +53,7 @@ void Swarm::create_sensor_playback(utl::media::Path path){
   k4n_transfo->find_transformation_from_file(sensor, path.transformation);
   k4n_struct->device.list_sensor.push_back(sensor);
 
+
   //---------------------------
 }
 void Swarm::create_sensor_capture(int index){

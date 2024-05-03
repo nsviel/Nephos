@@ -8,6 +8,7 @@ namespace eng{class Node;}
 namespace dat{class Entity;}
 namespace dat{class Set;}
 namespace dat{class Glyph;}
+namespace dat{class Graph;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::thread{class Capture;}
@@ -79,6 +80,7 @@ private:
   dat::Entity* dat_entity;
   dat::Set* dat_set;
   dat::Glyph* dat_glyph;
+  dat::Graph* dat_graph;
   k4n::thread::Capture* k4n_capture;
   k4n::thread::Playback* k4n_playback;
   k4n::structure::K4N* k4n_struct;
