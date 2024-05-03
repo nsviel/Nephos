@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Dynamic/src/Capture/Thread.h>
 #include <Utility/Specific/Common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
@@ -14,7 +15,7 @@ namespace k4n::structure{class K4N;}
 
 namespace k4n::capture{
 
-class Thread
+class Thread : public dyn::capture::Thread
 {
 public:
   //Constructor / Destructor
@@ -23,27 +24,19 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* device);
-  void run_thread(k4n::dev::Sensor* device);
-  void stop_thread();
-  void wait_thread();
+  void thread_init(dat::base::Sensor* sensor);
+  void thread_loop(dat::base::Sensor* sensor);
+  void thread_end(dat::base::Sensor* sensor);
 
   //Subfunction
   k4a::capture* manage_new_capture(k4n::dev::Sensor* sensor);
   void manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture);
   void manage_pause(k4n::dev::Sensor* sensor);
 
-  inline bool is_thread_running(){return thread_running;}
-  inline bool* get_thread_pause(){return &thread_pause;}
-
 private:
   k4n::processing::Data* k4n_data;
   k4n::utils::Configuration* k4n_config;
 
-  std::thread thread;
-  bool thread_running = false;
-  bool thread_pause = false;
-  bool thread_idle = true;
   bool is_recording = false;
 };
 
