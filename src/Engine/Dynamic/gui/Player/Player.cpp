@@ -46,16 +46,15 @@ void Player::design_panel(utl::type::Element* element){
   //---------------------------
 
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
-    if(set->player == nullptr) return;
     //Button player
-    this->draw_player(set->player);
-    set->player->gui_info();
+    this->draw_player(&set->player);
+    set->player.gui_info();
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    if(entity->set_parent->player == nullptr) return;
+    dat::base::Set* set = entity->set_parent;
     //Button player
-    this->draw_player(entity->set_parent->player);
-    entity->set_parent->player->gui_info();
+    this->draw_player(&set->player);
+    set->player.gui_info();
   }
 
   //---------------------------

@@ -33,7 +33,7 @@ void Swarm::create_sensor_playback(utl::media::Path path){
   //---------------------------
 
   //Associated master
-  k4n::dev::Master* master = get_or_create_playback_master("Playback");
+  k4n::dev::Master* master = get_or_create_playback_master("Kinect");
   int index = dat_set->compute_number_entity(master);
 
   //Sensor creation
@@ -60,7 +60,7 @@ void Swarm::create_sensor_capture(int index){
   //---------------------------
 
   //Associated master
-  this->close_master("Playback");
+  this->close_master("Kinect");
   k4n::dev::Master* master = get_or_create_capture_master("Capture");
 
   //Sensor creation

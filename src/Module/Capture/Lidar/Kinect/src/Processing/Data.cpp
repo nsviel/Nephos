@@ -102,7 +102,7 @@ void Data::find_data_from_capture(k4n::dev::Sensor* sensor){
   sensor->color.data.fps = fps;
   sensor->depth.data.fps = fps;
   sensor->ir.data.fps = fps;
-  float& ts_cur = sensor->master->player->get_ts_cur();
+  float& ts_cur = sensor->master->player.get_ts_cur();
   ts_cur = sensor->color.data.timestamp;
   sensor->param.data_ready = true;
 

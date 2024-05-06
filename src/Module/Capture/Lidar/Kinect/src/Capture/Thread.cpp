@@ -126,8 +126,8 @@ void Thread::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  bool& is_play = sensor->master->player->get_state_play();
-  bool& is_pause = sensor->master->player->get_state_pause();
+  bool& is_play = sensor->master->player.get_state_play();
+  bool& is_pause = sensor->master->player.get_state_pause();
   if(is_pause || !is_play){
     sensor->profiler->reset();
     while(is_pause && thread_running){

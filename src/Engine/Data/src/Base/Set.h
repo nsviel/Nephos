@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Dynamic/Namespace.h>
+#include <Dynamic/src/Base/Player.h>
 #include <Utility/Base/Type/Element.h>
 #include <Utility/Base/Type/Pose.h>
 #include <image/IconsFontAwesome6.h>
@@ -8,9 +8,7 @@
 #include <list>
 
 namespace dat::base{class Entity;}
-namespace dat::base{class Set;}
 namespace dyn::base{class Player;}
-namespace dyn::gui{class Player;}
 
 
 namespace dat::base{
@@ -18,8 +16,8 @@ namespace dat::base{
 struct Set : public utl::type::Element{
   //---------------------------
 
-  Set(){}
-  virtual ~Set(){}
+  Set();
+  ~Set();
   virtual void reset_set(){}
 
   //Info
@@ -40,7 +38,7 @@ struct Set : public utl::type::Element{
   dat::base::Entity* active_entity = nullptr;
   dat::base::Set* active_subset = nullptr;
   dat::base::Set* set_parent = nullptr;
-  dyn::base::Player* player = nullptr;
+  dyn::base::Player player;
 
   std::list<dat::base::Entity*> list_entity;
   std::list<dat::base::Set*> list_subset;
