@@ -12,6 +12,7 @@ Importer::Importer(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
 
+  this->node_k4n = node_k4n;
   this->node_engine = node_k4n->get_node_engine();
   this->dat_graph = node_data->get_data_graph();
 
@@ -26,28 +27,18 @@ Importer::~Importer(){}
 utl::media::File* Importer::import(utl::media::Path path){
   if(!utl::file::is_exist(path.data)) return nullptr;
   //---------------------------
-/*
-  //Associated master
-  k4n::dev::Master* master = get_or_create_playback_master("Kinect");
-  int index = dat_set->compute_number_entity(master);
 
-  //Sensor creation
-  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
-  sensor->name = "playback_" + to_string(index);
-  sensor->param.format = utl::path::get_format_from_path(path.data);
-  sensor->param.file_size = utl::file::size(path.data);
-  sensor->param.index = index;
-  sensor->param.path = path;
+  //Associated master
+  k4n::dev::Master* master = manage_master();
+  k4n::playback::Sensor* sensor = new k4n::playback::Sensor(node_k4n, path.data);
   sensor->master = master;
 
   //Sensor initialization
-  sensor->init();
+  dat_entity->init_entity(master, sensor);
   dat_set->insert_entity(master, sensor);
   master->player_update();
-  dat_graph->assign_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, path.transformation);
 
-*/
   //---------------------------
   return nullptr;
 }
@@ -92,24 +83,21 @@ float Importer::find_mkv_ts_end(string path){
 k4n::dev::Master* Importer::manage_master(){
   dat::base::Set* set_scene = dat_graph->get_set_graph();
   //---------------------------
-/*
+
   //Check if already existing
-  for(int i=0; i<k4n_struct->list_sensor.size(); i++){
-    k4n::dev::Master* master = *std::next(k4n_struct->list_master.begin(), i);
-    if(name == master->name){
+  for(int i=0; i<set_scene->list_subset.size(); i++){
+    k4n::dev::Master* master = *std::next(set_scene->list_subset.begin(), i);
+    if(master->name == "kinect"){
       return master;
     }
   }
 
   //Create the master
   k4n::dev::Master* master = new k4n::dev::Master(node_k4n);
-  master->name = name;
+  master->name = "kinect";
   master->is_lockable = true;
-
   dat_set->add_subset(set_scene, master);
-  k4n_struct->list_master.push_back(master);
-*/
-k4n::dev::Master* master = nullptr;
+
   //---------------------------
   return master;
 }

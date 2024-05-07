@@ -28,6 +28,7 @@ public:
   k4n::dev::Master* manage_master();
 
 private:
+  k4n::Node* node_k4n;
   eng::Node* node_engine;
   dat::Graph* dat_graph;
 };
