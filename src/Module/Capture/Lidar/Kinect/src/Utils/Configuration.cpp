@@ -118,6 +118,22 @@ void Configuration::find_playback_configuration(k4n::dev::Device* sensor){
 
   //---------------------------
 }
+void Configuration::reset_color_configuration(k4n::dev::Device* sensor){
+  k4n::structure::Color* color = &sensor->color;
+  //---------------------------
+
+  color->config.exposure.value = 15625;
+  color->config.white_balance.value = 4500;
+  color->config.brightness.value = 128;
+  color->config.contrast.value = 5;
+  color->config.saturation.value = 32;
+  color->config.sharpness.value = 2;
+  color->config.gain.value = 0;
+  color->config.backlight_compensation.value = 0;
+  color->config.power_frequency.value = 2;
+
+  //---------------------------
+}
 
 //Calibration function
 void Configuration::make_transformation_from_calibration(k4n::dev::Device* sensor){

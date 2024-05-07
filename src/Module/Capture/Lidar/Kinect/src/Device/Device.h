@@ -58,14 +58,7 @@ public:
   void update_pose();
   void remove_entity();
   void set_visibility(bool value);
-
-  //Capture function
-  void run_thread_capture();
-  void run_thread_playback(string path);
-  void stop_threads();
-  void wait_threads();
-  void reset_color_configuration();
-
+  
   inline dat::base::Object* get_object(){return &object;}
   inline utl::type::Data* get_data(){return &object.data;}
   inline utl::type::Pose* get_pose(){return &object.pose;}

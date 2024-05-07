@@ -22,6 +22,7 @@ public:
   void make_sensor_configuration(k4n::dev::Device* k4n_sensor);
   void make_sensor_color_configuration(k4n::dev::Device* sensor);
   void find_playback_configuration(k4n::dev::Device* k4n_sensor);
+  void reset_color_configuration(k4n::dev::Device* k4n_sensor);
 
   //Calibration function
   void make_transformation_from_calibration(k4n::dev::Device* sensor);

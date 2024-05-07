@@ -92,7 +92,7 @@ void Device::remove_entity(){
   if(profiler == nullptr) return;
   //---------------------------
 
-  this->stop_threads();
+  this->stop_thread();
 
   //Remove tasker
   prf::Node* node_profiler = node_engine->get_node_profiler();
@@ -164,70 +164,6 @@ void Device::wait_thread(){
   while(thread_paused == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-
-  //---------------------------
-}
-
-
-//Capture function
-void Device::run_thread_capture(){
-  //---------------------------
-
-  this->stop_threads();
-  //k4n_capture->start_thread();
-  this->thread_running = true;
-  this->object.set_visibility(true);
-
-  //---------------------------
-}
-void Device::run_thread_playback(string path){
-  //---------------------------
-
-  this->stop_threads();
-  this->param.path.data = path;
-  k4n_playback->start_thread();
-  this->thread_running = true;
-  this->object.set_visibility(true);
-
-  //---------------------------
-}
-void Device::stop_threads(){
-  //---------------------------
-
-  //this->k4n_capture->stop_thread();
-  this->k4n_playback->stop_thread();
-  this->thread_running = false;
-  this->object.clear_data();
-  this->object.set_visibility(false);
-
-  //---------------------------
-}
-void Device::wait_threads(){
-  //---------------------------
-
-  //Capture
-  /*if(k4n_capture->is_thread_running()){
-    k4n_capture->wait_thread();
-  }
-  //Playback
-  else if(k4n_playback->is_thread_running()){
-    k4n_playback->wait_thread();
-  }
-*/
-  //---------------------------
-}
-void Device::reset_color_configuration(){
-  //---------------------------
-
-  color.config.exposure.value = 15625;
-  color.config.white_balance.value = 4500;
-  color.config.brightness.value = 128;
-  color.config.contrast.value = 5;
-  color.config.saturation.value = 32;
-  color.config.sharpness.value = 2;
-  color.config.gain.value = 0;
-  color.config.backlight_compensation.value = 0;
-  color.config.power_frequency.value = 2;
 
   //---------------------------
 }
