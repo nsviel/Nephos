@@ -11,7 +11,6 @@ Master::Master(k4n::Node* node_k4n){
   //---------------------------
 
   this->node_k4n = node_k4n;
-  this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->gui_capture = new k4n::gui::Capture(node_k4n);
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 

@@ -4,7 +4,6 @@
 
 namespace k4n::dev{class Master;}
 namespace dat::base{class Sensor;}
-namespace k4n::dev{class Swarm;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::gui{class Detection;}
@@ -31,7 +30,6 @@ public:
   void tab_calibration(dat::base::Sensor* sensor);
 
 private:
-  k4n::dev::Swarm* k4n_swarm;
   rad::Structure* radio_struct;
   rad::gui::Detection* gui_detection;
   rad::gui::Calibration* gui_calibration;

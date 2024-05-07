@@ -14,8 +14,8 @@ Connection::Connection(k4n::Node* node_k4n){
   dat::Node* node_data = node_k4n->get_node_data();
 
   this->k4n_struct = node_k4n->get_k4n_struct();
-  this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->dat_set = node_data->get_data_set();
+  this->dat_graph = node_data->get_data_graph();
 
   //---------------------------
 }
@@ -72,5 +72,70 @@ void Connection::stop_thread(){
   //---------------------------
 }
 
+//Subfunction
+void Connection::create_sensor(int index){
+  //---------------------------
+/*
+  //Associated master
+  this->close_master("Kinect");
+  k4n::dev::Master* master = get_or_create_capture_master("Capture");
+
+  //Sensor creation
+  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
+  sensor->name = "capture_" + to_string(index);
+  sensor->param.index = index;
+  sensor->master = master;
+
+  //Sensor initialization
+  sensor->init();
+  dat_set->insert_entity(master, sensor);
+  dat_graph->assign_UID(sensor);
+  k4n_transfo->apply_transformation_capture(sensor);
+  sensor->run_thread();
+  k4n_struct->list_sensor.push_back(sensor);
+*/
+  //---------------------------
+}
+void Connection::manage_connected_device(){
+  if(!k4n_struct->kinect_connection_state) return;
+  //---------------------------
+/*
+  //Suppress all devices
+  k4n::dev::Master* master = get_or_create_capture_master("capture");
+  if(master == nullptr) return;
+  dat_set->remove_all_entity(master);
+
+  //Create required number of new devices
+  for(int i=0; i<k4n_struct->kinect_num_connection; i++){
+    this->create_sensor(i);
+  }
+
+  //---------------------------
+  k4n_struct->kinect_connection_state = false;*/
+}
+void Connection::manage_master(){
+/*  dat::base::Set* set_scene = dat_graph->get_set_graph();
+  //---------------------------
+
+  //Check if already existing
+  for(int i=0; i<k4n_struct->list_sensor.size(); i++){
+    k4n::dev::Master* master = *std::next(k4n_struct->list_master.begin(), i);
+    if(name == master->name){
+      return master;
+    }
+  }
+
+  //Create the master
+  k4n::dev::Master* master = new k4n::dev::Master(node_k4n);
+  master->name = name;
+  master->is_lockable = true;
+  master->mode = k4n::dev::CAPTURE;
+
+  k4n_config->make_master_configuration_initial(master);
+  dat_set->add_subset(set_scene, master);
+  k4n_struct->list_master.push_back(master);*/
+
+  //---------------------------
+}
 
 }

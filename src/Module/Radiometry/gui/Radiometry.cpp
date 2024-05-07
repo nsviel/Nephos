@@ -10,7 +10,6 @@ namespace rad::gui{
 Radiometry::Radiometry(rad::Node* node_radio, bool* show_window){
   //---------------------------
 
-  //this->k4n_swarm = node_k4n->get_k4n_swarm();
   this->radio_struct = node_radio->get_radio_struct();
   this->gui_detection = new rad::gui::Detection(node_radio);
   this->gui_calibration = new rad::gui::Calibration(node_radio);
@@ -24,7 +23,7 @@ Radiometry::~Radiometry(){}
 
 //Main function
 void Radiometry::run_panel(){
-/*  k4n::dev::Master* master = k4n_swarm->get_selected_master();
+/*  
   //---------------------------
 
   if(*show_window && master != nullptr){

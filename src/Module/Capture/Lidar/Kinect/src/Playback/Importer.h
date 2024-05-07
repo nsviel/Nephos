@@ -3,9 +3,10 @@
 #include <Loader/src/Base/Importer.h>
 #include <Utility/Specific/Common.h>
 
+namespace k4n::structure{class K4N;}
 namespace eng{class Node;}
 namespace k4n{class Node;}
-namespace k4n::dev{class Swarm;}
+namespace dat{class Graph;}
 
 
 namespace k4n::playback{
@@ -24,10 +25,12 @@ public:
   //Subfunction
   float find_mkv_ts_beg(string path);
   float find_mkv_ts_end(string path);
+  void manage_master();
 
 private:
+  k4n::structure::K4N* k4n_struct;
   eng::Node* node_engine;
-  k4n::dev::Swarm* k4n_swarm;
+  dat::Graph* dat_graph;
 };
 
 }

@@ -24,7 +24,6 @@ Node::Node(cap::Node* node_capture){
 
   //Child
   this->k4n_struct = new k4n::structure::K4N();
-  this->k4n_swarm = new k4n::dev::Swarm(this);
   this->k4n_connection = new k4n::capture::Connection(this);
 
   //---------------------------
@@ -50,14 +49,13 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  k4n_swarm->manage_connected_device();
 
   //---------------------------
 }
 void Node::clean(){
   //---------------------------
 
-  k4n_swarm->close_all_master();
+
 
   //---------------------------
 }
