@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Data/Namespace.h>
+#include <Dynamic/src/Base/Device.h>
 #include <Utility/Specific/Common.h>
 #include <Kinect/src/Structure/Namespace.h>
 
@@ -29,7 +30,7 @@ namespace k4n::gui{class Sensor;}
 
 namespace k4n::dev{
 
-class Sensor : public dat::base::Sensor
+class Sensor : public dyn::base::Device
 {
 public:
   //Constructor / Destructor

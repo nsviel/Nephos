@@ -26,7 +26,7 @@ Sensor::~Sensor(){
 }
 
 //Main function
-void Sensor::thread_init(dat::base::Sensor* sensor){
+void Sensor::thread_init(){
   k4n::dev::Sensor* k4n_sensor = dynamic_cast<k4n::dev::Sensor*>(sensor);
   //---------------------------
 
@@ -44,7 +44,7 @@ void Sensor::thread_init(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Sensor::thread_loop(dat::base::Sensor* sensor){
+void Sensor::thread_loop(){
   k4n::dev::Sensor* k4n_sensor = dynamic_cast<k4n::dev::Sensor*>(sensor);
   //---------------------------
 
@@ -74,7 +74,7 @@ void Sensor::thread_loop(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Sensor::thread_end(dat::base::Sensor* sensor){
+void Sensor::thread_end(){
   k4n::dev::Sensor* k4n_sensor = dynamic_cast<k4n::dev::Sensor*>(sensor);
   //---------------------------
 

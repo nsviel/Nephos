@@ -21,7 +21,7 @@ Device::~Device(){
 }
 
 //Main function
-void Device::start_thread(dat::base::Sensor* sensor){
+void Device::start_thread(){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -33,7 +33,7 @@ void Device::start_thread(dat::base::Sensor* sensor){
   this->thread_running = true;
   this->thread_idle = false;
 }
-void Device::run_thread(dat::base::Sensor* sensor){
+void Device::run_thread(){
   //---------------------------
 
   this->thread_init(sensor);

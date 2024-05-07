@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Kinect/src/Device/Sensor.h>
 #include <Dynamic/src/Base/Device.h>
 #include <Utility/Specific/Common.h>
 #include <k4a/k4a.hpp>
@@ -15,7 +16,7 @@ namespace k4n::structure{class K4N;}
 
 namespace k4n::capture{
 
-class Sensor : public dyn::base::Device
+class Sensor : public k4n::dev::Sensor
 {
 public:
   //Constructor / Destructor
@@ -24,14 +25,14 @@ public:
 
 public:
   //Main function
-  void thread_init(dat::base::Sensor* sensor);
-  void thread_loop(dat::base::Sensor* sensor);
-  void thread_end(dat::base::Sensor* sensor);
+  void thread_init();
+  void thread_loop();
+  void thread_end();
 
   //Subfunction
-  k4a::capture* manage_new_capture(k4n::dev::Sensor* sensor);
-  void manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture);
-  void manage_pause(k4n::dev::Sensor* sensor);
+  k4a::capture* manage_new_capture();
+  void manage_old_capture(k4a::capture* capture);
+  void manage_pause();
 
 private:
   k4n::processing::Data* k4n_data;

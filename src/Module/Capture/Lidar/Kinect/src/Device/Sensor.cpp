@@ -131,7 +131,7 @@ void Sensor::run_thread_capture(){
   //---------------------------
 
   this->stop_threads();
-  k4n_capture->start_thread(this);
+  k4n_capture->start_thread();
   this->thread_running = true;
   this->object.set_visibility(true);
 
@@ -142,7 +142,7 @@ void Sensor::run_thread_playback(string path){
 
   this->stop_threads();
   this->param.path.data = path;
-  k4n_playback->start_thread(this);
+  k4n_playback->start_thread();
   this->thread_running = true;
   this->object.set_visibility(true);
 

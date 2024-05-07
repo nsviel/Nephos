@@ -24,76 +24,73 @@ Sensor::~Sensor(){
 }
 
 //Main function
-void Sensor::thread_init(dat::base::Sensor* sensor){
-  k4n::dev::Sensor* k4n_sensor = dynamic_cast<k4n::dev::Sensor*>(sensor);
+void Sensor::thread_init(){
   //---------------------------
 
   //Init elements
-  k4n_sensor->param.index = 0;
-  k4n_sensor->param.device = k4a::device::open(k4n_sensor->param.index);
-  if(!k4n_sensor->param.device.is_valid()) return;
+  this->param.index = 0;
+  this->param.device = k4a::device::open(param.index);
+  if(!param.device.is_valid()) return;
 
-  k4n_sensor->param.serial_number = k4n_sensor->param.device.get_serialnum();
-  k4n_sensor->param.version = k4n_sensor->param.device.get_version();
+  this->param.serial_number = param.device.get_serialnum();
+  this->param.version = param.device.get_version();
 
   //Configuration
-  k4n_config->make_sensor_configuration(k4n_sensor);
-  k4n_config->make_sensor_color_configuration(k4n_sensor);
-  k4n_config->make_capture_calibration(k4n_sensor);
-  k4n_config->make_transformation_from_calibration(k4n_sensor);
-  k4n_sensor->param.device.start_cameras(&k4n_sensor->param.configuration);
+  k4n_config->make_sensor_configuration(this);
+  k4n_config->make_sensor_color_configuration(this);
+  k4n_config->make_capture_calibration(this);
+  k4n_config->make_transformation_from_calibration(this);
+  this->param.device.start_cameras(&param.configuration);
 
   //Start capture thread
-  k4n_sensor->param.is_capturing = true;
+  this->param.is_capturing = true;
 
   //---------------------------
 }
-void Sensor::thread_loop(dat::base::Sensor* sensor){
-  k4n::dev::Sensor* k4n_sensor = dynamic_cast<k4n::dev::Sensor*>(sensor);
+void Sensor::thread_loop(){
   //---------------------------
 
-  prf::graph::Tasker* tasker = k4n_sensor->profiler->get_or_create_tasker("capture");
+  prf::graph::Tasker* tasker = profiler->get_or_create_tasker("capture");
   tasker->loop_begin();
 
   //Next capture
   tasker->task_begin("capture");
-  k4a::capture* capture = manage_new_capture(k4n_sensor);
+  k4a::capture* capture = manage_new_capture();
   if(capture == nullptr) return;
   tasker->task_end("capture");
 
   //Wait previous threads to finish
   tasker->task_begin("wait");
-  this->manage_old_capture(k4n_sensor, capture);
+  this->manage_old_capture(capture);
   tasker->task_end("wait");
 
   //Run processing
-  k4n_data->start_thread(k4n_sensor);
+  k4n_data->start_thread(this);
 
   //Loop sleeping
   tasker->task_begin("pause");
-  this->manage_pause(k4n_sensor);
+  this->manage_pause();
   tasker->task_end("pause");
 
   tasker->loop_end();
 
   //---------------------------
 }
-void Sensor::thread_end(dat::base::Sensor* sensor){
-  k4n::dev::Sensor* k4n_sensor = dynamic_cast<k4n::dev::Sensor*>(sensor);
+void Sensor::thread_end(){
   //---------------------------
 
-  k4n_sensor->param.device.close();
-  k4n_sensor->param.is_capturing = false;
+  this->param.device.close();
+  this->param.is_capturing = false;
 
   //---------------------------
 }
 
 //Subfunction
-k4a::capture* Sensor::manage_new_capture(k4n::dev::Sensor* sensor){
+k4a::capture* Sensor::manage_new_capture(){
   //---------------------------
 
   k4a::capture* capture = new k4a::capture();
-  bool ok = sensor->param.device.get_capture(capture, std::chrono::milliseconds(2000));
+  bool ok = param.device.get_capture(capture, std::chrono::milliseconds(2000));
   if(!capture->is_valid()){
     delete capture;
     return nullptr;
@@ -102,7 +99,7 @@ k4a::capture* Sensor::manage_new_capture(k4n::dev::Sensor* sensor){
   //---------------------------
   return capture;
 }
-void Sensor::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture){
+void Sensor::manage_old_capture(k4a::capture* capture){
   static std::queue<k4a::capture*> capture_queue;
   //---------------------------
 
@@ -118,18 +115,18 @@ void Sensor::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture)
   }
 
   // Update the sensor parameter
-  sensor->param.capture = capture;
+  this->param.capture = capture;
 
   //---------------------------
 }
-void Sensor::manage_pause(k4n::dev::Sensor* sensor){
+void Sensor::manage_pause(){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  bool& is_play = sensor->master->player->get_state_play();
-  bool& is_pause = sensor->master->player->get_state_pause();
+  bool& is_play = master->player->get_state_play();
+  bool& is_pause = master->player->get_state_pause();
   if(is_pause || !is_play){
-    sensor->profiler->reset();
+    profiler->reset();
     while(is_pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
