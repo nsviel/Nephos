@@ -42,8 +42,8 @@ public:
 public:
   //Main function
   void init();
+  void init_profiler();
   void init_image();
-  void init_param();
   void init_object();
 
   void info();

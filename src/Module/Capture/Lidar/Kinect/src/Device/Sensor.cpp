@@ -37,20 +37,15 @@ Sensor::~Sensor(){}
 void Sensor::init(){
   //---------------------------
 
-  this->init_param();
+  this->init_profiler();
   this->init_object();
   this->init_image();
 
   //---------------------------
 }
-void Sensor::init_param(){
+void Sensor::init_profiler(){
   //---------------------------
 
-  //Sensor name
-  string str_mode = (master->mode == k4n::dev::PLAYBACK) ? "playback_" : "capture_";
-  this->param.name = str_mode + to_string(param.index);
-
-  //Sensor profiler
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   this->profiler = new prf::graph::Profiler(param.name, "k4n::sensor");

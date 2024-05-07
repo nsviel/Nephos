@@ -7,9 +7,11 @@
 namespace k4n::capture{
 
 //Constructor / Destructor
-Sensor::Sensor(k4n::Node* node_k4n) : k4n::dev::Sensor(node_k4n){
+Sensor::Sensor(k4n::Node* node_k4n, int index) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
+  this->param.index = index;
+  this->param.name = "capture_" + to_string(index);
 
   //---------------------------
 }
@@ -22,8 +24,6 @@ Sensor::~Sensor(){
 }
 
 //Main function
-
-//Thread function
 void Sensor::thread_init(){
   //---------------------------
 
