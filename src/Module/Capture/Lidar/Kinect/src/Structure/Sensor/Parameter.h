@@ -30,7 +30,6 @@ struct Param{
 
   //K4A objects
   k4a::device device;
-  k4a::playback playback;
   k4a::calibration calibration;
   k4a::transformation transformation;
   k4a::capture* capture;

@@ -34,8 +34,10 @@ public:
   void manage_old_capture(k4a::capture* capture);
   void manage_pause();
   void manage_restart();
+  void manage_ts_query(float ts_querry);
 
-private:
+public:
+  k4n::structure::Playback playback;
 };
 
 

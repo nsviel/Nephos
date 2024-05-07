@@ -31,8 +31,8 @@ void Sensor::thread_init(){
 
   //Init playback
   if(param.path.data == "") return;
-  this->param.playback = k4a::playback::open(param.path.data.c_str());
-  if(!param.playback){
+  this->playback.handle = k4a::playback::open(param.path.data.c_str());
+  if(!playback.handle){
     cout<<"[error] Sensor opening problem"<<endl;
     return;
   }
@@ -75,7 +75,7 @@ void Sensor::thread_loop(){
 void Sensor::thread_end(){
   //---------------------------
 
-  this->param.playback.close();
+  this->playback.handle.close();
 
   //---------------------------
 }
@@ -85,7 +85,7 @@ k4a::capture* Sensor::manage_new_capture(){
   //---------------------------
 
   k4a::capture* capture = new k4a::capture();
-  bool capture_left = param.playback.get_next_capture(capture);
+  bool capture_left = playback.handle.get_next_capture(capture);
   if(capture_left == false){
     capture = nullptr;
     this->manage_restart();
@@ -139,13 +139,21 @@ void Sensor::manage_restart(){
   //---------------------------
 
   float& ts_end = master->player->get_ts_end();
+  float& ts_beg = master->player->get_ts_beg();
   if(color.data.timestamp == ts_end){
-    master->manage_restart();
-    //sensor->master->player->play = true;
-    //sensor->master->player->pause = false;
+    this->manage_ts_query(ts_beg);
   }
 
   //---------------------------
 }
+void Sensor::manage_ts_query(float ts_querry){
+  //---------------------------
+
+  auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_querry));
+  playback.handle.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+
+  //---------------------------
+}
+
 
 }

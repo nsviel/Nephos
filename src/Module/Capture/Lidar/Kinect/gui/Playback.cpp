@@ -43,20 +43,21 @@ void Playback::show_master_playback(k4n::dev::Master* master){
 }
 void Playback::show_sensor_configuration(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
-  if(sensor->master->mode == k4n::dev::CAPTURE) return;
   //---------------------------
 
-  this->show_info_device(sensor);
-  this->show_info_color(sensor);
-  this->show_info_depth(sensor);
-  this->show_info_synch(sensor);
+  if(k4n::playback::Sensor* playback = dynamic_cast<k4n::playback::Sensor*>(sensor)){
+    this->show_info_device(playback);
+    this->show_info_color(playback);
+    this->show_info_depth(playback);
+    this->show_info_synch(playback);
+  }
 
   //---------------------------
   ImGui::Separator();
 }
 
 //Design function
-void Playback::show_info_device(k4n::dev::Sensor* sensor){
+void Playback::show_info_device(k4n::playback::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Device");
@@ -82,7 +83,7 @@ void Playback::show_info_device(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::show_info_color(k4n::dev::Sensor* sensor){
+void Playback::show_info_color(k4n::playback::Sensor* sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
@@ -111,7 +112,7 @@ void Playback::show_info_color(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::show_info_depth(k4n::dev::Sensor* sensor){
+void Playback::show_info_depth(k4n::playback::Sensor* sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
@@ -140,7 +141,7 @@ void Playback::show_info_depth(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::show_info_synch(k4n::dev::Sensor* sensor){
+void Playback::show_info_synch(k4n::playback::Sensor* sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);

@@ -10,6 +10,7 @@ namespace k4n::structure{
 struct Playback{
   //---------------------------
 
+  k4a::playback handle;
   k4a_wired_sync_mode_t wired_sync_mode = K4A_WIRED_SYNC_MODE_STANDALONE;
   std::string wired_sync_mode_str = "";
 

@@ -81,7 +81,6 @@ public:
   k4n::utils::Configuration* k4n_config;
 
   k4n::structure::Param param;
-  k4n::structure::Playback playback;
 
   k4n::structure::Color color;
   k4n::structure::Depth depth;

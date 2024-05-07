@@ -79,8 +79,8 @@ void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
-  k4a_record_configuration_t configuration = sensor->param.playback.get_record_configuration();
+void Configuration::find_playback_configuration(k4n::playback::Sensor* sensor){
+  k4a_record_configuration_t configuration = sensor->playback.handle.get_record_configuration();
   //---------------------------
 
   //FPS
@@ -97,11 +97,11 @@ void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
   sensor->depth.config.mode_str = find_mode_depth(configuration.depth_mode);
   sensor->depth.config.enabled = configuration.depth_track_enabled;
   sensor->depth.config.mode = configuration.depth_mode;
-  sensor->param.playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor->depth.config.firmware_version);
+  sensor->playback.handle.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor->depth.config.firmware_version);
 
   //Color
   k4a_image_format_t required_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  sensor->param.playback.set_color_conversion(required_format);
+  sensor->playback.handle.set_color_conversion(required_format);
   configuration.color_format = required_format;
 
   sensor->color.config.resolution_str = find_mode_color_resolution(configuration.color_resolution);
@@ -109,12 +109,12 @@ void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
   sensor->color.config.enabled = configuration.color_track_enabled;
   sensor->color.config.resolution = configuration.color_resolution;
   sensor->color.config.format = configuration.color_format;
-  sensor->param.playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor->color.config.firmware_version);
+  sensor->playback.handle.get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor->color.config.firmware_version);
 
   //Device
   sensor->ir.config.enabled = configuration.ir_track_enabled;
   sensor->imu.config.enabled = configuration.imu_track_enabled;
-  sensor->param.playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
+  sensor->playback.handle.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
 
   //---------------------------
 }
@@ -152,10 +152,10 @@ void Configuration::make_capture_calibration(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Configuration::find_playback_calibration(k4n::dev::Sensor* sensor){
+void Configuration::find_playback_calibration(k4n::playback::Sensor* sensor){
   //---------------------------
 
-  sensor->param.calibration = sensor->param.playback.get_calibration();
+  sensor->param.calibration = sensor->playback.handle.get_calibration();
 
   //---------------------------
 }
