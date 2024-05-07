@@ -104,6 +104,25 @@ void Master::manage_configuration(){
 
   //---------------------------
 }
+void Master::manage_restart(){
+  /*if(mode == k4n::dev::CAPTURE) return;
+  //---------------------------
+
+  for(int i=0; i<list_entity.size(); i++){
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
+
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      //Set playback to begin
+      float& ts_beg = player->get_ts_beg();
+      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_beg));
+      sensor->playback.handle.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+      sensor->param.index_cloud = 0;
+    }
+  }
+
+  //---------------------------
+  player->player_query_ts(player->get_ts_beg());*/
+}
 
 //Player function
 void Master::player_update(){
@@ -180,5 +199,64 @@ void Master::player_close(){
 
   //---------------------------
 }
+void Master::player_play(){
+  //---------------------------
+
+  if(!play){
+    play = true;
+    pause = false;
+  }else{
+    pause = false;
+  }
+
+  //---------------------------
+}
+void Master::player_pause(){
+  //---------------------------
+
+  pause = !pause;
+
+  //---------------------------
+}
+void Master::player_stop(){
+  //---------------------------
+
+  //Pause playback thread
+  this->play = false;
+  this->pause = true;
+/*
+  //Wait for pause
+  for(int i=0; i<set->list_entity.size(); i++){
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      sensor->wait_threads();
+    }
+  }
+*/
+  this->manage_restart();
+
+  //---------------------------
+}
+void Master::player_restart(){
+  //---------------------------
+
+  restart = !restart;
+
+  //---------------------------
+}
+void Master::player_record(){
+  //---------------------------
+
+  record = !record;
+
+  //---------------------------
+}
+void Master::player_lock(){
+  //---------------------------
+
+  //---------------------------
+}
+
 
 }
