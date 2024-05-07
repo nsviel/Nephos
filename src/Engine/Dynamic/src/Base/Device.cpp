@@ -12,13 +12,7 @@ Device::Device(){
 
   //---------------------------
 }
-Device::~Device(){
-  //---------------------------
-
-  this->stop_thread();
-
-  //---------------------------
-}
+Device::~Device(){}
 
 //Main function
 

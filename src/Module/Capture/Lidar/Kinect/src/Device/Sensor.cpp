@@ -37,6 +37,15 @@ Sensor::~Sensor(){}
 void Sensor::init(){
   //---------------------------
 
+  this->init_param();
+  this->init_object();
+  this->init_image();
+
+  //---------------------------
+}
+void Sensor::init_param(){
+  //---------------------------
+
   //Sensor name
   string str_mode = (master->mode == k4n::dev::PLAYBACK) ? "playback_" : "capture_";
   this->param.name = str_mode + to_string(param.index);
@@ -47,7 +56,11 @@ void Sensor::init(){
   this->profiler = new prf::graph::Profiler(param.name, "k4n::sensor");
   prf_manager->add_profiler(profiler);
 
-  //Sensor cloud
+  //---------------------------
+}
+void Sensor::init_object(){
+  //---------------------------
+
   object = dat::base::Object(node_engine);
   object.name = param.name;
   object.data.name = "sensor::object::data";
@@ -56,15 +69,24 @@ void Sensor::init(){
   object.pose.model[2][3] = 1;
   dat_entity->init_entity(&object);
 
+  //---------------------------
+}
+void Sensor::init_image(){
+  //---------------------------
+
   image.color.name = "Color";
   dat_graph->assign_UID(&image.color);
+
   image.ir.name = "IR";
   dat_graph->assign_UID(&image.ir);
+
   image.depth.name = "Depth";
   dat_graph->assign_UID(&image.depth);
 
   //---------------------------
 }
+
+
 void Sensor::reset(){
   //---------------------------
 

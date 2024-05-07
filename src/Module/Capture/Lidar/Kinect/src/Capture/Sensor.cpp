@@ -22,6 +22,8 @@ Sensor::~Sensor(){
 }
 
 //Main function
+
+//Thread function
 void Sensor::thread_init(){
   //---------------------------
 

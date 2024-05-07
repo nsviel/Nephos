@@ -42,8 +42,17 @@ public:
 public:
   //Main function
   void init();
+  void init_image();
+  void init_param();
+  void init_object();
+
   void info();
   void reset();
+
+  //Entity function
+  void update_pose();
+  void remove_entity();
+  void set_visibility(bool value);
 
   //Thread function
   void start_thread();
@@ -55,11 +64,6 @@ public:
   virtual void thread_init(){}
   virtual void thread_loop(){}
   virtual void thread_end(){}
-
-  //Entity function
-  void update_pose();
-  void remove_entity();
-  void set_visibility(bool value);
 
   inline dat::base::Object* get_object(){return &object;}
   inline utl::type::Data* get_data(){return &object.data;}
