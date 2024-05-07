@@ -16,6 +16,11 @@ public:
 
 public:
   //Main function
+  virtual void init(){}
+  virtual void info(){}
+  virtual void reset(){}
+
+  //Thread function
   void start_thread(dat::base::Sensor* sensor);
   void run_thread(dat::base::Sensor* sensor);
   void stop_thread();

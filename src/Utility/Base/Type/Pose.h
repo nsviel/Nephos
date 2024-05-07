@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Base/Type/Element.h>
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
 #include <Eigen/Dense>
@@ -14,7 +15,7 @@
 namespace utl::type{
 
 //Generique data structure
-struct Pose{
+struct Pose : public utl::type::Element{
   //---------------------------
 
   glm::vec3 min = glm::vec3(0.0f);
