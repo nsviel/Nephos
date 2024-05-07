@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Dynamic/src/Playback/Device.h>
+#include <Dynamic/src/Base/Device.h>
 #include <Utility/Specific/Common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
@@ -15,7 +15,7 @@ namespace k4n::structure{class K4N;}
 
 namespace k4n::playback{
 
-class Sensor : public dyn::playback::Device
+class Sensor : public dyn::base::Device
 {
 public:
   //Constructor / Destructor

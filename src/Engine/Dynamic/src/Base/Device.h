@@ -5,7 +5,7 @@
 namespace dat::base{class Sensor;}
 
 
-namespace dyn::capture{
+namespace dyn::base{
 
 class Device
 {

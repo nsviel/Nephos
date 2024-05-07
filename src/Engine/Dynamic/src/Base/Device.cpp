@@ -3,7 +3,7 @@
 #include <Data/Namespace.h>
 
 
-namespace dyn::capture{
+namespace dyn::base{
 
 //Constructor / Destructor
 Device::Device(){
