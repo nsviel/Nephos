@@ -9,11 +9,9 @@
 namespace k4n::playback{
 
 //Constructor / Destructor
-Sensor::Sensor(k4n::Node* node_k4n){
+Sensor::Sensor(k4n::Node* node_k4n) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
-  this->k4n_data = new k4n::processing::Data(node_k4n);
-  this->k4n_config = new k4n::utils::Configuration();
 
   //---------------------------
 }

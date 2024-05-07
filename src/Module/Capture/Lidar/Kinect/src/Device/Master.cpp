@@ -58,7 +58,7 @@ void Master::manage_color_control(){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       k4n_config->make_sensor_color_configuration(sensor);
     }
   }
@@ -76,9 +76,9 @@ void Master::manage_restart_thread(){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       sensor->reset_entity();
-      sensor->run_thread_capture();
+      sensor->run_thread();
     }
   }
 
@@ -95,7 +95,7 @@ void Master::manage_restart(){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       //Set playback to begin
       float& ts_beg = player->get_ts_beg();
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_beg));
@@ -122,7 +122,7 @@ void Master::manage_forward(){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       float ts_forward = ts_cur + 5 * ts_for;
       if(ts_forward > ts_end) ts_forward = ts_end;
       if(ts_forward < ts_beg) ts_forward = ts_beg;
@@ -144,7 +144,7 @@ void Master::manage_resynchronization(){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player->ts_cur));
       sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     }
@@ -159,7 +159,7 @@ void Master::manage_configuration(){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       sensor->color.config = config.color;
       sensor->depth.config = config.depth;
       sensor->ir.config = config.ir;
@@ -183,7 +183,7 @@ void Master::player_update(){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       float mkv_ts_beg = k4n_importer->find_mkv_ts_beg(sensor->param.path.data);
       float mkv_ts_end = k4n_importer->find_mkv_ts_end(sensor->param.path.data);
 
@@ -202,8 +202,8 @@ void Master::player_update(){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
-      sensor->run_thread_playback(sensor->param.path.data);
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      sensor->run_thread(sensor->param.path.data);
     }
   }
 
@@ -218,7 +218,7 @@ void Master::player_query_ts(float value){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
       sensor->param.playback.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     }
@@ -240,8 +240,8 @@ void Master::player_close(){
       for(int i=0; i<list_entity.size(); i++){
         dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-        if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
-          sensor->stop_threads();
+        if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+          sensor->stop_thread();
         }
       }
       break;
@@ -258,7 +258,7 @@ void Master::visibility_normal(){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       dat::base::Object* object = sensor->get_object();
       dat::base::Glyph* normal = object->get_glyph(dat::object::glyph::NORMAL);
       normal->set_visibility(operation.normal_visible);

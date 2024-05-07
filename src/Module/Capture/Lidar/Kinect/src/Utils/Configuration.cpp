@@ -15,7 +15,7 @@ Configuration::Configuration(){
 Configuration::~Configuration(){}
 
 //Configuration function
-void Configuration::make_sensor_configuration(k4n::dev::Device* sensor){
+void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
   k4n::dev::Master* master = sensor->master;
   //---------------------------
 
@@ -36,7 +36,7 @@ void Configuration::make_sensor_configuration(k4n::dev::Device* sensor){
   //---------------------------
   sensor->param.configuration = configuration;
 }
-void Configuration::make_sensor_color_configuration(k4n::dev::Device* sensor){
+void Configuration::make_sensor_color_configuration(k4n::dev::Sensor* sensor){
   k4a::device& device = sensor->param.device;
   k4n::dev::Master* master = sensor->master;
   //---------------------------
@@ -79,7 +79,7 @@ void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Configuration::find_playback_configuration(k4n::dev::Device* sensor){
+void Configuration::find_playback_configuration(k4n::dev::Sensor* sensor){
   k4a_record_configuration_t configuration = sensor->param.playback.get_record_configuration();
   //---------------------------
 
@@ -118,7 +118,7 @@ void Configuration::find_playback_configuration(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Configuration::reset_color_configuration(k4n::dev::Device* sensor){
+void Configuration::reset_color_configuration(k4n::dev::Sensor* sensor){
   k4n::structure::Color* color = &sensor->color;
   //---------------------------
 
@@ -136,14 +136,14 @@ void Configuration::reset_color_configuration(k4n::dev::Device* sensor){
 }
 
 //Calibration function
-void Configuration::make_transformation_from_calibration(k4n::dev::Device* sensor){
+void Configuration::make_transformation_from_calibration(k4n::dev::Sensor* sensor){
   //---------------------------
 
   sensor->param.transformation = k4a::transformation(sensor->param.calibration);
 
   //---------------------------
 }
-void Configuration::make_capture_calibration(k4n::dev::Device* sensor){
+void Configuration::make_capture_calibration(k4n::dev::Sensor* sensor){
   k4n::dev::Master* master = sensor->master;
   k4a::device& device = sensor->param.device;
   //---------------------------
@@ -152,7 +152,7 @@ void Configuration::make_capture_calibration(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Configuration::find_playback_calibration(k4n::dev::Device* sensor){
+void Configuration::find_playback_calibration(k4n::dev::Sensor* sensor){
   //---------------------------
 
   sensor->param.calibration = sensor->param.playback.get_calibration();

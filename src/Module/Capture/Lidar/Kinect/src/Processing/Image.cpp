@@ -24,7 +24,7 @@ Image::Image(k4n::Node* node_k4n){
 Image::~Image(){}
 
 //Main function
-void Image::start_thread(k4n::dev::Device* sensor){
+void Image::start_thread(k4n::dev::Sensor* sensor){
   if(sensor->profiler == nullptr) return;
   //---------------------------
 
@@ -36,7 +36,7 @@ void Image::start_thread(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Image::run_thread(k4n::dev::Device* sensor){
+void Image::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->copy_image(sensor);
@@ -60,7 +60,7 @@ void Image::wait_thread(){
 }
 
 //Subfunction
-void Image::copy_image(k4n::dev::Device* sensor){
+void Image::copy_image(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("image");
   //---------------------------
@@ -86,7 +86,7 @@ void Image::copy_image(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Image::copy_image_color(k4n::dev::Device* sensor){
+void Image::copy_image_color(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
@@ -119,7 +119,7 @@ void Image::copy_image_color(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Image::copy_image_depth(k4n::dev::Device* sensor){
+void Image::copy_image_depth(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
@@ -136,7 +136,7 @@ void Image::copy_image_depth(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Image::copy_image_ir(k4n::dev::Device* sensor){
+void Image::copy_image_ir(k4n::dev::Sensor* sensor){
   k4n::structure::Image* image = &sensor->image;
   //---------------------------
 

@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n{class Node;}
-namespace k4n::dev{class Device;}
+namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
 
 
@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  void draw_registration(k4n::dev::Device* sensor);
+  void draw_registration(k4n::dev::Sensor* sensor);
 
   //Subfunction
 

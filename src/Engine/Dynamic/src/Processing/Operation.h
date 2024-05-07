@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n{class Node;}
-namespace k4n::dev{class Device;}
+namespace k4n::dev{class Sensor;}
 
 namespace k4n::structure{class K4N;}
 namespace utl::thread{class Pool;}
@@ -24,15 +24,15 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Device* sensor);
-  void run_thread(k4n::dev::Device* sensor);
+  void start_thread(k4n::dev::Sensor* sensor);
+  void run_thread(k4n::dev::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void colorize_object(k4n::dev::Device* sensor);
-  void voxelize_object(k4n::dev::Device* sensor);
-  void triangularize_object(k4n::dev::Device* sensor);
-  void update_object(k4n::dev::Device* sensor);
+  void colorize_object(k4n::dev::Sensor* sensor);
+  void voxelize_object(k4n::dev::Sensor* sensor);
+  void triangularize_object(k4n::dev::Sensor* sensor);
+  void update_object(k4n::dev::Sensor* sensor);
 
 private:
   ope::Voxelizer* ope_voxelizer;

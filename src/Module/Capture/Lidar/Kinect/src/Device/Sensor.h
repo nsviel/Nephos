@@ -12,6 +12,8 @@ namespace dat{class Glyph;}
 namespace dat{class Graph;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
+namespace k4n::processing{class Data;}
+namespace k4n::utils{class Configuration;}
 namespace k4n::capture{class Sensor;}
 namespace k4n::playback{class Sensor;}
 namespace k4n::structure{class Param;}
@@ -30,12 +32,12 @@ namespace k4n::gui{class Sensor;}
 
 namespace k4n::dev{
 
-class Device : public dyn::base::Device
+class Sensor : public dyn::base::Device
 {
 public:
   //Constructor / Destructor
-  Device(k4n::Node* node_k4n);
-  ~Device();
+  Sensor(k4n::Node* node_k4n);
+  ~Sensor();
 
 public:
   //Main function
@@ -58,7 +60,7 @@ public:
   void update_pose();
   void remove_entity();
   void set_visibility(bool value);
-  
+
   inline dat::base::Object* get_object(){return &object;}
   inline utl::type::Data* get_data(){return &object.data;}
   inline utl::type::Pose* get_pose(){return &object.pose;}
@@ -72,6 +74,8 @@ public:
   dat::base::Object object;
   k4n::structure::Image image;
   k4n::gui::Sensor* gui_sensor;
+  k4n::processing::Data* k4n_data;
+  k4n::utils::Configuration* k4n_config;
 
   k4n::structure::Param param;
   k4n::structure::Playback playback;
@@ -87,8 +91,6 @@ protected:
   dat::Set* dat_set;
   dat::Glyph* dat_glyph;
   dat::Graph* dat_graph;
-  k4n::capture::Sensor* k4n_capture;
-  k4n::playback::Sensor* k4n_playback;
   k4n::structure::K4N* k4n_struct;
 
   std::thread thread;

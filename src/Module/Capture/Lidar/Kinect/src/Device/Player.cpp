@@ -58,7 +58,7 @@ void Player::player_stop(){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       sensor->wait_threads();
     }
   }
@@ -106,7 +106,7 @@ void Player::manage_restart(){
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-    if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       //Set playback to begin
       float& ts_beg = player->get_ts_beg();
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_beg));

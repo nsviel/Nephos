@@ -4,7 +4,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::structure{class K4N;}
-namespace k4n::dev{class Device;}
+namespace k4n::dev{class Sensor;}
 namespace utl::thread{class Pool;}
 
 
@@ -19,8 +19,8 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Device* sensor);
-  void run_thread(k4n::dev::Device* sensor);
+  void start_thread(k4n::dev::Sensor* sensor);
+  void run_thread(k4n::dev::Sensor* sensor);
   void wait_thread();
 
   //Subfunction

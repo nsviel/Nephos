@@ -37,7 +37,7 @@ void Swarm::create_sensor_playback(utl::media::Path path){
   int index = dat_set->compute_number_entity(master);
 
   //Sensor creation
-  k4n::dev::Device* sensor = new k4n::dev::Device(node_k4n);
+  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
   sensor->name = "playback_" + to_string(index);
   sensor->param.format = utl::path::get_format_from_path(path.data);
   sensor->param.file_size = utl::file::size(path.data);
@@ -64,7 +64,7 @@ void Swarm::create_sensor_capture(int index){
   k4n::dev::Master* master = get_or_create_capture_master("Capture");
 
   //Sensor creation
-  k4n::dev::Device* sensor = new k4n::dev::Device(node_k4n);
+  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
   sensor->name = "capture_" + to_string(index);
   sensor->param.index = index;
   sensor->master = master;
@@ -74,7 +74,7 @@ void Swarm::create_sensor_capture(int index){
   dat_set->insert_entity(master, sensor);
   dat_graph->assign_UID(sensor);
   k4n_transfo->apply_transformation_capture(sensor);
-  sensor->run_thread_capture();
+  sensor->run_thread();
   k4n_struct->list_sensor.push_back(sensor);
 
   //---------------------------
@@ -185,7 +185,7 @@ int Swarm::get_number_running_thread(){
   //---------------------------
 
   for(int i=0; i<k4n_struct->list_sensor.size(); i++){
-    k4n::dev::Device* sensor = *std::next(k4n_struct->list_sensor.begin(), i);
+    k4n::dev::Sensor* sensor = *std::next(k4n_struct->list_sensor.begin(), i);
 
     if(sensor->is_thread_running()){
       nb_thread++;

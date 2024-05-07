@@ -28,7 +28,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
 Cloud::~Cloud(){}
 
 //Main function
-void Cloud::start_thread(k4n::dev::Device* sensor){
+void Cloud::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->idle = false;
@@ -39,7 +39,7 @@ void Cloud::start_thread(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Cloud::run_thread(k4n::dev::Device* sensor){
+void Cloud::run_thread(k4n::dev::Sensor* sensor){
   if(sensor->profiler == nullptr) return;
   //---------------------------
 
@@ -73,7 +73,7 @@ void Cloud::wait_thread(){
 }
 
 //Cloud function
-void Cloud::convert_into_cloud(k4n::dev::Device* sensor){
+void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
   if(!sensor->depth.cloud.k4a_image.is_valid()) return;
   if(!sensor->ir.cloud.k4a_image.is_valid()) return;
   if(sensor->color.cloud.buffer == nullptr) return;
@@ -91,7 +91,7 @@ void Cloud::convert_into_cloud(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Cloud::loop_init(k4n::dev::Device* sensor){
+void Cloud::loop_init(k4n::dev::Sensor* sensor){
   //---------------------------
 
   vec_xyz.clear();
@@ -102,7 +102,7 @@ void Cloud::loop_init(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Cloud::loop_data(k4n::dev::Device* sensor, prf::graph::Tasker* tasker){
+void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   //---------------------------
 
   //Color
@@ -142,7 +142,7 @@ void Cloud::loop_data(k4n::dev::Device* sensor, prf::graph::Tasker* tasker){
 
   //---------------------------
 }
-void Cloud::loop_end(k4n::dev::Device* sensor, prf::graph::Tasker* tasker){
+void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   utl::type::Data* data = sensor->get_data();
   k4n::dev::Master* master = sensor->master;
   //---------------------------
@@ -164,7 +164,7 @@ void Cloud::loop_end(k4n::dev::Device* sensor, prf::graph::Tasker* tasker){
 }
 
 //Data retrieval
-void Cloud::retrieve_cloud(k4n::dev::Device* sensor, k4a::image& cloud_image){
+void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image){
   k4n::structure::Depth* depth = &sensor->depth;
   //---------------------------
 

@@ -14,7 +14,7 @@ Data::Data(){
 Data::~Data(){}
 
 //IR function
-void Data::convert_ir_into_color(k4n::dev::Device* sensor, std::vector<uint8_t>& output){
+void Data::convert_ir_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_t>& output){
   k4n::structure::Data* data = &sensor->ir.data;
   uint8_t* buffer = data->buffer;
   uint16_t level_min = sensor->ir.config.level_min;
@@ -45,7 +45,7 @@ void Data::convert_ir_into_color(k4n::dev::Device* sensor, std::vector<uint8_t>&
 
   //---------------------------
 }
-void Data::find_ir_level(k4n::dev::Device* sensor){
+void Data::find_ir_level(k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(sensor->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){
@@ -61,7 +61,7 @@ void Data::find_ir_level(k4n::dev::Device* sensor){
 }
 
 //Depth function
-void Data::convert_depth_into_color(k4n::dev::Device* sensor, std::vector<uint8_t>& output){
+void Data::convert_depth_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_t>& output){
   k4n::structure::Data* data = &sensor->depth.data;
   uint8_t* inputBuffer = data->buffer;
   uint16_t range_min = sensor->depth.config.range_min;
@@ -98,7 +98,7 @@ void Data::convert_depth_into_color(k4n::dev::Device* sensor, std::vector<uint8_
 
   //---------------------------
 }
-void Data::find_depth_mode_range(k4n::dev::Device* sensor){
+void Data::find_depth_mode_range(k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(sensor->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){

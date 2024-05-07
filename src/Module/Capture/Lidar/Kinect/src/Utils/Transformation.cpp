@@ -18,7 +18,7 @@ Transformation::Transformation(){
 Transformation::~Transformation(){}
 
 //Main function
-void Transformation::find_transformation_from_file(k4n::dev::Device* sensor, string path){
+void Transformation::find_transformation_from_file(k4n::dev::Sensor* sensor, string path){
   if(path != "" && !utl::file::is_exist(path)) return;
   //---------------------------
 
@@ -63,7 +63,7 @@ void Transformation::find_transformation_from_file(k4n::dev::Device* sensor, str
 
   //---------------------------
 }
-void Transformation::save_transformation_to_file(k4n::dev::Device* sensor){
+void Transformation::save_transformation_to_file(k4n::dev::Sensor* sensor){
   string& path = sensor->param.path.transformation;
   mat4& mat = sensor->get_pose()->model;
   //---------------------------
@@ -101,7 +101,7 @@ void Transformation::save_transformation_to_file(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Transformation::make_transformation_identity(k4n::dev::Device* sensor){
+void Transformation::make_transformation_identity(k4n::dev::Sensor* sensor){
   utl::type::Pose* pose = sensor->get_pose();
   //---------------------------
 
@@ -109,7 +109,7 @@ void Transformation::make_transformation_identity(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-void Transformation::apply_transformation_capture(k4n::dev::Device* sensor){
+void Transformation::apply_transformation_capture(k4n::dev::Sensor* sensor){
   utl::type::Pose* pose = sensor->get_pose();
   //---------------------------
 
@@ -118,7 +118,7 @@ void Transformation::apply_transformation_capture(k4n::dev::Device* sensor){
 
   //---------------------------
 }
-vec3 Transformation::convert_depth_2d_to_3d(k4n::dev::Device* sensor, ivec2 point_2d){
+vec3 Transformation::convert_depth_2d_to_3d(k4n::dev::Sensor* sensor, ivec2 point_2d){
   //---------------------------
 
   uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
@@ -145,7 +145,7 @@ vec3 Transformation::convert_depth_2d_to_3d(k4n::dev::Device* sensor, ivec2 poin
   //---------------------------
   return pose;
 }
-void Transformation::make_normal_from_depth_image(k4n::dev::Device* sensor){
+void Transformation::make_normal_from_depth_image(k4n::dev::Sensor* sensor){
   uint8_t* depth = sensor->depth.data.buffer;
   //---------------------------
 

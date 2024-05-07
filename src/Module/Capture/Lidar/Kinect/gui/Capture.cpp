@@ -48,7 +48,7 @@ void Capture::list_device(k4n::dev::Master* master){
       for(int i=0; i<master->list_entity.size(); i++){
         dat::base::Entity* entity = *next(master->list_entity.begin(), i);
 
-        if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
+        if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
           ImGui::PushID(sensor->param.serial_number.c_str());
 
           //Sensor type
@@ -69,14 +69,14 @@ void Capture::list_device(k4n::dev::Master* master){
             ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
             ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(180, 100, 100, 255));
             if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-              sensor->stop_threads();
+              sensor->stop_thread();
             }
             ImGui::PopStyleColor(2);
           }else{
             ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 133, 100, 255));
             ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 180, 100, 255));
             if(ImGui::Button(ICON_FA_CIRCLE "##399")){
-              sensor->run_thread_capture();
+              sensor->run_thread();
             }
             ImGui::PopStyleColor(2);
           }
