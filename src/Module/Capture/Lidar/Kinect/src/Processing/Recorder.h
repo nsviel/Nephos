@@ -4,7 +4,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::structure{class K4N;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Device;}
 namespace utl::thread{class Pool;}
 namespace ldr{class Exporter;}
 namespace format::ply{class Exporter;}
@@ -21,13 +21,13 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor);
-  void run_thread(k4n::dev::Sensor* sensor);
+  void start_thread(k4n::dev::Device* sensor);
+  void run_thread(k4n::dev::Device* sensor);
   void wait_thread();
 
   //Subfunction
-  void make_export_to_ply(k4n::dev::Sensor* sensor);
-  void make_export_to_mkv(k4n::dev::Sensor* sensor);
+  void make_export_to_ply(k4n::dev::Device* sensor);
+  void make_export_to_mkv(k4n::dev::Device* sensor);
 
 private:
   utl::thread::Pool* thread_pool;

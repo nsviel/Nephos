@@ -6,7 +6,7 @@
 
 namespace k4n::structure{class K4N;}
 namespace k4n{class Node;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Device;}
 namespace k4n::processing{class Cloud;}
 namespace k4n::processing{class Image;}
 namespace utl::thread{class Pool;}
@@ -23,22 +23,22 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor);
-  void run_thread(k4n::dev::Sensor* sensor);
+  void start_thread(k4n::dev::Device* sensor);
+  void run_thread(k4n::dev::Device* sensor);
   void wait_thread();
 
   //Data function
-  void find_data_from_capture(k4n::dev::Sensor* device);
-  void find_data_depth(k4n::dev::Sensor* sensor);
-  void find_data_color(k4n::dev::Sensor* sensor);
-  void find_data_ir(k4n::dev::Sensor* sensor);
+  void find_data_from_capture(k4n::dev::Device* device);
+  void find_data_depth(k4n::dev::Device* sensor);
+  void find_data_color(k4n::dev::Device* sensor);
+  void find_data_ir(k4n::dev::Device* sensor);
 
   //Transformed data
-  void find_data_cloud(k4n::dev::Sensor* sensor);
-  void find_depth_to_color(k4n::dev::Sensor* sensor);
-  void find_depth_and_ir_to_color(k4n::dev::Sensor* sensor);
-  void find_ir_to_color(k4n::dev::Sensor* sensor);
-  void find_color_to_depth(k4n::dev::Sensor* sensor);
+  void find_data_cloud(k4n::dev::Device* sensor);
+  void find_depth_to_color(k4n::dev::Device* sensor);
+  void find_depth_and_ir_to_color(k4n::dev::Device* sensor);
+  void find_ir_to_color(k4n::dev::Device* sensor);
+  void find_color_to_depth(k4n::dev::Device* sensor);
 
   //Subfunction
   string retrieve_format_from_k4a(k4a_image_format_t color_format);

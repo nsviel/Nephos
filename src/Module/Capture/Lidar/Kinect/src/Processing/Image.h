@@ -4,7 +4,7 @@
 #include <k4a/k4a.hpp>
 
 namespace k4n{class Node;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Device;}
 namespace k4n::utils{class Data;}
 namespace k4n::utils{class Configuration;}
 namespace rad::detection{class Identification;}
@@ -22,15 +22,15 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor);
-  void run_thread(k4n::dev::Sensor* sensor);
+  void start_thread(k4n::dev::Device* sensor);
+  void run_thread(k4n::dev::Device* sensor);
   void wait_thread();
 
   //Subfunction
-  void copy_image(k4n::dev::Sensor* sensor);
-  void copy_image_color(k4n::dev::Sensor* sensor);
-  void copy_image_depth(k4n::dev::Sensor* sensor);
-  void copy_image_ir(k4n::dev::Sensor* sensor);
+  void copy_image(k4n::dev::Device* sensor);
+  void copy_image_color(k4n::dev::Device* sensor);
+  void copy_image_depth(k4n::dev::Device* sensor);
+  void copy_image_ir(k4n::dev::Device* sensor);
 
 private:
   utl::thread::Pool* thread_pool;

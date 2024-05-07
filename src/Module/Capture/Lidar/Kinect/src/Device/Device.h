@@ -30,18 +30,29 @@ namespace k4n::gui{class Sensor;}
 
 namespace k4n::dev{
 
-class Sensor : public dyn::base::Device
+class Device : public dyn::base::Device
 {
 public:
   //Constructor / Destructor
-  Sensor(k4n::Node* node_k4n);
-  ~Sensor();
+  Device(k4n::Node* node_k4n);
+  ~Device();
 
 public:
   //Main function
   void init();
   void info();
   void reset();
+
+  //Thread function
+  void start_thread();
+  void run_thread();
+  void stop_thread();
+  void wait_thread();
+
+  //Subfunction
+  virtual void thread_init(){}
+  virtual void thread_loop(){}
+  virtual void thread_end(){}
 
   //Entity function
   void update_pose();
@@ -55,13 +66,11 @@ public:
   void wait_threads();
   void reset_color_configuration();
 
-  bool is_capture_running();
-  bool is_playback_running();
-  bool is_playback_paused();
-
   inline dat::base::Object* get_object(){return &object;}
   inline utl::type::Data* get_data(){return &object.data;}
   inline utl::type::Pose* get_pose(){return &object.pose;}
+  inline bool is_thread_running(){return thread_running;}
+  inline bool is_thread_paused(){return thread_paused;}
 
 public:
   prf::graph::Profiler* profiler;
@@ -79,7 +88,7 @@ public:
   k4n::structure::Infrared ir;
   k4n::structure::IMU imu;
 
-private:
+protected:
   eng::Node* node_engine;
   dat::Entity* dat_entity;
   dat::Set* dat_set;
@@ -89,7 +98,10 @@ private:
   k4n::playback::Sensor* k4n_playback;
   k4n::structure::K4N* k4n_struct;
 
+  std::thread thread;
   bool thread_running = false;
+  bool thread_idle = true;
+  bool thread_paused = false;
 };
 
 }

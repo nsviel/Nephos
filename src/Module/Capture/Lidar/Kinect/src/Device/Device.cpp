@@ -1,4 +1,4 @@
-#include "Sensor.h"
+#include "Device.h"
 
 #include <Engine/Namespace.h>
 #include <Kinect/Namespace.h>
@@ -10,7 +10,7 @@
 namespace k4n::dev{
 
 //Constructor / Destructor
-Sensor::Sensor(k4n::Node* node_k4n){
+Device::Device(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
@@ -31,17 +31,10 @@ Sensor::Sensor(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Sensor::~Sensor(){
-  //---------------------------
-
-  delete k4n_capture;
-  delete k4n_playback;
-
-  //---------------------------
-}
+Device::~Device(){}
 
 //Main function
-void Sensor::init(){
+void Device::init(){
   //---------------------------
 
   //Sensor name
@@ -72,14 +65,14 @@ void Sensor::init(){
 
   //---------------------------
 }
-void Sensor::reset(){
+void Device::reset(){
   //---------------------------
 
   object.reset_entity();
 
   //---------------------------
 }
-void Sensor::info(){
+void Device::info(){
   //---------------------------
 
   gui_sensor->show_sensor(this);
@@ -88,14 +81,14 @@ void Sensor::info(){
 }
 
 //Entity function
-void Sensor::update_pose(){
+void Device::update_pose(){
   //----------------------------
 
   object.update_pose();
 
   //----------------------------
 }
-void Sensor::remove_entity(){
+void Device::remove_entity(){
   if(profiler == nullptr) return;
   //---------------------------
 
@@ -116,7 +109,7 @@ void Sensor::remove_entity(){
 
   //---------------------------
 }
-void Sensor::set_visibility(bool value){
+void Device::set_visibility(bool value){
   //---------------------------
 
   this->is_visible = value;
@@ -126,18 +119,68 @@ void Sensor::set_visibility(bool value){
   //---------------------------
 }
 
+//Thread function
+void Device::start_thread(){
+  if(sensor == nullptr) return;
+  //---------------------------
+
+  if(!thread_running){
+    this->thread = std::thread(&Device::run_thread, this, sensor);
+  }
+
+  //---------------------------
+  this->thread_running = true;
+  this->thread_idle = false;
+}
+void Device::run_thread(){
+  //---------------------------
+
+  this->thread_init(sensor);
+
+  //Device thread
+  while(thread_running){
+    this->thread_loop(sensor);
+  }
+
+  this->thread_end(sensor);
+
+  //---------------------------
+  this->thread_idle = true;
+}
+void Device::stop_thread(){
+  //---------------------------
+
+  this->thread_running = false;
+  if(thread.joinable()){
+    thread.join();
+  }
+
+  //---------------------------
+}
+void Device::wait_thread(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(thread_paused == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  //---------------------------
+}
+
+
 //Capture function
-void Sensor::run_thread_capture(){
+void Device::run_thread_capture(){
   //---------------------------
 
   this->stop_threads();
-  k4n_capture->start_thread();
+  //k4n_capture->start_thread();
   this->thread_running = true;
   this->object.set_visibility(true);
 
   //---------------------------
 }
-void Sensor::run_thread_playback(string path){
+void Device::run_thread_playback(string path){
   //---------------------------
 
   this->stop_threads();
@@ -148,10 +191,10 @@ void Sensor::run_thread_playback(string path){
 
   //---------------------------
 }
-void Sensor::stop_threads(){
+void Device::stop_threads(){
   //---------------------------
 
-  this->k4n_capture->stop_thread();
+  //this->k4n_capture->stop_thread();
   this->k4n_playback->stop_thread();
   this->thread_running = false;
   this->object.clear_data();
@@ -159,21 +202,21 @@ void Sensor::stop_threads(){
 
   //---------------------------
 }
-void Sensor::wait_threads(){
+void Device::wait_threads(){
   //---------------------------
 
   //Capture
-  if(k4n_capture->is_thread_running()){
+  /*if(k4n_capture->is_thread_running()){
     k4n_capture->wait_thread();
   }
   //Playback
   else if(k4n_playback->is_thread_running()){
     k4n_playback->wait_thread();
   }
-
+*/
   //---------------------------
 }
-void Sensor::reset_color_configuration(){
+void Device::reset_color_configuration(){
   //---------------------------
 
   color.config.exposure.value = 15625;
@@ -189,8 +232,6 @@ void Sensor::reset_color_configuration(){
   //---------------------------
 }
 
-bool Sensor::is_capture_running(){return k4n_capture->is_thread_running();}
-bool Sensor::is_playback_running(){return k4n_playback->is_thread_running();}
-bool Sensor::is_playback_paused(){return k4n_playback->is_thread_paused();}
+
 
 }

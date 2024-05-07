@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 #include <k4arecord/playback.hpp>
 
-namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Device;}
 namespace k4n::dev{class Master;}
 
 
@@ -19,14 +19,14 @@ public:
 public:
   //Configuration function
   void make_master_configuration_initial(k4n::dev::Master* master);
-  void make_sensor_configuration(k4n::dev::Sensor* k4n_sensor);
-  void make_sensor_color_configuration(k4n::dev::Sensor* sensor);
-  void find_playback_configuration(k4n::dev::Sensor* k4n_sensor);
+  void make_sensor_configuration(k4n::dev::Device* k4n_sensor);
+  void make_sensor_color_configuration(k4n::dev::Device* sensor);
+  void find_playback_configuration(k4n::dev::Device* k4n_sensor);
 
   //Calibration function
-  void make_transformation_from_calibration(k4n::dev::Sensor* sensor);
-  void make_capture_calibration(k4n::dev::Sensor* sensor);
-  void find_playback_calibration(k4n::dev::Sensor* sensor);
+  void make_transformation_from_calibration(k4n::dev::Device* sensor);
+  void make_capture_calibration(k4n::dev::Device* sensor);
+  void find_playback_calibration(k4n::dev::Device* sensor);
 
   //Playback configuration
   string find_mode_fps(int mode);

@@ -6,7 +6,7 @@
 #include <Engine/Namespace.h>
 
 namespace k4n::dev{class Master;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Device;}
 
 
 
@@ -19,7 +19,7 @@ struct K4N{
   int kinect_num_connection = 0;
   bool kinect_connection_state = false;
   std::list<k4n::dev::Master*> list_master;
-  std::list<k4n::dev::Sensor*> list_sensor;
+  std::list<k4n::dev::Device*> list_sensor;
 
   //---------------------------
 };

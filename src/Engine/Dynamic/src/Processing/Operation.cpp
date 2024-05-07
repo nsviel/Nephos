@@ -26,7 +26,7 @@ Operation::Operation(k4n::Node* node_k4n){
 Operation::~Operation(){}
 
 //Main function
-void Operation::start_thread(k4n::dev::Sensor* sensor){
+void Operation::start_thread(k4n::dev::Device* sensor){
   if(sensor->profiler == nullptr) return;
   //---------------------------
 
@@ -38,7 +38,7 @@ void Operation::start_thread(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Operation::run_thread(k4n::dev::Sensor* sensor){
+void Operation::run_thread(k4n::dev::Device* sensor){
   k4n::dev::Master* master = sensor->master;
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("processing");
   //---------------------------
@@ -102,7 +102,7 @@ void Operation::wait_thread(){
 }
 
 //Subfunction
-void Operation::colorize_object(k4n::dev::Sensor* sensor){
+void Operation::colorize_object(k4n::dev::Device* sensor){
   //---------------------------
 
   ope::color::Configuration config;
@@ -116,7 +116,7 @@ void Operation::colorize_object(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Operation::voxelize_object(k4n::dev::Sensor* sensor){
+void Operation::voxelize_object(k4n::dev::Device* sensor){
   //---------------------------
 
   utl::type::Data* data = sensor->get_data();
@@ -129,7 +129,7 @@ void Operation::voxelize_object(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Operation::triangularize_object(k4n::dev::Sensor* sensor){
+void Operation::triangularize_object(k4n::dev::Device* sensor){
   //---------------------------
 
   utl::type::Data* data = sensor->get_data();
@@ -138,7 +138,7 @@ void Operation::triangularize_object(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Operation::update_object(k4n::dev::Sensor* sensor){
+void Operation::update_object(k4n::dev::Device* sensor){
   //---------------------------
 
   dat::base::Object* object = sensor->get_object();

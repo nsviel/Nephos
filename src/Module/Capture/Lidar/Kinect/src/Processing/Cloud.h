@@ -7,7 +7,7 @@ namespace prf::graph{class Tasker;}
 namespace k4n{class Node;}
 namespace k4n::processing{class Operation;}
 namespace rad::detection{class Ransac;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Device;}
 namespace k4n::structure{class K4N;}
 namespace utl::thread{class Pool;}
 namespace k4n::processing{class Recorder;}
@@ -24,18 +24,18 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor);
-  void run_thread(k4n::dev::Sensor* sensor);
+  void start_thread(k4n::dev::Device* sensor);
+  void run_thread(k4n::dev::Device* sensor);
   void wait_thread();
 
   //Cloud function
-  void convert_into_cloud(k4n::dev::Sensor* sensor);
-  void loop_init(k4n::dev::Sensor* sensor);
-  void loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
-  void loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
+  void convert_into_cloud(k4n::dev::Device* sensor);
+  void loop_init(k4n::dev::Device* sensor);
+  void loop_data(k4n::dev::Device* sensor, prf::graph::Tasker* tasker);
+  void loop_end(k4n::dev::Device* sensor, prf::graph::Tasker* tasker);
 
   //Data retrieval
-  void retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image);
+  void retrieve_cloud(k4n::dev::Device* sensor, k4a::image& cloud_image);
   void retrieve_location(int i, const int16_t* data);
   void retrieve_color(int i, const uint8_t* rgb_data);
   void retrieve_ir(int i, const uint8_t* ir_data);

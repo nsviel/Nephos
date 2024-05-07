@@ -25,7 +25,7 @@ Recorder::Recorder(k4n::Node* node_k4n){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::start_thread(k4n::dev::Sensor* sensor){
+void Recorder::start_thread(k4n::dev::Device* sensor){
   //---------------------------
 
   this->idle = false;
@@ -36,7 +36,7 @@ void Recorder::start_thread(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Recorder::run_thread(k4n::dev::Sensor* sensor){
+void Recorder::run_thread(k4n::dev::Device* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("recorder");
   //---------------------------
 
@@ -80,7 +80,7 @@ void Recorder::wait_thread(){
 }
 
 //Subfunction
-void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
+void Recorder::make_export_to_ply(k4n::dev::Device* sensor){
   k4n::dev::Master* master = sensor->master;
   if(!master->player->get_state_record()) return;
   //---------------------------
@@ -107,7 +107,7 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
+void Recorder::make_export_to_mkv(k4n::dev::Device* sensor){
   k4a::record& recorder = sensor->param.recorder;
   k4n::dev::Master* master = sensor->master;
   k4a::capture* capture = sensor->param.capture;

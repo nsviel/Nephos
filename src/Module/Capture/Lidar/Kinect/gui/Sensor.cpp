@@ -21,7 +21,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
 Sensor::~Sensor(){}
 
 //Main function
-void Sensor::show_sensor(k4n::dev::Sensor* sensor){
+void Sensor::show_sensor(k4n::dev::Device* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -51,7 +51,7 @@ void Sensor::show_sensor(k4n::dev::Sensor* sensor){
 }
 
 //Subfunction
-void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
+void Sensor::show_sensor_info(k4n::dev::Device* sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
@@ -84,7 +84,7 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
+void Sensor::show_sensor_transfo(k4n::dev::Device* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(75);
@@ -117,7 +117,7 @@ void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Sensor::show_firmware_info(k4n::dev::Sensor* sensor){
+void Sensor::show_firmware_info(k4n::dev::Device* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Device Firmware Version Info");
@@ -153,7 +153,7 @@ void Sensor::show_firmware_info(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Sensor::show_sensor_recorder(k4n::dev::Sensor* sensor){
+void Sensor::show_sensor_recorder(k4n::dev::Device* sensor){
   //---------------------------
 
   if(ImGui::TreeNode("Recorder")){
@@ -165,7 +165,7 @@ void Sensor::show_sensor_recorder(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Sensor::recorder_path(k4n::dev::Sensor* sensor){
+void Sensor::recorder_path(k4n::dev::Device* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 

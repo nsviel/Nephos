@@ -48,7 +48,7 @@ void Capture::list_device(k4n::dev::Master* master){
       for(int i=0; i<master->list_entity.size(); i++){
         dat::base::Entity* entity = *next(master->list_entity.begin(), i);
 
-        if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+        if(k4n::dev::Device* sensor = dynamic_cast<k4n::dev::Device*>(entity)){
           ImGui::PushID(sensor->param.serial_number.c_str());
 
           //Sensor type

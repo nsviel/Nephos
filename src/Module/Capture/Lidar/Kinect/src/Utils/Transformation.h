@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Device;}
 
 
 namespace k4n::utils{
@@ -16,12 +16,12 @@ public:
 
 public:
   //Main function
-  void find_transformation_from_file(k4n::dev::Sensor* sensor, string path);
-  void save_transformation_to_file(k4n::dev::Sensor* sensor);
-  void make_transformation_identity(k4n::dev::Sensor* sensor);
-  void apply_transformation_capture(k4n::dev::Sensor* sensor);
-  vec3 convert_depth_2d_to_3d(k4n::dev::Sensor* sensor, ivec2 point_2d);
-  void make_normal_from_depth_image(k4n::dev::Sensor* sensor);
+  void find_transformation_from_file(k4n::dev::Device* sensor, string path);
+  void save_transformation_to_file(k4n::dev::Device* sensor);
+  void make_transformation_identity(k4n::dev::Device* sensor);
+  void apply_transformation_capture(k4n::dev::Device* sensor);
+  vec3 convert_depth_2d_to_3d(k4n::dev::Device* sensor, ivec2 point_2d);
+  void make_normal_from_depth_image(k4n::dev::Device* sensor);
   
   //Subfunction
   bool is_json_file(const std::string& path);

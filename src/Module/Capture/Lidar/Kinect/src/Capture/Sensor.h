@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Device/Sensor.h>
+#include <Kinect/src/Device/Device.h>
 #include <Dynamic/src/Base/Device.h>
 #include <Utility/Specific/Common.h>
 #include <k4a/k4a.hpp>
@@ -8,7 +8,7 @@
 
 namespace eng{class Node;}
 namespace k4n{class Node;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::dev{class Device;}
 namespace k4n::processing{class Data;}
 namespace k4n::utils{class Configuration;}
 namespace k4n::structure{class K4N;}
@@ -16,7 +16,7 @@ namespace k4n::structure{class K4N;}
 
 namespace k4n::capture{
 
-class Sensor : public k4n::dev::Sensor
+class Sensor : public k4n::dev::Device
 {
 public:
   //Constructor / Destructor
