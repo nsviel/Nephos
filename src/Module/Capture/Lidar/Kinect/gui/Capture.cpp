@@ -33,7 +33,7 @@ void Capture::list_device(k4n::dev::Master* master){
   flags |= ImGuiTableFlags_Borders;
   flags |= ImGuiTableFlags_RowBg;
   if(ImGui::BeginTable("database_view", 4, flags)){
-    if(k4n_struct->device.list_master.size() == 0){
+    if(k4n_struct->list_master.size() == 0){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       ImGui::TableNextColumn();

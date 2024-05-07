@@ -1,15 +1,29 @@
 #pragma once
 
-#include <Kinect/Namespace.h>
-#include <list>
+#include <Utility/Specific/Common.h>
+#include <Radiometry/Namespace.h>
+#include <Profiler/Namespace.h>
+#include <Engine/Namespace.h>
 
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
 
 
+namespace k4n::color{
+
+enum Mode{
+  CAMERA = 0,
+  UNICOLOR = 1,
+  INTENSITY = 2,
+  HEATMAP = 3,
+  STRUCTURE = 4,
+};
+
+}
+
 namespace k4n::structure{
 
-struct Device{
+struct K4N{
   //---------------------------
 
   int UID = 0;

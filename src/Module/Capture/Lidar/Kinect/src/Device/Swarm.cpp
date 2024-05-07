@@ -51,7 +51,7 @@ void Swarm::create_sensor_playback(utl::media::Path path){
   master->player_update();
   dat_graph->assign_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, path.transformation);
-  k4n_struct->device.list_sensor.push_back(sensor);
+  k4n_struct->list_sensor.push_back(sensor);
 
 
   //---------------------------
@@ -75,7 +75,7 @@ void Swarm::create_sensor_capture(int index){
   dat_graph->assign_UID(sensor);
   k4n_transfo->apply_transformation_capture(sensor);
   sensor->run_thread_capture();
-  k4n_struct->device.list_sensor.push_back(sensor);
+  k4n_struct->list_sensor.push_back(sensor);
 
   //---------------------------
 }
@@ -84,8 +84,8 @@ void Swarm::create_sensor_capture(int index){
 void Swarm::close_master(string name){
   //---------------------------
 
-  for(int i=0; i<k4n_struct->device.list_sensor.size(); i++){
-    k4n::dev::Master* master = *std::next(k4n_struct->device.list_master.begin(), i);
+  for(int i=0; i<k4n_struct->list_sensor.size(); i++){
+    k4n::dev::Master* master = *std::next(k4n_struct->list_master.begin(), i);
     if(master->name == name){
       this->close_master(master);
       return;
@@ -98,15 +98,15 @@ void Swarm::close_master(k4n::dev::Master* master){
   //---------------------------
 
   dat_set->remove_all_entity(master);
-  k4n_struct->device.list_master.remove(master);
+  k4n_struct->list_master.remove(master);
 
   //---------------------------
 }
 void Swarm::close_all_master(){
   //---------------------------
 
-  for(int i=0; i<k4n_struct->device.list_sensor.size(); i++){
-    k4n::dev::Master* master = *std::next(k4n_struct->device.list_master.begin(), i);
+  for(int i=0; i<k4n_struct->list_sensor.size(); i++){
+    k4n::dev::Master* master = *std::next(k4n_struct->list_master.begin(), i);
     dat_set->remove_all_entity(master);
   }
 
@@ -117,8 +117,8 @@ k4n::dev::Master* Swarm::get_or_create_playback_master(string name){
   //---------------------------
 
   //Check if already existing
-  for(int i=0; i<k4n_struct->device.list_sensor.size(); i++){
-    k4n::dev::Master* master = *std::next(k4n_struct->device.list_master.begin(), i);
+  for(int i=0; i<k4n_struct->list_sensor.size(); i++){
+    k4n::dev::Master* master = *std::next(k4n_struct->list_master.begin(), i);
     if(name == master->name){
       return master;
     }
@@ -131,8 +131,8 @@ k4n::dev::Master* Swarm::get_or_create_playback_master(string name){
   master->mode = k4n::dev::PLAYBACK;
 
   dat_set->add_subset(set_scene, master);
-  k4n_struct->device.list_master.push_back(master);
-  k4n_struct->device.selected_master = master;
+  k4n_struct->list_master.push_back(master);
+  k4n_struct->selected_master = master;
 
   //---------------------------
   return master;
@@ -142,8 +142,8 @@ k4n::dev::Master* Swarm::get_or_create_capture_master(string name){
   //---------------------------
 
   //Check if already existing
-  for(int i=0; i<k4n_struct->device.list_sensor.size(); i++){
-    k4n::dev::Master* master = *std::next(k4n_struct->device.list_master.begin(), i);
+  for(int i=0; i<k4n_struct->list_sensor.size(); i++){
+    k4n::dev::Master* master = *std::next(k4n_struct->list_master.begin(), i);
     if(name == master->name){
       return master;
     }
@@ -157,19 +157,19 @@ k4n::dev::Master* Swarm::get_or_create_capture_master(string name){
 
   k4n_config->make_master_configuration_initial(master);
   dat_set->add_subset(set_scene, master);
-  k4n_struct->device.list_master.push_back(master);
-  k4n_struct->device.selected_master = master;
+  k4n_struct->list_master.push_back(master);
+  k4n_struct->selected_master = master;
 
   //---------------------------
   return master;
 }
 k4n::dev::Master* Swarm::get_selected_master(){
-  return k4n_struct->device.selected_master;
+  return k4n_struct->selected_master;
 }
 
 //Subfunction
 void Swarm::manage_connected_device(){
-  if(!k4n_struct->device.connected_device_change) return;
+  if(!k4n_struct->connected_device_change) return;
   //---------------------------
 
   //Suppress all devices
@@ -178,19 +178,19 @@ void Swarm::manage_connected_device(){
   dat_set->remove_all_entity(master);
 
   //Create required number of new devices
-  for(int i=0; i<k4n_struct->device.nb_connected_sensor; i++){
+  for(int i=0; i<k4n_struct->nb_connected_sensor; i++){
     this->create_sensor_capture(i);
   }
 
   //---------------------------
-  k4n_struct->device.connected_device_change = false;
+  k4n_struct->connected_device_change = false;
 }
 int Swarm::get_number_running_thread(){
   int nb_thread = 0;
   //---------------------------
 
-  for(int i=0; i<k4n_struct->device.list_sensor.size(); i++){
-    k4n::dev::Sensor* sensor = *std::next(k4n_struct->device.list_sensor.begin(), i);
+  for(int i=0; i<k4n_struct->list_sensor.size(); i++){
+    k4n::dev::Sensor* sensor = *std::next(k4n_struct->list_sensor.begin(), i);
 
     if(sensor->is_playback_running()){
       nb_thread++;
