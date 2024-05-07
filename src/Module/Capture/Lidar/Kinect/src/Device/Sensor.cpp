@@ -33,7 +33,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
 }
 Sensor::~Sensor(){}
 
-//Main function
+//Init function
 void Sensor::init(){
   //---------------------------
 
@@ -81,7 +81,7 @@ void Sensor::init_image(){
   //---------------------------
 }
 
-
+//Main function
 void Sensor::reset(){
   //---------------------------
 
@@ -96,8 +96,6 @@ void Sensor::info(){
 
   //---------------------------
 }
-
-//Entity function
 void Sensor::update_pose(){
   //----------------------------
 
@@ -109,20 +107,17 @@ void Sensor::remove_entity(){
   if(profiler == nullptr) return;
   //---------------------------
 
+  //Sensor related
   this->stop_thread();
+  this->param.transformation.destroy();
+  this->object.remove_entity();
+  k4n_struct->list_sensor.remove(this);
 
-  //Remove tasker
+  //Profiler related
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   prf_manager->remove_profiler(profiler);
   this->profiler = nullptr;
-
-  //Remove sensor elements
-  this->param.transformation.destroy();
-  this->object.remove_entity();
-
-  //Supress this sensor from lists
-  k4n_struct->list_sensor.remove(this);
 
   //---------------------------
 }

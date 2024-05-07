@@ -40,16 +40,15 @@ public:
   ~Sensor();
 
 public:
-  //Main function
+  //Init function
   void init();
   void init_profiler();
   void init_image();
   void init_object();
 
+  //Main function
   void info();
   void reset();
-
-  //Entity function
   void update_pose();
   void remove_entity();
   void set_visibility(bool value);
