@@ -7,7 +7,6 @@ namespace dat{class Node;}
 namespace eng{class Node;}
 namespace cap{class Node;}
 namespace k4n::capture{class Connection;}
-namespace k4n::structure{class K4N;}
 namespace utl::thread{class Pool;}
 namespace k4n::calibration{class Model;}
 namespace rad{class Node;}
@@ -36,8 +35,6 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
   inline rad::Node* get_node_radio(){return node_radio;}
 
-  inline k4n::structure::K4N* get_k4n_struct(){return k4n_struct;}
-
 private:
   //Dependancy
   ldr::Node* node_loader;
@@ -48,7 +45,6 @@ private:
 
   //Child
   utl::thread::Pool* thread_pool;
-  k4n::structure::K4N* k4n_struct;
   k4n::capture::Connection* k4n_connection;
 };
 

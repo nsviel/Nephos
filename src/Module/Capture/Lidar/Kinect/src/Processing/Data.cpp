@@ -2,6 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Engine/Namespace.h>
 
 
 namespace k4n::processing{

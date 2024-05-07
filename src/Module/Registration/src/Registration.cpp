@@ -13,7 +13,6 @@ Registration::Registration(k4n::Node* node_k4n){
   eng::Node* node_engine = node_k4n->get_node_engine();
   rad::Node* node_radio = node_k4n->get_node_radio();
 
-  this->k4n_struct = node_k4n->get_k4n_struct();
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------

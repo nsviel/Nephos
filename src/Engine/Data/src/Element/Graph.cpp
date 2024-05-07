@@ -43,7 +43,7 @@ void Graph::loop(){
 void Graph::reset(){
   //---------------------------
 
-  dat_set->reset_set(&dat_struct->set_main);
+  dat_set->reset(&dat_struct->set_main);
 
   //---------------------------
 }

@@ -29,7 +29,7 @@ Master::Master(k4n::Node* node_k4n){
 Master::~Master(){}
 
 //Main function
-void Master::reset_set(){
+void Master::reset(){
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){

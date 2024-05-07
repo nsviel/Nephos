@@ -27,7 +27,7 @@ public:
 
 public:
   //Main function
-  void reset_set();
+  void reset();
   void info();
 
   //Master function

@@ -52,7 +52,7 @@ public:
   void init_profiler();
   void init_image();
   void init_object();
-  
+
   //Thread function
   void start_thread();
   void run_thread();
@@ -92,7 +92,6 @@ protected:
   dat::Set* dat_set;
   dat::Glyph* dat_glyph;
   dat::Graph* dat_graph;
-  k4n::structure::K4N* k4n_struct;
 
   std::thread thread;
   bool thread_running = false;

@@ -18,7 +18,8 @@ struct Set : public utl::type::Element, public dyn::base::Player{
 
   Set(){}
   ~Set(){}
-  virtual void reset_set(){}
+  virtual void reset(){}
+  virtual void info(){}
 
   //Info
   std::string type = "set";

@@ -23,7 +23,6 @@ Node::Node(cap::Node* node_capture){
   this->node_radio = new rad::Node(node_engine);
 
   //Child
-  this->k4n_struct = new k4n::structure::K4N();
   this->k4n_connection = new k4n::capture::Connection(this);
 
   //---------------------------

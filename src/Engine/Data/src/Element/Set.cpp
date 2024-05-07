@@ -33,7 +33,7 @@ void Set::update_set(dat::base::Set* set){
 
   //---------------------------
 }
-void Set::reset_set(dat::base::Set* set){
+void Set::reset(dat::base::Set* set){
   //---------------------------
 
   //Reset all associated entities
@@ -45,7 +45,7 @@ void Set::reset_set(dat::base::Set* set){
   //Reset all associated sets
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    this->reset_set(subset);
+    this->reset(subset);
   }
 
   //---------------------------

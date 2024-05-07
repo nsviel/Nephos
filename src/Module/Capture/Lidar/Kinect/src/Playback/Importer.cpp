@@ -12,7 +12,6 @@ Importer::Importer(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
 
-  this->k4n_struct = node_k4n->get_k4n_struct();
   this->node_engine = node_k4n->get_node_engine();
   this->dat_graph = node_data->get_data_graph();
 
@@ -47,7 +46,7 @@ utl::media::File* Importer::import(utl::media::Path path){
   master->player_update();
   dat_graph->assign_UID(sensor);
   k4n_transfo->find_transformation_from_file(sensor, path.transformation);
-  k4n_struct->list_sensor.push_back(sensor);
+
 */
   //---------------------------
   return nullptr;

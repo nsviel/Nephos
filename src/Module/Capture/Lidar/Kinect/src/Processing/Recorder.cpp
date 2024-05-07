@@ -4,6 +4,7 @@
 #include <Utility/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Loader/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace k4n::processing{
@@ -15,7 +16,6 @@ Recorder::Recorder(k4n::Node* node_k4n){
   eng::Node* node_engine = node_k4n->get_node_engine();
   ldr::Node* node_loader = node_engine->get_node_loader();
 
-  this->k4n_struct = node_k4n->get_k4n_struct();
   this->ldr_exporter = node_loader->get_exporter();
   this->ply_exporter = new format::ply::Exporter();
   this->thread_pool = node_engine->get_thread_pool();

@@ -4,6 +4,7 @@
 #include <Utility/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Kinect/Namespace.h>
+#include <Engine/Namespace.h>
 
 
 namespace k4n::processing{

@@ -13,7 +13,6 @@ Connection::Connection(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
 
-  this->k4n_struct = node_k4n->get_k4n_struct();
   this->dat_set = node_data->get_data_set();
   this->dat_graph = node_data->get_data_graph();
 
@@ -91,7 +90,7 @@ void Connection::create_sensor(int index){
   dat_graph->assign_UID(sensor);
   k4n_transfo->apply_transformation_capture(sensor);
   sensor->run_thread();
-  k4n_struct->list_sensor.push_back(sensor);
+
 */
   //---------------------------
 }

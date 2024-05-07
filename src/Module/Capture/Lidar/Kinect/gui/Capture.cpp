@@ -14,7 +14,6 @@ Capture::Capture(k4n::Node* node_k4n){
 
   this->node_k4n = node_k4n;
   this->k4n_config = new k4n::utils::Configuration();
-  this->k4n_struct = node_k4n->get_k4n_struct();
   this->dat_set = node_data->get_data_set();
 
   this->item_width = 100;
@@ -31,11 +30,11 @@ void Capture::list_device(k4n::dev::Master* master){
   flags |= ImGuiTableFlags_Borders;
   flags |= ImGuiTableFlags_RowBg;
   if(ImGui::BeginTable("database_view", 4, flags)){
-    if(k4n_struct->list_master.size() == 0){
+    if(master->list_entity.size() == 0){
       ImGui::TableNextRow();
       ImGui::TableNextColumn();
       ImGui::TableNextColumn();
-      ImGui::Text("(No available devices)");
+      ImGui::Text("(No devices)");
     }
     else{
       ImGui::TableSetupColumn("");
@@ -384,7 +383,7 @@ void Capture::configuration_button(k4n::dev::Master* master){
   //Refresh / reset buttons
   if(ImGui::Button("Restart")){
     master->manage_configuration();
-    master->reset_set();
+    master->reset();
   }
   ImGui::SameLine();
   if(ImGui::Button("Reset to default##RGB")){

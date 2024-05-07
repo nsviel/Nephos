@@ -20,7 +20,7 @@ public:
 public:
   //Set function
   void update_set(dat::base::Set* set);
-  void reset_set(dat::base::Set* set);
+  void reset(dat::base::Set* set);
   void visibility_set(dat::base::Set* set, bool value);
 
   //Subset function
