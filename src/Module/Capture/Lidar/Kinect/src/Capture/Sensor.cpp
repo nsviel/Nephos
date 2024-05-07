@@ -1,4 +1,4 @@
-#include "Thread.h"
+#include "Sensor.h"
 
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
@@ -7,7 +7,7 @@
 namespace k4n::capture{
 
 //Constructor / Destructor
-Thread::Thread(k4n::Node* node_k4n){
+Sensor::Sensor(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_data = new k4n::processing::Data(node_k4n);
@@ -15,7 +15,7 @@ Thread::Thread(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Thread::~Thread(){
+Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
@@ -24,7 +24,7 @@ Thread::~Thread(){
 }
 
 //Main function
-void Thread::thread_init(dat::base::Sensor* sensor){
+void Sensor::thread_init(dat::base::Sensor* sensor){
   k4n::dev::Sensor* k4n_sensor = dynamic_cast<k4n::dev::Sensor*>(sensor);
   //---------------------------
 
@@ -48,7 +48,7 @@ void Thread::thread_init(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Thread::thread_loop(dat::base::Sensor* sensor){
+void Sensor::thread_loop(dat::base::Sensor* sensor){
   k4n::dev::Sensor* k4n_sensor = dynamic_cast<k4n::dev::Sensor*>(sensor);
   //---------------------------
 
@@ -78,7 +78,7 @@ void Thread::thread_loop(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Thread::thread_end(dat::base::Sensor* sensor){
+void Sensor::thread_end(dat::base::Sensor* sensor){
   k4n::dev::Sensor* k4n_sensor = dynamic_cast<k4n::dev::Sensor*>(sensor);
   //---------------------------
 
@@ -89,7 +89,7 @@ void Thread::thread_end(dat::base::Sensor* sensor){
 }
 
 //Subfunction
-k4a::capture* Thread::manage_new_capture(k4n::dev::Sensor* sensor){
+k4a::capture* Sensor::manage_new_capture(k4n::dev::Sensor* sensor){
   //---------------------------
 
   k4a::capture* capture = new k4a::capture();
@@ -102,7 +102,7 @@ k4a::capture* Thread::manage_new_capture(k4n::dev::Sensor* sensor){
   //---------------------------
   return capture;
 }
-void Thread::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture){
+void Sensor::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture){
   static std::queue<k4a::capture*> capture_queue;
   //---------------------------
 
@@ -122,7 +122,7 @@ void Thread::manage_old_capture(k4n::dev::Sensor* sensor, k4a::capture* capture)
 
   //---------------------------
 }
-void Thread::manage_pause(k4n::dev::Sensor* sensor){
+void Sensor::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread

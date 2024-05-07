@@ -22,8 +22,8 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->dat_entity = node_data->get_data_entity();
   this->dat_set = node_data->get_data_set();
   this->dat_glyph = node_data->get_data_glyph();
-  this->k4n_capture = new k4n::capture::Thread(node_k4n);
-  this->k4n_playback = new k4n::playback::Thread(node_k4n);
+  this->k4n_capture = new k4n::capture::Sensor(node_k4n);
+  this->k4n_playback = new k4n::playback::Sensor(node_k4n);
   this->gui_sensor = new k4n::gui::Sensor(node_k4n);
 
   this->entity_type = "k4n::device::Sensor";
