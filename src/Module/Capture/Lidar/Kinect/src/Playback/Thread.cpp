@@ -121,8 +121,8 @@ void Thread::manage_pause(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  bool& is_play = sensor->master->player.get_state_play();
-  bool& is_pause = sensor->master->player.get_state_pause();
+  bool& is_play = sensor->master->player->get_state_play();
+  bool& is_pause = sensor->master->player->get_state_pause();
   if(is_pause || !is_play){
     //Clear thread profiler and wait subthread fulfillment
     sensor->profiler->reset();
@@ -141,11 +141,11 @@ void Thread::manage_pause(k4n::dev::Sensor* sensor){
 void Thread::manage_restart(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  float& ts_end = sensor->master->player.get_ts_end();
+  float& ts_end = sensor->master->player->get_ts_end();
   if(sensor->color.data.timestamp == ts_end){
     sensor->master->manage_restart();
-    //sensor->master->player.play = true;
-    //sensor->master->player.pause = false;
+    //sensor->master->player->play = true;
+    //sensor->master->player->pause = false;
   }
 
   //---------------------------
