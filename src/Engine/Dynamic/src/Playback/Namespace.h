@@ -1,3 +1,3 @@
 #pragma once
 
-#include <Dynamic/src/Playback/Thread.h>
+#include <Dynamic/src/Playback/Device.h>

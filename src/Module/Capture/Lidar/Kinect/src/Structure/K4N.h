@@ -16,7 +16,6 @@ namespace k4n::structure{
 struct K4N{
   //---------------------------
 
-  int UID = 0;
   int kinect_num_connection = 0;
   bool kinect_connection_state = false;
   std::list<k4n::dev::Master*> list_master;

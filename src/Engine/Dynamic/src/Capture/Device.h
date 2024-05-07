@@ -5,14 +5,14 @@
 namespace dat::base{class Sensor;}
 
 
-namespace dyn::playback{
+namespace dyn::capture{
 
-class Thread
+class Device
 {
 public:
   //Constructor / Destructor
-  Thread();
-  ~Thread();
+  Device();
+  ~Device();
 
 public:
   //Main function

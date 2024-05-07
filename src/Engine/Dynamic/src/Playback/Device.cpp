@@ -1,4 +1,4 @@
-#include "Thread.h"
+#include "Device.h"
 
 #include <Data/Namespace.h>
 
@@ -6,13 +6,13 @@
 namespace dyn::playback{
 
 //Constructor / Destructor
-Thread::Thread(){
+Device::Device(){
   //---------------------------
 
 
   //---------------------------
 }
-Thread::~Thread(){
+Device::~Device(){
   //---------------------------
 
   this->stop_thread();
@@ -21,24 +21,24 @@ Thread::~Thread(){
 }
 
 //Main function
-void Thread::start_thread(dat::base::Sensor* sensor){
+void Device::start_thread(dat::base::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&Thread::run_thread, this, sensor);
+    this->thread = std::thread(&Device::run_thread, this, sensor);
   }
 
   //---------------------------
   this->thread_running = true;
   this->thread_idle = false;
 }
-void Thread::run_thread(dat::base::Sensor* sensor){
+void Device::run_thread(dat::base::Sensor* sensor){
   //---------------------------
 
   this->thread_init(sensor);
 
-  //Thread thread
+  //Device thread
   while(thread_running){
     this->thread_loop(sensor);
   }
@@ -48,7 +48,7 @@ void Thread::run_thread(dat::base::Sensor* sensor){
   //---------------------------
   this->thread_idle = true;
 }
-void Thread::stop_thread(){
+void Device::stop_thread(){
   //---------------------------
 
   this->thread_running = false;
@@ -58,7 +58,7 @@ void Thread::stop_thread(){
 
   //---------------------------
 }
-void Thread::wait_thread(){
+void Device::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 

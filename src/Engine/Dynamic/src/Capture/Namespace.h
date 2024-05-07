@@ -1,3 +1,3 @@
 #pragma once
 
-#include <Dynamic/src/Capture/Thread.h>
+#include <Dynamic/src/Capture/Device.h>

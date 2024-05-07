@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Dynamic/src/Capture/Thread.h>
+#include <Dynamic/src/Capture/Device.h>
 #include <Utility/Specific/Common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
@@ -15,7 +15,7 @@ namespace k4n::structure{class K4N;}
 
 namespace k4n::capture{
 
-class Thread : public dyn::capture::Thread
+class Thread : public dyn::capture::Device
 {
 public:
   //Constructor / Destructor
