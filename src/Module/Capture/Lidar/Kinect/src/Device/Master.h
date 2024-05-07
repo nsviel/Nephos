@@ -36,10 +36,7 @@ public:
 
   //Master function
   void manage_color_control();
-  void manage_restart_thread();
-  void manage_restart();
   void manage_forward();
-  void manage_resynchronization();
   void manage_configuration();
 
   //Player function

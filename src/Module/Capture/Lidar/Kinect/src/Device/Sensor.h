@@ -63,6 +63,7 @@ public:
   virtual void thread_init(){}
   virtual void thread_loop(){}
   virtual void thread_end(){}
+  virtual void manage_reset();
 
   inline dat::base::Object* get_object(){return &object;}
   inline utl::type::Data* get_data(){return &object.data;}
@@ -73,15 +74,13 @@ public:
 public:
   prf::graph::Profiler* profiler;
   k4n::dev::Master* master;
-
-  dat::base::Object object;
-  k4n::structure::Image image;
   k4n::gui::Sensor* gui_sensor;
   k4n::processing::Data* k4n_data;
   k4n::utils::Configuration* k4n_config;
 
+  dat::base::Object object;
+  k4n::structure::Image image;
   k4n::structure::Param param;
-
   k4n::structure::Color color;
   k4n::structure::Depth depth;
   k4n::structure::Infrared ir;

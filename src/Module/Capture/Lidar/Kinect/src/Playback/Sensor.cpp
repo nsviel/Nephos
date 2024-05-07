@@ -146,6 +146,14 @@ void Sensor::manage_restart(){
 
   //---------------------------
 }
+void Sensor::manage_reset(){
+  //---------------------------
+
+  float& ts_beg = master->player->get_ts_beg();
+  this->manage_ts_query(ts_beg);
+
+  //---------------------------
+}
 void Sensor::manage_ts_query(float ts_querry){
   //---------------------------
 

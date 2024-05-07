@@ -33,12 +33,17 @@ Master::~Master(){}
 void Master::reset_set(){
   //---------------------------
 
-  if(mode == k4n::dev::PLAYBACK){
-    this->manage_restart();
+  for(int i=0; i<list_entity.size(); i++){
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
+
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      sensor->manage_reset();
+    }
   }
-  else if(mode == k4n::dev::CAPTURE){
-    this->manage_restart_thread();
-  }
+
+  //Restart player
+  float query = player->get_ts_beg();
+  player->player_query_ts(query);
 
   //---------------------------
 }
@@ -69,43 +74,6 @@ void Master::manage_color_control(){
 
   //---------------------------
 }
-void Master::manage_restart_thread(){
-  if(mode == k4n::dev::PLAYBACK) return;
-  //---------------------------
-
-  for(int i=0; i<list_entity.size(); i++){
-    dat::base::Entity* entity = *next(list_entity.begin(), i);
-
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      sensor->reset_entity();
-      sensor->run_thread();
-    }
-  }
-
-  //Restart player
-  float query = player->get_ts_beg();
-  player->player_query_ts(query);
-
-  //---------------------------
-}
-void Master::manage_restart(){
-  if(mode == k4n::dev::CAPTURE) return;
-  //---------------------------
-
-  for(int i=0; i<list_entity.size(); i++){
-    dat::base::Entity* entity = *next(list_entity.begin(), i);
-
-    if(k4n::playback::Sensor* sensor = dynamic_cast<k4n::playback::Sensor*>(entity)){
-      sensor->manage_restart();
-    }
-  }
-
-  //Restart player
-  float query = player->get_ts_beg();
-  player->player_query_ts(query);
-
-  //---------------------------
-}
 void Master::manage_forward(){
   //---------------------------
 
@@ -125,24 +93,6 @@ void Master::manage_forward(){
       sensor->manage_ts_query(ts_forward);
     }
   }
-
-  //---------------------------
-}
-void Master::manage_resynchronization(){
-  //if(list_entity.size() == 0) player->ts_cur = 0;sayHello();
-  //if(list_entity.size() < 2) return;sayHello();
-  //if(mode == k4n::dev::CAPTURE) return;sayHello();
-  //---------------------------
-  //Should be set into another dedicated thread
-/*
-  for(int i=0; i<list_entity.size(); i++){
-    dat::base::Entity* entity = *next(list_entity.begin(), i);
-
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player->ts_cur));
-      sensor->playback.handle.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    }
-  }*/
 
   //---------------------------
 }
