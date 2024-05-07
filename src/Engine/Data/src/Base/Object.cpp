@@ -91,7 +91,7 @@ void Object::update_glyph(){
 
   //----------------------------
 }
-void Object::remove_entity(){
+void Object::remove(){
   vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
 
@@ -106,7 +106,7 @@ void Object::remove_entity(){
 
   //----------------------------
 }
-void Object::reset_entity(){
+void Object::reset(){
   //---------------------------
 
   pose.min = glm::vec3(0.0f);

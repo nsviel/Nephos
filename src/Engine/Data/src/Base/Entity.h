@@ -17,14 +17,16 @@ struct Entity : public utl::type::Element{
 
   Entity();
   virtual ~Entity();
+  virtual void init(){}
+  virtual void reset(){}
+  virtual void remove(){}
+  virtual void info(){}
   virtual void update_data(){}
   virtual void update_pose(){}
-  virtual void remove_entity(){}
-  virtual void reset_entity(){}
   virtual void set_visibility(bool value){data.is_visible = value;}
   virtual utl::type::Pose* get_pose(){return &pose;}
   virtual utl::type::Data* get_data(){return &data;}
-  void bind_image(utl::media::Image* image);
+  void bind_image(utl::media::Image* image); // A virer
 
   //Info
   bool is_suppressible = true;

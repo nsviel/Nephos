@@ -208,12 +208,12 @@ void Control::set_camera_proj(cam::Entity* camera, int projection){
 
   switch(projection){
     case CAMERA_PROJ_PERSPECTIVE:{
-      camera->reset_entity();
+      camera->reset();
       camera->projection = projection;
       break;
     }
     case CAMERA_PROJ_ORTHOGRAPHIC:{
-      camera->reset_entity();
+      camera->reset();
       camera->projection = projection;
       camera->cam_P = glm::vec3(-20, -20, 10);
       camera->clip_far = 1000.0;
@@ -229,12 +229,12 @@ void Control::set_next_camera_mode(){
 
   switch(camera->mode){
     case CAMERA_MODE_PLAYER:{
-      camera->reset_entity();
+      camera->reset();
       camera->mode = CAMERA_MODE_ARCBALL;
       break;
     }
     case CAMERA_MODE_ARCBALL:{
-      camera->reset_entity();
+      camera->reset();
       camera->mode = CAMERA_MODE_PLAYER;
       break;
     }

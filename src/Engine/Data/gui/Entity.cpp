@@ -76,7 +76,7 @@ void Entity::entity_button(dat::base::Entity* entity){
   //Suppression
   if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
     dat::base::Set* set_scene = dat_graph->get_set_graph();
-    dat_set->remove_entity(set_scene, entity);
+    dat_set->remove(set_scene, entity);
     this->close_panel();
     return;
   }

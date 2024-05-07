@@ -80,12 +80,12 @@ void Panel::cam_parameter(){
   ImGui::NextColumn();
   ImGui::Text("Mode");
   if(ImGui::RadioButton("Player", &camera->mode, CAMERA_MODE_PLAYER)){
-    camera->reset_entity();
+    camera->reset();
     camera->mode = CAMERA_MODE_PLAYER;
     cam_control->set_camera_mode(camera);
   }
   if(ImGui::RadioButton("Arcball", &camera->mode, CAMERA_MODE_ARCBALL)){
-    camera->reset_entity();
+    camera->reset();
     camera->mode = CAMERA_MODE_ARCBALL;
     cam_control->set_camera_mode(camera);
   }

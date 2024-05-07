@@ -9,7 +9,7 @@ namespace cam{
 Entity::Entity(){
   //---------------------------
 
-  this->reset_entity();
+  this->reset();
   this->entity_type = "cam::Entity";
 
   //---------------------------
@@ -27,7 +27,7 @@ void Entity::update_pose(){
 
   //----------------------------
 }
-void Entity::reset_entity(){
+void Entity::reset(){
   //---------------------------
 
   this->angle_azimuth = M_PI/4;

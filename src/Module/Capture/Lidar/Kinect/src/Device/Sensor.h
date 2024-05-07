@@ -40,19 +40,19 @@ public:
   ~Sensor();
 
 public:
-  //Init function
-  void init();
-  void init_profiler();
-  void init_image();
-  void init_object();
-
   //Main function
+  void init();
   void info();
   void reset();
   void update_pose();
-  void remove_entity();
+  void remove();
   void set_visibility(bool value);
 
+  //Init function
+  void init_profiler();
+  void init_image();
+  void init_object();
+  
   //Thread function
   void start_thread();
   void run_thread();

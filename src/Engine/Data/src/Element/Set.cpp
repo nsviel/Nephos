@@ -39,7 +39,7 @@ void Set::reset_set(dat::base::Set* set){
   //Reset all associated entities
   for(int j=0; j<set->list_entity.size(); j++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), j);
-    entity->reset_entity();
+    entity->reset();
   }
 
   //Reset all associated sets
@@ -134,7 +134,7 @@ void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
 
   //---------------------------
 }
-void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
+void Set::remove(dat::base::Set* set, dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -154,16 +154,16 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
       set->list_entity.remove(entity);
       set->nb_entity--;
 
-      entity->remove_entity();
+      entity->remove();
       delete entity;
 
       return;
     }
   }
 
-  // Recursively call remove_entity for each nested set
+  // Recursively call remove for each nested set
   for(dat::base::Set* subset : set->list_subset){
-    this->remove_entity(subset, entity);
+    this->remove(subset, entity);
   }
 
   //---------------------------
@@ -180,7 +180,7 @@ void Set::remove_all_entity(dat::base::Set* set){
     it = set->list_entity.erase(it);
     set->nb_entity--;
 
-    entity->remove_entity();
+    entity->remove();
     delete entity;
   }
 

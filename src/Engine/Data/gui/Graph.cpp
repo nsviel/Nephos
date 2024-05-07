@@ -74,7 +74,7 @@ void Graph::draw_button(){
       //sce_graph->delete_subset(set);
     }else if(set->is_locked){
       dat::base::Set* set_graph = dat_graph->get_set_graph();
-      dat_set->remove_entity(set_graph, set->active_entity);
+      dat_set->remove(set_graph, set->active_entity);
     }
   }
 
@@ -268,7 +268,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
   std::string tag = std::string(ICON_FA_XMARK) + "##" + entity->name;
   if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){
-    dat_set->remove_entity(set, entity);
+    dat_set->remove(set, entity);
   }
   ImGui::PopStyleColor(2);
 

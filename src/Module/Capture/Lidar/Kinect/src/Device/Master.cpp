@@ -178,7 +178,7 @@ void Master::player_close(){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      sensor->remove_entity();
+      sensor->remove();
     }
   }
 

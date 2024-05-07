@@ -47,7 +47,7 @@ void Manager::reset(){
 
   for(int i=0; i<cam_struct->vec_camera.size(); i++){
     cam::Entity* camera = cam_struct->vec_camera[i];
-    camera->reset_entity();
+    camera->reset();
   }
 
   //---------------------------

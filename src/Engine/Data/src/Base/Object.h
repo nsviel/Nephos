@@ -36,8 +36,8 @@ public:
   void update_data();
   void update_pose();
   void update_glyph();
-  void remove_entity() override;
-  void reset_entity();
+  void remove() override;
+  void reset();
 
   //Subfunction
   void set_visibility(bool value);

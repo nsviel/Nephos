@@ -33,7 +33,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
 }
 Sensor::~Sensor(){}
 
-//Init function
+//Main function
 void Sensor::init(){
   //---------------------------
 
@@ -43,6 +43,56 @@ void Sensor::init(){
 
   //---------------------------
 }
+void Sensor::reset(){
+  //---------------------------
+
+  object.reset();
+
+  //---------------------------
+}
+void Sensor::info(){
+  //---------------------------
+
+  gui_sensor->show_sensor(this);
+
+  //---------------------------
+}
+void Sensor::update_pose(){
+  //----------------------------
+
+  object.update_pose();
+
+  //----------------------------
+}
+void Sensor::remove(){
+  if(profiler == nullptr) return;
+  //---------------------------
+
+  //Sensor related
+  this->stop_thread();
+  this->param.transformation.destroy();
+  this->object.remove();
+  k4n_struct->list_sensor.remove(this);
+
+  //Profiler related
+  prf::Node* node_profiler = node_engine->get_node_profiler();
+  prf::Manager* prf_manager = node_profiler->get_prf_manager();
+  prf_manager->remove_profiler(profiler);
+  this->profiler = nullptr;
+
+  //---------------------------
+}
+void Sensor::set_visibility(bool value){
+  //---------------------------
+
+  this->is_visible = value;
+  object.data.is_visible = value;
+  object.set_visibility(value);
+
+  //---------------------------
+}
+
+//Init function
 void Sensor::init_profiler(){
   //---------------------------
 
@@ -77,56 +127,6 @@ void Sensor::init_image(){
 
   image.depth.name = "Depth";
   dat_graph->assign_UID(&image.depth);
-
-  //---------------------------
-}
-
-//Main function
-void Sensor::reset(){
-  //---------------------------
-
-  object.reset_entity();
-
-  //---------------------------
-}
-void Sensor::info(){
-  //---------------------------
-
-  gui_sensor->show_sensor(this);
-
-  //---------------------------
-}
-void Sensor::update_pose(){
-  //----------------------------
-
-  object.update_pose();
-
-  //----------------------------
-}
-void Sensor::remove_entity(){
-  if(profiler == nullptr) return;
-  //---------------------------
-
-  //Sensor related
-  this->stop_thread();
-  this->param.transformation.destroy();
-  this->object.remove_entity();
-  k4n_struct->list_sensor.remove(this);
-
-  //Profiler related
-  prf::Node* node_profiler = node_engine->get_node_profiler();
-  prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  prf_manager->remove_profiler(profiler);
-  this->profiler = nullptr;
-
-  //---------------------------
-}
-void Sensor::set_visibility(bool value){
-  //---------------------------
-
-  this->is_visible = value;
-  object.data.is_visible = value;
-  object.set_visibility(value);
 
   //---------------------------
 }
