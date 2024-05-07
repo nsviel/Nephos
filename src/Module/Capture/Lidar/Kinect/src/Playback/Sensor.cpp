@@ -9,9 +9,10 @@
 namespace k4n::playback{
 
 //Constructor / Destructor
-Sensor::Sensor(k4n::Node* node_k4n) : k4n::dev::Sensor(node_k4n){
+Sensor::Sensor(k4n::Node* node_k4n, string path) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
+  this->param.path.data = path;
 
   //---------------------------
 }

@@ -203,7 +203,7 @@ void Master::player_update(){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      sensor->run_thread(sensor->param.path.data);
+      sensor->run_thread();
     }
   }
 

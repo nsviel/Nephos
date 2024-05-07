@@ -20,7 +20,7 @@ class Sensor : public k4n::dev::Sensor
 {
 public:
   //Constructor / Destructor
-  Sensor(k4n::Node* node_k4n);
+  Sensor(k4n::Node* node_k4n, string path);
   ~Sensor();
 
 public:
