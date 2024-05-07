@@ -46,12 +46,11 @@ void Connection::run_thread(){
   //Refresh connected sensors
   while(thread_running){
     //Get number of connected devices
-    int current_nb_dev = k4a_device_get_installed_count();
-    k4n_struct->kinect_num_connection = current_nb_dev;
+    this->current_nb_dev = k4a_device_get_installed_count();
 
     //Action on changement
     if(current_nb_dev != nb_dev_old){
-      k4n_struct->kinect_connection_state = true;
+      this->manage_connected_device();
       nb_dev_old = current_nb_dev;
     }
 
@@ -97,7 +96,6 @@ void Connection::create_sensor(int index){
   //---------------------------
 }
 void Connection::manage_connected_device(){
-  if(!k4n_struct->kinect_connection_state) return;
   //---------------------------
 /*
   //Suppress all devices
@@ -106,12 +104,12 @@ void Connection::manage_connected_device(){
   dat_set->remove_all_entity(master);
 
   //Create required number of new devices
-  for(int i=0; i<k4n_struct->kinect_num_connection; i++){
+  for(int i=0; i<current_nb_dev; i++){
     this->create_sensor(i);
   }
 
   //---------------------------
-  k4n_struct->kinect_connection_state = false;*/
+*/
 }
 void Connection::manage_master(){
 /*  dat::base::Set* set_scene = dat_graph->get_set_graph();
@@ -129,7 +127,6 @@ void Connection::manage_master(){
   k4n::dev::Master* master = new k4n::dev::Master(node_k4n);
   master->name = name;
   master->is_lockable = true;
-  master->mode = k4n::dev::CAPTURE;
 
   k4n_config->make_master_configuration_initial(master);
   dat_set->add_subset(set_scene, master);

@@ -25,7 +25,6 @@ Capture::~Capture(){}
 
 //Main function
 void Capture::list_device(k4n::dev::Master* master){
-  if(master->mode == k4n::dev::PLAYBACK) return;
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -93,7 +92,6 @@ void Capture::list_device(k4n::dev::Master* master){
 }
 void Capture::show_master_capture(k4n::dev::Master* master){
   if(master == nullptr) return;
-  if(master->mode == k4n::dev::PLAYBACK) return;
   //---------------------------
 
   ImGui::SetNextItemWidth(75);

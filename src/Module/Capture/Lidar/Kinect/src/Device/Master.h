@@ -17,10 +17,6 @@ namespace k4n::gui{class Master;}
 
 
 namespace k4n::dev{
-enum Mode{
-  CAPTURE = 0,
-  PLAYBACK = 1,
-};
 
 class Master : public dat::base::Set
 {
@@ -62,9 +58,6 @@ public:
   k4n::structure::Recorder recorder;
   k4n::structure::Configuration config;
   k4n::structure::Synchro synchro;
-
-
-  int mode = k4n::dev::PLAYBACK;
 };
 
 }

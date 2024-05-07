@@ -90,7 +90,7 @@ float Importer::find_mkv_ts_end(string path){
   //---------------------------
   return ts_end;
 }
-void Importer::manage_master(){
+k4n::dev::Master* Importer::manage_master(){
   dat::base::Set* set_scene = dat_graph->get_set_graph();
   //---------------------------
 /*
@@ -106,13 +106,13 @@ void Importer::manage_master(){
   k4n::dev::Master* master = new k4n::dev::Master(node_k4n);
   master->name = name;
   master->is_lockable = true;
-  master->mode = k4n::dev::PLAYBACK;
 
   dat_set->add_subset(set_scene, master);
   k4n_struct->list_master.push_back(master);
-
+*/
+k4n::dev::Master* master = nullptr;
   //---------------------------
-  return master;*/
+  return master;
 }
 
 }

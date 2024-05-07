@@ -113,8 +113,6 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
   k4a::capture* capture = sensor->param.capture;
   //---------------------------
 
-  if(master->mode == k4n::dev::PLAYBACK) return;
-
   //Start recording
   bool is_record = master->get_state_record();
   if(is_record && !recorder.is_valid()){

@@ -35,6 +35,7 @@ private:
 
   std::thread thread;
   bool thread_running = false;
+  int current_nb_dev = 0;
 };
 
 }

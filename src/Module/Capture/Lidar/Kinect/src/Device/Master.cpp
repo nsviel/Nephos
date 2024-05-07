@@ -55,7 +55,6 @@ void Master::info(){
 
 //Master function
 void Master::manage_color_control(){
-  if(mode == k4n::dev::PLAYBACK) return;
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
@@ -89,7 +88,6 @@ void Master::manage_forward(){
   //---------------------------
 }
 void Master::manage_configuration(){
-  if(mode == k4n::dev::PLAYBACK) return;
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
@@ -105,7 +103,7 @@ void Master::manage_configuration(){
   //---------------------------
 }
 void Master::manage_restart(){
-  /*if(mode == k4n::dev::CAPTURE) return;
+  /*
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
@@ -126,7 +124,6 @@ void Master::manage_restart(){
 
 //Player function
 void Master::player_update(){
-  if(mode == k4n::dev::CAPTURE) return;
   //---------------------------
 
   //Search for min max timestamp
@@ -162,7 +159,6 @@ void Master::player_update(){
   //---------------------------
 }
 void Master::player_query_ts(float value){
-  if(mode == k4n::dev::CAPTURE) return;
   //---------------------------
 
   for(int i=0; i<list_entity.size(); i++){
@@ -178,22 +174,11 @@ void Master::player_query_ts(float value){
 void Master::player_close(){
   //---------------------------
 
-  switch(mode){
-    //If playback, close selected one
-    case k4n::dev::PLAYBACK:{
-      dat_set->remove_entity(this, active_entity);
-      break;
-    }
-    //If capture, stop all sensor threads
-    case k4n::dev::CAPTURE:{
-      for(int i=0; i<list_entity.size(); i++){
-        dat::base::Entity* entity = *next(list_entity.begin(), i);
+  for(int i=0; i<list_entity.size(); i++){
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
 
-        if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-          sensor->stop_thread();
-        }
-      }
-      break;
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      sensor->remove_entity();
     }
   }
 

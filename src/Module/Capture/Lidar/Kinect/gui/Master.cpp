@@ -53,9 +53,7 @@ void Master::show_info(k4n::dev::Master* master){
     //Type
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Type"); ImGui::TableNextColumn();
-    string mode = master->mode == k4n::dev::CAPTURE ? "capture" : "playback";
-    string type = master->type + "::" + mode;
-    ImGui::TextColored(color, "%s", type.c_str());
+    ImGui::TextColored(color, "%s", master->type.c_str());
 
     //Recording time
     bool is_record = master->get_state_record();
@@ -225,7 +223,7 @@ void Master::show_recorder(k4n::dev::Master* master){
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Record");
 
   //Mode
-  bool condition = (master->mode == k4n::dev::PLAYBACK);
+  /*bool condition = (master->mode == k4n::dev::PLAYBACK);
   if(condition) ImGui::BeginDisabled();
   if(ImGui::RadioButton("MKV", &master->recorder.mode, k4n::recorder::MKV)){
     master->recorder.folder = "../media/record/mkv";
@@ -234,7 +232,7 @@ void Master::show_recorder(k4n::dev::Master* master){
   ImGui::SameLine();
   if(ImGui::RadioButton("PLY", &master->recorder.mode, k4n::recorder::PLY)){
     master->recorder.folder = "../media/record/ply";
-  }
+  }*/
 
   ImGui::BeginTable("recorder##parameters", 3);
 

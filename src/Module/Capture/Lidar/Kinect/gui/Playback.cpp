@@ -18,7 +18,6 @@ Playback::~Playback(){}
 //Main function
 void Playback::show_master_playback(k4n::dev::Master* master){
   if(master == nullptr) return;
-  if(master->mode == k4n::dev::CAPTURE) return;
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
