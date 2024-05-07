@@ -35,7 +35,6 @@ public:
   int get_number_running_thread();
   k4n::dev::Master* get_or_create_playback_master(string name);
   k4n::dev::Master* get_or_create_capture_master(string name);
-  k4n::dev::Master* get_selected_master();
 
   //Subfunction
   void manage_connected_device();

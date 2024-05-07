@@ -132,7 +132,6 @@ k4n::dev::Master* Swarm::get_or_create_playback_master(string name){
 
   dat_set->add_subset(set_scene, master);
   k4n_struct->list_master.push_back(master);
-  k4n_struct->selected_master = master;
 
   //---------------------------
   return master;
@@ -158,18 +157,14 @@ k4n::dev::Master* Swarm::get_or_create_capture_master(string name){
   k4n_config->make_master_configuration_initial(master);
   dat_set->add_subset(set_scene, master);
   k4n_struct->list_master.push_back(master);
-  k4n_struct->selected_master = master;
 
   //---------------------------
   return master;
 }
-k4n::dev::Master* Swarm::get_selected_master(){
-  return k4n_struct->selected_master;
-}
 
 //Subfunction
 void Swarm::manage_connected_device(){
-  if(!k4n_struct->connected_device_change) return;
+  if(!k4n_struct->kinect_connection_state) return;
   //---------------------------
 
   //Suppress all devices
@@ -178,12 +173,12 @@ void Swarm::manage_connected_device(){
   dat_set->remove_all_entity(master);
 
   //Create required number of new devices
-  for(int i=0; i<k4n_struct->nb_connected_sensor; i++){
+  for(int i=0; i<k4n_struct->kinect_num_connection; i++){
     this->create_sensor_capture(i);
   }
 
   //---------------------------
-  k4n_struct->connected_device_change = false;
+  k4n_struct->kinect_connection_state = false;
 }
 int Swarm::get_number_running_thread(){
   int nb_thread = 0;
