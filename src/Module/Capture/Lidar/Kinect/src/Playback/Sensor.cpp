@@ -118,8 +118,8 @@ void Sensor::manage_pause(){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  bool& is_play = master->player->get_state_play();
-  bool& is_pause = master->player->get_state_pause();
+  bool& is_play = master->get_state_play();
+  bool& is_pause = master->get_state_pause();
   if(is_pause || !is_play){
     //Clear thread profiler and wait subthread fulfillment
     this->profiler->reset();
@@ -138,8 +138,8 @@ void Sensor::manage_pause(){
 void Sensor::manage_restart(){
   //---------------------------
 
-  float& ts_end = master->player->get_ts_end();
-  float& ts_beg = master->player->get_ts_beg();
+  float& ts_end = master->get_ts_end();
+  float& ts_beg = master->get_ts_beg();
   if(color.data.timestamp == ts_end){
     this->manage_ts_query(ts_beg);
   }
@@ -149,7 +149,7 @@ void Sensor::manage_restart(){
 void Sensor::manage_reset(){
   //---------------------------
 
-  float& ts_beg = master->player->get_ts_beg();
+  float& ts_beg = master->get_ts_beg();
   this->manage_ts_query(ts_beg);
 
   //---------------------------

@@ -123,8 +123,8 @@ void Sensor::manage_pause(){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  bool& is_play = master->player->get_state_play();
-  bool& is_pause = master->player->get_state_pause();
+  bool& is_play = master->get_state_play();
+  bool& is_pause = master->get_state_pause();
   if(is_pause || !is_play){
     profiler->reset();
     while(is_pause && thread_running){

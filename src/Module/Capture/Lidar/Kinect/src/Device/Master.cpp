@@ -23,7 +23,6 @@ Master::Master(k4n::Node* node_k4n){
   this->icon = ICON_FA_USER;
   this->is_locked = true;
   this->is_suppressible = true;
-  this->player = new k4n::dev::Player(this);
 
   //---------------------------
 }
@@ -42,8 +41,7 @@ void Master::reset_set(){
   }
 
   //Restart player
-  float query = player->get_ts_beg();
-  player->player_query_ts(query);
+  this->player_query_ts(ts_beg);
 
   //---------------------------
 }
@@ -69,19 +67,13 @@ void Master::manage_color_control(){
   }
 
   //Restart player
-  float query = player->get_ts_beg();
-  player->player_query_ts(query);
+  this->player_query_ts(ts_beg);
 
   //---------------------------
 }
 void Master::manage_forward(){
   //---------------------------
-
-  float& ts_cur = player->get_ts_cur();
-  float& ts_beg = player->get_ts_beg();
-  float& ts_end = player->get_ts_end();
-  float& ts_for = player->get_ts_forward();
-
+/*
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
@@ -93,7 +85,7 @@ void Master::manage_forward(){
       sensor->manage_ts_query(ts_forward);
     }
   }
-
+*/
   //---------------------------
 }
 void Master::manage_configuration(){
@@ -118,11 +110,6 @@ void Master::player_update(){
   if(mode == k4n::dev::CAPTURE) return;
   //---------------------------
 
-  float& ts_cur = player->get_ts_cur();
-  float& ts_beg = player->get_ts_beg();
-  float& ts_end = player->get_ts_end();
-  float& ts_for = player->get_ts_forward();
-
   //Search for min max timestamp
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
@@ -133,7 +120,7 @@ void Master::player_update(){
 
       ts_beg = (ts_beg != -1) ? std::max(ts_beg, mkv_ts_beg) : mkv_ts_beg;
       ts_end = (ts_end != -1) ? std::min(ts_end, mkv_ts_end) : mkv_ts_end;
-      player->set_duration(ts_end - ts_beg);
+      this->set_duration(ts_end - ts_beg);
       /*}else{
         this->player->ts_beg = 0;
         this->player->ts_end = 0;
@@ -151,7 +138,7 @@ void Master::player_update(){
     }
   }
 
-  set_parent->player_update(player);
+  //set_parent->player_update(player);
 
   //---------------------------
 }

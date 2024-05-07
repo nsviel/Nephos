@@ -13,13 +13,12 @@ namespace dyn::base{class Player;}
 
 namespace dat::base{
 
-struct Set : public utl::type::Element{
+struct Set : public utl::type::Element, public dyn::base::Player{
   //---------------------------
 
-  Set();
-  ~Set();
+  Set(){}
+  ~Set(){}
   virtual void reset_set(){}
-  void player_update(dyn::base::Player* player);
 
   //Info
   std::string type = "set";
@@ -39,7 +38,6 @@ struct Set : public utl::type::Element{
   dat::base::Entity* active_entity = nullptr;
   dat::base::Set* active_subset = nullptr;
   dat::base::Set* set_parent = nullptr;
-  dyn::base::Player* player = nullptr;
 
   std::list<dat::base::Entity*> list_entity;
   std::list<dat::base::Set*> list_subset;

@@ -9,8 +9,8 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player();
-  ~Player();
+  Player(){}
+  ~Player(){}
 
   //Main function
   virtual void player_update(){}
