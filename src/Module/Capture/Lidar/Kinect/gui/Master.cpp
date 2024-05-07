@@ -205,7 +205,7 @@ void Master::show_normal(k4n::dev::Master* master){
 
   //Visibility
   if(ImGui::Checkbox("Visible##2242", &master->operation.normal_visible)){
-    master->visibility_normal();
+    //master->visibility_normal();
   }
 
   //Parameter: kNN

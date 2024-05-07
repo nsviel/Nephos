@@ -47,9 +47,6 @@ public:
   void player_query_ts(float value);
   void player_close();
 
-  //Subfunction
-  void visibility_normal();
-
 public:
   dat::Set* dat_set;
   k4n::utils::Configuration* k4n_config;

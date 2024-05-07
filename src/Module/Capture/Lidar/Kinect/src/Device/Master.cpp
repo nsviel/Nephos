@@ -251,21 +251,4 @@ void Master::player_close(){
   //---------------------------
 }
 
-//Subfunction
-void Master::visibility_normal(){
-  //---------------------------
-
-  for(int i=0; i<list_entity.size(); i++){
-    dat::base::Entity* entity = *next(list_entity.begin(), i);
-
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      dat::base::Object* object = sensor->get_object();
-      dat::base::Glyph* normal = object->get_glyph(dat::object::glyph::NORMAL);
-      normal->set_visibility(operation.normal_visible);
-    }
-  }
-
-  //---------------------------
-}
-
 }

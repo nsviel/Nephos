@@ -1,6 +1,7 @@
 #include "Normal.h"
 
 #include <Operation/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 #include <cstdlib>
 
@@ -103,6 +104,14 @@ void Normal::compute_normal_with_neighbors(utl::type::Data* data, int knn){
   }
 
   data->Nxyz = Nxyz;
+
+  //---------------------------
+}
+void Normal::set_visibility(dat::base::Object* object, bool value){
+  //---------------------------
+
+  dat::base::Glyph* normal = object->get_glyph(dat::object::glyph::NORMAL);
+  normal->set_visibility(value);
 
   //---------------------------
 }

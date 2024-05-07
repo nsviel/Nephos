@@ -4,6 +4,7 @@
 #include <vector>
 
 namespace utl::type{class Data;}
+namespace dat::base{class Object;}
 
 
 namespace ope::attribut{
@@ -19,6 +20,7 @@ public:
   //Main function
   void compute_normal_from_grid(utl::type::Data* data);
   void compute_normal_with_neighbors(utl::type::Data* data, int k);
+  void set_visibility(dat::base::Object* object, bool value);
 
   //Subfunction
   void compute_knn(glm::vec3& point, std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, int knn, utl::type::Data* data, int i, int j, float threshold);
