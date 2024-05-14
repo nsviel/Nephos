@@ -10,7 +10,7 @@ namespace rad{
 Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
-  this->k4n_transfo = new k4n::utils::Transformation();
+  this->k4n_data = new k4n::utils::Data();
   this->radio_struct = node_radio->get_radio_struct();
   this->radio_glyph = new rad::detection::cloud::Glyph(node_radio);
 
@@ -53,7 +53,7 @@ void Detection::validate_bbox(dat::base::Sensor* sensor){
 /*
   this->step++;
   ivec2 point_2d = radio_struct->detection.vec_circle[0].center;
-  vec3 truc = k4n_transfo->convert_depth_2d_to_3d(sensor, point_2d);
+  vec3 truc = k4n_data->convert_depth_2d_to_3d(sensor, point_2d);
   vec4 machin = vec4(truc.x, truc.y, truc.z, 1);
   truc = sensor->object.pose.model * machin;
   this->current_pose = vec3(truc.x, truc.y, truc.z);

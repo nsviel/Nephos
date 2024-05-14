@@ -14,7 +14,7 @@ Glyph::Glyph(rad::Node* node_radio){
 
   this->radio_struct = node_radio->get_radio_struct();
   this->dat_glyph = node_data->get_data_glyph();
-  this->k4n_transfo = new k4n::utils::Transformation();
+  this->k4n_data = new k4n::utils::Data();
 
   //---------------------------
 }
@@ -66,7 +66,7 @@ void Glyph::draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::struc
     rad::structure::Circle& circle = vec_circle[i];
 
     //Add sphere radius to the detected circle center
-    vec3 pose = k4n_transfo->convert_depth_2d_to_3d(sensor, circle.center);
+    vec3 pose = k4n_data->convert_depth_2d_to_3d(sensor, circle.center);
     vec3 dir = glm::normalize(pose);
     pose = pose + dir * (radio_struct->detection.sphere_diameter / 2);
 

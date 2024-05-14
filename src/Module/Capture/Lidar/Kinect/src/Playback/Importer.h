@@ -7,6 +7,8 @@ namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace eng{class Node;}
 namespace dat{class Graph;}
+namespace dat{class Entity;}
+namespace dat{class Set;}
 
 
 namespace k4n::playback{
@@ -31,6 +33,8 @@ private:
   k4n::Node* node_k4n;
   eng::Node* node_engine;
   dat::Graph* dat_graph;
+  dat::Entity* dat_entity;
+  dat::Set* dat_set;
 };
 
 }

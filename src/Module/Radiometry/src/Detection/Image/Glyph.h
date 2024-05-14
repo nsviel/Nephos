@@ -6,7 +6,7 @@ namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::structure{class Circle;}
-namespace k4n::utils{class Transformation;}
+namespace k4n::utils{class Data;}
 namespace dat{class Glyph;}
 
 
@@ -29,7 +29,7 @@ public:
   void draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::structure::Circle>& vec_circle);
 
 private:
-  k4n::utils::Transformation* k4n_transfo;
+  k4n::utils::Data* k4n_data;
   dat::Glyph* dat_glyph;
   rad::Structure* radio_struct;
 };

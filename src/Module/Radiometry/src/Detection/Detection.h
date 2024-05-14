@@ -6,7 +6,7 @@ namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection::cloud{class Glyph;}
-namespace k4n::utils{class Transformation;}
+namespace k4n::utils{class Data;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 namespace ope::attribut{class Normal;}
@@ -51,7 +51,7 @@ private:
   ope::fitting::Ransac* ope_ransac;
   ope::attribut::Normal* ope_normal;
   rad::detection::cloud::Glyph* radio_glyph;
-  k4n::utils::Transformation* k4n_transfo;
+  k4n::utils::Data* k4n_data;
   rad::Structure* radio_struct;
   std::map<int, std::string> map_step;
 

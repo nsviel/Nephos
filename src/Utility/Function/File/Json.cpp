@@ -102,5 +102,13 @@ template<typename T> T read_value(const std::string& path, std::string key){
   //---------------------------
   return result;
 }
+bool is_json_file(const std::string& path){
+  //---------------------------
+
+  std::string extension = std::filesystem::path(path).extension();
+
+  //---------------------------
+  return (extension == ".json");
+}
 
 }

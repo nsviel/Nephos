@@ -104,6 +104,7 @@ void Sensor::init_profiler(){
 void Sensor::init_object(){
   //---------------------------
 
+  //Object
   object = dat::base::Object(node_engine);
   object.name = param.name;
   object.data.name = "sensor::object::data";
@@ -111,6 +112,11 @@ void Sensor::init_object(){
   object.data.nb_data_max = 10000000;
   object.pose.model[2][3] = 1;
   dat_entity->init_entity(&object);
+
+  //Transformation
+  glm::mat4 mat = utl::transformation::find_transformation_from_file(param.path.transformation);
+  pose.model = mat;
+  pose.model_init = mat;
 
   //---------------------------
 }

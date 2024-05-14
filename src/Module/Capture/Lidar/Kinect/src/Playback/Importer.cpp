@@ -15,6 +15,8 @@ Importer::Importer(k4n::Node* node_k4n){
   this->node_k4n = node_k4n;
   this->node_engine = node_k4n->get_node_engine();
   this->dat_graph = node_data->get_data_graph();
+  this->dat_entity = node_data->get_data_entity();
+  this->dat_set = node_data->get_data_set();
 
   this->format = "mkv";
   this->require_discrete_gpu = true;
@@ -30,14 +32,13 @@ utl::media::File* Importer::import(utl::media::Path path){
 
   //Associated master
   k4n::dev::Master* master = manage_master();
-  k4n::playback::Sensor* sensor = new k4n::playback::Sensor(node_k4n, path.data);
+  k4n::playback::Sensor* sensor = new k4n::playback::Sensor(node_k4n, path);
   sensor->master = master;
 
   //Sensor initialization
-  dat_entity->init_entity(master, sensor);
+  dat_entity->init_entity(sensor);
   dat_set->insert_entity(master, sensor);
   master->player_update();
-  k4n_transfo->find_transformation_from_file(sensor, path.transformation);
 
   //---------------------------
   return nullptr;
@@ -86,9 +87,9 @@ k4n::dev::Master* Importer::manage_master(){
 
   //Check if already existing
   for(int i=0; i<set_scene->list_subset.size(); i++){
-    k4n::dev::Master* master = *std::next(set_scene->list_subset.begin(), i);
-    if(master->name == "kinect"){
-      return master;
+    dat::base::Set* set = *std::next(set_scene->list_subset.begin(), i);
+    if(set->name == "kinect"){
+      return dynamic_cast<k4n::dev::Master*>(set);
     }
   }
 

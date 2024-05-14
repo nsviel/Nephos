@@ -63,7 +63,7 @@ public:
   virtual void thread_init(){}
   virtual void thread_loop(){}
   virtual void thread_end(){}
-  virtual void manage_reset();
+  virtual void manage_reset()
 
   inline dat::base::Object* get_object(){return &object;}
   inline utl::type::Data* get_data(){return &object.data;}

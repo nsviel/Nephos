@@ -1,5 +1,6 @@
 #include "Sensor.h"
 
+#include <Utility/Function/File/Transformation.h>
 #include <Kinect/Namespace.h>
 
 
@@ -10,7 +11,6 @@ Sensor::Sensor(k4n::Node* node_k4n){
   //---------------------------
 
   this->node_k4n = node_k4n;
-  this->k4n_transfo = new k4n::utils::Transformation();
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 
   this->item_width = 100;
@@ -103,11 +103,12 @@ void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
     ImGui::Columns(1);
 
     ImVec2 width = ImGui::GetContentRegionAvail();
+    utl::type::Pose* pose = sensor->get_pose();
     if(ImGui::Button("Save##transfomatrix", ImVec2(width.x, 0))){
-      k4n_transfo->save_transformation_to_file(sensor);
+      utl::transformation::save_transformation_to_file(pose->model, sensor->param.path.transformation);
     }
     if(ImGui::Button("Identity##transfomatrix", ImVec2(width.x, 0))){
-      k4n_transfo->make_transformation_identity(sensor);
+      utl::transformation::make_transformation_identity(pose->model);
     }
 
     ImGui::EndTabItem();

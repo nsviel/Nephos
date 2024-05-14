@@ -88,7 +88,7 @@ void Connection::create_sensor(int index){
   sensor->init();
   dat_set->insert_entity(master, sensor);
   dat_graph->assign_UID(sensor);
-  k4n_transfo->apply_transformation_capture(sensor);
+  utl::transformation::apply_transformation_capture(sensor->get_pose()->model);
   sensor->run_thread();
 
 */

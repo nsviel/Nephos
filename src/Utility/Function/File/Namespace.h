@@ -6,3 +6,4 @@
 #include <Utility/Function/File/Path.h>
 #include <Utility/Function/File/Json.h>
 #include <Utility/Function/File/Zenity.h>
+#include <Utility/Function/File/Transformation.h>

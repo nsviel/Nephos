@@ -20,8 +20,12 @@ public:
   void find_ir_level(k4n::dev::Sensor* sensor);
 
   //Depth function
+  vec3 convert_depth_2d_to_3d(k4n::dev::Sensor* sensor, ivec2 point_2d);
   void convert_depth_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_t>& output);
   void find_depth_mode_range(k4n::dev::Sensor* sensor);
+
+  //Normal function
+  void make_normal_from_depth_image(k4n::dev::Sensor* sensor);
 
 private:
 
