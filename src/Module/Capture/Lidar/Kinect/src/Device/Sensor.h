@@ -23,7 +23,6 @@ namespace k4n::structure{class Color;}
 namespace k4n::structure{class Depth;}
 namespace k4n::structure{class Infrared;}
 namespace k4n::structure{class IMU;}
-namespace k4n::structure{class Image;}
 namespace k4n::structure{class Calibration;}
 namespace prf::graph{class Profiler;}
 namespace dat::base{class Object;}
@@ -79,7 +78,6 @@ public:
   k4n::utils::Configuration* k4n_config;
 
   dat::base::Object object;
-  k4n::structure::Image image;
   k4n::structure::Param param;
   k4n::structure::Color color;
   k4n::structure::Depth depth;

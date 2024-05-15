@@ -2,6 +2,8 @@
 
 #include <Kinect/src/Structure/Data.h>
 
+namespace utl::media{struct Image;}
+
 
 namespace k4n::structure{
 
@@ -23,6 +25,7 @@ struct Infrared{
   k4n::structure::Infrared_config config;
   k4n::structure::Data data;
   k4n::structure::Data cloud;
+  utl::media::Image image;
 
   //---------------------------
 };

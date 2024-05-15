@@ -61,7 +61,6 @@ void Image::wait_thread(){
 
 //Subfunction
 void Image::copy_image(k4n::dev::Sensor* sensor){
-  k4n::structure::Image* image = &sensor->image;
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("image");
   //---------------------------
 
@@ -87,7 +86,6 @@ void Image::copy_image(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Image::copy_image_color(k4n::dev::Sensor* sensor){
-  k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
   /*
@@ -103,51 +101,47 @@ void Image::copy_image_color(k4n::dev::Sensor* sensor){
   }
   */
 
-  image->color.data = std::vector<uint8_t>(sensor->color.data.buffer, sensor->color.data.buffer + sensor->color.data.size);
-  image->color.size = image->color.data.size();
-  image->color.width = sensor->color.data.width;
-  image->color.height = sensor->color.data.height;
-  image->color.format = sensor->color.data.format;
+  sensor->color.image.data = std::vector<uint8_t>(sensor->color.data.buffer, sensor->color.data.buffer + sensor->color.data.size);
+  sensor->color.image.size = sensor->color.image.data.size();
+  sensor->color.image.width = sensor->color.data.width;
+  sensor->color.image.height = sensor->color.data.height;
+  sensor->color.image.format = sensor->color.data.format;
 
-  if(image->color.data.size() != sensor->color.data.size){
-    image->color.new_data = false;
+  if(sensor->color.image.data.size() != sensor->color.data.size){
+    sensor->color.image.new_data = false;
   }else{
-    image->color.new_data = true;
+    sensor->color.image.new_data = true;
   }
 
-  sensor->bind_image(&image->color);
+  sensor->bind_image(&sensor->color.image);
 
   //---------------------------
 }
 void Image::copy_image_depth(k4n::dev::Sensor* sensor){
-  k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  k4n_data->convert_depth_into_color(sensor, image->depth.data);
-  image->depth.size = image->depth.data.size();
-  image->depth.width = sensor->depth.data.width;
-  image->depth.height = sensor->depth.data.height;
-  image->depth.format = "R8G8B8A8_SRGB";
-  image->depth.new_data = true;
+  k4n_data->convert_depth_into_color(sensor, sensor->depth.image.data);
+  sensor->depth.image.size = sensor->depth.image.data.size();
+  sensor->depth.image.width = sensor->depth.data.width;
+  sensor->depth.image.height = sensor->depth.data.height;
+  sensor->depth.image.format = "R8G8B8A8_SRGB";
+  sensor->depth.image.new_data = true;
 
-  sensor->bind_image(&image->depth);
-
-
+  sensor->bind_image(&sensor->depth.image);
 
   //---------------------------
 }
 void Image::copy_image_ir(k4n::dev::Sensor* sensor){
-  k4n::structure::Image* image = &sensor->image;
   //---------------------------
 
-  k4n_data->convert_ir_into_color(sensor, image->ir.data);
-  image->ir.size = image->ir.data.size();
-  image->ir.width = sensor->ir.data.width;
-  image->ir.height = sensor->ir.data.height;
-  image->ir.format = "R8G8B8A8_SRGB";
-  image->ir.new_data = true;
+  k4n_data->convert_ir_into_color(sensor, sensor->ir.image.data);
+  sensor->ir.image.size = sensor->ir.image.data.size();
+  sensor->ir.image.width = sensor->ir.data.width;
+  sensor->ir.image.height = sensor->ir.data.height;
+  sensor->ir.image.format = "R8G8B8A8_SRGB";
+  sensor->ir.image.new_data = true;
 
-  sensor->bind_image(&image->ir);
+  sensor->bind_image(&sensor->ir.image);
 
   //---------------------------
 }

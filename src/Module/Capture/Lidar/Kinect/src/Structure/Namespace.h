@@ -5,7 +5,6 @@
 #include <Kinect/src/Structure/Configuration.h>
 #include <Kinect/src/Structure/Data.h>
 #include <Kinect/src/Structure/Depth.h>
-#include <Kinect/src/Structure/Image.h>
 #include <Kinect/src/Structure/Operation.h>
 #include <Kinect/src/Structure/Recorder.h>
 #include <Kinect/src/Structure/Parameter.h>

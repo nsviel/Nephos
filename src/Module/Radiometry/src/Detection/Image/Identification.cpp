@@ -71,7 +71,7 @@ void Identification::make_sphere_detection(dat::base::Sensor* sensor){
 void Identification::detect_circle_in_image(dat::base::Sensor* sensor){
   //---------------------------
 /*
-  utl::media::Image* input = &sensor->image.ir;
+  utl::media::Image* input = &sensor->ir.image;
   cv::Mat cv_input;
   radio_image->convert_into_cv_image(input, cv_input);
   //radio_struct->detection.vec_circle = radio_hough->sphere_detection(cv_input, radio_struct->detection.cv_image);

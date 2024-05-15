@@ -5,6 +5,7 @@
 #include <string>
 
 namespace k4n::structure{struct Data;}
+namespace utl::media{struct Image;}
 
 
 namespace k4n::image{
@@ -121,8 +122,8 @@ struct Color_config{
   //General
   bool enabled = true;
 
-  std::string format = "";
-  std::string resolution = "";
+  std::string format_str = "";
+  std::string resolution_str = "";
   std::string firmware_version = "";
 
   k4a_image_format_t format = K4A_IMAGE_FORMAT_COLOR_YUY2;
@@ -149,6 +150,7 @@ struct Color{
   k4n::structure::Color_config config;
   k4n::structure::Data data;
   k4n::structure::Data cloud;
+  utl::media::Image image;
 
   //---------------------------
 };
