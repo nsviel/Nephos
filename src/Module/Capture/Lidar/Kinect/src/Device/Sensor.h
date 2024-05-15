@@ -12,7 +12,7 @@ namespace dat{class Glyph;}
 namespace dat{class Graph;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
-namespace k4n::processing{class Data;}
+namespace k4n::processing{class Image;}
 namespace k4n::utils{class Configuration;}
 namespace k4n::capture{class Sensor;}
 namespace k4n::playback{class Sensor;}
@@ -75,7 +75,7 @@ public:
   prf::graph::Profiler* profiler;
   k4n::dev::Master* master;
   k4n::gui::Sensor* gui_sensor;
-  k4n::processing::Data* k4n_data;
+  k4n::processing::Image* k4n_image;
   k4n::utils::Configuration* k4n_config;
 
   dat::base::Object object;

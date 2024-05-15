@@ -69,7 +69,7 @@ void Sensor::thread_loop(){
   tasker->task_end("wait");
 
   //Run processing
-  k4n_data->start_thread(this);
+  k4n_image->start_thread(this);
 
   //Loop sleeping
   tasker->task_begin("pause");
@@ -110,7 +110,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   capture_queue.push(capture);
 
   // Check if the queue size exceeds 5
-  k4n_data->wait_thread();
+  k4n_image->wait_thread();
   if(capture_queue.size() > 5){
     // Delete the oldest capture
     delete capture_queue.front();

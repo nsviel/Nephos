@@ -16,7 +16,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   eng::Node* node_engine = node_k4n->get_node_engine();
   dat::Node* node_data = node_engine->get_node_data();
 
-  this->k4n_data = new k4n::processing::Data(node_k4n);
+  this->k4n_image = new k4n::processing::Image(node_k4n);
   this->k4n_config = new k4n::utils::Configuration();
   this->node_engine = node_engine;
   this->dat_graph = node_data->get_data_graph();
