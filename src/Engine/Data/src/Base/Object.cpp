@@ -54,7 +54,7 @@ void Object::clear_data(){
   this->update_data();
 }
 void Object::update_data(){
-  if(node_camera == nullptr) cout<<"[error] Object - no  engine initalization"<<endl;
+  if(node_camera == nullptr) cout<<"[error] Object "<<name<<" - engine not initialized"<<endl;
   vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
 
@@ -64,7 +64,7 @@ void Object::update_data(){
   //----------------------------
 }
 void Object::update_pose(){
-  if(node_camera == nullptr) cout<<"[error] Object - no engine initalization"<<endl;
+  if(node_camera == nullptr) cout<<"[error] Object "<<name<<" - engine not initialized"<<endl;
   cam::Control* cam_control = node_camera->get_control();
   //----------------------------
 

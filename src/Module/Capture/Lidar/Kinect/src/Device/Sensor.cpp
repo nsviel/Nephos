@@ -25,6 +25,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->dat_glyph = node_data->get_data_glyph();
   this->gui_sensor = new k4n::gui::Sensor(node_k4n);
 
+  this->name = "k4n::sensor";
   this->entity_type = "k4n::device::Sensor";
   this->icon = ICON_FA_CAMERA_RETRO;
 

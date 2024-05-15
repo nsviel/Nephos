@@ -12,6 +12,7 @@ Sensor::Sensor(k4n::Node* node_k4n, int index) : k4n::dev::Sensor(node_k4n){
 
   this->param.index = index;
   this->param.name = "capture_" + to_string(index);
+  this->name = param.name;
 
   //---------------------------
 }

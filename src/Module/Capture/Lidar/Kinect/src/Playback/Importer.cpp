@@ -36,6 +36,7 @@ utl::media::File* Importer::import(utl::media::Path path){
   sensor->master = master;
 
   //Sensor initialization
+  sensor->init();
   dat_entity->init_entity(sensor);
   dat_set->insert_entity(master, sensor);
   master->player_update();

@@ -8,11 +8,17 @@
 namespace utl::transformation{
 
 glm::mat4 find_transformation_from_file(std::string path){
-  if(path != "" && !utl::file::is_exist(path)) return glm::mat4(1);
   //---------------------------
 
-  if(utl::json::is_json_file(path) == false){
-    std::cout<<"[error] file ["<<path<<"] is not a json file"<<std::endl;
+  if(path == ""){
+    return glm::mat4(1);
+  }
+  else if(!utl::file::is_exist(path)){
+    std::cout<<"[error] file at ["<<path<<"] does not exists"<<std::endl;
+    return glm::mat4(1);
+  }
+  else if(utl::json::is_json_file(path) == false){
+    std::cout<<"[error] file at ["<<path<<"] is not a json file"<<std::endl;
     return glm::mat4(1);
   }
 

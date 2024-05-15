@@ -46,7 +46,7 @@ public:
   void player_restart();
   void player_record();
   void player_lock();
-  void gui_info();
+//  void gui_info();
 
 public:
   dat::Set* dat_set;
