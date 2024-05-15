@@ -5,6 +5,7 @@ namespace vk{class Node;}
 namespace prf{class Node;}
 namespace eng{class Node;}
 namespace gui{class Node;}
+namespace sce{class Node;}
 
 
 namespace app{
@@ -36,6 +37,7 @@ private:
   prf::Node* node_profiler;
   eng::Node* node_engine;
   gui::Node* node_gui;
+  sce::Node* node_scene;
 };
 
 }

@@ -19,6 +19,7 @@ Node::Node(){
   this->node_vulkan = new vk::Node(this);
   this->node_engine = new eng::Node(this);
   this->node_gui = new gui::Node(this);
+  this->node_scene = new sce::Node(this);
 
   //---------------------------
 }
@@ -42,6 +43,7 @@ void Node::init(){
   node_vulkan->init();
   node_engine->init();
   node_gui->init();
+  node_scene->init();
 
   //---------------------------
 }
@@ -52,6 +54,7 @@ void Node::loop(){
   while(app_config->running){
     prf_manager->loop_begin(120);
     node_engine->loop();
+    node_scene->loop();
     node_gui->loop();
     node_vulkan->loop();
     prf_manager->loop_end();

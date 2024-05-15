@@ -5,7 +5,6 @@
 namespace app{class Node;}
 namespace ldr{class Node;}
 namespace vk{class Node;}
-namespace sce{class Node;}
 namespace cam{class Node;}
 namespace rnd{class Node;}
 namespace dat{class Node;}
@@ -43,7 +42,6 @@ public:
 private:
   vk::Node* node_vulkan;
   ldr::Node* node_loader;
-  sce::Node* node_scene;
   dat::Node* node_data;
   cam::Node* node_camera;
   rnd::Node* node_render;
