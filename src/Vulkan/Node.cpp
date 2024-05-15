@@ -50,7 +50,6 @@ void Node::clean(){
 
   vk_synchro->wait_idle_and_pause();
   vk_engine->clean();
-  vk_synchro->end_idle();
   vk_window->clean();
 
   //---------------------------

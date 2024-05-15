@@ -55,34 +55,69 @@ void Graphics::stop_thread(){
   //---------------------------
 }
 
-//Processing
-void Graphics::wait_for_idle(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle == false && !vk_struct->queue.standby){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
-}
-void Graphics::wait_for_work(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle && !vk_struct->queue.standby){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
-}
+//Waiters
 void Graphics::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
 
-  while((vec_command_prepa.empty() || vk_struct->queue.standby) && thread_running){
+  while((vec_command_prepa.empty()) && thread_running){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+
+  //---------------------------
+}
+void Graphics::wait_for_idle(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  //---------------------------
+}
+
+//Command
+void Graphics::add_command(vk::structure::Command* command){
+  if(vk_struct->queue.standby) return;
+  //---------------------------
+
+  this->wait_for_idle();
+
+  mutex.lock();
+  this->thread_idle = false;
+  this->with_presentation = false;
+  vec_command_prepa.push_back(command);
+  mutex.unlock();
+
+  //---------------------------
+}
+void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
+  if(vk_struct->queue.standby) return;
+  //---------------------------
+
+  this->wait_for_idle();
+
+  mutex.lock();
+  this->thread_idle = false;
+  this->with_presentation = false;
+  vec_command_prepa = vec_command;
+  mutex.unlock();
+
+  //---------------------------
+
+}
+void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
+  if(vk_struct->queue.standby) return;
+  //---------------------------
+
+  this->wait_for_idle();
+
+  mutex.lock();
+  this->thread_idle = false;
+  this->with_presentation = true;
+  vec_command_prepa = vec_command;
+  mutex.unlock();
 
   //---------------------------
 }
@@ -100,48 +135,6 @@ void Graphics::process_command(){
   this->build_submission(vec_info, semaphore);
   this->make_submission(vec_info);
   this->post_submission(semaphore);
-
-  //---------------------------
-}
-
-//Command
-void Graphics::add_command(vk::structure::Command* command){
-  //---------------------------
-
-  this->wait_for_idle();
-
-  mutex.lock();
-  this->thread_idle = false;
-  this->with_presentation = false;
-  vec_command_prepa.push_back(command);
-  mutex.unlock();
-
-  //---------------------------
-}
-void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
-  //---------------------------
-
-  this->wait_for_idle();
-
-  mutex.lock();
-  this->thread_idle = false;
-  this->with_presentation = false;
-  vec_command_prepa = vec_command;
-  mutex.unlock();
-
-  //---------------------------
-
-}
-void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
-  //---------------------------
-
-  this->wait_for_idle();
-
-  mutex.lock();
-  this->thread_idle = false;
-  this->with_presentation = true;
-  vec_command_prepa = vec_command;
-  mutex.unlock();
 
   //---------------------------
 }

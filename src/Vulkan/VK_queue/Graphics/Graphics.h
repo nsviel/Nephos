@@ -26,15 +26,14 @@ public:
   void stop_thread();
 
   //Processing
-  void wait_for_work();
-  void wait_for_idle();
   void wait_for_command();
-  void process_command();
+  void wait_for_idle();
 
   //Command
   void add_command(vk::structure::Command* command);
   void add_graphics(vector<vk::structure::Command*> vec_command);
   void add_presentation(vector<vk::structure::Command*> vec_command);
+  void process_command();
 
   //Submission
   void build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& done);

@@ -137,8 +137,8 @@ void Sensor::start_thread(){
   //---------------------------
 
   if(!thread_running){
-    //this->thread_running = true;
-    //this->thread = std::thread(&Sensor::run_thread, this);
+    this->thread_running = true;
+    this->thread = std::thread(&Sensor::run_thread, this);
   }
 
   //---------------------------

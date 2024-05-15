@@ -55,6 +55,10 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   //Export in ply
   //k4n_recorder->start_thread(sensor);
 
+  dat::base::Object* object = sensor->get_object();
+  object->update_data();
+  object->update_glyph();
+
   //---------------------------
   this->idle = true;
 }
