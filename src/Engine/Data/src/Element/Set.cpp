@@ -146,9 +146,9 @@ void Set::remove(dat::base::Set* set, dat::base::Entity* entity){
 
   // Check if the current set has the query entity
   for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+    dat::base::Entity* set_entity = *next(set->list_entity.begin(), i);
 
-    if(set->active_entity->UID == entity->UID){
+    if(set_entity->UID == entity->UID){
       this->active_next_entity(set);
 
       set->list_entity.remove(entity);

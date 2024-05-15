@@ -144,7 +144,8 @@ void Graph::draw_file_tree(){
       dat::base::Set* set = *next(set_main->list_subset.begin(), row_i);
 
       if(set->nb_entity != 0 || set->nb_subset != 0){
-        ImGui::PushID(set->name.c_str());
+        string ID = set->name + std::to_string(row_i);
+        ImGui::PushID(ID.c_str());
         this->tree_set(set);
         ImGui::PopID();
       }
@@ -266,7 +267,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   ImGui::TableNextColumn();
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
-  std::string tag = std::string(ICON_FA_XMARK) + "##" + entity->name;
+  std::string tag = std::string(ICON_FA_XMARK) + "##" + entity->name + std::to_string(nb_row);
   if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){
     dat_set->remove(set, entity);
   }
