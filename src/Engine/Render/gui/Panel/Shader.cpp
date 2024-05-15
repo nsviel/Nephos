@@ -19,8 +19,8 @@ Shader::Shader(rnd::Node* node_render, bool* show_window){
 
   this->vk_reload = new vk::shader::Reloader(vk_struct);
   this->node_engine = node_engine;
-  this->editor_vs = new gui_element::editor::Text();
-  this->editor_fs = new gui_element::editor::Text();
+  this->editor_vs = new utl::gui::editor::Text();
+  this->editor_fs = new utl::gui::editor::Text();
   this->gui_console = new utl::gui::widget::Console();
 
   this->item_width = 100;

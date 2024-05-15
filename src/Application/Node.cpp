@@ -5,6 +5,7 @@
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Scene/Namespace.h>
 #include <iostream>
 
 
@@ -18,7 +19,6 @@ Node::Node(){
   this->node_profiler = new prf::Node();
   this->node_vulkan = new vk::Node(this);
   this->node_engine = new eng::Node(this);
-  this->node_gui = new gui::Node(this);
   this->node_scene = new sce::Node(this);
 
   //---------------------------
@@ -42,7 +42,6 @@ void Node::init(){
 
   node_vulkan->init();
   node_engine->init();
-  node_gui->init();
   node_scene->init();
 
   //---------------------------

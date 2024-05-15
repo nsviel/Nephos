@@ -1,5 +1,6 @@
 #include "Node.h"
 
+#include <Application/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Data/Namespace.h>
@@ -11,17 +12,18 @@
 namespace sce{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
+Node::Node(app::Node* node_app){
   //---------------------------
 
   //Dependancy
-  this->node_engine = node_engine;
+  this->node_engine = node_app->get_node_engine();
   this->node_vulkan = node_engine->get_node_vulkan();
 
   //Child
   this->node_kinect = new k4n::Node(node_engine);
   this->sce_init = new sce::Init(this);
-
+  this->node_gui = new gui::Node(this);
+  
   this->add_node_panel(node_kinect);
 
   //---------------------------

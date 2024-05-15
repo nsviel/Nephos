@@ -5,7 +5,7 @@
 #include <Utility/Function/File/Media.h>
 
 
-namespace gui::element{
+namespace gui::media{
 
 //Constructor / Destructor
 Image::Image(eng::Node* engine){

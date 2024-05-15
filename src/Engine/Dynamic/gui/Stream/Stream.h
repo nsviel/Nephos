@@ -6,11 +6,11 @@ namespace dyn{class Node;}
 namespace dat{class Graph;}
 namespace eng{class Node;}
 namespace dat{class Set;}
-namespace gui::element{class Stream;}
-namespace gui_element = gui::element;
+namespace gui::media{class Stream;}
 namespace utl::type{class Element;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
+namespace gui_media = gui::media;
 
 
 namespace dyn::gui{
@@ -43,7 +43,7 @@ private:
   dat::Graph* dat_graph;
   dat::Set* dat_set;
 
-  vector<gui_element::Stream*> vec_stream;
+  vector<gui_media::Stream*> vec_stream;
   ImVec2 hovered_pixel;
   string open_tab = "";
   string name;

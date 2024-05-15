@@ -2,6 +2,7 @@
 
 #include <Utility/Base/Type/Node.h>
 
+namespace app{class Node;}
 namespace vk{class Node;}
 namespace sce{class Init;}
 namespace eng{class Node;}
@@ -14,7 +15,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(app::Node* node_app);
   ~Node();
 
 public:

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <GUI/Plot/Namespace.h>
+#include <Utility/GUI/Plot/Namespace.h>
 #include <Utility/Specific/Common.h>
 
 namespace prf::improfil{class Bar;}

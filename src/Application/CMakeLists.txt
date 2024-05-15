@@ -3,7 +3,14 @@ set(LIBRARY_NAME LIBRARY_APPLICATION)
 #-----------------
 # Source files
 #-----------------
-file(GLOB_RECURSE ALL_SOURCES *.cpp)
+add_subdirectory(GUI)
+add_subdirectory(Scene)
+
+file(GLOB_RECURSE ALL_SOURCES
+  Node.cpp
+  Configuration.h
+  Namespace.h
+)
 
 #-----------------
 # Compilation

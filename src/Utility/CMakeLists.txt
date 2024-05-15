@@ -6,7 +6,12 @@ set(LIBRARY_NAME LIBRARY_UTILITY)
 add_subdirectory(Profiler)
 
 file(GLOB_RECURSE ALL_SOURCES
-  *.cpp
+  Base/*.cpp
+  Element/*.cpp
+  Function/*.cpp
+  Network/*.cpp
+  Specific/*.cpp
+  Thread/*.cpp
 )
 
 #-----------------
@@ -21,6 +26,7 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
+  LIBRARY_PROFILER
 
   Eigen3::Eigen # Eigen
   -lgit2        # git

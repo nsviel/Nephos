@@ -1,7 +1,7 @@
 #include "Text.h"
 
 
-namespace gui::element::editor{
+namespace utl::gui::editor{
 
 //Constructor / Destructor
 Text::Text(){

@@ -6,8 +6,8 @@ namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection{class Hough;}
-namespace gui::element{class Stream;}
-namespace gui_element = gui::element;
+namespace gui::media{class Stream;}
+namespace gui_media = gui::media;
 
 
 namespace rad::gui{
@@ -33,7 +33,7 @@ public:
 private:
   rad::Structure* radio_struct;
   rad::detection::Hough* radio_hough;
-  gui_element::Stream* stream;
+  gui_media::Stream* stream;
 };
 
 }

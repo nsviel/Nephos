@@ -33,7 +33,7 @@ void Stream::init(){
   //---------------------------
 
   for(int i=0; i<10; i++){
-    gui_element::Stream* stream = new gui_element::Stream(node_engine);
+    gui_media::Stream* stream = new gui_media::Stream(node_engine);
     this->vec_stream.push_back(stream);
   }
 

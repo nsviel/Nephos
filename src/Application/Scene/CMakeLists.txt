@@ -4,7 +4,8 @@ set(LIBRARY_NAME LIBRARY_SCENE)
 # Source files
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
-  *.cpp
+  Node.cpp
+  Graph/*.cpp
 )
 
 #-----------------

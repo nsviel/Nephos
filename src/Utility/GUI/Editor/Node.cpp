@@ -2,7 +2,7 @@
 #include "Node.h"
 
 
-namespace gui::element::editor{
+namespace utl::gui::editor{
 
 //Constructor / Destructor
 Node::Node(){
