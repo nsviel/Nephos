@@ -144,8 +144,7 @@ void Graph::draw_file_tree(){
       dat::base::Set* set = *next(set_main->list_subset.begin(), row_i);
 
       if(set->nb_entity != 0 || set->nb_subset != 0){
-        string ID = set->name + std::to_string(row_i);
-        ImGui::PushID(ID.c_str());
+        ImGui::PushID(set->name.c_str());
         this->tree_set(set);
         ImGui::PopID();
       }
@@ -178,6 +177,12 @@ int Graph::tree_set(dat::base::Set* set){
   ImGui::TableNextColumn();
   bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flags);
 
+  //If set is double-clicked, open set panel
+  if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
+    rnd_set->set_selected_set(set);
+    this->show_panel_set = true;
+  }
+
   //Set selection
   if(ImGui::IsItemClicked()){
     dat_graph->select_element(set);
@@ -202,11 +207,6 @@ int Graph::tree_set(dat::base::Set* set){
     ImGui::PopStyleColor(2);
   }
 
-  //If set is double-clicked, open set panel
-  if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
-    rnd_set->set_selected_set(set);
-    this->show_panel_set = true;
-  }
   //If set open, display elements
   if(is_node_open){
     this->tree_set_open(set, nb_row);

@@ -58,6 +58,11 @@ void Set::visibility_set(dat::base::Set* set, bool value){
     entity->set_visibility(value);
   }
 
+  // Recursively call remove for each nested set
+  for(dat::base::Set* subset : set->list_subset){
+    this->visibility_set(subset, value);
+  }
+
   //---------------------------
 }
 
