@@ -12,7 +12,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::processing{class Data;}
 namespace k4n::utils{class Configuration;}
 namespace k4n::structure{class K4N;}
-namespace k4n::structure{class Synchro;}
+namespace k4n::synchro{class Configuration;}
 
 
 namespace k4n::playback{
@@ -40,7 +40,7 @@ public:
 
 public:
   k4a::playback playback;
-  k4n::structure::Synchro synchro;
+  k4n::synchro::Configuration synchro;
   utl::media::Path path;
 };
 

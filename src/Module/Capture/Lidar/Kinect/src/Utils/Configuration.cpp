@@ -120,7 +120,7 @@ void Configuration::find_playback_configuration(k4n::playback::Sensor* sensor){
   //---------------------------
 }
 void Configuration::reset_color_configuration(k4n::dev::Sensor* sensor){
-  k4n::structure::Color* color = &sensor->color;
+  k4n::color::Structure* color = &sensor->color;
   //---------------------------
 
   color->config.exposure.value = 15625;

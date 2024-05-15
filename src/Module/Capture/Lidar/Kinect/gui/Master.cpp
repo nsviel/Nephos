@@ -98,9 +98,9 @@ void Master::show_transformation(k4n::dev::Master* master){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
 
-  ImGui::RadioButton("Depth to color", &master->config.depth.transformation_mode, k4n::structure::DEPTH_TO_COLOR);
+  ImGui::RadioButton("Depth to color", &master->config.depth.transformation_mode, k4n::depth::DEPTH_TO_COLOR);
   ImGui::SameLine();
-  ImGui::RadioButton("Color to depth", &master->config.depth.transformation_mode, k4n::structure::COLOR_TO_DEPTH);
+  ImGui::RadioButton("Color to depth", &master->config.depth.transformation_mode, k4n::depth::COLOR_TO_DEPTH);
 
   //---------------------------
   ImGui::Separator();

@@ -6,14 +6,14 @@
 namespace utl::media{struct Image;}
 
 
-namespace k4n::structure{
+namespace k4n::depth{
 
-enum Depth_mode{
+enum Mode{
   DEPTH_TO_COLOR = 0,
   COLOR_TO_DEPTH = 1,
 };
 
-struct Depth_config{
+struct Configuration{
   //---------------------------
 
   bool enabled = true;
@@ -26,16 +26,16 @@ struct Depth_config{
   uint16_t range_min = 500;
   uint16_t range_max = 4000;
 
-  int transformation_mode = k4n::structure::COLOR_TO_DEPTH;
+  int transformation_mode = k4n::depth::COLOR_TO_DEPTH;
 
   //---------------------------
 };
 
-struct Depth{
+struct Structure{
   //Structure for sensor depth field
   //---------------------------
 
-  k4n::structure::Depth_config config;
+  k4n::depth::Configuration config;
   k4n::structure::Data data;
   k4n::structure::Data cloud;
   utl::media::Image image;

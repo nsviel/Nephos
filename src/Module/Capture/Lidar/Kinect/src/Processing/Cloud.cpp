@@ -165,7 +165,7 @@ void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
 
 //Data retrieval
 void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image){
-  k4n::structure::Depth* depth = &sensor->depth;
+  k4n::depth::Structure* depth = &sensor->depth;
   //---------------------------
 
   //Create cloud image

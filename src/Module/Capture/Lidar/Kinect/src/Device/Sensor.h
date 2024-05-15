@@ -19,10 +19,10 @@ namespace k4n::playback{class Sensor;}
 namespace k4n::structure{class Param;}
 namespace k4n::structure{class Playback;}
 namespace k4n::structure{class Recorder;}
-namespace k4n::structure{class Color;}
-namespace k4n::structure{class Depth;}
-namespace k4n::structure{class Infrared;}
-namespace k4n::structure{class IMU;}
+namespace k4n::color{class Structure;}
+namespace k4n::depth{class Structure;}
+namespace k4n::infrared{class Structure;}
+namespace k4n::imu{class Structure;}
 namespace k4n::structure{class Calibration;}
 namespace k4n::structure{class FPS;}
 namespace prf::graph{class Profiler;}
@@ -80,10 +80,10 @@ public:
 
   dat::base::Object object;
   k4n::structure::Param param;
-  k4n::structure::Color color;
-  k4n::structure::Depth depth;
-  k4n::structure::Infrared ir;
-  k4n::structure::IMU imu;
+  k4n::color::Structure color;
+  k4n::depth::Structure depth;
+  k4n::infrared::Structure ir;
+  k4n::imu::Structure imu;
   k4n::structure::FPS fps;
 
 protected:

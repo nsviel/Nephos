@@ -1,9 +1,9 @@
 #pragma once
 
 
-namespace k4n::structure{
+namespace k4n::imu{
 
-struct IMU_config{
+struct Configuration{
   //---------------------------
 
   bool enabled = true;
@@ -11,10 +11,10 @@ struct IMU_config{
   //---------------------------
 };
 
-struct IMU{
+struct Structure{
   //---------------------------
 
-  k4n::structure::IMU_config config;
+  k4n::imu::Configuration config;
 
   //---------------------------
 };

@@ -14,10 +14,10 @@ struct Configuration{
   //Structure for master configuration
   //---------------------------
 
-  k4n::structure::Depth_config depth;
-  k4n::structure::Color_config color;
-  k4n::structure::Infrared_config ir;
-  k4n::structure::Synchro synchro;
+  k4n::depth::Configuration depth;
+  k4n::color::Configuration color;
+  k4n::infrared::Configuration ir;
+  k4n::synchro::Configuration synchro;
   k4n::structure::FPS fps;
 
   //---------------------------

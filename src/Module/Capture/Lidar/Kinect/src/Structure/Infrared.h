@@ -5,9 +5,9 @@
 namespace utl::media{struct Image;}
 
 
-namespace k4n::structure{
+namespace k4n::infrared{
 
-struct Infrared_config{
+struct Configuration{
   //---------------------------
 
   bool enabled = true;
@@ -18,11 +18,11 @@ struct Infrared_config{
   //---------------------------
 };
 
-struct Infrared{
+struct Structure{
   //Structure for sensor infrared field
   //---------------------------
 
-  k4n::structure::Infrared_config config;
+  k4n::infrared::Configuration config;
   k4n::structure::Data data;
   k4n::structure::Data cloud;
   utl::media::Image image;

@@ -8,7 +8,7 @@ namespace k4n::structure{struct Data;}
 namespace utl::media{struct Image;}
 
 
-namespace k4n::image{
+namespace k4n::color{
 
 enum Resolution{
   OFF = 0,
@@ -29,10 +29,6 @@ enum Format{
   IR16 = 5,
   CUSTOM = 6,
 };
-
-}
-
-namespace k4n::structure{
 
 struct Exposure{
   //---------------------------
@@ -116,7 +112,7 @@ struct Power_frequency{
   //---------------------------
 };
 
-struct Color_config{
+struct Configuration{
   //---------------------------
 
   //General
@@ -130,24 +126,24 @@ struct Color_config{
   k4a_color_resolution_t resolution = K4A_COLOR_RESOLUTION_720P;
 
   //Control
-  k4n::structure::Exposure exposure;
-  k4n::structure::White_balance white_balance;
-  k4n::structure::Brightness brightness;
-  k4n::structure::Contrast contrast;
-  k4n::structure::Saturation saturation;
-  k4n::structure::Sharpness sharpness;
-  k4n::structure::Gain gain;
-  k4n::structure::Backlight_compensation backlight_compensation;
-  k4n::structure::Power_frequency power_frequency;
+  k4n::color::Exposure exposure;
+  k4n::color::White_balance white_balance;
+  k4n::color::Brightness brightness;
+  k4n::color::Contrast contrast;
+  k4n::color::Saturation saturation;
+  k4n::color::Sharpness sharpness;
+  k4n::color::Gain gain;
+  k4n::color::Backlight_compensation backlight_compensation;
+  k4n::color::Power_frequency power_frequency;
 
   //---------------------------
 };
 
-struct Color{
+struct Structure{
   //Structure for sensor color field
   //---------------------------
 
-  k4n::structure::Color_config config;
+  k4n::color::Configuration config;
   k4n::structure::Data data;
   k4n::structure::Data cloud;
   utl::media::Image image;
