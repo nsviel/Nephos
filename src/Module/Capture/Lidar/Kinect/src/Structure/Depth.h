@@ -11,6 +11,9 @@ struct Depth_config{
 
   bool enabled = true;
 
+  std::string mode = "";
+  std::string firmware_version = "";
+
   k4a_depth_mode_t mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
 
   uint16_t range_min = 500;

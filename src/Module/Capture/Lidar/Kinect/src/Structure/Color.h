@@ -121,6 +121,10 @@ struct Color_config{
   //General
   bool enabled = true;
 
+  std::string format = "";
+  std::string resolution = "";
+  std::string firmware_version = "";
+
   k4a_image_format_t format = K4A_IMAGE_FORMAT_COLOR_YUY2;
   k4a_color_resolution_t resolution = K4A_COLOR_RESOLUTION_720P;
 
