@@ -8,6 +8,11 @@ namespace utl::media{struct Image;}
 
 namespace k4n::structure{
 
+enum Depth_mode{
+  DEPTH_TO_COLOR = 0,
+  COLOR_TO_DEPTH = 1,
+};
+
 struct Depth_config{
   //---------------------------
 
@@ -20,6 +25,8 @@ struct Depth_config{
 
   uint16_t range_min = 500;
   uint16_t range_max = 4000;
+
+  int transformation_mode = k4n::structure::COLOR_TO_DEPTH;
 
   //---------------------------
 };

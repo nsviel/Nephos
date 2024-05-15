@@ -28,11 +28,11 @@ void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
 
   //Synchro stuff
   configuration.camera_fps = master->config.fps.mode;
-  configuration.depth_delay_off_color_usec = master->synchro.depth_delay_off_color_us;
-  configuration.wired_sync_mode = master->synchro.wired_mode;
-  configuration.subordinate_delay_off_master_usec = master->synchro.subordinate_delay_off_master_us;
-  configuration.disable_streaming_indicator = master->synchro.disable_streaming_indicator;
-  configuration.synchronized_images_only = master->synchro.synchronized_images_only;
+  configuration.depth_delay_off_color_usec = master->config.synchro.depth_delay_off_color_us;
+  configuration.wired_sync_mode = master->config.synchro.wired_mode;
+  configuration.subordinate_delay_off_master_usec = master->config.synchro.subordinate_delay_off_master_us;
+  configuration.disable_streaming_indicator = master->config.synchro.disable_streaming_indicator;
+  configuration.synchronized_images_only = master->config.synchro.synchronized_images_only;
 
   //---------------------------
   sensor->param.configuration = configuration;
@@ -62,11 +62,11 @@ void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
   master->config.color.resolution = K4A_COLOR_RESOLUTION_1080P;
 
   master->config.fps.mode = K4A_FRAMES_PER_SECOND_30;
-  master->synchro.depth_delay_off_color_us = 0;
-  master->synchro.wired_mode = K4A_WIRED_SYNC_MODE_STANDALONE;
-  master->synchro.subordinate_delay_off_master_us = 0;
-  master->synchro.disable_streaming_indicator = true;
-  master->synchro.synchronized_images_only = true;
+  master->config.synchro.depth_delay_off_color_us = 0;
+  master->config.synchro.wired_mode = K4A_WIRED_SYNC_MODE_STANDALONE;
+  master->config.synchro.subordinate_delay_off_master_us = 0;
+  master->config.synchro.disable_streaming_indicator = true;
+  master->config.synchro.synchronized_images_only = true;
 
   master->config.color.exposure.value = 15625;
   master->config.color.white_balance.value = 4500;

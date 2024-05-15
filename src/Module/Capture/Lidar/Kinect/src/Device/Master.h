@@ -3,14 +3,16 @@
 #include <Data/src/Base/Set.h>
 #include <Utility/Specific/Common.h>
 #include <Kinect/src/Structure/Namespace.h>
+#include <Dynamic/src/Structure/Operation.h>
+#include <Dynamic/src/Structure/Recorder.h>
 
 namespace dat{class Set;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Configuration;}
 namespace dyn::base{class Player;}
-namespace k4n::structure{class Operation;}
-namespace k4n::structure{class Recorder;}
+namespace dyn::operation{class Structure;}
+namespace dyn::recorder{class Structure;}
 namespace k4n::structure{class Configuration;}
 namespace k4n::playback{class Importer;}
 namespace k4n::gui{class Master;}
@@ -54,10 +56,9 @@ public:
   k4n::playback::Importer* k4n_importer;
   k4n::gui::Master* gui_master;
 
-  k4n::structure::Operation operation;
-  k4n::structure::Recorder recorder;
+  dyn::operation::Structure operation;
+  dyn::recorder::Structure recorder;
   k4n::structure::Configuration config;
-  k4n::structure::Synchro synchro;
 };
 
 }

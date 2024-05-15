@@ -363,14 +363,14 @@ void Capture::configuration_synchro(k4n::dev::Master* master){
   //Internal sync
   if(ImGui::TreeNode("Synchronization")){
     //Streaming front LED
-    ImGui::Checkbox("Disable streaming LED", &master->synchro.disable_streaming_indicator);
+    ImGui::Checkbox("Disable streaming LED", &master->config.synchro.disable_streaming_indicator);
 
     //Synchronized images only
-    ImGui::Checkbox("Synchronized images only", &master->synchro.synchronized_images_only);
+    ImGui::Checkbox("Synchronized images only", &master->config.synchro.synchronized_images_only);
 
     //Depth delay
     ImGui::SetNextItemWidth(100);
-    ImGui::InputScalar("Depth delay (us)", ImGuiDataType_U32, &master->synchro.depth_delay_off_color_us, NULL, NULL, "%u");
+    ImGui::InputScalar("Depth delay (us)", ImGuiDataType_U32, &master->config.synchro.depth_delay_off_color_us, NULL, NULL, "%u");
 
     ImGui::TreePop();
   }

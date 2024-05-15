@@ -5,23 +5,11 @@
 #include <cstdint>
 
 
-namespace k4n::transformation{
+namespace dyn::operation{
 
-enum Mode{
-  DEPTH_TO_COLOR = 0,
-  COLOR_TO_DEPTH = 1,
-};
-
-}
-
-namespace k4n::structure{
-
-struct Operation{
+struct Structure{
   //Processing parameters structure
   //---------------------------
-
-  //Color / Depth transformation
-  int transformation_mode = k4n::transformation::COLOR_TO_DEPTH;
 
   //Colorization
   int fps = 30;
@@ -40,9 +28,6 @@ struct Operation{
   bool normal = false;
   bool normal_visible = false;
   int normal_knn = 2;
-
-  //Export
-  bool record = false;
 
   //Triangulation
   bool triangulation = false;

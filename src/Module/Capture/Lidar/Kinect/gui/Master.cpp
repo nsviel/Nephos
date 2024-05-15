@@ -57,7 +57,7 @@ void Master::show_info(k4n::dev::Master* master){
 
     //Recording time
     bool is_record = master->get_state_record();
-    if(is_record && master->recorder.mode == k4n::recorder::MKV){
+    if(is_record && master->recorder.mode == dyn::recorder::MKV){
       //Recording time
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Record"); ImGui::TableNextColumn();
@@ -98,9 +98,9 @@ void Master::show_transformation(k4n::dev::Master* master){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
 
-  ImGui::RadioButton("Depth to color", &master->operation.transformation_mode, k4n::transformation::DEPTH_TO_COLOR);
+  ImGui::RadioButton("Depth to color", &master->config.depth.transformation_mode, k4n::structure::DEPTH_TO_COLOR);
   ImGui::SameLine();
-  ImGui::RadioButton("Color to depth", &master->operation.transformation_mode, k4n::transformation::COLOR_TO_DEPTH);
+  ImGui::RadioButton("Color to depth", &master->config.depth.transformation_mode, k4n::structure::COLOR_TO_DEPTH);
 
   //---------------------------
   ImGui::Separator();
@@ -168,7 +168,7 @@ void Master::show_possible_ope(k4n::dev::Master* master){
   ImGui::SameLine();
   ImGui::Checkbox("Voxel##33", &master->operation.voxel);
   ImGui::SameLine();
-  ImGui::Checkbox("Record##35", &master->operation.record);
+  ImGui::Checkbox("Record##35", &master->recorder.enable);
 
   //---------------------------
   ImGui::Separator();
@@ -215,7 +215,7 @@ void Master::show_normal(k4n::dev::Master* master){
 }
 void Master::show_recorder(k4n::dev::Master* master){
   if(master == nullptr) return;
-  if(!master->operation.record) return;
+  if(!master->recorder.enable) return;
   //---------------------------
 
   //Intro
@@ -225,12 +225,12 @@ void Master::show_recorder(k4n::dev::Master* master){
   //Mode
   /*bool condition = (master->mode == k4n::dev::PLAYBACK);
   if(condition) ImGui::BeginDisabled();
-  if(ImGui::RadioButton("MKV", &master->recorder.mode, k4n::recorder::MKV)){
+  if(ImGui::RadioButton("MKV", &master->recorder.mode, dyn::recorder::MKV)){
     master->recorder.folder = "../media/record/mkv";
   }
   if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
-  if(ImGui::RadioButton("PLY", &master->recorder.mode, k4n::recorder::PLY)){
+  if(ImGui::RadioButton("PLY", &master->recorder.mode, dyn::recorder::PLY)){
     master->recorder.folder = "../media/record/ply";
   }*/
 

@@ -44,13 +44,13 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
 
   k4n::dev::Master* master = sensor->master;
   switch(master->recorder.mode){
-    case k4n::recorder::MKV:{
+    case dyn::recorder::MKV:{
       tasker->task_begin("recorder::mkv");
       this->make_export_to_mkv(sensor);
       tasker->task_end("recorder::mkv");
       break;
     }
-    case k4n::recorder::PLY:{
+    case dyn::recorder::PLY:{
       tasker->task_begin("recorder::ply");
       this->make_export_to_ply(sensor);
       tasker->task_end("recorder::ply");
@@ -93,7 +93,7 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
 
   //Sensor parameter
   sensor->master->recorder.folder = path_dir;
-  sensor->master->recorder.mode = k4n::recorder::PLY;
+  sensor->master->recorder.mode = dyn::recorder::PLY;
 
   //Path
   string master_name = master->recorder.filename;
