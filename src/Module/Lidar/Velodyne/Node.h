@@ -5,7 +5,6 @@
 namespace ldr{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
-namespace cap{class Node;}
 namespace vld::main{class Capture;}
 namespace vld::main{class Playback;}
 namespace vld::structure{class Main;}
@@ -18,7 +17,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(cap::Node* node_capture);
+  Node(eng::Node* node_engine);
   ~Node();
 
 public:

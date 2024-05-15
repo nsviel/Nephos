@@ -1,29 +1,26 @@
 #include "Node.h"
 
 #include <Engine/Namespace.h>
-#include <Kinect/Namespace.h>
-#include <Capture/Namespace.h>
-#include <Loader/Namespace.h>
 #include <Data/Namespace.h>
-#include <Radiometry/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <Velodyne/Namespace.h>
+#include <Loader/Namespace.h>
 
 
-namespace k4n{
+namespace vld{
 
 //Constructor / Destructor
-Node::Node(cap::Node* node_capture){
+Node::Node(eng::Node* node_engine){
+  utl::gui::Panel* panel = add_panel("Velodyne", ICON_FA_PLAY, true);
   //---------------------------
 
-  //Dependancy
-  this->node_engine = node_capture->get_node_engine();
+  this->node_engine = node_engine;
   this->node_loader = node_engine->get_node_loader();
-  this->node_profiler = node_capture->get_node_profiler();
   this->node_data = node_engine->get_node_data();
-  this->node_radio = new rad::Node(node_engine);
 
-  //Child
-  this->k4n_connection = new k4n::capture::Connection(this);
+  this->vld_struct = new vld::structure::Main();
+  this->vld_capture = new vld::main::Capture(this);
+  this->vld_playback = new vld::main::Playback(vld_struct);
+  this->gui_velodyne = new vld::gui::Velodyne(vld_struct, &panel->is_open);
 
   //---------------------------
 }
@@ -34,30 +31,31 @@ void Node::config(){
   ldr::Format* ldr_format = node_loader->get_format();
   //---------------------------
 
-  ldr_format->insert_importer(new k4n::playback::Importer(this));
+  ldr_format->insert_importer(new vld::utils::Importer(vld_struct));
 
   //---------------------------
 }
 void Node::init(){
   //---------------------------
 
-  k4n_connection->start_thread();
+  vld_capture->init();
 
   //---------------------------
 }
-void Node::loop(){
+void Node::gui(){
   //---------------------------
 
+  gui_velodyne->run_panel();
 
   //---------------------------
 }
 void Node::clean(){
   //---------------------------
 
-
+  vld_playback->stop_playback();
+  vld_capture->clean();
 
   //---------------------------
 }
-
 
 }

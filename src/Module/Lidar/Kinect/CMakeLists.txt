@@ -1,13 +1,11 @@
-set(LIBRARY_NAME LIBRARY_CAPTURE)
+set(LIBRARY_NAME LIBRARY_KINECT)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Lidar/Kinect)
-add_subdirectory(Lidar/Velodyne)
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
+  *.cpp
+  *.h
 )
 
 #-----------------
@@ -18,9 +16,26 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
+find_package(Python REQUIRED COMPONENTS Interpreter Development)
+find_package(k4a REQUIRED)
+
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_K4N
-  LIBRARY_VELODYNE
+  LIBRARY_EXTERN
+  LIBRARY_UTILITY
+  LIBRARY_VULKAN
+  LIBRARY_ENGINE
+  LIBRARY_RADIOMETRY
+  LIBRARY_DYNAMIC
+
+  ${Python_LIBRARIES}
+  ${k4a_LIBS}
+
+  Python::Python
+  python3.10
+  -lpython3.10
+  -lturbojpeg   # Convertion JPEG -> BRGA
+  -lk4a
+  -lk4arecord
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

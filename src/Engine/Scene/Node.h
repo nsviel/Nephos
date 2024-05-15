@@ -5,7 +5,7 @@
 namespace vk{class Node;}
 namespace sce{class Init;}
 namespace eng{class Node;}
-namespace mod{class Node;}
+namespace k4n{class Node;}
 
 
 namespace sce{
@@ -34,7 +34,7 @@ private:
 
   //Child
   sce::Init* sce_init;
-  mod::Node* node_module;
+  k4n::Node* node_kinect;
 
   bool show_scene = true;
   bool show_loader = true;

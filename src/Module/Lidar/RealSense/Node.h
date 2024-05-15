@@ -5,7 +5,6 @@
 namespace prf{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
-namespace cap{class Node;}
 namespace k4n::capture{class Connection;}
 namespace utl::thread{class Pool;}
 namespace k4n::calibration{class Model;}
@@ -14,21 +13,19 @@ namespace ldr{class Node;}
 namespace dat{class Graph;}
 
 
-namespace k4n{
+namespace rsx{
 
 class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(cap::Node* node_capture);
+  Node(eng::Node* node_engine);
   ~Node();
 
 public:
   //Main function
   void config();
   void init();
-  void loop();
-  void clean();
 
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}

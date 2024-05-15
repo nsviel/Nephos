@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_K4N)
+set(LIBRARY_NAME LIBRARY_REALSENSE)
 
 #-----------------
 # Source files

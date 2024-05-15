@@ -20,6 +20,7 @@ find_package( OpenCV REQUIRED )
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
+  LIBRARY_KINECT
 
   ${OpenCV_LIBS}
 )
