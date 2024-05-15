@@ -105,7 +105,7 @@ void Data::find_data_from_capture(k4n::dev::Sensor* sensor){
   sensor->ir.data.fps = fps;
   float& ts_cur = sensor->master->get_ts_cur();
   ts_cur = sensor->color.data.timestamp;
-  sensor->param.data_ready = true;
+  sensor->device.data_ready = true;
 
   //---------------------------
 }
@@ -113,7 +113,7 @@ void Data::find_data_depth(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
-  k4a::image depth = sensor->param.capture->get_depth_image();
+  k4a::image depth = sensor->device.capture->get_depth_image();
   if(!depth.is_valid()) return;
 
   //Data
@@ -124,7 +124,7 @@ void Data::find_data_depth(k4n::dev::Sensor* sensor){
   sensor->depth.data.buffer = depth.get_buffer();
   sensor->depth.data.size = depth.get_size();
   sensor->depth.data.format = retrieve_format_from_k4a(depth.get_format());
-  sensor->depth.data.temperature = sensor->param.capture->get_temperature_c();
+  sensor->depth.data.temperature = sensor->device.capture->get_temperature_c();
   sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
 
   //---------------------------
@@ -133,7 +133,7 @@ void Data::find_data_color(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
-  k4a::image color = sensor->param.capture->get_color_image();
+  k4a::image color = sensor->device.capture->get_color_image();
   if(!color.is_valid()) return;
 
   //Data
@@ -152,7 +152,7 @@ void Data::find_data_ir(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
-  k4a::image ir = sensor->param.capture->get_ir_image();
+  k4a::image ir = sensor->device.capture->get_ir_image();
   if(!ir.is_valid()) return;
 
   //Data
@@ -200,12 +200,12 @@ void Data::find_depth_to_color(k4n::dev::Sensor* sensor){
 
   //Convert it into a depth POV representation
   k4a::image depth_transformed = k4a::image::create(K4A_IMAGE_FORMAT_DEPTH16,
-    sensor->param.calibration.color_camera_calibration.resolution_width,
-    sensor->param.calibration.color_camera_calibration.resolution_height,
-    sensor->param.calibration.color_camera_calibration.resolution_width *
+    sensor->device.calibration.color_camera_calibration.resolution_width,
+    sensor->device.calibration.color_camera_calibration.resolution_height,
+    sensor->device.calibration.color_camera_calibration.resolution_width *
     static_cast<int>(sizeof(uint16_t)));
 
-  sensor->param.transformation.depth_image_to_color_camera(sensor->depth.data.k4a_image, &depth_transformed);
+  sensor->device.transformation.depth_image_to_color_camera(sensor->depth.data.k4a_image, &depth_transformed);
   if(!depth_transformed.is_valid()) return;
 
   //Data
@@ -225,9 +225,9 @@ void Data::find_depth_and_ir_to_color(k4n::dev::Sensor* sensor){
 
   //Depth images
   k4a::image depth_transformed = k4a::image::create(K4A_IMAGE_FORMAT_DEPTH16,
-    sensor->param.calibration.color_camera_calibration.resolution_width,
-    sensor->param.calibration.color_camera_calibration.resolution_height,
-    sensor->param.calibration.color_camera_calibration.resolution_width *
+    sensor->device.calibration.color_camera_calibration.resolution_width,
+    sensor->device.calibration.color_camera_calibration.resolution_height,
+    sensor->device.calibration.color_camera_calibration.resolution_width *
     static_cast<int>(sizeof(uint16_t)));
 
   //IR images
@@ -242,13 +242,13 @@ void Data::find_depth_and_ir_to_color(k4n::dev::Sensor* sensor){
     nullptr);
   k4a::image ir_transformed = k4a::image::create(
     K4A_IMAGE_FORMAT_CUSTOM16,
-    sensor->param.calibration.color_camera_calibration.resolution_width,
-    sensor->param.calibration.color_camera_calibration.resolution_height,
-    sensor->param.calibration.color_camera_calibration.resolution_width *
+    sensor->device.calibration.color_camera_calibration.resolution_width,
+    sensor->device.calibration.color_camera_calibration.resolution_height,
+    sensor->device.calibration.color_camera_calibration.resolution_width *
     static_cast<int>(sizeof(uint16_t)));
 
   uint32_t value_no_data = 0;
-  sensor->param.transformation.depth_image_to_color_camera_custom(sensor->depth.data.k4a_image, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_LINEAR, value_no_data);
+  sensor->device.transformation.depth_image_to_color_camera_custom(sensor->depth.data.k4a_image, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_LINEAR, value_no_data);
   if(!depth_transformed.is_valid()) return;
 
   //Depth transformed
@@ -278,9 +278,9 @@ void Data::find_ir_to_color(k4n::dev::Sensor* sensor){
   //Convert it into a depth POV representation
   k4a::image ir_transformed = k4a::image::create(
     K4A_IMAGE_FORMAT_DEPTH16,
-    sensor->param.calibration.color_camera_calibration.resolution_width,
-    sensor->param.calibration.color_camera_calibration.resolution_height,
-    sensor->param.calibration.color_camera_calibration.resolution_width *
+    sensor->device.calibration.color_camera_calibration.resolution_width,
+    sensor->device.calibration.color_camera_calibration.resolution_height,
+    sensor->device.calibration.color_camera_calibration.resolution_width *
     static_cast<int>(sizeof(uint16_t)));
 
   k4a::image ir = k4a::image::create_from_buffer(
@@ -293,7 +293,7 @@ void Data::find_ir_to_color(k4n::dev::Sensor* sensor){
     nullptr,
     nullptr);
 
-  sensor->param.transformation.depth_image_to_color_camera(ir, &ir_transformed);
+  sensor->device.transformation.depth_image_to_color_camera(ir, &ir_transformed);
   if(!ir_transformed.is_valid()) return;
 
   //Data
@@ -325,7 +325,7 @@ void Data::find_color_to_depth(k4n::dev::Sensor* sensor){
   }
 
   //Convert it into a depth POV representation
-  k4a::image color_to_depth = sensor->param.transformation.color_image_to_depth_camera(sensor->depth.data.k4a_image, sensor->color.data.k4a_image);
+  k4a::image color_to_depth = sensor->device.transformation.color_image_to_depth_camera(sensor->depth.data.k4a_image, sensor->color.data.k4a_image);
   if(!color_to_depth.is_valid()) return;
 
   //Fill data structure

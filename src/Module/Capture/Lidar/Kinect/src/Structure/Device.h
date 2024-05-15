@@ -7,15 +7,11 @@
 #include <string>
 
 
-namespace k4n::structure{
+namespace k4n::device{
 
-struct Param{
+struct Structure{
   //Sensor parameters and information
   //---------------------------
-
-  //General info
-  std::string format = "";
-  std::string serial_number = "";
 
   //General parameters
   int index = -1;
@@ -23,9 +19,10 @@ struct Param{
   bool data_ready = false;
   bool is_capturing = false;
   float file_size = 0;
+  std::string serial_number = "";
 
   //K4A objects
-  k4a::device device;
+  k4a::device handle;
   k4a::calibration calibration;
   k4a::transformation transformation;
   k4a::capture* capture;

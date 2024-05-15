@@ -157,7 +157,7 @@ void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   data->size = vec_xyz.size();
   data->width = sensor->depth.cloud.width;
   data->height = sensor->depth.cloud.height;
-  sensor->param.index_cloud++;
+  sensor->device.index_cloud++;
   tasker->task_end("copying");
 
   //---------------------------
@@ -172,7 +172,7 @@ void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image){
   cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->cloud.width, depth->cloud.height, depth->cloud.width * sizeof(int16_t) * 3);
 
   //Transform depth into cloud
-  sensor->param.transformation.depth_image_to_point_cloud(depth->cloud.k4a_image, depth->cloud.calibration_type, &cloud_image);
+  sensor->device.transformation.depth_image_to_point_cloud(depth->cloud.k4a_image, depth->cloud.calibration_type, &cloud_image);
 
   //---------------------------
 }

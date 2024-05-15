@@ -35,10 +35,10 @@ void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
   configuration.synchronized_images_only = master->config.synchro.synchronized_images_only;
 
   //---------------------------
-  sensor->param.configuration = configuration;
+  sensor->device.configuration = configuration;
 }
 void Configuration::make_sensor_color_configuration(k4n::dev::Sensor* sensor){
-  k4a::device& device = sensor->param.device;
+  k4a::device& device = sensor->device.handle;
   k4n::dev::Master* master = sensor->master;
   //---------------------------
 
@@ -115,7 +115,7 @@ void Configuration::find_playback_configuration(k4n::playback::Sensor* sensor){
   //Device
   sensor->ir.config.enabled = configuration.ir_track_enabled;
   sensor->imu.config.enabled = configuration.imu_track_enabled;
-  sensor->playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
+  sensor->playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->device.serial_number);
 
   //---------------------------
 }
@@ -140,23 +140,23 @@ void Configuration::reset_color_configuration(k4n::dev::Sensor* sensor){
 void Configuration::make_transformation_from_calibration(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  sensor->param.transformation = k4a::transformation(sensor->param.calibration);
+  sensor->device.transformation = k4a::transformation(sensor->device.calibration);
 
   //---------------------------
 }
 void Configuration::make_capture_calibration(k4n::dev::Sensor* sensor){
   k4n::dev::Master* master = sensor->master;
-  k4a::device& device = sensor->param.device;
+  k4a::device& device = sensor->device.handle;
   //---------------------------
 
-  sensor->param.calibration = device.get_calibration(master->config.depth.mode, master->config.color.resolution);
+  sensor->device.calibration = device.get_calibration(master->config.depth.mode, master->config.color.resolution);
 
   //---------------------------
 }
 void Configuration::find_playback_calibration(k4n::playback::Sensor* sensor){
   //---------------------------
 
-  sensor->param.calibration = sensor->playback.get_calibration();
+  sensor->device.calibration = sensor->playback.get_calibration();
 
   //---------------------------
 }

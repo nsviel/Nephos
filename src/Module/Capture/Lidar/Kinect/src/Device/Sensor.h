@@ -16,7 +16,7 @@ namespace k4n::processing{class Data;}
 namespace k4n::utils{class Configuration;}
 namespace k4n::capture{class Sensor;}
 namespace k4n::playback{class Sensor;}
-namespace k4n::structure{class Param;}
+namespace k4n::device{class Structure;}
 namespace k4n::structure{class Playback;}
 namespace k4n::structure{class Recorder;}
 namespace k4n::color{class Structure;}
@@ -79,7 +79,7 @@ public:
   k4n::utils::Configuration* k4n_config;
 
   dat::base::Object object;
-  k4n::structure::Param param;
+  k4n::device::Structure device;
   k4n::color::Structure color;
   k4n::depth::Structure depth;
   k4n::infrared::Structure ir;

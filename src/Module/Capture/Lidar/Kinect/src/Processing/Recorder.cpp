@@ -97,8 +97,8 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
 
   //Path
   string master_name = master->recorder.filename;
-  string sensor_idx = to_string(sensor->param.index);
-  string cloud_idx = to_string(sensor->param.index_cloud);
+  string sensor_idx = to_string(sensor->device.index);
+  string cloud_idx = to_string(sensor->device.index_cloud);
   string filename = master_name + "_" + sensor_idx + "_" + cloud_idx;
   string path = path_dir + "/" + filename + ".ply";
 
@@ -108,9 +108,9 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
-  k4a::record& recorder = sensor->param.recorder;
+  k4a::record& recorder = sensor->device.recorder;
   k4n::dev::Master* master = sensor->master;
-  k4a::capture* capture = sensor->param.capture;
+  k4a::capture* capture = sensor->device.capture;
   //---------------------------
 
   //Start recording
@@ -124,11 +124,11 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
 
     //Create recorder and file, and write header
     string master_name = master->recorder.filename;
-    string sensor_idx = to_string(sensor->param.index);
+    string sensor_idx = to_string(sensor->device.index);
     string filename = master_name + "_" + sensor_idx;
     string path = path_dir + "/" + filename + ".mkv";
 
-    recorder = k4a::record::create(path.c_str(), sensor->param.device, sensor->param.configuration);
+    recorder = k4a::record::create(path.c_str(), sensor->device.handle, sensor->device.configuration);
     recorder.write_header();
 
     //Set info

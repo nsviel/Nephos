@@ -75,7 +75,7 @@ vec3 Data::convert_depth_2d_to_3d(k4n::dev::Sensor* sensor, ivec2 point_2d){
 
   //Convert it into 3D coordinate
   k4a_float3_t target_xyz;
-  bool success = sensor->param.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
+  bool success = sensor->device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
   vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
 
   //Apply transformation

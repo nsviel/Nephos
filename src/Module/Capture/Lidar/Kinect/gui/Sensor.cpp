@@ -76,7 +76,7 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Size"); ImGui::TableNextColumn();
 
-    ImGui::TextColored(color, "%.2f Mo", sensor->param.file_size);
+    ImGui::TextColored(color, "%.2f Mo", sensor->device.file_size);
 
     ImGui::EndTable();
   }
@@ -122,7 +122,7 @@ void Sensor::show_firmware_info(k4n::dev::Sensor* sensor){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Device Firmware Version Info");
 
-  k4a_hardware_version_t versionInfo = sensor->param.version;
+  k4a_hardware_version_t versionInfo = sensor->device.version;
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
   if(ImGui::BeginTable("device##firmware", 2)){
     ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);

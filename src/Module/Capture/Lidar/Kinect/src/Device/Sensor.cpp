@@ -70,7 +70,7 @@ void Sensor::remove(){
 
   //Sensor related
   this->stop_thread();
-  this->param.transformation.destroy();
+  this->device.transformation.destroy();
   this->object.remove();
 
   //Profiler related
@@ -113,7 +113,7 @@ void Sensor::init_object(){
   object.data.nb_data_max = 10000000;
   object.pose.model[2][3] = 1;
   dat_entity->init_entity(&object);
-  
+
   //---------------------------
 }
 void Sensor::init_image(){

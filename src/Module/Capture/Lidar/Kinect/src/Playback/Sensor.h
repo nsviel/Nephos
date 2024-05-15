@@ -42,6 +42,7 @@ public:
   k4a::playback playback;
   k4n::synchro::Configuration synchro;
   utl::media::Path path;
+  std::string format = "";
 };
 
 

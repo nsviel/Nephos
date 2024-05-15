@@ -65,7 +65,7 @@ void Playback::show_info_device(k4n::playback::Sensor* sensor){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Device S/N"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->param.serial_number.c_str());
+    ImGui::TextColored(color, "%s", sensor->device.serial_number.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("IMU enabled"); ImGui::TableNextColumn();

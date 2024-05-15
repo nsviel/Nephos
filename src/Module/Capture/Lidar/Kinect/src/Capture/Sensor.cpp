@@ -10,7 +10,7 @@ namespace k4n::capture{
 Sensor::Sensor(k4n::Node* node_k4n, int index) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
-  this->param.index = index;
+  this->device.index = index;
   this->name = "capture_" + to_string(index);
 
   //---------------------------
@@ -28,22 +28,22 @@ void Sensor::thread_init(){
   //---------------------------
 
   //Init elements
-  this->param.index = 0;
-  this->param.device = k4a::device::open(param.index);
-  if(!param.device.is_valid()) return;
+  this->device.index = 0;
+  this->device.handle = k4a::device::open(device.index);
+  if(!device.handle.is_valid()) return;
 
-  this->param.serial_number = param.device.get_serialnum();
-  this->param.version = param.device.get_version();
+  this->device.serial_number = device.handle.get_serialnum();
+  this->device.version = device.handle.get_version();
 
   //Configuration
   k4n_config->make_sensor_configuration(this);
   k4n_config->make_sensor_color_configuration(this);
   k4n_config->make_capture_calibration(this);
   k4n_config->make_transformation_from_calibration(this);
-  this->param.device.start_cameras(&param.configuration);
+  this->device.handle.start_cameras(&device.configuration);
 
   //Start capture thread
-  this->param.is_capturing = true;
+  this->device.is_capturing = true;
 
   //---------------------------
 }
@@ -79,8 +79,8 @@ void Sensor::thread_loop(){
 void Sensor::thread_end(){
   //---------------------------
 
-  this->param.device.close();
-  this->param.is_capturing = false;
+  this->device.handle.close();
+  this->device.is_capturing = false;
 
   //---------------------------
 }
@@ -90,7 +90,7 @@ k4a::capture* Sensor::manage_new_capture(){
   //---------------------------
 
   k4a::capture* capture = new k4a::capture();
-  bool ok = param.device.get_capture(capture, std::chrono::milliseconds(2000));
+  bool ok = device.handle.get_capture(capture, std::chrono::milliseconds(2000));
   if(!capture->is_valid()){
     delete capture;
     return nullptr;
@@ -115,7 +115,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   }
 
   // Update the sensor parameter
-  this->param.capture = capture;
+  this->device.capture = capture;
 
   //---------------------------
 }
