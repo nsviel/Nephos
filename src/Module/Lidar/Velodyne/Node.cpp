@@ -28,7 +28,7 @@ Node::~Node(){}
 
 //Main function
 void Node::config(){
-  ldr::Format* ldr_format = node_loader->get_format();
+  ldr::Format* ldr_format = node_loader->get_ldr_format();
   //---------------------------
 
   ldr_format->insert_importer(new vld::utils::Importer(vld_struct));

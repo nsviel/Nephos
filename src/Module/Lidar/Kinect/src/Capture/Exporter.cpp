@@ -16,7 +16,7 @@ Exporter::Exporter(k4n::Node* node_k4n){
   eng::Node* node_engine = node_k4n->get_node_engine();
   ldr::Node* node_loader = node_engine->get_node_loader();
 
-  this->ldr_exporter = node_loader->get_exporter();
+  this->ldr_exporter = node_loader->get_ldr_exporter();
   this->ply_exporter = new format::ply::Exporter();
   this->thread_pool = node_engine->get_thread_pool();
 

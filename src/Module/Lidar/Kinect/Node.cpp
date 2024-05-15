@@ -29,17 +29,11 @@ Node::Node(eng::Node* node_engine){
 Node::~Node(){}
 
 //Main function
-void Node::config(){
-  ldr::Format* ldr_format = node_loader->get_format();
-  //---------------------------
-
-  //ldr_format->insert_importer(new k4n::playback::Importer(this));
-
-  //---------------------------
-}
 void Node::init(){
+  ldr::Format* ldr_format = node_loader->get_ldr_format();
   //---------------------------
 
+  ldr_format->insert_importer(new k4n::playback::Importer(this));
   k4n_connection->start_thread();
 
   //---------------------------

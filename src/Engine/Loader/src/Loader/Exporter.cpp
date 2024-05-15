@@ -9,7 +9,7 @@ namespace ldr{
 Exporter::Exporter(ldr::Node* node_loader){
   //---------------------------
 
-  this->ldr_format = node_loader->get_format();
+  this->ldr_format = node_loader->get_ldr_format();
 
   //---------------------------
 }

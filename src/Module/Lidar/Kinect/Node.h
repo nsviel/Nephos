@@ -24,7 +24,6 @@ public:
 
 public:
   //Main function
-  void config();
   void init();
 
   inline eng::Node* get_node_engine(){return node_engine;}

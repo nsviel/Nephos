@@ -25,7 +25,6 @@ Module::~Module(){}
 void Module::init(){
   //---------------------------
 
-  node_kinect->config();
   node_kinect->init();
 
   //---------------------------

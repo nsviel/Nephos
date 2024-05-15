@@ -15,7 +15,7 @@ Sphere::Sphere(eng::Node* node_engine) : Glyph(node_engine){
 
   ldr::Node* node_loader = node_engine->get_node_loader();
 
-  this->ldr_loader = node_loader->get_loader();
+  this->ldr_loader = node_loader->get_ldr_loader();
   this->ope_transform = new ope::Transformation();
 
   this->name = "object::sphere";
