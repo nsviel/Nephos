@@ -63,6 +63,7 @@ void Node::loop(){
 void Node::end(){
   //---------------------------
 
+  node_scene->clean();
   node_engine->clean();
   node_vulkan->clean();
 

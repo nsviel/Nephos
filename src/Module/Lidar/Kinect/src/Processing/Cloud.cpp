@@ -57,7 +57,7 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
 
   dat::base::Object* object = sensor->get_object();
   object->update_data();
-  object->update_glyph();
+  // /object->update_glyph();
 
   //---------------------------
   this->idle = true;

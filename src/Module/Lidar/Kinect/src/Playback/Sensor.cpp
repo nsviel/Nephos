@@ -25,13 +25,7 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::media::Path path) : k4n::dev::Sensor(no
 
   //---------------------------
 }
-Sensor::~Sensor(){
-  //---------------------------
-
-  this->stop_thread();
-
-  //---------------------------
-}
+Sensor::~Sensor(){}
 
 //Main function
 void Sensor::thread_init(){
@@ -83,6 +77,7 @@ void Sensor::thread_loop(){
 void Sensor::thread_end(){
   //---------------------------
 
+  k4n_image->wait_thread();
   this->playback.close();
 
   //---------------------------

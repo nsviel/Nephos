@@ -4,6 +4,7 @@
 
 namespace sce{class Node;}
 namespace k4n{class Node;}
+namespace rad{class Node;}
 
 
 namespace sce{
@@ -24,7 +25,7 @@ public:
 
 private:
   k4n::Node* node_kinect;
-
+  rad::Node* node_radio;
 };
 
 }

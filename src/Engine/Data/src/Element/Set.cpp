@@ -169,7 +169,6 @@ void Set::remove(dat::base::Set* set, dat::base::Entity* entity){
   //---------------------------
 }
 void Set::remove_all_entity(dat::base::Set* set){
-  if(set->list_entity.size() == 0) return;
   //---------------------------
 
   // Check if the current set has the query entity
