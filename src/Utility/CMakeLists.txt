@@ -12,6 +12,7 @@ file(GLOB_RECURSE ALL_SOURCES
   Network/*.cpp
   Specific/*.cpp
   Thread/*.cpp
+  GUI/*.cpp
 )
 
 #-----------------

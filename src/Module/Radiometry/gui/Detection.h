@@ -1,5 +1,6 @@
 #pragma once
 
+#include <GUI/Media/Stream.h>
 #include <Utility/Specific/Common.h>
 
 namespace dat::base{class Sensor;}

@@ -22,8 +22,7 @@ Node::Node(app::Node* node_app){
   //Child
   this->node_kinect = new k4n::Node(node_engine);
   this->sce_init = new sce::Init(this);
-  this->node_gui = new gui::Node(this);
-  
+
   this->add_node_panel(node_kinect);
 
   //---------------------------
