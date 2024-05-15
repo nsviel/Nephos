@@ -5,8 +5,8 @@
 namespace app{class Node;}
 namespace vk{class Node;}
 namespace sce{class Init;}
+namespace sce{class Module;}
 namespace eng{class Node;}
-namespace k4n{class Node;}
 
 
 namespace sce{
@@ -35,7 +35,7 @@ private:
 
   //Child
   sce::Init* sce_init;
-  k4n::Node* node_kinect;
+  sce::Module* sce_module;
 
   bool show_scene = true;
   bool show_loader = true;

@@ -28,7 +28,7 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
-  inline bool& get_app_running(){return running;}
+  inline bool* get_app_running(){return &running;}
 
 private:
   vk::Node* node_vulkan;

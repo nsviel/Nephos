@@ -15,6 +15,7 @@ struct Vulkan{
   Vulkan(app::Node* node_app){
     prf::Node* node_profiler = node_app->get_node_profiler();
     this->profiler = new vk::structure::Profiler(node_profiler);
+    this->window.running = node_app->get_app_running();
   }
 
   //General

@@ -5,7 +5,7 @@
 #include <Scene/Namespace.h>
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
-#include <Kinect/Namespace.h>
+
 #include <image/IconsFontAwesome6.h>
 
 
@@ -20,10 +20,10 @@ Node::Node(app::Node* node_app){
   this->node_vulkan = node_engine->get_node_vulkan();
 
   //Child
-  this->node_kinect = new k4n::Node(node_engine);
   this->sce_init = new sce::Init(this);
+  this->sce_module = new sce::Module(this);
 
-  this->add_node_panel(node_kinect);
+  this->add_node_panel(sce_module);
 
   //---------------------------
 }
@@ -32,8 +32,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_kinect->config();
-  node_kinect->init();
+  sce_module->init();
   sce_init->init();
 
   //---------------------------
@@ -41,21 +40,21 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  //node_kinect->loop();
+  sce_module->loop();
 
   //---------------------------
 }
 void Node::clean(){
   //---------------------------
 
-  //node_kinect->clean();
+  sce_module->clean();
 
   //---------------------------
 }
 void Node::gui(){
   //---------------------------
 
-  //node_kinect->gui();
+  sce_module->gui();
 
   //---------------------------
 }

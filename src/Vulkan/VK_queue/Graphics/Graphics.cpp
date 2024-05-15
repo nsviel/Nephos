@@ -60,7 +60,7 @@ void Graphics::wait_for_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(thread_idle == false){
+  while(thread_idle == false && !vk_struct->queue.standby){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
@@ -70,7 +70,7 @@ void Graphics::wait_for_work(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(thread_idle){
+  while(thread_idle && !vk_struct->queue.standby){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 

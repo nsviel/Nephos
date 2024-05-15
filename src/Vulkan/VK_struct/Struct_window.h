@@ -15,6 +15,7 @@ struct Window{
 
   //Dimension
   bool resizing = false;
+  bool* running = nullptr;
   glm::vec2 dimension =  glm::vec2(1024, 500);
   glm::vec2 constraint_min = glm::vec2(500, 250);
   glm::vec2 constraint_max = glm::vec2(4000, 4000);

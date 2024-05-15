@@ -84,10 +84,7 @@ bool GLFW::window_closing(){
   //---------------------------
 
   bool closing = glfwWindowShouldClose(vk_struct->window.handle);
-  if(closing){
-    bool& running = *vk_struct->param.app_running;
-    running = false;
-  }
+  if(closing) *vk_struct->window.running = false;
 
   //---------------------------
   return closing;
