@@ -81,7 +81,7 @@ void Connection::create_sensor(int index){
   //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
   sensor->name = "capture_" + to_string(index);
-  sensor->device.index = index;
+  sensor->device.idx_dev = index;
   sensor->master = master;
 
   //Sensor initialization

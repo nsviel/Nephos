@@ -71,13 +71,13 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
     ImGui::Text("Path transfo"); ImGui::TableNextColumn();
     string path_transfo = (sensor->path.transformation != "") ? sensor->path.transformation : "(not defined)";
     ImGui::TextColored(color, "%s", path_transfo.c_str());
-*/
+
     //File size
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Size"); ImGui::TableNextColumn();
 
-    ImGui::TextColored(color, "%.2f Mo", sensor->device.file_size);
-
+    ImGui::TextColored(color, "%.2f Mo", sensor->file_size);
+*/
     ImGui::EndTable();
   }
 

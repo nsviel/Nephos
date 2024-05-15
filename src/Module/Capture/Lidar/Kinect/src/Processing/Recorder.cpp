@@ -97,8 +97,8 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
 
   //Path
   string master_name = master->recorder.filename;
-  string sensor_idx = to_string(sensor->device.index);
-  string cloud_idx = to_string(sensor->device.index_cloud);
+  string sensor_idx = to_string(sensor->device.idx_dev);
+  string cloud_idx = to_string(sensor->device.idx_cloud);
   string filename = master_name + "_" + sensor_idx + "_" + cloud_idx;
   string path = path_dir + "/" + filename + ".ply";
 
@@ -124,7 +124,7 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
 
     //Create recorder and file, and write header
     string master_name = master->recorder.filename;
-    string sensor_idx = to_string(sensor->device.index);
+    string sensor_idx = to_string(sensor->device.idx_dev);
     string filename = master_name + "_" + sensor_idx;
     string path = path_dir + "/" + filename + ".mkv";
 

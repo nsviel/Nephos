@@ -114,7 +114,7 @@ void Master::manage_restart(){
       float& ts_beg = player->get_ts_beg();
       auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_beg));
       sensor->synchro.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-      sensor->device.index_cloud = 0;
+      sensor->device.idx_cloud = 0;
     }
   }
 

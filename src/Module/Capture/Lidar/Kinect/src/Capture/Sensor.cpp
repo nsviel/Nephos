@@ -10,7 +10,7 @@ namespace k4n::capture{
 Sensor::Sensor(k4n::Node* node_k4n, int index) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
-  this->device.index = index;
+  this->device.idx_dev = index;
   this->name = "capture_" + to_string(index);
 
   //---------------------------
@@ -28,8 +28,8 @@ void Sensor::thread_init(){
   //---------------------------
 
   //Init elements
-  this->device.index = 0;
-  this->device.handle = k4a::device::open(device.index);
+  this->device.idx_dev = 0;
+  this->device.handle = k4a::device::open(device.idx_dev);
   if(!device.handle.is_valid()) return;
 
   this->device.serial_number = device.handle.get_serialnum();
@@ -41,9 +41,6 @@ void Sensor::thread_init(){
   k4n_config->make_capture_calibration(this);
   k4n_config->make_transformation_from_calibration(this);
   this->device.handle.start_cameras(&device.configuration);
-
-  //Start capture thread
-  this->device.is_capturing = true;
 
   //---------------------------
 }
@@ -80,7 +77,6 @@ void Sensor::thread_end(){
   //---------------------------
 
   this->device.handle.close();
-  this->device.is_capturing = false;
 
   //---------------------------
 }

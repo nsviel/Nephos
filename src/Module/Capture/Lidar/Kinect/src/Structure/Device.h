@@ -9,19 +9,22 @@
 
 namespace k4n::device{
 
+enum Mode{
+  CAPTURE = 0,
+  PLAYBACK = 1,
+};
+
 struct Structure{
   //Sensor parameters and information
   //---------------------------
 
   //General parameters
-  int index = -1;
-  int index_cloud = 0;
-  bool data_ready = false;
-  bool is_capturing = false;
-  float file_size = 0;
+  int idx_dev = -1;
+  int idx_cloud = 0;
+  int mode = k4n::device::PLAYBACK;
   std::string serial_number = "";
 
-  //K4A objects
+  //K4A device related objects
   k4a::device handle;
   k4a::calibration calibration;
   k4a::transformation transformation;

@@ -157,7 +157,7 @@ void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   data->size = vec_xyz.size();
   data->width = sensor->depth.cloud.width;
   data->height = sensor->depth.cloud.height;
-  sensor->device.index_cloud++;
+  sensor->device.idx_cloud++;
   tasker->task_end("copying");
 
   //---------------------------
