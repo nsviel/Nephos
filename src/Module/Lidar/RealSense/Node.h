@@ -5,12 +5,8 @@
 namespace prf{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
-namespace k4n::capture{class Connection;}
-namespace utl::thread{class Pool;}
-namespace k4n::calibration{class Model;}
 namespace rad{class Node;}
 namespace ldr{class Node;}
-namespace dat{class Graph;}
 
 
 namespace rsx{
@@ -41,8 +37,6 @@ private:
   dat::Node* node_data;
 
   //Child
-  utl::thread::Pool* thread_pool;
-  k4n::capture::Connection* k4n_connection;
 };
 
 }
