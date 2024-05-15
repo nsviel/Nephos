@@ -64,6 +64,12 @@ void Image::copy_image(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("image");
   //---------------------------
 
+
+
+  // INSERT IMAGE INTO DATA AND CALL THE RESULT IMAGE.cpp
+  //JARTERR LA CLASS RECORDER DANS DYNAMIC
+
+
   tasker->loop_begin();
 
   //Color image
