@@ -1,6 +1,5 @@
 #pragma once
 
-namespace app{class Configuration;}
 namespace vk{class Node;}
 namespace prf{class Node;}
 namespace eng{class Node;}
@@ -26,18 +25,19 @@ public:
   void loop();
   void end();
 
-  inline app::Configuration* get_app_config(){return app_config;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
+  inline bool& get_app_running(){return running;}
 
 private:
-  app::Configuration* app_config;
   vk::Node* node_vulkan;
   prf::Node* node_profiler;
   eng::Node* node_engine;
   gui::Node* node_gui;
   sce::Node* node_scene;
+
+  bool running = true;
 };
 
 }

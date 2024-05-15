@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Application/Namespace.h>
+#include <Application/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <string>
@@ -13,14 +13,8 @@ struct Vulkan{
 
   //Constructor
   Vulkan(app::Node* node_app){
-    app::Configuration* app_config = node_app->get_app_config();
     prf::Node* node_profiler = node_app->get_node_profiler();
     this->profiler = new vk::structure::Profiler(node_profiler);
-    this->param.headless = app_config->headless;
-    this->param.app_running = &app_config->running;
-    this->window.dimension = app_config->window_dim;
-    this->window.constraint_min = app_config->window_dim_min;
-    this->window.title = app_config->window_title;
   }
 
   //General

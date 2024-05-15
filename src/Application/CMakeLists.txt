@@ -8,8 +8,6 @@ add_subdirectory(Scene)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
-  Configuration.h
-  Namespace.h
 )
 
 #-----------------

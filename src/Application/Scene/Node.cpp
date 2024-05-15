@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Application/Namespace.h>
+#include <Application/Node.h>
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Data/Namespace.h>

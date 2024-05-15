@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Application/Namespace.h>
+#include <Application/Node.h>
 #include <GUI/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Engine/Namespace.h>
@@ -15,7 +15,6 @@ namespace app{
 Node::Node(){
   //---------------------------
 
-  this->app_config = new app::Configuration();
   this->node_profiler = new prf::Node();
   this->node_vulkan = new vk::Node(this);
   this->node_engine = new eng::Node(this);
@@ -51,7 +50,7 @@ void Node::loop(){
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   //---------------------------
 
-  while(app_config->running){
+  while(running){
     prf_manager->loop_begin(120);
     node_engine->loop();
     node_scene->loop();

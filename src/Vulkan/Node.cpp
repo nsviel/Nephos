@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Application/Namespace.h>
+#include <Application/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>

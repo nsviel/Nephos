@@ -11,6 +11,7 @@ struct Window{
   //Window
   std::string title = "Nephos";
   GLFWwindow* handle = nullptr;
+  bool headless = false;
 
   //Dimension
   bool resizing = false;
