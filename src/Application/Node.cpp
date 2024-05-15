@@ -40,6 +40,7 @@ void Node::run(){
 void Node::init(){
   //---------------------------
 
+  node_gui->init();
   node_vulkan->init();
   node_engine->init();
   node_scene->init();
