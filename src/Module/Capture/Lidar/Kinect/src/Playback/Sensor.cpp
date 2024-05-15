@@ -13,11 +13,10 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::media::Path path) : k4n::dev::Sensor(no
   //---------------------------
 
   this->param.path = path;
-  this->param.name = utl::path::get_name_from_path(path.data);
   this->param.format = utl::path::get_format_from_path(path.data);
   this->param.file_size = utl::file::size(path.data);
   this->param.path = path;
-  this->name = param.name;
+  this->name = utl::path::get_name_from_path(path.data);
 
   //---------------------------
 }

@@ -73,8 +73,8 @@ void Playback::show_info_device(k4n::playback::Sensor* sensor){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Frame rate"); ImGui::TableNextColumn();
-    string fps_str = sensor->param.fps_mode + " fps";
-    ImGui::TextColored(color, "%s", fps_str.c_str());
+    //string fps_str = sensor->master->fps.mode_str + " fps";
+    //ImGui::TextColored(color, "%s", fps_str.c_str());
 
     ImGui::EndTable();
   }
@@ -95,15 +95,15 @@ void Playback::show_info_color(k4n::playback::Sensor* sensor){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color format"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->color.config.format_str.c_str());
+    ImGui::TextColored(color, "%s", sensor->color_format.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color resolution"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->color.config.resolution_str.c_str());
+    ImGui::TextColored(color, "%s", sensor->color_resolution.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Color firmware"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->color.config.firmware_version.c_str());
+    ImGui::TextColored(color, "%s", sensor->color_firmware_version.c_str());
 
     ImGui::EndTable();
   }
@@ -128,11 +128,11 @@ void Playback::show_info_depth(k4n::playback::Sensor* sensor){
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth mode"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->depth.config.mode_str.c_str());
+    ImGui::TextColored(color, "%s", sensor->depth_mode.c_str());
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->depth.config.firmware_version.c_str());
+    ImGui::TextColored(color, "%s", sensor->depth_firmware_version.c_str());
 
     ImGui::EndTable();
   }

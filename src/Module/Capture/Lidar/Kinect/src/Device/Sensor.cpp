@@ -97,7 +97,7 @@ void Sensor::init_profiler(){
 
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  this->profiler = new prf::graph::Profiler(param.name, "k4n::sensor");
+  this->profiler = new prf::graph::Profiler(name, "k4n::sensor");
   prf_manager->add_profiler(profiler);
 
   //---------------------------
@@ -107,7 +107,7 @@ void Sensor::init_object(){
 
   //Object
   object = dat::base::Object(node_engine);
-  object.name = param.name;
+  object.name = name;
   object.data.name = "sensor::object::data";
   object.data.topology.type = utl::topology::POINT;
   object.data.nb_data_max = 10000000;

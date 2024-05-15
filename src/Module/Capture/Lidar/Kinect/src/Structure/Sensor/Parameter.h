@@ -14,7 +14,6 @@ struct Param{
   //---------------------------
 
   //General info
-  std::string name = "";
   std::string format = "";
   std::string serial_number = "";
   std::string fps_mode = "";
@@ -23,7 +22,6 @@ struct Param{
   //General parameters
   int index = -1;
   int index_cloud = 0;
-  //int mode = k4n::dev::PLAYBACK;
   bool data_ready = false;
   bool is_capturing = false;
   float file_size = 0;

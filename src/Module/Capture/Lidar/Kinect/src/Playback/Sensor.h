@@ -39,6 +39,12 @@ public:
 
 public:
   k4n::structure::Playback playback;
+
+  std::string color_format = "";
+  std::string color_resolution = "";
+  std::string color_firmware_version = "";
+  std::string depth_mode = "";
+  std::string depth_firmware_version = "";
 };
 
 
