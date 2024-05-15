@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Kinect/src/Structure/FPS.h>
 #include <Kinect/src/Structure/Color.h>
 #include <Kinect/src/Structure/Depth.h>
 #include <Kinect/src/Structure/Infrared.h>
@@ -10,15 +9,12 @@
 
 namespace k4n::structure{
 
-struct Configuration{
-  //Structure for master configuration
+struct FPS{
   //---------------------------
 
-  k4n::structure::Depth_config depth;
-  k4n::structure::Color_config color;
-  k4n::structure::Infrared_config ir;
-  k4n::structure::Synchro synchro;
-  k4n::structure::FPS fps;
+  k4a_fps_t mode = K4A_FRAMES_PER_SECOND_30;
+  std::string mode_str;
+  int query;
 
   //---------------------------
 };

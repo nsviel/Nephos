@@ -85,7 +85,7 @@ void Configuration::find_playback_configuration(k4n::playback::Sensor* sensor){
   //---------------------------
 
   //FPS
-  sensor->param.fps_mode = find_mode_fps(configuration.camera_fps);
+  sensor->fps.mode_str = find_mode_fps(configuration.camera_fps);
 
   //Synchro
   sensor->synchro.wired_mode_str = find_mode_synchro(configuration.wired_sync_mode);

@@ -12,11 +12,16 @@ namespace k4n::playback{
 Sensor::Sensor(k4n::Node* node_k4n, utl::media::Path path) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
-  this->param.path = path;
+  this->path = path;
   this->param.format = utl::path::get_format_from_path(path.data);
   this->param.file_size = utl::file::size(path.data);
-  this->param.path = path;
+  this->path = path;
   this->name = utl::path::get_name_from_path(path.data);
+
+  //Transformation
+  glm::mat4 mat = utl::transformation::find_transformation_from_file(path.transformation);
+  pose.model = mat;
+  pose.model_init = mat;
 
   //---------------------------
 }
@@ -33,8 +38,8 @@ void Sensor::thread_init(){
   //---------------------------
 
   //Init playback
-  if(param.path.data == "") return;
-  this->playback = k4a::playback::open(param.path.data.c_str());
+  if(path.data == "") return;
+  this->playback = k4a::playback::open(path.data.c_str());
   if(!playback){
     cout<<"[error] Sensor opening problem"<<endl;
     return;

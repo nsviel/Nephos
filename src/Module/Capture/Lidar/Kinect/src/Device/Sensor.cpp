@@ -113,12 +113,7 @@ void Sensor::init_object(){
   object.data.nb_data_max = 10000000;
   object.pose.model[2][3] = 1;
   dat_entity->init_entity(&object);
-
-  //Transformation
-  glm::mat4 mat = utl::transformation::find_transformation_from_file(param.path.transformation);
-  pose.model = mat;
-  pose.model_init = mat;
-
+  
   //---------------------------
 }
 void Sensor::init_image(){

@@ -24,6 +24,7 @@ namespace k4n::structure{class Depth;}
 namespace k4n::structure{class Infrared;}
 namespace k4n::structure{class IMU;}
 namespace k4n::structure{class Calibration;}
+namespace k4n::structure{class FPS;}
 namespace prf::graph{class Profiler;}
 namespace dat::base{class Object;}
 namespace k4n::gui{class Sensor;}
@@ -83,6 +84,7 @@ public:
   k4n::structure::Depth depth;
   k4n::structure::Infrared ir;
   k4n::structure::IMU imu;
+  k4n::structure::FPS fps;
 
 protected:
   eng::Node* node_engine;

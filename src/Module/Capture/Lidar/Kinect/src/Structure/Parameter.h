@@ -16,8 +16,6 @@ struct Param{
   //General info
   std::string format = "";
   std::string serial_number = "";
-  std::string fps_mode = "";
-  utl::media::Path path;
 
   //General parameters
   int index = -1;

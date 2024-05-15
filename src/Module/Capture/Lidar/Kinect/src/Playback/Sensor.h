@@ -41,6 +41,7 @@ public:
 public:
   k4a::playback playback;
   k4n::structure::Synchro synchro;
+  utl::media::Path path;
 };
 
 

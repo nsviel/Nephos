@@ -59,19 +59,19 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Type"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", sensor->entity_type.c_str());
-
+/*
     //File path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path data"); ImGui::TableNextColumn();
-    string path_data = (sensor->param.path.data != "") ? sensor->param.path.data : "(not defined)";
+    string path_data = (sensor->path.data != "") ? sensor->path.data : "(not defined)";
     ImGui::TextColored(color, "%s", path_data.c_str());
 
     //Transformation matrix file path
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path transfo"); ImGui::TableNextColumn();
-    string path_transfo = (sensor->param.path.transformation != "") ? sensor->param.path.transformation : "(not defined)";
+    string path_transfo = (sensor->path.transformation != "") ? sensor->path.transformation : "(not defined)";
     ImGui::TextColored(color, "%s", path_transfo.c_str());
-
+*/
     //File size
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Size"); ImGui::TableNextColumn();
@@ -101,16 +101,16 @@ void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
     }
     ImGui::Separator();
     ImGui::Columns(1);
-
+/*
     ImVec2 width = ImGui::GetContentRegionAvail();
     utl::type::Pose* pose = sensor->get_pose();
     if(ImGui::Button("Save##transfomatrix", ImVec2(width.x, 0))){
-      utl::transformation::save_transformation_to_file(pose->model, sensor->param.path.transformation);
+      utl::transformation::save_transformation_to_file(pose->model, sensor->path.transformation);
     }
     if(ImGui::Button("Identity##transfomatrix", ImVec2(width.x, 0))){
       utl::transformation::make_transformation_identity(pose->model);
     }
-
+*/
     ImGui::EndTabItem();
   }
 

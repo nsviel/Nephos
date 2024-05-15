@@ -131,8 +131,8 @@ void Master::player_update(){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      float mkv_ts_beg = k4n_importer->find_mkv_ts_beg(sensor->param.path.data);
-      float mkv_ts_end = k4n_importer->find_mkv_ts_end(sensor->param.path.data);
+/*      float mkv_ts_beg = k4n_importer->find_mkv_ts_beg(sensor->path.data);
+      float mkv_ts_end = k4n_importer->find_mkv_ts_end(sensor->path.data);
 
       ts_beg = (ts_beg != -1) ? std::max(ts_beg, mkv_ts_beg) : mkv_ts_beg;
       ts_end = (ts_end != -1) ? std::min(ts_end, mkv_ts_end) : mkv_ts_end;
