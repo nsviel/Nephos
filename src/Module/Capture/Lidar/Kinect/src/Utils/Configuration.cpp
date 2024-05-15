@@ -20,6 +20,7 @@ void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
+
   //Field stuff
   configuration.color_format = master->config.color.format;
   configuration.color_resolution = master->config.color.resolution;
@@ -28,7 +29,7 @@ void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
   //Synchro stuff
   configuration.camera_fps = master->config.fps.mode;
   configuration.depth_delay_off_color_usec = master->synchro.depth_delay_off_color_us;
-  configuration.wired_sync_mode = master->synchro.wired_sync_mode;
+  configuration.wired_sync_mode = master->synchro.wired_mode;
   configuration.subordinate_delay_off_master_usec = master->synchro.subordinate_delay_off_master_us;
   configuration.disable_streaming_indicator = master->synchro.disable_streaming_indicator;
   configuration.synchronized_images_only = master->synchro.synchronized_images_only;
@@ -62,7 +63,7 @@ void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
 
   master->config.fps.mode = K4A_FRAMES_PER_SECOND_30;
   master->synchro.depth_delay_off_color_us = 0;
-  master->synchro.wired_sync_mode = K4A_WIRED_SYNC_MODE_STANDALONE;
+  master->synchro.wired_mode = K4A_WIRED_SYNC_MODE_STANDALONE;
   master->synchro.subordinate_delay_off_master_us = 0;
   master->synchro.disable_streaming_indicator = true;
   master->synchro.synchronized_images_only = true;
@@ -80,28 +81,28 @@ void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
   //---------------------------
 }
 void Configuration::find_playback_configuration(k4n::playback::Sensor* sensor){
-  k4a_record_configuration_t configuration = sensor->playback.handle.get_record_configuration();
+  k4a_record_configuration_t configuration = sensor->playback.get_record_configuration();
   //---------------------------
 
   //FPS
   sensor->param.fps_mode = find_mode_fps(configuration.camera_fps);
 
   //Synchro
-  sensor->playback.wired_sync_mode_str = find_mode_synchro(configuration.wired_sync_mode);
-  sensor->playback.wired_sync_mode = configuration.wired_sync_mode;
-  sensor->playback.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
-  sensor->playback.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
-  sensor->playback.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
+  sensor->synchro.wired_mode_str = find_mode_synchro(configuration.wired_sync_mode);
+  sensor->synchro.wired_mode = configuration.wired_sync_mode;
+  sensor->synchro.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
+  sensor->synchro.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
+  sensor->synchro.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
 
   //Depth
   sensor->depth_mode = find_mode_depth(configuration.depth_mode);
   sensor->depth.config.enabled = configuration.depth_track_enabled;
   sensor->depth.config.mode = configuration.depth_mode;
-  sensor->playback.handle.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor->depth_firmware_version);
+  sensor->playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor->depth_firmware_version);
 
   //Color
   k4a_image_format_t required_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  sensor->playback.handle.set_color_conversion(required_format);
+  sensor->playback.set_color_conversion(required_format);
   configuration.color_format = required_format;
 
   sensor->color_resolution = find_mode_color_resolution(configuration.color_resolution);
@@ -109,12 +110,12 @@ void Configuration::find_playback_configuration(k4n::playback::Sensor* sensor){
   sensor->color.config.enabled = configuration.color_track_enabled;
   sensor->color.config.resolution = configuration.color_resolution;
   sensor->color.config.format = configuration.color_format;
-  sensor->playback.handle.get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor->color_firmware_version);
+  sensor->playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor->color_firmware_version);
 
   //Device
   sensor->ir.config.enabled = configuration.ir_track_enabled;
   sensor->imu.config.enabled = configuration.imu_track_enabled;
-  sensor->playback.handle.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
+  sensor->playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->param.serial_number);
 
   //---------------------------
 }
@@ -155,7 +156,7 @@ void Configuration::make_capture_calibration(k4n::dev::Sensor* sensor){
 void Configuration::find_playback_calibration(k4n::playback::Sensor* sensor){
   //---------------------------
 
-  sensor->param.calibration = sensor->playback.handle.get_calibration();
+  sensor->param.calibration = sensor->playback.get_calibration();
 
   //---------------------------
 }

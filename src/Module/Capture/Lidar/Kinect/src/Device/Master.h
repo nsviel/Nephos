@@ -2,7 +2,7 @@
 
 #include <Data/src/Base/Set.h>
 #include <Utility/Specific/Common.h>
-#include <Kinect/src/Structure/Master/Namespace.h>
+#include <Kinect/src/Structure/Namespace.h>
 
 namespace dat{class Set;}
 namespace k4n{class Node;}

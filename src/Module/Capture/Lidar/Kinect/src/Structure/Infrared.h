@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Structure/Sensor/Data.h>
+#include <Kinect/src/Structure/Data.h>
 
 
 namespace k4n::structure{

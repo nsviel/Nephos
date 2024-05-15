@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Structure/Sensor/Data.h>
+#include <Kinect/src/Structure/Data.h>
 #include <k4a/k4a.hpp>
 #include <string>
 

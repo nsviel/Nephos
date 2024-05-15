@@ -50,7 +50,7 @@ void Synchro::run_thread(){
 
         if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
           auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(player->ts_cur));
-          sensor->playback.handle.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+          sensor->synchro.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
         }
       }*/
 
