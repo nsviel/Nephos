@@ -40,24 +40,22 @@ void Node::run(){
 void Node::init(){
   //---------------------------
 
-  node_gui->init();
   node_vulkan->init();
   node_engine->init();
+  node_gui->init();
   node_scene->init();
 
   //---------------------------
 }
 void Node::loop(){
-  prf::Manager* prf_manager = node_profiler->get_prf_manager();
   //---------------------------
 
   while(running){
-    prf_manager->loop_begin(120);
+    node_profiler->loop();
     node_engine->loop();
     node_scene->loop();
     node_gui->loop();
     node_vulkan->loop();
-    prf_manager->loop_end();
   }
 
   //---------------------------

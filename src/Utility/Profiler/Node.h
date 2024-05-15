@@ -18,6 +18,7 @@ public:
   //Main function
   void init();
   void gui();
+  void loop();
 
   inline prf::Manager* get_prf_manager(){return prf_manager;}
 
