@@ -40,6 +40,7 @@ void Sensor::init(){
   this->init_profiler();
   this->init_object();
   this->init_image();
+  this->start_thread();
 
   //---------------------------
 }
@@ -136,12 +137,11 @@ void Sensor::start_thread(){
   //---------------------------
 
   if(!thread_running){
-    this->thread = std::thread(&Sensor::run_thread, this);
+    //this->thread_running = true;
+    //this->thread = std::thread(&Sensor::run_thread, this);
   }
 
   //---------------------------
-  this->thread_running = true;
-  this->thread_idle = false;
 }
 void Sensor::run_thread(){
   //---------------------------
@@ -156,7 +156,6 @@ void Sensor::run_thread(){
   this->thread_end();
 
   //---------------------------
-  this->thread_idle = true;
 }
 void Sensor::stop_thread(){
   //---------------------------

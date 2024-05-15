@@ -95,7 +95,6 @@ protected:
 
   std::thread thread;
   bool thread_running = false;
-  bool thread_idle = true;
   bool thread_paused = false;
 };
 

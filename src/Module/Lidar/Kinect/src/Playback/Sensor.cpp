@@ -124,7 +124,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
 }
 void Sensor::manage_pause(){
   //---------------------------
-
+/*
   //If pause, wait until end pause or end thread
   bool& is_play = master->get_state_play();
   bool& is_pause = master->get_state_pause();
@@ -140,7 +140,7 @@ void Sensor::manage_pause(){
     }
     this->thread_paused = false;
   }
-
+*/
   //---------------------------
 }
 void Sensor::manage_restart(){

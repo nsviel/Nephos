@@ -16,7 +16,6 @@ Image::Image(k4n::Node* node_k4n){
   this->tj_handle = tjInitDecompress();
   this->k4n_data = new k4n::utils::Data();
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
-  this->k4n_image = new k4n::processing::Image(node_k4n);
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
@@ -51,9 +50,6 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   //Convert data into cloud
   k4n_cloud->start_thread(sensor);
 
-  //Encode image as texture
-  k4n_image->start_thread(sensor);
-
   //---------------------------
   this->idle = true;
 }
@@ -64,7 +60,6 @@ void Image::wait_thread(){
   while(idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  k4n_image->wait_thread();
   k4n_cloud->wait_thread();
 
   //---------------------------

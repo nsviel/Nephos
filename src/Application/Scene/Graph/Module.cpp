@@ -32,21 +32,21 @@ void Module::init(){
 void Module::loop(){
   //---------------------------
 
-  //node_kinect->loop();
+  node_kinect->loop();
 
   //---------------------------
 }
 void Module::clean(){
   //---------------------------
 
-  //node_kinect->clean();
+  node_kinect->clean();
 
   //---------------------------
 }
 void Module::gui(){
   //---------------------------
 
-  //node_kinect->gui();
+  node_kinect->gui();
 
   //---------------------------
 }
