@@ -16,7 +16,7 @@ Measure::Measure(rad::Node* node_radio){
 }
 Measure::~Measure(){}
 
-//Measure function
+//Main function
 void Measure::import_measure(){
   rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
@@ -46,6 +46,8 @@ void Measure::clear_measure(){
 
   //---------------------------
 }
+
+//Subfunction
 void Measure::find_measure_bound(){
   rad::structure::Optimization* model = &radio_struct->model.optim;
   rad::structure::Measure* measure = &radio_struct->model.measure;
@@ -53,14 +55,29 @@ void Measure::find_measure_bound(){
 
   for(int i=0; i<measure->vec_data.size(); i++){
     float& R = measure->vec_data[i].x;
-    if(R == -1) continue;
+    if(R < 0) continue;
     if(R < model->x.bound[0]) model->x.bound[0] = R;
     if(R > model->x.bound[1]) model->x.bound[1] = R;
 
     float& It = measure->vec_data[i].y;
-    if(It == -1) continue;
+    if(It < 0) continue;
     if(It < model->y.bound[0]) model->y.bound[0] = It;
     if(It > model->y.bound[1]) model->y.bound[1] = It;
+  }
+
+  //---------------------------
+}
+void Measure::clean_measure(){
+  rad::structure::Measure* measure = &radio_struct->model.measure;
+  //---------------------------
+
+  std::vector<glm::vec3>& vec_data = measure->vec_data;
+  for(int i=0; i<vec_data.size(); i++){
+    glm::vec3& data = vec_data[i];
+
+    if(data.x < 0 || data.y < 0){
+      data = glm::vec3(-1, -1, -1);
+    }
   }
 
   //---------------------------

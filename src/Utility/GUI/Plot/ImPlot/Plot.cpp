@@ -70,6 +70,7 @@ bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::typ
   ImPlot::SetNextAxisLimits(ImAxis_X1, 0, 10);
   ImPlot::SetNextAxisLimits(ImAxis_Y1, 0, 90);
   if(ImPlot::BeginPlot(plot->title.c_str(), ImVec2(-1, plot->dimension[1]), flag)){
+    //Axis configuration
     ImPlotAxisFlags axis_x_flag;
     axis_x_flag |= ImPlotAxisFlags_LockMin;
     axis_x_flag |= ImPlotAxisFlags_AutoFit;

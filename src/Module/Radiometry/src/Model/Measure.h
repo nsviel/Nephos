@@ -16,11 +16,14 @@ public:
   ~Measure();
 
 public:
-  //Measure function
+  //Main function
   void import_measure();
   void export_measure();
   void clear_measure();
+
+  //Subfunction
   void find_measure_bound();
+  void clean_measure();
 
   //Plot function
   void init_plot();

@@ -23,6 +23,7 @@ Master::Master(k4n::Node* node_k4n){
   this->icon = ICON_FA_USER;
   this->is_locked = true;
   this->is_suppressible = true;
+  this->player_enable = true;
 
   //---------------------------
 }
@@ -155,6 +156,7 @@ void Master::player_update(){
   }
 
   //set_parent->player_update(player);
+  set_parent->player_enable = true;
 
   //---------------------------
 }

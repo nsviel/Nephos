@@ -26,7 +26,7 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  utl::type::Element* element = dat_graph->get_selection();
+  utl::type::Element* element = dat_graph->get_selected_element();
   //---------------------------
 
   //Convert it into proper format

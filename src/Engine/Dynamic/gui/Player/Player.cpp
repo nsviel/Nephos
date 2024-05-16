@@ -25,14 +25,15 @@ Player::~Player(){}
 
 //Main function
 void Player::run_panel(){
-  utl::type::Element* element = dat_graph->get_selection();
+  utl::type::Element* element = dat_graph->get_selected_element();
+  dat::base::Set* set = dat_graph->get_selected_set();
   //---------------------------
 
-  if(*show_window && element != nullptr){
+  if(*show_window && set != nullptr && element != nullptr && set->player_enable){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel(element);
+      this->design_panel(set);
       element->info();
 
       ImGui::End();
@@ -42,20 +43,11 @@ void Player::run_panel(){
 
   //---------------------------
 }
-void Player::design_panel(utl::type::Element* element){
+void Player::design_panel(dat::base::Set* set){
   //---------------------------
 
-  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
-    //Button player
-    this->draw_player(set);
-    set->gui_info();
-  }
-  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    dat::base::Set* set = entity->set_parent;
-    //Button player
-    this->draw_player(set);
-    set->gui_info();
-  }
+  this->draw_player(set);
+  set->gui_info();
 
   //---------------------------
 }

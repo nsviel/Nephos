@@ -79,6 +79,37 @@ void Graph::assign_UID(utl::type::Element* element){
 
   //----------------------------
 }
+utl::type::Element* Graph::get_selected_element(){
+  return dat_struct->selection;
+}
+dat::base::Entity* Graph::get_selected_entity(){
+  utl::type::Element* element = dat_struct->selection;
+  //---------------------------
+
+  dat::base::Entity* entity;
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
+    entity = set->active_entity;
+  }else{
+    entity = dynamic_cast<dat::base::Entity*>(element);
+  }
+
+  //---------------------------
+  return entity;
+}
+dat::base::Set* Graph::get_selected_set(){
+  utl::type::Element* element = dat_struct->selection;
+  //---------------------------
+
+  dat::base::Set* set;
+  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    set = entity->set_parent;
+  }else{
+    set = dynamic_cast<dat::base::Set*>(element);
+  }
+
+  //---------------------------
+  return set;
+}
 dat::base::Set* Graph::get_set_main(){
   return &dat_struct->set_main;
 }
@@ -98,9 +129,8 @@ dat::base::Set* Graph::get_set_scene(){
   //----------------------------
   return set;
 }
-utl::type::Element* Graph::get_selection(){
-  return dat_struct->selection;
-}
+
+
 
 
 }

@@ -7,6 +7,7 @@ namespace dat{class Node;}
 namespace dat{class Set;}
 namespace dat{class Structure;}
 namespace dat::base{class Set;}
+namespace dat::base{class Entity;}
 namespace utl::type{class Element;}
 
 
@@ -28,7 +29,9 @@ public:
   //Subfunction
   void select_element(utl::type::Element* element);
   void assign_UID(utl::type::Element* element);
-  utl::type::Element* get_selection();
+  utl::type::Element* get_selected_element();
+  dat::base::Entity* get_selected_entity();
+  dat::base::Set* get_selected_set();
   dat::base::Set* get_set_main();
   dat::base::Set* get_set_graph();
   dat::base::Set* get_set_scene();

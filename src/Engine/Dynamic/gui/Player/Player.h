@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace dat{class Graph;}
+namespace dat::base{class Set;}
 namespace dyn{class Node;}
 namespace dyn::gui{class Control;}
 namespace dyn::base{class Player;}
@@ -19,7 +20,7 @@ public:
 
   //Main function
   void run_panel();
-  void design_panel(utl::type::Element* element);
+  void design_panel(dat::base::Set* set);
 
   //Player function
   void draw_player(dyn::base::Player* ply);

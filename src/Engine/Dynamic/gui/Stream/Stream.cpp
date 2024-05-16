@@ -40,7 +40,7 @@ void Stream::init(){
   //---------------------------
 }
 void Stream::run_panel(){
-  utl::type::Element* element = dat_graph->get_selection();
+  utl::type::Element* element = dat_graph->get_selected_element();
   //---------------------------
 
   //Chekc if it contain entities
