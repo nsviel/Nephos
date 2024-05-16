@@ -1,13 +1,12 @@
 #pragma once
 
-#include <GUI/Media/Stream.h>
+#include <Render/src/Stream.h>
 #include <Data/src/Base/Set.h>
 #include <Utility/Specific/Common.h>
 
 namespace dat::base{class Set;}
-namespace gui::media{class Stream;}
+namespace rnd{class Stream;}
 namespace utl::media{class Image;}
-namespace gui_media = gui::media;
 
 
 namespace dyn::base{
@@ -22,7 +21,7 @@ public:
   //Main function
 
 protected:
-  vector<gui_media::Stream*> vec_stream;
+  vector<rnd::Stream*> vec_stream;
   vector<utl::media::Image*> vec_image;
 };
 

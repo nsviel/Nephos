@@ -2,7 +2,6 @@
 
 #include <Engine/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <GUI/Namespace.h>
 
 
 namespace rad::gui{
@@ -16,7 +15,7 @@ Detection::Detection(rad::Node* node_radio){
   this->rad_detection = new rad::Detection(node_radio);
   this->rad_struct = node_radio->get_rad_struct();
   this->rad_hough = new rad::detection::Hough(node_radio);
-  this->stream = new gui_media::Stream(node_engine);
+  this->stream = new rnd::Stream(node_engine);
 
   //---------------------------
 }
