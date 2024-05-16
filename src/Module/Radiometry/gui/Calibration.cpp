@@ -139,7 +139,10 @@ void Calibration::draw_calibration_model(){
 
     //Model parameter
     ImGui::SetNextItemWidth(100);
-    ImGui::DragIntRange2("Degree", &model->degree_x, &model->degree_y, 1, 1, 10);
+    ImGui::DragInt("##degree_x", &model->degree_x, 1, 1, 10);
+    ImGui::SameLine();
+    ImGui::SetNextItemWidth(100);
+    ImGui::DragInt("Degree", &model->degree_y, 1, 1, 10);
     ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", model->rmse);
     if(ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){

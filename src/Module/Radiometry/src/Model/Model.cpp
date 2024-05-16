@@ -110,7 +110,16 @@ void Model::make_model(){
   rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
-  ope_surface->compute(measure->vec_data, model->x.bound, model->y.bound);
+  //Apply logarithmic scale
+  std::vector<glm::vec3> vec_data = measure->vec_data;
+  for(int i=0; i<vec_data.size(); i++){
+    glm::vec3& data = vec_data[i];
+    data.z = log(data.z);
+  }
+
+  //Optimization algorithm
+  ope_surface->set_degree(model->degree_x, model->degree_y);
+  ope_surface->compute(vec_data, model->x.bound, model->y.bound);
 
   //---------------------------
 }
