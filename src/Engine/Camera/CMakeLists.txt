@@ -19,7 +19,6 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
-  LIBRARY_VULKAN
   LIBRARY_DATA
   LIBRARY_ENGINE
 )

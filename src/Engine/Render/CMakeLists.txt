@@ -19,8 +19,7 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
-  LIBRARY_VULKAN
-  LIBRARY_GUI
+  LIBRARY_ENGINE
 
   Eigen3::Eigen # Eigen
 )

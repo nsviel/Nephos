@@ -8,7 +8,6 @@
 #include <Camera/Namespace.h>
 #include <Render/Namespace.h>
 #include <Data/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Dynamic/Namespace.h>
 
