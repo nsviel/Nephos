@@ -20,13 +20,13 @@ public:
 
 public:
   //Main function
-  void draw_calibration_player();
   void draw_calibration_tab();
-  void draw_calibration_measure();
-  void draw_calibration_model();
 
   //Subfunction
-  void draw_measure();
+  void parameter_measure();
+  void parameter_model();
+
+  //Plot function
   void plot_measure_IfR(float height);
   void plot_measure_IfIt(float height);
   void plot_model_heatmap(float height);

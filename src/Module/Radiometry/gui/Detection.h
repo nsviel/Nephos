@@ -23,7 +23,7 @@ public:
 
 public:
   //Main function
-  void draw_detection();
+  void draw_detection_tab();
 
   //Subfunction
   void detection_step();

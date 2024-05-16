@@ -23,17 +23,24 @@ Calibration::~Calibration(){}
 void Calibration::draw_calibration_tab(){
   //---------------------------
 
+  //Parameter
   ImGui::BeginTable("Detection##table", 3);
-  this->draw_calibration_measure();
-  this->draw_calibration_model();
+  this->parameter_measure();
+  this->parameter_model();
   ImGui::EndTable();
   ImGui::Separator();
 
-  this->draw_measure();
+  //Plots
+  float height = ImGui::GetContentRegionAvail().y / 3-3.33;
+  this->plot_measure_IfR(height);
+  this->plot_measure_IfIt(height);
+  this->plot_model_heatmap(height);
 
   //---------------------------
 }
-void Calibration::draw_calibration_measure(){
+
+//Subfunction
+void Calibration::parameter_measure(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
@@ -96,7 +103,7 @@ void Calibration::draw_calibration_measure(){
 
   //---------------------------
 }
-void Calibration::draw_calibration_model(){
+void Calibration::parameter_model(){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
 
@@ -177,18 +184,7 @@ void Calibration::draw_calibration_model(){
   //---------------------------
 }
 
-//Subfunction
-void Calibration::draw_measure(){
-  //---------------------------
-
-  float height = ImGui::GetContentRegionAvail().y / 3-3.33;
-
-  this->plot_measure_IfR(height);
-  this->plot_measure_IfIt(height);
-  this->plot_model_heatmap(height);
-
-  //---------------------------
-}
+//Plot function
 void Calibration::plot_measure_IfR(float height){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------

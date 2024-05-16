@@ -23,7 +23,7 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::draw_detection(){
+void Detection::draw_detection_tab(){
   //---------------------------
 
   this->detection_step();

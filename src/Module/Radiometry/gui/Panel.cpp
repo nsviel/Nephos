@@ -68,7 +68,7 @@ void Panel::tab_detection(dat::base::Entity* entity){
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2);
   if(ImGui::BeginTabItem("Detection##matching")){
-    gui_detection->draw_detection();
+    gui_detection->draw_detection_tab();
 
     ImGui::EndTabItem();
   }
