@@ -57,11 +57,10 @@ void Imgui::clean(){
 
   //---------------------------
 }
-void Imgui::new_frame(){
+void Imgui::loop(){
   //---------------------------
 
   this->glfw_new_frame();
-  ImGui::NewFrame();
 
   //---------------------------
 }

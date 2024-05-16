@@ -4,8 +4,8 @@
 #include <Engine/Namespace.h>
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Vulkan/Namespace.h>
 #include <Scene/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace gui{
@@ -15,7 +15,6 @@ Node::Node(app::Node* node_app){
   //---------------------------
 
   this->node_engine = node_app->get_node_engine();
-  this->node_vulkan = node_app->get_node_vulkan();
   this->node_scene = node_app->get_node_scene();
   this->node_profiler = node_app->get_node_profiler();
 
@@ -51,10 +50,9 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
-  vk::gui::Imgui* vk_imgui = node_vulkan->get_vk_imgui();
   //---------------------------
 
-  vk_imgui->new_frame();
+  ImGui::NewFrame();
   gui_docking->docker_space_main();
   gui_tab->loop();
   gui_control->run_control();

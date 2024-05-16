@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Base/Type/Node.h>
 #include <Utility/Specific/Common.h>
 
 namespace prf::gui{class Panel;}
