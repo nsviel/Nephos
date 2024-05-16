@@ -20,12 +20,9 @@ find_package(Python REQUIRED COMPONENTS Interpreter Development)
 find_package(k4a REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_EXTERN
   LIBRARY_UTILITY
   LIBRARY_ENGINE
   LIBRARY_RADIOMETRY
-  LIBRARY_DYNAMIC
-  LIBRARY_DATA
 
   ${Python_LIBRARIES}
   ${k4a_LIBS}

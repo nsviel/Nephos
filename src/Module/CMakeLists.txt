@@ -5,7 +5,7 @@ set(LIBRARY_NAME LIBRARY_MODULE)
 #-----------------
 add_subdirectory(Lidar)
 add_subdirectory(Radiometry)
-add_subdirectory(Registration)
+#add_subdirectory(Registration)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

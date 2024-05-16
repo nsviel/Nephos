@@ -21,7 +21,6 @@ find_package(Python REQUIRED COMPONENTS Interpreter Development)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_ENGINE
-  LIBRARY_DATA
 
   ${Python_LIBRARIES}
   Python::Python
