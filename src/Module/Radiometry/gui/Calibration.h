@@ -2,10 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace k4n::gui{class Player;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad{class Detection;}
 namespace rad{class Model;}
 namespace rad::model{class Measure;}
 namespace utl::implot{class Plot;}
@@ -34,8 +32,6 @@ public:
   void plot_model_heatmap(float height);
 
 private:
-  k4n::gui::Player* gui_player;
-  rad::Detection* rad_detection;
   rad::Model* rad_model;
   rad::model::Measure* rad_measure;
   rad::Structure* rad_struct;

@@ -11,49 +11,15 @@ Calibration::Calibration(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_detection = new rad::Detection(node_radio);
   this->rad_measure = new rad::model::Measure(node_radio);
   this->rad_model = new rad::Model(node_radio);
   this->utl_plot = new utl::implot::Plot();
-  //this->gui_player = node_k4n->get_k4n_gui_player();
 
   //---------------------------
 }
 Calibration::~Calibration(){}
 
 //Main function
-void Calibration::draw_calibration_player(){
-  //---------------------------
-
-  //Player
-  //gui_player->player_start(sensor->set_parent);
-  ImGui::SameLine();
-
-  //Detection validation
-  int step = rad_detection->get_step();
-  if(step == rad::detection::WAIT_VALIDATION){
-    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-    if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
-      //rad_detection->next_step();
-    }
-    ImGui::PopStyleColor(2);
-  }else{
-    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
-    if(ImGui::Button("Stop##calibration", ImVec2(120, 0))){
-      //rad_detection->next_step();
-    }
-    ImGui::PopStyleColor(2);
-  }
-  ImGui::SameLine();
-
-  //Calibration step
-  string step_str = rad_detection->get_step_str();
-  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", step_str.c_str());
-
-  //---------------------------
-}
 void Calibration::draw_calibration_tab(){
   //---------------------------
 

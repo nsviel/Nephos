@@ -6,6 +6,7 @@
 namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
+namespace rad{class Detection;}
 namespace rad::detection{class Hough;}
 namespace gui::media{class Stream;}
 namespace gui_media = gui::media;
@@ -25,6 +26,7 @@ public:
   void draw_detection();
 
   //Subfunction
+  void detection_step();
   void detection_parameter();
   void canny_parameter();
   void hough_parameter();
@@ -32,6 +34,7 @@ public:
   void draw_result();
 
 private:
+  rad::Detection* rad_detection;
   rad::Structure* rad_struct;
   rad::detection::Hough* rad_hough;
   gui_media::Stream* stream;

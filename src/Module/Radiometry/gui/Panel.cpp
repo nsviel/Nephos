@@ -26,16 +26,8 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  utl::type::Element* element = dat_graph->get_selected_element();
+  dat::base::Entity* entity = dat_graph->get_selected_entity();
   //---------------------------
-
-  //Convert it into proper format
-  dat::base::Entity* entity;
-  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
-    entity = set->active_entity;
-  }else{
-    entity = dynamic_cast<dat::base::Entity*>(element);
-  }
 
   if(*show_window){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
@@ -56,8 +48,6 @@ void Panel::run_panel(){
 void Panel::design_panel(dat::base::Entity* entity){
   //---------------------------
 
-  this->matching_parameter(entity);
-
   ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
   ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(54, 112, 131, 255));
   ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
@@ -73,24 +63,10 @@ void Panel::design_panel(dat::base::Entity* entity){
 }
 
 //Subfunction
-void Panel::matching_parameter(dat::base::Entity* entity){
-  //---------------------------
-
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
-
-  //Radiometry sphere radius
-  ImGui::SetNextItemWidth(150);
-  ImGui::SliderFloat("Sphere diameter", &rad_struct->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
-
-  gui_calibration->draw_calibration_player();
-
-  //---------------------------
-  ImGui::Separator();
-}
 void Panel::tab_detection(dat::base::Entity* entity){
   //---------------------------
 
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2);
   if(ImGui::BeginTabItem("Detection##matching")){
     gui_detection->draw_detection();
 
@@ -102,7 +78,7 @@ void Panel::tab_detection(dat::base::Entity* entity){
 void Panel::tab_calibration(dat::base::Entity* entity){
   //---------------------------
 
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2);
   if(ImGui::BeginTabItem("Calibration##matching")){
     gui_calibration->draw_calibration_tab();
 

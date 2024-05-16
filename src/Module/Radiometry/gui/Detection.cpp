@@ -13,6 +13,7 @@ Detection::Detection(rad::Node* node_radio){
 
   eng::Node* node_engine = node_radio->get_node_engine();
 
+  this->rad_detection = new rad::Detection(node_radio);
   this->rad_struct = node_radio->get_rad_struct();
   this->rad_hough = new rad::detection::Hough(node_radio);
   this->stream = new gui_media::Stream(node_engine);
@@ -24,6 +25,13 @@ Detection::~Detection(){}
 //Main function
 void Detection::draw_detection(){
   //---------------------------
+
+  this->detection_step();
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
+
+  //Radiometry sphere radius
+  ImGui::SetNextItemWidth(150);
+  ImGui::SliderFloat("Sphere diameter", &rad_struct->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
 
   this->detection_parameter();
 
@@ -40,6 +48,38 @@ void Detection::draw_detection(){
 }
 
 //Subfunction
+void Detection::detection_step(){
+  //---------------------------
+
+  //Player
+  //gui_player->player_start(sensor->set_parent);
+  ImGui::SameLine();
+
+  //Detection validation
+  int step = rad_detection->get_step();
+  if(step == rad::detection::WAIT_VALIDATION){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+    if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
+      //rad_detection->next_step();
+    }
+    ImGui::PopStyleColor(2);
+  }else{
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
+    if(ImGui::Button("Stop##calibration", ImVec2(120, 0))){
+      //rad_detection->next_step();
+    }
+    ImGui::PopStyleColor(2);
+  }
+  ImGui::SameLine();
+
+  //Calibration step
+  string step_str = rad_detection->get_step_str();
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", step_str.c_str());
+
+  //---------------------------
+}
 void Detection::detection_parameter(){
   //---------------------------
 
