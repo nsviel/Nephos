@@ -20,19 +20,19 @@ public:
   void import_measure();
   void export_measure();
   void clear_measure();
+  void plot_measure();
 
   //Subfunction
   void find_measure_bound();
-  void clean_measure();
 
   //Plot function
-  void init_plot();
-  void reset_plot();
-  void update_plot();
-  void clear_plot();
+  void init_plot_data();
+  void reset_plot_data();
+  void update_plot_data();
+  void clear_plot_data();
 
 private:
-  rad::Structure* radio_struct;
+  rad::Structure* rad_struct;
 };
 
 }

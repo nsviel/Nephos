@@ -26,7 +26,7 @@ public:
   void find_mode_parameter(int mode);
 
 private:
-  rad::Structure* radio_struct;
+  rad::Structure* rad_struct;
 
   vector<rad::structure::Circle> vec_circle;
 };

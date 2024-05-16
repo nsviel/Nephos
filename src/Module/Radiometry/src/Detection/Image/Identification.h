@@ -34,9 +34,9 @@ public:
 
 private:
   utl::thread::Pool* thread_pool;
-  rad::Structure* radio_struct;
+  rad::Structure* rad_struct;
   rad::detection::Glyph* radio_glyph;
-  rad::detection::Hough* radio_hough;
+  rad::detection::Hough* rad_hough;
   rad::matching::Image* radio_image;
 
   bool idle = true;

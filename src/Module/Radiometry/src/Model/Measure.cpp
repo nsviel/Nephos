@@ -9,27 +9,27 @@ namespace rad::model{
 Measure::Measure(rad::Node* node_radio){
   //---------------------------
 
-  this->radio_struct = node_radio->get_radio_struct();
+  this->rad_struct = node_radio->get_rad_struct();
 
   //---------------------------
-  this->init_plot();
+  this->init_plot_data();
 }
 Measure::~Measure(){}
 
 //Main function
 void Measure::import_measure(){
-  rad::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //Import file model data
   measure->vec_data = utl::file::read_vector(measure->path);
   this->find_measure_bound();
-  this->update_plot();
+  this->update_plot_data();
 
   //---------------------------
 }
 void Measure::export_measure(){
-  rad::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   utl::file::write_vector(measure->path, measure->vec_data);
@@ -37,20 +37,30 @@ void Measure::export_measure(){
   //---------------------------
 }
 void Measure::clear_measure(){
-  rad::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //Import file model data
   measure->vec_data.clear();
-  this->clear_plot();
+  this->clear_plot_data();
+
+  //---------------------------
+}
+void Measure::plot_measure(){
+  rad::structure::Measure* measure = &rad_struct->model.measure;
+  //---------------------------
+
+  //Import file model data
+  measure->vec_data.clear();
+  this->clear_plot_data();
 
   //---------------------------
 }
 
 //Subfunction
 void Measure::find_measure_bound(){
-  rad::structure::Optimization* model = &radio_struct->model.optim;
-  rad::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   for(int i=0; i<measure->vec_data.size(); i++){
@@ -67,26 +77,11 @@ void Measure::find_measure_bound(){
 
   //---------------------------
 }
-void Measure::clean_measure(){
-  rad::structure::Measure* measure = &radio_struct->model.measure;
-  //---------------------------
-
-  std::vector<glm::vec3>& vec_data = measure->vec_data;
-  for(int i=0; i<vec_data.size(); i++){
-    glm::vec3& data = vec_data[i];
-
-    if(data.x < 0 || data.y < 0){
-      data = glm::vec3(-1, -1, -1);
-    }
-  }
-
-  //---------------------------
-}
 
 //Plot function
-void Measure::init_plot(){
-  rad::structure::Optimization* model = &radio_struct->model.optim;
-  rad::structure::Measure* measure = &radio_struct->model.measure;
+void Measure::init_plot_data(){
+  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //I(R)
@@ -132,9 +127,9 @@ void Measure::init_plot(){
 
   //---------------------------
 }
-void Measure::reset_plot(){
-  rad::structure::Optimization* model = &radio_struct->model.optim;
-  rad::structure::Measure* measure = &radio_struct->model.measure;
+void Measure::reset_plot_data(){
+  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //I(R)
@@ -160,12 +155,12 @@ void Measure::reset_plot(){
 
   //---------------------------
 }
-void Measure::update_plot(){
-  rad::structure::Measure* measure = &radio_struct->model.measure;
-  rad::structure::Optimization* model = &radio_struct->model.optim;
+void Measure::update_plot_data(){
+  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::structure::Optimization* model = &rad_struct->model.optim;
   //---------------------------
 
-  this->reset_plot();
+  this->reset_plot_data();
 
   //Fill model plot data
   for(int i=0; i<measure->vec_data.size(); i++){
@@ -199,9 +194,9 @@ void Measure::update_plot(){
 
   //---------------------------
 }
-void Measure::clear_plot(){
-  rad::structure::Optimization* model = &radio_struct->model.optim;
-  rad::structure::Measure* measure = &radio_struct->model.measure;
+void Measure::clear_plot_data(){
+  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //I(R)

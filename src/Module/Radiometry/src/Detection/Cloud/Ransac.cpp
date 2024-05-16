@@ -13,7 +13,7 @@ Ransac::Ransac(rad::Node* node_radio){
 
   eng::Node* node_engine = node_radio->get_node_engine();
 
-  this->radio_struct = node_radio->get_radio_struct();
+  this->rad_struct = node_radio->get_rad_struct();
   //this->thread_pool = node_engine->get_thread_pool();
   this->radio_glyph = new rad::detection::cloud::Glyph(node_radio);
   this->ope_fitting = new ope::fitting::Sphere();
@@ -77,18 +77,18 @@ void Ransac::ransac_sphere(dat::base::Sensor* sensor){
     vec3& xyz = vec_xyz[i];
     float distance = math::distance(xyz, current_pose);
 
-    if(distance <= radio_struct->detection.sphere_diameter * radio_struct->detection.ransac.search_diameter_x){
+    if(distance <= rad_struct->detection.sphere_diameter * rad_struct->detection.ransac.search_diameter_x){
       sphere_xyz.push_back(xyz);
       sphere_i.push_back(vec_i[i]);
     }
   }
 
   //Apply least square fitting
-  ope_ransac->set_num_iteration(radio_struct->detection.ransac.nb_iter);
-  ope_ransac->set_threshold_sphere(radio_struct->detection.ransac.thres_sphere);
-  ope_ransac->set_threshold_pose(radio_struct->detection.ransac.thres_pose);
-  ope_ransac->set_threshold_radius(radio_struct->detection.ransac.thres_radius);
-  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, radio_struct->detection.sphere_diameter/2);
+  ope_ransac->set_num_iteration(rad_struct->detection.ransac.nb_iter);
+  ope_ransac->set_threshold_sphere(rad_struct->detection.ransac.thres_sphere);
+  ope_ransac->set_threshold_pose(rad_struct->detection.ransac.thres_pose);
+  ope_ransac->set_threshold_radius(rad_struct->detection.ransac.thres_radius);
+  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, rad_struct->detection.sphere_diameter/2);
 
   //Apply post-processing stuff
   radio_glyph->draw_sphere_glyph(sensor, current_pose, radius);

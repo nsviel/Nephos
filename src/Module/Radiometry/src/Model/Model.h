@@ -30,7 +30,7 @@ public:
   void draw_model();
 
 private:
-  rad::Structure* radio_struct;
+  rad::Structure* rad_struct;
   ope::fitting::Polyfit* ope_polyfit;
   ope::fitting::Surface* ope_surface;
 };

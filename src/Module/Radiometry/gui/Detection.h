@@ -32,8 +32,8 @@ public:
   void draw_result();
 
 private:
-  rad::Structure* radio_struct;
-  rad::detection::Hough* radio_hough;
+  rad::Structure* rad_struct;
+  rad::detection::Hough* rad_hough;
   gui_media::Stream* stream;
 };
 

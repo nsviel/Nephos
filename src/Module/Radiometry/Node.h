@@ -36,14 +36,14 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
-  inline rad::Structure* get_radio_struct(){return radio_struct;}
-  inline rad::Detection* get_radio_detection(){return radio_detection;}
-  inline rad::Model* get_radio_model(){return radio_model;}
+  inline rad::Structure* get_rad_struct(){return rad_struct;}
+  inline rad::Detection* get_rad_detection(){return rad_detection;}
+  inline rad::Model* get_rad_model(){return rad_model;}
 
   inline rad::detection::Identification* get_radio_identification(){return radio_identification;}
-  inline rad::detection::Hough* get_radio_hough(){return radio_hough;}
+  inline rad::detection::Hough* get_rad_hough(){return rad_hough;}
   inline rad::detection::Ransac* get_radio_ransac(){return radio_ransac;}
-  inline rad::model::Measure* get_model_measure(){return radio_measure;}
+  inline rad::model::Measure* get_model_measure(){return rad_measure;}
 
 
 private:
@@ -53,13 +53,13 @@ private:
   prf::Node* node_profiler;
 
   //Child
-  rad::Structure* radio_struct;
-  rad::Detection* radio_detection;
-  rad::Model* radio_model;
+  rad::Structure* rad_struct;
+  rad::Detection* rad_detection;
+  rad::Model* rad_model;
   rad::detection::Identification* radio_identification;
-  rad::detection::Hough* radio_hough;
+  rad::detection::Hough* rad_hough;
   rad::detection::Ransac* radio_ransac;
-  rad::model::Measure* radio_measure;
+  rad::model::Measure* rad_measure;
   rad::gui::Panel* gui_panel;
 };
 

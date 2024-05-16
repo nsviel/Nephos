@@ -32,7 +32,7 @@ public:
 
 private:
   dat::Graph* dat_graph;
-  rad::Structure* radio_struct;
+  rad::Structure* rad_struct;
   rad::gui::Detection* gui_detection;
   rad::gui::Calibration* gui_calibration;
 

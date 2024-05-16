@@ -31,7 +31,7 @@ public:
   void draw_bounding_box(cv::Mat& image, dat::base::Sensor* sensor);
 
 private:
-  rad::Structure* radio_struct;
+  rad::Structure* rad_struct;
 };
 
 }

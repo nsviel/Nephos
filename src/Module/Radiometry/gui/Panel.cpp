@@ -13,7 +13,7 @@ Panel::Panel(rad::Node* node_radio, bool* show_window){
   dat::Node* node_data = node_radio->get_node_data();
 
   this->dat_graph = node_data->get_data_graph();
-  this->radio_struct = node_radio->get_radio_struct();
+  this->rad_struct = node_radio->get_rad_struct();
   this->gui_detection = new rad::gui::Detection(node_radio);
   this->gui_calibration = new rad::gui::Calibration(node_radio);
 
@@ -80,7 +80,7 @@ void Panel::matching_parameter(dat::base::Entity* entity){
 
   //Radiometry sphere radius
   ImGui::SetNextItemWidth(150);
-  ImGui::SliderFloat("Sphere diameter", &radio_struct->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
+  ImGui::SliderFloat("Sphere diameter", &rad_struct->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
 
   gui_calibration->draw_calibration_player();
 

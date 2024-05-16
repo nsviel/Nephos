@@ -35,10 +35,10 @@ public:
 
 private:
   k4n::gui::Player* gui_player;
-  rad::Detection* radio_detection;
-  rad::Model* radio_model;
-  rad::model::Measure* radio_measure;
-  rad::Structure* radio_struct;
+  rad::Detection* rad_detection;
+  rad::Model* rad_model;
+  rad::model::Measure* rad_measure;
+  rad::Structure* rad_struct;
   utl::implot::Plot* utl_plot;
 };
 

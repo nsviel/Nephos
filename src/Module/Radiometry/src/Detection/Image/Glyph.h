@@ -31,7 +31,7 @@ public:
 private:
   k4n::utils::Data* k4n_data;
   dat::Glyph* dat_glyph;
-  rad::Structure* radio_struct;
+  rad::Structure* rad_struct;
 };
 
 }

@@ -11,7 +11,7 @@ namespace rad{
 Model::Model(rad::Node* node_radio){
   //---------------------------
 
-  this->radio_struct = node_radio->get_radio_struct();
+  this->rad_struct = node_radio->get_rad_struct();
   this->ope_polyfit = new ope::fitting::Polyfit();
   this->ope_surface = new ope::fitting::Surface();
 
@@ -21,7 +21,7 @@ Model::~Model(){}
 
 //Main function
 void Model::import_model(){
-  rad::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Optimization* model = &rad_struct->model.optim;
   //---------------------------
 
   model->serial_number = utl::json::read_value<string>(model->path, "serial_number");
@@ -35,7 +35,7 @@ void Model::import_model(){
   //---------------------------
 }
 void Model::export_model(){
-  rad::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Optimization* model = &rad_struct->model.optim;
   //---------------------------
 
   utl::json::write_value(model->path, "serial_number", model->serial_number);
@@ -65,7 +65,7 @@ void Model::compute_model(){
 
 //Subfunction
 void Model::draw_model(){
-  rad::structure::Optimization* model = &radio_struct->model.optim;
+  rad::structure::Optimization* model = &rad_struct->model.optim;
   //---------------------------
 
   //if(ope_surface->has_been_computed() == false){
@@ -106,8 +106,8 @@ void Model::draw_model(){
   //---------------------------
 }
 void Model::make_model(){
-  rad::structure::Optimization* model = &radio_struct->model.optim;
-  rad::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //Apply logarithmic scale
@@ -134,8 +134,8 @@ float Model::apply_model(float x, float y){
   return z;
 }
 float Model::validation_model(){
-  rad::structure::Optimization* model = &radio_struct->model.optim;
-  rad::structure::Measure* measure = &radio_struct->model.measure;
+  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   int N = measure->vec_data.size();

@@ -20,13 +20,13 @@ Node::Node(eng::Node* node_engine){
   this->node_profiler = node_engine->get_node_profiler();
 
   //Child
-  this->radio_struct = new rad::Structure();
-  this->radio_detection = new rad::Detection(this);
-  this->radio_model = new rad::Model(this);
-  this->radio_hough = new rad::detection::Hough(this);
+  this->rad_struct = new rad::Structure();
+  this->rad_detection = new rad::Detection(this);
+  this->rad_model = new rad::Model(this);
+  this->rad_hough = new rad::detection::Hough(this);
   this->radio_ransac = new rad::detection::Ransac(this);
   this->radio_identification = new rad::detection::Identification(this);
-  this->radio_measure = new rad::model::Measure(this);
+  this->rad_measure = new rad::model::Measure(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 
   //---------------------------

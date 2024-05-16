@@ -52,7 +52,7 @@ private:
   ope::attribut::Normal* ope_normal;
   rad::detection::cloud::Glyph* radio_glyph;
   k4n::utils::Data* k4n_data;
-  rad::Structure* radio_struct;
+  rad::Structure* rad_struct;
   std::map<int, std::string> map_step;
 
   int step;

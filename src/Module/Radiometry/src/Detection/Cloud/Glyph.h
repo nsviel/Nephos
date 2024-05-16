@@ -27,7 +27,7 @@ public:
 
 private:
   dat::Glyph* dat_glyph;
-  rad::Structure* radio_struct;
+  rad::Structure* rad_struct;
 };
 
 }

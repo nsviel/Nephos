@@ -12,7 +12,7 @@ Glyph::Glyph(rad::Node* node_radio){
 
   dat::Node* node_data = node_radio->get_node_data();
 
-  this->radio_struct = node_radio->get_radio_struct();
+  this->rad_struct = node_radio->get_rad_struct();
   this->dat_glyph = node_data->get_data_glyph();
   this->k4n_data = new k4n::utils::Data();
 
@@ -22,7 +22,7 @@ Glyph::~Glyph(){}
 
 //Main function
 void Glyph::draw_all_sphere_glyph(dat::base::Sensor* sensor){
-  vector<rad::structure::Circle>& vec_circle = radio_struct->detection.vec_circle;
+  vector<rad::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
   this->reset_all_sphere(sensor);
@@ -31,12 +31,12 @@ void Glyph::draw_all_sphere_glyph(dat::base::Sensor* sensor){
   //---------------------------
 }
 void Glyph::draw_best_sphere_glyph(dat::base::Sensor* sensor){
-  vector<rad::structure::Circle>& vec_circle = radio_struct->detection.vec_circle;
+  vector<rad::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
   vector<rad::structure::Circle> best_circle;
-  if(radio_struct->detection.vec_circle.size() > 0){
-    best_circle.push_back(radio_struct->detection.vec_circle[0]);
+  if(rad_struct->detection.vec_circle.size() > 0){
+    best_circle.push_back(rad_struct->detection.vec_circle[0]);
   }
 
   this->reset_all_sphere(sensor);
@@ -47,7 +47,7 @@ void Glyph::draw_best_sphere_glyph(dat::base::Sensor* sensor){
 
 //Subfunction
 void Glyph::reset_all_sphere(dat::base::Sensor* sensor){
-  vector<dat::glyph::object::Sphere*>& vec_glyph_sphere = radio_struct->detection.vec_glyph_sphere;
+  vector<dat::glyph::object::Sphere*>& vec_glyph_sphere = rad_struct->detection.vec_glyph_sphere;
   //---------------------------
 
   for(int i=0; i<vec_glyph_sphere.size(); i++){
@@ -58,7 +58,7 @@ void Glyph::reset_all_sphere(dat::base::Sensor* sensor){
   //---------------------------
 }
 void Glyph::draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::structure::Circle>& vec_circle){
-/*  vector<dat::glyph::object::Sphere*>& vec_glyph_sphere = radio_struct->detection.vec_glyph_sphere;
+/*  vector<dat::glyph::object::Sphere*>& vec_glyph_sphere = rad_struct->detection.vec_glyph_sphere;
   //---------------------------
 
   for(int i=0; i<vec_circle.size(); i++){
@@ -68,10 +68,10 @@ void Glyph::draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::struc
     //Add sphere radius to the detected circle center
     vec3 pose = k4n_data->convert_depth_2d_to_3d(sensor, circle.center);
     vec3 dir = glm::normalize(pose);
-    pose = pose + dir * (radio_struct->detection.sphere_diameter / 2);
+    pose = pose + dir * (rad_struct->detection.sphere_diameter / 2);
 
     //Position sphere
-    vec_glyph_sphere[i]->move_sphere(pose, radio_struct->detection.sphere_diameter);
+    vec_glyph_sphere[i]->move_sphere(pose, rad_struct->detection.sphere_diameter);
   }
 */
   //---------------------------
