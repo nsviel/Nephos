@@ -10,7 +10,6 @@ namespace dat::gui{class Entity;}
 namespace dat::gui{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
-namespace ope{class Operation;}
 
 
 namespace dat::gui{
@@ -28,7 +27,6 @@ public:
   void design_panel();
 
   //Subfunction
-  void draw_button();
   void draw_window_background();
   void draw_file_tree();
 
@@ -46,7 +44,6 @@ private:
   dat::Graph* dat_graph;
   dat::Set* dat_set;
   dat::Structure* dat_struct;
-  ope::Operation* ope_operation;
 
   std::string name;
   bool* show_window;

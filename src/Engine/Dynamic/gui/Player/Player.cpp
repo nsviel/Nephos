@@ -15,6 +15,7 @@ Player::Player(dyn::Node* node_dynamic, bool* show_window){
 
   this->dat_graph = node_data->get_data_graph();
   this->gui_control = new dyn::gui::Control();
+  this->ope_operation = new ope::Operation();
 
   this->show_window = show_window;
   this->name = "Player";
@@ -208,6 +209,25 @@ void Player::player_lock(dyn::base::Player* ply){
   }
 
   //---------------------------
+}
+void Player::draw_button(){
+  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  if(entity == nullptr) return;
+  //-------------------------------
+
+  //Centered
+  ImGui::SameLine();
+  if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
+    ope_operation->center_object(entity);
+  }
+
+  //Rotation 90° around X axis
+  ImGui::SameLine();
+  if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
+    ope_operation->make_rotation_X_90d(entity, 1);
+  }
+
+  //-------------------------------
 }
 
 }

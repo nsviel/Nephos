@@ -19,8 +19,6 @@ Graph::Graph(dat::Node* node_data, bool* show_window){
   this->rnd_set = new dat::gui::Set(node_data, &show_panel_set);
   this->rnd_object = new dat::gui::Entity(node_data, &show_panel_entity);
 
-  this->ope_operation = new ope::Operation();
-
   this->name = "Graph";
   this->show_window = show_window;
 
@@ -33,6 +31,7 @@ void Graph::run_panel(){
   //---------------------------
 
   if(*show_window){
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
@@ -40,6 +39,7 @@ void Graph::run_panel(){
 
       ImGui::End();
     }
+    ImGui::PopStyleVar();
     ImGui::PopStyleColor();
   }
 
@@ -51,7 +51,6 @@ void Graph::design_panel(){
   rnd_object->run_panel();
   rnd_set->run_panel();
 
-  this->draw_button();
   this->draw_window_background();
   this->draw_file_tree();
 
@@ -59,42 +58,6 @@ void Graph::design_panel(){
 }
 
 //Subfunction
-void Graph::draw_button(){
-  dat::base::Set* set_graph = dat_graph->get_set_graph();
-  dat::base::Entity* entity = set_graph->active_entity;
-  if(entity == nullptr) return;
-  //-------------------------------
-
-  ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 0));
-
-  //Suppression
-  dat::base::Set* set = entity->set_parent;
-  if(ImGui::Button(ICON_FA_TRASH "##supressionentity")){
-    if(set->is_locked){
-      //sce_graph->delete_subset(set);
-    }else if(set->is_locked){
-      dat::base::Set* set_graph = dat_graph->get_set_graph();
-      dat_set->remove(set_graph, set->active_entity);
-    }
-  }
-
-  //Centered
-  ImGui::SameLine();
-  if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
-    ope_operation->center_object(set);
-  }
-
-  //Rotation 90° around X axis
-  ImGui::SameLine();
-  if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
-    ope_operation->make_rotation_X_90d(set, 1);
-  }
-
-  ImGui::PopStyleVar();
-  ImGui::Separator();
-
-  //-------------------------------
-}
 void Graph::draw_window_background(){
   //-------------------------------
 

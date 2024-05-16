@@ -7,6 +7,7 @@ namespace dat::base{class Set;}
 namespace dyn{class Node;}
 namespace dyn::gui{class Control;}
 namespace dyn::base{class Player;}
+namespace ope{class Operation;}
 
 
 namespace dyn::gui{
@@ -31,10 +32,12 @@ public:
   void player_record(dyn::base::Player* ply);
   void player_close(dyn::base::Player* ply);
   void player_lock(dyn::base::Player* ply);
+  void draw_button();
 
 private:
   dyn::gui::Control* gui_control;
   dat::Graph* dat_graph;
+  ope::Operation* ope_operation;
 
   bool* show_window;
   string name;
