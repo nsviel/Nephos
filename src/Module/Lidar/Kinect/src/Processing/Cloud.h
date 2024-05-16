@@ -4,13 +4,13 @@
 #include <k4a/k4a.hpp>
 
 namespace prf::graph{class Tasker;}
+namespace rad::detection{class Ransac;}
+namespace utl::thread{class Pool;}
 namespace k4n{class Node;}
 namespace k4n::processing{class Operation;}
-namespace rad::detection{class Ransac;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
-namespace utl::thread{class Pool;}
-namespace k4n::processing{class Recorder;}
+namespace k4n::utils{class Exporter;}
 
 
 namespace k4n::processing{
@@ -43,10 +43,10 @@ public:
   void insert_data(int i);
 
 private:
-  k4n::processing::Operation* k4n_processing;
+  k4n::processing::Operation* k4n_operation;
   rad::detection::Ransac* rad_ransac;
   utl::thread::Pool* thread_pool;
-  k4n::processing::Recorder* k4n_recorder;
+  k4n::utils::Exporter* k4n_exporter;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgb;

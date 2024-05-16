@@ -2,8 +2,10 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dyn{class Node;}
-namespace dat::base{class Sensor;}
+namespace k4n{class Node;}
+namespace k4n::dev{class Sensor;}
+
+namespace k4n::structure{class K4N;}
 namespace utl::thread{class Pool;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
@@ -11,26 +13,26 @@ namespace ope::color{class Colorizer;}
 namespace ope::attribut{class Normal;}
 
 
-namespace dyn::processing{
+namespace k4n::processing{
 
 class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(dyn::Node* node_dynamic);
+  Operation(k4n::Node* node_k4n);
   ~Operation();
 
 public:
   //Main function
-  void start_thread(dat::base::Sensor* sensor);
-  void run_thread(dat::base::Sensor* sensor);
+  void start_thread(k4n::dev::Sensor* sensor);
+  void run_thread(k4n::dev::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void colorize_object(dat::base::Sensor* sensor);
-  void voxelize_object(dat::base::Sensor* sensor);
-  void triangularize_object(dat::base::Sensor* sensor);
-  void update_object(dat::base::Sensor* sensor);
+  void colorize_object(k4n::dev::Sensor* sensor);
+  void voxelize_object(k4n::dev::Sensor* sensor);
+  void triangularize_object(k4n::dev::Sensor* sensor);
+  void update_object(k4n::dev::Sensor* sensor);
 
 private:
   ope::Voxelizer* ope_voxelizer;

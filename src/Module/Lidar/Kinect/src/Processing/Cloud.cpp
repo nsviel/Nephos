@@ -17,11 +17,12 @@ Cloud::Cloud(k4n::Node* node_k4n){
 
   eng::Node* node_engine = node_k4n->get_node_engine();
   rad::Node* node_radio = node_k4n->get_node_radio();
+  dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
   this->rad_ransac = node_radio->get_rad_ransac();
   this->thread_pool = node_engine->get_thread_pool();
-  //this->k4n_recorder = new k4n::processing::Recorder(node_k4n);
-  //this->k4n_processing = new k4n::processing::Operation(node_k4n);
+  this->k4n_exporter = new k4n::utils::Exporter(node_k4n);
+  this->k4n_operation = new k4n::processing::Operation(node_k4n);
 
   //---------------------------
 }
@@ -47,17 +48,13 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   this->convert_into_cloud(sensor);
 
   //Update object data
-  //k4n_processing->start_thread(sensor);
+  k4n_operation->start_thread(sensor);
 
   //Update object data
   //rad_ransac->start_thread(sensor);
 
-  //Export in ply
-  //k4n_recorder->start_thread(sensor);
-
-  dat::base::Object* object = sensor->get_object();
-  object->update_data();
-  // /object->update_glyph();
+  //Export
+  k4n_exporter->start_thread(sensor);
 
   //---------------------------
   this->idle = true;
@@ -69,8 +66,8 @@ void Cloud::wait_thread(){
   while(idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  //k4n_recorder->wait_thread();
-  //k4n_processing->wait_thread();
+  k4n_exporter->wait_thread();
+  k4n_operation->wait_thread();
   //rad_ransac->wait_thread();
 
   //---------------------------
