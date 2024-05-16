@@ -1,4 +1,4 @@
-#include "Radiometry.h"
+#include "Panel.h"
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
@@ -7,7 +7,7 @@
 namespace rad::gui{
 
 //Constructor / Destructor
-Radiometry::Radiometry(rad::Node* node_radio, bool* show_window){
+Panel::Panel(rad::Node* node_radio, bool* show_window){
   //---------------------------
 
   this->radio_struct = node_radio->get_radio_struct();
@@ -19,34 +19,29 @@ Radiometry::Radiometry(rad::Node* node_radio, bool* show_window){
 
   //---------------------------
 }
-Radiometry::~Radiometry(){}
+Panel::~Panel(){}
 
 //Main function
-void Radiometry::run_panel(){
-/*  
+void Panel::run_panel(){
   //---------------------------
 
-  if(*show_window && master != nullptr){
-    radio_struct->panel_open = true;
-
+  if(*show_window){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::SetNextWindowSizeConstraints(ImVec2(100, 400), ImVec2(FLT_MAX, FLT_MAX));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel(master);
+      this->design_panel();
 
       ImGui::End();
     }
     ImGui::PopStyleVar();
     ImGui::PopStyleColor();
-  }else{
-    radio_struct->panel_open = false;
   }
-*/
+
   //---------------------------
 }
-void Radiometry::design_panel(k4n::dev::Master* master){
+void Panel::design_panel(){
   /*dat::base::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(master->active_entity);
   //---------------------------
 
@@ -67,7 +62,7 @@ void Radiometry::design_panel(k4n::dev::Master* master){
 }
 
 //Subfunction
-void Radiometry::matching_parameter(dat::base::Sensor* sensor){
+void Panel::matching_parameter(dat::base::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Model parameter");
@@ -81,7 +76,7 @@ void Radiometry::matching_parameter(dat::base::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Radiometry::tab_detection(dat::base::Sensor* sensor){
+void Panel::tab_detection(dat::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
@@ -93,7 +88,7 @@ void Radiometry::tab_detection(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Radiometry::tab_calibration(dat::base::Sensor* sensor){
+void Panel::tab_calibration(dat::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);

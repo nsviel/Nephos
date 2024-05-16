@@ -27,7 +27,7 @@ Node::Node(eng::Node* node_engine){
   this->radio_ransac = new rad::detection::Ransac(this);
   this->radio_identification = new rad::detection::Identification(this);
   this->radio_measure = new rad::model::Measure(this);
-  this->gui_radiometry = new rad::gui::Radiometry(this, &rad_panel->is_open);
+  this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 
   //---------------------------
 }
@@ -56,7 +56,7 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-  gui_radiometry->run_panel();
+  gui_panel->run_panel();
 
   //---------------------------
 }

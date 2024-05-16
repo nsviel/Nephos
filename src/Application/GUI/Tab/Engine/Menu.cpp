@@ -9,10 +9,11 @@
 namespace gui::tab::eng{
 
 //Constructor / Destructor
-Menu::Menu(gui::Node* gui){
+Menu::Menu(gui::Node* node_gui){
   //---------------------------
 
-  this->node_engine = gui->get_node_engine();
+  this->node_gui = node_gui;
+  this->node_engine = node_gui->get_node_engine();
   this->node_vulkan = node_engine->get_node_vulkan();
 
   //---------------------------
@@ -41,9 +42,19 @@ void Menu::draw(){
 
 //Subfunction
 void Menu::menu_panel(){
-  vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
+  vector<utl::gui::Panel*> vec_panel;
   //---------------------------
 
+  //Node engine panels
+  vec_panel = node_engine->get_vec_panel();
+  for(int i=0; i<vec_panel.size(); i++){
+    utl::gui::Panel* panel = vec_panel[i];
+    string title = panel->icon + " " + panel->name;
+    ImGui::Checkbox(title.c_str(), &panel->is_open);
+  }
+
+  //GUI panels
+  vec_panel = node_gui->get_vec_panel();
   for(int i=0; i<vec_panel.size(); i++){
     utl::gui::Panel* panel = vec_panel[i];
     string title = panel->icon + " " + panel->name;

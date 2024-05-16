@@ -12,17 +12,17 @@ namespace rad::gui{class Calibration;}
 
 namespace rad::gui{
 
-class Radiometry
+class Panel
 {
 public:
   //Constructor / Destructor
-  Radiometry(rad::Node* node_radio, bool* show_window);
-  ~Radiometry();
+  Panel(rad::Node* node_radio, bool* show_window);
+  ~Panel();
 
 public:
   //Main function
   void run_panel();
-  void design_panel(k4n::dev::Master* master);
+  void design_panel();
 
   //Subfunction
   void matching_parameter(dat::base::Sensor* sensor);

@@ -4,7 +4,10 @@
 
 namespace app{class Node;}
 namespace eng{class Node;}
+namespace sce{class Node;}
 namespace vk{class Node;}
+namespace prf{class Node;}
+
 namespace gui::interface{class Control;}
 namespace gui::interface{class Docking;}
 namespace gui{class Tab;}
@@ -28,6 +31,8 @@ public:
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline eng::Node* get_node_engine(){return node_engine;}
+  inline sce::Node* get_node_scene(){return node_scene;}
+  inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline gui::interface::Control* get_gui_control(){return gui_control;}
   inline gui::style::Config* get_gui_style(){return gui_style;}
@@ -38,6 +43,8 @@ private:
   //Dependancy
   eng::Node* node_engine;
   vk::Node* node_vulkan;
+  sce::Node* node_scene;
+  prf::Node* node_profiler;
 
   //Child
   gui::interface::Control* gui_control;

@@ -26,6 +26,7 @@ public:
   void end();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
+  inline sce::Node* get_node_scene(){return node_scene;}
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline bool* get_app_running(){return &running;}

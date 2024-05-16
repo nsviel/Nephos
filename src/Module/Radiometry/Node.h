@@ -12,7 +12,7 @@ namespace rad::detection{class Identification;}
 namespace rad::detection{class Hough;}
 namespace rad::detection{class Ransac;}
 namespace rad::model{class Measure;}
-namespace rad::gui{class Radiometry;}
+namespace rad::gui{class Panel;}
 
 
 namespace rad{
@@ -60,7 +60,7 @@ private:
   rad::detection::Hough* radio_hough;
   rad::detection::Ransac* radio_ransac;
   rad::model::Measure* radio_measure;
-  rad::gui::Radiometry* gui_radiometry;
+  rad::gui::Panel* gui_panel;
 };
 
 }

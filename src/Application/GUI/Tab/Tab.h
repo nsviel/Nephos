@@ -4,6 +4,9 @@
 
 namespace gui{class Node;}
 namespace eng{class Node;}
+namespace sce{class Node;}
+namespace prf{class Node;}
+
 namespace gui::interface{class Menu;}
 namespace gui::tab::dev{class Menu;}
 namespace gui::tab::eng{class Menu;}
@@ -29,6 +32,9 @@ public:
 
 private:
   eng::Node* node_engine;
+  sce::Node* node_scene;
+  prf::Node* node_profiler;
+
   gui::interface::Menu* gui_menu;
   gui::tab::dev::Menu* dev_menu;
   gui::tab::eng::Menu* eng_menu;

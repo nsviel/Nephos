@@ -14,7 +14,7 @@ class Menu
 {
 public:
   //Constructor / Destructor
-  Menu(gui::Node* gui);
+  Menu(gui::Node* node_gui);
   ~Menu();
 
 public:
@@ -27,6 +27,7 @@ public:
   void menu_screenshot();
 
 private:
+  gui::Node* node_gui;
   engine::Node* node_engine;
   vk::Node* node_vulkan;
 };

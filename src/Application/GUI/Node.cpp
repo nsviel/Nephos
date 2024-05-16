@@ -15,6 +15,8 @@ Node::Node(app::Node* node_app){
 
   this->node_engine = node_app->get_node_engine();
   this->node_vulkan = node_app->get_node_vulkan();
+  this->node_scene = node_app->get_node_scene();
+  this->node_profiler = node_app->get_node_profiler();
 
   this->gui_tab = new gui::Tab(this);
   this->gui_style = new gui::style::Config(this);
@@ -22,6 +24,9 @@ Node::Node(app::Node* node_app){
   this->gui_theme = new gui::style::Theme(this);
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
+
+  this->add_node_panel(node_profiler);
+  this->add_node_panel(node_scene);
 
   //---------------------------
 }
