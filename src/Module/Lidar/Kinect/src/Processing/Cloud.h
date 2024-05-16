@@ -44,7 +44,7 @@ public:
 
 private:
   k4n::processing::Operation* k4n_processing;
-  rad::detection::Ransac* radio_ransac;
+  rad::detection::Ransac* rad_ransac;
   utl::thread::Pool* thread_pool;
   k4n::processing::Recorder* k4n_recorder;
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Data/Namespace.h>
-#include <Dynamic/src/Base/Device.h>
 #include <Utility/Specific/Common.h>
 #include <Kinect/src/Structure/Namespace.h>
 

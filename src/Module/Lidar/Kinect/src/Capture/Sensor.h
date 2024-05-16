@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Kinect/src/Device/Sensor.h>
-#include <Dynamic/src/Base/Device.h>
 #include <Utility/Specific/Common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>

@@ -42,7 +42,7 @@ public:
 
   inline rad::detection::Identification* get_radio_identification(){return radio_identification;}
   inline rad::detection::Hough* get_rad_hough(){return rad_hough;}
-  inline rad::detection::Ransac* get_radio_ransac(){return radio_ransac;}
+  inline rad::detection::Ransac* get_rad_ransac(){return rad_ransac;}
   inline rad::model::Measure* get_model_measure(){return rad_measure;}
 
 
@@ -58,7 +58,7 @@ private:
   rad::Model* rad_model;
   rad::detection::Identification* radio_identification;
   rad::detection::Hough* rad_hough;
-  rad::detection::Ransac* radio_ransac;
+  rad::detection::Ransac* rad_ransac;
   rad::model::Measure* rad_measure;
   rad::gui::Panel* gui_panel;
 };
