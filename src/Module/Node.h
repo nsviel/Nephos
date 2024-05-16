@@ -2,19 +2,19 @@
 
 #include <Utility/Base/Type/Node.h>
 
-namespace sce{class Node;}
+namespace eng{class Node;}
 namespace k4n{class Node;}
 namespace rad{class Node;}
 
 
-namespace sce{
+namespace mod{
 
-class Module : public utl::type::Node
+class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Module(sce::Node* node_scene);
-  ~Module();
+  Node(eng::Node* node_engine);
+  ~Node();
 
 public:
   //Main function
@@ -23,7 +23,11 @@ public:
   void clean();
   void gui();
 
+  inline rad::Node* get_node_radio(){return node_radio;}
+  inline eng::Node* get_node_engine(){return node_engine;}
+
 private:
+  eng::Node* node_engine;
   k4n::Node* node_kinect;
   rad::Node* node_radio;
 };

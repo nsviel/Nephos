@@ -18,7 +18,6 @@ Node::Node(eng::Node* node_engine){
   this->node_loader = node_engine->get_node_loader();
   this->node_profiler = node_engine->get_node_profiler();
   this->node_data = node_engine->get_node_data();
-  this->node_radio = new rad::Node(node_engine);
 
   //---------------------------
 }

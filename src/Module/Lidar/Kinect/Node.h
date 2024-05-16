@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace mod{class Node;}
 namespace prf{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
@@ -19,7 +20,7 @@ class Node : public utl::type::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(mod::Node* node_module);
   ~Node();
 
 public:

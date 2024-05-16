@@ -5,7 +5,7 @@
 namespace app{class Node;}
 namespace vk{class Node;}
 namespace sce{class Init;}
-namespace sce{class Module;}
+namespace mod{class Node;}
 namespace eng{class Node;}
 
 
@@ -32,10 +32,10 @@ private:
   //Dependancy
   eng::Node* node_engine;
   vk::Node* node_vulkan;
+  mod::Node* node_module;
 
   //Child
   sce::Init* sce_init;
-  sce::Module* sce_module;
 
   bool show_scene = true;
   bool show_loader = true;
