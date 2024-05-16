@@ -10,6 +10,7 @@ namespace cam{class Node;}
 namespace cam{class Entity;}
 namespace cam{class Structure;}
 namespace cam{class Control;}
+namespace vk::image{class Screenshot;}
 
 
 namespace cam{
@@ -24,6 +25,7 @@ public:
   //Main function
   void create_camera();
   void reset();
+  void make_screenshot();
 
 private:
   dat::Glyph* dat_glyph;
@@ -31,6 +33,7 @@ private:
   dat::Set* dat_set;
   cam::Structure* cam_struct;
   cam::Control* cam_control;
+  vk::image::Screenshot* vk_screenshot;
 };
 
 }

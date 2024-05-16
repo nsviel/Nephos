@@ -2,7 +2,7 @@
 
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
-#include <Vulkan/Namespace.h>
+#include <Camera/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -14,7 +14,9 @@ Menu::Menu(gui::Node* node_gui){
 
   this->node_gui = node_gui;
   this->node_engine = node_gui->get_node_engine();
-  this->node_vulkan = node_engine->get_node_vulkan();
+
+  cam::Node* node_camera = node_engine->get_node_camera();
+  this->cam_manager = node_camera->get_manager();
 
   //---------------------------
 }
@@ -76,10 +78,9 @@ void Menu::menu_loader(){
   //---------------------------
 }
 void Menu::menu_screenshot(){
-  vk::image::Screenshot* vk_screenshot = node_vulkan->get_vk_screenshot();
   //---------------------------
 
-  vk_screenshot->make_screenshot();
+  cam_manager->make_screenshot();
 
   //---------------------------
 }

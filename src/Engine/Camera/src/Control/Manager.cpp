@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Data/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace cam{
@@ -12,7 +13,9 @@ Manager::Manager(cam::Node* node_camera){
   //---------------------------
 
   dat::Node* node_data = node_camera->get_node_data();
+  vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
+  this->vk_screenshot = node_vulkan->get_vk_screenshot();
   this->cam_struct = node_camera->get_struct();
   this->cam_control = node_camera->get_control();
   this->dat_glyph = node_data->get_data_glyph();
@@ -52,6 +55,12 @@ void Manager::reset(){
 
   //---------------------------
 }
+void Manager::make_screenshot(){
+  //---------------------------
 
+  vk_screenshot->make_screenshot();
+
+  //---------------------------
+}
 
 }

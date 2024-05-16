@@ -2,9 +2,9 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace eng{class Node;}
 namespace gui{class Node;}
 namespace gui{class Tab;}
-namespace vk::window{class GLFW;}
 
 
 namespace gui::interface{
@@ -26,7 +26,7 @@ public:
   //Mouse
 
 private:
-  vk::window::GLFW* vk_window;
+  eng::Node* node_engine;
   gui::Tab* gui_tab;
 };
 

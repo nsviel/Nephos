@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace gui{class Node;}
-namespace vk{class Node;}
+namespace cam{class Manager;}
 namespace eng{class Node;}
 namespace engine = eng;
 
@@ -29,7 +29,7 @@ public:
 private:
   gui::Node* node_gui;
   engine::Node* node_engine;
-  vk::Node* node_vulkan;
+  cam::Manager* cam_manager;
 };
 
 }

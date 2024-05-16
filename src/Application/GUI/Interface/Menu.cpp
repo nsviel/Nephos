@@ -1,6 +1,5 @@
 #include "Menu.h"
 
-#include <Vulkan/Namespace.h>
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
 #include <image/IconsFontAwesome6.h>

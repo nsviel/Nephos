@@ -17,7 +17,6 @@ Node::Node(app::Node* node_app){
 
   //Dependancy
   this->node_engine = node_app->get_node_engine();
-  this->node_vulkan = node_engine->get_node_vulkan();
   this->node_module = new mod::Node(node_engine);
 
   //Child

@@ -48,9 +48,9 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
+  node_vulkan->init();
   node_data->init();
   node_loader->init();
-
   node_camera->init();
   node_render->init();
 
@@ -63,6 +63,7 @@ void Node::loop(){
   node_data->loop();
   node_loader->loop();
   node_camera->loop();
+  node_vulkan->loop();
 
   //---------------------------
   tasker_main->task_end("eng");
@@ -85,6 +86,7 @@ void Node::clean(){
 
   node_data->clean();
   node_loader->clean();
+  node_vulkan->clean();
 
   //---------------------------
 }
@@ -92,6 +94,14 @@ void Node::reset(){
   //---------------------------
 
   node_camera->reset();
+
+  //---------------------------
+}
+void Node::close(){
+  vk::window::GLFW* vk_window = node_vulkan->get_vk_window();
+  //---------------------------
+
+  vk_window->close_window();
 
   //---------------------------
 }

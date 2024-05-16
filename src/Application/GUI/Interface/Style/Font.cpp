@@ -1,7 +1,6 @@
 #include "Font.h"
 
 #include <GUI/Namespace.h>
-#include <Vulkan/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -10,10 +9,6 @@ namespace gui::style{
 //Constructor / Destructor
 Font::Font(gui::Node* node_gui){
   //---------------------------
-
-  vk::Node* node_vulkan = node_gui->get_node_vulkan();
-
-  this->vk_imgui = node_vulkan->get_vk_imgui();
 
   //---------------------------
 }
@@ -24,7 +19,6 @@ void Font::init_font(){
   //---------------------------
 
   //this->gui_select_font();
-  //vk_imgui->load_font();
 
   //---------------------------
 }

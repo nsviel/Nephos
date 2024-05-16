@@ -3,10 +3,9 @@
 #include <Utility/Base/Type/Node.h>
 
 namespace app{class Node;}
-namespace vk{class Node;}
-namespace sce{class Init;}
 namespace mod{class Node;}
 namespace eng{class Node;}
+namespace sce{class Init;}
 
 
 namespace sce{
@@ -26,12 +25,10 @@ public:
   void reset();
 
   inline eng::Node* get_node_engine(){return node_engine;}
-  inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
 private:
   //Dependancy
   eng::Node* node_engine;
-  vk::Node* node_vulkan;
   mod::Node* node_module;
 
   //Child

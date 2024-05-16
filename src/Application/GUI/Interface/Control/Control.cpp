@@ -2,7 +2,6 @@
 
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
-#include <Vulkan/Namespace.h>
 
 
 namespace gui::interface{
@@ -11,9 +10,7 @@ namespace gui::interface{
 Control::Control(gui::Node* node_gui){
   //---------------------------
 
-  vk::Node* node_vulkan = node_gui->get_node_vulkan();
-
-  this->vk_window = node_vulkan->get_vk_window();
+  this->node_engine = node_gui->get_node_engine();
   this->gui_tab = node_gui->get_gui_tab();
 
   //---------------------------
@@ -37,7 +34,7 @@ void Control::control_keyboard_oneAction(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Esc key - Close program
     if(ImGui::IsKeyPressed(ImGuiKey_Escape)){
-      vk_window->close_window();
+      node_engine->close();
     }
 
     //1 key - Next main tab

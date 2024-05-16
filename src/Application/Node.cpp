@@ -40,7 +40,6 @@ void Node::run(){
 void Node::init(){
   //---------------------------
 
-  node_vulkan->init();
   node_engine->init();
   node_gui->init();
   node_scene->init();
@@ -52,10 +51,9 @@ void Node::loop(){
 
   while(running){
     node_profiler->loop();
-    node_engine->loop();
     node_scene->loop();
     node_gui->loop();
-    node_vulkan->loop();
+    node_engine->loop();
   }
 
   //---------------------------
@@ -65,7 +63,6 @@ void Node::end(){
 
   node_scene->clean();
   node_engine->clean();
-  node_vulkan->clean();
 
   //---------------------------
 }
