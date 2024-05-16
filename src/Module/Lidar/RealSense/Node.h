@@ -26,7 +26,6 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline rad::Node* get_node_radio(){return node_radio;}
 
 private:
   //Dependancy

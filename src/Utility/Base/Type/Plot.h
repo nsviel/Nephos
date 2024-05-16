@@ -7,6 +7,7 @@ struct Axis{
   //---------------------------
 
   //Data
+  int size = 0;
   float min = 0;
   float max = 0;
   float current = 0;
@@ -29,7 +30,6 @@ struct Plot{
   glm::vec2 highlight = vec2(-1, -1);
 
   //Data
-  int size = 0;
   utl::type::Axis axis_x;
   utl::type::Axis axis_y;
   utl::type::Axis axis_z;

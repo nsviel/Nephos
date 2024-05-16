@@ -101,36 +101,36 @@ void Measure::init_plot_data(){
   measure->IfR.axis_x.resolution = 0.01f;
   measure->IfR.axis_x.min = 0.0f;
   measure->IfR.axis_x.max = 5.0f;
-  measure->IfR.size = static_cast<int>((measure->IfR.axis_x.max - measure->IfR.axis_x.min) / measure->IfR.axis_x.resolution) + 1;
-  measure->IfR.axis_x.data = vector<float>(measure->IfR.size, 0.0f);
-  measure->IfR.axis_y.data = vector<float>(measure->IfR.size, 0.0f);
+  measure->IfR.axis_x.size = static_cast<int>((measure->IfR.axis_x.max - measure->IfR.axis_x.min) / measure->IfR.axis_x.resolution) + 1;
+  measure->IfR.axis_x.data = vector<float>(measure->IfR.axis_x.size, 0.0f);
+  measure->IfR.axis_y.data = vector<float>(measure->IfR.axis_x.size, 0.0f);
 
   //I(It)
   measure->IfIt.title = "I(It)";
   measure->IfIt.axis_x.resolution = 1.0f;
   measure->IfIt.axis_x.min = 0.0f;
   measure->IfIt.axis_x.max = 90.0f;
-  measure->IfIt.size = static_cast<int>((measure->IfIt.axis_x.max - measure->IfIt.axis_x.min) / measure->IfIt.axis_x.resolution) + 1;
-  measure->IfIt.axis_x.data = vector<float>(measure->IfIt.size, 0.0f);
-  measure->IfIt.axis_y.data = vector<float>(measure->IfIt.size, 0.0f);
+  measure->IfIt.axis_x.size = static_cast<int>((measure->IfIt.axis_x.max - measure->IfIt.axis_x.min) / measure->IfIt.axis_x.resolution) + 1;
+  measure->IfIt.axis_x.data = vector<float>(measure->IfIt.axis_x.size, 0.0f);
+  measure->IfIt.axis_y.data = vector<float>(measure->IfIt.axis_x.size, 0.0f);
 
   //I(R, It)
   measure->IfRIt.title = "I(R, It)";
   measure->IfRIt.axis_x.resolution = 0.01f;
   measure->IfRIt.axis_x.min = 0.0f;
   measure->IfRIt.axis_x.max = 5.0f;
-  measure->IfRIt.size = static_cast<int>((measure->IfRIt.axis_x.max - measure->IfRIt.axis_x.min) / measure->IfRIt.axis_x.resolution) + 1;
+  measure->IfRIt.axis_x.size = static_cast<int>((measure->IfRIt.axis_x.max - measure->IfRIt.axis_x.min) / measure->IfRIt.axis_x.resolution) + 1;
   measure->IfRIt.axis_y.resolution = 1.0f;
   measure->IfRIt.axis_y.min = 0.0f;
   measure->IfRIt.axis_y.max = 90.0f;
-  measure->IfRIt.size = static_cast<int>((measure->IfRIt.axis_y.max - measure->IfRIt.axis_y.min) / measure->IfRIt.axis_y.resolution) + 1;
-  measure->IfIt.axis_z.min = 0.0f;
-  measure->IfIt.axis_z.max = 2500.0f;
-  measure->IfIt.size = measure->IfRIt.size * measure->IfRIt.size;
-  measure->IfIt.axis_z.data = vector<float>(measure->IfIt.size, 0.0f);
+  measure->IfRIt.axis_y.size = static_cast<int>((measure->IfRIt.axis_y.max - measure->IfRIt.axis_y.min) / measure->IfRIt.axis_y.resolution) + 1;
+  measure->IfRIt.axis_z.min = 0.0f;
+  measure->IfRIt.axis_z.max = 2500.0f;
+  measure->IfRIt.axis_z.size = measure->IfRIt.axis_x.size * measure->IfRIt.axis_y.size;
+  measure->IfRIt.axis_z.data = vector<float>(measure->IfRIt.axis_z.size, 0.0f);
 
   //Measure
-  measure->vec_data = vector<vec3>(measure->IfIt.size, vec3(-1, -1, -1));
+  measure->vec_data = vector<vec3>(measure->IfRIt.axis_z.size, vec3(-1, -1, -1));
   optim->axis_x.bound = vec2(1000, -1);
   optim->axis_x.current = 1;
   optim->axis_y.bound = vec2(0, 90);
@@ -138,32 +138,10 @@ void Measure::init_plot_data(){
 
   //---------------------------
 }
-void Measure::reset_plot_data(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  //---------------------------
-
-  //I(R)
-  measure->IfR.axis_x.data = std::vector<float>(measure->IfR.axis_x.data.size(), 0.0f);
-  measure->IfR.axis_y.data = std::vector<float>(measure->IfR.axis_y.data.size(), 0.0f);
-  measure->IfR.axis_x.fitting = std::vector<float>(measure->IfR.axis_x.data.size(), 0.0f);
-  measure->IfR.axis_y.fitting = std::vector<float>(measure->IfR.axis_y.data.size(), 0.0f);
-
-  //I(It)
-  measure->IfIt.axis_x.data = std::vector<float>(measure->IfIt.axis_x.data.size(), 0.0f);
-  measure->IfIt.axis_y.data = std::vector<float>(measure->IfIt.axis_y.data.size(), 0.0f);
-  measure->IfIt.axis_z.data = std::vector<float>(measure->IfIt.axis_z.data.size(), 0.0f);
-
-  //I(R, It)
-
-  //---------------------------
-}
 void Measure::update_plot_data(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
-
-  this->reset_plot_data();
 
   //Fill model plot data
   for(int i=0; i<measure->vec_data.size(); i++){
@@ -185,13 +163,15 @@ void Measure::update_plot_data(){
     }
 
     //I(It)
-    measure->IfIt.axis_z.data[i] = I;
     if(It > optim->axis_y.bound[0] && It < optim->axis_y.bound[1]) // It It inside user defined bounds
     if(R > optim->axis_x.current && R < optim->axis_x.current + 0.05){ //All data between R current + 0.05m
       int index = static_cast<int>(std::round(It / measure->IfIt.axis_x.resolution));
       measure->IfIt.axis_x.data[index] = It;
       measure->IfIt.axis_y.data[index] = I;
     }
+
+    //I(R, It)
+    measure->IfRIt.axis_z.data[i] = I;
   }
 
   //---------------------------
@@ -218,8 +198,8 @@ void Measure::clear_plot_data(){
   }
 
   //I(R, It)
-  for(int i=0; i<measure->IfIt.axis_z.data.size(); i++){
-    measure->IfIt.axis_z.data[i] = 0;
+  for(int i=0; i<measure->IfRIt.axis_z.data.size(); i++){
+    measure->IfRIt.axis_z.data[i] = 0;
     measure->vec_data[i] = vec3(-1, -1, -1);
   }
 

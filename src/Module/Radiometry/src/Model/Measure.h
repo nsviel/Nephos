@@ -27,7 +27,6 @@ public:
 
   //Plot function
   void init_plot_data();
-  void reset_plot_data();
   void update_plot_data();
   void clear_plot_data();
 

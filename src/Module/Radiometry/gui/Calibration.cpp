@@ -74,7 +74,7 @@ void Calibration::parameter_measure(){
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", measure->path.c_str());
 
     //Heatmap scale
-    ImGui::DragFloatRange2("Heatmap scale",&measure->IfIt.axis_z.min, &measure->IfIt.axis_z.max, 100, 0, 60000, "%.0f");
+    ImGui::DragFloatRange2("Heatmap scale",&measure->IfRIt.axis_z.min, &measure->IfRIt.axis_z.max, 100, 0, 60000, "%.0f");
 
     //Import / export / clear
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));

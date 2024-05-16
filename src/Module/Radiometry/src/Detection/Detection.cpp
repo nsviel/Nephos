@@ -145,7 +145,7 @@ void Detection::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       Nxyz = normalize(xyz - current_pose);
       It = ope_normal->compute_It(xyz, Nxyz, root);
 
-      //ADdd into model data vector
+      //Add into model data vector
       int index = static_cast<int>(std::round(It / measure->IfIt.axis_x.resolution));
       measure->IfIt.axis_x.data[index] = It;
       measure->IfIt.axis_y.data[index] = I;
@@ -180,11 +180,11 @@ void Detection::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       if(R > optim->axis_x.bound[1]) optim->axis_x.bound[1] = R;
 
       // Calculate the index of the cell in the heatmap grid
-      int i = static_cast<int>((R - measure->IfRIt.axis_x.min) / (measure->IfRIt.axis_x.max - measure->IfRIt.axis_x.min) * measure->IfRIt.size);
-      int j = static_cast<int>((It - measure->IfRIt.axis_y.max) / (measure->IfRIt.axis_y.min - measure->IfRIt.axis_y.max) * measure->IfRIt.size);
-      int index = j * measure->IfRIt.size + i;
-      if(index >= 0 && index < measure->IfIt.size){
-        measure->IfIt.axis_z.data[index] = I;
+      int i = static_cast<int>((R - measure->IfRIt.axis_x.min) / (measure->IfRIt.axis_x.max - measure->IfRIt.axis_x.min) * measure->IfRIt.axis_x.size);
+      int j = static_cast<int>((It - measure->IfRIt.axis_y.max) / (measure->IfRIt.axis_y.min - measure->IfRIt.axis_y.max) * measure->IfRIt.axis_y.size);
+      int index = j * measure->IfRIt.axis_x.size + i;
+      if(index >= 0 && index < measure->IfRIt.axis_z.size){
+        measure->IfRIt.axis_z.data[index] = I;
         measure->vec_data[index] = vec3(R, It, I);
       }
     }
