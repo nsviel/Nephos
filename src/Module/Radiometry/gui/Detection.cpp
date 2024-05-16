@@ -22,25 +22,25 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::draw_detection(dat::base::Sensor* sensor){
+void Detection::draw_detection(){
   //---------------------------
 
-  this->detection_parameter(sensor);
+  this->detection_parameter();
 
   ImGui::BeginTable("Detection##table", 2);
-  this->canny_parameter(sensor);
-  this->hough_parameter(sensor);
-  this->ransac_parameter(sensor);
+  this->canny_parameter();
+  this->hough_parameter();
+  this->ransac_parameter();
   ImGui::EndTable();
   ImGui::Separator();
 
-  this->draw_result(sensor);
+  this->draw_result();
 
   //---------------------------
 }
 
 //Subfunction
-void Detection::detection_parameter(dat::base::Sensor* sensor){
+void Detection::detection_parameter(){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Parameter");
@@ -51,7 +51,7 @@ void Detection::detection_parameter(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::canny_parameter(dat::base::Sensor* sensor){
+void Detection::canny_parameter(){
   //---------------------------
 
   //Canny
@@ -76,7 +76,7 @@ void Detection::canny_parameter(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::hough_parameter(dat::base::Sensor* sensor){
+void Detection::hough_parameter(){
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -128,7 +128,7 @@ void Detection::hough_parameter(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::ransac_parameter(dat::base::Sensor* sensor){
+void Detection::ransac_parameter(){
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -147,7 +147,7 @@ void Detection::ransac_parameter(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::draw_result(dat::base::Sensor* sensor){
+void Detection::draw_result(){
   //---------------------------
 
   //Display number of detected spheres

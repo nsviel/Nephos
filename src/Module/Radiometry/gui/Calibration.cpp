@@ -22,7 +22,7 @@ Calibration::Calibration(rad::Node* node_radio){
 Calibration::~Calibration(){}
 
 //Main function
-void Calibration::draw_calibration_player(dat::base::Sensor* sensor){
+void Calibration::draw_calibration_player(){
   //---------------------------
 
   //Player
@@ -35,14 +35,14 @@ void Calibration::draw_calibration_player(dat::base::Sensor* sensor){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
-      radio_detection->next_step(sensor);
+      //radio_detection->next_step();
     }
     ImGui::PopStyleColor(2);
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##calibration", ImVec2(120, 0))){
-      radio_detection->next_step(sensor);
+      //radio_detection->next_step();
     }
     ImGui::PopStyleColor(2);
   }
@@ -54,20 +54,20 @@ void Calibration::draw_calibration_player(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Calibration::draw_calibration_tab(dat::base::Sensor* sensor){
+void Calibration::draw_calibration_tab(){
   //---------------------------
 
   ImGui::BeginTable("Detection##table", 2);
-  this->draw_calibration_measure(sensor);
-  this->draw_calibration_model(sensor);
+  this->draw_calibration_measure();
+  this->draw_calibration_model();
   ImGui::EndTable();
   ImGui::Separator();
 
-  this->draw_measure(sensor);
+  this->draw_measure();
 
   //---------------------------
 }
-void Calibration::draw_calibration_measure(dat::base::Sensor* sensor){
+void Calibration::draw_calibration_measure(){
   rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
@@ -117,7 +117,7 @@ void Calibration::draw_calibration_measure(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Calibration::draw_calibration_model(dat::base::Sensor* sensor){
+void Calibration::draw_calibration_model(){
   rad::structure::Optimization* model = &radio_struct->model.optim;
   //---------------------------
 
@@ -183,18 +183,18 @@ void Calibration::draw_calibration_model(dat::base::Sensor* sensor){
 }
 
 //Subfunction
-void Calibration::draw_measure(dat::base::Sensor* sensor){
+void Calibration::draw_measure(){
   //---------------------------
 
   float height = ImGui::GetContentRegionAvail().y / 3-3.33;
 
-  this->plot_measure_IfR(sensor, height);
-  this->plot_measure_IfIt(sensor, height);
-  this->plot_model_heatmap(sensor, height);
+  this->plot_measure_IfR(height);
+  this->plot_measure_IfIt(height);
+  this->plot_model_heatmap(height);
 
   //---------------------------
 }
-void Calibration::plot_measure_IfR(dat::base::Sensor* sensor, float height){
+void Calibration::plot_measure_IfR(float height){
   rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
@@ -203,7 +203,7 @@ void Calibration::plot_measure_IfR(dat::base::Sensor* sensor, float height){
 
   //---------------------------
 }
-void Calibration::plot_measure_IfIt(dat::base::Sensor* sensor, float height){
+void Calibration::plot_measure_IfIt(float height){
   rad::structure::Measure* measure = &radio_struct->model.measure;
   //---------------------------
 
@@ -212,7 +212,7 @@ void Calibration::plot_measure_IfIt(dat::base::Sensor* sensor, float height){
 
   //---------------------------
 }
-void Calibration::plot_model_heatmap(dat::base::Sensor* sensor, float height){
+void Calibration::plot_model_heatmap(float height){
   rad::structure::Measure* measure = &radio_struct->model.measure;
   rad::structure::Optimization* model = &radio_struct->model.optim;
   //---------------------------

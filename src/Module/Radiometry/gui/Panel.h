@@ -3,7 +3,8 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n::dev{class Master;}
-namespace dat::base{class Sensor;}
+namespace dat::base{class Entity;}
+namespace dat{class Graph;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::gui{class Detection;}
@@ -22,14 +23,15 @@ public:
 public:
   //Main function
   void run_panel();
-  void design_panel();
+  void design_panel(dat::base::Entity* entity);
 
   //Subfunction
-  void matching_parameter(dat::base::Sensor* sensor);
-  void tab_detection(dat::base::Sensor* sensor);
-  void tab_calibration(dat::base::Sensor* sensor);
+  void matching_parameter(dat::base::Entity* entity);
+  void tab_detection(dat::base::Entity* entity);
+  void tab_calibration(dat::base::Entity* entity);
 
 private:
+  dat::Graph* dat_graph;
   rad::Structure* radio_struct;
   rad::gui::Detection* gui_detection;
   rad::gui::Calibration* gui_calibration;

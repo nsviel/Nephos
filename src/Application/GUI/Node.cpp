@@ -5,6 +5,7 @@
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace gui{

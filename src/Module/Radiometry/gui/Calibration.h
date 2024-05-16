@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dat::base{class Sensor;}
 namespace k4n::gui{class Player;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
@@ -23,16 +22,16 @@ public:
 
 public:
   //Main function
-  void draw_calibration_player(dat::base::Sensor* sensor);
-  void draw_calibration_tab(dat::base::Sensor* sensor);
-  void draw_calibration_measure(dat::base::Sensor* sensor);
-  void draw_calibration_model(dat::base::Sensor* sensor);
+  void draw_calibration_player();
+  void draw_calibration_tab();
+  void draw_calibration_measure();
+  void draw_calibration_model();
 
   //Subfunction
-  void draw_measure(dat::base::Sensor* sensor);
-  void plot_measure_IfR(dat::base::Sensor* sensor, float height);
-  void plot_measure_IfIt(dat::base::Sensor* sensor, float height);
-  void plot_model_heatmap(dat::base::Sensor* sensor, float height);
+  void draw_measure();
+  void plot_measure_IfR(float height);
+  void plot_measure_IfIt(float height);
+  void plot_model_heatmap(float height);
 
 private:
   k4n::gui::Player* gui_player;

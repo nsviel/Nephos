@@ -22,14 +22,14 @@ public:
 
 public:
   //Main function
-  void draw_detection(dat::base::Sensor* sensor);
+  void draw_detection();
 
   //Subfunction
-  void detection_parameter(dat::base::Sensor* sensor);
-  void canny_parameter(dat::base::Sensor* sensor);
-  void hough_parameter(dat::base::Sensor* sensor);
-  void ransac_parameter(dat::base::Sensor* sensor);
-  void draw_result(dat::base::Sensor* sensor);
+  void detection_parameter();
+  void canny_parameter();
+  void hough_parameter();
+  void ransac_parameter();
+  void draw_result();
 
 private:
   rad::Structure* radio_struct;
