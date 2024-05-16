@@ -28,10 +28,10 @@ public:
   //Subfunction
   void detection_step();
   void detection_parameter();
-  void canny_parameter();
-  void hough_parameter();
-  void ransac_parameter();
-  void draw_result();
+  void parameter_canny();
+  void parameter_hough();
+  void parameter_ransac();
+  void display_image();
 
 private:
   rad::Detection* rad_detection;
