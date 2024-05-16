@@ -8,6 +8,8 @@ namespace dat::base{
 struct Sensor : public dat::base::Entity{
   //---------------------------
 
+  virtual glm::vec3 convert_depth_2d_to_3d(glm::ivec2 point){return glm::vec3(0);}
+
 /*
   //Sensor glyph
   for(int i=0; i<20; i++){

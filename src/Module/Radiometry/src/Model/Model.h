@@ -22,12 +22,12 @@ public:
   void import_model();
   void export_model();
   void compute_model();
-
+  void draw_model();
+  
   //Subfunction
   void make_model();
   float apply_model(float x, float y);
   float validation_model();
-  void draw_model();
 
 private:
   rad::Structure* rad_struct;

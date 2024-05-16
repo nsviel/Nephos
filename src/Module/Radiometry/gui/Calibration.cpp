@@ -57,7 +57,7 @@ void Calibration::draw_calibration_player(){
 void Calibration::draw_calibration_tab(){
   //---------------------------
 
-  ImGui::BeginTable("Detection##table", 2);
+  ImGui::BeginTable("Detection##table", 3);
   this->draw_calibration_measure();
   this->draw_calibration_model();
   ImGui::EndTable();
@@ -73,7 +73,7 @@ void Calibration::draw_calibration_measure(){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Measure");
-  ImGui::SameLine();
+  ImGui::TableNextColumn();
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button(ICON_FA_DOWNLOAD "##measure_load", ImVec2(25, 0))){
@@ -136,7 +136,7 @@ void Calibration::draw_calibration_model(){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Model");
-  ImGui::SameLine();
+  ImGui::TableNextColumn();
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button(ICON_FA_DOWNLOAD "##model_load", ImVec2(25, 0))){
@@ -172,10 +172,10 @@ void Calibration::draw_calibration_model(){
     ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", model->rmse);
     if(ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
-      rad_measure->update_plot();
+      rad_measure->update_plot_data();
     }
     if(ImGui::DragFloatRange2("Range y",&model->y.bound[0], &model->y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
-      rad_measure->update_plot();
+      rad_measure->update_plot_data();
     }
 
     //Model function
@@ -249,7 +249,7 @@ void Calibration::plot_model_heatmap(float height){
   measure->IfRIt.dimension = ivec2(-1, height);
   bool need_update = utl_plot->plot_heatmap(&measure->IfRIt, &model->x, &model->y);
   if(need_update){
-    rad_measure->update_plot();
+    rad_measure->update_plot_data();
   }
 
   //---------------------------

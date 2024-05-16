@@ -61,33 +61,6 @@ void Data::find_ir_level(k4n::dev::Sensor* sensor){
 }
 
 //Depth function
-vec3 Data::convert_depth_2d_to_3d(k4n::dev::Sensor* sensor, ivec2 point_2d){
-  //---------------------------
-
-  uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
-  int width = sensor->depth.data.width;
-
-  //Retrieve image coordinates
-  int x = point_2d[0];
-  int y = point_2d[1];
-  k4a_float2_t source_xy = { static_cast<float>(x), static_cast<float>(y) };
-  float source_z = static_cast<float>(buffer[y * width + x]);
-
-  //Convert it into 3D coordinate
-  k4a_float3_t target_xyz;
-  bool success = sensor->device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
-  vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
-
-  //Apply transformation
-  float inv_scale = 1.0f / 1000.0f;
-  xyzw.x = -xyzw.x * inv_scale;
-  xyzw.y = -xyzw.y * inv_scale;
-  xyzw.z = xyzw.z * inv_scale;
-  vec3 pose = vec3(xyzw.z, xyzw.x, xyzw.y);
-
-  //---------------------------
-  return pose;
-}
 void Data::convert_depth_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_t>& output){
   k4n::structure::Data* data = &sensor->depth.data;
   uint8_t* inputBuffer = data->buffer;

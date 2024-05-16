@@ -32,7 +32,7 @@ namespace k4n::gui{class Sensor;}
 
 namespace k4n::dev{
 
-class Sensor : public dyn::base::Device
+class Sensor : public dat::base::Sensor
 {
 public:
   //Constructor / Destructor
@@ -47,6 +47,7 @@ public:
   void update_pose();
   void remove();
   void set_visibility(bool value);
+  vec3 convert_depth_2d_to_3d(ivec2 point_2d);
 
   //Init function
   void init_profiler();

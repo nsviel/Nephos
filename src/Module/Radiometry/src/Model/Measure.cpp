@@ -2,6 +2,8 @@
 
 #include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <python/matplotlibcpp.h>
+
 
 namespace rad::model{
 
@@ -50,9 +52,18 @@ void Measure::plot_measure(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
-  //Import file model data
-  measure->vec_data.clear();
-  this->clear_plot_data();
+  // Plot 3D scatter plot
+  if(measure->vec_data.size() > 0) {
+    std::vector<float> x, y, z;
+    for(const auto& point : measure->vec_data){
+      if(point.x == -1 || point.y > 60) continue;
+      x.push_back(point.x);
+      y.push_back(point.y);
+      z.push_back(log(point.z));
+    }
+    matplotlibcpp::scatter(x, y, z, 0.1, /*keywords=*/{ {"cmap", "viridis"}, {"marker", "."} });
+    matplotlibcpp::show();
+  }
 
   //---------------------------
 }

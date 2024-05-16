@@ -1,6 +1,5 @@
 #include "Detection.h"
 
-#include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 
@@ -10,7 +9,6 @@ namespace rad{
 Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
-  this->k4n_data = new k4n::utils::Data();
   this->rad_struct = node_radio->get_rad_struct();
   this->radio_glyph = new rad::detection::cloud::Glyph(node_radio);
 
@@ -50,22 +48,25 @@ void Detection::validate_bbox(dat::base::Sensor* sensor){
   if(rad_struct->detection.nb_detection == 0) return;
   if(step != rad::detection::WAIT_VALIDATION) return;
   //---------------------------
-/*
+
+  utl::type::Pose* pose = sensor->get_pose();
+
   this->step++;
   ivec2 point_2d = rad_struct->detection.vec_circle[0].center;
-  vec3 truc = k4n_data->convert_depth_2d_to_3d(sensor, point_2d);
+  vec3 truc = sensor->convert_depth_2d_to_3d(point_2d);
   vec4 machin = vec4(truc.x, truc.y, truc.z, 1);
-  truc = sensor->object.pose.model * machin;
+  truc = pose->model * machin;
   this->current_pose = vec3(truc.x, truc.y, truc.z);
-*/
+
   //---------------------------
 }
 void Detection::ransac_sphere(dat::base::Sensor* sensor){
   if(step != rad::detection::PROCESSING) return;
   //---------------------------
-/*
-  vector<vec3>& vec_xyz = sensor->object.data.xyz;
-  vector<float>& vec_i = sensor->object.data.Is;
+
+  utl::type::Data* data = sensor->get_data();
+  vector<vec3>& vec_xyz = data->xyz;
+  vector<float>& vec_i = data->Is;
 
   //Search for point inside a global sphere around current center point
   vector<vec3> sphere_xyz;
@@ -92,7 +93,7 @@ void Detection::ransac_sphere(dat::base::Sensor* sensor){
   this->data_IfR(sphere_xyz, sphere_i);
   this->data_IfIt(sphere_xyz, sphere_i);
   this->data_model(sphere_xyz, sphere_i);
-*/
+
   //---------------------------
 }
 

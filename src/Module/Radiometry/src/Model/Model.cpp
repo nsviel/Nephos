@@ -61,9 +61,6 @@ void Model::compute_model(){
 
   //---------------------------
 }
-
-
-//Subfunction
 void Model::draw_model(){
   rad::structure::Optimization* model = &rad_struct->model.optim;
   //---------------------------
@@ -105,6 +102,8 @@ void Model::draw_model(){
 
   //---------------------------
 }
+
+//Subfunction
 void Model::make_model(){
   rad::structure::Optimization* model = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
