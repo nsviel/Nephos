@@ -1,7 +1,7 @@
 #include "Hough.h"
 
-#include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
+
 
 namespace rad::detection{
 

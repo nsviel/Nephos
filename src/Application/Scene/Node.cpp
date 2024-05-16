@@ -3,8 +3,6 @@
 #include <Application/Node.h>
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Data/Namespace.h>
-#include <Loader/Namespace.h>
 #include <Module/Node.h>
 #include <image/IconsFontAwesome6.h>
 

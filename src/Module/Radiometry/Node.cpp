@@ -1,6 +1,5 @@
 #include "Node.h"
 
-#include <Kinect/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Radiometry/Namespace.h>

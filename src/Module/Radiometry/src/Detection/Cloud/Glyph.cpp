@@ -1,6 +1,5 @@
 #include "Glyph.h"
 
-#include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 

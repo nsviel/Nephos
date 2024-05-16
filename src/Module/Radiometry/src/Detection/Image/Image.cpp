@@ -1,7 +1,7 @@
 #include "Image.h"
 
-#include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
+
 
 namespace rad::matching{
 

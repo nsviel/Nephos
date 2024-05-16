@@ -1,6 +1,5 @@
 #include "Identification.h"
 
-#include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 

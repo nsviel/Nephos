@@ -1,6 +1,5 @@
 #include "Glyph.h"
 
-#include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 
@@ -14,7 +13,6 @@ Glyph::Glyph(rad::Node* node_radio){
 
   this->rad_struct = node_radio->get_rad_struct();
   this->dat_glyph = node_data->get_data_glyph();
-  this->k4n_data = new k4n::utils::Data();
 
   //---------------------------
 }
