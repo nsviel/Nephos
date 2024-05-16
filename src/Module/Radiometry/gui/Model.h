@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  void draw_model_tab();
+  void draw_tab();
 
   //Subfunction
   void parameter_measure();

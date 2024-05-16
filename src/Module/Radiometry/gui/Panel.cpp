@@ -16,6 +16,7 @@ Panel::Panel(rad::Node* node_radio, bool* show_window){
   this->rad_struct = node_radio->get_rad_struct();
   this->gui_detection = new rad::gui::Detection(node_radio);
   this->gui_model = new rad::gui::Model(node_radio);
+  this->gui_calibration = new rad::gui::Calibration(node_radio);
 
   this->show_window = show_window;
   this->name = "Radiometry";
@@ -54,6 +55,7 @@ void Panel::design_panel(dat::base::Entity* entity){
   ImGui::BeginTabBar("devices_tab##4567");
 
   this->tab_detection(entity);
+  this->tab_modeld(entity);
   this->tab_calibration(entity);
 
   ImGui::EndTabBar();
@@ -66,9 +68,21 @@ void Panel::design_panel(dat::base::Entity* entity){
 void Panel::tab_detection(dat::base::Entity* entity){
   //---------------------------
 
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
   if(ImGui::BeginTabItem("Detection##matching")){
-    gui_detection->draw_detection_tab();
+    gui_detection->draw_tab();
+
+    ImGui::EndTabItem();
+  }
+
+  //---------------------------
+}
+void Panel::tab_modeld(dat::base::Entity* entity){
+  //---------------------------
+
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
+  if(ImGui::BeginTabItem("Model##matching")){
+    gui_model->draw_tab();
 
     ImGui::EndTabItem();
   }
@@ -78,9 +92,9 @@ void Panel::tab_detection(dat::base::Entity* entity){
 void Panel::tab_calibration(dat::base::Entity* entity){
   //---------------------------
 
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
   if(ImGui::BeginTabItem("Calibration##matching")){
-    gui_model->draw_model_tab();
+    gui_calibration->draw_tab();
 
     ImGui::EndTabItem();
   }

@@ -9,6 +9,7 @@ namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::gui{class Detection;}
 namespace rad::gui{class Model;}
+namespace rad::gui{class Calibration;}
 
 
 namespace rad::gui{
@@ -28,6 +29,7 @@ public:
   //Subfunction
   void matching_parameter(dat::base::Entity* entity);
   void tab_detection(dat::base::Entity* entity);
+  void tab_modeld(dat::base::Entity* entity);
   void tab_calibration(dat::base::Entity* entity);
 
 private:
@@ -35,6 +37,7 @@ private:
   rad::Structure* rad_struct;
   rad::gui::Detection* gui_detection;
   rad::gui::Model* gui_model;
+  rad::gui::Calibration* gui_calibration;
 
   string name;
   bool* show_window;

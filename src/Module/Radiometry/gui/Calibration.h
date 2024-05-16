@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-
+  void draw_tab();
 
 private:
 

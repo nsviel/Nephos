@@ -22,7 +22,7 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::draw_detection_tab(){
+void Detection::draw_tab(){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Parameter");

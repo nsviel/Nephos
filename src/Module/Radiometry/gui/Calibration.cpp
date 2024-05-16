@@ -16,6 +16,11 @@ Calibration::Calibration(rad::Node* node_radio){
 Calibration::~Calibration(){}
 
 //Main function
+void Calibration::draw_tab(){
+  //---------------------------
 
+
+  //---------------------------
+}
 
 }

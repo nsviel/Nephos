@@ -20,11 +20,11 @@ Model::Model(rad::Node* node_radio){
 Model::~Model(){}
 
 //Main function
-void Model::draw_model_tab(){
+void Model::draw_tab(){
   //---------------------------
 
   //Parameter
-  ImGui::BeginTable("Detection##table", 3);
+  ImGui::BeginTable("Model##table", 3);
   this->parameter_measure();
   this->parameter_model();
   ImGui::EndTable();
