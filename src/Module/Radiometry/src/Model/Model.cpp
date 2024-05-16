@@ -21,34 +21,34 @@ Model::~Model(){}
 
 //Main function
 void Model::import_model(){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
 
-  model->serial_number = utl::json::read_value<string>(model->path, "serial_number");
-  model->degree_x = utl::json::read_value<int>(model->path, "x.degree");
-  model->x.bound[0] = utl::json::read_value<float>(model->path, "x.bound_min");
-  model->x.bound[1] = utl::json::read_value<float>(model->path, "x.bound_max");
-  model->degree_y = utl::json::read_value<int>(model->path, "y.degree");
-  model->y.bound[0] = utl::json::read_value<float>(model->path, "y.bound_min");
-  model->y.bound[1] = utl::json::read_value<float>(model->path, "y.bound_max");
+  optim->serial_number = utl::json::read_value<string>(optim->path, "serial_number");
+  optim->degree_x = utl::json::read_value<int>(optim->path, "x.degree");
+  optim->axis_x.bound[0] = utl::json::read_value<float>(optim->path, "x.bound_min");
+  optim->axis_x.bound[1] = utl::json::read_value<float>(optim->path, "x.bound_max");
+  optim->degree_y = utl::json::read_value<int>(optim->path, "y.degree");
+  optim->axis_y.bound[0] = utl::json::read_value<float>(optim->path, "y.bound_min");
+  optim->axis_y.bound[1] = utl::json::read_value<float>(optim->path, "y.bound_max");
 
   //---------------------------
 }
 void Model::export_model(){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
 
-  utl::json::write_value(model->path, "serial_number", model->serial_number);
-  utl::json::write_value(model->path, "x.degree", model->degree_x);
-  utl::json::write_value(model->path, "x.bound_min", model->x.bound[0]);
-  utl::json::write_value(model->path, "x.bound_max", model->x.bound[1]);
-  utl::json::write_value(model->path, "y.degree", model->degree_y);
-  utl::json::write_value(model->path, "y.bound_min", model->y.bound[0]);
-  utl::json::write_value(model->path, "y.bound_max", model->y.bound[1]);
+  utl::json::write_value(optim->path, "serial_number", optim->serial_number);
+  utl::json::write_value(optim->path, "x.degree", optim->degree_x);
+  utl::json::write_value(optim->path, "x.bound_min", optim->axis_x.bound[0]);
+  utl::json::write_value(optim->path, "x.bound_max", optim->axis_x.bound[1]);
+  utl::json::write_value(optim->path, "y.degree", optim->degree_y);
+  utl::json::write_value(optim->path, "y.bound_min", optim->axis_y.bound[0]);
+  utl::json::write_value(optim->path, "y.bound_max", optim->axis_y.bound[1]);
 
   vector<float> vec_coef = ope_surface->get_coefficient();
   for(int i=0; i<vec_coef.size(); i++){
-    utl::json::write_value(model->path, "coefficient." + to_string(i), vec_coef[i]);
+    utl::json::write_value(optim->path, "coefficient." + to_string(i), vec_coef[i]);
   }
 
   //---------------------------
@@ -58,11 +58,12 @@ void Model::compute_model(){
 
   this->make_model();
   this->validation_model();
+  this->update_plot_data();
 
   //---------------------------
 }
 void Model::draw_model(){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
 
   //if(ope_surface->has_been_computed() == false){
@@ -71,12 +72,12 @@ void Model::draw_model(){
 
   // Generate values for x and y
   std::vector<float> x_values;
-  for(float i = model->x.bound[0]; i <= model->x.bound[1]; i += 0.1){
+  for(float i = optim->axis_x.bound[0]; i <= optim->axis_x.bound[1]; i += 0.1){
     x_values.push_back(i);
   }
 
   std::vector<float> y_values;
-  for(float i = model->y.bound[0]; i <= model->y.bound[1]; i += 1.0){
+  for(float i = optim->axis_y.bound[0]; i <= optim->axis_y.bound[1]; i += 1.0){
     y_values.push_back(i);
   }
 
@@ -105,7 +106,7 @@ void Model::draw_model(){
 
 //Subfunction
 void Model::make_model(){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
@@ -117,8 +118,8 @@ void Model::make_model(){
   }
 
   //Optimization algorithm
-  ope_surface->set_degree(model->degree_x, model->degree_y);
-  ope_surface->compute(vec_data, model->x.bound, model->y.bound);
+  ope_surface->set_degree(optim->degree_x, optim->degree_y);
+  ope_surface->compute(vec_data, optim->axis_x.bound, optim->axis_y.bound);
 
   //---------------------------
 }
@@ -133,7 +134,7 @@ float Model::apply_model(float x, float y){
   return z;
 }
 float Model::validation_model(){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
@@ -141,17 +142,36 @@ float Model::validation_model(){
   float E = 0;
   for(int i=0; i<N; i++){
     vec3& data = measure->vec_data[i];
-    if(data.x < model->x.bound[0] || data.x > model->x.bound[1]) continue;
-    if(data.y < model->y.bound[0] || data.y > model->y.bound[1]) continue;
+    if(data.x < optim->axis_x.bound[0] || data.x > optim->axis_x.bound[1]) continue;
+    if(data.y < optim->axis_y.bound[0] || data.y > optim->axis_y.bound[1]) continue;
+    if(data.x < 0 || data.y < 0) continue;
+
     float z = apply_model(data.x, data.y);
-    E += pow(z - data.z, 2);
+    E += pow(z - log(data.z), 2);
   }
 
   float RMSE = sqrt(E / N);
-  model->rmse = RMSE;
+  optim->rmse = RMSE;
 
   //---------------------------
   return RMSE;
+}
+void Model::update_plot_data(){
+  rad::structure::Measure* measure = &rad_struct->model.measure;
+  //---------------------------
+
+  utl::type::Plot* plot = &measure->IfR;
+  for(int i=0; i<plot->axis_x.data.size(); i++){
+    float& x = plot->axis_x.data[i];
+    float& y = plot->axis_y.data[i];
+    float z = apply_model(x, y);
+    //plot->axis_x.fitting.push_back();
+    //plot->axis_y.fitting = z;
+  }
+
+
+
+  //---------------------------
 }
 
 }

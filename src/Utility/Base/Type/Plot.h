@@ -7,7 +7,6 @@ struct Axis{
   //---------------------------
 
   //Data
-  int size = 0;
   float min = 0;
   float max = 0;
   float current = 0;
@@ -24,15 +23,16 @@ struct Plot{
 
   //Format
   std::string title = "";
-  std::string x_axis_name = "";
-  std::string y_axis_name = "";
+  std::string axis_x_name = "";
+  std::string axis_y_name = "";
   glm::ivec2 dimension = ivec2(0, 0);
   glm::vec2 highlight = vec2(-1, -1);
 
   //Data
-  utl::type::Axis x;
-  utl::type::Axis y;
-  utl::type::Axis z;
+  int size = 0;
+  utl::type::Axis axis_x;
+  utl::type::Axis axis_y;
+  utl::type::Axis axis_z;
 
   //---------------------------
 };

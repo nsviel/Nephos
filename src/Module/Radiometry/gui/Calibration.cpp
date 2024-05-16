@@ -101,7 +101,7 @@ void Calibration::draw_calibration_measure(){
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", measure->path.c_str());
 
     //Heatmap scale
-    ImGui::DragFloatRange2("Heatmap scale",&measure->IfRIt.z.min, &measure->IfRIt.z.max, 100, 0, 60000, "%.0f");
+    ImGui::DragFloatRange2("Heatmap scale",&measure->IfIt.axis_z.min, &measure->IfIt.axis_z.max, 100, 0, 60000, "%.0f");
 
     //Import / export / clear
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
@@ -131,7 +131,7 @@ void Calibration::draw_calibration_measure(){
   //---------------------------
 }
 void Calibration::draw_calibration_model(){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -154,27 +154,27 @@ void Calibration::draw_calibration_model(){
   if(ImGui::TreeNode("Parameter##Model")){
     //Path
     if(ImGui::Button("...##path_model")){
-      zenity::selection_file(model->path);
+      zenity::selection_file(optim->path);
     }
     ImGui::SameLine();
     if(ImGui::Button(ICON_FA_FOLDER "##path_model")){
-      utl::directory::open(model->path);
+      utl::directory::open(optim->path);
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", model->path.c_str());
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", optim->path.c_str());
 
     //Model parameter
     ImGui::SetNextItemWidth(100);
-    ImGui::DragInt("##degree_x", &model->degree_x, 1, 1, 10);
+    ImGui::DragInt("##degree_x", &optim->degree_x, 1, 1, 10);
     ImGui::SameLine();
     ImGui::SetNextItemWidth(100);
-    ImGui::DragInt("Degree", &model->degree_y, 1, 1, 10);
+    ImGui::DragInt("Degree", &optim->degree_y, 1, 1, 10);
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", model->rmse);
-    if(ImGui::DragFloatRange2("Range x",&model->x.bound[0], &model->x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", optim->rmse);
+    if(ImGui::DragFloatRange2("Range x",&optim->axis_x.bound[0], &optim->axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
       rad_measure->update_plot_data();
     }
-    if(ImGui::DragFloatRange2("Range y",&model->y.bound[0], &model->y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
+    if(ImGui::DragFloatRange2("Range y",&optim->axis_y.bound[0], &optim->axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
       rad_measure->update_plot_data();
     }
 
@@ -243,11 +243,11 @@ void Calibration::plot_measure_IfIt(float height){
 }
 void Calibration::plot_model_heatmap(float height){
   rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
 
   measure->IfRIt.dimension = ivec2(-1, height);
-  bool need_update = utl_plot->plot_heatmap(&measure->IfRIt, &model->x, &model->y);
+  bool need_update = utl_plot->plot_heatmap(&measure->IfRIt, &optim->axis_x, &optim->axis_y);
   if(need_update){
     rad_measure->update_plot_data();
   }

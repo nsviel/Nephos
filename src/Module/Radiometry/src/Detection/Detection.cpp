@@ -99,7 +99,7 @@ void Detection::ransac_sphere(dat::base::Sensor* sensor){
 
 //Data function
 void Detection::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
@@ -117,12 +117,12 @@ void Detection::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   }
 
   //Add into model data vector
-  int index = static_cast<int>(std::round(R / measure->IfR.x.resolution));
-  if(index >= 0 && index < measure->IfR.x.data.size()){
-    measure->IfR.x.data[index] = R;
-    measure->IfR.y.data[index] = I;
+  int index = static_cast<int>(std::round(R / measure->IfR.axis_x.resolution));
+  if(index >= 0 && index < measure->IfR.axis_x.data.size()){
+    measure->IfR.axis_x.data[index] = R;
+    measure->IfR.axis_y.data[index] = I;
     measure->IfR.highlight = vec2(R, I);
-    model->x.current = R;
+    optim->axis_x.current = R;
   }
 
   //---------------------------
@@ -146,16 +146,16 @@ void Detection::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       It = ope_normal->compute_It(xyz, Nxyz, root);
 
       //ADdd into model data vector
-      int index = static_cast<int>(std::round(It / measure->IfIt.x.resolution));
-      measure->IfIt.x.data[index] = It;
-      measure->IfIt.y.data[index] = I;
+      int index = static_cast<int>(std::round(It / measure->IfIt.axis_x.resolution));
+      measure->IfIt.axis_x.data[index] = It;
+      measure->IfIt.axis_y.data[index] = I;
     }
   }
 
   //---------------------------
 }
 void Detection::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
@@ -176,15 +176,15 @@ void Detection::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       R = math::distance_from_origin(xyz);
 
       //Search for R limite validity
-      if(R < model->x.bound[0]) model->x.bound[0] = R;
-      if(R > model->x.bound[1]) model->x.bound[1] = R;
+      if(R < optim->axis_x.bound[0]) optim->axis_x.bound[0] = R;
+      if(R > optim->axis_x.bound[1]) optim->axis_x.bound[1] = R;
 
       // Calculate the index of the cell in the heatmap grid
-      int i = static_cast<int>((R - measure->IfRIt.x.min) / (measure->IfRIt.x.max - measure->IfRIt.x.min) * measure->IfRIt.x.size);
-      int j = static_cast<int>((It - measure->IfRIt.y.max) / (measure->IfRIt.y.min - measure->IfRIt.y.max) * measure->IfRIt.y.size);
-      int index = j * measure->IfRIt.x.size + i;
-      if(index >= 0 && index < measure->IfRIt.z.size){
-        measure->IfRIt.z.data[index] = I;
+      int i = static_cast<int>((R - measure->IfRIt.axis_x.min) / (measure->IfRIt.axis_x.max - measure->IfRIt.axis_x.min) * measure->IfRIt.size);
+      int j = static_cast<int>((It - measure->IfRIt.axis_y.max) / (measure->IfRIt.axis_y.min - measure->IfRIt.axis_y.max) * measure->IfRIt.size);
+      int index = j * measure->IfRIt.size + i;
+      if(index >= 0 && index < measure->IfIt.size){
+        measure->IfIt.axis_z.data[index] = I;
         measure->vec_data[index] = vec3(R, It, I);
       }
     }

@@ -23,7 +23,7 @@ void Plot::plot_heatmap(utl::type::Plot* plot){
   // Push the custom colormap onto the colormap stack
   ImPlot::PushColormap(implot_style->get_colormap_heatmap());
 
-  ImPlot::ColormapScale("##HeatScale", plot->z.min, plot->z.max, ImVec2(60, plot->dimension[1]));
+  ImPlot::ColormapScale("##HeatScale", plot->axis_z.min, plot->axis_z.max, ImVec2(60, plot->dimension[1]));
   ImGui::SameLine();
 
   // Begin a new plot
@@ -40,7 +40,7 @@ void Plot::plot_heatmap(utl::type::Plot* plot){
 
     // Plot the heatmap
     string truc = plot->title + "##heatmap";
-    ImPlot::PlotHeatmap(truc.c_str(), plot->z.data.data(), plot->y.size, plot->x.size, plot->z.min, plot->z.max, nullptr, ImPlotPoint(plot->x.min, plot->y.min), ImPlotPoint(plot->x.max, plot->y.max));
+    ImPlot::PlotHeatmap(truc.c_str(), plot->axis_z.data.data(), plot->size, plot->size, plot->axis_z.min, plot->axis_z.max, nullptr, ImPlotPoint(plot->axis_x.min, plot->axis_y.min), ImPlotPoint(plot->axis_x.max, plot->axis_y.max));
 
     // End the plot
     ImPlot::EndPlot();
@@ -58,7 +58,7 @@ bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::typ
   // Push the custom colormap onto the colormap stack
   ImPlot::PushColormap(implot_style->get_colormap_heatmap());
 
-  ImPlot::ColormapScale("##HeatScale",plot->z.min, plot->z.max, ImVec2(60, plot->dimension[1]));
+  ImPlot::ColormapScale("##HeatScale",plot->axis_z.min, plot->axis_z.max, ImVec2(60, plot->dimension[1]));
   ImGui::SameLine();
 
   // Begin a new plot
@@ -83,7 +83,7 @@ bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::typ
 
     // Plot the heatmap
     string truc = plot->title + "##heatmap";
-    ImPlot::PlotHeatmap(truc.c_str(), plot->z.data.data(), plot->y.size, plot->x.size, plot->z.min, plot->z.max, nullptr, ImPlotPoint(plot->x.min, plot->y.min), ImPlotPoint(plot->x.max, plot->y.max));
+    ImPlot::PlotHeatmap(truc.c_str(), plot->axis_z.data.data(), plot->size, plot->size, plot->axis_z.min, plot->axis_z.max, nullptr, ImPlotPoint(plot->axis_x.min, plot->axis_y.min), ImPlotPoint(plot->axis_x.max, plot->axis_y.max));
 
     // Draw x bounds
     float y_height[2] = {y_axis->bound[0], y_axis->bound[1]};
@@ -129,8 +129,8 @@ bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::typ
     ImPlot::PlotLine("Y current", x_width, y_current, 2);
 
     //Line floating text
-    ImPlot::PlotText(to_string(x_axis->current).c_str(), x_axis->current, plot->y.max, ImVec2(10, 50), ImPlotTextFlags_Vertical);
-    ImPlot::PlotText(to_string(y_axis->current).c_str(), plot->x.max, y_axis->current, ImVec2(-20, -10));
+    ImPlot::PlotText(to_string(x_axis->current).c_str(), x_axis->current, plot->axis_y.max, ImVec2(10, 50), ImPlotTextFlags_Vertical);
+    ImPlot::PlotText(to_string(y_axis->current).c_str(), plot->axis_x.max, y_axis->current, ImVec2(-20, -10));
 
     // End the plot
     ImPlot::EndPlot();
@@ -155,11 +155,11 @@ void Plot::plot_regression(utl::type::Plot* plot){
     ImPlotAxisFlags axis_flag;
     axis_flag |= ImPlotAxisFlags_AutoFit;
     axis_flag |= ImPlotAxisFlags_Foreground;
-    ImPlot::SetupAxes(plot->x_axis_name.c_str(), plot->x_axis_name.c_str(), axis_flag, axis_flag);
+    ImPlot::SetupAxes(plot->axis_x_name.c_str(), plot->axis_x_name.c_str(), axis_flag, axis_flag);
 
     // Plot the data
     string truc = plot->title + "##scatter";
-    ImPlot::PlotScatter(truc.c_str(), plot->x.data.data(), plot->y.data.data(), plot->x.data.size());
+    ImPlot::PlotScatter(truc.c_str(), plot->axis_x.data.data(), plot->axis_y.data.data(), plot->axis_x.data.size());
 
     // Plot an additional point in a different color
     if(plot->highlight != vec2(-1, -1)){
@@ -172,7 +172,7 @@ void Plot::plot_regression(utl::type::Plot* plot){
     }
 
     // Plot the regression line
-    ImPlot::PlotLine("Regression Line", plot->x.fitting.data(), plot->y.fitting.data(), plot->x.fitting.size());
+    ImPlot::PlotLine("Regression Line", plot->axis_x.fitting.data(), plot->axis_y.fitting.data(), plot->axis_x.fitting.size());
 
     // End the plot
     ImPlot::EndPlot();
@@ -194,11 +194,11 @@ void Plot::plot_scatter(utl::type::Plot* plot){
     ImPlotAxisFlags axis_flag;
     axis_flag |= ImPlotAxisFlags_AutoFit;
     axis_flag |= ImPlotAxisFlags_Foreground;
-    ImPlot::SetupAxes(plot->x_axis_name.c_str(), plot->x_axis_name.c_str(), axis_flag, axis_flag);
+    ImPlot::SetupAxes(plot->axis_x_name.c_str(), plot->axis_x_name.c_str(), axis_flag, axis_flag);
 
     // Plot the data
     string truc = plot->title + "##scatter";
-    ImPlot::PlotScatter(truc.c_str(), plot->x.data.data(), plot->y.data.data(), plot->x.data.size());
+    ImPlot::PlotScatter(truc.c_str(), plot->axis_x.data.data(), plot->axis_y.data.data(), plot->axis_x.data.size());
 
     // Plot an additional point in a different color
     if(plot->highlight != vec2(-1, -1)){

@@ -13,8 +13,8 @@ struct Optimization{
   std::string serial_number = "";
   std::string method = "";
 
-  utl::type::Axis x;
-  utl::type::Axis y;
+  utl::type::Axis axis_x;
+  utl::type::Axis axis_y;
 
   float rmse = 0;
   int degree_x = 6;

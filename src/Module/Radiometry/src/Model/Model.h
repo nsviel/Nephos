@@ -23,11 +23,12 @@ public:
   void export_model();
   void compute_model();
   void draw_model();
-  
+
   //Subfunction
   void make_model();
   float apply_model(float x, float y);
   float validation_model();
+  void update_plot_data();
 
 private:
   rad::Structure* rad_struct;

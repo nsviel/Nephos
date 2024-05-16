@@ -70,20 +70,20 @@ void Measure::plot_measure(){
 
 //Subfunction
 void Measure::find_measure_bound(){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   for(int i=0; i<measure->vec_data.size(); i++){
     float& R = measure->vec_data[i].x;
     if(R < 0) continue;
-    if(R < model->x.bound[0]) model->x.bound[0] = R;
-    if(R > model->x.bound[1]) model->x.bound[1] = R;
+    if(R < optim->axis_x.bound[0]) optim->axis_x.bound[0] = R;
+    if(R > optim->axis_x.bound[1]) optim->axis_x.bound[1] = R;
 
     float& It = measure->vec_data[i].y;
     if(It < 0) continue;
-    if(It < model->y.bound[0]) model->y.bound[0] = It;
-    if(It > model->y.bound[1]) model->y.bound[1] = It;
+    if(It < optim->axis_y.bound[0]) optim->axis_y.bound[0] = It;
+    if(It > optim->axis_y.bound[1]) optim->axis_y.bound[1] = It;
   }
 
   //---------------------------
@@ -91,84 +91,76 @@ void Measure::find_measure_bound(){
 
 //Plot function
 void Measure::init_plot_data(){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //I(R)
   measure->IfR.title = "I(R)";
   measure->IfR.highlight = vec2(0, 0);
-  measure->IfR.x.resolution = 0.01f;
-  measure->IfR.x.min = 0.0f;
-  measure->IfR.x.max = 5.0f;
-  measure->IfR.x.size = static_cast<int>((measure->IfR.x.max - measure->IfR.x.min) / measure->IfR.x.resolution) + 1;
-  measure->IfR.x.data = vector<float>(measure->IfR.x.size, 0.0f);
-  measure->IfR.y.data = vector<float>(measure->IfR.x.size, 0.0f);
+  measure->IfR.axis_x.resolution = 0.01f;
+  measure->IfR.axis_x.min = 0.0f;
+  measure->IfR.axis_x.max = 5.0f;
+  measure->IfR.size = static_cast<int>((measure->IfR.axis_x.max - measure->IfR.axis_x.min) / measure->IfR.axis_x.resolution) + 1;
+  measure->IfR.axis_x.data = vector<float>(measure->IfR.size, 0.0f);
+  measure->IfR.axis_y.data = vector<float>(measure->IfR.size, 0.0f);
 
   //I(It)
   measure->IfIt.title = "I(It)";
-  measure->IfIt.x.resolution = 1.0f;
-  measure->IfIt.x.min = 0.0f;
-  measure->IfIt.x.max = 90.0f;
-  measure->IfIt.x.size = static_cast<int>((measure->IfIt.x.max - measure->IfIt.x.min) / measure->IfIt.x.resolution) + 1;
-  measure->IfIt.x.data = vector<float>(measure->IfIt.x.size, 0.0f);
-  measure->IfIt.y.data = vector<float>(measure->IfIt.x.size, 0.0f);
+  measure->IfIt.axis_x.resolution = 1.0f;
+  measure->IfIt.axis_x.min = 0.0f;
+  measure->IfIt.axis_x.max = 90.0f;
+  measure->IfIt.size = static_cast<int>((measure->IfIt.axis_x.max - measure->IfIt.axis_x.min) / measure->IfIt.axis_x.resolution) + 1;
+  measure->IfIt.axis_x.data = vector<float>(measure->IfIt.size, 0.0f);
+  measure->IfIt.axis_y.data = vector<float>(measure->IfIt.size, 0.0f);
 
   //I(R, It)
   measure->IfRIt.title = "I(R, It)";
-  measure->IfRIt.x.resolution = 0.01f;
-  measure->IfRIt.x.min = 0.0f;
-  measure->IfRIt.x.max = 5.0f;
-  measure->IfRIt.x.size = static_cast<int>((measure->IfRIt.x.max - measure->IfRIt.x.min) / measure->IfRIt.x.resolution) + 1;
-  measure->IfRIt.y.resolution = 1.0f;
-  measure->IfRIt.y.min = 0.0f;
-  measure->IfRIt.y.max = 90.0f;
-  measure->IfRIt.y.size = static_cast<int>((measure->IfRIt.y.max - measure->IfRIt.y.min) / measure->IfRIt.y.resolution) + 1;
-  measure->IfRIt.z.min = 0.0f;
-  measure->IfRIt.z.max = 2500.0f;
-  measure->IfRIt.z.size = measure->IfRIt.x.size * measure->IfRIt.y.size;
-  measure->IfRIt.z.data = vector<float>(measure->IfRIt.z.size, 0.0f);
+  measure->IfRIt.axis_x.resolution = 0.01f;
+  measure->IfRIt.axis_x.min = 0.0f;
+  measure->IfRIt.axis_x.max = 5.0f;
+  measure->IfRIt.size = static_cast<int>((measure->IfRIt.axis_x.max - measure->IfRIt.axis_x.min) / measure->IfRIt.axis_x.resolution) + 1;
+  measure->IfRIt.axis_y.resolution = 1.0f;
+  measure->IfRIt.axis_y.min = 0.0f;
+  measure->IfRIt.axis_y.max = 90.0f;
+  measure->IfRIt.size = static_cast<int>((measure->IfRIt.axis_y.max - measure->IfRIt.axis_y.min) / measure->IfRIt.axis_y.resolution) + 1;
+  measure->IfIt.axis_z.min = 0.0f;
+  measure->IfIt.axis_z.max = 2500.0f;
+  measure->IfIt.size = measure->IfRIt.size * measure->IfRIt.size;
+  measure->IfIt.axis_z.data = vector<float>(measure->IfIt.size, 0.0f);
 
   //Measure
-  measure->vec_data = vector<vec3>(measure->IfRIt.z.size, vec3(-1, -1, -1));
-  model->x.bound = vec2(1000, -1);
-  model->x.current = 1;
-  model->y.bound = vec2(0, 90);
-  model->y.current = 40;
+  measure->vec_data = vector<vec3>(measure->IfIt.size, vec3(-1, -1, -1));
+  optim->axis_x.bound = vec2(1000, -1);
+  optim->axis_x.current = 1;
+  optim->axis_y.bound = vec2(0, 90);
+  optim->axis_y.current = 40;
 
   //---------------------------
 }
 void Measure::reset_plot_data(){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //I(R)
-  for(int i=0; i<measure->IfR.x.data.size(); i++){
-    measure->IfR.x.data[i] = 0;
-  }
-  for(int i=0; i<measure->IfR.y.data.size(); i++){
-    measure->IfR.y.data[i] = 0;
-  }
+  measure->IfR.axis_x.data = std::vector<float>(measure->IfR.axis_x.data.size(), 0.0f);
+  measure->IfR.axis_y.data = std::vector<float>(measure->IfR.axis_y.data.size(), 0.0f);
+  measure->IfR.axis_x.fitting = std::vector<float>(measure->IfR.axis_x.data.size(), 0.0f);
+  measure->IfR.axis_y.fitting = std::vector<float>(measure->IfR.axis_y.data.size(), 0.0f);
 
   //I(It)
-  for(int i=0; i<measure->IfIt.x.data.size(); i++){
-    measure->IfIt.x.data[i] = 0;
-  }
-  for(int i=0; i<measure->IfIt.y.data.size(); i++){
-    measure->IfIt.y.data[i] = 0;
-  }
+  measure->IfIt.axis_x.data = std::vector<float>(measure->IfIt.axis_x.data.size(), 0.0f);
+  measure->IfIt.axis_y.data = std::vector<float>(measure->IfIt.axis_y.data.size(), 0.0f);
+  measure->IfIt.axis_z.data = std::vector<float>(measure->IfIt.axis_z.data.size(), 0.0f);
 
   //I(R, It)
-  for(int i=0; i<measure->IfRIt.z.data.size(); i++){
-    measure->IfRIt.z.data[i] = 0;
-  }
 
   //---------------------------
 }
 void Measure::update_plot_data(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
 
   this->reset_plot_data();
@@ -180,55 +172,54 @@ void Measure::update_plot_data(){
     float& I = measure->vec_data[i].z;
     if(R == -1) continue;
 
-    measure->IfRIt.z.data[i] = I;
-
     //I(R)
-    if(R > model->x.bound[0] && R < model->x.bound[1]) // R inside user defined bounds
-    if(It > model->y.current && It < model->y.current + 5){ //All data between It current + 5 degrees
-      int index = static_cast<int>(std::round(R / measure->IfR.x.resolution));
-      measure->IfR.x.data[index] = R;
-      measure->IfR.y.data[index] = I;
+    if(R > optim->axis_x.bound[0] && R < optim->axis_x.bound[1]) // R inside user defined bounds
+    if(It > optim->axis_y.current && It < optim->axis_y.current + 5){ //All data between It current + 5 degrees
+      int index = static_cast<int>(std::round(R / measure->IfR.axis_x.resolution));
+      measure->IfR.axis_x.data[index] = R;
+      measure->IfR.axis_y.data[index] = I;
 
-      if(R > model->x.current && R < model->x.current + 0.05){
+      if(R > optim->axis_x.current && R < optim->axis_x.current + 0.05){
         measure->IfR.highlight = vec2(R, I);
       }
     }
 
     //I(It)
-    if(It > model->y.bound[0] && It < model->y.bound[1]) // It It inside user defined bounds
-    if(R > model->x.current && R < model->x.current + 0.05){ //All data between R current + 0.05m
-      int index = static_cast<int>(std::round(It / measure->IfIt.x.resolution));
-      measure->IfIt.x.data[index] = It;
-      measure->IfIt.y.data[index] = I;
+    measure->IfIt.axis_z.data[i] = I;
+    if(It > optim->axis_y.bound[0] && It < optim->axis_y.bound[1]) // It It inside user defined bounds
+    if(R > optim->axis_x.current && R < optim->axis_x.current + 0.05){ //All data between R current + 0.05m
+      int index = static_cast<int>(std::round(It / measure->IfIt.axis_x.resolution));
+      measure->IfIt.axis_x.data[index] = It;
+      measure->IfIt.axis_y.data[index] = I;
     }
   }
 
   //---------------------------
 }
 void Measure::clear_plot_data(){
-  rad::structure::Optimization* model = &rad_struct->model.optim;
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //I(R)
-  for(int i=0; i<measure->IfR.x.data.size(); i++){
-    measure->IfR.x.data[i] = 0;
+  for(int i=0; i<measure->IfR.axis_x.data.size(); i++){
+    measure->IfR.axis_x.data[i] = 0;
   }
-  for(int i=0; i<measure->IfR.y.data.size(); i++){
-    measure->IfR.y.data[i] = 0;
+  for(int i=0; i<measure->IfR.axis_y.data.size(); i++){
+    measure->IfR.axis_y.data[i] = 0;
   }
 
   //I(It)
-  for(int i=0; i<measure->IfIt.x.data.size(); i++){
-    measure->IfIt.x.data[i] = 0;
+  for(int i=0; i<measure->IfIt.axis_x.data.size(); i++){
+    measure->IfIt.axis_x.data[i] = 0;
   }
-  for(int i=0; i<measure->IfIt.y.data.size(); i++){
-    measure->IfIt.y.data[i] = 0;
+  for(int i=0; i<measure->IfIt.axis_y.data.size(); i++){
+    measure->IfIt.axis_y.data[i] = 0;
   }
 
   //I(R, It)
-  for(int i=0; i<measure->IfRIt.z.data.size(); i++){
-    measure->IfRIt.z.data[i] = 0;
+  for(int i=0; i<measure->IfIt.axis_z.data.size(); i++){
+    measure->IfIt.axis_z.data[i] = 0;
     measure->vec_data[i] = vec3(-1, -1, -1);
   }
 
