@@ -14,7 +14,7 @@ Ransac::Ransac(rad::Node* node_radio){
   eng::Node* node_engine = node_radio->get_node_engine();
 
   this->rad_struct = node_radio->get_rad_struct();
-  //this->thread_pool = node_engine->get_thread_pool();
+  this->thread_pool = node_engine->get_thread_pool();
   this->radio_glyph = new rad::detection::cloud::Glyph(node_radio);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
@@ -27,29 +27,22 @@ Ransac::~Ransac(){}
 //Main function
 void Ransac::start_thread(dat::base::Sensor* sensor){
   //---------------------------
-/*
+
   this->idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
   thread_pool->add_task(task_function);
-*/
+
   //---------------------------
 }
 void Ransac::run_thread(dat::base::Sensor* sensor){
-  /*prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("calibration");
   //---------------------------
 
-  tasker->loop_begin();
-
-  tasker->task_begin("calibration");
   this->ransac_sphere(sensor);
-  tasker->task_end("calibration");
-
-  tasker->loop_end();
 
   //---------------------------
-  this->idle = true;*/
+  this->idle = true;
 }
 void Ransac::wait_thread(){
   //For external thread to wait this queue thread idle
@@ -66,9 +59,10 @@ void Ransac::wait_thread(){
 void Ransac::ransac_sphere(dat::base::Sensor* sensor){
   //if(step != rad::detection::PROCESSING) return;
   //---------------------------
-/*
-  vector<vec3>& vec_xyz = sensor->object.data.xyz;
-  vector<float>& vec_i = sensor->object.data.Is;
+
+  utl::type::Data* data = sensor->get_data();
+  vector<vec3>& vec_xyz = data->xyz;
+  vector<float>& vec_i = data->Is;
 
   //Search for point inside a global sphere around current center point
   vector<vec3> sphere_xyz;
