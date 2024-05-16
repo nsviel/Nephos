@@ -26,7 +26,7 @@ Node::Node(mod::Node* node_module){
   this->rad_model = new rad::Model(this);
   this->rad_hough = new rad::detection::Hough(this);
   this->rad_ransac = new rad::detection::Ransac(this);
-  this->radio_identification = new rad::detection::Identification(this);
+  this->rad_identification = new rad::detection::Identification(this);
   this->rad_measure = new rad::model::Measure(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 

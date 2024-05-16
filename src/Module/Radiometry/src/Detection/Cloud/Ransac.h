@@ -33,7 +33,7 @@ public:
 private:
   utl::thread::Pool* thread_pool;
   rad::Structure* rad_struct;
-  rad::detection::cloud::Glyph* radio_glyph;
+  rad::detection::cloud::Glyph* rad_glyph;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
   ope::attribut::Normal* ope_normal;

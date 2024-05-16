@@ -15,7 +15,7 @@ Ransac::Ransac(rad::Node* node_radio){
 
   this->rad_struct = node_radio->get_rad_struct();
   this->thread_pool = node_engine->get_thread_pool();
-  this->radio_glyph = new rad::detection::cloud::Glyph(node_radio);
+  this->rad_glyph = new rad::detection::cloud::Glyph(node_radio);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();
@@ -85,7 +85,7 @@ void Ransac::ransac_sphere(dat::base::Sensor* sensor){
   ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, rad_struct->detection.sphere_diameter/2);
 
   //Apply post-processing stuff
-  radio_glyph->draw_sphere_glyph(sensor, current_pose, radius);
+  rad_glyph->draw_sphere_glyph(sensor, current_pose, radius);
   /*this->data_IfR(sphere_xyz, sphere_i);
   this->data_IfIt(sphere_xyz, sphere_i);
   this->data_model(sphere_xyz, sphere_i);*/

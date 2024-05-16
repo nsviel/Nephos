@@ -35,7 +35,7 @@ void Node::init(){
   //---------------------------
 
   ldr_format->insert_importer(new k4n::playback::Importer(this));
-  //k4n_connection->start_thread();
+  k4n_connection->start_thread();
 
   //---------------------------
 }

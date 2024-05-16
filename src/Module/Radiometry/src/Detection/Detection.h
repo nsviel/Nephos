@@ -49,7 +49,7 @@ private:
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
   ope::attribut::Normal* ope_normal;
-  rad::detection::cloud::Glyph* radio_glyph;
+  rad::detection::cloud::Glyph* rad_glyph;
   rad::Structure* rad_struct;
   std::map<int, std::string> map_step;
 

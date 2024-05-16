@@ -41,7 +41,7 @@ public:
   inline rad::Detection* get_rad_detection(){return rad_detection;}
   inline rad::Model* get_rad_model(){return rad_model;}
 
-  inline rad::detection::Identification* get_radio_identification(){return radio_identification;}
+  inline rad::detection::Identification* get_rad_identification(){return rad_identification;}
   inline rad::detection::Hough* get_rad_hough(){return rad_hough;}
   inline rad::detection::Ransac* get_rad_ransac(){return rad_ransac;}
   inline rad::model::Measure* get_model_measure(){return rad_measure;}
@@ -57,7 +57,7 @@ private:
   rad::Structure* rad_struct;
   rad::Detection* rad_detection;
   rad::Model* rad_model;
-  rad::detection::Identification* radio_identification;
+  rad::detection::Identification* rad_identification;
   rad::detection::Hough* rad_hough;
   rad::detection::Ransac* rad_ransac;
   rad::model::Measure* rad_measure;
