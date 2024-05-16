@@ -17,7 +17,7 @@ struct Optimization{
   utl::type::Axis axis_y;
 
   float rmse = 0;
-  int degree_x = 6;
+  int degree_x = 2;
   int degree_y = 2;
 
   //---------------------------

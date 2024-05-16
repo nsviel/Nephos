@@ -15,7 +15,7 @@ Panel::Panel(rad::Node* node_radio, bool* show_window){
   this->dat_graph = node_data->get_data_graph();
   this->rad_struct = node_radio->get_rad_struct();
   this->gui_detection = new rad::gui::Detection(node_radio);
-  this->gui_calibration = new rad::gui::Calibration(node_radio);
+  this->gui_model = new rad::gui::Model(node_radio);
 
   this->show_window = show_window;
   this->name = "Radiometry";
@@ -80,7 +80,7 @@ void Panel::tab_calibration(dat::base::Entity* entity){
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2);
   if(ImGui::BeginTabItem("Calibration##matching")){
-    gui_calibration->draw_calibration_tab();
+    gui_model->draw_model_tab();
 
     ImGui::EndTabItem();
   }

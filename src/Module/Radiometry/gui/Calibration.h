@@ -20,22 +20,10 @@ public:
 
 public:
   //Main function
-  void draw_calibration_tab();
 
-  //Subfunction
-  void parameter_measure();
-  void parameter_model();
-
-  //Plot function
-  void plot_measure_IfR(float height);
-  void plot_measure_IfIt(float height);
-  void plot_model_heatmap(float height);
 
 private:
-  rad::Model* rad_model;
-  rad::model::Measure* rad_measure;
-  rad::Structure* rad_struct;
-  utl::implot::Plot* utl_plot;
+
 };
 
 }

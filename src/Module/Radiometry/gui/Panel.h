@@ -8,7 +8,7 @@ namespace dat{class Graph;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::gui{class Detection;}
-namespace rad::gui{class Calibration;}
+namespace rad::gui{class Model;}
 
 
 namespace rad::gui{
@@ -34,7 +34,7 @@ private:
   dat::Graph* dat_graph;
   rad::Structure* rad_struct;
   rad::gui::Detection* gui_detection;
-  rad::gui::Calibration* gui_calibration;
+  rad::gui::Model* gui_model;
 
   string name;
   bool* show_window;

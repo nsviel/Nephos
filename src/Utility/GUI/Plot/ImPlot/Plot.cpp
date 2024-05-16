@@ -84,6 +84,7 @@ bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::typ
     // Plot the heatmap
     string ID = plot->title + "##heatmap";
     ImPlot::PlotHeatmap(ID.c_str(), plot->axis_z.data.data(), plot->axis_y.size, plot->axis_x.size, plot->axis_z.min, plot->axis_z.max, nullptr, ImPlotPoint(plot->axis_x.min, plot->axis_y.min), ImPlotPoint(plot->axis_x.max, plot->axis_y.max));
+
     // Draw x bounds
     float y_height[2] = {y_axis->bound[0], y_axis->bound[1]};
     float x_bound_min[2] = {x_axis->bound[0], x_axis->bound[0]};
