@@ -4,7 +4,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad{class Model;}
+namespace rad::model{class Model;}
 namespace rad::model{class Measure;}
 namespace utl::implot{class Plot;}
 
@@ -32,7 +32,7 @@ public:
   void plot_model_heatmap(float height);
 
 private:
-  rad::Model* rad_model;
+  rad::model::Model* rad_model;
   rad::model::Measure* rad_measure;
   rad::Structure* rad_struct;
   utl::implot::Plot* utl_plot;

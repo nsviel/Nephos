@@ -11,7 +11,7 @@ namespace rad::detection::image{class Detection;}
 namespace rad::detection::image{class Hough;}
 namespace rad::detection::cloud{class Detection;}
 namespace rad::detection::cloud{class Ransac;}
-namespace rad{class Model;}
+namespace rad::model{class Model;}
 namespace rad::model{class Measure;}
 namespace rad::gui{class Panel;}
 
@@ -42,7 +42,7 @@ public:
   inline rad::detection::image::Hough* get_image_hough(){return rad_hough;}
   inline rad::detection::cloud::Detection* get_cloud_detection(){return rad_cloud_detection;}
   inline rad::detection::cloud::Ransac* get_cloud_ransac(){return rad_cloud_ransac;}
-  inline rad::Model* get_rad_model(){return rad_model;}
+  inline rad::model::Model* get_rad_model(){return rad_model;}
   inline rad::model::Measure* get_model_measure(){return rad_measure;}
 
 private:
@@ -57,7 +57,7 @@ private:
   rad::detection::image::Hough* rad_hough;
   rad::detection::cloud::Ransac* rad_cloud_ransac;
   rad::detection::cloud::Detection* rad_cloud_detection;
-  rad::Model* rad_model;
+  rad::model::Model* rad_model;
   rad::model::Measure* rad_measure;
   rad::gui::Panel* gui_panel;
 };

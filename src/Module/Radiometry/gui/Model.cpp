@@ -12,7 +12,7 @@ Model::Model(rad::Node* node_radio){
 
   this->rad_struct = node_radio->get_rad_struct();
   this->rad_measure = new rad::model::Measure(node_radio);
-  this->rad_model = new rad::Model(node_radio);
+  this->rad_model = new rad::model::Model(node_radio);
   this->utl_plot = new utl::implot::Plot();
 
   //---------------------------

@@ -26,7 +26,7 @@ Node::Node(mod::Node* node_module){
   this->rad_cloud_ransac = new rad::detection::cloud::Ransac(this);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(this);
   this->rad_measure = new rad::model::Measure(this);
-  this->rad_model = new rad::Model(this);
+  this->rad_model = new rad::model::Model(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 
   //---------------------------

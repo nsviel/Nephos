@@ -4,7 +4,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad{class Model;}
+namespace rad::model{class Model;}
 namespace rad::model{class Measure;}
 namespace utl::implot{class Plot;}
 
