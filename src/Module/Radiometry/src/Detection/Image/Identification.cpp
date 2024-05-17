@@ -63,13 +63,13 @@ void Identification::make_sphere_detection(dat::base::Sensor* sensor){
 }
 void Identification::detect_circle_in_image(dat::base::Sensor* sensor){
   //---------------------------
-/*
+
   utl::media::Image* input = &sensor->ir.image;
   cv::Mat cv_input;
   rad_image->convert_into_cv_image(input, cv_input);
   //rad_struct->detection.vec_circle = rad_hough->sphere_detection(cv_input, rad_struct->detection.cv_image);
   rad_struct->detection.nb_detection = rad_struct->detection.vec_circle.size();
-*/
+
   //---------------------------
 }
 void Identification::draw_detection_image(dat::base::Sensor* sensor){
