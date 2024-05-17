@@ -17,10 +17,11 @@ public:
   //Main function
   virtual void player_play();
   virtual void player_pause();
-  virtual void player_query_ts(float value){}
   virtual void player_stop();
-  virtual void player_restart(){}
-  virtual void player_record(){}
+  virtual void player_restart();
+  virtual void player_record();
+
+  virtual void player_query_ts(float value){}
   virtual void player_info(){}
   virtual void player_update(){}
   virtual void player_close(){}

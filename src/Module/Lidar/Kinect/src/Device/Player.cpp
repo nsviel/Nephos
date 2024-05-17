@@ -17,6 +17,26 @@ Player::Player(k4n::dev::Master* master) : dyn::base::Player(master){
 Player::~Player(){}
 
 //Main function
+void Player::player_stop(){
+  //---------------------------
+
+  //Pause playback thread
+  this->play = false;
+  this->pause = true;
+/*
+  //Wait for pause
+  for(int i=0; i<set->list_entity.size(); i++){
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+
+    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      sensor->wait_threads();
+    }
+  }
+
+  this->manage_restart();
+*/
+  //---------------------------
+}
 void Player::player_update(){
   //---------------------------
 
@@ -76,33 +96,6 @@ void Player::player_close(){
     }
   }
 
-  //---------------------------
-}
-void Player::player_stop(){
-  //---------------------------
-
-  //Pause playback thread
-  //this->play = false;
-  //this->pause = true;
-/*
-  //Wait for pause
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      sensor->wait_threads();
-    }
-  }
-
-  this->manage_restart();
-*/
-  //---------------------------
-}
-void Player::player_restart(){
-  //---------------------------
-/*
-  restart = !restart;
-*/
   //---------------------------
 }
 void Player::player_record(){

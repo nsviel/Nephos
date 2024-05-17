@@ -39,7 +39,7 @@ utl::media::File* Importer::import(utl::media::Path path){
   sensor->init();
   dat_entity->init_entity(sensor);
   dat_set->insert_entity(master, sensor);
-  master->player_update();
+  master->player->player_update();
 
   //---------------------------
   return nullptr;

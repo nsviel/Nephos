@@ -38,18 +38,6 @@ public:
   void manage_configuration();
   void manage_restart();
 
-  //Player function
-  void player_update();
-  void player_query_ts(float value);
-  void player_close();
-  void player_play();
-  void player_pause();
-  void player_stop();
-  void player_restart();
-  void player_record();
-  void player_lock();
-//  void player_info();
-
 public:
   dat::Set* dat_set;
   k4n::utils::Configuration* k4n_config;

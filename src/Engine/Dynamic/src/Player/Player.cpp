@@ -51,10 +51,39 @@ void Player::player_pause(){
 void Player::player_stop(){
   //---------------------------
 
+  this->play = false;
+  this->pause = true;
+
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     subset->player->player_stop();
+  }
+
+  //---------------------------
+}
+void Player::player_restart(){
+  //---------------------------
+
+  restart = !restart;
+
+  //Recursive call
+  for(int i=0; i<set->list_subset.size(); i++){
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+    subset->player->player_restart();
+  }
+
+  //---------------------------
+}
+void Player::player_record(){
+  //---------------------------
+
+  record = !record;
+
+  //Recursive call
+  for(int i=0; i<set->list_subset.size(); i++){
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+    subset->player->player_record();
   }
 
   //---------------------------
