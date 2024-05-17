@@ -26,8 +26,8 @@ Entity::~Entity(){}
 
 //Main function
 void Entity::init_entity(dat::base::Entity* entity){
-  utl::type::Data* data = entity->get_data();
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Data* data = entity->get_data();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   //If object; create dedicated glyphs
@@ -43,7 +43,7 @@ void Entity::init_entity(dat::base::Entity* entity){
   //---------------------------
 }
 void Entity::clear_entity(dat::base::Entity* entity){
-  utl::type::Data* data = entity->get_data();
+  utl::base::Data* data = entity->get_data();
   //----------------------------
 
   vk_engine->remove_data(data);

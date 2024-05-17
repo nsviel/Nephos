@@ -16,7 +16,7 @@ Exporter::Exporter(ldr::Node* node_loader){
 Exporter::~Exporter(){}
 
 //Main functions
-void Exporter::export_data(utl::type::Data* data){
+void Exporter::export_data(utl::base::Data* data){
   //---------------------------
 
 

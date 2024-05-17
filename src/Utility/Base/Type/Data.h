@@ -13,9 +13,9 @@
 #include <mutex>
 
 
-namespace utl::type{
+namespace utl::base{
 
-struct Data : public utl::type::Element{
+struct Data : public utl::base::Element{
   //---------------------------
 
   //State
@@ -32,7 +32,7 @@ struct Data : public utl::type::Element{
   std::string path_texture = "";
   std::string file_format = "";
   glm::vec4 unicolor;
-  utl::type::Topology topology;
+  utl::base::Topology topology;
 
   //Data
   std::vector<glm::vec3> xyz;

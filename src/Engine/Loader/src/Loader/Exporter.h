@@ -2,7 +2,7 @@
 
 namespace ldr{class Node;}
 namespace ldr{class Format;}
-namespace utl::type{class Data;}
+namespace utl::base{class Data;}
 
 
 namespace ldr{
@@ -16,7 +16,7 @@ public:
 
 public:
   //Main functions
-  void export_data(utl::type::Data* data);
+  void export_data(utl::base::Data* data);
 
 private:
   ldr::Format* ldr_format;

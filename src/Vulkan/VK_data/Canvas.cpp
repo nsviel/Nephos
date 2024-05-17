@@ -41,7 +41,7 @@ void Canvas::init(){
   uv.push_back(vec2(0.0f,  1.0f));
 
   //Canvas data
-  utl::type::Data* data = new utl::type::Data();
+  utl::base::Data* data = new utl::base::Data();
   data->name = "vk::canvas";
   data->xyz = xyz;
   data->uv = uv;

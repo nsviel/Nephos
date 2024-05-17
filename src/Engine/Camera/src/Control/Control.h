@@ -8,7 +8,7 @@ namespace cam{class Projection;}
 namespace cam::mode{class Base;}
 namespace cam{class Entity;}
 namespace cam{class Structure;}
-namespace utl::type{class Pose;}
+namespace utl::base{class Pose;}
 
 
 namespace cam{
@@ -30,7 +30,7 @@ public:
   glm::mat4 compute_camera_view();
   glm::mat4 compute_camera_proj();
   glm::mat4 compute_camera_mvp();
-  void compute_camera_mvp(utl::type::Pose* pose);
+  void compute_camera_mvp(utl::base::Pose* pose);
   glm::mat4 compute_camera_pose();
 
   //Camera parameter

@@ -3,7 +3,7 @@
 namespace eng{class Node;}
 namespace sce{class Node;}
 namespace ldr{class Loader;}
-namespace utl::type{class Selection;}
+namespace utl::base{class Selection;}
 
 
 namespace sce{
@@ -25,7 +25,7 @@ public:
 private:
   eng::Node* node_engine;
   ldr::Loader* ldr_loader;
-  utl::type::Selection* selection = nullptr;
+  utl::base::Selection* selection = nullptr;
 };
 
 }

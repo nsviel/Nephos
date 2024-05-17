@@ -12,7 +12,7 @@ enum Type{
 
 }
 
-namespace utl::type{
+namespace utl::base{
 
 struct Topology{
   //---------------------------

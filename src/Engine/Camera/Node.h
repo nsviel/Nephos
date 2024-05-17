@@ -15,7 +15,7 @@ namespace cam::gui{class Panel;}
 
 namespace cam{
 
-class Node : public utl::type::Node
+class Node : public utl::base::Node
 {
 public:
   Node(eng::Node* node_engine);

@@ -8,7 +8,7 @@ namespace dat{class Set;}
 namespace dat::base{class Entity;}
 namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
-namespace utl::type{class Data;}
+namespace utl::base{class Data;}
 
 
 namespace dat::gui{
@@ -36,9 +36,9 @@ public:
   void pose_info(dat::base::Entity* entity);
 
   //Primitive
-  void primitive_line(utl::type::Data* data);
-  void primitive_point(utl::type::Data* data);
-  void primitive_triangle(utl::type::Data* data);
+  void primitive_line(utl::base::Data* data);
+  void primitive_point(utl::base::Data* data);
+  void primitive_triangle(utl::base::Data* data);
 
   inline void set_entity(dat::base::Entity* entity){this->entity = entity;}
 

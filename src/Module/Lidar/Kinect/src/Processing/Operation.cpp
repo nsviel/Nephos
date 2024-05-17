@@ -68,7 +68,7 @@ void Operation::run_thread(k4n::dev::Sensor* sensor){
   //Normal
   if(master->operation.normal){
     tasker->task_begin("normal");
-    utl::type::Data* data = sensor->get_data();
+    utl::base::Data* data = sensor->get_data();
     // 3 bug :
     // - start segmentation fault
     // - depth to color transformation change
@@ -120,7 +120,7 @@ void Operation::colorize_object(k4n::dev::Sensor* sensor){
 void Operation::voxelize_object(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  utl::type::Data* data = sensor->get_data();
+  utl::base::Data* data = sensor->get_data();
   k4n::dev::Master* master = sensor->master;
 
   float voxel_size = master->operation.voxel_size;
@@ -133,7 +133,7 @@ void Operation::voxelize_object(k4n::dev::Sensor* sensor){
 void Operation::triangularize_object(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  utl::type::Data* data = sensor->get_data();
+  utl::base::Data* data = sensor->get_data();
 
   ope_trianguler->make_triangulation(data);
 

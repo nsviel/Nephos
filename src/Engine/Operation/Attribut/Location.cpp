@@ -33,8 +33,8 @@ glm::vec3 Location::compute_centroid(dat::base::Set* set){
   return centroid;
 }
 glm::vec3 Location::compute_centroid(dat::base::Entity* entity){
-  utl::type::Data* data = entity->get_data();
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Data* data = entity->get_data();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   std::vector<glm::vec3>& XYZ = data->xyz;
@@ -65,7 +65,7 @@ void Location::compute_MinMax(dat::base::Set* set){
 
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-    utl::type::Pose* pose = entity->get_pose();
+    utl::base::Pose* pose = entity->get_pose();
     this->compute_MinMax(entity);
 
     for(int j=0; j<3; j++){
@@ -86,8 +86,8 @@ void Location::compute_MinMax(dat::base::Set* set){
   set->pose.COM = centroid;
 }
 void Location::compute_MinMax(dat::base::Entity* entity){
-  utl::type::Data* data = entity->get_data();
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Data* data = entity->get_data();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   std::vector<glm::vec3>& XYZ = data->xyz;
@@ -119,7 +119,7 @@ void Location::compute_MinMax(dat::base::Entity* entity){
 }
 void Location::set_unicolor(dat::base::Entity* entity){
   if(entity == nullptr) return;
-  utl::type::Data* data = entity->get_data();
+  utl::base::Data* data = entity->get_data();
   //---------------------------
 
   for(int i=0; i<data->rgb.size(); i++){
@@ -129,8 +129,8 @@ void Location::set_unicolor(dat::base::Entity* entity){
   //---------------------------
 }
 void Location::retrieve_z_vector(dat::base::Entity* entity, std::vector<float>& z_vec){
-  utl::type::Data* data = entity->get_data();
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Data* data = entity->get_data();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;

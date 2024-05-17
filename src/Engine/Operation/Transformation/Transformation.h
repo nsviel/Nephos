@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 
 namespace dat::base{class Entity;}
-namespace utl::type{class Pose;}
+namespace utl::base{class Pose;}
 
 
 namespace ope{
@@ -30,7 +30,7 @@ public:
   void make_scaling(dat::base::Entity* entity, float scale);
 
   //Transformation
-  void make_transformation(utl::type::Pose* pose, glm::vec3 COM, glm::mat4 translation, glm::mat4 rotation);
+  void make_transformation(utl::base::Pose* pose, glm::vec3 COM, glm::mat4 translation, glm::mat4 rotation);
 
   //Subfunction
   glm::mat4 get_translation_mat(glm::vec3 trans);

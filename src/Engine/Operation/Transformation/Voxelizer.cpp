@@ -20,7 +20,7 @@ Voxelizer::Voxelizer(){
 Voxelizer::~Voxelizer(){}
 
 //Main function
-void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
+void Voxelizer::find_voxel_min_number_of_point(utl::base::Data* data){
   voxel_map.clear();
   //---------------------------
 
@@ -54,7 +54,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data){
 
   //---------------------------
 }
-void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data, float voxel_size, int min_nb_point){
+void Voxelizer::find_voxel_min_number_of_point(utl::base::Data* data, float voxel_size, int min_nb_point){
   voxel_map.clear();
   //---------------------------
 
@@ -85,7 +85,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::type::Data* data, float voxe
 
   //---------------------------
 }
-void Voxelizer::reconstruct_data_by_goodness(utl::type::Data* data){
+void Voxelizer::reconstruct_data_by_goodness(utl::base::Data* data){
   //---------------------------
 
   // Use std::remove_if to move the unwanted elements to the end

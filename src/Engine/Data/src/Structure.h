@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace dat::base{class Set;}
-namespace utl::type{class Element;}
+namespace utl::base{class Element;}
 
 
 namespace dat{
@@ -13,7 +13,7 @@ struct Structure{
   //---------------------------
 
   dat::base::Set set_main;
-  utl::type::Element* selection = nullptr;
+  utl::base::Element* selection = nullptr;
   int UID = 0;
 
   //---------------------------

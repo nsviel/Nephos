@@ -11,7 +11,7 @@ namespace ldr{class Node;}
 
 namespace rsx{
 
-class Node : public utl::type::Node
+class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor

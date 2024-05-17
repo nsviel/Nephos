@@ -8,7 +8,7 @@ namespace dat{class Set;}
 namespace dat{class Structure;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
-namespace utl::type{class Element;}
+namespace utl::base{class Element;}
 
 
 namespace dat{
@@ -27,11 +27,11 @@ public:
   void clean();
 
   //Subfunction
-  void select_element(utl::type::Element* element);
+  void select_element(utl::base::Element* element);
   void remove_selected_element();
   void select_next_element();
-  void assign_UID(utl::type::Element* element);
-  utl::type::Element* get_selected_element();
+  void assign_UID(utl::base::Element* element);
+  utl::base::Element* get_selected_element();
   dat::base::Entity* get_selected_entity();
   dat::base::Set* get_selected_set();
   dat::base::Set* get_set_main();

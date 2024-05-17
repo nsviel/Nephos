@@ -35,7 +35,7 @@ public:
   void cmd_draw_triangle(vk::structure::Subpass* subpass);
 
   //Subfunction
-  bool check_data(utl::type::Data* data, int typology);
+  bool check_data(utl::base::Data* data, int typology);
 
 private:
   vk::structure::Vulkan* vk_struct;

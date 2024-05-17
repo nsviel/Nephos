@@ -41,7 +41,7 @@ void Stream::init(){
   //---------------------------
 }
 void Stream::run_panel(){
-  utl::type::Element* element = dat_graph->get_selected_element();
+  utl::base::Element* element = dat_graph->get_selected_element();
   //---------------------------
 
   //Chekc if it contain entities
@@ -66,7 +66,7 @@ void Stream::run_panel(){
 
   //---------------------------
 }
-void Stream::design_panel(utl::type::Element* element){
+void Stream::design_panel(utl::base::Element* element){
   //---------------------------
 
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){

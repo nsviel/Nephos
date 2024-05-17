@@ -46,7 +46,7 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
   //---------------------------
 }
 void Buffer::update_buffer(vk::structure::Object* vk_object){
-  utl::type::Data* data = vk_object->data;
+  utl::base::Data* data = vk_object->data;
   //---------------------------
 
   if(data->xyz.size() != 0){
@@ -95,7 +95,7 @@ void Buffer::clean_buffer(vk::structure::Buffer* buffer){
 
 //Subfunction
 int Buffer::get_size_buffer(vk::structure::Object* vk_object){
-  utl::type::Data* data = vk_object->data;
+  utl::base::Data* data = vk_object->data;
   //---------------------------
 
   int max_data = (data->nb_data_max != -1) ? data->nb_data_max : data->xyz.size();

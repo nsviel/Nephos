@@ -13,7 +13,7 @@ namespace dyn::base{class Player;}
 
 namespace dat::base{
 
-struct Set : public utl::type::Element{
+struct Set : public utl::base::Element{
   //---------------------------
 
   Set(){}
@@ -35,7 +35,7 @@ struct Set : public utl::type::Element{
   bool is_open = true;
 
   //Data
-  utl::type::Pose pose;
+  utl::base::Pose pose;
   dyn::base::Player* player = nullptr;
   dat::base::Entity* active_entity = nullptr;
   dat::base::Set* active_subset = nullptr;

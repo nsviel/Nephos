@@ -27,8 +27,8 @@ struct Object{
 
   int UID = 0;
 
-  utl::type::Data* data = nullptr;
-  utl::type::Pose* pose = nullptr;
+  utl::base::Data* data = nullptr;
+  utl::base::Pose* pose = nullptr;
 
   //Data
   bool has_xyz = false;

@@ -141,7 +141,7 @@ glm::mat4 Control::compute_camera_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void Control::compute_camera_mvp(utl::type::Pose* pose){
+void Control::compute_camera_mvp(utl::base::Pose* pose){
   if(pose == nullptr) return;
   //---------------------------
 

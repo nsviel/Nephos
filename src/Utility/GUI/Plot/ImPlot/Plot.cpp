@@ -16,7 +16,7 @@ Plot::Plot(){
 Plot::~Plot(){}
 
 //Main function
-void Plot::plot_heatmap(utl::type::Plot* plot){
+void Plot::plot_heatmap(utl::base::Plot* plot){
   implot_style->make_style();
   //---------------------------
 
@@ -50,7 +50,7 @@ void Plot::plot_heatmap(utl::type::Plot* plot){
 
   //---------------------------
 }
-bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::type::Axis* y_axis){
+bool Plot::plot_heatmap(utl::base::Plot* plot, utl::base::Axis* x_axis, utl::base::Axis* y_axis){
   bool dragged = false;
   implot_style->make_style();
   //---------------------------
@@ -141,7 +141,7 @@ bool Plot::plot_heatmap(utl::type::Plot* plot, utl::type::Axis* x_axis, utl::typ
   //---------------------------
   return dragged;
 }
-void Plot::plot_regression(utl::type::Plot* plot){
+void Plot::plot_regression(utl::base::Plot* plot){
   implot_style->make_style();
   //---------------------------
 
@@ -180,7 +180,7 @@ void Plot::plot_regression(utl::type::Plot* plot){
 
   //---------------------------
 }
-void Plot::plot_scatter(utl::type::Plot* plot){
+void Plot::plot_scatter(utl::base::Plot* plot){
   implot_style->make_style();
   //---------------------------
 

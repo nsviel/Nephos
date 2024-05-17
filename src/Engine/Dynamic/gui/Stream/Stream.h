@@ -7,7 +7,7 @@ namespace dat{class Graph;}
 namespace eng{class Node;}
 namespace dat{class Set;}
 namespace rnd{class Stream;}
-namespace utl::type{class Element;}
+namespace utl::base{class Element;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
@@ -24,7 +24,7 @@ public:
   //Main function
   void init();
   void run_panel();
-  void design_panel(utl::type::Element* element);
+  void design_panel(utl::base::Element* element);
 
   //All devices
   void draw_set_tabbar(dat::base::Set* set);

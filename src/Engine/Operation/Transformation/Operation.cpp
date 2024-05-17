@@ -18,7 +18,7 @@ Operation::Operation(){
 Operation::~Operation(){}
 
 //Operation on set
-void Operation::center_object(utl::type::Element* element){
+void Operation::center_object(utl::base::Element* element){
   if(element == nullptr) return;
   //---------------------------
 
@@ -37,7 +37,7 @@ void Operation::center_object(utl::type::Element* element){
 
   //---------------------------
 }
-void Operation::elevate_object(utl::type::Element* element){
+void Operation::elevate_object(utl::base::Element* element){
   if(element == nullptr) return;
   //---------------------------
 
@@ -54,7 +54,7 @@ void Operation::elevate_object(utl::type::Element* element){
 
   //---------------------------
 }
-void Operation::make_rotation_X_90d(utl::type::Element* element, int value){
+void Operation::make_rotation_X_90d(utl::base::Element* element, int value){
   if(element == nullptr) return;
   //---------------------------
 
@@ -70,7 +70,7 @@ void Operation::make_rotation_X_90d(utl::type::Element* element, int value){
 
   //---------------------------
 }
-void Operation::make_translation(utl::type::Element* element, glm::vec3 value){
+void Operation::make_translation(utl::base::Element* element, glm::vec3 value){
   if(element == nullptr) return;
   //---------------------------
 
@@ -86,7 +86,7 @@ void Operation::make_translation(utl::type::Element* element, glm::vec3 value){
 
   //---------------------------
 }
-void Operation::make_rotation(utl::type::Element* element, glm::vec3 value){
+void Operation::make_rotation(utl::base::Element* element, glm::vec3 value){
   if(element == nullptr) return;
   //---------------------------
 
@@ -107,7 +107,7 @@ void Operation::make_rotation(utl::type::Element* element, glm::vec3 value){
 //Operation on entity
 void Operation::center_object(dat::base::Entity* entity, glm::vec3 COM){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   ope_location->compute_MinMax(entity);
@@ -126,7 +126,7 @@ void Operation::elevate_object(dat::base::Entity* entity, glm::vec3 min){
 }
 void Operation::make_rotation_X_90d(dat::base::Entity* entity, int value){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   ope_location->compute_MinMax(entity);

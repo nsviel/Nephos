@@ -66,8 +66,8 @@ public:
   virtual void manage_reset(){}
 
   inline dat::base::Object* get_object(){return &object;}
-  inline utl::type::Data* get_data(){return &object.data;}
-  inline utl::type::Pose* get_pose(){return &object.pose;}
+  inline utl::base::Data* get_data(){return &object.data;}
+  inline utl::base::Pose* get_pose(){return &object.pose;}
   inline bool is_thread_running(){return thread_running;}
   inline bool is_thread_paused(){return thread_paused;}
 

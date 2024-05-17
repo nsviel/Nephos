@@ -45,7 +45,7 @@ void Colorizer::make_colorization(dat::base::Entity* entity, ope::color::Configu
 
 //Subfunction
 void Colorizer::colorization_unicolor(dat::base::Entity* entity, ope::color::Configuration& config){
-  utl::type::Data* data = entity->get_data();
+  utl::base::Data* data = entity->get_data();
   //---------------------------
 
   data->rgb = std::vector<glm::vec4>(data->rgb.size(), config.unicolor);
@@ -53,7 +53,7 @@ void Colorizer::colorization_unicolor(dat::base::Entity* entity, ope::color::Con
   //---------------------------
 }
 void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Configuration& config){
-  utl::type::Data* data = entity->get_data();
+  utl::base::Data* data = entity->get_data();
   //---------------------------
 
   for(int i=0; i<data->xyz.size(); i++){
@@ -84,7 +84,7 @@ void Colorizer::colorization_heatmap(dat::base::Entity* entity, ope::color::Conf
   //---------------------------
 }
 void Colorizer::colorization_structure(dat::base::Entity* entity){
-  utl::type::Data* data = entity->get_data();
+  utl::base::Data* data = entity->get_data();
   //---------------------------
 
   // Calculate the number of points in each row and column

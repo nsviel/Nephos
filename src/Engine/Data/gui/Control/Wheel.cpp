@@ -33,7 +33,7 @@ void Wheel::change_mode(){
   //---------------------------
 }
 void Wheel::make_action(float direction){
-  utl::type::Element* element = dat_graph->get_selected_element();
+  utl::base::Element* element = dat_graph->get_selected_element();
   //---------------------------
 
   //Rotation quantity

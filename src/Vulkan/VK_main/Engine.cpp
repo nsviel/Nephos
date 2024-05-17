@@ -37,7 +37,7 @@ Engine::Engine(vk::structure::Vulkan* vk_struct){
 Engine::~Engine(){}
 
 //Data function
-void Engine::insert_data(utl::type::Data* data, utl::type::Pose* pose){
+void Engine::insert_data(utl::base::Data* data, utl::base::Pose* pose){
   if(data == nullptr) return;
   //---------------------------
 
@@ -58,7 +58,7 @@ void Engine::insert_data(utl::type::Data* data, utl::type::Pose* pose){
 
   //---------------------------
 }
-void Engine::remove_data(utl::type::Data* data){
+void Engine::remove_data(utl::base::Data* data){
   std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
   //---------------------------
 

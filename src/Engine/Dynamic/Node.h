@@ -12,7 +12,7 @@ namespace dyn::gui{class Stream;}
 
 namespace dyn{
 
-class Node : public utl::type::Node
+class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor

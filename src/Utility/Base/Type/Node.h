@@ -4,7 +4,7 @@
 #include <Utility/Base/GUI/Panel.h>
 
 
-namespace utl::type{
+namespace utl::base{
 
 class Node
 {
@@ -31,7 +31,7 @@ public:
     //---------------------------
     return panel;
   }
-  void add_node_panel(utl::type::Node* node){
+  void add_node_panel(utl::base::Node* node){
     //---------------------------
 
     vector<utl::gui::Panel*> node_vec_panel = node->get_vec_panel();
@@ -43,8 +43,8 @@ public:
   inline vector<utl::gui::Panel*> get_vec_panel(){return vec_panel;}
 
 protected:
-  utl::type::Node* upnode;
-  vector<utl::type::Node*> vec_node;
+  utl::base::Node* upnode;
+  vector<utl::base::Node*> vec_node;
   vector<utl::gui::Panel*> vec_panel;
 };
 

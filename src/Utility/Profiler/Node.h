@@ -9,7 +9,7 @@ namespace prf{class Manager;}
 
 namespace prf{
 
-class Node : public utl::type::Node
+class Node : public utl::base::Node
 {
 public:
   Node();

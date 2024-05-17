@@ -14,7 +14,7 @@ namespace ldr::gui{class Loader;}
 
 namespace ldr{
 
-class Node : public utl::type::Node
+class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor

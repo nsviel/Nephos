@@ -18,7 +18,7 @@ Normal::Normal(){
 Normal::~Normal(){}
 
 //Main function
-void Normal::compute_normal_from_grid(utl::type::Data* data){
+void Normal::compute_normal_from_grid(utl::base::Data* data){
   if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
@@ -71,7 +71,7 @@ void Normal::compute_normal_from_grid(utl::type::Data* data){
 
   //---------------------------
 }
-void Normal::compute_normal_with_neighbors(utl::type::Data* data, int knn){
+void Normal::compute_normal_with_neighbors(utl::base::Data* data, int knn){
   if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
@@ -117,7 +117,7 @@ void Normal::set_visibility(dat::base::Object* object, bool value){
 }
 
 //Subfunction
-void Normal::compute_knn(glm::vec3& point, std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, int knn, utl::type::Data* data, int i, int j, float threshold){
+void Normal::compute_knn(glm::vec3& point, std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, int knn, utl::base::Data* data, int i, int j, float threshold){
   //---------------------------
 
   for(int k=-knn; k<=knn; k++){

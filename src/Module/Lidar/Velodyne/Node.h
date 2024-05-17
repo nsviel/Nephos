@@ -13,7 +13,7 @@ namespace vld::gui{class Velodyne;}
 
 namespace vld{
 
-class Node : public utl::type::Node
+class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor

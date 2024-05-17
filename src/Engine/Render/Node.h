@@ -11,7 +11,7 @@ namespace rnd::gui{class Renderer;}
 
 namespace rnd{
 
-class Node : public utl::type::Node
+class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor

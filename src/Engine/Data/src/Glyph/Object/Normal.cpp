@@ -41,7 +41,7 @@ void Normal::create(){
 void Normal::update_pose(dat::base::Entity* entity){
   //---------------------------
 
-  utl::type::Pose* entity_pose = entity->get_pose();
+  utl::base::Pose* entity_pose = entity->get_pose();
   pose.model = entity_pose->model;
 
   cam::Control* cam_control = node_camera->get_control();
@@ -69,8 +69,8 @@ void Normal::construct(dat::base::Entity* entity){
   rgb_g.reserve(data.rgb.size());
 
   //Data entity
-  utl::type::Pose* pose_entity = entity->get_pose();
-  utl::type::Data* data_entity = entity->get_data();
+  utl::base::Pose* pose_entity = entity->get_pose();
+  utl::base::Data* data_entity = entity->get_data();
   std::vector<glm::vec3>& xyz_e = data_entity->xyz;
   std::vector<glm::vec3>& Nxyz_e = data_entity->Nxyz;
 

@@ -144,7 +144,7 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   //---------------------------
 }
 void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
-  utl::type::Data* data = sensor->get_data();
+  utl::base::Data* data = sensor->get_data();
   k4n::dev::Master* master = sensor->master;
   //---------------------------
 

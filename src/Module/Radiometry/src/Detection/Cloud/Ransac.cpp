@@ -59,7 +59,7 @@ void Ransac::ransac_sphere(dat::base::Sensor* sensor){
   //if(step != rad::detection::PROCESSING) return;
   //---------------------------
 
-  utl::type::Data* data = sensor->get_data();
+  utl::base::Data* data = sensor->get_data();
   vector<vec3>& vec_xyz = data->xyz;
   vector<float>& vec_i = data->Is;
 

@@ -49,7 +49,7 @@ void Detection::validate_bbox(dat::base::Sensor* sensor){
   if(step != rad::detection::WAIT_VALIDATION) return;
   //---------------------------
 
-  utl::type::Pose* pose = sensor->get_pose();
+  utl::base::Pose* pose = sensor->get_pose();
 
   this->step++;
   ivec2 point_2d = rad_struct->detection.vec_circle[0].center;
@@ -64,7 +64,7 @@ void Detection::ransac_sphere(dat::base::Sensor* sensor){
   if(step != rad::detection::PROCESSING) return;
   //---------------------------
 
-  utl::type::Data* data = sensor->get_data();
+  utl::base::Data* data = sensor->get_data();
   vector<vec3>& vec_xyz = data->xyz;
   vector<float>& vec_i = data->Is;
 

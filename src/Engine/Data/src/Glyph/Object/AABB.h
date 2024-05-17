@@ -14,7 +14,7 @@ public:
 public:
   //Main function
   void create();
-  void update_glyph(utl::type::Pose* pose);
+  void update_glyph(utl::base::Pose* pose);
 
   //Subfunction
   std::vector<glm::vec3> build_box(glm::vec3 min, glm::vec3 max);

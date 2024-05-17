@@ -126,7 +126,7 @@ void Data::make_normal_from_depth_image(k4n::dev::Sensor* sensor){
   uint8_t* depth = sensor->depth.data.buffer;
   //---------------------------
 
-  utl::type::Data* data = sensor->get_data();
+  utl::base::Data* data = sensor->get_data();
 
   int width = sensor->depth.data.width;
   int height = sensor->depth.data.height;

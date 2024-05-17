@@ -159,7 +159,7 @@ void Model::update_plot_data(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
-  utl::type::Plot* plot = &measure->IfR;
+  utl::base::Plot* plot = &measure->IfR;
   for(int i=0; i<plot->axis_x.data.size(); i++){
     float& x = plot->axis_x.data[i];
     float& y = plot->axis_y.data[i];

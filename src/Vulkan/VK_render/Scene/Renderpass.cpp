@@ -103,8 +103,8 @@ void Renderpass::cmd_draw_point(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
-    utl::type::Data* data = vk_object->data;
-    utl::type::Pose* pose = vk_object->pose;
+    utl::base::Data* data = vk_object->data;
+    utl::base::Pose* pose = vk_object->pose;
 
     if(check_data(data, utl::topology::POINT)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
@@ -126,8 +126,8 @@ void Renderpass::cmd_draw_line(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object = *next(list_data.begin(), i);
-    utl::type::Data* data = vk_object->data;
-    utl::type::Pose* pose = vk_object->pose;
+    utl::base::Data* data = vk_object->data;
+    utl::base::Pose* pose = vk_object->pose;
 
     if(check_data(data, utl::topology::LINE)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
@@ -149,8 +149,8 @@ void Renderpass::cmd_draw_triangle(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
-    utl::type::Data* data = vk_object->data;
-    utl::type::Pose* pose = vk_object->pose;
+    utl::base::Data* data = vk_object->data;
+    utl::base::Pose* pose = vk_object->pose;
 
     if(check_data(data, utl::topology::TRIANGLE)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
@@ -163,7 +163,7 @@ void Renderpass::cmd_draw_triangle(vk::structure::Subpass* subpass){
 }
 
 //Subfunction
-bool Renderpass::check_data(utl::type::Data* data, int topology){
+bool Renderpass::check_data(utl::base::Data* data, int topology){
   bool data_ok = false;
   //---------------------------
 

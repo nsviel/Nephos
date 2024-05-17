@@ -31,7 +31,7 @@ Loader::~Loader(){
 }
 
 //Main functions
-utl::type::Data* Loader::load_data(std::string path){
+utl::base::Data* Loader::load_data(std::string path){
   dat::base::Set* set = nullptr;
   //---------------------------
 
@@ -45,7 +45,7 @@ utl::type::Data* Loader::load_data(std::string path){
   if(file == nullptr || file->type != utl::file::DATA) return nullptr;
   utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
-  utl::type::Data* data = create_data(file_data);
+  utl::base::Data* data = create_data(file_data);
 
   //Delete raw data
   delete file;
@@ -137,10 +137,10 @@ dat::base::Object* Loader::create_object(utl::file::Data* data){
   //---------------------------
   return object;
 }
-utl::type::Data* Loader::create_data(utl::file::Data* file){
+utl::base::Data* Loader::create_data(utl::file::Data* file){
   //---------------------------
 
-  utl::type::Data* data = new utl::type::Data();
+  utl::base::Data* data = new utl::base::Data();
   data->name = file->name;
   data->path = file->path.data;
   data->file_format = utl::path::get_format_from_path(file->path.data);

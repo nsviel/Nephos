@@ -12,10 +12,10 @@
 #include <mutex>
 
 
-namespace utl::type{
+namespace utl::base{
 
 //Generique data structure
-struct Pose : public utl::type::Element{
+struct Pose : public utl::base::Element{
   //---------------------------
 
   glm::vec3 min = glm::vec3(0.0f);

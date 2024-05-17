@@ -22,7 +22,7 @@ Data::Data(vk::structure::Vulkan* vk_struct){
 Data::~Data(){}
 
 //Main function
-void Data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
+void Data::insert_data(utl::base::Data* data, utl::base::Pose* pose){
   //---------------------------
 
   //Creat new data struct
@@ -51,7 +51,7 @@ void Data::insert_data(utl::type::Data* data, utl::type::Pose* pose){
 
   //---------------------------
 }
-void Data::update_data(utl::type::Data* data, vk::structure::Object* vk_object){
+void Data::update_data(utl::base::Data* data, vk::structure::Object* vk_object){
   //---------------------------
 
   vk_object->data = data;
@@ -92,7 +92,7 @@ void Data::clean_vk_object(vk::structure::Object* vk_object){
   //---------------------------
 }
 void Data::check_data(vk::structure::Object* vk_object){
-  utl::type::Data* data = vk_object->data;
+  utl::base::Data* data = vk_object->data;
   //---------------------------
 
   vk_object->has_xyz = (data->xyz.size() == 0) ? false : true;

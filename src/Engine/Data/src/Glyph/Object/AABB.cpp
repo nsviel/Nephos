@@ -35,7 +35,7 @@ void AABB::create(){
 
   //---------------------------
 }
-void AABB::update_glyph(utl::type::Pose* pose){
+void AABB::update_glyph(utl::base::Pose* pose){
   //---------------------------
 
   glm::vec3 min = pose->min;

@@ -12,7 +12,7 @@ Transformation::~Transformation(){}
 // Translation
 void Transformation::make_translation(dat::base::Entity* entity, glm::vec3 trans){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   glm::mat4 translation = get_translation_mat(trans);
@@ -26,7 +26,7 @@ void Transformation::make_translation(dat::base::Entity* entity, glm::vec3 trans
 }
 void Transformation::make_translation(dat::base::Entity* entity, mat4 translation){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   glm::vec3 trans = glm::vec3(translation[0][3], translation[1][3], translation[2][3]);
@@ -42,7 +42,7 @@ void Transformation::make_translation(dat::base::Entity* entity, mat4 translatio
 //Rotation
 void Transformation::make_rotation(dat::base::Entity* entity, glm::vec3 COM, glm::vec3 degree){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   glm::vec3 radian = math::degree_to_radian(degree);
@@ -64,7 +64,7 @@ void Transformation::make_rotation(dat::base::Entity* entity, glm::vec3 COM, glm
 }
 void Transformation::make_rotation(dat::base::Entity* entity, glm::vec3 degree){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   glm::vec3& COM = pose->COM;
@@ -86,7 +86,7 @@ void Transformation::make_rotation(dat::base::Entity* entity, glm::vec3 degree){
 }
 void Transformation::make_rotation(dat::base::Entity* entity, glm::vec3 COM, mat4 rotation){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   //glm::vec3& COM = pose->COM;
@@ -106,7 +106,7 @@ void Transformation::make_rotation(dat::base::Entity* entity, glm::vec3 COM, mat
 }
 void Transformation::make_rotation_axe_X(dat::base::Entity* entity, float degree){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   float radian = math::degree_to_radian(degree);
@@ -132,7 +132,7 @@ void Transformation::make_rotation_axe_X(dat::base::Entity* entity, float degree
 //Scaling
 void Transformation::make_scaling(dat::base::Entity* entity, float scale){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
   glm::mat4 scaling(1.0);
@@ -147,7 +147,7 @@ void Transformation::make_scaling(dat::base::Entity* entity, float scale){
 }
 
 //Transformation
-void Transformation::make_transformation(utl::type::Pose* pose, glm::vec3 COM, glm::mat4 translation, glm::mat4 rotation){
+void Transformation::make_transformation(utl::base::Pose* pose, glm::vec3 COM, glm::mat4 translation, glm::mat4 rotation){
   //---------------------------
 
   glm::mat4 COM_mat = get_translation_mat_neye(COM);

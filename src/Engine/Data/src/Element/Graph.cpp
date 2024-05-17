@@ -56,7 +56,7 @@ void Graph::clean(){
 }
 
 //Subfunction
-void Graph::select_element(utl::type::Element* element){
+void Graph::select_element(utl::base::Element* element){
   if(element->is_selectable == false) return;
   //----------------------------
 
@@ -76,7 +76,7 @@ void Graph::remove_selected_element(){
   //----------------------------
 }
 void Graph::select_next_element(){
-  utl::type::Element* element = dat_struct->selection;
+  utl::base::Element* element = dat_struct->selection;
   if(element == nullptr) return;
   //----------------------------
 
@@ -96,7 +96,7 @@ void Graph::select_next_element(){
 
   //----------------------------
 }
-void Graph::assign_UID(utl::type::Element* element){
+void Graph::assign_UID(utl::base::Element* element){
   if(element == nullptr) return;
   //----------------------------
 
@@ -106,11 +106,11 @@ void Graph::assign_UID(utl::type::Element* element){
 
   //----------------------------
 }
-utl::type::Element* Graph::get_selected_element(){
+utl::base::Element* Graph::get_selected_element(){
   return dat_struct->selection;
 }
 dat::base::Entity* Graph::get_selected_entity(){
-  utl::type::Element* element = dat_struct->selection;
+  utl::base::Element* element = dat_struct->selection;
   //---------------------------
 
   dat::base::Entity* entity;
@@ -124,7 +124,7 @@ dat::base::Entity* Graph::get_selected_entity(){
   return entity;
 }
 dat::base::Set* Graph::get_selected_set(){
-  utl::type::Element* element = dat_struct->selection;
+  utl::base::Element* element = dat_struct->selection;
   //---------------------------
 
   dat::base::Set* set;

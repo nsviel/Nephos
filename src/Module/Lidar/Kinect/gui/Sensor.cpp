@@ -103,7 +103,7 @@ void Sensor::show_sensor_transfo(k4n::dev::Sensor* sensor){
     ImGui::Columns(1);
 /*
     ImVec2 width = ImGui::GetContentRegionAvail();
-    utl::type::Pose* pose = sensor->get_pose();
+    utl::base::Pose* pose = sensor->get_pose();
     if(ImGui::Button("Save##transfomatrix", ImVec2(width.x, 0))){
       utl::transformation::save_transformation_to_file(pose->model, sensor->path.transformation);
     }

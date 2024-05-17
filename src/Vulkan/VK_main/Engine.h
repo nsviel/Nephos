@@ -43,8 +43,8 @@ public:
   virtual void clean(){}
 
   //Data function
-  void insert_data(utl::type::Data* data, utl::type::Pose* pose);
-  void remove_data(utl::type::Data* data);
+  void insert_data(utl::base::Data* data, utl::base::Pose* pose);
+  void remove_data(utl::base::Data* data);
 
   //Renderpass function
   void add_renderpass_description(vk::structure::Renderpass* renderpass);

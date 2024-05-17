@@ -133,7 +133,7 @@ void Entity::entity_info(dat::base::Entity* entity){
   //---------------------------
 }
 void Entity::data_info(dat::base::Entity* entity){
-  utl::type::Data* data = entity->get_data();
+  utl::base::Data* data = entity->get_data();
   if(data == nullptr) return;
   //---------------------------
 
@@ -174,7 +174,7 @@ void Entity::data_info(dat::base::Entity* entity){
   //---------------------------
 }
 void Entity::pose_info(dat::base::Entity* entity){
-  utl::type::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = entity->get_pose();
   if(pose == nullptr) return;
   //---------------------------
 
@@ -197,7 +197,7 @@ void Entity::pose_info(dat::base::Entity* entity){
 }
 
 //Primitive
-void Entity::primitive_line(utl::type::Data* data){
+void Entity::primitive_line(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -233,7 +233,7 @@ void Entity::primitive_line(utl::type::Data* data){
 
   //---------------------------
 }
-void Entity::primitive_point(utl::type::Data* data){
+void Entity::primitive_point(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -269,7 +269,7 @@ void Entity::primitive_point(utl::type::Data* data){
 
   //---------------------------
 }
-void Entity::primitive_triangle(utl::type::Data* data){
+void Entity::primitive_triangle(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

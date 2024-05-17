@@ -14,7 +14,7 @@ Exporter::Exporter(){
 Exporter::~Exporter(){}
 
 //Main exporter functions
-void Exporter::export_ascii(utl::type::Data* data, std::string path){
+void Exporter::export_ascii(utl::base::Data* data, std::string path){
   std::string format = "ascii";
   //---------------------------
 
@@ -27,7 +27,7 @@ void Exporter::export_ascii(utl::type::Data* data, std::string path){
 
   //---------------------------
 }
-void Exporter::export_binary(utl::type::Data* data, utl::type::Pose* pose, std::string path){
+void Exporter::export_binary(utl::base::Data* data, utl::base::Pose* pose, std::string path){
   std::string format = "binary_little_endian";
   //---------------------------
 
@@ -42,7 +42,7 @@ void Exporter::export_binary(utl::type::Data* data, utl::type::Pose* pose, std::
 }
 
 //Subfunction
-void Exporter::write_header(std::ofstream& file, std::string format, utl::type::Data* data){
+void Exporter::write_header(std::ofstream& file, std::string format, utl::base::Data* data){
   //---------------------------
 
   this->vec_property.clear();
@@ -96,7 +96,7 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::type::
 
   //---------------------------
 }
-void Exporter::write_data_ascii(std::ofstream& file, utl::type::Data* data){
+void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
@@ -132,7 +132,7 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::type::Data* data){
 
   //---------------------------
 }
-void Exporter::write_data_binary(std::ofstream& file, utl::type::Data* data, utl::type::Pose* pose){
+void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, utl::base::Pose* pose){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;

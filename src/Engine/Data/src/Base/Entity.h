@@ -12,7 +12,7 @@ namespace dat::base{class Set;}
 
 namespace dat::base{
 
-struct Entity : public utl::type::Element{
+struct Entity : public utl::base::Element{
   //---------------------------
 
   Entity();
@@ -24,8 +24,8 @@ struct Entity : public utl::type::Element{
   virtual void update_data(){}
   virtual void update_pose(){}
   virtual void set_visibility(bool value){data.is_visible = value;}
-  virtual utl::type::Pose* get_pose(){return &pose;}
-  virtual utl::type::Data* get_data(){return &data;}
+  virtual utl::base::Pose* get_pose(){return &pose;}
+  virtual utl::base::Data* get_data(){return &data;}
   void bind_image(utl::media::Image* image); // A virer
 
   //Info
@@ -38,8 +38,8 @@ struct Entity : public utl::type::Element{
   dat::base::Set* set_parent = nullptr;
 
   //Data
-  utl::type::Pose pose;
-  utl::type::Data data;
+  utl::base::Pose pose;
+  utl::base::Data data;
   std::list<dat::base::Glyph*> list_glyph;
   std::list<utl::media::Image*> list_image;
 

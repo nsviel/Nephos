@@ -7,7 +7,7 @@
 
 namespace utl::media{
 
-struct Image : public utl::type::Element{
+struct Image : public utl::base::Element{
   //---------------------------
 
   //Info
