@@ -3,7 +3,7 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::matching{
+namespace rad::detection::utils{
 
 //Constructor / Destructor
 Image::Image(rad::Node* node_radio){

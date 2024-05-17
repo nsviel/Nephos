@@ -13,6 +13,7 @@ Identification::Identification(rad::Node* node_radio){
   eng::Node* node_engine = node_radio->get_node_engine();
 
   this->rad_struct = node_radio->get_rad_struct();
+  this->rad_image = new rad::detection::utils::Image(node_radio);
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------

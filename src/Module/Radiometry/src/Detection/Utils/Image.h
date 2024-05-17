@@ -9,7 +9,7 @@ namespace rad::structure{class Circle;}
 namespace dat::base{class Sensor;}
 
 
-namespace rad::matching{
+namespace rad::detection::utils{
 
 class Image
 {
