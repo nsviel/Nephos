@@ -13,10 +13,7 @@ namespace dat::gui{
 Wheel::Wheel(dat::Node* node_data){
   //---------------------------
 
-  eng::Node* node_engine = node_data->get_node_engine();
-  cam::Node* node_camera = node_data->get_node_camera();
-
-  this->cam_control = node_camera->get_control();
+  this->node_engine = node_data->get_node_engine();
   this->dat_graph = node_data->get_data_graph();
   this->ope_operation = new ope::Operation();
 
@@ -43,7 +40,7 @@ void Wheel::make_action(float direction){
   float radian = 5 * M_PI/180 * 50;
   glm::vec3 R;
 
-  switch (mode) {
+  switch(mode){
     case WHEEL_R_Z:{
       R = glm::vec3(0, 0, direction * radian);
       ope_operation->make_rotation(element, R);
@@ -60,6 +57,8 @@ void Wheel::make_action(float direction){
       break;
     }
     case WHEEL_CAM_Z:{
+      cam::Node* node_camera = node_engine->get_node_camera();
+      cam::Control* cam_control = node_camera->get_control();
       cam_control->control_wheel(direction * radian);
       break;
     }

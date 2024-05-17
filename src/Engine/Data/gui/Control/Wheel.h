@@ -7,7 +7,6 @@ namespace dat{class Node;}
 namespace eng{class Node;}
 namespace ope{class Operation;}
 namespace dat{class Graph;}
-namespace cam{class Control;}
 
 enum Wheel_mode{
   WHEEL_R_X = 0,
@@ -38,7 +37,7 @@ public:
 
 private:
   dat::Graph* dat_graph;
-  cam::Control* cam_control;
+  eng::Node* node_engine;
   ope::Operation* ope_operation;
 
   int mode;
