@@ -28,8 +28,8 @@ Player::~Player(){}
 void Player::run_panel(){
   dat::base::Set* set = dat_graph->get_selected_set();
   //---------------------------
-/*
-  if(*show_window && set != nullptr && set->player->enable){
+
+  if(*show_window && set != nullptr && set->player != nullptr){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
@@ -40,7 +40,7 @@ void Player::run_panel(){
     }
     ImGui::PopStyleColor();
   }
-*/
+
   //---------------------------
 }
 void Player::design_panel(dat::base::Set* set){

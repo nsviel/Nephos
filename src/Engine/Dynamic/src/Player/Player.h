@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace dyn{
+namespace dyn::base{
 
 class Player
 {
@@ -25,7 +25,6 @@ public:
   virtual void player_lock(){}
 
 public:
-  bool enable = false;
   bool play = true;
   bool pause = false;
   bool restart = true;

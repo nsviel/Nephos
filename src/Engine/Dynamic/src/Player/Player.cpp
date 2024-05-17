@@ -4,7 +4,7 @@
 #include <Data/Namespace.h>
 
 
-namespace dyn{
+namespace dyn::base{
 
 //Constructor / Destructor
 Player::Player(){
