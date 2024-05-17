@@ -6,7 +6,6 @@ namespace dat{class Graph;}
 namespace dat::base{class Set;}
 namespace dyn{class Node;}
 namespace dyn::gui{class Control;}
-namespace dyn::base{class Player;}
 namespace ope{class Operation;}
 
 
@@ -24,14 +23,13 @@ public:
   void design_panel(dat::base::Set* set);
 
   //Player function
-  void draw_player(dyn::base::Player* player);
-  void player_slider(dyn::base::Player* player);
-  void player_start(dyn::base::Player* player);
-  void player_stop(dyn::base::Player* player);
-  void player_repeat(dyn::base::Player* player);
-  void player_record(dyn::base::Player* player);
-  void player_close(dyn::base::Player* player);
-  void player_lock(dyn::base::Player* player);
+  void player_slider(dat::base::Set* set);
+  void player_start(dat::base::Set* set);
+  void player_stop(dat::base::Set* set);
+  void player_repeat(dat::base::Set* set);
+  void player_record(dat::base::Set* set);
+  void player_close(dat::base::Set* set);
+  void player_lock(dat::base::Set* set);
   void draw_button();
 
 private:

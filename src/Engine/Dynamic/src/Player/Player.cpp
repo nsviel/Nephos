@@ -88,5 +88,18 @@ void Player::player_record(){
 
   //---------------------------
 }
+void Player::player_lock(){
+  //---------------------------
+
+  set->is_locked = !set->is_locked;
+
+  //Recursive call
+  for(int i=0; i<set->list_subset.size(); i++){
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+    subset->player->player_record();
+  }
+  
+  //---------------------------
+}
 
 }

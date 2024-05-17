@@ -46,33 +46,28 @@ void Player::run_panel(){
 void Player::design_panel(dat::base::Set* set){
   //---------------------------
 
-  this->draw_player(set->player);
+  this->player_slider(set);
+
+  this->player_start(set);
+  ImGui::SameLine();
+  this->player_stop(set);
+  ImGui::SameLine();
+  this->player_repeat(set);
+  ImGui::SameLine();
+  this->player_record(set);
+  ImGui::SameLine();
+  this->player_close(set);
+  ImGui::SameLine();
+  this->player_lock(set);
+
   //set->player_info();
 
   //---------------------------
 }
 
 //Player function
-void Player::draw_player(dyn::base::Player* player){
-  //---------------------------
-
-  this->player_slider(player);
-
-  this->player_start(player);
-  ImGui::SameLine();
-  this->player_stop(player);
-  ImGui::SameLine();
-  this->player_repeat(player);
-  ImGui::SameLine();
-  this->player_record(player);
-  ImGui::SameLine();
-  this->player_close(player);
-  ImGui::SameLine();
-  this->player_lock(player);
-
-  //---------------------------
-}
-void Player::player_slider(dyn::base::Player* player){
+void Player::player_slider(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
   //---------------------------
 
   ImVec2 width = ImGui::GetContentRegionAvail();
@@ -83,7 +78,8 @@ void Player::player_slider(dyn::base::Player* player){
 
   //---------------------------
 }
-void Player::player_start(dyn::base::Player* player){
+void Player::player_start(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
   //---------------------------
 
   //If player start / pause button is appearing, allow keyboard control
@@ -110,7 +106,8 @@ void Player::player_start(dyn::base::Player* player){
 
   //---------------------------
 }
-void Player::player_stop(dyn::base::Player* player){
+void Player::player_stop(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
   //---------------------------
 
   if(!player->pause){
@@ -131,7 +128,8 @@ void Player::player_stop(dyn::base::Player* player){
 
   //---------------------------
 }
-void Player::player_repeat(dyn::base::Player* player){
+void Player::player_repeat(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
   //---------------------------
 
   if(player->restart){
@@ -151,7 +149,8 @@ void Player::player_repeat(dyn::base::Player* player){
 
   //---------------------------
 }
-void Player::player_record(dyn::base::Player* player){
+void Player::player_record(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
   //---------------------------
 
   if(player->record){
@@ -171,7 +170,8 @@ void Player::player_record(dyn::base::Player* player){
 
   //---------------------------
 }
-void Player::player_close(dyn::base::Player* player){
+void Player::player_close(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
@@ -182,19 +182,20 @@ void Player::player_close(dyn::base::Player* player){
 
   //---------------------------
 }
-void Player::player_lock(dyn::base::Player* player){
+void Player::player_lock(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
   //---------------------------
 
-  if(player->locked){
+  if(set->is_locked){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_LOCK "##399")){
-      player->locked = false;
+      player->player_lock();
     }
     ImGui::PopStyleColor();
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_UNLOCK "##399")){
-      player->locked = true;
+      player->player_lock();
     }
     ImGui::PopStyleColor();
   }

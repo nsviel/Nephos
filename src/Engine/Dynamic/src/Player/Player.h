@@ -20,13 +20,13 @@ public:
   virtual void player_stop();
   virtual void player_restart();
   virtual void player_record();
+  virtual void player_lock();
 
   virtual void player_query_ts(float value){}
   virtual void player_info(){}
   virtual void player_update(){}
   virtual void player_close(){}
-  virtual void player_lock(){}
-
+  
 public:
   dat::base::Set* set;
 
@@ -34,7 +34,6 @@ public:
   bool pause = false;
   bool restart = true;
   bool record = false;
-  bool locked = false;
 
   float ts_duration = -1;
   float ts_beg = -1;

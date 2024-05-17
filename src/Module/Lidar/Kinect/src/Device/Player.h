@@ -22,8 +22,6 @@ public:
   void player_query_ts(float value);
   void player_close();
   void player_stop();
-  void player_record();
-  void player_lock();
 //  void player_info();
 
 public:
