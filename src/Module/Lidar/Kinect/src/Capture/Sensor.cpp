@@ -119,11 +119,9 @@ void Sensor::manage_pause(){
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  bool& is_play = master->get_state_play();
-  bool& is_pause = master->get_state_pause();
-  if(is_pause || !is_play){
+  if(master->pause || !master->play){
     profiler->reset();
-    while(is_pause && thread_running){
+    while(master->pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }

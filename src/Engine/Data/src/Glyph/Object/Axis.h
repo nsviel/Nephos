@@ -22,8 +22,6 @@ public:
   void construct();
 
 private:
-  ope::Transformation* ope_transform;
-
   bool is_visible;
 };
 

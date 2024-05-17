@@ -5,9 +5,7 @@
 
 namespace dyn::base{
 
-class Player
-{
-public:
+struct Player{
   //Constructor / Destructor
   Player(){}
   ~Player(){}
@@ -22,25 +20,9 @@ public:
   virtual void player_record(){}
   virtual void player_close(){}
   virtual void player_lock(){}
-
   virtual void gui_info(){}
 
-  inline bool& get_state_play(){return play;}
-  inline bool& get_state_pause(){return pause;}
-  inline bool& get_state_restart(){return restart;}
-  inline bool& get_state_record(){return record;}
-  inline bool& get_state_locked(){return locked;}
-  inline float& get_duration(){return duration;}
-  inline float& get_ts_beg(){return ts_beg;}
-  inline float& get_ts_end(){return ts_end;}
-  inline float& get_ts_cur(){return ts_cur;}
-  inline float& get_ts_forward(){return ts_forward;}
-  inline void set_duration(float value){this->duration = value;}
-
-public:
   bool player_enable = false;
-  
-protected:
   bool play = true;
   bool pause = false;
   bool restart = true;

@@ -155,8 +155,7 @@ void Master::player_update(){
     }
   }
 
-  //set_parent->player_update(player);
-  set_parent->player_enable = true;
+  set_parent->player_update();
 
   //---------------------------
 }

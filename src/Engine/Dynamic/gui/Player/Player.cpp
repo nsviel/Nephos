@@ -78,11 +78,8 @@ void Player::player_slider(dyn::base::Player* ply){
 
   ImVec2 width = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(width.x);
-  float& ts_cur = ply->get_ts_cur();
-  float& ts_beg = ply->get_ts_beg();
-  float& ts_end = ply->get_ts_end();
-  if(ImGui::SliderFloat("##player_slider", &ts_cur, ts_beg, ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
-    ply->player_query_ts(ts_cur);
+  if(ImGui::SliderFloat("##player_slider", &ply->ts_cur, ply->ts_beg, ply->ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
+    ply->player_query_ts(ply->ts_cur);
   }
 
   //---------------------------
@@ -94,8 +91,7 @@ void Player::player_start(dyn::base::Player* ply){
   gui_control->run_control(ply);
 
   //Play button -> if paused or not playing
-  bool& is_pause = ply->get_state_pause();
-  if(is_pause){
+  if(ply->pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(46, 100, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##player_start")){
@@ -118,8 +114,7 @@ void Player::player_start(dyn::base::Player* ply){
 void Player::player_stop(dyn::base::Player* ply){
   //---------------------------
 
-  bool& is_pause = ply->get_state_pause();
-  if(!is_pause){
+  if(!ply->pause){
     //Player is running
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
@@ -140,8 +135,7 @@ void Player::player_stop(dyn::base::Player* ply){
 void Player::player_repeat(dyn::base::Player* ply){
   //---------------------------
 
-  bool& is_restart = ply->get_state_restart();
-  if(is_restart){
+  if(ply->restart){
     //Repeat activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
@@ -161,8 +155,7 @@ void Player::player_repeat(dyn::base::Player* ply){
 void Player::player_record(dyn::base::Player* ply){
   //---------------------------
 
-  bool& is_record = ply->get_state_record();
-  if(is_record){
+  if(ply->record){
     //Record activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if(ImGui::Button(ICON_FA_CIRCLE "##37")){
@@ -193,17 +186,16 @@ void Player::player_close(dyn::base::Player* ply){
 void Player::player_lock(dyn::base::Player* ply){
   //---------------------------
 
-  bool& is_locked = ply->get_state_locked();
-  if(is_locked){
+  if(ply->locked){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_LOCK "##399")){
-      is_locked = false;
+      ply->locked = false;
     }
     ImGui::PopStyleColor();
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_UNLOCK "##399")){
-      is_locked = true;
+      ply->locked = true;
     }
     ImGui::PopStyleColor();
   }

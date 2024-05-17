@@ -25,8 +25,7 @@ void Playback::show_master_playback(k4n::dev::Master* master){
     //Duration
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
-    float duration = master->get_duration();
-    ImGui::TextColored(color, "%.2f s", duration);
+    ImGui::TextColored(color, "%.2f s", master->duration);
 
     //FPS
     ImGui::TableNextRow(); ImGui::TableNextColumn();
