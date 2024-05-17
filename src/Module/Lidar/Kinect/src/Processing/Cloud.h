@@ -4,7 +4,7 @@
 #include <k4a/k4a.hpp>
 
 namespace prf::graph{class Tasker;}
-namespace rad::detection{class Ransac;}
+namespace rad::detection::cloud{class Ransac;}
 namespace utl::thread{class Pool;}
 namespace k4n{class Node;}
 namespace k4n::processing{class Operation;}
@@ -44,9 +44,9 @@ public:
 
 private:
   k4n::processing::Operation* k4n_operation;
-  rad::detection::Ransac* rad_ransac;
-  utl::thread::Pool* thread_pool;
   k4n::utils::Exporter* k4n_exporter;
+  rad::detection::cloud::Ransac* rad_ransac;
+  utl::thread::Pool* thread_pool;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgb;

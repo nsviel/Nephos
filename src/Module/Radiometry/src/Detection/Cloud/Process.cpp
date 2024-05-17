@@ -3,7 +3,7 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad{
+namespace rad::detection::cloud{
 
 //Constructor / Destructor
 Process::Process(rad::Node* node_radio){
@@ -15,9 +15,9 @@ Process::Process(rad::Node* node_radio){
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();
-  this->map_step[rad::detection::WAIT_VALIDATION] = "Wait validation";
-  this->map_step[rad::detection::PROCESSING] = "Processing";
-  this->step = rad::detection::WAIT_VALIDATION;
+  this->map_step[rad::detection::cloud::WAIT_VALIDATION] = "Wait validation";
+  this->map_step[rad::detection::cloud::PROCESSING] = "Processing";
+  this->step = rad::detection::cloud::WAIT_VALIDATION;
 
   this->radius = 0.5f;
 
@@ -30,12 +30,12 @@ void Process::next_step(dat::base::Sensor* sensor){
   //---------------------------
 
   switch(step){
-    case rad::detection::WAIT_VALIDATION:{
+    case rad::detection::cloud::WAIT_VALIDATION:{
       this->validate_bbox(sensor);
       break;
     }
-    case rad::detection::PROCESSING:{
-      this->step = rad::detection::WAIT_VALIDATION;
+    case rad::detection::cloud::PROCESSING:{
+      this->step = rad::detection::cloud::WAIT_VALIDATION;
       break;
     }
   }
@@ -46,7 +46,7 @@ void Process::next_step(dat::base::Sensor* sensor){
 //Subfunction
 void Process::validate_bbox(dat::base::Sensor* sensor){
   if(rad_struct->detection.nb_detection == 0) return;
-  if(step != rad::detection::WAIT_VALIDATION) return;
+  if(step != rad::detection::cloud::WAIT_VALIDATION) return;
   //---------------------------
 
   utl::base::Pose* pose = sensor->get_pose();
@@ -61,7 +61,7 @@ void Process::validate_bbox(dat::base::Sensor* sensor){
   //---------------------------
 }
 void Process::ransac_sphere(dat::base::Sensor* sensor){
-  if(step != rad::detection::PROCESSING) return;
+  if(step != rad::detection::cloud::PROCESSING) return;
   //---------------------------
 
   utl::base::Data* data = sensor->get_data();

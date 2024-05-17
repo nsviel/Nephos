@@ -12,7 +12,7 @@ namespace ope::fitting{class Ransac;}
 namespace ope::attribut{class Normal;}
 
 
-namespace rad::detection{
+namespace rad::detection::cloud{
 
 class Ransac
 {

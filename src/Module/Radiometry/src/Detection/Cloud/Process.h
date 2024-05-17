@@ -11,16 +11,12 @@ namespace ope::fitting{class Ransac;}
 namespace ope::attribut{class Normal;}
 
 
-namespace rad::detection{
+namespace rad::detection::cloud{
 
 enum STEP{
   WAIT_VALIDATION = 0,
   PROCESSING = 1,
 };
-
-}
-
-namespace rad{
 
 class Process
 {

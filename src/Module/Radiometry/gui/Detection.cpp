@@ -12,9 +12,9 @@ Detection::Detection(rad::Node* node_radio){
 
   eng::Node* node_engine = node_radio->get_node_engine();
 
-  this->rad_process = new rad::Process(node_radio);
+  this->rad_process = node_radio->get_rad_process();
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_hough = new rad::detection::image::Hough(node_radio);
+  this->rad_hough = node_radio->get_rad_hough();
   this->stream = new rnd::Stream(node_engine);
 
   //---------------------------
@@ -48,7 +48,7 @@ void Detection::detection_step(){
 
   //Detection validation
   int step = rad_process->get_step();
-  if(step == rad::detection::WAIT_VALIDATION){
+  if(step == rad::detection::cloud::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){

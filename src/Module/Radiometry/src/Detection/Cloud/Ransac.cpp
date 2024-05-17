@@ -4,7 +4,7 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::detection{
+namespace rad::detection::cloud{
 
 //Constructor / Destructor
 Ransac::Ransac(rad::Node* node_radio){
@@ -56,7 +56,7 @@ void Ransac::wait_thread(){
 
 //Subfunction
 void Ransac::ransac_sphere(dat::base::Sensor* sensor){
-  //if(step != rad::detection::PROCESSING) return;
+  //if(step != rad::detection::cloud::PROCESSING) return;
   //---------------------------
 
   utl::base::Data* data = sensor->get_data();
