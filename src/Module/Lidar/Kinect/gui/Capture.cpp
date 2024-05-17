@@ -61,23 +61,22 @@ void Capture::list_device(k4n::dev::Master* master){
           ImGui::Text("%s", sensor->device.serial_number.c_str());
 
           //Sensor capture or not
-          ImGui::TableNextColumn();/*
-          if(sensor->device.is_capturing){
+          ImGui::TableNextColumn();
+          if(sensor->is_thread_running()){
             ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
             ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(180, 100, 100, 255));
-            if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
+            if(ImGui::SmallButton("X##399")){
               sensor->stop_thread();
             }
             ImGui::PopStyleColor(2);
           }else{
             ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 133, 100, 255));
             ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 180, 100, 255));
-            if(ImGui::Button(ICON_FA_CIRCLE "##399")){
+            if(ImGui::SmallButton(ICON_FA_PLAY "##399")){
               sensor->run_thread();
             }
             ImGui::PopStyleColor(2);
-          }*/
-
+          }
 
           ImGui::PopID();
         }

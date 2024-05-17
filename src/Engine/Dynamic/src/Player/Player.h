@@ -20,11 +20,13 @@ public:
   virtual void player_stop();
   virtual void player_restart();
   virtual void player_record();
-  virtual void player_lock();
-  virtual void player_info();
+  virtual void player_lock(bool value);
   virtual void player_update();
   virtual void player_close();
   virtual void player_query_ts(float value);
+  
+  virtual void element_info(){}
+  virtual void element_parameter(){}
 
 public:
   dat::base::Set* set;

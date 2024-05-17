@@ -90,15 +90,15 @@ void Player::player_record(){
 
   //---------------------------
 }
-void Player::player_lock(){
+void Player::player_lock(bool value){
   //---------------------------
 
-  set->is_locked = !set->is_locked;
+  set->is_locked = value;
 
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_record();
+    subset->player->player_lock(value);
   }
 
   //---------------------------
@@ -133,7 +133,7 @@ void Player::player_close(){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_record();
+    subset->player->player_close();
   }
 
   //---------------------------
@@ -152,12 +152,6 @@ void Player::player_query_ts(float value){
 
     subset->player->player_query_ts(ts_query);
   }
-
-  //---------------------------
-}
-void Player::player_info(){
-  //---------------------------
-
 
   //---------------------------
 }

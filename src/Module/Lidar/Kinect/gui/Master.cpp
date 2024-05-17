@@ -21,18 +21,70 @@ Master::Master(k4n::Node* node_k4n){
 Master::~Master(){}
 
 //Main function
-void Master::show_master_info(k4n::dev::Master* master){
+void Master::show_info(k4n::dev::Master* master){
+  if(master == nullptr) return;
   //---------------------------
 
-  this->show_info(master);
+  //Master general info
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+  if(ImGui::BeginTable("master##info", 2)){
+    //Type
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Type"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%s", master->type.c_str());
+
+    //Recording time
+    if(master->player->record){
+      //Recording time
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Record"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
+
+      //Recording file size
+      if(master->recorder.mode == dyn::recorder::MKV){
+        ImGui::TableNextRow(); ImGui::TableNextColumn();
+        ImGui::Text("Size"); ImGui::TableNextColumn();
+        ImGui::TextColored(color, "%.2f Mo", master->recorder.file_size);
+      }
+    }
+
+    //Duration
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Duration"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.2f s", master->player->ts_duration);
+
+    //FPS
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("FPS"); ImGui::TableNextColumn();
+    ImGui::SetNextItemWidth(125);
+    ImGui::SliderInt("##56765", &master->operation.fps, 1, 120);
+
+    ImGui::EndTable();
+  }
+
   gui_capture->list_device(master);
   gui_playback->show_master_playback(master);
+
+  //---------------------------
+}
+void Master::show_parameter(k4n::dev::Master* master){
+  //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
   ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(54, 112, 131, 255));
   ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
   if(ImGui::BeginTabBar("master_option##tab")){
-    this->show_operation(master);
+    ImGui::SetNextItemWidth(75);
+    if(ImGui::BeginTabItem("Operation##tab_item", NULL)){
+      this->show_transformation(master);
+      this->show_colorization(master);
+      this->show_possible_ope(master);
+      this->show_voxelization(master);
+      this->show_normal(master);
+      this->show_recorder(master);
+      ImGui::EndTabItem();
+    }
+
     gui_capture->show_master_capture(master);
 
     ImGui::EndTabBar();
@@ -43,55 +95,6 @@ void Master::show_master_info(k4n::dev::Master* master){
 }
 
 //Subfunction
-void Master::show_info(k4n::dev::Master* master){
-  if(master == nullptr) return;
-  //---------------------------
-/*
-  //Master general info
-  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  if(ImGui::BeginTable("master##info", 2)){
-    //Type
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Type"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", master->type.c_str());
-
-    //Recording time
-    if(master->record && master->recorder.mode == dyn::recorder::MKV){
-      //Recording time
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Record"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
-
-      //Recording file size
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Size"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f Mo", master->recorder.file_size);
-    }
-
-    ImGui::EndTable();
-  }
-*/
-  //---------------------------
-}
-void Master::show_operation(k4n::dev::Master* master){
-  if(master == nullptr) return;
-  //---------------------------
-
-  ImGui::SetNextItemWidth(75);
-  if(ImGui::BeginTabItem("Operation##tab_item", NULL)){
-    this->show_transformation(master);
-    this->show_colorization(master);
-    this->show_possible_ope(master);
-    this->show_voxelization(master);
-    this->show_normal(master);
-    this->show_recorder(master);
-    ImGui::EndTabItem();
-  }
-
-  //---------------------------
-}
-
-//Processing function
 void Master::show_transformation(k4n::dev::Master* master){
   //---------------------------
 

@@ -18,13 +18,10 @@ public:
   ~Master();
 
   //Main function
-  void show_master_info(k4n::dev::Master* master);
+  void show_info(k4n::dev::Master* master);
+  void show_parameter(k4n::dev::Master* master);
 
   //Subfunction
-  void show_info(k4n::dev::Master* master);
-  void show_operation(k4n::dev::Master* master);
-
-  //Processing function
   void show_transformation(k4n::dev::Master* master);
   void show_colorization(k4n::dev::Master* master);
   void show_possible_ope(k4n::dev::Master* master);

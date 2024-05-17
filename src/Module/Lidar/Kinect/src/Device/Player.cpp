@@ -39,7 +39,7 @@ void Player::player_stop(){
     }
   }
 
-  master->manage_restart();
+  this->player_query_ts(ts_beg);
 
   //---------------------------
 }
@@ -88,6 +88,7 @@ void Player::player_query_ts(float value){
   }
 
   //---------------------------
+  this->ts_cur = value;
 }
 void Player::player_close(){
   //---------------------------
@@ -102,10 +103,18 @@ void Player::player_close(){
 
   //---------------------------
 }
-void Player::player_info(){
+
+void Player::element_info(){
   //---------------------------
 
-  gui_master->show_master_info(master);
+  gui_master->show_info(master);
+
+  //---------------------------
+}
+void Player::element_parameter(){
+  //---------------------------
+
+  gui_master->show_parameter(master);
 
   //---------------------------
 }

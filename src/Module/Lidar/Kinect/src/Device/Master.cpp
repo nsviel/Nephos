@@ -96,24 +96,5 @@ void Master::manage_configuration(){
 
   //---------------------------
 }
-void Master::manage_restart(){
-  /*
-  //---------------------------
-
-  for(int i=0; i<list_entity.size(); i++){
-    dat::base::Entity* entity = *next(list_entity.begin(), i);
-
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      //Set playback to begin
-      float& ts_beg = player->get_ts_beg();
-      auto ts_querry = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_beg));
-      sensor->synchro.seek_timestamp(ts_querry, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-      sensor->device.idx_cloud = 0;
-    }
-  }
-
-  //---------------------------
-  player->player_query_ts(player->get_ts_beg());*/
-}
 
 }

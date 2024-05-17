@@ -59,8 +59,9 @@ void Player::design_panel(dat::base::Set* set){
   this->player_close(set);
   ImGui::SameLine();
   this->player_lock(set);
+  ImGui::Separator();
 
-  set->player->player_info();
+  this->player_info(set);
 
   //---------------------------
 }
@@ -192,37 +193,41 @@ void Player::player_lock(dat::base::Set* set){
   if(set->is_locked){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_LOCK "##399")){
-      player->player_lock();
+      player->player_lock(false);
     }
     ImGui::PopStyleColor();
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_UNLOCK "##399")){
-      player->player_lock();
+      player->player_lock(true);
     }
     ImGui::PopStyleColor();
   }
 
   //---------------------------
 }
-void Player::draw_button(){
-  dat::base::Entity* entity = dat_graph->get_selected_entity();
-  if(entity == nullptr) return;
-  //-------------------------------
+void Player::player_info(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
+  //---------------------------
 
   //Centered
-  ImGui::SameLine();
   if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
-    ope_operation->center_object(entity);
+    ope_operation->center_object(set);
   }
 
   //Rotation 90° around X axis
   ImGui::SameLine();
   if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
-    ope_operation->make_rotation_X_90d(entity, 1);
+    ope_operation->make_rotation_X_90d(set, 1);
   }
 
-  //-------------------------------
+  player->element_info();
+  ImGui::Separator();
+
+  player->element_parameter();
+  ImGui::Separator();
+
+  //---------------------------
 }
 
 }

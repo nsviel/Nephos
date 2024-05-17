@@ -33,7 +33,6 @@ public:
   k4a::capture* manage_new_capture();
   void manage_old_capture(k4a::capture* capture);
   void manage_pause();
-  void manage_restart();
   void manage_ts_query(float ts_querry);
   void manage_reset();
 

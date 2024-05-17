@@ -85,13 +85,17 @@ void Sensor::thread_end(){
 
 //Subfunction
 k4a::capture* Sensor::manage_new_capture(){
+  dyn::base::Player* player = master->player;
   //---------------------------
 
   k4a::capture* capture = new k4a::capture();
   bool capture_left = playback.get_next_capture(capture);
   if(capture_left == false){
     capture = nullptr;
-    this->manage_restart();
+
+    if(color.data.timestamp == player->ts_end){
+      this->manage_ts_query(player->ts_beg);
+    }
   }
 
   //---------------------------
@@ -137,16 +141,6 @@ void Sensor::manage_pause(){
 
   //---------------------------
 }
-void Sensor::manage_restart(){
-  dyn::base::Player* player = master->player;
-  //---------------------------
-
-  if(color.data.timestamp == player->ts_end){
-    this->manage_ts_query(player->ts_beg);
-  }
-
-  //---------------------------
-}
 void Sensor::manage_reset(){
   dyn::base::Player* player = master->player;
   //---------------------------
@@ -155,10 +149,10 @@ void Sensor::manage_reset(){
 
   //---------------------------
 }
-void Sensor::manage_ts_query(float ts_querry){
+void Sensor::manage_ts_query(float value){
   //---------------------------
 
-  auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(ts_querry));
+  auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
   playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
 
   //---------------------------

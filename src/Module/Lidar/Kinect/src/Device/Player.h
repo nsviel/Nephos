@@ -24,7 +24,9 @@ public:
   void player_query_ts(float value);
   void player_close();
   void player_stop();
-  void player_info();
+
+  void element_info();
+  void element_parameter();
 
 public:
   k4n::gui::Master* gui_master;
