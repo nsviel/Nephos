@@ -4,7 +4,8 @@
 
 namespace rnd{class Node;}
 namespace eng{class Node;}
-namespace rnd::gui{class Control;}
+namespace dat::gui{class Control;}
+namespace dat::gui{class Wheel;}
 namespace vk::main{class Interface;}
 
 
@@ -27,7 +28,8 @@ public:
   void option_wheel();
 
 private:
-  rnd::gui::Control* gui_control;
+  dat::gui::Control* gui_control;
+  dat::gui::Wheel* gui_wheel;
   vk::main::Interface* vk_interface;
 
   std::string name;

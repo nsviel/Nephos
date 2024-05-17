@@ -3,7 +3,6 @@
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Engine/Namespace.h>
 
 
 namespace ldr{
@@ -12,8 +11,7 @@ namespace ldr{
 Format::Format(ldr::Node* node_loader){
   //---------------------------
 
-  eng::Node* node_engine = node_loader->get_node_engine();
-  vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  vk::Node* node_vulkan = node_loader->get_node_vulkan();
   this->vk_interface = node_vulkan->get_vk_interface();
 
   this->insert_importer(new format::ply::Importer());

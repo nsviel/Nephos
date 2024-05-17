@@ -16,6 +16,7 @@ Node::Node(eng::Node* node_engine){
   //Dependancy
   this->node_engine = node_engine;
   this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_camera = node_engine->get_node_camera();
 
   //Child
   this->dat_struct = new dat::Structure();
@@ -24,6 +25,8 @@ Node::Node(eng::Node* node_engine){
   this->dat_glyph = new dat::Glyph(this);
   this->dat_entity = new dat::Entity(this);
   this->gui_graph = new dat::gui::Graph(this, &dat_panel->is_open);
+  this->gui_control = new dat::gui::Control(this);
+  this->gui_wheel = new dat::gui::Wheel(this);
 
   //---------------------------
 }

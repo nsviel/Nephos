@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-namespace rnd{class Node;}
+namespace dat{class Node;}
 namespace eng{class Node;}
 namespace ope{class Operation;}
 namespace dat{class Graph;}
@@ -17,13 +17,13 @@ enum Wheel_mode{
 };
 
 
-namespace rnd::gui{
+namespace dat::gui{
 
 class Wheel
 {
 public:
   //Constructor / Destructor
-  Wheel(rnd::Node* node_render);
+  Wheel(dat::Node* node_data);
   ~Wheel();
 
 public:

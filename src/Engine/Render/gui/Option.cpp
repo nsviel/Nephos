@@ -4,6 +4,7 @@
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Data/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Render/Namespace.h>
 
@@ -14,9 +15,12 @@ namespace rnd::gui{
 Option::Option(rnd::Node* node_render, bool* show_window){
   //---------------------------
 
+  eng::Node* node_engine = node_render->get_node_engine();
   vk::Node* node_vulkan = node_render->get_node_vulkan();
+  dat::Node* node_data = node_engine->get_node_data();
 
-  this->gui_control = node_render->get_gui_control();
+  this->gui_control = node_data->get_gui_control();
+  this->gui_wheel = node_data->get_gui_wheel();
   this->vk_interface = node_vulkan->get_vk_interface();
 
   this->width = 150;
@@ -66,7 +70,6 @@ void Option::option_color(){
   ImGui::Separator();
 }
 void Option::option_wheel(){
-  rnd::gui::Wheel* gui_wheel = gui_control->get_gui_wheel();
   //---------------------------
 
   vector<const char*> vec_mode = gui_wheel->get_vec_mode();

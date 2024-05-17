@@ -41,6 +41,12 @@ void Control::control_keyboard_oneAction(){
     if(ImGui::IsKeyPressed(ImGuiKey_LeftAlt)){
       gui_tab->next_tab();
     }
+
+    //R key - Reset
+    if(ImGui::IsKeyPressed(ImGuiKey_R)){
+      node_engine->reset();
+      break;
+    }
   }
 
   //----------------------------

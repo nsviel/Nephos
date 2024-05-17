@@ -8,6 +8,7 @@
 #include <Operation/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Render/Namespace.h>
+#include <Data/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -20,8 +21,9 @@ Renderer::Renderer(rnd::Node* node_render){
   eng::Node* node_engine = node_render->get_node_engine();
   vk::Node* node_vulkan = node_render->get_node_vulkan();
   cam::Node* node_camera = node_engine->get_node_camera();
+  dat::Node* node_data = node_engine->get_node_data();
 
-  this->gui_control = node_render->get_gui_control();
+  this->gui_control = node_data->get_gui_control();
   this->cam_control = node_camera->get_gui_control();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_interface = node_vulkan->get_vk_interface();

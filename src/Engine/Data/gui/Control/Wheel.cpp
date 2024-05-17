@@ -7,15 +7,14 @@
 #include <Render/Namespace.h>
 
 
-namespace rnd::gui{
+namespace dat::gui{
 
 //Constructor / Destructor
-Wheel::Wheel(rnd::Node* node_render){
+Wheel::Wheel(dat::Node* node_data){
   //---------------------------
 
-  eng::Node* node_engine = node_render->get_node_engine();
-  dat::Node* node_data = node_engine->get_node_data();
-  cam::Node* node_camera = node_engine->get_node_camera();
+  eng::Node* node_engine = node_data->get_node_engine();
+  cam::Node* node_camera = node_data->get_node_camera();
 
   this->cam_control = node_camera->get_control();
   this->dat_graph = node_data->get_data_graph();

@@ -2,30 +2,22 @@
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Camera/Namespace.h>
 #include <Data/Namespace.h>
 #include <Render/Namespace.h>
 #include <Operation/Namespace.h>
 #include <glm/glm.hpp>
 
 
-namespace rnd::gui{
+namespace dat::gui{
 
 //Constructor / Destructor
-Control::Control(rnd::Node* node_render){
+Control::Control(dat::Node* node_data){
   //---------------------------
 
-  eng::Node* node_engine = node_render->get_node_engine();
-  dat::Node* node_data = node_engine->get_node_data();
-  cam::Node* node_camera = node_engine->get_node_camera();
-
-  this->node_engine = node_engine;
-  this->cam_manager = node_camera->get_manager();
-  this->cam_control = node_camera->get_control();
   this->dat_graph = node_data->get_data_graph();
   this->dat_set = node_data->get_data_set();
   this->ope_operation = new ope::Operation();
-  this->gui_wheel = new rnd::gui::Wheel(node_render);
+  this->gui_wheel = node_data->get_gui_wheel();
 
   //---------------------------
 }
@@ -60,12 +52,6 @@ void Control::control_keyboard_oneAction(){
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
       dat::base::Set* set_scene = dat_graph->get_set_graph();
       dat_set->remove(set_scene, set_scene->active_entity);
-      break;
-    }
-
-    //R key - Reset
-    if(ImGui::IsKeyPressed(ImGuiKey_R)){
-      node_engine->reset();
       break;
     }
   }

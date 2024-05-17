@@ -8,7 +8,7 @@ namespace vk::main{class Interface;}
 namespace vk::structure{class Vulkan;}
 namespace eng{class Node;}
 namespace cam::gui{class Control;}
-namespace rnd::gui{class Control;}
+namespace dat::gui{class Control;}
 
 
 namespace rnd::gui{
@@ -31,7 +31,7 @@ public:
 
 private:
   cam::gui::Control* cam_control;
-  rnd::gui::Control* gui_control;
+  dat::gui::Control* gui_control;
   vk::gui::Imgui* vk_imgui;
   vk::main::Interface* vk_interface;
   vk::structure::Vulkan* vk_struct;

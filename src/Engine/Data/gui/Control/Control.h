@@ -1,22 +1,19 @@
 #pragma once
 
-namespace rnd{class Node;}
-namespace eng{class Node;}
+namespace dat{class Node;}
 namespace ope{class Operation;}
-namespace rnd::gui{class Wheel;}
+namespace dat::gui{class Wheel;}
 namespace dat{class Graph;}
 namespace dat{class Set;}
-namespace cam{class Control;}
-namespace cam{class Manager;}
 
 
-namespace rnd::gui{
+namespace dat::gui{
 
 class Control
 {
 public:
   //Constructor / Destructor
-  Control(rnd::Node* node_render);
+  Control(dat::Node* node_data);
   ~Control();
 
 public:
@@ -30,16 +27,13 @@ public:
   //Mouse
   void control_mouse_wheel();
 
-  inline rnd::gui::Wheel* get_gui_wheel(){return gui_wheel;}
+  inline dat::gui::Wheel* get_gui_wheel(){return gui_wheel;}
 
 private:
-  eng::Node* node_engine;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
-  cam::Control* cam_control;
-  cam::Manager* cam_manager;
   ope::Operation* ope_operation;
-  rnd::gui::Wheel* gui_wheel;
+  dat::gui::Wheel* gui_wheel;
 };
 
 }
