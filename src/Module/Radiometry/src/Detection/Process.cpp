@@ -1,4 +1,4 @@
-#include "Detection.h"
+#include "Process.h"
 
 #include <Radiometry/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace rad{
 
 //Constructor / Destructor
-Detection::Detection(rad::Node* node_radio){
+Process::Process(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
@@ -23,10 +23,10 @@ Detection::Detection(rad::Node* node_radio){
 
   //---------------------------
 }
-Detection::~Detection(){}
+Process::~Process(){}
 
 //Main function
-void Detection::next_step(dat::base::Sensor* sensor){
+void Process::next_step(dat::base::Sensor* sensor){
   //---------------------------
 
   switch(step){
@@ -44,7 +44,7 @@ void Detection::next_step(dat::base::Sensor* sensor){
 }
 
 //Subfunction
-void Detection::validate_bbox(dat::base::Sensor* sensor){
+void Process::validate_bbox(dat::base::Sensor* sensor){
   if(rad_struct->detection.nb_detection == 0) return;
   if(step != rad::detection::WAIT_VALIDATION) return;
   //---------------------------
@@ -60,7 +60,7 @@ void Detection::validate_bbox(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::ransac_sphere(dat::base::Sensor* sensor){
+void Process::ransac_sphere(dat::base::Sensor* sensor){
   if(step != rad::detection::PROCESSING) return;
   //---------------------------
 
@@ -98,7 +98,7 @@ void Detection::ransac_sphere(dat::base::Sensor* sensor){
 }
 
 //Data function
-void Detection::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+void Process::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
@@ -127,7 +127,7 @@ void Detection::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 
   //---------------------------
 }
-void Detection::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+void Process::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
@@ -154,7 +154,7 @@ void Detection::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 
   //---------------------------
 }
-void Detection::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+void Process::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------

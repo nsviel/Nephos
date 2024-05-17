@@ -11,14 +11,14 @@ namespace rad::detection::image{class Hough;}
 namespace rad::detection::utils{class Image;}
 
 
-namespace rad::detection{
+namespace rad::detection::image{
 
-class Identification
+class Detection
 {
 public:
   //Constructor / Destructor
-  Identification(rad::Node* node_radio);
-  ~Identification();
+  Detection(rad::Node* node_radio);
+  ~Detection();
 
 public:
   //Main function

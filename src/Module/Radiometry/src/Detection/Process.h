@@ -22,12 +22,12 @@ enum STEP{
 
 namespace rad{
 
-class Detection
+class Process
 {
 public:
   //Constructor / Destructor
-  Detection(rad::Node* node_radio);
-  ~Detection();
+  Process(rad::Node* node_radio);
+  ~Process();
 
 public:
   //Main function

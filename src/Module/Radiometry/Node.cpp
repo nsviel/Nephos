@@ -21,11 +21,11 @@ Node::Node(mod::Node* node_module){
 
   //Child
   this->rad_struct = new rad::Structure();
-  this->rad_detection = new rad::Detection(this);
+  this->rad_process = new rad::Process(this);
   this->rad_model = new rad::Model(this);
   this->rad_hough = new rad::detection::image::Hough(this);
   this->rad_ransac = new rad::detection::Ransac(this);
-  this->rad_identification = new rad::detection::Identification(this);
+  this->rad_detection = new rad::detection::image::Detection(this);
   this->rad_measure = new rad::model::Measure(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 

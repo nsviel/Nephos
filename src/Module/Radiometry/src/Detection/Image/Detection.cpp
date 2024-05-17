@@ -1,13 +1,13 @@
-#include "Identification.h"
+#include "Detection.h"
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::detection{
+namespace rad::detection::image{
 
 //Constructor / Destructor
-Identification::Identification(rad::Node* node_radio){
+Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
   eng::Node* node_engine = node_radio->get_node_engine();
@@ -18,10 +18,10 @@ Identification::Identification(rad::Node* node_radio){
 
   //---------------------------
 }
-Identification::~Identification(){}
+Detection::~Detection(){}
 
 //Main function
-void Identification::start_thread(dat::base::Sensor* sensor){
+void Detection::start_thread(dat::base::Sensor* sensor){
   //---------------------------
 
   this->idle = false;
@@ -32,7 +32,7 @@ void Identification::start_thread(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Identification::run_thread(dat::base::Sensor* sensor){
+void Detection::run_thread(dat::base::Sensor* sensor){
   //---------------------------
 
   this->make_sphere_detection(sensor);
@@ -40,7 +40,7 @@ void Identification::run_thread(dat::base::Sensor* sensor){
   //---------------------------
   this->idle = true;
 }
-void Identification::wait_thread(){
+void Detection::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
@@ -52,7 +52,7 @@ void Identification::wait_thread(){
 }
 
 //Subfunction
-void Identification::make_sphere_detection(dat::base::Sensor* sensor){
+void Detection::make_sphere_detection(dat::base::Sensor* sensor){
   //---------------------------
 
   this->detect_circle_in_image(sensor);
@@ -61,18 +61,18 @@ void Identification::make_sphere_detection(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Identification::detect_circle_in_image(dat::base::Sensor* sensor){
+void Detection::detect_circle_in_image(dat::base::Sensor* sensor){
   //---------------------------
 
-  utl::media::Image* input = &sensor->ir.image;
+  /*utl::media::Image* input = &sensor->ir.image;
   cv::Mat cv_input;
   rad_image->convert_into_cv_image(input, cv_input);
   //rad_struct->detection.vec_circle = rad_hough->sphere_detection(cv_input, rad_struct->detection.cv_image);
   rad_struct->detection.nb_detection = rad_struct->detection.vec_circle.size();
-
+*/
   //---------------------------
 }
-void Identification::draw_detection_image(dat::base::Sensor* sensor){
+void Detection::draw_detection_image(dat::base::Sensor* sensor){
   //---------------------------
 
   switch(rad_struct->detection.hough.drawing_mode){
@@ -88,7 +88,7 @@ void Identification::draw_detection_image(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Identification::draw_detection_glyph(dat::base::Sensor* sensor){
+void Detection::draw_detection_glyph(dat::base::Sensor* sensor){
   //---------------------------
 
   switch(rad_struct->detection.hough.drawing_mode){
