@@ -26,7 +26,7 @@ public:
 //  void player_info();
 
 public:
-
+  k4n::dev::Master* master;
 };
 
 }
