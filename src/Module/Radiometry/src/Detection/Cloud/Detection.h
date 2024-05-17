@@ -18,12 +18,12 @@ enum STEP{
   PROCESSING = 1,
 };
 
-class Process
+class Detection
 {
 public:
   //Constructor / Destructor
-  Process(rad::Node* node_radio);
-  ~Process();
+  Detection(rad::Node* node_radio);
+  ~Detection();
 
 public:
   //Main function

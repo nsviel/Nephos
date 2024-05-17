@@ -19,7 +19,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
   rad::Node* node_radio = node_k4n->get_node_radio();
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
-  this->rad_ransac = node_radio->get_rad_ransac();
+  this->rad_ransac = node_radio->get_cloud_ransac();
   this->thread_pool = node_engine->get_thread_pool();
   this->k4n_exporter = new k4n::utils::Exporter(node_k4n);
   this->k4n_operation = new k4n::processing::Operation(node_k4n);

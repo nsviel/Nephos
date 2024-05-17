@@ -12,9 +12,9 @@ Detection::Detection(rad::Node* node_radio){
 
   eng::Node* node_engine = node_radio->get_node_engine();
 
-  this->rad_process = node_radio->get_rad_process();
+  this->rad_process = node_radio->get_cloud_detection();
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_hough = node_radio->get_rad_hough();
+  this->rad_hough = node_radio->get_image_hough();
   this->stream = new rnd::Stream(node_engine);
 
   //---------------------------
