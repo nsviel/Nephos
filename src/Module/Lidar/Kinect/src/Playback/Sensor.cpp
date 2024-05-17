@@ -118,38 +118,41 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
 }
 void Sensor::manage_pause(){
+  dyn::base::Player* player = master->player;
   //---------------------------
-/*
+
   //If pause, wait until end pause or end thread
-  if(ply->pause || !ply->play){
+  if(player->pause || !player->play){
     //Clear thread profiler and wait subthread fulfillment
     this->profiler->reset();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
     //Pause loop
     this->thread_paused = true;
-    while(is_pause && thread_running){
+    while(player->pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
     this->thread_paused = false;
   }
-*/
+
   //---------------------------
 }
 void Sensor::manage_restart(){
+  dyn::base::Player* player = master->player;
   //---------------------------
-/*
-  if(color.data.timestamp == master->ts_end){
-    this->manage_ts_query(master->ts_beg);
+
+  if(color.data.timestamp == player->ts_end){
+    this->manage_ts_query(player->ts_beg);
   }
-*/
+
   //---------------------------
 }
 void Sensor::manage_reset(){
+  dyn::base::Player* player = master->player;
   //---------------------------
-/*
-  this->manage_ts_query(master->ts_beg);
-*/
+
+  this->manage_ts_query(player->ts_beg);
+
   //---------------------------
 }
 void Sensor::manage_ts_query(float ts_querry){

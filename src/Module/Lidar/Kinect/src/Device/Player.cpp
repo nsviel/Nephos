@@ -8,7 +8,7 @@
 namespace k4n::dev{
 
 //Constructor / Destructor
-Player::Player(k4n::dev::Master* master) : dyn::base::Player(master){
+Player::Player(k4n::Node* node_k4n, k4n::dev::Master* master) : dyn::base::Player(master){
   //---------------------------
 
 
@@ -45,17 +45,13 @@ void Player::player_update(){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-/*      float mkv_ts_beg = k4n_importer->find_mkv_ts_beg(sensor->path.data);
-      float mkv_ts_end = k4n_importer->find_mkv_ts_end(sensor->path.data);
-
-      ts_beg = (ts_beg != -1) ? std::max(ts_beg, mkv_ts_beg) : mkv_ts_beg;
-      ts_end = (ts_end != -1) ? std::min(ts_end, mkv_ts_end) : mkv_ts_end;
-      this->set_duration(ts_end - ts_beg);
-      /*}else{
-        this->player->ts_beg = 0;
-        this->player->ts_end = 0;
-        this->player->duration = 0;
-      }*/
+      this->ts_beg = (ts_beg != -1) ? std::max(ts_beg, sensor->ts_beg) : sensor->ts_beg;
+      this->ts_end = (ts_end != -1) ? std::min(ts_end, sensor->ts_end) : sensor->ts_end;
+      this->ts_duration = ts_end - ts_beg;
+    }else{
+      this->ts_beg = 0;
+      this->ts_end = 0;
+      this->ts_duration = 0;
     }
   }
 

@@ -116,16 +116,17 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
 }
 void Sensor::manage_pause(){
+  dyn::base::Player* player = master->player;
   //---------------------------
-/*
+
   //If pause, wait until end pause or end thread
-  if(master->pause || !master->play){
+  if(player->pause || !player->play){
     profiler->reset();
-    while(master->pause && thread_running){
+    while(player->pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }
-*/
+
   //---------------------------
 }
 void Sensor::manage_reset(){

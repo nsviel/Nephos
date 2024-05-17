@@ -34,6 +34,8 @@ utl::media::File* Importer::import(utl::media::Path path){
   k4n::dev::Master* master = manage_master();
   k4n::playback::Sensor* sensor = new k4n::playback::Sensor(node_k4n, path);
   sensor->master = master;
+  sensor->ts_beg = find_mkv_ts_beg(path.data);
+  sensor->ts_end = find_mkv_ts_end(path.data);
 
   //Sensor initialization
   sensor->init();
