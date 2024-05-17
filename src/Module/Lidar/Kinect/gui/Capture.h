@@ -19,8 +19,8 @@ public:
   ~Capture();
 
   //Main function
-  void list_device(k4n::dev::Master* master);
-  void show_master_capture(k4n::dev::Master* master);
+  void show_list_device(k4n::dev::Master* master);
+  void show_info_master(k4n::dev::Master* master);
 
   //Subfunction
   void configuration_depth(k4n::dev::Master* master);

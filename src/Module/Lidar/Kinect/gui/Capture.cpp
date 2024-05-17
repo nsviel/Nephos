@@ -23,7 +23,7 @@ Capture::Capture(k4n::Node* node_k4n){
 Capture::~Capture(){}
 
 //Main function
-void Capture::list_device(k4n::dev::Master* master){
+void Capture::show_list_device(k4n::dev::Master* master){
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -88,7 +88,7 @@ void Capture::list_device(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Capture::show_master_capture(k4n::dev::Master* master){
+void Capture::show_info_master(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 

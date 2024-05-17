@@ -16,16 +16,16 @@ Playback::Playback(k4n::Node* node_k4n){
 Playback::~Playback(){}
 
 //Main function
-void Playback::show_master_playback(k4n::dev::Master* master){
+void Playback::show_info_playback(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
-/*
+
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   if(ImGui::BeginTable("master##playback_info", 2)){
     //Duration
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", master->ts_duration);
+    ImGui::TextColored(color, "%.2f s", master->player->ts_duration);
 
     //FPS
     ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -35,10 +35,10 @@ void Playback::show_master_playback(k4n::dev::Master* master){
 
     ImGui::EndTable();
   }
-*/
+
   //---------------------------
 }
-void Playback::show_sensor_configuration(k4n::dev::Sensor* sensor){
+void Playback::show_info_sensor(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 

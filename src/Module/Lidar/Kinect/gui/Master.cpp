@@ -48,22 +48,11 @@ void Master::show_info(k4n::dev::Master* master){
       }
     }
 
-    //Duration
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", master->player->ts_duration);
-
-    //FPS
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("FPS"); ImGui::TableNextColumn();
-    ImGui::SetNextItemWidth(125);
-    ImGui::SliderInt("##56765", &master->operation.fps, 1, 120);
-
     ImGui::EndTable();
   }
 
-  gui_capture->list_device(master);
-  gui_playback->show_master_playback(master);
+  gui_playback->show_info_playback(master);
+  gui_capture->show_list_device(master);
 
   //---------------------------
 }
@@ -85,7 +74,7 @@ void Master::show_parameter(k4n::dev::Master* master){
       ImGui::EndTabItem();
     }
 
-    gui_capture->show_master_capture(master);
+    gui_capture->show_info_master(master);
 
     ImGui::EndTabBar();
   }

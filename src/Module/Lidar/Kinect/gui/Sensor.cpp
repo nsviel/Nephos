@@ -35,7 +35,7 @@ void Sensor::show_sensor(k4n::dev::Sensor* sensor){
     ImGui::SetNextItemWidth(75);
     if(ImGui::BeginTabItem("Info##3443", NULL)){
       this->show_firmware_info(sensor);
-      gui_playback->show_sensor_configuration(sensor);
+      gui_playback->show_info_sensor(sensor);
 
       ImGui::EndTabBar();
     }

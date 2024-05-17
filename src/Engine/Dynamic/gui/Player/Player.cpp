@@ -46,8 +46,15 @@ void Player::run_panel(){
 void Player::design_panel(dat::base::Set* set){
   //---------------------------
 
-  this->player_slider(set);
+  this->design_player(set);
+  this->player_info(set);
 
+  //---------------------------
+}
+void Player::design_player(dat::base::Set* set){
+  //---------------------------
+
+  this->player_slider(set);
   this->player_start(set);
   ImGui::SameLine();
   this->player_stop(set);
@@ -59,11 +66,11 @@ void Player::design_panel(dat::base::Set* set){
   this->player_close(set);
   ImGui::SameLine();
   this->player_lock(set);
-  ImGui::Separator();
-
-  this->player_info(set);
+  ImGui::SameLine();
+  this->player_transfo(set);
 
   //---------------------------
+  ImGui::Separator();
 }
 
 //Player function
@@ -206,8 +213,7 @@ void Player::player_lock(dat::base::Set* set){
 
   //---------------------------
 }
-void Player::player_info(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
+void Player::player_transfo(dat::base::Set* set){
   //---------------------------
 
   //Centered
@@ -221,11 +227,14 @@ void Player::player_info(dat::base::Set* set){
     ope_operation->make_rotation_X_90d(set, 1);
   }
 
-  player->element_info();
-  ImGui::Separator();
+  //---------------------------
+}
+void Player::player_info(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
+  //---------------------------
 
+  player->element_info();
   player->element_parameter();
-  ImGui::Separator();
 
   //---------------------------
 }

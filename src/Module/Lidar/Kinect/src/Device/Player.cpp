@@ -110,6 +110,7 @@ void Player::element_info(){
   gui_master->show_info(master);
 
   //---------------------------
+  ImGui::Separator();
 }
 void Player::element_parameter(){
   //---------------------------
@@ -117,6 +118,7 @@ void Player::element_parameter(){
   gui_master->show_parameter(master);
 
   //---------------------------
+  ImGui::Separator();
 }
 
 }

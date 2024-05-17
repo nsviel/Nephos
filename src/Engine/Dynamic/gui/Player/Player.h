@@ -21,6 +21,7 @@ public:
   //Main function
   void run_panel();
   void design_panel(dat::base::Set* set);
+  void design_player(dat::base::Set* set);
 
   //Player function
   void player_slider(dat::base::Set* set);
@@ -31,6 +32,7 @@ public:
   void player_close(dat::base::Set* set);
   void player_lock(dat::base::Set* set);
   void player_info(dat::base::Set* set);
+  void player_transfo(dat::base::Set* set);
 
 private:
   dyn::gui::Control* gui_control;
