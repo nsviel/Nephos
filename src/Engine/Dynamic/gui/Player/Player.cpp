@@ -45,10 +45,10 @@ void Player::run_panel(){
 }
 void Player::design_panel(dat::base::Set* set){
   //---------------------------
-/*
+
   this->draw_player(set->player);
-  set->player_info();
-*/
+  //set->player_info();
+
   //---------------------------
 }
 
@@ -74,18 +74,18 @@ void Player::draw_player(dyn::base::Player* player){
 }
 void Player::player_slider(dyn::base::Player* player){
   //---------------------------
-/*
+
   ImVec2 width = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(width.x);
   if(ImGui::SliderFloat("##player_slider", &player->ts_cur, player->ts_beg, player->ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
     player->player_query_ts(player->ts_cur);
   }
-*/
+
   //---------------------------
 }
 void Player::player_start(dyn::base::Player* player){
   //---------------------------
-/*
+
   //If player start / pause button is appearing, allow keyboard control
   gui_control->run_control(player);
 
@@ -107,12 +107,12 @@ void Player::player_start(dyn::base::Player* player){
     }
     ImGui::PopStyleColor(2);
   }
-*/
+
   //---------------------------
 }
 void Player::player_stop(dyn::base::Player* player){
   //---------------------------
-/*
+
   if(!player->pause){
     //Player is running
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
@@ -128,12 +128,12 @@ void Player::player_stop(dyn::base::Player* player){
       player->player_stop();
     }
   }
-*/
+
   //---------------------------
 }
 void Player::player_repeat(dyn::base::Player* player){
   //---------------------------
-/*
+
   if(player->restart){
     //Repeat activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
@@ -148,12 +148,12 @@ void Player::player_repeat(dyn::base::Player* player){
       player->player_restart();
     }
   }
-*/
+
   //---------------------------
 }
 void Player::player_record(dyn::base::Player* player){
   //---------------------------
-/*
+
   if(player->record){
     //Record activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
@@ -168,23 +168,23 @@ void Player::player_record(dyn::base::Player* player){
       player->player_record();
     }
   }
-*/
+
   //---------------------------
 }
 void Player::player_close(dyn::base::Player* player){
   //---------------------------
-/*
+
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
   if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
     player->player_close();
   }
   ImGui::PopStyleColor();
-*/
+
   //---------------------------
 }
 void Player::player_lock(dyn::base::Player* player){
   //---------------------------
-/*
+
   if(player->locked){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_LOCK "##399")){
@@ -198,11 +198,11 @@ void Player::player_lock(dyn::base::Player* player){
     }
     ImGui::PopStyleColor();
   }
-*/
+
   //---------------------------
 }
 void Player::draw_button(){
-/*  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  dat::base::Entity* entity = dat_graph->get_selected_entity();
   if(entity == nullptr) return;
   //-------------------------------
 
@@ -217,7 +217,7 @@ void Player::draw_button(){
   if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
     ope_operation->make_rotation_X_90d(entity, 1);
   }
-*/
+
   //-------------------------------
 }
 

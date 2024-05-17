@@ -2,3 +2,4 @@
 
 #include <Kinect/src/Device/Sensor.h>
 #include <Kinect/src/Device/Master.h>
+#include <Kinect/src/Device/Player.h>

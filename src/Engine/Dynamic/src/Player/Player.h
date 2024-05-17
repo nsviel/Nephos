@@ -2,6 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace dat::base{class Set;}
+
 
 namespace dyn::base{
 
@@ -9,14 +11,14 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player();
+  Player(dat::base::Set* set);
   ~Player();
 
   //Main function
-  virtual void player_play(){}
-  virtual void player_pause(){}
+  virtual void player_play();
+  virtual void player_pause();
   virtual void player_query_ts(float value){}
-  virtual void player_stop(){}
+  virtual void player_stop();
   virtual void player_restart(){}
   virtual void player_record(){}
   virtual void player_info(){}
@@ -25,6 +27,8 @@ public:
   virtual void player_lock(){}
 
 public:
+  dat::base::Set* set;
+
   bool play = true;
   bool pause = false;
   bool restart = true;

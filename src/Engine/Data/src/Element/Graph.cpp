@@ -30,7 +30,7 @@ void Graph::init(){
   //Engine active elements
   dat::base::Set* set_graph = dat_set->create_subset(&dat_struct->set_main, "Graph");
   set_graph->is_suppressible = false;
-  set_graph->player = new dyn::base::Player();
+  set_graph->player = new dyn::base::Player(set_graph);
   dat_struct->selection = set_graph;
 
   //---------------------------
