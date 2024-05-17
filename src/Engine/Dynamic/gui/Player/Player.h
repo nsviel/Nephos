@@ -24,14 +24,14 @@ public:
   void design_panel(dat::base::Set* set);
 
   //Player function
-  void draw_player(dyn::base::Player* ply);
-  void player_slider(dyn::base::Player* ply);
-  void player_start(dyn::base::Player* ply);
-  void player_stop(dyn::base::Player* ply);
-  void player_repeat(dyn::base::Player* ply);
-  void player_record(dyn::base::Player* ply);
-  void player_close(dyn::base::Player* ply);
-  void player_lock(dyn::base::Player* ply);
+  void draw_player(dyn::base::Player* player);
+  void player_slider(dyn::base::Player* player);
+  void player_start(dyn::base::Player* player);
+  void player_stop(dyn::base::Player* player);
+  void player_repeat(dyn::base::Player* player);
+  void player_record(dyn::base::Player* player);
+  void player_close(dyn::base::Player* player);
+  void player_lock(dyn::base::Player* player);
   void draw_button();
 
 private:

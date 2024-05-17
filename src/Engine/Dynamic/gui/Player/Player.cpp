@@ -48,54 +48,54 @@ void Player::design_panel(dat::base::Set* set){
   //---------------------------
 
   this->draw_player(set);
-  set->gui_info();
+  set->player_info();
 
   //---------------------------
 }
 
 //Player function
-void Player::draw_player(dyn::base::Player* ply){
+void Player::draw_player(dyn::base::Player* player){
   //---------------------------
 
-  this->player_slider(ply);
+  this->player_slider(player);
 
-  this->player_start(ply);
+  this->player_start(player);
   ImGui::SameLine();
-  this->player_stop(ply);
+  this->player_stop(player);
   ImGui::SameLine();
-  this->player_repeat(ply);
+  this->player_repeat(player);
   ImGui::SameLine();
-  this->player_record(ply);
+  this->player_record(player);
   ImGui::SameLine();
-  this->player_close(ply);
+  this->player_close(player);
   ImGui::SameLine();
-  this->player_lock(ply);
+  this->player_lock(player);
 
   //---------------------------
 }
-void Player::player_slider(dyn::base::Player* ply){
+void Player::player_slider(dyn::base::Player* player){
   //---------------------------
 
   ImVec2 width = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(width.x);
-  if(ImGui::SliderFloat("##player_slider", &ply->ts_cur, ply->ts_beg, ply->ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
-    ply->player_query_ts(ply->ts_cur);
+  if(ImGui::SliderFloat("##player_slider", &player->ts_cur, player->ts_beg, player->ts_end, "%.2f s", ImGuiSliderFlags_NoInput)){
+    player->player_query_ts(player->ts_cur);
   }
 
   //---------------------------
 }
-void Player::player_start(dyn::base::Player* ply){
+void Player::player_start(dyn::base::Player* player){
   //---------------------------
 
   //If player start / pause button is appearing, allow keyboard control
-  gui_control->run_control(ply);
+  gui_control->run_control(player);
 
   //Play button -> if paused or not playing
-  if(ply->pause){
+  if(player->pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(46, 100, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##player_start")){
-      ply->player_play();
+      player->player_play();
     }
     ImGui::PopStyleColor(2);
   }
@@ -104,98 +104,98 @@ void Player::player_start(dyn::base::Player* ply){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(45, 100, 100, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##player_pause")){
-      ply->player_pause();
+      player->player_pause();
     }
     ImGui::PopStyleColor(2);
   }
 
   //---------------------------
 }
-void Player::player_stop(dyn::base::Player* ply){
+void Player::player_stop(dyn::base::Player* player){
   //---------------------------
 
-  if(!ply->pause){
+  if(!player->pause){
     //Player is running
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button(ICON_FA_STOP "##37")){
-      ply->player_stop();
+      player->player_stop();
     }
     ImGui::PopStyleColor(2);
   }
   else{
     //Player is stoped
     if(ImGui::Button(ICON_FA_STOP "##37")){
-      ply->player_stop();
+      player->player_stop();
     }
   }
 
   //---------------------------
 }
-void Player::player_repeat(dyn::base::Player* ply){
+void Player::player_repeat(dyn::base::Player* player){
   //---------------------------
 
-  if(ply->restart){
+  if(player->restart){
     //Repeat activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      ply->player_restart();
+      player->player_restart();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Repeat desactivated
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      ply->player_restart();
+      player->player_restart();
     }
   }
 
   //---------------------------
 }
-void Player::player_record(dyn::base::Player* ply){
+void Player::player_record(dyn::base::Player* player){
   //---------------------------
 
-  if(ply->record){
+  if(player->record){
     //Record activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if(ImGui::Button(ICON_FA_CIRCLE "##37")){
-      ply->player_record();
+      player->player_record();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Record desactivated
     if(ImGui::Button(ICON_FA_CIRCLE "##37")){
-      ply->player_record();
+      player->player_record();
     }
   }
 
   //---------------------------
 }
-void Player::player_close(dyn::base::Player* ply){
+void Player::player_close(dyn::base::Player* player){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
   if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-    ply->player_close();
+    player->player_close();
   }
   ImGui::PopStyleColor();
 
   //---------------------------
 }
-void Player::player_lock(dyn::base::Player* ply){
+void Player::player_lock(dyn::base::Player* player){
   //---------------------------
 
-  if(ply->locked){
+  if(player->locked){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_LOCK "##399")){
-      ply->locked = false;
+      player->locked = false;
     }
     ImGui::PopStyleColor();
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_UNLOCK "##399")){
-      ply->locked = true;
+      player->locked = true;
     }
     ImGui::PopStyleColor();
   }
