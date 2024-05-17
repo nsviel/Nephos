@@ -34,7 +34,7 @@ public:
 
 private:
   rad::Structure* rad_struct;
-  rad::detection::cloud::Detection* rad_process;
+  rad::detection::cloud::Detection* rad_detection;
   rad::detection::image::Hough* rad_hough;
   rnd::Stream* stream;
 };

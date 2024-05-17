@@ -10,53 +10,40 @@ namespace rad::detection::cloud{
 Ransac::Ransac(rad::Node* node_radio){
   //---------------------------
 
-  eng::Node* node_engine = node_radio->get_node_engine();
+
 
   this->rad_struct = node_radio->get_rad_struct();
-  this->thread_pool = node_engine->get_thread_pool();
+
   this->rad_glyph = new rad::detection::cloud::Glyph(node_radio);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
   this->ope_normal = new ope::attribut::Normal();
+
+  this->radius = 0.5f;
 
   //---------------------------
 }
 Ransac::~Ransac(){}
 
 //Main function
-void Ransac::start_thread(dat::base::Sensor* sensor){
+void Ransac::validate_bbox(dat::base::Sensor* sensor){
+  /*if(rad_struct->detection.nb_detection == 0) return;
+  if(step != rad::detection::cloud::WAIT_VALIDATION) return;
   //---------------------------
 
-  this->idle = false;
-  auto task_function = [this, sensor](){
-    this->run_thread(sensor);
-  };
-  thread_pool->add_task(task_function);
+  utl::base::Pose* pose = sensor->get_pose();
 
-  //---------------------------
-}
-void Ransac::run_thread(dat::base::Sensor* sensor){
-  //---------------------------
-
-  this->ransac_sphere(sensor);
-
-  //---------------------------
-  this->idle = true;
-}
-void Ransac::wait_thread(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
+  this->step++;
+  ivec2 point_2d = rad_struct->detection.vec_circle[0].center;
+  vec3 truc = sensor->convert_depth_2d_to_3d(point_2d);
+  vec4 machin = vec4(truc.x, truc.y, truc.z, 1);
+  truc = pose->model * machin;
+  this->current_pose = vec3(truc.x, truc.y, truc.z);
+*/
   //---------------------------
 }
-
-//Subfunction
 void Ransac::ransac_sphere(dat::base::Sensor* sensor){
-  //if(step != rad::detection::cloud::PROCESSING) return;
+/*  if(step != rad::detection::cloud::PROCESSING) return;
   //---------------------------
 
   utl::base::Data* data = sensor->get_data();
@@ -85,9 +72,105 @@ void Ransac::ransac_sphere(dat::base::Sensor* sensor){
 
   //Apply post-processing stuff
   rad_glyph->draw_sphere_glyph(sensor, current_pose, radius);
-  /*this->data_IfR(sphere_xyz, sphere_i);
+  this->data_IfR(sphere_xyz, sphere_i);
   this->data_IfIt(sphere_xyz, sphere_i);
-  this->data_model(sphere_xyz, sphere_i);*/
+  this->data_model(sphere_xyz, sphere_i);
+*/
+  //---------------------------
+}
+
+//Data function
+void Ransac::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
+  //---------------------------
+
+  //Search for closest point
+  float R = 1000.0f;
+  float I = 0;
+  for(int i=0; i<sphere_xyz.size(); i++){
+    vec3& xyz = sphere_xyz[i];
+    float distance = math::distance_from_origin(xyz);
+
+    if(distance < R){
+      R = distance;
+      I = sphere_i[i];
+    }
+  }
+
+  //Add into model data vector
+  int index = static_cast<int>(std::round(R / measure->IfR.axis_x.resolution));
+  if(index >= 0 && index < measure->IfR.axis_x.data.size()){
+    measure->IfR.axis_x.data[index] = R;
+    measure->IfR.axis_y.data[index] = I;
+    measure->IfR.highlight = vec2(R, I);
+    optim->axis_x.current = R;
+  }
+
+  //---------------------------
+}
+void Ransac::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  rad::structure::Measure* measure = &rad_struct->model.measure;
+  //---------------------------
+
+  //Search for closest point
+  float It = 1000.0f;
+  float I = 0;
+  vec3 Nxyz;
+  vec3 root = vec3(0, 0, 0);
+  for(int i=0; i<sphere_xyz.size(); i++){
+    vec3& xyz = sphere_xyz[i];
+    float distance = math::distance(xyz, current_pose) - radius;
+
+    if(distance <= rad_struct->detection.ransac.thres_sphere){
+      I = sphere_i[i];
+      Nxyz = normalize(xyz - current_pose);
+      It = ope_normal->compute_It(xyz, Nxyz, root);
+
+      //Add into model data vector
+      int index = static_cast<int>(std::round(It / measure->IfIt.axis_x.resolution));
+      measure->IfIt.axis_x.data[index] = It;
+      measure->IfIt.axis_y.data[index] = I;
+    }
+  }
+
+  //---------------------------
+}
+void Ransac::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
+  rad::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::structure::Measure* measure = &rad_struct->model.measure;
+  //---------------------------
+
+  //Search for closest point
+  float It = 1000.0f;
+  float I = 0;
+  float R = 0;
+  vec3 Nxyz;
+  vec3 root = vec3(0, 0, 0);
+  for(int i=0; i<sphere_xyz.size(); i++){
+    vec3& xyz = sphere_xyz[i];
+    float distance = math::distance(xyz, current_pose) - radius;
+
+    if(distance <= rad_struct->detection.ransac.thres_sphere){
+      I = sphere_i[i];
+      Nxyz = normalize(xyz - current_pose);
+      It = ope_normal->compute_It(xyz, Nxyz, root);
+      R = math::distance_from_origin(xyz);
+
+      //Search for R limite validity
+      if(R < optim->axis_x.bound[0]) optim->axis_x.bound[0] = R;
+      if(R > optim->axis_x.bound[1]) optim->axis_x.bound[1] = R;
+
+      // Calculate the index of the cell in the heatmap grid
+      int i = static_cast<int>((R - measure->IfRIt.axis_x.min) / (measure->IfRIt.axis_x.max - measure->IfRIt.axis_x.min) * measure->IfRIt.axis_x.size);
+      int j = static_cast<int>((It - measure->IfRIt.axis_y.max) / (measure->IfRIt.axis_y.min - measure->IfRIt.axis_y.max) * measure->IfRIt.axis_y.size);
+      int index = j * measure->IfRIt.axis_x.size + i;
+      if(index >= 0 && index < measure->IfRIt.axis_z.size){
+        measure->IfRIt.axis_z.data[index] = I;
+        measure->vec_data[index] = vec3(R, It, I);
+      }
+    }
+  }
 
   //---------------------------
 }

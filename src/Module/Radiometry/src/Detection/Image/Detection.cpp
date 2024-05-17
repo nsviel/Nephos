@@ -14,6 +14,8 @@ Detection::Detection(rad::Node* node_radio){
 
   this->rad_struct = node_radio->get_rad_struct();
   this->rad_image = new rad::detection::utils::Image(node_radio);
+  this->rad_glyph = new rad::detection::image::Glyph(node_radio);
+  this->rad_hough = new rad::detection::image::Hough(node_radio);
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------

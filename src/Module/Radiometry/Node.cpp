@@ -21,7 +21,6 @@ Node::Node(mod::Node* node_module){
 
   //Child
   this->rad_struct = new rad::Structure();
-  this->rad_hough = new rad::detection::image::Hough(this);
   this->rad_image_detection = new rad::detection::image::Detection(this);
   this->rad_cloud_ransac = new rad::detection::cloud::Ransac(this);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(this);

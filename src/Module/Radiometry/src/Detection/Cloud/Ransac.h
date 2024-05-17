@@ -5,7 +5,7 @@
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace dat::base{class Sensor;}
-namespace utl::thread{class Pool;}
+
 namespace rad::detection::cloud{class Glyph;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
@@ -23,23 +23,22 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Sensor* sensor);
-  void run_thread(dat::base::Sensor* sensor);
-  void wait_thread();
-
-  //Subfunction
+  void validate_bbox(dat::base::Sensor* sensor);
   void ransac_sphere(dat::base::Sensor* sensor);
 
+  //Data function
+  void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
+  void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
+  void data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
+
 private:
-  utl::thread::Pool* thread_pool;
+
   rad::Structure* rad_struct;
   rad::detection::cloud::Glyph* rad_glyph;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
   ope::attribut::Normal* ope_normal;
 
-  bool idle = true;
-  int step;
   vec3 current_pose;
   float radius;
 };

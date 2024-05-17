@@ -6,9 +6,11 @@ namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection::cloud{class Glyph;}
+namespace rad::detection::cloud{class Ransac;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 namespace ope::attribut{class Normal;}
+namespace utl::thread{class Pool;}
 
 
 namespace rad::detection::cloud{
@@ -27,31 +29,28 @@ public:
 
 public:
   //Main function
-  void next_step(dat::base::Sensor* sensor);
+  void start_thread(dat::base::Sensor* sensor);
+  void run_thread(dat::base::Sensor* sensor);
+  void wait_thread();
 
   //Subfunction
-  void validate_bbox(dat::base::Sensor* sensor);
-  void ransac_sphere(dat::base::Sensor* sensor);
-
-  //Data function
-  void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
-  void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
-  void data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
+  void next_step(dat::base::Sensor* sensor);
 
   inline string get_step_str(){return map_step[step];}
   inline int get_step(){return step;}
 
 private:
+  utl::thread::Pool* thread_pool;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
   ope::attribut::Normal* ope_normal;
   rad::detection::cloud::Glyph* rad_glyph;
+  rad::detection::cloud::Ransac* rad_ransac;
   rad::Structure* rad_struct;
   std::map<int, std::string> map_step;
 
+  bool idle = true;
   int step;
-  vec3 current_pose;
-  float radius;
 };
 
 }
