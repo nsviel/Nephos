@@ -103,17 +103,6 @@ void Player::player_lock(){
 
   //---------------------------
 }
-void Player::player_info(){
-  //---------------------------
-
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_info();
-  }
-
-  //---------------------------
-}
 void Player::player_update(){
   //---------------------------
 
@@ -163,6 +152,12 @@ void Player::player_query_ts(float value){
 
     subset->player->player_query_ts(ts_query);
   }
+
+  //---------------------------
+}
+void Player::player_info(){
+  //---------------------------
+
 
   //---------------------------
 }

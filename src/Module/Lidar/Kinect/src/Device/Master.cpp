@@ -46,13 +46,6 @@ void Master::reset(){
 */
   //---------------------------
 }
-void Master::info(){
-  //---------------------------
-
-  gui_master->show_master_info(this);
-
-  //---------------------------
-}
 
 //Master function
 void Master::manage_color_control(){

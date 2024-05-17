@@ -11,6 +11,8 @@ namespace k4n::dev{
 Player::Player(k4n::Node* node_k4n, k4n::dev::Master* master) : dyn::base::Player(master){
   //---------------------------
 
+  this->gui_master = new k4n::gui::Master(node_k4n);
+
   this->master = master;
   this->time = "s";
   this->ts_beg = 0;
@@ -49,13 +51,15 @@ void Player::player_update(){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      this->ts_beg = (ts_beg != -1) ? std::max(ts_beg, sensor->ts_beg) : sensor->ts_beg;
-      this->ts_end = (ts_end != -1) ? std::min(ts_end, sensor->ts_end) : sensor->ts_end;
-      this->ts_duration = ts_end - ts_beg;
-    }else{
-      this->ts_beg = 0;
-      this->ts_end = 0;
-      this->ts_duration = 0;
+      if(i == 0){
+        this->ts_beg = sensor->ts_beg;
+        this->ts_end = sensor->ts_end;
+        this->ts_duration = ts_end - ts_beg;
+      }else{
+        this->ts_beg = (ts_beg != -1) ? std::max(ts_beg, sensor->ts_beg) : sensor->ts_beg;
+        this->ts_end = (ts_end != -1) ? std::min(ts_end, sensor->ts_end) : sensor->ts_end;
+        this->ts_duration = ts_end - ts_beg;
+      }
     }
   }
 
@@ -95,6 +99,13 @@ void Player::player_close(){
       sensor->remove();
     }
   }
+
+  //---------------------------
+}
+void Player::player_info(){
+  //---------------------------
+
+  gui_master->show_master_info(master);
 
   //---------------------------
 }

@@ -19,7 +19,6 @@ struct Set : public utl::base::Element{
   Set(){}
   ~Set(){}
   virtual void reset(){}
-  virtual void info(){}
 
   //Info
   std::string type = "set";

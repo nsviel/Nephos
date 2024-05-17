@@ -30,7 +30,6 @@ public:
 public:
   //Main function
   void reset();
-  void info();
 
   //Master function
   void manage_color_control();

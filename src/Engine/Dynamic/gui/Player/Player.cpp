@@ -60,7 +60,7 @@ void Player::design_panel(dat::base::Set* set){
   ImGui::SameLine();
   this->player_lock(set);
 
-  //set->player_info();
+  set->player->player_info();
 
   //---------------------------
 }

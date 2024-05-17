@@ -6,6 +6,7 @@
 namespace dyn::base{class Player;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
+namespace k4n::gui{class Master;}
 
 
 namespace k4n::dev{
@@ -23,9 +24,10 @@ public:
   void player_query_ts(float value);
   void player_close();
   void player_stop();
-//  void player_info();
+  void player_info();
 
 public:
+  k4n::gui::Master* gui_master;
   k4n::dev::Master* master;
 };
 
