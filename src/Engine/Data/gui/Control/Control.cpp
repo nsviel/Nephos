@@ -15,7 +15,6 @@ Control::Control(dat::Node* node_data){
   //---------------------------
 
   this->dat_graph = node_data->get_data_graph();
-  this->dat_set = node_data->get_data_set();
   this->ope_operation = new ope::Operation();
   this->gui_wheel = node_data->get_gui_wheel();
 
@@ -43,15 +42,13 @@ void Control::control_keyboard_oneAction(){
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      dat::base::Set* set_scene = dat_graph->get_set_graph();
-      dat_set->active_next_entity(set_scene);
+      dat_graph->select_next_element();
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      dat::base::Set* set_scene = dat_graph->get_set_graph();
-      dat_set->remove(set_scene, set_scene->active_entity);
+      dat_graph->remove_selected_element();
       break;
     }
   }

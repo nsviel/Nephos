@@ -28,6 +28,8 @@ public:
 
   //Subfunction
   void select_element(utl::type::Element* element);
+  void remove_selected_element();
+  void select_next_element();
   void assign_UID(utl::type::Element* element);
   utl::type::Element* get_selected_element();
   dat::base::Entity* get_selected_entity();

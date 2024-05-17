@@ -198,28 +198,31 @@ void Set::remove_all_entity(dat::base::Set* set){
 void Set::active_next_entity(dat::base::Set* set){
   //----------------------------
 
+  //If no entities
   if(set->list_entity.size() == 0){
     set->active_entity = nullptr;
-    set->set_parent->active_entity = nullptr;
     return;
   }
-
-  // Check if the current set has a selected entity
-  if(set->active_entity != nullptr){
+  //If entity but previsouly selection not set
+  else if(set->active_entity == nullptr){
+    set->active_entity = *set->list_entity.begin();
+    return;
+  }
+  //Else select next entity
+  else{
     for(auto it = set->list_entity.begin(); it != set->list_entity.end(); ++it){
       dat::base::Entity* entity = *it;
 
       if(set->active_entity->UID == entity->UID){
         auto next_it = std::next(it);
 
-        if(next_it != set->list_entity.end()){
-          set->active_entity = *next_it;
-        } else {
-          // If at the end of the list, cycle back to the beginning
+        // If at the end of the list, cycle back to the beginning
+        if(next_it == set->list_entity.end()){
           set->active_entity = *set->list_entity.begin();
+        }else{
+          set->active_entity = *next_it;
         }
 
-        set->set_parent->active_entity = set->active_entity;
         return;
       }
     }

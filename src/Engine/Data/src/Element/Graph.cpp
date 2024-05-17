@@ -69,6 +69,33 @@ void Graph::select_element(utl::type::Element* element){
 
   //----------------------------
 }
+void Graph::remove_selected_element(){
+  //----------------------------
+
+
+  //----------------------------
+}
+void Graph::select_next_element(){
+  utl::type::Element* element = dat_struct->selection;
+  if(element == nullptr) return;
+  //----------------------------
+
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
+    if(set->list_entity.size() != 0){
+      dat_set->active_next_entity(set);
+      dat_struct->selection = set->active_entity;
+      return;
+    }else if(set->list_subset.size() != 0){
+      dat_struct->selection = *set->list_subset.begin();
+    }
+  }
+  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    dat_set->active_next_entity(entity->set_parent);
+    dat_struct->selection = entity->set_parent->active_entity;
+  }
+
+  //----------------------------
+}
 void Graph::assign_UID(utl::type::Element* element){
   if(element == nullptr) return;
   //----------------------------
