@@ -11,6 +11,8 @@ Player::Player(dat::base::Set* set){
   //---------------------------
 
   this->set = set;
+  this->ts_beg = 0;
+  this->ts_end = 100;
 
   //---------------------------
 }
@@ -115,6 +117,17 @@ void Player::player_info(){
 void Player::player_update(){
   //---------------------------
 
+  for(int i=0; i<set->list_subset.size(); i++){
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+    dyn::base::Player* player = subset->player;
+
+    float ts_duration = player->ts_end - player->ts_beg;
+    float ts_cur = player->ts_cur - player->ts_beg;
+    float percentage = ts_cur / ts_duration * 100.0;
+
+    this->ts_cur = percentage;
+  }
+
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
@@ -142,7 +155,13 @@ void Player::player_query_ts(float value){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_query_ts(value);
+    dyn::base::Player* player = subset->player;
+
+    float ts_duration = player->ts_end - player->ts_beg;
+    float ts_query = value * (ts_duration / 100.0);
+    ts_query = ts_query + player->ts_beg;
+
+    subset->player->player_query_ts(ts_query);
   }
 
   //---------------------------

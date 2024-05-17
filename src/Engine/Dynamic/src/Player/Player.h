@@ -29,6 +29,8 @@ public:
 public:
   dat::base::Set* set;
 
+  string time = "%";
+
   bool play = true;
   bool pause = false;
   bool restart = true;
