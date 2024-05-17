@@ -3,7 +3,7 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::detection{
+namespace rad::detection::image{
 
 //Constructor / Destructor
 Glyph::Glyph(rad::Node* node_radio){

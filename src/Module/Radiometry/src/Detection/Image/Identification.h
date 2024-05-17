@@ -6,8 +6,8 @@ namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace dat::base{class Sensor;}
 namespace utl::thread{class Pool;}
-namespace rad::detection{class Glyph;}
-namespace rad::detection{class Hough;}
+namespace rad::detection::image{class Glyph;}
+namespace rad::detection::image{class Hough;}
 namespace rad::matching{class Image;}
 
 
@@ -35,8 +35,8 @@ public:
 private:
   utl::thread::Pool* thread_pool;
   rad::Structure* rad_struct;
-  rad::detection::Glyph* rad_glyph;
-  rad::detection::Hough* rad_hough;
+  rad::detection::image::Glyph* rad_glyph;
+  rad::detection::image::Hough* rad_hough;
   rad::matching::Image* rad_image;
 
   bool idle = true;

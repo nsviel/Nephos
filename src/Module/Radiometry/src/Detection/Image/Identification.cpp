@@ -35,6 +35,7 @@ void Identification::run_thread(dat::base::Sensor* sensor){
   //---------------------------
 
   this->make_sphere_detection(sensor);
+
   //---------------------------
   this->idle = true;
 }

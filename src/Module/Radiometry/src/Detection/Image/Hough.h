@@ -8,7 +8,7 @@ namespace rad{class Structure;}
 namespace rad::structure{class Circle;}
 
 
-namespace rad::detection{
+namespace rad::detection::image{
 
 class Hough
 {

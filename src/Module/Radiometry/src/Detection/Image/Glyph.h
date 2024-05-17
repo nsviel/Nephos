@@ -9,7 +9,7 @@ namespace rad::structure{class Circle;}
 namespace dat{class Glyph;}
 
 
-namespace rad::detection{
+namespace rad::detection::image{
 
 class Glyph
 {

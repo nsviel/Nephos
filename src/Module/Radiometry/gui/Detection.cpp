@@ -14,7 +14,7 @@ Detection::Detection(rad::Node* node_radio){
 
   this->rad_detection = new rad::Detection(node_radio);
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_hough = new rad::detection::Hough(node_radio);
+  this->rad_hough = new rad::detection::image::Hough(node_radio);
   this->stream = new rnd::Stream(node_engine);
 
   //---------------------------
