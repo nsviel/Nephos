@@ -42,7 +42,7 @@ void Master::reset(){
   }
 
   //Restart player
-  this->player_query_ts(ts_beg);
+  this->player_query(ts_beg);
 */
   //---------------------------
 }
@@ -60,7 +60,7 @@ void Master::manage_color_control(){
   }
 
   //Restart player
-  this->player_query_ts(ts_beg);
+  this->player_query(ts_beg);
 */
   //---------------------------
 }
@@ -92,6 +92,17 @@ void Master::manage_configuration(){
       sensor->depth.config = config.depth;
       sensor->ir.config = config.ir;
     }
+  }
+
+  //---------------------------
+}
+void Master::manage_restart(){
+  //---------------------------
+
+  if(player->restart == false){
+    player->player_stop();
+  }else{
+    player->player_query(player->ts_beg);
   }
 
   //---------------------------

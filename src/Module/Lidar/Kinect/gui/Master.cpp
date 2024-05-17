@@ -99,7 +99,7 @@ void Master::show_transformation(k4n::dev::Master* master){
 void Master::show_colorization(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
-/*
+
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Colorization");
 
   //Colorization mode
@@ -146,7 +146,7 @@ void Master::show_colorization(k4n::dev::Master* master){
     }
     ImGui::Unindent();
   }
-*/
+
   //---------------------------
   ImGui::Separator();
 }
@@ -214,16 +214,13 @@ void Master::show_recorder(k4n::dev::Master* master){
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Record");
 
   //Mode
-  /*bool condition = (master->mode == k4n::dev::PLAYBACK);
-  if(condition) ImGui::BeginDisabled();
   if(ImGui::RadioButton("MKV", &master->recorder.mode, dyn::recorder::MKV)){
     master->recorder.folder = "../media/record/mkv";
   }
-  if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
   if(ImGui::RadioButton("PLY", &master->recorder.mode, dyn::recorder::PLY)){
     master->recorder.folder = "../media/record/ply";
-  }*/
+  }
 
   ImGui::BeginTable("recorder##parameters", 3);
 

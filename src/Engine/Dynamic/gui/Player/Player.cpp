@@ -84,7 +84,7 @@ void Player::player_slider(dat::base::Set* set){
   string time = "%.2f " + player->time;
   ImGui::SetNextItemWidth(width.x);
   if(ImGui::SliderFloat("##player_slider", &player->ts_cur, player->ts_beg, player->ts_end, time.c_str(), ImGuiSliderFlags_NoInput)){
-    player->player_query_ts(player->ts_cur);
+    player->player_query(player->ts_cur);
   }
 
   //---------------------------

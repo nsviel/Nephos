@@ -23,7 +23,7 @@ public:
   virtual void player_lock(bool value);
   virtual void player_update();
   virtual void player_close();
-  virtual void player_query_ts(float value);
+  virtual void player_query(float value);
   
   virtual void element_info(){}
   virtual void element_parameter(){}

@@ -39,7 +39,7 @@ void Player::player_stop(){
     }
   }
 
-  this->player_query_ts(ts_beg);
+  this->player_query(ts_beg);
 
   //---------------------------
 }
@@ -76,7 +76,7 @@ void Player::player_update(){
 
   //---------------------------
 }
-void Player::player_query_ts(float value){
+void Player::player_query(float value){
   //---------------------------
 
   for(int i=0; i<set->list_entity.size(); i++){

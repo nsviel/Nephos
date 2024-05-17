@@ -35,6 +35,7 @@ public:
   void manage_color_control();
   void manage_forward();
   void manage_configuration();
+  void manage_restart();
 
 public:
   dat::Set* dat_set;

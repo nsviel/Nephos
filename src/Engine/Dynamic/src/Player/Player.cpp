@@ -138,7 +138,7 @@ void Player::player_close(){
 
   //---------------------------
 }
-void Player::player_query_ts(float value){
+void Player::player_query(float value){
   //---------------------------
 
   //Recursive call
@@ -150,7 +150,7 @@ void Player::player_query_ts(float value){
     float ts_query = value * (ts_duration / 100.0);
     ts_query = ts_query + player->ts_beg;
 
-    subset->player->player_query_ts(ts_query);
+    subset->player->player_query(ts_query);
   }
 
   //---------------------------

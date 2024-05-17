@@ -21,7 +21,7 @@ public:
 public:
   //Main function
   void player_update();
-  void player_query_ts(float value);
+  void player_query(float value);
   void player_close();
   void player_stop();
 

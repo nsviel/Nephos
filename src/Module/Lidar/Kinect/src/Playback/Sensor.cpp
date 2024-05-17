@@ -94,7 +94,7 @@ k4a::capture* Sensor::manage_new_capture(){
     capture = nullptr;
 
     if(color.data.timestamp == player->ts_end){
-      this->manage_ts_query(player->ts_beg);
+      master->manage_restart();
     }
   }
 
