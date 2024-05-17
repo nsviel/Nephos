@@ -32,7 +32,7 @@ void Control::control_keyboard(dyn::base::Player* player){
 
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      player->player_pause();
+      //player->player_pause();
       break;
     }
 

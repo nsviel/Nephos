@@ -99,7 +99,7 @@ void Image::find_data_from_capture(k4n::dev::Sensor* sensor){
   sensor->color.data.fps = fps;
   sensor->depth.data.fps = fps;
   sensor->ir.data.fps = fps;
-  sensor->master->ts_cur = sensor->color.data.timestamp;
+  //sensor->master->ts_cur = sensor->color.data.timestamp;
 
   //---------------------------
 }

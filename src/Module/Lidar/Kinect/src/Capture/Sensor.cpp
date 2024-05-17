@@ -117,7 +117,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
 }
 void Sensor::manage_pause(){
   //---------------------------
-
+/*
   //If pause, wait until end pause or end thread
   if(master->pause || !master->play){
     profiler->reset();
@@ -125,7 +125,7 @@ void Sensor::manage_pause(){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }
-
+*/
   //---------------------------
 }
 void Sensor::manage_reset(){

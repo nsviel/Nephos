@@ -23,7 +23,7 @@ Master::Master(k4n::Node* node_k4n){
   this->icon = ICON_FA_USER;
   this->is_locked = true;
   this->is_suppressible = true;
-  this->player_enable = true;
+  //this->player_enable = true;
 
   //---------------------------
 }
@@ -32,7 +32,7 @@ Master::~Master(){}
 //Main function
 void Master::reset(){
   //---------------------------
-
+/*
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
@@ -43,7 +43,7 @@ void Master::reset(){
 
   //Restart player
   this->player_query_ts(ts_beg);
-
+*/
   //---------------------------
 }
 void Master::info(){
@@ -57,7 +57,7 @@ void Master::info(){
 //Master function
 void Master::manage_color_control(){
   //---------------------------
-
+/*
   for(int i=0; i<list_entity.size(); i++){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
@@ -68,7 +68,7 @@ void Master::manage_color_control(){
 
   //Restart player
   this->player_query_ts(ts_beg);
-
+*/
   //---------------------------
 }
 void Master::manage_forward(){
@@ -155,7 +155,7 @@ void Master::player_update(){
     }
   }
 
-  set_parent->player_update();
+  //set_parent->player_update();
 
   //---------------------------
 }
@@ -187,29 +187,29 @@ void Master::player_close(){
 }
 void Master::player_play(){
   //---------------------------
-
+/*
   if(!play){
     play = true;
     pause = false;
   }else{
     pause = false;
   }
-
+*/
   //---------------------------
 }
 void Master::player_pause(){
   //---------------------------
-
+/*
   pause = !pause;
-
+*/
   //---------------------------
 }
 void Master::player_stop(){
   //---------------------------
 
   //Pause playback thread
-  this->play = false;
-  this->pause = true;
+  //this->play = false;
+  //this->pause = true;
 /*
   //Wait for pause
   for(int i=0; i<set->list_entity.size(); i++){
@@ -219,23 +219,23 @@ void Master::player_stop(){
       sensor->wait_threads();
     }
   }
-*/
-  this->manage_restart();
 
+  this->manage_restart();
+*/
   //---------------------------
 }
 void Master::player_restart(){
   //---------------------------
-
+/*
   restart = !restart;
-
+*/
   //---------------------------
 }
 void Master::player_record(){
   //---------------------------
-
+/*
   record = !record;
-
+*/
   //---------------------------
 }
 void Master::player_lock(){

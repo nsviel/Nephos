@@ -39,7 +39,7 @@ void Exporter::start_thread(k4n::dev::Sensor* sensor){
 void Exporter::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("recorder");
   //---------------------------
-
+/*
   tasker->loop_begin();
 
   k4n::dev::Master* master = sensor->master;
@@ -63,7 +63,7 @@ void Exporter::run_thread(k4n::dev::Sensor* sensor){
   }
 
   tasker->loop_end();
-
+*/
   //---------------------------
   this->idle = true;
 }
@@ -80,7 +80,7 @@ void Exporter::wait_thread(){
 
 //Subfunction
 void Exporter::make_export_to_ply(k4n::dev::Sensor* sensor){
-  k4n::dev::Master* master = sensor->master;
+/*  k4n::dev::Master* master = sensor->master;
   if(!master->record) return;
   //---------------------------
 
@@ -103,7 +103,7 @@ void Exporter::make_export_to_ply(k4n::dev::Sensor* sensor){
 
   //Export to ply
   ply_exporter->export_binary(sensor->get_data(), sensor->get_pose(), path);
-
+*/
   //---------------------------
 }
 void Exporter::make_export_to_mkv(k4n::dev::Sensor* sensor){
@@ -111,7 +111,7 @@ void Exporter::make_export_to_mkv(k4n::dev::Sensor* sensor){
   k4n::dev::Master* master = sensor->master;
   k4a::capture* capture = sensor->device.capture;
   //---------------------------
-
+/*
   //Start recording
   if(sensor->master->record && !recorder.is_valid()){
     //Check if directory exists, if not create it
@@ -147,7 +147,8 @@ void Exporter::make_export_to_mkv(k4n::dev::Sensor* sensor){
     recorder.flush();
     recorder.close();
   }
-
+*/
   //---------------------------
 }
+
 }

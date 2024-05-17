@@ -138,18 +138,18 @@ void Sensor::manage_pause(){
 }
 void Sensor::manage_restart(){
   //---------------------------
-
+/*
   if(color.data.timestamp == master->ts_end){
     this->manage_ts_query(master->ts_beg);
   }
-
+*/
   //---------------------------
 }
 void Sensor::manage_reset(){
   //---------------------------
-
+/*
   this->manage_ts_query(master->ts_beg);
-
+*/
   //---------------------------
 }
 void Sensor::manage_ts_query(float ts_querry){

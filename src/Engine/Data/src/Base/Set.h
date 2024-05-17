@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Dynamic/src/Base/Player.h>
+#include <Dynamic/src/Player/Player.h>
 #include <Utility/Base/Type/Element.h>
 #include <Utility/Base/Type/Pose.h>
 #include <image/IconsFontAwesome6.h>
@@ -13,7 +13,7 @@ namespace dyn::base{class Player;}
 
 namespace dat::base{
 
-struct Set : public utl::type::Element, public dyn::base::Player{
+struct Set : public utl::type::Element{
   //---------------------------
 
   Set(){}
@@ -36,6 +36,7 @@ struct Set : public utl::type::Element, public dyn::base::Player{
 
   //Data
   utl::type::Pose pose;
+  dyn::base::Player* player = nullptr;
   dat::base::Entity* active_entity = nullptr;
   dat::base::Set* active_subset = nullptr;
   dat::base::Set* set_parent = nullptr;

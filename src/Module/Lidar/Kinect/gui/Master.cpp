@@ -46,7 +46,7 @@ void Master::show_master_info(k4n::dev::Master* master){
 void Master::show_info(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
-
+/*
   //Master general info
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   if(ImGui::BeginTable("master##info", 2)){
@@ -70,7 +70,7 @@ void Master::show_info(k4n::dev::Master* master){
 
     ImGui::EndTable();
   }
-
+*/
   //---------------------------
 }
 void Master::show_operation(k4n::dev::Master* master){
@@ -107,7 +107,7 @@ void Master::show_transformation(k4n::dev::Master* master){
 void Master::show_colorization(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
-
+/*
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Colorization");
 
   //Colorization mode
@@ -154,7 +154,7 @@ void Master::show_colorization(k4n::dev::Master* master){
     }
     ImGui::Unindent();
   }
-
+*/
   //---------------------------
   ImGui::Separator();
 }

@@ -6,6 +6,7 @@
 #include <Vulkan/Namespace.h>
 #include <GUI/Namespace.h>
 #include <Data/Namespace.h>
+#include <Render/Namespace.h>
 
 
 namespace dyn::gui{

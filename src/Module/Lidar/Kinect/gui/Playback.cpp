@@ -19,7 +19,7 @@ Playback::~Playback(){}
 void Playback::show_master_playback(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
-
+/*
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   if(ImGui::BeginTable("master##playback_info", 2)){
     //Duration
@@ -35,7 +35,7 @@ void Playback::show_master_playback(k4n::dev::Master* master){
 
     ImGui::EndTable();
   }
-
+*/
   //---------------------------
 }
 void Playback::show_sensor_configuration(k4n::dev::Sensor* sensor){

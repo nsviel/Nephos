@@ -3,21 +3,29 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace dyn::base{
+namespace dyn{
 
-struct Player{
-  virtual void player_update(){}
+class Player
+{
+public:
+  //Constructor / Destructor
+  Player();
+  ~Player();
+
+  //Main function
   virtual void player_play(){}
   virtual void player_pause(){}
   virtual void player_query_ts(float value){}
   virtual void player_stop(){}
   virtual void player_restart(){}
   virtual void player_record(){}
+  virtual void player_info(){}
+  virtual void player_update(){}
   virtual void player_close(){}
   virtual void player_lock(){}
-  virtual void player_info(){}
 
-  bool player_enable = false;
+public:
+  bool enable = false;
   bool play = true;
   bool pause = false;
   bool restart = true;
