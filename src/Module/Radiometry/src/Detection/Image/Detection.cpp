@@ -23,21 +23,21 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::start_thread(dat::base::Sensor* sensor){
+void Detection::start_thread(dat::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
   this->idle = false;
-  auto task_function = [this, sensor](){
-    this->run_thread(sensor);
+  auto task_function = [this, sensor, image](){
+    this->run_thread(sensor, image);
   };
   thread_pool->add_task(task_function);
 
   //---------------------------
 }
-void Detection::run_thread(dat::base::Sensor* sensor){
+void Detection::run_thread(dat::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
-  this->detect_circle_in_image(sensor);
+  this->detect_circle_in_image(sensor, image);
   this->draw_detection_image();
   this->draw_detection_glyph(sensor);
 
@@ -56,15 +56,14 @@ void Detection::wait_thread(){
 }
 
 //Subfunction
-void Detection::detect_circle_in_image(dat::base::Sensor* sensor){
+void Detection::detect_circle_in_image(dat::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
-  /*utl::media::Image* input = &sensor->ir.image;
-  cv::Mat cv_input;
-  rad_image->convert_into_cv_image(input, cv_input);
-  //rad_struct->detection.vec_circle = rad_hough->sphere_detection(cv_input, rad_struct->detection.cv_image);
+  cv::Mat cv_image;
+  rad_image->convert_into_cv_image(image, cv_image);
+  rad_struct->detection.vec_circle = rad_hough->sphere_detection(cv_image, rad_struct->detection.cv_image);
   rad_struct->detection.nb_detection = rad_struct->detection.vec_circle.size();
-*/
+
   //---------------------------
 }
 void Detection::draw_detection_image(){
