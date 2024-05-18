@@ -41,6 +41,7 @@ void Panel::design_panel(){
 
   this->cam_parameter();
   this->cam_info();
+  this->cam_pather();
 
   //---------------------------
 }
@@ -98,39 +99,49 @@ void Panel::cam_info(){
   cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
-  //Camera position
-  ImGui::Text("Pose");
-  switch(camera->mode){
-    case CAMERA_MODE_PLAYER:{
-      float* floatArray = reinterpret_cast<float*>(&camera->cam_P);
-      ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f");
-      ImGui::SameLine();
-      if(ImGui::Button("R")){
-        camera->cam_P = vec3(0, 0, 0);
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+  if(ImGui::BeginTable("camera##stats", 2)){
+    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 100.0f);
+    ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
+
+    //Pose
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Pose"); ImGui::TableNextColumn();
+    switch(camera->mode){
+      case CAMERA_MODE_PLAYER:{
+        float* floatArray = reinterpret_cast<float*>(&camera->cam_P);
+        ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f");
+        ImGui::SameLine();
+        if(ImGui::Button("R")){
+          camera->cam_P = vec3(0, 0, 0);
+        }
+        break;
       }
-      break;
+      case CAMERA_MODE_ARCBALL:{
+        ImGui::TextColored(color, "%.2f   %.2f   %.2f", camera->cam_P[0], camera->cam_P[1], camera->cam_P[2]);
+        break;
+      }
     }
-    case CAMERA_MODE_ARCBALL:{
-      ImGui::Text("%.2f   %.2f   %.2f", camera->cam_P[0], camera->cam_P[1], camera->cam_P[2]);
-      break;
-    }
-  }
 
-  //Camera angles
-  if(camera->mode == CAMERA_MODE_PLAYER){
-    ImGui::BeginTable("angle##camera", 2);
-    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 125.0f);
-
+    //Azimuth
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Azimuth"); ImGui::TableNextColumn();
-    ImGui::Text("%.2f°", camera->angle_azimuth * 180 / M_PI);
+    ImGui::TextColored(color, "%.2f°", camera->angle_azimuth * 180 / M_PI);
 
+    //Elevation
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Elevation"); ImGui::TableNextColumn();
-    ImGui::Text("%.2f°", camera->angle_elevation * 180 / M_PI);
+    ImGui::TextColored(color, "%.2f°", camera->angle_elevation * 180 / M_PI);
 
     ImGui::EndTable();
   }
+
+  //---------------------------
+}
+void Panel::cam_pather(){
+  //---------------------------
+
+
 
   //---------------------------
 }
