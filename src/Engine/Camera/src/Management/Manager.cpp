@@ -44,7 +44,7 @@ void Manager::create_camera(){
 
   //---------------------------
 }
-void Manager::reset(){
+void Manager::reset_camera(){
   //---------------------------
 
   for(int i=0; i<cam_struct->vec_camera.size(); i++){

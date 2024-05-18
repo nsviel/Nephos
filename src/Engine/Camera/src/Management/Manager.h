@@ -24,7 +24,7 @@ public:
 public:
   //Main function
   void create_camera();
-  void reset();
+  void reset_camera();
   void make_screenshot();
 
 private:

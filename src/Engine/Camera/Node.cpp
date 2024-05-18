@@ -61,7 +61,7 @@ void Node::gui(){
 void Node::reset(){
   //---------------------------
 
-  cam_manager->reset();
+  cam_manager->reset_camera();
 
   //---------------------------
 }

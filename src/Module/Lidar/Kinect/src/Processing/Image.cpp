@@ -53,6 +53,9 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   //Convert data into cloud
   k4n_cloud->start_thread(sensor);
 
+  //Radiometry image detection
+  rad_detection->start_thread(sensor, &sensor->ir.image);
+
   //---------------------------
   this->idle = true;
 }
@@ -64,6 +67,7 @@ void Image::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_cloud->wait_thread();
+  rad_detection->wait_thread();
 
   //---------------------------
 }
