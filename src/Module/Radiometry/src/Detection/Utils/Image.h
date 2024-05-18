@@ -19,16 +19,16 @@ public:
 
 public:
   //Main function
-  void draw_all_sphere(dat::base::Sensor* sensor);
-  void draw_best_sphere(dat::base::Sensor* sensor);
+  void draw_all_sphere();
+  void draw_best_sphere();
 
   //Subfunction
   void convert_into_cv_image(utl::media::Image* input, cv::Mat& output);
   void convert_into_rgba(cv::Mat& input, cv::Mat& output);
-  void convert_into_subimage(cv::Mat& image, dat::base::Sensor* sensor);
+  void convert_into_subimage(cv::Mat& image);
   void convert_into_utl_image(cv::Mat& input, utl::media::Image* output);
   void draw_circle(cv::Mat& image, vector<rad::structure::Circle>& vec_circle);
-  void draw_bounding_box(cv::Mat& image, dat::base::Sensor* sensor);
+  void draw_bounding_box(cv::Mat& image);
 
 private:
   rad::Structure* rad_struct;

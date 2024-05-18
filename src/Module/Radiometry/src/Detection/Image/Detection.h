@@ -28,7 +28,7 @@ public:
 
   //Subfunction
   void detect_circle_in_image(dat::base::Sensor* sensor);
-  void draw_detection_image(dat::base::Sensor* sensor);
+  void draw_detection_image();
   void draw_detection_glyph(dat::base::Sensor* sensor);
 
 private:

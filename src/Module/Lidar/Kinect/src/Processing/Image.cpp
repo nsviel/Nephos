@@ -3,6 +3,7 @@
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
+#include <Radiometry/Namespace.h>
 
 
 namespace k4n::processing{
@@ -12,11 +13,13 @@ Image::Image(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
+  rad::Node* node_radio = node_k4n->get_node_radio();
 
   this->tj_handle = tjInitDecompress();
   this->k4n_data = new k4n::utils::Data();
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->thread_pool = node_engine->get_thread_pool();
+  this->rad_detection = node_radio->get_image_detection();
 
   //---------------------------
 }

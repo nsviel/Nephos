@@ -10,6 +10,7 @@ namespace k4n::dev{class Sensor;}
 namespace k4n::processing{class Cloud;}
 namespace utl::thread{class Pool;}
 namespace k4n::utils{class Data;}
+namespace rad::detection::image{class Detection;}
 
 
 namespace k4n::processing{
@@ -50,6 +51,7 @@ private:
   k4n::processing::Cloud* k4n_cloud;
   utl::thread::Pool* thread_pool;
   k4n::utils::Data* k4n_data;
+  rad::detection::image::Detection* rad_detection;
 
   tjhandle tj_handle;
   bool idle = true;

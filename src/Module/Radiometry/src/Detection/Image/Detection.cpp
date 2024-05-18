@@ -38,7 +38,7 @@ void Detection::run_thread(dat::base::Sensor* sensor){
   //---------------------------
 
   this->detect_circle_in_image(sensor);
-  this->draw_detection_image(sensor);
+  this->draw_detection_image();
   this->draw_detection_glyph(sensor);
 
   //---------------------------
@@ -67,16 +67,16 @@ void Detection::detect_circle_in_image(dat::base::Sensor* sensor){
 */
   //---------------------------
 }
-void Detection::draw_detection_image(dat::base::Sensor* sensor){
+void Detection::draw_detection_image(){
   //---------------------------
 
   switch(rad_struct->detection.hough.drawing_mode){
     case rad::hough::ALL:{
-      rad_image->draw_all_sphere(sensor);
+      rad_image->draw_all_sphere();
       break;
     }
     case rad::hough::BEST:{
-      rad_image->draw_best_sphere(sensor);
+      rad_image->draw_best_sphere();
       break;
     }
   }

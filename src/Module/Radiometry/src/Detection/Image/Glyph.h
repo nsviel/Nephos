@@ -24,7 +24,7 @@ public:
   void draw_best_sphere_glyph(dat::base::Sensor* sensor);
 
   //Subfunction
-  void reset_all_sphere(dat::base::Sensor* sensor);
+  void reset_all_sphere();
   void draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::structure::Circle>& vec_circle);
 
 private:

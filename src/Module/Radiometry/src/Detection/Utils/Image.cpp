@@ -16,20 +16,20 @@ Image::Image(rad::Node* node_radio){
 Image::~Image(){}
 
 //Main function
-void Image::draw_all_sphere(dat::base::Sensor* sensor){
+void Image::draw_all_sphere(){
   if(rad_struct->detection.cv_image.empty()) return;
   //------------------------
 
   cv::Mat result;
   this->convert_into_rgba(rad_struct->detection.cv_image, result);
   this->draw_circle(result, rad_struct->detection.vec_circle);
-  this->draw_bounding_box(result, sensor);
-  this->convert_into_subimage(result, sensor);
+  this->draw_bounding_box(result);
+  this->convert_into_subimage(result);
   this->convert_into_utl_image(result, &rad_struct->detection.hough.image);
 
   //------------------------
 }
-void Image::draw_best_sphere(dat::base::Sensor* sensor){
+void Image::draw_best_sphere(){
   if(rad_struct->detection.cv_image.empty()) return;
   //------------------------
 
@@ -41,8 +41,8 @@ void Image::draw_best_sphere(dat::base::Sensor* sensor){
   cv::Mat result;
   this->convert_into_rgba(rad_struct->detection.cv_image, result);
   this->draw_circle(result, vec_circle);
-  this->draw_bounding_box(result, sensor);
-  this->convert_into_subimage(result, sensor);
+  this->draw_bounding_box(result);
+  this->convert_into_subimage(result);
   this->convert_into_utl_image(result, &rad_struct->detection.hough.image);
 
   //------------------------
@@ -68,7 +68,7 @@ void Image::convert_into_rgba(cv::Mat& input, cv::Mat& output){
 
   //------------------------
 }
-void Image::convert_into_subimage(cv::Mat& image, dat::base::Sensor* sensor){
+void Image::convert_into_subimage(cv::Mat& image){
   //------------------------
 
   cv::Point& center = rad_struct->detection.cv_center;
@@ -127,7 +127,7 @@ void Image::draw_circle(cv::Mat& image, vector<rad::structure::Circle>& vec_circ
 
   //------------------------
 }
-void Image::draw_bounding_box(cv::Mat& image, dat::base::Sensor* sensor){
+void Image::draw_bounding_box(cv::Mat& image){
   //------------------------
 
   vector<rad::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
