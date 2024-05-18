@@ -22,7 +22,7 @@ public:
   void make_path();
 
   //Subfunction
-  glm::vec3 update_position(const glm::vec3& start, const glm::vec3& end, float t);
+  float update_position(const float& start, const float& end, float t);
 
 private:
   cam::Structure* cam_struct;

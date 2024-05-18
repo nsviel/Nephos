@@ -46,7 +46,7 @@ void Pather::init(){
   }
 
   // Update camera position
-  position = update_position(startPosition, endPosition, t);
+  //position = update_position(startPosition, endPosition, t);
 
   //---------------------------
 }
@@ -54,38 +54,26 @@ void Pather::make_path(){
   cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
 
-  static float amplitude = 1.0f; // Maximum value
+  static float amplitude = 10.0f; // Maximum value
   static float frequency = 0.2f; // Number of cycles per second
   static float phase = 0.0f; // Phase shift
-
   static auto startTime = std::chrono::steady_clock::now();
-/*
-  //Start loop
 
   auto currentTime = std::chrono::steady_clock::now();
   float elapsed = std::chrono::duration<float>(currentTime - startTime).count();
+  float value = amplitude * std::sin(2.0f * M_PI * frequency * elapsed + phase);
 
-  // Calculate normalized time value (t) for a full back and forth cycle
-  float cycleTime = fmod(elapsed, duration * 2);
-  float t = cycleTime / duration;
-  if (cycleTime > duration) {
-      t = 2.0f - t; // Reverse the direction
-  }
+  //cam_control->control_wheel(value /50);
 
-  // Update camera position
-  position = update_position(startPosition, endPosition, t);
-
-  control_wheel(float value)
-*/
   //---------------------------
 }
 
 //Subfunction
-glm::vec3 Pather::update_position(const glm::vec3& start, const glm::vec3& end, float t){
+float Pather::update_position(const float& start, const float& end, float t){
   //---------------------------
 
   float interpolation = (1.0f - std::cos(M_PI * t)) / 2.0f;
-  glm::vec3 position = start + interpolation * (end - start);
+  float position = start + interpolation * (end - start);
 
   //---------------------------
   return position;
