@@ -3,4 +3,4 @@
 #include <Radiometry/src/Detection/Namespace.h>
 #include <Radiometry/src/Model/Namespace.h>
 #include <Radiometry/src/Calibration/Namespace.h>
-#include <Radiometry/src/Structure/Namespace.h>
+#include <Radiometry/src/Structure.h>

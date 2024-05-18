@@ -65,7 +65,7 @@ void Detection::next_step(dat::base::Sensor* sensor){
 
   switch(step){
     case rad::detection::cloud::WAIT_VALIDATION:{
-      rad_ransac->validate_bbox(sensor);
+      this->validate_bbox(sensor);
       break;
     }
     case rad::detection::cloud::PROCESSING:{
@@ -73,6 +73,21 @@ void Detection::next_step(dat::base::Sensor* sensor){
       break;
     }
   }
+
+  //---------------------------
+}
+void Detection::validate_bbox(dat::base::Sensor* sensor){
+  if(rad_struct->detection.nb_detection == 0) return;
+  //---------------------------
+
+  utl::base::Pose* pose = sensor->get_pose();
+
+  this->step++;
+  ivec2 point_2d = rad_struct->detection.vec_circle[0].center;
+  vec3 truc = sensor->convert_depth_2d_to_3d(point_2d);
+  vec4 machin = vec4(truc.x, truc.y, truc.z, 1);
+  truc = pose->model * machin;
+  rad_struct->detection.ransac.current_pose = vec3(truc.x, truc.y, truc.z);
 
   //---------------------------
 }

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Radiometry/src/Structure/Model/Measure.h>
-#include <Radiometry/src/Structure/Model/Optimization.h>
+#include <Radiometry/src/Model/Structure/Measure.h>
+#include <Radiometry/src/Model/Structure/Optimization.h>
 #include <string>
 #include <vector>
 

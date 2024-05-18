@@ -35,7 +35,8 @@ public:
 
   //Subfunction
   void next_step(dat::base::Sensor* sensor);
-
+  void validate_bbox(dat::base::Sensor* sensor);
+  
   inline string get_step_str(){return map_step[step];}
   inline int get_step(){return step;}
 

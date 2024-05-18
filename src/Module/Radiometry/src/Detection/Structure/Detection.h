@@ -1,12 +1,15 @@
 #pragma once
 
-#include <Radiometry/src/Structure/Detection/Hough.h>
-#include <Radiometry/src/Structure/Detection/Canny.h>
-#include <Radiometry/src/Structure/Detection/Bbox.h>
-#include <Radiometry/src/Structure/Detection/Ransac.h>
-#include <Radiometry/src/Structure/Detection/Sphere.h>
-#include <Radiometry/src/Structure/Model/Measure.h>
-#include <Radiometry/src/Structure/Model/Model.h>
+#include <Utility/Specific/Common.h>
+#include <Radiometry/Namespace.h>
+#include <Profiler/Namespace.h>
+#include <Engine/Namespace.h>
+#include <Data/Namespace.h>
+#include <Radiometry/src/Detection/Structure/Hough.h>
+#include <Radiometry/src/Detection/Structure/Canny.h>
+#include <Radiometry/src/Detection/Structure/Bbox.h>
+#include <Radiometry/src/Detection/Structure/Ransac.h>
+#include <Radiometry/src/Detection/Structure/Sphere.h>
 
 
 namespace rad::structure{

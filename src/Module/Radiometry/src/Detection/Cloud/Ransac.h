@@ -23,7 +23,6 @@ public:
 
 public:
   //Main function
-  void validate_bbox(dat::base::Sensor* sensor);
   void ransac_sphere(dat::base::Sensor* sensor);
 
   //Data function

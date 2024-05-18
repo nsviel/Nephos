@@ -26,22 +26,6 @@ Ransac::Ransac(rad::Node* node_radio){
 Ransac::~Ransac(){}
 
 //Main function
-void Ransac::validate_bbox(dat::base::Sensor* sensor){
-  /*if(rad_struct->detection.nb_detection == 0) return;
-  if(step != rad::detection::cloud::WAIT_VALIDATION) return;
-  //---------------------------
-
-  utl::base::Pose* pose = sensor->get_pose();
-
-  this->step++;
-  ivec2 point_2d = rad_struct->detection.vec_circle[0].center;
-  vec3 truc = sensor->convert_depth_2d_to_3d(point_2d);
-  vec4 machin = vec4(truc.x, truc.y, truc.z, 1);
-  truc = pose->model * machin;
-  this->current_pose = vec3(truc.x, truc.y, truc.z);
-*/
-  //---------------------------
-}
 void Ransac::ransac_sphere(dat::base::Sensor* sensor){
 /*  if(step != rad::detection::cloud::PROCESSING) return;
   //---------------------------
@@ -55,7 +39,7 @@ void Ransac::ransac_sphere(dat::base::Sensor* sensor){
   vector<float> sphere_i;
   for(int i=0; i<vec_xyz.size(); i++){
     vec3& xyz = vec_xyz[i];
-    float distance = math::distance(xyz, current_pose);
+    float distance = math::distance(xyz, rad_struct->detection.ransac.current_pose);
 
     if(distance <= rad_struct->detection.sphere_diameter * rad_struct->detection.ransac.search_diameter_x){
       sphere_xyz.push_back(xyz);
@@ -68,10 +52,10 @@ void Ransac::ransac_sphere(dat::base::Sensor* sensor){
   ope_ransac->set_threshold_sphere(rad_struct->detection.ransac.thres_sphere);
   ope_ransac->set_threshold_pose(rad_struct->detection.ransac.thres_pose);
   ope_ransac->set_threshold_radius(rad_struct->detection.ransac.thres_radius);
-  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, current_pose, radius, rad_struct->detection.sphere_diameter/2);
+  ope_ransac->ransac_sphere_in_cloud(sphere_xyz, rad_struct->detection.ransac.current_pose, radius, rad_struct->detection.sphere_diameter/2);
 
   //Apply post-processing stuff
-  rad_glyph->draw_sphere_glyph(sensor, current_pose, radius);
+  rad_glyph->draw_sphere_glyph(sensor, rad_struct->detection.ransac.current_pose, radius);
   this->data_IfR(sphere_xyz, sphere_i);
   this->data_IfIt(sphere_xyz, sphere_i);
   this->data_model(sphere_xyz, sphere_i);
@@ -120,11 +104,11 @@ void Ransac::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   vec3 root = vec3(0, 0, 0);
   for(int i=0; i<sphere_xyz.size(); i++){
     vec3& xyz = sphere_xyz[i];
-    float distance = math::distance(xyz, current_pose) - radius;
+    float distance = math::distance(xyz, rad_struct->detection.ransac.current_pose) - radius;
 
     if(distance <= rad_struct->detection.ransac.thres_sphere){
       I = sphere_i[i];
-      Nxyz = normalize(xyz - current_pose);
+      Nxyz = normalize(xyz - rad_struct->detection.ransac.current_pose);
       It = ope_normal->compute_It(xyz, Nxyz, root);
 
       //Add into model data vector
@@ -149,11 +133,11 @@ void Ransac::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   vec3 root = vec3(0, 0, 0);
   for(int i=0; i<sphere_xyz.size(); i++){
     vec3& xyz = sphere_xyz[i];
-    float distance = math::distance(xyz, current_pose) - radius;
+    float distance = math::distance(xyz, rad_struct->detection.ransac.current_pose) - radius;
 
     if(distance <= rad_struct->detection.ransac.thres_sphere){
       I = sphere_i[i];
-      Nxyz = normalize(xyz - current_pose);
+      Nxyz = normalize(xyz - rad_struct->detection.ransac.current_pose);
       It = ope_normal->compute_It(xyz, Nxyz, root);
       R = math::distance_from_origin(xyz);
 
