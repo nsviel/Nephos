@@ -37,7 +37,9 @@ void Detection::start_thread(dat::base::Sensor* sensor){
 void Detection::run_thread(dat::base::Sensor* sensor){
   //---------------------------
 
-  this->make_sphere_detection(sensor);
+  this->detect_circle_in_image(sensor);
+  this->draw_detection_image(sensor);
+  this->draw_detection_glyph(sensor);
 
   //---------------------------
   this->idle = true;
@@ -54,15 +56,6 @@ void Detection::wait_thread(){
 }
 
 //Subfunction
-void Detection::make_sphere_detection(dat::base::Sensor* sensor){
-  //---------------------------
-
-  this->detect_circle_in_image(sensor);
-  this->draw_detection_image(sensor);
-  this->draw_detection_glyph(sensor);
-
-  //---------------------------
-}
 void Detection::detect_circle_in_image(dat::base::Sensor* sensor){
   //---------------------------
 

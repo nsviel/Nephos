@@ -9,7 +9,6 @@ namespace dat{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection::image{class Detection;}
 namespace rad::detection::cloud{class Detection;}
-namespace rad::detection::cloud{class Ransac;}
 namespace rad::model{class Model;}
 namespace rad::model{class Measure;}
 namespace rad::gui{class Panel;}
@@ -39,7 +38,6 @@ public:
   inline rad::Structure* get_rad_struct(){return rad_struct;}
   inline rad::detection::image::Detection* get_image_detection(){return rad_image_detection;}
   inline rad::detection::cloud::Detection* get_cloud_detection(){return rad_cloud_detection;}
-  inline rad::detection::cloud::Ransac* get_cloud_ransac(){return rad_cloud_ransac;}
   inline rad::model::Model* get_rad_model(){return rad_model;}
   inline rad::model::Measure* get_model_measure(){return rad_measure;}
 
@@ -52,7 +50,6 @@ private:
   //Child
   rad::Structure* rad_struct;
   rad::detection::image::Detection* rad_image_detection;
-  rad::detection::cloud::Ransac* rad_cloud_ransac;
   rad::detection::cloud::Detection* rad_cloud_detection;
   rad::model::Model* rad_model;
   rad::model::Measure* rad_measure;

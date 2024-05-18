@@ -27,7 +27,6 @@ public:
   void wait_thread();
 
   //Subfunction
-  void make_sphere_detection(dat::base::Sensor* sensor);
   void detect_circle_in_image(dat::base::Sensor* sensor);
   void draw_detection_image(dat::base::Sensor* sensor);
   void draw_detection_glyph(dat::base::Sensor* sensor);
