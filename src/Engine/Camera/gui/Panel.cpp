@@ -9,9 +9,9 @@ namespace cam::gui{
 Panel::Panel(cam::Node* node_camera, bool* show_window){
   //---------------------------
 
-  this->cam_control = node_camera->get_control();
-  this->cam_manager = node_camera->get_manager();
-  this->cam_struct = node_camera->get_struct();
+  this->cam_control = node_camera->get_cam_control();
+  this->cam_manager = node_camera->get_cam_manager();
+  this->cam_struct = node_camera->get_cam_struct();
   this->show_window = show_window;
   this->name = "Camera";
 

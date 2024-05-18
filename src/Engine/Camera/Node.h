@@ -8,6 +8,7 @@ namespace eng{class Node;}
 namespace sce{class Node;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
+namespace cam{class Pather;}
 namespace cam{class Structure;}
 namespace cam::gui{class Control;}
 namespace cam::gui{class Panel;}
@@ -32,9 +33,9 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
 
   inline cam::gui::Control* get_gui_control(){return gui_control;}
-  inline cam::Control* get_control(){return cam_control;}
-  inline cam::Manager* get_manager(){return cam_manager;}
-  inline cam::Structure* get_struct(){return cam_struct;}
+  inline cam::Control* get_cam_control(){return cam_control;}
+  inline cam::Manager* get_cam_manager(){return cam_manager;}
+  inline cam::Structure* get_cam_struct(){return cam_struct;}
 
 private:
   //Dependancy
@@ -45,6 +46,7 @@ private:
   cam::Structure* cam_struct;
   cam::Control* cam_control;
   cam::Manager* cam_manager;
+  cam::Pather* cam_pather;
   cam::gui::Control* gui_control;
   cam::gui::Panel* gui_panel;
 };

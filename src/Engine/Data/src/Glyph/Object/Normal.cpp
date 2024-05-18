@@ -44,7 +44,7 @@ void Normal::update_pose(dat::base::Entity* entity){
   utl::base::Pose* entity_pose = entity->get_pose();
   pose.model = entity_pose->model;
 
-  cam::Control* cam_control = node_camera->get_control();
+  cam::Control* cam_control = node_camera->get_cam_control();
   cam_control->compute_camera_mvp(&pose);
 
   //---------------------------

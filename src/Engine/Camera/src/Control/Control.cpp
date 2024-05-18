@@ -10,7 +10,7 @@ namespace cam{
 Control::Control(cam::Node* node_camera){
   //---------------------------
 
-  this->cam_struct = node_camera->get_struct();
+  this->cam_struct = node_camera->get_cam_struct();
   this->cam_proj = new cam::Projection(node_camera);
 
   this->vec_mode.push_back(new cam::mode::Player(node_camera));

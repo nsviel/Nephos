@@ -58,7 +58,7 @@ void Wheel::make_action(float direction){
     }
     case WHEEL_CAM_Z:{
       cam::Node* node_camera = node_engine->get_node_camera();
-      cam::Control* cam_control = node_camera->get_control();
+      cam::Control* cam_control = node_camera->get_cam_control();
       cam_control->control_wheel(direction * radian);
       break;
     }

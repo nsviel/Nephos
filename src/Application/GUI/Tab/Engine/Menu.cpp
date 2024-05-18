@@ -16,7 +16,7 @@ Menu::Menu(gui::Node* node_gui){
   this->node_engine = node_gui->get_node_engine();
 
   cam::Node* node_camera = node_engine->get_node_camera();
-  this->cam_manager = node_camera->get_manager();
+  this->cam_manager = node_camera->get_cam_manager();
 
   //---------------------------
 }

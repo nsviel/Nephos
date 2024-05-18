@@ -65,7 +65,7 @@ void Object::update_data(){
 }
 void Object::update_pose(){
   if(node_camera == nullptr) cout<<"[error] Object "<<name<<" - engine not initialized"<<endl;
-  cam::Control* cam_control = node_camera->get_control();
+  cam::Control* cam_control = node_camera->get_cam_control();
   //----------------------------
 
   //Update own pose
