@@ -40,8 +40,8 @@ void Panel::design_panel(){
   //---------------------------
 
   this->cam_parameter();
-  this->cam_info();
   this->cam_pather();
+  this->cam_info();
 
   //---------------------------
 }
@@ -52,7 +52,7 @@ void Panel::cam_parameter(){
   //---------------------------
 
   //Camera parameters
-  ImGui::SliderFloat("FOV (°)", &camera->fov, 100.0f, 1.0f);
+  ImGui::SliderFloat("FOV (°)", &camera->fov, 1.0f, 100.0f);
   glm::vec2* sensibility;
   switch(camera->mode){
     case CAMERA_MODE_PLAYER:{
@@ -91,9 +91,24 @@ void Panel::cam_parameter(){
     cam_control->set_camera_mode(camera);
   }
   ImGui::Columns(1);
-  ImGui::Separator();
 
   //---------------------------
+  ImGui::Separator();
+}
+void Panel::cam_pather(){
+  //---------------------------
+
+  ImGui::Text("Path");
+  ImGui::Checkbox("Enable", &cam_struct->path.enable);
+  if(cam_struct->path.enable){
+    ImGui::SliderFloat("Amplitude", &cam_struct->path.amplitude, 1.0f, 10.0f);
+    ImGui::SliderFloat("Frequency", &cam_struct->path.frequency, 0.0f, 10.0f);
+    ImGui::SliderFloat("Phase", &cam_struct->path.phase, 0.0f, 10.0f);
+    ImGui::SliderFloat("Lambda", &cam_struct->path.lambda, 0.0f, 10.0f);
+  }
+
+  //---------------------------
+  ImGui::Separator();
 }
 void Panel::cam_info(){
   cam::Entity* camera = cam_struct->cam_current;
@@ -137,13 +152,7 @@ void Panel::cam_info(){
   }
 
   //---------------------------
-}
-void Panel::cam_pather(){
-  //---------------------------
-
-
-
-  //---------------------------
+  ImGui::Separator();
 }
 void Panel::cam_mode(){
   cam::Entity* camera = cam_struct->cam_current;

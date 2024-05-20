@@ -24,8 +24,8 @@ public:
 
   //Sub functions
   void cam_parameter();
-  void cam_info();
   void cam_pather();
+  void cam_info();
   void cam_mode();
 
 private:

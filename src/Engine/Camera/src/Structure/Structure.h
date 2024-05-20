@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Camera/src/Structure/Path.h>
 #include <Camera/src/Object/Entity.h>
 #include <vector>
 
@@ -12,6 +13,7 @@ struct Structure{
   int ID = 0;
   std::vector<cam::Entity*> vec_camera;
   cam::Entity* cam_current = nullptr;
+  cam::structure::Path path;
 
   //---------------------------
 };

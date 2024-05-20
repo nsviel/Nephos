@@ -26,6 +26,7 @@ public:
   void camera_down(cam::Entity* camera, float speed);
   void camera_mouse(cam::Entity* camera);
   void camera_zoom(cam::Entity* camera, float speed);
+  void camera_wheel(cam::Entity* camera, float speed);
 
   //Camera matrix
   glm::mat4 compute_camera_view(cam::Entity* camera);

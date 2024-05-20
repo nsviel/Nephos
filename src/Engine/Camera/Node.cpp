@@ -49,7 +49,7 @@ void Node::loop(){
   //---------------------------
 
   cam_control->control_mouse();
-  cam_pather->make_path();
+  cam_pather->loop();
 
   //---------------------------
 }

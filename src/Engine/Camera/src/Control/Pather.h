@@ -19,9 +19,10 @@ public:
 public:
   //Main function
   void init();
-  void make_path();
+  void loop();
 
   //Subfunction
+  void make_sin_wheel();
   float update_position(const float& start, const float& end, float t);
 
 private:

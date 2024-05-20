@@ -101,6 +101,13 @@ void Player::camera_zoom(cam::Entity* camera, float speed){
 
   //---------------------------
 }
+void Player::camera_wheel(cam::Entity* camera, float speed){
+  //---------------------------
+
+  this->camera_zoom(camera, speed);
+
+  //---------------------------
+}
 
 //Camera matrix
 glm::mat4 Player::compute_camera_view(cam::Entity* camera){

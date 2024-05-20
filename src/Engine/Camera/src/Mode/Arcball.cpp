@@ -113,7 +113,7 @@ void Arcball::camera_zoom(cam::Entity* camera, float speed){
   //---------------------------
 }
 
-//Camera matrix
+//Subfunction
 mat4 Arcball::compute_camera_view(cam::Entity* camera){
   glm::mat4 cam_view = glm::mat4(1.0f);
   if(camera == nullptr) return cam_view;
@@ -129,8 +129,6 @@ mat4 Arcball::compute_camera_view(cam::Entity* camera){
   //---------------------------
   return cam_view;
 }
-
-//Subfunction
 void Arcball::rotate_by_angle(cam::Entity* camera, vec2 angle){
   //---------------------------
 
