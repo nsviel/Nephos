@@ -46,6 +46,7 @@ void Node::init(){
   gui_font->init_font();
   gui_style->init_style();
   gui_theme->init_theme();
+  gui_docking->dock_load_state();
 
   //---------------------------
 }
@@ -53,7 +54,7 @@ void Node::loop(){
   //---------------------------
 
   ImGui::NewFrame();
-  gui_docking->docker_space_main();
+  gui_docking->dock_main_node();
   gui_tab->loop();
   gui_control->run_control();
 

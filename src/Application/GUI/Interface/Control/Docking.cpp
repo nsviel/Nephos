@@ -15,7 +15,7 @@ Docking::Docking(gui::Node* gui){
 Docking::~Docking(){}
 
 //Main function
-void Docking::docker_space_main(){
+void Docking::dock_main_node(){
   //---------------------------
 
   static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_PassthruCentralNode;
@@ -47,6 +47,21 @@ void Docking::docker_space_main(){
   }
 
   ImGui::End();
+
+  //---------------------------
+}
+void Docking::dock_save_state(){
+  //---------------------------
+
+  ImGui::SaveIniSettingsToDisk("../media/config/gui/imgui.ini");
+  cout<<"[OK] Imgui docking state saved"<<endl;
+
+  //---------------------------
+}
+void Docking::dock_load_state(){
+  //---------------------------
+
+  ImGui::LoadIniSettingsFromDisk("../media/config/gui/imgui.ini");
 
   //---------------------------
 }

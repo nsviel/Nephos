@@ -16,7 +16,9 @@ public:
 
 public:
   //Main functions
-  void docker_space_main();
+  void dock_main_node();
+  void dock_save_state();
+  void dock_load_state();
 
 private:
 };

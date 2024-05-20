@@ -34,6 +34,7 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline gui::interface::Control* get_gui_control(){return gui_control;}
+  inline gui::interface::Docking* get_gui_docking(){return gui_docking;}
   inline gui::style::Config* get_gui_style(){return gui_style;}
   inline gui::Tab* get_gui_tab(){return gui_tab;}
   inline gui::style::Font* get_gui_font(){return gui_font;}

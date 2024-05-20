@@ -46,7 +46,8 @@ void Config::style_window(){
   style.WindowBorderSize = 0.0f;
 
   //IO parameters
-  io.IniFilename = "../media/config/gui/imgui.ini";
+  //io.IniFilename = "../media/config/gui/imgui.ini";
+  io.IniFilename = NULL; //Prevent auto save
   io.ConfigWindowsResizeFromEdges = true;
   io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
   io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
