@@ -4,6 +4,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
+namespace rad::model{class Model;}
 
 
 namespace rad::model{
@@ -23,10 +24,11 @@ public:
 
   //Subfunction
   void update_plot_data();
-  void clear_plot_data();
+  void reset_plot_data();
 
 private:
   rad::Structure* rad_struct;
+  rad::model::Model* rad_model;
 };
 
 }

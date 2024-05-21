@@ -12,6 +12,7 @@ Plot::Plot(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
+  this->rad_model = node_radio->get_rad_model();
 
   //---------------------------
 }
@@ -64,18 +65,18 @@ void Plot::plot_measure(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
+  if(measure->data.size() == 0) return;
+
   // Plot 3D scatter plot
-  if(measure->data.size() > 0) {
-    std::vector<float> x, y, z;
-    for(const auto& point : measure->data){
-      if(point.x == -1 || point.y > 60) continue;
-      x.push_back(point.x);
-      y.push_back(point.y);
-      z.push_back(log(point.z));
-    }
-    matplotlibcpp::scatter(x, y, z, 1, { {"marker", "."}, {"color", "black"} });
-    matplotlibcpp::show();
+  std::vector<float> x, y, z;
+  for(const auto& point : measure->data){
+    if(point.x == -1 || point.y > 60) continue;
+    x.push_back(point.x);
+    y.push_back(point.y);
+    z.push_back(log(point.z));
   }
+  matplotlibcpp::scatter(x, y, z, 1, { {"marker", "."}, {"color", "black"} });
+  matplotlibcpp::show();
 
   //---------------------------
 }
@@ -142,6 +143,11 @@ void Plot::update_plot_data(){
   rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
+  plot->IfR.axis_x.data.clear();
+  plot->IfR.axis_y.data.clear();
+  plot->IfIt.axis_x.data.clear();
+  plot->IfIt.axis_y.data.clear();
+
   //Fill model plot data
   for(int i=0; i<measure->data.size(); i++){
     float& R = measure->data[i].x;
@@ -150,26 +156,31 @@ void Plot::update_plot_data(){
     if(R == -1) continue;
 
     //I(R)
-    int R_index = static_cast<int>(std::round(R / measure->R_resolution));
-    if(R > optim->axis_x.bound[0] && R < optim->axis_x.bound[1] // R inside user defined bounds
-      && It > optim->axis_y.current && It < optim->axis_y.current + 5){ //All data between It current + 5 degrees
-      plot->IfR.axis_x.data[R_index] = R;
-      plot->IfR.axis_y.data[R_index] = I;
+    if(R > optim->axis_x.bound.x && R < optim->axis_x.bound.y // R inside bounds
+      && It > optim->axis_y.current && It < optim->axis_y.current + 5){ //It inside selected It + 5 degrees
+      //Raw
+      plot->IfR.axis_x.data.push_back(R);
+      plot->IfR.axis_y.data.push_back(I);
+
+      //Fitted
+      float fit = rad_model->apply_model(R, It);
+      plot->IfR.axis_y.fitting.push_back(fit);
 
       if(R > optim->axis_x.current && R < optim->axis_x.current + 0.05){
         plot->IfR.highlight = vec2(R, I);
       }
-    }else{
-      //plot->IfR.axis_x.data[R_index] = 0;
-      //plot->IfR.axis_y.data[R_index] = 0;
     }
 
     //I(It)
     if(It > optim->axis_y.bound[0] && It < optim->axis_y.bound[1] // It It inside user defined bounds
       && R > optim->axis_x.current && R < optim->axis_x.current + 0.05){ //All data between R current + 0.05m
-      int index = static_cast<int>(std::round(It / measure->It_resolution));
-      plot->IfIt.axis_x.data[index] = It;
-      plot->IfIt.axis_y.data[index] = I;
+      //Raw
+      plot->IfIt.axis_x.data.push_back(It);
+      plot->IfIt.axis_y.data.push_back(I);
+
+      //Fitted
+      float fit = rad_model->apply_model(R, It);
+      plot->IfIt.axis_y.fitting.push_back(fit);
     }
 
     //I(R, It)
@@ -178,7 +189,7 @@ void Plot::update_plot_data(){
 
   //---------------------------
 }
-void Plot::clear_plot_data(){
+void Plot::reset_plot_data(){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   rad::structure::Plot* plot = &rad_struct->model.plot;

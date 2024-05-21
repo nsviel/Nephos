@@ -194,7 +194,7 @@ void Model::plot_measure_IfR(float height){
 
   if(plot->IfR.title == "") return;
   plot->IfR.dimension = ivec2(-1, height);
-  utl_plot->plot_regression(&plot->IfR);
+  utl_plot->plot_scatter(&plot->IfR);
 
   //---------------------------
 }

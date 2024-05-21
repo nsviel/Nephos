@@ -73,7 +73,7 @@ void Measure::clear_measure(){
 
   //Import file model data
   measure->data.clear();
-  rad_plot->clear_plot_data();
+  rad_plot->reset_plot_data();
 
   //---------------------------
 }

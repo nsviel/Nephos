@@ -4,7 +4,6 @@
 
 namespace rad{class Structure;}
 namespace rad{class Node;}
-namespace rad::model{class Plot;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
 
@@ -31,7 +30,6 @@ public:
 
 private:
   rad::Structure* rad_struct;
-  rad::model::Plot* rad_plot;
   ope::fitting::Polyfit* ope_polyfit;
   ope::fitting::Surface* ope_surface;
 };

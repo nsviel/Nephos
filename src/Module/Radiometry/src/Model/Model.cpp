@@ -11,7 +11,6 @@ Model::Model(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_plot = node_radio->get_model_plot();
   this->ope_polyfit = new ope::fitting::Polyfit();
   this->ope_surface = new ope::fitting::Surface();
 
@@ -58,7 +57,6 @@ void Model::compute_model(){
 
   this->build_model();
   this->compute_model_rmse();
-  rad_plot->update_plot_data();
 
   //---------------------------
 }
@@ -79,6 +77,7 @@ void Model::build_model(){
   //Optimization algorithm
   ope_surface->set_degree(optim->degree_x, optim->degree_y);
   ope_surface->compute(vec_data, optim->axis_x.bound, optim->axis_y.bound);
+  rad_struct->model.optim.coefficient = ope_surface->get_coefficient();
 
   //---------------------------
 }
@@ -106,6 +105,7 @@ float Model::compute_model_rmse(){
   return RMSE;
 }
 float Model::apply_model(float x, float y){
+  if(rad_struct->model.optim.coefficient.size() == 0) return 0;
   //---------------------------
 
   float z = ope_surface->evaluate(x, y);
