@@ -15,7 +15,7 @@ Measure::Measure(rad::Node* node_radio){
   this->rad_plot = node_radio->get_model_plot();
 
   //---------------------------
-  rad_plot->init_plot_data();
+  this->init();
 }
 Measure::~Measure(){}
 
@@ -40,6 +40,8 @@ void Measure::init(){
   //Measure
   measure->size = measure->R_size * measure->It_size;
   measure->data = vector<vec3>(measure->size, vec3(-1, -1, -1));
+
+  rad_plot->init();
 
   //---------------------------
 }

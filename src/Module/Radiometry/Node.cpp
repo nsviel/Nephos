@@ -42,6 +42,7 @@ void Node::config(){
 void Node::init(){
   //---------------------------
 
+  //rad_measure->init();
 
   //---------------------------
 }

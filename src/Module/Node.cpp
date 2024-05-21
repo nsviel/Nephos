@@ -26,6 +26,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
+  node_radio->init();
   node_kinect->init();
 
   //---------------------------

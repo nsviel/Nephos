@@ -142,55 +142,6 @@ void Plot::plot_model(){
 }
 
 //Subfunction
-void Plot::init_plot_data(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Plot* plot = &rad_struct->model.plot;
-  //---------------------------
-
-  //I(R)
-  plot->IfR.title = "I(R)";
-  plot->IfR.highlight = vec2(0, 0);
-  plot->IfR.axis_x.resolution = 0.01f;
-  plot->IfR.axis_x.min = 0.0f;
-  plot->IfR.axis_x.max = 5.0f;
-  plot->IfR.axis_x.size = static_cast<int>((plot->IfR.axis_x.max - plot->IfR.axis_x.min) / plot->IfR.axis_x.resolution) + 1;
-  plot->IfR.axis_x.data = vector<float>(plot->IfR.axis_x.size, 0.0f);
-  plot->IfR.axis_y.data = vector<float>(plot->IfR.axis_x.size, 0.0f);
-
-  //I(It)
-  plot->IfIt.title = "I(It)";
-  plot->IfIt.axis_x.resolution = 1.0f;
-  plot->IfIt.axis_x.min = 0.0f;
-  plot->IfIt.axis_x.max = 90.0f;
-  plot->IfIt.axis_x.size = static_cast<int>((plot->IfIt.axis_x.max - plot->IfIt.axis_x.min) / plot->IfIt.axis_x.resolution) + 1;
-  plot->IfIt.axis_x.data = vector<float>(plot->IfIt.axis_x.size, 0.0f);
-  plot->IfIt.axis_y.data = vector<float>(plot->IfIt.axis_x.size, 0.0f);
-
-  //I(R, It)
-  plot->IfRIt.title = "I(R, It)";
-  plot->IfRIt.axis_x.resolution = 0.01f;
-  plot->IfRIt.axis_x.min = 0.0f;
-  plot->IfRIt.axis_x.max = 5.0f;
-  plot->IfRIt.axis_x.size = static_cast<int>((plot->IfRIt.axis_x.max - plot->IfRIt.axis_x.min) / plot->IfRIt.axis_x.resolution) + 1;
-  plot->IfRIt.axis_y.resolution = 1.0f;
-  plot->IfRIt.axis_y.min = 0.0f;
-  plot->IfRIt.axis_y.max = 90.0f;
-  plot->IfRIt.axis_y.size = static_cast<int>((plot->IfRIt.axis_y.max - plot->IfRIt.axis_y.min) / plot->IfRIt.axis_y.resolution) + 1;
-  plot->IfRIt.axis_z.min = 0.0f;
-  plot->IfRIt.axis_z.max = 2500.0f;
-  plot->IfRIt.axis_z.size = plot->IfRIt.axis_x.size * plot->IfRIt.axis_y.size;
-  plot->IfRIt.axis_z.data = vector<float>(plot->IfRIt.axis_z.size, 0.0f);
-
-  //Measure
-  measure->data = vector<vec3>(plot->IfRIt.axis_z.size, vec3(-1, -1, -1));
-  optim->axis_x.bound = vec2(1000, -1);
-  optim->axis_x.current = 1;
-  optim->axis_y.bound = vec2(0, 90);
-  optim->axis_y.current = 40;
-
-  //---------------------------
-}
 void Plot::update_plot_data(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   rad::structure::Optimization* optim = &rad_struct->model.optim;

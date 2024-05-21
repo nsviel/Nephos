@@ -22,7 +22,6 @@ public:
   void plot_model();
 
   //Subfunction
-  void init_plot_data();
   void update_plot_data();
   void clear_plot_data();
 

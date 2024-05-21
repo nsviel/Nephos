@@ -192,6 +192,7 @@ void Model::plot_measure_IfR(float height){
   rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
+  if(plot->IfR.title == "") return;
   plot->IfR.dimension = ivec2(-1, height);
   utl_plot->plot_regression(&plot->IfR);
 
@@ -201,6 +202,7 @@ void Model::plot_measure_IfIt(float height){
   rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
+  if(plot->IfIt.title == "") return;
   plot->IfIt.dimension = ivec2(-1, height);
   utl_plot->plot_regression(&plot->IfIt);
 
@@ -212,6 +214,7 @@ void Model::plot_model_heatmap(float height){
   rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
+  if(plot->IfRIt.title == "") return;
   plot->IfRIt.dimension = ivec2(-1, height);
   bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &optim->axis_x, &optim->axis_y);
   if(need_update){
