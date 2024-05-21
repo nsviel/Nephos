@@ -4,9 +4,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad::model{class Model;}
-namespace rad::model{class Measure;}
-namespace utl::implot{class Plot;}
+namespace rnd{class Stream;}
 
 
 namespace rad::gui{
@@ -22,8 +20,12 @@ public:
   //Main function
   void draw_tab();
 
-private:
+  //Subfunction
+  void display_image();
 
+private:
+  rad::Structure* rad_struct;
+  rnd::Stream* stream;
 };
 
 }
