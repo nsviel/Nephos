@@ -23,7 +23,7 @@ public:
   void apply_correction(dat::base::Sensor* sensor, utl::media::Image* ir, utl::media::Image* depth);
 
   //Subfunction
-  void compute_normal(utl::media::Image* depth, vector<glm::vec3>& vec_Nxyz);
+  void compute_normal(dat::base::Sensor* sensor, utl::media::Image* depth, vector<glm::vec3>& vec_Nxyz);
 
 private:
   rad::Structure* rad_struct;
