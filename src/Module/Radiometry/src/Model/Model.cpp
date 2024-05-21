@@ -109,6 +109,7 @@ float Model::apply_model(float x, float y){
   //---------------------------
 
   float z = ope_surface->evaluate(x, y);
+  z = std::exp(z);
 
   if(z < 0) z = 0;
 

@@ -158,8 +158,8 @@ void Plot::plot_regression(utl::base::Plot* plot){
     ImPlot::SetupAxes(plot->axis_x_name.c_str(), plot->axis_x_name.c_str(), axis_flag, axis_flag);
 
     // Plot the data
-    string truc = plot->title + "##scatter";
-    ImPlot::PlotScatter(truc.c_str(), plot->axis_x.data.data(), plot->axis_y.data.data(), plot->axis_x.data.size());
+    string ID = plot->title + "##scatter";
+    ImPlot::PlotScatter(ID.c_str(), plot->axis_x.data.data(), plot->axis_y.data.data(), plot->axis_x.data.size());
 
     // Plot an additional point in a different color
     if(plot->highlight != vec2(-1, -1)){
@@ -172,7 +172,14 @@ void Plot::plot_regression(utl::base::Plot* plot){
     }
 
     // Plot the regression line
-    ImPlot::PlotLine("Regression Line", plot->axis_x.fitting.data(), plot->axis_y.fitting.data(), plot->axis_x.fitting.size());
+    if(plot->axis_y.fitting.size() != 0){
+      string ID = plot->title + "##fitting";
+      ImPlot::PushStyleColor(ImPlotCol_Line, IM_COL32(255, 0, 0, 255));
+      ImPlot::PushStyleVar(ImPlotStyleVar_MarkerSize, 1);
+      ImPlot::PlotScatter(ID.c_str(), plot->axis_x.data.data(), plot->axis_y.fitting.data(), plot->axis_y.fitting.size());
+      ImPlot::PopStyleVar();
+      ImPlot::PopStyleColor();
+    }
 
     // End the plot
     ImPlot::EndPlot();

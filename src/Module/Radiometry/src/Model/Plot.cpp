@@ -145,8 +145,10 @@ void Plot::update_plot_data(){
 
   plot->IfR.axis_x.data.clear();
   plot->IfR.axis_y.data.clear();
+  plot->IfR.axis_y.fitting.clear();
   plot->IfIt.axis_x.data.clear();
   plot->IfIt.axis_y.data.clear();
+  plot->IfIt.axis_y.fitting.clear();
 
   //Fill model plot data
   for(int i=0; i<measure->data.size(); i++){

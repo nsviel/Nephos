@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace rad{class Node;}
+namespace rad{class Structure;}
 
 
 namespace rad{
@@ -18,7 +19,7 @@ public:
   //Main function
 
 private:
-
+  rad::Structure* rad_struct;
 };
 
 }
