@@ -27,7 +27,7 @@ Ransac::~Ransac(){}
 
 //Main function
 void Ransac::ransac_sphere(dat::base::Sensor* sensor){
-/*  if(step != rad::detection::cloud::PROCESSING) return;
+  //if(step != rad::detection::cloud::PROCESSING) return;
   //---------------------------
 
   utl::base::Data* data = sensor->get_data();
@@ -55,11 +55,11 @@ void Ransac::ransac_sphere(dat::base::Sensor* sensor){
   ope_ransac->ransac_sphere_in_cloud(sphere_xyz, rad_struct->detection.ransac.current_pose, radius, rad_struct->detection.sphere_diameter/2);
 
   //Apply post-processing stuff
-  rad_glyph->draw_sphere_glyph(sensor, rad_struct->detection.ransac.current_pose, radius);
+  rad_glyph->draw_sphere_glyph(rad_struct->detection.ransac.current_pose, radius);
   this->data_IfR(sphere_xyz, sphere_i);
   this->data_IfIt(sphere_xyz, sphere_i);
   this->data_model(sphere_xyz, sphere_i);
-*/
+
   //---------------------------
 }
 

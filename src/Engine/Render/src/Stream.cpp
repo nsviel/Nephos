@@ -35,7 +35,7 @@ bool Stream::check_image(utl::media::Image* utl_image){
   //---------------------------
 
   if(utl_image->size == 0){
-    cout<<"[error] stream image should have size not at 0"<<endl;
+    //cout<<"[error] stream image should have size not at 0"<<endl;
     return false;
   }
   if(utl_image->format == ""){

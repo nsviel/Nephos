@@ -20,6 +20,7 @@ Image::Image(k4n::Node* node_k4n){
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->thread_pool = node_engine->get_thread_pool();
   this->rad_detection = node_radio->get_image_detection();
+  this->rad_correction = node_radio->get_rad_correction();
 
   //---------------------------
 }
@@ -55,6 +56,8 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
 
   //Radiometry image detection
   rad_detection->start_thread(sensor, &sensor->ir.image);
+
+  rad_correction->apply_correction(&sensor->ir.image, &sensor->depth.image);
 
   //---------------------------
   this->idle = true;

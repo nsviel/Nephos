@@ -19,17 +19,17 @@ Glyph::Glyph(rad::Node* node_radio){
 Glyph::~Glyph(){}
 
 //Main function
-void Glyph::draw_sphere_glyph(dat::base::Sensor* sensor, vec3 pose, float radius){
+void Glyph::draw_sphere_glyph(vec3 pose, float radius){
   //---------------------------
 
-  this->reset_glyph(sensor);
-  this->draw_glyph(sensor, pose, radius);
+  this->reset_glyph();
+  this->draw_glyph(pose, radius);
 
   //---------------------------
 }
 
 //Subfunction
-void Glyph::reset_glyph(dat::base::Sensor* sensor){
+void Glyph::reset_glyph(){
   dat::glyph::object::Sphere* sphere = rad_struct->detection.glyph_calibration;
   //---------------------------
 
@@ -37,7 +37,7 @@ void Glyph::reset_glyph(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Glyph::draw_glyph(dat::base::Sensor* sensor, vec3 pose, float radius){
+void Glyph::draw_glyph(vec3 pose, float radius){
   dat::glyph::object::Sphere* glyph_sphere = rad_struct->detection.glyph_calibration;
   //---------------------------
 

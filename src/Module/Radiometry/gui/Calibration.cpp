@@ -32,9 +32,14 @@ void Calibration::draw_tab(){
 void Calibration::display_image(){
   //---------------------------
 
+  utl::media::Image* image = &rad_struct->detection.hough.image;
+
+
+
+
   ImVec2 image_size = ImGui::GetContentRegionAvail();
   image_size.y -= 5;
-  stream->draw_stream(&rad_struct->detection.hough.image, image_size);
+  stream->draw_stream(&rad_struct->correction.image, image_size);
 
   //---------------------------
   ImGui::Separator();

@@ -19,11 +19,11 @@ public:
 
 public:
   //Main function
-  void draw_sphere_glyph(dat::base::Sensor* sensor, vec3 pose, float radius);
+  void draw_sphere_glyph(vec3 pose, float radius);
 
   //Subfunction
-  void reset_glyph(dat::base::Sensor* sensor);
-  void draw_glyph(dat::base::Sensor* sensor, vec3 pose, float radius);
+  void reset_glyph();
+  void draw_glyph(vec3 pose, float radius);
 
 private:
   dat::Glyph* dat_glyph;
