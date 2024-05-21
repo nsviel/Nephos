@@ -14,7 +14,6 @@ Plot::Plot(rad::Node* node_radio){
   this->rad_struct = node_radio->get_rad_struct();
 
   //---------------------------
-  this->init_plot_data();
 }
 Plot::~Plot(){}
 
@@ -45,7 +44,7 @@ void Plot::plot_model(){
   //if(ope_surface->has_been_computed() == false){
     //this->compute_model();
   //}
-/*
+  /*
   // Generate values for x and y
   std::vector<float> x_values;
   for(float i = optim->axis_x.bound[0]; i <= optim->axis_x.bound[1]; i += optim->axis_x.resolution){
@@ -75,22 +74,21 @@ void Plot::plot_model(){
 
   // Ensure z is not empty before plotting
   if (z.size() == 0 || z[0].size() == 0) return;
-*/
-rad::structure::Measure* measure = &rad_struct->model.measure;
-//---------------------------
+  matplotlibcpp::plot_surface(x, y, z);
+  */
 
-// Plot 3D scatter plot
-if(measure->vec_data.size() > 0) {
-  std::vector<float> x, y, z;
-  for(const auto& point : measure->vec_data){
-    if(point.x == -1 || point.y > 60) continue;
-    x.push_back(point.x);
-    y.push_back(point.y);
-    z.push_back(log(point.z));
+  rad::structure::Measure* measure = &rad_struct->model.measure;
+  if(measure->vec_data.size() > 0) {
+    std::vector<float> x_raw, y_raw, z_raw;
+    for(const auto& point : measure->vec_data){
+      if(point.x == -1 || point.y > 60) continue;
+      x_raw.push_back(point.x);
+      y_raw.push_back(point.y);
+      z_raw.push_back(log(point.z));
+    }
+    matplotlibcpp::scatter(x_raw, y_raw, z_raw, 1, { {"marker", "."}, {"color", "black"} });
+    matplotlibcpp::show();
   }
-  matplotlibcpp::scatter(x, y, z, 1, { {"marker", "."}, {"color", "black"} });
-  matplotlibcpp::show();
-}
 
   //---------------------------
 }

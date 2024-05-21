@@ -19,6 +19,7 @@ struct Structure{
   //Structure
   rad::structure::Detection detection;
   rad::structure::Model model;
+  rad::structure::Plot plot;
 
   //---------------------------
 };
