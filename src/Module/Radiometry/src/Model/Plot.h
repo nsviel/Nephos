@@ -17,6 +17,7 @@ public:
 
 public:
   //Main function
+  void init();
   void plot_measure();
   void plot_model();
 

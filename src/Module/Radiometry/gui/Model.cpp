@@ -43,6 +43,7 @@ void Model::draw_tab(){
 //Subfunction
 void Model::parameter_measure(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -75,7 +76,7 @@ void Model::parameter_measure(){
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", measure->path.c_str());
 
     //Heatmap scale
-    ImGui::DragFloatRange2("Heatmap scale",&measure->IfRIt.axis_z.min, &measure->IfRIt.axis_z.max, 100, 0, 60000, "%.0f");
+    ImGui::DragFloatRange2("Heatmap scale",&plot->IfRIt.axis_z.min, &plot->IfRIt.axis_z.max, 100, 0, 60000, "%.0f");
 
     //Import / export / clear
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
@@ -106,6 +107,7 @@ void Model::parameter_measure(){
 }
 void Model::parameter_model(){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -187,30 +189,31 @@ void Model::parameter_model(){
 
 //Plot function
 void Model::plot_measure_IfR(float height){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
-  measure->IfR.dimension = ivec2(-1, height);
-  utl_plot->plot_regression(&measure->IfR);
+  plot->IfR.dimension = ivec2(-1, height);
+  utl_plot->plot_regression(&plot->IfR);
 
   //---------------------------
 }
 void Model::plot_measure_IfIt(float height){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
-  measure->IfIt.dimension = ivec2(-1, height);
-  utl_plot->plot_regression(&measure->IfIt);
+  plot->IfIt.dimension = ivec2(-1, height);
+  utl_plot->plot_regression(&plot->IfIt);
 
   //---------------------------
 }
 void Model::plot_model_heatmap(float height){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   rad::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
-  measure->IfRIt.dimension = ivec2(-1, height);
-  bool need_update = utl_plot->plot_heatmap(&measure->IfRIt, &optim->axis_x, &optim->axis_y);
+  plot->IfRIt.dimension = ivec2(-1, height);
+  bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &optim->axis_x, &optim->axis_y);
   if(need_update){
     rad_plot->update_plot_data();
   }

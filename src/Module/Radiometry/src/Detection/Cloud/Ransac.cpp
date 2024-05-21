@@ -67,6 +67,7 @@ void Ransac::ransac_sphere(dat::base::Sensor* sensor){
 void Ransac::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   //Search for closest point
@@ -83,11 +84,11 @@ void Ransac::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   }
 
   //Add into model data vector
-  int index = static_cast<int>(std::round(R / measure->IfR.axis_x.resolution));
-  if(index >= 0 && index < measure->IfR.axis_x.data.size()){
-    measure->IfR.axis_x.data[index] = R;
-    measure->IfR.axis_y.data[index] = I;
-    measure->IfR.highlight = vec2(R, I);
+  int index = static_cast<int>(std::round(R / plot->IfR.axis_x.resolution));
+  if(index >= 0 && index < plot->IfR.axis_x.data.size()){
+    plot->IfR.axis_x.data[index] = R;
+    plot->IfR.axis_y.data[index] = I;
+    plot->IfR.highlight = vec2(R, I);
     optim->axis_x.current = R;
   }
 
@@ -95,6 +96,7 @@ void Ransac::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 }
 void Ransac::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   //Search for closest point
@@ -112,9 +114,9 @@ void Ransac::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       It = ope_normal->compute_It(xyz, Nxyz, root);
 
       //Add into model data vector
-      int index = static_cast<int>(std::round(It / measure->IfIt.axis_x.resolution));
-      measure->IfIt.axis_x.data[index] = It;
-      measure->IfIt.axis_y.data[index] = I;
+      int index = static_cast<int>(std::round(It / plot->IfIt.axis_x.resolution));
+      plot->IfIt.axis_x.data[index] = It;
+      plot->IfIt.axis_y.data[index] = I;
     }
   }
 
@@ -123,6 +125,7 @@ void Ransac::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 void Ransac::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   //Search for closest point
@@ -146,12 +149,12 @@ void Ransac::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       if(R > optim->axis_x.bound[1]) optim->axis_x.bound[1] = R;
 
       // Calculate the index of the cell in the heatmap grid
-      int i = static_cast<int>((R - measure->IfRIt.axis_x.min) / (measure->IfRIt.axis_x.max - measure->IfRIt.axis_x.min) * measure->IfRIt.axis_x.size);
-      int j = static_cast<int>((It - measure->IfRIt.axis_y.max) / (measure->IfRIt.axis_y.min - measure->IfRIt.axis_y.max) * measure->IfRIt.axis_y.size);
-      int index = j * measure->IfRIt.axis_x.size + i;
-      if(index >= 0 && index < measure->IfRIt.axis_z.size){
-        measure->IfRIt.axis_z.data[index] = I;
-        measure->vec_data[index] = vec3(R, It, I);
+      int i = static_cast<int>((R - plot->IfRIt.axis_x.min) / (plot->IfRIt.axis_x.max - plot->IfRIt.axis_x.min) * plot->IfRIt.axis_x.size);
+      int j = static_cast<int>((It - plot->IfRIt.axis_y.max) / (plot->IfRIt.axis_y.min - plot->IfRIt.axis_y.max) * plot->IfRIt.axis_y.size);
+      int index = j * plot->IfRIt.axis_x.size + i;
+      if(index >= 0 && index < plot->IfRIt.axis_z.size){
+        plot->IfRIt.axis_z.data[index] = I;
+        measure->data[index] = vec3(R, It, I);
       }
     }
   }

@@ -20,12 +20,37 @@ Measure::Measure(rad::Node* node_radio){
 Measure::~Measure(){}
 
 //Main function
+void Measure::init(){
+  rad::structure::Measure* measure = &rad_struct->model.measure;
+  //---------------------------
+
+  //R
+  measure->R_resolution = 0.01f;
+  measure->R_range = glm::vec2(0.0f, 5.0f);
+  measure->R_size = (measure->R_range.y - measure->R_range.x) / measure->R_resolution + 1;
+
+  //It
+  measure->It_resolution = 1.0f;
+  measure->It_range = glm::vec2(0.0f, 90.0f);
+  measure->It_size = (measure->It_range.y - measure->It_range.x) / measure->It_resolution + 1;
+
+  //I
+  measure->I_range = glm::vec2(0.0f, 1500.0f);
+
+  //Measure
+  measure->size = measure->R_size * measure->It_size;
+  measure->data = vector<vec3>(measure->size, vec3(-1, -1, -1));
+
+  //---------------------------
+}
+
+//Subfunction
 void Measure::import_measure(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //Import file model data
-  measure->vec_data = utl::file::read_vector(measure->path);
+  measure->data = utl::file::read_vector(measure->path);
   this->find_measure_bound();
   rad_plot->update_plot_data();
 
@@ -35,7 +60,7 @@ void Measure::export_measure(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
-  utl::file::write_vector(measure->path, measure->vec_data);
+  utl::file::write_vector(measure->path, measure->data);
 
   //---------------------------
 }
@@ -44,25 +69,23 @@ void Measure::clear_measure(){
   //---------------------------
 
   //Import file model data
-  measure->vec_data.clear();
+  measure->data.clear();
   rad_plot->clear_plot_data();
 
   //---------------------------
 }
-
-//Subfunction
 void Measure::find_measure_bound(){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
-  for(int i=0; i<measure->vec_data.size(); i++){
-    float& R = measure->vec_data[i].x;
+  for(int i=0; i<measure->data.size(); i++){
+    float& R = measure->data[i].x;
     if(R < 0) continue;
     if(R < optim->axis_x.bound[0]) optim->axis_x.bound[0] = R;
     if(R > optim->axis_x.bound[1]) optim->axis_x.bound[1] = R;
 
-    float& It = measure->vec_data[i].y;
+    float& It = measure->data[i].y;
     if(It < 0) continue;
     if(It < optim->axis_y.bound[0]) optim->axis_y.bound[0] = It;
     if(It > optim->axis_y.bound[1]) optim->axis_y.bound[1] = It;

@@ -18,11 +18,12 @@ public:
 
 public:
   //Main function
+  void init();
+
+  //Subfunction
   void import_measure();
   void export_measure();
   void clear_measure();
-
-  //Subfunction
   void find_measure_bound();
 
 private:
