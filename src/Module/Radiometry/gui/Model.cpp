@@ -11,8 +11,9 @@ Model::Model(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_measure = new rad::model::Measure(node_radio);
-  this->rad_model = new rad::model::Model(node_radio);
+  this->rad_measure = node_radio->get_model_measure();
+  this->rad_model = node_radio->get_rad_model();
+  this->rad_plot = node_radio->get_model_plot();
   this->utl_plot = new utl::implot::Plot();
 
   //---------------------------
@@ -56,7 +57,7 @@ void Model::parameter_measure(){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
   if(ImGui::Button(ICON_FA_PLAY "##measure_plot", ImVec2(25, 0))){
-    rad_measure->plot_measure();
+    rad_plot->plot_measure();
   }
   ImGui::PopStyleColor(2);
 
@@ -119,7 +120,7 @@ void Model::parameter_model(){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
   if(ImGui::Button(ICON_FA_PLAY "##model_plot", ImVec2(25, 0))){
-    rad_model->draw_model();
+    rad_plot->plot_model();
   }
   ImGui::PopStyleColor(2);
 
@@ -145,10 +146,10 @@ void Model::parameter_model(){
     ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", optim->rmse);
     if(ImGui::DragFloatRange2("Range x",&optim->axis_x.bound[0], &optim->axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
-      rad_measure->update_plot_data();
+      rad_plot->update_plot_data();
     }
     if(ImGui::DragFloatRange2("Range y",&optim->axis_y.bound[0], &optim->axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
-      rad_measure->update_plot_data();
+      rad_plot->update_plot_data();
     }
 
     //Model function
@@ -159,7 +160,7 @@ void Model::parameter_model(){
     }
     ImGui::SameLine();
     if(ImGui::Button("Plot##model", ImVec2(120, 0))){
-      rad_model->draw_model();
+      rad_plot->plot_model();
     }
     ImGui::PopStyleColor(2);
 
@@ -211,7 +212,7 @@ void Model::plot_model_heatmap(float height){
   measure->IfRIt.dimension = ivec2(-1, height);
   bool need_update = utl_plot->plot_heatmap(&measure->IfRIt, &optim->axis_x, &optim->axis_y);
   if(need_update){
-    rad_measure->update_plot_data();
+    rad_plot->update_plot_data();
   }
 
   //---------------------------

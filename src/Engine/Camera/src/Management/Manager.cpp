@@ -32,7 +32,8 @@ void Manager::create_camera(){
   //---------------------------
 
   cam::Entity* camera = new cam::Entity();
-  camera->name = "camera_" + to_string(cam_struct->ID++);
+  camera->ID = cam_struct->ID++;
+  camera->name = "camera_" + to_string(camera->ID);
   camera->is_suppressible = false;
   camera->is_movable = false;
   dat_glyph->create_glyph_camera(camera);

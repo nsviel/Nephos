@@ -61,6 +61,7 @@ public:
   glm::vec2 arcball_mouse_sensibility = glm::vec2(0, 0);
   int projection = 0;
   int mode = 0;
+  int ID = -1;
 
   //Camera matrix
   glm::mat4 mat_pose = glm::mat4(1);

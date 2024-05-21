@@ -23,6 +23,7 @@ Node::Node(mod::Node* node_module){
   this->rad_struct = new rad::Structure();
   this->rad_image_detection = new rad::detection::image::Detection(this);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(this);
+  this->rad_plot = new rad::model::Plot(this);
   this->rad_measure = new rad::model::Measure(this);
   this->rad_model = new rad::model::Model(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);

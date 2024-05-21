@@ -4,30 +4,29 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad::model{class Plot;}
 
 
 namespace rad::model{
 
-class Measure
+class Plot
 {
 public:
   //Constructor / Destructor
-  Measure(rad::Node* node_radio);
-  ~Measure();
+  Plot(rad::Node* node_radio);
+  ~Plot();
 
 public:
   //Main function
-  void import_measure();
-  void export_measure();
-  void clear_measure();
+  void plot_measure();
+  void plot_model();
 
   //Subfunction
-  void find_measure_bound();
+  void init_plot_data();
+  void update_plot_data();
+  void clear_plot_data();
 
 private:
   rad::Structure* rad_struct;
-  rad::model::Plot* rad_plot;
 };
 
 }

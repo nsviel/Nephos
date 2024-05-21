@@ -31,7 +31,7 @@ void Menu::draw(){
     this->menu_panel();
     ImGui::EndMenu();
   }
-  if(ImGui::MenuItem("Loader")){
+  if(ImGui::MenuItem(ICON_FA_FOLDER "##Loader")){
     this->menu_loader();
   }
   if(ImGui::MenuItem(ICON_FA_CAMERA)){

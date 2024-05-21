@@ -4,6 +4,7 @@
 
 namespace rad{class Structure;}
 namespace rad{class Node;}
+namespace rad::model{class Plot;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
 
@@ -22,16 +23,15 @@ public:
   void import_model();
   void export_model();
   void compute_model();
-  void draw_model();
 
   //Subfunction
-  void make_model();
+  void build_model();
   float apply_model(float x, float y);
-  float validation_model();
-  void update_plot_data();
+  float compute_model_rmse();
 
 private:
   rad::Structure* rad_struct;
+  rad::model::Plot* rad_plot;
   ope::fitting::Polyfit* ope_polyfit;
   ope::fitting::Surface* ope_surface;
 };

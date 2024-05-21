@@ -39,14 +39,62 @@ void Panel::run_panel(){
 void Panel::design_panel(){
   //---------------------------
 
+  this->cam_info();
   this->cam_parameter();
   this->cam_pather();
-  this->cam_info();
 
   //---------------------------
 }
 
 //Subfunction
+void Panel::cam_info(){
+  cam::Entity* camera = cam_struct->cam_current;
+  //---------------------------
+
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+  ImGui::BeginTable("camera##stats", 2);
+  ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 100.0f);
+  ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
+
+  //ID
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("ID"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d", camera->ID);
+
+  //Pose
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Pose"); ImGui::TableNextColumn();
+  switch(camera->mode){
+    case CAMERA_MODE_PLAYER:{
+      float* floatArray = reinterpret_cast<float*>(&camera->cam_P);
+      ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f");
+      ImGui::SameLine();
+      if(ImGui::Button("R")){
+        camera->cam_P = vec3(0, 0, 0);
+      }
+      break;
+    }
+    case CAMERA_MODE_ARCBALL:{
+      ImGui::TextColored(color, "%.2f   %.2f   %.2f", camera->cam_P[0], camera->cam_P[1], camera->cam_P[2]);
+      break;
+    }
+  }
+
+  //Azimuth
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Azimuth"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%.2f°", camera->angle_azimuth * 180 / M_PI);
+
+  //Elevation
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Elevation"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%.2f°", camera->angle_elevation * 180 / M_PI);
+
+  ImGui::EndTable();
+
+  //---------------------------
+  ImGui::Separator();
+}
 void Panel::cam_parameter(){
   cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
@@ -99,56 +147,12 @@ void Panel::cam_pather(){
   //---------------------------
 
   ImGui::Text("Path");
-  ImGui::Checkbox("Enable", &cam_struct->path.enable);
+  ImGui::SameLine();
+  ImGui::Checkbox("##path_enable", &cam_struct->path.enable);
   if(cam_struct->path.enable){
-    ImGui::SliderFloat("Amplitude", &cam_struct->path.amplitude, 1.0f, 10.0f);
+    ImGui::SliderFloat("Amplitude", &cam_struct->path.amplitude, 0.0f, 20.0f);
     ImGui::SliderFloat("Frequency", &cam_struct->path.frequency, 0.0f, 10.0f);
-    ImGui::SliderFloat("Phase", &cam_struct->path.phase, 0.0f, 10.0f);
-    ImGui::SliderFloat("Lambda", &cam_struct->path.lambda, 0.0f, 10.0f);
-  }
-
-  //---------------------------
-  ImGui::Separator();
-}
-void Panel::cam_info(){
-  cam::Entity* camera = cam_struct->cam_current;
-  //---------------------------
-
-  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  if(ImGui::BeginTable("camera##stats", 2)){
-    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 100.0f);
-    ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
-
-    //Pose
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Pose"); ImGui::TableNextColumn();
-    switch(camera->mode){
-      case CAMERA_MODE_PLAYER:{
-        float* floatArray = reinterpret_cast<float*>(&camera->cam_P);
-        ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f");
-        ImGui::SameLine();
-        if(ImGui::Button("R")){
-          camera->cam_P = vec3(0, 0, 0);
-        }
-        break;
-      }
-      case CAMERA_MODE_ARCBALL:{
-        ImGui::TextColored(color, "%.2f   %.2f   %.2f", camera->cam_P[0], camera->cam_P[1], camera->cam_P[2]);
-        break;
-      }
-    }
-
-    //Azimuth
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Azimuth"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f°", camera->angle_azimuth * 180 / M_PI);
-
-    //Elevation
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Elevation"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f°", camera->angle_elevation * 180 / M_PI);
-
-    ImGui::EndTable();
+    ImGui::SliderFloat("Lambda", &cam_struct->path.lambda, 0.0f, 20.0f);
   }
 
   //---------------------------

@@ -46,14 +46,13 @@ void Pather::make_sin_wheel(){
 
   float amplitude = cam_struct->path.amplitude;
   float frequency = cam_struct->path.frequency;
-  float phase = cam_struct->path.phase;
   float lambda = cam_struct->path.lambda;
 
   static auto startTime = std::chrono::steady_clock::now();
   auto currentTime = std::chrono::steady_clock::now();
 
   float elapsed = std::chrono::duration<float>(currentTime - startTime).count();
-  float value = amplitude * std::sin(2.0f * M_PI * frequency * elapsed + phase);
+  float value = amplitude * std::sin(2.0f * M_PI * frequency * elapsed);
 
   cam_control->control_wheel(value / 1000 * lambda);
 

@@ -11,6 +11,7 @@ Model::Model(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
+  this->rad_plot = node_radio->get_model_plot();
   this->ope_polyfit = new ope::fitting::Polyfit();
   this->ope_surface = new ope::fitting::Surface();
 
@@ -55,56 +56,15 @@ void Model::export_model(){
 void Model::compute_model(){
   //---------------------------
 
-  this->make_model();
-  this->validation_model();
-  this->update_plot_data();
-
-  //---------------------------
-}
-void Model::draw_model(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  //---------------------------
-
-  //if(ope_surface->has_been_computed() == false){
-    this->compute_model();
-  //}
-
-  // Generate values for x and y
-  std::vector<float> x_values;
-  for(float i = optim->axis_x.bound[0]; i <= optim->axis_x.bound[1]; i += 0.1){
-    x_values.push_back(i);
-  }
-
-  std::vector<float> y_values;
-  for(float i = optim->axis_y.bound[0]; i <= optim->axis_y.bound[1]; i += 1.0){
-    y_values.push_back(i);
-  }
-
-  // Compute z values and fill x, y, and z vectors
-  std::vector<std::vector<float>> x, y, z;
-  for(float x_val : x_values){
-    std::vector<float> row_x, row_y, row_z;
-    for(float y_val : y_values){
-      row_x.push_back(x_val);
-      row_y.push_back(y_val);
-
-      float z_value = apply_model(x_val, y_val);
-      row_z.push_back(z_value);
-    }
-    x.push_back(row_x);
-    y.push_back(row_y);
-    z.push_back(row_z);
-  }
-
-  if(z.size() == 0) return;
-  matplotlibcpp::plot_surface(x, y, z);
-  matplotlibcpp::show();
+  this->build_model();
+  this->compute_model_rmse();
+  rad_plot->update_plot_data();
 
   //---------------------------
 }
 
 //Subfunction
-void Model::make_model(){
+void Model::build_model(){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
@@ -122,17 +82,7 @@ void Model::make_model(){
 
   //---------------------------
 }
-float Model::apply_model(float x, float y){
-  //---------------------------
-
-  float z = ope_surface->evaluate(x, y);
-
-  if(z < 0) z = 0;
-
-  //---------------------------
-  return z;
-}
-float Model::validation_model(){
+float Model::compute_model_rmse(){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
@@ -155,22 +105,15 @@ float Model::validation_model(){
   //---------------------------
   return RMSE;
 }
-void Model::update_plot_data(){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+float Model::apply_model(float x, float y){
   //---------------------------
 
-  utl::base::Plot* plot = &measure->IfR;
-  for(int i=0; i<plot->axis_x.data.size(); i++){
-    float& x = plot->axis_x.data[i];
-    float& y = plot->axis_y.data[i];
-    float z = apply_model(x, y);
-    //plot->axis_x.fitting.push_back();
-    //plot->axis_y.fitting = z;
-  }
+  float z = ope_surface->evaluate(x, y);
 
-
+  if(z < 0) z = 0;
 
   //---------------------------
+  return z;
 }
 
 }

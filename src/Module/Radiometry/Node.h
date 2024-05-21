@@ -11,6 +11,7 @@ namespace rad::detection::image{class Detection;}
 namespace rad::detection::cloud{class Detection;}
 namespace rad::model{class Model;}
 namespace rad::model{class Measure;}
+namespace rad::model{class Plot;}
 namespace rad::gui{class Panel;}
 
 
@@ -40,6 +41,7 @@ public:
   inline rad::detection::cloud::Detection* get_cloud_detection(){return rad_cloud_detection;}
   inline rad::model::Model* get_rad_model(){return rad_model;}
   inline rad::model::Measure* get_model_measure(){return rad_measure;}
+  inline rad::model::Plot* get_model_plot(){return rad_plot;}
 
 private:
   //Dependancy
@@ -53,6 +55,7 @@ private:
   rad::detection::cloud::Detection* rad_cloud_detection;
   rad::model::Model* rad_model;
   rad::model::Measure* rad_measure;
+  rad::model::Plot* rad_plot;
   rad::gui::Panel* gui_panel;
 };
 
