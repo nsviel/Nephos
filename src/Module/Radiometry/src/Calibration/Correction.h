@@ -5,6 +5,8 @@
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::model{class Model;}
+namespace dat::base{class Sensor;}
+namespace ope::attribut{class Normal;}
 
 
 namespace rad{
@@ -18,14 +20,15 @@ public:
 
 public:
   //Main function
-  void apply_correction(utl::media::Image* ir, utl::media::Image* depth);
+  void apply_correction(dat::base::Sensor* sensor, utl::media::Image* ir, utl::media::Image* depth);
 
   //Subfunction
-  void compute_normal(utl::media::Image* depth);
+  void compute_normal(utl::media::Image* depth, vector<glm::vec3>& vec_Nxyz);
 
 private:
   rad::Structure* rad_struct;
   rad::model::Model* rad_model;
+  ope::attribut::Normal* ope_normal;
 };
 
 }

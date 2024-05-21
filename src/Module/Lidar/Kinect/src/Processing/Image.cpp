@@ -57,7 +57,7 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   //Radiometry image detection
   rad_detection->start_thread(sensor, &sensor->ir.image);
 
-  rad_correction->apply_correction(&sensor->ir.image, &sensor->depth.image);
+  rad_correction->apply_correction(sensor, &sensor->ir.image, &sensor->depth.image);
 
   //---------------------------
   this->idle = true;

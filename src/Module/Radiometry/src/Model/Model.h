@@ -27,6 +27,7 @@ public:
   void build_model();
   float apply_model(float x, float y);
   float compute_model_rmse();
+  bool is_ready();
 
 private:
   rad::Structure* rad_struct;

@@ -116,5 +116,16 @@ float Model::apply_model(float x, float y){
   //---------------------------
   return z;
 }
+bool Model::is_ready(){
+  //---------------------------
+
+  if(rad_struct->model.optim.coefficient.size() == 0){
+    return false;
+  }else{
+    return true;
+  }
+
+  //---------------------------
+}
 
 }
