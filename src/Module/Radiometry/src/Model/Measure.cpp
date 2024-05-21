@@ -41,6 +41,7 @@ void Measure::init(){
   measure->size = measure->R_size * measure->It_size;
   measure->data = vector<vec3>(measure->size, vec3(-1, -1, -1));
 
+
   rad_plot->init();
 
   //---------------------------
@@ -53,7 +54,7 @@ void Measure::import_measure(){
 
   //Import file model data
   measure->data = utl::file::read_vector(measure->path);
-  this->find_measure_bound();
+  this->find_optimization_bound();
   rad_plot->update_plot_data();
 
   //---------------------------
@@ -76,22 +77,32 @@ void Measure::clear_measure(){
 
   //---------------------------
 }
-void Measure::find_measure_bound(){
+void Measure::find_optimization_bound(){
   rad::structure::Optimization* optim = &rad_struct->model.optim;
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
+  vec2 R_bound = vec2(1000, 0);
+  vec2 It_bound = vec2(1000, 0);
+
   for(int i=0; i<measure->data.size(); i++){
+    //R
     float& R = measure->data[i].x;
     if(R < 0) continue;
-    if(R < optim->axis_x.bound[0]) optim->axis_x.bound[0] = R;
-    if(R > optim->axis_x.bound[1]) optim->axis_x.bound[1] = R;
+    if(R < R_bound.x) R_bound.x = R;
+    if(R > R_bound.y) R_bound.y = R;
 
+    //It
     float& It = measure->data[i].y;
     if(It < 0) continue;
-    if(It < optim->axis_y.bound[0]) optim->axis_y.bound[0] = It;
-    if(It > optim->axis_y.bound[1]) optim->axis_y.bound[1] = It;
+    if(It < It_bound.x) It_bound.x = It;
+    if(It > It_bound.y) It_bound.y = It;
   }
+
+  optim->axis_x.bound = R_bound;
+  optim->axis_y.bound = It_bound;
+  optim->axis_x.current = (R_bound.x + R_bound.y) / 2;
+  optim->axis_y.current = (It_bound.x + It_bound.y) / 2;
 
   //---------------------------
 }

@@ -58,12 +58,6 @@ void Plot::init(){
   plot->IfRIt.axis_z.max = measure->I_range.y;
   plot->IfRIt.axis_z.data = vector<float>(measure->size, 0.0f);
 
-  //Measure
-  optim->axis_x.bound = vec2(1000, -1);
-  optim->axis_x.current = 1;
-  optim->axis_y.bound = vec2(0, 90);
-  optim->axis_y.current = 40;
-
   //---------------------------
 }
 void Plot::plot_measure(){
@@ -156,21 +150,24 @@ void Plot::update_plot_data(){
     if(R == -1) continue;
 
     //I(R)
-    if(R > optim->axis_x.bound[0] && R < optim->axis_x.bound[1]) // R inside user defined bounds
-    if(It > optim->axis_y.current && It < optim->axis_y.current + 5){ //All data between It current + 5 degrees
-      int index = static_cast<int>(std::round(R / plot->IfR.axis_x.resolution));
-      plot->IfR.axis_x.data[index] = R;
-      plot->IfR.axis_y.data[index] = I;
+    int R_index = static_cast<int>(std::round(R / measure->R_resolution));
+    if(R > optim->axis_x.bound[0] && R < optim->axis_x.bound[1] // R inside user defined bounds
+      && It > optim->axis_y.current && It < optim->axis_y.current + 5){ //All data between It current + 5 degrees
+      plot->IfR.axis_x.data[R_index] = R;
+      plot->IfR.axis_y.data[R_index] = I;
 
       if(R > optim->axis_x.current && R < optim->axis_x.current + 0.05){
         plot->IfR.highlight = vec2(R, I);
       }
+    }else{
+      //plot->IfR.axis_x.data[R_index] = 0;
+      //plot->IfR.axis_y.data[R_index] = 0;
     }
 
     //I(It)
-    if(It > optim->axis_y.bound[0] && It < optim->axis_y.bound[1]) // It It inside user defined bounds
-    if(R > optim->axis_x.current && R < optim->axis_x.current + 0.05){ //All data between R current + 0.05m
-      int index = static_cast<int>(std::round(It / plot->IfIt.axis_x.resolution));
+    if(It > optim->axis_y.bound[0] && It < optim->axis_y.bound[1] // It It inside user defined bounds
+      && R > optim->axis_x.current && R < optim->axis_x.current + 0.05){ //All data between R current + 0.05m
+      int index = static_cast<int>(std::round(It / measure->It_resolution));
       plot->IfIt.axis_x.data[index] = It;
       plot->IfIt.axis_y.data[index] = I;
     }

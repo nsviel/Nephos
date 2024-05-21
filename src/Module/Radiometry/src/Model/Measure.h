@@ -24,7 +24,7 @@ public:
   void import_measure();
   void export_measure();
   void clear_measure();
-  void find_measure_bound();
+  void find_optimization_bound();
 
 private:
   rad::Structure* rad_struct;
