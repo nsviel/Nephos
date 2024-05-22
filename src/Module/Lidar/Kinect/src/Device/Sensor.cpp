@@ -156,6 +156,9 @@ void Sensor::init_image(){
   depth.image.name = "Depth";
   dat_graph->assign_UID(&depth.image);
 
+  normal.image.name = "Normal";
+  dat_graph->assign_UID(&normal.image);
+
   //---------------------------
 }
 

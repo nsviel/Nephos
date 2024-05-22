@@ -14,15 +14,14 @@ Data::Data(){
 Data::~Data(){}
 
 //IR function
-void Data::convert_ir_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_t>& output){
+void Data::convert_ir_into_color(k4n::dev::Sensor* sensor){
   k4n::structure::Data* data = &sensor->ir.data;
   uint8_t* buffer = data->buffer;
   uint16_t level_min = sensor->ir.config.level_min;
   uint16_t level_max = sensor->ir.config.level_max;
   //---------------------------
 
-  output.clear();
-  output = std::vector<uint8_t>(data->size * 4, 0);
+  std::vector<uint8_t> output = std::vector<uint8_t>(data->size * 4, 0);
 
   for(int i=0, j=0; i<data->size; i+=2, j+=4){
     // Extract the 16-bit infrared value
@@ -42,6 +41,8 @@ void Data::convert_ir_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_t>&
     output[j + 2] = value;
     output[j + 3] = 255;
   }
+
+  sensor->ir.image.data = output;
 
   //---------------------------
 }
@@ -177,6 +178,26 @@ data->Nxyz = Nxyz;
   imshow("depth", depth / 255);
   imshow("normals", normals);
 */
+  //---------------------------
+}
+void Data::convert_normal_into_color(k4n::dev::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz){
+  //---------------------------
+
+  std::vector<uint8_t> output = std::vector<uint8_t>(vec_Nxyz.size() * 4, 0);
+
+  // Convert the float value to uint8_t
+  for(int i=0; i<vec_Nxyz.size(); i++){
+    glm::vec3 normal = vec_Nxyz[i];
+
+    size_t j = i * 4;
+    output[j] = normal.x * 255.0f;
+    output[j + 1] = normal.y * 255.0f;
+    output[j + 2] = normal.z * 255.0f;
+    output[j + 3] = 255;
+  }
+
+  sensor->normal.image.data = output;
+
   //---------------------------
 }
 

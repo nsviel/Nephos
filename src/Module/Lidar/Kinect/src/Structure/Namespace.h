@@ -8,4 +8,5 @@
 #include <Kinect/src/Structure/Device.h>
 #include <Kinect/src/Structure/IMU.h>
 #include <Kinect/src/Structure/Infrared.h>
+#include <Kinect/src/Structure/Normal.h>
 #include <Kinect/src/Structure/FPS.h>

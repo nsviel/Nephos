@@ -21,6 +21,7 @@ Image::Image(k4n::Node* node_k4n){
   this->thread_pool = node_engine->get_thread_pool();
   this->rad_detection = node_radio->get_image_detection();
   this->rad_correction = node_radio->get_rad_correction();
+  this->ope_normal = new ope::normal::Image();
 
   //---------------------------
 }
@@ -96,6 +97,11 @@ void Image::find_data_from_capture(k4n::dev::Sensor* sensor){
   tasker->task_begin("infrared");
   this->find_data_ir(sensor);
   tasker->task_end("infrared");
+
+  //Normal data
+  tasker->task_begin("normal");
+  this->find_data_normal(sensor);
+  tasker->task_end("normal");
 
   //Cloud data
   tasker->task_begin("transformation");
@@ -193,7 +199,7 @@ void Image::find_data_ir(k4n::dev::Sensor* sensor){
   sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
 
   //Image
-  k4n_data->convert_ir_into_color(sensor, sensor->ir.image.data);
+  k4n_data->convert_ir_into_color(sensor);
   sensor->ir.image.size = sensor->ir.image.data.size();
   sensor->ir.image.width = sensor->ir.data.width;
   sensor->ir.image.height = sensor->ir.data.height;
@@ -203,8 +209,24 @@ void Image::find_data_ir(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
+void Image::find_data_normal(k4n::dev::Sensor* sensor){
+  //---------------------------
 
-//Transformed data
+  //Compute image normals
+  vector<glm::vec3> vec_Nxyz;
+  ope_normal->compute_normal_from_image(sensor, sensor->depth.data.width, sensor->depth.data.height, vec_Nxyz);
+
+  //Image
+  k4n_data->convert_normal_into_color(sensor, vec_Nxyz);
+  sensor->normal.image.size = sensor->depth.image.data.size();
+  sensor->normal.image.width = sensor->depth.data.width;
+  sensor->normal.image.height = sensor->depth.data.height;
+  sensor->normal.image.format = "R8G8B8A8_SRGB";
+  sensor->normal.image.new_data = true;
+  sensor->bind_image(&sensor->normal.image);
+
+  //---------------------------
+}
 void Image::find_data_cloud(k4n::dev::Sensor* sensor){
   sensor->color.cloud = {};
   sensor->ir.cloud = {};
@@ -229,6 +251,8 @@ void Image::find_data_cloud(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
+
+//Transformed data
 void Image::find_depth_to_color(k4n::dev::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
