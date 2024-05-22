@@ -7,14 +7,14 @@ namespace utl::base{class Data;}
 namespace dat::base{class Object;}
 
 
-namespace ope::attribut{
+namespace ope::normal{
 
-class Normal
+class KNN
 {
 public:
   // Constructor / Destructor
-  Normal();
-  ~Normal();
+  KNN();
+  ~KNN();
 
 public:
   //Main function
@@ -27,11 +27,7 @@ public:
   glm::mat3 compute_covariance(const std::vector<glm::vec3>& points);
   glm::vec3 compute_normal_from_covariance(const glm::mat3& covariance);
   void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point);
-
-  //Incidence angle
-  float compute_cosIt(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root);
-  float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root);
-
+  
 private:
 
 };

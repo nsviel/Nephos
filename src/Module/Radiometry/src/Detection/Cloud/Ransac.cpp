@@ -17,7 +17,7 @@ Ransac::Ransac(rad::Node* node_radio){
   this->rad_glyph = new rad::detection::cloud::Glyph(node_radio);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
-  this->ope_normal = new ope::attribut::Normal();
+  this->ope_normal = new ope::normal::KNN();
 
   this->radius = 0.5f;
 
@@ -111,7 +111,7 @@ void Ransac::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
     if(distance <= rad_struct->detection.ransac.thres_sphere){
       I = sphere_i[i];
       Nxyz = normalize(xyz - rad_struct->detection.ransac.current_pose);
-      It = ope_normal->compute_It(xyz, Nxyz, root);
+      It = math::compute_It(xyz, Nxyz, root);
 
       //Add into model data vector
       int index = static_cast<int>(std::round(It / plot->IfIt.axis_x.resolution));
@@ -141,7 +141,7 @@ void Ransac::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
     if(distance <= rad_struct->detection.ransac.thres_sphere){
       I = sphere_i[i];
       Nxyz = normalize(xyz - rad_struct->detection.ransac.current_pose);
-      It = ope_normal->compute_It(xyz, Nxyz, root);
+      It = math::compute_It(xyz, Nxyz, root);
       R = math::distance_from_origin(xyz);
 
       //Search for R limite validity

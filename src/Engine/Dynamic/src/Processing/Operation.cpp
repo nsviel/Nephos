@@ -17,7 +17,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->ope_voxelizer = new ope::Voxelizer();
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
-  this->ope_normal = new ope::attribut::Normal();
+  this->ope_normal = new ope::normal::KNN();
 
   this->thread_pool = node_engine->get_thread_pool();
 

@@ -19,7 +19,7 @@ Detection::Detection(rad::Node* node_radio){
 
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
-  this->ope_normal = new ope::attribut::Normal();
+  this->ope_normal = new ope::normal::KNN();
   this->map_step[rad::detection::cloud::WAIT_VALIDATION] = "Wait validation";
   this->map_step[rad::detection::cloud::PROCESSING] = "Detectioning";
   this->step = rad::detection::cloud::WAIT_VALIDATION;

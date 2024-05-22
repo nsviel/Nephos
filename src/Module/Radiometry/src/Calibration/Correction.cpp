@@ -12,7 +12,7 @@ Correction::Correction(rad::Node* node_radio){
 
   this->rad_struct = node_radio->get_rad_struct();
   this->rad_model = node_radio->get_rad_model();
-  this->ope_normal = new ope::attribut::Normal();
+  this->ope_normal = new ope::normal::KNN();
 
   //---------------------------
 }
@@ -48,7 +48,7 @@ void Correction::apply_correction(dat::base::Sensor* sensor, utl::media::Image* 
       // Calculate It, R, and I_cor
       vec3 Nxyz = vec_Nxyz[cpt++];
       vec3 xyz = sensor->convert_depth_2d_to_3d(ivec2(x, y));
-      float It = ope_normal->compute_It(xyz, Nxyz, root);
+      float It = math::compute_It(xyz, Nxyz, root);
       float R = math::distance_from_origin(xyz);
 
       float I_cor;
@@ -61,7 +61,6 @@ void Correction::apply_correction(dat::base::Sensor* sensor, utl::media::Image* 
           if(I_cor > 1) I_cor = 1;
       }
 
-      say(I_cor);
 
       I_cor = I_cor * 255;
 
@@ -150,6 +149,77 @@ void Correction::compute_normal(dat::base::Sensor* sensor, utl::media::Image* de
     }
     //---------------------------
 }
+void Correction::compute_normal_pca(dat::base::Sensor* sensor, utl::media::Image* depth, std::vector<glm::vec3>& vec_Nxyz) {
+    //---------------------------
+    vec_Nxyz.resize(depth->width * depth->height);
 
+    // Helper function to perform PCA
+    auto compute_pca_normal = [](const std::vector<glm::vec3>& points) -> glm::vec3 {
+        if (points.size() < 3) return glm::vec3(0, 0, 1);
+
+        // Compute mean
+        glm::vec3 mean(0.0f);
+        for (const auto& p : points) mean += p;
+        mean /= static_cast<float>(points.size());
+
+        // Compute covariance matrix
+        Eigen::Matrix3f covariance = Eigen::Matrix3f::Zero();
+        for (const auto& p : points) {
+            glm::vec3 centered = p - mean;
+            covariance(0, 0) += centered.x * centered.x;
+            covariance(0, 1) += centered.x * centered.y;
+            covariance(0, 2) += centered.x * centered.z;
+            covariance(1, 1) += centered.y * centered.y;
+            covariance(1, 2) += centered.y * centered.z;
+            covariance(2, 2) += centered.z * centered.z;
+        }
+        covariance(1, 0) = covariance(0, 1);
+        covariance(2, 0) = covariance(0, 2);
+        covariance(2, 1) = covariance(1, 2);
+
+        // Eigen decomposition
+        Eigen::SelfAdjointEigenSolver<Eigen::Matrix3f> solver(covariance);
+        Eigen::Vector3f normal = solver.eigenvectors().col(0);
+
+        return glm::vec3(normal[0], normal[1], normal[2]);
+    };
+
+    for (int y = 0; y < depth->height; ++y) {
+        for (int x = 0; x < depth->width; ++x) {
+            // Compute the index of the current pixel
+            int idx = y * depth->width + x;
+
+            // Collect neighboring points within a certain radius
+            std::vector<glm::vec3> neighbors;
+            int radius = 1;
+            while (neighbors.size() < 10000) {
+                for (int ky = std::max(0, y - radius); ky <= std::min(depth->height - 1, y + radius); ++ky) {
+                    for (int kx = std::max(0, x - radius); kx <= std::min(depth->width - 1, x + radius); ++kx) {
+                        if (kx == x && ky == y) continue;
+                        glm::vec3 neighbor = sensor->convert_depth_2d_to_3d(glm::ivec2(kx, ky));
+                        neighbors.push_back(neighbor);
+                    }
+                }
+                radius++;
+            }
+
+            // Compute the normal using PCA
+            glm::vec3 normal = compute_pca_normal(neighbors);
+            normal = glm::normalize(normal);
+
+            // Compute the vector from the surface to the camera
+            glm::vec3 depth_center = sensor->convert_depth_2d_to_3d(glm::ivec2(x, y));
+            glm::vec3 to_camera = glm::normalize(glm::vec3(0, 0, 0) - depth_center);
+            if (glm::dot(normal, to_camera) < 0) {
+                // Flip the normal to point towards the camera
+                normal *= -1;
+            }
+
+            // Store the normal
+            vec_Nxyz[idx] = normal;
+        }
+    }
+    //---------------------------
+}
 
 }

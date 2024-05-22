@@ -10,7 +10,7 @@ namespace utl::thread{class Pool;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
-namespace ope::attribut{class Normal;}
+namespace ope::normal{class KNN;}
 
 
 namespace k4n::processing{
@@ -38,7 +38,7 @@ private:
   ope::Voxelizer* ope_voxelizer;
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
-  ope::attribut::Normal* ope_normal;
+  ope::normal::KNN* ope_normal;
 
   utl::thread::Pool* thread_pool;
 

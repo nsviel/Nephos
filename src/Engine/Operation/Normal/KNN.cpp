@@ -1,4 +1,4 @@
-#include "Normal.h"
+#include "KNN.h"
 
 #include <Operation/Namespace.h>
 #include <Data/Namespace.h>
@@ -6,19 +6,19 @@
 #include <cstdlib>
 
 
-namespace ope::attribut{
+namespace ope::normal{
 
 // Constructor / Destructor
-Normal::Normal(){
+KNN::KNN(){
   //---------------------------
 
 
   //---------------------------
 }
-Normal::~Normal(){}
+KNN::~KNN(){}
 
 //Main function
-void Normal::compute_normal_from_grid(utl::base::Data* data){
+void KNN::compute_normal_from_grid(utl::base::Data* data){
   if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
@@ -71,7 +71,7 @@ void Normal::compute_normal_from_grid(utl::base::Data* data){
 
   //---------------------------
 }
-void Normal::compute_normal_with_neighbors(utl::base::Data* data, int knn){
+void KNN::compute_normal_with_neighbors(utl::base::Data* data, int knn){
   if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
@@ -107,7 +107,7 @@ void Normal::compute_normal_with_neighbors(utl::base::Data* data, int knn){
 
   //---------------------------
 }
-void Normal::set_visibility(dat::base::Object* object, bool value){
+void KNN::set_visibility(dat::base::Object* object, bool value){
   //---------------------------
 
   dat::base::Glyph* normal = object->get_glyph(dat::object::glyph::NORMAL);
@@ -117,7 +117,7 @@ void Normal::set_visibility(dat::base::Object* object, bool value){
 }
 
 //Subfunction
-void Normal::compute_knn(glm::vec3& point, std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, int knn, utl::base::Data* data, int i, int j, float threshold){
+void KNN::compute_knn(glm::vec3& point, std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, int knn, utl::base::Data* data, int i, int j, float threshold){
   //---------------------------
 
   for(int k=-knn; k<=knn; k++){
@@ -143,7 +143,7 @@ void Normal::compute_knn(glm::vec3& point, std::vector<glm::vec3>& vec_nn, std::
 
   //---------------------------
 }
-glm::mat3 Normal::compute_covariance(const std::vector<glm::vec3>& points){
+glm::mat3 KNN::compute_covariance(const std::vector<glm::vec3>& points){
   //---------------------------
 
   glm::vec3 centroid(0.0f);
@@ -162,7 +162,7 @@ glm::mat3 Normal::compute_covariance(const std::vector<glm::vec3>& points){
   //---------------------------
   return covariance;
 }
-glm::vec3 Normal::compute_normal_from_covariance(const glm::mat3& covariance){
+glm::vec3 KNN::compute_normal_from_covariance(const glm::mat3& covariance){
   //---------------------------
 
   // Convert glm::mat3 to Eigen::Matrix3f
@@ -187,7 +187,7 @@ glm::vec3 Normal::compute_normal_from_covariance(const glm::mat3& covariance){
   //---------------------------
   return normal;
 }
-void Normal::compute_normal_orientation(glm::vec3& normal, const glm::vec3& point){
+void KNN::compute_normal_orientation(glm::vec3& normal, const glm::vec3& point){
   //---------------------------
 
   // Check orientation towards the origin
@@ -200,55 +200,5 @@ void Normal::compute_normal_orientation(glm::vec3& normal, const glm::vec3& poin
 
   //---------------------------
 }
-
-//Incidence angle
-float Normal::compute_cosIt(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
-  //---------------------------
-
-  //Compute cosIt
-  float cIt = 0;
-  float dist = math::distance(xyz, root);
-  for(int j=0; j<3; j++){
-    cIt = cIt + ( -Nxyz[j] * ( (xyz[j] - root[j]) / dist ));
-  }
-
-  //Check for orientation
-  if(cIt < 0){
-    cIt = -cIt;
-  }
-  //Check for computability
-  if(cIt >= 1){
-    cIt = 0.9999;
-  }
-
-  //---------------------------
-  return cIt;
-}
-float Normal::compute_It(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
-  //---------------------------
-
-  //Compute cosIt
-  float cIt = 0;
-  float dist = math::distance(xyz, root);
-  for(int j=0; j<3; j++){
-    cIt = cIt + ( -Nxyz[j] * ( (xyz[j] - root[j]) / dist ));
-  }
-
-  //Check for orientation
-  if(cIt < 0){
-    cIt = -cIt;
-  }
-  //Check for computability
-  if(cIt >= 1){
-    cIt = 0.9999;
-  }
-
-  float It = acos(cIt) * 180 / M_PI;
-
-  //---------------------------
-  return It;
-}
-
-
 
 }

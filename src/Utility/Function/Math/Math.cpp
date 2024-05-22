@@ -1,5 +1,6 @@
 #include "Math.h"
 
+#include <Utility/Function/Math/Distance.h>
 #include <random>
 
 
@@ -96,6 +97,52 @@ float dot_product(glm::vec3& vec_A, glm::vec3& vec_B){
 
   //---------------------------
   return product;
+}
+float compute_cosIt(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
+  //---------------------------
+
+  //Compute cosIt
+  float cIt = 0;
+  float dist = math::distance(xyz, root);
+  for(int j=0; j<3; j++){
+    cIt = cIt + ( -Nxyz[j] * ( (xyz[j] - root[j]) / dist ));
+  }
+
+  //Check for orientation
+  if(cIt < 0){
+    cIt = -cIt;
+  }
+  //Check for computability
+  if(cIt >= 1){
+    cIt = 0.9999;
+  }
+
+  //---------------------------
+  return cIt;
+}
+float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
+  //---------------------------
+
+  //Compute cosIt
+  float cIt = 0;
+  float dist = math::distance(xyz, root);
+  for(int j=0; j<3; j++){
+    cIt = cIt + ( -Nxyz[j] * ( (xyz[j] - root[j]) / dist ));
+  }
+
+  //Check for orientation
+  if(cIt < 0){
+    cIt = -cIt;
+  }
+  //Check for computability
+  if(cIt >= 1){
+    cIt = 0.9999;
+  }
+
+  float It = acos(cIt) * 180 / M_PI;
+
+  //---------------------------
+  return It;
 }
 
 //Normalization
