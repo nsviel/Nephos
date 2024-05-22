@@ -250,6 +250,65 @@ std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid){
   return vec_out;
 }
 
+//Normal
+glm::mat3 compute_covariance(const std::vector<glm::vec3>& points){
+  //---------------------------
+
+  glm::vec3 centroid(0.0f);
+  for (const auto& point : points) {
+      centroid += point;
+  }
+  centroid /= static_cast<float>(points.size());
+
+  glm::mat3 covariance(0.0f);
+  for (const auto& point : points) {
+      glm::vec3 deviation = point - centroid;
+      covariance += glm::outerProduct(deviation, deviation);
+  }
+  covariance /= static_cast<float>(points.size());
+
+  //---------------------------
+  return covariance;
+}
+glm::vec3 compute_normal_from_covariance(const glm::mat3& covariance){
+  //---------------------------
+
+  // Convert glm::mat3 to Eigen::Matrix3f
+  Eigen::Matrix3f eigenCovariance;
+  for (int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+      eigenCovariance(i, j) = covariance[i][j];
+    }
+  }
+
+  // Calculate the eigenvalues and eigenvectors of the covariance matrix
+  Eigen::SelfAdjointEigenSolver<Eigen::Matrix3f> eigensolver(eigenCovariance);
+  Eigen::Vector3f eigenvalues = eigensolver.eigenvalues();
+  Eigen::Matrix3f eigenvectors = eigensolver.eigenvectors();
+
+  // The eigenvector corresponding to the smallest eigenvalue represents the normal
+  Eigen::Vector3f normalEigen = eigenvectors.col(0);
+
+  // Convert Eigen::Vector3f to glm::vec3
+  glm::vec3 normal(normalEigen[0], normalEigen[1], normalEigen[2]);
+
+  //---------------------------
+  return normal;
+}
+void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point){
+  //---------------------------
+
+  // Check orientation towards the origin
+  glm::vec3 centroid(0.0f); // Assuming the origin is (0, 0, 0)
+  float dotProduct = glm::dot(normal, centroid - point);
+  if (dotProduct < 0.0f) {
+    // Invert the normal
+    normal = -normal;
+  }
+
+  //---------------------------
+}
+
 //Conversion
 float degree_to_radian(float degree){
   float radian;

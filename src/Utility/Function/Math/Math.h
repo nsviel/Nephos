@@ -28,6 +28,11 @@ void normalize(std::vector<float>& vec, glm::vec2 range);
 void normalize(std::vector<float>& vec, float value_to_avoid);
 std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid);
 
+//Normal
+glm::mat3 compute_covariance(const std::vector<glm::vec3>& points);
+glm::vec3 compute_normal_from_covariance(const glm::mat3& covariance);
+void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point);
+
 //Conversion
 float degree_to_radian(float degree);
 float radian_to_degree(float radian);

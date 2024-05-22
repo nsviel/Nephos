@@ -23,9 +23,6 @@ public:
 
   //Subfunction
   void compute_knn(glm::vec3& point, std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, int knn, utl::base::Data* data, int i, int j, float threshold);
-  glm::mat3 compute_covariance(const std::vector<glm::vec3>& points);
-  glm::vec3 compute_normal_from_covariance(const glm::mat3& covariance);
-  void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point);
 
 private:
 

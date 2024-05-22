@@ -26,6 +26,14 @@ void Image::compute_normal_from_image(dat::base::Sensor* sensor, int width, int 
 
   for(int y = 0; y < height; ++y){
     for(int x = 0; x < width; ++x){
+
+      std::vector<glm::vec3> vec_nn;
+      //glm::mat3 covariance = math::compute_covariance(vec_nn);
+      //glm::vec3 normal = math::compute_normal_from_covariance(covariance);
+      //math::compute_normal_orientation(normal, point);
+
+
+
       // Compute the index of the current pixel
       int idx = y * width + x;
 
