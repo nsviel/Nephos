@@ -11,6 +11,8 @@ struct Sensor : public dat::base::Entity{
   virtual glm::vec3 convert_depth_2d_to_3d(glm::ivec2 point){return glm::vec3(0);}
 
   int state_UID = 0;
+  std::vector<uint16_t> buffer_depth;
+  std::vector<uint16_t> buffer_ir;
 
 /*
   //Sensor glyph

@@ -136,6 +136,7 @@ void Image::find_data_depth(k4n::dev::Sensor* sensor){
   sensor->depth.data.format = retrieve_format_from_k4a(depth.get_format());
   sensor->depth.data.temperature = sensor->device.capture->get_temperature_c();
   sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
+  k4n_data->convert_uint8_to_uint16(sensor->depth.data.buffer, sensor->depth.data.size, sensor->buffer_depth);
 
   //Image
   k4n_data->convert_depth_into_color(sensor, sensor->depth.image.data);
@@ -193,10 +194,10 @@ void Image::find_data_ir(k4n::dev::Sensor* sensor){
   sensor->ir.data.width = ir.get_width_pixels();
   sensor->ir.data.height = ir.get_height_pixels();
   sensor->ir.data.buffer = ir.get_buffer();
-  sensor->ir.data.buffer = ir.get_buffer();
   sensor->ir.data.size = ir.get_size();
   sensor->ir.data.format = retrieve_format_from_k4a(ir.get_format());
   sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
+  k4n_data->convert_uint8_to_uint16(sensor->ir.data.buffer, sensor->ir.data.size, sensor->buffer_ir);
 
   //Image
   k4n_data->convert_ir_into_color(sensor);
@@ -214,7 +215,7 @@ void Image::find_data_normal(k4n::dev::Sensor* sensor){
 
   //Compute image normals
   vector<glm::vec3> vec_Nxyz;
-  ope_normal->compute_normal_from_image(sensor, sensor->depth.data.width, sensor->depth.data.height, vec_Nxyz);
+  ope_normal->compute_normal_from_image(sensor, &sensor->depth.image, sensor->depth.data.width, sensor->depth.data.height, vec_Nxyz);
 
   //Image
   k4n_data->convert_normal_into_color(sensor, vec_Nxyz);
