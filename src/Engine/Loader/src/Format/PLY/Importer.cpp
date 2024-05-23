@@ -28,7 +28,7 @@ utl::media::File* Importer::import(utl::media::Path path){
   this->parse_header(file);
 
   //Open data
-  switch(property_format){
+  switch(format){
     case ASCII:{
       //Open file
       std::ifstream file(path.data);
@@ -108,9 +108,9 @@ void Importer::parse_header(std::ifstream& file){
 
     //Retrieve format
     if(h1 == "format"){
-      if(h2 == "ascii") property_format = ASCII;
-      else if(h2 == "binary_little_endian") property_format = BINARY_LITTLE_ENDIAN;
-      else if(h2 == "binary_big_endian") property_format = BINARY_BIG_ENDIAN;
+      if(h2 == "ascii") format = ASCII;
+      else if(h2 == "binary_little_endian") format = BINARY_LITTLE_ENDIAN;
+      else if(h2 == "binary_big_endian") format = BINARY_BIG_ENDIAN;
     }
 
     //Retrieve number of point
@@ -128,7 +128,7 @@ void Importer::parse_header(std::ifstream& file){
       vertex_ended = true;
       this->face_number = std::stoi(h3);
     }
-  }while (line.find("end_header") != 0);
+  } while(line.find("end_header") != 0);
 
   //---------------------------
 }
@@ -143,7 +143,7 @@ void Importer::parse_header_property(std::string type, std::string name){
   else if(name == "scalar_field" || name == "scalar_Scalar_field" || name == "intensity") is_intensity = true;
 
   //Property type
-  if(type == "float32" || type == "float"){
+  if(type == type == "float" || "float32"){
     property.type = format::ply::FLOAT32;
     property.size = 4;
   }
@@ -151,7 +151,7 @@ void Importer::parse_header_property(std::string type, std::string name){
     property.type = format::ply::FLOAT64;
     property.size = 8;
   }
-  else if (type == "uint8"){
+  else if (type == "uint" || type == "uint8"){
     property.type = format::ply::UINT8;
     property.size = 2;
   }

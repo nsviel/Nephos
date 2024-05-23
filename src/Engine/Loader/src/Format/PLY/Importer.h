@@ -62,7 +62,7 @@ private:
   bool is_intensity;
   bool is_normal;
   bool is_color;
-  int property_format;
+  int format;
   int point_data_idx;
   int point_number;
   int face_number;
