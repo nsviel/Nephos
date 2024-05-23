@@ -55,9 +55,9 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
   file << "property float32 x" << std::endl;
   file << "property float32 y" << std::endl;
   file << "property float32 z" << std::endl;
-  vec_property.push_back(format::ply::XYZ);
-  vec_property.push_back(format::ply::EMPTY);
-  vec_property.push_back(format::ply::EMPTY);
+  vec_property.push_back(format::ply::X);
+  vec_property.push_back(format::ply::VOID);
+  vec_property.push_back(format::ply::VOID);
   this->property_number = 3;
 
   if(data->rgb.size() != 0){
@@ -65,9 +65,9 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
     file << "property uchar green" << std::endl;
     file << "property uchar blue" << std::endl;
 
-    vec_property.push_back(format::ply::RGB);
-    vec_property.push_back(format::ply::EMPTY);
-    vec_property.push_back(format::ply::EMPTY);
+    vec_property.push_back(format::ply::R);
+    vec_property.push_back(format::ply::VOID);
+    vec_property.push_back(format::ply::VOID);
     this->property_number += 3;
   }
   if(data->Nxyz.size() != 0){
@@ -75,9 +75,9 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
     file << "property float32 ny" << std::endl;
     file << "property float32 nz" << std::endl;
 
-    vec_property.push_back(format::ply::N);
-    vec_property.push_back(format::ply::EMPTY);
-    vec_property.push_back(format::ply::EMPTY);
+    vec_property.push_back(format::ply::NX);
+    vec_property.push_back(format::ply::VOID);
+    vec_property.push_back(format::ply::VOID);
     this->property_number += 3;
   }
   if(data->Is.size() != 0){
@@ -154,7 +154,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, utl
 
       switch(vec_property[j]){
         //Location
-        case format::ply::XYZ:{
+        case format::ply::X:{
           glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * pose->model;
           memcpy(block_data + offset, &xyzw, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
@@ -162,7 +162,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, utl
         }
 
         //Color
-        case format::ply::RGB:{
+        case format::ply::R:{
           for(int k=0; k<3; k++){
             int color_int = rgb[i][k] * 255;
             memcpy(block_data + offset, &color_int, sizeof(u_char));
@@ -179,7 +179,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, utl
         }
 
         //Normal
-        case format::ply::N:{
+        case format::ply::NX:{
           memcpy(block_data + offset, &Nxyz[i], sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
           break;

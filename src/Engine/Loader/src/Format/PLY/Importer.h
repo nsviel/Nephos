@@ -29,7 +29,8 @@ public:
 private:
   //Header
   void parse_header(std::ifstream& file);
-  void parse_header_property(std::string type, std::string name);
+  void parse_header_format(std::string format);
+  void parse_header_property(std::string type, std::string field);
 
   //ASCII
   void parse_ascii(std::ifstream& file, utl::file::Data* entity);
@@ -41,13 +42,13 @@ private:
   void parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity);
   void parse_bin_big_endian_withface(std::ifstream& file, utl::file::Data* entity);
 
-  //Loader subfunctions
+  //Subfunction
   float reverse_float(const float inFloat);
   int reverse_int(const int inInt);
   void reorder_by_timestamp(utl::file::Data* entity);
-  int get_id_property(std::string name);
+  int get_property_id(format::ply::Field field);
 
-  //Binary to type
+  //Binary type
   float get_float_from_binary(char* data, int& offset);
   float get_double_from_binary(char* block_data, int& offset);
   float get_int_from_binary(char* data, int& offset);
@@ -58,11 +59,7 @@ private:
 
 private:
   std::vector<format::ply::Property> vec_property;
-  bool is_timestamp;
-  bool is_intensity;
-  bool is_normal;
-  bool is_color;
-  int format;
+  int file_format;
   int point_data_idx;
   int point_number;
   int face_number;

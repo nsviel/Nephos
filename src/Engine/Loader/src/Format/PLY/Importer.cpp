@@ -28,7 +28,7 @@ utl::media::File* Importer::import(utl::media::Path path){
   this->parse_header(file);
 
   //Open data
-  switch(format){
+  switch(file_format){
     case ASCII:{
       //Open file
       std::ifstream file(path.data);
@@ -92,10 +92,6 @@ utl::media::File* Importer::import(utl::media::Path path){
 //Header
 void Importer::parse_header(std::ifstream& file){
   this->vec_property.clear();
-  this->is_intensity = false;
-  this->is_timestamp = false;
-  this->is_normal = false;
-  this->is_color = false;
   //---------------------------
 
   // Separate the header
@@ -108,9 +104,7 @@ void Importer::parse_header(std::ifstream& file){
 
     //Retrieve format
     if(h1 == "format"){
-      if(h2 == "ascii") format = ASCII;
-      else if(h2 == "binary_little_endian") format = BINARY_LITTLE_ENDIAN;
-      else if(h2 == "binary_big_endian") format = BINARY_BIG_ENDIAN;
+      this->parse_header_format(h2);
     }
 
     //Retrieve number of point
@@ -132,48 +126,54 @@ void Importer::parse_header(std::ifstream& file){
 
   //---------------------------
 }
-void Importer::parse_header_property(std::string type, std::string name){
+void Importer::parse_header_format(std::string format){
+  //---------------------------
+
+  if(format == "ascii") this->file_format = ASCII;
+  else if(format == "binary_little_endian") this->file_format = BINARY_LITTLE_ENDIAN;
+  else if(format == "binary_big_endian") this->file_format = BINARY_BIG_ENDIAN;
+  else{
+    cout<<"[warning] Unknown format: "<<format<<endl;
+    return;
+  }
+
+  //---------------------------
+}
+void Importer::parse_header_property(std::string type, std::string field){
   format::ply::Property property;
   //---------------------------
 
-  //Check forsome property
-  if(name == "timestamp") is_timestamp = true;
-  else if(name == "nx") is_normal = true;
-  else if(name == "red") is_color = true;
-  else if(name == "scalar_field" || name == "scalar_Scalar_field" || name == "intensity") is_intensity = true;
-
   //Property type
-  if(type == type == "float" || "float32"){
-    property.type = format::ply::FLOAT32;
-    property.size = 4;
+  if(type == "float" || type == "float32") property.type = format::ply::FLOAT32;
+  else if(type == "float64" || type == "double") property.type = format::ply::FLOAT64;
+  else if(type == "uint" || type == "uint8") property.type = format::ply::UINT8;
+  else if(type == "uint16") property.type = format::ply::UINT16;
+  else if(type == "int" || type == "int32") property.type = format::ply::UINT32;
+  else if(type == "uchar") property.type = format::ply::UCHAR;
+  else if(type == "ushort") property.type = format::ply::USHORT;
+  else{
+    cout<<"[warning] Unknown property type: "<<type<<endl;
+    return;
   }
-  else if (type == "float64" || type == "double"){
-    property.type = format::ply::FLOAT64;
-    property.size = 8;
-  }
-  else if (type == "uint" || type == "uint8"){
-    property.type = format::ply::UINT8;
-    property.size = 2;
-  }
-  else if (type == "uint16"){
-    property.type = format::ply::UINT16;
-    property.size = 2;
-  }
-  else if (type == "int" || type == "int32"){
-    property.type = format::ply::UINT32;
-    property.size = 4;
-  }
-  else if (type == "uchar"){
-    property.type = format::ply::UCHAR;
-    property.size = 1;
-  }
-  else{ // Default
-    cout<<"[warning] Unknown property type: "<<type<<" of name "<<name<<endl;
+
+  //Property field
+  if(field == "x") property.field = format::ply::X;
+  else if(field == "y") property.field = format::ply::Y;
+  else if(field == "z") property.field = format::ply::Z;
+  else if(field == "timestamp") property.field = format::ply::TS;
+  else if(field == "nx") property.field = format::ply::NX;
+  else if(field == "ny") property.field = format::ply::NY;
+  else if(field == "nz") property.field = format::ply::NZ;
+  else if(field == "red") property.field = format::ply::R;
+  else if(field == "green") property.field = format::ply::G;
+  else if(field == "blue") property.field = format::ply::B;
+  else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "intensity") property.field = format::ply::I;
+  else{
+    cout<<"[warning] Unknown property field: "<<field<<endl;
     return;
   }
 
   //Store property
-  property.name = name;
   vec_property.push_back(property);
 
   //---------------------------
@@ -206,19 +206,19 @@ void Importer::parse_ascii(std::ifstream& file, utl::file::Data* entity){
     }
 
     //Location
-    int id_x = get_id_property("x");
+    int id_x = get_property_id(format::ply::X);
     if(id_x != -1){
       vertex.push_back(glm::vec3(data[id_x], data[id_x+1], data[id_x+2]));
     }
 
     //Normal
-    int id_nx = get_id_property("nx");
+    int id_nx = get_property_id(format::ply::NX);
     if(id_nx != -1){
       normal.push_back(glm::vec3(data[id_nx], data[id_nx+1], data[id_nx+2]));
     }
 
     //Intensity
-    int id_i = get_id_property("intensity");
+    int id_i = get_property_id(format::ply::I);
     if(id_i != -1){
       intensity.push_back(data[id_i]);
     }
@@ -253,19 +253,19 @@ void Importer::parse_ascii_withface(std::ifstream& file, utl::file::Data* entity
     }
 
     //Location
-    int id_x = get_id_property("x");
+    int id_x = get_property_id(format::ply::X);
     if(id_x != -1){
       vertex.push_back(glm::vec3(data[id_x], data[id_x+1], data[id_x+2]));
     }
 
     //Normal
-    int id_nx = get_id_property("nx");
+    int id_nx = get_property_id(format::ply::NX);
     if(id_nx != -1){
       normal.push_back(glm::vec3(data[id_nx], data[id_nx+1], data[id_nx+2]));
     }
 
     //Intensity
-    int id_i = get_id_property("intensity");
+    int id_i = get_property_id(format::ply::I);
     if(id_i != -1){
       intensity.push_back(data[id_i]);
     }
@@ -288,10 +288,10 @@ void Importer::parse_ascii_withface(std::ifstream& file, utl::file::Data* entity
     //Retrieve face data
     for(int i=0; i<nb_vertice; i++){
       entity->xyz.push_back(vertex[idx[i]]);
-      if(get_id_property("nx") != -1){
+      if(get_property_id(format::ply::NX) != -1){
         entity->Nxyz.push_back(normal[idx[i]]);
       }
-      if(get_id_property("intensity") != -1){
+      if(get_property_id(format::ply::I) != -1){
         entity->Is.push_back(intensity[idx[i]]);
       }
     }
@@ -364,10 +364,10 @@ void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Data* ent
 
   //Resize std::vectors accordingly
   entity->xyz.resize(point_number, glm::vec3(0,0,0));
-  if(is_timestamp) entity->ts.resize(point_number, 0);
-  if(is_intensity) entity->Is.resize(point_number, 0);
-  if(is_normal) entity->Nxyz.resize(point_number, glm::vec3(0,0,0));
-  if(is_color) entity->rgb.resize(point_number, glm::vec4(0,0,0,0));
+  if(get_property_id(format::ply::TS) != -1) entity->ts.resize(point_number, 0);
+  if(get_property_id(format::ply::I) != -1) entity->Is.resize(point_number, 0);
+  if(get_property_id(format::ply::NX) != -1) entity->Nxyz.resize(point_number, glm::vec3(0,0,0));
+  if(get_property_id(format::ply::R) != -1) entity->rgb.resize(point_number, glm::vec4(0,0,0,0));
   entity->nb_element = point_number;
 
   //Insert data in the adequate std::vector
@@ -376,38 +376,37 @@ void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Data* ent
     for(int j=0; j<vec_property.size(); j++){
       format::ply::Property* property = &vec_property[j];
 
-      //Location
-      if(property->name == "x"){
-        glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-        entity->xyz[i] = point;
+      switch(property->field){
+        case format::ply::X:{ //Location
+          glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
+          entity->xyz[i] = point;
+          break;
+        }
+        case format::ply::NX:{ //Normal
+          glm::vec3 normal = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
+          entity->Nxyz[i] = normal;
+          break;
+        }
+        case format::ply::R:{ //Color
+          float red = block_vec[j][i] / 255;
+          float green = block_vec[j+1][i] / 255;
+          float blue = block_vec[j+2][i] / 255;
+          glm::vec4 rgb = glm::vec4(red, green, blue, 1.0f);
+          entity->rgb[i] = rgb;
+          break;
+        }
+        case format::ply::I:{ //Intensity
+          float Is = block_vec[j][i];
+          entity->Is[i] = Is;
+          break;
+        }
+        case format::ply::TS:{ //Timestamp
+          float ts = block_vec[j][i];
+          entity->ts[i] = ts;
+          break;
+        }
       }
 
-      //Normal
-      if(property->name == "nx"){
-        glm::vec3 normal = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-        entity->Nxyz[i] = normal;
-      }
-
-      //Color
-      if(property->name == "red"){
-        float red = block_vec[j][i] / 255;
-        float green = block_vec[j+1][i] / 255;
-        float blue = block_vec[j+2][i] / 255;
-        glm::vec4 rgb = glm::vec4(red, green, blue, 1.0f);
-        entity->rgb[i] = rgb;
-      }
-
-      //Intensity
-      if(property->name == "scalar_Scalar_field" || property->name == "intensity"){
-        float Is = block_vec[j][i];
-        entity->Is[i] = Is;
-      }
-
-      //Timestamp
-      if(property->name == "timestamp"){
-        float ts = block_vec[j][i];
-        entity->ts[i] = ts;
-      }
     }
   }
 
@@ -441,23 +440,24 @@ void Importer::parse_bin_little_endian_withface(std::ifstream& file, utl::file::
     for(int j=0; j<vec_property.size(); j++){
       format::ply::Property* property = &vec_property[j];
 
-      //Location
-      if(property->name == "x"){
-        glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-        vertex.push_back(point);
+      switch(property->field){
+        case format::ply::X:{ //Location
+          glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
+          vertex.push_back(point);
+          break;
+        }
+        case format::ply::I:{ //Intensity
+          float Is = block_vec[j][i];
+          intensity.push_back(Is);
+          break;
+        }
+        case format::ply::TS:{ //Timestamp
+          float ts = block_vec[j][i];
+          timestamp.push_back(ts);
+          break;
+        }
       }
 
-      //Intensity
-      if(property->name == "scalar_Scalar_field" || property->name == "intensity"){
-        float Is = block_vec[j][i];
-        intensity.push_back(Is);
-      }
-
-      //Timestamp
-      if(property->name == "timestamp"){
-        float ts = block_vec[j][i];
-        timestamp.push_back(ts);
-      }
     }
   }
 
@@ -521,8 +521,8 @@ void Importer::parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity
 
   //Resize std::vectors accordingly
   entity->xyz.resize(point_number, glm::vec3(0,0,0));
-  if(is_timestamp) entity->ts.resize(point_number, 0);
-  if(is_intensity) entity->Is.resize(point_number, 0);
+  if(get_property_id(format::ply::TS) != -1) entity->ts.resize(point_number, 0);
+  if(get_property_id(format::ply::I) != -1) entity->Is.resize(point_number, 0);
   entity->nb_element = point_number;
 
   //Insert data in the adequate std::vector
@@ -531,23 +531,24 @@ void Importer::parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity
     for(int j=0; j<vec_property.size(); j++){
       format::ply::Property* property = &vec_property[j];
 
-      //Location
-      if(property->name == "x"){
-        glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-        entity->xyz[i] = point;
+      switch(property->field){
+        case format::ply::X:{ //Location
+          glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
+          entity->xyz[i] = point;
+          break;
+        }
+        case format::ply::I:{ //Intensity
+          float Is = block_vec[j][i];
+          entity->Is[i] = Is;
+          break;
+        }
+        case format::ply::TS:{ //Timestamp
+          float ts = block_vec[j][i];
+          entity->ts[i] = ts;
+          break;
+        }
       }
 
-      //Intensity
-      if(property->name == "scalar_Scalar_field" || property->name == "intensity"){
-        float Is = block_vec[j][i];
-        entity->Is[i] = Is;
-      }
-
-      //Timestamp
-      if(property->name == "timestamp"){
-        float ts = block_vec[j][i];
-        entity->ts[i] = ts;
-      }
     }
   }
 
@@ -581,23 +582,24 @@ void Importer::parse_bin_big_endian_withface(std::ifstream& file, utl::file::Dat
     for(int j=0; j<vec_property.size(); j++){
       format::ply::Property* property = &vec_property[j];
 
-      //Location
-      if(property->name == "x"){
-        glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-        vertex.push_back(point);
+      switch(property->field){
+        case format::ply::X:{ //Location
+          glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
+          vertex.push_back(point);
+          break;
+        }
+        case format::ply::I:{ //Intensity
+          float Is = block_vec[j][i];
+          intensity.push_back(Is);
+          break;
+        }
+        case format::ply::TS:{ //Timestamp
+          float ts = block_vec[j][i];
+          timestamp.push_back(ts);
+          break;
+        }
       }
 
-      //Intensity
-      if(property->name == "scalar_Scalar_field" || property->name == "intensity"){
-        float Is = block_vec[j][i];
-        intensity.push_back(Is);
-      }
-
-      //Timestamp
-      if(property->name == "timestamp"){
-        float ts = block_vec[j][i];
-        timestamp.push_back(ts);
-      }
     }
   }
 
@@ -641,7 +643,7 @@ void Importer::parse_bin_big_endian_withface(std::ifstream& file, utl::file::Dat
   entity->nb_element = entity->xyz.size();
 }
 
-//Loader subfunctions
+//Subfunction
 float Importer::reverse_float(const float inFloat){
    float retVal;
    char *floatToConvert = ( char* ) & inFloat;
@@ -697,13 +699,13 @@ void Importer::reorder_by_timestamp(utl::file::Data* entity){
 
   //---------------------------
 }
-int Importer::get_id_property(std::string name){
+int Importer::get_property_id(format::ply::Field field){
   //---------------------------
 
   for(int i=0; i<vec_property.size(); i++){
     format::ply::Property* property = &vec_property[i];
 
-    if(property->name == name){
+    if(property->field == field){
       return i;
     }
   }
@@ -712,7 +714,7 @@ int Importer::get_id_property(std::string name){
   return -1;
 }
 
-//Binary to type
+//Binary type
 float Importer::get_float_from_binary(char* block_data, int& offset){
   //---------------------------
 

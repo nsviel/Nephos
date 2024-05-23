@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Loader/src/Format/PLY/Utils.h>
 #include <Loader/src/Base/Exporter.h>
 #include <Utility/Function/File/Path.h>
 #include <Utility/Base/Type/Pose.h>
@@ -11,15 +12,6 @@
 
 
 namespace format::ply{
-
-enum Attribut{
-  EMPTY = 0,
-  XYZ = 1,
-  RGB = 2,
-  N = 3,
-  I = 4,
-  TS = 5,
-};
 
 class Exporter : public ldr::base::Exporter
 {
