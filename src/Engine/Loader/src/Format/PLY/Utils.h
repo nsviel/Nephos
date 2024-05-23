@@ -17,7 +17,7 @@ enum Type{
   UINT8 = 2,
   UINT16 = 3,
   UINT32 = 4,
-  UCHAR = 4,
+  UCHAR = 5,
 };
 
 struct Property{

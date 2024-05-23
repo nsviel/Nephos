@@ -57,9 +57,7 @@ private:
   float get_uchar_from_binary(char* block_data, int& offset);
 
 private:
-  std::vector<std::string> property_type;
-  std::vector<std::string> property_name;
-  std::vector<int> property_size;
+  std::vector<format::ply::Property> vec_property;
   bool is_timestamp;
   bool is_intensity;
   bool is_normal;
@@ -68,7 +66,6 @@ private:
   int point_data_idx;
   int point_number;
   int face_number;
-  int property_number;
   int header_size;
 };
 

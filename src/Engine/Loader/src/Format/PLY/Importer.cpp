@@ -91,10 +91,7 @@ utl::media::File* Importer::import(utl::media::Path path){
 
 //Header
 void Importer::parse_header(std::ifstream& file){
-  this->property_name.clear();
-  this->property_type.clear();
-  this->property_size.clear();
-  this->property_number = 0;
+  this->vec_property.clear();
   this->is_intensity = false;
   this->is_timestamp = false;
   this->is_normal = false;
@@ -136,52 +133,48 @@ void Importer::parse_header(std::ifstream& file){
   //---------------------------
 }
 void Importer::parse_header_property(std::string type, std::string name){
+  format::ply::Property property;
   //---------------------------
 
+  //Check forsome property
+  if(name == "timestamp") is_timestamp = true;
+  else if(name == "nx") is_normal = true;
+  else if(name == "red") is_color = true;
+  else if(name == "scalar_field" || name == "scalar_Scalar_field" || name == "intensity") is_intensity = true;
+
+  //Property type
   if(type == "float32" || type == "float"){
-    property_type.push_back("float32");
-    property_size.push_back(4);
+    property.type = format::ply::FLOAT32;
+    property.size = 4;
   }
   else if (type == "float64" || type == "double"){
-    property_type.push_back("float64");
-    property_size.push_back(8);
+    property.type = format::ply::FLOAT64;
+    property.size = 8;
   }
   else if (type == "uint8"){
-    property_type.push_back("uint8");
-    property_size.push_back(2);
+    property.type = format::ply::UINT8;
+    property.size = 2;
   }
   else if (type == "uint16"){
-    property_type.push_back("uint16");
-    property_size.push_back(2);
+    property.type = format::ply::UINT16;
+    property.size = 2;
   }
   else if (type == "int" || type == "int32"){
-    property_type.push_back("uint32");
-    property_size.push_back(4);
+    property.type = format::ply::UINT32;
+    property.size = 4;
   }
   else if (type == "uchar"){
-    property_type.push_back("uchar");
-    property_size.push_back(1);
+    property.type = format::ply::UCHAR;
+    property.size = 1;
   }
   else{ // Default
-    property_type.push_back("unknown");
-    property_size.push_back(4);
+    cout<<"[warning] Unknown property type: "<<type<<" of name "<<name<<endl;
+    return;
   }
 
-  if(name == "timestamp"){
-    is_timestamp = true;
-  }
-  else if(name == "nx"){
-    is_normal = true;
-  }
-  else if(name == "red"){
-    is_color = true;
-  }
-  else if(name == "scalar_field" || name == "scalar_Scalar_field" || name == "intensity"){
-    is_intensity = true;
-  }
-
-  property_name.push_back(name);
-  property_number++;
+  //Store property
+  property.name = name;
+  vec_property.push_back(property);
 
   //---------------------------
 }
@@ -206,7 +199,7 @@ void Importer::parse_ascii(std::ifstream& file, utl::file::Data* entity){
     //Stocke all line values
     std::istringstream iss(line);
     std::vector<float> data;
-    for(int i=0; i<property_number; i++){
+    for(int i=0; i<vec_property.size(); i++){
       float d;
       iss >> d;
       data.push_back(d);
@@ -254,7 +247,7 @@ void Importer::parse_ascii_withface(std::ifstream& file, utl::file::Data* entity
     //Stocke all line values
     std::vector<float> data;
     float d;
-    for(int i=0; i<property_number; i++){
+    for(int i=0; i<vec_property.size(); i++){
       iss >> d;
       data.push_back(d);
     }
@@ -321,40 +314,51 @@ void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Data* ent
   //---------------------------
 
   //Read data
-  int block_size = property_number * point_number * sizeof(double);
+  int block_size = vec_property.size() * point_number * sizeof(double);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(property_number, std::vector<float>(point_number));
-  for (int i=0; i<point_number; i++){
-    for (int j=0; j<property_number; j++){
-      if(property_type[j] == "float32"){
-        float value = get_float_from_binary(block_data, offset);
-        block_vec[j][i] = value;
+  block_vec.resize(vec_property.size(), std::vector<float>(point_number));
+  for(int i=0; i<point_number; i++){
+    for(int j=0; j<vec_property.size(); j++){
+      format::ply::Property* property = &vec_property[j];
+
+      switch(property->type){
+        case format::ply::FLOAT32:{
+          float value = get_float_from_binary(block_data, offset);
+          block_vec[j][i] = value;
+          break;
+        }
+        case format::ply::FLOAT64:{
+          float value = get_double_from_binary(block_data, offset);
+          block_vec[j][i] = value;
+          break;
+        }
+        case format::ply::UINT8:{
+          float value = get_uint8_from_binary(block_data, offset);
+          block_vec[j][i] = value;
+          break;
+        }
+        case format::ply::UINT16:{
+          float value = get_uint16_from_binary(block_data, offset);
+          block_vec[j][i] = value;
+          break;
+        }
+        case format::ply::UINT32:{
+          float value = get_uint32_from_binary(block_data, offset);
+          block_vec[j][i] = value;
+          break;
+        }
+        case format::ply::UCHAR:{
+          float value = get_uchar_from_binary(block_data, offset);
+          block_vec[j][i] = value;
+          break;
+        }
       }
-      else if(property_type[j] == "float64"){
-        float value = get_double_from_binary(block_data, offset);
-        block_vec[j][i] = value;
-      }
-      else if(property_type[j] == "uint8"){
-        float value = get_uint8_from_binary(block_data, offset);
-        block_vec[j][i] = value;
-      }
-      else if(property_type[j] == "uint16"){
-        float value = get_uint16_from_binary(block_data, offset);
-        block_vec[j][i] = value;
-      }
-      else if(property_type[j] == "uint32"){
-        float value = get_uint32_from_binary(block_data, offset);
-        block_vec[j][i] = value;
-      }
-      else if(property_type[j] == "uchar"){
-        float value = get_uchar_from_binary(block_data, offset);
-        block_vec[j][i] = value;
-      }
+
     }
   }
 
@@ -368,22 +372,24 @@ void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Data* ent
 
   //Insert data in the adequate std::vector
   //#pragma omp parallel for
-  for (int i=0; i<point_number; i++){
-    for (int j=0; j<property_number; j++){
+  for(int i=0; i<point_number; i++){
+    for(int j=0; j<vec_property.size(); j++){
+      format::ply::Property* property = &vec_property[j];
+
       //Location
-      if(property_name[j] == "x"){
+      if(property->name == "x"){
         glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
         entity->xyz[i] = point;
       }
 
       //Normal
-      if(property_name[j] == "nx"){
+      if(property->name == "nx"){
         glm::vec3 normal = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
         entity->Nxyz[i] = normal;
       }
 
       //Color
-      if(property_name[j] == "red"){
+      if(property->name == "red"){
         float red = block_vec[j][i] / 255;
         float green = block_vec[j+1][i] / 255;
         float blue = block_vec[j+2][i] / 255;
@@ -392,13 +398,13 @@ void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Data* ent
       }
 
       //Intensity
-      if(property_name[j] == "scalar_Scalar_field" || property_name[j] == "intensity"){
+      if(property->name == "scalar_Scalar_field" || property->name == "intensity"){
         float Is = block_vec[j][i];
         entity->Is[i] = Is;
       }
 
       //Timestamp
-      if(property_name[j] == "timestamp"){
+      if(property->name == "timestamp"){
         float ts = block_vec[j][i];
         entity->ts[i] = ts;
       }
@@ -411,16 +417,16 @@ void Importer::parse_bin_little_endian_withface(std::ifstream& file, utl::file::
   //---------------------------
 
   //Read data
-  int block_size = property_number * point_number * sizeof(float);
+  int block_size = vec_property.size() * point_number * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(property_number, std::vector<float>(point_number));
-  for (int i=0; i<point_number; i++){
-    for (int j=0; j<property_number; j++){
+  block_vec.resize(vec_property.size(), std::vector<float>(point_number));
+  for(int i=0; i<point_number; i++){
+    for(int j=0; j<vec_property.size(); j++){
       float value = get_float_from_binary(block_data, offset);
       block_vec[j][i] = value;
     }
@@ -431,22 +437,24 @@ void Importer::parse_bin_little_endian_withface(std::ifstream& file, utl::file::
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
   std::vector<float> timestamp;
-  for (int i=0; i<point_number; i++){
-    for (int j=0; j<property_number; j++){
+  for(int i=0; i<point_number; i++){
+    for(int j=0; j<vec_property.size(); j++){
+      format::ply::Property* property = &vec_property[j];
+
       //Location
-      if(property_name[j] == "x"){
+      if(property->name == "x"){
         glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
         vertex.push_back(point);
       }
 
       //Intensity
-      if(property_name[j] == "scalar_Scalar_field" || property_name[j] == "intensity"){
+      if(property->name == "scalar_Scalar_field" || property->name == "intensity"){
         float Is = block_vec[j][i];
         intensity.push_back(Is);
       }
 
       //Timestamp
-      if(property_name[j] == "timestamp"){
+      if(property->name == "timestamp"){
         float ts = block_vec[j][i];
         timestamp.push_back(ts);
       }
@@ -469,7 +477,7 @@ void Importer::parse_bin_little_endian_withface(std::ifstream& file, utl::file::
 
     //Get face vertices index
     std::vector<int> idx;
-    for (int j=0; j<value; j++){
+    for(int j=0; j<value; j++){
       int value =  *((int *) (block_data_id + offset));
       offset += sizeof(int);
       idx.push_back(value);
@@ -496,16 +504,16 @@ void Importer::parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity
   //---------------------------
 
   //Read data
-  int block_size = property_number * point_number * sizeof(float);
+  int block_size = vec_property.size() * point_number * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(property_number, std::vector<float>(point_number));
-  for (int i=0; i<point_number; i++){
-    for (int j=0; j<property_number; j++){
+  block_vec.resize(vec_property.size(), std::vector<float>(point_number));
+  for(int i=0; i<point_number; i++){
+    for(int j=0; j<vec_property.size(); j++){
       float value = get_float_from_binary(block_data, offset);
       block_vec[j][i] = reverse_float(value);
     }
@@ -519,22 +527,24 @@ void Importer::parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity
 
   //Insert data in the adequate std::vector
   #pragma omp parallel for
-  for (int i=0; i<point_number; i++){
-    for (int j=0; j<property_number; j++){
+  for(int i=0; i<point_number; i++){
+    for(int j=0; j<vec_property.size(); j++){
+      format::ply::Property* property = &vec_property[j];
+
       //Location
-      if(property_name[j] == "x"){
+      if(property->name == "x"){
         glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
         entity->xyz[i] = point;
       }
 
       //Intensity
-      if(property_name[j] == "scalar_Scalar_field" || property_name[j] == "intensity"){
+      if(property->name == "scalar_Scalar_field" || property->name == "intensity"){
         float Is = block_vec[j][i];
         entity->Is[i] = Is;
       }
 
       //Timestamp
-      if(property_name[j] == "timestamp"){
+      if(property->name == "timestamp"){
         float ts = block_vec[j][i];
         entity->ts[i] = ts;
       }
@@ -547,16 +557,16 @@ void Importer::parse_bin_big_endian_withface(std::ifstream& file, utl::file::Dat
   //---------------------------
 
   //Read data
-  int block_size = property_number * point_number * sizeof(float);
+  int block_size = vec_property.size() * point_number * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(property_number, std::vector<float>(point_number));
-  for (int i=0; i<point_number; i++){
-    for (int j=0; j<property_number; j++){
+  block_vec.resize(vec_property.size(), std::vector<float>(point_number));
+  for(int i=0; i<point_number; i++){
+    for(int j=0; j<vec_property.size(); j++){
       float value = get_float_from_binary(block_data, offset);
       block_vec[j][i] = reverse_float(value);
     }
@@ -567,22 +577,24 @@ void Importer::parse_bin_big_endian_withface(std::ifstream& file, utl::file::Dat
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
   std::vector<float> timestamp;
-  for (int i=0; i<point_number; i++){
-    for (int j=0; j<property_number; j++){
+  for(int i=0; i<point_number; i++){
+    for(int j=0; j<vec_property.size(); j++){
+      format::ply::Property* property = &vec_property[j];
+
       //Location
-      if(property_name[j] == "x"){
+      if(property->name == "x"){
         glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
         vertex.push_back(point);
       }
 
       //Intensity
-      if(property_name[j] == "scalar_Scalar_field" || property_name[j] == "intensity"){
+      if(property->name == "scalar_Scalar_field" || property->name == "intensity"){
         float Is = block_vec[j][i];
         intensity.push_back(Is);
       }
 
       //Timestamp
-      if(property_name[j] == "timestamp"){
+      if(property->name == "timestamp"){
         float ts = block_vec[j][i];
         timestamp.push_back(ts);
       }
@@ -605,7 +617,7 @@ void Importer::parse_bin_big_endian_withface(std::ifstream& file, utl::file::Dat
 
     //Get face vertices index
     std::vector<int> idx;
-    for (int j=0; j<value; j++){
+    for(int j=0; j<value; j++){
       int value =  *((int *) (block_data_id + offset));
       offset += sizeof(int);
       idx.push_back(reverse_int(value));
@@ -663,8 +675,8 @@ void Importer::reorder_by_timestamp(utl::file::Data* entity){
   //---------------------------
 
   if(entity->ts.size() != 0){
-    //Check for non void and reorder by index
-    for (auto i: math::sort_by_index(entity->ts)){
+    //Check fornon void and reorder by index
+    for(auto i: math::sort_by_index(entity->ts)){
       if(entity->xyz[i] != glm::vec3(0, 0, 0)){
         //Location adn timestamp
         ts.push_back(entity->ts[i]);
@@ -688,8 +700,10 @@ void Importer::reorder_by_timestamp(utl::file::Data* entity){
 int Importer::get_id_property(std::string name){
   //---------------------------
 
-  for(int i=0; i<property_name.size(); i++){
-    if(property_name[i] == name){
+  for(int i=0; i<vec_property.size(); i++){
+    format::ply::Property* property = &vec_property[i];
+
+    if(property->name == name){
       return i;
     }
   }
