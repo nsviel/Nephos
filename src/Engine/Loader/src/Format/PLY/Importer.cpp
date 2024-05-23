@@ -169,8 +169,8 @@ void Importer::parse_header_property(std::string type, std::string field){
   else if(field == "blue") property.field = format::ply::B;
   else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "intensity") property.field = format::ply::I;
   else{
-    cout<<"[warning] Unknown property field: "<<field<<endl;
-    return;
+    //cout<<"[warning] Unknown property field: "<<field<<endl;
+    property.field = format::ply::VOID;
   }
 
   //Store property
@@ -314,7 +314,7 @@ void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Data* ent
   //---------------------------
 
   //Read data
-  int block_size = vec_property.size() * point_number * sizeof(double);
+  int block_size = vec_property.size() * point_number * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
@@ -354,6 +354,11 @@ void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Data* ent
         }
         case format::ply::UCHAR:{
           float value = get_uchar_from_binary(block_data, offset);
+          block_vec[j][i] = value;
+          break;
+        }
+        case format::ply::USHORT:{
+          float value = get_ushort_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
@@ -774,6 +779,15 @@ float Importer::get_uchar_from_binary(char* block_data, int& offset){
 
   float value = static_cast<float>(*reinterpret_cast<unsigned char*>(block_data + offset));
   offset += sizeof(unsigned char);
+
+  //---------------------------
+  return value;
+}
+float Importer::get_ushort_from_binary(char* block_data, int& offset){
+  //---------------------------
+
+  float value = static_cast<float>(*reinterpret_cast<unsigned short*>(block_data + offset));
+  offset += sizeof(unsigned short);
 
   //---------------------------
   return value;

@@ -56,6 +56,7 @@ private:
   float get_uint16_from_binary(char* block_data, int& offset);
   float get_uint32_from_binary(char* block_data, int& offset);
   float get_uchar_from_binary(char* block_data, int& offset);
+  float get_ushort_from_binary(char* block_data, int& offset);
 
 private:
   std::vector<format::ply::Property> vec_property;
