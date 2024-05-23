@@ -6,5 +6,4 @@
 #include <Loader/src/Format/PTS/Importer.h>
 #include <Loader/src/Format/PTX/Importer.h>
 #include <Loader/src/Format/XYZ/Importer.h>
-#include <Loader/src/Format/PLY/Importer.h>
-#include <Loader/src/Format/PLY/Exporter.h>
+#include <Loader/src/Format/PLY/Namespace.h>

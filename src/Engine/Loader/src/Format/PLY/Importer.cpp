@@ -89,7 +89,7 @@ utl::media::File* Importer::import(utl::media::Path path){
   return entity;
 }
 
-//Loader data
+//Header
 void Importer::parse_header(std::ifstream& file){
   this->property_name.clear();
   this->property_type.clear();
@@ -123,50 +123,7 @@ void Importer::parse_header(std::ifstream& file){
 
     //Retrieve property
     if(h1 == "property" && vertex_ended == false){
-      if (h2 == "float32" || h2 == "float"){
-        property_type.push_back("float32");
-        property_size.push_back(4);
-      }
-      else if (h2 == "float64" || h2 == "double"){
-        property_type.push_back("float64");
-        property_size.push_back(8);
-      }
-      else if (h2 == "uint8"){
-        property_type.push_back("uint8");
-        property_size.push_back(2);
-      }
-      else if (h2 == "uint16"){
-        property_type.push_back("uint16");
-        property_size.push_back(2);
-      }
-      else if (h2 == "int" || h2 == "int32"){
-        property_type.push_back("uint32");
-        property_size.push_back(4);
-      }
-      else if (h2 == "uchar"){
-        property_type.push_back("uchar");
-        property_size.push_back(1);
-      }
-      else{ // Default
-        property_type.push_back("unknown");
-        property_size.push_back(4);
-      }
-
-      if(h3 == "timestamp"){
-        is_timestamp = true;
-      }
-      else if(h3 == "nx"){
-        is_normal = true;
-      }
-      else if(h3 == "red"){
-        is_color = true;
-      }
-      else if(h3 == "scalar_field" || h3 == "scalar_Scalar_field" || h3 == "intensity"){
-        is_intensity = true;
-      }
-
-      property_name.push_back(h3);
-      property_number++;
+      this->parse_header_property(h2, h3);
     }
 
     //Retrieve property
@@ -178,6 +135,58 @@ void Importer::parse_header(std::ifstream& file){
 
   //---------------------------
 }
+void Importer::parse_header_property(std::string type, std::string name){
+  //---------------------------
+
+  if(type == "float32" || type == "float"){
+    property_type.push_back("float32");
+    property_size.push_back(4);
+  }
+  else if (type == "float64" || type == "double"){
+    property_type.push_back("float64");
+    property_size.push_back(8);
+  }
+  else if (type == "uint8"){
+    property_type.push_back("uint8");
+    property_size.push_back(2);
+  }
+  else if (type == "uint16"){
+    property_type.push_back("uint16");
+    property_size.push_back(2);
+  }
+  else if (type == "int" || type == "int32"){
+    property_type.push_back("uint32");
+    property_size.push_back(4);
+  }
+  else if (type == "uchar"){
+    property_type.push_back("uchar");
+    property_size.push_back(1);
+  }
+  else{ // Default
+    property_type.push_back("unknown");
+    property_size.push_back(4);
+  }
+
+  if(name == "timestamp"){
+    is_timestamp = true;
+  }
+  else if(name == "nx"){
+    is_normal = true;
+  }
+  else if(name == "red"){
+    is_color = true;
+  }
+  else if(name == "scalar_field" || name == "scalar_Scalar_field" || name == "intensity"){
+    is_intensity = true;
+  }
+
+  property_name.push_back(name);
+  property_number++;
+
+  //---------------------------
+}
+
+//ASCII
 void Importer::parse_ascii(std::ifstream& file, utl::file::Data* entity){
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
@@ -306,6 +315,8 @@ void Importer::parse_ascii_withface(std::ifstream& file, utl::file::Data* entity
   //---------------------------
   entity->nb_element = entity->xyz.size();
 }
+
+//Binary
 void Importer::parse_bin_little_endian(std::ifstream& file, utl::file::Data* entity){
   //---------------------------
 

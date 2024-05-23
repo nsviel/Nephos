@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Loader/src/Format/PLY/Utils.h>
 #include <Loader/src/Base/Importer.h>
 #include <Utility/Function/File/Path.h>
 #include <Utility/Function/Math/Math.h>
@@ -14,13 +15,6 @@
 
 namespace format::ply{
 
-enum Property{
-  ASCII = 0,
-  BINARY_LITTLE_ENDIAN = 1,
-  BINARY_BIG_ENDIAN = 2,
-  TREE = 3,
-};
-
 class Importer : public ldr::base::Importer
 {
 public:
@@ -33,10 +27,15 @@ public:
   utl::media::File* import(utl::media::Path path);
 
 private:
-  //Loader data
+  //Header
   void parse_header(std::ifstream& file);
+  void parse_header_property(std::string type, std::string name);
+
+  //ASCII
   void parse_ascii(std::ifstream& file, utl::file::Data* entity);
   void parse_ascii_withface(std::ifstream& file, utl::file::Data* entity);
+
+  //Binary
   void parse_bin_little_endian(std::ifstream& file, utl::file::Data* entity);
   void parse_bin_little_endian_withface(std::ifstream& file, utl::file::Data* entity);
   void parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity);
