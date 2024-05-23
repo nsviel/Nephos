@@ -20,11 +20,10 @@ public:
 
 public:
   //Main function
-  void apply_correction(dat::base::Sensor* sensor, utl::media::Image* ir, utl::media::Image* depth);
+  void make_image_correction(dat::base::Sensor* sensor, utl::media::Image* ir, utl::media::Image* depth);
 
   //Subfunction
-  void compute_normal(dat::base::Sensor* sensor, utl::media::Image* depth, vector<glm::vec3>& vec_Nxyz);
-  void compute_normal_pca(dat::base::Sensor* sensor, utl::media::Image* depth, vector<glm::vec3>& vec_Nxyz);
+  float apply_correction(float I_raw, float R, float It);
 
 private:
   rad::Structure* rad_struct;

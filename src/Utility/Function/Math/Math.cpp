@@ -120,7 +120,7 @@ float compute_cosIt(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
   //---------------------------
   return cIt;
 }
-float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
+float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3 root){
   //---------------------------
 
   //Compute cosIt

@@ -58,7 +58,7 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   //Radiometry image detection
   rad_detection->start_thread(sensor, &sensor->ir.image);
 
-  rad_correction->apply_correction(sensor, &sensor->ir.image, &sensor->depth.image);
+  rad_correction->make_image_correction(sensor, &sensor->ir.image, &sensor->depth.image);
 
   //---------------------------
   this->idle = true;
@@ -216,6 +216,7 @@ void Image::find_data_normal(k4n::dev::Sensor* sensor){
   //Compute image normals
   vector<glm::vec3> vec_Nxyz;
   ope_normal->compute_normal_from_image(sensor, &sensor->depth.image, sensor->depth.data.width, sensor->depth.data.height, vec_Nxyz);
+  sensor->buffer_Nxyz = vec_Nxyz;
 
   //Image
   k4n_data->convert_normal_into_color(sensor, vec_Nxyz);

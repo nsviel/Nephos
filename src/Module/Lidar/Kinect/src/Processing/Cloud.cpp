@@ -20,6 +20,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
   this->rad_detection = node_radio->get_cloud_detection();
+  this->rad_correction = node_radio->get_rad_correction();
   this->thread_pool = node_engine->get_thread_pool();
   this->k4n_exporter = new k4n::utils::Exporter(node_k4n);
   this->k4n_operation = new k4n::processing::Operation(node_k4n);
@@ -135,7 +136,7 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   for(int i=0; i<point_cloud_size; i++){
     this->retrieve_location(i, data_xyz);
     this->retrieve_color(i, buffer_color);
-    this->retrieve_ir(i, buffer_ir);
+    this->retrieve_ir(sensor, i, buffer_ir);
     this->retrieve_goodness(i);
     this->insert_data(i);
   }
@@ -193,7 +194,7 @@ void Cloud::retrieve_location(int i, const int16_t* data_xyz){
   xyz = vec3(z_m, x_m, y_m);
 
   //Range calculation
-  R = x_m * x_m + y_m * y_m + z_m * z_m;
+  R = math::distance_from_origin(xyz);
 
   //---------------------------
 }
@@ -210,11 +211,14 @@ void Cloud::retrieve_color(int i, const uint8_t* data_rgb){
 
   //---------------------------
 }
-void Cloud::retrieve_ir(int i, const uint8_t* data_ir){
+void Cloud::retrieve_ir(k4n::dev::Sensor* sensor, int i, const uint8_t* data_ir){
   //---------------------------
 
   int index = i * 2;
-  ir = static_cast<uint16_t>(data_ir[index]) | (static_cast<uint16_t>(data_ir[index + 1]) << 8);
+  float I_raw = static_cast<uint16_t>(data_ir[index]) | (static_cast<uint16_t>(data_ir[index + 1]) << 8);
+  vec3 Nxyz = sensor->buffer_Nxyz[i];
+  float It = math::compute_It(xyz, Nxyz, glm::vec3(0, 0, 0));
+  ir = rad_correction->apply_correction(I_raw, R, It);
 
   //---------------------------
 }

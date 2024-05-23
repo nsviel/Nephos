@@ -5,6 +5,7 @@
 
 namespace prf::graph{class Tasker;}
 namespace rad::detection::cloud{class Detection;}
+namespace rad{class Correction;}
 namespace utl::thread{class Pool;}
 namespace k4n{class Node;}
 namespace k4n::processing{class Operation;}
@@ -38,7 +39,7 @@ public:
   void retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image);
   void retrieve_location(int i, const int16_t* data);
   void retrieve_color(int i, const uint8_t* rgb_data);
-  void retrieve_ir(int i, const uint8_t* ir_data);
+  void retrieve_ir(k4n::dev::Sensor* sensor, int i, const uint8_t* ir_data);
   void retrieve_goodness(int i);
   void insert_data(int i);
 
@@ -46,6 +47,7 @@ private:
   k4n::processing::Operation* k4n_operation;
   k4n::utils::Exporter* k4n_exporter;
   rad::detection::cloud::Detection* rad_detection;
+  rad::Correction* rad_correction;
   utl::thread::Pool* thread_pool;
 
   std::vector<glm::vec3> vec_xyz;

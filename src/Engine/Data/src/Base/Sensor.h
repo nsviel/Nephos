@@ -13,6 +13,7 @@ struct Sensor : public dat::base::Entity{
   int state_UID = 0;
   std::vector<uint16_t> buffer_depth;
   std::vector<uint16_t> buffer_ir;
+  std::vector<glm::vec3> buffer_Nxyz;
 
 /*
   //Sensor glyph

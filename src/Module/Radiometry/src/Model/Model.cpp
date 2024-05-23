@@ -71,7 +71,7 @@ void Model::build_model(){
   std::vector<glm::vec3> vec_data = measure->data;
   for(int i=0; i<vec_data.size(); i++){
     glm::vec3& data = vec_data[i];
-    data.z = log(data.z);
+    data.z = std::log(data.z);
   }
 
   //Optimization algorithm
@@ -95,7 +95,7 @@ float Model::compute_model_rmse(){
     if(data.x < 0 || data.y < 0) continue;
 
     float z = apply_model(data.x, data.y);
-    E += pow(z - log(data.z), 2);
+    E += pow(z - std::log(data.z), 2);
   }
 
   float RMSE = sqrt(E / N);
@@ -105,10 +105,20 @@ float Model::compute_model_rmse(){
   return RMSE;
 }
 float Model::apply_model(float x, float y){
-  if(rad_struct->model.optim.coefficient.size() == 0) return 0;
+  //if(rad_struct->model.optim.coefficient.size() == 0) return 0;
   //---------------------------
 
-  float z = ope_surface->evaluate(x, y);
+  //Function and coef from python code
+  vector<float> vec_coef;
+  vec_coef.push_back(9.93334164);
+  vec_coef.push_back(-2.23728476);
+  vec_coef.push_back(-0.00918389259);
+  vec_coef.push_back(0.254502204);
+  vec_coef.push_back(-0.000355159491);
+  vec_coef.push_back(0.00495704902);
+  float z = vec_coef[0] + vec_coef[1] * x + vec_coef[2] * y + vec_coef[3] * pow(x, 2) + vec_coef[4] * pow(y, 2) + vec_coef[5] * x * y;
+
+  //float z = ope_surface->evaluate(x, y);
   z = std::exp(z);
 
   if(z < 0) z = 0;

@@ -73,7 +73,7 @@ void Plot::plot_measure(){
     if(point.x == -1 || point.y > 60) continue;
     x.push_back(point.x);
     y.push_back(point.y);
-    z.push_back(log(point.z));
+    z.push_back(std::log(point.z));
   }
   matplotlibcpp::scatter(x, y, z, 1, { {"marker", "."}, {"color", "black"} });
   matplotlibcpp::show();
@@ -127,7 +127,7 @@ void Plot::plot_model(){
       if(point.x == -1 || point.y > 60) continue;
       x_raw.push_back(point.x);
       y_raw.push_back(point.y);
-      z_raw.push_back(log(point.z));
+      z_raw.push_back(std::log(point.z));
     }
     matplotlibcpp::scatter(x_raw, y_raw, z_raw, 1, { {"marker", "."}, {"color", "black"} });
     matplotlibcpp::show();
