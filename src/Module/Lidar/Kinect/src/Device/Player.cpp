@@ -11,7 +11,7 @@ namespace k4n::dev{
 Player::Player(k4n::Node* node_k4n, k4n::dev::Master* master) : dyn::base::Player(master){
   //---------------------------
 
-  this->gui_master = new k4n::gui::Master(node_k4n);
+  this->gui_player = new k4n::gui::Player(node_k4n);
 
   this->master = master;
   this->time = "s";
@@ -107,7 +107,7 @@ void Player::player_close(){
 void Player::element_info(){
   //---------------------------
 
-  gui_master->show_info(master);
+  gui_player->show_info(master);
 
   //---------------------------
   ImGui::Separator();
@@ -115,7 +115,7 @@ void Player::element_info(){
 void Player::element_parameter(){
   //---------------------------
 
-  gui_master->show_parameter(master);
+  gui_player->show_parameter(master);
 
   //---------------------------
   ImGui::Separator();

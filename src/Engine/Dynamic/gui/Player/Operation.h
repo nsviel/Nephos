@@ -25,6 +25,7 @@ public:
   void draw_ope_button(dat::base::Set* set);
   void draw_ope_colorization(dat::base::Set* set);
   void draw_ope_normal(dat::base::Set* set);
+  void draw_ope_exporter(dat::base::Set* set);
 
 private:
   dyn::Structure* dyn_struct;

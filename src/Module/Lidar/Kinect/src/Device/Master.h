@@ -15,7 +15,6 @@ namespace dyn::operation{class Structure;}
 namespace dyn::recorder{class Structure;}
 namespace k4n::structure{class Configuration;}
 namespace k4n::playback{class Importer;}
-namespace k4n::gui{class Master;}
 
 
 namespace k4n::dev{
@@ -41,7 +40,6 @@ public:
   dat::Set* dat_set;
   k4n::utils::Configuration* k4n_config;
   k4n::playback::Importer* k4n_importer;
-  k4n::gui::Master* gui_master;
 
   dyn::operation::Structure operation;
   dyn::recorder::Structure recorder;

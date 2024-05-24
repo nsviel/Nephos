@@ -16,7 +16,6 @@ Master::Master(k4n::Node* node_k4n){
 
   this->dat_set = node_data->get_data_set();
   this->k4n_config = new k4n::utils::Configuration();
-  this->gui_master = new k4n::gui::Master(node_k4n);
 
   //this->engine = engine;
   this->type = "k4n::device::Master";

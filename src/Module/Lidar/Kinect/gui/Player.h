@@ -10,12 +10,12 @@ namespace k4n::gui{class Playback;}
 
 namespace k4n::gui{
 
-class Master
+class Player
 {
 public:
   //Constructor / Destructor
-  Master(k4n::Node* node_k4n);
-  ~Master();
+  Player(k4n::Node* node_k4n);
+  ~Player();
 
   //Main function
   void show_info(k4n::dev::Master* master);
@@ -23,7 +23,6 @@ public:
 
   //Subfunction
   void show_transformation_mode(k4n::dev::Master* master);
-  void show_recorder(k4n::dev::Master* master);
 
 private:
   k4n::Node* node_k4n;
