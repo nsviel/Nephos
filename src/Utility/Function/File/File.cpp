@@ -56,7 +56,7 @@ int number_point(std::string path){
   int cpt=0;
   std::string line;
   std::ifstream infile(path);
-  while (std::getline(infile, line)){
+  while(std::getline(infile, line)){
     cpt++;
   }
 
@@ -68,13 +68,13 @@ double size(std::string path){
 
   // Open the file and move the file pointer to the end
   std::ifstream in(path, std::ifstream::ate | std::ifstream::binary);
-  if (!in.is_open()) {
+  if(!in.is_open()){
     throw std::runtime_error("Failed to open file.");
   }
 
   // Get the file size in bytes
   std::streamoff fileSize = in.tellg();
-  if (fileSize == -1) {
+  if(fileSize == -1){
     throw std::runtime_error("Failed to get file size.");
   }
 
@@ -91,13 +91,13 @@ std::string formatted_size(std::string path){
   std::ifstream in(path.c_str(), std::ifstream::ate | std::ifstream::binary);
   float fileSizeBytes = static_cast<float>(in.tellg());
 
-  while (fileSizeBytes >= 1024.0 && unitIndex < 3) {
+  while(fileSizeBytes >= 1024.0 && unitIndex < 3){
     fileSizeBytes /= 1024.0;
     unitIndex++;
   }
 
   std::stringstream result;
-  if (unitIndex == 0) {
+  if(unitIndex == 0){
     result << std::fixed << std::setprecision(0) << fileSizeBytes << " " << sizeUnits[unitIndex];
   } else {
     result << std::fixed << std::setprecision(1) << fileSizeBytes << " " << sizeUnits[unitIndex];
@@ -129,10 +129,10 @@ void clear(std::string path){
   // Open the file in the output mode (out), which will clear the file
   std::ofstream outputFile(path.c_str(), std::ofstream::out);
 
-  if (outputFile.is_open()) {
+  if(outputFile.is_open()){
     outputFile.close();
   } else {
-    std::cout << "Failed to open the file for clearing." << std::endl;
+    std::cout << "Failed to open the file forclearing." << std::endl;
   }
 
   //---------------------------
@@ -140,10 +140,10 @@ void clear(std::string path){
 uint8_t* load_binary(std::string path){
   //---------------------------
 
-  FILE* file = fopen(path.c_str(), "rb"); // Open the file for reading in binary mode
+  FILE* file = fopen(path.c_str(), "rb"); // Open the file forreading in binary mode
 
   uint8_t* buffer;
-  if (file != NULL) {
+  if(file != NULL){
     fseek(file, 0, SEEK_END); // Move the file pointer to the end
     long fileSize = ftell(file); // Get the file size
     fseek(file, 0, SEEK_SET); // Move the file pointer back to the beginning
@@ -151,29 +151,29 @@ uint8_t* load_binary(std::string path){
     // Allocate memory to store the file contents as uint8_t
     buffer = (uint8_t*)malloc(fileSize);
 
-    if (buffer != NULL) {
+    if(buffer != NULL){
       // Read the file contents directly into the uint8_t buffer
       size_t bytesRead = fread(buffer, 1, fileSize, file);
 
-      if (bytesRead == fileSize) {
+      if(bytesRead == fileSize){
         // Successfully read the file
         // Use the buffer as needed
         free(buffer); // Release the allocated memory
       } else {
-        // Handle error if not all bytes were read
+        // Handle error ifnot all bytes were read
         fprintf(stderr, "Error reading all bytes from file\n");
         return nullptr;
       }
     } else {
-      // Handle error if memory allocation fails
+      // Handle error ifmemory allocation fails
       fprintf(stderr, "Error allocating memory\n");
       return nullptr;
     }
 
     fclose(file); // Close the file
   } else {
-    // Handle error if file cannot be opened
-    fprintf(stderr, "Error opening file for reading: %s\n", "truc.bin");
+    // Handle error iffile cannot be opened
+    fprintf(stderr, "Error opening file forreading: %s\n", "truc.bin");
     return nullptr;
   }
 
@@ -193,7 +193,7 @@ void write_vec_path(const std::string& path, const std::vector<std::string>& vec
     }
     outputFile.close();
   }else{
-    std::cerr << "Unable to open file for writing: " << path << std::endl;
+    std::cerr << "Unable to open file forwriting: " << path << std::endl;
   }
 
   //---------------------------
@@ -202,13 +202,29 @@ void write_vector(const std::string& path, const std::vector<glm::vec3>& vec){
   //---------------------------
 
   std::ofstream file(path);
-  if (!file.is_open()) {
-    std::cerr << "Error: Failed to open file for writing." << std::endl;
+  if(!file.is_open()){
+    std::cerr << "Error: Failed to open file forwriting." << std::endl;
     return;
   }
 
-  for (const auto& v : vec) {
+  for(const auto& v : vec){
     file << v.x << ' ' << v.y << ' ' << v.z << '\n';
+  }
+
+  //---------------------------
+  file.close();
+}
+void write_vector(const std::string& path, const std::vector<float>& vec){
+  //---------------------------
+
+  std::ofstream file(path);
+  if(!file.is_open()){
+    std::cerr << "Error: Failed to open file forwriting." << std::endl;
+    return;
+  }
+
+  for(const float& v : vec){
+    file << v << '\n';
   }
 
   //---------------------------
@@ -238,16 +254,16 @@ std::vector<glm::vec3> read_vector(const std::string& path){
 
   std::vector<glm::vec3> vec;
   std::ifstream file(path);
-  if (!file.is_open()) {
-    std::cerr << "Error: Failed to open file for reading." << std::endl;
+  if(!file.is_open()){
+    std::cerr << "Error: Failed to open file forreading." << std::endl;
     return vec;
   }
 
   std::string line;
-  while (std::getline(file, line)) {
+  while(std::getline(file, line)){
     std::istringstream iss(line);
     glm::vec3 v;
-    if (!(iss >> v.x >> v.y >> v.z)) {
+    if(!(iss >> v.x >> v.y >> v.z)){
       std::cerr << "Error: Failed to read line from file." << std::endl;
       return vec;
     }

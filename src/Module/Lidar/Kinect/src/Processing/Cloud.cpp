@@ -107,36 +107,30 @@ void Cloud::loop_init(k4n::dev::Sensor* sensor){
 void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   //---------------------------
 
-  //Color
-  k4a::image image_color = sensor->color.cloud.k4a_image;
-  const uint8_t* buffer_color = sensor->color.cloud.buffer;
-
-  //Infrared
-  k4a::image image_ir = sensor->ir.cloud.k4a_image;
-  const uint8_t* buffer_ir = sensor->ir.cloud.buffer;
-
-  //Cloud XYZ
+  //Depth transformation
   tasker->task_begin("transformation");
   k4a::image cloud_image;
   this->retrieve_cloud(sensor, cloud_image);
-  const int16_t* data_xyz = reinterpret_cast<int16_t*>(cloud_image.get_buffer());
-  this->point_cloud_size = cloud_image.get_size() / (3*sizeof(int16_t));
+  sensor->depth.cloud.buffer = cloud_image.get_buffer();
+  int size = cloud_image.get_size() / (3*sizeof(int16_t));
   tasker->task_end("transformation");
 
+  //Resize vectors
   tasker->task_begin("reserve");
-  vec_xyz.reserve(point_cloud_size);
-  vec_rgb.reserve(point_cloud_size);
-  vec_ir.reserve(point_cloud_size);
-  vec_r.reserve(point_cloud_size);
-  vec_goodness.reserve(point_cloud_size);
+  vec_xyz.reserve(size);
+  vec_rgb.reserve(size);
+  vec_ir.reserve(size);
+  vec_r.reserve(size);
+  vec_goodness.reserve(size);
   tasker->task_end("reserve");
 
+  //Fille vector with data
   tasker->task_begin("data");
   #pragma omp parallel for
-  for(int i=0; i<point_cloud_size; i++){
-    this->retrieve_location(i, data_xyz);
-    this->retrieve_color(i, buffer_color);
-    this->retrieve_ir(sensor, i, buffer_ir);
+  for(int i=0; i<size; i++){
+    this->retrieve_location(sensor, i);
+    this->retrieve_color(sensor, i);
+    this->retrieve_ir(sensor, i);
     this->retrieve_goodness(i);
     this->insert_data(i);
   }
@@ -178,13 +172,14 @@ void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image){
 
   //---------------------------
 }
-void Cloud::retrieve_location(int i, const int16_t* data_xyz){
+void Cloud::retrieve_location(k4n::dev::Sensor* sensor, int i){
+  const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->depth.cloud.buffer);
   //---------------------------
 
   int depth_idx = i * 3;
-  int x = data_xyz[depth_idx];
-  int y = data_xyz[depth_idx + 1];
-  int z = data_xyz[depth_idx + 2];
+  int x = buffer_depth[depth_idx];
+  int y = buffer_depth[depth_idx + 1];
+  int z = buffer_depth[depth_idx + 2];
 
   //coordinate in meter and X axis oriented.
   float inv_scale = 1.0f / 1000.0f;
@@ -198,27 +193,28 @@ void Cloud::retrieve_location(int i, const int16_t* data_xyz){
 
   //---------------------------
 }
-void Cloud::retrieve_color(int i, const uint8_t* data_rgb){
-  if(data_rgb == nullptr) return;
+void Cloud::retrieve_color(k4n::dev::Sensor* sensor, int i){
+  const uint8_t* buffer_color = sensor->color.cloud.buffer;
   //---------------------------
 
   int index = i * 4;
-  float r = static_cast<float>(data_rgb[index + 2]) / 255.0f;
-  float g = static_cast<float>(data_rgb[index + 1]) / 255.0f;
-  float b = static_cast<float>(data_rgb[index + 0]) / 255.0f;
+  float r = static_cast<float>(buffer_color[index + 2]) / 255.0f;
+  float g = static_cast<float>(buffer_color[index + 1]) / 255.0f;
+  float b = static_cast<float>(buffer_color[index + 0]) / 255.0f;
   float a = 1.0f;
   rgb = vec4(r, g, b, a);
 
   //---------------------------
 }
-void Cloud::retrieve_ir(k4n::dev::Sensor* sensor, int i, const uint8_t* data_ir){
+void Cloud::retrieve_ir(k4n::dev::Sensor* sensor, int i){
+  const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor->ir.cloud.buffer);
   //---------------------------
 
-  int index = i * 2;
-  float I_raw = static_cast<uint16_t>(data_ir[index]) | (static_cast<uint16_t>(data_ir[index + 1]) << 8);
+  float I_raw = buffer_ir[i];
   vec3 Nxyz = sensor->buffer_Nxyz[i];
   float It = math::compute_It(xyz, Nxyz, glm::vec3(0, 0, 0));
   ir = rad_correction->apply_correction(I_raw, R, It);
+  ir = I_raw;
 
   //---------------------------
 }

@@ -37,9 +37,9 @@ public:
 
   //Data retrieval
   void retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image);
-  void retrieve_location(int i, const int16_t* data);
-  void retrieve_color(int i, const uint8_t* rgb_data);
-  void retrieve_ir(k4n::dev::Sensor* sensor, int i, const uint8_t* ir_data);
+  void retrieve_location(k4n::dev::Sensor* sensor, int i);
+  void retrieve_color(k4n::dev::Sensor* sensor, int i);
+  void retrieve_ir(k4n::dev::Sensor* sensor, int i);
   void retrieve_goodness(int i);
   void insert_data(int i);
 
@@ -57,7 +57,6 @@ private:
   std::vector<bool> vec_goodness;
 
   int16_t* point_cloud_data;
-  int point_cloud_size;
   glm::vec3 xyz;
   glm::vec4 rgb;
   float ir;
