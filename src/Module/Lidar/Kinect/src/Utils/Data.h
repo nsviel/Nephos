@@ -16,7 +16,7 @@ public:
 
 public:
   //Data function
-  void convert_uint8_to_uint16(const uint8_t* input, size_t size, std::vector<uint16_t>& output);
+  void convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, std::vector<uint16_t>& output);
 
   //IR function
   void convert_ir_into_color(k4n::dev::Sensor* sensor);

@@ -14,7 +14,7 @@ Data::Data(){
 Data::~Data(){}
 
 //Data function
-void Data::convert_uint8_to_uint16(const uint8_t* input, size_t size, std::vector<uint16_t>& output){
+void Data::convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, std::vector<uint16_t>& output){
   //---------------------------
 
   // Ensure the input size is even, as each uint16_t is 2 uint8_t
