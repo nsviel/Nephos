@@ -6,7 +6,7 @@ namespace dat{class Graph;}
 namespace dat::base{class Set;}
 namespace dyn{class Node;}
 namespace dyn::gui{class Control;}
-namespace ope{class Operation;}
+namespace dyn::gui{class Operation;}
 
 
 namespace dyn::gui{
@@ -32,12 +32,11 @@ public:
   void player_close(dat::base::Set* set);
   void player_lock(dat::base::Set* set);
   void player_info(dat::base::Set* set);
-  void player_transfo(dat::base::Set* set);
 
 private:
   dyn::gui::Control* gui_control;
+  dyn::gui::Operation* gui_operation;
   dat::Graph* dat_graph;
-  ope::Operation* ope_operation;
 
   bool* show_window;
   string name;

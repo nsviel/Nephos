@@ -15,7 +15,7 @@ Player::Player(dyn::Node* node_dynamic, bool* show_window){
 
   this->dat_graph = node_data->get_data_graph();
   this->gui_control = new dyn::gui::Control();
-  this->ope_operation = new ope::Operation();
+  this->gui_operation = new dyn::gui::Operation(node_dynamic);
 
   this->show_window = show_window;
   this->name = "Player";
@@ -67,7 +67,7 @@ void Player::design_player(dat::base::Set* set){
   ImGui::SameLine();
   this->player_lock(set);
   ImGui::SameLine();
-  this->player_transfo(set);
+  gui_operation->player_transfo(set);
 
   //---------------------------
   ImGui::Separator();
@@ -213,22 +213,7 @@ void Player::player_lock(dat::base::Set* set){
 
   //---------------------------
 }
-void Player::player_transfo(dat::base::Set* set){
-  //---------------------------
 
-  //Centered
-  if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
-    ope_operation->center_object(set);
-  }
-
-  //Rotation 90° around X axis
-  ImGui::SameLine();
-  if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
-    ope_operation->make_rotation_X_90d(set, 1);
-  }
-
-  //---------------------------
-}
 void Player::player_info(dat::base::Set* set){
   dyn::base::Player* player = set->player;
   //---------------------------
