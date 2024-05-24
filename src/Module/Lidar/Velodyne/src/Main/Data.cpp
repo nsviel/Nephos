@@ -21,7 +21,7 @@ Data::Data(vld::Node* node_vld){
   this->dat_graph = node_data->get_dat_graph();
   this->ldr_loader = node_loader->get_ldr_loader();
   this->dat_set = node_data->get_data_set();
-  this->dat_entity = node_data->get_data_entity();
+  this->dat_entity = node_data->get_dat_entity();
 
   //---------------------------
 }

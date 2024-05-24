@@ -50,8 +50,11 @@ void Node::loop(){
   dat::Graph* dat_graph = node_data->get_dat_graph();
   //---------------------------
 
-  //rad_image_detection->start_thread(sensor, &sensor->ir.image);
-  //rad_cloud_detection->start_thread(sensor, &sensor->ir.image);
+  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
+    //rad_image_detection->start_thread(sensor, &sensor->ir.image);
+    //rad_cloud_detection->start_thread(sensor, &sensor->ir.image);
+  }
 
   //---------------------------
 }

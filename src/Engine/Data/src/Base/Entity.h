@@ -15,8 +15,8 @@ namespace dat::base{
 struct Entity : public utl::base::Element{
   //---------------------------
 
-  Entity();
-  virtual ~Entity();
+  Entity(){}
+  virtual ~Entity(){}
   virtual void init(){}
   virtual void reset(){}
   virtual void remove(){}
@@ -26,7 +26,6 @@ struct Entity : public utl::base::Element{
   virtual void set_visibility(bool value){data.is_visible = value;}
   virtual utl::base::Pose* get_pose(){return &pose;}
   virtual utl::base::Data* get_data(){return &data;}
-  void add_image(utl::media::Image* image); // A virer
 
   //Info
   bool is_suppressible = true;

@@ -10,6 +10,7 @@ namespace k4n::processing{class Cloud;}
 namespace k4n::utils{class Data;}
 namespace utl::thread{class Pool;}
 namespace dyn::image{class Operation;}
+namespace dat{class Entity;}
 
 
 namespace k4n::processing{
@@ -51,6 +52,7 @@ private:
   k4n::utils::Data* k4n_data;
   utl::thread::Pool* thread_pool;
   dyn::image::Operation* dyn_operation;
+  dat::Entity* dat_entity;
 
   tjhandle tj_handle;
   bool idle = true;

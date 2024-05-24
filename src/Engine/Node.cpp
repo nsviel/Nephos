@@ -63,6 +63,7 @@ void Node::loop(){
   node_loader->loop();
   node_camera->loop();
   node_vulkan->loop();
+  node_dynamic->loop();
 
   //---------------------------
   tasker_main->task_end("eng");

@@ -36,7 +36,7 @@ public:
   inline cam::Node* get_node_camera(){return node_camera;}
 
   inline dat::Graph* get_dat_graph(){return dat_graph;}
-  inline dat::Entity* get_data_entity(){return dat_entity;}
+  inline dat::Entity* get_dat_entity(){return dat_entity;}
   inline dat::Set* get_data_set(){return dat_set;}
   inline dat::Glyph* get_data_glyph(){return dat_glyph;}
   inline dat::Structure* get_data_struct(){return dat_struct;}

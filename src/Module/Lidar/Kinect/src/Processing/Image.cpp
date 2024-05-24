@@ -4,6 +4,7 @@
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Dynamic/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace k4n::processing{
@@ -14,12 +15,14 @@ Image::Image(k4n::Node* node_k4n){
 
   eng::Node* node_engine = node_k4n->get_node_engine();
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
+  dat::Node* node_data = node_engine->get_node_data();
 
   this->tj_handle = tjInitDecompress();
   this->k4n_data = new k4n::utils::Data();
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->thread_pool = node_engine->get_thread_pool();
   this->dyn_operation = node_dynamic->get_ope_image();
+  this->dat_entity = node_data->get_dat_entity();
 
   //---------------------------
 }
@@ -68,7 +71,7 @@ void Image::wait_thread(){
   }
   k4n_cloud->wait_thread();
   dyn_operation->wait_thread();
-  
+
   //---------------------------
 }
 
@@ -136,7 +139,7 @@ void Image::find_data_depth(k4n::dev::Sensor* sensor){
   sensor->depth.image.height = sensor->depth.data.height;
   sensor->depth.image.format = "R8G8B8A8_SRGB";
   sensor->depth.image.new_data = true;
-  sensor->add_image(&sensor->depth.image);
+  dat_entity->add_image(sensor, &sensor->depth.image);
 
   //---------------------------
 }
@@ -168,7 +171,7 @@ void Image::find_data_color(k4n::dev::Sensor* sensor){
   }else{
     sensor->color.image.new_data = true;
   }
-  sensor->add_image(&sensor->color.image);
+  dat_entity->add_image(sensor, &sensor->color.image);
 
   //---------------------------
 }
@@ -197,7 +200,7 @@ void Image::find_data_ir(k4n::dev::Sensor* sensor){
   sensor->ir.image.height = sensor->ir.data.height;
   sensor->ir.image.format = "R8G8B8A8_SRGB";
   sensor->ir.image.new_data = true;
-  sensor->add_image(&sensor->ir.image);
+  dat_entity->add_image(sensor, &sensor->ir.image);
 
   //---------------------------
 }

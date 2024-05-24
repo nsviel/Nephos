@@ -1,12 +1,14 @@
 #pragma once
 
-namespace vk::main{class Engine;}
-namespace eng{class Node;}
-namespace sce{class Operation;}
 namespace dat{class Node;}
 namespace dat{class Glyph;}
 namespace dat{class Structure;}
 namespace dat::base{class Entity;}
+namespace vk::main{class Engine;}
+namespace eng{class Node;}
+namespace sce{class Operation;}
+namespace utl::media{class Image;}
+
 
 
 namespace dat{
@@ -22,6 +24,9 @@ public:
   //Main function
   void init_entity(dat::base::Entity* entity);
   void clear_entity(dat::base::Entity* entity);
+
+  //Image function
+  void add_image(dat::base::Entity* entity, utl::media::Image* image);
 
 private:
   eng::Node* node_engine;

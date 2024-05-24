@@ -51,4 +51,20 @@ void Entity::clear_entity(dat::base::Entity* entity){
   //----------------------------
 }
 
+//Image function
+void Entity::add_image(dat::base::Entity* entity, utl::media::Image* image){
+  //----------------------------
+
+  //Check for already present image
+  for(int i=0; i<entity->list_image.size(); i++){
+    utl::media::Image* image_in = *next(entity->list_image.begin(), i);
+    if(image->UID == image_in->UID) return;
+  }
+
+  //Else bind it
+  entity->list_image.push_back(image);
+
+  //----------------------------
+}
+
 }
