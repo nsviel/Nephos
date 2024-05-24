@@ -22,6 +22,7 @@ public:
 
   //Subfunction
   void show_transformation_mode(k4n::dev::Master* master);
+  void show_firmware_info(k4n::dev::Sensor* sensor);
   void show_info_device(k4n::playback::Sensor* sensor);
   void show_info_color(k4n::playback::Sensor* sensor);
   void show_info_depth(k4n::playback::Sensor* sensor);

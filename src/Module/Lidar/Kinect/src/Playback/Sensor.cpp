@@ -12,6 +12,7 @@ namespace k4n::playback{
 Sensor::Sensor(k4n::Node* node_k4n, utl::media::Path path) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
+  this->gui_playback = new k4n::gui::Playback(node_k4n);
   this->path = path;
   this->format = utl::path::get_format_from_path(path.data);
   this->file_size = utl::file::size(path.data);
@@ -28,6 +29,13 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::media::Path path) : k4n::dev::Sensor(no
 Sensor::~Sensor(){}
 
 //Main function
+void Sensor::info(){
+  //---------------------------
+
+  gui_playback->show_parameter(this);
+
+  //---------------------------
+}
 void Sensor::thread_init(){
   //---------------------------
 

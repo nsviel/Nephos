@@ -26,7 +26,6 @@ namespace k4n::structure{class Calibration;}
 namespace k4n::structure{class FPS;}
 namespace prf::graph{class Profiler;}
 namespace dat::base{class Object;}
-namespace k4n::gui{class Sensor;}
 
 
 namespace k4n::dev{
@@ -41,7 +40,6 @@ public:
 public:
   //Main function
   void init();
-  void info();
   void reset();
   void update_pose();
   void update_data();
@@ -75,7 +73,6 @@ public:
 public:
   prf::graph::Profiler* profiler;
   k4n::dev::Master* master;
-  k4n::gui::Sensor* gui_sensor;
   k4n::processing::Image* k4n_image;
   k4n::utils::Configuration* k4n_config;
 

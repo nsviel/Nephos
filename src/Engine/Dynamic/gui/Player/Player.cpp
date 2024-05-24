@@ -47,9 +47,7 @@ void Player::design_panel(dat::base::Set* set){
   //---------------------------
 
   this->design_player(set);
-  this->player_info(set);
   gui_operation->design_operation(set);
-  this->player_set_info(set);
 
   //---------------------------
 }
@@ -68,9 +66,10 @@ void Player::design_player(dat::base::Set* set){
   this->player_close(set);
   ImGui::SameLine();
   this->player_lock(set);
+  ImGui::Separator();
+  this->player_info(set);
 
   //---------------------------
-  ImGui::Separator();
 }
 
 //Player function
@@ -249,15 +248,6 @@ void Player::player_info(dat::base::Set* set){
     ImGui::EndTable();
     ImGui::TreePop();
   }
-
-  //---------------------------
-}
-void Player::player_set_info(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
-  //---------------------------
-
-  player->element_info();
-  player->element_parameter();
 
   //---------------------------
 }

@@ -25,9 +25,6 @@ public:
   virtual void player_close();
   virtual void player_query(float value);
 
-  virtual void element_info(){}
-  virtual void element_parameter(){}
-
 public:
   dat::base::Set* set;
 

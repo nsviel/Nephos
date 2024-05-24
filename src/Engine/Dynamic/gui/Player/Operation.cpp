@@ -2,6 +2,7 @@
 
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
+#include <Utility/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -35,12 +36,7 @@ void Operation::draw_ope_button(dat::base::Set* set){
   //---------------------------
 
   if(ImGui::TreeNode("Transformation##dynamic")){
-
-    ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-    ImGui::BeginTable("Kinect_info##general", 2);
-
     //Button
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
     if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
       ope_operation->center_object(set);
     }
@@ -48,6 +44,17 @@ void Operation::draw_ope_button(dat::base::Set* set){
     if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
       ope_operation->make_rotation_X_90d(set, 1);
     }
+    ImGui::SameLine();
+    if(ImGui::Button("Save##transfomatrix", ImVec2(70, 0))){
+      utl::transformation::save_transformation_to_file(set->pose.model, player->path.transformation);
+    }
+    ImGui::SameLine();
+    if(ImGui::Button("Identity##transfomatrix", ImVec2(70, 0))){
+      utl::transformation::make_transformation_identity(set->pose.model);
+    }
+
+    ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+    ImGui::BeginTable("transformation_info##dynamic", 2);
 
     //Path transfo
     ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -55,9 +62,22 @@ void Operation::draw_ope_button(dat::base::Set* set){
     string path = (player->path.transformation != "") ? player->path.transformation : "(not defined)";
     ImGui::TextColored(color, "%s", path.c_str());
 
-
-
     ImGui::EndTable();
+
+    //Model matrix
+    ImVec2 width = ImGui::GetContentRegionAvail();
+    mat4& model = set->pose.model;
+    ImGui::Columns(4, "ModelMat");
+    for(int i=0; i<4; i++){
+      ImGui::Separator();
+      for(int j=0;j<4;j++){
+        ImGui::Text("%.3f", model[i][j]);
+        ImGui::NextColumn();
+      }
+    }
+    ImGui::Separator();
+    ImGui::Columns(1);
+
     ImGui::TreePop();
   }
 
@@ -142,6 +162,41 @@ void Operation::draw_ope_exporter(dat::base::Set* set){
 
   if(ImGui::TreeNode("Exporter##dynamic")){
     /*
+
+    if(ImGui::TreeNode("Recorder")){
+      ImGui::BeginTable("playback_table##general", 2);
+      //Folder
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Folder"); ImGui::TableNextColumn();
+      if(ImGui::Button("...##folder_path")){
+
+      }
+      ImGui::SameLine();
+      if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
+        utl::directory::open(sensor->master->recorder.folder);
+      }
+      ImGui::SameLine();
+      ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.folder.c_str());
+
+      //File
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("File"); ImGui::TableNextColumn();
+      if(ImGui::Button("...##file_path")){
+
+      }
+      ImGui::SameLine();
+      if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
+        utl::directory::open(sensor->master->recorder.filename);
+      }
+      ImGui::SameLine();
+      ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.filename.c_str());
+
+      ImGui::EndTable();
+      ImGui::Separator();
+      ImGui::TreePop();
+    }
+
+    
     //Recording time
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Record"); ImGui::TableNextColumn();

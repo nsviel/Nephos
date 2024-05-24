@@ -8,6 +8,7 @@
 namespace eng{class Node;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
+namespace k4n::gui{class Capture;}
 namespace k4n::processing{class Data;}
 namespace k4n::utils{class Configuration;}
 namespace k4n::structure{class K4N;}
@@ -24,6 +25,7 @@ public:
 
 public:
   //Main function
+  void info();
   void thread_init();
   void thread_loop();
   void thread_end();
@@ -35,6 +37,8 @@ public:
   void manage_reset();
 
 private:
+  k4n::gui::Capture* gui_capture;
+
   bool is_recording = false;
 };
 

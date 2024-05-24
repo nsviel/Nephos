@@ -8,6 +8,7 @@
 namespace eng{class Node;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
+namespace k4n::gui{class Playback;}
 namespace k4n::processing{class Data;}
 namespace k4n::utils{class Configuration;}
 namespace k4n::structure{class K4N;}
@@ -25,6 +26,7 @@ public:
 
 public:
   //Main function
+  void info();
   void thread_init();
   void thread_loop();
   void thread_end();
@@ -39,6 +41,7 @@ public:
 public:
   k4a::playback playback;
   k4n::synchro::Configuration synchro;
+  k4n::gui::Playback* gui_playback;
 
   //File info
   utl::media::Path path;

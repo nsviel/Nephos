@@ -5,6 +5,7 @@
 namespace gui{class Node;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
+namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Configuration;}
 namespace dat{class Set;}
 
@@ -24,6 +25,7 @@ public:
   //Subfunction
   void show_list_device(k4n::dev::Master* master);
   void show_transformation_mode(k4n::dev::Master* master);
+  void show_firmware_info(k4n::dev::Sensor* sensor);
   void configuration_depth(k4n::dev::Master* master);
   void configuration_color(k4n::dev::Master* master);
   void configuration_color_control(k4n::dev::Master* master);

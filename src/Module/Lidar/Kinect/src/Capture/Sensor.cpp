@@ -10,6 +10,7 @@ namespace k4n::capture{
 Sensor::Sensor(k4n::Node* node_k4n, int index) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
+  this->gui_capture = new k4n::gui::Capture(node_k4n);
   this->device.idx_dev = index;
   this->name = "capture_" + to_string(index);
 
@@ -24,6 +25,13 @@ Sensor::~Sensor(){
 }
 
 //Main function
+void Sensor::info(){
+  //---------------------------
+
+  gui_capture->show_parameter(master);
+
+  //---------------------------
+}
 void Sensor::thread_init(){
   //---------------------------
 

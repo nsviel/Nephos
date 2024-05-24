@@ -6,7 +6,6 @@
 namespace dyn::base{class Player;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
-namespace k4n::gui{class Player;}
 
 
 namespace k4n::dev{
@@ -25,12 +24,7 @@ public:
   void player_close();
   void player_stop();
 
-  void element_info();
-  void element_parameter();
-
 public:
-  k4n::gui::Player* gui_player;
-
   k4n::dev::Master* master;
 };
 
