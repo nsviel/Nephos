@@ -47,35 +47,12 @@ void Operation::run_thread(dat::base::Sensor* sensor){
   //Colorizer
   this->colorize_object(sensor);
 
-  ope_normal->compute_normal(sensor->get_data());
-
-  //Update object data
-  //rad_detection->start_thread(sensor);
-
-/*
-  //Voxelization filtering
-  if(master->operation.voxel){
-    //this->voxelize_object(sensor);
-  }
-
-  //Triangulation
-  if(master->operation.triangulation){
-    //this->triangularize_object(sensor);
-  }
-
   //Normal
-  if(master->operation.normal){
-    tasker->task_begin("normal");
+  if(dyn_struct->operation.normal.enable){
     utl::base::Data* data = sensor->get_data();
-    // 3 bug :
-    // - start segmentation fault
-    // - depth to color transformation change
-    // - color heatmap (est parfois remplacer par rgb) / normal qui bug time to time
-    //ope_normal->compute_normal_with_neighbors(data, sensor->master->operation.normal_knn);
-    //k4n_operation->make_normal_from_depth_image(sensor);
-    tasker->task_end("normal");
-  }*/
-
+    ope_normal->compute_normal(data, dyn_struct->operation.normal.knn);
+    dyn_struct->operation.normal.time = ope_normal->get_time();
+  }
 
   //Update object data
   this->update_object(sensor);

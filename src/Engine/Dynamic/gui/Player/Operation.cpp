@@ -26,6 +26,7 @@ void Operation::design_operation(dat::base::Set* set){
 
   this->draw_ope_button(set);
   this->draw_ope_colorization(set);
+  this->draw_ope_normal(set);
 
   //---------------------------
 }
@@ -143,17 +144,18 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
 void Operation::draw_ope_normal(dat::base::Set* set){
   //---------------------------
 
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   if(ImGui::TreeNode("Normal##dynamic")){
-    /*//Visibility
-    if(ImGui::Checkbox("Visible##2242", &master->operation.normal_visible)){
-      //master->visibility_normal();
-    }
-
     //Parameter: kNN
     ImGui::SameLine();
     ImGui::SetNextItemWidth(100);
-    ImGui::SliderInt("kNN", &master->operation.normal_knn, 1, 10);
-*/
+    ImGui::SliderInt("kNN", &dyn_struct->operation.normal.knn, 1, 10);
+
+    //Computation time
+    ImGui::Text("Time");
+    ImGui::SameLine();
+    ImGui::TextColored(color, "%.2f ms", dyn_struct->operation.normal.time);
+
     ImGui::TreePop();
   }
 

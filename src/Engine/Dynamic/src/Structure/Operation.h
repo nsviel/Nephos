@@ -7,21 +7,20 @@
 
 namespace dyn::operation{
 
+struct Normal{
+  //---------------------------
+
+  bool enable = true;
+  float time = 0;
+  int knn = 4;
+
+  //---------------------------
+};
+
 struct Structure{
   //---------------------------
 
-  //Voxelization
-  bool voxel = false;
-  float voxel_size = 0.25;
-  int voxel_min_point = 100;
-
-  //Normal
-  bool normal = false;
-  bool normal_visible = false;
-  int normal_knn = 2;
-
-  //Triangulation
-  bool triangulation = false;
+  dyn::operation::Normal normal;
 
   //---------------------------
 };

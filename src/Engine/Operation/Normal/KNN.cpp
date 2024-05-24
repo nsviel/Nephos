@@ -1,9 +1,10 @@
 #include "KNN.h"
 
 #include <Operation/Namespace.h>
-#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Data/Namespace.h>
 #include <cstdlib>
+#include <chrono>
 
 
 namespace ope::normal{
@@ -12,20 +13,23 @@ namespace ope::normal{
 KNN::KNN(){
   //---------------------------
 
+  this->time = 0;
   this->R_thres = 0.1f;
-  this->k = 5;
 
   //---------------------------
 }
 KNN::~KNN(){}
 
 //Main function
-void KNN::compute_normal(utl::base::Data* data){
+void KNN::compute_normal(utl::base::Data* data, int k){
   if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
 
+   auto start = std::chrono::high_resolution_clock::now();
+
   //Prepare data
+  this->k = k;
   data->Nxyz = std::vector<glm::vec3>(data->xyz.size(), glm::vec3(0.0f));
 
   //Loop
@@ -53,6 +57,10 @@ void KNN::compute_normal(utl::base::Data* data){
       }
     }
   }
+
+  auto end = std::chrono::high_resolution_clock::now();
+  std::chrono::duration<double, std::milli> duration = end - start;
+  this->time = duration.count();
 
   //---------------------------
 }
