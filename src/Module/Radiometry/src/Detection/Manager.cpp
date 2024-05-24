@@ -42,7 +42,7 @@ void Manager::next_step(dat::base::Sensor* sensor){
 
   switch(step){
     case rad::detection::cloud::WAIT_VALIDATION:{
-      this->validate_bbox(sensor);
+      rad_cloud_detection->validate_bbox(sensor);
       break;
     }
     case rad::detection::cloud::PROCESSING:{

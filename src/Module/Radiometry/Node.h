@@ -6,6 +6,7 @@ namespace prf{class Node;}
 namespace eng{class Node;}
 namespace dat{class Node;}
 namespace rad{class Structure;}
+namespace rad::detection{class Manager;}
 namespace rad::model{class Model;}
 namespace rad::model{class Measure;}
 namespace rad::model{class Plot;}
@@ -35,6 +36,7 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline rad::Structure* get_rad_struct(){return rad_struct;}
+  inline rad::detection::Manager* get_rad_detection(){return rad_detection;}
   inline rad::model::Model* get_rad_model(){return rad_model;}
   inline rad::model::Measure* get_model_measure(){return rad_measure;}
   inline rad::model::Plot* get_model_plot(){return rad_plot;}
