@@ -10,7 +10,7 @@ namespace ldr{class Exporter;}
 namespace format::ply{class Exporter;}
 
 
-namespace dyn::processing{
+namespace dyn::cloud{
 
 class Exporter : public ldr::base::Exporter
 {

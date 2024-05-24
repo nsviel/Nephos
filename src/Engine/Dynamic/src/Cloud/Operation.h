@@ -12,7 +12,7 @@ namespace ope::color{class Colorizer;}
 namespace ope::normal{class KNN;}
 
 
-namespace dyn::processing{
+namespace dyn::cloud{
 
 class Operation
 {
@@ -42,7 +42,7 @@ private:
 
   utl::thread::Pool* thread_pool;
 
-  bool idle = true;
+  bool thread_idle = true;
 };
 
 }

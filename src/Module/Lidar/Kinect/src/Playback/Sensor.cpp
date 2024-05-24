@@ -49,7 +49,7 @@ void Sensor::thread_loop(){
   //---------------------------
 
   prf::graph::Tasker* tasker = profiler->get_or_create_tasker("kinect::playback");
-  tasker->loop_begin(master->operation.fps);
+  tasker->loop_begin(30);
 
   //Next capture
   tasker->task_begin("capture");

@@ -26,13 +26,13 @@ void Playback::show_info_playback(k4n::dev::Master* master){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Duration"); ImGui::TableNextColumn();
     ImGui::TextColored(color, "%.2f s", master->player->ts_duration);
-
+/*
     //FPS
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("FPS"); ImGui::TableNextColumn();
     ImGui::SetNextItemWidth(125);
     ImGui::SliderInt("##56765", &master->operation.fps, 1, 120);
-
+*/
     ImGui::EndTable();
   }
 

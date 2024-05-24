@@ -1,17 +1,18 @@
 #include "Exporter.h"
 
 #include <Engine/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Loader/Namespace.h>
 
 
-namespace dyn::processing{
+namespace dyn::cloud{
 
 //Constructor / Destructor
 Exporter::Exporter(dyn::Node* node_dynamic){
   //---------------------------
 
-  eng::Node* node_engine = node_k4n->get_node_engine();
+  eng::Node* node_engine = node_dynamic->get_node_engine();
   ldr::Node* node_loader = node_engine->get_node_loader();
 
   this->ldr_exporter = node_loader->get_ldr_exporter();
@@ -80,8 +81,8 @@ void Exporter::make_export_to_ply(dat::base::Entity* entity, std::string path_di
   //---------------------------
 
   //Check if directory exists, if not create it
-  if(!utl::directory::is_exist(path)){
-    utl::directory::create(path);
+  if(!utl::directory::is_exist(path_dir)){
+    utl::directory::create(path_dir);
   }
 
   //Export

@@ -7,7 +7,7 @@ namespace prf::graph{class Tasker;}
 namespace rad::detection::cloud{class Detection;}
 namespace utl::thread{class Pool;}
 namespace k4n{class Node;}
-namespace dyn::processing{class Operation;}
+namespace dyn::cloud{class Operation;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
 namespace k4n::utils{class Exporter;}
@@ -45,7 +45,7 @@ private:
   k4n::utils::Exporter* k4n_exporter;
   rad::detection::cloud::Detection* rad_detection;
   utl::thread::Pool* thread_pool;
-  dyn::processing::Operation* dyn_operation;
+  dyn::cloud::Operation* dyn_operation;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec4> vec_rgb;

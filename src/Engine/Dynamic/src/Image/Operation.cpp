@@ -7,7 +7,7 @@
 #include <Data/Namespace.h>
 
 
-namespace dyn::processing{
+namespace dyn::image{
 
 //Constructor / Destructor
 Operation::Operation(dyn::Node* node_dynamic){
@@ -31,7 +31,7 @@ Operation::~Operation(){}
 void Operation::start_thread(dat::base::Sensor* sensor){
   //---------------------------
 
-  this->idle = false;
+  this->thread_idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
@@ -74,13 +74,13 @@ void Operation::run_thread(dat::base::Sensor* sensor){
   this->update_object(sensor);
 
   //---------------------------
-  this->idle = true;
+  this->thread_idle = true;
 }
 void Operation::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(idle == false){
+  while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
