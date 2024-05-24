@@ -13,7 +13,7 @@ namespace ldr{class Exporter;}
 namespace format::ply{class Exporter;}
 
 
-namespace k4n::utils{
+namespace k4n::capture{
 
 class Exporter : public ldr::base::Exporter
 {

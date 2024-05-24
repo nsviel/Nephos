@@ -4,12 +4,11 @@
 #include <image/turbojpeg.h>
 #include <k4a/k4a.hpp>
 
-namespace k4n::structure{class K4N;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::processing{class Cloud;}
-namespace utl::thread{class Pool;}
 namespace k4n::utils{class Data;}
+namespace utl::thread{class Pool;}
 namespace dyn::image{class Operation;}
 
 
@@ -49,8 +48,8 @@ public:
 
 private:
   k4n::processing::Cloud* k4n_cloud;
-  utl::thread::Pool* thread_pool;
   k4n::utils::Data* k4n_data;
+  utl::thread::Pool* thread_pool;
   dyn::image::Operation* dyn_operation;
 
   tjhandle tj_handle;

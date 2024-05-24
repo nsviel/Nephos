@@ -53,6 +53,9 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   //Convert data into cloud
   k4n_cloud->start_thread(sensor);
 
+  //Dynamic operation
+  dyn_operation->start_thread(sensor);
+
   //---------------------------
   this->idle = true;
 }
@@ -64,7 +67,8 @@ void Image::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_cloud->wait_thread();
-
+  dyn_operation->wait_thread();
+  
   //---------------------------
 }
 

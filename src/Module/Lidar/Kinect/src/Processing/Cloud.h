@@ -3,13 +3,12 @@
 #include <Utility/Specific/Common.h>
 #include <k4a/k4a.hpp>
 
+namespace k4n{class Node;}
+namespace k4n::dev{class Sensor;}
 namespace prf::graph{class Tasker;}
 namespace utl::thread{class Pool;}
-namespace k4n{class Node;}
 namespace dyn::cloud{class Operation;}
-namespace k4n::dev{class Sensor;}
-namespace k4n::structure{class K4N;}
-namespace k4n::utils{class Exporter;}
+
 
 
 namespace k4n::processing{
@@ -41,7 +40,6 @@ public:
   void insert_data(int i);
 
 private:
-  k4n::utils::Exporter* k4n_exporter;
   utl::thread::Pool* thread_pool;
   dyn::cloud::Operation* dyn_operation;
 
