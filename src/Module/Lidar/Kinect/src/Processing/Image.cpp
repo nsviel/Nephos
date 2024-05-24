@@ -4,6 +4,7 @@
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace k4n::processing{
@@ -14,6 +15,7 @@ Image::Image(k4n::Node* node_k4n){
 
   eng::Node* node_engine = node_k4n->get_node_engine();
   rad::Node* node_radio = node_k4n->get_node_radio();
+  dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
   this->tj_handle = tjInitDecompress();
   this->k4n_data = new k4n::utils::Data();
@@ -21,6 +23,7 @@ Image::Image(k4n::Node* node_k4n){
   this->thread_pool = node_engine->get_thread_pool();
   this->rad_detection = node_radio->get_image_detection();
   this->rad_correction = node_radio->get_rad_correction();
+  this->dyn_operation = node_dynamic->get_ope_image();
 
   //---------------------------
 }

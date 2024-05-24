@@ -28,20 +28,11 @@ public:
   void wait_thread();
 
   //Subfunction
-  void colorize_object(dat::base::Sensor* sensor);
-  void voxelize_object(dat::base::Sensor* sensor);
-  void triangularize_object(dat::base::Sensor* sensor);
-  void update_object(dat::base::Sensor* sensor);
 
 private:
   dyn::Structure* dyn_struct;
-  ope::Voxelizer* ope_voxelizer;
-  ope::Triangulation* ope_trianguler;
-  ope::color::Colorizer* ope_colorizer;
-  ope::normal::KNN* ope_normal;
-
   utl::thread::Pool* thread_pool;
-
+  
   bool thread_idle = true;
 };
 
