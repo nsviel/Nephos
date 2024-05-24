@@ -18,7 +18,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   rad::Node* node_radio = node_dynamic->get_node_radio();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->rad_detection = node_radio->get_image_detection();
+  //this->rad_detection = node_radio->get_image_detection();
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------

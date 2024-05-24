@@ -22,7 +22,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::normal::KNN();
-  this->rad_detection = node_radio->get_cloud_detection();
+  //this->rad_detection = node_radio->get_cloud_detection();
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------

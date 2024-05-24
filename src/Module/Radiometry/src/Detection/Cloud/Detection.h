@@ -34,11 +34,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void next_step(dat::base::Sensor* sensor);
   void validate_bbox(dat::base::Sensor* sensor);
-  
-  inline string get_step_str(){return map_step[step];}
-  inline int get_step(){return step;}
 
 private:
   utl::thread::Pool* thread_pool;
@@ -48,10 +44,8 @@ private:
   rad::detection::cloud::Glyph* rad_glyph;
   rad::detection::cloud::Ransac* rad_ransac;
   rad::Structure* rad_struct;
-  std::map<int, std::string> map_step;
 
-  bool idle = true;
-  int step;
+  bool thread_idle = true;
 };
 
 }

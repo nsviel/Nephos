@@ -20,8 +20,7 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->rad_struct = new rad::Structure();
-  this->rad_image_detection = new rad::detection::image::Detection(this);
-  this->rad_cloud_detection = new rad::detection::cloud::Detection(this);
+  this->rad_detection = new rad::detection::Manager(this);
   this->rad_model = new rad::model::Model(this);
   this->rad_plot = new rad::model::Plot(this);
   this->rad_measure = new rad::model::Measure(this);
@@ -47,14 +46,9 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
-  dat::Graph* dat_graph = node_data->get_dat_graph();
   //---------------------------
 
-  dat::base::Entity* entity = dat_graph->get_selected_entity();
-  if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
-    //rad_image_detection->start_thread(sensor, &sensor->ir.image);
-    //rad_cloud_detection->start_thread(sensor, &sensor->ir.image);
-  }
+  rad_detection->loop();
 
   //---------------------------
 }

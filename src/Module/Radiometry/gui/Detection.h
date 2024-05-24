@@ -6,7 +6,7 @@
 namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad::detection::cloud{class Detection;}
+namespace rad::detection{class Manager;}
 namespace rad::detection::image{class Hough;}
 namespace rnd{class Stream;}
 
@@ -34,7 +34,7 @@ public:
 
 private:
   rad::Structure* rad_struct;
-  rad::detection::cloud::Detection* rad_detection;
+  rad::detection::Manager* rad_detection;
   rad::detection::image::Hough* rad_hough;
   rnd::Stream* stream;
 };

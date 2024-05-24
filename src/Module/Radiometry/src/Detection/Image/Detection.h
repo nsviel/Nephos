@@ -39,7 +39,7 @@ private:
   rad::detection::image::Hough* rad_hough;
   rad::detection::utils::Image* rad_image;
 
-  bool idle = true;
+  bool thread_idle = true;
 };
 
 }

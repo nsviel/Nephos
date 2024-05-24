@@ -26,7 +26,7 @@ Detection::~Detection(){}
 void Detection::start_thread(dat::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
-  this->idle = false;
+  this->thread_idle = false;
   auto task_function = [this, sensor, image](){
     this->run_thread(sensor, image);
   };
@@ -42,13 +42,13 @@ void Detection::run_thread(dat::base::Sensor* sensor, utl::media::Image* image){
   this->draw_detection_glyph(sensor);
 
   //---------------------------
-  this->idle = true;
+  this->thread_idle = true;
 }
 void Detection::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(idle == false){
+  while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
