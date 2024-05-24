@@ -85,7 +85,7 @@ void Cloud::convertion_into_cloud(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("cloud");
   tasker->loop_begin();
 
-  this->convertion_init(sensor);
+  this->convertion_init(sensor, tasker);
   this->convertion_data(sensor, tasker);
   this->convertion_transfer(sensor, tasker);
 
@@ -93,7 +93,7 @@ void Cloud::convertion_into_cloud(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::convertion_init(k4n::dev::Sensor* sensor){
+void Cloud::convertion_init(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   //---------------------------
 
   //Depth transformation
@@ -122,7 +122,6 @@ void Cloud::convertion_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker
     this->retrieve_location(sensor, i);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
-    this->retrieve_goodness(i);
     this->insert_data(i);
   }
   tasker->task_end("data");
@@ -140,7 +139,7 @@ void Cloud::convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* ta
   data->rgb = vec_rgb;
   data->Is = vec_ir;
   data->R = vec_r;
-  data->goodness = vec_goodness;
+
   data->size = vec_xyz.size();
   data->width = sensor->depth.cloud.width;
   data->height = sensor->depth.cloud.height;
@@ -152,14 +151,13 @@ void Cloud::convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* ta
 
 //Data retrieval
 void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor){
-  k4n::depth::Structure* depth = &sensor->depth;
   //---------------------------
 
   //Create cloud image
-  k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->cloud.width, depth->cloud.height, depth->cloud.width * sizeof(int16_t) * 3);
+  k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, sensor->depth.cloud.width, sensor->depth.cloud.height, sensor->depth.cloud.width * sizeof(int16_t) * 3);
 
   //Transform depth into cloud
-  sensor->device.transformation.depth_image_to_point_cloud(depth->cloud.k4a_image, depth->cloud.calibration_type, &cloud_image);
+  sensor->device.transformation.depth_image_to_point_cloud(sensor->depth.cloud.k4a_image, sensor->depth.cloud.calibration_type, &cloud_image);
   sensor->depth.cloud.buffer = cloud_image.get_buffer();
   sensor->depth.cloud.size = cloud_image.get_size() / (3 * sizeof(int16_t));
 
@@ -217,7 +215,6 @@ void Cloud::insert_data(int i){
   vec_rgb.push_back(rgb);
   vec_ir.push_back(ir);
   vec_r.push_back(R);
-  vec_goodness.push_back(goodness);
 
   //---------------------------
 }

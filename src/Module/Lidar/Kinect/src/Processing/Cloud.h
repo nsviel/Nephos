@@ -31,7 +31,7 @@ public:
 
   //Loop function
   void convertion_into_cloud(k4n::dev::Sensor* sensor);
-  void convertion_init(k4n::dev::Sensor* sensor);
+  void convertion_init(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
   void convertion_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
   void convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
 
