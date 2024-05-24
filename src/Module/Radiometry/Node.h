@@ -10,7 +10,7 @@ namespace rad::detection{class Manager;}
 namespace rad::model{class Model;}
 namespace rad::model{class Measure;}
 namespace rad::model{class Plot;}
-namespace rad{class Correction;}
+namespace rad::correction{class Correction;}
 namespace rad::gui{class Panel;}
 
 
@@ -40,7 +40,7 @@ public:
   inline rad::model::Model* get_rad_model(){return rad_model;}
   inline rad::model::Measure* get_model_measure(){return rad_measure;}
   inline rad::model::Plot* get_model_plot(){return rad_plot;}
-  inline rad::Correction* get_rad_correction(){return rad_correction;}
+  inline rad::correction::Correction* get_rad_correction(){return rad_correction;}
 
 private:
   //Dependancy
@@ -54,7 +54,7 @@ private:
   rad::model::Model* rad_model;
   rad::model::Measure* rad_measure;
   rad::model::Plot* rad_plot;
-  rad::Correction* rad_correction;
+  rad::correction::Correction* rad_correction;
   rad::gui::Panel* gui_panel;
 };
 

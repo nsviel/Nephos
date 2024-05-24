@@ -9,7 +9,7 @@ namespace dat::base{class Sensor;}
 namespace ope::normal{class KNN;}
 
 
-namespace rad{
+namespace rad::correction{
 
 class Correction
 {

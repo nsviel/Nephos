@@ -4,7 +4,7 @@
 #include <Data/Namespace.h>
 
 
-namespace rad{
+namespace rad::correction{
 
 //Constructor / Destructor
 Correction::Correction(rad::Node* node_radio){

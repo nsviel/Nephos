@@ -24,7 +24,7 @@ Node::Node(eng::Node* node_engine){
   this->rad_model = new rad::model::Model(this);
   this->rad_plot = new rad::model::Plot(this);
   this->rad_measure = new rad::model::Measure(this);
-  this->rad_correction = new rad::Correction(this);
+  this->rad_correction = new rad::correction::Correction(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 
   //---------------------------

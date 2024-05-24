@@ -3,7 +3,7 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad{
+namespace rad::correction{
 
 //Constructor / Destructor
 Calibration::Calibration(rad::Node* node_radio){

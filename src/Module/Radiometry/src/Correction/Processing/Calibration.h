@@ -6,7 +6,7 @@ namespace rad{class Node;}
 namespace rad{class Structure;}
 
 
-namespace rad{
+namespace rad::correction{
 
 class Calibration
 {
