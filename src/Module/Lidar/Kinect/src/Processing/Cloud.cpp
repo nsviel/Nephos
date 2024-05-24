@@ -33,7 +33,7 @@ Cloud::~Cloud(){}
 void Cloud::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
-  this->idle = false;
+  this->thread_idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
@@ -58,13 +58,13 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   k4n_exporter->start_thread(sensor);
 
   //---------------------------
-  this->idle = true;
+  this->thread_idle = true;
 }
 void Cloud::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(idle == false){
+  while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_exporter->wait_thread();
@@ -168,7 +168,7 @@ void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor){
   //Transform depth into cloud
   sensor->device.transformation.depth_image_to_point_cloud(depth->cloud.k4a_image, depth->cloud.calibration_type, &cloud_image);
   sensor->depth.cloud.buffer = cloud_image.get_buffer();
-  sensor->depth.cloud.size = cloud_image.get_size() / (3*sizeof(int16_t));
+  sensor->depth.cloud.size = cloud_image.get_size() / (3 * sizeof(int16_t));
 
   //---------------------------
 }
@@ -185,21 +185,10 @@ void Cloud::retrieve_location(k4n::dev::Sensor* sensor, int i){
   double x_m = -x / 1000.0f;
   double y_m = -y / 1000.0f;
   double z_m = z / 1000.0f;
-  xyz = vec3(z_m, x_m, y_m);
+  this->xyz = vec3(z_m, x_m, y_m);
 
   //Range calculation
-  double R = math::distance_from_origin(xyz);
-
-  const int16_t* truc = reinterpret_cast<int16_t*>(sensor->depth.data.buffer);
-  double machin = (double)truc[i] / 1000;
-
-
-/*
-  say("----");
-  say(R);
-  say(machin);
-*/
-
+  this->R = math::distance_from_origin(xyz);
 
   //---------------------------
 }
@@ -212,7 +201,7 @@ void Cloud::retrieve_color(k4n::dev::Sensor* sensor, int i){
   float g = static_cast<float>(buffer_color[index + 1]) / 255.0f;
   float b = static_cast<float>(buffer_color[index + 0]) / 255.0f;
   float a = 1.0f;
-  rgb = vec4(r, g, b, a);
+  this->rgb = vec4(r, g, b, a);
 
   //---------------------------
 }
@@ -223,18 +212,8 @@ void Cloud::retrieve_ir(k4n::dev::Sensor* sensor, int i){
   float I_raw = buffer_ir[i];
   vec3 Nxyz = sensor->buffer_Nxyz[i];
   float It = math::compute_It(xyz, Nxyz, glm::vec3(0, 0, 0));
-  ir = rad_correction->apply_correction(I_raw, R, It);
-  ir = I_raw;
-
-  //---------------------------
-}
-void Cloud::retrieve_goodness(int i){
-  //---------------------------
-
-  // Location -> If null point set goodness to bad
-  // Color -> If null color set goodness to bad
-  //goodness = !(xyz.x == 0 && xyz.y == 0 && xyz.z == 0) && !(rgb.x == 0 && rgb.y == 0 && rgb.z == 0);
-
+  this->ir = rad_correction->apply_correction(I_raw, R, It);
+  this->ir = I_raw;
 
   //---------------------------
 }

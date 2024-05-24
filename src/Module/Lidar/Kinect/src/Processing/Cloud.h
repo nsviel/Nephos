@@ -40,7 +40,6 @@ public:
   void retrieve_location(k4n::dev::Sensor* sensor, int i);
   void retrieve_color(k4n::dev::Sensor* sensor, int i);
   void retrieve_ir(k4n::dev::Sensor* sensor, int i);
-  void retrieve_goodness(int i);
   void insert_data(int i);
 
 private:
@@ -54,14 +53,12 @@ private:
   std::vector<glm::vec4> vec_rgb;
   std::vector<float> vec_ir;
   std::vector<float> vec_r;
-  std::vector<bool> vec_goodness;
 
   glm::vec3 xyz;
   glm::vec4 rgb;
   float ir;
   float R;
-  bool goodness = true;
-  bool idle = true;
+  bool thread_idle = true;
 };
 
 }
