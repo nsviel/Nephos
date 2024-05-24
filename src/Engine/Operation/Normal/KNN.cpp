@@ -47,8 +47,7 @@ void KNN::compute_normal_from_grid(utl::base::Data* data){
       glm::vec3 normal = math::compute_normal_from_covariance(covariance);
       math::compute_normal_orientation(normal, point);
 
-      //Store result
-      Nxyz[idx] = normal;
+      //Store same result for each nn
       for(int m=0; m<vec_idx.size(); m++){
         Nxyz[vec_idx[m]] = normal;
       }
@@ -73,7 +72,8 @@ void KNN::compute_knn(std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx,
       if(j_nn < 0) continue;
 
       //Get neighbor
-      glm::vec3& nn = data->xyz[i_nn + j_nn];
+      int idx = i_nn + j_nn;
+      glm::vec3& nn = data->xyz[idx];
       if(nn == glm::vec3(0, 0, 0)) continue;
 
       //Check distance with interest point
@@ -82,7 +82,7 @@ void KNN::compute_knn(std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx,
 
       //Else store it
       vec_nn.push_back(nn);
-      vec_idx.push_back(i_nn + j_nn);
+      vec_idx.push_back(idx);
     }
   }
 

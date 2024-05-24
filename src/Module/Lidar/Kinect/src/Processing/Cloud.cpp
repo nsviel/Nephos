@@ -201,9 +201,9 @@ void Cloud::retrieve_ir(k4n::dev::Sensor* sensor, int i){
   //---------------------------
 
   float I_raw = buffer_ir[i];
-  vec3 Nxyz = sensor->buffer_Nxyz[i];
-  float It = math::compute_It(xyz, Nxyz, glm::vec3(0, 0, 0));
-  this->ir = rad_correction->apply_correction(I_raw, R, It);
+  //vec3 Nxyz = sensor->buffer_Nxyz[i];
+  //float It = math::compute_It(xyz, Nxyz, glm::vec3(0, 0, 0));
+  //this->ir = rad_correction->apply_correction(I_raw, R, It);
   this->ir = I_raw;
 
   //---------------------------

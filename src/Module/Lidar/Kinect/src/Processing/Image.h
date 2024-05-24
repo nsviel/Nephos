@@ -12,7 +12,6 @@ namespace utl::thread{class Pool;}
 namespace k4n::utils{class Data;}
 namespace rad::detection::image{class Detection;}
 namespace rad{class Correction;}
-namespace ope::normal{class Image;}
 
 
 namespace k4n::processing{
@@ -35,7 +34,6 @@ public:
   void find_data_depth(k4n::dev::Sensor* sensor);
   void find_data_color(k4n::dev::Sensor* sensor);
   void find_data_ir(k4n::dev::Sensor* sensor);
-  void find_data_normal(k4n::dev::Sensor* sensor);
   void find_data_cloud(k4n::dev::Sensor* sensor);
 
   //Transformed data
@@ -56,7 +54,6 @@ private:
   k4n::utils::Data* k4n_data;
   rad::detection::image::Detection* rad_detection;
   rad::Correction* rad_correction;
-  ope::normal::Image* ope_normal;
 
   tjhandle tj_handle;
   bool idle = true;

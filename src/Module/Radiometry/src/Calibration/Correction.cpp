@@ -23,6 +23,8 @@ void Correction::make_image_correction(dat::base::Sensor* sensor, utl::media::Im
   if(rad_model->is_ready() == false) return;
   //---------------------------
 
+  utl::base::Data* data = sensor->get_data();
+
   rad_struct->correction.image.data = ir->data;
   rad_struct->correction.image.width = ir->width;
   rad_struct->correction.image.height = ir->height;
@@ -39,7 +41,7 @@ tic();
       float I_cor = 0;
       float I_raw = sensor->buffer_ir[idx];
       if(I_raw != 0){
-        vec3 Nxyz = sensor->buffer_Nxyz[idx];
+        vec3 Nxyz = data->Nxyz[idx];
         vec3 xyz = sensor->convert_depth_2d_to_3d(ivec2(x, y));
         float It = math::compute_It(xyz, Nxyz, glm::vec3(0, 0, 0));
         float R = math::distance_from_origin(xyz);

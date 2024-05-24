@@ -217,7 +217,7 @@ void Data::convert_normal_into_color(k4n::dev::Sensor* sensor, std::vector<glm::
     output[j + 3] = 255;
   }
 
-  sensor->normal.image.data = output;
+  //sensor->normal.image.data = output;
 
   //---------------------------
 }

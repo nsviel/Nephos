@@ -21,7 +21,6 @@ Image::Image(k4n::Node* node_k4n){
   this->thread_pool = node_engine->get_thread_pool();
   this->rad_detection = node_radio->get_image_detection();
   this->rad_correction = node_radio->get_rad_correction();
-  this->ope_normal = new ope::normal::Image();
 
   //---------------------------
 }
@@ -97,11 +96,6 @@ void Image::find_data_from_capture(k4n::dev::Sensor* sensor){
   tasker->task_begin("infrared");
   this->find_data_ir(sensor);
   tasker->task_end("infrared");
-
-  //Normal data
-  tasker->task_begin("normal");
-  this->find_data_normal(sensor);
-  tasker->task_end("normal");
 
   //Cloud data
   tasker->task_begin("transformation");
@@ -207,25 +201,6 @@ void Image::find_data_ir(k4n::dev::Sensor* sensor){
   sensor->ir.image.format = "R8G8B8A8_SRGB";
   sensor->ir.image.new_data = true;
   sensor->bind_image(&sensor->ir.image);
-
-  //---------------------------
-}
-void Image::find_data_normal(k4n::dev::Sensor* sensor){
-  //---------------------------
-
-  //Compute image normals
-  vector<glm::vec3> vec_Nxyz;
-  ope_normal->compute_normal_from_image(sensor, &sensor->depth.image, sensor->depth.data.width, sensor->depth.data.height, vec_Nxyz);
-  sensor->buffer_Nxyz = vec_Nxyz;
-
-  //Image
-  k4n_data->convert_normal_into_color(sensor, vec_Nxyz);
-  sensor->normal.image.size = sensor->depth.image.data.size();
-  sensor->normal.image.width = sensor->depth.data.width;
-  sensor->normal.image.height = sensor->depth.data.height;
-  sensor->normal.image.format = "R8G8B8A8_SRGB";
-  sensor->normal.image.new_data = true;
-  sensor->bind_image(&sensor->normal.image);
 
   //---------------------------
 }

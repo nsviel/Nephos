@@ -21,7 +21,6 @@ namespace k4n::structure{class Recorder;}
 namespace k4n::color{class Structure;}
 namespace k4n::depth{class Structure;}
 namespace k4n::infrared{class Structure;}
-namespace k4n::normal{class Structure;}
 namespace k4n::imu{class Structure;}
 namespace k4n::structure{class Calibration;}
 namespace k4n::structure{class FPS;}
@@ -84,7 +83,6 @@ public:
   k4n::color::Structure color;
   k4n::depth::Structure depth;
   k4n::infrared::Structure ir;
-  k4n::normal::Structure normal;
   k4n::imu::Structure imu;
   k4n::structure::FPS fps;
 
