@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace dat{class Node;}
 namespace dat{class Glyph;}
 namespace dat{class Structure;}
