@@ -13,13 +13,14 @@ KNN::KNN(){
   //---------------------------
 
   this->R_thres = 0.1f;
+  this->k = 5;
 
   //---------------------------
 }
 KNN::~KNN(){}
 
 //Main function
-void KNN::compute_normal_from_grid(utl::base::Data* data, int knn){
+void KNN::compute_normal_from_grid(utl::base::Data* data){
   if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
@@ -31,18 +32,23 @@ void KNN::compute_normal_from_grid(utl::base::Data* data, int knn){
   #pragma omp parallel for collapse(2) schedule(static)
   for(int i=0; i<data->height; i++){
     for(int j=0; j<data->width; j++){
-      // Calculate the indices of the neighbor points
+      //Get point and check
+      int idx = i * data->width + j;
+      glm::vec3& point = data->xyz[idx];
+      if(point == glm::vec3(0, 0, 0) || Nxyz[idx] != glm::vec3(0, 0, 0)) continue;
+
+      //Find neighbor point indices
       std::vector<glm::vec3> vec_nn;
       std::vector<int> vec_idx;
-      glm::vec3& point = data->xyz[i * data->width + j];
-      if(point == glm::vec3(0, 0, 0) || Nxyz[i * data->width + j] != glm::vec3(0, 0, 0)) continue;
+      this->compute_knn(vec_nn, vec_idx, point, data, i, j);
 
-      this->compute_knn(point, vec_nn, vec_idx, knn, data, i, j);
+      //Compute normal
       glm::mat3 covariance = math::compute_covariance(vec_nn);
       glm::vec3 normal = math::compute_normal_from_covariance(covariance);
       math::compute_normal_orientation(normal, point);
 
-      Nxyz[i * data->width + j] = normal;
+      //Store result
+      Nxyz[idx] = normal;
       for(int m=0; m<vec_idx.size(); m++){
         Nxyz[vec_idx[m]] = normal;
       }
@@ -55,27 +61,28 @@ void KNN::compute_normal_from_grid(utl::base::Data* data, int knn){
 }
 
 //Subfunction
-void KNN::compute_knn(glm::vec3& point, std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, int knn, utl::base::Data* data, int i, int j){
+void KNN::compute_knn(std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, glm::vec3& point, utl::base::Data* data, int i, int j){
   //---------------------------
 
-  for(int k=-knn; k<=knn; k++){
-    int i_neighbor = (i + k) * data->width;
-    if(i_neighbor < 0) continue;
+  for(int v=-k; v<=k; v++){
+    int i_nn = (i + v) * data->width;
+    if(i_nn < 0) continue;
 
-    for(int l=-knn; l<=knn; l++){
-      int j_neighbor = j + l;
-      if(j_neighbor < 0) continue;
+    for(int h=-k; h<=k; h++){
+      int j_nn = j + h;
+      if(j_nn < 0) continue;
 
-      glm::vec3& nn = data->xyz[i_neighbor + j_neighbor];
+      //Get neighbor
+      glm::vec3& nn = data->xyz[i_nn + j_nn];
+      if(nn == glm::vec3(0, 0, 0)) continue;
 
-      if(nn != glm::vec3(0, 0, 0)){
-        float dist = glm::distance(point, nn);
-        if(dist < R_thres){
-          vec_nn.push_back(nn);
-          vec_idx.push_back(i_neighbor + j_neighbor);
-        }
-      }
+      //Check distance with interest point
+      float dist = glm::distance(point, nn);
+      if(dist > R_thres) continue;
 
+      //Else store it
+      vec_nn.push_back(nn);
+      vec_idx.push_back(i_nn + j_nn);
     }
   }
 
