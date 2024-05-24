@@ -16,7 +16,7 @@ Glyph::Glyph(dat::Node* node_data){
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
   this->node_engine = node_engine;
-  this->dat_graph = node_data->get_data_graph();
+  this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_data_set();
 
   //---------------------------

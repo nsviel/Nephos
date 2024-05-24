@@ -13,7 +13,7 @@ namespace dat::gui{
 Graph::Graph(dat::Node* node_data, bool* show_window){
   //---------------------------
 
-  this->dat_graph = node_data->get_data_graph();
+  this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_data_set();
   this->dat_struct = node_data->get_data_struct();
   this->rnd_set = new dat::gui::Set(node_data, &show_panel_set);

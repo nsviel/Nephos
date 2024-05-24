@@ -28,7 +28,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void detect_circle_in_image(dat::base::Sensor* sensor, utl::media::Image* image);
+  void detect_circle_in_image(utl::media::Image* image);
   void draw_detection_image();
   void draw_detection_glyph(dat::base::Sensor* sensor);
 

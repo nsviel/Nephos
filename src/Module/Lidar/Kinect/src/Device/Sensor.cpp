@@ -19,7 +19,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->k4n_image = new k4n::processing::Image(node_k4n);
   this->k4n_config = new k4n::utils::Configuration();
   this->node_engine = node_engine;
-  this->dat_graph = node_data->get_data_graph();
+  this->dat_graph = node_data->get_dat_graph();
   this->dat_entity = node_data->get_data_entity();
   this->dat_set = node_data->get_data_set();
   this->dat_glyph = node_data->get_data_glyph();

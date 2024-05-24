@@ -37,7 +37,7 @@ void Detection::start_thread(dat::base::Sensor* sensor, utl::media::Image* image
 void Detection::run_thread(dat::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
-  this->detect_circle_in_image(sensor, image);
+  this->detect_circle_in_image(image);
   this->draw_detection_image();
   this->draw_detection_glyph(sensor);
 
@@ -56,7 +56,7 @@ void Detection::wait_thread(){
 }
 
 //Subfunction
-void Detection::detect_circle_in_image(dat::base::Sensor* sensor, utl::media::Image* image){
+void Detection::detect_circle_in_image(utl::media::Image* image){
   //---------------------------
 
   cv::Mat cv_image;

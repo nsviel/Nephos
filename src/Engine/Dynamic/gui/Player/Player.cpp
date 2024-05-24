@@ -13,7 +13,7 @@ Player::Player(dyn::Node* node_dynamic, bool* show_window){
 
   dat::Node* node_data = node_dynamic->get_node_data();
 
-  this->dat_graph = node_data->get_data_graph();
+  this->dat_graph = node_data->get_dat_graph();
   this->gui_control = new dyn::gui::Control();
   this->gui_operation = new dyn::gui::Operation(node_dynamic);
 

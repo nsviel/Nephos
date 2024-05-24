@@ -15,7 +15,7 @@ Loader::Loader(ldr::Node* node_loader, bool* show_window){
 
   dat::Node* node_data = node_loader->get_node_data();
 
-  this->dat_graph = node_data->get_data_graph();
+  this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_data_set();
   this->ldr_loader = node_loader->get_ldr_loader();
   this->ldr_format = node_loader->get_ldr_format();

@@ -14,7 +14,7 @@ Wheel::Wheel(dat::Node* node_data){
   //---------------------------
 
   this->node_engine = node_data->get_node_engine();
-  this->dat_graph = node_data->get_data_graph();
+  this->dat_graph = node_data->get_dat_graph();
   this->ope_operation = new ope::Operation();
 
   this->mode = WHEEL_CAM_Z;

@@ -14,7 +14,7 @@ namespace dat::gui{
 Control::Control(dat::Node* node_data){
   //---------------------------
 
-  this->dat_graph = node_data->get_data_graph();
+  this->dat_graph = node_data->get_dat_graph();
   this->ope_operation = new ope::Operation();
   this->gui_wheel = node_data->get_gui_wheel();
 

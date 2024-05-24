@@ -18,7 +18,7 @@ Stream::Stream(dyn::Node* node_dynamic, bool* show_window){
   dat::Node* node_data = node_dynamic->get_node_data();
 
   this->node_engine = node_dynamic->get_node_engine();
-  this->dat_graph = node_data->get_data_graph();
+  this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_data_set();
 
   this->show_window = show_window;

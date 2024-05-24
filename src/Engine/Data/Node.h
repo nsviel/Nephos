@@ -35,7 +35,7 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline cam::Node* get_node_camera(){return node_camera;}
 
-  inline dat::Graph* get_data_graph(){return dat_graph;}
+  inline dat::Graph* get_dat_graph(){return dat_graph;}
   inline dat::Entity* get_data_entity(){return dat_entity;}
   inline dat::Set* get_data_set(){return dat_set;}
   inline dat::Glyph* get_data_glyph(){return dat_glyph;}

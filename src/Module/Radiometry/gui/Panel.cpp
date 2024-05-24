@@ -12,7 +12,7 @@ Panel::Panel(rad::Node* node_radio, bool* show_window){
 
   dat::Node* node_data = node_radio->get_node_data();
 
-  this->dat_graph = node_data->get_data_graph();
+  this->dat_graph = node_data->get_dat_graph();
   this->rad_struct = node_radio->get_rad_struct();
   this->gui_detection = new rad::gui::Detection(node_radio);
   this->gui_model = new rad::gui::Model(node_radio);
