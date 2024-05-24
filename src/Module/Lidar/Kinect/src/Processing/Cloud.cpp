@@ -20,7 +20,6 @@ Cloud::Cloud(k4n::Node* node_k4n){
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
   this->rad_detection = node_radio->get_cloud_detection();
-  this->rad_correction = node_radio->get_rad_correction();
   this->thread_pool = node_engine->get_thread_pool();
   this->k4n_exporter = new k4n::utils::Exporter(node_k4n);
   this->k4n_operation = new k4n::processing::Operation(node_k4n);
@@ -52,7 +51,7 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   k4n_operation->start_thread(sensor);
 
   //Update object data
-  //rad_detection->start_thread(sensor);
+  rad_detection->start_thread(sensor);
 
   //Export
   k4n_exporter->start_thread(sensor);
@@ -69,7 +68,7 @@ void Cloud::wait_thread(){
   }
   k4n_exporter->wait_thread();
   k4n_operation->wait_thread();
-  //rad_detection->wait_thread();
+  rad_detection->wait_thread();
 
   //---------------------------
 }
@@ -200,11 +199,10 @@ void Cloud::retrieve_ir(k4n::dev::Sensor* sensor, int i){
   const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor->ir.cloud.buffer);
   //---------------------------
 
-  float I_raw = buffer_ir[i];
+  this->ir = buffer_ir[i];
   //vec3 Nxyz = sensor->buffer_Nxyz[i];
   //float It = math::compute_It(xyz, Nxyz, glm::vec3(0, 0, 0));
   //this->ir = rad_correction->apply_correction(I_raw, R, It);
-  this->ir = I_raw;
 
   //---------------------------
 }

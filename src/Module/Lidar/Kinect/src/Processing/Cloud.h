@@ -5,7 +5,6 @@
 
 namespace prf::graph{class Tasker;}
 namespace rad::detection::cloud{class Detection;}
-namespace rad{class Correction;}
 namespace utl::thread{class Pool;}
 namespace k4n{class Node;}
 namespace k4n::processing{class Operation;}
@@ -46,7 +45,6 @@ private:
   k4n::processing::Operation* k4n_operation;
   k4n::utils::Exporter* k4n_exporter;
   rad::detection::cloud::Detection* rad_detection;
-  rad::Correction* rad_correction;
   utl::thread::Pool* thread_pool;
 
   std::vector<glm::vec3> vec_xyz;
