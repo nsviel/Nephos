@@ -8,11 +8,11 @@
 namespace rad::model{
 
 //Constructor / Destructor
-Measure::Measure(rad::Node* node_radio){
+Measure::Measure(rad::Node* node_radio, rad::model::Plot* rad_plot){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_plot = node_radio->get_model_plot();
+  this->rad_plot = rad_plot;
 
   //---------------------------
   this->init();
@@ -20,34 +20,6 @@ Measure::Measure(rad::Node* node_radio){
 Measure::~Measure(){}
 
 //Main function
-void Measure::init(){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  //---------------------------
-
-  //R
-  measure->R_resolution = 0.01f;
-  measure->R_range = glm::vec2(0.0f, 5.0f);
-  measure->R_size = (measure->R_range.y - measure->R_range.x) / measure->R_resolution + 1;
-
-  //It
-  measure->It_resolution = 1.0f;
-  measure->It_range = glm::vec2(0.0f, 90.0f);
-  measure->It_size = (measure->It_range.y - measure->It_range.x) / measure->It_resolution + 1;
-
-  //I
-  measure->I_range = glm::vec2(0.0f, 1500.0f);
-
-  //Measure
-  measure->size = measure->R_size * measure->It_size;
-  measure->data = vector<vec3>(measure->size, vec3(-1, -1, -1));
-
-
-  rad_plot->init();
-
-  //---------------------------
-}
-
-//Subfunction
 void Measure::import_measure(){
   rad::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
@@ -74,6 +46,34 @@ void Measure::clear_measure(){
   //Import file model data
   measure->data.clear();
   rad_plot->reset_plot_data();
+
+  //---------------------------
+}
+
+//Subfunction
+void Measure::init(){
+  rad::structure::Measure* measure = &rad_struct->model.measure;
+  //---------------------------
+
+  //R
+  measure->R_resolution = 0.01f;
+  measure->R_range = glm::vec2(0.0f, 5.0f);
+  measure->R_size = (measure->R_range.y - measure->R_range.x) / measure->R_resolution + 1;
+
+  //It
+  measure->It_resolution = 1.0f;
+  measure->It_range = glm::vec2(0.0f, 90.0f);
+  measure->It_size = (measure->It_range.y - measure->It_range.x) / measure->It_resolution + 1;
+
+  //I
+  measure->I_range = glm::vec2(0.0f, 1500.0f);
+
+  //Measure
+  measure->size = measure->R_size * measure->It_size;
+  measure->data = vector<vec3>(measure->size, vec3(-1, -1, -1));
+
+
+  rad_plot->init();
 
   //---------------------------
 }

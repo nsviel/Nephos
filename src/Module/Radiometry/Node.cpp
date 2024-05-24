@@ -21,10 +21,8 @@ Node::Node(eng::Node* node_engine){
   //Child
   this->rad_struct = new rad::Structure();
   this->rad_detection = new rad::detection::Manager(this);
-  this->rad_model = new rad::model::Model(this);
-  this->rad_plot = new rad::model::Plot(this);
-  this->rad_measure = new rad::model::Measure(this);
-  this->rad_correction = new rad::correction::Correction(this);
+  this->rad_model = new rad::model::Manager(this);
+  this->rad_correction = new rad::correction::Manager(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 
   //---------------------------

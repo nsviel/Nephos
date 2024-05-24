@@ -13,7 +13,7 @@ class Plot
 {
 public:
   //Constructor / Destructor
-  Plot(rad::Node* node_radio);
+  Plot(rad::Node* node_radio, rad::model::Model* rad_model);
   ~Plot();
 
 public:

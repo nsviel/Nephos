@@ -13,17 +13,17 @@ class Measure
 {
 public:
   //Constructor / Destructor
-  Measure(rad::Node* node_radio);
+  Measure(rad::Node* node_radio, rad::model::Plot* rad_plot);
   ~Measure();
 
 public:
   //Main function
-  void init();
-
-  //Subfunction
   void import_measure();
   void export_measure();
   void clear_measure();
+
+  //Subfunction
+  void init();
   void find_optimization_bound();
 
 private:

@@ -11,7 +11,8 @@ Correction::Correction(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_model = node_radio->get_rad_model();
+  this->rad_manager = node_radio->get_rad_model();
+  this->rad_model = rad_manager->get_rad_model();
   this->ope_normal = new ope::normal::KNN();
 
   //---------------------------

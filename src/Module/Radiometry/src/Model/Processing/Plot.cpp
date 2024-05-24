@@ -8,11 +8,11 @@
 namespace rad::model{
 
 //Constructor / Destructor
-Plot::Plot(rad::Node* node_radio){
+Plot::Plot(rad::Node* node_radio, rad::model::Model* rad_model){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_model = node_radio->get_rad_model();
+  this->rad_model = rad_model;
 
   //---------------------------
 }
