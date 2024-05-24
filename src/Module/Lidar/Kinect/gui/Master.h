@@ -22,11 +22,7 @@ public:
   void show_parameter(k4n::dev::Master* master);
 
   //Subfunction
-  void show_transformation(k4n::dev::Master* master);
-  void show_colorization(k4n::dev::Master* master);
-  void show_possible_ope(k4n::dev::Master* master);
-  void show_voxelization(k4n::dev::Master* master);
-  void show_normal(k4n::dev::Master* master);
+  void show_transformation_mode(k4n::dev::Master* master);
   void show_recorder(k4n::dev::Master* master);
 
 private:
