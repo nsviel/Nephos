@@ -10,6 +10,7 @@ namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
 namespace ope::normal{class KNN;}
+namespace rad::detection::image{class Detection;}
 
 
 namespace dyn::image{
@@ -32,7 +33,8 @@ public:
 private:
   dyn::Structure* dyn_struct;
   utl::thread::Pool* thread_pool;
-  
+  rad::detection::image::Detection* rad_detection;
+
   bool thread_idle = true;
 };
 

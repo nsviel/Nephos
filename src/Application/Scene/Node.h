@@ -3,9 +3,9 @@
 #include <Utility/Base/Type/Node.h>
 
 namespace app{class Node;}
-namespace mod{class Node;}
 namespace eng{class Node;}
 namespace sce{class Init;}
+namespace k4n{class Node;}
 
 
 namespace sce{
@@ -29,7 +29,7 @@ public:
 private:
   //Dependancy
   eng::Node* node_engine;
-  mod::Node* node_module;
+  k4n::Node* node_kinect;
 
   //Child
   sce::Init* sce_init;

@@ -4,7 +4,6 @@
 #include <k4a/k4a.hpp>
 
 namespace prf::graph{class Tasker;}
-namespace rad::detection::cloud{class Detection;}
 namespace utl::thread{class Pool;}
 namespace k4n{class Node;}
 namespace dyn::cloud{class Operation;}
@@ -43,7 +42,6 @@ public:
 
 private:
   k4n::utils::Exporter* k4n_exporter;
-  rad::detection::cloud::Detection* rad_detection;
   utl::thread::Pool* thread_pool;
   dyn::cloud::Operation* dyn_operation;
 

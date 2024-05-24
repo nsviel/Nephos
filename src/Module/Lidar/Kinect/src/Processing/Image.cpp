@@ -3,7 +3,6 @@
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
-#include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
 
 
@@ -14,15 +13,12 @@ Image::Image(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
-  rad::Node* node_radio = node_k4n->get_node_radio();
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
   this->tj_handle = tjInitDecompress();
   this->k4n_data = new k4n::utils::Data();
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->thread_pool = node_engine->get_thread_pool();
-  this->rad_detection = node_radio->get_image_detection();
-  this->rad_correction = node_radio->get_rad_correction();
   this->dyn_operation = node_dynamic->get_ope_image();
 
   //---------------------------
@@ -57,9 +53,6 @@ void Image::run_thread(k4n::dev::Sensor* sensor){
   //Convert data into cloud
   k4n_cloud->start_thread(sensor);
 
-  //Radiometry image detection
-  rad_detection->start_thread(sensor, &sensor->ir.image);
-
   //---------------------------
   this->idle = true;
 }
@@ -71,7 +64,6 @@ void Image::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_cloud->wait_thread();
-  rad_detection->wait_thread();
 
   //---------------------------
 }

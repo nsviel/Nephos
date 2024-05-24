@@ -6,21 +6,19 @@
 #include <Data/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <image/IconsFontAwesome6.h>
-#include <Module/Node.h>
 
 
 namespace k4n{
 
 //Constructor / Destructor
-Node::Node(mod::Node* node_module){
+Node::Node(eng::Node* node_engine){
   //---------------------------
 
   //Dependancy
-  this->node_engine = node_module->get_node_engine();
+  this->node_engine = node_engine;
   this->node_loader = node_engine->get_node_loader();
   this->node_profiler = node_engine->get_node_profiler();
   this->node_data = node_engine->get_node_data();
-  this->node_radio = node_module->get_node_radio();
 
   //Child
   this->k4n_connection = new k4n::capture::Connection(this);

@@ -5,6 +5,7 @@
 #include <Dynamic/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Data/Namespace.h>
+#include <Radiometry/Namespace.h>
 
 
 namespace dyn::cloud{
@@ -14,13 +15,14 @@ Operation::Operation(dyn::Node* node_dynamic){
   //---------------------------
 
   eng::Node* node_engine = node_dynamic->get_node_engine();
+  rad::Node* node_radio = node_dynamic->get_node_radio();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->ope_voxelizer = new ope::Voxelizer();
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::normal::KNN();
-
+  this->rad_detection = node_radio->get_cloud_detection();
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
@@ -44,6 +46,9 @@ void Operation::run_thread(dat::base::Sensor* sensor){
 
   //Colorizer
   this->colorize_object(sensor);
+
+  //Update object data
+  //rad_detection->start_thread(sensor);
 
 /*
   //Voxelization filtering
