@@ -28,11 +28,6 @@ void Master::show_info(k4n::dev::Master* master){
   //Master general info
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   if(ImGui::BeginTable("master##info", 2)){
-    //Type
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Type"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", master->type.c_str());
-
     //Recording time
     if(master->player->record){
       //Recording time
