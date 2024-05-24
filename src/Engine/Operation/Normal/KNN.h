@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  void compute_normal_from_grid(utl::base::Data* data);
+  void compute_normal(utl::base::Data* data);
 
   //Subfunction
   void compute_knn(std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, glm::vec3& point, utl::base::Data* data, int i, int j);

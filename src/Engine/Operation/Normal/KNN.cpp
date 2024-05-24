@@ -20,13 +20,13 @@ KNN::KNN(){
 KNN::~KNN(){}
 
 //Main function
-void KNN::compute_normal_from_grid(utl::base::Data* data){
+void KNN::compute_normal(utl::base::Data* data){
   if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
 
   //Prepare data
-  std::vector<glm::vec3> Nxyz(data->xyz.size(), glm::vec3(0.0f));
+  data->Nxyz = std::vector<glm::vec3>(data->xyz.size(), glm::vec3(0.0f));
 
   //Loop
   #pragma omp parallel for collapse(2) schedule(static)
@@ -35,7 +35,7 @@ void KNN::compute_normal_from_grid(utl::base::Data* data){
       //Get point and check
       int idx = i * data->width + j;
       glm::vec3& point = data->xyz[idx];
-      if(point == glm::vec3(0, 0, 0) || Nxyz[idx] != glm::vec3(0, 0, 0)) continue;
+      if(point == glm::vec3(0, 0, 0) || data->Nxyz[idx] != glm::vec3(0, 0, 0)) continue;
 
       //Find neighbor point indices
       std::vector<glm::vec3> vec_nn;
@@ -49,12 +49,10 @@ void KNN::compute_normal_from_grid(utl::base::Data* data){
 
       //Store same result for each nn
       for(int m=0; m<vec_idx.size(); m++){
-        Nxyz[vec_idx[m]] = normal;
+        data->Nxyz[vec_idx[m]] = normal;
       }
     }
   }
-
-  data->Nxyz = Nxyz;
 
   //---------------------------
 }

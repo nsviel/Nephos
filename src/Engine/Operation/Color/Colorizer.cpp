@@ -30,6 +30,10 @@ void Colorizer::make_colorization(dat::base::Entity* entity, ope::color::Configu
       this->colorization_intensity(entity, config);
       break;
     }
+    case ope::color::NORMAL:{
+      this->colorization_normal(entity, config);
+      break;
+    }
     case ope::color::HEATMAP:{
       this->colorization_heatmap(entity, config);
       break;
@@ -63,16 +67,30 @@ void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Co
 
   //---------------------------
 }
+void Colorizer::colorization_normal(dat::base::Entity* entity, ope::color::Configuration& config){
+  utl::base::Data* data = entity->get_data();
+  //---------------------------
+
+  std::vector<glm::vec3>& Nxyz = data->Nxyz;
+
+  //Compute heatmap
+  #pragma omp parallel for
+  for(int i=0; i<Nxyz.size(); i++){
+    float R = (1 + Nxyz[i].x) / 2;
+    float G = (1 + Nxyz[i].y) / 2;
+    float B = (1 + Nxyz[i].z) / 2;
+
+    data->rgb[i] = glm::vec4(R, G, B, 1.0f);
+  }
+
+  //---------------------------
+}
 void Colorizer::colorization_heatmap(dat::base::Entity* entity, ope::color::Configuration& config){
   //---------------------------
 
   switch(config.heatmap_mode){
     case ope::color::heatmap::INTENSITY:{
       ope_heatmap->heatmap_intensity(entity, config.intensity_diviser);
-      break;
-    }
-    case ope::color::heatmap::NORMAL:{
-      ope_heatmap->heatmap_normal(entity);
       break;
     }
     case ope::color::heatmap::HEIGHT:{

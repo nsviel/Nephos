@@ -18,13 +18,13 @@ public:
 
 public:
   //Main function
-  void compute_normal_from_image(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz);
+  void compute_normal(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz);
 
   //Method function
   void compute_normal_with_gradient(dat::base::Sensor* sensor, int width, int height, std::vector<glm::vec3>& vec_Nxyz);
   void compute_normal_with_cov(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz);
   void compute_normal_with_cov_img(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz);
-  
+
   //Subfunction
   void compute_neigbor(dat::base::Sensor* sensor, std::vector<glm::vec3>& vec_nn, int x, int y, int width, int height);
 

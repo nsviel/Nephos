@@ -47,6 +47,8 @@ void Operation::run_thread(dat::base::Sensor* sensor){
   //Colorizer
   this->colorize_object(sensor);
 
+  ope_normal->compute_normal(sensor->get_data());
+
   //Update object data
   //rad_detection->start_thread(sensor);
 

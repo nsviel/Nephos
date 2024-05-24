@@ -43,21 +43,6 @@ void Heatmap::heatmap_intensity(dat::base::Entity* entity, int diviser){
 
   //---------------------------
 }
-void Heatmap::heatmap_normal(dat::base::Entity* entity){
-  utl::base::Data* data = entity->get_data();
-  //---------------------------
-
-  //Prepare data
-  std::vector<glm::vec3>& Nxyz = data->Nxyz;
-
-  //Compute heatmap
-  #pragma omp parallel for
-  for(int i=0; i<Nxyz.size(); i++){
-    data->rgb[i] = glm::vec4(Nxyz[i].x, Nxyz[i].y, Nxyz[i].z, 1.0f);
-  }
-
-  //---------------------------
-}
 void Heatmap::heatmap_height(dat::base::Entity* entity){
   utl::base::Data* data = entity->get_data();
   //---------------------------

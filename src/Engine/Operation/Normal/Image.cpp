@@ -19,7 +19,7 @@ Image::Image(){
 Image::~Image(){}
 
 //Main function
-void Image::compute_normal_from_image(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Image::compute_normal(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   //this->compute_normal_with_gradient(sensor, width, height, vec_Nxyz);
