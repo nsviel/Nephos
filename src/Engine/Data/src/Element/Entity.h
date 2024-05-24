@@ -27,6 +27,7 @@ public:
 
   //Image function
   void add_image(dat::base::Entity* entity, utl::media::Image* image);
+  utl::media::Image* get_image(dat::base::Entity* entity, std::string name);
 
 private:
   eng::Node* node_engine;
