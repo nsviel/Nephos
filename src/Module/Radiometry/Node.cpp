@@ -49,7 +49,8 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-
+  //rad_image_detection->start_thread(sensor, &sensor->ir.image);
+  //rad_cloud_detection->start_thread(sensor, &sensor->ir.image);
 
   //---------------------------
 }

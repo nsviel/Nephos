@@ -136,7 +136,7 @@ void Image::find_data_depth(k4n::dev::Sensor* sensor){
   sensor->depth.image.height = sensor->depth.data.height;
   sensor->depth.image.format = "R8G8B8A8_SRGB";
   sensor->depth.image.new_data = true;
-  sensor->bind_image(&sensor->depth.image);
+  sensor->add_image(&sensor->depth.image);
 
   //---------------------------
 }
@@ -168,7 +168,7 @@ void Image::find_data_color(k4n::dev::Sensor* sensor){
   }else{
     sensor->color.image.new_data = true;
   }
-  sensor->bind_image(&sensor->color.image);
+  sensor->add_image(&sensor->color.image);
 
   //---------------------------
 }
@@ -197,7 +197,7 @@ void Image::find_data_ir(k4n::dev::Sensor* sensor){
   sensor->ir.image.height = sensor->ir.data.height;
   sensor->ir.image.format = "R8G8B8A8_SRGB";
   sensor->ir.image.new_data = true;
-  sensor->bind_image(&sensor->ir.image);
+  sensor->add_image(&sensor->ir.image);
 
   //---------------------------
 }

@@ -13,7 +13,7 @@ Entity::Entity(){
 Entity::~Entity(){}
 
 //Main function
-void Entity::bind_image(utl::media::Image* image){
+void Entity::add_image(utl::media::Image* image){
   //----------------------------
 
   //Check for already present image
