@@ -10,9 +10,12 @@
 namespace dyn::processing{
 
 //Constructor / Destructor
-Operation::Operation(eng::Node* node_engine){
+Operation::Operation(dyn::Node* node_dynamic){
   //---------------------------
 
+  eng::Node* node_engine = node_dynamic->get_node_engine();
+
+  this->dyn_struct = node_dynamic->get_dyn_struct();
   this->ope_voxelizer = new ope::Voxelizer();
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
@@ -90,16 +93,16 @@ void Operation::wait_thread(){
 //Subfunction
 void Operation::colorize_object(dat::base::Sensor* sensor){
   //---------------------------
-/*
+
   ope::color::Configuration config;
-  config.color_mode = sensor->master->operation.color_mode;
-  config.heatmap_mode = sensor->master->operation.heatmap_mode;
-  config.intensity_diviser = sensor->master->operation.intensity_diviser;
-  config.heatmap_range_height = sensor->master->operation.range_height;
-  config.unicolor = sensor->master->operation.unicolor;
+  config.color_mode = dyn_struct->colorization.color_mode;
+  config.heatmap_mode = dyn_struct->colorization.heatmap_mode;
+  config.intensity_diviser = dyn_struct->colorization.intensity_diviser;
+  config.heatmap_range_height = dyn_struct->colorization.range_height;
+  config.unicolor = dyn_struct->colorization.unicolor;
 
   ope_colorizer->make_colorization(sensor, config);
-*/
+
   //---------------------------
 }
 void Operation::voxelize_object(dat::base::Sensor* sensor){

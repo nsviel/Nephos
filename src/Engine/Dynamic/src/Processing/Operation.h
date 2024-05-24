@@ -2,7 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace eng{class Node;}
+namespace dyn{class Node;}
+namespace dyn{class Structure;}
 namespace dat::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace ope{class Voxelizer;}
@@ -17,7 +18,7 @@ class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(eng::Node* node_engine);
+  Operation(dyn::Node* node_dynamic);
   ~Operation();
 
 public:
@@ -33,6 +34,7 @@ public:
   void update_object(dat::base::Sensor* sensor);
 
 private:
+  dyn::Structure* dyn_struct;
   ope::Voxelizer* ope_voxelizer;
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
