@@ -22,18 +22,20 @@ struct Configuration{
 };
 
 enum Mode{
-  CAMERA = 0,
+  RGB = 0,
   UNICOLOR = 1,
   INTENSITY = 2,
-  HEATMAP = 3,
-  STRUCTURE = 4,
+  NORMAL = 3,
+  HEATMAP = 4,
+  STRUCTURE = 5,
 };
 
 namespace heatmap{
 enum Mode{
   INTENSITY = 0,
-  HEIGHT = 1,
-  RANGE = 2,
+  NORMAL = 1,
+  HEIGHT = 2,
+  RANGE = 3,
 };
 }
 

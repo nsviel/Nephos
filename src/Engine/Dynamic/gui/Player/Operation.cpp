@@ -88,7 +88,7 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
 
   if(ImGui::TreeNode("Colorization##dynamic")){
     //Colorization mode
-    ImGui::RadioButton("RGB##colorization", &dyn_struct->colorization.color_mode, ope::color::CAMERA);
+    ImGui::RadioButton("RGB##colorization", &dyn_struct->colorization.color_mode, ope::color::RGB);
     ImGui::SameLine();
     ImGui::RadioButton("##unicolor", &dyn_struct->colorization.color_mode, ope::color::UNICOLOR);
     ImGui::SameLine();
@@ -96,6 +96,8 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
     ImGui::ColorEdit4("##unicolor_choice", (float*)&dyn_struct->colorization.unicolor, flags);
     ImGui::SameLine();
     ImGui::RadioButton("I##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY);
+    ImGui::SameLine();
+    ImGui::RadioButton("N##colorization", &dyn_struct->colorization.color_mode, ope::color::NORMAL);
     ImGui::SameLine();
     ImGui::RadioButton("Heatmap##colorization", &dyn_struct->colorization.color_mode, ope::color::HEATMAP);
     ImGui::SameLine();
@@ -196,7 +198,7 @@ void Operation::draw_ope_exporter(dat::base::Set* set){
       ImGui::TreePop();
     }
 
-    
+
     //Recording time
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Record"); ImGui::TableNextColumn();

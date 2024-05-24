@@ -71,6 +71,10 @@ void Colorizer::colorization_heatmap(dat::base::Entity* entity, ope::color::Conf
       ope_heatmap->heatmap_intensity(entity, config.intensity_diviser);
       break;
     }
+    case ope::color::heatmap::NORMAL:{
+      ope_heatmap->heatmap_normal(entity);
+      break;
+    }
     case ope::color::heatmap::HEIGHT:{
       ope_heatmap->heatmap_height(entity, config.heatmap_range_height);
       break;
