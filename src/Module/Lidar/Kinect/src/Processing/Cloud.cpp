@@ -46,7 +46,7 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Convert data into a cloud
-  this->convert_into_cloud(sensor);
+  this->convertion_into_cloud(sensor);
 
   //Update object data
   k4n_operation->start_thread(sensor);
@@ -74,8 +74,8 @@ void Cloud::wait_thread(){
   //---------------------------
 }
 
-//Cloud function
-void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
+//Loop function
+void Cloud::convertion_into_cloud(k4n::dev::Sensor* sensor){
   if(!sensor->depth.cloud.k4a_image.is_valid()) return;
   if(!sensor->ir.cloud.k4a_image.is_valid()) return;
   if(sensor->color.cloud.buffer == nullptr) return;
@@ -85,26 +85,15 @@ void Cloud::convert_into_cloud(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("cloud");
   tasker->loop_begin();
 
-  this->loop_init(sensor);
-  this->loop_data(sensor, tasker);
-  this->loop_end(sensor, tasker);
+  this->convertion_init(sensor);
+  this->convertion_data(sensor, tasker);
+  this->convertion_transfer(sensor, tasker);
 
   tasker->loop_end();
 
   //---------------------------
 }
-void Cloud::loop_init(k4n::dev::Sensor* sensor){
-  //---------------------------
-
-  vec_xyz.clear();
-  vec_rgb.clear();
-  vec_ir.clear();
-  vec_r.clear();
-  vec_goodness.clear();
-
-  //---------------------------
-}
-void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
+void Cloud::convertion_init(k4n::dev::Sensor* sensor){
   //---------------------------
 
   //Depth transformation
@@ -115,17 +104,21 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   //Resize vectors
   tasker->task_begin("reserve");
   int size = sensor->depth.cloud.size;
-  vec_xyz.reserve(size);
-  vec_rgb.reserve(size);
-  vec_ir.reserve(size);
-  vec_r.reserve(size);
-  vec_goodness.reserve(size);
+  vec_xyz.clear(); vec_xyz.reserve(size);
+  vec_rgb.clear(); vec_rgb.reserve(size);
+  vec_ir.clear(); vec_ir.reserve(size);
+  vec_r.clear(); vec_r.reserve(size);
   tasker->task_end("reserve");
+
+  //---------------------------
+}
+void Cloud::convertion_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
+  //---------------------------
 
   //Fille vector with data
   tasker->task_begin("data");
   #pragma omp parallel for
-  for(int i=0; i<size; i++){
+  for(int i=0; i<sensor->depth.cloud.size; i++){
     this->retrieve_location(sensor, i);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
@@ -136,7 +129,7 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
 
   //---------------------------
 }
-void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
+void Cloud::convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
   utl::base::Data* data = sensor->get_data();
   k4n::dev::Master* master = sensor->master;
   //---------------------------

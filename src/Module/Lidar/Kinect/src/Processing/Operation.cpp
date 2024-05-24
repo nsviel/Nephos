@@ -51,35 +51,6 @@ void Operation::run_thread(k4n::dev::Sensor* sensor){
   this->colorize_object(sensor);
   tasker->task_end("colorization");
 
-  //Voxelization filtering
-  if(master->operation.voxel){
-    tasker->task_begin("voxel");
-    //this->voxelize_object(sensor);
-    tasker->task_end("voxel");
-  }
-
-  //Triangulation
-  if(master->operation.triangulation){
-    tasker->task_begin("triangulation");
-    //this->triangularize_object(sensor);
-    tasker->task_end("triangulation");
-  }
-
-  //Normal
-  if(master->operation.normal){
-    tasker->task_begin("normal");
-    utl::base::Data* data = sensor->get_data();
-    // 3 bug :
-    // - start segmentation fault
-    // - depth to color transformation change
-    // - color heatmap (est parfois remplacer par rgb) / normal qui bug time to time
-    //ope_normal->compute_normal_with_neighbors(data, sensor->master->operation.normal_knn);
-    //k4n_operation->make_normal_from_depth_image(sensor);
-    tasker->task_end("normal");
-  }
-
-
-
   //Update object data
   tasker->task_begin("update");
   this->update_object(sensor);

@@ -29,11 +29,11 @@ public:
   void run_thread(k4n::dev::Sensor* sensor);
   void wait_thread();
 
-  //Cloud function
-  void convert_into_cloud(k4n::dev::Sensor* sensor);
-  void loop_init(k4n::dev::Sensor* sensor);
-  void loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
-  void loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
+  //Loop function
+  void convertion_into_cloud(k4n::dev::Sensor* sensor);
+  void convertion_init(k4n::dev::Sensor* sensor);
+  void convertion_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
+  void convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
 
   //Data retrieval
   void retrieve_cloud(k4n::dev::Sensor* sensor);
@@ -62,3 +62,4 @@ private:
 };
 
 }
+convertion_transfer
