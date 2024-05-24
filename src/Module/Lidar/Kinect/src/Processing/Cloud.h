@@ -7,7 +7,6 @@ namespace prf::graph{class Tasker;}
 namespace rad::detection::cloud{class Detection;}
 namespace utl::thread{class Pool;}
 namespace k4n{class Node;}
-namespace k4n::processing{class Operation;}
 namespace dyn::processing{class Operation;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::structure{class K4N;}
@@ -43,7 +42,6 @@ public:
   void insert_data(int i);
 
 private:
-  k4n::processing::Operation* k4n_operation;
   k4n::utils::Exporter* k4n_exporter;
   rad::detection::cloud::Detection* rad_detection;
   utl::thread::Pool* thread_pool;

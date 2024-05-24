@@ -41,13 +41,11 @@ void Operation::start_thread(dat::base::Sensor* sensor){
 }
 void Operation::run_thread(dat::base::Sensor* sensor){
   //---------------------------
-/*
-  tasker->loop_begin();
 
   //Colorizer
   this->colorize_object(sensor);
 
-
+/*
   //Voxelization filtering
   if(master->operation.voxel){
     //this->voxelize_object(sensor);
