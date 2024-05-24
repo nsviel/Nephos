@@ -56,39 +56,38 @@ void Set::set_info(dat::base::Set* set){
 void Set::set_parameter(dat::base::Set* set){
   //---------------------------
 
-  if(ImGui::BeginTable("object##table", 2, ImGuiTableFlags_BordersInnerV)){
-    //Visibility
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Visibility"); ImGui::TableNextColumn();
-    if(ImGui::Checkbox("##4555", &set->is_visible)){
-      dat_set->visibility_set(set, set->is_visible);
-    }
-
-    //Name
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Name"); ImGui::TableNextColumn();
-    static char str_n[256];
-    strcpy(str_n, set->name.c_str());
-    ImGui::SetNextItemWidth(item_width);
-    if(ImGui::InputText("##name", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
-      set->name = str_n;
-    }
-
-    //Entity number
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Nb entity"); ImGui::TableNextColumn();
-    std::string nb_entity = math::thousand_separator(set->nb_entity);
-    ImGui::Text("%s", nb_entity.c_str());
-
-    //Number of object
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Nb point"); ImGui::TableNextColumn();
-    int nb_point = dat_set->compute_number_point(set);
-    std::string number = math::thousand_separator(nb_point);
-    ImGui::Text("%s", number.c_str());
-
-    ImGui::EndTable();
+  ImGui::BeginTable("object##table", 2, ImGuiTableFlags_BordersInnerV);
+  //Visibility
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Visibility"); ImGui::TableNextColumn();
+  if(ImGui::Checkbox("##4555", &set->is_visible)){
+    dat_set->visibility_set(set, set->is_visible);
   }
+
+  //Name
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Name"); ImGui::TableNextColumn();
+  static char str_n[256];
+  strcpy(str_n, set->name.c_str());
+  ImGui::SetNextItemWidth(item_width);
+  if(ImGui::InputText("##name", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
+    set->name = str_n;
+  }
+
+  //Entity number
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Nb entity"); ImGui::TableNextColumn();
+  std::string nb_entity = math::thousand_separator(set->nb_entity);
+  ImGui::Text("%s", nb_entity.c_str());
+
+  //Number of object
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Nb point"); ImGui::TableNextColumn();
+  int nb_point = dat_set->compute_number_point(set);
+  std::string number = math::thousand_separator(nb_point);
+  ImGui::Text("%s", number.c_str());
+
+  ImGui::EndTable();
 
   //---------------------------
 }

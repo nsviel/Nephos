@@ -35,7 +35,7 @@ void Sensor::show_sensor(k4n::dev::Sensor* sensor){
     ImGui::SetNextItemWidth(75);
     if(ImGui::BeginTabItem("Info##3443", NULL)){
       this->show_firmware_info(sensor);
-      gui_playback->show_info_sensor(sensor);
+      gui_playback->show_parameter(sensor);
 
       ImGui::EndTabBar();
     }
@@ -54,32 +54,19 @@ void Sensor::show_sensor_info(k4n::dev::Sensor* sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  if(ImGui::BeginTable("Kinect_info##general", 2)){
-    //Type
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Type"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", sensor->entity_type.c_str());
+  ImGui::BeginTable("Kinect_info##general", 2);
+
 /*
-    //File path
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Path data"); ImGui::TableNextColumn();
-    string path_data = (sensor->path.data != "") ? sensor->path.data : "(not defined)";
-    ImGui::TextColored(color, "%s", path_data.c_str());
 
-    //Transformation matrix file path
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Path transfo"); ImGui::TableNextColumn();
-    string path_transfo = (sensor->path.transformation != "") ? sensor->path.transformation : "(not defined)";
-    ImGui::TextColored(color, "%s", path_transfo.c_str());
 
-    //File size
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Size"); ImGui::TableNextColumn();
+  //Transformation matrix file path
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Path transfo"); ImGui::TableNextColumn();
+  string path_transfo = (sensor->path.transformation != "") ? sensor->path.transformation : "(not defined)";
+  ImGui::TextColored(color, "%s", path_transfo.c_str());
 
-    ImGui::TextColored(color, "%.2f Mo", sensor->file_size);
 */
-    ImGui::EndTable();
-  }
+  ImGui::EndTable();
 
   //---------------------------
 }
@@ -124,31 +111,30 @@ void Sensor::show_firmware_info(k4n::dev::Sensor* sensor){
 
   k4a_hardware_version_t versionInfo = sensor->device.version;
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
-  if(ImGui::BeginTable("device##firmware", 2)){
-    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
+  ImGui::BeginTable("device##firmware", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
 
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("RGB camera"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%u.%u.%u", versionInfo.rgb.major, versionInfo.rgb.minor, versionInfo.rgb.iteration);
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("RGB camera"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%u.%u.%u", versionInfo.rgb.major, versionInfo.rgb.minor, versionInfo.rgb.iteration);
 
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Depth camera"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%u.%u.%u", versionInfo.depth.major, versionInfo.depth.minor, versionInfo.depth.iteration);
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Depth camera"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%u.%u.%u", versionInfo.depth.major, versionInfo.depth.minor, versionInfo.depth.iteration);
 
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Audio"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%u.%u.%u", versionInfo.audio.major, versionInfo.audio.minor, versionInfo.audio.iteration);
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Audio"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%u.%u.%u", versionInfo.audio.major, versionInfo.audio.minor, versionInfo.audio.iteration);
 
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Build config"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", versionInfo.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug");
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Build config"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%s", versionInfo.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug");
 
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Signature type"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%s", versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned");
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Signature type"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%s", versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned");
 
-    ImGui::EndTable();
-  }
+  ImGui::EndTable();
 
   //---------------------------
   ImGui::Separator();
@@ -157,36 +143,34 @@ void Sensor::show_sensor_recorder(k4n::dev::Sensor* sensor){
   //---------------------------
 
   if(ImGui::TreeNode("Recorder")){
-    if(ImGui::BeginTable("playback_table##general", 2)){
-      //Folder
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Folder"); ImGui::TableNextColumn();
-      if(ImGui::Button("...##folder_path")){
+    ImGui::BeginTable("playback_table##general", 2);
+    //Folder
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Folder"); ImGui::TableNextColumn();
+    if(ImGui::Button("...##folder_path")){
 
-      }
-      ImGui::SameLine();
-      if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
-        utl::directory::open(sensor->master->recorder.folder);
-      }
-      ImGui::SameLine();
-      ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.folder.c_str());
-
-      //File
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("File"); ImGui::TableNextColumn();
-      if(ImGui::Button("...##file_path")){
-
-      }
-      ImGui::SameLine();
-      if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
-        utl::directory::open(sensor->master->recorder.filename);
-      }
-      ImGui::SameLine();
-      ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.filename.c_str());
-
-      ImGui::EndTable();
     }
+    ImGui::SameLine();
+    if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
+      utl::directory::open(sensor->master->recorder.folder);
+    }
+    ImGui::SameLine();
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.folder.c_str());
 
+    //File
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("File"); ImGui::TableNextColumn();
+    if(ImGui::Button("...##file_path")){
+
+    }
+    ImGui::SameLine();
+    if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
+      utl::directory::open(sensor->master->recorder.filename);
+    }
+    ImGui::SameLine();
+    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", sensor->master->recorder.filename.c_str());
+
+    ImGui::EndTable();
     ImGui::Separator();
     ImGui::TreePop();
   }

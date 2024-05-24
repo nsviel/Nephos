@@ -31,20 +31,33 @@ void Operation::design_operation(dat::base::Set* set){
 
 //Subfunction
 void Operation::draw_ope_button(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
   //---------------------------
 
   if(ImGui::TreeNode("Transformation##dynamic")){
-    //Centered
+
+    ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+    ImGui::BeginTable("Kinect_info##general", 2);
+
+    //Button
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
     if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
       ope_operation->center_object(set);
     }
-
-    //Rotation 90° around X axis
     ImGui::SameLine();
     if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
       ope_operation->make_rotation_X_90d(set, 1);
     }
 
+    //Path transfo
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Path"); ImGui::TableNextColumn();
+    string path = (player->path.transformation != "") ? player->path.transformation : "(not defined)";
+    ImGui::TextColored(color, "%s", path.c_str());
+
+
+
+    ImGui::EndTable();
     ImGui::TreePop();
   }
 

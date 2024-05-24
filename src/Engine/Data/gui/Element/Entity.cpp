@@ -93,13 +93,13 @@ void Entity::entity_parameter(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  if(ImGui::BeginTable("entity##table", 2, ImGuiTableFlags_BordersInnerV)){
-    this->entity_info(entity);
-    this->data_info(entity);
-    this->pose_info(entity);
+  ImGui::BeginTable("entity##table", 2, ImGuiTableFlags_BordersInnerV);
+  
+  this->entity_info(entity);
+  this->data_info(entity);
+  this->pose_info(entity);
 
-    ImGui::EndTable();
-  }
+  ImGui::EndTable();
 
   //---------------------------
 }

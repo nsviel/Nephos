@@ -58,23 +58,22 @@ void Panel::main_info(){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
-  if(ImGui::BeginTable("profiler_panel##info", 2)){
-    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+  ImGui::BeginTable("profiler_panel##info", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
 
-    //GPU device
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Device"); ImGui::TableNextColumn();
-    prf::vulkan::Profiler* profiler_vulkan = prf_manager->get_profiler_vulkan();
-    string gpu = profiler_vulkan->get_info()->selected_gpu;
-    ImGui::TextColored(color, "%s", gpu.c_str());
+  //GPU device
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Device"); ImGui::TableNextColumn();
+  prf::vulkan::Profiler* profiler_vulkan = prf_manager->get_profiler_vulkan();
+  string gpu = profiler_vulkan->get_info()->selected_gpu;
+  ImGui::TextColored(color, "%s", gpu.c_str());
 
-    //Selected tasker
-    if(selected_profiler != nullptr){
-      selected_profiler->show_info();
-    }
-
-    ImGui::EndTable();
+  //Selected tasker
+  if(selected_profiler != nullptr){
+    selected_profiler->show_info();
   }
+
+  ImGui::EndTable();
 
   //---------------------------
 }

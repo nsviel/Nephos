@@ -23,74 +23,12 @@ Capture::Capture(k4n::Node* node_k4n){
 Capture::~Capture(){}
 
 //Main function
-void Capture::show_list_device(k4n::dev::Master* master){
-  //---------------------------
-
-  ImGuiTableFlags flags;
-  flags |= ImGuiTableFlags_Borders;
-  flags |= ImGuiTableFlags_RowBg;
-  if(ImGui::BeginTable("database_view", 4, flags)){
-    if(master->list_entity.size() == 0){
-      ImGui::TableNextRow();
-      ImGui::TableNextColumn();
-      ImGui::TableNextColumn();
-      ImGui::Text("(No devices)");
-    }
-    else{
-      ImGui::TableSetupColumn("");
-      ImGui::TableSetupColumn("ID");
-      ImGui::TableSetupColumn("Serial number", ImGuiTableColumnFlags_WidthStretch);
-      ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
-      ImGui::TableHeadersRow();
-      for(int i=0; i<master->list_entity.size(); i++){
-        dat::base::Entity* entity = *next(master->list_entity.begin(), i);
-
-        if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-          ImGui::PushID(sensor->device.serial_number.c_str());
-
-          //Sensor type
-          ImGui::TableNextRow(); ImGui::TableNextColumn();
-          ImGui::Text("Azur Kinect");
-
-          //Sensor ID
-          ImGui::TableNextColumn();
-          ImGui::Text("%d", sensor->device.idx_dev);
-
-          //Sensor serial number
-          ImGui::TableNextColumn();
-          ImGui::Text("%s", sensor->device.serial_number.c_str());
-
-          //Sensor capture or not
-          ImGui::TableNextColumn();
-          if(sensor->is_thread_running()){
-            ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
-            ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(180, 100, 100, 255));
-            if(ImGui::SmallButton("X##399")){
-              sensor->stop_thread();
-            }
-            ImGui::PopStyleColor(2);
-          }else{
-            ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 133, 100, 255));
-            ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 180, 100, 255));
-            if(ImGui::SmallButton(ICON_FA_PLAY "##399")){
-              sensor->run_thread();
-            }
-            ImGui::PopStyleColor(2);
-          }
-
-          ImGui::PopID();
-        }
-      }
-    }
-
-    ImGui::EndTable();
-  }
-
-  //---------------------------
-}
-void Capture::show_info_master(k4n::dev::Master* master){
+void Capture::show_parameter(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
+
+  this->show_list_device(master);
+  this->show_transformation_mode(master);
 
   ImGui::SetNextItemWidth(75);
   if(ImGui::BeginTabItem("Capture##566", NULL)){
@@ -109,6 +47,83 @@ void Capture::show_info_master(k4n::dev::Master* master){
 }
 
 //Subfunction
+void Capture::show_list_device(k4n::dev::Master* master){
+  //---------------------------
+
+  ImGuiTableFlags flags;
+  flags |= ImGuiTableFlags_Borders;
+  flags |= ImGuiTableFlags_RowBg;
+  ImGui::BeginTable("database_view", 4, flags);
+  
+  if(master->list_entity.size() == 0){
+    ImGui::TableNextRow();
+    ImGui::TableNextColumn();
+    ImGui::TableNextColumn();
+    ImGui::Text("(No devices)");
+  }
+  else{
+    ImGui::TableSetupColumn("");
+    ImGui::TableSetupColumn("ID");
+    ImGui::TableSetupColumn("Serial number", ImGuiTableColumnFlags_WidthStretch);
+    ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
+    ImGui::TableHeadersRow();
+    for(int i=0; i<master->list_entity.size(); i++){
+      dat::base::Entity* entity = *next(master->list_entity.begin(), i);
+
+      if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+        ImGui::PushID(sensor->device.serial_number.c_str());
+
+        //Sensor type
+        ImGui::TableNextRow(); ImGui::TableNextColumn();
+        ImGui::Text("Azur Kinect");
+
+        //Sensor ID
+        ImGui::TableNextColumn();
+        ImGui::Text("%d", sensor->device.idx_dev);
+
+        //Sensor serial number
+        ImGui::TableNextColumn();
+        ImGui::Text("%s", sensor->device.serial_number.c_str());
+
+        //Sensor capture or not
+        ImGui::TableNextColumn();
+        if(sensor->is_thread_running()){
+          ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
+          ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(180, 100, 100, 255));
+          if(ImGui::SmallButton("X##399")){
+            sensor->stop_thread();
+          }
+          ImGui::PopStyleColor(2);
+        }else{
+          ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 133, 100, 255));
+          ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 180, 100, 255));
+          if(ImGui::SmallButton(ICON_FA_PLAY "##399")){
+            sensor->run_thread();
+          }
+          ImGui::PopStyleColor(2);
+        }
+
+        ImGui::PopID();
+      }
+    }
+  }
+
+  ImGui::EndTable();
+
+  //---------------------------
+}
+void Capture::show_transformation_mode(k4n::dev::Master* master){
+  //---------------------------
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
+
+  ImGui::RadioButton("Depth to color", &master->config.depth.transformation_mode, k4n::depth::DEPTH_TO_COLOR);
+  ImGui::SameLine();
+  ImGui::RadioButton("Color to depth", &master->config.depth.transformation_mode, k4n::depth::COLOR_TO_DEPTH);
+
+  //---------------------------
+  ImGui::Separator();
+}
 void Capture::configuration_depth(k4n::dev::Master* master){
   //---------------------------
 
@@ -229,59 +244,58 @@ void Capture::configuration_color_control(k4n::dev::Master* master){
 
   if(ImGui::TreeNode("Color control")){
 
-    if(ImGui::BeginTable("truc##color_control", 2)){
-      //Exposure time
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::SetNextItemWidth(100);
-      float exposure_value = (float)master->config.color.exposure.value;
-      if(ImGui::SliderFloat("Exposure Time", &exposure_value, 488.0f, 1000000.0f, "%.0f us", ImGuiSliderFlags_Logarithmic)){
-        master->config.color.exposure.value = exposure_value;
-        master->manage_color_control();
-      }
-      ImGui::TableNextColumn();
-      switch(master->config.color.exposure.mode){
-        case K4A_COLOR_CONTROL_MODE_MANUAL:{
-          if(ImGui::Button("M##Exposure")){
-            master->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_AUTO;
-            master->manage_color_control();
-          }
-          break;
-        }
-        case K4A_COLOR_CONTROL_MODE_AUTO:{
-          if(ImGui::Button("A##Exposure")){
-            master->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
-            master->manage_color_control();
-          }
-          break;
-        }
-      }
-
-      //White balance
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::SetNextItemWidth(100);
-      if(ImGui::SliderInt("White Balance", &master->config.color.white_balance.value, 2500, 12500, "%d K")){
-        master->manage_color_control();
-      }
-      ImGui::TableNextColumn();
-      switch(master->config.color.white_balance.mode){
-        case K4A_COLOR_CONTROL_MODE_MANUAL:{
-          if(ImGui::Button("M##Balance")){
-            master->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_AUTO;
-            master->manage_color_control();
-          }
-          break;
-        }
-        case K4A_COLOR_CONTROL_MODE_AUTO:{
-          if(ImGui::Button("A##Balance")){
-            master->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
-            master->manage_color_control();
-          }
-          break;
-        }
-      }
-
-      ImGui::EndTable();
+    ImGui::BeginTable("truc##color_control", 2);
+    //Exposure time
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::SetNextItemWidth(100);
+    float exposure_value = (float)master->config.color.exposure.value;
+    if(ImGui::SliderFloat("Exposure Time", &exposure_value, 488.0f, 1000000.0f, "%.0f us", ImGuiSliderFlags_Logarithmic)){
+      master->config.color.exposure.value = exposure_value;
+      master->manage_color_control();
     }
+    ImGui::TableNextColumn();
+    switch(master->config.color.exposure.mode){
+      case K4A_COLOR_CONTROL_MODE_MANUAL:{
+        if(ImGui::Button("M##Exposure")){
+          master->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_AUTO;
+          master->manage_color_control();
+        }
+        break;
+      }
+      case K4A_COLOR_CONTROL_MODE_AUTO:{
+        if(ImGui::Button("A##Exposure")){
+          master->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
+          master->manage_color_control();
+        }
+        break;
+      }
+    }
+
+    //White balance
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::SetNextItemWidth(100);
+    if(ImGui::SliderInt("White Balance", &master->config.color.white_balance.value, 2500, 12500, "%d K")){
+      master->manage_color_control();
+    }
+    ImGui::TableNextColumn();
+    switch(master->config.color.white_balance.mode){
+      case K4A_COLOR_CONTROL_MODE_MANUAL:{
+        if(ImGui::Button("M##Balance")){
+          master->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_AUTO;
+          master->manage_color_control();
+        }
+        break;
+      }
+      case K4A_COLOR_CONTROL_MODE_AUTO:{
+        if(ImGui::Button("A##Balance")){
+          master->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
+          master->manage_color_control();
+        }
+        break;
+      }
+    }
+
+    ImGui::EndTable();
 
     //Brightness
     ImGui::SetNextItemWidth(100);

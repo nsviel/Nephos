@@ -98,23 +98,22 @@ void Graph::draw_file_tree(){
 
   ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, 10);
   ImGui::SetNextWindowSize(ImVec2(400, 400));
-  if(ImGui::BeginTable("data_view", 2)){
-    ImGui::TableSetupColumn("Name##scene_tree", ImGuiTableColumnFlags_WidthStretch);
-    ImGui::TableSetupColumn("Bin##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 25);
+  ImGui::BeginTable("data_view", 2);
+  ImGui::TableSetupColumn("Name##scene_tree", ImGuiTableColumnFlags_WidthStretch);
+  ImGui::TableSetupColumn("Bin##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 25);
 
-    //Database
-    for(int row_i=0; row_i<set_main->list_subset.size(); row_i++){
-      dat::base::Set* set = *next(set_main->list_subset.begin(), row_i);
+  //Database
+  for(int row_i=0; row_i<set_main->list_subset.size(); row_i++){
+    dat::base::Set* set = *next(set_main->list_subset.begin(), row_i);
 
-      if(set->nb_entity != 0 || set->nb_subset != 0){
-        ImGui::PushID(set->name.c_str());
-        this->tree_set(set);
-        ImGui::PopID();
-      }
+    if(set->nb_entity != 0 || set->nb_subset != 0){
+      ImGui::PushID(set->name.c_str());
+      this->tree_set(set);
+      ImGui::PopID();
     }
-
-    ImGui::EndTable();
   }
+
+  ImGui::EndTable();
   ImGui::PopStyleVar();
 
   //---------------------------

@@ -53,22 +53,21 @@ void Git::draw_branches(){
   flags |= ImGuiTableFlags_Borders;
   flags |= ImGuiTableFlags_RowBg;
 
-  if(ImGui::BeginTable("git_table", 2, flags)){
+  ImGui::BeginTable("git_table", 2, flags);
 
-    for(int i=0; i<vec_branch.size(); i++){
-      pair<string, string> branch = vec_branch[i];
+  for(int i=0; i<vec_branch.size(); i++){
+    pair<string, string> branch = vec_branch[i];
 
-      ImGui::TableNextRow();
+    ImGui::TableNextRow();
 
-      ImGui::TableNextColumn();
-      ImGui::Text("%s", branch.first.c_str());
+    ImGui::TableNextColumn();
+    ImGui::Text("%s", branch.first.c_str());
 
-      ImGui::TableNextColumn();
-      ImGui::Text("%s", branch.second.c_str());
-    }
-
-    ImGui::EndTable();
+    ImGui::TableNextColumn();
+    ImGui::Text("%s", branch.second.c_str());
   }
+
+  ImGui::EndTable();
 
   //---------------------------
 }
