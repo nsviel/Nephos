@@ -67,9 +67,9 @@ double distance(Eigen::Vector4d pt1, Eigen::Vector3d pt2){
   return dist;
 }
 
-float distance_from_origin(Eigen::Vector3f pt1){
+double distance_from_origin(Eigen::Vector3f pt1){
   //Euclidean distance
-  float dist;
+  double dist;
   //---------------------------
 
   dist = sqrt(pow(pt1(0), 2) + pow(pt1(1), 2) + pow(pt1(2), 2));
@@ -77,9 +77,9 @@ float distance_from_origin(Eigen::Vector3f pt1){
   //---------------------------
   return dist;
 }
-float distance_from_origin(glm::vec3 pt1){
+double distance_from_origin(glm::vec3 pt1){
   //Euclidean distance
-  float dist;
+  double dist;
   //---------------------------
 
   dist = sqrt(pow(pt1.x, 2) + pow(pt1.y, 2) + pow(pt1.z, 2));

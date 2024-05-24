@@ -36,7 +36,7 @@ public:
   void loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
 
   //Data retrieval
-  void retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image);
+  void retrieve_cloud(k4n::dev::Sensor* sensor);
   void retrieve_location(k4n::dev::Sensor* sensor, int i);
   void retrieve_color(k4n::dev::Sensor* sensor, int i);
   void retrieve_ir(k4n::dev::Sensor* sensor, int i);
@@ -56,7 +56,6 @@ private:
   std::vector<float> vec_r;
   std::vector<bool> vec_goodness;
 
-  int16_t* point_cloud_data;
   glm::vec3 xyz;
   glm::vec4 rgb;
   float ir;

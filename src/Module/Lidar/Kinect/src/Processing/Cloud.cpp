@@ -109,14 +109,12 @@ void Cloud::loop_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
 
   //Depth transformation
   tasker->task_begin("transformation");
-  k4a::image cloud_image;
-  this->retrieve_cloud(sensor, cloud_image);
-  sensor->depth.cloud.buffer = cloud_image.get_buffer();
-  int size = cloud_image.get_size() / (3*sizeof(int16_t));
+  this->retrieve_cloud(sensor);
   tasker->task_end("transformation");
 
   //Resize vectors
   tasker->task_begin("reserve");
+  int size = sensor->depth.cloud.size;
   vec_xyz.reserve(size);
   vec_rgb.reserve(size);
   vec_ir.reserve(size);
@@ -160,15 +158,17 @@ void Cloud::loop_end(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
 }
 
 //Data retrieval
-void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor, k4a::image& cloud_image){
+void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor){
   k4n::depth::Structure* depth = &sensor->depth;
   //---------------------------
 
   //Create cloud image
-  cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->cloud.width, depth->cloud.height, depth->cloud.width * sizeof(int16_t) * 3);
+  k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, depth->cloud.width, depth->cloud.height, depth->cloud.width * sizeof(int16_t) * 3);
 
   //Transform depth into cloud
   sensor->device.transformation.depth_image_to_point_cloud(depth->cloud.k4a_image, depth->cloud.calibration_type, &cloud_image);
+  sensor->depth.cloud.buffer = cloud_image.get_buffer();
+  sensor->depth.cloud.size = cloud_image.get_size() / (3*sizeof(int16_t));
 
   //---------------------------
 }
@@ -177,19 +177,29 @@ void Cloud::retrieve_location(k4n::dev::Sensor* sensor, int i){
   //---------------------------
 
   int depth_idx = i * 3;
-  int x = buffer_depth[depth_idx];
-  int y = buffer_depth[depth_idx + 1];
-  int z = buffer_depth[depth_idx + 2];
+  double x = buffer_depth[depth_idx];
+  double y = buffer_depth[depth_idx + 1];
+  double z = buffer_depth[depth_idx + 2];
 
   //coordinate in meter and X axis oriented.
-  float inv_scale = 1.0f / 1000.0f;
-  float x_m = -x * inv_scale;
-  float y_m = -y * inv_scale;
-  float z_m = z * inv_scale;
+  double x_m = -x / 1000.0f;
+  double y_m = -y / 1000.0f;
+  double z_m = z / 1000.0f;
   xyz = vec3(z_m, x_m, y_m);
 
   //Range calculation
-  R = math::distance_from_origin(xyz);
+  double R = math::distance_from_origin(xyz);
+
+  const int16_t* truc = reinterpret_cast<int16_t*>(sensor->depth.data.buffer);
+  double machin = (double)truc[i] / 1000;
+
+
+/*
+  say("----");
+  say(R);
+  say(machin);
+*/
+
 
   //---------------------------
 }
