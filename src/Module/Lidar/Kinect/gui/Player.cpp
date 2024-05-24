@@ -25,7 +25,6 @@ void Player::show_info(k4n::dev::Master* master){
   if(master == nullptr) return;
   //---------------------------
 
-  gui_playback->show_info_playback(master);
   gui_capture->show_list_device(master);
 
   //---------------------------

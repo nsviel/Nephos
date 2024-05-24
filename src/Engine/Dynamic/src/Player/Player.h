@@ -24,7 +24,7 @@ public:
   virtual void player_update();
   virtual void player_close();
   virtual void player_query(float value);
-  
+
   virtual void element_info(){}
   virtual void element_parameter(){}
 
@@ -32,6 +32,8 @@ public:
   dat::base::Set* set;
 
   string time = "%";
+  int fps_cur = 0;
+  int fps_qry = 0;
 
   bool play = true;
   bool pause = false;

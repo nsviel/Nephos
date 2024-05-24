@@ -18,7 +18,6 @@ public:
   ~Playback();
 
   //Main function
-  void show_info_playback(k4n::dev::Master* master);
   void show_info_sensor(k4n::dev::Sensor* sensor);
 
   //Subfunction

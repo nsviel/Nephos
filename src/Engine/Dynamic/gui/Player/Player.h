@@ -32,6 +32,7 @@ public:
   void player_close(dat::base::Set* set);
   void player_lock(dat::base::Set* set);
   void player_info(dat::base::Set* set);
+  void player_set_info(dat::base::Set* set);
 
 private:
   dyn::gui::Control* gui_control;
