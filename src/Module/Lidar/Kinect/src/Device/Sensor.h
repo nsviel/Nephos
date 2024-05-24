@@ -44,6 +44,7 @@ public:
   void info();
   void reset();
   void update_pose();
+  void update_data();
   void remove();
   void set_visibility(bool value);
   vec3 convert_depth_2d_to_3d(ivec2 point_2d);

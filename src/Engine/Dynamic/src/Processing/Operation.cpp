@@ -4,15 +4,14 @@
 #include <Operation/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Engine/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace dyn::processing{
 
 //Constructor / Destructor
-Operation::Operation(dyn::Node* node_dynamic){
+Operation::Operation(eng::Node* node_engine){
   //---------------------------
-
-  eng::Node* node_engine = node_dynamic->get_node_engine();
 
   this->ope_voxelizer = new ope::Voxelizer();
   this->ope_trianguler = new ope::Triangulation();
@@ -127,11 +126,9 @@ void Operation::triangularize_object(dat::base::Sensor* sensor){
 }
 void Operation::update_object(dat::base::Sensor* sensor){
   //---------------------------
-/*
-  dat::base::Object* object = sensor->get_object();
-  object->update_data();
-  object->update_glyph();
-*/
+
+  sensor->update_data();
+
   //---------------------------
 }
 

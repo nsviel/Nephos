@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dyn{class Node;}
+namespace eng{class Node;}
 namespace dat::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace ope{class Voxelizer;}
@@ -17,7 +17,7 @@ class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(dyn::Node* node_dynamic);
+  Operation(eng::Node* node_engine);
   ~Operation();
 
 public:

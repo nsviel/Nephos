@@ -5,7 +5,6 @@
 namespace eng{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
-namespace dyn::processing{class Operation;}
 namespace dyn::gui{class Player;}
 namespace dyn::gui{class Stream;}
 
@@ -28,14 +27,12 @@ public:
 
   inline eng::Node* get_node_engine(){return node_engine;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline dyn::processing::Operation* get_dyn_operation(){return dyn_operation;}
   inline dyn::gui::Player* get_gui_player(){return gui_player;}
 
 private:
   eng::Node* node_engine;
   dat::Node* node_data;
 
-  dyn::processing::Operation* dyn_operation;
   dyn::gui::Player* gui_player;
   dyn::gui::Stream* gui_stream;
 };

@@ -9,7 +9,9 @@ struct Sensor : public dat::base::Entity{
   //---------------------------
 
   virtual glm::vec3 convert_depth_2d_to_3d(glm::ivec2 point){return glm::vec3(0);}
-
+  virtual void update_data(){}
+  virtual void update_pose(){}
+  
   int state_UID = 0;
   std::vector<uint16_t> buffer_depth;
   std::vector<uint16_t> buffer_ir;

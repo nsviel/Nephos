@@ -23,6 +23,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
   this->thread_pool = node_engine->get_thread_pool();
   this->k4n_exporter = new k4n::utils::Exporter(node_k4n);
   this->k4n_operation = new k4n::processing::Operation(node_k4n);
+  this->dyn_operation = new dyn::processing::Operation(node_engine);
 
   //---------------------------
 }
@@ -48,13 +49,15 @@ void Cloud::run_thread(k4n::dev::Sensor* sensor){
   this->convertion_into_cloud(sensor);
 
   //Update object data
-  k4n_operation->start_thread(sensor);
+  dyn_operation->start_thread(sensor);
 
   //Update object data
-  rad_detection->start_thread(sensor);
+  //rad_detection->start_thread(sensor);
 
   //Export
   k4n_exporter->start_thread(sensor);
+
+
 
   //---------------------------
   this->thread_idle = true;
@@ -67,8 +70,8 @@ void Cloud::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_exporter->wait_thread();
-  k4n_operation->wait_thread();
-  rad_detection->wait_thread();
+  dyn_operation->wait_thread();
+  //rad_detection->wait_thread();
 
   //---------------------------
 }
