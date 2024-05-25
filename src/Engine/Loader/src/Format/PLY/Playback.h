@@ -1,22 +1,21 @@
 #pragma once
 
-#include <Loader/src/Base/Recorder.h>
+#include <Loader/src/Base/Playback.h>
 
 
 namespace format::ply{
 
-class Recorder : public ldr::base::Recorder
+class Playback : public ldr::base::Playback
 {
 public:
   //Constructor / Destructor
-  Recorder();
-  ~Recorder();
+  Playback();
+  ~Playback();
 
 public:
   //Main function
 
 private:
-
 };
 
 }
