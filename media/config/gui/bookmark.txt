@@ -5,4 +5,3 @@
 /home/aether/Desktop/Point_cloud/obj/backpack.obj
 /home/aether/Desktop/Nephos/media/point_cloud/bunny.ply
 /home/aether/Desktop/cerfav_8.mkv
-/home/aether/Desktop/relis_1.ply
