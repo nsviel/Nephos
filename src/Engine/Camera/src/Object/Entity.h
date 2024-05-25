@@ -59,10 +59,10 @@ public:
   glm::vec2 panel_center = glm::vec2(0, 0);
   glm::vec2 player_mouse_sensibility = glm::vec2(0, 0);
   glm::vec2 arcball_mouse_sensibility = glm::vec2(0, 0);
-  int projection = 0;
-  int mode = 0;
+  int projection = CAMERA_PROJ_PERSPECTIVE;
+  int mode = CAMERA_MODE_ARCBALL;
   int ID = -1;
-
+  
   //Camera matrix
   glm::mat4 mat_pose = glm::mat4(1);
   glm::mat4 mat_proj = glm::mat4(1);

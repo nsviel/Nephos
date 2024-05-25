@@ -31,7 +31,7 @@ mat4 Projection::compute_proj_perspective(cam::Entity* camera){
   vec2 window_dim = vk_window->get_dimension();
   float ratio = window_dim.x / window_dim.y;
 
-  cam_proj = perspective(fov, ratio, z_near, z_far);
+  cam_proj = glm::perspective(fov, ratio, z_near, z_far);
   cam_proj[1][1] *= -1; // Because glm is designed for OpenGL convention
 
   camera->mat_proj = cam_proj;
@@ -48,7 +48,8 @@ mat4 Projection::compute_proj_ortho(cam::Entity* camera){
   float z_far = camera->clip_far;
   float zoom = camera->zoom;
 
-  cam_proj = ortho(-5.f - zoom, 5.f + zoom, -5.f - zoom, 5.f + zoom, z_near, z_far);
+  cam_proj = glm::ortho(-5.f - zoom, 5.f + zoom, -5.f - zoom, 5.f + zoom, z_near, z_far);
+  cam_proj = glm::transpose(cam_proj); // I dunno why but it's becoming necessary
   cam_proj[1][1] *= -1; // Because glm is designed for OpenGL convention
 
   camera->mat_proj = cam_proj;
@@ -61,7 +62,9 @@ mat4 Projection::compute_proj_ortho(cam::Entity* camera){
 void Projection::ortho_zoom(cam::Entity* camera, float value){
   //---------------------------
 
-  camera->zoom -= value / 10;
+  camera->zoom -= value / 100;
+
+  if(camera->zoom < -4.99) camera->zoom = -4.99;
 
   //---------------------------
 }

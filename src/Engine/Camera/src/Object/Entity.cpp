@@ -34,6 +34,7 @@ void Entity::reset(){
   this->angle_elevation = -M_PI/6;
   this->fov = 65;
   this->velocity = 3;
+  this->zoom = -4.5;
   this->clip_far = 1000.0;
   this->clip_near = 0.01;
 
@@ -45,9 +46,6 @@ void Entity::reset(){
   this->cam_U = glm::vec3(0.0f);
   this->cam_P = glm::vec3(-2, -2, 2);
   this->cam_COM = glm::vec3(0.0f, 0.0f, 1.0f);
-
-  this->projection = CAMERA_PROJ_PERSPECTIVE;
-  this->mode = CAMERA_MODE_ARCBALL;
 
   //---------------------------
 }

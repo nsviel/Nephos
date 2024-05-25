@@ -96,8 +96,7 @@ void Player::camera_zoom(cam::Entity* camera, float speed){
   //---------------------------
 
   //Perspective zoom
-  glm::vec3 cam_forwardMove = camera->cam_F * speed * camera->velocity * glm::vec3(0.1,0.1,0.1);
-  camera->cam_P += cam_forwardMove;
+  camera->cam_P += camera->cam_F * speed * camera->velocity * glm::vec3(0.1, 0.1, 0.1);
 
   //---------------------------
 }
