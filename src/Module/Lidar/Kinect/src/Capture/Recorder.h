@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/src/Base/Exporter.h>
+#include <Loader/src/Base/Recorder.h>
 #include <Utility/Specific/Common.h>
 
 namespace k4n{class Node;}
@@ -9,18 +9,18 @@ namespace eng{class Node;}
 namespace dat{class Graph;}
 namespace k4n::dev{class Sensor;}
 namespace utl::thread{class Pool;}
-namespace ldr{class Exporter;}
-namespace format::ply{class Exporter;}
+namespace ldr{class Recorder;}
+namespace format::ply{class Recorder;}
 
 
 namespace k4n::capture{
 
-class Exporter : public ldr::base::Exporter
+class Recorder : public ldr::base::Recorder
 {
 public:
   //Constructor / Destructor
-  Exporter(k4n::Node* node_k4n);
-  ~Exporter();
+  Recorder(k4n::Node* node_k4n);
+  ~Recorder();
 
 public:
   //Main function
@@ -34,8 +34,8 @@ public:
 
 private:
   utl::thread::Pool* thread_pool;
-  ldr::Exporter* ldr_exporter;
-  format::ply::Exporter* ply_exporter;
+  ldr::Recorder* ldr_exporter;
+  format::ply::Recorder* ply_exporter;
 
   bool idle = true;
 };

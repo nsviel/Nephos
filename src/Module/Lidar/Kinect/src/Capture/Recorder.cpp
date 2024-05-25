@@ -1,4 +1,4 @@
-#include "Exporter.h"
+#include "Recorder.h"
 
 #include <Engine/Namespace.h>
 #include <Kinect/Namespace.h>
@@ -10,7 +10,7 @@
 namespace k4n::capture{
 
 //Constructor / Destructor
-Exporter::Exporter(k4n::Node* node_k4n){
+Recorder::Recorder(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
@@ -22,10 +22,10 @@ Exporter::Exporter(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Exporter::~Exporter(){}
+Recorder::~Recorder(){}
 
 //Main function
-void Exporter::start_thread(k4n::dev::Sensor* sensor){
+void Recorder::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 
   this->idle = false;
@@ -36,7 +36,7 @@ void Exporter::start_thread(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Exporter::run_thread(k4n::dev::Sensor* sensor){
+void Recorder::run_thread(k4n::dev::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("recorder");
   //---------------------------
 /*
@@ -67,7 +67,7 @@ void Exporter::run_thread(k4n::dev::Sensor* sensor){
   //---------------------------
   this->idle = true;
 }
-void Exporter::wait_thread(){
+void Recorder::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
@@ -79,7 +79,7 @@ void Exporter::wait_thread(){
 }
 
 //Subfunction
-void Exporter::make_export_to_ply(k4n::dev::Sensor* sensor){
+void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
 /*  k4n::dev::Master* master = sensor->master;
   if(!master->record) return;
   //---------------------------
@@ -106,7 +106,7 @@ void Exporter::make_export_to_ply(k4n::dev::Sensor* sensor){
 */
   //---------------------------
 }
-void Exporter::make_export_to_mkv(k4n::dev::Sensor* sensor){
+void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
   k4a::record& recorder = sensor->device.recorder;
   k4n::dev::Master* master = sensor->master;
   k4a::capture* capture = sensor->device.capture;
