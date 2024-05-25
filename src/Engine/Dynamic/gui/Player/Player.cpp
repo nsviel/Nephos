@@ -66,10 +66,9 @@ void Player::design_player(dat::base::Set* set){
   this->player_close(set);
   ImGui::SameLine();
   this->player_lock(set);
-  ImGui::Separator();
-  this->player_info(set);
 
   //---------------------------
+  ImGui::Separator();
 }
 
 //Player function
@@ -208,45 +207,6 @@ void Player::player_lock(dat::base::Set* set){
       player->player_lock(true);
     }
     ImGui::PopStyleColor();
-  }
-
-  //---------------------------
-}
-void Player::player_info(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
-  //---------------------------
-
-  if(ImGui::TreeNode("Info##dynamic")){
-
-    ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-    ImGui::BeginTable("master##playback_info", 3);
-    //Duration
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", player->ts_duration);
-
-    //FPS
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("FPS"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d fps", player->fps_cur);
-    ImGui::SetNextItemWidth(50); ImGui::TableNextColumn();
-    ImGui::SliderInt("##56765", &player->fps_qry, 1, 120);
-
-    //Path data
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Path"); ImGui::TableNextColumn();
-    string path = (player->path.data != "") ? player->path.data : "(not defined)";
-    ImGui::TextColored(color, "%s", path.c_str());
-
-    //Size
-    if(player->size != 0){
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Size"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f Mo", player->size);
-    }
-
-    ImGui::EndTable();
-    ImGui::TreePop();
   }
 
   //---------------------------

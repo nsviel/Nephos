@@ -77,7 +77,7 @@ void Heatmap::heatmap_range(dat::base::Entity* entity){
 
   //Prepare data
   std::vector<float> R = data->R;
-  math::normalize(R);
+  math::normalize(R, vec2(0, 10));
 
   //Compute heatmap
   this->compute_heatmap(R, data->rgb);

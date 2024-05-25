@@ -24,19 +24,65 @@ void Operation::design_operation(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
 
-  this->draw_ope_button(set);
+  ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
+  this->draw_op_info(set);
+  this->draw_ope_transformation(set);
   this->draw_ope_colorization(set);
   this->draw_ope_normal(set);
+  this->draw_ope_exporter(set);
+  ImGui::PopStyleColor();
 
   //---------------------------
+  ImGui::Separator();
 }
 
 //Subfunction
-void Operation::draw_ope_button(dat::base::Set* set){
+void Operation::draw_op_info(dat::base::Set* set){
   dyn::base::Player* player = set->player;
   //---------------------------
 
-  if(ImGui::TreeNode("Transformation##dynamic")){
+  if(ImGui::CollapsingHeader("Info##dynamic")){
+
+    ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+    ImGui::BeginTable("master##playback_info", 3);
+    //Duration
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Duration"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.2f s", player->ts_duration);
+
+    //FPS
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("FPS"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d fps", player->fps_cur);
+    ImGui::SetNextItemWidth(50); ImGui::TableNextColumn();
+    ImGui::SliderInt("##56765", &player->fps_qry, 1, 120);
+
+    //Path data
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Path"); ImGui::TableNextColumn();
+    string path = (player->path.data != "") ? player->path.data : "(not defined)";
+    ImGui::TextColored(color, "%s", path.c_str());
+
+    //Size
+    if(player->size != 0){
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Size"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%.2f Mo", player->size);
+    }
+
+    ImGui::EndTable();
+
+  }
+
+  //---------------------------
+}
+void Operation::draw_ope_transformation(dat::base::Set* set){
+  dyn::base::Player* player = set->player;
+  //---------------------------
+
+  ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
+  if(ImGui::CollapsingHeader("Transformation##dynamic")){
+
     //Button
     if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
       ope_operation->center_object(set);
@@ -79,7 +125,6 @@ void Operation::draw_ope_button(dat::base::Set* set){
     ImGui::Separator();
     ImGui::Columns(1);
 
-    ImGui::TreePop();
   }
 
   //---------------------------
@@ -87,27 +132,38 @@ void Operation::draw_ope_button(dat::base::Set* set){
 void Operation::draw_ope_colorization(dat::base::Set* set){
   //---------------------------
 
-  if(ImGui::TreeNode("Colorization##dynamic")){
+  ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
+  if(ImGui::CollapsingHeader("Colorization##dynamic")){
+
     //Colorization mode
+    ImGui::BeginTable("colorization##mode", 2);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::RadioButton("RGB##colorization", &dyn_struct->colorization.color_mode, ope::color::RGB);
-    ImGui::SameLine();
+    ImGui::TableNextColumn();
     ImGui::RadioButton("##unicolor", &dyn_struct->colorization.color_mode, ope::color::UNICOLOR);
     ImGui::SameLine();
     ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
     ImGui::ColorEdit4("##unicolor_choice", (float*)&dyn_struct->colorization.unicolor, flags);
-    ImGui::SameLine();
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::RadioButton("I##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY);
-    ImGui::SameLine();
+    ImGui::TableNextColumn();
     ImGui::RadioButton("N##colorization", &dyn_struct->colorization.color_mode, ope::color::NORMAL);
-    ImGui::SameLine();
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::RadioButton("Heatmap##colorization", &dyn_struct->colorization.color_mode, ope::color::HEATMAP);
-    ImGui::SameLine();
+    ImGui::TableNextColumn();
     ImGui::RadioButton("Structure##colorization", &dyn_struct->colorization.color_mode, ope::color::STRUCTURE);
+
+    ImGui::EndTable();
 
     //Intensity cursor
     if(dyn_struct->colorization.color_mode == ope::color::INTENSITY){
+      ImGui::Indent();
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("Intensity division", &dyn_struct->colorization.intensity_diviser, 1, 5000);
+      ImGui::SliderInt("I diviser", &dyn_struct->colorization.intensity_diviser, 1, 5000);
+      ImGui::Unindent();
     }
 
     //Heatmap mode
@@ -135,19 +191,18 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
       ImGui::Unindent();
     }
 
-    ImGui::TreePop();
   }
 
   //---------------------------
-  ImGui::Separator();
 }
 void Operation::draw_ope_normal(dat::base::Set* set){
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  if(ImGui::TreeNode("Normal##dynamic")){
+  ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
+  if(ImGui::CollapsingHeader("Normal##dynamic")){
+
     //Parameter: kNN
-    ImGui::SameLine();
     ImGui::SetNextItemWidth(100);
     ImGui::SliderInt("kNN", &dyn_struct->operation.normal.knn, 1, 10);
 
@@ -156,7 +211,6 @@ void Operation::draw_ope_normal(dat::base::Set* set){
     ImGui::SameLine();
     ImGui::TextColored(color, "%.2f ms", dyn_struct->operation.normal.time);
 
-    ImGui::TreePop();
   }
 
   //---------------------------
@@ -164,7 +218,8 @@ void Operation::draw_ope_normal(dat::base::Set* set){
 void Operation::draw_ope_exporter(dat::base::Set* set){
   //---------------------------
 
-  if(ImGui::TreeNode("Exporter##dynamic")){
+  ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
+  if(ImGui::CollapsingHeader("Exporter##dynamic")){
     /*
 
     if(ImGui::TreeNode("Recorder")){
@@ -278,7 +333,7 @@ void Operation::draw_ope_exporter(dat::base::Set* set){
   //---------------------------
   ImGui::Separator();
 */
-    ImGui::TreePop();
+
   }
 
   //---------------------------
