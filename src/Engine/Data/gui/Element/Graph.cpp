@@ -133,7 +133,7 @@ int Graph::tree_set(dat::base::Set* set){
   flags |= ImGuiTreeNodeFlags_OpenOnArrow;
   flags |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
   flags |= (set == dat_struct->selection) ? ImGuiTreeNodeFlags_Selected : 0;
-  flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
+  flags |= ImGuiTreeNodeFlags_SpanFullWidth;
   std::string name = set->icon + "   " + set->name;
 
   //Set row
