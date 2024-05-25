@@ -29,7 +29,7 @@ void Operation::design_operation(dat::base::Set* set){
   this->draw_ope_transformation(set);
   this->draw_ope_colorization(set);
   this->draw_ope_normal(set);
-  this->draw_ope_exporter(set);
+  this->draw_ope_recorder(set);
   ImGui::PopStyleColor();
 
   //---------------------------
@@ -216,11 +216,11 @@ void Operation::draw_ope_normal(dat::base::Set* set){
 
   //---------------------------
 }
-void Operation::draw_ope_exporter(dat::base::Set* set){
+void Operation::draw_ope_recorder(dat::base::Set* set){
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
-  if(ImGui::CollapsingHeader("Exporter##dynamic")){
+  if(ImGui::CollapsingHeader("Record##dynamic")){
     /*
 
     if(ImGui::TreeNode("Recorder")){

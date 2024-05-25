@@ -9,8 +9,8 @@ namespace eng{class Node;}
 namespace dat{class Graph;}
 namespace k4n::dev{class Sensor;}
 namespace utl::thread{class Pool;}
-namespace ldr{class Recorder;}
-namespace format::ply{class Recorder;}
+namespace ldr{class Exporter;}
+namespace format::ply{class Exporter;}
 
 
 namespace k4n::capture{
@@ -34,8 +34,8 @@ public:
 
 private:
   utl::thread::Pool* thread_pool;
-  ldr::Recorder* ldr_exporter;
-  format::ply::Recorder* ply_exporter;
+  ldr::Exporter* ldr_exporter;
+  format::ply::Exporter* ply_exporter;
 
   bool idle = true;
 };

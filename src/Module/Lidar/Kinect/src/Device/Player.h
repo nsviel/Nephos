@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Dynamic/src/Player/Player.h>
+#include <Dynamic/src/Base/Player.h>
 #include <Utility/Specific/Common.h>
 
 namespace dyn::base{class Player;}
