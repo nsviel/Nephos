@@ -31,6 +31,7 @@ void Player::run_panel(){
 
   if(*show_window && set != nullptr && set->player != nullptr){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
+    ImGui::SetNextWindowSizeConstraints(ImVec2(0, 0), ImVec2(250, FLT_MAX));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
       this->design_panel(set);
@@ -78,9 +79,9 @@ void Player::player_slider(dat::base::Set* set){
 
   player->player_update();
 
-  ImVec2 width = ImGui::GetContentRegionAvail();
+  float width = ImGui::GetContentRegionAvail().x;
+  ImGui::SetNextItemWidth(width);
   string time = "%.2f " + player->time;
-  ImGui::SetNextItemWidth(width.x);
   if(ImGui::SliderFloat("##player_slider", &player->ts_cur, player->ts_beg, player->ts_end, time.c_str(), ImGuiSliderFlags_NoInput)){
     player->player_query(player->ts_cur);
   }
