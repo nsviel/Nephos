@@ -78,6 +78,7 @@ void Operation::draw_op_info(dat::base::Set* set){
 }
 void Operation::draw_ope_transformation(dat::base::Set* set){
   dyn::base::Player* player = set->player;
+  utl::base::Pose* pose = set->active_entity->get_pose();
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
@@ -93,11 +94,11 @@ void Operation::draw_ope_transformation(dat::base::Set* set){
     }
     ImGui::SameLine();
     if(ImGui::Button("Save##transfomatrix", ImVec2(70, 0))){
-      utl::transformation::save_transformation_to_file(set->pose.model, player->path.transformation);
+      utl::transformation::save_transformation_to_file(pose->model, player->path.transformation);
     }
     ImGui::SameLine();
     if(ImGui::Button("Identity##transfomatrix", ImVec2(70, 0))){
-      utl::transformation::make_transformation_identity(set->pose.model);
+      utl::transformation::make_transformation_identity(pose->model);
     }
 
     ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
@@ -113,7 +114,7 @@ void Operation::draw_ope_transformation(dat::base::Set* set){
 
     //Model matrix
     ImVec2 width = ImGui::GetContentRegionAvail();
-    mat4& model = set->pose.model;
+    mat4& model = pose->model;
     ImGui::Columns(4, "ModelMat");
     for(int i=0; i<4; i++){
       ImGui::Separator();

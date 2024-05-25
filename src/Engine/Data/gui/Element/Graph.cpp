@@ -30,8 +30,12 @@ Graph::~Graph(){}
 void Graph::run_panel(){
   //---------------------------
 
+  rnd_object->run_panel();
+  rnd_set->run_panel();
+
   if(*show_window){
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 2.0f));
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
@@ -39,7 +43,7 @@ void Graph::run_panel(){
 
       ImGui::End();
     }
-    ImGui::PopStyleVar();
+    ImGui::PopStyleVar(2);
     ImGui::PopStyleColor();
   }
 
@@ -47,9 +51,6 @@ void Graph::run_panel(){
 }
 void Graph::design_panel(){
   //---------------------------
-
-  rnd_object->run_panel();
-  rnd_set->run_panel();
 
   this->draw_window_background();
   this->draw_file_tree();
@@ -132,6 +133,7 @@ int Graph::tree_set(dat::base::Set* set){
   flags |= ImGuiTreeNodeFlags_OpenOnArrow;
   flags |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
   flags |= (set == dat_struct->selection) ? ImGuiTreeNodeFlags_Selected : 0;
+  flags |= ImGuiTreeNodeFlags_SpanAvailWidth;
   std::string name = set->icon + "   " + set->name;
 
   //Set row

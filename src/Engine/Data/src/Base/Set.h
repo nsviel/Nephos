@@ -34,8 +34,8 @@ struct Set : public utl::base::Element{
   bool is_open = true;
 
   //Data
-  dyn::base::Player* player = nullptr;
   utl::base::Pose pose;
+  dyn::base::Player* player = nullptr;
   dat::base::Entity* active_entity = nullptr;
   dat::base::Set* active_subset = nullptr;
   dat::base::Set* set_parent = nullptr;

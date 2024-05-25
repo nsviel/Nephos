@@ -43,24 +43,14 @@ void Exporter::run_thread(dat::base::Entity* entity){
   k4n::dev::Master* master = sensor->master;
   switch(master->recorder.mode){
     case dyn::recorder::MKV:{
-      tasker->task_begin("recorder::mkv");
       this->make_export_to_mkv(sensor);
-      tasker->task_end("recorder::mkv");
       break;
     }
     case dyn::recorder::PLY:{
-      tasker->task_begin("recorder::ply");
       this->make_export_to_ply(sensor);
-      tasker->task_end("recorder::ply");
       break;
     }
   }
-
-  if(!sensor->master->record){
-    tasker->reset();
-  }
-
-  tasker->loop_end();
 */
   //---------------------------
   this->idle = true;
