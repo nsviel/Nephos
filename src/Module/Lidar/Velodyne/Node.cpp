@@ -28,10 +28,10 @@ Node::~Node(){}
 
 //Main function
 void Node::config(){
-  ldr::Format* ldr_format = node_loader->get_ldr_format();
+  ldr::Importer* ldr_importer = node_loader->get_ldr_importer();
   //---------------------------
 
-  ldr_format->insert_importer(new vld::utils::Importer(vld_struct));
+  ldr_importer->insert_importer(new vld::utils::Importer(vld_struct));
 
   //---------------------------
 }

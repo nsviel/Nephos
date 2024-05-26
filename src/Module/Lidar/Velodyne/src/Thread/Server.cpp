@@ -17,7 +17,7 @@ Server::Server(vld::Node* node_vld){
   ldr::Node* node_loader = node_engine->get_node_loader();
 
   this->dat_graph = node_data->get_dat_graph();
-  this->ldr_loader = node_loader->get_ldr_loader();
+  this->ldr_loader = node_loader->get_ldr_importer();
   this->dat_set = node_data->get_data_set();
 
   this->vld_struct = node_vld->get_vld_struct();

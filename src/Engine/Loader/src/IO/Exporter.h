@@ -4,7 +4,6 @@
 #include <vector>
 
 namespace ldr{class Node;}
-namespace ldr{class Format;}
 namespace utl::base{class Data;}
 namespace ldr::base{class Exporter;}
 
@@ -24,8 +23,6 @@ public:
   void insert_exporter(ldr::base::Exporter* exporter);
 
 private:
-  ldr::Format* ldr_format;
-
   std::vector<ldr::base::Exporter*> vec_exporter;
 };
 

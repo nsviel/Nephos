@@ -47,7 +47,7 @@ public:
 
 private:
   dat::Graph* dat_graph;
-  ldr::Importer* ldr_loader;
+  ldr::Importer* ldr_importer;
   ldr::Bookmark* ldr_bookmark;
   ldr::Format* ldr_format;
   dat::Set* dat_set;

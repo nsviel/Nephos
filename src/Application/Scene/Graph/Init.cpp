@@ -14,7 +14,7 @@ Init::Init(sce::Node* node_scene){
   eng::Node* node_engine = node_scene->get_node_engine();
   ldr::Node* node_loader = node_engine->get_node_loader();
 
-  this->ldr_loader = node_loader->get_ldr_loader();
+  this->ldr_loader = node_loader->get_ldr_importer();
 
   //---------------------------
 }

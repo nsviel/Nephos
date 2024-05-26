@@ -7,7 +7,6 @@ namespace dat{class Node;}
 namespace eng{class Node;}
 namespace ldr{class Importer;}
 namespace ldr{class Exporter;}
-namespace ldr{class Format;}
 namespace ldr{class Bookmark;}
 namespace ldr::gui{class Loader;}
 
@@ -32,8 +31,7 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
 
-  inline ldr::Format* get_ldr_format(){return ldr_format;}
-  inline ldr::Importer* get_ldr_loader(){return ldr_loader;}
+  inline ldr::Importer* get_ldr_importer(){return ldr_importer;}
   inline ldr::Exporter* get_ldr_exporter(){return ldr_exporter;}
   inline ldr::Bookmark* get_ldr_bookmark(){return ldr_bookmark;}
 
@@ -44,9 +42,8 @@ private:
   dat::Node* node_data;
 
   //Child
-  ldr::Importer* ldr_loader;
+  ldr::Importer* ldr_importer;
   ldr::Exporter* ldr_exporter;
-  ldr::Format* ldr_format;
   ldr::Bookmark* ldr_bookmark;
   ldr::gui::Loader* gui_loader;
 

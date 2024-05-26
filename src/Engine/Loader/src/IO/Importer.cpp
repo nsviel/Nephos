@@ -15,7 +15,6 @@ Importer::Importer(ldr::Node* node_loader){
   dat::Node* node_data = node_loader->get_node_data();
 
   this->node_engine = node_loader->get_node_engine();
-  this->ldr_format = node_loader->get_ldr_format();
   this->dat_entity = node_data->get_dat_entity();
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_data_set();
@@ -29,13 +28,7 @@ Importer::Importer(ldr::Node* node_loader){
 
   //---------------------------
 }
-Importer::~Importer(){
-  //---------------------------
-
-  delete ldr_format;
-
-  //---------------------------
-}
+Importer::~Importer(){}
 
 //Main functions
 utl::base::Data* Importer::load_data(std::string path){
@@ -48,7 +41,7 @@ utl::base::Data* Importer::load_data(std::string path){
   utl_path.data = path;
 
   //Load data from path
-  utl::media::File* file = ldr_format->import_from_path(utl_path);
+  utl::media::File* file = this->import_from_path(utl_path);
   if(file == nullptr || file->type != utl::file::DATA) return nullptr;
   utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
@@ -66,7 +59,7 @@ dat::base::Set* Importer::load_dataset(utl::media::Path file_path){
   if(!check_file_path(file_path.data)) return nullptr;
 
   //Load data from path
-  utl::media::File* file = ldr_format->import_from_path(file_path);
+  utl::media::File* file = this->import_from_path(file_path);
   if(file == nullptr || file->type != utl::file::DATASET) return nullptr;
   utl::file::Dataset* dataset = dynamic_cast<utl::file::Dataset*>(file);
 
@@ -84,7 +77,7 @@ dat::base::Set* Importer::load_dataset(utl::media::Path file_path){
   //Delete raw data
   delete file;
 
-  ldr_format->insert_from_path(file_path, set);
+  this->insert_from_path(file_path, set);
 
   //---------------------------
   return set;
@@ -95,7 +88,7 @@ dat::base::Object* Importer::load_object(utl::media::Path file_path){
   if(!check_file_path(file_path.data)) return nullptr;
 
   //Load data from path
-  utl::media::File* file = ldr_format->import_from_path(file_path);
+  utl::media::File* file = this->import_from_path(file_path);
   if(file == nullptr || file->type != utl::file::DATA) return nullptr;
   utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
 
@@ -123,9 +116,9 @@ bool Importer::check_file_path(std::string path){
 
   //Check file format
   std::string format = utl::path::get_format_from_path(path);
-  if(!ldr_format->is_format_supported(format)){
+  if(!this->is_format_supported(format)){
     cout<<"[error] '"<<format<<"' file format not supported"<<endl;
-    ldr_format->display_supported_format();
+    this->display_supported_format();
     return false;
   }
 

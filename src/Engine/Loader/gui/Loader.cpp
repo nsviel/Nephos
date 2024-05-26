@@ -17,8 +17,7 @@ Loader::Loader(ldr::Node* node_loader, bool* show_window){
 
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_data_set();
-  this->ldr_loader = node_loader->get_ldr_loader();
-  this->ldr_format = node_loader->get_ldr_format();
+  this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
   this->ope_transform = new ope::Transformation();
   this->ope_operation = new ope::Operation();
@@ -188,7 +187,7 @@ void Loader::draw_file_content(){
         bookmark.item.weight = utl::file::size(file);
         bookmark.item.format = utl::path::get_format_from_path(file);
         bookmark.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-        bookmark.item.color_text = ldr_format->is_format_supported(bookmark.item.format) ? glm::vec4(0.0f, 1.0f, 1.0f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+        bookmark.item.color_text = ldr_importer->is_format_supported(bookmark.item.format) ? glm::vec4(0.0f, 1.0f, 1.0f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_bookmark_file.push_back(bookmark);
       }
     }
@@ -395,7 +394,7 @@ void Loader::operation_selection(){
   for(int i=0; i<vec_bookmark_file.size(); i++){
     ldr::gui::Bookmark& bookmark = vec_bookmark_file[i];
     if(file_selection.contains(bookmark.item.ID)){
-      if(ldr_format->is_format_supported(bookmark.item.format)){
+      if(ldr_importer->is_format_supported(bookmark.item.format)){
         vec_path.push_back(bookmark.item.path);
       }
     }
@@ -412,7 +411,7 @@ void Loader::operation_selection(){
     utl::media::Path path;
     path.data = vec_path[i];
 
-    dat::base::Object* object = ldr_loader->load_object(path);
+    dat::base::Object* object = ldr_importer->load_object(path);
 
     if(object != nullptr){
       this->operation_entity(object);
@@ -434,7 +433,7 @@ void Loader::operation_selection(std::string file_path){
     //File check
     std::string format = utl::path::get_format_from_path(file_path);
     if(!utl::file::is_exist(file_path)) return;
-    if(!ldr_format->is_format_supported(format)) return;
+    if(!ldr_importer->is_format_supported(format)) return;
 
     //Apply loading and operations
     if(param_remove_old){
@@ -444,7 +443,7 @@ void Loader::operation_selection(std::string file_path){
 
     utl::media::Path path;
     path.data = file_path;
-    dat::base::Object* object = ldr_loader->load_object(path);
+    dat::base::Object* object = ldr_importer->load_object(path);
 
     if(object != nullptr){
       this->operation_entity(object);

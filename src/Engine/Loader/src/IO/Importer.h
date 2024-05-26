@@ -4,7 +4,6 @@
 #include <vector>
 
 namespace eng{class Node;}
-namespace ldr{class Format;}
 namespace ldr{class Node;}
 namespace ldr::base{class Importer;}
 namespace dat{class Entity;}
@@ -52,7 +51,6 @@ public:
 
 private:
   eng::Node* node_engine;
-  ldr::Format* ldr_format;
   dat::Entity* dat_entity;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
