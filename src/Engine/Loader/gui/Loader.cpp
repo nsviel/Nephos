@@ -107,7 +107,7 @@ void Loader::draw_file_header(){
   size_t start = 0;
   size_t end = current_dir.find_first_of('/');
   std::vector<std::string> pathElements;
-  while (end != std::string::npos) {
+  while (end != std::string::npos){
     pathElements.push_back(current_dir.substr(start, end - start));
     start = end + 1;
     end = current_dir.find_first_of('/', start);
@@ -118,7 +118,7 @@ void Loader::draw_file_header(){
 
   // Render buttons for each path element
   std::string element_path;
-  for (int i = 0; i < pathElements.size(); ++i) {
+  for (int i = 0; i < pathElements.size(); ++i){
     std::string element = pathElements[i];
     if(element == "") continue;
 
@@ -128,7 +128,7 @@ void Loader::draw_file_header(){
 
     ImGui::PushID(i);
     element_path += "/" + element;
-    if (ImGui::Button(element.c_str())) {
+    if (ImGui::Button(element.c_str())){
       this->current_dir = element_path;
     }
     ImGui::PopID();
@@ -221,7 +221,7 @@ void Loader::draw_file_content(){
 
       //Selection stuff
       ImGui::SameLine();
-      const bool item_is_selected = file_selection.contains(bookmark.item.ID);
+      const bool item_is_selected = vec_selection.contains(bookmark.item.ID);
       std::string name = "##" + std::to_string(bookmark.item.ID);
       if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
 
@@ -229,14 +229,14 @@ void Loader::draw_file_content(){
           if(bookmark.item.name == ".."){
             std::filesystem::path path = this->current_dir;
             this->current_dir = path.parent_path();
-            this->file_selection.clear();
+            this->vec_selection.clear();
           }else{
             this->current_dir += "/" + bookmark.item.name;
-            this->file_selection.clear();
+            this->vec_selection.clear();
           }
         }else{
-          file_selection.clear();
-          file_selection.push_back(bookmark.item.ID);
+          vec_selection.clear();
+          vec_selection.push_back(bookmark.item.ID);
         }
 
       }
@@ -262,26 +262,26 @@ void Loader::draw_file_content(){
 
       //Selection stuff
       ImGui::SameLine();
-      const bool item_is_selected = file_selection.contains(bookmark.item.ID);
+      const bool item_is_selected = vec_selection.contains(bookmark.item.ID);
       std::string name = "##" + std::to_string(bookmark.item.ID);
       if (ImGui::Selectable(name.c_str(), item_is_selected, flags)){
         //Add selection to list
         if(ImGui::GetIO().KeyCtrl){
           if (item_is_selected){
-            file_selection.find_erase_unsorted(bookmark.item.ID);
+            vec_selection.find_erase_unsorted(bookmark.item.ID);
           }
           else{
-            file_selection.push_back(bookmark.item.ID);
+            vec_selection.push_back(bookmark.item.ID);
           }
         }else{
-          file_selection.clear();
-          file_selection.push_back(bookmark.item.ID);
+          vec_selection.clear();
+          vec_selection.push_back(bookmark.item.ID);
         }
 
         //If double clicked, load it
         if(ImGui::IsMouseDoubleClicked(0)){
-          file_selection.clear();
-          file_selection.push_back(bookmark.item.ID);
+          vec_selection.clear();
+          vec_selection.push_back(bookmark.item.ID);
           this->operation_selection();
         }
       }
@@ -366,7 +366,7 @@ void Loader::draw_header(){
   // Load button
   if(ImGui::Button("Load##222")){
     this->operation_selection();
-    this->file_selection.clear();
+    this->vec_selection.clear();
   }
 
   // Scale new
@@ -393,7 +393,7 @@ void Loader::operation_selection(){
   std::vector<std::string> vec_path;
   for(int i=0; i<vec_bookmark_file.size(); i++){
     ldr::gui::Bookmark& bookmark = vec_bookmark_file[i];
-    if(file_selection.contains(bookmark.item.ID)){
+    if(vec_selection.contains(bookmark.item.ID)){
       if(ldr_importer->is_format_supported(bookmark.item.format)){
         vec_path.push_back(bookmark.item.path);
       }

@@ -17,10 +17,10 @@ bool Bookmark::compare_with_specs(const ldr::gui::Bookmark& a, const ldr::gui::B
     return false;
   }
 
-  for (int n = 0; n < current_sort_specs->SpecsCount; n++) {
+  for (int n = 0; n < current_sort_specs->SpecsCount; n++){
     const ImGuiTableColumnSortSpecs* sort_spec = &current_sort_specs->Specs[n];
     int delta = 0;
-    switch (sort_spec->ColumnUserID) {
+    switch (sort_spec->ColumnUserID){
       case ldr::bookmark::NAME: delta = a.item.name.compare(b.item.name); break;
       case ldr::bookmark::WEIGHT: delta = (a.item.weight > b.item.weight) ? 1 : (a.item.weight < b.item.weight) ? -1 : 0; break;
       case ldr::bookmark::FORMAT: delta = a.item.format.compare(b.item.format); break;
@@ -35,7 +35,7 @@ bool Bookmark::compare_with_specs(const ldr::gui::Bookmark& a, const ldr::gui::B
   //---------------------------
   return false;
 }
-void Bookmark::sort_item_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::Bookmark>& vec_bookmark) {
+void Bookmark::sort_item_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::Bookmark>& vec_bookmark){
   //---------------------------
 
   current_sort_specs = sort_specs;

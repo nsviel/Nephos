@@ -15,6 +15,7 @@ Exporter::Exporter(ldr::Node* node_loader, bool* show_window){
 
   this->default_dir = utl::path::get_current_parent_path_abs();
   this->current_dir = default_dir;
+  this->current_path = "(not defined)";
   this->name = "Exporter";
   this->show_window = show_window;
 
@@ -53,7 +54,22 @@ void Exporter::design_panel(){
 void Exporter::draw_header(){
   //---------------------------
 
+  ImGui::BeginTable("header##exporter", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 75.0f);
+  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
+  //filename
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Path");
+  ImGui::TableNextColumn();
+  static char str_n[256];
+  strncpy(str_n, current_path.c_str(), sizeof(str_n) - 1);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
+  if(ImGui::InputText("##exporter", str_n, IM_ARRAYSIZE(str_n))){
+    this->current_path = str_n;
+  }
+
+  ImGui::EndTable();
 
   //---------------------------
   ImGui::Separator();
@@ -83,7 +99,7 @@ void Exporter::draw_file_header(){
   size_t start = 0;
   size_t end = current_dir.find_first_of('/');
   std::vector<std::string> pathElements;
-  while (end != std::string::npos) {
+  while (end != std::string::npos){
     pathElements.push_back(current_dir.substr(start, end - start));
     start = end + 1;
     end = current_dir.find_first_of('/', start);
@@ -94,7 +110,7 @@ void Exporter::draw_file_header(){
 
   // Render buttons for each path element
   std::string element_path;
-  for (int i = 0; i < pathElements.size(); ++i) {
+  for (int i = 0; i < pathElements.size(); ++i){
     std::string element = pathElements[i];
     if(element == "") continue;
 
@@ -104,7 +120,7 @@ void Exporter::draw_file_header(){
 
     ImGui::PushID(i);
     element_path += "/" + element;
-    if (ImGui::Button(element.c_str())) {
+    if (ImGui::Button(element.c_str())){
       this->current_dir = element_path;
     }
     ImGui::PopID();

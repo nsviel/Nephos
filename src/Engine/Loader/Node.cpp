@@ -11,7 +11,7 @@ namespace ldr{
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
   utl::gui::Panel* panel_loader = add_panel("Loader", ICON_FA_FOLDER, false);
-  utl::gui::Panel* panel_export = add_panel("Exporter", ICON_FA_FOLDER, true);
+  utl::gui::Panel* panel_export = add_panel("Exporter", ICON_FA_DOWNLOAD, true);
   //---------------------------
 
   //Dependancy

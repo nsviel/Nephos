@@ -31,13 +31,14 @@ public:
   void draw_file_content();
 
 private:
-  std::string default_dir;
-  std::string current_dir;
-
   std::vector<ldr::gui::Bookmark> vec_bookmark_folder;
   std::vector<ldr::gui::Bookmark> vec_bookmark_file;
-  std::string name;
+  std::string default_dir = "";
+  std::string current_dir = "";
+  std::string current_path = "";
+  std::string name = "";
   bool* show_window;
+  int selection;
 };
 
 }

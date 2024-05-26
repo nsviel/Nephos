@@ -56,7 +56,7 @@ private:
   std::vector<ldr::gui::Bookmark> vec_bookmark_file;
   std::string default_dir;
   std::string current_dir;
-  ImVector<int> file_selection;
+  ImVector<int> vec_selection;
   float param_scaling = 1;
   bool param_remove_old = true;
   bool param_centered = true;
