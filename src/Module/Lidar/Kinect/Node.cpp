@@ -29,7 +29,7 @@ Node::~Node(){}
 
 //Main function
 void Node::init(){
-  ldr::Importer* ldr_importer = node_loader->get_ldr_importer();
+  ldr::io::Importer* ldr_importer = node_loader->get_ldr_importer();
   //---------------------------
 
   ldr_importer->insert_importer(new k4n::playback::Importer(this));

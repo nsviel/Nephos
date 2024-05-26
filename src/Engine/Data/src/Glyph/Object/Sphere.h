@@ -3,7 +3,7 @@
 #include <Data/src/Base/Glyph.h>
 
 namespace ope{class Transformation;}
-namespace ldr{class Importer;}
+namespace ldr::io{class Importer;}
 
 
 namespace dat::glyph::object{
@@ -26,7 +26,7 @@ public:
   void move_sphere(glm::vec3 pose, float diameter);
 
 private:
-  ldr::Importer* ldr_loader;
+  ldr::io::Importer* ldr_loader;
   ope::Transformation* ope_transform;
 
   int size = 20;

@@ -19,8 +19,8 @@ Node::Node(eng::Node* node_engine){
   this->node_data = node_engine->get_node_data();
 
   //Child
-  this->ldr_importer = new ldr::Importer(this);
-  this->ldr_exporter = new ldr::Exporter(this);
+  this->ldr_importer = new ldr::io::Importer(this);
+  this->ldr_exporter = new ldr::io::Exporter(this);
   this->ldr_bookmark = new ldr::Bookmark(this);
   this->gui_loader = new ldr::gui::Loader(this, &ldr_panel->is_open);
 

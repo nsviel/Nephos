@@ -6,7 +6,7 @@
 namespace dyn{class Node;}
 namespace dat::base{class Entity;}
 namespace utl::thread{class Pool;}
-namespace ldr{class Exporter;}
+namespace ldr::io{class Exporter;}
 namespace format::ply{class Exporter;}
 
 
@@ -30,7 +30,7 @@ public:
 
 private:
   utl::thread::Pool* thread_pool;
-  ldr::Exporter* ldr_exporter;
+  ldr::io::Exporter* ldr_exporter;
   format::ply::Exporter* ply_exporter;
 
   bool idle = true;

@@ -2,7 +2,7 @@
 
 namespace eng{class Node;}
 namespace sce{class Node;}
-namespace ldr{class Importer;}
+namespace ldr::io{class Importer;}
 namespace utl::base{class Selection;}
 
 
@@ -24,7 +24,7 @@ public:
 
 private:
   eng::Node* node_engine;
-  ldr::Importer* ldr_loader;
+  ldr::io::Importer* ldr_loader;
   utl::base::Selection* selection = nullptr;
 };
 

@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace dat{class Graph;}
-namespace ldr{class Importer;}
+namespace ldr::io{class Importer;}
 namespace dat{class Set;}
 namespace vld{class Node;}
 namespace vld::structure{class Main;}
@@ -36,7 +36,7 @@ public:
 
 private:
   dat::Graph* dat_graph;
-  ldr::Importer* ldr_loader;
+  ldr::io::Importer* ldr_loader;
   dat::Set* dat_set;
 
   vld::structure::Main* vld_struct;

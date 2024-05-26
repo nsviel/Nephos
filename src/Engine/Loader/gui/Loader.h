@@ -6,7 +6,7 @@
 
 namespace ldr{class Node;}
 namespace dat{class Graph;}
-namespace ldr{class Importer;}
+namespace ldr::io{class Importer;}
 namespace ldr::gui{class Bookmark;}
 namespace ldr{class Bookmark;}
 namespace ldr{class Format;}
@@ -47,7 +47,7 @@ public:
 
 private:
   dat::Graph* dat_graph;
-  ldr::Importer* ldr_importer;
+  ldr::io::Importer* ldr_importer;
   ldr::Bookmark* ldr_bookmark;
   ldr::Format* ldr_format;
   dat::Set* dat_set;

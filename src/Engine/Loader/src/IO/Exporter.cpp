@@ -3,7 +3,7 @@
 #include <Loader/Namespace.h>
 
 
-namespace ldr{
+namespace ldr::io{
 
 //Constructor / Destructor
 Exporter::Exporter(ldr::Node* node_loader){
