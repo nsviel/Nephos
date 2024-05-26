@@ -79,7 +79,7 @@ utl::media::File* Importer::import(utl::media::Path path){
   //---------------------------
   return dataset;
 }
-void Importer::insert(dat::base::Set* set){
+/*void Importer::insert(dat::base::Set* set){
   //---------------------------
 
   vld_struct->data.vec_set.push_back(set);
@@ -88,7 +88,7 @@ void Importer::insert(dat::base::Set* set){
   vld_playback->start_playback();
 
   //---------------------------
-}
+}*/
 
 //Importer function
 void Importer::importer_init(std::string path){
