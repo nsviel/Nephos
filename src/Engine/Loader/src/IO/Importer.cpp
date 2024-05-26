@@ -20,6 +20,13 @@ Importer::Importer(ldr::Node* node_loader){
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_data_set();
 
+  this->insert_importer(new format::ply::Importer());
+  this->insert_importer(new format::obj::Importer());
+  this->insert_importer(new format::csv::Importer());
+  this->insert_importer(new format::pts::Importer());
+  this->insert_importer(new format::ptx::Importer());
+  this->insert_importer(new format::xyz::Importer());
+
   //---------------------------
 }
 Importer::~Importer(){
@@ -160,6 +167,80 @@ utl::base::Data* Importer::create_data(utl::file::Data* file){
 
   //---------------------------
   return data;
+}
+
+
+
+
+utl::media::File* Importer::import_from_path(utl::media::Path path){
+  utl::media::File* file = nullptr;
+  //---------------------------
+
+  std::string format = utl::path::get_format_from_path(path.data);
+
+  for(int i=0; i<vec_importer.size(); i++){
+    ldr::base::Importer* importer = vec_importer[i];
+
+    if(importer->format == format){
+      //Check for discrete gpu requirement
+      /*if(importer->require_discrete_gpu && vk_interface->is_gpu_discrete() == false){
+        cout<<"[error] no discrete GPU - could not load " + importer->format + " file"<<endl;
+        continue;
+      }*/
+
+      file = importer->import(path);
+    }
+  }
+
+  //---------------------------
+  return file;
+}
+void Importer::insert_from_path(utl::media::Path path, dat::base::Set* set){
+  //---------------------------
+
+  std::string format = utl::path::get_format_from_path(path.data);
+
+  for(int i=0; i<vec_importer.size(); i++){
+    ldr::base::Importer* importer = vec_importer[i];
+
+    if(importer->format == format){
+      importer->insert(set);
+    }
+  }
+
+  //---------------------------
+}
+void Importer::insert_importer(ldr::base::Importer* importer){
+  //---------------------------
+
+  this->vec_importer.push_back(importer);
+
+  //---------------------------
+}
+bool Importer::is_format_supported(std::string format){
+  //---------------------------
+
+  for(int i=0; i<vec_importer.size(); i++){
+    ldr::base::Importer* importer = vec_importer[i];
+
+    if(format == importer->format){
+      return true;
+    }
+  }
+
+  //---------------------------
+  return false;
+}
+void Importer::display_supported_format(){
+  //---------------------------
+
+  cout<<"Supported file formats:"<<endl;
+  for(int i=0; i<vec_importer.size(); i++){
+    ldr::base::Importer* importer = vec_importer[i];
+    cout<<"o "<<importer->format<<endl;
+  }
+
+  //---------------------------
 }
 
 }

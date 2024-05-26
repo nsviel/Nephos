@@ -11,6 +11,8 @@ Exporter::Exporter(ldr::Node* node_loader){
 
   this->ldr_format = node_loader->get_ldr_format();
 
+  this->insert_exporter(new format::ply::Exporter());
+  
   //---------------------------
 }
 Exporter::~Exporter(){}
@@ -20,6 +22,13 @@ void Exporter::export_data(utl::base::Data* data){
   //---------------------------
 
 
+
+  //---------------------------
+}
+void Exporter::insert_exporter(ldr::base::Exporter* exporter){
+  //---------------------------
+
+  this->vec_exporter.push_back(exporter);
 
   //---------------------------
 }
