@@ -149,9 +149,9 @@ void Loader::draw_file_content(){
   flags |= ImGuiTableFlags_Sortable;
   if (ImGui::BeginTable("init_tree", 4, flags)){
     // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
-    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ldr::item::NAME);
-    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, ldr::item::FORMAT);
-    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, ldr::item::WEIGHT);
+    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ldr::bookmark::NAME);
+    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, ldr::bookmark::FORMAT);
+    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, ldr::bookmark::WEIGHT);
     ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
     ImGui::TableHeadersRow();
 
@@ -168,8 +168,8 @@ void Loader::draw_file_content(){
 
       //Get file info
       bookmark.item.ID = ID++;
-      bookmark.item.type = utl::directory::is_directory(file) ? ldr::item::FOLDER : ldr::item::FILE;
-      if(bookmark.item.type == ldr::item::FOLDER){
+      bookmark.item.type = utl::directory::is_directory(file) ? ldr::bookmark::FOLDER : ldr::bookmark::FILE;
+      if(bookmark.item.type == ldr::bookmark::FOLDER){
         bookmark.item.name = utl::path::get_filename_from_path(file);
         bookmark.item.path = file;
         bookmark.item.icon = std::string(ICON_FA_FOLDER);
@@ -179,7 +179,7 @@ void Loader::draw_file_content(){
         bookmark.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
         bookmark.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
         vec_bookmark_folder.push_back(bookmark);
-      }else if(bookmark.item.type == ldr::item::FILE){
+      }else if(bookmark.item.type == ldr::bookmark::FILE){
         bookmark.item.path = file;
         bookmark.item.name = utl::path::get_name_from_path(file);
         bookmark.item.icon = std::string(ICON_FA_FILE);
@@ -321,11 +321,11 @@ void Loader::draw_bookmark_button(ldr::gui::Bookmark& bookmark){
   //---------------------------
 }
 void Loader::draw_bookmark_tab(){
-  std::list<ldr::Item> list_item = ldr_bookmark->get_list_item();
+  std::list<ldr::bookmark::Item> list_item = ldr_bookmark->get_list_item();
   //---------------------------
 
   for(int i=0; i<list_item.size(); i++){
-    ldr::Item& item = *next(list_item.begin(), i);
+    ldr::bookmark::Item& item = *next(list_item.begin(), i);
     ldr::gui::Bookmark bookmark;
     bookmark.item = item;
 

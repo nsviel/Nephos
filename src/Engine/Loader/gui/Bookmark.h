@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 
-namespace ldr{class Item;}
+namespace ldr::bookmark{class Item;}
 
 
 namespace ldr::gui{
@@ -13,7 +13,7 @@ namespace ldr::gui{
 struct Bookmark{
   //---------------------------
 
-  ldr::Item item;
+  ldr::bookmark::Item item;
 
   //Sorting stuff
   static const ImGuiTableSortSpecs* current_sort_specs;

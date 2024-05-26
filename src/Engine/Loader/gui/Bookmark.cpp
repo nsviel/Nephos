@@ -21,9 +21,9 @@ bool Bookmark::compare_with_specs(const ldr::gui::Bookmark& a, const ldr::gui::B
     const ImGuiTableColumnSortSpecs* sort_spec = &current_sort_specs->Specs[n];
     int delta = 0;
     switch (sort_spec->ColumnUserID) {
-      case ldr::item::NAME: delta = a.item.name.compare(b.item.name); break;
-      case ldr::item::WEIGHT: delta = (a.item.weight > b.item.weight) ? 1 : (a.item.weight < b.item.weight) ? -1 : 0; break;
-      case ldr::item::FORMAT: delta = a.item.format.compare(b.item.format); break;
+      case ldr::bookmark::NAME: delta = a.item.name.compare(b.item.name); break;
+      case ldr::bookmark::WEIGHT: delta = (a.item.weight > b.item.weight) ? 1 : (a.item.weight < b.item.weight) ? -1 : 0; break;
+      case ldr::bookmark::FORMAT: delta = a.item.format.compare(b.item.format); break;
       default: std::cerr << "Unhandled column ID: " << sort_spec->ColumnUserID << std::endl; break;
     }
     if (delta > 0)

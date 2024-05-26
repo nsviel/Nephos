@@ -4,17 +4,17 @@
 #include <list>
 
 namespace ldr{class Node;}
-namespace ldr{class Item;}
+namespace ldr::bookmark{class Item;}
 
 
-namespace ldr{
+namespace ldr::bookmark{
 
-class Bookmark
+class Manager
 {
 public:
   //Constructor / Destructor
-  Bookmark(ldr::Node* node_loader);
-  ~Bookmark();
+  Manager(ldr::Node* node_loader);
+  ~Manager();
 
 public:
   //Main function
@@ -30,10 +30,10 @@ public:
   void sort_list_item();
   void save_on_file();
 
-  inline std::list<ldr::Item> get_list_item(){return list_item;}
+  inline std::list<ldr::bookmark::Item> get_list_item(){return list_item;}
 
 private:
-  std::list<ldr::Item> list_item;
+  std::list<ldr::bookmark::Item> list_item;
   std::string path_bookmark_file;
 };
 

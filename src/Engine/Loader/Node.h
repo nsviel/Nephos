@@ -7,7 +7,9 @@ namespace dat{class Node;}
 namespace eng{class Node;}
 namespace ldr::io{class Importer;}
 namespace ldr::io{class Exporter;}
-namespace ldr{class Bookmark;}
+namespace ldr::io{class Recorder;}
+namespace ldr::io{class Playback;}
+namespace ldr::bookmark{class Manager;}
 namespace ldr::gui{class Loader;}
 
 
@@ -33,7 +35,9 @@ public:
 
   inline ldr::io::Importer* get_ldr_importer(){return ldr_importer;}
   inline ldr::io::Exporter* get_ldr_exporter(){return ldr_exporter;}
-  inline ldr::Bookmark* get_ldr_bookmark(){return ldr_bookmark;}
+  inline ldr::io::Recorder* get_ldr_recorder(){return ldr_recorder;}
+  inline ldr::io::Playback* get_ldr_playback(){return ldr_playback;}
+  inline ldr::bookmark::Manager* get_ldr_bookmark(){return ldr_bookmark;}
 
 private:
   //Dependancy
@@ -44,7 +48,9 @@ private:
   //Child
   ldr::io::Importer* ldr_importer;
   ldr::io::Exporter* ldr_exporter;
-  ldr::Bookmark* ldr_bookmark;
+  ldr::io::Recorder* ldr_recorder;
+  ldr::io::Playback* ldr_playback;
+  ldr::bookmark::Manager* ldr_bookmark;
   ldr::gui::Loader* gui_loader;
 
   bool show_scene = true;

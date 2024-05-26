@@ -8,8 +8,7 @@ namespace ldr{class Node;}
 namespace dat{class Graph;}
 namespace ldr::io{class Importer;}
 namespace ldr::gui{class Bookmark;}
-namespace ldr{class Bookmark;}
-namespace ldr{class Format;}
+namespace ldr::bookmark{class Manager;}
 namespace dat{class Set;}
 namespace ope{class Transformation;}
 namespace ope{class Operation;}
@@ -48,8 +47,7 @@ public:
 private:
   dat::Graph* dat_graph;
   ldr::io::Importer* ldr_importer;
-  ldr::Bookmark* ldr_bookmark;
-  ldr::Format* ldr_format;
+  ldr::bookmark::Manager* ldr_bookmark;
   dat::Set* dat_set;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;

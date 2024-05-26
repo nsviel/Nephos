@@ -69,7 +69,7 @@ void Recorder::wait_thread(){
 //Subfunction
 void Recorder::make_export_to_ply(dat::base::Entity* entity, std::string path_dir, std::string path_name){
   //---------------------------
-
+/*
   //Check if directory exists, if not create it
   if(!utl::directory::is_exist(path_dir)){
     utl::directory::create(path_dir);
@@ -78,7 +78,7 @@ void Recorder::make_export_to_ply(dat::base::Entity* entity, std::string path_di
   //Export
   string path = path_dir + "/" + path_name + ".ply";
   ply_exporter->export_binary(entity->get_data(), entity->get_pose(), path);
-
+*/
   //---------------------------
 }
 

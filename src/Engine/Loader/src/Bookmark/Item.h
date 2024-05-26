@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace ldr::item{
+namespace ldr::bookmark{
 
 enum ColumnID{
   NAME,
@@ -17,16 +17,12 @@ enum type{
   FILE = 1,
 };
 
-}
-
-namespace ldr{
-
 struct Item{
   //---------------------------
 
   //Item stuff
   int ID = -1;
-  int type = ldr::item::FILE;
+  int type = ldr::bookmark::FILE;
   std::string path = "";
   std::string name = "";
   std::string format = "";
