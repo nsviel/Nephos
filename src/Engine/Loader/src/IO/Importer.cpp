@@ -1,4 +1,4 @@
-#include "Loader.h"
+#include "Importer.h"
 
 #include <Engine/Namespace.h>
 #include <Data/Namespace.h>
@@ -9,7 +9,7 @@
 namespace ldr{
 
 //Constructor / Destructor
-Loader::Loader(ldr::Node* node_loader){
+Importer::Importer(ldr::Node* node_loader){
   //---------------------------
 
   dat::Node* node_data = node_loader->get_node_data();
@@ -22,7 +22,7 @@ Loader::Loader(ldr::Node* node_loader){
 
   //---------------------------
 }
-Loader::~Loader(){
+Importer::~Importer(){
   //---------------------------
 
   delete ldr_format;
@@ -31,7 +31,7 @@ Loader::~Loader(){
 }
 
 //Main functions
-utl::base::Data* Loader::load_data(std::string path){
+utl::base::Data* Importer::load_data(std::string path){
   dat::base::Set* set = nullptr;
   //---------------------------
 
@@ -53,7 +53,7 @@ utl::base::Data* Loader::load_data(std::string path){
   //---------------------------
   return data;
 }
-dat::base::Set* Loader::load_dataset(utl::media::Path file_path){
+dat::base::Set* Importer::load_dataset(utl::media::Path file_path){
   //---------------------------
 
   if(!check_file_path(file_path.data)) return nullptr;
@@ -82,7 +82,7 @@ dat::base::Set* Loader::load_dataset(utl::media::Path file_path){
   //---------------------------
   return set;
 }
-dat::base::Object* Loader::load_object(utl::media::Path file_path){
+dat::base::Object* Importer::load_object(utl::media::Path file_path){
   //---------------------------
 
   if(!check_file_path(file_path.data)) return nullptr;
@@ -105,7 +105,7 @@ dat::base::Object* Loader::load_object(utl::media::Path file_path){
 }
 
 //Subfunction
-bool Loader::check_file_path(std::string path){
+bool Importer::check_file_path(std::string path){
   //---------------------------
 
   //Check file existence
@@ -125,7 +125,7 @@ bool Loader::check_file_path(std::string path){
   //---------------------------
   return true;
 }
-dat::base::Object* Loader::create_object(utl::file::Data* data){
+dat::base::Object* Importer::create_object(utl::file::Data* data){
   //---------------------------
 
   dat::base::Object* object = new dat::base::Object(node_engine);
@@ -137,7 +137,7 @@ dat::base::Object* Loader::create_object(utl::file::Data* data){
   //---------------------------
   return object;
 }
-utl::base::Data* Loader::create_data(utl::file::Data* file){
+utl::base::Data* Importer::create_data(utl::file::Data* file){
   //---------------------------
 
   utl::base::Data* data = new utl::base::Data();

@@ -17,12 +17,12 @@ namespace utl::file{class Data;}
 
 namespace ldr{
 
-class Loader
+class Importer
 {
 public:
   //Constructor / Destructor
-  Loader(ldr::Node* node_loader);
-  ~Loader();
+  Importer(ldr::Node* node_loader);
+  ~Importer();
 
 public:
   //Main functions

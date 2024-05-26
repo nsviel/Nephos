@@ -20,7 +20,7 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->ldr_format = new ldr::Format(this);
-  this->ldr_loader = new ldr::Loader(this);
+  this->ldr_loader = new ldr::Importer(this);
   this->ldr_exporter = new ldr::Exporter(this);
   this->ldr_bookmark = new ldr::Bookmark(this);
   this->gui_loader = new ldr::gui::Loader(this, &ldr_panel->is_open);
