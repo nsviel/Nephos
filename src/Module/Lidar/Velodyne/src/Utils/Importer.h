@@ -34,7 +34,6 @@ public:
 public:
   //Main function
   utl::media::File* import(utl::media::Path path);
-  void insert(dat::base::Set* set);
 
   //Subfunction
   void importer_init(std::string path);

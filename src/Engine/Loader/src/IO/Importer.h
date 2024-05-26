@@ -34,7 +34,7 @@ public:
 public:
   //Main functions
   utl::base::Data* load_data(std::string path);
-  dat::base::Set* load_dataset(utl::media::Path file_path);
+  dat::base::Set* load_set(utl::media::Path file_path);
   dat::base::Object* load_object(utl::media::Path file_path);
 
   //Subfunction
@@ -42,12 +42,10 @@ public:
   dat::base::Object* create_object(utl::file::Data* file_data);
   utl::base::Data* create_data(utl::file::Data* file_data);
 
-
+  //Import function
   utl::media::File* import_from_path(utl::media::Path path);
-  void insert_from_path(utl::media::Path path, dat::base::Set* set);
   void insert_importer(ldr::base::Importer* importer);
   bool is_format_supported(std::string format);
-  void display_supported_format();
 
 private:
   eng::Node* node_engine;

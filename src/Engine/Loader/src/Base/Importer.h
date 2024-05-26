@@ -14,8 +14,6 @@ struct Importer{
   //---------------------------
 
   virtual utl::media::File* import(utl::media::Path path){return nullptr;}
-  virtual void insert(dat::base::Entity* entity){}
-  virtual void insert(dat::base::Set* set){}
 
   utl::file::Data* data = nullptr;
   std::string format = "";

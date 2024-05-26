@@ -53,7 +53,7 @@ utl::base::Data* Importer::load_data(std::string path){
   //---------------------------
   return data;
 }
-dat::base::Set* Importer::load_dataset(utl::media::Path file_path){
+dat::base::Set* Importer::load_set(utl::media::Path file_path){
   //---------------------------
 
   if(!check_file_path(file_path.data)) return nullptr;
@@ -76,8 +76,6 @@ dat::base::Set* Importer::load_dataset(utl::media::Path file_path){
 
   //Delete raw data
   delete file;
-
-  this->insert_from_path(file_path, set);
 
   //---------------------------
   return set;
@@ -118,7 +116,11 @@ bool Importer::check_file_path(std::string path){
   std::string format = utl::path::get_format_from_path(path);
   if(!this->is_format_supported(format)){
     cout<<"[error] '"<<format<<"' file format not supported"<<endl;
-    this->display_supported_format();
+    cout<<"Supported file formats:"<<endl;
+    for(int i=0; i<vec_importer.size(); i++){
+      ldr::base::Importer* importer = vec_importer[i];
+      cout<<"o "<<importer->format<<endl;
+    }
     return false;
   }
 
@@ -162,9 +164,7 @@ utl::base::Data* Importer::create_data(utl::file::Data* file){
   return data;
 }
 
-
-
-
+//Import function
 utl::media::File* Importer::import_from_path(utl::media::Path path){
   utl::media::File* file = nullptr;
   //---------------------------
@@ -188,21 +188,6 @@ utl::media::File* Importer::import_from_path(utl::media::Path path){
   //---------------------------
   return file;
 }
-void Importer::insert_from_path(utl::media::Path path, dat::base::Set* set){
-  //---------------------------
-
-  std::string format = utl::path::get_format_from_path(path.data);
-
-  for(int i=0; i<vec_importer.size(); i++){
-    ldr::base::Importer* importer = vec_importer[i];
-
-    if(importer->format == format){
-      importer->insert(set);
-    }
-  }
-
-  //---------------------------
-}
 void Importer::insert_importer(ldr::base::Importer* importer){
   //---------------------------
 
@@ -224,16 +209,4 @@ bool Importer::is_format_supported(std::string format){
   //---------------------------
   return false;
 }
-void Importer::display_supported_format(){
-  //---------------------------
-
-  cout<<"Supported file formats:"<<endl;
-  for(int i=0; i<vec_importer.size(); i++){
-    ldr::base::Importer* importer = vec_importer[i];
-    cout<<"o "<<importer->format<<endl;
-  }
-
-  //---------------------------
-}
-
 }
