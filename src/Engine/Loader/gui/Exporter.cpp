@@ -13,6 +13,8 @@ namespace ldr::gui{
 Exporter::Exporter(ldr::Node* node_loader, bool* show_window){
   //---------------------------
 
+  this->default_dir = utl::path::get_current_parent_path_abs();
+  this->current_dir = default_dir;
   this->name = "Exporter";
   this->show_window = show_window;
 
@@ -39,12 +41,22 @@ void Exporter::run_panel(){
   //---------------------------
 }
 void Exporter::design_panel(){
-  //ImGuiTabItemFlags flag = 0;
   //---------------------------
 
+  this->draw_header();
   this->draw_file();
 
   //---------------------------
+}
+
+//Heaser stuff
+void Exporter::draw_header(){
+  //---------------------------
+
+
+
+  //---------------------------
+  ImGui::Separator();
 }
 
 //File stuff
@@ -103,6 +115,103 @@ void Exporter::draw_file_header(){
 void Exporter::draw_file_content(){
   std::vector<std::string> vec_current_files = utl::path::list_all_path(current_dir);
   //---------------------------
+
+  static ImGuiTableFlags flags;
+  flags |= ImGuiTableFlags_BordersV;
+  flags |= ImGuiTableFlags_BordersOuterH;
+  flags |= ImGuiTableFlags_Resizable;
+  flags |= ImGuiTableFlags_RowBg;
+  flags |= ImGuiTableFlags_NoBordersInBody;
+  flags |= ImGuiTableFlags_Sortable;
+  if (ImGui::BeginTable("init_tree", 3, flags)){
+    // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
+    ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ldr::bookmark::NAME);
+    ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, ldr::bookmark::FORMAT);
+    ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, ldr::bookmark::WEIGHT);
+    ImGui::TableHeadersRow();
+
+    //Item transposition
+    int ID = 0;
+    vec_bookmark_folder.clear();
+    vec_bookmark_file.clear();
+    for(int i=0; i<vec_current_files.size(); i++){
+      ldr::gui::Bookmark bookmark;
+      std::string file = vec_current_files[i];
+      std::string filename = utl::path::get_filename_from_path(file);
+      //Remove hidden files
+      if(filename[0] == '.' && filename[1] != '.') continue;
+
+      //Get file info
+      bookmark.item.ID = ID++;
+      bookmark.item.type = utl::directory::is_directory(file) ? ldr::bookmark::FOLDER : ldr::bookmark::FILE;
+      if(bookmark.item.type == ldr::bookmark::FOLDER){
+        bookmark.item.name = utl::path::get_filename_from_path(file);
+        bookmark.item.path = file;
+        bookmark.item.icon = std::string(ICON_FA_FOLDER);
+        bookmark.item.size = "---";
+        bookmark.item.weight = 0;
+        bookmark.item.format = "---";
+        bookmark.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
+        bookmark.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+        vec_bookmark_folder.push_back(bookmark);
+      }else if(bookmark.item.type == ldr::bookmark::FILE){
+        bookmark.item.path = file;
+        bookmark.item.name = utl::path::get_name_from_path(file);
+        bookmark.item.icon = std::string(ICON_FA_FILE);
+        bookmark.item.size = utl::file::formatted_size(file);
+        bookmark.item.weight = utl::file::size(file);
+        bookmark.item.format = utl::path::get_format_from_path(file);
+        bookmark.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+        bookmark.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+        vec_bookmark_file.push_back(bookmark);
+      }
+    }
+
+    // Sort data
+    if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
+      ldr::gui::Bookmark::sort_item_by_specs(sort_specs, vec_bookmark_folder);
+      ldr::gui::Bookmark::sort_item_by_specs(sort_specs, vec_bookmark_file);
+    }
+
+    // Populate the table - Folder
+    ImGuiSelectableFlags flags;
+    flags |= ImGuiSelectableFlags_SpanAllColumns;
+    flags |= ImGuiSelectableFlags_AllowOverlap;
+    flags |= ImGuiSelectableFlags_AllowDoubleClick;
+    for(int i=0; i<vec_bookmark_folder.size(); i++){
+      ldr::gui::Bookmark& bookmark = vec_bookmark_folder[i];
+
+      ImGui::TableNextColumn();
+      ImVec4 color_icon = ImVec4(bookmark.item.color_icon.r, bookmark.item.color_icon.g, bookmark.item.color_icon.b, bookmark.item.color_icon.a);
+      ImGui::TextColored(color_icon, "%s", bookmark.item.icon.c_str());
+      ImGui::SameLine();
+      ImVec4 color_text = ImVec4(bookmark.item.color_text.r, bookmark.item.color_text.g, bookmark.item.color_text.b, bookmark.item.color_text.a);
+      ImGui::TextColored(color_text, "%s", bookmark.item.name.c_str());
+      ImGui::TableNextColumn();
+      ImGui::TextColored(color_text, "%s", bookmark.item.format.c_str());
+      ImGui::TableNextColumn();
+      ImGui::TextColored(color_text, "%s", bookmark.item.size.c_str());
+    }
+
+    // Populate the table - File
+    for(int i=0; i<vec_bookmark_file.size(); i++){
+      ldr::gui::Bookmark& bookmark = vec_bookmark_file[i];
+
+      ImGui::TableNextRow();
+      ImGui::TableNextColumn();
+      ImVec4 color_icon = ImVec4(bookmark.item.color_icon.r, bookmark.item.color_icon.g, bookmark.item.color_icon.b, bookmark.item.color_icon.a);
+      ImGui::TextColored(color_icon, "%s", bookmark.item.icon.c_str());
+      ImGui::SameLine();
+      ImVec4 color_text = ImVec4(bookmark.item.color_text.r, bookmark.item.color_text.g, bookmark.item.color_text.b, bookmark.item.color_text.a);
+      ImGui::TextColored(color_text, "%s", bookmark.item.name.c_str());
+      ImGui::TableNextColumn();
+      ImGui::TextColored(color_text, "%s", bookmark.item.format.c_str());
+      ImGui::TableNextColumn();
+      ImGui::TextColored(color_text, "%s", bookmark.item.size.c_str());
+    }
+
+    ImGui::EndTable();
+  }
 
   //---------------------------
 }
