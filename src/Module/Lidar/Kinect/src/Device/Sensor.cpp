@@ -147,13 +147,13 @@ void Sensor::init_object(){
 void Sensor::init_image(){
   //---------------------------
 
-  color.image.name = "Color";
+  color.image.name = "color";
   dat_graph->assign_UID(&color.image);
 
-  ir.image.name = "IR";
+  ir.image.name = "ir";
   dat_graph->assign_UID(&ir.image);
 
-  depth.image.name = "Depth";
+  depth.image.name = "depth";
   dat_graph->assign_UID(&depth.image);
 
   //---------------------------

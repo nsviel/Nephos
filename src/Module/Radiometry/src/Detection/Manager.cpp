@@ -13,6 +13,7 @@ Manager::Manager(rad::Node* node_radio){
   dat::Node* node_data = node_radio->get_node_data();
 
   this->dat_graph = node_data->get_dat_graph();
+  this->dat_entity = node_data->get_dat_entity();
   this->rad_image_detection = new rad::detection::image::Detection(node_radio);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(node_radio);
   this->map_step[rad::detection::cloud::WAIT_VALIDATION] = "Wait validation";
@@ -29,7 +30,12 @@ void Manager::loop(){
   //---------------------------
 
   if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
-    //rad_image_detection->start_thread(sensor, &sensor->ir.image);
+    utl::media::Image* image = dat_entity->get_image(sensor, "ir");
+    if(image != nullptr && image->new_data){
+      rad_image_detection->start_thread(sensor, image);
+    }
+
+
     //rad_cloud_detection->start_thread(sensor, &sensor->ir.image);
   }
 

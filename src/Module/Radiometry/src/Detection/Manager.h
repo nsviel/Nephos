@@ -6,6 +6,7 @@ namespace rad{class Node;}
 namespace rad::detection::image{class Detection;}
 namespace rad::detection::cloud{class Detection;}
 namespace dat{class Graph;}
+namespace dat{class Entity;}
 namespace dat::base{class Sensor;}
 
 
@@ -33,6 +34,7 @@ public:
 
 private:
   dat::Graph* dat_graph;
+  dat::Entity* dat_entity;
   rad::detection::image::Detection* rad_image_detection;
   rad::detection::cloud::Detection* rad_cloud_detection;
 
