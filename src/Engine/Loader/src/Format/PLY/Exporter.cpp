@@ -1,5 +1,7 @@
 #include "Exporter.h"
 
+#include <Utility/Namespace.h>
+
 
 namespace format::ply{
 

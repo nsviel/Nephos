@@ -1,4 +1,4 @@
-#include "Exporter.h"
+#include "Recorder.h"
 
 #include <Engine/Namespace.h>
 #include <Dynamic/Namespace.h>
@@ -9,7 +9,7 @@
 namespace dyn::cloud{
 
 //Constructor / Destructor
-Exporter::Exporter(dyn::Node* node_dynamic){
+Recorder::Recorder(dyn::Node* node_dynamic){
   //---------------------------
 
   eng::Node* node_engine = node_dynamic->get_node_engine();
@@ -21,10 +21,10 @@ Exporter::Exporter(dyn::Node* node_dynamic){
 
   //---------------------------
 }
-Exporter::~Exporter(){}
+Recorder::~Recorder(){}
 
 //Main function
-void Exporter::start_thread(dat::base::Entity* entity){
+void Recorder::start_thread(dat::base::Entity* entity){
   //---------------------------
 
   this->idle = false;
@@ -35,7 +35,7 @@ void Exporter::start_thread(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Exporter::run_thread(dat::base::Entity* entity){
+void Recorder::run_thread(dat::base::Entity* entity){
   //---------------------------
 /*
   tasker->loop_begin();
@@ -55,7 +55,7 @@ void Exporter::run_thread(dat::base::Entity* entity){
   //---------------------------
   this->idle = true;
 }
-void Exporter::wait_thread(){
+void Recorder::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
@@ -67,7 +67,7 @@ void Exporter::wait_thread(){
 }
 
 //Subfunction
-void Exporter::make_export_to_ply(dat::base::Entity* entity, std::string path_dir, std::string path_name){
+void Recorder::make_export_to_ply(dat::base::Entity* entity, std::string path_dir, std::string path_name){
   //---------------------------
 
   //Check if directory exists, if not create it

@@ -2,6 +2,9 @@
 
 #include <Loader/src/Base/Recorder.h>
 
+namespace format::ply{class Exporter;}
+namespace utl::base{class Pose;}
+
 
 namespace format::ply{
 
@@ -14,9 +17,10 @@ public:
 
 public:
   //Main function
+  void record_bin_ply(utl::base::Data* data, utl::base::Pose* pose, std::string path);
 
 private:
-
+  format::ply::Exporter* ply_exporter;
 };
 
 }

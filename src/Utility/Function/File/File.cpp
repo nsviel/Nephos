@@ -48,6 +48,14 @@ bool is_exist_silent(std::string path){
   //---------------------------
   return is_exists;
 }
+bool is_empty(const std::string& path){
+  //---------------------------
+
+  std::ifstream file(path, std::ios::binary | std::ios::ate);
+
+  //---------------------------
+  return file.is_open() && file.tellg() == 0;
+}
 
 //Info
 int number_point(std::string path){

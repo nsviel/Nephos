@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/src/Base/Exporter.h>
+#include <Loader/src/Base/Recorder.h>
 #include <Utility/Specific/Common.h>
 
 namespace dyn{class Node;}
@@ -12,12 +12,12 @@ namespace format::ply{class Exporter;}
 
 namespace dyn::cloud{
 
-class Exporter : public ldr::base::Exporter
+class Recorder : public ldr::base::Recorder
 {
 public:
   //Constructor / Destructor
-  Exporter(dyn::Node* node_dynamic);
-  ~Exporter();
+  Recorder(dyn::Node* node_dynamic);
+  ~Recorder();
 
 public:
   //Main function

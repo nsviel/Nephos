@@ -2,13 +2,13 @@
 
 #include <Loader/src/Format/PLY/Utils.h>
 #include <Loader/src/Base/Exporter.h>
-#include <Utility/Function/File/Path.h>
-#include <Utility/Base/Type/Pose.h>
 #include <glm/glm.hpp>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <iomanip> //setprecision
+
+namespace utl::base{class Pose;}
 
 
 namespace format::ply{

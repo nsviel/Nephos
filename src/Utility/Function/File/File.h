@@ -10,6 +10,7 @@ namespace utl::file{
 //Check
 bool is_exist(std::string path);
 bool is_exist_silent(std::string path);
+bool is_empty(const std::string& path);
 
 //Info
 int number_point(std::string path);
