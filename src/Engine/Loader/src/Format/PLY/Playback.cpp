@@ -7,6 +7,7 @@ namespace format::ply{
 Playback::Playback(){
   //---------------------------
 
+  this->format = "ply";
 
   //---------------------------
 }

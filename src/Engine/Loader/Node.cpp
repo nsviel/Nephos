@@ -10,7 +10,8 @@ namespace ldr{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* ldr_panel = add_panel("Loader", ICON_FA_FOLDER, false);
+  utl::gui::Panel* panel_loader = add_panel("Loader", ICON_FA_FOLDER, false);
+  utl::gui::Panel* panel_export = add_panel("Exporter", ICON_FA_FOLDER, false);
   //---------------------------
 
   //Dependancy
@@ -24,7 +25,8 @@ Node::Node(eng::Node* node_engine){
   this->ldr_recorder = new ldr::io::Recorder(this);
   this->ldr_playback = new ldr::io::Playback(this);
   this->ldr_bookmark = new ldr::bookmark::Manager(this);
-  this->gui_loader = new ldr::gui::Loader(this, &ldr_panel->is_open);
+  this->gui_loader = new ldr::gui::Loader(this, &panel_loader->is_open);
+  this->gui_exporter = new ldr::gui::Exporter(this, &panel_export->is_open);
 
   //---------------------------
 }
@@ -53,6 +55,7 @@ void Node::gui(){
   //---------------------------
 
   gui_loader->run_panel();
+  gui_exporter->run_panel();
 
   //---------------------------
 }

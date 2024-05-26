@@ -23,7 +23,7 @@ public:
 
   //Subfunction
   void menu_panel();
-  void menu_loader();
+  void menu_shortcut(std::string name);
   void menu_screenshot();
 
 private:

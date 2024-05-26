@@ -11,14 +11,14 @@ Recorder::Recorder(){
   //---------------------------
 
   this->ply_exporter = new format::ply::Exporter();
-
-
+  this->format = "ply";
+  
   //---------------------------
 }
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::record_bin_ply(utl::base::Data* data, utl::base::Pose* pose, std::string path){
+void Recorder::record_binary(utl::base::Data* data, utl::base::Pose* pose, std::string path){
   //---------------------------
 
   std::ofstream file(path, std::ios::binary | std::ios::app);

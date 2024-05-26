@@ -15,9 +15,9 @@ struct Importer{
 
   virtual utl::media::File* import(utl::media::Path path){return nullptr;}
 
-  utl::file::Data* data = nullptr;
   std::string format = "";
   bool require_discrete_gpu = false;
+  utl::file::Data* data = nullptr;
 
   //---------------------------
 };

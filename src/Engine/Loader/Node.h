@@ -11,6 +11,7 @@ namespace ldr::io{class Recorder;}
 namespace ldr::io{class Playback;}
 namespace ldr::bookmark{class Manager;}
 namespace ldr::gui{class Loader;}
+namespace ldr::gui{class Exporter;}
 
 
 namespace ldr{
@@ -52,6 +53,7 @@ private:
   ldr::io::Playback* ldr_playback;
   ldr::bookmark::Manager* ldr_bookmark;
   ldr::gui::Loader* gui_loader;
+  ldr::gui::Exporter* gui_exporter;
 
   bool show_scene = true;
   bool show_loader = true;

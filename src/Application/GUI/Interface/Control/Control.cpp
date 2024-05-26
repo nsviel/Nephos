@@ -37,9 +37,9 @@ void Control::control_keyboard_oneAction(){
       node_engine->close();
     }
 
-    //1 key - Next main tab
+    //Left alt key - Next main tab
     if(ImGui::IsKeyPressed(ImGuiKey_LeftAlt)){
-      gui_tab->next_tab();
+      //gui_tab->next_tab();
     }
 
     //R key - Reset

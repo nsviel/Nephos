@@ -32,7 +32,10 @@ void Menu::draw(){
     ImGui::EndMenu();
   }
   if(ImGui::MenuItem(ICON_FA_FOLDER "##Loader")){
-    this->menu_loader();
+    this->menu_shortcut("Loader");
+  }
+  if(ImGui::MenuItem(ICON_FA_DOWNLOAD "##Exporter")){
+    this->menu_shortcut("Exporter");
   }
   if(ImGui::MenuItem(ICON_FA_CAMERA)){
     this->menu_screenshot();
@@ -65,12 +68,12 @@ void Menu::menu_panel(){
 
   //---------------------------
 }
-void Menu::menu_loader(){
+void Menu::menu_shortcut(std::string name){
   vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
   //---------------------------
 
   for(int i=0; i<vec_panel.size(); i++){
-    if(vec_panel[i]->name == "Loader"){
+    if(vec_panel[i]->name == name){
       vec_panel[i]->is_open = !vec_panel[i]->is_open;
     }
   }
