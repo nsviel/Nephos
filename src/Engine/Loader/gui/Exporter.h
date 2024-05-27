@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Loader/gui/Navigator.h>
 #include <imgui/core/imgui.h>
 #include <string>
 #include <vector>
@@ -10,7 +11,7 @@ namespace ldr::gui{class Bookmark;}
 
 namespace ldr::gui{
 
-class Exporter
+class Exporter : public ldr::gui::Navigator
 {
 public:
   //Constructor / Destructor
@@ -22,13 +23,8 @@ public:
   void run_panel();
   void design_panel();
 
-  //Header stuff
+  //Subfunction
   void draw_header();
-
-  //File stuff
-  void draw_file();
-  void draw_file_header();
-  void draw_file_content();
 
 private:
   std::vector<ldr::gui::Bookmark> vec_bookmark_folder;
