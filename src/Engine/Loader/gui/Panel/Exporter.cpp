@@ -13,7 +13,11 @@ namespace ldr::gui{
 Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
   //---------------------------
 
+  dat::Node* node_data = node_loader->get_node_data();
+
+  this->dat_graph = node_data->get_dat_graph();
   this->ldr_exporter = node_loader->get_ldr_exporter();
+
   this->name = "Exporter";
   this->show_window = show_window;
   this->with_bookmark = false;
@@ -67,9 +71,18 @@ void Exporter::draw_header(){
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
-  //Path
-  std::string file_name = utl::path::get_name_from_path(current_path);
-  std::string file_format = utl::path::get_format_from_path(current_path);
+  //Actualize current paths
+  static std::string file_format;
+  static std::string file_name;
+  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  if(entity != nullptr && file_name != entity->name){
+    file_name = entity->name;
+    file_format = entity->get_data()->format;
+    this->current_path = current_dir + "/" + file_name + "." + file_format;
+  }else{
+    file_name = utl::path::get_name_from_path(current_path);
+    file_format = utl::path::get_format_from_path(current_path);
+  }
   static char str_n[256];
 
   //Directory
@@ -113,7 +126,12 @@ void Exporter::draw_header(){
   ImGui::Separator();
 }
 void Exporter::item_operation(){
+  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  if(entity == nullptr) return;
   //---------------------------
+
+  say(current_path);
+  ldr_exporter->export_data(entity->get_data(), current_path);
 
   //---------------------------
 }

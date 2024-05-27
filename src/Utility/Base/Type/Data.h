@@ -26,11 +26,10 @@ struct Data : public utl::base::Element{
   bool is_visible = true;
 
   //Infos
-  std::string name = "";
   std::string path = "";
   std::string path_save = "";
   std::string path_texture = "";
-  std::string file_format = "";
+  std::string format = "";
   glm::vec4 unicolor;
   utl::base::Topology topology;
 

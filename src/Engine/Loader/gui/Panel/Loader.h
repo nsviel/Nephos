@@ -6,10 +6,10 @@
 #include <vector>
 
 namespace ldr{class Node;}
-namespace dat{class Graph;}
 namespace ldr::io{class Importer;}
 namespace ldr::gui{class File;}
 namespace ldr::bookmark{class Manager;}
+namespace dat{class Graph;}
 namespace dat{class Set;}
 namespace ope{class Transformation;}
 namespace ope{class Operation;}
@@ -41,10 +41,10 @@ public:
   void operation_entity(dat::base::Entity* entity);
 
 private:
-  dat::Graph* dat_graph;
   ldr::io::Importer* ldr_importer;
   ldr::bookmark::Manager* ldr_bookmark;
   dat::Set* dat_set;
+  dat::Graph* dat_graph;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 

@@ -145,7 +145,7 @@ utl::base::Data* Importer::create_data(utl::file::Data* file){
   utl::base::Data* data = new utl::base::Data();
   data->name = file->name;
   data->path = file->path.data;
-  data->file_format = utl::path::get_format_from_path(file->path.data);
+  data->format = utl::path::get_format_from_path(file->path.data);
   data->size = file->xyz.size();
   data->topology.type = file->draw_type;
 

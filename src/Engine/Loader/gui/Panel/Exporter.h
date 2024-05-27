@@ -8,6 +8,7 @@
 namespace ldr{class Node;}
 namespace ldr::io{class Exporter;}
 namespace ldr::gui{class File;}
+namespace dat{class Graph;}
 
 
 namespace ldr::gui{
@@ -28,9 +29,10 @@ public:
   void draw_header();
   void item_operation();
   bool item_format(std::string format);
-  
+
 private:
   ldr::io::Exporter* ldr_exporter;
+  dat::Graph* dat_graph;
 
   std::string name = "";
   bool* show_window;

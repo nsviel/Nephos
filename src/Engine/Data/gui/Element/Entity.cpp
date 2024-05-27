@@ -140,10 +140,10 @@ void Entity::data_info(dat::base::Entity* entity){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Format"); ImGui::TableNextColumn();
   static char str_f[256];
-  strcpy(str_f, data->file_format.c_str());
+  strcpy(str_f, data->format.c_str());
   ImGui::SetNextItemWidth(item_width);
   if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
-    data->file_format = str_f;
+    data->format = str_f;
   }
 
   //Uniform collection color
