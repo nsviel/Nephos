@@ -13,7 +13,8 @@ file(GLOB_RECURSE ALL_SOURCES
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
-find_package( OpenCV REQUIRED )
+find_package(OpenCV REQUIRED)
+find_library(LZ4_LIBRARIES NAMES liblz4.so HINTS "lz4/lib")
 
 #-----------------
 # Dependencies
@@ -22,6 +23,8 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
 
   ${OpenCV_LIBS}
+  ${LZ4_LIBRARIES}
+  flann
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

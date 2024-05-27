@@ -3,7 +3,7 @@
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
-
+#include <flann/flann.hpp>
 #include <cstdlib>
 #include <chrono>
 
@@ -25,7 +25,7 @@ KNN::~KNN(){}
 void KNN::compute_normal(utl::base::Data* data, int k){
   if(data->xyz.size() == 0) return;
   //---------------------------
-/*
+
    auto start = std::chrono::high_resolution_clock::now();
 
   //Prepare data
@@ -43,7 +43,7 @@ void KNN::compute_normal(utl::base::Data* data, int k){
   // Build the FLANN index
   flann::Index<flann::L2<float>> index(dataset, flann::KDTreeIndexParams(4));
   index.buildIndex();
-
+/*
   // Loop
   #pragma omp parallel for
   for(size_t i = 0; i < data->xyz.size(); ++i){
