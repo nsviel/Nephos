@@ -43,7 +43,7 @@ struct Data : public utl::media::File{
   //Data
   std::vector<glm::vec3> xyz;
   std::vector<glm::vec3> Nxyz;
-  std::vector<glm::vec4> rgb;
+  std::vector<glm::vec3> rgb;
   std::vector<glm::vec2> uv;
 
   std::vector<float> ts;

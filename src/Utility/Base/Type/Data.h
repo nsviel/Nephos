@@ -35,7 +35,8 @@ struct Data : public utl::base::Element{
 
   //Data
   std::vector<glm::vec3> xyz;
-  std::vector<glm::vec4> rgb;
+  std::vector<glm::vec3> rgb;
+  std::vector<glm::vec4> rgba; //Displayed color data
   std::vector<glm::vec3> Nxyz;
   std::vector<glm::vec2> uv;
   std::vector<bool> goodness;

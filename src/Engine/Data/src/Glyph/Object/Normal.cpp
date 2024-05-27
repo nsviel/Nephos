@@ -66,7 +66,7 @@ void Normal::construct(dat::base::Entity* entity){
   std::vector<glm::vec4> rgb_g;
 
   xyz_g.reserve(data.xyz.size());
-  rgb_g.reserve(data.rgb.size());
+  rgb_g.reserve(data.rgba.size());
 
   //Data entity
   utl::base::Pose* pose_entity = entity->get_pose();
@@ -97,7 +97,7 @@ void Normal::construct(dat::base::Entity* entity){
   }
 
   data.xyz = xyz_g;
-  data.rgb = rgb_g;
+  data.rgba = rgb_g;
 
   //---------------------------
 }

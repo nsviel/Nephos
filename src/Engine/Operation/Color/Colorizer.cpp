@@ -22,6 +22,10 @@ void Colorizer::make_colorization(dat::base::Entity* entity, ope::color::Configu
   //---------------------------
 
   switch(config.color_mode){
+    case ope::color::RGB:{
+      this->colorization_unicolor(entity, config);
+      break;
+    }
     case ope::color::UNICOLOR:{
       this->colorization_unicolor(entity, config);
       break;
@@ -52,7 +56,7 @@ void Colorizer::colorization_unicolor(dat::base::Entity* entity, ope::color::Con
   utl::base::Data* data = entity->get_data();
   //---------------------------
 
-  data->rgb = std::vector<glm::vec4>(data->rgb.size(), config.unicolor);
+  data->rgba = std::vector<glm::vec4>(data->rgba.size(), config.unicolor);
 
   //---------------------------
 }

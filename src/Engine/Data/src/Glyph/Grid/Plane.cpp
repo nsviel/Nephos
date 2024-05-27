@@ -32,12 +32,12 @@ void Plane::create(){
 //Subfunction
 void Plane::construct(int nb_cell){
   std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<glm::vec4>& rgb = data.rgb;
+  std::vector<glm::vec4>& rgba = data.rgba;
   float z = -0.004;
   //---------------------------
 
   xyz.clear();
-  rgb.clear();
+  rgba.clear();
 
   //Location
   xyz.push_back(glm::vec3(nb_cell, nb_cell, z));
@@ -50,7 +50,7 @@ void Plane::construct(int nb_cell){
 
   //Color
   for(int j=0; j<xyz.size(); j++){
-    rgb.push_back(glm::vec4(color.x, color.y, color.z, 1.0f));
+    rgba.push_back(glm::vec4(color.x, color.y, color.z, 1.0f));
   }
 
   //---------------------------

@@ -178,8 +178,7 @@ void Cloud::retrieve_color(k4n::dev::Sensor* sensor, int i){
   float r = static_cast<float>(buffer_color[index + 2]) / 255.0f;
   float g = static_cast<float>(buffer_color[index + 1]) / 255.0f;
   float b = static_cast<float>(buffer_color[index + 0]) / 255.0f;
-  float a = 1.0f;
-  this->rgb = vec4(r, g, b, a);
+  this->rgb = glm::vec3(r, g, b);
 
   //---------------------------
 }

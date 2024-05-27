@@ -102,7 +102,7 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, utl:
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<glm::vec4>& rgb = data->rgb;
+  std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
   std::vector<float>& Is = data->Is;
   int precision = 6;
@@ -139,7 +139,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, utl
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<glm::vec4>& rgb = data->rgb;
+  std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
   std::vector<float>& Is = data->Is;
   std::vector<float>& ts = data->ts;

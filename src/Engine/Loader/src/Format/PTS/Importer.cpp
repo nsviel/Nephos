@@ -12,7 +12,7 @@ Importer::Importer(){
 
   this->nbptMax = 40000000;
   this->retrieve_I = true;
-  this->retrieve_RGB = true;
+  this->retrieve_rgb = true;
   this->retrieve_N = true;
   this->IdataFormat = 2;
   this->export_IdataFormat = 2;
@@ -138,7 +138,7 @@ void Importer::Loader_configuration(){
   //---------------------------
 
   switch(line_columns.size()){
-    case 3 :{//XYZ
+    case 3 :{//xyz
       config = 0;
       hasIntensity = false;
       hasNormal = false;
@@ -146,7 +146,7 @@ void Importer::Loader_configuration(){
 
       break;
     }
-    case 4 :{//XYZ - I
+    case 4 :{//xyz - I
       config = 1;
       hasIntensity = true;
       hasNormal = false;
@@ -155,13 +155,13 @@ void Importer::Loader_configuration(){
       break;
     }
     case 6 :{
-      //XYZ - N
+      //xyz - N
       if(abs(line_columns[3])<=1 && ((abs(line_columns[4])<=1 && abs(line_columns[5])<=1) || std::isnan(line_columns[4]))){
         config = 2;
         hasNormal = true;
         hasColor = false;
       }
-      //XYZ - RGB
+      //xyz - rgb
       if((abs(line_columns[3]) == 0 && abs(line_columns[4]) == 0 && abs(line_columns[5]) == 0) ||
       (abs(line_columns[3])>=1 && abs(line_columns[4])>=1 && abs(line_columns[5]>=1)) ){
         config = 3;
@@ -172,7 +172,7 @@ void Importer::Loader_configuration(){
       break;
     }
     case 7 :{
-      //XYZ - I - RGB
+      //xyz - I - rgb
       if((abs(line_columns[3]) == 0 && abs(line_columns[4]) == 0 && abs(line_columns[5]) == 0) ||
       (abs(line_columns[3])>=1 && abs(line_columns[4])>=1 && abs(line_columns[5]>=1) &&
       line_columns[6]>1) ){
@@ -182,7 +182,7 @@ void Importer::Loader_configuration(){
         hasNormal = false;
         break;
       }
-      //XYZ - I - N
+      //xyz - I - N
       if(abs(line_columns[4])<=1.1 && ((abs(line_columns[5])<=1.1 && abs(line_columns[6])<=1.1) || std::isnan(line_columns[5]))){
         config = 5;
         hasNormal = true;
@@ -190,7 +190,7 @@ void Importer::Loader_configuration(){
         hasIntensity = true;
         break;
       }
-      //XYZ - RGB - I01
+      //xyz - rgb - I01
       if(line_columns[3]>=0 && line_columns[3]<=255 &&
        line_columns[4]>=0 && line_columns[4]<=255 &&
        line_columns[5]>=0 && line_columns[5]<=255 &&
@@ -204,7 +204,7 @@ void Importer::Loader_configuration(){
       }
       break;
     }
-    case 9 :{//XYZ - RGB - N
+    case 9 :{//xyz - rgb - N
       config = 6;
       hasColor = true;
       hasNormal = true;
@@ -213,7 +213,7 @@ void Importer::Loader_configuration(){
       break;
     }
     case 10 :{
-      //XYZ - RGB - N - I
+      //xyz - rgb - N - I
       if(line_columns[3] >= 1 && line_columns[3] <= 255 && abs(line_columns[6]) >= 0 && abs(line_columns[6]) <= 1 ){
         config = 9;
         hasColor = true;
@@ -224,7 +224,7 @@ void Importer::Loader_configuration(){
         break;
       }
 
-      //XYZ - I - RGB - N
+      //xyz - I - rgb - N
       else{
         config = 7;
         hasColor = true;
@@ -238,7 +238,7 @@ void Importer::Loader_configuration(){
       }
       break;
     }
-    default :{//XYZ - RGB
+    default :{//xyz - rgb
       config = 3;
       hasColor = true;
       hasNormal = false;
@@ -298,7 +298,7 @@ void Importer::Loader_data(utl::file::Data* data, int FILE_config){
   //Color data
   if(hasColor){
     data->rgb.push_back(glm::vec4((r/255), (g/255), (b/255), 1.0f));
-    //if reflectance value is coded in RGB format
+    //if reflectance value is coded in rgb format
     if(hasIntensity == false && r == g && g == b){
         data->Is.push_back(r/255);
         hasIntensity = true;
@@ -322,20 +322,20 @@ bool Importer::Exporter(std::string path, dat::base::Object* object){
   }
 
   //Data : xyz (R) (rgb) (nxnynz)
-  std::vector<glm::vec3>& XYZ = object->data.xyz;
-  std::vector<glm::vec4>& RGB = object->data.rgb;
+  std::vector<glm::vec3>& xyz = object->data.xyz;
+  std::vector<glm::vec3>& rgb = object->data.rgb;
   std::vector<glm::vec3>& N = object->data.Nxyz;
   std::vector<float>& Is = object->data.Is;
 
   //Write in the file
   int precision = 6;
-  file << XYZ.size() << std::endl;
-  for(int i=0; i<XYZ.size(); i++){
+  file << xyz.size() << std::endl;
+  for(int i=0; i<xyz.size(); i++){
     //Line start
     file << std::fixed;
 
     //Location
-    file << std::setprecision(precision) << XYZ[i].x <<" "<< XYZ[i].y <<" "<< XYZ[i].z ;
+    file << std::setprecision(precision) << xyz[i].x <<" "<< xyz[i].y <<" "<< xyz[i].z ;
 
     //Intensity
     if(object->data.Is.size() != 0){
@@ -352,7 +352,7 @@ bool Importer::Exporter(std::string path, dat::base::Object* object){
 
     //Color
     if(object->data.rgb.size() != 0){
-      file << std::setprecision(0) <<" "<< RGB[i].x * 255 <<" "<< RGB[i].y * 255 <<" "<< RGB[i].z * 255;
+      file << std::setprecision(0) <<" "<< rgb[i].x * 255 <<" "<< rgb[i].y * 255 <<" "<< rgb[i].z * 255;
     }
 
     //Normal
@@ -420,7 +420,7 @@ int Importer::check_configuration(std::string path){
   //Search file configuration
   switch(line_columns.size()){
     case 3 :{
-      //XYZ
+      //xyz
       config = 0;
       hasIntensity = false;
       hasNormal = false;
@@ -428,7 +428,7 @@ int Importer::check_configuration(std::string path){
       break;
     }
     case 4 :{
-      //XYZ - I
+      //xyz - I
       config = 1;
       hasIntensity = true;
       hasNormal = false;
@@ -440,7 +440,7 @@ int Importer::check_configuration(std::string path){
       float G =line_columns[4];
       float B =line_columns[5];
 
-      //XYZ - N
+      //xyz - N
       bool color = abs(R) <= 1 && abs(G) <= 1 && abs(B) <= 1;
       bool nan = std::isnan(R) && std::isnan(G) && std::isnan(B);
       if(color || nan){
@@ -449,7 +449,7 @@ int Importer::check_configuration(std::string path){
         hasColor = false;
       }
 
-      //XYZ - RGB
+      //xyz - rgb
       bool empty = abs(R) == 0 && abs(G) == 0 && abs(B) == 0;
       bool normal = abs(R) >= 1 && abs(G) >= 1 && abs(B) >= 1;
       if(empty || normal){
@@ -466,7 +466,7 @@ int Importer::check_configuration(std::string path){
       float G =line_columns[5];
       float B =line_columns[6];
 
-      //XYZ - I - RGB
+      //xyz - I - rgb
       bool empty = abs(I) == 0 && abs(R) == 0 && abs(G) == 0 && abs(B) == 0;
       bool full = abs(I) >= 1 && abs(R) >= 1 && abs(G) >= 1 && abs(B) >= 1;
       if(empty || full){
@@ -477,7 +477,7 @@ int Importer::check_configuration(std::string path){
         break;
       }
 
-      //XYZ - I - N
+      //xyz - I - N
       bool normal = abs(R) <= 1.1f && abs(G) <= 1.1 && abs(B) <= 1.1;
       bool nan = std::isnan(R) && std::isnan(G) && std::isnan(B);
       if(normal || nan){
@@ -488,7 +488,7 @@ int Importer::check_configuration(std::string path){
         break;
       }
 
-      //XYZ - RGB - I01
+      //xyz - rgb - I01
       bool a1 = I >= 0 && I <= 255;
       bool a2 = R >= 0 && R <= 255;
       bool a3 = G >= 0 && G <= 255;
@@ -502,7 +502,7 @@ int Importer::check_configuration(std::string path){
         break;
       }
 
-      //XYZ - I01 - RBG
+      //xyz - I01 - RBG
       bool b1 = I >= 0 && I <= 1;
       bool b2 = R >= 0 && R <= 255;
       bool b3 = G >= 0 && G <= 255;
@@ -518,7 +518,7 @@ int Importer::check_configuration(std::string path){
       break;
     }
     case 9 :{
-      //XYZ - RGB - N
+      //xyz - rgb - N
       config = 6;
       hasColor = true;
       hasNormal = true;
@@ -526,7 +526,7 @@ int Importer::check_configuration(std::string path){
       break;
     }
     case 10 :{
-      //XYZ - RGB - N - I[0;1]
+      //xyz - rgb - N - I[0;1]
       if(line_columns[3] >= 1 && line_columns[3] <= 255 && abs(line_columns[6]) >= 0 && abs(line_columns[6]) <= 1 ){
         config = 9;
         hasColor = true;
@@ -536,7 +536,7 @@ int Importer::check_configuration(std::string path){
 
         break;
       }
-      //XYZ - RGB - N - I[-2048;+2047]
+      //xyz - rgb - N - I[-2048;+2047]
       else if(line_columns[3] >= 1 && line_columns[3] <= 255 && abs(line_columns[6]) > 1 && abs(line_columns[6]) <= 2048 ){
         config = 9;
         hasColor = true;
@@ -546,7 +546,7 @@ int Importer::check_configuration(std::string path){
 
         break;
       }
-      else{//XYZ - I - RGB - N
+      else{//xyz - I - rgb - N
         config = 7;
         hasColor = true;
         hasIntensity = true;
@@ -560,7 +560,7 @@ int Importer::check_configuration(std::string path){
       }
       break;
     }
-    default :{//XYZ - RGB
+    default :{//xyz - rgb
       config = 3;
       hasColor = true;
       hasNormal = false;

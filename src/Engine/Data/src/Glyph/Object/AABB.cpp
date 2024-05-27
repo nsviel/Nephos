@@ -28,7 +28,7 @@ void AABB::create(){
   data.unicolor = color;
 
   for(int i=0; i<24; i++){
-    data.rgb.push_back(color);
+    data.rgba.push_back(color);
   }
 
   this->init();

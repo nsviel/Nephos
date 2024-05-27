@@ -24,7 +24,7 @@ void Triangulation::make_triangulation(utl::base::Data* data){
 
   //Prepare data
   std::vector<glm::vec3> xyz;
-  std::vector<vec4> rgb;
+  std::vector<glm::vec3> rgb;
   std::vector<float> Is;
   std::vector<glm::vec3> Nxyz_triangle;
   std::vector<glm::vec3> Nxyz_point;

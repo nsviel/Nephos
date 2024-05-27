@@ -45,7 +45,7 @@ void Mesh::construct(int nb_cell){
 }
 void Mesh::construct_mesh(int nb_cell){
   std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<glm::vec4>& rgb = data.rgb;
+  std::vector<glm::vec4>& rgba = data.rgba;
   float z = -0.002;
   //---------------------------
 
@@ -61,14 +61,14 @@ void Mesh::construct_mesh(int nb_cell){
   }
 
   for(int i=0; i<(cpt*4); i++){
-    rgb.push_back(color_mesh);
+    rgba.push_back(color_mesh);
   }
 
   //---------------------------
 }
 void Mesh::construct_submesh(int nb_cell){
   std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<glm::vec4>& rgb = data.rgb;
+  std::vector<glm::vec4>& rgba = data.rgba;
   float z = -0.003;
   //---------------------------
 
@@ -86,7 +86,7 @@ void Mesh::construct_submesh(int nb_cell){
   }
 
   for(int i=0; i<(cpt*4); i++){
-    rgb.push_back(color_submesh);
+    rgba.push_back(color_submesh);
   }
 
   //---------------------------

@@ -11,7 +11,7 @@ Importer::Importer(){
   this->option_scannerAtOrigin = false;
   this->option_applyCloudTransfo = true;
   this->retrieve_I = true;
-  this->retrieve_RGB = true;
+  this->retrieve_rgb = true;
   this->retrieve_N = true;
   this->IdataFormat = 0;
   this->format = "ptx";
@@ -207,7 +207,7 @@ void Importer::Loader_data(PTXCloud* cloud){
       }
 
       //Color
-      if(retrieve_RGB){
+      if(retrieve_rgb){
         cloud->color.push_back(glm::vec4(r/255, g/255, b/255, 1.0f));
       }
     }

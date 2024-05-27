@@ -56,23 +56,23 @@ void Target::update_pose(dat::base::Entity* entity){
 //Subfunction
 void Target::construct(){
   std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<glm::vec4>& rgb = data.rgb;
+  std::vector<glm::vec4>& rgba = data.rgba;
   //---------------------------
 
   xyz.clear();
-  rgb.clear();
+  rgba.clear();
 
   //X axis
   xyz.push_back(glm::vec3(-1*scale, 0, 0));
   xyz.push_back(glm::vec3(1*scale, 0, 0));
-  rgb.push_back(color);
-  rgb.push_back(color);
+  rgba.push_back(color);
+  rgba.push_back(color);
 
   //Y axis
   xyz.push_back(glm::vec3(0, -1*scale, 0));
   xyz.push_back(glm::vec3(0, 1*scale, 0));
-  rgb.push_back(color);
-  rgb.push_back(color);
+  rgba.push_back(color);
+  rgba.push_back(color);
 
   //---------------------------
 }

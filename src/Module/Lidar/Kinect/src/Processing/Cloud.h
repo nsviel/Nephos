@@ -44,12 +44,12 @@ private:
   dyn::cloud::Operation* dyn_operation;
 
   std::vector<glm::vec3> vec_xyz;
-  std::vector<glm::vec4> vec_rgb;
+  std::vector<glm::vec3> vec_rgb;
   std::vector<float> vec_ir;
   std::vector<float> vec_r;
 
   glm::vec3 xyz;
-  glm::vec4 rgb;
+  glm::vec3 rgb;
   float ir;
   float R;
   bool thread_idle = true;

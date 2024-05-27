@@ -26,8 +26,7 @@ public:
   void heatmap_range(dat::base::Entity* entity);
 
   //Heatmap functions
-  void compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& heatmap);
-  void heatmap_set(dat::base::Entity* entity, std::vector<float>& v_in);
+  void compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& rgba);
 
   inline vec2* get_range_height(){return &range_height;}
 

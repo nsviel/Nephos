@@ -48,7 +48,7 @@ void Axis::update_pose(dat::base::Entity* entity){
 
 //Subfunction
 void Axis::construct(){
-  std::vector<glm::vec4>& rgb = data.rgb;
+  std::vector<glm::vec4>& rgba = data.rgba;
   std::vector<glm::vec3>& xyz = data.xyz;
   //---------------------------
 
@@ -65,12 +65,12 @@ void Axis::construct(){
   xyz.push_back(z);
 
   //Color
-  rgb.push_back(glm::vec4(0.9f, 0.2f, 0.2f, 1.0f));
-  rgb.push_back(glm::vec4(0.9f, 0.2f, 0.2f, 1.0f));
-  rgb.push_back(glm::vec4(0.2f, 0.9f, 0.2f, 1.0f));
-  rgb.push_back(glm::vec4(0.2f, 0.9f, 0.2f, 1.0f));
-  rgb.push_back(glm::vec4(0.2f, 0.2f, 0.9f, 1.0f));
-  rgb.push_back(glm::vec4(0.2f, 0.2f, 0.9f, 1.0f));
+  rgba.push_back(glm::vec4(0.9f, 0.2f, 0.2f, 1.0f));
+  rgba.push_back(glm::vec4(0.9f, 0.2f, 0.2f, 1.0f));
+  rgba.push_back(glm::vec4(0.2f, 0.9f, 0.2f, 1.0f));
+  rgba.push_back(glm::vec4(0.2f, 0.9f, 0.2f, 1.0f));
+  rgba.push_back(glm::vec4(0.2f, 0.2f, 0.9f, 1.0f));
+  rgba.push_back(glm::vec4(0.2f, 0.2f, 0.9f, 1.0f));
 
   //---------------------------
 }
