@@ -10,6 +10,11 @@ namespace dat::base{class Entity;}
 
 namespace ldr::io{
 
+enum Mode{
+  ASCII = 0,
+  BINARY = 1,
+};
+
 class Exporter
 {
 public:
@@ -26,8 +31,11 @@ public:
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
 
+  inline void set_mode(int value){this->mode = value;}
+
 private:
   std::vector<ldr::base::Exporter*> vec_exporter;
+  int mode = ldr::io::BINARY;
 };
 
 }

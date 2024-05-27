@@ -16,14 +16,14 @@ Exporter::Exporter(){
 Exporter::~Exporter(){}
 
 //Main exporter functions
-void Exporter::export_ascii(utl::base::Data* data, std::string path){
+void Exporter::export_ascii(utl::base::Data* data, utl::base::Pose* pose, std::string path){
   std::string format = "ascii";
   //---------------------------
 
   std::ofstream file(path);
 
   this->write_header(file, format, data);
-  this->write_data_ascii(file, data);
+  this->write_data_ascii(file, data, pose);
 
   file.close();
 
@@ -98,7 +98,7 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
 
   //---------------------------
 }
-void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data){
+void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, utl::base::Pose* pose){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
@@ -112,7 +112,8 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data){
     file << std::fixed;
 
     //Location
-    file << std::setprecision(precision) << xyz[i].x <<" "<< xyz[i].y <<" "<< xyz[i].z <<" ";
+    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * pose->model;
+    file << std::setprecision(precision) << xyzw.x <<" "<< xyzw.y <<" "<< xyzw.z <<" ";
 
     //Color
     if(rgb.size() != 0){

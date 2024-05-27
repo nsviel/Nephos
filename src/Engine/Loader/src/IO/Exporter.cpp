@@ -25,7 +25,18 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
     ldr::base::Exporter* exporter = vec_exporter[i];
 
     if(data->format == exporter->format){
-      exporter->export_binary(data, pose, path);
+
+      switch(mode){
+        case ldr::io::ASCII:{
+          exporter->export_ascii(data, pose, path);
+          break;
+        }
+        case ldr::io::BINARY:{
+          exporter->export_binary(data, pose, path);
+          break;
+        }
+      }
+
     }
   }
 

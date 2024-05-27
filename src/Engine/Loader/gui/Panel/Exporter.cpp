@@ -71,10 +71,8 @@ void Exporter::draw_header(){
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
-  //Actualize current paths
-  static char str_n[256];
-
   //Directory
+  static char str_n[256];
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Directory"); ImGui::TableNextColumn();
   strncpy(str_n, current_dir.c_str(), sizeof(str_n) - 1);
@@ -85,6 +83,12 @@ void Exporter::draw_header(){
     this->current_dir = (string)str_n;
   }
   ImGui::PopStyleColor(2);
+
+  //Actualize current name
+  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  if(entity != nullptr && current_name != entity->name){
+    current_name = entity->name;
+  }
 
   //Filename
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -107,6 +111,18 @@ void Exporter::draw_header(){
     if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
       this->current_format = vec_format[i];
     }
+  }
+
+  //Mode
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Mode"); ImGui::TableNextColumn();
+  static int mode = 1;
+  if(ImGui::RadioButton("ASCII", &mode, ldr::io::ASCII)){
+    ldr_exporter->set_mode(mode);
+  }
+  ImGui::SameLine();
+  if(ImGui::RadioButton("Binary", &mode, ldr::io::BINARY)){
+    ldr_exporter->set_mode(mode);
   }
 
   ImGui::EndTable();
