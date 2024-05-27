@@ -8,7 +8,7 @@
 namespace ldr::gui{
 
 //Constructor / Destructor
-Navigator::Navigator(ldr::Node* node_loader){
+Navigator::Navigator(ldr::Node* node_loader, bool with_bookmark){
   //---------------------------
 
   this->ldr_importer = node_loader->get_ldr_importer();
@@ -16,6 +16,7 @@ Navigator::Navigator(ldr::Node* node_loader){
 
   this->default_dir = utl::path::get_current_parent_path_abs();
   this->current_dir = default_dir;
+  this->with_bookmark = with_bookmark;
 
   //---------------------------
 }
@@ -103,6 +104,7 @@ void Navigator::draw_file_content(){
   //---------------------------
 }
 void Navigator::draw_bookmark(ldr::gui::Bookmark& bookmark){
+  if(with_bookmark == false) return;
   //---------------------------
 
   //Button background if already bookmarked

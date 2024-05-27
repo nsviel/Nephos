@@ -10,7 +10,7 @@
 namespace ldr::gui{
 
 //Constructor / Destructor
-Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
+Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader, false){
   //---------------------------
 
   this->default_dir = utl::path::get_current_parent_path_abs();

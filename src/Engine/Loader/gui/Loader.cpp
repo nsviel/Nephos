@@ -10,7 +10,7 @@
 namespace ldr::gui{
 
 //Constructor / Destructor
-Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
+Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader, true){
   //---------------------------
 
   dat::Node* node_data = node_loader->get_node_data();

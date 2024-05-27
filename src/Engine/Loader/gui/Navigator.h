@@ -16,7 +16,7 @@ class Navigator
 {
 public:
   //Constructor / Destructor
-  Navigator(ldr::Node* node_loader);
+  Navigator(ldr::Node* node_loader, bool with_bookmark);
   ~Navigator();
 
 public:
@@ -44,6 +44,7 @@ private:
   std::string current_dir;
   ImVector<int> vec_selection;
   bool goto_file_tab = false;
+  bool with_bookmark = true;
 };
 
 }
