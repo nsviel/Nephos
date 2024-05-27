@@ -66,7 +66,7 @@ void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Co
 
   for(int i=0; i<data->xyz.size(); i++){
     float Is = data->Is[i] / config.intensity_diviser;
-    data->rgb[i] = glm::vec4(Is, Is, Is, 1);
+    data->rgba[i] = glm::vec4(Is, Is, Is, 1);
   }
 
   //---------------------------
@@ -84,7 +84,7 @@ void Colorizer::colorization_normal(dat::base::Entity* entity, ope::color::Confi
     float G = (1 + Nxyz[i].y) / 2;
     float B = (1 + Nxyz[i].z) / 2;
 
-    data->rgb[i] = glm::vec4(R, G, B, 1.0f);
+    data->rgba[i] = glm::vec4(R, G, B, 1.0f);
   }
 
   //---------------------------
@@ -147,7 +147,7 @@ void Colorizer::colorization_structure(dat::base::Entity* entity){
           glm::vec3 final_color = (interpolated_color_row + interpolated_color_col) * 0.5f;
 
           // Add the final color to the vector
-          data->rgb[index] = glm::vec4(final_color, 1.0f);
+          data->rgba[index] = glm::vec4(final_color, 1.0f);
           ++index;
       }
   }

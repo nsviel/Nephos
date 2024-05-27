@@ -96,7 +96,7 @@ void Data::check_data(vk::structure::Object* vk_object){
   //---------------------------
 
   vk_object->has_xyz = (data->xyz.size() == 0) ? false : true;
-  vk_object->has_rgb = (data->rgb.size() == 0) ? false : true;
+  vk_object->has_rgba = (data->rgba.size() == 0) ? false : true;
   vk_object->has_uv =  (data->uv.size()  == 0) ? false : true;
 
   //---------------------------

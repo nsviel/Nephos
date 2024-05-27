@@ -156,7 +156,12 @@ utl::base::Data* Importer::create_data(utl::file::Data* file){
   //If no color, fill it with white
   if(data->rgb.size() == 0){
     for(int i=0; i<file->xyz.size(); i++){
-      data->rgb.push_back(vec4(1,1,1,1));
+      data->rgba.push_back(vec4(1, 1, 1, 1));
+    }
+  }else{
+    for(int i=0; i<file->rgb.size(); i++){
+      glm::vec3& rgb = file->rgb[i];
+      data->rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
     }
   }
 

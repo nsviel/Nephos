@@ -170,8 +170,8 @@ bool Renderpass::check_data(utl::base::Data* data, int topology){
   bool is_visible = data->is_visible;
   bool has_topology = data->topology.type == topology;
   bool has_xyz = data->xyz.size() != 0;
-  bool has_rgb = data->rgb.size() != 0;
-  bool same_length = data->rgb.size() == data->xyz.size();
+  bool has_rgb = data->rgba.size() != 0;
+  bool same_length = data->rgba.size() == data->xyz.size();
 
   if(is_visible && has_topology && has_xyz && has_rgb && same_length){
     data_ok = true;

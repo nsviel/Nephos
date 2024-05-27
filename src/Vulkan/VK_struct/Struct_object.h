@@ -14,8 +14,8 @@ struct Buffers{
 
   vk::structure::Buffer xyz;
   vk::structure::Buffer xyz_stagger;
-  vk::structure::Buffer rgb;
-  vk::structure::Buffer rgb_stagger;
+  vk::structure::Buffer rgba;
+  vk::structure::Buffer rgba_stagger;
   vk::structure::Buffer uv;
   vk::structure::Buffer uv_stagger;
 
@@ -32,7 +32,7 @@ struct Object{
 
   //Data
   bool has_xyz = false;
-  bool has_rgb = false;
+  bool has_rgba = false;
   bool has_uv = false;
 
   //Buffer

@@ -34,15 +34,15 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
   vk_mem_allocator->allocate_empty_stagger_buffer(&vk_object->buffer.xyz_stagger, size);
 
   size = sizeof(glm::vec4) * max_data;
-  vk_mem_allocator->allocate_empty_vertex_buffer(&vk_object->buffer.rgb, size);
-  vk_mem_allocator->allocate_empty_stagger_buffer(&vk_object->buffer.rgb_stagger, size);
+  vk_mem_allocator->allocate_empty_vertex_buffer(&vk_object->buffer.rgba, size);
+  vk_mem_allocator->allocate_empty_stagger_buffer(&vk_object->buffer.rgba_stagger, size);
 
   size  = sizeof(glm::vec2) * max_data;
   vk_mem_allocator->allocate_empty_vertex_buffer(&vk_object->buffer.uv, size);
   vk_mem_allocator->allocate_empty_stagger_buffer(&vk_object->buffer.uv_stagger, size);
 
   this->update_buffer(vk_object);
-  
+
   //---------------------------
 }
 void Buffer::update_buffer(vk::structure::Object* vk_object){
@@ -54,9 +54,9 @@ void Buffer::update_buffer(vk::structure::Object* vk_object){
     vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, data->xyz.data(), data_size);
   }
 
-  if(data->rgb.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec4) * data->rgb.size();
-    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgb, &vk_object->buffer.rgb_stagger, data->rgb.data(), data_size);
+  if(data->rgba.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec4) * data->rgba.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgba, &vk_object->buffer.rgba_stagger, data->rgba.data(), data_size);
   }
 
   if(data->uv.size() != 0){
@@ -70,11 +70,11 @@ void Buffer::clean_buffers(vk::structure::Object* vk_object){
   //---------------------------
 
   this->clean_buffer(&vk_object->buffer.xyz);
-  this->clean_buffer(&vk_object->buffer.rgb);
+  this->clean_buffer(&vk_object->buffer.rgba);
   this->clean_buffer(&vk_object->buffer.uv);
 
   this->clean_buffer(&vk_object->buffer.xyz_stagger);
-  this->clean_buffer(&vk_object->buffer.rgb_stagger);
+  this->clean_buffer(&vk_object->buffer.rgba_stagger);
   this->clean_buffer(&vk_object->buffer.uv_stagger);
 
   //---------------------------
