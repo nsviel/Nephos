@@ -6,7 +6,7 @@
 #include <vector>
 
 namespace ldr{class Node;}
-namespace ldr::gui{class Bookmark;}
+namespace ldr::gui{class File;}
 
 
 namespace ldr::gui{
@@ -27,10 +27,6 @@ public:
   void draw_header();
 
 private:
-  std::vector<ldr::gui::Bookmark> vec_bookmark_folder;
-  std::vector<ldr::gui::Bookmark> vec_bookmark_file;
-  std::string default_dir = "";
-  std::string current_dir = "";
   std::string current_path = "";
   std::string name = "";
   bool* show_window;

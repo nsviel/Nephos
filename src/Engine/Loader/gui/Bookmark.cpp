@@ -5,9 +5,9 @@
 
 namespace ldr::gui{
 
-const ImGuiTableSortSpecs* Bookmark::current_sort_specs = nullptr;
+const ImGuiTableSortSpecs* File::current_sort_specs = nullptr;
 
-bool Bookmark::compare_with_specs(const ldr::gui::Bookmark& a, const ldr::gui::Bookmark& b){
+bool File::compare_with_specs(const ldr::gui::File& a, const ldr::gui::File& b){
   //---------------------------
 
   // Check if either path is ".." and handle it as a special case
@@ -35,7 +35,7 @@ bool Bookmark::compare_with_specs(const ldr::gui::Bookmark& a, const ldr::gui::B
   //---------------------------
   return false;
 }
-void Bookmark::sort_item_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::Bookmark>& vec_bookmark){
+void File::sort_item_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::File>& vec_bookmark){
   //---------------------------
 
   current_sort_specs = sort_specs;

@@ -114,7 +114,7 @@ void Loader::draw_bookmark_tab(){
 
   for(int i=0; i<list_item.size(); i++){
     ldr::bookmark::Item& item = *next(list_item.begin(), i);
-    ldr::gui::Bookmark bookmark;
+    ldr::gui::File bookmark;
     bookmark.item = item;
 
     //File type icon
@@ -156,7 +156,7 @@ void Loader::operation_selection(){
   //Retrieve all good selected files to load
   std::vector<std::string> vec_path;
   for(int i=0; i<vec_bookmark_file.size(); i++){
-    ldr::gui::Bookmark& bookmark = vec_bookmark_file[i];
+    ldr::gui::File& bookmark = vec_bookmark_file[i];
     if(vec_selection.contains(bookmark.item.ID)){
       if(ldr_importer->is_format_supported(bookmark.item.format)){
         vec_path.push_back(bookmark.item.path);

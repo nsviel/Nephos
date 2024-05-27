@@ -8,7 +8,7 @@
 namespace ldr{class Node;}
 namespace dat{class Graph;}
 namespace ldr::io{class Importer;}
-namespace ldr::gui{class Bookmark;}
+namespace ldr::gui{class File;}
 namespace ldr::bookmark{class Manager;}
 namespace dat{class Set;}
 namespace ope{class Transformation;}
@@ -47,11 +47,6 @@ private:
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 
-  std::vector<ldr::gui::Bookmark> vec_bookmark_folder;
-  std::vector<ldr::gui::Bookmark> vec_bookmark_file;
-  std::string default_dir;
-  std::string current_dir;
-  ImVector<int> vec_selection;
   float param_scaling = 1;
   bool param_remove_old = true;
   bool param_centered = true;

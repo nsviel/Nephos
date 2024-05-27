@@ -6,7 +6,7 @@
 
 namespace ldr{class Node;}
 namespace ldr::io{class Importer;}
-namespace ldr::gui{class Bookmark;}
+namespace ldr::gui{class File;}
 namespace ldr::bookmark{class Manager;}
 
 
@@ -26,7 +26,7 @@ public:
   //Subfunction
   void draw_header();
   void draw_file_content();
-  void draw_bookmark(ldr::gui::Bookmark& bookmark);
+  void draw_bookmark(ldr::gui::File& bookmark);
   virtual void operation_selection(){}
 
   //Item function
@@ -34,12 +34,12 @@ public:
   void item_folder();
   void item_file();
 
-private:
+protected:
   ldr::io::Importer* ldr_importer;
   ldr::bookmark::Manager* ldr_bookmark;
 
-  std::vector<ldr::gui::Bookmark> vec_bookmark_folder;
-  std::vector<ldr::gui::Bookmark> vec_bookmark_file;
+  std::vector<ldr::gui::File> vec_bookmark_folder;
+  std::vector<ldr::gui::File> vec_bookmark_file;
   std::string default_dir;
   std::string current_dir;
   ImVector<int> vec_selection;

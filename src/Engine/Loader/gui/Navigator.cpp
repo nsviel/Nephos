@@ -103,7 +103,7 @@ void Navigator::draw_file_content(){
 
   //---------------------------
 }
-void Navigator::draw_bookmark(ldr::gui::Bookmark& bookmark){
+void Navigator::draw_bookmark(ldr::gui::File& bookmark){
   if(with_bookmark == false) return;
   //---------------------------
 
@@ -141,7 +141,7 @@ void Navigator::item_organisation(){
   vec_bookmark_folder.clear();
   vec_bookmark_file.clear();
   for(int i=0; i<vec_current_files.size(); i++){
-    ldr::gui::Bookmark bookmark;
+    ldr::gui::File bookmark;
     std::string file = vec_current_files[i];
     std::string filename = utl::path::get_filename_from_path(file);
     //Remove hidden files
@@ -175,8 +175,8 @@ void Navigator::item_organisation(){
 
   // Sort data
   if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-    ldr::gui::Bookmark::sort_item_by_specs(sort_specs, vec_bookmark_folder);
-    ldr::gui::Bookmark::sort_item_by_specs(sort_specs, vec_bookmark_file);
+    ldr::gui::File::sort_item_by_specs(sort_specs, vec_bookmark_folder);
+    ldr::gui::File::sort_item_by_specs(sort_specs, vec_bookmark_file);
   }
 
   //---------------------------
@@ -190,7 +190,7 @@ void Navigator::item_folder(){
   flags |= ImGuiSelectableFlags_AllowOverlap;
   flags |= ImGuiSelectableFlags_AllowDoubleClick;
   for(int i=0; i<vec_bookmark_folder.size(); i++){
-    ldr::gui::Bookmark& bookmark = vec_bookmark_folder[i];
+    ldr::gui::File& bookmark = vec_bookmark_folder[i];
 
     ImGui::TableNextColumn();
     ImVec4 color_icon = ImVec4(bookmark.item.color_icon.r, bookmark.item.color_icon.g, bookmark.item.color_icon.b, bookmark.item.color_icon.a);
@@ -239,7 +239,7 @@ void Navigator::item_file(){
   flags |= ImGuiSelectableFlags_AllowOverlap;
   flags |= ImGuiSelectableFlags_AllowDoubleClick;
   for(int i=0; i<vec_bookmark_file.size(); i++){
-    ldr::gui::Bookmark& bookmark = vec_bookmark_file[i];
+    ldr::gui::File& bookmark = vec_bookmark_file[i];
 
     ImGui::TableNextRow();
     ImGui::TableNextColumn();
