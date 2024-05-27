@@ -16,6 +16,7 @@ Navigator::Navigator(ldr::Node* node_loader, bool with_bookmark){
 
   this->default_dir = utl::path::get_current_parent_path_abs();
   this->current_dir = default_dir;
+  this->current_path = "(not defined)";
   this->with_bookmark = with_bookmark;
 
   //---------------------------
@@ -143,9 +144,9 @@ void Navigator::item_organisation(){
   for(int i=0; i<vec_current_files.size(); i++){
     ldr::gui::File file;
     std::string current_file = vec_current_files[i];
-    std::string filename = utl::path::get_filename_from_path(current_file);
+    std::string current_filename = utl::path::get_filename_from_path(current_file);
     //Remove hidden files
-    if(filename[0] == '.' && filename[1] != '.') continue;
+    if(current_filename[0] == '.' && current_filename[1] != '.') continue;
 
     //Get file info
     file.item.ID = ID++;
@@ -271,14 +272,29 @@ void Navigator::item_file(){
       }else{
         vec_selection.clear();
         vec_selection.push_back(file.item.ID);
+        this->item_selection();
       }
 
       //If double clicked, load it
       if(ImGui::IsMouseDoubleClicked(0)){
         vec_selection.clear();
         vec_selection.push_back(file.item.ID);
-        this->item_selection();
+        this->item_operation();
       }
+    }
+  }
+
+  //---------------------------
+}
+void Navigator::item_selection(){
+  //---------------------------
+
+  int selection = vec_selection[vec_selection.size() - 1];
+  for(int i=0; i<vec_file.size(); i++){
+    ldr::gui::File& file = vec_file[i];
+
+    if(file.item.ID == selection){
+      this->current_path = file.item.path;
     }
   }
 

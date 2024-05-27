@@ -79,7 +79,7 @@ void Text::display_status(){
 
   ImVec4 color;
   if(status == "Saved"){
-    color = ImVec4(0.4f,1.0f,0.4f,1.0f);
+    color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   }
   else if(status == "Modified"){
     color = ImVec4(1.0f,0.4f,0.4f,1.0f);

@@ -316,7 +316,7 @@ void Shader::display_reload(){
   std::string status;
   ImVec4 color;
   if(has_been_reloaded){
-    color = ImVec4(0.4f,1.0f,0.4f,1.0f);
+    color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
     status = "OK";
   }
   else if(has_been_reloaded == false){

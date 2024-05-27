@@ -22,8 +22,6 @@ Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(
   this->ope_transform = new ope::Transformation();
   this->ope_operation = new ope::Operation();
 
-  this->default_dir = utl::path::get_current_parent_path_abs();
-  this->current_dir = default_dir;
   this->name = "Loader";
   this->show_window = show_window;
 
@@ -87,14 +85,20 @@ void Loader::design_panel(){
 void Loader::draw_header(){
   //---------------------------
 
-  // Load button
+  // Load button + selected path
+  ImGui::BeginTable("header##exporter", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::Button("Load##222")){
-    this->item_selection();
+    this->item_operation();
     this->vec_selection.clear();
   }
+  ImGui::TableNextColumn();
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
+  ImGui::EndTable();
 
   // Scale new
-  ImGui::SameLine();
   ImGui::SetNextItemWidth(75);
   ImGui::DragFloat("Scale##4567", &param_scaling, 0.1, 0.1, 100, "%.2f x");
 
@@ -150,7 +154,7 @@ void Loader::draw_bookmark_tab(){
 }
 
 //Operation function
-void Loader::item_selection(){
+void Loader::item_operation(){
   //---------------------------
 
   //Retrieve all good selected files to load

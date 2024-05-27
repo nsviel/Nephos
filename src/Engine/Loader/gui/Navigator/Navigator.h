@@ -32,7 +32,8 @@ public:
   void item_organisation();
   void item_folder();
   void item_file();
-  virtual void item_selection(){}
+  void item_selection();
+  virtual void item_operation(){}
 
 protected:
   ldr::io::Importer* ldr_importer;
@@ -40,8 +41,9 @@ protected:
 
   std::vector<ldr::gui::File> vec_folder;
   std::vector<ldr::gui::File> vec_file;
-  std::string default_dir;
-  std::string current_dir;
+  std::string default_dir = "";
+  std::string current_dir = "";
+  std::string current_path = "";
   ImVector<int> vec_selection;
   bool goto_file_tab = false;
   bool with_bookmark = true;

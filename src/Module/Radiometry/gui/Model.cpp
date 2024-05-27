@@ -74,7 +74,7 @@ void Model::parameter_measure(){
       utl::directory::open(measure->path);
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", measure->path.c_str());
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", measure->path.c_str());
 
     //Heatmap scale
     ImGui::DragFloatRange2("Heatmap scale",&plot->IfRIt.axis_z.min, &plot->IfRIt.axis_z.max, 100, 0, 60000, "%.0f");
@@ -138,7 +138,7 @@ void Model::parameter_model(){
       utl::directory::open(optim->path);
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "%s", optim->path.c_str());
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", optim->path.c_str());
 
     //Model parameter
     ImGui::SetNextItemWidth(100);
@@ -147,7 +147,7 @@ void Model::parameter_model(){
     ImGui::SetNextItemWidth(100);
     ImGui::DragInt("Degree", &optim->degree_y, 1, 1, 10);
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "RMSE: %.4f", optim->rmse);
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "RMSE: %.4f", optim->rmse);
     if(ImGui::DragFloatRange2("Range x",&optim->axis_x.bound[0], &optim->axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
       rad_plot->update_plot_data();
     }

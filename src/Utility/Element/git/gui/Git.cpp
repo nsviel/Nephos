@@ -32,7 +32,7 @@ void Git::draw_information(){
 
   //Print last tag
   string last_tag = git->get_last_tag();
-  ImGui::TextColored(ImVec4(0.4f,1.0f,0.4f,1.0f), "v%s", last_tag.c_str());
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "v%s", last_tag.c_str());
   ImGui::SameLine();
   //ImFont* font_small = gui_font->get_font_small();
   //ImGui::PushFont(font_small);

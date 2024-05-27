@@ -35,7 +35,7 @@ public:
   void draw_bookmark_tab();
 
   //Operation function
-  void item_selection();
+  void item_operation();
   void operation_bookmark(std::string path);
   void operation_entity(dat::base::Entity* entity);
 
@@ -47,12 +47,11 @@ private:
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 
+  std::string name;
   float param_scaling = 1;
   bool param_remove_old = true;
   bool param_centered = true;
   bool goto_file_tab = false;
-
-  std::string name;
   bool* show_window;
 };
 

@@ -25,10 +25,9 @@ public:
 
   //Subfunction
   void draw_header();
-  void item_selection();
+  void item_operation();
   
 private:
-  std::string current_path = "";
   std::string name = "";
   bool* show_window;
   int selection;
