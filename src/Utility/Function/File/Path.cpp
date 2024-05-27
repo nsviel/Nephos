@@ -151,6 +151,20 @@ std::string get_absolute_path(const std::string& relativePath){
   //---------------------------
   return absolutePath.string();
 }
+std::string get_dir_from_path(std::string path){
+  //---------------------------
+
+  std::filesystem::path path_obj(path);
+
+  // Get the parent directory
+  std::filesystem::path dir_path = path_obj.parent_path();
+
+  // Convert the directory path to a string
+  std::string directory = dir_path.string();
+
+  //---------------------------
+  return directory;
+}
 std::string is_dir_or_file(std::string path){
   std::string type;
   //---------------------------

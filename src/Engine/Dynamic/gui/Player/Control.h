@@ -2,6 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace dat{class Graph;}
+namespace dyn{class Node;}
 namespace dyn::base{class Player;}
 
 
@@ -11,17 +13,18 @@ class Control
 {
 public:
   //Constructor / Destructor
-  Control();
+  Control(dyn::Node* node_dynamic);
   ~Control();
 
 public:
   //Main function
-  void run_control(dyn::base::Player* player);
+  void run_control();
 
   //Keyboard
   void control_keyboard(dyn::base::Player* player);
 
 private:
+  dat::Graph* dat_graph;
 };
 
 }

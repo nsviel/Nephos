@@ -23,6 +23,7 @@ Node::Node(eng::Node* node_engine){
   this->dyn_ope_image = new dyn::image::Operation(this);
   this->gui_player = new dyn::gui::Player(this, &panel_player->is_open);
   this->gui_stream = new dyn::gui::Stream(this, &panel_stream->is_open);
+  this->gui_control = new dyn::gui::Control(this);
 
   //---------------------------
 }

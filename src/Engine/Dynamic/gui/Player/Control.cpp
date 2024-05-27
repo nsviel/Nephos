@@ -1,21 +1,27 @@
 #include "Control.h"
 
 #include <Dynamic/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace dyn::gui{
 
 //Constructor / Destructor
-Control::Control(){
+Control::Control(dyn::Node* node_dynamic){
   //---------------------------
 
+  dat::Node* node_data = node_dynamic->get_node_data();
+
+  this->dat_graph = node_data->get_dat_graph();
 
   //---------------------------
 }
 Control::~Control(){}
 
 //Main function
-void Control::run_control(dyn::base::Player* player){
+void Control::run_control(){
+  dat::base::Set* set = dat_graph->get_selected_set();
+  dyn::base::Player* player = set->player;
   //---------------------------
 
   this->control_keyboard(player);

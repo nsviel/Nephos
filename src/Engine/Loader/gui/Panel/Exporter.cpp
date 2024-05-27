@@ -55,20 +55,39 @@ void Exporter::draw_header(){
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
-  //filename
+  //Save button
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::Button("Save##222")){
     this->item_operation();
     this->vec_selection.clear();
   }
-  ImGui::TableNextColumn();
+
+  //Path
+  std::string dir_path = utl::path::get_dir_from_path(current_path);
+  std::string filename = utl::path::get_filename_from_path(current_path);
   static char str_n[256];
-  strncpy(str_n, current_path.c_str(), sizeof(str_n) - 1);
+
+  //Directory
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Directory"); ImGui::TableNextColumn();
+  strncpy(str_n, dir_path.c_str(), sizeof(str_n) - 1);
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
-  if(ImGui::InputText("##exporter", str_n, IM_ARRAYSIZE(str_n))){
-    this->current_path = str_n;
+  if(ImGui::InputText("##exporter_dir", str_n, IM_ARRAYSIZE(str_n))){
+    this->current_path = (string)str_n + "/" + filename;
+  }
+  ImGui::PopStyleColor(2);
+
+  //Filename
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Filename"); ImGui::TableNextColumn();
+  strncpy(str_n, filename.c_str(), sizeof(str_n) - 1);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
+  ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
+  ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+  if(ImGui::InputText("##exporter_filename", str_n, IM_ARRAYSIZE(str_n))){
+    this->current_path = dir_path + "/" + (string)str_n;
   }
   ImGui::PopStyleColor(2);
 

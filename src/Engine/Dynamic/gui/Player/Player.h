@@ -5,7 +5,6 @@
 namespace dat{class Graph;}
 namespace dat::base{class Set;}
 namespace dyn{class Node;}
-namespace dyn::gui{class Control;}
 namespace dyn::gui{class Operation;}
 
 
@@ -33,7 +32,6 @@ public:
   void player_lock(dat::base::Set* set);
 
 private:
-  dyn::gui::Control* gui_control;
   dyn::gui::Operation* gui_operation;
   dat::Graph* dat_graph;
 

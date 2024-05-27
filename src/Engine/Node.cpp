@@ -26,9 +26,9 @@ Node::Node(app::Node* node_app){
   this->node_vulkan = new vk::Node(node_app);
   this->node_data = new dat::Node(this);
   this->node_camera = new cam::Node(this);
+  this->node_dynamic = new dyn::Node(this);
   this->node_render = new rnd::Node(this);
   this->node_loader = new ldr::Node(this);
-  this->node_dynamic = new dyn::Node(this);
 
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   prf::graph::Profiler* profiler = prf_manager->get_profiler_main();

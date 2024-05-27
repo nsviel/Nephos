@@ -6,6 +6,7 @@
 #include <Utility/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Operation/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Render/Namespace.h>
 #include <Data/Namespace.h>
@@ -22,9 +23,11 @@ Renderer::Renderer(rnd::Node* node_render){
   vk::Node* node_vulkan = node_render->get_node_vulkan();
   cam::Node* node_camera = node_engine->get_node_camera();
   dat::Node* node_data = node_engine->get_node_data();
+  dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
-  this->gui_control = node_data->get_gui_control();
+  this->dat_control = node_data->get_gui_control();
   this->cam_control = node_camera->get_gui_control();
+  this->dyn_control = node_dynamic->get_gui_control();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_interface = node_vulkan->get_vk_interface();
   this->vk_struct = node_vulkan->get_vk_struct();
@@ -77,8 +80,8 @@ void Renderer::engine_texture(){
     int center_y = panel_pose.y + panel_size.y * 0.5f;
     vec2 panel_center = vec2(center_x, center_y);
 
-
-    gui_control->run_control();
+    dyn_control->run_control();
+    dat_control->run_control();
     cam_control->run_control(panel_center);
   }else{
     cam_control->disable_camera_view();
