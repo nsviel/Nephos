@@ -5,6 +5,7 @@
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dat::base{class Sensor;}
+namespace dat::base{class Entity;}
 namespace utl::thread{class Pool;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
@@ -29,7 +30,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void colorize_object(dat::base::Sensor* sensor);
+  void colorize_object(dat::base::Entity* entity);
   void voxelize_object(dat::base::Sensor* sensor);
   void triangularize_object(dat::base::Sensor* sensor);
   void update_object(dat::base::Sensor* sensor);

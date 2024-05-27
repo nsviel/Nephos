@@ -13,6 +13,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   //---------------------------
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
+  this->dyn_operation = node_dynamic->get_ope_cloud();
   this->ope_operation = new ope::Operation();
   this->ope_normal = new ope::normal::KNN();
 
@@ -132,31 +133,56 @@ void Operation::draw_ope_transformation(dat::base::Set* set){
   //---------------------------
 }
 void Operation::draw_ope_colorization(dat::base::Set* set){
+  dat::base::Entity* entity = set->active_entity;
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Colorization##dynamic")){
+    bool update_color = false;
 
     //Colorization mode
     ImGui::BeginTable("colorization##mode", 2);
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::RadioButton("RGB##colorization", &dyn_struct->colorization.color_mode, ope::color::RGB);
+    bool condition = (entity->get_data()->rgb.size() == 0);
+    if(condition) ImGui::BeginDisabled();
+    if(ImGui::RadioButton("RGB##colorization", &dyn_struct->colorization.color_mode, ope::color::RGB)){
+      update_color = true;
+    }
+    if(condition) ImGui::EndDisabled();
     ImGui::TableNextColumn();
-    ImGui::RadioButton("##unicolor", &dyn_struct->colorization.color_mode, ope::color::UNICOLOR);
+    if(ImGui::RadioButton("##unicolor", &dyn_struct->colorization.color_mode, ope::color::UNICOLOR)){
+      update_color = true;
+    }
     ImGui::SameLine();
     ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
-    ImGui::ColorEdit4("##unicolor_choice", (float*)&dyn_struct->colorization.unicolor, flags);
+    if(ImGui::ColorEdit4("##unicolor_choice", (float*)&dyn_struct->colorization.unicolor, flags)){
+      update_color = true;
+    }
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::RadioButton("I##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY);
+    condition = (entity->get_data()->Is.size() == 0);
+    if(condition) ImGui::BeginDisabled();
+    if(ImGui::RadioButton("I##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY)){
+      update_color = true;
+    }
+    if(condition) ImGui::EndDisabled();
     ImGui::TableNextColumn();
-    ImGui::RadioButton("N##colorization", &dyn_struct->colorization.color_mode, ope::color::NORMAL);
+    condition = (entity->get_data()->Nxyz.size() == 0);
+    if(condition) ImGui::BeginDisabled();
+    if(ImGui::RadioButton("N##colorization", &dyn_struct->colorization.color_mode, ope::color::NORMAL)){
+      update_color = true;
+    }
+    if(condition) ImGui::EndDisabled();
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::RadioButton("Heatmap##colorization", &dyn_struct->colorization.color_mode, ope::color::HEATMAP);
+    if(ImGui::RadioButton("Heatmap##colorization", &dyn_struct->colorization.color_mode, ope::color::HEATMAP)){
+      update_color = true;
+    }
     ImGui::TableNextColumn();
-    ImGui::RadioButton("Structure##colorization", &dyn_struct->colorization.color_mode, ope::color::STRUCTURE);
+    if(ImGui::RadioButton("Structure##colorization", &dyn_struct->colorization.color_mode, ope::color::STRUCTURE)){
+      update_color = true;
+    }
 
     ImGui::EndTable();
 
@@ -171,11 +197,20 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
     //Heatmap mode
     if(dyn_struct->colorization.color_mode == ope::color::HEATMAP){
       ImGui::Indent();
-      ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY);
+      condition = (entity->get_data()->Is.size() == 0);
+      if(condition) ImGui::BeginDisabled();
+      if(ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY)){
+        update_color = true;
+      }
+      if(condition) ImGui::EndDisabled();
       ImGui::SameLine();
-      ImGui::RadioButton("H##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::HEIGHT);
+      if(ImGui::RadioButton("H##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::HEIGHT)){
+        update_color = true;
+      }
       ImGui::SameLine();
-      ImGui::RadioButton("R##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::RANGE);
+      if(ImGui::RadioButton("R##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::RANGE)){
+        update_color = true;
+      }
 
       //Intensity heatmap
       if(dyn_struct->colorization.heatmap_mode == ope::color::heatmap::INTENSITY){
@@ -193,6 +228,11 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
       ImGui::Unindent();
     }
 
+    if(update_color){
+      dyn_operation->colorize_object(entity);
+      entity->update_data();
+    }
+
   }
 
   //---------------------------
@@ -207,9 +247,6 @@ void Operation::draw_ope_normal(dat::base::Set* set){
     if(ImGui::Button("Compute##normal", ImVec2(100, 0))){
       utl::base::Data* data = set->active_entity->get_data();
       ope_normal->compute_normal(data, dyn_struct->operation.normal.knn);
-
-      say(set->active_entity->name);
-      sayVecVec3(data->Nxyz);
     }
 
     //Parameter: kNN

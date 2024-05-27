@@ -10,7 +10,7 @@ namespace dyn::colorization{
 struct Structure{
   //---------------------------
 
-  int color_mode = ope::color::INTENSITY;
+  int color_mode = ope::color::RGB;
   int heatmap_mode = ope::color::heatmap::INTENSITY;
   int intensity_diviser = 1000;
   glm::vec2 range_height = glm::vec2(0, 5);

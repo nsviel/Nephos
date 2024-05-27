@@ -73,7 +73,7 @@ void Operation::wait_thread(){
 }
 
 //Subfunction
-void Operation::colorize_object(dat::base::Sensor* sensor){
+void Operation::colorize_object(dat::base::Entity* entity){
   //---------------------------
 
   ope::color::Configuration config;
@@ -83,7 +83,7 @@ void Operation::colorize_object(dat::base::Sensor* sensor){
   config.heatmap_range_height = dyn_struct->colorization.range_height;
   config.unicolor = dyn_struct->colorization.unicolor;
 
-  ope_colorizer->make_colorization(sensor, config);
+  ope_colorizer->make_colorization(entity, config);
 
   //---------------------------
 }

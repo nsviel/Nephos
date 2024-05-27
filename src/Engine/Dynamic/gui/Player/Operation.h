@@ -4,6 +4,7 @@
 
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
+namespace dyn::cloud{class Operation;}
 namespace ope{class Operation;}
 namespace ope::normal{class KNN;}
 namespace dat::base{class Set;}
@@ -30,6 +31,7 @@ public:
   void draw_ope_recorder(dat::base::Set* set);
 
 private:
+  dyn::cloud::Operation* dyn_operation;
   dyn::Structure* dyn_struct;
   ope::Operation* ope_operation;
   ope::normal::KNN* ope_normal;

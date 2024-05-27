@@ -31,6 +31,7 @@ void KNN::compute_normal(utl::base::Data* data, int k){
   //Prepare data
   this->k = k;
   data->Nxyz = std::vector<glm::vec3>(data->xyz.size(), glm::vec3(0.0f));
+  glm::vec3 centroid = math::centroid(data->xyz);
 
   // Convert point cloud to FLANN matrix
   flann::Matrix<float> dataset(new float[data->xyz.size() * 3], data->xyz.size(), 3);
@@ -43,7 +44,7 @@ void KNN::compute_normal(utl::base::Data* data, int k){
   // Build the FLANN index
   flann::Index<flann::L2<float>> index(dataset, flann::KDTreeIndexParams(4));
   index.buildIndex();
-/*
+
   // Loop
   #pragma omp parallel for
   for(size_t i = 0; i < data->xyz.size(); ++i){
@@ -70,7 +71,12 @@ void KNN::compute_normal(utl::base::Data* data, int k){
     // Compute normal
     glm::mat3 covariance = math::compute_covariance(vec_nn);
     glm::vec3 normal = math::compute_normal_from_covariance(covariance);
-    math::compute_normal_orientation(normal, point);
+
+    // Adjust normal orientation
+    glm::vec3 to_centroid = centroid - point;
+    if (glm::dot(normal, to_centroid) < 0) {
+      normal = -normal;
+    }
 
     // Store same result for each nn
     for(size_t j = 0; j < indices[0].size(); ++j){
@@ -83,7 +89,7 @@ void KNN::compute_normal(utl::base::Data* data, int k){
   auto end = std::chrono::high_resolution_clock::now();
   std::chrono::duration<double, std::milli> duration = end - start;
   this->time = duration.count();
-*/
+
   //---------------------------
 }
 
