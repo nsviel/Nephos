@@ -168,7 +168,13 @@ void Navigator::item_organisation(){
       file.item.weight = utl::file::size(current_file);
       file.item.format = utl::path::get_format_from_path(current_file);
       file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-      file.item.color_text = item_format(file.item.format) ? glm::vec4(0.0f, 1.0f, 1.0f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+      file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+
+      if(with_all_format == false && item_format(file.item.format) == false) continue;
+      if(with_all_format && item_format(file.item.format)){
+        file.item.color_text = glm::vec4(0.0f, 1.0f, 1.0f, 0.9f);
+      }
+
       vec_file.push_back(file);
     }
   }
