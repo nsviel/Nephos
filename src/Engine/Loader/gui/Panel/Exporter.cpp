@@ -51,16 +51,18 @@ void Exporter::design_panel(){
 void Exporter::draw_header(){
   //---------------------------
 
-  ImGui::BeginTable("header##exporter", 2);
-  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
-  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
-
   //Save button
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::Button("Save##222")){
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+  if(ImGui::Button("Save##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
     this->item_operation();
     this->vec_selection.clear();
   }
+  ImGui::PopStyleColor(2);
+
+  ImGui::BeginTable("header##exporter", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
   //Path
   std::string dir_path = utl::path::get_dir_from_path(current_path);

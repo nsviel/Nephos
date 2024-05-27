@@ -85,16 +85,21 @@ void Loader::design_panel(){
 void Loader::draw_header(){
   //---------------------------
 
+  //Load button
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+  if(ImGui::Button("Load##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+    this->item_operation();
+    this->vec_selection.clear();
+  }
+  ImGui::PopStyleColor(2);
+
   // Load button + selected path
   ImGui::BeginTable("header##exporter", 2);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::Button("Load##222")){
-    this->item_operation();
-    this->vec_selection.clear();
-  }
-  ImGui::TableNextColumn();
+  ImGui::Text("Path"); ImGui::TableNextColumn();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::EndTable();
 
