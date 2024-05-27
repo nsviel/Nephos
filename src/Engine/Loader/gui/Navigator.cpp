@@ -1,8 +1,6 @@
 #include "Navigator.h"
 
-#include <Data/Namespace.h>
 #include <Loader/Namespace.h>
-#include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
@@ -13,14 +11,8 @@ namespace ldr::gui{
 Navigator::Navigator(ldr::Node* node_loader){
   //---------------------------
 
-  dat::Node* node_data = node_loader->get_node_data();
-
-  this->dat_graph = node_data->get_dat_graph();
-  this->dat_set = node_data->get_data_set();
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
-  this->ope_transform = new ope::Transformation();
-  this->ope_operation = new ope::Operation();
 
   this->default_dir = utl::path::get_current_parent_path_abs();
   this->current_dir = default_dir;
@@ -290,7 +282,5 @@ void Navigator::item_file(){
 
   //---------------------------
 }
-
-
 
 }

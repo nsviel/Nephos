@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Loader/gui/Navigator.h>
 #include <imgui/core/imgui.h>
 #include <string>
 #include <vector>
@@ -17,7 +18,7 @@ namespace dat::base{class Entity;}
 
 namespace ldr::gui{
 
-class Loader
+class Loader : public ldr::gui::Navigator
 {
 public:
   //Constructor / Destructor
@@ -29,14 +30,8 @@ public:
   void run_panel();
   void design_panel();
 
-  //File stuff
-  void draw_file();
-  void draw_file_header();
-  void draw_file_content();
-
   //Other stuff
   void draw_header();
-  void draw_bookmark_button(ldr::gui::Bookmark& bookmark);
   void draw_bookmark_tab();
 
   //Subfunction
