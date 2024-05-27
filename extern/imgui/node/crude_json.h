@@ -54,35 +54,35 @@ enum class type_t
 
 struct value
 {
-    value(type_t type = type_t::null): m_Type(construct(m_Storage, type)) {}
+    value(type_t type = type_t::null): m_Type(construct(m_Storage, type)){}
     value(value&& other);
     value(const value& other);
 
     value(      null)      : m_Type(construct(m_Storage,      null()))  {}
-    value(      object&& v): m_Type(construct(m_Storage, std::move(v))) {}
+    value(      object&& v): m_Type(construct(m_Storage, std::move(v))){}
     value(const object&  v): m_Type(construct(m_Storage,           v))  {}
-    value(      array&&  v): m_Type(construct(m_Storage, std::move(v))) {}
+    value(      array&&  v): m_Type(construct(m_Storage, std::move(v))){}
     value(const array&   v): m_Type(construct(m_Storage,           v))  {}
-    value(      string&& v): m_Type(construct(m_Storage, std::move(v))) {}
+    value(      string&& v): m_Type(construct(m_Storage, std::move(v))){}
     value(const string&  v): m_Type(construct(m_Storage,           v))  {}
     value(const char*    v): m_Type(construct(m_Storage,           v))  {}
     value(      boolean  v): m_Type(construct(m_Storage,           v))  {}
     value(      number   v): m_Type(construct(m_Storage,           v))  {}
-    ~value() { destruct(m_Storage, m_Type); }
+    ~value(){ destruct(m_Storage, m_Type); }
 
-    value& operator=(value&& other)      { if (this != &other) { value(std::move(other)).swap(*this); } return *this; }
-    value& operator=(const value& other) { if (this != &other) { value(          other).swap(*this);  } return *this; }
+    value& operator=(value&& other)      { if (this != &other){ value(std::move(other)).swap(*this); } return *this; }
+    value& operator=(const value& other){ if (this != &other){ value(          other).swap(*this);  } return *this; }
 
     value& operator=(      null)       { auto other = value(           );  swap(other); return *this; }
-    value& operator=(      object&& v) { auto other = value(std::move(v)); swap(other); return *this; }
-    value& operator=(const object&  v) { auto other = value(          v);  swap(other); return *this; }
-    value& operator=(      array&&  v) { auto other = value(std::move(v)); swap(other); return *this; }
-    value& operator=(const array&   v) { auto other = value(          v);  swap(other); return *this; }
-    value& operator=(      string&& v) { auto other = value(std::move(v)); swap(other); return *this; }
-    value& operator=(const string&  v) { auto other = value(          v);  swap(other); return *this; }
-    value& operator=(const char*    v) { auto other = value(          v);  swap(other); return *this; }
-    value& operator=(      boolean  v) { auto other = value(          v);  swap(other); return *this; }
-    value& operator=(      number   v) { auto other = value(          v);  swap(other); return *this; }
+    value& operator=(      object&& v){ auto other = value(std::move(v)); swap(other); return *this; }
+    value& operator=(const object&  v){ auto other = value(          v);  swap(other); return *this; }
+    value& operator=(      array&&  v){ auto other = value(std::move(v)); swap(other); return *this; }
+    value& operator=(const array&   v){ auto other = value(          v);  swap(other); return *this; }
+    value& operator=(      string&& v){ auto other = value(std::move(v)); swap(other); return *this; }
+    value& operator=(const string&  v){ auto other = value(          v);  swap(other); return *this; }
+    value& operator=(const char*    v){ auto other = value(          v);  swap(other); return *this; }
+    value& operator=(      boolean  v){ auto other = value(          v);  swap(other); return *this; }
+    value& operator=(      number   v){ auto other = value(          v);  swap(other); return *this; }
 
     type_t type() const { return m_Type; }
 
@@ -120,7 +120,7 @@ struct value
 
     void swap(value& other);
 
-    inline friend void swap(value& lhs, value& rhs) { lhs.swap(rhs); }
+    inline friend void swap(value& lhs, value& rhs){ lhs.swap(rhs); }
 
     // Returns discarded value for invalid inputs.
     static value parse(const string& data);
@@ -149,16 +149,16 @@ private:
 # undef CRUDE_MAX2
     using storage_t = std::aligned_storage<max_size, max_align>::type;
 
-    static       object*   object_ptr(      storage_t& storage) { return reinterpret_cast<       object*>(&storage); }
-    static const object*   object_ptr(const storage_t& storage) { return reinterpret_cast<const  object*>(&storage); }
-    static       array*     array_ptr(      storage_t& storage) { return reinterpret_cast<        array*>(&storage); }
-    static const array*     array_ptr(const storage_t& storage) { return reinterpret_cast<const   array*>(&storage); }
-    static       string*   string_ptr(      storage_t& storage) { return reinterpret_cast<       string*>(&storage); }
-    static const string*   string_ptr(const storage_t& storage) { return reinterpret_cast<const  string*>(&storage); }
-    static       boolean* boolean_ptr(      storage_t& storage) { return reinterpret_cast<      boolean*>(&storage); }
-    static const boolean* boolean_ptr(const storage_t& storage) { return reinterpret_cast<const boolean*>(&storage); }
-    static       number*   number_ptr(      storage_t& storage) { return reinterpret_cast<       number*>(&storage); }
-    static const number*   number_ptr(const storage_t& storage) { return reinterpret_cast<const  number*>(&storage); }
+    static       object*   object_ptr(      storage_t& storage){ return reinterpret_cast<       object*>(&storage); }
+    static const object*   object_ptr(const storage_t& storage){ return reinterpret_cast<const  object*>(&storage); }
+    static       array*     array_ptr(      storage_t& storage){ return reinterpret_cast<        array*>(&storage); }
+    static const array*     array_ptr(const storage_t& storage){ return reinterpret_cast<const   array*>(&storage); }
+    static       string*   string_ptr(      storage_t& storage){ return reinterpret_cast<       string*>(&storage); }
+    static const string*   string_ptr(const storage_t& storage){ return reinterpret_cast<const  string*>(&storage); }
+    static       boolean* boolean_ptr(      storage_t& storage){ return reinterpret_cast<      boolean*>(&storage); }
+    static const boolean* boolean_ptr(const storage_t& storage){ return reinterpret_cast<const boolean*>(&storage); }
+    static       number*   number_ptr(      storage_t& storage){ return reinterpret_cast<       number*>(&storage); }
+    static const number*   number_ptr(const storage_t& storage){ return reinterpret_cast<const  number*>(&storage); }
 
     static type_t construct(storage_t& storage, type_t type)
     {
@@ -176,15 +176,15 @@ private:
     }
 
     static type_t construct(storage_t& storage,       null)           { (void)storage;                                        return type_t::null;    }
-    static type_t construct(storage_t& storage,       object&& value) { new (&storage)  object(std::forward<object>(value));  return type_t::object;  }
-    static type_t construct(storage_t& storage, const object&  value) { new (&storage)  object(value);                        return type_t::object;  }
-    static type_t construct(storage_t& storage,       array&&  value) { new (&storage)   array(std::forward<array>(value));   return type_t::array;   }
-    static type_t construct(storage_t& storage, const array&   value) { new (&storage)   array(value);                        return type_t::array;   }
-    static type_t construct(storage_t& storage,       string&& value) { new (&storage)  string(std::forward<string>(value));  return type_t::string;  }
-    static type_t construct(storage_t& storage, const string&  value) { new (&storage)  string(value);                        return type_t::string;  }
-    static type_t construct(storage_t& storage, const char*    value) { new (&storage)  string(value);                        return type_t::string;  }
-    static type_t construct(storage_t& storage,       boolean  value) { new (&storage) boolean(value);                        return type_t::boolean; }
-    static type_t construct(storage_t& storage,       number   value) { new (&storage)  number(value);                        return type_t::number;  }
+    static type_t construct(storage_t& storage,       object&& value){ new (&storage)  object(std::forward<object>(value));  return type_t::object;  }
+    static type_t construct(storage_t& storage, const object&  value){ new (&storage)  object(value);                        return type_t::object;  }
+    static type_t construct(storage_t& storage,       array&&  value){ new (&storage)   array(std::forward<array>(value));   return type_t::array;   }
+    static type_t construct(storage_t& storage, const array&   value){ new (&storage)   array(value);                        return type_t::array;   }
+    static type_t construct(storage_t& storage,       string&& value){ new (&storage)  string(std::forward<string>(value));  return type_t::string;  }
+    static type_t construct(storage_t& storage, const string&  value){ new (&storage)  string(value);                        return type_t::string;  }
+    static type_t construct(storage_t& storage, const char*    value){ new (&storage)  string(value);                        return type_t::string;  }
+    static type_t construct(storage_t& storage,       boolean  value){ new (&storage) boolean(value);                        return type_t::boolean; }
+    static type_t construct(storage_t& storage,       number   value){ new (&storage)  number(value);                        return type_t::number;  }
 
     static void destruct(storage_t& storage, type_t type)
     {

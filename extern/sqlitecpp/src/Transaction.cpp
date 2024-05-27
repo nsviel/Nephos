@@ -23,7 +23,7 @@ Transaction::Transaction(Database& aDatabase, TransactionBehavior behavior) :
     mDatabase(aDatabase)
 {
     const char *stmt;
-    switch (behavior) {
+    switch (behavior){
         case TransactionBehavior::DEFERRED:
             stmt = "BEGIN DEFERRED";
             break;

@@ -266,8 +266,8 @@ Eigen::Matrix3f covariance(std::vector<Eigen::Vector3f>& vec){
   //Covariance matrix
   Eigen::Matrix3f covMat = Eigen::Matrix3f::Zero();
   for(int i=0; i<vec.size(); i++){
-    for (int j=0; j<3; j++){
-      for (int k=j; k<3; k++){
+    for(int j=0; j<3; j++){
+      for(int k=j; k<3; k++){
         Eigen::Vector3f point = vec[i];
         covMat(j, k) += (point(j) - centroid(j)) * (point(k) - centroid(k));
       }
@@ -291,8 +291,8 @@ Eigen::Matrix3d covariance(std::vector<Eigen::Vector3d>& vec){
   for(int i=0; i<vec.size(); i++){
     Eigen::Vector3d point = vec[i];
 
-    for (int j=0; j<3; ++j){
-      for (int k=j; k<3; ++k){
+    for(int j=0; j<3; ++j){
+      for(int k=j; k<3; ++k){
         covMat(j, k) += (point(j) - centroid(j)) * (point(k) - centroid(k));
       }
     }

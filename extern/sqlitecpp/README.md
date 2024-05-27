@@ -393,7 +393,7 @@ try
     // Collection to save in database
     std::vector<int> values{1, 2, 3};
 
-    for (const auto& v: values)
+    for(const auto& v: values)
     {
       query.bind(1, v);
       query.exec();

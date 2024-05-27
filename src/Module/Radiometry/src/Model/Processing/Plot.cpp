@@ -121,7 +121,7 @@ void Plot::plot_model(){
   */
 
   rad::structure::Measure* measure = &rad_struct->model.measure;
-  if(measure->data.size() > 0) {
+  if(measure->data.size() > 0){
     std::vector<float> x_raw, y_raw, z_raw;
     for(const auto& point : measure->data){
       if(point.x == -1 || point.y > 60) continue;

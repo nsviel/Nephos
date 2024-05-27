@@ -631,7 +631,7 @@ static int open_libgl(void)
     return GL3W_OK;
 }
 
-static void close_libgl(void) { FreeLibrary(libgl); }
+static void close_libgl(void){ FreeLibrary(libgl); }
 static GL3WglProc get_proc(const char *proc)
 {
     GL3WglProc res;
@@ -652,7 +652,7 @@ static int open_libgl(void)
     return GL3W_OK;
 }
 
-static void close_libgl(void) { dlclose(libgl); }
+static void close_libgl(void){ dlclose(libgl); }
 
 static GL3WglProc get_proc(const char *proc)
 {
@@ -680,7 +680,7 @@ static int open_libgl(void)
     return GL3W_OK;
 }
 
-static void close_libgl(void) { dlclose(libgl); }
+static void close_libgl(void){ dlclose(libgl); }
 
 static GL3WglProc get_proc(const char *proc)
 {
@@ -737,7 +737,7 @@ int imgl3wIsSupported(int major, int minor)
     return version.major >= major;
 }
 
-GL3WglProc imgl3wGetProcAddress(const char *proc) { return get_proc(proc); }
+GL3WglProc imgl3wGetProcAddress(const char *proc){ return get_proc(proc); }
 
 static const char *proc_names[] = {
     "glActiveTexture",
@@ -806,7 +806,7 @@ GL3W_API union ImGL3WProcs imgl3wProcs;
 static void load_procs(GL3WGetProcAddressProc proc)
 {
     size_t i;
-    for (i = 0; i < GL3W_ARRAY_SIZE(proc_names); i++)
+    for(i = 0; i < GL3W_ARRAY_SIZE(proc_names); i++)
         imgl3wProcs.ptr[i] = proc(proc_names[i]);
 }
 

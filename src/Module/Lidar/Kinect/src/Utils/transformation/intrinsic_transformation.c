@@ -182,7 +182,7 @@ static k4a_result_t transformation_iterative_unproject(const k4a_calibration_cam
     float best_xy[2] = { 0.f, 0.f };
     float best_err = FLT_MAX;
 
-    for (unsigned int pass = 0; pass < max_passes; pass++)
+    for(unsigned int pass = 0; pass < max_passes; pass++)
     {
         float p[2];
         float J[2 * 2];

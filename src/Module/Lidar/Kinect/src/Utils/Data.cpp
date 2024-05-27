@@ -18,7 +18,7 @@ void Data::convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, std::v
   //---------------------------
 
   // Ensure the input size is even, as each uint16_t is 2 uint8_t
-  if (size % 2 != 0) {
+  if (size % 2 != 0){
     throw std::invalid_argument("Input size must be even to convert to uint16_t.");
   }
 
@@ -27,7 +27,7 @@ void Data::convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, std::v
   output.resize(outputSize);
 
   // Convert each pair of uint8_t values into a single uint16_t value
-  for (size_t i = 0; i < outputSize; ++i) {
+  for(size_t i = 0; i < outputSize; ++i){
     output[i] = static_cast<uint16_t>(input[2 * i]) | (static_cast<uint16_t>(input[2 * i + 1]) << 8);
   }
 
@@ -100,7 +100,7 @@ void Data::convert_depth_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_
     float G = 0.0f;
     float B = 0.0f;
 
-    if (r != 0) {
+    if (r != 0){
       uint16_t clamped = r;
       clamped = std::min(clamped, range_max);
       clamped = std::max(clamped, range_min);

@@ -90,7 +90,7 @@ void CT_ICP::algo(Collection* collection){
 			new_point.index_frame = index_frame;
 
 			double r = new_point.raw_pt.norm();
-			if ((r > MIN_DIST_LIDAR_CENTER) && (r < MAX_DIST_LIDAR_CENTER)) {
+			if ((r > MIN_DIST_LIDAR_CENTER) && (r < MAX_DIST_LIDAR_CENTER)){
 				frame.push_back(new_point);
 			}
 		}
@@ -99,12 +99,12 @@ void CT_ICP::algo(Collection* collection){
 		this->sub_sample_frame(frame, SIZE_VOXEL);
 
 		// The first frame is static
-		if (index_frame == 0) {
+		if (index_frame == 0){
 			trajectory[index_frame].center_R = Eigen::MatrixXd::Identity(3, 3);
 			trajectory[index_frame].center_t = Eigen::Vector3d(0., 0., 0.);
 		}
 		else {
-			if (index_frame == 1) {
+			if (index_frame == 1){
 				trajectory[index_frame].center_R = Eigen::MatrixXd::Identity(3, 3);
 				trajectory[index_frame].center_t = Eigen::Vector3d(0., 0., 0.);
 			}
@@ -116,12 +116,12 @@ void CT_ICP::algo(Collection* collection){
 				trajectory[index_frame].center_t = t_next_center;
 
 				Eigen::Vector3d t_diff = trajectory[index_frame].center_t - trajectory[index_frame-1].center_t;
-				if (t_diff.norm() > 5.0) {
+				if (t_diff.norm() > 5.0){
 					std::cout << "Error in current motion distance !" << std::endl;
 				}
 			}
 
-			for (int i = 0; i < (int)frame.size(); ++i) {
+			for(int i = 0; i < (int)frame.size(); ++i){
 				frame[i].pt = trajectory[index_frame].center_R * frame[i].raw_pt + trajectory[index_frame].center_t;
 			}
 
@@ -129,26 +129,26 @@ void CT_ICP::algo(Collection* collection){
 			std::list<Point3D> keypoints;
 			keypoints.resize(0);
 			this->grid_sampling(frame, keypoints, 2.0);
-			if (keypoints.size() < NUMBER_KEYPOINTS) {
+			if (keypoints.size() < NUMBER_KEYPOINTS){
 				keypoints.resize(0);
 				this->grid_sampling(frame, keypoints, 1.0);
-				if (keypoints.size() < NUMBER_KEYPOINTS) {
+				if (keypoints.size() < NUMBER_KEYPOINTS){
 					keypoints.resize(0);
 					grid_sampling(frame, keypoints, 0.50);
-					if (keypoints.size() < NUMBER_KEYPOINTS) {
+					if (keypoints.size() < NUMBER_KEYPOINTS){
 						keypoints.resize(0);
 						grid_sampling(frame, keypoints, 0.20);
 					}
 				}
 			}
-			if (keypoints.size() > NUMBER_KEYPOINTS) {
+			if (keypoints.size() > NUMBER_KEYPOINTS){
 				keypoints.resize(NUMBER_KEYPOINTS);
 			}
 
 			//Remove voxels too far from actual position of the vehicule
-			for (std::unordered_map<Voxel, std::list<Eigen::Vector3d>>::iterator it = voxels_map.begin(); it != voxels_map.end(); ++it) {
+			for(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>::iterator it = voxels_map.begin(); it != voxels_map.end(); ++it){
 				Eigen::Vector3d pt = (*it).second.front();
-				if ((pt - trajectory[index_frame].center_t).squaredNorm() > (MAX_DIST_MAP * MAX_DIST_MAP)) {
+				if ((pt - trajectory[index_frame].center_t).squaredNorm() > (MAX_DIST_MAP * MAX_DIST_MAP)){
 					it = voxels_map.erase(it);
 				}
 			}
@@ -170,17 +170,17 @@ void CT_ICP::algo(Collection* collection){
 		}
 
 		//Update Voxel Map
-		for (int j=0; j<(int)frame.size(); j++) {
+		for(int j=0; j<(int)frame.size(); j++){
 			short kx = static_cast<short>(frame[j].pt[0] / SIZE_VOXEL_MAP);
 			short ky = static_cast<short>(frame[j].pt[1] / SIZE_VOXEL_MAP);
 			short kz = static_cast<short>(frame[j].pt[2] / SIZE_VOXEL_MAP);
 
 			auto search = voxels_map.find(Voxel(kx, ky, kz));
 
-			if (search != voxels_map.end()) {
+			if (search != voxels_map.end()){
 				std::list<Eigen::Vector3d>* current_list = &(search->second);
 
-				if ((*current_list).size() < MAX_NUMBER_POINTS_IN_VOXEL) {
+				if ((*current_list).size() < MAX_NUMBER_POINTS_IN_VOXEL){
 					(*current_list).push_back(frame[j].pt);
 				}
 			}
@@ -216,7 +216,7 @@ void CT_ICP::algo(Cloud* cloud){
 		new_point.index_frame = index_frame;
 
 		double r = new_point.raw_pt.norm();
-		if ((r > MIN_DIST_LIDAR_CENTER) && (r < MAX_DIST_LIDAR_CENTER)) {
+		if ((r > MIN_DIST_LIDAR_CENTER) && (r < MAX_DIST_LIDAR_CENTER)){
 			frame.push_back(new_point);
 		}
 	}
@@ -225,12 +225,12 @@ void CT_ICP::algo(Cloud* cloud){
 	this->sub_sample_frame(frame, SIZE_VOXEL);
 
 	// The first frame is static
-	if (index_frame == 0) {
+	if (index_frame == 0){
 		trajectory[index_frame].center_R = Eigen::MatrixXd::Identity(3, 3);
 		trajectory[index_frame].center_t = Eigen::Vector3d(0., 0., 0.);
 	}
 	else {
-		if (index_frame == 1) {
+		if (index_frame == 1){
 			trajectory[index_frame].center_R = Eigen::MatrixXd::Identity(3, 3);
 			trajectory[index_frame].center_t = Eigen::Vector3d(0., 0., 0.);
 		}
@@ -242,12 +242,12 @@ void CT_ICP::algo(Cloud* cloud){
 			trajectory[index_frame].center_t = t_next_center;
 
 			Eigen::Vector3d t_diff = trajectory[index_frame].center_t - trajectory[index_frame-1].center_t;
-			if (t_diff.norm() > 5.0) {
+			if (t_diff.norm() > 5.0){
 				std::cout << "Error in current motion distance !" << std::endl;
 			}
 		}
 
-		for (int i = 0; i < (int)frame.size(); ++i) {
+		for(int i = 0; i < (int)frame.size(); ++i){
 			frame[i].pt = trajectory[index_frame].center_R * frame[i].raw_pt + trajectory[index_frame].center_t;
 		}
 
@@ -255,27 +255,27 @@ void CT_ICP::algo(Cloud* cloud){
 		std::list<Point3D> keypoints;
 		keypoints.resize(0);
 		this->grid_sampling(frame, keypoints, 2.0);
-		if (keypoints.size() < NUMBER_KEYPOINTS) {
+		if (keypoints.size() < NUMBER_KEYPOINTS){
 			keypoints.resize(0);
 			this->grid_sampling(frame, keypoints, 1.0);
-			if (keypoints.size() < NUMBER_KEYPOINTS) {
+			if (keypoints.size() < NUMBER_KEYPOINTS){
 				keypoints.resize(0);
 				grid_sampling(frame, keypoints, 0.50);
-				if (keypoints.size() < NUMBER_KEYPOINTS) {
+				if (keypoints.size() < NUMBER_KEYPOINTS){
 					keypoints.resize(0);
 					grid_sampling(frame, keypoints, 0.20);
 				}
 			}
 		}
-		if (keypoints.size() > NUMBER_KEYPOINTS) {
+		if (keypoints.size() > NUMBER_KEYPOINTS){
 			keypoints.resize(NUMBER_KEYPOINTS);
 		}
 
 		//Remove voxels too far from actual position of the vehicule
 		vector<Voxel> voxels_to_erase;
-		for (std::unordered_map<Voxel, std::list<Eigen::Vector3d>>::iterator it = voxels_map.begin(); it != voxels_map.end(); ++it) {
+		for(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>::iterator it = voxels_map.begin(); it != voxels_map.end(); ++it){
 			Eigen::Vector3d pt = (*it).second.front();
-			if ((pt - trajectory[index_frame].center_t).squaredNorm() > (MAX_DIST_MAP * MAX_DIST_MAP)) {
+			if ((pt - trajectory[index_frame].center_t).squaredNorm() > (MAX_DIST_MAP * MAX_DIST_MAP)){
 				voxels_to_erase.push_back(it->first);
 			}
 		}
@@ -306,17 +306,17 @@ void CT_ICP::algo(Cloud* cloud){
 
 	//Update Voxel Map
 	//this->update_voxelMap(frame);
-	for (int j=0; j<(int)frame.size(); j++) {
+	for(int j=0; j<(int)frame.size(); j++){
 		short kx = static_cast<short>(frame[j].pt[0] / SIZE_VOXEL_MAP);
 		short ky = static_cast<short>(frame[j].pt[1] / SIZE_VOXEL_MAP);
 		short kz = static_cast<short>(frame[j].pt[2] / SIZE_VOXEL_MAP);
 
 		auto search = voxels_map.find(Voxel(kx, ky, kz));
 
-		if (search != voxels_map.end()) {
+		if (search != voxels_map.end()){
 			std::list<Eigen::Vector3d>* current_list = &(search->second);
 
-			if ((*current_list).size() < MAX_NUMBER_POINTS_IN_VOXEL) {
+			if ((*current_list).size() < MAX_NUMBER_POINTS_IN_VOXEL){
 				(*current_list).push_back(frame[j].pt);
 			}
 		}
@@ -354,7 +354,7 @@ void CT_ICP::do_truc(Cloud* cloud, vector<Point3D>& frame){
 		new_point.index_frame = index_frame;
 
 		double r = new_point.raw_pt.norm();
-		if ((r > MIN_DIST_LIDAR_CENTER) && (r < MAX_DIST_LIDAR_CENTER)) {
+		if ((r > MIN_DIST_LIDAR_CENTER) && (r < MAX_DIST_LIDAR_CENTER)){
 			frame.push_back(new_point);
 		}
 	}
@@ -364,17 +364,17 @@ void CT_ICP::do_truc(Cloud* cloud, vector<Point3D>& frame){
 void CT_ICP::update_voxelMap(vector<Point3D>& frame){
 	//---------------------------
 
-	for (int j=0; j<(int)frame.size(); j++) {
+	for(int j=0; j<(int)frame.size(); j++){
 		short kx = static_cast<short>(frame[j].pt[0] / SIZE_VOXEL_MAP);
 		short ky = static_cast<short>(frame[j].pt[1] / SIZE_VOXEL_MAP);
 		short kz = static_cast<short>(frame[j].pt[2] / SIZE_VOXEL_MAP);
 
 		auto search = voxels_map.find(Voxel(kx, ky, kz));
 
-		if (search != voxels_map.end()) {
+		if (search != voxels_map.end()){
 			std::list<Eigen::Vector3d>* current_list = &(search->second);
 
-			if ((*current_list).size() < MAX_NUMBER_POINTS_IN_VOXEL) {
+			if ((*current_list).size() < MAX_NUMBER_POINTS_IN_VOXEL){
 				(*current_list).push_back(frame[j].pt);
 			}
 		}
@@ -387,12 +387,12 @@ void CT_ICP::update_voxelMap(vector<Point3D>& frame){
 }
 
 //Subfunctions
-void CT_ICP::writePoses(string filename, std::vector<TrajectoryFrame> trajectory) {
+void CT_ICP::writePoses(string filename, std::vector<TrajectoryFrame> trajectory){
 	ofstream pFile(filename);
 	if (pFile.is_open())
 	{
 		pFile << std::setprecision(std::numeric_limits<long double>::digits10 + 1);
-		for (int i = 0; i < (int)trajectory.size(); i++) {
+		for(int i = 0; i < (int)trajectory.size(); i++){
 			pFile << trajectory[i].center_t(0) << " " << trajectory[i].center_t(1) << " " << trajectory[i].center_t(2) << std::endl;
 		}
 		pFile.close();
@@ -401,10 +401,10 @@ void CT_ICP::writePoses(string filename, std::vector<TrajectoryFrame> trajectory
 	else std::cout << "Unable to open file" << std::endl;
 	return;
 }
-int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>& voxels_map, std::list<Point3D>& keypoints, std::vector<TrajectoryFrame>& trajectory, int index_frame) {
+int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>& voxels_map, std::list<Point3D>& keypoints, std::vector<TrajectoryFrame>& trajectory, int index_frame){
 
 	short nb_voxels_visited = 0;
-	if (index_frame < 50) {
+	if (index_frame < 50){
 		nb_voxels_visited = 1;
 	}
 	else {
@@ -415,12 +415,12 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 
 	Eigen::Vector3d center_ego = trajectory[index_frame].center_t;
 
-	for (int iter(0); iter < NUMBER_ITER_FRAME_TO_MODEL; iter++) {
+	for(int iter(0); iter < NUMBER_ITER_FRAME_TO_MODEL; iter++){
 
 		Eigen::MatrixXd A(6, 6);
 		Eigen::VectorXd b(6);
-		for (int i(0); i < 6; i++) {
-			for (int j(0); j < 6; j++) {
+		for(int i(0); i < 6; i++){
+			for(int j(0); j < 6; j++){
 				A(i, j) = 0.0;
 			}
 			b(i) = 0.0;
@@ -430,7 +430,7 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 		double total_scalar = 0;
 		double mean_scalar = 0.0;
 
-		for (std::list<Point3D>::iterator it_keypoint = keypoints.begin(); it_keypoint != keypoints.end(); ++it_keypoint) {
+		for(std::list<Point3D>::iterator it_keypoint = keypoints.begin(); it_keypoint != keypoints.end(); ++it_keypoint){
 
 
 			Eigen::Vector3d pt_keypoint = (*it_keypoint).pt;
@@ -441,11 +441,11 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 
 			std::list<std::list<Eigen::Vector3d>*> neighbors_ptr;
 			int number_neighbors = 0;
-			for (short kxx = kx - nb_voxels_visited; kxx < kx + nb_voxels_visited + 1; ++kxx) {
-				for (short kyy = ky - nb_voxels_visited; kyy < ky + nb_voxels_visited + 1; ++kyy) {
-					for (short kzz = kz - nb_voxels_visited; kzz < kz + nb_voxels_visited + 1; ++kzz) {
+			for(short kxx = kx - nb_voxels_visited; kxx < kx + nb_voxels_visited + 1; ++kxx){
+				for(short kyy = ky - nb_voxels_visited; kyy < ky + nb_voxels_visited + 1; ++kyy){
+					for(short kzz = kz - nb_voxels_visited; kzz < kz + nb_voxels_visited + 1; ++kzz){
 						auto search = voxels_map.find(Voxel(kxx, kyy, kzz));
-						if (search != voxels_map.end()) {
+						if (search != voxels_map.end()){
 							neighbors_ptr.push_back(&(search->second));
 							number_neighbors += (int)(search->second).size();
 						}
@@ -453,34 +453,34 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 				}
 			}
 
-			if (number_neighbors > MIN_NUMBER_NEIGHBORS) {
+			if (number_neighbors > MIN_NUMBER_NEIGHBORS){
 
 
 				std::vector<std::pair<double, Eigen::Vector3d>> vector_neighbors;
 				int j = 0;
-				for (std::list<std::list<Eigen::Vector3d>*>::iterator it_ptr = neighbors_ptr.begin(); it_ptr != neighbors_ptr.end(); ++it_ptr) {
-					for (std::list<Eigen::Vector3d>::iterator it = (*it_ptr)->begin(); it != (*it_ptr)->end(); ++it) {
+				for(std::list<std::list<Eigen::Vector3d>*>::iterator it_ptr = neighbors_ptr.begin(); it_ptr != neighbors_ptr.end(); ++it_ptr){
+					for(std::list<Eigen::Vector3d>::iterator it = (*it_ptr)->begin(); it != (*it_ptr)->end(); ++it){
 						double sq_dist = (pt_keypoint - (*it)).squaredNorm();
 						vector_neighbors.push_back(std::make_pair(sq_dist, (*it)));
 						j++;
 					}
 				}
 
-				std::sort(vector_neighbors.begin(), vector_neighbors.end(), [](const std::pair<double, Eigen::Vector3d>& left, const std::pair<double, Eigen::Vector3d>& right) {return left.first < right.first; });
+				std::sort(vector_neighbors.begin(), vector_neighbors.end(), [](const std::pair<double, Eigen::Vector3d>& left, const std::pair<double, Eigen::Vector3d>& right){return left.first < right.first; });
 
 				int real_number_neighbors = std::min(MAX_NUMBER_NEIGHBORS, (int)vector_neighbors.size());
 				vector_neighbors.resize(real_number_neighbors);
 
 				Eigen::Vector3d barycenter(Eigen::Vector3d(0, 0, 0));
-				for (int j = 0; j < (int)vector_neighbors.size(); ++j) {
+				for(int j = 0; j < (int)vector_neighbors.size(); ++j){
 					barycenter += vector_neighbors[j].second;
 				}
 				barycenter /= real_number_neighbors;
 
 				Eigen::Matrix3d covariance_Matrix(Eigen::Matrix3d::Zero());
-				for (int j = 0; j < (int)vector_neighbors.size(); ++j) {
-					for (int k = 0; k < 3; ++k)
-						for (int l = k; l < 3; ++l)
+				for(int j = 0; j < (int)vector_neighbors.size(); ++j){
+					for(int k = 0; k < 3; ++k)
+						for(int l = k; l < 3; ++l)
 							covariance_Matrix(k, l) += (vector_neighbors[j].second(k) - barycenter(k)) * (vector_neighbors[j].second(l) - barycenter(l));
 				}
 				covariance_Matrix(1, 0) = covariance_Matrix(0, 1);
@@ -489,7 +489,7 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 				Eigen::SelfAdjointEigenSolver<Eigen::Matrix3d> es(covariance_Matrix);
 				Eigen::Vector3d normal(es.eigenvectors().col(0).normalized());
 
-				/*if (normal.dot(trajectory[index_frame].center_t - pt_keypoint) < 0) {
+				/*if (normal.dot(trajectory[index_frame].center_t - pt_keypoint) < 0){
 					normal = -1.0 * normal;
 				}*/
 
@@ -515,13 +515,13 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 				//Eigen::Vector3d closest_point = pt_keypoint - dist_to_plane * normal;
 
 				double current_max_dist_plane = 0;
-				if (index_frame == 1) {
+				if (index_frame == 1){
 					current_max_dist_plane = current_max_dist_plane = START_DIST_TO_PLANE_FRAME_TO_MODEL - (double)iter / (double)(NUMBER_ITER_FRAME_TO_MODEL - 1) * (START_DIST_TO_PLANE_FRAME_TO_MODEL - MAX_DIST_TO_PLANE_FRAME_TO_MODEL);
 				}
 				else {
 					current_max_dist_plane = MAX_DIST_TO_PLANE_FRAME_TO_MODEL;
 				}
-				if (fabs(dist_to_plane) < current_max_dist_plane) {
+				if (fabs(dist_to_plane) < current_max_dist_plane){
 
 					double scalar = closest_pt_normal[0] * (pt_keypoint[0] - closest_point[0]) + closest_pt_normal[1] * (pt_keypoint[1] - closest_point[1]) + closest_pt_normal[2] * (pt_keypoint[2] - closest_point[2]);
 					total_scalar = total_scalar + scalar * scalar;
@@ -540,8 +540,8 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 
 					Eigen::VectorXd u(6);
 					u << cix, ciy, ciz, nix, niy, niz;
-					for (int i = 0; i < 6; i++) {
-						for (int j = 0; j < 6; j++) {
+					for(int i = 0; i < 6; i++){
+						for(int j = 0; j < 6; j++){
 							A(i, j) = A(i, j) + u[i] * u[j];
 						}
 						b(i) = b(i) - u[i] * scalar;
@@ -549,15 +549,15 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 				}
 			}
 		}
-		if (number_keypoints_used < 200) {
+		if (number_keypoints_used < 200){
 			std::cout << "Error : not enough keypoints selected in frame to model !" << std::endl;
 			std::cout << "number_keypoints_used : " << number_keypoints_used << std::endl;
 			return 0;
 		}
 
 		// Normalize equation
-		for (int i(0); i < 6; i++) {
-			for (int j(0); j < 6; j++) {
+		for(int i(0); i < 6; i++){
+			for(int j(0); j < 6; j++){
 				A(i, j) = A(i, j) / number_keypoints_used;
 			}
 			b(i) = b(i) / number_keypoints_used;
@@ -569,7 +569,7 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 		double cond_number_A = es_cond.eigenvalues()[5] / es_cond.eigenvalues()[0];*/
 
 		//Transform Matrix to remove singular elements
-		/*for (int i(0); i < 6; i++) {
+		/*for(int i(0); i < 6; i++){
 			A(i, i) = A(i, i);
 		}*/
 
@@ -601,21 +601,21 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 		trajectory[index_frame].center_t = trajectory[index_frame].center_t + translation;
 
 		//Update keypoints
-		for (std::list<Point3D>::iterator it_keypoint = keypoints.begin(); it_keypoint != keypoints.end(); ++it_keypoint) {
+		for(std::list<Point3D>::iterator it_keypoint = keypoints.begin(); it_keypoint != keypoints.end(); ++it_keypoint){
 			(*it_keypoint).pt = trajectory[index_frame].center_R * (*it_keypoint).raw_pt + trajectory[index_frame].center_t;
 		}
 
 
-		if ((index_frame > 1) && (x.norm() < NORM_X_END_ITERATION_FRAME_TO_MODEL)) {
+		if ((index_frame > 1) && (x.norm() < NORM_X_END_ITERATION_FRAME_TO_MODEL)){
 			return number_keypoints_used;
 		}
 	}
 
 	return number_keypoints_used;
 }
-void CT_ICP::sub_sample_frame(std::vector<Point3D>& frame, double size_voxel) {
+void CT_ICP::sub_sample_frame(std::vector<Point3D>& frame, double size_voxel){
 	std::unordered_map<Voxel, std::vector<Point3D>> grid;
-	for (int i = 0; i < (int)frame.size(); i++) {
+	for(int i = 0; i < (int)frame.size(); i++){
 		short kx = static_cast<short>(frame[i].pt[0] / size_voxel);
 		short ky = static_cast<short>(frame[i].pt[1] / size_voxel);
 		short kz = static_cast<short>(frame[i].pt[2] / size_voxel);
@@ -623,22 +623,22 @@ void CT_ICP::sub_sample_frame(std::vector<Point3D>& frame, double size_voxel) {
 	}
 	frame.resize(0);
 	int step = 0; //to take one random point inside each voxel (but with identical results when lunching the SLAM a second time)
-	for (const auto& n : grid) {
-		if (n.second.size() > 0) {
+	for(const auto& n : grid){
+		if (n.second.size() > 0){
 			//frame.push_back(n.second[step % (int)n.second.size()]);
 			frame.push_back(n.second[0]);
 			step++;
 		}
 	}
 }
-void CT_ICP::grid_sampling(std::vector<Point3D>& frame, std::list<Point3D>& keypoints, double size_voxel_subsampling) {
+void CT_ICP::grid_sampling(std::vector<Point3D>& frame, std::list<Point3D>& keypoints, double size_voxel_subsampling){
 	std::vector<Point3D> frame_sub;
 	frame_sub.resize(frame.size());
-	for (int i = 0; i < (int)frame_sub.size(); i++) {
+	for(int i = 0; i < (int)frame_sub.size(); i++){
 		frame_sub[i] = frame[i];
 	}
 	sub_sample_frame(frame_sub, size_voxel_subsampling);
-	for (int i = 0; i < (int)frame_sub.size(); i++) {
+	for(int i = 0; i < (int)frame_sub.size(); i++){
 		keypoints.push_back(frame_sub[i]);
 	}
 }

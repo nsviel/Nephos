@@ -1662,7 +1662,7 @@ def CheckInvalidIncrement(filename, clean_lines, linenum, error):
   """Checks for invalid increment *count++.
 
   For example following function:
-  void increment_counter(int* count) {
+  void increment_counter(int* count){
     *count++;
   }
   is invalid, because it effectively does count++, moving pointer, and should
@@ -2648,10 +2648,10 @@ def CheckSpacing(filename, clean_lines, linenum, nesting_state, error):
               'should be deleted.')
     # Ignore blank lines at the end of a block in a long if-else
     # chain, like this:
-    #   if (condition1) {
+    #   if (condition1){
     #     // Something followed by a blank line
     #
-    #   } else if (condition2) {
+    #   } else if (condition2){
     #     // Something else
     #   }
     if linenum + 1 < clean_lines.NumLines():
@@ -2795,7 +2795,7 @@ def CheckSpacing(filename, clean_lines, linenum, nesting_state, error):
   # consistent about how many spaces are inside the parens, and
   # there should either be zero or one spaces inside the parens.
   # We don't want: "if ( foo)" or "if ( foo   )".
-  # Exception: "for ( ; foo; bar)" and "for (foo; bar; )" are allowed.
+  # Exception: "for( ; foo; bar)" and "for(foo; bar; )" are allowed.
   match = Search(r'\b(if|for|while|switch)\s*'
                  r'\(([ ]*)(.).*[^ ]+([ ]*)\)\s*{\s*$',
                  line)
@@ -2827,7 +2827,7 @@ def CheckSpacing(filename, clean_lines, linenum, nesting_state, error):
 
   # You should always have a space after a semicolon
   # except for few corner cases
-  # TODO(unknown): clarify if 'if (1) { return 1;}' is requires one more
+  # TODO(unknown): clarify if 'if (1){ return 1;}' is requires one more
   # space after ;
   if Search(r';[^\s};\\)/]', line):
     error(filename, linenum, 'whitespace/semicolon', 3,
@@ -2861,7 +2861,7 @@ def CheckSpacing(filename, clean_lines, linenum, nesting_state, error):
     # warning on first sight of closing brace, because that would
     # cause false negatives for things that are not initializer lists.
     #   Silence this:         But not this:
-    #     Outer{                if (...) {
+    #     Outer{                if (...){
     #       Inner{...}            if (...){  // Missing space before {
     #     };                    }
     #
@@ -3058,12 +3058,12 @@ def CheckBraces(filename, clean_lines, linenum, error):
   # rather than a blacklist.  These are the places where "};" should
   # be replaced by just "}":
   # 1. Some flavor of block following closing parenthesis:
-  #    for (;;) {};
-  #    while (...) {};
-  #    switch (...) {};
-  #    Function(...) {};
-  #    if (...) {};
-  #    if (...) else if (...) {};
+  #    for(;;){};
+  #    while (...){};
+  #    switch (...){};
+  #    Function(...){};
+  #    if (...){};
+  #    if (...) else if (...){};
   #
   # 2. else block:
   #    if (...) else {};
@@ -3076,7 +3076,7 @@ def CheckBraces(filename, clean_lines, linenum, error):
   #    {};
   #
   # 5. Block at the beginning of a function:
-  #    Function(...) {
+  #    Function(...){
   #      {};
   #    }
   #
@@ -3085,7 +3085,7 @@ def CheckBraces(filename, clean_lines, linenum, error):
   #    that expression will not contain semicolons.
   #
   # 6. Block following another block:
-  #    while (true) {}
+  #    while (true){}
   #    {};
   #
   # 7. End of namespaces:
@@ -3144,7 +3144,7 @@ def CheckBraces(filename, clean_lines, linenum, error):
       # Note that we can't simply concatenate the previous line to the
       # current line and do a single match, otherwise we may output
       # duplicate warnings for the blank line case:
-      #   if (cond) {
+      #   if (cond){
       #     // blank line
       #   }
       prevline = GetPreviousNonBlankLine(clean_lines, linenum)[0]
@@ -3949,15 +3949,15 @@ def CheckLanguage(filename, clean_lines, linenum, file_extension,
   # Check if some verboten operator overloading is going on
   # TODO(unknown): catch out-of-line unary operator&:
   #   class X {};
-  #   int operator&(const X& x) { return 42; }  // unary operator&
+  #   int operator&(const X& x){ return 42; }  // unary operator&
   # The trick is it's hard to tell apart from binary operator&:
-  #   class Y { int operator&(const Y& x) { return 23; } }; // binary operator&
+  #   class Y { int operator&(const Y& x){ return 23; } }; // binary operator&
   if Search(r'\boperator\s*&\s*\(\s*\)', line):
     error(filename, linenum, 'runtime/operator', 4,
           'Unary operator& is dangerous.  Do not use it.')
 
   # Check for suspicious usage of "if" like
-  # } if (a == b) {
+  # } if (a == b){
   if Search(r'\}\s*if\s*\(', line):
     error(filename, linenum, 'readability/braces', 4,
           'Did you mean "else if"? If not, start a new line for "if".')
@@ -4223,11 +4223,11 @@ def CheckCStyleCast(filename, linenum, line, raw_line, cast_type, pattern,
   # These are things that we want warnings for, since the style guide
   # explicitly require all parameters to be named:
   #   Function(int);
-  #   Function(int) {
+  #   Function(int){
   #   ConstMember(int) const;
   #   ConstMember(int) const {
   #   ExceptionMember(int) throw (...);
-  #   ExceptionMember(int) throw (...) {
+  #   ExceptionMember(int) throw (...){
   #   PureVirtual(int) = 0;
   #
   # These are functions of some sort, where the compiler would be fine
@@ -4745,7 +4745,7 @@ def ParseArguments(args):
   filters = ''
   counting_style = ''
 
-  for (opt, val) in opts:
+  for(opt, val) in opts:
     if opt == '--help':
       PrintUsage(None)
     elif opt == '--output':

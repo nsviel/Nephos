@@ -59,7 +59,7 @@ void Navigator::draw_header(){
 
   // Render buttons for each path element
   std::string element_path;
-  for (int i = 0; i < pathElements.size(); ++i){
+  for(int i = 0; i < pathElements.size(); ++i){
     std::string element = pathElements[i];
     if(element == "") continue;
 

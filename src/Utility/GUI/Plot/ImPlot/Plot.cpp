@@ -231,7 +231,7 @@ void Plot::plot_scatter_rdm(){
   static std::vector<double> x_data, y_data;
   const int num_points = 100;
   if(x_data.size() == 0){
-    for (int i = 0; i < num_points; ++i) {
+    for(int i = 0; i < num_points; ++i){
       x_data.push_back((double)i);
       y_data.push_back((double)rand() / RAND_MAX);
     }

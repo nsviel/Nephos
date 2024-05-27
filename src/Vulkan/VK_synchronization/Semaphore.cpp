@@ -92,7 +92,7 @@ void Semaphore::reset_semaphore(vk::structure::Semaphore* semaphore){
 
   // Call vkSignalSemaphoreKHR to signal (reset) the semaphore
   VkResult result = vkSignalSemaphore(vk_struct->device.handle, &signalInfo);
-  if (result != VK_SUCCESS) {
+  if (result != VK_SUCCESS){
       throw std::runtime_error("Failed to reset semaphore!");
   }
 */

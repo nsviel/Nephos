@@ -21,12 +21,12 @@ utl::media::Image load_image(std::string path){
   //---------------------------
   return image;
 }
-bool is_device_connected(const std::string& devicePath) {
+bool is_device_connected(const std::string& devicePath){
   //---------------------------
 
   int fileDescriptor = open(devicePath.c_str(), O_RDONLY);
 
-  if (fileDescriptor == -1) {
+  if (fileDescriptor == -1){
     // Failed to open the device file
     return false;
   }

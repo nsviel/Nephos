@@ -108,7 +108,7 @@ void PlyFile::readHeader()
 	_propertySize = new int[_propertyNum];
 	_propertyName = new string[_propertyNum];
 
-	for (int i(0); i < _propertyNum; i++)
+	for(int i(0); i < _propertyNum; i++)
 	{
 		_propertyType[i] = typePptTmp.front();
 		_propertySize[i] = sizePptTmp.front();
@@ -158,7 +158,7 @@ void PlyFile::writeHeader()
 		_header += "\n";
 
 
-		for (int i(0); i < _propertyNum; i++)
+		for(int i(0); i < _propertyNum; i++)
 		{
 			_header += "property ";
 			switch (_propertyType[i])
@@ -217,7 +217,7 @@ void PlyFile::readFile(char*& points, int& pointSize, int& numPoints)
 		unsigned long long int n = bufferSize / (unsigned long long int)READ_SIZE;
 		unsigned long long int r = bufferSize % (unsigned long long int)READ_SIZE;
 
-		for (unsigned long long int i(0); i < n; i++)
+		for(unsigned long long int i(0); i < n; i++)
 		{
 			_file.read(points + i*(unsigned long long int)READ_SIZE, READ_SIZE);
 		}
@@ -268,7 +268,7 @@ void PlyFile::writeFile(char* points, int numPoints, list<string> properties, li
 	auto typesIt = types.begin();
 	int i = 0;
 
-	for (int i(0); i < _propertyNum; i++)
+	for(int i(0); i < _propertyNum; i++)
 	{
 		_propertyName[i] = *propIt;
 		_propertyType[i] = *typesIt;
@@ -302,7 +302,7 @@ void PlyFile::writeFile(char* points, int numPoints, list<string> properties, li
 	unsigned long long int n = bufferSize / (unsigned long long int)WRITE_SIZE;
 	unsigned long long int r = bufferSize % (unsigned long long int)WRITE_SIZE;
 
-	for (unsigned long long int i(0); i < n; i++)
+	for(unsigned long long int i(0); i < n; i++)
 	{
 		_file.write(points + i*(unsigned long long int)WRITE_SIZE, WRITE_SIZE);
 	}
@@ -320,7 +320,7 @@ void PlyFile::displayInfos()
 	cout << "  - format     : " << _format << endl;
 	cout << "  - num points : " << _numPoints << endl;
 	cout << "  - properties : " << endl;
-	for (int i(0); i < _propertyNum; i++)
+	for(int i(0); i < _propertyNum; i++)
 	{
 		cout << "     - " << _propertyName[i] << " :	" << _propertyType[i] << " |	" << _propertySize[i] << " bytes " << endl;
 	}

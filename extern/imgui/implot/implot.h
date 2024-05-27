@@ -467,9 +467,9 @@ enum ImPlotBin_ {
 IM_MSVC_RUNTIME_CHECKS_OFF
 struct ImPlotPoint {
     double x, y;
-    constexpr ImPlotPoint()                     : x(0.0), y(0.0) { }
-    constexpr ImPlotPoint(double _x, double _y) : x(_x), y(_y) { }
-    constexpr ImPlotPoint(const ImVec2& p)      : x((double)p.x), y((double)p.y) { }
+    constexpr ImPlotPoint()                     : x(0.0), y(0.0){ }
+    constexpr ImPlotPoint(double _x, double _y) : x(_x), y(_y){ }
+    constexpr ImPlotPoint(const ImVec2& p)      : x((double)p.x), y((double)p.y){ }
     double& operator[] (size_t idx)             { IM_ASSERT(idx == 0 || idx == 1); return ((double*)(void*)(char*)this)[idx]; }
     double  operator[] (size_t idx) const       { IM_ASSERT(idx == 0 || idx == 1); return ((const double*)(const void*)(const char*)this)[idx]; }
 #ifdef IMPLOT_POINT_CLASS_EXTRA
@@ -482,8 +482,8 @@ IM_MSVC_RUNTIME_CHECKS_RESTORE
 // Range defined by a min/max value.
 struct ImPlotRange {
     double Min, Max;
-    constexpr ImPlotRange()                         : Min(0.0), Max(0.0) { }
-    constexpr ImPlotRange(double _min, double _max) : Min(_min), Max(_max) { }
+    constexpr ImPlotRange()                         : Min(0.0), Max(0.0){ }
+    constexpr ImPlotRange(double _min, double _max) : Min(_min), Max(_max){ }
     bool Contains(double value) const               { return value >= Min && value <= Max;                      }
     double Size() const                             { return Max - Min;                                         }
     double Clamp(double value) const                { return (value < Min) ? Min : (value > Max) ? Max : value; }
@@ -492,8 +492,8 @@ struct ImPlotRange {
 // Combination of two range limits for X and Y axes. Also an AABB defined by Min()/Max().
 struct ImPlotRect {
     ImPlotRange X, Y;
-    constexpr ImPlotRect()                                                       : X(0.0,0.0), Y(0.0,0.0) { }
-    constexpr ImPlotRect(double x_min, double x_max, double y_min, double y_max) : X(x_min, x_max), Y(y_min, y_max) { }
+    constexpr ImPlotRect()                                                       : X(0.0,0.0), Y(0.0,0.0){ }
+    constexpr ImPlotRect(double x_min, double x_max, double y_min, double y_max) : X(x_min, x_max), Y(y_min, y_max){ }
     bool Contains(const ImPlotPoint& p) const                                    { return Contains(p.x, p.y);                 }
     bool Contains(double x, double y) const                                      { return X.Contains(x) && Y.Contains(y);     }
     ImPlotPoint Size() const                                                     { return ImPlotPoint(X.Size(), Y.Size());    }
@@ -618,7 +618,7 @@ IMPLOT_API void SetImGuiContext(ImGuiContext* ctx);
 // Starts a 2D plotting context. If this function returns true, EndPlot() MUST
 // be called! You are encouraged to use the following convention:
 //
-// if (BeginPlot(...)) {
+// if (BeginPlot(...)){
 //     PlotLine(...);
 //     ...
 //     EndPlot();
@@ -648,9 +648,9 @@ IMPLOT_API void EndPlot();
 //
 // Example:
 //
-// if (BeginSubplots("My Subplot",2,3,ImVec2(800,400)) {
-//     for (int i = 0; i < 6; ++i) {
-//         if (BeginPlot(...)) {
+// if (BeginSubplots("My Subplot",2,3,ImVec2(800,400)){
+//     for(int i = 0; i < 6; ++i){
+//         if (BeginPlot(...)){
 //             ImPlot::PlotLine(...);
 //             ...
 //             EndPlot();
@@ -707,7 +707,7 @@ IMPLOT_API void EndSubplots();
 // current plot. The functions should be called immediately after BeginPlot
 // and before any other API calls. Typical usage is as follows:
 
-// if (BeginPlot(...)) {                     1) begin a new plot
+// if (BeginPlot(...)){                     1) begin a new plot
 //     SetupAxis(ImAxis_X1, "My X-Axis");    2) make Setup calls
 //     SetupAxis(ImAxis_Y1, "My Y-Axis");
 //     SetupLegend(ImPlotLocation_North);
@@ -778,7 +778,7 @@ IMPLOT_API void SetupFinish();
 
 // if (ImGui::Button("Center Plot"))
 //     ImPlot::SetNextPlotLimits(-1,1,-1,1);
-// if (ImPlot::BeginPlot(...)) {
+// if (ImPlot::BeginPlot(...)){
 //     ...
 //     ImPlot::EndPlot();
 // }
@@ -829,7 +829,7 @@ IMPLOT_API void SetNextAxesToFit();
 //    an ImPlot function post-fixed with a G (e.g. PlotScatterG). This has a slight performance
 //    cost, but probably not enough to worry about unless your data is very large. Examples:
 //
-//    ImPlotPoint MyDataGetter(void* data, int idx) {
+//    ImPlotPoint MyDataGetter(void* data, int idx){
 //        MyData* my_data = (MyData*)data;
 //        ImPlotPoint p;
 //        p.x = my_data->GetTime(idx);
@@ -837,12 +837,12 @@ IMPLOT_API void SetNextAxesToFit();
 //        return p
 //    }
 //    ...
-//    auto my_lambda = [](int idx, void*) {
+//    auto my_lambda = [](int idx, void*){
 //        double t = idx / 999.0;
 //        return ImPlotPoint(t, 0.5+0.5*std::sin(2*PI*10*t));
 //    };
 //    ...
-//    if (ImPlot::BeginPlot("MyPlot")) {
+//    if (ImPlot::BeginPlot("MyPlot")){
 //        MyData my_data;
 //        ImPlot::PlotScatterG("scatter", MyDataGetter, &my_data, my_data.Size());
 //        ImPlot::PlotLineG("line", my_lambda, nullptr, 1000);

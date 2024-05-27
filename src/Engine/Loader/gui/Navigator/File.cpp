@@ -17,7 +17,7 @@ bool File::compare_with_specs(const ldr::gui::File& a, const ldr::gui::File& b){
     return false;
   }
 
-  for (int n = 0; n < current_sort_specs->SpecsCount; n++){
+  for(int n = 0; n < current_sort_specs->SpecsCount; n++){
     const ImGuiTableColumnSortSpecs* sort_spec = &current_sort_specs->Specs[n];
     int delta = 0;
     switch (sort_spec->ColumnUserID){

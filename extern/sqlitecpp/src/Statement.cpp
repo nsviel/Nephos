@@ -283,7 +283,7 @@ int Statement::getColumnIndex(const char* apName) const
     // Build the map of column index by name on first call
     if (mColumnNames.empty())
     {
-        for (int i = 0; i < mColumnCount; ++i)
+        for(int i = 0; i < mColumnCount; ++i)
         {
             const char* pName = sqlite3_column_name(getPreparedStatement(), i);
             mColumnNames[pName] = i;

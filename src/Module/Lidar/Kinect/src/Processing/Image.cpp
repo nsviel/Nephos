@@ -446,7 +446,7 @@ uint8_t* Image::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int
   uint8_t* bgrImage = new uint8_t[width * height * 3];
   //---------------------------
 
-  for (int i = 0; i < width * height; i += 2) {
+  for(int i = 0; i < width * height; i += 2){
     uint8_t y0 = yuy2Image[2 * i];
     uint8_t u = yuy2Image[2 * i + 1];
     uint8_t y1 = yuy2Image[2 * i + 2];

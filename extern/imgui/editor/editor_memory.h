@@ -156,7 +156,7 @@ struct MemoryEditor
         float   PosAsciiEnd;
         float   WindowWidth;
 
-        Sizes() { memset(this, 0, sizeof(*this)); }
+        Sizes(){ memset(this, 0, sizeof(*this)); }
     };
 
     void CalcSizes(Sizes& s, size_t mem_size, size_t base_display_addr)
@@ -164,7 +164,7 @@ struct MemoryEditor
         ImGuiStyle& style = ImGui::GetStyle();
         s.AddrDigitsCount = OptAddrDigitsCount;
         if (s.AddrDigitsCount == 0)
-            for (size_t n = base_display_addr + mem_size - 1; n > 0; n >>= 4)
+            for(size_t n = base_display_addr + mem_size - 1; n > 0; n >>= 4)
                 s.AddrDigitsCount++;
         s.LineHeight = ImGui::GetTextLineHeight();
         s.GlyphWidth = ImGui::CalcTextSize("F").x + 1;                  // We assume the font is mono-space
@@ -269,13 +269,13 @@ struct MemoryEditor
         const char* format_byte_space = OptUpperCaseHex ? "%02X " : "%02x ";
 
         while (clipper.Step())
-            for (int line_i = clipper.DisplayStart; line_i < clipper.DisplayEnd; line_i++) // display only visible lines
+            for(int line_i = clipper.DisplayStart; line_i < clipper.DisplayEnd; line_i++) // display only visible lines
             {
                 size_t addr = (size_t)(line_i * Cols);
                 ImGui::Text(format_address, s.AddrDigitsCount, base_display_addr + addr);
 
                 // Draw Hexadecimal
-                for (int n = 0; n < Cols && addr < mem_size; n++, addr++)
+                for(int n = 0; n < Cols && addr < mem_size; n++, addr++)
                 {
                     float byte_pos_x = s.PosHexStart + s.HexCellWidth * n;
                     if (OptMidColsCount > 0)
@@ -407,7 +407,7 @@ struct MemoryEditor
                         DataEditingTakeFocus = true;
                     }
                     ImGui::PopID();
-                    for (int n = 0; n < Cols && addr < mem_size; n++, addr++)
+                    for(int n = 0; n < Cols && addr < mem_size; n++, addr++)
                     {
                         if (addr == DataEditingAddr)
                         {
@@ -464,10 +464,10 @@ struct MemoryEditor
         if (ImGui::BeginPopup("context"))
         {
             ImGui::SetNextItemWidth(s.GlyphWidth * 7 + style.FramePadding.x * 2.0f);
-            if (ImGui::DragInt("##cols", &Cols, 0.2f, 4, 32, "%d cols")) { ContentsWidthChanged = true; if (Cols < 1) Cols = 1; }
+            if (ImGui::DragInt("##cols", &Cols, 0.2f, 4, 32, "%d cols")){ ContentsWidthChanged = true; if (Cols < 1) Cols = 1; }
             ImGui::Checkbox("Show Data Preview", &OptShowDataPreview);
             ImGui::Checkbox("Show HexII", &OptShowHexII);
-            if (ImGui::Checkbox("Show Ascii", &OptShowAscii)) { ContentsWidthChanged = true; }
+            if (ImGui::Checkbox("Show Ascii", &OptShowAscii)){ ContentsWidthChanged = true; }
             ImGui::Checkbox("Grey out zeroes", &OptGreyOutZeroes);
             ImGui::Checkbox("Uppercase Hex", &OptUpperCaseHex);
 
@@ -513,7 +513,7 @@ struct MemoryEditor
         ImGui::SetNextItemWidth((s.GlyphWidth * 10.0f) + style.FramePadding.x * 2.0f + style.ItemInnerSpacing.x);
         if (ImGui::BeginCombo("##combo_type", DataTypeGetDesc(PreviewDataType), ImGuiComboFlags_HeightLargest))
         {
-            for (int n = 0; n < ImGuiDataType_COUNT; n++)
+            for(int n = 0; n < ImGuiDataType_COUNT; n++)
                 if (ImGui::Selectable(DataTypeGetDesc((ImGuiDataType)n), PreviewDataType == n))
                     PreviewDataType = (ImGuiDataType)n;
             ImGui::EndCombo();
@@ -573,7 +573,7 @@ struct MemoryEditor
         {
             uint8_t* dst = (uint8_t*)_dst;
             uint8_t* src = (uint8_t*)_src + s - 1;
-            for (int i = 0, n = (int)s; i < n; ++i)
+            for(int i = 0, n = (int)s; i < n; ++i)
                 memcpy(dst++, src--, 1);
             return _dst;
         }
@@ -593,7 +593,7 @@ struct MemoryEditor
         {
             uint8_t* dst = (uint8_t*)_dst;
             uint8_t* src = (uint8_t*)_src + s - 1;
-            for (int i = 0, n = (int)s; i < n; ++i)
+            for(int i = 0, n = (int)s; i < n; ++i)
                 memcpy(dst++, src--, 1);
             return _dst;
         }
@@ -613,9 +613,9 @@ struct MemoryEditor
         size_t out_n = 0;
         static char out_buf[64 + 8 + 1];
         int n = width / 8;
-        for (int j = n - 1; j >= 0; --j)
+        for(int j = n - 1; j >= 0; --j)
         {
-            for (int i = 0; i < 8; ++i)
+            for(int i = 0; i < 8; ++i)
                 out_buf[out_n++] = (buf[j] & (1 << (7 - i))) ? '1' : '0';
             out_buf[out_n++] = ' ';
         }
@@ -631,7 +631,7 @@ struct MemoryEditor
         size_t elem_size = DataTypeGetSize(data_type);
         size_t size = addr + elem_size > mem_size ? mem_size - addr : elem_size;
         if (ReadFn)
-            for (int i = 0, n = (int)size; i < n; ++i)
+            for(int i = 0, n = (int)size; i < n; ++i)
                 buf[i] = ReadFn(mem_data, addr + i);
         else
             memcpy(buf, mem_data + addr, size);
@@ -651,80 +651,80 @@ struct MemoryEditor
         {
             int8_t int8 = 0;
             EndianessCopy(&int8, buf, size);
-            if (data_format == DataFormat_Dec) { ImSnprintf(out_buf, out_buf_size, "%hhd", int8); return; }
-            if (data_format == DataFormat_Hex) { ImSnprintf(out_buf, out_buf_size, "0x%02x", int8 & 0xFF); return; }
+            if (data_format == DataFormat_Dec){ ImSnprintf(out_buf, out_buf_size, "%hhd", int8); return; }
+            if (data_format == DataFormat_Hex){ ImSnprintf(out_buf, out_buf_size, "0x%02x", int8 & 0xFF); return; }
             break;
         }
         case ImGuiDataType_U8:
         {
             uint8_t uint8 = 0;
             EndianessCopy(&uint8, buf, size);
-            if (data_format == DataFormat_Dec) { ImSnprintf(out_buf, out_buf_size, "%hhu", uint8); return; }
-            if (data_format == DataFormat_Hex) { ImSnprintf(out_buf, out_buf_size, "0x%02x", uint8 & 0XFF); return; }
+            if (data_format == DataFormat_Dec){ ImSnprintf(out_buf, out_buf_size, "%hhu", uint8); return; }
+            if (data_format == DataFormat_Hex){ ImSnprintf(out_buf, out_buf_size, "0x%02x", uint8 & 0XFF); return; }
             break;
         }
         case ImGuiDataType_S16:
         {
             int16_t int16 = 0;
             EndianessCopy(&int16, buf, size);
-            if (data_format == DataFormat_Dec) { ImSnprintf(out_buf, out_buf_size, "%hd", int16); return; }
-            if (data_format == DataFormat_Hex) { ImSnprintf(out_buf, out_buf_size, "0x%04x", int16 & 0xFFFF); return; }
+            if (data_format == DataFormat_Dec){ ImSnprintf(out_buf, out_buf_size, "%hd", int16); return; }
+            if (data_format == DataFormat_Hex){ ImSnprintf(out_buf, out_buf_size, "0x%04x", int16 & 0xFFFF); return; }
             break;
         }
         case ImGuiDataType_U16:
         {
             uint16_t uint16 = 0;
             EndianessCopy(&uint16, buf, size);
-            if (data_format == DataFormat_Dec) { ImSnprintf(out_buf, out_buf_size, "%hu", uint16); return; }
-            if (data_format == DataFormat_Hex) { ImSnprintf(out_buf, out_buf_size, "0x%04x", uint16 & 0xFFFF); return; }
+            if (data_format == DataFormat_Dec){ ImSnprintf(out_buf, out_buf_size, "%hu", uint16); return; }
+            if (data_format == DataFormat_Hex){ ImSnprintf(out_buf, out_buf_size, "0x%04x", uint16 & 0xFFFF); return; }
             break;
         }
         case ImGuiDataType_S32:
         {
             int32_t int32 = 0;
             EndianessCopy(&int32, buf, size);
-            if (data_format == DataFormat_Dec) { ImSnprintf(out_buf, out_buf_size, "%d", int32); return; }
-            if (data_format == DataFormat_Hex) { ImSnprintf(out_buf, out_buf_size, "0x%08x", int32); return; }
+            if (data_format == DataFormat_Dec){ ImSnprintf(out_buf, out_buf_size, "%d", int32); return; }
+            if (data_format == DataFormat_Hex){ ImSnprintf(out_buf, out_buf_size, "0x%08x", int32); return; }
             break;
         }
         case ImGuiDataType_U32:
         {
             uint32_t uint32 = 0;
             EndianessCopy(&uint32, buf, size);
-            if (data_format == DataFormat_Dec) { ImSnprintf(out_buf, out_buf_size, "%u", uint32); return; }
-            if (data_format == DataFormat_Hex) { ImSnprintf(out_buf, out_buf_size, "0x%08x", uint32); return; }
+            if (data_format == DataFormat_Dec){ ImSnprintf(out_buf, out_buf_size, "%u", uint32); return; }
+            if (data_format == DataFormat_Hex){ ImSnprintf(out_buf, out_buf_size, "0x%08x", uint32); return; }
             break;
         }
         case ImGuiDataType_S64:
         {
             int64_t int64 = 0;
             EndianessCopy(&int64, buf, size);
-            if (data_format == DataFormat_Dec) { ImSnprintf(out_buf, out_buf_size, "%lld", (long long)int64); return; }
-            if (data_format == DataFormat_Hex) { ImSnprintf(out_buf, out_buf_size, "0x%016llx", (long long)int64); return; }
+            if (data_format == DataFormat_Dec){ ImSnprintf(out_buf, out_buf_size, "%lld", (long long)int64); return; }
+            if (data_format == DataFormat_Hex){ ImSnprintf(out_buf, out_buf_size, "0x%016llx", (long long)int64); return; }
             break;
         }
         case ImGuiDataType_U64:
         {
             uint64_t uint64 = 0;
             EndianessCopy(&uint64, buf, size);
-            if (data_format == DataFormat_Dec) { ImSnprintf(out_buf, out_buf_size, "%llu", (long long)uint64); return; }
-            if (data_format == DataFormat_Hex) { ImSnprintf(out_buf, out_buf_size, "0x%016llx", (long long)uint64); return; }
+            if (data_format == DataFormat_Dec){ ImSnprintf(out_buf, out_buf_size, "%llu", (long long)uint64); return; }
+            if (data_format == DataFormat_Hex){ ImSnprintf(out_buf, out_buf_size, "0x%016llx", (long long)uint64); return; }
             break;
         }
         case ImGuiDataType_Float:
         {
             float float32 = 0.0f;
             EndianessCopy(&float32, buf, size);
-            if (data_format == DataFormat_Dec) { ImSnprintf(out_buf, out_buf_size, "%f", float32); return; }
-            if (data_format == DataFormat_Hex) { ImSnprintf(out_buf, out_buf_size, "%a", float32); return; }
+            if (data_format == DataFormat_Dec){ ImSnprintf(out_buf, out_buf_size, "%f", float32); return; }
+            if (data_format == DataFormat_Hex){ ImSnprintf(out_buf, out_buf_size, "%a", float32); return; }
             break;
         }
         case ImGuiDataType_Double:
         {
             double float64 = 0.0;
             EndianessCopy(&float64, buf, size);
-            if (data_format == DataFormat_Dec) { ImSnprintf(out_buf, out_buf_size, "%f", float64); return; }
-            if (data_format == DataFormat_Hex) { ImSnprintf(out_buf, out_buf_size, "%a", float64); return; }
+            if (data_format == DataFormat_Dec){ ImSnprintf(out_buf, out_buf_size, "%f", float64); return; }
+            if (data_format == DataFormat_Hex){ ImSnprintf(out_buf, out_buf_size, "%a", float64); return; }
             break;
         }
         case ImGuiDataType_COUNT:

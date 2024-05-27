@@ -111,7 +111,7 @@ void Graph::rebuild_task_stats(size_t bar_end){
     stat_priority[stat_index] = stat_index;
   }
 
-  std::sort(stat_priority.begin(), stat_priority.end(), [this](size_t left, size_t right) {return vec_stat[left].max_time > vec_stat[right].max_time; });
+  std::sort(stat_priority.begin(), stat_priority.end(), [this](size_t left, size_t right){return vec_stat[left].max_time > vec_stat[right].max_time; });
   for(size_t stat_number = 0; stat_number < vec_stat.size(); stat_number++){
     size_t stat_index = stat_priority[stat_number];
     vec_stat[stat_index].priority_order = stat_number;
@@ -238,7 +238,7 @@ void Graph::render_legend(ImDrawList *draw_list){
 void Graph::render_background_tics(ImDrawList *draw_list){
   //---------------------------
 
-  for(float time = 0.0f; time <= max_time_s*1000.0f; time += 5.0f) {
+  for(float time = 0.0f; time <= max_time_s*1000.0f; time += 5.0f){
     int lineWidth = (int)(time / 5.0f) % 2 == 0 ? 1 : 2;
     vec4 color(255, 255, 255, 20);
     this->draw_line_at_time(draw_list, time, lineWidth, color);

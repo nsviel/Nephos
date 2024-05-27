@@ -63,12 +63,12 @@ public:
 		// For example, coordinate (1, 5) represents the character 'B' in a line "\tABC", when tab_size = 4,
 		// because it is rendered as "    ABC" on the screen.
 		int mLine, mColumn;
-		Coordinates() : mLine(0), mColumn(0) {}
+		Coordinates() : mLine(0), mColumn(0){}
 		Coordinates(int aLine, int aColumn) : mLine(aLine), mColumn(aColumn){
 			assert(aLine >= 0);
 			assert(aColumn >= 0);
 		}
-		static Coordinates Invalid() { static Coordinates invalid(-1, -1); return invalid; }
+		static Coordinates Invalid(){ static Coordinates invalid(-1, -1); return invalid; }
 
 		bool operator ==(const Coordinates& o) const{
 			return	mLine == o.mLine &&	mColumn == o.mColumn;
@@ -187,8 +187,8 @@ public:
 	void SetReadOnly(bool value);
 	void SetLanguageDefinition(const LanguageDefinition& aLanguageDef);
 	void SetPalette(const Palette& value);
-	void SetErrorMarkers(const ErrorMarkers& aMarkers) { error_markers = aMarkers; }
-	void SetBreakpoints(const Breakpoints& aMarkers) { breakpoint = aMarkers; }
+	void SetErrorMarkers(const ErrorMarkers& aMarkers){ error_markers = aMarkers; }
+	void SetBreakpoints(const Breakpoints& aMarkers){ breakpoint = aMarkers; }
 	void SetText(const std::string& aText);
 	void SetTextLines(const std::vector<std::string>& aLines);
 	void SetColorizerEnable(bool value);
@@ -220,7 +220,7 @@ public:
 	inline void SetHandleMouseInputs    (bool value){ handle_mouse_inputs    = value;}
 	inline void SetHandleKeyboardInputs (bool value){ handle_keyboard_inputs = value;}
 	inline void SetImGuiChildIgnored    (bool value){ ignore_imgui_child     = value;}
-	inline void SetShowWhitespaces(bool value) { show_whitespaces = value; }
+	inline void SetShowWhitespaces(bool value){ show_whitespaces = value; }
 	inline bool IsHandleMouseInputsEnabled() const { return handle_keyboard_inputs; }
 	inline bool IsHandleKeyboardInputsEnabled() const { return handle_keyboard_inputs; }
 	inline bool IsImGuiChildIgnored() const { return ignore_imgui_child; }
@@ -249,8 +249,8 @@ private:
 	};
 	class UndoRecord{
 	public:
-		UndoRecord() {}
-		~UndoRecord() {}
+		UndoRecord(){}
+		~UndoRecord(){}
 
 		UndoRecord(
 			const std::string& aAdded,

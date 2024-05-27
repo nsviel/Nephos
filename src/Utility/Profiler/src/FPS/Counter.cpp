@@ -39,10 +39,10 @@ float Counter::update(){
   return mean_fps;
 }
 
-float Counter::calculate_mean_fps() {
+float Counter::calculate_mean_fps(){
   //---------------------------
 
-  if (fps_queue.empty()) {
+  if (fps_queue.empty()){
     return 0.0f;
   }
 
@@ -51,7 +51,7 @@ float Counter::calculate_mean_fps() {
 
   // Copy values from the queue to the vector
   size_t i = 0;
-  while (!fps_queue.empty()) {
+  while (!fps_queue.empty()){
     fps_vector[i++] = fps_queue.front();
     fps_queue.pop();
   }
@@ -60,7 +60,7 @@ float Counter::calculate_mean_fps() {
   float sum = std::accumulate(fps_vector.begin(), fps_vector.end(), 0.0f);
 
   // Restore values back to the queue
-  for (float value : fps_vector) {
+  for(float value : fps_vector){
     fps_queue.push(value);
   }
 

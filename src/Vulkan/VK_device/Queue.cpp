@@ -21,7 +21,7 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 
   uint32_t nb_queue_family = 0;
   vkGetPhysicalDeviceQueueFamilyProperties(physical_device.handle, &nb_queue_family, nullptr);
-  if(nb_queue_family == 0) {
+  if(nb_queue_family == 0){
     throw std::runtime_error("[error] No queue families on selected GPU");
   }
 

@@ -16,7 +16,7 @@ struct TrajectoryFrame{
 	Eigen::Vector3d center_t;
 };
 struct Voxel{
-	Voxel(short x, short y, short z) : x(x), y(y), z(z) {}
+	Voxel(short x, short y, short z) : x(x), y(y), z(z){}
 
 	bool operator==(const Voxel& vox) const { return x == vox.x && y == vox.y && z == vox.z; }
 	bool operator<(const Voxel& vox) const { return x < vox.x || (x == vox.x && y < vox.y) || (x == vox.x && y == vox.y && z < vox.z); }

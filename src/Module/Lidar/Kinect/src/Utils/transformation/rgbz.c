@@ -474,7 +474,7 @@ static void transformation_draw_rectangle(const k4a_bounding_box_t *bounding_box
                                           k4a_transformation_output_image_t *custom_out)
 {
     k4a_float2_t point;
-    for (int y = bounding_box->top_left[1]; y < bounding_box->bottom_right[1]; y++)
+    for(int y = bounding_box->top_left[1]; y < bounding_box->bottom_right[1]; y++)
     {
         uint16_t *depth_row = depth_out->data_uint16 + y * depth_out->descriptor->width_pixels;
 
@@ -491,7 +491,7 @@ static void transformation_draw_rectangle(const k4a_bounding_box_t *bounding_box
 
         point.xy.y = (float)y;
 
-        for (int x = bounding_box->top_left[0]; x < bounding_box->bottom_right[0]; x++)
+        for(int x = bounding_box->top_left[0]; x < bounding_box->bottom_right[0]; x++)
         {
             point.xy.x = (float)x;
 
@@ -542,7 +542,7 @@ static k4a_result_t transformation_depth_to_color(k4a_transformation_rgbz_contex
     {
         int num_pixels = context->transformed_custom_image.descriptor->width_pixels *
                          context->transformed_custom_image.descriptor->height_pixels;
-        for (int i = 0; i < num_pixels; i++)
+        for(int i = 0; i < num_pixels; i++)
         {
             context->transformed_custom_image.data_uint8[i] = (uint8_t)context->invalid_value;
         }
@@ -551,7 +551,7 @@ static k4a_result_t transformation_depth_to_color(k4a_transformation_rgbz_contex
     {
         int num_pixels = context->transformed_custom_image.descriptor->width_pixels *
                          context->transformed_custom_image.descriptor->height_pixels;
-        for (int i = 0; i < num_pixels; i++)
+        for(int i = 0; i < num_pixels; i++)
         {
             context->transformed_custom_image.data_uint16[i] = context->invalid_value;
         }
@@ -563,7 +563,7 @@ static k4a_result_t transformation_depth_to_color(k4a_transformation_rgbz_contex
         (size_t)context->depth_image.descriptor->width_pixels * sizeof(k4a_correspondence_t));
 
     int idx = 0;
-    for (; idx < context->depth_image.descriptor->width_pixels; idx++)
+    for(; idx < context->depth_image.descriptor->width_pixels; idx++)
     {
         if (K4A_FAILED(TRACE_CALL(transformation_compute_correspondence(
                 idx, context->depth_image.data_uint16[idx], context, vertex_row + idx))))
@@ -573,7 +573,7 @@ static k4a_result_t transformation_depth_to_color(k4a_transformation_rgbz_contex
         }
     }
 
-    for (int y = 1; y < context->depth_image.descriptor->height_pixels; y++)
+    for(int y = 1; y < context->depth_image.descriptor->height_pixels; y++)
     {
         k4a_correspondence_t top_left = vertex_row[0];
         k4a_correspondence_t bottom_left;
@@ -586,7 +586,7 @@ static k4a_result_t transformation_depth_to_color(k4a_transformation_rgbz_contex
         idx++;
         vertex_row[0] = bottom_left;
 
-        for (int x = 1; x < context->depth_image.descriptor->width_pixels; x++, idx++)
+        for(int x = 1; x < context->depth_image.descriptor->width_pixels; x++, idx++)
         {
             k4a_correspondence_t top_right = vertex_row[x];
             k4a_correspondence_t bottom_right;
@@ -900,7 +900,7 @@ static k4a_result_t transformation_color_to_depth(k4a_transformation_rgbz_contex
            (size_t)(context->transformed_image.descriptor->stride_bytes *
                     context->transformed_image.descriptor->height_pixels));
 
-    for (int idx = 0;
+    for(int idx = 0;
          idx < context->depth_image.descriptor->width_pixels * context->depth_image.descriptor->height_pixels;
          idx++)
     {
@@ -1096,7 +1096,7 @@ static void transformation_depth_to_xyz(k4a_transformation_xy_tables_t *xy_table
 
     set_special_instruction_optimization("None");
 
-    for (int i = 0; i < xy_tables->width * xy_tables->height; i++)
+    for(int i = 0; i < xy_tables->width * xy_tables->height; i++)
     {
         float x_tab = xy_tables->x_table[i];
 
@@ -1141,7 +1141,7 @@ static void transformation_depth_to_xyz(k4a_transformation_xy_tables_t *xy_table
 
     set_special_instruction_optimization("NEON");
 
-    for (int i = 0; i < xy_tables->width * xy_tables->height / 8; i++)
+    for(int i = 0; i < xy_tables->width * xy_tables->height / 8; i++)
     {
         // 8 elements in 1 loop
         int offset = i * 8;
@@ -1218,7 +1218,7 @@ static void transformation_depth_to_xyz(k4a_transformation_xy_tables_t *xy_table
 
     __m128i valid_shuffle = _mm_setr_epi16(pos0, pos2, pos4, pos6, pos0, pos2, pos4, pos6);
 
-    for (int i = 0; i < xy_tables->width * xy_tables->height / 8; i++)
+    for(int i = 0; i < xy_tables->width * xy_tables->height / 8; i++)
     {
         __m128i z = *depth_image_data_m128i++;
 

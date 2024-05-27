@@ -2569,8 +2569,8 @@ using is_detected_convertible =
 @since version 3.9.0
 */
 #define NLOHMANN_DEFINE_TYPE_INTRUSIVE(Type, ...)  \
-    friend void to_json(nlohmann::json& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \
-    friend void from_json(const nlohmann::json& nlohmann_json_j, Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
+    friend void to_json(nlohmann::json& nlohmann_json_j, const Type& nlohmann_json_t){ NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \
+    friend void from_json(const nlohmann::json& nlohmann_json_j, Type& nlohmann_json_t){ NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
 
 /*!
 @brief macro
@@ -2578,8 +2578,8 @@ using is_detected_convertible =
 @since version 3.9.0
 */
 #define NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Type, ...)  \
-    inline void to_json(nlohmann::json& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \
-    inline void from_json(const nlohmann::json& nlohmann_json_j, Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
+    inline void to_json(nlohmann::json& nlohmann_json_j, const Type& nlohmann_json_t){ NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \
+    inline void from_json(const nlohmann::json& nlohmann_json_j, Type& nlohmann_json_t){ NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
 
 
 // inspired from https://stackoverflow.com/a/26745591
@@ -2657,7 +2657,7 @@ inline void replace_substring(std::string& s, const std::string& f,
                               const std::string& t)
 {
     JSON_ASSERT(!f.empty());
-    for (auto pos = s.find(f);                // find first occurrence of f
+    for(auto pos = s.find(f);                // find first occurrence of f
             pos != std::string::npos;         // make sure f was found
             s.replace(pos, f.size(), t),      // replace with t, and
             pos = s.find(f, pos + t.size()))  // find next occurrence of f
@@ -2776,7 +2776,7 @@ class exception : public std::exception
 
   protected:
     JSON_HEDLEY_NON_NULL(3)
-    exception(int id_, const char* what_arg) : id(id_), m(what_arg) {}
+    exception(int id_, const char* what_arg) : id(id_), m(what_arg){}
 
     static std::string name(const std::string& ename, int id_)
     {
@@ -2788,13 +2788,13 @@ class exception : public std::exception
     {
 #if JSON_DIAGNOSTICS
         std::vector<std::string> tokens;
-        for (const auto* current = &leaf_element; current->m_parent != nullptr; current = current->m_parent)
+        for(const auto* current = &leaf_element; current->m_parent != nullptr; current = current->m_parent)
         {
             switch (current->m_parent->type())
             {
                 case value_t::array:
                 {
-                    for (std::size_t i = 0; i < current->m_parent->m_value.array->size(); ++i)
+                    for(std::size_t i = 0; i < current->m_parent->m_value.array->size(); ++i)
                     {
                         if (&current->m_parent->m_value.array->operator[](i) == current)
                         {
@@ -2807,7 +2807,7 @@ class exception : public std::exception
 
                 case value_t::object:
                 {
-                    for (const auto& element : *current->m_parent->m_value.object)
+                    for(const auto& element : *current->m_parent->m_value.object)
                     {
                         if (&element.second == current)
                         {
@@ -2939,7 +2939,7 @@ class parse_error : public exception
 
   private:
     parse_error(int id_, std::size_t byte_, const char* what_arg)
-        : exception(id_, what_arg), byte(byte_) {}
+        : exception(id_, what_arg), byte(byte_){}
 
     static std::string position_string(const position_t& pos)
     {
@@ -2998,7 +2998,7 @@ class invalid_iterator : public exception
   private:
     JSON_HEDLEY_NON_NULL(3)
     invalid_iterator(int id_, const char* what_arg)
-        : exception(id_, what_arg) {}
+        : exception(id_, what_arg){}
 };
 
 /*!
@@ -3052,7 +3052,7 @@ class type_error : public exception
 
   private:
     JSON_HEDLEY_NON_NULL(3)
-    type_error(int id_, const char* what_arg) : exception(id_, what_arg) {}
+    type_error(int id_, const char* what_arg) : exception(id_, what_arg){}
 };
 
 /*!
@@ -3100,7 +3100,7 @@ class out_of_range : public exception
 
   private:
     JSON_HEDLEY_NON_NULL(3)
-    out_of_range(int id_, const char* what_arg) : exception(id_, what_arg) {}
+    out_of_range(int id_, const char* what_arg) : exception(id_, what_arg){}
 };
 
 /*!
@@ -3139,7 +3139,7 @@ class other_error : public exception
 
   private:
     JSON_HEDLEY_NON_NULL(3)
-    other_error(int id_, const char* what_arg) : exception(id_, what_arg) {}
+    other_error(int id_, const char* what_arg) : exception(id_, what_arg){}
 };
 }  // namespace detail
 }  // namespace nlohmann
@@ -4107,7 +4107,7 @@ template<typename BasicJsonType, typename T, std::size_t N>
 auto from_json(const BasicJsonType& j, T (&arr)[N])  // NOLINT(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
 -> decltype(j.template get<T>(), void())
 {
-    for (std::size_t i = 0; i < N; ++i)
+    for(std::size_t i = 0; i < N; ++i)
     {
         arr[i] = j.at(i).template get<T>();
     }
@@ -4124,7 +4124,7 @@ auto from_json_array_impl(const BasicJsonType& j, std::array<T, N>& arr,
                           priority_tag<2> /*unused*/)
 -> decltype(j.template get<T>(), void())
 {
-    for (std::size_t i = 0; i < N; ++i)
+    for(std::size_t i = 0; i < N; ++i)
     {
         arr[i] = j.at(i).template get<T>();
     }
@@ -4349,7 +4349,7 @@ void from_json(const BasicJsonType& j, std::map<Key, Value, Compare, Allocator>&
         JSON_THROW(type_error::create(302, "type must be array, but is " + std::string(j.type_name()), j));
     }
     m.clear();
-    for (const auto& p : j)
+    for(const auto& p : j)
     {
         if (JSON_HEDLEY_UNLIKELY(!p.is_array()))
         {
@@ -4369,7 +4369,7 @@ void from_json(const BasicJsonType& j, std::unordered_map<Key, Value, Hash, KeyE
         JSON_THROW(type_error::create(302, "type must be array, but is " + std::string(j.type_name()), j));
     }
     m.clear();
-    for (const auto& p : j)
+    for(const auto& p : j)
     {
         if (JSON_HEDLEY_UNLIKELY(!p.is_array()))
         {
@@ -4558,7 +4558,7 @@ template<typename IteratorType> class iteration_proxy
   public:
     /// construct iteration proxy from a container
     explicit iteration_proxy(typename IteratorType::reference cont) noexcept
-        : container(cont) {}
+        : container(cont){}
 
     /// return iterator begin (needed for range-based for)
     iteration_proxy_value<IteratorType> begin() noexcept
@@ -4799,7 +4799,7 @@ struct external_constructor<value_t::array>
         j.m_type = value_t::array;
         j.m_value = value_t::array;
         j.m_value.array->reserve(arr.size());
-        for (const bool x : arr)
+        for(const bool x : arr)
         {
             j.m_value.array->push_back(x);
             j.set_parent(j.m_value.array->back());
@@ -5331,7 +5331,7 @@ std::size_t hash(const BasicJsonType& j)
         case BasicJsonType::value_t::object:
         {
             auto seed = combine(type, j.size());
-            for (const auto& element : j.items())
+            for(const auto& element : j.items())
             {
                 const auto h = std::hash<string_t> {}(element.key());
                 seed = combine(seed, h);
@@ -5343,7 +5343,7 @@ std::size_t hash(const BasicJsonType& j)
         case BasicJsonType::value_t::array:
         {
             auto seed = combine(type, j.size());
-            for (const auto& element : j)
+            for(const auto& element : j)
             {
                 seed = combine(seed, hash(element));
             }
@@ -5386,7 +5386,7 @@ std::size_t hash(const BasicJsonType& j)
             const auto h = std::hash<bool> {}(j.get_binary().has_subtype());
             seed = combine(seed, h);
             seed = combine(seed, static_cast<std::size_t>(j.get_binary().subtype()));
-            for (const auto byte : j.get_binary())
+            for(const auto byte : j.get_binary())
             {
                 seed = combine(seed, std::hash<std::uint8_t> {}(byte));
             }
@@ -5717,7 +5717,7 @@ class wide_string_input_adapter
     using char_type = char;
 
     wide_string_input_adapter(BaseInputAdapter base)
-        : base_adapter(base) {}
+        : base_adapter(base){}
 
     typename std::char_traits<char>::int_type get_character() noexcept
     {
@@ -5887,14 +5887,14 @@ class span_input_adapter
                    sizeof(typename std::remove_pointer<CharT>::type) == 1,
                    int >::type = 0 >
     span_input_adapter(CharT b, std::size_t l)
-        : ia(reinterpret_cast<const char*>(b), reinterpret_cast<const char*>(b) + l) {}
+        : ia(reinterpret_cast<const char*>(b), reinterpret_cast<const char*>(b) + l){}
 
     template<class IteratorType,
              typename std::enable_if<
                  std::is_same<typename iterator_traits<IteratorType>::iterator_category, std::random_access_iterator_tag>::value,
                  int>::type = 0>
     span_input_adapter(IteratorType first, IteratorType last)
-        : ia(input_adapter(first, last)) {}
+        : ia(input_adapter(first, last)){}
 
     contiguous_bytes_input_adapter&& get()
     {
@@ -6363,7 +6363,7 @@ class json_sax_dom_callback_parser
         if (!ref_stack.empty() && ref_stack.back() && ref_stack.back()->is_structured())
         {
             // remove discarded value
-            for (auto it = ref_stack.back()->begin(); it != ref_stack.back()->end(); ++it)
+            for(auto it = ref_stack.back()->begin(); it != ref_stack.back()->end(); ++it)
             {
                 if (it->is_discarded())
                 {
@@ -6793,7 +6793,7 @@ class lexer : public lexer_base<BasicJsonType>
         int codepoint = 0;
 
         const auto factors = { 12u, 8u, 4u, 0u };
-        for (const auto factor : factors)
+        for(const auto factor : factors)
         {
             get();
 
@@ -6839,7 +6839,7 @@ class lexer : public lexer_base<BasicJsonType>
         JSON_ASSERT(ranges.size() == 2 || ranges.size() == 4 || ranges.size() == 6);
         add(current);
 
-        for (auto range = ranges.begin(); range != ranges.end(); ++range)
+        for(auto range = ranges.begin(); range != ranges.end(); ++range)
         {
             get();
             if (JSON_HEDLEY_LIKELY(*range <= current && current <= *(++range)))
@@ -7921,7 +7921,7 @@ scan_number_done:
                             token_type return_type)
     {
         JSON_ASSERT(std::char_traits<char_type>::to_char_type(current) == literal_text[0]);
-        for (std::size_t i = 1; i < length; ++i)
+        for(std::size_t i = 1; i < length; ++i)
         {
             if (JSON_HEDLEY_UNLIKELY(std::char_traits<char_type>::to_char_type(get()) != literal_text[i]))
             {
@@ -8069,7 +8069,7 @@ scan_number_done:
     {
         // escape control characters
         std::string result;
-        for (const auto c : token_string)
+        for(const auto c : token_string)
         {
             if (static_cast<unsigned char>(c) <= '\x1F')
             {
@@ -9479,7 +9479,7 @@ class binary_reader
 
         if (len != std::size_t(-1))
         {
-            for (std::size_t i = 0; i < len; ++i)
+            for(std::size_t i = 0; i < len; ++i)
             {
                 if (JSON_HEDLEY_UNLIKELY(!parse_cbor_internal(true, tag_handler)))
                 {
@@ -9520,7 +9520,7 @@ class binary_reader
             string_t key;
             if (len != std::size_t(-1))
             {
-                for (std::size_t i = 0; i < len; ++i)
+                for(std::size_t i = 0; i < len; ++i)
                 {
                     get();
                     if (JSON_HEDLEY_UNLIKELY(!get_cbor_string(key) || !sax->key(key)))
@@ -10143,7 +10143,7 @@ class binary_reader
             return false;
         }
 
-        for (std::size_t i = 0; i < len; ++i)
+        for(std::size_t i = 0; i < len; ++i)
         {
             if (JSON_HEDLEY_UNLIKELY(!parse_msgpack_internal()))
             {
@@ -10166,7 +10166,7 @@ class binary_reader
         }
 
         string_t key;
-        for (std::size_t i = 0; i < len; ++i)
+        for(std::size_t i = 0; i < len; ++i)
         {
             get();
             if (JSON_HEDLEY_UNLIKELY(!get_msgpack_string(key) || !sax->key(key)))
@@ -10506,7 +10506,7 @@ class binary_reader
             {
                 if (size_and_type.second != 'N')
                 {
-                    for (std::size_t i = 0; i < size_and_type.first; ++i)
+                    for(std::size_t i = 0; i < size_and_type.first; ++i)
                     {
                         if (JSON_HEDLEY_UNLIKELY(!get_ubjson_value(size_and_type.second)))
                         {
@@ -10517,7 +10517,7 @@ class binary_reader
             }
             else
             {
-                for (std::size_t i = 0; i < size_and_type.first; ++i)
+                for(std::size_t i = 0; i < size_and_type.first; ++i)
                 {
                     if (JSON_HEDLEY_UNLIKELY(!parse_ubjson_internal()))
                     {
@@ -10567,7 +10567,7 @@ class binary_reader
 
             if (size_and_type.second != 0)
             {
-                for (std::size_t i = 0; i < size_and_type.first; ++i)
+                for(std::size_t i = 0; i < size_and_type.first; ++i)
                 {
                     if (JSON_HEDLEY_UNLIKELY(!get_ubjson_string(key) || !sax->key(key)))
                     {
@@ -10582,7 +10582,7 @@ class binary_reader
             }
             else
             {
-                for (std::size_t i = 0; i < size_and_type.first; ++i)
+                for(std::size_t i = 0; i < size_and_type.first; ++i)
                 {
                     if (JSON_HEDLEY_UNLIKELY(!get_ubjson_string(key) || !sax->key(key)))
                     {
@@ -10636,7 +10636,7 @@ class binary_reader
 
         // get number string
         std::vector<char> number_vector;
-        for (std::size_t i = 0; i < size; ++i)
+        for(std::size_t i = 0; i < size; ++i)
         {
             get();
             if (JSON_HEDLEY_UNLIKELY(!unexpect_eof(input_format_t::ubjson, "number")))
@@ -10738,7 +10738,7 @@ class binary_reader
     {
         // step 1: read input into array with system's byte order
         std::array<std::uint8_t, sizeof(NumberType)> vec{};
-        for (std::size_t i = 0; i < sizeof(NumberType); ++i)
+        for(std::size_t i = 0; i < sizeof(NumberType); ++i)
         {
             get();
             if (JSON_HEDLEY_UNLIKELY(!unexpect_eof(format, "number")))
@@ -10782,7 +10782,7 @@ class binary_reader
                     string_t& result)
     {
         bool success = true;
-        for (NumberType i = 0; i < len; i++)
+        for(NumberType i = 0; i < len; i++)
         {
             get();
             if (JSON_HEDLEY_UNLIKELY(!unexpect_eof(format, "string")))
@@ -10815,7 +10815,7 @@ class binary_reader
                     binary_t& result)
     {
         bool success = true;
-        for (NumberType i = 0; i < len; i++)
+        for(NumberType i = 0; i < len; i++)
         {
             get();
             if (JSON_HEDLEY_UNLIKELY(!unexpect_eof(format, "binary")))
@@ -12370,10 +12370,10 @@ class json_reverse_iterator : public std::reverse_iterator<Base>
 
     /// create reverse iterator from iterator
     explicit json_reverse_iterator(const typename base_iterator::iterator_type& it) noexcept
-        : base_iterator(it) {}
+        : base_iterator(it){}
 
     /// create reverse iterator from base class
-    explicit json_reverse_iterator(const base_iterator& it) noexcept : base_iterator(it) {}
+    explicit json_reverse_iterator(const base_iterator& it) noexcept : base_iterator(it){}
 
     /// post-increment (it++)
     json_reverse_iterator const operator++(int) // NOLINT(readability-const-return-type)
@@ -12857,7 +12857,7 @@ class json_pointer
 
         // in case no reference tokens exist, return a reference to the JSON value
         // j which will be overwritten by a primitive value
-        for (const auto& reference_token : reference_tokens)
+        for(const auto& reference_token : reference_tokens)
         {
             switch (result->type())
             {
@@ -12932,7 +12932,7 @@ class json_pointer
     */
     BasicJsonType& get_unchecked(BasicJsonType* ptr) const
     {
-        for (const auto& reference_token : reference_tokens)
+        for(const auto& reference_token : reference_tokens)
         {
             // convert null values to arrays or objects before continuing
             if (ptr->is_null())
@@ -12999,7 +12999,7 @@ class json_pointer
     */
     BasicJsonType& get_checked(BasicJsonType* ptr) const
     {
-        for (const auto& reference_token : reference_tokens)
+        for(const auto& reference_token : reference_tokens)
         {
             switch (ptr->type())
             {
@@ -13056,7 +13056,7 @@ class json_pointer
     */
     const BasicJsonType& get_unchecked(const BasicJsonType* ptr) const
     {
-        for (const auto& reference_token : reference_tokens)
+        for(const auto& reference_token : reference_tokens)
         {
             switch (ptr->type())
             {
@@ -13104,7 +13104,7 @@ class json_pointer
     */
     const BasicJsonType& get_checked(const BasicJsonType* ptr) const
     {
-        for (const auto& reference_token : reference_tokens)
+        for(const auto& reference_token : reference_tokens)
         {
             switch (ptr->type())
             {
@@ -13152,7 +13152,7 @@ class json_pointer
     */
     bool contains(const BasicJsonType* ptr) const
     {
-        for (const auto& reference_token : reference_tokens)
+        for(const auto& reference_token : reference_tokens)
         {
             switch (ptr->type())
             {
@@ -13187,7 +13187,7 @@ class json_pointer
                             // first char should be between '1' and '9'
                             return false;
                         }
-                        for (std::size_t i = 1; i < reference_token.size(); i++)
+                        for(std::size_t i = 1; i < reference_token.size(); i++)
                         {
                             if (JSON_HEDLEY_UNLIKELY(!('0' <= reference_token[i] && reference_token[i] <= '9')))
                             {
@@ -13257,7 +13257,7 @@ class json_pointer
         // extract the reference tokens:
         // - slash: position of the last read slash (or end of string)
         // - start: position after the previous slash
-        for (
+        for(
             // search for the first slash after the first character
             std::size_t slash = reference_string.find_first_of('/', 1),
             // set the beginning of the first reference token
@@ -13275,7 +13275,7 @@ class json_pointer
             auto reference_token = reference_string.substr(start, slash - start);
 
             // check reference tokens are properly escaped
-            for (std::size_t pos = reference_token.find_first_of('~');
+            for(std::size_t pos = reference_token.find_first_of('~');
                     pos != std::string::npos;
                     pos = reference_token.find_first_of('~', pos + 1))
             {
@@ -13322,7 +13322,7 @@ class json_pointer
                 else
                 {
                     // iterate array and use index as reference string
-                    for (std::size_t i = 0; i < value.m_value.array->size(); ++i)
+                    for(std::size_t i = 0; i < value.m_value.array->size(); ++i)
                     {
                         flatten(reference_string + "/" + std::to_string(i),
                                 value.m_value.array->operator[](i), result);
@@ -13341,7 +13341,7 @@ class json_pointer
                 else
                 {
                     // iterate object and use keys as reference string
-                    for (const auto& element : *value.m_value.object)
+                    for(const auto& element : *value.m_value.object)
                     {
                         flatten(reference_string + "/" + detail::escape(element.first), element.second, result);
                     }
@@ -13387,7 +13387,7 @@ class json_pointer
         BasicJsonType result;
 
         // iterate the JSON object values
-        for (const auto& element : *value.m_value.object)
+        for(const auto& element : *value.m_value.object)
         {
             if (JSON_HEDLEY_UNLIKELY(!element.second.is_primitive()))
             {
@@ -13658,15 +13658,15 @@ class output_adapter
   public:
     template<typename AllocatorType = std::allocator<CharType>>
     output_adapter(std::vector<CharType, AllocatorType>& vec)
-        : oa(std::make_shared<output_vector_adapter<CharType, AllocatorType>>(vec)) {}
+        : oa(std::make_shared<output_vector_adapter<CharType, AllocatorType>>(vec)){}
 
 #ifndef JSON_NO_IO
     output_adapter(std::basic_ostream<CharType>& s)
-        : oa(std::make_shared<output_stream_adapter<CharType>>(s)) {}
+        : oa(std::make_shared<output_stream_adapter<CharType>>(s)){}
 #endif  // JSON_NO_IO
 
     output_adapter(StringType& s)
-        : oa(std::make_shared<output_string_adapter<CharType, StringType>>(s)) {}
+        : oa(std::make_shared<output_string_adapter<CharType, StringType>>(s)){}
 
     operator output_adapter_t<CharType>()
     {
@@ -13947,7 +13947,7 @@ class binary_writer
                 // LCOV_EXCL_STOP
 
                 // step 2: write each element
-                for (const auto& el : *j.m_value.array)
+                for(const auto& el : *j.m_value.array)
                 {
                     write_cbor(el);
                 }
@@ -14049,7 +14049,7 @@ class binary_writer
                 // LCOV_EXCL_STOP
 
                 // step 2: write each element
-                for (const auto& el : *j.m_value.object)
+                for(const auto& el : *j.m_value.object)
                 {
                     write_cbor(el.first);
                     write_cbor(el.second);
@@ -14258,7 +14258,7 @@ class binary_writer
                 }
 
                 // step 2: write each element
-                for (const auto& el : *j.m_value.array)
+                for(const auto& el : *j.m_value.array)
                 {
                     write_msgpack(el);
                 }
@@ -14371,7 +14371,7 @@ class binary_writer
                 }
 
                 // step 2: write each element
-                for (const auto& el : *j.m_value.object)
+                for(const auto& el : *j.m_value.object)
                 {
                     write_msgpack(el.first);
                     write_msgpack(el.second);
@@ -14479,7 +14479,7 @@ class binary_writer
                     write_number_with_ubjson_prefix(j.m_value.array->size(), true);
                 }
 
-                for (const auto& el : *j.m_value.array)
+                for(const auto& el : *j.m_value.array)
                 {
                     write_ubjson(el, use_count, use_type, prefix_required);
                 }
@@ -14520,7 +14520,7 @@ class binary_writer
                 }
                 else
                 {
-                    for (size_t i = 0; i < j.m_value.binary->size(); ++i)
+                    for(size_t i = 0; i < j.m_value.binary->size(); ++i)
                     {
                         oa->write_character(to_char_type('U'));
                         oa->write_character(j.m_value.binary->data()[i]);
@@ -14567,7 +14567,7 @@ class binary_writer
                     write_number_with_ubjson_prefix(j.m_value.object->size(), true);
                 }
 
-                for (const auto& el : *j.m_value.object)
+                for(const auto& el : *j.m_value.object)
                 {
                     write_number_with_ubjson_prefix(el.first.size(), true);
                     oa->write_characters(
@@ -14777,7 +14777,7 @@ class binary_writer
 
         std::size_t array_index = 0ul;
 
-        for (const auto& el : value)
+        for(const auto& el : value)
         {
             write_bson_element(std::to_string(array_index++), el);
         }
@@ -14917,7 +14917,7 @@ class binary_writer
     {
         write_number<std::int32_t, true>(static_cast<std::int32_t>(calc_bson_object_size(value)));
 
-        for (const auto& el : value)
+        for(const auto& el : value)
         {
             write_bson_element(el.first, el.second);
         }
@@ -15025,7 +15025,7 @@ class binary_writer
 
             const auto number = BasicJsonType(n).dump();
             write_number_with_ubjson_prefix(number.size(), true);
-            for (std::size_t i = 0; i < number.size(); ++i)
+            for(std::size_t i = 0; i < number.size(); ++i)
             {
                 oa->write_character(to_char_type(static_cast<std::uint8_t>(number[i])));
             }
@@ -15089,7 +15089,7 @@ class binary_writer
 
             const auto number = BasicJsonType(n).dump();
             write_number_with_ubjson_prefix(number.size(), true);
-            for (std::size_t i = 0; i < number.size(); ++i)
+            for(std::size_t i = 0; i < number.size(); ++i)
             {
                 oa->write_character(to_char_type(static_cast<std::uint8_t>(number[i])));
             }
@@ -15375,7 +15375,7 @@ struct diyfp // f * 2^e
     std::uint64_t f = 0;
     int e = 0;
 
-    constexpr diyfp(std::uint64_t f_, int e_) noexcept : f(f_), e(e_) {}
+    constexpr diyfp(std::uint64_t f_, int e_) noexcept : f(f_), e(e_){}
 
     /*!
     @brief returns x - y
@@ -16064,7 +16064,7 @@ inline void grisu2_digit_gen(char* buffer, int& length, int& decimal_exponent,
     JSON_ASSERT(p2 > delta);
 
     int m = 0;
-    for (;;)
+    for(;;)
     {
         // Invariant:
         //      M+ = buffer * 10^-m + 10^-m * (d[-m-1] / 10 + d[-m-2] / 10^2 + ...) * 2^e
@@ -16546,7 +16546,7 @@ class serializer
 
                     // first n-1 elements
                     auto i = val.m_value.object->cbegin();
-                    for (std::size_t cnt = 0; cnt < val.m_value.object->size() - 1; ++cnt, ++i)
+                    for(std::size_t cnt = 0; cnt < val.m_value.object->size() - 1; ++cnt, ++i)
                     {
                         o->write_characters(indent_string.c_str(), new_indent);
                         o->write_character('\"');
@@ -16575,7 +16575,7 @@ class serializer
 
                     // first n-1 elements
                     auto i = val.m_value.object->cbegin();
-                    for (std::size_t cnt = 0; cnt < val.m_value.object->size() - 1; ++cnt, ++i)
+                    for(std::size_t cnt = 0; cnt < val.m_value.object->size() - 1; ++cnt, ++i)
                     {
                         o->write_character('\"');
                         dump_escaped(i->first, ensure_ascii);
@@ -16618,7 +16618,7 @@ class serializer
                     }
 
                     // first n-1 elements
-                    for (auto i = val.m_value.array->cbegin();
+                    for(auto i = val.m_value.array->cbegin();
                             i != val.m_value.array->cend() - 1; ++i)
                     {
                         o->write_characters(indent_string.c_str(), new_indent);
@@ -16640,7 +16640,7 @@ class serializer
                     o->write_character('[');
 
                     // first n-1 elements
-                    for (auto i = val.m_value.array->cbegin();
+                    for(auto i = val.m_value.array->cbegin();
                             i != val.m_value.array->cend() - 1; ++i)
                     {
                         dump(*i, false, ensure_ascii, indent_step, current_indent);
@@ -16684,7 +16684,7 @@ class serializer
 
                     if (!val.m_value.binary->empty())
                     {
-                        for (auto i = val.m_value.binary->cbegin();
+                        for(auto i = val.m_value.binary->cbegin();
                                 i != val.m_value.binary->cend() - 1; ++i)
                         {
                             dump_integer(*i);
@@ -16715,7 +16715,7 @@ class serializer
 
                     if (!val.m_value.binary->empty())
                     {
-                        for (auto i = val.m_value.binary->cbegin();
+                        for(auto i = val.m_value.binary->cbegin();
                                 i != val.m_value.binary->cend() - 1; ++i)
                         {
                             dump_integer(*i);
@@ -16811,7 +16811,7 @@ class serializer
         std::size_t bytes_after_last_accept = 0;
         std::size_t undumped_chars = 0;
 
-        for (std::size_t i = 0; i < s.size(); ++i)
+        for(std::size_t i = 0; i < s.size(); ++i)
         {
             const auto byte = static_cast<std::uint8_t>(s[i]);
 
@@ -17065,7 +17065,7 @@ class serializer
     inline unsigned int count_digits(number_unsigned_t x) noexcept
     {
         unsigned int n_digits = 1;
-        for (;;)
+        for(;;)
         {
             if (x < 10)
             {
@@ -17426,7 +17426,7 @@ template <class Key, class T, class IgnoredLess = std::less<Key>,
 
     std::pair<iterator, bool> emplace(const key_type& key, T&& t)
     {
-        for (auto it = this->begin(); it != this->end(); ++it)
+        for(auto it = this->begin(); it != this->end(); ++it)
         {
             if (it->first == key)
             {
@@ -17449,7 +17449,7 @@ template <class Key, class T, class IgnoredLess = std::less<Key>,
 
     T& at(const Key& key)
     {
-        for (auto it = this->begin(); it != this->end(); ++it)
+        for(auto it = this->begin(); it != this->end(); ++it)
         {
             if (it->first == key)
             {
@@ -17462,7 +17462,7 @@ template <class Key, class T, class IgnoredLess = std::less<Key>,
 
     const T& at(const Key& key) const
     {
-        for (auto it = this->begin(); it != this->end(); ++it)
+        for(auto it = this->begin(); it != this->end(); ++it)
         {
             if (it->first == key)
             {
@@ -17475,12 +17475,12 @@ template <class Key, class T, class IgnoredLess = std::less<Key>,
 
     size_type erase(const Key& key)
     {
-        for (auto it = this->begin(); it != this->end(); ++it)
+        for(auto it = this->begin(); it != this->end(); ++it)
         {
             if (it->first == key)
             {
                 // Since we cannot move const Keys, re-construct them in place
-                for (auto next = it; ++next != this->end(); ++it)
+                for(auto next = it; ++next != this->end(); ++it)
                 {
                     it->~value_type(); // Destroy but keep allocation
                     new (&*it) value_type{std::move(*next)};
@@ -17497,7 +17497,7 @@ template <class Key, class T, class IgnoredLess = std::less<Key>,
         auto it = pos;
 
         // Since we cannot move const Keys, re-construct them in place
-        for (auto next = it; ++next != this->end(); ++it)
+        for(auto next = it; ++next != this->end(); ++it)
         {
             it->~value_type(); // Destroy but keep allocation
             new (&*it) value_type{std::move(*next)};
@@ -17508,7 +17508,7 @@ template <class Key, class T, class IgnoredLess = std::less<Key>,
 
     size_type count(const Key& key) const
     {
-        for (auto it = this->begin(); it != this->end(); ++it)
+        for(auto it = this->begin(); it != this->end(); ++it)
         {
             if (it->first == key)
             {
@@ -17520,7 +17520,7 @@ template <class Key, class T, class IgnoredLess = std::less<Key>,
 
     iterator find(const Key& key)
     {
-        for (auto it = this->begin(); it != this->end(); ++it)
+        for(auto it = this->begin(); it != this->end(); ++it)
         {
             if (it->first == key)
             {
@@ -17532,7 +17532,7 @@ template <class Key, class T, class IgnoredLess = std::less<Key>,
 
     const_iterator find(const Key& key) const
     {
-        for (auto it = this->begin(); it != this->end(); ++it)
+        for(auto it = this->begin(); it != this->end(); ++it)
         {
             if (it->first == key)
             {
@@ -17549,7 +17549,7 @@ template <class Key, class T, class IgnoredLess = std::less<Key>,
 
     std::pair<iterator, bool> insert( const value_type& value )
     {
-        for (auto it = this->begin(); it != this->end(); ++it)
+        for(auto it = this->begin(); it != this->end(); ++it)
         {
             if (it->first == value.first)
             {
@@ -17567,7 +17567,7 @@ template <class Key, class T, class IgnoredLess = std::less<Key>,
     template<typename InputIt, typename = require_input_iter<InputIt>>
     void insert(InputIt first, InputIt last)
     {
-        for (auto it = first; it != last; ++it)
+        for(auto it = first; it != last; ++it)
         {
             insert(*it);
         }
@@ -18494,13 +18494,13 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
         /// default constructor (for null values)
         json_value() = default;
         /// constructor for booleans
-        json_value(boolean_t v) noexcept : boolean(v) {}
+        json_value(boolean_t v) noexcept : boolean(v){}
         /// constructor for numbers (integer)
-        json_value(number_integer_t v) noexcept : number_integer(v) {}
+        json_value(number_integer_t v) noexcept : number_integer(v){}
         /// constructor for numbers (unsigned)
-        json_value(number_unsigned_t v) noexcept : number_unsigned(v) {}
+        json_value(number_unsigned_t v) noexcept : number_unsigned(v){}
         /// constructor for numbers (floating-point)
-        json_value(number_float_t v) noexcept : number_float(v) {}
+        json_value(number_float_t v) noexcept : number_float(v){}
         /// constructor for empty values of a given type
         json_value(value_t t)
         {
@@ -18649,7 +18649,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
                 else
                 {
                     stack.reserve(object->size());
-                    for (auto&& it : *object)
+                    for(auto&& it : *object)
                     {
                         stack.push_back(std::move(it.second));
                     }
@@ -18671,7 +18671,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
                     }
                     else if (current_item.is_object())
                     {
-                        for (auto&& it : *current_item.m_value.object)
+                        for(auto&& it : *current_item.m_value.object)
                         {
                             stack.push_back(std::move(it.second));
                         }
@@ -18767,7 +18767,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
                 return j.m_parent == this;
             }));
         }
-        JSON_CATCH(...) {} // LCOV_EXCL_LINE
+        JSON_CATCH(...){} // LCOV_EXCL_LINE
 #endif
         static_cast<void>(check_parents);
     }
@@ -18779,7 +18779,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
         {
             case value_t::array:
             {
-                for (auto& element : *m_value.array)
+                for(auto& element : *m_value.array)
                 {
                     element.m_parent = this;
                 }
@@ -18788,7 +18788,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
 
             case value_t::object:
             {
-                for (auto& element : *m_value.object)
+                for(auto& element : *m_value.object)
                 {
                     element.second.m_parent = this;
                 }
@@ -18812,7 +18812,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     iterator set_parents(iterator it, typename iterator::difference_type count)
     {
 #if JSON_DIAGNOSTICS
-        for (typename iterator::difference_type i = 0; i < count; ++i)
+        for(typename iterator::difference_type i = 0; i < count; ++i)
         {
             (it + i)->m_parent = this;
         }
@@ -19264,7 +19264,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
             m_type = value_t::object;
             m_value = value_t::object;
 
-            for (auto& element_ref : init)
+            for(auto& element_ref : init)
             {
                 auto element = element_ref.moved_or_copied();
                 m_value.object->emplace(
@@ -19661,7 +19661,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     template<typename JsonRef,
              detail::enable_if_t<detail::conjunction<detail::is_json_ref<JsonRef>,
                                  std::is_same<typename JsonRef::value_type, basic_json>>::value, int> = 0 >
-    basic_json(const JsonRef& ref) : basic_json(ref.moved_or_copied()) {}
+    basic_json(const JsonRef& ref) : basic_json(ref.moved_or_copied()){}
 
     /*!
     @brief copy constructor
@@ -21443,7 +21443,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     @code {.cpp}
     try {
         return at(key);
-    } catch(out_of_range) {
+    } catch(out_of_range){
         return default_value;
     }
     @endcode
@@ -21524,7 +21524,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     @code {.cpp}
     try {
         return at(ptr);
-    } catch(out_of_range) {
+    } catch(out_of_range){
         return default_value;
     }
     @endcode
@@ -22439,7 +22439,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     For loop without iterator_wrapper:
 
     @code{cpp}
-    for (auto it = j_object.begin(); it != j_object.end(); ++it)
+    for(auto it = j_object.begin(); it != j_object.end(); ++it)
     {
         std::cout << "key: " << it.key() << ", value:" << it.value() << '\n';
     }
@@ -22448,7 +22448,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     Range-based for loop without iterator proxy:
 
     @code{cpp}
-    for (auto it : j_object)
+    for(auto it : j_object)
     {
         // "it" is of type json::reference and has no key() member
         std::cout << "value: " << it << '\n';
@@ -22458,7 +22458,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     Range-based for loop with iterator proxy:
 
     @code{cpp}
-    for (auto it : json::iterator_wrapper(j_object))
+    for(auto it : json::iterator_wrapper(j_object))
     {
         std::cout << "key: " << it.key() << ", value:" << it.value() << '\n';
     }
@@ -22511,7 +22511,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     For loop without `items()` function:
 
     @code{cpp}
-    for (auto it = j_object.begin(); it != j_object.end(); ++it)
+    for(auto it = j_object.begin(); it != j_object.end(); ++it)
     {
         std::cout << "key: " << it.key() << ", value:" << it.value() << '\n';
     }
@@ -22520,7 +22520,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     Range-based for loop without `items()` function:
 
     @code{cpp}
-    for (auto it : j_object)
+    for(auto it : j_object)
     {
         // "it" is of type json::reference and has no key() member
         std::cout << "value: " << it << '\n';
@@ -22530,7 +22530,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     Range-based for loop with `items()` function:
 
     @code{cpp}
-    for (auto& el : j_object.items())
+    for(auto& el : j_object.items())
     {
         std::cout << "key: " << el.key() << ", value:" << el.value() << '\n';
     }
@@ -22541,7 +22541,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     (C++17):
 
     @code{cpp}
-    for (auto& [key, val] : j_object.items())
+    for(auto& [key, val] : j_object.items())
     {
         std::cout << "key: " << key << ", value:" << val << '\n';
     }
@@ -23517,7 +23517,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
             JSON_THROW(type_error::create(312, "cannot use update() with " + std::string(j.type_name()), *this));
         }
 
-        for (auto it = j.cbegin(); it != j.cend(); ++it)
+        for(auto it = j.cbegin(); it != j.cend(); ++it)
         {
             m_value.object->operator[](it.key()) = it.value();
 #if JSON_DIAGNOSTICS
@@ -23580,7 +23580,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
             JSON_THROW(invalid_iterator::create(202, "iterators first and last must point to objects", *this));
         }
 
-        for (auto it = first; it != last; ++it)
+        for(auto it = first; it != last; ++it)
         {
             m_value.object->operator[](it.key()) = it.value();
 #if JSON_DIAGNOSTICS
@@ -23830,10 +23830,10 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
     @endcode
     Or you can self-defined operator equal function like this:
     @code {.cpp}
-    bool my_equal(const_reference lhs, const_reference rhs) {
+    bool my_equal(const_reference lhs, const_reference rhs){
     const auto lhs_type lhs.type();
     const auto rhs_type rhs.type();
-    if (lhs_type == rhs_type) {
+    if (lhs_type == rhs_type){
         switch(lhs_type)
             // self_defined case
             case value_t::number_float:
@@ -26080,7 +26080,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
         }
 
         // iterate and apply the operations
-        for (const auto& val : json_patch)
+        for(const auto& val : json_patch)
         {
             // wrapper to get a value for an operation
             const auto get_value = [&val](const std::string & op,
@@ -26316,7 +26316,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
             case value_t::object:
             {
                 // first pass: traverse this object's elements
-                for (auto it = source.cbegin(); it != source.cend(); ++it)
+                for(auto it = source.cbegin(); it != source.cend(); ++it)
                 {
                     // escape the key name to be used in a JSON patch
                     const auto path_key = path + "/" + detail::escape(it.key());
@@ -26338,7 +26338,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
                 }
 
                 // second pass: traverse other object's elements
-                for (auto it = target.cbegin(); it != target.cend(); ++it)
+                for(auto it = target.cbegin(); it != target.cend(); ++it)
                 {
                     if (source.find(it.key()) == source.end())
                     {
@@ -26436,7 +26436,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
             {
                 *this = object();
             }
-            for (auto it = apply_patch.begin(); it != apply_patch.end(); ++it)
+            for(auto it = apply_patch.begin(); it != apply_patch.end(); ++it)
             {
                 if (it.value().is_null())
                 {

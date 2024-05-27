@@ -78,7 +78,7 @@ void Graph::draw_window_background(){
   int row_display_start;
   int row_display_end;
   ImGui::CalcListClipping(row_count, line_height, &row_display_start, &row_display_end);
-  for (int row_n = row_display_start; row_n < row_display_end; row_n++){
+  for(int row_n = row_display_start; row_n < row_display_end; row_n++){
     ImU32 col = (row_n & 1) ? col_odd : col_even;
     if((col & IM_COL32_A_MASK) == 0)
       continue;

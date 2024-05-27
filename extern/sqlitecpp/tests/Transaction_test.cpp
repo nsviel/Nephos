@@ -44,7 +44,7 @@ TEST(Transaction, commitRollback)
 
     // ensure transactions with different types are well-formed
     {
-        for (auto behavior : {
+        for(auto behavior : {
             SQLite::TransactionBehavior::DEFERRED,
             SQLite::TransactionBehavior::IMMEDIATE,
             SQLite::TransactionBehavior::EXCLUSIVE })

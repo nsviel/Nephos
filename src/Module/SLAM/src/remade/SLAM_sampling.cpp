@@ -36,7 +36,7 @@ vector<vec3> SLAM_sampling::sub_sampling_subset(Cloud* cloud, float voxel_size){
 
   cloudMap grid;
   Eigen::Vector4d point;
-	for (int i=0; i<cloud->xyz.size(); i++) {
+	for(int i=0; i<cloud->xyz.size(); i++){
     int kx = static_cast<int>(cloud->xyz[i].x / voxel_size);
     int ky = static_cast<int>(cloud->xyz[i].y / voxel_size);
     int kz = static_cast<int>(cloud->xyz[i].z / voxel_size);

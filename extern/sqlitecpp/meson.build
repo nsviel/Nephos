@@ -175,7 +175,7 @@ elif host_machine.system() == 'darwin' and sqlite3_dep.found()
         sqlite3_load_extension_support = cxx.links(
             '''
                 #include <sqlite3.h>
-                int main() {
+                int main(){
                     sqlite3_enable_load_extension(0, 0);
                     return 0;
                 }

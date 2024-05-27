@@ -62,9 +62,9 @@ vector<Eigen::Vector3d> SLAM_normal::compute_kNN_search(Eigen::Vector3d& point){
   int vz = static_cast<int>(point[2] / local_map->voxel_width);
 
   //Search inside all surrounding voxels
-  for (int vi = vx - knn_voxel_search; vi <= vx + knn_voxel_search; vi++){
-    for (int vj = vy - knn_voxel_search; vj <= vy + knn_voxel_search; vj++){
-      for (int vk = vz - knn_voxel_search; vk <= vz + knn_voxel_search; vk++){
+  for(int vi = vx - knn_voxel_search; vi <= vx + knn_voxel_search; vi++){
+    for(int vj = vy - knn_voxel_search; vj <= vy + knn_voxel_search; vj++){
+      for(int vk = vz - knn_voxel_search; vk <= vz + knn_voxel_search; vk++){
 
         //Search for pre-existing voxel in local map
         int key = local_map->get_signature(vi, vj, vk);

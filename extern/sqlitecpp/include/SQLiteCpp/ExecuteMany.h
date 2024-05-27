@@ -83,7 +83,7 @@ template <typename TupleT>
 void bind_exec(Statement& apQuery, TupleT&& aTuple)
 {
     SQLite::bind(apQuery, std::forward<TupleT>(aTuple));
-    while (apQuery.executeStep()) {}
+    while (apQuery.executeStep()){}
 }
 
 }  // namespace SQLite

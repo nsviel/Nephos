@@ -3,6 +3,7 @@
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
+
 #include <cstdlib>
 #include <chrono>
 
@@ -23,45 +24,66 @@ KNN::~KNN(){}
 //Main function
 void KNN::compute_normal(utl::base::Data* data, int k){
   if(data->xyz.size() == 0) return;
-  if(data->width == -1 || data->height == -1) return;
   //---------------------------
-
+/*
    auto start = std::chrono::high_resolution_clock::now();
 
   //Prepare data
   this->k = k;
   data->Nxyz = std::vector<glm::vec3>(data->xyz.size(), glm::vec3(0.0f));
 
-  //Loop
-  #pragma omp parallel for collapse(2) schedule(static)
-  for(int i=0; i<data->height; i++){
-    for(int j=0; j<data->width; j++){
-      //Get point and check
-      int idx = i * data->width + j;
-      glm::vec3& point = data->xyz[idx];
-      if(point == glm::vec3(0, 0, 0) || data->Nxyz[idx] != glm::vec3(0, 0, 0)) continue;
+  // Convert point cloud to FLANN matrix
+  flann::Matrix<float> dataset(new float[data->xyz.size() * 3], data->xyz.size(), 3);
+  for(size_t i = 0; i < data->xyz.size(); ++i){
+      dataset[i][0] = data->xyz[i].x;
+      dataset[i][1] = data->xyz[i].y;
+      dataset[i][2] = data->xyz[i].z;
+  }
 
-      //Find neighbor point indices
-      std::vector<glm::vec3> vec_nn;
-      std::vector<int> vec_idx;
-      this->compute_knn(vec_nn, vec_idx, point, data, i, j);
+  // Build the FLANN index
+  flann::Index<flann::L2<float>> index(dataset, flann::KDTreeIndexParams(4));
+  index.buildIndex();
 
-      //Compute normal
-      glm::mat3 covariance = math::compute_covariance(vec_nn);
-      glm::vec3 normal = math::compute_normal_from_covariance(covariance);
-      math::compute_normal_orientation(normal, point);
+  // Loop
+  #pragma omp parallel for
+  for(size_t i = 0; i < data->xyz.size(); ++i){
+    glm::vec3& point = data->xyz[i];
+    if (point == glm::vec3(0, 0, 0) || data->Nxyz[i] != glm::vec3(0, 0, 0)) continue;
 
-      //Store same result for each nn
-      for(int m=0; m<vec_idx.size(); m++){
-        data->Nxyz[vec_idx[m]] = normal;
-      }
+    // Find k nearest neighbors
+    std::vector<std::vector<size_t>> indices(1);
+    std::vector<std::vector<float>> dists(1);
+    flann::Matrix<float> query(new float[3], 1, 3);
+    query[0][0] = point.x;
+    query[0][1] = point.y;
+    query[0][2] = point.z;
+
+    index.knnSearch(query, indices, dists, k, flann::SearchParams(128));
+
+    std::vector<glm::vec3> vec_nn;
+    for(size_t j = 0; j < indices[0].size(); ++j){
+      vec_nn.push_back(data->xyz[indices[0][j]]);
+    }
+
+    delete[] query.ptr();
+
+    // Compute normal
+    glm::mat3 covariance = math::compute_covariance(vec_nn);
+    glm::vec3 normal = math::compute_normal_from_covariance(covariance);
+    math::compute_normal_orientation(normal, point);
+
+    // Store same result for each nn
+    for(size_t j = 0; j < indices[0].size(); ++j){
+      data->Nxyz[indices[0][j]] = normal;
     }
   }
+
+  delete[] dataset.ptr();
 
   auto end = std::chrono::high_resolution_clock::now();
   std::chrono::duration<double, std::milli> duration = end - start;
   this->time = duration.count();
-
+*/
   //---------------------------
 }
 
@@ -91,14 +113,6 @@ void KNN::compute_knn(std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx,
       vec_idx.push_back(idx);
     }
   }
-
-  //---------------------------
-}
-void KNN::set_visibility(dat::base::Object* object, bool value){
-  //---------------------------
-
-  dat::base::Glyph* normal = object->get_glyph(dat::object::glyph::NORMAL);
-  normal->set_visibility(value);
 
   //---------------------------
 }

@@ -10,14 +10,14 @@ enum class CSVState {
     QuotedQuote
 };
 
-std::vector<std::string> readCSVRow(const std::string &row) {
+std::vector<std::string> readCSVRow(const std::string &row){
     CSVState state = CSVState::UnquotedField;
     std::vector<std::string> fields {""};
     size_t i = 0; // index of the current field
-    for (char c : row) {
-        switch (state) {
+    for(char c : row){
+        switch (state){
             case CSVState::UnquotedField:
-                switch (c) {
+                switch (c){
                     case ';': // end of field
                               fields.push_back(""); i++;
                               break;
@@ -27,14 +27,14 @@ std::vector<std::string> readCSVRow(const std::string &row) {
                               break; }
                 break;
             case CSVState::QuotedField:
-                switch (c) {
+                switch (c){
                     case '"': state = CSVState::QuotedQuote;
                               break;
                     default:  fields[i].push_back(c);
                               break; }
                 break;
             case CSVState::QuotedQuote:
-                switch (c) {
+                switch (c){
                     case ';': // , after closing quote
                               fields.push_back(""); i++;
                               state = CSVState::UnquotedField;
@@ -53,12 +53,12 @@ std::vector<std::string> readCSVRow(const std::string &row) {
 }
 
 /// Read CSV file, Excel dialect. Accept "quoted fields ""with quotes"""
-std::vector<std::vector<std::string>> readCSV(std::istream &in) {
+std::vector<std::vector<std::string>> readCSV(std::istream &in){
   std::vector<std::vector<std::string>> table;
   std::string row;
-  while (!in.eof()) {
+  while (!in.eof()){
     std::getline(in, row);
-    if (in.bad() || in.fail()) {
+    if (in.bad() || in.fail()){
         break;
     }
     auto fields = readCSVRow(row);

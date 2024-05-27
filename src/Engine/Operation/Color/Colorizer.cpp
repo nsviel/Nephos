@@ -122,8 +122,8 @@ void Colorizer::colorization_structure(dat::base::Entity* entity){
 
   // Loop through the points and assign colors
   int index = 0;
-  for(int i = 0; i < num_rows; ++i) {
-      for(int j = 0; j < num_cols; ++j) {
+  for(int i = 0; i < num_rows; ++i){
+      for(int j = 0; j < num_cols; ++j){
           // Calculate the index in the colormap based on the normalized position
           int colormap_index = row_step * i * (colormap.size() - 1);
 

@@ -35,13 +35,13 @@ struct Application
     int         GetTextureWidth(ImTextureID texture);
     int         GetTextureHeight(ImTextureID texture);
 
-    virtual void OnStart() {}
-    virtual void OnStop() {}
-    virtual void OnFrame(float deltaTime) {}
+    virtual void OnStart(){}
+    virtual void OnStop(){}
+    virtual void OnFrame(float deltaTime){}
 
     virtual ImGuiWindowFlags GetWindowFlags() const;
 
-    virtual bool CanClose() { return true; }
+    virtual bool CanClose(){ return true; }
 
 private:
     void RecreateFontAtlas();

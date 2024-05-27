@@ -71,7 +71,7 @@ void Manager::add_relative_path(std::string path){
 void Manager::remove_path(std::string path){
   //---------------------------
 
-  auto it = std::find_if(list_item.begin(), list_item.end(), [&](const ldr::bookmark::Item& item) { return item.path == path; });
+  auto it = std::find_if(list_item.begin(), list_item.end(), [&](const ldr::bookmark::Item& item){ return item.path == path; });
   if(it != list_item.end()){
     list_item.erase(it);
   }

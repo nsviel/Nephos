@@ -21,7 +21,7 @@ void divise(std::vector<float>& vec, int diviser){
 std::vector<size_t> sort_by_index(const std::vector<float> &v){
   /*Sorting functions
     --->Sort by order, keeping trace of indices
-    Use with for (auto i: math::sort_by_index(v)) {
+    Use with for(auto i: math::sort_by_index(v)){
                 cout << v[i] << endl;
               }
   */
@@ -32,7 +32,7 @@ std::vector<size_t> sort_by_index(const std::vector<float> &v){
   std::iota(idx.begin(), idx.end(), 0);
 
   // sort indexes based on comparing values in v
-  std::sort(idx.begin(), idx.end(), [&v](size_t i1, size_t i2) {return v[i1] < v[i2];});
+  std::sort(idx.begin(), idx.end(), [&v](size_t i1, size_t i2){return v[i1] < v[i2];});
 
   //---------------------------
   return idx;
@@ -40,7 +40,7 @@ std::vector<size_t> sort_by_index(const std::vector<float> &v){
 std::vector<size_t> sort_by_index_greater(const std::vector<float> &v){
   /*Sorting functions
     --->Sort by order, keeping trace of indices
-    Use with for (auto i: math::sort_by_index(v)) {
+    Use with for(auto i: math::sort_by_index(v)){
                 cout << v[i] << endl;
               }
   */
@@ -51,7 +51,7 @@ std::vector<size_t> sort_by_index_greater(const std::vector<float> &v){
   std::iota(idx.begin(), idx.end(), 0);
 
   // sort indexes based on comparing values in v
-  std::sort(idx.begin(), idx.end(), [&v](size_t i1, size_t i2) {return v[i1] > v[i2];});
+  std::sort(idx.begin(), idx.end(), [&v](size_t i1, size_t i2){return v[i1] > v[i2];});
 
   //---------------------------
   return idx;
@@ -255,13 +255,13 @@ glm::mat3 compute_covariance(const std::vector<glm::vec3>& points){
   //---------------------------
 
   glm::vec3 centroid(0.0f);
-  for (const auto& point : points) {
+  for(const auto& point : points){
       centroid += point;
   }
   centroid /= static_cast<float>(points.size());
 
   glm::mat3 covariance(0.0f);
-  for (const auto& point : points) {
+  for(const auto& point : points){
       glm::vec3 deviation = point - centroid;
       covariance += glm::outerProduct(deviation, deviation);
   }
@@ -275,8 +275,8 @@ glm::vec3 compute_normal_from_covariance(const glm::mat3& covariance){
 
   // Convert glm::mat3 to Eigen::Matrix3f
   Eigen::Matrix3f eigenCovariance;
-  for (int i = 0; i < 3; ++i) {
-    for (int j = 0; j < 3; ++j) {
+  for(int i = 0; i < 3; ++i){
+    for(int j = 0; j < 3; ++j){
       eigenCovariance(i, j) = covariance[i][j];
     }
   }
@@ -301,7 +301,7 @@ void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point){
   // Check orientation towards the origin
   glm::vec3 centroid(0.0f); // Assuming the origin is (0, 0, 0)
   float dotProduct = glm::dot(normal, centroid - point);
-  if (dotProduct < 0.0f) {
+  if (dotProduct < 0.0f){
     // Invert the normal
     normal = -normal;
   }
@@ -433,14 +433,14 @@ std::string thousand_separator(int n){
     int count = 0;
 
     // Traverse the string in reverse
-    for (int i = num.size() - 1;
-         i >= 0; i--) {
+    for(int i = num.size() - 1;
+         i >= 0; i--){
         count++;
         ans.push_back(num[i]);
 
         // If three characters
         // are traversed
-        if (count == 3) {
+        if (count == 3){
             ans.push_back(' ');
             count = 0;
         }
@@ -452,7 +452,7 @@ std::string thousand_separator(int n){
 
     // If the given string is
     // less than 1000
-    if (ans.size() % 4 == 0) {
+    if (ans.size() % 4 == 0){
 
         // Remove ','
         ans.erase(ans.begin());

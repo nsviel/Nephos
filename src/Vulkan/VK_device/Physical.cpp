@@ -328,12 +328,12 @@ void Physical::find_max_usable_sample_count(vk::structure::Physical_device& phys
   //---------------------------
 
   VkSampleCountFlags counts = physical_device.properties.limits.framebufferColorSampleCounts & physical_device.properties.limits.framebufferDepthSampleCounts;
-  if (counts & VK_SAMPLE_COUNT_64_BIT) { max_sample = VK_SAMPLE_COUNT_64_BIT; }
-  else if (counts & VK_SAMPLE_COUNT_32_BIT) { max_sample = VK_SAMPLE_COUNT_32_BIT; }
-  else if (counts & VK_SAMPLE_COUNT_16_BIT) { max_sample = VK_SAMPLE_COUNT_16_BIT; }
-  else if (counts & VK_SAMPLE_COUNT_8_BIT) { max_sample = VK_SAMPLE_COUNT_8_BIT; }
-  else if (counts & VK_SAMPLE_COUNT_4_BIT) { max_sample = VK_SAMPLE_COUNT_4_BIT; }
-  else if (counts & VK_SAMPLE_COUNT_2_BIT) { max_sample = VK_SAMPLE_COUNT_2_BIT; }
+  if (counts & VK_SAMPLE_COUNT_64_BIT){ max_sample = VK_SAMPLE_COUNT_64_BIT; }
+  else if (counts & VK_SAMPLE_COUNT_32_BIT){ max_sample = VK_SAMPLE_COUNT_32_BIT; }
+  else if (counts & VK_SAMPLE_COUNT_16_BIT){ max_sample = VK_SAMPLE_COUNT_16_BIT; }
+  else if (counts & VK_SAMPLE_COUNT_8_BIT){ max_sample = VK_SAMPLE_COUNT_8_BIT; }
+  else if (counts & VK_SAMPLE_COUNT_4_BIT){ max_sample = VK_SAMPLE_COUNT_4_BIT; }
+  else if (counts & VK_SAMPLE_COUNT_2_BIT){ max_sample = VK_SAMPLE_COUNT_2_BIT; }
   else max_sample = VK_SAMPLE_COUNT_1_BIT;
 
   max_sample = VK_SAMPLE_COUNT_1_BIT; // for now

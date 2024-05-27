@@ -15,8 +15,8 @@ namespace aria {
     using CSV = std::vector<std::vector<std::string>>;
 
     // Checking for '\n', '\r', and '\r\n' by default
-    inline bool operator==(const char c, const Term t) {
-      switch (t) {
+    inline bool operator==(const char c, const Term t){
+      switch (t){
         case Term::CRLF:
           return c == '\r' || c == '\n';
         default:
@@ -24,15 +24,15 @@ namespace aria {
       }
     }
 
-    inline bool operator!=(const char c, const Term t) {
+    inline bool operator!=(const char c, const Term t){
       return !(c == t);
     }
 
     // Wraps returned fields so we can also indicate
     // that we hit row endings or the end of the csv itself
     struct Field {
-      explicit Field(FieldType t): type(t), data(nullptr) {}
-      explicit Field(const std::string& str): type(FieldType::DATA), data(&str) {}
+      explicit Field(FieldType t): type(t), data(nullptr){}
+      explicit Field(const std::string& str): type(FieldType::DATA), data(&str){}
 
       FieldType type;
       const std::string *data;
@@ -75,10 +75,10 @@ namespace aria {
       // Creates the CSV parser which by default, splits on commas,
       // uses quotes to escape, and handles CSV files that end in either
       // '\r', '\n', or '\r\n'.
-      explicit CsvParser(std::istream& input): m_input(input) {
+      explicit CsvParser(std::istream& input): m_input(input){
         // Reserve space upfront to improve performance
         m_fieldbuf.reserve(FIELDBUF_CAP);
-        if (!m_input.good()) {
+        if (!m_input.good()){
           throw std::runtime_error("Something is wrong with input stream");
         }
       }
@@ -103,7 +103,7 @@ namespace aria {
 
       // The parser is in the empty state when there are
       // no more tokens left to read from the input buffer
-      bool empty() {
+      bool empty(){
         return m_state == State::EMPTY;
       }
 
@@ -115,38 +115,38 @@ namespace aria {
       }
 
       // Reads a single field from the CSV
-      Field next_field() {
-        if (empty()) {
+      Field next_field(){
+        if (empty()){
           return Field(FieldType::CSV_END);
         }
         m_fieldbuf.clear();
 
         // This loop runs until either the parser has
         // read a full field or until there's no tokens left to read
-        for (;;) {
+        for(;;){
           char *maybe_token = top_token();
 
           // If we're out of tokens to read return whatever's left in the
           // field and row buffers. If there's nothing left, return null.
-          if (!maybe_token) {
+          if (!maybe_token){
             m_state = State::EMPTY;
             return !m_fieldbuf.empty() ? Field(m_fieldbuf) : Field(FieldType::CSV_END);
           }
 
           // Parsing the CSV is done using a finite state machine
           char c = *maybe_token;
-          switch (m_state) {
+          switch (m_state){
             case State::START_OF_FIELD:
               m_cursor++;
-              if (c == m_terminator) {
+              if (c == m_terminator){
                 handle_crlf(c);
                 m_state = State::END_OF_ROW;
                 return Field(m_fieldbuf);
               }
 
-              if (c == m_quote) {
+              if (c == m_quote){
                 m_state = State::IN_QUOTED_FIELD;
-              } else if (c == m_delimiter) {
+              } else if (c == m_delimiter){
                 return Field(m_fieldbuf);
               } else {
                 m_state = State::IN_FIELD;
@@ -157,13 +157,13 @@ namespace aria {
 
             case State::IN_FIELD:
               m_cursor++;
-              if (c == m_terminator) {
+              if (c == m_terminator){
                 handle_crlf(c);
                 m_state = State::END_OF_ROW;
                 return Field(m_fieldbuf);
               }
 
-              if (c == m_delimiter) {
+              if (c == m_delimiter){
                 m_state = State::START_OF_FIELD;
                 return Field(m_fieldbuf);
               } else {
@@ -174,7 +174,7 @@ namespace aria {
 
             case State::IN_QUOTED_FIELD:
               m_cursor++;
-              if (c == m_quote) {
+              if (c == m_quote){
                 m_state = State::IN_ESCAPED_QUOTE;
               } else {
                 m_fieldbuf += c;
@@ -184,16 +184,16 @@ namespace aria {
 
             case State::IN_ESCAPED_QUOTE:
               m_cursor++;
-              if (c == m_terminator) {
+              if (c == m_terminator){
                 handle_crlf(c);
                 m_state = State::END_OF_ROW;
                 return Field(m_fieldbuf);
               }
 
-              if (c == m_quote) {
+              if (c == m_quote){
                 m_state = State::IN_QUOTED_FIELD;
                 m_fieldbuf += c;
-              } else if (c == m_delimiter) {
+              } else if (c == m_delimiter){
                 m_state = State::START_OF_FIELD;
                 return Field(m_fieldbuf);
               } else {
@@ -217,13 +217,13 @@ namespace aria {
       // to check the special case of '\r\n' as a terminator.
       // If it finds that the previous token was a '\r', and
       // the next token will be a '\n', it skips the '\n'.
-      void handle_crlf(const char c) {
-        if (m_terminator != Term::CRLF || c != '\r') {
+      void handle_crlf(const char c){
+        if (m_terminator != Term::CRLF || c != '\r'){
           return;
         }
 
         char *token = top_token();
-        if (token && *token == '\n') {
+        if (token && *token == '\n'){
           m_cursor++;
         }
       }
@@ -231,26 +231,26 @@ namespace aria {
       // Pulls the next token from the input buffer, but does not move
       // the cursor forward. If the stream is empty and the input buffer
       // is also empty return a nullptr.
-      char* top_token() {
+      char* top_token(){
         // Return null if there's nothing left to read
-        if (m_eof && m_cursor == m_inputbuf_size) {
+        if (m_eof && m_cursor == m_inputbuf_size){
           return nullptr;
         }
 
         // Refill the input buffer if it's been fully read
-        if (m_cursor == m_inputbuf_size) {
+        if (m_cursor == m_inputbuf_size){
           m_scanposition += static_cast<std::streamoff>(m_cursor);
           m_cursor = 0;
           m_input.read(m_inputbuf.get(), INPUTBUF_CAP);
 
           // Indicate we hit end of file, and resize
           // input buffer to show that it's not at full capacity
-          if (m_input.eof()) {
+          if (m_input.eof()){
             m_eof = true;
             m_inputbuf_size = m_input.gcount();
 
             // Return null if there's nothing left to read
-            if (m_inputbuf_size == 0) {
+            if (m_inputbuf_size == 0){
               return nullptr;
             }
           }
@@ -269,20 +269,20 @@ namespace aria {
         using reference = const std::vector<std::string>&;
         using iterator_category = std::input_iterator_tag;
 
-        explicit iterator(CsvParser *p, bool end = false): m_parser(p) {
-          if (!end) {
+        explicit iterator(CsvParser *p, bool end = false): m_parser(p){
+          if (!end){
             m_row.reserve(50);
             m_current_row = 0;
             next();
           }
         }
 
-        iterator& operator++() {
+        iterator& operator++(){
           next();
           return *this;
         }
 
-        iterator operator++(int) {
+        iterator operator++(int){
           iterator i = (*this);
           ++(*this);
           return i;
@@ -309,25 +309,25 @@ namespace aria {
         CsvParser *m_parser;
         int m_current_row = -1;
 
-        void next() {
+        void next(){
           value_type::size_type num_fields = 0;
-          for (;;) {
+          for(;;){
             auto field = m_parser->next_field();
-            switch (field.type) {
+            switch (field.type){
               case FieldType::CSV_END:
-                if (num_fields < m_row.size()) {
+                if (num_fields < m_row.size()){
                   m_row.resize(num_fields);
                 }
                 m_current_row = -1;
                 return;
               case FieldType::ROW_END:
-                if (num_fields < m_row.size()) {
+                if (num_fields < m_row.size()){
                   m_row.resize(num_fields);
                 }
                 m_current_row++;
                 return;
               case FieldType::DATA:
-                if (num_fields < m_row.size()) {
+                if (num_fields < m_row.size()){
                   m_row[num_fields] = std::move(*field.data);
                 } else {
                   m_row.push_back(std::move(*field.data));
@@ -338,8 +338,8 @@ namespace aria {
         }
       };
 
-      iterator begin() { return iterator(this); };
-      iterator end() { return iterator(this, true); };
+      iterator begin(){ return iterator(this); };
+      iterator end(){ return iterator(this, true); };
     };
   }
 }

@@ -43,7 +43,7 @@ void SLAM_optim_gn::optim_GN(Frame* frame_m0, Frame* frame_m1){
   // X [9-11]: trans_e
   //---------------------------
 
-  for (int iter=0; iter < iter_max; iter++){
+  for(int iter=0; iter < iter_max; iter++){
     //Initialization
     Eigen::MatrixXd J = Eigen::MatrixXd::Zero(12, 12);
     Eigen::VectorXd b = Eigen::VectorXd::Zero(12);

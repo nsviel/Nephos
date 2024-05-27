@@ -35,7 +35,7 @@ struct IMGUI_API ImOffsetRect
 
 // Helpers: ImOffsetRect operators
 IM_MSVC_RUNTIME_CHECKS_OFF
-static inline ImOffsetRect operator+(const ImOffsetRect& lhs, const ImOffsetRect& rhs) { return ImOffsetRect(lhs.Top + rhs.Top, lhs.Left + rhs.Left, lhs.Bottom + rhs.Bottom, lhs.Right + rhs.Right); }
-static inline ImOffsetRect operator-(const ImOffsetRect& lhs, const ImOffsetRect& rhs) { return ImOffsetRect(lhs.Top - rhs.Top, lhs.Left - rhs.Left, lhs.Bottom - rhs.Bottom, lhs.Right - rhs.Right); }
-static inline ImOffsetRect operator*(const ImOffsetRect& lhs, const ImOffsetRect& rhs) { return ImOffsetRect(lhs.Top * rhs.Top, lhs.Left * rhs.Left, lhs.Bottom * rhs.Bottom, lhs.Right * rhs.Right); }
+static inline ImOffsetRect operator+(const ImOffsetRect& lhs, const ImOffsetRect& rhs){ return ImOffsetRect(lhs.Top + rhs.Top, lhs.Left + rhs.Left, lhs.Bottom + rhs.Bottom, lhs.Right + rhs.Right); }
+static inline ImOffsetRect operator-(const ImOffsetRect& lhs, const ImOffsetRect& rhs){ return ImOffsetRect(lhs.Top - rhs.Top, lhs.Left - rhs.Left, lhs.Bottom - rhs.Bottom, lhs.Right - rhs.Right); }
+static inline ImOffsetRect operator*(const ImOffsetRect& lhs, const ImOffsetRect& rhs){ return ImOffsetRect(lhs.Top * rhs.Top, lhs.Left * rhs.Left, lhs.Bottom * rhs.Bottom, lhs.Right * rhs.Right); }
 IM_MSVC_RUNTIME_CHECKS_RESTORE

@@ -17,7 +17,7 @@ struct LMFunctor
 	int operator()(const Eigen::VectorXf &P, Eigen::VectorXf &fvec) const
 	{
 
-		for (int i = 0; i < values(); i++) {
+		for(int i = 0; i < values(); i++){
 			float xValue = measuredValues(i, 0);
 			float yValue = measuredValues(i, 1);
       float zValue = measuredValues(i, 2);
@@ -49,7 +49,7 @@ struct LMFunctor
 		float epsilon;
 		epsilon = 1e-5f;
 
-		for (int i = 0; i < P.size(); i++) {
+		for(int i = 0; i < P.size(); i++){
 			Eigen::VectorXf xPlus(P);
 			xPlus(i) += epsilon;
 			Eigen::VectorXf xMinus(P);

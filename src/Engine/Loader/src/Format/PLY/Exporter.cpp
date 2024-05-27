@@ -153,7 +153,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, utl
   int offset = 0;
   int cpt_property = 0;
   for(int i=0; i<xyz.size(); i++){
-    for (int j=0; j<property_number; j++){
+    for(int j=0; j<property_number; j++){
 
       switch(vec_property[j]){
         //Location

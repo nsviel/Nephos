@@ -37,13 +37,13 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree = 3){
 
     Eigen::VectorXf row(numParams);
     int k = 0;
-    for (int j = 0; j <= degree; ++j) {
-      for (int l = 0; l <= j; ++l) {
+    for(int j = 0; j <= degree; ++j){
+      for(int l = 0; l <= j; ++l){
         row(k++) = pow(x, j - l) * pow(y, l); // X^i * Y^(j-i)
       }
     }
 
-    if (A.rows() == 0) {
+    if (A.rows() == 0){
       A.resize(1, numParams);
       b.resize(1);
       A.row(0) = row;
@@ -87,13 +87,13 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree, glm::vec2 x
 
     Eigen::VectorXf row(numParams);
     int k = 0;
-    for (int j = 0; j <= degree; ++j) {
-      for (int l = 0; l <= j; ++l) {
+    for(int j = 0; j <= degree; ++j){
+      for(int l = 0; l <= j; ++l){
         row(k++) = pow(x, j - l) * pow(y, l); // X^i * Y^(j-i)
       }
     }
 
-    if (A.rows() == 0) {
+    if (A.rows() == 0){
       A.resize(1, numParams);
       b.resize(1);
       A.row(0) = row;

@@ -15,7 +15,7 @@ ImGui::End();
 
 namespace ImGui {
 
-  bool BufferingBar(const char* label, float value,  const ImVec2& size_arg, const ImU32& bg_col, const ImU32& fg_col) {
+  bool BufferingBar(const char* label, float value,  const ImVec2& size_arg, const ImU32& bg_col, const ImU32& fg_col){
     ImGuiWindow* window = GetCurrentWindow();
     if(window->SkipItems){
       return false;
@@ -62,7 +62,7 @@ namespace ImGui {
     return true;
   }
 
-  bool Spinner(const char* label, float radius, int thickness, const ImU32& color) {
+  bool Spinner(const char* label, float radius, int thickness, const ImU32& color){
     ImGuiWindow* window = GetCurrentWindow();
     if (window->SkipItems){
       return false;
@@ -91,7 +91,7 @@ namespace ImGui {
     const float a_max = IM_PI*2.0f * ((float)num_segments-3) / (float)num_segments;
     const ImVec2 centre = ImVec2(pos.x+radius, pos.y+radius+style.FramePadding.y);
 
-    for (int i = 0; i < num_segments; i++) {
+    for(int i = 0; i < num_segments; i++){
       const float a = a_min + ((float)i / (float)num_segments) * (a_max - a_min);
       window->DrawList->PathLineTo(ImVec2(centre.x + ImCos(a+g.Time*8) * radius, centre.y + ImSin(a+g.Time*8) * radius));
     }
@@ -100,10 +100,10 @@ namespace ImGui {
     return true;
   }
 
-  void LoadingIndicatorCircle(const char* label, const float indicator_radius, const ImVec4& main_color, const ImVec4& backdrop_color, const int circle_count, const float speed) {
+  void LoadingIndicatorCircle(const char* label, const float indicator_radius, const ImVec4& main_color, const ImVec4& backdrop_color, const int circle_count, const float speed){
     ImGuiStyle& style = ImGui::GetStyle();
     ImGuiWindow* window = GetCurrentWindow();
-    if (window->SkipItems) {
+    if (window->SkipItems){
       return;
     }
 
@@ -113,12 +113,12 @@ namespace ImGui {
     const float circle_radius = indicator_radius / 10.0f;
     const ImRect bb(pos, ImVec2(pos.x + indicator_radius * 2.0f, pos.y + indicator_radius * 2.0f));
     ItemSize(bb, style.FramePadding.y);
-    if (!ItemAdd(bb, id)) {
+    if (!ItemAdd(bb, id)){
       return;
     }
     const float t = g.Time;
     const auto degree_offset = 2.0f * IM_PI / circle_count;
-    for (int i = 0; i < circle_count; ++i) {
+    for(int i = 0; i < circle_count; ++i){
       const auto x = indicator_radius * std::sin(degree_offset * i);
       const auto y = indicator_radius * std::cos(degree_offset * i);
       const auto growth = std::max(0.0f, std::sin(t * speed - i * degree_offset));

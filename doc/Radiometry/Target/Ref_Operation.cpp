@@ -451,7 +451,7 @@ bool Ref_Operation::compute_Spectralon_IbycIt(int distance){
     cout<<"No Spectralon ref"<<endl;
     return false;
   }
-  switch (distance) {
+  switch (distance){
     case 05:{
       list_99p = refManager->get_list_99p_05m_xd();
       list_50p = refManager->get_list_50p_05m_xd();

@@ -87,7 +87,7 @@ public:
      */
     void rollbackTo();
     // @deprecated same as rollbackTo();
-    void rollback() { rollbackTo(); }
+    void rollback(){ rollbackTo(); }
 
 private:
     Database&   mDatabase;          ///< Reference to the SQLite Database Connection

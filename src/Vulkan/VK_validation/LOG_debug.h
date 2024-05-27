@@ -6,7 +6,7 @@
 class LOG_debug
 {
 public:
-  static LOG_debug& get_instance() {
+  static LOG_debug& get_instance(){
     static LOG_debug instance;
     return instance;
   }

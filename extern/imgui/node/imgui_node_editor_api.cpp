@@ -24,7 +24,7 @@ static int BuildIdList(C& container, I* list, int listSize, F&& accept)
     if (list != nullptr)
     {
         int count = 0;
-        for (auto object : container)
+        for(auto object : container)
         {
             if (listSize <= 0)
                 break;

@@ -129,7 +129,7 @@ std::string selection_file(){
   char* path_char = fgets(filename, 1024, file);
 
   //Check if empty
-  if ((path_char != NULL) && (path_char[0] != '\0')) {
+  if ((path_char != NULL) && (path_char[0] != '\0')){
     std::string path_str(path_char);
 
     //Supress unwanted line break
@@ -156,7 +156,7 @@ std::string selection_saving(std::string& dir, std::string filename){
   char* path_char = fgets(path_buffer, 1024, file);
 
   //Check if empty
-  if ((path_char != NULL) && (path_char[0] != '\0')) {
+  if ((path_char != NULL) && (path_char[0] != '\0')){
     //Supress unwanted line break
     std::string path_str(path_char);
     if (path_str.find('\n')){
@@ -182,7 +182,7 @@ void selection_file(std::string& path){
   char* path_char = fgets(filename, 1024, file);
 
   //Check if empty
-  if ((path_char != NULL) && (path_char[0] != '\0')) {
+  if ((path_char != NULL) && (path_char[0] != '\0')){
     std::string path_str(path_char);
 
     //Supress unwanted line break
@@ -207,7 +207,7 @@ void selection_directory(std::string& path){
   char* path_char = fgets(filename, 1024, file);
 
   //Check if empty
-  if ((path_char != NULL) && (path_char[0] != '\0')) {
+  if ((path_char != NULL) && (path_char[0] != '\0')){
     std::string path_str(path_char);
 
     //Supress unwanted line break

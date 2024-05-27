@@ -187,7 +187,7 @@ inline float ImCubicBezierLength(const T& p0, const T& p1, const T& p2, const T&
     const auto n = sizeof(t_values) / sizeof(*t_values);
 
     auto accumulator = 0.0f;
-    for (size_t i = 0; i < n; ++i)
+    for(size_t i = 0; i < n; ++i)
     {
         const auto t = z * t_values[i] + z;
         accumulator += c_values[i] * arc(t);
@@ -249,7 +249,7 @@ inline ImRect ImCubicBezierBoundingRect(const ImVec2& p0, const ImVec2& p1, cons
 
 # define IM_VEC2_INDEX(v, i) *(&v.x + i)
 
-    for (int i = 0; i < 2; ++i)
+    for(int i = 0; i < 2; ++i)
     {
         if (IM_VEC2_INDEX(a, i) == 0.0f)
             continue;
@@ -299,7 +299,7 @@ inline ImProjectResult ImProjectOnCubicBezier(const ImVec2& point, const ImVec2&
     result.Distance = FLT_MAX;
 
     // Step 1: Coarse check
-    for (int i = 0; i < subdivisions; ++i)
+    for(int i = 0; i < subdivisions; ++i)
     {
         auto t = i * fixed_step;
         auto p = ImCubicBezier(p0, p1, p2, p3, t);
@@ -325,7 +325,7 @@ inline ImProjectResult ImProjectOnCubicBezier(const ImVec2& point, const ImVec2&
     auto right = result.Time + fixed_step;
     auto step  = fixed_step * 0.1f;
 
-    for (auto t = left; t < right + step; t += step)
+    for(auto t = left; t < right + step; t += step)
     {
         auto p = ImCubicBezier(p0, p1, p2, p3, t);
         auto s = point - p;
@@ -438,7 +438,7 @@ inline ImCubicBezierIntersectResult ImCubicBezierLineIntersect(const ImVec2& p0,
     ImCubicBezierIntersectResult result;
     auto points = result.Points;
 
-    for (int i = 0; i < rootCount; ++i)
+    for(int i = 0; i < rootCount; ++i)
     {
         auto root = roots[i];
 
@@ -587,7 +587,7 @@ inline void ImCubicBezierFixedStep(ImCubicBezierFixedStepCallback callback, void
 
     // #todo: replace map with ImVector + binary search
     std::map<float, float> cache;
-    for (int point_index = 1; point_index < point_count; ++point_index)
+    for(int point_index = 1; point_index < point_count; ++point_index)
     {
         const auto targetLength = point_index * step;
 

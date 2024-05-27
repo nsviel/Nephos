@@ -76,7 +76,7 @@ namespace{
     //-------------
     return duration;
   }
-  std::string epoch_to_utc(float epoch) {
+  std::string epoch_to_utc(float epoch){
     const std::time_t old = (std::time_t)epoch;
     struct tm *oldt = std::gmtime(&old);
     return std::asctime(oldt);

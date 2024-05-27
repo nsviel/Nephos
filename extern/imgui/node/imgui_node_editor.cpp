@@ -198,7 +198,7 @@ static void ImDrawListSplitter_Grow(ImDrawList* draw_list, ImDrawListSplitter* s
     int old_used_channels_count = splitter->_Count;
     splitter->_Count = channels_count;
 
-    for (int i = old_used_channels_count; i < channels_count; i++)
+    for(int i = old_used_channels_count; i < channels_count; i++)
     {
         if (i >= old_channels_count)
         {
@@ -258,7 +258,7 @@ static void ImDrawList_SwapSplitter(ImDrawList* drawList, ImDrawListSplitter& sp
 //    auto idxRead = idxBuffer.Data;
 //
 //    int indexOffset = 0;
-//    for (auto& cmd : cmdBuffer)
+//    for(auto& cmd : cmdBuffer)
 //    {
 //        auto idxCount = cmd.ElemCount;
 //
@@ -267,14 +267,14 @@ static void ImDrawList_SwapSplitter(ImDrawList* drawList, ImDrawListSplitter& sp
 //        auto minIndex = idxRead[indexOffset];
 //        auto maxIndex = idxRead[indexOffset];
 //
-//        for (auto i = 1u; i < idxCount; ++i)
+//        for(auto i = 1u; i < idxCount; ++i)
 //        {
 //            auto idx = idxRead[indexOffset + i];
 //            minIndex = std::min(minIndex, idx);
 //            maxIndex = ImMax(maxIndex, idx);
 //        }
 //
-//        for (auto vtx = vtxBuffer.Data + minIndex, vtxEnd = vtxBuffer.Data + maxIndex + 1; vtx < vtxEnd; ++vtx)
+//        for(auto vtx = vtxBuffer.Data + minIndex, vtxEnd = vtxBuffer.Data + maxIndex + 1; vtx < vtxEnd; ++vtx)
 //        {
 //            vtx->pos.x = (vtx->pos.x + preOffset.x) * scale.x + postOffset.x;
 //            vtx->pos.y = (vtx->pos.y + preOffset.y) * scale.y + postOffset.y;
@@ -298,7 +298,7 @@ static void ImDrawList_SwapSplitter(ImDrawList* drawList, ImDrawListSplitter& sp
 //        ++begin;
 //    }
 //
-//    for (int channelIndex = begin; channelIndex < end; ++channelIndex)
+//    for(int channelIndex = begin; channelIndex < end; ++channelIndex)
 //    {
 //        auto& channel = drawList->_Channels[channelIndex];
 //        ImDrawList_TransformChannel_Inner(vtxBuffer, channel.IdxBuffer, channel.CmdBuffer, preOffset, scale, postOffset);
@@ -310,7 +310,7 @@ static void ImDrawList_SwapSplitter(ImDrawList* drawList, ImDrawListSplitter& sp
 
 //static void ImDrawList_ClampClipRects_Inner(ImVector<ImDrawCmd>& cmdBuffer, const ImVec4& clipRect, const ImVec2& offset)
 //{
-//    for (auto& cmd : cmdBuffer)
+//    for(auto& cmd : cmdBuffer)
 //    {
 //        cmd.ClipRect.x = ImMax(cmd.ClipRect.x + offset.x, clipRect.x);
 //        cmd.ClipRect.y = ImMax(cmd.ClipRect.y + offset.y, clipRect.y);
@@ -333,7 +333,7 @@ static void ImDrawList_SwapSplitter(ImDrawList* drawList, ImDrawListSplitter& sp
 //        ++begin;
 //    }
 //
-//    for (int channelIndex = begin; channelIndex < end; ++channelIndex)
+//    for(int channelIndex = begin; channelIndex < end; ++channelIndex)
 //    {
 //        auto& channel = drawList->_Channels[channelIndex];
 //        ImDrawList_ClampClipRects_Inner(channel.CmdBuffer, clipRect, offset);
@@ -371,7 +371,7 @@ static void ImDrawList_PolyFillScanFlood(ImDrawList *draw, std::vector<ImVec2>* 
     {
         min.x = min.y = FLT_MAX;
         max.x = max.y = FLT_MIN;
-        for (auto p : *poly)
+        for(auto p : *poly)
         {
             if (p.x < min.x) min.x = p.x;
             if (p.y < min.y) min.y = p.y;
@@ -404,7 +404,7 @@ static void ImDrawList_PolyFillScanFlood(ImDrawList *draw, std::vector<ImVec2>* 
             int jump = 1;
             ImVec2 fp = poly->at(0);
 
-            for (size_t i = 0; i < polysize - 1; i++)
+            for(size_t i = 0; i < polysize - 1; i++)
             {
                 ImVec2 pa = poly->at(i);
                 ImVec2 pb = poly->at(i + 1);
@@ -448,13 +448,13 @@ static void ImDrawList_PolyFillScanFlood(ImDrawList *draw, std::vector<ImVec2>* 
             }
 
             // Sort the scan hits by X, so we have a proper left->right ordering
-            sort(scanHits.begin(), scanHits.end(), [](ImVec2 const &a, ImVec2 const &b) { return a.x < b.x; });
+            sort(scanHits.begin(), scanHits.end(), [](ImVec2 const &a, ImVec2 const &b){ return a.x < b.x; });
 
             // generate the line segments.
             {
                 int i = 0;
                 int l = scanHits.size() - 1; // we need pairs of points, this prevents segfault.
-                for (i = 0; i < l; i += 2)
+                for(i = 0; i < l; i += 2)
                 {
                     draw->AddLine(scanHits[i], scanHits[i + 1], color, strokeWidth);
                 }
@@ -735,7 +735,7 @@ void ed::Node::GetGroupedNodes(std::vector<Node*>& result, bool append)
     const auto firstNodeIndex = result.size();
     Editor->FindNodesInRect(m_GroupBounds, result, true, false);
 
-    for (auto index = firstNodeIndex; index < result.size(); ++index)
+    for(auto index = firstNodeIndex; index < result.size(); ++index)
         result[index]->GetGroupedNodes(result, true);
 }
 
@@ -858,7 +858,7 @@ ed::NodeRegion ed::Node::GetRegion(const ImVec2& point) const
             NodeRegion::Center
         };
 
-        for (auto region : c_Regions)
+        for(auto region : c_Regions)
         {
             auto bounds = GetRegionBounds(region);
             if (bounds.Contains(point))
@@ -1116,9 +1116,9 @@ ed::EditorContext::~EditorContext()
     if (m_IsInitialized)
         SaveSettings();
 
-    for (auto link  : m_Links)  delete link.m_Object;
-    for (auto pin   : m_Pins)   delete pin.m_Object;
-    for (auto node  : m_Nodes)  delete node.m_Object;
+    for(auto link  : m_Links)  delete link.m_Object;
+    for(auto pin   : m_Pins)   delete pin.m_Object;
+    for(auto node  : m_Nodes)  delete node.m_Object;
 
     m_Splitter.ClearFreeMemory();
 }
@@ -1178,7 +1178,7 @@ void ed::EditorContext::Begin(const char* id, const ImVec2& size)
     {
         auto& io = ImGui::GetIO();
         auto offset = m_NavigateAction.GetMoveScreenOffset();
-        for (int i = 0; i < 5; ++i)
+        for(int i = 0; i < 5; ++i)
             io.MouseClickedPos[i] = io.MouseClickedPos[i] - offset;
     }
     else
@@ -1275,12 +1275,12 @@ void ed::EditorContext::End()
     //const bool isSizing    = CurrentAction && CurrentAction->AsSize()   != nullptr;
 
     // Draw nodes
-    for (auto node : m_Nodes)
+    for(auto node : m_Nodes)
         if (node->m_IsLive && node->IsVisible())
             node->Draw(m_DrawList);
 
     // Draw links
-    for (auto link : m_Links)
+    for(auto link : m_Links)
         if (link->m_IsLive && link->IsVisible())
             link->Draw(m_DrawList);
 
@@ -1290,7 +1290,7 @@ void ed::EditorContext::End()
         if (auto selectAction = m_CurrentAction ? m_CurrentAction->AsSelect() : nullptr)
             selectedObjects = &selectAction->m_CandidateObjects;
 
-        for (auto selectedObject : *selectedObjects)
+        for(auto selectedObject : *selectedObjects)
         {
             if (selectedObject->IsVisible())
                 selectedObject->Draw(m_DrawList, Object::Selected);
@@ -1302,7 +1302,7 @@ void ed::EditorContext::End()
             return pin.m_Node->m_HighlightConnectedLinks && pin.m_Node->m_IsSelected;
         };
 
-        for (auto& link : m_Links)
+        for(auto& link : m_Links)
         {
             if (!link->m_IsLive || !link->IsVisible())
                 continue;
@@ -1328,7 +1328,7 @@ void ed::EditorContext::End()
     }
 
     // Draw animations
-    for (auto controller : m_AnimationControllers)
+    for(auto controller : m_AnimationControllers)
         controller->Draw(m_DrawList);
 
     if (m_CurrentAction && !m_CurrentAction->Process(control))
@@ -1440,7 +1440,7 @@ void ed::EditorContext::End()
     // node drawing order.
     {
         // Copy group nodes
-        auto liveNodeCount = static_cast<int>(std::count_if(m_Nodes.begin(), m_Nodes.end(), [](Node* node) { return node->m_IsLive; }));
+        auto liveNodeCount = static_cast<int>(std::count_if(m_Nodes.begin(), m_Nodes.end(), [](Node* node){ return node->m_IsLive; }));
 
         // Reserve two additional channels for sorted list of channels
         auto nodeChannelCount = m_DrawList->_Splitter._Count;
@@ -1453,20 +1453,20 @@ void ed::EditorContext::End()
             if (!node->m_IsLive)
                 return;
 
-            for (int i = 0; i < c_ChannelsPerNode; ++i)
+            for(int i = 0; i < c_ChannelsPerNode; ++i)
                 ImDrawList_SwapChannels(m_DrawList, node->m_Channel + i, targetChannel + i);
 
             node->m_Channel = targetChannel;
             targetChannel += c_ChannelsPerNode;
         };
 
-        auto groupsItEnd = std::find_if(m_Nodes.begin(), m_Nodes.end(), [](Node* node) { return !IsGroup(node); });
+        auto groupsItEnd = std::find_if(m_Nodes.begin(), m_Nodes.end(), [](Node* node){ return !IsGroup(node); });
 
         // Copy group nodes
         std::for_each(m_Nodes.begin(), groupsItEnd, copyNode);
 
         // Copy links
-        for (int i = 0; i < c_LinkChannelCount; ++i, ++targetChannel)
+        for(int i = 0; i < c_LinkChannelCount; ++i, ++targetChannel)
             ImDrawList_SwapChannels(m_DrawList, c_LinkStartChannel + i, targetChannel);
 
         // Copy normal nodes
@@ -1492,9 +1492,9 @@ void ed::EditorContext::End()
 
         m_DrawList->AddRectFilled(VIEW_POS, VIEW_POS + VIEW_SIZE, GetColor(StyleColor_Bg));
 
-        for (float x = fmodf(offset.x, GRID_SX); x < VIEW_SIZE.x; x += GRID_SX)
+        for(float x = fmodf(offset.x, GRID_SX); x < VIEW_SIZE.x; x += GRID_SX)
             m_DrawList->AddLine(ImVec2(x, 0.0f) + VIEW_POS, ImVec2(x, VIEW_SIZE.y) + VIEW_POS, GRID_COLOR);
-        for (float y = fmodf(offset.y, GRID_SY); y < VIEW_SIZE.y; y += GRID_SY)
+        for(float y = fmodf(offset.y, GRID_SY); y < VIEW_SIZE.y; y += GRID_SY)
             m_DrawList->AddLine(ImVec2(0.0f, y) + VIEW_POS, ImVec2(VIEW_SIZE.x, y) + VIEW_POS, GRID_COLOR);
     }
 # endif
@@ -1504,7 +1504,7 @@ void ed::EditorContext::End()
         auto userChannel = drawList->_Splitter._Count;
         auto channelsToCopy = c_UserLayersCount;
         ImDrawList_ChannelsGrow(drawList, userChannel + channelsToCopy);
-        for (int i = 0; i < channelsToCopy; ++i)
+        for(int i = 0; i < channelsToCopy; ++i)
             ImDrawList_SwapChannels(drawList, userChannel + i, c_UserLayerChannelStart + i);
     }
 # endif
@@ -1525,9 +1525,9 @@ void ed::EditorContext::End()
         ImGui::PopClipRect();
 
         // #debug: Static grid in local space
-        //for (float x = 0; x < Canvas.WindowScreenSize.x; x += 100)
+        //for(float x = 0; x < Canvas.WindowScreenSize.x; x += 100)
         //    drawList->AddLine(ImVec2(x, 0.0f) + Canvas.WindowScreenPos, ImVec2(x, Canvas.WindowScreenSize.y) + Canvas.WindowScreenPos, IM_COL32(255, 0, 0, 128));
-        //for (float y = 0; y < Canvas.WindowScreenSize.y; y += 100)
+        //for(float y = 0; y < Canvas.WindowScreenSize.y; y += 100)
         //    drawList->AddLine(ImVec2(0.0f, y) + Canvas.WindowScreenPos, ImVec2(Canvas.WindowScreenSize.x, y) + Canvas.WindowScreenPos, IM_COL32(255, 0, 0, 128));
     }
 # endif
@@ -1542,7 +1542,7 @@ void ed::EditorContext::End()
         auto preTransformClipRect = [this](int channelIndex)
         {
             ImDrawChannel& channel = m_DrawList->_Splitter._Channels[channelIndex];
-            for (ImDrawCmd& cmd : channel._CmdBuffer)
+            for(ImDrawCmd& cmd : channel._CmdBuffer)
             {
                 auto a = ToCanvas(ImVec2(cmd.ClipRect.x, cmd.ClipRect.y));
                 auto b = ToCanvas(ImVec2(cmd.ClipRect.z, cmd.ClipRect.w));
@@ -1595,7 +1595,7 @@ void ed::EditorContext::End()
     if (!m_CurrentAction && m_IsFirstFrame && !m_Settings.m_Selection.empty())
     {
         ClearSelection();
-        for (auto id : m_Settings.m_Selection)
+        for(auto id : m_Settings.m_Selection)
             if (auto object = FindObject(id))
                 SelectObject(object);
     }
@@ -1763,7 +1763,7 @@ void ed::EditorContext::RemoveSettings(Object* object)
 
 void ed::EditorContext::ClearSelection()
 {
-    for (auto& object : m_SelectedObjects)
+    for(auto& object : m_SelectedObjects)
         object->m_IsSelected = false;
 
     m_SelectedObjects.clear();
@@ -1812,7 +1812,7 @@ const ed::vector<ed::Object*>& ed::EditorContext::GetSelectedObjects()
 
 bool ed::EditorContext::IsAnyNodeSelected()
 {
-    for (auto object : m_SelectedObjects)
+    for(auto object : m_SelectedObjects)
         if (object->AsNode())
             return true;
 
@@ -1821,7 +1821,7 @@ bool ed::EditorContext::IsAnyNodeSelected()
 
 bool ed::EditorContext::IsAnyLinkSelected()
 {
-    for (auto object : m_SelectedObjects)
+    for(auto object : m_SelectedObjects)
         if (object->AsLink())
             return true;
 
@@ -1835,7 +1835,7 @@ bool ed::EditorContext::HasSelectionChanged()
 
 ed::Node* ed::EditorContext::FindNodeAt(const ImVec2& p)
 {
-    for (auto node : m_Nodes)
+    for(auto node : m_Nodes)
         if (node->TestHit(p))
             return node;
 
@@ -1850,7 +1850,7 @@ void ed::EditorContext::FindNodesInRect(const ImRect& r, vector<Node*>& result, 
     if (ImRect_IsEmpty(r))
         return;
 
-    for (auto node : m_Nodes)
+    for(auto node : m_Nodes)
         if (node->TestHit(r, includeIntersecting))
             result.push_back(node);
 }
@@ -1863,14 +1863,14 @@ void ed::EditorContext::FindLinksInRect(const ImRect& r, vector<Link*>& result, 
     if (ImRect_IsEmpty(r))
         return;
 
-    for (auto link : m_Links)
+    for(auto link : m_Links)
         if (link->TestHit(r))
             result.push_back(link);
 }
 
 bool ed::EditorContext::HasAnyLinks(NodeId nodeId) const
 {
-    for (auto link : m_Links)
+    for(auto link : m_Links)
     {
         if (!link->m_IsLive)
             continue;
@@ -1884,7 +1884,7 @@ bool ed::EditorContext::HasAnyLinks(NodeId nodeId) const
 
 bool ed::EditorContext::HasAnyLinks(PinId pinId) const
 {
-    for (auto link : m_Links)
+    for(auto link : m_Links)
     {
         if (!link->m_IsLive)
             continue;
@@ -1899,7 +1899,7 @@ bool ed::EditorContext::HasAnyLinks(PinId pinId) const
 int ed::EditorContext::BreakLinks(NodeId nodeId)
 {
     int result = 0;
-    for (auto link : m_Links)
+    for(auto link : m_Links)
     {
         if (!link->m_IsLive)
             continue;
@@ -1916,7 +1916,7 @@ int ed::EditorContext::BreakLinks(NodeId nodeId)
 int ed::EditorContext::BreakLinks(PinId pinId)
 {
     int result = 0;
-    for (auto link : m_Links)
+    for(auto link : m_Links)
     {
         if (!link->m_IsLive)
             continue;
@@ -1935,7 +1935,7 @@ void ed::EditorContext::FindLinksForNode(NodeId nodeId, vector<Link*>& result, b
     if (!add)
         result.clear();
 
-    for (auto link : m_Links)
+    for(auto link : m_Links)
     {
         if (!link->m_IsLive)
             continue;
@@ -2070,11 +2070,11 @@ static inline auto FindItemInLinear(C& container, Id id)
 # if defined(_DEBUG)
     auto start = container.data();
     auto end   = container.data() + container.size();
-    for (auto it = start; it < end; ++it)
+    for(auto it = start; it < end; ++it)
         if ((*it).m_ID == id)
             return it->m_Object;
 # else
-    for (auto item : container)
+    for(auto item : container)
         if (item.m_ID == id)
             return item.m_Object;
 # endif
@@ -2088,11 +2088,11 @@ static inline auto FindItemIn(C& container, Id id)
 //# if defined(_DEBUG)
 //    auto start = container.data();
 //    auto end   = container.data() + container.size();
-//    for (auto it = start; it < end; ++it)
+//    for(auto it = start; it < end; ++it)
 //        if ((*it)->ID == id)
 //            return *it;
 //# else
-//    for (auto item : container)
+//    for(auto item : container)
 //        if (item->ID == id)
 //            return item;
 //# endif
@@ -2179,7 +2179,7 @@ void ed::EditorContext::SaveSettings()
 {
     m_Config.BeginSave();
 
-    for (auto& node : m_Nodes)
+    for(auto& node : m_Nodes)
     {
         auto settings = m_Settings.FindNode(node->m_ID);
         settings->m_Location = node->m_Bounds.Min;
@@ -2195,7 +2195,7 @@ void ed::EditorContext::SaveSettings()
     }
 
     m_Settings.m_Selection.resize(0);
-    for (auto& object : m_SelectedObjects)
+    for(auto& object : m_SelectedObjects)
         m_Settings.m_Selection.push_back(object->ID());
 
     m_Settings.m_ViewScroll  = m_NavigateAction.m_Scroll;
@@ -2220,7 +2220,7 @@ void ed::EditorContext::MakeDirty(SaveReasonFlags reason, Node* node)
 
 ed::Link* ed::EditorContext::FindLinkAt(const ImVec2& p)
 {
-    for (auto& link : m_Links)
+    for(auto& link : m_Links)
         if (link->TestHit(p, c_LinkSelectThickness))
             return link;
 
@@ -2244,7 +2244,7 @@ int ed::EditorContext::GetNodeIds(NodeId* nodes, int size) const
         return 0;
 
     int result = 0;
-    for (auto node : m_Nodes)
+    for(auto node : m_Nodes)
     {
         if (!node->m_IsLive)
             continue;
@@ -2274,7 +2274,7 @@ void ed::EditorContext::UpdateAnimations()
 {
     m_LastLiveAnimations = m_LiveAnimations;
 
-    for (auto animation : m_LastLiveAnimations)
+    for(auto animation : m_LastLiveAnimations)
     {
         const bool isLive = (std::find(m_LiveAnimations.begin(), m_LiveAnimations.end(), animation) != m_LiveAnimations.end());
 
@@ -2424,7 +2424,7 @@ ed::Control ed::EditorContext::BuildControl(bool allowOffscreen)
     };
 
     // Process live nodes and pins.
-    for (auto nodeIt = m_Nodes.rbegin(), nodeItEnd = m_Nodes.rend(); nodeIt != nodeItEnd; ++nodeIt)
+    for(auto nodeIt = m_Nodes.rbegin(), nodeItEnd = m_Nodes.rend(); nodeIt != nodeItEnd; ++nodeIt)
     {
         auto node = *nodeIt;
 
@@ -2433,7 +2433,7 @@ ed::Control ed::EditorContext::BuildControl(bool allowOffscreen)
         // Check for interactions with live pins in node before
         // processing node itself. Pins does not overlap each other
         // and all are within node bounds.
-        for (auto pin = node->m_LastPin; pin; pin = pin->m_PreviousPin)
+        for(auto pin = node->m_LastPin; pin; pin = pin->m_PreviousPin)
         {
             if (!pin->m_IsLive) continue;
 
@@ -2459,7 +2459,7 @@ ed::Control ed::EditorContext::BuildControl(bool allowOffscreen)
                 NodeRegion::Header,
             };
 
-            for (auto region : c_Regions)
+            for(auto region : c_Regions)
             {
                 auto bounds = node->GetRegionBounds(region);
                 if (ImRect_IsEmpty(bounds))
@@ -2746,7 +2746,7 @@ ed::NodeSettings* ed::Settings::AddNode(NodeId id)
 
 ed::NodeSettings* ed::Settings::FindNode(NodeId id)
 {
-    for (auto& settings : m_Nodes)
+    for(auto& settings : m_Nodes)
         if (settings.m_ID == id)
             return &settings;
 
@@ -2775,7 +2775,7 @@ void ed::Settings::ClearDirty(Node* node)
         m_IsDirty     = false;
         m_DirtyReason = SaveReasonFlags::None;
 
-        for (auto& knownNode : m_Nodes)
+        for(auto& knownNode : m_Nodes)
             knownNode.ClearDirty();
     }
 }
@@ -2812,14 +2812,14 @@ std::string ed::Settings::Serialize()
     };
 
     auto& nodes = result["nodes"];
-    for (auto& node : m_Nodes)
+    for(auto& node : m_Nodes)
     {
         if (node.m_WasUsed)
             nodes[serializeObjectId(node.m_ID)] = node.Serialize();
     }
 
     auto& selection = result["selection"];
-    for (auto& id : m_Selection)
+    for(auto& id : m_Selection)
         selection.push_back(serializeObjectId(id));
 
     auto& view = result["view"];
@@ -2885,7 +2885,7 @@ bool ed::Settings::Parse(const std::string& string, Settings& settings)
     auto& nodesValue = settingsValue["nodes"];
     if (nodesValue.is_object())
     {
-        for (auto& node : nodesValue.get<json::object>())
+        for(auto& node : nodesValue.get<json::object>())
         {
             auto id = deserializeObjectId(node.first.c_str()).AsNodeId();
 
@@ -2904,7 +2904,7 @@ bool ed::Settings::Parse(const std::string& string, Settings& settings)
 
         result.m_Selection.reserve(selectionArray.size());
         result.m_Selection.resize(0);
-        for (auto& selection : selectionArray)
+        for(auto& selection : selectionArray)
         {
             if (selection.is_string())
                 result.m_Selection.push_back(deserializeObjectId(selection.get<json::string>()));
@@ -3130,7 +3130,7 @@ void ed::FlowAnimation::Draw(ImDrawList* drawList)
         const auto markerRadius = 4.0f * (1.0f - progress) + 2.0f;
         const auto markerColor  = Editor->GetColor(StyleColor_FlowMarker, markerAlpha);
 
-        for (float d = m_Offset; d < m_PathLength; d += m_MarkerDistance)
+        for(float d = m_Offset; d < m_PathLength; d += m_MarkerDistance)
             drawList->AddCircleFilled(SamplePath(d), markerRadius, markerColor);
     }
 }
@@ -3180,7 +3180,7 @@ ImVec2 ed::FlowAnimation::SamplePath(float distance) const
 {
     //distance = ImMax(0.0f, std::min(distance, PathLength));
 
-    auto endPointIt = std::find_if(m_Path.begin(), m_Path.end(), [distance](const CurvePoint& p) { return distance < p.Distance; });
+    auto endPointIt = std::find_if(m_Path.begin(), m_Path.end(), [distance](const CurvePoint& p){ return distance < p.Distance; });
     if (endPointIt == m_Path.end())
         endPointIt = m_Path.end() - 1;
     else if (endPointIt == m_Path.begin())
@@ -3220,7 +3220,7 @@ ed::FlowAnimationController::FlowAnimationController(EditorContext* editor):
 
 ed::FlowAnimationController::~FlowAnimationController()
 {
-    for (auto animation : m_Animations)
+    for(auto animation : m_Animations)
         delete animation;
 }
 
@@ -3247,7 +3247,7 @@ void ed::FlowAnimationController::Draw(ImDrawList* drawList)
 
     drawList->ChannelsSetCurrent(c_LinkChannel_Flow);
 
-    for (auto animation : m_Animations)
+    for(auto animation : m_Animations)
         animation->Draw(drawList);
 }
 
@@ -3255,7 +3255,7 @@ ed::FlowAnimation* ed::FlowAnimationController::GetOrCreate(Link* link)
 {
     // Return live animation which match target link
     {
-        auto animationIt = std::find_if(m_Animations.begin(), m_Animations.end(), [link](FlowAnimation* animation) { return animation->m_Link == link; });
+        auto animationIt = std::find_if(m_Animations.begin(), m_Animations.end(), [link](FlowAnimation* animation){ return animation->m_Link == link; });
         if (animationIt != m_Animations.end())
             return *animationIt;
     }
@@ -3648,7 +3648,7 @@ int ed::NavigateAction::MatchZoomIndex(int direction)
     int   bestIndex    = -1;
     float bestDistance = 0.0f;
 
-    for (int i = 0; i < m_ZoomLevelCount; ++i)
+    for(int i = 0; i < m_ZoomLevelCount; ++i)
     {
         auto distance = fabsf(m_ZoomLevels[i] - m_Zoom);
         if (distance < bestDistance || bestIndex < 0)
@@ -3888,7 +3888,7 @@ ed::EditorAction::AcceptResult ed::DragAction::Accept(const Control& control)
 
         if (Editor->IsSelected(m_DraggedObject))
         {
-            for (auto selectedObject : Editor->GetSelectedObjects())
+            for(auto selectedObject : Editor->GetSelectedObjects())
                 if (auto selectedNode = selectedObject->AsNode())
                     if (selectedNode != m_DraggedObject && selectedNode->AcceptDrag())
                         m_Objects.push_back(selectedNode);
@@ -3898,7 +3898,7 @@ ed::EditorAction::AcceptResult ed::DragAction::Accept(const Control& control)
         if (!io.KeyShift)
         {
             std::vector<Node*> groupedNodes;
-            for (auto object : m_Objects)
+            for(auto object : m_Objects)
                 if (auto node = object->AsNode())
                     node->GetGroupedNodes(groupedNodes, true);
 
@@ -3907,7 +3907,7 @@ ed::EditorAction::AcceptResult ed::DragAction::Accept(const Control& control)
                 return std::find(m_Objects.begin(), m_Objects.end(), node) != m_Objects.end();
             };
 
-            for (auto candidate : groupedNodes)
+            for(auto candidate : groupedNodes)
                 if (!isAlreadyPicked(candidate) && candidate->AcceptDrag())
                     m_Objects.push_back(candidate);
         }
@@ -3928,7 +3928,7 @@ bool ed::DragAction::Process(const Control& control)
     {
         m_Clear = false;
 
-        for (auto object : m_Objects)
+        for(auto object : m_Objects)
         {
             if (object->EndDrag())
                 Editor->MakeDirty(SaveReasonFlags::Position | SaveReasonFlags::User, object->AsNode());
@@ -3973,7 +3973,7 @@ bool ed::DragAction::Process(const Control& control)
                 }
             };
 
-            for (auto pin = draggedNode->m_LastPin; pin; pin = pin->m_PreviousPin)
+            for(auto pin = draggedNode->m_LastPin; pin; pin = pin->m_PreviousPin)
             {
                 auto pivot = pin->m_Pivot.GetCenter() - draggedNode->m_Bounds.Min;
                 testPivot(pivot);
@@ -3987,7 +3987,7 @@ bool ed::DragAction::Process(const Control& control)
         if (!ImGui::GetIO().KeyAlt)
             dragOffset = alignedOffset;
 
-        for (auto object : m_Objects)
+        for(auto object : m_Objects)
             object->UpdateDrag(dragOffset);
     }
     else if (!control.ActiveObject)
@@ -4104,7 +4104,7 @@ bool ed::SelectAction::Process(const Control& control)
     if (m_CommitSelection)
     {
         Editor->ClearSelection();
-        for (auto object : m_CandidateObjects)
+        for(auto object : m_CandidateObjects)
             Editor->SelectObject(object);
 
         m_CandidateObjects.clear();
@@ -4142,12 +4142,12 @@ bool ed::SelectAction::Process(const Control& control)
 
             if (m_SelectGroups)
             {
-                auto endIt = std::remove_if(m_CandidateObjects.begin(), m_CandidateObjects.end(), [](Object* object) { return !IsGroup(object->AsNode()); });
+                auto endIt = std::remove_if(m_CandidateObjects.begin(), m_CandidateObjects.end(), [](Object* object){ return !IsGroup(object->AsNode()); });
                 m_CandidateObjects.erase(endIt, m_CandidateObjects.end());
             }
             else
             {
-                auto endIt = std::remove_if(m_CandidateObjects.begin(), m_CandidateObjects.end(), [](Object* object) { return IsGroup(object->AsNode()); });
+                auto endIt = std::remove_if(m_CandidateObjects.begin(), m_CandidateObjects.end(), [](Object* object){ return IsGroup(object->AsNode()); });
                 m_CandidateObjects.erase(endIt, m_CandidateObjects.end());
             }
         }
@@ -4390,7 +4390,7 @@ ed::EditorAction::AcceptResult ed::ShortcutAction::Accept(const Control& control
 
                 // Expand groups
                 vector<Node*> extra;
-                for (auto object : m_Context)
+                for(auto object : m_Context)
                 {
                     auto node = object->AsNode();
                     if (IsGroup(node))
@@ -4414,19 +4414,19 @@ ed::EditorAction::AcceptResult ed::ShortcutAction::Accept(const Control& control
                 return False;
 
             // Does copying only links make sense?
-            //const auto hasOnlyLinks = std::all_of(Context.begin(), Context.end(), [](Object* object) { return object->AsLink() != nullptr; });
+            //const auto hasOnlyLinks = std::all_of(Context.begin(), Context.end(), [](Object* object){ return object->AsLink() != nullptr; });
             //if (hasOnlyLinks)
             //    return False;
 
             // If no links are selected, pick all links between nodes within context
-            const auto hasAnyLinks = std::any_of(m_Context.begin(), m_Context.end(), [](Object* object) { return object->AsLink() != nullptr; });
+            const auto hasAnyLinks = std::any_of(m_Context.begin(), m_Context.end(), [](Object* object){ return object->AsLink() != nullptr; });
             if (!hasAnyLinks && m_Context.size() > 1) // one node cannot make connection to anything
             {
                 // Collect nodes in sorted vector viable for binary search
                 std::vector<ObjectWrapper<Node>> nodes;
 
                 nodes.reserve(m_Context.size());
-                std::for_each(m_Context.begin(), m_Context.end(), [&nodes](Object* object) { if (auto node = object->AsNode()) nodes.push_back({node->m_ID, node}); });
+                std::for_each(m_Context.begin(), m_Context.end(), [&nodes](Object* object){ if (auto node = object->AsNode()) nodes.push_back({node->m_ID, node}); });
 
                 std::sort(nodes.begin(), nodes.end());
 
@@ -4438,7 +4438,7 @@ ed::EditorAction::AcceptResult ed::ShortcutAction::Accept(const Control& control
                 // Collect links connected to nodes and drop those reaching out of context
                 std::vector<Link*> links;
 
-                for (auto node : nodes)
+                for(auto node : nodes)
                     Editor->FindLinksForNode(node.m_ID, links, true);
 
                 // Remove duplicates
@@ -4898,7 +4898,7 @@ void ed::DeleteItemsAction::DeleteDeadLinks(NodeId nodeId)
 {
     vector<ed::Link*> links;
     Editor->FindLinksForNode(nodeId, links, true);
-    for (auto link : links)
+    for(auto link : links)
     {
         link->m_DeleteOnNewFrame = true;
 
@@ -4916,7 +4916,7 @@ void ed::DeleteItemsAction::DeleteDeadPins(NodeId nodeId)
     if (!node)
         return;
 
-    for (auto pin = node->m_LastPin; pin; pin = pin->m_PreviousPin)
+    for(auto pin = node->m_LastPin; pin; pin = pin->m_PreviousPin)
         pin->m_DeleteOnNewFrame = true;
 }
 
@@ -5196,7 +5196,7 @@ void ed::NodeBuilder::Begin(NodeId nodeId)
                 m_CurrentNode->GetGroupedNodes(groupedNodes);
                 groupedNodes.push_back(m_CurrentNode);
 
-                for (auto node : groupedNodes)
+                for(auto node : groupedNodes)
                 {
                     node->m_Bounds.Translate(ImFloor(offset));
                     node->m_GroupBounds.Translate(ImFloor(offset));
@@ -5295,7 +5295,7 @@ void ed::NodeBuilder::End()
     if (m_IsGroup)
     {
         // Groups cannot have pins. Discard them.
-        for (auto pin = m_CurrentNode->m_LastPin; pin; pin = pin->m_PreviousPin)
+        for(auto pin = m_CurrentNode->m_LastPin; pin; pin = pin->m_PreviousPin)
             pin->Reset();
 
         m_CurrentNode->m_Type        = NodeType::Group;

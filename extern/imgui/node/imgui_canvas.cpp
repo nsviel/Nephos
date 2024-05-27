@@ -14,7 +14,7 @@
         struct no_type {char x[2];};                                                 \
         using  yes_type = char;                                                      \
                                                                                      \
-        struct  base { void __member_name__() {}};                                   \
+        struct  base { void __member_name__(){}};                                   \
         struct mixin : public base, public check_type {};                            \
                                                                                      \
         template <void (base::*)()> struct aux {};                                   \
@@ -90,7 +90,7 @@ static inline unsigned int& ImVtxOffsetRef(ImDrawList* drawList)
     return VtxCurrentOffsetRef::Get<ImDrawList>(drawList);
 }
 
-static inline ImVec2 ImSelectPositive(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x > 0.0f ? lhs.x : rhs.x, lhs.y > 0.0f ? lhs.y : rhs.y); }
+static inline ImVec2 ImSelectPositive(const ImVec2& lhs, const ImVec2& rhs){ return ImVec2(lhs.x > 0.0f ? lhs.x : rhs.x, lhs.y > 0.0f ? lhs.y : rhs.y); }
 
 bool ImGuiEx::Canvas::Begin(const char* id, const ImVec2& size)
 {
@@ -353,7 +353,7 @@ void ImGuiEx::Canvas::SaveInputState()
     auto& io = ImGui::GetIO();
     m_MousePosBackup = io.MousePos;
     m_MousePosPrevBackup = io.MousePosPrev;
-    for (auto i = 0; i < IM_ARRAYSIZE(m_MouseClickedPosBackup); ++i)
+    for(auto i = 0; i < IM_ARRAYSIZE(m_MouseClickedPosBackup); ++i)
         m_MouseClickedPosBackup[i] = io.MouseClickedPos[i];
 }
 
@@ -362,7 +362,7 @@ void ImGuiEx::Canvas::RestoreInputState()
     auto& io = ImGui::GetIO();
     io.MousePos = m_MousePosBackup;
     io.MousePosPrev = m_MousePosPrevBackup;
-    for (auto i = 0; i < IM_ARRAYSIZE(m_MouseClickedPosBackup); ++i)
+    for(auto i = 0; i < IM_ARRAYSIZE(m_MouseClickedPosBackup); ++i)
         io.MouseClickedPos[i] = m_MouseClickedPosBackup[i];
 }
 
@@ -481,7 +481,7 @@ void ImGuiEx::Canvas::EnterLocalSpace()
     auto& io = ImGui::GetIO();
     io.MousePos     = (m_MousePosBackup - m_ViewTransformPosition) * m_View.InvScale;
     io.MousePosPrev = (m_MousePosPrevBackup - m_ViewTransformPosition) * m_View.InvScale;
-    for (auto i = 0; i < IM_ARRAYSIZE(m_MouseClickedPosBackup); ++i)
+    for(auto i = 0; i < IM_ARRAYSIZE(m_MouseClickedPosBackup); ++i)
         io.MouseClickedPos[i] = (m_MouseClickedPosBackup[i] - m_ViewTransformPosition) * m_View.InvScale;
 
     m_ViewRect = CalcViewRect(m_View);;
@@ -523,7 +523,7 @@ void ImGuiEx::Canvas::LeaveLocalSpace()
         }
 
         // Move clip rectangles to screen space.
-        for (int i = m_DrawListCommadBufferSize; i < m_DrawList->CmdBuffer.size(); ++i)
+        for(int i = m_DrawListCommadBufferSize; i < m_DrawList->CmdBuffer.size(); ++i)
         {
             auto& command = m_DrawList->CmdBuffer[i];
             command.ClipRect.x = command.ClipRect.x * m_View.Scale + m_ViewTransformPosition.x;
@@ -542,7 +542,7 @@ void ImGuiEx::Canvas::LeaveLocalSpace()
         }
 
         // Move clip rectangles to screen space.
-        for (int i = m_DrawListCommadBufferSize; i < m_DrawList->CmdBuffer.size(); ++i)
+        for(int i = m_DrawListCommadBufferSize; i < m_DrawList->CmdBuffer.size(); ++i)
         {
             auto& command = m_DrawList->CmdBuffer[i];
             command.ClipRect.x = command.ClipRect.x + m_ViewTransformPosition.x;

@@ -46,11 +46,11 @@ public:
     return duration.count() / 1000000.0f;
   }
 
-  inline double get_time_start() {
+  inline double get_time_start(){
     double time = std::chrono::duration_cast<std::chrono::duration<double>>(t1.time_since_epoch()).count();
     return time;
   }
-  inline double get_time_stop() {
+  inline double get_time_stop(){
     double time = std::chrono::duration_cast<std::chrono::duration<double>>(t2.time_since_epoch()).count();
     return time;
   }

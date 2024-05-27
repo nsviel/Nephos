@@ -72,7 +72,7 @@ inline ImVec2 ImGui_GetMouseClickPos(ImGuiMouseButton buttonIndex);
         struct no_type {char x[2];};                                                 \
         using  yes_type = char;                                                      \
                                                                                      \
-        struct  base { void __member_name__() {}};                                   \
+        struct  base { void __member_name__(){}};                                   \
         struct mixin : public base, public check_type {};                            \
                                                                                      \
         template <void (base::*)()> struct aux {};                                   \
@@ -213,8 +213,8 @@ struct Object
 
     inline friend DrawFlags operator|(DrawFlags lhs, DrawFlags rhs)  { return static_cast<DrawFlags>(static_cast<int>(lhs) | static_cast<int>(rhs)); }
     inline friend DrawFlags operator&(DrawFlags lhs, DrawFlags rhs)  { return static_cast<DrawFlags>(static_cast<int>(lhs) & static_cast<int>(rhs)); }
-    inline friend DrawFlags& operator|=(DrawFlags& lhs, DrawFlags rhs) { lhs = lhs | rhs; return lhs; }
-    inline friend DrawFlags& operator&=(DrawFlags& lhs, DrawFlags rhs) { lhs = lhs & rhs; return lhs; }
+    inline friend DrawFlags& operator|=(DrawFlags& lhs, DrawFlags rhs){ lhs = lhs | rhs; return lhs; }
+    inline friend DrawFlags& operator&=(DrawFlags& lhs, DrawFlags rhs){ lhs = lhs & rhs; return lhs; }
 
     EditorContext* const Editor;
 
@@ -244,17 +244,17 @@ struct Object
         return ImGui::IsRectVisible(bounds.Min, bounds.Max);
     }
 
-    virtual void Reset() { m_IsLive = false; }
+    virtual void Reset(){ m_IsLive = false; }
 
     virtual void Draw(ImDrawList* drawList, DrawFlags flags = None) = 0;
 
-    virtual bool AcceptDrag() { return false; }
-    virtual void UpdateDrag(const ImVec2& offset) { IM_UNUSED(offset); }
-    virtual bool EndDrag() { return false; }
-    virtual ImVec2 DragStartLocation() { return GetBounds().Min; }
+    virtual bool AcceptDrag(){ return false; }
+    virtual void UpdateDrag(const ImVec2& offset){ IM_UNUSED(offset); }
+    virtual bool EndDrag(){ return false; }
+    virtual ImVec2 DragStartLocation(){ return GetBounds().Min; }
 
-    virtual bool IsDraggable() { bool result = AcceptDrag(); EndDrag(); return result; }
-    virtual bool IsSelectable() { return false; }
+    virtual bool IsDraggable(){ bool result = AcceptDrag(); EndDrag(); return result; }
+    virtual bool IsSelectable(){ return false; }
 
     virtual bool TestHit(const ImVec2& point, float extraThickness = 0.0f) const
     {
@@ -373,8 +373,8 @@ enum class NodeRegion : uint8_t
     BottomRight = Bottom | Right,
 };
 
-inline NodeRegion operator |(NodeRegion lhs, NodeRegion rhs) { return static_cast<NodeRegion>(static_cast<uint8_t>(lhs) | static_cast<uint8_t>(rhs)); }
-inline NodeRegion operator &(NodeRegion lhs, NodeRegion rhs) { return static_cast<NodeRegion>(static_cast<uint8_t>(lhs) & static_cast<uint8_t>(rhs)); }
+inline NodeRegion operator |(NodeRegion lhs, NodeRegion rhs){ return static_cast<NodeRegion>(static_cast<uint8_t>(lhs) | static_cast<uint8_t>(rhs)); }
+inline NodeRegion operator &(NodeRegion lhs, NodeRegion rhs){ return static_cast<NodeRegion>(static_cast<uint8_t>(lhs) & static_cast<uint8_t>(rhs)); }
 
 
 struct Node final: Object
@@ -439,7 +439,7 @@ struct Node final: Object
 
     void GetGroupedNodes(std::vector<Node*>& result, bool append = false);
 
-    void CenterOnScreenInNextFrame() { m_CenterOnScreen = true; }
+    void CenterOnScreenInNextFrame(){ m_CenterOnScreen = true; }
 
     ImRect GetRegionBounds(NodeRegion region) const;
     NodeRegion GetRegion(const ImVec2& point) const;
@@ -678,11 +678,11 @@ struct Animation
     float GetProgress() const { return m_Time / m_Duration; }
 
 protected:
-    virtual void OnPlay() {}
-    virtual void OnFinish() {}
-    virtual void OnStop() {}
+    virtual void OnPlay(){}
+    virtual void OnFinish(){}
+    virtual void OnStop(){}
 
-    virtual void OnUpdate(float progress) { IM_UNUSED(progress); }
+    virtual void OnUpdate(float progress){ IM_UNUSED(progress); }
 };
 
 struct NavigateAnimation final: Animation
@@ -784,19 +784,19 @@ struct EditorAction
     {
     }
 
-    virtual ~EditorAction() {}
+    virtual ~EditorAction(){}
 
     virtual const char* GetName() const = 0;
 
     virtual AcceptResult Accept(const Control& control) = 0;
     virtual bool Process(const Control& control) = 0;
-    virtual void Reject() {} // celled when Accept return 'Possible' and was rejected
+    virtual void Reject(){} // celled when Accept return 'Possible' and was rejected
 
-    virtual ImGuiMouseCursor GetCursor() { return ImGuiMouseCursor_Arrow; }
+    virtual ImGuiMouseCursor GetCursor(){ return ImGuiMouseCursor_Arrow; }
 
-    virtual bool IsDragging() { return false; }
+    virtual bool IsDragging(){ return false; }
 
-    virtual void ShowMetrics() {}
+    virtual void ShowMetrics(){}
 
     virtual NavigateAction*     AsNavigate()     { return nullptr; }
     virtual SizeAction*         AsSize()         { return nullptr; }
@@ -805,7 +805,7 @@ struct EditorAction
     virtual CreateItemAction*   AsCreateItem()   { return nullptr; }
     virtual DeleteItemsAction*  AsDeleteItems()  { return nullptr; }
     virtual ContextMenuAction*  AsContextMenu()  { return nullptr; }
-    virtual ShortcutAction* AsCutCopyPaste() { return nullptr; }
+    virtual ShortcutAction* AsCutCopyPaste(){ return nullptr; }
 
     EditorContext* Editor;
 };
@@ -1283,8 +1283,8 @@ enum class SuspendFlags : uint8_t
     KeepSplitter = 1
 };
 
-inline SuspendFlags operator |(SuspendFlags lhs, SuspendFlags rhs) { return static_cast<SuspendFlags>(static_cast<uint8_t>(lhs) | static_cast<uint8_t>(rhs)); }
-inline SuspendFlags operator &(SuspendFlags lhs, SuspendFlags rhs) { return static_cast<SuspendFlags>(static_cast<uint8_t>(lhs) & static_cast<uint8_t>(rhs)); }
+inline SuspendFlags operator |(SuspendFlags lhs, SuspendFlags rhs){ return static_cast<SuspendFlags>(static_cast<uint8_t>(lhs) | static_cast<uint8_t>(rhs)); }
+inline SuspendFlags operator &(SuspendFlags lhs, SuspendFlags rhs){ return static_cast<SuspendFlags>(static_cast<uint8_t>(lhs) & static_cast<uint8_t>(rhs)); }
 
 
 struct EditorContext
@@ -1294,7 +1294,7 @@ struct EditorContext
 
     const Config& GetConfig() const { return m_Config; }
 
-    Style& GetStyle() { return m_Style; }
+    Style& GetStyle(){ return m_Style; }
 
     void Begin(const char* id, const ImVec2& size = ImVec2(0, 0));
     void End();
@@ -1302,15 +1302,15 @@ struct EditorContext
     bool DoLink(LinkId id, PinId startPinId, PinId endPinId, ImU32 color, float thickness);
 
 
-    NodeBuilder& GetNodeBuilder() { return m_NodeBuilder; }
-    HintBuilder& GetHintBuilder() { return m_HintBuilder; }
+    NodeBuilder& GetNodeBuilder(){ return m_NodeBuilder; }
+    HintBuilder& GetHintBuilder(){ return m_HintBuilder; }
 
-    EditorAction* GetCurrentAction() { return m_CurrentAction; }
+    EditorAction* GetCurrentAction(){ return m_CurrentAction; }
 
-    CreateItemAction& GetItemCreator() { return m_CreateItemAction; }
-    DeleteItemsAction& GetItemDeleter() { return m_DeleteItemsAction; }
-    ContextMenuAction& GetContextMenu() { return m_ContextMenuAction; }
-    ShortcutAction& GetShortcut() { return m_ShortcutAction; }
+    CreateItemAction& GetItemCreator(){ return m_CreateItemAction; }
+    DeleteItemsAction& GetItemDeleter(){ return m_DeleteItemsAction; }
+    ContextMenuAction& GetContextMenu(){ return m_ContextMenuAction; }
+    ShortcutAction& GetShortcut(){ return m_ShortcutAction; }
 
     const ImGuiEx::CanvasView& GetView() const { return m_Canvas.View(); }
     const ImRect& GetViewRect() const { return m_Canvas.ViewRect(); }
@@ -1396,7 +1396,7 @@ struct EditorContext
     {
         ImRect bounds(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
 
-        for (auto object : objects)
+        for(auto object : objects)
             if (object->m_IsLive)
                 bounds.Add(object->GetBounds());
 
@@ -1411,7 +1411,7 @@ struct EditorContext
     {
         ImRect bounds(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
 
-        for (auto object : objects)
+        for(auto object : objects)
             if (object.m_Object->m_IsLive)
                 bounds.Add(object.m_Object->GetBounds());
 
@@ -1421,8 +1421,8 @@ struct EditorContext
         return bounds;
     }
 
-    ImRect GetSelectionBounds() { return GetBounds(m_SelectedObjects); }
-    ImRect GetContentBounds() { return GetBounds(m_Nodes); }
+    ImRect GetSelectionBounds(){ return GetBounds(m_SelectedObjects); }
+    ImRect GetContentBounds(){ return GetBounds(m_Nodes); }
 
     ImU32 GetColor(StyleColor colorIndex) const;
     ImU32 GetColor(StyleColor colorIndex, float alpha) const;
@@ -1469,7 +1469,7 @@ struct EditorContext
         return ImVec2(AlignPointToGrid(p.x), AlignPointToGrid(p.y));
     }
 
-    ImDrawList* GetDrawList() { return m_DrawList; }
+    ImDrawList* GetDrawList(){ return m_DrawList; }
 
 private:
     void LoadSettings();

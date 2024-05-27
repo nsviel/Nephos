@@ -68,8 +68,8 @@ void remove(const std::string& path){
   if(!utl::directory::is_exist(path)) return;
   //---------------------------
 
-  for (const auto& entry : std::filesystem::directory_iterator(path)) {
-    if (std::filesystem::is_regular_file(entry)) {
+  for(const auto& entry : std::filesystem::directory_iterator(path)){
+    if (std::filesystem::is_regular_file(entry)){
       std::filesystem::remove(entry.path());
     }
   }

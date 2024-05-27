@@ -11,7 +11,7 @@ nlohmann::json read_json(const std::string& path){
   //---------------------------
 
   std::ifstream file(path);
-  if (!file.is_open()) {
+  if (!file.is_open()){
     std::cerr << "[error] File " << path << " does not exist." << std::endl;
     return nlohmann::json();
   }
@@ -34,10 +34,10 @@ template<typename T> void write_value(const std::string& path, const std::string
 
   // Check if the key contains a subkey using dot notation
   size_t dotIndex = key.find('.');
-  if(dotIndex != std::string::npos) {
+  if(dotIndex != std::string::npos){
     std::string parentKey = key.substr(0, dotIndex);
     std::string subKey = key.substr(dotIndex + 1);
-    if (data.contains(parentKey)) {
+    if (data.contains(parentKey)){
       // If the parent key exists, access the subkey and assign the value
       data[parentKey][subKey] = value;
     } else {
@@ -61,7 +61,7 @@ template<typename T> T read_value(const std::string& path, std::string key){
   //---------------------------
 
   std::ifstream file(path);
-  if (!file.is_open()) {
+  if (!file.is_open()){
     std::cerr << "[Error] File " << path << " does not exist." << std::endl;
     return result; // Return default-constructed result
   }
@@ -71,12 +71,12 @@ template<typename T> T read_value(const std::string& path, std::string key){
 
   // Split the key into parent and subkey (if it contains a dot)
   size_t dotIndex = key.find('.');
-  if (dotIndex != std::string::npos) {
+  if (dotIndex != std::string::npos){
     std::string parentKey = key.substr(0, dotIndex);
     std::string subKey = key.substr(dotIndex + 1);
 
     // Check if the parent key exists in the JSON object
-    if (j.find(parentKey) == j.end()) {
+    if (j.find(parentKey) == j.end()){
       std::cerr << "[Error] Parent key '" << parentKey << "' not found in JSON file." << std::endl;
       return result; // Return default-constructed result
     }
@@ -86,7 +86,7 @@ template<typename T> T read_value(const std::string& path, std::string key){
     result = parentObject[subKey].get<T>();
   } else {
     // Check if the key exists in the JSON object
-    if (j.find(key) == j.end()) {
+    if (j.find(key) == j.end()){
       std::cerr << "[Error] Key '" << key << "' not found in JSON file." << std::endl;
       return result; // Return default-constructed result
     }
@@ -94,7 +94,7 @@ template<typename T> T read_value(const std::string& path, std::string key){
     // Try to parse the value associated with the key into the result
     try {
       result = j[key].get<T>();
-    } catch (const std::exception& e) {
+    } catch (const std::exception& e){
       std::cerr << "[Error] Failed to parse value for key '" << key << "': " << e.what() << std::endl;
     }
   }

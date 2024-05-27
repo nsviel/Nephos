@@ -247,9 +247,9 @@ void value::dump(dump_context_t& context, int level) const
             {
                 context.write_newline();
                 bool first = true;
-                for (auto& entry : *object_ptr(m_Storage))
+                for(auto& entry : *object_ptr(m_Storage))
                 {
-                    if (!first) { context.out << ','; context.write_newline(); } else first = false;
+                    if (!first){ context.out << ','; context.write_newline(); } else first = false;
                     context.write_indent(level + 1);
                     context.out << '\"' << entry.first << "\":";
                     if (!entry.second.is_structured())
@@ -275,9 +275,9 @@ void value::dump(dump_context_t& context, int level) const
             {
                 context.write_newline();
                 bool first = true;
-                for (auto& entry : *array_ptr(m_Storage))
+                for(auto& entry : *array_ptr(m_Storage))
                 {
-                    if (!first) { context.out << ','; context.write_newline(); } else first = false;
+                    if (!first){ context.out << ','; context.write_newline(); } else first = false;
                     if (!entry.is_structured())
                     {
                         context.write_indent(level + 1);
@@ -300,7 +300,7 @@ void value::dump(dump_context_t& context, int level) const
 
             if (string_ptr(m_Storage)->find_first_of("\"\\/\b\f\n\r") != string::npos || string_ptr(m_Storage)->find('\0') != string::npos)
             {
-                for (auto c : *string_ptr(m_Storage))
+                for(auto c : *string_ptr(m_Storage))
                 {
                          if (c == '\"')  context.out << "\\\"";
                     else if (c == '\\')  context.out << "\\\\";
@@ -541,8 +541,8 @@ private:
 
     bool accept_escape(int& c)
     {
-        if (accept('\"')) { c = '\"'; return true; }
-        if (accept('\\')) { c = '\\'; return true; }
+        if (accept('\"')){ c = '\"'; return true; }
+        if (accept('\\')){ c = '\\'; return true; }
         if (accept('/'))  { c = '/';  return true; }
         if (accept('b'))  { c = '\b'; return true; }
         if (accept('f'))  { c = '\f'; return true; }
@@ -836,7 +836,7 @@ value value::parse(const string& data)
 std::pair<value, bool> value::load(const string& path)
 {
     // Modern C++, so beautiful...
-    std::unique_ptr<FILE, void(*)(FILE*)> file{nullptr, [](FILE* file) { if (file) fclose(file); }};
+    std::unique_ptr<FILE, void(*)(FILE*)> file{nullptr, [](FILE* file){ if (file) fclose(file); }};
 # if defined(_MSC_VER) || (defined(__STDC_LIB_EXT1__) && __STDC_WANT_LIB_EXT1__)
     FILE* handle = nullptr;
     if (fopen_s(&handle, path.c_str(), "rb") != 0)
@@ -864,7 +864,7 @@ std::pair<value, bool> value::load(const string& path)
 bool value::save(const string& path, const int indent, const char indent_char) const
 {
     // Modern C++, so beautiful...
-    std::unique_ptr<FILE, void(*)(FILE*)> file{nullptr, [](FILE* file) { if (file) fclose(file); }};
+    std::unique_ptr<FILE, void(*)(FILE*)> file{nullptr, [](FILE* file){ if (file) fclose(file); }};
 # if defined(_MSC_VER) || (defined(__STDC_LIB_EXT1__) && __STDC_WANT_LIB_EXT1__)
     FILE* handle = nullptr;
     if (fopen_s(&handle, path.c_str(), "wb") != 0)

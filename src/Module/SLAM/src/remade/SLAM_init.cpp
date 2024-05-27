@@ -118,7 +118,7 @@ void SLAM_init::init_frame_chain(Collection* collection, int subset_ID){
     frame_m0->trans_e = trans_next_e;
 
     Eigen::Vector3d t_diff = frame_m0->trans_e - frame_m0->trans_b;
-    if (t_diff.norm() > 5.0) {
+    if (t_diff.norm() > 5.0){
       std::cout << "Error in ego-motion distance !" << std::endl;
     }
   }

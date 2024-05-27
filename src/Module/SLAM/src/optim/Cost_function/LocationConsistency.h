@@ -9,9 +9,9 @@ namespace slam::opti{
 // A Const Functor which enforces Frame consistency between two poses
 struct LCF {
 
-    static constexpr int NumResiduals() { return 3; }
+    static constexpr int NumResiduals(){ return 3; }
 
-    LCF(const Eigen::Vector3f &previous_location, double beta) : beta_(beta), previous_location_(previous_location) {}
+    LCF(const Eigen::Vector3f &previous_location, double beta) : beta_(beta), previous_location_(previous_location){}
 
     template<typename T>
     bool operator()(const T *const location_params, T *residual) const {
@@ -29,7 +29,7 @@ private:
 /*
 class LocationConsistencyFunctor{
 public:
-  LocationConsistencyFunctor(const Eigen::Vector3f& previous_location, double beta) : beta_(beta), previous_location_(previous_location) {}
+  LocationConsistencyFunctor(const Eigen::Vector3f& previous_location, double beta) : beta_(beta), previous_location_(previous_location){}
   static constexpr int NumResiduals(){
     return 3;
   }

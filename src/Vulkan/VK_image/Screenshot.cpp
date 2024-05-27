@@ -54,7 +54,7 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   int channels = 4;  // Assuming RGBA data
   std::string filename = "temp.jpg";
-  if(stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0) {
+  if(stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0){
     throw std::runtime_error("Failed to write PNG file!");
   }
   vkUnmapMemory(vk_struct->device.handle, staging_mem);
@@ -89,7 +89,7 @@ void Screenshot::export_image_to_bmp(vk::structure::Image* image){
   vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   int channels = 4;  // Assuming RGBA data
   std::string filename = "temp.bmp";
-  if(stbi_write_bmp(filename.c_str(), image->width, image->height, channels, mappedData) == 0) {
+  if(stbi_write_bmp(filename.c_str(), image->width, image->height, channels, mappedData) == 0){
     cout<<"[error] Failed to write BMP file"<<endl;
     return;
   }
@@ -125,14 +125,14 @@ void Screenshot::export_image_to_binary(vk::structure::Image* image){
   void* pixelData = malloc(bufferSize);
   VkResult mapResult =vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   //  memcpy(pixelData, mappedData, static_cast<size_t>(tex_size));
-  if (mapResult == VK_SUCCESS) {
+  if (mapResult == VK_SUCCESS){
       // Use mappedData as needed
 
       FILE* file = fopen("truc.bin", "wb"); // Open the file for writing in binary mode
-      if (file != NULL) {
+      if (file != NULL){
           size_t bytesWritten = fwrite(mappedData, 1, bufferSize, file); // Write the data to the file
 
-          if (bytesWritten != bufferSize) {
+          if (bytesWritten != bufferSize){
               // Handle error if not all bytes were written
               fprintf(stderr, "Error writing all bytes to file: %s\n", "truc.bin");
           }
@@ -164,7 +164,7 @@ VkDeviceSize Screenshot::calculate_image_size(VkFormat format, VkExtent3D extent
   VkFormatProperties formatProperties;
   vkGetPhysicalDeviceFormatProperties(vk_struct->device.physical_device.handle, format, &formatProperties);
 
-  if ((formatProperties.linearTilingFeatures & VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT) == 0) {
+  if ((formatProperties.linearTilingFeatures & VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT) == 0){
     // Format does not support linear tiling, use optimal tiling instead
     // You may need to handle this differently based on your specific requirements
     // In this example, we'll assume optimal tiling support
@@ -173,7 +173,7 @@ VkDeviceSize Screenshot::calculate_image_size(VkFormat format, VkExtent3D extent
 
   VkDeviceSize bytesPerPixel = 0;
 
-  switch (format) {
+  switch (format){
     case VK_FORMAT_R8_UNORM:
       bytesPerPixel = 1;
       break;

@@ -282,9 +282,9 @@ k4a_result_t transformation_get_mode_specific_calibration(const k4a_calibration_
     extrinsics[K4A_CALIBRATION_TYPE_GYRO] = gyro_extrinsics;
     extrinsics[K4A_CALIBRATION_TYPE_ACCEL] = accel_extrinsics;
 
-    for (int source = 0; source < (int)K4A_CALIBRATION_TYPE_NUM; source++)
+    for(int source = 0; source < (int)K4A_CALIBRATION_TYPE_NUM; source++)
     {
-        for (int target = 0; target < (int)K4A_CALIBRATION_TYPE_NUM; target++)
+        for(int target = 0; target < (int)K4A_CALIBRATION_TYPE_NUM; target++)
         {
             if (K4A_FAILED(
                     TRACE_CALL(transformation_get_extrinsic_transformation(extrinsics[source],
@@ -717,10 +717,10 @@ static k4a_buffer_result_t transformation_init_xy_tables(const k4a_calibration_t
         float point2d[2], point3d[3];
         int valid = 1;
 
-        for (int y = 0, idx = 0; y < height; y++)
+        for(int y = 0, idx = 0; y < height; y++)
         {
             point2d[1] = (float)y;
-            for (int x = 0; x < width; x++, idx++)
+            for(int x = 0; x < width; x++, idx++)
             {
                 point2d[0] = (float)x;
                 if (K4A_FAILED(TRACE_CALL(

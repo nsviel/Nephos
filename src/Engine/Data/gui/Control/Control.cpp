@@ -60,7 +60,7 @@ void Control::control_keyboard_translation(){
   //----------------------------
 
   dat::base::Set* set_main = dat_graph->get_set_main();
-  for (int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
+  for(int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
       utl::base::Element* element = dat_graph->get_selected_element();
 
