@@ -23,6 +23,7 @@ public:
 
   //Exporter function
   void insert_exporter(ldr::base::Exporter* exporter);
+  bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
 
 private:

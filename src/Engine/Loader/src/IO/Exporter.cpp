@@ -32,6 +32,20 @@ void Exporter::insert_exporter(ldr::base::Exporter* exporter){
 
   //---------------------------
 }
+bool Exporter::is_format_supported(std::string format){
+  //---------------------------
+
+  for(int i=0; i<vec_exporter.size(); i++){
+    ldr::base::Exporter* exporter = vec_exporter[i];
+
+    if(format == exporter->format){
+      return true;
+    }
+  }
+
+  //---------------------------
+  return false;
+}
 std::vector<std::string> Exporter::get_supported_format(){
   std::vector<std::string> vec_format;
   //---------------------------

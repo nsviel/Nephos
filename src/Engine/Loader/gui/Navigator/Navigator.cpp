@@ -8,7 +8,7 @@
 namespace ldr::gui{
 
 //Constructor / Destructor
-Navigator::Navigator(ldr::Node* node_loader, bool with_bookmark){
+Navigator::Navigator(ldr::Node* node_loader){
   //---------------------------
 
   this->ldr_importer = node_loader->get_ldr_importer();
@@ -168,7 +168,7 @@ void Navigator::item_organisation(){
       file.item.weight = utl::file::size(current_file);
       file.item.format = utl::path::get_format_from_path(current_file);
       file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-      file.item.color_text = ldr_importer->is_format_supported(file.item.format) ? glm::vec4(0.0f, 1.0f, 1.0f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+      file.item.color_text = item_format(file.item.format) ? glm::vec4(0.0f, 1.0f, 1.0f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
       vec_file.push_back(file);
     }
   }

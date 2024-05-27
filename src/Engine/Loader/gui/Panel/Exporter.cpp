@@ -10,12 +10,14 @@
 namespace ldr::gui{
 
 //Constructor / Destructor
-Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader, false){
+Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
   //---------------------------
 
   this->ldr_exporter = node_loader->get_ldr_exporter();
   this->name = "Exporter";
   this->show_window = show_window;
+  this->with_bookmark = false;
+  this->with_all_format = false;
 
   //---------------------------
 }
@@ -93,7 +95,7 @@ void Exporter::draw_header(){
     this->current_path = current_dir + "/" + (string)str_n + "." + file_format;
   }
   ImGui::PopStyleColor(2);
-  
+
   //Format
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Format"); ImGui::TableNextColumn();
@@ -112,6 +114,13 @@ void Exporter::draw_header(){
 }
 void Exporter::item_operation(){
   //---------------------------
+
+  //---------------------------
+}
+bool Exporter::item_format(std::string format){
+  //---------------------------
+
+  return ldr_exporter->is_format_supported(format);
 
   //---------------------------
 }

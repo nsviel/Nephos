@@ -10,7 +10,7 @@
 namespace ldr::gui{
 
 //Constructor / Destructor
-Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader, true){
+Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
   //---------------------------
 
   dat::Node* node_data = node_loader->get_node_data();
@@ -24,6 +24,7 @@ Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(
 
   this->name = "Loader";
   this->show_window = show_window;
+  this->with_bookmark = true;
 
   //---------------------------
 }
@@ -191,6 +192,13 @@ void Loader::item_operation(){
       this->operation_entity(object);
     }
   }
+
+  //---------------------------
+}
+bool Loader::item_format(std::string format){
+  //---------------------------
+
+  return ldr_importer->is_format_supported(format);
 
   //---------------------------
 }

@@ -16,7 +16,7 @@ class Navigator
 {
 public:
   //Constructor / Destructor
-  Navigator(ldr::Node* node_loader, bool with_bookmark);
+  Navigator(ldr::Node* node_loader);
   ~Navigator();
 
 public:
@@ -34,6 +34,7 @@ public:
   void item_file();
   void item_selection();
   virtual void item_operation(){}
+  virtual bool item_format(std::string format){return true;}
 
 protected:
   ldr::io::Importer* ldr_importer;
@@ -47,6 +48,7 @@ protected:
   ImVector<int> vec_selection;
   bool goto_file_tab = false;
   bool with_bookmark = true;
+  bool with_all_format = true;
 };
 
 }

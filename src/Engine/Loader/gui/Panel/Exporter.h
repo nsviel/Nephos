@@ -27,7 +27,8 @@ public:
   //Subfunction
   void draw_header();
   void item_operation();
-
+  bool item_format(std::string format);
+  
 private:
   ldr::io::Exporter* ldr_exporter;
 

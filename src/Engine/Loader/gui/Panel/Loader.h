@@ -36,6 +36,7 @@ public:
 
   //Operation function
   void item_operation();
+  bool item_format(std::string format);
   void operation_bookmark(std::string path);
   void operation_entity(dat::base::Entity* entity);
 
