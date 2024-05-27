@@ -93,6 +93,7 @@ void Cloud::convertion_init(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker
   int size = sensor->depth.cloud.size;
   vec_xyz.clear(); vec_xyz.reserve(size);
   vec_rgb.clear(); vec_rgb.reserve(size);
+  vec_rgba.clear(); vec_rgba.reserve(size);
   vec_ir.clear(); vec_ir.reserve(size);
   vec_r.clear(); vec_r.reserve(size);
   tasker->task_end("reserve");
@@ -124,6 +125,7 @@ void Cloud::convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* ta
   tasker->task_begin("copying");
   data->xyz = vec_xyz;
   data->rgb = vec_rgb;
+  data->rgba = vec_rgba;
   data->Is = vec_ir;
   data->R = vec_r;
 
@@ -198,6 +200,7 @@ void Cloud::insert_data(int i){
 
   vec_xyz.push_back(xyz);
   vec_rgb.push_back(rgb);
+  vec_rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
   vec_ir.push_back(ir);
   vec_r.push_back(R);
 
