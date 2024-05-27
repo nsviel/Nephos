@@ -83,47 +83,7 @@ void Loader::design_panel(){
   //---------------------------
 }
 
-//Other stuff
-void Loader::draw_bookmark_tab(){
-  std::list<ldr::bookmark::Item> list_item = ldr_bookmark->get_list_item();
-  //---------------------------
-
-  for(int i=0; i<list_item.size(); i++){
-    ldr::bookmark::Item& item = *next(list_item.begin(), i);
-    ldr::gui::Bookmark bookmark;
-    bookmark.item = item;
-
-    //File type icon
-    ImVec4 color_icon = ImVec4(bookmark.item.color_icon.r, bookmark.item.color_icon.g, bookmark.item.color_icon.b, bookmark.item.color_icon.a);
-    ImGui::TextColored(color_icon, "%s", bookmark.item.icon.c_str());
-
-    //Bookmark name button
-    ImGui::SameLine();
-    int trash_space = 0;
-    bookmark.item.is_supressible ? trash_space = 30 : 0;
-    int size = ImGui::GetContentRegionAvail().x - trash_space;
-    ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0.04, 0.5));
-    if(ImGui::Button(bookmark.item.name.c_str(), ImVec2(size, 0))){
-      this->operation_selection(bookmark.item.path);
-    }
-    ImGui::PopStyleVar();
-    ImGui::SetItemTooltip("%s", bookmark.item.path.c_str());
-
-    //Bookmark supression
-    if(bookmark.item.is_supressible){
-      ImGui::SameLine();
-      std::string ID = bookmark.item.path + "##supressionbookmark";
-      ImGui::PushID(ID.c_str());
-      if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
-        ldr_bookmark->remove_path(bookmark.item.path);
-        ldr_bookmark->save_on_file();
-      }
-      ImGui::PopID();
-    }
-  }
-
-  //---------------------------
-}
+//Subfunction
 void Loader::draw_header(){
   //---------------------------
 
@@ -148,8 +108,48 @@ void Loader::draw_header(){
 
   //---------------------------
 }
+void Loader::draw_bookmark_tab(){
+  std::list<ldr::bookmark::Item> list_item = ldr_bookmark->get_list_item();
+  //---------------------------
 
-//Subfunction
+  for(int i=0; i<list_item.size(); i++){
+    ldr::bookmark::Item& item = *next(list_item.begin(), i);
+    ldr::gui::Bookmark bookmark;
+    bookmark.item = item;
+
+    //File type icon
+    ImVec4 color_icon = ImVec4(bookmark.item.color_icon.r, bookmark.item.color_icon.g, bookmark.item.color_icon.b, bookmark.item.color_icon.a);
+    ImGui::TextColored(color_icon, "%s", bookmark.item.icon.c_str());
+
+    //Bookmark name button
+    ImGui::SameLine();
+    int trash_space = 0;
+    bookmark.item.is_supressible ? trash_space = 30 : 0;
+    int size = ImGui::GetContentRegionAvail().x - trash_space;
+    ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0.04, 0.5));
+    if(ImGui::Button(bookmark.item.name.c_str(), ImVec2(size, 0))){
+      this->operation_bookmark(bookmark.item.path);
+    }
+    ImGui::PopStyleVar();
+    ImGui::SetItemTooltip("%s", bookmark.item.path.c_str());
+
+    //Bookmark supression
+    if(bookmark.item.is_supressible){
+      ImGui::SameLine();
+      std::string ID = bookmark.item.path + "##supressionbookmark";
+      ImGui::PushID(ID.c_str());
+      if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
+        ldr_bookmark->remove_path(bookmark.item.path);
+        ldr_bookmark->save_on_file();
+      }
+      ImGui::PopID();
+    }
+  }
+
+  //---------------------------
+}
+
+//Operation function
 void Loader::operation_selection(){
   //---------------------------
 
@@ -184,7 +184,7 @@ void Loader::operation_selection(){
 
   //---------------------------
 }
-void Loader::operation_selection(std::string file_path){
+void Loader::operation_bookmark(std::string file_path){
   //---------------------------
 
   //If selection is a directory go display his content

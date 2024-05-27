@@ -30,13 +30,13 @@ public:
   void run_panel();
   void design_panel();
 
-  //Other stuff
+  //Subfunction
   void draw_header();
   void draw_bookmark_tab();
 
-  //Subfunction
+  //Operation function
   void operation_selection();
-  void operation_selection(std::string path);
+  void operation_bookmark(std::string path);
   void operation_entity(dat::base::Entity* entity);
 
 private:
