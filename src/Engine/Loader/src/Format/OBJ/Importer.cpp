@@ -146,7 +146,7 @@ void Importer::parse_mtl(std::string path_obj){
   //---------------------------
 
   // Retrieve mtl file path
-  std::string path = utl::path::get_path_from_filepath(path_obj);
+  std::string path = utl::path::get_dir_from_path(path_obj);
   std::string path_mtl = path + file_mtl;
 
   //Open mtl file

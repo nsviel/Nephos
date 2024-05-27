@@ -46,7 +46,8 @@ public:
   utl::media::File* import_from_path(utl::media::Path path);
   void insert_importer(ldr::base::Importer* importer);
   bool is_format_supported(std::string format);
-
+  std::vector<std::string> get_supported_format();
+  
 private:
   eng::Node* node_engine;
   dat::Entity* dat_entity;

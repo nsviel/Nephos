@@ -13,6 +13,7 @@ namespace ldr::gui{
 Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader, false){
   //---------------------------
 
+  this->ldr_exporter = node_loader->get_ldr_exporter();
   this->name = "Exporter";
   this->show_window = show_window;
 
@@ -65,7 +66,8 @@ void Exporter::draw_header(){
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
   //Path
-  std::string filename = utl::path::get_filename_from_path(current_path);
+  std::string file_name = utl::path::get_name_from_path(current_path);
+  std::string file_format = utl::path::get_format_from_path(current_path);
   static char str_n[256];
 
   //Directory
@@ -76,21 +78,32 @@ void Exporter::draw_header(){
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   if(ImGui::InputText("##exporter_dir", str_n, IM_ARRAYSIZE(str_n))){
-    this->current_path = (string)str_n + "/" + filename;
+    this->current_path = (string)str_n + "/" + file_name + "." + file_format;
   }
   ImGui::PopStyleColor(2);
 
   //Filename
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Filename"); ImGui::TableNextColumn();
-  strncpy(str_n, filename.c_str(), sizeof(str_n) - 1);
+  ImGui::Text("Name"); ImGui::TableNextColumn();
+  strncpy(str_n, file_name.c_str(), sizeof(str_n) - 1);
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
-  if(ImGui::InputText("##exporter_filename", str_n, IM_ARRAYSIZE(str_n))){
-    this->current_path = current_dir + "/" + (string)str_n;
+  if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
+    this->current_path = current_dir + "/" + (string)str_n + "." + file_format;
   }
   ImGui::PopStyleColor(2);
+  
+  //Format
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Format"); ImGui::TableNextColumn();
+  static int format = 0;
+  std::vector<std::string> vec_format = ldr_exporter->get_supported_format();
+  for(int i=0; i<vec_format.size(); i++){
+    if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
+      file_format = vec_format[i];
+    }
+  }
 
   ImGui::EndTable();
 

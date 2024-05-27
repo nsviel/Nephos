@@ -6,6 +6,7 @@
 #include <vector>
 
 namespace ldr{class Node;}
+namespace ldr::io{class Exporter;}
 namespace ldr::gui{class File;}
 
 
@@ -26,8 +27,10 @@ public:
   //Subfunction
   void draw_header();
   void item_operation();
-  
+
 private:
+  ldr::io::Exporter* ldr_exporter;
+
   std::string name = "";
   bool* show_window;
   int selection;

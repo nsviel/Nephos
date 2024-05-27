@@ -209,4 +209,17 @@ bool Importer::is_format_supported(std::string format){
   //---------------------------
   return false;
 }
+std::vector<std::string> Importer::get_supported_format(){
+  std::vector<std::string> vec_format;
+  //---------------------------
+
+  for(int i=0; i<vec_importer.size(); i++){
+    ldr::base::Importer* importer = vec_importer[i];
+    vec_format.push_back(importer->format);
+  }
+
+  //---------------------------
+  return vec_format;
+}
+
 }

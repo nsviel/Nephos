@@ -29,14 +29,12 @@ std::string get_name_from_path(std::string path){
   //Return file name
   //---------------------------
 
-  if(path != ""){
-    std::string name_format = path.substr(path.find_last_of("/\\") + 1);
-    return name_format.substr(0, name_format.find_last_of("."));
-  }else{
-    return "";
-  }
+  if(path == "") return "(not defined)";
+  std::string name_format = path.substr(path.find_last_of("/\\") + 1);
+  std::string name = name_format.substr(0, name_format.find_last_of("."));
 
   //---------------------------
+  return name;
 }
 std::string get_filename_from_path(std::string path){
   // Return file name.format
@@ -48,52 +46,35 @@ std::string get_filename_from_path(std::string path){
   //---------------------------
   return filename;
 }
-std::string get_path_from_filepath(std::string filepath){
-  // Return path abs or relative from file path
-  //---------------------------
-
-  if(filepath != ""){
-    std::string path = filepath.substr(0, filepath.find_last_of("/\\") + 1);
-    return path;
-  }else{
-    return "";
-  }
-
-  //---------------------------
-}
 std::string get_name_and_parent_from_path(std::string path){
   //Return file parent/name
   //---------------------------
 
-  if(path != ""){
-    std::string path_parent = path.substr(0, path.find_last_of("/\\"));
-    std::string parent = path_parent.substr(path_parent.find_last_of("/\\"));
-    std::string name_format = path.substr(path.find_last_of("/\\"));
-    std::string parent_name_format = parent + name_format;
-    std::string parent_name = parent_name_format.substr(0, parent_name_format.find_last_of("."));
-    return parent_name;
-  }else{
-    return "";
-  }
+  if(path == "") return "(not defined)";
+  std::string path_parent = path.substr(0, path.find_last_of("/\\"));
+  std::string parent = path_parent.substr(path_parent.find_last_of("/\\"));
+  std::string name_format = path.substr(path.find_last_of("/\\"));
+  std::string parent_name_format = parent + name_format;
+  std::string parent_name = parent_name_format.substr(0, parent_name_format.find_last_of("."));
 
   //---------------------------
+  return parent_name;
 }
 std::string get_format_from_path(std::string path){
   //Return file format
   //---------------------------
 
-  if(path != ""){
-    std::string name_format = path.substr(path.find_last_of("/\\") + 1);
-    return name_format.substr(name_format.find_last_of(".") + 1, std::string::npos);
-  }else{
-    return "";
-  }
+  if(path == "") return "(not defined)";
+  std::string name_format = path.substr(path.find_last_of("/\\") + 1);
+  std::string format = name_format.substr(name_format.find_last_of(".") + 1, std::string::npos);
 
   //---------------------------
+  return format;
 }
 std::string get_format_from_filename(std::string path){
   //---------------------------
 
+  if(path == "") return "(not defined)";
   std::string format = path.substr(path.find_last_of("."), std::string::npos);
 
   //---------------------------
