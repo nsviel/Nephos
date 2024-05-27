@@ -19,7 +19,7 @@ public:
 
 public:
   //Main functions
-  void export_data(utl::base::Data* data, std::string path);
+  void export_entity(dat::base::Entity* entity, std::string path);
 
   //Exporter function
   void insert_exporter(ldr::base::Exporter* exporter);

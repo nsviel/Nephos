@@ -126,12 +126,12 @@ void Exporter::draw_header(){
   ImGui::Separator();
 }
 void Exporter::item_operation(){
-  dat::base::Entity* entity = dat_graph->get_selected_entity();
-  if(entity == nullptr) return;
   //---------------------------
 
-  say(current_path);
-  ldr_exporter->export_data(entity->get_data(), current_path);
+  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  if(entity == nullptr) return;
+  
+  ldr_exporter->export_entity(entity, current_path);
 
   //---------------------------
 }

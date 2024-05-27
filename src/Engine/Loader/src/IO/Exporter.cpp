@@ -16,10 +16,18 @@ Exporter::Exporter(ldr::Node* node_loader){
 Exporter::~Exporter(){}
 
 //Main functions
-void Exporter::export_data(utl::base::Data* data, std::string path){
+void Exporter::export_entity(dat::base::Entity* entity, std::string path){
   //---------------------------
 
+  for(int i=0; i<vec_exporter.size(); i++){
+    ldr::base::Exporter* exporter = vec_exporter[i];
 
+    if(data->format == exporter->format){
+      utl::base::Data* data = entity->get_data();
+      utl::base::Pose* pose = entity->get_pose();
+      exporter->export_binary(data, pose, path);
+    }
+  }
 
   //---------------------------
 }
