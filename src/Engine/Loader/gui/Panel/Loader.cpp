@@ -114,32 +114,32 @@ void Loader::draw_bookmark_tab(){
 
   for(int i=0; i<list_item.size(); i++){
     ldr::bookmark::Item& item = *next(list_item.begin(), i);
-    ldr::gui::File bookmark;
-    bookmark.item = item;
+    ldr::gui::File file;
+    file.item = item;
 
     //File type icon
-    ImVec4 color_icon = ImVec4(bookmark.item.color_icon.r, bookmark.item.color_icon.g, bookmark.item.color_icon.b, bookmark.item.color_icon.a);
-    ImGui::TextColored(color_icon, "%s", bookmark.item.icon.c_str());
+    ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
+    ImGui::TextColored(color_icon, "%s", file.item.icon.c_str());
 
     //Bookmark name button
     ImGui::SameLine();
     int trash_space = 0;
-    bookmark.item.is_supressible ? trash_space = 30 : 0;
+    file.item.is_supressible ? trash_space = 30 : 0;
     int size = ImGui::GetContentRegionAvail().x - trash_space;
     ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0.04, 0.5));
-    if(ImGui::Button(bookmark.item.name.c_str(), ImVec2(size, 0))){
-      this->operation_bookmark(bookmark.item.path);
+    if(ImGui::Button(file.item.name.c_str(), ImVec2(size, 0))){
+      this->operation_bookmark(file.item.path);
     }
     ImGui::PopStyleVar();
-    ImGui::SetItemTooltip("%s", bookmark.item.path.c_str());
+    ImGui::SetItemTooltip("%s", file.item.path.c_str());
 
     //Bookmark supression
-    if(bookmark.item.is_supressible){
+    if(file.item.is_supressible){
       ImGui::SameLine();
-      std::string ID = bookmark.item.path + "##supressionbookmark";
+      std::string ID = file.item.path + "##supressionbookmark";
       ImGui::PushID(ID.c_str());
       if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
-        ldr_bookmark->remove_path(bookmark.item.path);
+        ldr_bookmark->remove_path(file.item.path);
         ldr_bookmark->save_on_file();
       }
       ImGui::PopID();
@@ -155,11 +155,11 @@ void Loader::item_selection(){
 
   //Retrieve all good selected files to load
   std::vector<std::string> vec_path;
-  for(int i=0; i<vec_bookmark_file.size(); i++){
-    ldr::gui::File& bookmark = vec_bookmark_file[i];
-    if(vec_selection.contains(bookmark.item.ID)){
-      if(ldr_importer->is_format_supported(bookmark.item.format)){
-        vec_path.push_back(bookmark.item.path);
+  for(int i=0; i<vec_file.size(); i++){
+    ldr::gui::File& file = vec_file[i];
+    if(vec_selection.contains(file.item.ID)){
+      if(ldr_importer->is_format_supported(file.item.format)){
+        vec_path.push_back(file.item.path);
       }
     }
   }

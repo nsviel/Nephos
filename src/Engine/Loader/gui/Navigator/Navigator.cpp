@@ -103,25 +103,25 @@ void Navigator::draw_file_content(){
 
   //---------------------------
 }
-void Navigator::draw_bookmark(ldr::gui::File& bookmark){
+void Navigator::draw_bookmark(ldr::gui::File& file){
   if(with_bookmark == false) return;
   //---------------------------
 
   //Button background if already bookmarked
-  bool is_bookmarked = ldr_bookmark->is_path_bookmarked(bookmark.item.path);
+  bool is_bookmarked = ldr_bookmark->is_path_bookmarked(file.item.path);
   int bg_alpha;
   is_bookmarked ? bg_alpha = 255 : bg_alpha = 0;
 
   //Draw bookmark button
-  std::string ID = bookmark.item.path + "##bookmarkbutton";
+  std::string ID = file.item.path + "##bookmarkbutton";
   ImGui::PushID(ID.c_str());
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
   ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
   if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark")){
     if(is_bookmarked){
-      ldr_bookmark->remove_path(bookmark.item.path);
+      ldr_bookmark->remove_path(file.item.path);
     }else{
-      ldr_bookmark->add_abs_path(bookmark.item.path);
+      ldr_bookmark->add_abs_path(file.item.path);
     }
     ldr_bookmark->save_on_file();
   }
@@ -141,35 +141,35 @@ void Navigator::item_organisation(){
   vec_folder.clear();
   vec_file.clear();
   for(int i=0; i<vec_current_files.size(); i++){
-    ldr::gui::File bookmark;
-    std::string file = vec_current_files[i];
-    std::string filename = utl::path::get_filename_from_path(file);
+    ldr::gui::File file;
+    std::string current_file = vec_current_files[i];
+    std::string filename = utl::path::get_filename_from_path(current_file);
     //Remove hidden files
     if(filename[0] == '.' && filename[1] != '.') continue;
 
     //Get file info
-    bookmark.item.ID = ID++;
-    bookmark.item.type = utl::directory::is_directory(file) ? ldr::bookmark::FOLDER : ldr::bookmark::FILE;
-    if(bookmark.item.type == ldr::bookmark::FOLDER){
-      bookmark.item.name = utl::path::get_filename_from_path(file);
-      bookmark.item.path = file;
-      bookmark.item.icon = std::string(ICON_FA_FOLDER);
-      bookmark.item.size = "---";
-      bookmark.item.weight = 0;
-      bookmark.item.format = "---";
-      bookmark.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
-      bookmark.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-      vec_folder.push_back(bookmark);
-    }else if(bookmark.item.type == ldr::bookmark::FILE){
-      bookmark.item.path = file;
-      bookmark.item.name = utl::path::get_name_from_path(file);
-      bookmark.item.icon = std::string(ICON_FA_FILE);
-      bookmark.item.size = utl::file::formatted_size(file);
-      bookmark.item.weight = utl::file::size(file);
-      bookmark.item.format = utl::path::get_format_from_path(file);
-      bookmark.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-      bookmark.item.color_text = ldr_importer->is_format_supported(bookmark.item.format) ? glm::vec4(0.0f, 1.0f, 1.0f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-      vec_file.push_back(bookmark);
+    file.item.ID = ID++;
+    file.item.type = utl::directory::is_directory(current_file) ? ldr::bookmark::FOLDER : ldr::bookmark::FILE;
+    if(file.item.type == ldr::bookmark::FOLDER){
+      file.item.name = utl::path::get_filename_from_path(current_file);
+      file.item.path = current_file;
+      file.item.icon = std::string(ICON_FA_FOLDER);
+      file.item.size = "---";
+      file.item.weight = 0;
+      file.item.format = "---";
+      file.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
+      file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+      vec_folder.push_back(file);
+    }else if(file.item.type == ldr::bookmark::FILE){
+      file.item.path = current_file;
+      file.item.name = utl::path::get_name_from_path(current_file);
+      file.item.icon = std::string(ICON_FA_FILE);
+      file.item.size = utl::file::formatted_size(current_file);
+      file.item.weight = utl::file::size(current_file);
+      file.item.format = utl::path::get_format_from_path(current_file);
+      file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+      file.item.color_text = ldr_importer->is_format_supported(file.item.format) ? glm::vec4(0.0f, 1.0f, 1.0f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+      vec_file.push_back(file);
     }
   }
 
@@ -190,39 +190,39 @@ void Navigator::item_folder(){
   flags |= ImGuiSelectableFlags_AllowOverlap;
   flags |= ImGuiSelectableFlags_AllowDoubleClick;
   for(int i=0; i<vec_folder.size(); i++){
-    ldr::gui::File& bookmark = vec_folder[i];
+    ldr::gui::File& file = vec_folder[i];
 
     ImGui::TableNextColumn();
-    ImVec4 color_icon = ImVec4(bookmark.item.color_icon.r, bookmark.item.color_icon.g, bookmark.item.color_icon.b, bookmark.item.color_icon.a);
-    ImGui::TextColored(color_icon, "%s", bookmark.item.icon.c_str());
+    ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
+    ImGui::TextColored(color_icon, "%s", file.item.icon.c_str());
     ImGui::SameLine();
-    ImVec4 color_text = ImVec4(bookmark.item.color_text.r, bookmark.item.color_text.g, bookmark.item.color_text.b, bookmark.item.color_text.a);
-    ImGui::TextColored(color_text, "%s", bookmark.item.name.c_str());
+    ImVec4 color_text = ImVec4(file.item.color_text.r, file.item.color_text.g, file.item.color_text.b, file.item.color_text.a);
+    ImGui::TextColored(color_text, "%s", file.item.name.c_str());
     ImGui::TableNextColumn();
-    ImGui::TextColored(color_text, "%s", bookmark.item.format.c_str());
+    ImGui::TextColored(color_text, "%s", file.item.format.c_str());
     ImGui::TableNextColumn();
-    ImGui::TextColored(color_text, "%s", bookmark.item.size.c_str());
+    ImGui::TextColored(color_text, "%s", file.item.size.c_str());
     ImGui::TableNextColumn();
-    this->draw_bookmark(bookmark);
+    this->draw_bookmark(file);
 
     //Selection stuff
     ImGui::SameLine();
-    const bool item_is_selected = vec_selection.contains(bookmark.item.ID);
-    std::string name = "##" + std::to_string(bookmark.item.ID);
+    const bool item_is_selected = vec_selection.contains(file.item.ID);
+    std::string name = "##" + std::to_string(file.item.ID);
     if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
 
       if(ImGui::IsMouseDoubleClicked(0)){
-        if(bookmark.item.name == ".."){
+        if(file.item.name == ".."){
           std::filesystem::path path = this->current_dir;
           this->current_dir = path.parent_path();
           this->vec_selection.clear();
         }else{
-          this->current_dir += "/" + bookmark.item.name;
+          this->current_dir += "/" + file.item.name;
           this->vec_selection.clear();
         }
       }else{
         vec_selection.clear();
-        vec_selection.push_back(bookmark.item.ID);
+        vec_selection.push_back(file.item.ID);
       }
 
     }
@@ -239,44 +239,44 @@ void Navigator::item_file(){
   flags |= ImGuiSelectableFlags_AllowOverlap;
   flags |= ImGuiSelectableFlags_AllowDoubleClick;
   for(int i=0; i<vec_file.size(); i++){
-    ldr::gui::File& bookmark = vec_file[i];
+    ldr::gui::File& file = vec_file[i];
 
     ImGui::TableNextRow();
     ImGui::TableNextColumn();
-    ImVec4 color_icon = ImVec4(bookmark.item.color_icon.r, bookmark.item.color_icon.g, bookmark.item.color_icon.b, bookmark.item.color_icon.a);
-    ImGui::TextColored(color_icon, "%s", bookmark.item.icon.c_str());
+    ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
+    ImGui::TextColored(color_icon, "%s", file.item.icon.c_str());
     ImGui::SameLine();
-    ImVec4 color_text = ImVec4(bookmark.item.color_text.r, bookmark.item.color_text.g, bookmark.item.color_text.b, bookmark.item.color_text.a);
-    ImGui::TextColored(color_text, "%s", bookmark.item.name.c_str());
+    ImVec4 color_text = ImVec4(file.item.color_text.r, file.item.color_text.g, file.item.color_text.b, file.item.color_text.a);
+    ImGui::TextColored(color_text, "%s", file.item.name.c_str());
     ImGui::TableNextColumn();
-    ImGui::TextColored(color_text, "%s", bookmark.item.format.c_str());
+    ImGui::TextColored(color_text, "%s", file.item.format.c_str());
     ImGui::TableNextColumn();
-    ImGui::TextColored(color_text, "%s", bookmark.item.size.c_str());
+    ImGui::TextColored(color_text, "%s", file.item.size.c_str());
     ImGui::TableNextColumn();
-    this->draw_bookmark(bookmark);
+    this->draw_bookmark(file);
 
     //Selection stuff
     ImGui::SameLine();
-    const bool item_is_selected = vec_selection.contains(bookmark.item.ID);
-    std::string name = "##" + std::to_string(bookmark.item.ID);
+    const bool item_is_selected = vec_selection.contains(file.item.ID);
+    std::string name = "##" + std::to_string(file.item.ID);
     if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
       //Add selection to list
       if(ImGui::GetIO().KeyCtrl){
         if(item_is_selected){
-          vec_selection.find_erase_unsorted(bookmark.item.ID);
+          vec_selection.find_erase_unsorted(file.item.ID);
         }
         else{
-          vec_selection.push_back(bookmark.item.ID);
+          vec_selection.push_back(file.item.ID);
         }
       }else{
         vec_selection.clear();
-        vec_selection.push_back(bookmark.item.ID);
+        vec_selection.push_back(file.item.ID);
       }
 
       //If double clicked, load it
       if(ImGui::IsMouseDoubleClicked(0)){
         vec_selection.clear();
-        vec_selection.push_back(bookmark.item.ID);
+        vec_selection.push_back(file.item.ID);
         this->item_selection();
       }
     }
