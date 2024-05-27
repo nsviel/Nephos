@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/gui/Navigator.h>
+#include <Loader/gui/Navigator/Navigator.h>
 #include <imgui/core/imgui.h>
 #include <string>
 #include <vector>
@@ -25,7 +25,8 @@ public:
 
   //Subfunction
   void draw_header();
-
+  void item_selection();
+  
 private:
   std::string current_path = "";
   std::string name = "";

@@ -89,7 +89,7 @@ void Loader::draw_header(){
 
   // Load button
   if(ImGui::Button("Load##222")){
-    this->operation_selection();
+    this->item_selection();
     this->vec_selection.clear();
   }
 
@@ -150,7 +150,7 @@ void Loader::draw_bookmark_tab(){
 }
 
 //Operation function
-void Loader::operation_selection(){
+void Loader::item_selection(){
   //---------------------------
 
   //Retrieve all good selected files to load

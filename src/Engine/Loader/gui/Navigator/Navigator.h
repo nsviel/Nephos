@@ -27,19 +27,19 @@ public:
   void draw_header();
   void draw_file_content();
   void draw_bookmark(ldr::gui::File& bookmark);
-  virtual void operation_selection(){}
 
   //Item function
   void item_organisation();
   void item_folder();
   void item_file();
+  virtual void item_selection(){}
 
 protected:
   ldr::io::Importer* ldr_importer;
   ldr::bookmark::Manager* ldr_bookmark;
 
-  std::vector<ldr::gui::File> vec_bookmark_folder;
-  std::vector<ldr::gui::File> vec_bookmark_file;
+  std::vector<ldr::gui::File> vec_folder;
+  std::vector<ldr::gui::File> vec_file;
   std::string default_dir;
   std::string current_dir;
   ImVector<int> vec_selection;

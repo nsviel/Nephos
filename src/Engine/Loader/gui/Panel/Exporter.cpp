@@ -74,5 +74,39 @@ void Exporter::draw_header(){
   //---------------------------
   ImGui::Separator();
 }
+void Exporter::item_selection(){
+  //---------------------------
+/*
+  //Retrieve all good selected files to load
+  std::vector<std::string> vec_path;
+  for(int i=0; i<vec_bookmark_file.size(); i++){
+    ldr::gui::File& bookmark = vec_bookmark_file[i];
+    if(vec_selection.contains(bookmark.item.ID)){
+      if(ldr_importer->is_format_supported(bookmark.item.format)){
+        vec_path.push_back(bookmark.item.path);
+      }
+    }
+  }
+  if(vec_path.size() == 0) return;
+
+  //Apply loading and operations
+  if(param_remove_old){
+    dat::base::Set* set_graph = dat_graph->get_set_graph();
+    dat_set->remove_all_entity(set_graph);
+  }
+
+  for(int i=0; i<vec_path.size(); i++){
+    utl::media::Path path;
+    path.data = vec_path[i];
+
+    dat::base::Object* object = ldr_importer->load_object(path);
+
+    if(object != nullptr){
+      this->operation_entity(object);
+    }
+  }
+*/
+  //---------------------------
+}
 
 }

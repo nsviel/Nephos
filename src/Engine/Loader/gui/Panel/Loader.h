@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/gui/Navigator.h>
+#include <Loader/gui/Navigator/Navigator.h>
 #include <imgui/core/imgui.h>
 #include <string>
 #include <vector>
@@ -35,7 +35,7 @@ public:
   void draw_bookmark_tab();
 
   //Operation function
-  void operation_selection();
+  void item_selection();
   void operation_bookmark(std::string path);
   void operation_entity(dat::base::Entity* entity);
 

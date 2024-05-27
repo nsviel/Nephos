@@ -138,8 +138,8 @@ void Navigator::item_organisation(){
 
   //Item transposition
   int ID = 0;
-  vec_bookmark_folder.clear();
-  vec_bookmark_file.clear();
+  vec_folder.clear();
+  vec_file.clear();
   for(int i=0; i<vec_current_files.size(); i++){
     ldr::gui::File bookmark;
     std::string file = vec_current_files[i];
@@ -159,7 +159,7 @@ void Navigator::item_organisation(){
       bookmark.item.format = "---";
       bookmark.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
       bookmark.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-      vec_bookmark_folder.push_back(bookmark);
+      vec_folder.push_back(bookmark);
     }else if(bookmark.item.type == ldr::bookmark::FILE){
       bookmark.item.path = file;
       bookmark.item.name = utl::path::get_name_from_path(file);
@@ -169,14 +169,14 @@ void Navigator::item_organisation(){
       bookmark.item.format = utl::path::get_format_from_path(file);
       bookmark.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
       bookmark.item.color_text = ldr_importer->is_format_supported(bookmark.item.format) ? glm::vec4(0.0f, 1.0f, 1.0f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-      vec_bookmark_file.push_back(bookmark);
+      vec_file.push_back(bookmark);
     }
   }
 
   // Sort data
   if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-    ldr::gui::File::sort_item_by_specs(sort_specs, vec_bookmark_folder);
-    ldr::gui::File::sort_item_by_specs(sort_specs, vec_bookmark_file);
+    ldr::gui::File::sort_item_by_specs(sort_specs, vec_folder);
+    ldr::gui::File::sort_item_by_specs(sort_specs, vec_file);
   }
 
   //---------------------------
@@ -189,8 +189,8 @@ void Navigator::item_folder(){
   flags |= ImGuiSelectableFlags_SpanAllColumns;
   flags |= ImGuiSelectableFlags_AllowOverlap;
   flags |= ImGuiSelectableFlags_AllowDoubleClick;
-  for(int i=0; i<vec_bookmark_folder.size(); i++){
-    ldr::gui::File& bookmark = vec_bookmark_folder[i];
+  for(int i=0; i<vec_folder.size(); i++){
+    ldr::gui::File& bookmark = vec_folder[i];
 
     ImGui::TableNextColumn();
     ImVec4 color_icon = ImVec4(bookmark.item.color_icon.r, bookmark.item.color_icon.g, bookmark.item.color_icon.b, bookmark.item.color_icon.a);
@@ -238,8 +238,8 @@ void Navigator::item_file(){
   flags |= ImGuiSelectableFlags_SpanAllColumns;
   flags |= ImGuiSelectableFlags_AllowOverlap;
   flags |= ImGuiSelectableFlags_AllowDoubleClick;
-  for(int i=0; i<vec_bookmark_file.size(); i++){
-    ldr::gui::File& bookmark = vec_bookmark_file[i];
+  for(int i=0; i<vec_file.size(); i++){
+    ldr::gui::File& bookmark = vec_file[i];
 
     ImGui::TableNextRow();
     ImGui::TableNextColumn();
@@ -277,7 +277,7 @@ void Navigator::item_file(){
       if(ImGui::IsMouseDoubleClicked(0)){
         vec_selection.clear();
         vec_selection.push_back(bookmark.item.ID);
-        this->operation_selection();
+        this->item_selection();
       }
     }
   }
