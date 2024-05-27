@@ -44,7 +44,8 @@ protected:
   std::vector<ldr::gui::File> vec_file;
   std::string default_dir = "";
   std::string current_dir = "";
-  std::string current_path = "";
+  std::string current_name = "";
+  std::string current_format = "";
   ImVector<int> vec_selection;
   bool goto_file_tab = false;
   bool with_bookmark = true;

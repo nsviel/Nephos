@@ -101,6 +101,7 @@ void Loader::draw_header(){
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Path"); ImGui::TableNextColumn();
+  std::string current_path = current_dir + current_name + current_format;
   if(current_path == "") current_path = "(not defined)";
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::EndTable();

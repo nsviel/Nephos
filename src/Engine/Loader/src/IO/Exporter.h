@@ -4,8 +4,8 @@
 #include <vector>
 
 namespace ldr{class Node;}
-namespace utl::base{class Data;}
 namespace ldr::base{class Exporter;}
+namespace dat::base{class Entity;}
 
 
 namespace ldr::io{

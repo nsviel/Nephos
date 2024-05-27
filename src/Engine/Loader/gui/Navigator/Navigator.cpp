@@ -299,7 +299,9 @@ void Navigator::item_selection(){
     ldr::gui::File& file = vec_file[i];
 
     if(file.item.ID == selection){
-      this->current_path = file.item.path;
+      this->current_dir = utl::path::get_dir_from_path(file.item.path);
+      this->current_name = utl::path::get_name_from_path(file.item.path);
+      this->current_format = utl::path::get_format_from_path(file.item.path);
     }
   }
 

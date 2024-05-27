@@ -72,17 +72,6 @@ void Exporter::draw_header(){
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
   //Actualize current paths
-  static std::string file_format;
-  static std::string file_name;
-  dat::base::Entity* entity = dat_graph->get_selected_entity();
-  if(entity != nullptr && file_name != entity->name){
-    file_name = entity->name;
-    file_format = entity->get_data()->format;
-    this->current_path = current_dir + "/" + file_name + "." + file_format;
-  }else{
-    file_name = utl::path::get_name_from_path(current_path);
-    file_format = utl::path::get_format_from_path(current_path);
-  }
   static char str_n[256];
 
   //Directory
@@ -93,19 +82,19 @@ void Exporter::draw_header(){
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   if(ImGui::InputText("##exporter_dir", str_n, IM_ARRAYSIZE(str_n))){
-    this->current_path = (string)str_n + "/" + file_name + "." + file_format;
+    this->current_dir = (string)str_n;
   }
   ImGui::PopStyleColor(2);
 
   //Filename
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Name"); ImGui::TableNextColumn();
-  strncpy(str_n, file_name.c_str(), sizeof(str_n) - 1);
+  strncpy(str_n, current_name.c_str(), sizeof(str_n) - 1);
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
-    this->current_path = current_dir + "/" + (string)str_n + "." + file_format;
+    this->current_name = (string)str_n;
   }
   ImGui::PopStyleColor(2);
 
@@ -116,7 +105,7 @@ void Exporter::draw_header(){
   std::vector<std::string> vec_format = ldr_exporter->get_supported_format();
   for(int i=0; i<vec_format.size(); i++){
     if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
-      file_format = vec_format[i];
+      this->current_format = vec_format[i];
     }
   }
 
@@ -130,8 +119,9 @@ void Exporter::item_operation(){
 
   dat::base::Entity* entity = dat_graph->get_selected_entity();
   if(entity == nullptr) return;
-  
-  ldr_exporter->export_entity(entity, current_path);
+
+  std::string path = current_dir + "/" + current_name + "." + current_format;
+  ldr_exporter->export_entity(entity, path);
 
   //---------------------------
 }

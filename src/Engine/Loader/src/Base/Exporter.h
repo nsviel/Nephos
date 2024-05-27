@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Type/Data.h>
+#include <Utility/Base/Type/Pose.h>
 #include <string>
 
 
