@@ -16,7 +16,6 @@ Navigator::Navigator(ldr::Node* node_loader, bool with_bookmark){
 
   this->default_dir = utl::path::get_current_parent_path_abs();
   this->current_dir = default_dir;
-  this->current_path = "(not defined)";
   this->with_bookmark = with_bookmark;
 
   //---------------------------

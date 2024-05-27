@@ -42,14 +42,11 @@ std::string get_filename_from_path(std::string path){
   // Return file name.format
   //---------------------------
 
-  if(path != ""){
-    std::string name_format = path.substr(path.find_last_of("/\\") + 1);
-    return name_format;
-  }else{
-    return "";
-  }
+  if(path == "") return "(not defined)";
+  std::string filename = path.substr(path.find_last_of("/\\") + 1);
 
   //---------------------------
+  return filename;
 }
 std::string get_path_from_filepath(std::string filepath){
   // Return path abs or relative from file path
@@ -152,6 +149,7 @@ std::string get_absolute_path(const std::string& relativePath){
   return absolutePath.string();
 }
 std::string get_dir_from_path(std::string path){
+  if(path == "") return "(not defined)";
   //---------------------------
 
   std::filesystem::path path_obj(path);

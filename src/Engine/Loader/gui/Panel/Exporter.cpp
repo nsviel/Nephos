@@ -65,14 +65,13 @@ void Exporter::draw_header(){
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
   //Path
-  std::string dir_path = utl::path::get_dir_from_path(current_path);
   std::string filename = utl::path::get_filename_from_path(current_path);
   static char str_n[256];
 
   //Directory
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Directory"); ImGui::TableNextColumn();
-  strncpy(str_n, dir_path.c_str(), sizeof(str_n) - 1);
+  strncpy(str_n, current_dir.c_str(), sizeof(str_n) - 1);
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
@@ -89,7 +88,7 @@ void Exporter::draw_header(){
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   if(ImGui::InputText("##exporter_filename", str_n, IM_ARRAYSIZE(str_n))){
-    this->current_path = dir_path + "/" + (string)str_n;
+    this->current_path = current_dir + "/" + (string)str_n;
   }
   ImGui::PopStyleColor(2);
 
