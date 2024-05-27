@@ -175,8 +175,8 @@ void Navigator::item_organisation(){
 
   // Sort data
   if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-    ldr::gui::File::sort_item_by_specs(sort_specs, vec_folder);
-    ldr::gui::File::sort_item_by_specs(sort_specs, vec_file);
+    ldr::gui::File::sort_file_by_specs(sort_specs, vec_folder);
+    ldr::gui::File::sort_file_by_specs(sort_specs, vec_file);
   }
 
   //---------------------------

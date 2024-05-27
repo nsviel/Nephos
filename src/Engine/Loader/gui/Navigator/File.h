@@ -18,7 +18,7 @@ struct File{
   //Sorting stuff
   static const ImGuiTableSortSpecs* current_sort_specs;
   static bool compare_with_specs(const ldr::gui::File& a, const ldr::gui::File& b);
-  static void sort_item_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::File>& vec_item);
+  static void sort_file_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::File>& vec_file);
 
   //---------------------------
 };

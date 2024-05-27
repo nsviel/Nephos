@@ -35,12 +35,12 @@ bool File::compare_with_specs(const ldr::gui::File& a, const ldr::gui::File& b){
   //---------------------------
   return false;
 }
-void File::sort_item_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::File>& vec_bookmark){
+void File::sort_file_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::File>& vec_file){
   //---------------------------
 
   current_sort_specs = sort_specs;
-  if(vec_bookmark.size() > 1){
-    std::sort(vec_bookmark.begin(), vec_bookmark.end(), compare_with_specs);
+  if(vec_file.size() > 1){
+    std::sort(vec_file.begin(), vec_file.end(), compare_with_specs);
   }
   current_sort_specs = nullptr;
 
