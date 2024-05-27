@@ -14,6 +14,7 @@ Operation::Operation(dyn::Node* node_dynamic){
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->ope_operation = new ope::Operation();
+  this->ope_normal = new ope::normal::KNN();
 
   //---------------------------
 }
@@ -202,6 +203,14 @@ void Operation::draw_ope_normal(dat::base::Set* set){
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Normal##dynamic")){
+
+    if(ImGui::Button("Compute##normal", ImVec2(100, 0))){
+      utl::base::Data* data = set->active_entity->get_data();
+      ope_normal->compute_normal(data, dyn_struct->operation.normal.knn);
+
+      say(set->active_entity->name);
+      sayVecVec3(data->Nxyz);
+    }
 
     //Parameter: kNN
     ImGui::SetNextItemWidth(100);

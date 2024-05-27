@@ -5,6 +5,7 @@
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace ope{class Operation;}
+namespace ope::normal{class KNN;}
 namespace dat::base{class Set;}
 
 
@@ -31,6 +32,7 @@ public:
 private:
   dyn::Structure* dyn_struct;
   ope::Operation* ope_operation;
+  ope::normal::KNN* ope_normal;
 };
 
 }

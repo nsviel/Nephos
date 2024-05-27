@@ -19,7 +19,6 @@ Detection::Detection(rad::Node* node_radio){
 
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
-  this->ope_normal = new ope::normal::KNN();
 
   //---------------------------
 }

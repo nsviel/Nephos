@@ -7,7 +7,6 @@ namespace rad{class Structure;}
 namespace rad::model{class Manager;}
 namespace rad::model{class Model;}
 namespace dat::base{class Sensor;}
-namespace ope::normal{class KNN;}
 
 
 namespace rad::correction{
@@ -30,7 +29,6 @@ private:
   rad::Structure* rad_struct;
   rad::model::Manager* rad_manager;
   rad::model::Model* rad_model;
-  ope::normal::KNN* ope_normal;
 };
 
 }

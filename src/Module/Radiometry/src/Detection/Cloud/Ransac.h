@@ -9,7 +9,6 @@ namespace dat::base{class Sensor;}
 namespace rad::detection::cloud{class Glyph;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
-namespace ope::normal{class KNN;}
 
 
 namespace rad::detection::cloud{
@@ -36,7 +35,6 @@ private:
   rad::detection::cloud::Glyph* rad_glyph;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
-  ope::normal::KNN* ope_normal;
 
   vec3 current_pose;
   float radius;

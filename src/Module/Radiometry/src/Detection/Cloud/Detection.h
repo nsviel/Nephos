@@ -9,7 +9,6 @@ namespace rad::detection::cloud{class Glyph;}
 namespace rad::detection::cloud{class Ransac;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
-namespace ope::normal{class KNN;}
 namespace utl::thread{class Pool;}
 
 
@@ -40,7 +39,6 @@ private:
   utl::thread::Pool* thread_pool;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
-  ope::normal::KNN* ope_normal;
   rad::detection::cloud::Glyph* rad_glyph;
   rad::detection::cloud::Ransac* rad_ransac;
   rad::Structure* rad_struct;

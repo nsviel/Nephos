@@ -10,14 +10,10 @@ namespace rad::detection::cloud{
 Ransac::Ransac(rad::Node* node_radio){
   //---------------------------
 
-
-
   this->rad_struct = node_radio->get_rad_struct();
-
   this->rad_glyph = new rad::detection::cloud::Glyph(node_radio);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
-  this->ope_normal = new ope::normal::KNN();
 
   this->radius = 0.5f;
 
