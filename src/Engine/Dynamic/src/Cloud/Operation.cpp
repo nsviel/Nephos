@@ -22,6 +22,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::normal::Structured();
+  this->ope_converter = new ope::image::Converter();
   //this->rad_detection = node_radio->get_cloud_detection();
   this->thread_pool = node_engine->get_thread_pool();
 
@@ -52,6 +53,7 @@ void Operation::run_thread(dat::base::Sensor* sensor){
     utl::base::Data* data = sensor->get_data();
     ope_normal->compute_normal(data, dyn_struct->operation.normal.knn);
     dyn_struct->operation.normal.time = ope_normal->get_time();
+    ope_converter->convert_normal_to_image(sensor);
   }
 
   //Update object data

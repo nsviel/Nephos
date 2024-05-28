@@ -32,17 +32,21 @@ void Converter::convert_normal_to_image(dat::base::Entity* entity){
     glm::vec3 normal = Nxyz[i];
 
     size_t j = i * 4;
-    output[j] = normal.x * 255.0f;
-    output[j + 1] = normal.y * 255.0f;
-    output[j + 2] = normal.z * 255.0f;
-    output[j + 3] = 255;
+    output[j]     = normal.x * 255.0f;
+    output[j + 1] = normal.x * 255.0f;
+    output[j + 2] = normal.x * 255.0f;
+    output[j + 3] = 255.0f;
   }
 
   //Update image
   utl::media::Image* image = ope_image->get_or_create_image(entity, utl::media::NORMAL);
+  image->size = output.size();
   image->width = data->width;
   image->height = data->height;
   image->data = output;
+  image->new_data = true;
+  image->data = output;
+  image->name = "Normal";
 
   //---------------------------
 }

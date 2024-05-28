@@ -59,6 +59,8 @@ utl::media::Image* Manager::get_or_create_image(dat::base::Entity* entity, int t
   }
 
   utl::media::Image* image = new utl::media::Image();
+  image->format = "R8G8B8A8_SRGB";
+  image->type = type;
   this->add_image(entity, image);
 
   //----------------------------

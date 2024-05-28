@@ -11,6 +11,7 @@ namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
 namespace ope::normal{class Structured;}
+namespace ope::image{class Converter;}
 namespace rad::detection::cloud{class Detection;}
 
 
@@ -41,6 +42,7 @@ private:
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
   ope::normal::Structured* ope_normal;
+  ope::image::Converter* ope_converter;
   rad::detection::cloud::Detection* rad_detection;
 
   utl::thread::Pool* thread_pool;
