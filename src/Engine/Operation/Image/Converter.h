@@ -18,6 +18,7 @@ public:
 public:
   //Main function
   void convert_normal_to_image(dat::base::Entity* entity);
+  void convert_infrared_to_image(dat::base::Entity* entity);
 
 private:
   ope::image::Manager* ope_image;

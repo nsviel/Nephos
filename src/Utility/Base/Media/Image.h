@@ -10,7 +10,7 @@ namespace utl::media{
 enum Type{
   COLOR = 0,
   DEPTH = 1,
-  INFRARED = 2,
+  INTENSITY = 2,
   NORMAL = 3,
   TEXTURE = 4,
 };
