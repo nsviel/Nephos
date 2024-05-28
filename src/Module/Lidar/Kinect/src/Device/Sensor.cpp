@@ -36,9 +36,21 @@ Sensor::~Sensor(){}
 void Sensor::init(){
   //---------------------------
 
-  this->init_profiler();
-  this->init_object();
-  this->init_image();
+  //Profiler
+  prf::Node* node_profiler = node_engine->get_node_profiler();
+  prf::Manager* prf_manager = node_profiler->get_prf_manager();
+  this->profiler = new prf::graph::Profiler(name, "k4n::sensor");
+  prf_manager->add_profiler(profiler);
+
+  //Object
+  object = dat::base::Object(node_engine);
+  object.name = name;
+  object.data.name = "sensor::object::data";
+  object.data.topology.type = utl::topology::POINT;
+  object.data.nb_data_max = 10000000;
+  object.pose.model[2][3] = 1;
+  dat_entity->init_entity(&object);
+
   this->start_thread();
 
   //---------------------------
@@ -117,46 +129,6 @@ vec3 Sensor::convert_depth_2d_to_3d(ivec2 point_2d){
 
   //---------------------------
   return pose;
-}
-
-//Init function
-void Sensor::init_profiler(){
-  //---------------------------
-
-  prf::Node* node_profiler = node_engine->get_node_profiler();
-  prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  this->profiler = new prf::graph::Profiler(name, "k4n::sensor");
-  prf_manager->add_profiler(profiler);
-
-  //---------------------------
-}
-void Sensor::init_object(){
-  //---------------------------
-
-  //Object
-  object = dat::base::Object(node_engine);
-  object.name = name;
-  object.data.name = "sensor::object::data";
-  object.data.topology.type = utl::topology::POINT;
-  object.data.nb_data_max = 10000000;
-  object.pose.model[2][3] = 1;
-  dat_entity->init_entity(&object);
-
-  //---------------------------
-}
-void Sensor::init_image(){
-  //---------------------------
-
-  color.image.name = "color";
-  dat_graph->assign_UID(&color.image);
-
-  ir.image.name = "ir";
-  dat_graph->assign_UID(&ir.image);
-
-  depth.image.name = "depth";
-  dat_graph->assign_UID(&depth.image);
-
-  //---------------------------
 }
 
 //Thread function

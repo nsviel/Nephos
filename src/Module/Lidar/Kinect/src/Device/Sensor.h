@@ -47,11 +47,6 @@ public:
   void set_visibility(bool value);
   vec3 convert_depth_2d_to_3d(ivec2 point_2d);
 
-  //Init function
-  void init_profiler();
-  void init_image();
-  void init_object();
-
   //Thread function
   void start_thread();
   void run_thread();

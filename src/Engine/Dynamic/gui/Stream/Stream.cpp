@@ -22,42 +22,30 @@ Stream::Stream(dyn::Node* node_dynamic, bool* show_window){
   this->dat_set = node_data->get_data_set();
   this->gui_overlay = new dyn::gui::Overlay();
 
-  this->show_window = show_window;
-  this->name = "Stream";
-
-  //---------------------------
-  this->init();
-}
-Stream::~Stream(){}
-
-//Main function
-void Stream::init(){
-  //---------------------------
-
   for(int i=0; i<10; i++){
     rnd::Stream* stream = new rnd::Stream(node_engine);
     this->vec_stream.push_back(stream);
   }
 
+  this->show_window = show_window;
+  this->name = "Stream";
+
   //---------------------------
 }
+Stream::~Stream(){}
+
+//Main function
 void Stream::run_panel(){
-  utl::base::Element* element = dat_graph->get_selected_element();
+  dat::base::Set* set = dat_graph->get_selected_set();
   //---------------------------
 
-  //Chekc if it contain entities
-  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
-    if(set->list_entity.size() == 0) return;
-    else if(set->active_entity->list_image.size() == 0) return;
-  }
-
-  if(*show_window && element != nullptr){
+  if(*show_window && set->list_entity.size() != 0){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::SetNextWindowSizeConstraints(ImVec2(100, 400), ImVec2(FLT_MAX, FLT_MAX));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel(element);
+      this->design_panel(set);
 
       ImGui::End();
     }
@@ -67,15 +55,10 @@ void Stream::run_panel(){
 
   //---------------------------
 }
-void Stream::design_panel(utl::base::Element* element){
+void Stream::design_panel(dat::base::Set* set){
   //---------------------------
 
-  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
-    this->draw_set_tabbar(set);
-  }
-  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    this->draw_stream_tabbar(entity);
-  }
+  this->draw_set_tabbar(set);
 
   //---------------------------
 }
@@ -143,7 +126,7 @@ void Stream::draw_stream_image(utl::media::Image* image, ImVec2 size){
   if(image->size == 0) return;
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
   vec_stream[0]->draw_stream(image, size);
-  gui_overlay->overlay_capture(entity, &entity->color.data, size, image_pose);
+  //gui_overlay->overlay_capture(entity, &entity->color.data, size, image_pose);
 
   //---------------------------
 }

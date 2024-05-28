@@ -23,9 +23,8 @@ public:
   ~Stream();
 
   //Main function
-  void init();
   void run_panel();
-  void design_panel(utl::base::Element* element);
+  void design_panel(dat::base::Set* set);
 
   //All devices
   void draw_set_tabbar(dat::base::Set* set);
