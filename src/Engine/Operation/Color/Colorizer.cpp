@@ -56,6 +56,7 @@ void Colorizer::colorization_rgb(dat::base::Entity* entity, ope::color::Configur
   utl::base::Data* data = entity->get_data();
   //---------------------------
 
+  if(data->rgba.size() == 0) data->rgba = std::vector<glm::vec4>(data->xyz.size(), glm::vec4(0.0f));
   for(int i=0; i<data->rgb.size(); i++){
     glm::vec3& rgb = data->rgb[i];
     data->rgba[i] = glm::vec4(rgb.x, rgb.y, rgb.z, 1);
@@ -67,6 +68,7 @@ void Colorizer::colorization_unicolor(dat::base::Entity* entity, ope::color::Con
   utl::base::Data* data = entity->get_data();
   //---------------------------
 
+  if(data->rgba.size() == 0) data->rgba = std::vector<glm::vec4>(data->xyz.size(), glm::vec4(0.0f));
   data->rgba = std::vector<glm::vec4>(data->rgba.size(), config.unicolor);
 
   //---------------------------
@@ -75,7 +77,8 @@ void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Co
   utl::base::Data* data = entity->get_data();
   //---------------------------
 
-  for(int i=0; i<data->xyz.size(); i++){
+  if(data->rgba.size() == 0) data->rgba = std::vector<glm::vec4>(data->xyz.size(), glm::vec4(0.0f));
+  for(int i=0; i<data->Is.size(); i++){
     float Is = data->Is[i] / config.intensity_diviser;
     data->rgba[i] = glm::vec4(Is, Is, Is, 1);
   }
@@ -86,6 +89,7 @@ void Colorizer::colorization_normal(dat::base::Entity* entity, ope::color::Confi
   utl::base::Data* data = entity->get_data();
   //---------------------------
 
+  if(data->rgba.size() == 0) data->rgba = std::vector<glm::vec4>(data->xyz.size(), glm::vec4(0.0f));
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
 
   //Compute heatmap

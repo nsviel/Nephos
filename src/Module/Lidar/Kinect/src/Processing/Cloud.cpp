@@ -125,7 +125,7 @@ void Cloud::convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* ta
   tasker->task_begin("copying");
   data->xyz = vec_xyz;
   data->rgb = vec_rgb;
-  data->rgba = vec_rgba;
+  //data->rgba = vec_rgba;
   data->Is = vec_ir;
   data->R = vec_r;
 
