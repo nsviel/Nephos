@@ -133,6 +133,7 @@ void Image::find_data_depth(k4n::dev::Sensor* sensor){
 
   //Image
   k4n_data->convert_depth_into_color(sensor, sensor->depth.image.data);
+  sensor->depth.image.name = "Depth";
   sensor->depth.image.size = sensor->depth.image.data.size();
   sensor->depth.image.width = sensor->depth.data.width;
   sensor->depth.image.height = sensor->depth.data.height;
@@ -161,6 +162,7 @@ void Image::find_data_color(k4n::dev::Sensor* sensor){
   sensor->color.data.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
 
   //Image
+  sensor->color.image.name = "Color";
   sensor->color.image.data = std::vector<uint8_t>(sensor->color.data.buffer, sensor->color.data.buffer + sensor->color.data.size);
   sensor->color.image.size = sensor->color.image.data.size();
   sensor->color.image.width = sensor->color.data.width;
@@ -196,6 +198,7 @@ void Image::find_data_ir(k4n::dev::Sensor* sensor){
 
   //Image
   k4n_data->convert_ir_into_color(sensor);
+  sensor->ir.image.name = "Infrared";
   sensor->ir.image.size = sensor->ir.image.data.size();
   sensor->ir.image.width = sensor->ir.data.width;
   sensor->ir.image.height = sensor->ir.data.height;

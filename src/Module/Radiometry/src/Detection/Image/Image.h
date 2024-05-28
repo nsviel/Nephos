@@ -19,8 +19,8 @@ public:
 
 public:
   //Main function
-  void draw_all_sphere();
-  void draw_best_sphere();
+  void draw_all_circle();
+  void draw_best_circle();
 
   //Subfunction
   void convert_into_cv_image(utl::media::Image* input, cv::Mat& output);

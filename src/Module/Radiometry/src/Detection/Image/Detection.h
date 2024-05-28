@@ -30,7 +30,6 @@ public:
   //Subfunction
   void detect_circle_in_image(utl::media::Image* image);
   void draw_detection_image();
-  void draw_detection_glyph(dat::base::Sensor* sensor);
 
 private:
   utl::thread::Pool* thread_pool;

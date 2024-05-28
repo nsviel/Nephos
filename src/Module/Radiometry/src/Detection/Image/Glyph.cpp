@@ -19,6 +19,22 @@ Glyph::Glyph(rad::Node* node_radio){
 Glyph::~Glyph(){}
 
 //Main function
+void Glyph::draw_detected_circle(dat::base::Sensor* sensor){
+  //---------------------------
+
+  switch(rad_struct->detection.hough.drawing_mode){
+    case rad::hough::ALL:{
+      this->draw_all_sphere_glyph(sensor);
+      break;
+    }
+    case rad::hough::BEST:{
+      this->draw_best_sphere_glyph(sensor);
+      break;
+    }
+  }
+
+  //---------------------------
+}
 void Glyph::draw_all_sphere_glyph(dat::base::Sensor* sensor){
   vector<rad::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
@@ -74,6 +90,5 @@ void Glyph::draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::struc
 */
   //---------------------------
 }
-
 
 }

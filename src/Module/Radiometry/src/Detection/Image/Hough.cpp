@@ -18,7 +18,7 @@ Hough::Hough(rad::Node* node_radio){
 Hough::~Hough(){}
 
 //Main function
-vector<rad::structure::Circle> Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
+void Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
   vec_circle.clear();
   if(input.empty()) return vec_circle;
   //------------------------
@@ -29,8 +29,11 @@ vector<rad::structure::Circle> Hough::sphere_detection(cv::Mat& input, cv::Mat& 
   // Perform Hough Transform to detect lines
   this->compute_hough_circle(output);
 
+  //Store result
+  rad_struct->detection.vec_circle = vec_circle;
+  rad_struct->detection.nb_detection = vec_circle.size();
+
   //------------------------
-  return vec_circle;
 }
 
 //Subfunction

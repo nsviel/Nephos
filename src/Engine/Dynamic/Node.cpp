@@ -25,6 +25,8 @@ Node::Node(eng::Node* node_engine){
   this->gui_stream = new dyn::gui::Stream(this, &panel_stream->is_open);
   this->gui_control = new dyn::gui::Control(this);
 
+  this->add_node_panel(node_radio);
+
   //---------------------------
 }
 Node::~Node(){}

@@ -39,7 +39,7 @@ void Detection::run_thread(dat::base::Sensor* sensor, utl::media::Image* image){
 
   this->detect_circle_in_image(image);
   this->draw_detection_image();
-  this->draw_detection_glyph(sensor);
+  rad_glyph->draw_detected_circle(sensor);
 
   //---------------------------
   this->thread_idle = true;
@@ -61,8 +61,7 @@ void Detection::detect_circle_in_image(utl::media::Image* image){
 
   cv::Mat cv_image;
   rad_image->convert_into_cv_image(image, cv_image);
-  rad_struct->detection.vec_circle = rad_hough->sphere_detection(cv_image, rad_struct->detection.cv_image);
-  rad_struct->detection.nb_detection = rad_struct->detection.vec_circle.size();
+  rad_hough->sphere_detection(cv_image, rad_struct->detection.cv_image);
 
   //---------------------------
 }
@@ -71,27 +70,11 @@ void Detection::draw_detection_image(){
 
   switch(rad_struct->detection.hough.drawing_mode){
     case rad::hough::ALL:{
-      rad_image->draw_all_sphere();
+      rad_image->draw_all_circle();
       break;
     }
     case rad::hough::BEST:{
-      rad_image->draw_best_sphere();
-      break;
-    }
-  }
-
-  //---------------------------
-}
-void Detection::draw_detection_glyph(dat::base::Sensor* sensor){
-  //---------------------------
-
-  switch(rad_struct->detection.hough.drawing_mode){
-    case rad::hough::ALL:{
-      rad_glyph->draw_all_sphere_glyph(sensor);
-      break;
-    }
-    case rad::hough::BEST:{
-      rad_glyph->draw_best_sphere_glyph(sensor);
+      rad_image->draw_best_circle();
       break;
     }
   }

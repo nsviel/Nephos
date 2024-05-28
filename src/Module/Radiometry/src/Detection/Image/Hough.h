@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  vector<rad::structure::Circle> sphere_detection(cv::Mat& input, cv::Mat& output);
+  void sphere_detection(cv::Mat& input, cv::Mat& output);
 
   //Subfunction
   void preprocessing(cv::Mat& input, cv::Mat& output);

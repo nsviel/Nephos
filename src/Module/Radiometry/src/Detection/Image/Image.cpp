@@ -16,7 +16,7 @@ Image::Image(rad::Node* node_radio){
 Image::~Image(){}
 
 //Main function
-void Image::draw_all_sphere(){
+void Image::draw_all_circle(){
   if(rad_struct->detection.cv_image.empty()) return;
   //------------------------
 
