@@ -29,7 +29,8 @@ public:
   void draw_header();
   void item_operation();
   bool item_format(std::string format);
-
+  void update_current();
+  
 private:
   ldr::io::Exporter* ldr_exporter;
   dat::Graph* dat_graph;

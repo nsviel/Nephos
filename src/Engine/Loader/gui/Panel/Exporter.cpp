@@ -22,7 +22,8 @@ Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Naviga
   this->show_window = show_window;
   this->with_bookmark = false;
   this->with_all_format = false;
-
+  this->current_format = "ply";
+  
   //---------------------------
 }
 Exporter::~Exporter(){}
@@ -48,6 +49,7 @@ void Exporter::run_panel(){
 void Exporter::design_panel(){
   //---------------------------
 
+  this->update_current();
   this->draw_header();
   this->draw_navigator();
 
@@ -83,14 +85,6 @@ void Exporter::draw_header(){
     this->current_dir = (string)str_n;
   }
   ImGui::PopStyleColor(2);
-
-  //Actualize current name
-  dat::base::Entity* entity = dat_graph->get_selected_entity();
-  if(entity != nullptr && current_name != entity->name){
-    utl::base::Data* data = entity->get_data();
-    this->current_name = data->name;
-    this->current_format = data->format;
-  }
 
   //Filename
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -133,10 +127,12 @@ void Exporter::draw_header(){
   ImGui::Separator();
 }
 void Exporter::item_operation(){
-  //---------------------------
-
   dat::base::Entity* entity = dat_graph->get_selected_entity();
   if(entity == nullptr) return;
+  //---------------------------
+
+  utl::base::Data* data = entity->get_data();
+  data->format = current_format;
 
   std::string path = current_dir + "/" + current_name + "." + current_format;
   ldr_exporter->export_entity(entity, path);
@@ -147,6 +143,22 @@ bool Exporter::item_format(std::string format){
   //---------------------------
 
   return ldr_exporter->is_format_supported(format);
+
+  //---------------------------
+}
+void Exporter::update_current(){
+  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  //---------------------------
+
+  //Actualize current name
+  if(entity != nullptr && current_name != entity->name){
+    utl::base::Data* data = entity->get_data();
+    this->current_name = entity->name;
+
+    if(ldr_exporter->is_format_supported(data->format)){
+      this->current_format = data->format;
+    }
+  }
 
   //---------------------------
 }

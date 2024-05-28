@@ -13,6 +13,8 @@ namespace ope::normal{
 Structured::Structured(){
   //---------------------------
 
+  this->ope_converter = new ope::image::Converter();
+
   this->time = 0;
   this->R_thres = 0.1f;
 
@@ -21,15 +23,32 @@ Structured::Structured(){
 Structured::~Structured(){}
 
 //Main function
-void Structured::compute_normal(utl::base::Data* data, int k){
+void Structured::start_thread(dat::base::Entity* entity){
+  //---------------------------
+
+  if(thread.joinable()){
+    this->thread.join();
+  }
+  this->thread = std::thread(&Structured::run_thread, this, entity);
+
+  //---------------------------
+}
+void Structured::run_thread(dat::base::Entity* entity){
+  utl::base::Data* data = entity->get_data();
+  //---------------------------
+
+  this->compute_normal(data);
+  ope_converter->convert_normal_to_image(entity);
+
+  //---------------------------
+}
+void Structured::compute_normal(utl::base::Data* data){
   if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
 
-   auto start = std::chrono::high_resolution_clock::now();
-
   //Prepare data
-  this->k = k;
+  auto start = std::chrono::high_resolution_clock::now();
   data->Nxyz = std::vector<glm::vec3>(data->xyz.size(), glm::vec3(0.0f));
 
   //Loop
@@ -58,6 +77,7 @@ void Structured::compute_normal(utl::base::Data* data, int k){
     }
   }
 
+  //Algorithm duration
   auto end = std::chrono::high_resolution_clock::now();
   std::chrono::duration<double, std::milli> duration = end - start;
   this->time = duration.count();
@@ -91,14 +111,6 @@ void Structured::compute_knn(std::vector<glm::vec3>& vec_nn, std::vector<int>& v
       vec_idx.push_back(idx);
     }
   }
-
-  //---------------------------
-}
-void Structured::set_visibility(dat::base::Object* object, bool value){
-  //---------------------------
-
-  dat::base::Glyph* normal = object->get_glyph(dat::object::glyph::NORMAL);
-  normal->set_visibility(value);
 
   //---------------------------
 }

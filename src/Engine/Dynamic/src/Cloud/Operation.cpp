@@ -22,7 +22,6 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::normal::Structured();
-  this->ope_converter = new ope::image::Converter();
   //this->rad_detection = node_radio->get_cloud_detection();
   this->thread_pool = node_engine->get_thread_pool();
 
@@ -45,18 +44,8 @@ void Operation::start_thread(dat::base::Sensor* sensor){
 void Operation::run_thread(dat::base::Sensor* sensor){
   //---------------------------
 
-  //Colorizer
   this->colorize_object(sensor);
-
-  //Normal
-  if(dyn_struct->operation.normal.enable){
-    utl::base::Data* data = sensor->get_data();
-    ope_normal->compute_normal(data, dyn_struct->operation.normal.knn);
-    dyn_struct->operation.normal.time = ope_normal->get_time();
-    ope_converter->convert_normal_to_image(sensor);
-  }
-
-  //Update object data
+  this->normal_object(sensor);
   this->update_object(sensor);
 
   //---------------------------
@@ -75,6 +64,17 @@ void Operation::wait_thread(){
 }
 
 //Subfunction
+void Operation::normal_object(dat::base::Sensor* sensor){
+  //---------------------------
+
+  if(dyn_struct->operation.normal.enable){
+    ope_normal->set_knn(dyn_struct->operation.normal.knn);
+    ope_normal->start_thread(sensor);
+    dyn_struct->operation.normal.time = ope_normal->get_time();
+  }
+
+  //---------------------------
+}
 void Operation::colorize_object(dat::base::Entity* entity){
   //---------------------------
 
