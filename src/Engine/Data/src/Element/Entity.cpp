@@ -69,6 +69,7 @@ void Entity::add_image(dat::base::Entity* entity, utl::media::Image* image){
 utl::media::Image* Entity::get_image(dat::base::Entity* entity, std::string name){
   //----------------------------
 
+  //Search for already existing image with same name
   for(int i=0; i<entity->list_image.size(); i++){
     utl::media::Image* image = *next(entity->list_image.begin(), i);
     if(image->name == name) return image;
