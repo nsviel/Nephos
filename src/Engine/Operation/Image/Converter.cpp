@@ -67,7 +67,7 @@ void Converter::convert_infrared_to_image(dat::base::Entity* entity){
   std::vector<uint8_t> output = std::vector<uint8_t>(Is.size() * 4, 0);
 
   // Convert the float value to uint8_t
-  for(int i=0; i<Nxyz.size(); i++){
+  for(int i=0; i<Is.size(); i++){
     float intensity = Is[i];
 
     size_t j = i * 4;

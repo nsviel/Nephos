@@ -201,7 +201,7 @@ void Image::find_data_ir(k4n::dev::Sensor* sensor){
   sensor->ir.image.height = sensor->ir.data.height;
   sensor->ir.image.format = "R8G8B8A8_SRGB";
   sensor->ir.image.new_data = true;
-  sensor->ir.image.type = utl::media::INFRARED;
+  sensor->ir.image.type = utl::media::INTENSITY;
   ope_image->add_image(sensor, &sensor->ir.image);
 
   //---------------------------
