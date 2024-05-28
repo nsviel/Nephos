@@ -14,9 +14,6 @@ Object::Object(){
   this->entity_type = "entity::Object";
   this->data.unicolor = math::random();
 
-  this->node_vulkan = nullptr;
-  this->node_camera = nullptr;
-
   //---------------------------
 }
 Object::Object(eng::Node* node_engine){
@@ -30,14 +27,7 @@ Object::Object(eng::Node* node_engine){
 
   //---------------------------
 }
-Object::~Object(){
-  //---------------------------
-
-  //delete pose;
-  //delete data
-
-  //---------------------------
-}
+Object::~Object(){}
 
 //Main function
 void Object::clear_data(){

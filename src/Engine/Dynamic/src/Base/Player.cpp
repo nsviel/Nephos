@@ -127,7 +127,7 @@ void Player::player_update(){
 }
 void Player::player_close(){
   //---------------------------
-
+/*
   set->is_locked = !set->is_locked;
 
   //Recursive call
@@ -135,7 +135,7 @@ void Player::player_close(){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     subset->player->player_close();
   }
-
+*/
   //---------------------------
 }
 void Player::player_query(float value){

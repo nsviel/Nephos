@@ -181,8 +181,15 @@ void Set::remove_all_entity(dat::base::Set* set){
   auto it = set->list_entity.begin();
   while(it != set->list_entity.end()){
     dat::base::Entity* entity = *it;
-    this->remove(set, entity);
+
+    it = set->list_entity.erase(it);
+    set->nb_entity--;
+
+    entity->remove();
+    delete entity;
   }
+
+  dat_struct->selection = nullptr;
 
   // Recursively call remove_entity_recursive for each nested set
   for(dat::base::Set* subset : set->list_subset){
