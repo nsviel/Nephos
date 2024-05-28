@@ -3,7 +3,7 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::detection::utils{
+namespace rad::detection::image{
 
 //Constructor / Destructor
 Image::Image(rad::Node* node_radio){
@@ -16,6 +16,22 @@ Image::Image(rad::Node* node_radio){
 Image::~Image(){}
 
 //Main function
+void Image::draw_detected_circle(){
+  //---------------------------
+
+  switch(rad_struct->detection.hough.drawing_mode){
+    case rad::hough::ALL:{
+      rad_image->draw_all_circle();
+      break;
+    }
+    case rad::hough::BEST:{
+      rad_image->draw_best_circle();
+      break;
+    }
+  }
+
+  //---------------------------
+}
 void Image::draw_all_circle(){
   if(rad_struct->detection.cv_image.empty()) return;
   //------------------------
@@ -29,7 +45,7 @@ void Image::draw_all_circle(){
 
   //------------------------
 }
-void Image::draw_best_sphere(){
+void Image::draw_best_circle(){
   if(rad_struct->detection.cv_image.empty()) return;
   //------------------------
 

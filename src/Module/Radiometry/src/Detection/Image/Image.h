@@ -9,7 +9,7 @@ namespace rad::structure{class Circle;}
 namespace dat::base{class Sensor;}
 
 
-namespace rad::detection::utils{
+namespace rad::detection::image{
 
 class Image
 {
@@ -19,6 +19,7 @@ public:
 
 public:
   //Main function
+  void draw_detected_circle();
   void draw_all_circle();
   void draw_best_circle();
 

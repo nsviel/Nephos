@@ -9,7 +9,7 @@ namespace utl::thread{class Pool;}
 namespace utl::media{class Image;}
 namespace rad::detection::image{class Glyph;}
 namespace rad::detection::image{class Hough;}
-namespace rad::detection::utils{class Image;}
+namespace rad::detection::image{class Image;}
 
 
 namespace rad::detection::image{
@@ -36,7 +36,7 @@ private:
   rad::Structure* rad_struct;
   rad::detection::image::Glyph* rad_glyph;
   rad::detection::image::Hough* rad_hough;
-  rad::detection::utils::Image* rad_image;
+  rad::detection::image::Image* rad_image;
 
   bool thread_idle = true;
 };

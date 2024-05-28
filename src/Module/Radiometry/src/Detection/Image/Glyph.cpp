@@ -19,7 +19,7 @@ Glyph::Glyph(rad::Node* node_radio){
 Glyph::~Glyph(){}
 
 //Main function
-void Glyph::draw_detected_circle(dat::base::Sensor* sensor){
+void Glyph::draw_detected_sphere(dat::base::Sensor* sensor){
   //---------------------------
 
   switch(rad_struct->detection.hough.drawing_mode){

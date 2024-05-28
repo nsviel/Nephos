@@ -19,11 +19,11 @@ Hough::~Hough(){}
 
 //Main function
 void Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
-  vec_circle.clear();
-  if(input.empty()) return vec_circle;
+  if(input.empty()) return;
   //------------------------
 
   //Pre processing
+  vec_circle.clear();
   this->preprocessing(input, output);
 
   // Perform Hough Transform to detect lines

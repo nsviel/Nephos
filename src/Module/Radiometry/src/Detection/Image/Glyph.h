@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  void draw_detected_circle(dat::base::Sensor* sensor);
+  void draw_detected_sphere(dat::base::Sensor* sensor);
   void draw_all_sphere_glyph(dat::base::Sensor* sensor);
   void draw_best_sphere_glyph(dat::base::Sensor* sensor);
 
