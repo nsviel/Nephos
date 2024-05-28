@@ -10,6 +10,7 @@ namespace utl::media{class Image;}
 namespace rad::detection::image{class Glyph;}
 namespace rad::detection::image{class Hough;}
 namespace rad::detection::image{class Image;}
+namespace rad::detection::image{class Canny;}
 
 
 namespace rad::detection::image{
@@ -29,7 +30,7 @@ public:
 
   //Subfunction
   void detect_circle_in_image(utl::media::Image* image);
-  void draw_detection_image();
+  void detect_rectangle_in_image(utl::media::Image* image);
 
 private:
   utl::thread::Pool* thread_pool;
@@ -37,6 +38,7 @@ private:
   rad::detection::image::Glyph* rad_glyph;
   rad::detection::image::Hough* rad_hough;
   rad::detection::image::Image* rad_image;
+  rad::detection::image::Canny* rad_canny;
 
   bool thread_idle = true;
 };
