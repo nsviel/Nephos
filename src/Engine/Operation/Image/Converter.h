@@ -2,6 +2,9 @@
 
 #include <glm/glm.hpp>
 
+namespace dat::base{class Entity;}
+namespace ope::image{class Manager;}
+
 
 namespace ope::image{
 
@@ -17,7 +20,7 @@ public:
   void convert_normal_to_image(dat::base::Entity* entity);
 
 private:
-
+  ope::image::Manager* ope_image;
 };
 
 }

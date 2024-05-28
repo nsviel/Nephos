@@ -7,6 +7,14 @@
 
 namespace utl::media{
 
+enum Type{
+  COLOR = 0,
+  DEPTH = 1,
+  INFRARED = 2,
+  NORMAL = 3,
+  TEXTURE = 4,
+};
+
 struct Image : public utl::base::Element{
   //---------------------------
 
@@ -16,6 +24,7 @@ struct Image : public utl::base::Element{
   int width = -1;
   int height = -1;
   int size = 0;
+  int type = utl::media::COLOR;
 
   //Texture
   int texture_ID = -1;

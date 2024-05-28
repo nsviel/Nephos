@@ -27,10 +27,6 @@ public:
   void init_entity(dat::base::Entity* entity);
   void clear_entity(dat::base::Entity* entity);
 
-  //Image function
-  void add_image(dat::base::Entity* entity, utl::media::Image* image);
-  utl::media::Image* get_image(dat::base::Entity* entity, std::string name);
-
 private:
   eng::Node* node_engine;
   vk::main::Engine* vk_engine;
