@@ -21,6 +21,7 @@ Control::~Control(){}
 //Main function
 void Control::run_control(){
   dat::base::Set* set = dat_graph->get_selected_set();
+  if(set == nullptr) return;
   dyn::base::Player* player = set->player;
   //---------------------------
 

@@ -50,6 +50,7 @@ public:
   void make_colorization(dat::base::Entity* entity, ope::color::Configuration& config);
 
   //Subfunction
+  void colorization_rgb(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_unicolor(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_intensity(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_normal(dat::base::Entity* entity, ope::color::Configuration& config);
