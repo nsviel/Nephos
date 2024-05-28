@@ -80,11 +80,13 @@ void Operation::draw_op_info(dat::base::Set* set){
 }
 void Operation::draw_ope_transformation(dat::base::Set* set){
   dyn::base::Player* player = set->player;
-  utl::base::Pose* pose = set->active_entity->get_pose();
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Transformation##dynamic")){
+    dat::base::Entity* entity = set->active_entity;
+    if(entity == nullptr) return;
+    utl::base::Pose* pose = set->active_entity->get_pose();
 
     //Button
     if(ImGui::Button("C##centerentity", ImVec2(20, 0))){

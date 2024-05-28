@@ -87,7 +87,9 @@ void Exporter::draw_header(){
   //Actualize current name
   dat::base::Entity* entity = dat_graph->get_selected_entity();
   if(entity != nullptr && current_name != entity->name){
-    current_name = entity->name;
+    utl::base::Data* data = entity->get_data();
+    this->current_name = data->name;
+    this->current_format = data->format;
   }
 
   //Filename

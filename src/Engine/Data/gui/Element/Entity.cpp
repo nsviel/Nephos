@@ -75,8 +75,8 @@ void Entity::entity_button(dat::base::Entity* entity){
 
   //Suppression
   if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
-    dat::base::Set* set_scene = dat_graph->get_set_graph();
-    dat_set->remove(set_scene, entity);
+    dat::base::Set* set = dat_graph->get_selected_set();
+    dat_set->remove(set, entity);
     this->close_panel();
     return;
   }
@@ -84,7 +84,8 @@ void Entity::entity_button(dat::base::Entity* entity){
   //Centered
   ImGui::SameLine();
   if(entity->is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
-    ope_operation->center_object(entity, entity->get_pose()->min);
+    utl::base::Pose* pose = entity->get_pose();
+    ope_operation->center_object(entity, pose->min);
   }
 
   //---------------------------
@@ -94,7 +95,7 @@ void Entity::entity_parameter(dat::base::Entity* entity){
   //---------------------------
 
   ImGui::BeginTable("entity##table", 2, ImGuiTableFlags_BordersInnerV);
-  
+
   this->entity_info(entity);
   this->data_info(entity);
   this->pose_info(entity);
