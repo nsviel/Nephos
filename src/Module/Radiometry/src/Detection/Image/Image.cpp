@@ -21,11 +21,11 @@ void Image::draw_detected_circle(){
 
   switch(rad_struct->detection.hough.drawing_mode){
     case rad::hough::ALL:{
-      rad_image->draw_all_circle();
+      this->draw_all_circle();
       break;
     }
     case rad::hough::BEST:{
-      rad_image->draw_best_circle();
+      this->draw_best_circle();
       break;
     }
   }
@@ -167,9 +167,5 @@ void Image::draw_bounding_box(cv::Mat& image){
 
   //------------------------
 }
-
-
-
-
 
 }

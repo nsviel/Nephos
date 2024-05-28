@@ -54,11 +54,11 @@ void Init::load_entity(){
   pcap.data = "/home/aether/Desktop/pcap_test.pcap";
 
   //Create playback list
-  ldr_loader->load_object(versaille_0);
+  //ldr_loader->load_object(versaille_0);
   //ldr_loader->load_object(versaille_2);
   //ldr_loader->load_object(cerfav);
   //ldr_loader->load_object(dragon);
-  //ldr_loader->load_object(sphere);
+  ldr_loader->load_object(sphere);
   //ldr_loader->load_set(pcap);
 
   //----------------------------
