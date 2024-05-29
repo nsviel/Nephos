@@ -20,7 +20,7 @@ Model::~Model(){}
 
 //Main function
 void Model::import_model(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
 
   optim->serial_number = utl::json::read_value<string>(optim->path, "serial_number");
@@ -34,7 +34,7 @@ void Model::import_model(){
   //---------------------------
 }
 void Model::export_model(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
 
   utl::json::write_value(optim->path, "serial_number", optim->serial_number);
@@ -63,8 +63,8 @@ void Model::compute_model(){
 
 //Subfunction
 void Model::build_model(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //Apply logarithmic scale
@@ -82,8 +82,8 @@ void Model::build_model(){
   //---------------------------
 }
 float Model::compute_model_rmse(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   int N = measure->data.size();

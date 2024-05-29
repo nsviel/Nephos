@@ -20,9 +20,9 @@ Plot::~Plot(){}
 
 //Main function
 void Plot::init(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   //I(R)
@@ -62,7 +62,7 @@ void Plot::init(){
   //---------------------------
 }
 void Plot::plot_measure(){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   if(measure->data.size() == 0) return;
@@ -81,7 +81,7 @@ void Plot::plot_measure(){
   //---------------------------
 }
 void Plot::plot_model(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
   //---------------------------
 
   //if(ope_surface->has_been_computed() == false){
@@ -120,7 +120,7 @@ void Plot::plot_model(){
   matplotlibcpp::plot_surface(x, y, z);
   */
 
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
   if(measure->data.size() > 0){
     std::vector<float> x_raw, y_raw, z_raw;
     for(const auto& point : measure->data){
@@ -138,9 +138,9 @@ void Plot::plot_model(){
 
 //Subfunction
 void Plot::update_plot_data(){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   plot->IfR.axis_x.data.clear();
@@ -192,9 +192,9 @@ void Plot::update_plot_data(){
   //---------------------------
 }
 void Plot::reset_plot_data(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   //I(R)
@@ -226,7 +226,7 @@ void Plot::reset_plot_data(){
 
 
 /*void Plot::update_plot_data(){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   utl::base::Plot* plot = &plot->IfR;

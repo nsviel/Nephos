@@ -61,9 +61,9 @@ void Ransac::ransac_sphere(dat::base::Sensor* sensor){
 
 //Data function
 void Ransac::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   //Search for closest point
@@ -91,8 +91,8 @@ void Ransac::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   //---------------------------
 }
 void Ransac::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   //Search for closest point
@@ -119,9 +119,9 @@ void Ransac::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   //---------------------------
 }
 void Ransac::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   //Search for closest point

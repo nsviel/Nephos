@@ -12,9 +12,9 @@ namespace rad::model{
 struct Structure{
   //---------------------------
 
-  rad::structure::Measure measure;
-  rad::structure::Optimization optim;
-  rad::structure::Plot plot;
+  rad::model::structure::Measure measure;
+  rad::model::structure::Optimization optim;
+  rad::model::structure::Plot plot;
 
   //---------------------------
 };

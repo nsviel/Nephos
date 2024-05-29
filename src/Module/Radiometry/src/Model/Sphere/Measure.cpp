@@ -21,7 +21,7 @@ Measure::~Measure(){}
 
 //Main function
 void Measure::import_measure(){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //Import file model data
@@ -32,7 +32,7 @@ void Measure::import_measure(){
   //---------------------------
 }
 void Measure::export_measure(){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   utl::file::write_vector(measure->path, measure->data);
@@ -40,7 +40,7 @@ void Measure::export_measure(){
   //---------------------------
 }
 void Measure::clear_measure(){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //Import file model data
@@ -52,7 +52,7 @@ void Measure::clear_measure(){
 
 //Subfunction
 void Measure::init(){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   //R
@@ -78,8 +78,8 @@ void Measure::init(){
   //---------------------------
 }
 void Measure::find_optimization_bound(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
   //---------------------------
 
   vec2 R_bound = vec2(1000, 0);

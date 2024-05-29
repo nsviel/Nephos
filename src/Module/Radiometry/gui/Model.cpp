@@ -43,8 +43,8 @@ void Model::draw_tab(){
 
 //Subfunction
 void Model::parameter_measure(){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -107,8 +107,8 @@ void Model::parameter_measure(){
   //---------------------------
 }
 void Model::parameter_model(){
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -190,7 +190,7 @@ void Model::parameter_model(){
 
 //Plot function
 void Model::plot_measure_IfR(float height){
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   if(plot->IfR.title == "") return;
@@ -200,7 +200,7 @@ void Model::plot_measure_IfR(float height){
   //---------------------------
 }
 void Model::plot_measure_IfIt(float height){
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   if(plot->IfIt.title == "") return;
@@ -210,9 +210,9 @@ void Model::plot_measure_IfIt(float height){
   //---------------------------
 }
 void Model::plot_model_heatmap(float height){
-  rad::structure::Measure* measure = &rad_struct->model.measure;
-  rad::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
+  rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   if(plot->IfRIt.title == "") return;
