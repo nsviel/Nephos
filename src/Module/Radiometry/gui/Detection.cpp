@@ -42,14 +42,14 @@ void Detection::detection_step(){
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthFixed, 15.0f);
   ImGui::TableSetupColumn("three", ImGuiTableColumnFlags_WidthStretch);
 
-  //Correction step
-  int sphere_step = rad_detection->get_sphere_step();
+  //Sphere measure stuff
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Sphere measure");
   ImGui::TableNextColumn();
-  this->validation_state(sphere_step);
+  this->display_state(sphere->state_step, sphere->state_data);
   ImGui::TableNextColumn();
-  if(sphere_step == rad::detection::PROCESSING){
+  if(sphere->state_step == rad::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){
@@ -65,14 +65,14 @@ void Detection::detection_step(){
     ImGui::PopStyleColor(2);
   }
 
-  //Calibration step
-  int chart_step = rad_detection->get_chart_step();
+  //Chart measure stuff
+  rad::model::structure::Chart* chart = &rad_struct->model.chart;
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Chart measure");
   ImGui::TableNextColumn();
-  this->validation_state(chart_step);
+  this->display_state(chart->state_step, chart->state_data);
   ImGui::TableNextColumn();
-  if(chart_step == rad::detection::PROCESSING){
+  if(chart->state_step == rad::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##chart_measure", ImVec2(120, 0))){
@@ -125,16 +125,17 @@ void Detection::display_image(){
   //---------------------------
   ImGui::Separator();
 }
-void Detection::validation_state(int state){
+void Detection::display_state(int step, int data){
   //---------------------------
 
-  switch(state){
+  if(step == rad::detection::PROCESSING){
+    ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
+    return;
+  }
+
+  switch(data){
     case rad::detection::NO_DATA:{
       ImGui::Cross(ImVec4(1, 0.4, 0.4, 1));
-      break;
-    }
-    case rad::detection::PROCESSING:{
-      ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
       break;
     }
     case rad::detection::HAS_DATA:{

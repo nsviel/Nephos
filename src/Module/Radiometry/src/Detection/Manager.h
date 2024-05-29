@@ -14,9 +14,12 @@ namespace dat::base{class Sensor;}
 namespace rad::detection{
 
 enum Step{
-  NO_DATA = 0,
   VALIDATION = 1,
   PROCESSING = 2,
+};
+
+enum Data{
+  NO_DATA = 0,
   HAS_DATA = 3,
 };
 
@@ -37,8 +40,6 @@ public:
 
   inline rad::detection::image::Detection* get_image_detection(){return rad_image_detection;}
   inline rad::detection::cloud::Detection* get_cloud_detection(){return rad_cloud_detection;}
-  inline int get_sphere_step(){return sphere_step;}
-  inline int get_chart_step(){return chart_step;}
 
 private:
   rad::Structure* rad_struct;
@@ -46,9 +47,6 @@ private:
   rad::detection::cloud::Detection* rad_cloud_detection;
   dat::Graph* dat_graph;
   ope::image::Manager* ope_image;
-
-  int sphere_step = 0;
-  int chart_step = 0;
 };
 
 }

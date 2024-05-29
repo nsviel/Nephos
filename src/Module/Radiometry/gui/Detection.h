@@ -28,8 +28,8 @@ public:
   void detection_step();
   void detection_parameter();
   void display_image();
-  void validation_state(int state);
-  
+  void display_state(int step, int data);
+
   //Parameter function
   void parameter_canny();
   void parameter_hough();

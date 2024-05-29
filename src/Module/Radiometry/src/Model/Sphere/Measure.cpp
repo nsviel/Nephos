@@ -30,7 +30,7 @@ void Measure::import_measure(){
   if(sphere->data.size() != 0){
     this->find_optimization_bound();
     rad_plot->update_plot_data();
-    sphere->has_data = true;
+    sphere->state_data = rad::detection::HAS_DATA;
   }
 
   //---------------------------

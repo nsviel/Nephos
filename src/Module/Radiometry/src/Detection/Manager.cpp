@@ -19,9 +19,6 @@ Manager::Manager(rad::Node* node_radio){
   this->dat_graph = node_data->get_dat_graph();
   this->ope_image = new ope::image::Manager();
 
-  this->sphere_step = rad::detection::NO_DATA;
-  this->chart_step = rad::detection::NO_DATA;
-
   //---------------------------
 }
 Manager::~Manager(){}
@@ -41,9 +38,6 @@ void Manager::loop(){
     //rad_cloud_detection->start_thread(sensor, &sensor->ir.image);
   }
 
-  if(rad_struct->model.sphere.has_data) sphere_step = rad::detection::HAS_DATA;
-  if(rad_struct->model.chart.has_data) chart_step = rad::detection::HAS_DATA;
-
   //---------------------------
 }
 
@@ -51,7 +45,7 @@ void Manager::loop(){
 void Manager::process_sphere_detection(){
   //---------------------------
 
-  sphere_step = rad::detection::PROCESSING;
+  rad_struct->model.sphere.state_step = rad::detection::PROCESSING;
   //rad_cloud_detection->validate_bbox(sensor);
 
   //---------------------------
@@ -59,7 +53,7 @@ void Manager::process_sphere_detection(){
 void Manager::process_chart_detection(){
   //---------------------------
 
-  chart_step = rad::detection::PROCESSING;
+  rad_struct->model.chart.state_step = rad::detection::PROCESSING;
   //rad_cloud_detection->validate_bbox(sensor);
 
   //---------------------------
