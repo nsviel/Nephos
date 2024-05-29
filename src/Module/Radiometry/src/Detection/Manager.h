@@ -13,8 +13,9 @@ namespace dat::base{class Sensor;}
 namespace rad::detection{
 
 enum Step{
-  WAIT_VALIDATION = 0,
-  PROCESSING = 1,
+  WAIT = 0,
+  VALIDATION = 1,
+  PROCESSING = 2,
 };
 
 class Manager

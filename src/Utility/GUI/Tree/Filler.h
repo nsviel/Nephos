@@ -1,10 +1,12 @@
 #pragma once
 
-#include <Utility/GUI/Widget/Tree_node.h>
+#include <Utility/GUI/Tree/Node.h>
 #include <Utility/Specific/Common.h>
 
 
-struct Tree_filler{
+namespace utl::gui::tree{
+
+struct Filler{
   //---------------------------
 
   //Pathes
@@ -14,10 +16,12 @@ struct Tree_filler{
 
   //Selection
   bool is_selection = false;
-  Tree_node* node_selected;
+  utl::gui::tree::Node* node_selected;
 
   //Function
   std::function<void(string path)> fct_on_click;
 
   //---------------------------
 };
+
+}

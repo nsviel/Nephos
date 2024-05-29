@@ -26,10 +26,13 @@ public:
 
   //Subfunction
   void detection_step();
+  void detection_parameter();
+  void display_image();
+
+  //Parameter function
   void parameter_canny();
   void parameter_hough();
   void parameter_ransac();
-  void display_image();
 
 private:
   rad::Structure* rad_struct;

@@ -17,8 +17,8 @@ Manager::Manager(rad::Node* node_radio){
   this->ope_image = new ope::image::Manager();
   this->rad_image_detection = new rad::detection::image::Detection(node_radio);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(node_radio);
-  this->correction_step = rad::detection::WAIT_VALIDATION;
-  this->calibration_step = rad::detection::WAIT_VALIDATION;
+  this->correction_step = rad::detection::VALIDATION;
+  this->calibration_step = rad::detection::VALIDATION;
 
   //---------------------------
 }
@@ -47,12 +47,12 @@ void Manager::next_correction_step(){
   //---------------------------
 
   switch(correction_step){
-    case rad::detection::WAIT_VALIDATION:{
+    case rad::detection::VALIDATION:{
       //rad_cloud_detection->validate_bbox(sensor);
       break;
     }
     case rad::detection::PROCESSING:{
-      this->correction_step = rad::detection::WAIT_VALIDATION;
+      this->correction_step = rad::detection::VALIDATION;
       break;
     }
   }
@@ -63,12 +63,12 @@ void Manager::next_calibration_step(){
   //---------------------------
 
   switch(calibration_step){
-    case rad::detection::WAIT_VALIDATION:{
+    case rad::detection::VALIDATION:{
       //rad_cloud_detection->validate_bbox(sensor);
       break;
     }
     case rad::detection::PROCESSING:{
-      this->calibration_step = rad::detection::WAIT_VALIDATION;
+      this->calibration_step = rad::detection::VALIDATION;
       break;
     }
   }

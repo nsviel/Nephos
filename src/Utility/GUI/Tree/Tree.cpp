@@ -3,7 +3,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace utl::gui::widget{
+namespace utl::gui{
 
 //Constructor / Destructor
 Tree::Tree(){}
@@ -37,7 +37,7 @@ void Tree::design_tree(){
 
   //---------------------------
 }
-void Tree::construct_tree(Tree_filler* filler){
+void Tree::construct_tree(utl::gui::tree::Filler* filler){
   this->nodes_path_vec.clear();
   this->filler = filler;
   //---------------------------
@@ -49,7 +49,7 @@ void Tree::construct_tree(Tree_filler* filler){
 
   //Construct predefined init path nodes
   for(int i=0; i<filler->vec_path_folder.size(); i++){
-    vector<Tree_node*> nodes_path;
+    vector<utl::gui::tree::Node*> nodes_path;
     this->construct_node(filler->vec_path_folder[i], nodes_path);
     this->nodes_path_vec.push_back(nodes_path);
   }
@@ -58,12 +58,12 @@ void Tree::construct_tree(Tree_filler* filler){
 }
 
 //subfunction
-void Tree::construct_node(string path, vector<Tree_node*>& nodes){
+void Tree::construct_node(string path, vector<utl::gui::tree::Node*>& nodes){
   if(path != ""){
     //---------------------------
 
     //Save root
-    Tree_node* node = new Tree_node();
+    utl::gui::tree::Node* node = new utl::gui::tree::Node();
     node->name = utl::path::get_filename_from_path(path);
     node->type = utl::path::get_type_from_path(path);
     node->path = path;
@@ -76,12 +76,12 @@ void Tree::construct_node(string path, vector<Tree_node*>& nodes){
     //---------------------------
   }
 }
-void Tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>& nodes){
+void Tree::construct_node_root(vector<string>& vec_path, vector<utl::gui::tree::Node*>& nodes){
   //---------------------------
 
   for(int i=0; i<vec_path.size(); i++){
     if(vec_path[i] != ""){
-      Tree_node* node = new Tree_node();
+      utl::gui::tree::Node* node = new utl::gui::tree::Node();
 
       node->name = utl::path::get_filename_from_path(vec_path[i]);
       node->type = utl::path::get_type_from_path(vec_path[i]);
@@ -98,7 +98,7 @@ void Tree::construct_node_root(vector<string>& vec_path, vector<Tree_node*>& nod
 
   //---------------------------
 }
-void Tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* parent){
+void Tree::node_child_scan(string path, vector<utl::gui::tree::Node*>& nodes, utl::gui::tree::Node* parent){
   vector<string> list_path = utl::path::list_all_path(path);
   //---------------------------
 
@@ -111,7 +111,7 @@ void Tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* pa
   for(int i=0; i<list_path.size(); i++){
     string path_file = list_path[i];
 
-    Tree_node* node = new Tree_node();
+    utl::gui::tree::Node* node = new utl::gui::tree::Node();
     node->name = utl::path::get_filename_from_path(path_file);
     node->type = utl::path::get_type_from_path(path_file);
     node->path = path_file;
@@ -140,7 +140,7 @@ void Tree::node_child_scan(string path, vector<Tree_node*>& nodes, Tree_node* pa
 
   //---------------------------
 }
-void Tree::display_node(Tree_node* node, vector<Tree_node*>& all_nodes){
+void Tree::display_node(utl::gui::tree::Node* node, vector<utl::gui::tree::Node*>& all_nodes){
   if(all_nodes.size() != 0){
     //---------------------------
 
@@ -186,11 +186,11 @@ void Tree::display_node(Tree_node* node, vector<Tree_node*>& all_nodes){
     //---------------------------
   }
 }
-void Tree::display_node_root(vector<Tree_node*>& all_nodes){
+void Tree::display_node_root(vector<utl::gui::tree::Node*>& all_nodes){
   //---------------------------
 
   for(int i=0; i<all_nodes.size(); i++){
-    Tree_node* node = all_nodes[i];
+    utl::gui::tree::Node* node = all_nodes[i];
 
     ImGui::TableNextRow();
     ImGui::TableNextColumn();
@@ -221,7 +221,7 @@ bool Tree::check_display_file_format(string path){
   //---------------------------
   return false;
 }
-void Tree::open_selection(Tree_node* node){
+void Tree::open_selection(utl::gui::tree::Node* node){
   //---------------------------
 
   if(node->type == "File" && filler != nullptr && filler->fct_on_click){

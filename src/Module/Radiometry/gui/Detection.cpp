@@ -26,14 +26,7 @@ void Detection::draw_tab(){
   //---------------------------
 
   this->detection_step();
-
-  ImGui::BeginTable("Detection##table", 2);
-  this->parameter_canny();
-  this->parameter_hough();
-  this->parameter_ransac();
-  ImGui::EndTable();
-  ImGui::Separator();
-
+  this->detection_parameter();
   this->display_image();
 
   //---------------------------
@@ -43,9 +36,27 @@ void Detection::draw_tab(){
 void Detection::detection_step(){
   //---------------------------
 
+  ImGui::BeginTable("detection_step##table", 3);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 75.0f);
+  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthFixed, 15.0f);
+  ImGui::TableSetupColumn("three", ImGuiTableColumnFlags_WidthStretch);
+
   //Correction step
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Correction");
+  ImGui::TableNextColumn();
+  ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0, 0, 0, 0)); // Transparent background
+  ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, ImVec4(0, 0, 0, 0)); // Transparent background on hover
+  ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(0, 0, 0, 0)); // Transparent background when active
+  ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0)); // Transparent border
+  ImGui::PushStyleColor(ImGuiCol_BorderShadow, ImVec4(0, 0, 0, 0)); // Transparent border shadow
+  ImGui::PushStyleColor(ImGuiCol_CheckMark, ImVec4(0, 1, 0, 1)); // Green check mark
+  bool truc = true;
+  ImGui::Checkbox("##correction_ok", &truc);
+  ImGui::PopStyleColor(6);
+  ImGui::TableNextColumn();
   int correction_step = rad_detection->get_correction_step();
-  if(correction_step == rad::detection::WAIT_VALIDATION){
+  if(correction_step == rad::detection::VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
@@ -62,8 +73,14 @@ void Detection::detection_step(){
   }
 
   //Calibration step
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Calibration");
+  ImGui::TableNextColumn();
+
+  ImGui::Checkbox("##calibration_ok", &truc);
+  ImGui::TableNextColumn();
   int calibration_step = rad_detection->get_calibration_step();
-  if(calibration_step == rad::detection::WAIT_VALIDATION){
+  if(calibration_step == rad::detection::VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
@@ -79,9 +96,45 @@ void Detection::detection_step(){
     ImGui::PopStyleColor(2);
   }
 
+  ImGui::EndTable();
+
   //---------------------------
   ImGui::Separator();
 }
+void Detection::detection_parameter(){
+  //---------------------------
+
+  ImGui::BeginTable("detection_parameter##table", 2);
+
+  this->parameter_canny();
+  this->parameter_hough();
+  this->parameter_ransac();
+
+  ImGui::EndTable();
+
+  //---------------------------
+  ImGui::Separator();
+}
+void Detection::display_image(){
+  //---------------------------
+
+  //Display number of detected spheres
+  string nb_detection = to_string(rad_struct->detection.nb_detection);
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
+
+  //Display image with detected spheres
+  if(rad_struct->detection.image.size == 0) return;
+  ImVec2 image_size = ImGui::GetContentRegionAvail();
+  image_size.y -= 5;
+  stream->draw_stream(&rad_struct->detection.image, image_size);
+
+  //---------------------------
+  ImGui::Separator();
+}
+
+//Parameter function
 void Detection::parameter_canny(){
   //---------------------------
 
@@ -189,23 +242,6 @@ void Detection::parameter_ransac(){
 
   //---------------------------
 }
-void Detection::display_image(){
-  //---------------------------
 
-  //Display number of detected spheres
-  string nb_detection = to_string(rad_struct->detection.nb_detection);
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
-  ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
-
-  //Display image with detected spheres
-  if(rad_struct->detection.image.size == 0) return;
-  ImVec2 image_size = ImGui::GetContentRegionAvail();
-  image_size.y -= 5;
-  stream->draw_stream(&rad_struct->detection.image, image_size);
-
-  //---------------------------
-  ImGui::Separator();
-}
 
 }

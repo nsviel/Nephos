@@ -3,7 +3,9 @@
 #include <Utility/Specific/Common.h>
 
 
-struct Tree_node{
+namespace utl::gui::tree{
+
+struct Node{
   //---------------------------
 
   string name;
@@ -17,3 +19,5 @@ struct Tree_node{
 
   //---------------------------
 };
+
+}
