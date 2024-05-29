@@ -1,4 +1,4 @@
-#include "Hough.h"
+#include "Circle.h"
 
 #include <Radiometry/Namespace.h>
 
@@ -6,55 +6,82 @@
 namespace rad::detection::image{
 
 //Constructor / Destructor
-Hough::Hough(rad::Node* node_radio){
+Circle::Circle(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
+  this->rad_image = new rad::detection::image::Image(node_radio);
 
   this->find_hough_parameter(rad::hough::GRADIENT_ALT);
 
   //---------------------------
 }
-Hough::~Hough(){}
+Circle::~Circle(){}
 
 //Main function
-void Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
+void Circle::sphere_detection(cv::Mat& input, cv::Mat& output){
   if(input.empty()) return;
   //------------------------
 
   cv::Mat gray;
-  this->compute_gray(input, gray);
-  this->compute_canny(gray, output);
+  rad_image->convert_into_gray(input, gray);
+  rad_image->apply_canny(gray, output);
   this->compute_hough_circle(output);
 
   //------------------------
 }
 
-//Subfunction
-void Hough::compute_gray(cv::Mat& input, cv::Mat& output){
+//Draw function
+void Circle::draw_detected_circle(){
   //---------------------------
 
-  // Convert the image to grayscale
-  cv::Mat gray_image;
-  cv::cvtColor(input, output, cv::COLOR_RGBA2GRAY);
-
-  //---------------------------
-}
-void Hough::compute_canny(cv::Mat& input, cv::Mat& output){
-  if(rad_struct->detection.canny.apply == false){
-    output = input;
-    return;
+  switch(rad_struct->detection.hough.drawing_mode){
+    case rad::hough::ALL:{
+      this->draw_all_circle();
+      break;
+    }
+    case rad::hough::BEST:{
+      this->draw_best_circle();
+      break;
+    }
   }
-  //---------------------------
-
-  // Perform canny edge detection
-  int& thresh_lower = rad_struct->detection.canny.lower_threshold;
-  int& thresh_upper = rad_struct->detection.canny.upper_threshold;
-  cv::Canny(input, output, thresh_lower, thresh_upper);
 
   //---------------------------
 }
-void Hough::compute_hough_circle(cv::Mat& image){
+void Circle::draw_all_circle(){
+  if(rad_struct->detection.cv_image.empty()) return;
+  //------------------------
+
+  cv::Mat result;
+  rad_image->convert_into_rgba(rad_struct->detection.cv_image, result);
+  rad_image->draw_circle(result, rad_struct->detection.vec_circle);
+  rad_image->draw_bounding_box(result);
+  rad_image->convert_into_subimage(result);
+  rad_image->convert_into_utl_image(result, &rad_struct->detection.hough.image);
+
+  //------------------------
+}
+void Circle::draw_best_circle(){
+  if(rad_struct->detection.cv_image.empty()) return;
+  //------------------------
+
+  vector<rad::structure::Circle> vec_circle;
+  if(rad_struct->detection.vec_circle.size() > 0){
+    vec_circle.push_back(rad_struct->detection.vec_circle[0]);
+  }
+
+  cv::Mat result;
+  rad_image->convert_into_rgba(rad_struct->detection.cv_image, result);
+  rad_image->draw_circle(result, vec_circle);
+  rad_image->draw_bounding_box(result);
+  rad_image->convert_into_subimage(result);
+  rad_image->convert_into_utl_image(result, &rad_struct->detection.hough.image);
+
+  //------------------------
+}
+
+//Hough function
+void Circle::compute_hough_circle(cv::Mat& image){
   //---------------------------
 
   std::vector<cv::Vec3f> circles;
@@ -81,7 +108,7 @@ void Hough::compute_hough_circle(cv::Mat& image){
 
   //---------------------------
 }
-void Hough::find_hough_parameter(int mode){
+void Circle::find_hough_parameter(int mode){
   //---------------------------
 
   switch(mode){

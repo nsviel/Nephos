@@ -6,29 +6,33 @@
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::structure{class Circle;}
+namespace rad::detection::image{class Image;}
 
 
 namespace rad::detection::image{
 
-class Hough
+class Circle
 {
 public:
-  Hough(rad::Node* node_radio);
-  ~Hough();
+  Circle(rad::Node* node_radio);
+  ~Circle();
 
 public:
   //Main function
   void sphere_detection(cv::Mat& input, cv::Mat& output);
 
-  //Subfunction
-  void compute_gray(cv::Mat& input, cv::Mat& output);
-  void compute_canny(cv::Mat& input, cv::Mat& output);
+  //Draw function
+  void draw_detected_circle();
+  void draw_all_circle();
+  void draw_best_circle();
+
+  //Hough function
   void compute_hough_circle(cv::Mat& image);
   void find_hough_parameter(int mode);
 
 private:
   rad::Structure* rad_struct;
-
+  rad::detection::image::Image* rad_image;
 };
 
 }

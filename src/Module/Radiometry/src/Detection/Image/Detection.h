@@ -8,7 +8,7 @@ namespace dat::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace utl::media{class Image;}
 namespace rad::detection::image{class Glyph;}
-namespace rad::detection::image{class Hough;}
+namespace rad::detection::image{class Circle;}
 namespace rad::detection::image{class Image;}
 
 
@@ -35,7 +35,7 @@ private:
   utl::thread::Pool* thread_pool;
   rad::Structure* rad_struct;
   rad::detection::image::Glyph* rad_glyph;
-  rad::detection::image::Hough* rad_hough;
+  rad::detection::image::Circle* rad_circle;
   rad::detection::image::Image* rad_image;
 
   bool thread_idle = true;

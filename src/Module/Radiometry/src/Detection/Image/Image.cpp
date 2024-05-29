@@ -16,55 +16,31 @@ Image::Image(rad::Node* node_radio){
 Image::~Image(){}
 
 //Main function
-void Image::draw_detected_circle(){
+void Image::apply_canny(cv::Mat& input, cv::Mat& output){
+  if(rad_struct->detection.canny.apply == false){
+    output = input;
+    return;
+  }
   //---------------------------
 
-  switch(rad_struct->detection.hough.drawing_mode){
-    case rad::hough::ALL:{
-      this->draw_all_circle();
-      break;
-    }
-    case rad::hough::BEST:{
-      this->draw_best_circle();
-      break;
-    }
-  }
+  // Perform canny edge detection
+  int& thresh_lower = rad_struct->detection.canny.lower_threshold;
+  int& thresh_upper = rad_struct->detection.canny.upper_threshold;
+  cv::Canny(input, output, thresh_lower, thresh_upper);
 
   //---------------------------
 }
-void Image::draw_all_circle(){
-  if(rad_struct->detection.cv_image.empty()) return;
-  //------------------------
 
-  cv::Mat result;
-  this->convert_into_rgba(rad_struct->detection.cv_image, result);
-  this->draw_circle(result, rad_struct->detection.vec_circle);
-  this->draw_bounding_box(result);
-  this->convert_into_subimage(result);
-  this->convert_into_utl_image(result, &rad_struct->detection.hough.image);
+//Conversion function
+void Image::convert_into_gray(cv::Mat& input, cv::Mat& output){
+  //---------------------------
 
-  //------------------------
+  // Convert the image to grayscale
+  cv::Mat gray_image;
+  cv::cvtColor(input, output, cv::COLOR_RGBA2GRAY);
+
+  //---------------------------
 }
-void Image::draw_best_circle(){
-  if(rad_struct->detection.cv_image.empty()) return;
-  //------------------------
-
-  vector<rad::structure::Circle> vec_circle;
-  if(rad_struct->detection.vec_circle.size() > 0){
-    vec_circle.push_back(rad_struct->detection.vec_circle[0]);
-  }
-
-  cv::Mat result;
-  this->convert_into_rgba(rad_struct->detection.cv_image, result);
-  this->draw_circle(result, vec_circle);
-  this->draw_bounding_box(result);
-  this->convert_into_subimage(result);
-  this->convert_into_utl_image(result, &rad_struct->detection.hough.image);
-
-  //------------------------
-}
-
-//Subfunction
 void Image::convert_into_cv_image(utl::media::Image* input, cv::Mat& output){
   //------------------------
 
@@ -125,6 +101,8 @@ void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
 
   //------------------------
 }
+
+//Shape function
 void Image::draw_circle(cv::Mat& image, vector<rad::structure::Circle>& vec_circle){
   if(vec_circle.size() == 0) return;
   //------------------------

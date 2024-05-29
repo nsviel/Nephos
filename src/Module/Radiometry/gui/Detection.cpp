@@ -14,7 +14,7 @@ Detection::Detection(rad::Node* node_radio){
 
   this->rad_struct = node_radio->get_rad_struct();
   this->rad_detection = node_radio->get_rad_detection();
-  this->rad_hough = new rad::detection::image::Hough(node_radio);
+  this->rad_circle = new rad::detection::image::Circle(node_radio);
   this->stream = new rnd::Stream(node_engine);
 
   //---------------------------
@@ -119,11 +119,11 @@ void Detection::parameter_hough(){
     //Mode
     int& mode = rad_struct->detection.hough.mode;
     if(ImGui::RadioButton("Gradient", &mode, rad::hough::GRADIENT)){
-      rad_hough->find_hough_parameter(mode);
+      rad_circle->find_hough_parameter(mode);
     }
     ImGui::SameLine();
     if(ImGui::RadioButton("Gradient Alt", &mode, rad::hough::GRADIENT_ALT)){
-      rad_hough->find_hough_parameter(mode);
+      rad_circle->find_hough_parameter(mode);
     }
 
     //Lower threshold
