@@ -21,55 +21,55 @@ Plot::~Plot(){}
 //Main function
 void Plot::init(){
   rad::model::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
   //I(R)
   plot->IfR.title = "I(R)";
   plot->IfR.highlight = vec2(0, 0);
-  plot->IfR.axis_x.resolution = measure->R_resolution;
-  plot->IfR.axis_x.min = measure->R_range.x;
-  plot->IfR.axis_x.max = measure->R_range.y;
-  plot->IfR.axis_x.size = measure->R_size;
-  plot->IfR.axis_x.data = vector<float>(measure->R_size, 0.0f);
-  plot->IfR.axis_y.data = vector<float>(measure->R_size, 0.0f);
+  plot->IfR.axis_x.resolution = sphere->R_resolution;
+  plot->IfR.axis_x.min = sphere->R_range.x;
+  plot->IfR.axis_x.max = sphere->R_range.y;
+  plot->IfR.axis_x.size = sphere->R_size;
+  plot->IfR.axis_x.data = vector<float>(sphere->R_size, 0.0f);
+  plot->IfR.axis_y.data = vector<float>(sphere->R_size, 0.0f);
 
   //I(It)
   plot->IfIt.title = "I(It)";
-  plot->IfIt.axis_x.resolution = measure->It_resolution;
-  plot->IfIt.axis_x.min = measure->It_range.x;
-  plot->IfIt.axis_x.max = measure->It_range.y;
-  plot->IfIt.axis_x.size = measure->It_size;
-  plot->IfIt.axis_x.data = vector<float>(measure->It_size, 0.0f);
-  plot->IfIt.axis_y.data = vector<float>(measure->It_size, 0.0f);
+  plot->IfIt.axis_x.resolution = sphere->It_resolution;
+  plot->IfIt.axis_x.min = sphere->It_range.x;
+  plot->IfIt.axis_x.max = sphere->It_range.y;
+  plot->IfIt.axis_x.size = sphere->It_size;
+  plot->IfIt.axis_x.data = vector<float>(sphere->It_size, 0.0f);
+  plot->IfIt.axis_y.data = vector<float>(sphere->It_size, 0.0f);
 
   //I(R, It)
   plot->IfRIt.title = "I(R, It)";
-  plot->IfRIt.axis_x.resolution = measure->R_resolution;
-  plot->IfRIt.axis_x.min = measure->R_range.x;
-  plot->IfRIt.axis_x.max = measure->R_range.y;
-  plot->IfRIt.axis_x.size = measure->R_size;
-  plot->IfRIt.axis_y.resolution = measure->It_resolution;
-  plot->IfRIt.axis_y.min = measure->It_range.x;
-  plot->IfRIt.axis_y.max = measure->It_range.y;
-  plot->IfRIt.axis_y.size = measure->It_size;
-  plot->IfRIt.axis_z.size = measure->size;
-  plot->IfRIt.axis_z.min = measure->I_range.x;
-  plot->IfRIt.axis_z.max = measure->I_range.y;
-  plot->IfRIt.axis_z.data = vector<float>(measure->size, 0.0f);
+  plot->IfRIt.axis_x.resolution = sphere->R_resolution;
+  plot->IfRIt.axis_x.min = sphere->R_range.x;
+  plot->IfRIt.axis_x.max = sphere->R_range.y;
+  plot->IfRIt.axis_x.size = sphere->R_size;
+  plot->IfRIt.axis_y.resolution = sphere->It_resolution;
+  plot->IfRIt.axis_y.min = sphere->It_range.x;
+  plot->IfRIt.axis_y.max = sphere->It_range.y;
+  plot->IfRIt.axis_y.size = sphere->It_size;
+  plot->IfRIt.axis_z.size = sphere->size;
+  plot->IfRIt.axis_z.min = sphere->I_range.x;
+  plot->IfRIt.axis_z.max = sphere->I_range.y;
+  plot->IfRIt.axis_z.data = vector<float>(sphere->size, 0.0f);
 
   //---------------------------
 }
 void Plot::plot_measure(){
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
-  if(measure->data.size() == 0) return;
+  if(sphere->data.size() == 0) return;
 
   // Plot 3D scatter plot
   std::vector<float> x, y, z;
-  for(const auto& point : measure->data){
+  for(const auto& point : sphere->data){
     if(point.x == -1 || point.y > 60) continue;
     x.push_back(point.x);
     y.push_back(point.y);
@@ -120,10 +120,10 @@ void Plot::plot_model(){
   matplotlibcpp::plot_surface(x, y, z);
   */
 
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
-  if(measure->data.size() > 0){
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
+  if(sphere->data.size() > 0){
     std::vector<float> x_raw, y_raw, z_raw;
-    for(const auto& point : measure->data){
+    for(const auto& point : sphere->data){
       if(point.x == -1 || point.y > 60) continue;
       x_raw.push_back(point.x);
       y_raw.push_back(point.y);
@@ -138,7 +138,7 @@ void Plot::plot_model(){
 
 //Subfunction
 void Plot::update_plot_data(){
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Optimization* optim = &rad_struct->model.optim;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
@@ -151,10 +151,10 @@ void Plot::update_plot_data(){
   plot->IfIt.axis_y.fitting.clear();
 
   //Fill model plot data
-  for(int i=0; i<measure->data.size(); i++){
-    float& R = measure->data[i].x;
-    float& It = measure->data[i].y;
-    float& I = measure->data[i].z;
+  for(int i=0; i<sphere->data.size(); i++){
+    float& R = sphere->data[i].x;
+    float& It = sphere->data[i].y;
+    float& I = sphere->data[i].z;
     if(R == -1) continue;
 
     //I(R)
@@ -193,7 +193,7 @@ void Plot::update_plot_data(){
 }
 void Plot::reset_plot_data(){
   rad::model::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
@@ -216,7 +216,7 @@ void Plot::reset_plot_data(){
   //I(R, It)
   for(int i=0; i<plot->IfRIt.axis_z.data.size(); i++){
     plot->IfRIt.axis_z.data[i] = 0;
-    measure->data[i] = vec3(-1, -1, -1);
+    sphere->data[i] = vec3(-1, -1, -1);
   }
 
   //---------------------------
@@ -226,7 +226,7 @@ void Plot::reset_plot_data(){
 
 
 /*void Plot::update_plot_data(){
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
   utl::base::Plot* plot = &plot->IfR;

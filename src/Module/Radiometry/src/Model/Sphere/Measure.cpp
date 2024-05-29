@@ -21,30 +21,30 @@ Measure::~Measure(){}
 
 //Main function
 void Measure::import_measure(){
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
   //Import file model data
-  measure->data = utl::file::read_vector(measure->path);
+  sphere->data = utl::file::read_vector(sphere->path);
   this->find_optimization_bound();
   rad_plot->update_plot_data();
 
   //---------------------------
 }
 void Measure::export_measure(){
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
-  utl::file::write_vector(measure->path, measure->data);
+  utl::file::write_vector(sphere->path, sphere->data);
 
   //---------------------------
 }
 void Measure::clear_measure(){
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
   //Import file model data
-  measure->data.clear();
+  sphere->data.clear();
   rad_plot->reset_plot_data();
 
   //---------------------------
@@ -52,25 +52,25 @@ void Measure::clear_measure(){
 
 //Subfunction
 void Measure::init(){
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
   //R
-  measure->R_resolution = 0.01f;
-  measure->R_range = glm::vec2(0.0f, 5.0f);
-  measure->R_size = (measure->R_range.y - measure->R_range.x) / measure->R_resolution + 1;
+  sphere->R_resolution = 0.01f;
+  sphere->R_range = glm::vec2(0.0f, 5.0f);
+  sphere->R_size = (sphere->R_range.y - sphere->R_range.x) / sphere->R_resolution + 1;
 
   //It
-  measure->It_resolution = 1.0f;
-  measure->It_range = glm::vec2(0.0f, 90.0f);
-  measure->It_size = (measure->It_range.y - measure->It_range.x) / measure->It_resolution + 1;
+  sphere->It_resolution = 1.0f;
+  sphere->It_range = glm::vec2(0.0f, 90.0f);
+  sphere->It_size = (sphere->It_range.y - sphere->It_range.x) / sphere->It_resolution + 1;
 
   //I
-  measure->I_range = glm::vec2(0.0f, 1500.0f);
+  sphere->I_range = glm::vec2(0.0f, 1500.0f);
 
   //Measure
-  measure->size = measure->R_size * measure->It_size;
-  measure->data = vector<vec3>(measure->size, vec3(-1, -1, -1));
+  sphere->size = sphere->R_size * sphere->It_size;
+  sphere->data = vector<vec3>(sphere->size, vec3(-1, -1, -1));
 
 
   rad_plot->init();
@@ -79,21 +79,21 @@ void Measure::init(){
 }
 void Measure::find_optimization_bound(){
   rad::model::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
   vec2 R_bound = vec2(1000, 0);
   vec2 It_bound = vec2(1000, 0);
 
-  for(int i=0; i<measure->data.size(); i++){
+  for(int i=0; i<sphere->data.size(); i++){
     //R
-    float& R = measure->data[i].x;
+    float& R = sphere->data[i].x;
     if(R < 0) continue;
     if(R < R_bound.x) R_bound.x = R;
     if(R > R_bound.y) R_bound.y = R;
 
     //It
-    float& It = measure->data[i].y;
+    float& It = sphere->data[i].y;
     if(It < 0) continue;
     if(It < It_bound.x) It_bound.x = It;
     if(It > It_bound.y) It_bound.y = It;

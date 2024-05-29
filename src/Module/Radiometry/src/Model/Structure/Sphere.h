@@ -6,7 +6,7 @@
 
 namespace rad::model::structure{
 
-struct Measure{
+struct Sphere{
   //---------------------------
 
   //Model stuff

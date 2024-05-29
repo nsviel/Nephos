@@ -62,7 +62,7 @@ void Ransac::ransac_sphere(dat::base::Sensor* sensor){
 //Data function
 void Ransac::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   rad::model::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
@@ -91,7 +91,7 @@ void Ransac::data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   //---------------------------
 }
 void Ransac::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
@@ -120,7 +120,7 @@ void Ransac::data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
 }
 void Ransac::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
   rad::model::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
@@ -150,7 +150,7 @@ void Ransac::data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i){
       int index = j * plot->IfRIt.axis_x.size + i;
       if(index >= 0 && index < plot->IfRIt.axis_z.size){
         plot->IfRIt.axis_z.data[index] = I;
-        measure->data[index] = vec3(R, It, I);
+        sphere->data[index] = vec3(R, It, I);
       }
     }
   }

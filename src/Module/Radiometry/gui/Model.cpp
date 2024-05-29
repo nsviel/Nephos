@@ -43,7 +43,7 @@ void Model::draw_tab(){
 
 //Subfunction
 void Model::parameter_measure(){
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
 
@@ -67,14 +67,14 @@ void Model::parameter_measure(){
   if(ImGui::TreeNode("Parameter##Measure")){
     //Path
     if(ImGui::Button("...##path_measure")){
-      zenity::selection_file(measure->path);
+      zenity::selection_file(sphere->path);
     }
     ImGui::SameLine();
     if(ImGui::Button(ICON_FA_FOLDER "##path_measure")){
-      utl::directory::open(measure->path);
+      utl::directory::open(sphere->path);
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", measure->path.c_str());
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", sphere->path.c_str());
 
     //Heatmap scale
     ImGui::DragFloatRange2("Heatmap scale",&plot->IfRIt.axis_z.min, &plot->IfRIt.axis_z.max, 100, 0, 60000, "%.0f");
@@ -82,21 +82,21 @@ void Model::parameter_measure(){
     //Import / export / clear
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-    if(ImGui::Button("Import##measure", ImVec2(120, 0))){
+    if(ImGui::Button("Import##sphere", ImVec2(120, 0))){
       rad_measure->import_measure();
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
-    if(ImGui::Button("Export##measure", ImVec2(120, 0))){
+    if(ImGui::Button("Export##sphere", ImVec2(120, 0))){
       rad_measure->export_measure();
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
-    if(ImGui::Button("Clear##measure", ImVec2(120, 0))){
+    if(ImGui::Button("Clear##sphere", ImVec2(120, 0))){
       rad_measure->clear_measure();
     }
     ImGui::PopStyleColor(2);
@@ -210,7 +210,7 @@ void Model::plot_measure_IfIt(float height){
   //---------------------------
 }
 void Model::plot_model_heatmap(float height){
-  rad::model::structure::Measure* measure = &rad_struct->model.measure;
+  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Optimization* optim = &rad_struct->model.optim;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
