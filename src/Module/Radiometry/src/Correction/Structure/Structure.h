@@ -4,9 +4,9 @@
 #include <vector>
 
 
-namespace rad::structure{
+namespace rad::correction{
 
-struct Correction{
+struct Structure{
   //---------------------------
 
   utl::media::Image image;

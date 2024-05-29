@@ -7,9 +7,9 @@
 #include <vector>
 
 
-namespace rad::structure{
+namespace rad::model{
 
-struct Model{
+struct Structure{
   //---------------------------
 
   rad::structure::Measure measure;
