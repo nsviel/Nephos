@@ -1,4 +1,4 @@
 #pragma once
 
 #include <Utility/GUI/Widget/Console.h>
-#include <Utility/GUI/Widget/Indicator.h>
+#include <Utility/GUI/Widget/Spinner.h>

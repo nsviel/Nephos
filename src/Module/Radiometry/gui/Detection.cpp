@@ -1,5 +1,6 @@
 #include "Detection.h"
 
+#include <Utility/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Radiometry/Namespace.h>
 
@@ -35,6 +36,9 @@ void Detection::draw_tab(){
 //Subfunction
 void Detection::detection_step(){
   //---------------------------
+
+  ImGui::Spinner_cicle("hello", ImVec4(0, 1, 0, 1));
+
 
   ImGui::BeginTable("detection_step##table", 3);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 75.0f);
