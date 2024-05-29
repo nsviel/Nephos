@@ -48,35 +48,19 @@ void Manager::loop(){
 }
 
 //Subfunction
-void Manager::next_sphere_step(){
+void Manager::process_sphere_detection(){
   //---------------------------
 
-  switch(sphere_step){
-    case rad::detection::VALIDATION:{
-      //rad_cloud_detection->validate_bbox(sensor);
-      break;
-    }
-    case rad::detection::PROCESSING:{
-      this->sphere_step = rad::detection::VALIDATION;
-      break;
-    }
-  }
+  sphere_step = rad::detection::PROCESSING;
+  //rad_cloud_detection->validate_bbox(sensor);
 
   //---------------------------
 }
-void Manager::next_chart_step(){
+void Manager::process_chart_detection(){
   //---------------------------
 
-  switch(chart_step){
-    case rad::detection::VALIDATION:{
-      //rad_cloud_detection->validate_bbox(sensor);
-      break;
-    }
-    case rad::detection::PROCESSING:{
-      this->chart_step = rad::detection::VALIDATION;
-      break;
-    }
-  }
+  chart_step = rad::detection::PROCESSING;
+  //rad_cloud_detection->validate_bbox(sensor);
 
   //---------------------------
 }

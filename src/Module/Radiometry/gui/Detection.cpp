@@ -52,15 +52,15 @@ void Detection::detection_step(){
   if(sphere_step == rad::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
-    if(ImGui::Button("Stop##calibration", ImVec2(120, 0))){
-      rad_detection->next_sphere_step();
+    if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){
+      rad_detection->process_sphere_detection();
     }
     ImGui::PopStyleColor(2);
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-    if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
-      rad_detection->next_sphere_step();
+    if(ImGui::Button("Validate##sphere_measure", ImVec2(120, 0))){
+      rad_detection->process_sphere_detection();
     }
     ImGui::PopStyleColor(2);
   }
@@ -75,15 +75,15 @@ void Detection::detection_step(){
   if(chart_step == rad::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
-    if(ImGui::Button("Stop##calibration", ImVec2(120, 0))){
-      rad_detection->next_chart_step();
+    if(ImGui::Button("Stop##chart_measure", ImVec2(120, 0))){
+      rad_detection->process_chart_detection();
     }
     ImGui::PopStyleColor(2);
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-    if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
-      rad_detection->next_chart_step();
+    if(ImGui::Button("Validate##chart_measure", ImVec2(120, 0))){
+      rad_detection->process_chart_detection();
     }
     ImGui::PopStyleColor(2);
   }
