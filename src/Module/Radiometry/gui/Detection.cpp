@@ -38,7 +38,7 @@ void Detection::detection_step(){
   //---------------------------
 
   ImGui::BeginTable("detection_step##table", 3);
-  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 75.0f);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 100.0f);
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthFixed, 15.0f);
   ImGui::TableSetupColumn("three", ImGuiTableColumnFlags_WidthStretch);
 
