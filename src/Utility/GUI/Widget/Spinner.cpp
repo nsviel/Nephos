@@ -46,12 +46,12 @@ bool Spinner_variable(const char* label, const ImU32& color){
   //---------------------------
   return true;
 }
-void Spinner_cicle(const char* label, ImVec4 color){
+void Spinner_cicle(ImVec4 color){
   //---------------------------
 
   float radius = 6;
   float thickness = 2;
-  ImSpinner::SpinnerAng("truc", radius, thickness, color, ImColor(255, 255, 255, 128), 8, IM_PI);
+  ImSpinner::SpinnerAng("truc", radius, thickness, color, ImColor(255, 255, 255, 128), 3, IM_PI);
 
   //---------------------------
 }

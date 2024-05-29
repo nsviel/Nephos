@@ -37,7 +37,7 @@ void Detection::draw_tab(){
 void Detection::detection_step(){
   //---------------------------
 
-  ImGui::Spinner_cicle("hello", ImVec4(0, 1, 0, 1));
+
 
 
   ImGui::BeginTable("detection_step##table", 3);
@@ -49,15 +49,7 @@ void Detection::detection_step(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Correction");
   ImGui::TableNextColumn();
-  ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0, 0, 0, 0)); // Transparent background
-  ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, ImVec4(0, 0, 0, 0)); // Transparent background on hover
-  ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(0, 0, 0, 0)); // Transparent background when active
-  ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0)); // Transparent border
-  ImGui::PushStyleColor(ImGuiCol_BorderShadow, ImVec4(0, 0, 0, 0)); // Transparent border shadow
-  ImGui::PushStyleColor(ImGuiCol_CheckMark, ImVec4(0, 1, 0, 1)); // Green check mark
-  bool truc = true;
-  ImGui::Checkbox("##correction_ok", &truc);
-  ImGui::PopStyleColor(6);
+  this->validation_state(1);
   ImGui::TableNextColumn();
   int correction_step = rad_detection->get_correction_step();
   if(correction_step == rad::detection::VALIDATION){
@@ -80,8 +72,7 @@ void Detection::detection_step(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Calibration");
   ImGui::TableNextColumn();
-
-  ImGui::Checkbox("##calibration_ok", &truc);
+  this->validation_state(0);
   ImGui::TableNextColumn();
   int calibration_step = rad_detection->get_calibration_step();
   if(calibration_step == rad::detection::VALIDATION){
@@ -136,6 +127,26 @@ void Detection::display_image(){
 
   //---------------------------
   ImGui::Separator();
+}
+void Detection::validation_state(int state){
+  //---------------------------
+
+  switch(state){
+    case 0:{
+      ImGui::Check_on();
+      break;
+    }
+    case 1:{
+      ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
+      break;
+    }
+    case 2:{
+      ImGui::Cross_red();
+      break;
+    }
+  }
+
+  //---------------------------
 }
 
 //Parameter function
