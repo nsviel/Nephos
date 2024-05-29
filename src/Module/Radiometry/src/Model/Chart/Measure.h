@@ -24,7 +24,6 @@ public:
 
   //Subfunction
   void init();
-  void find_optimization_bound();
 
 private:
   rad::Structure* rad_struct;

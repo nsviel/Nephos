@@ -20,7 +20,6 @@ public:
   //Main function
   void init();
   void plot_measure();
-  void plot_model();
 
   //Subfunction
   void update_plot_data();
