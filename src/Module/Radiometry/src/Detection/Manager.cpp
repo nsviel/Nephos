@@ -13,12 +13,14 @@ Manager::Manager(rad::Node* node_radio){
 
   dat::Node* node_data = node_radio->get_node_data();
 
-  this->dat_graph = node_data->get_dat_graph();
-  this->ope_image = new ope::image::Manager();
+  this->rad_struct = node_radio->get_rad_struct();
   this->rad_image_detection = new rad::detection::image::Detection(node_radio);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(node_radio);
-  this->correction_step = rad::detection::VALIDATION;
-  this->calibration_step = rad::detection::VALIDATION;
+  this->dat_graph = node_data->get_dat_graph();
+  this->ope_image = new ope::image::Manager();
+
+  this->sphere_step = rad::detection::NO_DATA;
+  this->chart_step = rad::detection::NO_DATA;
 
   //---------------------------
 }
@@ -39,36 +41,39 @@ void Manager::loop(){
     //rad_cloud_detection->start_thread(sensor, &sensor->ir.image);
   }
 
+  if(rad_struct->model.sphere.has_data) sphere_step = rad::detection::HAS_DATA;
+  if(rad_struct->model.chart.has_data) chart_step = rad::detection::HAS_DATA;
+
   //---------------------------
 }
 
 //Subfunction
-void Manager::next_correction_step(){
+void Manager::next_sphere_step(){
   //---------------------------
 
-  switch(correction_step){
+  switch(sphere_step){
     case rad::detection::VALIDATION:{
       //rad_cloud_detection->validate_bbox(sensor);
       break;
     }
     case rad::detection::PROCESSING:{
-      this->correction_step = rad::detection::VALIDATION;
+      this->sphere_step = rad::detection::VALIDATION;
       break;
     }
   }
 
   //---------------------------
 }
-void Manager::next_calibration_step(){
+void Manager::next_chart_step(){
   //---------------------------
 
-  switch(calibration_step){
+  switch(chart_step){
     case rad::detection::VALIDATION:{
       //rad_cloud_detection->validate_bbox(sensor);
       break;
     }
     case rad::detection::PROCESSING:{
-      this->calibration_step = rad::detection::VALIDATION;
+      this->chart_step = rad::detection::VALIDATION;
       break;
     }
   }

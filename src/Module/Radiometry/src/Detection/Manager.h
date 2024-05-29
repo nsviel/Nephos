@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace rad{class Node;}
+namespace rad{class Structure;}
 namespace rad::detection::image{class Detection;}
 namespace rad::detection::cloud{class Detection;}
 namespace dat{class Graph;}
@@ -13,9 +14,10 @@ namespace dat::base{class Sensor;}
 namespace rad::detection{
 
 enum Step{
-  WAIT = 0,
+  NO_DATA = 0,
   VALIDATION = 1,
   PROCESSING = 2,
+  HAS_DATA = 3,
 };
 
 class Manager
@@ -30,22 +32,23 @@ public:
   void loop();
 
   //Subfunction
-  void next_correction_step();
-  void next_calibration_step();
+  void next_sphere_step();
+  void next_chart_step();
 
   inline rad::detection::image::Detection* get_image_detection(){return rad_image_detection;}
   inline rad::detection::cloud::Detection* get_cloud_detection(){return rad_cloud_detection;}
-  inline int get_correction_step(){return correction_step;}
-  inline int get_calibration_step(){return calibration_step;}
+  inline int get_sphere_step(){return sphere_step;}
+  inline int get_chart_step(){return chart_step;}
 
 private:
-  dat::Graph* dat_graph;
-  ope::image::Manager* ope_image;
+  rad::Structure* rad_struct;
   rad::detection::image::Detection* rad_image_detection;
   rad::detection::cloud::Detection* rad_cloud_detection;
+  dat::Graph* dat_graph;
+  ope::image::Manager* ope_image;
 
-  int correction_step = 0;
-  int calibration_step = 0;
+  int sphere_step = 0;
+  int chart_step = 0;
 };
 
 }

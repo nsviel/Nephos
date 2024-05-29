@@ -11,7 +11,7 @@ struct Chart{
 
   //General
   std::string path = "../media/record/calibration/chart.data";
-  bool is_ready = false;
+  bool has_data = false;
 
   //Data
   std::vector<glm::vec3> data;
