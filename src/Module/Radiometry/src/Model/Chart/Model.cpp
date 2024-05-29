@@ -4,7 +4,7 @@
 #include <Utility/Function/File/Json.cpp>
 #include <Radiometry/Namespace.h>
 
-namespace rad::model::sphere{
+namespace rad::model::chart{
 
 //Constructor / Destructor
 Model::Model(rad::Node* node_radio){

@@ -4,8 +4,8 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad::model{class Manager;}
-namespace rad::model{class Model;}
+namespace rad::model::sphere{class Manager;}
+namespace rad::model::sphere{class Model;}
 namespace dat::base{class Sensor;}
 
 
@@ -27,8 +27,8 @@ public:
 
 private:
   rad::Structure* rad_struct;
-  rad::model::Manager* rad_manager;
-  rad::model::Model* rad_model;
+  rad::model::sphere::Manager* rad_manager;
+  rad::model::sphere::Model* rad_model;
 };
 
 }

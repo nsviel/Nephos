@@ -8,7 +8,7 @@ namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
 
 
-namespace rad::model::sphere{
+namespace rad::model::chart{
 
 class Model
 {

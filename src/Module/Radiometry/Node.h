@@ -7,7 +7,7 @@ namespace eng{class Node;}
 namespace dat{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection{class Manager;}
-namespace rad::model{class Manager;}
+namespace rad::model::sphere{class Manager;}
 namespace rad::correction{class Manager;}
 namespace rad::gui{class Panel;}
 
@@ -35,7 +35,7 @@ public:
 
   inline rad::Structure* get_rad_struct(){return rad_struct;}
   inline rad::detection::Manager* get_rad_detection(){return rad_detection;}
-  inline rad::model::Manager* get_rad_model(){return rad_model;}
+  inline rad::model::sphere::Manager* get_rad_model(){return rad_model;}
   inline rad::correction::Manager* get_rad_correction(){return rad_correction;}
 
 private:
@@ -47,7 +47,7 @@ private:
   //Child
   rad::Structure* rad_struct;
   rad::detection::Manager* rad_detection;
-  rad::model::Manager* rad_model;
+  rad::model::sphere::Manager* rad_model;
   rad::correction::Manager* rad_correction;
   rad::gui::Panel* gui_panel;
 };

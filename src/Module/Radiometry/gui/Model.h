@@ -4,10 +4,10 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad::model{class Manager;}
-namespace rad::model{class Measure;}
-namespace rad::model{class Model;}
-namespace rad::model{class Plot;}
+namespace rad::model::sphere{class Manager;}
+namespace rad::model::sphere{class Measure;}
+namespace rad::model::sphere{class Model;}
+namespace rad::model::sphere{class Plot;}
 namespace utl::implot{class Plot;}
 
 
@@ -34,10 +34,10 @@ public:
   void plot_model_heatmap(float height);
 
 private:
-  rad::model::Manager* rad_manager;
-  rad::model::Measure* rad_measure;
-  rad::model::Model* rad_model;
-  rad::model::Plot* rad_plot;
+  rad::model::sphere::Manager* rad_manager;
+  rad::model::sphere::Measure* rad_measure;
+  rad::model::sphere::Model* rad_model;
+  rad::model::sphere::Plot* rad_plot;
   rad::Structure* rad_struct;
   utl::implot::Plot* utl_plot;
 };

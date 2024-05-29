@@ -5,10 +5,10 @@
 #include <python/matplotlibcpp.h>
 
 
-namespace rad::model::sphere{
+namespace rad::model::chart{
 
 //Constructor / Destructor
-Plot::Plot(rad::Node* node_radio, rad::model::sphere::Model* rad_model){
+Plot::Plot(rad::Node* node_radio, rad::model::chart::Model* rad_model){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();

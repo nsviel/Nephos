@@ -4,16 +4,16 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad::model::sphere{class Plot;}
+namespace rad::model::chart{class Plot;}
 
 
-namespace rad::model::sphere{
+namespace rad::model::chart{
 
 class Measure
 {
 public:
   //Constructor / Destructor
-  Measure(rad::Node* node_radio, rad::model::sphere::Plot* rad_plot);
+  Measure(rad::Node* node_radio, rad::model::chart::Plot* rad_plot);
   ~Measure();
 
 public:
@@ -28,7 +28,7 @@ public:
 
 private:
   rad::Structure* rad_struct;
-  rad::model::sphere::Plot* rad_plot;
+  rad::model::chart::Plot* rad_plot;
 };
 
 }
