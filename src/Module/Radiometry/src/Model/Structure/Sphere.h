@@ -9,8 +9,9 @@ namespace rad::model::structure{
 struct Sphere{
   //---------------------------
 
-  //Model stuff
+  //General
   std::string path = "../media/record/calibration/sphere.data";
+  bool is_ready = false;
 
   //Data
   std::vector<glm::vec3> data;

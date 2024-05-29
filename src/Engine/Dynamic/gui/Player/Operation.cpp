@@ -190,15 +190,14 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
 
     //Intensity cursor
     if(dyn_struct->colorization.color_mode == ope::color::INTENSITY){
-      ImGui::Indent();
+      ImGui::Separator();
       ImGui::SetNextItemWidth(100);
       ImGui::SliderInt("I diviser", &dyn_struct->colorization.intensity_diviser, 1, 5000);
-      ImGui::Unindent();
     }
 
     //Heatmap mode
     if(dyn_struct->colorization.color_mode == ope::color::HEATMAP){
-      ImGui::Indent();
+      ImGui::Separator();
       condition = (entity->get_data()->Is.size() == 0);
       if(condition) ImGui::BeginDisabled();
       if(ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY)){
@@ -227,7 +226,6 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
         ImGui::SetNextItemWidth(125);
         ImGui::DragFloatRange2("Z##321", &dyn_struct->colorization.range_height.x, &dyn_struct->colorization.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
       }
-      ImGui::Unindent();
     }
 
     if(update_color){
