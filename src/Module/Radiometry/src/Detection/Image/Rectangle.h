@@ -17,6 +17,7 @@ public:
 
 public:
   //Main function
+  void detect_rectangle(cv::Mat& input, cv::Mat& output);
   void truc();
 
 private:

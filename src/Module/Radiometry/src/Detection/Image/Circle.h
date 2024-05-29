@@ -19,12 +19,12 @@ public:
 
 public:
   //Main function
-  void sphere_detection(cv::Mat& input, cv::Mat& output);
+  void detect_circle(cv::Mat& image);
 
   //Draw function
-  void draw_detected_circle();
-  void draw_all_circle();
-  void draw_best_circle();
+  void draw_detected_circle(cv::Mat& image);
+  void draw_all_circle(cv::Mat& image);
+  void draw_best_circle(cv::Mat& image);
 
   //Hough function
   void compute_hough_circle(cv::Mat& image);

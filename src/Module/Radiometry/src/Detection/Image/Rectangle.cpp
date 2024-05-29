@@ -16,6 +16,15 @@ Rectangle::Rectangle(rad::Node* node_radio){
 Rectangle::~Rectangle(){}
 
 //Main function
+void Rectangle::detect_rectangle(cv::Mat& input, cv::Mat& output){
+  if(input.empty()) return;
+  //------------------------
+
+
+
+  //------------------------
+}
+
 void Rectangle::truc(){
   //---------------------------
 

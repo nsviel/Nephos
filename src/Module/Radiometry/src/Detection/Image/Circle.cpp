@@ -19,41 +19,42 @@ Circle::Circle(rad::Node* node_radio){
 Circle::~Circle(){}
 
 //Main function
-void Circle::sphere_detection(cv::Mat& input, cv::Mat& output){
-  if(input.empty()) return;
+void Circle::detect_circle(cv::Mat& image){
+  if(image.empty()) return;
   //------------------------
 
-  cv::Mat gray;
-  rad_image->convert_into_gray(input, gray);
-  rad_image->apply_canny(gray, output);
-  this->compute_hough_circle(output);
+  cv::Mat gray, canny;
+  rad_image->convert_into_gray(image, gray);
+  rad_image->apply_canny(gray, canny);
+  this->compute_hough_circle(canny);
+  this->draw_detected_circle(canny);
 
   //------------------------
 }
 
 //Draw function
-void Circle::draw_detected_circle(){
+void Circle::draw_detected_circle(cv::Mat& image){
   //---------------------------
 
   switch(rad_struct->detection.hough.drawing_mode){
     case rad::hough::ALL:{
-      this->draw_all_circle();
+      this->draw_all_circle(image);
       break;
     }
     case rad::hough::BEST:{
-      this->draw_best_circle();
+      this->draw_best_circle(image);
       break;
     }
   }
 
   //---------------------------
 }
-void Circle::draw_all_circle(){
-  if(rad_struct->detection.cv_image.empty()) return;
+void Circle::draw_all_circle(cv::Mat& image){
+  if(image.empty()) return;
   //------------------------
 
   cv::Mat result;
-  rad_image->convert_into_rgba(rad_struct->detection.cv_image, result);
+  rad_image->convert_into_rgba(image, result);
   rad_image->draw_circle(result, rad_struct->detection.vec_circle);
   rad_image->draw_bounding_box(result);
   rad_image->convert_into_subimage(result);
@@ -61,8 +62,8 @@ void Circle::draw_all_circle(){
 
   //------------------------
 }
-void Circle::draw_best_circle(){
-  if(rad_struct->detection.cv_image.empty()) return;
+void Circle::draw_best_circle(cv::Mat& image){
+  if(image.empty()) return;
   //------------------------
 
   vector<rad::structure::Circle> vec_circle;
@@ -71,7 +72,7 @@ void Circle::draw_best_circle(){
   }
 
   cv::Mat result;
-  rad_image->convert_into_rgba(rad_struct->detection.cv_image, result);
+  rad_image->convert_into_rgba(image, result);
   rad_image->draw_circle(result, vec_circle);
   rad_image->draw_bounding_box(result);
   rad_image->convert_into_subimage(result);
