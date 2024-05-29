@@ -10,7 +10,7 @@ struct Sphere{
   //---------------------------
 
   //Model stuff
-  std::string path = "../media/record/calibration/measure.data";
+  std::string path = "../media/record/calibration/sphere.data";
 
   //Data
   std::vector<glm::vec3> data;

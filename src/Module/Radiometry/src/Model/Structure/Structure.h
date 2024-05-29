@@ -13,6 +13,7 @@ struct Structure{
   //---------------------------
 
   rad::model::structure::Sphere sphere;
+  rad::model::structure::Chart chart;
   rad::model::structure::Optimization optim;
   rad::model::structure::Plot plot;
 
