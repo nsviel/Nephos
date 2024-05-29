@@ -194,10 +194,10 @@ void Detection::display_image(){
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
 
   //Display image with detected spheres
-  if(rad_struct->detection.hough.image.size == 0) return;
+  if(rad_struct->detection.image.size == 0) return;
   ImVec2 image_size = ImGui::GetContentRegionAvail();
   image_size.y -= 5;
-  stream->draw_stream(&rad_struct->detection.hough.image, image_size);
+  stream->draw_stream(&rad_struct->detection.image, image_size);
 
   //---------------------------
   ImGui::Separator();

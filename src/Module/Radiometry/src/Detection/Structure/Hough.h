@@ -26,7 +26,6 @@ struct Hough{
   int drawing_mode = rad::hough::ALL;
   int mode = rad::hough::GRADIENT_ALT;
   int cv_mode = cv::HOUGH_GRADIENT;
-  utl::media::Image image;
 
   float param_1 = -1;
   float param_2 = -1;

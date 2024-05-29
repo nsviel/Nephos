@@ -58,7 +58,7 @@ void Circle::draw_all_circle(cv::Mat& image){
   rad_image->draw_circle(result, rad_struct->detection.vec_circle);
   rad_image->draw_bounding_box(result);
   rad_image->convert_into_subimage(result);
-  rad_image->convert_into_utl_image(result, &rad_struct->detection.hough.image);
+  rad_image->convert_into_utl_image(result, &rad_struct->detection.image);
 
   //------------------------
 }
@@ -76,7 +76,7 @@ void Circle::draw_best_circle(cv::Mat& image){
   rad_image->draw_circle(result, vec_circle);
   rad_image->draw_bounding_box(result);
   rad_image->convert_into_subimage(result);
-  rad_image->convert_into_utl_image(result, &rad_struct->detection.hough.image);
+  rad_image->convert_into_utl_image(result, &rad_struct->detection.image);
 
   //------------------------
 }

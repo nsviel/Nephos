@@ -32,7 +32,7 @@ void Calibration::draw_tab(){
 void Calibration::display_image(){
   //---------------------------
 
-  utl::media::Image* image = &rad_struct->detection.hough.image;
+  utl::media::Image* image = &rad_struct->detection.image;
 
 
 

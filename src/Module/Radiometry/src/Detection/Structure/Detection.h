@@ -7,7 +7,7 @@
 #include <Data/Namespace.h>
 #include <Radiometry/src/Detection/Structure/Hough.h>
 #include <Radiometry/src/Detection/Structure/Canny.h>
-#include <Radiometry/src/Detection/Structure/Bbox.h>
+#include <Radiometry/src/Detection/Structure/Circle.h>
 #include <Radiometry/src/Detection/Structure/Ransac.h>
 #include <Radiometry/src/Detection/Structure/Sphere.h>
 
@@ -23,7 +23,8 @@ struct Detection{
   float sphere_diameter = 0.16;
   int cv_radius = 0;
   int nb_detection = 0;
-
+  utl::media::Image image;
+  
   vector<rad::structure::Circle> vec_circle;
   vector<rad::structure::Sphere> vec_sphere;
   vector<dat::glyph::object::Sphere*> vec_glyph_sphere;
