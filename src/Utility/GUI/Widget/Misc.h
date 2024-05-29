@@ -12,6 +12,6 @@ namespace ImGui{
 
 void Validation_state(std::string label, bool state);
 void Check_on();
-void Cross_red();
+void Cross(ImVec4 color);
 
 }

@@ -19,7 +19,7 @@ void Check_on(){
   //---------------------------
 }
 
-void Cross_red(){
+void Cross(ImVec4 color){
   //---------------------------
 
   ImGuiWindow* window = ImGui::GetCurrentWindow();
@@ -38,11 +38,12 @@ void Cross_red(){
   if (!ImGui::ItemAdd(check_bb, id)) return;
 
   // Draw the red cross mark
+  ImU32 col = ImGui::ColorConvertFloat4ToU32(color);
   ImDrawList* draw_list = ImGui::GetWindowDrawList();
   ImVec2 cross_size(size.x * 0.5f, size.y * 0.5f); // Adjust size as needed
   ImVec2 cross_pos(pos.x + size.x * 0.25f, pos.y + size.y * 0.25f); // Center the cross
-  draw_list->AddLine(cross_pos, ImVec2(cross_pos.x + cross_size.x, cross_pos.y + cross_size.y), IM_COL32(255, 0, 0, 255), 2.0f);
-  draw_list->AddLine(ImVec2(cross_pos.x, cross_pos.y + cross_size.y), ImVec2(cross_pos.x + cross_size.x, cross_pos.y), IM_COL32(255, 0, 0, 255), 2.0f);
+  draw_list->AddLine(cross_pos, ImVec2(cross_pos.x + cross_size.x, cross_pos.y + cross_size.y), col, 2.0f);
+  draw_list->AddLine(ImVec2(cross_pos.x, cross_pos.y + cross_size.y), ImVec2(cross_pos.x + cross_size.x, cross_pos.y), col, 2.0f);
 
   //---------------------------
 }

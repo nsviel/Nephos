@@ -45,7 +45,7 @@ void Detection::detection_step(){
   //Correction step
   int correction_step = rad_detection->get_correction_step();
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Correction");
+  ImGui::Text("Sphere measure");
   ImGui::TableNextColumn();
   this->validation_state(correction_step);
   ImGui::TableNextColumn();
@@ -68,7 +68,7 @@ void Detection::detection_step(){
   //Calibration step
   int calibration_step = rad_detection->get_calibration_step();
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Calibration");
+  ImGui::Text("Chart measure");
   ImGui::TableNextColumn();
   this->validation_state(calibration_step);
   ImGui::TableNextColumn();
@@ -138,7 +138,7 @@ void Detection::validation_state(int state){
       break;
     }
     case 2:{
-      ImGui::Cross_red();
+      ImGui::Cross(ImVec4(1, 1, 1, 1));
       break;
     }
   }
