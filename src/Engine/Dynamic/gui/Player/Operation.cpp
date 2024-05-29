@@ -192,9 +192,7 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
     if(dyn_struct->colorization.color_mode == ope::color::INTENSITY){
       ImGui::Indent();
       ImGui::SetNextItemWidth(100);
-      if(ImGui::SliderInt("I diviser", &dyn_struct->colorization.intensity_diviser, 1, 5000)){
-        update_color = true;
-      }
+      ImGui::SliderInt("I diviser", &dyn_struct->colorization.intensity_diviser, 1, 5000);
       ImGui::Unindent();
     }
 

@@ -26,7 +26,6 @@ public:
 
   //Subfunction
   void detection_step();
-  void detection_parameter();
   void parameter_canny();
   void parameter_hough();
   void parameter_ransac();

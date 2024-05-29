@@ -17,9 +17,8 @@ Manager::Manager(rad::Node* node_radio){
   this->ope_image = new ope::image::Manager();
   this->rad_image_detection = new rad::detection::image::Detection(node_radio);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(node_radio);
-  this->map_step[rad::detection::cloud::WAIT_VALIDATION] = "Wait validation";
-  this->map_step[rad::detection::cloud::PROCESSING] = "Detectioning";
-  this->step = rad::detection::cloud::WAIT_VALIDATION;
+  this->correction_step = rad::detection::WAIT_VALIDATION;
+  this->calibration_step = rad::detection::WAIT_VALIDATION;
 
   //---------------------------
 }
@@ -44,16 +43,32 @@ void Manager::loop(){
 }
 
 //Subfunction
-void Manager::next_step(dat::base::Sensor* sensor){
+void Manager::next_correction_step(){
   //---------------------------
 
-  switch(step){
-    case rad::detection::cloud::WAIT_VALIDATION:{
-      rad_cloud_detection->validate_bbox(sensor);
+  switch(correction_step){
+    case rad::detection::WAIT_VALIDATION:{
+      //rad_cloud_detection->validate_bbox(sensor);
       break;
     }
-    case rad::detection::cloud::PROCESSING:{
-      this->step = rad::detection::cloud::WAIT_VALIDATION;
+    case rad::detection::PROCESSING:{
+      this->correction_step = rad::detection::WAIT_VALIDATION;
+      break;
+    }
+  }
+
+  //---------------------------
+}
+void Manager::next_calibration_step(){
+  //---------------------------
+
+  switch(calibration_step){
+    case rad::detection::WAIT_VALIDATION:{
+      //rad_cloud_detection->validate_bbox(sensor);
+      break;
+    }
+    case rad::detection::PROCESSING:{
+      this->calibration_step = rad::detection::WAIT_VALIDATION;
       break;
     }
   }

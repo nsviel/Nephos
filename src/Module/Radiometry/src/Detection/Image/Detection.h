@@ -10,6 +10,7 @@ namespace utl::media{class Image;}
 namespace rad::detection::image{class Glyph;}
 namespace rad::detection::image{class Circle;}
 namespace rad::detection::image{class Image;}
+namespace rad::detection::image{class Rectangle;}
 
 
 namespace rad::detection::image{
@@ -37,6 +38,7 @@ private:
   rad::detection::image::Glyph* rad_glyph;
   rad::detection::image::Circle* rad_circle;
   rad::detection::image::Image* rad_image;
+  rad::detection::image::Rectangle* rad_rectangle;
 
   bool thread_idle = true;
 };

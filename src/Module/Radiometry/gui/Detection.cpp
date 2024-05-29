@@ -25,10 +25,7 @@ Detection::~Detection(){}
 void Detection::draw_tab(){
   //---------------------------
 
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Parameter");
-
   this->detection_step();
-  this->detection_parameter();
 
   ImGui::BeginTable("Detection##table", 2);
   this->parameter_canny();
@@ -46,42 +43,44 @@ void Detection::draw_tab(){
 void Detection::detection_step(){
   //---------------------------
 
-  //Detection validation
-  int step = rad_detection->get_step();
-  if(step == rad::detection::cloud::WAIT_VALIDATION){
+  //Correction step
+  int correction_step = rad_detection->get_correction_step();
+  if(correction_step == rad::detection::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
-      //rad_detection->next_step();
+      rad_detection->next_correction_step();
     }
     ImGui::PopStyleColor(2);
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##calibration", ImVec2(120, 0))){
-      //rad_detection->next_step();
+      rad_detection->next_correction_step();
     }
     ImGui::PopStyleColor(2);
   }
-  ImGui::SameLine();
 
   //Calibration step
-  string step_str = rad_detection->get_step_str();
-  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "(%s)", step_str.c_str());
+  int calibration_step = rad_detection->get_calibration_step();
+  if(calibration_step == rad::detection::WAIT_VALIDATION){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+    if(ImGui::Button("Validate##calibration", ImVec2(120, 0))){
+      rad_detection->next_calibration_step();
+    }
+    ImGui::PopStyleColor(2);
+  }else{
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
+    if(ImGui::Button("Stop##calibration", ImVec2(120, 0))){
+      rad_detection->next_calibration_step();
+    }
+    ImGui::PopStyleColor(2);
+  }
 
   //---------------------------
-}
-void Detection::detection_parameter(){
-  //---------------------------
-
-  ImGui::SetNextItemWidth(120);
-  ImGui::SliderFloat("Sphere diameter", &rad_struct->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
-
-  //Pixel diviser
-  //ImGui::SetNextItemWidth(120);
-  //ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
-
-  //---------------------------
+  ImGui::Separator();
 }
 void Detection::parameter_canny(){
   //---------------------------
@@ -116,6 +115,10 @@ void Detection::parameter_hough(){
 
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Hough")){
+    //Pixel diviser
+    //ImGui::SetNextItemWidth(120);
+    //ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
+
     //Mode
     int& mode = rad_struct->detection.hough.mode;
     if(ImGui::RadioButton("Gradient", &mode, rad::hough::GRADIENT)){
@@ -168,6 +171,8 @@ void Detection::parameter_ransac(){
 
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Ransac")){
+    ImGui::SetNextItemWidth(120);
+    ImGui::SliderFloat("Sphere diameter", &rad_struct->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
     ImGui::SetNextItemWidth(120);
     ImGui::SliderInt("Num iteration", &rad_struct->detection.ransac.nb_iter, 1, 10000);
     ImGui::SetNextItemWidth(120);

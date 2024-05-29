@@ -23,7 +23,7 @@ Ransac::~Ransac(){}
 
 //Main function
 void Ransac::ransac_sphere(dat::base::Sensor* sensor){
-  //if(step != rad::detection::cloud::PROCESSING) return;
+  //if(step != rad::detection::PROCESSING) return;
   //---------------------------
 
   utl::base::Data* data = sensor->get_data();

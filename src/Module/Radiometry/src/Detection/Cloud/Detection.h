@@ -14,11 +14,6 @@ namespace utl::thread{class Pool;}
 
 namespace rad::detection::cloud{
 
-enum STEP{
-  WAIT_VALIDATION = 0,
-  PROCESSING = 1,
-};
-
 class Detection
 {
 public:

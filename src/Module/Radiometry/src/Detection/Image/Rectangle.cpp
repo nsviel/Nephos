@@ -36,6 +36,9 @@ void Rectangle::truc(cv::Mat& image){
   vector<vector<cv::Point>> contours;
   cv::findContours(image, contours, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE);
 
+  cv::Mat result;
+  rad_image->convert_into_rgba(image, result);
+  
   // Draw rectangles
   for(size_t i = 0; i < contours.size(); i++){
     if(is_rectangle(contours[i])){
@@ -43,17 +46,15 @@ void Rectangle::truc(cv::Mat& image){
     }
   }
 
-  // Display the result
-  cv::namedWindow("Detected Rectangles", cv::WINDOW_AUTOSIZE);
-  cv::imshow("Detected Rectangles", image);
 
-  cv::waitKey(0);
+  rad_image->convert_into_subimage(result);
+  rad_image->convert_into_utl_image(result, &rad_struct->detection.image);
 
   //---------------------------
 }
 
 //Subfunction
-bool is_rectangle(const vector<cv::Point>& contour){
+bool Rectangle::is_rectangle(const vector<cv::Point>& contour){
   const double minAspectRatio = 0.8;
   const double maxAspectRatio = 1.2;
   //---------------------------

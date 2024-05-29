@@ -12,6 +12,11 @@ namespace dat::base{class Sensor;}
 
 namespace rad::detection{
 
+enum Step{
+  WAIT_VALIDATION = 0,
+  PROCESSING = 1,
+};
+
 class Manager
 {
 public:
@@ -24,13 +29,13 @@ public:
   void loop();
 
   //Subfunction
-  void next_step(dat::base::Sensor* sensor);
+  void next_correction_step();
+  void next_calibration_step();
 
   inline rad::detection::image::Detection* get_image_detection(){return rad_image_detection;}
   inline rad::detection::cloud::Detection* get_cloud_detection(){return rad_cloud_detection;}
-
-  inline string get_step_str(){return map_step[step];}
-  inline int get_step(){return step;}
+  inline int get_correction_step(){return correction_step;}
+  inline int get_calibration_step(){return calibration_step;}
 
 private:
   dat::Graph* dat_graph;
@@ -38,8 +43,8 @@ private:
   rad::detection::image::Detection* rad_image_detection;
   rad::detection::cloud::Detection* rad_cloud_detection;
 
-  std::map<int, std::string> map_step;
-  int step = 0;
+  int correction_step = 0;
+  int calibration_step = 0;
 };
 
 }

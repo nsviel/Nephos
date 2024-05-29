@@ -16,6 +16,7 @@ Detection::Detection(rad::Node* node_radio){
   this->rad_image = new rad::detection::image::Image(node_radio);
   this->rad_glyph = new rad::detection::image::Glyph(node_radio);
   this->rad_circle = new rad::detection::image::Circle(node_radio);
+  this->rad_rectangle = new rad::detection::image::Rectangle(node_radio);
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
@@ -37,7 +38,11 @@ void Detection::start_thread(dat::base::Sensor* sensor, utl::media::Image* image
 void Detection::run_thread(dat::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
-  this->detect_circle_in_image(image);
+  cv::Mat cv_image;
+  rad_image->convert_into_cv_image(image, cv_image);
+  rad_circle->detect_circle(cv_image);
+  //rad_rectangle->detect_rectangle(cv_image);
+  //rad_glyph->draw_detected_sphere(sensor);
 
   //---------------------------
   this->thread_idle = true;
@@ -57,15 +62,12 @@ void Detection::wait_thread(){
 void Detection::detect_circle_in_image(utl::media::Image* image){
   //---------------------------
 
-  cv::Mat cv_image;
-  rad_image->convert_into_cv_image(image, cv_image);
-  rad_circle->detect_circle(cv_image);
-  //rad_glyph->draw_detected_sphere(sensor);
 
   //---------------------------
 }
 void Detection::detect_rectangle_in_image(utl::media::Image* image){
   //---------------------------
+
 
 
   //---------------------------
