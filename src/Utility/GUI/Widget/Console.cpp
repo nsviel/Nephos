@@ -14,7 +14,7 @@ Console::Console(){
 Console::~Console(){}
 
 //Main function
-void Console::draw_console(string title){
+void Console::draw_console(std::string title){
   //---------------------------
 
   // Reserve enough left-over height for 1 separator + 1 input text
@@ -99,7 +99,7 @@ void Console::add_log(const char* fmt, ...){
 
   //---------------------------
 }
-void Console::add_log(string& log){
+void Console::add_log(std::string& log){
   //---------------------------
 
   char* copy = ImStrdup(log.c_str());
@@ -107,7 +107,7 @@ void Console::add_log(string& log){
 
   //---------------------------
 }
-void Console::add_file(string prefix, string path){
+void Console::add_file(std::string prefix, std::string path){
   //---------------------------
 
   //Retrieve file content

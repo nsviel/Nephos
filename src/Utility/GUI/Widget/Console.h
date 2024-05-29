@@ -1,6 +1,10 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <imgui/core/imgui.h>
+#include <imgui/core/imgui_internal.h>
+#include <iostream>
+#include <fstream>
+#include <string>
 
 
 namespace utl::gui::widget{
@@ -16,9 +20,9 @@ public:
   //Main function
   void clear_log();
   void add_log(const char* fmt, ...);
-  void add_log(string& log);
-  void add_file(string prefixe, string path);
-  void draw_console(string title);
+  void add_log(std::string& log);
+  void add_file(std::string prefixe, std::string path);
+  void draw_console(std::string title);
   void draw_command_line();
   void ExecCommand(const char* command_line);
   int TextEditCallback(ImGuiInputTextCallbackData* data);
