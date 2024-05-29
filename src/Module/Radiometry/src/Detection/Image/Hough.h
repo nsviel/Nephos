@@ -21,14 +21,14 @@ public:
   void sphere_detection(cv::Mat& input, cv::Mat& output);
 
   //Subfunction
-  void preprocessing(cv::Mat& input, cv::Mat& output);
+  void compute_gray(cv::Mat& input, cv::Mat& output);
+  void compute_canny(cv::Mat& input, cv::Mat& output);
   void compute_hough_circle(cv::Mat& image);
-  void find_mode_parameter(int mode);
+  void find_hough_parameter(int mode);
 
 private:
   rad::Structure* rad_struct;
 
-  vector<rad::structure::Circle> vec_circle;
 };
 
 }

@@ -11,7 +11,7 @@ Hough::Hough(rad::Node* node_radio){
 
   this->rad_struct = node_radio->get_rad_struct();
 
-  this->find_mode_parameter(rad::hough::GRADIENT_ALT);
+  this->find_hough_parameter(rad::hough::GRADIENT_ALT);
 
   //---------------------------
 }
@@ -22,34 +22,35 @@ void Hough::sphere_detection(cv::Mat& input, cv::Mat& output){
   if(input.empty()) return;
   //------------------------
 
-  //Pre processing
-  vec_circle.clear();
-  this->preprocessing(input, output);
-
-  // Perform Hough Transform to detect lines
+  cv::Mat gray;
+  this->compute_gray(input, gray);
+  this->compute_canny(gray, output);
   this->compute_hough_circle(output);
-
-  //Store result
-  rad_struct->detection.vec_circle = vec_circle;
-  rad_struct->detection.nb_detection = vec_circle.size();
 
   //------------------------
 }
 
 //Subfunction
-void Hough::preprocessing(cv::Mat& input, cv::Mat& output){
+void Hough::compute_gray(cv::Mat& input, cv::Mat& output){
   //---------------------------
 
-  if(rad_struct->detection.canny.apply){
-    // Perform canny edge detection
-    int& thresh_lower = rad_struct->detection.canny.lower_threshold;
-    int& thresh_upper = rad_struct->detection.canny.upper_threshold;
-    cv::Canny(input, output, thresh_lower, thresh_upper);
-  }else{
-    // Convert the image to grayscale
-    cv::Mat gray_image;
-    cv::cvtColor(input, output, cv::COLOR_RGBA2GRAY);
+  // Convert the image to grayscale
+  cv::Mat gray_image;
+  cv::cvtColor(input, output, cv::COLOR_RGBA2GRAY);
+
+  //---------------------------
+}
+void Hough::compute_canny(cv::Mat& input, cv::Mat& output){
+  if(rad_struct->detection.canny.apply == false){
+    output = input;
+    return;
   }
+  //---------------------------
+
+  // Perform canny edge detection
+  int& thresh_lower = rad_struct->detection.canny.lower_threshold;
+  int& thresh_upper = rad_struct->detection.canny.upper_threshold;
+  cv::Canny(input, output, thresh_lower, thresh_upper);
 
   //---------------------------
 }
@@ -67,6 +68,7 @@ void Hough::compute_hough_circle(cv::Mat& image){
 
   cv::HoughCircles(image, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
 
+  vector<rad::structure::Circle> vec_circle;
   for(int i=0; i<circles.size(); i++){
     rad::structure::Circle circle;
     circle.center = glm::ivec2(circles[i][0], circles[i][1]);
@@ -74,9 +76,12 @@ void Hough::compute_hough_circle(cv::Mat& image){
     vec_circle.push_back(circle);
   }
 
+  rad_struct->detection.vec_circle = vec_circle;
+  rad_struct->detection.nb_detection = vec_circle.size();
+
   //---------------------------
 }
-void Hough::find_mode_parameter(int mode){
+void Hough::find_hough_parameter(int mode){
   //---------------------------
 
   switch(mode){

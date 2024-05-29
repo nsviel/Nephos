@@ -10,7 +10,6 @@ namespace utl::media{class Image;}
 namespace rad::detection::image{class Glyph;}
 namespace rad::detection::image{class Hough;}
 namespace rad::detection::image{class Image;}
-namespace rad::detection::image{class Canny;}
 
 
 namespace rad::detection::image{
@@ -38,7 +37,6 @@ private:
   rad::detection::image::Glyph* rad_glyph;
   rad::detection::image::Hough* rad_hough;
   rad::detection::image::Image* rad_image;
-  rad::detection::image::Canny* rad_canny;
 
   bool thread_idle = true;
 };

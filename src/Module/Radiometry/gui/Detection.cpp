@@ -119,11 +119,11 @@ void Detection::parameter_hough(){
     //Mode
     int& mode = rad_struct->detection.hough.mode;
     if(ImGui::RadioButton("Gradient", &mode, rad::hough::GRADIENT)){
-      rad_hough->find_mode_parameter(mode);
+      rad_hough->find_hough_parameter(mode);
     }
     ImGui::SameLine();
     if(ImGui::RadioButton("Gradient Alt", &mode, rad::hough::GRADIENT_ALT)){
-      rad_hough->find_mode_parameter(mode);
+      rad_hough->find_hough_parameter(mode);
     }
 
     //Lower threshold

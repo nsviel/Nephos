@@ -5,4 +5,3 @@
 #include <Radiometry/src/Detection/Image/Detection.h>
 #include <Radiometry/src/Detection/Image/Image.h>
 #include <Radiometry/src/Detection/Image/Rectangle.h>
-#include <Radiometry/src/Detection/Image/Canny.h>

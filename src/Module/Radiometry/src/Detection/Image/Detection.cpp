@@ -16,7 +16,6 @@ Detection::Detection(rad::Node* node_radio){
   this->rad_image = new rad::detection::image::Image(node_radio);
   this->rad_glyph = new rad::detection::image::Glyph(node_radio);
   this->rad_hough = new rad::detection::image::Hough(node_radio);
-  this->rad_canny = new rad::detection::image::Canny(node_radio);
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
@@ -62,8 +61,8 @@ void Detection::detect_circle_in_image(utl::media::Image* image){
 
   cv::Mat cv_image;
   rad_image->convert_into_cv_image(image, cv_image);
-  //rad_canny->apply_canny(cv_image);
-  //rad_hough->sphere_detection(cv_image, rad_struct->detection.cv_image);
+
+  rad_hough->sphere_detection(cv_image, rad_struct->detection.cv_image);
 
   //---------------------------
 }
