@@ -18,7 +18,7 @@ enum Mode{
 
 }
 
-namespace rad::structure{
+namespace rad::detection::structure{
 
 struct Hough{
   //---------------------------
@@ -33,6 +33,33 @@ struct Hough{
   int min_dist = 72;
   int min_radius = 5;
   int max_radius = 50;
+
+  //---------------------------
+};
+
+struct Canny{
+  //---------------------------
+
+  bool apply = false;
+  int lower_threshold = 50;
+  int upper_threshold = 150;
+
+  //---------------------------
+};
+
+struct Circle{
+  //---------------------------
+
+  int radius;
+  glm::ivec2 center;
+
+  //---------------------------
+};
+
+struct Bbox{
+  //---------------------------
+
+  float scale = 2;
 
   //---------------------------
 };

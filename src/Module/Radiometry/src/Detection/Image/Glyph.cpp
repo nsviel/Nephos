@@ -36,7 +36,7 @@ void Glyph::draw_detected_sphere(dat::base::Sensor* sensor){
   //---------------------------
 }
 void Glyph::draw_all_sphere_glyph(dat::base::Sensor* sensor){
-  vector<rad::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
+  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
   this->reset_all_sphere();
@@ -45,10 +45,10 @@ void Glyph::draw_all_sphere_glyph(dat::base::Sensor* sensor){
   //---------------------------
 }
 void Glyph::draw_best_sphere_glyph(dat::base::Sensor* sensor){
-  vector<rad::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
+  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
-  vector<rad::structure::Circle> best_circle;
+  vector<rad::detection::structure::Circle> best_circle;
   if(rad_struct->detection.vec_circle.size() > 0){
     best_circle.push_back(rad_struct->detection.vec_circle[0]);
   }
@@ -71,13 +71,13 @@ void Glyph::reset_all_sphere(){
 
   //---------------------------
 }
-void Glyph::draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::structure::Circle>& vec_circle){
+void Glyph::draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
 /*  vector<dat::glyph::object::Sphere*>& vec_glyph_sphere = rad_struct->detection.vec_glyph_sphere;
   //---------------------------
 
   for(int i=0; i<vec_circle.size(); i++){
     if(i >= vec_glyph_sphere.size()) return;
-    rad::structure::Circle& circle = vec_circle[i];
+    rad::detection::structure::Circle& circle = vec_circle[i];
 
     //Add sphere radius to the detected circle center
     vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);

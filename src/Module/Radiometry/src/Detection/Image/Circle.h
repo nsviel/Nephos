@@ -5,7 +5,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad::structure{class Circle;}
+namespace rad::detection::structure{class Circle;}
 namespace rad::detection::image{class Image;}
 
 

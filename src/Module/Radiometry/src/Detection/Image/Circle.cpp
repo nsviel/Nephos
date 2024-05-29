@@ -66,7 +66,7 @@ void Circle::draw_best_circle(cv::Mat& image){
   if(image.empty()) return;
   //------------------------
 
-  vector<rad::structure::Circle> vec_circle;
+  vector<rad::detection::structure::Circle> vec_circle;
   if(rad_struct->detection.vec_circle.size() > 0){
     vec_circle.push_back(rad_struct->detection.vec_circle[0]);
   }
@@ -96,9 +96,9 @@ void Circle::compute_hough_circle(cv::Mat& image){
 
   cv::HoughCircles(image, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
 
-  vector<rad::structure::Circle> vec_circle;
+  vector<rad::detection::structure::Circle> vec_circle;
   for(int i=0; i<circles.size(); i++){
-    rad::structure::Circle circle;
+    rad::detection::structure::Circle circle;
     circle.center = glm::ivec2(circles[i][0], circles[i][1]);
     circle.radius = circles[i][2];
     vec_circle.push_back(circle);

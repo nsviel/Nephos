@@ -103,12 +103,12 @@ void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
 }
 
 //Shape function
-void Image::draw_circle(cv::Mat& image, vector<rad::structure::Circle>& vec_circle){
+void Image::draw_circle(cv::Mat& image, vector<rad::detection::structure::Circle>& vec_circle){
   if(vec_circle.size() == 0) return;
   //------------------------
 
   for(size_t i=0; i<vec_circle.size(); i++){
-    rad::structure::Circle& circle = vec_circle[i];
+    rad::detection::structure::Circle& circle = vec_circle[i];
     cv::Point center(cvRound(circle.center.x), cvRound(circle.center.y));
     int radius = cvRound(circle.radius);
 
@@ -124,10 +124,10 @@ void Image::draw_circle(cv::Mat& image, vector<rad::structure::Circle>& vec_circ
 void Image::draw_bounding_box(cv::Mat& image){
   //------------------------
 
-  vector<rad::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
+  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   if(vec_circle.size() == 0) return;
 
-  rad::structure::Circle& circle = vec_circle[0];
+  rad::detection::structure::Circle& circle = vec_circle[0];
   rad_struct->detection.cv_center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
   rad_struct->detection.cv_radius = cvRound(circle.radius);
 

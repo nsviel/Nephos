@@ -5,7 +5,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad::structure{class Circle;}
+namespace rad::detection::structure{class Circle;}
 namespace dat::base{class Sensor;}
 
 
@@ -29,7 +29,7 @@ public:
   void convert_into_utl_image(cv::Mat& input, utl::media::Image* output);
 
   //Shape function
-  void draw_circle(cv::Mat& image, vector<rad::structure::Circle>& vec_circle);
+  void draw_circle(cv::Mat& image, vector<rad::detection::structure::Circle>& vec_circle);
   void draw_bounding_box(cv::Mat& image);
 
 private:
