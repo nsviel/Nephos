@@ -43,6 +43,7 @@ void Manager::loop(){
 
 //Subfunction
 void Manager::process_sphere_detection(){
+  if(rad_struct->model.chart.state_step == rad::detection::PROCESSING) return;
   //---------------------------
 
   rad_struct->model.sphere.state_step = rad::detection::PROCESSING;
@@ -51,6 +52,7 @@ void Manager::process_sphere_detection(){
   //---------------------------
 }
 void Manager::process_chart_detection(){
+  if(rad_struct->model.sphere.state_step == rad::detection::PROCESSING) return;
   //---------------------------
 
   rad_struct->model.chart.state_step = rad::detection::PROCESSING;

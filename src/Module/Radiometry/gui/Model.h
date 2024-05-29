@@ -28,11 +28,15 @@ public:
   void parameter_measure();
   void parameter_model();
 
-  //Plot function
+  //Sphere plot function
+  void plot_sphere();
   void plot_measure_IfR(float height);
   void plot_measure_IfIt(float height);
   void plot_model_heatmap(float height);
 
+  //Chart plot function
+  void plot_chart();
+  
 private:
   rad::model::sphere::Manager* rad_manager;
   rad::model::sphere::Measure* rad_measure;

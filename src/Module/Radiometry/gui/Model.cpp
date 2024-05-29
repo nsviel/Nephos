@@ -32,11 +32,14 @@ void Model::draw_tab(){
   ImGui::EndTable();
   ImGui::Separator();
 
-  //Plots
-  float height = ImGui::GetContentRegionAvail().y / 3-3.33;
-  this->plot_measure_IfR(height);
-  this->plot_measure_IfIt(height);
-  this->plot_model_heatmap(height);
+  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 39, 39, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(130, 130, 130, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(101, 101, 101, 255));
+  ImGui::BeginTabBar("devices_tab##4567");
+  this->plot_sphere();
+  this->plot_chart();
+  ImGui::EndTabBar();
+  ImGui::PopStyleColor(3);
 
   //---------------------------
 }
@@ -188,7 +191,22 @@ void Model::parameter_model(){
   //---------------------------
 }
 
-//Plot function
+//Sphere plot function
+void Model::plot_sphere(){
+  //---------------------------
+
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
+  if(ImGui::BeginTabItem("Sphere##measure_plot")){
+    float height = ImGui::GetContentRegionAvail().y / 3-3.33;
+    this->plot_measure_IfR(height);
+    this->plot_measure_IfIt(height);
+    this->plot_model_heatmap(height);
+
+    ImGui::EndTabItem();
+  }
+
+  //---------------------------
+}
 void Model::plot_measure_IfR(float height){
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
@@ -220,6 +238,21 @@ void Model::plot_model_heatmap(float height){
   bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &optim->axis_x, &optim->axis_y);
   if(need_update){
     rad_plot->update_plot_data();
+  }
+
+  //---------------------------
+}
+
+//Chart plot function
+void Model::plot_chart(){
+  //---------------------------
+
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
+  if(ImGui::BeginTabItem("Chart##measure_plot")){
+    float height = ImGui::GetContentRegionAvail().y / 3-3.33;
+
+
+    ImGui::EndTabItem();
   }
 
   //---------------------------
