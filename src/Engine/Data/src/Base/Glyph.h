@@ -21,17 +21,17 @@ public:
   ~Glyph();
 
 public:
-  //Main function
+  //Herited function
   virtual void init();
-  virtual void create(){}
   virtual void reset(){}
-  virtual void construct(){}
   virtual void remove();
-
-  //Subfunction
   virtual void update_data();
   virtual void update_pose();
   virtual void update_pose(dat::base::Entity* entity){}
+
+  //New function
+  virtual void create(){}
+  virtual void construct(){}
   virtual void update_glyph(){}
   virtual void update_glyph(dat::base::Entity* entity){}
   virtual void set_visibility(bool value);

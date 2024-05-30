@@ -15,14 +15,16 @@ namespace dat::base{
 struct Entity : public utl::base::Element{
   //---------------------------
 
+  //Function
   Entity(){}
   virtual ~Entity(){}
+
   virtual void init(){}
   virtual void reset(){}
   virtual void remove(){}
-  virtual void info(){}
   virtual void update_data(){}
   virtual void update_pose(){}
+
   virtual void set_visibility(bool value){data.is_visible = value;}
   virtual utl::base::Pose* get_pose(){return &pose;}
   virtual utl::base::Data* get_data(){return &data;}
@@ -34,11 +36,11 @@ struct Entity : public utl::base::Element{
   bool is_visible = true;
   std::string entity_type = "base";
   std::string icon = ICON_FA_FILE;
-  dat::base::Set* set_parent = nullptr;
 
   //Data
   utl::base::Pose pose;
   utl::base::Data data;
+  dat::base::Set* set_parent = nullptr;
   std::list<dat::base::Glyph*> list_glyph;
   std::list<utl::media::Image*> list_image;
 

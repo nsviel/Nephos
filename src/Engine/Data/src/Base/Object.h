@@ -31,15 +31,15 @@ public:
   Object(eng::Node* node_engine);
   ~Object();
 
-  //Main function
-  void clear_data();
+  //Herited function
+  void reset();
+  void remove();
   void update_data();
   void update_pose();
-  void update_glyph();
-  void remove() override;
-  void reset();
 
-  //Subfunction
+  //New function
+  void clear_data();
+  void update_glyph();
   void set_visibility(bool value);
   dat::base::Glyph* get_glyph(int type);
 
