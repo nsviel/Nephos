@@ -23,16 +23,18 @@ Node::Node(eng::Node* node_engine){
   //Child
   this->k4n_connection = new k4n::capture::Connection(this);
 
+  //Importer
+  ldr::io::Importer* ldr_importer = node_loader->get_ldr_importer();
+  ldr_importer->insert_importer(new k4n::playback::Importer(this));
+
   //---------------------------
 }
 Node::~Node(){}
 
 //Main function
 void Node::init(){
-  ldr::io::Importer* ldr_importer = node_loader->get_ldr_importer();
   //---------------------------
 
-  ldr_importer->insert_importer(new k4n::playback::Importer(this));
   k4n_connection->start_thread();
 
   //---------------------------
@@ -44,7 +46,12 @@ void Node::clean(){
 
   //---------------------------
 }
+void Node::loop(){
+  //---------------------------
 
+  k4n_connection->manage_connected_device();
 
+  //---------------------------
+}
 
 }

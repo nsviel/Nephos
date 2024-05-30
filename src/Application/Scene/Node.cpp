@@ -29,8 +29,8 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_kinect->init();
   sce_init->init();
+  node_kinect->init();
 
   //---------------------------
 }

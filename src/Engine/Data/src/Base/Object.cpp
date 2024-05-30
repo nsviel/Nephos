@@ -88,7 +88,7 @@ void Object::remove(){
   //Remove glyph data
   for(int i=0; i<list_glyph.size(); i++){
     dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->clear();
+    glyph->remove();
   }
 
   //Remove this data

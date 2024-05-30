@@ -35,7 +35,7 @@ void Glyph::init(){
 
   //----------------------------
 }
-void Glyph::clear(){
+void Glyph::remove(){
   vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
 

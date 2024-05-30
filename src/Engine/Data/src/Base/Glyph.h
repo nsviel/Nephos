@@ -26,7 +26,7 @@ public:
   virtual void create(){}
   virtual void reset(){}
   virtual void construct(){}
-  virtual void clear();
+  virtual void remove();
 
   //Subfunction
   virtual void update_data();

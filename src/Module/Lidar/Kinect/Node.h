@@ -25,6 +25,7 @@ public:
   //Main function
   void init();
   void clean();
+  void loop();
 
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}

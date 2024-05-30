@@ -23,8 +23,8 @@ public:
   void stop_thread();
 
   //Subfunction
-  void create_sensor(int index);
   void manage_connected_device();
+  void create_sensor(int index);
   void manage_master();
 
 private:
@@ -33,6 +33,7 @@ private:
 
   std::thread thread;
   bool thread_running = false;
+  bool flag = false;
   int current_nb_dev = 0;
 };
 

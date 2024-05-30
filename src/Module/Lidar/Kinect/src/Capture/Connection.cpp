@@ -16,6 +16,8 @@ Connection::Connection(k4n::Node* node_k4n){
   this->dat_set = node_data->get_data_set();
   this->dat_graph = node_data->get_dat_graph();
 
+  this->current_nb_dev = 0;
+
   //---------------------------
 }
 Connection::~Connection(){
@@ -45,11 +47,12 @@ void Connection::run_thread(){
   //Refresh connected sensors
   while(thread_running){
     //Get number of connected devices
+    //Slow operation so in a dedicated thread
     this->current_nb_dev = k4a_device_get_installed_count();
 
     //Action on changement
     if(current_nb_dev != nb_dev_old){
-      this->manage_connected_device();
+      this->flag = true;
       nb_dev_old = current_nb_dev;
     }
 
@@ -71,12 +74,28 @@ void Connection::stop_thread(){
 }
 
 //Subfunction
+void Connection::manage_connected_device(){
+  //Have to be called from main thread, connection change when flag up
+  if(flag == false) return;
+  dat::base::Set* set_graph = dat_graph->get_set_graph();
+  //---------------------------
+
+  //Suppress all present entities
+  dat_set->remove_all_entity(set_graph);
+
+  //Create required number of new devices
+  for(int i=0; i<current_nb_dev; i++){
+    this->create_sensor(i);
+  }
+
+  //---------------------------
+  this->flag = false;
+}
 void Connection::create_sensor(int index){
   //---------------------------
 /*
   //Associated master
-  this->close_master("Kinect");
-  k4n::dev::Master* master = get_or_create_capture_master("Capture");
+  k4n::dev::Master* master = get_or_create_capture_master("Kinect");
 
   //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
@@ -93,22 +112,6 @@ void Connection::create_sensor(int index){
 
 */
   //---------------------------
-}
-void Connection::manage_connected_device(){
-  //---------------------------
-/*
-  //Suppress all devices
-  k4n::dev::Master* master = get_or_create_capture_master("capture");
-  if(master == nullptr) return;
-  dat_set->remove_all_entity(master);
-
-  //Create required number of new devices
-  for(int i=0; i<current_nb_dev; i++){
-    this->create_sensor(i);
-  }
-
-  //---------------------------
-*/
 }
 void Connection::manage_master(){
 /*  dat::base::Set* set_scene = dat_graph->get_set_graph();
