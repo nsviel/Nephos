@@ -118,7 +118,7 @@ void Entity::entity_info(dat::base::Entity* entity){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Visibility"); ImGui::TableNextColumn();
   if(ImGui::Checkbox("##4555", &entity->is_visible)){
-    entity->set_visibility(entity->is_visible);
+    entity->visibility(entity->is_visible);
   }
 
   //Name

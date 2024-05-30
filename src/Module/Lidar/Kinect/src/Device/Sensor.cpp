@@ -94,12 +94,12 @@ void Sensor::remove(){
 
   //---------------------------
 }
-void Sensor::set_visibility(bool value){
+void Sensor::visibility(bool value){
   //---------------------------
 
   this->is_visible = value;
   object.data.is_visible = value;
-  object.set_visibility(value);
+  object.visibility(value);
 
   //---------------------------
 }

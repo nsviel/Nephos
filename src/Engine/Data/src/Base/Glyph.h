@@ -28,13 +28,13 @@ public:
   virtual void update_data();
   virtual void update_pose();
   virtual void update_pose(dat::base::Entity* entity){}
+  virtual void visibility(bool value);
 
   //New function
   virtual void create(){}
   virtual void construct(){}
   virtual void update_glyph(){}
   virtual void update_glyph(dat::base::Entity* entity){}
-  virtual void set_visibility(bool value);
 
   inline glm::vec4* get_color(){return &color;}
   inline std::string get_name(){return name;}

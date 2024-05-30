@@ -36,11 +36,11 @@ public:
   void remove();
   void update_data();
   void update_pose();
+  void visibility(bool value);
 
   //New function
   void clear_data();
   void update_glyph();
-  void set_visibility(bool value);
   dat::base::Glyph* get_glyph(int type);
 
 public:

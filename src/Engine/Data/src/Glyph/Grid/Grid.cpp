@@ -60,12 +60,12 @@ void Grid::update_pose(){
 
   //----------------------------
 }
-void Grid::set_visibility(bool value){
+void Grid::visibility(bool value){
   //---------------------------
 
-  mesh->set_visibility(value);
-  axis->set_visibility(value);
-  plane->set_visibility(value);
+  mesh->visibility(value);
+  axis->visibility(value);
+  plane->visibility(value);
 
   //---------------------------
 }

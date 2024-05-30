@@ -22,7 +22,7 @@ public:
   void construct();
   void update_data();
   void update_pose();
-  void set_visibility(bool value);
+  void visibility(bool value);
 
 private:
   dat::glyph::grid::Mesh* mesh;

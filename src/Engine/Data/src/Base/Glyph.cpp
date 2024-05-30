@@ -61,7 +61,7 @@ void Glyph::update_pose(){
 
   //----------------------------
 }
-void Glyph::set_visibility(bool value){
+void Glyph::visibility(bool value){
   //---------------------------
 
   this->is_visible = value;

@@ -114,7 +114,7 @@ void Object::reset(){
 }
 
 //Subfunction
-void Object::set_visibility(bool value){
+void Object::visibility(bool value){
   if(data.is_visible == value) return;
   //---------------------------
 
@@ -123,7 +123,7 @@ void Object::set_visibility(bool value){
 
   for(int i=0; i<list_glyph.size(); i++){
     dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->set_visibility(value);
+    glyph->visibility(value);
   }
 
   //---------------------------
