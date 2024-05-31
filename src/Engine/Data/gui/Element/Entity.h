@@ -3,7 +3,7 @@
 #include <string>
 
 namespace dat{class Node;}
-namespace dat{class Graph;}
+namespace dat{class Selection;}
 namespace dat{class Set;}
 namespace dat{class Entity;}
 namespace dat::base{class Entity;}
@@ -46,7 +46,7 @@ public:
 private:
   ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
-  dat::Graph* dat_graph;
+  dat::Selection* dat_selection;
   dat::Set* dat_set;
   dat::Entity* dat_entity;
 

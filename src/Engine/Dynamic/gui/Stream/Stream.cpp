@@ -18,7 +18,7 @@ Stream::Stream(dyn::Node* node_dynamic, bool* show_window){
   dat::Node* node_data = node_dynamic->get_node_data();
 
   this->node_engine = node_dynamic->get_node_engine();
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_selection = node_data->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
   this->gui_overlay = new dyn::gui::Overlay();
 
@@ -36,7 +36,7 @@ Stream::~Stream(){}
 
 //Main function
 void Stream::run_panel(){
-  dat::base::Set* set = dat_graph->get_selected_set();
+  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
   if(*show_window && set->list_entity.size() != 0){

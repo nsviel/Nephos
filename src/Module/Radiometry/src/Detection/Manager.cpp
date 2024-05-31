@@ -16,7 +16,7 @@ Manager::Manager(rad::Node* node_radio){
   this->rad_struct = node_radio->get_rad_struct();
   this->rad_image_detection = new rad::detection::image::Detection(node_radio);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(node_radio);
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_selection = node_data->get_dat_selection();
   this->ope_image = new ope::image::Manager();
 
   //---------------------------
@@ -25,7 +25,7 @@ Manager::~Manager(){}
 
 //Main function
 void Manager::loop(){
-  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
   if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){

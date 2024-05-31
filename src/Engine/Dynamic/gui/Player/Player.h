@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dat{class Graph;}
+namespace dat{class Selection;}
 namespace dat::base{class Set;}
 namespace dyn{class Node;}
 namespace dyn::gui{class Operation;}
@@ -33,7 +33,7 @@ public:
 
 private:
   dyn::gui::Operation* gui_operation;
-  dat::Graph* dat_graph;
+  dat::Selection* dat_selection;
 
   bool* show_window;
   string name;

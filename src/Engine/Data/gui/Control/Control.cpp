@@ -14,7 +14,7 @@ namespace dat::gui{
 Control::Control(dat::Node* node_data){
   //---------------------------
 
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_selection = node_data->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
   this->ope_operation = new ope::Operation();
   this->gui_wheel = node_data->get_gui_wheel();
@@ -39,17 +39,16 @@ void Control::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  dat::base::Set* set_main = dat_graph->get_set_main();
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      dat_graph->select_next_element();
+      dat_selection->select_next_element();
       break;
     }
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      dat::base::Set* set = dat_graph->get_selected_set();
+      dat::base::Set* set = dat_selection->get_selected_set();
       dat_set->remove_entity(set, set->active_entity);
       break;
     }
@@ -61,10 +60,9 @@ void Control::control_keyboard_translation(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  dat::base::Set* set_main = dat_graph->get_set_main();
   for(int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
     if(!io.MouseDown[1]){
-      utl::base::Element* element = dat_graph->get_selected_element();
+      utl::base::Element* element = dat_selection->get_selected_element();
 
       //Shift speed up
       float translation_qtt = 0.01;

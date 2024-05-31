@@ -12,7 +12,7 @@ Panel::Panel(rad::Node* node_radio, bool* show_window){
 
   dat::Node* node_data = node_radio->get_node_data();
 
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_selection = node_data->get_dat_selection();
   this->rad_struct = node_radio->get_rad_struct();
   this->gui_detection = new rad::gui::Detection(node_radio);
   this->gui_model = new rad::gui::Model(node_radio);
@@ -27,7 +27,7 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
   if(*show_window){

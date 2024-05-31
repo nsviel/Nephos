@@ -8,7 +8,7 @@
 namespace ldr{class Node;}
 namespace ldr::io{class Exporter;}
 namespace ldr::gui{class File;}
-namespace dat{class Graph;}
+namespace dat{class Selection;}
 
 
 namespace ldr::gui{
@@ -30,10 +30,10 @@ public:
   void item_operation();
   bool item_format(std::string format);
   void update_current();
-  
+
 private:
   ldr::io::Exporter* ldr_exporter;
-  dat::Graph* dat_graph;
+  dat::Selection* dat_selection;
 
   std::string name = "";
   bool* show_window;

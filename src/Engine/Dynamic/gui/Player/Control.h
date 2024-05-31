@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dat{class Graph;}
+namespace dat{class Selection;}
 namespace dyn{class Node;}
 namespace dyn::base{class Player;}
 
@@ -24,7 +24,7 @@ public:
   void control_keyboard(dyn::base::Player* player);
 
 private:
-  dat::Graph* dat_graph;
+  dat::Selection* dat_selection;
 };
 
 }

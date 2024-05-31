@@ -15,7 +15,7 @@ Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Naviga
 
   dat::Node* node_data = node_loader->get_node_data();
 
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_selection = node_data->get_dat_selection();
   this->ldr_exporter = node_loader->get_ldr_exporter();
 
   this->name = "Exporter";
@@ -23,7 +23,7 @@ Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Naviga
   this->with_bookmark = false;
   this->with_all_format = false;
   this->current_format = "ply";
-  
+
   //---------------------------
 }
 Exporter::~Exporter(){}
@@ -127,7 +127,7 @@ void Exporter::draw_header(){
   ImGui::Separator();
 }
 void Exporter::item_operation(){
-  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
   if(entity == nullptr) return;
   //---------------------------
 
@@ -147,7 +147,7 @@ bool Exporter::item_format(std::string format){
   //---------------------------
 }
 void Exporter::update_current(){
-  dat::base::Entity* entity = dat_graph->get_selected_entity();
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
   //Actualize current name

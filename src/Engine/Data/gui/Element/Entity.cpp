@@ -11,7 +11,7 @@ namespace dat::gui{
 Entity::Entity(dat::Node* node_data, bool* panel_show){
   //---------------------------
 
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_selection = node_data->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
   this->dat_entity = node_data->get_dat_entity();
   this->ope_location = new ope::attribut::Location();
@@ -76,7 +76,7 @@ void Entity::entity_button(dat::base::Entity* entity){
 
   //Suppression
   if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
-    dat::base::Set* set = dat_graph->get_selected_set();
+    dat::base::Set* set = dat_selection->get_selected_set();
     dat_set->remove_entity(set, entity);
     this->close_panel();
     return;

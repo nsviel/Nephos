@@ -14,6 +14,7 @@ Graph::Graph(dat::Node* node_data, bool* show_window){
   //---------------------------
 
   this->dat_graph = node_data->get_dat_graph();
+  this->dat_selection = node_data->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
   this->dat_struct = node_data->get_dat_struct();
   this->rnd_set = new dat::gui::Set(node_data, &show_panel_set);
@@ -150,7 +151,7 @@ int Graph::tree_set(dat::base::Set* set){
 
   //Set selection
   if(ImGui::IsItemClicked()){
-    dat_graph->select_element(set);
+    dat_selection->select_element(set);
   }
 
   //Bin button
@@ -220,7 +221,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
 
   // If entity clicked
   if(ImGui::IsItemClicked()){
-    dat_graph->select_element(entity);
+    dat_selection->select_element(entity);
   }
 
   // If entity double-clicked

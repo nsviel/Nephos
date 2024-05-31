@@ -14,7 +14,7 @@ Wheel::Wheel(dat::Node* node_data){
   //---------------------------
 
   this->node_engine = node_data->get_node_engine();
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_selection = node_data->get_dat_selection();
   this->ope_operation = new ope::Operation();
 
   this->mode = WHEEL_CAM_Z;
@@ -33,7 +33,7 @@ void Wheel::change_mode(){
   //---------------------------
 }
 void Wheel::make_action(float direction){
-  utl::base::Element* element = dat_graph->get_selected_element();
+  utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
   //Rotation quantity

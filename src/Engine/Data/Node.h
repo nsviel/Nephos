@@ -9,6 +9,7 @@ namespace dat{class Graph;}
 namespace dat{class Entity;}
 namespace dat{class Set;}
 namespace dat{class Glyph;}
+namespace dat{class Selection;}
 namespace dat{class Structure;}
 namespace dat::gui{class Graph;}
 namespace dat::gui{class Control;}
@@ -36,6 +37,7 @@ public:
   inline cam::Node* get_node_camera(){return node_camera;}
 
   inline dat::Graph* get_dat_graph(){return dat_graph;}
+  inline dat::Selection* get_dat_selection(){return dat_selection;}
   inline dat::Entity* get_dat_entity(){return dat_entity;}
   inline dat::Set* get_dat_set(){return dat_set;}
   inline dat::Glyph* get_dat_glyph(){return dat_glyph;}
@@ -55,6 +57,7 @@ private:
   dat::Entity* dat_entity;
   dat::Set* dat_set;
   dat::Glyph* dat_glyph;
+  dat::Selection* dat_selection;
   dat::gui::Graph* gui_graph;
   dat::gui::Control* gui_control;
   dat::gui::Wheel* gui_wheel;

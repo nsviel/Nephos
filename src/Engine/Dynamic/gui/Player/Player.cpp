@@ -13,7 +13,7 @@ Player::Player(dyn::Node* node_dynamic, bool* show_window){
 
   dat::Node* node_data = node_dynamic->get_node_data();
 
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_selection = node_data->get_dat_selection();
   this->gui_operation = new dyn::gui::Operation(node_dynamic);
 
   this->show_window = show_window;
@@ -25,7 +25,7 @@ Player::~Player(){}
 
 //Main function
 void Player::run_panel(){
-  dat::base::Set* set = dat_graph->get_selected_set();
+  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
   if(*show_window && set != nullptr && set->player != nullptr){

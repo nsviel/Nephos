@@ -4,7 +4,7 @@
 
 namespace k4n::dev{class Master;}
 namespace dat::base{class Entity;}
-namespace dat{class Graph;}
+namespace dat{class Selection;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::gui{class Detection;}
@@ -33,7 +33,7 @@ public:
   void tab_calibration(dat::base::Entity* entity);
 
 private:
-  dat::Graph* dat_graph;
+  dat::Selection* dat_selection;
   rad::Structure* rad_struct;
   rad::gui::Detection* gui_detection;
   rad::gui::Model* gui_model;

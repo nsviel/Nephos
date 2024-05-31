@@ -12,7 +12,7 @@ Control::Control(dyn::Node* node_dynamic){
 
   dat::Node* node_data = node_dynamic->get_node_data();
 
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_selection = node_data->get_dat_selection();
 
   //---------------------------
 }
@@ -20,7 +20,7 @@ Control::~Control(){}
 
 //Main function
 void Control::run_control(){
-  dat::base::Set* set = dat_graph->get_selected_set();
+  dat::base::Set* set = dat_selection->get_selected_set();
   if(set == nullptr) return;
   dyn::base::Player* player = set->player;
   //---------------------------

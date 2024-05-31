@@ -30,11 +30,8 @@ public:
   dat::base::Set* get_selected_set();
 
 private:
-  dat::Node* node_data;
   dat::Set* dat_set;
   dat::Structure* dat_struct;
-
-  std::vector<cam::Entity*> vec_camera;
 };
 
 }

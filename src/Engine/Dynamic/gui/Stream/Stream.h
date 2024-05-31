@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace dyn{class Node;}
-namespace dat{class Graph;}
+namespace dat{class Selection;}
 namespace eng{class Node;}
 namespace dat{class Set;}
 namespace rnd{class Stream;}
@@ -33,7 +33,7 @@ public:
 
 private:
   eng::Node* node_engine;
-  dat::Graph* dat_graph;
+  dat::Selection* dat_selection;
   dat::Set* dat_set;
   dyn::gui::Overlay* gui_overlay;
 
