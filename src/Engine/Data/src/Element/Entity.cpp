@@ -37,7 +37,8 @@ void Entity::init_entity(dat::base::Entity* entity){
   entity->UID = dat_struct->UID++;
   data->UID = dat_struct->UID++;
   this->update_pose(entity);
-  vk_engine->insert_data(data, pose);
+  this->update_data(entity);
+  this->update_glyph(entity);
 
   //---------------------------
 }
@@ -93,7 +94,6 @@ void Entity::update_data(dat::base::Entity* entity){
   //----------------------------
 
   vk_engine->insert_data(data, pose);
-  this->update_glyph(entity);
 
   //----------------------------
 }
