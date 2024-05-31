@@ -16,6 +16,7 @@ Data::Data(vk::structure::Vulkan* vk_struct){
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_uid = new vk::instance::UID(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
+  this->vk_type = new vk::binding::Type(vk_struct);
 
   //---------------------------
 }
@@ -33,22 +34,17 @@ void Data::insert_data(utl::base::Data* data, utl::base::Pose* pose){
 
   //Descriptor
   vk::structure::Descriptor_required descriptor;
-  descriptor.name = "mvp";
-  descriptor.size = sizeof(mat4);
-  descriptor.binding = 0;
-  descriptor.type = TYP_UNIFORM;
-  descriptor.stage = TYP_SHADER_VS;
+  vk_type->uniform_mvp(descriptor);
   vk_object->binding.vec_required_binding.push_back(descriptor);
 
   if(data->topology.type == utl::topology::POINT){
     vk::structure::Descriptor_required descriptor;
-    descriptor.name = "point_size";
-    descriptor.size = sizeof(int);
-    descriptor.binding = 1;
-    descriptor.type = TYP_UNIFORM;
-    descriptor.stage = TYP_SHADER_VS;
+    vk_type->uniform_point_size(descriptor);
     vk_object->binding.vec_required_binding.push_back(descriptor);
   }
+
+  say(vk_object->data->name);
+  say(vk_object->binding.vec_required_binding.size());
 
   //Apply adequat init functions
   this->check_data(vk_object);
