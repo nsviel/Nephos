@@ -5,6 +5,7 @@
 namespace cam{class Entity;}
 namespace dat{class Node;}
 namespace dat{class Set;}
+namespace dat{class Graph;}
 namespace dat{class Structure;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
@@ -30,6 +31,7 @@ public:
   dat::base::Set* get_selected_set();
 
 private:
+  dat::Graph* dat_graph;
   dat::Set* dat_set;
   dat::Structure* dat_struct;
 };

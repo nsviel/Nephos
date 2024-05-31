@@ -199,6 +199,8 @@ void Graph::tree_set_open(dat::base::Set* set, int& nb_row){
   //---------------------------
 }
 void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row){
+  bool entity_selected = (entity == dat_struct->selection);
+  bool entity_active = (entity == entity->set_parent->active_entity);
   //---------------------------
 
   nb_row++;
@@ -210,14 +212,24 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   flags |= ImGuiTreeNodeFlags_Leaf;
   flags |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
   flags |= ImGuiTreeNodeFlags_SpanFullWidth;
-  flags |= (entity == dat_struct->selection && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
+  flags |= (entity_selected  && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
   std::string icon = ICON_FA_FILE_O;
   std::string name = icon + "   " + entity->name;
+
+  /*if(entity_active){
+    ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.4f, 0.4f, 1.0f, 0.5f));
+    ImGui::PushStyleColor(ImGuiCol_HeaderHovered, ImVec4(0.4f, 0.4f, 1.0f, 0.5f));
+    ImGui::PushStyleColor(ImGuiCol_HeaderActive, ImVec4(0.4f, 0.4f, 1.0f, 0.5f));
+  }*/
 
   // Display leaf
   ImGui::TableNextRow();
   ImGui::TableNextColumn();
   ImGui::TreeNodeEx(name.c_str(), flags);
+
+  /*if(entity_active || entity_selected){
+    ImGui::PopStyleColor(3);
+  }*/
 
   // If entity clicked
   if(ImGui::IsItemClicked()){
