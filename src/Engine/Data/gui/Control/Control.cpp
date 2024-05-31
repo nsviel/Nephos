@@ -15,6 +15,7 @@ Control::Control(dat::Node* node_data){
   //---------------------------
 
   this->dat_graph = node_data->get_dat_graph();
+  this->dat_set = node_data->get_dat_set();
   this->ope_operation = new ope::Operation();
   this->gui_wheel = node_data->get_gui_wheel();
 
@@ -48,7 +49,8 @@ void Control::control_keyboard_oneAction(){
 
     //Suppr key - Delete selected
     if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      dat_graph->remove_selected_element();
+      dat::base::Set* set = dat_graph->get_selected_set();
+      dat_set->remove_entity(set, set->active_entity);
       break;
     }
   }

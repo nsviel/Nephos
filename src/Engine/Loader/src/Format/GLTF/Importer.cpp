@@ -17,7 +17,7 @@ Importer::Importer(){
 }
 Importer::~Importer(){}
 
-//Main load functions
+//Main function
 utl::media::File* Importer::import(utl::media::Path path){
   utl::file::Data* data = new utl::file::Data();
   //---------------------------

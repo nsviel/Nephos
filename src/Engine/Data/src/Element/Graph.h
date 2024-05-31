@@ -28,7 +28,6 @@ public:
 
   //Subfunction
   void select_element(utl::base::Element* element);
-  void remove_selected_element();
   void select_next_element();
   void assign_UID(utl::base::Element* element);
 

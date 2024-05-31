@@ -4,6 +4,7 @@ namespace dat{class Node;}
 namespace ope{class Operation;}
 namespace dat::gui{class Wheel;}
 namespace dat{class Graph;}
+namespace dat{class Set;}
 
 
 namespace dat::gui{
@@ -30,6 +31,7 @@ public:
 
 private:
   dat::Graph* dat_graph;
+  dat::Set* dat_set;
   ope::Operation* ope_operation;
   dat::gui::Wheel* gui_wheel;
 };

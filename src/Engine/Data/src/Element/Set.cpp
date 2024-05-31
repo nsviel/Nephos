@@ -135,7 +135,7 @@ dat::base::Set* Set::get_or_create_subset(dat::base::Set* set, std::string name)
 void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
   if(set == nullptr || entity == nullptr) return;
   //---------------------------
-  
+
   entity->set_parent = set;
   set->list_entity.push_back(entity);
   set->nb_entity++;
@@ -147,12 +147,6 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
   dat::Entity* dat_entity = node_data->get_dat_entity();
   if(entity == nullptr) return;
   //---------------------------
-
-  //If set locked, remove all
-  if(set->is_locked){
-    this->remove_all_entity(set);
-    return;
-  }
 
   // Check if the current set has the query entity
   for(int i=0; i<set->list_entity.size(); i++){

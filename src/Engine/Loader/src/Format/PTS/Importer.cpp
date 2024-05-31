@@ -22,7 +22,7 @@ Importer::Importer(){
 }
 Importer::~Importer(){}
 
-//Main load functions
+//Main function
 utl::media::File* Importer::import(utl::media::Path path){
   //---------------------------
 
@@ -102,7 +102,7 @@ utl::media::File* Importer::import(utl::media::Path path, int lmin, int lmax){
   return entity;
 }
 
-//Sub load functions
+//Subfunction
 void Importer::Loader_init(){
   //---------------------------
 
@@ -308,68 +308,7 @@ void Importer::Loader_data(utl::file::Data* data, int FILE_config){
   //---------------------------
 }
 
-//Main exporter functions
-bool Importer::Exporter(std::string path, dat::base::Object* object){
-  //---------------------------
-
-  //Create file
-  if(path.substr(path.find_last_of(".") + 1) != "pts") path.append(".pts");
-  std::ofstream file;
-  file.open(path);
-  if(!file){
-    std::cout<<"Error in creating file !";
-    return 0;
-  }
-
-  //Data : xyz (R) (rgb) (nxnynz)
-  std::vector<glm::vec3>& xyz = object->data.xyz;
-  std::vector<glm::vec3>& rgb = object->data.rgb;
-  std::vector<glm::vec3>& N = object->data.Nxyz;
-  std::vector<float>& Is = object->data.Is;
-
-  //Write in the file
-  int precision = 6;
-  file << xyz.size() << std::endl;
-  for(int i=0; i<xyz.size(); i++){
-    //Line start
-    file << std::fixed;
-
-    //Location
-    file << std::setprecision(precision) << xyz[i].x <<" "<< xyz[i].y <<" "<< xyz[i].z ;
-
-    //Intensity
-    if(object->data.Is.size() != 0){
-      if(export_IdataFormat == 0){
-        file << std::setprecision(precision) <<" "<< Is[i];
-      }
-      else if(export_IdataFormat == 1){
-        file << std::setprecision(0) <<" "<< int(Is[i]*255);
-      }
-      else if(export_IdataFormat == 2){
-        file << std::setprecision(0) <<" "<< int((Is[i]*4096)-2048);
-      }
-    }
-
-    //Color
-    if(object->data.rgb.size() != 0){
-      file << std::setprecision(0) <<" "<< rgb[i].x * 255 <<" "<< rgb[i].y * 255 <<" "<< rgb[i].z * 255;
-    }
-
-    //Normal
-    if(object->data.Nxyz.size() != 0){
-      file << std::setprecision(precision) <<" "<< N[i].x <<" "<< N[i].y <<" "<< N[i].z;
-    }
-
-    //line end
-    file << std::endl;
-  }
-
-  //---------------------------
-  file.close();
-  return true;
-}
-
-//Checking functions
+//Checking function
 bool Importer::check_header(std::string path){
   std::string line;
   std::ifstream FILE(path);

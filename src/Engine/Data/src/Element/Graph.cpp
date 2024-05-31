@@ -76,12 +76,6 @@ void Graph::select_element(utl::base::Element* element){
 
   //----------------------------
 }
-void Graph::remove_selected_element(){
-  //----------------------------
-
-
-  //----------------------------
-}
 void Graph::select_next_element(){
   utl::base::Element* element = dat_struct->selection;
   if(element == nullptr) return;

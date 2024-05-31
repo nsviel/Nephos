@@ -24,21 +24,19 @@ public:
   utl::media::File* import(utl::media::Path path);
   utl::media::File* import(utl::media::Path path, int lmin, int lmax);
 
-  bool Exporter(std::string path, dat::base::Object* object);
-
   inline void set_IdataFormat(int value){this->IdataFormat = value;}
   inline void set_retrievingIntensity(bool value){this->retrieve_I = value;}
   inline void set_retrievingColor(bool value){this->retrieve_rgb = value;}
   inline void set_retrievingNormal(bool value){this->retrieve_N = value;}
 
 private:
-  //Subfunctions
+  //Subfunction
   void Loader_init();
   void Loader_nbColumns();
   void Loader_configuration();
   void Loader_data(utl::file::Data* data_out, int FILE_config);
 
-  //Loader sub-functions
+  //Checking function
   bool check_header(std::string path);
   int check_configuration(std::string path);
   int check_size(std::string path, bool FILE_hasHeader);
