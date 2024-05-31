@@ -22,7 +22,6 @@ public:
 public:
   //Main functions
   utl::media::File* import(utl::media::Path path);
-  utl::media::File* import(utl::media::Path path, int lmin, int lmax);
 
   inline void set_IdataFormat(int value){this->IdataFormat = value;}
   inline void set_retrievingIntensity(bool value){this->retrieve_I = value;}
@@ -50,11 +49,10 @@ private:
   bool hasColor;
   bool hasIntensity;
   bool hasNormal;
-  bool retrieve_I, retrieve_rgb, retrieve_N;
   int config;
   int nbptMax;
   int FILE_size, FILE_config;
-  int IdataFormat, export_IdataFormat;
+  int IdataFormat;
 };
 
 }

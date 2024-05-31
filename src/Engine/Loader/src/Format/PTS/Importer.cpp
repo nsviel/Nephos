@@ -11,11 +11,7 @@ Importer::Importer(){
   //---------------------------
 
   this->nbptMax = 40000000;
-  this->retrieve_I = true;
-  this->retrieve_rgb = true;
-  this->retrieve_N = true;
   this->IdataFormat = 2;
-  this->export_IdataFormat = 2;
   this->format = "pts";
 
   //---------------------------
@@ -56,49 +52,6 @@ utl::media::File* Importer::import(utl::media::Path path){
   }
 
   //---------------------------
-  return entity;
-}
-utl::media::File* Importer::import(utl::media::Path path, int lmin, int lmax){
-  //---------------------------
-
-  utl::file::Data* entity = new utl::file::Data();
-  entity->name = utl::path::get_name_from_path(path.data);
-  entity->path = path;
-  entity->draw_type = utl::topology::POINT;
-
-  //Initialization
-  this->Loader_init();
-  bool FILE_hasHeader = check_header(path.data);
-  int FILE_config = check_configuration(path.data);
-  int FILE_size = check_size(path.data, FILE_hasHeader);
-
-  //Read file
-  int cpt = 0;
-  std::ifstream infile1(path.data);
-  while (std::getline(infile1, line))
-  {
-    if(cpt >= lmin && cpt < lmax){
-      //If line empty break the while
-      if(line.empty()){
-        break;
-      }
-
-      //Prevent from reading the header
-      if(FILE_hasHeader){
-        std::getline(infile1, line);
-        FILE_hasHeader = false;
-      }
-
-      //Retrieve data
-      if(endParameters && endHeader){
-        this->Loader_data(entity, FILE_config);
-      }
-    }
-    cpt++;
-  }
-
-  //---------------------------
-  entity->nb_element = cpt;
   return entity;
 }
 
