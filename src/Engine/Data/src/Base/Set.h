@@ -23,7 +23,6 @@ struct Set : public utl::base::Element{
   //Info
   std::string type = "set";
   std::string icon = ICON_FA_FOLDER;
-
   int nb_entity = 0;
   int nb_subset = 0;
 

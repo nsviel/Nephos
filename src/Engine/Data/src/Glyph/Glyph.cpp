@@ -46,16 +46,16 @@ void Glyph::create_glyph_world(){
 void Glyph::create_glyph_object(dat::base::Object* object){
   //---------------------------
 
-  this->create_glyph(object, new dat::glyph::object::Axis());
-  this->create_glyph(object, new dat::glyph::object::AABB());
-  this->create_glyph(object, new dat::glyph::object::Normal());
+  //this->create_glyph(object, new dat::glyph::object::Axis());
+  //this->create_glyph(object, new dat::glyph::object::AABB());
+  //this->create_glyph(object, new dat::glyph::object::Normal());
 
   //---------------------------
 }
 void Glyph::create_glyph_camera(cam::Entity* camera){
   //---------------------------
 
-  this->create_glyph(camera, new cam::glyph::Target(node_engine));
+  //this->create_glyph(camera, new cam::glyph::Target(node_engine));
 
   //---------------------------
 }

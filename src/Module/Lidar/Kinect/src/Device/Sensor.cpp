@@ -76,7 +76,7 @@ void Sensor::remove(){
   //Sensor related
   this->stop_thread();
   this->device.transformation.destroy();
-  dat_entity->remove_entity(&object);
+  dat_set->remove_entity(set_parent, &object);
 
   //Profiler related
   prf::Node* node_profiler = node_engine->get_node_profiler();

@@ -16,10 +16,6 @@ Grid::Grid(eng::Node* node_engine){
   this->dat_glyph = node_data->get_dat_glyph();
   this->dat_entity = node_data->get_dat_entity();
 
-  this->mesh = new dat::glyph::grid::Mesh(node_engine);
-  this->axis = new dat::glyph::grid::Axis(node_engine);
-  this->plane = new dat::glyph::grid::Plane(node_engine);
-
   this->name = "grid::main";
   this->nb_cell = 10;
   this->is_suppressible = false;
@@ -52,24 +48,7 @@ void Grid::construct(int nb_cell){
 
   //---------------------------
 }
-void Grid::update_data(){
-  //----------------------------
 
-  dat_entity->update_data(mesh);
-  dat_entity->update_data(axis);
-  dat_entity->update_data(plane);
-
-  //----------------------------
-}
-void Grid::visibility(bool value){
-  //---------------------------
-
-  mesh->visibility(value);
-  axis->visibility(value);
-  plane->visibility(value);
-
-  //---------------------------
-}
 
 
 }
