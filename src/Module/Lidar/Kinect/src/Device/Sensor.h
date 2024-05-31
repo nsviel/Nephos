@@ -41,7 +41,7 @@ public:
   void init();
   void reset();
   void update_pose();
-  void remove();
+  void clean();
   vec3 convert_depth_2d_to_3d(ivec2 point_2d);
 
   //Thread function

@@ -68,16 +68,16 @@ void Sensor::update_pose(){
 
   //----------------------------
 }
-void Sensor::remove(){
-  if(profiler == nullptr) return;
+void Sensor::clean(){
   //---------------------------
-
+sayHello();
   //Sensor related
   this->stop_thread();
   this->device.transformation.destroy();
   dat_set->remove_entity(set_parent, &object);
 
   //Profiler related
+  if(profiler == nullptr) return;
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   prf_manager->remove_profiler(profiler);

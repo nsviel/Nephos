@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.47937534"
-     inkscape:cx="376.53167"
-     inkscape:cy="382.78982"
+     inkscape:zoom="0.95875068"
+     inkscape:cx="641.98129"
+     inkscape:cy="988.26527"
      inkscape:window-width="1880"
      inkscape:window-height="1168"
      inkscape:window-x="40"
@@ -245,12 +245,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
          x="-119.23793"
          y="198.81206"
-         id="tspan31374">(base</tspan><tspan
-         sodipodi:role="line"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-         x="-119.23793"
-         y="205.8676"
-         id="tspan31376">real object)</tspan></text>
+         id="tspan31376">(PC / mesh)</tspan></text>
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-opacity:1"
        id="rect896-89-3"
@@ -680,10 +675,6 @@
        id="path30123" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m -163.9929,159.58854 92.4373,15.65176"
-       id="path2914" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m -69.540525,211.77443 -11.211237,29.62789"
        id="path3973" />
     <path
@@ -701,5 +692,9 @@
          x="-20.91861"
          y="259.65729"
          id="tspan7902-6-3">Sensor</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -98.307556,196.3236 16.500618,-0.55194"
+       id="path2767" />
   </g>
 </svg>

@@ -19,10 +19,10 @@ namespace dat::base{
   };
   }
 
-class Object : public dat::base::Entity
-{
-public:
-  //Constructor / Destructor
+struct Object : public dat::base::Entity{
+  //---------------------------
+
+  //Function
   Object(){
     //---------------------------
 
@@ -35,9 +35,11 @@ public:
 
     //---------------------------
   }
-  ~Object(){}
+  virtual ~Object(){}
 
-public:
+
+
+  //---------------------------
 };
 
 }

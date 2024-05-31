@@ -5,7 +5,7 @@
 
 namespace dat::base{
 
-struct Sensor : public dat::base::Entity{
+struct Sensor : public dat::base::Object{
   //---------------------------
 
   virtual glm::vec3 convert_depth_2d_to_3d(glm::ivec2 point){return glm::vec3(0);}

@@ -50,6 +50,7 @@ void Entity::remove_entity(dat::base::Entity* entity){
   utl::base::Data* data = entity->get_data();
   //----------------------------
 
+  entity->clean();
   vk_engine->remove_data(data);
 
   //Remove glyph data
