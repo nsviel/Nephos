@@ -25,7 +25,6 @@ public:
   inline int* get_size(){return &size;}
 
 private:
-  bool visibility;
   glm::vec4 color;
   int width;
   int size;

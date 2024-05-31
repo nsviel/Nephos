@@ -12,7 +12,6 @@ Axis::Axis(){
 
   this->name = "object::axis";
   this->is_permanent = true;
-  this->is_visible = true;
   this->type = dat::object::AXIS;
 
   //---------------------------
@@ -26,7 +25,7 @@ void Axis::create(){
   //Create glyph
   data.name = "object::axis::data";
   data.width = 3;
-  data.is_visible = is_visible;
+  data.is_visible = true;
   data.topology.type = utl::topology::LINE;
 
   this->construct();

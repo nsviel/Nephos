@@ -25,7 +25,7 @@ Entity::Entity(dat::Node* node_data, bool* panel_show){
 }
 Entity::~Entity(){}
 
-//Main function
+//Main functionf
 void Entity::run_panel(){
   //---------------------------
 
@@ -118,8 +118,9 @@ void Entity::entity_info(dat::base::Entity* entity){
   //Visibility
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Visibility"); ImGui::TableNextColumn();
-  if(ImGui::Checkbox("##4555", &entity->is_visible)){
-    dat_entity->visibility_entity(entity, entity->is_visible);
+  utl::base::Data* data = entity->get_data();
+  if(ImGui::Checkbox("##4555", &data->is_visible)){
+    dat_entity->visibility_entity(entity, data->is_visible);
   }
 
   //Name

@@ -86,14 +86,6 @@ void Sensor::remove(){
 
   //---------------------------
 }
-void Sensor::visibility(bool value){
-  //---------------------------
-
-  this->is_visible = value;
-  dat_entity->visibility_entity(&object, value);
-
-  //---------------------------
-}
 vec3 Sensor::convert_depth_2d_to_3d(ivec2 point_2d){
   //---------------------------
 

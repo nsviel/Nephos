@@ -22,7 +22,6 @@ public:
   void construct();
 
 private:
-  bool is_visible;
 };
 
 }

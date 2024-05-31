@@ -13,7 +13,6 @@ Normal::Normal(){
   this->name = "object::normal";
   this->width = 2;
   this->size = 1;
-  this->is_visible = false;
   this->color = glm::vec4(0.11f, 0.35f, 0.69f, 1.0f);
   this->need_update = true;
   this->type = dat::object::NORMAL;
@@ -29,7 +28,7 @@ void Normal::create(){
   //Create glyph
   data.name = "object::normal::data";
   data.width = width;
-  data.is_visible = is_visible;
+  data.is_visible = false;
   data.nb_data_max = 1000000;
   data.topology.type = utl::topology::LINE;
   data.unicolor = glm::vec4(0, 0.7, 0.7, 1);

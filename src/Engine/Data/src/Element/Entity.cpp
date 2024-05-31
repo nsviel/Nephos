@@ -77,7 +77,6 @@ void Entity::visibility_entity(dat::base::Entity* entity, bool value){
   utl::base::Data* data = entity->get_data();
   //---------------------------
 
-  entity->is_visible = value;
   data->is_visible = value;
 
   //Glyph visibility

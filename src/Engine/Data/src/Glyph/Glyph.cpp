@@ -52,9 +52,7 @@ void Glyph::create_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph){
 
   glyph->create();
   dat_entity->init_entity(glyph);
-
   entity->list_glyph.push_back(glyph);
-  dat_entity->update_glyph(entity);
 
   //---------------------------
 }

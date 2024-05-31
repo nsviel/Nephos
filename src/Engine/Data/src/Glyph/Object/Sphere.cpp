@@ -19,7 +19,6 @@ Sphere::Sphere(){
   //this->ope_transform = new ope::Transformation();
 
   this->name = "object::sphere";
-  this->is_visible = false;
   this->is_suppressible = false;
   this->is_movable = false;
   this->is_permanent = true;

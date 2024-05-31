@@ -13,7 +13,6 @@ Tree::Tree(){
 
   this->name = "tree";
   this->is_permanent = true;
-  this->is_visible = false;
   this->color = glm::vec4(1, 1, 1, 0.7);
   this->level = 6;
   this->type = dat::object::TREE;
@@ -29,7 +28,7 @@ void Tree::create(){
   //Create glyph
   data.name = "tree::data";
   data.width = 2;
-  data.is_visible = is_visible;
+  data.is_visible = false;
   data.topology.type = utl::topology::LINE;
   data.unicolor = color;
 
