@@ -39,10 +39,7 @@ public:
 public:
   //Main function
   void init();
-  void reset();
-  void update_pose();
   void clean();
-  vec3 convert_depth_2d_to_3d(ivec2 point_2d);
 
   //Thread function
   void start_thread();
@@ -51,14 +48,13 @@ public:
   void wait_thread();
 
   //Subfunction
+  vec3 convert_depth_2d_to_3d(ivec2 point_2d);
+  
   virtual void thread_init(){}
   virtual void thread_loop(){}
   virtual void thread_end(){}
   virtual void manage_reset(){}
 
-  inline dat::base::Object* get_object(){return &object;}
-  inline utl::base::Data* get_data(){return &object.data;}
-  inline utl::base::Pose* get_pose(){return &object.pose;}
   inline bool is_thread_running(){return thread_running;}
   inline bool is_thread_paused(){return thread_paused;}
 
@@ -68,7 +64,6 @@ public:
   k4n::processing::Image* k4n_image;
   k4n::utils::Configuration* k4n_config;
 
-  dat::base::Object object;
   k4n::device::Structure device;
   k4n::color::Structure color;
   k4n::depth::Structure depth;

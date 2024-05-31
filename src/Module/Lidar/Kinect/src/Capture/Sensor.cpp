@@ -140,8 +140,8 @@ void Sensor::manage_pause(){
 void Sensor::manage_reset(){
   //---------------------------
 
-  this->reset();
-  this->run_thread();
+  //this->reset();
+  //this->run_thread();
 
   //---------------------------
 }

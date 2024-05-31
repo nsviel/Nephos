@@ -24,8 +24,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.95875068"
-     inkscape:cx="641.98129"
-     inkscape:cy="988.26527"
+     inkscape:cx="780.70349"
+     inkscape:cy="919.42568"
      inkscape:window-width="1880"
      inkscape:window-height="1168"
      inkscape:window-x="40"
@@ -411,12 +411,12 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.213788;stroke-opacity:1"
          x="-109.07269"
          y="270.22055"
-         id="tspan25914-7">Capture</tspan><tspan
+         id="tspan7703">Sensor</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.213788;stroke-opacity:1"
          x="-109.07269"
          y="277.27609"
-         id="tspan7703">sensor</tspan></text>
+         id="tspan3149">capture</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.213788;stroke-opacity:1"
@@ -470,20 +470,20 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.213788;stroke-opacity:1"
-       x="-69.426788"
-       y="271.40027"
+       x="-71.038681"
+       y="269.53458"
        id="text1714-8-1-6"
        transform="scale(0.90220031,1.1084013)"><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.213788;stroke-opacity:1"
-         x="-69.426788"
-         y="271.40027"
-         id="tspan25914-410">Playback</tspan><tspan
+         x="-71.038681"
+         y="269.53458"
+         id="tspan8719">Sensor</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.213788;stroke-opacity:1"
-         x="-69.426788"
-         y="278.45581"
-         id="tspan8719">sensor</tspan></text>
+         x="-71.038681"
+         y="276.59012"
+         id="tspan3993">playback</tspan></text>
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.214124;stroke-opacity:1"
        id="rect896-17-4-42"

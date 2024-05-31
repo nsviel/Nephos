@@ -21,8 +21,8 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::media::Path path) : k4n::dev::Sensor(no
 
   //Transformation
   glm::mat4 mat = utl::transformation::find_transformation_from_file(path.transformation);
-  object.pose.model = mat;
-  object.pose.model_init = mat;
+  pose.model = mat;
+  pose.model_init = mat;
 
   //---------------------------
 }

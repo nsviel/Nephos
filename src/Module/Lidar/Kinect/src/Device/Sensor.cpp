@@ -23,8 +23,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->dat_entity = node_data->get_dat_entity();
   this->dat_set = node_data->get_dat_set();
 
-  this->name = "k4n::sensor";
-  this->entity_type = "k4n::device::Sensor";
+  this->name = "kinect::sensor";
   this->icon = ICON_FA_CAMERA_RETRO;
 
   //---------------------------
@@ -42,39 +41,21 @@ void Sensor::init(){
   prf_manager->add_profiler(profiler);
 
   //Object
-  object = dat::base::Object();
-  object.name = name;
-  object.data.name = "sensor::object::data";
-  object.data.topology.type = utl::topology::POINT;
-  object.data.nb_data_max = 10000000;
-  object.pose.model[2][3] = 1;
-  dat_entity->init_entity(&object);
+  data.name = "kinect::sensor::data";
+  data.topology.type = utl::topology::POINT;
+  data.nb_data_max = 10000000;
+  pose.model[2][3] = 1;
 
   this->start_thread();
 
   //---------------------------
 }
-void Sensor::reset(){
-  //---------------------------
-
-  //object.reset();
-
-  //---------------------------
-}
-void Sensor::update_pose(){
-  //----------------------------
-
-  //dat_entity->update_pose(&object);
-
-  //----------------------------
-}
 void Sensor::clean(){
   //---------------------------
-sayHello();
+
   //Sensor related
   this->stop_thread();
   this->device.transformation.destroy();
-  dat_set->remove_entity(set_parent, &object);
 
   //Profiler related
   if(profiler == nullptr) return;
@@ -84,33 +65,6 @@ sayHello();
   this->profiler = nullptr;
 
   //---------------------------
-}
-vec3 Sensor::convert_depth_2d_to_3d(ivec2 point_2d){
-  //---------------------------
-
-  uint16_t* buffer = reinterpret_cast<uint16_t*>(depth.data.buffer);
-  int width = depth.data.width;
-
-  //Retrieve image coordinates
-  int x = point_2d[0];
-  int y = point_2d[1];
-  k4a_float2_t source_xy = { static_cast<float>(x), static_cast<float>(y) };
-  float source_z = static_cast<float>(buffer[y * width + x]);
-
-  //Convert it into 3D coordinate
-  k4a_float3_t target_xyz;
-  bool success = device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
-  vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
-
-  //Apply transformation
-  float inv_scale = 1.0f / 1000.0f;
-  xyzw.x = -xyzw.x * inv_scale;
-  xyzw.y = -xyzw.y * inv_scale;
-  xyzw.z = xyzw.z * inv_scale;
-  vec3 pose = vec3(xyzw.z, xyzw.x, xyzw.y);
-
-  //---------------------------
-  return pose;
 }
 
 //Thread function
@@ -159,6 +113,33 @@ void Sensor::wait_thread(){
   //---------------------------
 }
 
+//Subfunction
+vec3 Sensor::convert_depth_2d_to_3d(ivec2 point_2d){
+  //---------------------------
 
+  uint16_t* buffer = reinterpret_cast<uint16_t*>(depth.data.buffer);
+  int width = depth.data.width;
+
+  //Retrieve image coordinates
+  int x = point_2d[0];
+  int y = point_2d[1];
+  k4a_float2_t source_xy = { static_cast<float>(x), static_cast<float>(y) };
+  float source_z = static_cast<float>(buffer[y * width + x]);
+
+  //Convert it into 3D coordinate
+  k4a_float3_t target_xyz;
+  bool success = device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
+  vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
+
+  //Apply transformation
+  float inv_scale = 1.0f / 1000.0f;
+  xyzw.x = -xyzw.x * inv_scale;
+  xyzw.y = -xyzw.y * inv_scale;
+  xyzw.z = xyzw.z * inv_scale;
+  vec3 pose = vec3(xyzw.z, xyzw.x, xyzw.y);
+
+  //---------------------------
+  return pose;
+}
 
 }
