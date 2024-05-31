@@ -2,6 +2,7 @@
 
 #include <glm/glm.hpp>
 #include <vector>
+#include <string>
 
 namespace cam{class Node;}
 namespace cam{class Projection;}
@@ -25,7 +26,7 @@ public:
   void control_mouse();
   void control_wheel(float value);
   void control_zoom(float value);
-
+std::string a = "hey";
   //Camera matrix
   glm::mat4 compute_camera_view();
   glm::mat4 compute_camera_proj();

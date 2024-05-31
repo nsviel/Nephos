@@ -9,8 +9,8 @@ namespace dat{
 Set::Set(dat::Node* node_data){
   //---------------------------
 
+  this->node_data = node_data;
   this->dat_struct = node_data->get_data_struct();
-  this->dat_entity = node_data->get_dat_entity();
 
   //---------------------------
 }
@@ -18,6 +18,7 @@ Set::~Set(){}
 
 //Set function
 void Set::update_set(dat::base::Set* set){
+  dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------
 
   // Process entities within the current set

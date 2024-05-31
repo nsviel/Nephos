@@ -15,8 +15,10 @@ Entity::Entity(dat::Node* node_data){
 
   eng::Node* node_engine = node_data->get_node_engine();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  cam::Node* node_camera = node_engine->get_node_camera();
 
   this->node_engine = node_engine;
+  this->cam_control = node_camera->get_cam_control();
   this->dat_glyph = node_data->get_data_glyph();
   this->dat_struct = node_data->get_data_struct();
   this->vk_engine = node_vulkan->get_vk_engine();
@@ -75,13 +77,10 @@ void Entity::update_glyph(dat::base::Entity* entity){
 void Entity::update_pose(dat::base::Entity* entity){
   utl::base::Pose* pose = entity->get_pose();
   //----------------------------
-/*
+
   //Update own pose
-  cam::Node* node_camera = node_engine->get_node_camera();sayHello();
-  if(node_camera == nullptr) return;
-  this->cam_control = node_camera->get_cam_control();
   cam_control->compute_camera_mvp(pose);
-*/
+
   //Update own glyph pose
   for(int i=0; i<entity->list_glyph.size(); i++){
     dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
