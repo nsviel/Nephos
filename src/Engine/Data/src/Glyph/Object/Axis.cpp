@@ -21,7 +21,7 @@ Axis::~Axis(){}
 //Main function
 void Axis::create(){
   //---------------------------
-
+sayHello();
   //Create glyph
   data.name = "object::axis::data";
   data.width = 3;
