@@ -16,7 +16,7 @@ Tree::Tree(){
   this->is_visible = false;
   this->color = glm::vec4(1, 1, 1, 0.7);
   this->level = 6;
-  this->type = dat::object::glyph::TREE;
+  this->type = dat::object::TREE;
 
   //---------------------------
 }

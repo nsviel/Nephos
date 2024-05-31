@@ -43,7 +43,7 @@ void Sensor::init(){
   prf_manager->add_profiler(profiler);
 
   //Object
-  object = dat::base::Object(node_engine);
+  object = dat::base::Object();
   object.name = name;
   object.data.name = "sensor::object::data";
   object.data.topology.type = utl::topology::POINT;
@@ -58,7 +58,7 @@ void Sensor::init(){
 void Sensor::reset(){
   //---------------------------
 
-  object.reset();
+  //object.reset();
 
   //---------------------------
 }

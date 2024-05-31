@@ -13,7 +13,7 @@ Axis::Axis(){
   this->name = "object::axis";
   this->is_permanent = true;
   this->is_visible = true;
-  this->type = dat::object::glyph::AXIS;
+  this->type = dat::object::AXIS;
 
   //---------------------------
 }

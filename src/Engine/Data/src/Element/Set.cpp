@@ -36,12 +36,13 @@ void Set::update_set(dat::base::Set* set){
   //---------------------------
 }
 void Set::reset(dat::base::Set* set){
+  dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------
 
   //Reset all associated entities
   for(int j=0; j<set->list_entity.size(); j++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), j);
-    entity->reset();
+    dat_entity->reset_entity(entity);
   }
 
   //Reset all associated sets

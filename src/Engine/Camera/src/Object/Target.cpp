@@ -29,7 +29,6 @@ void Target::create(){
   data.unicolor = glm::vec4(1, 1, 1, 0.2f);
 
   this->construct();
-  this->init();
 
   //---------------------------
 }

@@ -19,9 +19,6 @@ struct Entity : public utl::base::Element{
   Entity(){}
   virtual ~Entity(){}
 
-  virtual void init(){}
-  virtual void reset(){}
-
   virtual utl::base::Pose* get_pose(){return &pose;}
   virtual utl::base::Data* get_data(){return &data;}
 

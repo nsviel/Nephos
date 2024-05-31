@@ -11,7 +11,7 @@ AABB::AABB(){
   this->name = "object::AABB";
   this->is_permanent = true;
   this->color = glm::vec4(1.0f, 1.0f, 1.0f, 0.5f);
-  this->type = dat::object::glyph::AABB;
+  this->type = dat::object::AABB;
 
   //---------------------------
 }

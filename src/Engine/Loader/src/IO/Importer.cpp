@@ -130,7 +130,7 @@ bool Importer::check_file_path(std::string path){
 dat::base::Object* Importer::create_object(utl::file::Data* data){
   //---------------------------
 
-  dat::base::Object* object = new dat::base::Object(node_engine);
+  dat::base::Object* object = new dat::base::Object();
   object->name = data->name;
   object->data = *create_data(data);
 

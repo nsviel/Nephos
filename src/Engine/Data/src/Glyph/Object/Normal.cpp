@@ -16,7 +16,7 @@ Normal::Normal(){
   this->is_visible = false;
   this->color = glm::vec4(0.11f, 0.35f, 0.69f, 1.0f);
   this->need_update = true;
-  this->type = dat::object::glyph::NORMAL;
+  this->type = dat::object::NORMAL;
 
   //---------------------------
 }

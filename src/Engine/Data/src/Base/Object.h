@@ -1,5 +1,10 @@
 #pragma once
 
+#include <Engine/Namespace.h>
+#include <Camera/Namespace.h>
+#include <Vulkan/Namespace.h>
+#include <Data/Namespace.h>
+
 #include <Data/src/Base/Entity.h>
 #include <Utility/Base/Type/Data.h>
 #include <glm/glm.hpp>
@@ -13,7 +18,7 @@ namespace dat::base{class Glyph;}
 namespace dat{class Entity;}
 
 
-namespace dat::object::glyph{
+namespace dat::object{
 enum Glyph{
   AABB = 0,
   AXIS = 1,
@@ -28,19 +33,17 @@ class Object : public dat::base::Entity
 {
 public:
   //Constructor / Destructor
-  Object();
-  Object(eng::Node* node_engine);
-  ~Object();
+  Object(){
+    //---------------------------
 
-  //New function
-  void clear_data();
-  dat::base::Glyph* get_glyph(int type);
+    this->entity_type = "entity::Object";
+    this->data.unicolor = math::random();
+
+    //---------------------------
+  }
+  ~Object(){}
 
 public:
-  //Dependancy
-  vk::Node* node_vulkan;
-  cam::Node* node_camera = nullptr;
-  dat::Entity* dat_entity;
 };
 
 }

@@ -32,7 +32,7 @@ void Data::create_object(){
   if(vld_struct->data.object != nullptr) return;
   //---------------------------
 
-  vld_struct->data.object = new dat::base::Object(node_engine);
+  vld_struct->data.object = new dat::base::Object();
   vld_struct->data.object->name = "capture_1";
   vld_struct->data.object->data.name = "velodyne::capture::data";
   vld_struct->data.object->data.topology.type = utl::topology::POINT;
