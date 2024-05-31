@@ -23,7 +23,7 @@ void Glyph::insert_glyph(dat::base::Set* set, dat::base::Glyph* glyph){
   //---------------------------
 
   glyph->create();
-  dat_entity->init_entity(glyph);
+  this->create_glyph(glyph);
   dat_set->insert_entity(set, glyph);
 
   //---------------------------
@@ -32,7 +32,7 @@ void Glyph::insert_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph){
   //---------------------------
 
   glyph->create();
-  dat_entity->init_entity(glyph);
+  this->create_glyph(glyph);
   entity->list_glyph.push_back(glyph);
 
   //---------------------------
@@ -61,6 +61,7 @@ void Glyph::create_glyph(dat::base::Entity* entity){
 
     glyph->create();
     dat_entity->init_entity(glyph);
+    this->create_glyph(glyph);
   }
 
   //----------------------------

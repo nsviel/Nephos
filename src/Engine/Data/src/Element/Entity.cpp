@@ -38,12 +38,6 @@ void Entity::init_entity(dat::base::Entity* entity){
   this->update_pose(entity);
   this->update_data(entity);
 
-  //Init entity glyphes
-  for(int i=0; i<entity->list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
-    this->init_entity(glyph);
-  }
-
   //---------------------------
 }
 void Entity::remove_entity(dat::base::Entity* entity){
