@@ -34,6 +34,19 @@ void Renderpass::init_renderpass(){
 void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
+  vk::structure::Subpass* subpass = new vk::structure::Subpass();
+  subpass->target = "presentation";
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw(subpass);};
+
+  this->pipeline_triangle(subpass);
+
+  //---------------------------
+  renderpass->vec_subpass.push_back(subpass);
+}
+void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
+  //---------------------------
+
+  //Shader
   utl::shader::Info* shader_info = new utl::shader::Info();
   shader_info->title = "Canvas";
   shader_info->folder = "Canvas";
@@ -42,21 +55,18 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   shader_info->compile_shader = false;
   shader_info->with_depth_test = false;
 
-  vk::structure::Subpass* subpass = new vk::structure::Subpass();
-  subpass->target = "presentation";
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw(subpass);};
-
+  //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle";
   pipeline->definition.purpose = "presentation";
   pipeline->definition.topology = "triangle";
   pipeline->definition.shader = shader_info;
-  subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------
-  renderpass->vec_subpass.push_back(subpass);
+  subpass->vec_pipeline.push_back(pipeline);
 }
 
+//Draw function
 void Renderpass::draw(vk::structure::Subpass* subpass){
   //---------------------------
 

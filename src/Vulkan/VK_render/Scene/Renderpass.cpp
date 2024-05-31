@@ -56,12 +56,15 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
 void Renderpass::pipeline_line(vk::structure::Subpass* subpass){
   //---------------------------
 
+  //Shader
+  utl::shader::Info* shader_info = shader_scene->get_shader_info("Line");
+
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "line";
   pipeline->definition.topology = "line";
   pipeline->definition.purpose = "graphics";
-  pipeline->definition.shader = shader_scene->get_shader_info("Line");
+  pipeline->definition.shader = shader_info;
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
 
@@ -76,12 +79,15 @@ void Renderpass::pipeline_line(vk::structure::Subpass* subpass){
 void Renderpass::pipeline_point(vk::structure::Subpass* subpass){
   //---------------------------
 
+  //Shader
+  utl::shader::Info* shader_info = shader_scene->get_shader_info("Point");
+
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "point";
   pipeline->definition.topology = "point";
   pipeline->definition.purpose = "graphics";
-  pipeline->definition.shader = shader_scene->get_shader_info("Point");
+  pipeline->definition.shader = shader_info;
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
 
@@ -98,12 +104,15 @@ void Renderpass::pipeline_point(vk::structure::Subpass* subpass){
 void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
   //---------------------------
 
+  //Shader
+  utl::shader::Info* shader_info = shader_scene->get_shader_info("Triangle");
+
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle";
   pipeline->definition.topology = "triangle";
   pipeline->definition.purpose = "graphics";
-  pipeline->definition.shader = shader_scene->get_shader_info("Triangle");
+  pipeline->definition.shader = shader_info;
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
 

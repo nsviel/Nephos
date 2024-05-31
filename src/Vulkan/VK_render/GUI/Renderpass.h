@@ -22,7 +22,9 @@ public:
   //Main functions
   void init_renderpass();
   void create_subpass(vk::structure::Renderpass* renderpass);
-
+  void pipeline_triangle(vk::structure::Subpass* subpass);
+  
+  //Draw function
   void draw(vk::structure::Subpass* subpass);
 
 private:
