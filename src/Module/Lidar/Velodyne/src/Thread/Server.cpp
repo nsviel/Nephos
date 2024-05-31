@@ -121,8 +121,8 @@ void Server::update_object(utl::file::Data* data){
     }
   }
 
-  object->update_data();
-  object->update_glyph();
+  //object->update_data();
+  //object->update_glyph();
 
   //---------------------------
 }

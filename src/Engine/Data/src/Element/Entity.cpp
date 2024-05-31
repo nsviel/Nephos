@@ -50,5 +50,26 @@ void Entity::clear_entity(dat::base::Entity* entity){
 
   //----------------------------
 }
+void Entity::update_data(dat::base::Entity* entity){
+  utl::base::Data* data = entity->get_data();
+  utl::base::Pose* pose = entity->get_pose();
+  //----------------------------
+
+  vk_engine->insert_data(data, pose);
+
+  //----------------------------
+}
+void Entity::update_glyph(dat::base::Object* object){
+  //----------------------------
+
+  //Update own glyph data
+  for(int i=0; i<object->list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(object->list_glyph.begin(), i);
+    //glyph->update_glyph(glyph);
+    this->update_data(glyph);
+  }
+
+  //----------------------------
+}
 
 }

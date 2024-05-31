@@ -2,6 +2,7 @@
 
 #include <Data/src/Base/Glyph.h>
 
+namespace dat{class Entity;}
 namespace dat::glyph::grid{class Mesh;}
 namespace dat::glyph::grid{class Axis;}
 namespace dat::glyph::grid{class Plane;}
@@ -25,6 +26,7 @@ public:
   void visibility(bool value);
 
 private:
+  dat::Entity* dat_entity;
   dat::glyph::grid::Mesh* mesh;
   dat::glyph::grid::Axis* axis;
   dat::glyph::grid::Plane* plane;

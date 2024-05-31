@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace dat::base{
@@ -19,11 +20,14 @@ Object::Object(){
 Object::Object(eng::Node* node_engine){
   //---------------------------
 
-  this->entity_type = "entity::Object";
-  this->data.unicolor = math::random();
+  dat::Node* node_data = node_engine->get_node_data();
 
   this->node_vulkan = node_engine->get_node_vulkan();
   this->node_camera = node_engine->get_node_camera();
+  this->dat_entity = node_data->get_dat_entity();
+
+  this->entity_type = "entity::Object";
+  this->data.unicolor = math::random();
 
   //---------------------------
 }
@@ -39,17 +43,6 @@ void Object::clear_data(){
   this->data.Nxyz.clear();
   this->data.ts.clear();
   this->data.Is.clear();
-
-  //----------------------------
-  this->update_data();
-}
-void Object::update_data(){
-  if(node_camera == nullptr) cout<<"[error] Object "<<name<<" - engine not initialized"<<endl;
-  vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
-  //----------------------------
-
-  //Update own data
-  vk_engine->insert_data(&data, &pose);
 
   //----------------------------
 }
@@ -76,7 +69,7 @@ void Object::update_glyph(){
   for(int i=0; i<list_glyph.size(); i++){
     dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
     glyph->update_glyph(this);
-    glyph->update_data();
+    dat_entity->update_data(glyph);
   }
 
   //----------------------------

@@ -1,5 +1,6 @@
 #include "Grid.h"
 
+#include <Engine/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -9,14 +10,17 @@ namespace dat::glyph::grid{
 Grid::Grid(eng::Node* node_engine) : Glyph(node_engine){
   //---------------------------
 
+  dat::Node* node_data = node_engine->get_node_data();
+
+  this->dat_entity = node_data->get_dat_entity();
+  this->mesh = new dat::glyph::grid::Mesh(node_engine);
+  this->axis = new dat::glyph::grid::Axis(node_engine);
+  this->plane = new dat::glyph::grid::Plane(node_engine);
+
   this->name = "grid::main";
   this->nb_cell = 10;
   this->is_suppressible = false;
   this->is_movable = false;
-
-  this->mesh = new dat::glyph::grid::Mesh(node_engine);
-  this->axis = new dat::glyph::grid::Axis(node_engine);
-  this->plane = new dat::glyph::grid::Plane(node_engine);
 
   //---------------------------
 }
@@ -45,9 +49,9 @@ void Grid::construct(){
 void Grid::update_data(){
   //----------------------------
 
-  mesh->update_data();
-  axis->update_data();
-  plane->update_data();
+  dat_entity->update_data(mesh);
+  dat_entity->update_data(axis);
+  dat_entity->update_data(plane);
 
   //----------------------------
 }

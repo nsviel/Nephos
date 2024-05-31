@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace dat{class Entity;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dat::base{class Sensor;}
@@ -37,6 +38,7 @@ public:
   void update_object(dat::base::Sensor* sensor);
 
 private:
+  dat::Entity* dat_entity;
   dyn::Structure* dyn_struct;
   ope::Voxelizer* ope_voxelizer;
   ope::Triangulation* ope_trianguler;

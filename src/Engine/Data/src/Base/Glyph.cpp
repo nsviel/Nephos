@@ -45,14 +45,6 @@ void Glyph::remove(){
 }
 
 //Subfunction
-void Glyph::update_data(){
-  vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
-  //----------------------------
-
-  vk_engine->insert_data(&data, &pose);
-
-  //----------------------------
-}
 void Glyph::update_pose(){
   cam::Control* cam_control = node_camera->get_cam_control();
   //----------------------------

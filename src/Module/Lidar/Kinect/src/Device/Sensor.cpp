@@ -69,14 +69,6 @@ void Sensor::update_pose(){
 
   //----------------------------
 }
-void Sensor::update_data(){
-  //----------------------------
-
-  object.update_data();
-  object.update_glyph();
-
-  //----------------------------
-}
 void Sensor::remove(){
   if(profiler == nullptr) return;
   //---------------------------

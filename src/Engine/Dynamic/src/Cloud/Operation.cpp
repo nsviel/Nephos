@@ -16,7 +16,9 @@ Operation::Operation(dyn::Node* node_dynamic){
 
   eng::Node* node_engine = node_dynamic->get_node_engine();
   rad::Node* node_radio = node_dynamic->get_node_radio();
+  dat::Node* node_data = node_engine->get_node_data();
 
+  this->dat_entity = node_data->get_dat_entity();
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->ope_voxelizer = new ope::Voxelizer();
   this->ope_trianguler = new ope::Triangulation();
@@ -114,7 +116,8 @@ void Operation::triangularize_object(dat::base::Sensor* sensor){
 void Operation::update_object(dat::base::Sensor* sensor){
   //---------------------------
 
-  sensor->update_data();
+  dat_entity->update_data(sensor);
+  //dat_entity->update_glyph(sensor->get_object());
 
   //---------------------------
 }

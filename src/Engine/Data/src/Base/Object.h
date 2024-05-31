@@ -10,6 +10,7 @@ namespace vk{class Node;}
 namespace eng{class Node;}
 namespace cam{class Node;}
 namespace dat::base{class Glyph;}
+namespace dat{class Entity;}
 
 
 namespace dat::object::glyph{
@@ -34,7 +35,6 @@ public:
   //Herited function
   void reset();
   void remove();
-  void update_data();
   void update_pose();
   void visibility(bool value);
 
@@ -47,6 +47,7 @@ public:
   //Dependancy
   vk::Node* node_vulkan;
   cam::Node* node_camera = nullptr;
+  dat::Entity* dat_entity;
 };
 
 }

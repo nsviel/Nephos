@@ -230,7 +230,7 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
 
     if(update_color){
       dyn_operation->colorize_object(entity);
-      entity->update_data();
+      //dyn_operation->update_object(entity);
     }
 
   }

@@ -6,6 +6,7 @@ namespace dat{class Node;}
 namespace dat{class Glyph;}
 namespace dat{class Structure;}
 namespace dat::base{class Entity;}
+namespace dat::base{class Object;}
 namespace vk::main{class Engine;}
 namespace eng{class Node;}
 namespace sce{class Operation;}
@@ -26,6 +27,8 @@ public:
   //Main function
   void init_entity(dat::base::Entity* entity);
   void clear_entity(dat::base::Entity* entity);
+  void update_data(dat::base::Entity* entity);
+  void update_glyph(dat::base::Object* object);
 
 private:
   eng::Node* node_engine;

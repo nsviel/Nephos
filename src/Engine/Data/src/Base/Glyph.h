@@ -25,7 +25,6 @@ public:
   virtual void init();
   virtual void reset(){}
   virtual void remove();
-  virtual void update_data();
   virtual void update_pose();
   virtual void update_pose(dat::base::Entity* entity){}
   virtual void visibility(bool value);

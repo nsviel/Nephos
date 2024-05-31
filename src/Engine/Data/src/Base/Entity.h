@@ -22,7 +22,6 @@ struct Entity : public utl::base::Element{
   virtual void init(){}
   virtual void reset(){}
   virtual void remove(){}
-  virtual void update_data(){}
   virtual void update_pose(){}
   virtual void visibility(bool value){data.is_visible = value;}
 
