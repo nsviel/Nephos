@@ -16,6 +16,7 @@ Renderpass::Renderpass(vk::structure::Vulkan* vk_struct){
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
   this->vk_drawer = new vk::draw::Drawer(vk_struct);
+  this->vk_type = new vk::binding::Type(vk_struct);
   this->shader_scene = new vk::render::scene::Shader(vk_struct);
 
   //---------------------------
@@ -53,12 +54,9 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
 
+  //Descriptor
   vk::structure::Descriptor_required descriptor;
-  descriptor.name = "mvp";
-  descriptor.size = sizeof(mat4);
-  descriptor.binding = 0;
-  descriptor.type = TYP_UNIFORM;
-  descriptor.stage = TYP_SHADER_VS;
+  descriptor = vk_type->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
   subpass->vec_pipeline.push_back(pipeline);
@@ -72,20 +70,10 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
 
-  descriptor = {};
-  descriptor.name = "mvp";
-  descriptor.size = sizeof(mat4);
-  descriptor.binding = 0;
-  descriptor.type = TYP_UNIFORM;
-  descriptor.stage = TYP_SHADER_VS;
+  //Descriptor
+  descriptor = vk_type->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
-
-  descriptor = {};
-  descriptor.name = "point_size";
-  descriptor.size = sizeof(int);
-  descriptor.binding = 1;
-  descriptor.type = TYP_UNIFORM;
-  descriptor.stage = TYP_SHADER_VS;
+  descriptor = vk_type->uniform_point_size();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
   subpass->vec_pipeline.push_back(pipeline);
@@ -99,12 +87,7 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
 
-  descriptor = {};
-  descriptor.name = "mvp";
-  descriptor.size = sizeof(mat4);
-  descriptor.binding = 0;
-  descriptor.type = TYP_UNIFORM;
-  descriptor.stage = TYP_SHADER_VS;
+  descriptor = vk_type->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
   subpass->vec_pipeline.push_back(pipeline);

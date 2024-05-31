@@ -18,9 +18,11 @@ public:
 
 public:
   //Main functions
-  void uniform_point_size(vk::structure::Descriptor_required& descriptor);
-  void uniform_mvp(vk::structure::Descriptor_required& descriptor);
-  void sampler_color(vk::structure::Descriptor_required& descriptor);
+  vk::structure::Descriptor_required uniform_point_size();
+  vk::structure::Descriptor_required uniform_mvp();
+  vk::structure::Descriptor_required uniform_edl();
+  vk::structure::Descriptor_required sampler_color();
+  vk::structure::Descriptor_required sampler_depth();
 
 private:
   vk::structure::Vulkan* vk_struct;

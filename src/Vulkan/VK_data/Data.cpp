@@ -33,13 +33,11 @@ void Data::insert_data(utl::base::Data* data, utl::base::Pose* pose){
   vk_object->UID = vk_uid->query_free_UID();
 
   //Descriptor
-  vk::structure::Descriptor_required descriptor;
-  vk_type->uniform_mvp(descriptor);
+  vk::structure::Descriptor_required descriptor = vk_type->uniform_mvp();
   vk_object->binding.vec_required_binding.push_back(descriptor);
 
   if(data->topology.type == utl::topology::POINT){
-    vk::structure::Descriptor_required descriptor;
-    vk_type->uniform_point_size(descriptor);
+    vk::structure::Descriptor_required descriptor = vk_type->uniform_point_size();
     vk_object->binding.vec_required_binding.push_back(descriptor);
   }
 
