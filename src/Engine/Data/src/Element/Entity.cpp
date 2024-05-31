@@ -37,7 +37,6 @@ void Entity::init_entity(dat::base::Entity* entity){
   data->UID = dat_struct->UID++;
   this->update_pose(entity);
   this->update_data(entity);
-  this->update_glyph(entity);
 
   //Init entity glyphes
   for(int i=0; i<entity->list_glyph.size(); i++){
@@ -78,15 +77,6 @@ void Entity::reset_entity(dat::base::Entity* entity){
 
   //----------------------------
 }
-void Entity::insert_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph){
-  //---------------------------
-
-  glyph->create();
-  this->init_entity(glyph);
-  entity->list_glyph.push_back(glyph);
-
-  //---------------------------
-}
 void Entity::visibility_entity(dat::base::Entity* entity, bool value){
   utl::base::Data* data = entity->get_data();
   //---------------------------
@@ -107,19 +97,6 @@ void Entity::update_data(dat::base::Entity* entity){
   //----------------------------
 
   vk_engine->insert_data(data, pose);
-
-  //----------------------------
-}
-void Entity::update_glyph(dat::base::Entity* entity){
-  //----------------------------
-
-  //Update own glyph data
-  for(int i=0; i<entity->list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
-    glyph->update_glyph(entity);
-    this->update_glyph(glyph);
-    this->update_data(glyph);
-  }
 
   //----------------------------
 }

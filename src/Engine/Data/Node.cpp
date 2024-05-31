@@ -23,6 +23,7 @@ Node::Node(eng::Node* node_engine){
   this->dat_set = new dat::Set(this);
   this->dat_graph = new dat::Graph(this);
   this->dat_entity = new dat::Entity(this);
+  this->dat_glyph = new dat::Glyph(this);
   this->gui_graph = new dat::gui::Graph(this, &dat_panel->is_open);
   this->gui_wheel = new dat::gui::Wheel(this);
   this->gui_control = new dat::gui::Control(this);

@@ -26,8 +26,9 @@ Manager::~Manager(){}
 //Main function
 void Manager::create_camera(){
   dat::Node* node_data = node_engine->get_node_data();
-  this->dat_graph = node_data->get_dat_graph();
-  this->dat_set = node_data->get_dat_set();
+  dat::Graph* dat_graph = node_data->get_dat_graph();
+  dat::Set* dat_set = node_data->get_dat_set();
+  dat::Glyph* dat_glyph = node_data->get_dat_glyph();
 
 
   dat::base::Set* set_scene = dat_graph->get_set_scene();
@@ -38,6 +39,8 @@ void Manager::create_camera(){
   camera->name = "camera_" + to_string(camera->ID);
   camera->is_suppressible = false;
   camera->is_movable = false;
+
+  dat_glyph->insert_glyph(camera, new cam::glyph::Target());
   dat_set->insert_entity(set_scene, camera);
 
   cam_struct->vec_camera.push_back(camera);

@@ -11,6 +11,7 @@ namespace dat{
 Graph::Graph(dat::Node* node_data){
   //---------------------------
 
+  this->node_data = node_data;
   this->dat_struct = node_data->get_dat_struct();
   this->dat_set = node_data->get_dat_set();
 
@@ -20,15 +21,16 @@ Graph::~Graph(){}
 
 //Main function
 void Graph::init(){
+  dat::Glyph* dat_glyph = node_data->get_dat_glyph();
   //---------------------------
 
   //Background permanent elements
   dat::base::Set* set_scene = dat_set->create_subset(&dat_struct->set_main, "Scene");
   set_scene->is_suppressible = false;
   set_scene->is_open = false;
-  
-  dat_set->insert_glyph(set_scene, new dat::glyph::grid::Grid());
-  dat_set->insert_glyph(set_scene, new dat::glyph::world::Axis());
+
+  dat_glyph->insert_glyph(set_scene, new dat::glyph::grid::Grid());
+  dat_glyph->insert_glyph(set_scene, new dat::glyph::world::Axis());
 
   //Engine active elements
   dat::base::Set* set_graph = dat_set->create_subset(&dat_struct->set_main, "Graph");

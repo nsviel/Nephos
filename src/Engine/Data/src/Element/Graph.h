@@ -41,6 +41,7 @@ public:
   dat::base::Set* get_set_scene();
 
 private:
+  dat::Node* node_data;
   dat::Set* dat_set;
   dat::Structure* dat_struct;
 

@@ -32,7 +32,6 @@ public:
   dat::base::Set* get_or_create_subset(dat::base::Set* set, std::string name);
 
   //Entity function
-  void insert_glyph(dat::base::Set* set, dat::base::Glyph* glyph);
   void insert_entity(dat::base::Set* set, dat::base::Entity* entity);
   void remove_entity(dat::base::Set* set, dat::base::Entity* entity);
   void remove_all_entity(dat::base::Set* set);
