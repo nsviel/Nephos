@@ -4,10 +4,10 @@
 
 namespace cam{class Node;}
 namespace dat{class Node;}
-namespace dat{class Glyph;}
 namespace dat{class Structure;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Object;}
+namespace dat::base{class Glyph;}
 namespace vk::main{class Engine;}
 namespace eng{class Node;}
 namespace sce{class Operation;}
@@ -40,7 +40,6 @@ private:
   cam::Node* node_camera;
   eng::Node* node_engine;
   vk::main::Engine* vk_engine;
-  dat::Glyph* dat_glyph;
   dat::Structure* dat_struct;
   cam::Control* cam_control;
 };

@@ -5,7 +5,6 @@
 namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace dat{class Glyph;}
 
 
 namespace rad::detection::cloud{
@@ -26,7 +25,6 @@ public:
   void draw_glyph(vec3 pose, float radius);
 
 private:
-  dat::Glyph* dat_glyph;
   rad::Structure* rad_struct;
 };
 

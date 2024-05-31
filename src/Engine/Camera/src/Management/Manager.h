@@ -3,7 +3,6 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-namespace dat{class Glyph;}
 namespace dat{class Graph;}
 namespace dat{class Set;}
 namespace eng{class Node;}
@@ -29,7 +28,6 @@ public:
   void make_screenshot();
 
 private:
-  dat::Glyph* dat_glyph;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
   eng::Node* node_engine;

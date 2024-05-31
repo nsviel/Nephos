@@ -6,7 +6,6 @@ namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection::structure{class Circle;}
-namespace dat{class Glyph;}
 
 
 namespace rad::detection::image{
@@ -29,7 +28,6 @@ public:
   void draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle);
 
 private:
-  dat::Glyph* dat_glyph;
   rad::Structure* rad_struct;
 };
 

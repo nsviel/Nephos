@@ -12,7 +12,6 @@ Glyph::Glyph(rad::Node* node_radio){
   dat::Node* node_data = node_radio->get_node_data();
 
   this->rad_struct = node_radio->get_rad_struct();
-  this->dat_glyph = node_data->get_dat_glyph();
 
   //---------------------------
 }

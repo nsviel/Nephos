@@ -7,7 +7,6 @@
 namespace eng{class Node;}
 namespace dat{class Entity;}
 namespace dat{class Set;}
-namespace dat{class Glyph;}
 namespace dat{class Graph;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
@@ -85,7 +84,6 @@ protected:
   eng::Node* node_engine;
   dat::Entity* dat_entity;
   dat::Set* dat_set;
-  dat::Glyph* dat_glyph;
   dat::Graph* dat_graph;
 
   std::thread thread;

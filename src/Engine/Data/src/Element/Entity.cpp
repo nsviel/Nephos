@@ -19,7 +19,6 @@ Entity::Entity(dat::Node* node_data){
 
   this->node_engine = node_engine;
   this->cam_control = node_camera->get_cam_control();
-  this->dat_glyph = node_data->get_dat_glyph();
   this->dat_struct = node_data->get_dat_struct();
   this->vk_engine = node_vulkan->get_vk_engine();
 
