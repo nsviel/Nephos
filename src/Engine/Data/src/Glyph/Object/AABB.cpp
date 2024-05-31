@@ -31,8 +31,6 @@ void AABB::create(){
     data.rgba.push_back(color);
   }
 
-  this->init();
-
   //---------------------------
 }
 void AABB::update_glyph(utl::base::Pose* pose){

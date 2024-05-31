@@ -27,14 +27,6 @@ Glyph::Glyph(eng::Node* node_engine){
 Glyph::~Glyph(){}
 
 //Main function
-void Glyph::init(){
-  dat::Entity* dat_entity = node_data->get_dat_entity();
-  //----------------------------
-
-  dat_entity->init_entity(this);
-
-  //----------------------------
-}
 void Glyph::remove(){
   vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------

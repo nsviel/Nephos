@@ -22,7 +22,6 @@ public:
 
 public:
   //Herited function
-  virtual void init();
   virtual void reset(){}
   virtual void remove();
   virtual void update_pose(dat::base::Entity* entity){}

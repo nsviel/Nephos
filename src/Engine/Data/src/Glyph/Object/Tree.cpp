@@ -33,8 +33,6 @@ void Tree::create(){
   data.topology.type = utl::topology::LINE;
   data.unicolor = color;
 
-  this->init();
-
   //---------------------------
 }
 void Tree::update_glyph(utl::base::Data* data){

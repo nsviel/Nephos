@@ -22,7 +22,6 @@ public:
   void create();
   void construct();
   void update_data();
-  void update_pose();
   void visibility(bool value);
 
 private:

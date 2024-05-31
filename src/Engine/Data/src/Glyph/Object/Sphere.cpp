@@ -41,7 +41,6 @@ void Sphere::create(){
   data.topology.type = utl::topology::TRIANGLE;
 
   this->construct(color);
-  this->init();
 
   //---------------------------
 }

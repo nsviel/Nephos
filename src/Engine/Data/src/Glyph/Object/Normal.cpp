@@ -33,9 +33,7 @@ void Normal::create(){
   data.nb_data_max = 1000000;
   data.topology.type = utl::topology::LINE;
   data.unicolor = glm::vec4(0, 0.7, 0.7, 1);
-
-  this->init();
-
+  
   //---------------------------
 }
 void Normal::update_pose(dat::base::Entity* entity){

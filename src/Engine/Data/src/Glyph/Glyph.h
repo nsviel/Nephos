@@ -38,6 +38,7 @@ public:
 private:
   eng::Node* node_engine;
   sce::Node* node_scene;
+  dat::Node* node_data;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
   cam::Control* cam_control;

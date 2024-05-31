@@ -13,6 +13,9 @@ Grid::Grid(eng::Node* node_engine) : Glyph(node_engine){
   dat::Node* node_data = node_engine->get_node_data();
 
   this->dat_entity = node_data->get_dat_entity();
+  this->list_glyph.push_back(new dat::glyph::grid::Mesh(node_engine));
+  this->list_glyph.push_back(new dat::glyph::grid::Axis(node_engine));
+  this->list_glyph.push_back(new dat::glyph::grid::Plane(node_engine));
   this->mesh = new dat::glyph::grid::Mesh(node_engine);
   this->axis = new dat::glyph::grid::Axis(node_engine);
   this->plane = new dat::glyph::grid::Plane(node_engine);
@@ -52,15 +55,6 @@ void Grid::update_data(){
   dat_entity->update_data(mesh);
   dat_entity->update_data(axis);
   dat_entity->update_data(plane);
-
-  //----------------------------
-}
-void Grid::update_pose(){
-  //----------------------------
-
-  dat_entity->update_pose(mesh);
-  dat_entity->update_pose(axis);
-  dat_entity->update_pose(plane);
 
   //----------------------------
 }

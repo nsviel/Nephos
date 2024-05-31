@@ -24,8 +24,6 @@ void Axis::create(){
   data.topology.type = utl::topology::LINE;
   data.unicolor = color;
 
-  this->init();
-
   //---------------------------
 }
 
