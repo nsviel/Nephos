@@ -25,27 +25,7 @@ Glyph::Glyph(dat::Node* node_data){
 Glyph::~Glyph(){}
 
 //Main function
-void Glyph::init(){
-  dat::base::Set* set_scene = dat_graph->get_set_scene();
-  //---------------------------
 
-  this->create_glyph(set_scene, new dat::glyph::grid::Grid());
-  this->create_glyph(set_scene, new dat::glyph::world::Axis());
-
-  //---------------------------
-}
-
-//Glyph creation
-void Glyph::create_glyph(dat::base::Set* set, dat::base::Glyph* glyph){
-  dat::Entity* dat_entity = node_data->get_dat_entity();
-  //---------------------------
-
-  glyph->create();
-  dat_entity->init_entity(glyph);
-  dat_set->insert_entity(set, glyph);
-
-  //---------------------------
-}
 void Glyph::create_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph){
   dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------

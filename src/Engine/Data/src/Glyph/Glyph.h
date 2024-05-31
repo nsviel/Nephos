@@ -24,10 +24,6 @@ public:
 
 public:
   //Main function
-  void init();
-
-  //Glyph creation
-  void create_glyph(dat::base::Set* set, dat::base::Glyph* glyph);
   void create_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph);
 
 private:

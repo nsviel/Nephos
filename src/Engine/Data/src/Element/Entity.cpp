@@ -40,6 +40,12 @@ void Entity::init_entity(dat::base::Entity* entity){
   this->update_data(entity);
   this->update_glyph(entity);
 
+  //Init entity glyphes
+  for(int i=0; i<entity->list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+    this->init_entity(glyph);
+  }
+
   //---------------------------
 }
 void Entity::remove_entity(dat::base::Entity* entity){
@@ -72,6 +78,15 @@ void Entity::reset_entity(dat::base::Entity* entity){
   pose->mvp = glm::mat4(1.0f);
 
   //----------------------------
+}
+void Entity::insert_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph){
+  //---------------------------
+
+  glyph->create();
+  this->init_entity(glyph);
+  entity->list_glyph.push_back(glyph);
+
+  //---------------------------
 }
 void Entity::visibility_entity(dat::base::Entity* entity, bool value){
   utl::base::Data* data = entity->get_data();

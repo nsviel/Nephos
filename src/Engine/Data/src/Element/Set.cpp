@@ -132,6 +132,16 @@ dat::base::Set* Set::get_or_create_subset(dat::base::Set* set, std::string name)
 }
 
 //Entity function
+void Set::insert_glyph(dat::base::Set* set, dat::base::Glyph* glyph){
+  dat::Entity* dat_entity = node_data->get_dat_entity();
+  //---------------------------
+
+  glyph->create();
+  dat_entity->init_entity(glyph);
+  this->insert_entity(set, glyph);
+
+  //---------------------------
+}
 void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
   if(set == nullptr || entity == nullptr) return;
   //---------------------------

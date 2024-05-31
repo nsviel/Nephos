@@ -153,6 +153,7 @@ void Renderpass::cmd_draw_triangle(vk::structure::Subpass* subpass){
     utl::base::Pose* pose = vk_object->pose;
 
     if(check_data(data, utl::topology::TRIANGLE)){
+
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->handle, pipeline, vk_object->binding.descriptor.set);
       vk_drawer->cmd_draw_data(subpass->command_buffer->handle, vk_object);

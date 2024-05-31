@@ -26,6 +26,13 @@ Grid::~Grid(){}
 void Grid::create(){
   //---------------------------
 
+  //Create
+  for(int i=0; i<list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
+    glyph->create();
+  }
+
+  //Contruct
   this->construct(nb_cell);
 
   //---------------------------
