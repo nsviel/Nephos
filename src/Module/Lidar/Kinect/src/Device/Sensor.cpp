@@ -76,7 +76,7 @@ void Sensor::remove(){
   //Sensor related
   this->stop_thread();
   this->device.transformation.destroy();
-  this->object.remove();
+  dat_entity->remove_entity(&object);
 
   //Profiler related
   prf::Node* node_profiler = node_engine->get_node_profiler();
@@ -90,8 +90,7 @@ void Sensor::visibility(bool value){
   //---------------------------
 
   this->is_visible = value;
-  object.data.is_visible = value;
-  object.visibility(value);
+  dat_entity->visibility_entity(&object, value);
 
   //---------------------------
 }

@@ -13,6 +13,7 @@ Entity::Entity(dat::Node* node_data, bool* panel_show){
 
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
+  this->dat_entity = node_data->get_dat_entity();
   this->ope_location = new ope::attribut::Location();
   this->ope_operation = new ope::Operation();
 
@@ -118,7 +119,7 @@ void Entity::entity_info(dat::base::Entity* entity){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Visibility"); ImGui::TableNextColumn();
   if(ImGui::Checkbox("##4555", &entity->is_visible)){
-    entity->visibility(entity->is_visible);
+    dat_entity->visibility_entity(entity, entity->is_visible);
   }
 
   //Name

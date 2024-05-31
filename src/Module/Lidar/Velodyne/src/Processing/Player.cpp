@@ -80,9 +80,9 @@ void Player::compute_visibility(){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(i >= vld_struct->player.idx_cur - vld_struct->player.idx_rng + 1 && i <= vld_struct->player.idx_cur){
-      entity->visibility(true);
+      //entity->visibility(true);
     }else{
-      entity->visibility(false);
+      //entity->visibility(false);
     }
   }
 

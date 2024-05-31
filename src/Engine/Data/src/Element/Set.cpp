@@ -53,11 +53,12 @@ void Set::reset(dat::base::Set* set){
   //---------------------------
 }
 void Set::visibility_set(dat::base::Set* set, bool value){
+  dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------
 
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-    entity->visibility(value);
+    dat_entity->visibility_entity(entity, value);
   }
 
   // Recursively call remove for each nested set
@@ -142,6 +143,7 @@ void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
   //---------------------------
 }
 void Set::remove(dat::base::Set* set, dat::base::Entity* entity){
+  dat::Entity* dat_entity = node_data->get_dat_entity();
   if(entity == nullptr) return;
   //---------------------------
 
@@ -162,7 +164,7 @@ void Set::remove(dat::base::Set* set, dat::base::Entity* entity){
       dat_struct->selection = nullptr;
       this->active_next_entity(set);
 
-      entity->remove();
+      dat_entity->remove_entity(entity);
       delete entity;
 
       return;
@@ -177,6 +179,7 @@ void Set::remove(dat::base::Set* set, dat::base::Entity* entity){
   //---------------------------
 }
 void Set::remove_all_entity(dat::base::Set* set){
+  dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------
 
   // Check if the current set has the query entity
@@ -187,7 +190,7 @@ void Set::remove_all_entity(dat::base::Set* set){
     it = set->list_entity.erase(it);
     set->nb_entity--;
 
-    entity->remove();
+    dat_entity->remove_entity(entity);
     delete entity;
   }
 

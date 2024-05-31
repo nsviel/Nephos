@@ -23,9 +23,7 @@ public:
 public:
   //Herited function
   virtual void reset(){}
-  virtual void remove();
   virtual void update_pose(dat::base::Entity* entity){}
-  virtual void visibility(bool value);
 
   //New function
   virtual void create(){}

@@ -5,6 +5,7 @@
 namespace dat{class Node;}
 namespace dat{class Graph;}
 namespace dat{class Set;}
+namespace dat{class Entity;}
 namespace dat::base{class Entity;}
 namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
@@ -47,6 +48,7 @@ private:
   ope::Operation* ope_operation;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
+  dat::Entity* dat_entity;
 
   dat::base::Entity* entity;
   std::string panel_name;

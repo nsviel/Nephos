@@ -21,8 +21,6 @@ struct Entity : public utl::base::Element{
 
   virtual void init(){}
   virtual void reset(){}
-  virtual void remove(){}
-  virtual void visibility(bool value){data.is_visible = value;}
 
   virtual utl::base::Pose* get_pose(){return &pose;}
   virtual utl::base::Data* get_data(){return &data;}

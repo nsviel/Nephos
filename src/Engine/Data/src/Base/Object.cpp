@@ -46,21 +46,6 @@ void Object::clear_data(){
 
   //----------------------------
 }
-void Object::remove(){
-  vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
-  //----------------------------
-
-  //Remove glyph data
-  for(int i=0; i<list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->remove();
-  }
-
-  //Remove this data
-  vk_engine->remove_data(&data);
-
-  //----------------------------
-}
 void Object::reset(){
   //---------------------------
 
@@ -79,20 +64,6 @@ void Object::reset(){
 }
 
 //Subfunction
-void Object::visibility(bool value){
-  if(data.is_visible == value) return;
-  //---------------------------
-
-  this->is_visible = value;
-  data.is_visible = value;
-
-  for(int i=0; i<list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->visibility(value);
-  }
-
-  //---------------------------
-}
 dat::base::Glyph* Object::get_glyph(int type){
   dat::base::Glyph* glyph = nullptr;
   //---------------------------

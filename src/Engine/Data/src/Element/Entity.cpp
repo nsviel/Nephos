@@ -46,13 +46,34 @@ void Entity::init_entity(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Entity::clear_entity(dat::base::Entity* entity){
+void Entity::remove_entity(dat::base::Entity* entity){
   utl::base::Data* data = entity->get_data();
   //----------------------------
 
   vk_engine->remove_data(data);
 
+  //Remove glyph data
+  for(int i=0; i<entity->list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+    this->remove_entity(glyph);
+  }
+
   //----------------------------
+}
+void Entity::visibility_entity(dat::base::Entity* entity, bool value){
+  utl::base::Data* data = entity->get_data();
+  //---------------------------
+
+  entity->is_visible = value;
+  data->is_visible = value;
+
+  //Glyph visibility
+  for(int i=0; i<entity->list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+    this->visibility_entity(glyph, value);
+  }
+
+  //---------------------------
 }
 void Entity::update_data(dat::base::Entity* entity){
   utl::base::Data* data = entity->get_data();
@@ -87,6 +108,7 @@ void Entity::update_pose(dat::base::Entity* entity){
   //Update own glyph pose
   for(int i=0; i<entity->list_glyph.size(); i++){
     dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+    glyph->update_pose(entity);
     this->update_pose(glyph);
   }
 

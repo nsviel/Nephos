@@ -27,24 +27,7 @@ Glyph::Glyph(eng::Node* node_engine){
 Glyph::~Glyph(){}
 
 //Main function
-void Glyph::remove(){
-  vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
-  //----------------------------
 
-  vk_engine->remove_data(&data);
-
-  //----------------------------
-}
-
-//Subfunction
-void Glyph::visibility(bool value){
-  //---------------------------
-
-  this->is_visible = value;
-  data.is_visible = value;
-
-  //---------------------------
-}
 
 
 }

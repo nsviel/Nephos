@@ -34,8 +34,6 @@ public:
 
   //Herited function
   void reset();
-  void remove();
-  void visibility(bool value);
 
   //New function
   void clear_data();
