@@ -35,12 +35,10 @@ public:
   //Herited function
   void reset();
   void remove();
-  void update_pose();
   void visibility(bool value);
 
   //New function
   void clear_data();
-  void update_glyph();
   dat::base::Glyph* get_glyph(int type);
 
 public:

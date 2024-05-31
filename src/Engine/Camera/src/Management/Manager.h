@@ -6,6 +6,7 @@
 namespace dat{class Glyph;}
 namespace dat{class Graph;}
 namespace dat{class Set;}
+namespace eng{class Node;}
 namespace cam{class Node;}
 namespace cam{class Entity;}
 namespace cam{class Structure;}
@@ -31,6 +32,7 @@ private:
   dat::Glyph* dat_glyph;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
+  eng::Node* node_engine;
   cam::Structure* cam_struct;
   cam::Control* cam_control;
   vk::image::Screenshot* vk_screenshot;

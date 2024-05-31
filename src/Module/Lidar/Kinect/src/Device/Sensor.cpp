@@ -65,7 +65,7 @@ void Sensor::reset(){
 void Sensor::update_pose(){
   //----------------------------
 
-  object.update_pose();
+  //dat_entity->update_pose(&object);
 
   //----------------------------
 }

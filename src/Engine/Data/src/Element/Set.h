@@ -4,6 +4,7 @@
 
 namespace dat{class Node;}
 namespace dat{class Structure;}
+namespace dat{class Entity;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
@@ -44,6 +45,7 @@ public:
 
 private:
   dat::Structure* dat_struct;
+  dat::Entity* dat_entity;
 };
 
 }

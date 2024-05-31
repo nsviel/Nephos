@@ -41,13 +41,13 @@ public:
   inline utl::thread::Pool* get_thread_pool(){return thread_pool;}
 
 private:
-  vk::Node* node_vulkan;
-  ldr::Node* node_loader;
-  dat::Node* node_data;
-  cam::Node* node_camera;
-  rnd::Node* node_render;
-  prf::Node* node_profiler;
-  dyn::Node* node_dynamic;
+  vk::Node* node_vulkan = nullptr;
+  ldr::Node* node_loader = nullptr;
+  dat::Node* node_data = nullptr;
+  cam::Node* node_camera = nullptr;
+  rnd::Node* node_render = nullptr;
+  prf::Node* node_profiler = nullptr;
+  dyn::Node* node_dynamic = nullptr;
   prf::graph::Tasker* tasker_main;
   utl::thread::Pool* thread_pool;
 };

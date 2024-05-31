@@ -45,14 +45,6 @@ void Glyph::remove(){
 }
 
 //Subfunction
-void Glyph::update_pose(){
-  cam::Control* cam_control = node_camera->get_cam_control();
-  //----------------------------
-
-  cam_control->compute_camera_mvp(&pose);
-
-  //----------------------------
-}
 void Glyph::visibility(bool value){
   //---------------------------
 

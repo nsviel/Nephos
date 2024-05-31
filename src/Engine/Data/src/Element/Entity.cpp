@@ -4,6 +4,7 @@
 #include <Operation/Namespace.h>
 #include <Data/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Camera/Namespace.h>
 
 
 namespace dat{
@@ -59,14 +60,32 @@ void Entity::update_data(dat::base::Entity* entity){
 
   //----------------------------
 }
-void Entity::update_glyph(dat::base::Object* object){
+void Entity::update_glyph(dat::base::Entity* entity){
   //----------------------------
 
   //Update own glyph data
-  for(int i=0; i<object->list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(object->list_glyph.begin(), i);
+  for(int i=0; i<entity->list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
     //glyph->update_glyph(glyph);
     this->update_data(glyph);
+  }
+
+  //----------------------------
+}
+void Entity::update_pose(dat::base::Entity* entity){
+  utl::base::Pose* pose = entity->get_pose();
+  //----------------------------
+/*
+  //Update own pose
+  cam::Node* node_camera = node_engine->get_node_camera();sayHello();
+  if(node_camera == nullptr) return;
+  this->cam_control = node_camera->get_cam_control();
+  cam_control->compute_camera_mvp(pose);
+*/
+  //Update own glyph pose
+  for(int i=0; i<entity->list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+    this->update_pose(glyph);
   }
 
   //----------------------------

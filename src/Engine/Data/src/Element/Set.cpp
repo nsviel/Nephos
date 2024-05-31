@@ -10,6 +10,7 @@ Set::Set(dat::Node* node_data){
   //---------------------------
 
   this->dat_struct = node_data->get_data_struct();
+  this->dat_entity = node_data->get_dat_entity();
 
   //---------------------------
 }
@@ -22,7 +23,7 @@ void Set::update_set(dat::base::Set* set){
   // Process entities within the current set
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-    entity->update_pose();
+    dat_entity->update_pose(entity);
   }
 
   // Recursively process nested sets

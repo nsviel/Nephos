@@ -58,9 +58,9 @@ void Grid::update_data(){
 void Grid::update_pose(){
   //----------------------------
 
-  mesh->update_pose();
-  axis->update_pose();
-  plane->update_pose();
+  dat_entity->update_pose(mesh);
+  dat_entity->update_pose(axis);
+  dat_entity->update_pose(plane);
 
   //----------------------------
 }

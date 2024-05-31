@@ -12,15 +12,12 @@ namespace cam{
 Manager::Manager(cam::Node* node_camera){
   //---------------------------
 
-  dat::Node* node_data = node_camera->get_node_data();
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
+  this->node_engine = node_camera->get_node_engine();
   this->vk_screenshot = node_vulkan->get_vk_screenshot();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_control = node_camera->get_cam_control();
-  this->dat_glyph = node_data->get_data_glyph();
-  this->dat_graph = node_data->get_dat_graph();
-  this->dat_set = node_data->get_data_set();
 
   //---------------------------
 }
@@ -28,6 +25,12 @@ Manager::~Manager(){}
 
 //Main function
 void Manager::create_camera(){
+  dat::Node* node_data = node_engine->get_node_data();
+  dat::Glyph* dat_glyph = node_data->get_data_glyph();
+  this->dat_graph = node_data->get_dat_graph();
+  this->dat_set = node_data->get_data_set();
+
+
   dat::base::Set* set_scene = dat_graph->get_set_scene();
   //---------------------------
 

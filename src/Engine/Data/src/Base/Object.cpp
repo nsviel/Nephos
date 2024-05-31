@@ -46,34 +46,6 @@ void Object::clear_data(){
 
   //----------------------------
 }
-void Object::update_pose(){
-  if(node_camera == nullptr) cout<<"[error] Object "<<name<<" - engine not initialized"<<endl;
-  cam::Control* cam_control = node_camera->get_cam_control();
-  //----------------------------
-
-  //Update own pose
-  cam_control->compute_camera_mvp(&pose);
-
-  //Update own glyph pose
-  for(int i=0; i<list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->update_pose(this);
-  }
-
-  //----------------------------
-}
-void Object::update_glyph(){
-  //----------------------------
-
-  //Update own glyph data
-  for(int i=0; i<list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->update_glyph(this);
-    dat_entity->update_data(glyph);
-  }
-
-  //----------------------------
-}
 void Object::remove(){
   vk::main::Engine* vk_engine = node_vulkan->get_vk_engine();
   //----------------------------
