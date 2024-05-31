@@ -4,7 +4,7 @@
 namespace dat::glyph::world{
 
 //Constructor / destructor
-Axis::Axis(eng::Node* node_engine) : Glyph(node_engine){
+Axis::Axis(){
   //---------------------------
 
   this->name = "world::axis";

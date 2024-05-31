@@ -17,8 +17,15 @@ class Glyph : public dat::base::Entity
 {
 public:
   //Constructor / Destructor
-  Glyph(eng::Node* node_engine);
-  ~Glyph();
+  Glyph(){
+    //---------------------------
+
+    this->is_selectable = false;
+    this->entity_type = "entity::Glyph";
+
+    //---------------------------
+  }
+  ~Glyph(){}
 
 public:
   //Herited function
@@ -38,12 +45,6 @@ public:
   inline int get_type(){return type;}
 
 protected:
-  //Dependancy
-  vk::Node* node_vulkan;
-  cam::Node* node_camera;
-  dat::Node* node_data;
-
-  //Child
   std::string path = "";
   glm::vec4 color = glm::vec4(1, 1, 1, 1);
   bool need_update = false;

@@ -46,22 +46,6 @@ void Object::clear_data(){
 
   //----------------------------
 }
-void Object::reset(){
-  //---------------------------
-
-  pose.min = glm::vec3(0.0f);
-  pose.max = glm::vec3(0.0f);
-  pose.root = glm::vec3(0.0f);
-  pose.COM = glm::vec3(0.0f);
-
-  pose.rotat = glm::mat4(1.0f);
-  pose.trans = glm::mat4(1.0f);
-  pose.scale = glm::mat4(1.0f);
-  pose.model = pose.model_init;
-  pose.mvp = glm::mat4(1.0f);
-
-  //---------------------------
-}
 
 //Subfunction
 dat::base::Glyph* Object::get_glyph(int type){

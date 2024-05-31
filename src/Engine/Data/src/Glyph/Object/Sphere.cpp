@@ -10,13 +10,13 @@
 namespace dat::glyph::object{
 
 //Constructor / destructor
-Sphere::Sphere(eng::Node* node_engine) : Glyph(node_engine){
+Sphere::Sphere(){
   //---------------------------
 
-  ldr::Node* node_loader = node_engine->get_node_loader();
+  //ldr::Node* node_loader = node_engine->get_node_loader();
 
-  this->ldr_loader = node_loader->get_ldr_importer();
-  this->ope_transform = new ope::Transformation();
+  //this->ldr_loader = node_loader->get_ldr_importer();
+  //this->ope_transform = new ope::Transformation();
 
   this->name = "object::sphere";
   this->is_visible = false;
@@ -51,8 +51,8 @@ void Sphere::update_pose(dat::base::Entity* entity){
     utl::base::Pose* entity_pose = entity->get_pose();
     pose.model = truc * entity_pose->model;
 
-    cam::Control* cam_control = node_camera->get_cam_control();
-    cam_control->compute_camera_mvp(&pose);
+    //cam::Control* cam_control = node_camera->get_cam_control();
+    //cam_control->compute_camera_mvp(&pose);
   }
 
   //---------------------------

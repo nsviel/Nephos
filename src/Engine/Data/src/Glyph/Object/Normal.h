@@ -9,7 +9,7 @@ class Normal : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor
-  Normal(eng::Node* node_engine);
+  Normal();
   ~Normal();
 
 public:

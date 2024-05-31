@@ -5,7 +5,7 @@
 
 namespace dat::glyph::object{
 
-AABB::AABB(eng::Node* node_engine) : Glyph(node_engine){
+AABB::AABB(){
   //---------------------------
 
   this->name = "object::AABB";

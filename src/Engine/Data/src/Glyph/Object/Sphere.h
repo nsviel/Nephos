@@ -12,7 +12,7 @@ class Sphere : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor
-  Sphere(eng::Node* node_engine);
+  Sphere();
   ~Sphere();
 
 public:

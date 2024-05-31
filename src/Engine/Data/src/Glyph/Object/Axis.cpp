@@ -7,7 +7,7 @@
 namespace dat::glyph::object{
 
 //Constructor / destructor
-Axis::Axis(eng::Node* node_engine) : Glyph(node_engine){
+Axis::Axis(){
   //---------------------------
 
   this->name = "object::axis";
@@ -35,12 +35,12 @@ void Axis::create(){
 }
 void Axis::update_pose(dat::base::Entity* entity){
   //---------------------------
-sayHello();
+
   utl::base::Pose* entity_pose = entity->get_pose();
   pose.model = entity_pose->model;
 
-  cam::Control* cam_control = node_camera->get_cam_control();
-  cam_control->compute_camera_mvp(&pose);
+  //cam::Control* cam_control = node_camera->get_cam_control();
+  //cam_control->compute_camera_mvp(&pose);
 
   //---------------------------
 }

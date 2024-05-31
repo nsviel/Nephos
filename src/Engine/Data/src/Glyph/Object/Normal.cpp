@@ -7,7 +7,7 @@
 namespace dat::glyph::object{
 
 //Constructor / destructor
-Normal::Normal(eng::Node* node_engine) : Glyph(node_engine){
+Normal::Normal(){
   //---------------------------
 
   this->name = "object::normal";
@@ -33,7 +33,7 @@ void Normal::create(){
   data.nb_data_max = 1000000;
   data.topology.type = utl::topology::LINE;
   data.unicolor = glm::vec4(0, 0.7, 0.7, 1);
-  
+
   //---------------------------
 }
 void Normal::update_pose(dat::base::Entity* entity){
@@ -42,8 +42,8 @@ void Normal::update_pose(dat::base::Entity* entity){
   utl::base::Pose* entity_pose = entity->get_pose();
   pose.model = entity_pose->model;
 
-  cam::Control* cam_control = node_camera->get_cam_control();
-  cam_control->compute_camera_mvp(&pose);
+  //cam::Control* cam_control = node_camera->get_cam_control();
+  //cam_control->compute_camera_mvp(&pose);
 
   //---------------------------
 }

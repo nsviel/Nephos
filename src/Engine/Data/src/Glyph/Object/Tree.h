@@ -10,7 +10,7 @@ class Tree : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor
-  Tree(eng::Node* node_engine);
+  Tree();
   ~Tree();
 
 public:

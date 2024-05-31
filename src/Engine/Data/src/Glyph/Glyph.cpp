@@ -39,16 +39,16 @@ void Glyph::create_glyph_world(){
   //---------------------------
 
   this->create_glyph(set_scene, new dat::glyph::grid::Grid(node_engine));
-  this->create_glyph(set_scene, new dat::glyph::world::Axis(node_engine));
+  this->create_glyph(set_scene, new dat::glyph::world::Axis());
 
   //---------------------------
 }
 void Glyph::create_glyph_object(dat::base::Object* object){
   //---------------------------
 
-  this->create_glyph(object, new dat::glyph::object::Axis(node_engine));
-  this->create_glyph(object, new dat::glyph::object::AABB(node_engine));
-  this->create_glyph(object, new dat::glyph::object::Normal(node_engine));
+  this->create_glyph(object, new dat::glyph::object::Axis());
+  this->create_glyph(object, new dat::glyph::object::AABB());
+  this->create_glyph(object, new dat::glyph::object::Normal());
 
   //---------------------------
 }

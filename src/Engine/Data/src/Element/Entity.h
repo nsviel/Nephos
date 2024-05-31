@@ -29,6 +29,7 @@ public:
   //Main function
   void init_entity(dat::base::Entity* entity);
   void remove_entity(dat::base::Entity* entity);
+  void reset_entity(dat::base::Entity* entity);
   void visibility_entity(dat::base::Entity* entity, bool value);
   void update_data(dat::base::Entity* entity);
   void update_glyph(dat::base::Entity* entity);

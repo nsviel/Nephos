@@ -9,7 +9,7 @@ class Axis : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor
-  Axis(eng::Node* node_engine);
+  Axis();
   ~Axis();
 
 public:

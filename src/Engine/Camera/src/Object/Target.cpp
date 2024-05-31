@@ -6,7 +6,7 @@
 namespace cam::glyph{
 
 //Constructor / destructor
-Target::Target(eng::Node* node_engine) : Glyph(node_engine){
+Target::Target(eng::Node* node_engine){
   //---------------------------
 
   this->name = "cam::target";
@@ -46,8 +46,8 @@ void Target::update_pose(dat::base::Entity* entity){
     pose.model = translation;
     data.is_visible = is_visible;
 
-    cam::Control* cam_control = node_camera->get_cam_control();
-    cam_control->compute_camera_mvp(&pose);
+    //cam::Control* cam_control = node_camera->get_cam_control();
+    //cam_control->compute_camera_mvp(&pose);
   }
 
   //---------------------------

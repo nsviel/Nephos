@@ -8,7 +8,7 @@ namespace dat::glyph::object{
 class AABB : public dat::base::Glyph
 {
 public:
-  AABB(eng::Node* node_engine);
+  AABB();
   ~AABB();
 
 public:

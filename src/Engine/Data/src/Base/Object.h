@@ -32,9 +32,6 @@ public:
   Object(eng::Node* node_engine);
   ~Object();
 
-  //Herited function
-  void reset();
-
   //New function
   void clear_data();
   dat::base::Glyph* get_glyph(int type);

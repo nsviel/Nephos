@@ -7,7 +7,7 @@
 namespace dat::glyph::grid{
 
 //Constructor / destructor
-Grid::Grid(eng::Node* node_engine) : dat::base::Glyph(node_engine){
+Grid::Grid(eng::Node* node_engine){
   //---------------------------
 
   dat::Node* node_data = node_engine->get_node_data();
