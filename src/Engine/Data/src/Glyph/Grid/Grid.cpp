@@ -36,8 +36,8 @@ void Grid::construct(int nb_cell){
 
   for(int i=0; i<list_glyph.size(); i++){
     dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
-    dat::glyph::grid::Grid* grid = dynamic_cast<dat::glyph::grid::Grid*>(glyph);
-    // /grid->construct(nb_cell);
+    dat::glyph::grid::Structure* grid = dynamic_cast<dat::glyph::grid::Structure*>(glyph);
+    grid->construct(nb_cell);
   }
 
   //---------------------------
