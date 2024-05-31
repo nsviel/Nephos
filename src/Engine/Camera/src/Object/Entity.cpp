@@ -1,5 +1,6 @@
 #include "Entity.h"
 
+#include <Camera/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -11,6 +12,8 @@ Entity::Entity(){
 
   this->reset();
   this->entity_type = "cam::Entity";
+
+  this->list_glyph.push_back(new cam::glyph::Target());
 
   //---------------------------
 }

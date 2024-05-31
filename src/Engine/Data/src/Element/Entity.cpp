@@ -33,11 +33,6 @@ void Entity::init_entity(dat::base::Entity* entity){
   utl::base::Pose* pose = entity->get_pose();
   //---------------------------
 
-  //If object; create dedicated glyphs
-  if(dat::base::Object* object = dynamic_cast<dat::base::Object*>(entity)){
-    dat_glyph->create_glyph_object(object);
-  }
-
   //Init entity
   entity->UID = dat_struct->UID++;
   data->UID = dat_struct->UID++;

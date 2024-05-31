@@ -26,11 +26,6 @@ public:
   //Main function
   void init();
 
-  //Glyph init
-  void create_glyph_world();
-  void create_glyph_object(dat::base::Object* object);
-  void create_glyph_camera(cam::Entity* camera);
-
   //Glyph creation
   void create_glyph(dat::base::Set* set, dat::base::Glyph* glyph);
   void create_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph);

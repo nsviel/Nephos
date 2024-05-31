@@ -39,7 +39,6 @@ void Manager::create_camera(){
   camera->name = "camera_" + to_string(camera->ID);
   camera->is_suppressible = false;
   camera->is_movable = false;
-  dat_glyph->create_glyph_camera(camera);
   dat_set->insert_entity(set_scene, camera);
 
   cam_struct->vec_camera.push_back(camera);

@@ -26,36 +26,11 @@ Glyph::~Glyph(){}
 
 //Main function
 void Glyph::init(){
-  //---------------------------
-
-  //this->create_glyph_world();
-
-  //---------------------------
-}
-
-//Glyph init
-void Glyph::create_glyph_world(){
   dat::base::Set* set_scene = dat_graph->get_set_scene();
   //---------------------------
 
   this->create_glyph(set_scene, new dat::glyph::grid::Grid(node_engine));
   this->create_glyph(set_scene, new dat::glyph::world::Axis());
-
-  //---------------------------
-}
-void Glyph::create_glyph_object(dat::base::Object* object){
-  //---------------------------
-
-  //this->create_glyph(object, new dat::glyph::object::Axis());
-  //this->create_glyph(object, new dat::glyph::object::AABB());
-  //this->create_glyph(object, new dat::glyph::object::Normal());
-
-  //---------------------------
-}
-void Glyph::create_glyph_camera(cam::Entity* camera){
-  //---------------------------
-
-  //this->create_glyph(camera, new cam::glyph::Target(node_engine));
 
   //---------------------------
 }

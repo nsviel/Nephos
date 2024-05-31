@@ -9,7 +9,7 @@ class Target : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor
-  Target(eng::Node* node_engine);
+  Target();
   ~Target();
 
 public:

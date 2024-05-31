@@ -62,7 +62,7 @@ public:
   int projection = CAMERA_PROJ_PERSPECTIVE;
   int mode = CAMERA_MODE_ARCBALL;
   int ID = -1;
-  
+
   //Camera matrix
   glm::mat4 mat_pose = glm::mat4(1);
   glm::mat4 mat_proj = glm::mat4(1);
