@@ -131,7 +131,7 @@ void Exporter::item_operation(){
   if(entity == nullptr) return;
   //---------------------------
 
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   data->format = current_format;
 
   std::string path = current_dir + "/" + current_name + "." + current_format;
@@ -152,7 +152,7 @@ void Exporter::update_current(){
 
   //Actualize current name
   if(entity != nullptr && current_name != entity->name){
-    utl::base::Data* data = entity->get_data();
+    utl::base::Data* data = &entity->data;
     this->current_name = entity->name;
 
     if(ldr_exporter->is_format_supported(data->format)){

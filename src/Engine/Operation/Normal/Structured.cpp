@@ -34,7 +34,7 @@ void Structured::start_thread(dat::base::Entity* entity){
   //---------------------------
 }
 void Structured::run_thread(dat::base::Entity* entity){
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   //---------------------------
 
   this->compute_normal(data);

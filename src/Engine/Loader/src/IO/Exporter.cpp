@@ -17,8 +17,8 @@ Exporter::~Exporter(){}
 
 //Main functions
 void Exporter::export_entity(dat::base::Entity* entity, std::string path){
-  utl::base::Data* data = entity->get_data();
-  utl::base::Pose* pose = entity->get_pose();
+  utl::base::Data* data = &entity->data;
+  utl::base::Pose* pose = &entity->pose;;
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){

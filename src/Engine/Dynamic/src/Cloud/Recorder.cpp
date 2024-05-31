@@ -76,7 +76,7 @@ void Recorder::make_export_to_ply(dat::base::Entity* entity, std::string path_di
 
   //Export
   string path = path_dir + "/" + path_name + ".ply";
-  ply_exporter->export_binary(entity->get_data(), entity->get_pose(), path);
+  ply_exporter->export_binary(entity->data, &entity->pose;, path);
 */
   //---------------------------
 }

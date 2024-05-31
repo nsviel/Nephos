@@ -31,8 +31,8 @@ void Operation::center_object(utl::base::Element* element){
     }
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    this->center_object(entity, entity->get_pose()->COM);
-    this->elevate_object(entity, entity->get_pose()->min);
+    this->center_object(entity, entity->pose.COM);
+    this->elevate_object(entity, entity->pose.min);
   }
 
   //---------------------------
@@ -49,7 +49,7 @@ void Operation::elevate_object(utl::base::Element* element){
     }
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    this->elevate_object(entity, entity->get_pose()->min);
+    this->elevate_object(entity, entity->pose.min);
   }
 
   //---------------------------
@@ -107,7 +107,7 @@ void Operation::make_rotation(utl::base::Element* element, glm::vec3 value){
 //Operation on entity
 void Operation::center_object(dat::base::Entity* entity, glm::vec3 COM){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::base::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = &entity->pose;;
   //---------------------------
 
   ope_location->compute_MinMax(entity);
@@ -126,7 +126,7 @@ void Operation::elevate_object(dat::base::Entity* entity, glm::vec3 min){
 }
 void Operation::make_rotation_X_90d(dat::base::Entity* entity, int value){
   if(entity == nullptr || !entity->is_movable) return;
-  utl::base::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = &entity->pose;;
   //---------------------------
 
   ope_location->compute_MinMax(entity);
@@ -139,7 +139,7 @@ void Operation::make_translation_from_root(dat::base::Entity* entity, glm::vec3 
   if(entity == nullptr) return;
   //---------------------------
 
-  glm::vec3 translation = new_root - entity->get_pose()->root;
+  glm::vec3 translation = new_root - entity->pose.root;
   ope_transform->make_translation(entity, translation);
 
   //---------------------------

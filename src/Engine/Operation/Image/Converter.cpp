@@ -22,7 +22,7 @@ void Converter::convert_normal_to_image(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   vector<glm::vec3>& Nxyz = data->Nxyz;
   if(Nxyz.size() == 0) return;
   std::vector<uint8_t> output = std::vector<uint8_t>(Nxyz.size() * 4, 0);
@@ -61,7 +61,7 @@ void Converter::convert_infrared_to_image(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   vector<float>& Is = data->Is;
   if(Is.size() == 0) return;
   std::vector<uint8_t> output = std::vector<uint8_t>(Is.size() * 4, 0);

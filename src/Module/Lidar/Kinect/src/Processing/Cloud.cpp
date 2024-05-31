@@ -117,7 +117,7 @@ void Cloud::convertion_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker
   //---------------------------
 }
 void Cloud::convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
-  utl::base::Data* data = sensor->get_data();
+  utl::base::Data* data = &sensor->data;
   k4n::dev::Master* master = sensor->master;
   //---------------------------
 

@@ -47,7 +47,7 @@ void Sphere::update_pose(dat::base::Entity* entity){
   //---------------------------
 
   if(truc != glm::mat4(1.0f)){
-    utl::base::Pose* entity_pose = entity->get_pose();
+    utl::base::Pose* entity_pose = &entity->pose;;
     pose.model = truc * entity_pose->model;
 
     //cam::Control* cam_control = node_camera->get_cam_control();

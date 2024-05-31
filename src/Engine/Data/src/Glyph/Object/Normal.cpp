@@ -38,7 +38,7 @@ void Normal::create(){
 void Normal::update_pose(dat::base::Entity* entity){
   //---------------------------
 
-  utl::base::Pose* entity_pose = entity->get_pose();
+  utl::base::Pose* entity_pose = &entity->pose;;
   pose.model = entity_pose->model;
 
   //cam::Control* cam_control = node_camera->get_cam_control();
@@ -66,10 +66,8 @@ void Normal::construct(dat::base::Entity* entity){
   rgb_g.reserve(data.rgba.size());
 
   //Data entity
-  utl::base::Pose* pose_entity = entity->get_pose();
-  utl::base::Data* data_entity = entity->get_data();
-  std::vector<glm::vec3>& xyz_e = data_entity->xyz;
-  std::vector<glm::vec3>& Nxyz_e = data_entity->Nxyz;
+  std::vector<glm::vec3>& xyz_e = entity->data.xyz;
+  std::vector<glm::vec3>& Nxyz_e = entity->data.Nxyz;
 
   //Check vector length
   if(xyz_e.size() == 0 || Nxyz_e.size() == 0 || Nxyz_e.size() != xyz_e.size()) return;
@@ -83,7 +81,7 @@ void Normal::construct(dat::base::Entity* entity){
     if(nxyz == glm::vec3(0, 0, 0)) continue;
 
     glm::vec3 xyz_n = glm::vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
-    glm::vec4 nxyz_h = glm::vec4(nxyz.x,  nxyz.y,  nxyz.z, 1) * pose_entity->rotat;
+    glm::vec4 nxyz_h = glm::vec4(nxyz.x,  nxyz.y,  nxyz.z, 1) * entity->pose.rotat;
     glm::vec4 rgb_n = glm::vec4(abs(nxyz_h.x),  abs(nxyz_h.y), abs(nxyz_h.z), 1);
 
     xyz_g.push_back(xyz);

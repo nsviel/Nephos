@@ -60,7 +60,7 @@ void Detection::validate_bbox(dat::base::Sensor* sensor){
   if(rad_struct->detection.nb_detection == 0) return;
   //---------------------------
 
-  utl::base::Pose* pose = sensor->get_pose();
+  utl::base::Pose* pose = &sensor->pose;
 
   //this->step++;
   ivec2 point_2d = rad_struct->detection.vec_circle[0].center;

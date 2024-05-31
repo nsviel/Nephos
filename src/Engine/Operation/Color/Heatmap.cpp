@@ -30,7 +30,7 @@ Heatmap::~Heatmap(){
 
 //Main function
 void Heatmap::heatmap_intensity(dat::base::Entity* entity, int diviser){
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   if(data->Is.size() == 0) return;
   //---------------------------
 
@@ -45,7 +45,7 @@ void Heatmap::heatmap_intensity(dat::base::Entity* entity, int diviser){
   //---------------------------
 }
 void Heatmap::heatmap_height(dat::base::Entity* entity){
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   //---------------------------
 
   //Prepare data
@@ -59,7 +59,7 @@ void Heatmap::heatmap_height(dat::base::Entity* entity){
   //---------------------------
 }
 void Heatmap::heatmap_height(dat::base::Entity* entity, vec2 range){
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   //---------------------------
 
   //Prepare data
@@ -73,7 +73,7 @@ void Heatmap::heatmap_height(dat::base::Entity* entity, vec2 range){
   //---------------------------
 }
 void Heatmap::heatmap_range(dat::base::Entity* entity){
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   if(data->R.size() == 0) return;
   //---------------------------
 

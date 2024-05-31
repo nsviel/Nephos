@@ -23,7 +23,7 @@ void Correction::make_image_correction(dat::base::Sensor* sensor, utl::media::Im
   if(rad_model->is_ready() == false) return;
   //---------------------------
 
-  utl::base::Data* data = sensor->get_data();
+  utl::base::Data* data = &sensor->data;
 
   rad_struct->correction.image.data = ir->data;
   rad_struct->correction.image.width = ir->width;

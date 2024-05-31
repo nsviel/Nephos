@@ -85,7 +85,7 @@ void Entity::entity_button(dat::base::Entity* entity){
   //Centered
   ImGui::SameLine();
   if(entity->is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
-    utl::base::Pose* pose = entity->get_pose();
+    utl::base::Pose* pose = &entity->pose;;
     ope_operation->center_object(entity, pose->min);
   }
 
@@ -118,7 +118,7 @@ void Entity::entity_info(dat::base::Entity* entity){
   //Visibility
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Visibility"); ImGui::TableNextColumn();
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   if(ImGui::Checkbox("##4555", &data->is_visible)){
     dat_entity->visibility_entity(entity, data->is_visible);
   }
@@ -136,7 +136,7 @@ void Entity::entity_info(dat::base::Entity* entity){
   //---------------------------
 }
 void Entity::data_info(dat::base::Entity* entity){
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   if(data == nullptr) return;
   //---------------------------
 
@@ -177,7 +177,7 @@ void Entity::data_info(dat::base::Entity* entity){
   //---------------------------
 }
 void Entity::pose_info(dat::base::Entity* entity){
-  utl::base::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = &entity->pose;;
   if(pose == nullptr) return;
   //---------------------------
 

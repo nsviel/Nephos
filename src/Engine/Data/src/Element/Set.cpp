@@ -279,7 +279,7 @@ int Set::compute_number_point(dat::base::Set* set){
   // Add the points in the current set
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-    utl::base::Data* data = entity->get_data();
+    utl::base::Data* data = &entity->data;
     nb_point += data->size;
   }
 

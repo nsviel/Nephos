@@ -28,8 +28,8 @@ Entity::~Entity(){}
 
 //Main function
 void Entity::init_entity(dat::base::Entity* entity){
-  utl::base::Data* data = entity->get_data();
-  utl::base::Pose* pose = entity->get_pose();
+  utl::base::Data* data = &entity->data;
+  utl::base::Pose* pose = &entity->pose;;
   //---------------------------
 
   //Init entity
@@ -47,7 +47,7 @@ void Entity::init_entity(dat::base::Entity* entity){
   //---------------------------
 }
 void Entity::remove_entity(dat::base::Entity* entity){
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   //----------------------------
 
   entity->clean();
@@ -62,7 +62,7 @@ void Entity::remove_entity(dat::base::Entity* entity){
   //----------------------------
 }
 void Entity::reset_entity(dat::base::Entity* entity){
-  utl::base::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = &entity->pose;;
   //----------------------------
 
   pose->min = glm::vec3(0.0f);
@@ -79,7 +79,7 @@ void Entity::reset_entity(dat::base::Entity* entity){
   //----------------------------
 }
 void Entity::visibility_entity(dat::base::Entity* entity, bool value){
-  utl::base::Data* data = entity->get_data();
+  utl::base::Data* data = &entity->data;
   //---------------------------
 
   data->is_visible = value;
@@ -93,8 +93,8 @@ void Entity::visibility_entity(dat::base::Entity* entity, bool value){
   //---------------------------
 }
 void Entity::update_data(dat::base::Entity* entity){
-  utl::base::Data* data = entity->get_data();
-  utl::base::Pose* pose = entity->get_pose();
+  utl::base::Data* data = &entity->data;
+  utl::base::Pose* pose = &entity->pose;;
   //----------------------------
 
   vk_engine->insert_data(data, pose);
@@ -102,7 +102,7 @@ void Entity::update_data(dat::base::Entity* entity){
   //----------------------------
 }
 void Entity::update_pose(dat::base::Entity* entity){
-  utl::base::Pose* pose = entity->get_pose();
+  utl::base::Pose* pose = &entity->pose;;
   //----------------------------
 
   //Update own pose

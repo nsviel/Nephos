@@ -18,10 +18,7 @@ struct Entity : public utl::base::Element{
   //Function
   Entity(){}
   virtual ~Entity(){}
-
   virtual void clean(){}
-  virtual utl::base::Pose* get_pose(){return &pose;}
-  virtual utl::base::Data* get_data(){return &data;}
 
   //Info
   bool is_suppressible = true;

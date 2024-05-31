@@ -94,7 +94,7 @@ void Operation::colorize_object(dat::base::Entity* entity){
 void Operation::voxelize_object(dat::base::Sensor* sensor){
   //---------------------------
 /**
-  utl::base::Data* data = sensor->get_data();
+  utl::base::Data* data = &sensor->data;
   k4n::dev::Master* master = sensor->master;
 
   float voxel_size = master->operation.voxel_size;
@@ -107,7 +107,7 @@ void Operation::voxelize_object(dat::base::Sensor* sensor){
 void Operation::triangularize_object(dat::base::Sensor* sensor){
   //---------------------------
 /*
-  utl::base::Data* data = sensor->get_data();
+  utl::base::Data* data = &sensor->data;
 
   ope_trianguler->make_triangulation(data);
 */

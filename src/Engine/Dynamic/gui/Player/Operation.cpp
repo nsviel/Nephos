@@ -86,7 +86,7 @@ void Operation::draw_ope_transformation(dat::base::Set* set){
   if(ImGui::CollapsingHeader("Transformation##dynamic")){
     dat::base::Entity* entity = set->active_entity;
     if(entity == nullptr) return;
-    utl::base::Pose* pose = set->active_entity->get_pose();
+    utl::base::Pose* pose = &set->active_entity->pose;
 
     //Button
     if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
@@ -146,7 +146,7 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
     ImGui::BeginTable("colorization##mode", 2);
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
-    bool condition = (entity->get_data()->rgb.size() == 0);
+    bool condition = (entity->data.rgb.size() == 0);
     if(condition) ImGui::BeginDisabled();
     if(ImGui::RadioButton("RGB##colorization", &dyn_struct->colorization.color_mode, ope::color::RGB)){
       update_color = true;
@@ -163,14 +163,14 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
     }
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
-    condition = (entity->get_data()->Is.size() == 0);
+    condition = (entity->data.Is.size() == 0);
     if(condition) ImGui::BeginDisabled();
     if(ImGui::RadioButton("I##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY)){
       update_color = true;
     }
     if(condition) ImGui::EndDisabled();
     ImGui::TableNextColumn();
-    condition = (entity->get_data()->Nxyz.size() == 0);
+    condition = (entity->data.Nxyz.size() == 0);
     if(condition) ImGui::BeginDisabled();
     if(ImGui::RadioButton("N##colorization", &dyn_struct->colorization.color_mode, ope::color::NORMAL)){
       update_color = true;
@@ -198,7 +198,7 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
     //Heatmap mode
     if(dyn_struct->colorization.color_mode == ope::color::HEATMAP){
       ImGui::Separator();
-      condition = (entity->get_data()->Is.size() == 0);
+      condition = (entity->data.Is.size() == 0);
       if(condition) ImGui::BeginDisabled();
       if(ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY)){
         update_color = true;
@@ -245,7 +245,7 @@ void Operation::draw_ope_normal(dat::base::Set* set){
   if(ImGui::CollapsingHeader("Normal##dynamic")){
 
     if(ImGui::Button("Compute##normal", ImVec2(100, 0))){
-      utl::base::Data* data = set->active_entity->get_data();
+      utl::base::Data* data = &set->active_entity->data;
       ope_normal->compute_normal(data, dyn_struct->operation.normal.knn);
     }
 
