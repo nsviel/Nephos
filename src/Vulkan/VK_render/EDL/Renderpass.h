@@ -29,7 +29,8 @@ public:
   //Init functions
   void init_renderpass();
   void create_subpass(vk::structure::Renderpass* renderpass);
-
+  void pipeline_edl(vk::structure::Subpass* subpass);
+  
   //Draw function
   void draw_edl(vk::structure::Subpass* subpass);
   void update_binding(vk::structure::Subpass* subpass);

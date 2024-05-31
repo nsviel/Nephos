@@ -44,9 +44,20 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   subpass->target = "shader";
   subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw_scene(subpass);};
 
-  //Line pipeline
-  vk::structure::Pipeline* pipeline;
-  pipeline = new vk::structure::Pipeline();
+  this->pipeline_line(subpass);
+  this->pipeline_point(subpass);
+  this->pipeline_triangle(subpass);
+
+  //---------------------------
+  renderpass->vec_subpass.push_back(subpass);
+}
+
+//Pipeline function
+void Renderpass::pipeline_line(vk::structure::Subpass* subpass){
+  //---------------------------
+
+  //Pipeline
+  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "line";
   pipeline->definition.topology = "line";
   pipeline->definition.purpose = "graphics";
@@ -59,10 +70,14 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   descriptor = vk_type->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
+  //---------------------------
   subpass->vec_pipeline.push_back(pipeline);
+}
+void Renderpass::pipeline_point(vk::structure::Subpass* subpass){
+  //---------------------------
 
-  //Point pipeline
-  pipeline = new vk::structure::Pipeline();
+  //Pipeline
+  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "point";
   pipeline->definition.topology = "point";
   pipeline->definition.purpose = "graphics";
@@ -71,15 +86,20 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.vec_data_name.push_back("color");
 
   //Descriptor
+  vk::structure::Descriptor_required descriptor;
   descriptor = vk_type->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
   descriptor = vk_type->uniform_point_size();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
+  //---------------------------
   subpass->vec_pipeline.push_back(pipeline);
+}
+void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
+  //---------------------------
 
-  //Triangle pipeline
-  pipeline = new vk::structure::Pipeline();
+  //Pipeline
+  vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle";
   pipeline->definition.topology = "triangle";
   pipeline->definition.purpose = "graphics";
@@ -87,13 +107,13 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
 
+  //Descriptor
+  vk::structure::Descriptor_required descriptor;
   descriptor = vk_type->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
-  subpass->vec_pipeline.push_back(pipeline);
-
   //---------------------------
-  renderpass->vec_subpass.push_back(subpass);
+  subpass->vec_pipeline.push_back(pipeline);
 }
 
 //Draw function

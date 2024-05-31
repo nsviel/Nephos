@@ -29,6 +29,11 @@ public:
   void init_renderpass();
   void create_subpass(vk::structure::Renderpass* renderpass);
 
+  //Pipeline function
+  void pipeline_line(vk::structure::Subpass* subpass);
+  void pipeline_point(vk::structure::Subpass* subpass);
+  void pipeline_triangle(vk::structure::Subpass* subpass);
+
   //Draw function
   void draw_scene(vk::structure::Subpass* subpass);
   void cmd_draw_point(vk::structure::Subpass* subpass);

@@ -44,6 +44,15 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   subpass->target = "shader";
   subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw_edl(subpass);};
 
+  this->pipeline_edl(subpass);
+
+  //---------------------------
+  renderpass->vec_subpass.push_back(subpass);
+}
+void Renderpass::pipeline_edl(vk::structure::Subpass* subpass){
+  //---------------------------
+
+  //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle_EDL";
   pipeline->definition.topology = "triangle";
@@ -61,10 +70,8 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   descriptor = vk_type->uniform_edl();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
-  subpass->vec_pipeline.push_back(pipeline);
-
   //---------------------------
-  renderpass->vec_subpass.push_back(subpass);
+  subpass->vec_pipeline.push_back(pipeline);
 }
 
 //Draw function
