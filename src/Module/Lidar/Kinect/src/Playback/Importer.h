@@ -9,6 +9,7 @@ namespace eng{class Node;}
 namespace dat{class Graph;}
 namespace dat{class Entity;}
 namespace dat{class Set;}
+namespace dat{class Glyph;}
 
 
 namespace k4n::playback{
@@ -35,6 +36,7 @@ private:
   dat::Graph* dat_graph;
   dat::Entity* dat_entity;
   dat::Set* dat_set;
+  dat::Glyph* dat_glyph;
 };
 
 }

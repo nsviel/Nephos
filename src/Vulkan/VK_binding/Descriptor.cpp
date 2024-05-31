@@ -141,24 +141,19 @@ void Descriptor::allocate_descriptor_set(vk::structure::Binding* binding){
   //---------------------------
 }
 void Descriptor::create_layout_from_required(vk::structure::Binding* binding){
-  vec_descriptor_required& vec_required_binding = binding->vec_required_binding;
+  std::vector<vk::structure::Descriptor_required>& vec_required_binding = binding->vec_required_binding;
   //---------------------------
 
   vector<VkDescriptorSetLayoutBinding> vec_binding;
   for(int i=0; i<vec_required_binding.size(); i++){
-    descriptor_required& req_binding = vec_required_binding[i];
-
-    //Get descriptor elements
-    int binding = get<2>(req_binding);
-    VkDescriptorType type = get<3>(req_binding);
-    VkShaderStageFlagBits stage = get<4>(req_binding);
+    vk::structure::Descriptor_required& req_binding = vec_required_binding[i];
 
     //Convert it into descriptor binding
     VkDescriptorSetLayoutBinding layout_binding{};
-    layout_binding.binding = binding;
+    layout_binding.binding = req_binding.binding;
     layout_binding.descriptorCount = static_cast<uint32_t>(1);
-    layout_binding.descriptorType = type;
-    layout_binding.stageFlags = stage;
+    layout_binding.descriptorType = req_binding.type;
+    layout_binding.stageFlags = req_binding.stage;
     layout_binding.pImmutableSamplers = nullptr; // Optional
     vec_binding.push_back(layout_binding);
   }

@@ -20,17 +20,14 @@ void Sampler::create_sampler(vk::structure::Binding* binding){
   binding->vec_sampler.clear();
   //---------------------------
 
-  vec_descriptor_required& vec_required = binding->vec_required_binding;
+  std::vector<vk::structure::Descriptor_required>& vec_required = binding->vec_required_binding;
   vector<vk::structure::Sampler*>& vec_sampler = binding->vec_sampler;
 
   for(int i=0; i<vec_required.size(); i++){
-    descriptor_required& descriptor = vec_required[i];
-    string name = get<0>(descriptor);
-    int binding = get<2>(descriptor);
-    VkDescriptorType type = get<3>(descriptor);
+    vk::structure::Descriptor_required& descriptor = vec_required[i];
 
-    if(type == TYP_IMAGE_SAMPLER || type == VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE){
-      vk::structure::Sampler* sampler = create_sampler_obj(name, binding, type);
+    if(descriptor.type == TYP_IMAGE_SAMPLER || descriptor.type == VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE){
+      vk::structure::Sampler* sampler = create_sampler_obj(descriptor.name, descriptor.binding, descriptor.type);
       vec_sampler.push_back(sampler);
     }
   }

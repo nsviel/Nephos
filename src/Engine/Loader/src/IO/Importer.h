@@ -9,6 +9,7 @@ namespace ldr::base{class Importer;}
 namespace dat{class Entity;}
 namespace dat{class Graph;}
 namespace dat{class Set;}
+namespace dat{class Glyph;}
 namespace dat::base{class Set;}
 namespace dat::base{class Object;}
 namespace utl::media{class Path;}
@@ -47,12 +48,13 @@ public:
   void insert_importer(ldr::base::Importer* importer);
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
-  
+
 private:
   eng::Node* node_engine;
   dat::Entity* dat_entity;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
+  dat::Glyph* dat_glyph;
 
   std::vector<ldr::base::Importer*> vec_importer;
 };

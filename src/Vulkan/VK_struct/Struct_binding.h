@@ -3,18 +3,6 @@
 #include <Vulkan/VK_struct/VK_typedef.h>
 #include <Utility/Specific/Common.h>
 
-//Consistent attribut binding:
-//  -position -> 0
-//  -color -> 1
-//  -uv -> 2
-//  -normal -> 3
-//  -depth -> 4
-//  -uniform -> 5
-
-
-//Binding requirement -> Name, Type size, binding, desriptor type, shader stage
-typedef std::vector<std::tuple<std::string, std::size_t, int, VkDescriptorType, VkShaderStageFlagBits>> vec_descriptor_required;
-typedef std::tuple<std::string, std::size_t, int, VkDescriptorType, VkShaderStageFlagBits> descriptor_required;
 
 namespace vk::structure{
 
@@ -56,7 +44,7 @@ struct Binding{
   //---------------------------
 
   //Binding description
-  vec_descriptor_required vec_required_binding;
+  std::vector<vk::structure::Descriptor_required> vec_required_binding;
   Descriptor descriptor;
 
   //Binding elements

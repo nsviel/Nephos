@@ -52,7 +52,15 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.shader = shader_scene->get_shader_info("Line");
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
+
+  vk::structure::Descriptor_required descriptor;
+  descriptor.name = "mvp";
+  descriptor.size = sizeof(mat4);
+  descriptor.binding = 0;
+  descriptor.type = TYP_UNIFORM;
+  descriptor.stage = TYP_SHADER_VS;
+  pipeline->binding.vec_required_binding.push_back(descriptor);
+
   subpass->vec_pipeline.push_back(pipeline);
 
   //Point pipeline
@@ -63,8 +71,23 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.shader = shader_scene->get_shader_info("Point");
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("point_size", sizeof(int), 1, TYP_UNIFORM, TYP_SHADER_VS));
+
+  descriptor = {};
+  descriptor.name = "mvp";
+  descriptor.size = sizeof(mat4);
+  descriptor.binding = 0;
+  descriptor.type = TYP_UNIFORM;
+  descriptor.stage = TYP_SHADER_VS;
+  pipeline->binding.vec_required_binding.push_back(descriptor);
+
+  descriptor = {};
+  descriptor.name = "point_size";
+  descriptor.size = sizeof(int);
+  descriptor.binding = 1;
+  descriptor.type = TYP_UNIFORM;
+  descriptor.stage = TYP_SHADER_VS;
+  pipeline->binding.vec_required_binding.push_back(descriptor);
+
   subpass->vec_pipeline.push_back(pipeline);
 
   //Triangle pipeline
@@ -75,7 +98,15 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   pipeline->definition.shader = shader_scene->get_shader_info("Triangle");
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
-  pipeline->binding.vec_required_binding.push_back(std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS));
+
+  descriptor = {};
+  descriptor.name = "mvp";
+  descriptor.size = sizeof(mat4);
+  descriptor.binding = 0;
+  descriptor.type = TYP_UNIFORM;
+  descriptor.stage = TYP_SHADER_VS;
+  pipeline->binding.vec_required_binding.push_back(descriptor);
+
   subpass->vec_pipeline.push_back(pipeline);
 
   //---------------------------

@@ -18,6 +18,7 @@ Importer::Importer(ldr::Node* node_loader){
   this->dat_entity = node_data->get_dat_entity();
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
+  this->dat_glyph = node_data->get_dat_glyph();
 
   this->insert_importer(new format::ply::Importer());
   this->insert_importer(new format::obj::Importer());
@@ -135,6 +136,7 @@ dat::base::Object* Importer::create_object(utl::file::Data* data){
   object->data = *create_data(data);
 
   dat_entity->init_entity(object);
+  dat_glyph->create_glyph(object);
 
   //---------------------------
   return object;

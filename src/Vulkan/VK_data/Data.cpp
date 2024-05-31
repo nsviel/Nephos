@@ -32,12 +32,22 @@ void Data::insert_data(utl::base::Data* data, utl::base::Pose* pose){
   vk_object->UID = vk_uid->query_free_UID();
 
   //Descriptor
-  descriptor_required mvp = std::make_tuple("mvp", sizeof(mat4), 0, TYP_UNIFORM, TYP_SHADER_VS);
-  vk_object->binding.vec_required_binding.push_back(mvp);
+  vk::structure::Descriptor_required descriptor;
+  descriptor.name = "mvp";
+  descriptor.size = sizeof(mat4);
+  descriptor.binding = 0;
+  descriptor.type = TYP_UNIFORM;
+  descriptor.stage = TYP_SHADER_VS;
+  vk_object->binding.vec_required_binding.push_back(descriptor);
 
   if(data->topology.type == utl::topology::POINT){
-    descriptor_required size = std::make_tuple("point_size", sizeof(int), 1, TYP_UNIFORM, TYP_SHADER_VS);
-    vk_object->binding.vec_required_binding.push_back(size);
+    vk::structure::Descriptor_required descriptor;
+    descriptor.name = "point_size";
+    descriptor.size = sizeof(int);
+    descriptor.binding = 1;
+    descriptor.type = TYP_UNIFORM;
+    descriptor.stage = TYP_SHADER_VS;
+    vk_object->binding.vec_required_binding.push_back(descriptor);
   }
 
   //Apply adequat init functions

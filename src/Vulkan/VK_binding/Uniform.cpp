@@ -21,18 +21,14 @@ void Uniform::create_uniform_buffers(vk::structure::Binding* binding){
   binding->vec_uniform.clear();
   //---------------------------
 
-  vec_descriptor_required& vec_required = binding->vec_required_binding;
+  std::vector<vk::structure::Descriptor_required>& vec_required = binding->vec_required_binding;
   vector<vk::structure::Uniform*>& vec_uniform = binding->vec_uniform;
 
   for(int i=0; i<vec_required.size(); i++){
-    descriptor_required& descriptor = vec_required[i];
-    string name = get<0>(descriptor);
-    size_t size = get<1>(descriptor);
-    int binding = get<2>(descriptor);
-    VkDescriptorType type = get<3>(descriptor);
+    vk::structure::Descriptor_required& descriptor = vec_required[i];
 
-    if(type == TYP_UNIFORM){
-      vk::structure::Uniform* uniform = create_uniform_buffer(name, size, binding);
+    if(descriptor.type == TYP_UNIFORM){
+      vk::structure::Uniform* uniform = create_uniform_buffer(descriptor.name, descriptor.size, descriptor.binding);
       vec_uniform.push_back(uniform);
     }
   }

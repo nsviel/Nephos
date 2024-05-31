@@ -43,9 +43,6 @@ void Target::update_pose(dat::base::Entity* entity){
     translation[1][3] = camera->cam_COM.y;
     translation[2][3] = camera->cam_COM.z;
     pose.model = translation;
-
-    //cam::Control* cam_control = node_camera->get_cam_control();
-    //cam_control->compute_camera_mvp(&pose);
   }
 
   //---------------------------

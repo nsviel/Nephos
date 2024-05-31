@@ -135,7 +135,7 @@ dat::base::Set* Set::get_or_create_subset(dat::base::Set* set, std::string name)
 void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
   if(set == nullptr || entity == nullptr) return;
   //---------------------------
-
+  
   entity->set_parent = set;
   set->list_entity.push_back(entity);
   set->nb_entity++;

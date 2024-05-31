@@ -17,6 +17,7 @@ Importer::Importer(k4n::Node* node_k4n){
   this->dat_graph = node_data->get_dat_graph();
   this->dat_entity = node_data->get_dat_entity();
   this->dat_set = node_data->get_dat_set();
+  this->dat_glyph = node_data->get_dat_glyph();
 
   this->format = "mkv";
   this->require_discrete_gpu = true;
@@ -40,6 +41,7 @@ utl::media::File* Importer::import(utl::media::Path path){
   //Sensor initialization
   sensor->init();
   dat_entity->init_entity(sensor);
+  dat_glyph->create_glyph(sensor);
   dat_set->insert_entity(master, sensor);
 
   //---------------------------
