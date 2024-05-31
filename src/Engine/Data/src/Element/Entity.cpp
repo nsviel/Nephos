@@ -19,8 +19,8 @@ Entity::Entity(dat::Node* node_data){
 
   this->node_engine = node_engine;
   this->cam_control = node_camera->get_cam_control();
-  this->dat_glyph = node_data->get_data_glyph();
-  this->dat_struct = node_data->get_data_struct();
+  this->dat_glyph = node_data->get_dat_glyph();
+  this->dat_struct = node_data->get_dat_struct();
   this->vk_engine = node_vulkan->get_vk_engine();
 
   //---------------------------
@@ -41,6 +41,7 @@ void Entity::init_entity(dat::base::Entity* entity){
   //Init entity
   entity->UID = dat_struct->UID++;
   data->UID = dat_struct->UID++;
+  this->update_pose(entity);
   vk_engine->insert_data(data, pose);
 
   //---------------------------
@@ -59,6 +60,7 @@ void Entity::update_data(dat::base::Entity* entity){
   //----------------------------
 
   vk_engine->insert_data(data, pose);
+  this->update_glyph(entity);
 
   //----------------------------
 }
@@ -68,7 +70,8 @@ void Entity::update_glyph(dat::base::Entity* entity){
   //Update own glyph data
   for(int i=0; i<entity->list_glyph.size(); i++){
     dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
-    //glyph->update_glyph(glyph);
+    glyph->update_glyph(entity);
+    this->update_glyph(glyph);
     this->update_data(glyph);
   }
 

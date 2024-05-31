@@ -16,7 +16,7 @@ Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(
   dat::Node* node_data = node_loader->get_node_data();
 
   this->dat_graph = node_data->get_dat_graph();
-  this->dat_set = node_data->get_data_set();
+  this->dat_set = node_data->get_dat_set();
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
   this->ope_transform = new ope::Transformation();

@@ -7,15 +7,15 @@
 namespace dat::glyph::grid{
 
 //Constructor / destructor
-Grid::Grid(eng::Node* node_engine) : Glyph(node_engine){
+Grid::Grid(eng::Node* node_engine) : dat::base::Glyph(node_engine){
   //---------------------------
 
   dat::Node* node_data = node_engine->get_node_data();
 
+  this->node_engine = node_engine;
+  this->dat_glyph = node_data->get_dat_glyph();
   this->dat_entity = node_data->get_dat_entity();
-  this->list_glyph.push_back(new dat::glyph::grid::Mesh(node_engine));
-  this->list_glyph.push_back(new dat::glyph::grid::Axis(node_engine));
-  this->list_glyph.push_back(new dat::glyph::grid::Plane(node_engine));
+
   this->mesh = new dat::glyph::grid::Mesh(node_engine);
   this->axis = new dat::glyph::grid::Axis(node_engine);
   this->plane = new dat::glyph::grid::Plane(node_engine);
@@ -32,20 +32,23 @@ Grid::~Grid(){}
 //Main function
 void Grid::create(){
   //---------------------------
+/*
+  dat_glyph->create_glyph(this, new dat::glyph::grid::Mesh(node_engine));
+  dat_glyph->create_glyph(this, new dat::glyph::grid::Axis(node_engine));
+  dat_glyph->create_glyph(this, new dat::glyph::grid::Plane(node_engine));
 
-  this->construct();
-  mesh->create();
-  axis->create();
-  plane->create();
-
+  this->construct(nb_cell);
+*/
   //---------------------------
 }
-void Grid::construct(){
+void Grid::construct(int nb_cell){
   //---------------------------
 
-  mesh->construct(nb_cell);
-  axis->construct(nb_cell);
-  plane->construct(nb_cell);
+  for(int i=0; i<list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
+    dat::glyph::grid::Grid* grid = dynamic_cast<dat::glyph::grid::Grid*>(glyph);
+    // /grid->construct(nb_cell);
+  }
 
   //---------------------------
 }

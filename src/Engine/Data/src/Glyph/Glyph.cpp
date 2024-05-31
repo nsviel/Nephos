@@ -18,7 +18,7 @@ Glyph::Glyph(dat::Node* node_data){
   this->node_data = node_data;
   this->node_engine = node_engine;
   this->dat_graph = node_data->get_dat_graph();
-  this->dat_set = node_data->get_data_set();
+  this->dat_set = node_data->get_dat_set();
 
   //---------------------------
 }
@@ -28,7 +28,7 @@ Glyph::~Glyph(){}
 void Glyph::init(){
   //---------------------------
 
-  this->create_glyph_world();
+  //this->create_glyph_world();
 
   //---------------------------
 }
@@ -77,9 +77,9 @@ void Glyph::create_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph){
 
   glyph->create();
   dat_entity->init_entity(glyph);
-  glyph->update_glyph(entity);
 
   entity->list_glyph.push_back(glyph);
+  dat_entity->update_glyph(entity);
 
   //---------------------------
 }

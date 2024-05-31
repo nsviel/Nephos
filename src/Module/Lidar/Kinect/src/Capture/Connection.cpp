@@ -13,7 +13,7 @@ Connection::Connection(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
 
-  this->dat_set = node_data->get_data_set();
+  this->dat_set = node_data->get_dat_set();
   this->dat_graph = node_data->get_dat_graph();
 
   this->current_nb_dev = 0;

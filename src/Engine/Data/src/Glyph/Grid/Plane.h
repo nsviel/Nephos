@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Data/src/Base/Glyph.h>
+#include <Data/src/Glyph/Grid/Grid.h>
 
 
 namespace dat::glyph::grid{
 
-class Plane : public dat::base::Glyph
+class Plane : public dat::glyph::grid::Grid
 {
 public:
   //Constructor / Destructor

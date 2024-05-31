@@ -19,7 +19,7 @@ Stream::Stream(dyn::Node* node_dynamic, bool* show_window){
 
   this->node_engine = node_dynamic->get_node_engine();
   this->dat_graph = node_data->get_dat_graph();
-  this->dat_set = node_data->get_data_set();
+  this->dat_set = node_data->get_dat_set();
   this->gui_overlay = new dyn::gui::Overlay();
 
   for(int i=0; i<10; i++){

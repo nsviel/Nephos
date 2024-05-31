@@ -17,7 +17,7 @@ Importer::Importer(ldr::Node* node_loader){
   this->node_engine = node_loader->get_node_engine();
   this->dat_entity = node_data->get_dat_entity();
   this->dat_graph = node_data->get_dat_graph();
-  this->dat_set = node_data->get_data_set();
+  this->dat_set = node_data->get_dat_set();
 
   this->insert_importer(new format::ply::Importer());
   this->insert_importer(new format::obj::Importer());

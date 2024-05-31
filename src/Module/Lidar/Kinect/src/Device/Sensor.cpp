@@ -21,8 +21,8 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->node_engine = node_engine;
   this->dat_graph = node_data->get_dat_graph();
   this->dat_entity = node_data->get_dat_entity();
-  this->dat_set = node_data->get_data_set();
-  this->dat_glyph = node_data->get_data_glyph();
+  this->dat_set = node_data->get_dat_set();
+  this->dat_glyph = node_data->get_dat_glyph();
 
   this->name = "k4n::sensor";
   this->entity_type = "k4n::device::Sensor";

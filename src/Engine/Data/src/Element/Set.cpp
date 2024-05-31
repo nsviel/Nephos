@@ -10,7 +10,7 @@ Set::Set(dat::Node* node_data){
   //---------------------------
 
   this->node_data = node_data;
-  this->dat_struct = node_data->get_data_struct();
+  this->dat_struct = node_data->get_dat_struct();
 
   //---------------------------
 }
