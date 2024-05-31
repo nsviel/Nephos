@@ -31,6 +31,8 @@ public:
   void remove_selected_element();
   void select_next_element();
   void assign_UID(utl::base::Element* element);
+
+  //Accesseur
   utl::base::Element* get_selected_element();
   dat::base::Entity* get_selected_entity();
   dat::base::Set* get_selected_set();

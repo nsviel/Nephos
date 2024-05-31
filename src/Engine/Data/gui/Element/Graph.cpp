@@ -234,7 +234,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
   std::string tag = std::string(ICON_FA_XMARK) + "##" + entity->name + std::to_string(nb_row);
   if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){
-    dat_set->remove(set, entity);
+    dat_set->remove_entity(set, entity);
   }
   ImGui::PopStyleColor(2);
 

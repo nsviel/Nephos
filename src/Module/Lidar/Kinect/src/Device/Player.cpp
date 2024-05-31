@@ -91,7 +91,7 @@ void Player::player_query(float value){
 void Player::player_close(){
   //---------------------------
 /*
-  dat_set->remove(set, entity);
+  dat_set->remove_entity(set, entity);
 
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);

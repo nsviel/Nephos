@@ -45,7 +45,7 @@ void Graph::loop(){
 void Graph::reset(){
   //---------------------------
 
-  dat_set->reset(&dat_struct->set_main);
+  dat_set->reset_set(&dat_struct->set_main);
 
   //---------------------------
 }
@@ -108,6 +108,8 @@ void Graph::assign_UID(utl::base::Element* element){
 
   //----------------------------
 }
+
+//Accesseur
 utl::base::Element* Graph::get_selected_element(){
   return dat_struct->selection;
 }

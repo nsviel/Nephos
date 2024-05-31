@@ -21,7 +21,7 @@ public:
 public:
   //Set function
   void update_set(dat::base::Set* set);
-  void reset(dat::base::Set* set);
+  void reset_set(dat::base::Set* set);
   void visibility_set(dat::base::Set* set, bool value);
 
   //Subset function
@@ -32,7 +32,7 @@ public:
 
   //Entity function
   void insert_entity(dat::base::Set* set, dat::base::Entity* entity);
-  void remove(dat::base::Set* set, dat::base::Entity* entity);
+  void remove_entity(dat::base::Set* set, dat::base::Entity* entity);
   void remove_all_entity(dat::base::Set* set);
   void active_next_entity(dat::base::Set* set);
   void active_entity(dat::base::Set* set, dat::base::Entity* entity);
