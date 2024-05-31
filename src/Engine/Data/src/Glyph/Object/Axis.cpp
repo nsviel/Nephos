@@ -12,7 +12,7 @@ Axis::Axis(){
 
   this->name = "object::axis";
   this->is_permanent = true;
-  this->type = dat::object::AXIS;
+  this->type = dat::base::object::AXIS;
 
   //---------------------------
 }

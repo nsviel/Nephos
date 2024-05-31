@@ -15,7 +15,7 @@ Normal::Normal(){
   this->size = 1;
   this->color = glm::vec4(0.11f, 0.35f, 0.69f, 1.0f);
   this->need_update = true;
-  this->type = dat::object::NORMAL;
+  this->type = dat::base::object::NORMAL;
 
   //---------------------------
 }

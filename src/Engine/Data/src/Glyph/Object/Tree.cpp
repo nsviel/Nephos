@@ -15,7 +15,7 @@ Tree::Tree(){
   this->is_permanent = true;
   this->color = glm::vec4(1, 1, 1, 0.7);
   this->level = 6;
-  this->type = dat::object::TREE;
+  this->type = dat::base::object::TREE;
 
   //---------------------------
 }

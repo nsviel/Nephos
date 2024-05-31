@@ -9,16 +9,15 @@
 #include <list>
 
 
-namespace dat::object{
-enum Glyph{
-  AABB = 0,
-  AXIS = 1,
-  NORMAL = 2,
-  TREE = 3,
-};
-}
-
 namespace dat::base{
+  namespace object{
+  enum Glyph{
+    AABB = 0,
+    AXIS = 1,
+    NORMAL = 2,
+    TREE = 3,
+  };
+  }
 
 class Object : public dat::base::Entity
 {
@@ -30,9 +29,9 @@ public:
     this->entity_type = "entity::Object";
     this->data.unicolor = math::random();
 
-    //this->list_glyph.push_back(new dat::glyph::object::Axis());
-    //this->list_glyph.push_back(new dat::glyph::object::AABB());
-    //this->list_glyph.push_back(new dat::glyph::object::Normal());
+    this->list_glyph.push_back(new dat::glyph::object::Axis());
+    this->list_glyph.push_back(new dat::glyph::object::AABB());
+    this->list_glyph.push_back(new dat::glyph::object::Normal());
 
     //---------------------------
   }
