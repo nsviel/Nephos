@@ -52,5 +52,18 @@ void Glyph::update_glyph(dat::base::Entity* entity){
 
   //----------------------------
 }
+void Glyph::create_glyph(dat::base::Entity* entity){
+  //----------------------------
+
+  //Update own glyph data
+  for(int i=0; i<entity->list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+
+    glyph->create();
+    dat_entity->init_entity(glyph);
+  }
+
+  //----------------------------
+}
 
 }
