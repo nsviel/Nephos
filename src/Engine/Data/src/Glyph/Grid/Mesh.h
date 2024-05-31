@@ -1,15 +1,15 @@
 #pragma once
 
-#include <Data/src/Glyph/Grid/Grid.h>
+#include <Data/src/Base/Glyph.h>
 
 
 namespace dat::glyph::grid{
 
-class Mesh : public dat::glyph::grid::Grid
+class Mesh : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor
-  Mesh(eng::Node* node_engine);
+  Mesh();
   ~Mesh();
 
 public:

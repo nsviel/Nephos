@@ -7,19 +7,17 @@
 namespace dat::glyph::grid{
 
 //Constructor / destructor
-Grid::Grid(eng::Node* node_engine){
+Grid::Grid(){
   //---------------------------
-
-  dat::Node* node_data = node_engine->get_node_data();
-
-  this->node_engine = node_engine;
-  this->dat_glyph = node_data->get_dat_glyph();
-  this->dat_entity = node_data->get_dat_entity();
 
   this->name = "grid::main";
   this->nb_cell = 10;
   this->is_suppressible = false;
   this->is_movable = false;
+
+  this->list_glyph.push_back(new dat::glyph::grid::Mesh());
+  this->list_glyph.push_back(new dat::glyph::grid::Axis());
+  this->list_glyph.push_back(new dat::glyph::grid::Plane());
 
   //---------------------------
 }
@@ -28,13 +26,9 @@ Grid::~Grid(){}
 //Main function
 void Grid::create(){
   //---------------------------
-/*
-  dat_glyph->create_glyph(this, new dat::glyph::grid::Mesh(node_engine));
-  dat_glyph->create_glyph(this, new dat::glyph::grid::Axis(node_engine));
-  dat_glyph->create_glyph(this, new dat::glyph::grid::Plane(node_engine));
 
   this->construct(nb_cell);
-*/
+
   //---------------------------
 }
 void Grid::construct(int nb_cell){

@@ -16,13 +16,13 @@ class Grid : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor
-  Grid(eng::Node* node_engine);
+  Grid();
   ~Grid();
 
 public:
   //Main function
   void create();
-  virtual void construct(int nb_cell);
+  void construct(int nb_cell);
 
 private:
   eng::Node* node_engine;

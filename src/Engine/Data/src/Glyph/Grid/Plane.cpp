@@ -4,7 +4,7 @@
 namespace dat::glyph::grid{
 
 //Constructor / destructor
-Plane::Plane(eng::Node* node_engine) : dat::glyph::grid::Grid(node_engine){
+Plane::Plane(){
   //---------------------------
 
   this->name = "grid::plane";

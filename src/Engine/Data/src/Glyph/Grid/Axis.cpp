@@ -4,7 +4,7 @@
 namespace dat::glyph::grid{
 
 //Constructor / destructor
-Axis::Axis(eng::Node* node_engine) : dat::glyph::grid::Grid(node_engine){
+Axis::Axis(){
   //---------------------------
 
   this->name = "grid::axis";

@@ -29,7 +29,7 @@ void Glyph::init(){
   dat::base::Set* set_scene = dat_graph->get_set_scene();
   //---------------------------
 
-  this->create_glyph(set_scene, new dat::glyph::grid::Grid(node_engine));
+  this->create_glyph(set_scene, new dat::glyph::grid::Grid());
   this->create_glyph(set_scene, new dat::glyph::world::Axis());
 
   //---------------------------
