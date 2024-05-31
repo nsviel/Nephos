@@ -1,5 +1,7 @@
 #include "Axis.h"
 
+#include <Data/Namespace.h>
+
 
 namespace dat::glyph::world{
 
@@ -36,6 +38,9 @@ void Axis::construct(){
   std::vector<glm::vec4>& rgba = data.rgba;
   float z = 0;
   //---------------------------
+
+  xyz.clear();
+  rgba.clear();
 
   //X axis
   xyz.push_back(glm::vec3(0, 0, z));

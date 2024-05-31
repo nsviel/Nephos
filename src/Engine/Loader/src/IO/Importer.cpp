@@ -136,7 +136,7 @@ dat::base::Object* Importer::create_object(utl::file::Data* data){
   object->data = *create_data(data);
 
   dat_entity->init_entity(object);
-  dat_glyph->create_glyph(object);
+  dat_glyph->insert_glyph(object);
 
   //---------------------------
   return object;

@@ -23,11 +23,6 @@ public:
   //Main functions
   utl::media::File* import(utl::media::Path path);
 
-  inline void set_IdataFormat(int value){this->IdataFormat = value;}
-  inline void set_retrievingIntensity(bool value){this->retrieve_I = value;}
-  inline void set_retrievingColor(bool value){this->retrieve_rgb = value;}
-  inline void set_retrievingNormal(bool value){this->retrieve_N = value;}
-
 private:
   //Subfunction
   void Loader_init();
