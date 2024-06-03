@@ -51,7 +51,7 @@ void Operation::draw_op_info(utl::base::Element* element){
   //---------------------------
 
   dat::base::Set* set = dynamic_cast<dat::base::Set*>(element);
-  dyn::base::Player* player = set->player;
+  dyn::base::Player* player = &set->player;
   if(player == nullptr) return;
 
   if(ImGui::CollapsingHeader("Info##dynamic")){

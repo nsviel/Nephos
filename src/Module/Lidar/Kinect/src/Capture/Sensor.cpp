@@ -124,7 +124,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
 }
 void Sensor::manage_pause(){
-  dyn::base::Player* player = master->player;
+  dyn::base::Player* player = &master->player;
   //---------------------------
 
   //If pause, wait until end pause or end thread

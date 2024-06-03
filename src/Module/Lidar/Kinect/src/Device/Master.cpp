@@ -20,7 +20,7 @@ Master::Master(k4n::Node* node_k4n){
   this->icon = ICON_FA_USER;
   this->is_locked = true;
   this->is_suppressible = true;
-  this->player = new k4n::dev::Player(node_k4n, this);
+  this->player = k4n::dev::Player(node_k4n, this);
 
   //---------------------------
 }
@@ -96,10 +96,10 @@ void Master::manage_configuration(){
 void Master::manage_restart(){
   //---------------------------
 
-  if(player->restart == false){
-    player->player_stop();
+  if(player.restart == false){
+    player.player_stop();
   }else{
-    player->player_query(player->ts_beg);
+    player.player_query(player.ts_beg);
   }
 
   //---------------------------

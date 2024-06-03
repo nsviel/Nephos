@@ -22,7 +22,7 @@ Control::~Control(){}
 void Control::run_control(){
   dat::base::Set* set = dat_selection->get_selected_set();
   if(set == nullptr) return;
-  dyn::base::Player* player = set->player;
+  dyn::base::Player* player = &set->player;
   //---------------------------
 
   this->control_keyboard(player);

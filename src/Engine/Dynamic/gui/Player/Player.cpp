@@ -51,7 +51,7 @@ void Player::design_panel(){
 }
 void Player::design_player(){
   dat::base::Set* set = dat_selection->get_selected_set();
-  if(set == nullptr || set->player == nullptr) return;
+  if(set == nullptr) return;
   //---------------------------
 
   this->player_slider(set);
@@ -73,7 +73,7 @@ void Player::design_player(){
 
 //Player function
 void Player::player_slider(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
+  dyn::base::Player* player = &set->player;
   //---------------------------
 
   player->player_update();
@@ -88,7 +88,7 @@ void Player::player_slider(dat::base::Set* set){
   //---------------------------
 }
 void Player::player_start(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
+  dyn::base::Player* player = &set->player;
   //---------------------------
 
   //Play button -> if paused or not playing
@@ -113,7 +113,7 @@ void Player::player_start(dat::base::Set* set){
   //---------------------------
 }
 void Player::player_stop(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
+  dyn::base::Player* player = &set->player;
   //---------------------------
 
   if(!player->pause){
@@ -135,7 +135,7 @@ void Player::player_stop(dat::base::Set* set){
   //---------------------------
 }
 void Player::player_repeat(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
+  dyn::base::Player* player = &set->player;
   //---------------------------
 
   if(player->restart){
@@ -156,7 +156,7 @@ void Player::player_repeat(dat::base::Set* set){
   //---------------------------
 }
 void Player::player_record(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
+  dyn::base::Player* player = &set->player;
   //---------------------------
 
   if(player->record){
@@ -177,7 +177,7 @@ void Player::player_record(dat::base::Set* set){
   //---------------------------
 }
 void Player::player_close(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
+  dyn::base::Player* player = &set->player;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
@@ -189,7 +189,7 @@ void Player::player_close(dat::base::Set* set){
   //---------------------------
 }
 void Player::player_lock(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
+  dyn::base::Player* player = &set->player;
   //---------------------------
 
   if(set->is_locked){

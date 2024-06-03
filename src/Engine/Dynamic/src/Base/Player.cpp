@@ -32,7 +32,7 @@ void Player::player_play(){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_play();
+    subset->player.player_play();
   }
 
   //---------------------------
@@ -45,7 +45,7 @@ void Player::player_pause(){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_pause();
+    subset->player.player_pause();
   }
 
   //---------------------------
@@ -59,7 +59,7 @@ void Player::player_stop(){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_stop();
+    subset->player.player_stop();
   }
 
   //---------------------------
@@ -72,7 +72,7 @@ void Player::player_restart(){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_restart();
+    subset->player.player_restart();
   }
 
   //---------------------------
@@ -85,7 +85,7 @@ void Player::player_record(){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_record();
+    subset->player.player_record();
   }
 
   //---------------------------
@@ -98,7 +98,7 @@ void Player::player_lock(bool value){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_lock(value);
+    subset->player.player_lock(value);
   }
 
   //---------------------------
@@ -108,7 +108,7 @@ void Player::player_update(){
 
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    dyn::base::Player* player = subset->player;
+    dyn::base::Player* player = &subset->player;
 
     float ts_duration = player->ts_end - player->ts_beg;
     float ts_cur = player->ts_cur - player->ts_beg;
@@ -120,7 +120,7 @@ void Player::player_update(){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_update();
+    subset->player.player_update();
   }
 
   //---------------------------
@@ -133,7 +133,7 @@ void Player::player_close(){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player->player_close();
+    subset->player.player_close();
   }
 */
   //---------------------------
@@ -144,13 +144,13 @@ void Player::player_query(float value){
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    dyn::base::Player* player = subset->player;
+    dyn::base::Player* player = &subset->player;
 
     float ts_duration = player->ts_end - player->ts_beg;
     float ts_query = value * (ts_duration / 100.0);
     ts_query = ts_query + player->ts_beg;
 
-    subset->player->player_query(ts_query);
+    subset->player.player_query(ts_query);
   }
 
   //---------------------------
