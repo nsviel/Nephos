@@ -36,7 +36,6 @@ public:
   void manage_old_capture(k4a::capture* capture);
   void manage_pause();
   void manage_ts_query(float ts_querry);
-  void manage_reset();
 
 public:
   k4a::playback playback;

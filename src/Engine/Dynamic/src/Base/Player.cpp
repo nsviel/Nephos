@@ -156,4 +156,17 @@ void Player::player_query(float value){
   //---------------------------
 }
 
+//Subfunction
+void Player::manage_restart(){
+  //---------------------------
+
+  if(restart == false){
+    this->player_stop();
+  }else{
+    this->player_query(ts_beg);
+  }
+
+  //---------------------------
+}
+
 }

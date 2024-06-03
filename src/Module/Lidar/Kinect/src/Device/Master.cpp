@@ -34,12 +34,12 @@ void Master::reset(){
     dat::base::Entity* entity = *next(list_entity.begin(), i);
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      sensor->manage_reset();
+      sensor->manage_ts_query(player->ts_beg);
     }
   }
 
   //Restart player
-  this->player_query(ts_beg);
+  player.player_query(ts_beg);
 */
   //---------------------------
 }
@@ -57,7 +57,7 @@ void Master::manage_color_control(){
   }
 
   //Restart player
-  this->player_query(ts_beg);
+  player.player_query(ts_beg);
 */
   //---------------------------
 }
@@ -89,17 +89,6 @@ void Master::manage_configuration(){
       sensor->depth.config = config.depth;
       sensor->ir.config = config.ir;
     }
-  }
-
-  //---------------------------
-}
-void Master::manage_restart(){
-  //---------------------------
-
-  if(player.restart == false){
-    player.player_stop();
-  }else{
-    player.player_query(player.ts_beg);
   }
 
   //---------------------------

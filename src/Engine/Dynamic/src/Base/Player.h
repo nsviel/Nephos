@@ -25,6 +25,9 @@ public:
   virtual void player_close();
   virtual void player_query(float value);
 
+  //Subfunction
+  virtual void manage_restart();
+
 public:
   dat::base::Set* set;
 

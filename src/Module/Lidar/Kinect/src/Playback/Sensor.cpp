@@ -99,7 +99,7 @@ k4a::capture* Sensor::manage_new_capture(){
     capture = nullptr;
 
     if(color.data.timestamp == player->ts_end){
-      master->manage_restart();
+      player->manage_restart();
     }
   }
 
@@ -143,14 +143,6 @@ void Sensor::manage_pause(){
     }
     this->thread_paused = false;
   }
-
-  //---------------------------
-}
-void Sensor::manage_reset(){
-  dyn::base::Player* player = &master->player;
-  //---------------------------
-
-  this->manage_ts_query(player->ts_beg);
 
   //---------------------------
 }
