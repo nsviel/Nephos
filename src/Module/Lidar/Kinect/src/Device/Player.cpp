@@ -11,7 +11,6 @@ namespace k4n::dev{
 Player::Player(k4n::Node* node_k4n, k4n::dev::Master* master) : dyn::base::Player(master){
   //---------------------------
 
-  this->master = master;
   this->time = "s";
   this->ts_beg = 0;
   this->ts_end = 100000;

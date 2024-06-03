@@ -31,9 +31,7 @@ public:
   void reset();
 
   //Master function
-  void manage_color_control();
   void manage_forward();
-  void manage_configuration();
 
 public:
   dat::Set* dat_set;

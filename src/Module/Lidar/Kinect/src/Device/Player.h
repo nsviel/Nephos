@@ -25,7 +25,7 @@ public:
   void player_stop();
 
 public:
-  k4n::dev::Master* master;
+
 };
 
 }

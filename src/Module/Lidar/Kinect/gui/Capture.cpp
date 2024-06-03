@@ -275,6 +275,7 @@ void Capture::configuration_color(k4n::dev::Master* master){
   //---------------------------
 }
 void Capture::configuration_color_control(k4n::dev::Master* master){
+  dyn::base::Player* player = &master->player;
   //---------------------------
 
   if(ImGui::TreeNode("Color control")){
@@ -286,21 +287,21 @@ void Capture::configuration_color_control(k4n::dev::Master* master){
     float exposure_value = (float)master->config.color.exposure.value;
     if(ImGui::SliderFloat("Exposure Time", &exposure_value, 488.0f, 1000000.0f, "%.0f us", ImGuiSliderFlags_Logarithmic)){
       master->config.color.exposure.value = exposure_value;
-      master->manage_color_control();
+      player->manage_configuration();
     }
     ImGui::TableNextColumn();
     switch(master->config.color.exposure.mode){
       case K4A_COLOR_CONTROL_MODE_MANUAL:{
         if(ImGui::Button("M##Exposure")){
           master->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_AUTO;
-          master->manage_color_control();
+          player->manage_configuration();
         }
         break;
       }
       case K4A_COLOR_CONTROL_MODE_AUTO:{
         if(ImGui::Button("A##Exposure")){
           master->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
-          master->manage_color_control();
+          player->manage_configuration();
         }
         break;
       }
@@ -310,21 +311,21 @@ void Capture::configuration_color_control(k4n::dev::Master* master){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("White Balance", &master->config.color.white_balance.value, 2500, 12500, "%d K")){
-      master->manage_color_control();
+      player->manage_configuration();
     }
     ImGui::TableNextColumn();
     switch(master->config.color.white_balance.mode){
       case K4A_COLOR_CONTROL_MODE_MANUAL:{
         if(ImGui::Button("M##Balance")){
           master->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_AUTO;
-          master->manage_color_control();
+          player->manage_configuration();
         }
         break;
       }
       case K4A_COLOR_CONTROL_MODE_AUTO:{
         if(ImGui::Button("A##Balance")){
           master->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
-          master->manage_color_control();
+          player->manage_configuration();
         }
         break;
       }
@@ -335,46 +336,46 @@ void Capture::configuration_color_control(k4n::dev::Master* master){
     //Brightness
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Brightness", &master->config.color.brightness.value, 0, 255, "%d")){
-      master->manage_color_control();
+      player->manage_configuration();
     }
 
     //Contrast
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Contrast", &master->config.color.contrast.value, 0, 10, "%d")){
-      master->manage_color_control();
+      player->manage_configuration();
     }
 
     //Saturation
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Saturation", &master->config.color.saturation.value, 0, 63, "%d")){
-      master->manage_color_control();
+      player->manage_configuration();
     }
 
     //Sharpness
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Sharpness", &master->config.color.sharpness.value, 0, 4, "%d")){
-      master->manage_color_control();
+      player->manage_configuration();
     }
 
     //Gain
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Gain", &master->config.color.gain.value, 0, 255, "%d")){
-      master->manage_color_control();
+      player->manage_configuration();
     }
 
     //Backlight Compensation
     if(ImGui::Checkbox("Backlight Compensation", &master->config.color.backlight_compensation.value)){
-      master->manage_color_control();
+      player->manage_configuration();
     }
 
     //Power frequency
     ImGui::Text("Power Frequency");
     if(ImGui::RadioButton("50Hz", &master->config.color.power_frequency.value, 1)){
-      master->manage_color_control();
+      player->manage_configuration();
     }
     ImGui::SameLine();
     if(ImGui::RadioButton("60Hz", &master->config.color.power_frequency.value, 2)){
-      master->manage_color_control();
+      player->manage_configuration();
     }
 
     ImGui::TreePop();
@@ -426,11 +427,12 @@ void Capture::configuration_synchro(k4n::dev::Master* master){
   //---------------------------
 }
 void Capture::configuration_button(k4n::dev::Master* master){
+  dyn::base::Player* player = &master->player;
   //---------------------------
 
   //Refresh / reset buttons
   if(ImGui::Button("Restart")){
-    master->manage_configuration();
+    player->manage_configuration();
     master->reset();
   }
   ImGui::SameLine();

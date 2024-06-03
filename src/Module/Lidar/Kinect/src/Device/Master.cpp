@@ -45,22 +45,6 @@ void Master::reset(){
 }
 
 //Master function
-void Master::manage_color_control(){
-  //---------------------------
-/*
-  for(int i=0; i<list_entity.size(); i++){
-    dat::base::Entity* entity = *next(list_entity.begin(), i);
-
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      k4n_config->make_sensor_color_configuration(sensor);
-    }
-  }
-
-  //Restart player
-  player.player_query(ts_beg);
-*/
-  //---------------------------
-}
 void Master::manage_forward(){
   //---------------------------
 /*
@@ -78,20 +62,6 @@ void Master::manage_forward(){
 */
   //---------------------------
 }
-void Master::manage_configuration(){
-  //---------------------------
 
-  for(int i=0; i<list_entity.size(); i++){
-    dat::base::Entity* entity = *next(list_entity.begin(), i);
-
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
-      sensor->color.config = config.color;
-      sensor->depth.config = config.depth;
-      sensor->ir.config = config.ir;
-    }
-  }
-
-  //---------------------------
-}
 
 }

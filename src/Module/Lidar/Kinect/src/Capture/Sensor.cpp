@@ -10,7 +10,9 @@ namespace k4n::capture{
 Sensor::Sensor(k4n::Node* node_k4n, int index) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
+  this->k4n_config = new k4n::utils::Configuration();
   this->gui_capture = new k4n::gui::Capture(node_k4n);
+
   this->device.idx_dev = index;
   this->name = "capture_" + to_string(index);
 
@@ -142,6 +144,16 @@ void Sensor::manage_reset(){
 
   //this->reset();
   //this->run_thread();
+
+  //---------------------------
+}
+void Sensor::manage_configuration(){
+  //---------------------------
+
+  k4n_config->make_sensor_color_configuration(this);
+  this->color.config = master->config.color;
+  this->depth.config = master->config.depth;
+  this->ir.config = master->config.ir;
 
   //---------------------------
 }

@@ -35,8 +35,10 @@ public:
   void manage_old_capture(k4a::capture* capture);
   void manage_pause();
   void manage_reset();
-
+  void manage_configuration();
+  
 private:
+  k4n::utils::Configuration* k4n_config;
   k4n::gui::Capture* gui_capture;
 
   bool is_recording = false;
