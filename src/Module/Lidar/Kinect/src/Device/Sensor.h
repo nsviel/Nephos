@@ -5,9 +5,6 @@
 #include <Kinect/src/Structure/Namespace.h>
 
 namespace eng{class Node;}
-namespace dat{class Entity;}
-namespace dat{class Set;}
-namespace dat{class Graph;}
 namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 namespace k4n::processing{class Image;}
@@ -41,16 +38,9 @@ public:
   void init();
   void clean();
 
-
-
   //Subfunction
   vec3 convert_depth_2d_to_3d(ivec2 point_2d);
-
-
-
-  inline bool is_thread_running(){return thread_running;}
-  inline bool is_thread_paused(){return thread_paused;}
-
+  
 public:
   prf::graph::Profiler* profiler;
   k4n::dev::Master* master;
@@ -70,9 +60,6 @@ public:
 
 protected:
   eng::Node* node_engine;
-  dat::Entity* dat_entity;
-  dat::Set* dat_set;
-  dat::Graph* dat_graph;
 };
 
 }

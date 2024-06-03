@@ -5,7 +5,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace k4n::dev{
+namespace k4n::playback{
 
 //Constructor / Destructor
 Player::Player(k4n::Node* node_k4n, k4n::dev::Master* master) : dyn::base::Player(master){

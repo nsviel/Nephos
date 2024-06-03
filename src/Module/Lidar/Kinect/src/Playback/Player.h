@@ -8,7 +8,7 @@ namespace k4n{class Node;}
 namespace k4n::dev{class Master;}
 
 
-namespace k4n::dev{
+namespace k4n::playback{
 
 class Player : public dyn::base::Player
 {

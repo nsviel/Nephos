@@ -30,8 +30,7 @@ public:
 
 
 public:
-  dyn::operation::Structure operation;
-  dyn::recorder::Structure recorder;
+
   k4n::structure::Configuration config;
 };
 

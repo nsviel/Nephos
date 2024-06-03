@@ -23,6 +23,9 @@ struct Sensor : public dat::base::Object{
   virtual void manage_ts_query(float ts_querry){}
   virtual void manage_configuration(){}
 
+  inline bool is_thread_running(){return thread_running;}
+  inline bool is_thread_paused(){return thread_paused;}
+
   int state_UID = 0;
   bool thread_running = false;
   bool thread_paused = false;

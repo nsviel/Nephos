@@ -105,7 +105,7 @@ k4n::dev::Master* Importer::manage_master(){
   master->icon = ICON_FA_USER;
   master->is_locked = true;
   master->is_suppressible = true;
-  master->player = k4n::dev::Player(node_k4n, master);
+  master->player = k4n::playback::Player(node_k4n, master);
 
   dat_set->add_subset(set_scene, master);
 
