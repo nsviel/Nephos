@@ -24,8 +24,11 @@ public:
 
 public:
   //Main function
-  void parse_ascii(std::ifstream& file, utl::base::Data* data);
-  void parse_ascii_withface(std::ifstream& file, utl::base::Data* data);
+  void parse_ascii(dat::base::Object* object, format::ply::Header* header);
+
+  //Subfunction
+  void parse_data(std::ifstream& file, utl::base::Data* data);
+  void parse_data_withface(std::ifstream& file, utl::base::Data* data);
   int get_property_id(format::ply::Field field);
 
 private:

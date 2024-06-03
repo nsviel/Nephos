@@ -15,7 +15,29 @@ Ascii::Ascii(){
 Ascii::~Ascii(){}
 
 //Main function
-void Ascii::parse_ascii(std::ifstream& file, utl::base::Data* data){/*
+void Ascii::parse_ascii(dat::base::Object* object, format::ply::Header* header){
+  //---------------------------
+/*
+  //Open file
+  std::ifstream file(path.data);
+
+  //Read header
+  this->parse_header(file);
+
+  //Read data
+  if(face_number == 0){
+    ply_ascii->parse_data(file, entity);
+  }else{
+    ply_ascii->parse_data_withface(file, entity);
+  }
+
+  file.close();
+*/
+  //---------------------------
+}
+
+//Subfunction
+void Ascii::parse_data(std::ifstream& file, utl::base::Data* data){/*
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -66,7 +88,7 @@ void Ascii::parse_ascii(std::ifstream& file, utl::base::Data* data){/*
   //---------------------------
   entity->nb_element = entity->xyz.size();*/
 }
-void Ascii::parse_ascii_withface(std::ifstream& file, utl::base::Data* data){/*
+void Ascii::parse_data_withface(std::ifstream& file, utl::base::Data* data){/*
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;

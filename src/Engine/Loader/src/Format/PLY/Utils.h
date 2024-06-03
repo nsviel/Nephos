@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Namespace.h>
 #include <string>
 
 
@@ -40,6 +41,15 @@ struct Property{
   format::ply::Field field;
   format::ply::Type type;
   int size = 0;
+};
+
+struct Header{
+  std::string path = "";
+  std::vector<format::ply::Property> vec_property;
+  utl::topology::Type topology = utl::topology::POINT;
+  int format = format::ply::ASCII;
+  int nb_point = 0;
+  int nb_face = 0;
 };
 
 }

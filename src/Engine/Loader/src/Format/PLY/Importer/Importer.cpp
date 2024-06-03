@@ -23,34 +23,19 @@ Importer::~Importer(){}
 utl::base::Element* Importer::import(utl::media::Path path){
   //---------------------------
 
-  dat::base::Object* object = new dat::base::Object();/*
+  dat::base::Object* object = new dat::base::Object();
   object->data.name = utl::path::get_name_from_path(path.data);
-  object->data.path = path;
-  object->data.draw_type = utl::topology::POINT;
-  this->face_number = 0;
+  object->data.path = path.data;
 
   //Get format type
-  std::ifstream file(path.data);
-  this->parse_header(file);
+  this->parse_header(path.data);
 
+
+/*
   //Open data
   switch(file_format){
     case ASCII:{
-      //Open file
-      std::ifstream file(path.data);
-
-      //Read header
-      this->parse_header(file);
-
-      //Read data
-      if(face_number == 0){
-        ply_ascii->parse_ascii(file, entity);
-      }else{
-        ply_ascii->parse_ascii_withface(file, entity);
-      }
-
-      file.close();
-
+      ply_ascii->parse_ascii(object, header);
       break;
     }
     case BINARY_LITTLE_ENDIAN:{
@@ -96,9 +81,13 @@ utl::base::Element* Importer::import(utl::media::Path path){
 }
 
 //Header
-void Importer::parse_header(std::ifstream& file){
-  this->vec_property.clear();
+void Importer::parse_header(std::string path){
   //---------------------------
+
+  //Init
+  this->header = {};
+  this->header.path = path;
+  std::ifstream file(path);
 
   // Separate the header
   std::string line, h1, h2, h3, h4;
@@ -112,35 +101,32 @@ void Importer::parse_header(std::ifstream& file){
     if(h1 == "format"){
       this->parse_header_format(h2);
     }
-
     //Retrieve number of point
-    if(h1 + h2 == "elementvertex"){
-      this->point_number = std::stoi(h3);
+    else if(h1 + h2 == "elementvertex"){
+      header.nb_point = std::stoi(h3);
     }
-
     //Retrieve property
-    if(h1 == "property" && vertex_ended == false){
+    else if(h1 == "property" && vertex_ended == false){
       this->parse_header_property(h2, h3);
     }
-
     //Retrieve property
-    if(h1 + h2 == "elementface"){
+    else if(h1 + h2 == "elementface"){
       vertex_ended = true;
-      this->face_number = std::stoi(h3);
+      header.nb_face = std::stoi(h3);
     }
-  } while(line.find("end_header") != 0);
+
+  }while(line.find("end_header") != 0);
 
   //---------------------------
 }
 void Importer::parse_header_format(std::string format){
   //---------------------------
 
-  if(format == "ascii") this->file_format = format::ply::ASCII;
-  else if(format == "binary_little_endian") this->file_format = format::ply::BINARY_LITTLE_ENDIAN;
-  else if(format == "binary_big_endian") this->file_format = format::ply::BINARY_BIG_ENDIAN;
+  if(format == "ascii") header.format = format::ply::ASCII;
+  else if(format == "binary_little_endian") header.format = format::ply::BINARY_LITTLE_ENDIAN;
+  else if(format == "binary_big_endian") header.format = format::ply::BINARY_BIG_ENDIAN;
   else{
     cout<<"[warning] Unknown format: "<<format<<endl;
-    return;
   }
 
   //---------------------------
@@ -180,7 +166,7 @@ void Importer::parse_header_property(std::string type, std::string field){
   }
 
   //Store property
-  vec_property.push_back(property);
+  header.vec_property.push_back(property);
 
   //---------------------------
 }

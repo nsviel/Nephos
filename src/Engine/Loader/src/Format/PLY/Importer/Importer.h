@@ -31,7 +31,7 @@ public:
 
 private:
   //Header
-  void parse_header(std::ifstream& file);
+  void parse_header(std::string path);
   void parse_header_format(std::string format);
   void parse_header_property(std::string type, std::string field);
 
@@ -39,12 +39,7 @@ private:
   format::ply::importer::Ascii* ply_ascii;
   format::ply::importer::Binary* ply_binary;
 
-  std::vector<format::ply::Property> vec_property;
-  int file_format;
-  int point_data_idx;
-  int point_number;
-  int face_number;
-  int header_size;
+  format::ply::Header header;
 };
 
 }
