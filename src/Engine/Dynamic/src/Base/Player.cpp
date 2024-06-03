@@ -168,10 +168,33 @@ void Player::manage_restart(){
 
   //---------------------------
 }
+void Player::manage_reset(){
+  //---------------------------
+
+
+  //---------------------------
+}
 void Player::manage_configuration(){
   //---------------------------
 
 
+  //---------------------------
+}
+void Player::manage_forward(){
+  //---------------------------
+/*
+  for(int i=0; i<list_entity.size(); i++){
+    dat::base::Entity* entity = *next(list_entity.begin(), i);
+
+    if(k4n::playback::Sensor* sensor = dynamic_cast<k4n::playback::Sensor*>(entity)){
+      float ts_forward = ts_cur + 5 * ts_for;
+      if(ts_forward > ts_end) ts_forward = ts_end;
+      if(ts_forward < ts_beg) ts_forward = ts_beg;
+
+      sensor->manage_ts_query(ts_forward);
+    }
+  }
+*/
   //---------------------------
 }
 

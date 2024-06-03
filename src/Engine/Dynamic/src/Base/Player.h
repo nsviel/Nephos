@@ -27,7 +27,9 @@ public:
 
   //Subfunction
   virtual void manage_restart();
+  virtual void manage_reset();
   virtual void manage_configuration();
+  virtual void manage_forward();
 
 public:
   dat::base::Set* set;

@@ -55,7 +55,7 @@ void Entity::remove_entity(dat::base::Entity* entity){
 
   //----------------------------
 }
-void Entity::reset_entity(dat::base::Entity* entity){
+void Entity::reset_pose(dat::base::Entity* entity){
   //----------------------------
 
   glm::mat4 init = entity->pose.model_init;

@@ -39,15 +39,17 @@ void Set::reset_set(dat::base::Set* set){
   dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------
 
+  //Reset own stuff
   set->pose = {};
+  set->reset();
 
   //Reset all associated entities
   for(int j=0; j<set->list_entity.size(); j++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), j);
-    dat_entity->reset_entity(entity);
+    dat_entity->reset_pose(entity);
   }
 
-  //Reset all associated sets
+  //Reset all associated subsets
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->reset_set(subset);
