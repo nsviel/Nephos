@@ -52,4 +52,12 @@ struct Header{
   int nb_face = 0;
 };
 
+struct Data{
+  std::vector<glm::vec3> xyz;
+  std::vector<glm::vec3> Nxyz;
+  std::vector<glm::vec3> rgb;
+  std::vector<float> Is;
+  std::vector<float> ts;
+};
+
 }

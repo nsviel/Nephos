@@ -19,19 +19,19 @@ void Binary::parse_binary(dat::base::Object* object, format::ply::Header* header
   //---------------------------
 
   //Open file
-  std::ifstream file(path.data, std::ios::binary);
+  std::ifstream file(header->path, std::ios::binary);
   this->pass_header(file);
 
   //Read data
   switch(header->format){
     case BINARY_LITTLE_ENDIAN:{
-      ply_binary->parse_vertex_little_endian(file, entity);
-      ply_binary->parse_face_little_endian(file, entity);
+      this->parse_vertex_little_endian(file);
+      this->parse_face_little_endian(file);
       break;
     }
     case BINARY_BIG_ENDIAN:{
-      ply_binary->parse_vertex_big_endian(file, entity);
-      ply_binary->parse_face_big_endian(file, entity);
+      this->parse_vertex_big_endian(file);
+      this->parse_face_big_endian(file);
       break;
     }
   }
@@ -48,21 +48,25 @@ void Binary::parse_binary(dat::base::Object* object, format::ply::Header* header
   //---------------------------
 }
 
-void Binary::parse_vertex_little_endian(std::ifstream& file, utl::base::Data* data){
+//Parser
+void Binary::parse_vertex_little_endian(std::ifstream& file){
+  xyz.clear();
+  Nxyz.clear();
+  Is.clear();
   //---------------------------
 /*
   //Read data
-  int block_size = vec_property.size() * point_number * sizeof(float);
+  int block_size = header->vec_property.size() * header->nb_vertex * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(vec_property.size(), std::vector<float>(point_number));
-  for(int i=0; i<point_number; i++){
-    for(int j=0; j<vec_property.size(); j++){
-      format::ply::Property* property = &vec_property[j];
+  block_vec.resize(header->vec_property.size(), std::vector<float>(header->nb_vertex));
+  for(int i=0; i<header->nb_vertex; i++){
+    for(int j=0; j<header->vec_property.size(); j++){
+      format::ply::Property* property = &header->vec_property[j];
 
       switch(property->type){
         case format::ply::FLOAT32:{
@@ -105,19 +109,21 @@ void Binary::parse_vertex_little_endian(std::ifstream& file, utl::base::Data* da
     }
   }
 
+
+
   //Resize std::vectors accordingly
-  entity->xyz.resize(point_number, glm::vec3(0,0,0));
-  if(get_property_id(format::ply::TS) != -1) entity->ts.resize(point_number, 0);
-  if(get_property_id(format::ply::I) != -1) entity->Is.resize(point_number, 0);
-  if(get_property_id(format::ply::NX) != -1) entity->Nxyz.resize(point_number, glm::vec3(0,0,0));
-  if(get_property_id(format::ply::R) != -1) entity->rgb.resize(point_number, glm::vec4(0,0,0,0));
-  entity->nb_element = point_number;
+  entity->xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(format::ply::TS) != -1) entity->ts.resize(header->nb_vertex, 0);
+  if(get_property_id(format::ply::I) != -1) entity->Is.resize(header->nb_vertex, 0);
+  if(get_property_id(format::ply::NX) != -1) entity->Nxyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(format::ply::R) != -1) entity->rgb.resize(header->nb_vertex, glm::vec4(0,0,0,0));
+  entity->nb_element = header->nb_vertex;
 
   //Insert data in the adequate std::vector
   //#pragma omp parallel for
-  for(int i=0; i<point_number; i++){
-    for(int j=0; j<vec_property.size(); j++){
-      format::ply::Property* property = &vec_property[j];
+  for(int i=0; i<header->nb_vertex; i++){
+    for(int j=0; j<header->vec_property.size(); j++){
+      format::ply::Property* property = &header->vec_property[j];
 
       switch(property->field){
         case format::ply::X:{ //Location
@@ -155,19 +161,19 @@ void Binary::parse_vertex_little_endian(std::ifstream& file, utl::base::Data* da
 */
   //---------------------------
 }
-void Binary::parse_face_little_endian(std::ifstream& file, utl::base::Data* data){
+void Binary::parse_face_little_endian(std::ifstream& file){
   //---------------------------
 /*
   //Read data
-  int block_size = vec_property.size() * point_number * sizeof(float);
+  int block_size = vec_property.size() * header->nb_vertex * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(vec_property.size(), std::vector<float>(point_number));
-  for(int i=0; i<point_number; i++){
+  block_vec.resize(vec_property.size(), std::vector<float>(header->nb_vertex));
+  for(int i=0; i<header->nb_vertex; i++){
     for(int j=0; j<vec_property.size(); j++){
       float value = get_float_from_binary(block_data, offset);
       block_vec[j][i] = value;
@@ -179,7 +185,7 @@ void Binary::parse_face_little_endian(std::ifstream& file, utl::base::Data* data
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
   std::vector<float> timestamp;
-  for(int i=0; i<point_number; i++){
+  for(int i=0; i<header->nb_vertex; i++){
     for(int j=0; j<vec_property.size(); j++){
       format::ply::Property* property = &vec_property[j];
 
@@ -243,19 +249,19 @@ void Binary::parse_face_little_endian(std::ifstream& file, utl::base::Data* data
   //---------------------------
   entity->nb_element = entity->xyz.size();*/
 }
-void Binary::parse_vertex_big_endian(std::ifstream& file, utl::base::Data* data){
+void Binary::parse_vertex_big_endian(std::ifstream& file){
   //---------------------------
 /*
   //Read data
-  int block_size = vec_property.size() * point_number * sizeof(float);
+  int block_size = vec_property.size() * header->nb_vertex * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(vec_property.size(), std::vector<float>(point_number));
-  for(int i=0; i<point_number; i++){
+  block_vec.resize(vec_property.size(), std::vector<float>(header->nb_vertex));
+  for(int i=0; i<header->nb_vertex; i++){
     for(int j=0; j<vec_property.size(); j++){
       float value = get_float_from_binary(block_data, offset);
       block_vec[j][i] = reverse_float(value);
@@ -263,14 +269,14 @@ void Binary::parse_vertex_big_endian(std::ifstream& file, utl::base::Data* data)
   }
 
   //Resize std::vectors accordingly
-  entity->xyz.resize(point_number, glm::vec3(0,0,0));
-  if(get_property_id(format::ply::TS) != -1) entity->ts.resize(point_number, 0);
-  if(get_property_id(format::ply::I) != -1) entity->Is.resize(point_number, 0);
-  entity->nb_element = point_number;
+  entity->xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(format::ply::TS) != -1) entity->ts.resize(header->nb_vertex, 0);
+  if(get_property_id(format::ply::I) != -1) entity->Is.resize(header->nb_vertex, 0);
+  entity->nb_element = header->nb_vertex;
 
   //Insert data in the adequate std::vector
   #pragma omp parallel for
-  for(int i=0; i<point_number; i++){
+  for(int i=0; i<header->nb_vertex; i++){
     for(int j=0; j<vec_property.size(); j++){
       format::ply::Property* property = &vec_property[j];
 
@@ -297,19 +303,19 @@ void Binary::parse_vertex_big_endian(std::ifstream& file, utl::base::Data* data)
 */
   //---------------------------
 }
-void Binary::parse_face_big_endian(std::ifstream& file, utl::base::Data* data){
+void Binary::parse_face_big_endian(std::ifstream& file){
   //---------------------------
 /*
   //Read data
-  int block_size = vec_property.size() * point_number * sizeof(float);
+  int block_size = vec_property.size() * header->nb_vertex * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(vec_property.size(), std::vector<float>(point_number));
-  for(int i=0; i<point_number; i++){
+  block_vec.resize(vec_property.size(), std::vector<float>(header->nb_vertex));
+  for(int i=0; i<header->nb_vertex; i++){
     for(int j=0; j<vec_property.size(); j++){
       float value = get_float_from_binary(block_data, offset);
       block_vec[j][i] = reverse_float(value);
@@ -321,7 +327,7 @@ void Binary::parse_face_big_endian(std::ifstream& file, utl::base::Data* data){
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
   std::vector<float> timestamp;
-  for(int i=0; i<point_number; i++){
+  for(int i=0; i<header->nb_vertex; i++){
     for(int j=0; j<vec_property.size(); j++){
       format::ply::Property* property = &vec_property[j];
 

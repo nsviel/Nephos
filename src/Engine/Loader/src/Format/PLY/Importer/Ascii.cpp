@@ -28,10 +28,10 @@ void Ascii::parse_ascii(dat::base::Object* object, format::ply::Header* header){
   this->parse_face(file);
 
   //Store result
-  object->data.xyz = xyz;
-  object->data.Nxyz = Nxyz;
-  object->data.Is = Is;
-  object->data.size = xyz.size();
+  object->data.xyz = data.xyz;
+  object->data.Nxyz = data.Nxyz;
+  object->data.Is = data.Is;
+  object->data.size = data.xyz.size();
 
   //Close file
   file.close();
@@ -41,9 +41,7 @@ void Ascii::parse_ascii(dat::base::Object* object, format::ply::Header* header){
 
 //Parser
 void Ascii::parse_vertex(std::ifstream& file){
-  xyz.clear();
-  Nxyz.clear();
-  Is.clear();
+  this->data = {};
   //---------------------------
 
   //Retrieve vertex data
@@ -52,29 +50,29 @@ void Ascii::parse_vertex(std::ifstream& file){
     //Data
     std::getline(file, line);
     std::istringstream iss(line);
-    std::vector<float> data;
+    std::vector<float> row;
     for(int i=0; i<header->vec_property.size(); i++){
       float d;
       iss >> d;
-      data.push_back(d);
+      row.push_back(d);
     }
 
     //Location
     int id_x = get_property_id(format::ply::X);
     if(id_x != -1){
-      xyz.push_back(glm::vec3(data[id_x], data[id_x+1], data[id_x+2]));
+      data.xyz.push_back(glm::vec3(row[id_x], row[id_x+1], row[id_x+2]));
     }
 
     //Normal
     int id_nx = get_property_id(format::ply::NX);
     if(id_nx != -1){
-      Nxyz.push_back(glm::vec3(data[id_nx], data[id_nx+1], data[id_nx+2]));
+      data.Nxyz.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
     }
 
     //Intensity
     int id_i = get_property_id(format::ply::I);
     if(id_i != -1){
-      Is.push_back(data[id_i]);
+      data.Is.push_back(row[id_i]);
     }
   }
 
@@ -85,9 +83,10 @@ void Ascii::parse_face(std::ifstream& file){
   //---------------------------
 
   //Init
-  std::vector<glm::vec3> vertex = xyz; xyz.clear();
-  std::vector<glm::vec3> normal = Nxyz; Nxyz.clear();
-  std::vector<float> intensity = Is; Is.clear();
+  std::vector<glm::vec3> vertex = data.xyz;
+  std::vector<glm::vec3> normal = data.Nxyz;
+  std::vector<float> intensity = data.Is;
+  this->data = {};
 
   //Retrieve face data
   std::string line;
@@ -106,16 +105,16 @@ void Ascii::parse_face(std::ifstream& file){
     //Retrieve face data
     for(int i=0; i<nb_vertice; i++){
       //Location
-      xyz.push_back(vertex[idx[i]]);
+      data.xyz.push_back(vertex[idx[i]]);
 
       //Normal
       if(get_property_id(format::ply::NX) != -1){
-        Nxyz.push_back(normal[idx[i]]);
+        data.Nxyz.push_back(normal[idx[i]]);
       }
 
       //Intensity
       if(get_property_id(format::ply::I) != -1){
-        Is.push_back(intensity[idx[i]]);
+        data.Is.push_back(intensity[idx[i]]);
       }
     }
 

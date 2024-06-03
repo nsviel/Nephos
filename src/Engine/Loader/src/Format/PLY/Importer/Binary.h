@@ -27,10 +27,11 @@ public:
   //Main function
   void parse_binary(dat::base::Object* object, format::ply::Header* header);
 
-  void parse_vertex_little_endian(std::ifstream& file, utl::base::Data* data);
-  void parse_face_little_endian(std::ifstream& file, utl::base::Data* data);
-  void parse_vertex_big_endian(std::ifstream& file, utl::base::Data* data);
-  void parse_face_big_endian(std::ifstream& file, utl::base::Data* data);
+  //Parser
+  void parse_vertex_little_endian(std::ifstream& file);
+  void parse_face_little_endian(std::ifstream& file);
+  void parse_vertex_big_endian(std::ifstream& file);
+  void parse_face_big_endian(std::ifstream& file);
 
   //Subfunction
   void pass_header(std::ifstream& file);

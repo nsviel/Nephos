@@ -39,7 +39,7 @@ utl::base::Element* Importer::import(utl::media::Path path){
     }
     case BINARY_LITTLE_ENDIAN:
     case BINARY_BIG_ENDIAN:{
-      ply_ascii->parse_binary(object, &header);
+      ply_binary->parse_binary(object, &header);
       break;
     }
   }
