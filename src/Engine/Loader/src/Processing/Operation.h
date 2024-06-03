@@ -23,7 +23,8 @@ public:
 public:
   //Main functions
   void insert_object(dat::base::Object* object);
-
+  void insert_set(dat::base::Set* set);
+  
 private:
   dat::Entity* dat_entity;
   dat::Graph* dat_graph;

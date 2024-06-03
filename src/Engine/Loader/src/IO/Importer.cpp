@@ -11,10 +11,6 @@ namespace ldr::io{
 Importer::Importer(ldr::Node* node_loader){
   //---------------------------
 
-  dat::Node* node_data = node_loader->get_node_data();
-
-  this->dat_graph = node_data->get_dat_graph();
-  this->dat_set = node_data->get_dat_set();
   this->ldr_operation = new ldr::processing::Operation(node_loader);
 
   this->insert_importer(new format::ply::Importer());
@@ -57,22 +53,18 @@ dat::base::Set* Importer::load_set(utl::media::Path path){
   if(!check_path(path.data)) return nullptr;
   //---------------------------
 
-  //Load data from path
+  //Load
   utl::base::Element* element = this->import_from_path(path);
   if(element == nullptr) return nullptr;
 
-  //Convert into set
+  //Convert
   dat::base::Set* set = nullptr;
   if(element->type == utl::element::SET){
     set = dynamic_cast<dat::base::Set*>(element);
   }
 
-  //Insert loaded set into graph
-  if(set != nullptr){
-    dat::base::Set* set_graph = dat_graph->get_set_graph();
-    dat_set->add_subset(set_graph, set);
-    set->is_locked = true;
-  }
+  //Insert
+  ldr_operation->insert_set(set);
 
   //---------------------------
   return set;
@@ -81,17 +73,17 @@ dat::base::Object* Importer::load_object(utl::media::Path path){
   if(!check_path(path.data)) return nullptr;
   //---------------------------
 
-  //Load data from path
+  //Load
   utl::base::Element* element = this->import_from_path(path);
   if(element == nullptr) return nullptr;
 
-  //Convert into object
+  //Convert
   dat::base::Object* object = nullptr;
   if(element->type == utl::element::ENTITY){
     object = dynamic_cast<dat::base::Object*>(element);
   }
 
-  //Insert loaded entity into graph
+  //Insert
   ldr_operation->insert_object(object);
 
   //---------------------------

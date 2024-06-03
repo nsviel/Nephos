@@ -40,8 +40,6 @@ public:
 
 private:
   ldr::processing::Operation* ldr_operation;
-  dat::Graph* dat_graph;
-  dat::Set* dat_set;
 
   std::vector<ldr::base::Importer*> vec_importer;
 };

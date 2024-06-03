@@ -47,5 +47,17 @@ void Operation::insert_object(dat::base::Object* object){
 
   //---------------------------
 }
+void Operation::insert_set(dat::base::Set* set){
+  if(set == nullptr) return;
+  //---------------------------
+
+  dat::base::Set* set_graph = dat_graph->get_set_graph();
+  dat_set->add_subset(set_graph, set);
+  set->is_locked = true;
+
+  //---------------------------
+}
+
+
 
 }
