@@ -29,7 +29,7 @@ void Manager::loop(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
-  if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
+  if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
     utl::media::Image* image = ope_image->get_image(sensor, utl::media::INTENSITY);
     if(image != nullptr && image->new_data){
       rad_image_detection->start_thread(sensor, image);

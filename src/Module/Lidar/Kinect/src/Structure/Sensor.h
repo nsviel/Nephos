@@ -27,7 +27,7 @@ namespace dat::base{class Object;}
 
 namespace k4n::dev{
 
-class Sensor : public dat::base::Sensor
+class Sensor : public dyn::base::Sensor
 {
 public:
   //Constructor / Destructor

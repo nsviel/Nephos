@@ -24,7 +24,7 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::start_thread(dat::base::Sensor* sensor, utl::media::Image* image){
+void Detection::start_thread(dyn::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
   this->thread_idle = false;
@@ -35,7 +35,7 @@ void Detection::start_thread(dat::base::Sensor* sensor, utl::media::Image* image
 
   //---------------------------
 }
-void Detection::run_thread(dat::base::Sensor* sensor, utl::media::Image* image){
+void Detection::run_thread(dyn::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
   cv::Mat cv_image;

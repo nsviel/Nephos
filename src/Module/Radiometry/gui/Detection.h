@@ -3,7 +3,7 @@
 #include <Render/src/Stream.h>
 #include <Utility/Specific/Common.h>
 
-namespace dat::base{class Sensor;}
+namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection{class Manager;}

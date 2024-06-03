@@ -19,7 +19,7 @@ Image::Image(){
 Image::~Image(){}
 
 //Main function
-void Image::compute_normal(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Image::compute_normal(dyn::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   //this->compute_normal_with_gradient(sensor, width, height, vec_Nxyz);
@@ -29,7 +29,7 @@ void Image::compute_normal(dat::base::Sensor* sensor, utl::media::Image* depth, 
 }
 
 //Method function
-void Image::compute_normal_with_gradient(dat::base::Sensor* sensor, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Image::compute_normal_with_gradient(dyn::base::Sensor* sensor, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   vec_Nxyz.clear();
@@ -80,7 +80,7 @@ void Image::compute_normal_with_gradient(dat::base::Sensor* sensor, int width, i
 
   //---------------------------
 }
-void Image::compute_normal_with_cov(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Image::compute_normal_with_cov(dyn::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   vec_Nxyz.clear();
@@ -112,7 +112,7 @@ tic();
 toc_ms("hoy");
   //---------------------------
 }
-void Image::compute_normal_with_cov_img(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Image::compute_normal_with_cov_img(dyn::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   vec_Nxyz.clear();
@@ -152,7 +152,7 @@ void Image::compute_normal_with_cov_img(dat::base::Sensor* sensor, utl::media::I
 }
 
 //Subfunction
-void Image::compute_neigbor(dat::base::Sensor* sensor, std::vector<glm::vec3>& vec_nn, int x, int y, int width, int height){
+void Image::compute_neigbor(dyn::base::Sensor* sensor, std::vector<glm::vec3>& vec_nn, int x, int y, int width, int height){
   //---------------------------
 
   int half_window = k / 2;

@@ -23,7 +23,7 @@ Ransac::Ransac(rad::Node* node_radio){
 Ransac::~Ransac(){}
 
 //Main function
-void Ransac::ransac_sphere(dat::base::Sensor* sensor){
+void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
   //if(step != rad::detection::PROCESSING) return;
   //---------------------------
 

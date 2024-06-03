@@ -26,7 +26,7 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::start_thread(dat::base::Sensor* sensor){
+void Detection::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->thread_idle = false;
@@ -37,7 +37,7 @@ void Detection::start_thread(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::run_thread(dat::base::Sensor* sensor){
+void Detection::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   rad_ransac->ransac_sphere(sensor);
@@ -57,7 +57,7 @@ void Detection::wait_thread(){
 }
 
 //Subfunction
-void Detection::validate_bbox(dat::base::Sensor* sensor){
+void Detection::validate_bbox(dyn::base::Sensor* sensor){
   if(rad_struct->detection.nb_detection == 0) return;
   //---------------------------
 

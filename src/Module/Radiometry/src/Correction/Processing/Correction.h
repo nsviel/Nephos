@@ -6,7 +6,7 @@ namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::model::sphere{class Manager;}
 namespace rad::model::sphere{class Model;}
-namespace dat::base{class Sensor;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::correction{
@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  void make_image_correction(dat::base::Sensor* sensor, utl::media::Image* ir, utl::media::Image* depth);
+  void make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir, utl::media::Image* depth);
 
   //Subfunction
   float apply_correction(float I_raw, float R, float It);

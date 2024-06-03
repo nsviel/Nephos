@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dat::base{class Sensor;}
+namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 

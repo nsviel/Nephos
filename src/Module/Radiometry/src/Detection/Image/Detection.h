@@ -4,7 +4,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace dat::base{class Sensor;}
+namespace dyn::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace utl::media{class Image;}
 namespace rad::detection::image{class Glyph;}
@@ -24,8 +24,8 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Sensor* sensor, utl::media::Image* image);
-  void run_thread(dat::base::Sensor* sensor, utl::media::Image* image);
+  void start_thread(dyn::base::Sensor* sensor, utl::media::Image* image);
+  void run_thread(dyn::base::Sensor* sensor, utl::media::Image* image);
   void wait_thread();
 
   //Subfunction

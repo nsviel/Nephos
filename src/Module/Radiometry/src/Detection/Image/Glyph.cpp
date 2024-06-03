@@ -18,7 +18,7 @@ Glyph::Glyph(rad::Node* node_radio){
 Glyph::~Glyph(){}
 
 //Main function
-void Glyph::draw_detected_sphere(dat::base::Sensor* sensor){
+void Glyph::draw_detected_sphere(dyn::base::Sensor* sensor){
   //---------------------------
 
   switch(rad_struct->detection.hough.drawing_mode){
@@ -34,7 +34,7 @@ void Glyph::draw_detected_sphere(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Glyph::draw_all_sphere_glyph(dat::base::Sensor* sensor){
+void Glyph::draw_all_sphere_glyph(dyn::base::Sensor* sensor){
   vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
@@ -43,7 +43,7 @@ void Glyph::draw_all_sphere_glyph(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Glyph::draw_best_sphere_glyph(dat::base::Sensor* sensor){
+void Glyph::draw_best_sphere_glyph(dyn::base::Sensor* sensor){
   vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
@@ -70,7 +70,7 @@ void Glyph::reset_all_sphere(){
 
   //---------------------------
 }
-void Glyph::draw_sphere_from_circle(dat::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
+void Glyph::draw_sphere_from_circle(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
 /*  vector<dat::glyph::object::Sphere*>& vec_glyph_sphere = rad_struct->detection.vec_glyph_sphere;
   //---------------------------
 

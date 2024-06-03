@@ -4,7 +4,7 @@
 
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
-namespace dat::base{class Sensor;}
+namespace dyn::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
@@ -23,8 +23,8 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Sensor* sensor);
-  void run_thread(dat::base::Sensor* sensor);
+  void start_thread(dyn::base::Sensor* sensor);
+  void run_thread(dyn::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction

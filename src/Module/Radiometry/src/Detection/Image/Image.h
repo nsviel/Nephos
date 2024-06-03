@@ -6,7 +6,7 @@
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection::structure{class Circle;}
-namespace dat::base{class Sensor;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::detection::image{

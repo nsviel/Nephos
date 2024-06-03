@@ -1,7 +1,7 @@
 #include "Sensor.h"
 
 
-namespace dat::base{
+namespace dyn::base{
 
 //Thread function
 void Sensor::start_thread(){

@@ -3,7 +3,7 @@
 #include <Data/src/Base/Object.h>
 
 
-namespace dat::base{
+namespace dyn::base{
 
 struct Sensor : public dat::base::Object{
   //---------------------------

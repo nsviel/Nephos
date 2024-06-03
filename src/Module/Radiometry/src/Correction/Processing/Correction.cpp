@@ -20,7 +20,7 @@ Correction::Correction(rad::Node* node_radio){
 Correction::~Correction(){}
 
 //Main function
-void Correction::make_image_correction(dat::base::Sensor* sensor, utl::media::Image* ir, utl::media::Image* depth){
+void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir, utl::media::Image* depth){
   if(rad_model->is_ready() == false) return;
   //---------------------------
 

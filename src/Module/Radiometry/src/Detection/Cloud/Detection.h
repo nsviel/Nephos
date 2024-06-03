@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dat::base{class Sensor;}
+namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace rad::detection::cloud{class Glyph;}
@@ -23,12 +23,12 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Sensor* sensor);
-  void run_thread(dat::base::Sensor* sensor);
+  void start_thread(dyn::base::Sensor* sensor);
+  void run_thread(dyn::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void validate_bbox(dat::base::Sensor* sensor);
+  void validate_bbox(dyn::base::Sensor* sensor);
 
 private:
   utl::thread::Pool* thread_pool;

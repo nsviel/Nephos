@@ -4,7 +4,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace dat::base{class Sensor;}
+namespace dyn::base{class Sensor;}
 
 namespace rad::detection::cloud{class Glyph;}
 namespace ope::fitting{class Sphere;}
@@ -22,7 +22,7 @@ public:
 
 public:
   //Main function
-  void ransac_sphere(dat::base::Sensor* sensor);
+  void ransac_sphere(dyn::base::Sensor* sensor);
 
   //Data function
   void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);

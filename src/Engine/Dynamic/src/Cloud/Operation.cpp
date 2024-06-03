@@ -32,7 +32,7 @@ Operation::Operation(dyn::Node* node_dynamic){
 Operation::~Operation(){}
 
 //Main function
-void Operation::start_thread(dat::base::Sensor* sensor){
+void Operation::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->thread_idle = false;
@@ -43,7 +43,7 @@ void Operation::start_thread(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Operation::run_thread(dat::base::Sensor* sensor){
+void Operation::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->colorize_object(sensor);
@@ -66,7 +66,7 @@ void Operation::wait_thread(){
 }
 
 //Subfunction
-void Operation::normal_object(dat::base::Sensor* sensor){
+void Operation::normal_object(dyn::base::Sensor* sensor){
   //---------------------------
 
   if(dyn_struct->operation.normal.enable){
@@ -91,7 +91,7 @@ void Operation::colorize_object(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Operation::voxelize_object(dat::base::Sensor* sensor){
+void Operation::voxelize_object(dyn::base::Sensor* sensor){
   //---------------------------
 /**
   utl::base::Data* data = &sensor->data;
@@ -104,7 +104,7 @@ void Operation::voxelize_object(dat::base::Sensor* sensor){
 */
   //---------------------------
 }
-void Operation::triangularize_object(dat::base::Sensor* sensor){
+void Operation::triangularize_object(dyn::base::Sensor* sensor){
   //---------------------------
 /*
   utl::base::Data* data = &sensor->data;
@@ -113,7 +113,7 @@ void Operation::triangularize_object(dat::base::Sensor* sensor){
 */
   //---------------------------
 }
-void Operation::update_object(dat::base::Sensor* sensor){
+void Operation::update_object(dyn::base::Sensor* sensor){
   //---------------------------
 
   dat_entity->update_data(sensor);

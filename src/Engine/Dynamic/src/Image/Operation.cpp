@@ -21,7 +21,7 @@ Operation::Operation(dyn::Node* node_dynamic){
 Operation::~Operation(){}
 
 //Main function
-void Operation::start_thread(dat::base::Sensor* sensor){
+void Operation::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->thread_idle = false;
@@ -32,7 +32,7 @@ void Operation::start_thread(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Operation::run_thread(dat::base::Sensor* sensor){
+void Operation::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
 

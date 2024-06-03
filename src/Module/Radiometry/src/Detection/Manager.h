@@ -8,7 +8,7 @@ namespace rad::detection::image{class Detection;}
 namespace rad::detection::cloud{class Detection;}
 namespace dat{class Selection;}
 namespace ope::image{class Manager;}
-namespace dat::base{class Sensor;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::detection{
