@@ -102,6 +102,11 @@ k4n::dev::Master* Importer::manage_master(){
   k4n::dev::Master* master = new k4n::dev::Master(node_k4n);
   master->name = "kinect";
   master->is_lockable = true;
+  master->icon = ICON_FA_USER;
+  master->is_locked = true;
+  master->is_suppressible = true;
+  master->player = k4n::dev::Player(node_k4n, master);
+
   dat_set->add_subset(set_scene, master);
 
   //---------------------------

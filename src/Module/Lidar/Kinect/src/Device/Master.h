@@ -27,14 +27,9 @@ public:
   ~Master();
 
 public:
-  //Main function
-  void reset();
+
 
 public:
-  dat::Set* dat_set;
-  k4n::utils::Configuration* k4n_config;
-  k4n::playback::Importer* k4n_importer;
-
   dyn::operation::Structure operation;
   dyn::recorder::Structure recorder;
   k4n::structure::Configuration config;

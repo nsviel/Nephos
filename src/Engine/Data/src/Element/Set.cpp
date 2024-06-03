@@ -42,6 +42,7 @@ void Set::reset_set(dat::base::Set* set){
   //Reset own stuff
   set->pose = {};
   set->reset();
+  set->player.manage_reset();
 
   //Reset all associated entities
   for(int j=0; j<set->list_entity.size(); j++){

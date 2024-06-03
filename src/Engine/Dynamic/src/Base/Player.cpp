@@ -170,7 +170,18 @@ void Player::manage_restart(){
 }
 void Player::manage_reset(){
   //---------------------------
+  /*
+    for(int i=0; i<list_entity.size(); i++){
+      dat::base::Entity* entity = *next(list_entity.begin(), i);
 
+      if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+        sensor->manage_ts_query(player->ts_beg);
+      }
+    }
+
+    //Restart player
+    player.player_query(ts_beg);
+  */
 
   //---------------------------
 }
