@@ -52,9 +52,7 @@ public:
 
 private:
   format::ply::Header* header = nullptr;
-  std::vector<glm::vec3> xyz;
-  std::vector<glm::vec3> Nxyz;
-  std::vector<float> Is;
+  format::ply::Data data;
 };
 
 }

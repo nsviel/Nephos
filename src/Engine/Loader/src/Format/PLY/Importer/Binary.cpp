@@ -37,10 +37,10 @@ void Binary::parse_binary(dat::base::Object* object, format::ply::Header* header
   }
 
   //Store result
-  object->data.xyz = xyz;
-  object->data.Nxyz = Nxyz;
-  object->data.Is = Is;
-  object->data.size = xyz.size();
+  object->data.xyz = data.xyz;
+  object->data.Nxyz = data.Nxyz;
+  object->data.Is = data.Is;
+  object->data.size = data.xyz.size();
 
   //Close file
   file.close();
@@ -50,11 +50,9 @@ void Binary::parse_binary(dat::base::Object* object, format::ply::Header* header
 
 //Parser
 void Binary::parse_vertex_little_endian(std::ifstream& file){
-  xyz.clear();
-  Nxyz.clear();
-  Is.clear();
+  this->data = {};
   //---------------------------
-/*
+
   //Read data
   int block_size = header->vec_property.size() * header->nb_vertex * sizeof(float);
   char* block_data = new char[block_size];
@@ -109,15 +107,12 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
     }
   }
 
-
-
   //Resize std::vectors accordingly
-  entity->xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(format::ply::TS) != -1) entity->ts.resize(header->nb_vertex, 0);
-  if(get_property_id(format::ply::I) != -1) entity->Is.resize(header->nb_vertex, 0);
-  if(get_property_id(format::ply::NX) != -1) entity->Nxyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(format::ply::R) != -1) entity->rgb.resize(header->nb_vertex, glm::vec4(0,0,0,0));
-  entity->nb_element = header->nb_vertex;
+  data.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(format::ply::TS) != -1) data.ts.resize(header->nb_vertex, 0);
+  if(get_property_id(format::ply::I) != -1) data.Is.resize(header->nb_vertex, 0);
+  if(get_property_id(format::ply::NX) != -1) data.Nxyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(format::ply::R) != -1) data.rgb.resize(header->nb_vertex, glm::vec4(0,0,0,0));
 
   //Insert data in the adequate std::vector
   //#pragma omp parallel for
@@ -128,12 +123,12 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
       switch(property->field){
         case format::ply::X:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-          entity->xyz[i] = point;
+          data.xyz[i] = point;
           break;
         }
         case format::ply::NX:{ //Normal
           glm::vec3 normal = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-          entity->Nxyz[i] = normal;
+          data.Nxyz[i] = normal;
           break;
         }
         case format::ply::R:{ //Color
@@ -141,24 +136,24 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
           float green = block_vec[j+1][i] / 255;
           float blue = block_vec[j+2][i] / 255;
           glm::vec4 rgb = glm::vec4(red, green, blue, 1.0f);
-          entity->rgb[i] = rgb;
+          data.rgb[i] = rgb;
           break;
         }
         case format::ply::I:{ //Intensity
           float Is = block_vec[j][i];
-          entity->Is[i] = Is;
+          data.Is[i] = Is;
           break;
         }
         case format::ply::TS:{ //Timestamp
           float ts = block_vec[j][i];
-          entity->ts[i] = ts;
+          data.ts[i] = ts;
           break;
         }
       }
 
     }
   }
-*/
+
   //---------------------------
 }
 void Binary::parse_face_little_endian(std::ifstream& file){
@@ -234,7 +229,7 @@ void Binary::parse_face_little_endian(std::ifstream& file){
 
     //Location
     for(int j=0; j<idx.size(); j++){
-      entity->xyz.push_back(vertex[idx[j]]);
+      data.xyz.push_back(vertex[idx[j]]);
     }
   }
 
@@ -247,7 +242,7 @@ void Binary::parse_face_little_endian(std::ifstream& file){
   }
 
   //---------------------------
-  entity->nb_element = entity->xyz.size();*/
+  entity->nb_element = data.xyz.size();*/
 }
 void Binary::parse_vertex_big_endian(std::ifstream& file){
   //---------------------------
@@ -269,9 +264,9 @@ void Binary::parse_vertex_big_endian(std::ifstream& file){
   }
 
   //Resize std::vectors accordingly
-  entity->xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(format::ply::TS) != -1) entity->ts.resize(header->nb_vertex, 0);
-  if(get_property_id(format::ply::I) != -1) entity->Is.resize(header->nb_vertex, 0);
+  data.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(format::ply::TS) != -1) data.ts.resize(header->nb_vertex, 0);
+  if(get_property_id(format::ply::I) != -1) data.Is.resize(header->nb_vertex, 0);
   entity->nb_element = header->nb_vertex;
 
   //Insert data in the adequate std::vector
@@ -283,17 +278,17 @@ void Binary::parse_vertex_big_endian(std::ifstream& file){
       switch(property->field){
         case format::ply::X:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-          entity->xyz[i] = point;
+          data.xyz[i] = point;
           break;
         }
         case format::ply::I:{ //Intensity
           float Is = block_vec[j][i];
-          entity->Is[i] = Is;
+          data.Is[i] = Is;
           break;
         }
         case format::ply::TS:{ //Timestamp
           float ts = block_vec[j][i];
-          entity->ts[i] = ts;
+          data.ts[i] = ts;
           break;
         }
       }
@@ -376,7 +371,7 @@ void Binary::parse_face_big_endian(std::ifstream& file){
 
     //Location
     for(int j=0; j<idx.size(); j++){
-      entity->xyz.push_back(vertex[idx[j]]);
+      data.xyz.push_back(vertex[idx[j]]);
     }
   }
 
@@ -389,7 +384,7 @@ void Binary::parse_face_big_endian(std::ifstream& file){
   }
 
   //---------------------------
-  entity->nb_element = entity->xyz.size();*/
+  entity->nb_element = data.xyz.size();*/
 }
 
 //Subfunction
@@ -437,25 +432,25 @@ void Binary::reorder_by_timestamp(utl::base::Data* data){/*
   std::vector<float> Is;
   //---------------------------
 
-  if(entity->ts.size() != 0){
+  if(data.ts.size() != 0){
     //Check fornon void and reorder by index
-    for(auto i: math::sort_by_index(entity->ts)){
-      if(entity->xyz[i] != glm::vec3(0, 0, 0)){
+    for(auto i: math::sort_by_index(data.ts)){
+      if(data.xyz[i] != glm::vec3(0, 0, 0)){
         //Location adn timestamp
-        ts.push_back(entity->ts[i]);
-        pos.push_back(entity->xyz[i]);
+        ts.push_back(data.ts[i]);
+        pos.push_back(data.xyz[i]);
 
         //Intensity
-        if(entity->Is.size() != 0){
-          Is.push_back(entity->Is[i]);
+        if(data.Is.size() != 0){
+          Is.push_back(data.Is[i]);
         }
       }
     }
 
     //Set new std::vectors
-    entity->xyz = pos;
-    entity->ts = ts;
-    entity->Is = Is;
+    data.xyz = pos;
+    data.ts = ts;
+    data.Is = Is;
   }
 */
   //---------------------------
