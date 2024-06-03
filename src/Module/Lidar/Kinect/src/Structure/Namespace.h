@@ -10,3 +10,4 @@
 #include <Kinect/src/Structure/Infrared.h>
 #include <Kinect/src/Structure/FPS.h>
 #include <Kinect/src/Structure/Structure.h>
+#include <Kinect/src/Structure/Sensor.h>

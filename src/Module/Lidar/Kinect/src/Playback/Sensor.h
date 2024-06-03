@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Utils/Sensor.h>
+#include <Kinect/src/Structure/Sensor.h>
 #include <Utility/Specific/Common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
@@ -37,7 +37,7 @@ public:
   void manage_pause();
   void manage_ts_query(float ts_querry);
   vec3 convert_depth_2d_to_3d(ivec2 point_2d);
-  
+
 public:
   k4a::playback playback;
   k4n::synchro::Configuration synchro;

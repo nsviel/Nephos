@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Utils/Sensor.h>
+#include <Kinect/src/Structure/Sensor.h>
 #include <Utility/Specific/Common.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
@@ -38,7 +38,7 @@ public:
   void manage_reset();
   void manage_configuration();
   vec3 convert_depth_2d_to_3d(ivec2 point_2d);
-  
+
 private:
   k4n::processing::Image* k4n_image;
   k4n::utils::Configuration* k4n_config;
