@@ -25,12 +25,15 @@ public:
 
 public:
   //Main function
-  void parse_bin_little_endian(std::ifstream& file, utl::base::Data* data);
-  void parse_bin_little_endian_withface(std::ifstream& file, utl::base::Data* data);
-  void parse_bin_big_endian(std::ifstream& file, utl::base::Data* data);
-  void parse_bin_big_endian_withface(std::ifstream& file, utl::base::Data* data);
+  void parse_binary(dat::base::Object* object, format::ply::Header* header);
+
+  void parse_vertex_little_endian(std::ifstream& file, utl::base::Data* data);
+  void parse_face_little_endian(std::ifstream& file, utl::base::Data* data);
+  void parse_vertex_big_endian(std::ifstream& file, utl::base::Data* data);
+  void parse_face_big_endian(std::ifstream& file, utl::base::Data* data);
 
   //Subfunction
+  void pass_header(std::ifstream& file);
   float reverse_float(const float inFloat);
   int reverse_int(const int inInt);
   void reorder_by_timestamp(utl::base::Data* data);
@@ -47,12 +50,10 @@ public:
   float get_ushort_from_binary(char* block_data, int& offset);
 
 private:
-  std::vector<format::ply::Property> vec_property;
-  int file_format;
-  int point_data_idx;
-  int point_number;
-  int face_number;
-  int header_size;
+  format::ply::Header* header = nullptr;
+  std::vector<glm::vec3> xyz;
+  std::vector<glm::vec3> Nxyz;
+  std::vector<float> Is;
 };
 
 }

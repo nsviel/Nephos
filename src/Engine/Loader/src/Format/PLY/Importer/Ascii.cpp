@@ -24,7 +24,7 @@ void Ascii::parse_ascii(dat::base::Object* object, format::ply::Header* header){
   this->pass_header(file);
 
   //Read data
-  this->parse_vertice(file);
+  this->parse_vertex(file);
   this->parse_face(file);
 
   //Store result
@@ -33,13 +33,14 @@ void Ascii::parse_ascii(dat::base::Object* object, format::ply::Header* header){
   object->data.Is = Is;
   object->data.size = xyz.size();
 
+  //Close file
   file.close();
 
   //---------------------------
 }
 
 //Parser
-void Ascii::parse_vertice(std::ifstream& file){
+void Ascii::parse_vertex(std::ifstream& file){
   xyz.clear();
   Nxyz.clear();
   Is.clear();

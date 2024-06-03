@@ -37,42 +37,11 @@ utl::base::Element* Importer::import(utl::media::Path path){
       ply_ascii->parse_ascii(object, &header);
       break;
     }
-    /*case BINARY_LITTLE_ENDIAN:{
-      //Open file
-      std::ifstream file(path.data, std::ios::binary);
-
-      //Read header
-      this->parse_header(file);
-
-      //Read data
-      if(face_number == 0){
-        ply_binary->parse_bin_little_endian(file, entity);
-      }else{
-        ply_binary->parse_bin_little_endian_withface(file, entity);
-      }
-
-      //Close file
-      file.close();
+    case BINARY_LITTLE_ENDIAN:
+    case BINARY_BIG_ENDIAN:{
+      ply_ascii->parse_binary(object, &header);
       break;
     }
-    case BINARY_BIG_ENDIAN:{
-      //Open file
-      std::ifstream file(path.data, std::ios::binary);
-
-      //Read header
-      this->parse_header(file);
-
-      //Read data
-      if(face_number == 0){
-        ply_binary->parse_bin_big_endian(file, entity);
-      }else{
-        ply_binary->parse_bin_big_endian_withface(file, entity);
-      }
-
-      //Close file
-      file.close();
-      break;
-    }*/
   }
 
   //---------------------------

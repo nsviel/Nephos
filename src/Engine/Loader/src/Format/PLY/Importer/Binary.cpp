@@ -14,7 +14,41 @@ Binary::Binary(){
 Binary::~Binary(){}
 
 //Main function
-void Binary::parse_bin_little_endian(std::ifstream& file, utl::base::Data* data){
+void Binary::parse_binary(dat::base::Object* object, format::ply::Header* header){
+  this->header = header;
+  //---------------------------
+
+  //Open file
+  std::ifstream file(path.data, std::ios::binary);
+  this->pass_header(file);
+
+  //Read data
+  switch(header->format){
+    case BINARY_LITTLE_ENDIAN:{
+      ply_binary->parse_vertex_little_endian(file, entity);
+      ply_binary->parse_face_little_endian(file, entity);
+      break;
+    }
+    case BINARY_BIG_ENDIAN:{
+      ply_binary->parse_vertex_big_endian(file, entity);
+      ply_binary->parse_face_big_endian(file, entity);
+      break;
+    }
+  }
+
+  //Store result
+  object->data.xyz = xyz;
+  object->data.Nxyz = Nxyz;
+  object->data.Is = Is;
+  object->data.size = xyz.size();
+
+  //Close file
+  file.close();
+
+  //---------------------------
+}
+
+void Binary::parse_vertex_little_endian(std::ifstream& file, utl::base::Data* data){
   //---------------------------
 /*
   //Read data
@@ -121,7 +155,7 @@ void Binary::parse_bin_little_endian(std::ifstream& file, utl::base::Data* data)
 */
   //---------------------------
 }
-void Binary::parse_bin_little_endian_withface(std::ifstream& file, utl::base::Data* data){
+void Binary::parse_face_little_endian(std::ifstream& file, utl::base::Data* data){
   //---------------------------
 /*
   //Read data
@@ -209,7 +243,7 @@ void Binary::parse_bin_little_endian_withface(std::ifstream& file, utl::base::Da
   //---------------------------
   entity->nb_element = entity->xyz.size();*/
 }
-void Binary::parse_bin_big_endian(std::ifstream& file, utl::base::Data* data){
+void Binary::parse_vertex_big_endian(std::ifstream& file, utl::base::Data* data){
   //---------------------------
 /*
   //Read data
@@ -263,7 +297,7 @@ void Binary::parse_bin_big_endian(std::ifstream& file, utl::base::Data* data){
 */
   //---------------------------
 }
-void Binary::parse_bin_big_endian_withface(std::ifstream& file, utl::base::Data* data){
+void Binary::parse_face_big_endian(std::ifstream& file, utl::base::Data* data){
   //---------------------------
 /*
   //Read data
@@ -353,6 +387,18 @@ void Binary::parse_bin_big_endian_withface(std::ifstream& file, utl::base::Data*
 }
 
 //Subfunction
+void Binary::pass_header(std::ifstream& file){
+  std::string line;
+  //---------------------------
+
+  while(std::getline(file, line)){
+    if(line == "end_header"){
+      break;
+    }
+  }
+
+  //---------------------------
+}
 float Binary::reverse_float(const float inFloat){
    float retVal;
    char *floatToConvert = ( char* ) & inFloat;
@@ -411,8 +457,8 @@ void Binary::reorder_by_timestamp(utl::base::Data* data){/*
 int Binary::get_property_id(format::ply::Field field){
   //---------------------------
 
-  for(int i=0; i<vec_property.size(); i++){
-    format::ply::Property* property = &vec_property[i];
+  for(int i=0; i<header->vec_property.size(); i++){
+    format::ply::Property* property = &header->vec_property[i];
 
     if(property->field == field){
       return i;

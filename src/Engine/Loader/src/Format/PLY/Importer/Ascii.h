@@ -27,7 +27,7 @@ public:
   void parse_ascii(dat::base::Object* object, format::ply::Header* header);
 
   //Parser
-  void parse_vertice(std::ifstream& file);
+  void parse_vertex(std::ifstream& file);
   void parse_face(std::ifstream& file);
 
   //Subfunction
