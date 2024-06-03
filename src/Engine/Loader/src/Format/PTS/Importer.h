@@ -28,7 +28,7 @@ private:
   void Loader_init();
   void Loader_nbColumns();
   void Loader_configuration();
-  void Loader_data(utl::file::Data* data_out, int FILE_config);
+  void Loader_data(utl::base::Data* data_out, int FILE_config);
 
   //Checking function
   bool check_header(std::string path);

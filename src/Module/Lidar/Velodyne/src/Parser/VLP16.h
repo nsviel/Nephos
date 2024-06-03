@@ -16,7 +16,7 @@ public:
 
 public:
   //Main functions
-  utl::file::Data* parse_packet(vector<int> packet);
+  utl::base::Data* parse_packet(vector<int> packet);
 
   //Subfunctions
   bool parse_header(vector<int>& packet_dec);
@@ -27,7 +27,7 @@ public:
   void parse_timestamp();
 
   //Final processing function
-  void reorder_by_azimuth(utl::file::Data* cloud);
+  void reorder_by_azimuth(utl::base::Data* cloud);
   void supress_empty_data();
 
   //Subsubfunctions

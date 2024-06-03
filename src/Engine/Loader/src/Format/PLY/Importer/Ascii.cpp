@@ -15,7 +15,7 @@ Ascii::Ascii(){
 Ascii::~Ascii(){}
 
 //Main function
-void Ascii::parse_ascii(std::ifstream& file, utl::file::Data* entity){
+void Ascii::parse_ascii(std::ifstream& file, utl::base::Data* data){/*
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -64,9 +64,9 @@ void Ascii::parse_ascii(std::ifstream& file, utl::file::Data* entity){
   entity->Is = intensity;
 
   //---------------------------
-  entity->nb_element = entity->xyz.size();
+  entity->nb_element = entity->xyz.size();*/
 }
-void Ascii::parse_ascii_withface(std::ifstream& file, utl::file::Data* entity){
+void Ascii::parse_ascii_withface(std::ifstream& file, utl::base::Data* data){/*
   std::vector<glm::vec3> vertex;
   std::vector<glm::vec3> normal;
   std::vector<float> intensity;
@@ -141,7 +141,7 @@ void Ascii::parse_ascii_withface(std::ifstream& file, utl::file::Data* entity){
   }
 
   //---------------------------
-  entity->nb_element = entity->xyz.size();
+  entity->nb_element = entity->xyz.size();*/
 }
 int Ascii::get_property_id(format::ply::Field field){
   //---------------------------

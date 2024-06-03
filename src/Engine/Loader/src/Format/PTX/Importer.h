@@ -45,7 +45,7 @@ public:
   //Subfunctions
   void Loader_header(PTXCloud* cloud);
   void Loader_data(PTXCloud* cloud);
-  void Loader_assembling(utl::file::Data* entity);
+  void Loader_assembling(utl::base::Data* entity);
   void Loader_cloudTransformation();
   void Loader_scannerAtOrigin();
 

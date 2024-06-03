@@ -87,20 +87,20 @@ void Server::capture_data(){
   thread_screenshot->start_thread();
 
   //Parse decimal packet into point cloud
-  utl::file::Data* data = vld_vlp16->parse_packet(packet_dec);
+  utl::base::Data* data = vld_vlp16->parse_packet(packet_dec);
 
   //Iteratively build a complete frame
   bool frame_rev = vld_frame->build_frame(data);
 
   // If frame revolution, make some ope
   if(frame_rev){
-    utl::file::Data* data = vld_frame->get_endedFrame();
+    utl::base::Data* data = vld_frame->get_endedFrame();
     this->update_object(data);
   }
 
   //---------------------------
 }
-void Server::update_object(utl::file::Data* data){
+void Server::update_object(utl::base::Data* data){
   //---------------------------
 
   string name = "capture_" + to_string(vld_struct->data.current_frame_ID++);
@@ -108,7 +108,7 @@ void Server::update_object(utl::file::Data* data){
   object->name = name;
   object->data.name = name + "::data";
   object->data.size = data->xyz.size();
-  object->data.topology.type = data->draw_type;
+  //object->data.topology.type = data->topology;
 
   object->data.xyz = data->xyz;
   object->data.rgb = data->rgb;

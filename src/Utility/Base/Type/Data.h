@@ -34,20 +34,20 @@ struct Data : public utl::base::Element{
   std::string path_save = "";
   std::string path_texture = "";
   std::string format = "";
-  glm::vec4 unicolor;
+  glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
   utl::base::Topology topology;
 
   //Data
-  std::vector<glm::vec3> xyz;
-  std::vector<glm::vec3> rgb;
+  std::vector<glm::vec3> xyz; //XYZ location
+  std::vector<glm::vec3> rgb; //RGB color
   std::vector<glm::vec4> rgba; //Displayed color data
-  std::vector<glm::vec3> Nxyz;
-  std::vector<glm::vec2> uv;
-  std::vector<bool> goodness;
-  std::vector<int> idx;
-  std::vector<float> ts;
-  std::vector<float> Is;
-  std::vector<float> R;
+  std::vector<glm::vec3> Nxyz; //Normal
+  std::vector<glm::vec2> uv;  //UV coordinate
+  std::vector<float> ts; //Timestamp
+  std::vector<float> Is; //Intensity
+  std::vector<float> R; //Range
+  std::vector<float> A; //Azimuth
+  std::vector<int> idx; //Index
 
   //---------------------------
 };

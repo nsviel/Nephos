@@ -25,15 +25,15 @@ public:
 
 public:
   //Main function
-  void parse_bin_little_endian(std::ifstream& file, utl::file::Data* entity);
-  void parse_bin_little_endian_withface(std::ifstream& file, utl::file::Data* entity);
-  void parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity);
-  void parse_bin_big_endian_withface(std::ifstream& file, utl::file::Data* entity);
+  void parse_bin_little_endian(std::ifstream& file, utl::base::Data* data);
+  void parse_bin_little_endian_withface(std::ifstream& file, utl::base::Data* data);
+  void parse_bin_big_endian(std::ifstream& file, utl::base::Data* data);
+  void parse_bin_big_endian_withface(std::ifstream& file, utl::base::Data* data);
 
   //Subfunction
   float reverse_float(const float inFloat);
   int reverse_int(const int inInt);
-  void reorder_by_timestamp(utl::file::Data* entity);
+  void reorder_by_timestamp(utl::base::Data* data);
   int get_property_id(format::ply::Field field);
 
   //Binary type

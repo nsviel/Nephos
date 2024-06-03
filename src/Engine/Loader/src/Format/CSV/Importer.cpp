@@ -25,7 +25,7 @@ utl::base::Element* Importer::import(std::string pathFile){
 
   //At row level
   for(int i=0; i<csvFile.size(); i++){
-    utl::file::Data* data_sub = new utl::file::Data();
+    utl::base::Data* data_sub = new utl::base::Data();
     data_sub->path = pathFile;
 
     //At field level

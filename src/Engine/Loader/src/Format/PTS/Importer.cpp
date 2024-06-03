@@ -22,7 +22,7 @@ Importer::~Importer(){}
 utl::base::Element* Importer::import(utl::media::Path path){
   //---------------------------
 /*
-  utl::file::Data* entity = new utl::file::Data();
+  utl::base::Data* entity = new utl::base::Data();
   entity->name = utl::path::get_name_from_path(path.data);
   entity->path = path;
   entity->draw_type = utl::topology::POINT;
@@ -209,7 +209,7 @@ void Importer::Loader_configuration(){
   //---------------------------
   endParameters = true;
 }
-void Importer::Loader_data(utl::file::Data* data, int FILE_config){
+void Importer::Loader_data(utl::base::Data* data, int FILE_config){
   std::istringstream iss(line);
   float x,y,z,r,g,b,I,nx,ny,nz;
   //---------------------------

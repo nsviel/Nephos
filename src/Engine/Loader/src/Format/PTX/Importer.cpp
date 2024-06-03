@@ -26,7 +26,7 @@ utl::base::Element* Importer::import(utl::media::Path path){
   PTXCloud* cloud = new PTXCloud;
   //---------------------------
 
-  utl::file::Data* entity = new utl::file::Data();
+  utl::base::Data* entity = new utl::base::Data();
   entity->name = utl::path::get_name_from_path(path.data);
   entity->path = path;
 
@@ -215,7 +215,7 @@ void Importer::Loader_data(PTXCloud* cloud){
 
   //---------------------------
 }
-void Importer::Loader_assembling(utl::file::Data* entity){
+void Importer::Loader_assembling(utl::base::Data* entity){
   //Assemble into an unique cloud
   //---------------------------
 

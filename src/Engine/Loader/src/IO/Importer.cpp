@@ -129,7 +129,7 @@ bool Importer::check_file_path(std::string path){
   //---------------------------
   return true;
 }
-dat::base::Object* Importer::create_object(utl::file::Data* data){
+dat::base::Object* Importer::create_object(utl::base::Data* data){
   //---------------------------
 
   dat::base::Object* object = new dat::base::Object();
@@ -142,10 +142,10 @@ dat::base::Object* Importer::create_object(utl::file::Data* data){
   //---------------------------
   return object;
 }
-utl::base::Data* Importer::create_data(utl::file::Data* file){
+utl::base::Data* Importer::create_data(utl::base::Data* file){
   //---------------------------
 
-  utl::base::Data* data = new utl::base::Data();
+  utl::base::Data* data = new utl::base::Data();/*
   data->name = file->name;
   data->path = file->path.data;
   data->format = utl::path::get_format_from_path(file->path.data);
@@ -167,7 +167,7 @@ utl::base::Data* Importer::create_data(utl::file::Data* file){
       data->rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
     }
   }
-
+*/
   //---------------------------
   return data;
 }

@@ -14,9 +14,9 @@ Binary::Binary(){
 Binary::~Binary(){}
 
 //Main function
-void Binary::parse_bin_little_endian(std::ifstream& file, utl::file::Data* entity){
+void Binary::parse_bin_little_endian(std::ifstream& file, utl::base::Data* data){
   //---------------------------
-
+/*
   //Read data
   int block_size = vec_property.size() * point_number * sizeof(float);
   char* block_data = new char[block_size];
@@ -118,12 +118,12 @@ void Binary::parse_bin_little_endian(std::ifstream& file, utl::file::Data* entit
 
     }
   }
-
+*/
   //---------------------------
 }
-void Binary::parse_bin_little_endian_withface(std::ifstream& file, utl::file::Data* entity){
+void Binary::parse_bin_little_endian_withface(std::ifstream& file, utl::base::Data* data){
   //---------------------------
-
+/*
   //Read data
   int block_size = vec_property.size() * point_number * sizeof(float);
   char* block_data = new char[block_size];
@@ -207,11 +207,11 @@ void Binary::parse_bin_little_endian_withface(std::ifstream& file, utl::file::Da
   }
 
   //---------------------------
-  entity->nb_element = entity->xyz.size();
+  entity->nb_element = entity->xyz.size();*/
 }
-void Binary::parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity){
+void Binary::parse_bin_big_endian(std::ifstream& file, utl::base::Data* data){
   //---------------------------
-
+/*
   //Read data
   int block_size = vec_property.size() * point_number * sizeof(float);
   char* block_data = new char[block_size];
@@ -260,12 +260,12 @@ void Binary::parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity){
 
     }
   }
-
+*/
   //---------------------------
 }
-void Binary::parse_bin_big_endian_withface(std::ifstream& file, utl::file::Data* entity){
+void Binary::parse_bin_big_endian_withface(std::ifstream& file, utl::base::Data* data){
   //---------------------------
-
+/*
   //Read data
   int block_size = vec_property.size() * point_number * sizeof(float);
   char* block_data = new char[block_size];
@@ -349,7 +349,7 @@ void Binary::parse_bin_big_endian_withface(std::ifstream& file, utl::file::Data*
   }
 
   //---------------------------
-  entity->nb_element = entity->xyz.size();
+  entity->nb_element = entity->xyz.size();*/
 }
 
 //Subfunction
@@ -379,7 +379,7 @@ int Binary::reverse_int(const int inInt){
 
    return retVal;
 }
-void Binary::reorder_by_timestamp(utl::file::Data* entity){
+void Binary::reorder_by_timestamp(utl::base::Data* data){/*
   std::vector<glm::vec3> pos;
   std::vector<float> ts;
   std::vector<float> Is;
@@ -405,7 +405,7 @@ void Binary::reorder_by_timestamp(utl::file::Data* entity){
     entity->ts = ts;
     entity->Is = Is;
   }
-
+*/
   //---------------------------
 }
 int Binary::get_property_id(format::ply::Field field){

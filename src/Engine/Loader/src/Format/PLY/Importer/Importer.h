@@ -35,32 +35,6 @@ private:
   void parse_header_format(std::string format);
   void parse_header_property(std::string type, std::string field);
 
-  //ASCII
-  void parse_ascii(std::ifstream& file, utl::file::Data* entity);
-  void parse_ascii_withface(std::ifstream& file, utl::file::Data* entity);
-
-  //Binary
-  void parse_bin_little_endian(std::ifstream& file, utl::file::Data* entity);
-  void parse_bin_little_endian_withface(std::ifstream& file, utl::file::Data* entity);
-  void parse_bin_big_endian(std::ifstream& file, utl::file::Data* entity);
-  void parse_bin_big_endian_withface(std::ifstream& file, utl::file::Data* entity);
-
-  //Subfunction
-  float reverse_float(const float inFloat);
-  int reverse_int(const int inInt);
-  void reorder_by_timestamp(utl::file::Data* entity);
-  int get_property_id(format::ply::Field field);
-
-  //Binary type
-  float get_float_from_binary(char* data, int& offset);
-  float get_double_from_binary(char* block_data, int& offset);
-  float get_int_from_binary(char* data, int& offset);
-  float get_uint8_from_binary(char* block_data, int& offset);
-  float get_uint16_from_binary(char* block_data, int& offset);
-  float get_uint32_from_binary(char* block_data, int& offset);
-  float get_uchar_from_binary(char* block_data, int& offset);
-  float get_ushort_from_binary(char* block_data, int& offset);
-
 private:
   format::ply::importer::Ascii* ply_ascii;
   format::ply::importer::Binary* ply_binary;

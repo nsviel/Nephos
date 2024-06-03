@@ -7,15 +7,15 @@ namespace vld::processing{
 Frame::Frame(){
   //---------------------------
 
-  this->frame_onrun = new utl::file::Data();
-  this->frame_ended = new utl::file::Data();
+  this->frame_onrun = new utl::base::Data();
+  this->frame_ended = new utl::base::Data();
 
   //---------------------------
 }
 Frame::~Frame(){}
 
 //Main function
-bool Frame::build_frame(utl::file::Data* data){
+bool Frame::build_frame(utl::base::Data* data){
   bool frame_ended = false;
   //---------------------------
 
@@ -68,14 +68,14 @@ void Frame::reset_frame(){
   delete frame_onrun;
   delete frame_ended;
 
-  this->frame_onrun = new utl::file::Data();
-  this->frame_ended = new utl::file::Data();
+  this->frame_onrun = new utl::base::Data();
+  this->frame_ended = new utl::base::Data();
 
   //---------------------------
 }
 
 //Subfunctions
-void Frame::add_data_to_frame(utl::file::Data* data){
+void Frame::add_data_to_frame(utl::base::Data* data){
   //---------------------------
 
   for(int i=0; i<data->xyz.size(); i++){
@@ -88,7 +88,7 @@ void Frame::add_data_to_frame(utl::file::Data* data){
 
   //---------------------------
 }
-void Frame::end_data_to_frame(utl::file::Data* data, int index){
+void Frame::end_data_to_frame(utl::base::Data* data, int index){
   //---------------------------
 
   for(int i=0; i<index; i++){
@@ -101,7 +101,7 @@ void Frame::end_data_to_frame(utl::file::Data* data, int index){
 
   *frame_ended = *frame_onrun;
   delete frame_onrun;
-  frame_onrun = new utl::file::Data();
+  frame_onrun = new utl::base::Data();
 
   for(int i=index; i<data->xyz.size(); i++){
     frame_onrun->xyz.push_back(data->xyz[i]);

@@ -32,7 +32,7 @@ public:
 
   //Subfunction
   void capture_data();
-  void update_object(utl::file::Data* data);
+  void update_object(utl::base::Data* data);
 
 private:
   dat::Graph* dat_graph;
@@ -47,7 +47,7 @@ private:
   vld::main::Data* vld_data;
   vld::thread::Screenshot* thread_screenshot;
 
-  utl::file::Data utl_file;
+  utl::base::Data utl_file;
   std::thread thread;
   bool thread_running = false;
   bool thread_idle = true;

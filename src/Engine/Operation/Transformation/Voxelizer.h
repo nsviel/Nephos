@@ -29,6 +29,7 @@ public:
   inline void set_minimum_pt_in_voxel(int value){this->min_nb_point = value;}
 
 private:
+  std::vector<bool> vec_goodness;
   Voxel_map voxel_map;
   float voxel_size;
   int min_nb_point;

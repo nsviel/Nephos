@@ -14,18 +14,18 @@ public:
 
 public:
   //Main functions
-  bool build_frame(utl::file::Data* data);
+  bool build_frame(utl::base::Data* data);
   void reset_frame();
 
   //Subfunctions
-  void add_data_to_frame(utl::file::Data* data);
-  void end_data_to_frame(utl::file::Data* data, int index);
+  void add_data_to_frame(utl::base::Data* data);
+  void end_data_to_frame(utl::base::Data* data, int index);
 
-  inline utl::file::Data* get_endedFrame(){return frame_ended;}
+  inline utl::base::Data* get_endedFrame(){return frame_ended;}
 
 private:
-  utl::file::Data* frame_onrun;
-  utl::file::Data* frame_ended;
+  utl::base::Data* frame_onrun;
+  utl::base::Data* frame_ended;
 };
 
 }

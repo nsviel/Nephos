@@ -38,10 +38,10 @@ public:
   //Subfunction
   void importer_init(std::string path);
   void importer_sniffing(std::string path);
-  void importer_parsing(utl::file::Dataset* dataset, std::string path);
+  void importer_parsing(dat::base::Set* dataset, std::string path);
 
-  void parser_vlp16(utl::file::Dataset* dataset, std::string path);
-  void parser_hdl32(utl::file::Dataset* dataset, std::string path);
+  void parser_vlp16(dat::base::Set* dataset, std::string path);
+  void parser_hdl32(dat::base::Set* dataset, std::string path);
   int get_file_length(std::string path);
 
   inline void set_lidar_model(int value){this->lidar_model = value;}

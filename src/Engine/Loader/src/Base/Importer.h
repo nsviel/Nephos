@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Base/Media/File.h>
 #include <Data/src/Base/Entity.h>
 #include <Data/src/Base/Set.h>
 #include <string>
@@ -17,7 +16,6 @@ struct Importer{
 
   std::string format = "";
   bool require_discrete_gpu = false;
-  utl::file::Data* data = nullptr;
 
   //---------------------------
 };
