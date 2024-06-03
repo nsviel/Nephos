@@ -175,7 +175,7 @@ std::vector<std::string> list_all_file(std::string path){
   }
 
   //Filtre and store files present in the folder
-  while ((files = readdir(directory)) != NULL){
+  while((files = readdir(directory)) != NULL){
     std::string name = files->d_name;
 
     if(name != "."){
@@ -210,7 +210,7 @@ std::vector<std::string> list_all_path(std::string path_dir){
   }
 
   //Filtre and store files present in the folder
-  while ((files = readdir(directory)) != NULL){
+  while((files = readdir(directory)) != NULL){
     std::string path_file = files->d_name;
     std::string path_full = path_dir + "/" + path_file;
 
@@ -241,7 +241,7 @@ std::vector<std::string> list_all_dir(std::string path){
   }
 
   //Filtre and store files present in the folder
-  while ((files = readdir(directory)) != NULL){
+  while((files = readdir(directory)) != NULL){
     std::string name = files->d_name;
     if((strchr(files->d_name, '.')) == NULL){
       list.push_back(name + "/");

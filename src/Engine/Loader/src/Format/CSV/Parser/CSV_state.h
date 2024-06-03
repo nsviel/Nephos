@@ -56,7 +56,7 @@ std::vector<std::string> readCSVRow(const std::string &row){
 std::vector<std::vector<std::string>> readCSV(std::istream &in){
   std::vector<std::vector<std::string>> table;
   std::string row;
-  while (!in.eof()){
+  while(!in.eof()){
     std::getline(in, row);
     if (in.bad() || in.fail()){
         break;

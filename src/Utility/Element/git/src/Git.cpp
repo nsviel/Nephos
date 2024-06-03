@@ -54,7 +54,7 @@ void Git::retrieve_all_branch(){
   if (!git_branch_iterator_new(&it, repo, GIT_BRANCH_ALL)){
     git_reference *ref;
     git_branch_t type;
-    while (!git_branch_next(&ref, &type, it)){
+    while(!git_branch_next(&ref, &type, it)){
       // Do something with 'ref' and 'type'.
       const char* branch_name = git_reference_name(ref);
       // Do something with 'branch_name'

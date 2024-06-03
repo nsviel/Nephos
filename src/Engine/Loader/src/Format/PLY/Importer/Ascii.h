@@ -26,18 +26,18 @@ public:
   //Main function
   void parse_ascii(dat::base::Object* object, format::ply::Header* header);
 
-  //Subfunction
-  void parse_data(std::ifstream& file, utl::base::Data* data);
+  //Parser
+  void parse_vertice(std::ifstream& file, format::ply::Header* header);
   void parse_data_withface(std::ifstream& file, utl::base::Data* data);
-  int get_property_id(format::ply::Field field);
+
+  //Subfunction
+  void pass_header(std::ifstream& file);
+  int get_property_id(format::ply::Header* header, format::ply::Field field);
 
 private:
-  std::vector<format::ply::Property> vec_property;
-  int file_format;
-  int point_data_idx;
-  int point_number;
-  int face_number;
-  int header_size;
+  std::vector<glm::vec3> vertex;
+  std::vector<glm::vec3> normal;
+  std::vector<float> intensity;
 };
 
 }

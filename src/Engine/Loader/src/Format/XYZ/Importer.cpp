@@ -27,7 +27,7 @@ utl::base::Element* Importer::import(utl::media::Path path){
   //Retrieve data
   std::string line;
   float a, b, c, d, e, f;
-  while (std::getline(infile, line)){
+  while(std::getline(infile, line)){
     std::istringstream iss(line);
     iss >> a >> b >> c >> d >> e >> f;
 

@@ -524,7 +524,7 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
     float epipolar_line_slope = (stop_point2d[1] - start_point2d[1]) / (stop_point2d[0] - start_point2d[0]);
     bool xStep1 = fabs(epipolar_line_slope) < 1;
     bool stop_larger_than_start = xStep1 ? stop_point2d[0] > start_point2d[0] : stop_point2d[1] > start_point2d[1];
-    while (transformation_is_pixel_within_line_segment(p, start_point2d, stop_point2d))
+    while(transformation_is_pixel_within_line_segment(p, start_point2d, stop_point2d))
     {
         // Compute the ray from the depth camera oringin, intersecting with the current searching pixel on the epipolar
         // line

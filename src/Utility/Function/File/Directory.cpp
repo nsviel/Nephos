@@ -85,7 +85,7 @@ int size(std::string path){
   dp = opendir (path.c_str());
 
   if (dp != NULL){
-    while (ep = readdir (dp)){
+    while(ep = readdir (dp)){
       i++;
     }
     (void) closedir (dp);

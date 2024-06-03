@@ -36,7 +36,7 @@ utl::base::Element* Importer::import(utl::media::Path path){
   //Data loop
   PC_line = 0;
   std::string line;
-  while (std::getline(infile, line)){
+  while(std::getline(infile, line)){
     std::istringstream iss(line);
     x = 0; y = 0; z = 0; I = 0; r = 0; g = 0; b = 0;
     iss >> x >> y >> z >> I >> r >> g >> b;

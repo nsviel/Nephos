@@ -32,7 +32,7 @@ void PlyFile::readHeader()
 	{
 		getline(_file, tmpStr);
 		_header += tmpStr + "\n";
-	} while (tmpStr.find("end_header") != 0);
+	} while(tmpStr.find("end_header") != 0);
 
 	
 	// PARSE HEADER
@@ -43,7 +43,7 @@ void PlyFile::readHeader()
 	list<int>      sizePptTmp;
 	list<string>   namePptTmp;
 
-	while (!streamHeader.eof())
+	while(!streamHeader.eof())
 	{
 		streamHeader >> strTmp;
 		

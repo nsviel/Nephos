@@ -51,7 +51,7 @@ float Counter::calculate_mean_fps(){
 
   // Copy values from the queue to the vector
   size_t i = 0;
-  while (!fps_queue.empty()){
+  while(!fps_queue.empty()){
     fps_vector[i++] = fps_queue.front();
     fps_queue.pop();
   }

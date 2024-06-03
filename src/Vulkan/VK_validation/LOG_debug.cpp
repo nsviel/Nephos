@@ -14,7 +14,7 @@ void LOG_debug::validation_message(const VkDebugUtilsMessengerCallbackDataEXT* p
   std::cerr << "[" << "\033[1;32mVL\033[0m] " << validation_error << std::endl;
 
   // Split the message into individual objects
-  while (pose_obj_start != std::string::npos){
+  while(pose_obj_start != std::string::npos){
     size_t pose_obj_end = message.find(";", pose_obj_start);
     std::string obj_info = message.substr(pose_obj_start, pose_obj_end - pose_obj_start);
 

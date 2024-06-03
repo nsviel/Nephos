@@ -37,7 +37,7 @@ void Console::draw_console(std::string title){
     //   With:
     //      ImGuiListClipper clipper;
     //      clipper.Begin(Items.Size);
-    //      while (clipper.Step())
+    //      while(clipper.Step())
     //         for(int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++)
     // - That your items are evenly spaced (same height)
     // - That you have cheap random access to your elements (you can access them given their index,
@@ -222,7 +222,7 @@ int Console::TextEditCallback(ImGuiInputTextCallbackData* data){
             // Locate beginning of current word
             const char* word_end = data->Buf + data->CursorPos;
             const char* word_start = word_end;
-            while (word_start > data->Buf)
+            while(word_start > data->Buf)
             {
                 const char c = word_start[-1];
                 if (c == ' ' || c == '\t' || c == ',' || c == ';')

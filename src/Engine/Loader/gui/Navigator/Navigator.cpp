@@ -48,7 +48,7 @@ void Navigator::draw_header(){
   size_t start = 0;
   size_t end = current_dir.find_first_of('/');
   std::vector<std::string> pathElements;
-  while (end != std::string::npos){
+  while(end != std::string::npos){
     pathElements.push_back(current_dir.substr(start, end - start));
     start = end + 1;
     end = current_dir.find_first_of('/', start);

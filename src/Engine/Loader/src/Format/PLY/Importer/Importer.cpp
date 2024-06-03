@@ -23,22 +23,21 @@ Importer::~Importer(){}
 utl::base::Element* Importer::import(utl::media::Path path){
   //---------------------------
 
+  //Init
   dat::base::Object* object = new dat::base::Object();
   object->data.name = utl::path::get_name_from_path(path.data);
   object->data.path = path.data;
 
-  //Get format type
+  //Header
   this->parse_header(path.data);
 
-
-/*
-  //Open data
-  switch(file_format){
+  //Parsing
+  switch(header.format){
     case ASCII:{
-      ply_ascii->parse_ascii(object, header);
+      ply_ascii->parse_ascii(object, &header);
       break;
     }
-    case BINARY_LITTLE_ENDIAN:{
+    /*case BINARY_LITTLE_ENDIAN:{
       //Open file
       std::ifstream file(path.data, std::ios::binary);
 
@@ -73,9 +72,9 @@ utl::base::Element* Importer::import(utl::media::Path path){
       //Close file
       file.close();
       break;
-    }
+    }*/
   }
-*/
+
   //---------------------------
   return object;
 }
