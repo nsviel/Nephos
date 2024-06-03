@@ -1,6 +1,5 @@
 #include "Importer.h"
 
-#include <Engine/Namespace.h>
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
@@ -14,11 +13,8 @@ Importer::Importer(ldr::Node* node_loader){
 
   dat::Node* node_data = node_loader->get_node_data();
 
-  this->node_engine = node_loader->get_node_engine();
-  this->dat_entity = node_data->get_dat_entity();
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
-  this->dat_glyph = node_data->get_dat_glyph();
   this->ldr_operation = new ldr::processing::Operation(node_loader);
 
   this->insert_importer(new format::ply::Importer());

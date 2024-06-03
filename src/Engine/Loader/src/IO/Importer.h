@@ -3,24 +3,15 @@
 #include <string>
 #include <vector>
 
-namespace eng{class Node;}
-namespace ldr{class Node;}
-namespace ldr::base{class Importer;}
-namespace dat{class Entity;}
-namespace dat{class Graph;}
-namespace dat{class Set;}
-namespace dat{class Glyph;}
 namespace dat::base{class Set;}
 namespace dat::base{class Object;}
-namespace utl::media{class Path;}
+namespace dat::base{class Set;}
 namespace utl::base{class Data;}
 namespace utl::base{class Element;}
-namespace utl::file{class Data;}
-namespace dat::base{class Set;}
-namespace utl::media{class File;}
 namespace utl::media{class Path;}
 namespace ldr{class Node;}
 namespace ldr::processing{class Operation;}
+namespace ldr::base{class Importer;}
 namespace ldr::base{class Importer;}
 
 
@@ -49,11 +40,8 @@ public:
 
 private:
   ldr::processing::Operation* ldr_operation;
-  eng::Node* node_engine;
-  dat::Entity* dat_entity;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
-  dat::Glyph* dat_glyph;
 
   std::vector<ldr::base::Importer*> vec_importer;
 };
