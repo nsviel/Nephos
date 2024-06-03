@@ -19,7 +19,7 @@ public:
 
 public:
   //Main function
-  utl::media::File* import(utl::media::Path path);
+  utl::base::Element* import(utl::media::Path path);
 
 private:
 };

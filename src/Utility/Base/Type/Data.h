@@ -15,11 +15,14 @@
 
 namespace utl::base{
 
-struct Data{
+struct Data : public utl::base::Element{
   //---------------------------
 
+  Data(){
+    this->type = utl::element::DATA;
+  }
+
   //State
-  int UID = -1;
   int nb_data_max = -1;
   int width = -1;
   int height = -1;
@@ -27,7 +30,6 @@ struct Data{
   bool is_visible = true;
 
   //Infos
-  std::string name = "";
   std::string path = "";
   std::string path_save = "";
   std::string path_texture = "";

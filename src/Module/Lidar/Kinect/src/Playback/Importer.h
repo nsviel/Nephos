@@ -23,7 +23,7 @@ public:
 
 public:
   //Main function
-  utl::media::File* import(utl::media::Path path);
+  utl::base::Element* import(utl::media::Path path);
 
   //Subfunction
   float find_mkv_ts_beg(string path);

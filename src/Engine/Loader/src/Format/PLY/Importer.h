@@ -24,7 +24,7 @@ public:
 
 public:
   //Main functions
-  utl::media::File* import(utl::media::Path path);
+  utl::base::Element* import(utl::media::Path path);
 
 private:
   //Header

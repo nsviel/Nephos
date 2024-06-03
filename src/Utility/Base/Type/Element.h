@@ -7,8 +7,9 @@
 namespace utl::element{
 
 enum Type{
-  SET = 0,
-  ENTITY = 1,
+  DATA = 0,
+  SET = 1,
+  ENTITY = 2,
 };
 
 }

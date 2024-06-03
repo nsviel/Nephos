@@ -33,71 +33,72 @@ Importer::~Importer(){}
 
 //Main functions
 utl::base::Data* Importer::load_data(std::string path){
-  dat::base::Set* set = nullptr;
+  if(!check_file_path(path)) return nullptr;
   //---------------------------
 
   //Init
-  if(!check_file_path(path)) return nullptr;
   utl::media::Path utl_path;
   utl_path.data = path;
 
   //Load data from path
-  utl::media::File* file = this->import_from_path(utl_path);
-  if(file == nullptr || file->type != utl::file::DATA) return nullptr;
-  utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
+  utl::base::Element* element = this->import_from_path(utl_path);
+  if(element == nullptr) return nullptr;
 
-  utl::base::Data* data = create_data(file_data);
-
-  //Delete raw data
-  delete file;
+  //Convert into data
+  utl::base::Data* data = nullptr;
+  if(element->type == utl::element::DATA){
+    data = dynamic_cast<utl::base::Data*>(element);
+  }else if(element->type == utl::element::ENTITY){
+    dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
+    data = &entity->data;
+  }
 
   //---------------------------
   return data;
 }
-dat::base::Set* Importer::load_set(utl::media::Path file_path){
+dat::base::Set* Importer::load_set(utl::media::Path path){
+  if(!check_file_path(path.data)) return nullptr;
   //---------------------------
 
-  if(!check_file_path(file_path.data)) return nullptr;
-
   //Load data from path
-  utl::media::File* file = this->import_from_path(file_path);
-  if(file == nullptr || file->type != utl::file::DATASET) return nullptr;
-  utl::file::Dataset* dataset = dynamic_cast<utl::file::Dataset*>(file);
+  utl::base::Element* element = this->import_from_path(path);
+  if(element == nullptr) return nullptr;
 
-  //Insert loaded set into scene
-  dat::base::Set* set_scene = dat_graph->get_set_graph();
-  dat::base::Set* set = dat_set->get_or_create_subset(set_scene, dataset->name);
-  set->is_locked = true;
-
-  //Insert all set objects into engine
-  for(int i=0; i<dataset->vec_data.size(); i++){
-    dat::base::Object* object = create_object(dataset->vec_data[i]);
-    dat_set->insert_entity(set, object);
+  //Convert into set
+  dat::base::Set* set = nullptr;
+  if(element->type == utl::element::SET){
+    set = dynamic_cast<dat::base::Set*>(element);
   }
 
-  //Delete raw data
-  delete file;
+  //Insert loaded set into graph
+  if(set != nullptr){
+    dat::base::Set* set_graph = dat_graph->get_set_graph();
+    dat_set->add_subset(set_graph, set);
+    set->is_locked = true;
+  }
 
   //---------------------------
   return set;
 }
-dat::base::Object* Importer::load_object(utl::media::Path file_path){
+dat::base::Object* Importer::load_object(utl::media::Path path){
+  if(!check_file_path(path.data)) return nullptr;
   //---------------------------
 
-  if(!check_file_path(file_path.data)) return nullptr;
-
   //Load data from path
-  utl::media::File* file = this->import_from_path(file_path);
-  if(file == nullptr || file->type != utl::file::DATA) return nullptr;
-  utl::file::Data* file_data = dynamic_cast<utl::file::Data*>(file);
+  utl::base::Element* element = this->import_from_path(path);
+  if(element == nullptr) return nullptr;
 
-  //Data is an entity
-  dat::base::Set* set_scene = dat_graph->get_set_graph();
-  dat::base::Object* object = create_object(file_data);
-  dat_set->insert_entity(set_scene, object);
+  //Convert into object
+  dat::base::Object* object = nullptr;
+  if(element->type == utl::element::ENTITY){
+    object = dynamic_cast<dat::base::Object*>(element);
+  }
 
-  //Delete raw data
-  delete file;
+  //Insert loaded entity into graph
+  if(object != nullptr){
+    dat::base::Set* set_graph = dat_graph->get_set_graph();
+    dat_set->insert_entity(set_graph, object);
+  }
 
   //---------------------------
   return object;
@@ -172,8 +173,8 @@ utl::base::Data* Importer::create_data(utl::file::Data* file){
 }
 
 //Import function
-utl::media::File* Importer::import_from_path(utl::media::Path path){
-  utl::media::File* file = nullptr;
+utl::base::Element* Importer::import_from_path(utl::media::Path path){
+  utl::base::Element* element = nullptr;
   //---------------------------
 
   std::string format = utl::path::get_format_from_path(path.data);
@@ -188,12 +189,12 @@ utl::media::File* Importer::import_from_path(utl::media::Path path){
         continue;
       }*/
 
-      file = importer->import(path);
+      element = importer->import(path);
     }
   }
 
   //---------------------------
-  return file;
+  return element;
 }
 void Importer::insert_importer(ldr::base::Importer* importer){
   //---------------------------

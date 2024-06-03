@@ -18,17 +18,17 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::media::File* Importer::import(utl::media::Path path){
+utl::base::Element* Importer::import(utl::media::Path path){
   utl::file::Data* data = new utl::file::Data();
   //---------------------------
-
+/*
   data->name = utl::path::get_name_from_path(path.data);
   data->path = path;
 
   this->load_file(path.data);
-
+*/
   //---------------------------
-  return data;
+  return nullptr;
 }
 
 //Subfunction

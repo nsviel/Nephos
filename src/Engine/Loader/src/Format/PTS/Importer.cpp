@@ -19,9 +19,9 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::media::File* Importer::import(utl::media::Path path){
+utl::base::Element* Importer::import(utl::media::Path path){
   //---------------------------
-
+/*
   utl::file::Data* entity = new utl::file::Data();
   entity->name = utl::path::get_name_from_path(path.data);
   entity->path = path;
@@ -50,9 +50,9 @@ utl::media::File* Importer::import(utl::media::Path path){
     //Retrieve data
     this->Loader_data(entity, FILE_config);
   }
-
+*/
   //---------------------------
-  return entity;
+  return nullptr;
 }
 
 //Subfunction

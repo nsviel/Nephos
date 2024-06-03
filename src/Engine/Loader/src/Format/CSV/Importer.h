@@ -13,7 +13,7 @@ public:
   ~Importer();
 
 public:
-  utl::media::File* import(std::string pathFile);
+  utl::base::Element* import(std::string pathFile);
 
 private:
 };

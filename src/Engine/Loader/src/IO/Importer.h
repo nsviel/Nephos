@@ -14,6 +14,7 @@ namespace dat::base{class Set;}
 namespace dat::base{class Object;}
 namespace utl::media{class Path;}
 namespace utl::base{class Data;}
+namespace utl::base{class Element;}
 namespace utl::file{class Data;}
 namespace dat::base{class Set;}
 namespace utl::media{class File;}
@@ -44,7 +45,7 @@ public:
   utl::base::Data* create_data(utl::file::Data* file_data);
 
   //Import function
-  utl::media::File* import_from_path(utl::media::Path path);
+  utl::base::Element* import_from_path(utl::media::Path path);
   void insert_importer(ldr::base::Importer* importer);
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();

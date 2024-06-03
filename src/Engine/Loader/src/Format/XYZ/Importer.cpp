@@ -14,8 +14,8 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::media::File* Importer::import(utl::media::Path path){
-  utl::file::Data* data = new utl::file::Data();
+utl::base::Element* Importer::import(utl::media::Path path){
+  /*utl::file::Data* data = new utl::file::Data();
   //---------------------------
 
   data->name = utl::path::get_name_from_path(path.data);
@@ -35,9 +35,9 @@ utl::media::File* Importer::import(utl::media::Path path){
     data->xyz.push_back(glm::vec3(a, b, c));
     data->rgb.push_back(glm::vec4(d, e, f, 1));
   }
-
+*/
   //---------------------------
-  return data;
+  return nullptr;
 }
 
 }

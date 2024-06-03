@@ -1,5 +1,7 @@
 #include "Importer.h"
 
+#include <Data/Namespace.h>
+
 
 namespace format::ply{
 
@@ -14,13 +16,13 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main loader functions
-utl::media::File* Importer::import(utl::media::Path path){
+utl::base::Element* Importer::import(utl::media::Path path){
   //---------------------------
 
-  utl::file::Data* entity = new utl::file::Data();
-  entity->name = utl::path::get_name_from_path(path.data);
-  entity->path = path;
-  entity->draw_type = utl::topology::POINT;
+  dat::base::Object* object = new dat::base::Object();/*
+  object->data.name = utl::path::get_name_from_path(path.data);
+  object->data.path = path;
+  object->data.draw_type = utl::topology::POINT;
   this->face_number = 0;
 
   //Get format type
@@ -84,9 +86,9 @@ utl::media::File* Importer::import(utl::media::Path path){
       break;
     }
   }
-
+*/
   //---------------------------
-  return entity;
+  return object;
 }
 
 //Header

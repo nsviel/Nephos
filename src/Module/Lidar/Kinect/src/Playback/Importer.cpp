@@ -27,7 +27,7 @@ Importer::Importer(k4n::Node* node_k4n){
 Importer::~Importer(){}
 
 //Main function
-utl::media::File* Importer::import(utl::media::Path path){
+utl::base::Element* Importer::import(utl::media::Path path){
   if(!utl::file::is_exist(path.data)) return nullptr;
   //---------------------------
 
@@ -45,7 +45,7 @@ utl::media::File* Importer::import(utl::media::Path path){
   dat_set->insert_entity(master, sensor);
 
   //---------------------------
-  return nullptr;
+  return sensor;
 }
 
 //Subfunction

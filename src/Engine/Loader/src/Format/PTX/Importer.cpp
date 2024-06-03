@@ -21,8 +21,8 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main functions
-utl::media::File* Importer::import(utl::media::Path path){
-  list_ptxCloud = new std::list<PTXCloud*>;
+utl::base::Element* Importer::import(utl::media::Path path){
+/*  list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;
   //---------------------------
 
@@ -73,8 +73,8 @@ utl::media::File* Importer::import(utl::media::Path path){
   this->Loader_assembling(entity);
 
   //---------------------------
-  entity->nb_element = entity->xyz.size();
-  return entity;
+  entity->nb_element = entity->xyz.size();*/
+  return nullptr;
 }
 bool Importer::Exporter(std::string path){
   //---------------------------

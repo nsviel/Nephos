@@ -63,8 +63,8 @@ bool count_packets(const Tins::PDU &){
 }
 
 //Main function
-utl::media::File* Importer::import(utl::media::Path path){
-  file_packets.clear();
+utl::base::Element* Importer::import(utl::media::Path path){
+  /*file_packets.clear();
   //---------------------------
 
   utl::file::Dataset* dataset = new utl::file::Dataset();
@@ -77,7 +77,8 @@ utl::media::File* Importer::import(utl::media::Path path){
   this->importer_parsing(dataset, path.data);
 
   //---------------------------
-  return dataset;
+  return dataset;*/
+  return nullptr;
 }
 /*void Importer::insert(dat::base::Set* set){
   //---------------------------
