@@ -194,12 +194,12 @@
          y="129.52243"
          id="tspan5735-0-0-3">Engine/Data</tspan></text>
     <rect
-       style="fill:#78a5e4;fill-opacity:1;stroke:#000000;stroke-width:0.497247;stroke-opacity:1"
+       style="fill:#78a5e4;fill-opacity:1;stroke:#000000;stroke-width:0.613207;stroke-opacity:1"
        id="rect896-8"
-       width="122.91339"
-       height="36.861645"
-       x="-246.85889"
-       y="123.69595" />
+       width="187.51552"
+       height="36.745686"
+       x="-246.8009"
+       y="123.75394" />
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.310696;stroke-opacity:1"
        id="rect896"
@@ -292,13 +292,6 @@
          id="tspan4418">(base container)</tspan></text>
     <rect
        style="fill:#78a5e4;fill-opacity:1;stroke:#000000;stroke-width:0.387272;stroke-opacity:1"
-       id="rect896-8-6"
-       width="74.556732"
-       height="36.861645"
-       x="-132.53523"
-       y="238.91092" />
-    <rect
-       style="fill:#78a5e4;fill-opacity:1;stroke:#000000;stroke-width:0.387272;stroke-opacity:1"
        id="rect896-8-6-6"
        width="74.556732"
        height="36.861645"
@@ -322,17 +315,6 @@
          x="-82.122032"
          y="259.43588"
          id="tspan7902-6">Sensor</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-       x="-117.30692"
-       y="258.44208"
-       id="text1714-83-4"><tspan
-         sodipodi:role="line"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.264583;stroke-opacity:1"
-         x="-117.30692"
-         y="258.44208"
-         id="tspan4418-2">Master</tspan></text>
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-opacity:1"
        id="rect896-1-5"
@@ -398,6 +380,25 @@
          x="-66.370354"
          y="176.11671"
          id="tspan25914">Sensor</tspan></text>
+    <rect
+       style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-opacity:1"
+       id="rect896-17-4-1-6-3"
+       width="42.243725"
+       height="30.461723"
+       x="-111.66537"
+       y="127.68087" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.213788;stroke-opacity:1"
+       x="-102.31027"
+       y="129.14162"
+       id="text1714-8-1-51"
+       transform="scale(0.90220031,1.1084013)"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.213788;stroke-opacity:1"
+         x="-102.31027"
+         y="129.14162"
+         id="tspan25914-7">Player</tspan></text>
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.214124;stroke-opacity:1"
        id="rect896-17-4-6"

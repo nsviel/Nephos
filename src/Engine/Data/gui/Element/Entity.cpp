@@ -110,11 +110,6 @@ void Entity::entity_parameter(dat::base::Entity* entity){
 void Entity::entity_info(dat::base::Entity* entity){
   //---------------------------
 
-  //Type
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Type"); ImGui::TableNextColumn();
-  ImGui::Text("%s", entity->entity_type.c_str());
-
   //Visibility
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Visibility"); ImGui::TableNextColumn();

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Namespace.h>
 #include <Data/src/Glyph/Object/AABB.h>
 #include <Data/src/Glyph/Object/Axis.h>
 #include <Data/src/Glyph/Object/Normal.h>
@@ -26,9 +27,7 @@ struct Object : public dat::base::Entity{
   Object(){
     //---------------------------
 
-    this->entity_type = "entity::Object";
     this->data.unicolor = math::random();
-
     this->list_glyph.push_back(new dat::glyph::object::Axis());
     this->list_glyph.push_back(new dat::glyph::object::AABB());
     this->list_glyph.push_back(new dat::glyph::object::Normal());

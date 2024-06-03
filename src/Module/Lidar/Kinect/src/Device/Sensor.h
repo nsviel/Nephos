@@ -41,19 +41,12 @@ public:
   void init();
   void clean();
 
-  //Thread function
-  void start_thread();
-  void run_thread();
-  void stop_thread();
-  void wait_thread();
+
 
   //Subfunction
   vec3 convert_depth_2d_to_3d(ivec2 point_2d);
-  
-  virtual void thread_init(){}
-  virtual void thread_loop(){}
-  virtual void thread_end(){}
-  virtual void manage_reset(){}
+
+
 
   inline bool is_thread_running(){return thread_running;}
   inline bool is_thread_paused(){return thread_paused;}
@@ -80,10 +73,6 @@ protected:
   dat::Entity* dat_entity;
   dat::Set* dat_set;
   dat::Graph* dat_graph;
-
-  std::thread thread;
-  bool thread_running = false;
-  bool thread_paused = false;
 };
 
 }

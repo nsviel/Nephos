@@ -21,7 +21,6 @@ public:
     //---------------------------
 
     this->is_selectable = false;
-    this->entity_type = "entity::Glyph";
 
     //---------------------------
   }
