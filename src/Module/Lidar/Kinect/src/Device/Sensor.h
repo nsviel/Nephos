@@ -40,10 +40,9 @@ public:
 
   //Subfunction
   vec3 convert_depth_2d_to_3d(ivec2 point_2d);
-  
+
 public:
   prf::graph::Profiler* profiler;
-  k4n::dev::Master* master;
   k4n::processing::Image* k4n_image;
   k4n::utils::Configuration* k4n_config;
 

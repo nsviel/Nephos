@@ -7,6 +7,7 @@ namespace k4n{class Structure;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::dev{class Master;}
 namespace k4n::playback{class Sensor;}
+namespace dat::base{class Set;}
 
 
 namespace k4n::gui{
@@ -22,7 +23,7 @@ public:
   void show_parameter(k4n::dev::Sensor* sensor);
 
   //Subfunction
-  void show_transformation_mode(k4n::dev::Master* master);
+  void show_transformation_mode(dat::base::Set* set);
   void show_firmware_info(k4n::dev::Sensor* sensor);
   void show_info_device(k4n::playback::Sensor* sensor);
   void show_info_color(k4n::playback::Sensor* sensor);

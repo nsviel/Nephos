@@ -8,6 +8,7 @@ namespace k4n{class Structure;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::playback{class Sensor;}
 namespace k4n::dev{class Master;}
+namespace dat::base{class Set;}
 
 
 namespace k4n::utils{
@@ -21,7 +22,7 @@ public:
 
 public:
   //Configuration function
-  void make_master_configuration_initial(k4n::dev::Master* master);
+  void make_set_configuration_initial(dat::base::Set* master);
   void make_sensor_configuration(k4n::dev::Sensor* k4n_sensor);
   void make_sensor_color_configuration(k4n::dev::Sensor* sensor);
   void find_playback_configuration(k4n::playback::Sensor* k4n_sensor);

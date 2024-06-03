@@ -39,7 +39,7 @@ void Recorder::run_thread(dat::base::Entity* entity){
 /*
   tasker->loop_begin();
 
-  k4n::dev::Master* master = sensor->master;
+  dat::base::Set* master = sensor->set_parent;
   switch(master->recorder.mode){
     case dyn::recorder::MKV:{
       this->make_export_to_mkv(sensor);

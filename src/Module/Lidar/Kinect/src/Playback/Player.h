@@ -14,7 +14,7 @@ class Player : public dyn::base::Player
 {
 public:
   //Constructor / Destructor
-  Player(k4n::Node* node_k4n, k4n::dev::Master* master);
+  Player(k4n::Node* node_k4n, dat::base::Set* set);
   ~Player();
 
 public:

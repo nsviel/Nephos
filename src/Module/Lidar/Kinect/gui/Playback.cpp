@@ -21,7 +21,7 @@ void Playback::show_parameter(k4n::dev::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
-  this->show_transformation_mode(sensor->master);
+  this->show_transformation_mode(sensor->set_parent);
 
   if(k4n::playback::Sensor* playback = dynamic_cast<k4n::playback::Sensor*>(sensor)){
     this->show_info_device(playback);
@@ -35,7 +35,7 @@ void Playback::show_parameter(k4n::dev::Sensor* sensor){
 }
 
 //Design function
-void Playback::show_transformation_mode(k4n::dev::Master* master){
+void Playback::show_transformation_mode(dat::base::Set* set){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
@@ -100,7 +100,7 @@ void Playback::show_info_device(k4n::playback::Sensor* sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Frame rate"); ImGui::TableNextColumn();
-  //string fps_str = sensor->master->fps.mode_str + " fps";
+  //string fps_str = sensor->set_parent->fps.mode_str + " fps";
   //ImGui::TextColored(color, "%s", fps_str.c_str());
 
   ImGui::EndTable();

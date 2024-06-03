@@ -42,8 +42,8 @@ utl::base::Element* Importer::import(utl::base::Path path){
   sensor->init();
 
   //Associated set
-  k4n::dev::Master* master = manage_master();
-  sensor->master = master;
+  dat::base::Set* set = manage_master();
+  sensor->set_parent = set;
 
   //---------------------------
   return sensor;
@@ -86,7 +86,7 @@ float Importer::find_mkv_ts_end(string path){
   //---------------------------
   return ts_end;
 }
-k4n::dev::Master* Importer::manage_master(){
+dat::base::Set* Importer::manage_master(){
   dat::base::Set* set_scene = dat_graph->get_set_graph();
   //---------------------------
 
@@ -94,23 +94,23 @@ k4n::dev::Master* Importer::manage_master(){
   for(int i=0; i<set_scene->list_subset.size(); i++){
     dat::base::Set* set = *std::next(set_scene->list_subset.begin(), i);
     if(set->name == "kinect"){
-      return dynamic_cast<k4n::dev::Master*>(set);
+      return set;
     }
   }
 
-  //Create the master
-  k4n::dev::Master* master = new k4n::dev::Master(node_k4n);
-  master->name = "kinect";
-  master->is_lockable = true;
-  master->icon = ICON_FA_USER;
-  master->is_locked = true;
-  master->is_suppressible = true;
-  master->player = k4n::playback::Player(node_k4n, master);
+  //Create the set
+  dat::base::Set* set = new dat::base::Set();
+  set->name = "kinect";
+  set->is_lockable = true;
+  set->icon = ICON_FA_USER;
+  set->is_locked = true;
+  set->is_suppressible = true;
+  set->player = k4n::playback::Player(node_k4n, set);
 
-  dat_set->add_subset(set_scene, master);
+  dat_set->add_subset(set_scene, set);
 
   //---------------------------
-  return master;
+  return set;
 }
 
 }

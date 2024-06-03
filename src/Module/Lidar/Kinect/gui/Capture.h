@@ -9,6 +9,7 @@ namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Configuration;}
 namespace dat{class Set;}
+namespace dat::base{class Set;}
 
 
 namespace k4n::gui{
@@ -21,18 +22,18 @@ public:
   ~Capture();
 
   //Main function
-  void show_parameter(k4n::dev::Master* master);
+  void show_parameter(dat::base::Set* set);
 
   //Subfunction
-  void show_list_device(k4n::dev::Master* master);
-  void show_transformation_mode(k4n::dev::Master* master);
+  void show_list_device(dat::base::Set* set);
+  void show_transformation_mode(dat::base::Set* set);
   void show_firmware_info(k4n::dev::Sensor* sensor);
-  void configuration_depth(k4n::dev::Master* master);
-  void configuration_color(k4n::dev::Master* master);
-  void configuration_color_control(k4n::dev::Master* master);
-  void configuration_fps(k4n::dev::Master* master);
-  void configuration_synchro(k4n::dev::Master* master);
-  void configuration_button(k4n::dev::Master* master);
+  void configuration_depth(dat::base::Set* set);
+  void configuration_color(dat::base::Set* set);
+  void configuration_color_control(dat::base::Set* set);
+  void configuration_fps(dat::base::Set* set);
+  void configuration_synchro(dat::base::Set* set);
+  void configuration_button(dat::base::Set* set);
 
 private:
   k4n::Structure* k4n_struct;

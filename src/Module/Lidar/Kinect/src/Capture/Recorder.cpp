@@ -42,7 +42,7 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
 /*
   tasker->loop_begin();
 
-  k4n::dev::Master* master = sensor->master;
+  dat::base::Set* set = sensor->set_parent;
   switch(master->recorder.mode){
     case dyn::recorder::MKV:{
       tasker->task_begin("recorder::mkv");
@@ -58,7 +58,7 @@ void Recorder::run_thread(k4n::dev::Sensor* sensor){
     }
   }
 
-  if(!sensor->master->record){
+  if(!sensor->set_parent->record){
     tasker->reset();
   }
 
@@ -80,19 +80,19 @@ void Recorder::wait_thread(){
 
 //Subfunction
 void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
-/*  k4n::dev::Master* master = sensor->master;
+/*  dat::base::Set* master = sensor->set_parent;
   if(!master->record) return;
   //---------------------------
 
   //Check if directory exists, if not create it
-  string path_dir = sensor->master->recorder.folder;
+  string path_dir = sensor->set_parent->recorder.folder;
   if(!utl::directory::is_exist(path_dir)){
     utl::directory::create(path_dir);
   }
 
   //Sensor parameter
-  sensor->master->recorder.folder = path_dir;
-  sensor->master->recorder.mode = dyn::recorder::PLY;
+  sensor->set_parent->recorder.folder = path_dir;
+  sensor->set_parent->recorder.mode = dyn::recorder::PLY;
 
   //Path
   string master_name = master->recorder.filename;
@@ -108,14 +108,13 @@ void Recorder::make_export_to_ply(k4n::dev::Sensor* sensor){
 }
 void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
   k4a::record& recorder = sensor->device.recorder;
-  k4n::dev::Master* master = sensor->master;
   k4a::capture* capture = sensor->device.capture;
   //---------------------------
 /*
   //Start recording
-  if(sensor->master->record && !recorder.is_valid()){
+  if(sensor->set_parent->record && !recorder.is_valid()){
     //Check if directory exists, if not create it
-    string path_dir = sensor->master->recorder.folder;
+    string path_dir = sensor->set_parent->recorder.folder;
     if(!utl::directory::is_exist(path_dir)){
       utl::directory::create(path_dir);
     }
@@ -132,18 +131,18 @@ void Recorder::make_export_to_mkv(k4n::dev::Sensor* sensor){
     //Set info
     master->recorder.path = path;
     master->recorder.file_size = 0;
-    master->recorder.ts_beg = sensor->master->ts_cur;
+    master->recorder.ts_beg = sensor->set_parent->ts_cur;
   }
 
   //Recording
-  else if(sensor->master->record && recorder.is_valid()){
+  else if(sensor->set_parent->record && recorder.is_valid()){
     recorder.write_capture(*capture);
-    master->recorder.ts_rec = sensor->master->ts_cur - master->recorder.ts_beg;
+    master->recorder.ts_rec = sensor->set_parent->ts_cur - master->recorder.ts_beg;
     master->recorder.file_size = utl::file::size(master->recorder.path);
   }
 
   //Flush to file when finish
-  else if(!sensor->master->record && recorder.is_valid()){
+  else if(!sensor->set_parent->record && recorder.is_valid()){
     recorder.flush();
     recorder.close();
   }

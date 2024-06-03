@@ -95,7 +95,7 @@ void Operation::voxelize_object(dat::base::Sensor* sensor){
   //---------------------------
 /**
   utl::base::Data* data = &sensor->data;
-  k4n::dev::Master* master = sensor->master;
+  dat::base::Set* master = sensor->set_parent;
 
   float voxel_size = master->operation.voxel_size;
   int min_nb_point = master->operation.voxel_min_point;

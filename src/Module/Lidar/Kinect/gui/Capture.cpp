@@ -23,21 +23,21 @@ Capture::Capture(k4n::Node* node_k4n){
 Capture::~Capture(){}
 
 //Main function
-void Capture::show_parameter(k4n::dev::Master* master){
-  if(master == nullptr) return;
+void Capture::show_parameter(dat::base::Set* set){
+  if(set == nullptr) return;
   //---------------------------
 
-  this->show_list_device(master);
-  this->show_transformation_mode(master);
+  this->show_list_device(set);
+  this->show_transformation_mode(set);
 
   ImGui::SetNextItemWidth(75);
   if(ImGui::BeginTabItem("Capture##566", NULL)){
-    this->configuration_synchro(master);
-    this->configuration_depth(master);
-    this->configuration_color(master);
-    this->configuration_color_control(master);
-    this->configuration_fps(master);
-    this->configuration_button(master);
+    this->configuration_synchro(set);
+    this->configuration_depth(set);
+    this->configuration_color(set);
+    this->configuration_color_control(set);
+    this->configuration_fps(set);
+    this->configuration_button(set);
 
     ImGui::Separator();
     ImGui::EndTabItem();
@@ -47,7 +47,7 @@ void Capture::show_parameter(k4n::dev::Master* master){
 }
 
 //Subfunction
-void Capture::show_list_device(k4n::dev::Master* master){
+void Capture::show_list_device(dat::base::Set* set){
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -55,7 +55,7 @@ void Capture::show_list_device(k4n::dev::Master* master){
   flags |= ImGuiTableFlags_RowBg;
   ImGui::BeginTable("database_view", 4, flags);
 
-  if(master->list_entity.size() == 0){
+  if(set->list_entity.size() == 0){
     ImGui::TableNextRow();
     ImGui::TableNextColumn();
     ImGui::TableNextColumn();
@@ -67,8 +67,8 @@ void Capture::show_list_device(k4n::dev::Master* master){
     ImGui::TableSetupColumn("Serial number", ImGuiTableColumnFlags_WidthStretch);
     ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
     ImGui::TableHeadersRow();
-    for(int i=0; i<master->list_entity.size(); i++){
-      dat::base::Entity* entity = *next(master->list_entity.begin(), i);
+    for(int i=0; i<set->list_entity.size(); i++){
+      dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
       if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
         ImGui::PushID(sensor->device.serial_number.c_str());
@@ -112,7 +112,7 @@ void Capture::show_list_device(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Capture::show_transformation_mode(k4n::dev::Master* master){
+void Capture::show_transformation_mode(dat::base::Set* set){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
@@ -159,7 +159,7 @@ void Capture::show_firmware_info(k4n::dev::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Capture::configuration_depth(k4n::dev::Master* master){
+void Capture::configuration_depth(dat::base::Set* set){
   //---------------------------
 
   if(ImGui::TreeNode("Depth configuration")){
@@ -195,7 +195,7 @@ void Capture::configuration_depth(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Capture::configuration_color(k4n::dev::Master* master){
+void Capture::configuration_color(dat::base::Set* set){
   //---------------------------
 
   if(ImGui::TreeNode("Color configuration")){
@@ -274,8 +274,8 @@ void Capture::configuration_color(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Capture::configuration_color_control(k4n::dev::Master* master){
-  dyn::base::Player* player = &master->player;
+void Capture::configuration_color_control(dat::base::Set* set){
+  dyn::base::Player* player = &set->player;
   //---------------------------
 
   if(ImGui::TreeNode("Color control")){
@@ -383,7 +383,7 @@ void Capture::configuration_color_control(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Capture::configuration_fps(k4n::dev::Master* master){
+void Capture::configuration_fps(dat::base::Set* set){
   int framerate = k4n_struct->fps.mode;
   //---------------------------
 
@@ -406,7 +406,7 @@ void Capture::configuration_fps(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Capture::configuration_synchro(k4n::dev::Master* master){
+void Capture::configuration_synchro(dat::base::Set* set){
   //---------------------------
 
   //Internal sync
@@ -426,18 +426,18 @@ void Capture::configuration_synchro(k4n::dev::Master* master){
 
   //---------------------------
 }
-void Capture::configuration_button(k4n::dev::Master* master){
-  dyn::base::Player* player = &master->player;
+void Capture::configuration_button(dat::base::Set* set){
+  dyn::base::Player* player = &set->player;
   //---------------------------
 
   //Refresh / reset buttons
   if(ImGui::Button("Restart")){
     player->manage_configuration();
-    master->reset();
+    set->reset();
   }
   ImGui::SameLine();
   if(ImGui::Button("Reset to default##RGB")){
-    k4n_config->make_master_configuration_initial(master);
+    k4n_config->make_set_configuration_initial(set);
   }
 
   //---------------------------

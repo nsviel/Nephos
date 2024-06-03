@@ -11,6 +11,7 @@ Sensor::Sensor(k4n::Node* node_k4n, int index) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
   this->gui_capture = new k4n::gui::Capture(node_k4n);
+  this->k4n_struct = node_k4n->get_k4n_structure();
 
   this->device.idx_dev = index;
   this->name = "capture_" + to_string(index);
@@ -29,7 +30,7 @@ Sensor::~Sensor(){
 void Sensor::info(){
   //---------------------------
 
-  gui_capture->show_parameter(master);
+  gui_capture->show_parameter(set_parent);
 
   //---------------------------
 }
@@ -125,7 +126,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
 }
 void Sensor::manage_pause(){
-  dyn::base::Player* player = &master->player;
+  dyn::base::Player* player = &set_parent->player;
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -150,9 +151,9 @@ void Sensor::manage_configuration(){
   //---------------------------
 
   k4n_config->make_sensor_color_configuration(this);
-  this->color.config = master->config.color;
-  this->depth.config = master->config.depth;
-  this->ir.config = master->config.ir;
+  this->color.config = k4n_struct->config.color;
+  this->depth.config = k4n_struct->config.depth;
+  this->ir.config = k4n_struct->config.ir;
 
   //---------------------------
 }

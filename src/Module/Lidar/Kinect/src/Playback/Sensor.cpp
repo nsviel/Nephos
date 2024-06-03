@@ -90,7 +90,7 @@ void Sensor::thread_end(){
 
 //Subfunction
 k4a::capture* Sensor::manage_new_capture(){
-  dyn::base::Player* player = &master->player;
+  dyn::base::Player* player = &set_parent->player;
   //---------------------------
 
   k4a::capture* capture = new k4a::capture();
@@ -127,7 +127,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
 }
 void Sensor::manage_pause(){
-  dyn::base::Player* player = &master->player;
+  dyn::base::Player* player = &set_parent->player;
   //---------------------------
 
   //If pause, wait until end pause or end thread

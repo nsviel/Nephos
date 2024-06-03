@@ -7,6 +7,7 @@
 
 namespace eng{class Node;}
 namespace k4n{class Node;}
+namespace k4n{class Structure;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::gui{class Capture;}
 namespace k4n::processing{class Data;}
@@ -36,10 +37,11 @@ public:
   void manage_pause();
   void manage_reset();
   void manage_configuration();
-  
+
 private:
   k4n::utils::Configuration* k4n_config;
   k4n::gui::Capture* gui_capture;
+  k4n::Structure* k4n_struct;
 
   bool is_recording = false;
 };

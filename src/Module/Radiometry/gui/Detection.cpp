@@ -183,7 +183,7 @@ void Detection::parameter_hough(){
   if(ImGui::TreeNode("Parameter##Hough")){
     //Pixel diviser
     //ImGui::SetNextItemWidth(120);
-    //ImGui::SliderInt("Pixel diviser", &sensor->master->operation.intensity_diviser, 1, 5000);
+    //ImGui::SliderInt("Pixel diviser", &sensor->set_parent->operation.intensity_diviser, 1, 5000);
 
     //Mode
     int& mode = rad_struct->detection.hough.mode;

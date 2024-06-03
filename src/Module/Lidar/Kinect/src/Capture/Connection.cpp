@@ -94,18 +94,18 @@ void Connection::manage_connected_device(){
 void Connection::create_sensor(int index){
   //---------------------------
 /*
-  //Associated master
-  k4n::dev::Master* master = get_or_create_capture_master("Kinect");
+  //Associated set
+  dat::base::Set* set = get_or_create_capture_master("Kinect");
 
   //Sensor creation
   k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
   sensor->name = "capture_" + to_string(index);
   sensor->device.idx_dev = index;
-  sensor->master = master;
+  sensor->set_parent = set;
 
   //Sensor initialization
   sensor->init();
-  dat_set->insert_entity(master, sensor);
+  dat_set->insert_entity(set, sensor);
   dat_graph->assign_UID(sensor);
   utl::transformation::apply_transformation_capture(sensor->get_pose()->model);
   sensor->run_thread();
@@ -119,20 +119,20 @@ void Connection::manage_master(){
 
   //Check if already existing
   for(int i=0; i<k4n_struct->list_sensor.size(); i++){
-    k4n::dev::Master* master = *std::next(k4n_struct->list_master.begin(), i);
-    if(name == master->name){
-      return master;
+    dat::base::Set* set = *std::next(k4n_struct->list_master.begin(), i);
+    if(name == set->name){
+      return set;
     }
   }
 
-  //Create the master
-  k4n::dev::Master* master = new k4n::dev::Master(node_k4n);
-  master->name = name;
-  master->is_lockable = true;
+  //Create the set
+  dat::base::Set* set = new dat::base::Set(node_k4n);
+  set->name = name;
+  set->is_lockable = true;
 
-  k4n_config->make_master_configuration_initial(master);
-  dat_set->add_subset(set_scene, master);
-  k4n_struct->list_master.push_back(master);*/
+  k4n_config->make_master_configuration_initial(set);
+  dat_set->add_subset(set_scene, set);
+  k4n_struct->list_master.push_back(set);*/
 
   //---------------------------
 }

@@ -17,7 +17,7 @@ Configuration::~Configuration(){}
 
 //Configuration function
 void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
-  k4n::dev::Master* master = sensor->master;
+  dat::base::Set* master = sensor->set_parent;
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
@@ -40,7 +40,7 @@ void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
 }
 void Configuration::make_sensor_color_configuration(k4n::dev::Sensor* sensor){
   k4a::device& device = sensor->device.handle;
-  k4n::dev::Master* master = sensor->master;
+  dat::base::Set* master = sensor->set_parent;
   //---------------------------
 
   device.set_color_control(k4n_struct->config.color.exposure.command, k4n_struct->config.color.exposure.mode, k4n_struct->config.color.exposure.value);
@@ -55,7 +55,7 @@ void Configuration::make_sensor_color_configuration(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Configuration::make_master_configuration_initial(k4n::dev::Master* master){
+void Configuration::make_set_configuration_initial(dat::base::Set* master){
   //---------------------------
 
   k4n_struct->config.depth.mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
@@ -146,7 +146,7 @@ void Configuration::make_transformation_from_calibration(k4n::dev::Sensor* senso
   //---------------------------
 }
 void Configuration::make_capture_calibration(k4n::dev::Sensor* sensor){
-  k4n::dev::Master* master = sensor->master;
+  dat::base::Set* master = sensor->set_parent;
   k4a::device& device = sensor->device.handle;
   //---------------------------
 

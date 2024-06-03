@@ -287,10 +287,10 @@ void Operation::draw_ope_recorder(dat::base::Set* set){
       }
       ImGui::SameLine();
       if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
-        utl::directory::open(sensor->master->recorder.folder);
+        utl::directory::open(sensor->set_parent->recorder.folder);
       }
       ImGui::SameLine();
-      ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", sensor->master->recorder.folder.c_str());
+      ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", sensor->set_parent->recorder.folder.c_str());
 
       //File
       ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -300,10 +300,10 @@ void Operation::draw_ope_recorder(dat::base::Set* set){
       }
       ImGui::SameLine();
       if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
-        utl::directory::open(sensor->master->recorder.filename);
+        utl::directory::open(sensor->set_parent->recorder.filename);
       }
       ImGui::SameLine();
-      ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", sensor->master->recorder.filename.c_str());
+      ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", sensor->set_parent->recorder.filename.c_str());
 
       ImGui::EndTable();
       ImGui::Separator();

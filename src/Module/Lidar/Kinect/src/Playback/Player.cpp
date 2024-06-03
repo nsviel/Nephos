@@ -8,7 +8,7 @@
 namespace k4n::playback{
 
 //Constructor / Destructor
-Player::Player(k4n::Node* node_k4n, k4n::dev::Master* master) : dyn::base::Player(master){
+Player::Player(k4n::Node* node_k4n, dat::base::Set* set) : dyn::base::Player(set){
   //---------------------------
 
   this->time = "s";
