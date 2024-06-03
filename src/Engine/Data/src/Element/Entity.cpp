@@ -56,19 +56,13 @@ void Entity::remove_entity(dat::base::Entity* entity){
   //----------------------------
 }
 void Entity::reset_entity(dat::base::Entity* entity){
-  utl::base::Pose* pose = &entity->pose;;
+  utl::base::Pose* pose = &entity->pose;
   //----------------------------
 
-  pose->min = glm::vec3(0.0f);
-  pose->max = glm::vec3(0.0f);
-  pose->root = glm::vec3(0.0f);
-  pose->COM = glm::vec3(0.0f);
-
-  pose->rotat = glm::mat4(1.0f);
-  pose->trans = glm::mat4(1.0f);
-  pose->scale = glm::mat4(1.0f);
-  pose->model = pose->model_init;
-  pose->mvp = glm::mat4(1.0f);
+  glm::mat4 init = pose->model_init; say(init);
+  pose = {};
+  pose->model = init;
+  pose->model_init = init;
 
   //----------------------------
 }
