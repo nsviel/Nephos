@@ -13,11 +13,12 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path) : k4n::dev::Sensor(nod
   //---------------------------
 
   this->gui_playback = new k4n::gui::Playback(node_k4n);
-  this->path = path;
-  this->format = utl::path::get_format_from_path(path.data);
+
   this->file_size = utl::file::size(path.data);
-  this->path = path;
   this->name = utl::path::get_name_from_path(path.data);
+  this->data.path = path;
+  this->data.name = utl::path::get_name_from_path(path.data);
+  this->data.format = utl::path::get_format_from_path(path.data);
 
   //---------------------------
 }
@@ -35,8 +36,9 @@ void Sensor::thread_init(){
   //---------------------------
 
   //Init playback
-  if(path.data == "") return;
-  this->playback = k4a::playback::open(path.data.c_str());
+  std::string& path = data.path.data;
+  if(path == "") return;
+  this->playback = k4a::playback::open(path.c_str());
   if(!playback){
     cout<<"[error] Sensor opening problem"<<endl;
     return;

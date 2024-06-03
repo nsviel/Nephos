@@ -44,8 +44,6 @@ public:
   k4n::gui::Playback* gui_playback;
 
   //File info
-  utl::base::Path path;
-  std::string format = "";
   float file_size = 0;
 };
 
