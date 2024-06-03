@@ -11,7 +11,8 @@ struct Structure{
   //---------------------------
 
   k4n::structure::Configuration config;
-
+  k4n::structure::FPS fps;
+  
   //---------------------------
 };
 

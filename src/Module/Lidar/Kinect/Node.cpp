@@ -21,6 +21,7 @@ Node::Node(eng::Node* node_engine){
   this->node_data = node_engine->get_node_data();
 
   //Child
+  this->k4n_structure = new k4n::Structure();
   this->k4n_connection = new k4n::capture::Connection(this);
 
   //Importer

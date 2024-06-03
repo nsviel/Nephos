@@ -14,7 +14,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_image = new k4n::processing::Image(node_k4n);
-  this->k4n_config = new k4n::utils::Configuration();
+  this->k4n_config = new k4n::utils::Configuration(node_k4n);
   this->node_engine = node_k4n->get_node_engine();
 
   //---------------------------

@@ -5,11 +5,11 @@
 namespace prf{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
-namespace k4n::capture{class Connection;}
-namespace utl::thread{class Pool;}
-namespace k4n::calibration{class Model;}
 namespace ldr{class Node;}
 namespace dat{class Graph;}
+namespace utl::thread{class Pool;}
+namespace k4n::capture{class Connection;}
+namespace k4n{class Structure;}
 
 
 namespace k4n{
@@ -30,6 +30,7 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline dat::Node* get_node_data(){return node_data;}
+  inline k4n::Structure* get_k4n_structure(){return k4n_structure;}
 
 private:
   //Dependancy
@@ -41,6 +42,7 @@ private:
   //Child
   utl::thread::Pool* thread_pool;
   k4n::capture::Connection* k4n_connection;
+  k4n::Structure* k4n_structure;
 };
 
 }

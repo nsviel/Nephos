@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n{class Node;}
+namespace k4n{class Structure;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::dev{class Master;}
 namespace k4n::playback{class Sensor;}
@@ -29,6 +30,7 @@ public:
   void show_info_synch(k4n::playback::Sensor* sensor);
 
 private:
+  k4n::Structure* k4n_struct;
   k4n::Node* node_k4n;
 };
 

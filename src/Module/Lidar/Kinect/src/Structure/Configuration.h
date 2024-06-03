@@ -11,14 +11,12 @@
 namespace k4n::structure{
 
 struct Configuration{
-  //Structure for master configuration
   //---------------------------
 
   k4n::depth::Configuration depth;
   k4n::color::Configuration color;
   k4n::infrared::Configuration ir;
   k4n::synchro::Configuration synchro;
-  k4n::structure::FPS fps;
 
   //---------------------------
 };

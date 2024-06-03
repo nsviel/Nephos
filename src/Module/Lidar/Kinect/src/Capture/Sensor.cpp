@@ -10,7 +10,6 @@ namespace k4n::capture{
 Sensor::Sensor(k4n::Node* node_k4n, int index) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
-  this->k4n_config = new k4n::utils::Configuration();
   this->gui_capture = new k4n::gui::Capture(node_k4n);
 
   this->device.idx_dev = index;

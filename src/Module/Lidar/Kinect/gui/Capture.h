@@ -4,6 +4,7 @@
 
 namespace gui{class Node;}
 namespace k4n{class Node;}
+namespace k4n{class Structure;}
 namespace k4n::dev{class Master;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::utils{class Configuration;}
@@ -34,7 +35,7 @@ public:
   void configuration_button(k4n::dev::Master* master);
 
 private:
-  k4n::Node* node_k4n;
+  k4n::Structure* k4n_struct;
   k4n::utils::Configuration* k4n_config;
   dat::Set* dat_set;
 

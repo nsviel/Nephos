@@ -10,6 +10,7 @@ Playback::Playback(k4n::Node* node_k4n){
   //---------------------------
 
   this->node_k4n = node_k4n;
+  this->k4n_struct = node_k4n->get_k4n_structure();
 
   //---------------------------
 }
@@ -39,9 +40,9 @@ void Playback::show_transformation_mode(k4n::dev::Master* master){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
 
-  ImGui::RadioButton("Depth to color", &master->config.depth.transformation_mode, k4n::depth::DEPTH_TO_COLOR);
+  ImGui::RadioButton("Depth to color", &k4n_struct->config.depth.transformation_mode, k4n::depth::DEPTH_TO_COLOR);
   ImGui::SameLine();
-  ImGui::RadioButton("Color to depth", &master->config.depth.transformation_mode, k4n::depth::COLOR_TO_DEPTH);
+  ImGui::RadioButton("Color to depth", &k4n_struct->config.depth.transformation_mode, k4n::depth::COLOR_TO_DEPTH);
 
   //---------------------------
   ImGui::Separator();
