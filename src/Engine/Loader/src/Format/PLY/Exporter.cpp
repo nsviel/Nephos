@@ -10,6 +10,8 @@ Exporter::Exporter(){
   //---------------------------
 
   this->format = "ply";
+  this->vec_mode.push_back(ldr::io::ASCII);
+  this->vec_mode.push_back(ldr::io::BINARY);
 
   //---------------------------
 }

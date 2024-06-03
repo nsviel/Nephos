@@ -11,6 +11,7 @@ Exporter::Exporter(){
   //---------------------------
 
   this->format = "pts";
+  this->vec_mode.push_back(ldr::io::ASCII);
 
   //---------------------------
 }

@@ -17,8 +17,6 @@ Master::Master(k4n::Node* node_k4n){
   this->dat_set = node_data->get_dat_set();
   this->k4n_config = new k4n::utils::Configuration();
 
-  //this->engine = engine;
-  this->type = "k4n::device::Master";
   this->icon = ICON_FA_USER;
   this->is_locked = true;
   this->is_suppressible = true;

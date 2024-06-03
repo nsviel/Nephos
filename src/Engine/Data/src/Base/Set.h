@@ -15,12 +15,13 @@ namespace dat::base{
 struct Set : public utl::base::Element{
   //---------------------------
 
-  Set(){}
+  Set(){
+    this->type = utl::element::SET;
+  }
   ~Set(){}
   virtual void reset(){}
 
   //Info
-  std::string type = "set";
   std::string icon = ICON_FA_FOLDER;
   bool is_visible = true;
   bool is_lockable = false;

@@ -110,17 +110,29 @@ void Exporter::draw_header(){
   }
 
   //Mode
+  std::vector<int> vec_mode = ldr_exporter->get_supported_mode(current_format);
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Mode"); ImGui::TableNextColumn();
   static int mode = 1;
+  bool condition = (std::find(vec_mode.begin(), vec_mode.end(), ldr::io::ASCII) == vec_mode.end());
+  if(condition){
+    ImGui::BeginDisabled();
+    mode = ldr::io::BINARY;
+  }
   if(ImGui::RadioButton("ASCII", &mode, ldr::io::ASCII)){
     ldr_exporter->set_mode(mode);
   }
+  if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
+  condition = (std::find(vec_mode.begin(), vec_mode.end(), ldr::io::BINARY) == vec_mode.end());
+  if(condition){
+    ImGui::BeginDisabled();
+    mode = ldr::io::ASCII;
+  }
   if(ImGui::RadioButton("Binary", &mode, ldr::io::BINARY)){
     ldr_exporter->set_mode(mode);
   }
-
+  if(condition) ImGui::EndDisabled();
   ImGui::EndTable();
 
   //---------------------------

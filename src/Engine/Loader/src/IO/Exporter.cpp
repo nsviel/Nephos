@@ -66,6 +66,8 @@ bool Exporter::is_format_supported(std::string format){
   //---------------------------
   return false;
 }
+
+//Subfunction
 std::vector<std::string> Exporter::get_supported_format(){
   std::vector<std::string> vec_format;
   //---------------------------
@@ -77,6 +79,22 @@ std::vector<std::string> Exporter::get_supported_format(){
 
   //---------------------------
   return vec_format;
+}
+std::vector<int> Exporter::get_supported_mode(std::string format){
+  std::vector<int> vec_mode;
+  //---------------------------
+
+  for(int i=0; i<vec_exporter.size(); i++){
+    ldr::base::Exporter* exporter = vec_exporter[i];
+
+    if(format == exporter->format){
+      vec_mode = exporter->vec_mode;
+      break;
+    }
+  }
+
+  //---------------------------
+  return vec_mode;
 }
 
 }

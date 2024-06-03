@@ -4,12 +4,22 @@
 #include <Utility/Base/Type/Pose.h>
 
 
+namespace utl::element{
+
+enum Type{
+  SET = 0,
+  ENTITY = 1,
+};
+
+}
+
 namespace utl::base{
 
 struct Element{
   //---------------------------
 
   int UID = -1;
+  int type = 0;
   bool is_selectable = true;
   std::string name = "";
   utl::base::Pose pose;

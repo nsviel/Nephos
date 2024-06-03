@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Loader/src/Base/Exporter.h>
 #include <string>
 #include <vector>
 
@@ -9,11 +10,6 @@ namespace dat::base{class Entity;}
 
 
 namespace ldr::io{
-
-enum Mode{
-  ASCII = 0,
-  BINARY = 1,
-};
 
 class Exporter
 {
@@ -29,7 +25,10 @@ public:
   //Exporter function
   void insert_exporter(ldr::base::Exporter* exporter);
   bool is_format_supported(std::string format);
+
+  //Subfunction
   std::vector<std::string> get_supported_format();
+  std::vector<int> get_supported_mode(std::string format);
 
   inline void set_mode(int value){this->mode = value;}
 

@@ -15,7 +15,9 @@ struct Entity : public utl::base::Element{
   //---------------------------
 
   //Function
-  Entity(){}
+  Entity(){
+    this->type = utl::element::ENTITY;
+  }
   virtual ~Entity(){}
   virtual void clean(){}
 
