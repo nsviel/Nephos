@@ -30,7 +30,7 @@ utl::base::Data* Importer::load_data(std::string path){
   //---------------------------
 
   //Init
-  utl::media::Path utl_path;
+  utl::base::Path utl_path;
   utl_path.data = path;
 
   //Load data from path
@@ -49,7 +49,7 @@ utl::base::Data* Importer::load_data(std::string path){
   //---------------------------
   return data;
 }
-dat::base::Set* Importer::load_set(utl::media::Path path){
+dat::base::Set* Importer::load_set(utl::base::Path path){
   if(!check_path(path.data)) return nullptr;
   //---------------------------
 
@@ -69,7 +69,7 @@ dat::base::Set* Importer::load_set(utl::media::Path path){
   //---------------------------
   return set;
 }
-dat::base::Object* Importer::load_object(utl::media::Path path){
+dat::base::Object* Importer::load_object(utl::base::Path path){
   if(!check_path(path.data)) return nullptr;
   //---------------------------
 
@@ -148,7 +148,7 @@ std::vector<std::string> Importer::get_supported_format(){
   //---------------------------
   return vec_format;
 }
-utl::base::Element* Importer::import_from_path(utl::media::Path path){
+utl::base::Element* Importer::import_from_path(utl::base::Path path){
   utl::base::Element* element = nullptr;
   //---------------------------
 

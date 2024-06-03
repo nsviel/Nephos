@@ -9,7 +9,7 @@
 namespace k4n::playback{
 
 //Constructor / Destructor
-Sensor::Sensor(k4n::Node* node_k4n, utl::media::Path path) : k4n::dev::Sensor(node_k4n){
+Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
   this->gui_playback = new k4n::gui::Playback(node_k4n);
@@ -18,11 +18,6 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::media::Path path) : k4n::dev::Sensor(no
   this->file_size = utl::file::size(path.data);
   this->path = path;
   this->name = utl::path::get_name_from_path(path.data);
-
-  //Transformation
-  glm::mat4 mat = utl::transformation::find_transformation_from_file(path.transformation);
-  pose.model = mat;
-  pose.model_init = mat;
 
   //---------------------------
 }

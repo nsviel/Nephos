@@ -27,7 +27,7 @@ Importer::Importer(k4n::Node* node_k4n){
 Importer::~Importer(){}
 
 //Main function
-utl::base::Element* Importer::import(utl::media::Path path){
+utl::base::Element* Importer::import(utl::base::Path path){
   if(!utl::file::is_exist(path.data)) return nullptr;
   //---------------------------
 

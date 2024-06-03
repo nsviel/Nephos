@@ -21,7 +21,7 @@ class Sensor : public k4n::dev::Sensor
 {
 public:
   //Constructor / Destructor
-  Sensor(k4n::Node* node_k4n, utl::media::Path path);
+  Sensor(k4n::Node* node_k4n, utl::base::Path path);
   ~Sensor();
 
 public:
@@ -44,7 +44,7 @@ public:
   k4n::gui::Playback* gui_playback;
 
   //File info
-  utl::media::Path path;
+  utl::base::Path path;
   std::string format = "";
   float file_size = 0;
 };

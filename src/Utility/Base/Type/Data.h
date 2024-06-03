@@ -2,15 +2,10 @@
 
 #include <Utility/Base/Type/Element.h>
 #include <Utility/Base/Type/Topology.h>
+#include <Utility/Base/Type/Path.h>
 #include <glm/glm.hpp>
-#include <vulkan/vulkan.h>
-#include <Eigen/Dense>
-#include <iostream>
 #include <string>
 #include <vector>
-#include <list>
-#include <map>
-#include <mutex>
 
 
 namespace utl::base{
@@ -30,12 +25,10 @@ struct Data : public utl::base::Element{
   bool is_visible = true;
 
   //Infos
-  std::string path = "";
-  std::string path_save = "";
-  std::string path_texture = "";
   std::string format = "";
   glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
   utl::base::Topology topology;
+  utl::base::Path path;
 
   //Data
   std::vector<glm::vec3> xyz; //XYZ location

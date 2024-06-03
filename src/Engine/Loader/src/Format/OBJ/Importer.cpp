@@ -16,14 +16,14 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::base::Element* Importer::import(utl::media::Path path){
+utl::base::Element* Importer::import(utl::base::Path path){
   //---------------------------
 
   //Init
   dat::base::Object* object = new dat::base::Object();
   object->name = utl::path::get_name_from_path(path.data);
   object->data.name = utl::path::get_name_from_path(path.data);
-  object->data.path = path.data;
+  object->data.path = path;
   object->data.format = format;
   object->data.topology.type = utl::topology::POINT;
 

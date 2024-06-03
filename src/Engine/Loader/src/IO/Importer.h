@@ -8,7 +8,7 @@ namespace dat::base{class Object;}
 namespace dat::base{class Set;}
 namespace utl::base{class Data;}
 namespace utl::base{class Element;}
-namespace utl::media{class Path;}
+namespace utl::base{class Path;}
 namespace ldr{class Node;}
 namespace ldr::processing{class Operation;}
 namespace ldr::base{class Importer;}
@@ -28,15 +28,15 @@ public:
 public:
   //Main functions
   utl::base::Data* load_data(std::string path);
-  dat::base::Set* load_set(utl::media::Path file_path);
-  dat::base::Object* load_object(utl::media::Path file_path);
+  dat::base::Set* load_set(utl::base::Path file_path);
+  dat::base::Object* load_object(utl::base::Path file_path);
 
   //Subfunction
   void insert_importer(ldr::base::Importer* importer);
   bool check_path(std::string path);
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
-  utl::base::Element* import_from_path(utl::media::Path path);
+  utl::base::Element* import_from_path(utl::base::Path path);
 
 private:
   ldr::processing::Operation* ldr_operation;

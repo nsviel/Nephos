@@ -18,7 +18,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::base::Element* Importer::import(utl::media::Path path){
+utl::base::Element* Importer::import(utl::base::Path path){
   utl::base::Data* data = new utl::base::Data();
   //---------------------------
 /*

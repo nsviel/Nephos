@@ -184,7 +184,7 @@ void Loader::item_operation(){
   }
 
   for(int i=0; i<vec_path.size(); i++){
-    utl::media::Path path;
+    utl::base::Path path;
     path.data = vec_path[i];
 
     dat::base::Object* object = ldr_importer->load_object(path);
@@ -224,7 +224,7 @@ void Loader::operation_bookmark(std::string file_path){
       dat_set->remove_all_entity(set_graph);
     }
 
-    utl::media::Path path;
+    utl::base::Path path;
     path.data = file_path;
     dat::base::Object* object = ldr_importer->load_object(path);
 

@@ -10,6 +10,7 @@ namespace dat{class Set;}
 namespace dat{class Glyph;}
 namespace dat::base{class Object;}
 namespace dat::base{class Set;}
+namespace dat::base{class Entity;}
 
 
 namespace ldr::processing{
@@ -25,6 +26,9 @@ public:
   //Main functions
   void insert_object(dat::base::Object* object);
   void insert_set(dat::base::Set* set);
+
+  //Subfunction
+  void transformation_from_file(dat::base::Entity* entity);
 
 private:
   dat::Entity* dat_entity;

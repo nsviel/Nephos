@@ -29,7 +29,7 @@ public:
   dat::base::Set* set;
 
   std::string time = "%";
-  utl::media::Path path;
+  utl::base::Path path;
   float size = 0;
   int fps_cur = 0;
   int fps_qry = 0;

@@ -20,14 +20,14 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main loader functions
-utl::base::Element* Importer::import(utl::media::Path path){
+utl::base::Element* Importer::import(utl::base::Path path){
   //---------------------------
 
   //Init
   dat::base::Object* object = new dat::base::Object();
   object->name = utl::path::get_name_from_path(path.data);
   object->data.name = utl::path::get_name_from_path(path.data);
-  object->data.path = path.data;
+  object->data.path = path;
   object->data.format = format;
 
   //Header

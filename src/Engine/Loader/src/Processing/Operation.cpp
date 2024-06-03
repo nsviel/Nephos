@@ -58,6 +58,18 @@ void Operation::insert_set(dat::base::Set* set){
   //---------------------------
 }
 
+//Subfunction
+void Operation::transformation_from_file(dat::base::Entity* entity){
+  if(entity == nullptr) return;
+  //---------------------------
 
+  //Transformation
+  std::string& path = entity->data.path.transformation;
+  glm::mat4 mat = utl::transformation::find_transformation_from_file(path);
+  entity->pose.model = mat;
+  entity->pose.model_init = mat;
+
+  //---------------------------
+}
 
 }

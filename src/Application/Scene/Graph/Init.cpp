@@ -33,24 +33,24 @@ void Init::init(){
 void Init::load_entity(){
   //----------------------------
 
-  utl::media::Path versaille_0;
+  utl::base::Path versaille_0;
   versaille_0.data = "/home/aether/Desktop/versaille_0.mkv";
   versaille_0.transformation = "/home/aether/Desktop/versaille_0.json";
 
-  utl::media::Path versaille_2;
+  utl::base::Path versaille_2;
   versaille_2.data = "/home/aether/Desktop/versaille_2.mkv";
   versaille_2.transformation = "/home/aether/Desktop/versaille_2.json";
 
-  utl::media::Path cerfav;
+  utl::base::Path cerfav;
   cerfav.data = "/home/aether/Desktop/cerfav_3_1.mkv";
 
-  utl::media::Path dragon;
+  utl::base::Path dragon;
   dragon.data = "/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply";
 
-  utl::media::Path sphere;
+  utl::base::Path sphere;
   sphere.data = "/home/aether/Desktop/bench_1.mkv";
 
-  utl::media::Path pcap;
+  utl::base::Path pcap;
   pcap.data = "/home/aether/Desktop/pcap_test.pcap";
 
   //Create playback list

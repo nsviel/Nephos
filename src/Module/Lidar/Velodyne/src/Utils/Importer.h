@@ -33,7 +33,7 @@ public:
 
 public:
   //Main function
-  utl::base::Element* import(utl::media::Path path);
+  utl::base::Element* import(utl::base::Path path);
 
   //Subfunction
   void importer_init(std::string path);
