@@ -1,5 +1,7 @@
 #include "Importer.h"
 
+#include <Data/Namespace.h>
+
 
 namespace format::obj{
 
@@ -16,10 +18,14 @@ Importer::~Importer(){}
 //Main function
 utl::base::Element* Importer::import(utl::media::Path path){
   //---------------------------
-/*
-  utl::base::Data* entity = new utl::base::Data();
-  entity->name = utl::path::get_name_from_path(path.data);
-  entity->path = path;
+
+  //Init
+  dat::base::Object* object = new dat::base::Object();
+  object->name = utl::path::get_name_from_path(path.data);
+  object->data.name = utl::path::get_name_from_path(path.data);
+  object->data.path = path.data;
+  object->data.format = format;
+  object->data.topology.type = utl::topology::POINT;
 
   //Init
   this->init_params();
@@ -34,8 +40,8 @@ utl::base::Element* Importer::import(utl::media::Path path){
   this->parse_mtl(path.data);
 
   // Fill output format with file data
-  this->fill_data_file(entity, vertex_vec);
-*/
+  this->fill_data_file(&object->data, vertex_vec);
+
   //---------------------------
   return nullptr;
 }
@@ -181,7 +187,6 @@ void Importer::fill_data_file(utl::base::Data* data, std::vector<Vertex>& vertex
       data->uv.push_back(vertex_vec[i].texcoord);
     }
     data->topology.type = utl::topology::TRIANGLE;
-  //  data->path.texture = file_texture;
   }else{
     for(int i=0; i<vertex_vec.size(); i++){
       data->xyz.push_back(vertex_vec[i].location);

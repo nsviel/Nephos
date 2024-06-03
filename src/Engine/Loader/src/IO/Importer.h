@@ -41,8 +41,7 @@ public:
 
   //Subfunction
   bool check_file_path(std::string path);
-  dat::base::Object* create_object(utl::base::Data* file_data);
-  utl::base::Data* create_data(utl::base::Data* file_data);
+  void insert_object(dat::base::Object* object);
 
   //Import function
   utl::base::Element* import_from_path(utl::media::Path path);

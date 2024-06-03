@@ -25,8 +25,10 @@ utl::base::Element* Importer::import(utl::media::Path path){
 
   //Init
   dat::base::Object* object = new dat::base::Object();
+  object->name = utl::path::get_name_from_path(path.data);
   object->data.name = utl::path::get_name_from_path(path.data);
   object->data.path = path.data;
+  object->data.format = format;
 
   //Header
   this->parse_header(path.data);
@@ -43,6 +45,8 @@ utl::base::Element* Importer::import(utl::media::Path path){
       break;
     }
   }
+
+  object->data.topology.type = header.topology;
 
   //---------------------------
   return object;

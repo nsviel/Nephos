@@ -40,9 +40,7 @@ utl::base::Element* Importer::import(utl::media::Path path){
 
   //Sensor initialization
   sensor->init();
-  dat_entity->init_entity(sensor);
-  dat_glyph->insert_glyph(sensor);
-  dat_set->insert_entity(master, sensor);
+  //dat_set->insert_entity(master, sensor);
 
   //---------------------------
   return sensor;

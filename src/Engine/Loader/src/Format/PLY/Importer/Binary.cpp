@@ -157,6 +157,7 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
   //---------------------------
 }
 void Binary::parse_face_little_endian(std::ifstream& file){
+  if(header->nb_face == 0) return;
   //---------------------------
 
   //Init
@@ -256,6 +257,7 @@ void Binary::parse_vertex_big_endian(std::ifstream& file){
   //---------------------------
 }
 void Binary::parse_face_big_endian(std::ifstream& file){
+  if(header->nb_face == 0) return;
   //---------------------------
 
   //Init

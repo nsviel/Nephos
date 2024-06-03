@@ -21,11 +21,14 @@ Importer::~Importer(){}
 //Main function
 utl::base::Element* Importer::import(utl::media::Path path){
   //---------------------------
-/*
-  utl::base::Data* entity = new utl::base::Data();
-  entity->name = utl::path::get_name_from_path(path.data);
-  entity->path = path;
-  entity->draw_type = utl::topology::POINT;
+
+  //Init
+  dat::base::Object* object = new dat::base::Object();
+  object->name = utl::path::get_name_from_path(path.data);
+  object->data.name = utl::path::get_name_from_path(path.data);
+  object->data.path = path.data;
+  object->data.format = format;
+  object->data.topology.type = utl::topology::POINT;
 
   //Initialization
   this->Loader_init();
@@ -48,11 +51,11 @@ utl::base::Element* Importer::import(utl::media::Path path){
     }
 
     //Retrieve data
-    this->Loader_data(entity, FILE_config);
+    this->Loader_data(&object->data, FILE_config);
   }
-*/
+
   //---------------------------
-  return nullptr;
+  return object;
 }
 
 //Subfunction

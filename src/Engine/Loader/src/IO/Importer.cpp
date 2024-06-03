@@ -95,10 +95,7 @@ dat::base::Object* Importer::load_object(utl::media::Path path){
   }
 
   //Insert loaded entity into graph
-  if(object != nullptr && object->set_parent == nullptr){
-    dat::base::Set* set_graph = dat_graph->get_set_graph();
-    dat_set->insert_entity(set_graph, object);
-  }
+  this->insert_object(object);
 
   //---------------------------
   return object;
@@ -129,47 +126,28 @@ bool Importer::check_file_path(std::string path){
   //---------------------------
   return true;
 }
-dat::base::Object* Importer::create_object(utl::base::Data* data){
+void Importer::insert_object(dat::base::Object* object){
+  if(object == nullptr) return;
   //---------------------------
 
-  dat::base::Object* object = new dat::base::Object();
-  object->name = data->name;
-  object->data = *create_data(data);
+  //If no color, fill it with white
+  if(object->data.rgb.size() == 0){
+    for(int i=0; i<object->data.xyz.size(); i++){
+      object->data.rgba.push_back(vec4(1, 1, 1, 1));
+    }
+  }else{
+    for(int i=0; i<object->data.rgb.size(); i++){
+      glm::vec3& rgb = object->data.rgb[i];
+      object->data.rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
+    }
+  }
 
+  dat::base::Set* set_graph = dat_graph->get_set_graph();
+  dat_set->insert_entity(set_graph, object);
   dat_entity->init_entity(object);
   dat_glyph->insert_glyph(object);
 
   //---------------------------
-  return object;
-}
-utl::base::Data* Importer::create_data(utl::base::Data* file){
-  //---------------------------
-
-  utl::base::Data* data = new utl::base::Data();/*
-  data->name = file->name;
-  data->path = file->path.data;
-  data->format = utl::path::get_format_from_path(file->path.data);
-  data->size = file->xyz.size();
-  data->topology.type = file->draw_type;
-
-  data->xyz = file->xyz;
-  data->rgb = file->rgb;
-  data->uv = file->uv;
-
-  //If no color, fill it with white
-  if(data->rgb.size() == 0){
-    for(int i=0; i<file->xyz.size(); i++){
-      data->rgba.push_back(vec4(1, 1, 1, 1));
-    }
-  }else{
-    for(int i=0; i<file->rgb.size(); i++){
-      glm::vec3& rgb = file->rgb[i];
-      data->rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
-    }
-  }
-*/
-  //---------------------------
-  return data;
 }
 
 //Import function
