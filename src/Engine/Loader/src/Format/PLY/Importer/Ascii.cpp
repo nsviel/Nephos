@@ -16,6 +16,7 @@ Ascii::~Ascii(){}
 
 //Main function
 void Ascii::parse_ascii(dat::base::Object* object, format::ply::Header* header){
+  this->header = header;
   //---------------------------
 
   //Open file
@@ -23,15 +24,14 @@ void Ascii::parse_ascii(dat::base::Object* object, format::ply::Header* header){
   this->pass_header(file);
 
   //Read data
-  if(header->nb_face == 0){
-    this->parse_vertice(file, header);
-    object->data.xyz = vertex;
-    object->data.Nxyz = normal;
-    object->data.Is = intensity;
-    object->data.size = vertex.size();
-  }else{
-    this->parse_data_withface(file, &object->data);
-  }
+  this->parse_vertice(file);
+  this->parse_face(file);
+
+  //Store result
+  object->data.xyz = xyz;
+  object->data.Nxyz = Nxyz;
+  object->data.Is = Is;
+  object->data.size = xyz.size();
 
   file.close();
 
@@ -39,15 +39,15 @@ void Ascii::parse_ascii(dat::base::Object* object, format::ply::Header* header){
 }
 
 //Parser
-void Ascii::parse_vertice(std::ifstream& file, format::ply::Header* header){
-  vertex.clear();
-  normal.clear();
-  intensity.clear();
+void Ascii::parse_vertice(std::ifstream& file){
+  xyz.clear();
+  Nxyz.clear();
+  Is.clear();
   //---------------------------
 
   //Retrieve vertex data
   std::string line;
-  for(int i=0; i<header->nb_point; i++){
+  for(int i=0; i<header->nb_vertex; i++){
     //Data
     std::getline(file, line);
     std::istringstream iss(line);
@@ -59,73 +59,42 @@ void Ascii::parse_vertice(std::ifstream& file, format::ply::Header* header){
     }
 
     //Location
-    int id_x = get_property_id(header, format::ply::X);
-    if(id_x != -1){
-      vertex.push_back(glm::vec3(data[id_x], data[id_x+1], data[id_x+2]));
-    }
-
-    //Normal
-    int id_nx = get_property_id(header, format::ply::NX);
-    if(id_nx != -1){
-      normal.push_back(glm::vec3(data[id_nx], data[id_nx+1], data[id_nx+2]));
-    }
-
-    //Intensity
-    int id_i = get_property_id(header, format::ply::I);
-    if(id_i != -1){
-      intensity.push_back(data[id_i]);
-    }
-  }
-
-  //---------------------------
-}
-void Ascii::parse_data_withface(std::ifstream& file, utl::base::Data* data){/*
-  std::vector<glm::vec3> vertex;
-  std::vector<glm::vec3> normal;
-  std::vector<float> intensity;
-  //---------------------------
-
-  //Retrieve vertex data
-  std::string line;
-  for(int i=0; i<point_number; i++){
-    //Get line
-    std::getline(file, line);
-    std::istringstream iss(line);
-
-    //Stocke all line values
-    std::vector<float> data;
-    float d;
-    for(int i=0; i<vec_property.size(); i++){
-      iss >> d;
-      data.push_back(d);
-    }
-
-    //Location
     int id_x = get_property_id(format::ply::X);
     if(id_x != -1){
-      vertex.push_back(glm::vec3(data[id_x], data[id_x+1], data[id_x+2]));
+      xyz.push_back(glm::vec3(data[id_x], data[id_x+1], data[id_x+2]));
     }
 
     //Normal
-    int id_nx = get_property_id(header, format::ply::NX);
+    int id_nx = get_property_id(format::ply::NX);
     if(id_nx != -1){
-      normal.push_back(glm::vec3(data[id_nx], data[id_nx+1], data[id_nx+2]));
+      Nxyz.push_back(glm::vec3(data[id_nx], data[id_nx+1], data[id_nx+2]));
     }
 
     //Intensity
     int id_i = get_property_id(format::ply::I);
     if(id_i != -1){
-      intensity.push_back(data[id_i]);
+      Is.push_back(data[id_i]);
     }
   }
 
+  //---------------------------
+}
+void Ascii::parse_face(std::ifstream& file){
+  if(header->nb_face == 0) return;
+  //---------------------------
+
+  //Init
+  std::vector<glm::vec3> vertex = xyz; xyz.clear();
+  std::vector<glm::vec3> normal = Nxyz; Nxyz.clear();
+  std::vector<float> intensity = Is; Is.clear();
+
   //Retrieve face data
+  std::string line;
   while(std::getline(file, line)){
+    //Data
     std::istringstream iss(line);
     float nb_vertice;
     iss >> nb_vertice;
-
-    //Stocke all line index
     std::vector<int> idx;
     float d;
     for(int i=0; i<nb_vertice; i++){
@@ -135,26 +104,30 @@ void Ascii::parse_data_withface(std::ifstream& file, utl::base::Data* data){/*
 
     //Retrieve face data
     for(int i=0; i<nb_vertice; i++){
-      entity->xyz.push_back(vertex[idx[i]]);
-      if(get_property_id(header, format::ply::NX) != -1){
-        entity->Nxyz.push_back(normal[idx[i]]);
+      //Location
+      xyz.push_back(vertex[idx[i]]);
+
+      //Normal
+      if(get_property_id(format::ply::NX) != -1){
+        Nxyz.push_back(normal[idx[i]]);
       }
+
+      //Intensity
       if(get_property_id(format::ply::I) != -1){
-        entity->Is.push_back(intensity[idx[i]]);
+        Is.push_back(intensity[idx[i]]);
       }
     }
 
     //Deduce drawing type
     if(nb_vertice == 3){
-      entity->draw_type = utl::topology::TRIANGLE;
+      header->topology = utl::topology::TRIANGLE;
     }
     else if(nb_vertice == 4){
-      entity->draw_type = utl::topology::QUAD;
+      header->topology = utl::topology::QUAD;
     }
   }
 
   //---------------------------
-  entity->nb_element = entity->xyz.size();*/
 }
 
 //Subfunction
@@ -170,7 +143,7 @@ void Ascii::pass_header(std::ifstream& file){
 
   //---------------------------
 }
-int Ascii::get_property_id(format::ply::Header* header, format::ply::Field field){
+int Ascii::get_property_id(format::ply::Field field){
   //---------------------------
 
   for(int i=0; i<header->vec_property.size(); i++){

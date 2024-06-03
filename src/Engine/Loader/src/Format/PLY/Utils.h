@@ -48,7 +48,7 @@ struct Header{
   std::vector<format::ply::Property> vec_property;
   utl::topology::Type topology = utl::topology::POINT;
   int format = format::ply::ASCII;
-  int nb_point = 0;
+  int nb_vertex = 0;
   int nb_face = 0;
 };
 

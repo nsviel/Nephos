@@ -102,7 +102,7 @@ void Importer::parse_header(std::string path){
     }
     //Retrieve number of point
     else if(h1 + h2 == "elementvertex"){
-      header.nb_point = std::stoi(h3);
+      header.nb_vertex = std::stoi(h3);
     }
     //Retrieve property
     else if(h1 == "property" && vertex_ended == false){
