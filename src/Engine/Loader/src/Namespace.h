@@ -4,3 +4,4 @@
 #include <Loader/src/IO/Namespace.h>
 #include <Loader/src/Base/Namespace.h>
 #include <Loader/src/Bookmark/Namespace.h>
+#include <Loader/src/Processing/Namespace.h>
