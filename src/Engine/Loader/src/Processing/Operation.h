@@ -9,6 +9,7 @@ namespace dat{class Graph;}
 namespace dat{class Set;}
 namespace dat{class Glyph;}
 namespace dat::base{class Object;}
+namespace dat::base{class Set;}
 
 
 namespace ldr::processing{
@@ -24,7 +25,7 @@ public:
   //Main functions
   void insert_object(dat::base::Object* object);
   void insert_set(dat::base::Set* set);
-  
+
 private:
   dat::Entity* dat_entity;
   dat::Graph* dat_graph;

@@ -91,6 +91,13 @@ dat::base::Object* Importer::load_object(utl::media::Path path){
 }
 
 //Subfunction
+void Importer::insert_importer(ldr::base::Importer* importer){
+  //---------------------------
+
+  this->vec_importer.push_back(importer);
+
+  //---------------------------
+}
 bool Importer::check_path(std::string path){
   //---------------------------
 
@@ -114,36 +121,6 @@ bool Importer::check_path(std::string path){
 
   //---------------------------
   return true;
-}
-utl::base::Element* Importer::import_from_path(utl::media::Path path){
-  utl::base::Element* element = nullptr;
-  //---------------------------
-
-  std::string format = utl::path::get_format_from_path(path.data);
-
-  for(int i=0; i<vec_importer.size(); i++){
-    ldr::base::Importer* importer = vec_importer[i];
-
-    if(importer->format == format){
-      //Check for discrete gpu requirement
-      /*if(importer->require_discrete_gpu && vk_interface->is_gpu_discrete() == false){
-        cout<<"[error] no discrete GPU - could not load " + importer->format + " file"<<endl;
-        continue;
-      }*/
-
-      element = importer->import(path);
-    }
-  }
-
-  //---------------------------
-  return element;
-}
-void Importer::insert_importer(ldr::base::Importer* importer){
-  //---------------------------
-
-  this->vec_importer.push_back(importer);
-
-  //---------------------------
 }
 bool Importer::is_format_supported(std::string format){
   //---------------------------
@@ -170,6 +147,29 @@ std::vector<std::string> Importer::get_supported_format(){
 
   //---------------------------
   return vec_format;
+}
+utl::base::Element* Importer::import_from_path(utl::media::Path path){
+  utl::base::Element* element = nullptr;
+  //---------------------------
+
+  std::string format = utl::path::get_format_from_path(path.data);
+
+  for(int i=0; i<vec_importer.size(); i++){
+    ldr::base::Importer* importer = vec_importer[i];
+
+    if(importer->format == format){
+      //Check for discrete gpu requirement
+      /*if(importer->require_discrete_gpu && vk_interface->is_gpu_discrete() == false){
+        cout<<"[error] no discrete GPU - could not load " + importer->format + " file"<<endl;
+        continue;
+      }*/
+
+      element = importer->import(path);
+    }
+  }
+
+  //---------------------------
+  return element;
 }
 
 }

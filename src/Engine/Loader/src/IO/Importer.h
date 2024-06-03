@@ -32,11 +32,11 @@ public:
   dat::base::Object* load_object(utl::media::Path file_path);
 
   //Subfunction
-  bool check_path(std::string path);
-  utl::base::Element* import_from_path(utl::media::Path path);
   void insert_importer(ldr::base::Importer* importer);
+  bool check_path(std::string path);
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
+  utl::base::Element* import_from_path(utl::media::Path path);
 
 private:
   ldr::processing::Operation* ldr_operation;
