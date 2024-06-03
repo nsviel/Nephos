@@ -19,7 +19,7 @@ Importer::~Importer(){}
 utl::base::Element* Importer::import(utl::media::Path path){
   //---------------------------
 
-  dat::base::Object* object = new dat::base::Object();
+  dat::base::Object* object = new dat::base::Object();/*
   object->data.name = utl::path::get_name_from_path(path.data);
   object->data.path = path;
   object->data.draw_type = utl::topology::POINT;
@@ -86,7 +86,7 @@ utl::base::Element* Importer::import(utl::media::Path path){
       break;
     }
   }
-
+*/
   //---------------------------
   return object;
 }

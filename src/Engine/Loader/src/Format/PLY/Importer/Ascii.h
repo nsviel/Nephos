@@ -26,9 +26,15 @@ public:
   //Main function
   void parse_ascii(std::ifstream& file, utl::file::Data* entity);
   void parse_ascii_withface(std::ifstream& file, utl::file::Data* entity);
+  int get_property_id(format::ply::Field field);
 
 private:
   std::vector<format::ply::Property> vec_property;
+  int file_format;
+  int point_data_idx;
+  int point_number;
+  int face_number;
+  int header_size;
 };
 
 }

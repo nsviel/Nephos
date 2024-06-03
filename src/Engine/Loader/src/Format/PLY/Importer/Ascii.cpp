@@ -143,5 +143,18 @@ void Ascii::parse_ascii_withface(std::ifstream& file, utl::file::Data* entity){
   //---------------------------
   entity->nb_element = entity->xyz.size();
 }
+int Ascii::get_property_id(format::ply::Field field){
+  //---------------------------
 
+  for(int i=0; i<vec_property.size(); i++){
+    format::ply::Property* property = &vec_property[i];
+
+    if(property->field == field){
+      return i;
+    }
+  }
+
+  //---------------------------
+  return -1;
+}
 }

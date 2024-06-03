@@ -9,8 +9,6 @@ namespace format::ply{
 Binary::Binary(){
   //---------------------------
 
-  this->format = "ply";
-
   //---------------------------
 }
 Binary::~Binary(){}
