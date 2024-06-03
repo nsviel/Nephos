@@ -1,7 +1,7 @@
 #include "Image.h"
 
 #include <Operation/Namespace.h>
-#include <Data/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <Utility/Namespace.h>
 #include <cstdlib>
 

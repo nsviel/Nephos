@@ -3,6 +3,7 @@
 #include <Data/Namespace.h>
 #include <Utility/Specific/Common.h>
 #include <Kinect/src/Structure/Namespace.h>
+#include <Dynamic/src/Base/Sensor.h>
 
 namespace eng{class Node;}
 namespace k4n{class Node;}
