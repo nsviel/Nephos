@@ -89,8 +89,6 @@ void Selection::select_next_element(){
   //----------------------------
 }
 
-
-
 //Accesseur
 utl::base::Element* Selection::get_selected_element(){
   return dat_struct->selection;

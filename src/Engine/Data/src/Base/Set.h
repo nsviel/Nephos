@@ -2,7 +2,6 @@
 
 #include <Dynamic/src/Base/Player.h>
 #include <Utility/Base/Type/Element.h>
-#include <Utility/Base/Type/Pose.h>
 #include <image/IconsFontAwesome6.h>
 #include <string>
 #include <list>
@@ -32,7 +31,6 @@ struct Set : public utl::base::Element{
   int nb_subset = 0;
 
   //Data
-  utl::base::Pose pose;
   dyn::base::Player* player = nullptr;
   dat::base::Entity* active_entity = nullptr;
   dat::base::Set* active_subset = nullptr;

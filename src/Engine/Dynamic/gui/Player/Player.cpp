@@ -25,16 +25,14 @@ Player::~Player(){}
 
 //Main function
 void Player::run_panel(){
-  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
-  if(*show_window && set != nullptr && set->player != nullptr){
+  if(*show_window){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::SetNextWindowSizeConstraints(ImVec2(0, 0), ImVec2(250, FLT_MAX));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel(set);
-      //element->info();
+      this->design_panel();
 
       ImGui::End();
     }
@@ -43,15 +41,17 @@ void Player::run_panel(){
 
   //---------------------------
 }
-void Player::design_panel(dat::base::Set* set){
+void Player::design_panel(){
   //---------------------------
 
-  this->design_player(set);
-  gui_operation->design_operation(set);
+  this->design_player();
+  gui_operation->design_operation();
 
   //---------------------------
 }
-void Player::design_player(dat::base::Set* set){
+void Player::design_player(){
+  dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr || set->player == nullptr) return;
   //---------------------------
 
   this->player_slider(set);

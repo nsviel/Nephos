@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Utility/Base/Type/Data.h>
-#include <Utility/Base/Type/Pose.h>
 #include <Utility/Base/Type/Element.h>
 #include <Utility/Base/Media/Image.h>
 #include <image/IconsFontAwesome6.h>
@@ -29,7 +28,6 @@ struct Entity : public utl::base::Element{
   std::string icon = ICON_FA_FILE;
 
   //Data
-  utl::base::Pose pose;
   utl::base::Data data;
   dat::base::Set* set_parent = nullptr;
   std::list<dat::base::Glyph*> list_glyph;

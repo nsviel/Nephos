@@ -12,6 +12,9 @@ namespace dyn::gui{
 Operation::Operation(dyn::Node* node_dynamic){
   //---------------------------
 
+  dat::Node* node_data = node_dynamic->get_node_data();
+
+  this->dat_selection = node_data->get_dat_selection();
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dyn_operation = node_dynamic->get_ope_cloud();
   this->ope_operation = new ope::Operation();
@@ -22,13 +25,17 @@ Operation::Operation(dyn::Node* node_dynamic){
 Operation::~Operation(){}
 
 //Main function
-void Operation::design_operation(dat::base::Set* set){
-  if(set == nullptr) return;
+void Operation::design_operation(){
+  utl::base::Element* element = dat_selection->get_selected_element();
+  if(element == nullptr) return;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
-  this->draw_op_info(set);
-  this->draw_ope_transformation(set);
+  this->draw_op_info(element);
+  this->draw_ope_transformation(element);
+
+
+    dat::base::Set* set = dat_selection->get_selected_set();
   this->draw_ope_colorization(set);
   this->draw_ope_normal(set);
   this->draw_ope_recorder(set);
@@ -39,9 +46,13 @@ void Operation::design_operation(dat::base::Set* set){
 }
 
 //Subfunction
-void Operation::draw_op_info(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
+void Operation::draw_op_info(utl::base::Element* element){
+  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)) return;
   //---------------------------
+
+  dat::base::Set* set = dynamic_cast<dat::base::Set*>(element);
+  dyn::base::Player* player = set->player;
+  if(player == nullptr) return;
 
   if(ImGui::CollapsingHeader("Info##dynamic")){
 
@@ -78,27 +89,24 @@ void Operation::draw_op_info(dat::base::Set* set){
 
   //---------------------------
 }
-void Operation::draw_ope_transformation(dat::base::Set* set){
-  dyn::base::Player* player = set->player;
+void Operation::draw_ope_transformation(utl::base::Element* element){
+  utl::base::Pose* pose = &element->pose;
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Transformation##dynamic")){
-    dat::base::Entity* entity = set->active_entity;
-    if(entity == nullptr) return;
-    utl::base::Pose* pose = &set->active_entity->pose;
 
     //Button
     if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
-      ope_operation->center_object(set);
+      ope_operation->center_object(element);
     }
     ImGui::SameLine();
     if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
-      ope_operation->make_rotation_X_90d(set, 1);
+      ope_operation->make_rotation_X_90d(element, 1);
     }
     ImGui::SameLine();
     if(ImGui::Button("Save##transfomatrix", ImVec2(70, 0))){
-      utl::transformation::save_transformation_to_file(pose->model, player->path.transformation);
+      utl::transformation::save_transformation_to_file(pose->model, pose->path);
     }
     ImGui::SameLine();
     if(ImGui::Button("Identity##transfomatrix", ImVec2(70, 0))){
@@ -111,7 +119,7 @@ void Operation::draw_ope_transformation(dat::base::Set* set){
     //Path transfo
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
-    string path = (player->path.transformation != "") ? player->path.transformation : "(not defined)";
+    string path = (pose->path != "") ? pose->path : "(not defined)";
     ImGui::TextColored(color, "%s", path.c_str());
 
     ImGui::EndTable();

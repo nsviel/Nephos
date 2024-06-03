@@ -2,12 +2,14 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace dat{class Selection;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::cloud{class Operation;}
 namespace ope{class Operation;}
 namespace ope::normal{class KNN;}
 namespace dat::base{class Set;}
+namespace dat::base{class Element;}
 
 
 namespace dyn::gui{
@@ -21,16 +23,17 @@ public:
 
 public:
   //Main function
-  void design_operation(dat::base::Set* set);
+  void design_operation();
 
   //Subfunction
-  void draw_op_info(dat::base::Set* set);
-  void draw_ope_transformation(dat::base::Set* set);
+  void draw_op_info(utl::base::Element* element);
+  void draw_ope_transformation(utl::base::Element* element);
   void draw_ope_colorization(dat::base::Set* set);
   void draw_ope_normal(dat::base::Set* set);
   void draw_ope_recorder(dat::base::Set* set);
 
 private:
+  dat::Selection* dat_selection;
   dyn::cloud::Operation* dyn_operation;
   dyn::Structure* dyn_struct;
   ope::Operation* ope_operation;

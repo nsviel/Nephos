@@ -19,8 +19,8 @@ public:
 
   //Main function
   void run_panel();
-  void design_panel(dat::base::Set* set);
-  void design_player(dat::base::Set* set);
+  void design_panel();
+  void design_player();
 
   //Player function
   void player_slider(dat::base::Set* set);
