@@ -31,16 +31,19 @@ utl::base::Element* Importer::import(utl::base::Path path){
   if(!utl::file::is_exist(path.data)) return nullptr;
   //---------------------------
 
-  //Associated master
-  k4n::dev::Master* master = manage_master();
+  //Create sensor
   k4n::playback::Sensor* sensor = new k4n::playback::Sensor(node_k4n, path);
-  sensor->master = master;
+  sensor->name = utl::path::get_name_from_path(path.data);
+  sensor->data.name = utl::path::get_name_from_path(path.data);
+  sensor->data.path = path;
+  sensor->data.format = format;
   sensor->ts_beg = find_mkv_ts_beg(path.data);
   sensor->ts_end = find_mkv_ts_end(path.data);
-
-  //Sensor initialization
   sensor->init();
-  //dat_set->insert_entity(master, sensor);
+
+  //Associated set
+  k4n::dev::Master* master = manage_master();
+  sensor->master = master;
 
   //---------------------------
   return sensor;
