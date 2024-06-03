@@ -5,7 +5,7 @@
 #include <chrono>
 
 
-namespace k4n::capture{
+namespace k4n::playback{
 
 //Constructor / Destructor
 Synchro::Synchro(k4n::Node* node_k4n){

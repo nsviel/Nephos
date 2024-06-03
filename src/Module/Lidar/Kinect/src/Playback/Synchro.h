@@ -7,7 +7,7 @@ namespace dat{class Set;}
 namespace dat{class Graph;}
 
 
-namespace k4n::capture{
+namespace k4n::playback{
 
 class Synchro
 {
