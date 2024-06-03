@@ -19,6 +19,7 @@ Importer::Importer(ldr::Node* node_loader){
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
   this->dat_glyph = node_data->get_dat_glyph();
+  this->ldr_operation = new ldr::processing::Operation(node_loader);
 
   this->insert_importer(new format::ply::Importer());
   this->insert_importer(new format::obj::Importer());
@@ -33,7 +34,7 @@ Importer::~Importer(){}
 
 //Main functions
 utl::base::Data* Importer::load_data(std::string path){
-  if(!check_file_path(path)) return nullptr;
+  if(!check_path(path)) return nullptr;
   //---------------------------
 
   //Init
@@ -57,7 +58,7 @@ utl::base::Data* Importer::load_data(std::string path){
   return data;
 }
 dat::base::Set* Importer::load_set(utl::media::Path path){
-  if(!check_file_path(path.data)) return nullptr;
+  if(!check_path(path.data)) return nullptr;
   //---------------------------
 
   //Load data from path
@@ -81,7 +82,7 @@ dat::base::Set* Importer::load_set(utl::media::Path path){
   return set;
 }
 dat::base::Object* Importer::load_object(utl::media::Path path){
-  if(!check_file_path(path.data)) return nullptr;
+  if(!check_path(path.data)) return nullptr;
   //---------------------------
 
   //Load data from path
@@ -95,14 +96,14 @@ dat::base::Object* Importer::load_object(utl::media::Path path){
   }
 
   //Insert loaded entity into graph
-  this->insert_object(object);
+  ldr_operation->insert_object(object);
 
   //---------------------------
   return object;
 }
 
 //Subfunction
-bool Importer::check_file_path(std::string path){
+bool Importer::check_path(std::string path){
   //---------------------------
 
   //Check file existence
@@ -126,31 +127,6 @@ bool Importer::check_file_path(std::string path){
   //---------------------------
   return true;
 }
-void Importer::insert_object(dat::base::Object* object){
-  if(object == nullptr) return;
-  //---------------------------
-
-  //If no color, fill it with white
-  if(object->data.rgb.size() == 0){
-    for(int i=0; i<object->data.xyz.size(); i++){
-      object->data.rgba.push_back(vec4(1, 1, 1, 1));
-    }
-  }else{
-    for(int i=0; i<object->data.rgb.size(); i++){
-      glm::vec3& rgb = object->data.rgb[i];
-      object->data.rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
-    }
-  }
-
-  dat::base::Set* set_graph = dat_graph->get_set_graph();
-  dat_set->insert_entity(set_graph, object);
-  dat_entity->init_entity(object);
-  dat_glyph->insert_glyph(object);
-
-  //---------------------------
-}
-
-//Import function
 utl::base::Element* Importer::import_from_path(utl::media::Path path){
   utl::base::Element* element = nullptr;
   //---------------------------

@@ -20,6 +20,7 @@ namespace dat::base{class Set;}
 namespace utl::media{class File;}
 namespace utl::media{class Path;}
 namespace ldr{class Node;}
+namespace ldr::processing{class Operation;}
 namespace ldr::base{class Importer;}
 
 
@@ -40,16 +41,14 @@ public:
   dat::base::Object* load_object(utl::media::Path file_path);
 
   //Subfunction
-  bool check_file_path(std::string path);
-  void insert_object(dat::base::Object* object);
-
-  //Import function
+  bool check_path(std::string path);
   utl::base::Element* import_from_path(utl::media::Path path);
   void insert_importer(ldr::base::Importer* importer);
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
 
 private:
+  ldr::processing::Operation* ldr_operation;
   eng::Node* node_engine;
   dat::Entity* dat_entity;
   dat::Graph* dat_graph;
