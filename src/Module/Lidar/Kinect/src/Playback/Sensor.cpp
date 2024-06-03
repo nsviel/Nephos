@@ -12,6 +12,8 @@ namespace k4n::playback{
 Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path) : k4n::dev::Sensor(node_k4n){
   //---------------------------
 
+  this->k4n_image = new k4n::processing::Image(node_k4n);
+  this->k4n_config = new k4n::utils::Configuration(node_k4n);
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 
   this->file_size = utl::file::size(path.data);
@@ -154,6 +156,32 @@ void Sensor::manage_ts_query(float value){
 
   //---------------------------
 }
+vec3 Sensor::convert_depth_2d_to_3d(ivec2 point_2d){
+  //---------------------------
 
+  uint16_t* buffer = reinterpret_cast<uint16_t*>(depth.data.buffer);
+  int width = depth.data.width;
+
+  //Retrieve image coordinates
+  int x = point_2d[0];
+  int y = point_2d[1];
+  k4a_float2_t source_xy = { static_cast<float>(x), static_cast<float>(y) };
+  float source_z = static_cast<float>(buffer[y * width + x]);
+
+  //Convert it into 3D coordinate
+  k4a_float3_t target_xyz;
+  bool success = device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
+  vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
+
+  //Apply transformation
+  float inv_scale = 1.0f / 1000.0f;
+  xyzw.x = -xyzw.x * inv_scale;
+  xyzw.y = -xyzw.y * inv_scale;
+  xyzw.z = xyzw.z * inv_scale;
+  vec3 pose = vec3(xyzw.z, xyzw.x, xyzw.y);
+
+  //---------------------------
+  return pose;
+}
 
 }
