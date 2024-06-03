@@ -12,6 +12,9 @@
 #include <stdint.h>
 #include <cstdint>
 
+namespace format::ply::importer{class Ascii;}
+namespace format::ply::importer{class Binary;}
+
 
 namespace format::ply{
 
@@ -59,6 +62,9 @@ private:
   float get_ushort_from_binary(char* block_data, int& offset);
 
 private:
+  format::ply::importer::Ascii* ply_ascii;
+  format::ply::importer::Binary* ply_binary;
+
   std::vector<format::ply::Property> vec_property;
   int file_format;
   int point_data_idx;

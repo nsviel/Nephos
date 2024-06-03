@@ -1,6 +1,7 @@
 #include "Importer.h"
 
 #include <Data/Namespace.h>
+#include <Loader/Namespace.h>
 
 
 namespace format::ply{
@@ -8,6 +9,9 @@ namespace format::ply{
 //Constructor / Destructor
 Importer::Importer(){
   //---------------------------
+
+  this->ply_ascii = new format::ply::importer::Ascii();
+  this->ply_binary = new format::ply::importer::Binary();
 
   this->format = "ply";
 
@@ -131,9 +135,9 @@ void Importer::parse_header(std::ifstream& file){
 void Importer::parse_header_format(std::string format){
   //---------------------------
 
-  if(format == "ascii") this->file_format = ASCII;
-  else if(format == "binary_little_endian") this->file_format = BINARY_LITTLE_ENDIAN;
-  else if(format == "binary_big_endian") this->file_format = BINARY_BIG_ENDIAN;
+  if(format == "ascii") this->file_format = format::ply::ASCII;
+  else if(format == "binary_little_endian") this->file_format = format::ply::BINARY_LITTLE_ENDIAN;
+  else if(format == "binary_big_endian") this->file_format = format::ply::BINARY_BIG_ENDIAN;
   else{
     cout<<"[warning] Unknown format: "<<format<<endl;
     return;

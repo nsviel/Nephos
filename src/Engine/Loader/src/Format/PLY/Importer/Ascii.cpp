@@ -3,7 +3,7 @@
 #include <Data/Namespace.h>
 
 
-namespace format::ply{
+namespace format::ply::importer{
 
 //Constructor / Destructor
 Ascii::Ascii(){

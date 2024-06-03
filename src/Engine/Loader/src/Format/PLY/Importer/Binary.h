@@ -14,7 +14,7 @@
 
 
 
-namespace format::ply{
+namespace format::ply::importer{
 
 class Binary
 {
