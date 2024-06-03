@@ -18,8 +18,6 @@ namespace utl::base{
 struct Pose{
   //---------------------------
 
-  std::string path = "";
-
   glm::vec3 min = glm::vec3(0.0f);
   glm::vec3 max = glm::vec3(0.0f);
   glm::vec3 root = glm::vec3(0.0f);

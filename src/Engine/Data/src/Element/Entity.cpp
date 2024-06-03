@@ -56,13 +56,12 @@ void Entity::remove_entity(dat::base::Entity* entity){
   //----------------------------
 }
 void Entity::reset_entity(dat::base::Entity* entity){
-  utl::base::Pose* pose = &entity->pose;
   //----------------------------
 
-  glm::mat4 init = pose->model_init; say(init);
-  pose = {};
-  pose->model = init;
-  pose->model_init = init;
+  glm::mat4 init = entity->pose.model_init;
+  entity->pose = {};
+  entity->pose.model = init;
+  entity->pose.model_init = init;
 
   //----------------------------
 }

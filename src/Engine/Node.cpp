@@ -24,10 +24,8 @@ Node::Node(app::Node* node_app){
   //Child
   this->thread_pool = new utl::thread::Pool(50);
   this->node_vulkan = new vk::Node(node_app);
-
   this->node_camera = new cam::Node(this);
   this->node_data = new dat::Node(this);
-
   this->node_dynamic = new dyn::Node(this);
   this->node_render = new rnd::Node(this);
   this->node_loader = new ldr::Node(this);
@@ -96,6 +94,7 @@ void Node::reset(){
   //---------------------------
 
   node_camera->reset();
+  node_data->reset();
 
   //---------------------------
 }

@@ -106,7 +106,7 @@ void Operation::draw_ope_transformation(utl::base::Element* element){
     }
     ImGui::SameLine();
     if(ImGui::Button("Save##transfomatrix", ImVec2(70, 0))){
-      utl::transformation::save_transformation_to_file(pose->model, pose->path);
+      //utl::transformation::save_transformation_to_file(pose->model, pose->path);
     }
     ImGui::SameLine();
     if(ImGui::Button("Identity##transfomatrix", ImVec2(70, 0))){
@@ -119,8 +119,8 @@ void Operation::draw_ope_transformation(utl::base::Element* element){
     //Path transfo
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
-    string path = (pose->path != "") ? pose->path : "(not defined)";
-    ImGui::TextColored(color, "%s", path.c_str());
+    //string path = (pose->path != "") ? pose->path : "(not defined)";
+    //ImGui::TextColored(color, "%s", path.c_str());
 
     ImGui::EndTable();
 

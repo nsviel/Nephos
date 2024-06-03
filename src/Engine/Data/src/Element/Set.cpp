@@ -39,8 +39,7 @@ void Set::reset_set(dat::base::Set* set){
   dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------
 
-  utl::base::Pose* pose = &set->pose;
-  pose = {};
+  set->pose = {};
 
   //Reset all associated entities
   for(int j=0; j<set->list_entity.size(); j++){
