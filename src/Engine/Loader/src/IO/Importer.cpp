@@ -95,7 +95,7 @@ dat::base::Object* Importer::load_object(utl::media::Path path){
   }
 
   //Insert loaded entity into graph
-  if(object != nullptr){
+  if(object != nullptr && object->set_parent == nullptr){
     dat::base::Set* set_graph = dat_graph->get_set_graph();
     dat_set->insert_entity(set_graph, object);
   }
