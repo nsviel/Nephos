@@ -83,17 +83,15 @@ void Ascii::parse_face(std::ifstream& file){
   //---------------------------
 
   //Init
-  std::vector<glm::vec3> vertex = data.xyz;
-  std::vector<glm::vec3> normal = data.Nxyz;
-  std::vector<float> intensity = data.Is;
+  format::ply::Data data_tmp = data;
   this->data = {};
 
   //Retrieve face data
   std::string line;
+  float nb_vertice;
   while(std::getline(file, line)){
     //Data
     std::istringstream iss(line);
-    float nb_vertice;
     iss >> nb_vertice;
     std::vector<int> idx;
     float d;
@@ -105,26 +103,26 @@ void Ascii::parse_face(std::ifstream& file){
     //Retrieve face data
     for(int i=0; i<nb_vertice; i++){
       //Location
-      data.xyz.push_back(vertex[idx[i]]);
+      data.xyz.push_back(data_tmp.xyz[idx[i]]);
 
       //Normal
       if(get_property_id(format::ply::NX) != -1){
-        data.Nxyz.push_back(normal[idx[i]]);
+        data.Nxyz.push_back(data_tmp.Nxyz[idx[i]]);
       }
 
       //Intensity
       if(get_property_id(format::ply::I) != -1){
-        data.Is.push_back(intensity[idx[i]]);
+        data.Is.push_back(data_tmp.Is[idx[i]]);
       }
     }
+  }
 
-    //Deduce drawing type
-    if(nb_vertice == 3){
-      header->topology = utl::topology::TRIANGLE;
-    }
-    else if(nb_vertice == 4){
-      header->topology = utl::topology::QUAD;
-    }
+  //Deduce drawing type
+  if(nb_vertice == 3){
+    header->topology = utl::topology::TRIANGLE;
+  }
+  else if(nb_vertice == 4){
+    header->topology = utl::topology::QUAD;
   }
 
   //---------------------------

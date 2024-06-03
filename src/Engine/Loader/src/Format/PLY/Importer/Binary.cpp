@@ -158,62 +158,20 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
 }
 void Binary::parse_face_little_endian(std::ifstream& file){
   //---------------------------
-/*
-  //Read data
-  int block_size = vec_property.size() * header->nb_vertex * sizeof(float);
-  char* block_data = new char[block_size];
-  file.read(block_data, block_size);
 
-  //Convert raw data into decimal data
-  int offset = 0;
-  std::vector<std::vector<float>> block_vec;
-  block_vec.resize(vec_property.size(), std::vector<float>(header->nb_vertex));
-  for(int i=0; i<header->nb_vertex; i++){
-    for(int j=0; j<vec_property.size(); j++){
-      float value = get_float_from_binary(block_data, offset);
-      block_vec[j][i] = value;
-    }
-  }
-
-  //Insert data in the adequate std::vector
-  std::vector<glm::vec3> vertex;
-  std::vector<glm::vec3> normal;
-  std::vector<float> intensity;
-  std::vector<float> timestamp;
-  for(int i=0; i<header->nb_vertex; i++){
-    for(int j=0; j<vec_property.size(); j++){
-      format::ply::Property* property = &vec_property[j];
-
-      switch(property->field){
-        case format::ply::X:{ //Location
-          glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-          vertex.push_back(point);
-          break;
-        }
-        case format::ply::I:{ //Intensity
-          float Is = block_vec[j][i];
-          intensity.push_back(Is);
-          break;
-        }
-        case format::ply::TS:{ //Timestamp
-          float ts = block_vec[j][i];
-          timestamp.push_back(ts);
-          break;
-        }
-      }
-
-    }
-  }
+  //Init
+  format::ply::Data data_tmp = data;
+  this->data = {};
 
   //Get face index
-  int block_size_id = 4 * face_number * sizeof(int);
+  int block_size_id = 4 * header->nb_face * sizeof(int);
   char* block_data_id = new char[block_size_id];
   file.read(block_data_id, block_size_id);
 
   //Convert raw data into decimal data
-  offset = 0;
+  int offset = 0;
   int nb_vertice;
-  for(int i=0; i<face_number; i++){
+  for(int i=0; i<header->nb_face; i++){
     //Get number of face vertices
     int value =  (int)*((unsigned char *) (block_data_id + offset));
     offset += sizeof(unsigned char);
@@ -229,35 +187,35 @@ void Binary::parse_face_little_endian(std::ifstream& file){
 
     //Location
     for(int j=0; j<idx.size(); j++){
-      data.xyz.push_back(vertex[idx[j]]);
+      data.xyz.push_back(data_tmp.xyz[idx[j]]);
     }
   }
 
   //Deduce drawing type
   if(nb_vertice == 3){
-    entity->draw_type = utl::topology::TRIANGLE;
+    header->topology = utl::topology::TRIANGLE;
   }
   else if(nb_vertice == 4){
-    entity->draw_type = utl::topology::QUAD;
+    header->topology = utl::topology::QUAD;
   }
 
   //---------------------------
-  entity->nb_element = data.xyz.size();*/
 }
 void Binary::parse_vertex_big_endian(std::ifstream& file){
+  this->data = {};
   //---------------------------
-/*
+
   //Read data
-  int block_size = vec_property.size() * header->nb_vertex * sizeof(float);
+  int block_size = header->vec_property.size() * header->nb_vertex * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(vec_property.size(), std::vector<float>(header->nb_vertex));
+  block_vec.resize(header->vec_property.size(), std::vector<float>(header->nb_vertex));
   for(int i=0; i<header->nb_vertex; i++){
-    for(int j=0; j<vec_property.size(); j++){
+    for(int j=0; j<header->vec_property.size(); j++){
       float value = get_float_from_binary(block_data, offset);
       block_vec[j][i] = reverse_float(value);
     }
@@ -267,13 +225,12 @@ void Binary::parse_vertex_big_endian(std::ifstream& file){
   data.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
   if(get_property_id(format::ply::TS) != -1) data.ts.resize(header->nb_vertex, 0);
   if(get_property_id(format::ply::I) != -1) data.Is.resize(header->nb_vertex, 0);
-  entity->nb_element = header->nb_vertex;
 
   //Insert data in the adequate std::vector
   #pragma omp parallel for
   for(int i=0; i<header->nb_vertex; i++){
-    for(int j=0; j<vec_property.size(); j++){
-      format::ply::Property* property = &vec_property[j];
+    for(int j=0; j<header->vec_property.size(); j++){
+      format::ply::Property* property = &header->vec_property[j];
 
       switch(property->field){
         case format::ply::X:{ //Location
@@ -295,67 +252,25 @@ void Binary::parse_vertex_big_endian(std::ifstream& file){
 
     }
   }
-*/
+
   //---------------------------
 }
 void Binary::parse_face_big_endian(std::ifstream& file){
   //---------------------------
-/*
-  //Read data
-  int block_size = vec_property.size() * header->nb_vertex * sizeof(float);
-  char* block_data = new char[block_size];
-  file.read(block_data, block_size);
 
-  //Convert raw data into decimal data
-  int offset = 0;
-  std::vector<std::vector<float>> block_vec;
-  block_vec.resize(vec_property.size(), std::vector<float>(header->nb_vertex));
-  for(int i=0; i<header->nb_vertex; i++){
-    for(int j=0; j<vec_property.size(); j++){
-      float value = get_float_from_binary(block_data, offset);
-      block_vec[j][i] = reverse_float(value);
-    }
-  }
-
-  //Insert data in the adequate std::vector
-  std::vector<glm::vec3> vertex;
-  std::vector<glm::vec3> normal;
-  std::vector<float> intensity;
-  std::vector<float> timestamp;
-  for(int i=0; i<header->nb_vertex; i++){
-    for(int j=0; j<vec_property.size(); j++){
-      format::ply::Property* property = &vec_property[j];
-
-      switch(property->field){
-        case format::ply::X:{ //Location
-          glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-          vertex.push_back(point);
-          break;
-        }
-        case format::ply::I:{ //Intensity
-          float Is = block_vec[j][i];
-          intensity.push_back(Is);
-          break;
-        }
-        case format::ply::TS:{ //Timestamp
-          float ts = block_vec[j][i];
-          timestamp.push_back(ts);
-          break;
-        }
-      }
-
-    }
-  }
+  //Init
+  format::ply::Data data_tmp = data;
+  this->data = {};
 
   //Get face index
-  int block_size_id = 4 * face_number * sizeof(int);
+  int block_size_id = 4 * header->nb_face * sizeof(int);
   char* block_data_id = new char[block_size_id];
   file.read(block_data_id, block_size_id);
 
   //Convert raw data into decimal data
-  offset = 0;
+  int offset = 0;
   int nb_vertice;
-  for(int i=0; i<face_number; i++){
+  for(int i=0; i<header->nb_face; i++){
     //Get number of face vertices
     int value =  (int)*((unsigned char *) (block_data_id + offset));
     offset += sizeof(unsigned char);
@@ -371,20 +286,19 @@ void Binary::parse_face_big_endian(std::ifstream& file){
 
     //Location
     for(int j=0; j<idx.size(); j++){
-      data.xyz.push_back(vertex[idx[j]]);
+      data.xyz.push_back(data_tmp.xyz[idx[j]]);
     }
   }
 
   //Deduce drawing type
   if(nb_vertice == 3){
-    entity->draw_type = utl::topology::TRIANGLE;
+    header->topology = utl::topology::TRIANGLE;
   }
   else if(nb_vertice == 4){
-    entity->draw_type = utl::topology::QUAD;
+    header->topology = utl::topology::QUAD;
   }
 
   //---------------------------
-  entity->nb_element = data.xyz.size();*/
 }
 
 //Subfunction
