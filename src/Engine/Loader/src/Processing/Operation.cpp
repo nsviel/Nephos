@@ -44,8 +44,10 @@ void Operation::insert_object(dat::base::Object* object){
   this->transformation_from_file(object);
 
   //Init object into engine
-  dat::base::Set* set_graph = dat_graph->get_set_graph();
-  dat_set->insert_entity(set_graph, object);
+  if(object->set_parent == nullptr){
+    dat::base::Set* set_graph = dat_graph->get_set_graph();
+    dat_set->insert_entity(set_graph, object);
+  }
   dat_entity->init_entity(object);
   dat_glyph->insert_glyph(object);
 

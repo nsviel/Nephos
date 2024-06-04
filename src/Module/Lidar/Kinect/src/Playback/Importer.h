@@ -28,7 +28,7 @@ public:
   //Subfunction
   float find_mkv_ts_beg(string path);
   float find_mkv_ts_end(string path);
-  dat::base::Set* manage_master();
+  dat::base::Set* manage_set_parent();
 
 private:
   k4n::Node* node_k4n;

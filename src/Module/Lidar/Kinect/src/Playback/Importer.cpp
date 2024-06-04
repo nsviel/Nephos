@@ -43,11 +43,10 @@ utl::base::Element* Importer::import(utl::base::Path path){
   sensor->init();
 
   //Associated set
-  dat::base::Set* set = manage_master();
+  dat::base::Set* set = manage_set_parent();
+  dat_set->insert_entity(set, sensor);
   sensor->set_parent = set;
   sensor->start_thread();
-
-  say(set->player.ts_end);
 
   //---------------------------
   return sensor;
@@ -90,12 +89,12 @@ float Importer::find_mkv_ts_end(string path){
   //---------------------------
   return ts_end;
 }
-dat::base::Set* Importer::manage_master(){
-  dat::base::Set* set_scene = dat_graph->get_set_graph();
+dat::base::Set* Importer::manage_set_parent(){
+  dat::base::Set* set_graph = dat_graph->get_set_graph();
   //---------------------------
-sayHello();
+
   //Check if already existing
-  dat::base::Set* set = dat_set->get_subset(set_scene, "kinect");
+  dat::base::Set* set = dat_set->get_subset(set_graph, "kinect");
   if(set != nullptr) return set;
 
   //Create the set
@@ -106,7 +105,7 @@ sayHello();
   set->is_locked = true;
   set->is_suppressible = true;
   set->player = k4n::playback::Player(node_k4n, set);
-  dat_set->add_subset(set_scene, set);
+  dat_set->add_subset(set_graph, set);
 
   //---------------------------
   return set;
