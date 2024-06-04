@@ -75,14 +75,14 @@ void Player::design_player(){
 void Player::player_slider(dat::base::Set* set){
   dyn::base::Player* player = &set->player;
   //---------------------------
-
-  player->player_update();
+  
+  player->manage_update();
 
   float width = ImGui::GetContentRegionAvail().x;
   ImGui::SetNextItemWidth(width);
   string time = "%.2f " + player->time;
   if(ImGui::SliderFloat("##player_slider", &player->ts_cur, player->ts_beg, player->ts_end, time.c_str(), ImGuiSliderFlags_NoInput)){
-    player->player_query(player->ts_cur);
+    player->manage_query(player->ts_cur);
   }
 
   //---------------------------

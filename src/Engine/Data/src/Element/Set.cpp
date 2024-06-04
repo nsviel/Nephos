@@ -113,9 +113,11 @@ dat::base::Set* Set::get_subset(dat::base::Set* set, std::string name){
     if(subset->name == name){
       return subset;
     }
+    dat::base::Set* subsubset = get_subset(subset, name);
+    if(subsubset){
+      return subsubset;
+    }
   }
-
-  std::cout<<"[error] Subset not found ["<<name<<"]"<<std::endl;
 
   //---------------------------
   return nullptr;

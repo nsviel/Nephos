@@ -24,10 +24,6 @@ struct Sensor : public dyn::base::Sensor{
   k4n::imu::Structure imu;
   k4n::structure::FPS fps;
 
-  float ts_beg = -1;
-  float ts_end = -1;
-  float ts_duration = -1;
-
   //---------------------------
 };
 

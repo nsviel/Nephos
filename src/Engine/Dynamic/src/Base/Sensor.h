@@ -31,13 +31,14 @@ struct Sensor : public dat::base::Object{
   inline bool is_thread_running(){return thread_running;}
   inline bool is_thread_paused(){return thread_paused;}
 
-  int state_UID = 0;
-  bool thread_running = false;
-  bool thread_paused = false;
-  std::thread thread;
+  prf::graph::Profiler profiler;
   std::vector<uint16_t> buffer_depth;
   std::vector<uint16_t> buffer_ir;
-  prf::graph::Profiler profiler;
+  std::thread thread;
+  bool thread_running = false;
+  bool thread_paused = false;
+  float ts_beg = -1;
+  float ts_end = -1;
 
   //---------------------------
 };

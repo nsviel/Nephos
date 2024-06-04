@@ -36,11 +36,11 @@ void Player::player_stop(){
     }
   }
 
-  this->player_query(ts_beg);
+  this->manage_query(ts_beg);
 
   //---------------------------
 }
-void Player::player_update(){
+void Player::manage_update(){
   //---------------------------
 
   //Search for min max timestamp
@@ -69,11 +69,11 @@ void Player::player_update(){
     }
   }
 
-  //set_parent->player_update();
+  //set_parent->manage_update();
 
   //---------------------------
 }
-void Player::player_query(float value){
+void Player::manage_query(float value){
   //---------------------------
 
   for(int i=0; i<set->list_entity.size(); i++){

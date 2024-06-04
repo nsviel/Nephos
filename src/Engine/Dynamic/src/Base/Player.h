@@ -21,11 +21,11 @@ public:
   virtual void player_restart();
   virtual void player_record();
   virtual void player_lock(bool value);
-  virtual void player_update();
   virtual void player_close();
-  virtual void player_query(float value);
 
   //Subfunction
+  virtual void manage_update();
+  virtual void manage_query(float value);
   virtual void manage_restart();
   virtual void manage_reset();
   virtual void manage_configuration();

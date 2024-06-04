@@ -19,8 +19,8 @@ public:
 
 public:
   //Main function
-  void player_update();
-  void player_query(float value);
+  void manage_update();
+  void manage_query(float value);
   void player_close();
   void player_stop();
 

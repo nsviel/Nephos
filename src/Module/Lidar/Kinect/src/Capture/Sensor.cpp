@@ -59,31 +59,31 @@ void Sensor::thread_init(){
   //---------------------------
 }
 void Sensor::thread_loop(){
+  prf::graph::Tasker* tasker = profiler.get_or_create_tasker("capture");
   //---------------------------
 
-  //prf::graph::Tasker* tasker = profiler->get_or_create_tasker("capture");
-  //tasker->loop_begin();
+  tasker->loop_begin();
 
   //Next capture
-  //tasker->task_begin("capture");
+  tasker->task_begin("capture");
   k4a::capture* capture = manage_new_capture();
   if(capture == nullptr) return;
-  //tasker->task_end("capture");
+  tasker->task_end("capture");
 
   //Wait previous threads to finish
-  //tasker->task_begin("wait");
+  tasker->task_begin("wait");
   this->manage_old_capture(capture);
-  //tasker->task_end("wait");
+  tasker->task_end("wait");
 
   //Run processing
   k4n_image->start_thread(this);
 
   //Loop sleeping
-  //tasker->task_begin("pause");
+  tasker->task_begin("pause");
   this->manage_pause();
-  //tasker->task_end("pause");
+  tasker->task_end("pause");
 
-  //tasker->loop_end();
+  tasker->loop_end();
 
   //---------------------------
 }
@@ -135,7 +135,7 @@ void Sensor::manage_pause(){
 
   //If pause, wait until end pause or end thread
   if(player->pause || !player->play){
-    //profiler->reset();
+    this->profiler.reset();
     while(player->pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }

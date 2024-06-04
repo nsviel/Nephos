@@ -37,7 +37,6 @@ void Cloud::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Cloud::run_thread(k4n::dev::Sensor* sensor){
-  //if(sensor->profiler == nullptr) return;
   //---------------------------
 
   //Convert data into a cloud
@@ -69,14 +68,14 @@ void Cloud::convertion_into_cloud(k4n::dev::Sensor* sensor){
   if(sensor->color.cloud.size != sensor->depth.cloud.size * 2) return;
   //---------------------------
 
-  /*prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("cloud");
+  prf::graph::Tasker* tasker = sensor->profiler.get_or_create_tasker("cloud");
   tasker->loop_begin();
 
   this->convertion_init(sensor, tasker);
   this->convertion_data(sensor, tasker);
   this->convertion_transfer(sensor, tasker);
 
-  tasker->loop_end();*/
+  tasker->loop_end();
 
   //---------------------------
 }
@@ -125,7 +124,6 @@ void Cloud::convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* ta
   tasker->task_begin("copying");
   data->xyz = vec_xyz;
   data->rgb = vec_rgb;
-  //data->rgba = vec_rgba;
   data->Is = vec_ir;
   data->R = vec_r;
 

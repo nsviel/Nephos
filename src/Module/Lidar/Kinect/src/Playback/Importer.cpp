@@ -47,6 +47,8 @@ utl::base::Element* Importer::import(utl::base::Path path){
   sensor->set_parent = set;
   sensor->start_thread();
 
+  say(set->player.ts_end);
+
   //---------------------------
   return sensor;
 }
@@ -93,22 +95,17 @@ dat::base::Set* Importer::manage_master(){
   //---------------------------
 
   //Check if already existing
-  for(int i=0; i<set_scene->list_subset.size(); i++){
-    dat::base::Set* set = *std::next(set_scene->list_subset.begin(), i);
-    if(set->name == "kinect"){
-      return set;
-    }
-  }
+  dat::base::Set* set = dat_set->get_subset(set_scene, "kinect");
+  if(set != nullptr) return set;
 
   //Create the set
-  dat::base::Set* set = new dat::base::Set();
+  set = new dat::base::Set();
   set->name = "kinect";
   set->is_lockable = true;
   set->icon = ICON_FA_USER;
   set->is_locked = true;
   set->is_suppressible = true;
   set->player = k4n::playback::Player(node_k4n, set);
-
   dat_set->add_subset(set_scene, set);
 
   //---------------------------
