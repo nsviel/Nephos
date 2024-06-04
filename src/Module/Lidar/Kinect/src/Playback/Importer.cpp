@@ -93,7 +93,7 @@ float Importer::find_mkv_ts_end(string path){
 dat::base::Set* Importer::manage_master(){
   dat::base::Set* set_scene = dat_graph->get_set_graph();
   //---------------------------
-
+sayHello();
   //Check if already existing
   dat::base::Set* set = dat_set->get_subset(set_scene, "kinect");
   if(set != nullptr) return set;
