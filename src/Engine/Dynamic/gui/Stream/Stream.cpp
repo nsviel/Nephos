@@ -4,7 +4,6 @@
 #include <Utility/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <GUI/Namespace.h>
 #include <Data/Namespace.h>
 #include <Render/Namespace.h>
 

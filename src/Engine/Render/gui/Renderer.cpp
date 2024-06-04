@@ -1,6 +1,5 @@
 #include "Renderer.h"
 
-#include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>

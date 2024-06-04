@@ -3,8 +3,6 @@ set(LIBRARY_NAME LIBRARY_UTILITY)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Profiler)
-
 file(GLOB_RECURSE ALL_SOURCES
   Base/*.cpp
   Element/*.cpp

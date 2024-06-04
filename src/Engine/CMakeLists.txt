@@ -9,6 +9,7 @@ add_subdirectory(Render)
 add_subdirectory(Loader)
 add_subdirectory(Data)
 add_subdirectory(Dynamic)
+add_subdirectory(Profiler)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
