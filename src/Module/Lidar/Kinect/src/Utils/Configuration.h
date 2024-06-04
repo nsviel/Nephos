@@ -22,7 +22,7 @@ public:
 
 public:
   //Configuration function
-  void make_set_configuration_initial(dat::base::Set* master);
+  void make_default_configuration();
   void make_sensor_configuration(k4n::dev::Sensor* k4n_sensor);
   void make_sensor_color_configuration(k4n::dev::Sensor* sensor);
   void find_playback_configuration(k4n::playback::Sensor* k4n_sensor);

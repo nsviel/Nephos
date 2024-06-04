@@ -437,7 +437,7 @@ void Capture::configuration_button(dat::base::Set* set){
   }
   ImGui::SameLine();
   if(ImGui::Button("Reset to default##RGB")){
-    k4n_config->make_set_configuration_initial(set);
+    k4n_config->make_default_configuration();
   }
 
   //---------------------------

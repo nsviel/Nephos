@@ -114,28 +114,25 @@ void Connection::create_sensor(int index){
 */
   //---------------------------
 }
-void Connection::manage_master(){
-/*  dat::base::Set* set_scene = dat_graph->get_set_graph();
+dat::base::Set* Connection::manage_set_parent(){
+  dat::base::Set* set_graph = dat_graph->get_set_graph();
   //---------------------------
 
   //Check if already existing
-  for(int i=0; i<k4n_struct->list_sensor.size(); i++){
-    dat::base::Set* set = *std::next(k4n_struct->list_master.begin(), i);
-    if(name == set->name){
-      return set;
-    }
-  }
+  dat::base::Set* set = dat_set->get_subset(set_graph, "kinect");
+  if(set != nullptr) return set;
 
   //Create the set
-  dat::base::Set* set = new dat::base::Set(node_k4n);
-  set->name = name;
+  set = new dat::base::Set();
+  set->name = "kinect";
   set->is_lockable = true;
-
-  k4n_config->make_master_configuration_initial(set);
-  dat_set->add_subset(set_scene, set);
-  k4n_struct->list_master.push_back(set);*/
+  set->icon = ICON_FA_USER;
+  set->is_locked = true;
+  set->is_suppressible = true;
+  dat_set->add_subset(set_graph, set);
 
   //---------------------------
+  return set;
 }
 
 }

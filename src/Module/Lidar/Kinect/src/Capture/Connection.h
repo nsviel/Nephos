@@ -5,6 +5,7 @@
 namespace k4n{class Node;}
 namespace dat{class Set;}
 namespace dat{class Graph;}
+namespace dat::base{class Set;}
 
 
 namespace k4n::capture{
@@ -25,7 +26,7 @@ public:
   //Subfunction
   void manage_connected_device();
   void create_sensor(int index);
-  void manage_master();
+  dat::base::Set* manage_set_parent();
 
 private:
   dat::Set* dat_set;
