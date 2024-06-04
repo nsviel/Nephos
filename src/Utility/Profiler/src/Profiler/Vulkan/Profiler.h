@@ -18,6 +18,7 @@ class Profiler : public prf::Structure
 {
 public:
   //Constructor / Destructor
+  Profiler();
   Profiler(string name, string type);
   ~Profiler();
 

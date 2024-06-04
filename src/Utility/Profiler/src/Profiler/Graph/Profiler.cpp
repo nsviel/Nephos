@@ -6,16 +6,20 @@
 namespace prf::graph{
 
 //Constructor / Destructor
-Profiler::Profiler(string name, string type) : prf::Structure(name, type){
+Profiler::Profiler(){
   //---------------------------
 
   //---------------------------
 }
-Profiler::~Profiler(){
+Profiler::Profiler(string name, string type){
   //---------------------------
+
+  this->name = name;
+  this->type = type;
 
   //---------------------------
 }
+Profiler::~Profiler(){}
 
 //Main function
 void Profiler::reset(){

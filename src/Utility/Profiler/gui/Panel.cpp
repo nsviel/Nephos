@@ -116,7 +116,7 @@ void Panel::draw_profiler(){
       prf::Structure* profiler = *next(list_profiler.begin(), i);
 
       ImGui::SetNextItemWidth(100);
-      if(ImGui::BeginTabItem(profiler->get_name().c_str())){
+      if(ImGui::BeginTabItem(profiler->name.c_str())){
 
         //Vulkan tab
         if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler)){
