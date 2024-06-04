@@ -4,7 +4,7 @@
 
 namespace prf{class Node;}
 namespace prf{class Manager;}
-namespace prf::type{class Profiler;}
+namespace prf{class Structure;}
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
 namespace prf::improfil{class Manager;}

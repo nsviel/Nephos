@@ -5,7 +5,7 @@
 
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
-namespace prf::type{class Profiler;}
+namespace prf{class Structure;}
 namespace prf::vulkan{class Profiler;}
 
 
@@ -20,8 +20,8 @@ public:
 
 public:
   //Main function
-  void add_profiler(prf::type::Profiler* profiler);
-  void remove_profiler(prf::type::Profiler* profiler);
+  void add_profiler(prf::Structure* profiler);
+  void remove_profiler(prf::Structure* profiler);
 
   //Subfunction
   void loop_begin(int max_fps);
@@ -29,10 +29,10 @@ public:
 
   inline prf::graph::Profiler* get_profiler_main(){return profiler_main;}
   inline prf::vulkan::Profiler* get_profiler_vulkan(){return profiler_vulkan;}
-  inline std::list<prf::type::Profiler*> get_list_profiler(){return list_profiler;}
+  inline std::list<prf::Structure*> get_list_profiler(){return list_profiler;}
 
 private:
-  std::list<prf::type::Profiler*> list_profiler;
+  std::list<prf::Structure*> list_profiler;
   prf::graph::Profiler* profiler_main;
   prf::vulkan::Profiler* profiler_vulkan;
 };

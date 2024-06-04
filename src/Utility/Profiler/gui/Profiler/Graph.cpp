@@ -148,11 +148,11 @@ void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim){
   //---------------------------
 }
 void Graph::set_graphs_max_time(int value){
-  std::list<prf::type::Profiler*> list_profiler = prf_manager->get_list_profiler();
+  std::list<prf::Structure*> list_profiler = prf_manager->get_list_profiler();
   //---------------------------
 
   for(int i=0; i<list_profiler.size(); i++){
-    prf::type::Profiler* profiler = *next(list_profiler.begin(), i);
+    prf::Structure* profiler = *next(list_profiler.begin(), i);
 
     if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
       list<prf::graph::Tasker*> list_tasker = graph->get_list_tasker();

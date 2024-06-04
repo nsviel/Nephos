@@ -108,12 +108,12 @@ void Panel::main_button(){
   //---------------------------
 }
 void Panel::draw_profiler(){
-  std::list<prf::type::Profiler*> list_profiler = prf_manager->get_list_profiler();
+  std::list<prf::Structure*> list_profiler = prf_manager->get_list_profiler();
   //---------------------------
 
   if(ImGui::BeginTabBar("profiler_panel##graph")){
     for(int i=0; i<list_profiler.size(); i++){
-      prf::type::Profiler* profiler = *next(list_profiler.begin(), i);
+      prf::Structure* profiler = *next(list_profiler.begin(), i);
 
       ImGui::SetNextItemWidth(100);
       if(ImGui::BeginTabItem(profiler->get_name().c_str())){

@@ -3,12 +3,12 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace prf::type{
+namespace prf{
 
-struct Profiler{
+struct Structure{
   //---------------------------
 
-  Profiler(string name, string type){
+  Structure(string name, string type){
     //---------------------------
 
     this->name = name;

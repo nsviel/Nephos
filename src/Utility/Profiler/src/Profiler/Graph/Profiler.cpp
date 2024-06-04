@@ -6,7 +6,7 @@
 namespace prf::graph{
 
 //Constructor / Destructor
-Profiler::Profiler(string name, string type) : prf::type::Profiler(name, type){
+Profiler::Profiler(string name, string type) : prf::Structure(name, type){
   //---------------------------
 
   //---------------------------

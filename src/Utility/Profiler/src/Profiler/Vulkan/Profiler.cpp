@@ -6,7 +6,7 @@
 namespace prf::vulkan{
 
 //Constructor / Destructor
-Profiler::Profiler(string name, string type) : prf::type::Profiler(name, type){
+Profiler::Profiler(string name, string type) : prf::Structure(name, type){
   //---------------------------
 
   this->info = new prf::vulkan::Info();

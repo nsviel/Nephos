@@ -2,19 +2,19 @@
 
 #include <Utility/Specific/Common.h>
 #include <Profiler/src/Timer/Chrono.h>
-#include <Profiler/src/Profiler/Struct_profiler.h>
+#include <Profiler/src/Profiler/Structure.h>
 #include <Profiler/src/Profiler/Vulkan/Struct_info.h>
 
 namespace prf::vulkan{class Device;}
 namespace prf::vulkan{class Info;}
 namespace prf::vulkan{class Thread;}
 namespace prf::vulkan{class Queue;}
-namespace prf::type{class Profiler;}
+namespace prf{class Structure;}
 
 
 namespace prf::vulkan{
 
-class Profiler : public prf::type::Profiler
+class Profiler : public prf::Structure
 {
 public:
   //Constructor / Destructor
