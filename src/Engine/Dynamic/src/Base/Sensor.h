@@ -8,6 +8,10 @@ namespace dyn::base{
 struct Sensor : public dat::base::Object{
   //---------------------------
 
+  //Main function
+  void init();
+  void clean();
+
   //Thread function
   void start_thread();
   void run_thread();
@@ -33,7 +37,7 @@ struct Sensor : public dat::base::Object{
   std::vector<uint16_t> buffer_depth;
   std::vector<uint16_t> buffer_ir;
 
-
+//  prf::graph::Profiler* profiler;
 
 
 /*

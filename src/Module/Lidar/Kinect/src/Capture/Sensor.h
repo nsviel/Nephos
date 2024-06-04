@@ -11,6 +11,7 @@ namespace k4n{class Structure;}
 namespace k4n::dev{class Sensor;}
 namespace k4n::gui{class Capture;}
 namespace k4n::processing{class Data;}
+namespace k4n::processing{class Image;}
 namespace k4n::utils{class Configuration;}
 namespace k4n::structure{class K4N;}
 

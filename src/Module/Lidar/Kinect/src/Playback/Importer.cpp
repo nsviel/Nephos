@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Kinect/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace k4n::playback{

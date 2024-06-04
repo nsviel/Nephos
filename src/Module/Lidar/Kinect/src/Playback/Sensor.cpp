@@ -9,7 +9,7 @@
 namespace k4n::playback{
 
 //Constructor / Destructor
-Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path) : k4n::dev::Sensor(node_k4n){
+Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   //---------------------------
 
   this->k4n_image = new k4n::processing::Image(node_k4n);
@@ -21,6 +21,8 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path) : k4n::dev::Sensor(nod
   this->data.path = path;
   this->data.name = utl::path::get_name_from_path(path.data);
   this->data.format = utl::path::get_format_from_path(path.data);
+  this->data.topology.type = utl::topology::POINT;
+  this->data.nb_data_max = 10000000;
 
   //---------------------------
 }
@@ -55,29 +57,29 @@ void Sensor::thread_init(){
 void Sensor::thread_loop(){
   //---------------------------
 
-  prf::graph::Tasker* tasker = profiler->get_or_create_tasker("kinect::playback");
-  tasker->loop_begin(30);
+  //prf::graph::Tasker* tasker = profiler->get_or_create_tasker("kinect::playback");
+  //tasker->loop_begin(30);
 
   //Next capture
-  tasker->task_begin("capture");
+  //tasker->task_begin("capture");
   k4a::capture* capture = manage_new_capture();
   if(capture == nullptr) return;
-  tasker->task_end("capture");
+  //tasker->task_end("capture");
 
   //Wait previous threads to finish
-  tasker->task_begin("wait");
+  //tasker->task_begin("wait");
   this->manage_old_capture(capture);
-  tasker->task_end("wait");
+//  tasker->task_end("wait");
 
   //Run processing
   k4n_image->start_thread(this);
 
   //Loop sleeping
-  tasker->task_begin("pause");
+  //tasker->task_begin("pause");
   this->manage_pause();
-  tasker->task_end("pause");
+  //tasker->task_end("pause");
 
-  tasker->loop_end();
+  //tasker->loop_end();
 
   //---------------------------
 }
@@ -135,7 +137,7 @@ void Sensor::manage_pause(){
   //If pause, wait until end pause or end thread
   if(player->pause || !player->play){
     //Clear thread profiler and wait subthread fulfillment
-    this->profiler->reset();
+    //this->profiler->reset();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
     //Pause loop

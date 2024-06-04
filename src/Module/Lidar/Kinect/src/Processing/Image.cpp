@@ -46,7 +46,7 @@ void Image::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Image::run_thread(k4n::dev::Sensor* sensor){
-  if(sensor->profiler == nullptr) return;
+  //if(sensor->profiler == nullptr) return;
   //---------------------------
 
   //Retrieve data from capture
@@ -76,35 +76,35 @@ void Image::wait_thread(){
 
 //Data function
 void Image::find_data_from_capture(k4n::dev::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("data");
+  //prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("data");
   //---------------------------
 
-  tasker->loop_begin();
+  //tasker->loop_begin();
 
   //Depth data
-  tasker->task_begin("depth");
+  //tasker->task_begin("depth");
   this->find_data_depth(sensor);
-  tasker->task_end("depth");
+  //tasker->task_end("depth");
 
   //Color data
-  tasker->task_begin("color");
+  //tasker->task_begin("color");
   this->find_data_color(sensor);
-  tasker->task_end("color");
+  //tasker->task_end("color");
 
   //Infrared data
-  tasker->task_begin("infrared");
+  //tasker->task_begin("infrared");
   this->find_data_ir(sensor);
-  tasker->task_end("infrared");
+  //tasker->task_end("infrared");
 
   //Cloud data
-  tasker->task_begin("transformation");
+  //tasker->task_begin("transformation");
   this->find_data_cloud(sensor);
-  tasker->task_end("transformation");
+  //tasker->task_end("transformation");
 
-  tasker->loop_end();
+  //tasker->loop_end();
 
   //End
-  float fps = tasker->get_loop_fps();
+  float fps = 0;//tasker->get_loop_fps();
   sensor->color.data.fps = fps;
   sensor->depth.data.fps = fps;
   sensor->ir.data.fps = fps;

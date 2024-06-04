@@ -37,7 +37,7 @@ void Recorder::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Recorder::run_thread(k4n::dev::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("recorder");
+  //prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("recorder");
   //---------------------------
 /*
   tasker->loop_begin();

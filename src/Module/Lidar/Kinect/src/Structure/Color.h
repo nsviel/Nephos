@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Kinect/src/Structure/Data.h>
+#include <Utility/Namespace.h>
 #include <k4a/k4a.hpp>
 #include <string>
 

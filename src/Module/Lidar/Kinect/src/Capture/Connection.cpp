@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Kinect/Namespace.h>
+#include <Data/Namespace.h>
 #include <chrono>
 
 
