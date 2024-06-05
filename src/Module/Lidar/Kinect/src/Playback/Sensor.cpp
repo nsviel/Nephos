@@ -16,13 +16,10 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->k4n_config = new k4n::utils::Configuration(node_k4n);
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 
-  this->file_size = utl::file::size(path.data);
   this->name = utl::path::get_name_from_path(path.data);
   this->data.path = path;
   this->data.name = utl::path::get_name_from_path(path.data);
   this->data.format = utl::path::get_format_from_path(path.data);
-  this->data.topology.type = utl::topology::POINT;
-  this->data.nb_data_max = 10000000;
 
   //---------------------------
 }
@@ -142,40 +139,13 @@ void Sensor::manage_pause(){
 
   //---------------------------
 }
-void Sensor::manage_ts_query(float value){
+void Sensor::manage_query(float value){
   //---------------------------
 
   auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
   playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
 
   //---------------------------
-}
-vec3 Sensor::convert_depth_2d_to_3d(ivec2 point_2d){
-  //---------------------------
-
-  uint16_t* buffer = reinterpret_cast<uint16_t*>(depth.data.buffer);
-  int width = depth.data.width;
-
-  //Retrieve image coordinates
-  int x = point_2d[0];
-  int y = point_2d[1];
-  k4a_float2_t source_xy = { static_cast<float>(x), static_cast<float>(y) };
-  float source_z = static_cast<float>(buffer[y * width + x]);
-
-  //Convert it into 3D coordinate
-  k4a_float3_t target_xyz;
-  bool success = device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
-  vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
-
-  //Apply transformation
-  float inv_scale = 1.0f / 1000.0f;
-  xyzw.x = -xyzw.x * inv_scale;
-  xyzw.y = -xyzw.y * inv_scale;
-  xyzw.z = xyzw.z * inv_scale;
-  vec3 pose = vec3(xyzw.z, xyzw.x, xyzw.y);
-
-  //---------------------------
-  return pose;
 }
 
 }

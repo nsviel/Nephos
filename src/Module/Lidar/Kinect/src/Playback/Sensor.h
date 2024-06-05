@@ -2,8 +2,6 @@
 
 #include <Kinect/src/Structure/Sensor.h>
 #include <Utility/Specific/Common.h>
-#include <k4a/k4a.hpp>
-#include <k4arecord/playback.hpp>
 
 namespace eng{class Node;}
 namespace k4n{class Node;}
@@ -36,8 +34,7 @@ public:
   k4a::capture* manage_new_capture();
   void manage_old_capture(k4a::capture* capture);
   void manage_pause();
-  void manage_ts_query(float ts_querry);
-  vec3 convert_depth_2d_to_3d(ivec2 point_2d);
+  void manage_query(float ts_querry);
 
 public:
   k4a::playback playback;
@@ -45,10 +42,6 @@ public:
   k4n::processing::Image* k4n_image;
   k4n::utils::Configuration* k4n_config;
   k4n::gui::Playback* gui_playback;
-
-
-  //File info
-  float file_size = 0;
 };
 
 

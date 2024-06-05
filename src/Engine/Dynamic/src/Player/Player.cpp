@@ -189,7 +189,7 @@ void Player::manage_restart(dat::base::Set* set){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-      sensor->manage_ts_query(timestamp.begin);
+      sensor->manage_query(timestamp.begin);
     }
   }
 
@@ -209,7 +209,7 @@ void Player::manage_reset(dat::base::Set* set){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-      sensor->manage_ts_query(timestamp.begin);
+      sensor->manage_query(timestamp.begin);
     }
   }
 
@@ -229,7 +229,7 @@ void Player::manage_query(dat::base::Set* set, float value){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-      sensor->manage_ts_query(value);
+      sensor->manage_query(value);
     }
   }
 

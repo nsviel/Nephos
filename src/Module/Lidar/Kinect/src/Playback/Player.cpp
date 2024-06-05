@@ -77,7 +77,7 @@ void Player::manage_query(float value){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(k4n::playback::Sensor* sensor = dynamic_cast<k4n::playback::Sensor*>(entity)){
-      sensor->manage_ts_query(value);
+      sensor->manage_query(value);
     }
   }
 

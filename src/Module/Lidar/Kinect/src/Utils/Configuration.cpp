@@ -51,6 +51,10 @@ void Configuration::make_sensor_color_configuration(k4n::dev::Sensor* sensor){
   device.set_color_control(k4n_struct->config.color.backlight_compensation.command, k4n_struct->config.color.backlight_compensation.mode, k4n_struct->config.color.backlight_compensation.value);
   device.set_color_control(k4n_struct->config.color.power_frequency.command, k4n_struct->config.color.power_frequency.mode, k4n_struct->config.color.power_frequency.value);
 
+  sensor->color.config = k4n_struct->config.color;
+  sensor->depth.config = k4n_struct->config.depth;
+  sensor->ir.config = k4n_struct->config.ir;
+
   //---------------------------
 }
 void Configuration::make_default_configuration(){

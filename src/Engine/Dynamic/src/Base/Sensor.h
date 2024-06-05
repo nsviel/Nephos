@@ -27,7 +27,7 @@ struct Sensor : public dat::base::Object{
   virtual void manage_reset(){}
 
   virtual glm::vec3 convert_depth_2d_to_3d(glm::ivec2 point){return glm::vec3(0);}
-  virtual void manage_ts_query(float ts_querry){}
+  virtual void manage_query(float ts_querry){}
   virtual void manage_configuration(){}
 
   inline bool is_thread_running(){return thread_running;}

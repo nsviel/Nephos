@@ -10,15 +10,13 @@ namespace k4n::capture{
 Sensor::Sensor(k4n::Node* node_k4n, int index){
   //---------------------------
 
-  this->gui_capture = new k4n::gui::Capture(node_k4n);
-  this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_image = new k4n::processing::Image(node_k4n);
   this->k4n_config = new k4n::utils::Configuration(node_k4n);
+  this->gui_capture = new k4n::gui::Capture(node_k4n);
 
   this->device.idx_dev = index;
   this->name = "capture_" + to_string(index);
-  this->data.topology.type = utl::topology::POINT;
-  this->data.nb_data_max = 10000000;
+  this->data.name = name;
 
   //---------------------------
 }
@@ -41,11 +39,10 @@ void Sensor::info(){
 void Sensor::thread_init(){
   //---------------------------
 
-  //Init elements
+  //Init
   this->device.idx_dev = 0;
   this->device.handle = k4a::device::open(device.idx_dev);
   if(!device.handle.is_valid()) return;
-
   this->device.serial_number = device.handle.get_serialnum();
   this->device.version = device.handle.get_version();
 
@@ -130,63 +127,18 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
 }
 void Sensor::manage_pause(){
-  /*dyn::base::Player* player = &set_parent->player;
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  if(player->pause || !player->play){
+  if(state.pause || !state.play){
     this->profiler.reset();
-    while(player->pause && thread_running){
+
+    while(state.pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }
-*/
-  //---------------------------
-}
-void Sensor::manage_reset(){
-  //---------------------------
-
-  //this->reset();
-  //this->run_thread();
 
   //---------------------------
-}
-void Sensor::manage_configuration(){
-  //---------------------------
-
-  k4n_config->make_sensor_color_configuration(this);
-  this->color.config = k4n_struct->config.color;
-  this->depth.config = k4n_struct->config.depth;
-  this->ir.config = k4n_struct->config.ir;
-
-  //---------------------------
-}
-vec3 Sensor::convert_depth_2d_to_3d(ivec2 point_2d){
-  //---------------------------
-
-  uint16_t* buffer = reinterpret_cast<uint16_t*>(depth.data.buffer);
-  int width = depth.data.width;
-
-  //Retrieve image coordinates
-  int x = point_2d[0];
-  int y = point_2d[1];
-  k4a_float2_t source_xy = { static_cast<float>(x), static_cast<float>(y) };
-  float source_z = static_cast<float>(buffer[y * width + x]);
-
-  //Convert it into 3D coordinate
-  k4a_float3_t target_xyz;
-  bool success = device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
-  vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
-
-  //Apply transformation
-  float inv_scale = 1.0f / 1000.0f;
-  xyzw.x = -xyzw.x * inv_scale;
-  xyzw.y = -xyzw.y * inv_scale;
-  xyzw.z = xyzw.z * inv_scale;
-  vec3 pose = vec3(xyzw.z, xyzw.x, xyzw.y);
-
-  //---------------------------
-  return pose;
 }
 
 }
