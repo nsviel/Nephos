@@ -94,7 +94,6 @@ void Sensor::thread_end(){
 
 //Subfunction
 k4a::capture* Sensor::manage_new_capture(){
-  /*dyn::base::Player* player = &set_parent->player;
   //---------------------------
 
   k4a::capture* capture = new k4a::capture();
@@ -102,13 +101,13 @@ k4a::capture* Sensor::manage_new_capture(){
   if(capture_left == false){
     capture = nullptr;
 
-    if(color.data.timestamp == player->ts_end){
-      player->manage_restart();
+    if(color.data.timestamp == timestamp.end){
+      //player->manage_restart();
     }
   }
-*/
+
   //---------------------------
-  return nullptr;//capture;
+  return capture;
 }
 void Sensor::manage_old_capture(k4a::capture* capture){
   static std::queue<k4a::capture*> capture_queue;
