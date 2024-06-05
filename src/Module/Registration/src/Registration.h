@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n{class Node;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::structure{class Sensor;}
 namespace utl::thread{class Pool;}
 
 

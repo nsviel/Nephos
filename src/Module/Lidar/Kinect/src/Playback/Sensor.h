@@ -5,7 +5,7 @@
 
 namespace eng{class Node;}
 namespace k4n{class Node;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::structure{class Sensor;}
 namespace k4n::gui{class Playback;}
 namespace k4n::processing{class Data;}
 namespace k4n::processing{class Image;}

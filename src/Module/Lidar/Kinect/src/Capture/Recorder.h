@@ -4,10 +4,9 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n{class Node;}
-namespace k4n::dev{class Master;}
 namespace eng{class Node;}
 namespace dat{class Graph;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::structure{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace ldr::io{class Exporter;}
 namespace format::ply{class Exporter;}

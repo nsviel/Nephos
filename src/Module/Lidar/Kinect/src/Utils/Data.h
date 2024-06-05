@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace k4n::dev{class Sensor;}
+namespace k4n::structure{class Sensor;}
 
 
 namespace k4n::utils{

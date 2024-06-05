@@ -5,8 +5,7 @@
 namespace gui{class Node;}
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
-namespace k4n::dev{class Master;}
-namespace k4n::dev{class Sensor;}
+namespace k4n::structure{class Sensor;}
 namespace k4n::utils{class Configuration;}
 namespace dat{class Set;}
 namespace dat::base{class Set;}

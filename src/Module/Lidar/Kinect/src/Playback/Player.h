@@ -4,7 +4,6 @@
 
 namespace dyn::base{class Player;}
 namespace k4n{class Node;}
-namespace k4n::dev{class Master;}
 
 
 namespace k4n::playback{

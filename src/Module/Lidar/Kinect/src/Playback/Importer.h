@@ -4,7 +4,6 @@
 #include <Utility/Specific/Common.h>
 
 namespace k4n{class Node;}
-namespace k4n::dev{class Master;}
 namespace eng{class Node;}
 namespace dat{class Graph;}
 namespace dat{class Entity;}

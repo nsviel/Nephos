@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace k4n::dev{class Master;}
 namespace dat::base{class Entity;}
 namespace dat{class Selection;}
 namespace rad{class Node;}
