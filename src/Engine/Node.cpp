@@ -95,6 +95,7 @@ void Node::reset(){
 
   node_camera->reset();
   node_data->reset();
+  node_dynamic->reset();
 
   //---------------------------
 }

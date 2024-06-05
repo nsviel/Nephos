@@ -44,7 +44,7 @@ void Node::loop(){
 
   node_radio->loop();
   dyn_player->update();
-  
+
   //---------------------------
 }
 void Node::clean(){
@@ -65,7 +65,7 @@ void Node::gui(){
 void Node::reset(){
   //---------------------------
 
-  dyn_player->manage_reset();
+  dyn_player->reset();
 
   //---------------------------
 }

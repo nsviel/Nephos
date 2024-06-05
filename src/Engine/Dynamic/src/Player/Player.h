@@ -19,7 +19,7 @@ public:
 
   //Main function
   void update();
-
+  void reset();
 
   void player_play();
   void player_pause();
@@ -33,7 +33,7 @@ public:
   void manage_update(dat::base::Set* set);
   void manage_query(float value);
   void manage_restart();
-  void manage_reset();
+  void manage_reset(dat::base::Set* set);
   void manage_configuration();
   void manage_forward();
 

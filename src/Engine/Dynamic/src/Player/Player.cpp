@@ -27,6 +27,14 @@ void Player::update(){
 
   //---------------------------
 }
+void Player::reset(){
+  dat::base::Set* set = dat_selection->get_selected_set();
+  //---------------------------
+
+  this->manage_reset(set);
+
+  //---------------------------
+}
 
 //Player function
 void Player::player_play(){
@@ -138,7 +146,7 @@ void Player::manage_update(dat::base::Set* set){
   timestamp = {};
   //---------------------------
 
-  //Aplly on sensors
+  //Entity
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
@@ -152,6 +160,7 @@ void Player::manage_update(dat::base::Set* set){
     }
   }
 
+  //Subset
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_update(subset);
@@ -196,20 +205,24 @@ void Player::manage_restart(){
 */
   //---------------------------
 }
-void Player::manage_reset(){
+void Player::manage_reset(dat::base::Set* set){
   //---------------------------
-/*
+
+  //Entity
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-      sensor->manage_ts_query(ts_beg);
+      sensor->manage_ts_query(timestamp.begin);
     }
   }
 
-  //Restart player
-  this->manage_query(ts_beg);
-*/
+  //Subset
+  for(int i=0; i<set->list_subset.size(); i++){
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+    this->manage_reset(subset);
+  }
+
   //---------------------------
 }
 void Player::manage_configuration(){
