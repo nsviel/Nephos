@@ -47,17 +47,46 @@ void Exporter::run_panel(){
   //---------------------------
 }
 void Exporter::design_panel(){
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
-  this->update_current();
-  this->draw_header();
+  //If dynamic, record
+  //if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+
+  //}
+
+  this->tab_export();
   this->draw_navigator();
 
   //---------------------------
 }
 
 //Subfunction
-void Exporter::draw_header(){
+void Exporter::tab_export(){
+  //---------------------------
+
+  this->export_update();
+  this->export_header();
+
+  //---------------------------
+}
+void Exporter::export_update(){
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  //---------------------------
+
+  //Actualize current name
+  if(entity != nullptr && current_name != entity->name){
+    utl::base::Data* data = &entity->data;
+    this->current_name = entity->name;
+
+    if(ldr_exporter->is_format_supported(data->format)){
+      this->current_format = data->format;
+    }
+  }
+
+  //---------------------------
+}
+void Exporter::export_header(){
   //---------------------------
 
   //Save button
@@ -120,7 +149,7 @@ void Exporter::draw_header(){
     mode = ldr::io::BINARY;
   }
   if(ImGui::RadioButton("ASCII", &mode, ldr::io::ASCII)){
-    ldr_exporter->set_mode(mode);
+    ldr_exporter->set_recording(mode);
   }
   if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
@@ -130,7 +159,7 @@ void Exporter::draw_header(){
     mode = ldr::io::ASCII;
   }
   if(ImGui::RadioButton("Binary", &mode, ldr::io::BINARY)){
-    ldr_exporter->set_mode(mode);
+    ldr_exporter->set_recording(mode);
   }
   if(condition) ImGui::EndDisabled();
   ImGui::EndTable();
@@ -155,22 +184,6 @@ bool Exporter::item_format(std::string format){
   //---------------------------
 
   return ldr_exporter->is_format_supported(format);
-
-  //---------------------------
-}
-void Exporter::update_current(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
-  //---------------------------
-
-  //Actualize current name
-  if(entity != nullptr && current_name != entity->name){
-    utl::base::Data* data = &entity->data;
-    this->current_name = entity->name;
-
-    if(ldr_exporter->is_format_supported(data->format)){
-      this->current_format = data->format;
-    }
-  }
 
   //---------------------------
 }

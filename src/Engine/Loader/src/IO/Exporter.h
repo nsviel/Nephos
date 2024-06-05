@@ -30,11 +30,11 @@ public:
   std::vector<std::string> get_supported_format();
   std::vector<int> get_supported_encoding(std::string format);
 
-  inline void set_mode(int value){this->mode = value;}
+  inline void set_recording(int value){this->recording = value;}
 
 private:
   std::vector<ldr::base::Exporter*> vec_exporter;
-  int mode = ldr::io::BINARY;
+  int recording = ldr::io::BINARY;
 };
 
 }

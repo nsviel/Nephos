@@ -27,7 +27,7 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
 
     if(data->format == exporter->format){
 
-      switch(mode){
+      switch(recording){
         case ldr::io::ASCII:{
           exporter->export_ascii(data, pose, path);
           break;

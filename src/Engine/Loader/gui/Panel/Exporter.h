@@ -26,10 +26,11 @@ public:
   void design_panel();
 
   //Subfunction
-  void draw_header();
+  void tab_export();
+  void export_update();
+  void export_header();
   void item_operation();
   bool item_format(std::string format);
-  void update_current();
 
 private:
   ldr::io::Exporter* ldr_exporter;
