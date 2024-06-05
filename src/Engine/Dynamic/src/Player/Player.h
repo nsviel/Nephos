@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Dynamic/src/Player/State.h>
+#include <Dynamic/src/Base/State.h>
 #include <Dynamic/src/Base/Timestamp.h>
 #include <Utility/Specific/Common.h>
 
@@ -34,14 +34,14 @@ public:
   void manage_configuration();
   void manage_forward();
 
-  inline dyn::player::State* get_state(){return &state;}
+  inline dyn::base::State* get_state(){return &state;}
   inline dyn::base::Timestamp* get_timestamp(){return &timestamp;}
 
 public:
   dat::Selection* dat_selection;
 
   dyn::base::Timestamp timestamp;
-  dyn::player::State state;
+  dyn::base::State state;
 };
 
 }

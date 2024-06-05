@@ -100,10 +100,6 @@ k4a::capture* Sensor::manage_new_capture(){
   bool capture_left = playback.get_next_capture(capture);
   if(capture_left == false){
     capture = nullptr;
-
-    if(color.data.timestamp == timestamp.end){
-      //player->manage_restart();
-    }
   }
 
   //---------------------------
@@ -130,23 +126,20 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
 }
 void Sensor::manage_pause(){
-/*  dyn::base::Player* player = &set_parent->player;
   //---------------------------
 
   //If pause, wait until end pause or end thread
-  if(player->pause || !player->play){
+  if(state.pause || !state.play){
     //Clear thread profiler and wait subthread fulfillment
     this->profiler.reset();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
     //Pause loop
-    this->thread_paused = true;
-    while(player->pause && thread_running){
+    while(state.pause && thread_running){
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
-    this->thread_paused = false;
   }
-*/
+
   //---------------------------
 }
 void Sensor::manage_ts_query(float value){

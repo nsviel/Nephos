@@ -58,7 +58,7 @@ void Player::player_slider(){
   //---------------------------
 }
 void Player::player_start(){
-  dyn::player::State* state = dyn_player->get_state();
+  dyn::base::State* state = dyn_player->get_state();
   //---------------------------
 
   //Play button -> if paused or not playing
@@ -83,7 +83,7 @@ void Player::player_start(){
   //---------------------------
 }
 void Player::player_stop(){
-  dyn::player::State* state = dyn_player->get_state();
+  dyn::base::State* state = dyn_player->get_state();
   //---------------------------
 
   if(!state->pause){
@@ -105,7 +105,7 @@ void Player::player_stop(){
   //---------------------------
 }
 void Player::player_repeat(){
-  dyn::player::State* state = dyn_player->get_state();
+  dyn::base::State* state = dyn_player->get_state();
   //---------------------------
 
   if(state->restart){
@@ -126,7 +126,7 @@ void Player::player_repeat(){
   //---------------------------
 }
 void Player::player_record(){
-  dyn::player::State* state = dyn_player->get_state();
+  dyn::base::State* state = dyn_player->get_state();
   //---------------------------
 
   if(state->record){
@@ -158,7 +158,7 @@ void Player::player_close(){
   //---------------------------
 }
 void Player::player_lock(){
-  dyn::player::State* state = dyn_player->get_state();
+  dyn::base::State* state = dyn_player->get_state();
   //---------------------------
 
   if(state->locked){

@@ -4,7 +4,7 @@
 #include <Profiler/src/Profiler/Graph/Profiler.h>
 
 
-namespace dyn::player{
+namespace dyn::base{
 
 struct State{
   //---------------------------
