@@ -25,7 +25,7 @@ void Player::design_player(){
   //---------------------------
 
   this->player_slider();
-  this->player_start();
+  this->player_play();
   ImGui::SameLine();
   this->player_stop();
   ImGui::SameLine();
@@ -57,7 +57,7 @@ void Player::player_slider(){
 
   //---------------------------
 }
-void Player::player_start(){
+void Player::player_play(){
   dyn::base::State* state = dyn_player->get_state();
   //---------------------------
 
@@ -65,8 +65,8 @@ void Player::player_start(){
   if(state->pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(46, 100, 45, 255));
-    if(ImGui::Button(ICON_FA_PLAY "##player_start")){
-      dyn_player->player_play();
+    if(ImGui::Button(ICON_FA_PLAY "##player_play")){
+      dyn_player->button_play();
     }
     ImGui::PopStyleColor(2);
   }
@@ -75,7 +75,7 @@ void Player::player_start(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(45, 100, 100, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##player_pause")){
-      dyn_player->player_pause();
+      dyn_player->button_pause();
     }
     ImGui::PopStyleColor(2);
   }
@@ -91,14 +91,14 @@ void Player::player_stop(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button(ICON_FA_STOP "##37")){
-      dyn_player->player_stop();
+      dyn_player->button_stop();
     }
     ImGui::PopStyleColor(2);
   }
   else{
     //Player is stoped
     if(ImGui::Button(ICON_FA_STOP "##37")){
-      dyn_player->player_stop();
+      dyn_player->button_stop();
     }
   }
 
@@ -112,14 +112,14 @@ void Player::player_repeat(){
     //Repeat activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      dyn_player->player_restart();
+      dyn_player->button_restart();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Repeat desactivated
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      dyn_player->player_restart();
+      dyn_player->button_restart();
     }
   }
 
@@ -133,14 +133,14 @@ void Player::player_record(){
     //Record activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if(ImGui::Button(ICON_FA_CIRCLE "##37")){
-      dyn_player->player_record();
+      dyn_player->button_record();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Record desactivated
     if(ImGui::Button(ICON_FA_CIRCLE "##37")){
-      dyn_player->player_record();
+      dyn_player->button_record();
     }
   }
 
@@ -151,7 +151,7 @@ void Player::player_close(){
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
   if(ImGui::Button(ICON_FA_CIRCLE_XMARK "##399")){
-    dyn_player->player_close();
+    dyn_player->button_close();
   }
   ImGui::PopStyleColor();
 
@@ -164,13 +164,13 @@ void Player::player_lock(){
   if(state->locked){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_LOCK "##399")){
-      dyn_player->player_lock(false);
+      dyn_player->button_lock(false);
     }
     ImGui::PopStyleColor();
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_UNLOCK "##399")){
-      dyn_player->player_lock(true);
+      dyn_player->button_lock(true);
     }
     ImGui::PopStyleColor();
   }

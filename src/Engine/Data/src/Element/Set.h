@@ -34,6 +34,7 @@ public:
   //Entity function
   void insert_entity(dat::base::Set* set, dat::base::Entity* entity);
   void remove_entity(dat::base::Set* set, dat::base::Entity* entity);
+  void remove_active_entity(dat::base::Set* set);
   void remove_all_entity(dat::base::Set* set);
   void active_next_entity(dat::base::Set* set);
   void active_entity(dat::base::Set* set, dat::base::Entity* entity);

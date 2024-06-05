@@ -21,7 +21,7 @@ public:
 
   //Player function
   void player_slider();
-  void player_start();
+  void player_play();
   void player_stop();
   void player_repeat();
   void player_record();

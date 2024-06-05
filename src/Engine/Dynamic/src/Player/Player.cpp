@@ -13,6 +13,7 @@ Player::Player(dyn::Node* node_dynamic){
   dat::Node* node_data = node_dynamic->get_node_data();
 
   this->dat_selection = node_data->get_dat_selection();
+  this->dat_set = node_data->get_dat_set();
 
   //---------------------------
 }
@@ -22,6 +23,8 @@ Player::~Player(){}
 void Player::update(){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
+
+  state.locked = set->is_locked;
 
   this->manage_update(set);
 
@@ -37,7 +40,7 @@ void Player::reset(){
 }
 
 //Player function
-void Player::player_play(){
+void Player::button_play(){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
@@ -48,100 +51,84 @@ void Player::player_play(){
     state.pause = false;
   }
 
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    //subset->player.player_play();
-  }
+  this->manage_state(set);
 
   //---------------------------
 }
-void Player::player_pause(){
+void Player::button_pause(){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
   state.pause = !state.pause;
 
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    //subset->player.player_pause();
-  }
+  this->manage_state(set);
 
   //---------------------------
 }
-void Player::player_stop(){
+void Player::button_stop(){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
   state.play = false;
   state.pause = true;
+  timestamp.current = timestamp.begin;
 
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    //subset->player.player_stop();
-  }
+  this->manage_state(set);
+  this->manage_restart(set);
 
   //---------------------------
 }
-void Player::player_restart(){
-  dat::base::Set* set = dat_selection->get_selected_set();
+void Player::button_restart(){
   //---------------------------
 
   state.restart = !state.restart;
 
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    //subset->player.player_restart();
-  }
-
   //---------------------------
 }
-void Player::player_record(){
-  dat::base::Set* set = dat_selection->get_selected_set();
+void Player::button_record(){
   //---------------------------
 
   state.record = !state.record;
 
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    //subset->player.player_record();
-  }
-
   //---------------------------
 }
-void Player::player_lock(bool value){
+void Player::button_lock(bool value){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
   set->is_locked = value;
 
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    //subset->player.player_lock(value);
-  }
-
   //---------------------------
 }
-void Player::player_close(){
+void Player::button_close(){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
-/*
-  set->is_locked = !set->is_locked;
 
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    //subset->player.player_close();
-  }
-*/
+  dat_set->remove_active_entity(set);
+
   //---------------------------
 }
 
+void Player::manage_state(dat::base::Set* set){
+  //---------------------------
+
+  //Entity
+  for(int i=0; i<set->list_entity.size(); i++){
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+
+    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+      sensor->state = state;
+    }
+  }
+
+  //Subset
+  for(int i=0; i<set->list_subset.size(); i++){
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+    this->manage_state(subset);
+  }
+
+  //---------------------------
+}
 void Player::manage_update(dat::base::Set* set){
   timestamp = {};
   //---------------------------
@@ -194,15 +181,24 @@ void Player::manage_query(float value){
 */
   //---------------------------
 }
-void Player::manage_restart(){
+void Player::manage_restart(dat::base::Set* set){
   //---------------------------
-/*
-  if(restart == false){
-    this->player_stop();
-  }else{
-    this->manage_query(ts_beg);
+
+  //Entity
+  for(int i=0; i<set->list_entity.size(); i++){
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+
+    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+      sensor->manage_ts_query(timestamp.begin);
+    }
   }
-*/
+
+  //Subset
+  for(int i=0; i<set->list_subset.size(); i++){
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+    this->manage_restart(subset);
+  }
+
   //---------------------------
 }
 void Player::manage_reset(dat::base::Set* set){
