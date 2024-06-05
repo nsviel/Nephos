@@ -46,13 +46,11 @@ void Player::player_slider(){
   dyn::base::Timestamp* timestamp = dyn_player->get_timestamp();
   //---------------------------
 
-  //player->manage_update();
-
   float width = ImGui::GetContentRegionAvail().x;
   ImGui::SetNextItemWidth(width);
   float current = timestamp->current;
   if(ImGui::SliderFloat("##player_slider", &current, timestamp->begin, timestamp->end, "%.2f s", ImGuiSliderFlags_NoInput)){
-    //player->manage_query(current);
+    dyn_player->button_query(current);
   }
 
   //---------------------------

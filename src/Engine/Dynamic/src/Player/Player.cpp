@@ -40,6 +40,14 @@ void Player::reset(){
 }
 
 //Player function
+void Player::button_query(float value){
+  dat::base::Set* set = dat_selection->get_selected_set();
+  //---------------------------
+
+  this->manage_query(set, value);
+
+  //---------------------------
+}
 void Player::button_play(){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
@@ -108,7 +116,20 @@ void Player::button_close(){
 
   //---------------------------
 }
+void Player::button_forward(float value){
+  dat::base::Set* set = dat_selection->get_selected_set();
+  //---------------------------
 
+  float ts_forward = timestamp.current + 5 * value;
+  if(ts_forward > timestamp.end) ts_forward = timestamp.end;
+  if(ts_forward < timestamp.begin) ts_forward = timestamp.begin;
+
+  this->manage_query(set, ts_forward);
+
+  //---------------------------
+}
+
+//Subfunction
 void Player::manage_state(dat::base::Set* set){
   //---------------------------
 
@@ -155,32 +176,6 @@ void Player::manage_update(dat::base::Set* set){
 
   //---------------------------
 }
-void Player::manage_query(float value){
-  //---------------------------
-/*
-  //Aplly on sensors
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-
-    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-      sensor->manage_ts_query(value);
-    }
-  }
-
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    dyn::base::Player* player = &//subset->player;
-
-    float ts_duration = player->ts_end - player->ts_beg;
-    float ts_query = value * (ts_duration / 100.0);
-    ts_query = ts_query + player->ts_beg;
-
-    //subset->player.manage_query(ts_query);
-  }
-*/
-  //---------------------------
-}
 void Player::manage_restart(dat::base::Set* set){
   //---------------------------
 
@@ -221,27 +216,24 @@ void Player::manage_reset(dat::base::Set* set){
 
   //---------------------------
 }
-void Player::manage_configuration(){
+void Player::manage_query(dat::base::Set* set, float value){
   //---------------------------
 
+  //Entity
+  for(int i=0; i<set->list_entity.size(); i++){
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-  //---------------------------
-}
-void Player::manage_forward(){
-  //---------------------------
-/*
-  for(int i=0; i<list_entity.size(); i++){
-    dat::base::Entity* entity = *next(list_entity.begin(), i);
-
-    if(k4n::playback::Sensor* sensor = dynamic_cast<k4n::playback::Sensor*>(entity)){
-      float ts_forward = ts_cur + 5 * ts_for;
-      if(ts_forward > ts_end) ts_forward = ts_end;
-      if(ts_forward < ts_beg) ts_forward = ts_beg;
-
-      sensor->manage_ts_query(ts_forward);
+    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+      sensor->manage_ts_query(value);
     }
   }
-*/
+
+  //Subset
+  for(int i=0; i<set->list_subset.size(); i++){
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+    this->manage_query(subset, value);
+  }
+
   //---------------------------
 }
 

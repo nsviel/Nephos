@@ -22,6 +22,8 @@ public:
   void update();
   void reset();
 
+  //Player function
+  void button_query(float value);
   void button_play();
   void button_pause();
   void button_stop();
@@ -29,15 +31,14 @@ public:
   void button_record();
   void button_lock(bool value);
   void button_close();
+  void button_forward(float value);
 
-  //Main function
+  //Subfunction
   void manage_state(dat::base::Set* set);
   void manage_update(dat::base::Set* set);
-  void manage_query(float value);
   void manage_restart(dat::base::Set* set);
   void manage_reset(dat::base::Set* set);
-  void manage_configuration();
-  void manage_forward();
+  void manage_query(dat::base::Set* set, float value);
 
   inline dyn::base::State* get_state(){return &state;}
   inline dyn::base::Timestamp* get_timestamp(){return &timestamp;}

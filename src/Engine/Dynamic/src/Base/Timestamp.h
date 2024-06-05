@@ -13,8 +13,6 @@ struct Timestamp{
   float begin = -1;
   float end = -1;
   float current = -1;
-  float forward = 0;
-  float seek = -1;
 
   //---------------------------
 };
