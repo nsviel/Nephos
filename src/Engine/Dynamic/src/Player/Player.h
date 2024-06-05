@@ -18,6 +18,9 @@ public:
   ~Player();
 
   //Main function
+  void update();
+
+
   void player_play();
   void player_pause();
   void player_stop();
@@ -27,7 +30,7 @@ public:
   void player_close();
 
   //Main function
-  void manage_update();
+  void manage_update(dat::base::Set* set);
   void manage_query(float value);
   void manage_restart();
   void manage_reset();
