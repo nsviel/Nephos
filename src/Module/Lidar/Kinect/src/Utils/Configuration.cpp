@@ -16,7 +16,7 @@ Configuration::Configuration(k4n::Node* node_k4n){
 Configuration::~Configuration(){}
 
 //Configuration function
-void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
+void Configuration::make_sensor_configuration(k4n::structure::Sensor* sensor){
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
@@ -37,7 +37,7 @@ void Configuration::make_sensor_configuration(k4n::dev::Sensor* sensor){
   //---------------------------
   sensor->device.configuration = configuration;
 }
-void Configuration::make_sensor_color_configuration(k4n::dev::Sensor* sensor){
+void Configuration::make_sensor_color_configuration(k4n::structure::Sensor* sensor){
   k4a::device& device = sensor->device.handle;
   //---------------------------
 
@@ -122,7 +122,7 @@ void Configuration::find_playback_configuration(k4n::playback::Sensor* sensor){
 
   //---------------------------
 }
-void Configuration::reset_color_configuration(k4n::dev::Sensor* sensor){
+void Configuration::reset_color_configuration(k4n::structure::Sensor* sensor){
   k4n::color::Structure* color = &sensor->color;
   //---------------------------
 
@@ -140,14 +140,14 @@ void Configuration::reset_color_configuration(k4n::dev::Sensor* sensor){
 }
 
 //Calibration function
-void Configuration::make_transformation_from_calibration(k4n::dev::Sensor* sensor){
+void Configuration::make_transformation_from_calibration(k4n::structure::Sensor* sensor){
   //---------------------------
 
   sensor->device.transformation = k4a::transformation(sensor->device.calibration);
 
   //---------------------------
 }
-void Configuration::make_capture_calibration(k4n::dev::Sensor* sensor){
+void Configuration::make_capture_calibration(k4n::structure::Sensor* sensor){
   k4a::device& device = sensor->device.handle;
   //---------------------------
 

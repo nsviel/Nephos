@@ -70,7 +70,7 @@ void Capture::show_list_device(dat::base::Set* set){
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-      if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+      if(k4n::structure::Sensor* sensor = dynamic_cast<k4n::structure::Sensor*>(entity)){
         ImGui::PushID(sensor->device.serial_number.c_str());
 
         //Sensor type
@@ -124,7 +124,7 @@ void Capture::show_transformation_mode(dat::base::Set* set){
   //---------------------------
   ImGui::Separator();
 }
-void Capture::show_firmware_info(k4n::dev::Sensor* sensor){
+void Capture::show_firmware_info(k4n::structure::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Device Firmware Version Info");

@@ -42,7 +42,7 @@ void Data::convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, std::v
 }
 
 //IR function
-void Data::convert_ir_into_color(k4n::dev::Sensor* sensor){
+void Data::convert_ir_into_color(k4n::structure::Sensor* sensor){
   k4n::structure::Data* data = &sensor->ir.data;
   uint8_t* buffer = data->buffer;
   uint16_t level_min = sensor->ir.config.level_min;
@@ -74,7 +74,7 @@ void Data::convert_ir_into_color(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Data::find_ir_level(k4n::dev::Sensor* sensor){
+void Data::find_ir_level(k4n::structure::Sensor* sensor){
   //---------------------------
 
   if(sensor->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){
@@ -90,7 +90,7 @@ void Data::find_ir_level(k4n::dev::Sensor* sensor){
 }
 
 //Depth function
-void Data::convert_depth_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_t>& output){
+void Data::convert_depth_into_color(k4n::structure::Sensor* sensor, std::vector<uint8_t>& output){
   k4n::structure::Data* data = &sensor->depth.data;
   uint8_t* inputBuffer = data->buffer;
   uint16_t range_min = sensor->depth.config.range_min;
@@ -127,7 +127,7 @@ void Data::convert_depth_into_color(k4n::dev::Sensor* sensor, std::vector<uint8_
 
   //---------------------------
 }
-void Data::find_depth_mode_range(k4n::dev::Sensor* sensor){
+void Data::find_depth_mode_range(k4n::structure::Sensor* sensor){
   //---------------------------
 
   if(sensor->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){
@@ -151,7 +151,7 @@ void Data::find_depth_mode_range(k4n::dev::Sensor* sensor){
 }
 
 //Normal function
-void Data::make_normal_from_depth_image(k4n::dev::Sensor* sensor){
+void Data::make_normal_from_depth_image(k4n::structure::Sensor* sensor){
   uint8_t* depth = sensor->depth.data.buffer;
   //---------------------------
 
@@ -208,7 +208,7 @@ data->Nxyz = Nxyz;
 */
   //---------------------------
 }
-void Data::convert_normal_into_color(k4n::dev::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz){
+void Data::convert_normal_into_color(k4n::structure::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   std::vector<uint8_t> output = std::vector<uint8_t>(vec_Nxyz.size() * 4, 0);

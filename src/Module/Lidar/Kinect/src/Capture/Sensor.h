@@ -10,7 +10,7 @@ namespace k4n::utils{class Configuration;}
 
 namespace k4n::capture{
 
-class Sensor : public k4n::dev::Sensor
+class Sensor : public k4n::structure::Sensor
 {
 public:
   //Constructor / Destructor

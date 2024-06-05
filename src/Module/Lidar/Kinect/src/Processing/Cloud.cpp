@@ -25,7 +25,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
 Cloud::~Cloud(){}
 
 //Main function
-void Cloud::start_thread(k4n::dev::Sensor* sensor){
+void Cloud::start_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
   this->thread_idle = false;
@@ -36,7 +36,7 @@ void Cloud::start_thread(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::run_thread(k4n::dev::Sensor* sensor){
+void Cloud::run_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Convert data into a cloud
@@ -61,7 +61,7 @@ void Cloud::wait_thread(){
 }
 
 //Loop function
-void Cloud::convertion_into_cloud(k4n::dev::Sensor* sensor){
+void Cloud::convertion_into_cloud(k4n::structure::Sensor* sensor){
   if(!sensor->depth.cloud.k4a_image.is_valid()) return;
   if(!sensor->ir.cloud.k4a_image.is_valid()) return;
   if(sensor->color.cloud.buffer == nullptr) return;
@@ -79,7 +79,7 @@ void Cloud::convertion_into_cloud(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::convertion_init(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
+void Cloud::convertion_init(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker){
   //---------------------------
 
   //Depth transformation
@@ -99,7 +99,7 @@ void Cloud::convertion_init(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker
 
   //---------------------------
 }
-void Cloud::convertion_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
+void Cloud::convertion_data(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker){
   //---------------------------
 
   //Fille vector with data
@@ -115,7 +115,7 @@ void Cloud::convertion_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker
 
   //---------------------------
 }
-void Cloud::convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker){
+void Cloud::convertion_transfer(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker){
   utl::base::Data* data = &sensor->data;
   dat::base::Set* master = sensor->set_parent;
   //---------------------------
@@ -137,7 +137,7 @@ void Cloud::convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* ta
 }
 
 //Data retrieval
-void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor){
+void Cloud::retrieve_cloud(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Create cloud image
@@ -150,7 +150,7 @@ void Cloud::retrieve_cloud(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::retrieve_location(k4n::dev::Sensor* sensor, int i){
+void Cloud::retrieve_location(k4n::structure::Sensor* sensor, int i){
   const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->depth.cloud.buffer);
   //---------------------------
 
@@ -170,7 +170,7 @@ void Cloud::retrieve_location(k4n::dev::Sensor* sensor, int i){
 
   //---------------------------
 }
-void Cloud::retrieve_color(k4n::dev::Sensor* sensor, int i){
+void Cloud::retrieve_color(k4n::structure::Sensor* sensor, int i){
   const uint8_t* buffer_color = sensor->color.cloud.buffer;
   //---------------------------
 
@@ -182,7 +182,7 @@ void Cloud::retrieve_color(k4n::dev::Sensor* sensor, int i){
 
   //---------------------------
 }
-void Cloud::retrieve_ir(k4n::dev::Sensor* sensor, int i){
+void Cloud::retrieve_ir(k4n::structure::Sensor* sensor, int i){
   const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor->ir.cloud.buffer);
   //---------------------------
 

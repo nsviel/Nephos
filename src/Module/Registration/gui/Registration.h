@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  void draw_registration(k4n::dev::Sensor* sensor);
+  void draw_registration(k4n::structure::Sensor* sensor);
 
   //Subfunction
 

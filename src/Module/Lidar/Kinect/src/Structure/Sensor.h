@@ -14,7 +14,7 @@ namespace k4n::infrared{class Structure;}
 namespace k4n::imu{class Structure;}
 
 
-namespace k4n::dev{
+namespace k4n::structure{
 
 struct Sensor : public dyn::base::Sensor{
   //---------------------------

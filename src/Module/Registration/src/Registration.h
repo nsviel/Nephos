@@ -18,8 +18,8 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor);
-  void run_thread(k4n::dev::Sensor* sensor);
+  void start_thread(k4n::structure::Sensor* sensor);
+  void run_thread(k4n::structure::Sensor* sensor);
   void wait_thread();
 
   //Subfunction

@@ -27,7 +27,7 @@ public:
   //Subfunction
   void show_list_device(dat::base::Set* set);
   void show_transformation_mode(dat::base::Set* set);
-  void show_firmware_info(k4n::dev::Sensor* sensor);
+  void show_firmware_info(k4n::structure::Sensor* sensor);
   void configuration_depth(dat::base::Set* set);
   void configuration_color(dat::base::Set* set);
   void configuration_color_control(dat::base::Set* set);

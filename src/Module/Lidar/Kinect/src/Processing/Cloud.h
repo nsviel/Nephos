@@ -22,21 +22,21 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor);
-  void run_thread(k4n::dev::Sensor* sensor);
+  void start_thread(k4n::structure::Sensor* sensor);
+  void run_thread(k4n::structure::Sensor* sensor);
   void wait_thread();
 
   //Loop function
-  void convertion_into_cloud(k4n::dev::Sensor* sensor);
-  void convertion_init(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
-  void convertion_data(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
-  void convertion_transfer(k4n::dev::Sensor* sensor, prf::graph::Tasker* tasker);
+  void convertion_into_cloud(k4n::structure::Sensor* sensor);
+  void convertion_init(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker);
+  void convertion_data(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker);
+  void convertion_transfer(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker);
 
   //Data retrieval
-  void retrieve_cloud(k4n::dev::Sensor* sensor);
-  void retrieve_location(k4n::dev::Sensor* sensor, int i);
-  void retrieve_color(k4n::dev::Sensor* sensor, int i);
-  void retrieve_ir(k4n::dev::Sensor* sensor, int i);
+  void retrieve_cloud(k4n::structure::Sensor* sensor);
+  void retrieve_location(k4n::structure::Sensor* sensor, int i);
+  void retrieve_color(k4n::structure::Sensor* sensor, int i);
+  void retrieve_ir(k4n::structure::Sensor* sensor, int i);
   void insert_data(int i);
 
 private:

@@ -16,7 +16,7 @@ namespace k4n::synchro{class Configuration;}
 
 namespace k4n::playback{
 
-class Sensor : public k4n::dev::Sensor
+class Sensor : public k4n::structure::Sensor
 {
 public:
   //Constructor / Destructor

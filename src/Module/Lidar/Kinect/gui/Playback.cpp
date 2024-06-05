@@ -17,7 +17,7 @@ Playback::Playback(k4n::Node* node_k4n){
 Playback::~Playback(){}
 
 //Main function
-void Playback::show_parameter(k4n::dev::Sensor* sensor){
+void Playback::show_parameter(k4n::structure::Sensor* sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -47,7 +47,7 @@ void Playback::show_transformation_mode(dat::base::Set* set){
   //---------------------------
   ImGui::Separator();
 }
-void Playback::show_firmware_info(k4n::dev::Sensor* sensor){
+void Playback::show_firmware_info(k4n::structure::Sensor* sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Device Firmware Version Info");

@@ -20,11 +20,11 @@ public:
   ~Playback();
 
   //Main function
-  void show_parameter(k4n::dev::Sensor* sensor);
+  void show_parameter(k4n::structure::Sensor* sensor);
 
   //Subfunction
   void show_transformation_mode(dat::base::Set* set);
-  void show_firmware_info(k4n::dev::Sensor* sensor);
+  void show_firmware_info(k4n::structure::Sensor* sensor);
   void show_info_device(k4n::playback::Sensor* sensor);
   void show_info_color(k4n::playback::Sensor* sensor);
   void show_info_depth(k4n::playback::Sensor* sensor);

@@ -23,14 +23,14 @@ public:
 public:
   //Configuration function
   void make_default_configuration();
-  void make_sensor_configuration(k4n::dev::Sensor* k4n_sensor);
-  void make_sensor_color_configuration(k4n::dev::Sensor* sensor);
+  void make_sensor_configuration(k4n::structure::Sensor* k4n_sensor);
+  void make_sensor_color_configuration(k4n::structure::Sensor* sensor);
   void find_playback_configuration(k4n::playback::Sensor* k4n_sensor);
-  void reset_color_configuration(k4n::dev::Sensor* k4n_sensor);
+  void reset_color_configuration(k4n::structure::Sensor* k4n_sensor);
 
   //Calibration function
-  void make_transformation_from_calibration(k4n::dev::Sensor* sensor);
-  void make_capture_calibration(k4n::dev::Sensor* sensor);
+  void make_transformation_from_calibration(k4n::structure::Sensor* sensor);
+  void make_capture_calibration(k4n::structure::Sensor* sensor);
   void find_playback_calibration(k4n::playback::Sensor* sensor);
 
   //Playback configuration

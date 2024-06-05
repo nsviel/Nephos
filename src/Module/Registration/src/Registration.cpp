@@ -19,7 +19,7 @@ Registration::Registration(k4n::Node* node_k4n){
 Registration::~Registration(){}
 
 //Main function
-void Registration::start_thread(k4n::dev::Sensor* sensor){
+void Registration::start_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
   this->idle = false;
@@ -30,7 +30,7 @@ void Registration::start_thread(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Registration::run_thread(k4n::dev::Sensor* sensor){
+void Registration::run_thread(k4n::structure::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler->get_or_create_tasker("registration");
   //---------------------------
 

@@ -34,7 +34,7 @@ Image::~Image(){
 }
 
 //Main function
-void Image::start_thread(k4n::dev::Sensor* sensor){
+void Image::start_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
   this->idle = false;
@@ -45,7 +45,7 @@ void Image::start_thread(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Image::run_thread(k4n::dev::Sensor* sensor){
+void Image::run_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Retrieve data from capture
@@ -74,7 +74,7 @@ void Image::wait_thread(){
 }
 
 //Data function
-void Image::find_data_from_capture(k4n::dev::Sensor* sensor){
+void Image::find_data_from_capture(k4n::structure::Sensor* sensor){
   prf::graph::Tasker* tasker = sensor->profiler.get_or_create_tasker("data");
   //---------------------------
 
@@ -111,7 +111,7 @@ void Image::find_data_from_capture(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Image::find_data_depth(k4n::dev::Sensor* sensor){
+void Image::find_data_depth(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
@@ -143,7 +143,7 @@ void Image::find_data_depth(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Image::find_data_color(k4n::dev::Sensor* sensor){
+void Image::find_data_color(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
@@ -177,7 +177,7 @@ void Image::find_data_color(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Image::find_data_ir(k4n::dev::Sensor* sensor){
+void Image::find_data_ir(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
@@ -208,7 +208,7 @@ void Image::find_data_ir(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Image::find_data_cloud(k4n::dev::Sensor* sensor){
+void Image::find_data_cloud(k4n::structure::Sensor* sensor){
   sensor->color.cloud = {};
   sensor->ir.cloud = {};
   sensor->depth.cloud = {};
@@ -234,7 +234,7 @@ void Image::find_data_cloud(k4n::dev::Sensor* sensor){
 }
 
 //Transformed data
-void Image::find_depth_to_color(k4n::dev::Sensor* sensor){
+void Image::find_depth_to_color(k4n::structure::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 
@@ -259,7 +259,7 @@ void Image::find_depth_to_color(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Image::find_depth_and_ir_to_color(k4n::dev::Sensor* sensor){
+void Image::find_depth_and_ir_to_color(k4n::structure::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 
@@ -311,7 +311,7 @@ void Image::find_depth_and_ir_to_color(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Image::find_ir_to_color(k4n::dev::Sensor* sensor){
+void Image::find_ir_to_color(k4n::structure::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->ir.data.k4a_image) return;
   //---------------------------
 
@@ -347,7 +347,7 @@ void Image::find_ir_to_color(k4n::dev::Sensor* sensor){
 
   //---------------------------
 }
-void Image::find_color_to_depth(k4n::dev::Sensor* sensor){
+void Image::find_color_to_depth(k4n::structure::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 

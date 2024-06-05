@@ -24,13 +24,13 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::dev::Sensor* sensor);
-  void run_thread(k4n::dev::Sensor* sensor);
+  void start_thread(k4n::structure::Sensor* sensor);
+  void run_thread(k4n::structure::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void make_export_to_ply(k4n::dev::Sensor* sensor);
-  void make_export_to_mkv(k4n::dev::Sensor* sensor);
+  void make_export_to_ply(k4n::structure::Sensor* sensor);
+  void make_export_to_mkv(k4n::structure::Sensor* sensor);
 
 private:
   utl::thread::Pool* thread_pool;

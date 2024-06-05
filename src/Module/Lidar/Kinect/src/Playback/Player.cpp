@@ -28,7 +28,7 @@ void Player::player_stop(){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+    if(k4n::structure::Sensor* sensor = dynamic_cast<k4n::structure::Sensor*>(entity)){
       sensor->wait_thread();
     }
   }
@@ -44,7 +44,7 @@ void Player::manage_update(){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+    if(k4n::structure::Sensor* sensor = dynamic_cast<k4n::structure::Sensor*>(entity)){
       if(i == 0){
         this->ts_beg = sensor->timestamp.begin;
         this->ts_end = sensor->timestamp.end;
@@ -61,7 +61,7 @@ void Player::manage_update(){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+    if(k4n::structure::Sensor* sensor = dynamic_cast<k4n::structure::Sensor*>(entity)){
       //sensor->run_thread();
     }
   }
@@ -92,7 +92,7 @@ void Player::player_close(){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
+    if(k4n::structure::Sensor* sensor = dynamic_cast<k4n::structure::Sensor*>(entity)){
       sensor->remove();
     }
   }
