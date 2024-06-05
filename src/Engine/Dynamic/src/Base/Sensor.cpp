@@ -22,7 +22,7 @@ void Sensor::init(){
     dat_glyph->create_glyph(&object, sphere);
     sphere->construct(vec4(0, 1, 0, 1));
   */
-  
+
   //---------------------------
 }
 void Sensor::clean(){

@@ -12,6 +12,7 @@ namespace k4n::capture{
 Connection::Connection(k4n::Node* node_k4n){
   //---------------------------
 
+  this->node_k4n = node_k4n;
   dat::Node* node_data = node_k4n->get_node_data();
 
   this->dat_set = node_data->get_dat_set();
@@ -94,24 +95,21 @@ void Connection::manage_connected_device(){
 }
 void Connection::create_sensor(int index){
   //---------------------------
-/*
-  //Associated set
-  dat::base::Set* set = get_or_create_capture_master("Kinect");
 
   //Sensor creation
-  k4n::dev::Sensor* sensor = new k4n::dev::Sensor(node_k4n);
+  k4n::capture::Sensor* sensor = new k4n::capture::Sensor(node_k4n, index);
   sensor->name = "capture_" + to_string(index);
-  sensor->device.idx_dev = index;
-  sensor->set_parent = set;
+  sensor->data.name = sensor->name;
+  sensor->pose.model[2][3] = 1;
+  sensor->init();
 
   //Sensor initialization
-  sensor->init();
+  dat::base::Set* set = manage_set_parent();
+  sensor->set_parent = set;
   dat_set->insert_entity(set, sensor);
   dat_graph->assign_UID(sensor);
-  utl::transformation::apply_transformation_capture(sensor->get_pose()->model);
-  sensor->run_thread();
+  sensor->start_thread();
 
-*/
   //---------------------------
 }
 dat::base::Set* Connection::manage_set_parent(){

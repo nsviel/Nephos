@@ -16,6 +16,7 @@ public:
 
 public:
   //Data function
+  void convert_uint8_to_vec_uint8(const uint8_t* input, size_t size, std::vector<uint8_t>& output);
   void convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, std::vector<uint16_t>& output);
 
   //IR function

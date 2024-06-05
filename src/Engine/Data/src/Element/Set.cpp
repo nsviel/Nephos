@@ -167,7 +167,6 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
       this->active_next_entity(set);
 
       dat_entity->remove_entity(entity);
-      delete entity;
 
       return;
     }
@@ -193,7 +192,6 @@ void Set::remove_all_entity(dat::base::Set* set){
     set->nb_entity--;
 
     dat_entity->remove_entity(entity);
-    delete entity;
   }
 
   dat_struct->selection = nullptr;

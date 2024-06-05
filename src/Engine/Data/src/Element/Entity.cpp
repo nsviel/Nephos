@@ -53,6 +53,9 @@ void Entity::remove_entity(dat::base::Entity* entity){
     this->remove_entity(glyph);
   }
 
+  delete entity;
+  entity = nullptr;
+
   //----------------------------
 }
 void Entity::reset_pose(dat::base::Entity* entity){

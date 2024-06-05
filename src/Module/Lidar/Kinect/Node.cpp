@@ -23,6 +23,7 @@ Node::Node(eng::Node* node_engine){
   //Child
   this->k4n_structure = new k4n::Structure();
   this->k4n_connection = new k4n::capture::Connection(this);
+  this->k4n_config = new k4n::utils::Configuration(this);
 
   //Importer
   ldr::io::Importer* ldr_importer = node_loader->get_ldr_importer();
@@ -36,6 +37,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
+  k4n_config->make_default_configuration();
   k4n_connection->start_thread();
 
   //---------------------------

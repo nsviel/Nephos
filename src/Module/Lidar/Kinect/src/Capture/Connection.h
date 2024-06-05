@@ -29,6 +29,7 @@ public:
   dat::base::Set* manage_set_parent();
 
 private:
+  k4n::Node* node_k4n;
   dat::Set* dat_set;
   dat::Graph* dat_graph;
 

@@ -46,7 +46,6 @@ void Image::start_thread(k4n::dev::Sensor* sensor){
   //---------------------------
 }
 void Image::run_thread(k4n::dev::Sensor* sensor){
-  //if(sensor->profiler == nullptr) return;
   //---------------------------
 
   //Retrieve data from capture

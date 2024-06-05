@@ -14,6 +14,13 @@ Data::Data(){
 Data::~Data(){}
 
 //Data function
+void Data::convert_uint8_to_vec_uint8(const uint8_t* input, size_t size, std::vector<uint8_t>& output){
+  //---------------------------
+
+  output = std::vector<uint8_t>(input, input + size);
+
+  //---------------------------
+}
 void Data::convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, std::vector<uint16_t>& output){
   //---------------------------
 
