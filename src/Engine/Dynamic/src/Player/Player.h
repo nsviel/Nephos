@@ -1,8 +1,10 @@
 #pragma once
 
+#include <Dynamic/src/Base/Timestamp.h>
 #include <Utility/Specific/Common.h>
 
 namespace dat::base{class Set;}
+namespace dyn::base{class Timestamp;}
 
 
 namespace dyn::base{
@@ -34,6 +36,7 @@ public:
 public:
   dat::base::Set* set;
 
+  dyn::base::Timestamp timestamp;
   std::string time = "%";
   utl::base::Path path;
   float size = 0;

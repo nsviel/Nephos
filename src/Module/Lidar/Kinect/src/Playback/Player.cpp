@@ -49,12 +49,12 @@ void Player::manage_update(){
 
     if(k4n::dev::Sensor* sensor = dynamic_cast<k4n::dev::Sensor*>(entity)){
       if(i == 0){
-        this->ts_beg = sensor->ts_beg;
-        this->ts_end = sensor->ts_end;
+        this->ts_beg = sensor->timestamp.ts_beg;
+        this->ts_end = sensor->timestamp.ts_end;
         this->ts_duration = ts_end - ts_beg;
       }else{
-        this->ts_beg = (ts_beg != -1) ? std::max(ts_beg, sensor->ts_beg) : sensor->ts_beg;
-        this->ts_end = (ts_end != -1) ? std::min(ts_end, sensor->ts_end) : sensor->ts_end;
+        this->ts_beg = (ts_beg != -1) ? std::max(ts_beg, sensor->timestamp.ts_beg) : sensor->timestamp.ts_beg;
+        this->ts_end = (ts_end != -1) ? std::min(ts_end, sensor->timestamp.ts_end) : sensor->timestamp.ts_end;
         this->ts_duration = ts_end - ts_beg;
       }
     }
