@@ -2,8 +2,6 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dat{class Selection;}
-namespace dat::base{class Set;}
 namespace dyn{class Node;}
 namespace dyn::gui{class Operation;}
 namespace dyn::gui{class Player;}

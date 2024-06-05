@@ -130,7 +130,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
 }
 void Sensor::manage_pause(){
-  dyn::base::Player* player = &set_parent->player;
+  /*dyn::base::Player* player = &set_parent->player;
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -140,7 +140,7 @@ void Sensor::manage_pause(){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }
-
+*/
   //---------------------------
 }
 void Sensor::manage_reset(){

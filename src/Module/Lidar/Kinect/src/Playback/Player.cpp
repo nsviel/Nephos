@@ -8,12 +8,9 @@
 namespace k4n::playback{
 
 //Constructor / Destructor
-Player::Player(k4n::Node* node_k4n, dat::base::Set* set) : dyn::base::Player(set){
+Player::Player(k4n::Node* node_k4n){
   //---------------------------
 
-  this->time = "s";
-  this->ts_beg = 0;
-  this->ts_end = 100000;
 
   //---------------------------
 }
@@ -22,7 +19,7 @@ Player::~Player(){}
 //Main function
 void Player::player_stop(){
   //---------------------------
-
+/*
   //Pause playback thread
   this->play = false;
   this->pause = true;
@@ -38,11 +35,11 @@ void Player::player_stop(){
 
   this->manage_query(ts_beg);
 
-  //---------------------------
+  //---------------------------*/
 }
 void Player::manage_update(){
   //---------------------------
-
+/*
   //Search for min max timestamp
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
@@ -71,11 +68,11 @@ void Player::manage_update(){
 
   //set_parent->manage_update();
 
-  //---------------------------
+  //---------------------------*/
 }
 void Player::manage_query(float value){
   //---------------------------
-
+/*
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
@@ -85,7 +82,7 @@ void Player::manage_query(float value){
   }
 
   //---------------------------
-  this->ts_cur = value;
+  this->ts_cur = value;*/
 }
 void Player::player_close(){
   //---------------------------

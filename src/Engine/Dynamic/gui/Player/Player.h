@@ -3,9 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace dat{class Selection;}
-namespace dat::base{class Set;}
 namespace dyn{class Node;}
-namespace dyn::gui{class Operation;}
 namespace dyn::player{class Player;}
 
 
@@ -15,7 +13,7 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(dyn::Node* node_dynamic, bool* show_window);
+  Player(dyn::Node* node_dynamic);
   ~Player();
 
   //Main function
@@ -32,7 +30,6 @@ public:
 
 private:
   dyn::player::Player* dyn_player;
-  dyn::gui::Operation* gui_operation;
   dat::Selection* dat_selection;
 };
 

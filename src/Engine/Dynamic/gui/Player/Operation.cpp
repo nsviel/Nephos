@@ -49,7 +49,7 @@ void Operation::design_operation(){
 void Operation::draw_op_info(utl::base::Element* element){
   if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)) return;
   //---------------------------
-
+/*
   dat::base::Set* set = dynamic_cast<dat::base::Set*>(element);
   dyn::base::Player* player = &set->player;
   if(player == nullptr) return;
@@ -86,7 +86,7 @@ void Operation::draw_op_info(utl::base::Element* element){
     ImGui::EndTable();
 
   }
-
+*/
   //---------------------------
 }
 void Operation::draw_ope_transformation(utl::base::Element* element){

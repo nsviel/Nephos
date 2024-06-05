@@ -26,6 +26,14 @@ public:
   void player_lock(bool value);
   void player_close();
 
+  //Main function
+  void manage_update();
+  void manage_query(float value);
+  void manage_restart();
+  void manage_reset();
+  void manage_configuration();
+  void manage_forward();
+
   inline dyn::player::State* get_state(){return &state;}
   inline dyn::base::Timestamp* get_timestamp(){return &timestamp;}
 

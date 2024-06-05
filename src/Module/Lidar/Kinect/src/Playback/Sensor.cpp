@@ -94,7 +94,7 @@ void Sensor::thread_end(){
 
 //Subfunction
 k4a::capture* Sensor::manage_new_capture(){
-  dyn::base::Player* player = &set_parent->player;
+  /*dyn::base::Player* player = &set_parent->player;
   //---------------------------
 
   k4a::capture* capture = new k4a::capture();
@@ -106,9 +106,9 @@ k4a::capture* Sensor::manage_new_capture(){
       player->manage_restart();
     }
   }
-
+*/
   //---------------------------
-  return capture;
+  return nullptr;//capture;
 }
 void Sensor::manage_old_capture(k4a::capture* capture){
   static std::queue<k4a::capture*> capture_queue;
@@ -131,7 +131,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
 }
 void Sensor::manage_pause(){
-  dyn::base::Player* player = &set_parent->player;
+/*  dyn::base::Player* player = &set_parent->player;
   //---------------------------
 
   //If pause, wait until end pause or end thread
@@ -147,7 +147,7 @@ void Sensor::manage_pause(){
     }
     this->thread_paused = false;
   }
-
+*/
   //---------------------------
 }
 void Sensor::manage_ts_query(float value){

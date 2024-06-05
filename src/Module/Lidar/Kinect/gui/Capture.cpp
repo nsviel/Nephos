@@ -275,7 +275,7 @@ void Capture::configuration_color(dat::base::Set* set){
   //---------------------------
 }
 void Capture::configuration_color_control(dat::base::Set* set){
-  dyn::base::Player* player = &set->player;
+/*  dyn::base::Player* player = &set->player;
   //---------------------------
 
   if(ImGui::TreeNode("Color control")){
@@ -380,7 +380,7 @@ void Capture::configuration_color_control(dat::base::Set* set){
 
     ImGui::TreePop();
   }
-
+*/
   //---------------------------
 }
 void Capture::configuration_fps(dat::base::Set* set){
@@ -427,7 +427,7 @@ void Capture::configuration_synchro(dat::base::Set* set){
   //---------------------------
 }
 void Capture::configuration_button(dat::base::Set* set){
-  dyn::base::Player* player = &set->player;
+  /*dyn::base::Player* player = &set->player;
   //---------------------------
 
   //Refresh / reset buttons
@@ -439,7 +439,7 @@ void Capture::configuration_button(dat::base::Set* set){
   if(ImGui::Button("Reset to default##RGB")){
     k4n_config->make_default_configuration();
   }
-
+*/
   //---------------------------
 }
 

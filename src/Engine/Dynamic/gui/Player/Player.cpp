@@ -8,17 +8,13 @@
 namespace dyn::gui{
 
 //Constructor / Destructor
-Player::Player(dyn::Node* node_dynamic, bool* show_window){
+Player::Player(dyn::Node* node_dynamic){
   //---------------------------
 
   dat::Node* node_data = node_dynamic->get_node_data();
 
   this->dyn_player = node_dynamic->get_dyn_player();
   this->dat_selection = node_data->get_dat_selection();
-  this->gui_operation = new dyn::gui::Operation(node_dynamic);
-
-  this->show_window = show_window;
-  this->name = "Player";
 
   //---------------------------
 }

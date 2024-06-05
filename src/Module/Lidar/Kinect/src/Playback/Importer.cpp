@@ -104,7 +104,6 @@ dat::base::Set* Importer::manage_set_parent(){
   set->icon = ICON_FA_USER;
   set->is_locked = true;
   set->is_suppressible = true;
-  set->player = k4n::playback::Player(node_k4n, set);
   dat_set->add_subset(set_graph, set);
 
   //---------------------------

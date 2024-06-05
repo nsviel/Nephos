@@ -64,6 +64,7 @@ void Node::gui(){
 void Node::reset(){
   //---------------------------
 
+  dyn_player->manage_reset();
 
   //---------------------------
 }

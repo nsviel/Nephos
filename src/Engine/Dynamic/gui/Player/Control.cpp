@@ -13,6 +13,7 @@ Control::Control(dyn::Node* node_dynamic){
   dat::Node* node_data = node_dynamic->get_node_data();
 
   this->dat_selection = node_data->get_dat_selection();
+  this->dyn_player = node_dynamic->get_dyn_player();
 
   //---------------------------
 }
@@ -20,18 +21,15 @@ Control::~Control(){}
 
 //Main function
 void Control::run_control(){
-  dat::base::Set* set = dat_selection->get_selected_set();
-  if(set == nullptr) return;
-  dyn::base::Player* player = &set->player;
   //---------------------------
 
-  this->control_keyboard(player);
+  this->control_keyboard();
 
   //---------------------------
 }
 
 //Keyboard
-void Control::control_keyboard(dyn::base::Player* player){
+void Control::control_keyboard(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -39,7 +37,7 @@ void Control::control_keyboard(dyn::base::Player* player){
 
     //Tab key
     if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      player->player_pause();
+      dyn_player->player_pause();
       break;
     }
 
