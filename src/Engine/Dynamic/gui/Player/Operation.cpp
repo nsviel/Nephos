@@ -117,10 +117,14 @@ void Operation::draw_ope_transformation(utl::base::Element* element){
     ImGui::BeginTable("transformation_info##dynamic", 2);
 
     //Path transfo
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Path"); ImGui::TableNextColumn();
-    //string path = (pose->path != "") ? pose->path : "(not defined)";
-    //ImGui::TextColored(color, "%s", path.c_str());
+    if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Path"); ImGui::TableNextColumn();
+
+      utl::base::Data* data = &entity->data;
+      string path = (data->path.transformation == "") ? "(not defined)" : data->path.transformation;
+      ImGui::TextColored(color, "%s", path.c_str());
+    }
 
     ImGui::EndTable();
 
