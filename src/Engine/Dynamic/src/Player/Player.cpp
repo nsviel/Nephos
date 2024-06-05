@@ -4,15 +4,15 @@
 #include <Data/Namespace.h>
 
 
-namespace dyn::base{
+namespace dyn::player{
 
 //Constructor / Destructor
-Player::Player(dat::base::Set* set){
+Player::Player(dyn::Node* node_dynamic){
   //---------------------------
 
-  this->set = set;
-  this->ts_beg = 0;
-  this->ts_end = 100;
+  dat::Node* node_data = node_dynamic->get_node_data();
+
+  this->dat_selection = node_data->get_dat_selection();
 
   //---------------------------
 }
@@ -20,13 +20,14 @@ Player::~Player(){}
 
 //Main function
 void Player::player_play(){
+  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
-  if(!play){
-    play = true;
-    pause = false;
+  if(!state.play){
+    state.play = true;
+    state.pause = false;
   }else{
-    pause = false;
+    state.pause = false;
   }
 
   //Recursive call
@@ -38,9 +39,10 @@ void Player::player_play(){
   //---------------------------
 }
 void Player::player_pause(){
+  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
-  pause = !pause;
+  state.pause = !state.pause;
 
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
@@ -51,10 +53,11 @@ void Player::player_pause(){
   //---------------------------
 }
 void Player::player_stop(){
+  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
-  this->play = false;
-  this->pause = true;
+  state.play = false;
+  state.pause = true;
 
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
@@ -65,9 +68,10 @@ void Player::player_stop(){
   //---------------------------
 }
 void Player::player_restart(){
+  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
-  restart = !restart;
+  state.restart = !state.restart;
 
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
@@ -78,9 +82,10 @@ void Player::player_restart(){
   //---------------------------
 }
 void Player::player_record(){
+  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
-  record = !record;
+  state.record = !state.record;
 
   //Recursive call
   for(int i=0; i<set->list_subset.size(); i++){
@@ -91,6 +96,7 @@ void Player::player_record(){
   //---------------------------
 }
 void Player::player_lock(bool value){
+  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
   set->is_locked = value;
@@ -104,6 +110,7 @@ void Player::player_lock(bool value){
   //---------------------------
 }
 void Player::player_close(){
+  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 /*
   set->is_locked = !set->is_locked;
@@ -112,122 +119,6 @@ void Player::player_close(){
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     subset->player.player_close();
-  }
-*/
-  //---------------------------
-}
-
-//Subfunction
-void Player::manage_update(){
-  //---------------------------
-
-  //Aplly on sensors
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-
-    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-      if(sensor->timestamp.begin != -1 && sensor->timestamp.end != -1){
-        this->ts_beg = (ts_beg != -1) ? std::max(ts_beg, ts_beg) : sensor->timestamp.begin;
-        this->ts_end = (ts_end != -1) ? std::min(ts_end, ts_end) : sensor->timestamp.end;
-        this->ts_duration = ts_end - ts_beg;
-      }
-    }
-  }
-
-
-
-/*
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    dyn::base::Player* player = &subset->player;
-
-    float ts_duration = player->ts_end - player->ts_beg;
-    float ts_cur = player->ts_cur - player->ts_beg;
-    float percentage = ts_cur / ts_duration * 100.0;
-
-    this->ts_cur = percentage;
-  }
-
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    subset->player.manage_update();
-  }
-*/
-  //---------------------------
-}
-void Player::manage_query(float value){
-  //---------------------------
-/*
-  //Aplly on sensors
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-
-    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-      sensor->manage_ts_query(value);
-    }
-  }
-
-  //Recursive call
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    dyn::base::Player* player = &subset->player;
-
-    float ts_duration = player->ts_end - player->ts_beg;
-    float ts_query = value * (ts_duration / 100.0);
-    ts_query = ts_query + player->ts_beg;
-
-    subset->player.manage_query(ts_query);
-  }
-*/
-  //---------------------------
-}
-void Player::manage_restart(){
-  //---------------------------
-
-  if(restart == false){
-    this->player_stop();
-  }else{
-    this->manage_query(ts_beg);
-  }
-
-  //---------------------------
-}
-void Player::manage_reset(){
-  //---------------------------
-/*
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-
-    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-      sensor->manage_ts_query(ts_beg);
-    }
-  }
-
-  //Restart player
-  this->manage_query(ts_beg);
-*/
-  //---------------------------
-}
-void Player::manage_configuration(){
-  //---------------------------
-
-
-  //---------------------------
-}
-void Player::manage_forward(){
-  //---------------------------
-/*
-  for(int i=0; i<list_entity.size(); i++){
-    dat::base::Entity* entity = *next(list_entity.begin(), i);
-
-    if(k4n::playback::Sensor* sensor = dynamic_cast<k4n::playback::Sensor*>(entity)){
-      float ts_forward = ts_cur + 5 * ts_for;
-      if(ts_forward > ts_end) ts_forward = ts_end;
-      if(ts_forward < ts_beg) ts_forward = ts_beg;
-
-      sensor->manage_ts_query(ts_forward);
-    }
   }
 */
   //---------------------------

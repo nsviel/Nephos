@@ -25,37 +25,10 @@ Player::Player(dyn::Node* node_dynamic, bool* show_window){
 Player::~Player(){}
 
 //Main function
-void Player::run_panel(){
-  //---------------------------
-
-  if(*show_window){
-    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
-    ImGui::SetNextWindowSizeConstraints(ImVec2(0, 0), ImVec2(250, FLT_MAX));
-    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
-
-      this->design_panel();
-
-      ImGui::End();
-    }
-    ImGui::PopStyleColor();
-  }
-
-  //---------------------------
-}
-void Player::design_panel(){
-  //---------------------------
-
-  this->design_player();
-  gui_operation->design_operation();
-
-  //---------------------------
-}
 void Player::design_player(){
-  dat::base::Set* set = dat_selection->get_selected_set();
-  if(set == nullptr) return;
   //---------------------------
 
-  this->player_slider(set);
+  this->player_slider();
   this->player_start();
   ImGui::SameLine();
   this->player_stop();
@@ -73,7 +46,7 @@ void Player::design_player(){
 }
 
 //Player function
-void Player::player_slider(dat::base::Set* set){
+void Player::player_slider(){
   dyn::base::Timestamp* timestamp = dyn_player->get_timestamp();
   //---------------------------
 

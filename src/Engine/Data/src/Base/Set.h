@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Dynamic/src/Player/Player.h>
 #include <Utility/Base/Type/Element.h>
 #include <image/IconsFontAwesome6.h>
 #include <string>
@@ -32,7 +31,6 @@ struct Set : public utl::base::Element{
   int nb_subset = 0;
 
   //Data
-  dyn::base::Player player = dyn::base::Player(this);
   dat::base::Entity* active_entity = nullptr;
   dat::base::Set* active_subset = nullptr;
   dat::base::Set* set_parent = nullptr;

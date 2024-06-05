@@ -19,10 +19,10 @@ Node::Node(eng::Node* node_engine){
   this->node_radio = new rad::Node(node_engine);
 
   this->dyn_struct = new dyn::Structure();
-  this->dyn_player = new dyn::player::Action(this);
+  this->dyn_player = new dyn::player::Player(this);
   this->dyn_ope_cloud = new dyn::cloud::Operation(this);
   this->dyn_ope_image = new dyn::image::Operation(this);
-  this->gui_player = new dyn::gui::Player(this, &panel_player->is_open);
+  this->gui_player = new dyn::gui::Panel(this, &panel_player->is_open);
   this->gui_stream = new dyn::gui::Stream(this, &panel_stream->is_open);
   this->gui_control = new dyn::gui::Control(this);
 
