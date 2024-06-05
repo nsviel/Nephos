@@ -7,6 +7,7 @@ namespace dat{class Node;}
 namespace rad{class Node;}
 namespace eng{class Node;}
 namespace dyn{class Structure;}
+namespace dyn::player{class Action;}
 namespace dyn::cloud{class Operation;}
 namespace dyn::image{class Operation;}
 namespace dyn::gui{class Player;}
@@ -35,6 +36,7 @@ public:
   inline rad::Node* get_node_radio(){return node_radio;}
 
   inline dyn::Structure* get_dyn_struct(){return dyn_struct;}
+  inline dyn::player::Action* get_dyn_player(){return dyn_player;}
   inline dyn::cloud::Operation* get_ope_cloud(){return dyn_ope_cloud;}
   inline dyn::image::Operation* get_ope_image(){return dyn_ope_image;}
   inline dyn::gui::Player* get_gui_player(){return gui_player;}
@@ -46,6 +48,7 @@ private:
   rad::Node* node_radio;
 
   dyn::Structure* dyn_struct;
+  dyn::player::Action* dyn_player;
   dyn::cloud::Operation* dyn_ope_cloud;
   dyn::image::Operation* dyn_ope_image;
   dyn::gui::Player* gui_player;

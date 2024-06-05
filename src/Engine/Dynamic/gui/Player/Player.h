@@ -6,6 +6,7 @@ namespace dat{class Selection;}
 namespace dat::base{class Set;}
 namespace dyn{class Node;}
 namespace dyn::gui{class Operation;}
+namespace dyn::player{class Action;}
 
 
 namespace dyn::gui{
@@ -24,14 +25,15 @@ public:
 
   //Player function
   void player_slider(dat::base::Set* set);
-  void player_start(dat::base::Set* set);
-  void player_stop(dat::base::Set* set);
-  void player_repeat(dat::base::Set* set);
-  void player_record(dat::base::Set* set);
-  void player_close(dat::base::Set* set);
-  void player_lock(dat::base::Set* set);
+  void player_start();
+  void player_stop();
+  void player_repeat();
+  void player_record();
+  void player_close();
+  void player_lock();
 
 private:
+  dyn::player::Action* dyn_player;
   dyn::gui::Operation* gui_operation;
   dat::Selection* dat_selection;
 

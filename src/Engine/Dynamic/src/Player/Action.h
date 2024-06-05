@@ -6,8 +6,6 @@
 
 namespace dyn{class Node;}
 namespace dat{class Selection;}
-namespace dat::base{class Set;}
-namespace dyn::base{class Timestamp;}
 
 
 namespace dyn::player{
@@ -28,18 +26,14 @@ public:
   void player_lock(bool value);
   void player_close();
 
+  inline dyn::player::State* get_state(){return &state;}
+  inline dyn::base::Timestamp* get_timestamp(){return &timestamp;}
+
 public:
   dat::Selection* dat_selection;
 
   dyn::base::Timestamp timestamp;
   dyn::player::State state;
-
-  
-  std::string time = "%";
-  utl::base::Path path;
-  float size = 0;
-  int fps_cur = 0;
-  int fps_qry = 0;
 };
 
 }

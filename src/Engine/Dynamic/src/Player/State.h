@@ -13,6 +13,7 @@ struct State{
   bool pause = false;
   bool restart = true;
   bool record = false;
+  bool locked = false;
 
   //---------------------------
 };
