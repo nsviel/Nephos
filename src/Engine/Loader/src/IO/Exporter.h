@@ -28,7 +28,7 @@ public:
 
   //Subfunction
   std::vector<std::string> get_supported_format();
-  std::vector<int> get_supported_mode(std::string format);
+  std::vector<int> get_supported_encoding(std::string format);
 
   inline void set_mode(int value){this->mode = value;}
 

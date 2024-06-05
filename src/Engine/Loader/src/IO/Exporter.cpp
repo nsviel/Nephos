@@ -80,21 +80,21 @@ std::vector<std::string> Exporter::get_supported_format(){
   //---------------------------
   return vec_format;
 }
-std::vector<int> Exporter::get_supported_mode(std::string format){
-  std::vector<int> vec_mode;
+std::vector<int> Exporter::get_supported_encoding(std::string format){
+  std::vector<int> vec_encoding;
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
     ldr::base::Exporter* exporter = vec_exporter[i];
 
     if(format == exporter->format){
-      vec_mode = exporter->vec_mode;
+      vec_encoding = exporter->vec_encoding;
       break;
     }
   }
 
   //---------------------------
-  return vec_mode;
+  return vec_encoding;
 }
 
 }

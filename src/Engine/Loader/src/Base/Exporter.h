@@ -9,6 +9,11 @@
 namespace ldr::io{
 
 enum Mode{
+  EXPORT = 0,
+  RECORD = 1,
+};
+
+enum Encoding{
   ASCII = 0,
   BINARY = 1,
 };
@@ -24,7 +29,7 @@ struct Exporter{
   virtual void export_binary(utl::base::Data* data, utl::base::Pose* pose, std::string path){}
 
   std::string format = "";
-  std::vector<int> vec_mode;
+  std::vector<int> vec_encoding;
 
   //---------------------------
 };

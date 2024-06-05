@@ -109,12 +109,12 @@ void Exporter::draw_header(){
     }
   }
 
-  //Mode
-  std::vector<int> vec_mode = ldr_exporter->get_supported_mode(current_format);
+  //Encoding
+  std::vector<int> vec_encoding = ldr_exporter->get_supported_encoding(current_format);
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Mode"); ImGui::TableNextColumn();
   static int mode = 1;
-  bool condition = (std::find(vec_mode.begin(), vec_mode.end(), ldr::io::ASCII) == vec_mode.end());
+  bool condition = (std::find(vec_encoding.begin(), vec_encoding.end(), ldr::io::ASCII) == vec_encoding.end());
   if(condition){
     ImGui::BeginDisabled();
     mode = ldr::io::BINARY;
@@ -124,7 +124,7 @@ void Exporter::draw_header(){
   }
   if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
-  condition = (std::find(vec_mode.begin(), vec_mode.end(), ldr::io::BINARY) == vec_mode.end());
+  condition = (std::find(vec_encoding.begin(), vec_encoding.end(), ldr::io::BINARY) == vec_encoding.end());
   if(condition){
     ImGui::BeginDisabled();
     mode = ldr::io::ASCII;

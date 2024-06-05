@@ -23,7 +23,6 @@ Node::Node(eng::Node* node_engine){
   this->ldr_importer = new ldr::io::Importer(this);
   this->ldr_exporter = new ldr::io::Exporter(this);
   this->ldr_recorder = new ldr::io::Recorder(this);
-  this->ldr_playback = new ldr::io::Playback(this);
   this->ldr_bookmark = new ldr::bookmark::Manager(this);
   this->gui_loader = new ldr::gui::Loader(this, &panel_loader->is_open);
   this->gui_exporter = new ldr::gui::Exporter(this, &panel_export->is_open);

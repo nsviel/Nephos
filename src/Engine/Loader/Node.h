@@ -37,7 +37,6 @@ public:
   inline ldr::io::Importer* get_ldr_importer(){return ldr_importer;}
   inline ldr::io::Exporter* get_ldr_exporter(){return ldr_exporter;}
   inline ldr::io::Recorder* get_ldr_recorder(){return ldr_recorder;}
-  inline ldr::io::Playback* get_ldr_playback(){return ldr_playback;}
   inline ldr::bookmark::Manager* get_ldr_bookmark(){return ldr_bookmark;}
 
 private:
