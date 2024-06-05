@@ -38,8 +38,8 @@ utl::base::Element* Importer::import(utl::base::Path path){
   sensor->data.name = utl::path::get_name_from_path(path.data);
   sensor->data.path = path;
   sensor->data.format = format;
-  sensor->timestamp.ts_beg = find_mkv_ts_beg(path.data);
-  sensor->timestamp.ts_end = find_mkv_ts_end(path.data);
+  sensor->timestamp.begin = find_mkv_ts_beg(path.data);
+  sensor->timestamp.end = find_mkv_ts_end(path.data);
   sensor->init();
 
   //Associated set

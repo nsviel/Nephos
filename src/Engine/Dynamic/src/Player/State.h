@@ -4,17 +4,15 @@
 #include <Profiler/src/Profiler/Graph/Profiler.h>
 
 
-namespace dyn::base{
+namespace dyn::player{
 
-struct Timestamp{
+struct State{
   //---------------------------
 
-  float duration = -1;
-  float begin = -1;
-  float end = -1;
-  float current = -1;
-  float forward = 0;
-  float seek = -1;
+  bool play = true;
+  bool pause = false;
+  bool restart = true;
+  bool record = false;
 
   //---------------------------
 };

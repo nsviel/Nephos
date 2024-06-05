@@ -126,9 +126,9 @@ void Player::manage_update(){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-      if(sensor->timestamp.ts_beg != -1 && sensor->timestamp.ts_end != -1){
-        this->ts_beg = (ts_beg != -1) ? std::max(ts_beg, ts_beg) : sensor->timestamp.ts_beg;
-        this->ts_end = (ts_end != -1) ? std::min(ts_end, ts_end) : sensor->timestamp.ts_end;
+      if(sensor->timestamp.begin != -1 && sensor->timestamp.end != -1){
+        this->ts_beg = (ts_beg != -1) ? std::max(ts_beg, ts_beg) : sensor->timestamp.begin;
+        this->ts_end = (ts_end != -1) ? std::min(ts_end, ts_end) : sensor->timestamp.end;
         this->ts_duration = ts_end - ts_beg;
       }
     }
