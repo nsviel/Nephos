@@ -55,41 +55,36 @@ void Exporter::design_panel(){
 
   //}
 
-  this->tab_export();
+
+  this->item_update();
+  this->display_header();
   this->draw_navigator();
 
   //---------------------------
 }
 
-//Subfunction
-void Exporter::tab_export(){
+//Header function
+void Exporter::display_header(){
   //---------------------------
 
-  this->export_update();
-  this->export_header();
+  this->display_action();
+
+  ImGui::BeginTable("header##exporter", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
+
+  this->display_path();
+  this->display_format();
+  this->display_encording();
+
+  ImGui::EndTable();
 
   //---------------------------
+  ImGui::Separator();
 }
-void Exporter::export_update(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+void Exporter::display_action(){
   //---------------------------
 
-  //Actualize current name
-  if(entity != nullptr && current_name != entity->name){
-    utl::base::Data* data = &entity->data;
-    this->current_name = entity->name;
-
-    if(ldr_exporter->is_format_supported(data->format)){
-      this->current_format = data->format;
-    }
-  }
-
-  //---------------------------
-}
-void Exporter::export_header(){
-  //---------------------------
-
-  //Save button
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Save##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
@@ -98,9 +93,10 @@ void Exporter::export_header(){
   }
   ImGui::PopStyleColor(2);
 
-  ImGui::BeginTable("header##exporter", 2);
-  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
-  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
+  //---------------------------
+}
+void Exporter::display_path(){
+  //---------------------------
 
   //Directory
   static char str_n[256];
@@ -127,7 +123,13 @@ void Exporter::export_header(){
   }
   ImGui::PopStyleColor(2);
 
-  //Format
+  //---------------------------
+}
+void Exporter::display_format(){
+  //---------------------------
+
+
+
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Format"); ImGui::TableNextColumn();
   static int format = 0;
@@ -138,10 +140,14 @@ void Exporter::export_header(){
     }
   }
 
-  //Encoding
+  //---------------------------
+}
+void Exporter::display_encording(){
+  //---------------------------
+
   std::vector<int> vec_encoding = ldr_exporter->get_supported_encoding(current_format);
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Mode"); ImGui::TableNextColumn();
+  ImGui::Text("Encoding"); ImGui::TableNextColumn();
   static int mode = 1;
   bool condition = (std::find(vec_encoding.begin(), vec_encoding.end(), ldr::io::ASCII) == vec_encoding.end());
   if(condition){
@@ -162,10 +168,26 @@ void Exporter::export_header(){
     ldr_exporter->set_recording(mode);
   }
   if(condition) ImGui::EndDisabled();
-  ImGui::EndTable();
 
   //---------------------------
-  ImGui::Separator();
+}
+
+//Navigator function
+void Exporter::item_update(){
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  //---------------------------
+
+  //Actualize current name
+  if(entity != nullptr && current_name != entity->name){
+    utl::base::Data* data = &entity->data;
+    this->current_name = entity->name;
+
+    if(ldr_exporter->is_format_supported(data->format)){
+      this->current_format = data->format;
+    }
+  }
+
+  //---------------------------
 }
 void Exporter::item_operation(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();

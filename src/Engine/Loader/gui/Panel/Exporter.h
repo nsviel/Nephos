@@ -25,10 +25,15 @@ public:
   void run_panel();
   void design_panel();
 
-  //Subfunction
-  void tab_export();
-  void export_update();
-  void export_header();
+  //Header
+  void display_header();
+  void display_action();
+  void display_path();
+  void display_format();
+  void display_encording();
+
+  //Navigator
+  void item_update();
   void item_operation();
   bool item_format(std::string format);
 
