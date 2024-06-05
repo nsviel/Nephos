@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.47937534"
-     inkscape:cx="870.92506"
-     inkscape:cy="704.04122"
+     inkscape:zoom="0.67793911"
+     inkscape:cx="916.749"
+     inkscape:cy="667.46408"
      inkscape:window-width="1880"
      inkscape:window-height="1168"
      inkscape:window-x="40"
@@ -201,12 +201,12 @@
          y="124.63329"
          id="tspan15534">Engine</tspan></text>
     <rect
-       style="fill:#78a5e4;fill-opacity:1;stroke:#000000;stroke-width:0.695185;stroke-opacity:1"
+       style="fill:#78a5e4;fill-opacity:1;stroke:#000000;stroke-width:0.521815;stroke-opacity:1"
        id="rect896-8"
-       width="241.54315"
-       height="36.663704"
-       x="-246.75992"
-       y="123.79493" />
+       width="135.45001"
+       height="36.837074"
+       x="-246.8466"
+       y="123.70824" />
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.310696;stroke-opacity:1"
        id="rect896"
@@ -392,8 +392,8 @@
        id="rect896-17-4-1-6-3"
        width="42.243725"
        height="30.461723"
-       x="-58.043087"
-       y="127.1319" />
+       x="-54.264622"
+       y="129.3156" />
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.222897;stroke-opacity:1"
        id="rect896-17-4-1-6-3-0"
@@ -404,14 +404,14 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.213788;stroke-opacity:1"
-       x="-40.841045"
-       y="129.26884"
+       x="-37.835075"
+       y="131.72462"
        id="text1714-8-1-51"
        transform="scale(0.90220031,1.1084013)"><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke:#000000;stroke-width:0.213788;stroke-opacity:1"
-         x="-40.841045"
-         y="129.26884"
+         x="-37.835075"
+         y="131.72462"
          id="tspan25914-7">Player</tspan></text>
     <rect
        style="fill:#4d90ac;fill-opacity:1;stroke:#000000;stroke-width:0.214124;stroke-opacity:1"
