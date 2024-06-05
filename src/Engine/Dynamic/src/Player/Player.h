@@ -19,7 +19,7 @@ public:
   ~Player();
 
   //Main function
-  void update();
+  void loop();
   void reset();
 
   //Player function

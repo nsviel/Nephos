@@ -20,13 +20,18 @@ Player::Player(dyn::Node* node_dynamic){
 Player::~Player(){}
 
 //Main function
-void Player::update(){
+void Player::loop(){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
+  //Update
   state.locked = set->is_locked;
-
   this->manage_update(set);
+
+  //Check for loop end
+  if(timestamp.current >= timestamp.end){
+    this->manage_restart(set);
+  }
 
   //---------------------------
 }

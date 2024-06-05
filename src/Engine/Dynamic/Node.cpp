@@ -43,7 +43,7 @@ void Node::loop(){
   //---------------------------
 
   node_radio->loop();
-  dyn_player->update();
+  dyn_player->loop();
 
   //---------------------------
 }
