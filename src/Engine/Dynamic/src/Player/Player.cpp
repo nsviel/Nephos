@@ -92,10 +92,10 @@ void Player::button_stop(){
 
   //---------------------------
 }
-void Player::button_restart(){
+void Player::button_replay(){
   //---------------------------
 
-  state.restart = !state.restart;
+  state.replay = !state.replay;
 
   //---------------------------
 }
@@ -184,6 +184,13 @@ void Player::manage_update(dat::base::Set* set){
 }
 void Player::manage_restart(dat::base::Set* set){
   //---------------------------
+
+  if(!state.replay){
+    state.play = false;
+    state.pause = true;
+    timestamp.current = timestamp.begin;
+    this->manage_state(set);
+  }
 
   //Entity
   for(int i=0; i<set->list_entity.size(); i++){

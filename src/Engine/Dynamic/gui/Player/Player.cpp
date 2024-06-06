@@ -106,18 +106,18 @@ void Player::player_repeat(){
   dyn::base::State* state = dyn_player->get_state();
   //---------------------------
 
-  if(state->restart){
+  if(state->replay){
     //Repeat activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      dyn_player->button_restart();
+      dyn_player->button_replay();
     }
     ImGui::PopStyleColor();
   }
   else{
     //Repeat desactivated
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
-      dyn_player->button_restart();
+      dyn_player->button_replay();
     }
   }
 

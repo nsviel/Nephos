@@ -27,7 +27,7 @@ public:
   void button_play();
   void button_pause();
   void button_stop();
-  void button_restart();
+  void button_replay();
   void button_record();
   void button_lock(bool value);
   void button_close();
