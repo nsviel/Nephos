@@ -139,7 +139,7 @@ void Loader::draw_bookmark_tab(){
     int size = ImGui::GetContentRegionAvail().x - trash_space;
     ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0.04, 0.5));
     if(ImGui::Button(file.item.name.c_str(), ImVec2(size, 0))){
-      this->operation_bookmark(file.item.path);
+      this->item_bookmark(file.item.path);
     }
     ImGui::PopStyleVar();
     ImGui::SetItemTooltip("%s", file.item.path.c_str());
@@ -192,7 +192,7 @@ bool Loader::item_format(std::string format){
 
   //---------------------------
 }
-void Loader::operation_bookmark(std::string file_path){
+void Loader::item_bookmark(std::string file_path){
   //---------------------------
 
   //If selection is a directory go display his content

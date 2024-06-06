@@ -5,6 +5,7 @@
 #include <vector>
 
 namespace ldr{class Node;}
+namespace ldr{class Structure;}
 namespace ldr::base{class Exporter;}
 namespace dat::base{class Entity;}
 
@@ -30,11 +31,10 @@ public:
   std::vector<std::string> get_supported_format();
   std::vector<int> get_supported_encoding(std::string format);
 
-  inline void set_recording(int value){this->recording = value;}
-
 private:
+  ldr::Structure* ldr_struct;
+
   std::vector<ldr::base::Exporter*> vec_exporter;
-  int recording = ldr::io::BINARY;
 };
 
 }

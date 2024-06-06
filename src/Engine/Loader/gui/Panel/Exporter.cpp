@@ -16,6 +16,7 @@ Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Naviga
 
   dat::Node* node_data = node_loader->get_node_data();
 
+  this->ldr_struct = node_loader->get_ldr_struct();
   this->dat_selection = node_data->get_dat_selection();
   this->ldr_exporter = node_loader->get_ldr_exporter();
 
@@ -160,7 +161,7 @@ void Exporter::display_encording(){
     mode = ldr::io::BINARY;
   }
   if(ImGui::RadioButton("ASCII", &mode, ldr::io::ASCII)){
-    ldr_exporter->set_recording(mode);
+    ldr_struct->export_encoding = ldr::io::ASCII;
   }
   if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
@@ -170,7 +171,7 @@ void Exporter::display_encording(){
     mode = ldr::io::ASCII;
   }
   if(ImGui::RadioButton("Binary", &mode, ldr::io::BINARY)){
-    ldr_exporter->set_recording(mode);
+    ldr_struct->export_encoding = ldr::io::BINARY;
   }
   if(condition) ImGui::EndDisabled();
 

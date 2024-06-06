@@ -36,7 +36,7 @@ public:
   //Operation function
   void item_operation();
   bool item_format(std::string format);
-  void operation_bookmark(std::string path);
+  void item_bookmark(std::string path);
 
 private:
   ldr::Structure* ldr_struct;

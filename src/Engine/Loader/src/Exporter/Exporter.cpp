@@ -9,6 +9,8 @@ namespace ldr::io{
 Exporter::Exporter(ldr::Node* node_loader){
   //---------------------------
 
+  this->ldr_struct = node_loader->get_ldr_struct();
+
   this->insert_exporter(new format::ply::Exporter());
   this->insert_exporter(new format::pts::Exporter());
 
@@ -27,7 +29,7 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
 
     if(data->format == exporter->format){
 
-      switch(recording){
+      switch(ldr_struct->export_encoding){
         case ldr::io::ASCII:{
           exporter->export_ascii(data, pose, path);
           break;
