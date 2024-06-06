@@ -7,11 +7,9 @@
 
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
-namespace ldr::io{class Recorder;}
 namespace ldr::gui{class File;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
-namespace dat{class Selection;}
 
 
 namespace ldr::gui::exporter{
@@ -34,14 +32,14 @@ public:
 
   //Subfunction
   void item_filtering(std::vector<std::string>& vec_path);
-  void item_update();
+  void item_update(dyn::base::Sensor* sensor);
   void item_operation();
 
 private:
   dyn::Structure* dyn_struct;
   ldr::Structure* ldr_struct;
-  ldr::io::Recorder* ldr_recorder;
-  dat::Selection* dat_selection;
+
+  std::vector<std::string> vec_format;
 };
 
 }

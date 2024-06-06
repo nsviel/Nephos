@@ -16,7 +16,6 @@ Recorder::Recorder(dyn::Node* node_dynamic){
   ldr::Node* node_loader = node_engine->get_node_loader();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->ldr_recorder = node_loader->get_ldr_recorder();
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------

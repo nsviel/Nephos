@@ -19,8 +19,6 @@ Recorder::Recorder(ldr::Node* node_loader){
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->ldr_struct = node_loader->get_ldr_struct();
-  this->dat_selection = node_data->get_dat_selection();
-  this->ldr_recorder = node_loader->get_ldr_recorder();
 
   //---------------------------
 }
@@ -30,7 +28,7 @@ Recorder::~Recorder(){}
 void Recorder::design_header(dyn::base::Sensor* sensor){
   //---------------------------
 
-  this->item_update();
+  this->item_update(sensor);
 
   this->display_action();
   this->display_path();
@@ -88,7 +86,6 @@ void Recorder::display_format(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Format"); ImGui::TableNextColumn();
   static int format = 0;
-  std::vector<std::string> vec_format = ldr_recorder->get_supported_format();
   for(int i=0; i<vec_format.size(); i++){
     if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
       ldr_struct->current_format = vec_format[i];
@@ -102,7 +99,6 @@ void Recorder::display_format(){
 
 //Subfunction
 void Recorder::item_filtering(std::vector<std::string>& vec_path){
-  std::vector<std::string> vec_format = ldr_recorder->get_supported_format();
   //---------------------------
 
   std::vector<std::string> vec_path_ok;
@@ -129,17 +125,17 @@ void Recorder::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
   vec_path = vec_path_ok;
 }
-void Recorder::item_update(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+void Recorder::item_update(dyn::base::Sensor* sensor){
   //---------------------------
 
   //Actualize current name
-  if(entity != nullptr && ldr_struct->current_name != entity->name){
-    utl::base::Data* data = &entity->data;
-    ldr_struct->current_name = entity->name;
+  if(sensor != nullptr && ldr_struct->current_name != sensor->name){
+    utl::base::Data* data = &sensor->data;
+    ldr_struct->current_name = sensor->name;
 
-    if(ldr_recorder->is_format_supported(data->format)){
-      ldr_struct->current_format = data->format;
+    this->vec_format.clear();
+    for(int i=0; i<sensor->vec_recorder.size(); i++){
+      this->vec_format.push_back(sensor->vec_recorder[i]->format);
     }
   }
 
