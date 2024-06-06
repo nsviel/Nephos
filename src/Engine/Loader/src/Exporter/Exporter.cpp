@@ -1,6 +1,7 @@
 #include "Exporter.h"
 
 #include <Loader/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace ldr::io{
@@ -104,6 +105,17 @@ std::vector<int> Exporter::get_supported_encoding(std::string format){
 
   //---------------------------
   return vec_encoding;
+}
+std::string Exporter::get_action_label(dat::base::Entity* entity){
+  std::string label = "Save";
+  //---------------------------
+
+  if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+    label = "Record";
+  }
+
+  //---------------------------
+  return label;
 }
 
 }

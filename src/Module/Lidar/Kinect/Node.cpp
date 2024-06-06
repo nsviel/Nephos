@@ -28,8 +28,8 @@ Node::Node(eng::Node* node_engine){
   //Importer
   ldr::io::Importer* ldr_importer = node_loader->get_ldr_importer();
   ldr_importer->insert_importer(new k4n::playback::Importer(this));
-  ldr::io::Exporter* ldr_exporter = node_loader->get_ldr_exporter();
-  ldr_exporter->insert_recorder(new k4n::capture::Recorder(this));
+  ldr::io::Recorder* ldr_recorder = node_loader->get_ldr_recorder();
+  ldr_recorder->insert_recorder(new k4n::capture::Recorder(this));
 
   //---------------------------
 }

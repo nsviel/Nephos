@@ -8,7 +8,7 @@ namespace eng{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::io{class Importer;}
 namespace ldr::io{class Exporter;}
-namespace ldr::io{class Playback;}
+namespace ldr::io{class Recorder;}
 namespace ldr::bookmark{class Manager;}
 namespace ldr::gui{class Loader;}
 namespace ldr::gui{class Exporter;}
@@ -37,6 +37,7 @@ public:
   inline ldr::Structure* get_ldr_struct(){return ldr_struct;}
   inline ldr::io::Importer* get_ldr_importer(){return ldr_importer;}
   inline ldr::io::Exporter* get_ldr_exporter(){return ldr_exporter;}
+  inline ldr::io::Recorder* get_ldr_recorder(){return ldr_recorder;}
   inline ldr::bookmark::Manager* get_ldr_bookmark(){return ldr_bookmark;}
 
 private:
@@ -49,7 +50,7 @@ private:
   ldr::Structure* ldr_struct;
   ldr::io::Importer* ldr_importer;
   ldr::io::Exporter* ldr_exporter;
-  ldr::io::Playback* ldr_playback;
+  ldr::io::Recorder* ldr_recorder;
   ldr::bookmark::Manager* ldr_bookmark;
   ldr::gui::Loader* gui_loader;
   ldr::gui::Exporter* gui_exporter;
