@@ -14,7 +14,6 @@ namespace dyn::base{
 struct Sensor : public dat::base::Object, public utl::base::Thread{
   //---------------------------
 
-  //Main function
   void clean(){
     //---------------------------
 
