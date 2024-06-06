@@ -32,9 +32,10 @@ public:
   void insert_set(dat::base::Set* set);
 
   //Subfunction
-  void ope_misc(dat::base::Entity* entity);
+  void ope_clean();
   void ope_color(dat::base::Entity* entity);
   void ope_transformation(dat::base::Entity* entity);
+  void ope_insertion(dat::base::Entity* entity);
 
 private:
   ldr::Structure* ldr_struct;

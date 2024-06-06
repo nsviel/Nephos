@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Kinect/Namespace.h>
+#include <Loader/Namespace.h>
 #include <Data/Namespace.h>
 #include <chrono>
 
@@ -12,9 +13,11 @@ namespace k4n::capture{
 Connection::Connection(k4n::Node* node_k4n){
   //---------------------------
 
-  this->node_k4n = node_k4n;
+  ldr::Node* node_loader = node_k4n->get_node_loader();
   dat::Node* node_data = node_k4n->get_node_data();
 
+  this->node_k4n = node_k4n;
+  this->ldr_operation = node_loader->get_ldr_operation();
   this->dat_set = node_data->get_dat_set();
   this->dat_graph = node_data->get_dat_graph();
 
@@ -79,11 +82,10 @@ void Connection::stop_thread(){
 void Connection::manage_connected_device(){
   //Have to be called from main thread, connection change when flag up
   if(flag == false) return;
-  dat::base::Set* set_graph = dat_graph->get_set_graph();
   //---------------------------
 
   //Suppress all present entities
-  dat_set->remove_all_entity(set_graph);
+  ldr_operation->ope_clean();
 
   //Create required number of new devices
   for(int i=0; i<current_nb_dev; i++){
@@ -106,8 +108,7 @@ void Connection::create_sensor(int index){
   dat::base::Set* set = manage_set_parent();
   sensor->set_parent = set;
   sensor->vec_recorder.push_back(new k4n::capture::Recorder());
-  dat_set->insert_entity(set, sensor);
-  dat_graph->assign_UID(sensor);
+  ldr_operation->ope_insertion(sensor);
   sensor->start_thread();
 
   //---------------------------

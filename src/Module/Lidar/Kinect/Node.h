@@ -31,6 +31,7 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline dat::Node* get_node_data(){return node_data;}
+  inline ldr::Node* get_node_loader(){return node_loader;}
   inline k4n::Structure* get_k4n_structure(){return k4n_structure;}
 
 private:
