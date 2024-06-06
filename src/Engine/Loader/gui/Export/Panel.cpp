@@ -20,7 +20,7 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(no
   this->dat_selection = node_data->get_dat_selection();
   this->ldr_exporter = node_loader->get_ldr_exporter();
 
-  this->name = "Panel";
+  this->name = "Export##555";
   this->show_window = show_window;
   this->with_bookmark = false;
   this->with_all_format = false;

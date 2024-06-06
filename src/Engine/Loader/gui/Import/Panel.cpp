@@ -21,7 +21,7 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(no
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
 
-  this->name = "Panel";
+  this->name = "Import##555";
   this->show_window = show_window;
   this->with_bookmark = true;
 

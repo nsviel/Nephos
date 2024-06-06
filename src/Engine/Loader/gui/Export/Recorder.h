@@ -23,7 +23,12 @@ public:
 
 public:
   //Main function
+  void design_header();
 
+  //Subfunction
+  void display_action();
+  void display_path();
+  void display_format();
 
 private:
   ldr::Structure* ldr_struct;
