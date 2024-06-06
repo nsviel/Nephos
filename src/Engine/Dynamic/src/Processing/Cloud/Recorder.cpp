@@ -17,6 +17,7 @@ Recorder::Recorder(dyn::Node* node_dynamic){
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->thread_pool = node_engine->get_thread_pool();
+  this->thread_idle = true;
 
   //---------------------------
 }
@@ -24,13 +25,13 @@ Recorder::~Recorder(){}
 
 //Main function
 void Recorder::start_thread(dyn::base::Sensor* sensor){
-  if(!sensor->state.record) return;
   //---------------------------
 
-  this->thread_idle = false;
+  this->wait_thread();
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
+  this->thread_idle = false;
   thread_pool->add_task(task_function);
 
   //---------------------------

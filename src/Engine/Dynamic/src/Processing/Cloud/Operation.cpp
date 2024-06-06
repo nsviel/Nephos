@@ -63,6 +63,7 @@ void Operation::wait_thread(){
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+  dyn_recorder->wait_thread();
 
   //---------------------------
 }
