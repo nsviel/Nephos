@@ -10,8 +10,8 @@ namespace ldr::io{class Importer;}
 namespace ldr::io{class Exporter;}
 namespace ldr::io{class Recorder;}
 namespace ldr::bookmark{class Manager;}
-namespace ldr::gui{class Loader;}
-namespace ldr::gui{class Exporter;}
+namespace ldr::gui::importer{class Panel;}
+namespace ldr::gui::exporter{class Panel;}
 
 
 namespace ldr{
@@ -52,8 +52,8 @@ private:
   ldr::io::Exporter* ldr_exporter;
   ldr::io::Recorder* ldr_recorder;
   ldr::bookmark::Manager* ldr_bookmark;
-  ldr::gui::Loader* gui_loader;
-  ldr::gui::Exporter* gui_exporter;
+  ldr::gui::importer::Panel* gui_import;
+  ldr::gui::exporter::Panel* gui_export;
 
   bool show_scene = true;
   bool show_loader = true;

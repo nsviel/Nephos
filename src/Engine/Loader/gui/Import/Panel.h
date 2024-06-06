@@ -15,14 +15,14 @@ namespace dat{class Set;}
 namespace dat::base{class Entity;}
 
 
-namespace ldr::gui{
+namespace ldr::gui::importer{
 
-class Loader : public ldr::gui::Navigator
+class Panel : public ldr::gui::Navigator
 {
 public:
   //Constructor / Destructor
-  Loader(ldr::Node* node_loader, bool* show_window);
-  ~Loader();
+  Panel(ldr::Node* node_loader, bool* show_window);
+  ~Panel();
 
 public:
   //Main function

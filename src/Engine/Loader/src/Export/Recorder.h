@@ -27,8 +27,6 @@ public:
   //Subfunction
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
-  std::vector<int> get_supported_encoding(std::string format);
-  std::string get_action_label(dat::base::Entity* entity);
 
 private:
   ldr::Structure* ldr_struct;

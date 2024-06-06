@@ -12,9 +12,6 @@ Recorder::Recorder(ldr::Node* node_loader){
 
   this->ldr_struct = node_loader->get_ldr_struct();
 
-  this->insert_exporter(new format::ply::Recorder());
-  this->insert_exporter(new format::pts::Recorder());
-
   //---------------------------
 }
 Recorder::~Recorder(){}
@@ -54,22 +51,6 @@ std::vector<std::string> Recorder::get_supported_format(){
 
   //---------------------------
   return vec_format;
-}
-std::vector<int> Recorder::get_supported_encoding(std::string format){
-  std::vector<int> vec_encoding;
-  //---------------------------
-
-  for(int i=0; i<vec_recorder.size(); i++){
-    ldr::base::Recorder* exporter = vec_recorder[i];
-
-    if(format == exporter->format){
-      vec_encoding = exporter->vec_encoding;
-      break;
-    }
-  }
-
-  //---------------------------
-  return vec_encoding;
 }
 
 }

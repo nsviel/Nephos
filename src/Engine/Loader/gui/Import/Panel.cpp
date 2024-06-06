@@ -1,4 +1,4 @@
-#include "Loader.h"
+#include "Panel.h"
 
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
@@ -7,10 +7,10 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace ldr::gui{
+namespace ldr::gui::importer{
 
 //Constructor / Destructor
-Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
+Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
   //---------------------------
 
   dat::Node* node_data = node_loader->get_node_data();
@@ -21,16 +21,16 @@ Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
 
-  this->name = "Loader";
+  this->name = "Panel";
   this->show_window = show_window;
   this->with_bookmark = true;
 
   //---------------------------
 }
-Loader::~Loader(){}
+Panel::~Panel(){}
 
 //Main function
-void Loader::run_panel(){
+void Panel::run_panel(){
   //---------------------------
 
   if(*show_window){
@@ -47,7 +47,7 @@ void Loader::run_panel(){
 
   //---------------------------
 }
-void Loader::design_panel(){
+void Panel::design_panel(){
   ImGuiTabItemFlags flag = 0;
   //---------------------------
 
@@ -60,7 +60,7 @@ void Loader::design_panel(){
   ImGui::Separator();
 
   ImVec2 size = ImGui::GetContentRegionAvail();
-  if(ImGui::BeginTabBar("Loader_tab##4567")){
+  if(ImGui::BeginTabBar("Panel_tab##4567")){
     //File manager loader
     ImGui::SetNextItemWidth(size.x/2);
     if(ImGui::BeginTabItem("File##50", NULL, flag)){
@@ -82,7 +82,7 @@ void Loader::design_panel(){
 }
 
 //Subfunction
-void Loader::draw_header(){
+void Panel::draw_header(){
   //---------------------------
 
   //Load button
@@ -119,7 +119,7 @@ void Loader::draw_header(){
 
   //---------------------------
 }
-void Loader::draw_bookmark_tab(){
+void Panel::draw_bookmark_tab(){
   std::list<ldr::bookmark::Item> list_item = ldr_bookmark->get_list_item();
   //---------------------------
 
@@ -161,7 +161,7 @@ void Loader::draw_bookmark_tab(){
 }
 
 //Operation function
-void Loader::item_operation(){
+void Panel::item_operation(){
   //---------------------------
 
   //Retrieve all good selected files to load
@@ -185,14 +185,14 @@ void Loader::item_operation(){
 
   //---------------------------
 }
-bool Loader::item_format(std::string format){
+bool Panel::item_format(std::string format){
   //---------------------------
 
   return ldr_importer->is_format_supported(format);
 
   //---------------------------
 }
-void Loader::item_bookmark(std::string file_path){
+void Panel::item_bookmark(std::string file_path){
   //---------------------------
 
   //If selection is a directory go display his content

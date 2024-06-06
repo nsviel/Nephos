@@ -1,4 +1,4 @@
-#include "Exporter.h"
+#include "Panel.h"
 
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
@@ -8,10 +8,10 @@
 #include <image/IconsFontAwesome6.h>
 
 
-namespace ldr::gui{
+namespace ldr::gui::exporter{
 
 //Constructor / Destructor
-Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
+Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
   //---------------------------
 
   dat::Node* node_data = node_loader->get_node_data();
@@ -20,7 +20,7 @@ Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Naviga
   this->dat_selection = node_data->get_dat_selection();
   this->ldr_exporter = node_loader->get_ldr_exporter();
 
-  this->name = "Exporter";
+  this->name = "Panel";
   this->show_window = show_window;
   this->with_bookmark = false;
   this->with_all_format = false;
@@ -28,10 +28,10 @@ Exporter::Exporter(ldr::Node* node_loader, bool* show_window) : ldr::gui::Naviga
 
   //---------------------------
 }
-Exporter::~Exporter(){}
+Panel::~Panel(){}
 
 //Main function
-void Exporter::run_panel(){
+void Panel::run_panel(){
   //---------------------------
 
   if(*show_window){
@@ -48,7 +48,7 @@ void Exporter::run_panel(){
 
   //---------------------------
 }
-void Exporter::design_panel(){
+void Panel::design_panel(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
@@ -61,8 +61,7 @@ void Exporter::design_panel(){
 
   this->item_update();
 
-  std::string action = exporter ? "Export" : "Record";
-  this->display_action(action);
+  this->display_action();
   this->display_path();
   this->display_format();
   this->display_encording();
@@ -73,12 +72,12 @@ void Exporter::design_panel(){
 }
 
 //Header function
-void Exporter::display_action(std::string action){
+void Panel::display_action(){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-  if(ImGui::Button(action.c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+  if(ImGui::Button("Save##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
     this->item_operation();
     this->vec_selection.clear();
   }
@@ -86,7 +85,7 @@ void Exporter::display_action(std::string action){
 
   //---------------------------
 }
-void Exporter::display_path(){
+void Panel::display_path(){
   //---------------------------
 
   ImGui::BeginTable("header##exporter", 2);
@@ -123,7 +122,7 @@ void Exporter::display_path(){
   //---------------------------
   ImGui::Separator();
 }
-void Exporter::display_format(){
+void Panel::display_format(){
   //---------------------------
 
   ImGui::BeginTable("header##exporter", 2);
@@ -144,7 +143,7 @@ void Exporter::display_format(){
 
   //---------------------------
 }
-void Exporter::display_encording(){
+void Panel::display_encording(){
   //---------------------------
 
   ImGui::BeginTable("header##exporter", 2);
@@ -182,7 +181,7 @@ void Exporter::display_encording(){
 }
 
 //Navigator function
-void Exporter::item_update(){
+void Panel::item_update(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
@@ -198,7 +197,7 @@ void Exporter::item_update(){
 
   //---------------------------
 }
-void Exporter::item_operation(){
+void Panel::item_operation(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   if(entity == nullptr) return;
   //---------------------------
@@ -211,7 +210,7 @@ void Exporter::item_operation(){
 
   //---------------------------
 }
-bool Exporter::item_format(std::string format){
+bool Panel::item_format(std::string format){
   //---------------------------
 
   return ldr_exporter->is_format_supported(format);
