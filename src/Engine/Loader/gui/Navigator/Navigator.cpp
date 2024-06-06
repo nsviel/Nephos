@@ -172,7 +172,6 @@ void Navigator::item_organisation(std::vector<std::string>& vec_path){
       file.item.format = utl::path::get_format_from_path(current_path);
       file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
       file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-
       vec_file.push_back(file);
     }
   }

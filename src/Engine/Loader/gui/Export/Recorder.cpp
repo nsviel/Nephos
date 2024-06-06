@@ -101,11 +101,32 @@ void Recorder::display_format(){
 
 //Subfunction
 void Recorder::item_filtering(std::vector<std::string>& vec_path){
+  std::vector<std::string> vec_format = ldr_recorder->get_supported_format();
   //---------------------------
 
+  std::vector<std::string> vec_path_ok;
+  for(int i=0; i<vec_path.size(); i++){
+    std::string& path = vec_path[i];
 
+    //If direcctory, ok
+    if(utl::directory::is_directory(path)){
+      vec_path_ok.push_back(path);
+      continue;
+    }
+
+    //If file, check format compatibility
+    std::string format = utl::path::get_format_from_path(path);
+    for(int j=0; j<vec_format.size(); j++){
+      if(format == vec_format[j]){
+        vec_path_ok.push_back(vec_path[i]);
+        break;
+      }
+
+    }
+  }
 
   //---------------------------
+  vec_path = vec_path_ok;
 }
 void Recorder::item_update(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
