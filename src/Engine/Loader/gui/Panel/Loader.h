@@ -6,6 +6,7 @@
 #include <vector>
 
 namespace ldr{class Node;}
+namespace ldr{class Structure;}
 namespace ldr::io{class Importer;}
 namespace ldr::gui{class File;}
 namespace ldr::bookmark{class Manager;}
@@ -40,6 +41,7 @@ public:
   void operation_bookmark(std::string path);
 
 private:
+  ldr::Structure* ldr_struct;
   ldr::io::Importer* ldr_importer;
   ldr::bookmark::Manager* ldr_bookmark;
   dat::Set* dat_set;

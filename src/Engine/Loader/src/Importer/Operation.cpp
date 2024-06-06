@@ -14,6 +14,7 @@ Operation::Operation(ldr::Node* node_loader){
 
   dat::Node* node_data = node_loader->get_node_data();
 
+  this->ldr_struct = node_loader->get_ldr_struct();
   this->dat_entity = node_data->get_dat_entity();
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
@@ -81,16 +82,16 @@ void Operation::transformation_scaling(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  //ope_transform->make_scaling(object, param_scaling);
+  ope_transform->make_scaling(object, ldr_struct->import_scaling);
 
-  //if(param_centered){
-    //ope_operation->center_object(object);
-  //}
+  if(ldr_struct->import_center){
+    ope_operation->center_object(object);
+  }
 
-  //if(param_remove_old){
-  //  dat::base::Set* set_graph = dat_graph->get_set_graph();
-  //  dat_set->remove_all_entity(set_graph);
-  //}
+  if(ldr_struct->import_remove_old){
+    dat::base::Set* set_graph = dat_graph->get_set_graph();
+    dat_set->remove_all_entity(set_graph);
+  }
 
   //---------------------------
 }

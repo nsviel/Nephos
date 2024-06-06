@@ -20,6 +20,7 @@ Node::Node(eng::Node* node_engine){
   this->node_data = node_engine->get_node_data();
 
   //Child
+  this->ldr_struct = new ldr::Structure();
   this->ldr_importer = new ldr::io::Importer(this);
   this->ldr_exporter = new ldr::io::Exporter(this);
   this->ldr_recorder = new ldr::io::Recorder(this);

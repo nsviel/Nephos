@@ -5,6 +5,7 @@
 namespace vk{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
+namespace ldr{class Structure;}
 namespace ldr::io{class Importer;}
 namespace ldr::io{class Exporter;}
 namespace ldr::io{class Recorder;}
@@ -34,6 +35,7 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
 
+  inline ldr::Structure* get_ldr_struct(){return ldr_struct;}
   inline ldr::io::Importer* get_ldr_importer(){return ldr_importer;}
   inline ldr::io::Exporter* get_ldr_exporter(){return ldr_exporter;}
   inline ldr::io::Recorder* get_ldr_recorder(){return ldr_recorder;}
@@ -46,6 +48,7 @@ private:
   dat::Node* node_data;
 
   //Child
+  ldr::Structure* ldr_struct;
   ldr::io::Importer* ldr_importer;
   ldr::io::Exporter* ldr_exporter;
   ldr::io::Recorder* ldr_recorder;

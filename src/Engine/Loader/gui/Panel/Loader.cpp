@@ -17,6 +17,7 @@ Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(
 
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
+  this->ldr_struct = node_loader->get_ldr_struct();
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
   this->ope_transform = new ope::Transformation();
@@ -105,19 +106,19 @@ void Loader::draw_header(){
   if(current_path == "") current_path = "(not defined)";
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::EndTable();
-/*
+
   // Scale new
   ImGui::SetNextItemWidth(75);
-  ImGui::DragFloat("Scale##4567", &param_scaling, 0.1, 0.1, 100, "%.2f x");
+  ImGui::DragFloat("Scale##4567", &ldr_struct->import_scaling, 0.1, 0.1, 100, "%.2f x");
 
   // Remove old
   ImGui::SameLine();
-  ImGui::Checkbox("Remove##222", &param_remove_old);
+  ImGui::Checkbox("Remove##222", &ldr_struct->import_remove_old);
 
   // Center new
   ImGui::SameLine();
-  ImGui::Checkbox("Centered##222", &param_centered);
-*/
+  ImGui::Checkbox("Centered##222", &ldr_struct->import_center);
+
   //---------------------------
 }
 void Loader::draw_bookmark_tab(){

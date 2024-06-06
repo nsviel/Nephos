@@ -4,6 +4,7 @@
 #include <vector>
 
 namespace ldr{class Node;}
+namespace ldr{class Structure;}
 namespace dat{class Entity;}
 namespace dat{class Graph;}
 namespace dat{class Set;}
@@ -32,6 +33,7 @@ public:
   void transformation_scaling(dat::base::Entity* entity);
 
 private:
+  ldr::Structure* ldr_struct;
   dat::Entity* dat_entity;
   dat::Graph* dat_graph;
   dat::Set* dat_set;
