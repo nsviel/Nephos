@@ -25,7 +25,6 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(no
   this->name = "Export##555";
   this->show_window = show_window;
   this->with_bookmark = false;
-  this->with_all_format = false;
 
   //---------------------------
 }
@@ -51,6 +50,7 @@ void Panel::run_panel(){
 }
 void Panel::design_panel(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
+  if(entity == nullptr) return;
   //---------------------------
 
   //If dynamic object
@@ -70,6 +70,8 @@ void Panel::design_panel(){
 
 //Navigator function
 void Panel::item_operation(){
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  if(entity == nullptr) return;
   //---------------------------
 
   //If dynamic object
