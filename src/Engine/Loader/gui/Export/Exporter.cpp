@@ -149,6 +149,13 @@ void Exporter::display_encording(){
 }
 
 //Subfunction
+void Exporter::item_filtering(std::vector<std::string>& vec_path){
+  //---------------------------
+
+
+
+  //---------------------------
+}
 void Exporter::item_update(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------

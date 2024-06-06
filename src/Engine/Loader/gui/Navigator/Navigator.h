@@ -30,7 +30,8 @@ public:
   void draw_bookmark(ldr::gui::File& bookmark);
 
   //Item function
-  void item_organisation();
+  virtual void item_filtering(std::vector<std::string>& vec_path){}
+  void item_organisation(std::vector<std::string>& vec_path);
   void item_folder();
   void item_file();
   void item_selection();

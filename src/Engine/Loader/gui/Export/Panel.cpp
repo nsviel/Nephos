@@ -69,6 +69,22 @@ void Panel::design_panel(){
 }
 
 //Navigator function
+void Panel::item_filtering(std::vector<std::string>& vec_path){
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  if(entity == nullptr) return;
+  //---------------------------
+
+  //If dynamic object
+  if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+    gui_recorder->item_filtering(vec_path);
+  }
+  //Else, it's static object
+  else{
+    gui_exporter->item_filtering(vec_path);
+  }
+
+  //---------------------------
+}
 void Panel::item_operation(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   if(entity == nullptr) return;

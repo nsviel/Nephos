@@ -97,7 +97,9 @@ void Navigator::draw_file_content(){
   ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
   ImGui::TableHeadersRow();
 
-  this->item_organisation();
+  std::vector<std::string> vec_path = utl::path::list_all_path(ldr_struct->current_dir);
+  this->item_filtering(vec_path);
+  this->item_organisation(vec_path);
   this->item_folder();
   this->item_file();
 
@@ -134,27 +136,26 @@ void Navigator::draw_bookmark(ldr::gui::File& file){
 }
 
 //Item function
-void Navigator::item_organisation(){
-  std::vector<std::string> vec_current_files = utl::path::list_all_path(ldr_struct->current_dir);
+void Navigator::item_organisation(std::vector<std::string>& vec_path){
   //---------------------------
 
   //Item transposition
   int ID = 0;
   vec_folder.clear();
   vec_file.clear();
-  for(int i=0; i<vec_current_files.size(); i++){
+  for(int i=0; i<vec_path.size(); i++){
     ldr::gui::File file;
-    std::string current_file = vec_current_files[i];
-    std::string current_filename = utl::path::get_filename_from_path(current_file);
+    std::string current_path = vec_path[i];
+    std::string current_filename = utl::path::get_filename_from_path(current_path);
     //Remove hidden files
     if(current_filename[0] == '.' && current_filename[1] != '.') continue;
 
     //Get file info
     file.item.ID = ID++;
-    file.item.type = utl::directory::is_directory(current_file) ? ldr::bookmark::FOLDER : ldr::bookmark::FILE;
+    file.item.type = utl::directory::is_directory(current_path) ? ldr::bookmark::FOLDER : ldr::bookmark::FILE;
     if(file.item.type == ldr::bookmark::FOLDER){
-      file.item.name = utl::path::get_filename_from_path(current_file);
-      file.item.path = current_file;
+      file.item.name = utl::path::get_filename_from_path(current_path);
+      file.item.path = current_path;
       file.item.icon = std::string(ICON_FA_FOLDER);
       file.item.size = "---";
       file.item.weight = 0;
@@ -163,12 +164,12 @@ void Navigator::item_organisation(){
       file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
       vec_folder.push_back(file);
     }else if(file.item.type == ldr::bookmark::FILE){
-      file.item.path = current_file;
-      file.item.name = utl::path::get_name_from_path(current_file);
+      file.item.path = current_path;
+      file.item.name = utl::path::get_name_from_path(current_path);
       file.item.icon = std::string(ICON_FA_FILE);
-      file.item.size = utl::file::formatted_size(current_file);
-      file.item.weight = utl::file::size(current_file);
-      file.item.format = utl::path::get_format_from_path(current_file);
+      file.item.size = utl::file::formatted_size(current_path);
+      file.item.weight = utl::file::size(current_path);
+      file.item.format = utl::path::get_format_from_path(current_path);
       file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
       file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
 

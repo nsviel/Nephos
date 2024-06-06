@@ -29,6 +29,7 @@ public:
   void design_panel();
 
   //Navigator
+  void item_filtering(std::vector<std::string>& vec_path);
   void item_operation();
 
 private:

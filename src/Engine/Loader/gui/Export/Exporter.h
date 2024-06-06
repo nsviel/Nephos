@@ -32,6 +32,7 @@ public:
   void display_encording();
 
   //Subfunction
+  void item_filtering(std::vector<std::string>& vec_path);
   void item_update();
   void item_operation();
 

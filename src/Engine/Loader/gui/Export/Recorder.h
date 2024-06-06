@@ -31,6 +31,7 @@ public:
   void display_format();
 
   //Subfunction
+  void item_filtering(std::vector<std::string>& vec_path);
   void item_update();
   void item_operation();
 

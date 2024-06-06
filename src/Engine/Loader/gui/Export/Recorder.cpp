@@ -100,6 +100,13 @@ void Recorder::display_format(){
 }
 
 //Subfunction
+void Recorder::item_filtering(std::vector<std::string>& vec_path){
+  //---------------------------
+
+
+
+  //---------------------------
+}
 void Recorder::item_update(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
