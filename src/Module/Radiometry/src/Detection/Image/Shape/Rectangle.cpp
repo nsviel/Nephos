@@ -41,25 +41,19 @@ void Rectangle::compute_rectangle_detection(cv::Mat& image){
   // Draw rectangles
   for(int i=0; i<contours.size(); i++){
     if(is_rectangle(contours[i])){
-
-
-      // Calculate the center of the bounding rectangle
+      // Calculate the BB and center of the rectangle
       cv::Rect boundingBox = cv::boundingRect(contours[i]);
       cv::Point center(boundingBox.x + boundingBox.width / 2, boundingBox.y + boundingBox.height / 2);
 
-      // Draw the center point
-      cv::rectangle(result, boundingBox, cv::Scalar(0, 255, 0, 255), 2, cv::LINE_AA);
-      cv::circle(result, center, 3, cv::Scalar(0, 0, 255, 255), -1, cv::LINE_AA);
-
-      cv::drawContours(image, contours, i, cv::Scalar(255, 0, 0), 3);
-
+      // Draw rectangles
+      cv::circle(result, center, 1, cv::Scalar(0, 0, 255, 255), 1, cv::LINE_AA);
+      cv::drawContours(result, contours, i, cv::Scalar(0, 255, 0, 255), 2, cv::LINE_AA);
+      cv::rectangle(result, boundingBox, cv::Scalar(255, 150, 0, 255), 1, cv::LINE_AA);
     }
   }
 
-
   rad_image->convert_into_subimage(result);
   rad_image->convert_into_utl_image(result, &rad_struct->detection.image);
-
 
   //---------------------------
 }
@@ -71,8 +65,8 @@ void Rectangle::draw_detected_rectangle(cv::Mat& image){
   //---------------------------
 }
 bool Rectangle::is_rectangle(const vector<cv::Point>& contour){
-  const double minAspectRatio = 0.1;
-  const double maxAspectRatio = 5;
+  const double minAspectRatio = 0.7;
+  const double maxAspectRatio = 3;
   //---------------------------
 
   // Approximate the contour to a polygon
