@@ -17,7 +17,7 @@ public:
 
 public:
   //Main function
-  void record_sensor(k4n::structure::Sensor* sensor, std::string path);
+  void record_sensor(dyn::base::Sensor* sensor, std::string path);
 
   //Subfunction
   void export_start(k4n::structure::Sensor* sensor, std::string path);

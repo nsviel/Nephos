@@ -5,6 +5,7 @@
 namespace dat{class Entity;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
+namespace dyn::cloud{class Recorder;}
 namespace dyn::base{class Sensor;}
 namespace dat::base{class Entity;}
 namespace utl::thread{class Pool;}
@@ -40,6 +41,7 @@ public:
 private:
   dat::Entity* dat_entity;
   dyn::Structure* dyn_struct;
+  dyn::cloud::Recorder* dyn_recorder;
   ope::Voxelizer* ope_voxelizer;
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;

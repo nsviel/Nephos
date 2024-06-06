@@ -13,7 +13,6 @@ struct Structure{
   std::string path = "";
   std::string format = "";
 
-  bool enable = false;
   double file_size = 0;
   float ts_rec = 0;
   float ts_beg = -1;

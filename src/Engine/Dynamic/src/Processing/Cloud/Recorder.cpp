@@ -24,7 +24,7 @@ Recorder::~Recorder(){}
 
 //Main function
 void Recorder::start_thread(dyn::base::Sensor* sensor){
-  if(dyn_struct->recorder.enable == false) return;
+  if(!sensor->state.record) return;
   //---------------------------
 
   this->thread_idle = false;
@@ -38,10 +38,15 @@ void Recorder::start_thread(dyn::base::Sensor* sensor){
 void Recorder::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  for(int i=0; i<sensor->vec_recorder.size(); i++){
-    dyn::base::Recorder* recorder = sensor->vec_recorder[i];
-    if(recorder->format == dyn_struct->recorder.format){
-      recorder->record_sensor(sensor, dyn_struct->recorder.path);
+  if(sensor->vec_recorder.size() == 1){
+    sensor->vec_recorder[0]->record_sensor(sensor, dyn_struct->recorder.path);
+  }else{
+    for(int i=0; i<sensor->vec_recorder.size(); i++){
+      dyn::base::Recorder* recorder = sensor->vec_recorder[i];
+
+      if(recorder->format == dyn_struct->recorder.format){sayHello();
+        recorder->record_sensor(sensor, dyn_struct->recorder.path);
+      }
     }
   }
 

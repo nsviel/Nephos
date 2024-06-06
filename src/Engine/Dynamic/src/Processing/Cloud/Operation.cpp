@@ -25,6 +25,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::normal::Structured();
   //this->rad_detection = node_radio->get_cloud_detection();
+  this->dyn_recorder = new dyn::cloud::Recorder(node_dynamic);
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
@@ -45,6 +46,8 @@ void Operation::start_thread(dyn::base::Sensor* sensor){
 }
 void Operation::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
+
+  dyn_recorder->start_thread(sensor);
 
   this->colorize_object(sensor);
   this->normal_object(sensor);
