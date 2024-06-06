@@ -12,7 +12,7 @@ namespace utl::base{class Element;}
 namespace utl::base{class Path;}
 namespace utl::base{class Thread;}
 namespace ldr{class Node;}
-namespace ldr::processing{class Operation;}
+namespace ldr::io{class Operation;}
 namespace ldr::base{class Importer;}
 namespace ldr::base{class Importer;}
 
@@ -41,7 +41,7 @@ public:
   utl::base::Element* import_from_path(utl::base::Path path);
 
 private:
-  ldr::processing::Operation* ldr_operation;
+  ldr::io::Operation* ldr_operation;
 
   std::vector<ldr::base::Importer*> vec_importer;
 };

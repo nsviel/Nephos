@@ -6,7 +6,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace ldr::processing{
+namespace ldr::io{
 
 //Constructor / Destructor
 Operation::Operation(ldr::Node* node_loader){
