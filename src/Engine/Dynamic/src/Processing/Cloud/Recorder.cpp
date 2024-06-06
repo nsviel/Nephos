@@ -15,7 +15,8 @@ Recorder::Recorder(dyn::Node* node_dynamic){
   eng::Node* node_engine = node_dynamic->get_node_engine();
   ldr::Node* node_loader = node_engine->get_node_loader();
 
-  this->ldr_exporter = node_loader->get_ldr_exporter();
+  this->dyn_struct = node_dynamic->get_dyn_struct();
+  this->ldr_recorder = node_loader->get_ldr_recorder();
   this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
@@ -23,23 +24,21 @@ Recorder::Recorder(dyn::Node* node_dynamic){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::start_thread(dat::base::Entity* entity){
+void Recorder::start_thread(dyn::base::Sensor* sensor){
+  if(dyn_struct->recorder.enable == false) return;
   //---------------------------
 
-  this->idle = false;
-  auto task_function = [this, entity](){
-    this->run_thread(entity);
+  this->thread_idle = false;
+  auto task_function = [this, sensor](){
+    this->run_thread(sensor);
   };
   thread_pool->add_task(task_function);
 
   //---------------------------
 }
-void Recorder::run_thread(dat::base::Entity* entity){
+void Recorder::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 /*
-  tasker->loop_begin();
-
-  dat::base::Set* master = sensor->set_parent;
   switch(master->recorder.mode){
     case dyn::recorder::MKV:{
       this->make_export_to_mkv(sensor);
@@ -52,13 +51,13 @@ void Recorder::run_thread(dat::base::Entity* entity){
   }
 */
   //---------------------------
-  this->idle = true;
+  this->thread_idle = true;
 }
 void Recorder::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(idle == false){
+  while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
@@ -66,7 +65,7 @@ void Recorder::wait_thread(){
 }
 
 //Subfunction
-void Recorder::make_export_to_ply(dat::base::Entity* entity, std::string path_dir, std::string path_name){
+void Recorder::make_export_to_ply(dyn::base::Sensor* sensor, std::string path_dir, std::string path_name){
   //---------------------------
 /*
   //Check if directory exists, if not create it

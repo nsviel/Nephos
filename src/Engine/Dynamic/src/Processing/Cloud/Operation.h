@@ -47,7 +47,6 @@ private:
   rad::detection::cloud::Detection* rad_detection;
 
   utl::thread::Pool* thread_pool;
-
   bool thread_idle = true;
 };
 

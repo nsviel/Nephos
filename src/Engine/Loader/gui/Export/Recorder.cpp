@@ -149,9 +149,9 @@ void Recorder::item_update(){
 void Recorder::item_operation(){
   //---------------------------
 
-  dyn_struct->recorder = !dyn_struct->recorder;
   dyn_struct->recorder.dir = ldr_struct->current_dir;
   dyn_struct->recorder.format = ldr_struct->current_format;
+  dyn_struct->recorder.enable = !dyn_struct->recorder.enable;
 
   //---------------------------
 }

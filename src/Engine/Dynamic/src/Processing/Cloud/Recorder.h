@@ -4,9 +4,10 @@
 #include <Utility/Specific/Common.h>
 
 namespace dyn{class Node;}
-namespace dat::base{class Entity;}
+namespace dyn{class Structure;}
+namespace dyn::base{class Sensor;}
 namespace utl::thread{class Pool;}
-namespace ldr::io{class Exporter;}
+namespace ldr::io{class Recorder;}
 
 
 namespace dyn::cloud{
@@ -20,18 +21,19 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Entity* entity);
-  void run_thread(dat::base::Entity* entity);
+  void start_thread(dyn::base::Sensor* sensor);
+  void run_thread(dyn::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void make_export_to_ply(dat::base::Entity* entity, std::string path_dir, std::string path_name);
+  void make_export_to_ply(dyn::base::Sensor* sensor, std::string path_dir, std::string path_name);
 
 private:
-  utl::thread::Pool* thread_pool;
-  ldr::io::Exporter* ldr_exporter;
+  dyn::Structure* dyn_struct;
+  ldr::io::Recorder* ldr_recorder;
 
-  bool idle = true;
+  utl::thread::Pool* thread_pool;
+  bool thread_idle = true;
 };
 
 }
