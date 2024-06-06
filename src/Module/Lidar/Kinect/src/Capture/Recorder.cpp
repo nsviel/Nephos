@@ -55,7 +55,7 @@ void Recorder::export_start(k4n::structure::Sensor* sensor, std::string path){
 
   //Recorder
   k4a::record& recorder = sensor->device.recorder;
-  if(recorder.is_valid()) return;
+  if(!sensor->state.record || recorder.is_valid()) return;
 
   //Check if directory exists, if not create it
   std::string path_dir = utl::path::get_dir_from_path(path);
@@ -78,7 +78,7 @@ void Recorder::export_loop(k4n::structure::Sensor* sensor, std::string path){
 
   //Recorder
   k4a::record& recorder = sensor->device.recorder;
-  if(!recorder.is_valid()) return;
+  if(!sensor->state.record || !recorder.is_valid()) return;
 
   //Record capture
   k4a::capture* capture = sensor->device.capture;
@@ -86,7 +86,7 @@ void Recorder::export_loop(k4n::structure::Sensor* sensor, std::string path){
 
   //Set info
   this->size = utl::file::size(path);
-  this->ts_rec = sensor->timestamp.current - ts_beg;
+  sensor->timestamp.record = sensor->timestamp.current - ts_beg;
 
   //---------------------------
 }
@@ -95,7 +95,7 @@ void Recorder::export_stop(k4n::structure::Sensor* sensor){
 
   //Recorder
   k4a::record& recorder = sensor->device.recorder;
-  if(!recorder.is_valid()) return;
+  if(sensor->state.record || !recorder.is_valid()) return;
 
   //Flush to file
   recorder.flush();

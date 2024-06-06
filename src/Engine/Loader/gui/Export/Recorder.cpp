@@ -18,6 +18,7 @@ Recorder::Recorder(ldr::Node* node_loader){
   dyn::Node* node_dynamic = node_loader->get_node_dynamic();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
+  this->dyn_player = node_dynamic->get_dyn_player();
   this->ldr_struct = node_loader->get_ldr_struct();
 
   //---------------------------
@@ -30,7 +31,7 @@ void Recorder::design_header(dyn::base::Sensor* sensor){
 
   this->item_update(sensor);
 
-  this->display_action();
+  this->display_action(sensor);
   this->display_path();
   this->display_format();
 
@@ -39,15 +40,26 @@ void Recorder::design_header(dyn::base::Sensor* sensor){
 }
 
 //Header function
-void Recorder::display_action(){
+void Recorder::display_action(dyn::base::Sensor* sensor){
   //---------------------------
 
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-  if(ImGui::Button("Record##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
-    this->item_operation();
+  if(!sensor->state.record){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+    if(ImGui::Button("Record##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+      dyn_player->button_record();
+      this->item_operation();
+    }
+    ImGui::PopStyleColor(2);
+  }else{
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(120, 30, 30, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(150, 50, 50, 255));
+    if(ImGui::Button("Stop##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+      dyn_player->button_record();
+      this->item_operation();
+    }
+    ImGui::PopStyleColor(2);
   }
-  ImGui::PopStyleColor(2);
 
   //---------------------------
 }

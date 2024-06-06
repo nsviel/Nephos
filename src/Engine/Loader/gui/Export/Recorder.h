@@ -10,6 +10,7 @@ namespace ldr{class Structure;}
 namespace ldr::gui{class File;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
+namespace dyn::player{class Player;}
 
 
 namespace ldr::gui::exporter{
@@ -26,7 +27,7 @@ public:
   void design_header(dyn::base::Sensor* sensor);
 
   //Header function
-  void display_action();
+  void display_action(dyn::base::Sensor* sensor);
   void display_path();
   void display_format();
 
@@ -36,6 +37,7 @@ public:
   void item_operation();
 
 private:
+  dyn::player::Player* dyn_player;
   dyn::Structure* dyn_struct;
   ldr::Structure* ldr_struct;
 
