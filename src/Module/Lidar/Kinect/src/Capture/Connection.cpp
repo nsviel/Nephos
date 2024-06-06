@@ -101,7 +101,6 @@ void Connection::create_sensor(int index){
   sensor->name = "capture_" + to_string(index);
   sensor->data.name = sensor->name;
   sensor->pose.model[2][3] = 1;
-  sensor->init();
 
   //Sensor initialization
   dat::base::Set* set = manage_set_parent();

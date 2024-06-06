@@ -37,18 +37,14 @@ void Recorder::start_thread(dyn::base::Sensor* sensor){
 }
 void Recorder::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
-/*
-  switch(master->recorder.mode){
-    case dyn::recorder::MKV:{
-      this->make_export_to_mkv(sensor);
-      break;
-    }
-    case dyn::recorder::PLY:{
-      this->make_export_to_ply(sensor);
-      break;
+
+  for(int i=0; i<sensor->vec_recorder.size(); i++){
+    dyn::base::Recorder* recorder = sensor->vec_recorder[i];
+    if(recorder->format == dyn_struct->recorder.format){
+      recorder->record_sensor(sensor, dyn_struct->recorder.path);
     }
   }
-*/
+
   //---------------------------
   this->thread_idle = true;
 }
@@ -60,22 +56,6 @@ void Recorder::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
-  //---------------------------
-}
-
-//Subfunction
-void Recorder::make_export_to_ply(dyn::base::Sensor* sensor, std::string path_dir, std::string path_name){
-  //---------------------------
-/*
-  //Check if directory exists, if not create it
-  if(!utl::directory::is_exist(path_dir)){
-    utl::directory::create(path_dir);
-  }
-
-  //Export
-  string path = path_dir + "/" + path_name + ".ply";
-  ply_exporter->export_binary(entity->data, &entity->pose;, path);
-*/
   //---------------------------
 }
 

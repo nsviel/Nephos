@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/src/Base/Recorder.h>
+#include <Dynamic/src/Base/Recorder.h>
 #include <Utility/Specific/Common.h>
 
 namespace k4n::structure{class Sensor;}
@@ -8,7 +8,7 @@ namespace k4n::structure{class Sensor;}
 
 namespace k4n::capture{
 
-class Recorder : public ldr::base::Recorder
+class Recorder : public dyn::base::Recorder
 {
 public:
   //Constructor / Destructor
@@ -17,9 +17,7 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::structure::Sensor* sensor, std::string path);
-  void run_thread(k4n::structure::Sensor* sensor, std::string path);
-  void wait_thread();
+  void record_sensor(k4n::structure::Sensor* sensor, std::string path);
 
   //Subfunction
   void export_start(k4n::structure::Sensor* sensor, std::string path);

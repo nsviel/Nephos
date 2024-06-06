@@ -18,33 +18,12 @@ Recorder::Recorder(){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::start_thread(k4n::structure::Sensor* sensor, std::string path){
-  //---------------------------
-
-  if(!thread_running){
-    this->thread_running = true;
-    this->thread = std::thread(&Recorder::run_thread, this, sensor, path);
-  }
-
-  //---------------------------
-}
-void Recorder::run_thread(k4n::structure::Sensor* sensor, std::string path){
+void Recorder::record_sensor(k4n::structure::Sensor* sensor, std::string path){
   //---------------------------
 
   this->export_start(sensor, path);
   this->export_loop(sensor, path);
   this->export_stop(sensor);
-
-  //---------------------------
-  this->thread_running = false;
-}
-void Recorder::wait_thread(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_running){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
 
   //---------------------------
 }

@@ -41,7 +41,6 @@ utl::base::Element* Importer::import(utl::base::Path path){
   sensor->timestamp.begin = find_mkv_ts_beg(path.data);
   sensor->timestamp.end = find_mkv_ts_end(path.data);
   sensor->vec_recorder.push_back(new k4n::capture::Recorder());
-  sensor->init();
 
   //Associated set
   sensor->set_parent = manage_set_parent();

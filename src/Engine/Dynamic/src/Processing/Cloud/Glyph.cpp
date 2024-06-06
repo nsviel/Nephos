@@ -1,10 +1,22 @@
-#include "Sensor.h"
+#include "Glyph.h"
+
+#include <Dynamic/Namespace.h>
 
 
-namespace dyn::base{
+namespace dyn::cloud{
+
+//Constructor / Destructor
+Glyph::Glyph(dyn::Node* node_dynamic){
+  //---------------------------
+
+  this->dyn_struct = node_dynamic->get_dyn_struct();
+
+  //---------------------------
+}
+Glyph::~Glyph(){}
 
 //Main function
-void Sensor::init(){
+void Glyph::init(){
   //---------------------------
 
   /*
@@ -22,13 +34,6 @@ void Sensor::init(){
     dat_glyph->create_glyph(&object, sphere);
     sphere->construct(vec4(0, 1, 0, 1));
   */
-
-  //---------------------------
-}
-void Sensor::clean(){
-  //---------------------------
-
-  this->stop_thread();
 
   //---------------------------
 }

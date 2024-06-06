@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/src/Base/Recorder.h>
+#include <Dynamic/src/Base/Recorder.h>
 #include <Utility/Specific/Common.h>
 
 namespace dyn{class Node;}
@@ -11,7 +11,7 @@ namespace utl::thread{class Pool;}
 
 namespace dyn::cloud{
 
-class Recorder : public ldr::base::Recorder
+class Recorder : public dyn::base::Recorder
 {
 public:
   //Constructor / Destructor
