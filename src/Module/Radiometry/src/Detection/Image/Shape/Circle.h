@@ -21,14 +21,14 @@ public:
   //Main function
   void detect_circle(cv::Mat& image);
 
+  //Hough function
+  void compute_hough_circle(cv::Mat& image);
+  void find_hough_parameter(int mode);
+  
   //Draw function
   void draw_detected_circle(cv::Mat& image);
   void draw_all_circle(cv::Mat& image);
   void draw_best_circle(cv::Mat& image);
-
-  //Hough function
-  void compute_hough_circle(cv::Mat& image);
-  void find_hough_parameter(int mode);
 
 private:
   rad::Structure* rad_struct;

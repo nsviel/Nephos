@@ -29,8 +29,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void detect_circle_in_image(utl::media::Image* image);
-  void detect_rectangle_in_image(utl::media::Image* image);
+  void make_shape_detection(utl::media::Image* image);
 
 private:
   utl::thread::Pool* thread_pool;

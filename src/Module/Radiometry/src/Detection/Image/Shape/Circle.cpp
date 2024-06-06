@@ -23,60 +23,8 @@ void Circle::detect_circle(cv::Mat& image){
   if(image.empty()) return;
   //------------------------
 
-  cv::Mat gray, canny;
-  rad_image->convert_into_gray(image, gray);
-  rad_image->apply_canny(gray, canny);
-  this->compute_hough_circle(canny);
-  this->draw_detected_circle(canny);
-
-  //------------------------
-}
-
-//Draw function
-void Circle::draw_detected_circle(cv::Mat& image){
-  //---------------------------
-
-  switch(rad_struct->detection.hough.drawing_mode){
-    case rad::hough::ALL:{
-      this->draw_all_circle(image);
-      break;
-    }
-    case rad::hough::BEST:{
-      this->draw_best_circle(image);
-      break;
-    }
-  }
-
-  //---------------------------
-}
-void Circle::draw_all_circle(cv::Mat& image){
-  if(image.empty()) return;
-  //------------------------
-
-  cv::Mat result;
-  rad_image->convert_into_rgba(image, result);
-  rad_image->draw_circle(result, rad_struct->detection.vec_circle);
-  rad_image->draw_bounding_box(result);
-  rad_image->convert_into_subimage(result);
-  rad_image->convert_into_utl_image(result, &rad_struct->detection.image);
-
-  //------------------------
-}
-void Circle::draw_best_circle(cv::Mat& image){
-  if(image.empty()) return;
-  //------------------------
-
-  vector<rad::detection::structure::Circle> vec_circle;
-  if(rad_struct->detection.vec_circle.size() > 0){
-    vec_circle.push_back(rad_struct->detection.vec_circle[0]);
-  }
-
-  cv::Mat result;
-  rad_image->convert_into_rgba(image, result);
-  rad_image->draw_circle(result, vec_circle);
-  rad_image->draw_bounding_box(result);
-  rad_image->convert_into_subimage(result);
-  rad_image->convert_into_utl_image(result, &rad_struct->detection.image);
+  this->compute_hough_circle(image);
+  this->draw_detected_circle(image);
 
   //------------------------
 }
@@ -130,5 +78,53 @@ void Circle::find_hough_parameter(int mode){
   //---------------------------
 }
 
+//Draw function
+void Circle::draw_detected_circle(cv::Mat& image){
+  //---------------------------
+
+  switch(rad_struct->detection.hough.drawing_mode){
+    case rad::hough::ALL:{
+      this->draw_all_circle(image);
+      break;
+    }
+    case rad::hough::BEST:{
+      this->draw_best_circle(image);
+      break;
+    }
+  }
+
+  //---------------------------
+}
+void Circle::draw_all_circle(cv::Mat& image){
+  if(image.empty()) return;
+  //------------------------
+
+  cv::Mat result;
+  rad_image->convert_into_rgba(image, result);
+  rad_image->draw_circle(result, rad_struct->detection.vec_circle);
+  rad_image->draw_bounding_box(result);
+  rad_image->convert_into_subimage(result);
+  rad_image->convert_into_utl_image(result, &rad_struct->detection.image);
+
+  //------------------------
+}
+void Circle::draw_best_circle(cv::Mat& image){
+  if(image.empty()) return;
+  //------------------------
+
+  vector<rad::detection::structure::Circle> vec_circle;
+  if(rad_struct->detection.vec_circle.size() > 0){
+    vec_circle.push_back(rad_struct->detection.vec_circle[0]);
+  }
+
+  cv::Mat result;
+  rad_image->convert_into_rgba(image, result);
+  rad_image->draw_circle(result, vec_circle);
+  rad_image->draw_bounding_box(result);
+  rad_image->convert_into_subimage(result);
+  rad_image->convert_into_utl_image(result, &rad_struct->detection.image);
+
+  //------------------------
+}
 
 }

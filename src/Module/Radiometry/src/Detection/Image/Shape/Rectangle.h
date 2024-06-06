@@ -22,6 +22,7 @@ public:
 
   //Subfunction
   void compute_rectangle_detection(cv::Mat& image);
+  void draw_detected_rectangle(cv::Mat& image);
   bool is_rectangle(const vector<cv::Point>& contour);
 
 private:

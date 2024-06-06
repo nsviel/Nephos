@@ -38,11 +38,7 @@ void Detection::start_thread(dyn::base::Sensor* sensor, utl::media::Image* image
 void Detection::run_thread(dyn::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
-  cv::Mat cv_image;
-  rad_image->convert_into_cv_image(image, cv_image);
-  rad_circle->detect_circle(cv_image);
-  rad_rectangle->detect_rectangle(cv_image);
-  //rad_glyph->draw_detected_sphere(sensor);
+  this->make_shape_detection(image);
 
   //---------------------------
   this->thread_idle = true;
@@ -59,16 +55,17 @@ void Detection::wait_thread(){
 }
 
 //Subfunction
-void Detection::detect_circle_in_image(utl::media::Image* image){
+void Detection::make_shape_detection(utl::media::Image* image){
   //---------------------------
 
+  cv::Mat cv_image, gray, canny;
+  rad_image->convert_into_cv_image(image, cv_image);
+  rad_image->convert_into_gray(cv_image, gray);
+  rad_image->apply_canny(gray, canny);
 
-  //---------------------------
-}
-void Detection::detect_rectangle_in_image(utl::media::Image* image){
-  //---------------------------
-
-
+  //rad_circle->detect_circle(canny);
+  rad_rectangle->detect_rectangle(canny);
+  //rad_glyph->draw_detected_sphere(sensor);
 
   //---------------------------
 }
