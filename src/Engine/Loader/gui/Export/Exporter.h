@@ -32,6 +32,7 @@ public:
   void display_encording();
 
   //Subfunction
+  void item_update();
   void item_operation();
 
 private:

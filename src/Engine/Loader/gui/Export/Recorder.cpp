@@ -29,6 +29,8 @@ void Recorder::design_header(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
+  this->item_update();
+
   this->display_action();
   this->display_path();
   this->display_format();
@@ -98,6 +100,22 @@ void Recorder::display_format(){
 }
 
 //Subfunction
+void Recorder::item_update(){
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  //---------------------------
+
+  //Actualize current name
+  if(entity != nullptr && ldr_struct->current_name != entity->name){
+    utl::base::Data* data = &entity->data;
+    ldr_struct->current_name = entity->name;
+
+    if(ldr_recorder->is_format_supported(data->format)){
+      ldr_struct->current_format = data->format;
+    }
+  }
+
+  //---------------------------
+}
 void Recorder::item_operation(){
   //---------------------------
 

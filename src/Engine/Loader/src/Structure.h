@@ -12,7 +12,7 @@ struct Structure{
   //General
   std::string current_dir = "";
   std::string current_name = "";
-  std::string current_format = "";
+  std::string current_format = "ply";
 
   //Import
   float import_scaling = 1;

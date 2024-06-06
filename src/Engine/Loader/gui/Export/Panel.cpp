@@ -26,7 +26,6 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(no
   this->show_window = show_window;
   this->with_bookmark = false;
   this->with_all_format = false;
-  this->current_format = "ply";
 
   //---------------------------
 }
@@ -54,8 +53,6 @@ void Panel::design_panel(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
-  this->item_update();
-
   //If dynamic object
   if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
     gui_recorder->design_header();
@@ -72,32 +69,11 @@ void Panel::design_panel(){
 }
 
 //Navigator function
-void Panel::item_update(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
-  //---------------------------
-
-  //Actualize current name
-  if(entity != nullptr && current_name != entity->name){
-    utl::base::Data* data = &entity->data;
-    this->current_name = entity->name;
-
-    if(ldr_exporter->is_format_supported(data->format)){
-      this->current_format = data->format;
-    }
-  }
-
-  //---------------------------
-}
 void Panel::item_operation(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   if(entity == nullptr) return;
   //---------------------------
 
-  utl::base::Data* data = &entity->data;
-  data->format = current_format;
-
-  std::string path = current_dir + "/" + current_name + "." + current_format;
-  ldr_exporter->export_entity(entity, path);
 
   //---------------------------
 }

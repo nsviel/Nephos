@@ -29,7 +29,6 @@ public:
   void design_panel();
 
   //Navigator
-  void item_update();
   void item_operation();
   bool item_format(std::string format);
 

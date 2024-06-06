@@ -29,6 +29,8 @@ void Exporter::design_header(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
+  this->item_update();
+
   this->display_action();
   this->display_path();
   this->display_format();
@@ -147,6 +149,22 @@ void Exporter::display_encording(){
 }
 
 //Subfunction
+void Exporter::item_update(){
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  //---------------------------
+
+  //Actualize current name
+  if(entity != nullptr && ldr_struct->current_name != entity->name){
+    utl::base::Data* data = &entity->data;
+    ldr_struct->current_name = entity->name;
+
+    if(ldr_exporter->is_format_supported(data->format)){
+      ldr_struct->current_format = data->format;
+    }
+  }
+
+  //---------------------------
+}
 void Exporter::item_operation(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   if(entity == nullptr) return;
