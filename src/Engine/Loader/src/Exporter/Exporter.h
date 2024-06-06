@@ -37,6 +37,7 @@ private:
   ldr::Structure* ldr_struct;
 
   std::vector<ldr::base::Exporter*> vec_exporter;
+  std::vector<ldr::base::Recorder*> vec_recorder;
 };
 
 }

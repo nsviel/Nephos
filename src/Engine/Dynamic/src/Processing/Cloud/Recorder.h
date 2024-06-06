@@ -6,7 +6,7 @@
 namespace dyn{class Node;}
 namespace dat::base{class Entity;}
 namespace utl::thread{class Pool;}
-namespace ldr::io{class Recorder;}
+namespace ldr::io{class Exporter;}
 
 
 namespace dyn::cloud{
@@ -29,7 +29,7 @@ public:
 
 private:
   utl::thread::Pool* thread_pool;
-  ldr::io::Recorder* ldr_recorder;
+  ldr::io::Exporter* ldr_exporter;
 
   bool idle = true;
 };

@@ -57,7 +57,7 @@ void Exporter::insert_exporter(ldr::base::Exporter* exporter){
 void Exporter::insert_recorder(ldr::base::Recorder* recorder){
   //---------------------------
 
-  //this->vec_exporter.push_back(exporter);
+  this->vec_recorder.push_back(recorder);
 
   //---------------------------
 }
