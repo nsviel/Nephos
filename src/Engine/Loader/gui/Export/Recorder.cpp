@@ -66,9 +66,10 @@ void Recorder::display_action(dyn::base::Sensor* sensor){
 void Recorder::display_path(){
   //---------------------------
 
-  ImGui::BeginTable("header##exporter", 2);
+  ImGui::BeginTable("header##recorder", 3);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
+  ImGui::TableSetupColumn("3", ImGuiTableColumnFlags_WidthFixed, 20.0f);
 
   //Directory
   static char str_n[256];
@@ -80,6 +81,22 @@ void Recorder::display_path(){
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   if(ImGui::InputText("##exporter_dir", str_n, IM_ARRAYSIZE(str_n))){
     ldr_struct->current_dir = (string)str_n;
+  }
+  ImGui::PopStyleColor(2);
+  ImGui::TableNextColumn();
+  if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
+    utl::directory::open(ldr_struct->current_dir);
+  }
+
+  //Filename
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Name"); ImGui::TableNextColumn();
+  strncpy(str_n, ldr_struct->current_name.c_str(), sizeof(str_n) - 1);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
+  ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
+  ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+  if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
+    ldr_struct->current_name = (string)str_n;
   }
   ImGui::PopStyleColor(2);
 
@@ -157,6 +174,7 @@ void Recorder::item_operation(){
   //---------------------------
 
   dyn_struct->recorder.dir = ldr_struct->current_dir;
+  dyn_struct->recorder.name = ldr_struct->current_name;
   dyn_struct->recorder.format = ldr_struct->current_format;
   dyn_struct->recorder.enable = !dyn_struct->recorder.enable;
 

@@ -100,9 +100,12 @@ void Player::button_replay(){
   //---------------------------
 }
 void Player::button_record(){
+  dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
   state.record = !state.record;
+
+  this->manage_state(set);
 
   //---------------------------
 }

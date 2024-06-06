@@ -55,9 +55,10 @@ void Exporter::display_action(){
 void Exporter::display_path(){
   //---------------------------
 
-  ImGui::BeginTable("header##exporter", 2);
-  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
-  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
+  ImGui::BeginTable("header##exporter", 3);
+  ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+  ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
+  ImGui::TableSetupColumn("3", ImGuiTableColumnFlags_WidthFixed, 20.0f);
 
   //Directory
   static char str_n[256];
@@ -71,6 +72,10 @@ void Exporter::display_path(){
     ldr_struct->current_dir = (string)str_n;
   }
   ImGui::PopStyleColor(2);
+  ImGui::TableNextColumn();
+  if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
+    utl::directory::open(ldr_struct->current_dir);
+  }
 
   //Filename
   ImGui::TableNextRow(); ImGui::TableNextColumn();

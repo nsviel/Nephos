@@ -30,7 +30,6 @@ public:
   void draw_ope_transformation(utl::base::Element* element);
   void draw_ope_colorization(dat::base::Set* set);
   void draw_ope_normal(dat::base::Set* set);
-  void draw_ope_recorder(dat::base::Set* set);
 
 private:
   dat::Selection* dat_selection;

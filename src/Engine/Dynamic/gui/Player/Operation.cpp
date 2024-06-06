@@ -34,11 +34,9 @@ void Operation::design_operation(){
   this->draw_op_info(element);
   this->draw_ope_transformation(element);
 
-
-    dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = dat_selection->get_selected_set();
   this->draw_ope_colorization(set);
   this->draw_ope_normal(set);
-  this->draw_ope_recorder(set);
   ImGui::PopStyleColor();
 
   //---------------------------
@@ -84,6 +82,19 @@ void Operation::draw_op_info(utl::base::Element* element){
     }
 
     ImGui::EndTable();
+
+    //Recording time
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Record"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
+
+    //Recording file size
+    if(master->recorder.mode == dyn::recorder::MKV){
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      ImGui::Text("Size"); ImGui::TableNextColumn();
+      ImGui::TextColored(color, "%.2f Mo", master->recorder.file_size);
+    }
+  }
 
   }
 */
@@ -269,129 +280,6 @@ void Operation::draw_ope_normal(dat::base::Set* set){
     ImGui::Text("Time");
     ImGui::SameLine();
     ImGui::TextColored(color, "%.2f ms", dyn_struct->operation.normal.time);
-
-  }
-
-  //---------------------------
-}
-void Operation::draw_ope_recorder(dat::base::Set* set){
-  //---------------------------
-
-  ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
-  if(ImGui::CollapsingHeader("Record##dynamic")){
-    /*
-
-    if(ImGui::TreeNode("Recorder")){
-      ImGui::BeginTable("playback_table##general", 2);
-      //Folder
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Folder"); ImGui::TableNextColumn();
-      if(ImGui::Button("...##folder_path")){
-
-      }
-      ImGui::SameLine();
-      if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
-        utl::directory::open(sensor->set_parent->recorder.folder);
-      }
-      ImGui::SameLine();
-      ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", sensor->set_parent->recorder.folder.c_str());
-
-      //File
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("File"); ImGui::TableNextColumn();
-      if(ImGui::Button("...##file_path")){
-
-      }
-      ImGui::SameLine();
-      if(ImGui::Button(ICON_FA_FOLDER "##file_path")){
-        utl::directory::open(sensor->set_parent->recorder.filename);
-      }
-      ImGui::SameLine();
-      ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", sensor->set_parent->recorder.filename.c_str());
-
-      ImGui::EndTable();
-      ImGui::Separator();
-      ImGui::TreePop();
-    }
-
-
-    //Recording time
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Record"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
-
-    //Recording file size
-    if(master->recorder.mode == dyn::recorder::MKV){
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Size"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f Mo", master->recorder.file_size);
-    }
-  }
-
-
-
-  if(master == nullptr) return;
-  if(!master->recorder.enable) return;
-  //---------------------------
-
-  //Intro
-  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Record");
-
-  //Mode
-  if(ImGui::RadioButton("MKV", &master->recorder.mode, dyn::recorder::MKV)){
-    master->recorder.folder = "../media/record/mkv";
-  }
-  ImGui::SameLine();
-  if(ImGui::RadioButton("PLY", &master->recorder.mode, dyn::recorder::PLY)){
-    master->recorder.folder = "../media/record/ply";
-  }
-
-  ImGui::BeginTable("recorder##parameters", 3);
-
-  //filename
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Filename");
-  ImGui::TableNextColumn();
-  ImGui::TableNextColumn();
-  static char str_n[256];
-  strcpy(str_n, master->recorder.filename.c_str());
-  ImGui::SetNextItemWidth(125);
-  if(ImGui::InputText("##filename", str_n, IM_ARRAYSIZE(str_n))){
-    master->recorder.filename = str_n;
-  }
-
-  //Directory path
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Dir path");
-  ImGui::TableNextColumn();
-  if(ImGui::Button("...##folder_path", ImVec2(20, 0))){
-    zenity::selection_directory(master->recorder.folder);
-  }
-  ImGui::TableNextColumn();
-  if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
-    utl::directory::open(master->recorder.folder);
-  }
-  ImGui::SameLine();
-  string path = (master->recorder.folder != "") ? master->recorder.folder : "(not defined)";
-  ImGui::TextColored(color, "%s", path.c_str());
-
-  //Directory file count
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Count");
-  ImGui::TableNextColumn();
-  if(ImGui::Button("R##folder_file", ImVec2(20, 0))){
-    utl::directory::remove(master->recorder.folder);
-  }
-  ImGui::TableNextColumn();
-  int nb_file = utl::directory::size(master->recorder.folder);
-  ImGui::TextColored(color, "%d", nb_file);
-
-  ImGui::EndTable();
-
-  //---------------------------
-  ImGui::Separator();
-*/
 
   }
 
