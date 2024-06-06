@@ -47,18 +47,11 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
   //---------------------------
 }
 
-//Exporter function
+//Subfunction
 void Exporter::insert_exporter(ldr::base::Exporter* exporter){
   //---------------------------
 
   this->vec_exporter.push_back(exporter);
-
-  //---------------------------
-}
-void Exporter::insert_recorder(ldr::base::Recorder* recorder){
-  //---------------------------
-
-  this->vec_recorder.push_back(recorder);
 
   //---------------------------
 }
@@ -76,8 +69,6 @@ bool Exporter::is_format_supported(std::string format){
   //---------------------------
   return false;
 }
-
-//Subfunction
 std::vector<std::string> Exporter::get_supported_format(){
   std::vector<std::string> vec_format;
   //---------------------------
@@ -105,17 +96,6 @@ std::vector<int> Exporter::get_supported_encoding(std::string format){
 
   //---------------------------
   return vec_encoding;
-}
-std::string Exporter::get_action_label(dat::base::Entity* entity){
-  std::string label = "Save";
-  //---------------------------
-
-  if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-    label = "Record";
-  }
-
-  //---------------------------
-  return label;
 }
 
 }

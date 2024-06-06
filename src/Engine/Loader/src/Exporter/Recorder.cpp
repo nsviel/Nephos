@@ -32,8 +32,8 @@ void Recorder::insert_recorder(ldr::base::Recorder* recorder){
 bool Recorder::is_format_supported(std::string format){
   //---------------------------
 
-  for(int i=0; i<vec_exporter.size(); i++){
-    ldr::base::Recorder* exporter = vec_exporter[i];
+  for(int i=0; i<vec_recorder.size(); i++){
+    ldr::base::Recorder* exporter = vec_recorder[i];
 
     if(format == exporter->format){
       return true;
@@ -47,8 +47,8 @@ std::vector<std::string> Recorder::get_supported_format(){
   std::vector<std::string> vec_format;
   //---------------------------
 
-  for(int i=0; i<vec_exporter.size(); i++){
-    ldr::base::Recorder* exporter = vec_exporter[i];
+  for(int i=0; i<vec_recorder.size(); i++){
+    ldr::base::Recorder* exporter = vec_recorder[i];
     vec_format.push_back(exporter->format);
   }
 
@@ -59,8 +59,8 @@ std::vector<int> Recorder::get_supported_encoding(std::string format){
   std::vector<int> vec_encoding;
   //---------------------------
 
-  for(int i=0; i<vec_exporter.size(); i++){
-    ldr::base::Recorder* exporter = vec_exporter[i];
+  for(int i=0; i<vec_recorder.size(); i++){
+    ldr::base::Recorder* exporter = vec_recorder[i];
 
     if(format == exporter->format){
       vec_encoding = exporter->vec_encoding;
@@ -70,17 +70,6 @@ std::vector<int> Recorder::get_supported_encoding(std::string format){
 
   //---------------------------
   return vec_encoding;
-}
-std::string Recorder::get_action_label(dat::base::Entity* entity){
-  std::string label = "Save";
-  //---------------------------
-
-  if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-    label = "Record";
-  }
-
-  //---------------------------
-  return label;
 }
 
 }
