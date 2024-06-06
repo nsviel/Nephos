@@ -10,6 +10,7 @@ namespace ldr{class Structure;}
 namespace ldr::io{class Recorder;}
 namespace ldr::gui{class File;}
 namespace dyn{class Structure;}
+namespace dyn::base{class Sensor;}
 namespace dat{class Selection;}
 
 
@@ -24,7 +25,7 @@ public:
 
 public:
   //Main function
-  void design_header();
+  void design_header(dyn::base::Sensor* sensor);
 
   //Header function
   void display_action();

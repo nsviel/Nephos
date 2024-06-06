@@ -10,6 +10,7 @@ namespace ldr{class Structure;}
 namespace ldr::io{class Exporter;}
 namespace ldr::gui{class File;}
 namespace dat{class Selection;}
+namespace dat::base{class Entity;}
 
 
 namespace ldr::gui::exporter{
@@ -23,7 +24,7 @@ public:
 
 public:
   //Main function
-  void design_header();
+  void design_header(dat::base::Entity* entity);
 
   //Header function
   void display_action();
@@ -33,7 +34,7 @@ public:
 
   //Subfunction
   void item_filtering(std::vector<std::string>& vec_path);
-  void item_update();
+  void item_update(dat::base::Entity* entity);
   void item_operation();
 
 private:

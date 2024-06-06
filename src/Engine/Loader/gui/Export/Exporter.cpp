@@ -25,11 +25,10 @@ Exporter::Exporter(ldr::Node* node_loader){
 Exporter::~Exporter(){}
 
 //Main function
-void Exporter::design_header(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+void Exporter::design_header(dat::base::Entity* entity){
   //---------------------------
 
-  this->item_update();
+  this->item_update(entity);
 
   this->display_action();
   this->display_path();
@@ -177,8 +176,7 @@ void Exporter::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
   vec_path = vec_path_ok;
 }
-void Exporter::item_update(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+void Exporter::item_update(dat::base::Entity* entity){
   //---------------------------
 
   //Actualize current name

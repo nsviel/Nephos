@@ -27,8 +27,7 @@ Recorder::Recorder(ldr::Node* node_loader){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::design_header(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+void Recorder::design_header(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->item_update();

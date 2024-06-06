@@ -55,11 +55,11 @@ void Panel::design_panel(){
 
   //If dynamic object
   if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-    gui_recorder->design_header();
+    gui_recorder->design_header(sensor);
   }
   //Else, it's static object
   else{
-    gui_exporter->design_header();
+    gui_exporter->design_header(entity);
   }
 
   this->draw_navigator();

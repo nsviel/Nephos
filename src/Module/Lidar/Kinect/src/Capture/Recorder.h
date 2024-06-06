@@ -3,13 +3,7 @@
 #include <Loader/src/Base/Recorder.h>
 #include <Utility/Specific/Common.h>
 
-namespace k4n{class Node;}
-namespace eng{class Node;}
-namespace dat{class Graph;}
 namespace k4n::structure{class Sensor;}
-namespace utl::thread{class Pool;}
-namespace ldr::io{class Exporter;}
-namespace format::ply{class Exporter;}
 
 
 namespace k4n::capture{
@@ -18,7 +12,7 @@ class Recorder : public ldr::base::Recorder
 {
 public:
   //Constructor / Destructor
-  Recorder(k4n::Node* node_k4n);
+  Recorder();
   ~Recorder();
 
 public:
@@ -28,15 +22,11 @@ public:
   void wait_thread();
 
   //Subfunction
-  void make_export_to_ply(k4n::structure::Sensor* sensor);
-  void make_export_to_mkv(k4n::structure::Sensor* sensor);
+  void make_export(k4n::structure::Sensor* sensor);
 
 private:
-  utl::thread::Pool* thread_pool;
-  ldr::io::Exporter* ldr_exporter;
-  format::ply::Exporter* ply_exporter;
-
-  bool idle = true;
+  std::thread thread;
+  bool thread_running = false;
 };
 
 }
