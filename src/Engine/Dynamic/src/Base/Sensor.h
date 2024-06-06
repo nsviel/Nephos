@@ -4,6 +4,7 @@
 #include <Profiler/src/Profiler/Graph/Profiler.h>
 #include <Dynamic/src/Base/Timestamp.h>
 #include <Dynamic/src/Base/State.h>
+#include <Loader/src/Base/Recorder.h>
 
 
 namespace dyn::base{
@@ -25,6 +26,7 @@ struct Sensor : public dat::base::Object, public utl::base::Thread{
   prf::graph::Profiler profiler;
   std::vector<uint16_t> buffer_depth;
   std::vector<uint16_t> buffer_ir;
+  std::vector<ldr::base::Recorder*> vec_recorder;
 
   //---------------------------
 };
