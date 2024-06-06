@@ -25,7 +25,8 @@ public:
   void wait_thread();
 
   //Subfunction
-  void make_export_to_ply(dyn::base::Sensor* sensor, std::string path_dir, std::string path_name);
+  void check_path(dyn::base::Sensor* sensor);
+  void make_recording(dyn::base::Sensor* sensor);
 
 private:
   dyn::Structure* dyn_struct;

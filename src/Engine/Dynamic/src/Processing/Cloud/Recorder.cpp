@@ -38,17 +38,8 @@ void Recorder::start_thread(dyn::base::Sensor* sensor){
 void Recorder::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  if(sensor->vec_recorder.size() == 1){
-    sensor->vec_recorder[0]->record_sensor(sensor, sensor->data.path.data);
-  }else{
-    for(int i=0; i<sensor->vec_recorder.size(); i++){
-      dyn::base::Recorder* recorder = sensor->vec_recorder[i];
-
-      if(recorder->format == sensor->data.format){
-        recorder->record_sensor(sensor, sensor->data.path.data);
-      }
-    }
-  }
+  this->check_path(sensor);
+  this->make_recording(sensor);
 
   //---------------------------
   this->thread_idle = true;
@@ -59,6 +50,33 @@ void Recorder::wait_thread(){
 
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+
+  //---------------------------
+}
+
+//Subfunction
+void Recorder::check_path(dyn::base::Sensor* sensor){
+  utl::base::Data* data = &sensor->data;
+  //---------------------------
+
+  data->path.data = data->path.directory + "/" + data->name + "." + data->format;
+
+  //---------------------------
+}
+void Recorder::make_recording(dyn::base::Sensor* sensor){
+  //---------------------------
+
+  if(sensor->vec_recorder.size() == 1){
+    sensor->vec_recorder[0]->record_sensor(sensor, sensor->data.path.data);
+  }else{
+    for(int i=0; i<sensor->vec_recorder.size(); i++){
+      dyn::base::Recorder* recorder = sensor->vec_recorder[i];
+
+      if(recorder->format == sensor->data.format){
+        recorder->record_sensor(sensor, sensor->data.path.data);
+      }
+    }
   }
 
   //---------------------------
