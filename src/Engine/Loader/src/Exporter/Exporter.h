@@ -7,6 +7,7 @@
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::base{class Exporter;}
+namespace ldr::base{class Recorder;}
 namespace dat::base{class Entity;}
 
 
@@ -25,6 +26,7 @@ public:
 
   //Exporter function
   void insert_exporter(ldr::base::Exporter* exporter);
+  void insert_recorder(ldr::base::Recorder* recorder);
   bool is_format_supported(std::string format);
 
   //Subfunction

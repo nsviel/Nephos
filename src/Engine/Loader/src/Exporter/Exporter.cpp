@@ -54,6 +54,13 @@ void Exporter::insert_exporter(ldr::base::Exporter* exporter){
 
   //---------------------------
 }
+void Exporter::insert_recorder(ldr::base::Recorder* recorder){
+  //---------------------------
+
+  //this->vec_exporter.push_back(exporter);
+
+  //---------------------------
+}
 bool Exporter::is_format_supported(std::string format){
   //---------------------------
 

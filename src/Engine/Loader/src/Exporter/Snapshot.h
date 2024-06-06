@@ -10,12 +10,12 @@ namespace ldr::base{class Recorder;}
 
 namespace ldr::io{
 
-class Saver
+class Snapshot
 {
 public:
   //Constructor / Destructor
-  Saver(ldr::Node* node_loader);
-  ~Saver();
+  Snapshot(ldr::Node* node_loader);
+  ~Snapshot();
 
 public:
   //Main functions

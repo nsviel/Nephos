@@ -19,6 +19,7 @@ Recorder::Recorder(k4n::Node* node_k4n){
   this->ldr_exporter = node_loader->get_ldr_exporter();
   this->ply_exporter = new format::ply::Exporter();
   this->thread_pool = node_engine->get_thread_pool();
+  this->format = "mkv";
 
   //---------------------------
 }
