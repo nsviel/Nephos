@@ -18,27 +18,22 @@ Recorder::Recorder(){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::start_thread(k4n::structure::Sensor* sensor){
+void Recorder::start_thread(k4n::structure::Sensor* sensor, std::string path){
   //---------------------------
 
   if(!thread_running){
     this->thread_running = true;
-    this->thread = std::thread(&Recorder::run_thread, this, sensor);
+    this->thread = std::thread(&Recorder::run_thread, this, sensor, path);
   }
 
   //---------------------------
 }
-void Recorder::run_thread(k4n::structure::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler.get_or_create_tasker("recorder");
+void Recorder::run_thread(k4n::structure::Sensor* sensor, std::string path){
   //---------------------------
 
-  tasker->loop_begin();
-
-  tasker->task_begin("recorder::mkv");
-  this->make_export(sensor);
-  tasker->task_end("recorder::mkv");
-
-  tasker->loop_end();
+  this->export_start(sensor, path);
+  this->export_loop(sensor);
+  this->export_stop(sensor);
 
   //---------------------------
   this->thread_running = false;
@@ -55,47 +50,57 @@ void Recorder::wait_thread(){
 }
 
 //Subfunction
-void Recorder::make_export(k4n::structure::Sensor* sensor){
-  k4a::record& recorder = sensor->device.recorder;
-  k4a::capture* capture = sensor->device.capture;
+void Recorder::export_start(k4n::structure::Sensor* sensor, std::string path){
   //---------------------------
-/*
-  //Start recording
-  if(sensor->set_parent->record && !recorder.is_valid()){
-    //Check if directory exists, if not create it
-    string path_dir = sensor->set_parent->recorder.folder;
-    if(!utl::directory::is_exist(path_dir)){
-      utl::directory::create(path_dir);
-    }
 
-    //Create recorder and file, and write header
-    string master_name = master->recorder.filename;
-    string sensor_idx = to_string(sensor->device.idx_dev);
-    string filename = master_name + "_" + sensor_idx;
-    string path = path_dir + "/" + filename + ".mkv";
+  //Recorder
+  k4a::record& recorder = sensor->device.recorder;
+  if(recorder.is_valid()) return;
 
-    recorder = k4a::record::create(path.c_str(), sensor->device.handle, sensor->device.configuration);
-    recorder.write_header();
-
-    //Set info
-    master->recorder.path = path;
-    master->recorder.file_size = 0;
-    master->recorder.ts_beg = sensor->set_parent->ts_cur;
+  //Check if directory exists, if not create it
+  std::string path_dir = utl::path::get_dir_from_path(path);
+  if(!utl::directory::is_exist(path_dir)){
+    utl::directory::create(path_dir);
   }
 
-  //Recording
-  else if(sensor->set_parent->record && recorder.is_valid()){
-    recorder.write_capture(*capture);
-    master->recorder.ts_rec = sensor->set_parent->ts_cur - master->recorder.ts_beg;
-    master->recorder.file_size = utl::file::size(master->recorder.path);
-  }
+  //Create recorder and file, and write header
+  recorder = k4a::record::create(path.c_str(), sensor->device.handle, sensor->device.configuration);
+  recorder.write_header();
 
-  //Flush to file when finish
-  else if(!sensor->set_parent->record && recorder.is_valid()){
-    recorder.flush();
-    recorder.close();
-  }
-*/
+  //Set info
+  //master->recorder.path = path;
+  //master->recorder.file_size = 0;
+  //master->recorder.ts_beg = sensor->set_parent->ts_cur;
+
+  //---------------------------
+}
+void Recorder::export_loop(k4n::structure::Sensor* sensor){
+  //---------------------------
+
+  //Recorder
+  k4a::record& recorder = sensor->device.recorder;
+  if(!recorder.is_valid()) return;
+
+  //Record capture
+  k4a::capture* capture = sensor->device.capture;
+  recorder.write_capture(*capture);
+
+  //master->recorder.ts_rec = sensor->set_parent->ts_cur - master->recorder.ts_beg;
+  //master->recorder.file_size = utl::file::size(master->recorder.path);
+
+  //---------------------------
+}
+void Recorder::export_stop(k4n::structure::Sensor* sensor){
+  //---------------------------
+
+  //Recorder
+  k4a::record& recorder = sensor->device.recorder;
+  if(!recorder.is_valid()) return;
+
+  //Flush to file
+  recorder.flush();
+  recorder.close();
+
   //---------------------------
 }
 

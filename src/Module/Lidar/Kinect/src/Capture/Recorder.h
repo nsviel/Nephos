@@ -17,12 +17,14 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::structure::Sensor* sensor);
-  void run_thread(k4n::structure::Sensor* sensor);
+  void start_thread(k4n::structure::Sensor* sensor, std::string path);
+  void run_thread(k4n::structure::Sensor* sensor, std::string path);
   void wait_thread();
 
   //Subfunction
-  void make_export(k4n::structure::Sensor* sensor);
+  void export_start(k4n::structure::Sensor* sensor, std::string path);
+  void export_loop(k4n::structure::Sensor* sensor);
+  void export_stop(k4n::structure::Sensor* sensor);
 
 private:
   std::thread thread;
