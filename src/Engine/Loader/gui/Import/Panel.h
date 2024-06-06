@@ -35,7 +35,6 @@ public:
 
   //Operation function
   void item_operation();
-  bool item_format(std::string format);
   void item_bookmark(std::string path);
 
 private:

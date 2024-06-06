@@ -185,13 +185,6 @@ void Panel::item_operation(){
 
   //---------------------------
 }
-bool Panel::item_format(std::string format){
-  //---------------------------
-
-  return ldr_importer->is_format_supported(format);
-
-  //---------------------------
-}
 void Panel::item_bookmark(std::string file_path){
   //---------------------------
 

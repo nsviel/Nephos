@@ -35,7 +35,6 @@ public:
   void item_file();
   void item_selection();
   virtual void item_operation(){}
-  virtual bool item_format(std::string format){return true;}
 
 protected:
   ldr::Structure* ldr_struct;

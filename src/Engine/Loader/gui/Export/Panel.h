@@ -30,7 +30,6 @@ public:
 
   //Navigator
   void item_operation();
-  bool item_format(std::string format);
 
 private:
   ldr::Structure* ldr_struct;

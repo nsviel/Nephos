@@ -83,12 +83,5 @@ void Panel::item_operation(){
 
   //---------------------------
 }
-bool Panel::item_format(std::string format){
-  //---------------------------
-
-  return ldr_exporter->is_format_supported(format);
-
-  //---------------------------
-}
 
 }
