@@ -26,8 +26,7 @@ public:
   void design_panel();
 
   //Header
-  void display_header();
-  void display_action();
+  void display_action(std::string name);
   void display_path();
   void display_format();
   void display_encording();

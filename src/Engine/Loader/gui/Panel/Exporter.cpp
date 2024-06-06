@@ -4,6 +4,7 @@
 #include <Loader/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 
@@ -51,43 +52,32 @@ void Exporter::design_panel(){
   //---------------------------
 
   //If dynamic, record
-  //if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-
-  //}
+  bool exporter = true;
+  if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+    exporter = false;
+  }
 
 
   this->item_update();
-  this->display_header();
-  this->draw_navigator();
 
-  //---------------------------
-}
-
-//Header function
-void Exporter::display_header(){
-  //---------------------------
-
-  this->display_action();
-
-  ImGui::BeginTable("header##exporter", 2);
-  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
-  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
-
+  std::string action = exporter ? "Export" : "Record";
+  this->display_action(action);
   this->display_path();
   this->display_format();
   this->display_encording();
-
-  ImGui::EndTable();
+  this->draw_navigator();
 
   //---------------------------
   ImGui::Separator();
 }
-void Exporter::display_action(){
+
+//Header function
+void Exporter::display_action(std::string action){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-  if(ImGui::Button("Save##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+  if(ImGui::Button(action.c_str(), ImVec2(ImGui::GetContentRegionAvail().x, 0))){
     this->item_operation();
     this->vec_selection.clear();
   }
@@ -97,6 +87,10 @@ void Exporter::display_action(){
 }
 void Exporter::display_path(){
   //---------------------------
+
+  ImGui::BeginTable("header##exporter", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
   //Directory
   static char str_n[256];
@@ -123,12 +117,17 @@ void Exporter::display_path(){
   }
   ImGui::PopStyleColor(2);
 
+  ImGui::EndTable();
+
   //---------------------------
+  ImGui::Separator();
 }
 void Exporter::display_format(){
   //---------------------------
 
-
+  ImGui::BeginTable("header##exporter", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Format"); ImGui::TableNextColumn();
@@ -140,10 +139,16 @@ void Exporter::display_format(){
     }
   }
 
+  ImGui::EndTable();
+
   //---------------------------
 }
 void Exporter::display_encording(){
   //---------------------------
+
+  ImGui::BeginTable("header##exporter", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
   std::vector<int> vec_encoding = ldr_exporter->get_supported_encoding(current_format);
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -169,7 +174,10 @@ void Exporter::display_encording(){
   }
   if(condition) ImGui::EndDisabled();
 
+  ImGui::EndTable();
+
   //---------------------------
+  ImGui::Separator();
 }
 
 //Navigator function

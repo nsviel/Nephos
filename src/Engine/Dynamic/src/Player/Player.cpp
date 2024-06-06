@@ -22,6 +22,7 @@ Player::~Player(){}
 //Main function
 void Player::loop(){
   dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr) return;
   //---------------------------
 
   //Update
