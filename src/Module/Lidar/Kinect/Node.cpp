@@ -4,7 +4,6 @@
 #include <Kinect/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Data/Namespace.h>
-#include <Radiometry/Namespace.h>
 #include <image/IconsFontAwesome6.h>
 
 

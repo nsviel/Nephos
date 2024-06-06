@@ -13,7 +13,6 @@ namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
 namespace ope::normal{class Structured;}
-namespace rad::detection::cloud{class Detection;}
 
 
 namespace dyn::cloud{
@@ -46,7 +45,6 @@ private:
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
   ope::normal::Structured* ope_normal;
-  rad::detection::cloud::Detection* rad_detection;
 
   utl::thread::Pool* thread_pool;
   bool thread_idle = true;

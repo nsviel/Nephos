@@ -41,7 +41,7 @@ void Detection::run_thread(dyn::base::Sensor* sensor, utl::media::Image* image){
   cv::Mat cv_image;
   rad_image->convert_into_cv_image(image, cv_image);
   rad_circle->detect_circle(cv_image);
-  //rad_rectangle->detect_rectangle(cv_image);
+  rad_rectangle->detect_rectangle(cv_image);
   //rad_glyph->draw_detected_sphere(sensor);
 
   //---------------------------

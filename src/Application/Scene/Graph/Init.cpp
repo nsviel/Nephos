@@ -53,13 +53,17 @@ void Init::load_entity(){
   utl::base::Path pcap;
   pcap.data = "/home/aether/Desktop/pcap_test.pcap";
 
+  utl::base::Path mire;
+  mire.data = "/home/aether/Desktop/Mire.mkv";
+
   //Create playback list
-  ldr_loader->load_object(versaille_0);
+  //ldr_loader->load_object(versaille_0);
   //ldr_loader->load_object(versaille_2);
   //ldr_loader->load_object(cerfav);
   //ldr_loader->load_object(dragon);
   //ldr_loader->load_object(sphere);
   //ldr_loader->load_set(pcap);
+  ldr_loader->load_object(mire);
 
   //----------------------------
 }

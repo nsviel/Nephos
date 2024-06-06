@@ -20,6 +20,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_DATA
   LIBRARY_KINECT
+  LIBRARY_RADIOMETRY
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

@@ -19,9 +19,9 @@ public:
 public:
   //Main function
   void detect_rectangle(cv::Mat& image);
-  void truc(cv::Mat& image);
 
   //Subfunction
+  void compute_rectangle_detection(cv::Mat& image);
   bool is_rectangle(const vector<cv::Point>& contour);
 
 private:

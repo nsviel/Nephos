@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Engine/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 
@@ -12,7 +13,9 @@ Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
   eng::Node* node_engine = node_radio->get_node_engine();
+  dyn::Node* node_dynamic = node_radio->get_node_dynamic();
 
+  this->dyn_struct = node_dynamic->get_dyn_struct();
   this->rad_struct = node_radio->get_rad_struct();
   this->rad_detection = node_radio->get_rad_detection();
   this->rad_circle = new rad::detection::image::Circle(node_radio);
@@ -36,6 +39,9 @@ void Detection::draw_tab(){
 //Subfunction
 void Detection::detection_step(){
   //---------------------------
+
+  ImGui::SetNextItemWidth(100);
+  ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 5000);
 
   ImGui::BeginTable("detection_step##table", 3);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 100.0f);

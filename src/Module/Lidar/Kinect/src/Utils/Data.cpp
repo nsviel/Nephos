@@ -56,7 +56,7 @@ void Data::convert_ir_into_color(k4n::structure::Sensor* sensor){
     float ir = static_cast<uint16_t>(buffer[i]) | (static_cast<uint16_t>(buffer[i + 1]) << 8);
 
     // Apply intensity division
-    ir /= sensor->ir.config.division;
+    //ir /= sensor->I_diviser;
     if(ir < 0) ir = 0;
     if(ir > 1) ir = 1;
 

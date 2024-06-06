@@ -5,7 +5,6 @@
 #include <Dynamic/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Data/Namespace.h>
-#include <Radiometry/Namespace.h>
 
 
 namespace dyn::cloud{
@@ -15,7 +14,6 @@ Operation::Operation(dyn::Node* node_dynamic){
   //---------------------------
 
   eng::Node* node_engine = node_dynamic->get_node_engine();
-  rad::Node* node_radio = node_dynamic->get_node_radio();
   dat::Node* node_data = node_engine->get_node_data();
 
   this->dat_entity = node_data->get_dat_entity();
@@ -24,7 +22,6 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
   this->ope_normal = new ope::normal::Structured();
-  //this->rad_detection = node_radio->get_cloud_detection();
   this->dyn_recorder = new dyn::cloud::Recorder(node_dynamic);
   this->thread_pool = node_engine->get_thread_pool();
 
@@ -86,7 +83,7 @@ void Operation::colorize_object(dat::base::Entity* entity){
   ope::color::Configuration config;
   config.color_mode = dyn_struct->colorization.color_mode;
   config.heatmap_mode = dyn_struct->colorization.heatmap_mode;
-  config.intensity_diviser = dyn_struct->colorization.intensity_diviser;
+  config.intensity_diviser = dyn_struct->operation.intensity.diviser;
   config.heatmap_range_height = dyn_struct->colorization.range_height;
   config.unicolor = dyn_struct->colorization.unicolor;
 

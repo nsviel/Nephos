@@ -24,12 +24,13 @@ void Rectangle::detect_rectangle(cv::Mat& image){
   cv::Mat gray, canny;
   rad_image->convert_into_gray(image, gray);
   rad_image->apply_canny(gray, canny);
-  this->truc(canny);
+  this->compute_rectangle_detection(canny);
 
   //------------------------
 }
 
-void Rectangle::truc(cv::Mat& image){
+//Subfunction
+void Rectangle::compute_rectangle_detection(cv::Mat& image){
   //---------------------------
 
   // Find contours
@@ -38,7 +39,7 @@ void Rectangle::truc(cv::Mat& image){
 
   cv::Mat result;
   rad_image->convert_into_rgba(image, result);
-  
+
   // Draw rectangles
   for(size_t i = 0; i < contours.size(); i++){
     if(is_rectangle(contours[i])){
@@ -52,8 +53,6 @@ void Rectangle::truc(cv::Mat& image){
 
   //---------------------------
 }
-
-//Subfunction
 bool Rectangle::is_rectangle(const vector<cv::Point>& contour){
   const double minAspectRatio = 0.8;
   const double maxAspectRatio = 1.2;

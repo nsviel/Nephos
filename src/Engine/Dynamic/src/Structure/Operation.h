@@ -17,10 +17,19 @@ struct Normal{
   //---------------------------
 };
 
+struct Intensity{
+  //---------------------------
+
+  int diviser = 1000;
+
+  //---------------------------
+};
+
 struct Structure{
   //---------------------------
 
   dyn::operation::Normal normal;
+  dyn::operation::Intensity intensity;
 
   //---------------------------
 };

@@ -3,6 +3,7 @@
 #include <Render/src/Stream.h>
 #include <Utility/Specific/Common.h>
 
+namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad{class Structure;}
@@ -36,6 +37,7 @@ public:
   void parameter_ransac();
 
 private:
+  dyn::Structure* dyn_struct;
   rad::Structure* rad_struct;
   rad::detection::Manager* rad_detection;
   rad::detection::image::Circle* rad_circle;

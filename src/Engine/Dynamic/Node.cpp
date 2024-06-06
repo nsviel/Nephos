@@ -3,7 +3,6 @@
 #include <Engine/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <image/IconsFontAwesome6.h>
-#include <Radiometry/Namespace.h>
 
 
 namespace dyn{
@@ -16,7 +15,6 @@ Node::Node(eng::Node* node_engine){
 
   this->node_engine = node_engine;
   this->node_data = node_engine->get_node_data();
-  this->node_radio = new rad::Node(node_engine);
 
   this->dyn_struct = new dyn::Structure();
   this->dyn_player = new dyn::player::Player(this);
@@ -26,8 +24,6 @@ Node::Node(eng::Node* node_engine){
   this->gui_stream = new dyn::gui::Stream(this, &panel_stream->is_open);
   this->gui_control = new dyn::gui::Control(this);
 
-  this->add_node_panel(node_radio);
-
   //---------------------------
 }
 Node::~Node(){}
@@ -35,14 +31,11 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_radio->init();
-
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  node_radio->loop();
   dyn_player->loop();
 
   //---------------------------
@@ -56,7 +49,6 @@ void Node::clean(){
 void Node::gui(){
   //---------------------------
 
-  node_radio->gui();
   gui_player->run_panel();
   gui_stream->run_panel();
 
