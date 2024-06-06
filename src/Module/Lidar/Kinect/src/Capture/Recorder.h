@@ -23,7 +23,7 @@ public:
 
   //Subfunction
   void export_start(k4n::structure::Sensor* sensor, std::string path);
-  void export_loop(k4n::structure::Sensor* sensor);
+  void export_loop(k4n::structure::Sensor* sensor, std::string path);
   void export_stop(k4n::structure::Sensor* sensor);
 
 private:

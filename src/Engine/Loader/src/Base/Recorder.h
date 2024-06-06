@@ -9,10 +9,10 @@ namespace ldr::base{
 struct Recorder{
   //---------------------------
 
-  virtual void record_ascii(utl::base::Data* data){}
-  virtual void record_binary(utl::base::Data* data){}
-
   std::string format = "";
+  float size = 0;
+  float ts_beg = 0;
+  float ts_rec = 0;
 
   //---------------------------
 };

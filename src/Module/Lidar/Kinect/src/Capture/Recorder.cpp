@@ -32,7 +32,7 @@ void Recorder::run_thread(k4n::structure::Sensor* sensor, std::string path){
   //---------------------------
 
   this->export_start(sensor, path);
-  this->export_loop(sensor);
+  this->export_loop(sensor, path);
   this->export_stop(sensor);
 
   //---------------------------
@@ -68,13 +68,12 @@ void Recorder::export_start(k4n::structure::Sensor* sensor, std::string path){
   recorder.write_header();
 
   //Set info
-  //master->recorder.path = path;
-  //master->recorder.file_size = 0;
-  //master->recorder.ts_beg = sensor->set_parent->ts_cur;
+  this->size = 0;
+  this->ts_beg = sensor->timestamp.current;
 
   //---------------------------
 }
-void Recorder::export_loop(k4n::structure::Sensor* sensor){
+void Recorder::export_loop(k4n::structure::Sensor* sensor, std::string path){
   //---------------------------
 
   //Recorder
@@ -85,8 +84,9 @@ void Recorder::export_loop(k4n::structure::Sensor* sensor){
   k4a::capture* capture = sensor->device.capture;
   recorder.write_capture(*capture);
 
-  //master->recorder.ts_rec = sensor->set_parent->ts_cur - master->recorder.ts_beg;
-  //master->recorder.file_size = utl::file::size(master->recorder.path);
+  //Set info
+  this->size = utl::file::size(path);
+  this->ts_rec = sensor->timestamp.current - ts_beg;
 
   //---------------------------
 }
