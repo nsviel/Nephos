@@ -10,6 +10,7 @@ namespace utl::base{
 struct Path{
   //---------------------------
 
+  std::string directory = "";
   std::string data = "";
   std::string transformation = "";
   std::string texture = "";

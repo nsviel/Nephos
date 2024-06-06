@@ -22,7 +22,7 @@ void Recorder::record_sensor(dyn::base::Sensor* sensor, std::string path){
   //---------------------------
 
   if(k4n::structure::Sensor* k4n_sensor = dynamic_cast<k4n::structure::Sensor*>(sensor)){
-    if(!k4n_sensor->device.handle.is_valid()) return;
+    if(!k4n_sensor->device.handle.is_valid() || path == "") return;
 
     this->export_start(k4n_sensor, path);
     this->export_loop(k4n_sensor, path);

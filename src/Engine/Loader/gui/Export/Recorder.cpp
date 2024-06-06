@@ -20,6 +20,7 @@ Recorder::Recorder(ldr::Node* node_loader){
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dyn_player = node_dynamic->get_dyn_player();
   this->ldr_struct = node_loader->get_ldr_struct();
+  this->dat_selection = node_data->get_dat_selection();
 
   //---------------------------
 }
@@ -171,11 +172,15 @@ void Recorder::item_update(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Recorder::item_operation(){
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  if(entity == nullptr) return;
   //---------------------------
 
-  dyn_struct->recorder.dir = ldr_struct->current_dir;
-  dyn_struct->recorder.name = ldr_struct->current_name;
-  dyn_struct->recorder.format = ldr_struct->current_format;
+  utl::base::Data* data = &entity->data;
+  data->name = ldr_struct->current_name;
+  data->format = ldr_struct->current_format;
+  data->path.directory = ldr_struct->current_dir;
+  data->path.data = data->path.directory + "/" + data->name + "." + data->format;
 
   //---------------------------
 }

@@ -39,13 +39,13 @@ void Recorder::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   if(sensor->vec_recorder.size() == 1){
-    sensor->vec_recorder[0]->record_sensor(sensor, dyn_struct->recorder.path);
+    sensor->vec_recorder[0]->record_sensor(sensor, sensor->data.path.data);
   }else{
     for(int i=0; i<sensor->vec_recorder.size(); i++){
       dyn::base::Recorder* recorder = sensor->vec_recorder[i];
 
-      if(recorder->format == dyn_struct->recorder.format){sayHello();
-        recorder->record_sensor(sensor, dyn_struct->recorder.path);
+      if(recorder->format == sensor->data.format){
+        recorder->record_sensor(sensor, sensor->data.path.data);
       }
     }
   }
