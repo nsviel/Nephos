@@ -19,6 +19,8 @@ Operation::Operation(ldr::Node* node_loader){
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
   this->dat_glyph = node_data->get_dat_glyph();
+  this->ope_transform = new ope::Transformation();
+  this->ope_operation = new ope::Operation();
 
   //---------------------------
 }
@@ -29,26 +31,14 @@ void Operation::insert_object(dat::base::Object* object){
   if(object == nullptr) return;
   //---------------------------
 
-  //If no color, fill it with white
-  if(object->data.rgb.size() == 0){
-    for(int i=0; i<object->data.xyz.size(); i++){
-      object->data.rgba.push_back(vec4(1, 1, 1, 1));
-    }
-  }else{
-    for(int i=0; i<object->data.rgb.size(); i++){
-      glm::vec3& rgb = object->data.rgb[i];
-      object->data.rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
-    }
-  }
-
-  //Transformation
-  this->transformation_from_file(object);
+  //Operation
+  this->ope_misc(object);
+  this->ope_color(object);
+  this->ope_transformation(object);
 
   //Init object into engine
-  if(object->set_parent == nullptr){
-    dat::base::Set* set_graph = dat_graph->get_set_graph();
-    dat_set->insert_entity(set_graph, object);
-  }
+  if(object->set_parent == nullptr) object->set_parent = dat_graph->get_set_graph();
+  dat_set->insert_entity(object->set_parent, object);
   dat_entity->init_entity(object);
   dat_glyph->insert_glyph(object);
 
@@ -66,28 +56,11 @@ void Operation::insert_set(dat::base::Set* set){
 }
 
 //Subfunction
-void Operation::transformation_from_file(dat::base::Entity* entity){
+void Operation::ope_misc(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  //Transformation
-  std::string& path = entity->data.path.transformation;
-  glm::mat4 mat = utl::transformation::find_transformation_from_file(path);
-  entity->pose.model = mat;
-  entity->pose.model_init = mat;
-
-  //---------------------------
-}
-void Operation::transformation_scaling(dat::base::Entity* entity){
-  if(entity == nullptr) return;
-  //---------------------------
-
-  ope_transform->make_scaling(object, ldr_struct->import_scaling);
-
-  if(ldr_struct->import_center){
-    ope_operation->center_object(object);
-  }
-
+  //Remove old one
   if(ldr_struct->import_remove_old){
     dat::base::Set* set_graph = dat_graph->get_set_graph();
     dat_set->remove_all_entity(set_graph);
@@ -95,6 +68,45 @@ void Operation::transformation_scaling(dat::base::Entity* entity){
 
   //---------------------------
 }
+void Operation::ope_color(dat::base::Entity* entity){
+  if(entity == nullptr) return;
+  //---------------------------
 
+  //If no color, fill it with white
+  if(entity->data.rgb.size() == 0){
+    for(int i=0; i<entity->data.xyz.size(); i++){
+      entity->data.rgba.push_back(vec4(1, 1, 1, 1));
+    }
+  }else{
+    for(int i=0; i<entity->data.rgb.size(); i++){
+      glm::vec3& rgb = entity->data.rgb[i];
+      entity->data.rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
+    }
+  }
+
+  //---------------------------
+}
+void Operation::ope_transformation(dat::base::Entity* entity){
+  if(entity == nullptr) return;
+  //---------------------------
+
+  //Transformation
+  std::string& path = entity->data.path.transformation;
+
+
+  glm::mat4 mat = utl::transformation::find_transformation_from_file(path);
+  entity->pose.model = mat;
+  entity->pose.model_init = mat;
+
+  //Scaling
+  ope_transform->make_scaling(entity, ldr_struct->import_scaling);
+
+  //Centering
+  if(ldr_struct->import_center){
+    ope_operation->center_object(entity);
+  }
+
+  //---------------------------
+}
 
 }

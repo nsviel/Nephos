@@ -12,6 +12,8 @@ namespace dat{class Glyph;}
 namespace dat::base{class Object;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
+namespace ope{class Transformation;}
+namespace ope{class Operation;}
 
 
 namespace ldr::processing{
@@ -29,8 +31,9 @@ public:
   void insert_set(dat::base::Set* set);
 
   //Subfunction
-  void transformation_from_file(dat::base::Entity* entity);
-  void transformation_scaling(dat::base::Entity* entity);
+  void ope_misc(dat::base::Entity* entity);
+  void ope_color(dat::base::Entity* entity);
+  void ope_transformation(dat::base::Entity* entity);
 
 private:
   ldr::Structure* ldr_struct;
@@ -38,6 +41,8 @@ private:
   dat::Graph* dat_graph;
   dat::Set* dat_set;
   dat::Glyph* dat_glyph;
+  ope::Transformation* ope_transform;
+  ope::Operation* ope_operation;
 };
 
 }

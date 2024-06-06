@@ -43,9 +43,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
   sensor->init();
 
   //Associated set
-  dat::base::Set* set = manage_set_parent();
-  dat_set->insert_entity(set, sensor);
-  sensor->set_parent = set;
+  sensor->set_parent = manage_set_parent();
   sensor->start_thread();
 
   //---------------------------

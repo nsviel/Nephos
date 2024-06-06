@@ -20,8 +20,6 @@ Loader::Loader(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(
   this->ldr_struct = node_loader->get_ldr_struct();
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
-  this->ope_transform = new ope::Transformation();
-  this->ope_operation = new ope::Operation();
 
   this->name = "Loader";
   this->show_window = show_window;
