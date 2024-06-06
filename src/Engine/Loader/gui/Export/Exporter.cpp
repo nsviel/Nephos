@@ -29,26 +29,29 @@ void Exporter::design_header(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
+  this->display_action();
+  this->display_path();
+  this->display_format();
+  this->display_encording();
 
   //---------------------------
   ImGui::Separator();
 }
 
-//Subfunction
-void Panel::display_action(){
+//Header function
+void Exporter::display_action(){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Save##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
     this->item_operation();
-    this->vec_selection.clear();
   }
   ImGui::PopStyleColor(2);
 
   //---------------------------
 }
-void Panel::display_path(){
+void Exporter::display_path(){
   //---------------------------
 
   ImGui::BeginTable("header##exporter", 2);
@@ -59,24 +62,24 @@ void Panel::display_path(){
   static char str_n[256];
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Directory"); ImGui::TableNextColumn();
-  strncpy(str_n, current_dir.c_str(), sizeof(str_n) - 1);
+  strncpy(str_n, ldr_struct->current_dir.c_str(), sizeof(str_n) - 1);
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   if(ImGui::InputText("##exporter_dir", str_n, IM_ARRAYSIZE(str_n))){
-    this->current_dir = (string)str_n;
+    ldr_struct->current_dir = (string)str_n;
   }
   ImGui::PopStyleColor(2);
 
   //Filename
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Name"); ImGui::TableNextColumn();
-  strncpy(str_n, current_name.c_str(), sizeof(str_n) - 1);
+  strncpy(str_n, ldr_struct->current_name.c_str(), sizeof(str_n) - 1);
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
-    this->current_name = (string)str_n;
+    ldr_struct->current_name = (string)str_n;
   }
   ImGui::PopStyleColor(2);
 
@@ -85,7 +88,7 @@ void Panel::display_path(){
   //---------------------------
   ImGui::Separator();
 }
-void Panel::display_format(){
+void Exporter::display_format(){
   //---------------------------
 
   ImGui::BeginTable("header##exporter", 2);
@@ -98,7 +101,7 @@ void Panel::display_format(){
   std::vector<std::string> vec_format = ldr_exporter->get_supported_format();
   for(int i=0; i<vec_format.size(); i++){
     if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
-      this->current_format = vec_format[i];
+      ldr_struct->current_format = vec_format[i];
     }
   }
 
@@ -106,14 +109,14 @@ void Panel::display_format(){
 
   //---------------------------
 }
-void Panel::display_encording(){
+void Exporter::display_encording(){
   //---------------------------
 
   ImGui::BeginTable("header##exporter", 2);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
-  std::vector<int> vec_encoding = ldr_exporter->get_supported_encoding(current_format);
+  std::vector<int> vec_encoding = ldr_exporter->get_supported_encoding(ldr_struct->current_format);
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Encoding"); ImGui::TableNextColumn();
   static int mode = 1;
@@ -143,5 +146,19 @@ void Panel::display_encording(){
   ImGui::Separator();
 }
 
+//Subfunction
+void Exporter::item_operation(){
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  if(entity == nullptr) return;
+  //---------------------------
+
+  utl::base::Data* data = &entity->data;
+  data->format = ldr_struct->current_format;
+
+  std::string path = ldr_struct->current_dir + "/" + ldr_struct->current_name + "." + ldr_struct->current_format;
+  ldr_exporter->export_entity(entity, path);
+
+  //---------------------------
+}
 
 }

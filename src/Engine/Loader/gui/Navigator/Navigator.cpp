@@ -11,12 +11,14 @@ namespace ldr::gui{
 Navigator::Navigator(ldr::Node* node_loader){
   //---------------------------
 
+  this->ldr_struct = node_loader->get_ldr_struct();
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
 
   this->default_dir = utl::path::get_current_parent_path_abs();
-  this->current_dir = default_dir;
   this->with_bookmark = with_bookmark;
+
+  ldr_struct->current_dir = default_dir;
 
   //---------------------------
 }
@@ -38,7 +40,7 @@ void Navigator::draw_header(){
 
   //Reset current dir
   if(ImGui::Button(ICON_FA_HOUSE "##222")){
-    this->current_dir = default_dir;
+    ldr_struct->current_dir = default_dir;
   }
   ImGui::SameLine();
   ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
@@ -46,16 +48,16 @@ void Navigator::draw_header(){
 
   // Split the path into individual elements
   size_t start = 0;
-  size_t end = current_dir.find_first_of('/');
+  size_t end = ldr_struct->current_dir.find_first_of('/');
   std::vector<std::string> pathElements;
   while(end != std::string::npos){
-    pathElements.push_back(current_dir.substr(start, end - start));
+    pathElements.push_back(ldr_struct->current_dir.substr(start, end - start));
     start = end + 1;
-    end = current_dir.find_first_of('/', start);
+    end = ldr_struct->current_dir.find_first_of('/', start);
   }
 
   // Add the last element (file/directory name)
-  pathElements.push_back(current_dir.substr(start));
+  pathElements.push_back(ldr_struct->current_dir.substr(start));
 
   // Render buttons for each path element
   std::string element_path;
@@ -70,7 +72,7 @@ void Navigator::draw_header(){
     ImGui::PushID(i);
     element_path += "/" + element;
     if(ImGui::Button(element.c_str())){
-      this->current_dir = element_path;
+      ldr_struct->current_dir = element_path;
     }
     ImGui::PopID();
   }
@@ -133,7 +135,7 @@ void Navigator::draw_bookmark(ldr::gui::File& file){
 
 //Item function
 void Navigator::item_organisation(){
-  std::vector<std::string> vec_current_files = utl::path::list_all_path(current_dir);
+  std::vector<std::string> vec_current_files = utl::path::list_all_path(ldr_struct->current_dir);
   //---------------------------
 
   //Item transposition
@@ -219,11 +221,11 @@ void Navigator::item_folder(){
 
       if(ImGui::IsMouseDoubleClicked(0)){
         if(file.item.name == ".."){
-          std::filesystem::path path = this->current_dir;
-          this->current_dir = path.parent_path();
+          std::filesystem::path path = ldr_struct->current_dir;
+          ldr_struct->current_dir = path.parent_path();
           this->vec_selection.clear();
         }else{
-          this->current_dir += "/" + file.item.name;
+          ldr_struct->current_dir += "/" + file.item.name;
           this->vec_selection.clear();
         }
       }else{
@@ -299,9 +301,9 @@ void Navigator::item_selection(){
     ldr::gui::File& file = vec_file[i];
 
     if(file.item.ID == selection){
-      this->current_dir = utl::path::get_dir_from_path(file.item.path);
-      this->current_name = utl::path::get_name_from_path(file.item.path);
-      this->current_format = utl::path::get_format_from_path(file.item.path);
+      ldr_struct->current_dir = utl::path::get_dir_from_path(file.item.path);
+      ldr_struct->current_name = utl::path::get_name_from_path(file.item.path);
+      ldr_struct->current_format = utl::path::get_format_from_path(file.item.path);
     }
   }
 

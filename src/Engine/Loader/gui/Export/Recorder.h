@@ -25,10 +25,13 @@ public:
   //Main function
   void design_header();
 
-  //Subfunction
+  //Header function
   void display_action();
   void display_path();
   void display_format();
+
+  //Subfunction
+  void item_operation();
 
 private:
   ldr::Structure* ldr_struct;

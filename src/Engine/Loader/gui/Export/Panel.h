@@ -9,6 +9,8 @@ namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::io{class Exporter;}
 namespace ldr::gui{class File;}
+namespace ldr::gui::exporter{class Exporter;}
+namespace ldr::gui::exporter{class Recorder;}
 namespace dat{class Selection;}
 
 
@@ -26,12 +28,6 @@ public:
   void run_panel();
   void design_panel();
 
-  //Header
-  void display_action();
-  void display_path();
-  void display_format();
-  void display_encording();
-
   //Navigator
   void item_update();
   void item_operation();
@@ -41,6 +37,8 @@ private:
   ldr::Structure* ldr_struct;
   ldr::io::Exporter* ldr_exporter;
   dat::Selection* dat_selection;
+  ldr::gui::exporter::Exporter* gui_exporter;
+  ldr::gui::exporter::Recorder* gui_recorder;
 
   std::string name = "";
   bool* show_window;

@@ -5,6 +5,7 @@
 #include <vector>
 
 namespace ldr{class Node;}
+namespace ldr{class Structure;}
 namespace ldr::io{class Importer;}
 namespace ldr::gui{class File;}
 namespace ldr::bookmark{class Manager;}
@@ -37,6 +38,7 @@ public:
   virtual bool item_format(std::string format){return true;}
 
 protected:
+  ldr::Structure* ldr_struct;
   ldr::io::Importer* ldr_importer;
   ldr::bookmark::Manager* ldr_bookmark;
 

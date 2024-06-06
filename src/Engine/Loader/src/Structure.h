@@ -1,12 +1,18 @@
 #pragma once
 
 #include <Loader/src/Base/Exporter.h>
+#include <string>
 
 
 namespace ldr{
 
 struct Structure{
   //---------------------------
+
+  //General
+  std::string current_dir = "";
+  std::string current_name = "";
+  std::string current_format = "";
 
   //Import
   float import_scaling = 1;
