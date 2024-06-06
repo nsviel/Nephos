@@ -18,6 +18,7 @@ Node::Node(eng::Node* node_engine){
   this->node_engine = node_engine;
   this->node_vulkan = node_engine->get_node_vulkan();
   this->node_data = node_engine->get_node_data();
+  this->node_dynamic = node_engine->get_node_dynamic();
 
   //Child
   this->ldr_struct = new ldr::Structure();

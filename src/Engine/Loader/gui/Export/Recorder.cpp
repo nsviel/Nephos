@@ -15,7 +15,9 @@ Recorder::Recorder(ldr::Node* node_loader){
   //---------------------------
 
   dat::Node* node_data = node_loader->get_node_data();
+  dyn::Node* node_dynamic = node_loader->get_node_dynamic();
 
+  this->dyn_struct = node_dynamic->get_dyn_struct();
   this->ldr_struct = node_loader->get_ldr_struct();
   this->dat_selection = node_data->get_dat_selection();
   this->ldr_recorder = node_loader->get_ldr_recorder();
@@ -146,6 +148,10 @@ void Recorder::item_update(){
 }
 void Recorder::item_operation(){
   //---------------------------
+
+  dyn_struct->recorder = !dyn_struct->recorder;
+  dyn_struct->recorder.dir = ldr_struct->current_dir;
+  dyn_struct->recorder.format = ldr_struct->current_format;
 
   //---------------------------
 }

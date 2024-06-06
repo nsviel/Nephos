@@ -9,6 +9,7 @@ namespace dat{class Entity;}
 namespace dat{class Graph;}
 namespace dat{class Set;}
 namespace dat{class Glyph;}
+namespace dat{class Selection;}
 namespace dat::base{class Object;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
@@ -41,6 +42,7 @@ private:
   dat::Graph* dat_graph;
   dat::Set* dat_set;
   dat::Glyph* dat_glyph;
+  dat::Selection* dat_selection;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 };

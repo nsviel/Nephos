@@ -19,6 +19,7 @@ Operation::Operation(ldr::Node* node_loader){
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
   this->dat_glyph = node_data->get_dat_glyph();
+  this->dat_selection = node_data->get_dat_selection();
   this->ope_transform = new ope::Transformation();
   this->ope_operation = new ope::Operation();
 
@@ -41,6 +42,7 @@ void Operation::insert_object(dat::base::Object* object){
   dat_set->insert_entity(object->set_parent, object);
   dat_entity->init_entity(object);
   dat_glyph->insert_glyph(object);
+  dat_selection->select_element(object);
 
   //---------------------------
 }

@@ -9,6 +9,7 @@ namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::io{class Recorder;}
 namespace ldr::gui{class File;}
+namespace dyn{class Structure;}
 namespace dat{class Selection;}
 
 
@@ -36,6 +37,7 @@ public:
   void item_operation();
 
 private:
+  dyn::Structure* dyn_struct;
   ldr::Structure* ldr_struct;
   ldr::io::Recorder* ldr_recorder;
   dat::Selection* dat_selection;

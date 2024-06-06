@@ -5,23 +5,18 @@
 
 namespace dyn::recorder{
 
-enum Mode{
-  MKV = 0,
-  PLY = 1,
-};
-
 struct Structure{
   //---------------------------
 
-  std::string folder = "../media/record/ply";
-  std::string filename = "capture";
+  std::string dir = "../media/record/ply";
+  std::string name = "capture";
   std::string path = "";
+  std::string format = "";
 
   bool enable = false;
-  int mode = dyn::recorder::PLY;
   double file_size = 0;
   float ts_rec = 0;
-  float ts_beg;
+  float ts_beg = -1;
 
   //---------------------------
 };
