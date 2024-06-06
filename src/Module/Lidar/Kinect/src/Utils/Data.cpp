@@ -1,13 +1,18 @@
 #include "Data.h"
 
 #include <Kinect/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace k4n::utils{
 
 //Constructor / Destructor
-Data::Data(){
+Data::Data(k4n::Node* node_k4n){
   //---------------------------
+
+  dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
+
+  this->dyn_struct = node_dynamic->get_dyn_struct();
 
   //---------------------------
 }
@@ -56,7 +61,7 @@ void Data::convert_ir_into_color(k4n::structure::Sensor* sensor){
     float ir = static_cast<uint16_t>(buffer[i]) | (static_cast<uint16_t>(buffer[i + 1]) << 8);
 
     // Apply intensity division
-    //ir /= sensor->I_diviser;
+    ir /= dyn_struct->operation.intensity.diviser;
     if(ir < 0) ir = 0;
     if(ir > 1) ir = 1;
 

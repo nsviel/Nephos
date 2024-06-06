@@ -6,6 +6,7 @@ namespace prf{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace ldr{class Node;}
+namespace dyn{class Node;}
 namespace dat{class Graph;}
 namespace utl::thread{class Pool;}
 namespace k4n::capture{class Connection;}
@@ -32,6 +33,7 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline dat::Node* get_node_data(){return node_data;}
   inline ldr::Node* get_node_loader(){return node_loader;}
+  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline k4n::Structure* get_k4n_structure(){return k4n_structure;}
 
 private:
@@ -40,6 +42,7 @@ private:
   eng::Node* node_engine;
   prf::Node* node_profiler;
   dat::Node* node_data;
+  dyn::Node* node_dynamic;
 
   //Child
   utl::thread::Pool* thread_pool;

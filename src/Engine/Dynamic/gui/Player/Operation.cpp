@@ -215,7 +215,7 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
     if(dyn_struct->colorization.color_mode == ope::color::INTENSITY){
       ImGui::Separator();
       ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 5000);
+      ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 10000);
     }
 
     //Heatmap mode
@@ -239,7 +239,7 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
       //Intensity heatmap
       if(dyn_struct->colorization.heatmap_mode == ope::color::heatmap::INTENSITY){
         ImGui::SetNextItemWidth(100);
-        ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 5000);
+        ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 10000);
       }
 
       //Height heatmap

@@ -2,6 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace dyn{class Structure;}
+namespace k4n{class Node;}
 namespace k4n::structure{class Sensor;}
 
 
@@ -11,7 +13,7 @@ class Data
 {
 public:
   //Constructor / Destructor
-  Data();
+  Data(k4n::Node* node_k4n);
   ~Data();
 
 public:
@@ -33,7 +35,7 @@ public:
   void convert_normal_into_color(k4n::structure::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz);
 
 private:
-
+  dyn::Structure* dyn_struct;
 };
 
 }

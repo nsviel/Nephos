@@ -41,7 +41,7 @@ void Detection::detection_step(){
   //---------------------------
 
   ImGui::SetNextItemWidth(100);
-  ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 5000);
+  ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 10000);
 
   ImGui::BeginTable("detection_step##table", 3);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 100.0f);

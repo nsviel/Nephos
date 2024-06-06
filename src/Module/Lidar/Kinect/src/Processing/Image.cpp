@@ -17,7 +17,7 @@ Image::Image(k4n::Node* node_k4n){
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
   this->tj_handle = tjInitDecompress();
-  this->k4n_data = new k4n::utils::Data();
+  this->k4n_data = new k4n::utils::Data(node_k4n);
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->thread_pool = node_engine->get_thread_pool();
   this->dyn_operation = node_dynamic->get_ope_image();
