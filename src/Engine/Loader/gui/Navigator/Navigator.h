@@ -48,7 +48,6 @@ protected:
   ImVector<int> vec_selection;
   bool goto_file_tab = false;
   bool with_bookmark = true;
-  bool with_all_format = true;
 };
 
 }
