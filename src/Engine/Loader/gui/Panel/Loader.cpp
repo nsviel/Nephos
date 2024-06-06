@@ -105,7 +105,7 @@ void Loader::draw_header(){
   if(current_path == "") current_path = "(not defined)";
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::EndTable();
-
+/*
   // Scale new
   ImGui::SetNextItemWidth(75);
   ImGui::DragFloat("Scale##4567", &param_scaling, 0.1, 0.1, 100, "%.2f x");
@@ -117,7 +117,7 @@ void Loader::draw_header(){
   // Center new
   ImGui::SameLine();
   ImGui::Checkbox("Centered##222", &param_centered);
-
+*/
   //---------------------------
 }
 void Loader::draw_bookmark_tab(){
@@ -177,21 +177,11 @@ void Loader::item_operation(){
   }
   if(vec_path.size() == 0) return;
 
-  //Apply loading and operations
-  if(param_remove_old){
-    dat::base::Set* set_graph = dat_graph->get_set_graph();
-    dat_set->remove_all_entity(set_graph);
-  }
-
+  //Run all file loading
   for(int i=0; i<vec_path.size(); i++){
     utl::base::Path path;
     path.data = vec_path[i];
-
-    dat::base::Object* object = ldr_importer->load_object(path);
-
-    if(object != nullptr){
-      this->operation_entity(object);
-    }
+    ldr_importer->load_object(path);
   }
 
   //---------------------------
@@ -218,39 +208,13 @@ void Loader::operation_bookmark(std::string file_path){
     if(!utl::file::is_exist(file_path)) return;
     if(!ldr_importer->is_format_supported(format)) return;
 
-    //Apply loading and operations
-    if(param_remove_old){
-      dat::base::Set* set_graph = dat_graph->get_set_graph();
-      dat_set->remove_all_entity(set_graph);
-    }
-
+    //File load
     utl::base::Path path;
     path.data = file_path;
-    dat::base::Object* object = ldr_importer->load_object(path);
-
-    if(object != nullptr){
-      this->operation_entity(object);
-    }
+    ldr_importer->load_object(path);
   }
 
   //---------------------------
 }
-void Loader::operation_entity(dat::base::Entity* entity){
-  //---------------------------
-
-
-  if(entity != nullptr){
-    //Scaling
-    //ope_transform->make_scaling(object, param_scaling);
-
-    //Centered
-    if(param_centered){
-      //ope_operation->center_object(object);
-    }
-  }
-
-  //---------------------------
-}
-
 
 }

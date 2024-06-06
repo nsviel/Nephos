@@ -29,6 +29,7 @@ public:
 
   //Subfunction
   void transformation_from_file(dat::base::Entity* entity);
+  void transformation_scaling(dat::base::Entity* entity);
 
 private:
   dat::Entity* dat_entity;

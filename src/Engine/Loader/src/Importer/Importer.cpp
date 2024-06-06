@@ -49,13 +49,13 @@ utl::base::Data* Importer::load_data(std::string path){
   //---------------------------
   return data;
 }
-dat::base::Set* Importer::load_set(utl::base::Path path){
-  if(!check_path(path.data)) return nullptr;
+void Importer::load_set(utl::base::Path path){
+  if(!check_path(path.data)) return;
   //---------------------------
 
   //Load
   utl::base::Element* element = this->import_from_path(path);
-  if(element == nullptr) return nullptr;
+  if(element == nullptr) return;
 
   //Convert
   dat::base::Set* set = nullptr;
@@ -67,15 +67,14 @@ dat::base::Set* Importer::load_set(utl::base::Path path){
   ldr_operation->insert_set(set);
 
   //---------------------------
-  return set;
 }
-dat::base::Object* Importer::load_object(utl::base::Path path){
-  if(!check_path(path.data)) return nullptr;
+void Importer::load_object(utl::base::Path path){
+  if(!check_path(path.data)) return;
   //---------------------------
 
   //Load
   utl::base::Element* element = this->import_from_path(path);
-  if(element == nullptr) return nullptr;
+  if(element == nullptr) return;
 
   //Convert
   dat::base::Object* object = nullptr;
@@ -87,7 +86,6 @@ dat::base::Object* Importer::load_object(utl::base::Path path){
   ldr_operation->insert_object(object);
 
   //---------------------------
-  return object;
 }
 
 //Subfunction

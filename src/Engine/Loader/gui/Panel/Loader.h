@@ -38,7 +38,6 @@ public:
   void item_operation();
   bool item_format(std::string format);
   void operation_bookmark(std::string path);
-  void operation_entity(dat::base::Entity* entity);
 
 private:
   ldr::io::Importer* ldr_importer;
@@ -49,9 +48,6 @@ private:
   ope::Operation* ope_operation;
 
   std::string name;
-  float param_scaling = 1;
-  bool param_remove_old = true;
-  bool param_centered = true;
   bool goto_file_tab = false;
   bool* show_window;
 };

@@ -77,5 +77,23 @@ void Operation::transformation_from_file(dat::base::Entity* entity){
 
   //---------------------------
 }
+void Operation::transformation_scaling(dat::base::Entity* entity){
+  if(entity == nullptr) return;
+  //---------------------------
+
+  //ope_transform->make_scaling(object, param_scaling);
+
+  //if(param_centered){
+    //ope_operation->center_object(object);
+  //}
+
+  //if(param_remove_old){
+  //  dat::base::Set* set_graph = dat_graph->get_set_graph();
+  //  dat_set->remove_all_entity(set_graph);
+  //}
+
+  //---------------------------
+}
+
 
 }
