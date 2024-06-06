@@ -41,7 +41,7 @@ void Thread::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(state.pause == false){
+  while(thread_running == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
