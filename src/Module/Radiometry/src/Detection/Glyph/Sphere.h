@@ -3,6 +3,7 @@
 #include <Data/src/Base/Glyph.h>
 
 namespace eng{class Node;}
+namespace cam{class Control;}
 namespace ldr::io{class Importer;}
 
 
@@ -27,9 +28,10 @@ public:
 
 private:
   ldr::io::Importer* ldr_loader;
+  cam::Control* cam_control;
 
   int size = 20;
-  glm::mat4 truc = glm::mat4(1);
+  glm::mat4 mat_model = glm::mat4(1);
 };
 
 }

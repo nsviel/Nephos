@@ -14,8 +14,10 @@ Sphere::Sphere(eng::Node* node_engine){
   //---------------------------
 
   ldr::Node* node_loader = node_engine->get_node_loader();
+  cam::Node* node_camera = node_engine->get_node_camera();
 
   this->ldr_loader = node_loader->get_ldr_importer();
+  this->cam_control = node_camera->get_cam_control();
 
   this->name = "object::sphere";
   this->is_suppressible = false;
@@ -45,9 +47,11 @@ void Sphere::create(){
 void Sphere::update_pose(dat::base::Entity* entity){
   //---------------------------
 
-  if(truc != glm::mat4(1.0f)){
+  if(mat_model != glm::mat4(1.0f)){
     utl::base::Pose* entity_pose = &entity->pose;;
-    pose.model = truc * entity_pose->model;
+    pose.model = mat_model * entity_pose->model;
+
+    cam_control->compute_camera_mvp(&pose);
   }
 
   //---------------------------
@@ -75,15 +79,15 @@ void Sphere::construct(glm::vec4 color){
 void Sphere::move_sphere(glm::vec3 coordinate, float diameter){
   //---------------------------
 
-  //Set scale (original sphere is 1m diameter)
+  //Set scale (raw sphere is 2m diameter)
   float sphere_diameter = 2;
-  truc = glm::mat4(1.0f);
-  truc = glm::scale(truc, glm::vec3(diameter / sphere_diameter));
+  mat_model = glm::mat4(1.0f);
+  mat_model = glm::scale(mat_model, glm::vec3(diameter / sphere_diameter));
 
   //Set detected sphere coordinate
-  truc[0][3] = coordinate.x;
-  truc[1][3] = coordinate.y;
-  truc[2][3] = coordinate.z;
+  mat_model[0][3] = coordinate.x;
+  mat_model[1][3] = coordinate.y;
+  mat_model[2][3] = coordinate.z;
 
   //Set visibility
   data.is_visible = true;

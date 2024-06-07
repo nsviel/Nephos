@@ -57,16 +57,18 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
   vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
+  //Reset
+  this->reset_detection_sphere();
+
+  //Draw
   switch(rad_struct->detection.hough.drawing_mode){
     case rad::hough::ALL:{
-      this->reset_detection_sphere();
       this->draw_detection_sphere(sensor, vec_circle);
       break;
     }
     case rad::hough::BEST:{
       vector<rad::detection::structure::Circle> best_circle;
       if(vec_circle.size() > 0) best_circle.push_back(vec_circle[0]);
-      this->reset_detection_sphere();
       this->draw_detection_sphere(sensor, best_circle);
       break;
     }
@@ -91,8 +93,9 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detec
   vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->detection.vec_glyph_sphere;
   //---------------------------
 
-  for(int i=0; i<vec_circle.size(); i++){
-    if(i >= vec_sphere.size()) return;
+  int size = std::min(vec_sphere.size(), vec_circle.size());
+
+  for(int i=0; i<size; i++){
     rad::detection::structure::Circle& circle = vec_circle[i];
     rad::detection::glyph::Sphere* sphere = vec_sphere[i];
 
@@ -103,6 +106,7 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detec
 
     //Position sphere
     sphere->move_sphere(pose, rad_struct->detection.sphere_diameter);
+    sphere->update_pose(sensor);
   }
 
   //---------------------------
