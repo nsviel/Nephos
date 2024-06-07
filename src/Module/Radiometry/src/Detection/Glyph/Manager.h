@@ -22,15 +22,16 @@ public:
 public:
   //Main function
   void create_sphere_glyph();
-  void draw_calibration_sphere(vec3 pose, float radius);
 
-  void draw_detected_sphere(dyn::base::Sensor* sensor);
-  void draw_all_sphere_glyph(dyn::base::Sensor* sensor);
-  void draw_best_sphere_glyph(dyn::base::Sensor* sensor);
+  //Draw function
+  void draw_calibration_sphere(vec3 pose, float radius);
+  void draw_detection_sphere(dyn::base::Sensor* sensor);
+  void draw_detection_sphere_all(dyn::base::Sensor* sensor);
+  void draw_detection_sphere_best(dyn::base::Sensor* sensor);
 
   //Subfunction
-  void reset_all_sphere();
-  void draw_sphere_from_circle(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle);
+  void reset_detection_sphere();
+  void draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle);
 
 private:
   eng::Node* node_engine;

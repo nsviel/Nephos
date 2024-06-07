@@ -65,7 +65,7 @@ void Detection::make_shape_detection(utl::media::Image* image){
 
   rad_circle->detect_circle(canny);
   //rad_rectangle->detect_rectangle(canny);
-  //rad_glyph->draw_detected_sphere(sensor);
+  //rad_glyph->draw_detection_sphere(sensor);
 
   //---------------------------
 }

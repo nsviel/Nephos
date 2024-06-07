@@ -1,6 +1,7 @@
 #include "Manager.h"
 
 #include <Radiometry/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace rad::detection::glyph{
@@ -41,6 +42,8 @@ void Manager::create_sphere_glyph(){
 
   //---------------------------
 }
+
+//Draw function
 void Manager::draw_calibration_sphere(vec3 pose, float radius){
   rad::detection::glyph::Sphere* sphere = rad_struct->detection.glyph_calibration;
   //---------------------------
@@ -50,33 +53,32 @@ void Manager::draw_calibration_sphere(vec3 pose, float radius){
 
   //---------------------------
 }
-
-void Manager::draw_detected_sphere(dyn::base::Sensor* sensor){
+void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
   //---------------------------
 
   switch(rad_struct->detection.hough.drawing_mode){
     case rad::hough::ALL:{
-      this->draw_all_sphere_glyph(sensor);
+      this->draw_detection_sphere_all(sensor);
       break;
     }
     case rad::hough::BEST:{
-      this->draw_best_sphere_glyph(sensor);
+      this->draw_detection_sphere_best(sensor);
       break;
     }
   }
 
   //---------------------------
 }
-void Manager::draw_all_sphere_glyph(dyn::base::Sensor* sensor){
+void Manager::draw_detection_sphere_all(dyn::base::Sensor* sensor){
   vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
-  this->reset_all_sphere();
-  this->draw_sphere_from_circle(sensor, vec_circle);
+  this->reset_detection_sphere();
+  this->draw_detection_sphere(sensor, vec_circle);
 
   //---------------------------
 }
-void Manager::draw_best_sphere_glyph(dyn::base::Sensor* sensor){
+void Manager::draw_detection_sphere_best(dyn::base::Sensor* sensor){
   vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
@@ -85,31 +87,32 @@ void Manager::draw_best_sphere_glyph(dyn::base::Sensor* sensor){
     best_circle.push_back(rad_struct->detection.vec_circle[0]);
   }
 
-  this->reset_all_sphere();
-  this->draw_sphere_from_circle(sensor, best_circle);
+  this->reset_detection_sphere();
+  this->draw_detection_sphere(sensor, best_circle);
 
   //---------------------------
 }
 
 //Subfunction
-void Manager::reset_all_sphere(){
-  vector<rad::detection::glyph::Sphere*>& vec_glyph_sphere = rad_struct->detection.vec_glyph_sphere;
+void Manager::reset_detection_sphere(){
+  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->detection.vec_glyph_sphere;
   //---------------------------
 
-  for(int i=0; i<vec_glyph_sphere.size(); i++){
-    rad::detection::glyph::Sphere* sphere = vec_glyph_sphere[i];
+  for(int i=0; i<vec_sphere.size(); i++){
+    rad::detection::glyph::Sphere* sphere = vec_sphere[i];
     sphere->reset_glyph();
   }
 
   //---------------------------
 }
-void Manager::draw_sphere_from_circle(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
-/*  vector<rad::detection::glyph::Sphere*>& vec_glyph_sphere = rad_struct->detection.vec_glyph_sphere;
+void Manager::draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
+  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->detection.vec_glyph_sphere;
   //---------------------------
 
   for(int i=0; i<vec_circle.size(); i++){
-    if(i >= vec_glyph_sphere.size()) return;
+    if(i >= vec_sphere.size()) return;
     rad::detection::structure::Circle& circle = vec_circle[i];
+    rad::detection::glyph::Sphere* sphere = vec_sphere[i];
 
     //Add sphere radius to the detected circle center
     vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);
@@ -117,9 +120,9 @@ void Manager::draw_sphere_from_circle(dyn::base::Sensor* sensor, vector<rad::det
     pose = pose + dir * (rad_struct->detection.sphere_diameter / 2);
 
     //Position sphere
-    vec_glyph_sphere[i]->move_sphere(pose, rad_struct->detection.sphere_diameter);
+    sphere->move_sphere(pose, rad_struct->detection.sphere_diameter);
   }
-*/
+
   //---------------------------
 }
 
