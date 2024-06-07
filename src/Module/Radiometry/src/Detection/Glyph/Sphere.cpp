@@ -65,9 +65,9 @@ void Sphere::reset_glyph(){
 void Sphere::construct(glm::vec4 color){
   //---------------------------
 
-  std::vector<glm::vec4>& rgba = data.rgba;
+  data.rgba = std::vector<glm::vec4>(data.xyz.size(), vec4(0, 0, 0, 0));
   for(int j=0; j<data.xyz.size(); j++){
-    rgba[j] = color;
+    data.rgba[j] = color;
   }
 
   //---------------------------

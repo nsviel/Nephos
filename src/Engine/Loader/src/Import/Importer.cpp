@@ -39,10 +39,7 @@ utl::base::Data* Importer::load_data(std::string path){
 
   //Convert into data
   utl::base::Data* data = nullptr;
-  if(element->type == utl::element::DATA){
-    data = dynamic_cast<utl::base::Data*>(element);
-  }else if(element->type == utl::element::ENTITY){
-    dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
+  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
     data = &entity->data;
   }
 
@@ -156,12 +153,6 @@ utl::base::Element* Importer::import_from_path(utl::base::Path path){
     ldr::base::Importer* importer = vec_importer[i];
 
     if(importer->format == format){
-      //Check for discrete gpu requirement
-      /*if(importer->require_discrete_gpu && vk_interface->is_gpu_discrete() == false){
-        cout<<"[error] no discrete GPU - could not load " + importer->format + " file"<<endl;
-        continue;
-      }*/
-
       element = importer->import(path);
     }
   }

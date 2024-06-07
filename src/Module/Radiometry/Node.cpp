@@ -42,6 +42,7 @@ void Node::init(){
   //---------------------------
 
   //rad_measure->init();
+  rad_detection->init();
 
   //---------------------------
 }

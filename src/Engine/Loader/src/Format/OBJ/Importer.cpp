@@ -43,7 +43,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
   this->fill_data_file(&object->data, vertex_vec);
 
   //---------------------------
-  return nullptr;
+  return object;
 }
 
 //Subfunction
