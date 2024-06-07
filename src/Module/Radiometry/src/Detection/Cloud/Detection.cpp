@@ -15,7 +15,7 @@ Detection::Detection(rad::Node* node_radio){
 
   this->thread_pool = node_engine->get_thread_pool();
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_glyph = new rad::detection::glyph::Cloud(node_radio);
+  this->rad_glyph = new rad::detection::glyph::Manager(node_radio);
   this->rad_ransac = new rad::detection::cloud::Ransac(node_radio);
 
   this->ope_fitting = new ope::fitting::Sphere();

@@ -41,9 +41,6 @@ void Normal::update_pose(dat::base::Entity* entity){
   utl::base::Pose* entity_pose = &entity->pose;;
   pose.model = entity_pose->model;
 
-  //cam::Control* cam_control = node_camera->get_cam_control();
-  //cam_control->compute_camera_mvp(&pose);
-
   //---------------------------
 }
 void Normal::update_glyph(dat::base::Entity* entity){

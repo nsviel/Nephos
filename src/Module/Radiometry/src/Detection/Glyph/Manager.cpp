@@ -1,4 +1,4 @@
-#include "Image.h"
+#include "Manager.h"
 
 #include <Radiometry/Namespace.h>
 
@@ -6,19 +6,52 @@
 namespace rad::detection::glyph{
 
 //Constructor / Destructor
-Image::Image(rad::Node* node_radio){
+Manager::Manager(rad::Node* node_radio){
   //---------------------------
 
   dat::Node* node_data = node_radio->get_node_data();
 
+  this->dat_glyph = node_data->get_dat_glyph();
+  this->node_engine = node_radio->get_node_engine();
   this->rad_struct = node_radio->get_rad_struct();
 
   //---------------------------
 }
-Image::~Image(){}
+Manager::~Manager(){}
 
 //Main function
-void Image::draw_detected_sphere(dyn::base::Sensor* sensor){
+void Manager::create_sphere_glyph(){
+  //---------------------------
+
+  //Detection spheres
+  for(int i=0; i<20; i++){
+    rad::detection::glyph::Sphere* sphere = new rad::detection::glyph::Sphere(node_engine);
+    dat_glyph->create_glyph(sphere);
+    vec4 color = math::random(i);
+    sphere->construct(color);
+
+    rad_struct->detection.vec_glyph_sphere.push_back(sphere);
+  }
+
+  //Calibration sphere
+  rad::detection::glyph::Sphere* sphere = new rad::detection::glyph::Sphere(node_engine);
+  rad_struct->detection.glyph_calibration = sphere;
+  dat_glyph->create_glyph(sphere);
+  sphere->construct(vec4(0, 1, 0, 1));
+
+  //---------------------------
+}
+void Manager::draw_calibration_sphere(vec3 pose, float radius){
+  rad::detection::glyph::Sphere* sphere = rad_struct->detection.glyph_calibration;
+  //---------------------------
+
+  sphere->reset_glyph();
+  sphere->move_sphere(pose, radius * 2);
+
+  //---------------------------
+}
+
+void Manager::draw_detected_sphere(dyn::base::Sensor* sensor){
   //---------------------------
 
   switch(rad_struct->detection.hough.drawing_mode){
@@ -34,7 +67,7 @@ void Image::draw_detected_sphere(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Image::draw_all_sphere_glyph(dyn::base::Sensor* sensor){
+void Manager::draw_all_sphere_glyph(dyn::base::Sensor* sensor){
   vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
@@ -43,7 +76,7 @@ void Image::draw_all_sphere_glyph(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Image::draw_best_sphere_glyph(dyn::base::Sensor* sensor){
+void Manager::draw_best_sphere_glyph(dyn::base::Sensor* sensor){
   vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
   //---------------------------
 
@@ -59,7 +92,7 @@ void Image::draw_best_sphere_glyph(dyn::base::Sensor* sensor){
 }
 
 //Subfunction
-void Image::reset_all_sphere(){
+void Manager::reset_all_sphere(){
   vector<rad::detection::glyph::Sphere*>& vec_glyph_sphere = rad_struct->detection.vec_glyph_sphere;
   //---------------------------
 
@@ -70,7 +103,7 @@ void Image::reset_all_sphere(){
 
   //---------------------------
 }
-void Image::draw_sphere_from_circle(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
+void Manager::draw_sphere_from_circle(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
 /*  vector<rad::detection::glyph::Sphere*>& vec_glyph_sphere = rad_struct->detection.vec_glyph_sphere;
   //---------------------------
 

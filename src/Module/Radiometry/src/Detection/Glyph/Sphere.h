@@ -2,7 +2,7 @@
 
 #include <Data/src/Base/Glyph.h>
 
-namespace ope{class Transformation;}
+namespace eng{class Node;}
 namespace ldr::io{class Importer;}
 
 
@@ -12,7 +12,7 @@ class Sphere : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor
-  Sphere();
+  Sphere(eng::Node* node_engine);
   ~Sphere();
 
 public:
@@ -27,7 +27,6 @@ public:
 
 private:
   ldr::io::Importer* ldr_loader;
-  ope::Transformation* ope_transform;
 
   int size = 20;
   glm::mat4 truc = glm::mat4(1);
