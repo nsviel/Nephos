@@ -24,7 +24,7 @@ Ransac::~Ransac(){}
 
 //Main function
 void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
-  if(step != rad::detection::PROCESSING) return;
+  if(rad_struct->model.sphere.state_step != rad::detection::PROCESSING) return;
   //---------------------------
 
   //Search for point inside a global sphere around current center point
