@@ -48,7 +48,7 @@ void Init::load_entity(){
   dragon.data = "/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply";
 
   utl::base::Path sphere;
-  sphere.data = "/home/aether/Desktop/bench_1.mkv";
+  sphere.data = "/home/aether/Desktop/Sphere_good.mkv";
 
   utl::base::Path pcap;
   pcap.data = "/home/aether/Desktop/pcap_test.pcap";
@@ -63,7 +63,8 @@ void Init::load_entity(){
   //ldr_loader->load_object(dragon);
   //ldr_loader->load_object(sphere);
   //ldr_loader->load_set(pcap);
-  ldr_loader->load_object(mire);
+  //ldr_loader->load_object(mire);
+  ldr_loader->load_object(sphere);
 
   //----------------------------
 }

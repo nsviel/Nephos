@@ -6,7 +6,7 @@ namespace rad{class Node;}
 namespace rad{class Structure;}
 namespace dyn::base{class Sensor;}
 
-namespace rad::detection::cloud{class Glyph;}
+namespace rad::detection::glyph{class Cloud;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 
@@ -32,7 +32,7 @@ public:
 private:
 
   rad::Structure* rad_struct;
-  rad::detection::cloud::Glyph* rad_glyph;
+  rad::detection::glyph::Cloud* rad_glyph;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
 

@@ -8,14 +8,14 @@ namespace rad{class Structure;}
 namespace rad::detection::structure{class Circle;}
 
 
-namespace rad::detection::image{
+namespace rad::detection::glyph{
 
-class Glyph
+class Image
 {
 public:
   //Constructor / Destructor
-  Glyph(rad::Node* node_radio);
-  ~Glyph();
+  Image(rad::Node* node_radio);
+  ~Image();
 
 public:
   //Main function

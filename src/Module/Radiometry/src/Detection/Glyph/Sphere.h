@@ -6,7 +6,7 @@ namespace ope{class Transformation;}
 namespace ldr::io{class Importer;}
 
 
-namespace dat::glyph::object{
+namespace rad::detection::glyph{
 
 class Sphere : public dat::base::Glyph
 {

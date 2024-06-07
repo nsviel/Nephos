@@ -7,17 +7,18 @@ namespace rad{class Node;}
 namespace rad{class Structure;}
 
 
-namespace rad::detection::cloud{
+namespace rad::detection::glyph{
 
-class Glyph
+class Cloud
 {
 public:
   //Constructor / Destructor
-  Glyph(rad::Node* node_radio);
-  ~Glyph();
+  Cloud(rad::Node* node_radio);
+  ~Cloud();
 
 public:
   //Main function
+  void create_glyph();
   void draw_sphere_glyph(vec3 pose, float radius);
 
   //Subfunction

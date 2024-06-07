@@ -7,7 +7,7 @@
 #include <Loader/Namespace.h>
 
 
-namespace dat::glyph::object{
+namespace rad::detection::glyph{
 
 //Constructor / destructor
 Sphere::Sphere(){

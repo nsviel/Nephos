@@ -24,8 +24,8 @@ struct Structure{
 
   vector<rad::detection::structure::Circle> vec_circle;
   vector<rad::detection::structure::Sphere> vec_sphere;
-  vector<dat::glyph::object::Sphere*> vec_glyph_sphere;
-  dat::glyph::object::Sphere* glyph_calibration;
+  vector<rad::detection::glyph::Sphere*> vec_glyph_sphere;
+  rad::detection::glyph::Sphere* glyph_calibration;
 
   rad::detection::structure::Hough hough;
   rad::detection::structure::Canny canny;

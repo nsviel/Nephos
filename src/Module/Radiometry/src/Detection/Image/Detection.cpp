@@ -14,7 +14,7 @@ Detection::Detection(rad::Node* node_radio){
 
   this->rad_struct = node_radio->get_rad_struct();
   this->rad_image = new rad::detection::image::Image(node_radio);
-  this->rad_glyph = new rad::detection::image::Glyph(node_radio);
+  this->rad_glyph = new rad::detection::glyph::Image(node_radio);
   this->rad_circle = new rad::detection::image::Circle(node_radio);
   this->rad_rectangle = new rad::detection::image::Rectangle(node_radio);
   this->thread_pool = node_engine->get_thread_pool();
@@ -63,8 +63,8 @@ void Detection::make_shape_detection(utl::media::Image* image){
   rad_image->convert_into_gray(cv_image, gray);
   rad_image->apply_canny(gray, canny);
 
-  //rad_circle->detect_circle(canny);
-  rad_rectangle->detect_rectangle(canny);
+  rad_circle->detect_circle(canny);
+  //rad_rectangle->detect_rectangle(canny);
   //rad_glyph->draw_detected_sphere(sensor);
 
   //---------------------------
