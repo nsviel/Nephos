@@ -26,8 +26,6 @@ public:
   //Draw function
   void draw_calibration_sphere(vec3 pose, float radius);
   void draw_detection_sphere(dyn::base::Sensor* sensor);
-  void draw_detection_sphere_all(dyn::base::Sensor* sensor);
-  void draw_detection_sphere_best(dyn::base::Sensor* sensor);
 
   //Subfunction
   void reset_detection_sphere();

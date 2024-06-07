@@ -25,6 +25,7 @@ Detection::~Detection(){}
 
 //Main function
 void Detection::start_thread(dyn::base::Sensor* sensor, utl::media::Image* image){
+  if(image == nullptr || !image->new_data) return;
   //---------------------------
 
   this->thread_idle = false;
@@ -38,7 +39,7 @@ void Detection::start_thread(dyn::base::Sensor* sensor, utl::media::Image* image
 void Detection::run_thread(dyn::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
-  this->make_shape_detection(image);
+  this->make_shape_detection(sensor, image);
 
   //---------------------------
   this->thread_idle = true;
@@ -55,7 +56,7 @@ void Detection::wait_thread(){
 }
 
 //Subfunction
-void Detection::make_shape_detection(utl::media::Image* image){
+void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image){
   //---------------------------
 
   cv::Mat cv_image, gray, canny;
@@ -65,7 +66,7 @@ void Detection::make_shape_detection(utl::media::Image* image){
 
   rad_circle->detect_circle(canny);
   //rad_rectangle->detect_rectangle(canny);
-  //rad_glyph->draw_detection_sphere(sensor);
+  rad_glyph->draw_detection_sphere(sensor);
 
   //---------------------------
 }

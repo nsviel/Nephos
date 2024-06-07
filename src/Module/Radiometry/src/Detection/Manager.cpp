@@ -39,11 +39,8 @@ void Manager::loop(){
 
   if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
     utl::media::Image* image = ope_image->get_image(sensor, utl::media::INTENSITY);
-    if(image != nullptr && image->new_data){
-      rad_image_detection->start_thread(sensor, image);
-    }
 
-
+    rad_image_detection->start_thread(sensor, image);
     //rad_cloud_detection->start_thread(sensor, &sensor->ir.image);
   }
 
