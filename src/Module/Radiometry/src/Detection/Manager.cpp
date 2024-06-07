@@ -41,7 +41,7 @@ void Manager::loop(){
     utl::media::Image* image = ope_image->get_image(sensor, utl::media::INTENSITY);
 
     rad_image_detection->start_thread(sensor, image);
-    //rad_cloud_detection->start_thread(sensor, &sensor->ir.image);
+    rad_cloud_detection->start_thread(sensor);
   }
 
   //---------------------------

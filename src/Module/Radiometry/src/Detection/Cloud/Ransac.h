@@ -24,6 +24,11 @@ public:
   //Main function
   void ransac_sphere(dyn::base::Sensor* sensor);
 
+  //Subfunction
+  void reduce_search_space(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vector<float>& search_is);
+  void apply_ransac(vector<vec3>& search_xyz, vector<float>& search_is);
+  void process_result(vector<vec3>& search_xyz, vector<float>& search_is);
+
   //Data function
   void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
   void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);

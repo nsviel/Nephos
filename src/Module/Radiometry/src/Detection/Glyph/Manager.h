@@ -23,11 +23,9 @@ public:
   //Main function
   void create_sphere_glyph();
 
-  //Draw function
+  //Subfunction
   void draw_calibration_sphere(vec3 pose, float radius);
   void draw_detection_sphere(dyn::base::Sensor* sensor);
-
-  //Subfunction
   void reset_detection_sphere();
   void draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle);
 

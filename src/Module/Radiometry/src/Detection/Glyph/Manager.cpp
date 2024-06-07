@@ -43,7 +43,7 @@ void Manager::create_sphere_glyph(){
   //---------------------------
 }
 
-//Draw function
+//Subfunction
 void Manager::draw_calibration_sphere(vec3 pose, float radius){
   rad::detection::glyph::Sphere* sphere = rad_struct->detection.glyph_calibration;
   //---------------------------
@@ -76,8 +76,6 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-
-//Subfunction
 void Manager::reset_detection_sphere(){
   vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->detection.vec_glyph_sphere;
   //---------------------------
