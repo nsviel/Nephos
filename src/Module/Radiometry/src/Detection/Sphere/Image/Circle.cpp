@@ -82,7 +82,7 @@ void Circle::find_hough_parameter(int mode){
 void Circle::draw_detected_circle(cv::Mat& image){
   //---------------------------
 
-  switch(rad_struct->sphere.hough.drawing_mode){
+  switch(rad_struct->sphere.hough.draw){
     case rad::hough::ALL:{
       this->draw_all_circle(image);
       break;

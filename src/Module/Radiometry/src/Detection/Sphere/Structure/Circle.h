@@ -4,15 +4,6 @@
 #include <string>
 
 
-namespace rad::hough{
-
-enum Drawing{
-  ALL = 0,
-  BEST = 1,
-};
-
-}
-
 namespace rad::detection::structure{
 
 struct Circle{

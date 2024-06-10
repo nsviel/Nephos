@@ -225,9 +225,9 @@ void Detection::parameter_hough(){
     //Circle drawing mode
     ImGui::Text("Draw");
     ImGui::SameLine();
-    ImGui::RadioButton("All sphere", &rad_struct->sphere.hough.drawing_mode, rad::hough::ALL);
+    ImGui::RadioButton("All sphere", &rad_struct->sphere.hough.draw, rad::hough::ALL);
     ImGui::SameLine();
-    ImGui::RadioButton("Best sphere", &rad_struct->sphere.hough.drawing_mode, rad::hough::BEST);
+    ImGui::RadioButton("Best sphere", &rad_struct->sphere.hough.draw, rad::hough::BEST);
 
     ImGui::TreePop();
   }

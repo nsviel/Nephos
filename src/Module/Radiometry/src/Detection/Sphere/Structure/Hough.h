@@ -11,6 +11,11 @@ enum Mode{
   GRADIENT_ALT = 1,
 };
 
+enum Drawing{
+  ALL = 0,
+  BEST = 1,
+};
+
 }
 
 namespace rad::detection::structure{
@@ -18,10 +23,12 @@ namespace rad::detection::structure{
 struct Hough{
   //---------------------------
 
-  int drawing_mode = rad::hough::ALL;
+  //Mode
+  int draw = rad::hough::ALL;
   int mode = rad::hough::GRADIENT_ALT;
   int cv_mode = cv::HOUGH_GRADIENT;
 
+  //Parameter
   float param_1 = -1;
   float param_2 = -1;
   int ratio = 1;

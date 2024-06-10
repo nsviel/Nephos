@@ -64,7 +64,7 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
   this->reset_detection_sphere();
 
   //Draw
-  switch(rad_struct->sphere.hough.drawing_mode){
+  switch(rad_struct->sphere.hough.draw){
     case rad::hough::ALL:{
       this->draw_detection_sphere(sensor, vec_circle);
       break;
