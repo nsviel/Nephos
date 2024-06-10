@@ -12,8 +12,7 @@ Model::Model(rad::Node* node_radio){
 
   rad::model::Node* node_model = node_radio->get_node_model();
 
-  this->node_model = node_radio->get_node_model();
-  this->rad_model = node_model->get_node_model();
+  this->rad_model = node_model->get_rad_model();
   this->rad_struct = node_model->get_rad_struct();
   this->rad_measure = node_model->get_rad_measure();
   this->rad_plot = node_model->get_rad_plot();

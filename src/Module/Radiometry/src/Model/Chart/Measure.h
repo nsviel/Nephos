@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad{class Node;}
+namespace rad::model{class Node;}
 namespace rad::model{class Structure;}
 namespace rad::model::chart{class Plot;}
 
@@ -13,7 +13,7 @@ class Measure
 {
 public:
   //Constructor / Destructor
-  Measure(rad::Node* node_radio, rad::model::chart::Plot* rad_plot);
+  Measure(rad::model::Node* node_model);
   ~Measure();
 
 public:

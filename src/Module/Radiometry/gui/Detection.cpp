@@ -19,7 +19,7 @@ Detection::Detection(rad::Node* node_radio){
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->rad_struct = node_detection->get_rad_struct();
   this->node_detection = node_radio->get_node_detection();
-  this->rad_circle = new rad::detection::image::Circle(node_radio);
+  this->rad_circle = new rad::detection::image::Circle(node_detection);
   this->stream = new rnd::Stream(node_engine);
 
   //---------------------------

@@ -12,10 +12,10 @@ Correction::Correction(rad::Node* node_radio){
   //---------------------------
 
   rad::correction::Node* node_correction = node_radio->get_node_correction();
+  rad::model::Node* node_model = node_radio->get_node_model();
 
   this->rad_struct = node_correction->get_rad_struct();
-  this->node_model = node_radio->get_node_model();
-  this->rad_model = node_model->get_node_model();
+  this->rad_model = node_model->get_rad_model();
 
   //---------------------------
 }

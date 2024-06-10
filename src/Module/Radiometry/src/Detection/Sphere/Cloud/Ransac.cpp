@@ -8,13 +8,11 @@
 namespace rad::detection::cloud{
 
 //Constructor / Destructor
-Ransac::Ransac(rad::Node* node_radio){
+Ransac::Ransac(rad::detection::Node* node_detection){
   //---------------------------
 
-  rad::detection::Node* node_detection = node_radio->get_node_detection();
-
   this->rad_struct = node_detection->get_rad_struct();
-  this->rad_glyph = new rad::detection::glyph::Manager(node_radio);
+  this->rad_glyph = new rad::detection::glyph::Manager(node_detection);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
 

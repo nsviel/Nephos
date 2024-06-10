@@ -6,13 +6,11 @@
 namespace rad::detection::image{
 
 //Constructor / Destructor
-Circle::Circle(rad::Node* node_radio){
+Circle::Circle(rad::detection::Node* node_detection){
   //---------------------------
 
-  rad::detection::Node* node_detection = node_radio->get_node_detection();
-
   this->rad_struct = node_detection->get_rad_struct();
-  this->rad_image = new rad::detection::image::Image(node_radio);
+  this->rad_image = new rad::detection::image::Image(node_detection);
 
   this->find_hough_parameter(rad::hough::GRADIENT_ALT);
 

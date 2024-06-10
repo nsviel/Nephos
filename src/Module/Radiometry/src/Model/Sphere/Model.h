@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad{class Node;}
+namespace rad::model{class Node;}
 namespace rad::model{class Structure;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
@@ -14,7 +14,7 @@ class Model
 {
 public:
   //Constructor / Destructor
-  Model(rad::Node* node_radio);
+  Model(rad::model::Node* node_model);
   ~Model();
 
 public:

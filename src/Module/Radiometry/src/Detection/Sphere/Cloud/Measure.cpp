@@ -8,11 +8,11 @@
 namespace rad::detection::cloud{
 
 //Constructor / Destructor
-Measure::Measure(rad::Node* node_radio){
+Measure::Measure(rad::detection::Node* node_detection){
   //---------------------------
 
+  rad::Node* node_radio = node_detection->get_node_radio();
   rad::model::Node* node_model = node_radio->get_node_model();
-  rad::detection::Node* node_detection = node_radio->get_node_detection();
 
   this->model_struct = node_model->get_rad_struct();
   this->detection_struct = node_detection->get_rad_struct();

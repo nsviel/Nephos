@@ -39,11 +39,13 @@ public:
   void step_sphere_detection();
   void step_chart_detection();
 
+  inline rad::Node* get_node_radio(){return node_radio;}
   inline rad::detection::Structure* get_rad_struct(){return rad_struct;}
   inline rad::detection::image::Detection* get_image_detection(){return rad_image_detection;}
   inline rad::detection::cloud::Detection* get_cloud_detection(){return rad_cloud_detection;}
 
 private:
+  rad::Node* node_radio;
   rad::detection::Structure* rad_struct;
   rad::detection::image::Detection* rad_image_detection;
   rad::detection::cloud::Detection* rad_cloud_detection;

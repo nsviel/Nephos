@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad{class Node;}
+namespace rad::detection{class Node;}
 namespace rad::detection{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace rad::detection::glyph{class Manager;}
@@ -16,7 +16,7 @@ class Ransac
 {
 public:
   //Constructor / Destructor
-  Ransac(rad::Node* node_radio);
+  Ransac(rad::detection::Node* node_detection);
   ~Ransac();
 
 public:

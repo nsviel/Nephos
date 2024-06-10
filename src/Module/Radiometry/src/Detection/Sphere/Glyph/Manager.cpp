@@ -7,11 +7,11 @@
 namespace rad::detection::glyph{
 
 //Constructor / Destructor
-Manager::Manager(rad::Node* node_radio){
+Manager::Manager(rad::detection::Node* node_detection){
   //---------------------------
 
+  rad::Node* node_radio = node_detection->get_node_radio();
   dat::Node* node_data = node_radio->get_node_data();
-  rad::detection::Node* node_detection = node_radio->get_node_detection();
 
   this->dat_glyph = node_data->get_dat_glyph();
   this->node_engine = node_radio->get_node_engine();

@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace dyn::base{class Sensor;}
-namespace rad{class Node;}
+namespace rad::detection{class Node;}
 namespace rad::detection{class Structure;}
 namespace rad::detection::structure{class Circle;}
 namespace dat{class Glyph;}
@@ -16,7 +16,7 @@ class Manager
 {
 public:
   //Constructor / Destructor
-  Manager(rad::Node* node_radio);
+  Manager(rad::detection::Node* node_detection);
   ~Manager();
 
 public:

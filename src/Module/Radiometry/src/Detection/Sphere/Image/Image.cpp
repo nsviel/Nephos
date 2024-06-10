@@ -6,10 +6,8 @@
 namespace rad::detection::image{
 
 //Constructor / Destructor
-Image::Image(rad::Node* node_radio){
+Image::Image(rad::detection::Node* node_detection){
   //---------------------------
-
-  rad::detection::Node* node_detection = node_radio->get_node_detection();
 
   this->rad_struct = node_detection->get_rad_struct();
 

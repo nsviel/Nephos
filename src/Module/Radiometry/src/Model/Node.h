@@ -22,7 +22,7 @@ public:
   //Main function
 
   inline rad::model::Structure* get_rad_struct(){return rad_struct;}
-  inline rad::model::sphere::Model* get_node_model(){return rad_model;}
+  inline rad::model::sphere::Model* get_rad_model(){return rad_model;}
   inline rad::model::sphere::Measure* get_rad_measure(){return rad_measure;}
   inline rad::model::sphere::Plot* get_rad_plot(){return rad_plot;}
 

@@ -14,10 +14,11 @@ Node::Node(rad::Node* node_radio){
 
   dat::Node* node_data = node_radio->get_node_data();
 
+  this->node_radio = node_radio;
   this->rad_struct = new rad::detection::Structure();
-  this->rad_glyph = new rad::detection::glyph::Manager(node_radio);
-  this->rad_image_detection = new rad::detection::image::Detection(node_radio);
-  this->rad_cloud_detection = new rad::detection::cloud::Detection(node_radio);
+  this->rad_glyph = new rad::detection::glyph::Manager(this);
+  this->rad_image_detection = new rad::detection::image::Detection(this);
+  this->rad_cloud_detection = new rad::detection::cloud::Detection(this);
   this->dat_selection = node_data->get_dat_selection();
 
   //---------------------------

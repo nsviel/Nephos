@@ -8,13 +8,11 @@
 namespace rad::model::sphere{
 
 //Constructor / Destructor
-Measure::Measure(rad::Node* node_radio, rad::model::sphere::Plot* rad_plot){
+Measure::Measure(rad::model::Node* node_model){
   //---------------------------
 
-  rad::model::Node* node_model = node_radio->get_node_model();
-
   this->rad_struct = node_model->get_rad_struct();
-  this->rad_plot = rad_plot;
+  this->rad_plot = node_model->get_rad_plot();
 
   //---------------------------
   this->init();

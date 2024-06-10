@@ -7,10 +7,8 @@
 namespace rad::model::sphere{
 
 //Constructor / Destructor
-Model::Model(rad::Node* node_radio){
+Model::Model(rad::model::Node* node_model){
   //---------------------------
-
-  rad::model::Node* node_model = node_radio->get_node_model();
 
   this->rad_struct = node_model->get_rad_struct();
   this->ope_polyfit = new ope::fitting::Polyfit();

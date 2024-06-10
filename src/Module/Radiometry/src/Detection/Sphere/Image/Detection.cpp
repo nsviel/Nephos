@@ -8,17 +8,17 @@
 namespace rad::detection::image{
 
 //Constructor / Destructor
-Detection::Detection(rad::Node* node_radio){
+Detection::Detection(rad::detection::Node* node_detection){
   //---------------------------
 
+  rad::Node* node_radio = node_detection->get_node_radio();
   eng::Node* node_engine = node_radio->get_node_engine();
-  rad::detection::Node* node_detection = node_radio->get_node_detection();
 
   this->rad_struct = node_detection->get_rad_struct();
-  this->rad_image = new rad::detection::image::Image(node_radio);
-  this->rad_glyph = new rad::detection::glyph::Manager(node_radio);
-  this->rad_circle = new rad::detection::image::Circle(node_radio);
-  this->rad_rectangle = new rad::detection::image::Rectangle(node_radio);
+  this->rad_image = new rad::detection::image::Image(node_detection);
+  this->rad_glyph = new rad::detection::glyph::Manager(node_detection);
+  this->rad_circle = new rad::detection::image::Circle(node_detection);
+  this->rad_rectangle = new rad::detection::image::Rectangle(node_detection);
   this->thread_pool = node_engine->get_thread_pool();
   this->ope_image = new ope::image::Manager();
 

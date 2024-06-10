@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad{class Node;}
+namespace rad::model{class Node;}
 namespace rad::model{class Structure;}
 namespace rad::model::sphere{class Model;}
 
@@ -13,7 +13,7 @@ class Plot
 {
 public:
   //Constructor / Destructor
-  Plot(rad::Node* node_radio, rad::model::sphere::Model* rad_model);
+  Plot(rad::model::Node* node_model);
   ~Plot();
 
 public:

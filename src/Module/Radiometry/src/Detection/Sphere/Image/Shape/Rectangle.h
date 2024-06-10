@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
-namespace rad{class Node;}
+namespace rad::detection{class Node;}
 namespace rad::detection{class Structure;}
 namespace rad::detection::image{class Image;}
 
@@ -13,7 +13,7 @@ namespace rad::detection::image{
 class Rectangle
 {
 public:
-  Rectangle(rad::Node* node_radio);
+  Rectangle(rad::detection::Node* node_detection);
   ~Rectangle();
 
 public:

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad{class Node;}
+namespace rad::detection{class Node;}
 namespace rad::detection{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace utl::thread{class Pool;}
@@ -20,7 +20,7 @@ class Detection
 {
 public:
   //Constructor / Destructor
-  Detection(rad::Node* node_radio);
+  Detection(rad::detection::Node* node_detection);
   ~Detection();
 
 public:
