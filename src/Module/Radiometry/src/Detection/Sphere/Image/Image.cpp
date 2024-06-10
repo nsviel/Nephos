@@ -24,8 +24,8 @@ void Image::apply_canny(cv::Mat& input, cv::Mat& output){
   //---------------------------
 
   // Perform canny edge detection
-  int& thresh_lower = rad_struct->sphere.canny.lower_threshold;
-  int& thresh_upper = rad_struct->sphere.canny.upper_threshold;
+  int& thresh_lower = rad_struct->sphere.canny.thres_lower;
+  int& thresh_upper = rad_struct->sphere.canny.thres_upper;
   cv::Canny(input, output, thresh_lower, thresh_upper);
 
   //---------------------------
@@ -103,7 +103,7 @@ void Image::draw_circle(cv::Mat& image, vector<rad::detection::structure::Circle
 void Image::draw_bounding_box(cv::Mat& image){
   //------------------------
 
-  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.data.vec_circle;
+  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.hough.vec_circle;
   if(vec_circle.size() == 0) return;
 
   rad::detection::structure::Circle& circle = vec_circle[0];

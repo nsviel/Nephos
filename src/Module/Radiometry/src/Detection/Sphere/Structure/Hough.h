@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Radiometry/src/Detection/Sphere/Structure/Circle.h>
-#include <Radiometry/src/Detection/Sphere/Structure/Sphere.h>
 #include <Radiometry/src/Detection/Sphere/Glyph/Sphere.h>
 #include <opencv2/opencv.hpp>
 #include <string>
@@ -41,6 +40,8 @@ struct Hough{
 
   //Result
   int nb_detection = 0;
+  std::vector<rad::detection::structure::Circle> vec_circle;
+  std::vector<rad::detection::glyph::Sphere*> vec_glyph;
 
   //---------------------------
 };

@@ -10,8 +10,8 @@ struct Canny{
   //---------------------------
 
   bool apply = false;
-  int lower_threshold = 50;
-  int upper_threshold = 150;
+  int thres_lower = 50;
+  int thres_upper = 150;
 
   //---------------------------
 };

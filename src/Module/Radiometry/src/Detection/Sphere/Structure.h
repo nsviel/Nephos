@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Radiometry/src/Detection/Sphere/Structure/Data.h>
 #include <Radiometry/src/Detection/Sphere/Structure/Circle.h>
 #include <Radiometry/src/Detection/Sphere/Structure/Hough.h>
 #include <Radiometry/src/Detection/Sphere/Structure/Canny.h>
@@ -18,7 +17,6 @@ struct Structure{
 
   //Structures
   utl::media::Image image;
-  rad::detection::structure::Data data;
   rad::detection::structure::Hough hough;
   rad::detection::structure::Canny canny;
   rad::detection::structure::Bbox bbox;

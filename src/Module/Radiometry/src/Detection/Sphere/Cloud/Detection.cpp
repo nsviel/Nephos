@@ -72,7 +72,7 @@ void Detection::validate_bbox(dyn::base::Sensor* sensor){
   }
 
   //Retrieve the 3D pose of the bounding box
-  ivec2 point_2d = rad_struct->sphere.data.vec_circle[0].center;
+  ivec2 point_2d = rad_struct->sphere.hough.vec_circle[0].center;
   vec3 pose_xyz = sensor->convert_depth_2d_to_3d(point_2d);
   vec4 pose_xyzw = vec4(pose_xyz.x, pose_xyz.y, pose_xyz.z, 1);
   rad_struct->sphere.ransac.current_pose = pose->model * pose_xyzw;

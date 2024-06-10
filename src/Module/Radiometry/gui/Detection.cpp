@@ -167,11 +167,11 @@ void Detection::parameter_canny(){
 
     //Lower threshold
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderInt("Lower threshold", &rad_struct->sphere.canny.lower_threshold, 0, 200);
+    ImGui::SliderInt("Lower threshold", &rad_struct->sphere.canny.thres_lower, 0, 200);
 
     //Upper threshold
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderInt("Upper threshold", &rad_struct->sphere.canny.upper_threshold, 0, 200);
+    ImGui::SliderInt("Upper threshold", &rad_struct->sphere.canny.thres_upper, 0, 200);
 
     ImGui::TreePop();
   }

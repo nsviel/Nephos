@@ -77,7 +77,7 @@ void Measure::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
   vec3 root = vec3(0, 0, 0);
   for(int i=0; i<search_xyz.size(); i++){
     vec3& xyz = search_xyz[i];
-    float distance = math::distance(xyz, detection_struct->sphere.ransac.current_pose) - detection_struct->sphere.ransac.radius;
+    float distance = math::distance(xyz, detection_struct->sphere.ransac.current_pose) - detection_struct->sphere.ransac.search_radius;
 
     if(distance <= detection_struct->sphere.ransac.thres_sphere){
       I = search_Is[i];
@@ -107,7 +107,7 @@ void Measure::data_model(vector<vec3>& search_xyz, vector<float>& search_Is){
   vec3 root = vec3(0, 0, 0);
   for(int i=0; i<search_xyz.size(); i++){
     vec3& xyz = search_xyz[i];
-    float distance = math::distance(xyz, detection_struct->sphere.ransac.current_pose) - detection_struct->sphere.ransac.radius;
+    float distance = math::distance(xyz, detection_struct->sphere.ransac.current_pose) - detection_struct->sphere.ransac.search_radius;
 
     if(distance <= detection_struct->sphere.ransac.thres_sphere){
       I = search_Is[i];
