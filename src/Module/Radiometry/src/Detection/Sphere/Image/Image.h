@@ -25,7 +25,6 @@ public:
   void convert_into_gray(cv::Mat& input, cv::Mat& output);
   void convert_into_cv_image(utl::media::Image* input, cv::Mat& output);
   void convert_into_rgba(cv::Mat& input, cv::Mat& output);
-  void convert_into_subimage(cv::Mat& image);
   void convert_into_utl_image(cv::Mat& input, utl::media::Image* output);
 
   //Shape function

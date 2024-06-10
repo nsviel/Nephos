@@ -60,27 +60,6 @@ void Image::convert_into_rgba(cv::Mat& input, cv::Mat& output){
 
   //------------------------
 }
-void Image::convert_into_subimage(cv::Mat& image){
-  //------------------------
-
-  cv::Point& center = rad_struct->sphere.cv_center;
-  float radius = (float)rad_struct->sphere.cv_radius * rad_struct->sphere.bbox.scale;
-
-  // Calculate the top-left corner coordinates of the bounding box
-  int x = center.x - radius;
-  int y = center.y - radius;
-
-  //Check if coordinate are within image bounds
-  if(x >= 0 && y >= 0 && x + radius*2 <= image.cols && y + radius*2 <= image.rows){
-    // Create a Rect object representing the bounding box
-    cv::Rect bounding_box(x, y, radius * 2, radius * 2);
-
-    // Extract the subimage from the original image using the bounding box
-    rad_struct->sphere.cv_subimage = image(bounding_box).clone();
-  }
-
-  //------------------------
-}
 void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
   //------------------------
 
@@ -128,11 +107,10 @@ void Image::draw_bounding_box(cv::Mat& image){
   if(vec_circle.size() == 0) return;
 
   rad::detection::structure::Circle& circle = vec_circle[0];
-  rad_struct->sphere.cv_center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
-  rad_struct->sphere.cv_radius = cvRound(circle.radius);
+  cv::Point center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
+  int radius = cvRound(circle.radius);
 
-  cv::Point& center = rad_struct->sphere.cv_center;
-  float radius = (float)rad_struct->sphere.cv_radius * rad_struct->sphere.bbox.scale;
+  float radius = (float)radius * rad_struct->sphere.bbox.scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size
