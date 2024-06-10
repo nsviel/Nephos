@@ -1,4 +1,4 @@
-#include "Manager.h"
+#include "Node.h"
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
@@ -9,7 +9,7 @@
 namespace rad::detection{
 
 //Constructor / Destructor
-Manager::Manager(rad::Node* node_radio){
+Node::Node(rad::Node* node_radio){
   //---------------------------
 
   dat::Node* node_data = node_radio->get_node_data();
@@ -22,17 +22,17 @@ Manager::Manager(rad::Node* node_radio){
 
   //---------------------------
 }
-Manager::~Manager(){}
+Node::~Node(){}
 
 //Main function
-void Manager::init(){
+void Node::init(){
   //---------------------------
 
   rad_glyph->create_sphere_glyph();
 
   //---------------------------
 }
-void Manager::loop(){
+void Node::loop(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   if(sensor == nullptr) return;
@@ -46,7 +46,7 @@ void Manager::loop(){
 }
 
 //Subfunction
-void Manager::step_sphere_detection(){
+void Node::step_sphere_detection(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
@@ -69,7 +69,7 @@ void Manager::step_sphere_detection(){
 
   //---------------------------
 }
-void Manager::step_chart_detection(){
+void Node::step_chart_detection(){
   if(rad_struct->model.sphere.state_step == rad::detection::PROCESSING) return;
   //---------------------------
 

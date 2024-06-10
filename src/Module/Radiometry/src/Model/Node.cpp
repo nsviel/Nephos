@@ -1,13 +1,13 @@
-#include "Manager.h"
+#include "Node.h"
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::model::sphere{
+namespace rad::model{
 
 //Constructor / Destructor
-Manager::Manager(rad::Node* node_radio){
+Node::Node(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
@@ -17,7 +17,7 @@ Manager::Manager(rad::Node* node_radio){
 
   //---------------------------
 }
-Manager::~Manager(){}
+Node::~Node(){}
 
 //Main function
 

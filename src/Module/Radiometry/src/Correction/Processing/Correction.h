@@ -4,7 +4,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad::model::sphere{class Manager;}
+namespace rad::model{class Node;}
 namespace rad::model::sphere{class Model;}
 namespace dyn::base{class Sensor;}
 
@@ -27,7 +27,7 @@ public:
 
 private:
   rad::Structure* rad_struct;
-  rad::model::sphere::Manager* rad_manager;
+  rad::model::Node* node_model;
   rad::model::sphere::Model* rad_model;
 };
 

@@ -11,10 +11,10 @@ Model::Model(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_manager = node_radio->get_rad_model();
-  this->rad_model = rad_manager->get_rad_model();
-  this->rad_measure = rad_manager->get_rad_measure();
-  this->rad_plot = rad_manager->get_rad_plot();
+  this->node_model = node_radio->get_node_model();
+  this->rad_model = node_model->get_node_model();
+  this->rad_measure = node_model->get_rad_measure();
+  this->rad_plot = node_model->get_rad_plot();
   this->utl_plot = new utl::implot::Plot();
 
   //---------------------------

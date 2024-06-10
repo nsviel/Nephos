@@ -7,12 +7,12 @@ namespace rad{class Node;}
 
 namespace rad::correction{
 
-class Manager
+class Node
 {
 public:
   //Constructor / Destructor
-  Manager(rad::Node* node_radio);
-  ~Manager();
+  Node(rad::Node* node_radio);
+  ~Node();
 
 public:
   //Main function

@@ -7,9 +7,9 @@ namespace eng{class Node;}
 namespace dat{class Node;}
 namespace dyn{class Node;}
 namespace rad{class Structure;}
-namespace rad::detection{class Manager;}
-namespace rad::model::sphere{class Manager;}
-namespace rad::correction{class Manager;}
+namespace rad::detection{class Node;}
+namespace rad::model{class Node;}
+namespace rad::correction{class Node;}
 namespace rad::gui{class Panel;}
 
 
@@ -36,9 +36,9 @@ public:
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
 
   inline rad::Structure* get_rad_struct(){return rad_struct;}
-  inline rad::detection::Manager* get_rad_detection(){return rad_detection;}
-  inline rad::model::sphere::Manager* get_rad_model(){return rad_model;}
-  inline rad::correction::Manager* get_rad_correction(){return rad_correction;}
+  inline rad::detection::Node* get_node_detection(){return node_detection;}
+  inline rad::model::Node* get_node_model(){return node_model;}
+  inline rad::correction::Node* get_node_correction(){return node_correction;}
 
 private:
   //Dependancy
@@ -49,9 +49,9 @@ private:
 
   //Child
   rad::Structure* rad_struct;
-  rad::detection::Manager* rad_detection;
-  rad::model::sphere::Manager* rad_model;
-  rad::correction::Manager* rad_correction;
+  rad::detection::Node* node_detection;
+  rad::model::Node* node_model;
+  rad::correction::Node* node_correction;
   rad::gui::Panel* gui_panel;
 };
 

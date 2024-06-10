@@ -22,9 +22,9 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->rad_struct = new rad::Structure();
-  this->rad_detection = new rad::detection::Manager(this);
-  this->rad_model = new rad::model::sphere::Manager(this);
-  this->rad_correction = new rad::correction::Manager(this);
+  this->node_detection = new rad::detection::Node(this);
+  this->node_model = new rad::model::Node(this);
+  this->node_correction = new rad::correction::Node(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 
   //---------------------------
@@ -42,14 +42,14 @@ void Node::init(){
   //---------------------------
 
   //rad_measure->init();
-  rad_detection->init();
+  node_detection->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  rad_detection->loop();
+  node_detection->loop();
 
   //---------------------------
 }

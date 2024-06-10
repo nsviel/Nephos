@@ -4,7 +4,7 @@
 
 namespace rad{class Node;}
 namespace rad{class Structure;}
-namespace rad::model::sphere{class Manager;}
+namespace rad::model{class Node;}
 namespace rad::model::sphere{class Measure;}
 namespace rad::model::sphere{class Model;}
 namespace rad::model::sphere{class Plot;}
@@ -36,9 +36,9 @@ public:
 
   //Chart plot function
   void plot_chart();
-  
+
 private:
-  rad::model::sphere::Manager* rad_manager;
+  rad::model::Node* node_model;
   rad::model::sphere::Measure* rad_measure;
   rad::model::sphere::Model* rad_model;
   rad::model::sphere::Plot* rad_plot;

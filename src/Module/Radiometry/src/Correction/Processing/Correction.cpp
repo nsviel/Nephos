@@ -12,8 +12,8 @@ Correction::Correction(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = node_radio->get_rad_struct();
-  this->rad_manager = node_radio->get_rad_model();
-  this->rad_model = rad_manager->get_rad_model();
+  this->node_model = node_radio->get_node_model();
+  this->rad_model = node_model->get_node_model();
 
   //---------------------------
 }

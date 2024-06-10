@@ -9,20 +9,20 @@ namespace rad::model::sphere{class Measure;}
 namespace rad::model::sphere{class Plot;}
 
 
-namespace rad::model::sphere{
+namespace rad::model{
 
-class Manager
+class Node
 {
 public:
   //Constructor / Destructor
-  Manager(rad::Node* node_radio);
-  ~Manager();
+  Node(rad::Node* node_radio);
+  ~Node();
 
 public:
   //Main function
 
 
-  inline rad::model::sphere::Model* get_rad_model(){return rad_model;}
+  inline rad::model::sphere::Model* get_node_model(){return rad_model;}
   inline rad::model::sphere::Measure* get_rad_measure(){return rad_measure;}
   inline rad::model::sphere::Plot* get_rad_plot(){return rad_plot;}
 

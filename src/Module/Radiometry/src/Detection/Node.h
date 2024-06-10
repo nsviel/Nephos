@@ -23,12 +23,12 @@ enum Data{
   HAS_DATA = 3,
 };
 
-class Manager
+class Node
 {
 public:
   //Constructor / Destructor
-  Manager(rad::Node* node_radio);
-  ~Manager();
+  Node(rad::Node* node_radio);
+  ~Node();
 
 public:
   //Main function
