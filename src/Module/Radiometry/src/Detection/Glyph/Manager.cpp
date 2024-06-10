@@ -27,9 +27,9 @@ void Manager::create_sphere_glyph(){
   //Detection spheres
   for(int i=0; i<20; i++){
     rad::detection::glyph::Sphere* sphere = new rad::detection::glyph::Sphere(node_engine);
-    dat_glyph->create_glyph(sphere);
     vec4 color = math::random(i);
-    sphere->construct(color);
+    sphere->set_color(color);
+    dat_glyph->create_glyph(sphere);
 
     rad_struct->detection.vec_glyph_sphere.push_back(sphere);
   }
@@ -37,8 +37,8 @@ void Manager::create_sphere_glyph(){
   //Calibration sphere
   rad::detection::glyph::Sphere* sphere = new rad::detection::glyph::Sphere(node_engine);
   rad_struct->detection.glyph_calibration = sphere;
+  sphere->set_color(vec4(0, 1, 0, 1));
   dat_glyph->create_glyph(sphere);
-  sphere->construct(vec4(0, 1, 0, 1));
 
   //---------------------------
 }

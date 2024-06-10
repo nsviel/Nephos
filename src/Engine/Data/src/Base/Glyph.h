@@ -38,6 +38,7 @@ public:
   inline std::string get_path(){return path;}
   inline bool is_need_update(){return need_update;}
   inline int get_type(){return type;}
+  inline void set_color(glm::vec4 color){this->color = color;}
 
 protected:
   std::string path = "";

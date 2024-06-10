@@ -29,17 +29,17 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
 
   //Search for point inside a global sphere around current center point
   vector<vec3> search_xyz;
-  vector<float> search_is;
-  this->reduce_search_space(sensor, search_xyz, search_is);
-  this->apply_ransac(search_xyz, search_is);
-  this->process_result(search_xyz, search_is);
+  vector<float> search_Is;
+  this->reduce_search_space(sensor, search_xyz, search_Is);
+  this->apply_ransac(search_xyz, search_Is);
+  this->process_measurement(search_xyz, search_Is);
   rad_glyph->draw_calibration_sphere(sensor, radius);
 
   //---------------------------
 }
 
 //Subfunction
-void Ransac::reduce_search_space(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vector<float>& search_is){
+void Ransac::reduce_search_space(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vector<float>& search_Is){
   vector<vec3>& vec_xyz = sensor->data.xyz;
   vector<float>& vec_i = sensor->data.Is;
   //---------------------------
@@ -51,13 +51,13 @@ void Ransac::reduce_search_space(dyn::base::Sensor* sensor, vector<vec3>& search
 
     if(distance <= rad_struct->detection.sphere_diameter * rad_struct->detection.ransac.search_lambda){
       search_xyz.push_back(xyz);
-      search_is.push_back(vec_i[i]);
+      search_Is.push_back(vec_i[i]);
     }
   }
 
   //---------------------------
 }
-void Ransac::apply_ransac(vector<vec3>& search_xyz, vector<float>& search_is){
+void Ransac::apply_ransac(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 
   //Apply least square fitting
@@ -69,19 +69,19 @@ void Ransac::apply_ransac(vector<vec3>& search_xyz, vector<float>& search_is){
 
   //---------------------------
 }
-void Ransac::process_result(vector<vec3>& search_xyz, vector<float>& search_is){
+void Ransac::process_measurement(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 
   //Apply post-processing stuff
-  this->data_IfR(search_xyz, search_is);
-  //this->data_IfIt(search_xyz, search_is);
-  //this->data_model(search_xyz, search_is);
+  this->data_IfR(search_xyz, search_Is);
+  //this->data_IfIt(search_xyz, search_Is);
+  //this->data_model(search_xyz, search_Is);
 
   //---------------------------
 }
 
-//Data function
-void Ransac::data_IfR(vector<vec3>& search_xyz, vector<float>& search_is){
+//Measure function
+void Ransac::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::model::structure::Optimization* optim = &rad_struct->model.optim;
   rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
@@ -96,7 +96,7 @@ void Ransac::data_IfR(vector<vec3>& search_xyz, vector<float>& search_is){
 
     if(distance < R){
       R = distance;
-      I = search_is[i];
+      I = search_Is[i];
     }
   }
 
@@ -111,7 +111,7 @@ void Ransac::data_IfR(vector<vec3>& search_xyz, vector<float>& search_is){
 
   //---------------------------
 }
-void Ransac::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_is){
+void Ransac::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
   //---------------------------
@@ -126,7 +126,7 @@ void Ransac::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_is){
     float distance = math::distance(xyz, rad_struct->detection.ransac.current_pose) - radius;
 
     if(distance <= rad_struct->detection.ransac.thres_sphere){
-      I = search_is[i];
+      I = search_Is[i];
       Nxyz = normalize(xyz - rad_struct->detection.ransac.current_pose);
       It = math::compute_It(xyz, Nxyz, root);
 
@@ -139,7 +139,7 @@ void Ransac::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_is){
 
   //---------------------------
 }
-void Ransac::data_model(vector<vec3>& search_xyz, vector<float>& search_is){
+void Ransac::data_model(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::model::structure::Optimization* optim = &rad_struct->model.optim;
   rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   rad::model::structure::Plot* plot = &rad_struct->model.plot;
@@ -156,7 +156,7 @@ void Ransac::data_model(vector<vec3>& search_xyz, vector<float>& search_is){
     float distance = math::distance(xyz, rad_struct->detection.ransac.current_pose) - radius;
 
     if(distance <= rad_struct->detection.ransac.thres_sphere){
-      I = search_is[i];
+      I = search_Is[i];
       Nxyz = normalize(xyz - rad_struct->detection.ransac.current_pose);
       It = math::compute_It(xyz, Nxyz, root);
       R = math::distance_from_origin(xyz);
