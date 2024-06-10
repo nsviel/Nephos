@@ -6,11 +6,6 @@
 
 namespace rad::hough{
 
-enum Drawing{
-  ALL = 0,
-  BEST = 1,
-};
-
 enum Mode{
   GRADIENT = 0,
   GRADIENT_ALT = 1,
@@ -33,33 +28,6 @@ struct Hough{
   int min_dist = 72;
   int min_radius = 5;
   int max_radius = 50;
-
-  //---------------------------
-};
-
-struct Canny{
-  //---------------------------
-
-  bool apply = false;
-  int lower_threshold = 50;
-  int upper_threshold = 150;
-
-  //---------------------------
-};
-
-struct Circle{
-  //---------------------------
-
-  int radius;
-  glm::ivec2 center;
-
-  //---------------------------
-};
-
-struct Bbox{
-  //---------------------------
-
-  float scale = 2;
 
   //---------------------------
 };

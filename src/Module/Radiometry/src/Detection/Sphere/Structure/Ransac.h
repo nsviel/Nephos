@@ -17,14 +17,4 @@ struct Ransac{
   //---------------------------
 };
 
-struct Sphere{
-  //---------------------------
-
-  float diameter;
-  glm::vec3 center;
-  glm::vec3 pose;
-
-  //---------------------------
-};
-
 }
