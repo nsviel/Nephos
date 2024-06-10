@@ -100,8 +100,6 @@ void Ransac::test_consensus(const std::vector<glm::vec3>& xyz, float known_radiu
     if(distance_to_sphere < threshold_sphere){
       this->nb_inlier++;
       this->score += distance_to_sphere + distance_to_radius;
-    }else{
-      say(distance_to_sphere);
     }
   }
 

@@ -48,6 +48,7 @@ public:
 private:
   dat::Node* node_data;
   dat::Structure* dat_struct;
+  dat::Entity* dat_entity;
 };
 
 }

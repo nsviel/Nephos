@@ -11,6 +11,7 @@ Set::Set(dat::Node* node_data){
 
   this->node_data = node_data;
   this->dat_struct = node_data->get_dat_struct();
+  this->dat_entity = new dat::Entity(node_data);
 
   //---------------------------
 }
@@ -18,7 +19,6 @@ Set::~Set(){}
 
 //Set function
 void Set::update_set(dat::base::Set* set){
-  dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------
 
   // Process entities within the current set
@@ -36,7 +36,6 @@ void Set::update_set(dat::base::Set* set){
   //---------------------------
 }
 void Set::reset_set(dat::base::Set* set){
-  dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------
 
   //Reset own stuff
@@ -58,7 +57,6 @@ void Set::reset_set(dat::base::Set* set){
   //---------------------------
 }
 void Set::visibility_set(dat::base::Set* set, bool value){
-  dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------
 
   for(int i=0; i<set->list_entity.size(); i++){
@@ -150,7 +148,6 @@ void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
   //---------------------------
 }
 void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
-  dat::Entity* dat_entity = node_data->get_dat_entity();
   if(entity == nullptr) return;
   //---------------------------
 
@@ -179,7 +176,6 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
   //---------------------------
 }
 void Set::remove_active_entity(dat::base::Set* set){
-  dat::Entity* dat_entity = node_data->get_dat_entity();
   if(set->active_entity == nullptr) return;
   //---------------------------
 
@@ -203,7 +199,6 @@ void Set::remove_active_entity(dat::base::Set* set){
   //---------------------------
 }
 void Set::remove_all_entity(dat::base::Set* set){
-  dat::Entity* dat_entity = node_data->get_dat_entity();
   //---------------------------
 
   // Check if the current set has the query entity
