@@ -52,8 +52,8 @@ void Circle::compute_hough_circle(cv::Mat& image){
     vec_circle.push_back(circle);
   }
 
-  rad_struct->sphere.vec_circle = vec_circle;
-  rad_struct->sphere.nb_detection = vec_circle.size();
+  rad_struct->sphere.data.vec_circle = vec_circle;
+  rad_struct->sphere.hough.nb_detection = vec_circle.size();
 
   //---------------------------
 }
@@ -101,7 +101,7 @@ void Circle::draw_all_circle(cv::Mat& image){
 
   cv::Mat result;
   rad_image->convert_into_rgba(image, result);
-  rad_image->draw_circle(result, rad_struct->sphere.vec_circle);
+  rad_image->draw_circle(result, rad_struct->sphere.data.vec_circle);
   rad_image->draw_bounding_box(result);
   rad_image->convert_into_subimage(result);
   rad_image->convert_into_utl_image(result, &rad_struct->sphere.image);
@@ -113,8 +113,8 @@ void Circle::draw_best_circle(cv::Mat& image){
   //------------------------
 
   vector<rad::detection::structure::Circle> vec_circle;
-  if(rad_struct->sphere.vec_circle.size() > 0){
-    vec_circle.push_back(rad_struct->sphere.vec_circle[0]);
+  if(rad_struct->sphere.data.vec_circle.size() > 0){
+    vec_circle.push_back(rad_struct->sphere.data.vec_circle[0]);
   }
 
   cv::Mat result;

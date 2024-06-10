@@ -124,7 +124,7 @@ void Image::draw_circle(cv::Mat& image, vector<rad::detection::structure::Circle
 void Image::draw_bounding_box(cv::Mat& image){
   //------------------------
 
-  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.vec_circle;
+  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.data.vec_circle;
   if(vec_circle.size() == 0) return;
 
   rad::detection::structure::Circle& circle = vec_circle[0];

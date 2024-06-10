@@ -36,6 +36,9 @@ struct Hough{
   int min_radius = 5;
   int max_radius = 50;
 
+  //Result
+  int nb_detection = 0;
+
   //---------------------------
 };
 

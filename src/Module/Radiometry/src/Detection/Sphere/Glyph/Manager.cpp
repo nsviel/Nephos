@@ -57,7 +57,7 @@ void Manager::draw_calibration_sphere(dyn::base::Sensor* sensor, float radius){
   //---------------------------
 }
 void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
-  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.vec_circle;
+  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.data.vec_circle;
   //---------------------------
 
   //Reset

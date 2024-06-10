@@ -116,7 +116,7 @@ void Detection::display_image(){
   //---------------------------
 
   //Display number of detected spheres
-  string nb_detection = to_string(rad_struct->sphere.nb_detection);
+  string nb_detection = to_string(rad_struct->sphere.hough.nb_detection);
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());

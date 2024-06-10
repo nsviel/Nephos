@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Radiometry/src/Detection/Sphere/Structure/Data.h>
 #include <Radiometry/src/Detection/Sphere/Structure/Circle.h>
 #include <Radiometry/src/Detection/Sphere/Structure/Hough.h>
 #include <Radiometry/src/Detection/Sphere/Structure/Canny.h>
