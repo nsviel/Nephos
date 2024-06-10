@@ -35,7 +35,7 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
   this->apply_ransac(search_xyz, search_Is);
 
   //Postprocessing stuff
-  rad_measure->process_measurement(search_xyz, search_Is);
+  rad_measure->process_measure(search_xyz, search_Is);
   rad_glyph->draw_calibration_sphere(sensor, rad_struct->sphere.ransac.radius);
 
   //---------------------------
