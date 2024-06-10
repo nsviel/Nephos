@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Radiometry/src/Detection/Sphere/Glyph/Sphere.h>
+
 
 namespace rad::detection::structure{
 
@@ -15,6 +17,7 @@ struct Ransac{
   float radius = 0.5;
   float sphere_diameter = 0.139;
   glm::vec3 current_pose = vec3(0, 0, 0);
+  rad::detection::glyph::Sphere* glyph;
 
   //---------------------------
 };

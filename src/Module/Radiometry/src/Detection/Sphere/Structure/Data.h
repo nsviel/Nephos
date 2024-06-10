@@ -13,7 +13,6 @@ struct Data{
   std::vector<rad::detection::structure::Circle> vec_circle;
   std::vector<rad::detection::structure::Sphere> vec_sphere;
   std::vector<rad::detection::glyph::Sphere*> vec_glyph_sphere;
-  rad::detection::glyph::Sphere* glyph_calibration;
 
   //---------------------------
 };

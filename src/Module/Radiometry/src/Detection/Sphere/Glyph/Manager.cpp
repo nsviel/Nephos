@@ -38,7 +38,7 @@ void Manager::create_sphere_glyph(){
 
   //Calibration sphere
   rad::detection::glyph::Sphere* sphere = new rad::detection::glyph::Sphere(node_engine);
-  rad_struct->sphere.data.glyph_calibration = sphere;
+  rad_struct->sphere.ransac.glyph = sphere;
   sphere->set_color(vec4(0, 1, 0, 1));
   dat_glyph->create_glyph(sphere);
 
@@ -47,7 +47,7 @@ void Manager::create_sphere_glyph(){
 
 //Subfunction
 void Manager::draw_calibration_sphere(dyn::base::Sensor* sensor, float radius){
-  rad::detection::glyph::Sphere* sphere = rad_struct->sphere.data.glyph_calibration;
+  rad::detection::glyph::Sphere* sphere = rad_struct->sphere.ransac.glyph;
   //---------------------------
 
   //Reset and move sphere
