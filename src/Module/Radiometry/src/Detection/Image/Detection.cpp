@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace rad::detection::image{
@@ -18,28 +19,31 @@ Detection::Detection(rad::Node* node_radio){
   this->rad_circle = new rad::detection::image::Circle(node_radio);
   this->rad_rectangle = new rad::detection::image::Rectangle(node_radio);
   this->thread_pool = node_engine->get_thread_pool();
+  this->ope_image = new ope::image::Manager();
 
   //---------------------------
 }
 Detection::~Detection(){}
 
 //Main function
-void Detection::start_thread(dyn::base::Sensor* sensor, utl::media::Image* image){
-  if(image == nullptr || !image->new_data) return;
+void Detection::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->thread_idle = false;
-  auto task_function = [this, sensor, image](){
-    this->run_thread(sensor, image);
+  auto task_function = [this, sensor](){
+    this->run_thread(sensor);
   };
   thread_pool->add_task(task_function);
 
   //---------------------------
 }
-void Detection::run_thread(dyn::base::Sensor* sensor, utl::media::Image* image){
+void Detection::run_thread(dyn::base::Sensor* sensor){
+  utl::media::Image* image = ope_image->get_image(sensor, utl::media::INTENSITY);
   //---------------------------
 
-  this->make_shape_detection(sensor, image);
+  if(image != nullptr && image->new_data){
+    this->make_shape_detection(sensor, image);
+  }
 
   //---------------------------
   this->thread_idle = true;

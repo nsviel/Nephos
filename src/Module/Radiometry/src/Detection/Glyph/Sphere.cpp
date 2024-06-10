@@ -60,7 +60,6 @@ void Sphere::reset_glyph(){
   //---------------------------
 
   data.is_visible = false;
-  pose.model = glm::mat4(1.0f);
 
   //---------------------------
 }
@@ -94,8 +93,7 @@ void Sphere::move_sphere(glm::vec3 coordinate, float diameter){
   mat_model[0][3] = coordinate.x;
   mat_model[1][3] = coordinate.y;
   mat_model[2][3] = coordinate.z;
-  cam_control->compute_camera_mvp(&pose);
-  
+
   //---------------------------
 }
 

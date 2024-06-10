@@ -8,7 +8,6 @@ namespace rad::detection::image{class Detection;}
 namespace rad::detection::cloud{class Detection;}
 namespace rad::detection::glyph{class Manager;}
 namespace dat{class Selection;}
-namespace ope::image{class Manager;}
 namespace dyn::base{class Sensor;}
 
 
@@ -49,7 +48,6 @@ private:
   rad::detection::cloud::Detection* rad_cloud_detection;
   rad::detection::glyph::Manager* rad_glyph;
   dat::Selection* dat_selection;
-  ope::image::Manager* ope_image;
 };
 
 }

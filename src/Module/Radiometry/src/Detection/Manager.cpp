@@ -19,7 +19,6 @@ Manager::Manager(rad::Node* node_radio){
   this->rad_image_detection = new rad::detection::image::Detection(node_radio);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(node_radio);
   this->dat_selection = node_data->get_dat_selection();
-  this->ope_image = new ope::image::Manager();
 
   //---------------------------
 }
@@ -35,14 +34,13 @@ void Manager::init(){
 }
 void Manager::loop(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  if(sensor == nullptr) return;
   //---------------------------
 
-  if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-    utl::media::Image* image = ope_image->get_image(sensor, utl::media::INTENSITY);
-
-    rad_image_detection->start_thread(sensor, image);
-    rad_cloud_detection->start_thread(sensor);
-  }
+  //Cloud and image detection stuff
+  rad_image_detection->start_thread(sensor);
+  rad_cloud_detection->start_thread(sensor);
 
   //---------------------------
 }

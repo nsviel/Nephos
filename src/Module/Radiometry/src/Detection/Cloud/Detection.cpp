@@ -40,7 +40,11 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
 void Detection::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  rad_ransac->ransac_sphere(sensor);
+  if(rad_struct->model.sphere.state_step == rad::detection::PROCESSING){
+    say("---");
+    rad_ransac->ransac_sphere(sensor);
+    say("end");
+  }
 
   //---------------------------
   this->thread_idle = true;

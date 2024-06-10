@@ -11,6 +11,7 @@ namespace rad::detection::glyph{class Manager;}
 namespace rad::detection::image{class Circle;}
 namespace rad::detection::image{class Image;}
 namespace rad::detection::image{class Rectangle;}
+namespace ope::image{class Manager;}
 
 
 namespace rad::detection::image{
@@ -24,8 +25,8 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor, utl::media::Image* image);
-  void run_thread(dyn::base::Sensor* sensor, utl::media::Image* image);
+  void start_thread(dyn::base::Sensor* sensor);
+  void run_thread(dyn::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
@@ -38,6 +39,7 @@ private:
   rad::detection::image::Circle* rad_circle;
   rad::detection::image::Image* rad_image;
   rad::detection::image::Rectangle* rad_rectangle;
+  ope::image::Manager* ope_image;
 
   bool thread_idle = true;
 };
