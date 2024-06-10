@@ -41,9 +41,7 @@ void Detection::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   if(rad_struct->model.sphere.state_step == rad::detection::PROCESSING){
-    say("---");
     rad_ransac->ransac_sphere(sensor);
-    say("end");
   }
 
   //---------------------------
