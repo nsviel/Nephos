@@ -32,12 +32,12 @@ void Manager::create_sphere_glyph(){
     sphere->set_color(color);
     dat_glyph->create_glyph(sphere);
 
-    rad_struct->sphere.vec_glyph_sphere.push_back(sphere);
+    rad_struct->sphere.data.vec_glyph_sphere.push_back(sphere);
   }
 
   //Calibration sphere
   rad::detection::glyph::Sphere* sphere = new rad::detection::glyph::Sphere(node_engine);
-  rad_struct->sphere.glyph_calibration = sphere;
+  rad_struct->sphere.data.glyph_calibration = sphere;
   sphere->set_color(vec4(0, 1, 0, 1));
   dat_glyph->create_glyph(sphere);
 
@@ -46,7 +46,7 @@ void Manager::create_sphere_glyph(){
 
 //Subfunction
 void Manager::draw_calibration_sphere(dyn::base::Sensor* sensor, float radius){
-  rad::detection::glyph::Sphere* sphere = rad_struct->sphere.glyph_calibration;
+  rad::detection::glyph::Sphere* sphere = rad_struct->sphere.data.glyph_calibration;
   //---------------------------
 
   //Reset and move sphere
@@ -80,7 +80,7 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Manager::reset_detection_sphere(){
-  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.vec_glyph_sphere;
+  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.data.vec_glyph_sphere;
   //---------------------------
 
   for(int i=0; i<vec_sphere.size(); i++){
@@ -91,7 +91,7 @@ void Manager::reset_detection_sphere(){
   //---------------------------
 }
 void Manager::draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
-  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.vec_glyph_sphere;
+  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.data.vec_glyph_sphere;
   //---------------------------
 
   int size = std::min(vec_sphere.size(), vec_circle.size());

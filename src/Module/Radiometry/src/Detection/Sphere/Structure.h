@@ -10,8 +10,6 @@
 #include <Radiometry/src/Detection/Sphere/Structure/Hough.h>
 #include <Radiometry/src/Detection/Sphere/Structure/Canny.h>
 #include <Radiometry/src/Detection/Sphere/Structure/Ransac.h>
-#include <Radiometry/src/Detection/Sphere/Structure/Sphere.h>
-#include <Radiometry/src/Detection/Sphere/Glyph/Sphere.h>
 
 
 namespace rad::detection::sphere{
@@ -29,9 +27,7 @@ struct Structure{
   int state_step = rad::detection::VALIDATION;
   int state_data = rad::detection::NO_DATA;
 
-  vector<rad::detection::structure::Sphere> vec_sphere;
-  vector<rad::detection::glyph::Sphere*> vec_glyph_sphere;
-  rad::detection::glyph::Sphere* glyph_calibration;
+
 
   rad::detection::structure::Data data;
   rad::detection::structure::Hough hough;
