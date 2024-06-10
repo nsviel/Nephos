@@ -36,7 +36,7 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
 
   //Postprocessing stuff
   rad_measure->process_measure(search_xyz, search_Is);
-  rad_glyph->draw_calibration_sphere(sensor, rad_struct->sphere.ransac.search_radius);
+  rad_glyph->draw_calibration_sphere(sensor);
 
   //---------------------------
 }
@@ -64,9 +64,9 @@ void Ransac::apply_ransac(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 
   //Set parameter
-  ope_ransac->set_num_iteration(rad_struct->sphere.ransac.nb_iter);
-  ope_ransac->set_threshold_sphere(rad_struct->sphere.ransac.thres_sphere);
-  ope_ransac->set_threshold_radius(rad_struct->sphere.ransac.thres_radius);
+  //ope_ransac->set_num_iteration(rad_struct->sphere.ransac.nb_iter);
+  //ope_ransac->set_threshold_sphere(rad_struct->sphere.ransac.thres_sphere);
+  //ope_ransac->set_threshold_radius(rad_struct->sphere.ransac.thres_radius);
 
   //Run ransac algorithm
   glm::vec3& current_pose = rad_struct->sphere.ransac.current_pose;

@@ -36,7 +36,7 @@ private:
   ope::fitting::Sphere* ope_sphere;
 
   //Parameter
-  float threshold_sphere = 0.1;
+  float threshold_sphere = 0.2;
   float threshold_radius = 0.02;
   int nb_iter = 100;
   int nb_sample = 50;

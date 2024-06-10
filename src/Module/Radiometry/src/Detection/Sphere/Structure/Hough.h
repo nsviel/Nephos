@@ -35,8 +35,8 @@ struct Hough{
   float param_2 = -1;
   int ratio = 1;
   int min_dist = 72;
-  int min_radius = 5;
-  int max_radius = 50;
+  int min_radius = 3;
+  int max_radius = 300;
 
   //Result
   int nb_detection = 0;

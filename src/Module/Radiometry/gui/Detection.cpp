@@ -220,7 +220,7 @@ void Detection::parameter_hough(){
     //Radius range
     int* min_radius = &rad_struct->sphere.hough.min_radius;
     int* max_radius = &rad_struct->sphere.hough.max_radius;
-    ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 100, "Min: %d px", "Max: %d px");
+    ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 500, "Min: %d px", "Max: %d px");
 
     //Circle drawing mode
     ImGui::Text("Draw");

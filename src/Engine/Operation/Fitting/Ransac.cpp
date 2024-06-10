@@ -4,6 +4,7 @@
 #include <Operation/Fitting/Sphere.h>
 #include <cstdlib> // for srand
 #include <ctime>   // for time and time_t
+#include <random>
 
 
 namespace ope::fitting{
@@ -66,8 +67,12 @@ void Ransac::random_sample(const std::vector<glm::vec3>& xyz){
   this->sample_xyz.reserve(nb_sample);
   //------------------------
 
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<> dis(0, xyz.size() - 1);
+
   for(int i=0; i<nb_sample; ++i){
-    int random_index = rand() % xyz.size();
+    int random_index = dis(gen);
     this->sample_xyz.push_back(xyz[random_index]);
   }
 
@@ -94,7 +99,9 @@ void Ransac::test_consensus(const std::vector<glm::vec3>& xyz, float known_radiu
 
     if(distance_to_sphere < threshold_sphere){
       this->nb_inlier++;
-      this->score += distance_to_sphere;
+      this->score += distance_to_sphere + distance_to_radius;
+    }else{
+      say(distance_to_sphere);
     }
   }
 

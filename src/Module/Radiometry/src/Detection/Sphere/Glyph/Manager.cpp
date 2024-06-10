@@ -46,19 +46,19 @@ void Manager::create_sphere_glyph(){
 }
 
 //Subfunction
-void Manager::draw_calibration_sphere(dyn::base::Sensor* sensor, float radius){
+void Manager::draw_calibration_sphere(dyn::base::Sensor* sensor){
   rad::detection::glyph::Sphere* sphere = rad_struct->sphere.ransac.glyph;
   //---------------------------
 
   //Reset and move sphere
   sphere->reset_glyph();
-  sphere->move_sphere(rad_struct->sphere.ransac.current_pose, radius * 2);
+  sphere->move_sphere(rad_struct->sphere.ransac.current_pose, rad_struct->sphere.ransac.sphere_diameter);
   sphere->update_pose(sensor);
 
   //---------------------------
 }
 void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
-  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.hough.vec_circle;
+  std::vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.hough.vec_circle;
   //---------------------------
 
   //Reset
@@ -71,7 +71,7 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
       break;
     }
     case rad::hough::BEST:{
-      vector<rad::detection::structure::Circle> best_circle;
+      std::vector<rad::detection::structure::Circle> best_circle;
       if(vec_circle.size() > 0) best_circle.push_back(vec_circle[0]);
       this->draw_detection_sphere(sensor, best_circle);
       break;
