@@ -7,7 +7,7 @@ namespace dat{class Selection;}
 namespace rad{class Node;}
 namespace rad::gui{class Detection;}
 namespace rad::gui{class Model;}
-namespace rad::gui{class Calibration;}
+namespace rad::gui{class Correction;}
 
 
 namespace rad::gui{
@@ -34,7 +34,7 @@ private:
   dat::Selection* dat_selection;
   rad::gui::Detection* gui_detection;
   rad::gui::Model* gui_model;
-  rad::gui::Calibration* gui_calibration;
+  rad::gui::Correction* gui_correction;
 
   string name;
   bool* show_window;

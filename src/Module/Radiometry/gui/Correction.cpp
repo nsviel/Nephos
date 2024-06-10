@@ -1,4 +1,4 @@
-#include "Calibration.h"
+#include "Correction.h"
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
@@ -7,7 +7,7 @@
 namespace rad::gui{
 
 //Constructor / Destructor
-Calibration::Calibration(rad::Node* node_radio){
+Correction::Correction(rad::Node* node_radio){
   //---------------------------
 
   eng::Node* node_engine = node_radio->get_node_engine();
@@ -18,10 +18,10 @@ Calibration::Calibration(rad::Node* node_radio){
 
   //---------------------------
 }
-Calibration::~Calibration(){}
+Correction::~Correction(){}
 
 //Main function
-void Calibration::draw_tab(){
+void Correction::draw_tab(){
   //---------------------------
 
   this->display_image();
@@ -30,7 +30,7 @@ void Calibration::draw_tab(){
 }
 
 //Subfunction
-void Calibration::display_image(){
+void Correction::display_image(){
   //---------------------------
 
   ImVec2 image_size = ImGui::GetContentRegionAvail();

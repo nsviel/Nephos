@@ -10,12 +10,12 @@ namespace rnd{class Stream;}
 
 namespace rad::gui{
 
-class Calibration
+class Correction
 {
 public:
   //Constructor / Destructor
-  Calibration(rad::Node* node_radio);
-  ~Calibration();
+  Correction(rad::Node* node_radio);
+  ~Correction();
 
 public:
   //Main function
