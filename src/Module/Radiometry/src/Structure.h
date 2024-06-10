@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Radiometry/src/Detection/Structure/Structure.h>
+#include <Radiometry/src/Detection/Sphere/Structure/Structure.h>
 #include <Radiometry/src/Model/Structure/Structure.h>
 #include <Radiometry/src/Correction/Structure/Structure.h>
 #include <string>

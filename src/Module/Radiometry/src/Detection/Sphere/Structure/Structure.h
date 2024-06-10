@@ -5,8 +5,8 @@
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Data/Namespace.h>
-#include <Radiometry/src/Detection/Structure/Image.h>
-#include <Radiometry/src/Detection/Structure/Cloud.h>
+#include <Radiometry/src/Detection/Sphere/Structure/Image.h>
+#include <Radiometry/src/Detection/Sphere/Structure/Cloud.h>
 
 
 namespace rad::detection{

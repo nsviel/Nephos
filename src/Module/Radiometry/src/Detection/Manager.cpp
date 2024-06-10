@@ -59,7 +59,6 @@ void Manager::step_sphere_detection(){
   switch(step){
     case rad::detection::VALIDATION:{
       rad_cloud_detection->validate_bbox(sensor);
-      step = rad::detection::PROCESSING;
       break;
     }
     case rad::detection::PROCESSING:{

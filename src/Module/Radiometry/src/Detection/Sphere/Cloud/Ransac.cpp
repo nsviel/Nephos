@@ -25,17 +25,17 @@ Ransac::~Ransac(){}
 //Main function
 void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
   //---------------------------
-  say("---");
+
+  //If no initial detection, return
+  if(rad_struct->detection.ransac.current_pose == glm::vec3(0, 0, 0)) return;
 
   //Search for point inside a global sphere around current center point
   vector<vec3> search_xyz;
   vector<float> search_Is;
-  this->reduce_search_space(sensor, search_xyz, search_Is);sayHello();
-  this->apply_ransac(search_xyz, search_Is);sayHello();
-  this->process_measurement(search_xyz, search_Is);sayHello();
-  rad_glyph->draw_calibration_sphere(sensor, radius);sayHello();
-
-say("end");
+  this->reduce_search_space(sensor, search_xyz, search_Is);
+  this->apply_ransac(search_xyz, search_Is);
+  this->process_measurement(search_xyz, search_Is);
+  rad_glyph->draw_calibration_sphere(sensor, radius);
 
   //---------------------------
 }
