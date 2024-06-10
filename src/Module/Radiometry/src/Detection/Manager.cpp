@@ -48,16 +48,25 @@ void Manager::loop(){
 }
 
 //Subfunction
-void Manager::process_sphere_detection(){
-  if(rad_struct->model.chart.state_step == rad::detection::PROCESSING) return;
+void Manager::step_sphere_detection(){
+  int& step = rad_struct->model.chart.state_step ;
   //---------------------------
 
-  rad_struct->model.sphere.state_step = rad::detection::PROCESSING;
-  //rad_cloud_detection->validate_bbox(sensor);
+  switch(step){
+    case rad::detection::VALIDATION:{
+      rad_cloud_detection->validate_bbox(sensor);
+      step = rad::detection::PROCESSING;
+      break;
+    }
+    case rad::detection::PROCESSING:{
+      step = rad::detection::VALIDATION;
+      break;
+    }
+  }
 
   //---------------------------
 }
-void Manager::process_chart_detection(){
+void Manager::step_chart_detection(){
   if(rad_struct->model.sphere.state_step == rad::detection::PROCESSING) return;
   //---------------------------
 

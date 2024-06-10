@@ -74,8 +74,8 @@ void Ransac::process_result(vector<vec3>& search_xyz, vector<float>& search_is){
   //Apply post-processing stuff
   rad_glyph->draw_calibration_sphere(rad_struct->detection.ransac.current_pose, radius);
   this->data_IfR(search_xyz, search_is);
-  this->data_IfIt(search_xyz, search_is);
-  this->data_model(search_xyz, search_is);
+  //this->data_IfIt(search_xyz, search_is);
+  //this->data_model(search_xyz, search_is);
 
   //---------------------------
 }

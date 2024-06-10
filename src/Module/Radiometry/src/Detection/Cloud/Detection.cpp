@@ -58,17 +58,17 @@ void Detection::wait_thread(){
 
 //Subfunction
 void Detection::validate_bbox(dyn::base::Sensor* sensor){
-  if(rad_struct->detection.nb_detection == 0) return;
+  utl::base::Pose* pose = &sensor->pose;
   //---------------------------
 
-  utl::base::Pose* pose = &sensor->pose;
+  //Stop if no detection
+  if(rad_struct->detection.nb_detection == 0) return;
 
-  //this->step++;
+  //Retrieve the 3D pose of the bounding box
   ivec2 point_2d = rad_struct->detection.vec_circle[0].center;
-  vec3 truc = sensor->convert_depth_2d_to_3d(point_2d);
-  vec4 machin = vec4(truc.x, truc.y, truc.z, 1);
-  truc = pose->model * machin;
-  rad_struct->detection.ransac.current_pose = vec3(truc.x, truc.y, truc.z);
+  vec3 pose_xyz = sensor->convert_depth_2d_to_3d(point_2d);
+  vec4 pose_xyzw = vec4(pose_xyzx, pose_xyz.y, pose_xyz.z, 1);
+  rad_struct->detection.ransac.current_pose = pose->model * pose_xyzw;
 
   //---------------------------
 }

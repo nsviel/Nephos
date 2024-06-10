@@ -37,8 +37,8 @@ public:
   void loop();
 
   //Subfunction
-  void process_sphere_detection();
-  void process_chart_detection();
+  void step_sphere_detection();
+  void step_chart_detection();
 
   inline rad::detection::image::Detection* get_image_detection(){return rad_image_detection;}
   inline rad::detection::cloud::Detection* get_cloud_detection(){return rad_cloud_detection;}
