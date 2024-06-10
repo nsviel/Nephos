@@ -48,6 +48,7 @@ void Manager::draw_calibration_sphere(dyn::base::Sensor* sensor, float radius){
   rad::detection::glyph::Sphere* sphere = rad_struct->detection.glyph_calibration;
   //---------------------------
 
+  //Reset and move sphere
   sphere->reset_glyph();
   sphere->move_sphere(rad_struct->detection.ransac.current_pose, radius * 2);
   sphere->update_pose(sensor);

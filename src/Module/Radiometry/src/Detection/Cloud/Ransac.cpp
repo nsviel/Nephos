@@ -72,10 +72,9 @@ void Ransac::apply_ransac(vector<vec3>& search_xyz, vector<float>& search_Is){
 void Ransac::process_measurement(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 
-  //Apply post-processing stuff
   this->data_IfR(search_xyz, search_Is);
-  //this->data_IfIt(search_xyz, search_Is);
-  //this->data_model(search_xyz, search_Is);
+  this->data_IfIt(search_xyz, search_Is);
+  this->data_model(search_xyz, search_Is);
 
   //---------------------------
 }

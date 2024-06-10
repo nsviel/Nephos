@@ -79,19 +79,23 @@ void Sphere::construct(glm::vec4 color){
 void Sphere::move_sphere(glm::vec3 coordinate, float diameter){
   //---------------------------
 
+  //Set visibility
+  data.is_visible = true;
+
   //Set scale (raw sphere is 2m diameter)
-  float sphere_diameter = 2;
-  mat_model = glm::mat4(1.0f);
-  mat_model = glm::scale(mat_model, glm::vec3(diameter / sphere_diameter));
+  static float diameter_old = 0;
+  if(diameter != diameter_old){
+    float sphere_diameter = 2;
+    mat_model = glm::mat4(1.0f);
+    mat_model = glm::scale(mat_model, glm::vec3(diameter / sphere_diameter));
+  }
 
   //Set detected sphere coordinate
   mat_model[0][3] = coordinate.x;
   mat_model[1][3] = coordinate.y;
   mat_model[2][3] = coordinate.z;
-
-  //Set visibility
-  data.is_visible = true;
-
+  cam_control->compute_camera_mvp(&pose);
+  
   //---------------------------
 }
 
