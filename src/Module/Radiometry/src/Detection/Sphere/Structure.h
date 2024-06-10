@@ -16,7 +16,6 @@ struct Structure{
   int state_data = rad::detection::NO_DATA;
 
   //Structures
-  utl::media::Image image;
   rad::detection::structure::Hough hough;
   rad::detection::structure::Canny canny;
   rad::detection::structure::Bbox bbox;

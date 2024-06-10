@@ -140,6 +140,7 @@ void Player::button_forward(float value){
 
 //Subfunction
 void Player::manage_state(dat::base::Set* set){
+  if(set == nullptr) return;
   //---------------------------
 
   //Entity
@@ -160,8 +161,10 @@ void Player::manage_state(dat::base::Set* set){
   //---------------------------
 }
 void Player::manage_update(dat::base::Set* set){
-  timestamp = {};
+  if(set == nullptr) return;
   //---------------------------
+
+  timestamp = {};
 
   //Entity
   for(int i=0; i<set->list_entity.size(); i++){
@@ -186,6 +189,7 @@ void Player::manage_update(dat::base::Set* set){
   //---------------------------
 }
 void Player::manage_restart(dat::base::Set* set){
+  if(set == nullptr) return;
   //---------------------------
 
   if(!state.replay){

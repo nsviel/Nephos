@@ -52,7 +52,7 @@ void Rectangle::compute_rectangle_detection(cv::Mat& image){
     }
   }
 
-  rad_image->convert_into_utl_image(result, &rad_struct->sphere.image);
+  rad_image->convert_into_utl_image(result, &rad_struct->image);
 
   //---------------------------
 }

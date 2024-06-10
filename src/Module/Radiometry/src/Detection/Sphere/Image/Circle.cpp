@@ -103,7 +103,7 @@ void Circle::draw_all_circle(cv::Mat& image){
   rad_image->convert_into_rgba(image, result);
   rad_image->draw_circle(result, rad_struct->sphere.hough.vec_circle);
   rad_image->draw_bounding_box(result);
-  rad_image->convert_into_utl_image(result, &rad_struct->sphere.image);
+  rad_image->convert_into_utl_image(result, &rad_struct->image);
 
   //------------------------
 }
@@ -120,7 +120,7 @@ void Circle::draw_best_circle(cv::Mat& image){
   rad_image->convert_into_rgba(image, result);
   rad_image->draw_circle(result, vec_circle);
   rad_image->draw_bounding_box(result);
-  rad_image->convert_into_utl_image(result, &rad_struct->sphere.image);
+  rad_image->convert_into_utl_image(result, &rad_struct->image);
 
   //------------------------
 }

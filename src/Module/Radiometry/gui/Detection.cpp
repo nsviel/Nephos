@@ -144,8 +144,8 @@ void Detection::detection_image(){
   //---------------------------
 
   //Display image with detected spheres
-  if(rad_struct->sphere.image.size != 0){
-    stream->draw_stream(&rad_struct->sphere.image, ImVec2(available_space.x, available_space.y - 5));
+  if(rad_struct->image.size != 0){
+    stream->draw_stream(&rad_struct->image, ImVec2(available_space.x, available_space.y - 5));
   }
 
   //---------------------------
