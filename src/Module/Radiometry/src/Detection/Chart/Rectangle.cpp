@@ -3,7 +3,7 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::detection::image{
+namespace rad::detection::chart{
 
 //Constructor / Destructor
 Rectangle::Rectangle(rad::detection::Node* node_detection){

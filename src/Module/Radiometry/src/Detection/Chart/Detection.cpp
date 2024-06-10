@@ -5,7 +5,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace rad::detection::image{
+namespace rad::detection::chart{
 
 //Constructor / Destructor
 Detection::Detection(rad::detection::Node* node_detection){
@@ -16,8 +16,7 @@ Detection::Detection(rad::detection::Node* node_detection){
 
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_image = new rad::detection::image::Image(node_detection);
-  this->rad_glyph = new rad::detection::glyph::Manager(node_detection);
-  this->rad_circle = new rad::detection::image::Circle(node_detection);
+  this->rad_rectangle = new rad::detection::chart::Rectangle(node_detection);
   this->thread_pool = node_engine->get_thread_pool();
   this->ope_image = new ope::image::Manager();
 
@@ -68,8 +67,7 @@ void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Imag
   rad_image->convert_into_gray(cv_image, gray);
   rad_image->apply_canny(gray, canny);
 
-  rad_circle->detect_circle(canny);
-  rad_glyph->draw_detection_sphere(sensor);
+  rad_rectangle->detect_rectangle(canny);
 
   //---------------------------
 }

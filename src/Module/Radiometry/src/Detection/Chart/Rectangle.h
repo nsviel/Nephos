@@ -8,7 +8,7 @@ namespace rad::detection{class Structure;}
 namespace rad::detection::image{class Image;}
 
 
-namespace rad::detection::image{
+namespace rad::detection::chart{
 
 class Rectangle
 {
