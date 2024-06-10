@@ -7,9 +7,10 @@
 #include <Data/Namespace.h>
 #include <Radiometry/src/Detection/Sphere/Structure/Image.h>
 #include <Radiometry/src/Detection/Sphere/Structure/Cloud.h>
+#include <Radiometry/src/Detection/Sphere/Glyph/Sphere.h>
 
 
-namespace rad::detection{
+namespace rad::detection::sphere{
 
 struct Structure{
   //---------------------------

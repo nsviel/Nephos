@@ -15,7 +15,7 @@ struct Structure{
   std::string state = "Wait validation";
 
   //Structure
-  rad::detection::Structure detection;
+  rad::detection::sphere::Structure detection;
   rad::model::Structure model;
   rad::correction::Structure correction;
 

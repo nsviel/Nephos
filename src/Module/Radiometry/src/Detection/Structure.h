@@ -8,7 +8,7 @@ namespace rad::detection{
 struct Structure{
   //---------------------------
 
-  rad::detection::Structure detection;
+  rad::detection::sphere::Structure detection;
 
   //---------------------------
 };
