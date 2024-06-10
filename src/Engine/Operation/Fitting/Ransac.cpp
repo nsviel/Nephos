@@ -1,5 +1,6 @@
 #include "Ransac.h"
 
+#include <Utility/Namespace.h>
 #include <Operation/Fitting/Sphere.h>
 #include <cstdlib> // for srand
 #include <ctime>   // for time and time_t
@@ -18,60 +19,95 @@ Ransac::Ransac(){
 Ransac::~Ransac(){}
 
 //Ransac fitting
-void Ransac::ransac_sphere_in_cloud(std::vector<glm::vec3>& xyz, glm::vec3& best_center, float& best_radius, float radius_to_find){
+void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, glm::vec3& best_center, float radius){
   if(xyz.size() == 0) return;
   //------------------------
 
+  this->init();
+  this->run(xyz, best_center, radius);
+
+  //------------------------
+}
+
+//Algorithm function
+void Ransac::init(){
+  //------------------------
+
   // Initialize best sphere parameters
-  float best_distance = 1000;
-  int best_num_inliers = 0;
-  best_radius = 0.0f;
+  this->best_score = 1000;
+  this->best_nb_inlier = 0;
 
   // Seed random number generator
   srand(time(nullptr));
 
-  // Perform RANSAC iters
-  std::vector<Sphere> vec_sphere;
-  for(int iter=0; iter<num_iter; ++iter){
+  //------------------------
+}
+void Ransac::run(const std::vector<glm::vec3>& xyz, glm::vec3& best_center, float radius){
+  //------------------------
+
+  // Perform RANSAC
+  for(int i=0; i<nb_iter; ++i){
     // Randomly select three points
-    std::vector<glm::vec3> sample_points;
-    sample_points.reserve(50);
-    for(int i=0; i<50; ++i){
-      int random_index = rand() % xyz.size();
-      sample_points.push_back(xyz[random_index]);
-    }
+    this->random_sample(xyz);
 
-    // Fit a sphere to the selected points
-    glm::vec3 center;
-    float radius;
-    ope_sphere->find_sphere_in_cloud(sample_points, center, radius);
-    if(center == glm::vec3(0, 0, 0) || radius == 0) continue;
-
-    // Count inliers
-    int num_inliers = 0;
-    float distance = 0;
-    for(const auto& point : xyz){
-      float distance_to_sphere = abs(glm::distance(point, center) - radius);
-      float distance_to_center = glm::distance(center, best_center);
-      float distance_to_radius = abs(radius - radius_to_find);
-
-      bool dist_sphere = distance_to_sphere < threshold_sphere;
-      bool dist_center = distance_to_center < threshold_pose;
-      bool dist_radius = distance_to_radius < threshold_radius;
-
-      if(dist_sphere && dist_center && dist_radius){
-        ++num_inliers;
-        distance += distance_to_sphere + distance_to_center + distance_to_radius;
-      }
-    }
+    // Test sample point consensus
+    this->test_consensus(xyz, radius);
 
     // Update best model if current model has more inliers
-    if(num_inliers > best_num_inliers && distance < best_distance){
-      best_num_inliers = num_inliers;
-      best_center = center;
-      best_radius = radius;
-      best_distance = distance;
+    this->evaluate(best_center);
+  }
+
+  //------------------------
+}
+
+//Subfunction
+void Ransac::random_sample(const std::vector<glm::vec3>& xyz){
+  this->sample_xyz.clear();
+  this->sample_xyz.reserve(nb_sample);
+  //------------------------
+
+  for(int i=0; i<nb_sample; ++i){
+    int random_index = rand() % xyz.size();
+    this->sample_xyz.push_back(xyz[random_index]);
+  }
+
+  //------------------------
+}
+void Ransac::test_consensus(const std::vector<glm::vec3>& xyz, float known_radius){
+  this->nb_inlier = 0;
+  this->score = 0;
+  this->center = glm::vec3(0, 0, 0);
+  this->radius = 0;
+  //------------------------
+
+  //Fit sphere on sample points
+  ope_sphere->find_sphere_in_cloud(sample_xyz, center, radius);
+  if(center == glm::vec3(0, 0, 0) || radius == 0) return;
+
+  //Check radius distance
+  float distance_to_radius = abs(radius - known_radius);
+  if(distance_to_radius > threshold_radius) return;
+
+  // Count inliers
+  for(const auto& point : xyz){
+    float distance_to_sphere = abs(glm::distance(point, center) - radius);
+
+    if(distance_to_sphere < threshold_sphere){
+      this->nb_inlier++;
+      this->score += distance_to_sphere;
     }
+  }
+
+  //------------------------
+}
+void Ransac::evaluate(glm::vec3& best_center){
+  //------------------------
+
+  if(nb_inlier > best_nb_inlier && score < best_score){
+    this->best_nb_inlier = nb_inlier;
+    this->best_score = score;
+
+    best_center = center;
   }
 
   //------------------------

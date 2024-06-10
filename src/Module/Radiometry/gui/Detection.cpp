@@ -249,8 +249,6 @@ void Detection::parameter_ransac(){
     ImGui::SetNextItemWidth(120);
     ImGui::SliderFloat("Threshold sphere", &rad_struct->sphere.ransac.thres_sphere, 0.01f, 0.1f, "%.2f m");
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderFloat("Threshold pose", &rad_struct->sphere.ransac.thres_pose, 0.01f, 1.0f, "%.2f m");
-    ImGui::SetNextItemWidth(120);
     ImGui::SliderFloat("Threshold radius", &rad_struct->sphere.ransac.thres_radius, 0.01f, 0.1f, "%.2f m");
     ImGui::SetNextItemWidth(120);
     ImGui::SliderFloat("Diamter x area", &rad_struct->sphere.ransac.search_lambda, 0.5f, 5.0f, "%.1f m");

@@ -49,7 +49,8 @@ void Ransac::reduce_search_space(dyn::base::Sensor* sensor, vector<vec3>& search
 
   //Search for point inside a global sphere around current center point
   for(int i=0; i<vec_xyz.size(); i++){
-    float distance = math::distance(vec_xyz[i], rad_struct->sphere.ransac.current_pose);
+    glm::vec3& xyz = vec_xyz[i];
+    float distance = math::distance(xyz, rad_struct->sphere.ransac.current_pose);
 
     if(distance <= rad_struct->sphere.ransac.sphere_diameter * rad_struct->sphere.ransac.search_lambda){
       search_xyz.push_back(xyz);
@@ -65,14 +66,12 @@ void Ransac::apply_ransac(vector<vec3>& search_xyz, vector<float>& search_Is){
   //Set parameter
   ope_ransac->set_num_iteration(rad_struct->sphere.ransac.nb_iter);
   ope_ransac->set_threshold_sphere(rad_struct->sphere.ransac.thres_sphere);
-  ope_ransac->set_threshold_pose(rad_struct->sphere.ransac.thres_pose);
   ope_ransac->set_threshold_radius(rad_struct->sphere.ransac.thres_radius);
 
   //Run ransac algorithm
   glm::vec3& current_pose = rad_struct->sphere.ransac.current_pose;
-  float& search_radius = rad_struct->sphere.ransac.search_radius;
   float sphere_radius = rad_struct->sphere.ransac.sphere_diameter / 2;
-  ope_ransac->ransac_sphere_in_cloud(search_xyz, current_pose, search_radius, sphere_radius);
+  ope_ransac->ransac_sphere(search_xyz, current_pose, sphere_radius);
 
   //---------------------------
 }
