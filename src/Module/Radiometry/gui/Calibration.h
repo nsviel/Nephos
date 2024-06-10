@@ -3,7 +3,8 @@
 #include <Utility/Specific/Common.h>
 
 namespace rad{class Node;}
-namespace rad{class Structure;}
+namespace rad::correction{class Node;}
+namespace rad::correction{class Structure;}
 namespace rnd{class Stream;}
 
 
@@ -24,7 +25,8 @@ public:
   void display_image();
 
 private:
-  rad::Structure* rad_struct;
+  rad::correction::Node* node_correction;
+  rad::correction::Structure* rad_struct;
   rnd::Stream* stream;
 };
 

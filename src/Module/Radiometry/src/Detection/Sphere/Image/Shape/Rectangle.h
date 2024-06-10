@@ -4,7 +4,7 @@
 #include <opencv2/opencv.hpp>
 
 namespace rad{class Node;}
-namespace rad{class Structure;}
+namespace rad::detection{class Structure;}
 namespace rad::detection::image{class Image;}
 
 
@@ -26,7 +26,7 @@ public:
   bool is_rectangle(const vector<cv::Point>& contour);
 
 private:
-  rad::Structure* rad_struct;
+  rad::detection::Structure* rad_struct;
   rad::detection::image::Image* rad_image;
 };
 

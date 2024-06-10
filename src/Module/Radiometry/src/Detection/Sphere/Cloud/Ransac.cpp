@@ -27,7 +27,7 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
   //---------------------------
 
   //If no initial detection, return
-  if(rad_struct->detection.ransac.current_pose == glm::vec3(0, 0, 0)) return;
+  if(rad_struct->sphere.ransac.current_pose == glm::vec3(0, 0, 0)) return;
 
   //Search for point inside a global sphere around current center point
   vector<vec3> search_xyz;
@@ -49,9 +49,9 @@ void Ransac::reduce_search_space(dyn::base::Sensor* sensor, vector<vec3>& search
   //Search for point inside a global sphere around current center point
   for(int i=0; i<vec_xyz.size(); i++){
     vec3& xyz = vec_xyz[i];
-    float distance = math::distance(xyz, rad_struct->detection.ransac.current_pose);
+    float distance = math::distance(xyz, rad_struct->sphere.ransac.current_pose);
 
-    if(distance <= rad_struct->detection.sphere_diameter * rad_struct->detection.ransac.search_lambda){
+    if(distance <= rad_struct->sphere.sphere_diameter * rad_struct->sphere.ransac.search_lambda){
       search_xyz.push_back(xyz);
       search_Is.push_back(vec_i[i]);
     }
@@ -63,11 +63,11 @@ void Ransac::apply_ransac(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 
   //Apply least square fitting
-  ope_ransac->set_num_iteration(rad_struct->detection.ransac.nb_iter);
-  ope_ransac->set_threshold_sphere(rad_struct->detection.ransac.thres_sphere);
-  ope_ransac->set_threshold_pose(rad_struct->detection.ransac.thres_pose);
-  ope_ransac->set_threshold_radius(rad_struct->detection.ransac.thres_radius);
-  ope_ransac->ransac_sphere_in_cloud(search_xyz, rad_struct->detection.ransac.current_pose, radius, rad_struct->detection.sphere_diameter/2);
+  ope_ransac->set_num_iteration(rad_struct->sphere.ransac.nb_iter);
+  ope_ransac->set_threshold_sphere(rad_struct->sphere.ransac.thres_sphere);
+  ope_ransac->set_threshold_pose(rad_struct->sphere.ransac.thres_pose);
+  ope_ransac->set_threshold_radius(rad_struct->sphere.ransac.thres_radius);
+  ope_ransac->ransac_sphere_in_cloud(search_xyz, rad_struct->sphere.ransac.current_pose, radius, rad_struct->sphere.sphere_diameter/2);
 
   //---------------------------
 }
@@ -124,11 +124,11 @@ void Ransac::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
   vec3 root = vec3(0, 0, 0);
   for(int i=0; i<search_xyz.size(); i++){
     vec3& xyz = search_xyz[i];
-    float distance = math::distance(xyz, rad_struct->detection.ransac.current_pose) - radius;
+    float distance = math::distance(xyz, rad_struct->sphere.ransac.current_pose) - radius;
 
-    if(distance <= rad_struct->detection.ransac.thres_sphere){
+    if(distance <= rad_struct->sphere.ransac.thres_sphere){
       I = search_Is[i];
-      Nxyz = normalize(xyz - rad_struct->detection.ransac.current_pose);
+      Nxyz = normalize(xyz - rad_struct->sphere.ransac.current_pose);
       It = math::compute_It(xyz, Nxyz, root);
 
       //Add into model data vector
@@ -154,11 +154,11 @@ void Ransac::data_model(vector<vec3>& search_xyz, vector<float>& search_Is){
   vec3 root = vec3(0, 0, 0);
   for(int i=0; i<search_xyz.size(); i++){
     vec3& xyz = search_xyz[i];
-    float distance = math::distance(xyz, rad_struct->detection.ransac.current_pose) - radius;
+    float distance = math::distance(xyz, rad_struct->sphere.ransac.current_pose) - radius;
 
-    if(distance <= rad_struct->detection.ransac.thres_sphere){
+    if(distance <= rad_struct->sphere.ransac.thres_sphere){
       I = search_Is[i];
-      Nxyz = normalize(xyz - rad_struct->detection.ransac.current_pose);
+      Nxyz = normalize(xyz - rad_struct->sphere.ransac.current_pose);
       It = math::compute_It(xyz, Nxyz, root);
       R = math::distance_from_origin(xyz);
 

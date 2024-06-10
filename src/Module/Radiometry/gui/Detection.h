@@ -6,7 +6,7 @@
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
-namespace rad{class Structure;}
+namespace rad::detection{class Structure;}
 namespace rad::detection{class Node;}
 namespace rad::detection::image{class Circle;}
 namespace rnd{class Stream;}
@@ -38,7 +38,7 @@ public:
 
 private:
   dyn::Structure* dyn_struct;
-  rad::Structure* rad_struct;
+  rad::detection::Structure* rad_struct;
   rad::detection::Node* node_detection;
   rad::detection::image::Circle* rad_circle;
   rnd::Stream* stream;

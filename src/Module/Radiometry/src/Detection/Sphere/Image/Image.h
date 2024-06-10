@@ -4,7 +4,7 @@
 #include <opencv2/opencv.hpp>
 
 namespace rad{class Node;}
-namespace rad{class Structure;}
+namespace rad::detection{class Structure;}
 namespace rad::detection::structure{class Circle;}
 namespace dyn::base{class Sensor;}
 
@@ -33,7 +33,7 @@ public:
   void draw_bounding_box(cv::Mat& image);
 
 private:
-  rad::Structure* rad_struct;
+  rad::detection::Structure* rad_struct;
 };
 
 }

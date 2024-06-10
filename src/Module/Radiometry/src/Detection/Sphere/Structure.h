@@ -22,6 +22,8 @@ struct Structure{
   int cv_radius = 0;
   int nb_detection = 0;
   utl::media::Image image;
+  int state_step = rad::detection::VALIDATION;
+  int state_data = rad::detection::NO_DATA;
 
   vector<rad::detection::structure::Circle> vec_circle;
   vector<rad::detection::structure::Sphere> vec_sphere;

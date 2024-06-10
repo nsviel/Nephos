@@ -5,7 +5,6 @@
 namespace dat::base{class Entity;}
 namespace dat{class Selection;}
 namespace rad{class Node;}
-namespace rad{class Structure;}
 namespace rad::gui{class Detection;}
 namespace rad::gui{class Model;}
 namespace rad::gui{class Calibration;}
@@ -33,7 +32,6 @@ public:
 
 private:
   dat::Selection* dat_selection;
-  rad::Structure* rad_struct;
   rad::gui::Detection* gui_detection;
   rad::gui::Model* gui_model;
   rad::gui::Calibration* gui_calibration;

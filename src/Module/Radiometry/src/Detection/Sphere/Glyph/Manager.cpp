@@ -31,12 +31,12 @@ void Manager::create_sphere_glyph(){
     sphere->set_color(color);
     dat_glyph->create_glyph(sphere);
 
-    rad_struct->detection.vec_glyph_sphere.push_back(sphere);
+    rad_struct->sphere.vec_glyph_sphere.push_back(sphere);
   }
 
   //Calibration sphere
   rad::detection::glyph::Sphere* sphere = new rad::detection::glyph::Sphere(node_engine);
-  rad_struct->detection.glyph_calibration = sphere;
+  rad_struct->sphere.glyph_calibration = sphere;
   sphere->set_color(vec4(0, 1, 0, 1));
   dat_glyph->create_glyph(sphere);
 
@@ -45,25 +45,25 @@ void Manager::create_sphere_glyph(){
 
 //Subfunction
 void Manager::draw_calibration_sphere(dyn::base::Sensor* sensor, float radius){
-  rad::detection::glyph::Sphere* sphere = rad_struct->detection.glyph_calibration;
+  rad::detection::glyph::Sphere* sphere = rad_struct->sphere.glyph_calibration;
   //---------------------------
 
   //Reset and move sphere
   sphere->reset_glyph();
-  sphere->move_sphere(rad_struct->detection.ransac.current_pose, radius * 2);
+  sphere->move_sphere(rad_struct->sphere.ransac.current_pose, radius * 2);
   sphere->update_pose(sensor);
 
   //---------------------------
 }
 void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
-  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
+  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.vec_circle;
   //---------------------------
 
   //Reset
   this->reset_detection_sphere();
 
   //Draw
-  switch(rad_struct->detection.hough.drawing_mode){
+  switch(rad_struct->sphere.hough.drawing_mode){
     case rad::hough::ALL:{
       this->draw_detection_sphere(sensor, vec_circle);
       break;
@@ -79,7 +79,7 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Manager::reset_detection_sphere(){
-  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->detection.vec_glyph_sphere;
+  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.vec_glyph_sphere;
   //---------------------------
 
   for(int i=0; i<vec_sphere.size(); i++){
@@ -90,7 +90,7 @@ void Manager::reset_detection_sphere(){
   //---------------------------
 }
 void Manager::draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
-  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->detection.vec_glyph_sphere;
+  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.vec_glyph_sphere;
   //---------------------------
 
   int size = std::min(vec_sphere.size(), vec_circle.size());
@@ -102,10 +102,10 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detec
     //Add sphere radius to the detected circle center
     vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);
     vec3 dir = glm::normalize(pose);
-    pose = pose + dir * (rad_struct->detection.sphere_diameter / 2);
+    pose = pose + dir * (rad_struct->sphere.sphere_diameter / 2);
 
     //Position sphere
-    sphere->move_sphere(pose, rad_struct->detection.sphere_diameter);
+    sphere->move_sphere(pose, rad_struct->sphere.sphere_diameter);
     sphere->update_pose(sensor);
   }
 

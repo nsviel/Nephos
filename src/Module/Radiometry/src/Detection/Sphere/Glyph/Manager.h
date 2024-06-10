@@ -4,7 +4,7 @@
 
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
-namespace rad{class Structure;}
+namespace rad::detection{class Structure;}
 namespace rad::detection::structure{class Circle;}
 namespace dat{class Glyph;}
 namespace eng{class Node;}
@@ -31,7 +31,7 @@ public:
 
 private:
   eng::Node* node_engine;
-  rad::Structure* rad_struct;
+  rad::detection::Structure* rad_struct;
   dat::Glyph* dat_glyph;
 };
 

@@ -10,6 +10,8 @@ namespace rad::correction{
 Node::Node(rad::Node* node_radio){
   //---------------------------
 
+  this->rad_struct = new rad::correction::Structure();
+
   //---------------------------
 }
 Node::~Node(){}

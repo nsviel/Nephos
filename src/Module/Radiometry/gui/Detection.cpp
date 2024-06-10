@@ -49,13 +49,12 @@ void Detection::detection_step(){
   ImGui::TableSetupColumn("three", ImGuiTableColumnFlags_WidthStretch);
 
   //Sphere measure stuff
-  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Sphere measure");
   ImGui::TableNextColumn();
-  this->display_state(sphere->state_step, sphere->state_data);
+  this->display_state(rad_struct->sphere.state_step, rad_struct->sphere.state_data);
   ImGui::TableNextColumn();
-  if(sphere->state_step == rad::detection::PROCESSING){
+  if(rad_struct->sphere.state_step == rad::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){
@@ -72,13 +71,12 @@ void Detection::detection_step(){
   }
 
   //Chart measure stuff
-  rad::model::structure::Chart* chart = &rad_struct->model.chart;
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Chart measure");
   ImGui::TableNextColumn();
-  this->display_state(chart->state_step, chart->state_data);
+  this->display_state(rad_struct->chart.state_step, rad_struct->chart.state_data);
   ImGui::TableNextColumn();
-  if(chart->state_step == rad::detection::PROCESSING){
+  if(rad_struct->chart.state_step == rad::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##chart_measure", ImVec2(120, 0))){
@@ -117,16 +115,16 @@ void Detection::display_image(){
   //---------------------------
 
   //Display number of detected spheres
-  string nb_detection = to_string(rad_struct->detection.nb_detection);
+  string nb_detection = to_string(rad_struct->sphere.nb_detection);
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
 
   //Display image with detected spheres
-  if(rad_struct->detection.image.size == 0) return;
+  if(rad_struct->sphere.image.size == 0) return;
   ImVec2 image_size = ImGui::GetContentRegionAvail();
   image_size.y -= 5;
-  stream->draw_stream(&rad_struct->detection.image, image_size);
+  stream->draw_stream(&rad_struct->sphere.image, image_size);
 
   //---------------------------
   ImGui::Separator();
@@ -164,15 +162,15 @@ void Detection::parameter_canny(){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Canny")){
     //Activated
-    ImGui::Checkbox("##Canny", &rad_struct->detection.canny.apply);
+    ImGui::Checkbox("##Canny", &rad_struct->sphere.canny.apply);
 
     //Lower threshold
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderInt("Lower threshold", &rad_struct->detection.canny.lower_threshold, 0, 200);
+    ImGui::SliderInt("Lower threshold", &rad_struct->sphere.canny.lower_threshold, 0, 200);
 
     //Upper threshold
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderInt("Upper threshold", &rad_struct->detection.canny.upper_threshold, 0, 200);
+    ImGui::SliderInt("Upper threshold", &rad_struct->sphere.canny.upper_threshold, 0, 200);
 
     ImGui::TreePop();
   }
@@ -192,7 +190,7 @@ void Detection::parameter_hough(){
     //ImGui::SliderInt("Pixel diviser", &sensor->set_parent->operation.intensity_diviser, 1, 5000);
 
     //Mode
-    int& mode = rad_struct->detection.hough.mode;
+    int& mode = rad_struct->sphere.hough.mode;
     if(ImGui::RadioButton("Gradient", &mode, rad::hough::GRADIENT)){
       rad_circle->find_hough_parameter(mode);
     }
@@ -203,32 +201,32 @@ void Detection::parameter_hough(){
 
     //Lower threshold
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderFloat("Detector threshold", &rad_struct->detection.hough.param_1, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
+    ImGui::SliderFloat("Detector threshold", &rad_struct->sphere.hough.param_1, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
     //Upper threshold
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderFloat("Accumulator threshold", &rad_struct->detection.hough.param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
+    ImGui::SliderFloat("Accumulator threshold", &rad_struct->sphere.hough.param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
 
     //Ratio
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderInt("Ratio", &rad_struct->detection.hough.ratio, 1, 100);
+    ImGui::SliderInt("Ratio", &rad_struct->sphere.hough.ratio, 1, 100);
     ImGui::SetItemTooltip("This parameter affects the spacing of the accumulator cells, which in turn affects the sensitivity of the circle detection algorithm.");
 
     //Min distance
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderInt("Min distance", &rad_struct->detection.hough.min_dist, 1, 100);
+    ImGui::SliderInt("Min distance", &rad_struct->sphere.hough.min_dist, 1, 100);
 
     //Radius range
-    int* min_radius = &rad_struct->detection.hough.min_radius;
-    int* max_radius = &rad_struct->detection.hough.max_radius;
+    int* min_radius = &rad_struct->sphere.hough.min_radius;
+    int* max_radius = &rad_struct->sphere.hough.max_radius;
     ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 100, "Min: %d px", "Max: %d px");
 
     //Circle drawing mode
     ImGui::Text("Draw");
     ImGui::SameLine();
-    ImGui::RadioButton("All sphere", &rad_struct->detection.hough.drawing_mode, rad::hough::ALL);
+    ImGui::RadioButton("All sphere", &rad_struct->sphere.hough.drawing_mode, rad::hough::ALL);
     ImGui::SameLine();
-    ImGui::RadioButton("Best sphere", &rad_struct->detection.hough.drawing_mode, rad::hough::BEST);
+    ImGui::RadioButton("Best sphere", &rad_struct->sphere.hough.drawing_mode, rad::hough::BEST);
 
     ImGui::TreePop();
   }
@@ -244,17 +242,17 @@ void Detection::parameter_ransac(){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Ransac")){
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderFloat("Sphere diameter", &rad_struct->detection.sphere_diameter, 0.001, 0.5f, "%.3f m");
+    ImGui::SliderFloat("Sphere diameter", &rad_struct->sphere.sphere_diameter, 0.001, 0.5f, "%.3f m");
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderInt("Num iteration", &rad_struct->detection.ransac.nb_iter, 1, 10000);
+    ImGui::SliderInt("Num iteration", &rad_struct->sphere.ransac.nb_iter, 1, 10000);
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderFloat("Threshold sphere", &rad_struct->detection.ransac.thres_sphere, 0.01f, 0.1f, "%.2f m");
+    ImGui::SliderFloat("Threshold sphere", &rad_struct->sphere.ransac.thres_sphere, 0.01f, 0.1f, "%.2f m");
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderFloat("Threshold pose", &rad_struct->detection.ransac.thres_pose, 0.01f, 1.0f, "%.2f m");
+    ImGui::SliderFloat("Threshold pose", &rad_struct->sphere.ransac.thres_pose, 0.01f, 1.0f, "%.2f m");
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderFloat("Threshold radius", &rad_struct->detection.ransac.thres_radius, 0.01f, 0.1f, "%.2f m");
+    ImGui::SliderFloat("Threshold radius", &rad_struct->sphere.ransac.thres_radius, 0.01f, 0.1f, "%.2f m");
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderFloat("Diamter x area", &rad_struct->detection.ransac.search_lambda, 0.5f, 5.0f, "%.1f m");
+    ImGui::SliderFloat("Diamter x area", &rad_struct->sphere.ransac.search_lambda, 0.5f, 5.0f, "%.1f m");
 
     ImGui::TreePop();
   }

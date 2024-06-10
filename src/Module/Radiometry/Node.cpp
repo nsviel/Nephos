@@ -21,7 +21,6 @@ Node::Node(eng::Node* node_engine){
   this->node_dynamic = node_engine->get_node_dynamic();
 
   //Child
-  this->rad_struct = new rad::Structure();
   this->node_detection = new rad::detection::Node(this);
   this->node_model = new rad::model::Node(this);
   this->node_correction = new rad::correction::Node(this);

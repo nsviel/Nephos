@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace rad{class Node;}
-namespace rad{class Structure;}
+namespace rad::detection{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace utl::media{class Image;}
@@ -34,7 +34,7 @@ public:
 
 private:
   utl::thread::Pool* thread_pool;
-  rad::Structure* rad_struct;
+  rad::detection::Structure* rad_struct;
   rad::detection::glyph::Manager* rad_glyph;
   rad::detection::image::Circle* rad_circle;
   rad::detection::image::Image* rad_image;

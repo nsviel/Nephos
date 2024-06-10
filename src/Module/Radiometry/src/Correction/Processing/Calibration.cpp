@@ -9,7 +9,9 @@ namespace rad::correction{
 Calibration::Calibration(rad::Node* node_radio){
   //---------------------------
 
-  this->rad_struct = node_radio->get_rad_struct();
+  rad::correction::Node* node_correction = node_radio->get_node_correction();
+
+  this->rad_struct = node_correction->get_rad_struct();
 
   //---------------------------
 }

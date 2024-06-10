@@ -11,7 +11,9 @@ namespace rad::correction{
 Correction::Correction(rad::Node* node_radio){
   //---------------------------
 
-  this->rad_struct = node_radio->get_rad_struct();
+  rad::correction::Node* node_correction = node_radio->get_node_correction();
+
+  this->rad_struct = node_correction->get_rad_struct();
   this->node_model = node_radio->get_node_model();
   this->rad_model = node_model->get_node_model();
 
@@ -26,11 +28,11 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
 
   utl::base::Data* data = &sensor->data;
 
-  rad_struct->correction.image.data = ir->data;
-  rad_struct->correction.image.width = ir->width;
-  rad_struct->correction.image.height = ir->height;
-  rad_struct->correction.image.size = ir->size;
-  rad_struct->correction.image.format = ir->format;
+  rad_struct->image.data = ir->data;
+  rad_struct->image.width = ir->width;
+  rad_struct->image.height = ir->height;
+  rad_struct->image.size = ir->size;
+  rad_struct->image.format = ir->format;
 tic();
 
   #pragma omp parallel for
@@ -54,14 +56,14 @@ tic();
       //Set image value
       int idp = idx * 4;
       uint8_t p_cor = static_cast<uint8_t>(I_cor);
-      rad_struct->correction.image.data[idp]     = static_cast<uint8_t>(p_cor);
-      rad_struct->correction.image.data[idp + 1] = static_cast<uint8_t>(p_cor);
-      rad_struct->correction.image.data[idp + 2] = static_cast<uint8_t>(p_cor);
+      rad_struct->image.data[idp]     = static_cast<uint8_t>(p_cor);
+      rad_struct->image.data[idp + 1] = static_cast<uint8_t>(p_cor);
+      rad_struct->image.data[idp + 2] = static_cast<uint8_t>(p_cor);
     }
   }
 toc_us("hey");
 
-  rad_struct->correction.image.new_data = true;
+  rad_struct->image.new_data = true;
 
   //---------------------------
 }

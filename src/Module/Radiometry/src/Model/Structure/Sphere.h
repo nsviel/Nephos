@@ -11,8 +11,6 @@ struct Sphere{
 
   //General
   std::string path = "../media/record/calibration/sphere.data";
-  int state_step = rad::detection::VALIDATION;
-  int state_data = rad::detection::NO_DATA;
 
   //Data
   std::vector<glm::vec3> data;

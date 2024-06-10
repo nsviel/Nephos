@@ -17,15 +17,15 @@ Image::~Image(){}
 
 //Main function
 void Image::apply_canny(cv::Mat& input, cv::Mat& output){
-  if(rad_struct->detection.canny.apply == false){
+  if(rad_struct->sphere.canny.apply == false){
     output = input;
     return;
   }
   //---------------------------
 
   // Perform canny edge detection
-  int& thresh_lower = rad_struct->detection.canny.lower_threshold;
-  int& thresh_upper = rad_struct->detection.canny.upper_threshold;
+  int& thresh_lower = rad_struct->sphere.canny.lower_threshold;
+  int& thresh_upper = rad_struct->sphere.canny.upper_threshold;
   cv::Canny(input, output, thresh_lower, thresh_upper);
 
   //---------------------------
@@ -63,8 +63,8 @@ void Image::convert_into_rgba(cv::Mat& input, cv::Mat& output){
 void Image::convert_into_subimage(cv::Mat& image){
   //------------------------
 
-  cv::Point& center = rad_struct->detection.cv_center;
-  float radius = (float)rad_struct->detection.cv_radius * rad_struct->detection.bbox.scale;
+  cv::Point& center = rad_struct->sphere.cv_center;
+  float radius = (float)rad_struct->sphere.cv_radius * rad_struct->sphere.bbox.scale;
 
   // Calculate the top-left corner coordinates of the bounding box
   int x = center.x - radius;
@@ -76,7 +76,7 @@ void Image::convert_into_subimage(cv::Mat& image){
     cv::Rect bounding_box(x, y, radius * 2, radius * 2);
 
     // Extract the subimage from the original image using the bounding box
-    rad_struct->detection.cv_subimage = image(bounding_box).clone();
+    rad_struct->sphere.cv_subimage = image(bounding_box).clone();
   }
 
   //------------------------
@@ -124,15 +124,15 @@ void Image::draw_circle(cv::Mat& image, vector<rad::detection::structure::Circle
 void Image::draw_bounding_box(cv::Mat& image){
   //------------------------
 
-  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->detection.vec_circle;
+  vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.vec_circle;
   if(vec_circle.size() == 0) return;
 
   rad::detection::structure::Circle& circle = vec_circle[0];
-  rad_struct->detection.cv_center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
-  rad_struct->detection.cv_radius = cvRound(circle.radius);
+  rad_struct->sphere.cv_center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
+  rad_struct->sphere.cv_radius = cvRound(circle.radius);
 
-  cv::Point& center = rad_struct->detection.cv_center;
-  float radius = (float)rad_struct->detection.cv_radius * rad_struct->detection.bbox.scale;
+  cv::Point& center = rad_struct->sphere.cv_center;
+  float radius = (float)rad_struct->sphere.cv_radius * rad_struct->sphere.bbox.scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size

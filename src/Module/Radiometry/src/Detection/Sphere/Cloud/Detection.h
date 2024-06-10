@@ -4,7 +4,7 @@
 
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
-namespace rad{class Structure;}
+namespace rad::detection{class Structure;}
 namespace rad::detection::glyph{class Manager;}
 namespace rad::detection::cloud{class Ransac;}
 namespace ope::fitting{class Sphere;}
@@ -36,7 +36,7 @@ private:
   ope::fitting::Ransac* ope_ransac;
   rad::detection::glyph::Manager* rad_glyph;
   rad::detection::cloud::Ransac* rad_ransac;
-  rad::Structure* rad_struct;
+  rad::detection::Structure* rad_struct;
 
   bool thread_idle = true;
 };

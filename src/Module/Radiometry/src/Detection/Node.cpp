@@ -14,7 +14,7 @@ Node::Node(rad::Node* node_radio){
 
   dat::Node* node_data = node_radio->get_node_data();
 
-  this->rad_struct = node_radio->get_rad_struct();
+  this->rad_struct = new rad::detection::Structure();
   this->rad_glyph = new rad::detection::glyph::Manager(node_radio);
   this->rad_image_detection = new rad::detection::image::Detection(node_radio);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(node_radio);
