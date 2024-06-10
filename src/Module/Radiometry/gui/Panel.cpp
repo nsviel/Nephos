@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace rad::gui{

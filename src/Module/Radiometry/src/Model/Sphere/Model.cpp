@@ -3,6 +3,8 @@
 #include <python/matplotlibcpp.h>
 #include <Utility/Function/File/Json.cpp>
 #include <Radiometry/Namespace.h>
+#include <Operation/Namespace.h>
+
 
 namespace rad::model::sphere{
 

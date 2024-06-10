@@ -108,9 +108,7 @@ void Image::draw_bounding_box(cv::Mat& image){
 
   rad::detection::structure::Circle& circle = vec_circle[0];
   cv::Point center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
-  int radius = cvRound(circle.radius);
-
-  float radius = (float)radius * rad_struct->sphere.bbox.scale;
+  float radius = cvRound(circle.radius) * rad_struct->sphere.bbox.scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size

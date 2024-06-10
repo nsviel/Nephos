@@ -2,6 +2,7 @@
 
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace rad::detection::glyph{

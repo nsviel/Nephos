@@ -3,6 +3,7 @@
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
+#include <Engine/Namespace.h>
 
 
 namespace rad::detection::chart{
