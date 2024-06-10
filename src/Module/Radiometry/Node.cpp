@@ -19,13 +19,13 @@ Node::Node(eng::Node* node_engine){
   this->node_data = node_engine->get_node_data();
   this->node_profiler = node_engine->get_node_profiler();
   this->node_dynamic = node_engine->get_node_dynamic();
-
+sayHello();
   //Child
-  this->node_detection = new rad::detection::Node(this);
-  this->node_model = new rad::model::Node(this);
-  this->node_correction = new rad::correction::Node(this);
+  this->node_detection = new rad::detection::Node(this);sayHello();
+  this->node_model = new rad::model::Node(this);sayHello();
+  this->node_correction = new rad::correction::Node(this);sayHello();
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
-
+sayHello();
   //---------------------------
 }
 Node::~Node(){}
