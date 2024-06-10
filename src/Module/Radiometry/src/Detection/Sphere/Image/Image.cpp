@@ -9,7 +9,9 @@ namespace rad::detection::image{
 Image::Image(rad::Node* node_radio){
   //---------------------------
 
-  this->rad_struct = node_radio->get_rad_struct();
+  rad::detection::Node* node_detection = node_radio->get_node_detection();
+
+  this->rad_struct = node_detection->get_rad_struct();
 
   //---------------------------
 }

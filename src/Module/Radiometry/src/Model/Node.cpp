@@ -10,7 +10,7 @@ namespace rad::model{
 Node::Node(rad::Node* node_radio){
   //---------------------------
 
-  this->rad_struct = node_radio->get_rad_struct();
+  this->rad_struct = new rad::model::Structure();
   this->rad_model = new rad::model::sphere::Model(node_radio);
   this->rad_plot = new rad::model::sphere::Plot(node_radio, rad_model);
   this->rad_measure = new rad::model::sphere::Measure(node_radio, rad_plot);

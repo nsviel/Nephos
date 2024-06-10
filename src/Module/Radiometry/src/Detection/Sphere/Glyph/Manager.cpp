@@ -11,10 +11,11 @@ Manager::Manager(rad::Node* node_radio){
   //---------------------------
 
   dat::Node* node_data = node_radio->get_node_data();
+  rad::detection::Node* node_detection = node_radio->get_node_detection();
 
   this->dat_glyph = node_data->get_dat_glyph();
   this->node_engine = node_radio->get_node_engine();
-  this->rad_struct = node_radio->get_rad_struct();
+  this->rad_struct = node_detection->get_rad_struct();
 
   //---------------------------
 }

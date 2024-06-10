@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad{class Structure;}
 namespace rad{class Node;}
+namespace rad::model{class Structure;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
 
@@ -30,7 +30,7 @@ public:
   bool is_ready();
 
 private:
-  rad::Structure* rad_struct;
+  rad::model::Structure* rad_struct;
   ope::fitting::Polyfit* ope_polyfit;
   ope::fitting::Surface* ope_surface;
 };

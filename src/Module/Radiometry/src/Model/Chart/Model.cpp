@@ -10,7 +10,9 @@ namespace rad::model::chart{
 Model::Model(rad::Node* node_radio){
   //---------------------------
 
-  this->rad_struct = node_radio->get_rad_struct();
+  rad::model::Node* node_model = node_radio->get_node_model();
+
+  this->rad_struct = node_model->get_rad_struct();
 
   //---------------------------
 }

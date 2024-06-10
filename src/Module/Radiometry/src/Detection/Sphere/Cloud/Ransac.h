@@ -28,11 +28,6 @@ public:
   void apply_ransac(vector<vec3>& search_xyz, vector<float>& search_is);
   void process_measurement(vector<vec3>& search_xyz, vector<float>& search_is);
 
-  //Measure function
-  void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
-  void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
-  void data_model(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
-
 private:
 
   rad::detection::Structure* rad_struct;
@@ -41,7 +36,6 @@ private:
   ope::fitting::Ransac* ope_ransac;
 
   vec3 current_pose;
-  float radius;
 };
 
 }

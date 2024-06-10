@@ -55,7 +55,7 @@ void Node::step_sphere_detection(){
   if(sensor == nullptr) return;
 
   //Measurement step logic
-  int& step = rad_struct->model.sphere.state_step;
+  int& step = rad_struct->sphere.state_step;
   switch(step){
     case rad::detection::VALIDATION:{
       rad_cloud_detection->validate_bbox(sensor);
@@ -70,10 +70,10 @@ void Node::step_sphere_detection(){
   //---------------------------
 }
 void Node::step_chart_detection(){
-  if(rad_struct->model.sphere.state_step == rad::detection::PROCESSING) return;
+  if(rad_struct->sphere.state_step == rad::detection::PROCESSING) return;
   //---------------------------
 
-  rad_struct->model.chart.state_step = rad::detection::PROCESSING;
+  rad_struct->chart.state_step = rad::detection::PROCESSING;
   //rad_cloud_detection->validate_bbox(sensor);
 
   //---------------------------

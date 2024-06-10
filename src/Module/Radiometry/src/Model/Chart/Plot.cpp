@@ -11,7 +11,9 @@ namespace rad::model::chart{
 Plot::Plot(rad::Node* node_radio, rad::model::chart::Model* rad_model){
   //---------------------------
 
-  this->rad_struct = node_radio->get_rad_struct();
+  rad::model::Node* node_model = node_radio->get_node_model();
+
+  this->rad_struct = node_model->get_rad_struct();
   this->rad_model = rad_model;
 
   //---------------------------

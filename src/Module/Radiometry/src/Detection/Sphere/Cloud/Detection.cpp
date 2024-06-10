@@ -12,9 +12,10 @@ Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
   eng::Node* node_engine = node_radio->get_node_engine();
+  rad::detection::Node* node_detection = node_radio->get_node_detection();
 
   this->thread_pool = node_engine->get_thread_pool();
-  this->rad_struct = node_radio->get_rad_struct();
+  this->rad_struct = node_detection->get_rad_struct();
   this->rad_glyph = new rad::detection::glyph::Manager(node_radio);
   this->rad_ransac = new rad::detection::cloud::Ransac(node_radio);
 
@@ -40,7 +41,7 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
 void Detection::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  if(rad_struct->model.sphere.state_step == rad::detection::PROCESSING){
+  if(rad_struct->sphere.state_step == rad::detection::PROCESSING){
     rad_ransac->ransac_sphere(sensor);
   }
 
@@ -74,7 +75,7 @@ void Detection::validate_bbox(dyn::base::Sensor* sensor){
   vec3 pose_xyz = sensor->convert_depth_2d_to_3d(point_2d);
   vec4 pose_xyzw = vec4(pose_xyz.x, pose_xyz.y, pose_xyz.z, 1);
   rad_struct->sphere.ransac.current_pose = pose->model * pose_xyzw;
-  rad_struct->model.sphere.state_step = rad::detection::PROCESSING;
+  rad_struct->sphere.state_step = rad::detection::PROCESSING;
 
   //---------------------------
 }

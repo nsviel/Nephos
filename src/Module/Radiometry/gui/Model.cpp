@@ -10,9 +10,11 @@ namespace rad::gui{
 Model::Model(rad::Node* node_radio){
   //---------------------------
 
+  rad::model::Node* node_model = node_radio->get_node_model();
+
   this->node_model = node_radio->get_node_model();
   this->rad_model = node_model->get_node_model();
-  this->rad_struct = rad_model->get_rad_struct();
+  this->rad_struct = node_model->get_rad_struct();
   this->rad_measure = node_model->get_rad_measure();
   this->rad_plot = node_model->get_rad_plot();
   this->utl_plot = new utl::implot::Plot();
@@ -46,8 +48,7 @@ void Model::draw_tab(){
 
 //Subfunction
 void Model::parameter_measure(){
-  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
-  rad::model::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -70,14 +71,14 @@ void Model::parameter_measure(){
   if(ImGui::TreeNode("Parameter##Measure")){
     //Path
     if(ImGui::Button("...##path_measure")){
-      zenity::selection_file(sphere->path);
+      zenity::selection_file(rad_struct->sphere.path);
     }
     ImGui::SameLine();
     if(ImGui::Button(ICON_FA_FOLDER "##path_measure")){
-      utl::directory::open(sphere->path);
+      utl::directory::open(rad_struct->sphere.path);
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", sphere->path.c_str());
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", rad_struct->sphere.path.c_str());
 
     //Heatmap scale
     ImGui::DragFloatRange2("Heatmap scale",&plot->IfRIt.axis_z.min, &plot->IfRIt.axis_z.max, 100, 0, 60000, "%.0f");
@@ -110,8 +111,8 @@ void Model::parameter_measure(){
   //---------------------------
 }
 void Model::parameter_model(){
-  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::model::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Optimization* optim = &rad_struct->optim;
+  rad::model::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -208,7 +209,7 @@ void Model::plot_sphere(){
   //---------------------------
 }
 void Model::plot_measure_IfR(float height){
-  rad::model::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfR.title == "") return;
@@ -218,7 +219,7 @@ void Model::plot_measure_IfR(float height){
   //---------------------------
 }
 void Model::plot_measure_IfIt(float height){
-  rad::model::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfIt.title == "") return;
@@ -228,9 +229,8 @@ void Model::plot_measure_IfIt(float height){
   //---------------------------
 }
 void Model::plot_model_heatmap(float height){
-  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
-  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::model::structure::Plot* plot = &rad_struct->model.plot;
+  rad::model::structure::Optimization* optim = &rad_struct->optim;
+  rad::model::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfRIt.title == "") return;

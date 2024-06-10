@@ -11,9 +11,9 @@ Correction::Correction(rad::Node* node_radio){
   //---------------------------
 
   eng::Node* node_engine = node_radio->get_node_engine();
-
-  this->rad_correction = node_radio->get_node_correction-);
-  this->rad_struct = rad_correction->get_rad_struct();
+  rad::correction::Node* node_correction = node_radio->get_node_correction();
+  
+  this->rad_struct = node_correction->get_rad_struct();
   this->stream = new rnd::Stream(node_engine);
 
   //---------------------------

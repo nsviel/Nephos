@@ -11,7 +11,9 @@ namespace rad::model::sphere{
 Measure::Measure(rad::Node* node_radio, rad::model::sphere::Plot* rad_plot){
   //---------------------------
 
-  this->rad_struct = node_radio->get_rad_struct();
+  rad::model::Node* node_model = node_radio->get_node_model();
+
+  this->rad_struct = node_model->get_rad_struct();
   this->rad_plot = rad_plot;
 
   //---------------------------
@@ -21,34 +23,30 @@ Measure::~Measure(){}
 
 //Main function
 void Measure::import_measure(){
-  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
   //Import file model data
-  sphere->data = utl::file::read_vector(sphere->path);
+  rad_struct->sphere.data = utl::file::read_vector(rad_struct->sphere.path);
 
-  if(sphere->data.size() != 0){
+  if(rad_struct->sphere.data.size() != 0){
     this->find_optimization_bound();
     rad_plot->update_plot_data();
-    sphere->state_data = rad::detection::HAS_DATA;
   }
 
   //---------------------------
 }
 void Measure::export_measure(){
-  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
-  utl::file::write_vector(sphere->path, sphere->data);
+  utl::file::write_vector(rad_struct->sphere.path, rad_struct->sphere.data);
 
   //---------------------------
 }
 void Measure::clear_measure(){
-  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
   //Import file model data
-  sphere->data.clear();
+  rad_struct->sphere.data.clear();
   rad_plot->reset_plot_data();
 
   //---------------------------
@@ -56,7 +54,7 @@ void Measure::clear_measure(){
 
 //Subfunction
 void Measure::init(){
-  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
+  rad::model::structure::Sphere* sphere = &rad_struct->sphere;
   //---------------------------
 
   //R
@@ -82,31 +80,29 @@ void Measure::init(){
   //---------------------------
 }
 void Measure::find_optimization_bound(){
-  rad::model::structure::Optimization* optim = &rad_struct->model.optim;
-  rad::model::structure::Sphere* sphere = &rad_struct->model.sphere;
   //---------------------------
 
   vec2 R_bound = vec2(1000, 0);
   vec2 It_bound = vec2(1000, 0);
 
-  for(int i=0; i<sphere->data.size(); i++){
+  for(int i=0; i<rad_struct->sphere.data.size(); i++){
     //R
-    float& R = sphere->data[i].x;
+    float& R = rad_struct->sphere.data[i].x;
     if(R < 0) continue;
     if(R < R_bound.x) R_bound.x = R;
     if(R > R_bound.y) R_bound.y = R;
 
     //It
-    float& It = sphere->data[i].y;
+    float& It = rad_struct->sphere.data[i].y;
     if(It < 0) continue;
     if(It < It_bound.x) It_bound.x = It;
     if(It > It_bound.y) It_bound.y = It;
   }
 
-  optim->axis_x.bound = R_bound;
-  optim->axis_y.bound = It_bound;
-  optim->axis_x.current = (R_bound.x + R_bound.y) / 2;
-  optim->axis_y.current = (It_bound.x + It_bound.y) / 2;
+  rad_struct->optim.axis_x.bound = R_bound;
+  rad_struct->optim.axis_y.bound = It_bound;
+  rad_struct->optim.axis_x.current = (R_bound.x + R_bound.y) / 2;
+  rad_struct->optim.axis_y.current = (It_bound.x + It_bound.y) / 2;
 
   //---------------------------
 }

@@ -25,7 +25,6 @@ public:
   void display_image();
 
 private:
-  rad::correction::Node* node_correction;
   rad::correction::Structure* rad_struct;
   rnd::Stream* stream;
 };

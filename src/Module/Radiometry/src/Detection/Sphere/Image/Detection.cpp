@@ -12,8 +12,9 @@ Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
   eng::Node* node_engine = node_radio->get_node_engine();
+  rad::detection::Node* node_detection = node_radio->get_node_detection();
 
-  this->rad_struct = node_radio->get_rad_struct();
+  this->rad_struct = node_detection->get_rad_struct();
   this->rad_image = new rad::detection::image::Image(node_radio);
   this->rad_glyph = new rad::detection::glyph::Manager(node_radio);
   this->rad_circle = new rad::detection::image::Circle(node_radio);

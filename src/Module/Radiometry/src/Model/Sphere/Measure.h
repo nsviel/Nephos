@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace rad{class Node;}
-namespace rad{class Structure;}
+namespace rad::model{class Structure;}
 namespace rad::model::sphere{class Plot;}
 
 
@@ -27,7 +27,7 @@ public:
   void find_optimization_bound();
 
 private:
-  rad::Structure* rad_struct;
+  rad::model::Structure* rad_struct;
   rad::model::sphere::Plot* rad_plot;
 };
 

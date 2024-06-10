@@ -14,9 +14,10 @@ Detection::Detection(rad::Node* node_radio){
 
   eng::Node* node_engine = node_radio->get_node_engine();
   dyn::Node* node_dynamic = node_radio->get_node_dynamic();
+  rad::detection::Node* node_detection = node_radio->get_node_detection();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->rad_struct = node_radio->get_rad_struct();
+  this->rad_struct = node_detection->get_rad_struct();
   this->node_detection = node_radio->get_node_detection();
   this->rad_circle = new rad::detection::image::Circle(node_radio);
   this->stream = new rnd::Stream(node_engine);

@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad{class Structure;}
+namespace rad::model{class Structure;}
 namespace rad{class Node;}
 
 
@@ -25,7 +25,7 @@ public:
   void build_model();
 
 private:
-  rad::Structure* rad_struct;
+  rad::model::Structure* rad_struct;
 };
 
 }

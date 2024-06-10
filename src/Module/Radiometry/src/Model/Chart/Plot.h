@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace rad{class Node;}
-namespace rad{class Structure;}
+namespace rad::model{class Structure;}
 namespace rad::model::chart{class Model;}
 
 
@@ -26,7 +26,7 @@ public:
   void reset_plot_data();
 
 private:
-  rad::Structure* rad_struct;
+  rad::model::Structure* rad_struct;
   rad::model::chart::Model* rad_model;
 };
 

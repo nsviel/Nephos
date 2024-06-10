@@ -11,7 +11,9 @@ namespace rad::model::chart{
 Measure::Measure(rad::Node* node_radio, rad::model::chart::Plot* rad_plot){
   //---------------------------
 
-  this->rad_struct = node_radio->get_rad_struct();
+  rad::model::Node* node_model = node_radio->get_node_model();
+
+  this->rad_struct = node_model->get_rad_struct();
   this->rad_plot = rad_plot;
 
   //---------------------------
@@ -21,29 +23,26 @@ Measure::~Measure(){}
 
 //Main function
 void Measure::import_measure(){
-  rad::model::structure::Chart* chart = &rad_struct->model.chart;
   //---------------------------
 
   //Import file model data
-  chart->data = utl::file::read_vector(chart->path);
+  rad_struct->chart.data = utl::file::read_vector(rad_struct->chart.path);
   rad_plot->update_plot_data();
 
   //---------------------------
 }
 void Measure::export_measure(){
-  rad::model::structure::Chart* chart = &rad_struct->model.chart;
   //---------------------------
 
-  utl::file::write_vector(chart->path, chart->data);
+  utl::file::write_vector(rad_struct->chart.path, rad_struct->chart.data);
 
   //---------------------------
 }
 void Measure::clear_measure(){
-  rad::model::structure::Chart* chart = &rad_struct->model.chart;
   //---------------------------
 
   //Import file model data
-  chart->data.clear();
+  rad_struct->chart.data.clear();
   rad_plot->reset_plot_data();
 
   //---------------------------
