@@ -103,10 +103,10 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detec
     //Add sphere radius to the detected circle center
     vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);
     vec3 dir = glm::normalize(pose);
-    pose = pose + dir * (rad_struct->sphere.sphere_diameter / 2);
+    pose = pose + dir * (rad_struct->sphere.ransac.sphere_diameter / 2);
 
     //Position sphere
-    sphere->move_sphere(pose, rad_struct->sphere.sphere_diameter);
+    sphere->move_sphere(pose, rad_struct->sphere.ransac.sphere_diameter);
     sphere->update_pose(sensor);
   }
 

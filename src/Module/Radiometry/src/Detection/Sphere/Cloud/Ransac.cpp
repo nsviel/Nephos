@@ -49,7 +49,7 @@ void Ransac::reduce_search_space(dyn::base::Sensor* sensor, vector<vec3>& search
     vec3& xyz = vec_xyz[i];
     float distance = math::distance(xyz, rad_struct->sphere.ransac.current_pose);
 
-    if(distance <= rad_struct->sphere.sphere_diameter * rad_struct->sphere.ransac.search_lambda){
+    if(distance <= rad_struct->sphere.ransac.sphere_diameter * rad_struct->sphere.ransac.search_lambda){
       search_xyz.push_back(xyz);
       search_Is.push_back(vec_i[i]);
     }
@@ -65,7 +65,7 @@ void Ransac::apply_ransac(vector<vec3>& search_xyz, vector<float>& search_Is){
   ope_ransac->set_threshold_sphere(rad_struct->sphere.ransac.thres_sphere);
   ope_ransac->set_threshold_pose(rad_struct->sphere.ransac.thres_pose);
   ope_ransac->set_threshold_radius(rad_struct->sphere.ransac.thres_radius);
-  ope_ransac->ransac_sphere_in_cloud(search_xyz, rad_struct->sphere.ransac.current_pose, rad_struct->sphere.ransac.radius, rad_struct->sphere.sphere_diameter/2);
+  ope_ransac->ransac_sphere_in_cloud(search_xyz, rad_struct->sphere.ransac.current_pose, rad_struct->sphere.ransac.radius, rad_struct->sphere.ransac.sphere_diameter/2);
 
   //---------------------------
 }

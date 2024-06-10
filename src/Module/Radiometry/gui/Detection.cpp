@@ -243,7 +243,7 @@ void Detection::parameter_ransac(){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Ransac")){
     ImGui::SetNextItemWidth(120);
-    ImGui::SliderFloat("Sphere diameter", &rad_struct->sphere.sphere_diameter, 0.001, 0.5f, "%.3f m");
+    ImGui::SliderFloat("Sphere diameter", &rad_struct->sphere.ransac.sphere_diameter, 0.001, 0.5f, "%.3f m");
     ImGui::SetNextItemWidth(120);
     ImGui::SliderInt("Num iteration", &rad_struct->sphere.ransac.nb_iter, 1, 10000);
     ImGui::SetNextItemWidth(120);

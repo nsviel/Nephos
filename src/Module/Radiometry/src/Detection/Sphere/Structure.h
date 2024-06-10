@@ -20,15 +20,17 @@ struct Structure{
   cv::Mat cv_image;
   cv::Mat cv_subimage;
   cv::Point cv_center;
-  float sphere_diameter = 0.139;
   int cv_radius = 0;
-
   utl::media::Image image;
+
+
+
+
+  //Step
   int state_step = rad::detection::VALIDATION;
   int state_data = rad::detection::NO_DATA;
 
-
-
+  //Structures
   rad::detection::structure::Data data;
   rad::detection::structure::Hough hough;
   rad::detection::structure::Canny canny;
