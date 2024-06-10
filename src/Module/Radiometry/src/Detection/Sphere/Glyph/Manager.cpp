@@ -67,31 +67,20 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
   //Draw
   switch(rad_struct->sphere.hough.draw){
     case rad::hough::ALL:{
-      this->draw_detection_sphere(sensor, vec_circle);
+      this->draw_sphere_glyph(sensor, vec_circle);
       break;
     }
     case rad::hough::BEST:{
       std::vector<rad::detection::structure::Circle> best_circle;
       if(vec_circle.size() > 0) best_circle.push_back(vec_circle[0]);
-      this->draw_detection_sphere(sensor, best_circle);
+      this->draw_sphere_glyph(sensor, best_circle);
       break;
     }
   }
 
   //---------------------------
 }
-void Manager::reset_detection_sphere(){
-  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.hough.vec_glyph;
-  //---------------------------
-
-  for(int i=0; i<vec_sphere.size(); i++){
-    rad::detection::glyph::Sphere* sphere = vec_sphere[i];
-    sphere->reset_glyph();
-  }
-
-  //---------------------------
-}
-void Manager::draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
+void Manager::draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
   vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.hough.vec_glyph;
   //---------------------------
 
@@ -109,6 +98,27 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detec
     //Position sphere
     sphere->move_sphere(pose, rad_struct->sphere.ransac.sphere_diameter);
     sphere->update_pose(sensor);
+  }
+
+  //---------------------------
+}
+
+//Reset function
+void Manager::reset_all_sphere(){
+  //---------------------------
+
+  rad_struct->sphere.ransac.glyph->reset_glyph();
+  this->reset_detection_sphere();
+
+  //---------------------------
+}
+void Manager::reset_detection_sphere(){
+  vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.hough.vec_glyph;
+  //---------------------------
+
+  for(int i=0; i<vec_sphere.size(); i++){
+    rad::detection::glyph::Sphere* sphere = vec_sphere[i];
+    sphere->reset_glyph();
   }
 
   //---------------------------

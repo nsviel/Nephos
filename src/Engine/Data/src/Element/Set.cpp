@@ -176,25 +176,10 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
   //---------------------------
 }
 void Set::remove_active_entity(dat::base::Set* set){
-  if(set->active_entity == nullptr) return;
+  if(set == nullptr) return;
   //---------------------------
 
-  // Check if the current set has the query entity
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* set_entity = *next(set->list_entity.begin(), i);
-
-    if(set_entity->UID == set->active_entity->UID){
-      set->list_entity.remove(set->active_entity);
-      set->nb_entity--;
-
-      dat_struct->selection = nullptr;
-      this->active_next_entity(set);
-
-      dat_entity->remove_entity(set->active_entity);
-
-      return;
-    }
-  }
+  this->remove_entity(set, set->active_entity);
 
   //---------------------------
 }

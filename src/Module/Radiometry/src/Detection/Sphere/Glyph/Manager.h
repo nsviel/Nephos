@@ -26,8 +26,11 @@ public:
   //Subfunction
   void draw_calibration_sphere(dyn::base::Sensor* sensor);
   void draw_detection_sphere(dyn::base::Sensor* sensor);
+  void draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle);
+
+  //Reset function
+  void reset_all_sphere();
   void reset_detection_sphere();
-  void draw_detection_sphere(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle);
 
 private:
   eng::Node* node_engine;

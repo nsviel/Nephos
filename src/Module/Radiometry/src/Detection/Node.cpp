@@ -37,7 +37,6 @@ void Node::init(){
 void Node::loop(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
-  if(sensor == nullptr) return;
   //---------------------------
 
   //Cloud and image detection stuff

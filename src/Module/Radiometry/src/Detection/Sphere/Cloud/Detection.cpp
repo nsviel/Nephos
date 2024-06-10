@@ -42,6 +42,11 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
 void Detection::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
+  if(sensor == nullptr){
+    rad_glyph->reset_all_sphere();
+    return;
+  }
+
   if(rad_struct->sphere.state_step == rad::detection::PROCESSING){
     rad_ransac->ransac_sphere(sensor);
   }
