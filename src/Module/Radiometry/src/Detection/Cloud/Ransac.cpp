@@ -33,6 +33,7 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
   this->reduce_search_space(sensor, search_xyz, search_is);
   this->apply_ransac(search_xyz, search_is);
   this->process_result(search_xyz, search_is);
+  rad_glyph->draw_calibration_sphere(sensor, radius);
 
   //---------------------------
 }
@@ -72,7 +73,6 @@ void Ransac::process_result(vector<vec3>& search_xyz, vector<float>& search_is){
   //---------------------------
 
   //Apply post-processing stuff
-  rad_glyph->draw_calibration_sphere(rad_struct->detection.ransac.current_pose, radius);
   this->data_IfR(search_xyz, search_is);
   //this->data_IfIt(search_xyz, search_is);
   //this->data_model(search_xyz, search_is);

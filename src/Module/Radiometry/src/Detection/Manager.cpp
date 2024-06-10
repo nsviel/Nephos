@@ -49,9 +49,15 @@ void Manager::loop(){
 
 //Subfunction
 void Manager::step_sphere_detection(){
-  int& step = rad_struct->model.chart.state_step ;
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
+  //Verify that we have a sensor type
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  if(sensor == nullptr) return;
+
+  //Measurement step logic
+  int& step = rad_struct->model.chart.state_step;
   switch(step){
     case rad::detection::VALIDATION:{
       rad_cloud_detection->validate_bbox(sensor);
