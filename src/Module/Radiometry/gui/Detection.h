@@ -28,13 +28,16 @@ public:
   //Subfunction
   void detection_step();
   void detection_parameter();
-  void display_image();
-  void display_state(int step, int data);
+  void detection_stats();
+  void detection_image();
 
   //Parameter function
   void parameter_canny();
   void parameter_hough();
   void parameter_ransac();
+
+  //Subfunction
+  void display_state(int step, int data);
 
 private:
   dyn::Structure* dyn_struct;

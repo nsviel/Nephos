@@ -32,7 +32,8 @@ void Detection::draw_tab(){
 
   this->detection_step();
   this->detection_parameter();
-  this->display_image();
+  this->detection_stats();
+  this->detection_image();
 
   //---------------------------
 }
@@ -112,44 +113,43 @@ void Detection::detection_parameter(){
   //---------------------------
   ImGui::Separator();
 }
-void Detection::display_image(){
+void Detection::detection_stats(){
+  ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 
-  //Display number of detected spheres
-  string nb_detection = to_string(rad_struct->sphere.hough.nb_detection);
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Detection");
+  ImGui::BeginTable("##detection_stats", 2);
+  ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, available_space.x / 2);
+  ImGui::TableNextRow();
+
+  //Display number of detected circle
+  string nb_circle = to_string(rad_struct->sphere.hough.nb_detection);
+  ImGui::TableNextColumn();
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Circle");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_detection.c_str());
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_circle.c_str());
+
+  //Display number of detected rectangle
+  string nb_rectangle = to_string(rad_struct->chart.nb_detection);
+  ImGui::TableNextColumn();
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Rectangle");
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_rectangle.c_str());
+
+  ImGui::EndTable();
+
+  //---------------------------
+}
+void Detection::detection_image(){
+  ImVec2 available_space = ImGui::GetContentRegionAvail();
+  //---------------------------
 
   //Display image with detected spheres
-  if(rad_struct->sphere.image.size == 0) return;
-  ImVec2 image_size = ImGui::GetContentRegionAvail();
-  image_size.y -= 5;
-  stream->draw_stream(&rad_struct->sphere.image, image_size);
+  if(rad_struct->sphere.image.size != 0){
+    stream->draw_stream(&rad_struct->sphere.image, ImVec2(available_space.x, available_space.y - 5));
+  }
 
   //---------------------------
   ImGui::Separator();
-}
-void Detection::display_state(int step, int data){
-  //---------------------------
-
-  if(step == rad::detection::PROCESSING){
-    ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
-    return;
-  }
-
-  switch(data){
-    case rad::detection::NO_DATA:{
-      ImGui::Cross(ImVec4(1, 0.4, 0.4, 1));
-      break;
-    }
-    case rad::detection::HAS_DATA:{
-      ImGui::Check_on();
-      break;
-    }
-  }
-
-  //---------------------------
 }
 
 //Parameter function
@@ -259,5 +259,27 @@ void Detection::parameter_ransac(){
   //---------------------------
 }
 
+//Subfunction
+void Detection::display_state(int step, int data){
+  //---------------------------
+
+  if(step == rad::detection::PROCESSING){
+    ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
+    return;
+  }
+
+  switch(data){
+    case rad::detection::NO_DATA:{
+      ImGui::Cross(ImVec4(1, 0.4, 0.4, 1));
+      break;
+    }
+    case rad::detection::HAS_DATA:{
+      ImGui::Check_on();
+      break;
+    }
+  }
+
+  //---------------------------
+}
 
 }
