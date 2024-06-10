@@ -22,6 +22,18 @@ Measure::Measure(rad::detection::Node* node_detection){
 Measure::~Measure(){}
 
 //Main function
+void Measure::process_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
+  //---------------------------
+
+  rad_struct->sphere.state_data = rad::detection::HAS_DATA;
+  this->data_IfR(search_xyz, search_Is);
+  this->data_IfIt(search_xyz, search_Is);
+  this->data_model(search_xyz, search_Is);
+
+  //---------------------------
+}
+
+//Subfunction
 void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::model::structure::Optimization* optim = &model_struct->optim;
   rad::model::structure::Sphere* sphere = &model_struct->sphere;

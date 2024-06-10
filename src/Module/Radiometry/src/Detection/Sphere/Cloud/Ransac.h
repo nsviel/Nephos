@@ -4,8 +4,9 @@
 
 namespace rad::detection{class Node;}
 namespace rad::detection{class Structure;}
-namespace dyn::base{class Sensor;}
+namespace rad::detection::cloud{class Measure;}
 namespace rad::detection::glyph{class Manager;}
+namespace dyn::base{class Sensor;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 
@@ -29,7 +30,7 @@ public:
   void process_measurement(vector<vec3>& search_xyz, vector<float>& search_is);
 
 private:
-
+  rad::detection::cloud::Measure* rad_measure;
   rad::detection::Structure* rad_struct;
   rad::detection::glyph::Manager* rad_glyph;
   ope::fitting::Sphere* ope_fitting;

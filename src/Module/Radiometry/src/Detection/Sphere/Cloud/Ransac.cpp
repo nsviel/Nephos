@@ -13,6 +13,7 @@ Ransac::Ransac(rad::detection::Node* node_detection){
 
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_glyph = new rad::detection::glyph::Manager(node_detection);
+  this->rad_measure = new rad::detection::cloud::Measure(node_detection);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
 
@@ -32,7 +33,9 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
   vector<float> search_Is;
   this->reduce_search_space(sensor, search_xyz, search_Is);
   this->apply_ransac(search_xyz, search_Is);
-  this->process_measurement(search_xyz, search_Is);
+
+  //Postprocessing stuff
+  rad_measure->process_measurement(search_xyz, search_Is);
   rad_glyph->draw_calibration_sphere(sensor, rad_struct->sphere.ransac.radius);
 
   //---------------------------
@@ -66,16 +69,6 @@ void Ransac::apply_ransac(vector<vec3>& search_xyz, vector<float>& search_Is){
   ope_ransac->set_threshold_pose(rad_struct->sphere.ransac.thres_pose);
   ope_ransac->set_threshold_radius(rad_struct->sphere.ransac.thres_radius);
   ope_ransac->ransac_sphere_in_cloud(search_xyz, rad_struct->sphere.ransac.current_pose, rad_struct->sphere.ransac.radius, rad_struct->sphere.ransac.sphere_diameter/2);
-
-  //---------------------------
-}
-void Ransac::process_measurement(vector<vec3>& search_xyz, vector<float>& search_Is){
-  //---------------------------
-
-//    rad_struct->sphere.state_data = rad::detection::HAS_DATA;
-  //this->data_IfR(search_xyz, search_Is);
-  //this->data_IfIt(search_xyz, search_Is);
-  //this->data_model(search_xyz, search_Is);
 
   //---------------------------
 }
