@@ -118,6 +118,7 @@ bool Importer::check_path(std::string path){
   return true;
 }
 bool Importer::is_format_supported(std::string format){
+  if(format == "-") return false;
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){

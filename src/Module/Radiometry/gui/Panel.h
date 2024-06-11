@@ -2,7 +2,6 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dat::base{class Entity;}
 namespace dat{class Selection;}
 namespace rad{class Node;}
 namespace rad::gui{class Detection;}
@@ -22,13 +21,13 @@ public:
 public:
   //Main function
   void run_panel();
-  void design_panel(dat::base::Entity* entity);
+  void design_panel();
 
   //Subfunction
-  void matching_parameter(dat::base::Entity* entity);
-  void tab_detection(dat::base::Entity* entity);
-  void tab_modeld(dat::base::Entity* entity);
-  void tab_calibration(dat::base::Entity* entity);
+  void matching_parameter();
+  void tab_detection();
+  void tab_modeld();
+  void tab_calibration();
 
 private:
   dat::Selection* dat_selection;

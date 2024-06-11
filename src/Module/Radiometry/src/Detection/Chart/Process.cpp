@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -11,7 +12,12 @@ namespace rad::detection::chart{
 Process::Process(rad::detection::Node* node_detection){
   //---------------------------
 
+  rad::Node* node_radio = node_detection->get_node_radio();
+  dat::Node* node_data = node_radio->get_node_data();
+
   this->rad_struct = node_detection->get_rad_struct();
+  this->dat_selection = node_data->get_dat_selection();
+  this->chart_detection = new rad::detection::chart::Detection(node_detection);
 
   //---------------------------
 }
@@ -29,6 +35,7 @@ void Process::loop(){
   dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   //---------------------------
 
+  //chart_detection->start_thread(sensor);
 
   //---------------------------
 }

@@ -64,14 +64,12 @@ void Exporter::display_path(){
   static char str_n[256];
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Directory"); ImGui::TableNextColumn();
-  strncpy(str_n, ldr_struct->current_dir.c_str(), sizeof(str_n) - 1);
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
-  ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
-  if(ImGui::InputText("##exporter_dir", str_n, IM_ARRAYSIZE(str_n))){
-    ldr_struct->current_dir = (string)str_n;
-  }
-  ImGui::PopStyleColor(2);
+  std::string current_path = ldr_struct->current_dir;
+  if(current_path == "") current_path = "(not defined)";
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
+  ImGui::PopStyleColor();
   ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
     utl::directory::open(ldr_struct->current_dir);
@@ -169,6 +167,7 @@ void Exporter::item_filtering(std::vector<std::string>& vec_path){
 
     //If file, check format compatibility
     std::string format = utl::path::get_format_from_path(path);
+    if(format == "-") continue;
     for(int j=0; j<vec_format.size(); j++){
       if(format == vec_format[j]){
         vec_path_ok.push_back(path);
@@ -201,11 +200,16 @@ void Exporter::item_operation(){
   if(entity == nullptr) return;
   //---------------------------
 
+  std::string name = ldr_struct->current_name;
+  std::string dir = ldr_struct->current_dir;
+  std::string format = (ldr_struct->current_format != "-") ? ldr_struct->current_format : "";
+  std::string path = (format != "") ? dir + "/" + name + "." + format : dir + "/" + name;
+
   utl::base::Data* data = &entity->data;
-  data->name = ldr_struct->current_name;
-  data->format = ldr_struct->current_format;
-  data->path.directory = ldr_struct->current_dir;
-  data->path.data = data->path.directory + "/" + data->name + "." + data->format;
+  data->name = name;
+  data->format = format;
+  data->path.directory = dir;
+  data->path.data = path;
 
   ldr_exporter->export_entity(entity, data->path.data);
 

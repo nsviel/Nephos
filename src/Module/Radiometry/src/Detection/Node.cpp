@@ -29,6 +29,7 @@ void Node::init(){
   //---------------------------
 
   sphere_process->init();
+  chart_process->init();
 
   //---------------------------
 }
@@ -36,6 +37,7 @@ void Node::loop(){
   //---------------------------
 
   sphere_process->loop();
+  chart_process->loop();
 
   //---------------------------
 }

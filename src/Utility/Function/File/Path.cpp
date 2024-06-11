@@ -65,8 +65,14 @@ std::string get_format_from_path(std::string path){
   //---------------------------
 
   if(path == "") return "(not defined)";
+
   std::string name_format = path.substr(path.find_last_of("/\\") + 1);
-  std::string format = name_format.substr(name_format.find_last_of(".") + 1, std::string::npos);
+  size_t dot_position = name_format.find_last_of(".");
+  if(dot_position == std::string::npos){
+    return "-";
+  }
+
+  std::string format = name_format.substr(dot_position + 1);
 
   //---------------------------
   return format;

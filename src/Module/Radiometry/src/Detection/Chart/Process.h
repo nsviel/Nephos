@@ -4,6 +4,8 @@
 
 namespace rad::detection{class Node;}
 namespace rad::detection{class Structure;}
+namespace rad::detection::chart{class Detection;}
+namespace dat{class Selection;}
 
 
 namespace rad::detection::chart{
@@ -25,6 +27,8 @@ public:
 
 private:
   rad::detection::Structure* rad_struct;
+  rad::detection::chart::Detection* chart_detection;
+  dat::Selection* dat_selection;
 };
 
 }
