@@ -98,11 +98,11 @@ void Panel::draw_header(){
   ImGui::BeginTable("header##exporter", 2);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
+
+  //Selected file path
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Path"); ImGui::TableNextColumn();
-  std::string current_path = ldr_struct->current_dir + "/" + ldr_struct->current_name + "." + ldr_struct->current_format;
-  if(current_path == "") current_path = "(not defined)";
-  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
+  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", ldr_struct->get_current_path().c_str());
   ImGui::EndTable();
 
   // Scale new
