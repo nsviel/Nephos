@@ -24,27 +24,9 @@ void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, glm::vec3& best_ce
   if(xyz.size() == 0) return;
   //------------------------
 
-  this->init();
-  this->run(xyz, best_center, radius);
-
-  //------------------------
-}
-
-//Algorithm function
-void Ransac::init(){
-  //------------------------
-
   // Initialize best sphere parameters
   this->best_score = 1000;
   this->best_nb_inlier = 0;
-
-  // Seed random number generator
-  srand(time(nullptr));
-
-  //------------------------
-}
-void Ransac::run(const std::vector<glm::vec3>& xyz, glm::vec3& best_center, float radius){
-  //------------------------
 
   // Perform RANSAC
   for(int i=0; i<nb_iter; ++i){
@@ -106,6 +88,7 @@ void Ransac::test_consensus(const std::vector<glm::vec3>& xyz, float known_radiu
   //------------------------
 }
 void Ransac::evaluate(glm::vec3& best_center){
+  if(center == glm::vec3(0, 0, 0)) return;
   //------------------------
 
   if(nb_inlier > best_nb_inlier && score < best_score){

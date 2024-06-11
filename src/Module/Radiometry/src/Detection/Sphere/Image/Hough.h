@@ -11,11 +11,11 @@ namespace rad::detection::image{class Image;}
 
 namespace rad::detection::image{
 
-class Circle
+class Hough
 {
 public:
-  Circle(rad::detection::Node* node_detection);
-  ~Circle();
+  Hough(rad::detection::Node* node_detection);
+  ~Hough();
 
 public:
   //Main function
@@ -23,7 +23,7 @@ public:
 
   //Hough function
   void compute_hough_circle(cv::Mat& image);
-  void find_hough_parameter(int mode);
+  void set_hough_mode(int mode);
 
   //Draw function
   void draw_detected_circle(cv::Mat& image);

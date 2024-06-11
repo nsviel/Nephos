@@ -19,15 +19,11 @@ public:
   void ransac_sphere(const std::vector<glm::vec3>& xyz, glm::vec3& center, float radius);
 
   inline void set_num_iteration(int value){this->nb_iter = value;}
+  inline void set_num_sample(int value){this->nb_sample = value;}
   inline void set_threshold_sphere(float value){this->threshold_sphere = value;}
   inline void set_threshold_radius(float value){this->threshold_radius = value;}
 
 private:
-  //Algorithm function
-  void init();
-  void run(const std::vector<glm::vec3>& xyz, glm::vec3& best_center, float radius);
-
-  //Subfunction
   void random_sample(const std::vector<glm::vec3>& xyz);
   void test_consensus(const std::vector<glm::vec3>& xyz, float radius);
   void evaluate(glm::vec3& best_center);

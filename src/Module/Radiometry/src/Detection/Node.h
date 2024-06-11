@@ -4,11 +4,7 @@
 
 namespace rad{class Node;}
 namespace rad::detection{class Structure;}
-namespace rad::detection::image{class Detection;}
-namespace rad::detection::cloud{class Detection;}
-namespace rad::detection::glyph{class Manager;}
-namespace dat{class Selection;}
-namespace dyn::base{class Sensor;}
+namespace rad::detection::sphere{class Process;}
 
 
 namespace rad::detection{
@@ -35,22 +31,14 @@ public:
   void init();
   void loop();
 
-  //Subfunction
-  void step_sphere_detection();
-  void step_chart_detection();
-
   inline rad::Node* get_node_radio(){return node_radio;}
   inline rad::detection::Structure* get_rad_struct(){return rad_struct;}
-  inline rad::detection::image::Detection* get_image_detection(){return rad_image_detection;}
-  inline rad::detection::cloud::Detection* get_cloud_detection(){return rad_cloud_detection;}
+  inline rad::detection::sphere::Process* get_sphere_process(){return sphere_process;}
 
 private:
   rad::Node* node_radio;
   rad::detection::Structure* rad_struct;
-  rad::detection::image::Detection* rad_image_detection;
-  rad::detection::cloud::Detection* rad_cloud_detection;
-  rad::detection::glyph::Manager* rad_glyph;
-  dat::Selection* dat_selection;
+  rad::detection::sphere::Process* sphere_process;
 };
 
 }

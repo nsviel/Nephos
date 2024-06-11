@@ -1,4 +1,4 @@
-#include "Circle.h"
+#include "Hough.h"
 
 #include <Radiometry/Namespace.h>
 
@@ -6,20 +6,20 @@
 namespace rad::detection::image{
 
 //Constructor / Destructor
-Circle::Circle(rad::detection::Node* node_detection){
+Hough::Hough(rad::detection::Node* node_detection){
   //---------------------------
 
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_image = new rad::detection::image::Image(node_detection);
 
-  this->find_hough_parameter(rad::hough::GRADIENT_ALT);
+  this->set_hough_mode(rad::hough::GRADIENT_ALT);
 
   //---------------------------
 }
-Circle::~Circle(){}
+Hough::~Hough(){}
 
 //Main function
-void Circle::detect_circle(cv::Mat& image){
+void Hough::detect_circle(cv::Mat& image){
   if(image.empty()) return;
   //------------------------
 
@@ -30,7 +30,7 @@ void Circle::detect_circle(cv::Mat& image){
 }
 
 //Hough function
-void Circle::compute_hough_circle(cv::Mat& image){
+void Hough::compute_hough_circle(cv::Mat& image){
   //---------------------------
 
   std::vector<cv::Vec3f> circles;
@@ -57,7 +57,7 @@ void Circle::compute_hough_circle(cv::Mat& image){
 
   //---------------------------
 }
-void Circle::find_hough_parameter(int mode){
+void Hough::set_hough_mode(int mode){
   //---------------------------
 
   switch(mode){
@@ -79,7 +79,7 @@ void Circle::find_hough_parameter(int mode){
 }
 
 //Draw function
-void Circle::draw_detected_circle(cv::Mat& image){
+void Hough::draw_detected_circle(cv::Mat& image){
   //---------------------------
 
   switch(rad_struct->sphere.hough.draw){
@@ -95,7 +95,7 @@ void Circle::draw_detected_circle(cv::Mat& image){
 
   //---------------------------
 }
-void Circle::draw_all_circle(cv::Mat& image){
+void Hough::draw_all_circle(cv::Mat& image){
   if(image.empty()) return;
   //------------------------
 
@@ -107,7 +107,7 @@ void Circle::draw_all_circle(cv::Mat& image){
 
   //------------------------
 }
-void Circle::draw_best_circle(cv::Mat& image){
+void Hough::draw_best_circle(cv::Mat& image){
   if(image.empty()) return;
   //------------------------
 
