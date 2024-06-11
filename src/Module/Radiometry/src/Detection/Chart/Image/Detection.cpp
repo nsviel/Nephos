@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Data/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Engine/Namespace.h>
 
@@ -14,12 +15,13 @@ Detection::Detection(rad::detection::Node* node_detection){
 
   rad::Node* node_radio = node_detection->get_node_radio();
   eng::Node* node_engine = node_radio->get_node_engine();
+  dat::Node* node_data = node_radio->get_node_data();
 
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_image = new rad::detection::image::Image(node_detection);
   this->rad_rectangle = new rad::detection::chart::Rectangle(node_detection);
   this->thread_pool = node_engine->get_thread_pool();
-  this->ope_image = new ope::image::Manager();
+  this->dat_image = node_data->get_dat_image();
 
   //---------------------------
 }
@@ -38,7 +40,7 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Detection::run_thread(dyn::base::Sensor* sensor){
-  utl::media::Image* image = ope_image->get_image(sensor, utl::media::INTENSITY);
+  utl::media::Image* image = dat_image->get_image(sensor, utl::media::INTENSITY);
   //---------------------------
 
   if(image != nullptr && image->new_data){

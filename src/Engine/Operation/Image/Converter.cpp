@@ -11,20 +11,19 @@ namespace ope::image{
 Converter::Converter(){
   //---------------------------
 
-  this->ope_image = new ope::image::Manager();
 
   //---------------------------
 }
 Converter::~Converter(){}
 
 //Main function
-void Converter::convert_normal_to_image(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Converter::convert_normal_to_image(utl::base::Data* data, utl::media::Image* image){
+  if(data == nullptr) return;
   //---------------------------
 
-  utl::base::Data* data = &entity->data;
-  vector<glm::vec3>& Nxyz = data->Nxyz;
+  std::vector<glm::vec3>& Nxyz = data->Nxyz;
   if(Nxyz.size() == 0) return;
+
   std::vector<uint8_t> output = std::vector<uint8_t>(Nxyz.size() * 4, 0);
 
   // Convert the float value to uint8_t
@@ -46,7 +45,6 @@ void Converter::convert_normal_to_image(dat::base::Entity* entity){
   }
 
   //Update image
-  utl::media::Image* image = ope_image->get_or_create_image(entity, utl::media::NORMAL);
   image->size = output.size();
   image->width = data->width;
   image->height = data->height;
@@ -57,13 +55,11 @@ void Converter::convert_normal_to_image(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Converter::convert_infrared_to_image(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Converter::convert_infrared_to_image(utl::base::Data* data, utl::media::Image* image){
+  if(data == nullptr) return;
   //---------------------------
 
-  utl::base::Data* data = &entity->data;
-  vector<float>& Is = data->Is;
-  if(Is.size() == 0) return;
+  std::vector<float>& Is = data->Is;
   std::vector<uint8_t> output = std::vector<uint8_t>(Is.size() * 4, 0);
 
   // Convert the float value to uint8_t
@@ -78,7 +74,6 @@ void Converter::convert_infrared_to_image(dat::base::Entity* entity){
   }
 
   //Update image
-  utl::media::Image* image = ope_image->get_or_create_image(entity, utl::media::INTENSITY);
   image->size = output.size();
   image->width = data->width;
   image->height = data->height;

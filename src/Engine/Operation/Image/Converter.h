@@ -1,9 +1,10 @@
 #pragma once
 
+#include <vector>
 #include <glm/glm.hpp>
 
-namespace dat::base{class Entity;}
-namespace ope::image{class Manager;}
+namespace utl::base{class Data;}
+namespace utl::media{class Image;}
 
 
 namespace ope::image{
@@ -17,11 +18,10 @@ public:
 
 public:
   //Main function
-  void convert_normal_to_image(dat::base::Entity* entity);
-  void convert_infrared_to_image(dat::base::Entity* entity);
+  void convert_normal_to_image(utl::base::Data* data, utl::media::Image* image);
+  void convert_infrared_to_image(utl::base::Data* data, utl::media::Image* image);
 
 private:
-  ope::image::Manager* ope_image;
 };
 
 }

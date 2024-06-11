@@ -15,13 +15,14 @@ Image::Image(k4n::Node* node_k4n){
 
   eng::Node* node_engine = node_k4n->get_node_engine();
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
+  dat::Node* node_data = node_k4n->get_node_data();
 
   this->tj_handle = tjInitDecompress();
   this->k4n_data = new k4n::utils::Data(node_k4n);
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->thread_pool = node_engine->get_thread_pool();
   this->dyn_operation = node_dynamic->get_ope_image();
-  this->ope_image = new ope::image::Manager();
+  this->dat_image = node_data->get_dat_image();
 
   //---------------------------
 }
@@ -139,7 +140,7 @@ void Image::find_data_depth(k4n::structure::Sensor* sensor){
   sensor->depth.image.format = "R8G8B8A8_SRGB";
   sensor->depth.image.new_data = true;
   sensor->depth.image.type = utl::media::DEPTH;
-  ope_image->add_image(sensor, &sensor->depth.image);
+  dat_image->add_image(sensor, &sensor->depth.image);
 
   //---------------------------
 }
@@ -173,7 +174,7 @@ void Image::find_data_color(k4n::structure::Sensor* sensor){
   }else{
     sensor->color.image.new_data = true;
   }
-  ope_image->add_image(sensor, &sensor->color.image);
+  dat_image->add_image(sensor, &sensor->color.image);
 
   //---------------------------
 }
@@ -204,7 +205,7 @@ void Image::find_data_ir(k4n::structure::Sensor* sensor){
   sensor->ir.image.format = "R8G8B8A8_SRGB";
   sensor->ir.image.new_data = true;
   sensor->ir.image.type = utl::media::INTENSITY;
-  ope_image->add_image(sensor, &sensor->ir.image);
+  dat_image->add_image(sensor, &sensor->ir.image);
 
   //---------------------------
 }

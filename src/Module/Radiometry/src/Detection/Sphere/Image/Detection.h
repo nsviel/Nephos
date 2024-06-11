@@ -10,7 +10,7 @@ namespace utl::media{class Image;}
 namespace rad::detection::glyph{class Manager;}
 namespace rad::detection::image{class Hough;}
 namespace rad::detection::image{class Image;}
-namespace ope::image{class Manager;}
+namespace dat{class Image;}
 
 
 namespace rad::detection::image{
@@ -37,7 +37,7 @@ private:
   rad::detection::glyph::Manager* rad_glyph;
   rad::detection::image::Hough* rad_hough;
   rad::detection::image::Image* rad_image;
-  ope::image::Manager* ope_image;
+  dat::Image* dat_image;
 
   bool thread_idle = true;
 };

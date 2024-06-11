@@ -9,7 +9,7 @@ namespace utl::thread{class Pool;}
 namespace utl::media{class Image;}
 namespace rad::detection::image{class Image;}
 namespace rad::detection::chart{class Rectangle;}
-namespace ope::image{class Manager;}
+namespace dat{class Image;}
 
 
 namespace rad::detection::chart{
@@ -35,7 +35,7 @@ private:
   rad::detection::Structure* rad_struct;
   rad::detection::image::Image* rad_image;
   rad::detection::chart::Rectangle* rad_rectangle;
-  ope::image::Manager* ope_image;
+  dat::Image* dat_image;
 
   bool thread_idle = true;
 };

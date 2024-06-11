@@ -1,23 +1,24 @@
-#include "Manager.h"
+#include "Image.h"
 
 #include <Operation/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace ope::image{
+namespace dat{
 
 //Constructor / Destructor
-Manager::Manager(){
+Image::Image(dat::Node* node_data){
   //---------------------------
 
+  this->dat_uid = node_data->get_dat_uid();
 
   //---------------------------
 }
-Manager::~Manager(){}
+Image::~Image(){}
 
 //Main function
-void Manager::add_image(dat::base::Entity* entity, utl::media::Image* image){
+void Image::add_image(dat::base::Entity* entity, utl::media::Image* image){
   //----------------------------
 
   //if(image->UID == -1)
@@ -27,7 +28,7 @@ void Manager::add_image(dat::base::Entity* entity, utl::media::Image* image){
 
   //----------------------------
 }
-bool Manager::has_image(dat::base::Entity* entity, int type){
+bool Image::has_image(dat::base::Entity* entity, int type){
   //----------------------------
 
   //Search for already existing image with same type
@@ -39,7 +40,18 @@ bool Manager::has_image(dat::base::Entity* entity, int type){
   //----------------------------
   return false;
 }
-utl::media::Image* Manager::get_image(dat::base::Entity* entity, int type){
+
+//Subfunction
+void Image::manage_UID(utl::media::Image* image){
+  //----------------------------
+
+  if(image->UID == -1){
+    image->UID = dat_uid->generate_UID();
+  }
+
+  //----------------------------
+}
+utl::media::Image* Image::get_image(dat::base::Entity* entity, int type){
   //----------------------------
 
   //Search for already existing image with same type
@@ -51,7 +63,7 @@ utl::media::Image* Manager::get_image(dat::base::Entity* entity, int type){
   //----------------------------
   return nullptr;
 }
-utl::media::Image* Manager::get_or_create_image(dat::base::Entity* entity, int type){
+utl::media::Image* Image::get_or_create_image(dat::base::Entity* entity, int type){
   //----------------------------
 
   //Search for already existing image with same type
@@ -60,6 +72,7 @@ utl::media::Image* Manager::get_or_create_image(dat::base::Entity* entity, int t
     if(image->type == type) return image;
   }
 
+  //Else create it
   utl::media::Image* image = new utl::media::Image();
   image->format = "R8G8B8A8_SRGB";
   image->type = type;

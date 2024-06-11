@@ -5,6 +5,7 @@
 namespace dat{class Node;}
 namespace dat{class Structure;}
 namespace dat{class Entity;}
+namespace dat{class UID;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Glyph;}
@@ -49,6 +50,7 @@ private:
   dat::Node* node_data;
   dat::Structure* dat_struct;
   dat::Entity* dat_entity;
+  dat::UID* dat_uid;
 };
 
 }

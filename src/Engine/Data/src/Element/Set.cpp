@@ -12,6 +12,7 @@ Set::Set(dat::Node* node_data){
   this->node_data = node_data;
   this->dat_struct = node_data->get_dat_struct();
   this->dat_entity = new dat::Entity(node_data);
+  this->dat_uid = node_data->get_dat_uid();
 
   //---------------------------
 }
@@ -90,7 +91,7 @@ dat::base::Set* Set::create_subset(dat::base::Set* set, std::string name){
   //---------------------------
 
   dat::base::Set* subset = new dat::base::Set();
-  subset->UID = dat_struct->UID++;
+  subset->UID = dat_uid->generate_UID();
   subset->name = name;
   subset->set_parent = set;
   subset->is_suppressible = true;

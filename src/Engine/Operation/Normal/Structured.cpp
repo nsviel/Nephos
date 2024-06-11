@@ -38,7 +38,8 @@ void Structured::run_thread(dat::base::Entity* entity){
   //---------------------------
 
   this->compute_normal(data);
-  ope_converter->convert_normal_to_image(entity);
+  //utl::media::Image* image = ope_image->get_or_create_image(entity, utl::media::NORMAL);
+  //ope_converter->convert_normal_to_image(data->Nxyz, image);
 
   //---------------------------
 }

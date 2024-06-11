@@ -14,7 +14,6 @@ struct Structure{
 
   dat::base::Set set_main;
   utl::base::Element* selection = nullptr;
-  int UID = 0;
 
   //---------------------------
 };
