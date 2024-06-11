@@ -12,10 +12,10 @@ Model::Model(rad::Node* node_radio){
 
   rad::model::Node* node_model = node_radio->get_node_model();
 
-  this->rad_model = node_model->get_rad_model();
+  this->model_sphere = node_model->get_model_sphere();
   this->rad_struct = node_model->get_rad_struct();
-  this->rad_measure = node_model->get_rad_measure();
-  this->rad_plot = node_model->get_rad_plot();
+  this->rad_measure = model_sphere->get_rad_measure();
+  this->rad_plot = model_sphere->get_rad_plot();
   this->utl_plot = new utl::implot::Plot();
 
   //---------------------------
@@ -47,7 +47,7 @@ void Model::draw_tab(){
 
 //Subfunction
 void Model::parameter_measure(){
-  rad::model::sphere::structure::Plot* plot = &rad_struct->plot;
+  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -69,7 +69,7 @@ void Model::parameter_measure(){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Measure")){
     //Path
-    std::string path = rad_struct->sphere.get_current_path();
+    std::string path = rad_struct->sphere.sphere.get_current_path();
     if(ImGui::Button("...##path_measure")){
       zenity::selection_file(path);
     }
@@ -111,8 +111,8 @@ void Model::parameter_measure(){
   //---------------------------
 }
 void Model::parameter_model(){
-  rad::model::sphere::structure::Optimization* optim = &rad_struct->optim;
-  rad::model::sphere::structure::Plot* plot = &rad_struct->plot;
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -121,7 +121,7 @@ void Model::parameter_model(){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button(ICON_FA_DOWNLOAD "##model_load", ImVec2(25, 0))){
-    rad_model->import_model();
+    model_sphere->import_model();
   }
   ImGui::SameLine();
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
@@ -163,7 +163,7 @@ void Model::parameter_model(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Compute##model", ImVec2(120, 0))){
-      rad_model->compute_model();
+      model_sphere->compute_model();
     }
     ImGui::SameLine();
     if(ImGui::Button("Plot##model", ImVec2(120, 0))){
@@ -175,14 +175,14 @@ void Model::parameter_model(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Import##model", ImVec2(120, 0))){
-      rad_model->import_model();
+      model_sphere->import_model();
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
     if(ImGui::Button("Export##model", ImVec2(120, 0))){
-      rad_model->export_model();
+      model_sphere->export_model();
     }
     ImGui::PopStyleColor(2);
 
@@ -209,7 +209,7 @@ void Model::plot_sphere(){
   //---------------------------
 }
 void Model::plot_measure_IfR(float height){
-  rad::model::sphere::structure::Plot* plot = &rad_struct->plot;
+  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   if(plot->IfR.title == "") return;
@@ -219,7 +219,7 @@ void Model::plot_measure_IfR(float height){
   //---------------------------
 }
 void Model::plot_measure_IfIt(float height){
-  rad::model::sphere::structure::Plot* plot = &rad_struct->plot;
+  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   if(plot->IfIt.title == "") return;
@@ -229,8 +229,8 @@ void Model::plot_measure_IfIt(float height){
   //---------------------------
 }
 void Model::plot_model_heatmap(float height){
-  rad::model::sphere::structure::Optimization* optim = &rad_struct->optim;
-  rad::model::sphere::structure::Plot* plot = &rad_struct->plot;
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   if(plot->IfRIt.title == "") return;

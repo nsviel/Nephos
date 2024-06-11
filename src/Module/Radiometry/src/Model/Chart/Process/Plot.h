@@ -26,8 +26,7 @@ public:
   void reset_plot_data();
 
 private:
-  rad::model::Structure* rad_struct;
-  rad::model::chart::Model* rad_model;
+
 };
 
 }

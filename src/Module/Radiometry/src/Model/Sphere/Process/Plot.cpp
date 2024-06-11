@@ -12,7 +12,7 @@ Plot::Plot(rad::model::Node* node_model){
   //---------------------------
 
   this->rad_struct = node_model->get_rad_struct();
-  this->rad_model = node_model->get_rad_model();
+  this->model_sphere = node_model->get_model_sphere();
 
   //---------------------------
 }
@@ -20,9 +20,9 @@ Plot::~Plot(){}
 
 //Main function
 void Plot::init(){
-  rad::model::structure::Optimization* optim = &rad_struct->optim;
-  rad::model::structure::Sphere* sphere = &rad_struct->sphere;
-  rad::model::structure::Plot* plot = &rad_struct->plot;
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::model::sphere::structure::Sphere* sphere = &rad_struct->sphere.sphere;
+  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   //I(R)
@@ -64,11 +64,11 @@ void Plot::init(){
 void Plot::plot_measure(){
   //---------------------------
 
-  if(rad_struct->sphere.data.size() == 0) return;
+  if(rad_struct->sphere.sphere.data.size() == 0) return;
 
   // Plot 3D scatter plot
   std::vector<float> x, y, z;
-  for(const auto& point : rad_struct->sphere.data){
+  for(const auto& point : rad_struct->sphere.sphere.data){
     if(point.x == -1 || point.y > 60) continue;
     x.push_back(point.x);
     y.push_back(point.y);
@@ -80,7 +80,7 @@ void Plot::plot_measure(){
   //---------------------------
 }
 void Plot::plot_model(){
-  rad::model::structure::Optimization* optim = &rad_struct->optim;
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
   //---------------------------
 
   //if(ope_surface->has_been_computed() == false){
@@ -119,9 +119,9 @@ void Plot::plot_model(){
   matplotlibcpp::plot_surface(x, y, z);
   */
 
-  if(rad_struct->sphere.data.size() > 0){
+  if(rad_struct->sphere.sphere.data.size() > 0){
     std::vector<float> x_raw, y_raw, z_raw;
-    for(const auto& point : rad_struct->sphere.data){
+    for(const auto& point : rad_struct->sphere.sphere.data){
       if(point.x == -1 || point.y > 60) continue;
       x_raw.push_back(point.x);
       y_raw.push_back(point.y);
@@ -136,8 +136,8 @@ void Plot::plot_model(){
 
 //Subfunction
 void Plot::update_plot_data(){
-  rad::model::structure::Optimization* optim = &rad_struct->optim;
-  rad::model::structure::Plot* plot = &rad_struct->plot;
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   plot->IfR.axis_x.data.clear();
@@ -148,10 +148,10 @@ void Plot::update_plot_data(){
   plot->IfIt.axis_y.fitting.clear();
 
   //Fill model plot data
-  for(int i=0; i<rad_struct->sphere.data.size(); i++){
-    float& R = rad_struct->sphere.data[i].x;
-    float& It = rad_struct->sphere.data[i].y;
-    float& I = rad_struct->sphere.data[i].z;
+  for(int i=0; i<rad_struct->sphere.sphere.data.size(); i++){
+    float& R = rad_struct->sphere.sphere.data[i].x;
+    float& It = rad_struct->sphere.sphere.data[i].y;
+    float& I = rad_struct->sphere.sphere.data[i].z;
     if(R == -1) continue;
 
     //I(R)
@@ -162,7 +162,7 @@ void Plot::update_plot_data(){
       plot->IfR.axis_y.data.push_back(I);
 
       //Fitted
-      float fit = rad_model->apply_model(R, It);
+      float fit = model_sphere->apply_model(R, It);
       plot->IfR.axis_y.fitting.push_back(fit);
 
       if(R > optim->axis_x.current && R < optim->axis_x.current + 0.05){
@@ -178,7 +178,7 @@ void Plot::update_plot_data(){
       plot->IfIt.axis_y.data.push_back(I);
 
       //Fitted
-      float fit = rad_model->apply_model(R, It);
+      float fit = model_sphere->apply_model(R, It);
       plot->IfIt.axis_y.fitting.push_back(fit);
     }
 
@@ -189,9 +189,9 @@ void Plot::update_plot_data(){
   //---------------------------
 }
 void Plot::reset_plot_data(){
-  rad::model::structure::Optimization* optim = &rad_struct->optim;
-  rad::model::structure::Sphere* sphere = &rad_struct->sphere;
-  rad::model::structure::Plot* plot = &rad_struct->plot;
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::model::sphere::structure::Sphere* sphere = &rad_struct->sphere.sphere;
+  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   //I(R)
@@ -213,7 +213,7 @@ void Plot::reset_plot_data(){
   //I(R, It)
   for(int i=0; i<plot->IfRIt.axis_z.data.size(); i++){
     plot->IfRIt.axis_z.data[i] = 0;
-    rad_struct->sphere.data[i] = vec3(-1, -1, -1);
+    rad_struct->sphere.sphere.data[i] = vec3(-1, -1, -1);
   }
 
   //---------------------------
@@ -223,7 +223,7 @@ void Plot::reset_plot_data(){
 
 
 /*void Plot::update_plot_data(){
-  rad::model::structure::Sphere* sphere = &rad_struct->sphere;
+  rad::model::sphere::structure::Sphere* sphere = &rad_struct->sphere.sphere;
   //---------------------------
 
   utl::base::Plot* plot = &plot->IfR;

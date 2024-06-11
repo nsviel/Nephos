@@ -13,6 +13,8 @@ Model::Model(rad::model::Node* node_model){
   //---------------------------
 
   this->rad_struct = node_model->get_rad_struct();
+  this->rad_plot = new rad::model::sphere::Plot(node_model);
+  this->rad_measure = new rad::model::sphere::Measure(node_model);
   this->ope_polyfit = new ope::fitting::Polyfit();
   this->ope_surface = new ope::fitting::Surface();
 
@@ -22,34 +24,34 @@ Model::~Model(){}
 
 //Main function
 void Model::import_model(){
-  rad::model::structure::Optimization* optim = &rad_struct->optim;
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
   //---------------------------
 
-  rad_struct->optim.serial_number = utl::json::read_value<string>(rad_struct->optim.path, "serial_number");
-  rad_struct->optim.degree_x = utl::json::read_value<int>(rad_struct->optim.path, "x.degree");
-  rad_struct->optim.axis_x.bound[0] = utl::json::read_value<float>(rad_struct->optim.path, "x.bound_min");
-  rad_struct->optim.axis_x.bound[1] = utl::json::read_value<float>(rad_struct->optim.path, "x.bound_max");
-  rad_struct->optim.degree_y = utl::json::read_value<int>(rad_struct->optim.path, "y.degree");
-  rad_struct->optim.axis_y.bound[0] = utl::json::read_value<float>(rad_struct->optim.path, "y.bound_min");
-  rad_struct->optim.axis_y.bound[1] = utl::json::read_value<float>(rad_struct->optim.path, "y.bound_max");
+  optim->serial_number = utl::json::read_value<string>(optim->path, "serial_number");
+  optim->degree_x = utl::json::read_value<int>(optim->path, "x.degree");
+  optim->axis_x.bound[0] = utl::json::read_value<float>(optim->path, "x.bound_min");
+  optim->axis_x.bound[1] = utl::json::read_value<float>(optim->path, "x.bound_max");
+  optim->degree_y = utl::json::read_value<int>(optim->path, "y.degree");
+  optim->axis_y.bound[0] = utl::json::read_value<float>(optim->path, "y.bound_min");
+  optim->axis_y.bound[1] = utl::json::read_value<float>(optim->path, "y.bound_max");
 
   //---------------------------
 }
 void Model::export_model(){
-  rad::model::structure::Optimization* optim = &rad_struct->optim;
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
   //---------------------------
 
-  utl::json::write_value(rad_struct->optim.path, "serial_number", rad_struct->optim.serial_number);
-  utl::json::write_value(rad_struct->optim.path, "x.degree", rad_struct->optim.degree_x);
-  utl::json::write_value(rad_struct->optim.path, "x.bound_min", rad_struct->optim.axis_x.bound[0]);
-  utl::json::write_value(rad_struct->optim.path, "x.bound_max", rad_struct->optim.axis_x.bound[1]);
-  utl::json::write_value(rad_struct->optim.path, "y.degree", rad_struct->optim.degree_y);
-  utl::json::write_value(rad_struct->optim.path, "y.bound_min", rad_struct->optim.axis_y.bound[0]);
-  utl::json::write_value(rad_struct->optim.path, "y.bound_max", rad_struct->optim.axis_y.bound[1]);
+  utl::json::write_value(optim->path, "serial_number", optim->serial_number);
+  utl::json::write_value(optim->path, "x.degree", optim->degree_x);
+  utl::json::write_value(optim->path, "x.bound_min", optim->axis_x.bound[0]);
+  utl::json::write_value(optim->path, "x.bound_max", optim->axis_x.bound[1]);
+  utl::json::write_value(optim->path, "y.degree", optim->degree_y);
+  utl::json::write_value(optim->path, "y.bound_min", optim->axis_y.bound[0]);
+  utl::json::write_value(optim->path, "y.bound_max", optim->axis_y.bound[1]);
 
   vector<float> vec_coef = ope_surface->get_coefficient();
   for(int i=0; i<vec_coef.size(); i++){
-    utl::json::write_value(rad_struct->optim.path, "coefficient." + to_string(i), vec_coef[i]);
+    utl::json::write_value(optim->path, "coefficient." + to_string(i), vec_coef[i]);
   }
 
   //---------------------------
@@ -65,31 +67,33 @@ void Model::compute_model(){
 
 //Subfunction
 void Model::build_model(){
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
   //---------------------------
 
   //Apply logarithmic scale
-  std::vector<glm::vec3> vec_data = rad_struct->sphere.data;
+  std::vector<glm::vec3> vec_data = rad_struct->sphere.sphere.data;
   for(int i=0; i<vec_data.size(); i++){
     glm::vec3& data = vec_data[i];
     data.z = std::log(data.z);
   }
 
   //Optimization algorithm
-  ope_surface->set_degree(rad_struct->optim.degree_x, rad_struct->optim.degree_y);
-  ope_surface->compute(vec_data, rad_struct->optim.axis_x.bound, rad_struct->optim.axis_y.bound);
-  rad_struct->optim.coefficient = ope_surface->get_coefficient();
+  ope_surface->set_degree(optim->degree_x, optim->degree_y);
+  ope_surface->compute(vec_data, optim->axis_x.bound, optim->axis_y.bound);
+  optim->coefficient = ope_surface->get_coefficient();
 
   //---------------------------
 }
 float Model::compute_model_rmse(){
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
   //---------------------------
 
-  int N = rad_struct->sphere.data.size();
+  int N = rad_struct->sphere.sphere.data.size();
   float E = 0;
   for(int i=0; i<N; i++){
-    vec3& data = rad_struct->sphere.data[i];
-    if(data.x < rad_struct->optim.axis_x.bound[0] || data.x > rad_struct->optim.axis_x.bound[1]) continue;
-    if(data.y < rad_struct->optim.axis_y.bound[0] || data.y > rad_struct->optim.axis_y.bound[1]) continue;
+    vec3& data = rad_struct->sphere.sphere.data[i];
+    if(data.x < optim->axis_x.bound[0] || data.x > optim->axis_x.bound[1]) continue;
+    if(data.y < optim->axis_y.bound[0] || data.y > optim->axis_y.bound[1]) continue;
     if(data.x < 0 || data.y < 0) continue;
 
     float z = apply_model(data.x, data.y);
@@ -97,13 +101,14 @@ float Model::compute_model_rmse(){
   }
 
   float RMSE = sqrt(E / N);
-  rad_struct->optim.rmse = RMSE;
+  optim->rmse = RMSE;
 
   //---------------------------
   return RMSE;
 }
 float Model::apply_model(float x, float y){
-  //if(rad_struct->optim.coefficient.size() == 0) return 0;
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
+  //if(optim->coefficient.size() == 0) return 0;
   //---------------------------
 
   //Function and coef from python code
@@ -125,9 +130,10 @@ float Model::apply_model(float x, float y){
   return z;
 }
 bool Model::is_ready(){
+  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
   //---------------------------
 
-  if(rad_struct->optim.coefficient.size() == 0){
+  if(optim->coefficient.size() == 0){
     return false;
   }else{
     return true;

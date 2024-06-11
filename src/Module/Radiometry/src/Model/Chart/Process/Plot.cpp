@@ -11,8 +11,7 @@ namespace rad::model::chart{
 Plot::Plot(rad::model::Node* node_model){
   //---------------------------
 
-  this->rad_struct = node_model->get_rad_struct();
-  //this->rad_model = node_model->get_rad_model();
+
 
   //---------------------------
 }

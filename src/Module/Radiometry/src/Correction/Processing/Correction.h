@@ -27,8 +27,7 @@ public:
 
 private:
   rad::correction::Structure* rad_struct;
-  rad::model::Node* node_model;
-  rad::model::sphere::Model* rad_model;
+  rad::model::sphere::Model* model_sphere;
 };
 
 }

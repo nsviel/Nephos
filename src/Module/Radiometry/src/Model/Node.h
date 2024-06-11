@@ -5,8 +5,7 @@
 namespace rad{class Node;}
 namespace rad::model{class Structure;}
 namespace rad::model::sphere{class Model;}
-namespace rad::model::sphere{class Measure;}
-namespace rad::model::sphere{class Plot;}
+namespace rad::model::chart{class Model;}
 
 
 namespace rad::model{
@@ -21,16 +20,15 @@ public:
 public:
   //Main function
 
+
   inline rad::model::Structure* get_rad_struct(){return rad_struct;}
-  inline rad::model::sphere::Model* get_rad_model(){return rad_model;}
-  inline rad::model::sphere::Measure* get_rad_measure(){return rad_measure;}
-  inline rad::model::sphere::Plot* get_rad_plot(){return rad_plot;}
+  inline rad::model::sphere::Model* get_model_sphere(){return model_sphere;}
+  inline rad::model::chart::Model* get_model_chart(){return model_chart;}
 
 private:
   rad::model::Structure* rad_struct;
-  rad::model::sphere::Model* rad_model;
-  rad::model::sphere::Measure* rad_measure;
-  rad::model::sphere::Plot* rad_plot;
+  rad::model::sphere::Model* model_sphere;
+  rad::model::chart::Model* model_chart;
 };
 
 }

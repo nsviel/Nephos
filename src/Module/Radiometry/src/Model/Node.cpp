@@ -11,9 +11,8 @@ Node::Node(rad::Node* node_radio){
   //---------------------------
 
   this->rad_struct = new rad::model::Structure();
-  this->rad_model = new rad::model::sphere::Model(this);
-  this->rad_plot = new rad::model::sphere::Plot(this);
-  this->rad_measure = new rad::model::sphere::Measure(this);
+  this->model_sphere = new rad::model::sphere::Model(this);
+  this->model_chart = new rad::model::chart::Model(this);
 
   //---------------------------
 }

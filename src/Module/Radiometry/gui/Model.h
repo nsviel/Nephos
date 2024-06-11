@@ -40,7 +40,7 @@ public:
 private:
   rad::model::Node* node_model;
   rad::model::sphere::Measure* rad_measure;
-  rad::model::sphere::Model* rad_model;
+  rad::model::sphere::Model* model_sphere;
   rad::model::sphere::Plot* rad_plot;
   rad::model::Structure* rad_struct;
   utl::implot::Plot* utl_plot;

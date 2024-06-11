@@ -1,8 +1,7 @@
 #include "Model.h"
 
-#include <python/matplotlibcpp.h>
-#include <Utility/Function/File/Json.cpp>
 #include <Radiometry/Namespace.h>
+
 
 namespace rad::model::chart{
 
