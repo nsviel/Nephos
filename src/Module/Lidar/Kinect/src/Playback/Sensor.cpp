@@ -142,8 +142,16 @@ void Sensor::manage_pause(){
 void Sensor::manage_query(float value){
   //---------------------------
 
-  auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
-  playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+  if(state.pause){
+    state.pause = false;
+    auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
+    playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    state.pause = true;
+  }else{
+    auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
+    playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+  }
 
   //---------------------------
 }
