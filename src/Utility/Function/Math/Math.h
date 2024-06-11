@@ -45,6 +45,8 @@ bool is_nan(Eigen::Vector3d vec);
 bool is_number(const std::string& s);
 
 //Misc
+double ceil(double value, int decimalPlaces);
+double truncate(double value, int decimalPlaces);
 float sign(float value);
 glm::vec4 random();
 glm::vec4 random(int seed);

@@ -383,6 +383,30 @@ bool is_number(const std::string& s){
 }
 
 //Misc
+double ceil(double value, int decimalPlaces){
+  //---------------------------
+
+  double factor = 1.0;
+  for(int i = 0; i < decimalPlaces; ++i){
+    factor *= 10.0;
+  }
+  double ceilValue = std::ceil(value * factor);
+
+  //---------------------------
+  return ceilValue / factor;
+}
+double truncate(double value, int decimalPlaces){
+  //---------------------------
+
+  double factor = 1.0;
+  for (int i = 0; i < decimalPlaces; ++i) {
+    factor *= 10.0;
+  }
+  int truncatedValue = static_cast<int>(value * factor);
+
+  //---------------------------
+  return truncatedValue / factor;
+}
 float sign(float value){
   //---------------------------
 

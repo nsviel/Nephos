@@ -142,6 +142,14 @@ void Sensor::manage_pause(){
 void Sensor::manage_query(float value){
   //---------------------------
 
+  if(value > timestamp.end){
+    cout<<"[error] timestamp superior file end"<<endl;
+    exit(0);
+  }else if(value < timestamp.begin){
+    cout<<"[error] timestamp inferior file begin"<<endl;
+    exit(0);
+  }
+
   if(state.pause){
     state.pause = false;
     auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));

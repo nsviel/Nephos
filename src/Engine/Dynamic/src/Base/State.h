@@ -14,6 +14,7 @@ struct State{
   bool replay = true;
   bool record = false;
   bool locked = false;
+  bool query = false;
 
   //---------------------------
 };

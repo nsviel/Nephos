@@ -30,9 +30,10 @@ void Player::loop(){
   this->manage_update(set);
 
   //Check for loop end
-  if(timestamp.current >= timestamp.end){
+  if(!state.query && timestamp.current >= timestamp.end){
     this->manage_restart(set);
   }
+  state.query = false;
 
   //---------------------------
 }
@@ -50,8 +51,8 @@ void Player::button_query(float value){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
-  //If actually paused, restart
   this->manage_query(set, value);
+  state.query = true;
 
   //---------------------------
 }
@@ -87,7 +88,7 @@ void Player::button_stop(){
   state.play = false;
   state.pause = true;
   timestamp.current = timestamp.begin;
-  
+
   this->manage_state(set);
   this->manage_restart(set);
 
@@ -180,6 +181,10 @@ void Player::manage_update(dat::base::Set* set){
       }
     }
   }
+
+  //Truncate values for avoid overvalues
+  timestamp.begin = math::ceil(timestamp.begin, 2);
+  timestamp.end = math::truncate(timestamp.end, 2);
 
   //Subset
   for(int i=0; i<set->list_subset.size(); i++){
