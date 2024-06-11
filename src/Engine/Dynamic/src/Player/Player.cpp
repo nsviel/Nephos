@@ -50,7 +50,17 @@ void Player::button_query(float value){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
-  this->manage_query(set, value);
+  //If actually paused, restart
+  if(state.pause){
+    state.pause = false;
+    this->manage_state(set);
+    this->manage_query(set, value);
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    state.pause = true;
+    this->manage_state(set);
+  }else{
+    this->manage_query(set, value);
+  }
 
   //---------------------------
 }
@@ -83,10 +93,19 @@ void Player::button_stop(){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 
+  //If actually paused, restart
+  if(state.pause){
+    state.play = true;
+    state.pause = false;
+    this->manage_state(set);
+    this->manage_restart(set);
+    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+  }
+
+  //Normal stop
   state.play = false;
   state.pause = true;
   timestamp.current = timestamp.begin;
-
   this->manage_state(set);
   this->manage_restart(set);
 
