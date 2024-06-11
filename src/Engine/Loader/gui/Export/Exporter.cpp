@@ -200,16 +200,13 @@ void Exporter::item_operation(){
   if(entity == nullptr) return;
   //---------------------------
 
-  std::string name = ldr_struct->current_name;
-  std::string dir = ldr_struct->current_dir;
   std::string format = (ldr_struct->current_format != "-") ? ldr_struct->current_format : "";
-  std::string path = (format != "") ? dir + "/" + name + "." + format : dir + "/" + name;
 
   utl::base::Data* data = &entity->data;
-  data->name = name;
+  data->name = ldr_struct->current_name;
   data->format = format;
-  data->path.directory = dir;
-  data->path.data = path;
+  data->path.directory = ldr_struct->current_dir;
+  data->path.data = ldr_struct->get_current_path();
 
   ldr_exporter->export_entity(entity, data->path.data);
 

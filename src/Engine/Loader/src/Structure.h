@@ -10,8 +10,8 @@ struct Structure{
   //---------------------------
 
   std::string get_current_path(){
-    std::string format = (current_format != "-") ? current_format : "";
-    std::string filename = (current_name != "" && format != "") ? current_name + "." + format : "";
+    std::string format = (current_format != "-") ? "." + current_format : "";
+    std::string filename = (current_name != "") ? current_name + format : current_name;
     std::string path = (filename != "") ? current_dir + "/" + filename : current_dir;
     return (path == "") ? "(not defined)" : path;
   }
