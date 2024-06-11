@@ -26,9 +26,6 @@ public:
   void reset();
   void clean();
 
-  //Subfunction
-  void assign_UID(utl::base::Element* element);
-
   //Accesseur
   dat::base::Set* get_set_main();
   dat::base::Set* get_set_graph();

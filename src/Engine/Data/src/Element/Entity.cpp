@@ -20,6 +20,7 @@ Entity::Entity(dat::Node* node_data){
   this->node_engine = node_engine;
   this->cam_control = node_camera->get_cam_control();
   this->dat_struct = node_data->get_dat_struct();
+  this->dat_uid = node_data->get_dat_uid();
   this->vk_engine = node_vulkan->get_vk_engine();
 
   //---------------------------
@@ -33,8 +34,8 @@ void Entity::init_entity(dat::base::Entity* entity){
   //---------------------------
 
   //Init entity
-  entity->UID = dat_struct->UID++;
-  data->UID = dat_struct->UID++;
+  entity->UID = dat_uid->generate_UID();
+  data->UID = dat_uid->generate_UID();
   this->update_pose(entity);
   this->update_data(entity);
 

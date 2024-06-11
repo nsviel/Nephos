@@ -20,6 +20,7 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->dat_struct = new dat::Structure();
+  this->dat_uid = new dat::UID(this);
   this->dat_set = new dat::Set(this);
   this->dat_graph = new dat::Graph(this);
   this->dat_entity = new dat::Entity(this);

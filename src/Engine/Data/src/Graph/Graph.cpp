@@ -61,18 +61,6 @@ void Graph::clean(){
   //---------------------------
 }
 
-//Subfunction
-void Graph::assign_UID(utl::base::Element* element){
-  if(element == nullptr) return;
-  //----------------------------
-
-  if(element->UID == -1){
-    element->UID = dat_struct->UID++;
-  }
-
-  //----------------------------
-}
-
 //Accesseur
 dat::base::Set* Graph::get_set_main(){
   return &dat_struct->set_main;

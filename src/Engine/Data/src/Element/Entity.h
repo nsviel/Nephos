@@ -4,6 +4,7 @@
 
 namespace cam{class Node;}
 namespace dat{class Node;}
+namespace dat{class UID;}
 namespace dat{class Structure;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Object;}
@@ -39,6 +40,7 @@ private:
   eng::Node* node_engine;
   vk::main::Engine* vk_engine;
   dat::Structure* dat_struct;
+  dat::UID* dat_uid;
   cam::Control* cam_control;
 };
 
