@@ -44,17 +44,19 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
 //Subfunction
 void Ransac::reduce_search_space(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vector<float>& search_Is){
   vector<vec3>& vec_xyz = sensor->data.xyz;
-  vector<float>& vec_i = sensor->data.Is;
   //---------------------------
 
   //Search for point inside a global sphere around current center point
   for(int i=0; i<vec_xyz.size(); i++){
     glm::vec3& xyz = vec_xyz[i];
-    float distance = math::distance(xyz, rad_struct->sphere.ransac.current_pose);
+    float Is = sensor->buffer_ir[i];
 
-    if(distance <= rad_struct->sphere.ransac.sphere_diameter * rad_struct->sphere.ransac.search_lambda){
+    float distance = math::distance(xyz, rad_struct->sphere.ransac.current_pose);
+    float searche_space = rad_struct->sphere.ransac.sphere_diameter * rad_struct->sphere.ransac.search_lambda;
+
+    if(distance <= searche_space){
       search_xyz.push_back(xyz);
-      search_Is.push_back(vec_i[i]);
+      search_Is.push_back(Is);
     }
   }
 
