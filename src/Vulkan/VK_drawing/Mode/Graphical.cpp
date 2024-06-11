@@ -23,7 +23,7 @@ void Graphical::draw_frame(){
   vector<vk::structure::Command*> vec_command;
   vk::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
 
-  //Rendering 
+  //Rendering
   if(!acquire_image(semaphore)) return;
   this->record_renderpass(vec_command, semaphore);
   this->copy_to_swapchain(vec_command, semaphore);

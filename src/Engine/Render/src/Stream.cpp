@@ -22,7 +22,7 @@ Stream::~Stream(){}
 void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
   if(!check_image(utl_image)) return;
   //---------------------------
-
+say(utl_image->UID);
   this->convert_data_into_texture(utl_image);
   this->render_image(utl_image, size);
 

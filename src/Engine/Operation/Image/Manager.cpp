@@ -20,6 +20,8 @@ Manager::~Manager(){}
 void Manager::add_image(dat::base::Entity* entity, utl::media::Image* image){
   //----------------------------
 
+  //if(image->UID == -1)
+
   if(has_image(entity, image->type)) return;
   entity->list_image.push_back(image);
 
