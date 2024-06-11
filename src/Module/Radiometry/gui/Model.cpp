@@ -69,15 +69,16 @@ void Model::parameter_measure(){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Measure")){
     //Path
+    std::string path = rad_struct->sphere.get_current_path();
     if(ImGui::Button("...##path_measure")){
-      zenity::selection_file(rad_struct->sphere.path);
+      zenity::selection_file(path);
     }
     ImGui::SameLine();
     if(ImGui::Button(ICON_FA_FOLDER "##path_measure")){
-      utl::directory::open(rad_struct->sphere.path);
+      utl::directory::open(path);
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", rad_struct->sphere.path.c_str());
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", path.c_str());
 
     //Heatmap scale
     ImGui::DragFloatRange2("Heatmap scale",&plot->IfRIt.axis_z.min, &plot->IfRIt.axis_z.max, 100, 0, 60000, "%.0f");

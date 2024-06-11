@@ -9,8 +9,15 @@ namespace rad::model::structure{
 struct Sphere{
   //---------------------------
 
+  std::string get_current_path(){
+    std::string path = dir+ "/" + mode + "_" + filename;
+    return path;
+  }
+
   //General
-  std::string path = "../media/record/calibration/sphere.data";
+  std::string mode = "NFOV";
+  std::string filename = "sphere.data";
+  std::string dir = "../media/calibration";
 
   //Data
   std::vector<glm::vec3> data;

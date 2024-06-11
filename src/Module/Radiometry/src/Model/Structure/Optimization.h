@@ -9,7 +9,7 @@ namespace rad::model::structure{
 struct Optimization{
   //---------------------------
 
-  std::string path = "../media/record/calibration/model.json";
+  std::string path = "../media/calibration/model.json";
   std::string serial_number = "";
   std::string method = "";
   std::vector<float> coefficient;

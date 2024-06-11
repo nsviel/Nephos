@@ -23,8 +23,10 @@ Measure::~Measure(){}
 void Measure::import_measure(){
   //---------------------------
 
+  std::string path = rad_struct->chart.get_current_path();
+
   //Import file model data
-  rad_struct->chart.data = utl::file::read_vector(rad_struct->chart.path);
+  rad_struct->chart.data = utl::file::read_vector(path);
   //rad_plot->update_plot_data();
 
   //---------------------------
@@ -32,7 +34,9 @@ void Measure::import_measure(){
 void Measure::export_measure(){
   //---------------------------
 
-  utl::file::write_vector(rad_struct->chart.path, rad_struct->chart.data);
+  std::string path = rad_struct->chart.get_current_path();
+
+  utl::file::write_vector(path, rad_struct->chart.data);
 
   //---------------------------
 }

@@ -23,8 +23,12 @@ Measure::~Measure(){}
 void Measure::import_measure(){
   //---------------------------
 
+  std::string path = rad_struct->sphere.get_current_path();
+
+  //Determine depth mode
+
   //Import file model data
-  rad_struct->sphere.data = utl::file::read_vector(rad_struct->sphere.path);
+  rad_struct->sphere.data = utl::file::read_vector(path);
 
   if(rad_struct->sphere.data.size() != 0){
     this->find_optimization_bound();
@@ -36,7 +40,8 @@ void Measure::import_measure(){
 void Measure::export_measure(){
   //---------------------------
 
-  utl::file::write_vector(rad_struct->sphere.path, rad_struct->sphere.data);
+  std::string path = rad_struct->sphere.get_current_path();
+  utl::file::write_vector(path, rad_struct->sphere.data);
 
   //---------------------------
 }
