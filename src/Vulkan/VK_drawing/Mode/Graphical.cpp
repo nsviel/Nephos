@@ -19,15 +19,34 @@ Graphical::~Graphical(){}
 void Graphical::draw_frame(){
   //---------------------------
 
+  //Init
+  vector<vk::structure::Command*> vec_command;
+  vk::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
+
+  //Rendering 
+  if(!acquire_image(semaphore)) return;
+  this->record_renderpass(vec_command, semaphore);
+  this->copy_to_swapchain(vec_command, semaphore);
+  this->submit_presentation(vec_command);
+
+  //---------------------------
+}
+
+//Subfunction
+bool Graphical::acquire_image(vk::structure::Semaphore& semaphore){
+  //---------------------------
+
   //Acquire next image
   vk_struct->queue.graphics->wait_for_idle();
   vk_struct->queue.presentation->wait_for_idle();
-  vk::structure::Semaphore* semaphore = vk_semaphore->query_free_semaphore();
-  bool ok = vk_struct->queue.presentation->acquire_next_image(semaphore->handle);
-  if(!ok) return;
+  bool sucess = vk_struct->queue.presentation->acquire_next_image(semaphore.handle);
 
-  //Renderpass
-  vector<vk::structure::Command*> vec_command;
+  //---------------------------
+  return sucess;
+}
+void Graphical::record_renderpass(vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore){
+  //---------------------------
+
   for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
     vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
     string name = "eng::rp::" + renderpass->name;
@@ -38,44 +57,41 @@ void Graphical::draw_frame(){
 
     //Create command
     vk::structure::Command* command = new vk::structure::Command();
-    command->semaphore_wait = semaphore->handle;
+    command->semaphore_wait = semaphore.handle;
     command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
     command->command_buffer = renderpass->command_buffer;
-    semaphore = vk_semaphore->query_free_semaphore();
-    command->semaphore_done = semaphore->handle;
+    semaphore = *vk_semaphore->query_free_semaphore();
+    command->semaphore_done = semaphore.handle;
     vec_command.push_back(command);
 
     vk_struct->profiler->tasker_main->task_end(name);
   }
 
+  //---------------------------
+}
+void Graphical::copy_to_swapchain(vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore){
+  //---------------------------
+
   //Copy renderpass to swapchain image
   vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
   vk::structure::Command_buffer* command_buffer = vk_transfer->copy_image_to_image(&renderpass->framebuffer->color, &vk_struct->swapchain.vec_frame[vk_struct->swapchain.current_ID]->color);
   vk::structure::Command* command = new vk::structure::Command();
-  command->semaphore_wait = semaphore->handle;
+  command->semaphore_wait = semaphore.handle;
   command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
   command->command_buffer = command_buffer;
-  semaphore = vk_semaphore->query_free_semaphore();
-  command->semaphore_done = semaphore->handle;
+  semaphore = *vk_semaphore->query_free_semaphore();
+  command->semaphore_done = semaphore.handle;
   vec_command.push_back(command);
+
+  //---------------------------
+}
+void Graphical::submit_presentation(vector<vk::structure::Command*>& vec_command){
+  //---------------------------
 
   //Submission
   vk_struct->queue.graphics->add_presentation(vec_command);
 
   //---------------------------
 }
-
-//Subfunction
-void Graphical::record_renderpass(vk::structure::Renderpass* renderpass, vk::structure::Semaphore* semaphore, vector<vk::structure::Command*>& vec_command){
-  //---------------------------
-
-
-
-
-
-
-  //---------------------------
-}
-
 
 }
