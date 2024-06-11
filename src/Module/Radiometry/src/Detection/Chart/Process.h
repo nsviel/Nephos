@@ -2,7 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad{class Node;}
+namespace rad::detection{class Node;}
+namespace rad::detection{class Structure;}
 
 
 namespace rad::detection::chart{
@@ -11,15 +12,19 @@ class Process
 {
 public:
   //Constructor / Destructor
-  Process(rad::Node* node_radio);
+  Process(rad::detection::Node* node_detection);
   ~Process();
 
 public:
   //Main function
+  void init();
+  void loop();
 
+  //Subfunction
+  void step_detection();
 
 private:
-
+  rad::detection::Structure* rad_struct;
 };
 
 }

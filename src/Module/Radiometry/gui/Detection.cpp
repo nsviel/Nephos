@@ -19,6 +19,7 @@ Detection::Detection(rad::Node* node_radio){
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->rad_struct = node_detection->get_rad_struct();
   this->sphere_process = node_detection->get_sphere_process();
+  this->chart_process = node_detection->get_chart_process();
   this->rad_hough = new rad::detection::image::Hough(node_detection);
   this->stream = new rnd::Stream(node_engine);
 
@@ -60,14 +61,14 @@ void Detection::detection_step(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){
-      sphere_process->step_sphere_detection();
+      sphere_process->step_detection();
     }
     ImGui::PopStyleColor(2);
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##sphere_measure", ImVec2(120, 0))){
-      sphere_process->step_sphere_detection();
+      sphere_process->step_detection();
     }
     ImGui::PopStyleColor(2);
   }
@@ -82,14 +83,14 @@ void Detection::detection_step(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##chart_measure", ImVec2(120, 0))){
-      //node_detection->step_chart_detection();
+      chart_process->step_detection();
     }
     ImGui::PopStyleColor(2);
   }else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##chart_measure", ImVec2(120, 0))){
-      //node_detection->step_chart_detection();
+      chart_process->step_detection();
     }
     ImGui::PopStyleColor(2);
   }

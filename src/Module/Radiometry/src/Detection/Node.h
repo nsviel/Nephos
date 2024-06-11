@@ -5,6 +5,7 @@
 namespace rad{class Node;}
 namespace rad::detection{class Structure;}
 namespace rad::detection::sphere{class Process;}
+namespace rad::detection::chart{class Process;}
 
 
 namespace rad::detection{
@@ -34,11 +35,13 @@ public:
   inline rad::Node* get_node_radio(){return node_radio;}
   inline rad::detection::Structure* get_rad_struct(){return rad_struct;}
   inline rad::detection::sphere::Process* get_sphere_process(){return sphere_process;}
+  inline rad::detection::chart::Process* get_chart_process(){return chart_process;}
 
 private:
   rad::Node* node_radio;
   rad::detection::Structure* rad_struct;
   rad::detection::sphere::Process* sphere_process;
+  rad::detection::chart::Process* chart_process;
 };
 
 }

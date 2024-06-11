@@ -8,6 +8,7 @@ namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad::detection{class Structure;}
 namespace rad::detection::sphere{class Process;}
+namespace rad::detection::chart{class Process;}
 namespace rad::detection::image{class Hough;}
 namespace rnd{class Stream;}
 
@@ -43,6 +44,7 @@ private:
   dyn::Structure* dyn_struct;
   rad::detection::Structure* rad_struct;
   rad::detection::sphere::Process* sphere_process;
+  rad::detection::chart::Process* chart_process;
   rad::detection::image::Hough* rad_hough;
   rnd::Stream* stream;
 };

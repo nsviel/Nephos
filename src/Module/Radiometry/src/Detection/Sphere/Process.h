@@ -26,7 +26,7 @@ public:
   void loop();
 
   //Subfunction
-  void step_sphere_detection();
+  void step_detection();
 
 private:
   rad::detection::Structure* rad_struct;

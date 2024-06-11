@@ -18,6 +18,7 @@ Node::Node(rad::Node* node_radio){
   this->node_radio = node_radio;
   this->rad_struct = new rad::detection::Structure();
   this->sphere_process = new rad::detection::sphere::Process(this);
+  this->chart_process = new rad::detection::chart::Process(this);
 
   //---------------------------
 }

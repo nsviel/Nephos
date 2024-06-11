@@ -46,7 +46,7 @@ void Process::loop(){
 }
 
 //Subfunction
-void Process::step_sphere_detection(){
+void Process::step_detection(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
