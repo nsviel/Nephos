@@ -4,7 +4,7 @@
 #include <vector>
 
 
-namespace rad::model::structure{
+namespace rad::model::sphere::structure{
 
 struct Plot{
   //---------------------------

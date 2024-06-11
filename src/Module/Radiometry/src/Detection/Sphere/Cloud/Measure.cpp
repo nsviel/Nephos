@@ -36,9 +36,9 @@ void Measure::process_measure(vector<vec3>& search_xyz, vector<float>& search_Is
 
 //Subfunction
 void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
-  rad::model::structure::Optimization* optim = &model_struct->optim;
-  rad::model::structure::Sphere* sphere = &model_struct->sphere;
-  rad::model::structure::Plot* plot = &model_struct->plot;
+  rad::model::sphere::structure::Optimization* optim = &model_struct->optim;
+  rad::model::sphere::structure::Sphere* sphere = &model_struct->sphere;
+  rad::model::sphere::structure::Plot* plot = &model_struct->plot;
   //---------------------------
 
   //Init parameter
@@ -76,9 +76,9 @@ void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 }
 void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
-  rad::model::structure::Optimization* optim = &model_struct->optim;
-  rad::model::structure::Sphere* sphere = &model_struct->sphere;
-  rad::model::structure::Plot* plot = &model_struct->plot;
+  rad::model::sphere::structure::Optimization* optim = &model_struct->optim;
+  rad::model::sphere::structure::Sphere* sphere = &model_struct->sphere;
+  rad::model::sphere::structure::Plot* plot = &model_struct->plot;
   //---------------------------
 
   //Search for closest point
@@ -106,8 +106,8 @@ void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 }
 void Measure::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
-  rad::model::structure::Sphere* sphere = &model_struct->sphere;
-  rad::model::structure::Plot* plot = &model_struct->plot;
+  rad::model::sphere::structure::Sphere* sphere = &model_struct->sphere;
+  rad::model::sphere::structure::Plot* plot = &model_struct->plot;
   //---------------------------
 
   //Init parameter
