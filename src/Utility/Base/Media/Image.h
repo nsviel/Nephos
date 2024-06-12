@@ -34,6 +34,7 @@ struct Image : public utl::base::Element{
   //Data
   std::vector<uint8_t> data;
   std::string format = "";
+  std::string name = "";
   bool new_data = false;
 
   //---------------------------

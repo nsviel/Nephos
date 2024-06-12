@@ -80,5 +80,23 @@ utl::media::Image* Image::get_or_create_image(dat::base::Entity* entity, int typ
   //----------------------------
   return image;
 }
+utl::media::Image* Image::get_or_create_image(dat::base::Entity* entity, std::string name){
+  if(name == "") return nullptr;
+  //----------------------------
+
+  //Search for already existing image with same type
+  for(int i=0; i<entity->list_image.size(); i++){
+    utl::media::Image* image = *next(entity->list_image.begin(), i);
+    if(image->name == name) return image;
+  }
+
+  //Else create it
+  utl::media::Image* image = new utl::media::Image();
+  image->name = name;
+  this->add_image(entity, image);
+
+  //----------------------------
+  return image;
+}
 
 }

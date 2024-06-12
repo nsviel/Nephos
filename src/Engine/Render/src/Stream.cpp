@@ -22,7 +22,7 @@ Stream::~Stream(){}
 void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
   if(!check_image(utl_image)) return;
   //---------------------------
-say(utl_image->UID);
+
   this->convert_data_into_texture(utl_image);
   this->render_image(utl_image, size);
 
@@ -34,7 +34,6 @@ bool Stream::check_image(utl::media::Image* utl_image){
   //---------------------------
 
   if(utl_image->size == 0){
-    //cout<<"[error] stream image should have size not at 0"<<endl;
     return false;
   }
   if(utl_image->format == ""){
@@ -46,16 +45,21 @@ bool Stream::check_image(utl::media::Image* utl_image){
   return true;
 }
 void Stream::convert_data_into_texture(utl::media::Image* utl_image){
+  static int current_UID = -1;
   //---------------------------
 
+  bool& update = utl_image->new_data;
+  bool load = (update && (utl_image->texture_ID == -1 || current_UID != utl_image->UID));
+
   //Load texture into vulkan
-  if(utl_image->new_data && utl_image->texture_ID == -1){
+  if(load){
     vk_texture->import_texture(utl_image);
     vk_imgui->load_texture(utl_image);
+    current_UID = utl_image->UID;
   //update texture data
-  }else if(utl_image->new_data){
+  }else if(update){
     vk_texture->import_texture(utl_image);
-    utl_image->new_data = false;
+    update = false;
   }
 
   //---------------------------

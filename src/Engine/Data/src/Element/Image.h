@@ -27,6 +27,7 @@ public:
   void manage_UID(utl::media::Image* image);
   utl::media::Image* get_image(dat::base::Entity* entity, int type);
   utl::media::Image* get_or_create_image(dat::base::Entity* entity, int type);
+  utl::media::Image* get_or_create_image(dat::base::Entity* entity, std::string name);
 
 private:
   dat::UID* dat_uid;
