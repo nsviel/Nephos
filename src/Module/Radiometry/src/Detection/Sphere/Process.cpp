@@ -16,7 +16,7 @@ Process::Process(rad::detection::Node* node_detection){
   dat::Node* node_data = node_radio->get_node_data();
 
   this->rad_struct = node_detection->get_rad_struct();
-  this->rad_glyph = new rad::detection::glyph::Manager(node_detection);
+  this->rad_glyph = new rad::detection::sphere::Glyph(node_detection);
   this->rad_image_detection = new rad::detection::image::Detection(node_detection);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(node_detection);
   this->dat_selection = node_data->get_dat_selection();

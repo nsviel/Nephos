@@ -5,7 +5,7 @@
 namespace dyn::base{class Sensor;}
 namespace rad::detection{class Node;}
 namespace rad::detection{class Structure;}
-namespace rad::detection::glyph{class Manager;}
+namespace rad::detection::sphere{class Glyph;}
 namespace rad::detection::cloud{class Ransac;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
@@ -34,7 +34,7 @@ private:
   utl::thread::Pool* thread_pool;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
-  rad::detection::glyph::Manager* rad_glyph;
+  rad::detection::sphere::Glyph* rad_glyph;
   rad::detection::cloud::Ransac* rad_ransac;
   rad::detection::Structure* rad_struct;
 

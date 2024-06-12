@@ -1,14 +1,14 @@
-#include "Manager.h"
+#include "Glyph.h"
 
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
 
 
-namespace rad::detection::glyph{
+namespace rad::detection::sphere{
 
 //Constructor / Destructor
-Manager::Manager(rad::detection::Node* node_detection){
+Glyph::Glyph(rad::detection::Node* node_detection){
   //---------------------------
 
   rad::Node* node_radio = node_detection->get_node_radio();
@@ -20,10 +20,10 @@ Manager::Manager(rad::detection::Node* node_detection){
 
   //---------------------------
 }
-Manager::~Manager(){}
+Glyph::~Glyph(){}
 
 //Main function
-void Manager::create_sphere_glyph(){
+void Glyph::create_sphere_glyph(){
   //---------------------------
 
   //Detection spheres
@@ -46,7 +46,7 @@ void Manager::create_sphere_glyph(){
 }
 
 //Subfunction
-void Manager::draw_calibration_sphere(dyn::base::Sensor* sensor){
+void Glyph::draw_calibration_sphere(dyn::base::Sensor* sensor){
   rad::detection::glyph::Sphere* sphere = rad_struct->sphere.ransac.glyph;
   //---------------------------
 
@@ -57,7 +57,7 @@ void Manager::draw_calibration_sphere(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
+void Glyph::draw_detection_sphere(dyn::base::Sensor* sensor){
   std::vector<rad::detection::structure::Circle>& vec_circle = rad_struct->sphere.hough.vec_circle;
   //---------------------------
 
@@ -80,7 +80,7 @@ void Manager::draw_detection_sphere(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Manager::draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
+void Glyph::draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle){
   vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.hough.vec_glyph;
   //---------------------------
 
@@ -104,7 +104,7 @@ void Manager::draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::detection
 }
 
 //Reset function
-void Manager::reset_all_sphere(){
+void Glyph::reset_all_sphere(){
   //---------------------------
 
   rad_struct->sphere.ransac.glyph->reset_glyph();
@@ -112,7 +112,7 @@ void Manager::reset_all_sphere(){
 
   //---------------------------
 }
-void Manager::reset_detection_sphere(){
+void Glyph::reset_detection_sphere(){
   vector<rad::detection::glyph::Sphere*>& vec_sphere = rad_struct->sphere.hough.vec_glyph;
   //---------------------------
 

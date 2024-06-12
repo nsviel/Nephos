@@ -12,7 +12,7 @@ Ransac::Ransac(rad::detection::Node* node_detection){
   //---------------------------
 
   this->rad_struct = node_detection->get_rad_struct();
-  this->rad_glyph = new rad::detection::glyph::Manager(node_detection);
+  this->rad_glyph = new rad::detection::sphere::Glyph(node_detection);
   this->rad_measure = new rad::detection::cloud::Measure(node_detection);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();

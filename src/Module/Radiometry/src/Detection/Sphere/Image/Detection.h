@@ -7,7 +7,7 @@ namespace rad::detection{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace utl::media{class Image;}
-namespace rad::detection::glyph{class Manager;}
+namespace rad::detection::sphere{class Glyph;}
 namespace rad::detection::image{class Hough;}
 namespace rad::detection::image{class Image;}
 namespace dat{class Image;}
@@ -34,7 +34,7 @@ public:
 private:
   utl::thread::Pool* thread_pool;
   rad::detection::Structure* rad_struct;
-  rad::detection::glyph::Manager* rad_glyph;
+  rad::detection::sphere::Glyph* rad_glyph;
   rad::detection::image::Hough* rad_hough;
   rad::detection::image::Image* rad_image;
   dat::Image* dat_image;

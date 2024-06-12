@@ -6,7 +6,7 @@ namespace rad::detection{class Node;}
 namespace rad::detection{class Structure;}
 namespace rad::detection::image{class Detection;}
 namespace rad::detection::cloud{class Detection;}
-namespace rad::detection::glyph{class Manager;}
+namespace rad::detection::sphere{class Glyph;}
 namespace dat{class Selection;}
 namespace dat{class Image;}
 namespace dyn::base{class Sensor;}
@@ -33,7 +33,7 @@ private:
   rad::detection::Structure* rad_struct;
   rad::detection::image::Detection* rad_image_detection;
   rad::detection::cloud::Detection* rad_cloud_detection;
-  rad::detection::glyph::Manager* rad_glyph;
+  rad::detection::sphere::Glyph* rad_glyph;
   dat::Selection* dat_selection;
   dat::Image* dat_image;
 };

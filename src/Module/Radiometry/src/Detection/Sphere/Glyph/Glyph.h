@@ -10,14 +10,14 @@ namespace dat{class Glyph;}
 namespace eng{class Node;}
 
 
-namespace rad::detection::glyph{
+namespace rad::detection::sphere{
 
-class Manager
+class Glyph
 {
 public:
   //Constructor / Destructor
-  Manager(rad::detection::Node* node_detection);
-  ~Manager();
+  Glyph(rad::detection::Node* node_detection);
+  ~Glyph();
 
 public:
   //Main function
