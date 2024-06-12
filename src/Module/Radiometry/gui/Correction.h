@@ -6,6 +6,7 @@ namespace rad{class Node;}
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rnd{class Stream;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::gui{
@@ -19,7 +20,7 @@ public:
 
 public:
   //Main function
-  void draw_tab();
+  void draw_tab(dyn::base::Sensor* sensor);
 
   //Subfunction
   void display_image();

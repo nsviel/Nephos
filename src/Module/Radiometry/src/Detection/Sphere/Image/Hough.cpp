@@ -19,12 +19,12 @@ Hough::Hough(rad::detection::Node* node_detection){
 Hough::~Hough(){}
 
 //Main function
-void Hough::detect_circle(cv::Mat& image){
+void Hough::detect_circle(cv::Mat& image, utl::media::Image* output){
   if(image.empty()) return;
   //------------------------
 
   this->compute_hough_circle(image);
-  this->draw_detected_circle(image);
+  this->draw_detected_circle(image, output);
 
   //------------------------
 }
@@ -79,23 +79,23 @@ void Hough::set_hough_mode(int mode){
 }
 
 //Draw function
-void Hough::draw_detected_circle(cv::Mat& image){
+void Hough::draw_detected_circle(cv::Mat& image, utl::media::Image* output){
   //---------------------------
 
   switch(rad_struct->sphere.hough.draw){
     case rad::hough::ALL:{
-      this->draw_all_circle(image);
+      this->draw_all_circle(image, output);
       break;
     }
     case rad::hough::BEST:{
-      this->draw_best_circle(image);
+      this->draw_best_circle(image, output);
       break;
     }
   }
 
   //---------------------------
 }
-void Hough::draw_all_circle(cv::Mat& image){
+void Hough::draw_all_circle(cv::Mat& image, utl::media::Image* output){
   if(image.empty()) return;
   //------------------------
 
@@ -103,11 +103,11 @@ void Hough::draw_all_circle(cv::Mat& image){
   rad_image->convert_into_rgba(image, result);
   rad_image->draw_circle(result, rad_struct->sphere.hough.vec_circle);
   rad_image->draw_bounding_box(result);
-  rad_image->convert_into_utl_image(result, &rad_struct->image);
+  rad_image->convert_into_utl_image(result, output);
 
   //------------------------
 }
-void Hough::draw_best_circle(cv::Mat& image){
+void Hough::draw_best_circle(cv::Mat& image, utl::media::Image* output){
   if(image.empty()) return;
   //------------------------
 
@@ -120,7 +120,7 @@ void Hough::draw_best_circle(cv::Mat& image){
   rad_image->convert_into_rgba(image, result);
   rad_image->draw_circle(result, vec_circle);
   rad_image->draw_bounding_box(result);
-  rad_image->convert_into_utl_image(result, &rad_struct->image);
+  rad_image->convert_into_utl_image(result, output);
 
   //------------------------
 }

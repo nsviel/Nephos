@@ -11,6 +11,7 @@ namespace rad::detection::sphere{class Process;}
 namespace rad::detection::chart{class Process;}
 namespace rad::detection::image{class Hough;}
 namespace rnd{class Stream;}
+namespace dat{class Image;}
 
 
 namespace rad::gui{
@@ -24,13 +25,13 @@ public:
 
 public:
   //Main function
-  void draw_tab();
+  void draw_tab(dyn::base::Sensor* sensor);
 
   //Subfunction
   void detection_step();
   void detection_parameter();
   void detection_stats();
-  void detection_image();
+  void detection_image(dyn::base::Sensor* sensor);
 
   //Parameter function
   void parameter_canny();
@@ -47,6 +48,7 @@ private:
   rad::detection::chart::Process* chart_process;
   rad::detection::image::Hough* rad_hough;
   rnd::Stream* stream;
+  dat::Image* dat_image;
 };
 
 }

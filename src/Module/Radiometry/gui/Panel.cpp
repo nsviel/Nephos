@@ -29,7 +29,7 @@ Panel::~Panel(){}
 //Main function
 void Panel::run_panel(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  dyn::base::Sensor* sensor= dynamic_cast<dyn::base::Sensor*>(entity);
   //---------------------------
 
   if(*show_window && sensor != nullptr){
@@ -38,7 +38,7 @@ void Panel::run_panel(){
     ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(600, 600));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel();
+      this->design_panel(sensor);
 
       ImGui::End();
     }
@@ -48,7 +48,7 @@ void Panel::run_panel(){
 
   //---------------------------
 }
-void Panel::design_panel(){
+void Panel::design_panel(dyn::base::Sensor* sensor){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
@@ -56,9 +56,9 @@ void Panel::design_panel(){
   ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
   ImGui::BeginTabBar("devices_tab##4567");
 
-  this->tab_detection();
-  this->tab_modeld();
-  this->tab_calibration();
+  this->tab_detection(sensor);
+  this->tab_modeld(sensor);
+  this->tab_calibration(sensor);
 
   ImGui::EndTabBar();
   ImGui::PopStyleColor(3);
@@ -67,36 +67,36 @@ void Panel::design_panel(){
 }
 
 //Subfunction
-void Panel::tab_detection(){
+void Panel::tab_detection(dyn::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
   if(ImGui::BeginTabItem("Detection##matching")){
-    gui_detection->draw_tab();
+    gui_detection->draw_tab(sensor);
 
     ImGui::EndTabItem();
   }
 
   //---------------------------
 }
-void Panel::tab_modeld(){
+void Panel::tab_modeld(dyn::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
   if(ImGui::BeginTabItem("Model##matching")){
-    gui_model->draw_tab();
+    gui_model->draw_tab(sensor);
 
     ImGui::EndTabItem();
   }
 
   //---------------------------
 }
-void Panel::tab_calibration(){
+void Panel::tab_calibration(dyn::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
   if(ImGui::BeginTabItem("Correction##matching")){
-    gui_correction->draw_tab();
+    gui_correction->draw_tab(sensor);
 
     ImGui::EndTabItem();
   }

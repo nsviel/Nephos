@@ -63,6 +63,7 @@ void Detection::wait_thread(){
 
 //Subfunction
 void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image){
+  utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::RADIOMETRY);
   //---------------------------
 
   cv::Mat cv_image, gray, canny;
@@ -70,7 +71,7 @@ void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Imag
   rad_image->convert_into_gray(cv_image, gray);
   rad_image->apply_canny(gray, canny);
 
-  rad_rectangle->detect_rectangle(canny);
+  rad_rectangle->detect_rectangle(canny, output);
 
   //---------------------------
 }

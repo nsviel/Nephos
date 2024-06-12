@@ -7,6 +7,7 @@ namespace rad::correction{class Structure;}
 namespace rad::model{class Node;}
 namespace rad::model::sphere{class Model;}
 namespace dyn::base{class Sensor;}
+namespace dat{class Image;}
 
 
 namespace rad::correction{
@@ -26,6 +27,7 @@ public:
   float apply_correction(float I_raw, float R, float It);
 
 private:
+  dat::Image* dat_image;
   rad::correction::Structure* rad_struct;
   rad::model::sphere::Model* model_sphere;
 };

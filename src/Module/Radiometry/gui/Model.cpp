@@ -23,7 +23,7 @@ Model::Model(rad::Node* node_radio){
 Model::~Model(){}
 
 //Main function
-void Model::draw_tab(){
+void Model::draw_tab(dyn::base::Sensor* sensor){
   //---------------------------
 
   //Parameter

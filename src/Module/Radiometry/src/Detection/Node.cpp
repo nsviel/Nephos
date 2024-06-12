@@ -13,8 +13,6 @@ namespace rad::detection{
 Node::Node(rad::Node* node_radio){
   //---------------------------
 
-  dat::Node* node_data = node_radio->get_node_data();
-
   this->node_radio = node_radio;
   this->rad_struct = new rad::detection::Structure();
   this->sphere_process = new rad::detection::sphere::Process(this);

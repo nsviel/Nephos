@@ -20,6 +20,7 @@ Process::Process(rad::detection::Node* node_detection){
   this->rad_image_detection = new rad::detection::image::Detection(node_detection);
   this->rad_cloud_detection = new rad::detection::cloud::Detection(node_detection);
   this->dat_selection = node_data->get_dat_selection();
+  this->dat_image = node_data->get_dat_image();
 
   //---------------------------
 }
@@ -37,6 +38,9 @@ void Process::loop(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   //---------------------------
+
+  //Working image
+
 
   //Cloud and image detection stuff
   rad_image_detection->start_thread(sensor);

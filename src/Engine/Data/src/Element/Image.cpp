@@ -21,9 +21,9 @@ Image::~Image(){}
 void Image::add_image(dat::base::Entity* entity, utl::media::Image* image){
   //----------------------------
 
-  //if(image->UID == -1)
-
+  this->manage_UID(image);
   if(has_image(entity, image->type)) return;
+  if(image->format == "") image->format = "R8G8B8A8_SRGB";
   entity->list_image.push_back(image);
 
   //----------------------------
@@ -74,7 +74,6 @@ utl::media::Image* Image::get_or_create_image(dat::base::Entity* entity, int typ
 
   //Else create it
   utl::media::Image* image = new utl::media::Image();
-  image->format = "R8G8B8A8_SRGB";
   image->type = type;
   this->add_image(entity, image);
 

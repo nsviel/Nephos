@@ -4,6 +4,7 @@
 #include <Engine/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace rad::gui{
@@ -12,6 +13,7 @@ namespace rad::gui{
 Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
+  dat::Node* node_data = node_radio->get_node_data();
   eng::Node* node_engine = node_radio->get_node_engine();
   dyn::Node* node_dynamic = node_radio->get_node_dynamic();
   rad::detection::Node* node_detection = node_radio->get_node_detection();
@@ -22,19 +24,20 @@ Detection::Detection(rad::Node* node_radio){
   this->chart_process = node_detection->get_chart_process();
   this->rad_hough = new rad::detection::image::Hough(node_detection);
   this->stream = new rnd::Stream(node_engine);
+  this->dat_image = node_data->get_dat_image();
 
   //---------------------------
 }
 Detection::~Detection(){}
 
 //Main function
-void Detection::draw_tab(){
+void Detection::draw_tab(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->detection_step();
   this->detection_parameter();
   this->detection_stats();
-  this->detection_image();
+  this->detection_image(sensor);
 
   //---------------------------
 }
@@ -140,13 +143,15 @@ void Detection::detection_stats(){
 
   //---------------------------
 }
-void Detection::detection_image(){
+void Detection::detection_image(dyn::base::Sensor* sensor){
   ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 
+  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::RADIOMETRY);
+
   //Display image with detected spheres
-  if(rad_struct->image.size != 0){
-    stream->draw_stream(&rad_struct->image, ImVec2(available_space.x, available_space.y - 5));
+  if(image->size != 0){
+    stream->draw_stream(image, ImVec2(available_space.x, available_space.y - 5));
   }
 
   //---------------------------

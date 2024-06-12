@@ -6,6 +6,7 @@
 namespace rad::detection{class Node;}
 namespace rad::detection{class Structure;}
 namespace rad::detection::image{class Image;}
+namespace utl::media{class Image;}
 
 
 namespace rad::detection::chart{
@@ -18,10 +19,10 @@ public:
 
 public:
   //Main function
-  void detect_rectangle(cv::Mat& image);
+  void detect_rectangle(cv::Mat& image, utl::media::Image* output);
 
   //Subfunction
-  void compute_rectangle_detection(cv::Mat& image);
+  void compute_rectangle_detection(cv::Mat& image, utl::media::Image* output);
   void draw_detected_rectangle(cv::Mat& image);
   bool is_rectangle(const vector<cv::Point>& contour);
 

@@ -17,18 +17,18 @@ Rectangle::Rectangle(rad::detection::Node* node_detection){
 Rectangle::~Rectangle(){}
 
 //Main function
-void Rectangle::detect_rectangle(cv::Mat& image){
+void Rectangle::detect_rectangle(cv::Mat& image, utl::media::Image* output){
   if(image.empty()) return;
   //------------------------
 
-  this->compute_rectangle_detection(image);
+  this->compute_rectangle_detection(image, output);
   this->draw_detected_rectangle(image);
 
   //------------------------
 }
 
 //Subfunction
-void Rectangle::compute_rectangle_detection(cv::Mat& image){
+void Rectangle::compute_rectangle_detection(cv::Mat& image, utl::media::Image* output){
   //---------------------------
 
   cv::Mat result;
@@ -52,7 +52,7 @@ void Rectangle::compute_rectangle_detection(cv::Mat& image){
     }
   }
 
-  rad_image->convert_into_utl_image(result, &rad_struct->image);
+  rad_image->convert_into_utl_image(result, output);
 
   //---------------------------
 }

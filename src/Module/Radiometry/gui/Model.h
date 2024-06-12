@@ -9,6 +9,7 @@ namespace rad::model::sphere{class Measure;}
 namespace rad::model::sphere{class Model;}
 namespace rad::model::sphere{class Plot;}
 namespace utl::implot{class Plot;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::gui{
@@ -22,7 +23,7 @@ public:
 
 public:
   //Main function
-  void draw_tab();
+  void draw_tab(dyn::base::Sensor* sensor);
 
   //Subfunction
   void parameter_measure();

@@ -7,6 +7,7 @@ namespace rad{class Node;}
 namespace rad::gui{class Detection;}
 namespace rad::gui{class Model;}
 namespace rad::gui{class Correction;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::gui{
@@ -21,13 +22,12 @@ public:
 public:
   //Main function
   void run_panel();
-  void design_panel();
+  void design_panel(dyn::base::Sensor* sensor);
 
   //Subfunction
-  void matching_parameter();
-  void tab_detection();
-  void tab_modeld();
-  void tab_calibration();
+  void tab_detection(dyn::base::Sensor* sensor);
+  void tab_modeld(dyn::base::Sensor* sensor);
+  void tab_calibration(dyn::base::Sensor* sensor);
 
 private:
   dat::Selection* dat_selection;

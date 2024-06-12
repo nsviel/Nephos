@@ -13,6 +13,7 @@ enum Type{
   INTENSITY = 2,
   NORMAL = 3,
   TEXTURE = 4,
+  RADIOMETRY = 5,
 };
 
 struct Image : public utl::base::Element{

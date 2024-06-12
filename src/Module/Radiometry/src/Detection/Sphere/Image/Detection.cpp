@@ -16,7 +16,7 @@ Detection::Detection(rad::detection::Node* node_detection){
   rad::Node* node_radio = node_detection->get_node_radio();
   eng::Node* node_engine = node_radio->get_node_engine();
   dat::Node* node_data = node_radio->get_node_data();
-  
+
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_image = new rad::detection::image::Image(node_detection);
   this->rad_glyph = new rad::detection::glyph::Manager(node_detection);
@@ -66,6 +66,7 @@ void Detection::wait_thread(){
 
 //Subfunction
 void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image){
+  utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::RADIOMETRY);
   //---------------------------
 
   cv::Mat cv_image, gray, canny;
@@ -73,7 +74,7 @@ void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Imag
   rad_image->convert_into_gray(cv_image, gray);
   rad_image->apply_canny(gray, canny);
 
-  rad_hough->detect_circle(canny);
+  rad_hough->detect_circle(canny, output);
   rad_glyph->draw_detection_sphere(sensor);
 
   //---------------------------
