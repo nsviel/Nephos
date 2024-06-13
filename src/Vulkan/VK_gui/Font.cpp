@@ -14,6 +14,9 @@ Font::Font(vk::structure::Vulkan* vk_struct){
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   this->vk_allocator = new vk::command::Allocator(vk_struct);
 
+  this->path_text = "../media/config/font/DroidSans.ttf";
+  this->path_icon = "../media/config/font/fontawesome-webfont.ttf";
+
   //---------------------------
 }
 Font::~Font(){}
@@ -49,8 +52,8 @@ void Font::font_text(){
   font_size = 10.0f;
   ImFont* font_gui;
   for(int i=0; i<15; i++){
-    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/config/font/DroidSans.ttf", font_size, &config_text);
-    io.Fonts->AddFontFromFileTTF("../media/config/font/fontawesome-webfont.ttf", font_size - 0.5f, &config_icon, icons_ranges);
+    ImFont* font = io.Fonts->AddFontFromFileTTF(path_text.c_str(), font_size, &config_text);
+    io.Fonts->AddFontFromFileTTF(path_icon.c_str(), font_size - 0.5f, &config_icon, icons_ranges);
     font_size += 1.0f;
 
     if(i == 3){

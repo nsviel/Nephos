@@ -30,6 +30,9 @@ private:
   vk::structure::Vulkan* vk_struct;
   vk::command::Allocator* vk_allocator;
   vk::command::Command_buffer* vk_command_buffer;
+
+  std::string path_text;
+  std::string path_icon;
 };
 
 }
