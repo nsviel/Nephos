@@ -11,7 +11,7 @@ namespace ldr::io{
 Importer::Importer(ldr::Node* node_loader){
   //---------------------------
 
-  this->ldr_operation = node_loader->get_ldr_operation();
+  this->ldr_operation = node_loader->get_ldr_import_ope();
 
   this->insert_importer(new format::ply::Importer());
   this->insert_importer(new format::obj::Importer());

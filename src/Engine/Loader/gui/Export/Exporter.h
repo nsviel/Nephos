@@ -24,13 +24,14 @@ public:
 
 public:
   //Main function
-  void design_header(dat::base::Entity* entity);
+  void draw_header(dat::base::Entity* entity);
 
   //Header function
   void display_action();
   void display_path();
   void display_format();
   void display_encording();
+  void display_option();
 
   //Subfunction
   void item_filtering(std::vector<std::string>& vec_path);

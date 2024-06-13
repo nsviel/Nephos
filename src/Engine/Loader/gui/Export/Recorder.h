@@ -25,7 +25,7 @@ public:
 
 public:
   //Main function
-  void design_header(dyn::base::Sensor* sensor);
+  void draw_header(dyn::base::Sensor* sensor);
 
   //Header function
   void display_action(dyn::base::Sensor* sensor);

@@ -25,7 +25,7 @@ Exporter::Exporter(ldr::Node* node_loader){
 Exporter::~Exporter(){}
 
 //Main function
-void Exporter::design_header(dat::base::Entity* entity){
+void Exporter::draw_header(dat::base::Entity* entity){
   //---------------------------
 
   this->item_update(entity);
@@ -34,6 +34,7 @@ void Exporter::design_header(dat::base::Entity* entity){
   this->display_path();
   this->display_format();
   this->display_encording();
+  this->display_option();
 
   //---------------------------
   ImGui::Separator();
@@ -147,7 +148,14 @@ void Exporter::display_encording(){
   ImGui::EndTable();
 
   //---------------------------
-  ImGui::Separator();
+}
+void Exporter::display_option(){
+  //---------------------------
+
+  bool truc = true;
+  ImGui::Checkbox("Transformed##3", &truc);
+
+  //---------------------------
 }
 
 //Subfunction

@@ -17,7 +17,7 @@ Connection::Connection(k4n::Node* node_k4n){
   dat::Node* node_data = node_k4n->get_node_data();
 
   this->node_k4n = node_k4n;
-  this->ldr_operation = node_loader->get_ldr_operation();
+  this->ldr_operation = node_loader->get_ldr_import_ope();
   this->dat_set = node_data->get_dat_set();
   this->dat_graph = node_data->get_dat_graph();
 

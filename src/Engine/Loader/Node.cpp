@@ -22,8 +22,9 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->ldr_struct = new ldr::Structure();
-  this->ldr_operation = new ldr::io::Operation(this);
+  this->ldr_import_ope = new ldr::importer::Operation(this);
   this->ldr_importer = new ldr::io::Importer(this);
+  this->ldr_export_ope = new ldr::exporter::Operation(this);
   this->ldr_exporter = new ldr::io::Exporter(this);
   this->ldr_bookmark = new ldr::bookmark::Manager(this);
   this->gui_import = new ldr::gui::importer::Panel(this, &panel_loader->is_open);

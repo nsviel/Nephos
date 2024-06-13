@@ -27,7 +27,7 @@ Recorder::Recorder(ldr::Node* node_loader){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::design_header(dyn::base::Sensor* sensor){
+void Recorder::draw_header(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->item_update(sensor);

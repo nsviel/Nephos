@@ -56,11 +56,11 @@ void Panel::design_panel(){
   //If dynamic object have recorder
   dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   if(sensor && sensor->vec_recorder.size() != 0){
-    gui_recorder->design_header(sensor);
+    gui_recorder->draw_header(sensor);
   }
   //Else just exporter
   else{
-    gui_exporter->design_header(entity);
+    gui_exporter->draw_header(entity);
   }
 
   this->draw_navigator();

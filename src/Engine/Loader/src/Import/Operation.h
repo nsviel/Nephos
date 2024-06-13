@@ -17,7 +17,7 @@ namespace ope{class Transformation;}
 namespace ope{class Operation;}
 
 
-namespace ldr::io{
+namespace ldr::importer{
 
 class Operation
 {
