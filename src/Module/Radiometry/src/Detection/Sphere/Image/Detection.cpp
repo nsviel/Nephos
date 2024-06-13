@@ -41,14 +41,14 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Detection::run_thread(dyn::base::Sensor* sensor){
-  static float timestamp = 0;
+  static float current_timestamp = 0;
   //---------------------------
 
   if(sensor != nullptr){
     utl::media::Image* image = dat_image->get_image(sensor, utl::media::INTENSITY);
 
-    if(image != nullptr && image->timestamp != timestamp){
-      timestamp = image->timestamp;
+    if(image != nullptr && image->timestamp != current_timestamp){
+      current_timestamp = image->timestamp;
       this->make_shape_detection(sensor, image);
     }
   }
@@ -70,10 +70,13 @@ void Detection::wait_thread(){
 //Subfunction
 void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image){
   utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::RADIOMETRY);
+  output->timestamp = image->timestamp;
   //---------------------------
 
   cv::Mat cv_image, gray, canny;
   rad_image->convert_into_cv_image(image, cv_image);
+  if(cv_image.empty()) return;
+  
   rad_image->convert_into_gray(cv_image, gray);
   rad_image->apply_canny(gray, canny);
 

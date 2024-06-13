@@ -21,10 +21,11 @@ public:
 public:
   //Main function
   void add_image(dat::base::Entity* entity, utl::media::Image* image);
-  bool has_image(dat::base::Entity* entity, int type);
+  void manage_UID(utl::media::Image* image);
 
   //Subfunction
-  void manage_UID(utl::media::Image* image);
+  bool has_image_type(dat::base::Entity* entity, int type);
+  bool has_image_UID(dat::base::Entity* entity, int UID);
   utl::media::Image* get_image(dat::base::Entity* entity, int type);
   utl::media::Image* get_or_create_image(dat::base::Entity* entity, int type);
   utl::media::Image* get_or_create_image(dat::base::Entity* entity, std::string name);

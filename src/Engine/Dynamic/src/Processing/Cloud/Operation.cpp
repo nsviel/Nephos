@@ -21,7 +21,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->ope_voxelizer = new ope::Voxelizer();
   this->ope_trianguler = new ope::Triangulation();
   this->ope_colorizer = new ope::color::Colorizer();
-  this->ope_normal = new ope::normal::Structured();
+  this->dyn_normal = new dyn::cloud::Normal(node_dynamic);
   this->dyn_recorder = new dyn::cloud::Recorder(node_dynamic);
   this->thread_pool = node_engine->get_thread_pool();
 
@@ -45,9 +45,9 @@ void Operation::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   dyn_recorder->start_thread(sensor);
+  dyn_normal->start_thread(sensor);
 
   this->colorize_object(sensor);
-  this->normal_object(sensor);
   this->update_object(sensor);
 
   //---------------------------
@@ -66,17 +66,6 @@ void Operation::wait_thread(){
 }
 
 //Subfunction
-void Operation::normal_object(dyn::base::Sensor* sensor){
-  //---------------------------
-
-  if(dyn_struct->operation.normal.enable){
-    ope_normal->set_knn(dyn_struct->operation.normal.knn);
-    ope_normal->start_thread(sensor);
-    dyn_struct->operation.normal.time = ope_normal->get_time();
-  }
-
-  //---------------------------
-}
 void Operation::colorize_object(dat::base::Entity* entity){
   //---------------------------
 

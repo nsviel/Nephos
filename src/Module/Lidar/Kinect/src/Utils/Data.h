@@ -27,7 +27,7 @@ public:
 
   //Depth function
   vec3 convert_depth_2d_to_3d(k4n::structure::Sensor* sensor, ivec2 point_2d);
-  void convert_depth_into_color(k4n::structure::Sensor* sensor, std::vector<uint8_t>& output);
+  void convert_depth_into_color(k4n::structure::Sensor* sensor);
   void find_depth_mode_range(k4n::structure::Sensor* sensor);
 
   //Normal function

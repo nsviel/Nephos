@@ -95,15 +95,14 @@ void Data::find_ir_level(k4n::structure::Sensor* sensor){
 }
 
 //Depth function
-void Data::convert_depth_into_color(k4n::structure::Sensor* sensor, std::vector<uint8_t>& output){
+void Data::convert_depth_into_color(k4n::structure::Sensor* sensor){
   k4n::structure::Data* data = &sensor->depth.data;
   uint8_t* inputBuffer = data->buffer;
   uint16_t range_min = sensor->depth.config.range_min;
   uint16_t range_max = sensor->depth.config.range_max;
   //---------------------------
 
-  output.clear();
-  output = std::vector<uint8_t>(data->size * 4, 0);
+  std::vector<uint8_t> output = std::vector<uint8_t>(data->size * 4, 0);
 
   for(int i=0, j=0; i<data->size; i+=2, j+=4){
     uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
@@ -129,6 +128,8 @@ void Data::convert_depth_into_color(k4n::structure::Sensor* sensor, std::vector<
     output[j + 2] = static_cast<uint8_t>(B * 255);
     output[j + 3] = 255;
   }
+
+  sensor->depth.image.data = output;
 
   //---------------------------
 }

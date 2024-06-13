@@ -147,12 +147,9 @@ void Detection::detection_image(dyn::base::Sensor* sensor){
   ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 
-  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::RADIOMETRY);
-
   //Display image with detected spheres
-  if(image->size != 0){
-    stream->draw_stream(image, ImVec2(available_space.x, available_space.y - 5));
-  }
+  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::RADIOMETRY);
+  stream->draw_stream(image, ImVec2(available_space.x, available_space.y - 5));
 
   //---------------------------
   ImGui::Separator();

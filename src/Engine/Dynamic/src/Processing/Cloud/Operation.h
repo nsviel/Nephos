@@ -12,7 +12,7 @@ namespace utl::thread{class Pool;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
-namespace ope::normal{class Structured;}
+namespace dyn::cloud{class Normal;}
 
 
 namespace dyn::cloud{
@@ -32,7 +32,6 @@ public:
 
   //Subfunction
   void colorize_object(dat::base::Entity* entity);
-  void normal_object(dyn::base::Sensor* sensor);
   void voxelize_object(dyn::base::Sensor* sensor);
   void triangularize_object(dyn::base::Sensor* sensor);
   void update_object(dyn::base::Sensor* sensor);
@@ -44,7 +43,7 @@ private:
   ope::Voxelizer* ope_voxelizer;
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
-  ope::normal::Structured* ope_normal;
+  dyn::cloud::Normal* dyn_normal;
 
   utl::thread::Pool* thread_pool;
   bool thread_idle = true;

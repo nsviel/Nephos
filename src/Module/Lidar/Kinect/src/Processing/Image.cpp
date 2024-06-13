@@ -132,7 +132,7 @@ void Image::find_data_depth(k4n::structure::Sensor* sensor){
   k4n_data->convert_uint8_to_vec_uint16(sensor->depth.data.buffer, sensor->depth.data.size, sensor->buffer_depth);
 
   //Image
-  k4n_data->convert_depth_into_color(sensor, sensor->depth.image.data);
+  k4n_data->convert_depth_into_color(sensor);
   sensor->depth.image.name = "Depth";
   sensor->depth.image.size = sensor->depth.image.data.size();
   sensor->depth.image.width = sensor->depth.data.width;

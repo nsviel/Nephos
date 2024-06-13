@@ -22,13 +22,24 @@ void Image::add_image(dat::base::Entity* entity, utl::media::Image* image){
   //----------------------------
 
   this->manage_UID(image);
-  if(has_image(entity, image->type)) return;
+  if(has_image_UID(entity, image->UID)) return;
   if(image->format == "") image->format = "R8G8B8A8_SRGB";
   entity->list_image.push_back(image);
 
   //----------------------------
 }
-bool Image::has_image(dat::base::Entity* entity, int type){
+void Image::manage_UID(utl::media::Image* image){
+  //----------------------------
+
+  if(image->UID == -1){
+    image->UID = dat_uid->generate_UID();
+  }
+
+  //----------------------------
+}
+
+//Subfunction
+bool Image::has_image_type(dat::base::Entity* entity, int type){
   //----------------------------
 
   //Search for already existing image with same type
@@ -40,16 +51,17 @@ bool Image::has_image(dat::base::Entity* entity, int type){
   //----------------------------
   return false;
 }
-
-//Subfunction
-void Image::manage_UID(utl::media::Image* image){
+bool Image::has_image_UID(dat::base::Entity* entity, int UID){
   //----------------------------
 
-  if(image->UID == -1){
-    image->UID = dat_uid->generate_UID();
+  //Search for already existing image with same type
+  for(int i=0; i<entity->list_image.size(); i++){
+    utl::media::Image* image = *next(entity->list_image.begin(), i);
+    if(image->UID == UID) return true;
   }
 
   //----------------------------
+  return false;
 }
 utl::media::Image* Image::get_image(dat::base::Entity* entity, int type){
   //----------------------------
