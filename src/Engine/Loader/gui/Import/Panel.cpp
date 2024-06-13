@@ -107,15 +107,15 @@ void Panel::draw_header(){
 
   // Scale new
   ImGui::SetNextItemWidth(75);
-  ImGui::DragFloat("Scale##4567", &ldr_struct->import_scaling, 0.1, 0.1, 100, "%.2f x");
+  ImGui::DragFloat("Scale##4567", &ldr_struct->importer.scaling, 0.1, 0.1, 100, "%.2f x");
 
   // Remove old
   ImGui::SameLine();
-  ImGui::Checkbox("Remove##222", &ldr_struct->import_remove_old);
+  ImGui::Checkbox("Remove##222", &ldr_struct->importer.remove_old);
 
   // Center new
   ImGui::SameLine();
-  ImGui::Checkbox("Centered##222", &ldr_struct->import_center);
+  ImGui::Checkbox("Centered##222", &ldr_struct->importer.center);
 
   //---------------------------
 }

@@ -55,7 +55,7 @@ void Operation::ope_clean(){
   //---------------------------
 
   //Remove old one
-  if(ldr_struct->import_remove_old){
+  if(ldr_struct->importer.remove_old){
     dat::base::Set* set_graph = dat_graph->get_set_graph();
     dat_set->remove_all_entity(set_graph);
   }
@@ -93,10 +93,10 @@ void Operation::ope_transformation(dat::base::Entity* entity){
   entity->pose.model_init = mat;
 
   //Scaling
-  ope_transform->make_scaling(entity, ldr_struct->import_scaling);
+  ope_transform->make_scaling(entity, ldr_struct->importer.scaling);
 
   //Centering
-  if(ldr_struct->import_center){
+  if(ldr_struct->importer.center){
     ope_operation->center_object(entity);
   }
 

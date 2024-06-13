@@ -131,7 +131,7 @@ void Exporter::display_encording(){
     mode = ldr::io::BINARY;
   }
   if(ImGui::RadioButton("ASCII", &mode, ldr::io::ASCII)){
-    ldr_struct->export_encoding = ldr::io::ASCII;
+    ldr_struct->exporter.encoding = ldr::io::ASCII;
   }
   if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
@@ -141,7 +141,7 @@ void Exporter::display_encording(){
     mode = ldr::io::ASCII;
   }
   if(ImGui::RadioButton("Binary", &mode, ldr::io::BINARY)){
-    ldr_struct->export_encoding = ldr::io::BINARY;
+    ldr_struct->exporter.encoding = ldr::io::BINARY;
   }
   if(condition) ImGui::EndDisabled();
 
