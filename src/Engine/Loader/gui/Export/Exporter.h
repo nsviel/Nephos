@@ -11,6 +11,7 @@ namespace ldr::io{class Exporter;}
 namespace ldr::gui{class File;}
 namespace dat{class Selection;}
 namespace dat::base{class Entity;}
+namespace utl::base{class Element;}
 
 
 namespace ldr::gui::exporter{
@@ -24,7 +25,7 @@ public:
 
 public:
   //Main function
-  void draw_header(dat::base::Entity* entity);
+  void draw_header(utl::base::Element* element);
 
   //Header function
   void display_action();

@@ -25,8 +25,10 @@ Exporter::Exporter(ldr::Node* node_loader){
 Exporter::~Exporter(){}
 
 //Main function
-void Exporter::draw_header(dat::base::Entity* entity){
+void Exporter::draw_header(utl::base::Element* element){
   //---------------------------
+
+  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
 
   this->item_update(entity);
 

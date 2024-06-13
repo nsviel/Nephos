@@ -49,18 +49,18 @@ void Panel::run_panel(){
   //---------------------------
 }
 void Panel::design_panel(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
-  if(entity == nullptr) return;
+  utl::base::Element* element = dat_selection->get_selected_element();
+  if(element == nullptr) return;
   //---------------------------
 
   //If dynamic object have recorder
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
   if(sensor && sensor->vec_recorder.size() != 0){
     gui_recorder->draw_header(sensor);
   }
   //Else just exporter
   else{
-    gui_exporter->draw_header(entity);
+    gui_exporter->draw_header(element);
   }
 
   this->draw_navigator();
