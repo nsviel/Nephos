@@ -28,12 +28,10 @@ Exporter::~Exporter(){}
 void Exporter::draw_header(utl::base::Element* element){
   //---------------------------
 
-  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
-
-  this->item_update(entity);
+  this->item_update(element);
 
   this->display_action();
-  this->display_path();
+  this->display_path(element);
   this->display_format();
   this->display_encording();
   this->display_option();
@@ -55,7 +53,7 @@ void Exporter::display_action(){
 
   //---------------------------
 }
-void Exporter::display_path(){
+void Exporter::display_path(utl::base::Element* element){
   //---------------------------
 
   ImGui::BeginTable("header##exporter", 3);
@@ -79,16 +77,18 @@ void Exporter::display_path(){
   }
 
   //Filename
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Name"); ImGui::TableNextColumn();
-  strncpy(str_n, ldr_struct->current_name.c_str(), sizeof(str_n) - 1);
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
-  ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
-  ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
-  if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
-    ldr_struct->current_name = (string)str_n;
+  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Name"); ImGui::TableNextColumn();
+    strncpy(str_n, ldr_struct->current_name.c_str(), sizeof(str_n) - 1);
+    ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
+    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+    if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
+      ldr_struct->current_name = (string)str_n;
+    }
+    ImGui::PopStyleColor(2);
   }
-  ImGui::PopStyleColor(2);
 
   ImGui::EndTable();
 
@@ -189,7 +189,8 @@ void Exporter::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
   vec_path = vec_path_ok;
 }
-void Exporter::item_update(dat::base::Entity* entity){
+void Exporter::item_update(utl::base::Element* element){
+  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
   //---------------------------
 
   //Actualize current name

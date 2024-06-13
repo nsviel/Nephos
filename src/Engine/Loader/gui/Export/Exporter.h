@@ -29,14 +29,14 @@ public:
 
   //Header function
   void display_action();
-  void display_path();
+  void display_path(utl::base::Element* element);
   void display_format();
   void display_encording();
   void display_option();
 
   //Subfunction
   void item_filtering(std::vector<std::string>& vec_path);
-  void item_update(dat::base::Entity* entity);
+  void item_update(utl::base::Element* element);
   void item_operation();
 
 private:
