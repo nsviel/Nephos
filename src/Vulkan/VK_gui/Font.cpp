@@ -15,7 +15,7 @@ Font::Font(vk::structure::Vulkan* vk_struct){
   this->vk_allocator = new vk::command::Allocator(vk_struct);
 
   this->path_text = "../media/config/font/DroidSans.ttf";
-  this->path_icon = "../media/config/font/fontawesome-webfont.ttf";
+  this->path_icon = "../extern/fontawesome/old.ttf";
 
   //---------------------------
 }
