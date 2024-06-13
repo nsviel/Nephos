@@ -85,7 +85,27 @@ void Navigator::draw_header(){
   //Add folder button
   ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_FOLDER_PLUS "##addfolder")){
+    ImGui::OpenPopup("my_select_popup");
+  }
+  ImGui::SameLine();
+  if(ImGui::BeginPopup("my_select_popup")){
+    ImGui::Text("Folder name");
 
+    static char str_n[256];
+    ImGui::SetNextItemWidth(125);
+    if(ImGui::InputText("##addfolder", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
+      std::string path = ldr_struct->current_dir + "/" + (string)str_n;
+      utl::directory::create(path);
+      ImGui::CloseCurrentPopup();
+    }
+    ImGui::SameLine();
+    if(ImGui::Button("Create##addfolder")){
+      std::string path = ldr_struct->current_dir + "/" + (string)str_n;
+      utl::directory::create(path);
+      ImGui::CloseCurrentPopup();
+    }
+
+    ImGui::EndPopup();
   }
 
   ImGui::EndTable();
