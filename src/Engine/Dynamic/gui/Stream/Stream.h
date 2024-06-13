@@ -24,10 +24,9 @@ public:
 
   //Main function
   void run_panel();
-  void design_panel(dat::base::Set* set);
+  void design_panel(dat::base::Entity* entity);
 
   //All devices
-  void draw_set_tabbar(dat::base::Set* set);
   void draw_stream_tabbar(dat::base::Entity* entity);
   void draw_stream_image(utl::media::Image* image, ImVec2 image_size);
 

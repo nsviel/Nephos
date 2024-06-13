@@ -76,7 +76,7 @@ void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Imag
   cv::Mat cv_image, gray, canny;
   rad_image->convert_into_cv_image(image, cv_image);
   if(cv_image.empty()) return;
-  
+
   rad_image->convert_into_gray(cv_image, gray);
   rad_image->apply_canny(gray, canny);
 

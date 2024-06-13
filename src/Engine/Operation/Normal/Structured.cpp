@@ -23,26 +23,6 @@ Structured::Structured(){
 Structured::~Structured(){}
 
 //Main function
-void Structured::start_thread(dat::base::Entity* entity){
-  //---------------------------
-
-  if(thread.joinable()){
-    this->thread.join();
-  }
-  this->thread = std::thread(&Structured::run_thread, this, entity);
-
-  //---------------------------
-}
-void Structured::run_thread(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
-  //---------------------------
-
-  this->compute_normal(data);
-  //utl::media::Image* image = ope_image->get_or_create_image(entity, utl::media::NORMAL);
-  //ope_converter->convert_normal_to_image(data->Nxyz, image);
-
-  //---------------------------
-}
 void Structured::compute_normal(utl::base::Data* data){
   if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;

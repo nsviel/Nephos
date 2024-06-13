@@ -20,8 +20,6 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Entity* entity);
-  void run_thread(dat::base::Entity* entity);
   void compute_normal(utl::base::Data* data);
 
   //Subfunction
@@ -32,7 +30,7 @@ public:
 
 private:
   ope::image::Converter* ope_converter;
-  std::thread thread;
+
   float R_thres;
   float time;
   int k;

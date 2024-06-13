@@ -35,16 +35,17 @@ Stream::~Stream(){}
 
 //Main function
 void Stream::run_panel(){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   //---------------------------
 
-  if(*show_window && set->list_entity.size() != 0){
+  if(*show_window && sensor != nullptr){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::SetNextWindowSizeConstraints(ImVec2(100, 400), ImVec2(FLT_MAX, FLT_MAX));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel(set);
+      this->design_panel(sensor);
 
       ImGui::End();
     }
@@ -54,33 +55,15 @@ void Stream::run_panel(){
 
   //---------------------------
 }
-void Stream::design_panel(dat::base::Set* set){
+void Stream::design_panel(dat::base::Entity* entity){
   //---------------------------
 
-  this->draw_set_tabbar(set);
+  this->draw_stream_tabbar(entity);
 
   //---------------------------
 }
 
 //All devices
-void Stream::draw_set_tabbar(dat::base::Set* set){
-  //---------------------------
-
-  if(ImGui::BeginTabBar("devices_tab##4567")){
-    for(int i=0; i<set->list_entity.size(); i++){
-      dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-
-      string name = entity->icon + "  " + entity->name;
-      if(ImGui::BeginTabItem(name.c_str(), NULL)){
-        this->draw_stream_tabbar(entity);
-        ImGui::EndTabItem();
-      }
-    }
-    ImGui::EndTabBar();
-  }
-
-  //---------------------------
-}
 void Stream::draw_stream_tabbar(dat::base::Entity* entity){
   list<utl::media::Image*> list_image = entity->list_image;
   //---------------------------

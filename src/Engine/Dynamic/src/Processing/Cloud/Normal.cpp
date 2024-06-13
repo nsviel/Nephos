@@ -40,11 +40,14 @@ void Normal::run_thread(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
+  //Compute normal
   ope_normal->set_knn(dyn_struct->operation.normal.knn);
   ope_normal->compute_normal(data);
+  dyn_struct->operation.normal.time = ope_normal->get_time();
+
+  //Make normal image
   utl::media::Image* image = dat_image->get_or_create_image(entity, utl::media::NORMAL);
   ope_converter->convert_normal_to_image(data, image);
-  dyn_struct->operation.normal.time = ope_normal->get_time();
 
   //---------------------------
   this->thread_idle = true;
