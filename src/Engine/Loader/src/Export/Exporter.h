@@ -6,6 +6,7 @@
 
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
+namespace ldr::exporter{class Operation;}
 namespace ldr::base{class Exporter;}
 namespace ldr::base{class Recorder;}
 namespace dat::base{class Entity;}
@@ -32,6 +33,7 @@ public:
 
 private:
   ldr::Structure* ldr_struct;
+  ldr::exporter::Operation* ldr_operation;
 
   std::vector<ldr::base::Exporter*> vec_exporter;
 };

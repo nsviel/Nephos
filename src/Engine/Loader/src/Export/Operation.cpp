@@ -17,6 +17,12 @@ Operation::Operation(ldr::Node* node_loader){
 Operation::~Operation(){}
 
 //Main functions
+void Operation::make_operation(dat::base::Entity* entity){
+  if(entity == nullptr) return;
+  //---------------------------
 
+
+  //---------------------------
+}
 
 }

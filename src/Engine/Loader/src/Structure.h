@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Loader/src/Import/Structure.h>
+#include <Loader/src/Export/Structure.h>
 #include <Loader/src/Base/Exporter.h>
 #include <string>
 
@@ -28,6 +30,9 @@ struct Structure{
 
   //Export
   int export_encoding = ldr::io::BINARY;
+
+  ldr::importer::Structure importer;
+  ldr::exporter::Structure exporter;
 
   //---------------------------
 };

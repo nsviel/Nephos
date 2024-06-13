@@ -11,6 +11,7 @@ Exporter::Exporter(ldr::Node* node_loader){
   //---------------------------
 
   this->ldr_struct = node_loader->get_ldr_struct();
+  this->ldr_operation = node_loader->get_ldr_export_ope();
 
   this->insert_exporter(new format::ply::Exporter());
   this->insert_exporter(new format::pts::Exporter());
