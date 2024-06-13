@@ -19,21 +19,24 @@ Font::Font(vk::structure::Vulkan* vk_struct){
 Font::~Font(){}
 
 //Main function
-void Font::select_font(){
-  ImGuiIO io = ImGui::GetIO();
+void Font::create_font(){
   //---------------------------
 
-  static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+  this->font_text();
+  this->font_editor();
+  this->font_build();
+
+  //---------------------------
+}
+
+//Subfunction
+void Font::font_text(){
+  ImGuiIO io = ImGui::GetIO();
+  //---------------------------
 
   //Configuration - texte
   ImFontConfig config_text;
   config_text.GlyphExtraSpacing.x = 1.0f;
-
-  //Configuration - texte
-  ImFontConfig config_editor;
-  config_editor.GlyphExtraSpacing.x = 2.0f;
-  config_editor.OversampleH = 4.0f;
-  config_editor.OversampleV = 4.0f;
 
   //Configuration - icon
   ImFontConfig config_icon;
@@ -41,6 +44,7 @@ void Font::select_font(){
   config_icon.GlyphMinAdvanceX = 15.0f; //Monospace icons
 
   //Load all droidsans font with size from 13 to 23
+  static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
   float font_size;
   font_size = 10.0f;
   ImFont* font_gui;
@@ -54,24 +58,38 @@ void Font::select_font(){
     }
   }
 
-  font_size = 13.0f;
-  for(int i=0; i<10; i++){
-    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/config/font/DroidSans.ttf", font_size, &config_editor);
-    font_size += 1.0f;
-  }
-
-  //Buid the font database
-  io.Fonts->Build();
-
   //Setup fonts
   ImGui::GetIO().FontDefault = font_gui;
 
   //---------------------------
 }
-void Font::load_font(){
-  if(vk_struct->param.headless) return;
+void Font::font_editor(){
+  ImGuiIO io = ImGui::GetIO();
   //---------------------------
 
+  //Configuration - texte
+  ImFontConfig config_editor;
+  config_editor.GlyphExtraSpacing.x = 2.0f;
+  config_editor.OversampleH = 4.0f;
+  config_editor.OversampleV = 4.0f;
+
+  float font_size = 13.0f;
+  for(int i=0; i<10; i++){
+    ImFont* font = io.Fonts->AddFontFromFileTTF("../media/config/font/DroidSans.ttf", font_size, &config_editor);
+    font_size += 1.0f;
+  }
+
+  //---------------------------
+}
+void Font::font_build(){
+  ImGuiIO io = ImGui::GetIO();
+  //---------------------------
+
+  //Buid the font database
+  io.Fonts->Build();
+
+  //Insert into engine
+  if(vk_struct->param.headless) return;
   vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(command_buffer);
@@ -85,5 +103,6 @@ void Font::load_font(){
 
   //---------------------------
 }
+
 
 }

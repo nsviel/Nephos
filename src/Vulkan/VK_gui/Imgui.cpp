@@ -26,8 +26,7 @@ void Imgui::init(){
   //---------------------------
 
   this->create_context();
-  vk_font->select_font();
-  vk_font->load_font();
+  vk_font->create_font();
   this->update_render_descriptor();
 
   //---------------------------

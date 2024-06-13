@@ -19,8 +19,12 @@ public:
 
 public:
   //Main function
-  void select_font();
-  void load_font();
+  void create_font();
+
+  //Subfunction
+  void font_text();
+  void font_editor();
+  void font_build();
 
 private:
   vk::structure::Vulkan* vk_struct;
