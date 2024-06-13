@@ -40,7 +40,7 @@ void Navigator::draw_header(){
 
   ImGui::BeginTable("header##recorder", 2);
   ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthStretch);
-  ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthFixed, 15.0f);
+  ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthFixed, 25.0f);
 
   //Reset current dir
   ImGui::TableNextRow(); ImGui::TableNextColumn();

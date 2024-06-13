@@ -59,7 +59,7 @@ void Exporter::display_path(){
   ImGui::BeginTable("header##exporter", 3);
   ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 50.0f);
   ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
-  ImGui::TableSetupColumn("3", ImGuiTableColumnFlags_WidthFixed, 20.0f);
+  ImGui::TableSetupColumn("3", ImGuiTableColumnFlags_WidthFixed, 25.0f);
 
   //Directory
   static char str_n[256];
