@@ -22,7 +22,7 @@ public:
   ~Renderer();
 
 public:
-  //Main functions
+  //Main function
   void run_panel();
   void design_panel();
 

@@ -17,7 +17,7 @@ public:
   ~SLAM_init();
 
 public:
-  //Main functions
+  //Main function
   void compute_initialization(Collection* collection, int subset_ID);
 
   //Subfunctions

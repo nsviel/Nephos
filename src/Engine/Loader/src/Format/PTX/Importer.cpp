@@ -20,7 +20,7 @@ Importer::Importer(){
 }
 Importer::~Importer(){}
 
-//Main functions
+//Main function
 utl::base::Element* Importer::import(utl::base::Path path){
 /*  list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;

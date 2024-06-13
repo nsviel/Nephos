@@ -15,7 +15,7 @@ public:
   ~Extension();
 
 public:
-  //Main functions
+  //Main function
   void init();
 
   //Subfunction

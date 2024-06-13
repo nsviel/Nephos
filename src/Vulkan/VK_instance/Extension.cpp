@@ -15,7 +15,7 @@ Extension::Extension(vk::structure::Vulkan* vk_struct){
 }
 Extension::~Extension(){}
 
-//Main functions
+//Main function
 void Extension::init(){
   //---------------------------
 

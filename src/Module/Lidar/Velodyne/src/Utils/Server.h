@@ -17,7 +17,7 @@ public:
   ~Server();
 
 public:
-  //Main functions
+  //Main function
   bool binding(int port, int packet_size);
   void disconnect();
   vector<int> capture();

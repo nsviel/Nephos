@@ -17,7 +17,7 @@ public:
   ~Physical();
 
 public:
-  //Main functions
+  //Main function
   void find_physical_device();
   void compute_extent();
 

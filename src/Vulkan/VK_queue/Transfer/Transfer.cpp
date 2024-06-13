@@ -19,7 +19,7 @@ Transfer::Transfer(vk::structure::Vulkan* vk_struct){
 }
 Transfer::~Transfer(){}
 
-//Main functions
+//Main function
 void Transfer::start_thread(){
   //---------------------------
 

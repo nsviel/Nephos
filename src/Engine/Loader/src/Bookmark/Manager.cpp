@@ -17,7 +17,7 @@ Manager::Manager(ldr::Node* node_loader){
 }
 Manager::~Manager(){}
 
-//Main functions
+//Main function
 void Manager::init(){
   //---------------------------
 

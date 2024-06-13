@@ -22,7 +22,7 @@ public:
   ~Node();
 
 public:
-  //Main functions
+  //Main function
   void update();
   void reset();
   void draw();

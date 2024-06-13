@@ -17,7 +17,7 @@ public:
   ~Color();
 
 public:
-  //Main functions
+  //Main function
   void create_color_image(vk::structure::Image* color);
 
   //Subfunction

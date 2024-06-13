@@ -19,7 +19,7 @@ public:
   ~Buffer();
 
 public:
-  //Main functions
+  //Main function
   void create_buffers(vk::structure::Object* vk_object);
   void update_buffer(vk::structure::Object* vk_object);
   void clean_buffers(vk::structure::Object* vk_object);

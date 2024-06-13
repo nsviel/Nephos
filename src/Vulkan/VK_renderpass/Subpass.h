@@ -18,7 +18,7 @@ public:
   ~Subpass();
 
 public:
-  //Main functions
+  //Main function
   void create_subpass(vk::structure::Renderpass* renderpass);
 
   //Subpass type

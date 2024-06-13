@@ -18,7 +18,7 @@ public:
   ~Menu();
 
 public:
-  //Main functions
+  //Main function
   void draw();
 
   //Subfunction

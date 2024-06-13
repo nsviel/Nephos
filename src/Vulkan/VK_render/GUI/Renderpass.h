@@ -19,7 +19,7 @@ public:
   ~Renderpass();
 
 public:
-  //Main functions
+  //Main function
   void init_renderpass();
   void create_subpass(vk::structure::Renderpass* renderpass);
   void pipeline_triangle(vk::structure::Subpass* subpass);

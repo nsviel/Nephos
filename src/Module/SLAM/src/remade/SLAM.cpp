@@ -47,7 +47,7 @@ SLAM::SLAM(Node_engine* node){
 }
 SLAM::~SLAM(){}
 
-//Main functions
+//Main function
 void SLAM::update_configuration(){
   //---------------------------
 

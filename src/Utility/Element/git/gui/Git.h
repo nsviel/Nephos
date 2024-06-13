@@ -14,7 +14,7 @@ public:
   ~Git();
 
 public:
-  //Main functions
+  //Main function
   void design_panel();
 
   //Subfunction

@@ -14,7 +14,7 @@ public:
   ~Text();
 
 public:
-  //Main functions
+  //Main function
   void run_editor();
 
   //Subfunction

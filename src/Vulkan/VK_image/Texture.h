@@ -23,7 +23,7 @@ public:
   ~Texture();
 
 public:
-  //Main functions
+  //Main function
   void clean();
 
   //Texture function

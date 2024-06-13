@@ -16,7 +16,7 @@ public:
   ~Node();
 
 public:
-  //Main functions
+  //Main function
   void run();
 
   //Subfunction

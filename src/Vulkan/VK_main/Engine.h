@@ -37,7 +37,7 @@ public:
   ~Engine();
 
 public:
-  //Main functions
+  //Main function
   virtual void init(){}
   virtual void loop(){}
   virtual void clean(){}

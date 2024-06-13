@@ -16,11 +16,28 @@ Operation::Operation(ldr::Node* node_loader){
 }
 Operation::~Operation(){}
 
-//Main functions
+//Main function
 void Operation::make_operation(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
+  this->make_transformation(entity);
+
+
+
+  //---------------------------
+}
+
+//Subfunction
+void Operation::make_transformation(dat::base::Entity* entity){
+  if(!ldr_struct->exporter.transformed) return;
+  //---------------------------
+
+  utl::base::Data* data = entity->data;
+
+  for(int i=0; i<data->xyz.size(); i++){
+    
+  }
 
   //---------------------------
 }

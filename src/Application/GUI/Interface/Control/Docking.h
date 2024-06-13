@@ -15,7 +15,7 @@ public:
   ~Docking();
 
 public:
-  //Main functions
+  //Main function
   void dock_main_node();
   void dock_save_state();
   void dock_load_state();

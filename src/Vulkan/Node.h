@@ -26,7 +26,7 @@ public:
   ~Node();
 
 public:
-  //Main functions
+  //Main function
   void init();
   void loop();
   void clean();

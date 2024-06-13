@@ -14,7 +14,7 @@ public:
   ~Git();
 
 public:
-  //Main functions
+  //Main function
   void open_repository();
   void close_repository();
 

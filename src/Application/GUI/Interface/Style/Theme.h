@@ -15,7 +15,7 @@ public:
   ~Theme();
 
 public:
-  //Main functions
+  //Main function
   void init_theme();
 
   //Subfunction

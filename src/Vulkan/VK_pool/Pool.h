@@ -17,7 +17,7 @@ public:
   ~Pool();
 
 public:
-  //Main functions
+  //Main function
   void init();
   void clean();
 

@@ -23,7 +23,7 @@ public:
   ~Imgui();
 
 public:
-  //Main functions
+  //Main function
   void init();
   void draw(vk::structure::Command_buffer* command_buffer);
   void clean();

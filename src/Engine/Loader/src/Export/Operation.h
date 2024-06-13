@@ -18,8 +18,11 @@ public:
   ~Operation();
 
 public:
-  //Main functions
+  //Main function
   void make_operation(dat::base::Entity* entity);
+
+  //Subfunction
+  void make_transformation(dat::base::Entity* entity);
 
 private:
   ldr::Structure* ldr_struct;

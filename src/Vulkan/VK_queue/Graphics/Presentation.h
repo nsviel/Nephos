@@ -19,7 +19,7 @@ public:
   ~Presentation();
 
 public:
-  //Main functions
+  //Main function
   void wait_for_idle();
   bool acquire_next_image(VkSemaphore& semaphore);
   void image_presentation(VkSemaphore& semaphore);

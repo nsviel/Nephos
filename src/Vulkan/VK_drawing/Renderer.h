@@ -20,7 +20,7 @@ public:
   ~Renderer();
 
 public:
-  //Main functions
+  //Main function
   void run_renderpass(vk::structure::Renderpass* renderpass);
 
   //Subfunction

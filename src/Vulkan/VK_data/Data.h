@@ -24,7 +24,7 @@ public:
   ~Data();
 
 public:
-  //Main functions
+  //Main function
   void insert_data(utl::base::Data* data, utl::base::Pose* pose);
   void update_data(utl::base::Data* data, vk::structure::Object* vk_object);
   void clean();

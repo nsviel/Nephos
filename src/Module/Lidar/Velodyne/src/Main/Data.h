@@ -21,7 +21,7 @@ public:
   ~Data();
 
 public:
-  //Main functions
+  //Main function
   void create_object();
 
 private:

@@ -17,7 +17,7 @@ public:
   ~Type();
 
 public:
-  //Main functions
+  //Main function
   vk::structure::Descriptor_required uniform_point_size();
   vk::structure::Descriptor_required uniform_mvp();
   vk::structure::Descriptor_required uniform_edl();

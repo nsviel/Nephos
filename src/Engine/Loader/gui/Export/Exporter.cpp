@@ -152,8 +152,7 @@ void Exporter::display_encording(){
 void Exporter::display_option(){
   //---------------------------
 
-  bool truc = true;
-  ImGui::Checkbox("Transformed##3", &truc);
+  ImGui::Checkbox("Transformed##3", &ldr_struct->exporter.transformed);
 
   //---------------------------
 }

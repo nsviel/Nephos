@@ -17,7 +17,7 @@ Logical::Logical(vk::structure::Vulkan* vk_struct){
 }
 Logical::~Logical(){}
 
-//Main functions
+//Main function
 void Logical::init(){
   //---------------------------
 

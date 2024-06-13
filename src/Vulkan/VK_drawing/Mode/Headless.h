@@ -16,7 +16,7 @@ public:
   ~Headless();
 
 public:
-  //Main functions
+  //Main function
   void draw_frame();
 
 private:

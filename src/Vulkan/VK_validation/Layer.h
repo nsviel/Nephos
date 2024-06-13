@@ -15,7 +15,7 @@ public:
   ~Layer();
 
 public:
-  //Main functions
+  //Main function
   void create_validation_layer();
   void clean_layer();
 

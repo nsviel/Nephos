@@ -20,7 +20,7 @@ public:
   ~Graphical();
 
 public:
-  //Main functions
+  //Main function
   void draw_frame();
 
   //Subfunction

@@ -19,7 +19,7 @@ public:
   ~Allocator();
 
 public:
-  //Main functions
+  //Main function
   void init();
   void reset();
   void clean();

@@ -16,7 +16,7 @@ Physical::Physical(vk::structure::Vulkan* vk_struct){
 }
 Physical::~Physical(){}
 
-//Main functions
+//Main function
 void Physical::find_physical_device(){
   //---------------------------
 

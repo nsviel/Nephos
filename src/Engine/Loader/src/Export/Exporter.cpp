@@ -20,28 +20,15 @@ Exporter::Exporter(ldr::Node* node_loader){
 }
 Exporter::~Exporter(){}
 
-//Main functions
+//Main function
 void Exporter::export_entity(dat::base::Entity* entity, std::string path){
-  utl::base::Data* data = &entity->data;
-  utl::base::Pose* pose = &entity->pose;;
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
     ldr::base::Exporter* exporter = vec_exporter[i];
 
     if(data->format == exporter->format){
-
-      switch(ldr_struct->exporter.encoding){
-        case ldr::io::ASCII:{
-          exporter->export_ascii(data, pose, path);
-          break;
-        }
-        case ldr::io::BINARY:{
-          exporter->export_binary(data, pose, path);
-          break;
-        }
-      }
-
+      this->export_with_encoding(entity, path);
     }
   }
 
@@ -49,6 +36,24 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
 }
 
 //Subfunction
+void Exporter::export_with_encoding(dat::base::Entity* entity, std::string path){
+  utl::base::Data* data = &entity->data;
+  utl::base::Pose* pose = &entity->pose;
+  //---------------------------
+
+  switch(ldr_struct->exporter.encoding){
+    case ldr::io::ASCII:{
+      exporter->export_ascii(data, pose, path);
+      break;
+    }
+    case ldr::io::BINARY:{
+      exporter->export_binary(data, pose, path);
+      break;
+    }
+  }
+
+  //---------------------------
+}
 void Exporter::insert_exporter(ldr::base::Exporter* exporter){
   //---------------------------
 

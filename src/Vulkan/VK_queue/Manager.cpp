@@ -15,7 +15,7 @@ Manager::Manager(vk::structure::Vulkan* vk_struct){
 }
 Manager::~Manager(){}
 
-//Main functions
+//Main function
 void Manager::init(){
   //---------------------------
 

@@ -15,7 +15,7 @@ public:
   ~Font();
 
 public:
-  //Main functions
+  //Main function
   void init_font();
 
   //Subfunction

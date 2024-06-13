@@ -17,7 +17,7 @@ public:
   ~Depth();
 
 public:
-  //Main functions
+  //Main function
   void create_depth_image(vk::structure::Image* depth);
 
   //Subfunctions

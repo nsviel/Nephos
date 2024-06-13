@@ -20,7 +20,7 @@ public:
   ~Manager();
 
 public:
-  //Main functions
+  //Main function
   void init();
 
   inline vk::render::edl::Shader* get_shader_edl(){return shader_edl;}

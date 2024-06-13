@@ -19,7 +19,7 @@ public:
   ~Transfer();
 
 public:
-  //Main functions
+  //Main function
   void start_thread();
   void run_thread();
   void stop_thread();

@@ -27,7 +27,7 @@ Operation::Operation(ldr::Node* node_loader){
 }
 Operation::~Operation(){}
 
-//Main functions
+//Main function
 void Operation::insert_object(dat::base::Object* object){
   if(object == nullptr) return;
   //---------------------------

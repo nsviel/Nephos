@@ -24,7 +24,7 @@ Importer::Importer(ldr::Node* node_loader){
 }
 Importer::~Importer(){}
 
-//Main functions
+//Main function
 utl::base::Data* Importer::load_data(std::string path){
   if(!check_path(path)) return nullptr;
   //---------------------------

@@ -19,7 +19,7 @@ public:
   ~Renderpass();
 
 public:
-  //Main functions
+  //Main function
   void init();
   void clean();
 

@@ -27,7 +27,7 @@ public:
   ~Operation();
 
 public:
-  //Main functions
+  //Main function
   void insert_object(dat::base::Object* object);
   void insert_set(dat::base::Set* set);
 

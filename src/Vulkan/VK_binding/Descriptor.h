@@ -20,7 +20,7 @@ public:
   ~Descriptor();
 
 public:
-  //Main functions
+  //Main function
   void create_binding(vk::structure::Binding* binding);
   void clean_binding(vk::structure::Binding* binding);
 

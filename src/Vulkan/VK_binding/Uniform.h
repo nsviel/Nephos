@@ -18,7 +18,7 @@ public:
   ~Uniform();
 
 public:
-  //Main functions
+  //Main function
   void create_uniform_buffers(vk::structure::Binding* binding);
   vk::structure::Uniform* create_uniform_buffer(string name, size_t size, int binding);
   void clean_uniform(vk::structure::Binding* binding);

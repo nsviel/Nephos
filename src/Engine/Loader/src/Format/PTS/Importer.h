@@ -20,7 +20,7 @@ public:
   ~Importer();
 
 public:
-  //Main functions
+  //Main function
   utl::base::Element* import(utl::base::Path path);
 
 private:

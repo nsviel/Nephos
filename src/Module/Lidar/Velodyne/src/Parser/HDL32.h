@@ -15,7 +15,7 @@ public:
   ~HDL32();
 
 public:
-  //Main functions
+  //Main function
   utl::base::Data* parse_packet(vector<int> packet);
 
   //Subfunctions

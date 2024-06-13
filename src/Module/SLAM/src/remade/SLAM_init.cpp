@@ -25,7 +25,7 @@ SLAM_init::SLAM_init(SLAM* slam){
 }
 SLAM_init::~SLAM_init(){}
 
-//Main functions
+//Main function
 void SLAM_init::compute_initialization(Collection* collection, int subset_ID){
   //---------------------------
 

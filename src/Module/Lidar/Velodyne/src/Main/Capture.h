@@ -18,7 +18,7 @@ public:
   ~Capture();
 
 public:
-  //Main functions
+  //Main function
   void init();
   void clean();
 

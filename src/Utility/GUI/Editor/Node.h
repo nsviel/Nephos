@@ -14,7 +14,7 @@ public:
   ~Node();
 
 public:
-  //Main functions
+  //Main function
   void design_panel();
 
   //Subfunction

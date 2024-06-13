@@ -21,7 +21,7 @@ public:
   ~Exporter();
 
 public:
-  //Main functions
+  //Main function
   void export_ascii(utl::base::Data* data, utl::base::Pose* pose, std::string path);
   void export_binary(utl::base::Data* data, utl::base::Pose* pose, std::string path);
 

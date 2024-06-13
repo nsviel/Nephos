@@ -13,7 +13,7 @@ public:
   ~Frame();
 
 public:
-  //Main functions
+  //Main function
   bool build_frame(utl::base::Data* data);
   void reset_frame();
 

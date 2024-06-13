@@ -15,7 +15,7 @@ public:
   ~UID();
 
 public:
-  //Main functions
+  //Main function
   int query_free_UID();
 
 private:

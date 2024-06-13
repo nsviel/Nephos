@@ -17,7 +17,7 @@ public:
   ~Sampler();
 
 public:
-  //Main functions
+  //Main function
   void create_sampler(vk::structure::Binding* binding);
   vk::structure::Sampler* create_sampler_obj(string name, int binding, VkDescriptorType type);
 

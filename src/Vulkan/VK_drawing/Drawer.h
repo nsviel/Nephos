@@ -19,7 +19,7 @@ public:
   ~Drawer();
 
 public:
-  //Main functions
+  //Main function
   virtual void draw_frame(){}
 
   //Draw command

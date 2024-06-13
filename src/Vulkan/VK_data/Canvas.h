@@ -17,7 +17,7 @@ public:
   ~Canvas();
 
 public:
-  //Main functions
+  //Main function
   void init();
   void clean();
 
