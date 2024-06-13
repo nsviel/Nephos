@@ -8,7 +8,7 @@ namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dat{class Image;}
 namespace utl::base{class Data;}
-namespace dat::base{class Entity;}
+namespace dyn::base{class Sensor;}
 namespace ope::image{class Converter;}
 namespace ope::normal{class Structured;}
 
@@ -24,8 +24,8 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Entity* entity);
-  void run_thread(dat::base::Entity* entity);
+  void start_thread(dyn::base::Sensor* sensor);
+  void run_thread(dyn::base::Sensor* sensor);
   void wait_thread();
 
 private:

@@ -26,18 +26,18 @@ Normal::Normal(dyn::Node* node_dynamic){
 Normal::~Normal(){}
 
 //Main function
-void Normal::start_thread(dat::base::Entity* entity){
+void Normal::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   if(thread.joinable()){
     this->thread.join();
   }
-  this->thread = std::thread(&Normal::run_thread, this, entity);
+  this->thread = std::thread(&Normal::run_thread, this, sensor);
 
   //---------------------------
 }
-void Normal::run_thread(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
+void Normal::run_thread(dyn::base::Sensor* sensor){
+  utl::base::Data* data = &sensor->data;
   //---------------------------
 
   //Compute normal
@@ -46,7 +46,8 @@ void Normal::run_thread(dat::base::Entity* entity){
   dyn_struct->operation.normal.time = ope_normal->get_time();
 
   //Make normal image
-  utl::media::Image* image = dat_image->get_or_create_image(entity, utl::media::NORMAL);
+  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::NORMAL);
+  image->timestamp = sensor->timestamp.current;
   ope_converter->convert_normal_to_image(data, image);
 
   //---------------------------

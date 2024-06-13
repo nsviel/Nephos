@@ -70,6 +70,7 @@ void Detection::wait_thread(){
 //Subfunction
 void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image){
   utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::RADIOMETRY);
+  output->name = "Radiometry";
   output->timestamp = image->timestamp;
   //---------------------------
 

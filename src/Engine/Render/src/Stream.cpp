@@ -46,7 +46,7 @@ bool Stream::check_image(utl::media::Image* utl_image){
 }
 void Stream::convert_data_into_texture(utl::media::Image* utl_image){
   static int current_UID = -1;
-  static float current_timestamp = 0;
+  static float current_timestamp = -1;
   //---------------------------
 
   bool load = (utl_image->texture_ID == -1 || current_UID != utl_image->UID);
