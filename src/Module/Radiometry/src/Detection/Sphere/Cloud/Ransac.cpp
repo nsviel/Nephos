@@ -55,9 +55,9 @@ void Ransac::reduce_search_space(dyn::base::Sensor* sensor, vector<vec3>& search
     glm::vec3& xyz = vec_xyz[i];
     float Is = sensor->buffer_ir[i];
     float distance = math::distance(xyz, pose);
-    float searche_space = diameter * lambda;
+    float searche_radius = diameter * lambda;
 
-    if(distance <= searche_space){
+    if(distance <= searche_radius){
       search_xyz.push_back(xyz);
       search_Is.push_back(Is);
     }

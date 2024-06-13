@@ -53,11 +53,12 @@ void Panel::design_panel(){
   if(entity == nullptr) return;
   //---------------------------
 
-  //If dynamic object
-  if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+  //If dynamic object have recorder
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  if(sensor && sensor->vec_recorder.size() != 0){
     gui_recorder->design_header(sensor);
   }
-  //Else, it's static object
+  //Else just exporter
   else{
     gui_exporter->design_header(entity);
   }

@@ -109,7 +109,6 @@ void Connection::create_sensor(int index){
   //Sensor initialization
   dat::base::Set* set = manage_set_parent();
   sensor->set_parent = set;
-  sensor->vec_recorder.push_back(new k4n::capture::Recorder());
   ldr_operation->ope_insertion(sensor);
   sensor->start_thread();
 
