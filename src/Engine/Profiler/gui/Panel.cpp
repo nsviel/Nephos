@@ -4,7 +4,7 @@
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace prf::gui{

@@ -3,14 +3,14 @@
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Render/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace rnd{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* opt_panel = add_panel("Option##456", ICON_FA_COG, false);
+  utl::gui::Panel* opt_panel = add_panel("Option##456", ICON_FA_GEAR, false);
   utl::gui::Panel* sha_panel = add_panel("Shader", ICON_FA_ROAD, false);
   //---------------------------
 

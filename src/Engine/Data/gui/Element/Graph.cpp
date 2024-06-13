@@ -4,7 +4,7 @@
 #include <Data/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Operation/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace dat::gui{
@@ -213,7 +213,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   flags |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
   flags |= ImGuiTreeNodeFlags_SpanFullWidth;
   flags |= (entity_selected  && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
-  std::string icon = ICON_FA_FILE_O;
+  std::string icon = ICON_FA_FILE;
   std::string name = icon + "   " + entity->name;
 
   /*if(entity_active){

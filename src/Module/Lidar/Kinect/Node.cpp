@@ -5,7 +5,7 @@
 #include <Loader/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace k4n{

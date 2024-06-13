@@ -1,7 +1,7 @@
 #include "Node.h"
 
 #include <Profiler/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace prf{

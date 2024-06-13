@@ -3,7 +3,7 @@
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace gui::tab::eng{

@@ -1,6 +1,6 @@
 #include "Git.h"
 
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace utl::element::gui{

@@ -1,7 +1,7 @@
 #include "Font.h"
 
 #include <GUI/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace gui::style{

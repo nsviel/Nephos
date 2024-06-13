@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Type/Element.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 #include <string>
 #include <list>
 

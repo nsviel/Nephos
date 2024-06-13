@@ -3,7 +3,7 @@
 #include <Utility/Base/Type/Data.h>
 #include <Utility/Base/Type/Element.h>
 #include <Utility/Base/Media/Image.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 namespace dat::base{class Glyph;}
 namespace dat::base{class Set;}

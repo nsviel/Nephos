@@ -3,7 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace ldr{

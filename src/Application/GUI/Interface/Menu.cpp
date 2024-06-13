@@ -2,7 +2,7 @@
 
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace gui::interface{
@@ -36,7 +36,7 @@ void Menu::menu_option(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  if(ImGui::BeginMenu(ICON_FA_COG, "menu_option")){
+  if(ImGui::BeginMenu(ICON_FA_GEAR, "menu_option")){
     gui_font->combo_font_gui();
     gui_font->combo_font_editor();
     ImGui::EndMenu();
@@ -74,7 +74,7 @@ void Menu::menu_git(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  if(ImGui::BeginMenu(ICON_FA_GITHUB_ALT, "menu_git")){
+  if(ImGui::BeginMenu(ICON_FA_GEAR, "menu_git")){
     gui_git->design_panel();
 
     ImGui::EndMenu();

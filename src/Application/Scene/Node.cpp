@@ -5,7 +5,7 @@
 #include <Scene/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <image/IconsFontAwesome6.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace sce{
