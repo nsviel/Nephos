@@ -22,13 +22,13 @@ public:
 
 public:
   //Main function
-  void export_ascii(utl::base::Data* data, utl::base::Pose* pose, std::string path);
-  void export_binary(utl::base::Data* data, utl::base::Pose* pose, std::string path);
+  void export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path);
+  void export_binary(utl::base::Data* data, glm::mat4 mat, std::string path);
 
   //Subfunction
   void write_header(std::ofstream& file, std::string format, utl::base::Data* data);
-  void write_data_ascii(std::ofstream& file, utl::base::Data* data, utl::base::Pose* pose);
-  void write_data_binary(std::ofstream& file, utl::base::Data* data, utl::base::Pose* pose);
+  void write_data_ascii(std::ofstream& file, utl::base::Data* data, glm::mat4& mat);
+  void write_data_binary(std::ofstream& file, utl::base::Data* data, glm::mat4& mat);
 
 private:
   int property_number = 3;

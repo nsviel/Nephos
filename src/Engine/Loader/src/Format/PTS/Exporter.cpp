@@ -18,7 +18,7 @@ Exporter::Exporter(){
 Exporter::~Exporter(){}
 
 //Main function
-void Exporter::export_ascii(utl::base::Data* data, utl::base::Pose* pose, std::string path){
+void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path){
   //---------------------------
 
   //Create file
@@ -44,7 +44,8 @@ void Exporter::export_ascii(utl::base::Data* data, utl::base::Pose* pose, std::s
     file << std::fixed;
 
     //Location
-    file << std::setprecision(precision) << xyz[i].x <<" "<< xyz[i].y <<" "<< xyz[i].z ;
+    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * mat;
+    file << std::setprecision(precision) << xyzw.x <<" "<< xyzw.y <<" "<< xyzw.z ;
 
     //Intensity
     if(data->Is.size() != 0){

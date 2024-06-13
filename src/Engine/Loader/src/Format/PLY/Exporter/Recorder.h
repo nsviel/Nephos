@@ -17,7 +17,7 @@ public:
 
 public:
   //Main function
-  void record_binary(utl::base::Data* data, utl::base::Pose* pose, std::string path);
+  void record_binary(utl::base::Data* data, glm::mat4 mat, std::string path);
 
 private:
   format::ply::Exporter* ply_exporter;

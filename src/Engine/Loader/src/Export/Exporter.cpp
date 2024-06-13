@@ -27,8 +27,8 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
   for(int i=0; i<vec_exporter.size(); i++){
     ldr::base::Exporter* exporter = vec_exporter[i];
 
-    if(data->format == exporter->format){
-      this->export_with_encoding(entity, path);
+    if(entity->data.format == exporter->format){
+      this->export_with_encoding(exporter, entity, path);
     }
   }
 
@@ -36,18 +36,20 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
 }
 
 //Subfunction
-void Exporter::export_with_encoding(dat::base::Entity* entity, std::string path){
+void Exporter::export_with_encoding(ldr::base::Exporter* exporter, dat::base::Entity* entity, std::string path){
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
+  glm::mat4 mat = (ldr_struct->exporter.transformed) ? pose->model : glm::mat4(1);
+
   switch(ldr_struct->exporter.encoding){
     case ldr::io::ASCII:{
-      exporter->export_ascii(data, pose, path);
+      exporter->export_ascii(data, mat, path);
       break;
     }
     case ldr::io::BINARY:{
-      exporter->export_binary(data, pose, path);
+      exporter->export_binary(data, mat, path);
       break;
     }
   }

@@ -18,27 +18,27 @@ Exporter::Exporter(){
 Exporter::~Exporter(){}
 
 //Main exporter functions
-void Exporter::export_ascii(utl::base::Data* data, utl::base::Pose* pose, std::string path){
+void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path){
   std::string format = "ascii";
   //---------------------------
 
   std::ofstream file(path);
 
   this->write_header(file, format, data);
-  this->write_data_ascii(file, data, pose);
+  this->write_data_ascii(file, data, mat);
 
   file.close();
 
   //---------------------------
 }
-void Exporter::export_binary(utl::base::Data* data, utl::base::Pose* pose, std::string path){
+void Exporter::export_binary(utl::base::Data* data, glm::mat4 mat, std::string path){
   std::string format = "binary_little_endian";
   //---------------------------
 
   std::ofstream file(path, std::ios::binary);
 
   this->write_header(file, format, data);
-  this->write_data_binary(file, data, pose);
+  this->write_data_binary(file, data, mat);
 
   file.close();
 
@@ -100,7 +100,7 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
 
   //---------------------------
 }
-void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, utl::base::Pose* pose){
+void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, glm::mat4& mat){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
@@ -114,7 +114,7 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, utl:
     file << std::fixed;
 
     //Location
-    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * pose->model;
+    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * mat;
     file << std::setprecision(precision) << xyzw.x <<" "<< xyzw.y <<" "<< xyzw.z <<" ";
 
     //Color
@@ -137,7 +137,7 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, utl:
 
   //---------------------------
 }
-void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, utl::base::Pose* pose){
+void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm::mat4& mat){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
@@ -160,7 +160,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, utl
       switch(vec_property[j]){
         //Location
         case format::ply::X:{
-          glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * pose->model;
+          glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * mat;
           memcpy(block_data + offset, &xyzw, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
           break;

@@ -25,8 +25,8 @@ namespace ldr::base{
 struct Exporter{
   //---------------------------
 
-  virtual void export_ascii(utl::base::Data* data, utl::base::Pose* pose, std::string path){}
-  virtual void export_binary(utl::base::Data* data, utl::base::Pose* pose, std::string path){}
+  virtual void export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path){}
+  virtual void export_binary(utl::base::Data* data, glm::mat4 mat, std::string path){}
 
   std::string format = "";
   std::vector<int> vec_encoding;
