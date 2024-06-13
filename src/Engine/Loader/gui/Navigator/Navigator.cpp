@@ -38,7 +38,12 @@ void Navigator::draw_navigator(){
 void Navigator::draw_header(){
   //---------------------------
 
+  ImGui::BeginTable("header##recorder", 2);
+  ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthStretch);
+  ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthFixed, 15.0f);
+
   //Reset current dir
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_HOUSE "##222")){
     ldr_struct->current_dir = default_dir;
   }
@@ -76,6 +81,14 @@ void Navigator::draw_header(){
     }
     ImGui::PopID();
   }
+
+  //Add folder button
+  ImGui::TableNextColumn();
+  if(ImGui::Button(ICON_FA_FOLDER_PLUS "##addfolder")){
+
+  }
+
+  ImGui::EndTable();
 
   //---------------------------
 }
