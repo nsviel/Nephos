@@ -138,8 +138,8 @@ void Image::find_data_depth(k4n::structure::Sensor* sensor){
   sensor->depth.image.width = sensor->depth.data.width;
   sensor->depth.image.height = sensor->depth.data.height;
   sensor->depth.image.format = "R8G8B8A8_SRGB";
-  sensor->depth.image.new_data = true;
   sensor->depth.image.type = utl::media::DEPTH;
+  sensor->depth.image.timestamp = sensor->depth.data.timestamp;
   dat_image->add_image(sensor, &sensor->depth.image);
 
   //---------------------------
@@ -169,11 +169,7 @@ void Image::find_data_color(k4n::structure::Sensor* sensor){
   sensor->color.image.height = sensor->color.data.height;
   sensor->color.image.format = sensor->color.data.format;
   sensor->color.image.type = utl::media::COLOR;
-  if(sensor->color.image.data.size() != sensor->color.data.size){
-    sensor->color.image.new_data = false;
-  }else{
-    sensor->color.image.new_data = true;
-  }
+  sensor->color.image.timestamp = sensor->color.data.timestamp;
   dat_image->add_image(sensor, &sensor->color.image);
 
   //---------------------------
@@ -203,8 +199,8 @@ void Image::find_data_ir(k4n::structure::Sensor* sensor){
   sensor->ir.image.width = sensor->ir.data.width;
   sensor->ir.image.height = sensor->ir.data.height;
   sensor->ir.image.format = "R8G8B8A8_SRGB";
-  sensor->ir.image.new_data = true;
   sensor->ir.image.type = utl::media::INTENSITY;
+  sensor->ir.image.timestamp = sensor->ir.data.timestamp;
   dat_image->add_image(sensor, &sensor->ir.image);
 
   //---------------------------

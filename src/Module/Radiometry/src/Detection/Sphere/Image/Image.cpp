@@ -68,7 +68,6 @@ void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
   output->height = input.rows;
   output->channel_nb = input.channels(); // Assuming result is in BGRA format
   output->format = "B8G8R8A8_SRGB";
-  output->new_data = true;
 
   // Calculate the size of the pixel data
   size_t data_size = input.cols * input.rows * input.channels();

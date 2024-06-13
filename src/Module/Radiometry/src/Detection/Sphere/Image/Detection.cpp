@@ -41,12 +41,14 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Detection::run_thread(dyn::base::Sensor* sensor){
+  static float timestamp = 0;
   //---------------------------
 
   if(sensor != nullptr){
     utl::media::Image* image = dat_image->get_image(sensor, utl::media::INTENSITY);
 
-    if(image != nullptr && image->new_data){sayHello();
+    if(image != nullptr && image->timestamp != timestamp){
+      timestamp = image->timestamp;
       this->make_shape_detection(sensor, image);
     }
   }

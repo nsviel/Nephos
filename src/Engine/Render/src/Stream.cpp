@@ -46,10 +46,12 @@ bool Stream::check_image(utl::media::Image* utl_image){
 }
 void Stream::convert_data_into_texture(utl::media::Image* utl_image){
   static int current_UID = -1;
+  static float current_timestamp = 0;
   //---------------------------
 
-  bool& update = utl_image->new_data;
-  bool load = (update && (utl_image->texture_ID == -1 || current_UID != utl_image->UID));
+  bool load = (utl_image->texture_ID == -1 || current_UID != utl_image->UID);
+  bool update = (current_timestamp != utl_image->timestamp);
+
 
   //Load texture into vulkan
   if(load){
@@ -59,7 +61,7 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image){
   //update texture data
   }else if(update){
     vk_texture->import_texture(utl_image);
-    update = false;
+    current_timestamp = utl_image->timestamp;
   }
 
   //---------------------------

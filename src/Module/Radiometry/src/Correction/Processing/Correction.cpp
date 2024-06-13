@@ -18,7 +18,7 @@ Correction::Correction(rad::Node* node_radio){
   this->rad_struct = node_correction->get_rad_struct();
   this->model_sphere = node_model->get_model_sphere();
   this->dat_image = node_data->get_dat_image();
-  
+
   //---------------------------
 }
 Correction::~Correction(){}
@@ -65,8 +65,6 @@ tic();
     }
   }
 toc_us("hey");
-
-  image->new_data = true;
 
   //---------------------------
 }
