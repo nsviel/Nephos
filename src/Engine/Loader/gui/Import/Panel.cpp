@@ -48,35 +48,11 @@ void Panel::run_panel(){
   //---------------------------
 }
 void Panel::design_panel(){
-  ImGuiTabItemFlags flag = 0;
   //---------------------------
-
-  if(goto_file_tab){
-    flag = ImGuiTabItemFlags_SetSelected;
-    this->goto_file_tab = false;
-  }
 
   this->draw_header();
   ImGui::Separator();
-
-  ImVec2 size = ImGui::GetContentRegionAvail();
-  if(ImGui::BeginTabBar("Panel_tab##4567")){
-    //File manager loader
-    ImGui::SetNextItemWidth(size.x/2);
-    if(ImGui::BeginTabItem("File##50", NULL, flag)){
-      this->draw_navigator();
-      ImGui::EndTabItem();
-    }
-
-    //Bookmark loader
-    ImGui::SetNextItemWidth(size.x/2);
-    if(ImGui::BeginTabItem("Bookmark##50", NULL)){
-      this->draw_bookmark_tab();
-      ImGui::EndTabItem();
-    }
-
-    ImGui::EndTabBar();
-  }
+  this->draw_body();
 
   //---------------------------
 }
@@ -116,6 +92,38 @@ void Panel::draw_header(){
   // Center new
   ImGui::SameLine();
   ImGui::Checkbox("Centered##222", &ldr_struct->importer.center);
+
+  //---------------------------
+}
+void Panel::draw_body(){
+  //---------------------------
+
+  //Flag to force navigator tab in case of bookmark folder
+  ImGuiTabItemFlags flag = 0;
+  if(goto_file_tab){
+    flag = ImGuiTabItemFlags_SetSelected;
+    this->goto_file_tab = false;
+  }
+
+  //Either navigator or bookmark tab
+  ImVec2 size = ImGui::GetContentRegionAvail();
+  if(ImGui::BeginTabBar("Panel_tab##4567")){
+    //File manager loader
+    ImGui::SetNextItemWidth(size.x/2);
+    if(ImGui::BeginTabItem("File##50", NULL, flag)){
+      this->draw_navigator();
+      ImGui::EndTabItem();
+    }
+
+    //Bookmark loader
+    ImGui::SetNextItemWidth(size.x/2);
+    if(ImGui::BeginTabItem("Bookmark##50", NULL)){
+      this->draw_bookmark_tab();
+      ImGui::EndTabItem();
+    }
+
+    ImGui::EndTabBar();
+  }
 
   //---------------------------
 }

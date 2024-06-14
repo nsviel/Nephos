@@ -2,6 +2,7 @@
 
 #include <Loader/src/Import/Structure.h>
 #include <Loader/src/Export/Structure.h>
+#include <Loader/src/Transformation/Structure.h>
 #include <Loader/src/Base/Exporter.h>
 #include <string>
 
@@ -26,6 +27,7 @@ struct Structure{
   //Specific structure
   ldr::importer::Structure importer;
   ldr::exporter::Structure exporter;
+  ldr::transformation::Structure transformation;
 
   //---------------------------
 };

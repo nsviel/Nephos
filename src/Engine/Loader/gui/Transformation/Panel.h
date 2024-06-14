@@ -7,6 +7,7 @@
 
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
+namespace utl::base{class Element;}
 
 
 namespace ldr::gui::transformation{
@@ -25,6 +26,8 @@ public:
 
   //Subfunction
   void draw_header();
+  void display_path(utl::base::Element* element);
+  void item_filtering(std::vector<std::string>& vec_path);
 
 private:
   ldr::Structure* ldr_struct;

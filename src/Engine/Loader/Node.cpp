@@ -60,6 +60,7 @@ void Node::gui(){
 
   gui_import->run_panel();
   gui_export->run_panel();
+  gui_transformation->run_panel();
 
   //---------------------------
 }

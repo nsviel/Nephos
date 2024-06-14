@@ -6,3 +6,4 @@
 #include <Loader/src/Bookmark/Namespace.h>
 #include <Loader/src/Import/Namespace.h>
 #include <Loader/src/Export/Namespace.h>
+#include <Loader/src/Transformation/Namespace.h>

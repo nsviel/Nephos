@@ -31,6 +31,7 @@ public:
 
   //Subfunction
   void draw_header();
+  void draw_body();
   void draw_bookmark_tab();
 
   //Operation function
