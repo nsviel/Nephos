@@ -16,7 +16,7 @@ public:
 
 public:
   //Ransac fitting
-  void ransac_sphere(const std::vector<glm::vec3>& xyz, vector<vec3>& Nxyz, glm::vec3& center, float radius);
+  void ransac_sphere(const std::vector<glm::vec3>& xyz, const std::vector<glm::vec3>& Nxyz, glm::vec3& center, float radius);
 
   inline void set_num_iteration(int value){this->nb_iter = value;}
   inline void set_num_sample(int value){this->nb_sample = value;}
@@ -25,7 +25,7 @@ public:
 
 private:
   void random_sample(const std::vector<glm::vec3>& xyz);
-  void test_consensus(const std::vector<glm::vec3>& xyz, float radius);
+  void test_consensus(const std::vector<glm::vec3>& xyz, const std::vector<glm::vec3>& Nxyz, float radius);
   void evaluate(glm::vec3& best_center);
 
 private:

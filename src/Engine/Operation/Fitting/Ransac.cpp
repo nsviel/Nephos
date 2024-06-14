@@ -20,7 +20,7 @@ Ransac::Ransac(){
 Ransac::~Ransac(){}
 
 //Ransac fitting
-void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, vector<vec3>& Nxyz, glm::vec3& best_center, float radius){
+void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, const std::vector<glm::vec3>& Nxyz, glm::vec3& best_center, float radius){
   if(xyz.size() == 0) return;
   //------------------------
 
@@ -34,7 +34,7 @@ void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, vector<vec3>& Nxyz
     this->random_sample(xyz);
 
     // Test sample point consensus
-    this->test_consensus(xyz, radius);
+    this->test_consensus(xyz, Nxyz, radius);
 
     // Update best model if current model has more inliers
     this->evaluate(best_center);
@@ -60,7 +60,7 @@ void Ransac::random_sample(const std::vector<glm::vec3>& xyz){
 
   //------------------------
 }
-void Ransac::test_consensus(const std::vector<glm::vec3>& xyz, float known_radius){
+void Ransac::test_consensus(const std::vector<glm::vec3>& xyz, const std::vector<glm::vec3>& Nxyz, float known_radius){
   this->nb_inlier = 0;
   this->score = 0;
   this->center = glm::vec3(0, 0, 0);
