@@ -66,7 +66,7 @@ void Panel::display_loader(utl::base::Element* element){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Load##transformation", ImVec2(width / 2, 0))){
-    std::string path_file = utl::path::reconstruct_path(ldr_struct->transformation.folder, ldr_struct->transformation.name, ldr_struct->transformation.format);
+    std::string path_file = utl::path::reconstruct_path(ldr_struct->transformation.path.folder, ldr_struct->transformation.path.name, ldr_struct->transformation.path.format);
     ldr_transformation->load_transformation(element, path_file);
   }
   ImGui::PopStyleColor(2);
@@ -74,7 +74,7 @@ void Panel::display_loader(utl::base::Element* element){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Save##transformation", ImVec2(width / 2, 0))){
-    std::string path_file = utl::path::reconstruct_path(ldr_struct->transformation.folder, ldr_struct->transformation.name, ldr_struct->transformation.format);
+    std::string path_file = utl::path::reconstruct_path(ldr_struct->transformation.path.folder, ldr_struct->transformation.path.name, ldr_struct->transformation.path.format);
     ldr_transformation->save_transformation(element, path_file);
   }
   ImGui::PopStyleColor(2);

@@ -5,6 +5,7 @@
 
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
+namespace utl::base{class Element;}
 
 
 namespace ldr::io{
