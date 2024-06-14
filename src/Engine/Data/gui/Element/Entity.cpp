@@ -84,7 +84,7 @@ void Entity::entity_button(dat::base::Entity* entity){
 
   //Centered
   ImGui::SameLine();
-  if(entity->is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
+  if(entity->pose.movable && ImGui::Button("C##399", ImVec2(20, 0))){
     utl::base::Pose* pose = &entity->pose;;
     ope_operation->center_object(entity, pose->min);
   }

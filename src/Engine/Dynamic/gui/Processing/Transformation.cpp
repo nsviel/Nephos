@@ -24,7 +24,6 @@ void Transformation::design_transformation(utl::base::Element* element){
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Transformation##dynamic")){
     this->draw_operation(element);
-    this->draw_loader(element);
     this->draw_matrix(element);
   }
 
@@ -47,34 +46,6 @@ void Transformation::draw_operation(utl::base::Element* element){
   if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation", ImVec2(20, 0))){
     ope_operation->make_rotation_X_90d(element, 1);
   }
-
-  //---------------------------
-}
-void Transformation::draw_loader(utl::base::Element* element){
-  //---------------------------
-
-  if(ImGui::Button("Load##transfomatrix", ImVec2(70, 0))){
-    //utl::transformation::save_transformation_to_file(pose->model, pose->path);
-  }
-  ImGui::SameLine();
-  if(ImGui::Button("Save##transfomatrix", ImVec2(70, 0))){
-    //utl::transformation::save_transformation_to_file(pose->model, pose->path);
-  }
-
-  //Path
-  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  ImGui::BeginTable("transformation_info##dynamic", 2);
-
-  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Path"); ImGui::TableNextColumn();
-
-    utl::base::Data* data = &entity->data;
-    string path = (data->path.transformation == "") ? "(not defined)" : data->path.transformation;
-    ImGui::TextColored(color, "%s", path.c_str());
-  }
-
-  ImGui::EndTable();
 
   //---------------------------
 }

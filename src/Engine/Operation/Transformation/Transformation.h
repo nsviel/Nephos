@@ -2,7 +2,6 @@
 
 #include <glm/glm.hpp>
 
-namespace dat::base{class Entity;}
 namespace utl::base{class Pose;}
 
 
@@ -17,17 +16,17 @@ public:
 
 public:
   // Translation
-  void make_translation(dat::base::Entity* entity, glm::vec3 trans);
-  void make_translation(dat::base::Entity* entity, glm::mat4 translation);
+  void make_translation(utl::base::Pose* pose, glm::vec3 trans);
+  void make_translation(utl::base::Pose* pose, glm::mat4 translation);
 
   // Rotation
-  void make_rotation(dat::base::Entity* entity, glm::vec3 COM, glm::vec3 degree);
-  void make_rotation(dat::base::Entity* entity, glm::vec3 degree);
-  void make_rotation(dat::base::Entity* entity, glm::vec3 COM, glm::mat4 rotation);
-  void make_rotation_axe_X(dat::base::Entity* entity, float degree);
+  void make_rotation(utl::base::Pose* pose, glm::vec3 COM, glm::vec3 degree);
+  void make_rotation(utl::base::Pose* pose, glm::vec3 degree);
+  void make_rotation(utl::base::Pose* pose, glm::vec3 COM, glm::mat4 rotation);
+  void make_rotation_axe_X(utl::base::Pose* pose, float degree);
 
   //Scaling
-  void make_scaling(dat::base::Entity* entity, float scale);
+  void make_scaling(utl::base::Pose* pose, float scale);
 
   //Transformation
   void make_transformation(utl::base::Pose* pose, glm::vec3 COM, glm::mat4 translation, glm::mat4 rotation);

@@ -24,7 +24,6 @@ struct Entity : public utl::base::Element{
   //Info
   bool is_suppressible = true;
   bool is_permanent = false;
-  bool is_movable = true;
   bool is_selectable = true;
   std::string icon = ICON_FA_FILE;
 

@@ -89,7 +89,7 @@ void Operation::ope_transformation(dat::base::Entity* entity){
   ldr_transformation->load_transformation(entity);
 
   //Scaling
-  ope_transform->make_scaling(entity, ldr_struct->importer.scaling);
+  ope_transform->make_scaling(&entity->pose, ldr_struct->importer.scaling);
 
   //Centering
   if(ldr_struct->importer.center){
