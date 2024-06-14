@@ -74,7 +74,8 @@ void Panel::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
 
   //If dynamic object
-  if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  if(sensor && sensor->vec_recorder.size() != 0){
     gui_recorder->item_filtering(vec_path);
   }
   //Else, it's static object
