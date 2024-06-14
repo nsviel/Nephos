@@ -5,6 +5,7 @@
 
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
+namespace ldr::io{class Transformation;}
 namespace dat{class Entity;}
 namespace dat{class Graph;}
 namespace dat{class Set;}
@@ -39,6 +40,7 @@ public:
 
 private:
   ldr::Structure* ldr_struct;
+  ldr::io::Transformation* ldr_transformation;
   dat::Entity* dat_entity;
   dat::Graph* dat_graph;
   dat::Set* dat_set;

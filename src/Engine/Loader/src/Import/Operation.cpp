@@ -15,6 +15,7 @@ Operation::Operation(ldr::Node* node_loader){
   dat::Node* node_data = node_loader->get_node_data();
 
   this->ldr_struct = node_loader->get_ldr_struct();
+  this->ldr_transformation = node_loader->get_ldr_transformation();
   this->dat_entity = node_data->get_dat_entity();
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
@@ -85,12 +86,7 @@ void Operation::ope_transformation(dat::base::Entity* entity){
   //---------------------------
 
   //Transformation
-  std::string& path = entity->data.path.transformation;
-
-
-  glm::mat4 mat = utl::transformation::find_transformation_from_file(path);
-  entity->pose.model = mat;
-  entity->pose.model_init = mat;
+  ldr_transformation->load_transformation(entity);
 
   //Scaling
   ope_transform->make_scaling(entity, ldr_struct->importer.scaling);

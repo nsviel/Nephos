@@ -6,6 +6,7 @@
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace utl::base{class Element;}
+namespace dat::base{class Entity;}
 
 
 namespace ldr::io{
@@ -19,6 +20,7 @@ public:
 
 public:
   //Main function
+  void load_transformation(dat::base::Entity* entity);
   void load_transformation(utl::base::Element* element, std::string path);
   void save_transformation(utl::base::Element* element, std::string path);
 
