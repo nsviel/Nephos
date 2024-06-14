@@ -26,7 +26,8 @@ public:
   //Subfunctions
   void option_color();
   void option_wheel();
-
+  void visualization_mode();
+  
 private:
   dat::gui::Control* gui_control;
   dat::gui::Wheel* gui_wheel;
