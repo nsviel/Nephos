@@ -2,12 +2,9 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace dat{class Selection;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::cloud{class Operation;}
-namespace ope{class Operation;}
-namespace ope::normal{class KNN;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
@@ -24,8 +21,9 @@ public:
 public:
   //Main function
   void design_colorization(dat::base::Set* set);
+  void update_entity(dat::base::Entity* entity);
 
-  //Subfunction
+  //Mode function
   void mode_rgb(dat::base::Entity* entity);
   void mode_unicolor(dat::base::Entity* entity);
   void mode_intensity(dat::base::Entity* entity);
@@ -33,14 +31,15 @@ public:
   void mode_normal(dat::base::Entity* entity);
   void mode_heatmap(dat::base::Entity* entity);
   void mode_structure(dat::base::Entity* entity);
-  void draw_option(dat::base::Entity* entity);
+
+  //Option function
+  void option_heatmap(dat::base::Entity* entity);
+  void option_intensity(dat::base::Entity* entity);
+  void option_height(dat::base::Entity* entity);
 
 private:
-  dat::Selection* dat_selection;
   dyn::cloud::Operation* dyn_operation;
   dyn::Structure* dyn_struct;
-  ope::Operation* ope_operation;
-  ope::normal::KNN* ope_normal;
 
   bool update_color = false;
 };

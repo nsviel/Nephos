@@ -3,7 +3,6 @@
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
-#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace dyn::gui{
@@ -12,13 +11,8 @@ namespace dyn::gui{
 Colorization::Colorization(dyn::Node* node_dynamic){
   //---------------------------
 
-  dat::Node* node_data = node_dynamic->get_node_data();
-
-  this->dat_selection = node_data->get_dat_selection();
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dyn_operation = node_dynamic->get_ope_cloud();
-  this->ope_operation = new ope::Operation();
-  this->ope_normal = new ope::normal::KNN();
 
   //---------------------------
 }
@@ -58,13 +52,29 @@ void Colorization::design_colorization(dat::base::Set* set){
 
     ImGui::EndTable();
 
-    this->draw_option(entity);
+    ImGui::Separator();
+    this->option_heatmap(entity);
+    this->option_intensity(entity);
+    this->option_height(entity);
+
+    this->update_entity(entity);
+  }
+
+  //---------------------------
+}
+void Colorization::update_entity(dat::base::Entity* entity){
+  //---------------------------
+
+  if(update_color){
+    dyn_operation->colorize_object(entity);
+    //dyn_operation->update_object(entity);
+    this->update_color = false;
   }
 
   //---------------------------
 }
 
-//Subfunction
+//Mode function
 void Colorization::mode_rgb(dat::base::Entity* entity){
   //---------------------------
 
@@ -108,7 +118,7 @@ void Colorization::mode_intensity_inv(dat::base::Entity* entity){
 
   bool condition = (entity->data.Is.size() == 0);
   if(condition) ImGui::BeginDisabled();
-  if(ImGui::RadioButton("I##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY)){
+  if(ImGui::RadioButton("I inv##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_INV)){
     this->update_color = true;
   }
   if(condition) ImGui::EndDisabled();
@@ -145,57 +155,54 @@ void Colorization::mode_structure(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorization::draw_option(dat::base::Entity* entity){
+
+//Option function
+void Colorization::option_heatmap(dat::base::Entity* entity){
+  if(dyn_struct->colorization.color_mode != ope::color::HEATMAP) return;
+  //---------------------------
+
+  bool condition = (entity->data.Is.size() == 0);
+  if(condition) ImGui::BeginDisabled();
+  if(ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY)){
+    update_color = true;
+  }
+  if(condition) ImGui::EndDisabled();
+  ImGui::SameLine();
+  if(ImGui::RadioButton("H##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::HEIGHT)){
+    update_color = true;
+  }
+  ImGui::SameLine();
+  if(ImGui::RadioButton("R##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::RANGE)){
+    update_color = true;
+  }
+
+  //---------------------------
+}
+void Colorization::option_intensity(dat::base::Entity* entity){
+  int& mode = dyn_struct->colorization.color_mode;
+  int& heatmap = dyn_struct->colorization.heatmap_mode;
   //---------------------------
 
   //Intensity cursor
-  if(dyn_struct->colorization.color_mode == ope::color::INTENSITY){
+  if(mode == ope::color::INTENSITY || mode == ope::color::INTENSITY_INV || mode == ope::color::HEATMAP && heatmap == ope::color::heatmap::INTENSITY){
     ImGui::Separator();
     ImGui::SetNextItemWidth(100);
     ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 10000);
   }
 
-  //Heatmap mode
-  if(dyn_struct->colorization.color_mode == ope::color::HEATMAP){
-    ImGui::Separator();
-    bool condition = (entity->data.Is.size() == 0);
-    if(condition) ImGui::BeginDisabled();
-    if(ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY)){
-      update_color = true;
-    }
-    if(condition) ImGui::EndDisabled();
-    ImGui::SameLine();
-    if(ImGui::RadioButton("H##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::HEIGHT)){
-      update_color = true;
-    }
-    ImGui::SameLine();
-    if(ImGui::RadioButton("R##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::RANGE)){
-      update_color = true;
-    }
+  //---------------------------
+}
+void Colorization::option_height(dat::base::Entity* entity){
+  if(dyn_struct->colorization.heatmap_mode != ope::color::heatmap::HEIGHT) return;
+  //---------------------------
 
-    //Intensity heatmap
-    if(dyn_struct->colorization.heatmap_mode == ope::color::heatmap::INTENSITY){
-      ImGui::SetNextItemWidth(100);
-      ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 10000);
-    }
-
-    //Height heatmap
-    if(dyn_struct->colorization.heatmap_mode == ope::color::heatmap::HEIGHT){
-      float min = -10;
-      float max = 10;
-      ImGui::SetNextItemWidth(125);
-      ImGui::DragFloatRange2("Z##321", &dyn_struct->colorization.range_height.x, &dyn_struct->colorization.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
-    }
-  }
-
-  if(update_color){
-    dyn_operation->colorize_object(entity);
-    //dyn_operation->update_object(entity);
-  }
+  //Height heatmap
+  float min = -10;
+  float max = 10;
+  ImGui::SetNextItemWidth(125);
+  ImGui::DragFloatRange2("Z##321", &dyn_struct->colorization.range_height.x, &dyn_struct->colorization.range_height.y, 0.1f, min, max, "%.1f", "%.1f");
 
   //---------------------------
 }
-
-
 
 }

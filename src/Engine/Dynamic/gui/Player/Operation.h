@@ -29,7 +29,6 @@ public:
   //Subfunction
   void draw_op_info(utl::base::Element* element);
   void draw_ope_transformation(utl::base::Element* element);
-  void draw_ope_colorization(dat::base::Set* set);
   void draw_ope_normal(dat::base::Set* set);
 
 private:
