@@ -32,7 +32,7 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
 
   //Data : xyz (R) (rgb) (nxnynz)
   std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<glm::vec3>& rgb = data->rgb;
+  std::vector<glm::vec3>& rgb = rgba ? data->rgba : data->rgb;
   std::vector<glm::vec3>& N = data->Nxyz;
   std::vector<float>& Is = data->Is;
 

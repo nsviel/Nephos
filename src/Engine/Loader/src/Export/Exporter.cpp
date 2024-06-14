@@ -51,6 +51,7 @@ void Exporter::export_with_encoding(ldr::base::Exporter* exporter, dat::base::En
   //---------------------------
 
   glm::mat4 mat = (ldr_struct->exporter.transformed) ? pose->model : glm::mat4(1);
+  exporter->rgba = ldr_struct->exporter.current_colorization;
 
   switch(ldr_struct->exporter.encoding){
     case ldr::io::ASCII:{
