@@ -7,6 +7,7 @@ namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::cloud{class Operation;}
 namespace dyn::gui{class Colorization;}
+namespace dyn::gui{class Transformation;}
 namespace ope{class Operation;}
 namespace ope::normal{class KNN;}
 namespace dat::base{class Set;}
@@ -28,7 +29,6 @@ public:
 
   //Subfunction
   void draw_op_info(utl::base::Element* element);
-  void draw_ope_transformation(utl::base::Element* element);
   void draw_ope_normal(dat::base::Set* set);
 
 private:
@@ -36,6 +36,7 @@ private:
   dyn::cloud::Operation* dyn_operation;
   dyn::Structure* dyn_struct;
   dyn::gui::Colorization* dyn_colorization;
+  dyn::gui::Transformation* dyn_transformation;
   ope::Operation* ope_operation;
   ope::normal::KNN* ope_normal;
 };

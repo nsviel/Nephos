@@ -18,6 +18,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dyn_operation = node_dynamic->get_ope_cloud();
   this->dyn_colorization = new dyn::gui::Colorization(node_dynamic);
+  this->dyn_transformation = new dyn::gui::Transformation(node_dynamic);
   this->ope_operation = new ope::Operation();
   this->ope_normal = new ope::normal::KNN();
 
@@ -33,7 +34,7 @@ void Operation::design_operation(){
 
   ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
   this->draw_op_info(element);
-  this->draw_ope_transformation(element);
+  dyn_transformation->design_transformation(element);
 
   dat::base::Set* set = dat_selection->get_selected_set();
   dyn_colorization->design_colorization(set);
@@ -99,63 +100,6 @@ void Operation::draw_op_info(utl::base::Element* element){
 
   }
 */
-  //---------------------------
-}
-void Operation::draw_ope_transformation(utl::base::Element* element){
-  utl::base::Pose* pose = &element->pose;
-  //---------------------------
-
-  ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
-  if(ImGui::CollapsingHeader("Transformation##dynamic")){
-
-    //Button
-    if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
-      ope_operation->center_object(element);
-    }
-    ImGui::SameLine();
-    if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
-      ope_operation->make_rotation_X_90d(element, 1);
-    }
-    ImGui::SameLine();
-    if(ImGui::Button("Save##transfomatrix", ImVec2(70, 0))){
-      //utl::transformation::save_transformation_to_file(pose->model, pose->path);
-    }
-    ImGui::SameLine();
-    if(ImGui::Button("Identity##transfomatrix", ImVec2(70, 0))){
-      utl::transformation::make_transformation_identity(pose->model);
-    }
-
-    ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-    ImGui::BeginTable("transformation_info##dynamic", 2);
-
-    //Path transfo
-    if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Path"); ImGui::TableNextColumn();
-
-      utl::base::Data* data = &entity->data;
-      string path = (data->path.transformation == "") ? "(not defined)" : data->path.transformation;
-      ImGui::TextColored(color, "%s", path.c_str());
-    }
-
-    ImGui::EndTable();
-
-    //Model matrix
-    ImVec2 width = ImGui::GetContentRegionAvail();
-    mat4& model = pose->model;
-    ImGui::Columns(4, "ModelMat");
-    for(int i=0; i<4; i++){
-      ImGui::Separator();
-      for(int j=0;j<4;j++){
-        ImGui::Text("%.3f", model[i][j]);
-        ImGui::NextColumn();
-      }
-    }
-    ImGui::Separator();
-    ImGui::Columns(1);
-
-  }
-
   //---------------------------
 }
 void Operation::draw_ope_normal(dat::base::Set* set){
