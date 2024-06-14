@@ -1,9 +1,7 @@
 #include "Transformation.h"
 
 #include <Dynamic/Namespace.h>
-#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
-#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace dyn::gui{
@@ -38,16 +36,16 @@ void Transformation::draw_operation(utl::base::Element* element){
   utl::base::Pose* pose = &element->pose;
   //---------------------------
 
+  if(ImGui::Button("R##transfomatrix", ImVec2(20, 0))){
+    utl::transformation::make_transformation_identity(pose->model);
+  }
+  ImGui::SameLine();
   if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
     ope_operation->center_object(element);
   }
   ImGui::SameLine();
-  if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation")){
+  if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation", ImVec2(20, 0))){
     ope_operation->make_rotation_X_90d(element, 1);
-  }
-  ImGui::SameLine();
-  if(ImGui::Button("Identity##transfomatrix", ImVec2(70, 0))){
-    utl::transformation::make_transformation_identity(pose->model);
   }
 
   //---------------------------
@@ -55,6 +53,10 @@ void Transformation::draw_operation(utl::base::Element* element){
 void Transformation::draw_loader(utl::base::Element* element){
   //---------------------------
 
+  if(ImGui::Button("Load##transfomatrix", ImVec2(70, 0))){
+    //utl::transformation::save_transformation_to_file(pose->model, pose->path);
+  }
+  ImGui::SameLine();
   if(ImGui::Button("Save##transfomatrix", ImVec2(70, 0))){
     //utl::transformation::save_transformation_to_file(pose->model, pose->path);
   }
