@@ -53,11 +53,15 @@ void Transformation::update_path(utl::base::Element* element){
   if(entity == nullptr) return;
   //---------------------------
 
+  static dat::base::Entity* old_entity = nullptr;
+  if(old_entity != nullptr && entity->UID == old_entity->UID) return;
+
   std::string& path = entity->data.path.transformation;
   if(path != ""){
     ldr_struct->transformation.path.folder = utl::path::get_dir_from_path(path);
     ldr_struct->transformation.path.name = utl::path::get_name_from_path(path);
     ldr_struct->transformation.path.format = utl::path::get_format_from_path(path);
+    old_entity = entity;
   }
 
   //---------------------------

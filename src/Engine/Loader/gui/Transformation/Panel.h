@@ -32,7 +32,8 @@ public:
   void display_format(utl::base::Element* element);
   void display_matrix(utl::base::Element* element);
   void item_filtering(std::vector<std::string>& vec_path);
-
+  void item_operation();
+  
 private:
   ldr::Structure* ldr_struct;
   ldr::io::Transformation* ldr_transformation;
