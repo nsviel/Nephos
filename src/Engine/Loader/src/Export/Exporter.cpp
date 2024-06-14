@@ -36,6 +36,15 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
 }
 
 //Subfunction
+void Exporter::init_path(){
+  //---------------------------
+
+  ldr_struct->exporter.path.base = utl::path::get_current_parent_path_abs();
+  ldr_struct->exporter.path.folder = utl::path::get_current_parent_path_abs();
+  ldr_struct->exporter.path.format = "ply";
+
+  //---------------------------
+}
 void Exporter::export_with_encoding(ldr::base::Exporter* exporter, dat::base::Entity* entity, std::string path){
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;

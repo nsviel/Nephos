@@ -11,6 +11,7 @@ namespace ldr::io{
 Importer::Importer(ldr::Node* node_loader){
   //---------------------------
 
+  this->ldr_struct = node_loader->get_ldr_struct();
   this->ldr_operation = node_loader->get_ldr_import_ope();
 
   this->insert_importer(new format::ply::Importer());
@@ -86,6 +87,15 @@ void Importer::load_object(utl::base::Path path){
 }
 
 //Subfunction
+void Importer::init_path(){
+  //---------------------------
+
+  ldr_struct->importer.path.base = utl::path::get_current_parent_path_abs();
+  ldr_struct->importer.path.folder = utl::path::get_current_parent_path_abs();
+  ldr_struct->importer.path.format = "ply";
+
+  //---------------------------
+}
 void Importer::insert_importer(ldr::base::Importer* importer){
   //---------------------------
 

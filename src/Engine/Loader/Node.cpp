@@ -41,6 +41,9 @@ void Node::init(){
   //---------------------------
 
   ldr_bookmark->init();
+  ldr_importer->init_path();
+  ldr_exporter->init_path();
+  ldr_transformation->init_path();
 
   //---------------------------
 }

@@ -12,6 +12,7 @@ namespace utl::base{class Element;}
 namespace utl::base{class Path;}
 namespace utl::base{class Thread;}
 namespace ldr{class Node;}
+namespace ldr{class Structure;}
 namespace ldr::importer{class Operation;}
 namespace ldr::base{class Importer;}
 namespace ldr::base{class Importer;}
@@ -34,6 +35,7 @@ public:
   void load_object(utl::base::Path file_path);
 
   //Subfunction
+  void init_path();
   void insert_importer(ldr::base::Importer* importer);
   bool check_path(std::string path);
   bool is_format_supported(std::string format);
@@ -41,6 +43,7 @@ public:
   utl::base::Element* import_from_path(utl::base::Path path);
 
 private:
+  ldr::Structure* ldr_struct;
   ldr::importer::Operation* ldr_operation;
 
   std::vector<ldr::base::Importer*> vec_importer;

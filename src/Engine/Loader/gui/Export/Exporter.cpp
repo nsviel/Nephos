@@ -218,6 +218,7 @@ void Exporter::item_operation(){
   data->path.directory = ldr_struct->exporter.path.folder;
   data->path.data = utl::path::reconstruct_path(data->path.directory, data->name, data->format);
 
+say(data->path.data);
   ldr_exporter->export_entity(entity, data->path.data);
 
   //---------------------------

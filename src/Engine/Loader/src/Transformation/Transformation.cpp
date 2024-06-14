@@ -48,6 +48,15 @@ void Transformation::save_transformation(utl::base::Element* element, std::strin
 }
 
 //Subfunction
+void Transformation::init_path(){
+  //---------------------------
+
+  ldr_struct->transformation.path.base = utl::path::get_current_parent_path_abs();
+  ldr_struct->transformation.path.folder = utl::path::get_current_parent_path_abs();
+  ldr_struct->transformation.path.format = "json";
+
+  //---------------------------
+}
 void Transformation::update_path(utl::base::Element* element){
   dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
   if(entity == nullptr) return;

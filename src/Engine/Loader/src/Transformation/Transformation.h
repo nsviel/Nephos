@@ -25,6 +25,7 @@ public:
   void save_transformation(utl::base::Element* element, std::string path);
 
   //Subfunction
+  void init_path();
   void update_path(utl::base::Element* element);
   std::vector<std::string> get_supported_format();
 
