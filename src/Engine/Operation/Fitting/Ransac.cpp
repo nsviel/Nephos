@@ -30,11 +30,13 @@ void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, const std::vector<
 
   // Perform RANSAC
   for(int i=0; i<nb_iter; ++i){
+    this->reset_variable();
+    
     // Randomly select three points
-    this->random_sample(xyz);
+    this->random_sample(xyz, Nxyz);
 
     // Test sample point consensus
-    this->test_consensus(xyz, Nxyz, radius);
+    this->test_consensus(radius);
 
     // Update best model if current model has more inliers
     this->evaluate(best_center);
@@ -44,9 +46,25 @@ void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, const std::vector<
 }
 
 //Subfunction
-void Ransac::random_sample(const std::vector<glm::vec3>& xyz){
+void Ransac::reset_variable(){
+  //------------------------
+
   this->sample_xyz.clear();
+  this->sample_Nxyz.clear();
+
   this->sample_xyz.reserve(nb_sample);
+  this->sample_Nxyz.reserve(nb_sample);
+
+  this->nb_inlier = 0;
+  this->score = 0;
+  this->center = glm::vec3(0, 0, 0);
+  this->radius = 0;
+
+  //------------------------
+}
+void Ransac::random_sample(const std::vector<glm::vec3>& xyz, const std::vector<glm::vec3>& Nxyz){
+  this->sample_xyz.clear(); this->sample_xyz.reserve(nb_sample);
+  this->sample_Nxyz.clear(); this->sample_Nxyz.reserve(nb_sample);
   //------------------------
 
   std::random_device rd;
@@ -56,15 +74,12 @@ void Ransac::random_sample(const std::vector<glm::vec3>& xyz){
   for(int i=0; i<nb_sample; ++i){
     int random_index = dis(gen);
     this->sample_xyz.push_back(xyz[random_index]);
+    this->sample_Nxyz.push_back(Nxyz[random_index]);
   }
 
   //------------------------
 }
-void Ransac::test_consensus(const std::vector<glm::vec3>& xyz, const std::vector<glm::vec3>& Nxyz, float known_radius){
-  this->nb_inlier = 0;
-  this->score = 0;
-  this->center = glm::vec3(0, 0, 0);
-  this->radius = 0;
+void Ransac::test_consensus(float known_radius){
   //------------------------
 
   //Fit sphere on sample points
@@ -76,12 +91,20 @@ void Ransac::test_consensus(const std::vector<glm::vec3>& xyz, const std::vector
   if(distance_to_radius > threshold_radius) return;
 
   // Count inliers
-  for(const auto& point : xyz){
-    float distance_to_sphere = abs(glm::distance(point, center) - radius);
+  for(int i=0; i<sample_xyz.size(); i++){
+    glm::vec3& xyz = sample_xyz[i];
+    glm::vec3& Nxyz = sample_Nxyz[i];
 
-    if(distance_to_sphere < threshold_sphere){
+    //Compare pre-calculated normal with sample one
+    glm::vec3 ideal_Nxyz = glm::normalize(xyz - center);
+    bool same_direction = math::normal_same_direction(Nxyz, ideal_Nxyz);
+    float angle = math::calculate_angle(Nxyz, ideal_Nxyz);
+
+    //Compute and compare distance of the current sample point
+    float distance_to_sphere = abs(glm::distance(xyz, center) - radius);
+    if(same_direction && distance_to_sphere < threshold_sphere){
       this->nb_inlier++;
-      this->score += distance_to_sphere + distance_to_radius;
+      this->score += distance_to_sphere + distance_to_radius + angle;
     }
   }
 

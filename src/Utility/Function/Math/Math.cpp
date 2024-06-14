@@ -308,6 +308,25 @@ void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point){
 
   //---------------------------
 }
+float calculate_angle(const glm::vec3& v1, const glm::vec3& v2){
+  //---------------------------
+
+  float dotProduct = glm::dot(v1, v2);
+  float angle = glm::acos(glm::clamp(dotProduct, -1.0f, 1.0f)); // Clamp to handle precision errors
+
+  //---------------------------
+  return glm::degrees(angle);
+}
+
+// Function to determine if two vectors are pointing in the same direction
+bool normal_same_direction(const glm::vec3& v1, const glm::vec3& v2){
+  //---------------------------
+
+  glm::vec3 crossProduct = glm::cross(v1, v2);
+
+  //---------------------------
+  return glm::length(crossProduct) < 1e-6; // If the cross product is nearly zero, vectors are parallel
+}
 
 //Conversion
 float degree_to_radian(float degree){

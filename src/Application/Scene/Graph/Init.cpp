@@ -58,13 +58,13 @@ void Init::load_entity(){
 
   //Create playback list
   //ldr_loader->load_object(versaille_0);
-  ldr_loader->load_object(versaille_2);
+  //ldr_loader->load_object(versaille_2);
   //ldr_loader->load_object(cerfav);
   //ldr_loader->load_object(dragon);
   //ldr_loader->load_object(sphere);
   //ldr_loader->load_set(pcap);
   //ldr_loader->load_object(mire);
-  //ldr_loader->load_object(sphere);
+  ldr_loader->load_object(sphere);
 
   //----------------------------
 }
