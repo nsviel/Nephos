@@ -30,7 +30,7 @@ struct Exporter{
 
   std::string format = "";
   std::vector<int> vec_encoding;
-  bool rgba = false;
+  bool use_rgba = false;
 
   //---------------------------
 };

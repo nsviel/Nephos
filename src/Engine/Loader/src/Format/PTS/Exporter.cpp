@@ -32,7 +32,8 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
 
   //Data : xyz (R) (rgb) (nxnynz)
   std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<glm::vec3>& rgb = rgba ? data->rgba : data->rgb;
+  std::vector<glm::vec3>& rgb = data->rgb;
+  std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& N = data->Nxyz;
   std::vector<float>& Is = data->Is;
 
@@ -54,7 +55,8 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
 
     //Color
     if(data->rgb.size() != 0){
-      file << std::setprecision(0) <<" "<< rgb[i].x * 255 <<" "<< rgb[i].y * 255 <<" "<< rgb[i].z * 255;
+      vec3 RGB = use_rgba ? vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
+      file << std::setprecision(0) <<" "<< RGB.x * 255 <<" "<< RGB.y * 255 <<" "<< RGB.z * 255;
     }
 
     //Normal

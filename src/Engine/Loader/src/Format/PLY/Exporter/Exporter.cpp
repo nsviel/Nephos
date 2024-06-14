@@ -104,7 +104,8 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, glm:
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<glm::vec3>& rgb = rgba ? data->rgba : data->rgb;
+  std::vector<glm::vec3>& rgb = data->rgb;
+  std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
   std::vector<float>& Is = data->Is;
   int precision = 6;
@@ -119,7 +120,8 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, glm:
 
     //Color
     if(rgb.size() != 0){
-      file << std::setprecision(0) << rgb[i].x * 255 <<" "<< rgb[i].y * 255 <<" "<< rgb[i].z * 255 <<" ";
+      vec3 RGB = use_rgba ? vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
+      file << std::setprecision(0) << RGB.x * 255 <<" "<< RGB.y * 255 <<" "<< RGB.z * 255 <<" ";
     }
 
     //Normal
@@ -141,7 +143,8 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<glm::vec3>& rgba ? data->rgba : data->rgb;
+  std::vector<glm::vec3>& rgb = data->rgb;
+  std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
   std::vector<float>& Is = data->Is;
   std::vector<float>& ts = data->ts;
@@ -169,7 +172,8 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm
         //Color
         case format::ply::R:{
           for(int k=0; k<3; k++){
-            int color_int = rgb[i][k] * 255;
+            vec3 RGB = use_rgba ? vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
+            int color_int = RGB[k] * 255;
             memcpy(block_data + offset, &color_int, sizeof(u_char));
             offset += sizeof(u_char);
           }
