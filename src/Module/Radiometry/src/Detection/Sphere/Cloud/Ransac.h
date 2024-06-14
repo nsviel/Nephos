@@ -25,9 +25,10 @@ public:
   void ransac_sphere(dyn::base::Sensor* sensor);
 
   //Subfunction
-  void reduce_search_space(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vector<float>& search_is);
-  void apply_ransac(vector<vec3>& search_xyz, vector<float>& search_is);
-  void process_measurement(vector<vec3>& search_xyz, vector<float>& search_is);
+  void reset_search_space();
+  void reduce_search_space(dyn::base::Sensor* sensor);
+  void apply_ransac();
+  void process_measurement();
 
 private:
   rad::detection::cloud::Measure* rad_measure;
@@ -35,8 +36,6 @@ private:
   rad::detection::sphere::Glyph* rad_glyph;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
-
-  vec3 current_pose;
 };
 
 }

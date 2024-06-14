@@ -17,6 +17,10 @@ struct Ransac{
   glm::vec3 current_pose = vec3(0, 0, 0);
   rad::detection::glyph::Sphere* glyph;
 
+  vector<vec3> search_xyz;
+  vector<vec3> search_Nxyz;
+  vector<float> search_Is;
+  
   //---------------------------
 };
 
