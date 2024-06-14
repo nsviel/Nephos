@@ -24,7 +24,7 @@ public:
   void elevate_object(utl::base::Element* element);
   void make_rotation_X_90d(utl::base::Element* element, int value);
   void make_translation(utl::base::Element* element, glm::vec3 value);
-  void make_rotation(utl::base::Element* element, glm::vec3 value);
+  void make_rotation(utl::base::Element* element, glm::vec3 COM, glm::vec3 value);
 
   //Operation on entity
   void center_object(dat::base::Entity* entity, glm::vec3 COM);

@@ -5,6 +5,7 @@
 
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
+namespace utl::base{class Element;}
 
 
 namespace ope::attribut{
@@ -18,6 +19,7 @@ public:
 
 public:
   //Main function
+  glm::vec3 compute_centroid(utl::base::Element* element);
   glm::vec3 compute_centroid(dat::base::Set* set);
   glm::vec3 compute_centroid(dat::base::Entity* entity);
   void compute_MinMax(dat::base::Set* set);

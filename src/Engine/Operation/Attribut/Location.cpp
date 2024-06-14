@@ -10,6 +10,21 @@ Location::Location(){}
 Location::~Location(){}
 
 //Main function
+glm::vec3 Location::compute_centroid(utl::base::Element* element){
+  if(element == nullptr) return glm::vec3(0);
+  //---------------------------
+
+  glm::vec3 centroid;
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
+    centroid = compute_centroid(set);
+  }
+  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    centroid = compute_centroid(entity);
+  }
+
+  //---------------------------
+  return centroid;
+}
 glm::vec3 Location::compute_centroid(dat::base::Set* set){
   //---------------------------
 

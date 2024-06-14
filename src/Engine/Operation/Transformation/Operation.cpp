@@ -82,6 +82,10 @@ void Operation::make_translation(utl::base::Element* element, glm::vec3 value){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
       ope_transform->make_translation(&entity->pose, value);
     }
+    for(int i=0; i<set->list_subset.size(); i++){
+      dat::base::Set* subset = *next(set->list_subset.begin(), i);
+      this->make_translation(subset, value);
+    }
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
     ope_transform->make_translation(&entity->pose, value);
@@ -89,16 +93,19 @@ void Operation::make_translation(utl::base::Element* element, glm::vec3 value){
 
   //---------------------------
 }
-void Operation::make_rotation(utl::base::Element* element, glm::vec3 value){
+void Operation::make_rotation(utl::base::Element* element, glm::vec3 COM, glm::vec3 value){
   if(element == nullptr) return;
   //---------------------------
 
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
-    glm::vec3 COM = ope_location->compute_centroid(set);
     ope_transform->make_rotation(&set->pose, COM, value);
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-      ope_transform->make_rotation(&entity->pose, COM, value);
+      this->make_rotation(entity, COM, value);
+    }
+    for(int i=0; i<set->list_subset.size(); i++){
+      dat::base::Set* subset = *next(set->list_subset.begin(), i);
+      this->make_rotation(subset, COM, value);
     }
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){

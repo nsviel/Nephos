@@ -6,6 +6,7 @@
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace ope{class Operation;}
+namespace ope::attribut{class Location;}
 namespace dat{class Selection;}
 
 enum Wheel_mode{
@@ -39,6 +40,7 @@ private:
   dat::Selection* dat_selection;
   eng::Node* node_engine;
   ope::Operation* ope_operation;
+  ope::attribut::Location* ope_location;
 
   int mode;
 };

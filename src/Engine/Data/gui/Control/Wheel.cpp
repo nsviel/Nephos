@@ -16,6 +16,7 @@ Wheel::Wheel(dat::Node* node_data){
   this->node_engine = node_data->get_node_engine();
   this->dat_selection = node_data->get_dat_selection();
   this->ope_operation = new ope::Operation();
+  this->ope_location = new ope::attribut::Location();
 
   this->mode = WHEEL_CAM_Z;
 
@@ -43,17 +44,20 @@ void Wheel::make_action(float direction){
   switch(mode){
     case WHEEL_R_Z:{
       R = glm::vec3(0, 0, direction * radian);
-      ope_operation->make_rotation(element, R);
+      glm::vec3 COM = ope_location->compute_centroid(element);
+      ope_operation->make_rotation(element, COM, R);
       break;
     }
     case WHEEL_R_Y:{
       R = glm::vec3(0, direction * radian, 0);
-      ope_operation->make_rotation(element, R);
+      glm::vec3 COM = ope_location->compute_centroid(element);
+      ope_operation->make_rotation(element, COM, R);
       break;
     }
     case WHEEL_R_X:{
       R = glm::vec3(direction * radian, 0, 0);
-      ope_operation->make_rotation(element, R);
+      glm::vec3 COM = ope_location->compute_centroid(element);
+      ope_operation->make_rotation(element, COM, R);
       break;
     }
     case WHEEL_CAM_Z:{
