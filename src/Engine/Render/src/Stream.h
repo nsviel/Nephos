@@ -14,7 +14,7 @@ class Stream
 {
 public:
   //Constructor / Destructor
-  Stream(eng::Node* engine);
+  Stream(eng::Node* node_engine);
   ~Stream();
 
 public:

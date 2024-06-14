@@ -7,12 +7,12 @@
 namespace rnd{
 
 //Constructor / Destructor
-Stream::Stream(eng::Node* engine){
+Stream::Stream(eng::Node* node_engine){
   //---------------------------
 
-  vk::Node* vulkan = engine->get_node_vulkan();
-  this->vk_texture = vulkan->get_vk_texture();
-  this->vk_imgui = vulkan->get_vk_imgui();
+  vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  this->vk_texture = node_vulkan->get_vk_texture();
+  this->vk_imgui = node_vulkan->get_vk_imgui();
 
   //---------------------------
 }

@@ -11,12 +11,12 @@ class Mode
 {
 public:
   //Constructor / Destructor
-  Mode(eng::Node* engine);
+  Mode(eng::Node* node_engine);
   ~Mode();
 
 public:
   //Main function
-
+  void mode_visualization();
 
 private:
 
