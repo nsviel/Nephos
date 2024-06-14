@@ -11,6 +11,7 @@ namespace ldr::io{class Importer;}
 namespace ldr::importer{class Operation;}
 namespace ldr::exporter{class Operation;}
 namespace ldr::io{class Exporter;}
+namespace ldr::io{class Transformation;}
 namespace ldr::bookmark{class Manager;}
 namespace ldr::gui::importer{class Panel;}
 namespace ldr::gui::exporter{class Panel;}
@@ -43,6 +44,7 @@ public:
   inline ldr::importer::Operation* get_ldr_import_ope(){return ldr_import_ope;}
   inline ldr::exporter::Operation* get_ldr_export_ope(){return ldr_export_ope;}
   inline ldr::io::Exporter* get_ldr_exporter(){return ldr_exporter;}
+  inline ldr::io::Transformation* get_ldr_transformation(){return ldr_transformation;}
   inline ldr::bookmark::Manager* get_ldr_bookmark(){return ldr_bookmark;}
 
 private:
@@ -58,6 +60,7 @@ private:
   ldr::importer::Operation* ldr_import_ope;
   ldr::exporter::Operation* ldr_export_ope;
   ldr::io::Exporter* ldr_exporter;
+  ldr::io::Transformation* ldr_transformation;
   ldr::bookmark::Manager* ldr_bookmark;
   ldr::gui::importer::Panel* gui_import;
   ldr::gui::exporter::Panel* gui_export;

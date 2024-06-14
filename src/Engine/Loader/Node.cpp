@@ -28,6 +28,7 @@ Node::Node(eng::Node* node_engine){
   this->ldr_export_ope = new ldr::exporter::Operation(this);
   this->ldr_exporter = new ldr::io::Exporter(this);
   this->ldr_bookmark = new ldr::bookmark::Manager(this);
+  this->ldr_transformation = new ldr::io::Transformation(this);
   this->gui_import = new ldr::gui::importer::Panel(this, &panel_loader->is_open);
   this->gui_export = new ldr::gui::exporter::Panel(this, &panel_export->is_open);
   this->gui_transformation = new ldr::gui::transformation::Panel(this, &panel_transfo->is_open);

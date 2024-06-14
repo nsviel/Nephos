@@ -14,12 +14,13 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(no
   dat::Node* node_data = node_loader->get_node_data();
 
   this->ldr_struct = node_loader->get_ldr_struct();
+  this->ldr_transformation = node_loader->get_ldr_transformation();
   this->dat_selection = node_data->get_dat_selection();
 
   this->name = "Transformation##555";
   this->show_window = show_window;
   this->with_bookmark = false;
-  
+
   //---------------------------
 }
 Panel::~Panel(){}
@@ -47,6 +48,8 @@ void Panel::design_panel(utl::base::Element* element){
   //---------------------------
 
   this->display_path(element);
+  this->display_format(element);
+  this->display_matrix(element);
   ImGui::Separator();
   this->draw_navigator(ldr_struct->transformation.path);
 
@@ -54,14 +57,6 @@ void Panel::design_panel(utl::base::Element* element){
 }
 
 //Subfunction
-void Panel::draw_header(utl::base::Element* element){
-  //---------------------------
-
-
-  //this->display_path(element);
-
-  //---------------------------
-}
 void Panel::display_path(utl::base::Element* element){
   //---------------------------
 
@@ -102,7 +97,46 @@ void Panel::display_path(utl::base::Element* element){
   ImGui::EndTable();
 
   //---------------------------
-  ImGui::Separator();
+}
+void Panel::display_format(utl::base::Element* element){
+  //---------------------------
+
+  ImGui::BeginTable("format##transformation", 2);
+  ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+  ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthStretch);
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Format"); ImGui::TableNextColumn();
+  static int format = 0;
+  std::vector<std::string> vec_format = ldr_transformation->get_supported_format();
+  for(int i=0; i<vec_format.size(); i++){
+    if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
+      ldr_struct->transformation.path.format = vec_format[i];
+    }
+  }
+
+  ImGui::EndTable();
+
+  //---------------------------
+}
+void Panel::display_matrix(utl::base::Element* element){
+  utl::base::Pose* pose = &element->pose;
+  //---------------------------
+
+  //Model matrix
+  ImVec2 width = ImGui::GetContentRegionAvail();
+  mat4& model = pose->model;
+  ImGui::Columns(4, "ModelMat");
+  for(int i=0; i<4; i++){
+    ImGui::Separator();
+    for(int j=0; j<4; j++){
+      ImGui::Text("%.3f", model[i][j]);
+      ImGui::NextColumn();
+    }
+  }
+  ImGui::Columns(1);
+
+  //---------------------------
 }
 void Panel::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------

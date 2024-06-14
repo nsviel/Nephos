@@ -7,6 +7,7 @@
 
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
+namespace ldr::io{class Transformation;}
 namespace utl::base{class Element;}
 namespace dat{class Selection;}
 
@@ -26,12 +27,14 @@ public:
   void design_panel(utl::base::Element* element );
 
   //Subfunction
-  void draw_header(utl::base::Element* element);
   void display_path(utl::base::Element* element);
+  void display_format(utl::base::Element* element);
+  void display_matrix(utl::base::Element* element);
   void item_filtering(std::vector<std::string>& vec_path);
 
 private:
   ldr::Structure* ldr_struct;
+  ldr::io::Transformation* ldr_transformation;
   dat::Selection* dat_selection;
 
   std::string name;
