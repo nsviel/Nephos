@@ -16,6 +16,22 @@ Transformation::Transformation(ldr::Node* node_loader){
 Transformation::~Transformation(){}
 
 //Main function
+void Transformation::load_transformation(utl::base::Element* element, std::string path){
+  //---------------------------
+
+
+
+  //---------------------------
+}
+void Transformation::save_transformation(utl::base::Element* element, std::string path){
+  //---------------------------
+
+
+
+  //---------------------------
+}
+
+//Subfunction
 std::vector<std::string> Transformation::get_supported_format(){
   std::vector<std::string> vec_format;
   //---------------------------

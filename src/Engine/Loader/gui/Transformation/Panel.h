@@ -27,6 +27,7 @@ public:
   void design_panel(utl::base::Element* element );
 
   //Subfunction
+  void display_loader(utl::base::Element* element);
   void display_path(utl::base::Element* element);
   void display_format(utl::base::Element* element);
   void display_matrix(utl::base::Element* element);
