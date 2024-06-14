@@ -51,7 +51,6 @@ void Panel::design_panel(utl::base::Element* element){
   this->display_path(element);
   this->display_format(element);
   this->display_matrix(element);
-  ImGui::Separator();
   this->draw_navigator(ldr_struct->transformation.path);
 
   //---------------------------
@@ -142,6 +141,7 @@ void Panel::display_format(utl::base::Element* element){
   ImGui::EndTable();
 
   //---------------------------
+  ImGui::Separator();
 }
 void Panel::display_matrix(utl::base::Element* element){
   utl::base::Pose* pose = &element->pose;
@@ -158,9 +158,11 @@ void Panel::display_matrix(utl::base::Element* element){
       ImGui::NextColumn();
     }
   }
+  ImGui::Separator();
   ImGui::Columns(1);
 
   //---------------------------
+  ImGui::Separator();
 }
 void Panel::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
