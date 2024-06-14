@@ -15,10 +15,7 @@ Navigator::Navigator(ldr::Node* node_loader){
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
 
-  //this->default_dir = utl::path::get_current_parent_path_abs();
   this->with_bookmark = with_bookmark;
-
-  //ldr_struct->current_dir = default_dir;
 
   //---------------------------
 }
@@ -45,7 +42,7 @@ void Navigator::draw_header(ldr::base::Path& path){
   //Reset current dir
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_HOUSE "##222")){
-    path.folder = default_dir;
+    path.folder = path.base;
   }
   ImGui::SameLine();
   ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);

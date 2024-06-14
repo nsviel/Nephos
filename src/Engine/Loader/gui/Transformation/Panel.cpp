@@ -18,7 +18,8 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(no
 
   this->name = "Transformation##555";
   this->show_window = show_window;
-
+  this->with_bookmark = false;
+  
   //---------------------------
 }
 Panel::~Panel(){}
