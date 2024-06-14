@@ -12,6 +12,7 @@ namespace ldr::gui{class File;}
 namespace ldr::gui::exporter{class Exporter;}
 namespace ldr::gui::exporter{class Recorder;}
 namespace dat{class Selection;}
+namespace utl::base{class Element;}
 
 
 namespace ldr::gui::exporter{
@@ -26,7 +27,7 @@ public:
 public:
   //Main function
   void run_panel();
-  void design_panel();
+  void design_panel(utl::base::Element* element);
 
   //Navigator
   void item_filtering(std::vector<std::string>& vec_path);

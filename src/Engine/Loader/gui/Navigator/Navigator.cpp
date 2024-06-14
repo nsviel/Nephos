@@ -15,27 +15,27 @@ Navigator::Navigator(ldr::Node* node_loader){
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
 
-  this->default_dir = utl::path::get_current_parent_path_abs();
+  //this->default_dir = utl::path::get_current_parent_path_abs();
   this->with_bookmark = with_bookmark;
 
-  ldr_struct->current_dir = default_dir;
+  //ldr_struct->current_dir = default_dir;
 
   //---------------------------
 }
 Navigator::~Navigator(){}
 
 //Main function
-void Navigator::draw_navigator(){
+void Navigator::draw_navigator(ldr::base::Path& path){
   //---------------------------
 
-  this->draw_header();
-  this->draw_file_content();
+  this->draw_header(path);
+  this->draw_file_content(path);
 
   //---------------------------
 }
 
 //Subfunction
-void Navigator::draw_header(){
+void Navigator::draw_header(ldr::base::Path& path){
   //---------------------------
 
   ImGui::BeginTable("header##recorder", 2);
@@ -45,7 +45,7 @@ void Navigator::draw_header(){
   //Reset current dir
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_HOUSE "##222")){
-    ldr_struct->current_dir = default_dir;
+    path.folder = default_dir;
   }
   ImGui::SameLine();
   ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
@@ -53,16 +53,16 @@ void Navigator::draw_header(){
 
   // Split the path into individual elements
   size_t start = 0;
-  size_t end = ldr_struct->current_dir.find_first_of('/');
+  size_t end = path.folder.find_first_of('/');
   std::vector<std::string> pathElements;
   while(end != std::string::npos){
-    pathElements.push_back(ldr_struct->current_dir.substr(start, end - start));
+    pathElements.push_back(path.folder.substr(start, end - start));
     start = end + 1;
-    end = ldr_struct->current_dir.find_first_of('/', start);
+    end = path.folder.find_first_of('/', start);
   }
 
   // Add the last element (file/directory name)
-  pathElements.push_back(ldr_struct->current_dir.substr(start));
+  pathElements.push_back(path.folder.substr(start));
 
   // Render buttons for each path element
   std::string element_path;
@@ -77,7 +77,7 @@ void Navigator::draw_header(){
     ImGui::PushID(i);
     element_path += "/" + element;
     if(ImGui::Button(element.c_str())){
-      ldr_struct->current_dir = element_path;
+      path.folder = element_path;
     }
     ImGui::PopID();
   }
@@ -94,14 +94,14 @@ void Navigator::draw_header(){
     static char str_n[256];
     ImGui::SetNextItemWidth(125);
     if(ImGui::InputText("##addfolder", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
-      std::string path = ldr_struct->current_dir + "/" + (string)str_n;
-      utl::directory::create(path);
+      std::string path_new_dir = path.folder + "/" + (string)str_n;
+      utl::directory::create(path_new_dir);
       ImGui::CloseCurrentPopup();
     }
     ImGui::SameLine();
     if(ImGui::Button("Create##addfolder")){
-      std::string path = ldr_struct->current_dir + "/" + (string)str_n;
-      utl::directory::create(path);
+      std::string path_new_dir = path.folder + "/" + (string)str_n;
+      utl::directory::create(path_new_dir);
       ImGui::CloseCurrentPopup();
     }
 
@@ -112,7 +112,7 @@ void Navigator::draw_header(){
 
   //---------------------------
 }
-void Navigator::draw_file_content(){
+void Navigator::draw_file_content(ldr::base::Path& path){
   //---------------------------
 
   static ImGuiTableFlags flags;
@@ -130,11 +130,11 @@ void Navigator::draw_file_content(){
   ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
   ImGui::TableHeadersRow();
 
-  std::vector<std::string> vec_path = utl::path::list_all_path(ldr_struct->current_dir);
+  std::vector<std::string> vec_path = utl::path::list_all_path(path.folder);
   this->item_filtering(vec_path);
   this->item_organisation(vec_path);
-  this->item_folder();
-  this->item_file();
+  this->item_folder(path);
+  this->item_file(path);
 
   ImGui::EndTable();
 
@@ -217,7 +217,7 @@ void Navigator::item_organisation(std::vector<std::string>& vec_path){
 
   //---------------------------
 }
-void Navigator::item_folder(){
+void Navigator::item_folder(ldr::base::Path& path){
   //---------------------------
 
   // Populate the table - Folder
@@ -249,11 +249,11 @@ void Navigator::item_folder(){
 
       if(ImGui::IsMouseDoubleClicked(0)){
         if(file.item.name == ".."){
-          std::filesystem::path path = ldr_struct->current_dir;
-          ldr_struct->current_dir = path.parent_path();
+          std::filesystem::path fs_path = path.folder;
+          path.folder = fs_path.parent_path();
           this->vec_selection.clear();
         }else{
-          ldr_struct->current_dir += "/" + file.item.name;
+          path.folder += "/" + file.item.name;
           this->vec_selection.clear();
         }
       }else{
@@ -266,7 +266,7 @@ void Navigator::item_folder(){
 
   //---------------------------
 }
-void Navigator::item_file(){
+void Navigator::item_file(ldr::base::Path& path){
   //---------------------------
 
   // Populate the table - File
@@ -307,7 +307,7 @@ void Navigator::item_file(){
       }else{
         vec_selection.clear();
         vec_selection.push_back(file.item.ID);
-        this->item_selection();
+        this->item_selection(path);
       }
 
       //If double clicked, load it
@@ -321,7 +321,7 @@ void Navigator::item_file(){
 
   //---------------------------
 }
-void Navigator::item_selection(){
+void Navigator::item_selection(ldr::base::Path& path){
   //---------------------------
 
   int selection = vec_selection[vec_selection.size() - 1];
@@ -329,9 +329,9 @@ void Navigator::item_selection(){
     ldr::gui::File& file = vec_file[i];
 
     if(file.item.ID == selection){
-      ldr_struct->current_dir = utl::path::get_dir_from_path(file.item.path);
-      ldr_struct->current_name = utl::path::get_name_from_path(file.item.path);
-      ldr_struct->current_format = utl::path::get_format_from_path(file.item.path);
+      path.folder = utl::path::get_dir_from_path(file.item.path);
+      path.name = utl::path::get_name_from_path(file.item.path);
+      path.format = utl::path::get_format_from_path(file.item.path);
     }
   }
 

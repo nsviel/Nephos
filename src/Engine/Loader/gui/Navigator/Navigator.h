@@ -6,6 +6,7 @@
 
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
+namespace ldr::base{class Path;}
 namespace ldr::io{class Importer;}
 namespace ldr::gui{class File;}
 namespace ldr::bookmark{class Manager;}
@@ -22,19 +23,19 @@ public:
 
 public:
   //Main function
-  void draw_navigator();
+  void draw_navigator(ldr::base::Path& path);
 
   //Subfunction
-  void draw_header();
-  void draw_file_content();
+  void draw_header(ldr::base::Path& path);
+  void draw_file_content(ldr::base::Path& path);
   void draw_bookmark(ldr::gui::File& bookmark);
 
   //Item function
   virtual void item_filtering(std::vector<std::string>& vec_path){}
   void item_organisation(std::vector<std::string>& vec_path);
-  void item_folder();
-  void item_file();
-  void item_selection();
+  void item_folder(ldr::base::Path& path);
+  void item_file(ldr::base::Path& path);
+  void item_selection(ldr::base::Path& path);
   virtual void item_operation(){}
 
 protected:

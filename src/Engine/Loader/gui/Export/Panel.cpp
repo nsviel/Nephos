@@ -32,14 +32,15 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
+  utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
-  if(*show_window){
+  if(*show_window && element != nullptr){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(400, FLT_MAX));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel();
+      this->design_panel(element);
 
       ImGui::End();
     }
@@ -48,9 +49,7 @@ void Panel::run_panel(){
 
   //---------------------------
 }
-void Panel::design_panel(){
-  utl::base::Element* element = dat_selection->get_selected_element();
-  if(element == nullptr) return;
+void Panel::design_panel(utl::base::Element* element){
   //---------------------------
 
   //If dynamic object have recorder
@@ -62,8 +61,7 @@ void Panel::design_panel(){
   else{
     gui_exporter->draw_header(element);
   }
-
-  this->draw_navigator();
+  this->draw_navigator(ldr_struct->exporter.path);
 
   //---------------------------
   ImGui::Separator();

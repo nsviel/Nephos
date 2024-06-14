@@ -78,24 +78,24 @@ void Recorder::display_path(){
   ImGui::Text("Directory"); ImGui::TableNextColumn();
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
-  std::string current_path = ldr_struct->current_dir;
+  std::string current_path = ldr_struct->exporter.path.folder;
   if(current_path == "") current_path = "(not defined)";
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::PopStyleColor();
   ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
-    utl::directory::open(ldr_struct->current_dir);
+    utl::directory::open(ldr_struct->exporter.path.folder);
   }
 
   //Filename
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Name"); ImGui::TableNextColumn();
-  strncpy(str_n, ldr_struct->current_name.c_str(), sizeof(str_n) - 1);
+  strncpy(str_n, ldr_struct->exporter.path.name.c_str(), sizeof(str_n) - 1);
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
-    ldr_struct->current_name = (string)str_n;
+    ldr_struct->exporter.path.name = (string)str_n;
   }
   ImGui::PopStyleColor(2);
 
@@ -116,7 +116,7 @@ void Recorder::display_format(){
   static int format = 0;
   for(int i=0; i<vec_format.size(); i++){
     if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
-      ldr_struct->current_format = vec_format[i];
+      ldr_struct->exporter.path.format = vec_format[i];
     }
   }
 
@@ -158,9 +158,9 @@ void Recorder::item_update(dyn::base::Sensor* sensor){
   //---------------------------
 
   //Actualize current name
-  if(sensor != nullptr && ldr_struct->current_name != sensor->name){
+  if(sensor != nullptr && ldr_struct->exporter.path.name != sensor->name){
     utl::base::Data* data = &sensor->data;
-    ldr_struct->current_name = sensor->name;
+    ldr_struct->exporter.path.name = sensor->name;
 
     this->vec_format.clear();
     for(int i=0; i<sensor->vec_recorder.size(); i++){
@@ -175,13 +175,13 @@ void Recorder::item_operation(){
   if(entity == nullptr) return;
   //---------------------------
 
-  std::string format = (ldr_struct->current_format != "-") ? ldr_struct->current_format : "";
+  std::string format = (ldr_struct->exporter.path.format != "-") ? ldr_struct->exporter.path.format : "";
 
   utl::base::Data* data = &entity->data;
-  data->name = ldr_struct->current_name;
+  data->name = ldr_struct->exporter.path.name;
   data->format = format;
-  data->path.directory = ldr_struct->current_dir;
-  data->path.data = ldr_struct->get_current_path();
+  data->path.directory = ldr_struct->exporter.path.folder;
+  data->path.data = utl::path::reconstruct_path(data->path.directory, data->name, data->format);
 
   //---------------------------
 }

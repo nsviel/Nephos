@@ -67,25 +67,25 @@ void Exporter::display_path(utl::base::Element* element){
   ImGui::Text("Directory"); ImGui::TableNextColumn();
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
-  std::string current_path = ldr_struct->current_dir;
+  std::string current_path = ldr_struct->exporter.path.folder;
   if(current_path == "") current_path = "(not defined)";
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::PopStyleColor();
   ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
-    utl::directory::open(ldr_struct->current_dir);
+    utl::directory::open(ldr_struct->exporter.path.folder);
   }
 
   //Filename
   if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Name"); ImGui::TableNextColumn();
-    strncpy(str_n, ldr_struct->current_name.c_str(), sizeof(str_n) - 1);
+    strncpy(str_n, ldr_struct->exporter.path.name.c_str(), sizeof(str_n) - 1);
     ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
     ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
     if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
-      ldr_struct->current_name = (string)str_n;
+      ldr_struct->exporter.path.name = (string)str_n;
     }
     ImGui::PopStyleColor(2);
   }
@@ -108,7 +108,7 @@ void Exporter::display_format(){
   std::vector<std::string> vec_format = ldr_exporter->get_supported_format();
   for(int i=0; i<vec_format.size(); i++){
     if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
-      ldr_struct->current_format = vec_format[i];
+      ldr_struct->exporter.path.format = vec_format[i];
     }
   }
 
@@ -123,7 +123,7 @@ void Exporter::display_encording(){
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
-  std::vector<int> vec_encoding = ldr_exporter->get_supported_encoding(ldr_struct->current_format);
+  std::vector<int> vec_encoding = ldr_exporter->get_supported_encoding(ldr_struct->exporter.path.format);
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Encoding"); ImGui::TableNextColumn();
   static int mode = 1;
@@ -194,12 +194,12 @@ void Exporter::item_update(utl::base::Element* element){
   //---------------------------
 
   //Actualize current name
-  if(entity != nullptr && ldr_struct->current_name != entity->name){
+  if(entity != nullptr && ldr_struct->exporter.path.name != entity->name){
     utl::base::Data* data = &entity->data;
-    ldr_struct->current_name = entity->name;
+    ldr_struct->exporter.path.name = entity->name;
 
     if(ldr_exporter->is_format_supported(data->format)){
-      ldr_struct->current_format = data->format;
+      ldr_struct->exporter.path.format = data->format;
     }
   }
 
@@ -210,13 +210,13 @@ void Exporter::item_operation(){
   if(entity == nullptr) return;
   //---------------------------
 
-  std::string format = (ldr_struct->current_format != "-") ? ldr_struct->current_format : "";
+  std::string format = (ldr_struct->exporter.path.format != "-") ? ldr_struct->exporter.path.format : "";
 
   utl::base::Data* data = &entity->data;
-  data->name = ldr_struct->current_name;
+  data->name = ldr_struct->exporter.path.name;
   data->format = format;
-  data->path.directory = ldr_struct->current_dir;
-  data->path.data = ldr_struct->get_current_path();
+  data->path.directory = ldr_struct->exporter.path.folder;
+  data->path.data = utl::path::reconstruct_path(data->path.directory, data->name, data->format);
 
   ldr_exporter->export_entity(entity, data->path.data);
 

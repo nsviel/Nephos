@@ -17,6 +17,7 @@ std::string get_absolute_path(const std::string& relativePath);
 std::string get_current_parent_path_abs();
 std::string get_dir_from_path(std::string path);
 std::string is_dir_or_file(std::string path);
+std::string reconstruct_path(std::string dir, std::string name, std::string format);
 
 std::vector<std::string> list_all_file(std::string path);
 std::vector<std::string> list_all_path(std::string path);
