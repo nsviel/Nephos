@@ -15,7 +15,7 @@ Measure::Measure(rad::detection::Node* node_detection){
   rad::model::Node* node_model = node_radio->get_node_model();
 
   this->model_struct = node_model->get_rad_struct();
-  this->detection_struct = node_detection->get_rad_struct();
+  this->rad_struct = node_detection->get_rad_struct();
 
   //---------------------------
 }
@@ -27,7 +27,7 @@ void Measure::process_measure(){
 
   vector<vec3>& search_xyz = rad_struct->sphere.ransac.search_xyz;
   vector<float>& search_Is = rad_struct->sphere.ransac.search_Is;
-  detection_struct->sphere.state_data = rad::detection::HAS_DATA;
+  rad_struct->sphere.state_data = rad::detection::HAS_DATA;
 
   this->data_measure(search_xyz, search_Is);
   this->data_IfR(search_xyz, search_Is);
@@ -45,9 +45,9 @@ void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
 
   //Init parameter
   glm::vec3 root = glm::vec3(0, 0, 0);
-  glm::vec3 pose = detection_struct->sphere.ransac.current_pose;
-  float diameter = detection_struct->sphere.ransac.sphere_diameter;
-  float thres_sphere = detection_struct->sphere.ransac.thres_sphere;
+  glm::vec3 pose = rad_struct->sphere.ransac.current_pose;
+  float diameter = rad_struct->sphere.ransac.sphere_diameter;
+  float thres_sphere = rad_struct->sphere.ransac.thres_sphere;
 
   //Insert measure
   for(int i=0; i<search_xyz.size(); i++){
@@ -114,9 +114,9 @@ void Measure::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
 
   //Init parameter
   glm::vec3 root = vec3(0, 0, 0);
-  glm::vec3 pose = detection_struct->sphere.ransac.current_pose;
-  float diameter = detection_struct->sphere.ransac.sphere_diameter;
-  float thres_sphere = detection_struct->sphere.ransac.thres_sphere;
+  glm::vec3 pose = rad_struct->sphere.ransac.current_pose;
+  float diameter = rad_struct->sphere.ransac.sphere_diameter;
+  float thres_sphere = rad_struct->sphere.ransac.thres_sphere;
 
   //Insert measure
   for(int i=0; i<search_xyz.size(); i++){

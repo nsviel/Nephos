@@ -20,7 +20,7 @@ Ransac::Ransac(){
 Ransac::~Ransac(){}
 
 //Ransac fitting
-void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, glm::vec3& best_center, float radius){
+void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, vector<vec3>& Nxyz, glm::vec3& best_center, float radius){
   if(xyz.size() == 0) return;
   //------------------------
 

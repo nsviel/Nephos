@@ -27,7 +27,7 @@ public:
 
 private:
   rad::model::Structure* model_struct;
-  rad::detection::Structure* detection_struct;
+  rad::detection::Structure* rad_struct;
 };
 
 }
