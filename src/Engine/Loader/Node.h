@@ -14,6 +14,7 @@ namespace ldr::io{class Exporter;}
 namespace ldr::bookmark{class Manager;}
 namespace ldr::gui::importer{class Panel;}
 namespace ldr::gui::exporter{class Panel;}
+namespace ldr::gui::transformation{class Panel;}
 
 
 namespace ldr{
@@ -60,6 +61,7 @@ private:
   ldr::bookmark::Manager* ldr_bookmark;
   ldr::gui::importer::Panel* gui_import;
   ldr::gui::exporter::Panel* gui_export;
+  ldr::gui::transformation::Panel* gui_transformation;
 
   bool show_scene = true;
   bool show_loader = true;

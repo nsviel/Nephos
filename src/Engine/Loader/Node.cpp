@@ -10,8 +10,9 @@ namespace ldr{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* panel_loader = add_panel("Loader", ICON_FA_FOLDER, false);
+  utl::gui::Panel* panel_loader = add_panel("Loader", ICON_FA_FILE_ARROW_DOWN, false);
   utl::gui::Panel* panel_export = add_panel("Exporter", ICON_FA_DOWNLOAD, false);
+  utl::gui::Panel* panel_transfo = add_panel("Transformation", ICON_FA_PEN_TO_SQUARE, true);
   //---------------------------
 
   //Dependancy
@@ -29,6 +30,7 @@ Node::Node(eng::Node* node_engine){
   this->ldr_bookmark = new ldr::bookmark::Manager(this);
   this->gui_import = new ldr::gui::importer::Panel(this, &panel_loader->is_open);
   this->gui_export = new ldr::gui::exporter::Panel(this, &panel_export->is_open);
+  this->gui_transformation = new ldr::gui::transformation::Panel(this, &panel_transfo->is_open);
 
   //---------------------------
 }

@@ -31,7 +31,7 @@ void Menu::draw(){
     this->menu_panel();
     ImGui::EndMenu();
   }
-  if(ImGui::MenuItem(ICON_FA_FOLDER "##Loader")){
+  if(ImGui::MenuItem(ICON_FA_FILE_ARROW_DOWN "##Loader")){
     this->menu_shortcut("Loader");
   }
   if(ImGui::MenuItem(ICON_FA_DOWNLOAD "##Exporter")){
