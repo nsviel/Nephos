@@ -17,6 +17,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->dat_selection = node_data->get_dat_selection();
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dyn_operation = node_dynamic->get_ope_cloud();
+  this->dyn_colorization = new dyn::gui::Colorization(node_dynamic);
   this->ope_operation = new ope::Operation();
   this->ope_normal = new ope::normal::KNN();
 
@@ -35,7 +36,7 @@ void Operation::design_operation(){
   this->draw_ope_transformation(element);
 
   dat::base::Set* set = dat_selection->get_selected_set();
-  this->draw_ope_colorization(set);
+  dyn_colorization->design_colorization(set);
   this->draw_ope_normal(set);
   ImGui::PopStyleColor();
 
@@ -191,8 +192,12 @@ void Operation::draw_ope_colorization(dat::base::Set* set){
     if(ImGui::RadioButton("I##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY)){
       update_color = true;
     }
-    if(condition) ImGui::EndDisabled();
     ImGui::TableNextColumn();
+    if(ImGui::RadioButton("I inv##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_INV)){
+      update_color = true;
+    }
+    if(condition) ImGui::EndDisabled();
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
     condition = (entity->data.Nxyz.size() == 0);
     if(condition) ImGui::BeginDisabled();
     if(ImGui::RadioButton("N##colorization", &dyn_struct->colorization.color_mode, ope::color::NORMAL)){

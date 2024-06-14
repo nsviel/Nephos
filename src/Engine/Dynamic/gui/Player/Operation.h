@@ -6,6 +6,7 @@ namespace dat{class Selection;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::cloud{class Operation;}
+namespace dyn::gui{class Colorization;}
 namespace ope{class Operation;}
 namespace ope::normal{class KNN;}
 namespace dat::base{class Set;}
@@ -35,6 +36,7 @@ private:
   dat::Selection* dat_selection;
   dyn::cloud::Operation* dyn_operation;
   dyn::Structure* dyn_struct;
+  dyn::gui::Colorization* dyn_colorization;
   ope::Operation* ope_operation;
   ope::normal::KNN* ope_normal;
 };

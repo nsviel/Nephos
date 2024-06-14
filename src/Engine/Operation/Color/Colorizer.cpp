@@ -34,6 +34,10 @@ void Colorizer::make_colorization(dat::base::Entity* entity, ope::color::Configu
       this->colorization_intensity(entity, config);
       break;
     }
+    case ope::color::INTENSITY_INV:{
+      this->colorization_intensity_inv(entity, config);
+      break;
+    }
     case ope::color::NORMAL:{
       this->colorization_normal(entity, config);
       break;
@@ -81,6 +85,18 @@ void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Co
   for(int i=0; i<data->Is.size(); i++){
     float Is = data->Is[i] / config.intensity_diviser;
     data->rgba[i] = glm::vec4(Is, Is, Is, 1);
+  }
+
+  //---------------------------
+}
+void Colorizer::colorization_intensity_inv(dat::base::Entity* entity, ope::color::Configuration& config){
+  utl::base::Data* data = &entity->data;
+  //---------------------------
+
+  if(data->rgba.size() == 0) data->rgba = std::vector<glm::vec4>(data->xyz.size(), glm::vec4(0.0f));
+  for(int i=0; i<data->Is.size(); i++){
+    float Is = data->Is[i] / config.intensity_diviser;
+    data->rgba[i] = glm::vec4(1 - Is, 1 - Is, 1 - Is, 1);
   }
 
   //---------------------------
