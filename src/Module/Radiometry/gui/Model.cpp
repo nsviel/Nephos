@@ -47,7 +47,7 @@ void Model::draw_tab(dyn::base::Sensor* sensor){
 
 //Subfunction
 void Model::parameter_measure(){
-  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
+  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -111,8 +111,8 @@ void Model::parameter_measure(){
   //---------------------------
 }
 void Model::parameter_model(){
-  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
-  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
+  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -209,7 +209,7 @@ void Model::plot_sphere(){
   //---------------------------
 }
 void Model::plot_measure_IfR(float height){
-  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
+  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   if(plot->IfR.title == "") return;
@@ -219,7 +219,7 @@ void Model::plot_measure_IfR(float height){
   //---------------------------
 }
 void Model::plot_measure_IfIt(float height){
-  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
+  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   if(plot->IfIt.title == "") return;
@@ -229,8 +229,8 @@ void Model::plot_measure_IfIt(float height){
   //---------------------------
 }
 void Model::plot_model_heatmap(float height){
-  rad::model::sphere::structure::Optimization* optim = &rad_struct->sphere.optim;
-  rad::model::sphere::structure::Plot* plot = &rad_struct->sphere.plot;
+  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   if(plot->IfRIt.title == "") return;

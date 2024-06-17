@@ -5,9 +5,9 @@
 namespace rad{class Node;}
 namespace rad::model{class Structure;}
 namespace rad::model{class Node;}
-namespace rad::model::sphere{class Measure;}
-namespace rad::model::sphere{class Model;}
-namespace rad::model::sphere{class Plot;}
+namespace rad::correction{class Measure;}
+namespace rad::correction{class Model;}
+namespace rad::correction{class Plot;}
 namespace utl::implot{class Plot;}
 namespace dyn::base{class Sensor;}
 
@@ -40,9 +40,9 @@ public:
 
 private:
   rad::model::Node* node_model;
-  rad::model::sphere::Measure* rad_measure;
-  rad::model::sphere::Model* model_sphere;
-  rad::model::sphere::Plot* rad_plot;
+  rad::correction::Measure* rad_measure;
+  rad::correction::Model* model_sphere;
+  rad::correction::Plot* rad_plot;
   rad::model::Structure* rad_struct;
   utl::implot::Plot* utl_plot;
 };

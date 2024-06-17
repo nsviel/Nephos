@@ -1,24 +1,24 @@
 #include "Node.h"
 
-#include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::correction{
+namespace rad::calibration{
 
 //Constructor / Destructor
 Node::Node(rad::Node* node_radio){
   //---------------------------
 
-  this->node_radio = node_radio;
-  this->rad_struct = new rad::correction::Structure();
-  this->sphere_process = new rad::correction::Process(this);
+  rad::correction::Node* node_correction = node_radio->get_node_correction();
+
+  this->rad_struct = node_correction->get_rad_struct();
 
   //---------------------------
 }
 Node::~Node(){}
 
 //Main function
+
 
 
 }

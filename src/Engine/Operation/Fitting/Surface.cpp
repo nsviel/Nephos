@@ -1,5 +1,7 @@
 #include "Surface.h"
 
+#include <Utility/Namespace.h>
+
 
 namespace ope::fitting{
 
@@ -7,7 +9,7 @@ namespace ope::fitting{
 Surface::Surface(){
   //---------------------------
 
-  this->m = 3;
+  this->m = 2;
   this->n = 2;
   this->find_number_parameter();
 
@@ -86,13 +88,14 @@ void Surface::compute(std::vector<glm::vec3>& data, glm::vec2& x_bound, glm::vec
   //---------------------------
 }
 float Surface::evaluate(float x, float y){
+  if(P.size() == 0) return 0;
   //---------------------------
 
   int cpt = 0;
   float fit = 0;
   for(int i=0; i<=m; i++){
     for(int j=0; j<=n; j++){
-      fit += P(cpt) * std::pow(x,i) * std::pow(y,j);
+      fit += P(cpt) * std::pow(x, i) * std::pow(y, j);
       cpt++;
     }
   }
@@ -134,14 +137,9 @@ std::vector<float> Surface::get_coefficient(){
   return result;
 }
 void Surface::find_number_parameter(){
-  this->num_param = 0;
   //-------------------------------
 
-  for(int i=0; i<=m; i++){
-    for(int j=0; j<=n; j++){
-      num_param++;
-    }
-  }
+  this->num_param = (m + 1) * (n + 1);
 
   //-------------------------------
 }
