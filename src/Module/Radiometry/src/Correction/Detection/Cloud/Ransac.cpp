@@ -13,7 +13,7 @@ Ransac::Ransac(rad::correction::Node* node_correction){
 
   this->rad_struct = node_correction->get_rad_struct();
   this->rad_glyph = new rad::correction::Glyph(node_correction);
-  this->rad_data = new rad::correction::Data(node_correction);
+  this->rad_measure = new rad::correction::Measure(node_correction);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
 
@@ -39,7 +39,7 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
 
   //Postprocessing stuff
   rad_glyph->draw_calibration_sphere(sensor);
-  rad_data->process_measure();
+  rad_measure->process_measure();
 
   //---------------------------
 }

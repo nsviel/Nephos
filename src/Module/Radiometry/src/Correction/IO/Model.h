@@ -23,7 +23,6 @@ public:
   //Main function
   void import_model();
   void export_model();
-  void compute_model();
 
 private:
   rad::correction::Structure* rad_struct;

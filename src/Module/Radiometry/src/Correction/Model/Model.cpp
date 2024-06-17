@@ -1,7 +1,6 @@
 #include "Model.h"
 
 #include <python/matplotlibcpp.h>
-#include <Utility/Function/File/Json.cpp>
 #include <Radiometry/Namespace.h>
 #include <Operation/Namespace.h>
 
@@ -23,6 +22,14 @@ Model::Model(rad::correction::Node* node_correction){
 Model::~Model(){}
 
 //Main function
+void Model::compute_model(){
+  //---------------------------
+
+  this->build_model();
+  this->compute_model_rmse();
+
+  //---------------------------
+}
 void Model::build_model(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------

@@ -12,10 +12,12 @@ Model::Model(rad::Node* node_radio){
 
   rad::correction::Node* node_correction = node_radio->get_node_correction();
 
-  this->model_sphere = node_correction->get_rad_model();
+  this->rad_model = node_correction->get_rad_model();
   this->rad_struct = node_correction->get_rad_struct();
-  this->rad_measure = model_sphere->get_rad_measure();
-  this->rad_plot = model_sphere->get_rad_plot();
+  this->rad_measure = rad_model->get_rad_measure();
+  this->rad_plot = rad_model->get_rad_plot();
+  this->rad_io_measure = node_correction->get_rad_io_measure();
+  this->rad_io_model = node_correction->get_rad_io_model();
   this->utl_plot = new utl::implot::Plot();
 
   //---------------------------
@@ -56,7 +58,7 @@ void Model::parameter_measure(){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button(ICON_FA_DOWNLOAD "##measure_load", ImVec2(25, 0))){
-    rad_measure->import_measure();
+    rad_io_measure->import_measure();
   }
   ImGui::SameLine();
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
@@ -87,21 +89,21 @@ void Model::parameter_measure(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Import##sphere", ImVec2(120, 0))){
-      rad_measure->import_measure();
+      rad_io_measure->import_measure();
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
     if(ImGui::Button("Export##sphere", ImVec2(120, 0))){
-      rad_measure->export_measure();
+      rad_io_measure->export_measure();
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Clear##sphere", ImVec2(120, 0))){
-      rad_measure->clear_measure();
+      rad_io_measure->clear_measure();
     }
     ImGui::PopStyleColor(2);
 
@@ -121,7 +123,7 @@ void Model::parameter_model(){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button(ICON_FA_DOWNLOAD "##model_load", ImVec2(25, 0))){
-    model_sphere->import_model();
+    rad_io_model->import_model();
   }
   ImGui::SameLine();
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
@@ -163,7 +165,7 @@ void Model::parameter_model(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Compute##model", ImVec2(120, 0))){
-      model_sphere->compute_model();
+      rad_model->compute_model();
     }
     ImGui::SameLine();
     if(ImGui::Button("Plot##model", ImVec2(120, 0))){
@@ -175,14 +177,14 @@ void Model::parameter_model(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Import##model", ImVec2(120, 0))){
-      model_sphere->import_model();
+      rad_io_model->import_model();
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
     if(ImGui::Button("Export##model", ImVec2(120, 0))){
-      model_sphere->export_model();
+      rad_io_model->export_model();
     }
     ImGui::PopStyleColor(2);
 

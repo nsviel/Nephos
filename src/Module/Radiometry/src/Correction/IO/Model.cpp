@@ -1,6 +1,5 @@
 #include "Model.h"
 
-#include <python/matplotlibcpp.h>
 #include <Utility/Function/File/Json.cpp>
 #include <Radiometry/Namespace.h>
 #include <Operation/Namespace.h>
@@ -56,13 +55,6 @@ void Model::export_model(){
 
   //---------------------------
 }
-void Model::compute_model(){
-  //---------------------------
 
-  this->build_model();
-  this->compute_model_rmse();
-
-  //---------------------------
-}
 
 }

@@ -4,20 +4,21 @@
 
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
+namespace rad::correction{class Plot;}
 
 
 namespace rad::correction{
 
-class Data
+class Measure
 {
 public:
   //Constructor / Destructor
-  Data(rad::correction::Node* node_correction);
-  ~Data();
+  Measure(rad::correction::Node* node_correction);
+  ~Measure();
 
 public:
   //Main function
-  void init_measure();
+  void init();
   void process_measure();
 
   //Subfunction
@@ -27,6 +28,7 @@ public:
 
 private:
   rad::correction::Structure* rad_struct;
+  rad::correction::Plot* rad_plot;
 };
 
 }

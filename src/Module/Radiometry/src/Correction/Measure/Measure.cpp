@@ -1,4 +1,4 @@
-#include "Data.h"
+#include "Measure.h"
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
@@ -8,17 +8,18 @@
 namespace rad::correction{
 
 //Constructor / Destructor
-Data::Data(rad::correction::Node* node_correction){
+Measure::Measure(rad::correction::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();
-
+  this->rad_plot = new rad::correction::Plot(node_correction);
+  
   //---------------------------
 }
-Data::~Data(){}
+Measure::~Measure(){}
 
 //Main function
-void Data::init_measure(){
+void Measure::init(){
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   //---------------------------
 
@@ -44,7 +45,7 @@ void Data::init_measure(){
 
   //---------------------------
 }
-void Data::process_measure(){
+void Measure::process_measure(){
   //---------------------------
 
   vector<vec3>& search_xyz = rad_struct->ransac.search_xyz;
@@ -59,7 +60,7 @@ void Data::process_measure(){
 }
 
 //Subfunction
-void Data::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
+void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
@@ -99,7 +100,7 @@ void Data::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
 
   //---------------------------
 }
-void Data::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
+void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
@@ -121,7 +122,7 @@ void Data::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
 
   //---------------------------
 }
-void Data::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
+void Measure::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------

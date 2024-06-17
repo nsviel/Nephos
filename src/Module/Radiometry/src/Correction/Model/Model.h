@@ -26,7 +26,8 @@ public:
   float compute_model_rmse();
   bool is_ready();
   void find_optimization_bound();
-
+  void compute_model();
+  
   inline rad::correction::Structure* get_rad_struct(){return rad_struct;}
   inline rad::correction::Measure* get_rad_measure(){return rad_measure;}
   inline rad::correction::Plot* get_rad_plot(){return rad_plot;}
