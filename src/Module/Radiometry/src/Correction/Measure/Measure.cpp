@@ -102,10 +102,10 @@ void Measure::find_optimization_bound(){
     if(It > It_bound.y) It_bound.y = It;
   }
 
-  rad_struct->optim.axis_x.bound = R_bound;
-  rad_struct->optim.axis_y.bound = It_bound;
-  rad_struct->optim.axis_x.current = (R_bound.x + R_bound.y) / 2;
-  rad_struct->optim.axis_y.current = (It_bound.x + It_bound.y) / 2;
+  rad_struct->model.axis_x.bound = R_bound;
+  rad_struct->model.axis_y.bound = It_bound;
+  rad_struct->model.axis_x.current = (R_bound.x + R_bound.y) / 2;
+  rad_struct->model.axis_y.current = (It_bound.x + It_bound.y) / 2;
 
   //---------------------------
 }

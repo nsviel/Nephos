@@ -20,7 +20,7 @@ Plot::~Plot(){}
 
 //Main function
 void Plot::init(){
-  rad::correction::structure::Optimization* optim = &rad_struct->optim;
+  rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
@@ -80,7 +80,7 @@ void Plot::plot_measure(){
   //---------------------------
 }
 void Plot::plot_model(){
-  rad::correction::structure::Optimization* optim = &rad_struct->optim;
+  rad::correction::structure::Model* optim = &rad_struct->model;
   //---------------------------
 
   //if(ope_surface->has_been_computed() == false){
@@ -136,7 +136,7 @@ void Plot::plot_model(){
 
 //Subfunction
 void Plot::update_plot_data(){
-  rad::correction::structure::Optimization* optim = &rad_struct->optim;
+  rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -189,7 +189,7 @@ void Plot::update_plot_data(){
   //---------------------------
 }
 void Plot::reset_plot_data(){
-  rad::correction::structure::Optimization* optim = &rad_struct->optim;
+  rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------

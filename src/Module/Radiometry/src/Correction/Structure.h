@@ -6,7 +6,7 @@
 #include <Radiometry/src/Correction/Structure/Canny.h>
 #include <Radiometry/src/Correction/Structure/Ransac.h>
 #include <Radiometry/src/Correction/Structure/Measure.h>
-#include <Radiometry/src/Correction/Structure/Optimization.h>
+#include <Radiometry/src/Correction/Structure/Model.h>
 #include <Radiometry/src/Correction/Structure/Plot.h>
 #include <string>
 #include <vector>
@@ -30,8 +30,8 @@ struct Structure{
 
   //Model stuff
   rad::correction::structure::Measure measure;
-  rad::correction::structure::Optimization optim;
   rad::correction::structure::Plot plot;
+  rad::correction::structure::Model model;
 
   //---------------------------
 };

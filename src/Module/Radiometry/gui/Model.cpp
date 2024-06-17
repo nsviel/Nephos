@@ -111,7 +111,7 @@ void Model::parameter_measure(){
   //---------------------------
 }
 void Model::parameter_model(){
-  rad::correction::structure::Optimization* optim = &rad_struct->optim;
+  rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -229,7 +229,7 @@ void Model::plot_measure_IfIt(float height){
   //---------------------------
 }
 void Model::plot_model_heatmap(float height){
-  rad::correction::structure::Optimization* optim = &rad_struct->optim;
+  rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 

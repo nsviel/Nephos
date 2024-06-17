@@ -6,7 +6,7 @@
 
 namespace rad::correction::structure{
 
-struct Optimization{
+struct Model{
   //---------------------------
 
   std::string path = "../media/calibration/model.json";
