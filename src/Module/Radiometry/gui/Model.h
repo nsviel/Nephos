@@ -3,8 +3,8 @@
 #include <Utility/Specific/Common.h>
 
 namespace rad{class Node;}
-namespace rad::model{class Structure;}
-namespace rad::model{class Node;}
+namespace rad::correction{class Structure;}
+namespace rad::correction{class Node;}
 namespace rad::correction{class Measure;}
 namespace rad::correction{class Model;}
 namespace rad::correction{class Plot;}
@@ -39,11 +39,11 @@ public:
   void plot_chart();
 
 private:
-  rad::model::Node* node_model;
+  rad::correction::Node* node_correction;
   rad::correction::Measure* rad_measure;
   rad::correction::Model* model_sphere;
   rad::correction::Plot* rad_plot;
-  rad::model::Structure* rad_struct;
+  rad::correction::Structure* rad_struct;
   utl::implot::Plot* utl_plot;
 };
 

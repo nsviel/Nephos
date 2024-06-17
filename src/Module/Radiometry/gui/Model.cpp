@@ -47,7 +47,7 @@ void Model::draw_tab(dyn::base::Sensor* sensor){
 
 //Subfunction
 void Model::parameter_measure(){
-  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
+  rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -111,8 +111,8 @@ void Model::parameter_measure(){
   //---------------------------
 }
 void Model::parameter_model(){
-  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
-  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
+  rad::correction::structure::Optimization* optim = &rad_struct->optim;
+  rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -209,7 +209,7 @@ void Model::plot_sphere(){
   //---------------------------
 }
 void Model::plot_measure_IfR(float height){
-  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
+  rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfR.title == "") return;
@@ -219,7 +219,7 @@ void Model::plot_measure_IfR(float height){
   //---------------------------
 }
 void Model::plot_measure_IfIt(float height){
-  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
+  rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfIt.title == "") return;
@@ -229,8 +229,8 @@ void Model::plot_measure_IfIt(float height){
   //---------------------------
 }
 void Model::plot_model_heatmap(float height){
-  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
-  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
+  rad::correction::structure::Optimization* optim = &rad_struct->optim;
+  rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfRIt.title == "") return;
