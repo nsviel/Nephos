@@ -6,10 +6,10 @@
 namespace rad::calibration{
 
 //Constructor / Destructor
-Model::Model(rad::model::Node* node_model){
+Model::Model(rad::calibration::Node* node_calibration){
   //---------------------------
 
-  this->rad_struct = node_model->get_rad_struct();
+  this->rad_struct = node_calibration->get_rad_struct();
 
   //---------------------------
 }

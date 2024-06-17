@@ -2,19 +2,19 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad::model{class Node;}
-namespace rad::model{class Structure;}
+namespace rad::correction{class Node;}
+namespace rad::correction{class Structure;}
 namespace rad::correction{class Plot;}
 
 
 namespace rad::correction{
 
-class Sphere
+class Measure
 {
 public:
   //Constructor / Destructor
-  Sphere(rad::model::Node* node_model);
-  ~Sphere();
+  Measure(rad::correction::Node* node_correction);
+  ~Measure();
 
 public:
   //Main function
@@ -27,7 +27,7 @@ public:
   void find_optimization_bound();
 
 private:
-  rad::model::Structure* rad_struct;
+  rad::correction::Structure* rad_struct;
   rad::correction::Plot* rad_plot;
 };
 

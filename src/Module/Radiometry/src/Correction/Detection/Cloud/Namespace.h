@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Radiometry/src/Detection/Sphere/Cloud/Ransac.h>
-#include <Radiometry/src/Detection/Sphere/Cloud/Measure.h>
-#include <Radiometry/src/Detection/Sphere/Cloud/Detection.h>
+#include <Radiometry/src/Correction/Detection/Cloud/Ransac.h>
+#include <Radiometry/src/Correction/Detection/Cloud/Measure.h>
+#include <Radiometry/src/Correction/Detection/Cloud/Detection.h>

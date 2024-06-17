@@ -14,11 +14,21 @@ namespace dyn::base{class Sensor;}
 
 namespace rad::correction{
 
+enum Step{
+  VALIDATION = 1,
+  PROCESSING = 2,
+};
+
+enum Data{
+  NO_DATA = 0,
+  HAS_DATA = 3,
+};
+
 class Process
 {
 public:
   //Constructor / Destructor
-  Process(rad::correction::Node* node_detection);
+  Process(rad::correction::Node* node_correction);
   ~Process();
 
 public:

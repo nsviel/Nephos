@@ -17,7 +17,7 @@ class Ransac
 {
 public:
   //Constructor / Destructor
-  Ransac(rad::correction::Node* node_detection);
+  Ransac(rad::correction::Node* node_correction);
   ~Ransac();
 
 public:

@@ -14,7 +14,7 @@ namespace rad::correction::image{
 class Hough
 {
 public:
-  Hough(rad::correction::Node* node_detection);
+  Hough(rad::correction::Node* node_correction);
   ~Hough();
 
 public:

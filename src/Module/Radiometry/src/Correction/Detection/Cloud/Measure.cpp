@@ -8,14 +8,10 @@
 namespace rad::correction::cloud{
 
 //Constructor / Destructor
-Measure::Measure(rad::correction::Node* node_detection){
+Measure::Measure(rad::correction::Node* node_correction){
   //---------------------------
 
-  rad::Node* node_radio = node_detection->get_node_radio();
-  rad::model::Node* node_model = node_radio->get_node_model();
-
-  this->model_struct = node_model->get_rad_struct();
-  this->rad_struct = node_detection->get_rad_struct();
+  this->rad_struct = node_correction->get_rad_struct();
 
   //---------------------------
 }
@@ -25,9 +21,9 @@ Measure::~Measure(){}
 void Measure::process_measure(){
   //---------------------------
 
-  vector<vec3>& search_xyz = rad_struct->sphere.ransac.search_xyz;
-  vector<float>& search_Is = rad_struct->sphere.ransac.search_Is;
-  rad_struct->sphere.state_data = rad::correction::HAS_DATA;
+  vector<vec3>& search_xyz = rad_struct->ransac.search_xyz;
+  vector<float>& search_Is = rad_struct->ransac.search_Is;
+  rad_struct->state_data = rad::correction::HAS_DATA;
 
   this->data_measure(search_xyz, search_Is);
   this->data_IfR(search_xyz, search_Is);
@@ -38,16 +34,16 @@ void Measure::process_measure(){
 
 //Subfunction
 void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
-  rad::correction::structure::Optimization* optim = &model_struct->sphere.optim;
-  rad::correction::structure::Sphere* sphere = &model_struct->sphere.sphere;
-  rad::correction::structure::Plot* plot = &model_struct->sphere.plot;
+  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::correction::structure::Sphere* sphere = &rad_struct->sphere.sphere;
+  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   //Init parameter
   glm::vec3 root = glm::vec3(0, 0, 0);
-  glm::vec3 pose = rad_struct->sphere.ransac.current_pose;
-  float radius = rad_struct->sphere.ransac.sphere_diameter / 2;
-  float thres_sphere = rad_struct->sphere.ransac.thres_sphere;
+  glm::vec3 pose = rad_struct->ransac.current_pose;
+  float radius = rad_struct->ransac.sphere_diameter / 2;
+  float thres_sphere = rad_struct->ransac.thres_sphere;
 
   //Insert measure
   for(int i=0; i<search_xyz.size(); i++){
@@ -78,13 +74,13 @@ void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 }
 void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
-  rad::correction::structure::Optimization* optim = &model_struct->sphere.optim;
-  rad::correction::structure::Sphere* sphere = &model_struct->sphere.sphere;
-  rad::correction::structure::Plot* plot = &model_struct->sphere.plot;
+  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::correction::structure::Sphere* sphere = &rad_struct->sphere.sphere;
+  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   //Search for closest point
-  int idx = rad_struct->sphere.ransac.idx_nearest;
+  int idx = rad_struct->ransac.idx_nearest;
   float R = math::distance_from_origin(search_xyz[idx]);
   float Is = search_Is[idx];
 
@@ -100,15 +96,15 @@ void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 }
 void Measure::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
-  rad::correction::structure::Sphere* sphere = &model_struct->sphere.sphere;
-  rad::correction::structure::Plot* plot = &model_struct->sphere.plot;
+  rad::correction::structure::Sphere* sphere = &rad_struct->sphere.sphere;
+  rad::correction::structure::Plot* plot = &rad_struct->sphere.plot;
   //---------------------------
 
   //Init parameter
   glm::vec3 root = vec3(0, 0, 0);
-  glm::vec3 pose = rad_struct->sphere.ransac.current_pose;
-  float radius = rad_struct->sphere.ransac.sphere_diameter / 2;
-  float thres_sphere = rad_struct->sphere.ransac.thres_sphere;
+  glm::vec3 pose = rad_struct->ransac.current_pose;
+  float radius = rad_struct->ransac.sphere_diameter / 2;
+  float thres_sphere = rad_struct->ransac.thres_sphere;
 
   plot->IfIt.axis_x.data = vector<float>(plot->IfIt.axis_x.data.size(), 0.0f);
   plot->IfIt.axis_y.data = vector<float>(plot->IfIt.axis_y.data.size(), 0.0f);

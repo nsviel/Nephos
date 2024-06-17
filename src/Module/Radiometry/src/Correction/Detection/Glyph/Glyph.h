@@ -17,7 +17,7 @@ class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(rad::correction::Node* node_detection);
+  Glyph(rad::correction::Node* node_correction);
   ~Glyph();
 
 public:

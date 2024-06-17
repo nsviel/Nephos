@@ -14,7 +14,7 @@ namespace rad::correction::image{
 class Image
 {
 public:
-  Image(rad::correction::Node* node_detection);
+  Image(rad::correction::Node* node_correction);
   ~Image();
 
 public:

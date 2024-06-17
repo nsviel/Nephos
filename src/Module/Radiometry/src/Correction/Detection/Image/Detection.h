@@ -19,7 +19,7 @@ class Detection
 {
 public:
   //Constructor / Destructor
-  Detection(rad::correction::Node* node_detection);
+  Detection(rad::correction::Node* node_correction);
   ~Detection();
 
 public:

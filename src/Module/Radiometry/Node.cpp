@@ -21,9 +21,8 @@ Node::Node(eng::Node* node_engine){
   this->node_dynamic = node_engine->get_node_dynamic();
 
   //Child
-  this->node_model = new rad::model::Node(this);
-  this->node_detection = new rad::correction::Node(this);
   this->node_correction = new rad::correction::Node(this);
+  this->node_calibration = new rad::calibration::Node(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 
   //---------------------------
@@ -40,14 +39,14 @@ void Node::config(){
 void Node::init(){
   //---------------------------
 
-  node_detection->init();
+  node_correction->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  node_detection->loop();
+  node_correction->loop();
 
   //---------------------------
 }

@@ -10,10 +10,10 @@ namespace rad::gui{
 Model::Model(rad::Node* node_radio){
   //---------------------------
 
-  rad::model::Node* node_model = node_radio->get_node_model();
+  rad::correction::Node* node_correction = node_radio->get_node_correction();
 
-  this->model_sphere = node_model->get_model_sphere();
-  this->rad_struct = node_model->get_rad_struct();
+  this->model_sphere = node_correction->get_rad_model();
+  this->rad_struct = node_correction->get_rad_struct();
   this->rad_measure = model_sphere->get_rad_measure();
   this->rad_plot = model_sphere->get_rad_plot();
   this->utl_plot = new utl::implot::Plot();

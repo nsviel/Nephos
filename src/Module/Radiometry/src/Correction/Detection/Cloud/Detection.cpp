@@ -9,16 +9,16 @@
 namespace rad::correction::cloud{
 
 //Constructor / Destructor
-Detection::Detection(rad::correction::Node* node_detection){
+Detection::Detection(rad::correction::Node* node_correction){
   //---------------------------
 
-  rad::Node* node_radio = node_detection->get_node_radio();
+  rad::Node* node_radio = node_correction->get_node_radio();
   eng::Node* node_engine = node_radio->get_node_engine();
 
   this->thread_pool = node_engine->get_thread_pool();
-  this->rad_struct = node_detection->get_rad_struct();
-  this->rad_glyph = new rad::correction::Glyph(node_detection);
-  this->rad_ransac = new rad::correction::cloud::Ransac(node_detection);
+  this->rad_struct = node_correction->get_rad_struct();
+  this->rad_glyph = new rad::correction::Glyph(node_correction);
+  this->rad_ransac = new rad::correction::cloud::Ransac(node_correction);
 
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
@@ -41,7 +41,7 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
 void Detection::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  if(sensor != nullptr && rad_struct->sphere.state_step == rad::correction::PROCESSING){
+  if(sensor != nullptr && rad_struct->state_step == rad::correction::PROCESSING){
     rad_ransac->ransac_sphere(sensor);
     rad_glyph->reset_detection_sphere();
   }else{
@@ -68,20 +68,20 @@ void Detection::validate_bbox(dyn::base::Sensor* sensor){
   //---------------------------
 
   //Stop if no detection
-  if(rad_struct->sphere.hough.nb_detection == 0){
-    rad_struct->sphere.ransac.current_pose = glm::vec3(0, 0, 0);
+  if(rad_struct->hough.nb_detection == 0){
+    rad_struct->ransac.current_pose = glm::vec3(0, 0, 0);
     return;
   }
 
   //Retrieve the 3D pose of the bounding box
-  ivec2 point_2d = rad_struct->sphere.hough.vec_circle[0].center;
+  ivec2 point_2d = rad_struct->hough.vec_circle[0].center;
   vec3 pose_xyz = sensor->convert_depth_2d_to_3d(point_2d);
   vec4 pose_xyzw = vec4(pose_xyz.x, pose_xyz.y, pose_xyz.z, 1);
-  rad_struct->sphere.ransac.current_pose = pose->model * pose_xyzw;
+  rad_struct->ransac.current_pose = pose->model * pose_xyzw;
   rad_ransac->ransac_sphere(sensor);
 
   //Up step and display glyph
-  rad_struct->sphere.state_step = rad::correction::PROCESSING;
+  rad_struct->state_step = rad::correction::PROCESSING;
 
   //---------------------------
 }

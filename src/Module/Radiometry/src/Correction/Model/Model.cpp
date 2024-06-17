@@ -9,12 +9,12 @@
 namespace rad::correction{
 
 //Constructor / Destructor
-Model::Model(rad::model::Node* node_model){
+Model::Model(rad::correction::Node* node_correction){
   //---------------------------
 
-  this->rad_struct = node_model->get_rad_struct();
-  this->rad_plot = new rad::correction::Plot(node_model);
-  this->rad_measure = new rad::correction::Measure(node_model);
+  this->rad_struct = node_correction->get_rad_struct();
+  this->rad_plot = new rad::correction::Plot(node_correction);
+  this->rad_measure = new rad::correction::Measure(node_correction);
   this->ope_polyfit = new ope::fitting::Polyfit();
   this->ope_surface = new ope::fitting::Surface();
 
@@ -24,7 +24,7 @@ Model::~Model(){}
 
 //Main function
 void Model::import_model(){
-  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::correction::structure::Optimization* optim = &rad_struct->optim;
   //---------------------------
 
   optim->serial_number = utl::json::read_value<string>(optim->path, "serial_number");
@@ -38,7 +38,7 @@ void Model::import_model(){
   //---------------------------
 }
 void Model::export_model(){
-  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::correction::structure::Optimization* optim = &rad_struct->optim;
   //---------------------------
 
   utl::json::write_value(optim->path, "serial_number", optim->serial_number);
@@ -67,11 +67,11 @@ void Model::compute_model(){
 
 //Subfunction
 void Model::build_model(){
-  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::correction::structure::Optimization* optim = &rad_struct->optim;
   //---------------------------
 
   //Apply logarithmic scale
-  std::vector<glm::vec3> vec_data = rad_struct->sphere.sphere.data;
+  std::vector<glm::vec3> vec_data = rad_struct->sphere.data;
   for(int i=0; i<vec_data.size(); i++){
     glm::vec3& data = vec_data[i];
     data.z = std::log(data.z);
@@ -85,13 +85,13 @@ void Model::build_model(){
   //---------------------------
 }
 float Model::compute_model_rmse(){
-  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::correction::structure::Optimization* optim = &rad_struct->optim;
   //---------------------------
 
-  int N = rad_struct->sphere.sphere.data.size();
+  int N = rad_struct->sphere.data.size();
   float E = 0;
   for(int i=0; i<N; i++){
-    vec3& data = rad_struct->sphere.sphere.data[i];
+    vec3& data = rad_struct->sphere.data[i];
     if(data.x < optim->axis_x.bound[0] || data.x > optim->axis_x.bound[1]) continue;
     if(data.y < optim->axis_y.bound[0] || data.y > optim->axis_y.bound[1]) continue;
     if(data.x < 0 || data.y < 0) continue;
@@ -107,7 +107,7 @@ float Model::compute_model_rmse(){
   return RMSE;
 }
 float Model::apply_model(float x, float y){
-  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::correction::structure::Optimization* optim = &rad_struct->optim;
   if(optim->coefficient.size() == 0) return 0;
   //---------------------------
 say(optim->coefficient.size());
@@ -130,7 +130,7 @@ say(optim->coefficient.size());
   return z;
 }
 bool Model::is_ready(){
-  rad::correction::structure::Optimization* optim = &rad_struct->sphere.optim;
+  rad::correction::structure::Optimization* optim = &rad_struct->optim;
   //---------------------------
 
   if(optim->coefficient.size() == 0){

@@ -10,17 +10,17 @@
 namespace rad::correction::image{
 
 //Constructor / Destructor
-Detection::Detection(rad::correction::Node* node_detection){
+Detection::Detection(rad::correction::Node* node_correction){
   //---------------------------
 
-  rad::Node* node_radio = node_detection->get_node_radio();
+  rad::Node* node_radio = node_correction->get_node_radio();
   eng::Node* node_engine = node_radio->get_node_engine();
   dat::Node* node_data = node_radio->get_node_data();
 
-  this->rad_struct = node_detection->get_rad_struct();
-  this->rad_image = new rad::correction::image::Image(node_detection);
-  this->rad_glyph = new rad::correction::Glyph(node_detection);
-  this->rad_hough = new rad::correction::image::Hough(node_detection);
+  this->rad_struct = node_correction->get_rad_struct();
+  this->rad_image = new rad::correction::image::Image(node_correction);
+  this->rad_glyph = new rad::correction::Glyph(node_correction);
+  this->rad_hough = new rad::correction::image::Hough(node_correction);
   this->thread_pool = node_engine->get_thread_pool();
   this->dat_image = node_data->get_dat_image();
 

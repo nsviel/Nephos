@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad::model{class Node;}
-namespace rad::model{class Structure;}
+namespace rad::correction{class Node;}
+namespace rad::correction{class Structure;}
 namespace rad::correction{class Model;}
 
 
@@ -13,7 +13,7 @@ class Plot
 {
 public:
   //Constructor / Destructor
-  Plot(rad::model::Node* node_model);
+  Plot(rad::correction::Node* node_correction);
   ~Plot();
 
 public:
@@ -27,8 +27,8 @@ public:
   void reset_plot_data();
 
 private:
-  rad::model::Structure* rad_struct;
-  rad::correction::Model* model_sphere;
+  rad::correction::Structure* rad_struct;
+  rad::correction::Model* rad_model;
 };
 
 }

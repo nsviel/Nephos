@@ -3,7 +3,6 @@
 #include <Utility/Specific/Common.h>
 
 namespace rad::correction{class Node;}
-namespace rad::model{class Structure;}
 namespace rad::correction{class Structure;}
 
 
@@ -13,7 +12,7 @@ class Measure
 {
 public:
   //Constructor / Destructor
-  Measure(rad::correction::Node* node_detection);
+  Measure(rad::correction::Node* node_correction);
   ~Measure();
 
 public:
@@ -26,7 +25,6 @@ public:
   void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
 
 private:
-  rad::model::Structure* model_struct;
   rad::correction::Structure* rad_struct;
 };
 

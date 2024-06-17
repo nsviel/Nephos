@@ -8,7 +8,7 @@
 namespace rad::calibration{
 
 //Constructor / Destructor
-Plot::Plot(rad::model::Node* node_model){
+Plot::Plot(rad::calibration::Node* node_calibration){
   //---------------------------
 
 

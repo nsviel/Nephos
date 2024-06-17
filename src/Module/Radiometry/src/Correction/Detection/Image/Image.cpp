@@ -6,10 +6,10 @@
 namespace rad::correction::image{
 
 //Constructor / Destructor
-Image::Image(rad::correction::Node* node_detection){
+Image::Image(rad::correction::Node* node_correction){
   //---------------------------
 
-  this->rad_struct = node_detection->get_rad_struct();
+  this->rad_struct = node_correction->get_rad_struct();
 
   //---------------------------
 }
@@ -17,15 +17,15 @@ Image::~Image(){}
 
 //Main function
 void Image::apply_canny(cv::Mat& input, cv::Mat& output){
-  if(rad_struct->sphere.canny.apply == false){
+  if(rad_struct->canny.apply == false){
     output = input;
     return;
   }
   //---------------------------
 
   // Perform canny edge detection
-  int& thresh_lower = rad_struct->sphere.canny.thres_lower;
-  int& thresh_upper = rad_struct->sphere.canny.thres_upper;
+  int& thresh_lower = rad_struct->canny.thres_lower;
+  int& thresh_upper = rad_struct->canny.thres_upper;
   cv::Canny(input, output, thresh_lower, thresh_upper);
 
   //---------------------------
@@ -102,12 +102,12 @@ void Image::draw_circle(cv::Mat& image, vector<rad::correction::structure::Circl
 void Image::draw_bounding_box(cv::Mat& image){
   //------------------------
 
-  vector<rad::correction::structure::Circle>& vec_circle = rad_struct->sphere.hough.vec_circle;
+  vector<rad::correction::structure::Circle>& vec_circle = rad_struct->hough.vec_circle;
   if(vec_circle.size() == 0) return;
 
   rad::correction::structure::Circle& circle = vec_circle[0];
   cv::Point center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
-  float radius = cvRound(circle.radius) * rad_struct->sphere.bbox.scale;
+  float radius = cvRound(circle.radius) * rad_struct->bbox.scale;
 
   //Draw cross marker
   int markerSize = 10; // Marker size

@@ -1,12 +1,13 @@
 #pragma once
 
-#include <Radiometry/src/Correction/Detection/Structure/Circle.h>
-#include <Radiometry/src/Correction/Detection/Structure/Hough.h>
-#include <Radiometry/src/Correction/Detection/Structure/Canny.h>
-#include <Radiometry/src/Correction/Detection/Structure/Ransac.h>
-#include <Radiometry/src/Model/Sphere/Structure/Sphere.h>
-#include <Radiometry/src/Model/Sphere/Structure/Optimization.h>
-#include <Radiometry/src/Model/Sphere/Structure/Plot.h>
+#include <Radiometry/src/Correction/Detection/Process.h>
+#include <Radiometry/src/Correction/Structure/Circle.h>
+#include <Radiometry/src/Correction/Structure/Hough.h>
+#include <Radiometry/src/Correction/Structure/Canny.h>
+#include <Radiometry/src/Correction/Structure/Ransac.h>
+#include <Radiometry/src/Correction/Structure/Sphere.h>
+#include <Radiometry/src/Correction/Structure/Optimization.h>
+#include <Radiometry/src/Correction/Structure/Plot.h>
 #include <string>
 #include <vector>
 

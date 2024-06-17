@@ -1,4 +1,4 @@
-#include "Sphere.h"
+#include "Measure.h"
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
@@ -8,56 +8,56 @@
 namespace rad::correction{
 
 //Constructor / Destructor
-Sphere::Sphere(rad::model::Node* node_model){
+Measure::Measure(rad::correction::Node* node_correction){
   //---------------------------
 
-  this->rad_struct = node_model->get_rad_struct();
-  this->rad_plot = new rad::correction::Plot(node_model);
+  this->rad_struct = node_correction->get_rad_struct();
+  this->rad_plot = new rad::correction::Plot(node_correction);
 
   //---------------------------
   this->init();
 }
-Sphere::~Sphere(){}
+Measure::~Measure(){}
 
 //Main function
-void Sphere::import_measure(){
+void Measure::import_measure(){
   //---------------------------
 
-  std::string path = rad_struct->sphere.sphere.get_current_path();
+  std::string path = rad_struct->sphere.get_current_path();
 
   //Determine depth mode
 
   //Import file model data
-  rad_struct->sphere.sphere.data = utl::file::read_vector(path);
+  rad_struct->sphere.data = utl::file::read_vector(path);
 
-  if(rad_struct->sphere.sphere.data.size() != 0){
+  if(rad_struct->sphere.data.size() != 0){
     this->find_optimization_bound();
     rad_plot->update_plot_data();
   }
 
   //---------------------------
 }
-void Sphere::export_measure(){
+void Measure::export_measure(){
   //---------------------------
 
-  std::string path = rad_struct->sphere.sphere.get_current_path();
-  utl::file::write_vector(path, rad_struct->sphere.sphere.data);
+  std::string path = rad_struct->sphere.get_current_path();
+  utl::file::write_vector(path, rad_struct->sphere.data);
 
   //---------------------------
 }
-void Sphere::clear_measure(){
+void Measure::clear_measure(){
   //---------------------------
 
   //Import file model data
-  rad_struct->sphere.sphere.data.clear();
+  rad_struct->sphere.data.clear();
   rad_plot->reset_plot_data();
 
   //---------------------------
 }
 
 //Subfunction
-void Sphere::init(){
-  rad::correction::structure::Sphere* sphere = &rad_struct->sphere.sphere;
+void Measure::init(){
+  rad::correction::structure::Measure* sphere = &rad_struct->sphere;
   //---------------------------
 
   //R
@@ -73,7 +73,7 @@ void Sphere::init(){
   //I
   sphere->I_range = glm::vec2(0.0f, 1500.0f);
 
-  //Sphere
+  //Measure
   sphere->size = sphere->R_size * sphere->It_size;
   sphere->data = vector<vec3>(sphere->size, vec3(-1, -1, -1));
 
@@ -82,30 +82,30 @@ void Sphere::init(){
 
   //---------------------------
 }
-void Sphere::find_optimization_bound(){
+void Measure::find_optimization_bound(){
   //---------------------------
 
   vec2 R_bound = vec2(1000, 0);
   vec2 It_bound = vec2(1000, 0);
 
-  for(int i=0; i<rad_struct->sphere.sphere.data.size(); i++){
+  for(int i=0; i<rad_struct->sphere.data.size(); i++){
     //R
-    float& R = rad_struct->sphere.sphere.data[i].x;
+    float& R = rad_struct->sphere.data[i].x;
     if(R < 0) continue;
     if(R < R_bound.x) R_bound.x = R;
     if(R > R_bound.y) R_bound.y = R;
 
     //It
-    float& It = rad_struct->sphere.sphere.data[i].y;
+    float& It = rad_struct->sphere.data[i].y;
     if(It < 0) continue;
     if(It < It_bound.x) It_bound.x = It;
     if(It > It_bound.y) It_bound.y = It;
   }
 
-  rad_struct->sphere.optim.axis_x.bound = R_bound;
-  rad_struct->sphere.optim.axis_y.bound = It_bound;
-  rad_struct->sphere.optim.axis_x.current = (R_bound.x + R_bound.y) / 2;
-  rad_struct->sphere.optim.axis_y.current = (It_bound.x + It_bound.y) / 2;
+  rad_struct->optim.axis_x.bound = R_bound;
+  rad_struct->optim.axis_y.bound = It_bound;
+  rad_struct->optim.axis_x.current = (R_bound.x + R_bound.y) / 2;
+  rad_struct->optim.axis_y.current = (It_bound.x + It_bound.y) / 2;
 
   //---------------------------
 }

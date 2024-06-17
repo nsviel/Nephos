@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad::model{class Node;}
-namespace rad::model{class Structure;}
+namespace rad::calibration{class Node;}
+namespace rad::calibration{class Structure;}
 namespace rad::calibration{class Plot;}
 
 
@@ -13,7 +13,7 @@ class Measure
 {
 public:
   //Constructor / Destructor
-  Measure(rad::model::Node* node_model);
+  Measure(rad::calibration::Node* node_calibration);
   ~Measure();
 
 public:
@@ -26,7 +26,7 @@ public:
   void init();
 
 private:
-  rad::model::Structure* rad_struct;
+  rad::calibration::Structure* rad_struct;
   rad::calibration::Plot* rad_plot;
 };
 

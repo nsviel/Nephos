@@ -12,7 +12,9 @@ Node::Node(rad::Node* node_radio){
 
   this->node_radio = node_radio;
   this->rad_struct = new rad::correction::Structure();
-  this->sphere_process = new rad::correction::Process(this);
+  this->rad_process = new rad::correction::Process(this);
+  this->rad_measure = new rad::correction::Measure(this);
+  this->rad_model = new rad::correction::Model(this);
 
   //---------------------------
 }
