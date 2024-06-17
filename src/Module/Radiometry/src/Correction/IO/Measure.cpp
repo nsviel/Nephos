@@ -13,6 +13,8 @@ Measure::Measure(rad::correction::Node* node_correction){
 
   this->rad_struct = node_correction->get_rad_struct();
   this->rad_plot = new rad::correction::Plot(node_correction);
+  this->rad_measure = node_correction->get_rad_measure();
+  this->rad_model = node_correction->get_rad_model();
 
   //---------------------------
 
@@ -31,7 +33,7 @@ void Measure::import_measure(){
   rad_struct->measure.data = utl::file::read_vector(path);
 
   if(rad_struct->measure.data.size() != 0){
-    //this->find_optimization_bound();
+    rad_model->find_optimization_bound();
     rad_plot->update_plot_data();
   }
 
@@ -54,9 +56,5 @@ void Measure::clear_measure(){
 
   //---------------------------
 }
-
-//Subfunction
-
-
 
 }

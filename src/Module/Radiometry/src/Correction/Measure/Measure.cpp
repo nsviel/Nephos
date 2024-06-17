@@ -12,8 +12,8 @@ Measure::Measure(rad::correction::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();
-  this->rad_plot = new rad::correction::Plot(node_correction);
-  
+  this->rad_plot = node_correction->get_rad_plot();
+
   //---------------------------
 }
 Measure::~Measure(){}
@@ -40,11 +40,10 @@ void Measure::init(){
   sphere->size = sphere->R_size * sphere->It_size;
   sphere->data = vector<vec3>(sphere->size, vec3(-1, -1, -1));
 
-
-  rad_plot->init();
-
   //---------------------------
 }
+
+//Subfunction
 void Measure::process_measure(){
   //---------------------------
 
@@ -58,8 +57,6 @@ void Measure::process_measure(){
 
   //---------------------------
 }
-
-//Subfunction
 void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;

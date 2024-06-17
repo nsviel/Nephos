@@ -39,10 +39,8 @@ void Process::loop(){
   dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   //---------------------------
 
+  //Update glyph pose
   rad_glyph->update_sphere_glyph();
-
-  //Working image
-
 
   //Cloud and image detection stuff
   rad_image_detection->start_thread(sensor);

@@ -75,7 +75,7 @@ void Detection::detection_step(){
     }
     ImGui::PopStyleColor(2);
   }
-
+/*
   //Chart measure stuff
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Chart measure");
@@ -97,7 +97,7 @@ void Detection::detection_step(){
     }
     ImGui::PopStyleColor(2);
   }
-
+*/
   ImGui::EndTable();
 
   //---------------------------
