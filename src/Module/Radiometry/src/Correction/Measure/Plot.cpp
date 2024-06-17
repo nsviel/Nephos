@@ -21,7 +21,7 @@ Plot::~Plot(){}
 //Main function
 void Plot::init(){
   rad::correction::structure::Optimization* optim = &rad_struct->optim;
-  rad::correction::structure::Sphere* sphere = &rad_struct->sphere;
+  rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -64,11 +64,11 @@ void Plot::init(){
 void Plot::plot_measure(){
   //---------------------------
 
-  if(rad_struct->sphere.data.size() == 0) return;
+  if(rad_struct->measure.data.size() == 0) return;
 
   // Plot 3D scatter plot
   std::vector<float> x, y, z;
-  for(const auto& point : rad_struct->sphere.data){
+  for(const auto& point : rad_struct->measure.data){
     if(point.x == -1 || point.y > 60) continue;
     x.push_back(point.x);
     y.push_back(point.y);
@@ -119,9 +119,9 @@ void Plot::plot_model(){
   matplotlibcpp::plot_surface(x, y, z);
   */
 
-  if(rad_struct->sphere.data.size() > 0){
+  if(rad_struct->measure.data.size() > 0){
     std::vector<float> x_raw, y_raw, z_raw;
-    for(const auto& point : rad_struct->sphere.data){
+    for(const auto& point : rad_struct->measure.data){
       if(point.x == -1 || point.y > 60) continue;
       x_raw.push_back(point.x);
       y_raw.push_back(point.y);
@@ -148,10 +148,10 @@ void Plot::update_plot_data(){
   plot->IfIt.axis_y.fitting.clear();
 
   //Fill model plot data
-  for(int i=0; i<rad_struct->sphere.data.size(); i++){
-    float& R = rad_struct->sphere.data[i].x;
-    float& It = rad_struct->sphere.data[i].y;
-    float& I = rad_struct->sphere.data[i].z;
+  for(int i=0; i<rad_struct->measure.data.size(); i++){
+    float& R = rad_struct->measure.data[i].x;
+    float& It = rad_struct->measure.data[i].y;
+    float& I = rad_struct->measure.data[i].z;
     if(R == -1) continue;
 
     //I(R)
@@ -190,7 +190,7 @@ void Plot::update_plot_data(){
 }
 void Plot::reset_plot_data(){
   rad::correction::structure::Optimization* optim = &rad_struct->optim;
-  rad::correction::structure::Sphere* sphere = &rad_struct->sphere;
+  rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -213,7 +213,7 @@ void Plot::reset_plot_data(){
   //I(R, It)
   for(int i=0; i<plot->IfRIt.axis_z.data.size(); i++){
     plot->IfRIt.axis_z.data[i] = 0;
-    rad_struct->sphere.data[i] = vec3(-1, -1, -1);
+    rad_struct->measure.data[i] = vec3(-1, -1, -1);
   }
 
   //---------------------------
@@ -223,7 +223,7 @@ void Plot::reset_plot_data(){
 
 
 /*void Plot::update_plot_data(){
-  rad::correction::structure::Sphere* sphere = &rad_struct->sphere;
+  rad::correction::structure::Measure* sphere = &rad_struct->measure;
   //---------------------------
 
   utl::base::Plot* plot = &plot->IfR;

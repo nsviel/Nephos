@@ -71,7 +71,7 @@ void Model::build_model(){
   //---------------------------
 
   //Apply logarithmic scale
-  std::vector<glm::vec3> vec_data = rad_struct->sphere.data;
+  std::vector<glm::vec3> vec_data = rad_struct->measure.data;
   for(int i=0; i<vec_data.size(); i++){
     glm::vec3& data = vec_data[i];
     data.z = std::log(data.z);
@@ -88,10 +88,10 @@ float Model::compute_model_rmse(){
   rad::correction::structure::Optimization* optim = &rad_struct->optim;
   //---------------------------
 
-  int N = rad_struct->sphere.data.size();
+  int N = rad_struct->measure.data.size();
   float E = 0;
   for(int i=0; i<N; i++){
-    vec3& data = rad_struct->sphere.data[i];
+    vec3& data = rad_struct->measure.data[i];
     if(data.x < optim->axis_x.bound[0] || data.x > optim->axis_x.bound[1]) continue;
     if(data.y < optim->axis_y.bound[0] || data.y > optim->axis_y.bound[1]) continue;
     if(data.x < 0 || data.y < 0) continue;

@@ -6,7 +6,7 @@
 
 namespace rad::correction::structure{
 
-struct Sphere{
+struct Measure{
   //---------------------------
 
   std::string get_current_path(){

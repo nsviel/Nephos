@@ -23,14 +23,14 @@ Measure::~Measure(){}
 void Measure::import_measure(){
   //---------------------------
 
-  std::string path = rad_struct->sphere.get_current_path();
+  std::string path = rad_struct->measure.get_current_path();
 
   //Determine depth mode
 
   //Import file model data
-  rad_struct->sphere.data = utl::file::read_vector(path);
+  rad_struct->measure.data = utl::file::read_vector(path);
 
-  if(rad_struct->sphere.data.size() != 0){
+  if(rad_struct->measure.data.size() != 0){
     this->find_optimization_bound();
     rad_plot->update_plot_data();
   }
@@ -40,8 +40,8 @@ void Measure::import_measure(){
 void Measure::export_measure(){
   //---------------------------
 
-  std::string path = rad_struct->sphere.get_current_path();
-  utl::file::write_vector(path, rad_struct->sphere.data);
+  std::string path = rad_struct->measure.get_current_path();
+  utl::file::write_vector(path, rad_struct->measure.data);
 
   //---------------------------
 }
@@ -49,7 +49,7 @@ void Measure::clear_measure(){
   //---------------------------
 
   //Import file model data
-  rad_struct->sphere.data.clear();
+  rad_struct->measure.data.clear();
   rad_plot->reset_plot_data();
 
   //---------------------------
@@ -57,7 +57,7 @@ void Measure::clear_measure(){
 
 //Subfunction
 void Measure::init(){
-  rad::correction::structure::Sphere* sphere = &rad_struct->sphere;
+  rad::correction::structure::Measure* sphere = &rad_struct->measure;
   //---------------------------
 
   //R
@@ -88,15 +88,15 @@ void Measure::find_optimization_bound(){
   vec2 R_bound = vec2(1000, 0);
   vec2 It_bound = vec2(1000, 0);
 
-  for(int i=0; i<rad_struct->sphere.data.size(); i++){
+  for(int i=0; i<rad_struct->measure.data.size(); i++){
     //R
-    float& R = rad_struct->sphere.data[i].x;
+    float& R = rad_struct->measure.data[i].x;
     if(R < 0) continue;
     if(R < R_bound.x) R_bound.x = R;
     if(R > R_bound.y) R_bound.y = R;
 
     //It
-    float& It = rad_struct->sphere.data[i].y;
+    float& It = rad_struct->measure.data[i].y;
     if(It < 0) continue;
     if(It < It_bound.x) It_bound.x = It;
     if(It > It_bound.y) It_bound.y = It;

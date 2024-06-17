@@ -35,7 +35,7 @@ void Measure::process_measure(){
 //Subfunction
 void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::correction::structure::Optimization* optim = &rad_struct->optim;
-  rad::correction::structure::Sphere* sphere = &rad_struct->sphere;
+  rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -75,7 +75,7 @@ void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
 }
 void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::correction::structure::Optimization* optim = &rad_struct->optim;
-  rad::correction::structure::Sphere* sphere = &rad_struct->sphere;
+  rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -96,7 +96,7 @@ void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 }
 void Measure::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
-  rad::correction::structure::Sphere* sphere = &rad_struct->sphere;
+  rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
