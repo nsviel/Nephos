@@ -9,7 +9,7 @@
 namespace rad::calibration{
 
 //Constructor / Destructor
-Process::Process(rad::detection::Node* node_detection){
+Process::Process(rad::correction::Node* node_detection){
   //---------------------------
 
   rad::Node* node_radio = node_detection->get_node_radio();
@@ -52,12 +52,12 @@ void Process::step_detection(){
   //Measurement step logic
   int& step = rad_struct->chart.state_step;
   switch(step){
-    case rad::detection::VALIDATION:{
+    case rad::correction::VALIDATION:{
 
       break;
     }
-    case rad::detection::PROCESSING:{
-      step = rad::detection::VALIDATION;
+    case rad::correction::PROCESSING:{
+      step = rad::correction::VALIDATION;
       break;
     }
   }

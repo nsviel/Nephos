@@ -3,18 +3,18 @@
 #include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
-namespace rad::detection{class Node;}
-namespace rad::detection{class Structure;}
-namespace rad::detection::structure{class Circle;}
+namespace rad::correction{class Node;}
+namespace rad::correction{class Structure;}
+namespace rad::correction::structure{class Circle;}
 namespace dyn::base{class Sensor;}
 
 
-namespace rad::detection::image{
+namespace rad::correction::image{
 
 class Image
 {
 public:
-  Image(rad::detection::Node* node_detection);
+  Image(rad::correction::Node* node_detection);
   ~Image();
 
 public:
@@ -28,11 +28,11 @@ public:
   void convert_into_utl_image(cv::Mat& input, utl::media::Image* output);
 
   //Shape function
-  void draw_circle(cv::Mat& image, vector<rad::detection::structure::Circle>& vec_circle);
+  void draw_circle(cv::Mat& image, vector<rad::correction::structure::Circle>& vec_circle);
   void draw_bounding_box(cv::Mat& image);
 
 private:
-  rad::detection::Structure* rad_struct;
+  rad::correction::Structure* rad_struct;
 };
 
 }

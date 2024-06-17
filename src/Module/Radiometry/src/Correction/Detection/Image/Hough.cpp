@@ -3,14 +3,14 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::detection::image{
+namespace rad::correction::image{
 
 //Constructor / Destructor
-Hough::Hough(rad::detection::Node* node_detection){
+Hough::Hough(rad::correction::Node* node_detection){
   //---------------------------
 
   this->rad_struct = node_detection->get_rad_struct();
-  this->rad_image = new rad::detection::image::Image(node_detection);
+  this->rad_image = new rad::correction::image::Image(node_detection);
 
   this->set_hough_mode(rad::hough::GRADIENT_ALT);
 
@@ -44,9 +44,9 @@ void Hough::compute_hough_circle(cv::Mat& image){
 
   cv::HoughCircles(image, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
 
-  vector<rad::detection::structure::Circle> vec_circle;
+  vector<rad::correction::structure::Circle> vec_circle;
   for(int i=0; i<circles.size(); i++){
-    rad::detection::structure::Circle circle;
+    rad::correction::structure::Circle circle;
     circle.center = glm::ivec2(circles[i][0], circles[i][1]);
     circle.radius = circles[i][2];
     vec_circle.push_back(circle);
@@ -111,7 +111,7 @@ void Hough::draw_best_circle(cv::Mat& image, utl::media::Image* output){
   if(image.empty()) return;
   //------------------------
 
-  vector<rad::detection::structure::Circle> vec_circle;
+  vector<rad::correction::structure::Circle> vec_circle;
   if(rad_struct->sphere.hough.vec_circle.size() > 0){
     vec_circle.push_back(rad_struct->sphere.hough.vec_circle[0]);
   }

@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Radiometry/src/Detection/Sphere/Glyph/Glyph.h>
-#include <Radiometry/src/Detection/Sphere/Glyph/Sphere.h>
+#include <Radiometry/src/Correction/Detection/Glyph/Glyph.h>
+#include <Radiometry/src/Correction/Detection/Glyph/Sphere.h>

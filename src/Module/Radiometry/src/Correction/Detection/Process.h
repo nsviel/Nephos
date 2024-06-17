@@ -2,10 +2,10 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad::detection{class Node;}
-namespace rad::detection{class Structure;}
-namespace rad::detection::image{class Detection;}
-namespace rad::detection::cloud{class Detection;}
+namespace rad::correction{class Node;}
+namespace rad::correction{class Structure;}
+namespace rad::correction::image{class Detection;}
+namespace rad::correction::cloud{class Detection;}
 namespace rad::correction{class Glyph;}
 namespace dat{class Selection;}
 namespace dat{class Image;}
@@ -18,7 +18,7 @@ class Process
 {
 public:
   //Constructor / Destructor
-  Process(rad::detection::Node* node_detection);
+  Process(rad::correction::Node* node_detection);
   ~Process();
 
 public:
@@ -30,9 +30,9 @@ public:
   void step_detection();
 
 private:
-  rad::detection::Structure* rad_struct;
-  rad::detection::image::Detection* rad_image_detection;
-  rad::detection::cloud::Detection* rad_cloud_detection;
+  rad::correction::Structure* rad_struct;
+  rad::correction::image::Detection* rad_image_detection;
+  rad::correction::cloud::Detection* rad_cloud_detection;
   rad::correction::Glyph* rad_glyph;
   dat::Selection* dat_selection;
   dat::Image* dat_image;

@@ -6,10 +6,10 @@
 #include <Engine/Namespace.h>
 
 
-namespace rad::detection::cloud{
+namespace rad::correction::cloud{
 
 //Constructor / Destructor
-Detection::Detection(rad::detection::Node* node_detection){
+Detection::Detection(rad::correction::Node* node_detection){
   //---------------------------
 
   rad::Node* node_radio = node_detection->get_node_radio();
@@ -18,7 +18,7 @@ Detection::Detection(rad::detection::Node* node_detection){
   this->thread_pool = node_engine->get_thread_pool();
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_glyph = new rad::correction::Glyph(node_detection);
-  this->rad_ransac = new rad::detection::cloud::Ransac(node_detection);
+  this->rad_ransac = new rad::correction::cloud::Ransac(node_detection);
 
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
@@ -41,7 +41,7 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
 void Detection::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  if(sensor != nullptr && rad_struct->sphere.state_step == rad::detection::PROCESSING){
+  if(sensor != nullptr && rad_struct->sphere.state_step == rad::correction::PROCESSING){
     rad_ransac->ransac_sphere(sensor);
     rad_glyph->reset_detection_sphere();
   }else{
@@ -81,7 +81,7 @@ void Detection::validate_bbox(dyn::base::Sensor* sensor){
   rad_ransac->ransac_sphere(sensor);
 
   //Up step and display glyph
-  rad_struct->sphere.state_step = rad::detection::PROCESSING;
+  rad_struct->sphere.state_step = rad::correction::PROCESSING;
 
   //---------------------------
 }

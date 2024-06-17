@@ -16,13 +16,13 @@ Detection::Detection(rad::Node* node_radio){
   dat::Node* node_data = node_radio->get_node_data();
   eng::Node* node_engine = node_radio->get_node_engine();
   dyn::Node* node_dynamic = node_radio->get_node_dynamic();
-  rad::detection::Node* node_detection = node_radio->get_node_detection();
+  rad::correction::Node* node_detection = node_radio->get_node_detection();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->rad_struct = node_detection->get_rad_struct();
   this->sphere_process = node_detection->get_sphere_process();
   this->chart_process = node_detection->get_chart_process();
-  this->rad_hough = new rad::detection::image::Hough(node_detection);
+  this->rad_hough = new rad::correction::image::Hough(node_detection);
   this->stream = new rnd::Stream(node_engine);
   this->dat_image = node_data->get_dat_image();
 
@@ -60,7 +60,7 @@ void Detection::detection_step(){
   ImGui::TableNextColumn();
   this->display_state(rad_struct->sphere.state_step, rad_struct->sphere.state_data);
   ImGui::TableNextColumn();
-  if(rad_struct->sphere.state_step == rad::detection::PROCESSING){
+  if(rad_struct->sphere.state_step == rad::correction::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){
@@ -82,7 +82,7 @@ void Detection::detection_step(){
   ImGui::TableNextColumn();
   this->display_state(rad_struct->chart.state_step, rad_struct->chart.state_data);
   ImGui::TableNextColumn();
-  if(rad_struct->chart.state_step == rad::detection::PROCESSING){
+  if(rad_struct->chart.state_step == rad::correction::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##chart_measure", ImVec2(120, 0))){
@@ -267,17 +267,17 @@ void Detection::parameter_ransac(){
 void Detection::display_state(int step, int data){
   //---------------------------
 
-  if(step == rad::detection::PROCESSING){
+  if(step == rad::correction::PROCESSING){
     ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
     return;
   }
 
   switch(data){
-    case rad::detection::NO_DATA:{
+    case rad::correction::NO_DATA:{
       ImGui::Cross(ImVec4(1, 0.4, 0.4, 1));
       break;
     }
-    case rad::detection::HAS_DATA:{
+    case rad::correction::HAS_DATA:{
       ImGui::Check_on();
       break;
     }

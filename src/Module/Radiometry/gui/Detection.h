@@ -6,10 +6,10 @@
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
-namespace rad::detection{class Structure;}
+namespace rad::correction{class Structure;}
 namespace rad::correction{class Process;}
 namespace rad::calibration{class Process;}
-namespace rad::detection::image{class Hough;}
+namespace rad::correction::image{class Hough;}
 namespace rnd{class Stream;}
 namespace dat{class Image;}
 
@@ -43,10 +43,10 @@ public:
 
 private:
   dyn::Structure* dyn_struct;
-  rad::detection::Structure* rad_struct;
+  rad::correction::Structure* rad_struct;
   rad::correction::Process* sphere_process;
   rad::calibration::Process* chart_process;
-  rad::detection::image::Hough* rad_hough;
+  rad::correction::image::Hough* rad_hough;
   rnd::Stream* stream;
   dat::Image* dat_image;
 };

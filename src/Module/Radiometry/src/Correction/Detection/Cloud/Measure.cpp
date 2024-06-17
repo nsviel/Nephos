@@ -5,10 +5,10 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace rad::detection::cloud{
+namespace rad::correction::cloud{
 
 //Constructor / Destructor
-Measure::Measure(rad::detection::Node* node_detection){
+Measure::Measure(rad::correction::Node* node_detection){
   //---------------------------
 
   rad::Node* node_radio = node_detection->get_node_radio();
@@ -27,7 +27,7 @@ void Measure::process_measure(){
 
   vector<vec3>& search_xyz = rad_struct->sphere.ransac.search_xyz;
   vector<float>& search_Is = rad_struct->sphere.ransac.search_Is;
-  rad_struct->sphere.state_data = rad::detection::HAS_DATA;
+  rad_struct->sphere.state_data = rad::correction::HAS_DATA;
 
   this->data_measure(search_xyz, search_Is);
   this->data_IfR(search_xyz, search_Is);

@@ -8,8 +8,8 @@ namespace rad::calibration{
 struct Structure{
   //---------------------------
 
-  int state_step = rad::detection::VALIDATION;
-  int state_data = rad::detection::NO_DATA;
+  int state_step = rad::correction::VALIDATION;
+  int state_data = rad::correction::NO_DATA;
 
   int nb_detection = 0;
 

@@ -3,22 +3,22 @@
 #include <Utility/Specific/Common.h>
 
 namespace dyn::base{class Sensor;}
-namespace rad::detection{class Node;}
-namespace rad::detection{class Structure;}
+namespace rad::correction{class Node;}
+namespace rad::correction{class Structure;}
 namespace rad::correction{class Glyph;}
-namespace rad::detection::cloud{class Ransac;}
+namespace rad::correction::cloud{class Ransac;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 namespace utl::thread{class Pool;}
 
 
-namespace rad::detection::cloud{
+namespace rad::correction::cloud{
 
 class Detection
 {
 public:
   //Constructor / Destructor
-  Detection(rad::detection::Node* node_detection);
+  Detection(rad::correction::Node* node_detection);
   ~Detection();
 
 public:
@@ -35,8 +35,8 @@ private:
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
   rad::correction::Glyph* rad_glyph;
-  rad::detection::cloud::Ransac* rad_ransac;
-  rad::detection::Structure* rad_struct;
+  rad::correction::cloud::Ransac* rad_ransac;
+  rad::correction::Structure* rad_struct;
 
   std::thread thread;
   bool thread_idle = true;

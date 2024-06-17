@@ -2,12 +2,12 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad::detection{class Node;}
-namespace rad::detection{class Structure;}
+namespace rad::correction{class Node;}
+namespace rad::correction{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace utl::media{class Image;}
-namespace rad::detection::image{class Image;}
+namespace rad::correction::image{class Image;}
 namespace rad::calibration{class Rectangle;}
 namespace dat{class Image;}
 
@@ -18,7 +18,7 @@ class Detection
 {
 public:
   //Constructor / Destructor
-  Detection(rad::detection::Node* node_detection);
+  Detection(rad::correction::Node* node_detection);
   ~Detection();
 
 public:
@@ -32,8 +32,8 @@ public:
 
 private:
   utl::thread::Pool* thread_pool;
-  rad::detection::Structure* rad_struct;
-  rad::detection::image::Image* rad_image;
+  rad::correction::Structure* rad_struct;
+  rad::correction::image::Image* rad_image;
   rad::calibration::Rectangle* rad_rectangle;
   dat::Image* dat_image;
 

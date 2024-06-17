@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Radiometry/src/Model/Chart/Structure/Optimization.h>
-#include <Radiometry/src/Model/Chart/Structure/Plot.h>
-#include <Radiometry/src/Model/Chart/Structure/Chart.h>
+#include <Radiometry/src/Calibration/Structure/Optimization.h>
+#include <Radiometry/src/Calibration/Structure/Plot.h>
+#include <Radiometry/src/Calibration/Structure/Chart.h>
 
 
 namespace rad::calibration{

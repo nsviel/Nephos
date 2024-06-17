@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Radiometry/src/Detection/Sphere/Structure/Circle.h>
-#include <Radiometry/src/Detection/Sphere/Glyph/Sphere.h>
+#include <Radiometry/src/Correction/Detection/Structure/Circle.h>
+#include <Radiometry/src/Correction/Detection/Glyph/Sphere.h>
 #include <opencv2/opencv.hpp>
 #include <string>
 
@@ -20,7 +20,7 @@ enum Drawing{
 
 }
 
-namespace rad::detection::structure{
+namespace rad::correction::structure{
 
 struct Hough{
   //---------------------------
@@ -40,8 +40,8 @@ struct Hough{
 
   //Result
   int nb_detection = 0;
-  std::vector<rad::detection::structure::Circle> vec_circle;
-  std::vector<rad::detection::glyph::Sphere*> vec_glyph;
+  std::vector<rad::correction::structure::Circle> vec_circle;
+  std::vector<rad::correction::glyph::Sphere*> vec_glyph;
 
   //---------------------------
 };

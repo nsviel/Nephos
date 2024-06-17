@@ -9,7 +9,7 @@
 namespace rad::correction{
 
 //Constructor / Destructor
-Process::Process(rad::detection::Node* node_detection){
+Process::Process(rad::correction::Node* node_detection){
   //---------------------------
 
   rad::Node* node_radio = node_detection->get_node_radio();
@@ -17,8 +17,8 @@ Process::Process(rad::detection::Node* node_detection){
 
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_glyph = new rad::correction::Glyph(node_detection);
-  this->rad_image_detection = new rad::detection::image::Detection(node_detection);
-  this->rad_cloud_detection = new rad::detection::cloud::Detection(node_detection);
+  this->rad_image_detection = new rad::correction::image::Detection(node_detection);
+  this->rad_cloud_detection = new rad::correction::cloud::Detection(node_detection);
   this->dat_selection = node_data->get_dat_selection();
   this->dat_image = node_data->get_dat_image();
 
@@ -63,12 +63,12 @@ void Process::step_detection(){
   //Measurement step logic
   int& step = rad_struct->sphere.state_step;
   switch(step){
-    case rad::detection::VALIDATION:{
+    case rad::correction::VALIDATION:{
       rad_cloud_detection->validate_bbox(sensor);
       break;
     }
-    case rad::detection::PROCESSING:{
-      step = rad::detection::VALIDATION;
+    case rad::correction::PROCESSING:{
+      step = rad::correction::VALIDATION;
       break;
     }
   }

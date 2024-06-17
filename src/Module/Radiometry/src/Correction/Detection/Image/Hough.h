@@ -3,18 +3,18 @@
 #include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
-namespace rad::detection{class Node;}
-namespace rad::detection{class Structure;}
-namespace rad::detection::structure{class Circle;}
-namespace rad::detection::image{class Image;}
+namespace rad::correction{class Node;}
+namespace rad::correction{class Structure;}
+namespace rad::correction::structure{class Circle;}
+namespace rad::correction::image{class Image;}
 
 
-namespace rad::detection::image{
+namespace rad::correction::image{
 
 class Hough
 {
 public:
-  Hough(rad::detection::Node* node_detection);
+  Hough(rad::correction::Node* node_detection);
   ~Hough();
 
 public:
@@ -31,8 +31,8 @@ public:
   void draw_best_circle(cv::Mat& image, utl::media::Image* output);
 
 private:
-  rad::detection::Structure* rad_struct;
-  rad::detection::image::Image* rad_image;
+  rad::correction::Structure* rad_struct;
+  rad::correction::image::Image* rad_image;
 };
 
 }

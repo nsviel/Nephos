@@ -6,7 +6,7 @@ namespace prf{class Node;}
 namespace eng{class Node;}
 namespace dat{class Node;}
 namespace dyn{class Node;}
-namespace rad::detection{class Node;}
+namespace rad::correction{class Node;}
 namespace rad::model{class Node;}
 namespace rad::correction{class Node;}
 namespace rad::gui{class Panel;}
@@ -34,7 +34,7 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
 
-  inline rad::detection::Node* get_node_detection(){return node_detection;}
+  inline rad::correction::Node* get_node_detection(){return node_detection;}
   inline rad::model::Node* get_node_model(){return node_model;}
   inline rad::correction::Node* get_node_correction(){return node_correction;}
 
@@ -46,7 +46,7 @@ private:
   dyn::Node* node_dynamic;
 
   //Child
-  rad::detection::Node* node_detection;
+  rad::correction::Node* node_detection;
   rad::model::Node* node_model;
   rad::correction::Node* node_correction;
   rad::gui::Panel* gui_panel;

@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace rad::detection::structure{
+namespace rad::correction::structure{
 
 struct Canny{
   //---------------------------

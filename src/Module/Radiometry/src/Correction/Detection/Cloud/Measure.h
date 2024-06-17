@@ -2,18 +2,18 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad::detection{class Node;}
+namespace rad::correction{class Node;}
 namespace rad::model{class Structure;}
-namespace rad::detection{class Structure;}
+namespace rad::correction{class Structure;}
 
 
-namespace rad::detection::cloud{
+namespace rad::correction::cloud{
 
 class Measure
 {
 public:
   //Constructor / Destructor
-  Measure(rad::detection::Node* node_detection);
+  Measure(rad::correction::Node* node_detection);
   ~Measure();
 
 public:
@@ -27,7 +27,7 @@ public:
 
 private:
   rad::model::Structure* model_struct;
-  rad::detection::Structure* rad_struct;
+  rad::correction::Structure* rad_struct;
 };
 
 }

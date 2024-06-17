@@ -22,7 +22,7 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->node_model = new rad::model::Node(this);
-  this->node_detection = new rad::detection::Node(this);
+  this->node_detection = new rad::correction::Node(this);
   this->node_correction = new rad::correction::Node(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 

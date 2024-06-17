@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Radiometry/src/Detection/Sphere/Glyph/Sphere.h>
+#include <Radiometry/src/Correction/Detection/Glyph/Sphere.h>
 
 
-namespace rad::detection::structure{
+namespace rad::correction::structure{
 
 struct Ransac{
   //---------------------------
@@ -16,7 +16,7 @@ struct Ransac{
   float search_radius = 0.15;
   float sphere_diameter = 0.139;
   glm::vec3 current_pose = vec3(0, 0, 0);
-  rad::detection::glyph::Sphere* glyph;
+  rad::correction::glyph::Sphere* glyph;
 
   vector<vec3> search_xyz;
   vector<vec3> search_Nxyz;

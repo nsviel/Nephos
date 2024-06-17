@@ -3,9 +3,9 @@
 #include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
-namespace rad::detection{class Node;}
-namespace rad::detection{class Structure;}
-namespace rad::detection::image{class Image;}
+namespace rad::correction{class Node;}
+namespace rad::correction{class Structure;}
+namespace rad::correction::image{class Image;}
 namespace utl::media{class Image;}
 
 
@@ -14,7 +14,7 @@ namespace rad::calibration{
 class Rectangle
 {
 public:
-  Rectangle(rad::detection::Node* node_detection);
+  Rectangle(rad::correction::Node* node_detection);
   ~Rectangle();
 
 public:
@@ -27,8 +27,8 @@ public:
   bool is_rectangle(const vector<cv::Point>& contour);
 
 private:
-  rad::detection::Structure* rad_struct;
-  rad::detection::image::Image* rad_image;
+  rad::correction::Structure* rad_struct;
+  rad::correction::image::Image* rad_image;
 };
 
 }

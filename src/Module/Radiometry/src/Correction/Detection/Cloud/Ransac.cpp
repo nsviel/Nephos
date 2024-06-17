@@ -5,15 +5,15 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace rad::detection::cloud{
+namespace rad::correction::cloud{
 
 //Constructor / Destructor
-Ransac::Ransac(rad::detection::Node* node_detection){
+Ransac::Ransac(rad::correction::Node* node_detection){
   //---------------------------
 
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_glyph = new rad::correction::Glyph(node_detection);
-  this->rad_measure = new rad::detection::cloud::Measure(node_detection);
+  this->rad_measure = new rad::correction::cloud::Measure(node_detection);
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
 

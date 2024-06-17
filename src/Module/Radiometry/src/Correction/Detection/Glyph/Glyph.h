@@ -3,9 +3,9 @@
 #include <Utility/Specific/Common.h>
 
 namespace dyn::base{class Sensor;}
-namespace rad::detection{class Node;}
-namespace rad::detection{class Structure;}
-namespace rad::detection::structure{class Circle;}
+namespace rad::correction{class Node;}
+namespace rad::correction{class Structure;}
+namespace rad::correction::structure{class Circle;}
 namespace dat{class Glyph;}
 namespace dat{class Entity;}
 namespace eng{class Node;}
@@ -17,7 +17,7 @@ class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(rad::detection::Node* node_detection);
+  Glyph(rad::correction::Node* node_detection);
   ~Glyph();
 
 public:
@@ -28,7 +28,7 @@ public:
   //Subfunction
   void draw_calibration_sphere(dyn::base::Sensor* sensor);
   void draw_detection_sphere(dyn::base::Sensor* sensor);
-  void draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle);
+  void draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::correction::structure::Circle>& vec_circle);
 
   //Reset function
   void reset_calibration_sphere();
@@ -36,7 +36,7 @@ public:
 
 private:
   eng::Node* node_engine;
-  rad::detection::Structure* rad_struct;
+  rad::correction::Structure* rad_struct;
   dat::Glyph* dat_glyph;
   dat::Entity* dat_entity;
 };

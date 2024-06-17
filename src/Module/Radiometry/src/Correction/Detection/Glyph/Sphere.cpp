@@ -7,7 +7,7 @@
 #include <Loader/Namespace.h>
 
 
-namespace rad::detection::glyph{
+namespace rad::correction::glyph{
 
 //Constructor / destructor
 Sphere::Sphere(eng::Node* node_engine){
