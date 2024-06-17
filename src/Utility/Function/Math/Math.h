@@ -33,7 +33,7 @@ glm::mat3 compute_covariance(const std::vector<glm::vec3>& points);
 glm::vec3 compute_normal_from_covariance(const glm::mat3& covariance);
 void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point);
 float calculate_angle(const glm::vec3& v1, const glm::vec3& v2);
-bool normal_same_direction(const glm::vec3& v1, const glm::vec3& v2);
+bool normal_same_sense(const glm::vec3& v1, const glm::vec3& v2);
 
 //Conversion
 float degree_to_radian(float degree);

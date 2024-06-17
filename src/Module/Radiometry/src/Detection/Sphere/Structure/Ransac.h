@@ -8,13 +8,14 @@ namespace rad::detection::structure{
 struct Ransac{
   //---------------------------
 
-  int nb_iter = 1000;
+  int nb_iter = 100;
   int nb_sample = 50;
-  float thres_sphere = 0.005;
+  float thres_sphere = 0.02;
   float thres_radius = 0.02;
-  float search_radius = 0.3;
+  float search_radius = 0.15;
   float sphere_diameter = 0.139;
   glm::vec3 current_pose = vec3(0, 0, 0);
+  glm::vec3 nearest_point = vec3(0, 0, 0);
   rad::detection::glyph::Sphere* glyph;
 
   vector<vec3> search_xyz;

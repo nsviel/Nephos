@@ -35,15 +35,16 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
   this->reset_search_space();
   this->reduce_search_space(sensor);
   this->apply_ransac();
+  this->apply_refinement();
 
   //Postprocessing stuff
-  rad_measure->process_measure();
   rad_glyph->draw_calibration_sphere(sensor);
+  rad_measure->process_measure();
 
   //---------------------------
 }
 
-//Subfunction
+//Algo function
 void Ransac::reset_search_space(){
   //---------------------------
 
@@ -86,7 +87,7 @@ void Ransac::apply_ransac(){
   //---------------------------
 
   //Set parameter
-  ope_ransac->set_num_iteration(rad_struct->sphere.ransac.nb_iter);
+  ope_ransac->set_num_iteration(1000);
   ope_ransac->set_num_sample(50);
   ope_ransac->set_threshold_sphere(rad_struct->sphere.ransac.thres_sphere);
   ope_ransac->set_threshold_radius(rad_struct->sphere.ransac.thres_radius);
@@ -94,12 +95,53 @@ void Ransac::apply_ransac(){
   //Run ransac algorithm
   std::vector<glm::vec3>& search_xyz = rad_struct->sphere.ransac.search_xyz;
   std::vector<glm::vec3>& search_Nxyz = rad_struct->sphere.ransac.search_Nxyz;
-  std::vector<float>& search_Is = rad_struct->sphere.ransac.search_Is;
-  glm::vec3& current_pose = rad_struct->sphere.ransac.current_pose;
   float sphere_radius = rad_struct->sphere.ransac.sphere_diameter / 2;
-  ope_ransac->ransac_sphere(search_xyz, search_Nxyz, current_pose, sphere_radius);
+  ope_ransac->ransac_sphere(search_xyz, search_Nxyz, rad_struct->sphere.ransac.current_pose, sphere_radius);
 
   //---------------------------
 }
+void Ransac::apply_refinement(){
+  //---------------------------
+
+  std::vector<glm::vec3>& search_xyz = rad_struct->sphere.ransac.search_xyz;
+  glm::vec3& pose = rad_struct->sphere.ransac.current_pose;
+  float sphere_radius = rad_struct->sphere.ransac.sphere_diameter / 2;
+
+  //Refine by getting closest point
+  glm::vec3 direction = glm::normalize(pose);
+  glm::vec3 nearest = find_nearest_point(search_xyz, direction);
+  pose = nearest + sphere_radius * glm::normalize(nearest);
+  rad_struct->sphere.ransac.nearest_point = nearest;
+
+  //---------------------------
+}
+
+//Subfunction
+glm::vec3 Ransac::project_point_on_plane(const glm::vec3& point, const glm::vec3& normal){
+    glm::vec3 normal_normalized = glm::normalize(normal);
+    float distance = glm::dot(point, normal_normalized);
+    return point - distance * normal_normalized;
+}
+glm::vec3 Ransac::find_nearest_point(const std::vector<glm::vec3>& search_xyz, const glm::vec3& center_direction){
+    glm::vec3 nearest_point;
+    float min_distance = std::numeric_limits<float>::max();
+    glm::vec3 direction_normalized = glm::normalize(center_direction);
+
+    for (const auto& xyz : search_xyz) {
+        // Project point onto the plane perpendicular to the center direction
+        glm::vec3 projected_point = project_point_on_plane(xyz, direction_normalized);
+
+        // Compute the distance from the projected point to the origin
+        float distance = glm::length(projected_point);
+
+        if (distance < min_distance) {
+            min_distance = distance;
+            nearest_point = xyz;
+        }
+    }
+
+    return nearest_point;
+}
+
 
 }

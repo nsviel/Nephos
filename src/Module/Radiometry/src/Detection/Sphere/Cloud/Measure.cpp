@@ -46,13 +46,13 @@ void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
   //Init parameter
   glm::vec3 root = glm::vec3(0, 0, 0);
   glm::vec3 pose = rad_struct->sphere.ransac.current_pose;
-  float diameter = rad_struct->sphere.ransac.sphere_diameter;
+  float radius = rad_struct->sphere.ransac.sphere_diameter / 2;
   float thres_sphere = rad_struct->sphere.ransac.thres_sphere;
 
   //Insert measure
   for(int i=0; i<search_xyz.size(); i++){
     glm::vec3& xyz = search_xyz[i];
-    float distance = math::distance(xyz, pose) - diameter / 2 + 0.02;
+    float distance = math::distance(xyz, pose) - radius + 0.02;
 
     if(distance <= thres_sphere){
       glm::vec3 Nxyz = glm::normalize(xyz - pose);
@@ -87,11 +87,8 @@ void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
   float R = 1000.0f;
   float Is = 0;
   for(int i=0; i<search_xyz.size(); i++){
-    vec3& xyz = search_xyz[i];
-    float distance = math::distance_from_origin(xyz);
-
-    if(distance < R && distance > 0.5){
-      R = distance;
+    if(search_xyz[i] == rad_struct->sphere.ransac.nearest_point){
+      R = math::distance_from_origin(search_xyz[i]);
       Is = search_Is[i];
     }
   }
