@@ -90,7 +90,7 @@ void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
     vec3& xyz = search_xyz[i];
     float distance = math::distance_from_origin(xyz);
 
-    if(distance < R){
+    if(distance < R && distance > 0.5){
       R = distance;
       Is = search_Is[i];
     }

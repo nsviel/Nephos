@@ -21,8 +21,16 @@ Ransac::~Ransac(){}
 
 //Ransac fitting
 void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, const std::vector<glm::vec3>& Nxyz, glm::vec3& best_center, float radius){
-  if(xyz.size() == 0) return;
   //------------------------
+
+  if(xyz.size() == 0){
+    cout<<"[error] no point given to ransac"<<endl;
+    return;
+  }
+  if(xyz.size() != Nxyz.size()){
+    cout<<"[error] location and normal size"<<endl;
+    return;
+  }
 
   // Initialize best sphere parameters
   this->best_score = 1000;
@@ -99,13 +107,13 @@ void Ransac::test_consensus(float known_radius){
     //Compare pre-calculated normal with sample one
     glm::vec3 sphere_Nxyz = glm::normalize(xyz - center);
     bool same_direction = math::normal_same_direction(Nxyz, sphere_Nxyz);
-    float angle = math::calculate_angle(Nxyz, sphere_Nxyz);say(angle);
+    float angle = glm::radians(math::calculate_angle(Nxyz, sphere_Nxyz));
 
     //Compute and compare distance of the current sample point
-    float distance_to_sphere = abs(glm::distance(xyz, center) - radius);
+    float distance_to_sphere = abs(glm::distance(xyz, center) - known_radius);
     if(same_direction && distance_to_sphere < threshold_sphere){
       this->nb_inlier++;
-      this->score += distance_to_sphere + angle;
+      this->score += distance_to_sphere + distance_to_radius;// + angle;
     }
   }
 
@@ -115,7 +123,8 @@ void Ransac::evaluate(glm::vec3& best_center){
   if(center == glm::vec3(0, 0, 0)) return;
   //------------------------
 
-  if(nb_inlier > best_nb_inlier ){
+  this->score -= nb_inlier / sample_xyz.size();
+  if(score < best_score){
     this->best_nb_inlier = nb_inlier;
     this->best_score = score;
 

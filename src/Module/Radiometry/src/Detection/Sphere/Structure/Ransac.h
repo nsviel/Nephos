@@ -12,7 +12,7 @@ struct Ransac{
   int nb_sample = 50;
   float thres_sphere = 0.05;
   float thres_radius = 0.02;
-  float search_radius = 0.5;
+  float search_radius = 0.3;
   float sphere_diameter = 0.139;
   glm::vec3 current_pose = vec3(0, 0, 0);
   rad::detection::glyph::Sphere* glyph;

@@ -51,7 +51,7 @@ void Normal::run_thread(dyn::base::Sensor* sensor){
   image->timestamp = sensor->timestamp.current;
   ope_converter->convert_normal_to_image(data, image);
 
-  dat_glyph->update_glyph(sensor, dat::base::object::NORMAL);
+  //dat_glyph->update_glyph(sensor, dat::base::object::NORMAL);
 
   //---------------------------
   this->thread_idle = true;
