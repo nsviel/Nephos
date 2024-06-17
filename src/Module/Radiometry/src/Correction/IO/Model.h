@@ -10,7 +10,7 @@ namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
 
 
-namespace rad::correction{
+namespace rad::correction::io{
 
 class Model
 {
@@ -21,15 +21,9 @@ public:
 
 public:
   //Main function
-  void build_model();
-  float apply_model(float x, float y);
-  float compute_model_rmse();
-  bool is_ready();
-  void find_optimization_bound();
-
-  inline rad::correction::Structure* get_rad_struct(){return rad_struct;}
-  inline rad::correction::Measure* get_rad_measure(){return rad_measure;}
-  inline rad::correction::Plot* get_rad_plot(){return rad_plot;}
+  void import_model();
+  void export_model();
+  void compute_model();
 
 private:
   rad::correction::Structure* rad_struct;

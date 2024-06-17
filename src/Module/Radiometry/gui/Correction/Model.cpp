@@ -27,7 +27,7 @@ void Model::draw_tab(dyn::base::Sensor* sensor){
   //---------------------------
 
   //Parameter
-  ImGui::BeginTable("Model##table", 3);
+  ImGui::BeginTable("Measure##table", 3);
   this->parameter_measure();
   this->parameter_model();
   ImGui::EndTable();

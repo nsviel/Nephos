@@ -18,6 +18,32 @@ Data::Data(rad::correction::Node* node_correction){
 Data::~Data(){}
 
 //Main function
+void Data::init_measure(){
+  rad::correction::structure::Measure* sphere = &rad_struct->measure;
+  //---------------------------
+
+  //R
+  sphere->R_resolution = 0.01f;
+  sphere->R_range = glm::vec2(0.0f, 5.0f);
+  sphere->R_size = (sphere->R_range.y - sphere->R_range.x) / sphere->R_resolution + 1;
+
+  //It
+  sphere->It_resolution = 1.0f;
+  sphere->It_range = glm::vec2(0.0f, 90.0f);
+  sphere->It_size = (sphere->It_range.y - sphere->It_range.x) / sphere->It_resolution + 1;
+
+  //I
+  sphere->I_range = glm::vec2(0.0f, 1500.0f);
+
+  //Measure
+  sphere->size = sphere->R_size * sphere->It_size;
+  sphere->data = vector<vec3>(sphere->size, vec3(-1, -1, -1));
+
+
+  rad_plot->init();
+
+  //---------------------------
+}
 void Data::process_measure(){
   //---------------------------
 

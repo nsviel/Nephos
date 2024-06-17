@@ -23,49 +23,6 @@ Model::Model(rad::correction::Node* node_correction){
 Model::~Model(){}
 
 //Main function
-void Model::import_model(){
-  rad::correction::structure::Model* model = &rad_struct->model;
-  //---------------------------
-
-  model->serial_number = utl::json::read_value<string>(model->path, "serial_number");
-  model->degree_x = utl::json::read_value<int>(model->path, "x.degree");
-  model->axis_x.bound[0] = utl::json::read_value<float>(model->path, "x.bound_min");
-  model->axis_x.bound[1] = utl::json::read_value<float>(model->path, "x.bound_max");
-  model->degree_y = utl::json::read_value<int>(model->path, "y.degree");
-  model->axis_y.bound[0] = utl::json::read_value<float>(model->path, "y.bound_min");
-  model->axis_y.bound[1] = utl::json::read_value<float>(model->path, "y.bound_max");
-
-  //---------------------------
-}
-void Model::export_model(){
-  rad::correction::structure::Model* model = &rad_struct->model;
-  //---------------------------
-
-  utl::json::write_value(model->path, "serial_number", model->serial_number);
-  utl::json::write_value(model->path, "x.degree", model->degree_x);
-  utl::json::write_value(model->path, "x.bound_min", model->axis_x.bound[0]);
-  utl::json::write_value(model->path, "x.bound_max", model->axis_x.bound[1]);
-  utl::json::write_value(model->path, "y.degree", model->degree_y);
-  utl::json::write_value(model->path, "y.bound_min", model->axis_y.bound[0]);
-  utl::json::write_value(model->path, "y.bound_max", model->axis_y.bound[1]);
-
-  vector<float> vec_coef = ope_surface->get_coefficient();
-  for(int i=0; i<vec_coef.size(); i++){
-    utl::json::write_value(model->path, "coefficient." + to_string(i), vec_coef[i]);
-  }
-
-  //---------------------------
-}
-void Model::compute_model(){
-  //---------------------------
-
-  this->build_model();
-  this->compute_model_rmse();
-
-  //---------------------------
-}
-
-//Subfunction
 void Model::build_model(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
@@ -141,5 +98,31 @@ bool Model::is_ready(){
 
   //---------------------------
 }
+void Model::find_optimization_bound(){
+  //---------------------------
 
+  vec2 R_bound = vec2(1000, 0);
+  vec2 It_bound = vec2(1000, 0);
+
+  for(int i=0; i<rad_struct->measure.data.size(); i++){
+    //R
+    float& R = rad_struct->measure.data[i].x;
+    if(R < 0) continue;
+    if(R < R_bound.x) R_bound.x = R;
+    if(R > R_bound.y) R_bound.y = R;
+
+    //It
+    float& It = rad_struct->measure.data[i].y;
+    if(It < 0) continue;
+    if(It < It_bound.x) It_bound.x = It;
+    if(It > It_bound.y) It_bound.y = It;
+  }
+
+  rad_struct->model.axis_x.bound = R_bound;
+  rad_struct->model.axis_y.bound = It_bound;
+  rad_struct->model.axis_x.current = (R_bound.x + R_bound.y) / 2;
+  rad_struct->model.axis_y.current = (It_bound.x + It_bound.y) / 2;
+
+  //---------------------------
+}
 }

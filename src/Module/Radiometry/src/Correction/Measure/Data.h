@@ -17,6 +17,7 @@ public:
 
 public:
   //Main function
+  void init_measure();
   void process_measure();
 
   //Subfunction

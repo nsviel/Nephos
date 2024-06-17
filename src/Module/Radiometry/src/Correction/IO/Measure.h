@@ -7,7 +7,7 @@ namespace rad::correction{class Structure;}
 namespace rad::correction{class Plot;}
 
 
-namespace rad::correction{
+namespace rad::correction::io{
 
 class Measure
 {
@@ -24,7 +24,7 @@ public:
 
   //Subfunction
   void init();
-  void find_optimization_bound();
+
 
 private:
   rad::correction::Structure* rad_struct;

@@ -6,3 +6,4 @@
 #include <Radiometry/src/Correction/Measure/Namespace.h>
 #include <Radiometry/src/Correction/Model/Namespace.h>
 #include <Radiometry/src/Correction/Structure/Namespace.h>
+#include <Radiometry/src/Correction/IO/Namespace.h>

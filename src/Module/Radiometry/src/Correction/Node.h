@@ -7,6 +7,8 @@ namespace rad::correction{class Structure;}
 namespace rad::correction{class Process;}
 namespace rad::correction{class Measure;}
 namespace rad::correction{class Model;}
+namespace rad::correction::io{class Model;}
+namespace rad::correction::io{class Measure;}
 
 
 namespace rad::correction{
@@ -27,6 +29,8 @@ public:
   inline rad::correction::Structure* get_rad_struct(){return rad_struct;}
   inline rad::correction::Process* get_rad_process(){return rad_process;}
   inline rad::correction::Model* get_rad_model(){return rad_model;}
+  inline rad::correction::io::Model* get_rad_io_model(){return rad_io_model;}
+  inline rad::correction::io::Measure* get_rad_io_measure(){return rad_io_measure;}
 
 private:
   rad::Node* node_radio;
@@ -34,6 +38,8 @@ private:
   rad::correction::Process* rad_process;
   rad::correction::Measure* rad_measure;
   rad::correction::Model* rad_model;
+  rad::correction::io::Model* rad_io_model;
+  rad::correction::io::Measure* rad_io_measure;
 };
 
 }
