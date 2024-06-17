@@ -56,7 +56,7 @@ void Detection::detection_step(){
 
   //Sphere measure stuff
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Sphere measure");
+  ImGui::Text("Measure");
   ImGui::TableNextColumn();
   this->display_state(rad_struct->state_step, rad_struct->state_data);
   ImGui::TableNextColumn();

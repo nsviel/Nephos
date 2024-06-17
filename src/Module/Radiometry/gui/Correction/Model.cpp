@@ -14,8 +14,8 @@ Model::Model(rad::Node* node_radio){
 
   this->rad_model = node_correction->get_rad_model();
   this->rad_struct = node_correction->get_rad_struct();
-  this->rad_measure = rad_model->get_rad_measure();
-  this->rad_plot = rad_model->get_rad_plot();
+  this->rad_measure = node_correction->get_rad_measure();
+  this->rad_plot = node_correction->get_rad_plot();
   this->rad_io_measure = node_correction->get_rad_io_measure();
   this->rad_io_model = node_correction->get_rad_io_model();
   this->utl_plot = new utl::implot::Plot();

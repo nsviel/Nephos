@@ -178,7 +178,7 @@ void Plot::update_plot_data(){
       plot->IfIt.axis_y.data.push_back(I);
 
       //Fitted
-      float fit = rad_model->apply_model(R, It);
+      float fit = 0;//rad_model->apply_model(R, It);
       plot->IfIt.axis_y.fitting.push_back(fit);
     }
 
