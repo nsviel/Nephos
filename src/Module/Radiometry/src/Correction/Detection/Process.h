@@ -19,7 +19,7 @@ enum Step{
   PROCESSING = 2,
 };
 
-enum Data{
+enum State{
   NO_DATA = 0,
   HAS_DATA = 3,
 };

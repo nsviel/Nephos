@@ -6,14 +6,14 @@ namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 
 
-namespace rad::correction::cloud{
+namespace rad::correction{
 
-class Measure
+class Data
 {
 public:
   //Constructor / Destructor
-  Measure(rad::correction::Node* node_correction);
-  ~Measure();
+  Data(rad::correction::Node* node_correction);
+  ~Data();
 
 public:
   //Main function

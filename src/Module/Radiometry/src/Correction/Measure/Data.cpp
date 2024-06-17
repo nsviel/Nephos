@@ -1,24 +1,24 @@
-#include "Measure.h"
+#include "Data.h"
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
 
 
-namespace rad::correction::cloud{
+namespace rad::correction{
 
 //Constructor / Destructor
-Measure::Measure(rad::correction::Node* node_correction){
+Data::Data(rad::correction::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();
 
   //---------------------------
 }
-Measure::~Measure(){}
+Data::~Data(){}
 
 //Main function
-void Measure::process_measure(){
+void Data::process_measure(){
   //---------------------------
 
   vector<vec3>& search_xyz = rad_struct->ransac.search_xyz;
@@ -33,7 +33,7 @@ void Measure::process_measure(){
 }
 
 //Subfunction
-void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
+void Data::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::correction::structure::Optimization* optim = &rad_struct->optim;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
@@ -73,7 +73,7 @@ void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
 
   //---------------------------
 }
-void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
+void Data::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::correction::structure::Optimization* optim = &rad_struct->optim;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
@@ -95,7 +95,7 @@ void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
 
   //---------------------------
 }
-void Measure::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
+void Data::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------

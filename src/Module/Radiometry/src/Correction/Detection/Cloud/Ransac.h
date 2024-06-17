@@ -4,7 +4,7 @@
 
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
-namespace rad::correction::cloud{class Measure;}
+namespace rad::correction{class Data;}
 namespace rad::correction{class Glyph;}
 namespace dyn::base{class Sensor;}
 namespace ope::fitting{class Sphere;}
@@ -35,7 +35,7 @@ public:
   int find_nearest_point(const std::vector<glm::vec3>& search_xyz, const glm::vec3& center_direction);
 
 private:
-  rad::correction::cloud::Measure* rad_measure;
+  rad::correction::Data* rad_data;
   rad::correction::Structure* rad_struct;
   rad::correction::Glyph* rad_glyph;
   ope::fitting::Sphere* ope_fitting;
