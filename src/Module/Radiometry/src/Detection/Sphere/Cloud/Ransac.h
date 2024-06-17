@@ -32,7 +32,7 @@ public:
 
   //Subfunction
   glm::vec3 project_point_on_plane(const glm::vec3& point, const glm::vec3& normal);
-  glm::vec3 find_nearest_point(const std::vector<glm::vec3>& search_xyz, const glm::vec3& center_direction);
+  int find_nearest_point(const std::vector<glm::vec3>& search_xyz, const glm::vec3& center_direction);
 
 private:
   rad::detection::cloud::Measure* rad_measure;

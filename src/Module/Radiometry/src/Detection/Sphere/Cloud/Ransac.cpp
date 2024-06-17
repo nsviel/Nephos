@@ -109,9 +109,10 @@ void Ransac::apply_refinement(){
 
   //Refine by getting closest point
   glm::vec3 direction = glm::normalize(pose);
-  glm::vec3 nearest = find_nearest_point(search_xyz, direction);
+  int idx = find_nearest_point(search_xyz, direction);
+  glm::vec3 nearest = search_xyz[idx];
   pose = nearest + sphere_radius * glm::normalize(nearest);
-  rad_struct->sphere.ransac.nearest_point = nearest;
+  rad_struct->sphere.ransac.idx_nearest = idx;
 
   //---------------------------
 }
@@ -122,25 +123,30 @@ glm::vec3 Ransac::project_point_on_plane(const glm::vec3& point, const glm::vec3
     float distance = glm::dot(point, normal_normalized);
     return point - distance * normal_normalized;
 }
-glm::vec3 Ransac::find_nearest_point(const std::vector<glm::vec3>& search_xyz, const glm::vec3& center_direction){
-    glm::vec3 nearest_point;
-    float min_distance = std::numeric_limits<float>::max();
-    glm::vec3 direction_normalized = glm::normalize(center_direction);
+int Ransac::find_nearest_point(const std::vector<glm::vec3>& search_xyz, const glm::vec3& center_direction){
+  //---------------------------
 
-    for (const auto& xyz : search_xyz) {
-        // Project point onto the plane perpendicular to the center direction
-        glm::vec3 projected_point = project_point_on_plane(xyz, direction_normalized);
+  int idx = -1;
+  float min_distance = std::numeric_limits<float>::max();
+  glm::vec3 direction_normalized = glm::normalize(center_direction);
 
-        // Compute the distance from the projected point to the origin
-        float distance = glm::length(projected_point);
+  for(int i=0; i<search_xyz.size(); i++){
+    glm::vec3 xyz = search_xyz[i];
 
-        if (distance < min_distance) {
-            min_distance = distance;
-            nearest_point = xyz;
-        }
+    // Project point onto the plane perpendicular to the center direction
+    glm::vec3 projected_point = project_point_on_plane(xyz, direction_normalized);
+
+    // Compute the distance from the projected point to the origin
+    float distance = glm::length(projected_point);
+
+    if(distance < min_distance){
+      min_distance = distance;
+      idx = i;
     }
+  }
 
-    return nearest_point;
+  //---------------------------
+  return idx;
 }
 
 

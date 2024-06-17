@@ -84,14 +84,9 @@ void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
   //---------------------------
 
   //Search for closest point
-  float R = 1000.0f;
-  float Is = 0;
-  for(int i=0; i<search_xyz.size(); i++){
-    if(search_xyz[i] == rad_struct->sphere.ransac.nearest_point){
-      R = math::distance_from_origin(search_xyz[i]);
-      Is = search_Is[i];
-    }
-  }
+  int idx = rad_struct->sphere.ransac.idx_nearest;
+  float R = math::distance_from_origin(search_xyz[idx]);
+  float Is = search_Is[idx];
 
   //Insert measure
   int index = static_cast<int>(std::round(R / plot->IfR.axis_x.resolution));
