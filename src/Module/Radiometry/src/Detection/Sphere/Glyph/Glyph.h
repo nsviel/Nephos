@@ -31,7 +31,7 @@ public:
   void draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::detection::structure::Circle>& vec_circle);
 
   //Reset function
-  void reset_all_sphere();
+  void reset_calibration_sphere();
   void reset_detection_sphere();
 
 private:

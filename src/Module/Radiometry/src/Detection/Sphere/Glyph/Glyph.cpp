@@ -108,7 +108,7 @@ void Glyph::draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::detection::
     rad::detection::glyph::Sphere* sphere = vec_sphere[i];
 
     //Add sphere radius to the detected circle center
-    vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);say(pose);
+    vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);
     vec3 dir = glm::normalize(pose);
     pose = pose + dir * (rad_struct->sphere.ransac.sphere_diameter / 2);
 
@@ -121,11 +121,11 @@ void Glyph::draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::detection::
 }
 
 //Reset function
-void Glyph::reset_all_sphere(){
+void Glyph::reset_calibration_sphere(){
   //---------------------------
 
-  rad_struct->sphere.ransac.glyph->reset_glyph();
-  this->reset_detection_sphere();
+  rad::detection::glyph::Sphere* sphere = rad_struct->sphere.ransac.glyph;
+  sphere->reset_glyph();
 
   //---------------------------
 }
