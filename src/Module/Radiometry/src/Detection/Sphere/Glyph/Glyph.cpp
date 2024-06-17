@@ -15,6 +15,7 @@ Glyph::Glyph(rad::detection::Node* node_detection){
   dat::Node* node_data = node_radio->get_node_data();
 
   this->dat_glyph = node_data->get_dat_glyph();
+  this->dat_entity = node_data->get_dat_entity();
   this->node_engine = node_radio->get_node_engine();
   this->rad_struct = node_detection->get_rad_struct();
 
@@ -41,6 +42,22 @@ void Glyph::create_sphere_glyph(){
   rad_struct->sphere.ransac.glyph = sphere;
   sphere->set_color(vec4(0, 1, 0, 1));
   dat_glyph->create_glyph(sphere);
+
+  //---------------------------
+}
+void Glyph::update_sphere_glyph(){
+  //---------------------------
+
+  //Detection spheres
+  std::vector<rad::detection::glyph::Sphere*>& vec_glyph = rad_struct->sphere.hough.vec_glyph;
+  for(int i=0; i<vec_glyph.size(); i++){
+    rad::detection::glyph::Sphere* sphere = vec_glyph[i];
+    dat_entity->update_pose(sphere);
+  }
+
+  //Calibration sphere
+  rad::detection::glyph::Sphere* sphere = rad_struct->sphere.ransac.glyph;
+  dat_entity->update_pose(sphere);
 
   //---------------------------
 }
@@ -91,7 +108,7 @@ void Glyph::draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::detection::
     rad::detection::glyph::Sphere* sphere = vec_sphere[i];
 
     //Add sphere radius to the detected circle center
-    vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);
+    vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);say(pose);
     vec3 dir = glm::normalize(pose);
     pose = pose + dir * (rad_struct->sphere.ransac.sphere_diameter / 2);
 

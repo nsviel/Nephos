@@ -17,6 +17,7 @@ Shader::Shader(rnd::Node* node_render, bool* show_window){
   vk::structure::Vulkan* vk_struct = node_vulkan->get_vk_struct();
 
   this->vk_reload = new vk::shader::Reloader(vk_struct);
+  this->vk_render = node_vulkan->get_vk_render();
   this->node_engine = node_engine;
   this->editor_vs = new utl::gui::editor::Text();
   this->editor_fs = new utl::gui::editor::Text();
@@ -116,7 +117,7 @@ void Shader::shader_combo_class(){
 void Shader::shader_combo_subclass(){
   //---------------------------
 
-  if(vec_shader_subclass.size() != 1){
+  if(vec_shader_subclass.size() > 1){
     if(ImGui::BeginCombo("##shader_combo_subclass", vec_shader_subclass[ID_subclass].c_str())){
       for(int i=0; i<vec_shader_subclass.size(); ++i){
         const bool is_selected = (ID_subclass == i);
@@ -192,16 +193,16 @@ void Shader::shader_tabs(){
 //File selection
 void Shader::retrieve_shader_subclasses(){
   //---------------------------
-/*
+
   std::string selection = vec_shader_class[ID_class];
 
   std::vector<utl::shader::Info*> vec_shader_info;
   if(selection == "EDL"){
-    rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
+    vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
     vec_shader_info = shader_edl->get_vec_shader_info();
   }
   else if(selection == "Scene"){
-    rnd::sce::Shader* shader_scene = node_render->get_shader_scene();
+    vk::render::scene::Shader* shader_scene = vk_render->get_shader_scene();
     vec_shader_info = shader_scene->get_vec_shader_info();
   }
 
@@ -210,7 +211,7 @@ void Shader::retrieve_shader_subclasses(){
     std::string title = vec_shader_info[i]->title;
     this->vec_shader_subclass.push_back(title);
   }
-*/
+
   //---------------------------
 }
 void Shader::shader_file_selection(){
@@ -232,16 +233,16 @@ std::string Shader::get_path_vs_from_selection(){
 
   std::string selection = vec_shader_class[ID_class];
   std::string path_vs = "";
-/*
+
   if(selection == "EDL"){
-    rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
+    vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
     path_vs = shader_edl->get_glsl_path_vs(ID_subclass);
   }
   else if(selection == "Scene"){
-    rnd::sce::Shader* shader_scene = node_render->get_shader_scene();
+    vk::render::scene::Shader* shader_scene = vk_render->get_shader_scene();
     path_vs = shader_scene->get_glsl_path_vs(ID_subclass);
   }
-*/
+
   //---------------------------
   return path_vs;
 }
@@ -250,16 +251,16 @@ std::string Shader::get_path_fs_from_selection(){
 
   std::string selection = vec_shader_class[ID_class];
   std::string path_fs = "";
-/*
+
   if(selection == "EDL"){
-    rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
+    vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
     path_fs = shader_edl->get_glsl_path_fs(ID_subclass);
   }
   else if(selection == "Scene"){
-    rnd::sce::Shader* shader_scene = node_render->get_shader_scene();
+    vk::render::scene::Shader* shader_scene = vk_render->get_shader_scene();
     path_fs = shader_scene->get_glsl_path_fs(ID_subclass);
   }
-*/
+
   //---------------------------
   return path_fs;
 }
@@ -275,8 +276,8 @@ void Shader::show_parameter(){
   //---------------------------
 }
 void Shader::parameter_EDL(){
-  /*rnd::edl::Shader* shader_edl = node_render->get_shader_edl();
-  rnd::edl::Structure* edl_param = shader_edl->get_edl_param();
+  vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
+  vk::render::edl::Structure* edl_param = shader_edl->get_edl_struct();
   //---------------------------
 
   ImGui::SetNextItemWidth(item_width);
@@ -291,9 +292,9 @@ void Shader::parameter_EDL(){
 
   ImGui::SetNextItemWidth(item_width);
   if(ImGui::SliderFloat("Strength", &edl_param->strength, 1.0f, 100.0f)){
-      shader_edl->update_shader();
-    }
-*/
+    shader_edl->update_shader();
+  }
+
   //---------------------------
 }
 

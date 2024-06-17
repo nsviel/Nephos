@@ -14,7 +14,7 @@ Node::Node(app::Node* node_app){
 
   this->vk_struct = new vk::structure::Vulkan(node_app);
   this->vk_engine = vk_struct->param.headless ? static_cast<vk::main::Engine*>(new vk::main::Headless(vk_struct)) : static_cast<vk::main::Engine*>(new vk::main::Graphical(vk_struct));
-  this->vk_render = new vk::render::Manager(vk_struct);
+  this->vk_render = new vk::render::Render(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
   this->vk_interface = new vk::main::Interface(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);

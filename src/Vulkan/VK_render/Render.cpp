@@ -1,4 +1,4 @@
-#include "Manager.h"
+#include "Render.h"
 
 #include <Vulkan/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace vk::render{
 
 //Constructor / Destructor
-Manager::Manager(vk::structure::Vulkan* vk_struct){
+Render::Render(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -19,10 +19,10 @@ Manager::Manager(vk::structure::Vulkan* vk_struct){
 
   //---------------------------
 }
-Manager::~Manager(){}
+Render::~Render(){}
 
 //Main function
-void Manager::init(){
+void Render::init(){
   //---------------------------
 
   rp_scene->init_renderpass();

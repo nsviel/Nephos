@@ -7,6 +7,7 @@ namespace rad::detection{class Node;}
 namespace rad::detection{class Structure;}
 namespace rad::detection::structure{class Circle;}
 namespace dat{class Glyph;}
+namespace dat{class Entity;}
 namespace eng{class Node;}
 
 
@@ -22,6 +23,7 @@ public:
 public:
   //Main function
   void create_sphere_glyph();
+  void update_sphere_glyph();
 
   //Subfunction
   void draw_calibration_sphere(dyn::base::Sensor* sensor);
@@ -36,6 +38,7 @@ private:
   eng::Node* node_engine;
   rad::detection::Structure* rad_struct;
   dat::Glyph* dat_glyph;
+  dat::Entity* dat_entity;
 };
 
 }

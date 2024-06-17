@@ -12,12 +12,12 @@ namespace vk::render::gui{class Renderpass;}
 
 namespace vk::render{
 
-class Manager
+class Render
 {
 public:
   //Constructor / Destructor
-  Manager(vk::structure::Vulkan* vk_struct);
-  ~Manager();
+  Render(vk::structure::Vulkan* vk_struct);
+  ~Render();
 
 public:
   //Main function
