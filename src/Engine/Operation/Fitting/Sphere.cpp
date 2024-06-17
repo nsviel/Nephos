@@ -64,7 +64,6 @@ void Sphere::find_sphere_in_cloud(std::vector<glm::vec3>& xyz, glm::vec3& center
       glm::vec3 delta = xyz[i] - temp_center;
       rsqr += math::dot_product(delta, delta);
     }
-    float a = math::distance_from_origin(xyz[0]);
     rsqr *= (1.0f / xyz.size());
     radius = std::sqrt(rsqr);
     center = temp_center;

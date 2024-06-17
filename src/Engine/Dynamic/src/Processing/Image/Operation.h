@@ -2,6 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
+namespace rad{class Node;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
@@ -31,6 +32,7 @@ public:
 
 private:
   dyn::Structure* dyn_struct;
+  rad::Node* node_radio;
   utl::thread::Pool* thread_pool;
 
   bool thread_idle = true;

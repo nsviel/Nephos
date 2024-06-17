@@ -2,6 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Dynamic/Namespace.h>
+#include <Radiometry/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -15,6 +16,7 @@ Node::Node(eng::Node* node_engine){
 
   this->node_engine = node_engine;
   this->node_data = node_engine->get_node_data();
+  this->node_radio = node_engine->get_node_radio();
 
   this->dyn_struct = new dyn::Structure();
   this->dyn_player = new dyn::player::Player(this);

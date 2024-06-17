@@ -6,7 +6,6 @@ namespace app{class Node;}
 namespace eng{class Node;}
 namespace sce{class Init;}
 namespace k4n{class Node;}
-namespace rad{class Node;}
 
 
 namespace sce{
@@ -31,7 +30,6 @@ private:
   //Dependancy
   eng::Node* node_engine;
   k4n::Node* node_kinect;
-  rad::Node* node_radio;
 
   //Child
   sce::Init* sce_init;

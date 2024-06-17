@@ -10,7 +10,7 @@ struct Ransac{
 
   int nb_iter = 1000;
   int nb_sample = 50;
-  float thres_sphere = 0.05;
+  float thres_sphere = 0.005;
   float thres_radius = 0.02;
   float search_radius = 0.3;
   float sphere_diameter = 0.139;

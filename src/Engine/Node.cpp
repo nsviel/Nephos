@@ -10,6 +10,7 @@
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Dynamic/Namespace.h>
+#include <Radiometry/Namespace.h>
 
 
 namespace eng{
@@ -29,6 +30,7 @@ Node::Node(app::Node* node_app){
   this->node_dynamic = new dyn::Node(this);
   this->node_render = new rnd::Node(this);
   this->node_loader = new ldr::Node(this);
+  this->node_radio = new rad::Node(this);
 
   prf::Manager* prf_manager = node_profiler->get_prf_manager();
   prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
@@ -39,6 +41,7 @@ Node::Node(app::Node* node_app){
   this->add_node_panel(node_data);
   this->add_node_panel(node_render);
   this->add_node_panel(node_dynamic);
+  this->add_node_panel(node_radio);
 
   //---------------------------
 }
@@ -52,6 +55,7 @@ void Node::init(){
   node_loader->init();
   node_camera->init();
   node_render->init();
+  node_radio->init();
 
   //---------------------------
 }
@@ -64,6 +68,7 @@ void Node::loop(){
   node_camera->loop();
   node_vulkan->loop();
   node_dynamic->loop();
+  node_radio->loop();
 
   //---------------------------
   tasker_main->task_end("eng");
@@ -77,6 +82,7 @@ void Node::gui(){
   node_loader->gui();
   node_render->gui();
   node_dynamic->gui();
+  node_radio->gui();
   tasker_main->task_end("eng::gui");
 
   //---------------------------

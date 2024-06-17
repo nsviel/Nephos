@@ -25,8 +25,8 @@ public:
 
 private:
   void reset_variable();
-  void random_sample(const std::vector<glm::vec3>& xyz, const std::vector<glm::vec3>& Nxyz);
-  void test_consensus(float radius);
+  void random_sample(const std::vector<glm::vec3>& xyz);
+  void test_consensus(const std::vector<glm::vec3>& xyz, const std::vector<glm::vec3>& Nxyz, float radius);
   void evaluate(glm::vec3& best_center);
 
 private:
@@ -40,7 +40,6 @@ private:
 
   //Variable
   std::vector<glm::vec3> sample_xyz;
-  std::vector<glm::vec3> sample_Nxyz;
   glm::vec3 center;
   float best_score = 1000;
   float radius;

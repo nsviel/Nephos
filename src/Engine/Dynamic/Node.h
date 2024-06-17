@@ -5,6 +5,7 @@
 namespace eng{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
+namespace rad{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::player{class Player;}
 namespace dyn::cloud{class Operation;}
@@ -32,6 +33,7 @@ public:
 
   inline eng::Node* get_node_engine(){return node_engine;}
   inline dat::Node* get_node_data(){return node_data;}
+  inline rad::Node* get_node_radio(){return node_radio;}
 
   inline dyn::Structure* get_dyn_struct(){return dyn_struct;}
   inline dyn::player::Player* get_dyn_player(){return dyn_player;}
@@ -43,6 +45,7 @@ public:
 private:
   eng::Node* node_engine;
   dat::Node* node_data;
+  rad::Node* node_radio;
 
   dyn::Structure* dyn_struct;
   dyn::player::Player* dyn_player;
