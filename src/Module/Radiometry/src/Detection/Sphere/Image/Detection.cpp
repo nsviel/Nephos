@@ -32,11 +32,10 @@ Detection::~Detection(){}
 void Detection::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  this->thread_idle = false;
-  auto task_function = [this, sensor](){
-    this->run_thread(sensor);
-  };
-  thread_pool->add_task(task_function);
+  if(thread.joinable()){
+    this->thread.join();
+  }
+  this->thread = std::thread(&Detection::run_thread, this, sensor);
 
   //---------------------------
 }

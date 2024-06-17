@@ -55,30 +55,25 @@ void Ransac::reset_search_space(){
   //---------------------------
 }
 void Ransac::reduce_search_space(dyn::base::Sensor* sensor){
-  //---------------------------
-
-  vector<vec3>& search_xyz = rad_struct->sphere.ransac.search_xyz;
-  vector<vec3>& search_Nxyz = rad_struct->sphere.ransac.search_Nxyz;
-  vector<float>& search_Is = rad_struct->sphere.ransac.search_Is;
-
-  glm::vec3 pose = rad_struct->sphere.ransac.current_pose;
-  float diameter = rad_struct->sphere.ransac.sphere_diameter;
-  float lambda = rad_struct->sphere.ransac.search_lambda;
-
-  //Search for point inside a global sphere around current center point
   vector<vec3>& vec_xyz = sensor->data.xyz;
   vector<vec3>& vec_Nxyz = sensor->data.Nxyz;
+  //---------------------------
+
+  glm::vec3 pose = rad_struct->sphere.ransac.current_pose;
+  float search_radius = rad_struct->sphere.ransac.search_radius;
+
+  //Search for point inside a global sphere around current center point
   for(int i=0; i<vec_xyz.size(); i++){
     glm::vec3& xyz = vec_xyz[i];
     glm::vec3& Nxyz = vec_Nxyz[i];
     float Is = sensor->buffer_ir[i];
-    float distance = math::distance(xyz, pose);
-    float searche_radius = diameter * lambda;
 
-    if(distance <= searche_radius){
-      search_xyz.push_back(xyz);
-      search_Nxyz.push_back(Nxyz);
-      search_Is.push_back(Is);
+    float distance = math::distance(xyz, pose);
+
+    if(distance <= search_radius){
+      rad_struct->sphere.ransac.search_xyz.push_back(xyz);
+      rad_struct->sphere.ransac.search_Nxyz.push_back(Nxyz);
+      rad_struct->sphere.ransac.search_Is.push_back(Is);
     }
   }
 

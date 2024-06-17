@@ -38,6 +38,7 @@ private:
   rad::detection::cloud::Ransac* rad_ransac;
   rad::detection::Structure* rad_struct;
 
+  std::thread thread;
   bool thread_idle = true;
 };
 

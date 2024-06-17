@@ -2,6 +2,9 @@
 
 #include <Utility/Namespace.h>
 #include <opencv2/opencv.hpp>
+#include <random>
+#include <algorithm>
+#include <limits>
 
 
 namespace ope::fitting{

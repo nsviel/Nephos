@@ -60,6 +60,23 @@ void Glyph::update_glyph(dat::base::Entity* entity){
 
   //----------------------------
 }
+void Glyph::update_glyph(dat::base::Object* object, int type){
+  //----------------------------
+
+  //Update own glyph data
+  for(int i=0; i<object->list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(object->list_glyph.begin(), i);
+    if(glyph->type == type){
+      glyph->update_glyph(object);
+      dat_entity->update_data(glyph);
+    }
+
+    //Reccursivity
+    this->update_glyph(glyph);
+  }
+
+  //----------------------------
+}
 void Glyph::create_glyph(dat::base::Glyph* glyph){
   //----------------------------
 

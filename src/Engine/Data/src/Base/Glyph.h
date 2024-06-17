@@ -40,11 +40,12 @@ public:
   inline int get_type(){return type;}
   inline void set_color(glm::vec4 color){this->color = color;}
 
+  int type = -1;
+  
 protected:
   std::string path = "";
   glm::vec4 color = glm::vec4(1, 1, 1, 1);
   bool need_update = false;
-  int type = -1;
 };
 
 }

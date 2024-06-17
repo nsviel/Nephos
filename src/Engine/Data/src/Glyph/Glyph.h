@@ -8,6 +8,7 @@ namespace dat{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Glyph;}
 namespace dat::base{class Set;}
+namespace dat::base{class Object;}
 
 
 namespace dat{
@@ -25,6 +26,7 @@ public:
   void insert_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph);
   void insert_glyph(dat::base::Entity* entity);
   void update_glyph(dat::base::Entity* entity);
+  void update_glyph(dat::base::Object* object, int type);
   void create_glyph(dat::base::Glyph* glyph);
 
 private:

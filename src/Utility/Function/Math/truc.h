@@ -30,7 +30,6 @@ glm::vec3 max(std::vector<glm::vec3> XYZ);
 
 // Operation
 float sum(std::vector<float>& vec);
-float dot_product(glm::vec3& vec_A, glm::vec3& vec_B);
 float oriented_angle(glm::vec2 A, glm::vec2 B);
 double angular_distance(const Eigen::Matrix3f& rota, const Eigen::Matrix3f& rotb);
 std::vector<float> cross_product(std::vector<float>& vec_A, std::vector<float>& vec_B);

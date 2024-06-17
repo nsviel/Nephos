@@ -69,7 +69,7 @@ std::vector<float> inv(std::vector<float>& vec){
   //---------------------------
   return vec_out;
 }
-glm::vec3 centroid(std::vector<glm::vec3>& vec){
+glm::vec3 centroid(const std::vector<glm::vec3>& vec){
   glm::vec3 centroid = glm::vec3(0, 0, 0);
   //---------------------------
 
@@ -79,7 +79,7 @@ glm::vec3 centroid(std::vector<glm::vec3>& vec){
     }
   }
 
-  for(int j=0;j<3;j++){
+  for(int j=0; j<3; j++){
     centroid[j] /= vec.size();
   }
 

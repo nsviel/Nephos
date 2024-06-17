@@ -18,7 +18,7 @@ namespace dat::base{
     NORMAL = 2,
     TREE = 3,
   };
-  }
+}
 
 struct Object : public dat::base::Entity{
   //---------------------------

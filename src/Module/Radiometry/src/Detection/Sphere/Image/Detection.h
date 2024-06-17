@@ -39,6 +39,7 @@ private:
   rad::detection::image::Image* rad_image;
   dat::Image* dat_image;
 
+  std::thread thread;
   bool thread_idle = true;
 };
 

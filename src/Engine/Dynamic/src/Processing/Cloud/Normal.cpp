@@ -20,6 +20,7 @@ Normal::Normal(dyn::Node* node_dynamic){
   this->ope_converter = new ope::image::Converter();
   this->ope_normal = new ope::normal::Structured();
   this->dat_image = node_data->get_dat_image();
+  this->dat_glyph = node_data->get_dat_glyph();
 
   //---------------------------
 }
@@ -49,6 +50,8 @@ void Normal::run_thread(dyn::base::Sensor* sensor){
   utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::NORMAL);
   image->timestamp = sensor->timestamp.current;
   ope_converter->convert_normal_to_image(data, image);
+
+  dat_glyph->update_glyph(sensor, dat::base::object::NORMAL);
 
   //---------------------------
   this->thread_idle = true;

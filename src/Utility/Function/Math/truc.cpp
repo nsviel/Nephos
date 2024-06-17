@@ -150,18 +150,6 @@ float sum(std::vector<float>& vec){
   //---------------------------
   return out;
 }
-float dot_product(glm::vec3& vec_A, glm::vec3& vec_B){
-  float product = 0;
-  //---------------------------
-
-  // Loop for calculate cot product
-  for(int i=0; i<3; i++){
-    product = product + vec_A[i] * vec_B[i];
-  }
-
-  //---------------------------
-  return product;
-}
 float oriented_angle(glm::vec2 A, glm::vec2 B){
   //---------------------------
 

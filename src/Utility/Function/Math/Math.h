@@ -17,7 +17,7 @@ void divise(std::vector<float>& vec, int diviser);
 std::vector<size_t> sort_by_index(const std::vector<float> &v);
 std::vector<size_t> sort_by_index_greater(const std::vector<float> &v);
 std::vector<float> inv(std::vector<float>& vec);
-glm::vec3 centroid(std::vector<glm::vec3>& vec);
+glm::vec3 centroid(const std::vector<glm::vec3>& vec);
 float dot_product(glm::vec3& vec_A, glm::vec3& vec_B);
 float compute_cosIt(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root);
 float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3 root);

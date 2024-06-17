@@ -7,6 +7,7 @@
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dat{class Image;}
+namespace dat{class Glyph;}
 namespace utl::base{class Data;}
 namespace dyn::base{class Sensor;}
 namespace ope::image{class Converter;}
@@ -33,6 +34,7 @@ private:
   ope::normal::Structured* ope_normal;
   ope::image::Converter* ope_converter;
   dat::Image* dat_image;
+  dat::Glyph* dat_glyph;
 
   std::thread thread;
   bool thread_idle = true;

@@ -31,7 +31,7 @@ void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, const std::vector<
   // Perform RANSAC
   for(int i=0; i<nb_iter; ++i){
     this->reset_variable();
-    
+
     // Randomly select three points
     this->random_sample(xyz, Nxyz);
 
@@ -56,7 +56,7 @@ void Ransac::reset_variable(){
   this->sample_Nxyz.reserve(nb_sample);
 
   this->nb_inlier = 0;
-  this->score = 0;
+  this->score = 1000;
   this->center = glm::vec3(0, 0, 0);
   this->radius = 0;
 
@@ -89,6 +89,7 @@ void Ransac::test_consensus(float known_radius){
   //Check radius distance
   float distance_to_radius = abs(radius - known_radius);
   if(distance_to_radius > threshold_radius) return;
+  this->score = distance_to_radius;
 
   // Count inliers
   for(int i=0; i<sample_xyz.size(); i++){
@@ -96,15 +97,15 @@ void Ransac::test_consensus(float known_radius){
     glm::vec3& Nxyz = sample_Nxyz[i];
 
     //Compare pre-calculated normal with sample one
-    glm::vec3 ideal_Nxyz = glm::normalize(xyz - center);
-    bool same_direction = math::normal_same_direction(Nxyz, ideal_Nxyz);
-    float angle = math::calculate_angle(Nxyz, ideal_Nxyz);
+    glm::vec3 sphere_Nxyz = glm::normalize(xyz - center);
+    bool same_direction = math::normal_same_direction(Nxyz, sphere_Nxyz);
+    float angle = math::calculate_angle(Nxyz, sphere_Nxyz);say(angle);
 
     //Compute and compare distance of the current sample point
     float distance_to_sphere = abs(glm::distance(xyz, center) - radius);
     if(same_direction && distance_to_sphere < threshold_sphere){
       this->nb_inlier++;
-      this->score += distance_to_sphere + distance_to_radius + angle;
+      this->score += distance_to_sphere + angle;
     }
   }
 
@@ -114,7 +115,7 @@ void Ransac::evaluate(glm::vec3& best_center){
   if(center == glm::vec3(0, 0, 0)) return;
   //------------------------
 
-  if(nb_inlier > best_nb_inlier && score < best_score){
+  if(nb_inlier > best_nb_inlier ){
     this->best_nb_inlier = nb_inlier;
     this->best_score = score;
 
@@ -123,5 +124,6 @@ void Ransac::evaluate(glm::vec3& best_center){
 
   //------------------------
 }
+
 
 }
