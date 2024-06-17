@@ -16,13 +16,13 @@ Detection::Detection(rad::Node* node_radio){
   dat::Node* node_data = node_radio->get_node_data();
   eng::Node* node_engine = node_radio->get_node_engine();
   dyn::Node* node_dynamic = node_radio->get_node_dynamic();
-  rad::correction::Node* node_detection = node_radio->get_node_detection();
+  rad::correction::Node* node_correction = node_radio->get_node_correction();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->rad_struct = node_detection->get_rad_struct();
-  this->sphere_process = node_detection->get_sphere_process();
-  this->chart_process = node_detection->get_chart_process();
-  this->rad_hough = new rad::correction::image::Hough(node_detection);
+  this->rad_struct = node_correction->get_rad_struct();
+  this->sphere_process = node_correction->get_rad_process();
+  this->chart_process = node_correction->get_rad_process();
+  this->rad_hough = new rad::correction::image::Hough(node_correction);
   this->stream = new rnd::Stream(node_engine);
   this->dat_image = node_data->get_dat_image();
 
@@ -58,9 +58,9 @@ void Detection::detection_step(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Sphere measure");
   ImGui::TableNextColumn();
-  this->display_state(rad_struct->sphere.state_step, rad_struct->sphere.state_data);
+  this->display_state(rad_struct->state_step, rad_struct->state_data);
   ImGui::TableNextColumn();
-  if(rad_struct->sphere.state_step == rad::correction::PROCESSING){
+  if(rad_struct->state_step == rad::correction::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){
@@ -133,7 +133,7 @@ void Detection::detection_stats(){
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_circle.c_str());
 
   //Display number of detected rectangle
-  string nb_rectangle = to_string(rad_struct->nb_detection);
+  string nb_rectangle = to_string(rad_struct->hough.nb_detection);
   ImGui::TableNextColumn();
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Rectangle");
   ImGui::SameLine();

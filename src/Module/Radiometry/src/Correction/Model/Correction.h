@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad{class Node;}
+namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction{class Node;}
 namespace rad::correction{class Model;}
@@ -16,7 +16,7 @@ class Correction
 {
 public:
   //Constructor / Destructor
-  Correction(rad::Node* node_radio);
+  Correction(rad::correction::Node* node_correction);
   ~Correction();
 
 public:

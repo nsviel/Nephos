@@ -57,7 +57,7 @@ void Measure::clear_measure(){
 
 //Subfunction
 void Measure::init(){
-  rad::correction::structure::Measure* sphere = &rad_struct->sphere;
+  rad::correction::structure::Sphere* sphere = &rad_struct->sphere;
   //---------------------------
 
   //R

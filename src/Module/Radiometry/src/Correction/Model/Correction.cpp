@@ -8,11 +8,10 @@
 namespace rad::correction{
 
 //Constructor / Destructor
-Correction::Correction(rad::Node* node_radio){
+Correction::Correction(rad::correction::Node* node_correction){
   //---------------------------
 
-  rad::correction::Node* node_correction = node_radio->get_node_correction();
-  rad::correction::Node* node_correction = node_radio->get_node_correction();
+  rad::Node* node_radio = node_correction->get_node_radio();
   dat::Node* node_data = node_radio->get_node_data();
 
   this->rad_struct = node_correction->get_rad_struct();

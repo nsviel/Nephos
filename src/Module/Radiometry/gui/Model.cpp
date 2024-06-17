@@ -69,7 +69,7 @@ void Model::parameter_measure(){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Measure")){
     //Path
-    std::string path = rad_struct->sphere.sphere.get_current_path();
+    std::string path = rad_struct->sphere.get_current_path();
     if(ImGui::Button("...##path_measure")){
       zenity::selection_file(path);
     }

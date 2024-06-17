@@ -20,9 +20,12 @@ public:
 
 public:
   //Main function
+  void init();
+  void loop();
 
   inline rad::Node* get_node_radio(){return node_radio;}
   inline rad::correction::Structure* get_rad_struct(){return rad_struct;}
+  inline rad::correction::Process* get_rad_process(){return rad_process;}
   inline rad::correction::Model* get_rad_model(){return rad_model;}
 
 private:
