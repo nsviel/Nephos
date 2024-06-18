@@ -46,12 +46,12 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
 
   //Get image to correct
   utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::CORRECTION);
-  image->data = ir->data;
+  std::vector<uint8_t> vec_data = ir->data;
   image->width = ir->width;
   image->height = ir->height;
   image->size = ir->size;
   image->format = ir->format;
-  image->timestamp = ir->timestamp;
+
 
   utl::base::Data* data = &sensor->data;
 
@@ -81,12 +81,16 @@ tic();
       //Set image value
       int idp = idx * 4;
       uint8_t p_cor = static_cast<uint8_t>(I_cor);
-      image->data[idp]     = static_cast<uint8_t>(p_cor);
-      image->data[idp + 1] = static_cast<uint8_t>(p_cor);
-      image->data[idp + 2] = static_cast<uint8_t>(p_cor);
+      vec_data[idp]     = static_cast<uint8_t>(p_cor);
+      vec_data[idp + 1] = static_cast<uint8_t>(p_cor);
+      vec_data[idp + 2] = static_cast<uint8_t>(p_cor);
+
+      data->Is[idx] = I_cor;
     }
   }
 toc_us("hey");
+image->data = vec_data;
+  image->timestamp = ir->timestamp;
 
   //---------------------------
 }
