@@ -28,7 +28,6 @@ public:
   void design_operation();
 
   //Subfunction
-  void draw_op_info(utl::base::Element* element);
   void draw_ope_normal(dat::base::Set* set);
 
 private:

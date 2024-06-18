@@ -33,7 +33,6 @@ void Operation::design_operation(){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
-  this->draw_op_info(element);
   dyn_transformation->design_transformation(element);
 
   dat::base::Set* set = dat_selection->get_selected_set();
@@ -46,62 +45,6 @@ void Operation::design_operation(){
 }
 
 //Subfunction
-void Operation::draw_op_info(utl::base::Element* element){
-  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)) return;
-  //---------------------------
-/*
-  dat::base::Set* set = dynamic_cast<dat::base::Set*>(element);
-  dyn::base::Player* player = &set->player;
-  if(player == nullptr) return;
-
-  if(ImGui::CollapsingHeader("Info##dynamic")){
-
-    ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-    ImGui::BeginTable("master##playback_info", 3);
-    //Duration
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", player->ts_duration);
-
-    //FPS
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("FPS"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d fps", player->fps_cur);
-    ImGui::SetNextItemWidth(50); ImGui::TableNextColumn();
-    ImGui::SliderInt("##56765", &player->fps_qry, 1, 120);
-
-    //Path data
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Path"); ImGui::TableNextColumn();
-    string path = (player->path.data != "") ? player->path.data : "(not defined)";
-    ImGui::TextColored(color, "%s", path.c_str());
-
-    //Size
-    if(player->size != 0){
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Size"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f Mo", player->size);
-    }
-
-    ImGui::EndTable();
-
-    //Recording time
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Record"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
-
-    //Recording file size
-    if(master->recorder.mode == dyn::recorder::MKV){
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Size"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f Mo", master->recorder.file_size);
-    }
-  }
-
-  }
-*/
-  //---------------------------
-}
 void Operation::draw_ope_normal(dat::base::Set* set){
   //---------------------------
 
