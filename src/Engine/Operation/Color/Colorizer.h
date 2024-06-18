@@ -26,9 +26,11 @@ enum Mode{
   UNICOLOR = 1,
   INTENSITY = 2,
   INTENSITY_INV = 3,
-  NORMAL = 4,
-  HEATMAP = 5,
-  STRUCTURE = 6,
+  INTENSITY_COR = 4,
+  INTENSITY_CAL = 5,
+  NORMAL = 6,
+  HEATMAP = 7,
+  STRUCTURE = 8,
 };
 
 namespace heatmap{
@@ -55,6 +57,8 @@ public:
   void colorization_unicolor(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_intensity(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_intensity_inv(dat::base::Entity* entity, ope::color::Configuration& config);
+  void colorization_intensity_cor(dat::base::Entity* entity, ope::color::Configuration& config);
+  void colorization_intensity_cal(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_normal(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_heatmap(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_structure(dat::base::Entity* entity);

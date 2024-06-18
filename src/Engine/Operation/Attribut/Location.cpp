@@ -49,7 +49,7 @@ glm::vec3 Location::compute_centroid(dat::base::Set* set){
 }
 glm::vec3 Location::compute_centroid(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
-  utl::base::Pose* pose = &entity->pose;;
+  utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
   std::vector<glm::vec3>& XYZ = data->xyz;
@@ -80,7 +80,7 @@ void Location::compute_MinMax(dat::base::Set* set){
 
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-    utl::base::Pose* pose = &entity->pose;;
+    utl::base::Pose* pose = &entity->pose;
     this->compute_MinMax(entity);
 
     for(int j=0; j<3; j++){
@@ -102,7 +102,7 @@ void Location::compute_MinMax(dat::base::Set* set){
 }
 void Location::compute_MinMax(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
-  utl::base::Pose* pose = &entity->pose;;
+  utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
   std::vector<glm::vec3>& XYZ = data->xyz;
@@ -132,6 +132,37 @@ void Location::compute_MinMax(dat::base::Entity* entity){
   pose->max = max;
   pose->COM = centroid;
 }
+void Location::compute_range(dat::base::Entity* entity){
+  utl::base::Data* data = &entity->data;
+  //---------------------------
+
+  std::vector<float>& R = data->R;
+  std::vector<glm::vec3>& xyz = data->xyz;
+
+  R = std::vector<float>(xyz.size(), 0.0f);
+  for(int i=0; i<xyz.size(); i++){
+    float dist = math::distance_from_origin(xyz[i]);
+    R[i] = dist;
+  }
+
+  //---------------------------
+}
+void Location::compute_incidence_angle(dat::base::Entity* entity){
+  utl::base::Data* data = &entity->data;
+  //---------------------------
+
+  std::vector<float>& It = data->It;
+  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec3>& Nxyz = data->Nxyz;
+
+  It = std::vector<float>(xyz.size(), 0.0f);
+  for(int i=0; i<xyz.size(); i++){
+    float angle = math::compute_It(xyz[i], Nxyz[i], glm::vec3(0, 0, 0));
+    It[i] = angle;
+  }
+
+  //---------------------------
+}
 void Location::set_unicolor(dat::base::Entity* entity){
   if(entity == nullptr) return;
   utl::base::Data* data = &entity->data;
@@ -145,7 +176,7 @@ void Location::set_unicolor(dat::base::Entity* entity){
 }
 void Location::retrieve_z_vector(dat::base::Entity* entity, std::vector<float>& z_vec){
   utl::base::Data* data = &entity->data;
-  utl::base::Pose* pose = &entity->pose;;
+  utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;

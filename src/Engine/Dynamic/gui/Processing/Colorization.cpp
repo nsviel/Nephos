@@ -41,6 +41,11 @@ void Colorization::design_colorization(dat::base::Set* set){
     this->mode_intensity_inv(entity);
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
+    this->mode_intensity_cor(entity);
+    ImGui::TableNextColumn();
+    this->mode_intensity_cal(entity);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
     this->mode_normal(entity);
     ImGui::TableNextColumn();
     this->mode_normal(entity);
@@ -119,6 +124,30 @@ void Colorization::mode_intensity_inv(dat::base::Entity* entity){
   bool condition = (entity->data.Is.size() == 0);
   if(condition) ImGui::BeginDisabled();
   if(ImGui::RadioButton("I inv##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_INV)){
+    this->update_color = true;
+  }
+  if(condition) ImGui::EndDisabled();
+
+  //---------------------------
+}
+void Colorization::mode_intensity_cor(dat::base::Entity* entity){
+  //---------------------------
+
+  bool condition = (entity->data.Is_cor.size() == 0);
+  if(condition) ImGui::BeginDisabled();
+  if(ImGui::RadioButton("I cor##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_COR)){
+    this->update_color = true;
+  }
+  if(condition) ImGui::EndDisabled();
+
+  //---------------------------
+}
+void Colorization::mode_intensity_cal(dat::base::Entity* entity){
+  //---------------------------
+
+  bool condition = (entity->data.Is_cal.size() == 0);
+  if(condition) ImGui::BeginDisabled();
+  if(ImGui::RadioButton("I cal##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_CAL)){
     this->update_color = true;
   }
   if(condition) ImGui::EndDisabled();

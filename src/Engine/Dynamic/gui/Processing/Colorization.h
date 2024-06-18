@@ -28,6 +28,8 @@ public:
   void mode_unicolor(dat::base::Entity* entity);
   void mode_intensity(dat::base::Entity* entity);
   void mode_intensity_inv(dat::base::Entity* entity);
+  void mode_intensity_cor(dat::base::Entity* entity);
+  void mode_intensity_cal(dat::base::Entity* entity);
   void mode_normal(dat::base::Entity* entity);
   void mode_heatmap(dat::base::Entity* entity);
   void mode_structure(dat::base::Entity* entity);

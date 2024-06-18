@@ -54,9 +54,9 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
 
 
   utl::base::Data* data = &sensor->data;
+  std::vector<float> Is_cor = std::vector<float>(data->xyz.size(), 0.0f);
 
-
-tic();
+//tic();
 
   #pragma omp parallel for
   for(int y=0; y<ir->height; y++){
@@ -75,20 +75,20 @@ tic();
         float R = math::distance_from_origin(xyz);
 
         I_cor = apply_correction(I_raw, R, It);
-        I_cor *= 255.0f;
       }
 
       //Set image value
       int idp = idx * 4;
-      uint8_t p_cor = static_cast<uint8_t>(I_cor);
+      uint8_t p_cor = static_cast<uint8_t>(I_cor * 255.0f);
       vec_data[idp]     = static_cast<uint8_t>(p_cor);
       vec_data[idp + 1] = static_cast<uint8_t>(p_cor);
       vec_data[idp + 2] = static_cast<uint8_t>(p_cor);
 
-      data->Is[idx] = I_cor;
+      Is_cor[idx] = I_cor;
     }
   }
-toc_us("hey");
+//toc_us("hey");
+data->Is_cor = Is_cor;
 image->data = vec_data;
   image->timestamp = ir->timestamp;
 
