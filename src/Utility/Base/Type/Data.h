@@ -38,6 +38,9 @@ struct Data : public utl::base::Element{
   std::vector<glm::vec2> uv;  //UV coordinate
   std::vector<float> ts; //Timestamp
   std::vector<float> Is; //Intensity
+  std::vector<float> Is_cor; //Corrected intensity
+  std::vector<float> Is_cal; //Calibrated intensity
+  std::vector<float> It; //Incidence angle
   std::vector<float> R; //Range
   std::vector<float> A; //Azimuth
   std::vector<int> idx; //Index
