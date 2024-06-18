@@ -19,10 +19,9 @@ public:
 public:
   //Main function
   void init();
-  void plot_measure();
-  void plot_model();
-
+  
   //Subfunction
+  void plot_measure();
   void update_plot_data();
   void reset_plot_data();
 

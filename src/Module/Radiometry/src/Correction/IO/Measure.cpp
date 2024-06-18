@@ -33,7 +33,7 @@ void Measure::import_measure(){
   rad_struct->measure.data = utl::file::read_vector(path);
 
   if(rad_struct->measure.data.size() != 0){
-    rad_model->find_optimization_bound();
+    rad_model->find_model_bound();
     rad_plot->update_plot_data();
   }
 

@@ -24,7 +24,7 @@ Correction::~Correction(){}
 
 //Main function
 void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir, utl::media::Image* depth){
-  if(model_sphere->is_ready() == false) return;
+  if(model_sphere->is_model_build() == false) return;
   //---------------------------
 
   utl::base::Data* data = &sensor->data;

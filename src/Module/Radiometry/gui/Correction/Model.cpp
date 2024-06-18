@@ -60,50 +60,50 @@ void Model::parameter_measure(){
   if(ImGui::Button(ICON_FA_DOWNLOAD "##measure_load", ImVec2(25, 0))){
     rad_io_measure->import_measure();
   }
-  ImGui::SameLine();
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
-  if(ImGui::Button(ICON_FA_PLAY "##measure_plot", ImVec2(25, 0))){
-    rad_plot->plot_measure();
-  }
   ImGui::PopStyleColor(2);
 
   ImGui::TableNextColumn();
-  if(ImGui::TreeNode("Parameter##Measure")){
+  if(ImGui::TreeNode("Parameter##measure_sphere")){
     //Path
     std::string path = rad_struct->measure.get_current_path();
-    if(ImGui::Button("...##path_measure")){
+    if(ImGui::Button("...##measure_sphere")){
       zenity::selection_file(path);
     }
     ImGui::SameLine();
-    if(ImGui::Button(ICON_FA_FOLDER "##path_measure")){
+    if(ImGui::Button(ICON_FA_FOLDER "##measure_sphere")){
       utl::directory::open(path);
     }
     ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", path.c_str());
 
     //Heatmap scale
+    ImGui::SetNextItemWidth(247.5);
     ImGui::DragFloatRange2("Heatmap scale",&plot->IfRIt.axis_z.min, &plot->IfRIt.axis_z.max, 100, 0, 60000, "%.0f");
 
     //Import / export / clear
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
+    if(ImGui::Button("Plot##measure_sphere", ImVec2(120, 0))){
+      rad_plot->plot_measure();
+    }
+    ImGui::SameLine();
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
+    if(ImGui::Button("Clear##measure_sphere", ImVec2(120, 0))){
+      rad_io_measure->clear_measure();
+    }
+    ImGui::PopStyleColor(2);
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-    if(ImGui::Button("Import##sphere", ImVec2(120, 0))){
+    if(ImGui::Button("Import##measure_sphere", ImVec2(120, 0))){
       rad_io_measure->import_measure();
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
-    if(ImGui::Button("Export##sphere", ImVec2(120, 0))){
+    if(ImGui::Button("Export##measure_sphere", ImVec2(120, 0))){
       rad_io_measure->export_measure();
-    }
-    ImGui::PopStyleColor(2);
-    ImGui::SameLine();
-    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
-    if(ImGui::Button("Clear##sphere", ImVec2(120, 0))){
-      rad_io_measure->clear_measure();
     }
     ImGui::PopStyleColor(2);
 
@@ -125,12 +125,6 @@ void Model::parameter_model(){
   if(ImGui::Button(ICON_FA_DOWNLOAD "##model_load", ImVec2(25, 0))){
     rad_io_model->import_model();
   }
-  ImGui::SameLine();
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
-  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
-  if(ImGui::Button(ICON_FA_PLAY "##model_plot", ImVec2(25, 0))){
-    rad_plot->plot_model();
-  }
   ImGui::PopStyleColor(2);
 
   ImGui::TableNextColumn();
@@ -147,16 +141,18 @@ void Model::parameter_model(){
     ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", optim->path.c_str());
 
     //Model parameter
-    ImGui::SetNextItemWidth(100);
+    ImGui::SetNextItemWidth(120);
     ImGui::DragInt("##degree_x", &optim->degree_x, 1, 1, 10);
     ImGui::SameLine();
-    ImGui::SetNextItemWidth(100);
+    ImGui::SetNextItemWidth(120);
     ImGui::DragInt("Degree", &optim->degree_y, 1, 1, 10);
     ImGui::SameLine();
     ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "RMSE: %.4f", optim->rmse);
+    ImGui::SetNextItemWidth(247.5);
     if(ImGui::DragFloatRange2("Range x",&optim->axis_x.bound[0], &optim->axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
       rad_plot->update_plot_data();
     }
+    ImGui::SetNextItemWidth(247.5);
     if(ImGui::DragFloatRange2("Range y",&optim->axis_y.bound[0], &optim->axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
       rad_plot->update_plot_data();
     }
@@ -166,10 +162,6 @@ void Model::parameter_model(){
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Compute##model", ImVec2(120, 0))){
       rad_model->compute_model();
-    }
-    ImGui::SameLine();
-    if(ImGui::Button("Plot##model", ImVec2(120, 0))){
-      rad_plot->plot_model();
     }
     ImGui::PopStyleColor(2);
 

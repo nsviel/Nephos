@@ -26,10 +26,12 @@ void Model::compute_model(){
   //---------------------------
 
   this->build_model();
-  this->compute_model_rmse();
+  this->rmse_model();
 
   //---------------------------
 }
+
+//Subfunction
 void Model::build_model(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
@@ -48,7 +50,7 @@ void Model::build_model(){
 
   //---------------------------
 }
-float Model::compute_model_rmse(){
+float Model::rmse_model(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
 
@@ -74,7 +76,7 @@ float Model::apply_model(float x, float y){
   rad::correction::structure::Model* model = &rad_struct->model;
   if(model->coefficient.size() == 0) return 0;
   //---------------------------
-say(model->coefficient.size());
+
   //Function and coef from python code
   vector<float> vec_coef;
   vec_coef.push_back(8.74097349);
@@ -93,7 +95,7 @@ say(model->coefficient.size());
   //---------------------------
   return z;
 }
-bool Model::is_ready(){
+bool Model::is_model_build(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
 
@@ -105,7 +107,7 @@ bool Model::is_ready(){
 
   //---------------------------
 }
-void Model::find_optimization_bound(){
+void Model::find_model_bound(){
   //---------------------------
 
   vec2 R_bound = vec2(1000, 0);

@@ -61,6 +61,8 @@ void Plot::init(){
 
   //---------------------------
 }
+
+//Subfunction
 void Plot::plot_measure(){
   //---------------------------
 
@@ -79,62 +81,6 @@ void Plot::plot_measure(){
 
   //---------------------------
 }
-void Plot::plot_model(){
-  rad::correction::structure::Model* optim = &rad_struct->model;
-  //---------------------------
-
-  //if(ope_surface->has_been_computed() == false){
-    //this->compute_model();
-  //}
-  /*
-  // Generate values for x and y
-  std::vector<float> x_values;
-  for(float i = optim->axis_x.bound[0]; i <= optim->axis_x.bound[1]; i += optim->axis_x.resolution){
-    x_values.push_back(i);
-  }
-
-  std::vector<float> y_values;
-  for(float i = optim->axis_y.bound[0]; i <= optim->axis_y.bound[1]; i += optim->axis_y.resolution){
-    y_values.push_back(i);
-  }
-
-  // Compute z values and fill x, y, and z vectors
-  std::vector<std::vector<float>> x, y, z;
-  for(float x_val : x_values){
-    std::vector<float> row_x, row_y, row_z;
-    for(float y_val : y_values){
-      row_x.push_back(x_val);
-      row_y.push_back(y_val);
-
-      float z_value = apply_model(x_val, y_val);
-      row_z.push_back(z_value);
-    }
-    x.push_back(row_x);
-    y.push_back(row_y);
-    z.push_back(row_z);
-  }
-
-  // Ensure z is not empty before plotting
-  if (z.size() == 0 || z[0].size() == 0) return;
-  matplotlibcpp::plot_surface(x, y, z);
-  */
-
-  if(rad_struct->measure.data.size() > 0){
-    std::vector<float> x_raw, y_raw, z_raw;
-    for(const auto& point : rad_struct->measure.data){
-      if(point.x == -1 || point.y > 60) continue;
-      x_raw.push_back(point.x);
-      y_raw.push_back(point.y);
-      z_raw.push_back(std::log(point.z));
-    }
-    matplotlibcpp::scatter(x_raw, y_raw, z_raw, 1, { {"marker", "."}, {"color", "black"} });
-    matplotlibcpp::show();
-  }
-
-  //---------------------------
-}
-
-//Subfunction
 void Plot::update_plot_data(){
   rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Plot* plot = &rad_struct->plot;

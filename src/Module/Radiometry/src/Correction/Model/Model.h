@@ -22,12 +22,14 @@ public:
 public:
   //Main function
   void build_model();
+
+  //Subfunction
   float apply_model(float x, float y);
-  float compute_model_rmse();
-  bool is_ready();
-  void find_optimization_bound();
+  float rmse_model();
+  bool is_model_build();
+  void find_model_bound();
   void compute_model();
-  
+
 private:
   rad::correction::Structure* rad_struct;
   rad::correction::Measure* rad_measure;
