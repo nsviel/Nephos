@@ -11,9 +11,9 @@ struct Model{
 
   std::string path = "../media/calibration/model.json";
   std::string serial_number = "";
-  std::string method = "";
-  std::vector<float> coefficient;
+  std::string depth_mode = "";
 
+  std::vector<float> coefficient;
   utl::base::Axis axis_x;
   utl::base::Axis axis_y;
 
