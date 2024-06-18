@@ -21,8 +21,10 @@ public:
 
   //Subfunction
   Eigen::MatrixXf jacobian(std::vector<glm::vec3>& data);
-  std::vector<float> get_coefficient();
   void find_number_parameter();
+
+  //Accesseur
+  std::vector<float> get_coefficient();
   void set_coefficients(const std::vector<float>& value);
   void set_degree(int degree_x, int degree_y);
 

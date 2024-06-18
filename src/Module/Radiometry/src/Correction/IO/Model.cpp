@@ -12,10 +12,7 @@ Model::Model(rad::correction::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();
-  this->rad_plot = new rad::correction::Plot(node_correction);
-  this->rad_measure = new rad::correction::Measure(node_correction);
-  this->ope_polyfit = new ope::fitting::Polyfit();
-  this->ope_surface = new ope::fitting::Surface();
+  this->rad_model = node_correction->get_rad_model();
 
   //---------------------------
 }
@@ -28,7 +25,7 @@ void Model::import_model(){
 
   model->serial_number = utl::json::read_value<string>(model->path, "info.serial_number");
   model->depth_mode = utl::json::read_value<string>(model->path, "info.depth_mode");
-  model->rmse = utl::json::read_value<string>(model->path, "info.rmse");
+  model->rmse = utl::json::read_value<float>(model->path, "info.rmse");
 
   model->degree_x = utl::json::read_value<int>(model->path, "x.degree");
   model->axis_x.bound[0] = utl::json::read_value<float>(model->path, "x.min");
@@ -38,7 +35,15 @@ void Model::import_model(){
   model->axis_y.bound[0] = utl::json::read_value<float>(model->path, "y.min");
   model->axis_y.bound[1] = utl::json::read_value<float>(model->path, "y.max");
 
+  model->coefficient.clear();
+  int nb_coefficient = utl::json::read_value<int>(model->path, "info.nb_coefficient");
+  for(int i=0; i<nb_coefficient; i++){
+    float coef = utl::json::read_value<float>(model->path, "coefficient." +  to_string(i));
+    model->coefficient.push_back(coef);
+  }
+
   //---------------------------
+  rad_model->update_model();
 }
 void Model::export_model(){
   rad::correction::structure::Model* model = &rad_struct->model;
@@ -47,6 +52,7 @@ void Model::export_model(){
   utl::json::write_value(model->path, "info.serial_number", model->serial_number);
   utl::json::write_value(model->path, "info.depth_mode", model->depth_mode);
   utl::json::write_value(model->path, "info.rmse", model->rmse);
+  utl::json::write_value(model->path, "info.nb_coefficient", model->coefficient.size());
 
   utl::json::write_value(model->path, "x.variable", "Range");
   utl::json::write_value(model->path, "x.degree", model->degree_x);

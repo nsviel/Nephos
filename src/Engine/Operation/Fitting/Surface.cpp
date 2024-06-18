@@ -136,17 +136,6 @@ Eigen::MatrixXf Surface::jacobian(std::vector<glm::vec3>& data){
   //---------------------------
   return J;
 }
-std::vector<float> Surface::get_coefficient(){
-  std::vector<float> result(P.size());
-  //---------------------------
-
-  for(int i=0; i<P.size(); ++i){
-    result[i] = static_cast<float>(P[i]);
-  }
-
-  //---------------------------
-  return result;
-}
 void Surface::find_number_parameter(){
   //-------------------------------
 
@@ -154,6 +143,8 @@ void Surface::find_number_parameter(){
 
   //-------------------------------
 }
+
+//Accesseur
 void Surface::set_coefficients(const std::vector<float>& value){
   //---------------------------
 
@@ -169,6 +160,17 @@ void Surface::set_degree(int degree_x, int degree_y){
   this->find_number_parameter();
 
   //---------------------------
+}
+std::vector<float> Surface::get_coefficient(){
+  std::vector<float> result(P.size());
+  //---------------------------
+
+  for(int i=0; i<P.size(); ++i){
+    result[i] = static_cast<float>(P[i]);
+  }
+
+  //---------------------------
+  return result;
 }
 
 }

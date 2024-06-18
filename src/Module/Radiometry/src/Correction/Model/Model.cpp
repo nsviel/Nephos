@@ -48,6 +48,14 @@ void Model::build_model(){
 
   //---------------------------
 }
+void Model::update_model(){
+  rad::correction::structure::Model* model = &rad_struct->model;
+  //---------------------------
+
+  ope_surface->set_coefficients(model->coefficient);
+
+  //---------------------------
+}
 float Model::rmse_model(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------

@@ -19,14 +19,15 @@ public:
 
 public:
   //Main function
-  void build_model();
+  void compute_model();
 
   //Subfunction
   float apply_model(float x, float y);
   float rmse_model();
   bool is_model_build();
   void find_model_bound();
-  void compute_model();
+  void build_model();
+  void update_model();
 
 private:
   rad::correction::Structure* rad_struct;

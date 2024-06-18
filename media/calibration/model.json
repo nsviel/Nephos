@@ -13,12 +13,17 @@
         "8": -0.0010601433459669352,
         "9": 0.17731726169586182
     },
-    "serial_number": "",
+    "info": {
+        "depth_mode": "",
+        "nb_coefficient": 12,
+        "rmse": 213.05897521972656,
+        "serial_number": ""
+    },
     "x": {
         "degree": 3,
         "max": 5.55033016204834,
         "min": 0.5488719940185547,
-        "variable": "Distance"
+        "variable": "Range"
     },
     "y": {
         "degree": 2,
