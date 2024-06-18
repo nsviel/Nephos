@@ -6,6 +6,7 @@ namespace rad{class Node;}
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rnd{class Stream;}
+namespace dat{class Image;}
 namespace dyn::base{class Sensor;}
 
 
@@ -23,11 +24,13 @@ public:
   void draw_tab(dyn::base::Sensor* sensor);
 
   //Subfunction
-  void display_image();
+  void display_image(dyn::base::Sensor* sensor);
 
 private:
   rad::correction::Structure* rad_struct;
-  rnd::Stream* stream;
+  rnd::Stream* stream_1;
+  rnd::Stream* stream_2;
+  dat::Image* dat_image;
 };
 
 }

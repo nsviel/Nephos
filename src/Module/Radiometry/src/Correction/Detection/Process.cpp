@@ -35,9 +35,12 @@ void Process::init(){
   //---------------------------
 }
 void Process::loop(){
+  //---------------------------
+
+  //Verify that we have a sensor type
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
-  //---------------------------
+  if(sensor == nullptr) return;
 
   //Update glyph pose
   rad_glyph->update_sphere_glyph();
@@ -51,10 +54,10 @@ void Process::loop(){
 
 //Subfunction
 void Process::step_detection(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
   //Verify that we have a sensor type
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
   dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 

@@ -2,6 +2,8 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Data/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace rad::gui{
@@ -11,10 +13,13 @@ Correction::Correction(rad::Node* node_radio){
   //---------------------------
 
   eng::Node* node_engine = node_radio->get_node_engine();
+  dat::Node* node_data = node_radio->get_node_data();
   rad::correction::Node* node_correction = node_radio->get_node_correction();
 
+  this->dat_image = node_data->get_dat_image();
   this->rad_struct = node_correction->get_rad_struct();
-  this->stream = new rnd::Stream(node_engine);
+  this->stream_1 = new rnd::Stream(node_engine);
+  this->stream_2 = new rnd::Stream(node_engine);
 
   //---------------------------
 }
@@ -24,19 +29,24 @@ Correction::~Correction(){}
 void Correction::draw_tab(dyn::base::Sensor* sensor){
   //---------------------------
 
-  this->display_image();
+  this->display_image(sensor);
 
   //---------------------------
 }
 
 //Subfunction
-void Correction::display_image(){
+void Correction::display_image(dyn::base::Sensor* sensor){
+  ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
-/*
-  ImVec2 image_size = ImGui::GetContentRegionAvail();
-  image_size.y -= 5;
-  stream->draw_stream(&image, image_size);
-*/
+
+  utl::media::Image* intensity = dat_image->get_image(sensor, utl::media::INTENSITY);
+  if(intensity == nullptr) return;
+  stream_2->draw_stream(intensity, ImVec2(available_space.x, available_space.y / 2 - 5));
+
+  utl::media::Image* correction = dat_image->get_image(sensor, utl::media::CORRECTION);
+  if(correction == nullptr) return;
+  stream_2->draw_stream(correction, ImVec2(available_space.x, available_space.y / 2 - 5));
+
   //---------------------------
   ImGui::Separator();
 }

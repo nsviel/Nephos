@@ -8,6 +8,7 @@ namespace rad::correction{class Process;}
 namespace rad::correction{class Measure;}
 namespace rad::correction{class Model;}
 namespace rad::correction{class Plot;}
+namespace rad::correction{class Correction;}
 namespace rad::correction::io{class Model;}
 namespace rad::correction::io{class Measure;}
 
@@ -42,6 +43,7 @@ private:
   rad::correction::Measure* rad_measure;
   rad::correction::Model* rad_model;
   rad::correction::Plot* rad_plot;
+  rad::correction::Correction* rad_correction;
   rad::correction::io::Model* rad_io_model;
   rad::correction::io::Measure* rad_io_measure;
 };

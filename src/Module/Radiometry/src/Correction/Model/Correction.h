@@ -8,6 +8,7 @@ namespace rad::correction{class Node;}
 namespace rad::correction{class Model;}
 namespace dyn::base{class Sensor;}
 namespace dat{class Image;}
+namespace dat{class Selection;}
 
 
 namespace rad::correction{
@@ -21,13 +22,15 @@ public:
 
 public:
   //Main function
-  void make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir, utl::media::Image* depth);
+  void loop();
 
   //Subfunction
+  void make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir);
   float apply_correction(float I_raw, float R, float It);
 
 private:
   dat::Image* dat_image;
+  dat::Selection* dat_selection;
   rad::correction::Structure* rad_struct;
   rad::correction::Model* model_sphere;
 };
