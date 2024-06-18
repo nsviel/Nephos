@@ -17,10 +17,11 @@ Normal::Normal(dyn::Node* node_dynamic){
   dat::Node* node_data = node_dynamic->get_node_data();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->ope_converter = new ope::image::Converter();
-  this->ope_normal = new ope::normal::Structured();
   this->dat_image = node_data->get_dat_image();
   this->dat_glyph = node_data->get_dat_glyph();
+  this->ope_converter = new ope::image::Converter();
+  this->ope_normal = new ope::normal::Structured();
+  this->ope_location = new ope::attribut::Location();
 
   //---------------------------
 }
@@ -50,6 +51,7 @@ void Normal::run_thread(dyn::base::Sensor* sensor){
   utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::NORMAL);
   image->timestamp = sensor->timestamp.current;
   ope_converter->convert_normal_to_image(data, image);
+  ope_location->compute_incidence_angle(sensor);
 
   //dat_glyph->update_glyph(sensor, dat::base::object::NORMAL);
 

@@ -13,7 +13,6 @@ Operation::Operation(dyn::Node* node_dynamic){
   //---------------------------
 
   eng::Node* node_engine = node_dynamic->get_node_engine();
-  rad::Node* node_radio = node_dynamic->get_node_radio();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->thread_pool = node_engine->get_thread_pool();

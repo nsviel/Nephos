@@ -38,7 +38,6 @@ void Node::loop(){
   //---------------------------
 
   rad_process->loop();
-  rad_correction->loop();
 
   //---------------------------
 }

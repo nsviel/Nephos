@@ -95,6 +95,10 @@ void Entity::update_data(dat::base::Entity* entity){
 
   vk_engine->insert_data(data, pose);
 
+  //Update attribut
+  ope_location->compute_centroid(entity);
+  ope_location->compute_range(entity);
+
   //----------------------------
 }
 void Entity::update_pose(dat::base::Entity* entity){

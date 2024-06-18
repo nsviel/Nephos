@@ -91,11 +91,22 @@ float Surface::evaluate(float x, float y){
   if(P.size() == 0) return 0;
   //---------------------------
 
-  int cpt = 0;
+  std::vector<float> x_powers(m + 1, 1.0f);
+  std::vector<float> y_powers(n + 1, 1.0f);
+
+  for (int i = 1; i <= m; ++i) {
+    x_powers[i] = x_powers[i - 1] * x;
+  }
+
+  for (int j = 1; j <= n; ++j) {
+    y_powers[j] = y_powers[j - 1] * y;
+  }
+
   float fit = 0;
-  for(int i=0; i<=m; i++){
-    for(int j=0; j<=n; j++){
-      fit += P(cpt) * std::pow(x, i) * std::pow(y, j);
+  int cpt = 0;
+  for (int i = 0; i <= m; ++i) {
+    for (int j = 0; j <= n; ++j) {
+      fit += P[cpt] * x_powers[i] * y_powers[j];
       cpt++;
     }
   }

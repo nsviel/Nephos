@@ -13,6 +13,7 @@ namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace ope::color{class Colorizer;}
 namespace dyn::cloud{class Normal;}
+namespace dyn::cloud{class Radiometry;}
 
 
 namespace dyn::cloud{
@@ -44,6 +45,7 @@ private:
   ope::Triangulation* ope_trianguler;
   ope::color::Colorizer* ope_colorizer;
   dyn::cloud::Normal* dyn_normal;
+  dyn::cloud::Radiometry* dyn_radio;
 
   utl::thread::Pool* thread_pool;
   bool thread_idle = true;

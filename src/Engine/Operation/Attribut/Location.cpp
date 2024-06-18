@@ -17,13 +17,17 @@ void Location::compute_centroid(dat::base::Entity* entity){
   std::vector<glm::vec3>& xyz = data->xyz;
   glm::vec3& centroid = data->centroid;
 
-  if(centroid == glm::vec3(0.0f, 0.0f, 0.0f)){
-    //Compute raw centroid
-    for(int i=0; i<xyz.size(); i++){
-      centroid += xyz[i];
-    }
-    centroid /= xyz.size();
+  //Compute raw centroid
+  glm::vec3 temp_centroid(0.0f, 0.0f, 0.0f);
+
+  // Parallel sum of xyz vectors
+  #pragma omp parallel for reduction(+:temp_centroid)
+  for(int i=0; i<xyz.size(); i++){
+    temp_centroid += xyz[i];
   }
+
+  // Compute average
+  centroid = temp_centroid / static_cast<float>(xyz.size());
 
   //---------------------------
 }
@@ -41,9 +45,9 @@ void Location::compute_COM(utl::base::Element* element){
   //---------------------------
 }
 void Location::compute_COM(dat::base::Set* set){
+  glm::vec3 COM = glm::vec3(0, 0, 0);
   //---------------------------
 
-  glm::vec3 COM = glm::vec3(0, 0, 0);
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
     this->compute_COM(entity);
@@ -51,7 +55,7 @@ void Location::compute_COM(dat::base::Set* set){
   }
 
   COM /= set->list_entity.size();
-  
+
   //---------------------------
   set->pose.COM = COM;
 }
@@ -136,9 +140,11 @@ void Location::compute_range(dat::base::Entity* entity){
   std::vector<float>& R = data->R;
   std::vector<glm::vec3>& xyz = data->xyz;
 
-  R = std::vector<float>(xyz.size(), 0.0f);
+  R.resize(xyz.size(), 0.0f);
+
+  #pragma omp parallel for
   for(int i=0; i<xyz.size(); i++){
-    float dist = math::distance_from_origin(xyz[i]);
+    float dist = glm::length(xyz[i]);
     R[i] = dist;
   }
 

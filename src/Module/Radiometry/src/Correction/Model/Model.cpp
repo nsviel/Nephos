@@ -74,6 +74,7 @@ float Model::apply_model(float x, float y){
   if(!is_model_build()) return 0;
   //---------------------------
 
+  /*
   //Function and coef from python code
   vector<float> vec_coef;
   vec_coef.push_back(8.74097349);
@@ -83,6 +84,7 @@ float Model::apply_model(float x, float y){
   vec_coef.push_back(-0.000202683733);
   vec_coef.push_back(0.00501210320);
   //float z = vec_coef[0] + vec_coef[1] * x + vec_coef[2] * y + vec_coef[3] * pow(x, 2) + vec_coef[4] * pow(y, 2) + vec_coef[5] * x * y;
+  */
 
   float z = ope_surface->evaluate(x, y);
 

@@ -24,17 +24,33 @@ Correction::Correction(rad::correction::Node* node_correction){
 Correction::~Correction(){}
 
 //Main function
-void Correction::loop(){
+void Detection::start_thread(dyn::base::Sensor* sensor){
+  //---------------------------
+
+  if(thread.joinable()){
+    this->thread.join();
+  }
+  this->thread = std::thread(&Detection::run_thread, this, sensor);
+
+  //---------------------------
+}
+void Detection::run_thread(dyn::base::Sensor* sensor){
   if(!model_sphere->is_model_build()) return;
   //---------------------------
 
-  //Verify that we have a sensor type
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
-  if(sensor == nullptr) return;
-
   utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::INTENSITY);
   this->make_image_correction(sensor, image);
+
+  //---------------------------
+  this->thread_idle = true;
+}
+void Detection::wait_thread(){
+  //For external thread to wait this queue thread idle
+  //---------------------------
+
+  while(thread_idle == false){
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
 
   //---------------------------
 }
@@ -56,8 +72,8 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
   utl::base::Data* data = &sensor->data;
   std::vector<float> Is_cor = std::vector<float>(data->xyz.size(), 0.0f);
 
-//tic();
 
+tic();
   #pragma omp parallel for
   for(int y=0; y<ir->height; y++){
     for(int x=0; x<ir->width; x++){
@@ -66,13 +82,11 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
       //Get parameters
       float I_cor = 0;
       float I_raw = sensor->buffer_ir[idx];
-      vec3 Nxyz = data->Nxyz[idx];
-      vec3 xyz = data->xyz[idx];
 
       //If to prevent correction of image borders
       if(I_raw != 0){
-        float It = math::compute_It(xyz, Nxyz, glm::vec3(0, 0, 0));
-        float R = math::distance_from_origin(xyz);
+        float& It = data->It[idx];
+        float& R = data->R[idx];
 
         I_cor = apply_correction(I_raw, R, It);
       }
@@ -80,14 +94,14 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
       //Set image value
       int idp = idx * 4;
       uint8_t p_cor = static_cast<uint8_t>(I_cor * 255.0f);
-      vec_data[idp]     = static_cast<uint8_t>(p_cor);
-      vec_data[idp + 1] = static_cast<uint8_t>(p_cor);
-      vec_data[idp + 2] = static_cast<uint8_t>(p_cor);
+      vec_data[idp]     = p_cor;
+      vec_data[idp + 1] = p_cor;
+      vec_data[idp + 2] = p_cor;
 
       Is_cor[idx] = I_cor;
     }
   }
-//toc_us("hey");
+toc_us("hey");
 data->Is_cor = Is_cor;
 image->data = vec_data;
   image->timestamp = ir->timestamp;
