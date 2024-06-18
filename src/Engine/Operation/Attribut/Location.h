@@ -19,9 +19,10 @@ public:
 
 public:
   //Main function
-  glm::vec3 compute_centroid(utl::base::Element* element);
-  glm::vec3 compute_centroid(dat::base::Set* set);
-  glm::vec3 compute_centroid(dat::base::Entity* entity);
+  void compute_centroid(dat::base::Entity* entity);
+  void compute_COM(utl::base::Element* element);
+  void compute_COM(dat::base::Set* set);
+  void compute_COM(dat::base::Entity* entity);
   void compute_MinMax(dat::base::Set* set);
   void compute_MinMax(dat::base::Entity* entity);
   void compute_range(dat::base::Entity* entity);

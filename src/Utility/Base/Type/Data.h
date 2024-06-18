@@ -27,6 +27,7 @@ struct Data : public utl::base::Element{
   //Infos
   std::string format = "";
   glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
+  glm::vec3 centroid = glm::vec3(0.0f, 0.0f, 0.0f);
   utl::base::Topology topology;
   utl::base::Path path;
 

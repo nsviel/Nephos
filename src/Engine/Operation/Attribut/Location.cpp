@@ -10,63 +10,63 @@ Location::Location(){}
 Location::~Location(){}
 
 //Main function
-glm::vec3 Location::compute_centroid(utl::base::Element* element){
-  if(element == nullptr) return glm::vec3(0);
+void Location::compute_centroid(dat::base::Entity* entity){
+  utl::base::Data* data = &entity->data;
   //---------------------------
 
-  glm::vec3 centroid;
+  std::vector<glm::vec3>& xyz = data->xyz;
+  glm::vec3& centroid = data->centroid;
+
+  if(centroid == glm::vec3(0.0f, 0.0f, 0.0f)){
+    //Compute raw centroid
+    for(int i=0; i<xyz.size(); i++){
+      centroid += xyz[i];
+    }
+    centroid /= xyz.size();
+  }
+
+  //---------------------------
+}
+void Location::compute_COM(utl::base::Element* element){
+  if(element == nullptr) return;
+  //---------------------------
+
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
-    centroid = compute_centroid(set);
+    this->compute_COM(set);
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    centroid = compute_centroid(entity);
+    this->compute_COM(entity);
   }
 
   //---------------------------
-  return centroid;
 }
-glm::vec3 Location::compute_centroid(dat::base::Set* set){
+void Location::compute_COM(dat::base::Set* set){
   //---------------------------
 
-  glm::vec3 centroid = glm::vec3(0, 0, 0);
-
+  glm::vec3 COM = glm::vec3(0, 0, 0);
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-    glm::vec3 entity_COM = compute_centroid(entity);
-
-    for(int j=0; j<3; j++){
-      centroid[j] += entity_COM[j];
-    }
+    this->compute_COM(entity);
+    COM += entity->pose.COM;
   }
 
-  for(int i=0; i<3; i++){
-    centroid[i] /= set->list_entity.size();
-  }
-
+  COM /= set->list_entity.size();
+  
   //---------------------------
-  set->pose.COM = centroid;
-  return centroid;
+  set->pose.COM = COM;
 }
-glm::vec3 Location::compute_centroid(dat::base::Entity* entity){
+void Location::compute_COM(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
-  std::vector<glm::vec3>& xyz = data->xyz;
-
-  //Compute raw centroid
-  glm::vec3 centroid = glm::vec3(0, 0, 0);
-  for(int i=0; i<xyz.size(); i++){
-    centroid += xyz[i];
-  }
-  centroid /= xyz.size();
+  this->compute_centroid(entity);
 
   //Transform the centroid by the model matrix
-  glm::vec4 centroid_h = glm::vec4(centroid, 1.0f);
-  centroid_h = pose->model * centroid_h;
+  glm::vec4 centroid_h = glm::vec4(data->centroid, 1.0f);
+  pose->COM = pose->model * centroid_h;
 
   //---------------------------
-  return glm::vec3(centroid_h);
 }
 void Location::compute_MinMax(dat::base::Set* set){
   //---------------------------
