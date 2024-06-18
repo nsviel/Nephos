@@ -108,8 +108,10 @@ void Plot::update_plot_data(){
       plot->IfR.axis_y.data.push_back(I);
 
       //Fitted
-      float fit = 0;//rad_model->apply_model(R, It);
-      plot->IfR.axis_y.fitting.push_back(fit);
+      if(rad_model->is_model_build()){
+        float fit = rad_model->apply_model(R, It);
+        plot->IfR.axis_y.fitting.push_back(fit);
+      }
 
       if(R > optim->axis_x.current && R < optim->axis_x.current + 0.05){
         plot->IfR.highlight = vec2(R, I);
@@ -124,8 +126,10 @@ void Plot::update_plot_data(){
       plot->IfIt.axis_y.data.push_back(I);
 
       //Fitted
-      float fit = 0;//rad_model->apply_model(R, It);
-      plot->IfIt.axis_y.fitting.push_back(fit);
+      if(rad_model->is_model_build()){
+        float fit = rad_model->apply_model(R, It);
+        plot->IfIt.axis_y.fitting.push_back(fit);
+      }
     }
 
     //I(R, It)

@@ -162,6 +162,7 @@ void Model::parameter_model(){
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Compute##model", ImVec2(120, 0))){
       rad_model->compute_model();
+      rad_plot->update_plot_data();
     }
     ImGui::PopStyleColor(2);
 

@@ -12,8 +12,6 @@ Model::Model(rad::correction::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();
-  this->rad_plot = new rad::correction::Plot(node_correction);
-  this->rad_measure = new rad::correction::Measure(node_correction);
   this->ope_polyfit = new ope::fitting::Polyfit();
   this->ope_surface = new ope::fitting::Surface();
 
@@ -63,7 +61,7 @@ float Model::rmse_model(){
     if(data.x < 0 || data.y < 0) continue;
 
     float z = apply_model(data.x, data.y);
-    E += pow(z - std::log(data.z), 2);
+    E += pow(z - data.z, 2);
   }
 
   float RMSE = sqrt(E / N);
@@ -73,8 +71,7 @@ float Model::rmse_model(){
   return RMSE;
 }
 float Model::apply_model(float x, float y){
-  rad::correction::structure::Model* model = &rad_struct->model;
-  if(model->coefficient.size() == 0) return 0;
+  if(!is_model_build()) return 0;
   //---------------------------
 
   //Function and coef from python code
@@ -88,8 +85,9 @@ float Model::apply_model(float x, float y){
   //float z = vec_coef[0] + vec_coef[1] * x + vec_coef[2] * y + vec_coef[3] * pow(x, 2) + vec_coef[4] * pow(y, 2) + vec_coef[5] * x * y;
 
   float z = ope_surface->evaluate(x, y);
-  z = std::exp(z);
 
+  //Reconvert from log scale to normal scale
+  z = std::exp(z);
   if(z < 0) z = 0;
 
   //---------------------------
@@ -134,4 +132,5 @@ void Model::find_model_bound(){
 
   //---------------------------
 }
+
 }
