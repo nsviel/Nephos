@@ -41,7 +41,7 @@ void Correction::display_image(dyn::base::Sensor* sensor){
 
   utl::media::Image* intensity = dat_image->get_image(sensor, utl::media::INTENSITY);
   if(intensity == nullptr) return;
-  stream_2->draw_stream(intensity, ImVec2(available_space.x, available_space.y / 2 - 5));
+  stream_1->draw_stream(intensity, ImVec2(available_space.x, available_space.y / 2 - 5));
 
   utl::media::Image* correction = dat_image->get_image(sensor, utl::media::CORRECTION);
   if(correction == nullptr) return;

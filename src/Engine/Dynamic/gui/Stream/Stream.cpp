@@ -79,7 +79,7 @@ void Stream::draw_stream_tabbar(dat::base::Entity* entity){
 
       for(int i=0; i<list_image.size(); i++){
         utl::media::Image* image = *next(list_image.begin(), i);
-        this->draw_stream_image(image, size);
+        this->draw_stream_image(image, size, i);
       }
 
       ImGui::EndTabItem();
@@ -92,7 +92,7 @@ void Stream::draw_stream_tabbar(dat::base::Entity* entity){
       ImGui::SetNextItemWidth(100);
       string title = image->name + "##4567";
       if(ImGui::BeginTabItem(title.c_str(), NULL)){
-        this->draw_stream_image(image, size);
+        this->draw_stream_image(image, size, i);
         ImGui::EndTabItem();
       }
     }
@@ -102,12 +102,13 @@ void Stream::draw_stream_tabbar(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Stream::draw_stream_image(utl::media::Image* image, ImVec2 size){
+void Stream::draw_stream_image(utl::media::Image* image, ImVec2 size, int idx){
+  if(idx >= vec_stream.size()) return;
   //---------------------------
 
   if(image->size == 0) return;
   ImVec2 image_pose = ImGui::GetCursorScreenPos();
-  vec_stream[0]->draw_stream(image, size);
+  vec_stream[idx]->draw_stream(image, size);
   //gui_overlay->overlay_capture(entity, &entity->color.data, size, image_pose);
 
   //---------------------------

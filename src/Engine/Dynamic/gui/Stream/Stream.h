@@ -28,7 +28,7 @@ public:
 
   //All devices
   void draw_stream_tabbar(dat::base::Entity* entity);
-  void draw_stream_image(utl::media::Image* image, ImVec2 image_size);
+  void draw_stream_image(utl::media::Image* image, ImVec2 image_size, int idx);
 
 private:
   eng::Node* node_engine;

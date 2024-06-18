@@ -31,6 +31,7 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
   //Get image to correct
   utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::CORRECTION);
   std::vector<uint8_t> vec_data = ir->data;
+  image->name = "Correction";
   image->width = ir->width;
   image->height = ir->height;
   image->size = ir->size;
@@ -41,7 +42,6 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
   std::vector<float> Is_cor = std::vector<float>(data->xyz.size(), 0.0f);
 
 
-tic();
   #pragma omp parallel for
   for(int y=0; y<ir->height; y++){
     for(int x=0; x<ir->width; x++){
@@ -69,9 +69,9 @@ tic();
       Is_cor[idx] = I_cor;
     }
   }
-toc_us("hey");
-data->Is_cor = Is_cor;
-image->data = vec_data;
+
+  data->Is_cor = Is_cor;
+  image->data = vec_data;
   image->timestamp = ir->timestamp;
 
   //---------------------------

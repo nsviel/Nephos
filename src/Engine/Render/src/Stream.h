@@ -29,6 +29,9 @@ public:
 private:
   vk::image::Texture* vk_texture;
   vk::gui::Imgui* vk_imgui;
+
+  int current_UID = -1;
+  float current_timestamp = -1;
 };
 
 }
