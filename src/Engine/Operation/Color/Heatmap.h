@@ -21,6 +21,8 @@ public:
 
   //Main function
   void heatmap_intensity(dat::base::Entity* entity, int diviser);
+  void heatmap_intensity_cor(dat::base::Entity* entity);
+  void heatmap_intensity_cal(dat::base::Entity* entity);
   void heatmap_height(dat::base::Entity* entity);
   void heatmap_height(dat::base::Entity* entity, vec2 range);
   void heatmap_range(dat::base::Entity* entity);

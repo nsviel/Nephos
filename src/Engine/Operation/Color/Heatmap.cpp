@@ -44,6 +44,34 @@ void Heatmap::heatmap_intensity(dat::base::Entity* entity, int diviser){
 
   //---------------------------
 }
+void Heatmap::heatmap_intensity_cor(dat::base::Entity* entity){
+  utl::base::Data* data = &entity->data;
+  if(data->Is_cor.size() == 0) return;
+  //---------------------------
+
+  //Prepare data
+  std::vector<float> Is = data->Is_cor;
+  math::normalize(Is, range_intensity);
+
+  //Compute heatmap
+  this->compute_heatmap(Is, data->rgba);
+
+  //---------------------------
+}
+void Heatmap::heatmap_intensity_cal(dat::base::Entity* entity){
+  utl::base::Data* data = &entity->data;
+  if(data->Is_cal.size() == 0) return;
+  //---------------------------
+
+  //Prepare data
+  std::vector<float> Is = data->Is_cal;
+  math::normalize(Is, range_intensity);
+
+  //Compute heatmap
+  this->compute_heatmap(Is, data->rgba);
+
+  //---------------------------
+}
 void Heatmap::heatmap_height(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------

@@ -190,20 +190,42 @@ void Colorization::option_heatmap(dat::base::Entity* entity){
   if(dyn_struct->colorization.color_mode != ope::color::HEATMAP) return;
   //---------------------------
 
+  ImGui::BeginTable("heatmap##mode", 3);
+
   bool condition = (entity->data.Is.size() == 0);
   if(condition) ImGui::BeginDisabled();
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY)){
     update_color = true;
   }
   if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
+  condition = (entity->data.Is_cor.size() == 0);
+  if(condition) ImGui::BeginDisabled();
+  ImGui::TableNextColumn();
+  if(ImGui::RadioButton("I cor##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY_COR)){
+    update_color = true;
+  }
+  if(condition) ImGui::EndDisabled();
+  ImGui::SameLine();
+  condition = (entity->data.Is_cal.size() == 0);
+  if(condition) ImGui::BeginDisabled();
+  ImGui::TableNextColumn();
+  if(ImGui::RadioButton("I cal##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY_CAL)){
+    update_color = true;
+  }
+  if(condition) ImGui::EndDisabled();
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("H##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::HEIGHT)){
     update_color = true;
   }
-  ImGui::SameLine();
+  ImGui::TableNextColumn();
   if(ImGui::RadioButton("R##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::RANGE)){
     update_color = true;
   }
+
+  ImGui::EndTable();
 
   //---------------------------
 }
