@@ -22,6 +22,7 @@ Entity::Entity(dat::Node* node_data){
   this->dat_struct = node_data->get_dat_struct();
   this->dat_uid = node_data->get_dat_uid();
   this->vk_engine = node_vulkan->get_vk_engine();
+  this->ope_location = new ope::attribut::Location();
 
   //---------------------------
 }
@@ -38,6 +39,10 @@ void Entity::init_entity(dat::base::Entity* entity){
   data->UID = dat_uid->generate_UID();
   this->update_pose(entity);
   this->update_data(entity);
+
+  //Init attribut
+  ope_location->compute_centroid(entity);
+  ope_location->compute_range(entity);
 
   //---------------------------
 }

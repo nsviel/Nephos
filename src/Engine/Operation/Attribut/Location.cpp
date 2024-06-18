@@ -52,24 +52,21 @@ glm::vec3 Location::compute_centroid(dat::base::Entity* entity){
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
-  std::vector<glm::vec3>& XYZ = data->xyz;
+  std::vector<glm::vec3>& xyz = data->xyz;
+
+  //Compute raw centroid
   glm::vec3 centroid = glm::vec3(0, 0, 0);
-
-  for(int i=0; i<XYZ.size(); i++){
-    vec4 xys_h = vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
-    xys_h = xys_h * pose->model;
-
-    for(int j=0; j<3; j++){
-      centroid[j] += xys_h[j];
-    }
+  for(int i=0; i<xyz.size(); i++){
+    centroid += xyz[i];
   }
+  centroid /= xyz.size();
 
-  for(int j=0;j<3;j++){
-    centroid[j] /= XYZ.size();
-  }
+  //Transform the centroid by the model matrix
+  glm::vec4 centroid_h = glm::vec4(centroid, 1.0f);
+  centroid_h = pose->model * centroid_h;
 
   //---------------------------
-  return centroid;
+  return glm::vec3(centroid_h);
 }
 void Location::compute_MinMax(dat::base::Set* set){
   //---------------------------
