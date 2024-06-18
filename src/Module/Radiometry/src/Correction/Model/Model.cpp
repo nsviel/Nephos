@@ -52,6 +52,7 @@ void Model::update_model(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
 
+  ope_surface->set_degree(model->degree_x, model->degree_y);
   ope_surface->set_coefficients(model->coefficient);
 
   //---------------------------

@@ -65,7 +65,8 @@ void Model::export_model(){
   utl::json::write_value(model->path, "y.max", model->axis_y.bound[1]);
 
   for(int i=0; i<model->coefficient.size(); i++){
-    utl::json::write_value(model->path, "coefficient." + to_string(i), model->coefficient[i]);
+    float& coef = model->coefficient[i];
+    utl::json::write_value(model->path, "coefficient." + to_string(i), coef);
   }
 
   //---------------------------
