@@ -24,38 +24,6 @@ Correction::Correction(rad::correction::Node* node_correction){
 Correction::~Correction(){}
 
 //Main function
-void Detection::start_thread(dyn::base::Sensor* sensor){
-  //---------------------------
-
-  if(thread.joinable()){
-    this->thread.join();
-  }
-  this->thread = std::thread(&Detection::run_thread, this, sensor);
-
-  //---------------------------
-}
-void Detection::run_thread(dyn::base::Sensor* sensor){
-  if(!model_sphere->is_model_build()) return;
-  //---------------------------
-
-  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::INTENSITY);
-  this->make_image_correction(sensor, image);
-
-  //---------------------------
-  this->thread_idle = true;
-}
-void Detection::wait_thread(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
-}
-
-//Subfunction
 void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir){
   if(!model_sphere->is_model_build()) return;
   //---------------------------
@@ -108,6 +76,9 @@ image->data = vec_data;
 
   //---------------------------
 }
+
+//Subfunction
+
 float Correction::apply_correction(float I_raw, float R, float It){
   if(isnan(It)) return 0;
   //---------------------------

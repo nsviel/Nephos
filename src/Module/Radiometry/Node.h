@@ -5,7 +5,6 @@
 namespace prf{class Node;}
 namespace eng{class Node;}
 namespace dat{class Node;}
-namespace dyn{class Node;}
 namespace rad::correction{class Node;}
 namespace rad::calibration{class Node;}
 namespace rad::gui{class Panel;}
@@ -31,7 +30,6 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline dat::Node* get_node_data(){return node_data;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
-  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
 
   inline rad::correction::Node* get_node_correction(){return node_correction;}
   inline rad::calibration::Node* get_node_calibration(){return node_calibration;}
@@ -41,7 +39,6 @@ private:
   eng::Node* node_engine;
   dat::Node* node_data;
   prf::Node* node_profiler;
-  dyn::Node* node_dynamic;
 
   //Child
   rad::correction::Node* node_correction;

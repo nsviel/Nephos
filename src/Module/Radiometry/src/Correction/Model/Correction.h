@@ -22,12 +22,10 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor);
-  void run_thread(dyn::base::Sensor* sensor);
-  void wait_thread();
+  void make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir);
 
   //Subfunction
-  void make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir);
+
   float apply_correction(float I_raw, float R, float It);
 
 private:
@@ -35,9 +33,6 @@ private:
   dat::Selection* dat_selection;
   rad::correction::Structure* rad_struct;
   rad::correction::Model* model_sphere;
-
-  std::thread thread;
-  bool thread_idle = true;
 };
 
 }

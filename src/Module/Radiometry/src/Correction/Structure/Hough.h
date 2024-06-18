@@ -33,6 +33,7 @@ struct Hough{
   //Parameter
   float param_1 = -1;
   float param_2 = -1;
+  int I_diviser = 1000;
   int ratio = 1;
   int min_dist = 72;
   int min_radius = 3;

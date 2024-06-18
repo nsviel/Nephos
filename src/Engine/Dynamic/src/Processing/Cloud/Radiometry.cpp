@@ -3,6 +3,7 @@
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace dyn::cloud{
@@ -11,7 +12,12 @@ namespace dyn::cloud{
 Radiometry::Radiometry(dyn::Node* node_dynamic){
   //---------------------------
 
+  dat::Node* node_data = node_dynamic->get_node_data();
   rad::Node* node_radio = node_dynamic->get_node_radio();
+  rad::correction::Node* node_correction = node_radio->get_node_correction();
+
+  this->dat_image = node_data->get_dat_image();
+  this->rad_correction = node_correction->get_rad_correction();
 
   //---------------------------
 }
@@ -30,6 +36,9 @@ void Radiometry::start_thread(dyn::base::Sensor* sensor){
 }
 void Radiometry::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
+
+  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::INTENSITY);
+  rad_correction->make_image_correction(sensor, image);
 
   //---------------------------
   this->thread_idle = true;

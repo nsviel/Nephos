@@ -63,6 +63,8 @@ void Operation::wait_thread(){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   dyn_recorder->wait_thread();
+  dyn_normal->wait_thread();
+  dyn_radio->wait_thread();
 
   //---------------------------
 }

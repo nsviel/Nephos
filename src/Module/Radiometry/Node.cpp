@@ -18,7 +18,6 @@ Node::Node(eng::Node* node_engine){
   this->node_engine = node_engine;
   this->node_data = node_engine->get_node_data();
   this->node_profiler = node_engine->get_node_profiler();
-  this->node_dynamic = node_engine->get_node_dynamic();
 
   //Child
   this->node_correction = new rad::correction::Node(this);

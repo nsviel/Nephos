@@ -33,6 +33,7 @@ public:
   inline rad::correction::Model* get_rad_model(){return rad_model;}
   inline rad::correction::Measure* get_rad_measure(){return rad_measure;}
   inline rad::correction::Plot* get_rad_plot(){return rad_plot;}
+  inline rad::correction::Correction* get_rad_correction(){return rad_correction;}
   inline rad::correction::io::Model* get_rad_io_model(){return rad_io_model;}
   inline rad::correction::io::Measure* get_rad_io_measure(){return rad_io_measure;}
 

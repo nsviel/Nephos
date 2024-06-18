@@ -3,7 +3,6 @@
 #include <Render/src/Stream.h>
 #include <Utility/Specific/Common.h>
 
-namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad::correction{class Structure;}
@@ -41,7 +40,6 @@ public:
   void display_state(int step, int data);
 
 private:
-  dyn::Structure* dyn_struct;
   rad::correction::Structure* rad_struct;
   rad::correction::Process* sphere_process;
   rad::correction::Process* chart_process;

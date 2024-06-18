@@ -15,10 +15,8 @@ Detection::Detection(rad::Node* node_radio){
 
   dat::Node* node_data = node_radio->get_node_data();
   eng::Node* node_engine = node_radio->get_node_engine();
-  dyn::Node* node_dynamic = node_radio->get_node_dynamic();
   rad::correction::Node* node_correction = node_radio->get_node_correction();
 
-  this->dyn_struct = node_dynamic->get_dyn_struct();
   this->rad_struct = node_correction->get_rad_struct();
   this->sphere_process = node_correction->get_rad_process();
   this->chart_process = node_correction->get_rad_process();
@@ -47,7 +45,7 @@ void Detection::detection_step(){
   //---------------------------
 
   ImGui::SetNextItemWidth(100);
-  ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 10000);
+  ImGui::SliderInt("I diviser", &rad_struct->hough.I_diviser, 1, 10000);
 
   ImGui::BeginTable("detection_step##table", 3);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 100.0f);
