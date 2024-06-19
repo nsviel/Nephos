@@ -30,25 +30,25 @@ nlohmann::json read_json(const std::string& path){
 template<typename T> void write_value(const std::string& path, const std::string& key, const T& value){
   //---------------------------
 
+  // Read JSON data from file
   nlohmann::json data = read_json(path);
 
-  // Check if the key contains a subkey using dot notation
-  size_t dotIndex = key.find('.');
-  if(dotIndex != std::string::npos){
-    std::string parentKey = key.substr(0, dotIndex);
-    std::string subKey = key.substr(dotIndex + 1);
-    if (data.contains(parentKey)){
-      // If the parent key exists, access the subkey and assign the value
-      data[parentKey][subKey] = value;
-    } else {
-      // If the parent key does not exist, create it and assign the subkey with the value
-      data[parentKey] = nlohmann::json::object();
-      data[parentKey][subKey] = value;
-    }
-  } else {
-    // Modify JSON data
-    data[key] = value;
+  // Split the key by dots
+  std::istringstream keyStream(key);
+  std::string segment;
+  nlohmann::json* current = &data;
+
+  while (std::getline(keyStream, segment, '.')) {
+      // If the segment does not exist, create a new nested JSON object
+      if (!current->contains(segment)) {
+          (*current)[segment] = nlohmann::json::object();
+      }
+      // Move to the next level
+      current = &(*current)[segment];
   }
+
+  // Set the value at the final nested level
+  *current = value;
 
   // Write JSON to file
   std::ofstream file(path);

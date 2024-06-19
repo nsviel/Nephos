@@ -21,6 +21,12 @@ public:
   void import_model();
   void export_model();
 
+  //Subfunction
+  void write_device_info();
+  void write_depth_mode_model();
+  void read_device_info();
+  void read_depth_mode_model();
+
 private:
   rad::correction::Structure* rad_struct;
   rad::correction::Model* rad_model;

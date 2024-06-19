@@ -9,11 +9,14 @@ namespace rad::correction::structure{
 struct Model{
   //---------------------------
 
-  std::string path = "../media/calibration/model.json";
-  std::string serial_number = "";
-  std::string depth_mode = "";
+  std::string path_model = "../media/calibration/model.json";
+  std::string path_measure = "../media/calibration/model.json";
+  std::string device = "Kinect";
+  std::string serial_number = "9999999";
+  std::string depth_mode = "NFOV";
 
   std::vector<float> coefficient;
+  std::vector<std::string> mode;
   utl::base::Axis axis_x;
   utl::base::Axis axis_y;
 
