@@ -113,7 +113,7 @@ void Model::parameter_measure(){
   //---------------------------
 }
 void Model::parameter_model(){
-  rad::correction::structure::Model* optim = &rad_struct->model;
+  rad::correction::structure::Model* model = &rad_struct->model;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -131,29 +131,29 @@ void Model::parameter_model(){
   if(ImGui::TreeNode("Parameter##Model")){
     //Path
     if(ImGui::Button("...##path_model")){
-      zenity::selection_file(optim->path);
+      zenity::selection_file(model->path_model);
     }
     ImGui::SameLine();
     if(ImGui::Button(ICON_FA_FOLDER "##path_model")){
-      utl::directory::open(optim->path);
+      utl::directory::open(model->path_model);
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", optim->path.c_str());
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", model->path_model.c_str());
 
     //Model parameter
     ImGui::SetNextItemWidth(120);
-    ImGui::DragInt("##degree_x", &optim->degree_x, 1, 1, 10);
+    ImGui::DragInt("##degree_x", &model->degree_x, 1, 1, 10);
     ImGui::SameLine();
     ImGui::SetNextItemWidth(120);
-    ImGui::DragInt("Degree", &optim->degree_y, 1, 1, 10);
+    ImGui::DragInt("Degree", &model->degree_y, 1, 1, 10);
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "RMSE: %.4f", optim->rmse);
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "RMSE: %.4f", model->rmse);
     ImGui::SetNextItemWidth(247.5);
-    if(ImGui::DragFloatRange2("Range x",&optim->axis_x.bound[0], &optim->axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
+    if(ImGui::DragFloatRange2("Range x",&model->axis_x.bound[0], &model->axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
       rad_plot->update_plot_data();
     }
     ImGui::SetNextItemWidth(247.5);
-    if(ImGui::DragFloatRange2("Range y",&optim->axis_y.bound[0], &optim->axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
+    if(ImGui::DragFloatRange2("Range y",&model->axis_y.bound[0], &model->axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
       rad_plot->update_plot_data();
     }
 
@@ -163,6 +163,13 @@ void Model::parameter_model(){
     if(ImGui::Button("Compute##model", ImVec2(120, 0))){
       rad_model->compute_model();
       rad_plot->update_plot_data();
+    }
+    ImGui::PopStyleColor(2);
+    ImGui::SameLine();
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
+    if(ImGui::Button("Clear##model_sphere", ImVec2(120, 0))){
+      rad_model->clear_model();
     }
     ImGui::PopStyleColor(2);
 
@@ -224,13 +231,13 @@ void Model::plot_measure_IfIt(float height){
   //---------------------------
 }
 void Model::plot_model_heatmap(float height){
-  rad::correction::structure::Model* optim = &rad_struct->model;
+  rad::correction::structure::Model* model = &rad_struct->model;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfRIt.title == "") return;
   plot->IfRIt.dimension = ivec2(-1, height);
-  bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &optim->axis_x, &optim->axis_y);
+  bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &model->axis_x, &model->axis_y);
   if(need_update){
     rad_plot->update_plot_data();
   }

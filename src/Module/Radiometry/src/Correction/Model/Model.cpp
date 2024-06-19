@@ -28,6 +28,13 @@ void Model::compute_model(){
 
   //---------------------------
 }
+void Model::clear_model(){
+  //---------------------------
+
+
+
+  //---------------------------
+}
 
 //Subfunction
 void Model::build_model(){

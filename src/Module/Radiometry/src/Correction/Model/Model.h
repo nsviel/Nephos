@@ -20,6 +20,7 @@ public:
 public:
   //Main function
   void compute_model();
+  void clear_model();
 
   //Subfunction
   float apply_model(float x, float y);
