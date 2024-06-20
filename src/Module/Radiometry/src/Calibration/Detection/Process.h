@@ -10,16 +10,6 @@ namespace dat{class Selection;}
 
 namespace rad::calibration{
 
-enum Step{
-  VALIDATION = 1,
-  PROCESSING = 2,
-};
-
-enum Data{
-  NO_DATA = 0,
-  HAS_DATA = 3,
-};
-
 class Process
 {
 public:
