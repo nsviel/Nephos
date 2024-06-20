@@ -33,9 +33,9 @@ void Init::init(){
 void Init::load_entity(){
   //----------------------------
 
-  //utl::base::Path versaille_0("/home/aether/Desktop/versaille_0.mkv");
-  /*versaille_0.transformation = "/home/aether/Desktop/versaille_0.json";
-
+  utl::base::Path versaille_0("/home/aether/Desktop/versaille_0.mkv");
+  utl::base::Path versaille_0_t("/home/aether/Desktop/versaille_0.json");
+/*
   utl::base::Path versaille_2;
   versaille_2.data = "/home/aether/Desktop/versaille_2.mkv";
   versaille_2.transformation = "/home/aether/Desktop/versaille_2.json";
@@ -55,16 +55,16 @@ void Init::load_entity(){
 
   utl::base::Path mire;
   mire.data = "/home/aether/Desktop/Mire.mkv";
-
+*/
   //Create playback list
-  //ldr_loader->load_object(versaille_0);
+  ldr_loader->load_object(versaille_0, versaille_0_t);
   //ldr_loader->load_object(versaille_2);
   //ldr_loader->load_object(cerfav);
   //ldr_loader->load_object(dragon);
   //ldr_loader->load_object(sphere);
   //ldr_loader->load_set(pcap);
   //ldr_loader->load_object(mire);
-  ldr_loader->load_object(sphere);*/
+  //ldr_loader->load_object(sphere);
 
   //----------------------------
 }
