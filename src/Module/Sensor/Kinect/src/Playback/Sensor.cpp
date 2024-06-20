@@ -26,13 +26,6 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
 Sensor::~Sensor(){}
 
 //Main function
-void Sensor::info(){
-  //---------------------------
-
-  gui_playback->show_parameter(this);
-
-  //---------------------------
-}
 void Sensor::thread_init(){
   //---------------------------
 
@@ -90,6 +83,13 @@ void Sensor::thread_end(){
 }
 
 //Subfunction
+void Sensor::info(){
+  //---------------------------
+
+  gui_playback->show_parameter(this);
+
+  //---------------------------
+}
 k4a::capture* Sensor::manage_new_capture(){
   //---------------------------
 

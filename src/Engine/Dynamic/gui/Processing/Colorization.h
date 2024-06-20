@@ -5,7 +5,7 @@
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::cloud{class Operation;}
-namespace dat::base{class Set;}
+namespace dat::base{class Element;}
 namespace dat::base{class Entity;}
 
 
@@ -20,10 +20,11 @@ public:
 
 public:
   //Main function
-  void design_colorization(dat::base::Set* set);
+  void design_colorization(utl::base::Element* element);
   void update_entity(dat::base::Entity* entity);
 
   //Mode function
+  void colorization_mode(dat::base::Entity* entity);
   void mode_rgb(dat::base::Entity* entity);
   void mode_unicolor(dat::base::Entity* entity);
   void mode_intensity(dat::base::Entity* entity);
@@ -36,7 +37,7 @@ public:
   void mode_structure(dat::base::Entity* entity);
 
   //Option function
-  void option_heatmap(dat::base::Entity* entity);
+  void heatmap_mode(dat::base::Entity* entity);
   void option_intensity(dat::base::Entity* entity);
   void option_height(dat::base::Entity* entity);
 

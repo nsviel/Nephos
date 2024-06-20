@@ -33,10 +33,13 @@ void Operation::design_operation(){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
+  //Transformation
   dyn_transformation->design_transformation(element);
 
+  //Colorization
+  dyn_colorization->design_colorization(element);
+
   dat::base::Set* set = dat_selection->get_selected_set();
-  dyn_colorization->design_colorization(set);
   this->draw_ope_normal(set);
   ImGui::PopStyleColor();
 

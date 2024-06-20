@@ -19,7 +19,7 @@ Colorization::Colorization(dyn::Node* node_dynamic){
 Colorization::~Colorization(){}
 
 //Main function
-void Colorization::design_colorization(dat::base::Set* set){
+void Colorization::design_colorization(utl::base::Element* element){
   dat::base::Entity* entity = set->active_entity;
   if(entity == nullptr) return;
   //---------------------------
@@ -27,41 +27,13 @@ void Colorization::design_colorization(dat::base::Set* set){
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Colorization##dynamic")){
 
-    //Colorization mode
-    ImGui::BeginTable("colorization##mode", 2);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    this->mode_rgb(entity);
-    ImGui::TableNextColumn();
-    this->mode_unicolor(entity);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    this->mode_intensity(entity);
-    ImGui::TableNextColumn();
-    this->mode_intensity_inv(entity);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    this->mode_intensity_cor(entity);
-    ImGui::TableNextColumn();
-    this->mode_intensity_cal(entity);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    this->mode_normal(entity);
-    ImGui::TableNextColumn();
-    this->mode_incidence_angle(entity);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    this->mode_heatmap(entity);
-    ImGui::TableNextColumn();
-    this->mode_structure(entity);
-
-    ImGui::EndTable();
-
+    this->colorization_mode();
     ImGui::Separator();
-    this->option_heatmap(entity);
+    this->heatmap_mode(entity);
+
     this->option_intensity(entity);
     this->option_height(entity);
-
+    
     this->update_entity(entity);
   }
 
@@ -80,6 +52,40 @@ void Colorization::update_entity(dat::base::Entity* entity){
 }
 
 //Mode function
+void Colorization::colorization_mode(dat::base::Entity* entity){
+  //---------------------------
+
+  ImGui::BeginTable("colorization##mode", 2);
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  this->mode_rgb(entity);
+  ImGui::TableNextColumn();
+  this->mode_unicolor(entity);
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  this->mode_intensity(entity);
+  ImGui::TableNextColumn();
+  this->mode_intensity_inv(entity);
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  this->mode_intensity_cor(entity);
+  ImGui::TableNextColumn();
+  this->mode_intensity_cal(entity);
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  this->mode_normal(entity);
+  ImGui::TableNextColumn();
+  this->mode_incidence_angle(entity);
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  this->mode_heatmap(entity);
+  ImGui::TableNextColumn();
+  this->mode_structure(entity);
+
+  ImGui::EndTable();
+
+  //---------------------------
+}
 void Colorization::mode_rgb(dat::base::Entity* entity){
   //---------------------------
 
@@ -198,7 +204,7 @@ void Colorization::mode_structure(dat::base::Entity* entity){
 }
 
 //Option function
-void Colorization::option_heatmap(dat::base::Entity* entity){
+void Colorization::heatmap_mode(dat::base::Entity* entity){
   if(dyn_struct->colorization.color_mode != ope::color::HEATMAP) return;
   //---------------------------
 
