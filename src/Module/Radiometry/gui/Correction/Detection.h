@@ -36,9 +36,6 @@ public:
   void parameter_hough();
   void parameter_ransac();
 
-  //Subfunction
-  void display_state(int step, int data);
-
 private:
   rad::correction::Structure* rad_struct;
   rad::correction::Process* sphere_process;

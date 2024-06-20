@@ -41,7 +41,7 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
 void Detection::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  if(sensor != nullptr && rad_struct->state.detection == rad::correction::detection::PROCESSING){
+  if(sensor != nullptr && rad_struct->state.measure == rad::correction::measure::PROCESSING){
     rad_ransac->ransac_sphere(sensor);
     rad_glyph->reset_detection_sphere();
   }else{
@@ -79,10 +79,7 @@ void Detection::validate_bbox(dyn::base::Sensor* sensor){
   vec4 pose_xyzw = vec4(pose_xyz.x, pose_xyz.y, pose_xyz.z, 1);
   rad_struct->ransac.current_pose = pose->model * pose_xyzw;
   rad_ransac->ransac_sphere(sensor);
-
-  //Up step and display glyph
-  rad_struct->state.detection = rad::correction::detection::PROCESSING;
-
+  
   //---------------------------
 }
 

@@ -52,12 +52,12 @@ void Process::step_detection(){
   //Measurement step logic
   int& step = rad_struct->state.detection;
   switch(step){
-    case rad::correction::detection::WAIT_VALIDATION:{
+    case rad::calibration::detection::WAIT_VALIDATION:{
 
       break;
     }
-    case rad::correction::detection::PROCESSING:{
-      step = rad::correction::detection::WAIT_VALIDATION;
+    case rad::calibration::detection::PROCESSING:{
+      step = rad::calibration::detection::WAIT_VALIDATION;
       break;
     }
   }

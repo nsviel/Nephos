@@ -65,7 +65,7 @@ void Process::step_detection(){
   int& step = rad_struct->state.detection;
   switch(step){
     case rad::correction::detection::WAIT_VALIDATION:{
-      rad_cloud_detection->validate_bbox(sensor);
+      step = rad::correction::detection::PROCESSING;
       break;
     }
     case rad::correction::detection::PROCESSING:{
@@ -89,6 +89,7 @@ void Process::step_measure(){
   switch(step){
     case rad::correction::measure::WAIT_VALIDATION:{
       rad_cloud_detection->validate_bbox(sensor);
+      step = rad::correction::measure::PROCESSING;
       break;
     }
     case rad::correction::measure::PROCESSING:{
