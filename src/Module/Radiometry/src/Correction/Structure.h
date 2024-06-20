@@ -19,7 +19,7 @@ struct Structure{
 
   //General
   utl::media::Image image;
-  int state_step = rad::correction::VALIDATION;
+  int state_step = rad::correction::cloud::WAIT_VALIDATION;
   int state_data = rad::correction::NO_DATA;
 
   //Detection stuff

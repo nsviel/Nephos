@@ -27,7 +27,7 @@ public:
   void wait_thread();
 
   //Loop function
-  void convertion_into_cloud(k4n::structure::Sensor* sensor);
+  void convert_image_into_cloud(k4n::structure::Sensor* sensor);
   void convertion_init(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker);
   void convertion_data(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker);
   void convertion_transfer(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker);

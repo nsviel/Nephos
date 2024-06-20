@@ -40,7 +40,7 @@ void Cloud::run_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Convert data into a cloud
-  this->convertion_into_cloud(sensor);
+  this->convert_image_into_cloud(sensor);
 
   //Dynamic operation
   dyn_operation->start_thread(sensor);
@@ -61,7 +61,7 @@ void Cloud::wait_thread(){
 }
 
 //Loop function
-void Cloud::convertion_into_cloud(k4n::structure::Sensor* sensor){
+void Cloud::convert_image_into_cloud(k4n::structure::Sensor* sensor){
   if(!sensor->depth.cloud.k4a_image.is_valid()) return;
   if(!sensor->ir.cloud.k4a_image.is_valid()) return;
   if(sensor->color.cloud.buffer == nullptr) return;

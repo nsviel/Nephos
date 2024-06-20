@@ -46,13 +46,13 @@ void Info::path_info(utl::base::Element* element){
   //Data
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Data"); ImGui::TableNextColumn();
-  string path_data = (data->path.data != "") ? data->path.directory + data->path.data : "(not defined)";
+  string path_data = (data->path.data != "") ? data->path.data : "(not defined)";
   ImGui::TextColored(color, "%s", path_data.c_str());
 
   //Transformation
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Transform"); ImGui::TableNextColumn();
-  string path_transfo = (data->path.transformation != "") ? data->path.directory + data->path.transformation : "(not defined)";
+  string path_transfo = (data->path.transformation != "") ? data->path.transformation : "(not defined)";
   ImGui::TextColored(color, "%s", path_transfo.c_str());
 
   ImGui::EndTable();

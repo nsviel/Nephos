@@ -61,7 +61,7 @@ void Recorder::check_path(dyn::base::Sensor* sensor){
   utl::base::Data* data = &sensor->data;
   //---------------------------
 
-  data->path.data = data->path.directory + "/" + data->name + "." + data->format;
+  //data->path.data = data->path.directory + "/" + data->name + "." + data->format;
 
   //---------------------------
 }

@@ -41,7 +41,7 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
 void Detection::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  if(sensor != nullptr && rad_struct->state_step == rad::correction::PROCESSING){
+  if(sensor != nullptr && rad_struct->state_step == rad::correction::cloud::PROCESSING){
     rad_ransac->ransac_sphere(sensor);
     rad_glyph->reset_detection_sphere();
   }else{
@@ -81,7 +81,7 @@ void Detection::validate_bbox(dyn::base::Sensor* sensor){
   rad_ransac->ransac_sphere(sensor);
 
   //Up step and display glyph
-  rad_struct->state_step = rad::correction::PROCESSING;
+  rad_struct->state_step = rad::correction::cloud::PROCESSING;
 
   //---------------------------
 }

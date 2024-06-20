@@ -58,7 +58,7 @@ void Detection::detection_step(){
   ImGui::TableNextColumn();
   this->display_state(rad_struct->state_step, rad_struct->state_data);
   ImGui::TableNextColumn();
-  if(rad_struct->state_step == rad::correction::PROCESSING){
+  if(rad_struct->state_step == rad::correction::cloud::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){
@@ -80,7 +80,7 @@ void Detection::detection_step(){
   ImGui::TableNextColumn();
   this->display_state(rad_struct->state_step, rad_struct->state_data);
   ImGui::TableNextColumn();
-  if(rad_struct->state_step == rad::correction::PROCESSING){
+  if(rad_struct->state_step == rad::correction::cloud::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##chart_measure", ImVec2(120, 0))){
@@ -265,7 +265,7 @@ void Detection::parameter_ransac(){
 void Detection::display_state(int step, int data){
   //---------------------------
 
-  if(step == rad::correction::PROCESSING){
+  if(step == rad::correction::cloud::PROCESSING){
     ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
     return;
   }
