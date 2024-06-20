@@ -129,7 +129,7 @@ struct ScrollingBuffer {
         Data.reserve(MaxSize);
     }
     void AddPoint(float x, float y){
-        if (Data.size() < MaxSize)
+        if(Data.size() < MaxSize)
             Data.push_back(ImVec2(x,y));
         else {
             Data[Offset] = ImVec2(x,y);
@@ -137,7 +137,7 @@ struct ScrollingBuffer {
         }
     }
     void Erase(){
-        if (Data.size() > 0){
+        if(Data.size() > 0){
             Data.shrink(0);
             Offset  = 0;
         }
@@ -154,7 +154,7 @@ struct RollingBuffer {
     }
     void AddPoint(float x, float y){
         float xmod = fmodf(x, Span);
-        if (!Data.empty() && xmod < Data.back().x)
+        if(!Data.empty() && xmod < Data.back().x)
             Data.shrink(0);
         Data.push_back(ImVec2(xmod, y));
     }
@@ -210,13 +210,13 @@ void Demo_Help(){
 
 void ButtonSelector(const char* label, ImGuiMouseButton* b){
     ImGui::PushID(label);
-    if (ImGui::RadioButton("LMB",*b == ImGuiMouseButton_Left))
+    if(ImGui::RadioButton("LMB",*b == ImGuiMouseButton_Left))
         *b = ImGuiMouseButton_Left;
     ImGui::SameLine();
-    if (ImGui::RadioButton("RMB",*b == ImGuiMouseButton_Right))
+    if(ImGui::RadioButton("RMB",*b == ImGuiMouseButton_Right))
         *b = ImGuiMouseButton_Right;
     ImGui::SameLine();
-    if (ImGui::RadioButton("MMB",*b == ImGuiMouseButton_Middle))
+    if(ImGui::RadioButton("MMB",*b == ImGuiMouseButton_Middle))
         *b = ImGuiMouseButton_Middle;
     ImGui::PopID();
 }
@@ -232,11 +232,11 @@ void ModSelector(const char* label, int* k){
 
 void InputMapping(const char* label, ImGuiMouseButton* b, int* k){
     ImGui::LabelText("##","%s",label);
-    if (b != nullptr){
+    if(b != nullptr){
         ImGui::SameLine(100);
         ButtonSelector(label,b);
     }
-    if (k != nullptr){
+    if(k != nullptr){
         ImGui::SameLine(300);
         ModSelector(label,k);
     }
@@ -267,7 +267,7 @@ void Demo_Config(){
     ImGui::Checkbox("Use ISO 8601", &ImPlot::GetStyle().UseISO8601);
     ImGui::Checkbox("Use 24 Hour Clock", &ImPlot::GetStyle().Use24HourClock);
     ImGui::Separator();
-    if (ImPlot::BeginPlot("Preview")){
+    if(ImPlot::BeginPlot("Preview")){
         static double now = (double)time(nullptr);
         ImPlot::SetupAxisScale(ImAxis_X1, ImPlotScale_Time);
         ImPlot::SetupAxisLimits(ImAxis_X1, now, now + 24*3600);
@@ -295,7 +295,7 @@ void Demo_LinePlots(){
         xs2[i] = i * 1/19.0f;
         ys2[i] = xs2[i] * xs2[i];
     }
-    if (ImPlot::BeginPlot("Line Plots")){
+    if(ImPlot::BeginPlot("Line Plots")){
         ImPlot::SetupAxes("x","y");
         ImPlot::PlotLine("f(x)", xs1, ys1, 1001);
         ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
@@ -322,34 +322,34 @@ void Demo_FilledLinePlots(){
     static ImPlotShadedFlags flags = 0;
     ImGui::Checkbox("Lines",&show_lines); ImGui::SameLine();
     ImGui::Checkbox("Fills",&show_fills);
-    if (show_fills){
+    if(show_fills){
         ImGui::SameLine();
-        if (ImGui::RadioButton("To -INF",shade_mode == 0))
+        if(ImGui::RadioButton("To -INF",shade_mode == 0))
             shade_mode = 0;
         ImGui::SameLine();
-        if (ImGui::RadioButton("To +INF",shade_mode == 1))
+        if(ImGui::RadioButton("To +INF",shade_mode == 1))
             shade_mode = 1;
         ImGui::SameLine();
-        if (ImGui::RadioButton("To Ref",shade_mode == 2))
+        if(ImGui::RadioButton("To Ref",shade_mode == 2))
             shade_mode = 2;
-        if (shade_mode == 2){
+        if(shade_mode == 2){
             ImGui::SameLine();
             ImGui::SetNextItemWidth(100);
             ImGui::DragFloat("##Ref",&fill_ref, 1, -100, 500);
         }
     }
 
-    if (ImPlot::BeginPlot("Stock Prices")){
+    if(ImPlot::BeginPlot("Stock Prices")){
         ImPlot::SetupAxes("Days","Price");
         ImPlot::SetupAxesLimits(0,100,0,500);
-        if (show_fills){
+        if(show_fills){
             ImPlot::PushStyleVar(ImPlotStyleVar_FillAlpha, 0.25f);
             ImPlot::PlotShaded("Stock 1", xs1, ys1, 101, shade_mode == 0 ? -INFINITY : shade_mode == 1 ? INFINITY : fill_ref, flags);
             ImPlot::PlotShaded("Stock 2", xs1, ys2, 101, shade_mode == 0 ? -INFINITY : shade_mode == 1 ? INFINITY : fill_ref, flags);
             ImPlot::PlotShaded("Stock 3", xs1, ys3, 101, shade_mode == 0 ? -INFINITY : shade_mode == 1 ? INFINITY : fill_ref, flags);
             ImPlot::PopStyleVar();
         }
-        if (show_lines){
+        if(show_lines){
             ImPlot::PlotLine("Stock 1", xs1, ys1, 101);
             ImPlot::PlotLine("Stock 2", xs1, ys2, 101);
             ImPlot::PlotLine("Stock 3", xs1, ys3, 101);
@@ -374,7 +374,7 @@ void Demo_ShadedPlots(){
     static float alpha = 0.25f;
     ImGui::DragFloat("Alpha",&alpha,0.01f,0,1);
 
-    if (ImPlot::BeginPlot("Shaded Plots")){
+    if(ImPlot::BeginPlot("Shaded Plots")){
         ImPlot::PushStyleVar(ImPlotStyleVar_FillAlpha, alpha);
         ImPlot::PlotShaded("Uncertain Data",xs,ys1,ys2,1001);
         ImPlot::PlotLine("Uncertain Data", xs, ys, 1001);
@@ -401,7 +401,7 @@ void Demo_ScatterPlots(){
         ys2[i] = 0.75f + 0.2f * ((float)rand() / (float)RAND_MAX);
     }
 
-    if (ImPlot::BeginPlot("Scatter Plot")){
+    if(ImPlot::BeginPlot("Scatter Plot")){
         ImPlot::PlotScatter("Data 1", xs1, ys1, 100);
         ImPlot::PushStyleVar(ImPlotStyleVar_FillAlpha, 0.25f);
         ImPlot::SetNextMarkerStyle(ImPlotMarker_Square, 6, ImPlot::GetColormapColor(1), IMPLOT_AUTO, ImPlot::GetColormapColor(1));
@@ -421,7 +421,7 @@ void Demo_StairstepPlots(){
     }
     static ImPlotStairsFlags flags = 0;
     CHECKBOX_FLAG(flags, ImPlotStairsFlags_Shaded);
-    if (ImPlot::BeginPlot("Stairstep Plot")){
+    if(ImPlot::BeginPlot("Stairstep Plot")){
         ImPlot::SetupAxes("x","f(x)");
         ImPlot::SetupAxesLimits(0,1,0,1);
 
@@ -445,7 +445,7 @@ void Demo_StairstepPlots(){
 
 void Demo_BarPlots(){
     static ImS8  data[10] = {1,2,3,4,5,6,7,8,9,10};
-    if (ImPlot::BeginPlot("Bar Plot")){
+    if(ImPlot::BeginPlot("Bar Plot")){
         ImPlot::PlotBars("Vertical",data,10,0.7,1);
         ImPlot::PlotBars("Horizontal",data,10,0.4,1,ImPlotBarsFlags_Horizontal);
         ImPlot::EndPlot();
@@ -477,9 +477,9 @@ void Demo_BarGroups(){
     ImGui::SliderInt("Items",&items,1,3);
     ImGui::SliderFloat("Size",&size,0,1);
 
-    if (ImPlot::BeginPlot("Bar Group")){
+    if(ImPlot::BeginPlot("Bar Group")){
         ImPlot::SetupLegend(ImPlotLocation_East, ImPlotLegendFlags_Outside);
-        if (horz){
+        if(horz){
             ImPlot::SetupAxes("Score","Student",ImPlotAxisFlags_AutoFit,ImPlotAxisFlags_AutoFit);
             ImPlot::SetupAxisTicks(ImAxis_Y1,positions, groups, glabels);
             ImPlot::PlotBarGroups(ilabels,data,items,groups,size,0,flags|ImPlotBarGroupsFlags_Horizontal);
@@ -498,7 +498,7 @@ void Demo_BarGroups(){
 void Demo_BarStacks(){
 
     static ImPlotColormap Liars = -1;
-    if (Liars == -1){
+    if(Liars == -1){
         static const ImU32 Liars_Data[6] = { 4282515870, 4282609140, 4287357182, 4294630301, 4294945280, 4294921472 };
         Liars = ImPlot::AddColormap("Liars", Liars_Data, 6);
     }
@@ -528,11 +528,11 @@ void Demo_BarStacks(){
     static const char* labels_div[] = {"Pants on Fire","False","Mostly False","Mostly False","False","Pants on Fire","Half True","Mostly True","True"};
 
     ImPlot::PushColormap(Liars);
-    if (ImPlot::BeginPlot("PolitiFact: Who Lies More?",ImVec2(-1,400),ImPlotFlags_NoMouseText)){
+    if(ImPlot::BeginPlot("PolitiFact: Who Lies More?",ImVec2(-1,400),ImPlotFlags_NoMouseText)){
         ImPlot::SetupLegend(ImPlotLocation_South, ImPlotLegendFlags_Outside|ImPlotLegendFlags_Horizontal);
         ImPlot::SetupAxes(nullptr,nullptr,ImPlotAxisFlags_AutoFit|ImPlotAxisFlags_NoDecorations,ImPlotAxisFlags_AutoFit|ImPlotAxisFlags_Invert);
         ImPlot::SetupAxisTicks(ImAxis_Y1,0,19,20,politicians,false);
-        if (diverging)
+        if(diverging)
             ImPlot::PlotBarGroups(labels_div,data_div,9,20,0.75,0,ImPlotBarGroupsFlags_Stacked|ImPlotBarGroupsFlags_Horizontal);
         else
             ImPlot::PlotBarGroups(labels_reg,data_reg,6,20,0.75,0,ImPlotBarGroupsFlags_Stacked|ImPlotBarGroupsFlags_Horizontal);
@@ -554,7 +554,7 @@ void Demo_ErrorBars(){
     static float err4[5]  = {0.02f, 0.08f, 0.15f, 0.05f, 0.2f};
 
 
-    if (ImPlot::BeginPlot("##ErrorBars")){
+    if(ImPlot::BeginPlot("##ErrorBars")){
         ImPlot::SetupAxesLimits(0, 6, 0, 10);
         ImPlot::PlotBars("Bar", xs, bar, 5, 0.5f);
         ImPlot::PlotErrorBars("Bar", xs, bar, err1, 5);
@@ -580,7 +580,7 @@ void Demo_StemPlots(){
         ys1[i] = 1.0 + 0.5 * sin(25*xs[i])*cos(2*xs[i]);
         ys2[i] = 0.5 + 0.25  * sin(10*xs[i]) * sin(xs[i]);
     }
-    if (ImPlot::BeginPlot("Stem Plots")){
+    if(ImPlot::BeginPlot("Stem Plots")){
         ImPlot::SetupAxisLimits(ImAxis_X1,0,1.0);
         ImPlot::SetupAxisLimits(ImAxis_Y1,0,1.6);
         ImPlot::PlotStems("Stems 1",xs,ys1,51);
@@ -594,7 +594,7 @@ void Demo_StemPlots(){
 
 void Demo_InfiniteLines(){
     static double vals[] = {0.25, 0.5, 0.75};
-    if (ImPlot::BeginPlot("##Infinite")){
+    if(ImPlot::BeginPlot("##Infinite")){
         ImPlot::SetupAxes(nullptr,nullptr,ImPlotAxisFlags_NoInitialFit,ImPlotAxisFlags_NoInitialFit);
         ImPlot::PlotInfLines("Vertical",vals,3);
         ImPlot::PlotInfLines("Horizontal",vals,3,ImPlotInfLinesFlags_Horizontal);
@@ -613,7 +613,7 @@ void Demo_PieCharts(){
     CHECKBOX_FLAG(flags, ImPlotPieChartFlags_Normalize);
     CHECKBOX_FLAG(flags, ImPlotPieChartFlags_IgnoreHidden);
 
-    if (ImPlot::BeginPlot("##Pie1", ImVec2(250,250), ImPlotFlags_Equal | ImPlotFlags_NoMouseText)){
+    if(ImPlot::BeginPlot("##Pie1", ImVec2(250,250), ImPlotFlags_Equal | ImPlotFlags_NoMouseText)){
         ImPlot::SetupAxes(nullptr, nullptr, ImPlotAxisFlags_NoDecorations, ImPlotAxisFlags_NoDecorations);
         ImPlot::SetupAxesLimits(0, 1, 0, 1);
         ImPlot::PlotPieChart(labels1, data1, 4, 0.5, 0.5, 0.4, "%.2f", 90, flags);
@@ -626,7 +626,7 @@ void Demo_PieCharts(){
     static int data2[]             = {1,1,2,3,5};
 
     ImPlot::PushColormap(ImPlotColormap_Pastel);
-    if (ImPlot::BeginPlot("##Pie2", ImVec2(250,250), ImPlotFlags_Equal | ImPlotFlags_NoMouseText)){
+    if(ImPlot::BeginPlot("##Pie2", ImVec2(250,250), ImPlotFlags_Equal | ImPlotFlags_NoMouseText)){
         ImPlot::SetupAxes(nullptr, nullptr, ImPlotAxisFlags_NoDecorations, ImPlotAxisFlags_NoDecorations);
         ImPlot::SetupAxesLimits(0, 1, 0, 1);
         ImPlot::PlotPieChart(labels2, data2, 5, 0.5, 0.5, 0.4, "%.0f", 180, flags);
@@ -651,7 +651,7 @@ void Demo_Heatmaps(){
     static const char* ylabels[] = {"R1","R2","R3","R4","R5","R6","R7"};
 
     static ImPlotColormap map = ImPlotColormap_Viridis;
-    if (ImPlot::ColormapButton(ImPlot::GetColormapName(map),ImVec2(225,0),map)){
+    if(ImPlot::ColormapButton(ImPlot::GetColormapName(map),ImVec2(225,0),map)){
         map = (map + 1) % ImPlot::GetColormapCount();
         // We bust the color cache of our plots so that item colors will
         // resample the new colormap in the event that they have already
@@ -673,7 +673,7 @@ void Demo_Heatmaps(){
 
     ImPlot::PushColormap(map);
 
-    if (ImPlot::BeginPlot("##Heatmap1",ImVec2(225,225),ImPlotFlags_NoLegend|ImPlotFlags_NoMouseText)){
+    if(ImPlot::BeginPlot("##Heatmap1",ImVec2(225,225),ImPlotFlags_NoLegend|ImPlotFlags_NoMouseText)){
         ImPlot::SetupAxes(nullptr, nullptr, axes_flags, axes_flags);
         ImPlot::SetupAxisTicks(ImAxis_X1,0 + 1.0/14.0, 1 - 1.0/14.0, 7, xlabels);
         ImPlot::SetupAxisTicks(ImAxis_Y1,1 - 1.0/14.0, 0 + 1.0/14.0, 7, ylabels);
@@ -691,7 +691,7 @@ void Demo_Heatmaps(){
     for(int i = 0; i < size*size; ++i)
         values2[i] = RandomRange(0.0,1.0);
 
-    if (ImPlot::BeginPlot("##Heatmap2",ImVec2(225,225))){
+    if(ImPlot::BeginPlot("##Heatmap2",ImVec2(225,225))){
         ImPlot::SetupAxes(nullptr, nullptr, ImPlotAxisFlags_NoDecorations, ImPlotAxisFlags_NoDecorations);
         ImPlot::SetupAxesLimits(-1,1,-1,1);
         ImPlot::PlotHeatmap("heat1",values2,size,size,0,1,nullptr);
@@ -710,12 +710,12 @@ void Demo_Histogram(){
     static double mu       = 5;
     static double sigma    = 2;
     ImGui::SetNextItemWidth(200);
-    if (ImGui::RadioButton("Sqrt",bins==ImPlotBin_Sqrt))       { bins = ImPlotBin_Sqrt;    } ImGui::SameLine();
-    if (ImGui::RadioButton("Sturges",bins==ImPlotBin_Sturges)){ bins = ImPlotBin_Sturges; } ImGui::SameLine();
-    if (ImGui::RadioButton("Rice",bins==ImPlotBin_Rice))       { bins = ImPlotBin_Rice;    } ImGui::SameLine();
-    if (ImGui::RadioButton("Scott",bins==ImPlotBin_Scott))     { bins = ImPlotBin_Scott;   } ImGui::SameLine();
-    if (ImGui::RadioButton("N Bins",bins>=0))                  { bins = 50;                }
-    if (bins>=0){
+    if(ImGui::RadioButton("Sqrt",bins==ImPlotBin_Sqrt))       { bins = ImPlotBin_Sqrt;    } ImGui::SameLine();
+    if(ImGui::RadioButton("Sturges",bins==ImPlotBin_Sturges)){ bins = ImPlotBin_Sturges; } ImGui::SameLine();
+    if(ImGui::RadioButton("Rice",bins==ImPlotBin_Rice))       { bins = ImPlotBin_Rice;    } ImGui::SameLine();
+    if(ImGui::RadioButton("Scott",bins==ImPlotBin_Scott))     { bins = ImPlotBin_Scott;   } ImGui::SameLine();
+    if(ImGui::RadioButton("N Bins",bins>=0))                  { bins = 50;                }
+    if(bins>=0){
         ImGui::SameLine();
         ImGui::SetNextItemWidth(200);
         ImGui::SliderInt("##Bins", &bins, 1, 100);
@@ -730,7 +730,7 @@ void Demo_Histogram(){
     ImGui::Checkbox("Range", &range);
     static float rmin = -3;
     static float rmax = 13;
-    if (range){
+    if(range){
         ImGui::SameLine();
         ImGui::SetNextItemWidth(200);
         ImGui::DragFloat2("##Range",&rmin,0.1f,-3,13);
@@ -740,12 +740,12 @@ void Demo_Histogram(){
     static NormalDistribution<10000> dist(mu, sigma);
     static double x[100];
     static double y[100];
-    if (hist_flags & ImPlotHistogramFlags_Density){
+    if(hist_flags & ImPlotHistogramFlags_Density){
         for(int i = 0; i < 100; ++i){
             x[i] = -3 + 16 * (double)i/99.0;
             y[i] = exp( - (x[i]-mu)*(x[i]-mu) / (2*sigma*sigma)) / (sigma * sqrt(2*3.141592653589793238));
         }
-        if (hist_flags & ImPlotHistogramFlags_Cumulative){
+        if(hist_flags & ImPlotHistogramFlags_Cumulative){
             for(int i = 1; i < 100; ++i)
                 y[i] += y[i-1];
             for(int i = 0; i < 100; ++i)
@@ -753,12 +753,12 @@ void Demo_Histogram(){
         }
     }
 
-    if (ImPlot::BeginPlot("##Histograms")){
+    if(ImPlot::BeginPlot("##Histograms")){
         ImPlot::SetupAxes(nullptr,nullptr,ImPlotAxisFlags_AutoFit,ImPlotAxisFlags_AutoFit);
         ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL,0.5f);
         ImPlot::PlotHistogram("Empirical", dist.Data, 10000, bins, 1.0, range ? ImPlotRange(rmin,rmax) : ImPlotRange(), hist_flags);
-        if ((hist_flags & ImPlotHistogramFlags_Density) && !(hist_flags & ImPlotHistogramFlags_NoOutliers)){
-            if (hist_flags & ImPlotHistogramFlags_Horizontal)
+        if((hist_flags & ImPlotHistogramFlags_Density) && !(hist_flags & ImPlotHistogramFlags_NoOutliers)){
+            if(hist_flags & ImPlotHistogramFlags_Horizontal)
                 ImPlot::PlotLine("Theoretical",y,x,100);
             else
                 ImPlot::PlotLine("Theoretical",x,y,100);
@@ -785,7 +785,7 @@ void Demo_Histogram2D(){
     double max_count = 0;
     ImPlotAxisFlags flags = ImPlotAxisFlags_AutoFit|ImPlotAxisFlags_Foreground;
     ImPlot::PushColormap("Hot");
-    if (ImPlot::BeginPlot("##Hist2D",ImVec2(ImGui::GetContentRegionAvail().x-100-ImGui::GetStyle().ItemSpacing.x,0))){
+    if(ImPlot::BeginPlot("##Hist2D",ImVec2(ImGui::GetContentRegionAvail().x-100-ImGui::GetStyle().ItemSpacing.x,0))){
         ImPlot::SetupAxes(nullptr, nullptr, flags, flags);
         ImPlot::SetupAxesLimits(-6,6,-6,6);
         max_count = ImPlot::PlotHistogram2D("Hist2D",dist1.Data,dist2.Data,count,xybins[0],xybins[1],ImPlotRect(-6,6,-6,6), hist_flags);
@@ -817,32 +817,32 @@ void Demo_DigitalPlots(){
     ImGui::Checkbox("analog_1",  &showAnalog[1]);
 
     static float t = 0;
-    if (!paused){
+    if(!paused){
         t += ImGui::GetIO().DeltaTime;
         //digital signal values
-        if (showDigital[0])
+        if(showDigital[0])
             dataDigital[0].AddPoint(t, sinf(2*t) > 0.45);
-        if (showDigital[1])
+        if(showDigital[1])
             dataDigital[1].AddPoint(t, sinf(2*t) < 0.45);
         //Analog signal values
-        if (showAnalog[0])
+        if(showAnalog[0])
             dataAnalog[0].AddPoint(t, sinf(2*t));
-        if (showAnalog[1])
+        if(showAnalog[1])
             dataAnalog[1].AddPoint(t, cosf(2*t));
     }
-    if (ImPlot::BeginPlot("##Digital")){
+    if(ImPlot::BeginPlot("##Digital")){
         ImPlot::SetupAxisLimits(ImAxis_X1, t - 10.0, t, paused ? ImGuiCond_Once : ImGuiCond_Always);
         ImPlot::SetupAxisLimits(ImAxis_Y1, -1, 1);
         for(int i = 0; i < 2; ++i){
-            if (showDigital[i] && dataDigital[i].Data.size() > 0){
+            if(showDigital[i] && dataDigital[i].Data.size() > 0){
                 snprintf(label, sizeof(label), "digital_%d", i);
                 ImPlot::PlotDigital(label, &dataDigital[i].Data[0].x, &dataDigital[i].Data[0].y, dataDigital[i].Data.size(), 0, dataDigital[i].Offset, 2 * sizeof(float));
             }
         }
         for(int i = 0; i < 2; ++i){
-            if (showAnalog[i]){
+            if(showAnalog[i]){
                 snprintf(label, sizeof(label), "analog_%d", i);
-                if (dataAnalog[i].Data.size() > 0)
+                if(dataAnalog[i].Data.size() > 0)
                     ImPlot::PlotLine(label, &dataAnalog[i].Data[0].x, &dataAnalog[i].Data[0].y, dataAnalog[i].Data.size(), 0, dataAnalog[i].Offset, 2 * sizeof(float));
             }
         }
@@ -866,7 +866,7 @@ void Demo_Images(){
     ImGui::SliderFloat2("UV0", &uv0.x, -2, 2, "%.1f");
     ImGui::SliderFloat2("UV1", &uv1.x, -2, 2, "%.1f");
     ImGui::ColorEdit4("Tint",&tint.x);
-    if (ImPlot::BeginPlot("##image")){
+    if(ImPlot::BeginPlot("##image")){
         ImPlot::PlotImage("my image",ImGui::GetIO().Fonts->TexID, bmin, bmax, uv0, uv1, tint);
         ImPlot::EndPlot();
     }
@@ -894,7 +894,7 @@ void Demo_RealtimePlots(){
 
     static ImPlotAxisFlags flags = ImPlotAxisFlags_NoTickLabels;
 
-    if (ImPlot::BeginPlot("##Scrolling", ImVec2(-1,150))){
+    if(ImPlot::BeginPlot("##Scrolling", ImVec2(-1,150))){
         ImPlot::SetupAxes(nullptr, nullptr, flags, flags);
         ImPlot::SetupAxisLimits(ImAxis_X1,t - history, t, ImGuiCond_Always);
         ImPlot::SetupAxisLimits(ImAxis_Y1,0,1);
@@ -903,7 +903,7 @@ void Demo_RealtimePlots(){
         ImPlot::PlotLine("Mouse Y", &sdata2.Data[0].x, &sdata2.Data[0].y, sdata2.Data.size(), 0, sdata2.Offset, 2*sizeof(float));
         ImPlot::EndPlot();
     }
-    if (ImPlot::BeginPlot("##Rolling", ImVec2(-1,150))){
+    if(ImPlot::BeginPlot("##Rolling", ImVec2(-1,150))){
         ImPlot::SetupAxes(nullptr, nullptr, flags, flags);
         ImPlot::SetupAxisLimits(ImAxis_X1,0,history, ImGuiCond_Always);
         ImPlot::SetupAxisLimits(ImAxis_Y1,0,1);
@@ -921,7 +921,7 @@ void Demo_MarkersAndText(){
     ImGui::DragFloat("Marker Size",&mk_size,0.1f,2.0f,10.0f,"%.2f px");
     ImGui::DragFloat("Marker Weight", &mk_weight,0.05f,0.5f,3.0f,"%.2f px");
 
-    if (ImPlot::BeginPlot("##MarkerStyles", ImVec2(-1,0), ImPlotFlags_CanvasOnly)){
+    if(ImPlot::BeginPlot("##MarkerStyles", ImVec2(-1,0), ImPlotFlags_CanvasOnly)){
 
         ImPlot::SetupAxes(nullptr, nullptr, ImPlotAxisFlags_NoDecorations, ImPlotAxisFlags_NoDecorations);
         ImPlot::SetupAxesLimits(0, 10, 0, 12);
@@ -968,14 +968,14 @@ void Demo_NaNValues(){
     float data1[5] = {0.0f,0.25f,0.5f,0.75f,1.0f};
     float data2[5] = {0.0f,0.25f,0.5f,0.75f,1.0f};
 
-    if (include_nan)
+    if(include_nan)
         data1[2] = NAN;
 
     ImGui::Checkbox("Include NaN",&include_nan);
     ImGui::SameLine();
     ImGui::CheckboxFlags("Skip NaN", (unsigned int*)&flags, ImPlotLineFlags_SkipNaN);
 
-    if (ImPlot::BeginPlot("##NaNValues")){
+    if(ImPlot::BeginPlot("##NaNValues")){
         ImPlot::SetNextMarkerStyle(ImPlotMarker_Square);
         ImPlot::PlotLine("line", data1, data2, 5, flags);
         ImPlot::PlotBars("bars", data1, 5);
@@ -993,7 +993,7 @@ void Demo_LogScale(){
         ys2[i] = log(xs[i]);
         ys3[i] = pow(10.0, xs[i]);
     }
-    if (ImPlot::BeginPlot("Log Plot", ImVec2(-1,0))){
+    if(ImPlot::BeginPlot("Log Plot", ImVec2(-1,0))){
         ImPlot::SetupAxisScale(ImAxis_X1, ImPlotScale_Log10);
         ImPlot::SetupAxesLimits(0.1, 100, 0, 10);
         ImPlot::PlotLine("f(x) = x",        xs, xs,  1001);
@@ -1013,7 +1013,7 @@ void Demo_SymmetricLogScale(){
         ys1[i] = sin(xs[i]);
         ys2[i] = i*0.002 - 1;
     }
-    if (ImPlot::BeginPlot("SymLog Plot", ImVec2(-1,0))){
+    if(ImPlot::BeginPlot("SymLog Plot", ImVec2(-1,0))){
         ImPlot::SetupAxisScale(ImAxis_X1, ImPlotScale_SymLog);
         ImPlot::PlotLine("f(x) = a*x+b",xs,ys2,1001);
         ImPlot::PlotLine("f(x) = sin(x)",xs,ys1,1001);
@@ -1039,18 +1039,18 @@ void Demo_TimeScale(){
     ImGui::Checkbox("24 Hour Clock",&ImPlot::GetStyle().Use24HourClock);
 
     static HugeTimeData* data = nullptr;
-    if (data == nullptr){
+    if(data == nullptr){
         ImGui::SameLine();
-        if (ImGui::Button("Generate Huge Data (~500MB!)")){
+        if(ImGui::Button("Generate Huge Data (~500MB!)")){
             static HugeTimeData sdata(t_min);
             data = &sdata;
         }
     }
 
-    if (ImPlot::BeginPlot("##Time", ImVec2(-1,0))){
+    if(ImPlot::BeginPlot("##Time", ImVec2(-1,0))){
         ImPlot::SetupAxisScale(ImAxis_X1, ImPlotScale_Time);
         ImPlot::SetupAxesLimits(t_min,t_max,0,1);
-        if (data != nullptr){
+        if(data != nullptr){
             // downsample our data
             int downsample = (int)ImPlot::GetPlotLimits().X.Size() / 1000 + 1;
             int start = (int)(ImPlot::GetPlotLimits().X.Min - t_min);
@@ -1085,7 +1085,7 @@ void Demo_CustomScale(){
     for(int i = 0; i < 100; ++i){
         v[i] = i*0.01f;
     }
-    if (ImPlot::BeginPlot("Sqrt")){
+    if(ImPlot::BeginPlot("Sqrt")){
         ImPlot::SetupAxis(ImAxis_X1, "Linear");
         ImPlot::SetupAxis(ImAxis_Y1, "Sqrt");
         ImPlot::SetupAxisScale(ImAxis_Y1, TransformForward_Sqrt, TransformInverse_Sqrt);
@@ -1120,32 +1120,32 @@ void Demo_MultipleAxes(){
     ImGui::BulletText("You can drag axes to the opposite side of the plot.");
     ImGui::BulletText("Hover over legend items to see which axis they are plotted on.");
 
-    if (ImPlot::BeginPlot("Multi-Axis Plot", ImVec2(-1,0))){
+    if(ImPlot::BeginPlot("Multi-Axis Plot", ImVec2(-1,0))){
         ImPlot::SetupAxes("X-Axis 1", "Y-Axis 1");
         ImPlot::SetupAxesLimits(0, 100, 0, 10);
-        if (x2_axis){
+        if(x2_axis){
             ImPlot::SetupAxis(ImAxis_X2, "X-Axis 2",ImPlotAxisFlags_AuxDefault);
             ImPlot::SetupAxisLimits(ImAxis_X2, 0, 100);
         }
-        if (y2_axis){
+        if(y2_axis){
             ImPlot::SetupAxis(ImAxis_Y2, "Y-Axis 2",ImPlotAxisFlags_AuxDefault);
             ImPlot::SetupAxisLimits(ImAxis_Y2, 0, 1);
         }
-        if (y3_axis){
+        if(y3_axis){
             ImPlot::SetupAxis(ImAxis_Y3, "Y-Axis 3",ImPlotAxisFlags_AuxDefault);
             ImPlot::SetupAxisLimits(ImAxis_Y3, 0, 300);
         }
 
         ImPlot::PlotLine("f(x) = x", xs, xs, 1001);
-        if (x2_axis){
+        if(x2_axis){
             ImPlot::SetAxes(ImAxis_X2, ImAxis_Y1);
             ImPlot::PlotLine("f(x) = sin(x)*3+1", xs2, ys1, 1001);
         }
-        if (y2_axis){
+        if(y2_axis){
             ImPlot::SetAxes(ImAxis_X1, ImAxis_Y2);
             ImPlot::PlotLine("f(x) = cos(x)*.2+.5", xs, ys2, 1001);
         }
-        if (x2_axis && y3_axis){
+        if(x2_axis && y3_axis){
             ImPlot::SetAxes(ImAxis_X2, ImAxis_Y3);
             ImPlot::PlotLine("f(x) = sin(x+.5)*100+200 ", xs2, ys3, 1001);
         }
@@ -1165,14 +1165,14 @@ void Demo_LinkedAxes(){
 
     ImGui::DragScalarN("Limits",ImGuiDataType_Double,&lims.X.Min,4,0.01f);
 
-    if (BeginAlignedPlots("AlignedGroup")){
-        if (ImPlot::BeginPlot("Plot A")){
+    if(BeginAlignedPlots("AlignedGroup")){
+        if(ImPlot::BeginPlot("Plot A")){
             ImPlot::SetupAxisLinks(ImAxis_X1, linkx ? &lims.X.Min : nullptr, linkx ? &lims.X.Max : nullptr);
             ImPlot::SetupAxisLinks(ImAxis_Y1, linky ? &lims.Y.Min : nullptr, linky ? &lims.Y.Max : nullptr);
             ImPlot::PlotLine("Line",data,2);
             ImPlot::EndPlot();
         }
-        if (ImPlot::BeginPlot("Plot B")){
+        if(ImPlot::BeginPlot("Plot B")){
             ImPlot::SetupAxisLinks(ImAxis_X1, linkx ? &lims.X.Min : nullptr, linkx ? &lims.X.Max : nullptr);
             ImPlot::SetupAxisLinks(ImAxis_Y1, linky ? &lims.Y.Min : nullptr, linky ? &lims.Y.Max : nullptr);
             ImPlot::PlotLine("Line",data,2);
@@ -1190,7 +1190,7 @@ void Demo_AxisConstraints(){
     ImGui::DragFloat2("Limits Constraints", &constraints[0], 0.01f);
     ImGui::DragFloat2("Zoom Constraints", &constraints[2], 0.01f);
     CHECKBOX_FLAG(flags, ImPlotAxisFlags_PanStretch);
-    if (ImPlot::BeginPlot("##AxisConstraints",ImVec2(-1,0))){
+    if(ImPlot::BeginPlot("##AxisConstraints",ImVec2(-1,0))){
         ImPlot::SetupAxes("X","Y",flags,flags);
         ImPlot::SetupAxesLimits(-1,1,-1,1);
         ImPlot::SetupAxisLimitsConstraints(ImAxis_X1,constraints[0], constraints[1]);
@@ -1212,7 +1212,7 @@ void Demo_EqualAxes(){
     }
     float xs2[] = {-1,0,1,0,-1};
     float ys2[] = {0,1,0,-1,0};
-    if (ImPlot::BeginPlot("##EqualAxes",ImVec2(-1,0),ImPlotFlags_Equal)){
+    if(ImPlot::BeginPlot("##EqualAxes",ImVec2(-1,0),ImPlotFlags_Equal)){
         ImPlot::SetupAxis(ImAxis_X2, nullptr, ImPlotAxisFlags_AuxDefault);
         ImPlot::SetupAxis(ImAxis_Y2, nullptr, ImPlotAxisFlags_AuxDefault);
         ImPlot::PlotLine("Circle",xs1,ys1,360);
@@ -1245,7 +1245,7 @@ void Demo_AutoFittingData(){
     for(int i = 0; i < 101; ++i)
         data[i] = 1 + sin(i/10.0f);
 
-    if (ImPlot::BeginPlot("##DataFitting")){
+    if(ImPlot::BeginPlot("##DataFitting")){
         ImPlot::SetupAxes("X","Y",xflags,yflags);
         ImPlot::PlotLine("Line",data,101);
         ImPlot::PlotStems("Stems",data,101);
@@ -1270,7 +1270,7 @@ void Demo_SubplotsSizing(){
     static int cols = 3;
     ImGui::SliderInt("Rows",&rows,1,5);
     ImGui::SliderInt("Cols",&cols,1,5);
-    if (rows < 1 || cols < 1){
+    if(rows < 1 || cols < 1){
         ImGui::TextColored(ImVec4(1,0,0,1), "Nice try, but the number of rows and columns must be greater than 0!");
         return;
     }
@@ -1278,13 +1278,13 @@ void Demo_SubplotsSizing(){
     static float cratios[] = {5,1,1,1,1,1};
     ImGui::DragScalarN("Row Ratios",ImGuiDataType_Float,rratios,rows,0.01f,nullptr);
     ImGui::DragScalarN("Col Ratios",ImGuiDataType_Float,cratios,cols,0.01f,nullptr);
-    if (ImPlot::BeginSubplots("My Subplots", rows, cols, ImVec2(-1,400), flags, rratios, cratios)){
+    if(ImPlot::BeginSubplots("My Subplots", rows, cols, ImVec2(-1,400), flags, rratios, cratios)){
         int id = 0;
         for(int i = 0; i < rows*cols; ++i){
-            if (ImPlot::BeginPlot("",ImVec2(),ImPlotFlags_NoLegend)){
+            if(ImPlot::BeginPlot("",ImVec2(),ImPlotFlags_NoLegend)){
                 ImPlot::SetupAxes(nullptr,nullptr,ImPlotAxisFlags_NoDecorations,ImPlotAxisFlags_NoDecorations);
                 float fi = 0.01f * (i+1);
-                if (rows*cols > 1){
+                if(rows*cols > 1){
                     ImPlot::SetNextLineStyle(SampleColormap((float)i/(float)(rows*cols-1),ImPlotColormap_Jet));
                 }
                 char label[16];
@@ -1308,19 +1308,19 @@ void Demo_SubplotItemSharing(){
     static int cols = 3;
     static int id[] = {0,1,2,3,4,5};
     static int curj = -1;
-    if (ImPlot::BeginSubplots("##ItemSharing", rows, cols, ImVec2(-1,400), flags)){
+    if(ImPlot::BeginSubplots("##ItemSharing", rows, cols, ImVec2(-1,400), flags)){
         ImPlot::SetupLegend(ImPlotLocation_South, ImPlotLegendFlags_Sort|ImPlotLegendFlags_Horizontal);
         for(int i = 0; i < rows*cols; ++i){
-            if (ImPlot::BeginPlot("")){
+            if(ImPlot::BeginPlot("")){
                 float fc = 0.01f;
                 ImPlot::PlotLineG("common",SinewaveGetter,&fc,1000);
                 for(int j = 0; j < 6; ++j){
-                    if (id[j] == i){
+                    if(id[j] == i){
                         char label[8];
                         float fj = 0.01f * (j+2);
                         snprintf(label, sizeof(label), "data%d", j);
                         ImPlot::PlotLineG(label,SinewaveGetter,&fj,1000);
-                        if (ImPlot::BeginDragDropSourceItem(label)){
+                        if(ImPlot::BeginDragDropSourceItem(label)){
                             curj = j;
                             ImGui::SetDragDropPayload("MY_DND",nullptr,0);
                             ImPlot::ItemIcon(GetLastItemColor()); ImGui::SameLine();
@@ -1329,8 +1329,8 @@ void Demo_SubplotItemSharing(){
                         }
                     }
                 }
-                if (ImPlot::BeginDragDropTargetPlot()){
-                    if (ImGui::AcceptDragDropPayload("MY_DND"))
+                if(ImPlot::BeginDragDropTargetPlot()){
+                    if(ImGui::AcceptDragDropPayload("MY_DND"))
                         id[curj] = i;
                     ImPlot::EndDragDropTarget();
                 }
@@ -1352,9 +1352,9 @@ void Demo_SubplotAxisLinking(){
 
     static int rows = 2;
     static int cols = 2;
-    if (ImPlot::BeginSubplots("##AxisLinking", rows, cols, ImVec2(-1,400), flags)){
+    if(ImPlot::BeginSubplots("##AxisLinking", rows, cols, ImVec2(-1,400), flags)){
         for(int i = 0; i < rows*cols; ++i){
-            if (ImPlot::BeginPlot("")){
+            if(ImPlot::BeginPlot("")){
                 ImPlot::SetupAxesLimits(0,1000,-1,1);
                 float fc = 0.01f;
                 ImPlot::PlotLineG("common",SinewaveGetter,&fc,1000);
@@ -1387,7 +1387,7 @@ void Demo_LegendOptions(){
     static int num_dummy_items = 25;
     ImGui::SliderInt("Num Dummy Items (Demo Scrolling)", &num_dummy_items, 0, 100);
 
-    if (ImPlot::BeginPlot("##Legend",ImVec2(-1,0))){
+    if(ImPlot::BeginPlot("##Legend",ImVec2(-1,0))){
         ImPlot::SetupLegend(loc, flags);
         static MyImPlot::WaveData data1(0.001, 0.2, 4, 0.2);
         static MyImPlot::WaveData data2(0.001, 0.2, 4, 0.4);
@@ -1422,7 +1422,7 @@ void Demo_DragPoints(){
     bool clicked[4] = {false, false, false, false};
     bool hovered[4] = {false, false, false, false};
     bool held[4]    = {false, false, false, false};
-    if (ImPlot::BeginPlot("##Bezier",ImVec2(-1,0),ImPlotFlags_CanvasOnly)){
+    if(ImPlot::BeginPlot("##Bezier",ImVec2(-1,0),ImPlotFlags_CanvasOnly)){
         ImPlot::SetupAxes(nullptr,nullptr,ax_flags,ax_flags);
         ImPlot::SetupAxesLimits(0,1,0,1);
         static ImPlotPoint P[] = {ImPlotPoint(.05f,.05f), ImPlotPoint(0.2,0.4),  ImPlotPoint(0.8,0.6),  ImPlotPoint(.95f,.95f)};
@@ -1469,7 +1469,7 @@ void Demo_DragLines(){
     ImGui::CheckboxFlags("NoCursors", (unsigned int*)&flags, ImPlotDragToolFlags_NoCursors); ImGui::SameLine();
     ImGui::CheckboxFlags("NoFit", (unsigned int*)&flags, ImPlotDragToolFlags_NoFit); ImGui::SameLine();
     ImGui::CheckboxFlags("NoInput", (unsigned int*)&flags, ImPlotDragToolFlags_NoInputs);
-    if (ImPlot::BeginPlot("##lines",ImVec2(-1,0))){
+    if(ImPlot::BeginPlot("##lines",ImVec2(-1,0))){
         ImPlot::SetupAxesLimits(0,1,0,1);
         ImPlot::DragLineX(0,&x1,ImVec4(1,1,1,1),1,flags);
         ImPlot::DragLineX(1,&x2,ImVec4(1,1,1,1),1,flags);
@@ -1516,7 +1516,7 @@ void Demo_DragRects(){
     ImGui::CheckboxFlags("NoFit", (unsigned int*)&flags, ImPlotDragToolFlags_NoFit); ImGui::SameLine();
     ImGui::CheckboxFlags("NoInput", (unsigned int*)&flags, ImPlotDragToolFlags_NoInputs);
 
-    if (ImPlot::BeginPlot("##Main",ImVec2(-1,150))){
+    if(ImPlot::BeginPlot("##Main",ImVec2(-1,150))){
         ImPlot::SetupAxes(nullptr,nullptr,ImPlotAxisFlags_NoTickLabels,ImPlotAxisFlags_NoTickLabels);
         ImPlot::SetupAxesLimits(0,0.01,-1,1);
         ImPlot::PlotLine("Signal 1", x_data, y_data1, 512);
@@ -1527,7 +1527,7 @@ void Demo_DragRects(){
     }
     ImVec4 bg_col = held ? ImVec4(0.5f,0,0.5f,1) : (hovered ? ImVec4(0.25f,0,0.25f,1) : ImPlot::GetStyle().Colors[ImPlotCol_PlotBg]);
     ImPlot::PushStyleColor(ImPlotCol_PlotBg, bg_col);
-    if (ImPlot::BeginPlot("##rect",ImVec2(-1,150), ImPlotFlags_CanvasOnly)){
+    if(ImPlot::BeginPlot("##rect",ImVec2(-1,150), ImPlotFlags_CanvasOnly)){
         ImPlot::SetupAxes(nullptr,nullptr,ImPlotAxisFlags_NoDecorations,ImPlotAxisFlags_NoDecorations);
         ImPlot::SetupAxesLimits(rect.X.Min, rect.X.Max, rect.Y.Min, rect.Y.Max, ImGuiCond_Always);
         ImPlot::PlotLine("Signal 1", x_data, y_data1, 512);
@@ -1550,13 +1550,13 @@ ImPlotPoint FindCentroid(const ImVector<ImPlotPoint>& data, const ImPlotRect& bo
     bounds_fixed.Y.Min = bounds.Y.Min < bounds.Y.Max ? bounds.Y.Min : bounds.Y.Max;
     bounds_fixed.Y.Max = bounds.Y.Min < bounds.Y.Max ? bounds.Y.Max : bounds.Y.Min;
     for(int i = 0; i < data.size(); ++i){
-        if (bounds_fixed.Contains(data[i].x, data[i].y)){
+        if(bounds_fixed.Contains(data[i].x, data[i].y)){
             avg.x += data[i].x;
             avg.y += data[i].y;
             cnt++;
         }
     }
-    if (cnt > 0){
+    if(cnt > 0){
         avg.x = avg.x / cnt;
         avg.y = avg.y / cnt;
     }
@@ -1570,7 +1570,7 @@ void Demo_Querying(){
     static ImVector<ImPlotRect> rects;
     static ImPlotRect limits, select;
     static bool init = true;
-    if (init){
+    if(init){
         for(int i = 0; i < 50; ++i)
         {
             double x = RandomRange(0.1, 0.9);
@@ -1583,25 +1583,25 @@ void Demo_Querying(){
     ImGui::BulletText("Box select and left click mouse to create a new query rect.");
     ImGui::BulletText("Ctrl + click in the plot area to draw points.");
 
-    if (ImGui::Button("Clear Queries"))
+    if(ImGui::Button("Clear Queries"))
         rects.shrink(0);
 
-    if (ImPlot::BeginPlot("##Centroid")){
+    if(ImPlot::BeginPlot("##Centroid")){
         ImPlot::SetupAxesLimits(0,1,0,1);
-        if (ImPlot::IsPlotHovered() && ImGui::IsMouseClicked(0) && ImGui::GetIO().KeyCtrl){
+        if(ImPlot::IsPlotHovered() && ImGui::IsMouseClicked(0) && ImGui::GetIO().KeyCtrl){
             ImPlotPoint pt = ImPlot::GetPlotMousePos();
             data.push_back(pt);
         }
         ImPlot::PlotScatter("Points", &data[0].x, &data[0].y, data.size(), 0, 0, 2 * sizeof(double));
-        if (ImPlot::IsPlotSelected()){
+        if(ImPlot::IsPlotSelected()){
             select = ImPlot::GetPlotSelection();
             int cnt;
             ImPlotPoint centroid = FindCentroid(data,select,cnt);
-            if (cnt > 0){
+            if(cnt > 0){
                 ImPlot::SetNextMarkerStyle(ImPlotMarker_Square,6);
                 ImPlot::PlotScatter("Centroid", &centroid.x, &centroid.y, 1);
             }
-            if (ImGui::IsMouseClicked(ImPlot::GetInputMap().SelectCancel)){
+            if(ImGui::IsMouseClicked(ImPlot::GetInputMap().SelectCancel)){
                 CancelPlotSelection();
                 rects.push_back(select);
             }
@@ -1609,7 +1609,7 @@ void Demo_Querying(){
         for(int i = 0; i < rects.size(); ++i){
             int cnt;
             ImPlotPoint centroid = FindCentroid(data,rects[i],cnt);
-            if (cnt > 0){
+            if(cnt > 0){
                 ImPlot::SetNextMarkerStyle(ImPlotMarker_Square,6);
                 ImPlot::PlotScatter("Centroid", &centroid.x, &centroid.y, 1);
             }
@@ -1625,7 +1625,7 @@ void Demo_Querying(){
 void Demo_Annotations(){
     static bool clamp = false;
     ImGui::Checkbox("Clamp",&clamp);
-    if (ImPlot::BeginPlot("##Annotations")){
+    if(ImPlot::BeginPlot("##Annotations")){
         ImPlot::SetupAxesLimits(0,2,0,1);
         static float p[] = {0.25f, 0.25f, 0.75f, 0.75f, 0.25f};
         ImPlot::PlotScatter("##Points",&p[0],&p[1],4);
@@ -1652,10 +1652,10 @@ void Demo_Annotations(){
 void Demo_Tags(){
     static bool show = true;
     ImGui::Checkbox("Show Tags",&show);
-    if (ImPlot::BeginPlot("##Tags")){
+    if(ImPlot::BeginPlot("##Tags")){
         ImPlot::SetupAxis(ImAxis_X2);
         ImPlot::SetupAxis(ImAxis_Y2);
-        if (show){
+        if(show){
             ImPlot::TagX(0.25, ImVec4(1,1,0,1));
             ImPlot::TagY(0.75, ImVec4(1,1,0,1));
             static double drag_tag = 0.25;
@@ -1712,17 +1712,17 @@ void Demo_DragAndDrop(){
 
     // child window to serve as initial source for our DND items
     ImGui::BeginChild("DND_LEFT",ImVec2(100,400));
-    if (ImGui::Button("Reset Data")){
+    if(ImGui::Button("Reset Data")){
         for(int k = 0; k < k_dnd; ++k)
             dnd[k].Reset();
         dndx = dndy = nullptr;
     }
     for(int k = 0; k < k_dnd; ++k){
-        if (dnd[k].Plt > 0)
+        if(dnd[k].Plt > 0)
             continue;
         ImPlot::ItemIcon(dnd[k].Color); ImGui::SameLine();
         ImGui::Selectable(dnd[k].Label, false, 0, ImVec2(100, 0));
-        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)){
+        if(ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)){
             ImGui::SetDragDropPayload("MY_DND", &k, sizeof(int));
             ImPlot::ItemIcon(dnd[k].Color); ImGui::SameLine();
             ImGui::TextUnformatted(dnd[k].Label);
@@ -1730,8 +1730,8 @@ void Demo_DragAndDrop(){
         }
     }
     ImGui::EndChild();
-    if (ImGui::BeginDragDropTarget()){
-        if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
+    if(ImGui::BeginDragDropTarget()){
+        if(const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
             int i = *(int*)payload->Data; dnd[i].Reset();
         }
         ImGui::EndDragDropTarget();
@@ -1741,19 +1741,19 @@ void Demo_DragAndDrop(){
     ImGui::BeginChild("DND_RIGHT",ImVec2(-1,400));
     // plot 1 (time series)
     ImPlotAxisFlags flags = ImPlotAxisFlags_NoTickLabels | ImPlotAxisFlags_NoGridLines | ImPlotAxisFlags_NoHighlight;
-    if (ImPlot::BeginPlot("##DND1", ImVec2(-1,195))){
+    if(ImPlot::BeginPlot("##DND1", ImVec2(-1,195))){
         ImPlot::SetupAxis(ImAxis_X1, nullptr, flags|ImPlotAxisFlags_Lock);
         ImPlot::SetupAxis(ImAxis_Y1, "[drop here]", flags);
         ImPlot::SetupAxis(ImAxis_Y2, "[drop here]", flags|ImPlotAxisFlags_Opposite);
         ImPlot::SetupAxis(ImAxis_Y3, "[drop here]", flags|ImPlotAxisFlags_Opposite);
 
         for(int k = 0; k < k_dnd; ++k){
-            if (dnd[k].Plt == 1 && dnd[k].Data.size() > 0){
+            if(dnd[k].Plt == 1 && dnd[k].Data.size() > 0){
                 ImPlot::SetAxis(dnd[k].Yax);
                 ImPlot::SetNextLineStyle(dnd[k].Color);
                 ImPlot::PlotLine(dnd[k].Label, &dnd[k].Data[0].x, &dnd[k].Data[0].y, dnd[k].Data.size(), 0, 0, 2 * sizeof(float));
                 // allow legend item labels to be DND sources
-                if (ImPlot::BeginDragDropSourceItem(dnd[k].Label)){
+                if(ImPlot::BeginDragDropSourceItem(dnd[k].Label)){
                     ImGui::SetDragDropPayload("MY_DND", &k, sizeof(int));
                     ImPlot::ItemIcon(dnd[k].Color); ImGui::SameLine();
                     ImGui::TextUnformatted(dnd[k].Label);
@@ -1762,24 +1762,24 @@ void Demo_DragAndDrop(){
             }
         }
         // allow the main plot area to be a DND target
-        if (ImPlot::BeginDragDropTargetPlot()){
-            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
+        if(ImPlot::BeginDragDropTargetPlot()){
+            if(const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
                 int i = *(int*)payload->Data; dnd[i].Plt = 1; dnd[i].Yax = ImAxis_Y1;
             }
             ImPlot::EndDragDropTarget();
         }
         // allow each y-axis to be a DND target
         for(int y = ImAxis_Y1; y <= ImAxis_Y3; ++y){
-            if (ImPlot::BeginDragDropTargetAxis(y)){
-                if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
+            if(ImPlot::BeginDragDropTargetAxis(y)){
+                if(const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
                     int i = *(int*)payload->Data; dnd[i].Plt = 1; dnd[i].Yax = y;
                 }
                 ImPlot::EndDragDropTarget();
             }
         }
         // allow the legend to be a DND target
-        if (ImPlot::BeginDragDropTargetLegend()){
-            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
+        if(ImPlot::BeginDragDropTargetLegend()){
+            if(const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
                 int i = *(int*)payload->Data; dnd[i].Plt = 1; dnd[i].Yax = ImAxis_Y1;
             }
             ImPlot::EndDragDropTarget();
@@ -1787,53 +1787,53 @@ void Demo_DragAndDrop(){
         ImPlot::EndPlot();
     }
     // plot 2 (Lissajous)
-    if (ImPlot::BeginPlot("##DND2", ImVec2(-1,195))){
+    if(ImPlot::BeginPlot("##DND2", ImVec2(-1,195))){
         ImPlot::PushStyleColor(ImPlotCol_AxisBg, dndx != nullptr ? dndx->Color : ImPlot::GetStyle().Colors[ImPlotCol_AxisBg]);
         ImPlot::SetupAxis(ImAxis_X1, dndx == nullptr ? "[drop here]" : dndx->Label, flags);
         ImPlot::PushStyleColor(ImPlotCol_AxisBg, dndy != nullptr ? dndy->Color : ImPlot::GetStyle().Colors[ImPlotCol_AxisBg]);
         ImPlot::SetupAxis(ImAxis_Y1, dndy == nullptr ? "[drop here]" : dndy->Label, flags);
         ImPlot::PopStyleColor(2);
-        if (dndx != nullptr && dndy != nullptr){
+        if(dndx != nullptr && dndy != nullptr){
             ImVec4 mixed((dndx->Color.x + dndy->Color.x)/2,(dndx->Color.y + dndy->Color.y)/2,(dndx->Color.z + dndy->Color.z)/2,(dndx->Color.w + dndy->Color.w)/2);
             ImPlot::SetNextLineStyle(mixed);
             ImPlot::PlotLine("##dndxy", &dndx->Data[0].y, &dndy->Data[0].y, dndx->Data.size(), 0, 0, 2 * sizeof(float));
         }
         // allow the x-axis to be a DND target
-        if (ImPlot::BeginDragDropTargetAxis(ImAxis_X1)){
-            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
+        if(ImPlot::BeginDragDropTargetAxis(ImAxis_X1)){
+            if(const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
                 int i = *(int*)payload->Data; dndx = &dnd[i];
             }
             ImPlot::EndDragDropTarget();
         }
         // allow the x-axis to be a DND source
-        if (dndx != nullptr && ImPlot::BeginDragDropSourceAxis(ImAxis_X1)){
+        if(dndx != nullptr && ImPlot::BeginDragDropSourceAxis(ImAxis_X1)){
             ImGui::SetDragDropPayload("MY_DND", &dndx->Idx, sizeof(int));
             ImPlot::ItemIcon(dndx->Color); ImGui::SameLine();
             ImGui::TextUnformatted(dndx->Label);
             ImPlot::EndDragDropSource();
         }
         // allow the y-axis to be a DND target
-        if (ImPlot::BeginDragDropTargetAxis(ImAxis_Y1)){
-            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
+        if(ImPlot::BeginDragDropTargetAxis(ImAxis_Y1)){
+            if(const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
                 int i = *(int*)payload->Data; dndy = &dnd[i];
             }
             ImPlot::EndDragDropTarget();
         }
         // allow the y-axis to be a DND source
-        if (dndy != nullptr && ImPlot::BeginDragDropSourceAxis(ImAxis_Y1)){
+        if(dndy != nullptr && ImPlot::BeginDragDropSourceAxis(ImAxis_Y1)){
             ImGui::SetDragDropPayload("MY_DND", &dndy->Idx, sizeof(int));
             ImPlot::ItemIcon(dndy->Color); ImGui::SameLine();
             ImGui::TextUnformatted(dndy->Label);
             ImPlot::EndDragDropSource();
         }
         // allow the plot area to be a DND target
-        if (ImPlot::BeginDragDropTargetPlot()){
-            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
+        if(ImPlot::BeginDragDropTargetPlot()){
+            if(const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("MY_DND")){
                 int i = *(int*)payload->Data; dndx = dndy = &dnd[i];
             }
         }
         // allow the plot area to be a DND source
-        if (ImPlot::BeginDragDropSourcePlot()){
+        if(ImPlot::BeginDragDropSourcePlot()){
             ImGui::TextUnformatted("Yes, you can\ndrag this!");
             ImPlot::EndDragDropSource();
         }
@@ -1852,9 +1852,9 @@ void Demo_Tables(){
     static int offset = 0;
     ImGui::BulletText("Plots can be used inside of ImGui tables as another means of creating subplots.");
     ImGui::Checkbox("Animate",&anim);
-    if (anim)
+    if(anim)
         offset = (offset + 1) % 100;
-    if (ImGui::BeginTable("##table", 3, flags, ImVec2(-1,0))){
+    if(ImGui::BeginTable("##table", 3, flags, ImVec2(-1,0))){
         ImGui::TableSetupColumn("Electrode", ImGuiTableColumnFlags_WidthFixed, 75.0f);
         ImGui::TableSetupColumn("Voltage", ImGuiTableColumnFlags_WidthFixed, 75.0f);
         ImGui::TableSetupColumn("EMG Signal");
@@ -1905,7 +1905,7 @@ void Demo_OffsetAndStride(){
     ImGui::BulletText("The offset value indicates which circle point index is considered the first.");
     ImGui::BulletText("Offsets can be negative and/or larger than the actual data count.");
     ImGui::SliderInt("Offset", &offset, -2*k_points_per, 2*k_points_per);
-    if (ImPlot::BeginPlot("##strideoffset",ImVec2(-1,0),ImPlotFlags_Equal)){
+    if(ImPlot::BeginPlot("##strideoffset",ImVec2(-1,0),ImPlotFlags_Equal)){
         ImPlot::PushColormap(ImPlotColormap_Jet);
         char buff[32];
         for(int c = 0; c < k_circles; ++c){
@@ -1930,7 +1930,7 @@ void Demo_CustomDataAndGetters(){
 
     MyImPlot::Vector2f vec2_data[2] = { MyImPlot::Vector2f(0,0), MyImPlot::Vector2f(1,1) };
 
-    if (ImPlot::BeginPlot("##Custom Data")){
+    if(ImPlot::BeginPlot("##Custom Data")){
 
         // custom structs using stride example:
         ImPlot::PlotLine("Vector2f", &vec2_data[0].x, &vec2_data[0].y, 2, 0, 0, sizeof(MyImPlot::Vector2f) /* or sizeof(float) * 2 */);
@@ -1961,11 +1961,11 @@ int MetricFormatter(double value, char* buff, int size, void* data){
     const char* unit = (const char*)data;
     static double v[]      = {1000000000,1000000,1000,1,0.001,0.000001,0.000000001};
     static const char* p[] = {"G","M","k","","m","u","n"};
-    if (value == 0){
+    if(value == 0){
         return snprintf(buff,size,"0 %s", unit);
     }
     for(int i = 0; i < 7; ++i){
-        if (fabs(value) >= v[i]){
+        if(fabs(value) >= v[i]){
             return snprintf(buff,size,"%g %s%s",value/v[i],p[i],unit);
         }
     }
@@ -1979,7 +1979,7 @@ void Demo_TickLabels()  {
     ImGui::Checkbox("Show Custom Format", &custom_fmt);
     ImGui::SameLine();
     ImGui::Checkbox("Show Custom Ticks", &custom_ticks);
-    if (custom_ticks){
+    if(custom_ticks){
         ImGui::SameLine();
         ImGui::Checkbox("Show Custom Labels", &custom_labels);
     }
@@ -1989,17 +1989,17 @@ void Demo_TickLabels()  {
     static const char*  ylabels[] = {"One","Three","Seven","Nine"};
     static double yticks_aux[] = {0.2,0.4,0.6};
     static const char* ylabels_aux[] = {"A","B","C","D","E","F"};
-    if (ImPlot::BeginPlot("##Ticks")){
+    if(ImPlot::BeginPlot("##Ticks")){
         ImPlot::SetupAxesLimits(2.5,5,0,1000);
         ImPlot::SetupAxis(ImAxis_Y2, nullptr, ImPlotAxisFlags_AuxDefault);
         ImPlot::SetupAxis(ImAxis_Y3, nullptr, ImPlotAxisFlags_AuxDefault);
-        if (custom_fmt){
+        if(custom_fmt){
             ImPlot::SetupAxisFormat(ImAxis_X1, "%g ms");
             ImPlot::SetupAxisFormat(ImAxis_Y1, MetricFormatter, (void*)"Hz");
             ImPlot::SetupAxisFormat(ImAxis_Y2, "%g dB");
             ImPlot::SetupAxisFormat(ImAxis_Y3, MetricFormatter, (void*)"m");
         }
-        if (custom_ticks){
+        if(custom_ticks){
             ImPlot::SetupAxisTicks(ImAxis_X1, &pi,1,custom_labels ? pi_str : nullptr, true);
             ImPlot::SetupAxisTicks(ImAxis_Y1, yticks, 4, custom_labels ? ylabels : nullptr, false);
             ImPlot::SetupAxisTicks(ImAxis_Y2, yticks_aux, 3, custom_labels ? ylabels_aux : nullptr, false);
@@ -2016,7 +2016,7 @@ void Demo_CustomStyles(){
     // normally you wouldn't change the entire style each frame
     ImPlotStyle backup = ImPlot::GetStyle();
     MyImPlot::StyleSeaborn();
-    if (ImPlot::BeginPlot("seaborn style")){
+    if(ImPlot::BeginPlot("seaborn style")){
         ImPlot::SetupAxes( "x-axis", "y-axis");
         ImPlot::SetupAxesLimits(-0.5f, 9.5f, 0, 10);
         unsigned int lin[10] = {8,8,9,7,8,8,8,9,7,8};
@@ -2035,7 +2035,7 @@ void Demo_CustomStyles(){
 //-----------------------------------------------------------------------------
 
 void Demo_CustomRendering(){
-    if (ImPlot::BeginPlot("##CustomRend")){
+    if(ImPlot::BeginPlot("##CustomRend")){
         ImVec2 cntr = ImPlot::PlotToPixels(ImPlotPoint(0.5f,  0.5f));
         ImVec2 rmin = ImPlot::PlotToPixels(ImPlotPoint(0.25f, 0.75f));
         ImVec2 rmax = ImPlot::PlotToPixels(ImPlotPoint(0.75f, 0.25f));
@@ -2066,30 +2066,30 @@ void Demo_LegendPopups(){
     for(int i = 0; i < 101; ++i)
         vals[i] = amplitude * sinf(frequency * i);
 
-    if (ImPlot::BeginPlot("Right Click the Legend")){
+    if(ImPlot::BeginPlot("Right Click the Legend")){
         ImPlot::SetupAxesLimits(0,100,-1,1);
         // rendering logic
         ImPlot::PushStyleVar(ImPlotStyleVar_FillAlpha, alpha);
-        if (!line){
+        if(!line){
             ImPlot::SetNextFillStyle(color);
             ImPlot::PlotBars("Right Click Me", vals, 101);
         }
         else {
-            if (markers) ImPlot::SetNextMarkerStyle(ImPlotMarker_Square);
+            if(markers) ImPlot::SetNextMarkerStyle(ImPlotMarker_Square);
             ImPlot::SetNextLineStyle(color, thickness);
             ImPlot::PlotLine("Right Click Me", vals, 101);
-            if (shaded) ImPlot::PlotShaded("Right Click Me",vals,101);
+            if(shaded) ImPlot::PlotShaded("Right Click Me",vals,101);
         }
         ImPlot::PopStyleVar();
         // custom legend context menu
-        if (ImPlot::BeginLegendPopup("Right Click Me")){
+        if(ImPlot::BeginLegendPopup("Right Click Me")){
             ImGui::SliderFloat("Frequency",&frequency,0,1,"%0.2f");
             ImGui::SliderFloat("Amplitude",&amplitude,0,1,"%0.2f");
             ImGui::Separator();
             ImGui::ColorEdit3("Color",&color.x);
             ImGui::SliderFloat("Transparency",&alpha,0,1,"%.2f");
             ImGui::Checkbox("Line Plot", &line);
-            if (line){
+            if(line){
                 ImGui::SliderFloat("Thickness", &thickness, 0, 5);
                 ImGui::Checkbox("Markers", &markers);
                 ImGui::Checkbox("Shaded",&shaded);
@@ -2105,7 +2105,7 @@ void Demo_LegendPopups(){
 void Demo_ColormapWidgets(){
     static int cmap = ImPlotColormap_Viridis;
 
-    if (ImPlot::ColormapButton("Button",ImVec2(0,0),cmap)){
+    if(ImPlot::ColormapButton("Button",ImVec2(0,0),cmap)){
         cmap = (cmap + 1) % ImPlot::GetColormapCount();
     }
 
@@ -2144,7 +2144,7 @@ void Demo_CustomPlottersAndTooltips()  {
     ImGui::SameLine(); ImGui::ColorEdit4("##Bear", &bearCol.x, ImGuiColorEditFlags_NoInputs);
     ImPlot::GetStyle().UseLocalTime = false;
 
-    if (ImPlot::BeginPlot("Candlestick Chart",ImVec2(-1,0))){
+    if(ImPlot::BeginPlot("Candlestick Chart",ImVec2(-1,0))){
         ImPlot::SetupAxes(nullptr,nullptr,0,ImPlotAxisFlags_AutoFit|ImPlotAxisFlags_RangeFit);
         ImPlot::SetupAxesLimits(1546300800, 1571961600, 1250, 1600);
         ImPlot::SetupAxisScale(ImAxis_X1, ImPlotScale_Time);
@@ -2161,7 +2161,7 @@ void Demo_CustomPlottersAndTooltips()  {
 //-----------------------------------------------------------------------------
 
 void DemoHeader(const char* label, void(*demo)()){
-    if (ImGui::TreeNodeEx(label)){
+    if(ImGui::TreeNodeEx(label)){
         demo();
         ImGui::TreePop();
     }
@@ -2174,31 +2174,31 @@ void ShowDemoWindow(bool* p_open){
     static bool show_imgui_style_editor  = false;
     static bool show_imgui_demo          = false;
 
-    if (show_implot_metrics){
+    if(show_implot_metrics){
         ImPlot::ShowMetricsWindow(&show_implot_metrics);
     }
-    if (show_implot_style_editor){
+    if(show_implot_style_editor){
         ImGui::SetNextWindowSize(ImVec2(415,762), ImGuiCond_Appearing);
         ImGui::Begin("Style Editor (ImPlot)", &show_implot_style_editor);
         ImPlot::ShowStyleEditor();
         ImGui::End();
     }
-    if (show_imgui_style_editor){
+    if(show_imgui_style_editor){
         ImGui::Begin("Style Editor (ImGui)", &show_imgui_style_editor);
         ImGui::ShowStyleEditor();
         ImGui::End();
     }
-    if (show_imgui_metrics){
+    if(show_imgui_metrics){
         ImGui::ShowMetricsWindow(&show_imgui_metrics);
     }
-    if (show_imgui_demo){
+    if(show_imgui_demo){
         ImGui::ShowDemoWindow(&show_imgui_demo);
     }
     ImGui::SetNextWindowPos(ImVec2(50, 50), ImGuiCond_FirstUseEver);
     ImGui::SetNextWindowSize(ImVec2(600, 750), ImGuiCond_FirstUseEver);
     ImGui::Begin("ImPlot Demo", p_open, ImGuiWindowFlags_MenuBar);
-    if (ImGui::BeginMenuBar()){
-        if (ImGui::BeginMenu("Tools")){
+    if(ImGui::BeginMenuBar()){
+        if(ImGui::BeginMenu("Tools")){
             ImGui::MenuItem("Metrics",      nullptr, &show_implot_metrics);
             ImGui::MenuItem("Style Editor", nullptr, &show_implot_style_editor);
             ImGui::Separator();
@@ -2213,7 +2213,7 @@ void ShowDemoWindow(bool* p_open){
     ImGui::Text("ImPlot says hello. (%s)", IMPLOT_VERSION);
     // display warning about 16-bit indices
     static bool showWarning = sizeof(ImDrawIdx)*8 == 16 && (ImGui::GetIO().BackendFlags & ImGuiBackendFlags_RendererHasVtxOffset) == false;
-    if (showWarning){
+    if(showWarning){
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1,1,0,1));
         ImGui::TextWrapped("WARNING: ImDrawIdx is 16-bit and ImGuiBackendFlags_RendererHasVtxOffset is false. Expect visual glitches and artifacts! See README for more information.");
         ImGui::PopStyleColor();
@@ -2221,8 +2221,8 @@ void ShowDemoWindow(bool* p_open){
 
     ImGui::Spacing();
 
-    if (ImGui::BeginTabBar("ImPlotDemoTabs")){
-        if (ImGui::BeginTabItem("Plots")){
+    if(ImGui::BeginTabBar("ImPlotDemoTabs")){
+        if(ImGui::BeginTabItem("Plots")){
             DemoHeader("Line Plots", Demo_LinePlots);
             DemoHeader("Filled Line Plots", Demo_FilledLinePlots);
             DemoHeader("Shaded Plots##", Demo_ShadedPlots);
@@ -2245,14 +2245,14 @@ void ShowDemoWindow(bool* p_open){
             DemoHeader("NaN Values", Demo_NaNValues);
             ImGui::EndTabItem();
         }
-        if (ImGui::BeginTabItem("Subplots")){
+        if(ImGui::BeginTabItem("Subplots")){
             DemoHeader("Sizing", Demo_SubplotsSizing);
             DemoHeader("Item Sharing", Demo_SubplotItemSharing);
             DemoHeader("Axis Linking", Demo_SubplotAxisLinking);
             DemoHeader("Tables", Demo_Tables);
             ImGui::EndTabItem();
         }
-        if (ImGui::BeginTabItem("Axes")){
+        if(ImGui::BeginTabItem("Axes")){
             DemoHeader("Log Scale", Demo_LogScale);
             DemoHeader("Symmetric Log Scale", Demo_SymmetricLogScale);
             DemoHeader("Time Scale", Demo_TimeScale);
@@ -2265,7 +2265,7 @@ void ShowDemoWindow(bool* p_open){
             DemoHeader("Auto-Fitting Data", Demo_AutoFittingData);
             ImGui::EndTabItem();
         }
-        if (ImGui::BeginTabItem("Tools")){
+        if(ImGui::BeginTabItem("Tools")){
             DemoHeader("Offset and Stride", Demo_OffsetAndStride);
             DemoHeader("Drag Points", Demo_DragPoints);
             DemoHeader("Drag Lines", Demo_DragLines);
@@ -2279,18 +2279,18 @@ void ShowDemoWindow(bool* p_open){
             DemoHeader("Colormap Widgets", Demo_ColormapWidgets);
             ImGui::EndTabItem();
         }
-        if (ImGui::BeginTabItem("Custom")){
+        if(ImGui::BeginTabItem("Custom")){
             DemoHeader("Custom Styles", Demo_CustomStyles);
             DemoHeader("Custom Data and Getters", Demo_CustomDataAndGetters);
             DemoHeader("Custom Rendering", Demo_CustomRendering);
             DemoHeader("Custom Plotters and Tooltips", Demo_CustomPlottersAndTooltips);
             ImGui::EndTabItem();
         }
-        if (ImGui::BeginTabItem("Config")){
+        if(ImGui::BeginTabItem("Config")){
             Demo_Config();
             ImGui::EndTabItem();
         }
-        if (ImGui::BeginTabItem("Help")){
+        if(ImGui::BeginTabItem("Help")){
             Demo_Help();
             ImGui::EndTabItem();
         }
@@ -2328,7 +2328,7 @@ ImPlotPoint Spiral(int idx, void*){
 
 void Sparkline(const char* id, const float* values, int count, float min_v, float max_v, int offset, const ImVec4& col, const ImVec2& size){
     ImPlot::PushStyleVar(ImPlotStyleVar_PlotPadding, ImVec2(0,0));
-    if (ImPlot::BeginPlot(id,size,ImPlotFlags_CanvasOnly)){
+    if(ImPlot::BeginPlot(id,size,ImPlotFlags_CanvasOnly)){
         ImPlot::SetupAxes(nullptr,nullptr,ImPlotAxisFlags_NoDecorations,ImPlotAxisFlags_NoDecorations);
         ImPlot::SetupAxesLimits(0, count - 1, min_v, max_v, ImGuiCond_Always);
         ImPlot::SetNextLineStyle(col);
@@ -2404,11 +2404,11 @@ namespace MyImPlot {
 
 template <typename T>
 int BinarySearch(const T* arr, int l, int r, T x){
-    if (r >= l){
+    if(r >= l){
         int mid = l + (r - l) / 2;
-        if (arr[mid] == x)
+        if(arr[mid] == x)
             return mid;
-        if (arr[mid] > x)
+        if(arr[mid] > x)
             return BinarySearch(arr, l, mid - 1, x);
         return BinarySearch(arr, mid + 1, r, x);
     }
@@ -2423,7 +2423,7 @@ void PlotCandlestick(const char* label_id, const double* xs, const double* opens
     double half_width = count > 1 ? (xs[1] - xs[0]) * width_percent : width_percent;
 
     // custom tool
-    if (ImPlot::IsPlotHovered() && tooltip){
+    if(ImPlot::IsPlotHovered() && tooltip){
         ImPlotPoint mouse   = ImPlot::GetPlotMousePos();
         mouse.x             = ImPlot::RoundTime(ImPlotTime::FromDouble(mouse.x), ImPlotTimeUnit_Day).ToDouble();
         float  tool_l       = ImPlot::PlotToPixels(mouse.x - half_width * 1.5, mouse.y).x;
@@ -2436,7 +2436,7 @@ void PlotCandlestick(const char* label_id, const double* xs, const double* opens
         // find mouse location index
         int idx = BinarySearch(xs, 0, count - 1, mouse.x);
         // render tool tip (won't be affected by plot clip rect)
-        if (idx != -1){
+        if(idx != -1){
             ImGui::BeginTooltip();
             char buff[32];
             ImPlot::FormatDate(ImPlotTime::FromDouble(xs[idx]),buff,32,ImPlotDateFmt_DayMoYr,ImPlot::GetStyle().UseISO8601);
@@ -2450,11 +2450,11 @@ void PlotCandlestick(const char* label_id, const double* xs, const double* opens
     }
 
     // begin plot item
-    if (ImPlot::BeginItem(label_id)){
+    if(ImPlot::BeginItem(label_id)){
         // override legend icon color
         ImPlot::GetCurrentItem()->Color = IM_COL32(64,64,64,255);
         // fit data if requested
-        if (ImPlot::FitThisFrame()){
+        if(ImPlot::FitThisFrame()){
             for(int i = 0; i < count; ++i){
                 ImPlot::FitPoint(ImPlotPoint(xs[i], lows[i]));
                 ImPlot::FitPoint(ImPlotPoint(xs[i], highs[i]));

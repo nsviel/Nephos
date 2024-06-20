@@ -43,7 +43,7 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree = 3){
       }
     }
 
-    if (A.rows() == 0){
+    if(A.rows() == 0){
       A.resize(1, numParams);
       b.resize(1);
       A.row(0) = row;
@@ -93,7 +93,7 @@ void Polyfit::compute(const std::vector<glm::vec3>& xyz, int degree, glm::vec2 x
       }
     }
 
-    if (A.rows() == 0){
+    if(A.rows() == 0){
       A.resize(1, numParams);
       b.resize(1);
       A.row(0) = row;

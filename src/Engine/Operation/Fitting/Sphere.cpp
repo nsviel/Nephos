@@ -81,7 +81,7 @@ void Sphere::find_sphere_in_cloud_with_known_radius(std::vector<glm::vec3>& xyz,
     // Compute the covariance matrix M of the Y[i] = X[i] - COM
     float M00 = 0, M01 = 0, M02 = 0, M11 = 0, M12 = 0, M22 = 0;
     glm::vec3 R = {0, 0, 0};
-    for(int i = 0; i < xyz.size(); i++) {
+    for(int i = 0; i < xyz.size(); i++){
         glm::vec3 Y = xyz[i] - COM;
         float Y0Y0 = Y[0] * Y[0];
         float Y0Y1 = Y[0] * Y[1];
@@ -104,7 +104,7 @@ void Sphere::find_sphere_in_cloud_with_known_radius(std::vector<glm::vec3>& xyz,
     float cof01 = M02 * M12 - M01 * M22;
     float cof02 = M01 * M12 - M02 * M11;
     float det = M00 * cof00 + M01 * cof01 + M02 * cof02;
-    if(det != 0.0f) {
+    if(det != 0.0f){
         float cof11 = M00 * M22 - M02 * M02;
         float cof12 = M01 * M02 - M00 * M12;
         float cof22 = M00 * M11 - M01 * M01;
@@ -116,7 +116,7 @@ void Sphere::find_sphere_in_cloud_with_known_radius(std::vector<glm::vec3>& xyz,
 
         // Compute and compare distance to the known radius
         float distance_sum = 0.0f;
-        for(int i = 0; i < xyz.size(); i++) {
+        for(int i = 0; i < xyz.size(); i++){
             glm::vec3 delta = xyz[i] - temp_center;
             float dist = glm::length(delta);
             distance_sum += (dist - known_radius) * (dist - known_radius);
@@ -124,7 +124,7 @@ void Sphere::find_sphere_in_cloud_with_known_radius(std::vector<glm::vec3>& xyz,
         float avg_distance_error = distance_sum / xyz.size();
 
         // If the average distance error is acceptable, use this center
-        if(avg_distance_error < 0.2) {  // tolerance is a small threshold value you need to define
+        if(avg_distance_error < 0.2){  // tolerance is a small threshold value you need to define
             center = temp_center;
             return;
         }

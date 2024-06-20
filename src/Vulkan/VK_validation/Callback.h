@@ -13,7 +13,7 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL Callback(VkDebugUtilsMessageSeverityFlagBi
 
   //Shader printf
   const char* shaderPos = std::strstr(pCallbackData->pMessage, "[SHADER]");
-  if (shaderPos != nullptr){
+  if(shaderPos != nullptr){
     const char* message = shaderPos + std::strlen("[SHADER]");
     LOG_shader::get_instance().add_shader_printf(message);
   }

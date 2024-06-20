@@ -42,7 +42,7 @@ float Counter::update(){
 float Counter::calculate_mean_fps(){
   //---------------------------
 
-  if (fps_queue.empty()){
+  if(fps_queue.empty()){
     return 0.0f;
   }
 

@@ -6,7 +6,7 @@ PlyFile::PlyFile(string path, openMode flag) : File(path, flag), _header(""), _f
 _propertyNum(0), _propertyType(NULL), _propertySize(NULL), _propertyName(NULL), 
 _numPoints(0), _pointSize(0)
 {
-	if (_mode == fileOpenMode_IN)
+	if(_mode == fileOpenMode_IN)
 	{
 		readHeader();
 	}
@@ -47,45 +47,45 @@ void PlyFile::readHeader()
 	{
 		streamHeader >> strTmp;
 		
-		if (strTmp.compare("format") == 0)
+		if(strTmp.compare("format") == 0)
 		{
 			streamHeader >> strTmp;
-			if (strTmp.compare("binary_little_endian") == 0)      _format = binary_little_endian;
-			else if (strTmp.compare("binary_big_endian") == 0)    _format = binary_big_endian;
-			else if (strTmp.compare("ascii") == 0)                _format = ascii;	
+			if(strTmp.compare("binary_little_endian") == 0)      _format = binary_little_endian;
+			else if(strTmp.compare("binary_big_endian") == 0)    _format = binary_big_endian;
+			else if(strTmp.compare("ascii") == 0)                _format = ascii;	
 		}
 
-		if (strTmp.compare("element") == 0)
+		if(strTmp.compare("element") == 0)
 		{
 			streamHeader >> strTmp;
-			if (strTmp.compare("vertex") == 0) streamHeader >> _numPoints;
+			if(strTmp.compare("vertex") == 0) streamHeader >> _numPoints;
 		}
 
-		if (strTmp.compare("property") == 0)
+		if(strTmp.compare("property") == 0)
 		{
 			_propertyNum++;
 			streamHeader >> strTmp;
-			if ((strTmp.compare("float32") == 0) | (strTmp.compare("float") == 0))
+			if((strTmp.compare("float32") == 0) | (strTmp.compare("float") == 0))
 			{
 				typePptTmp.push_back(float32);
 				sizePptTmp.push_back(4);
 			}
-			else if ((strTmp.compare("float64") == 0) | (strTmp.compare("double") == 0))
+			else if((strTmp.compare("float64") == 0) | (strTmp.compare("double") == 0))
 			{
 				typePptTmp.push_back(float64);
 				sizePptTmp.push_back(8);
 			}
-			else if ((strTmp.compare("int") == 0))
+			else if((strTmp.compare("int") == 0))
 			{
 				typePptTmp.push_back(int32);
 				sizePptTmp.push_back(4);
 			}
-			else if ((strTmp.compare("uint32") == 0))
+			else if((strTmp.compare("uint32") == 0))
 			{
 				typePptTmp.push_back(uint32);
 				sizePptTmp.push_back(4);
 			}
-			else if ((strTmp.compare("uchar") == 0))
+			else if((strTmp.compare("uchar") == 0))
 			{
 				typePptTmp.push_back(uchar);
 				sizePptTmp.push_back(1);
@@ -204,7 +204,7 @@ void PlyFile::readFile(char*& points, int& pointSize, int& numPoints)
 	case binary_little_endian:
 	{
 		// ----- Allocate memory ------------------------------------------------
-		if (points != 0)
+		if(points != 0)
 		{
 			delete[] points;
 		}
@@ -250,7 +250,7 @@ void PlyFile::writeFile(char* points, int numPoints, list<string> properties, li
 	_format = binary_little_endian;
 	_numPoints = numPoints;
 
-	if (properties.size() != types.size())
+	if(properties.size() != types.size())
 	{
 		cout << "Warning : mismatch between properties and types" << endl;
 		return;
@@ -274,15 +274,15 @@ void PlyFile::writeFile(char* points, int numPoints, list<string> properties, li
 		_propertyType[i] = *typesIt;
 
 
-		if (_propertyType[i] == float32)
+		if(_propertyType[i] == float32)
 			_propertySize[i] = 4;
-		if (_propertyType[i] == float64)
+		if(_propertyType[i] == float64)
 			_propertySize[i] = 8;
-		if (_propertyType[i] == int32)
+		if(_propertyType[i] == int32)
 			_propertySize[i] = 4;
-		if (_propertyType[i] == uchar)
+		if(_propertyType[i] == uchar)
 			_propertySize[i] = 1;
-		if (_propertyType[i] == otherxx)
+		if(_propertyType[i] == otherxx)
 			_propertySize[i] = 4; //default
 
 		_pointSize += _propertySize[i];

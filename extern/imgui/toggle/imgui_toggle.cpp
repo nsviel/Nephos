@@ -45,7 +45,7 @@ bool ImGui::Toggle(const char* label, bool* v, ImGuiToggleFlags flags, const ImV
 
     // if the user is using any animation flags,
     // set the default animation duration.
-    if ((flags & ImGuiToggleFlags_Animated) != 0)
+    if((flags & ImGuiToggleFlags_Animated) != 0)
     {
         _internalConfig.AnimationDuration = AnimationDurationDefault;
     }
@@ -56,7 +56,7 @@ bool ImGui::Toggle(const char* label, bool* v, ImGuiToggleFlags flags, const ImV
 bool ImGui::Toggle(const char* label, bool* v, ImGuiToggleFlags flags, float animation_duration, const ImVec2& size /*= ImVec2()*/)
 {
     // this overload implies the toggle should be animated.
-    if (animation_duration > 0 && (flags & ImGuiToggleFlags_Animated) != 0)
+    if(animation_duration > 0 && (flags & ImGuiToggleFlags_Animated) != 0)
     {
         // if the user didn't specify ImGuiToggleFlags_Animated, enable it.
         flags = flags | (ImGuiToggleFlags_Animated);
@@ -84,7 +84,7 @@ bool ImGui::Toggle(const char* label, bool* v, ImGuiToggleFlags flags, float fra
 bool ImGui::Toggle(const char* label, bool* v, ImGuiToggleFlags flags, float animation_duration, float frame_rounding, float knob_rounding, const ImVec2& size /*= ImVec2()*/)
 {
     // this overload implies the toggle should be animated.
-    if (animation_duration > 0 && (flags & ImGuiToggleFlags_Animated) != 0)
+    if(animation_duration > 0 && (flags & ImGuiToggleFlags_Animated) != 0)
     {
         // if the user didn't specify ImGuiToggleFlags_Animated, enable it.
         flags = flags | (ImGuiToggleFlags_Animated);

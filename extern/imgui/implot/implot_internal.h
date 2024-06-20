@@ -40,7 +40,7 @@
 
 
 // Support for pre-1.84 versions. ImPool's GetSize() -> GetBufSize()
-#if (IMGUI_VERSION_NUM < 18303)
+#if(IMGUI_VERSION_NUM < 18303)
 #define GetBufSize GetSize
 #endif
 
@@ -135,17 +135,17 @@ static inline double ImConstrainTime(double val){ return val < IMPLOT_MIN_TIME ?
 static inline bool ImAlmostEqual(double v1, double v2, int ulp = 2){ return ImAbs(v1-v2) < DBL_EPSILON * ImAbs(v1+v2) * ulp || ImAbs(v1-v2) < DBL_MIN; }
 // Finds min value in an unsorted array
 template <typename T>
-static inline T ImMinArray(const T* values, int count){ T m = values[0]; for(int i = 1; i < count; ++i){ if (values[i] < m){ m = values[i]; } } return m; }
+static inline T ImMinArray(const T* values, int count){ T m = values[0]; for(int i = 1; i < count; ++i){ if(values[i] < m){ m = values[i]; } } return m; }
 // Finds the max value in an unsorted array
 template <typename T>
-static inline T ImMaxArray(const T* values, int count){ T m = values[0]; for(int i = 1; i < count; ++i){ if (values[i] > m){ m = values[i]; } } return m; }
+static inline T ImMaxArray(const T* values, int count){ T m = values[0]; for(int i = 1; i < count; ++i){ if(values[i] > m){ m = values[i]; } } return m; }
 // Finds the min and max value in an unsorted array
 template <typename T>
 static inline void ImMinMaxArray(const T* values, int count, T* min_out, T* max_out){
     T Min = values[0]; T Max = values[0];
     for(int i = 1; i < count; ++i){
-        if (values[i] < Min){ Min = values[i]; }
-        if (values[i] > Max){ Max = values[i]; }
+        if(values[i] < Min){ Min = values[i]; }
+        if(values[i] > Max){ Max = values[i]; }
     }
     *min_out = Min; *max_out = Max;
 }
@@ -202,7 +202,7 @@ static inline ImU32 ImMixU32(ImU32 a, ImU32 b, ImU32 s){
 static inline ImU32 ImLerpU32(const ImU32* colors, int size, float t){
     int i1 = (int)((size - 1 ) * t);
     int i2 = i1 + 1;
-    if (i2 == size || size == 1)
+    if(i2 == size || size == 1)
         return colors[i1];
     float den = 1.0f / (size - 1);
     float t1 = i1 * den;
@@ -332,7 +332,7 @@ struct ImPlotColormapData {
     ImPlotColormapData(){ Count = 0; }
 
     int Append(const char* name, const ImU32* keys, int count, bool qual){
-        if (GetIndex(name) != -1)
+        if(GetIndex(name) != -1)
             return -1;
         KeyOffsets.push_back(Keys.size());
         KeyCounts.push_back(count);
@@ -354,7 +354,7 @@ struct ImPlotColormapData {
         const ImU32* keys = GetKeys(cmap);
         int off = Tables.size();
         TableOffsets.push_back(off);
-        if (IsQual(cmap)){
+        if(IsQual(cmap)){
             Tables.reserve(key_count);
             for(int i = 0; i < key_count; ++i)
                 Tables.push_back(keys[i]);
@@ -371,7 +371,7 @@ struct ImPlotColormapData {
                     ImU32 a = keys[i];
                     ImU32 b = keys[i+1];
                     ImU32 c = ImMixU32(a,b,s);
-                    // if (c != last){
+                    // if(c != last){
                         Tables.push_back(c);
                         // last = c;
                         // n++;
@@ -379,7 +379,7 @@ struct ImPlotColormapData {
                 }
             }
             ImU32 c = keys[key_count-1];
-            // if (c != last){
+            // if(c != last){
                 Tables.push_back(c);
                 // n++;
             // }
@@ -564,7 +564,7 @@ struct ImPlotTicker {
 
     ImPlotTick& AddTick(double value, bool major, int level, bool show_label, const char* label){
         ImPlotTick tick(value, major, level, show_label);
-        if (show_label && label != nullptr){
+        if(show_label && label != nullptr){
             tick.TextOffset = TextBuffer.size();
             TextBuffer.append(label, label + strlen(label) + 1);
             tick.LabelSize = ImGui::CalcTextSize(TextBuffer.Buf.Data + tick.TextOffset);
@@ -574,7 +574,7 @@ struct ImPlotTicker {
 
     ImPlotTick& AddTick(double value, bool major, int level, bool show_label, ImPlotFormatter formatter, void* data){
         ImPlotTick tick(value, major, level, show_label);
-        if (show_label && formatter != nullptr){
+        if(show_label && formatter != nullptr){
             char buff[IMPLOT_LABEL_MAX_SIZE];
             tick.TextOffset = TextBuffer.size();
             formatter(tick.PlotPos, buff, sizeof(buff), data);
@@ -585,7 +585,7 @@ struct ImPlotTicker {
     }
 
     inline ImPlotTick& AddTick(ImPlotTick tick){
-        if (tick.ShowLabel){
+        if(tick.ShowLabel){
             MaxSize.x     =  tick.LabelSize.x > MaxSize.x ? tick.LabelSize.x : MaxSize.x;
             MaxSize.y     =  tick.LabelSize.y > MaxSize.y ? tick.LabelSize.y : MaxSize.y;
         }
@@ -715,17 +715,17 @@ struct ImPlotAxis
     }
 
     inline bool SetMin(double _min, bool force=false){
-        if (!force && IsLockedMin())
+        if(!force && IsLockedMin())
             return false;
         _min = ImConstrainNan(ImConstrainInf(_min));
-        if (_min < ConstraintRange.Min)
+        if(_min < ConstraintRange.Min)
             _min = ConstraintRange.Min;
         double z = Range.Max - _min;
-        if (z < ConstraintZoom.Min)
+        if(z < ConstraintZoom.Min)
             _min = Range.Max - ConstraintZoom.Min;
-        if (z > ConstraintZoom.Max)
+        if(z > ConstraintZoom.Max)
             _min = Range.Max - ConstraintZoom.Max;
-        if (_min >= Range.Max)
+        if(_min >= Range.Max)
             return false;
         Range.Min = _min;
         PickerTimeMin = ImPlotTime::FromDouble(Range.Min);
@@ -734,17 +734,17 @@ struct ImPlotAxis
     };
 
     inline bool SetMax(double _max, bool force=false){
-        if (!force && IsLockedMax())
+        if(!force && IsLockedMax())
             return false;
         _max = ImConstrainNan(ImConstrainInf(_max));
-        if (_max > ConstraintRange.Max)
+        if(_max > ConstraintRange.Max)
             _max = ConstraintRange.Max;
         double z = _max - Range.Min;
-        if (z < ConstraintZoom.Min)
+        if(z < ConstraintZoom.Min)
             _max = Range.Min + ConstraintZoom.Min;
-        if (z > ConstraintZoom.Max)
+        if(z > ConstraintZoom.Max)
             _max = Range.Min + ConstraintZoom.Max;
-        if (_max <= Range.Min)
+        if(_max <= Range.Min)
             return false;
         Range.Max = _max;
         PickerTimeMax = ImPlotTime::FromDouble(Range.Max);
@@ -768,11 +768,11 @@ struct ImPlotAxis
     inline void SetAspect(double unit_per_pix){
         double new_size = unit_per_pix * PixelSize();
         double delta    = (new_size - Range.Size()) * 0.5;
-        if (IsLocked())
+        if(IsLocked())
             return;
-        else if (IsLockedMin() && !IsLockedMax())
+        else if(IsLockedMin() && !IsLockedMax())
             SetRange(Range.Min, Range.Max  + 2*delta);
-        else if (!IsLockedMin() && IsLockedMax())
+        else if(!IsLockedMin() && IsLockedMax())
             SetRange(Range.Min - 2*delta, Range.Max);
         else
             SetRange(Range.Min - delta, Range.Max + delta);
@@ -785,28 +785,28 @@ struct ImPlotAxis
     inline void Constrain(){
         Range.Min = ImConstrainNan(ImConstrainInf(Range.Min));
         Range.Max = ImConstrainNan(ImConstrainInf(Range.Max));
-        if (Range.Min < ConstraintRange.Min)
+        if(Range.Min < ConstraintRange.Min)
             Range.Min = ConstraintRange.Min;
-        if (Range.Max > ConstraintRange.Max)
+        if(Range.Max > ConstraintRange.Max)
             Range.Max = ConstraintRange.Max;
         double z = Range.Size();
-        if (z < ConstraintZoom.Min){
+        if(z < ConstraintZoom.Min){
             double delta = (ConstraintZoom.Min - z) * 0.5;
             Range.Min -= delta;
             Range.Max += delta;
         }
-        if (z > ConstraintZoom.Max){
+        if(z > ConstraintZoom.Max){
             double delta = (z - ConstraintZoom.Max) * 0.5;
             Range.Min += delta;
             Range.Max -= delta;
         }
-        if (Range.Max <= Range.Min)
+        if(Range.Max <= Range.Min)
             Range.Max = Range.Min + DBL_EPSILON;
     }
 
     inline void UpdateTransformCache(){
         ScaleToPixel = (PixelMax - PixelMin) / Range.Size();
-        if (TransformForward != nullptr){
+        if(TransformForward != nullptr){
             ScaleMin = TransformForward(Range.Min, TransformData);
             ScaleMax = TransformForward(Range.Max, TransformData);
         }
@@ -817,7 +817,7 @@ struct ImPlotAxis
     }
 
     inline float PlotToPixels(double plt) const {
-        if (TransformForward != nullptr){
+        if(TransformForward != nullptr){
             double s = TransformForward(plt, TransformData);
             double t = (s - ScaleMin) / (ScaleMax - ScaleMin);
             plt      = Range.Min + Range.Size() * t;
@@ -828,7 +828,7 @@ struct ImPlotAxis
 
     inline double PixelsToPlot(float pix) const {
         double plt = (pix - PixelMin) / ScaleToPixel + Range.Min;
-        if (TransformInverse != nullptr){
+        if(TransformInverse != nullptr){
             double t = (plt - Range.Min) / Range.Size();
             double s = t * (ScaleMax - ScaleMin) + ScaleMin;
             plt = TransformInverse(s, TransformData);
@@ -837,16 +837,16 @@ struct ImPlotAxis
     }
 
     inline void ExtendFit(double v){
-        if (!ImNanOrInf(v) && v >= ConstraintRange.Min && v <= ConstraintRange.Max){
+        if(!ImNanOrInf(v) && v >= ConstraintRange.Min && v <= ConstraintRange.Max){
             FitExtents.Min = v < FitExtents.Min ? v : FitExtents.Min;
             FitExtents.Max = v > FitExtents.Max ? v : FitExtents.Max;
         }
     }
 
     inline void ExtendFitWith(ImPlotAxis& alt, double v, double v_alt){
-        if (ImHasFlag(Flags, ImPlotAxisFlags_RangeFit) && !alt.Range.Contains(v_alt))
+        if(ImHasFlag(Flags, ImPlotAxisFlags_RangeFit) && !alt.Range.Contains(v_alt))
             return;
-        if (!ImNanOrInf(v) && v >= ConstraintRange.Min && v <= ConstraintRange.Max){
+        if(!ImNanOrInf(v) && v >= ConstraintRange.Min && v <= ConstraintRange.Max){
             FitExtents.Min = v < FitExtents.Min ? v : FitExtents.Min;
             FitExtents.Max = v > FitExtents.Max ? v : FitExtents.Max;
         }
@@ -856,11 +856,11 @@ struct ImPlotAxis
         const double ext_size = FitExtents.Size() * 0.5;
         FitExtents.Min -= ext_size * padding;
         FitExtents.Max += ext_size * padding;
-        if (!IsLockedMin() && !ImNanOrInf(FitExtents.Min))
+        if(!IsLockedMin() && !ImNanOrInf(FitExtents.Min))
             Range.Min = FitExtents.Min;
-        if (!IsLockedMax() && !ImNanOrInf(FitExtents.Max))
+        if(!IsLockedMax() && !ImNanOrInf(FitExtents.Max))
             Range.Max = FitExtents.Max;
-        if (ImAlmostEqual(Range.Min, Range.Max))  {
+        if(ImAlmostEqual(Range.Min, Range.Max))  {
             Range.Max += 0.5;
             Range.Min -= 0.5;
         }
@@ -888,13 +888,13 @@ struct ImPlotAxis
     inline bool HasMenus()          const { return !ImHasFlag(Flags, ImPlotAxisFlags_NoMenus);                                               }
 
     inline bool IsPanLocked(bool increasing){
-        if (ImHasFlag(Flags, ImPlotAxisFlags_PanStretch)){
+        if(ImHasFlag(Flags, ImPlotAxisFlags_PanStretch)){
             return IsInputLocked();
         }
         else {
-            if (IsLockedMin() || IsLockedMax() || IsAutoFitting())
+            if(IsLockedMin() || IsLockedMax() || IsAutoFitting())
                 return false;
-            if (increasing)
+            if(increasing)
                 return Range.Max == ConstraintRange.Max;
             else
                 return Range.Min == ConstraintRange.Min;
@@ -902,14 +902,14 @@ struct ImPlotAxis
     }
 
     void PushLinks(){
-        if (LinkedMin){ *LinkedMin = Range.Min; }
-        if (LinkedMax){ *LinkedMax = Range.Max; }
+        if(LinkedMin){ *LinkedMin = Range.Min; }
+        if(LinkedMax){ *LinkedMax = Range.Max; }
     }
 
     void PullLinks(){
-        if (LinkedMin && LinkedMax){ SetRange(*LinkedMin, *LinkedMax); }
-        else if (LinkedMin){ SetMin(*LinkedMin,true); }
-        else if (LinkedMax){ SetMax(*LinkedMax,true); }
+        if(LinkedMin && LinkedMax){ SetRange(*LinkedMin, *LinkedMax); }
+        else if(LinkedMin){ SetMin(*LinkedMin,true); }
+        else if(LinkedMax){ SetMax(*LinkedMax,true); }
     }
 };
 
@@ -927,10 +927,10 @@ struct ImPlotAlignmentData {
     void Begin(){ PadAMax = PadBMax = 0; }
     void Update(float& pad_a, float& pad_b, float& delta_a, float& delta_b){
         float bak_a = pad_a; float bak_b = pad_b;
-        if (PadAMax < pad_a){ PadAMax = pad_a; }
-        if (PadBMax < pad_b){ PadBMax = pad_b; }
-        if (pad_a < PadA)    { pad_a = PadA; delta_a = pad_a - bak_a; } else { delta_a = 0; }
-        if (pad_b < PadB)    { pad_b = PadB; delta_b = pad_b - bak_b; } else { delta_b = 0; }
+        if(PadAMax < pad_a){ PadAMax = pad_a; }
+        if(PadBMax < pad_b){ PadBMax = pad_b; }
+        if(pad_a < PadA)    { pad_a = PadA; delta_a = pad_a - bak_a; } else { delta_a = 0; }
+        if(pad_b < PadB)    { pad_b = PadB; delta_b = pad_b - bak_b; } else { delta_b = 0; }
     }
     void End()   { PadA = PadAMax; PadB = PadBMax;      }
     void Reset(){ PadA = PadB = PadAMax = PadBMax = 0; }
@@ -1058,11 +1058,11 @@ struct ImPlotPlot
 
     inline bool IsInputLocked() const {
         for(int i = 0; i < IMPLOT_NUM_X_AXES; ++i){
-            if (!XAxis(i).IsInputLocked())
+            if(!XAxis(i).IsInputLocked())
                 return false;
         }
         for(int i = 0; i < IMPLOT_NUM_Y_AXES; ++i){
-            if (!YAxis(i).IsInputLocked())
+            if(!YAxis(i).IsInputLocked())
                 return false;
         }
         return true;
@@ -1071,7 +1071,7 @@ struct ImPlotPlot
     inline void ClearTextBuffer(){ TextBuffer.Buf.shrink(0); }
 
     inline void SetTitle(const char* title){
-        if (title && ImGui::FindRenderedTextEnd(title, nullptr) != title){
+        if(title && ImGui::FindRenderedTextEnd(title, nullptr) != title){
             TitleOffset = TextBuffer.size();
             TextBuffer.append(title, title + strlen(title) + 1);
         }
@@ -1102,7 +1102,7 @@ struct ImPlotPlot
     }
 
     inline void SetAxisLabel(ImPlotAxis& axis, const char* label){
-        if (label && ImGui::FindRenderedTextEnd(label, nullptr) != label){
+        if(label && ImGui::FindRenderedTextEnd(label, nullptr) != label){
             axis.LabelOffset = TextBuffer.size();
             TextBuffer.append(label, label + strlen(label) + 1);
         }
@@ -1289,7 +1289,7 @@ IMPLOT_API void ShowPlotContextMenu(ImPlotPlot& plot);
 // Lock Setup and call SetupFinish if necessary.
 static inline void SetupLock(){
     ImPlotContext& gp = *GImPlot;
-    if (!gp.CurrentPlot->SetupLocked)
+    if(!gp.CurrentPlot->SetupLocked)
         SetupFinish();
     gp.CurrentPlot->SetupLocked = true;
 }
@@ -1314,9 +1314,9 @@ IMPLOT_API bool BeginItem(const char* label_id, ImPlotItemFlags flags=0, ImPlotC
 // Same as above but with fitting functionality.
 template <typename _Fitter>
 bool BeginItemEx(const char* label_id, const _Fitter& fitter, ImPlotItemFlags flags=0, ImPlotCol recolor_from=IMPLOT_AUTO){
-    if (BeginItem(label_id, flags, recolor_from)){
+    if(BeginItem(label_id, flags, recolor_from)){
         ImPlotPlot& plot = *GetCurrentPlot();
-        if (plot.FitThisFrame && !ImHasFlag(flags, ImPlotItemFlags_NoFit))
+        if(plot.FitThisFrame && !ImHasFlag(flags, ImPlotItemFlags_NoFit))
             fitter.Fit(plot.Axes[plot.CurrentX], plot.Axes[plot.CurrentY]);
         return true;
     }
@@ -1342,7 +1342,7 @@ IMPLOT_API void BustItemCache();
 // Returns true if any enabled axis is locked from user input.
 static inline bool AnyAxesInputLocked(ImPlotAxis* axes, int count){
     for(int i = 0; i < count; ++i){
-        if (axes[i].Enabled && axes[i].IsInputLocked())
+        if(axes[i].Enabled && axes[i].IsInputLocked())
             return true;
     }
     return false;
@@ -1351,7 +1351,7 @@ static inline bool AnyAxesInputLocked(ImPlotAxis* axes, int count){
 // Returns true if all enabled axes are locked from user input.
 static inline bool AllAxesInputLocked(ImPlotAxis* axes, int count){
     for(int i = 0; i < count; ++i){
-        if (axes[i].Enabled && !axes[i].IsInputLocked())
+        if(axes[i].Enabled && !axes[i].IsInputLocked())
             return false;
     }
     return true;
@@ -1359,7 +1359,7 @@ static inline bool AllAxesInputLocked(ImPlotAxis* axes, int count){
 
 static inline bool AnyAxesHeld(ImPlotAxis* axes, int count){
     for(int i = 0; i < count; ++i){
-        if (axes[i].Enabled && axes[i].Held)
+        if(axes[i].Enabled && axes[i].Held)
             return true;
     }
     return false;
@@ -1367,7 +1367,7 @@ static inline bool AnyAxesHeld(ImPlotAxis* axes, int count){
 
 static inline bool AnyAxesHovered(ImPlotAxis* axes, int count){
     for(int i = 0; i < count; ++i){
-        if (axes[i].Enabled && axes[i].Hovered)
+        if(axes[i].Enabled && axes[i].Hovered)
             return true;
     }
     return false;
@@ -1467,10 +1467,10 @@ static inline ImU32 CalcHoverColor(ImU32 col)       {  return ImMixU32(col, Calc
 
 // Clamps a label position so that it fits a rect defined by Min/Max
 static inline ImVec2 ClampLabelPos(ImVec2 pos, const ImVec2& size, const ImVec2& Min, const ImVec2& Max){
-    if (pos.x < Min.x)              pos.x = Min.x;
-    if (pos.y < Min.y)              pos.y = Min.y;
-    if ((pos.x + size.x) > Max.x)   pos.x = Max.x - size.x;
-    if ((pos.y + size.y) > Max.y)   pos.y = Max.y - size.y;
+    if(pos.x < Min.x)              pos.x = Min.x;
+    if(pos.y < Min.y)              pos.y = Min.y;
+    if((pos.x + size.x) > Max.x)   pos.x = Max.x - size.x;
+    if((pos.y + size.y) > Max.y)   pos.y = Max.y - size.y;
     return pos;
 }
 
@@ -1637,9 +1637,9 @@ static inline int Formatter_Default(double value, char* buff, int size, void* da
 }
 
 static inline int Formatter_Logit(double value, char* buff, int size, void*){
-    if (value == 0.5)
+    if(value == 0.5)
         return ImFormatString(buff,size,"1/2");
-    else if (value < 0.5)
+    else if(value < 0.5)
         return ImFormatString(buff,size,"%g", value);
     else
         return ImFormatString(buff,size,"1 - %g", 1 - value);

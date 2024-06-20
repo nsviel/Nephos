@@ -89,7 +89,7 @@ void Imgui::init(){
 
   // Create a windowed mode window and its OpenGL context
   this->window = glfwCreateWindow(410, 428, "Test", NULL, NULL);
-  if (!window){
+  if(!window){
     glfwTerminate();
     return;
   }
@@ -111,7 +111,7 @@ void Imgui::init(){
 void Imgui::loop(){
   //---------------------------
 
-  while (!glfwWindowShouldClose(window)){
+  while(!glfwWindowShouldClose(window)){
     // Poll and handle events
     glfwPollEvents();
 

@@ -29,7 +29,7 @@ void Control::stop_loop(){
   auto elapsed_time = std::chrono::duration_cast<std::chrono::microseconds>(now - start_time).count();
 
   int sleep_time = 1000000.0f / (float)fps_max - elapsed_time;
-  if (sleep_time > 0){
+  if(sleep_time > 0){
     std::this_thread::sleep_for(std::chrono::microseconds(sleep_time));
   }
 

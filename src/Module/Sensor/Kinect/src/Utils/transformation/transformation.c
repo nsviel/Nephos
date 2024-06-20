@@ -29,15 +29,15 @@ k4a_result_t transformation_color_image_to_depth_camera(k4a_transformation_t tra
     RETURN_VALUE_IF_HANDLE_INVALID(K4A_RESULT_FAILED, k4a_transformation_t, transformation_handle);
     k4a_transformation_context_t *transformation_context = k4a_transformation_t_get_context(transformation_handle);
 
-    if (!transformation_context->enable_depth_color_transform)
+    if(!transformation_context->enable_depth_color_transform)
     {
         LOG_ERROR("Expect both depth camera and color camera are running to transform color image to depth camera.", 0);
         return K4A_RESULT_FAILED;
     }
 
-    if (transformation_context->enable_gpu_optimization)
+    if(transformation_context->enable_gpu_optimization)
     {
-        if (K4A_BUFFER_RESULT_SUCCEEDED !=
+        if(K4A_BUFFER_RESULT_SUCCEEDED !=
             TRACE_BUFFER_CALL(transformation_color_image_to_depth_camera_validate_parameters(
                 &transformation_context->calibration,
                 &transformation_context->depth_camera_xy_tables,
@@ -58,7 +58,7 @@ k4a_result_t transformation_color_image_to_depth_camera(k4a_transformation_t tra
         size_t transformed_color_image_size = (size_t)(transformed_color_image_descriptor->stride_bytes *
                                                        transformed_color_image_descriptor->height_pixels);
 
-        if (K4A_FAILED(TRACE_CALL(tewrapper_process_frame(transformation_context->tewrapper,
+        if(K4A_FAILED(TRACE_CALL(tewrapper_process_frame(transformation_context->tewrapper,
                                                           K4A_TRANSFORM_ENGINE_TYPE_COLOR_TO_DEPTH,
                                                           depth_image_data,
                                                           depth_image_size,
@@ -76,7 +76,7 @@ k4a_result_t transformation_color_image_to_depth_camera(k4a_transformation_t tra
     }
     else
     {
-        if (K4A_BUFFER_RESULT_SUCCEEDED !=
+        if(K4A_BUFFER_RESULT_SUCCEEDED !=
             TRACE_BUFFER_CALL(
                 transformation_color_image_to_depth_camera_internal(&transformation_context->calibration,
                                                                     &transformation_context->depth_camera_xy_tables,
@@ -102,11 +102,11 @@ k4a_result_t transformation_depth_image_to_point_cloud(k4a_transformation_t tran
     k4a_transformation_context_t *transformation_context = k4a_transformation_t_get_context(transformation_handle);
 
     k4a_transformation_xy_tables_t *xy_tables;
-    if (camera == K4A_CALIBRATION_TYPE_DEPTH)
+    if(camera == K4A_CALIBRATION_TYPE_DEPTH)
     {
         xy_tables = &transformation_context->depth_camera_xy_tables;
     }
-    else if (camera == K4A_CALIBRATION_TYPE_COLOR)
+    else if(camera == K4A_CALIBRATION_TYPE_COLOR)
     {
         xy_tables = &transformation_context->color_camera_xy_tables;
     }
@@ -120,7 +120,7 @@ k4a_result_t transformation_depth_image_to_point_cloud(k4a_transformation_t tran
         return K4A_RESULT_FAILED;
     }
 
-    if (K4A_BUFFER_RESULT_SUCCEEDED !=
+    if(K4A_BUFFER_RESULT_SUCCEEDED !=
         TRACE_BUFFER_CALL(transformation_depth_image_to_point_cloud_internal(
             xy_tables, depth_image_data, depth_image_descriptor, xyz_image_data, xyz_image_descriptor)))
     {
@@ -143,15 +143,15 @@ k4a_result_t transformation_depth_image_to_color_camera_custom(
     RETURN_VALUE_IF_HANDLE_INVALID(K4A_RESULT_FAILED, k4a_transformation_t, transformation_handle);
     k4a_transformation_context_t *transformation_context = k4a_transformation_t_get_context(transformation_handle);
 
-    if (!transformation_context->enable_depth_color_transform)
+    if(!transformation_context->enable_depth_color_transform)
     {
         LOG_ERROR("Expect both depth camera and color camera are running to transform depth image to color camera.", 0);
         return K4A_RESULT_FAILED;
     }
 
-    if (transformation_context->enable_gpu_optimization)
+    if(transformation_context->enable_gpu_optimization)
     {
-        if (K4A_BUFFER_RESULT_SUCCEEDED !=
+        if(K4A_BUFFER_RESULT_SUCCEEDED !=
             TRACE_BUFFER_CALL(transformation_depth_image_to_color_camera_validate_parameters(
                 &transformation_context->calibration,
                 &transformation_context->depth_camera_xy_tables,
@@ -177,11 +177,11 @@ k4a_result_t transformation_depth_image_to_color_camera_custom(
                                                         transformed_custom_image_descriptor->height_pixels);
 
         k4a_transform_engine_type_t transform_type = K4A_TRANSFORM_ENGINE_TYPE_DEPTH_TO_COLOR;
-        if (custom_image_descriptor->format == K4A_IMAGE_FORMAT_CUSTOM8)
+        if(custom_image_descriptor->format == K4A_IMAGE_FORMAT_CUSTOM8)
         {
             transform_type = K4A_TRANSFORM_ENGINE_TYPE_DEPTH_CUSTOM8_TO_COLOR;
         }
-        else if (custom_image_descriptor->format == K4A_IMAGE_FORMAT_CUSTOM16)
+        else if(custom_image_descriptor->format == K4A_IMAGE_FORMAT_CUSTOM16)
         {
             transform_type = K4A_TRANSFORM_ENGINE_TYPE_DEPTH_CUSTOM16_TO_COLOR;
         }
@@ -202,7 +202,7 @@ k4a_result_t transformation_depth_image_to_color_camera_custom(
             break;
         }
 
-        if (K4A_FAILED(TRACE_CALL(tewrapper_process_frame(transformation_context->tewrapper,
+        if(K4A_FAILED(TRACE_CALL(tewrapper_process_frame(transformation_context->tewrapper,
                                                           transform_type,
                                                           depth_image_data,
                                                           depth_image_size,
@@ -220,7 +220,7 @@ k4a_result_t transformation_depth_image_to_color_camera_custom(
     }
     else
     {
-        if (K4A_BUFFER_RESULT_SUCCEEDED !=
+        if(K4A_BUFFER_RESULT_SUCCEEDED !=
             TRACE_BUFFER_CALL(
                 transformation_depth_image_to_color_camera_internal(&transformation_context->calibration,
                                                                     &transformation_context->depth_camera_xy_tables,
@@ -251,25 +251,25 @@ k4a_result_t transformation_get_mode_specific_calibration(const k4a_calibration_
     memset(&calibration->color_camera_calibration, 0, sizeof(k4a_calibration_camera_t));
     memset(&calibration->depth_camera_calibration, 0, sizeof(k4a_calibration_camera_t));
 
-    if (K4A_FAILED(
+    if(K4A_FAILED(
             K4A_RESULT_FROM_BOOL(color_resolution != K4A_COLOR_RESOLUTION_OFF || depth_mode != K4A_DEPTH_MODE_OFF)))
     {
         LOG_ERROR("Expect color or depth camera is running.", 0);
         return K4A_RESULT_FAILED;
     }
 
-    if (depth_mode != K4A_DEPTH_MODE_OFF)
+    if(depth_mode != K4A_DEPTH_MODE_OFF)
     {
-        if (K4A_FAILED(TRACE_CALL(transformation_get_mode_specific_depth_camera_calibration(
+        if(K4A_FAILED(TRACE_CALL(transformation_get_mode_specific_depth_camera_calibration(
                 depth_camera_calibration, depth_mode, &calibration->depth_camera_calibration))))
         {
             return K4A_RESULT_FAILED;
         }
     }
 
-    if (color_resolution != K4A_COLOR_RESOLUTION_OFF)
+    if(color_resolution != K4A_COLOR_RESOLUTION_OFF)
     {
-        if (K4A_FAILED(TRACE_CALL(transformation_get_mode_specific_color_camera_calibration(
+        if(K4A_FAILED(TRACE_CALL(transformation_get_mode_specific_color_camera_calibration(
                 color_camera_calibration, color_resolution, &calibration->color_camera_calibration))))
         {
             return K4A_RESULT_FAILED;
@@ -286,7 +286,7 @@ k4a_result_t transformation_get_mode_specific_calibration(const k4a_calibration_
     {
         for(int target = 0; target < (int)K4A_CALIBRATION_TYPE_NUM; target++)
         {
-            if (K4A_FAILED(
+            if(K4A_FAILED(
                     TRACE_CALL(transformation_get_extrinsic_transformation(extrinsics[source],
                                                                            extrinsics[target],
                                                                            &calibration->extrinsics[source][target]))))
@@ -306,13 +306,13 @@ k4a_result_t transformation_3d_to_3d(const k4a_calibration_t *calibration,
                                      const k4a_calibration_type_t source_camera,
                                      const k4a_calibration_type_t target_camera,
                                      float target_point3d[3]){
-    if (K4A_FAILED(TRACE_CALL(transformation_possible(calibration, source_camera))) ||
+    if(K4A_FAILED(TRACE_CALL(transformation_possible(calibration, source_camera))) ||
         K4A_FAILED(TRACE_CALL(transformation_possible(calibration, target_camera))))
     {
         return K4A_RESULT_FAILED;
     }
 
-    if (source_camera == target_camera)
+    if(source_camera == target_camera)
     {
         target_point3d[0] = source_point3d[0];
         target_point3d[1] = source_point3d[1];
@@ -320,7 +320,7 @@ k4a_result_t transformation_3d_to_3d(const k4a_calibration_t *calibration,
         return K4A_RESULT_SUCCEEDED;
     }
 
-    if (K4A_FAILED(TRACE_CALL(transformation_apply_extrinsic_transformation(
+    if(K4A_FAILED(TRACE_CALL(transformation_apply_extrinsic_transformation(
             &calibration->extrinsics[source_camera][target_camera], source_point3d, target_point3d))))
     {
         return K4A_RESULT_FAILED;
@@ -335,22 +335,22 @@ k4a_result_t transformation_2d_to_3d(const k4a_calibration_t *calibration,
                                      const k4a_calibration_type_t target_camera,
                                      float target_point3d[3],
                                      int *valid){
-    if (K4A_FAILED(TRACE_CALL(transformation_possible(calibration, source_camera))))
+    if(K4A_FAILED(TRACE_CALL(transformation_possible(calibration, source_camera))))
     {
         return K4A_RESULT_FAILED;
     }
 
-    if (source_camera == K4A_CALIBRATION_TYPE_DEPTH)
+    if(source_camera == K4A_CALIBRATION_TYPE_DEPTH)
     {
-        if (K4A_FAILED(TRACE_CALL(transformation_unproject(
+        if(K4A_FAILED(TRACE_CALL(transformation_unproject(
                 &calibration->depth_camera_calibration, source_point2d, source_depth, target_point3d, valid))))
         {
             return K4A_RESULT_FAILED;
         }
     }
-    else if (source_camera == K4A_CALIBRATION_TYPE_COLOR)
+    else if(source_camera == K4A_CALIBRATION_TYPE_COLOR)
     {
-        if (K4A_FAILED(TRACE_CALL(transformation_unproject(
+        if(K4A_FAILED(TRACE_CALL(transformation_unproject(
                 &calibration->color_camera_calibration, source_point2d, source_depth, target_point3d, valid))))
         {
             return K4A_RESULT_FAILED;
@@ -366,7 +366,7 @@ k4a_result_t transformation_2d_to_3d(const k4a_calibration_t *calibration,
         return K4A_RESULT_FAILED; // unproject only supported for depth and color cameras
     }
 
-    if (source_camera == target_camera)
+    if(source_camera == target_camera)
     {
         return K4A_RESULT_SUCCEEDED;
     }
@@ -382,13 +382,13 @@ k4a_result_t transformation_3d_to_2d(const k4a_calibration_t *calibration,
                                      const k4a_calibration_type_t target_camera,
                                      float target_point2d[2],
                                      int *valid){
-    if (K4A_FAILED(TRACE_CALL(transformation_possible(calibration, target_camera))))
+    if(K4A_FAILED(TRACE_CALL(transformation_possible(calibration, target_camera))))
     {
         return K4A_RESULT_FAILED;
     }
 
     float target_point3d[3];
-    if (source_camera == target_camera)
+    if(source_camera == target_camera)
     {
         target_point3d[0] = source_point3d[0];
         target_point3d[1] = source_point3d[1];
@@ -396,19 +396,19 @@ k4a_result_t transformation_3d_to_2d(const k4a_calibration_t *calibration,
     }
     else
     {
-        if (K4A_FAILED(TRACE_CALL(
+        if(K4A_FAILED(TRACE_CALL(
                 transformation_3d_to_3d(calibration, source_point3d, source_camera, target_camera, target_point3d))))
         {
             return K4A_RESULT_FAILED;
         }
     }
 
-    if (target_camera == K4A_CALIBRATION_TYPE_DEPTH)
+    if(target_camera == K4A_CALIBRATION_TYPE_DEPTH)
     {
         return TRACE_CALL(
             transformation_project(&calibration->depth_camera_calibration, target_point3d, target_point2d, valid));
     }
-    else if (target_camera == K4A_CALIBRATION_TYPE_COLOR)
+    else if(target_camera == K4A_CALIBRATION_TYPE_COLOR)
     {
         return TRACE_CALL(
             transformation_project(&calibration->color_camera_calibration, target_point3d, target_point2d, valid));
@@ -430,7 +430,7 @@ k4a_result_t transformation_2d_to_2d(const k4a_calibration_t *calibration,
                                      const k4a_calibration_type_t target_camera,
                                      float target_point2d[2],
                                      int *valid){
-    if (source_camera == target_camera)
+    if(source_camera == target_camera)
     {
         target_point2d[0] = source_point2d[0];
         target_point2d[1] = source_point2d[1];
@@ -439,14 +439,14 @@ k4a_result_t transformation_2d_to_2d(const k4a_calibration_t *calibration,
     }
 
     float target_point3d[3];
-    if (K4A_FAILED(TRACE_CALL(transformation_2d_to_3d(
+    if(K4A_FAILED(TRACE_CALL(transformation_2d_to_3d(
             calibration, source_point2d, source_depth, source_camera, target_camera, target_point3d, valid))))
     {
         return K4A_RESULT_FAILED;
     }
     int valid_transformation1 = *valid;
 
-    if (K4A_FAILED(TRACE_CALL(
+    if(K4A_FAILED(TRACE_CALL(
             transformation_3d_to_2d(calibration, target_point3d, target_camera, target_camera, target_point2d, valid))))
     {
         return K4A_RESULT_FAILED;
@@ -461,7 +461,7 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
                                                  float target_point2d[2],
                                                  int *valid){
     k4a_transformation_pinhole_t pinhole = { 0 };
-    if (K4A_FAILED(TRACE_CALL(transformation_create_depth_camera_pinhole(calibration, &pinhole))))
+    if(K4A_FAILED(TRACE_CALL(transformation_create_depth_camera_pinhole(calibration, &pinhole))))
     {
         return K4A_RESULT_FAILED;
     }
@@ -471,7 +471,7 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
     float depth_range_mm[2] = { 50.f, 14000.f };
     float start_point3d[3], stop_point3d[3];
     int start_valid = 0;
-    if (K4A_FAILED(TRACE_CALL(transformation_2d_to_3d(calibration,
+    if(K4A_FAILED(TRACE_CALL(transformation_2d_to_3d(calibration,
                                                       source_point2d,
                                                       depth_range_mm[0],
                                                       K4A_CALIBRATION_TYPE_COLOR,
@@ -483,7 +483,7 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
     }
 
     int stop_valid = 0;
-    if (K4A_FAILED(TRACE_CALL(transformation_2d_to_3d(calibration,
+    if(K4A_FAILED(TRACE_CALL(transformation_2d_to_3d(calibration,
                                                       source_point2d,
                                                       depth_range_mm[1],
                                                       K4A_CALIBRATION_TYPE_COLOR,
@@ -495,7 +495,7 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
     }
 
     *valid = start_valid && stop_valid;
-    if (*valid == 0)
+    if(*valid == 0)
     {
         return K4A_RESULT_SUCCEEDED;
     }
@@ -517,7 +517,7 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
     float p[2];
     p[0] = start_point2d[0];
     p[1] = start_point2d[1];
-    if (stop_point2d[0] - start_point2d[0] == 0.0f)
+    if(stop_point2d[0] - start_point2d[0] == 0.0f)
     {
         return K4A_RESULT_FAILED;
     }
@@ -536,16 +536,16 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
         // Project the ray to the distorted depth image to read the depth value from nearest pixel
         float depth_point2d[2];
         int p_valid = 0;
-        if (K4A_FAILED(TRACE_CALL(transformation_3d_to_2d(
+        if(K4A_FAILED(TRACE_CALL(transformation_3d_to_2d(
                 calibration, ray, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, depth_point2d, &p_valid))))
         {
             return K4A_RESULT_FAILED;
         }
 
-        if (p_valid == 1)
+        if(p_valid == 1)
         {
             // Transform the current searching depth pixel to color image
-            if (transformation_is_pixel_within_image(depth_point2d,
+            if(transformation_is_pixel_within_image(depth_point2d,
                                                      depth_image_width_pixels,
                                                      depth_image_height_pixels))
             {
@@ -553,7 +553,7 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
                 int v = (int)(floorf(depth_point2d[1] + 0.5f));
                 uint16_t d = depth_image_data[v * depth_image_width_pixels + u];
                 float reprojected_point2d[2];
-                if (K4A_FAILED(TRACE_CALL(transformation_2d_to_2d(calibration,
+                if(K4A_FAILED(TRACE_CALL(transformation_2d_to_2d(calibration,
                                                                   depth_point2d,
                                                                   d,
                                                                   K4A_CALIBRATION_TYPE_DEPTH,
@@ -564,9 +564,9 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
                     return K4A_RESULT_FAILED;
                 }
 
-                if (p_valid == 1)
+                if(p_valid == 1)
                 {
-                    if (transformation_is_pixel_within_image(reprojected_point2d,
+                    if(transformation_is_pixel_within_image(reprojected_point2d,
                                                              calibration->color_camera_calibration.resolution_width,
                                                              calibration->color_camera_calibration.resolution_height))
                     {
@@ -574,7 +574,7 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
                         // Compute the 2d reprojection error and store the minimum one
                         float error = sqrtf(powf(reprojected_point2d[0] - source_point2d[0], 2) +
                                             powf(reprojected_point2d[1] - source_point2d[1], 2));
-                        if (error < best_error)
+                        if(error < best_error)
                         {
                             best_error = error;
                             target_point2d[0] = depth_point2d[0];
@@ -586,7 +586,7 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
         }
 
         // Compute next pixel to search for on the epipolar line
-        if (xStep1)
+        if(xStep1)
         {
             p[0] = stop_larger_than_start ? p[0] + 1 : p[0] - 1;
             p[1] = stop_larger_than_start ? p[1] + epipolar_line_slope : p[1] - epipolar_line_slope;
@@ -598,7 +598,7 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
         }
     }
 
-    if (best_error > 10)
+    if(best_error > 10)
     {
         *valid = 0;
     }
@@ -608,17 +608,17 @@ k4a_result_t transformation_color_2d_to_depth_2d(const k4a_calibration_t *calibr
 
 static k4a_result_t transformation_possible(const k4a_calibration_t *camera_calibration,
                                             const k4a_calibration_type_t camera){
-    if (camera >= K4A_CALIBRATION_TYPE_NUM || camera <= K4A_CALIBRATION_TYPE_UNKNOWN)
+    if(camera >= K4A_CALIBRATION_TYPE_NUM || camera <= K4A_CALIBRATION_TYPE_UNKNOWN)
     {
         LOG_ERROR("Unexpected camera calibration type %d.", camera);
         return K4A_RESULT_FAILED;
     }
-    if (camera == K4A_CALIBRATION_TYPE_DEPTH && camera_calibration->depth_mode == K4A_DEPTH_MODE_OFF)
+    if(camera == K4A_CALIBRATION_TYPE_DEPTH && camera_calibration->depth_mode == K4A_DEPTH_MODE_OFF)
     {
         LOG_ERROR("Expect depth camera is running to perform transformation.", 0);
         return K4A_RESULT_FAILED;
     }
-    if (camera == K4A_CALIBRATION_TYPE_COLOR && camera_calibration->color_resolution == K4A_COLOR_RESOLUTION_OFF)
+    if(camera == K4A_CALIBRATION_TYPE_COLOR && camera_calibration->color_resolution == K4A_COLOR_RESOLUTION_OFF)
     {
         LOG_ERROR("Expect color camera is running to perform transformation.", 0);
         return K4A_RESULT_FAILED;
@@ -696,14 +696,14 @@ static k4a_buffer_result_t transformation_init_xy_tables(const k4a_calibration_t
     }
 
     size_t table_size = (size_t)(width * height);
-    if (data == NULL)
+    if(data == NULL)
     {
         (*data_size) = 2 * table_size;
         return K4A_BUFFER_RESULT_TOO_SMALL;
     }
     else
     {
-        if (K4A_FAILED(K4A_RESULT_FROM_BOOL(*data_size >= 2 * table_size)))
+        if(K4A_FAILED(K4A_RESULT_FROM_BOOL(*data_size >= 2 * table_size)))
         {
             LOG_ERROR("Unexpected xy table size %d, should be larger or equal than %d.", *data_size, 2 * table_size);
             return K4A_BUFFER_RESULT_FAILED;
@@ -723,13 +723,13 @@ static k4a_buffer_result_t transformation_init_xy_tables(const k4a_calibration_t
             for(int x = 0; x < width; x++, idx++)
             {
                 point2d[0] = (float)x;
-                if (K4A_FAILED(TRACE_CALL(
+                if(K4A_FAILED(TRACE_CALL(
                         transformation_2d_to_3d(calibration, point2d, 1.f, camera, camera, point3d, &valid))))
                 {
                     return K4A_BUFFER_RESULT_FAILED;
                 }
 
-                if (valid == 0)
+                if(valid == 0)
                 {
                     // x table value of NAN marks invalid
                     xy_tables->x_table[idx] = NAN;
@@ -753,7 +753,7 @@ static k4a_result_t transformation_allocate_xy_tables(const k4a_calibration_t *c
                                                       k4a_transformation_xy_tables_t *xy_tables){
     *buffer = 0;
     size_t xy_tables_data_size = 0;
-    if (K4A_BUFFER_RESULT_TOO_SMALL !=
+    if(K4A_BUFFER_RESULT_TOO_SMALL !=
         TRACE_BUFFER_CALL(transformation_init_xy_tables(calibration, camera, *buffer, &xy_tables_data_size, xy_tables)))
     {
         return K4A_RESULT_FAILED;
@@ -765,7 +765,7 @@ static k4a_result_t transformation_allocate_xy_tables(const k4a_calibration_t *c
     *buffer = aligned_alloc(16, xy_tables_data_size * sizeof(float));
 #endif
 
-    if (K4A_BUFFER_RESULT_SUCCEEDED !=
+    if(K4A_BUFFER_RESULT_SUCCEEDED !=
         TRACE_BUFFER_CALL(transformation_init_xy_tables(calibration, camera, *buffer, &xy_tables_data_size, xy_tables)))
     {
         return K4A_RESULT_FAILED;
@@ -780,7 +780,7 @@ k4a_transformation_t transformation_create(const k4a_calibration_t *calibration,
 
     memcpy(&transformation_context->calibration, calibration, sizeof(k4a_calibration_t));
 
-    if (K4A_FAILED(TRACE_CALL(transformation_allocate_xy_tables(&transformation_context->calibration,
+    if(K4A_FAILED(TRACE_CALL(transformation_allocate_xy_tables(&transformation_context->calibration,
                                                                 K4A_CALIBRATION_TYPE_DEPTH,
                                                                 &transformation_context->memory_depth_camera_xy_tables,
                                                                 &transformation_context->depth_camera_xy_tables))))
@@ -789,7 +789,7 @@ k4a_transformation_t transformation_create(const k4a_calibration_t *calibration,
         return 0;
     }
 
-    if (K4A_FAILED(TRACE_CALL(transformation_allocate_xy_tables(&transformation_context->calibration,
+    if(K4A_FAILED(TRACE_CALL(transformation_allocate_xy_tables(&transformation_context->calibration,
                                                                 K4A_CALIBRATION_TYPE_COLOR,
                                                                 &transformation_context->memory_color_camera_xy_tables,
                                                                 &transformation_context->color_camera_xy_tables))))
@@ -803,7 +803,7 @@ k4a_transformation_t transformation_create(const k4a_calibration_t *calibration,
                                                                K4A_COLOR_RESOLUTION_OFF &&
                                                            transformation_context->calibration.depth_mode !=
                                                                K4A_DEPTH_MODE_OFF;
-    if (transformation_context->enable_gpu_optimization && transformation_context->enable_depth_color_transform)
+    if(transformation_context->enable_gpu_optimization && transformation_context->enable_depth_color_transform)
     {
         // Set up transform engine expected calibration struct
         k4a_transform_engine_calibration_t transform_engine_calibration;
@@ -824,7 +824,7 @@ k4a_transformation_t transformation_create(const k4a_calibration_t *calibration,
                sizeof(k4a_transformation_xy_tables_t));
 
         transformation_context->tewrapper = tewrapper_create(&transform_engine_calibration);
-        if (K4A_FAILED(K4A_RESULT_FROM_BOOL(transformation_context->tewrapper != NULL)))
+        if(K4A_FAILED(K4A_RESULT_FROM_BOOL(transformation_context->tewrapper != NULL)))
         {
             transformation_destroy(transformation_handle);
             return 0;
@@ -837,7 +837,7 @@ void transformation_destroy(k4a_transformation_t transformation_handle){
     RETURN_VALUE_IF_HANDLE_INVALID(VOID_VALUE, k4a_transformation_t, transformation_handle);
     k4a_transformation_context_t *transformation_context = k4a_transformation_t_get_context(transformation_handle);
 
-    if (transformation_context->memory_depth_camera_xy_tables != 0)
+    if(transformation_context->memory_depth_camera_xy_tables != 0)
     {
 #ifdef _MSC_VER
         _aligned_free(transformation_context->memory_depth_camera_xy_tables);
@@ -845,7 +845,7 @@ void transformation_destroy(k4a_transformation_t transformation_handle){
         free(transformation_context->memory_depth_camera_xy_tables);
 #endif
     }
-    if (transformation_context->memory_color_camera_xy_tables != 0)
+    if(transformation_context->memory_color_camera_xy_tables != 0)
     {
 #ifdef _MSC_VER
         _aligned_free(transformation_context->memory_color_camera_xy_tables);
@@ -853,7 +853,7 @@ void transformation_destroy(k4a_transformation_t transformation_handle){
         free(transformation_context->memory_color_camera_xy_tables);
 #endif
     }
-    if (transformation_context->tewrapper)
+    if(transformation_context->tewrapper)
     {
         tewrapper_destroy(transformation_context->tewrapper);
     }

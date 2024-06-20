@@ -75,7 +75,7 @@ glm::vec3 min(std::vector<glm::vec3> XYZ){
 
   for(int i=0; i<size; i++){
     for(int j=0; j<3; j++){
-      if ( XYZ[i][j] <= min[j] ) min[j] = XYZ[i][j];
+      if( XYZ[i][j] <= min[j] ) min[j] = XYZ[i][j];
     }
   }
 

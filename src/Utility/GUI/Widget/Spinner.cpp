@@ -9,7 +9,7 @@ bool Spinner_variable(const char* label, const ImU32& color){
   //---------------------------
 
   ImGuiWindow* window = GetCurrentWindow();
-  if (window->SkipItems){
+  if(window->SkipItems){
     return false;
   }
 
@@ -22,7 +22,7 @@ bool Spinner_variable(const char* label, const ImU32& color){
 
   const ImRect bb(pos, ImVec2(pos.x + size.x, pos.y + size.y));
   ItemSize(bb, style.FramePadding.y);
-  if (!ItemAdd(bb, id)){
+  if(!ItemAdd(bb, id)){
     return false;
   }
 

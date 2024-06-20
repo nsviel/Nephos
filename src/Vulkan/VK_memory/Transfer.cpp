@@ -208,7 +208,7 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data,
   // Map the buffer's memory and copy the data
   void* mappedMemory;
   VkResult result = vkMapMemory(vk_struct->device.handle, buffer->mem, 0, data_size, 0, &mappedMemory);
-  if (result != VK_SUCCESS){
+  if(result != VK_SUCCESS){
     throw std::runtime_error("Failed to map buffer memory!");
   }
   memcpy(mappedMemory, data, static_cast<size_t>(data_size));
@@ -223,7 +223,7 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Bu
   // Map the buffer's memory and copy the data
   void* mappedMemory;
   VkResult result = vkMapMemory(vk_struct->device.handle, stagger->mem, 0, data_size, 0, &mappedMemory);
-  if (result != VK_SUCCESS){
+  if(result != VK_SUCCESS){
     throw std::runtime_error("Failed to map buffer memory!");
   }
   memcpy(mappedMemory, data, static_cast<size_t>(data_size));

@@ -19,7 +19,7 @@ void PersoTimer::tic()
 double PersoTimer::toc(bool print)
 {
 	_dt = (float) (clock() - _t) / ((float) CLOCKS_PER_SEC);
-	if (print){
+	if(print){
 		cout << "Elapsed time : " << _dt << endl;
 	}
 	return _dt;
@@ -28,7 +28,7 @@ double PersoTimer::toc(bool print)
 double PersoTimer::toc(string str, bool print)
 {
 	_dt = (float)(clock() - _t) / ((float)CLOCKS_PER_SEC);
-	if (print){
+	if(print){
 		cout << "Elapsed time (" << str << ") : " << _dt << endl;
 	}
 	return _dt;

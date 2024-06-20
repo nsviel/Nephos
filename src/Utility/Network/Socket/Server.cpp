@@ -48,7 +48,7 @@ void Server::binding(int port_server, int packet_size_max){
   struct timeval timeout;
   timeout.tv_sec = 0;  // Seconds
   timeout.tv_usec = 500000; // Microseconds
-  if (setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) == -1){
+  if(setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) == -1){
     std::cerr << "Error setting socket timeout: " << strerror(errno) << std::endl;
     close(sock);
     return;

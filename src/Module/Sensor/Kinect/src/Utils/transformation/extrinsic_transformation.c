@@ -39,7 +39,7 @@ k4a_result_t transformation_get_extrinsic_transformation(const k4a_calibration_e
                                                          const k4a_calibration_extrinsics_t *world_to_target,
                                                          k4a_calibration_extrinsics_t *source_to_target)
 {
-    if (world_to_source == 0 || world_to_target == 0)
+    if(world_to_source == 0 || world_to_target == 0)
     {
         memset(source_to_target, 0, sizeof(k4a_calibration_extrinsics_t));
         return K4A_RESULT_SUCCEEDED;

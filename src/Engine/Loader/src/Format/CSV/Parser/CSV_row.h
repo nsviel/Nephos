@@ -13,7 +13,7 @@ public:
   CSVIterator()                   :m_str(NULL){}
 
   // Pre Increment
-  CSVIterator& operator++()               {if (m_str){ if (!((*m_str) >> m_row)){m_str = NULL;}}return *this;}
+  CSVIterator& operator++()               {if(m_str){ if(!((*m_str) >> m_row)){m_str = NULL;}}return *this;}
   // Post increment
   CSVIterator operator++(int)             {CSVIterator    tmp(*this);++(*this);return tmp;}
   CSVRow const& operator*()   const       {return m_row;}

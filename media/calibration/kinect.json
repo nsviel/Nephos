@@ -14,21 +14,19 @@
             "8": -0.0010601433459669352,
             "9": 0.17731726169586182
         },
-        "measure": "../media/calibration/NFOV_sphere.data",
-        "model_rmse": 0.0,
+        "model_rmse": 213.05897521972656,
         "name_measure": "NFOV_sphere.data",
-        "nb_coefficient": 0,
-        "rmse": 213.05897521972656,
+        "nb_coefficient": 12,
         "x": {
             "degree": 3,
-            "max": 0.0,
-            "min": 0.0,
+            "max": 5.55033016204834,
+            "min": 0.5488719940185547,
             "variable": "Range"
         },
         "y": {
             "degree": 2,
-            "max": 0.0,
-            "min": 0.0,
+            "max": 89.99600219726563,
+            "min": 0.019782299175858498,
             "variable": "Incidence angle"
         }
     },

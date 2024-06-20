@@ -236,7 +236,7 @@ struct Object
 
     bool IsVisible() const
     {
-        if (!m_IsLive)
+        if(!m_IsLive)
             return false;
 
         const auto bounds = GetBounds();
@@ -258,11 +258,11 @@ struct Object
 
     virtual bool TestHit(const ImVec2& point, float extraThickness = 0.0f) const
     {
-        if (!m_IsLive)
+        if(!m_IsLive)
             return false;
 
         auto bounds = GetBounds();
-        if (extraThickness > 0)
+        if(extraThickness > 0)
             bounds.Expand(extraThickness);
 
         return bounds.Contains(point);
@@ -270,7 +270,7 @@ struct Object
 
     virtual bool TestHit(const ImRect& rect, bool allowIntersect = true) const
     {
-        if (!m_IsLive)
+        if(!m_IsLive)
             return false;
 
         const auto bounds = GetBounds();
@@ -607,31 +607,31 @@ struct Control
         , BackgroundClickButtonIndex(backgroundClickButtonIndex)
         , BackgroundDoubleClickButtonIndex(backgroundDoubleClickButtonIndex)
     {
-        if (hotObject)
+        if(hotObject)
         {
             HotNode  = hotObject->AsNode();
             HotPin   = hotObject->AsPin();
             HotLink  = hotObject->AsLink();
 
-            if (HotPin)
+            if(HotPin)
                 HotNode = HotPin->m_Node;
         }
 
-        if (activeObject)
+        if(activeObject)
         {
             ActiveNode  = activeObject->AsNode();
             ActivePin   = activeObject->AsPin();
             ActiveLink  = activeObject->AsLink();
         }
 
-        if (clickedObject)
+        if(clickedObject)
         {
             ClickedNode  = clickedObject->AsNode();
             ClickedPin   = clickedObject->AsPin();
             ClickedLink  = clickedObject->AsLink();
         }
 
-        if (doubleClickedObject)
+        if(doubleClickedObject)
         {
             DoubleClickedNode = doubleClickedObject->AsNode();
             DoubleClickedPin  = doubleClickedObject->AsPin();
@@ -1397,10 +1397,10 @@ struct EditorContext
         ImRect bounds(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
 
         for(auto object : objects)
-            if (object->m_IsLive)
+            if(object->m_IsLive)
                 bounds.Add(object->GetBounds());
 
-        if (ImRect_IsEmpty(bounds))
+        if(ImRect_IsEmpty(bounds))
             bounds = ImRect();
 
         return bounds;
@@ -1412,10 +1412,10 @@ struct EditorContext
         ImRect bounds(FLT_MAX, FLT_MAX, -FLT_MAX, -FLT_MAX);
 
         for(auto object : objects)
-            if (object.m_Object->m_IsLive)
+            if(object.m_Object->m_IsLive)
                 bounds.Add(object.m_Object->GetBounds());
 
-        if (ImRect_IsEmpty(bounds))
+        if(ImRect_IsEmpty(bounds))
             bounds = ImRect();
 
         return bounds;
@@ -1458,7 +1458,7 @@ struct EditorContext
 
     float AlignPointToGrid(float p) const
     {
-        if (!ImGui::GetIO().KeyAlt)
+        if(!ImGui::GetIO().KeyAlt)
             return p - ImFmod(p, 16.0f);
         else
             return p;

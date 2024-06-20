@@ -19,7 +19,7 @@ void Tree::design_tree(){
   flags |= ImGuiTableFlags_Resizable;
   flags |= ImGuiTableFlags_RowBg;
   flags |= ImGuiTableFlags_NoBordersInBody;
-  if (ImGui::BeginTable("init_tree", 3, flags)){
+  if(ImGui::BeginTable("init_tree", 3, flags)){
     // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
     ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_NoHide, 175);
     ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75);

@@ -60,10 +60,10 @@ static IMPLOT_INLINE float  ImInvSqrt(float x){ return _mm_cvtss_f32(_mm_rsqrt_s
 static IMPLOT_INLINE float  ImInvSqrt(float x){ return 1.0f / sqrtf(x); }
 #endif
 
-#define IMPLOT_NORMALIZE2F_OVER_ZERO(VX,VY) do { float d2 = VX*VX + VY*VY; if (d2 > 0.0f){ float inv_len = ImInvSqrt(d2); VX *= inv_len; VY *= inv_len; } } while (0)
+#define IMPLOT_NORMALIZE2F_OVER_ZERO(VX,VY) do { float d2 = VX*VX + VY*VY; if(d2 > 0.0f){ float inv_len = ImInvSqrt(d2); VX *= inv_len; VY *= inv_len; } } while(0)
 
 // Support for pre-1.82 versions. Users on 1.82+ can use 0 (default) flags to mean "all corners" but in order to support older versions we are more explicit.
-#if (IMGUI_VERSION_NUM < 18102) && !defined(ImDrawFlags_RoundCornersAll)
+#if(IMGUI_VERSION_NUM < 18102) && !defined(ImDrawFlags_RoundCornersAll)
 #define ImDrawFlags_RoundCornersAll ImDrawCornerFlags_All
 #endif
 
@@ -119,7 +119,7 @@ template <> const unsigned int MaxIdx<unsigned int>::Value   = 4294967295;
 IMPLOT_INLINE void GetLineRenderProps(const ImDrawList& draw_list, float& half_weight, ImVec2& tex_uv0, ImVec2& tex_uv1){
     const bool aa = ImHasFlag(draw_list.Flags, ImDrawListFlags_AntiAliasedLines) &&
                     ImHasFlag(draw_list.Flags, ImDrawListFlags_AntiAliasedLinesUseTex);
-    if (aa){
+    if(aa){
         ImVec4 tex_uvs = draw_list._Data->TexUvLines[(int)(half_weight*2)];
         tex_uv0 = ImVec2(tex_uvs.x, tex_uvs.y);
         tex_uv1 = ImVec2(tex_uvs.z, tex_uvs.w);
@@ -285,15 +285,15 @@ ImPlotItem* RegisterOrGetItem(const char* label_id, ImPlotItemFlags flags, bool*
     ImPlotContext& gp = *GImPlot;
     ImPlotItemGroup& Items = *gp.CurrentItems;
     ImGuiID id = Items.GetItemID(label_id);
-    if (just_created != nullptr)
+    if(just_created != nullptr)
         *just_created = Items.GetItem(id) == nullptr;
     ImPlotItem* item = Items.GetOrAddItem(id);
-    if (item->SeenThisFrame)
+    if(item->SeenThisFrame)
         return item;
     item->SeenThisFrame = true;
     int idx = Items.GetItemIndex(item);
     item->ID = id;
-    if (!ImHasFlag(flags, ImPlotItemFlags_NoLegend) && ImGui::FindRenderedTextEnd(label_id, nullptr) != label_id){
+    if(!ImHasFlag(flags, ImPlotItemFlags_NoLegend) && ImGui::FindRenderedTextEnd(label_id, nullptr) != label_id){
         Items.Legend.Indices.push_back(idx);
         item->NameOffset = Items.Legend.Labels.size();
         Items.Legend.Labels.append(label_id, label_id + strlen(label_id) + 1);
@@ -349,7 +349,7 @@ void SetNextErrorBarStyle(const ImVec4& col, float size, float weight){
 
 ImVec4 GetLastItemColor(){
     ImPlotContext& gp = *GImPlot;
-    if (gp.PreviousItem)
+    if(gp.PreviousItem)
         return ImGui::ColorConvertU32ToFloat4(gp.PreviousItem->Color);
     return ImVec4();
 }
@@ -368,17 +368,17 @@ void BustItemCache(){
 
 void BustColorCache(const char* plot_title_id){
     ImPlotContext& gp = *GImPlot;
-    if (plot_title_id == nullptr){
+    if(plot_title_id == nullptr){
         BustItemCache();
     }
     else {
         ImGuiID id = ImGui::GetCurrentWindow()->GetID(plot_title_id);
         ImPlotPlot* plot = gp.Plots.GetByKey(id);
-        if (plot != nullptr)
+        if(plot != nullptr)
             plot->Items.Reset();
         else {
             ImPlotSubplot* subplot = gp.Subplots.GetByKey(id);
-            if (subplot != nullptr)
+            if(subplot != nullptr)
                 subplot->Items.Reset();
         }
     }
@@ -402,23 +402,23 @@ bool BeginItem(const char* label_id, ImPlotItemFlags flags, ImPlotCol recolor_fr
     gp.CurrentItem = item;
     ImPlotNextItemData& s = gp.NextItemData;
     // set/override item color
-    if (recolor_from != -1){
-        if (!IsColorAuto(s.Colors[recolor_from]))
+    if(recolor_from != -1){
+        if(!IsColorAuto(s.Colors[recolor_from]))
             item->Color = ImGui::ColorConvertFloat4ToU32(s.Colors[recolor_from]);
-        else if (!IsColorAuto(gp.Style.Colors[recolor_from]))
+        else if(!IsColorAuto(gp.Style.Colors[recolor_from]))
             item->Color = ImGui::ColorConvertFloat4ToU32(gp.Style.Colors[recolor_from]);
-        else if (just_created)
+        else if(just_created)
             item->Color = NextColormapColorU32();
     }
-    else if (just_created){
+    else if(just_created){
         item->Color = NextColormapColorU32();
     }
     // hide/show item
-    if (gp.NextItemData.HasHidden){
-        if (just_created || gp.NextItemData.HiddenCond == ImGuiCond_Always)
+    if(gp.NextItemData.HasHidden){
+        if(just_created || gp.NextItemData.HiddenCond == ImGuiCond_Always)
             item->Show = !gp.NextItemData.Hidden;
     }
-    if (!item->Show){
+    if(!item->Show){
         // reset next item data
         gp.NextItemData.Reset();
         gp.PreviousItem = item;
@@ -447,17 +447,17 @@ bool BeginItem(const char* label_id, ImPlotItemFlags flags, ImPlotCol recolor_fr
         s.Colors[ImPlotCol_Fill].w       *= s.FillAlpha;
         s.Colors[ImPlotCol_MarkerFill].w *= s.FillAlpha; // TODO: this should be separate, if it at all
         // apply highlight mods
-        if (item->LegendHovered){
-            if (!ImHasFlag(gp.CurrentItems->Legend.Flags, ImPlotLegendFlags_NoHighlightItem)){
+        if(item->LegendHovered){
+            if(!ImHasFlag(gp.CurrentItems->Legend.Flags, ImPlotLegendFlags_NoHighlightItem)){
                 s.LineWeight   *= ITEM_HIGHLIGHT_LINE_SCALE;
                 s.MarkerSize   *= ITEM_HIGHLIGHT_MARK_SCALE;
                 s.MarkerWeight *= ITEM_HIGHLIGHT_LINE_SCALE;
                 // TODO: how to highlight fills?
             }
-            if (!ImHasFlag(gp.CurrentItems->Legend.Flags, ImPlotLegendFlags_NoHighlightAxis)){
-                if (gp.CurrentPlot->EnabledAxesX() > 1)
+            if(!ImHasFlag(gp.CurrentItems->Legend.Flags, ImPlotLegendFlags_NoHighlightAxis)){
+                if(gp.CurrentPlot->EnabledAxesX() > 1)
                     gp.CurrentPlot->Axes[gp.CurrentPlot->CurrentX].ColorHiLi = item->Color;
-                if (gp.CurrentPlot->EnabledAxesY() > 1)
+                if(gp.CurrentPlot->EnabledAxesY() > 1)
                     gp.CurrentPlot->Axes[gp.CurrentPlot->CurrentY].ColorHiLi = item->Color;
             }
         }
@@ -785,7 +785,7 @@ struct Transformer1 {
     { }
 
     template <typename T> IMPLOT_INLINE float operator()(T p) const {
-        if (TransformFwd != nullptr){
+        if(TransformFwd != nullptr){
             double s = TransformFwd(p, TransformData);
             double t = (s - ScaMin) / (ScaMax - ScaMin);
             p = PltMin + (PltMax - PltMin) * t;
@@ -875,7 +875,7 @@ struct RendererLineStrip : RendererBase {
     }
     IMPLOT_INLINE bool Render(ImDrawList& draw_list, const ImRect& cull_rect, int prim) const {
         ImVec2 P2 = this->Transformer(Getter(prim + 1));
-        if (!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2)))){
+        if(!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2)))){
             P1 = P2;
             return false;
         }
@@ -906,13 +906,13 @@ struct RendererLineStripSkip : RendererBase {
     }
     IMPLOT_INLINE bool Render(ImDrawList& draw_list, const ImRect& cull_rect, int prim) const {
         ImVec2 P2 = this->Transformer(Getter(prim + 1));
-        if (!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2)))){
-            if (!ImNan(P2.x) && !ImNan(P2.y))
+        if(!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2)))){
+            if(!ImNan(P2.x) && !ImNan(P2.y))
                 P1 = P2;
             return false;
         }
         PrimLine(draw_list,P1,P2,HalfWeight,Col,UV0,UV1);
-        if (!ImNan(P2.x) && !ImNan(P2.y))
+        if(!ImNan(P2.x) && !ImNan(P2.y))
             P1 = P2;
         return true;
     }
@@ -938,7 +938,7 @@ struct RendererLineSegments1 : RendererBase {
     IMPLOT_INLINE bool Render(ImDrawList& draw_list, const ImRect& cull_rect, int prim) const {
         ImVec2 P1 = this->Transformer(Getter(prim*2+0));
         ImVec2 P2 = this->Transformer(Getter(prim*2+1));
-        if (!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2))))
+        if(!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2))))
             return false;
         PrimLine(draw_list,P1,P2,HalfWeight,Col,UV0,UV1);
         return true;
@@ -965,7 +965,7 @@ struct RendererLineSegments2 : RendererBase {
     IMPLOT_INLINE bool Render(ImDrawList& draw_list, const ImRect& cull_rect, int prim) const {
         ImVec2 P1 = this->Transformer(Getter1(prim));
         ImVec2 P2 = this->Transformer(Getter2(prim));
-        if (!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2))))
+        if(!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2))))
             return false;
         PrimLine(draw_list,P1,P2,HalfWeight,Col,UV0,UV1);
         return true;
@@ -998,13 +998,13 @@ struct RendererBarsFillV : RendererBase {
         ImVec2 P1 = this->Transformer(p1);
         ImVec2 P2 = this->Transformer(p2);
         float width_px = ImAbs(P1.x-P2.x);
-        if (width_px < 1.0f){
+        if(width_px < 1.0f){
             P1.x += P1.x > P2.x ? (1-width_px) / 2 : (width_px-1) / 2;
             P2.x += P2.x > P1.x ? (1-width_px) / 2 : (width_px-1) / 2;
         }
         ImVec2 PMin = ImMin(P1, P2);
         ImVec2 PMax = ImMax(P1, P2);
-        if (!cull_rect.Overlaps(ImRect(PMin, PMax)))
+        if(!cull_rect.Overlaps(ImRect(PMin, PMax)))
             return false;
         PrimRectFill(draw_list,PMin,PMax,Col,UV);
         return true;
@@ -1036,13 +1036,13 @@ struct RendererBarsFillH : RendererBase {
         ImVec2 P1 = this->Transformer(p1);
         ImVec2 P2 = this->Transformer(p2);
         float height_px = ImAbs(P1.y-P2.y);
-        if (height_px < 1.0f){
+        if(height_px < 1.0f){
             P1.y += P1.y > P2.y ? (1-height_px) / 2 : (height_px-1) / 2;
             P2.y += P2.y > P1.y ? (1-height_px) / 2 : (height_px-1) / 2;
         }
         ImVec2 PMin = ImMin(P1, P2);
         ImVec2 PMax = ImMax(P1, P2);
-        if (!cull_rect.Overlaps(ImRect(PMin, PMax)))
+        if(!cull_rect.Overlaps(ImRect(PMin, PMax)))
             return false;
         PrimRectFill(draw_list,PMin,PMax,Col,UV);
         return true;
@@ -1075,13 +1075,13 @@ struct RendererBarsLineV : RendererBase {
         ImVec2 P1 = this->Transformer(p1);
         ImVec2 P2 = this->Transformer(p2);
         float width_px = ImAbs(P1.x-P2.x);
-        if (width_px < 1.0f){
+        if(width_px < 1.0f){
             P1.x += P1.x > P2.x ? (1-width_px) / 2 : (width_px-1) / 2;
             P2.x += P2.x > P1.x ? (1-width_px) / 2 : (width_px-1) / 2;
         }
         ImVec2 PMin = ImMin(P1, P2);
         ImVec2 PMax = ImMax(P1, P2);
-        if (!cull_rect.Overlaps(ImRect(PMin, PMax)))
+        if(!cull_rect.Overlaps(ImRect(PMin, PMax)))
             return false;
         PrimRectLine(draw_list,PMin,PMax,Weight,Col,UV);
         return true;
@@ -1115,13 +1115,13 @@ struct RendererBarsLineH : RendererBase {
         ImVec2 P1 = this->Transformer(p1);
         ImVec2 P2 = this->Transformer(p2);
         float height_px = ImAbs(P1.y-P2.y);
-        if (height_px < 1.0f){
+        if(height_px < 1.0f){
             P1.y += P1.y > P2.y ? (1-height_px) / 2 : (height_px-1) / 2;
             P2.y += P2.y > P1.y ? (1-height_px) / 2 : (height_px-1) / 2;
         }
         ImVec2 PMin = ImMin(P1, P2);
         ImVec2 PMax = ImMax(P1, P2);
-        if (!cull_rect.Overlaps(ImRect(PMin, PMax)))
+        if(!cull_rect.Overlaps(ImRect(PMin, PMax)))
             return false;
         PrimRectLine(draw_list,PMin,PMax,Weight,Col,UV);
         return true;
@@ -1150,7 +1150,7 @@ struct RendererStairsPre : RendererBase {
     }
     IMPLOT_INLINE bool Render(ImDrawList& draw_list, const ImRect& cull_rect, int prim) const {
         ImVec2 P2 = this->Transformer(Getter(prim + 1));
-        if (!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2)))){
+        if(!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2)))){
             P1 = P2;
             return false;
         }
@@ -1181,7 +1181,7 @@ struct RendererStairsPost : RendererBase {
     }
     IMPLOT_INLINE bool Render(ImDrawList& draw_list, const ImRect& cull_rect, int prim) const {
         ImVec2 P2 = this->Transformer(Getter(prim + 1));
-        if (!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2)))){
+        if(!cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2)))){
             P1 = P2;
             return false;
         }
@@ -1214,7 +1214,7 @@ struct RendererStairsPreShaded : RendererBase {
         ImVec2 P2 = this->Transformer(Getter(prim + 1));
         ImVec2 PMin(ImMin(P1.x, P2.x), ImMin(Y0, P2.y));
         ImVec2 PMax(ImMax(P1.x, P2.x), ImMax(Y0, P2.y));
-        if (!cull_rect.Overlaps(ImRect(PMin, PMax))){
+        if(!cull_rect.Overlaps(ImRect(PMin, PMax))){
             P1 = P2;
             return false;
         }
@@ -1246,7 +1246,7 @@ struct RendererStairsPostShaded : RendererBase {
         ImVec2 P2 = this->Transformer(Getter(prim + 1));
         ImVec2 PMin(ImMin(P1.x, P2.x), ImMin(P1.y, Y0));
         ImVec2 PMax(ImMax(P1.x, P2.x), ImMax(P1.y, Y0));
-        if (!cull_rect.Overlaps(ImRect(PMin, PMax))){
+        if(!cull_rect.Overlaps(ImRect(PMin, PMax))){
             P1 = P2;
             return false;
         }
@@ -1281,7 +1281,7 @@ struct RendererShaded : RendererBase {
         ImVec2 P21 = this->Transformer(Getter1(prim+1));
         ImVec2 P22 = this->Transformer(Getter2(prim+1));
         ImRect rect(ImMin(ImMin(ImMin(P11,P12),P21),P22), ImMax(ImMax(ImMax(P11,P12),P21),P22));
-        if (!cull_rect.Overlaps(rect)){
+        if(!cull_rect.Overlaps(rect)){
             P11 = P21;
             P12 = P22;
             return false;
@@ -1343,7 +1343,7 @@ struct RendererRectC : RendererBase {
         RectC rect = Getter(prim);
         ImVec2 P1 = this->Transformer(rect.Pos.x - rect.HalfSize.x , rect.Pos.y - rect.HalfSize.y);
         ImVec2 P2 = this->Transformer(rect.Pos.x + rect.HalfSize.x , rect.Pos.y + rect.HalfSize.y);
-        if ((rect.Color & IM_COL32_A_MASK) == 0 || !cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2))))
+        if((rect.Color & IM_COL32_A_MASK) == 0 || !cull_rect.Overlaps(ImRect(ImMin(P1, P2), ImMax(P1, P2))))
             return false;
         PrimRectFill(draw_list,P1,P2,rect.Color,UV);
         return true;
@@ -1363,12 +1363,12 @@ void RenderPrimitivesEx(const _Renderer& renderer, ImDrawList& draw_list, const 
     unsigned int prims_culled = 0;
     unsigned int idx          = 0;
     renderer.Init(draw_list);
-    while (prims){
+    while(prims){
         // find how many can be reserved up to end of current draw command's limit
         unsigned int cnt = ImMin(prims, (MaxIdx<ImDrawIdx>::Value - draw_list._VtxCurrentIdx) / renderer.VtxConsumed);
         // make sure at least this many elements can be rendered to avoid situations where at the end of buffer this slow path is not taken all the time
-        if (cnt >= ImMin(64u, prims)){
-            if (prims_culled >= cnt)
+        if(cnt >= ImMin(64u, prims)){
+            if(prims_culled >= cnt)
                 prims_culled -= cnt; // reuse previous reservation
             else {
                 // add more elements to previous reservation
@@ -1378,7 +1378,7 @@ void RenderPrimitivesEx(const _Renderer& renderer, ImDrawList& draw_list, const 
         }
         else
         {
-            if (prims_culled > 0){
+            if(prims_culled > 0){
                 draw_list.PrimUnreserve(prims_culled * renderer.IdxConsumed, prims_culled * renderer.VtxConsumed);
                 prims_culled = 0;
             }
@@ -1388,11 +1388,11 @@ void RenderPrimitivesEx(const _Renderer& renderer, ImDrawList& draw_list, const 
         }
         prims -= cnt;
         for(unsigned int ie = idx + cnt; idx != ie; ++idx){
-            if (!renderer.Render(draw_list, cull_rect, idx))
+            if(!renderer.Render(draw_list, cull_rect, idx))
                 prims_culled++;
         }
     }
-    if (prims_culled > 0)
+    if(prims_culled > 0)
         draw_list.PrimUnreserve(prims_culled * renderer.IdxConsumed, prims_culled * renderer.VtxConsumed);
 }
 
@@ -1429,7 +1429,7 @@ struct RendererMarkersFill : RendererBase {
     }
     IMPLOT_INLINE bool Render(ImDrawList& draw_list, const ImRect& cull_rect, int prim) const {
         ImVec2 p = this->Transformer(Getter(prim));
-        if (p.x >= cull_rect.Min.x && p.y >= cull_rect.Min.y && p.x <= cull_rect.Max.x && p.y <= cull_rect.Max.y){
+        if(p.x >= cull_rect.Min.x && p.y >= cull_rect.Min.y && p.x <= cull_rect.Max.x && p.y <= cull_rect.Max.y){
             for(int i = 0; i < Count; i++){
                 draw_list._VtxWritePtr[0].pos.x = p.x + Marker[i].x * Size;
                 draw_list._VtxWritePtr[0].pos.y = p.y + Marker[i].y * Size;
@@ -1473,7 +1473,7 @@ struct RendererMarkersLine : RendererBase {
     }
     IMPLOT_INLINE bool Render(ImDrawList& draw_list, const ImRect& cull_rect, int prim) const {
         ImVec2 p = this->Transformer(Getter(prim));
-        if (p.x >= cull_rect.Min.x && p.y >= cull_rect.Min.y && p.x <= cull_rect.Max.x && p.y <= cull_rect.Max.y){
+        if(p.x >= cull_rect.Min.x && p.y >= cull_rect.Min.y && p.x <= cull_rect.Max.x && p.y <= cull_rect.Max.y){
             for(int i = 0; i < Count; i = i + 2){
                 ImVec2 p1(p.x + Marker[i].x * Size, p.y + Marker[i].y * Size);
                 ImVec2 p2(p.x + Marker[i+1].x * Size, p.y + Marker[i+1].y * Size);
@@ -1535,7 +1535,7 @@ static const ImVec2 MARKER_LINE_CROSS[4]    = {ImVec2(-SQRT_1_2,-SQRT_1_2),ImVec
 
 template <typename _Getter>
 void RenderMarkers(const _Getter& getter, ImPlotMarker marker, float size, bool rend_fill, ImU32 col_fill, bool rend_line, ImU32 col_line, float weight){
-    if (rend_fill){
+    if(rend_fill){
         switch (marker){
             case ImPlotMarker_Circle  : RenderPrimitives1<RendererMarkersFill>(getter,MARKER_FILL_CIRCLE,10,size,col_fill); break;
             case ImPlotMarker_Square  : RenderPrimitives1<RendererMarkersFill>(getter,MARKER_FILL_SQUARE, 4,size,col_fill); break;
@@ -1546,7 +1546,7 @@ void RenderMarkers(const _Getter& getter, ImPlotMarker marker, float size, bool 
             case ImPlotMarker_Right   : RenderPrimitives1<RendererMarkersFill>(getter,MARKER_FILL_RIGHT,  3,size,col_fill); break;
         }
     }
-    if (rend_line){
+    if(rend_line){
         switch (marker){
             case ImPlotMarker_Circle    : RenderPrimitives1<RendererMarkersLine>(getter,MARKER_LINE_CIRCLE, 20,size,weight,col_line); break;
             case ImPlotMarker_Square    : RenderPrimitives1<RendererMarkersLine>(getter,MARKER_LINE_SQUARE,  8,size,weight,col_line); break;
@@ -1568,31 +1568,31 @@ void RenderMarkers(const _Getter& getter, ImPlotMarker marker, float size, bool 
 
 template <typename _Getter>
 void PlotLineEx(const char* label_id, const _Getter& getter, ImPlotLineFlags flags){
-    if (BeginItemEx(label_id, Fitter1<_Getter>(getter), flags, ImPlotCol_Line)){
-        if (getter.Count <= 0){
+    if(BeginItemEx(label_id, Fitter1<_Getter>(getter), flags, ImPlotCol_Line)){
+        if(getter.Count <= 0){
             EndItem();
             return;
         }
         const ImPlotNextItemData& s = GetItemData();
-        if (getter.Count > 1){
-            if (ImHasFlag(flags, ImPlotLineFlags_Shaded) && s.RenderFill){
+        if(getter.Count > 1){
+            if(ImHasFlag(flags, ImPlotLineFlags_Shaded) && s.RenderFill){
                 const ImU32 col_fill = ImGui::GetColorU32(s.Colors[ImPlotCol_Fill]);
                 GetterOverrideY<_Getter> getter2(getter, 0);
                 RenderPrimitives2<RendererShaded>(getter,getter2,col_fill);
             }
-            if (s.RenderLine){
+            if(s.RenderLine){
                 const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_Line]);
-                if (ImHasFlag(flags,ImPlotLineFlags_Segments)){
+                if(ImHasFlag(flags,ImPlotLineFlags_Segments)){
                     RenderPrimitives1<RendererLineSegments1>(getter,col_line,s.LineWeight);
                 }
-                else if (ImHasFlag(flags, ImPlotLineFlags_Loop)){
-                    if (ImHasFlag(flags, ImPlotLineFlags_SkipNaN))
+                else if(ImHasFlag(flags, ImPlotLineFlags_Loop)){
+                    if(ImHasFlag(flags, ImPlotLineFlags_SkipNaN))
                         RenderPrimitives1<RendererLineStripSkip>(GetterLoop<_Getter>(getter),col_line,s.LineWeight);
                     else
                         RenderPrimitives1<RendererLineStrip>(GetterLoop<_Getter>(getter),col_line,s.LineWeight);
                 }
                 else {
-                    if (ImHasFlag(flags, ImPlotLineFlags_SkipNaN))
+                    if(ImHasFlag(flags, ImPlotLineFlags_SkipNaN))
                         RenderPrimitives1<RendererLineStripSkip>(getter,col_line,s.LineWeight);
                     else
                         RenderPrimitives1<RendererLineStrip>(getter,col_line,s.LineWeight);
@@ -1600,8 +1600,8 @@ void PlotLineEx(const char* label_id, const _Getter& getter, ImPlotLineFlags fla
             }
         }
         // render markers
-        if (s.Marker != ImPlotMarker_None){
-            if (ImHasFlag(flags, ImPlotLineFlags_NoClip)){
+        if(s.Marker != ImPlotMarker_None){
+            if(ImHasFlag(flags, ImPlotLineFlags_NoClip)){
                 PopPlotClipRect();
                 PushPlotClipRect(s.MarkerSize);
             }
@@ -1643,15 +1643,15 @@ void PlotLineG(const char* label_id, ImPlotGetter getter_func, void* data, int c
 
 template <typename Getter>
 void PlotScatterEx(const char* label_id, const Getter& getter, ImPlotScatterFlags flags){
-    if (BeginItemEx(label_id, Fitter1<Getter>(getter), flags, ImPlotCol_MarkerOutline)){
-        if (getter.Count <= 0){
+    if(BeginItemEx(label_id, Fitter1<Getter>(getter), flags, ImPlotCol_MarkerOutline)){
+        if(getter.Count <= 0){
             EndItem();
             return;
         }
         const ImPlotNextItemData& s = GetItemData();
         ImPlotMarker marker = s.Marker == ImPlotMarker_None ? ImPlotMarker_Circle: s.Marker;
-        if (marker != ImPlotMarker_None){
-            if (ImHasFlag(flags,ImPlotScatterFlags_NoClip)){
+        if(marker != ImPlotMarker_None){
+            if(ImHasFlag(flags,ImPlotScatterFlags_NoClip)){
                 PopPlotClipRect();
                 PushPlotClipRect(s.MarkerSize);
             }
@@ -1693,30 +1693,30 @@ void PlotScatterG(const char* label_id, ImPlotGetter getter_func, void* data, in
 
 template <typename Getter>
 void PlotStairsEx(const char* label_id, const Getter& getter, ImPlotStairsFlags flags){
-    if (BeginItemEx(label_id, Fitter1<Getter>(getter), flags, ImPlotCol_Line)){
-        if (getter.Count <= 0){
+    if(BeginItemEx(label_id, Fitter1<Getter>(getter), flags, ImPlotCol_Line)){
+        if(getter.Count <= 0){
             EndItem();
             return;
         }
         const ImPlotNextItemData& s = GetItemData();
-        if (getter.Count > 1){
-            if (s.RenderFill && ImHasFlag(flags,ImPlotStairsFlags_Shaded)){
+        if(getter.Count > 1){
+            if(s.RenderFill && ImHasFlag(flags,ImPlotStairsFlags_Shaded)){
                 const ImU32 col_fill = ImGui::GetColorU32(s.Colors[ImPlotCol_Fill]);
-                if (ImHasFlag(flags, ImPlotStairsFlags_PreStep))
+                if(ImHasFlag(flags, ImPlotStairsFlags_PreStep))
                     RenderPrimitives1<RendererStairsPreShaded>(getter,col_fill);
                 else
                     RenderPrimitives1<RendererStairsPostShaded>(getter,col_fill);
             }
-            if (s.RenderLine){
+            if(s.RenderLine){
                 const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_Line]);
-                if (ImHasFlag(flags, ImPlotStairsFlags_PreStep))
+                if(ImHasFlag(flags, ImPlotStairsFlags_PreStep))
                     RenderPrimitives1<RendererStairsPre>(getter,col_line,s.LineWeight);
                 else
                     RenderPrimitives1<RendererStairsPost>(getter,col_line,s.LineWeight);
             }
         }
         // render markers
-        if (s.Marker != ImPlotMarker_None){
+        if(s.Marker != ImPlotMarker_None){
             PopPlotClipRect();
             PushPlotClipRect(s.MarkerSize);
             const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_MarkerOutline]);
@@ -1757,13 +1757,13 @@ void PlotStairsG(const char* label_id, ImPlotGetter getter_func, void* data, int
 
 template <typename Getter1, typename Getter2>
 void PlotShadedEx(const char* label_id, const Getter1& getter1, const Getter2& getter2, ImPlotShadedFlags flags){
-    if (BeginItemEx(label_id, Fitter2<Getter1,Getter2>(getter1,getter2), flags, ImPlotCol_Fill)){
-        if (getter1.Count <= 0 || getter2.Count <= 0){
+    if(BeginItemEx(label_id, Fitter2<Getter1,Getter2>(getter1,getter2), flags, ImPlotCol_Fill)){
+        if(getter1.Count <= 0 || getter2.Count <= 0){
             EndItem();
             return;
         }
         const ImPlotNextItemData& s = GetItemData();
-        if (s.RenderFill){
+        if(s.RenderFill){
             const ImU32 col = ImGui::GetColorU32(s.Colors[ImPlotCol_Fill]);
             RenderPrimitives2<RendererShaded>(getter1,getter2,col);
         }
@@ -1773,9 +1773,9 @@ void PlotShadedEx(const char* label_id, const Getter1& getter1, const Getter2& g
 
 template <typename T>
 void PlotShaded(const char* label_id, const T* values, int count, double y_ref, double xscale, double x0, ImPlotShadedFlags flags, int offset, int stride){
-    if (!(y_ref > -DBL_MAX))
+    if(!(y_ref > -DBL_MAX))
         y_ref = GetPlotLimits(IMPLOT_AUTO,IMPLOT_AUTO).Y.Min;
-    if (!(y_ref < DBL_MAX))
+    if(!(y_ref < DBL_MAX))
         y_ref = GetPlotLimits(IMPLOT_AUTO,IMPLOT_AUTO).Y.Max;
     GetterXY<IndexerLin,IndexerIdx<T>> getter1(IndexerLin(xscale,x0),IndexerIdx<T>(values,count,offset,stride),count);
     GetterXY<IndexerLin,IndexerConst>  getter2(IndexerLin(xscale,x0),IndexerConst(y_ref),count);
@@ -1784,9 +1784,9 @@ void PlotShaded(const char* label_id, const T* values, int count, double y_ref, 
 
 template <typename T>
 void PlotShaded(const char* label_id, const T* xs, const T* ys, int count, double y_ref, ImPlotShadedFlags flags, int offset, int stride){
-    if (y_ref == -HUGE_VAL)
+    if(y_ref == -HUGE_VAL)
         y_ref = GetPlotLimits(IMPLOT_AUTO,IMPLOT_AUTO).Y.Min;
-    if (y_ref == HUGE_VAL)
+    if(y_ref == HUGE_VAL)
         y_ref = GetPlotLimits(IMPLOT_AUTO,IMPLOT_AUTO).Y.Max;
     GetterXY<IndexerIdx<T>,IndexerIdx<T>> getter1(IndexerIdx<T>(xs,count,offset,stride),IndexerIdx<T>(ys,count,offset,stride),count);
     GetterXY<IndexerIdx<T>,IndexerConst>  getter2(IndexerIdx<T>(xs,count,offset,stride),IndexerConst(y_ref),count);
@@ -1821,8 +1821,8 @@ void PlotShadedG(const char* label_id, ImPlotGetter getter_func1, void* data1, I
 
 template <typename Getter1, typename Getter2>
 void PlotBarsVEx(const char* label_id, const Getter1& getter1, const Getter2 getter2, double width, ImPlotBarsFlags flags){
-    if (BeginItemEx(label_id, FitterBarV<Getter1,Getter2>(getter1,getter2,width), flags, ImPlotCol_Fill)){
-        if (getter1.Count <= 0 || getter2.Count <= 0){
+    if(BeginItemEx(label_id, FitterBarV<Getter1,Getter2>(getter1,getter2,width), flags, ImPlotCol_Fill)){
+        if(getter1.Count <= 0 || getter2.Count <= 0){
             EndItem();
             return;
         }
@@ -1831,12 +1831,12 @@ void PlotBarsVEx(const char* label_id, const Getter1& getter1, const Getter2 get
         const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_Line]);
         bool rend_fill = s.RenderFill;
         bool rend_line = s.RenderLine;
-        if (rend_fill){
+        if(rend_fill){
             RenderPrimitives2<RendererBarsFillV>(getter1,getter2,col_fill,width);
-            if (rend_line && col_fill == col_line)
+            if(rend_line && col_fill == col_line)
                 rend_line = false;
         }
-        if (rend_line){
+        if(rend_line){
             RenderPrimitives2<RendererBarsLineV>(getter1,getter2,col_line,width,s.LineWeight);
         }
         EndItem();
@@ -1845,8 +1845,8 @@ void PlotBarsVEx(const char* label_id, const Getter1& getter1, const Getter2 get
 
 template <typename Getter1, typename Getter2>
 void PlotBarsHEx(const char* label_id, const Getter1& getter1, const Getter2& getter2, double height, ImPlotBarsFlags flags){
-    if (BeginItemEx(label_id, FitterBarH<Getter1,Getter2>(getter1,getter2,height), flags, ImPlotCol_Fill)){
-        if (getter1.Count <= 0 || getter2.Count <= 0){
+    if(BeginItemEx(label_id, FitterBarH<Getter1,Getter2>(getter1,getter2,height), flags, ImPlotCol_Fill)){
+        if(getter1.Count <= 0 || getter2.Count <= 0){
             EndItem();
             return;
         }
@@ -1855,12 +1855,12 @@ void PlotBarsHEx(const char* label_id, const Getter1& getter1, const Getter2& ge
         const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_Line]);
         bool rend_fill = s.RenderFill;
         bool rend_line = s.RenderLine;
-        if (rend_fill){
+        if(rend_fill){
             RenderPrimitives2<RendererBarsFillH>(getter1,getter2,col_fill,height);
-            if (rend_line && col_fill == col_line)
+            if(rend_line && col_fill == col_line)
                 rend_line = false;
         }
-        if (rend_line){
+        if(rend_line){
             RenderPrimitives2<RendererBarsLineH>(getter1,getter2,col_line,height,s.LineWeight);
         }
         EndItem();
@@ -1869,7 +1869,7 @@ void PlotBarsHEx(const char* label_id, const Getter1& getter1, const Getter2& ge
 
 template <typename T>
 void PlotBars(const char* label_id, const T* values, int count, double bar_size, double shift, ImPlotBarsFlags flags, int offset, int stride){
-    if (ImHasFlag(flags, ImPlotBarsFlags_Horizontal)){
+    if(ImHasFlag(flags, ImPlotBarsFlags_Horizontal)){
         GetterXY<IndexerIdx<T>,IndexerLin> getter1(IndexerIdx<T>(values,count,offset,stride),IndexerLin(1.0,shift),count);
         GetterXY<IndexerConst,IndexerLin>  getter2(IndexerConst(0),IndexerLin(1.0,shift),count);
         PlotBarsHEx(label_id, getter1, getter2, bar_size, flags);
@@ -1883,7 +1883,7 @@ void PlotBars(const char* label_id, const T* values, int count, double bar_size,
 
 template <typename T>
 void PlotBars(const char* label_id, const T* xs, const T* ys, int count, double bar_size, ImPlotBarsFlags flags, int offset, int stride){
-    if (ImHasFlag(flags, ImPlotBarsFlags_Horizontal)){
+    if(ImHasFlag(flags, ImPlotBarsFlags_Horizontal)){
         GetterXY<IndexerIdx<T>,IndexerIdx<T>> getter1(IndexerIdx<T>(xs,count,offset,stride),IndexerIdx<T>(ys,count,offset,stride),count);
         GetterXY<IndexerConst, IndexerIdx<T>> getter2(IndexerConst(0),IndexerIdx<T>(ys,count,offset,stride),count);
         PlotBarsHEx(label_id, getter1, getter2, bar_size, flags);
@@ -1902,7 +1902,7 @@ CALL_INSTANTIATE_FOR_NUMERIC_TYPES()
 #undef INSTANTIATE_MACRO
 
 void PlotBarsG(const char* label_id, ImPlotGetter getter_func, void* data, int count, double bar_size, ImPlotBarsFlags flags){
-    if (ImHasFlag(flags, ImPlotBarsFlags_Horizontal)){
+    if(ImHasFlag(flags, ImPlotBarsFlags_Horizontal)){
         GetterFuncPtr getter1(getter_func, data, count);
         GetterOverrideX<GetterFuncPtr> getter2(getter1,0);
         PlotBarsHEx(label_id, getter1, getter2, bar_size, flags);
@@ -1922,7 +1922,7 @@ template <typename T>
 void PlotBarGroups(const char* const label_ids[], const T* values, int item_count, int group_count, double group_size, double shift, ImPlotBarGroupsFlags flags){
     const bool horz = ImHasFlag(flags, ImPlotBarGroupsFlags_Horizontal);
     const bool stack = ImHasFlag(flags, ImPlotBarGroupsFlags_Stacked);
-    if (stack){
+    if(stack){
         SetupLock();
         ImPlotContext& gp = *GImPlot;
         gp.TempDouble1.resize(4*group_count);
@@ -1933,12 +1933,12 @@ void PlotBarGroups(const char* const label_ids[], const T* values, int item_coun
         double* curr_max = &temp[group_count*3];
         for(int g = 0; g < group_count*2; ++g)
             temp[g] = 0;
-        if (horz){
+        if(horz){
             for(int i = 0; i < item_count; ++i){
-                if (!IsItemHidden(label_ids[i])){
+                if(!IsItemHidden(label_ids[i])){
                     for(int g = 0; g < group_count; ++g){
                         double v = (double)values[i*group_count+g];
-                        if (v > 0){
+                        if(v > 0){
                             curr_min[g] = pos[g];
                             curr_max[g] = curr_min[g] + v;
                             pos[g]      += v;
@@ -1957,10 +1957,10 @@ void PlotBarGroups(const char* const label_ids[], const T* values, int item_coun
         }
         else {
             for(int i = 0; i < item_count; ++i){
-                if (!IsItemHidden(label_ids[i])){
+                if(!IsItemHidden(label_ids[i])){
                     for(int g = 0; g < group_count; ++g){
                         double v = (double)values[i*group_count+g];
-                        if (v > 0){
+                        if(v > 0){
                             curr_min[g] = pos[g];
                             curr_max[g] = curr_min[g] + v;
                             pos[g]      += v;
@@ -1980,7 +1980,7 @@ void PlotBarGroups(const char* const label_ids[], const T* values, int item_coun
     }
     else {
         const double subsize = group_size / item_count;
-        if (horz){
+        if(horz){
             for(int i = 0; i < item_count; ++i){
                 const double subshift = (i+0.5)*subsize - group_size/2;
                 PlotBars(label_ids[i],&values[i*group_count],group_count,subsize,subshift+shift,ImPlotBarsFlags_Horizontal);
@@ -2005,8 +2005,8 @@ CALL_INSTANTIATE_FOR_NUMERIC_TYPES()
 
 template <typename _GetterPos, typename _GetterNeg>
 void PlotErrorBarsVEx(const char* label_id, const _GetterPos& getter_pos, const _GetterNeg& getter_neg, ImPlotErrorBarsFlags flags){
-    if (BeginItemEx(label_id, Fitter2<_GetterPos,_GetterNeg>(getter_pos, getter_neg), flags, IMPLOT_AUTO)){
-        if (getter_pos.Count <= 0 || getter_neg.Count <= 0){
+    if(BeginItemEx(label_id, Fitter2<_GetterPos,_GetterNeg>(getter_pos, getter_neg), flags, IMPLOT_AUTO)){
+        if(getter_pos.Count <= 0 || getter_neg.Count <= 0){
             EndItem();
             return;
         }
@@ -2019,7 +2019,7 @@ void PlotErrorBarsVEx(const char* label_id, const _GetterPos& getter_pos, const 
             ImVec2 p1 = PlotToPixels(getter_neg(i),IMPLOT_AUTO,IMPLOT_AUTO);
             ImVec2 p2 = PlotToPixels(getter_pos(i),IMPLOT_AUTO,IMPLOT_AUTO);
             draw_list.AddLine(p1,p2,col, s.ErrorBarWeight);
-            if (rend_whisker){
+            if(rend_whisker){
                 draw_list.AddLine(p1 - ImVec2(half_whisker, 0), p1 + ImVec2(half_whisker, 0), col, s.ErrorBarWeight);
                 draw_list.AddLine(p2 - ImVec2(half_whisker, 0), p2 + ImVec2(half_whisker, 0), col, s.ErrorBarWeight);
             }
@@ -2030,8 +2030,8 @@ void PlotErrorBarsVEx(const char* label_id, const _GetterPos& getter_pos, const 
 
 template <typename _GetterPos, typename _GetterNeg>
 void PlotErrorBarsHEx(const char* label_id, const _GetterPos& getter_pos, const _GetterNeg& getter_neg, ImPlotErrorBarsFlags flags){
-    if (BeginItemEx(label_id, Fitter2<_GetterPos,_GetterNeg>(getter_pos, getter_neg), flags, IMPLOT_AUTO)){
-        if (getter_pos.Count <= 0 || getter_neg.Count <= 0){
+    if(BeginItemEx(label_id, Fitter2<_GetterPos,_GetterNeg>(getter_pos, getter_neg), flags, IMPLOT_AUTO)){
+        if(getter_pos.Count <= 0 || getter_neg.Count <= 0){
             EndItem();
             return;
         }
@@ -2044,7 +2044,7 @@ void PlotErrorBarsHEx(const char* label_id, const _GetterPos& getter_pos, const 
             ImVec2 p1 = PlotToPixels(getter_neg(i),IMPLOT_AUTO,IMPLOT_AUTO);
             ImVec2 p2 = PlotToPixels(getter_pos(i),IMPLOT_AUTO,IMPLOT_AUTO);
             draw_list.AddLine(p1, p2, col, s.ErrorBarWeight);
-            if (rend_whisker){
+            if(rend_whisker){
                 draw_list.AddLine(p1 - ImVec2(0, half_whisker), p1 + ImVec2(0, half_whisker), col, s.ErrorBarWeight);
                 draw_list.AddLine(p2 - ImVec2(0, half_whisker), p2 + ImVec2(0, half_whisker), col, s.ErrorBarWeight);
             }
@@ -2065,7 +2065,7 @@ void PlotErrorBars(const char* label_id, const T* xs, const T* ys, const T* neg,
     IndexerIdx<T> indexer_n(neg,count,offset,stride);
     IndexerIdx<T> indexer_p(pos,count,offset,stride);
     GetterError<T> getter(xs, ys, neg, pos, count, offset, stride);
-    if (ImHasFlag(flags, ImPlotErrorBarsFlags_Horizontal)){
+    if(ImHasFlag(flags, ImPlotErrorBarsFlags_Horizontal)){
         IndexerAdd<IndexerIdx<T>,IndexerIdx<T>> indexer_xp(indexer_x, indexer_p, 1,  1);
         IndexerAdd<IndexerIdx<T>,IndexerIdx<T>> indexer_xn(indexer_x, indexer_n, 1, -1);
         GetterXY<IndexerAdd<IndexerIdx<T>,IndexerIdx<T>>,IndexerIdx<T>> getter_p(indexer_xp, indexer_y, count);
@@ -2093,19 +2093,19 @@ CALL_INSTANTIATE_FOR_NUMERIC_TYPES()
 
 template <typename _GetterM, typename _GetterB>
 void PlotStemsEx(const char* label_id, const _GetterM& getter_mark, const _GetterB& getter_base, ImPlotStemsFlags flags){
-    if (BeginItemEx(label_id, Fitter2<_GetterM,_GetterB>(getter_mark,getter_base), flags, ImPlotCol_Line)){
-        if (getter_mark.Count <= 0 || getter_base.Count <= 0){
+    if(BeginItemEx(label_id, Fitter2<_GetterM,_GetterB>(getter_mark,getter_base), flags, ImPlotCol_Line)){
+        if(getter_mark.Count <= 0 || getter_base.Count <= 0){
             EndItem();
             return;
         }
         const ImPlotNextItemData& s = GetItemData();
         // render stems
-        if (s.RenderLine){
+        if(s.RenderLine){
             const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_Line]);
             RenderPrimitives2<RendererLineSegments2>(getter_mark, getter_base, col_line, s.LineWeight);
         }
         // render markers
-        if (s.Marker != ImPlotMarker_None){
+        if(s.Marker != ImPlotMarker_None){
             PopPlotClipRect();
             PushPlotClipRect(s.MarkerSize);
             const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_MarkerOutline]);
@@ -2118,7 +2118,7 @@ void PlotStemsEx(const char* label_id, const _GetterM& getter_mark, const _Gette
 
 template <typename T>
 void PlotStems(const char* label_id, const T* values, int count, double ref, double scale, double start, ImPlotStemsFlags flags, int offset, int stride){
-    if (ImHasFlag(flags, ImPlotStemsFlags_Horizontal)){
+    if(ImHasFlag(flags, ImPlotStemsFlags_Horizontal)){
         GetterXY<IndexerIdx<T>,IndexerLin> get_mark(IndexerIdx<T>(values,count,offset,stride),IndexerLin(scale,start),count);
         GetterXY<IndexerConst,IndexerLin>  get_base(IndexerConst(ref),IndexerLin(scale,start),count);
         PlotStemsEx(label_id, get_mark, get_base, flags);
@@ -2132,7 +2132,7 @@ void PlotStems(const char* label_id, const T* values, int count, double ref, dou
 
 template <typename T>
 void PlotStems(const char* label_id, const T* xs, const T* ys, int count, double ref, ImPlotStemsFlags flags, int offset, int stride){
-    if (ImHasFlag(flags, ImPlotStemsFlags_Horizontal)){
+    if(ImHasFlag(flags, ImPlotStemsFlags_Horizontal)){
         GetterXY<IndexerIdx<T>,IndexerIdx<T>> get_mark(IndexerIdx<T>(xs,count,offset,stride),IndexerIdx<T>(ys,count,offset,stride),count);
         GetterXY<IndexerConst,IndexerIdx<T>>  get_base(IndexerConst(ref),IndexerIdx<T>(ys,count,offset,stride),count);
         PlotStemsEx(label_id, get_mark, get_base, flags);
@@ -2158,17 +2158,17 @@ CALL_INSTANTIATE_FOR_NUMERIC_TYPES()
 template <typename T>
 void PlotInfLines(const char* label_id, const T* values, int count, ImPlotInfLinesFlags flags, int offset, int stride){
     const ImPlotRect lims = GetPlotLimits(IMPLOT_AUTO,IMPLOT_AUTO);
-    if (ImHasFlag(flags, ImPlotInfLinesFlags_Horizontal)){
+    if(ImHasFlag(flags, ImPlotInfLinesFlags_Horizontal)){
         GetterXY<IndexerConst,IndexerIdx<T>> getter_min(IndexerConst(lims.X.Min),IndexerIdx<T>(values,count,offset,stride),count);
         GetterXY<IndexerConst,IndexerIdx<T>> getter_max(IndexerConst(lims.X.Max),IndexerIdx<T>(values,count,offset,stride),count);
-        if (BeginItemEx(label_id, FitterY<GetterXY<IndexerConst,IndexerIdx<T>>>(getter_min), flags, ImPlotCol_Line)){
-            if (count <= 0){
+        if(BeginItemEx(label_id, FitterY<GetterXY<IndexerConst,IndexerIdx<T>>>(getter_min), flags, ImPlotCol_Line)){
+            if(count <= 0){
                 EndItem();
                 return;
             }
             const ImPlotNextItemData& s = GetItemData();
             const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_Line]);
-            if (s.RenderLine)
+            if(s.RenderLine)
                 RenderPrimitives2<RendererLineSegments2>(getter_min, getter_max, col_line, s.LineWeight);
             EndItem();
         }
@@ -2176,14 +2176,14 @@ void PlotInfLines(const char* label_id, const T* values, int count, ImPlotInfLin
     else {
         GetterXY<IndexerIdx<T>,IndexerConst> get_min(IndexerIdx<T>(values,count,offset,stride),IndexerConst(lims.Y.Min),count);
         GetterXY<IndexerIdx<T>,IndexerConst> get_max(IndexerIdx<T>(values,count,offset,stride),IndexerConst(lims.Y.Max),count);
-        if (BeginItemEx(label_id, FitterX<GetterXY<IndexerIdx<T>,IndexerConst>>(get_min), flags, ImPlotCol_Line)){
-            if (count <= 0){
+        if(BeginItemEx(label_id, FitterX<GetterXY<IndexerIdx<T>,IndexerConst>>(get_min), flags, ImPlotCol_Line)){
+            if(count <= 0){
                 EndItem();
                 return;
             }
             const ImPlotNextItemData& s = GetItemData();
             const ImU32 col_line = ImGui::GetColorU32(s.Colors[ImPlotCol_Line]);
-            if (s.RenderLine)
+            if(s.RenderLine)
                 RenderPrimitives2<RendererLineSegments2>(get_min, get_max, col_line, s.LineWeight);
             EndItem();
         }
@@ -2218,16 +2218,16 @@ IMPLOT_INLINE void RenderPieSlice(ImDrawList& draw_list, const ImPlotPoint& cent
 template <typename T>
 double PieChartSum(const T* values, int count, bool ignore_hidden){
     double sum = 0;
-    if (ignore_hidden){
+    if(ignore_hidden){
         ImPlotContext& gp = *GImPlot;
         ImPlotItemGroup& Items = *gp.CurrentItems;
         for(int i = 0; i < count; ++i){
-            if (i >= Items.GetItemCount())
+            if(i >= Items.GetItemCount())
                 break;
 
             ImPlotItem* item = Items.GetItemByIndex(i);
             IM_ASSERT(item != nullptr);
-            if (item->Show){
+            if(item->Show){
                 sum += (double)values[i];
             }
         }
@@ -2257,13 +2257,13 @@ void PlotPieChartEx(const char* const label_ids[], const T* values, int count, I
 
         const double percent = normalize ? (double)values[i] / sum : (double)values[i];
         const bool skip      = sum <= 0.0 || (ignore_hidden && item != nullptr && !item->Show);
-        if (!skip)
+        if(!skip)
             a1 = a0 + 2 * IM_PI * percent;
 
-        if (BeginItemEx(label_ids[i], FitterRect(Pmin, Pmax))){
-            if (sum > 0.0){
+        if(BeginItemEx(label_ids[i], FitterRect(Pmin, Pmax))){
+            if(sum > 0.0){
                 ImU32 col = GetCurrentItem()->Color;
-                if (percent < 0.5){
+                if(percent < 0.5){
                     RenderPieSlice(draw_list, center, radius, a0, a1, col);
                 }
                 else {
@@ -2273,7 +2273,7 @@ void PlotPieChartEx(const char* const label_ids[], const T* values, int count, I
             }
             EndItem();
         }
-        if (!skip)
+        if(!skip)
             a0 = a1;
     }
 }
@@ -2303,7 +2303,7 @@ void PlotPieChart(const char* const label_ids[], const T* values, int count, dou
 
     PushPlotClipRect();
     PlotPieChartEx(label_ids, values, count, center, radius, angle0, flags);
-    if (fmt != nullptr){
+    if(fmt != nullptr){
         double a0 = angle0 * 2 * IM_PI / 360.0;
         double a1 = angle0 * 2 * IM_PI / 360.0;
         char buffer[32];
@@ -2314,9 +2314,9 @@ void PlotPieChart(const char* const label_ids[], const T* values, int count, dou
             const double percent = normalize ? (double)values[i] / sum : (double)values[i];
             const bool skip = ignore_hidden && item != nullptr && !item->Show;
 
-            if (!skip){
+            if(!skip){
                 a1 = a0 + 2 * IM_PI * percent;
-                if (item->Show){
+                if(item->Show){
                     fmt((double)values[i], buffer, 32, fmt_data);
                     ImVec2 size = ImGui::CalcTextSize(buffer);
                     double angle = a0 + (a1 - a0) * 0.5;
@@ -2412,13 +2412,13 @@ template <typename T>
 void RenderHeatmap(ImDrawList& draw_list, const T* values, int rows, int cols, double scale_min, double scale_max, const char* fmt, const ImPlotPoint& bounds_min, const ImPlotPoint& bounds_max, bool reverse_y, bool col_maj){
     ImPlotContext& gp = *GImPlot;
     Transformer2 transformer;
-    if (scale_min == 0 && scale_max == 0){
+    if(scale_min == 0 && scale_max == 0){
         T temp_min, temp_max;
         ImMinMaxArray(values,rows*cols,&temp_min,&temp_max);
         scale_min = (double)temp_min;
         scale_max = (double)temp_max;
     }
-    if (scale_min == scale_max){
+    if(scale_min == scale_max){
         ImVec2 a = transformer(bounds_min);
         ImVec2 b = transformer(bounds_max);
         ImU32  col = GetColormapColorU32(0,gp.Style.Colormap);
@@ -2427,7 +2427,7 @@ void RenderHeatmap(ImDrawList& draw_list, const T* values, int rows, int cols, d
     }
     const double yref = reverse_y ? bounds_max.y : bounds_min.y;
     const double ydir = reverse_y ? -1 : 1;
-    if (col_maj){
+    if(col_maj){
         GetterHeatmapColMaj<T> getter(values, rows, cols, scale_min, scale_max, (bounds_max.x - bounds_min.x) / cols, (bounds_max.y - bounds_min.y) / rows, bounds_min.x, yref, ydir);
         RenderPrimitives1<RendererRectC>(getter);
     }
@@ -2436,12 +2436,12 @@ void RenderHeatmap(ImDrawList& draw_list, const T* values, int rows, int cols, d
         RenderPrimitives1<RendererRectC>(getter);
     }
     // labels
-    if (fmt != nullptr){
+    if(fmt != nullptr){
         const double w = (bounds_max.x - bounds_min.x) / cols;
         const double h = (bounds_max.y - bounds_min.y) / rows;
         const ImPlotPoint half_size(w*0.5,h*0.5);
         int i = 0;
-        if (col_maj){
+        if(col_maj){
             for(int c = 0; c < cols; ++c){
                 for(int r = 0; r < rows; ++r){
                     ImPlotPoint p;
@@ -2482,8 +2482,8 @@ void RenderHeatmap(ImDrawList& draw_list, const T* values, int rows, int cols, d
 
 template <typename T>
 void PlotHeatmap(const char* label_id, const T* values, int rows, int cols, double scale_min, double scale_max, const char* fmt, const ImPlotPoint& bounds_min, const ImPlotPoint& bounds_max, ImPlotHeatmapFlags flags){
-    if (BeginItemEx(label_id, FitterRect(bounds_min, bounds_max))){
-        if (rows <= 0 || cols <= 0){
+    if(BeginItemEx(label_id, FitterRect(bounds_min, bounds_max))){
+        if(rows <= 0 || cols <= 0){
             EndItem();
             return;
         }
@@ -2508,10 +2508,10 @@ double PlotHistogram(const char* label_id, const T* values, int count, int bins,
     const bool density    = ImHasFlag(flags, ImPlotHistogramFlags_Density);
     const bool outliers   = !ImHasFlag(flags, ImPlotHistogramFlags_NoOutliers);
 
-    if (count <= 0 || bins == 0)
+    if(count <= 0 || bins == 0)
         return 0;
 
-    if (range.Min == 0 && range.Max == 0){
+    if(range.Min == 0 && range.Max == 0){
         T Min, Max;
         ImMinMaxArray(values, count, &Min, &Max);
         range.Min = (double)Min;
@@ -2519,7 +2519,7 @@ double PlotHistogram(const char* label_id, const T* values, int count, int bins,
     }
 
     double width;
-    if (bins < 0)
+    if(bins < 0)
         CalculateBins(values, count, bins, range, bins, width);
     else
         width = range.Size() / bins;
@@ -2539,19 +2539,19 @@ double PlotHistogram(const char* label_id, const T* values, int count, int bins,
     double max_count = 0;
     for(int i = 0; i < count; ++i){
         double val = (double)values[i];
-        if (range.Contains(val)){
+        if(range.Contains(val)){
             const int b = ImClamp((int)((val - range.Min) / width), 0, bins - 1);
             bin_counts[b] += 1.0;
-            if (bin_counts[b] > max_count)
+            if(bin_counts[b] > max_count)
                 max_count = bin_counts[b];
             counted++;
         }
-        else if (val < range.Min){
+        else if(val < range.Min){
             below++;
         }
     }
-    if (cumulative && density){
-        if (outliers)
+    if(cumulative && density){
+        if(outliers)
             bin_counts[0] += below;
         for(int b = 1; b < bins; ++b)
             bin_counts[b] += bin_counts[b-1];
@@ -2560,20 +2560,20 @@ double PlotHistogram(const char* label_id, const T* values, int count, int bins,
             bin_counts[b] *= scale;
         max_count = bin_counts[bins-1];
     }
-    else if (cumulative){
-        if (outliers)
+    else if(cumulative){
+        if(outliers)
             bin_counts[0] += below;
         for(int b = 1; b < bins; ++b)
             bin_counts[b] += bin_counts[b-1];
         max_count = bin_counts[bins-1];
     }
-    else if (density){
+    else if(density){
         double scale = 1.0 / ((outliers ? count : counted) * width);
         for(int b = 0; b < bins; ++b)
             bin_counts[b] *= scale;
         max_count *= scale;
     }
-    if (ImHasFlag(flags, ImPlotHistogramFlags_Horizontal))
+    if(ImHasFlag(flags, ImPlotHistogramFlags_Horizontal))
         PlotBars(label_id, &bin_counts.Data[0], &bin_centers.Data[0], bins, bar_scale*width, ImPlotBarsFlags_Horizontal);
     else
         PlotBars(label_id, &bin_centers.Data[0], &bin_counts.Data[0], bins, bar_scale*width);
@@ -2595,16 +2595,16 @@ double PlotHistogram2D(const char* label_id, const T* xs, const T* ys, int count
     const bool outliers = !ImHasFlag(flags, ImPlotHistogramFlags_NoOutliers);
     const bool col_maj  = ImHasFlag(flags, ImPlotHistogramFlags_ColMajor);
 
-    if (count <= 0 || x_bins == 0 || y_bins == 0)
+    if(count <= 0 || x_bins == 0 || y_bins == 0)
         return 0;
 
-    if (range.X.Min == 0 && range.X.Max == 0){
+    if(range.X.Min == 0 && range.X.Max == 0){
         T Min, Max;
         ImMinMaxArray(xs, count, &Min, &Max);
         range.X.Min = (double)Min;
         range.X.Max = (double)Max;
     }
-    if (range.Y.Min == 0 && range.Y.Max == 0){
+    if(range.Y.Min == 0 && range.Y.Max == 0){
         T Min, Max;
         ImMinMaxArray(ys, count, &Min, &Max);
         range.Y.Min = (double)Min;
@@ -2612,11 +2612,11 @@ double PlotHistogram2D(const char* label_id, const T* xs, const T* ys, int count
     }
 
     double width, height;
-    if (x_bins < 0)
+    if(x_bins < 0)
         CalculateBins(xs, count, x_bins, range.X, x_bins, width);
     else
         width = range.X.Size() / x_bins;
-    if (y_bins < 0)
+    if(y_bins < 0)
         CalculateBins(ys, count, y_bins, range.Y, y_bins, height);
     else
         height = range.Y.Size() / y_bins;
@@ -2633,25 +2633,25 @@ double PlotHistogram2D(const char* label_id, const T* xs, const T* ys, int count
     int counted = 0;
     double max_count = 0;
     for(int i = 0; i < count; ++i){
-        if (range.Contains((double)xs[i], (double)ys[i])){
+        if(range.Contains((double)xs[i], (double)ys[i])){
             const int xb = ImClamp( (int)((double)(xs[i] - range.X.Min) / width)  , 0, x_bins - 1);
             const int yb = ImClamp( (int)((double)(ys[i] - range.Y.Min) / height) , 0, y_bins - 1);
             const int b  = yb * x_bins + xb;
             bin_counts[b] += 1.0;
-            if (bin_counts[b] > max_count)
+            if(bin_counts[b] > max_count)
                 max_count = bin_counts[b];
             counted++;
         }
     }
-    if (density){
+    if(density){
         double scale = 1.0 / ((outliers ? count : counted) * width * height);
         for(int b = 0; b < bins; ++b)
             bin_counts[b] *= scale;
         max_count *= scale;
     }
 
-    if (BeginItemEx(label_id, FitterRect(range))){
-        if (y_bins <= 0 || x_bins <= 0){
+    if(BeginItemEx(label_id, FitterRect(range))){
+        if(y_bins <= 0 || x_bins <= 0){
             EndItem();
             return max_count;
         }
@@ -2673,11 +2673,11 @@ CALL_INSTANTIATE_FOR_NUMERIC_TYPES()
 
 template <typename Getter>
 void PlotDigitalEx(const char* label_id, Getter getter, ImPlotDigitalFlags flags){
-    if (BeginItem(label_id, flags, ImPlotCol_Fill)){
+    if(BeginItem(label_id, flags, ImPlotCol_Fill)){
         ImPlotContext& gp = *GImPlot;
         ImDrawList& draw_list = *GetPlotDrawList();
         const ImPlotNextItemData& s = GetItemData();
-        if (getter.Count > 1 && s.RenderFill){
+        if(getter.Count > 1 && s.RenderFill){
             ImPlotPlot& plot   = *gp.CurrentPlot;
             ImPlotAxis& x_axis = plot.Axes[plot.CurrentX];
             ImPlotAxis& y_axis = plot.Axes[plot.CurrentY];
@@ -2686,11 +2686,11 @@ void PlotDigitalEx(const char* label_id, Getter getter, ImPlotDigitalFlags flags
             ImPlotPoint itemData1 = getter(0);
             for(int i = 0; i < getter.Count; ++i){
                 ImPlotPoint itemData2 = getter(i);
-                if (ImNanOrInf(itemData1.y)){
+                if(ImNanOrInf(itemData1.y)){
                     itemData1 = itemData2;
                     continue;
                 }
-                if (ImNanOrInf(itemData2.y)) itemData2.y = ImConstrainNan(ImConstrainInf(itemData2.y));
+                if(ImNanOrInf(itemData2.y)) itemData2.y = ImConstrainNan(ImConstrainInf(itemData2.y));
                 int pixY_0 = (int)(s.LineWeight);
                 itemData1.y = ImMax(0.0, itemData1.y);
                 float pixY_1_float = s.DigitalBitHeight * (float)itemData1.y;
@@ -2703,20 +2703,20 @@ void PlotDigitalEx(const char* label_id, Getter getter, ImPlotDigitalFlags flags
                 pMin.y = (y_axis.PixelMin) + ((-gp.DigitalPlotOffset)                   - pixY_Offset);
                 pMax.y = (y_axis.PixelMin) + ((-gp.DigitalPlotOffset) - pixY_0 - pixY_1 - pixY_Offset);
                 //plot only one rectangle for same digital state
-                while (((i+2) < getter.Count) && (itemData1.y == itemData2.y)){
+                while(((i+2) < getter.Count) && (itemData1.y == itemData2.y)){
                     const int in = (i + 1);
                     itemData2 = getter(in);
-                    if (ImNanOrInf(itemData2.y)) break;
+                    if(ImNanOrInf(itemData2.y)) break;
                     pMax.x = PlotToPixels(itemData2,IMPLOT_AUTO,IMPLOT_AUTO).x;
                     i++;
                 }
                 //do not extend plot outside plot range
-                if (pMin.x < x_axis.PixelMin) pMin.x = x_axis.PixelMin;
-                if (pMax.x < x_axis.PixelMin) pMax.x = x_axis.PixelMin;
-                if (pMin.x > x_axis.PixelMax) pMin.x = x_axis.PixelMax - 1; //fix issue related to https://github.com/ocornut/imgui/issues/3976
-                if (pMax.x > x_axis.PixelMax) pMax.x = x_axis.PixelMax - 1; //fix issue related to https://github.com/ocornut/imgui/issues/3976
+                if(pMin.x < x_axis.PixelMin) pMin.x = x_axis.PixelMin;
+                if(pMax.x < x_axis.PixelMin) pMax.x = x_axis.PixelMin;
+                if(pMin.x > x_axis.PixelMax) pMin.x = x_axis.PixelMax - 1; //fix issue related to https://github.com/ocornut/imgui/issues/3976
+                if(pMax.x > x_axis.PixelMax) pMax.x = x_axis.PixelMax - 1; //fix issue related to https://github.com/ocornut/imgui/issues/3976
                 //plot a rectangle that extends up to x2 with y1 height
-                if ((pMax.x > pMin.x) && (gp.CurrentPlot->PlotRect.Contains(pMin) || gp.CurrentPlot->PlotRect.Contains(pMax))){
+                if((pMax.x > pMin.x) && (gp.CurrentPlot->PlotRect.Contains(pMin) || gp.CurrentPlot->PlotRect.Contains(pMax))){
                     // ImVec4 colAlpha = item->Color;
                     // colAlpha.w = item->Highlight ? 1.0f : 0.9f;
                     draw_list.AddRectFilled(pMin, pMax, ImGui::GetColorU32(s.Colors[ImPlotCol_Fill]));
@@ -2751,7 +2751,7 @@ void PlotDigitalG(const char* label_id, ImPlotGetter getter_func, void* data, in
 //-----------------------------------------------------------------------------
 
 void PlotImage(const char* label_id, ImTextureID user_texture_id, const ImPlotPoint& bmin, const ImPlotPoint& bmax, const ImVec2& uv0, const ImVec2& uv1, const ImVec4& tint_col, ImPlotImageFlags){
-    if (BeginItemEx(label_id, FitterRect(bmin,bmax))){
+    if(BeginItemEx(label_id, FitterRect(bmin,bmax))){
         ImU32 tint_col32 = ImGui::ColorConvertFloat4ToU32(tint_col);
         GetCurrentItem()->Color = tint_col32;
         ImDrawList& draw_list = *GetPlotDrawList();
@@ -2774,11 +2774,11 @@ void PlotText(const char* text, double x, double y, const ImVec2& pixel_offset, 
     ImDrawList & draw_list = *GetPlotDrawList();
     PushPlotClipRect();
     ImU32 colTxt = GetStyleColorU32(ImPlotCol_InlayText);
-    if (ImHasFlag(flags,ImPlotTextFlags_Vertical)){
+    if(ImHasFlag(flags,ImPlotTextFlags_Vertical)){
         ImVec2 siz = CalcTextSizeVertical(text) * 0.5f;
         ImVec2 ctr = siz * 0.5f;
         ImVec2 pos = PlotToPixels(ImPlotPoint(x,y),IMPLOT_AUTO,IMPLOT_AUTO) + ImVec2(-ctr.x, ctr.y) + pixel_offset;
-        if (FitThisFrame() && !ImHasFlag(flags, ImPlotItemFlags_NoFit)){
+        if(FitThisFrame() && !ImHasFlag(flags, ImPlotItemFlags_NoFit)){
             FitPoint(PixelsToPlot(pos));
             FitPoint(PixelsToPlot(pos.x + siz.x, pos.y - siz.y));
         }
@@ -2787,7 +2787,7 @@ void PlotText(const char* text, double x, double y, const ImVec2& pixel_offset, 
     else {
         ImVec2 siz = ImGui::CalcTextSize(text);
         ImVec2 pos = PlotToPixels(ImPlotPoint(x,y),IMPLOT_AUTO,IMPLOT_AUTO) - siz * 0.5f + pixel_offset;
-        if (FitThisFrame() && !ImHasFlag(flags, ImPlotItemFlags_NoFit)){
+        if(FitThisFrame() && !ImHasFlag(flags, ImPlotItemFlags_NoFit)){
             FitPoint(PixelsToPlot(pos));
             FitPoint(PixelsToPlot(pos+siz));
         }
@@ -2801,7 +2801,7 @@ void PlotText(const char* text, double x, double y, const ImVec2& pixel_offset, 
 //-----------------------------------------------------------------------------
 
 void PlotDummy(const char* label_id, ImPlotDummyFlags flags){
-    if (BeginItem(label_id, flags, ImPlotCol_Line))
+    if(BeginItem(label_id, flags, ImPlotCol_Line))
         EndItem();
 }
 

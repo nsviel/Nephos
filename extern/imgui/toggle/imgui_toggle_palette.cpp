@@ -24,7 +24,7 @@ void ImGui::UnionPalette(ImGuiTogglePalette* target, const ImGuiTogglePalette* c
     target->A11yGlyph = colors[!v ? ImGuiCol_FrameBg : ImGuiCol_Text];
 
     // if the user didn't provide a candidate, just provide the theme colored palette.
-    if (candidate == nullptr)
+    if(candidate == nullptr)
     {
         return;
     }
@@ -32,11 +32,11 @@ void ImGui::UnionPalette(ImGuiTogglePalette* target, const ImGuiTogglePalette* c
     // if the user did provide a candidate, populate all non-zero colors
 #define GET_PALETTE_POPULATE_NONZERO(member) \
     do { \
-        if (IsNonZero(candidate->member)) \
+        if(IsNonZero(candidate->member)) \
         { \
             target->member = candidate->member; \
         } \
-    } while (0)
+    } while(0)
 
     GET_PALETTE_POPULATE_NONZERO(Knob);
     GET_PALETTE_POPULATE_NONZERO(KnobHover);
@@ -54,12 +54,12 @@ void ImGui::UnionPalette(ImGuiTogglePalette* target, const ImGuiTogglePalette* c
 void ImGui::BlendPalettes(ImGuiTogglePalette* result, const ImGuiTogglePalette& a, const ImGuiTogglePalette& b, float blend_amount)
 {
     // a quick out for if we are at either end of the blend.
-    if (ImApproximately(blend_amount, 0.0f))
+    if(ImApproximately(blend_amount, 0.0f))
     {
         *result = a;
         return;
     }
-    else if (ImApproximately(blend_amount, 1.0f))
+    else if(ImApproximately(blend_amount, 1.0f))
     {
         *result = b;
         return;
@@ -69,7 +69,7 @@ void ImGui::BlendPalettes(ImGuiTogglePalette* result, const ImGuiTogglePalette& 
 #define BLEND_PALETTES_LERP(member) \
     do { \
         result->member = ImLerp(a.member, b.member, blend_amount); \
-    } while (0)
+    } while(0)
 
     BLEND_PALETTES_LERP(Knob);
     BLEND_PALETTES_LERP(KnobHover);

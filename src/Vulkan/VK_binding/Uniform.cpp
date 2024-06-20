@@ -77,7 +77,7 @@ template <typename T> void Uniform::update_uniform(string uniform_name, vk::stru
   }
 
   //Error reporte
-  if (!has_been_found){
+  if(!has_been_found){
     cout << "------------------------" << endl;
     cout << "[error] Update uniform -> name not recognized \033[1;31m" << uniform_name << "\033[0m" << endl;
     cout << "Existing uniform names: " << endl;

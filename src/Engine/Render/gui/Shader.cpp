@@ -169,18 +169,18 @@ void Shader::shader_command(){
 void Shader::shader_tabs(){
   //---------------------------
 
-  if (ImGui::BeginTabBar("shader_editor")){
-    if (ImGui::BeginTabItem("Vertex")){
+  if(ImGui::BeginTabBar("shader_editor")){
+    if(ImGui::BeginTabItem("Vertex")){
         editor_vs->run_editor();
         this->active_editor = "Vertex";
         ImGui::EndTabItem();
     }
-    if (ImGui::BeginTabItem("Fragment")){
+    if(ImGui::BeginTabItem("Fragment")){
         editor_fs->run_editor();
         this->active_editor = "Fragment";
         ImGui::EndTabItem();
     }
-    if (ImGui::BeginTabItem("Parameter")){
+    if(ImGui::BeginTabItem("Parameter")){
         this->show_parameter();
         ImGui::EndTabItem();
     }

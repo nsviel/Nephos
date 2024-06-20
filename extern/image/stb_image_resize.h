@@ -571,10 +571,10 @@ static stbir__inline int stbir__min(int a, int b)
 
 static stbir__inline float stbir__saturate(float x)
 {
-    if (x < 0)
+    if(x < 0)
         return 0;
 
-    if (x > 1)
+    if(x > 1)
         return 1;
 
     return x;
@@ -583,10 +583,10 @@ static stbir__inline float stbir__saturate(float x)
 #ifdef STBIR_SATURATE_INT
 static stbir__inline stbir_uint8 stbir__saturate8(int x)
 {
-    if ((unsigned int) x <= 255)
+    if((unsigned int) x <= 255)
         return x;
 
-    if (x < 0)
+    if(x < 0)
         return 0;
 
     return 255;
@@ -594,10 +594,10 @@ static stbir__inline stbir_uint8 stbir__saturate8(int x)
 
 static stbir__inline stbir_uint16 stbir__saturate16(int x)
 {
-    if ((unsigned int) x <= 65535)
+    if((unsigned int) x <= 65535)
         return x;
 
-    if (x < 0)
+    if(x < 0)
         return 0;
 
     return 65535;
@@ -633,7 +633,7 @@ static float stbir__srgb_uchar_to_linear_float[256] = {
 
 static float stbir__srgb_to_linear(float f)
 {
-    if (f <= 0.04045f)
+    if(f <= 0.04045f)
         return f / 12.92f;
     else
         return (float)pow((f + 0.055f) / 1.055f, 2.4f);
@@ -641,7 +641,7 @@ static float stbir__srgb_to_linear(float f)
 
 static float stbir__linear_to_srgb(float f)
 {
-    if (f <= 0.0031308f)
+    if(f <= 0.0031308f)
         return f * 12.92f;
     else
         return 1.055f * (float)pow(f, 1 / 2.4f) - 0.055f;
@@ -682,9 +682,9 @@ static stbir_uint8 stbir__linear_to_srgb_uchar(float in)
     // Clamp to [2^(-13), 1-eps]; these two values map to 0 and 1, respectively.
     // The tests are carefully written so that NaNs map to 0, same as in the reference
     // implementation.
-    if (!(in > minval.f)) // written this way to catch NaNs
+    if(!(in > minval.f)) // written this way to catch NaNs
         in = minval.f;
-    if (in > almostone.f)
+    if(in > almostone.f)
         in = almostone.f;
 
     // Do the table lookup and unpack bias, scale
@@ -743,14 +743,14 @@ static stbir_uint8 stbir__linear_to_srgb_uchar(float f)
     int i;
 
     // Refine the guess with a short binary search.
-    i = v + 128; if (x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
-    i = v +  64; if (x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
-    i = v +  32; if (x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
-    i = v +  16; if (x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
-    i = v +   8; if (x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
-    i = v +   4; if (x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
-    i = v +   2; if (x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
-    i = v +   1; if (x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
+    i = v + 128; if(x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
+    i = v +  64; if(x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
+    i = v +  32; if(x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
+    i = v +  16; if(x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
+    i = v +   8; if(x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
+    i = v +   4; if(x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
+    i = v +   2; if(x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
+    i = v +   1; if(x >= stbir__srgb_offset_to_linear_scaled[i]) v = i;
 
     return (stbir_uint8) v;
 }
@@ -764,12 +764,12 @@ static float stbir__filter_trapezoid(float x, float scale)
 
     x = (float)fabs(x);
 
-    if (x >= t)
+    if(x >= t)
         return 0;
     else
     {
         float r = 0.5f - halfscale;
-        if (x <= r)
+        if(x <= r)
             return 1;
         else
             return (t - x) / scale;
@@ -788,7 +788,7 @@ static float stbir__filter_triangle(float x, float s)
 
     x = (float)fabs(x);
 
-    if (x <= 1.0f)
+    if(x <= 1.0f)
         return 1 - x;
     else
         return 0;
@@ -800,9 +800,9 @@ static float stbir__filter_cubic(float x, float s)
 
     x = (float)fabs(x);
 
-    if (x < 1.0f)
+    if(x < 1.0f)
         return (4 + x*x*(3*x - 6))/6;
-    else if (x < 2.0f)
+    else if(x < 2.0f)
         return (8 + x*(-12 + x*(6 - x)))/6;
 
     return (0.0f);
@@ -814,9 +814,9 @@ static float stbir__filter_catmullrom(float x, float s)
 
     x = (float)fabs(x);
 
-    if (x < 1.0f)
+    if(x < 1.0f)
         return 1 - x*x*(2.5f - 1.5f*x);
-    else if (x < 2.0f)
+    else if(x < 2.0f)
         return 2 - x*(4 + x*(0.5f*x - 2.5f));
 
     return (0.0f);
@@ -828,9 +828,9 @@ static float stbir__filter_mitchell(float x, float s)
 
     x = (float)fabs(x);
 
-    if (x < 1.0f)
+    if(x < 1.0f)
         return (16 + x*x*(21 * x - 36))/18;
-    else if (x < 2.0f)
+    else if(x < 2.0f)
         return (32 + x*(-60 + x*(36 - 7*x)))/18;
 
     return (0.0f);
@@ -885,7 +885,7 @@ static int stbir__get_filter_pixel_width(stbir_filter filter, float scale)
     STBIR_ASSERT(filter != 0);
     STBIR_ASSERT(filter < STBIR__ARRAY_SIZE(stbir__filter_info_table));
 
-    if (stbir__use_upsampling(scale))
+    if(stbir__use_upsampling(scale))
         return (int)ceil(stbir__filter_info_table[filter].support(1/scale) * 2);
     else
         return (int)ceil(stbir__filter_info_table[filter].support(scale) * 2 / scale);
@@ -900,7 +900,7 @@ static int stbir__get_filter_pixel_margin(stbir_filter filter, float scale)
 
 static int stbir__get_coefficient_width(stbir_filter filter, float scale)
 {
-    if (stbir__use_upsampling(scale))
+    if(stbir__use_upsampling(scale))
         return (int)ceil(stbir__filter_info_table[filter].support(1 / scale) * 2);
     else
         return (int)ceil(stbir__filter_info_table[filter].support(scale) * 2);
@@ -908,7 +908,7 @@ static int stbir__get_coefficient_width(stbir_filter filter, float scale)
 
 static int stbir__get_contributors(float scale, stbir_filter filter, int input_size, int output_size)
 {
-    if (stbir__use_upsampling(scale))
+    if(stbir__use_upsampling(scale))
         return output_size;
     else
         return (input_size + stbir__get_filter_pixel_margin(filter, scale) * 2);
@@ -947,28 +947,28 @@ static int stbir__edge_wrap_slow(stbir_edge edge, int n, int max)
         return 0; // we'll decode the wrong pixel here, and then overwrite with 0s later
 
     case STBIR_EDGE_CLAMP:
-        if (n < 0)
+        if(n < 0)
             return 0;
 
-        if (n >= max)
+        if(n >= max)
             return max - 1;
 
         return n; // NOTREACHED
 
     case STBIR_EDGE_REFLECT:
     {
-        if (n < 0)
+        if(n < 0)
         {
-            if (n < max)
+            if(n < max)
                 return -n;
             else
                 return max - 1;
         }
 
-        if (n >= max)
+        if(n >= max)
         {
             int max2 = max * 2;
-            if (n >= max2)
+            if(n >= max2)
                 return 0;
             else
                 return max2 - n - 1;
@@ -978,13 +978,13 @@ static int stbir__edge_wrap_slow(stbir_edge edge, int n, int max)
     }
 
     case STBIR_EDGE_WRAP:
-        if (n >= 0)
+        if(n >= 0)
             return (n % max);
         else
         {
             int m = (-n) % max;
 
-            if (m != 0)
+            if(m != 0)
                 m = max - m;
 
             return (m);
@@ -1000,7 +1000,7 @@ static int stbir__edge_wrap_slow(stbir_edge edge, int n, int max)
 stbir__inline static int stbir__edge_wrap(stbir_edge edge, int n, int max)
 {
     // avoid per-pixel switch
-    if (n >= 0 && n < max)
+    if(n >= 0 && n < max)
         return n;
     return stbir__edge_wrap_slow(edge, n, max);
 }
@@ -1054,7 +1054,7 @@ static void stbir__calculate_coefficients_upsample(stbir_filter filter, float sc
         coefficient_group[i] = stbir__filter_info_table[filter].kernel(in_center_of_out - in_pixel_center, 1 / scale);
 
         // If the coefficient is zero, skip it. (Don't do the <0 check here, we want the influence of those outside pixels.)
-        if (i == 0 && !coefficient_group[i])
+        if(i == 0 && !coefficient_group[i])
         {
             contributor->n0 = ++in_first_pixel;
             i--;
@@ -1077,7 +1077,7 @@ static void stbir__calculate_coefficients_upsample(stbir_filter filter, float sc
 
     for(i = in_last_pixel - in_first_pixel; i >= 0; i--)
     {
-        if (coefficient_group[i])
+        if(coefficient_group[i])
             break;
 
         // This line has no weight. We can skip it.
@@ -1107,7 +1107,7 @@ static void stbir__calculate_coefficients_downsample(stbir_filter filter, float 
 
     for(i = out_last_pixel - out_first_pixel; i >= 0; i--)
     {
-        if (coefficient_group[i])
+        if(coefficient_group[i])
             break;
 
         // This line has no weight. We can skip it.
@@ -1129,12 +1129,12 @@ static void stbir__normalize_downsample_coefficients(stbir__contributors* contri
 
         for(j = 0; j < num_contributors; j++)
         {
-            if (i >= contributors[j].n0 && i <= contributors[j].n1)
+            if(i >= contributors[j].n0 && i <= contributors[j].n1)
             {
                 float coefficient = *stbir__get_coefficient(coefficients, filter, scale_ratio, j, i - contributors[j].n0);
                 total += coefficient;
             }
-            else if (i < contributors[j].n0)
+            else if(i < contributors[j].n0)
                 break;
         }
 
@@ -1145,9 +1145,9 @@ static void stbir__normalize_downsample_coefficients(stbir__contributors* contri
 
         for(j = 0; j < num_contributors; j++)
         {
-            if (i >= contributors[j].n0 && i <= contributors[j].n1)
+            if(i >= contributors[j].n0 && i <= contributors[j].n1)
                 *stbir__get_coefficient(coefficients, filter, scale_ratio, j, i - contributors[j].n0) *= scale;
-            else if (i < contributors[j].n0)
+            else if(i < contributors[j].n0)
                 break;
         }
     }
@@ -1159,12 +1159,12 @@ static void stbir__normalize_downsample_coefficients(stbir__contributors* contri
         int range, max, width;
 
         skip = 0;
-        while (*stbir__get_coefficient(coefficients, filter, scale_ratio, j, skip) == 0)
+        while(*stbir__get_coefficient(coefficients, filter, scale_ratio, j, skip) == 0)
             skip++;
 
         contributors[j].n0 += skip;
 
-        while (contributors[j].n0 < 0)
+        while(contributors[j].n0 < 0)
         {
             contributors[j].n0++;
             skip++;
@@ -1176,7 +1176,7 @@ static void stbir__normalize_downsample_coefficients(stbir__contributors* contri
         width = stbir__get_coefficient_width(filter, scale_ratio);
         for(i = 0; i < max; i++)
         {
-            if (i + skip >= width)
+            if(i + skip >= width)
                 break;
 
             *stbir__get_coefficient(coefficients, filter, scale_ratio, j, i) = *stbir__get_coefficient(coefficients, filter, scale_ratio, j, i + skip);
@@ -1197,7 +1197,7 @@ static void stbir__calculate_filters(stbir__contributors* contributors, float* c
     int n;
     int total_contributors = stbir__get_contributors(scale_ratio, filter, input_size, output_size);
 
-    if (stbir__use_upsampling(scale_ratio))
+    if(stbir__use_upsampling(scale_ratio))
     {
         float out_pixels_radius = stbir__filter_info_table[filter].support(1 / scale_ratio) * scale_ratio;
 
@@ -1262,7 +1262,7 @@ static void stbir__decode_scanline(stbir__info* stbir_info, int n)
 
     // special handling for STBIR_EDGE_ZERO because it needs to return an item that doesn't appear in the input,
     // and we want to avoid paying overhead on every pixel if not STBIR_EDGE_ZERO
-    if (edge_vertical == STBIR_EDGE_ZERO && (n < 0 || n >= stbir_info->input_h))
+    if(edge_vertical == STBIR_EDGE_ZERO && (n < 0 || n >= stbir_info->input_h))
     {
         for(; x < max_x; x++)
             for(c = 0; c < channels; c++)
@@ -1290,7 +1290,7 @@ static void stbir__decode_scanline(stbir__info* stbir_info, int n)
             for(c = 0; c < channels; c++)
                 decode_buffer[decode_pixel_index + c] = stbir__srgb_uchar_to_linear_float[((const unsigned char*)input_data)[input_pixel_index + c]];
 
-            if (!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
+            if(!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
                 decode_buffer[decode_pixel_index + alpha_channel] = ((float)((const unsigned char*)input_data)[input_pixel_index + alpha_channel]) / stbir__max_uint8_as_float;
         }
         break;
@@ -1313,7 +1313,7 @@ static void stbir__decode_scanline(stbir__info* stbir_info, int n)
             for(c = 0; c < channels; c++)
                 decode_buffer[decode_pixel_index + c] = stbir__srgb_to_linear(((float)((const unsigned short*)input_data)[input_pixel_index + c]) / stbir__max_uint16_as_float);
 
-            if (!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
+            if(!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
                 decode_buffer[decode_pixel_index + alpha_channel] = ((float)((const unsigned short*)input_data)[input_pixel_index + alpha_channel]) / stbir__max_uint16_as_float;
         }
         break;
@@ -1336,7 +1336,7 @@ static void stbir__decode_scanline(stbir__info* stbir_info, int n)
             for(c = 0; c < channels; c++)
                 decode_buffer[decode_pixel_index + c] = stbir__srgb_to_linear((float)(((double)((const unsigned int*)input_data)[input_pixel_index + c]) / stbir__max_uint32_as_float));
 
-            if (!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
+            if(!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
                 decode_buffer[decode_pixel_index + alpha_channel] = (float)(((double)((const unsigned int*)input_data)[input_pixel_index + alpha_channel]) / stbir__max_uint32_as_float);
         }
         break;
@@ -1359,7 +1359,7 @@ static void stbir__decode_scanline(stbir__info* stbir_info, int n)
             for(c = 0; c < channels; c++)
                 decode_buffer[decode_pixel_index + c] = stbir__srgb_to_linear(((const float*)input_data)[input_pixel_index + c]);
 
-            if (!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
+            if(!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
                 decode_buffer[decode_pixel_index + alpha_channel] = ((const float*)input_data)[input_pixel_index + alpha_channel];
         }
 
@@ -1370,7 +1370,7 @@ static void stbir__decode_scanline(stbir__info* stbir_info, int n)
         break;
     }
 
-    if (!(stbir_info->flags & STBIR_FLAG_ALPHA_PREMULTIPLIED))
+    if(!(stbir_info->flags & STBIR_FLAG_ALPHA_PREMULTIPLIED))
     {
         for(x = -stbir_info->horizontal_filter_pixel_margin; x < max_x; x++)
         {
@@ -1379,14 +1379,14 @@ static void stbir__decode_scanline(stbir__info* stbir_info, int n)
             // If the alpha value is 0 it will clobber the color values. Make sure it's not.
             float alpha = decode_buffer[decode_pixel_index + alpha_channel];
 #ifndef STBIR_NO_ALPHA_EPSILON
-            if (stbir_info->type != STBIR_TYPE_FLOAT){
+            if(stbir_info->type != STBIR_TYPE_FLOAT){
                 alpha += STBIR_ALPHA_EPSILON;
                 decode_buffer[decode_pixel_index + alpha_channel] = alpha;
             }
 #endif
             for(c = 0; c < channels; c++)
             {
-                if (c == alpha_channel)
+                if(c == alpha_channel)
                     continue;
 
                 decode_buffer[decode_pixel_index + c] *= alpha;
@@ -1394,7 +1394,7 @@ static void stbir__decode_scanline(stbir__info* stbir_info, int n)
         }
     }
 
-    if (edge_horizontal == STBIR_EDGE_ZERO)
+    if(edge_horizontal == STBIR_EDGE_ZERO)
     {
         for(x = -stbir_info->horizontal_filter_pixel_margin; x < 0; x++)
         {
@@ -1421,7 +1421,7 @@ static float* stbir__add_empty_ring_buffer_entry(stbir__info* stbir_info, int n)
 
     stbir_info->ring_buffer_last_scanline = n;
 
-    if (stbir_info->ring_buffer_begin_index < 0)
+    if(stbir_info->ring_buffer_begin_index < 0)
     {
         ring_buffer_index = stbir_info->ring_buffer_begin_index = 0;
         stbir_info->ring_buffer_first_scanline = n;
@@ -1658,7 +1658,7 @@ static void stbir__decode_and_resample_upsample(stbir__info* stbir_info, int n)
     stbir__decode_scanline(stbir_info, n);
 
     // Now resample it into the ring buffer.
-    if (stbir__use_width_upsampling(stbir_info))
+    if(stbir__use_width_upsampling(stbir_info))
         stbir__resample_horizontal_upsample(stbir_info, stbir__add_empty_ring_buffer_entry(stbir_info, n));
     else
         stbir__resample_horizontal_downsample(stbir_info, stbir__add_empty_ring_buffer_entry(stbir_info, n));
@@ -1674,7 +1674,7 @@ static void stbir__decode_and_resample_downsample(stbir__info* stbir_info, int n
     memset(stbir_info->horizontal_buffer, 0, stbir_info->output_w * stbir_info->channels * sizeof(float));
 
     // Now resample it into the horizontal buffer.
-    if (stbir__use_width_upsampling(stbir_info))
+    if(stbir__use_width_upsampling(stbir_info))
         stbir__resample_horizontal_upsample(stbir_info, stbir_info->horizontal_buffer);
     else
         stbir__resample_horizontal_downsample(stbir_info, stbir_info->horizontal_buffer);
@@ -1697,7 +1697,7 @@ static void stbir__encode_scanline(stbir__info* stbir_info, int num_pixels, void
     int num_nonalpha;
     stbir_uint16 nonalpha[STBIR_MAX_CHANNELS];
 
-    if (!(stbir_info->flags&STBIR_FLAG_ALPHA_PREMULTIPLIED))
+    if(!(stbir_info->flags&STBIR_FLAG_ALPHA_PREMULTIPLIED))
     {
         for(x=0; x < num_pixels; ++x)
         {
@@ -1708,7 +1708,7 @@ static void stbir__encode_scanline(stbir__info* stbir_info, int num_pixels, void
 
             // unrolling this produced a 1% slowdown upscaling a large RGBA linear-space image on my machine - stb
             for(n = 0; n < channels; n++)
-                if (n != alpha_channel)
+                if(n != alpha_channel)
                     encode_buffer[pixel_index + n] *= reciprocal_alpha;
 
             // We added in a small epsilon to prevent the color channel from being deleted with zero alpha.
@@ -1722,7 +1722,7 @@ static void stbir__encode_scanline(stbir__info* stbir_info, int num_pixels, void
     // we don't perform colorspace correction on channels that don't need it.
     for(x = 0, num_nonalpha = 0; x < channels; ++x)
     {
-        if (x != alpha_channel || (stbir_info->flags & STBIR_FLAG_ALPHA_USES_COLORSPACE))
+        if(x != alpha_channel || (stbir_info->flags & STBIR_FLAG_ALPHA_USES_COLORSPACE))
         {
             nonalpha[num_nonalpha++] = (stbir_uint16)x;
         }
@@ -1765,7 +1765,7 @@ static void stbir__encode_scanline(stbir__info* stbir_info, int num_pixels, void
                     ((unsigned char*)output_buffer)[index] = stbir__linear_to_srgb_uchar(encode_buffer[index]);
                 }
 
-                if (!(stbir_info->flags & STBIR_FLAG_ALPHA_USES_COLORSPACE))
+                if(!(stbir_info->flags & STBIR_FLAG_ALPHA_USES_COLORSPACE))
                     ((unsigned char *)output_buffer)[pixel_index + alpha_channel] = STBIR__ENCODE_LINEAR8(encode_buffer[pixel_index+alpha_channel]);
             }
             break;
@@ -1794,7 +1794,7 @@ static void stbir__encode_scanline(stbir__info* stbir_info, int num_pixels, void
                     ((unsigned short*)output_buffer)[index] = (unsigned short)STBIR__ROUND_INT(stbir__linear_to_srgb(stbir__saturate(encode_buffer[index])) * stbir__max_uint16_as_float);
                 }
 
-                if (!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
+                if(!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
                     ((unsigned short*)output_buffer)[pixel_index + alpha_channel] = STBIR__ENCODE_LINEAR16(encode_buffer[pixel_index + alpha_channel]);
             }
 
@@ -1824,7 +1824,7 @@ static void stbir__encode_scanline(stbir__info* stbir_info, int num_pixels, void
                     ((unsigned int*)output_buffer)[index] = (unsigned int)STBIR__ROUND_UINT(((double)stbir__linear_to_srgb(stbir__saturate(encode_buffer[index]))) * stbir__max_uint32_as_float);
                 }
 
-                if (!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
+                if(!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
                     ((unsigned int*)output_buffer)[pixel_index + alpha_channel] = (unsigned int)STBIR__ROUND_INT(((double)stbir__saturate(encode_buffer[pixel_index + alpha_channel])) * stbir__max_uint32_as_float);
             }
             break;
@@ -1853,7 +1853,7 @@ static void stbir__encode_scanline(stbir__info* stbir_info, int num_pixels, void
                     ((float*)output_buffer)[index] = stbir__linear_to_srgb(encode_buffer[index]);
                 }
 
-                if (!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
+                if(!(stbir_info->flags&STBIR_FLAG_ALPHA_USES_COLORSPACE))
                     ((float*)output_buffer)[pixel_index + alpha_channel] = encode_buffer[pixel_index + alpha_channel];
             }
             break;
@@ -2078,12 +2078,12 @@ static void stbir__buffer_loop_upsample(stbir__info* stbir_info)
 
         STBIR_ASSERT(in_last_scanline - in_first_scanline + 1 <= stbir_info->ring_buffer_num_entries);
 
-        if (stbir_info->ring_buffer_begin_index >= 0)
+        if(stbir_info->ring_buffer_begin_index >= 0)
         {
             // Get rid of whatever we don't need anymore.
-            while (in_first_scanline > stbir_info->ring_buffer_first_scanline)
+            while(in_first_scanline > stbir_info->ring_buffer_first_scanline)
             {
-                if (stbir_info->ring_buffer_first_scanline == stbir_info->ring_buffer_last_scanline)
+                if(stbir_info->ring_buffer_first_scanline == stbir_info->ring_buffer_last_scanline)
                 {
                     // We just popped the last scanline off the ring buffer.
                     // Reset it to the empty state.
@@ -2101,10 +2101,10 @@ static void stbir__buffer_loop_upsample(stbir__info* stbir_info)
         }
 
         // Load in new ones.
-        if (stbir_info->ring_buffer_begin_index < 0)
+        if(stbir_info->ring_buffer_begin_index < 0)
             stbir__decode_and_resample_upsample(stbir_info, in_first_scanline);
 
-        while (in_last_scanline > stbir_info->ring_buffer_last_scanline)
+        while(in_last_scanline > stbir_info->ring_buffer_last_scanline)
             stbir__decode_and_resample_upsample(stbir_info, stbir_info->ring_buffer_last_scanline + 1);
 
         // Now all buffers should be ready to write a row of vertical sampling.
@@ -2128,12 +2128,12 @@ static void stbir__empty_ring_buffer(stbir__info* stbir_info, int first_necessar
     float* ring_buffer = stbir_info->ring_buffer;
     int ring_buffer_length = stbir_info->ring_buffer_length_bytes/sizeof(float);
 
-    if (stbir_info->ring_buffer_begin_index >= 0)
+    if(stbir_info->ring_buffer_begin_index >= 0)
     {
         // Get rid of whatever we don't need anymore.
-        while (first_necessary_scanline > stbir_info->ring_buffer_first_scanline)
+        while(first_necessary_scanline > stbir_info->ring_buffer_first_scanline)
         {
-            if (stbir_info->ring_buffer_first_scanline >= 0 && stbir_info->ring_buffer_first_scanline < stbir_info->output_h)
+            if(stbir_info->ring_buffer_first_scanline >= 0 && stbir_info->ring_buffer_first_scanline < stbir_info->output_h)
             {
                 int output_row_start = stbir_info->ring_buffer_first_scanline * output_stride_bytes;
                 float* ring_buffer_entry = stbir__get_ring_buffer_entry(ring_buffer, stbir_info->ring_buffer_begin_index, ring_buffer_length);
@@ -2141,7 +2141,7 @@ static void stbir__empty_ring_buffer(stbir__info* stbir_info, int first_necessar
                 STBIR_PROGRESS_REPORT((float)stbir_info->ring_buffer_first_scanline / stbir_info->output_h);
             }
 
-            if (stbir_info->ring_buffer_first_scanline == stbir_info->ring_buffer_last_scanline)
+            if(stbir_info->ring_buffer_first_scanline == stbir_info->ring_buffer_last_scanline)
             {
                 // We just popped the last scanline off the ring buffer.
                 // Reset it to the empty state.
@@ -2179,7 +2179,7 @@ static void stbir__buffer_loop_downsample(stbir__info* stbir_info)
 
         STBIR_ASSERT(out_last_scanline - out_first_scanline + 1 <= stbir_info->ring_buffer_num_entries);
 
-        if (out_last_scanline < 0 || out_first_scanline >= output_h)
+        if(out_last_scanline < 0 || out_first_scanline >= output_h)
             continue;
 
         stbir__empty_ring_buffer(stbir_info, out_first_scanline);
@@ -2187,10 +2187,10 @@ static void stbir__buffer_loop_downsample(stbir__info* stbir_info)
         stbir__decode_and_resample_downsample(stbir_info, y);
 
         // Load in new ones.
-        if (stbir_info->ring_buffer_begin_index < 0)
+        if(stbir_info->ring_buffer_begin_index < 0)
             stbir__add_empty_ring_buffer_entry(stbir_info, out_first_scanline);
 
-        while (out_last_scanline > stbir_info->ring_buffer_last_scanline)
+        while(out_last_scanline > stbir_info->ring_buffer_last_scanline)
             stbir__add_empty_ring_buffer_entry(stbir_info, stbir_info->ring_buffer_last_scanline + 1);
 
         // Now the horizontal buffer is ready to write to all ring buffer rows.
@@ -2216,7 +2216,7 @@ static void stbir__calculate_transform(stbir__info *info, float s0, float t0, fl
     info->s1 = s1;
     info->t1 = t1;
 
-    if (transform)
+    if(transform)
     {
         info->horizontal_scale = transform[0];
         info->vertical_scale   = transform[1];
@@ -2235,9 +2235,9 @@ static void stbir__calculate_transform(stbir__info *info, float s0, float t0, fl
 
 static void stbir__choose_filter(stbir__info *info, stbir_filter h_filter, stbir_filter v_filter)
 {
-    if (h_filter == 0)
+    if(h_filter == 0)
         h_filter = stbir__use_upsampling(info->horizontal_scale) ? STBIR_DEFAULT_FILTER_UPSAMPLE : STBIR_DEFAULT_FILTER_DOWNSAMPLE;
-    if (v_filter == 0)
+    if(v_filter == 0)
         v_filter = stbir__use_upsampling(info->vertical_scale)   ? STBIR_DEFAULT_FILTER_UPSAMPLE : STBIR_DEFAULT_FILTER_DOWNSAMPLE;
     info->horizontal_filter = h_filter;
     info->vertical_filter = v_filter;
@@ -2268,7 +2268,7 @@ static stbir_uint32 stbir__calculate_memory(stbir__info *info)
     STBIR_ASSERT(info->vertical_filter != 0);
     STBIR_ASSERT(info->vertical_filter < STBIR__ARRAY_SIZE(stbir__filter_info_table)); // this now happens too late
 
-    if (stbir__use_height_upsampling(info))
+    if(stbir__use_height_upsampling(info))
         // The horizontal buffer is for when we're downsampling the height and we
         // can't output the result of sampling the decode buffer directly into the
         // ring buffers.
@@ -2313,35 +2313,35 @@ static int stbir__resize_allocated(stbir__info *info,
     STBIR_ASSERT(info->channels >= 0);
     STBIR_ASSERT(info->channels <= STBIR_MAX_CHANNELS);
 
-    if (info->channels < 0 || info->channels > STBIR_MAX_CHANNELS)
+    if(info->channels < 0 || info->channels > STBIR_MAX_CHANNELS)
         return 0;
 
     STBIR_ASSERT(info->horizontal_filter < STBIR__ARRAY_SIZE(stbir__filter_info_table));
     STBIR_ASSERT(info->vertical_filter < STBIR__ARRAY_SIZE(stbir__filter_info_table));
 
-    if (info->horizontal_filter >= STBIR__ARRAY_SIZE(stbir__filter_info_table))
+    if(info->horizontal_filter >= STBIR__ARRAY_SIZE(stbir__filter_info_table))
         return 0;
-    if (info->vertical_filter >= STBIR__ARRAY_SIZE(stbir__filter_info_table))
+    if(info->vertical_filter >= STBIR__ARRAY_SIZE(stbir__filter_info_table))
         return 0;
 
-    if (alpha_channel < 0)
+    if(alpha_channel < 0)
         flags |= STBIR_FLAG_ALPHA_USES_COLORSPACE | STBIR_FLAG_ALPHA_PREMULTIPLIED;
 
-    if (!(flags&STBIR_FLAG_ALPHA_USES_COLORSPACE) || !(flags&STBIR_FLAG_ALPHA_PREMULTIPLIED)){
+    if(!(flags&STBIR_FLAG_ALPHA_USES_COLORSPACE) || !(flags&STBIR_FLAG_ALPHA_PREMULTIPLIED)){
         STBIR_ASSERT(alpha_channel >= 0 && alpha_channel < info->channels);
     }
 
-    if (alpha_channel >= info->channels)
+    if(alpha_channel >= info->channels)
         return 0;
 
     STBIR_ASSERT(tempmem);
 
-    if (!tempmem)
+    if(!tempmem)
         return 0;
 
     STBIR_ASSERT(tempmem_size_in_bytes >= memory_required);
 
-    if (tempmem_size_in_bytes < memory_required)
+    if(tempmem_size_in_bytes < memory_required)
         return 0;
 
     memset(tempmem, 0, tempmem_size_in_bytes);
@@ -2377,7 +2377,7 @@ static int stbir__resize_allocated(stbir__info *info,
     info->vertical_coefficients = STBIR__NEXT_MEMPTR(info->vertical_contributors, float);
     info->decode_buffer = STBIR__NEXT_MEMPTR(info->vertical_coefficients, float);
 
-    if (stbir__use_height_upsampling(info))
+    if(stbir__use_height_upsampling(info))
     {
         info->horizontal_buffer = NULL;
         info->ring_buffer = STBIR__NEXT_MEMPTR(info->decode_buffer, float);
@@ -2404,7 +2404,7 @@ static int stbir__resize_allocated(stbir__info *info,
 
     STBIR_PROGRESS_REPORT(0);
 
-    if (stbir__use_height_upsampling(info))
+    if(stbir__use_height_upsampling(info))
         stbir__buffer_loop_upsample(info);
     else
         stbir__buffer_loop_downsample(info);
@@ -2442,7 +2442,7 @@ static int stbir__resize_arbitrary(
     memory_required = stbir__calculate_memory(&info);
     extra_memory = STBIR_MALLOC(memory_required, alloc_context);
 
-    if (!extra_memory)
+    if(!extra_memory)
         return 0;
 
     result = stbir__resize_allocated(&info, input_data, input_stride_in_bytes,

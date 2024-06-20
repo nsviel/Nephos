@@ -109,10 +109,10 @@ bool ImGuiEx::Canvas::Begin(ImGuiID id, const ImVec2& size)
     UpdateViewTransformPosition();
 
 # if IMGUI_VERSION_NUM > 18415
-    if (ImGui::IsClippedEx(m_WidgetRect, id))
+    if(ImGui::IsClippedEx(m_WidgetRect, id))
         return false;
 # else
-    if (ImGui::IsClippedEx(m_WidgetRect, id, false))
+    if(ImGui::IsClippedEx(m_WidgetRect, id, false))
         return false;
 # endif
 
@@ -194,23 +194,23 @@ void ImGuiEx::Canvas::SetView(const ImVec2& origin, float scale)
 
 void ImGuiEx::Canvas::SetView(const CanvasView& view)
 {
-    if (m_InBeginEnd)
+    if(m_InBeginEnd)
         LeaveLocalSpace();
 
-    if (m_View.Origin.x != view.Origin.x || m_View.Origin.y != view.Origin.y)
+    if(m_View.Origin.x != view.Origin.x || m_View.Origin.y != view.Origin.y)
     {
         m_View.Origin = view.Origin;
 
         UpdateViewTransformPosition();
     }
 
-    if (m_View.Scale != view.Scale)
+    if(m_View.Scale != view.Scale)
     {
         m_View.Scale    = view.Scale;
         m_View.InvScale = view.InvScale;
     }
 
-    if (m_InBeginEnd)
+    if(m_InBeginEnd)
         EnterLocalSpace();
 }
 
@@ -240,18 +240,18 @@ ImGuiEx::CanvasView ImGuiEx::Canvas::CalcCenterView(const ImRect& canvasRect) co
 {
     auto canvasRectSize = canvasRect.GetSize();
 
-    if (canvasRectSize.x <= 0.0f || canvasRectSize.y <= 0.0f)
+    if(canvasRectSize.x <= 0.0f || canvasRectSize.y <= 0.0f)
         return View();
 
     auto widgetAspectRatio     = m_WidgetSize.y   > 0.0f ? m_WidgetSize.x   / m_WidgetSize.y   : 0.0f;
     auto canvasRectAspectRatio = canvasRectSize.y > 0.0f ? canvasRectSize.x / canvasRectSize.y : 0.0f;
 
-    if (widgetAspectRatio <= 0.0f || canvasRectAspectRatio <= 0.0f)
+    if(widgetAspectRatio <= 0.0f || canvasRectAspectRatio <= 0.0f)
         return View();
 
     auto newOrigin = m_View.Origin;
     auto newScale  = m_View.Scale;
-    if (canvasRectAspectRatio > widgetAspectRatio)
+    if(canvasRectAspectRatio > widgetAspectRatio)
     {
         // width span across view
         newScale = m_WidgetSize.x / canvasRectSize.x;
@@ -276,7 +276,7 @@ void ImGuiEx::Canvas::Suspend()
     // Always call canvas function with using same channel.
     IM_ASSERT(m_DrawList->_Splitter._Current == m_ExpectedChannel);
 
-    if (m_SuspendCounter == 0)
+    if(m_SuspendCounter == 0)
         LeaveLocalSpace();
 
     ++m_SuspendCounter;
@@ -291,7 +291,7 @@ void ImGuiEx::Canvas::Resume()
 
     // Check: Number of calls to Resume() do not match calls to Suspend(). Please check your code.
     IM_ASSERT(m_SuspendCounter > 0);
-    if (--m_SuspendCounter == 0)
+    if(--m_SuspendCounter == 0)
         EnterLocalSpace();
 }
 
@@ -442,7 +442,7 @@ void ImGuiEx::Canvas::EnterLocalSpace()
     //     different clip rectangle.
     //
     //     More investigation is needed. To get to the bottom of this.
-    if ((!m_DrawList->CmdBuffer.empty() && m_DrawList->CmdBuffer.back().ElemCount > 0) || m_DrawList->_Splitter._Count > 1)
+    if((!m_DrawList->CmdBuffer.empty() && m_DrawList->CmdBuffer.back().ElemCount > 0) || m_DrawList->_Splitter._Count > 1)
         m_DrawList->AddCallback(ImDrawCallback_ImCanvas, nullptr);
 
 # if defined(IMGUI_HAS_VIEWPORT)
@@ -500,7 +500,7 @@ void ImGuiEx::Canvas::LeaveLocalSpace()
 
     m_CurrentRange->EndVertexIndex  = m_DrawList->_VtxCurrentIdx + ImVtxOffsetRef(m_DrawList);
     m_CurrentRange->EndCommandIndex = m_DrawList->CmdBuffer.size();
-    if (m_CurrentRange->BeginVertexIndex == m_CurrentRange->EndVertexIndex)
+    if(m_CurrentRange->BeginVertexIndex == m_CurrentRange->EndVertexIndex)
     {
         // Drop empty range
         m_Ranges.resize(m_Ranges.Size - 1);
@@ -513,9 +513,9 @@ void ImGuiEx::Canvas::LeaveLocalSpace()
     auto vertexEnd = m_DrawList->VtxBuffer.Data + m_DrawList->_VtxCurrentIdx + ImVtxOffsetRef(m_DrawList);
 
     // If canvas view is not scaled take a faster path.
-    if (m_View.Scale != 1.0f)
+    if(m_View.Scale != 1.0f)
     {
-        while (vertex < vertexEnd)
+        while(vertex < vertexEnd)
         {
             vertex->pos.x = vertex->pos.x * m_View.Scale + m_ViewTransformPosition.x;
             vertex->pos.y = vertex->pos.y * m_View.Scale + m_ViewTransformPosition.y;
@@ -534,7 +534,7 @@ void ImGuiEx::Canvas::LeaveLocalSpace()
     }
     else
     {
-        while (vertex < vertexEnd)
+        while(vertex < vertexEnd)
         {
             vertex->pos.x = vertex->pos.x + m_ViewTransformPosition.x;
             vertex->pos.y = vertex->pos.y + m_ViewTransformPosition.y;
@@ -553,11 +553,11 @@ void ImGuiEx::Canvas::LeaveLocalSpace()
     }
 
     // Remove sentinel draw command if present
-    if (m_DrawListCommadBufferSize > 0)
+    if(m_DrawListCommadBufferSize > 0)
     {
-        if (m_DrawList->CmdBuffer.size() > m_DrawListCommadBufferSize && m_DrawList->CmdBuffer[m_DrawListCommadBufferSize].UserCallback == ImDrawCallback_ImCanvas)
+        if(m_DrawList->CmdBuffer.size() > m_DrawListCommadBufferSize && m_DrawList->CmdBuffer[m_DrawListCommadBufferSize].UserCallback == ImDrawCallback_ImCanvas)
             m_DrawList->CmdBuffer.erase(m_DrawList->CmdBuffer.Data + m_DrawListCommadBufferSize);
-        else if (m_DrawList->CmdBuffer.size() >= m_DrawListCommadBufferSize && m_DrawList->CmdBuffer[m_DrawListCommadBufferSize - 1].UserCallback == ImDrawCallback_ImCanvas)
+        else if(m_DrawList->CmdBuffer.size() >= m_DrawListCommadBufferSize && m_DrawList->CmdBuffer[m_DrawListCommadBufferSize - 1].UserCallback == ImDrawCallback_ImCanvas)
             m_DrawList->CmdBuffer.erase(m_DrawList->CmdBuffer.Data + m_DrawListCommadBufferSize - 1);
     }
 

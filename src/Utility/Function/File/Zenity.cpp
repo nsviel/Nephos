@@ -21,16 +21,16 @@ std::vector<std::string> selection_file_vec(std::string title, std::string& path
   std::vector<std::string> path_vec;
 
   //Check if not empty
-  if ((path_char != NULL) && (path_char[0] != '\0')){
+  if((path_char != NULL) && (path_char[0] != '\0')){
     std::string path_str(path_char);
 
     //Check for multiple
-    if (path_str.find('|')){
+    if(path_str.find('|')){
       int N = count(path_str.begin(), path_str.end(), '|');
       for(int i=0; i<N; i++){
         std::string path = path_str.substr(0, path_str.find('|'));
 
-        if (path.find('\n')){
+        if(path.find('\n')){
           path.erase(std::remove(path.begin(), path.end(), '\n'), path.end());
         }
 
@@ -42,7 +42,7 @@ std::vector<std::string> selection_file_vec(std::string title, std::string& path
     }
 
     //Retrieve the last selected path
-    if (path_str.find('\n')){
+    if(path_str.find('\n')){
       path_str.erase(std::remove(path_str.begin(), path_str.end(), '\n'), path_str.end());
       path = path_str;
     }
@@ -63,11 +63,11 @@ std::vector<std::string> selection_file_vec(std::string title){
   std::vector<std::string> path_vec;
 
   //Check if not empty
-  if ((path_char != NULL) && (path_char[0] != '\0')){
+  if((path_char != NULL) && (path_char[0] != '\0')){
     std::string path_str(path_char);
 
     //Check for multiple
-    if (path_str.find('|')){
+    if(path_str.find('|')){
       int N = count(path_str.begin(), path_str.end(), '|');
       for(int i=0; i<N; i++){
         std::string path = path_str.substr(0, path_str.find('|'));
@@ -84,7 +84,7 @@ std::vector<std::string> selection_file_vec(std::string title){
     }
 
     //Retrieve the last selected path
-    if (path_str.find('\n')){
+    if(path_str.find('\n')){
       path_str.erase(std::remove(path_str.begin(), path_str.end(), '\n'), path_str.end());
     }
     path_vec.push_back(path_str);
@@ -129,11 +129,11 @@ std::string selection_file(){
   char* path_char = fgets(filename, 1024, file);
 
   //Check if empty
-  if ((path_char != NULL) && (path_char[0] != '\0')){
+  if((path_char != NULL) && (path_char[0] != '\0')){
     std::string path_str(path_char);
 
     //Supress unwanted line break
-    if (path_str.find('\n')){
+    if(path_str.find('\n')){
       path_str.erase(std::remove(path_str.begin(), path_str.end(), '\n'), path_str.end());
     }
 
@@ -156,10 +156,10 @@ std::string selection_saving(std::string& dir, std::string filename){
   char* path_char = fgets(path_buffer, 1024, file);
 
   //Check if empty
-  if ((path_char != NULL) && (path_char[0] != '\0')){
+  if((path_char != NULL) && (path_char[0] != '\0')){
     //Supress unwanted line break
     std::string path_str(path_char);
-    if (path_str.find('\n')){
+    if(path_str.find('\n')){
       path_str.erase(std::remove(path_str.begin(), path_str.end(), '\n'), path_str.end());
     }
     path_saving = path_str;
@@ -182,11 +182,11 @@ void selection_file(std::string& path){
   char* path_char = fgets(filename, 1024, file);
 
   //Check if empty
-  if ((path_char != NULL) && (path_char[0] != '\0')){
+  if((path_char != NULL) && (path_char[0] != '\0')){
     std::string path_str(path_char);
 
     //Supress unwanted line break
-    if (path_str.find('\n')){
+    if(path_str.find('\n')){
       path_str.erase(std::remove(path_str.begin(), path_str.end(), '\n'), path_str.end());
     }
 
@@ -207,11 +207,11 @@ void selection_directory(std::string& path){
   char* path_char = fgets(filename, 1024, file);
 
   //Check if empty
-  if ((path_char != NULL) && (path_char[0] != '\0')){
+  if((path_char != NULL) && (path_char[0] != '\0')){
     std::string path_str(path_char);
 
     //Supress unwanted line break
-    if (path_str.find('\n')){
+    if(path_str.find('\n')){
       path_str.erase(std::remove(path_str.begin(), path_str.end(), '\n'), path_str.end());
     }
 

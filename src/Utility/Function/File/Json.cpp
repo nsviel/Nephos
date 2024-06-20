@@ -1,5 +1,6 @@
 #include "Json.h"
 
+#include <Utility/Namespace.h>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -11,8 +12,7 @@ nlohmann::json read_json(const std::string& path){
   //---------------------------
 
   std::ifstream file(path);
-  if (!file.is_open()){
-    std::cerr << "[error] File " << path << " does not exist." << std::endl;
+  if(!file.is_open()){
     return nlohmann::json();
   }
 
@@ -38,13 +38,13 @@ template<typename T> void write_value(const std::string& path, const std::string
   std::string segment;
   nlohmann::json* current = &data;
 
-  while (std::getline(keyStream, segment, '.')) {
-      // If the segment does not exist, create a new nested JSON object
-      if (!current->contains(segment)) {
-          (*current)[segment] = nlohmann::json::object();
-      }
-      // Move to the next level
-      current = &(*current)[segment];
+  while(std::getline(keyStream, segment, '.')){
+    // If the segment does not exist, create a new nested JSON object
+    if(!current->contains(segment)){
+      (*current)[segment] = nlohmann::json::object();
+    }
+    // Move to the next level
+    current = &(*current)[segment];
   }
 
   // Set the value at the final nested level
@@ -60,8 +60,9 @@ template<typename T> T read_value(const std::string& path, std::string key){
   T result;
   //---------------------------
 
+  // Read JSON data from file
   std::ifstream file(path);
-  if (!file.is_open()){
+  if(!file.is_open()){
     std::cerr << "[Error] File " << path << " does not exist." << std::endl;
     return result; // Return default-constructed result
   }
@@ -69,34 +70,26 @@ template<typename T> T read_value(const std::string& path, std::string key){
   nlohmann::json j;
   file >> j;
 
-  // Split the key into parent and subkey (if it contains a dot)
-  size_t dotIndex = key.find('.');
-  if (dotIndex != std::string::npos){
-    std::string parentKey = key.substr(0, dotIndex);
-    std::string subKey = key.substr(dotIndex + 1);
+  // Split the key by dots
+  std::istringstream keyStream(key);
+  std::string segment;
+  nlohmann::json* current = &j;
 
-    // Check if the parent key exists in the JSON object
-    if (j.find(parentKey) == j.end()){
-      std::cerr << "[Error] Parent key '" << parentKey << "' not found in JSON file." << std::endl;
+  while(std::getline(keyStream, segment, '.')){
+    // Check if the segment exists
+    if(!current->contains(segment)){
+      std::cerr << "[Error] Key segment '" << segment << "' not found in JSON file." << std::endl;
       return result; // Return default-constructed result
     }
+    // Move to the next level
+    current = &(*current)[segment];
+  }
 
-    // Extract the parent JSON object
-    nlohmann::json parentObject = j[parentKey];
-    result = parentObject[subKey].get<T>();
-  } else {
-    // Check if the key exists in the JSON object
-    if (j.find(key) == j.end()){
-      std::cerr << "[Error] Key '" << key << "' not found in JSON file." << std::endl;
-      return result; // Return default-constructed result
-    }
-
-    // Try to parse the value associated with the key into the result
-    try {
-      result = j[key].get<T>();
-    } catch (const std::exception& e){
-      std::cerr << "[Error] Failed to parse value for key '" << key << "': " << e.what() << std::endl;
-    }
+  // Try to parse the value at the final nested level into the result
+  try{
+    result = current->get<T>();
+  }catch (const std::exception& e){
+    std::cerr << "[Error] Failed to parse value for key '" << key << "': " << e.what() << std::endl;
   }
 
   //---------------------------

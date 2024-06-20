@@ -43,7 +43,7 @@ bool ImGuiToggleRenderer::Render()
     IM_ASSERT(_label != nullptr);
     IM_ASSERT(_value != nullptr);
 
-    if (window->SkipItems)
+    if(window->SkipItems)
     {
         return false;
     }
@@ -97,7 +97,7 @@ void ImGuiToggleRenderer::ValidateConfig()
     IM_ASSERT_USER_ERROR(_config.Size.y >= 0, "Size.y specified was negative.");
 
     // if no flags were specified, use defaults.
-    if (_config.Flags == ImGuiToggleFlags_None)
+    if(_config.Flags == ImGuiToggleFlags_None)
     {
         _config.Flags = ImGuiToggleFlags_Default;
     }
@@ -111,12 +111,12 @@ void ImGuiToggleRenderer::ValidateConfig()
     _config.WidthRatio = ImClamp(_config.WidthRatio, WidthRatioMinimum, WidthRatioMaximum);
 
     // Make sure our a11y labels have values.
-    if (_config.On.Label == nullptr)
+    if(_config.On.Label == nullptr)
     {
         _config.On.Label = LabelA11yOnDefault;
     }
 
-    if (_config.Off.Label == nullptr)
+    if(_config.Off.Label == nullptr)
     {
         _config.Off.Label = LabelA11yOffDefault;
     }
@@ -125,7 +125,7 @@ void ImGuiToggleRenderer::ValidateConfig()
 bool ImGuiToggleRenderer::ToggleBehavior(const ImRect& interaction_bounding_box)
 {
     ImGui::ItemSize(interaction_bounding_box, _style->FramePadding.y);
-    if (!ImGui::ItemAdd(interaction_bounding_box, _id))
+    if(!ImGui::ItemAdd(interaction_bounding_box, _id))
     {
         ImGuiContext& g = *GImGui;
         IMGUI_TEST_ENGINE_ITEM_INFO(_id, _label, g.LastItemData.StatusFlags | ImGuiItemStatusFlags_Checkable | (*_value ? ImGuiItemStatusFlags_Checked : 0));
@@ -136,7 +136,7 @@ bool ImGuiToggleRenderer::ToggleBehavior(const ImRect& interaction_bounding_box)
     const ImGuiButtonFlags button_flags = ImGuiButtonFlags_PressedOnClick;
     bool hovered, held;
     bool pressed = ImGui::ButtonBehavior(interaction_bounding_box, _id, &hovered, &held, button_flags);
-    if (pressed)
+    if(pressed)
     {
         *_value = !(*_value);
         ImGui::MarkItemEdited(_id);
@@ -172,17 +172,17 @@ void ImGuiToggleRenderer::DrawToggle()
     DrawFrame(color_frame);
 
     // draw accessibility labels, if enabled.
-    if (HasA11yGlyphs())
+    if(HasA11yGlyphs())
     {
         DrawA11yFrameOverlays(knob_radius);
     }
 
     // draw the knob
-    if (HasCircleKnob())
+    if(HasCircleKnob())
     {
         DrawCircleKnob(knob_radius, color_knob);
     }
-    else if (HasRectangleKnob())
+    else if(HasRectangleKnob())
     {
         DrawRectangleKnob(knob_radius, color_knob);
     }
@@ -201,7 +201,7 @@ void ImGuiToggleRenderer::DrawFrame(ImU32 color_frame)
         : height * 0.5f;
 
     // draw frame shadow, if enabled
-    if (HasShadowedFrame())
+    if(HasShadowedFrame())
     {
         const ImU32 color_frame_shadow = ImGui::GetColorU32(_palette.FrameShadow);
         DrawRectShadow(_boundingBox, color_frame_shadow, frame_rounding, _state.FrameShadowThickness);
@@ -211,7 +211,7 @@ void ImGuiToggleRenderer::DrawFrame(ImU32 color_frame)
     _drawList->AddRectFilled(_boundingBox.Min, _boundingBox.Max, color_frame, frame_rounding);
 
     // draw frame border, if enabled
-    if (HasBorderedFrame())
+    if(HasBorderedFrame())
     {
         const ImU32 color_frame_border = ImGui::GetColorU32(_palette.FrameBorder);
         DrawRectBorder(_boundingBox, color_frame_border, frame_rounding, _state.FrameBorderThickness);
@@ -225,7 +225,7 @@ void ImGuiToggleRenderer::DrawA11yDot(const ImVec2& pos, ImU32 color)
 
 void ImGuiToggleRenderer::DrawA11yGlyph(ImVec2 pos, ImU32 color, bool state, float radius, float thickness)
 {
-    if (state)
+    if(state)
     {
         // draw the I bar
         const float half_thickness = thickness * 0.5f;
@@ -309,7 +309,7 @@ void ImGuiToggleRenderer::DrawCircleKnob(float radius, ImU32 color_knob)
     const float knob_radius = radius - inset_size;
 
     // draw knob shadow, if enabled
-    if (HasShadowedKnob())
+    if(HasShadowedKnob())
     {
         const ImU32 color_knob_shadow = ImGui::GetColorU32(_palette.KnobShadow);
         DrawCircleShadow(knob_center, knob_radius, color_knob_shadow, _state.KnobShadowThickness);
@@ -319,7 +319,7 @@ void ImGuiToggleRenderer::DrawCircleKnob(float radius, ImU32 color_knob)
     _drawList->AddCircleFilled(knob_center, knob_radius, color_knob);
 
     // draw knob border, if enabled
-    if (HasBorderedKnob())
+    if(HasBorderedKnob())
     {
         const ImU32 color_knob_border = ImGui::GetColorU32(_palette.KnobBorder);
         DrawCircleBorder(knob_center, knob_radius, color_knob_border, _state.KnobBorderThickness);
@@ -334,7 +334,7 @@ void ImGuiToggleRenderer::DrawRectangleKnob(float radius, ImU32 color_knob)
     const float knob_rounded_radius = (knob_diameter_total * 0.5f) * _config.KnobRounding;
 
     // draw knob shadow, if enabled
-    if (HasShadowedKnob())
+    if(HasShadowedKnob())
     {
         const ImU32 color_knob_shadow = ImGui::GetColorU32(_palette.KnobShadow);
         DrawRectShadow(bounds, color_knob_shadow, _config.KnobRounding, _state.KnobShadowThickness);
@@ -344,7 +344,7 @@ void ImGuiToggleRenderer::DrawRectangleKnob(float radius, ImU32 color_knob)
     _drawList->AddRectFilled(bounds.Min, bounds.Max, color_knob, knob_rounded_radius);
 
     // draw knob border, if enabled
-    if (HasBorderedKnob())
+    if(HasBorderedKnob())
     {
         const ImU32 color_knob_border = ImGui::GetColorU32(_palette.KnobBorder);
         DrawRectBorder(bounds, color_knob_border, knob_rounded_radius, _state.KnobBorderThickness);
@@ -361,12 +361,12 @@ void ImGuiToggleRenderer::DrawLabel(float x_offset)
     const ImVec2 label_pos = ImVec2(label_x, label_y);
 
     ImGuiContext& g = *GImGui;
-    if (g.LogEnabled)
+    if(g.LogEnabled)
     {
         ImGui::LogRenderedText(&label_pos, _isMixedValue ? "[~]" : *_value ? "[x]" : "[ ]");
     }
 
-    if (label_size.x > 0.0f)
+    if(label_size.x > 0.0f)
     {
         ImGui::RenderText(label_pos, _label);
     }
@@ -383,7 +383,7 @@ void ImGuiToggleRenderer::UpdateAnimationPercent()
         ? 0.5f
         : (*_value ? 1.0f : 0.0f);
 
-    if (IsAnimated() && _isLastActive)
+    if(IsAnimated() && _isLastActive)
     {
         const float t_anim = ImSaturate(ImInvLerp(0.0f, _config.AnimationDuration, _lastActiveTimer));
         t = *_value ? (t_anim) : (1.0f - t_anim);
@@ -394,7 +394,7 @@ void ImGuiToggleRenderer::UpdateAnimationPercent()
 
 void ImGuiToggleRenderer::UpdateStateConfig()
 {
-    if (!IsAnimated())
+    if(!IsAnimated())
     {
         _state = *_value ? _config.On : _config.Off;
         return;
@@ -411,7 +411,7 @@ void ImGuiToggleRenderer::UpdatePalette()
     const ImGuiTogglePalette* on_candidate = _config.On.Palette;
     const ImGuiTogglePalette* off_candidate = _config.Off.Palette;
 
-    if (!IsAnimated())
+    if(!IsAnimated())
     {
         ImGui::UnionPalette(
             &_palette,
@@ -467,7 +467,7 @@ ImRect ImGuiToggleRenderer::CalculateKnobBounds(float radius, float animation_pe
 
     // if our offsets in the x or y are close to 0,
     // we will just skip drawing the whole thing.
-    if (ImApproximately(knob_left, knob_right) ||
+    if(ImApproximately(knob_left, knob_right) ||
         ImApproximately(knob_top, knob_bottom))
     {
         return ImRect();

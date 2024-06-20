@@ -17,7 +17,7 @@ static k4a_result_t transformation_project_internal(const k4a_calibration_camera
                                                     int *valid,
                                                     float J_xy[2 * 2])
 {
-    if (K4A_FAILED(K4A_RESULT_FROM_BOOL(
+    if(K4A_FAILED(K4A_RESULT_FROM_BOOL(
             (camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT ||
              camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_BROWN_CONRADY) &&
             camera_calibration->intrinsics.parameter_count >= 14)))
@@ -28,7 +28,7 @@ static k4a_result_t transformation_project_internal(const k4a_calibration_camera
                   camera_calibration->intrinsics.type,
                   K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT,
                   K4A_CALIBRATION_LENS_DISTORTION_MODEL_BROWN_CONRADY);
-        if (camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_BROWN_CONRADY)
+        if(camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_BROWN_CONRADY)
         {
             LOG_ERROR("Unexpected parameter count %d, should be %d.",
                       camera_calibration->intrinsics.parameter_count,
@@ -37,7 +37,7 @@ static k4a_result_t transformation_project_internal(const k4a_calibration_camera
         return K4A_RESULT_FAILED;
     }
 
-    if (camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT &&
+    if(camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT &&
         g_deprecated_6kt_message_fired == false)
     {
         g_deprecated_6kt_message_fired = true;
@@ -64,7 +64,7 @@ static k4a_result_t transformation_project_internal(const k4a_calibration_camera
     float p2 = params->param.p2;
     float max_radius_for_projection = camera_calibration->metric_radius;
 
-    if (K4A_FAILED(K4A_RESULT_FROM_BOOL(fx > 0.f && fy > 0.f)))
+    if(K4A_FAILED(K4A_RESULT_FROM_BOOL(fx > 0.f && fy > 0.f)))
     {
         LOG_ERROR("Expect both fx and fy are larger than 0, actual values are fx: %lf, fy: %lf.",
                   (double)fx,
@@ -81,7 +81,7 @@ static k4a_result_t transformation_project_internal(const k4a_calibration_camera
     float yp2 = yp * yp;
     float xyp = xp * yp;
     float rs = xp2 + yp2;
-    if (rs > max_radius_for_projection * max_radius_for_projection)
+    if(rs > max_radius_for_projection * max_radius_for_projection)
     {
         *valid = 0;
         return K4A_RESULT_SUCCEEDED;
@@ -91,7 +91,7 @@ static k4a_result_t transformation_project_internal(const k4a_calibration_camera
     float a = 1.f + k1 * rs + k2 * rss + k3 * rsc;
     float b = 1.f + k4 * rs + k5 * rss + k6 * rsc;
     float bi;
-    if (b != 0.f)
+    if(b != 0.f)
     {
         bi = 1.f / b;
     }
@@ -107,7 +107,7 @@ static k4a_result_t transformation_project_internal(const k4a_calibration_camera
     float rs_2xp2 = rs + 2.f * xp2;
     float rs_2yp2 = rs + 2.f * yp2;
 
-    if (camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT)
+    if(camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT)
     {
         xp_d += rs_2xp2 * p2 + xyp * p1;
         yp_d += rs_2yp2 * p1 + xyp * p2;
@@ -126,7 +126,7 @@ static k4a_result_t transformation_project_internal(const k4a_calibration_camera
     uv[0] = xp_d_cx * fx + cx;
     uv[1] = yp_d_cy * fy + cy;
 
-    if (J_xy == 0)
+    if(J_xy == 0)
     {
         return K4A_RESULT_SUCCEEDED;
     }
@@ -142,7 +142,7 @@ static k4a_result_t transformation_project_internal(const k4a_calibration_camera
     float xp_dddrs_2 = xp * dddrs_2;
     float yp_xp_dddrs_2 = yp * xp_dddrs_2;
     // compute d(u)/d(xp)
-    if (camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT)
+    if(camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT)
     {
         J_xy[0] = fx * (d + xp * xp_dddrs_2 + 6.f * xp * p2 + yp * p1);
         J_xy[1] = fx * (yp_xp_dddrs_2 + 2.f * yp * p2 + xp * p1);
@@ -187,11 +187,11 @@ static k4a_result_t transformation_iterative_unproject(const k4a_calibration_cam
         float p[2];
         float J[2 * 2];
 
-        if (K4A_FAILED(TRACE_CALL(transformation_project_internal(camera_calibration, xy, p, valid, J))))
+        if(K4A_FAILED(TRACE_CALL(transformation_project_internal(camera_calibration, xy, p, valid, J))))
         {
             return K4A_RESULT_FAILED;
         }
-        if (*valid == 0)
+        if(*valid == 0)
         {
             return K4A_RESULT_SUCCEEDED;
         }
@@ -199,7 +199,7 @@ static k4a_result_t transformation_iterative_unproject(const k4a_calibration_cam
         float err_x = uv[0] - p[0];
         float err_y = uv[1] - p[1];
         float err = err_x * err_x + err_y * err_y;
-        if (err >= best_err)
+        if(err >= best_err)
         {
             xy[0] = best_xy[0];
             xy[1] = best_xy[1];
@@ -210,7 +210,7 @@ static k4a_result_t transformation_iterative_unproject(const k4a_calibration_cam
         best_xy[0] = xy[0];
         best_xy[1] = xy[1];
         invert_2x2(J, Jinv);
-        if (pass + 1 == max_passes || best_err < 1e-22f)
+        if(pass + 1 == max_passes || best_err < 1e-22f)
         {
             break;
         }
@@ -222,7 +222,7 @@ static k4a_result_t transformation_iterative_unproject(const k4a_calibration_cam
         xy[1] += dy;
     }
 
-    if (best_err > 1e-6f)
+    if(best_err > 1e-6f)
     {
         *valid = 0;
     }
@@ -235,7 +235,7 @@ static k4a_result_t transformation_unproject_internal(const k4a_calibration_came
                                                       float xy[2],
                                                       int *valid)
 {
-    if (K4A_FAILED(K4A_RESULT_FROM_BOOL(
+    if(K4A_FAILED(K4A_RESULT_FROM_BOOL(
             (camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT ||
              camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_BROWN_CONRADY) &&
             camera_calibration->intrinsics.parameter_count >= 14)))
@@ -246,7 +246,7 @@ static k4a_result_t transformation_unproject_internal(const k4a_calibration_came
                   camera_calibration->intrinsics.type,
                   K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT,
                   K4A_CALIBRATION_LENS_DISTORTION_MODEL_BROWN_CONRADY);
-        if (camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_BROWN_CONRADY)
+        if(camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_BROWN_CONRADY)
         {
             LOG_ERROR("Unexpected parameter count %d, should be %d.",
                       camera_calibration->intrinsics.parameter_count,
@@ -255,7 +255,7 @@ static k4a_result_t transformation_unproject_internal(const k4a_calibration_came
         return K4A_RESULT_FAILED;
     }
 
-    if (camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT &&
+    if(camera_calibration->intrinsics.type == K4A_CALIBRATION_LENS_DISTORTION_MODEL_RATIONAL_6KT &&
         g_deprecated_6kt_message_fired == false)
     {
         g_deprecated_6kt_message_fired = true;
@@ -281,7 +281,7 @@ static k4a_result_t transformation_unproject_internal(const k4a_calibration_came
     float p1 = params->param.p1;
     float p2 = params->param.p2;
 
-    if (K4A_FAILED(K4A_RESULT_FROM_BOOL(fx > 0.f && fy > 0.f)))
+    if(K4A_FAILED(K4A_RESULT_FROM_BOOL(fx > 0.f && fy > 0.f)))
     {
         LOG_ERROR("Expect both fx and fy are larger than 0, actual values are fx: %lf, fy: %lf.",
                   (double)fx,
@@ -299,7 +299,7 @@ static k4a_result_t transformation_unproject_internal(const k4a_calibration_came
     float a = 1.f + k1 * rs + k2 * rss + k3 * rsc;
     float b = 1.f + k4 * rs + k5 * rss + k6 * rsc;
     float ai;
-    if (a != 0.f)
+    if(a != 0.f)
     {
         ai = 1.f / a;
     }
@@ -333,7 +333,7 @@ k4a_result_t transformation_unproject(const k4a_calibration_camera_t *camera_cal
                                       float point3d[3],
                                       int *valid)
 {
-    if (depth == 0.f)
+    if(depth == 0.f)
     {
         point3d[0] = 0.f;
         point3d[1] = 0.f;
@@ -342,7 +342,7 @@ k4a_result_t transformation_unproject(const k4a_calibration_camera_t *camera_cal
         return K4A_RESULT_SUCCEEDED;
     }
 
-    if (K4A_FAILED(TRACE_CALL(transformation_unproject_internal(camera_calibration, point2d, point3d, valid))))
+    if(K4A_FAILED(TRACE_CALL(transformation_unproject_internal(camera_calibration, point2d, point3d, valid))))
     {
         return K4A_RESULT_FAILED;
     }
@@ -359,7 +359,7 @@ k4a_result_t transformation_project(const k4a_calibration_camera_t *camera_calib
                                     float point2d[2],
                                     int *valid)
 {
-    if (point3d[2] <= 0.f)
+    if(point3d[2] <= 0.f)
     {
         point2d[0] = 0.f;
         point2d[1] = 0.f;
@@ -371,7 +371,7 @@ k4a_result_t transformation_project(const k4a_calibration_camera_t *camera_calib
     xy[0] = point3d[0] / point3d[2];
     xy[1] = point3d[1] / point3d[2];
 
-    if (K4A_FAILED(TRACE_CALL(transformation_project_internal(camera_calibration, xy, point2d, valid, 0))))
+    if(K4A_FAILED(TRACE_CALL(transformation_project_internal(camera_calibration, xy, point2d, valid, 0))))
     {
         return K4A_RESULT_FAILED;
     }

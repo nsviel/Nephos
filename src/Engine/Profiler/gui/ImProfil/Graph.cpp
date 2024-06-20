@@ -153,7 +153,7 @@ void Graph::render_serie(ImDrawList *draw_list){
     float y_offset = graph_dim.y - 1;
     glm::vec2 offset(x_offset, y_offset);
     glm::vec2 bar_pose = graph_pose + offset;
-    if (bar_pose.x < graph_pose.x + 1){
+    if(bar_pose.x < graph_pose.x + 1){
       break;
     }
 
@@ -255,7 +255,7 @@ void Graph::render_serie_task_rect(ImDrawList *draw_list, prf::graph::Task& task
   float task_start_height = float(task.time_beg) * scaling_factor;
   float task_end_height = float(task.time_end) * scaling_factor;
 
-  if (abs(task_end_height - task_start_height) > height_threshold){
+  if(abs(task_end_height - task_start_height) > height_threshold){
     glm::vec2 rect_start = bar_pose + glm::vec2(0.0f, -task_start_height);
     glm::vec2 rect_end = bar_pose + glm::vec2(bar_width, -task_end_height);
     this->draw_rect(draw_list, rect_start, rect_end, task.color, true);

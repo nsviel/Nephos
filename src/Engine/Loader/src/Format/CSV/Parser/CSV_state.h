@@ -58,7 +58,7 @@ std::vector<std::vector<std::string>> readCSV(std::istream &in){
   std::string row;
   while(!in.eof()){
     std::getline(in, row);
-    if (in.bad() || in.fail()){
+    if(in.bad() || in.fail()){
         break;
     }
     auto fields = readCSVRow(row);

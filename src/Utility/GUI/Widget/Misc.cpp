@@ -23,7 +23,7 @@ void Cross(ImVec4 color){
   //---------------------------
 
   ImGuiWindow* window = ImGui::GetCurrentWindow();
-  if (window->SkipItems) return;
+  if(window->SkipItems) return;
 
   ImGuiContext& g = *GImGui;
   const ImGuiStyle& style = g.Style;
@@ -35,7 +35,7 @@ void Cross(ImVec4 color){
   const ImRect check_bb(pos, ImVec2(pos.x + size.x, pos.y + size.y));
 
   ImGui::ItemSize(check_bb, style.FramePadding.y);
-  if (!ImGui::ItemAdd(check_bb, id)) return;
+  if(!ImGui::ItemAdd(check_bb, id)) return;
 
   // Draw the red cross mark
   ImU32 col = ImGui::ColorConvertFloat4ToU32(color);

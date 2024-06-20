@@ -48,7 +48,7 @@ inline ImRect ImGui_GetItemRect()
 
 inline ImVec2 ImGui_GetMouseClickPos(ImGuiMouseButton buttonIndex)
 {
-    if (ImGui::IsMouseDown(buttonIndex))
+    if(ImGui::IsMouseDown(buttonIndex))
         return ImGui::GetIO().MouseClickedPos[buttonIndex];
     else
         return ImGui::GetMousePos();

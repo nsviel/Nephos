@@ -641,7 +641,7 @@ public:
     // the only functions I'm willing to leave in the interface - available for inlining
     const char* c_str() const { return const_cast<String*>(this)->c_str(); } // NOLINT
     char*       c_str(){
-        if (isOnStack()){
+        if(isOnStack()){
             return reinterpret_cast<char*>(buf);
         }
         return data.ptr;
@@ -1164,7 +1164,7 @@ DOCTEST_MSVC_SUPPRESS_WARNING_WITH_PUSH(4866)
         static void fill(std::ostream* stream, const T(&in)[N]){
             *stream << "[";
             for(size_t i = 0; i < N; i++){
-                if (i != 0){ *stream << ", "; }
+                if(i != 0){ *stream << ", "; }
                 *stream << (DOCTEST_STRINGIFY(in[i]));
             }
             *stream << "]";
@@ -1692,7 +1692,7 @@ DOCTEST_CLANG_SUPPRESS_WARNING_POP
         DOCTEST_NOINLINE bool binary_assert(const DOCTEST_REF_WRAP(L) lhs,
                                             const DOCTEST_REF_WRAP(R) rhs){
             m_failed = !RelationalComparator<comparison, L, R>()(lhs, rhs);
-            if (m_failed || getContextOptions()->success){
+            if(m_failed || getContextOptions()->success){
                 m_decomp = stringifyBinaryExpr(lhs, ", ", rhs);
             }
             return !m_failed;
@@ -1702,11 +1702,11 @@ DOCTEST_CLANG_SUPPRESS_WARNING_POP
         DOCTEST_NOINLINE bool unary_assert(const DOCTEST_REF_WRAP(L) val){
             m_failed = !val;
 
-            if (m_at & assertType::is_false){ //!OCLINT bitwise operator in conditional
+            if(m_at & assertType::is_false){ //!OCLINT bitwise operator in conditional
                 m_failed = !m_failed;
             }
 
-            if (m_failed || getContextOptions()->success){
+            if(m_failed || getContextOptions()->success){
                 m_decomp = (DOCTEST_STRINGIFY(val));
             }
 
@@ -1860,7 +1860,7 @@ DOCTEST_CLANG_SUPPRESS_WARNING_POP
         void stringify(std::ostream* s) const override { lambda_(s); }
 
         ~ContextScope() override {
-            if (need_to_destroy){
+            if(need_to_destroy){
                 destroy();
             }
         }
@@ -3344,7 +3344,7 @@ namespace detail {
         }
 
         String pop(){
-            if (stack.empty())
+            if(stack.empty())
                 DOCTEST_INTERNAL_ERROR("TLSS was empty when trying to pop!");
 
             std::streampos pos = stack.back();
@@ -3596,7 +3596,7 @@ using ticks_t = timer_large_integer::type;
 } // namespace detail
 
 char* String::allocate(size_type sz){
-    if (sz <= last){
+    if(sz <= last){
         buf[sz] = '\0';
         setLast(last - sz);
         return buf;
@@ -3613,7 +3613,7 @@ char* String::allocate(size_type sz){
 void String::setOnHeap() noexcept { *reinterpret_cast<unsigned char*>(&buf[last]) = 128; }
 void String::setLast(size_type in) noexcept { buf[last] = char(in); }
 void String::setSize(size_type sz) noexcept {
-    if (isOnStack()){ buf[sz] = '\0'; setLast(last - sz); }
+    if(isOnStack()){ buf[sz] = '\0'; setLast(last - sz); }
     else { data.ptr[sz] = '\0'; data.size = sz; }
 }
 
@@ -3768,7 +3768,7 @@ String::size_type String::find(char ch, size_type pos) const {
     const char* end = begin + size();
     const char* it = begin + pos;
     for(; it < end && *it != ch; it++);
-    if (it < end){ return static_cast<size_type>(it - begin); }
+    if(it < end){ return static_cast<size_type>(it - begin); }
     else { return npos; }
 }
 
@@ -3776,7 +3776,7 @@ String::size_type String::rfind(char ch, size_type pos) const {
     const char* begin = c_str();
     const char* it = begin + std::min(pos, size() - 1);
     for(; it >= begin && *it != ch; it--);
-    if (it >= begin){ return static_cast<size_type>(it - begin); }
+    if(it >= begin){ return static_cast<size_type>(it - begin); }
     else { return npos; }
 }
 
@@ -3916,7 +3916,7 @@ DOCTEST_DEFINE_INTERFACE(IContextScope)
 
 namespace detail {
     void filldata<const void*>::fill(std::ostream* stream, const void* in){
-        if (in){ *stream << in; }
+        if(in){ *stream << in; }
         else { *stream << "nullptr"; }
     }
 
@@ -4149,10 +4149,10 @@ namespace {
     // checks if the name matches any of the filters (and can be configured what to do when empty)
     bool matchesAny(const char* name, const std::vector<String>& filters, bool matchEmpty,
         bool caseSensitive){
-        if (filters.empty() && matchEmpty)
+        if(filters.empty() && matchEmpty)
             return true;
         for(auto& curr : filters)
-            if (wildcmp(name, curr.c_str(), caseSensitive))
+            if(wildcmp(name, curr.c_str(), caseSensitive))
                 return true;
         return false;
     }
@@ -4167,7 +4167,7 @@ namespace {
     unsigned long long hash(const char* str){
         unsigned long long hash = 5381;
         char c;
-        while ((c = *str++))
+        while((c = *str++))
             hash = ((hash << 5) + hash) + c; // hash * 33 + c
         return hash;
     }
@@ -4195,10 +4195,10 @@ namespace {
 } // namespace
 namespace detail {
     bool Subcase::checkFilters(){
-        if (g_cs->subcaseStack.size() < size_t(g_cs->subcase_filter_levels)){
-            if (!matchesAny(m_signature.m_name.c_str(), g_cs->filters[6], true, g_cs->case_sensitive))
+        if(g_cs->subcaseStack.size() < size_t(g_cs->subcase_filter_levels)){
+            if(!matchesAny(m_signature.m_name.c_str(), g_cs->filters[6], true, g_cs->case_sensitive))
                 return true;
-            if (matchesAny(m_signature.m_name.c_str(), g_cs->filters[7], false, g_cs->case_sensitive))
+            if(matchesAny(m_signature.m_name.c_str(), g_cs->filters[7], false, g_cs->case_sensitive))
                 return true;
         }
         return false;
@@ -4206,11 +4206,11 @@ namespace detail {
 
     Subcase::Subcase(const String& name, const char* file, int line)
             : m_signature({name, file, line}){
-        if (!g_cs->reachedLeaf){
-            if (g_cs->nextSubcaseStack.size() <= g_cs->subcaseStack.size()
+        if(!g_cs->reachedLeaf){
+            if(g_cs->nextSubcaseStack.size() <= g_cs->subcaseStack.size()
                 || g_cs->nextSubcaseStack[g_cs->subcaseStack.size()] == m_signature){
                 // Going down.
-                if (checkFilters()){ return; }
+                if(checkFilters()){ return; }
 
                 g_cs->subcaseStack.push_back(m_signature);
                 g_cs->currentSubcaseDepth++;
@@ -4218,15 +4218,15 @@ namespace detail {
                 DOCTEST_ITERATE_THROUGH_REPORTERS(subcase_start, m_signature);
             }
         } else {
-            if (g_cs->subcaseStack[g_cs->currentSubcaseDepth] == m_signature){
+            if(g_cs->subcaseStack[g_cs->currentSubcaseDepth] == m_signature){
                 // This subcase is reentered via control flow.
                 g_cs->currentSubcaseDepth++;
                 m_entered = true;
                 DOCTEST_ITERATE_THROUGH_REPORTERS(subcase_start, m_signature);
-            } else if (g_cs->nextSubcaseStack.size() <= g_cs->currentSubcaseDepth
+            } else if(g_cs->nextSubcaseStack.size() <= g_cs->currentSubcaseDepth
                     && g_cs->fullyTraversedSubcases.find(hash(hash(g_cs->subcaseStack, g_cs->currentSubcaseDepth), hash(m_signature)))
                     == g_cs->fullyTraversedSubcases.end()){
-                if (checkFilters()){ return; }
+                if(checkFilters()){ return; }
                 // This subcase is part of the one to be executed next.
                 g_cs->nextSubcaseStack.clear();
                 g_cs->nextSubcaseStack.insert(g_cs->nextSubcaseStack.end(),
@@ -4241,15 +4241,15 @@ namespace detail {
     DOCTEST_CLANG_SUPPRESS_WARNING_WITH_PUSH("-Wdeprecated-declarations")
 
     Subcase::~Subcase(){
-        if (m_entered){
+        if(m_entered){
             g_cs->currentSubcaseDepth--;
 
-            if (!g_cs->reachedLeaf){
+            if(!g_cs->reachedLeaf){
                 // Leaf.
                 g_cs->fullyTraversedSubcases.insert(hash(g_cs->subcaseStack));
                 g_cs->nextSubcaseStack.clear();
                 g_cs->reachedLeaf = true;
-            } else if (g_cs->nextSubcaseStack.empty()){
+            } else if(g_cs->nextSubcaseStack.empty()){
                 // All children are finished.
                 g_cs->fullyTraversedSubcases.insert(hash(g_cs->subcaseStack));
             }
@@ -4582,7 +4582,7 @@ namespace detail {
     }
 
     ContextScopeBase::ContextScopeBase(ContextScopeBase&& other) noexcept {
-        if (other.need_to_destroy){
+        if(other.need_to_destroy){
             other.destroy();
         }
         other.need_to_destroy = false;
@@ -4885,7 +4885,7 @@ namespace {
 
         DOCTEST_ITERATE_THROUGH_REPORTERS(test_case_exception, {message.c_str(), true});
 
-        while (g_cs->subcaseStack.size()){
+        while(g_cs->subcaseStack.size()){
             g_cs->subcaseStack.pop_back();
             DOCTEST_ITERATE_THROUGH_REPORTERS(subcase_end, DOCTEST_EMPTY);
         }
@@ -4905,7 +4905,7 @@ AssertData::AssertData(assertType::Enum at, const char* file, int line, const ch
     m_failed(true), m_threw(false), m_threw_as(false), m_exception_type(exception_type),
     m_exception_string(exception_string){
 #if DOCTEST_MSVC
-    if (m_expr[0] == ' ') // this happens when variadic macros are disabled under MSVC
+    if(m_expr[0] == ' ') // this happens when variadic macros are disabled under MSVC
         ++m_expr;
 #endif // MSVC
 }
@@ -4992,14 +4992,14 @@ namespace detail {
     }
 
     MessageBuilder::~MessageBuilder(){
-        if (!logged)
+        if(!logged)
             tlssPop();
     }
 
     DOCTEST_DEFINE_INTERFACE(IExceptionTranslator)
 
     bool MessageBuilder::log(){
-        if (!logged){
+        if(!logged){
             m_string = tlssPop();
             logged = true;
         }
@@ -5134,26 +5134,26 @@ using uchar = unsigned char;
 namespace {
 
     size_t trailingBytes(unsigned char c){
-        if ((c & 0xE0) == 0xC0){
+        if((c & 0xE0) == 0xC0){
             return 2;
         }
-        if ((c & 0xF0) == 0xE0){
+        if((c & 0xF0) == 0xE0){
             return 3;
         }
-        if ((c & 0xF8) == 0xF0){
+        if((c & 0xF8) == 0xF0){
             return 4;
         }
         DOCTEST_INTERNAL_ERROR("Invalid multibyte utf-8 start byte encountered");
     }
 
     uint32_t headerValue(unsigned char c){
-        if ((c & 0xE0) == 0xC0){
+        if((c & 0xE0) == 0xC0){
             return c & 0x1F;
         }
-        if ((c & 0xF0) == 0xE0){
+        if((c & 0xF0) == 0xE0){
             return c & 0x0F;
         }
-        if ((c & 0xF8) == 0xF0){
+        if((c & 0xF8) == 0xF0){
             return c & 0x07;
         }
         DOCTEST_INTERNAL_ERROR("Invalid multibyte utf-8 start byte encountered");
@@ -5186,14 +5186,14 @@ namespace {
 
             case '>':
                 // See: https://www.w3.org/TR/xml/#syntax
-                if (idx > 2 && m_str[idx - 1] == ']' && m_str[idx - 2] == ']')
+                if(idx > 2 && m_str[idx - 1] == ']' && m_str[idx - 2] == ']')
                     os << "&gt;";
                 else
                     os << c;
                 break;
 
             case '\"':
-                if (m_forWhat == ForAttributes)
+                if(m_forWhat == ForAttributes)
                     os << "&quot;";
                 else
                     os << c;
@@ -5204,13 +5204,13 @@ namespace {
 
                 // Escape control characters in standard ascii
                 // see https://stackoverflow.com/questions/404107/why-are-control-characters-illegal-in-xml-1-0
-                if (c < 0x09 || (c > 0x0D && c < 0x20) || c == 0x7F){
+                if(c < 0x09 || (c > 0x0D && c < 0x20) || c == 0x7F){
                     hexEscapeChar(os, c);
                     break;
                 }
 
                 // Plain ASCII: Write it to stream
-                if (c < 0x7F){
+                if(c < 0x7F){
                     os << c;
                     break;
                 }
@@ -5221,7 +5221,7 @@ namespace {
                 // First check that this bytes is a valid lead byte:
                 // This means that it is not encoded as 1111 1XXX
                 // Or as 10XX XXXX
-                if (c <  0xC0 ||
+                if(c <  0xC0 ||
                     c >= 0xF8){
                     hexEscapeChar(os, c);
                     break;
@@ -5229,7 +5229,7 @@ namespace {
 
                 auto encBytes = trailingBytes(c);
                 // Are there enough bytes left to avoid accessing out-of-bounds memory?
-                if (idx + encBytes - 1 >= m_str.size()){
+                if(idx + encBytes - 1 >= m_str.size()){
                     hexEscapeChar(os, c);
                     break;
                 }
@@ -5244,7 +5244,7 @@ namespace {
                     value = (value << 6) | (nc & 0x3F);
                 }
 
-                if (
+                if(
                     // Wrong bit pattern of following bytes
                     (!valid) ||
                     // Overlong encodings
@@ -5282,7 +5282,7 @@ namespace {
         other.m_writer = nullptr;
     }
     XmlWriter::ScopedElement& XmlWriter::ScopedElement::operator=( ScopedElement&& other ) DOCTEST_NOEXCEPT {
-        if ( m_writer ){
+        if( m_writer ){
             m_writer->endElement();
         }
         m_writer = other.m_writer;
@@ -6562,7 +6562,7 @@ namespace {
             // integer
             // TODO: change this to use std::stoi or something else! currently it uses undefined behavior - assumes '0' on failed parse...
             int theInt = std::atoi(parsedValue.c_str());
-            if (theInt != 0){
+            if(theInt != 0){
                 res = theInt; //!OCLINT parameter reassignment
                 return true;
             }
@@ -6573,11 +6573,11 @@ namespace {
 
             // if the value matches any of the positive/negative possibilities
             for(unsigned i = 0; i < 4; i++){
-                if (parsedValue.compare(positive[i], true) == 0){
+                if(parsedValue.compare(positive[i], true) == 0){
                     res = 1; //!OCLINT parameter reassignment
                     return true;
                 }
-                if (parsedValue.compare(negative[i], true) == 0){
+                if(parsedValue.compare(negative[i], true) == 0){
                     res = 0; //!OCLINT parameter reassignment
                     return true;
                 }

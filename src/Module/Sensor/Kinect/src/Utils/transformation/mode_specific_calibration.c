@@ -10,7 +10,7 @@ transformation_get_mode_specific_camera_calibration(const k4a_calibration_camera
                                                     k4a_calibration_camera_t *mode_specific_camera_calibration,
                                                     bool pixelized_zero_centered_output)
 {
-    if (K4A_FAILED(K4A_RESULT_FROM_BOOL(mode_info->calibration_image_binned_resolution[0] > 0 &&
+    if(K4A_FAILED(K4A_RESULT_FROM_BOOL(mode_info->calibration_image_binned_resolution[0] > 0 &&
                                         mode_info->calibration_image_binned_resolution[1] > 0 &&
                                         mode_info->output_image_resolution[0] > 0 &&
                                         mode_info->output_image_resolution[1] > 0)))
@@ -36,7 +36,7 @@ transformation_get_mode_specific_camera_calibration(const k4a_calibration_camera
     cx -= mode_info->crop_offset[0];
     cy -= mode_info->crop_offset[1];
 
-    if (pixelized_zero_centered_output == true)
+    if(pixelized_zero_centered_output == true)
     {
         // raw calibration is unitized and 0-cornered, i.e., principal point and focal length are divided by image
         // dimensions and coordinate (0,0) corresponds to the top left corner of the top left pixel. Convert to
@@ -68,7 +68,7 @@ transformation_get_mode_specific_depth_camera_calibration(const k4a_calibration_
 {
     RETURN_VALUE_IF_ARG(K4A_RESULT_FAILED, raw_camera_calibration == NULL);
     // TODO: Read this from calibration data instead of hardcoding.
-    if (K4A_FAILED(K4A_RESULT_FROM_BOOL(raw_camera_calibration->resolution_width == 1024 &&
+    if(K4A_FAILED(K4A_RESULT_FROM_BOOL(raw_camera_calibration->resolution_width == 1024 &&
                                         raw_camera_calibration->resolution_height == 1024)))
     {
         LOG_ERROR("Unexpected raw camera calibration resolution (%d,%d), should be (%d,%d).",
@@ -130,13 +130,13 @@ transformation_get_mode_specific_color_camera_calibration(const k4a_calibration_
                                                           const k4a_color_resolution_t color_resolution,
                                                           k4a_calibration_camera_t *mode_specific_camera_calibration)
 {
-    if (raw_camera_calibration->resolution_width * 9 / 16 == raw_camera_calibration->resolution_height)
+    if(raw_camera_calibration->resolution_width * 9 / 16 == raw_camera_calibration->resolution_height)
     {
         // Legacy calibration uses 16:9 mode. If such a calibration is detected, convert to 4:3 mode. Keep calibration
         // unitized and 0-cornered. It will be converted to pixelized and 0-centered in a subsequent call to
         // transformation_get_mode_specific_camera_calibration().
         k4a_camera_calibration_mode_info_t mode_info = { { 4096, 2304 }, { 0, -384 }, { 4096, 3072 } };
-        if (K4A_FAILED(TRACE_CALL(
+        if(K4A_FAILED(TRACE_CALL(
                 transformation_get_mode_specific_camera_calibration(raw_camera_calibration,
                                                                     &mode_info,
                                                                     mode_specific_camera_calibration,
@@ -145,7 +145,7 @@ transformation_get_mode_specific_color_camera_calibration(const k4a_calibration_
             return K4A_RESULT_FAILED;
         }
     }
-    else if (raw_camera_calibration->resolution_width * 3 / 4 == raw_camera_calibration->resolution_height)
+    else if(raw_camera_calibration->resolution_width * 3 / 4 == raw_camera_calibration->resolution_height)
     {
         memcpy(mode_specific_camera_calibration, raw_camera_calibration, sizeof(k4a_calibration_camera_t));
     }

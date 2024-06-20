@@ -69,7 +69,7 @@ void remove(const std::string& path){
   //---------------------------
 
   for(const auto& entry : std::filesystem::directory_iterator(path)){
-    if (std::filesystem::is_regular_file(entry)){
+    if(std::filesystem::is_regular_file(entry)){
       std::filesystem::remove(entry.path());
     }
   }
@@ -84,7 +84,7 @@ int size(std::string path){
   struct dirent *ep;
   dp = opendir (path.c_str());
 
-  if (dp != NULL){
+  if(dp != NULL){
     while(ep = readdir (dp)){
       i++;
     }

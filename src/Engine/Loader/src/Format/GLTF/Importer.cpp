@@ -41,13 +41,13 @@ void Importer::load_file(std::string path){
 
   bool ret = loader.LoadASCIIFromFile(&model, &err, &warn, path);
   //bool ret = loader.LoadBinaryFromFile(&model, &err, &warn, argv[1]); // for binary glTF(.glb)
-  if (!warn.empty()){
+  if(!warn.empty()){
     printf("Warn: %s\n", warn.c_str());
   }
-  if (!err.empty()){
+  if(!err.empty()){
     printf("Err: %s\n", err.c_str());
   }
-  if (!ret){
+  if(!ret){
     printf("Failed to parse glTF\n");
   }
 

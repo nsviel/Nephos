@@ -70,8 +70,8 @@ struct value
     value(      number   v): m_Type(construct(m_Storage,           v))  {}
     ~value(){ destruct(m_Storage, m_Type); }
 
-    value& operator=(value&& other)      { if (this != &other){ value(std::move(other)).swap(*this); } return *this; }
-    value& operator=(const value& other){ if (this != &other){ value(          other).swap(*this);  } return *this; }
+    value& operator=(value&& other)      { if(this != &other){ value(std::move(other)).swap(*this); } return *this; }
+    value& operator=(const value& other){ if(this != &other){ value(          other).swap(*this);  } return *this; }
 
     value& operator=(      null)       { auto other = value(           );  swap(other); return *this; }
     value& operator=(      object&& v){ auto other = value(std::move(v)); swap(other); return *this; }
@@ -233,17 +233,17 @@ template <> inline       string&  value::get<string>()        { CRUDE_ASSERT(m_T
 template <> inline       boolean& value::get<boolean>()       { CRUDE_ASSERT(m_Type == type_t::boolean); return *boolean_ptr(m_Storage); }
 template <> inline       number&  value::get<number>()        { CRUDE_ASSERT(m_Type == type_t::number);  return *number_ptr(m_Storage);  }
 
-template <> inline const object*  value::get_ptr<object>()  const { if (m_Type == type_t::object)  return object_ptr(m_Storage);  else return nullptr; }
-template <> inline const array*   value::get_ptr<array>()   const { if (m_Type == type_t::array)   return array_ptr(m_Storage);   else return nullptr; }
-template <> inline const string*  value::get_ptr<string>()  const { if (m_Type == type_t::string)  return string_ptr(m_Storage);  else return nullptr; }
-template <> inline const boolean* value::get_ptr<boolean>() const { if (m_Type == type_t::boolean) return boolean_ptr(m_Storage); else return nullptr; }
-template <> inline const number*  value::get_ptr<number>()  const { if (m_Type == type_t::number)  return number_ptr(m_Storage);  else return nullptr; }
+template <> inline const object*  value::get_ptr<object>()  const { if(m_Type == type_t::object)  return object_ptr(m_Storage);  else return nullptr; }
+template <> inline const array*   value::get_ptr<array>()   const { if(m_Type == type_t::array)   return array_ptr(m_Storage);   else return nullptr; }
+template <> inline const string*  value::get_ptr<string>()  const { if(m_Type == type_t::string)  return string_ptr(m_Storage);  else return nullptr; }
+template <> inline const boolean* value::get_ptr<boolean>() const { if(m_Type == type_t::boolean) return boolean_ptr(m_Storage); else return nullptr; }
+template <> inline const number*  value::get_ptr<number>()  const { if(m_Type == type_t::number)  return number_ptr(m_Storage);  else return nullptr; }
 
-template <> inline       object*  value::get_ptr<object>()        { if (m_Type == type_t::object)  return object_ptr(m_Storage);  else return nullptr; }
-template <> inline       array*   value::get_ptr<array>()         { if (m_Type == type_t::array)   return array_ptr(m_Storage);   else return nullptr; }
-template <> inline       string*  value::get_ptr<string>()        { if (m_Type == type_t::string)  return string_ptr(m_Storage);  else return nullptr; }
-template <> inline       boolean* value::get_ptr<boolean>()       { if (m_Type == type_t::boolean) return boolean_ptr(m_Storage); else return nullptr; }
-template <> inline       number*  value::get_ptr<number>()        { if (m_Type == type_t::number)  return number_ptr(m_Storage);  else return nullptr; }
+template <> inline       object*  value::get_ptr<object>()        { if(m_Type == type_t::object)  return object_ptr(m_Storage);  else return nullptr; }
+template <> inline       array*   value::get_ptr<array>()         { if(m_Type == type_t::array)   return array_ptr(m_Storage);   else return nullptr; }
+template <> inline       string*  value::get_ptr<string>()        { if(m_Type == type_t::string)  return string_ptr(m_Storage);  else return nullptr; }
+template <> inline       boolean* value::get_ptr<boolean>()       { if(m_Type == type_t::boolean) return boolean_ptr(m_Storage); else return nullptr; }
+template <> inline       number*  value::get_ptr<number>()        { if(m_Type == type_t::number)  return number_ptr(m_Storage);  else return nullptr; }
 
 } // namespace crude_json
 

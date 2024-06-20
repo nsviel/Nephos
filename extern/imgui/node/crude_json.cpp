@@ -55,13 +55,13 @@ value::value(const value& other)
 
 value& value::operator[](size_t index)
 {
-    if (is_null())
+    if(is_null())
         m_Type = construct(m_Storage, type_t::array);
 
-    if (is_array())
+    if(is_array())
     {
         auto& v = *array_ptr(m_Storage);
-        if (index >= v.size())
+        if(index >= v.size())
             v.insert(v.end(), index - v.size() + 1, value());
 
         return v[index];
@@ -73,7 +73,7 @@ value& value::operator[](size_t index)
 
 const value& value::operator[](size_t index) const
 {
-    if (is_array())
+    if(is_array())
         return (*array_ptr(m_Storage))[index];
 
     CRUDE_ASSERT(false && "operator[] on unsupported type");
@@ -82,10 +82,10 @@ const value& value::operator[](size_t index) const
 
 value& value::operator[](const string& key)
 {
-    if (is_null())
+    if(is_null())
         m_Type = construct(m_Storage, type_t::object);
 
-    if (is_object())
+    if(is_object())
         return (*object_ptr(m_Storage))[key];
 
     CRUDE_ASSERT(false && "operator[] on unsupported type");
@@ -94,7 +94,7 @@ value& value::operator[](const string& key)
 
 const value& value::operator[](const string& key) const
 {
-    if (is_object())
+    if(is_object())
     {
         auto& o = *object_ptr(m_Storage);
         auto it = o.find(key);
@@ -108,7 +108,7 @@ const value& value::operator[](const string& key) const
 
 bool value::contains(const string& key) const
 {
-    if (is_object())
+    if(is_object())
     {
         auto& o = *object_ptr(m_Storage);
         auto it = o.find(key);
@@ -120,10 +120,10 @@ bool value::contains(const string& key) const
 
 void value::push_back(const value& value)
 {
-    if (is_null())
+    if(is_null())
         m_Type = construct(m_Storage, type_t::array);
 
-    if (is_array())
+    if(is_array())
     {
         auto& v = *array_ptr(m_Storage);
         v.push_back(value);
@@ -137,10 +137,10 @@ void value::push_back(const value& value)
 
 void value::push_back(value&& value)
 {
-    if (is_null())
+    if(is_null())
         m_Type = construct(m_Storage, type_t::array);
 
-    if (is_array())
+    if(is_array())
     {
         auto& v = *array_ptr(m_Storage);
         v.push_back(std::move(value));
@@ -154,13 +154,13 @@ void value::push_back(value&& value)
 
 size_t value::erase(const string& key)
 {
-    if (!is_object())
+    if(!is_object())
         return 0;
 
     auto& o = *object_ptr(m_Storage);
     auto it = o.find(key);
 
-    if (it == o.end())
+    if(it == o.end())
         return 0;
 
     o.erase(it);
@@ -172,7 +172,7 @@ void value::swap(value& other)
 {
     using std::swap;
 
-    if (m_Type == other.m_Type)
+    if(m_Type == other.m_Type)
     {
         switch (m_Type)
         {
@@ -207,7 +207,7 @@ string value::dump(const int indent, const char indent_char) const
 
 void value::dump_context_t::write_indent(int level)
 {
-    if (indent <= 0 || level == 0)
+    if(indent <= 0 || level == 0)
         return;
 
     out.fill(indent_char);
@@ -218,7 +218,7 @@ void value::dump_context_t::write_indent(int level)
 
 void value::dump_context_t::write_separator()
 {
-    if (indent < 0)
+    if(indent < 0)
         return;
 
     out.put(' ');
@@ -226,7 +226,7 @@ void value::dump_context_t::write_separator()
 
 void value::dump_context_t::write_newline()
 {
-    if (indent < 0)
+    if(indent < 0)
         return;
 
     out.put('\n');
@@ -249,10 +249,10 @@ void value::dump(dump_context_t& context, int level) const
                 bool first = true;
                 for(auto& entry : *object_ptr(m_Storage))
                 {
-                    if (!first){ context.out << ','; context.write_newline(); } else first = false;
+                    if(!first){ context.out << ','; context.write_newline(); } else first = false;
                     context.write_indent(level + 1);
                     context.out << '\"' << entry.first << "\":";
-                    if (!entry.second.is_structured())
+                    if(!entry.second.is_structured())
                     {
                         context.write_separator();
                         entry.second.dump(context, 0);
@@ -263,7 +263,7 @@ void value::dump(dump_context_t& context, int level) const
                         entry.second.dump(context, level + 1);
                     }
                 }
-                if (!first)
+                if(!first)
                     context.write_newline();
             }
             context.write_indent(level);
@@ -277,8 +277,8 @@ void value::dump(dump_context_t& context, int level) const
                 bool first = true;
                 for(auto& entry : *array_ptr(m_Storage))
                 {
-                    if (!first){ context.out << ','; context.write_newline(); } else first = false;
-                    if (!entry.is_structured())
+                    if(!first){ context.out << ','; context.write_newline(); } else first = false;
+                    if(!entry.is_structured())
                     {
                         context.write_indent(level + 1);
                         entry.dump(context, 0);
@@ -288,7 +288,7 @@ void value::dump(dump_context_t& context, int level) const
                         entry.dump(context, level + 1);
                     }
                 }
-                if (!first)
+                if(!first)
                     context.write_newline();
             }
             context.write_indent(level);
@@ -298,19 +298,19 @@ void value::dump(dump_context_t& context, int level) const
         case type_t::string:
             context.out << '\"';
 
-            if (string_ptr(m_Storage)->find_first_of("\"\\/\b\f\n\r") != string::npos || string_ptr(m_Storage)->find('\0') != string::npos)
+            if(string_ptr(m_Storage)->find_first_of("\"\\/\b\f\n\r") != string::npos || string_ptr(m_Storage)->find('\0') != string::npos)
             {
                 for(auto c : *string_ptr(m_Storage))
                 {
-                         if (c == '\"')  context.out << "\\\"";
-                    else if (c == '\\')  context.out << "\\\\";
-                    else if (c == '/')   context.out << "\\/";
-                    else if (c == '\b')  context.out << "\\b";
-                    else if (c == '\f')  context.out << "\\f";
-                    else if (c == '\n')  context.out << "\\n";
-                    else if (c == '\r')  context.out << "\\r";
-                    else if (c == '\t')  context.out << "\\t";
-                    else if (c == 0)     context.out << "\\u0000";
+                         if(c == '\"')  context.out << "\\\"";
+                    else if(c == '\\')  context.out << "\\\\";
+                    else if(c == '/')   context.out << "\\/";
+                    else if(c == '\b')  context.out << "\\b";
+                    else if(c == '\f')  context.out << "\\f";
+                    else if(c == '\n')  context.out << "\\n";
+                    else if(c == '\r')  context.out << "\\r";
+                    else if(c == '\t')  context.out << "\\t";
+                    else if(c == 0)     context.out << "\\u0000";
                     else                 context.out << c;
                 }
             }
@@ -321,7 +321,7 @@ void value::dump(dump_context_t& context, int level) const
 
 
         case type_t::boolean:
-            if (*boolean_ptr(m_Storage))
+            if(*boolean_ptr(m_Storage))
                 context.out << "true";
             else
                 context.out << "false";
@@ -352,10 +352,10 @@ struct value::parser
         auto previous_locale = std::setlocale(LC_NUMERIC, "C");
 
         // Accept single value only when end of the stream is reached.
-        if (!accept_element(v) || !eof())
+        if(!accept_element(v) || !eof())
             v = value(type_t::discarded);
 
-        if (previous_locale && strcmp(previous_locale, "C") != 0)
+        if(previous_locale && strcmp(previous_locale, "C") != 0)
             std::setlocale(LC_NUMERIC, previous_locale);
 
         return v;
@@ -377,7 +377,7 @@ private:
 
         bool operator()(bool accept)
         {
-            if (!accept)
+            if(!accept)
                 reset();
             else
                 m_LastCursor = m_Owner->m_Cursor;
@@ -409,12 +409,12 @@ private:
         auto s = state();
 
         object o;
-        if (s(accept('{') && accept_ws() && accept('}')))
+        if(s(accept('{') && accept_ws() && accept('}')))
         {
             result = o;
             return true;
         }
-        else if (s(accept('{') && accept_members(o) && accept('}')))
+        else if(s(accept('{') && accept_members(o) && accept('}')))
         {
             result = std::move(o);
             return true;
@@ -425,13 +425,13 @@ private:
 
     bool accept_members(object& o)
     {
-        if (!accept_member(o))
+        if(!accept_member(o))
             return false;
 
-        while (true)
+        while(true)
         {
             auto s = state();
-            if (!s(accept(',') && accept_member(o)))
+            if(!s(accept(',') && accept_member(o)))
                 break;
         }
 
@@ -444,7 +444,7 @@ private:
 
         value key;
         value v;
-        if (s(accept_ws() && accept_string(key) && accept_ws() && accept(':') && accept_element(v)))
+        if(s(accept_ws() && accept_string(key) && accept_ws() && accept(':') && accept_element(v)))
         {
             o.emplace(std::move(key.get<string>()), std::move(v));
             return true;
@@ -457,14 +457,14 @@ private:
     {
         auto s = state();
 
-        if (s(accept('[') && accept_ws() && accept(']')))
+        if(s(accept('[') && accept_ws() && accept(']')))
         {
             result = array();
             return true;
         }
 
         array a;
-        if (s(accept('[') && accept_elements(a) && accept(']')))
+        if(s(accept('[') && accept_elements(a) && accept(']')))
         {
             result = std::move(a);
             return true;
@@ -476,15 +476,15 @@ private:
     bool accept_elements(array& a)
     {
         value v;
-        if (!accept_element(v))
+        if(!accept_element(v))
             return false;
 
         a.emplace_back(std::move(v));
-        while (true)
+        while(true)
         {
             auto s = state();
             v = nullptr;
-            if (!s(accept(',') && accept_element(v)))
+            if(!s(accept(',') && accept_element(v)))
                 break;
             a.emplace_back(std::move(v));
         }
@@ -503,7 +503,7 @@ private:
         auto s = state();
 
         string v;
-        if (s(accept('\"') && accept_characters(v) && accept('\"')))
+        if(s(accept('\"') && accept_characters(v) && accept('\"')))
         {
             result = std::move(v);
             return true;
@@ -515,7 +515,7 @@ private:
     bool accept_characters(string& result)
     {
         int c;
-        while (accept_character(c))
+        while(accept_character(c))
         {
             CRUDE_ASSERT(c < 128); // #todo: convert characters > 127 to UTF-8
             result.push_back(static_cast<char>(c));
@@ -528,11 +528,11 @@ private:
     {
         auto s = state();
 
-        if (accept('\\'))
+        if(accept('\\'))
         {
             return accept_escape(c);
         }
-        else if (expect('\"'))
+        else if(expect('\"'))
             return false;
 
         // #todo: Handle UTF-8 sequences.
@@ -541,24 +541,24 @@ private:
 
     bool accept_escape(int& c)
     {
-        if (accept('\"')){ c = '\"'; return true; }
-        if (accept('\\')){ c = '\\'; return true; }
-        if (accept('/'))  { c = '/';  return true; }
-        if (accept('b'))  { c = '\b'; return true; }
-        if (accept('f'))  { c = '\f'; return true; }
-        if (accept('n'))  { c = '\n'; return true; }
-        if (accept('r'))  { c = '\r'; return true; }
-        if (accept('t'))  { c = '\t'; return true; }
+        if(accept('\"')){ c = '\"'; return true; }
+        if(accept('\\')){ c = '\\'; return true; }
+        if(accept('/'))  { c = '/';  return true; }
+        if(accept('b'))  { c = '\b'; return true; }
+        if(accept('f'))  { c = '\f'; return true; }
+        if(accept('n'))  { c = '\n'; return true; }
+        if(accept('r'))  { c = '\r'; return true; }
+        if(accept('t'))  { c = '\t'; return true; }
 
         auto s = state();
 
         string hex;
         hex.reserve(4);
-        if (s(accept('u') && accept_hex(hex) && accept_hex(hex) && accept_hex(hex) && accept_hex(hex)))
+        if(s(accept('u') && accept_hex(hex) && accept_hex(hex) && accept_hex(hex) && accept_hex(hex)))
         {
             char* end = nullptr;
             auto v = std::strtol(hex.c_str(), &end, 16);
-            if (end != hex.c_str() + hex.size())
+            if(end != hex.c_str() + hex.size())
                 return false;
 
             c = static_cast<int>(v);
@@ -570,11 +570,11 @@ private:
 
     bool accept_hex(string& result)
     {
-        if (accept_digit(result))
+        if(accept_digit(result))
             return true;
 
         auto c = peek();
-        if ((c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'))
+        if((c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'))
         {
             advance();
             result.push_back(static_cast<char>(c));
@@ -589,14 +589,14 @@ private:
         auto s = state();
 
         string n;
-        if (s(accept_int(n) && accept_frac(n) && accept_exp(n)))
+        if(s(accept_int(n) && accept_frac(n) && accept_exp(n)))
         {
             char* end = nullptr;
             auto v = std::strtod(n.c_str(), &end);
-            if (end != n.c_str() + n.size())
+            if(end != n.c_str() + n.size())
                 return false;
 
-            if (v != 0 && !std::isnormal(v))
+            if(v != 0 && !std::isnormal(v))
                 return false;
 
             result = v;
@@ -611,21 +611,21 @@ private:
         auto s = state();
 
         string part;
-        if (s(accept_onenine(part) && accept_digits(part)))
+        if(s(accept_onenine(part) && accept_digits(part)))
         {
             result += std::move(part);
             return true;
         }
 
         part.resize(0);
-        if (accept_digit(part))
+        if(accept_digit(part))
         {
             result += std::move(part);
             return true;
         }
 
         part.resize(0);
-        if (s(accept('-') && accept_onenine(part) && accept_digits(part)))
+        if(s(accept('-') && accept_onenine(part) && accept_digits(part)))
         {
             result += '-';
             result += std::move(part);
@@ -633,7 +633,7 @@ private:
         }
 
         part.resize(0);
-        if (s(accept('-') && accept_digit(part)))
+        if(s(accept('-') && accept_digit(part)))
         {
             result += '-';
             result += std::move(part);
@@ -646,10 +646,10 @@ private:
     bool accept_digits(string& result)
     {
         string part;
-        if (!accept_digit(part))
+        if(!accept_digit(part))
             return false;
 
-        while (accept_digit(part))
+        while(accept_digit(part))
             ;
 
         result += std::move(part);
@@ -659,12 +659,12 @@ private:
 
     bool accept_digit(string& result)
     {
-        if (accept('0'))
+        if(accept('0'))
         {
             result.push_back('0');
             return true;
         }
-        else if (accept_onenine(result))
+        else if(accept_onenine(result))
             return true;
 
         return false;
@@ -673,7 +673,7 @@ private:
     bool accept_onenine(string& result)
     {
         auto c = peek();
-        if (c >= '1' && c <= '9')
+        if(c >= '1' && c <= '9')
         {
             result.push_back(static_cast<char>(c));
             return advance();
@@ -687,7 +687,7 @@ private:
         auto s = state();
 
         string part;
-        if (s(accept('.') && accept_digits(part)))
+        if(s(accept('.') && accept_digits(part)))
         {
             result += '.';
             result += std::move(part);
@@ -701,14 +701,14 @@ private:
         auto s = state();
 
         string part;
-        if (s(accept('e') && accept_sign(part) && accept_digits(part)))
+        if(s(accept('e') && accept_sign(part) && accept_digits(part)))
         {
             result += 'e';
             result += std::move(part);
             return true;
         }
         part.resize(0);
-        if (s(accept('E') && accept_sign(part) && accept_digits(part)))
+        if(s(accept('E') && accept_sign(part) && accept_digits(part)))
         {
             result += 'E';
             result += std::move(part);
@@ -719,9 +719,9 @@ private:
 
     bool accept_sign(string& result)
     {
-        if (accept('+'))
+        if(accept('+'))
             result.push_back('+');
-        else if (accept('-'))
+        else if(accept('-'))
             result.push_back('-');
 
         return true;
@@ -729,19 +729,19 @@ private:
 
     bool accept_ws()
     {
-        while (expect('\x09') || expect('\x0A') || expect('\x0D') || expect('\x20'))
+        while(expect('\x09') || expect('\x0A') || expect('\x0D') || expect('\x20'))
             advance();
         return true;
     }
 
     bool accept_boolean(value& result)
     {
-        if (accept("true"))
+        if(accept("true"))
         {
             result = true;
             return true;
         }
-        else if (accept("false"))
+        else if(accept("false"))
         {
             result = false;
             return true;
@@ -752,7 +752,7 @@ private:
 
     bool accept_null(value& result)
     {
-        if (accept("null"))
+        if(accept("null"))
         {
             result = nullptr;
             return true;
@@ -763,7 +763,7 @@ private:
 
     bool accept(char c)
     {
-        if (expect(c))
+        if(expect(c))
             return advance();
         else
             return false;
@@ -773,9 +773,9 @@ private:
     {
         auto last = m_Cursor;
 
-        while (*str)
+        while(*str)
         {
-            if (eof() || *str != *m_Cursor)
+            if(eof() || *str != *m_Cursor)
             {
                 m_Cursor = last;
                 return false;
@@ -790,7 +790,7 @@ private:
 
     int peek() const
     {
-        if (!eof())
+        if(!eof())
             return *m_Cursor;
         else
             return -1;
@@ -803,7 +803,7 @@ private:
 
     bool advance(int count = 1)
     {
-        if (m_Cursor + count > m_End)
+        if(m_Cursor + count > m_End)
         {
             m_Cursor = m_End;
             return false;
@@ -836,17 +836,17 @@ value value::parse(const string& data)
 std::pair<value, bool> value::load(const string& path)
 {
     // Modern C++, so beautiful...
-    std::unique_ptr<FILE, void(*)(FILE*)> file{nullptr, [](FILE* file){ if (file) fclose(file); }};
+    std::unique_ptr<FILE, void(*)(FILE*)> file{nullptr, [](FILE* file){ if(file) fclose(file); }};
 # if defined(_MSC_VER) || (defined(__STDC_LIB_EXT1__) && __STDC_WANT_LIB_EXT1__)
     FILE* handle = nullptr;
-    if (fopen_s(&handle, path.c_str(), "rb") != 0)
+    if(fopen_s(&handle, path.c_str(), "rb") != 0)
         return {value{}, false};
     file.reset(handle);
 # else
     file.reset(fopen(path.c_str(), "rb"));
 # endif
 
-    if (!file)
+    if(!file)
         return {value{}, false};
 
     fseek(file.get(), 0, SEEK_END);
@@ -855,7 +855,7 @@ std::pair<value, bool> value::load(const string& path)
 
     string data;
     data.resize(size);
-    if (fread(const_cast<char*>(data.data()), size, 1, file.get()) != 1)
+    if(fread(const_cast<char*>(data.data()), size, 1, file.get()) != 1)
         return {value{}, false};
 
     return {parse(data), true};
@@ -864,22 +864,22 @@ std::pair<value, bool> value::load(const string& path)
 bool value::save(const string& path, const int indent, const char indent_char) const
 {
     // Modern C++, so beautiful...
-    std::unique_ptr<FILE, void(*)(FILE*)> file{nullptr, [](FILE* file){ if (file) fclose(file); }};
+    std::unique_ptr<FILE, void(*)(FILE*)> file{nullptr, [](FILE* file){ if(file) fclose(file); }};
 # if defined(_MSC_VER) || (defined(__STDC_LIB_EXT1__) && __STDC_WANT_LIB_EXT1__)
     FILE* handle = nullptr;
-    if (fopen_s(&handle, path.c_str(), "wb") != 0)
+    if(fopen_s(&handle, path.c_str(), "wb") != 0)
         return false;
     file.reset(handle);
 # else
     file.reset(fopen(path.c_str(), "wb"));
 # endif
 
-    if (!file)
+    if(!file)
         return false;
 
     auto data = dump(indent, indent_char);
 
-    if (fwrite(data.data(), data.size(), 1, file.get()) != 1)
+    if(fwrite(data.data(), data.size(), 1, file.get()) != 1)
         return false;
 
     return true;

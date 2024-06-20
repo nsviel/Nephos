@@ -73,13 +73,13 @@ bool Rectangle::is_rectangle(const vector<cv::Point>& contour){
   cv::approxPolyDP(contour, approx, cv::arcLength(contour, true) * 0.02, true);
 
   // Check if the polygon has 4 vertices and is convex
-  if(approx.size() == 4 && cv::isContourConvex(approx)) {
+  if(approx.size() == 4 && cv::isContourConvex(approx)){
     // Calculate the bounding box of the polygon
     cv::Rect boundingBox = cv::boundingRect(approx);
     double aspectRatio = (double)boundingBox.width / boundingBox.height;
 
     // Check the aspect ratio to confirm it's approximately a rectangle
-    if (aspectRatio >= minAspectRatio && aspectRatio <= maxAspectRatio) {
+    if(aspectRatio >= minAspectRatio && aspectRatio <= maxAspectRatio){
       return true;
     }
   }

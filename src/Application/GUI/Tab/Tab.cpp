@@ -51,7 +51,7 @@ void Tab::draw_tab_menu(){
   ImGuiTabItemFlags flag;
   //---------------------------
 
-  if (ImGui::BeginTabBar("main_tab")){
+  if(ImGui::BeginTabBar("main_tab")){
     for(int i=0; i<vec_tab.size(); i++){
       if(tab_to_open == vec_tab[i]){
         flag = ImGuiTabItemFlags_SetSelected;
@@ -60,7 +60,7 @@ void Tab::draw_tab_menu(){
         flag = 0;
       }
       ImGui::SetNextItemWidth(100);
-      if (ImGui::BeginTabItem(vec_tab[i].c_str(), NULL, flag)){
+      if(ImGui::BeginTabItem(vec_tab[i].c_str(), NULL, flag)){
         this->active_tab = vec_tab[i];
         ImGui::EndTabItem();
       }

@@ -13,7 +13,7 @@ bool File::compare_with_specs(const ldr::gui::File& a, const ldr::gui::File& b){
   // Check if either path is ".." and handle it as a special case
   if(a.item.name == ".."){
     return true;
-  }else if (b.item.name == ".."){
+  }else if(b.item.name == ".."){
     return false;
   }
 
@@ -26,9 +26,9 @@ bool File::compare_with_specs(const ldr::gui::File& a, const ldr::gui::File& b){
       case ldr::bookmark::FORMAT: delta = a.item.format.compare(b.item.format); break;
       default: std::cerr << "Unhandled column ID: " << sort_spec->ColumnUserID << std::endl; break;
     }
-    if (delta > 0)
+    if(delta > 0)
       return (sort_spec->SortDirection == ImGuiSortDirection_Ascending) ? false : true;
-    if (delta < 0)
+    if(delta < 0)
       return (sort_spec->SortDirection == ImGuiSortDirection_Ascending) ? true : false;
   }
 

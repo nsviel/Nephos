@@ -546,13 +546,13 @@ struct ImPlotStyle {
 };
 
 // Support for legacy versions
-#if (IMGUI_VERSION_NUM < 18716) // Renamed in 1.88
+#if(IMGUI_VERSION_NUM < 18716) // Renamed in 1.88
 #define ImGuiMod_None       0
 #define ImGuiMod_Ctrl       ImGuiKeyModFlags_Ctrl
 #define ImGuiMod_Shift      ImGuiKeyModFlags_Shift
 #define ImGuiMod_Alt        ImGuiKeyModFlags_Alt
 #define ImGuiMod_Super      ImGuiKeyModFlags_Super
-#elif (IMGUI_VERSION_NUM < 18823) // Renamed in 1.89, sorry
+#elif(IMGUI_VERSION_NUM < 18823) // Renamed in 1.89, sorry
 #define ImGuiMod_None       0
 #define ImGuiMod_Ctrl       ImGuiModFlags_Ctrl
 #define ImGuiMod_Shift      ImGuiModFlags_Shift
@@ -618,7 +618,7 @@ IMPLOT_API void SetImGuiContext(ImGuiContext* ctx);
 // Starts a 2D plotting context. If this function returns true, EndPlot() MUST
 // be called! You are encouraged to use the following convention:
 //
-// if (BeginPlot(...)){
+// if(BeginPlot(...)){
 //     PlotLine(...);
 //     ...
 //     EndPlot();
@@ -648,9 +648,9 @@ IMPLOT_API void EndPlot();
 //
 // Example:
 //
-// if (BeginSubplots("My Subplot",2,3,ImVec2(800,400)){
+// if(BeginSubplots("My Subplot",2,3,ImVec2(800,400)){
 //     for(int i = 0; i < 6; ++i){
-//         if (BeginPlot(...)){
+//         if(BeginPlot(...)){
 //             ImPlot::PlotLine(...);
 //             ...
 //             EndPlot();
@@ -707,7 +707,7 @@ IMPLOT_API void EndSubplots();
 // current plot. The functions should be called immediately after BeginPlot
 // and before any other API calls. Typical usage is as follows:
 
-// if (BeginPlot(...)){                     1) begin a new plot
+// if(BeginPlot(...)){                     1) begin a new plot
 //     SetupAxis(ImAxis_X1, "My X-Axis");    2) make Setup calls
 //     SetupAxis(ImAxis_Y1, "My Y-Axis");
 //     SetupLegend(ImPlotLocation_North);
@@ -776,9 +776,9 @@ IMPLOT_API void SetupFinish();
 // rich as the Setup API, most common needs are provided. These functions can be
 // called anwhere except for inside of `Begin/EndPlot`. For example:
 
-// if (ImGui::Button("Center Plot"))
+// if(ImGui::Button("Center Plot"))
 //     ImPlot::SetNextPlotLimits(-1,1,-1,1);
-// if (ImPlot::BeginPlot(...)){
+// if(ImPlot::BeginPlot(...)){
 //     ...
 //     ImPlot::EndPlot();
 // }
@@ -842,7 +842,7 @@ IMPLOT_API void SetNextAxesToFit();
 //        return ImPlotPoint(t, 0.5+0.5*std::sin(2*PI*10*t));
 //    };
 //    ...
-//    if (ImPlot::BeginPlot("MyPlot")){
+//    if(ImPlot::BeginPlot("MyPlot")){
 //        MyData my_data;
 //        ImPlot::PlotScatterG("scatter", MyDataGetter, &my_data, my_data.Size());
 //        ImPlot::PlotLineG("line", my_lambda, nullptr, 1000);

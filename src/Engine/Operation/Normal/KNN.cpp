@@ -49,7 +49,7 @@ void KNN::compute_normal(utl::base::Data* data, int k){
   #pragma omp parallel for
   for(size_t i = 0; i < data->xyz.size(); ++i){
     glm::vec3& point = data->xyz[i];
-    if (point == glm::vec3(0, 0, 0) || data->Nxyz[i] != glm::vec3(0, 0, 0)) continue;
+    if(point == glm::vec3(0, 0, 0) || data->Nxyz[i] != glm::vec3(0, 0, 0)) continue;
 
     // Find k nearest neighbors
     std::vector<std::vector<size_t>> indices(1);
@@ -74,7 +74,7 @@ void KNN::compute_normal(utl::base::Data* data, int k){
 
     // Adjust normal orientation
     glm::vec3 to_centroid = centroid - point;
-    if (glm::dot(normal, to_centroid) < 0) {
+    if(glm::dot(normal, to_centroid) < 0){
       normal = -normal;
     }
 

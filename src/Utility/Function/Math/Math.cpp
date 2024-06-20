@@ -303,7 +303,7 @@ void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point){
   // Check orientation towards the origin
   glm::vec3 centroid(0.0f); // Assuming the origin is (0, 0, 0)
   float dotProduct = glm::dot(normal, centroid - point);
-  if (dotProduct < 0.0f){
+  if(dotProduct < 0.0f){
     // Invert the normal
     normal = -normal;
   }
@@ -430,7 +430,7 @@ double truncate(double value, int decimalPlaces){
   //---------------------------
 
   double factor = 1.0;
-  for (int i = 0; i < decimalPlaces; ++i) {
+  for (int i = 0; i < decimalPlaces; ++i){
     factor *= 10.0;
   }
   int truncatedValue = static_cast<int>(value * factor);
@@ -495,7 +495,7 @@ std::string thousand_separator(int n){
 
         // If three characters
         // are traversed
-        if (count == 3){
+        if(count == 3){
             ans.push_back(' ');
             count = 0;
         }
@@ -507,7 +507,7 @@ std::string thousand_separator(int n){
 
     // If the given string is
     // less than 1000
-    if (ans.size() % 4 == 0){
+    if(ans.size() % 4 == 0){
 
         // Remove ','
         ans.erase(ans.begin());

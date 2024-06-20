@@ -75,7 +75,7 @@ inline bool ImRect_IsEmpty(const ImRect& rect)
 
 inline ImVec2 ImRect_ClosestPoint(const ImRect& rect, const ImVec2& p, bool snap_to_edge)
 {
-    if (!snap_to_edge && rect.Contains(p))
+    if(!snap_to_edge && rect.Contains(p))
         return p;
 
     return ImVec2(
@@ -90,7 +90,7 @@ inline ImVec2 ImRect_ClosestPoint(const ImRect& rect, const ImVec2& p, bool snap
 
     const auto offset      = p - point;
     const auto distance_sq = offset.x * offset.x + offset.y * offset.y;
-    if (distance_sq <= 0)
+    if(distance_sq <= 0)
         return point;
 
     const auto distance = ImSqrt(distance_sq);
@@ -101,16 +101,16 @@ inline ImVec2 ImRect_ClosestPoint(const ImRect& rect, const ImVec2& p, bool snap
 inline ImVec2 ImRect_ClosestPoint(const ImRect& rect, const ImRect& other)
 {
     ImVec2 result;
-    if (other.Min.x >= rect.Max.x)
+    if(other.Min.x >= rect.Max.x)
         result.x = rect.Max.x;
-    else if (other.Max.x <= rect.Min.x)
+    else if(other.Max.x <= rect.Min.x)
         result.x = rect.Min.x;
     else
         result.x = (ImMax(rect.Min.x, other.Min.x) + ImMin(rect.Max.x, other.Max.x)) / 2;
 
-    if (other.Min.y >= rect.Max.y)
+    if(other.Min.y >= rect.Max.y)
         result.y = rect.Max.y;
-    else if (other.Max.y <= rect.Min.y)
+    else if(other.Max.y <= rect.Min.y)
         result.y = rect.Min.y;
     else
         result.y = (ImMax(rect.Min.y, other.Min.y) + ImMin(rect.Max.y, other.Max.y)) / 2;
@@ -126,18 +126,18 @@ inline ImLine ImRect_ClosestLine(const ImRect& rect_a, const ImRect& rect_b)
 
     auto distribute = [](float& a, float& b, float a0, float a1, float b0, float b1)
     {
-        if (a0 >= b1 || a1 <= b0)
+        if(a0 >= b1 || a1 <= b0)
             return;
 
         const auto aw = a1 - a0;
         const auto bw = b1 - b0;
 
-        if (aw > bw)
+        if(aw > bw)
         {
             b = b0 + bw - bw * (a - a0) / aw;
             a = b;
         }
-        else if (aw < bw)
+        else if(aw < bw)
         {
             a = a0 + aw - aw * (b - b0) / bw;
             b = a;
@@ -153,12 +153,12 @@ inline ImLine ImRect_ClosestLine(const ImRect& rect_a, const ImRect& rect_b)
 inline ImLine ImRect_ClosestLine(const ImRect& rect_a, const ImRect& rect_b, float radius_a, float radius_b)
 {
     auto line = ImRect_ClosestLine(rect_a, rect_b);
-    if (radius_a < 0)
+    if(radius_a < 0)
         radius_a = 0;
-    if (radius_b < 0)
+    if(radius_b < 0)
         radius_b = 0;
 
-    if (radius_a == 0 && radius_b == 0)
+    if(radius_a == 0 && radius_b == 0)
         return line;
 
     const auto offset      = line.B - line.A;
@@ -166,14 +166,14 @@ inline ImLine ImRect_ClosestLine(const ImRect& rect_a, const ImRect& rect_b, flo
     const auto radius_a_sq = radius_a * radius_a;
     const auto radius_b_sq = radius_b * radius_b;
 
-    if (length_sq <= 0)
+    if(length_sq <= 0)
         return line;
 
     const auto length    = ImSqrt(length_sq);
     const auto direction = ImVec2(offset.x / length, offset.y / length);
 
     const auto total_radius_sq = radius_a_sq + radius_b_sq;
-    if (total_radius_sq > length_sq)
+    if(total_radius_sq > length_sq)
     {
         const auto scale = length / (radius_a + radius_b);
         radius_a *= scale;

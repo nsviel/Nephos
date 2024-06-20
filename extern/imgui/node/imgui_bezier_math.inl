@@ -75,11 +75,11 @@ inline T ImCubicBezierSample(const T& p0, const T& p1, const T& p2, const T& p3,
     const auto cp0_zero = ImLengthSqr(p1 - p0) < 1e-5f;
     const auto cp1_zero = ImLengthSqr(p3 - p2) < 1e-5f;
 
-    if (cp0_zero && cp1_zero)
+    if(cp0_zero && cp1_zero)
         return ImLinearBezier(p0, p3, t);
-    else if (cp0_zero)
+    else if(cp0_zero)
         return ImQuadraticBezier(p0, p2, p3, t);
-    else if (cp1_zero)
+    else if(cp1_zero)
         return ImQuadraticBezier(p0, p1, p3, t);
     else
         return ImCubicBezier(p0, p1, p2, p3, t);
@@ -97,11 +97,11 @@ inline T ImCubicBezierTangent(const T& p0, const T& p1, const T& p2, const T& p3
     const auto cp0_zero = ImLengthSqr(p1 - p0) < 1e-5f;
     const auto cp1_zero = ImLengthSqr(p3 - p2) < 1e-5f;
 
-    if (cp0_zero && cp1_zero)
+    if(cp0_zero && cp1_zero)
         return ImLinearBezierDt(p0, p3, t);
-    else if (cp0_zero)
+    else if(cp0_zero)
         return ImQuadraticBezierDt(p0, p2, p3, t);
-    else if (cp1_zero)
+    else if(cp1_zero)
         return ImQuadraticBezierDt(p0, p1, p3, t);
     else
         return ImCubicBezierDt(p0, p1, p2, p3, t);
@@ -251,15 +251,15 @@ inline ImRect ImCubicBezierBoundingRect(const ImVec2& p0, const ImVec2& p1, cons
 
     for(int i = 0; i < 2; ++i)
     {
-        if (IM_VEC2_INDEX(a, i) == 0.0f)
+        if(IM_VEC2_INDEX(a, i) == 0.0f)
             continue;
 
-        if (IM_VEC2_INDEX(delta_squared, i) >= 0)
+        if(IM_VEC2_INDEX(delta_squared, i) >= 0)
         {
             auto delta = ImSqrt(IM_VEC2_INDEX(delta_squared, i));
 
             auto t0 = (-IM_VEC2_INDEX(b, i) + delta) / (2 * IM_VEC2_INDEX(a, i));
-            if (t0 > 0 && t0 < 1)
+            if(t0 > 0 && t0 < 1)
             {
                 auto p = ImCubicBezier(IM_VEC2_INDEX(p0, i), IM_VEC2_INDEX(p1, i), IM_VEC2_INDEX(p2, i), IM_VEC2_INDEX(p3, i), t0);
                 IM_VEC2_INDEX(tl, i) = ImMin(IM_VEC2_INDEX(tl, i), p);
@@ -267,7 +267,7 @@ inline ImRect ImCubicBezierBoundingRect(const ImVec2& p0, const ImVec2& p1, cons
             }
 
             auto t1 = (-IM_VEC2_INDEX(b, i) - delta) / (2 * IM_VEC2_INDEX(a, i));
-            if (t1 > 0 && t1 < 1)
+            if(t1 > 0 && t1 < 1)
             {
                 auto p = ImCubicBezier(IM_VEC2_INDEX(p0, i), IM_VEC2_INDEX(p1, i), IM_VEC2_INDEX(p2, i), IM_VEC2_INDEX(p3, i), t1);
                 IM_VEC2_INDEX(tl, i) = ImMin(IM_VEC2_INDEX(tl, i), p);
@@ -306,7 +306,7 @@ inline ImProjectResult ImProjectOnCubicBezier(const ImVec2& point, const ImVec2&
         auto s = point - p;
         auto d = ImDot(s, s);
 
-        if (d < result.Distance)
+        if(d < result.Distance)
         {
             result.Point    = p;
             result.Time     = t;
@@ -314,7 +314,7 @@ inline ImProjectResult ImProjectOnCubicBezier(const ImVec2& point, const ImVec2&
         }
     }
 
-    if (result.Time == 0.0f || ImFabs(result.Time - 1.0f) <= epsilon)
+    if(result.Time == 0.0f || ImFabs(result.Time - 1.0f) <= epsilon)
     {
         result.Distance = ImSqrt(result.Distance);
         return result;
@@ -331,7 +331,7 @@ inline ImProjectResult ImProjectOnCubicBezier(const ImVec2& point, const ImVec2&
         auto s = point - p;
         auto d = ImDot(s, s);
 
-        if (d < result.Distance)
+        if(d < result.Distance)
         {
             result.Point    = p;
             result.Time     = t;
@@ -365,7 +365,7 @@ inline ImCubicBezierIntersectResult ImCubicBezierLineIntersect(const ImVec2& p0,
         auto R = (9 * A * B - 27 * C - 2 * ImPow(A, 3)) / 54;
         auto D = ImPow(Q, 3) + ImPow(R, 2);               // polynomial discriminant
 
-        if (D >= 0) // complex or duplicate roots
+        if(D >= 0) // complex or duplicate roots
         {
             auto S = sign(R + ImSqrt(D)) * ImPow(ImFabs(R + ImSqrt(D)), (1.0f / 3.0f));
             auto T = sign(R - ImSqrt(D)) * ImPow(ImFabs(R - ImSqrt(D)), (1.0f / 3.0f));
@@ -376,7 +376,7 @@ inline ImCubicBezierIntersectResult ImCubicBezierLineIntersect(const ImVec2& p0,
             auto Im = ImFabs(ImSqrt(3) * (S - T) / 2);  // complex part of root pair
 
                                                         // discard complex roots
-            if (Im != 0)
+            if(Im != 0)
                 count = 1;
             else
                 count = 3;
@@ -442,7 +442,7 @@ inline ImCubicBezierIntersectResult ImCubicBezierLineIntersect(const ImVec2& p0,
     {
         auto root = roots[i];
 
-        if (0 <= root && root <= 1)
+        if(0 <= root && root <= 1)
         {
             // We're within the Bezier curve
             // Find point on Bezier
@@ -451,17 +451,17 @@ inline ImCubicBezierIntersectResult ImCubicBezierLineIntersect(const ImVec2& p0,
             // See if point is on line segment
             // Had to make special cases for vertical and horizontal lines due
             // to slight errors in calculation of p00
-            if (a0.x == a1.x)
+            if(a0.x == a1.x)
             {
-                if (min.y <= p.y && p.y <= max.y)
+                if(min.y <= p.y && p.y <= max.y)
                     *points++ = p;
             }
-            else if (a0.y == a1.y)
+            else if(a0.y == a1.y)
             {
-                if (min.x <= p.x && p.x <= max.x)
+                if(min.x <= p.x && p.x <= max.x)
                     *points++ = p;
             }
-            else if (p.x >= min.x && p.y >= min.y && p.x <= max.x && p.y <= max.y)
+            else if(p.x >= min.x && p.y >= min.y && p.x <= max.x && p.y <= max.y)
             {
                 *points++ = p;
             }
@@ -508,11 +508,11 @@ inline void ImCubicBezierSubdivide(ImCubicBezierSubdivideCallback callback, void
             float d3 = ((curve.P2.x - curve.P3.x) * dy - (curve.P2.y - curve.P3.y) * dx);
             d2 = (d2 >= 0) ? d2 : -d2;
             d3 = (d3 >= 0) ? d3 : -d3;
-            if ((d2 + d3) * (d2 + d3) < TesselationTollerance * (dx * dx + dy * dy))
+            if((d2 + d3) * (d2 + d3) < TesselationTollerance * (dx * dx + dy * dy))
             {
                 Commit(curve.P3, ImCubicBezierTangent(curve, 1.0f));
             }
-            else if (level < 10)
+            else if(level < 10)
             {
                 const auto p12 = (curve.P0 + curve.P1) * 0.5f;
                 const auto p23 = (curve.P1 + curve.P2) * 0.5f;
@@ -527,7 +527,7 @@ inline void ImCubicBezierSubdivide(ImCubicBezierSubdivideCallback callback, void
         }
     };
 
-    if (tess_tol < 0)
+    if(tess_tol < 0)
         tess_tol = 1.118f; // sqrtf(1.25f)
 
     Tesselator tesselator;
@@ -536,7 +536,7 @@ inline void ImCubicBezierSubdivide(ImCubicBezierSubdivideCallback callback, void
     tesselator.TesselationTollerance = tess_tol * tess_tol;
     tesselator.Flags                 = flags;
 
-    if (!(tesselator.Flags & ImCubicBezierSubdivide_SkipFirst))
+    if(!(tesselator.Flags & ImCubicBezierSubdivide_SkipFirst))
         tesselator.Commit(curve.P0, ImCubicBezierTangent(curve, 0.0f));
 
     tesselator.Subdivide(curve, 0);
@@ -566,7 +566,7 @@ template <typename F> inline void ImCubicBezierSubdivide(F& callback, const ImCu
 
 inline void ImCubicBezierFixedStep(ImCubicBezierFixedStepCallback callback, void* user_pointer, const ImVec2& p0, const ImVec2& p1, const ImVec2& p2, const ImVec2& p3, float step, bool overshoot, float max_value_error, float max_t_error)
 {
-    if (step <= 0.0f || !callback || max_value_error <= 0 || max_t_error <= 0)
+    if(step <= 0.0f || !callback || max_value_error <= 0 || max_t_error <= 0)
         return;
 
     ImCubicBezierFixedStepSample sample;
@@ -576,7 +576,7 @@ inline void ImCubicBezierFixedStep(ImCubicBezierFixedStepCallback callback, void
     sample.BreakSearch = false;
 
     callback(sample, user_pointer);
-    if (sample.BreakSearch)
+    if(sample.BreakSearch)
         return;
 
     const auto total_length = ImCubicBezierLength(p0, p1, p2, p3);
@@ -598,10 +598,10 @@ inline void ImCubicBezierFixedStep(ImCubicBezierFixedStepCallback callback, void
         float t_best     = t;
         float error_best = total_length;
 
-        while (true)
+        while(true)
         {
             auto cacheIt = cache.find(t);
-            if (cacheIt == cache.end())
+            if(cacheIt == cache.end())
             {
                 const auto front        = ImCubicBezierSplit(p0, p1, p2, p3, t).Left;
                 const auto split_length = ImCubicBezierLength(front);
@@ -612,27 +612,27 @@ inline void ImCubicBezierFixedStep(ImCubicBezierFixedStepCallback callback, void
             const auto length   = cacheIt->second;
             const auto error    = targetLength - length;
 
-            if (error < error_best)
+            if(error < error_best)
             {
                 error_best = error;
                 t_best     = t;
             }
 
-            if (ImFabs(error) <= max_value_error || ImFabs(t_start - t_end) <= max_t_error)
+            if(ImFabs(error) <= max_value_error || ImFabs(t_start - t_end) <= max_t_error)
             {
                 sample.T      = t;
                 sample.Length = length;
                 sample.Point  = ImCubicBezier(p0, p1, p2, p3, t);
 
                 callback(sample, user_pointer);
-                if (sample.BreakSearch)
+                if(sample.BreakSearch)
                     return;
 
                 break;
             }
-            else if (error < 0.0f)
+            else if(error < 0.0f)
                 t_end = t;
-            else // if (error > 0.0f)
+            else // if(error > 0.0f)
                 t_start = t;
 
             t = (t_start + t_end) * 0.5f;

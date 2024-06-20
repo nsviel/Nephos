@@ -74,7 +74,7 @@ typedef signed   long  int     khronos_ssize_t;
 #if defined(_MSC_VER) && !defined(__clang__)
 typedef signed   __int64       khronos_int64_t;
 typedef unsigned __int64       khronos_uint64_t;
-#elif (defined(__clang__) || defined(__GNUC__)) && (__cplusplus < 201100)
+#elif(defined(__clang__) || defined(__GNUC__)) && (__cplusplus < 201100)
 #include <stdint.h>
 typedef          int64_t       khronos_int64_t;
 typedef          uint64_t      khronos_uint64_t;
@@ -625,7 +625,7 @@ static GL3WglGetProcAddr wgl_get_proc_address;
 static int open_libgl(void)
 {
     libgl = LoadLibraryA("opengl32.dll");
-    if (!libgl)
+    if(!libgl)
         return GL3W_ERROR_LIBRARY_OPEN;
     wgl_get_proc_address = (GL3WglGetProcAddr)GetProcAddress(libgl, "wglGetProcAddress");
     return GL3W_OK;
@@ -636,7 +636,7 @@ static GL3WglProc get_proc(const char *proc)
 {
     GL3WglProc res;
     res = (GL3WglProc)wgl_get_proc_address(proc);
-    if (!res)
+    if(!res)
         res = (GL3WglProc)GetProcAddress(libgl, proc);
     return res;
 }
@@ -647,7 +647,7 @@ static void *libgl;
 static int open_libgl(void)
 {
     libgl = dlopen("/System/Library/Frameworks/OpenGL.framework/OpenGL", RTLD_LAZY | RTLD_LOCAL);
-    if (!libgl)
+    if(!libgl)
         return GL3W_ERROR_LIBRARY_OPEN;
     return GL3W_OK;
 }
@@ -670,11 +670,11 @@ static int open_libgl(void)
 {
     // While most systems use libGL.so.1, NetBSD seems to use that libGL.so.3. See https://github.com/ocornut/imgui/issues/6983
     libgl = dlopen("libGL.so", RTLD_LAZY | RTLD_LOCAL);
-    if (!libgl)
+    if(!libgl)
         libgl = dlopen("libGL.so.1", RTLD_LAZY | RTLD_LOCAL);
-    if (!libgl)
+    if(!libgl)
         libgl = dlopen("libGL.so.3", RTLD_LAZY | RTLD_LOCAL);
-    if (!libgl)
+    if(!libgl)
         return GL3W_ERROR_LIBRARY_OPEN;
     *(void **)(&glx_get_proc_address) = dlsym(libgl, "glXGetProcAddressARB");
     return GL3W_OK;
@@ -686,7 +686,7 @@ static GL3WglProc get_proc(const char *proc)
 {
     GL3WglProc res;
     res = glx_get_proc_address((const GLubyte *)proc);
-    if (!res)
+    if(!res)
         *(void **)(&res) = dlsym(libgl, proc);
     return res;
 }
@@ -696,17 +696,17 @@ static struct { int major, minor; } version;
 
 static int parse_version(void)
 {
-    if (!glGetIntegerv)
+    if(!glGetIntegerv)
         return GL3W_ERROR_INIT;
     glGetIntegerv(GL_MAJOR_VERSION, &version.major);
     glGetIntegerv(GL_MINOR_VERSION, &version.minor);
-    if (version.major == 0 && version.minor == 0)
+    if(version.major == 0 && version.minor == 0)
     {
         // Query GL_VERSION in desktop GL 2.x, the string will start with "<major>.<minor>"
-        if (const char* gl_version = (const char*)glGetString(GL_VERSION))
+        if(const char* gl_version = (const char*)glGetString(GL_VERSION))
             sscanf(gl_version, "%d.%d", &version.major, &version.minor);
     }
-    if (version.major < 2)
+    if(version.major < 2)
         return GL3W_ERROR_OPENGL_VERSION;
     return GL3W_OK;
 }
@@ -716,7 +716,7 @@ static void load_procs(GL3WGetProcAddressProc proc);
 int imgl3wInit(void)
 {
     int res = open_libgl();
-    if (res)
+    if(res)
         return res;
     atexit(close_libgl);
     return imgl3wInit2(get_proc);
@@ -730,9 +730,9 @@ int imgl3wInit2(GL3WGetProcAddressProc proc)
 
 int imgl3wIsSupported(int major, int minor)
 {
-    if (major < 2)
+    if(major < 2)
         return 0;
-    if (version.major == major)
+    if(version.major == major)
         return version.minor >= minor;
     return version.major >= major;
 }
