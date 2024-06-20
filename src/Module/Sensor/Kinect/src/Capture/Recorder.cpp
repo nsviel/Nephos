@@ -11,7 +11,7 @@ namespace k4n::capture{
 Recorder::Recorder(){
   //---------------------------
 
-  this->format = "mkv";
+  this->format = ".mkv";
 
   //---------------------------
 }

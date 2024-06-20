@@ -12,7 +12,7 @@ Importer::Importer(){
 
   this->nbptMax = 40000000;
   this->IdataFormat = 2;
-  this->format = "pts";
+  this->format = ".pts";
 
   //---------------------------
 }

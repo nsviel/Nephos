@@ -9,7 +9,7 @@ namespace format::obj{
 Importer::Importer(){
   //---------------------------
 
-  this->format = "obj";
+  this->format = ".obj";
 
   //---------------------------
 }

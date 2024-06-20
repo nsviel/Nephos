@@ -13,7 +13,7 @@ Importer::Importer(){
   this->ply_ascii = new format::ply::importer::Ascii();
   this->ply_binary = new format::ply::importer::Binary();
 
-  this->format = "ply";
+  this->format = ".ply";
 
   //---------------------------
 }

@@ -10,7 +10,7 @@ namespace format::csv{
 Importer::Importer(){
   //---------------------------
 
-  this->format = "csv";
+  this->format = ".csv";
 
   //---------------------------
 }

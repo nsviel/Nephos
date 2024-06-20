@@ -65,7 +65,7 @@ void Importer::load_set(utl::base::Path path){
 
   //---------------------------
 }
-void Importer::load_object(utl::base::Path path, std::string path_transfo){
+void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
   if(!check_path(path.build())) return;
   //---------------------------
 

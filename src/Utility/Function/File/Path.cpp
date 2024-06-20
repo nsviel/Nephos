@@ -72,7 +72,7 @@ std::string get_format_from_path(std::string path){
     return "-";
   }
 
-  std::string format = name_format.substr(dot_position + 1);
+  std::string format = name_format.substr(dot_position);
 
   //---------------------------
   return format;
@@ -145,7 +145,7 @@ std::string get_dir_from_path(std::string path){
   std::filesystem::path dir_path = path_obj.parent_path();
 
   // Convert the directory path to a string
-  std::string directory = dir_path.string();
+  std::string directory = dir_path.string() + "/";
 
   //---------------------------
   return directory;

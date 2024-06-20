@@ -7,7 +7,7 @@ namespace format::xyz{
 Importer::Importer(){
   //---------------------------
 
-  this->format = "xyz";
+  this->format = ".xyz";
 
   //---------------------------
 }

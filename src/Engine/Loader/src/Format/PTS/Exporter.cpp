@@ -10,7 +10,7 @@ namespace format::pts{
 Exporter::Exporter(){
   //---------------------------
 
-  this->format = "pts";
+  this->format = ".pts";
   this->vec_encoding.push_back(ldr::io::ASCII);
 
   //---------------------------

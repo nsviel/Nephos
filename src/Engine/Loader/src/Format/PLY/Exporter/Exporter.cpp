@@ -9,7 +9,7 @@ namespace format::ply{
 Exporter::Exporter(){
   //---------------------------
 
-  this->format = "ply";
+  this->format = ".ply";
   this->vec_encoding.push_back(ldr::io::ASCII);
   this->vec_encoding.push_back(ldr::io::BINARY);
 
