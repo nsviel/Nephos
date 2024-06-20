@@ -1,6 +1,6 @@
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Lidar)
+add_subdirectory(Sensor)
 add_subdirectory(Radiometry)
 #add_subdirectory(Registration)

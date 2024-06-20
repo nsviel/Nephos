@@ -26,6 +26,7 @@ public:
   void write_depth_mode_model();
   void read_device_info();
   void read_depth_mode_model();
+  std::string get_current_path();
 
 private:
   rad::correction::Structure* rad_struct;

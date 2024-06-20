@@ -9,8 +9,10 @@ namespace rad::correction::structure{
 struct Model{
   //---------------------------
 
-  std::string path_model = "../media/calibration/model.json";
-  std::string path_measure = "../media/calibration/model.json";
+  std::string path_dir = "../media/calibration";
+  std::string path_filename = "kinect.json";
+  std::string path_measure = "NFOV_sphere.data";
+
   std::string device = "Kinect";
   std::string serial_number = "9999999";
   std::string depth_mode = "NFOV";

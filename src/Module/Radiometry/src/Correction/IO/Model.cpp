@@ -40,7 +40,9 @@ void Model::export_model(){
 void Model::write_device_info(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
-string& path = model->path_model;
+
+  string path = get_current_path();
+
   //Info
   utl::json::write_value(path, "info.device", model->device);
   utl::json::write_value(path, "info.serial_number", model->serial_number);
@@ -57,7 +59,7 @@ void Model::write_depth_mode_model(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
 
-  string& path = model->path_model;
+  string path = get_current_path();
 
   utl::json::write_value(path, model->depth_mode + ".rmse", model->rmse);
   utl::json::write_value(path, model->depth_mode + ".measure", model->path_measure);
@@ -84,7 +86,7 @@ void Model::read_device_info(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
 
-  string& path = model->path_model;
+  string path = get_current_path();
 
   //Info
   model->serial_number = utl::json::read_value<string>(path, "info.serial_number");
@@ -100,7 +102,7 @@ void Model::read_device_info(){
 void Model::read_depth_mode_model(){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
-  string& path = model->path_model;
+  string path = get_current_path();
 
   model->depth_mode = utl::json::read_value<string>(path, "info.depth_mode");
 
@@ -122,6 +124,16 @@ void Model::read_depth_mode_model(){
   }
 
   //---------------------------
+}
+std::string Model::get_current_path(){
+  //---------------------------
+
+  std::string& dir = rad_struct->model.path_dir;
+  std::string& filename = rad_struct->model.path_filename;
+  std::string path = dir + "/" + filename;
+
+  //---------------------------
+  return path;
 }
 
 }

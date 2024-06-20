@@ -130,15 +130,16 @@ void Model::parameter_model(){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Model")){
     //Path
+    std::string path = rad_io_model->get_current_path();
     if(ImGui::Button("...##path_model")){
-      zenity::selection_file(model->path_model);
+      zenity::selection_file(path);
     }
     ImGui::SameLine();
     if(ImGui::Button(ICON_FA_FOLDER "##path_model")){
-      utl::directory::open(model->path_model);
+      utl::directory::open(path);
     }
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", model->path_model.c_str());
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", path.c_str());
 
     //Model parameter
     ImGui::SetNextItemWidth(120);
