@@ -200,8 +200,8 @@ void Exporter::item_update(utl::base::Element* element){
     utl::base::Data* data = &entity->data;
     ldr_struct->exporter.path.name = entity->name;
 
-    if(ldr_exporter->is_format_supported(data->format)){
-      ldr_struct->exporter.path.format = data->format;
+    if(ldr_exporter->is_format_supported(data->path.format)){
+      ldr_struct->exporter.path.format = data->path.format;
     }
   }
 
@@ -216,11 +216,11 @@ void Exporter::item_operation(){
 
   utl::base::Data* data = &entity->data;
   data->name = ldr_struct->exporter.path.name;
-  data->format = format;
   data->path.directory = ldr_struct->exporter.path.folder;
-  data->path.data = utl::path::reconstruct_path(data->path.directory, data->name, data->format);
+  data->path.name = data->name;
+  data->path.format = format;
 
-  ldr_exporter->export_entity(entity, data->path.data);
+  ldr_exporter->export_entity(entity, data->path.build());
 
   //---------------------------
 }

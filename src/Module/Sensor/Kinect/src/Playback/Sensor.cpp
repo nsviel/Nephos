@@ -16,10 +16,10 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->k4n_config = new k4n::utils::Configuration(node_k4n);
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 
-  this->name = utl::path::get_name_from_path(path.data);
+  this->name = utl::path::get_name_from_path(path.build());
   this->data.path = path;
-  this->data.name = utl::path::get_name_from_path(path.data);
-  this->data.format = utl::path::get_format_from_path(path.data);
+  this->data.name = utl::path::get_name_from_path(path.build());
+  this->data.path.format = utl::path::get_format_from_path(path.build());
 
   //---------------------------
 }
@@ -30,7 +30,7 @@ void Sensor::thread_init(){
   //---------------------------
 
   //Init playback
-  std::string& path = data.path.data;
+  std::string path = data.path.build();
   if(path == "") return;
   this->playback = k4a::playback::open(path.c_str());
   if(!playback){

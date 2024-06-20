@@ -37,6 +37,7 @@ void Info::path_info(utl::base::Element* element){
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   utl::base::Data* data = &entity->data;
+  utl::base::Pose* pose = &entity->pose;
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Path");
   ImGui::BeginTable("sensor##info", 2);
@@ -46,13 +47,15 @@ void Info::path_info(utl::base::Element* element){
   //Data
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Data"); ImGui::TableNextColumn();
-  string path_data = (data->path.data != "") ? data->path.data : "(not defined)";
+  string path_data = data->path.directory + data->path.name + data->path.format;
+  if(path_data == "") path_data = "(not defined)";
   ImGui::TextColored(color, "%s", path_data.c_str());
 
   //Transformation
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Transform"); ImGui::TableNextColumn();
-  string path_transfo = (data->path.transformation != "") ? data->path.transformation : "(not defined)";
+  string path_transfo = pose->path.directory + pose->path.name + pose->path.format;
+  if(path_transfo == "") path_transfo = "(not defined)";
   ImGui::TextColored(color, "%s", path_transfo.c_str());
 
   ImGui::EndTable();
@@ -137,7 +140,7 @@ void Info::playback_info(utl::base::Element* element){
     //Path data
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Path"); ImGui::TableNextColumn();
-    string path = (player->path.data != "") ? player->path.data : "(not defined)";
+    string path = (player->path.build() != "") ? player->path.build() : "(not defined)";
     ImGui::TextColored(color, "%s", path.c_str());
 
     //Size

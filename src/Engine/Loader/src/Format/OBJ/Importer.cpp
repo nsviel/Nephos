@@ -21,23 +21,23 @@ utl::base::Element* Importer::import(utl::base::Path path){
 
   //Init
   dat::base::Object* object = new dat::base::Object();
-  object->name = utl::path::get_name_from_path(path.data);
-  object->data.name = utl::path::get_name_from_path(path.data);
+  object->name = utl::path::get_name_from_path(path.build());
+  object->data.name = utl::path::get_name_from_path(path.build());
   object->data.path = path;
-  object->data.format = format;
+  object->data.path.format = format;
   object->data.topology.type = utl::topology::POINT;
 
   //Init
   this->init_params();
 
   // Open file and fill path info
-  std::ifstream file(path.data);
+  std::ifstream file(path.build());
 
   // Retrieve file data
   std::vector<Vertex> vertex_vec = get_data_from_file(file);
 
   //Parse MTL file
-  this->parse_mtl(path.data);
+  this->parse_mtl(path.build());
 
   // Fill output format with file data
   this->fill_data_file(&object->data, vertex_vec);

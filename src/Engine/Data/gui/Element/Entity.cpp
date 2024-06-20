@@ -138,10 +138,10 @@ void Entity::data_info(dat::base::Entity* entity){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Format"); ImGui::TableNextColumn();
   static char str_f[256];
-  strcpy(str_f, data->format.c_str());
+  strcpy(str_f, data->path.format.c_str());
   ImGui::SetNextItemWidth(item_width);
   if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
-    data->format = str_f;
+    data->path.format = str_f;
   }
 
   //Uniform collection color

@@ -24,20 +24,20 @@ utl::base::Element* Importer::import(utl::base::Path path){
 
   //Init
   dat::base::Object* object = new dat::base::Object();
-  object->name = utl::path::get_name_from_path(path.data);
-  object->data.name = utl::path::get_name_from_path(path.data);
+  object->name = path.name;
+  object->data.name = path.name;
   object->data.path = path;
-  object->data.format = format;
+  object->data.path.format = format;
   object->data.topology.type = utl::topology::POINT;
 
   //Initialization
   this->Loader_init();
-  bool FILE_hasHeader = check_header(path.data);
-  int FILE_config = check_configuration(path.data);
-  int FILE_size = check_size(path.data, FILE_hasHeader);
+  bool FILE_hasHeader = check_header(path.build());
+  int FILE_config = check_configuration(path.build());
+  int FILE_size = check_size(path.build(), FILE_hasHeader);
 
   //Read file
-  std::ifstream infile1(path.data);
+  std::ifstream infile1(path.build());
   while(std::getline(infile1, line)){
     //If line empty break the while
     if(line.empty()){

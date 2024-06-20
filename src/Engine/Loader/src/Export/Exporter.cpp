@@ -27,7 +27,7 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
   for(int i=0; i<vec_exporter.size(); i++){
     ldr::base::Exporter* exporter = vec_exporter[i];
 
-    if(entity->data.format == exporter->format){
+    if(entity->data.path.format == exporter->format){
       this->export_with_encoding(exporter, entity, path);
     }
   }

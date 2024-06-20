@@ -61,21 +61,22 @@ void Recorder::check_path(dyn::base::Sensor* sensor){
   utl::base::Data* data = &sensor->data;
   //---------------------------
 
-  //data->path.data = data->path.directory + "/" + data->name + "." + data->format;
+  //data->path.build() = data->path.directory + "/" + data->name + "." + data->path.format;
 
   //---------------------------
 }
 void Recorder::make_recording(dyn::base::Sensor* sensor){
+  std::string path = sensor->data.path.build();
   //---------------------------
 
   if(sensor->vec_recorder.size() == 1){
-    sensor->vec_recorder[0]->record_sensor(sensor, sensor->data.path.data);
+    sensor->vec_recorder[0]->record_sensor(sensor, path);
   }else{
     for(int i=0; i<sensor->vec_recorder.size(); i++){
       dyn::base::Recorder* recorder = sensor->vec_recorder[i];
 
-      if(recorder->format == sensor->data.format){
-        recorder->record_sensor(sensor, sensor->data.path.data);
+      if(recorder->format == sensor->data.path.format){
+        recorder->record_sensor(sensor, path);
       }
     }
   }

@@ -179,9 +179,9 @@ void Recorder::item_operation(){
 
   utl::base::Data* data = &entity->data;
   data->name = ldr_struct->exporter.path.name;
-  data->format = format;
   data->path.directory = ldr_struct->exporter.path.folder;
-  data->path.data = utl::path::reconstruct_path(data->path.directory, data->name, data->format);
+  data->path.name = data->name;
+  data->path.format = format;
 
   //---------------------------
 }

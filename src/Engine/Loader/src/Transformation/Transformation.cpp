@@ -20,7 +20,7 @@ void Transformation::load_transformation(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  std::string& path = entity->data.path.transformation;
+  std::string path = entity->pose.path.build();
   this->load_transformation(entity, path);
 
   //---------------------------
@@ -65,7 +65,7 @@ void Transformation::update_path(utl::base::Element* element){
   static dat::base::Entity* old_entity = nullptr;
   if(old_entity != nullptr && entity->UID == old_entity->UID) return;
 
-  std::string& path = entity->data.path.transformation;
+  std::string path = entity->pose.path.build();
   if(path != ""){
     ldr_struct->transformation.path.folder = utl::path::get_dir_from_path(path);
     ldr_struct->transformation.path.name = utl::path::get_name_from_path(path);

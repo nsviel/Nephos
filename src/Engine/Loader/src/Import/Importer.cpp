@@ -31,8 +31,7 @@ utl::base::Data* Importer::load_data(std::string path){
   //---------------------------
 
   //Init
-  utl::base::Path utl_path;
-  utl_path.data = path;
+  utl::base::Path utl_path(path);
 
   //Load data from path
   utl::base::Element* element = this->import_from_path(utl_path);
@@ -48,7 +47,7 @@ utl::base::Data* Importer::load_data(std::string path){
   return data;
 }
 void Importer::load_set(utl::base::Path path){
-  if(!check_path(path.data)) return;
+  if(!check_path(path.build())) return;
   //---------------------------
 
   //Load
@@ -66,8 +65,8 @@ void Importer::load_set(utl::base::Path path){
 
   //---------------------------
 }
-void Importer::load_object(utl::base::Path path){
-  if(!check_path(path.data)) return;
+void Importer::load_object(utl::base::Path path, std::string path_transfo){
+  if(!check_path(path.build())) return;
   //---------------------------
 
   //Load
@@ -158,12 +157,10 @@ utl::base::Element* Importer::import_from_path(utl::base::Path path){
   utl::base::Element* element = nullptr;
   //---------------------------
 
-  std::string format = utl::path::get_format_from_path(path.data);
-
   for(int i=0; i<vec_importer.size(); i++){
     ldr::base::Importer* importer = vec_importer[i];
 
-    if(importer->format == format){
+    if(importer->format == path.format){
       element = importer->import(path);
     }
   }

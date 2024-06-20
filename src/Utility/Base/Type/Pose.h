@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Type/Element.h>
+#include <Utility/Base/Type/Path.h>
 #include <glm/glm.hpp>
 #include <vulkan/vulkan.h>
 #include <Eigen/Dense>
@@ -18,7 +19,11 @@ namespace utl::base{
 struct Pose{
   //---------------------------
 
+  //State
   bool movable = true;
+  utl::base::Path path;
+
+  //Data
   glm::vec3 min = glm::vec3(0.0f);
   glm::vec3 max = glm::vec3(0.0f);
   glm::vec3 root = glm::vec3(0.0f);

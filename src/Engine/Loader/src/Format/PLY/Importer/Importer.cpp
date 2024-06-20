@@ -25,13 +25,13 @@ utl::base::Element* Importer::import(utl::base::Path path){
 
   //Init
   dat::base::Object* object = new dat::base::Object();
-  object->name = utl::path::get_name_from_path(path.data);
-  object->data.name = utl::path::get_name_from_path(path.data);
+  object->name = path.name;
+  object->data.name = path.name;
   object->data.path = path;
-  object->data.format = format;
+  object->data.path.format = format;
 
   //Header
-  this->parse_header(path.data);
+  this->parse_header(path.build());
 
   //Parsing
   switch(header.format){

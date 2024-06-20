@@ -29,17 +29,17 @@ Importer::~Importer(){}
 
 //Main function
 utl::base::Element* Importer::import(utl::base::Path path){
-  if(!utl::file::is_exist(path.data)) return nullptr;
+  if(!utl::file::is_exist(path.build())) return nullptr;
   //---------------------------
 
   //Create sensor
   k4n::playback::Sensor* sensor = new k4n::playback::Sensor(node_k4n, path);
-  sensor->name = utl::path::get_name_from_path(path.data);
-  sensor->data.name = utl::path::get_name_from_path(path.data);
+  sensor->name = utl::path::get_name_from_path(path.build());
+  sensor->data.name = utl::path::get_name_from_path(path.build());
   sensor->data.path = path;
-  sensor->data.format = format;
-  sensor->timestamp.begin = find_mkv_ts_beg(path.data);
-  sensor->timestamp.end = find_mkv_ts_end(path.data);
+  sensor->data.path.format = format;
+  sensor->timestamp.begin = find_mkv_ts_beg(path.build());
+  sensor->timestamp.end = find_mkv_ts_end(path.build());
   sensor->timestamp.duration = sensor->timestamp.end - sensor->timestamp.begin;
 
   //Associated set

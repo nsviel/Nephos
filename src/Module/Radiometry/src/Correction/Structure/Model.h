@@ -11,7 +11,7 @@ struct Model{
 
   std::string path_dir = "../media/calibration";
   std::string name_model = "kinect.json";
-  std::string name_measure = "NFOV_sphere.data";
+  std::string name_measure = "kinect_NFOV.data";
 
   std::vector<float> coefficient;
   utl::base::Axis axis_x;

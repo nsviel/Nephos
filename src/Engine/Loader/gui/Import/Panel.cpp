@@ -188,7 +188,7 @@ void Panel::item_operation(){
   //Run all file loading
   for(int i=0; i<vec_path.size(); i++){
     utl::base::Path path;
-    path.data = vec_path[i];
+    path.insert(vec_path[i]);
     ldr_importer->load_object(path);
   }
 
@@ -211,7 +211,7 @@ void Panel::item_bookmark(std::string file_path){
 
     //File load
     utl::base::Path path;
-    path.data = file_path;
+    path.insert(file_path);
     ldr_importer->load_object(path);
   }
 
