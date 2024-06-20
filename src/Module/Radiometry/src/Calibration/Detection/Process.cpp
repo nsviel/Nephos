@@ -50,7 +50,7 @@ void Process::step_detection(){
   if(sensor == nullptr) return;
 
   //Measurement step logic
-  int& step = rad_struct->state_step;
+  int& step = rad_struct->state.detection;
   switch(step){
     case rad::correction::detection::WAIT_VALIDATION:{
 

@@ -49,7 +49,7 @@ void Measure::process_measure(){
 
   vector<vec3>& search_xyz = rad_struct->ransac.search_xyz;
   vector<float>& search_Is = rad_struct->ransac.search_Is;
-  rad_struct->state_data = rad::correction::HAS_DATA;
+  rad_struct->state.data = rad::correction::HAS_DATA;
 
   this->data_measure(search_xyz, search_Is);
   this->data_IfR(search_xyz, search_Is);

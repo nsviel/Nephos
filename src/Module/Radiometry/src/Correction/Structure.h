@@ -8,8 +8,7 @@
 #include <Radiometry/src/Correction/Structure/Measure.h>
 #include <Radiometry/src/Correction/Structure/Model.h>
 #include <Radiometry/src/Correction/Structure/Plot.h>
-#include <string>
-#include <vector>
+#include <Radiometry/src/Correction/Structure/State.h>
 
 
 namespace rad::correction{
@@ -19,8 +18,7 @@ struct Structure{
 
   //General
   utl::media::Image image;
-  int state_step = rad::correction::detection::WAIT_VALIDATION;
-  int state_data = rad::correction::NO_DATA;
+  rad::correction::structure::State state;
 
   //Detection stuff
   rad::correction::structure::Hough hough;

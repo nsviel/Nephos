@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Radiometry/src/Correction/Detection/Step.h>
 #include <Utility/Specific/Common.h>
 
 namespace rad::correction{class Node;}
@@ -14,11 +13,6 @@ namespace dyn::base{class Sensor;}
 
 
 namespace rad::correction{
-
-enum State{
-  NO_DATA = 0,
-  HAS_DATA = 3,
-};
 
 class Process
 {
@@ -34,6 +28,7 @@ public:
 
   //Subfunction
   void step_detection();
+  void step_measure();
 
 private:
   rad::correction::Structure* rad_struct;

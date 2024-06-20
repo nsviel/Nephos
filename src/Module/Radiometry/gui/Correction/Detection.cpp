@@ -56,9 +56,9 @@ void Detection::detection_step(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Measure");
   ImGui::TableNextColumn();
-  this->display_state(rad_struct->state_step, rad_struct->state_data);
+  this->display_state(rad_struct->state.detection, rad_struct->state.data);
   ImGui::TableNextColumn();
-  if(rad_struct->state_step == rad::correction::detection::PROCESSING){
+  if(rad_struct->state.detection == rad::correction::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){
@@ -78,9 +78,9 @@ void Detection::detection_step(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Chart measure");
   ImGui::TableNextColumn();
-  this->display_state(rad_struct->state_step, rad_struct->state_data);
+  this->display_state(rad_struct->state.detection, rad_struct->state.data);
   ImGui::TableNextColumn();
-  if(rad_struct->state_step == rad::correction::detection::PROCESSING){
+  if(rad_struct->state.detection == rad::correction::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##chart_measure", ImVec2(120, 0))){

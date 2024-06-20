@@ -7,3 +7,4 @@
 #include <Radiometry/src/Correction/Structure/Hough.h>
 #include <Radiometry/src/Correction/Structure/Canny.h>
 #include <Radiometry/src/Correction/Structure/Ransac.h>
+#include <Radiometry/src/Correction/Structure/State.h>
