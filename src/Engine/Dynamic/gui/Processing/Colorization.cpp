@@ -20,8 +20,7 @@ Colorization::~Colorization(){}
 
 //Main function
 void Colorization::design_colorization(utl::base::Element* element){
-  dat::base::Entity* entity = set->active_entity;
-  if(entity == nullptr) return;
+  if(element == nullptr) return;
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
@@ -33,17 +32,17 @@ void Colorization::design_colorization(utl::base::Element* element){
 
     this->option_intensity(entity);
     this->option_height(entity);
-    
+
     this->update_entity(entity);
   }
 
   //---------------------------
 }
-void Colorization::update_entity(dat::base::Entity* entity){
+void Colorization::update_entity(utl::base::Element* element){
   //---------------------------
 
   if(update_color){
-    dyn_operation->colorize_object(entity);
+    //dyn_operation->colorize_object(entity);
     //dyn_operation->update_object(entity);
     this->update_color = false;
   }
@@ -52,55 +51,16 @@ void Colorization::update_entity(dat::base::Entity* entity){
 }
 
 //Mode function
-void Colorization::colorization_mode(dat::base::Entity* entity){
+void Colorization::colorization_mode(utl::base::Element* element){
   //---------------------------
 
   ImGui::BeginTable("colorization##mode", 2);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  this->mode_rgb(entity);
-  ImGui::TableNextColumn();
-  this->mode_unicolor(entity);
-
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  this->mode_intensity(entity);
-  ImGui::TableNextColumn();
-  this->mode_intensity_inv(entity);
-
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  this->mode_intensity_cor(entity);
-  ImGui::TableNextColumn();
-  this->mode_intensity_cal(entity);
-
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  this->mode_normal(entity);
-  ImGui::TableNextColumn();
-  this->mode_incidence_angle(entity);
-
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  this->mode_heatmap(entity);
-  ImGui::TableNextColumn();
-  this->mode_structure(entity);
-
-  ImGui::EndTable();
-
-  //---------------------------
-}
-void Colorization::mode_rgb(dat::base::Entity* entity){
-  //---------------------------
-
-  bool condition = (entity->data.rgb.size() == 0);
-  if(condition) ImGui::BeginDisabled();
   if(ImGui::RadioButton("RGB##colorization", &dyn_struct->colorization.color_mode, ope::color::RGB)){
     this->update_color = true;
   }
-  if(condition) ImGui::EndDisabled();
-
-  //---------------------------
-}
-void Colorization::mode_unicolor(dat::base::Entity* entity){
-  //---------------------------
-
+  ImGui::TableNextColumn();
   if(ImGui::RadioButton("##unicolor", &dyn_struct->colorization.color_mode, ope::color::UNICOLOR)){
     this->update_color = true;
   }
@@ -110,101 +70,47 @@ void Colorization::mode_unicolor(dat::base::Entity* entity){
     this->update_color = true;
   }
 
-  //---------------------------
-}
-void Colorization::mode_intensity(dat::base::Entity* entity){
-  //---------------------------
-
-  bool condition = (entity->data.Is.size() == 0);
-  if(condition) ImGui::BeginDisabled();
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("I##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY)){
     this->update_color = true;
   }
-  if(condition) ImGui::EndDisabled();
-
-  //---------------------------
-}
-void Colorization::mode_intensity_inv(dat::base::Entity* entity){
-  //---------------------------
-
-  bool condition = (entity->data.Is.size() == 0);
-  if(condition) ImGui::BeginDisabled();
+  ImGui::TableNextColumn();
   if(ImGui::RadioButton("I inv##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_INV)){
     this->update_color = true;
   }
-  if(condition) ImGui::EndDisabled();
 
-  //---------------------------
-}
-void Colorization::mode_intensity_cor(dat::base::Entity* entity){
-  //---------------------------
-
-  bool condition = (entity->data.Is_cor.size() == 0);
-  if(condition) ImGui::BeginDisabled();
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("I cor##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_COR)){
     this->update_color = true;
   }
-  if(condition) ImGui::EndDisabled();
-
-  //---------------------------
-}
-void Colorization::mode_intensity_cal(dat::base::Entity* entity){
-  //---------------------------
-
-  bool condition = (entity->data.Is_cal.size() == 0);
-  if(condition) ImGui::BeginDisabled();
+  ImGui::TableNextColumn();
   if(ImGui::RadioButton("I cal##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_CAL)){
     this->update_color = true;
   }
-  if(condition) ImGui::EndDisabled();
 
-  //---------------------------
-}
-void Colorization::mode_normal(dat::base::Entity* entity){
-  //---------------------------
-
-  bool condition = (entity->data.Nxyz.size() == 0);
-  if(condition) ImGui::BeginDisabled();
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("N##colorization", &dyn_struct->colorization.color_mode, ope::color::NORMAL)){
     this->update_color = true;
   }
-  if(condition) ImGui::EndDisabled();
-
-  //---------------------------
-}
-void Colorization::mode_incidence_angle(dat::base::Entity* entity){
-  //---------------------------
-
-  bool condition = (entity->data.Nxyz.size() == 0);
-  if(condition) ImGui::BeginDisabled();
+  ImGui::TableNextColumn();
   if(ImGui::RadioButton("It##colorization", &dyn_struct->colorization.color_mode, ope::color::INCIDENCE_ANGLE)){
     this->update_color = true;
   }
-  if(condition) ImGui::EndDisabled();
 
-  //---------------------------
-}
-void Colorization::mode_heatmap(dat::base::Entity* entity){
-  //---------------------------
-
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("Heatmap##colorization", &dyn_struct->colorization.color_mode, ope::color::HEATMAP)){
     update_color = true;
   }
-
-  //---------------------------
-}
-void Colorization::mode_structure(dat::base::Entity* entity){
-  //---------------------------
-
+  ImGui::TableNextColumn();
   if(ImGui::RadioButton("Structure##colorization", &dyn_struct->colorization.color_mode, ope::color::STRUCTURE)){
     update_color = true;
   }
 
+  ImGui::EndTable();
+
   //---------------------------
 }
-
-//Option function
-void Colorization::heatmap_mode(dat::base::Entity* entity){
+void Colorization::heatmap_mode(utl::base::Element* element){
   if(dyn_struct->colorization.color_mode != ope::color::HEATMAP) return;
   //---------------------------
 
@@ -251,7 +157,9 @@ void Colorization::heatmap_mode(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorization::option_intensity(dat::base::Entity* entity){
+
+//Option function
+void Colorization::option_intensity(utl::base::Element* element){
   int& mode = dyn_struct->colorization.color_mode;
   int& heatmap = dyn_struct->colorization.heatmap_mode;
   //---------------------------
@@ -265,7 +173,7 @@ void Colorization::option_intensity(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorization::option_height(dat::base::Entity* entity){
+void Colorization::option_height(utl::base::Element* element){
   if(dyn_struct->colorization.heatmap_mode != ope::color::heatmap::HEIGHT) return;
   //---------------------------
 

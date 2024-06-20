@@ -21,25 +21,15 @@ public:
 public:
   //Main function
   void design_colorization(utl::base::Element* element);
-  void update_entity(dat::base::Entity* entity);
+  void update_entity(utl::base::Element* element);
 
   //Mode function
-  void colorization_mode(dat::base::Entity* entity);
-  void mode_rgb(dat::base::Entity* entity);
-  void mode_unicolor(dat::base::Entity* entity);
-  void mode_intensity(dat::base::Entity* entity);
-  void mode_intensity_inv(dat::base::Entity* entity);
-  void mode_intensity_cor(dat::base::Entity* entity);
-  void mode_intensity_cal(dat::base::Entity* entity);
-  void mode_normal(dat::base::Entity* entity);
-  void mode_incidence_angle(dat::base::Entity* entity);
-  void mode_heatmap(dat::base::Entity* entity);
-  void mode_structure(dat::base::Entity* entity);
+  void colorization_mode(utl::base::Element* element);
+  void heatmap_mode(utl::base::Element* element);
 
   //Option function
-  void heatmap_mode(dat::base::Entity* entity);
-  void option_intensity(dat::base::Entity* entity);
-  void option_height(dat::base::Entity* entity);
+  void option_intensity(utl::base::Element* element);
+  void option_height(utl::base::Element* element);
 
 private:
   dyn::cloud::Operation* dyn_operation;
