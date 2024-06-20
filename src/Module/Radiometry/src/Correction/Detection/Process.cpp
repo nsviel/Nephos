@@ -61,15 +61,15 @@ void Process::step_detection(){
   dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 
-  //Measurement step logic
-  int& step = rad_struct->state.detection;
-  switch(step){
+  //Detection step logic
+  switch(rad_struct->state.detection){
     case rad::correction::detection::WAIT_VALIDATION:{
-      step = rad::correction::detection::PROCESSING;
+      rad_struct->state.detection = rad::correction::detection::PROCESSING;
       break;
     }
     case rad::correction::detection::PROCESSING:{
-      step = rad::correction::detection::WAIT_VALIDATION;
+      rad_struct->state.detection = rad::correction::detection::WAIT_VALIDATION;
+      rad_struct->state.measure = rad::correction::measure::WAIT_VALIDATION;
       break;
     }
   }
@@ -85,15 +85,16 @@ void Process::step_measure(){
   if(sensor == nullptr) return;
 
   //Measurement step logic
-  int& step = rad_struct->state.measure;
-  switch(step){
+  switch(rad_struct->state.measure){
     case rad::correction::measure::WAIT_VALIDATION:{
-      rad_cloud_detection->validate_bbox(sensor);
-      step = rad::correction::measure::PROCESSING;
+      if(rad_struct->state.detection == rad::correction::detection::PROCESSING){
+        rad_cloud_detection->validate_bbox(sensor);
+        rad_struct->state.measure = rad::correction::measure::PROCESSING;
+      }
       break;
     }
     case rad::correction::measure::PROCESSING:{
-      step = rad::correction::measure::WAIT_VALIDATION;
+      rad_struct->state.measure = rad::correction::measure::WAIT_VALIDATION;
       break;
     }
   }

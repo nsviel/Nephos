@@ -40,16 +40,19 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Detection::run_thread(dyn::base::Sensor* sensor){
-  static float current_timestamp = 0;
+  utl::media::Image* image = dat_image->get_image(sensor, utl::media::INTENSITY);
+  utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::DETECTION);
   //---------------------------
 
-  if(sensor != nullptr){
-    utl::media::Image* image = dat_image->get_image(sensor, utl::media::INTENSITY);
-
-    if(image != nullptr && image->timestamp != current_timestamp){
-      current_timestamp = image->timestamp;
-      this->make_shape_detection(sensor, image);
+  if(sensor != nullptr && rad_struct->state.detection == rad::correction::detection::PROCESSING){
+    if(image->timestamp != output->timestamp){
+      output->name = "Detection";
+      output->timestamp = image->timestamp;
+      this->make_shape_detection(sensor, image, output);
     }
+  }else{
+    output->data.clear();
+    output->size = 0;
   }
 
   //---------------------------
@@ -67,10 +70,8 @@ void Detection::wait_thread(){
 }
 
 //Subfunction
-void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image){
-  utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::DETECTION);
-  output->name = "Detection";
-  output->timestamp = image->timestamp;
+void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image, utl::media::Image* output){
+  if(image == nullptr) return;
   //---------------------------
 
   cv::Mat cv_image, gray, canny;

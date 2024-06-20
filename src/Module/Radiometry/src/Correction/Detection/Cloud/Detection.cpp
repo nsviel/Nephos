@@ -79,7 +79,7 @@ void Detection::validate_bbox(dyn::base::Sensor* sensor){
   vec4 pose_xyzw = vec4(pose_xyz.x, pose_xyz.y, pose_xyz.z, 1);
   rad_struct->ransac.current_pose = pose->model * pose_xyzw;
   rad_ransac->ransac_sphere(sensor);
-  
+
   //---------------------------
 }
 
