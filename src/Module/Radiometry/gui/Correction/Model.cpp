@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace rad::gui{
@@ -30,8 +31,8 @@ void Model::draw_tab(dyn::base::Sensor* sensor){
 
   //Parameter
   ImGui::BeginTable("Measure##table", 3);
-  this->parameter_measure();
-  this->parameter_model();
+  this->parameter_measure(sensor);
+  this->parameter_model(sensor);
   ImGui::EndTable();
   ImGui::Separator();
 
@@ -48,7 +49,7 @@ void Model::draw_tab(dyn::base::Sensor* sensor){
 }
 
 //Subfunction
-void Model::parameter_measure(){
+void Model::parameter_measure(dyn::base::Sensor* sensor){
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -112,7 +113,7 @@ void Model::parameter_measure(){
 
   //---------------------------
 }
-void Model::parameter_model(){
+void Model::parameter_model(dyn::base::Sensor* sensor){
   rad::correction::structure::Model* model = &rad_struct->model;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
@@ -123,7 +124,7 @@ void Model::parameter_model(){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button(ICON_FA_DOWNLOAD "##model_load", ImVec2(25, 0))){
-    rad_io_model->import_model();
+    rad_io_model->import_model(sensor);
   }
   ImGui::PopStyleColor(2);
 
@@ -178,14 +179,14 @@ void Model::parameter_model(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Import##model", ImVec2(120, 0))){
-      rad_io_model->import_model();
+      rad_io_model->import_model(sensor);
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
     if(ImGui::Button("Export##model", ImVec2(120, 0))){
-      rad_io_model->export_model();
+      rad_io_model->export_model(sensor);
     }
     ImGui::PopStyleColor(2);
 

@@ -28,8 +28,8 @@ public:
   void draw_tab(dyn::base::Sensor* sensor);
 
   //Subfunction
-  void parameter_measure();
-  void parameter_model();
+  void parameter_measure(dyn::base::Sensor* sensor);
+  void parameter_model(dyn::base::Sensor* sensor);
 
   //Sphere plot function
   void plot_sphere();

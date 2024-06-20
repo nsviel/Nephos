@@ -22,7 +22,6 @@ struct Structure{
   int idx_dev = -1;
   int idx_cloud = 0;
   int mode = k4n::device::PLAYBACK;
-  std::string serial_number = "";
 
   //K4A device related objects
   k4a::device handle;

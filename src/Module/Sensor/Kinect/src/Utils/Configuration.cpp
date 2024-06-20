@@ -118,7 +118,7 @@ void Configuration::find_playback_configuration(k4n::playback::Sensor* sensor){
   //Device
   sensor->ir.config.enabled = configuration.ir_track_enabled;
   sensor->imu.config.enabled = configuration.imu_track_enabled;
-  sensor->playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->device.serial_number);
+  sensor->playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->serial_number);
 
   //---------------------------
 }

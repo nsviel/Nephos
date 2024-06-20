@@ -7,6 +7,7 @@ namespace rad::correction{class Structure;}
 namespace rad::correction{class Measure;}
 namespace rad::correction{class Model;}
 namespace rad::correction::io{class Measure;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::correction::io{
@@ -20,14 +21,14 @@ public:
 
 public:
   //Main function
-  void import_model();
-  void export_model();
+  void import_model(dyn::base::Sensor* sensor);
+  void export_model(dyn::base::Sensor* sensor);
 
   //Subfunction
-  void write_device_info(std::string& path);
-  void write_depth_mode_model(std::string& path);
-  void read_device_info(std::string& path);
-  void read_depth_mode_model(std::string& path);
+  void write_device_info(dyn::base::Sensor* sensor, std::string& path);
+  void write_depth_mode_model(dyn::base::Sensor* sensor, std::string& path);
+  void read_device_info(dyn::base::Sensor* sensor, std::string& path);
+  void read_depth_mode_model(dyn::base::Sensor* sensor, std::string& path);
 
   //subfunction
   std::string get_current_path();

@@ -2,6 +2,7 @@
 
 #include <Utility/Function/File/Json.cpp>
 #include <Radiometry/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace rad::correction::io{
@@ -19,35 +20,35 @@ Model::Model(rad::correction::Node* node_correction){
 Model::~Model(){}
 
 //Main function
-void Model::import_model(){
+void Model::import_model(dyn::base::Sensor* sensor){
   string path = get_current_path();
   //---------------------------
 
-  this->read_device_info(path);
-  this->read_depth_mode_model(path);
+  this->read_device_info(sensor, path);
+  this->read_depth_mode_model(sensor, path);
   rad_model->update_model();
   rad_io_measure->import_measure();
 
   //---------------------------
 }
-void Model::export_model(){
+void Model::export_model(dyn::base::Sensor* sensor){
   string path = get_current_path();
   //---------------------------
 
-  this->write_device_info(path);
-  this->write_depth_mode_model(path);
+  this->write_device_info(sensor, path);
+  this->write_depth_mode_model(sensor, path);
 
   //---------------------------
 }
 
 //Subfunction
-void Model::write_device_info(string& path){
+void Model::write_device_info(dyn::base::Sensor* sensor, string& path){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
 
   //Info
-  utl::json::write_value(path, "info.device", model->device);
-  utl::json::write_value(path, "info.serial_number", model->serial_number);
+  utl::json::write_value(path, "info.device", sensor->device_name);
+  utl::json::write_value(path, "info.serial_number", sensor->serial_number);
 
   //Depth modes
   for(int i=0; i<model->mode.size(); i++){
@@ -57,11 +58,11 @@ void Model::write_device_info(string& path){
 
   //---------------------------
 }
-void Model::write_depth_mode_model(string& path){
+void Model::write_depth_mode_model(dyn::base::Sensor* sensor, string& path){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
 
-  std::string depth_mode = model->depth_mode;
+  std::string depth_mode = sensor->depth_mode;
 
   utl::json::write_value(path, depth_mode + ".model_rmse", model->rmse);
   utl::json::write_value(path, depth_mode + ".name_measure", model->name_measure);
@@ -87,12 +88,12 @@ void Model::write_depth_mode_model(string& path){
 
   //---------------------------
 }
-void Model::read_device_info(string& path){
+void Model::read_device_info(dyn::base::Sensor* sensor, string& path){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
 
   //Info
-  model->serial_number = utl::json::read_value<string>(path, "info.serial_number");
+  //model->serial_number = utl::json::read_value<string>(path, "info.serial_number");
 
   //Depth modes
   for(int i=0; i<model->mode.size(); i++){
@@ -102,7 +103,7 @@ void Model::read_device_info(string& path){
 
   //---------------------------
 }
-void Model::read_depth_mode_model(string& path){
+void Model::read_depth_mode_model(dyn::base::Sensor* sensor, string& path){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
 

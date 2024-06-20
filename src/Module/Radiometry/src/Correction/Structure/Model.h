@@ -13,10 +13,6 @@ struct Model{
   std::string name_model = "kinect.json";
   std::string name_measure = "NFOV_sphere.data";
 
-  std::string device = "Kinect";
-  std::string serial_number = "9999999";
-  std::string depth_mode = "NFOV";
-
   std::vector<float> coefficient;
   std::vector<std::string> mode;
   utl::base::Axis axis_x;

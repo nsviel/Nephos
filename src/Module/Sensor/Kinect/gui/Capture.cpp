@@ -71,7 +71,7 @@ void Capture::show_list_device(dat::base::Set* set){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
       if(k4n::structure::Sensor* sensor = dynamic_cast<k4n::structure::Sensor*>(entity)){
-        ImGui::PushID(sensor->device.serial_number.c_str());
+        ImGui::PushID(sensor->serial_number.c_str());
 
         //Sensor type
         ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -83,7 +83,7 @@ void Capture::show_list_device(dat::base::Set* set){
 
         //Sensor serial number
         ImGui::TableNextColumn();
-        ImGui::Text("%s", sensor->device.serial_number.c_str());
+        ImGui::Text("%s", sensor->serial_number.c_str());
 
         //Sensor capture or not
         ImGui::TableNextColumn();

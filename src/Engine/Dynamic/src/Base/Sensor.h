@@ -30,6 +30,10 @@ struct Sensor : public dat::base::Object, public utl::base::Thread{
   dyn::base::Timestamp timestamp;
   dyn::base::State state;
   prf::graph::Profiler profiler;
+
+  std::string device_name = "";
+  std::string serial_number = "";
+  std::string depth_mode = "";
   std::vector<uint16_t> buffer_depth;
   std::vector<uint16_t> buffer_ir;
   std::vector<dyn::base::Recorder*> vec_recorder;

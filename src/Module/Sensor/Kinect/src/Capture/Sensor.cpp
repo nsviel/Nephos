@@ -44,7 +44,7 @@ void Sensor::thread_init(){
   this->device.idx_dev = 0;
   this->device.handle = k4a::device::open(device.idx_dev);
   if(!device.handle.is_valid()) return;
-  this->device.serial_number = device.handle.get_serialnum();
+  this->serial_number = device.handle.get_serialnum();
   this->device.version = device.handle.get_version();
 
   //Configuration

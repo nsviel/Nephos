@@ -22,10 +22,11 @@ struct Sensor : public dyn::base::Sensor{
   Sensor(){
     //---------------------------
 
+    this->device_name = "kinect";
     this->data.topology.type = utl::topology::POINT;
     this->data.nb_data_max = 10000000;
-    this->vec_depth_mode.vec_depth_mode("NFOV");
-    this->vec_depth_mode.vec_depth_mode("WFOV");
+    this->vec_depth_mode.push_back("NFOV");
+    this->vec_depth_mode.push_back("WFOV");
 
     //---------------------------
   }
