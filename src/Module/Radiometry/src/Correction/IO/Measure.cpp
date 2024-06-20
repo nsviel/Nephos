@@ -56,5 +56,15 @@ void Measure::clear_measure(){
 
   //---------------------------
 }
+std::string Measure::get_current_path(){
+  //---------------------------
+
+  std::string& dir = rad_struct->model.path_dir;
+  std::string& filename = rad_struct->model.name_measure;
+  std::string path = dir + "/" + filename;
+
+  //---------------------------
+  return path;
+}
 
 }

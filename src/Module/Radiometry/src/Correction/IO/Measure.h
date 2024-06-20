@@ -23,7 +23,8 @@ public:
   void import_measure();
   void export_measure();
   void clear_measure();
-
+  std::string get_current_path();
+  
 private:
   rad::correction::Structure* rad_struct;
   rad::correction::Plot* rad_plot;

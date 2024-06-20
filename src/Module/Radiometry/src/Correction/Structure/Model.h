@@ -10,8 +10,8 @@ struct Model{
   //---------------------------
 
   std::string path_dir = "../media/calibration";
-  std::string path_filename = "kinect.json";
-  std::string path_measure = "NFOV_sphere.data";
+  std::string name_model = "kinect.json";
+  std::string name_measure = "NFOV_sphere.data";
 
   std::string device = "Kinect";
   std::string serial_number = "9999999";

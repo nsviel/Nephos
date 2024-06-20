@@ -5,6 +5,7 @@
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction{class Model;}
+namespace rad::correction::io{class Measure;}
 
 
 namespace rad::correction::io{
@@ -31,6 +32,7 @@ public:
 private:
   rad::correction::Structure* rad_struct;
   rad::correction::Model* rad_model;
+  rad::correction::io::Measure* rad_io_measure;
 };
 
 }

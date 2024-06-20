@@ -12,6 +12,7 @@ Model::Model(rad::correction::Node* node_correction){
 
   this->rad_struct = node_correction->get_rad_struct();
   this->rad_model = node_correction->get_rad_model();
+  this->rad_io_measure = node_correction->get_rad_io_measure();
 
   //---------------------------
 }
@@ -61,8 +62,8 @@ void Model::write_depth_mode_model(){
 
   string path = get_current_path();
 
-  utl::json::write_value(path, model->depth_mode + ".rmse", model->rmse);
-  utl::json::write_value(path, model->depth_mode + ".measure", model->path_measure);
+  utl::json::write_value(path, model->depth_mode + ".model_rmse", model->rmse);
+  utl::json::write_value(path, model->depth_mode + ".name_measure", model->name_measure);
   utl::json::write_value(path, model->depth_mode + ".nb_coefficient", model->coefficient.size());
 
   utl::json::write_value(path, model->depth_mode + ".x.variable", "Range");
@@ -106,7 +107,8 @@ void Model::read_depth_mode_model(){
 
   model->depth_mode = utl::json::read_value<string>(path, "info.depth_mode");
 
-  model->rmse = utl::json::read_value<float>(path, "info.rmse");
+  model->rmse = utl::json::read_value<float>(path, "info.model_rmse");
+  model->name_measure = utl::json::read_value<float>(path, "info.name_measure");
 
   model->degree_x = utl::json::read_value<int>(path, "x.degree");
   model->axis_x.bound[0] = utl::json::read_value<float>(path, "x.min");
@@ -129,7 +131,7 @@ std::string Model::get_current_path(){
   //---------------------------
 
   std::string& dir = rad_struct->model.path_dir;
-  std::string& filename = rad_struct->model.path_filename;
+  std::string& filename = rad_struct->model.name_model;
   std::string path = dir + "/" + filename;
 
   //---------------------------
