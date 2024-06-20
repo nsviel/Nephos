@@ -51,8 +51,8 @@ void Model::write_device_info(dyn::base::Sensor* sensor, string& path){
   utl::json::write_value(path, "info.serial_number", sensor->serial_number);
 
   //Depth modes
-  for(int i=0; i<model->mode.size(); i++){
-    std::string& depth_mode = model->mode[i];
+  for(int i=0; i<sensor->vec_depth_mode.size(); i++){
+    std::string& depth_mode = sensor->vec_depth_mode[i];
     utl::json::write_value(path, "depth_mode" + to_string(i), depth_mode);
   }
 
@@ -96,8 +96,8 @@ void Model::read_device_info(dyn::base::Sensor* sensor, string& path){
   //model->serial_number = utl::json::read_value<string>(path, "info.serial_number");
 
   //Depth modes
-  for(int i=0; i<model->mode.size(); i++){
-    std::string& depth_mode = model->mode[i];
+  for(int i=0; i<sensor->vec_depth_mode.size(); i++){
+    std::string& depth_mode = sensor->vec_depth_mode[i];
     utl::json::write_value(path, "depth_mode" + to_string(i), depth_mode);
   }
 

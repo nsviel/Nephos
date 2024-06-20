@@ -30,6 +30,8 @@
             "variable": "Incidence angle"
         }
     },
+    "depth_mode0": "NFOV",
+    "depth_mode1": "WFOV",
     "info": {
         "device": "Kinect",
         "serial_number": "9999999"

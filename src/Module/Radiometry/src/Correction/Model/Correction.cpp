@@ -28,16 +28,8 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
   if(!model_sphere->is_model_build()) return;
   //---------------------------
 
-  //Get image to correct
-  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::CORRECTION);
+
   std::vector<uint8_t> vec_data = ir->data;
-  image->name = "Correction";
-  image->width = ir->width;
-  image->height = ir->height;
-  image->size = ir->size;
-  image->format = ir->format;
-
-
   utl::base::Data* data = &sensor->data;
   std::vector<float> Is_cor = std::vector<float>(data->xyz.size(), 0.0f);
 
@@ -71,14 +63,27 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
   }
 
   data->Is_cor = Is_cor;
-  image->data = vec_data;
-  image->timestamp = ir->timestamp;
+
+  this->correction_image(sensor, ir, vec_data);
 
   //---------------------------
 }
 
 //Subfunction
+void Correction::correction_image(dyn::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
+  //---------------------------
 
+  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::CORRECTION);
+  image->name = "Correction";
+  image->width = ir->width;
+  image->height = ir->height;
+  image->size = ir->size;
+  image->format = ir->format;
+  image->data = vec_data;
+  image->timestamp = ir->timestamp;
+
+  //---------------------------
+}
 float Correction::apply_correction(float I_raw, float R, float It){
   if(isnan(It)) return 0;
   //---------------------------

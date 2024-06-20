@@ -14,7 +14,6 @@ struct Model{
   std::string name_measure = "NFOV_sphere.data";
 
   std::vector<float> coefficient;
-  std::vector<std::string> mode;
   utl::base::Axis axis_x;
   utl::base::Axis axis_y;
 

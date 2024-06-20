@@ -40,12 +40,15 @@ void Correction::display_image(dyn::base::Sensor* sensor){
   //---------------------------
 
   utl::media::Image* intensity = dat_image->get_image(sensor, utl::media::INTENSITY);
-  if(intensity == nullptr) return;
-  stream_1->draw_stream(intensity, ImVec2(available_space.x, available_space.y / 2 - 5));
-
   utl::media::Image* correction = dat_image->get_image(sensor, utl::media::CORRECTION);
-  if(correction == nullptr) return;
-  stream_2->draw_stream(correction, ImVec2(available_space.x, available_space.y / 2 - 5));
+
+  int nb_image = 0;
+  nb_image += (intensity != nullptr) ? 1 : 0;
+  nb_image += (correction != nullptr) ? 1 : 0;
+
+  //Stream
+  stream_1->draw_stream(intensity, ImVec2(available_space.x, available_space.y / nb_image - 5));
+  stream_2->draw_stream(correction, ImVec2(available_space.x, available_space.y / nb_image - 5));
 
   //---------------------------
   ImGui::Separator();

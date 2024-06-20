@@ -33,6 +33,9 @@ void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
 bool Stream::check_image(utl::media::Image* utl_image){
   //---------------------------
 
+  if(utl_image == nullptr){
+    return false;
+  }
   if(utl_image->size == 0){
     return false;
   }
