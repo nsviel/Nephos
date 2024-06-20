@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Radiometry/src/Correction/Detection/Step.h>
 #include <Utility/Specific/Common.h>
 
 namespace rad::correction{class Node;}
