@@ -25,7 +25,8 @@ public:
   void make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir);
 
   //Subfunction
-  void correction_image(dyn::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data);
+  void make_correction(dyn::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data);
+  void update_correction_image(dyn::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data);
   float apply_correction(float I_raw, float R, float It);
 
 private:

@@ -28,11 +28,19 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
   if(!model_sphere->is_model_build()) return;
   //---------------------------
 
-
   std::vector<uint8_t> vec_data = ir->data;
+  this->make_correction(sensor, ir, vec_data);
+  this->update_correction_image(sensor, ir, vec_data);
+
+  //---------------------------
+}
+
+//Subfunction
+void Correction::make_correction(dyn::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
+  //---------------------------
+
   utl::base::Data* data = &sensor->data;
   std::vector<float> Is_cor = std::vector<float>(data->xyz.size(), 0.0f);
-
 
   #pragma omp parallel for
   for(int y=0; y<ir->height; y++){
@@ -64,13 +72,9 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
 
   data->Is_cor = Is_cor;
 
-  this->correction_image(sensor, ir, vec_data);
-
   //---------------------------
 }
-
-//Subfunction
-void Correction::correction_image(dyn::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
+void Correction::update_correction_image(dyn::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
   utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::CORRECTION);
