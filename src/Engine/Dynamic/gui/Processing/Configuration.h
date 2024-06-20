@@ -19,7 +19,8 @@ public:
   void design_configuration(utl::base::Element* element);
 
   //Subfunction
-
+  void sensor_config(utl::base::Element* element);
+  
 private:
 
 };

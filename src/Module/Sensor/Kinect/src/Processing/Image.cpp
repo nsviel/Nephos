@@ -18,6 +18,7 @@ Image::Image(k4n::Node* node_k4n){
   dat::Node* node_data = node_k4n->get_node_data();
 
   this->tj_handle = tjInitDecompress();
+  this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_data = new k4n::utils::Data(node_k4n);
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->thread_pool = node_engine->get_thread_pool();
@@ -211,7 +212,7 @@ void Image::find_data_cloud(k4n::structure::Sensor* sensor){
   sensor->depth.cloud = {};
   //---------------------------
 
-  switch(sensor->depth.config.transformation_mode){
+  switch(k4n_struct->config.depth.transformation_mode){
     case k4n::depth::DEPTH_TO_COLOR:{
       this->find_depth_and_ir_to_color(sensor);
       sensor->color.cloud = sensor->color.data;

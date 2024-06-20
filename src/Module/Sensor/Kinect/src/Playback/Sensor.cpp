@@ -83,13 +83,6 @@ void Sensor::thread_end(){
 }
 
 //Subfunction
-void Sensor::gui_config(){
-  //---------------------------
-
-  gui_playback->show_parameter(this);
-
-  //---------------------------
-}
 k4a::capture* Sensor::manage_new_capture(){
   //---------------------------
 
@@ -160,6 +153,13 @@ void Sensor::manage_query(float value){
     auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
     playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
   }
+
+  //---------------------------
+}
+void Sensor::gui_config(){
+  //---------------------------
+
+  gui_playback->show_parameter(this);
 
   //---------------------------
 }

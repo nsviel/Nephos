@@ -30,13 +30,6 @@ Sensor::~Sensor(){
 }
 
 //Main function
-void Sensor::info(){
-  //---------------------------
-
-  gui_capture->show_parameter(set_parent);
-
-  //---------------------------
-}
 void Sensor::thread_init(){
   //---------------------------
 
@@ -138,6 +131,13 @@ void Sensor::manage_pause(){
       std::this_thread::sleep_for(std::chrono::milliseconds(33));
     }
   }
+
+  //---------------------------
+}
+void Sensor::gui_config(){
+  //---------------------------
+
+  gui_capture->show_parameter(set_parent);
 
   //---------------------------
 }

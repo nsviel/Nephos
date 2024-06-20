@@ -25,11 +25,11 @@ public:
   void thread_end();
 
   //Subfunction
-  void gui_config();
   k4a::capture* manage_new_capture();
   void manage_old_capture(k4a::capture* capture);
   void manage_pause();
   void manage_query(float ts_querry);
+  void gui_config();
 
 public:
   k4n::processing::Image* k4n_image;

@@ -5,6 +5,7 @@
 #include <k4a/k4a.hpp>
 
 namespace k4n{class Node;}
+namespace k4n{class Structure;}
 namespace k4n::structure{class Sensor;}
 namespace k4n::processing{class Cloud;}
 namespace k4n::utils{class Data;}
@@ -48,6 +49,7 @@ public:
   uint8_t* retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height);
 
 private:
+  k4n::Structure* k4n_struct;
   k4n::processing::Cloud* k4n_cloud;
   k4n::utils::Data* k4n_data;
   utl::thread::Pool* thread_pool;

@@ -72,15 +72,17 @@ void Info::sensor_info(utl::base::Element* element){
   ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 75.0f);
   ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
 
-  //Duration
+  //Timestamp
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Duration"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%.2f s", sensor->timestamp.duration);
+  ImGui::Text("Timestamp"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%.2fs - %.2fs [%.2fs]", sensor->timestamp.begin, sensor->timestamp.end, sensor->timestamp.duration);
 
   //Recording time
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Record"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%.2f s", sensor->timestamp.record);
+  if(sensor->state.record){
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Record"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.2f s", sensor->timestamp.record);
+  }
 
   /*
   //Recording file size

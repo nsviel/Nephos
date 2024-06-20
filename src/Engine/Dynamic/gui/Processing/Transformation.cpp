@@ -64,10 +64,10 @@ void Transformation::draw_matrix(utl::base::Element* element){
       ImGui::NextColumn();
     }
   }
-  ImGui::Separator();
   ImGui::Columns(1);
 
   //---------------------------
+  ImGui::Separator();
 }
 
 }

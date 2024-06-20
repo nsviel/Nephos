@@ -40,6 +40,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
   sensor->data.format = format;
   sensor->timestamp.begin = find_mkv_ts_beg(path.data);
   sensor->timestamp.end = find_mkv_ts_end(path.data);
+  sensor->timestamp.duration = sensor->timestamp.end - sensor->timestamp.begin;
 
   //Associated set
   sensor->set_parent = manage_set_parent();
