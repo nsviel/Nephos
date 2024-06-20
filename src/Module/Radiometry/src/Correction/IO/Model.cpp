@@ -25,8 +25,8 @@ void Model::import_model(){
 
   this->read_device_info(path);
   this->read_depth_mode_model(path);
-  rad_io_measure->import_measure();
   rad_model->update_model();
+  rad_io_measure->import_measure();
 
   //---------------------------
 }
@@ -61,26 +61,28 @@ void Model::write_depth_mode_model(string& path){
   rad::correction::structure::Model* model = &rad_struct->model;
   //---------------------------
 
-  utl::json::write_value(path, model->depth_mode + ".model_rmse", model->rmse);
-  utl::json::write_value(path, model->depth_mode + ".name_measure", model->name_measure);
-  utl::json::write_value(path, model->depth_mode + ".nb_coefficient", model->coefficient.size());
+  std::string depth_mode = model->depth_mode;
+
+  utl::json::write_value(path, depth_mode + ".model_rmse", model->rmse);
+  utl::json::write_value(path, depth_mode + ".name_measure", model->name_measure);
+  utl::json::write_value(path, depth_mode + ".nb_coefficient", model->coefficient.size());
 
   //X variable
-  utl::json::write_value(path, model->depth_mode + ".x.variable", "Range");
-  utl::json::write_value(path, model->depth_mode + ".x.degree", model->degree_x);
-  utl::json::write_value(path, model->depth_mode + ".x.min", model->axis_x.bound[0]);
-  utl::json::write_value(path, model->depth_mode + ".x.max", model->axis_x.bound[1]);
+  utl::json::write_value(path, depth_mode + ".x.variable", "Range");
+  utl::json::write_value(path, depth_mode + ".x.degree", model->degree_x);
+  utl::json::write_value(path, depth_mode + ".x.min", model->axis_x.bound[0]);
+  utl::json::write_value(path, depth_mode + ".x.max", model->axis_x.bound[1]);
 
   //Y variable
-  utl::json::write_value(path, model->depth_mode + ".y.variable", "Incidence angle");
-  utl::json::write_value(path, model->depth_mode + ".y.degree", model->degree_y);
-  utl::json::write_value(path, model->depth_mode + ".y.min", model->axis_y.bound[0]);
-  utl::json::write_value(path, model->depth_mode + ".y.max", model->axis_y.bound[1]);
+  utl::json::write_value(path, depth_mode + ".y.variable", "Incidence angle");
+  utl::json::write_value(path, depth_mode + ".y.degree", model->degree_y);
+  utl::json::write_value(path, depth_mode + ".y.min", model->axis_y.bound[0]);
+  utl::json::write_value(path, depth_mode + ".y.max", model->axis_y.bound[1]);
 
   //Coefficient
   for(int i=0; i<model->coefficient.size(); i++){
     float& coef = model->coefficient[i];
-    utl::json::write_value(path, model->depth_mode + ".coefficient." + to_string(i), coef);
+    utl::json::write_value(path, depth_mode + ".coefficient." + to_string(i), coef);
   }
 
   //---------------------------

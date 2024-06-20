@@ -33,6 +33,7 @@ struct Sensor : public dat::base::Object, public utl::base::Thread{
   std::vector<uint16_t> buffer_depth;
   std::vector<uint16_t> buffer_ir;
   std::vector<dyn::base::Recorder*> vec_recorder;
+  std::vector<std::string> vec_depth_mode;
 
   //---------------------------
 };
