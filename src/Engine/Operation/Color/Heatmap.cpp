@@ -72,6 +72,20 @@ void Heatmap::heatmap_intensity_cal(dat::base::Entity* entity){
 
   //---------------------------
 }
+void Heatmap::heatmap_incidence_angle(dat::base::Entity* entity){
+  utl::base::Data* data = &entity->data;
+  if(data->It.size() == 0) return;
+  //---------------------------
+
+  //Prepare data
+  std::vector<float> It = data->It;
+  math::normalize(It, vec2(0, 90));
+
+  //Compute heatmap
+  this->compute_heatmap(It, data->rgba);
+
+  //---------------------------
+}
 void Heatmap::heatmap_height(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------

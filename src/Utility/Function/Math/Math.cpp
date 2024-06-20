@@ -177,10 +177,12 @@ void normalize(std::vector<float>& vec, glm::vec2 range){
   //Normalization
   #pragma omp parallel for
   for(int i=0; i<size; i++){
-    if(vec[i] < min || vec[i] > max){
-      vec[i] = -1;
+    float& value = vec[i];
+
+    if(isnan(value) || value < min || value > max){
+      value = -1;
     }else{
-      vec[i] = (vec[i] - min) / (max - min);
+      value = (value - min) / (max - min);
     }
   }
 

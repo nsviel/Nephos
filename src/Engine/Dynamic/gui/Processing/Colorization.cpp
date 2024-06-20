@@ -48,7 +48,7 @@ void Colorization::design_colorization(dat::base::Set* set){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     this->mode_normal(entity);
     ImGui::TableNextColumn();
-    this->mode_normal(entity);
+    this->mode_incidence_angle(entity);
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     this->mode_heatmap(entity);
@@ -166,6 +166,18 @@ void Colorization::mode_normal(dat::base::Entity* entity){
 
   //---------------------------
 }
+void Colorization::mode_incidence_angle(dat::base::Entity* entity){
+  //---------------------------
+
+  bool condition = (entity->data.Nxyz.size() == 0);
+  if(condition) ImGui::BeginDisabled();
+  if(ImGui::RadioButton("It##colorization", &dyn_struct->colorization.color_mode, ope::color::INCIDENCE_ANGLE)){
+    this->update_color = true;
+  }
+  if(condition) ImGui::EndDisabled();
+
+  //---------------------------
+}
 void Colorization::mode_heatmap(dat::base::Entity* entity){
   //---------------------------
 
@@ -222,6 +234,10 @@ void Colorization::option_heatmap(dat::base::Entity* entity){
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("R##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::RANGE)){
+    update_color = true;
+  }
+  ImGui::TableNextColumn();
+  if(ImGui::RadioButton("It##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INCIDENCE_ANGLE)){
     update_color = true;
   }
 

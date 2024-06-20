@@ -50,6 +50,10 @@ void Colorizer::make_colorization(dat::base::Entity* entity, ope::color::Configu
       this->colorization_normal(entity, config);
       break;
     }
+    case ope::color::INCIDENCE_ANGLE:{
+      this->colorization_incidence_angle(entity, config);
+      break;
+    }
     case ope::color::HEATMAP:{
       this->colorization_heatmap(entity, config);
       break;
@@ -127,7 +131,14 @@ void Colorizer::colorization_incidence_angle(dat::base::Entity* entity, ope::col
 
   if(data->rgba.size() == 0) data->rgba = std::vector<glm::vec4>(data->xyz.size(), glm::vec4(0.0f));
   for(int i=0; i<data->It.size(); i++){
-    float It = data->It[i] / 90;
+    float It = data->It[i];
+
+    if(std::isnan(It)){
+      It = 1;
+    }else{
+      It = It / 90;
+    }
+
     data->rgba[i] = glm::vec4(It, It, It, 1);
   }
 
@@ -181,6 +192,10 @@ void Colorizer::colorization_heatmap(dat::base::Entity* entity, ope::color::Conf
     }
     case ope::color::heatmap::INTENSITY_CAL:{
       ope_heatmap->heatmap_intensity_cal(entity);
+      break;
+    }
+    case ope::color::heatmap::INCIDENCE_ANGLE:{
+      ope_heatmap->heatmap_incidence_angle(entity);
       break;
     }
     case ope::color::heatmap::HEIGHT:{
