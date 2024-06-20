@@ -20,6 +20,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->dyn_colorization = new dyn::gui::Colorization(node_dynamic);
   this->dyn_transformation = new dyn::gui::Transformation(node_dynamic);
   this->dyn_info = new dyn::gui::Info(node_dynamic);
+  this->dyn_config = new dyn::gui::Configuration(node_dynamic);
   this->ope_operation = new ope::Operation();
   this->ope_normal = new ope::normal::KNN();
 
@@ -37,8 +38,8 @@ void Operation::design_operation(){
   //Info
   dyn_info->design_info(element);
 
-  //Transformation
-  dyn_transformation->design_transformation(element);
+  //Configuration
+  dyn_config->design_configuration(element);
 
   //Transformation
   dyn_transformation->design_transformation(element);

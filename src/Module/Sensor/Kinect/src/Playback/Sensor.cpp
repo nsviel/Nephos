@@ -83,7 +83,7 @@ void Sensor::thread_end(){
 }
 
 //Subfunction
-void Sensor::info(){
+void Sensor::gui_config(){
   //---------------------------
 
   gui_playback->show_parameter(this);

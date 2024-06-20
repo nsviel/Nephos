@@ -9,10 +9,10 @@ namespace dyn::cloud{class Operation;}
 namespace dyn::gui{class Colorization;}
 namespace dyn::gui{class Transformation;}
 namespace dyn::gui{class Info;}
+namespace dyn::gui{class Configuration;}
 namespace ope{class Operation;}
 namespace ope::normal{class KNN;}
 namespace dat::base{class Set;}
-namespace dat::base{class Element;}
 
 
 namespace dyn::gui{
@@ -38,6 +38,7 @@ private:
   dyn::gui::Colorization* dyn_colorization;
   dyn::gui::Transformation* dyn_transformation;
   dyn::gui::Info* dyn_info;
+  dyn::gui::Configuration* dyn_config;
   ope::Operation* ope_operation;
   ope::normal::KNN* ope_normal;
 };

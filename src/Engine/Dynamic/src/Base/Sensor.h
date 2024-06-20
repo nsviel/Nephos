@@ -26,7 +26,7 @@ struct Sensor : public dat::base::Object, public utl::base::Thread{
   virtual void manage_query(float ts_querry){}
   virtual void manage_configuration(){}
   virtual void manage_reset(){}
-  virtual void sensor_info(){}
+  virtual void gui_config(){}
 
   dyn::base::Timestamp timestamp;
   dyn::base::State state;

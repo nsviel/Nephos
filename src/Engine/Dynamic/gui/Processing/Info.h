@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace dyn{class Node;}
+namespace utl::base{class Element;}
 
 
 namespace dyn::gui{
@@ -16,6 +17,11 @@ public:
 
   //Main function
   void design_info(utl::base::Element* element);
+
+  //Subfunction
+  void path_info(utl::base::Element* element);
+  void sensor_info(utl::base::Element* element);
+  void playback_info(utl::base::Element* element);
 
 private:
 

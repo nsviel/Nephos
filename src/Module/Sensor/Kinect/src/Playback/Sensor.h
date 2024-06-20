@@ -25,7 +25,7 @@ public:
   void thread_end();
 
   //Subfunction
-  void info();
+  void gui_config();
   k4a::capture* manage_new_capture();
   void manage_old_capture(k4a::capture* capture);
   void manage_pause();
