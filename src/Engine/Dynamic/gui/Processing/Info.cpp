@@ -16,7 +16,7 @@ Info::Info(dyn::Node* node_dynamic){
 Info::~Info(){}
 
 //Main function
-void Info::draw_info(utl::base::Element* element){
+void Info::design_info(utl::base::Element* element){
   if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)) return;
   //---------------------------
 

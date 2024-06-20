@@ -26,19 +26,19 @@ void Colorization::design_colorization(utl::base::Element* element){
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Colorization##dynamic")){
 
-    this->colorization_mode();
+    this->colorization_mode(element);
     ImGui::Separator();
-    this->heatmap_mode(entity);
+    this->heatmap_mode(element);
 
-    this->option_intensity(entity);
-    this->option_height(entity);
+    this->option_intensity(element);
+    this->option_height(element);
 
-    this->update_entity(entity);
+    this->update_element(element);
   }
 
   //---------------------------
 }
-void Colorization::update_entity(utl::base::Element* element){
+void Colorization::update_element(utl::base::Element* element){
   //---------------------------
 
   if(update_color){
@@ -116,29 +116,20 @@ void Colorization::heatmap_mode(utl::base::Element* element){
 
   ImGui::BeginTable("heatmap##mode", 3);
 
-  bool condition = (entity->data.Is.size() == 0);
-  if(condition) ImGui::BeginDisabled();
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY)){
     update_color = true;
   }
-  if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
-  condition = (entity->data.Is_cor.size() == 0);
-  if(condition) ImGui::BeginDisabled();
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("I cor##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY_COR)){
     update_color = true;
   }
-  if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
-  condition = (entity->data.Is_cal.size() == 0);
-  if(condition) ImGui::BeginDisabled();
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("I cal##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY_CAL)){
     update_color = true;
   }
-  if(condition) ImGui::EndDisabled();
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("H##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::HEIGHT)){

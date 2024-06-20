@@ -19,6 +19,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->dyn_operation = node_dynamic->get_ope_cloud();
   this->dyn_colorization = new dyn::gui::Colorization(node_dynamic);
   this->dyn_transformation = new dyn::gui::Transformation(node_dynamic);
+  this->dyn_info = new dyn::gui::Info(node_dynamic);
   this->ope_operation = new ope::Operation();
   this->ope_normal = new ope::normal::KNN();
 
@@ -33,14 +34,20 @@ void Operation::design_operation(){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
+  //Info
+  dyn_info->design_info(element);
+
+  //Transformation
+  dyn_transformation->design_transformation(element);
+
   //Transformation
   dyn_transformation->design_transformation(element);
 
   //Colorization
   dyn_colorization->design_colorization(element);
 
-  dat::base::Set* set = dat_selection->get_selected_set();
-  this->draw_ope_normal(set);
+  //Normal
+  //this->draw_ope_normal(set);
   ImGui::PopStyleColor();
 
   //---------------------------

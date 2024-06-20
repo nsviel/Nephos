@@ -8,6 +8,7 @@ namespace dyn{class Structure;}
 namespace dyn::cloud{class Operation;}
 namespace dyn::gui{class Colorization;}
 namespace dyn::gui{class Transformation;}
+namespace dyn::gui{class Info;}
 namespace ope{class Operation;}
 namespace ope::normal{class KNN;}
 namespace dat::base{class Set;}
@@ -36,6 +37,7 @@ private:
   dyn::Structure* dyn_struct;
   dyn::gui::Colorization* dyn_colorization;
   dyn::gui::Transformation* dyn_transformation;
+  dyn::gui::Info* dyn_info;
   ope::Operation* ope_operation;
   ope::normal::KNN* ope_normal;
 };

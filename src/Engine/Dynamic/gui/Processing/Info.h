@@ -15,7 +15,7 @@ public:
   ~Info();
 
   //Main function
-  void draw_info(utl::base::Element* element);
+  void design_info(utl::base::Element* element);
 
 private:
 
