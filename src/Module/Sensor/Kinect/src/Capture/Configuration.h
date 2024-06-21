@@ -21,9 +21,10 @@ public:
   void manage_configuration();
   void make_default_configuration();
   void find_calibration(k4n::structure::Sensor* sensor);
+  void find_versioning(k4n::structure::Sensor* sensor);
   void make_sensor_configuration(k4n::structure::Sensor* k4n_sensor);
   void make_sensor_color_configuration(k4n::structure::Sensor* sensor);
-  
+
 private:
   k4n::Structure* k4n_struct;
   dat::Graph* dat_graph;

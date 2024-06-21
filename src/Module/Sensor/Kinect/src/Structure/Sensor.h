@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Kinect/src/Structure/Firmware.h>
 #include <Kinect/src/Structure/Namespace.h>
 #include <Dynamic/src/Base/Sensor.h>
 #include <Utility/Specific/Common.h>
@@ -64,6 +65,7 @@ struct Sensor : public dyn::base::Sensor{
   k4n::depth::Structure depth;
   k4n::infrared::Structure ir;
   k4n::imu::Structure imu;
+  k4n::firmware::Structure firmware;
   k4n::structure::FPS fps;
 
   //---------------------------

@@ -122,30 +122,29 @@ void Capture::show_firmware_info(k4n::structure::Sensor* sensor){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Device Firmware Version Info");
 
-  k4a_hardware_version_t versionInfo = sensor->device.version;
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
   ImGui::BeginTable("device##firmware", 2);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("RGB camera"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%u.%u.%u", versionInfo.rgb.major, versionInfo.rgb.minor, versionInfo.rgb.iteration);
+  ImGui::TextColored(color, "%s", sensor->firmware.color);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth camera"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%u.%u.%u", versionInfo.depth.major, versionInfo.depth.minor, versionInfo.depth.iteration);
+  ImGui::TextColored(color, "%s", sensor->firmware.depth);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Audio"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%u.%u.%u", versionInfo.audio.major, versionInfo.audio.minor, versionInfo.audio.iteration);
+  ImGui::TextColored(color, "%s", sensor->firmware.audio);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Build config"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", versionInfo.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug");
+  ImGui::TextColored(color, "%s", sensor->firmware.build);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Signature type"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : versionInfo.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned");
+  ImGui::TextColored(color, "%s", sensor->firmware.constructor);
 
   ImGui::EndTable();
 
