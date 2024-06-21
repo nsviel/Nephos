@@ -12,7 +12,7 @@ Capture::Capture(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
 
-  this->k4n_config = new k4n::utils::Configuration(node_k4n);
+  this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_structure();
   this->dat_set = node_data->get_dat_set();
 
@@ -32,7 +32,6 @@ void Capture::show_parameter(dat::base::Set* set){
   this->configuration_depth(set);
   this->configuration_color(set);
   this->configuration_color_control(set);
-  this->configuration_fps(set);
   this->configuration_synchro(set);
   this->configuration_button(set);
 
@@ -184,6 +183,8 @@ void Capture::configuration_depth(dat::base::Set* set){
     }
     ImGui::SetItemTooltip("[1024 x 1024] resolution");
 
+    this->configuration_fps(set);
+
     ImGui::TreePop();
   }
 
@@ -270,7 +271,7 @@ void Capture::configuration_color(dat::base::Set* set){
 }
 void Capture::configuration_color_control(dat::base::Set* set){
   //---------------------------
-/*
+
   if(ImGui::TreeNode("Color control")){
 
     ImGui::BeginTable("truc##color_control", 2);
@@ -280,21 +281,21 @@ void Capture::configuration_color_control(dat::base::Set* set){
     float exposure_value = (float)k4n_struct->config.color.exposure.value;
     if(ImGui::SliderFloat("Exposure Time", &exposure_value, 488.0f, 1000000.0f, "%.0f us", ImGuiSliderFlags_Logarithmic)){
       k4n_struct->config.color.exposure.value = exposure_value;
-      player->manage_configuration();
+      k4n_config->manage_configuration();
     }
     ImGui::TableNextColumn();
     switch(k4n_struct->config.color.exposure.mode){
       case K4A_COLOR_CONTROL_MODE_MANUAL:{
         if(ImGui::Button("M##Exposure")){
           k4n_struct->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_AUTO;
-          player->manage_configuration();
+          k4n_config->manage_configuration();
         }
         break;
       }
       case K4A_COLOR_CONTROL_MODE_AUTO:{
         if(ImGui::Button("A##Exposure")){
           k4n_struct->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
-          player->manage_configuration();
+          k4n_config->manage_configuration();
         }
         break;
       }
@@ -304,21 +305,21 @@ void Capture::configuration_color_control(dat::base::Set* set){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("White Balance", &k4n_struct->config.color.white_balance.value, 2500, 12500, "%d K")){
-      player->manage_configuration();
+      k4n_config->manage_configuration();
     }
     ImGui::TableNextColumn();
     switch(k4n_struct->config.color.white_balance.mode){
       case K4A_COLOR_CONTROL_MODE_MANUAL:{
         if(ImGui::Button("M##Balance")){
           k4n_struct->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_AUTO;
-          player->manage_configuration();
+          k4n_config->manage_configuration();
         }
         break;
       }
       case K4A_COLOR_CONTROL_MODE_AUTO:{
         if(ImGui::Button("A##Balance")){
           k4n_struct->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
-          player->manage_configuration();
+          k4n_config->manage_configuration();
         }
         break;
       }
@@ -329,51 +330,51 @@ void Capture::configuration_color_control(dat::base::Set* set){
     //Brightness
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Brightness", &k4n_struct->config.color.brightness.value, 0, 255, "%d")){
-      player->manage_configuration();
+      k4n_config->manage_configuration();
     }
 
     //Contrast
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Contrast", &k4n_struct->config.color.contrast.value, 0, 10, "%d")){
-      player->manage_configuration();
+      k4n_config->manage_configuration();
     }
 
     //Saturation
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Saturation", &k4n_struct->config.color.saturation.value, 0, 63, "%d")){
-      player->manage_configuration();
+      k4n_config->manage_configuration();
     }
 
     //Sharpness
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Sharpness", &k4n_struct->config.color.sharpness.value, 0, 4, "%d")){
-      player->manage_configuration();
+      k4n_config->manage_configuration();
     }
 
     //Gain
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Gain", &k4n_struct->config.color.gain.value, 0, 255, "%d")){
-      player->manage_configuration();
+      k4n_config->manage_configuration();
     }
 
     //Backlight Compensation
     if(ImGui::Checkbox("Backlight Compensation", &k4n_struct->config.color.backlight_compensation.value)){
-      player->manage_configuration();
+      k4n_config->manage_configuration();
     }
 
     //Power frequency
     ImGui::Text("Power Frequency");
     if(ImGui::RadioButton("50Hz", &k4n_struct->config.color.power_frequency.value, 1)){
-      player->manage_configuration();
+      k4n_config->manage_configuration();
     }
     ImGui::SameLine();
     if(ImGui::RadioButton("60Hz", &k4n_struct->config.color.power_frequency.value, 2)){
-      player->manage_configuration();
+      k4n_config->manage_configuration();
     }
 
     ImGui::TreePop();
   }
-*/
+
   //---------------------------
 }
 void Capture::configuration_fps(dat::base::Set* set){
@@ -420,19 +421,18 @@ void Capture::configuration_synchro(dat::base::Set* set){
   //---------------------------
 }
 void Capture::configuration_button(dat::base::Set* set){
-  /*dyn::base::Player* player = &set->player;
   //---------------------------
 
   //Refresh / reset buttons
   if(ImGui::Button("Restart")){
-    player->manage_configuration();
+    k4n_config->manage_configuration();
     set->reset();
   }
   ImGui::SameLine();
   if(ImGui::Button("Reset to default##RGB")){
     k4n_config->make_default_configuration();
   }
-*/
+
   //---------------------------
 }
 
