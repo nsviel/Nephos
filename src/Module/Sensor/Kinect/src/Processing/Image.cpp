@@ -19,7 +19,7 @@ Image::Image(k4n::Node* node_k4n){
 
   this->tj_handle = tjInitDecompress();
   this->k4n_struct = node_k4n->get_k4n_structure();
-  this->k4n_data = new k4n::utils::Data(node_k4n);
+  this->k4n_operation = new k4n::processing::Operation(node_k4n);
   this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
   this->thread_pool = node_engine->get_thread_pool();
   this->dyn_operation = node_dynamic->get_ope_image();
@@ -130,10 +130,10 @@ void Image::find_data_depth(k4n::structure::Sensor* sensor){
   sensor->depth.data.format = retrieve_format_from_k4a(depth.get_format());
   sensor->depth.data.temperature = sensor->device.capture->get_temperature_c();
   sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
-  k4n_data->convert_uint8_to_vec_uint16(sensor->depth.data.buffer, sensor->depth.data.size, sensor->buffer_depth);
+  k4n_operation->convert_uint8_to_vec_uint16(sensor->depth.data.buffer, sensor->depth.data.size, sensor->buffer_depth);
 
   //Image
-  k4n_data->convert_depth_into_color(sensor);
+  k4n_operation->convert_depth_into_color(sensor);
   sensor->depth.image.name = "Depth";
   sensor->depth.image.size = sensor->depth.image.data.size();
   sensor->depth.image.width = sensor->depth.data.width;
@@ -191,10 +191,10 @@ void Image::find_data_ir(k4n::structure::Sensor* sensor){
   sensor->ir.data.size = ir.get_size();
   sensor->ir.data.format = retrieve_format_from_k4a(ir.get_format());
   sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
-  k4n_data->convert_uint8_to_vec_uint16(sensor->ir.data.buffer, sensor->ir.data.size, sensor->buffer_ir);
+  k4n_operation->convert_uint8_to_vec_uint16(sensor->ir.data.buffer, sensor->ir.data.size, sensor->buffer_ir);
 
   //Image
-  k4n_data->convert_ir_into_color(sensor);
+  k4n_operation->convert_ir_into_color(sensor);
   sensor->ir.image.name = "Infrared";
   sensor->ir.image.size = sensor->ir.image.data.size();
   sensor->ir.image.width = sensor->ir.data.width;

@@ -7,14 +7,14 @@ namespace k4n{class Node;}
 namespace k4n::structure{class Sensor;}
 
 
-namespace k4n::utils{
+namespace k4n::processing{
 
-class Data
+class Operation
 {
 public:
   //Constructor / Destructor
-  Data(k4n::Node* node_k4n);
-  ~Data();
+  Operation(k4n::Node* node_k4n);
+  ~Operation();
 
 public:
   //Data function

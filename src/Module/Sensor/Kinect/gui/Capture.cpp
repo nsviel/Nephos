@@ -27,23 +27,17 @@ void Capture::show_parameter(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
 
-  this->show_list_device(set);
+//  this->show_list_device(set);
   this->show_transformation_mode(set);
-
-  ImGui::SetNextItemWidth(75);
-  if(ImGui::BeginTabItem("Capture##566", NULL)){
-    this->configuration_synchro(set);
-    this->configuration_depth(set);
-    this->configuration_color(set);
-    this->configuration_color_control(set);
-    this->configuration_fps(set);
-    this->configuration_button(set);
-
-    ImGui::Separator();
-    ImGui::EndTabItem();
-  }
+  this->configuration_depth(set);
+  this->configuration_color(set);
+  this->configuration_color_control(set);
+  this->configuration_fps(set);
+  this->configuration_synchro(set);
+  this->configuration_button(set);
 
   //---------------------------
+  ImGui::Separator();
 }
 
 //Subfunction
@@ -275,9 +269,8 @@ void Capture::configuration_color(dat::base::Set* set){
   //---------------------------
 }
 void Capture::configuration_color_control(dat::base::Set* set){
-/*  dyn::base::Player* player = &set->player;
   //---------------------------
-
+/*
   if(ImGui::TreeNode("Color control")){
 
     ImGui::BeginTable("truc##color_control", 2);

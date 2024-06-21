@@ -1,13 +1,13 @@
-#include "Data.h"
+#include "Operation.h"
 
 #include <Kinect/Namespace.h>
 #include <Dynamic/Namespace.h>
 
 
-namespace k4n::utils{
+namespace k4n::processing{
 
 //Constructor / Destructor
-Data::Data(k4n::Node* node_k4n){
+Operation::Operation(k4n::Node* node_k4n){
   //---------------------------
 
   dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
@@ -16,17 +16,17 @@ Data::Data(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Data::~Data(){}
+Operation::~Operation(){}
 
 //Data function
-void Data::convert_uint8_to_vec_uint8(const uint8_t* input, size_t size, std::vector<uint8_t>& output){
+void Operation::convert_uint8_to_vec_uint8(const uint8_t* input, size_t size, std::vector<uint8_t>& output){
   //---------------------------
 
   output = std::vector<uint8_t>(input, input + size);
 
   //---------------------------
 }
-void Data::convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, std::vector<uint16_t>& output){
+void Operation::convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, std::vector<uint16_t>& output){
   //---------------------------
 
   // Ensure the input size is even, as each uint16_t is 2 uint8_t
@@ -47,7 +47,7 @@ void Data::convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, std::v
 }
 
 //IR function
-void Data::convert_ir_into_color(k4n::structure::Sensor* sensor){
+void Operation::convert_ir_into_color(k4n::structure::Sensor* sensor){
   k4n::structure::Data* data = &sensor->ir.data;
   uint8_t* buffer = data->buffer;
   uint16_t level_min = sensor->ir.config.level_min;
@@ -79,7 +79,7 @@ void Data::convert_ir_into_color(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Data::find_ir_level(k4n::structure::Sensor* sensor){
+void Operation::find_ir_level(k4n::structure::Sensor* sensor){
   //---------------------------
 
   if(sensor->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){
@@ -95,7 +95,7 @@ void Data::find_ir_level(k4n::structure::Sensor* sensor){
 }
 
 //Depth function
-void Data::convert_depth_into_color(k4n::structure::Sensor* sensor){
+void Operation::convert_depth_into_color(k4n::structure::Sensor* sensor){
   k4n::structure::Data* data = &sensor->depth.data;
   uint8_t* inputBuffer = data->buffer;
   uint16_t range_min = sensor->depth.config.range_min;
@@ -133,7 +133,7 @@ void Data::convert_depth_into_color(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Data::find_depth_mode_range(k4n::structure::Sensor* sensor){
+void Operation::find_depth_mode_range(k4n::structure::Sensor* sensor){
   //---------------------------
 
   if(sensor->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){
@@ -157,7 +157,7 @@ void Data::find_depth_mode_range(k4n::structure::Sensor* sensor){
 }
 
 //Normal function
-void Data::make_normal_from_depth_image(k4n::structure::Sensor* sensor){
+void Operation::make_normal_from_depth_image(k4n::structure::Sensor* sensor){
   uint8_t* depth = sensor->depth.data.buffer;
   //---------------------------
 
@@ -214,7 +214,7 @@ data->Nxyz = Nxyz;
 */
   //---------------------------
 }
-void Data::convert_normal_into_color(k4n::structure::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz){
+void Operation::convert_normal_into_color(k4n::structure::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   std::vector<uint8_t> output = std::vector<uint8_t>(vec_Nxyz.size() * 4, 0);

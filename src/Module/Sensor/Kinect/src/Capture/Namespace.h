@@ -3,3 +3,4 @@
 #include <Kinect/src/Capture/Sensor.h>
 #include <Kinect/src/Capture/Connection.h>
 #include <Kinect/src/Capture/Recorder.h>
+#include <Kinect/src/Capture/Configuration.h>

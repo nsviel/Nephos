@@ -8,7 +8,7 @@ namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::structure{class Sensor;}
 namespace k4n::processing{class Cloud;}
-namespace k4n::utils{class Data;}
+namespace k4n::processing{class Operation;}
 namespace utl::thread{class Pool;}
 namespace dyn::image{class Operation;}
 namespace dat{class Image;}
@@ -51,7 +51,7 @@ public:
 private:
   k4n::Structure* k4n_struct;
   k4n::processing::Cloud* k4n_cloud;
-  k4n::utils::Data* k4n_data;
+  k4n::processing::Operation* k4n_operation;
   utl::thread::Pool* thread_pool;
   dyn::image::Operation* dyn_operation;
   dat::Image* dat_image;
