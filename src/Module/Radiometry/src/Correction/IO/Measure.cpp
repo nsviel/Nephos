@@ -25,7 +25,7 @@ Measure::~Measure(){}
 void Measure::import_measure(){
   //---------------------------
 
-  std::string path = rad_struct->measure.get_current_path();
+  std::string path = rad_struct->measure.path.build();
 
   //Determine depth mode
 
@@ -42,7 +42,7 @@ void Measure::import_measure(){
 void Measure::export_measure(){
   //---------------------------
 
-  std::string path = rad_struct->measure.get_current_path();
+  std::string path = rad_struct->measure.path.build();
   utl::file::write_vector(path, rad_struct->measure.data);
 
   //---------------------------
@@ -55,16 +55,6 @@ void Measure::clear_measure(){
   rad_plot->reset_plot_data();
 
   //---------------------------
-}
-std::string Measure::get_current_path(){
-  //---------------------------
-
-  std::string& dir = rad_struct->model.path_dir;
-  std::string& filename = rad_struct->model.name_measure;
-  std::string path = dir + "/" + filename;
-
-  //---------------------------
-  return path;
 }
 
 }

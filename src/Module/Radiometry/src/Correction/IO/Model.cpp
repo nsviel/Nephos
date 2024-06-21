@@ -21,7 +21,7 @@ Model::~Model(){}
 
 //Main function
 void Model::import_model(dyn::base::Sensor* sensor){
-  string path = get_current_path();
+  string path = rad_struct->model.path.build();
   //---------------------------
 
   this->read_device_info(sensor, path);
@@ -32,7 +32,7 @@ void Model::import_model(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Model::export_model(dyn::base::Sensor* sensor){
-  string path = get_current_path();
+  string path = rad_struct->model.path.build();
   //---------------------------
 
   this->write_device_info(sensor, path);
@@ -65,7 +65,7 @@ void Model::write_depth_mode_model(dyn::base::Sensor* sensor, string& path){
   std::string depth_mode = sensor->depth_mode;
 
   utl::json::write_value(path, depth_mode + ".model_rmse", model->rmse);
-  utl::json::write_value(path, depth_mode + ".name_measure", model->name_measure);
+  utl::json::write_value(path, depth_mode + ".name_measure", model->path.name);
   utl::json::write_value(path, depth_mode + ".nb_coefficient", model->coefficient.size());
 
   //X variable
@@ -110,7 +110,7 @@ void Model::read_depth_mode_model(dyn::base::Sensor* sensor, string& path){
   std::string depth_mode = "NFOV";
 
   model->rmse = utl::json::read_value<float>(path, depth_mode + ".model_rmse");
-  model->name_measure = utl::json::read_value<string>(path, depth_mode + ".name_measure");
+  rad_struct->measure.path.name = utl::json::read_value<string>(path, depth_mode + ".name_measure");
 
   //X variable
   model->degree_x = utl::json::read_value<int>(path, depth_mode + ".x.degree");
@@ -131,18 +131,6 @@ void Model::read_depth_mode_model(dyn::base::Sensor* sensor, string& path){
   }
 
   //---------------------------
-}
-
-//Subsubfunction
-std::string Model::get_current_path(){
-  //---------------------------
-
-  std::string& dir = rad_struct->model.path_dir;
-  std::string& filename = rad_struct->model.name_model;
-  std::string path = dir + "/" + filename;
-
-  //---------------------------
-  return path;
 }
 
 }

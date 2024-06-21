@@ -66,7 +66,7 @@ void Model::parameter_measure(dyn::base::Sensor* sensor){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##measure_sphere")){
     //Path
-    std::string path = rad_struct->measure.get_current_path();
+    std::string path = rad_struct->measure.path.build();
     if(ImGui::Button("...##measure_sphere")){
       zenity::selection_file(path);
     }
@@ -131,7 +131,7 @@ void Model::parameter_model(dyn::base::Sensor* sensor){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Model")){
     //Path
-    std::string path = rad_io_model->get_current_path();
+    std::string path = model->path.build();
     if(ImGui::Button("...##path_model")){
       zenity::selection_file(path);
     }

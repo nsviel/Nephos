@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Base/Type/Path.h>
 #include <string>
 #include <vector>
 
@@ -9,9 +10,8 @@ namespace rad::correction::structure{
 struct Model{
   //---------------------------
 
-  std::string path_dir = "../media/calibration";
-  std::string name_model = "kinect.json";
-  std::string name_measure = "kinect_NFOV.data";
+  //"../media/calibration/kinect.json"
+  utl::base::Path path;
 
   std::vector<float> coefficient;
   utl::base::Axis axis_x;

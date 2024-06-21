@@ -8,16 +8,10 @@ namespace rad::correction::structure{
 
 struct Measure{
   //---------------------------
-
-  std::string get_current_path(){
-    std::string path = dir+ "/" + mode + "_" + filename;
-    return path;
-  }
-
+//"../media/calibration/kinect_NFOV.data"
   //General
   std::string mode = "NFOV";
-  std::string filename = "sphere.data";
-  std::string dir = "../media/calibration";
+  utl::base::Path path;
 
   //Data
   std::vector<glm::vec3> data;

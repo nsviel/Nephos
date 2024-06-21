@@ -44,7 +44,6 @@ void Init::load_entity(){
   utl::base::Path dragon("/home/aether/Desktop/Nephos/media/point_cloud/dragon.ply");
 
   utl::base::Path sphere("/home/aether/Desktop/Sphere_good.mkv");
-  //sphere.data = "/home/aether/Desktop/bench_1.mkv";
 
   utl::base::Path pcap("/home/aether/Desktop/pcap_test.pcap");
 

@@ -30,9 +30,6 @@ public:
   void read_device_info(dyn::base::Sensor* sensor, std::string& path);
   void read_depth_mode_model(dyn::base::Sensor* sensor, std::string& path);
 
-  //subfunction
-  std::string get_current_path();
-
 private:
   rad::correction::Structure* rad_struct;
   rad::correction::Measure* rad_measure;

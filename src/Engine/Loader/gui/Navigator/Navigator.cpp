@@ -74,7 +74,7 @@ void Navigator::draw_header(ldr::base::Path& path){
     ImGui::PushID(i);
     element_path += "/" + element;
     if(ImGui::Button(element.c_str())){
-      path.folder = element_path;
+      path.folder = element_path + "/";
     }
     ImGui::PopID();
   }
