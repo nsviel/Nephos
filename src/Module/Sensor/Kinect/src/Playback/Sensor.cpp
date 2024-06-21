@@ -20,6 +20,7 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->data.path = path;
   this->data.name = utl::path::get_name_from_path(path.build());
   this->data.path.format = utl::path::get_format_from_path(path.build());
+  this->depth_mode = "NFOV";
 
   //---------------------------
 }

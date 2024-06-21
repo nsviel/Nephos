@@ -1,5 +1,5 @@
 {
-    "": {
+    "NFOV": {
         "coefficient": {
             "0": 5.086176872253418,
             "1": 0.23451270163059235,
@@ -15,7 +15,7 @@
             "9": 0.17731726169586182
         },
         "model_rmse": 213.05897521972656,
-        "name_measure": "kinect_NFOV.data",
+        "name_measure": "../media/calibration/kinect_NFOV.data",
         "nb_coefficient": 12,
         "x": {
             "degree": 3,

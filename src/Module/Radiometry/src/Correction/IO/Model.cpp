@@ -65,7 +65,7 @@ void Model::write_depth_mode_model(dyn::base::Sensor* sensor, string& path){
   std::string depth_mode = sensor->depth_mode;
 
   utl::json::write_value(path, depth_mode + ".model_rmse", model->rmse);
-  utl::json::write_value(path, depth_mode + ".name_measure", model->path.name);
+  utl::json::write_value(path, depth_mode + ".name_measure", rad_struct->measure.path.build());
   utl::json::write_value(path, depth_mode + ".nb_coefficient", model->coefficient.size());
 
   //X variable
@@ -110,7 +110,8 @@ void Model::read_depth_mode_model(dyn::base::Sensor* sensor, string& path){
   std::string depth_mode = "NFOV";
 
   model->rmse = utl::json::read_value<float>(path, depth_mode + ".model_rmse");
-  rad_struct->measure.path.name = utl::json::read_value<string>(path, depth_mode + ".name_measure");
+  std::string path_measure = utl::json::read_value<string>(path, depth_mode + ".name_measure");
+  rad_struct->measure.path.insert(path_measure);
 
   //X variable
   model->degree_x = utl::json::read_value<int>(path, depth_mode + ".x.degree");

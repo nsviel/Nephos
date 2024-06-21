@@ -60,6 +60,8 @@ template<typename T> T read_value(const std::string& path, std::string key){
   T result;
   //---------------------------
 
+  if(utl::file::is_exist(path) == false) return result;
+
   // Read JSON data from file
   std::ifstream file(path);
   if(!file.is_open()){
@@ -95,6 +97,20 @@ template<typename T> T read_value(const std::string& path, std::string key){
   //---------------------------
   return result;
 }
+template<typename T> T template_null(const T& value){
+  //---------------------------
+
+  // Return a null value for the type T
+  if constexpr (std::is_arithmetic_v<T>) {
+    return static_cast<T>(0);  // For numeric types
+  } else if constexpr (std::is_same_v<T, std::string>) {
+    return "";  // For std::string
+  } else {
+    return T();  // For other types, return default-constructed T
+  }
+
+  //---------------------------
+}
 bool is_json_file(const std::string& path){
   //---------------------------
 
@@ -103,5 +119,7 @@ bool is_json_file(const std::string& path){
   //---------------------------
   return (extension == ".json");
 }
+
+
 
 }
