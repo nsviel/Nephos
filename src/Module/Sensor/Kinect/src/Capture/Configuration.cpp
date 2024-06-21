@@ -17,6 +17,7 @@ Configuration::Configuration(k4n::Node* node_k4n){
   this->dat_set = node_data->get_dat_set();
 
   //---------------------------
+  this->make_default_configuration();
 }
 Configuration::~Configuration(){}
 
@@ -54,6 +55,56 @@ void Configuration::make_default_configuration(){
   k4n_struct->config.color.gain.value = 0;
   k4n_struct->config.color.backlight_compensation.value = 0;
   k4n_struct->config.color.power_frequency.value = 2;
+
+  //---------------------------
+}
+void Configuration::find_calibration(k4n::structure::Sensor* sensor){
+  k4a::device& device = sensor->device.handle;
+  //---------------------------
+
+  sensor->device.calibration = device.get_calibration(k4n_struct->config.depth.mode, k4n_struct->config.color.resolution);
+  sensor->device.transformation = k4a::transformation(sensor->device.calibration);
+
+  //---------------------------
+}
+void Configuration::make_sensor_configuration(k4n::structure::Sensor* sensor){
+  //---------------------------
+
+  k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
+
+  //Field stuff
+  configuration.color_format = k4n_struct->config.color.format;
+  configuration.color_resolution = k4n_struct->config.color.resolution;
+  configuration.depth_mode = k4n_struct->config.depth.mode;
+
+  //Synchro stuff
+  configuration.camera_fps = k4n_struct->fps.mode;
+  configuration.depth_delay_off_color_usec = k4n_struct->config.synchro.depth_delay_off_color_us;
+  configuration.wired_sync_mode = k4n_struct->config.synchro.wired_mode;
+  configuration.subordinate_delay_off_master_usec = k4n_struct->config.synchro.subordinate_delay_off_master_us;
+  configuration.disable_streaming_indicator = k4n_struct->config.synchro.disable_streaming_indicator;
+  configuration.synchronized_images_only = k4n_struct->config.synchro.synchronized_images_only;
+
+  //---------------------------
+  sensor->device.configuration = configuration;
+}
+void Configuration::make_sensor_color_configuration(k4n::structure::Sensor* sensor){
+  k4a::device& device = sensor->device.handle;
+  //---------------------------
+
+  device.set_color_control(k4n_struct->config.color.exposure.command, k4n_struct->config.color.exposure.mode, k4n_struct->config.color.exposure.value);
+  device.set_color_control(k4n_struct->config.color.white_balance.command, k4n_struct->config.color.white_balance.mode, k4n_struct->config.color.white_balance.value);
+  device.set_color_control(k4n_struct->config.color.brightness.command, k4n_struct->config.color.brightness.mode, k4n_struct->config.color.brightness.value);
+  device.set_color_control(k4n_struct->config.color.contrast.command, k4n_struct->config.color.contrast.mode, k4n_struct->config.color.contrast.value);
+  device.set_color_control(k4n_struct->config.color.saturation.command, k4n_struct->config.color.saturation.mode, k4n_struct->config.color.saturation.value);
+  device.set_color_control(k4n_struct->config.color.sharpness.command, k4n_struct->config.color.sharpness.mode, k4n_struct->config.color.sharpness.value);
+  device.set_color_control(k4n_struct->config.color.gain.command, k4n_struct->config.color.gain.mode, k4n_struct->config.color.gain.value);
+  device.set_color_control(k4n_struct->config.color.backlight_compensation.command, k4n_struct->config.color.backlight_compensation.mode, k4n_struct->config.color.backlight_compensation.value);
+  device.set_color_control(k4n_struct->config.color.power_frequency.command, k4n_struct->config.color.power_frequency.mode, k4n_struct->config.color.power_frequency.value);
+
+  sensor->color.config = k4n_struct->config.color;
+  sensor->depth.config = k4n_struct->config.depth;
+  sensor->ir.config = k4n_struct->config.ir;
 
   //---------------------------
 }

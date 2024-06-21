@@ -5,7 +5,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::processing{class Image;}
-namespace k4n::utils{class Configuration;}
+namespace k4n::playback{class Configuration;}
 namespace k4n::gui{class Playback;}
 
 
@@ -33,7 +33,7 @@ public:
 
 public:
   k4n::processing::Image* k4n_image;
-  k4n::utils::Configuration* k4n_config;
+  k4n::playback::Configuration* k4n_config;
   k4n::gui::Playback* gui_playback;
 
   k4a::playback playback;

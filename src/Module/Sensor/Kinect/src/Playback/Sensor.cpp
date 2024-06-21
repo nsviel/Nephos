@@ -13,7 +13,7 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   //---------------------------
 
   this->k4n_image = new k4n::processing::Image(node_k4n);
-  this->k4n_config = new k4n::utils::Configuration(node_k4n);
+  this->k4n_config = new k4n::playback::Configuration(node_k4n);
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 
   this->name = utl::path::get_name_from_path(path.build());
@@ -39,9 +39,8 @@ void Sensor::thread_init(){
     return;
   }
 
-  k4n_config->find_playback_configuration(this);
-  k4n_config->find_playback_calibration(this);
-  k4n_config->make_transformation_from_calibration(this);
+  k4n_config->find_configuration(this);
+  k4n_config->find_calibration(this);
 
   //---------------------------
 }

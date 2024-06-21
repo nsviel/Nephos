@@ -10,7 +10,6 @@ namespace dyn{class Node;}
 namespace dat{class Graph;}
 namespace utl::thread{class Pool;}
 namespace k4n::capture{class Connection;}
-namespace k4n::utils{class Configuration;}
 namespace k4n{class Structure;}
 
 
@@ -47,7 +46,6 @@ private:
   //Child
   utl::thread::Pool* thread_pool;
   k4n::capture::Connection* k4n_connection;
-  k4n::utils::Configuration* k4n_config;
   k4n::Structure* k4n_structure;
 };
 

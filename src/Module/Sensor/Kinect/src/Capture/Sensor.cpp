@@ -11,7 +11,7 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
   //---------------------------
 
   this->k4n_image = new k4n::processing::Image(node_k4n);
-  this->k4n_config = new k4n::utils::Configuration(node_k4n);
+  this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->gui_capture = new k4n::gui::Capture(node_k4n);
 
   this->vec_recorder.push_back(new k4n::capture::Recorder());
@@ -43,8 +43,7 @@ void Sensor::thread_init(){
   //Configuration
   k4n_config->make_sensor_configuration(this);
   k4n_config->make_sensor_color_configuration(this);
-  k4n_config->make_capture_calibration(this);
-  k4n_config->make_transformation_from_calibration(this);
+  k4n_config->find_calibration(this);
   this->device.handle.start_cameras(&device.configuration);
 
   //---------------------------
