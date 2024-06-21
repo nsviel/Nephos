@@ -32,7 +32,7 @@ bool is_exist(std::string path){
   is_exists = infile.good();
 
   if(!is_exists){
-    std::cout << "[error] File doesn't exists [" << path << "]" << std::endl;
+    std::cerr<<"[error] File at ["<<path<<"] doesn't exists"<<std::endl;
   }
 
   //---------------------------
@@ -193,6 +193,8 @@ uint8_t* load_binary(std::string path){
 void write_vec_path(const std::string& path, const std::vector<std::string>& vec_path){
   //---------------------------
 
+  if(utl::file::is_exist(path) == false) return;
+
   std::ofstream outputFile(path);
 
   if(outputFile.is_open()){
@@ -209,9 +211,11 @@ void write_vec_path(const std::string& path, const std::vector<std::string>& vec
 void write_vector(const std::string& path, const std::vector<glm::vec3>& vec){
   //---------------------------
 
+  if(utl::file::is_exist(path) == false) return;
+
   std::ofstream file(path);
   if(!file.is_open()){
-    std::cerr << "Error: Failed to open file forwriting." << std::endl;
+    std::cerr<<"[error] Failed to open file at "<<path<<std::endl;
     return;
   }
 
@@ -225,9 +229,11 @@ void write_vector(const std::string& path, const std::vector<glm::vec3>& vec){
 void write_vector(const std::string& path, const std::vector<float>& vec){
   //---------------------------
 
+  if(utl::file::is_exist(path) == false) return;
+
   std::ofstream file(path);
   if(!file.is_open()){
-    std::cerr << "Error: Failed to open file forwriting." << std::endl;
+    std::cerr<<"[error] Failed to open file at "<<path<<std::endl;
     return;
   }
 
@@ -239,9 +245,11 @@ void write_vector(const std::string& path, const std::vector<float>& vec){
   file.close();
 }
 std::vector<std::string> read_vec_path(const std::string& path){
+  std::vector<std::string> vec_path;
   //---------------------------
 
-  std::vector<std::string> vec_path;
+  if(utl::file::is_exist(path) == false) return vec_path;
+
   std::ifstream inputFile(path);
 
   if(inputFile.is_open()){
@@ -258,12 +266,14 @@ std::vector<std::string> read_vec_path(const std::string& path){
   return vec_path;
 }
 std::vector<glm::vec3> read_vector(const std::string& path){
+  std::vector<glm::vec3> vec;
   //---------------------------
 
-  std::vector<glm::vec3> vec;
+  if(utl::file::is_exist(path) == false) return vec;
+
   std::ifstream file(path);
   if(!file.is_open()){
-    std::cerr << "Error: Failed to open file forreading." << std::endl;
+    std::cerr<<"[error] Failed to open file at "<<path<<std::endl;
     return vec;
   }
 
@@ -272,7 +282,7 @@ std::vector<glm::vec3> read_vector(const std::string& path){
     std::istringstream iss(line);
     glm::vec3 v;
     if(!(iss >> v.x >> v.y >> v.z)){
-      std::cerr << "Error: Failed to read line from file." << std::endl;
+      std::cerr << "[error] Failed to read line from file." << std::endl;
       return vec;
     }
     vec.push_back(v);

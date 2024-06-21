@@ -19,6 +19,7 @@ public:
 
 public:
   //Main function
+  void init();
   void compute_model();
   void clear_model();
 

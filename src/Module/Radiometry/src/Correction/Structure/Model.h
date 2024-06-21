@@ -10,7 +10,6 @@ namespace rad::correction::structure{
 struct Model{
   //---------------------------
 
-  //"../media/calibration/kinect.json"
   utl::base::Path path;
 
   std::vector<float> coefficient;

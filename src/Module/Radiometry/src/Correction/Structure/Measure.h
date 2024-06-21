@@ -8,7 +8,7 @@ namespace rad::correction::structure{
 
 struct Measure{
   //---------------------------
-//"../media/calibration/kinect_NFOV.data"
+
   //General
   std::string mode = "NFOV";
   utl::base::Path path;

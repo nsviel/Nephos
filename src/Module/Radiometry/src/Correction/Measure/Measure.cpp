@@ -23,6 +23,8 @@ void Measure::init(){
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   //---------------------------
 
+  rad_struct->measure.path.insert("../media/calibration/kinect_NFOV.data");
+
   //R
   sphere->R_resolution = 0.01f;
   sphere->R_range = glm::vec2(0.0f, 5.0f);

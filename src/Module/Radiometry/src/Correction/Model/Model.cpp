@@ -20,6 +20,13 @@ Model::Model(rad::correction::Node* node_correction){
 Model::~Model(){}
 
 //Main function
+void Model::init(){
+  //---------------------------
+
+  rad_struct->model.path.insert("../media/calibration/kinect.json");
+
+  //---------------------------
+}
 void Model::compute_model(){
   //---------------------------
 

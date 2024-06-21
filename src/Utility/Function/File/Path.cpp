@@ -170,9 +170,8 @@ std::string is_dir_or_file(std::string path){
 std::string reconstruct_path(std::string dir, std::string name, std::string format){
   //---------------------------
 
-  std::string ptformat = (format != "-") ? "." + format : "";
-  std::string filename = (name != "") ? name + ptformat : name;
-  std::string path = (filename != "") ? dir + "/" + filename : dir;
+  std::string filename = (format != "-") ? name + format : name;
+  std::string path = (filename != "") ? dir + filename : dir;
 
   //---------------------------
   return (path == "") ? "(not defined)" : path;
