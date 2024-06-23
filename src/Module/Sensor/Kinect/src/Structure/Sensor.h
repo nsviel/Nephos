@@ -26,8 +26,10 @@ struct Sensor : public dyn::base::Sensor{
     this->device_name = "kinect";
     this->data.topology.type = utl::topology::POINT;
     this->data.nb_data_max = 10000000;
+    this->depth_mode = "NFOV";
     this->vec_depth_mode.push_back("NFOV");
     this->vec_depth_mode.push_back("WFOV");
+    this->correction.path.insert("../media/calibration/kinect.json");
 
     //---------------------------
   }
