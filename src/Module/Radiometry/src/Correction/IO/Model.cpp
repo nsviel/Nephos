@@ -1,4 +1,4 @@
-sensor->correction.#include "Model.h"
+#include "Model.h"
 
 #include <Utility/Function/File/Json.cpp>
 #include <Radiometry/Namespace.h>
@@ -12,6 +12,7 @@ Model::Model(rad::correction::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();
+  this->rad_model = node_correction->get_rad_model();
   this->rad_io_measure = node_correction->get_rad_io_measure();
 
   //---------------------------
@@ -25,8 +26,8 @@ void Model::import_model(dyn::base::Sensor* sensor){
 
   this->read_device_info(sensor, path);
   this->read_depth_mode_model(sensor, path);
-  rad_sensor->correction.update_model();
-  rad_io_measure->import_measure();
+  rad_model->update_model(sensor);
+  rad_io_measure->import_measure(sensor);
 
   //---------------------------
 }

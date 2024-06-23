@@ -5,6 +5,7 @@
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction{class Model;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::correction{
@@ -19,10 +20,10 @@ public:
 public:
   //Main function
   void init();
-  
+
   //Subfunction
   void plot_measure();
-  void update_plot_data();
+  void update_plot_data(dyn::base::Sensor* sensor);
   void reset_plot_data();
 
 private:

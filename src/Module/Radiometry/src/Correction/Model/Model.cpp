@@ -3,6 +3,7 @@
 #include <python/matplotlibcpp.h>
 #include <Radiometry/Namespace.h>
 #include <Operation/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace rad::correction{
@@ -20,18 +21,11 @@ Model::Model(rad::correction::Node* node_correction){
 Model::~Model(){}
 
 //Main function
-void Model::init(){
+void Model::compute_model(dyn::base::Sensor* sensor){
   //---------------------------
 
-  rad_struct->model.path.insert("../media/calibration/kinect.json");
-
-  //---------------------------
-}
-void Model::compute_model(){
-  //---------------------------
-
-  this->build_model();
-  this->rmse_model();
+  this->build_model(sensor);
+  this->rmse_model(sensor);
 
   //---------------------------
 }
@@ -44,8 +38,7 @@ void Model::clear_model(){
 }
 
 //Subfunction
-void Model::build_model(){
-  rad::correction::structure::Model* model = &rad_struct->model;
+void Model::build_model(dyn::base::Sensor* sensor){
   //---------------------------
 
   //Apply logarithmic scale
@@ -56,31 +49,30 @@ void Model::build_model(){
   }
 
   //Optimization algorithm
-  ope_surface->set_degree(model->degree_x, model->degree_y);
-  ope_surface->compute(vec_data, model->axis_x.bound, model->axis_y.bound);
-  model->coefficient = ope_surface->get_coefficient();
+  ope_surface->set_degree(sensor->correction.degree_x, sensor->correction.degree_y);
+  ope_surface->compute(vec_data, sensor->correction.axis_x.bound, sensor->correction.axis_y.bound);
+  sensor->correction.coefficient = ope_surface->get_coefficient();
 
   //---------------------------
 }
-void Model::update_model(){
-  rad::correction::structure::Model* model = &rad_struct->model;
+void Model::update_model(dyn::base::Sensor* sensor){
   //---------------------------
 
-  ope_surface->set_degree(model->degree_x, model->degree_y);
-  ope_surface->set_coefficients(model->coefficient);
+  ope_surface->set_degree(sensor->correction.degree_x, sensor->correction.degree_y);
+  ope_surface->set_coefficients(sensor->correction.coefficient);
 
   //---------------------------
 }
-float Model::rmse_model(){
-  rad::correction::structure::Model* model = &rad_struct->model;
+float Model::rmse_model(dyn::base::Sensor* sensor){
+  if(!is_model_build(sensor)) return 0;
   //---------------------------
 
   int N = rad_struct->measure.data.size();
   float E = 0;
   for(int i=0; i<N; i++){
     vec3& data = rad_struct->measure.data[i];
-    if(data.x < model->axis_x.bound[0] || data.x > model->axis_x.bound[1]) continue;
-    if(data.y < model->axis_y.bound[0] || data.y > model->axis_y.bound[1]) continue;
+    if(data.x < sensor->correction.axis_x.bound[0] || data.x > sensor->correction.axis_x.bound[1]) continue;
+    if(data.y < sensor->correction.axis_y.bound[0] || data.y > sensor->correction.axis_y.bound[1]) continue;
     if(data.x < 0 || data.y < 0) continue;
 
     float z = apply_model(data.x, data.y);
@@ -88,41 +80,15 @@ float Model::rmse_model(){
   }
 
   float RMSE = sqrt(E / N);
-  model->rmse = RMSE;
+  sensor->correction.rmse = RMSE;
 
   //---------------------------
   return RMSE;
 }
-float Model::apply_model(float x, float y){
-  if(!is_model_build()) return 0;
+bool Model::is_model_build(dyn::base::Sensor* sensor){
   //---------------------------
 
-  /*
-  //Function and coef from python code
-  vector<float> vec_coef;
-  vec_coef.push_back(8.74097349);
-  vec_coef.push_back(-1.42552352);
-  vec_coef.push_back(-0.0182150385);
-  vec_coef.push_back(0.100452890);
-  vec_coef.push_back(-0.000202683733);
-  vec_coef.push_back(0.00501210320);
-  //float z = vec_coef[0] + vec_coef[1] * x + vec_coef[2] * y + vec_coef[3] * pow(x, 2) + vec_coef[4] * pow(y, 2) + vec_coef[5] * x * y;
-  */
-
-  float z = ope_surface->evaluate(x, y);
-
-  //Reconvert from log scale to normal scale
-  z = std::exp(z);
-  if(z < 0) z = 0;
-
-  //---------------------------
-  return z;
-}
-bool Model::is_model_build(){
-  rad::correction::structure::Model* model = &rad_struct->model;
-  //---------------------------
-
-  if(model->coefficient.size() == 0){
+  if(sensor->correction.coefficient.size() == 0){
     return false;
   }else{
     return true;
@@ -130,7 +96,7 @@ bool Model::is_model_build(){
 
   //---------------------------
 }
-void Model::find_model_bound(){
+void Model::find_model_bound(dyn::base::Sensor* sensor){
   //---------------------------
 
   vec2 R_bound = vec2(1000, 0);
@@ -156,6 +122,30 @@ void Model::find_model_bound(){
   rad_struct->model.axis_y.current = (It_bound.x + It_bound.y) / 2;
 
   //---------------------------
+}
+float Model::apply_model(float x, float y){
+  //---------------------------
+
+  /*
+  //Function and coef from python code
+  vector<float> vec_coef;
+  vec_coef.push_back(8.74097349);
+  vec_coef.push_back(-1.42552352);
+  vec_coef.push_back(-0.0182150385);
+  vec_coef.push_back(0.100452890);
+  vec_coef.push_back(-0.000202683733);
+  vec_coef.push_back(0.00501210320);
+  //float z = vec_coef[0] + vec_coef[1] * x + vec_coef[2] * y + vec_coef[3] * pow(x, 2) + vec_coef[4] * pow(y, 2) + vec_coef[5] * x * y;
+  */
+
+  float z = ope_surface->evaluate(x, y);
+
+  //Reconvert from log scale to normal scale
+  z = std::exp(z);
+  if(z < 0) z = 0;
+
+  //---------------------------
+  return z;
 }
 
 }

@@ -7,6 +7,7 @@ namespace rad::correction{class Structure;}
 namespace rad::correction{class Plot;}
 namespace rad::correction{class Measure;}
 namespace rad::correction{class Model;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::correction::io{
@@ -20,9 +21,9 @@ public:
 
 public:
   //Main function
-  void import_measure();
-  void export_measure();
-  void clear_measure();
+  void import_measure(dyn::base::Sensor* sensor);
+  void export_measure(dyn::base::Sensor* sensor);
+  void clear_measure(dyn::base::Sensor* sensor);
 
 private:
   rad::correction::Structure* rad_struct;

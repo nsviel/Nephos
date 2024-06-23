@@ -39,7 +39,7 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
 
   //Postprocessing stuff
   rad_glyph->draw_calibration_sphere(sensor);
-  rad_measure->process_measure();
+  rad_measure->process_measure(sensor);
 
   //---------------------------
 }

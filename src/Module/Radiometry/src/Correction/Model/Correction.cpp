@@ -25,7 +25,7 @@ Correction::~Correction(){}
 
 //Main function
 void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir){
-  if(!model_sphere->is_model_build()) return;
+  if(!model_sphere->is_model_build(sensor)) return;
   //---------------------------
 
   std::vector<uint8_t> vec_data = ir->data;

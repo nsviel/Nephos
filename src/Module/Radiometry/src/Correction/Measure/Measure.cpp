@@ -46,21 +46,21 @@ void Measure::init(){
 }
 
 //Subfunction
-void Measure::process_measure(){
+void Measure::process_measure(dyn::base::Sensor* sensor){
   //---------------------------
 
   vector<vec3>& search_xyz = rad_struct->ransac.search_xyz;
   vector<float>& search_Is = rad_struct->ransac.search_Is;
   rad_struct->state.data = rad::correction::HAS_DATA;
 
-  this->data_measure(search_xyz, search_Is);
-  this->data_IfR(search_xyz, search_Is);
+  this->data_measure(sensor, search_xyz, search_Is);
+  this->data_IfR(sensor, search_xyz, search_Is);
   this->data_IfIt(search_xyz, search_Is);
 
   //---------------------------
 }
-void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
-  rad::correction::structure::Model* optim = &rad_struct->model;
+void Measure::data_measure(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vector<float>& search_Is){
+  rad::correction::structure::Model* model = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
@@ -83,8 +83,8 @@ void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
       float R = math::distance_from_origin(xyz);
 
       //R limite validity
-      if(R < optim->axis_x.bound[0]) optim->axis_x.bound[0] = R;
-      if(R > optim->axis_x.bound[1]) optim->axis_x.bound[1] = R;
+      if(R < model->axis_x.bound[0]) model->axis_x.bound[0] = R;
+      if(R > model->axis_x.bound[1]) model->axis_x.bound[1] = R;
 
       // Calculate the index of the cell in the heatmap grid
       int i = static_cast<int>((R - plot->IfRIt.axis_x.min) / (plot->IfRIt.axis_x.max - plot->IfRIt.axis_x.min) * plot->IfRIt.axis_x.size);
@@ -99,8 +99,8 @@ void Measure::data_measure(vector<vec3>& search_xyz, vector<float>& search_Is){
 
   //---------------------------
 }
-void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
-  rad::correction::structure::Model* optim = &rad_struct->model;
+void Measure::data_IfR(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vector<float>& search_Is){
+  rad::correction::structure::Model* model = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
@@ -116,7 +116,7 @@ void Measure::data_IfR(vector<vec3>& search_xyz, vector<float>& search_Is){
     plot->IfR.axis_x.data[index] = R;
     plot->IfR.axis_y.data[index] = Is;
     plot->IfR.highlight = vec2(R, Is);
-    optim->axis_x.current = R;
+    model->axis_x.current = R;
   }
 
   //---------------------------

@@ -6,6 +6,7 @@ namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::correction{
@@ -19,17 +20,16 @@ public:
 
 public:
   //Main function
-  void init();
-  void compute_model();
+  void compute_model(dyn::base::Sensor* sensor);
   void clear_model();
 
   //Subfunction
+  void build_model(dyn::base::Sensor* sensor);
+  void update_model(dyn::base::Sensor* sensor);
+  float rmse_model(dyn::base::Sensor* sensor);
+  bool is_model_build(dyn::base::Sensor* sensor);
+  void find_model_bound(dyn::base::Sensor* sensor);
   float apply_model(float x, float y);
-  float rmse_model();
-  bool is_model_build();
-  void find_model_bound();
-  void build_model();
-  void update_model();
 
 private:
   rad::correction::Structure* rad_struct;

@@ -27,7 +27,7 @@ void Measure::import_measure(){
 
   //Import file model data
   //rad_struct->chart.data = utl::file::read_vector(path);
-  //rad_plot->update_plot_data();
+  //rad_plot->update_plot_data(sensor);
 
   //---------------------------
 }

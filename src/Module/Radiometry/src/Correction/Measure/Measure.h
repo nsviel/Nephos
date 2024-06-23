@@ -5,6 +5,7 @@
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction{class Plot;}
+namespace dyn::base{class Sensor;}
 
 
 namespace rad::correction{
@@ -19,11 +20,11 @@ public:
 public:
   //Main function
   void init();
-  void process_measure();
+  void process_measure(dyn::base::Sensor* sensor);
 
   //Subfunction
-  void data_measure(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
-  void data_IfR(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
+  void data_measure(dyn::base::Sensor* sensor, vector<vec3>& sphere_xyz, vector<float>& sphere_i);
+  void data_IfR(dyn::base::Sensor* sensor, vector<vec3>& sphere_xyz, vector<float>& sphere_i);
   void data_IfIt(vector<vec3>& sphere_xyz, vector<float>& sphere_i);
 
 private:

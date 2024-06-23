@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <python/matplotlibcpp.h>
 
 
@@ -20,7 +21,6 @@ Plot::~Plot(){}
 
 //Main function
 void Plot::init(){
-  rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
@@ -81,8 +81,7 @@ void Plot::plot_measure(){
 
   //---------------------------
 }
-void Plot::update_plot_data(){
-  rad::correction::structure::Model* optim = &rad_struct->model;
+void Plot::update_plot_data(dyn::base::Sensor* sensor){
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -101,32 +100,32 @@ void Plot::update_plot_data(){
     if(R == -1) continue;
 
     //I(R)
-    if(R > optim->axis_x.bound.x && R < optim->axis_x.bound.y // R inside bounds
-      && It > optim->axis_y.current && It < optim->axis_y.current + 5){ //It inside selected It + 5 degrees
+    if(R > sensor->correction.axis_x.bound.x && R < sensor->correction.axis_x.bound.y // R inside bounds
+      && It > sensor->correction.axis_y.current && It < sensor->correction.axis_y.current + 5){ //It inside selected It + 5 degrees
       //Raw
       plot->IfR.axis_x.data.push_back(R);
       plot->IfR.axis_y.data.push_back(I);
 
       //Fitted
-      if(rad_model->is_model_build()){
+      if(rad_model->is_model_build(sensor)){
         float fit = rad_model->apply_model(R, It);
         plot->IfR.axis_y.fitting.push_back(fit);
       }
 
-      if(R > optim->axis_x.current && R < optim->axis_x.current + 0.05){
+      if(R > sensor->correction.axis_x.current && R < sensor->correction.axis_x.current + 0.05){
         plot->IfR.highlight = vec2(R, I);
       }
     }
 
     //I(It)
-    if(It > optim->axis_y.bound[0] && It < optim->axis_y.bound[1] // It It inside user defined bounds
-      && R > optim->axis_x.current && R < optim->axis_x.current + 0.05){ //All data between R current + 0.05m
+    if(It > sensor->correction.axis_y.bound[0] && It < sensor->correction.axis_y.bound[1] // It It inside user defined bounds
+      && R > sensor->correction.axis_x.current && R < sensor->correction.axis_x.current + 0.05){ //All data between R current + 0.05m
       //Raw
       plot->IfIt.axis_x.data.push_back(It);
       plot->IfIt.axis_y.data.push_back(I);
 
       //Fitted
-      if(rad_model->is_model_build()){
+      if(rad_model->is_model_build(sensor)){
         float fit = rad_model->apply_model(R, It);
         plot->IfIt.axis_y.fitting.push_back(fit);
       }
@@ -139,7 +138,6 @@ void Plot::update_plot_data(){
   //---------------------------
 }
 void Plot::reset_plot_data(){
-  rad::correction::structure::Model* optim = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------

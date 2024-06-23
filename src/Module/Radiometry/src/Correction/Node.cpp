@@ -30,7 +30,6 @@ void Node::init(){
 
   rad_process->init();
   rad_measure->init();
-  rad_model->init();
   rad_plot->init();
 
   //---------------------------

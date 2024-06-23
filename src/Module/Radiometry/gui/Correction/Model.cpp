@@ -40,7 +40,7 @@ void Model::draw_tab(dyn::base::Sensor* sensor){
   ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(130, 130, 130, 255));
   ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(101, 101, 101, 255));
   ImGui::BeginTabBar("devices_tab##4567");
-  this->plot_sphere();
+  this->plot_sphere(sensor);
   this->plot_chart();
   ImGui::EndTabBar();
   ImGui::PopStyleColor(3);
@@ -59,7 +59,7 @@ void Model::parameter_measure(dyn::base::Sensor* sensor){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button(ICON_FA_DOWNLOAD "##measure_load", ImVec2(25, 0))){
-    rad_io_measure->import_measure();
+    rad_io_measure->import_measure(sensor);
   }
   ImGui::PopStyleColor(2);
 
@@ -91,20 +91,20 @@ void Model::parameter_measure(dyn::base::Sensor* sensor){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Clear##measure_sphere", ImVec2(120, 0))){
-      rad_io_measure->clear_measure();
+      rad_io_measure->clear_measure(sensor);
     }
     ImGui::PopStyleColor(2);
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Import##measure_sphere", ImVec2(120, 0))){
-      rad_io_measure->import_measure();
+      rad_io_measure->import_measure(sensor);
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 80, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(80, 60, 60, 255));
     if(ImGui::Button("Export##measure_sphere", ImVec2(120, 0))){
-      rad_io_measure->export_measure();
+      rad_io_measure->export_measure(sensor);
     }
     ImGui::PopStyleColor(2);
 
@@ -114,7 +114,6 @@ void Model::parameter_measure(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Model::parameter_model(dyn::base::Sensor* sensor){
-  rad::correction::structure::Model* model = &rad_struct->model;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -131,7 +130,7 @@ void Model::parameter_model(dyn::base::Sensor* sensor){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Model")){
     //Path
-    std::string path = model->path.build();
+    std::string path = sensor->correction.path.build();
     if(ImGui::Button("...##path_model")){
       zenity::selection_file(path);
     }
@@ -144,27 +143,27 @@ void Model::parameter_model(dyn::base::Sensor* sensor){
 
     //Model parameter
     ImGui::SetNextItemWidth(120);
-    ImGui::DragInt("##degree_x", &model->degree_x, 1, 1, 10);
+    ImGui::DragInt("##degree_x", &sensor->correction.degree_x, 1, 1, 10);
     ImGui::SameLine();
     ImGui::SetNextItemWidth(120);
-    ImGui::DragInt("Degree", &model->degree_y, 1, 1, 10);
+    ImGui::DragInt("Degree", &sensor->correction.degree_y, 1, 1, 10);
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "RMSE: %.4f", model->rmse);
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "RMSE: %.4f", sensor->correction.rmse);
     ImGui::SetNextItemWidth(247.5);
-    if(ImGui::DragFloatRange2("Range x",&model->axis_x.bound[0], &model->axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
-      rad_plot->update_plot_data();
+    if(ImGui::DragFloatRange2("Range x",&sensor->correction.axis_x.bound[0], &sensor->correction.axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
+      rad_plot->update_plot_data(sensor);
     }
     ImGui::SetNextItemWidth(247.5);
-    if(ImGui::DragFloatRange2("Range y",&model->axis_y.bound[0], &model->axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
-      rad_plot->update_plot_data();
+    if(ImGui::DragFloatRange2("Range y",&sensor->correction.axis_y.bound[0], &sensor->correction.axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
+      rad_plot->update_plot_data(sensor);
     }
 
     //Model function
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Compute##model", ImVec2(120, 0))){
-      rad_model->compute_model();
-      rad_plot->update_plot_data();
+      rad_model->compute_model(sensor);
+      rad_plot->update_plot_data(sensor);
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
@@ -197,7 +196,7 @@ void Model::parameter_model(dyn::base::Sensor* sensor){
 }
 
 //Sphere plot function
-void Model::plot_sphere(){
+void Model::plot_sphere(dyn::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
@@ -205,7 +204,7 @@ void Model::plot_sphere(){
     float height = ImGui::GetContentRegionAvail().y / 3-3.33;
     this->plot_measure_IfR(height);
     this->plot_measure_IfIt(height);
-    this->plot_model_heatmap(height);
+    this->plot_model_heatmap(sensor, height);
 
     ImGui::EndTabItem();
   }
@@ -232,16 +231,15 @@ void Model::plot_measure_IfIt(float height){
 
   //---------------------------
 }
-void Model::plot_model_heatmap(float height){
-  rad::correction::structure::Model* model = &rad_struct->model;
+void Model::plot_model_heatmap(dyn::base::Sensor* sensor, float height){
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfRIt.title == "") return;
   plot->IfRIt.dimension = ivec2(-1, height);
-  bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &model->axis_x, &model->axis_y);
+  bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &sensor->correction.axis_x, &sensor->correction.axis_y);
   if(need_update){
-    rad_plot->update_plot_data();
+    rad_plot->update_plot_data(sensor);
   }
 
   //---------------------------
