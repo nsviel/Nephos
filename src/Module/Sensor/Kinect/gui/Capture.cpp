@@ -128,23 +128,23 @@ void Capture::show_firmware_info(k4n::structure::Sensor* sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("RGB camera"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->firmware.color);
+  ImGui::TextColored(color, "%s", sensor->firmware.color.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth camera"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->firmware.depth);
+  ImGui::TextColored(color, "%s", sensor->firmware.depth.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Audio"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->firmware.audio);
+  ImGui::TextColored(color, "%s", sensor->firmware.audio.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Build config"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->firmware.build);
+  ImGui::TextColored(color, "%s", sensor->firmware.build.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Signature type"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->firmware.constructor);
+  ImGui::TextColored(color, "%s", sensor->firmware.constructor.c_str());
 
   ImGui::EndTable();
 

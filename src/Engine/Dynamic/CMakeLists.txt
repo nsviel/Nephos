@@ -19,6 +19,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_ENGINE
   LIBRARY_RADIOMETRY
+  LIBRARY_PROFILER
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

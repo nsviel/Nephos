@@ -3,6 +3,7 @@
 #include <Data/src/Base/Object.h>
 #include <Profiler/src/Profiler/Graph/Profiler.h>
 #include <Dynamic/src/Base/Timestamp.h>
+#include <Dynamic/src/Base/Correction.h>
 #include <Dynamic/src/Base/State.h>
 #include <Dynamic/src/Base/Recorder.h>
 
@@ -30,6 +31,7 @@ struct Sensor : public dat::base::Object, public utl::base::Thread{
 
   dyn::base::Timestamp timestamp;
   dyn::base::State state;
+  dyn::base::Correction correction;
   prf::graph::Profiler profiler;
 
   std::string device_name = "";
