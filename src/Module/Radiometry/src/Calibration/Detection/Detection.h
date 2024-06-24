@@ -28,7 +28,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image);
+  void make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image, utl::media::Image* output);
 
 private:
   utl::thread::Pool* thread_pool;

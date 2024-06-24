@@ -25,10 +25,10 @@ public:
   //Subfunction
   void step_detection();
   void step_measure();
-  
+
 private:
   rad::calibration::Structure* rad_struct;
-  rad::calibration::Detection* chart_detection;
+  rad::calibration::Detection* rad_detection;
   dat::Selection* dat_selection;
 };
 

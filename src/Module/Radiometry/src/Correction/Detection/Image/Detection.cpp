@@ -71,7 +71,7 @@ void Detection::wait_thread(){
 
 //Subfunction
 void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image, utl::media::Image* output){
-  if(image == nullptr) return;
+  if(image == nullptr || output == nullptr) return;
   //---------------------------
 
   cv::Mat cv_image, gray, canny;

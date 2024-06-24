@@ -17,7 +17,7 @@ Process::Process(rad::calibration::Node* node_detection){
 
   this->rad_struct = node_detection->get_rad_struct();
   this->dat_selection = node_data->get_dat_selection();
-  this->chart_detection = new rad::calibration::Detection(node_detection);
+  this->rad_detection = new rad::calibration::Detection(node_detection);
 
   //---------------------------
 }
@@ -31,11 +31,13 @@ void Process::init(){
   //---------------------------
 }
 void Process::loop(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   //---------------------------
 
-  //chart_detection->start_thread(sensor);
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  if(sensor == nullptr) return;
+
+  rad_detection->start_thread(sensor);
 
   //---------------------------
 }

@@ -15,6 +15,7 @@ enum Type{
   TEXTURE = 4,
   DETECTION = 5,
   CORRECTION = 6,
+  CALIBRATION = 6,
 };
 
 struct Image : public utl::base::Element{

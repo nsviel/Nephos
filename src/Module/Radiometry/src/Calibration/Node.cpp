@@ -18,7 +18,13 @@ Node::Node(rad::Node* node_radio){
 Node::~Node(){}
 
 //Main function
+void Node::loop(){
+  //---------------------------
 
+  rad_process->loop();
+
+  //---------------------------
+}
 
 
 }
