@@ -79,8 +79,8 @@ void Measure::data_measure(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, 
     if(distance <= thres_sphere){
       glm::vec3 Nxyz = glm::normalize(xyz - pose);
       float Is = search_Is[i];
-      float It = math::compute_It(xyz, Nxyz, root);
       float R = math::distance_from_origin(xyz);
+      float It = math::compute_It(xyz, Nxyz, R);
 
       //R limite validity
       if(R < model->axis_x.bound[0]) model->axis_x.bound[0] = R;
@@ -143,7 +143,8 @@ void Measure::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
     if(distance <= thres_sphere){
       glm::vec3 Nxyz = glm::normalize(xyz - pose);
       float Is = search_Is[i];
-      float It = math::compute_It(xyz, Nxyz, root);
+      float R = math::distance_from_origin(xyz);
+      float It = math::compute_It(xyz, Nxyz, R);
 
       //Add into model data vector
       int index = static_cast<int>(std::round(It / plot->IfIt.axis_x.resolution));

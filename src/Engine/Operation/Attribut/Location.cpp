@@ -155,12 +155,13 @@ void Location::compute_incidence_angle(dat::base::Entity* entity){
   //---------------------------
 
   std::vector<float>& It = data->It;
+  std::vector<float>& R = data->R;
   std::vector<glm::vec3>& xyz = data->xyz;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
 
   It = std::vector<float>(xyz.size(), 0.0f);
   for(int i=0; i<xyz.size(); i++){
-    float angle = math::compute_It(xyz[i], Nxyz[i], glm::vec3(0, 0, 0));
+    float angle = math::compute_It(xyz[i], Nxyz[i], R[i]);
     It[i] = angle;
   }
 

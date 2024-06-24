@@ -120,14 +120,14 @@ float compute_cosIt(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root){
   //---------------------------
   return cIt;
 }
-float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3 root){
+float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, float& R){
   //---------------------------
 
   //Compute cosIt
   float cIt = 0;
-  float dist = math::distance(xyz, root);
+  glm::vec3 root = glm::vec3(0, 0, 0);
   for(int j=0; j<3; j++){
-    cIt = cIt + ( -Nxyz[j] * ( (xyz[j] - root[j]) / dist ));
+    cIt = cIt + ( -Nxyz[j] * ( (xyz[j] - root[j]) / R ));
   }
 
   //Check for orientation
@@ -273,14 +273,14 @@ glm::mat3 compute_covariance(const std::vector<glm::vec3>& points){
 
   glm::vec3 centroid(0.0f);
   for(const auto& point : points){
-      centroid += point;
+    centroid += point;
   }
   centroid /= static_cast<float>(points.size());
 
   glm::mat3 covariance(0.0f);
   for(const auto& point : points){
-      glm::vec3 deviation = point - centroid;
-      covariance += glm::outerProduct(deviation, deviation);
+    glm::vec3 deviation = point - centroid;
+    covariance += glm::outerProduct(deviation, deviation);
   }
   covariance /= static_cast<float>(points.size());
 
