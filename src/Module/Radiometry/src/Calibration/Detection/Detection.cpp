@@ -76,11 +76,31 @@ void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Imag
   rad_image->convert_into_cv_image(image, cv_image);
   rad_image->convert_into_gray(cv_image, gray);
 
-  // Apply Gaussian Blur
-  cv::Mat blurred;
-  cv::GaussianBlur(gray, blurred, cv::Size(5, 5), 0);
 
-  rad_image->apply_canny(blurred, canny);
+  // Make binary image
+  cv::Mat bw;
+  cv::threshold(gray, bw, 254, 255, cv::THRESH_BINARY);
+
+  // Focus on edges
+  cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(5, 5));
+  cv::erode(bw, bw, kernel);
+
+  // Step 2: Flood fill to remove noise
+  cv::floodFill(bw, cv::Point(0, 0), 0);
+
+  // Step 3: Median blur
+  cv::medianBlur(bw, bw, 7);
+
+  // Step 4: Second flood fill
+  cv::Mat nonRectArea = bw.clone();  // Create a copy for nonRectArea
+  cv::floodFill(nonRectArea, cv::Point(cv_image.cols/2, cv_image.rows/2), 0);
+
+  // Remove remained noise
+  bw.setTo(0, nonRectArea == 255);
+
+
+
+  rad_image->apply_canny(nonRectArea, canny);
 
   rad_rectangle->detect_rectangle(canny, output);
 

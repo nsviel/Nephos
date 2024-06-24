@@ -12,6 +12,10 @@ Rectangle::Rectangle(rad::calibration::Node* node_detection){
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_image = new rad::calibration::Image(node_detection);
 
+  rad_struct->hough.param_1 = 300;
+  rad_struct->hough.param_2 = 0.9;
+  rad_struct->hough.cv_mode = cv::HOUGH_GRADIENT_ALT;
+  
   //---------------------------
 }
 Rectangle::~Rectangle(){}
@@ -27,6 +31,20 @@ void Rectangle::detect_rectangle(cv::Mat& image, utl::media::Image* output){
   //------------------------
 }
 
+
+
+bool lines_intersect(cv::Vec2f line1, cv::Vec2f line2, cv::Point2f& intersection) {
+    float rho1 = line1[0], theta1 = line1[1];
+    float rho2 = line2[0], theta2 = line2[1];
+    float A1 = cos(theta1), B1 = sin(theta1);
+    float A2 = cos(theta2), B2 = sin(theta2);
+    float det = A1 * B2 - A2 * B1;
+    if (std::abs(det) < 1e-2) return false;
+    intersection.x = (rho2 * B1 - rho1 * B2) / det;
+    intersection.y = (rho1 * A2 - rho2 * A1) / det;
+    return true;
+}
+
 //Subfunction
 void Rectangle::compute_rectangle_detection(cv::Mat& image, utl::media::Image* output){
   //---------------------------
@@ -34,35 +52,29 @@ void Rectangle::compute_rectangle_detection(cv::Mat& image, utl::media::Image* o
   cv::Mat result;
   rad_image->convert_into_rgba(image, result);
 
-  // Find contours
-  vector<vector<cv::Point>> contours;
-  cv::findContours(image, contours, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE);
+  // Detect circles using Hough Circle Transform
+  std::vector<cv::Vec3f> circles;
+  int& mode = rad_struct->hough.cv_mode;
+  int& ratio = rad_struct->hough.ratio;
+  int& min_dist = rad_struct->hough.min_dist;
+  int& min_radius = rad_struct->hough.min_radius;
+  int& max_radius = rad_struct->hough.max_radius;
+  float& param_1 = rad_struct->hough.param_1;
+  float& param_2 = rad_struct->hough.param_2;
 
-  double bestScore = std::numeric_limits<double>::max(); // Initialize to a large value
-  cv::Rect bestBoundingBox;
-  cv::Point bestCenter;
+  cv::HoughCircles(image, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
 
-  // Iterate through the contours to find the most squared rectangle
-  for (int i = 0; i < contours.size(); i++) {
-      if (is_rectangle(contours[i])) {
-          // Calculate the bounding box and center of the rectangle
-          cv::Rect boundingBox = cv::boundingRect(contours[i]);
-          float aspectRatio = static_cast<float>(boundingBox.width) / boundingBox.height;
-          double score = std::abs(aspectRatio - 1); // Score based on how close the aspect ratio is to 1
+   // Draw detected circles
+   for (size_t i = 0; i < circles.size(); i++) {
+       cv::Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+       int radius = cvRound(circles[i][2]);
 
-          if (score < bestScore) {
-              bestScore = score;
-              bestBoundingBox = boundingBox;
-              bestCenter = cv::Point(boundingBox.x + boundingBox.width / 2, boundingBox.y + boundingBox.height / 2);
-          }
-      }
-  }
+       // Draw the circle center
+       cv::circle(result, center, 3, cv::Scalar(0, 255, 0), -1, cv::LINE_AA);
 
-  // Draw the most squared rectangle
-  if (bestScore < std::numeric_limits<double>::max()) {
-      cv::circle(result, bestCenter, 1, cv::Scalar(0, 0, 255, 255), 1, cv::LINE_AA);
-      cv::rectangle(result, bestBoundingBox, cv::Scalar(255, 150, 0, 255), 1, cv::LINE_AA);
-  }
+       // Draw the circle outline
+       cv::circle(result, center, radius, cv::Scalar(0, 0, 255), 1, cv::LINE_AA);
+   }
 
   rad_image->convert_into_utl_image(result, output);
 

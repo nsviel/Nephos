@@ -5,3 +5,4 @@
 #include <Radiometry/src/Calibration/Structure/Plot.h>
 #include <Radiometry/src/Calibration/Structure/State.h>
 #include <Radiometry/src/Calibration/Structure/Canny.h>
+#include <Radiometry/src/Calibration/Structure/Hough.h>

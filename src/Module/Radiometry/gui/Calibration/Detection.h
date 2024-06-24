@@ -29,7 +29,8 @@ public:
   void detection_parameter();
   void detection_image(dyn::base::Sensor* sensor);
   void parameter_canny();
-
+  void parameter_hough();
+  
 private:
   rad::calibration::Structure* rad_struct;
   rad::calibration::Process* rad_process;

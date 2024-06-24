@@ -116,6 +116,7 @@ void Detection::detection_parameter(){
   ImGui::BeginTable("detection_parameter##table", 2);
 
   this->parameter_canny();
+  this->parameter_hough();
 
   ImGui::EndTable();
 
@@ -153,6 +154,66 @@ void Detection::parameter_canny(){
     //Upper threshold
     ImGui::SetNextItemWidth(120);
     ImGui::SliderInt("Upper threshold", &rad_struct->canny.thres_upper, 0, 1000);
+
+    ImGui::TreePop();
+  }
+
+  //---------------------------
+}
+void Detection::parameter_hough(){
+  //---------------------------
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Hough");
+
+  ImGui::TableNextColumn();
+  if(ImGui::TreeNode("Parameter##Hough")){
+    //Pixel diviser
+    //ImGui::SetNextItemWidth(120);
+    //ImGui::SliderInt("Pixel diviser", &sensor->set_parent->operation.intensity_diviser, 1, 5000);
+
+    //Mode
+    int& mode = rad_struct->hough.mode;
+    if(ImGui::RadioButton("Gradient", &mode, rad::hough::GRADIENT)){
+      rad_struct->hough.param_1 = 100; //higher threshold for the Canny edge detector
+      rad_struct->hough.param_2 = 40; //accumulator threshold for the circle centers at the detection stage
+      rad_struct->hough.cv_mode = cv::HOUGH_GRADIENT;
+    }
+    ImGui::SameLine();
+    if(ImGui::RadioButton("Gradient Alt", &mode, rad::hough::GRADIENT_ALT)){
+      rad_struct->hough.param_1 = 300;
+      rad_struct->hough.param_2 = 0.9;
+      rad_struct->hough.cv_mode = cv::HOUGH_GRADIENT_ALT;
+    }
+
+    //Lower threshold
+    ImGui::SetNextItemWidth(120);
+    ImGui::SliderFloat("Detector threshold", &rad_struct->hough.param_1, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
+
+    //Upper threshold
+    ImGui::SetNextItemWidth(120);
+    ImGui::SliderFloat("Accumulator threshold", &rad_struct->hough.param_2, 0.1f, 500.0f, "%.1f", ImGuiSliderFlags_Logarithmic);
+
+    //Ratio
+    ImGui::SetNextItemWidth(120);
+    ImGui::SliderInt("Ratio", &rad_struct->hough.ratio, 1, 100);
+    ImGui::SetItemTooltip("This parameter affects the spacing of the accumulator cells, which in turn affects the sensitivity of the circle detection algorithm.");
+
+    //Min distance
+    ImGui::SetNextItemWidth(120);
+    ImGui::SliderInt("Min distance", &rad_struct->hough.min_dist, 1, 100);
+
+    //Radius range
+    int* min_radius = &rad_struct->hough.min_radius;
+    int* max_radius = &rad_struct->hough.max_radius;
+    ImGui::DragIntRange2("Radius", min_radius, max_radius, 1, 0, 500, "Min: %d px", "Max: %d px");
+
+    //Circle drawing mode
+    ImGui::Text("Draw");
+    ImGui::SameLine();
+    ImGui::RadioButton("All sphere", &rad_struct->hough.draw, rad::hough::ALL);
+    ImGui::SameLine();
+    ImGui::RadioButton("Best sphere", &rad_struct->hough.draw, rad::hough::BEST);
 
     ImGui::TreePop();
   }
