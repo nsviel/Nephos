@@ -40,21 +40,20 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Detection::run_thread(dyn::base::Sensor* sensor){
-  utl::media::Image* image = dat_image->get_image(sensor, utl::media::INTENSITY);
-  utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::DETECTION);
   //---------------------------
 
   if(sensor != nullptr && rad_struct->state.detection == rad::correction::detection::PROCESSING){
+    utl::media::Image* image = dat_image->get_image(sensor, utl::media::INTENSITY);
+    utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::DETECTION);
+    if(image == nullptr || output == nullptr) return;
+
     if(image->timestamp != output->timestamp){
       output->name = "Detection";
       output->timestamp = image->timestamp;
       this->make_shape_detection(sensor, image, output);
     }
-  }else{
-    output->data.clear();
-    output->size = 0;
   }
-
+  
   //---------------------------
   this->thread_idle = true;
 }

@@ -40,19 +40,18 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Detection::run_thread(dyn::base::Sensor* sensor){
-  utl::media::Image* image = dat_image->get_image(sensor, utl::media::CORRECTION);
-  utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::DETECTION);
   //---------------------------
 
-  if(sensor != nullptr && rad_struct->state.detection == rad::calibration::detection::PROCESSING){
+  if(sensor != nullptr){// && rad_struct->state.detection == rad::calibration::detection::PROCESSING){
+    utl::media::Image* image = dat_image->get_image(sensor, utl::media::INTENSITY);
+    utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::DETECTION);
+    if(image == nullptr || output == nullptr) return;
+
     if(image->timestamp != output->timestamp){
       output->name = "Detection";
       output->timestamp = image->timestamp;
       this->make_shape_detection(sensor, image, output);
     }
-  }else{
-    output->data.clear();
-    output->size = 0;
   }
 
   //---------------------------
@@ -71,13 +70,17 @@ void Detection::wait_thread(){
 
 //Subfunction
 void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image, utl::media::Image* output){
-  if(image == nullptr || output == nullptr) return;
   //---------------------------
 
   cv::Mat cv_image, gray, canny;
   rad_image->convert_into_cv_image(image, cv_image);
   rad_image->convert_into_gray(cv_image, gray);
-  rad_image->apply_canny(gray, canny);
+
+  // Apply Gaussian Blur
+  cv::Mat blurred;
+  cv::GaussianBlur(gray, blurred, cv::Size(5, 5), 0);
+
+  rad_image->apply_canny(blurred, canny);
 
   rad_rectangle->detect_rectangle(canny, output);
 

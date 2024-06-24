@@ -38,18 +38,30 @@ void Rectangle::compute_rectangle_detection(cv::Mat& image, utl::media::Image* o
   vector<vector<cv::Point>> contours;
   cv::findContours(image, contours, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE);
 
-  // Draw rectangles
-  for(int i=0; i<contours.size(); i++){
-    if(is_rectangle(contours[i])){
-      // Calculate the BB and center of the rectangle
-      cv::Rect boundingBox = cv::boundingRect(contours[i]);
-      cv::Point center(boundingBox.x + boundingBox.width / 2, boundingBox.y + boundingBox.height / 2);
+  double bestScore = std::numeric_limits<double>::max(); // Initialize to a large value
+  cv::Rect bestBoundingBox;
+  cv::Point bestCenter;
 
-      // Draw rectangles
-      cv::circle(result, center, 1, cv::Scalar(0, 0, 255, 255), 1, cv::LINE_AA);
-      cv::drawContours(result, contours, i, cv::Scalar(0, 255, 0, 255), 2, cv::LINE_AA);
-      cv::rectangle(result, boundingBox, cv::Scalar(255, 150, 0, 255), 1, cv::LINE_AA);
-    }
+  // Iterate through the contours to find the most squared rectangle
+  for (int i = 0; i < contours.size(); i++) {
+      if (is_rectangle(contours[i])) {
+          // Calculate the bounding box and center of the rectangle
+          cv::Rect boundingBox = cv::boundingRect(contours[i]);
+          float aspectRatio = static_cast<float>(boundingBox.width) / boundingBox.height;
+          double score = std::abs(aspectRatio - 1); // Score based on how close the aspect ratio is to 1
+
+          if (score < bestScore) {
+              bestScore = score;
+              bestBoundingBox = boundingBox;
+              bestCenter = cv::Point(boundingBox.x + boundingBox.width / 2, boundingBox.y + boundingBox.height / 2);
+          }
+      }
+  }
+
+  // Draw the most squared rectangle
+  if (bestScore < std::numeric_limits<double>::max()) {
+      cv::circle(result, bestCenter, 1, cv::Scalar(0, 0, 255, 255), 1, cv::LINE_AA);
+      cv::rectangle(result, bestBoundingBox, cv::Scalar(255, 150, 0, 255), 1, cv::LINE_AA);
   }
 
   rad_image->convert_into_utl_image(result, output);
@@ -64,8 +76,8 @@ void Rectangle::draw_detected_rectangle(cv::Mat& image){
   //---------------------------
 }
 bool Rectangle::is_rectangle(const vector<cv::Point>& contour){
-  const double minAspectRatio = 0.7;
-  const double maxAspectRatio = 3;
+  const double minAspectRatio = 0.95;
+  const double maxAspectRatio = 1.05;
   //---------------------------
 
   // Approximate the contour to a polygon
@@ -73,7 +85,7 @@ bool Rectangle::is_rectangle(const vector<cv::Point>& contour){
   cv::approxPolyDP(contour, approx, cv::arcLength(contour, true) * 0.02, true);
 
   // Check if the polygon has 4 vertices and is convex
-  if(approx.size() == 4 && cv::isContourConvex(approx)){
+  if(cv::isContourConvex(approx)){
     // Calculate the bounding box of the polygon
     cv::Rect boundingBox = cv::boundingRect(approx);
     double aspectRatio = (double)boundingBox.width / boundingBox.height;

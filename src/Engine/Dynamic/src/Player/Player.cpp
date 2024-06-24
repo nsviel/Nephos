@@ -151,6 +151,7 @@ void Player::manage_state(dat::base::Set* set){
 
     if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
       sensor->state = state;
+      sensor->update_state();
     }
   }
 

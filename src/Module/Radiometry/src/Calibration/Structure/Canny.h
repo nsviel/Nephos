@@ -9,7 +9,7 @@ namespace rad::calibration::structure{
 struct Canny{
   //---------------------------
 
-  bool apply = false;
+  bool apply = true;
   int thres_lower = 50;
   int thres_upper = 150;
 

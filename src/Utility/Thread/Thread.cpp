@@ -31,6 +31,7 @@ void Thread::stop_thread(){
   //---------------------------
 
   this->thread_running = false;
+  this->update_state();
   if(thread.joinable()){
     thread.join();
   }

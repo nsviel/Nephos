@@ -48,7 +48,7 @@ void Operation::design_operation(){
   dyn_colorization->design_colorization(element);
 
   //Normal
-  //this->draw_ope_normal(set);
+  this->draw_ope_normal(element);
   ImGui::PopStyleColor();
 
   //---------------------------
@@ -56,18 +56,12 @@ void Operation::design_operation(){
 }
 
 //Subfunction
-void Operation::draw_ope_normal(dat::base::Set* set){
+void Operation::draw_ope_normal(utl::base::Element* element){
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Normal##dynamic")){
-
-    if(ImGui::Button("Compute##normal", ImVec2(100, 0))){
-      utl::base::Data* data = &set->active_entity->data;
-      ope_normal->compute_normal(data, dyn_struct->operation.normal.knn);
-    }
-
     //Parameter: kNN
     ImGui::SetNextItemWidth(100);
     ImGui::SliderInt("kNN", &dyn_struct->operation.normal.knn, 1, 10);

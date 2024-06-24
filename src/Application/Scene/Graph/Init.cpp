@@ -57,7 +57,7 @@ void Init::load_entity(){
   //ldr_loader->load_object(sphere);
   //ldr_loader->load_set(pcap);
   //ldr_loader->load_object(mire);
-  ldr_loader->load_object(sphere);
+  ldr_loader->load_object(mire);
 
   //----------------------------
 }

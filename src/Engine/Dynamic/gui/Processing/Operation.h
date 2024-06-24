@@ -12,7 +12,7 @@ namespace dyn::gui{class Info;}
 namespace dyn::gui{class Configuration;}
 namespace ope{class Operation;}
 namespace ope::normal{class KNN;}
-namespace dat::base{class Set;}
+namespace utl::base{class Element;}
 
 
 namespace dyn::gui{
@@ -29,7 +29,7 @@ public:
   void design_operation();
 
   //Subfunction
-  void draw_ope_normal(dat::base::Set* set);
+  void draw_ope_normal(utl::base::Element* element);
 
 private:
   dat::Selection* dat_selection;

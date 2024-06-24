@@ -26,7 +26,9 @@ public:
 
   //Subfunction
   void detection_step();
+  void detection_parameter();
   void detection_image(dyn::base::Sensor* sensor);
+  void parameter_canny();
 
 private:
   rad::calibration::Structure* rad_struct;

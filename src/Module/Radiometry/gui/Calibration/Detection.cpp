@@ -31,6 +31,7 @@ void Detection::draw_tab(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->detection_step();
+  this->detection_parameter();
   this->detection_image(sensor);
 
   //---------------------------
@@ -109,17 +110,54 @@ void Detection::detection_step(){
   //---------------------------
   ImGui::Separator();
 }
+void Detection::detection_parameter(){
+  //---------------------------
+
+  ImGui::BeginTable("detection_parameter##table", 2);
+
+  this->parameter_canny();
+
+  ImGui::EndTable();
+
+  //---------------------------
+  ImGui::Separator();
+}
 void Detection::detection_image(dyn::base::Sensor* sensor){
   ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 
   //Display image with detected spheres
-  utl::media::Image* image = dat_image->get_image(sensor, utl::media::CORRECTION);
+  utl::media::Image* image = dat_image->get_image(sensor, utl::media::DETECTION);
   if(image == nullptr) return;
   stream->draw_stream(image, ImVec2(available_space.x, available_space.y - 5));
 
   //---------------------------
   ImGui::Separator();
+}
+void Detection::parameter_canny(){
+  //---------------------------
+
+  //Canny
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Canny");
+
+  ImGui::TableNextColumn();
+  if(ImGui::TreeNode("Parameter##Canny")){
+    //Activated
+    ImGui::Checkbox("##Canny", &rad_struct->canny.apply);
+
+    //Lower threshold
+    ImGui::SetNextItemWidth(120);
+    ImGui::SliderInt("Lower threshold", &rad_struct->canny.thres_lower, 0, 1000);
+
+    //Upper threshold
+    ImGui::SetNextItemWidth(120);
+    ImGui::SliderInt("Upper threshold", &rad_struct->canny.thres_upper, 0, 1000);
+
+    ImGui::TreePop();
+  }
+
+  //---------------------------
 }
 
 }
