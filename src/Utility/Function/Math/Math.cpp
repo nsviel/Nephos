@@ -212,39 +212,54 @@ void normalize(std::vector<float>& vec, float value_to_avoid){
 
   //-----------------------------
 }
-std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid){
-  std::vector<float> vec_out(vec);
-  int size = vec.size();
+void compute_mean_and_std(const std::vector<float>& vec, float& mean, float& std){
   //-----------------------------
 
-  //Compute std
-  float sum = 0.0, mean, std = 0.0;
-  for(int i=0; i<vec.size(); i++){
-    sum += vec[i];
+  float sum = std::accumulate(vec.begin(), vec.end(), 0.0f);
+  mean = sum / vec.size();
+  std = 0.0f;
+  for (const auto& val : vec) {
+      std += (val - mean) * (val - mean);
   }
-  mean = sum/vec.size();
-  for(int i=0; i<vec.size(); i++){
-    std += pow(vec[i] - mean, 2);
-  }
-  std = sqrt(std / vec.size());
+  std = std::sqrt(std / vec.size());
 
-  //Retrieve min & max
-  float min = vec[0];
-  float max = vec[0];
-  for(int i=0; i<size; i++){
-    if(vec[i] != value_to_avoid){
-      if(vec[i] > mean + std * 3 || vec[i] < mean - std * 3) vec[i] = value_to_avoid;
-      else if(vec[i] > max && vec[i] != value_to_avoid) max = vec[i];
-      else if(vec[i] < min && vec[i] != value_to_avoid) min = vec[i];
+  //-----------------------------
+}
+std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid) {
+  std::vector<float> vec_out(vec);
+  //-----------------------------
+
+  int size = vec.size();
+  if (size == 0) return vec_out;
+
+  // Compute mean and standard deviation
+  float mean, std;
+  math::compute_mean_and_std(vec, mean, std);
+
+  // Retrieve min & max, and filter out outliers
+  float min = std::numeric_limits<float>::max();
+  float max = std::numeric_limits<float>::lowest();
+
+  for (auto& val : vec) {
+    if (val != value_to_avoid) {
+      if (val > mean + 3 * std || val < mean - 3 * std) {
+        val = value_to_avoid;
+      } else {
+        if (val > max) max = val;
+        if (val < min) min = val;
+      }
     }
   }
 
-  //Normalization
-  for(int i=0; i<size; i++){
-    if(vec[i] != value_to_avoid && vec[i] < mean + std * 3){
-      vec_out[i] = (vec[i] - min) / (max - min);
-    }else{
-      vec_out[i] = vec[i];
+  // Normalization
+  float range = max - min;
+  if (range > 0) {
+    for (int i = 0; i < size; ++i) {
+      if (vec[i] != value_to_avoid) {
+        vec_out[i] = (vec[i] - min) / range;
+      } else {
+        vec_out[i] = value_to_avoid;
+      }
     }
   }
 

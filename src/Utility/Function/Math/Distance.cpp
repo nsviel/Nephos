@@ -4,98 +4,40 @@
 namespace math{
 
 //Basic functions
-float distance(glm::vec3 pt1, glm::vec3 pt2){
-  //Euclidean distance
-  float dist;
-  //---------------------------
-
-  dist = sqrt(pow(pt1.x - pt2.x,2) + pow(pt1.y - pt2.y,2) + pow(pt1.z - pt2.z,2));
-
-  //---------------------------
-  return dist;
+float distance(const glm::vec3& pt1, const glm::vec3& pt2) {
+  float dx = pt1.x - pt2.x;
+  float dy = pt1.y - pt2.y;
+  float dz = pt1.z - pt2.z;
+  return std::sqrt(dx * dx + dy * dy + dz * dz);
 }
-float distance(Eigen::Vector3f pt1, Eigen::Vector3f pt2){
-  //Euclidean distance
-  //---------------------------
-
-  float X = pt1(0) - pt2(0);
-  float Y = pt1(1) - pt2(1);
-  float Z = pt1(2) - pt2(2);
-
-  float dist = sqrt(pow(X, 2) + pow(Y, 2) + pow(Z, 2));
-
-  //---------------------------
-  return dist;
+float distance(const Eigen::Vector3f& pt1, const Eigen::Vector3f& pt2) {
+  return (pt1 - pt2).norm();
 }
-double distance(Eigen::Vector3d pt1, Eigen::Vector3d pt2){
-  //Euclidean distance
-  //---------------------------
-
-  double X = pt1(0) - pt2(0);
-  double Y = pt1(1) - pt2(1);
-  double Z = pt1(2) - pt2(2);
-
-  double dist = sqrt(pow(X, 2) + pow(Y, 2) + pow(Z, 2));
-
-  //---------------------------
-  return dist;
+double distance(const Eigen::Vector3d& pt1, const Eigen::Vector3d& pt2) {
+  return (pt1 - pt2).norm();
 }
-double distance(Eigen::Vector4d pt1, Eigen::Vector4d pt2){
-  //Euclidean distance
-  //---------------------------
-
-  double X = pt1(0) - pt2(0);
-  double Y = pt1(1) - pt2(1);
-  double Z = pt1(2) - pt2(2);
-
-  double dist = sqrt(pow(X, 2) + pow(Y, 2) + pow(Z, 2));
-
-  //---------------------------
-  return dist;
+double distance(const Eigen::Vector4d& pt1, const Eigen::Vector4d& pt2) {
+  Eigen::Vector3d diff = pt1.head<3>() - pt2.head<3>();
+  return diff.norm();
 }
-double distance(Eigen::Vector4d pt1, Eigen::Vector3d pt2){
-  //Euclidean distance
-  //---------------------------
-
-  double X = pt1(0) - pt2(0);
-  double Y = pt1(1) - pt2(1);
-  double Z = pt1(2) - pt2(2);
-
-  double dist = sqrt(pow(X, 2) + pow(Y, 2) + pow(Z, 2));
-
-  //---------------------------
-  return dist;
+double distance(const Eigen::Vector4d& pt1, const Eigen::Vector3d& pt2) {
+  Eigen::Vector3d diff = pt1.head<3>() - pt2;
+  return diff.norm();
 }
 
-double distance_from_origin(Eigen::Vector3f pt1){
+double distance_from_origin(const glm::vec3& pt1){
   //Euclidean distance
-  double dist;
   //---------------------------
 
-  dist = sqrt(pow(pt1(0), 2) + pow(pt1(1), 2) + pow(pt1(2), 2));
+  return std::sqrt(pt1.x * pt1.x + pt1.y * pt1.y + pt1.z * pt1.z);
 
   //---------------------------
-  return dist;
 }
-double distance_from_origin(glm::vec3 pt1){
-  //Euclidean distance
-  double dist;
-  //---------------------------
-
-  dist = sqrt(pow(pt1.x, 2) + pow(pt1.y, 2) + pow(pt1.z, 2));
-
-  //---------------------------
-  return dist;
+double distance_from_origin(const Eigen::Vector3f& pt1) {
+  return pt1.norm();
 }
-double distance_from_origin(Eigen::Vector3d pt1){
-  //Euclidean distance
-  double dist;
-  //---------------------------
-
-  dist = sqrt(pow(pt1(0), 2) + pow(pt1(1), 2) + pow(pt1(2), 2));
-
-  //---------------------------
-  return dist;
+double distance_from_origin(const Eigen::Vector3d& pt1) {
+  return pt1.norm();
 }
 
 }
