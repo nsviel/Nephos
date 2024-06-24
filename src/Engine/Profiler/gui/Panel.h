@@ -44,7 +44,6 @@ private:
   bool* show_window;
   string gpu = "";
   string name;
-  int max_time = 50;
   int width;
 };
 

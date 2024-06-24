@@ -24,6 +24,7 @@ public:
   //Main function
   void draw_profiler(prf::graph::Profiler* profiler);
   void show_info();
+  void show_command();
 
   //Subfunction
   void draw_graph_all(prf::graph::Profiler* profiler);
@@ -37,6 +38,7 @@ private:
   prf::Manager* prf_manager;
   prf::graph::Tasker* selected_tasker = nullptr;
   bool pause;
+  int max_time = 50;
 };
 
 }

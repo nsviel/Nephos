@@ -9,6 +9,7 @@ struct Profiler{
   //---------------------------
 
   virtual void show_info(){}
+  virtual void show_command(){}
 
   //---------------------------
 };

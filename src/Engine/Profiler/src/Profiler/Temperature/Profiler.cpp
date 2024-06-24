@@ -9,6 +9,8 @@ namespace prf::temp{
 Profiler::Profiler(){
   //---------------------------
 
+  this->name = "Temperature";
+
   //---------------------------
 }
 Profiler::~Profiler(){}

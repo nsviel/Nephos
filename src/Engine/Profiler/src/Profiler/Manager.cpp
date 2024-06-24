@@ -20,7 +20,7 @@ Manager::Manager(){
   this->add_profiler(profiler_vulkan);
 
   //Temperature profiler
-  this->profiler_temp = new prf::temp::Profiler("Temperature", "thread::main");
+  this->profiler_temp = new prf::temp::Profiler();
   this->add_profiler(profiler_temp);
 
   //---------------------------

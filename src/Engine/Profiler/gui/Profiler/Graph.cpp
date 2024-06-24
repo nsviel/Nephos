@@ -55,6 +55,35 @@ void Graph::show_info(){
 
   //---------------------------
 }
+void Graph::show_command(){
+  //---------------------------
+
+  //Play button -> if paused
+  if(pause){
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
+    if(ImGui::Button(ICON_FA_PLAY "##profiler_play")){
+      pause = false;
+    }
+    ImGui::PopStyleColor();
+  }
+  //Pause button -> if not paused
+  else{
+    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
+    if(ImGui::Button(ICON_FA_PAUSE "##profiler_pause")){
+      pause = true;
+    }
+    ImGui::PopStyleColor();
+  }
+
+  //Graph max time
+  ImGui::SameLine();
+  ImGui::SetNextItemWidth(150);
+  if(ImGui::SliderInt("Y axis", &max_time, 10, 100, "%d ms")){
+    this->set_graphs_max_time(max_time);
+  }
+
+  //---------------------------
+}
 
 //Subfunction
 void Graph::draw_graph_all(prf::graph::Profiler* profiler){

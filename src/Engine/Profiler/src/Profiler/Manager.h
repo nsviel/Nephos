@@ -3,10 +3,11 @@
 #include <Utility/Specific/Common.h>
 #include <Profiler/src/Timer/Chrono.h>
 
+namespace prf{class Structure;}
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
-namespace prf{class Structure;}
 namespace prf::vulkan{class Profiler;}
+namespace prf::temp{class Profiler;}
 
 
 namespace prf{

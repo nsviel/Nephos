@@ -79,31 +79,10 @@ void Panel::main_info(){
   //---------------------------
 }
 void Panel::main_button(){
-  bool& pause = gui_graph->get_pause();
   //---------------------------
 
-  //Play button -> if paused
-  if(pause){
-    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
-    if(ImGui::Button(ICON_FA_PLAY "##profiler_play")){
-      pause = false;
-    }
-    ImGui::PopStyleColor();
-  }
-  //Pause button -> if not paused
-  else{
-    ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
-    if(ImGui::Button(ICON_FA_PAUSE "##profiler_pause")){
-      pause = true;
-    }
-    ImGui::PopStyleColor();
-  }
-
-  //Graph max time
-  ImGui::SameLine();
-  ImGui::SetNextItemWidth(150);
-  if(ImGui::SliderInt("Y axis", &max_time, 10, 100, "%d ms")){
-    gui_graph->set_graphs_max_time(max_time);
+  if(selected_profiler != nullptr){
+    selected_profiler->show_command();
   }
 
   //---------------------------
