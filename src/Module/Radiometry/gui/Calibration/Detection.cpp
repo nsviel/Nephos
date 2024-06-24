@@ -31,8 +31,6 @@ void Detection::draw_tab(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->detection_step();
-  this->detection_parameter();
-  this->detection_stats();
   this->detection_image(sensor);
 
   //---------------------------
@@ -51,18 +49,18 @@ void Detection::detection_step(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Detection");
   ImGui::TableNextColumn();
-  if(rad_struct->state.detection == rad::correction::detection::PROCESSING){
+  if(rad_struct->state.detection == rad::calibration::detection::PROCESSING){
     ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
   }
   ImGui::TableNextColumn();
-  if(rad_struct->state.detection == rad::correction::detection::WAIT_VALIDATION){
+  if(rad_struct->state.detection == rad::calibration::detection::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##sphere_detection", ImVec2(120, 0))){
       rad_process->step_detection();
     }
     ImGui::PopStyleColor(2);
-  }else if(rad_struct->state.detection == rad::correction::detection::PROCESSING){
+  }else if(rad_struct->state.detection == rad::calibration::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_detection", ImVec2(120, 0))){
@@ -75,29 +73,29 @@ void Detection::detection_step(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Measure");
   ImGui::TableNextColumn();
-  if(rad_struct->state.measure == rad::correction::measure::PROCESSING){
+  if(rad_struct->state.measure == rad::calibration::measure::PROCESSING){
     ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
   }else{
     switch(rad_struct->state.data){
-      case rad::correction::NO_DATA:{
+      case rad::calibration::NO_DATA:{
         ImGui::Cross(ImVec4(1, 0.4, 0.4, 1));
         break;
       }
-      case rad::correction::HAS_DATA:{
+      case rad::calibration::HAS_DATA:{
         ImGui::Check_on();
         break;
       }
     }
   }
   ImGui::TableNextColumn();
-  if(rad_struct->state.measure == rad::correction::measure::WAIT_VALIDATION){
+  if(rad_struct->state.measure == rad::calibration::measure::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##sphere_measure", ImVec2(120, 0))){
       rad_process->step_measure();
     }
     ImGui::PopStyleColor(2);
-  }else if(rad_struct->state.measure == rad::correction::measure::PROCESSING){
+  }else if(rad_struct->state.measure == rad::calibration::measure::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){

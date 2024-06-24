@@ -9,7 +9,7 @@
 namespace rad::calibration{
 
 //Constructor / Destructor
-Process::Process(rad::correction::Node* node_detection){
+Process::Process(rad::calibration::Node* node_detection){
   //---------------------------
 
   rad::Node* node_radio = node_detection->get_node_radio();
@@ -58,6 +58,31 @@ void Process::step_detection(){
     }
     case rad::calibration::detection::PROCESSING:{
       step = rad::calibration::detection::WAIT_VALIDATION;
+      break;
+    }
+  }
+
+  //---------------------------
+}
+void Process::step_measure(){
+  //---------------------------
+
+  //Verify that we have a sensor type
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  if(sensor == nullptr) return;
+
+  //Measurement step logic
+  switch(rad_struct->state.measure){
+    case rad::calibration::measure::WAIT_VALIDATION:{
+      if(rad_struct->state.detection == rad::calibration::detection::PROCESSING){
+        //rad_cloud_detection->validate_bbox(sensor);
+        rad_struct->state.measure = rad::calibration::measure::PROCESSING;
+      }
+      break;
+    }
+    case rad::calibration::measure::PROCESSING:{
+      rad_struct->state.measure = rad::calibration::measure::WAIT_VALIDATION;
       break;
     }
   }

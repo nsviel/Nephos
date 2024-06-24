@@ -6,11 +6,11 @@
 namespace rad::calibration{
 
 //Constructor / Destructor
-Rectangle::Rectangle(rad::correction::Node* node_detection){
+Rectangle::Rectangle(rad::calibration::Node* node_detection){
   //---------------------------
 
   this->rad_struct = node_detection->get_rad_struct();
-  this->rad_image = new rad::correction::image::Image(node_detection);
+  this->rad_image = new rad::calibration::Image(node_detection);
 
   //---------------------------
 }

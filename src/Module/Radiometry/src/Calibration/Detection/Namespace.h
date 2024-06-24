@@ -4,3 +4,4 @@
 #include <Radiometry/src/Calibration/Detection/Detection.h>
 #include <Radiometry/src/Calibration/Detection/Process.h>
 #include <Radiometry/src/Calibration/Detection/Rectangle.h>
+#include <Radiometry/src/Calibration/Detection/Image.h>

@@ -2,8 +2,8 @@
 
 #include <Utility/Specific/Common.h>
 
-namespace rad::correction{class Node;}
-namespace rad::correction{class Structure;}
+namespace rad::calibration{class Node;}
+namespace rad::calibration{class Structure;}
 namespace rad::calibration{class Detection;}
 namespace dat{class Selection;}
 
@@ -14,7 +14,7 @@ class Process
 {
 public:
   //Constructor / Destructor
-  Process(rad::correction::Node* node_detection);
+  Process(rad::calibration::Node* node_detection);
   ~Process();
 
 public:
@@ -24,9 +24,10 @@ public:
 
   //Subfunction
   void step_detection();
-
+  void step_measure();
+  
 private:
-  rad::correction::Structure* rad_struct;
+  rad::calibration::Structure* rad_struct;
   rad::calibration::Detection* chart_detection;
   dat::Selection* dat_selection;
 };

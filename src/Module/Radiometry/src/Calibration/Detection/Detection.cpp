@@ -10,7 +10,7 @@
 namespace rad::calibration{
 
 //Constructor / Destructor
-Detection::Detection(rad::correction::Node* node_detection){
+Detection::Detection(rad::calibration::Node* node_detection){
   //---------------------------
 
   rad::Node* node_radio = node_detection->get_node_radio();
@@ -18,7 +18,7 @@ Detection::Detection(rad::correction::Node* node_detection){
   dat::Node* node_data = node_radio->get_node_data();
 
   this->rad_struct = node_detection->get_rad_struct();
-  this->rad_image = new rad::correction::image::Image(node_detection);
+  this->rad_image = new rad::calibration::Image(node_detection);
   this->rad_rectangle = new rad::calibration::Rectangle(node_detection);
   this->thread_pool = node_engine->get_thread_pool();
   this->dat_image = node_data->get_dat_image();
