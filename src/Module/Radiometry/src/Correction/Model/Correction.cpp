@@ -15,7 +15,7 @@ Correction::Correction(rad::correction::Node* node_correction){
   dat::Node* node_data = node_radio->get_node_data();
 
   this->rad_struct = node_correction->get_rad_struct();
-  this->model_sphere = node_correction->get_rad_model();
+  this->rad_model = node_correction->get_rad_model();
   this->dat_image = node_data->get_dat_image();
   this->dat_selection = node_data->get_dat_selection();
 
@@ -25,7 +25,7 @@ Correction::~Correction(){}
 
 //Main function
 void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir){
-  if(!model_sphere->is_model_build(sensor)) return;
+  if(!rad_model->is_model_build(sensor)) return;
   //---------------------------
 
   std::vector<uint8_t> vec_data = ir->data;
@@ -92,7 +92,7 @@ float Correction::apply_correction(float I_raw, float R, float It){
   if(isnan(It)) return 0;
   //---------------------------
 
-  float fit = model_sphere->apply_model(R, It);
+  float fit = rad_model->apply_model(R, It);
   float I_cor = (I_raw / fit) * 0.5;
   I_cor = std::min(I_cor, 1.0f);
 

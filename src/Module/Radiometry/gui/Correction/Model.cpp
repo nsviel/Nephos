@@ -114,6 +114,7 @@ void Model::parameter_measure(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Model::parameter_model(dyn::base::Sensor* sensor){
+  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -130,7 +131,7 @@ void Model::parameter_model(dyn::base::Sensor* sensor){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Model")){
     //Path
-    std::string path = sensor->correction.path.build();
+    std::string path = sensor->calibration.path.build();
     if(ImGui::Button("...##path_model")){
       zenity::selection_file(path);
     }
@@ -143,18 +144,18 @@ void Model::parameter_model(dyn::base::Sensor* sensor){
 
     //Model parameter
     ImGui::SetNextItemWidth(120);
-    ImGui::DragInt("##degree_x", &sensor->correction.degree_x, 1, 1, 10);
+    ImGui::DragInt("##degree_x", &model->degree_x, 1, 1, 10);
     ImGui::SameLine();
     ImGui::SetNextItemWidth(120);
-    ImGui::DragInt("Degree", &sensor->correction.degree_y, 1, 1, 10);
+    ImGui::DragInt("Degree", &model->degree_y, 1, 1, 10);
     ImGui::SameLine();
-    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "RMSE: %.4f", sensor->correction.rmse);
+    ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "RMSE: %.4f", model->rmse);
     ImGui::SetNextItemWidth(247.5);
-    if(ImGui::DragFloatRange2("Range x",&sensor->correction.axis_x.bound[0], &sensor->correction.axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
+    if(ImGui::DragFloatRange2("Range x",&model->axis_x.bound[0], &model->axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
       rad_plot->update_plot_data(sensor);
     }
     ImGui::SetNextItemWidth(247.5);
-    if(ImGui::DragFloatRange2("Range y",&sensor->correction.axis_y.bound[0], &sensor->correction.axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
+    if(ImGui::DragFloatRange2("Range y",&model->axis_y.bound[0], &model->axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
       rad_plot->update_plot_data(sensor);
     }
 
@@ -232,12 +233,13 @@ void Model::plot_measure_IfIt(float height){
   //---------------------------
 }
 void Model::plot_model_heatmap(dyn::base::Sensor* sensor, float height){
+  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfRIt.title == "") return;
   plot->IfRIt.dimension = ivec2(-1, height);
-  bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &sensor->correction.axis_x, &sensor->correction.axis_y);
+  bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &model->axis_x, &model->axis_y);
   if(need_update){
     rad_plot->update_plot_data(sensor);
   }

@@ -21,9 +21,10 @@ Model::~Model(){}
 
 //Main function
 void Model::import_model(dyn::base::Sensor* sensor){
-  string path = sensor->correction.path.build();
+  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 
+  string path = sensor->calibration.path.build();
   this->read_device_info(sensor, path);
   this->read_depth_mode_model(sensor, path);
   rad_model->update_model(sensor);
@@ -32,9 +33,10 @@ void Model::import_model(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Model::export_model(dyn::base::Sensor* sensor){
-  string path = sensor->correction.path.build();
+  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 
+  string path = sensor->calibration.path.build();
   this->write_device_info(sensor, path);
   this->write_depth_mode_model(sensor, path);
 
@@ -58,29 +60,30 @@ void Model::write_device_info(dyn::base::Sensor* sensor, string& path){
   //---------------------------
 }
 void Model::write_depth_mode_model(dyn::base::Sensor* sensor, string& path){
+  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 
   std::string depth_mode = sensor->depth_mode;
 
-  utl::json::write_value(path, depth_mode + ".model_rmse", sensor->correction.rmse);
+  utl::json::write_value(path, depth_mode + ".model_rmse", model->rmse);
   utl::json::write_value(path, depth_mode + ".name_measure", rad_struct->measure.path.build());
-  utl::json::write_value(path, depth_mode + ".nb_coefficient", sensor->correction.coefficient.size());
+  utl::json::write_value(path, depth_mode + ".nb_coefficient", model->coefficient.size());
 
   //X variable
   utl::json::write_value(path, depth_mode + ".x.variable", "Range");
-  utl::json::write_value(path, depth_mode + ".x.degree", sensor->correction.degree_x);
-  utl::json::write_value(path, depth_mode + ".x.min", sensor->correction.axis_x.bound[0]);
-  utl::json::write_value(path, depth_mode + ".x.max", sensor->correction.axis_x.bound[1]);
+  utl::json::write_value(path, depth_mode + ".x.degree", model->degree_x);
+  utl::json::write_value(path, depth_mode + ".x.min", model->axis_x.bound[0]);
+  utl::json::write_value(path, depth_mode + ".x.max", model->axis_x.bound[1]);
 
   //Y variable
   utl::json::write_value(path, depth_mode + ".y.variable", "Incidence angle");
-  utl::json::write_value(path, depth_mode + ".y.degree", sensor->correction.degree_y);
-  utl::json::write_value(path, depth_mode + ".y.min", sensor->correction.axis_y.bound[0]);
-  utl::json::write_value(path, depth_mode + ".y.max", sensor->correction.axis_y.bound[1]);
+  utl::json::write_value(path, depth_mode + ".y.degree", model->degree_y);
+  utl::json::write_value(path, depth_mode + ".y.min", model->axis_y.bound[0]);
+  utl::json::write_value(path, depth_mode + ".y.max", model->axis_y.bound[1]);
 
   //Coefficient
-  for(int i=0; i<sensor->correction.coefficient.size(); i++){
-    float& coef = sensor->correction.coefficient[i];
+  for(int i=0; i<model->coefficient.size(); i++){
+    float& coef = model->coefficient[i];
     utl::json::write_value(path, depth_mode + ".coefficient." + to_string(i), coef);
   }
 
@@ -101,30 +104,31 @@ void Model::read_device_info(dyn::base::Sensor* sensor, string& path){
   //---------------------------
 }
 void Model::read_depth_mode_model(dyn::base::Sensor* sensor, string& path){
+  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 
   std::string depth_mode = "NFOV";
 
-  sensor->correction.rmse = utl::json::read_value<float>(path, depth_mode + ".model_rmse");
+  model->rmse = utl::json::read_value<float>(path, depth_mode + ".model_rmse");
   std::string path_measure = utl::json::read_value<string>(path, depth_mode + ".name_measure");
   rad_struct->measure.path.insert(path_measure);
 
   //X variable
-  sensor->correction.degree_x = utl::json::read_value<int>(path, depth_mode + ".x.degree");
-  sensor->correction.axis_x.bound[0] = utl::json::read_value<float>(path, depth_mode + ".x.min");
-  sensor->correction.axis_x.bound[1] = utl::json::read_value<float>(path, depth_mode + ".x.max");
+  model->degree_x = utl::json::read_value<int>(path, depth_mode + ".x.degree");
+  model->axis_x.bound[0] = utl::json::read_value<float>(path, depth_mode + ".x.min");
+  model->axis_x.bound[1] = utl::json::read_value<float>(path, depth_mode + ".x.max");
 
   //Y variable
-  sensor->correction.degree_y = utl::json::read_value<int>(path, depth_mode + ".y.degree");
-  sensor->correction.axis_y.bound[0] = utl::json::read_value<float>(path, depth_mode + ".y.min");
-  sensor->correction.axis_y.bound[1] = utl::json::read_value<float>(path, depth_mode + ".y.max");
+  model->degree_y = utl::json::read_value<int>(path, depth_mode + ".y.degree");
+  model->axis_y.bound[0] = utl::json::read_value<float>(path, depth_mode + ".y.min");
+  model->axis_y.bound[1] = utl::json::read_value<float>(path, depth_mode + ".y.max");
 
   //Coefficient
-  sensor->correction.coefficient.clear();
+  model->coefficient.clear();
   int nb_coefficient = utl::json::read_value<int>(path, depth_mode + ".nb_coefficient");
   for(int i=0; i<nb_coefficient; i++){
     float coef = utl::json::read_value<float>(path, depth_mode + ".coefficient." +  to_string(i));
-    sensor->correction.coefficient.push_back(coef);
+    model->coefficient.push_back(coef);
   }
 
   //---------------------------

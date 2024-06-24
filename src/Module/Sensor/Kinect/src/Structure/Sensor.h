@@ -29,7 +29,7 @@ struct Sensor : public dyn::base::Sensor{
     this->depth_mode = "NFOV";
     this->vec_depth_mode.push_back("NFOV");
     this->vec_depth_mode.push_back("WFOV");
-    this->correction.path.insert("../media/calibration/kinect.json");
+    this->calibration.path.insert("../media/calibration/kinect.json");
 
     //---------------------------
   }

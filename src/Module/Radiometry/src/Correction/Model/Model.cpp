@@ -39,6 +39,7 @@ void Model::clear_model(){
 
 //Subfunction
 void Model::build_model(dyn::base::Sensor* sensor){
+  dyn::base::Model* model = get_model(sensor, "NFOV");
   //---------------------------
 
   //Apply logarithmic scale
@@ -49,50 +50,18 @@ void Model::build_model(dyn::base::Sensor* sensor){
   }
 
   //Optimization algorithm
-  ope_surface->set_degree(sensor->correction.degree_x, sensor->correction.degree_y);
-  ope_surface->compute(vec_data, sensor->correction.axis_x.bound, sensor->correction.axis_y.bound);
-  sensor->correction.coefficient = ope_surface->get_coefficient();
+  ope_surface->set_degree(model->degree_x, model->degree_y);
+  ope_surface->compute(vec_data, model->axis_x.bound, model->axis_y.bound);
+  model->coefficient = ope_surface->get_coefficient();
 
   //---------------------------
 }
 void Model::update_model(dyn::base::Sensor* sensor){
+  dyn::base::Model* model = get_model(sensor, "NFOV");
   //---------------------------
 
-  ope_surface->set_degree(sensor->correction.degree_x, sensor->correction.degree_y);
-  ope_surface->set_coefficients(sensor->correction.coefficient);
-
-  //---------------------------
-}
-float Model::rmse_model(dyn::base::Sensor* sensor){
-  if(!is_model_build(sensor)) return 0;
-  //---------------------------
-
-  int N = rad_struct->measure.data.size();
-  float E = 0;
-  for(int i=0; i<N; i++){
-    vec3& data = rad_struct->measure.data[i];
-    if(data.x < sensor->correction.axis_x.bound[0] || data.x > sensor->correction.axis_x.bound[1]) continue;
-    if(data.y < sensor->correction.axis_y.bound[0] || data.y > sensor->correction.axis_y.bound[1]) continue;
-    if(data.x < 0 || data.y < 0) continue;
-
-    float z = apply_model(data.x, data.y);
-    E += pow(z - data.z, 2);
-  }
-
-  float RMSE = sqrt(E / N);
-  sensor->correction.rmse = RMSE;
-
-  //---------------------------
-  return RMSE;
-}
-bool Model::is_model_build(dyn::base::Sensor* sensor){
-  //---------------------------
-
-  if(sensor->correction.coefficient.size() == 0){
-    return false;
-  }else{
-    return true;
-  }
+  ope_surface->set_degree(model->degree_x, model->degree_y);
+  ope_surface->set_coefficients(model->coefficient);
 
   //---------------------------
 }
@@ -123,6 +92,29 @@ void Model::find_model_bound(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
+float Model::rmse_model(dyn::base::Sensor* sensor){
+  dyn::base::Model* model = get_model(sensor, "NFOV");
+  if(!is_model_build(sensor)) return 0;
+  //---------------------------
+
+  int N = rad_struct->measure.data.size();
+  float E = 0;
+  for(int i=0; i<N; i++){
+    vec3& data = rad_struct->measure.data[i];
+    if(data.x < model->axis_x.bound[0] || data.x > model->axis_x.bound[1]) continue;
+    if(data.y < model->axis_y.bound[0] || data.y > model->axis_y.bound[1]) continue;
+    if(data.x < 0 || data.y < 0) continue;
+
+    float z = apply_model(data.x, data.y);
+    E += pow(z - data.z, 2);
+  }
+
+  float RMSE = sqrt(E / N);
+  model->rmse = RMSE;
+
+  //---------------------------
+  return RMSE;
+}
 float Model::apply_model(float x, float y){
   //---------------------------
 
@@ -146,6 +138,51 @@ float Model::apply_model(float x, float y){
 
   //---------------------------
   return z;
+}
+
+//Checker function
+dyn::base::Model* Model::get_model(dyn::base::Sensor* sensor, std::string depth_mode){
+  //---------------------------
+
+  //Search for model
+  for(int i=0; i<sensor->calibration.vec_model.size(); i++){
+    dyn::base::Model* model = &sensor->calibration.vec_model[i];
+    if(model->depth_mode == depth_mode){
+      return model;
+    }
+  }
+
+  //Else create it
+  dyn::base::Model model;
+  model.depth_mode = depth_mode;
+  sensor->calibration.vec_model.push_back(model);
+
+  //---------------------------
+  return get_model(sensor, depth_mode);
+}
+bool Model::is_model_build(dyn::base::Sensor* sensor){
+  if(is_model_loaded(sensor) == false) return false;
+  //---------------------------
+
+  dyn::base::Model* model = get_model(sensor, "NFOV");
+  if(model->coefficient.size() == 0){
+    return false;
+  }else{
+    return true;
+  }
+
+  //---------------------------
+}
+bool Model::is_model_loaded(dyn::base::Sensor* sensor){
+  //---------------------------
+
+  if(sensor->calibration.vec_model.size() != 0){
+    return true;
+  }else{
+    return false;
+  }
+
+  //---------------------------
 }
 
 }

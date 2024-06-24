@@ -7,10 +7,11 @@
 
 namespace dyn::base{
 
-struct Correction{
+struct Model{
   //---------------------------
 
-  utl::base::Path path;
+  std::string depth_mode = "";
+  utl::base::Path path_measure;
 
   std::vector<float> coefficient;
   utl::base::Axis axis_x;
@@ -22,5 +23,16 @@ struct Correction{
 
   //---------------------------
 };
+
+struct Calibration{
+  //---------------------------
+
+  utl::base::Path path;
+  std::vector<dyn::base::Model> vec_model;
+
+  //---------------------------
+};
+
+
 
 }

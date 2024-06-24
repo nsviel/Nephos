@@ -33,7 +33,7 @@ private:
   dat::Image* dat_image;
   dat::Selection* dat_selection;
   rad::correction::Structure* rad_struct;
-  rad::correction::Model* model_sphere;
+  rad::correction::Model* rad_model;
 };
 
 }

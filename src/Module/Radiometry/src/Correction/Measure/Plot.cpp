@@ -82,6 +82,7 @@ void Plot::plot_measure(){
   //---------------------------
 }
 void Plot::update_plot_data(dyn::base::Sensor* sensor){
+  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -100,8 +101,8 @@ void Plot::update_plot_data(dyn::base::Sensor* sensor){
     if(R == -1) continue;
 
     //I(R)
-    if(R > sensor->correction.axis_x.bound.x && R < sensor->correction.axis_x.bound.y // R inside bounds
-      && It > sensor->correction.axis_y.current && It < sensor->correction.axis_y.current + 5){ //It inside selected It + 5 degrees
+    if(R > model->axis_x.bound.x && R < model->axis_x.bound.y // R inside bounds
+      && It > model->axis_y.current && It < model->axis_y.current + 5){ //It inside selected It + 5 degrees
       //Raw
       plot->IfR.axis_x.data.push_back(R);
       plot->IfR.axis_y.data.push_back(I);
@@ -112,14 +113,14 @@ void Plot::update_plot_data(dyn::base::Sensor* sensor){
         plot->IfR.axis_y.fitting.push_back(fit);
       }
 
-      if(R > sensor->correction.axis_x.current && R < sensor->correction.axis_x.current + 0.05){
+      if(R > model->axis_x.current && R < model->axis_x.current + 0.05){
         plot->IfR.highlight = vec2(R, I);
       }
     }
 
     //I(It)
-    if(It > sensor->correction.axis_y.bound[0] && It < sensor->correction.axis_y.bound[1] // It It inside user defined bounds
-      && R > sensor->correction.axis_x.current && R < sensor->correction.axis_x.current + 0.05){ //All data between R current + 0.05m
+    if(It > model->axis_y.bound[0] && It < model->axis_y.bound[1] // It It inside user defined bounds
+      && R > model->axis_x.current && R < model->axis_x.current + 0.05){ //All data between R current + 0.05m
       //Raw
       plot->IfIt.axis_x.data.push_back(It);
       plot->IfIt.axis_y.data.push_back(I);
