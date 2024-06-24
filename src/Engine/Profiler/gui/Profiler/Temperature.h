@@ -4,6 +4,7 @@
 #include <Profiler/gui/Profiler/Struct_profiler.h>
 
 namespace prf{class Node;}
+namespace prf::temp{class Profiler;}
 
 
 namespace prf::gui{
@@ -17,7 +18,7 @@ public:
 
 public:
   //Main function
-  void draw_profiler();
+  void draw_profiler(prf::temp::Profiler* temperature);
 
   //Tab function
 

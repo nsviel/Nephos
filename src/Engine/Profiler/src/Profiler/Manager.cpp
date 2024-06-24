@@ -9,12 +9,19 @@ namespace prf{
 Manager::Manager(){
   //---------------------------
 
+  //Main profiler
   this->profiler_main = new prf::graph::Profiler("Main", "thread::main");
   profiler_main->new_tasker("cpu");
   profiler_main->new_tasker("gpu");
   this->add_profiler(profiler_main);
+
+  //Vulkan profiler
   this->profiler_vulkan = new prf::vulkan::Profiler("Vulkan", "thread::main");
   this->add_profiler(profiler_vulkan);
+
+  //Temperature profiler
+  this->profiler_temp = new prf::temp::Profiler("Temperature", "thread::main");
+  this->add_profiler(profiler_temp);
 
   //---------------------------
 }

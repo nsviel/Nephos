@@ -119,16 +119,22 @@ void Panel::draw_profiler(){
       ImGui::SetNextItemWidth(100);
       if(ImGui::BeginTabItem(profiler->name.c_str())){
 
-        //Vulkan tab
-        if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler)){
-          this->selected_profiler = gui_vulkan;
-          gui_vulkan->draw_profiler(vulkan);
-        }
         //Graph tab
-        else if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
+        if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
           this->selected_profiler = gui_graph;
           gui_graph->draw_profiler(graph);
         }
+        //Vulkan tab
+        else if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler)){
+          this->selected_profiler = gui_vulkan;
+          gui_vulkan->draw_profiler(vulkan);
+        }
+        //Temperature tab
+        else if(prf::temp::Profiler* temperature = dynamic_cast<prf::temp::Profiler*>(profiler)){
+          this->selected_profiler = gui_temperature;
+          gui_temperature->draw_profiler(temperature);
+        }
+
         ImGui::EndTabItem();
       }
     }

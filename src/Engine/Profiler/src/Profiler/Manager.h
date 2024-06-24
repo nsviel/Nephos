@@ -35,6 +35,7 @@ private:
   std::list<prf::Structure*> list_profiler;
   prf::graph::Profiler* profiler_main;
   prf::vulkan::Profiler* profiler_vulkan;
+  prf::temp::Profiler* profiler_temp;
 };
 
 }

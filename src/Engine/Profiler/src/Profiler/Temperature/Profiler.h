@@ -20,7 +20,7 @@ public:
 
 
 private:
-  prf::graph::Tasker tasker
+
 };
 
 }

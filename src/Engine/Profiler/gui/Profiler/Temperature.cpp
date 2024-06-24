@@ -16,7 +16,7 @@ Temperature::Temperature(prf::Node* node_profiler){
 Temperature::~Temperature(){}
 
 //Main function
-void Temperature::draw_profiler(){
+void Temperature::draw_profiler(prf::temp::Profiler* temperature){
   //---------------------------
 
 
