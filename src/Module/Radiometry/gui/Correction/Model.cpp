@@ -35,15 +35,7 @@ void Model::draw_tab(dyn::base::Sensor* sensor){
   this->parameter_model(sensor);
   ImGui::EndTable();
   ImGui::Separator();
-
-  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 39, 39, 255));
-  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(130, 130, 130, 255));
-  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(101, 101, 101, 255));
-  ImGui::BeginTabBar("devices_tab##4567");
-  this->plot_sphere(sensor);
-  this->plot_chart();
-  ImGui::EndTabBar();
-  ImGui::PopStyleColor(3);
+  this->plot_measure(sensor);
 
   //---------------------------
 }
@@ -197,7 +189,7 @@ void Model::parameter_model(dyn::base::Sensor* sensor){
 }
 
 //Sphere plot function
-void Model::plot_sphere(dyn::base::Sensor* sensor){
+void Model::plot_measure(dyn::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
@@ -247,19 +239,5 @@ void Model::plot_model_heatmap(dyn::base::Sensor* sensor, float height){
   //---------------------------
 }
 
-//Chart plot function
-void Model::plot_chart(){
-  //---------------------------
-
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
-  if(ImGui::BeginTabItem("Chart##measure_plot")){
-    float height = ImGui::GetContentRegionAvail().y / 3-3.33;
-
-
-    ImGui::EndTabItem();
-  }
-
-  //---------------------------
-}
 
 }

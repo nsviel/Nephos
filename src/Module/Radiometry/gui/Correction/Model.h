@@ -32,13 +32,10 @@ public:
   void parameter_model(dyn::base::Sensor* sensor);
 
   //Sphere plot function
-  void plot_sphere(dyn::base::Sensor* sensor);
+  void plot_measure(dyn::base::Sensor* sensor);
   void plot_measure_IfR(float height);
   void plot_measure_IfIt(float height);
   void plot_model_heatmap(dyn::base::Sensor* sensor, float height);
-
-  //Chart plot function
-  void plot_chart();
 
 private:
   rad::correction::Node* node_correction;

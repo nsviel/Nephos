@@ -49,9 +49,9 @@ void Panel::run_panel(){
 void Panel::design_panel(dyn::base::Sensor* sensor){
   //---------------------------
 
-  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
-  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(54, 112, 131, 255));
-  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
+  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 39, 39, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(130, 130, 130, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(101, 101, 101, 255));
   ImGui::BeginTabBar("devices_tab##4567");
 
   this->tab_correction(sensor);
@@ -67,7 +67,7 @@ void Panel::design_panel(dyn::base::Sensor* sensor){
 void Panel::tab_correction(dyn::base::Sensor* sensor){
   //---------------------------
 
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2-2);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
   if(ImGui::BeginTabItem("Correction##radiometry_tab")){
     gui_correction->design_tab(sensor);
 
@@ -79,7 +79,7 @@ void Panel::tab_correction(dyn::base::Sensor* sensor){
 void Panel::tab_calibration(dyn::base::Sensor* sensor){
   //---------------------------
 
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2-2);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
   if(ImGui::BeginTabItem("Calibration##radiometry_tab")){
 
 
