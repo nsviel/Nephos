@@ -12,6 +12,7 @@ namespace prf::vulkan{class Profiler;}
 namespace prf::gui{class Profiler;}
 namespace prf::gui{class Vulkan;}
 namespace prf::gui{class Graph;}
+namespace prf::gui{class Temperature;}
 
 
 namespace prf::gui{
@@ -38,6 +39,7 @@ private:
   prf::gui::Profiler* selected_profiler = nullptr;
   prf::gui::Vulkan* gui_vulkan;
   prf::gui::Graph* gui_graph;
+  prf::gui::Temperature* gui_temperature;
 
   bool* show_window;
   string gpu = "";

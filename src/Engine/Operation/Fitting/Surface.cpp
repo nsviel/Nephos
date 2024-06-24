@@ -116,20 +116,24 @@ float Surface::evaluate(float x, float y){
 }
 
 //Subfunction
-Eigen::MatrixXf Surface::jacobian(std::vector<glm::vec3>& data){
-  Eigen::MatrixXf J = Eigen::MatrixXf::Zero(data.size(), num_param);
-  //--------------------------
+Eigen::MatrixXf Surface::jacobian(std::vector<glm::vec3>& data) {
+  int num_points = data.size();
+  Eigen::MatrixXf J(num_points, num_param);
+  //---------------------------
 
-  for(int k=0; k<data.size(); k++){
+  for (int k = 0; k < num_points; ++k) {
     float x = data[k].x;
     float y = data[k].y;
 
     int cpt = 0;
-    for(int i=0; i<=m; i++){
-      for(int j=0; j<=n; j++){
-        J(k, cpt) = std::pow(x, i) * std::pow(y, j);
-        cpt++;
+    float x_power = 1.0f;
+    for (int i = 0; i <= m; ++i) {
+      float y_power = 1.0f;
+      for (int j = 0; j <= n; ++j) {
+        J(k, cpt++) = x_power * y_power;
+        y_power *= y; // Update y_power for the next iteration
       }
+      x_power *= x; // Update x_power for the next iteration
     }
   }
 

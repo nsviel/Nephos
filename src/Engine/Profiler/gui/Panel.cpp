@@ -16,6 +16,7 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
   this->prf_manager = node_profiler->get_prf_manager();
   this->gui_vulkan = new prf::gui::Vulkan(node_profiler);
   this->gui_graph = new prf::gui::Graph(node_profiler);
+  this->gui_temperature = new prf::gui::Temperature(node_profiler);
 
   this->show_window = show_window;
   this->name = "Profiler";
