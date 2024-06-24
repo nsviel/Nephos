@@ -18,8 +18,7 @@ Detection::Detection(rad::Node* node_radio){
   rad::correction::Node* node_correction = node_radio->get_node_correction();
 
   this->rad_struct = node_correction->get_rad_struct();
-  this->sphere_process = node_correction->get_rad_process();
-  this->chart_process = node_correction->get_rad_process();
+  this->rad_process = node_correction->get_rad_process();
   this->rad_hough = new rad::correction::image::Hough(node_correction);
   this->stream = new rnd::Stream(node_engine);
   this->dat_image = node_data->get_dat_image();
@@ -64,14 +63,14 @@ void Detection::detection_step(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##sphere_detection", ImVec2(120, 0))){
-      sphere_process->step_detection();
+      rad_process->step_detection();
     }
     ImGui::PopStyleColor(2);
   }else if(rad_struct->state.detection == rad::correction::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_detection", ImVec2(120, 0))){
-      sphere_process->step_detection();
+      rad_process->step_detection();
     }
     ImGui::PopStyleColor(2);
   }
@@ -99,14 +98,14 @@ void Detection::detection_step(){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##sphere_measure", ImVec2(120, 0))){
-      sphere_process->step_measure();
+      rad_process->step_measure();
     }
     ImGui::PopStyleColor(2);
   }else if(rad_struct->state.measure == rad::correction::measure::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){
-      sphere_process->step_measure();
+      rad_process->step_measure();
     }
     ImGui::PopStyleColor(2);
   }

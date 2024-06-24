@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace rad{class Node;}
-namespace rad::gui::correction{class Detection;}
+namespace rad::gui::calibration{class Detection;}
 namespace dyn::base{class Sensor;}
 
 
@@ -26,7 +26,7 @@ public:
   void tab_calibration(dyn::base::Sensor* sensor);
 
 private:
-  rad::gui::correction::Detection* gui_detection;
+  rad::gui::calibration::Detection* gui_detection;
 };
 
 }

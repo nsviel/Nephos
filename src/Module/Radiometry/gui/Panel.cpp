@@ -16,6 +16,7 @@ Panel::Panel(rad::Node* node_radio, bool* show_window){
 
   this->dat_selection = node_data->get_dat_selection();
   this->gui_correction = new rad::gui::correction::Tab(node_radio);
+  this->gui_calibration = new rad::gui::calibration::Tab(node_radio);
 
   this->show_window = show_window;
   this->name = "Radiometry";
@@ -81,7 +82,7 @@ void Panel::tab_calibration(dyn::base::Sensor* sensor){
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
   if(ImGui::BeginTabItem("Calibration##radiometry_tab")){
-
+    gui_calibration->design_tab(sensor);
 
     ImGui::EndTabItem();
   }

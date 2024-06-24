@@ -5,14 +5,13 @@
 
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction{class Process;}
-namespace rad::correction::image{class Hough;}
+namespace rad::calibration{class Structure;}
+namespace rad::calibration{class Process;}
 namespace rnd{class Stream;}
 namespace dat{class Image;}
 
 
-namespace rad::gui::correction{
+namespace rad::gui::calibration{
 
 class Detection
 {
@@ -27,19 +26,11 @@ public:
 
   //Subfunction
   void detection_step();
-  void detection_parameter();
-  void detection_stats();
   void detection_image(dyn::base::Sensor* sensor);
 
-  //Parameter function
-  void parameter_canny();
-  void parameter_hough();
-  void parameter_ransac();
-
 private:
-  rad::correction::Structure* rad_struct;
-  rad::correction::Process* rad_process;
-  rad::correction::image::Hough* rad_hough;
+  rad::calibration::Structure* rad_struct;
+  rad::calibration::Process* rad_process;
   rnd::Stream* stream;
   dat::Image* dat_image;
 };

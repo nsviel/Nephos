@@ -11,7 +11,7 @@ namespace rad::gui::calibration{
 Tab::Tab(rad::Node* node_radio){
   //---------------------------
 
-  this->gui_detection = new rad::gui::correction::Detection(node_radio);
+  this->gui_detection = new rad::gui::calibration::Detection(node_radio);
 
   //---------------------------
 }

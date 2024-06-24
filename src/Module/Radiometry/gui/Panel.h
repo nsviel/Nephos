@@ -5,6 +5,7 @@
 namespace dat{class Selection;}
 namespace rad{class Node;}
 namespace rad::gui::correction{class Tab;}
+namespace rad::gui::calibration{class Tab;}
 namespace dyn::base{class Sensor;}
 
 
@@ -29,6 +30,7 @@ public:
 private:
   dat::Selection* dat_selection;
   rad::gui::correction::Tab* gui_correction;
+  rad::gui::calibration::Tab* gui_calibration;
 
   string name;
   bool* show_window;
