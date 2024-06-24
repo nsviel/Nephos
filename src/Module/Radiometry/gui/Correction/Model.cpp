@@ -30,12 +30,17 @@ void Model::draw_tab(dyn::base::Sensor* sensor){
   //---------------------------
 
   //Parameter
-  ImGui::BeginTable("Measure##table", 3);
+  ImGui::BeginTable("Measure##model_tab", 3);
   this->parameter_measure(sensor);
   this->parameter_model(sensor);
   ImGui::EndTable();
   ImGui::Separator();
-  this->plot_measure(sensor);
+
+  //Measure
+  float height = ImGui::GetContentRegionAvail().y / 3-3.33;
+  this->plot_measure_IfR(height);
+  this->plot_measure_IfIt(height);
+  this->plot_model_heatmap(sensor, height);
 
   //---------------------------
 }
@@ -189,21 +194,6 @@ void Model::parameter_model(dyn::base::Sensor* sensor){
 }
 
 //Sphere plot function
-void Model::plot_measure(dyn::base::Sensor* sensor){
-  //---------------------------
-
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
-  if(ImGui::BeginTabItem("Sphere##measure_plot")){
-    float height = ImGui::GetContentRegionAvail().y / 3-3.33;
-    this->plot_measure_IfR(height);
-    this->plot_measure_IfIt(height);
-    this->plot_model_heatmap(sensor, height);
-
-    ImGui::EndTabItem();
-  }
-
-  //---------------------------
-}
 void Model::plot_measure_IfR(float height){
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------

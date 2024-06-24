@@ -41,7 +41,7 @@ void Tab::tab_detection(dyn::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
-  if(ImGui::BeginTabItem("Detection##correction")){
+  if(ImGui::BeginTabItem("Detection##calibration_tab")){
     gui_detection->draw_tab(sensor);
 
     ImGui::EndTabItem();
@@ -53,7 +53,7 @@ void Tab::tab_modeld(dyn::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
-  if(ImGui::BeginTabItem("Measure##correction")){
+  if(ImGui::BeginTabItem("Measure##calibration_tab")){
 
 
     ImGui::EndTabItem();
@@ -65,7 +65,7 @@ void Tab::tab_calibration(dyn::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
-  if(ImGui::BeginTabItem("Model##correction")){
+  if(ImGui::BeginTabItem("Model##calibration_tab")){
 
 
     ImGui::EndTabItem();
