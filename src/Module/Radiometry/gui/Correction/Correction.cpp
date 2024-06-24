@@ -6,7 +6,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace rad::gui{
+namespace rad::gui::correction{
 
 //Constructor / Destructor
 Correction::Correction(rad::Node* node_radio){

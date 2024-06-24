@@ -4,9 +4,7 @@
 
 namespace dat{class Selection;}
 namespace rad{class Node;}
-namespace rad::gui{class Detection;}
-namespace rad::gui{class Model;}
-namespace rad::gui{class Correction;}
+namespace rad::gui::correction{class Tab;}
 namespace dyn::base{class Sensor;}
 
 
@@ -25,15 +23,12 @@ public:
   void design_panel(dyn::base::Sensor* sensor);
 
   //Subfunction
-  void tab_detection(dyn::base::Sensor* sensor);
-  void tab_modeld(dyn::base::Sensor* sensor);
+  void tab_correction(dyn::base::Sensor* sensor);
   void tab_calibration(dyn::base::Sensor* sensor);
 
 private:
   dat::Selection* dat_selection;
-  rad::gui::Detection* gui_detection;
-  rad::gui::Model* gui_model;
-  rad::gui::Correction* gui_correction;
+  rad::gui::correction::Tab* gui_correction;
 
   string name;
   bool* show_window;

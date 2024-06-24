@@ -7,7 +7,7 @@
 #include <Data/Namespace.h>
 
 
-namespace rad::gui{
+namespace rad::gui::correction{
 
 //Constructor / Destructor
 Detection::Detection(rad::Node* node_radio){

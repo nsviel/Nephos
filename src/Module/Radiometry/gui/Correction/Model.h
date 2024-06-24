@@ -14,7 +14,7 @@ namespace utl::implot{class Plot;}
 namespace dyn::base{class Sensor;}
 
 
-namespace rad::gui{
+namespace rad::gui::correction{
 
 class Model
 {

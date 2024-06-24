@@ -21,7 +21,6 @@ Model::~Model(){}
 
 //Main function
 void Model::import_model(dyn::base::Sensor* sensor){
-  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 
   string path = sensor->calibration.path.build();
@@ -33,7 +32,6 @@ void Model::import_model(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Model::export_model(dyn::base::Sensor* sensor){
-  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 
   string path = sensor->calibration.path.build();

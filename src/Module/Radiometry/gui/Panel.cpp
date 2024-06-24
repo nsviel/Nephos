@@ -15,9 +15,7 @@ Panel::Panel(rad::Node* node_radio, bool* show_window){
   dat::Node* node_data = node_radio->get_node_data();
 
   this->dat_selection = node_data->get_dat_selection();
-  this->gui_detection = new rad::gui::Detection(node_radio);
-  this->gui_model = new rad::gui::Model(node_radio);
-  this->gui_correction = new rad::gui::Correction(node_radio);
+  this->gui_correction = new rad::gui::correction::Tab(node_radio);
 
   this->show_window = show_window;
   this->name = "Radiometry";
@@ -56,8 +54,7 @@ void Panel::design_panel(dyn::base::Sensor* sensor){
   ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
   ImGui::BeginTabBar("devices_tab##4567");
 
-  this->tab_detection(sensor);
-  this->tab_modeld(sensor);
+  this->tab_correction(sensor);
   this->tab_calibration(sensor);
 
   ImGui::EndTabBar();
@@ -67,24 +64,12 @@ void Panel::design_panel(dyn::base::Sensor* sensor){
 }
 
 //Subfunction
-void Panel::tab_detection(dyn::base::Sensor* sensor){
+void Panel::tab_correction(dyn::base::Sensor* sensor){
   //---------------------------
 
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
-  if(ImGui::BeginTabItem("Detection##correction")){
-    gui_detection->draw_tab(sensor);
-
-    ImGui::EndTabItem();
-  }
-
-  //---------------------------
-}
-void Panel::tab_modeld(dyn::base::Sensor* sensor){
-  //---------------------------
-
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
-  if(ImGui::BeginTabItem("Measure##correction")){
-    gui_model->draw_tab(sensor);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2-2);
+  if(ImGui::BeginTabItem("Correction##radiometry_tab")){
+    gui_correction->design_tab(sensor);
 
     ImGui::EndTabItem();
   }
@@ -94,15 +79,14 @@ void Panel::tab_modeld(dyn::base::Sensor* sensor){
 void Panel::tab_calibration(dyn::base::Sensor* sensor){
   //---------------------------
 
-  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
-  if(ImGui::BeginTabItem("Model##correction")){
-    gui_correction->draw_tab(sensor);
+  ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/2-2);
+  if(ImGui::BeginTabItem("Calibration##radiometry_tab")){
+
 
     ImGui::EndTabItem();
   }
 
   //---------------------------
 }
-
 
 }

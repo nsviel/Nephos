@@ -12,7 +12,7 @@ namespace rnd{class Stream;}
 namespace dat{class Image;}
 
 
-namespace rad::gui{
+namespace rad::gui::correction{
 
 class Detection
 {

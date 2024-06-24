@@ -6,6 +6,7 @@ namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction{class Node;}
 namespace rad::correction{class Model;}
+namespace rad::correction::io{class Model;}
 namespace dyn::base{class Sensor;}
 namespace dat{class Image;}
 namespace dat{class Selection;}
@@ -34,6 +35,7 @@ private:
   dat::Selection* dat_selection;
   rad::correction::Structure* rad_struct;
   rad::correction::Model* rad_model;
+  rad::correction::io::Model* rad_io_model;
 };
 
 }

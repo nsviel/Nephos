@@ -3,3 +3,4 @@
 #include <Radiometry/gui/Correction/Detection.h>
 #include <Radiometry/gui/Correction/Correction.h>
 #include <Radiometry/gui/Correction/Model.h>
+#include <Radiometry/gui/Correction/Tab.h>

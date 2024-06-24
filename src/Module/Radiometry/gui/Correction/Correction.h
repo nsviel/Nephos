@@ -10,7 +10,7 @@ namespace dat{class Image;}
 namespace dyn::base{class Sensor;}
 
 
-namespace rad::gui{
+namespace rad::gui::correction{
 
 class Correction
 {

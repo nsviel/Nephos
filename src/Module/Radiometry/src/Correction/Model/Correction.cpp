@@ -16,6 +16,7 @@ Correction::Correction(rad::correction::Node* node_correction){
 
   this->rad_struct = node_correction->get_rad_struct();
   this->rad_model = node_correction->get_rad_model();
+  this->rad_io_model = node_correction->get_rad_io_model();
   this->dat_image = node_data->get_dat_image();
   this->dat_selection = node_data->get_dat_selection();
 
@@ -25,8 +26,12 @@ Correction::~Correction(){}
 
 //Main function
 void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir){
-  if(!rad_model->is_model_build(sensor)) return;
   //---------------------------
+
+  if(!rad_model->is_model_loaded(sensor)){
+    rad_io_model->import_model(sensor);
+    return;
+  }
 
   std::vector<uint8_t> vec_data = ir->data;
   this->make_correction(sensor, ir, vec_data);
