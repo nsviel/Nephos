@@ -9,57 +9,96 @@ namespace prf::temp{
 Nvidia::Nvidia(){
   //---------------------------
 
-  this->name = "Temperature";
+  nvmlInit();
 
   //---------------------------
 }
-Nvidia::~Nvidia(){}
+Nvidia::~Nvidia(){
+  //---------------------------
+
+  nvmlShutdown();
+
+  //---------------------------
+}
 
 //Main function
-void Nvidia::reset(){
+float Nvidia::get_total_consumption(){
+  unsigned long long energy;
   //---------------------------
 
+  nvmlDevice_t device;
+  nvmlReturn_t result;
 
+  result = nvmlDeviceGetHandleByIndex(0, &device);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+  result = nvmlDeviceGetTotalEnergyConsumption(device, &energy);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
 
   //---------------------------
+  return (float)energy / 1000;
+}
+int Nvidia::get_temperature(){
+  unsigned int temp;
+  //---------------------------
+
+  nvmlDevice_t device;
+  nvmlReturn_t result;
+
+  result = nvmlDeviceGetHandleByIndex(0, &device);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+  result = nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temp);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+
+  //---------------------------
+  return temp;
+}
+int Nvidia::get_fan_speed(){
+  unsigned int speed;
+  //---------------------------
+
+  nvmlDevice_t device;
+  nvmlReturn_t result;
+
+  result = nvmlDeviceGetHandleByIndex(0, &device);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+  result = nvmlDeviceGetFanSpeed(device, &speed);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+
+  //---------------------------
+  return speed;
+}
+int Nvidia::get_power_usage(){
+  unsigned int power;
+  //---------------------------
+
+  nvmlDevice_t device;
+  nvmlReturn_t result;
+
+  result = nvmlDeviceGetHandleByIndex(0, &device);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+  result = nvmlDeviceGetPowerUsage(device, &power);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+
+  //---------------------------
+  return power;
 }
 
 //Subfunction
-float Nvidia::find_CPU_temperature(){
-  //---------------------------
-
-  std::ifstream file("/sys/class/thermal/thermal_zone0/temp");
-  float temp;
-  file >> temp;
-
-  //---------------------------
-  return temp / 1000.0; // The temperature is usually reported in millidegrees Celsius
-}
-
-float Nvidia::find_GPU_temperature(){
-  nvmlDevice_t device;
-  //---------------------------
-
-  nvmlInit();
-  nvmlDeviceGetHandleByIndex(0, &device);
-
-  unsigned int temp;
-  nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temp);
-
-  unsigned long long energy;
-  nvmlDeviceGetTotalEnergyConsumption(device, &energy);
-
-  unsigned int speed;
-  nvmlDeviceGetFanSpeed(device, &speed);
-
-  unsigned int power;
-  nvmlDeviceGetPowerUsage(device, &power); // in mW
-  nvmlShutdown();
-
-  say(energy);
-
-  //---------------------------
-  return static_cast<float>(temp);
-}
 
 }

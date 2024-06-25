@@ -14,11 +14,12 @@ public:
 
 public:
   //Main function
-  void reset();
+  float get_total_consumption();
+  int get_temperature();
+  int get_fan_speed();
+  int get_power_usage();
 
   //Subfunction
-  float find_CPU_temperature();
-  float find_GPU_temperature();
 
 private:
 
