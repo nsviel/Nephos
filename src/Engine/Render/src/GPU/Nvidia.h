@@ -1,19 +1,16 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
-#include <Profiler/src/Profiler/Structure.h>
-
-namespace prf{class Structure;}
 
 
 namespace prf::temp{
 
-class Profiler : public prf::Structure
+class Nvidia
 {
 public:
   //Constructor / Destructor
-  Profiler();
-  ~Profiler();
+  Nvidia();
+  ~Nvidia();
 
 public:
   //Main function

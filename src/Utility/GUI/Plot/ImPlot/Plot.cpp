@@ -17,7 +17,6 @@ Plot::~Plot(){}
 
 //Main function
 void Plot::plot_heatmap(utl::base::Plot* plot){
-  implot_style->make_style();
   //---------------------------
 
   // Push the custom colormap onto the colormap stack
@@ -52,7 +51,6 @@ void Plot::plot_heatmap(utl::base::Plot* plot){
 }
 bool Plot::plot_heatmap(utl::base::Plot* plot, utl::base::Axis* x_axis, utl::base::Axis* y_axis){
   bool dragged = false;
-  implot_style->make_style();
   //---------------------------
 
   // Push the custom colormap onto the colormap stack
@@ -188,7 +186,6 @@ void Plot::plot_regression(utl::base::Plot* plot){
   //---------------------------
 }
 void Plot::plot_scatter(utl::base::Plot* plot){
-  implot_style->make_style();
   //---------------------------
 
   // Create a window
@@ -224,7 +221,6 @@ void Plot::plot_scatter(utl::base::Plot* plot){
   //---------------------------
 }
 void Plot::plot_scatter_rdm(){
-  implot_style->make_style();
   //---------------------------
 
   // Generate random data
@@ -290,6 +286,75 @@ void Plot::plot_constant_in_time(){
 
     ImPlot::PopStyleColor();
 
+    ImPlot::EndPlot();
+  }
+
+  //---------------------------
+}
+void Plot::plot_temperature(float temp_cpu, float temp_gpu){
+  implot_style->make_style();
+  int nb_element = 300;
+  //---------------------------
+
+  static std::vector<float> vec_time;
+  static std::vector<float> cpu_temps;
+  static std::vector<float> gpu_temps;
+  static int cpt = 0;
+  static float max_gpu = 0;
+  static float max_cpu = 0;
+
+  cpt++;
+
+  cpu_temps.push_back(temp_cpu);
+  gpu_temps.push_back(temp_gpu);
+  vec_time.push_back(cpt);
+
+  if(cpu_temps.size() > nb_element) cpu_temps.erase(cpu_temps.begin());
+  if(gpu_temps.size() > nb_element) gpu_temps.erase(gpu_temps.begin());
+  if(vec_time.size() > nb_element) vec_time.erase(vec_time.begin());
+
+  float max_current_cpu = (float)*std::max_element(cpu_temps.begin(), cpu_temps.end());
+  float max_current_gpu = (float)*std::max_element(gpu_temps.begin(), gpu_temps.end());
+  if(max_current_cpu > max_cpu) max_cpu = max_current_cpu;
+  if(max_current_gpu > max_gpu) max_gpu = max_current_gpu;
+
+  //Plot
+  ImPlotFlags flag;
+  flag |= ImPlotFlags_NoBoxSelect;
+  flag |= ImPlotFlags_NoMouseText;
+  flag |= ImPlotFlags_NoLegend;
+  flag |= ImPlotFlags_CanvasOnly;
+  if(ImPlot::BeginPlot("##Temperature", ImVec2(-1, -1), flag)){
+    ImPlot::SetupAxisLimitsConstraints(ImAxis_Y1, 0, 100);
+    ImPlot::SetupAxisZoomConstraints(ImAxis_Y1, 0, 100);
+    ImPlot::SetupAxes(nullptr, nullptr, ImPlotAxisFlags_NoDecorations, 0);
+    ImPlot::SetupAxisLimits(ImAxis_X1, cpt - nb_element, cpt, ImGuiCond_Always);
+    ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 100);
+    ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 1.0f);
+    ImPlot::PushStyleVar(ImPlotStyleVar_MarkerSize, 1.0f);
+
+    // Plot GPU temperature
+    ImPlot::PushStyleColor(ImPlotCol_Line, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
+    ImPlot::PlotLine("GPU Temp", vec_time.data(), gpu_temps.data(), gpu_temps.size());
+    ImPlot::PushStyleColor(ImPlotCol_Fill, ImVec4(0.3f, 0.5f, 0.3f, 0.5f));
+    ImPlot::PlotShaded("GPU Temp", vec_time.data(), gpu_temps.data(), gpu_temps.size(), -INFINITY, 0);
+    ImPlot::PopStyleColor(2);
+    ImPlot::PushStyleColor(ImPlotCol_Line, ImVec4(0.2f, 0.6f, 0.2f, 1.0f));
+    std::vector<float> gpu_max(vec_time.size(), max_current_gpu);
+    ImPlot::PlotLine("GPU Line", vec_time.data(), gpu_max.data(), gpu_max.size());
+    ImPlot::PopStyleColor();
+
+    // Plot CPU temperature
+    ImPlot::PlotLine("CPU Temp", vec_time.data(), cpu_temps.data(), cpu_temps.size());
+    ImPlot::PlotShaded("CPU Temp", vec_time.data(), cpu_temps.data(), cpu_temps.size(), -INFINITY, 0);
+    std::vector<float> cpu_max(vec_time.size(), max_current_cpu);
+    ImPlot::PlotLine("CPU Line", vec_time.data(), cpu_max.data(), cpu_max.size());
+
+    //Line floating text
+    ImPlot::PlotText(std::to_string(temp_cpu).c_str(), cpt, max_current_cpu, ImVec2(-100, 50));
+    ImPlot::PlotText(std::to_string(temp_gpu).c_str(), cpt, max_current_gpu, ImVec2(-100, 50));
+
+    ImPlot::PopStyleVar(2);
     ImPlot::EndPlot();
   }
 

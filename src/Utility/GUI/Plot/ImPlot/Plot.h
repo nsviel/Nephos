@@ -22,6 +22,7 @@ public:
   void plot_scatter(utl::base::Plot* utl_plot);
   void plot_scatter_rdm();
   void plot_constant_in_time();
+  void plot_temperature(float temp_cpu, float temp_gpu);
 
 private:
   utl::implot::Style* implot_style;

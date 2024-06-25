@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Render/src/Stream.h>
-#include <Render/src/Mode.h>
+#include <Render/src/GPU/Namespace.h>
+#include <Render/src/Display/Namespace.h>

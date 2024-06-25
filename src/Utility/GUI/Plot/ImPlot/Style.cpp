@@ -36,7 +36,7 @@ void Style::make_style_parameter(){
   //Style
   style.PlotMinSize = ImVec2(10, 10);
   style.PlotPadding = ImVec2(0, 0);
-  style.LineWeight = 2;
+  style.LineWeight = 1;
   style.PlotMinSize = ImVec2(10, 10);
   style.PlotPadding = ImVec2(10, 10);
   style.Marker = ImPlotMarker_Circle;

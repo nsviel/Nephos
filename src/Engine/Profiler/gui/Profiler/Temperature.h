@@ -5,6 +5,7 @@
 
 namespace prf{class Node;}
 namespace prf::temp{class Profiler;}
+namespace utl::implot{class Plot;}
 
 
 namespace prf::gui{
@@ -23,6 +24,8 @@ public:
   //Tab function
 
 private:
+  utl::implot::Plot* gui_plot;
+  prf::temp::Profiler* prf_temp;
 };
 
 }
