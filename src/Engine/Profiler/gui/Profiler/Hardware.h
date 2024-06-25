@@ -10,12 +10,12 @@ namespace utl::implot{class Plot;}
 
 namespace prf::gui{
 
-class Temperature : public prf::gui::Profiler
+class Hardware : public prf::gui::Profiler
 {
 public:
   //Constructor / Destructor
-  Temperature(prf::Node* node_profiler);
-  ~Temperature();
+  Hardware(prf::Node* node_profiler);
+  ~Hardware();
 
 public:
   //Main function

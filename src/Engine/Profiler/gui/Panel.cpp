@@ -16,7 +16,7 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
   this->prf_manager = node_profiler->get_prf_manager();
   this->gui_vulkan = new prf::gui::Vulkan(node_profiler);
   this->gui_graph = new prf::gui::Graph(node_profiler);
-  this->gui_temperature = new prf::gui::Temperature(node_profiler);
+  this->gui_hardware = new prf::gui::Hardware(node_profiler);
 
   this->show_window = show_window;
   this->name = "Profiler";
@@ -108,10 +108,10 @@ void Panel::draw_profiler(){
           this->selected_profiler = gui_vulkan;
           gui_vulkan->draw_profiler(vulkan);
         }
-        //Temperature tab
+        //Hardware tab
         else if(prf::temp::Profiler* temperature = dynamic_cast<prf::temp::Profiler*>(profiler)){
-          this->selected_profiler = gui_temperature;
-          gui_temperature->draw_profiler(temperature);
+          this->selected_profiler = gui_hardware;
+          gui_hardware->draw_profiler(temperature);
         }
 
         ImGui::EndTabItem();

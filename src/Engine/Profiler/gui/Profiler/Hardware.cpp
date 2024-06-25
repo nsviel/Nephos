@@ -1,4 +1,4 @@
-#include "Temperature.h"
+#include "Hardware.h"
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,7 +8,7 @@
 namespace prf::gui{
 
 //Constructor / Destructor
-Temperature::Temperature(prf::Node* node_profiler){
+Hardware::Hardware(prf::Node* node_profiler){
   //---------------------------
 
   this->gui_plot = new utl::implot::Plot();
@@ -16,18 +16,18 @@ Temperature::Temperature(prf::Node* node_profiler){
 
   //---------------------------
 }
-Temperature::~Temperature(){}
+Hardware::~Hardware(){}
 
 //Main function
-void Temperature::draw_profiler(prf::temp::Profiler* temperature){
+void Hardware::draw_profiler(prf::temp::Profiler* temperature){
   //---------------------------
 
 
 
-  float cpu_temp = prf_temp->find_CPU_temperature();
-  float gpu_temp = prf_temp->find_GPU_temperature();
+  //float cpu_temp = prf_temp->find_CPU_temperature();
+  //float gpu_temp = prf_temp->find_GPU_temperature();
 
-  gui_plot->plot_temperature(cpu_temp, gpu_temp);
+  //gui_plot->plot_temperature(cpu_temp, gpu_temp);
 
   //---------------------------
 }

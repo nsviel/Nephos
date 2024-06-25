@@ -4,6 +4,8 @@
 #include <Profiler/src/Profiler/Structure.h>
 
 namespace prf{class Structure;}
+namespace rnd::hardare{class CPU;}
+namespace rnd::hardare{class Nvidia;}
 
 
 namespace prf::temp{
@@ -20,11 +22,10 @@ public:
   void reset();
 
   //Subfunction
-  float find_CPU_temperature();
-  float find_GPU_temperature();
 
 private:
-
+  rnd::hardare::CPU* rnd_cpu;
+  rnd::hardare::Nvidia* rnd_gpu;
 };
 
 }
