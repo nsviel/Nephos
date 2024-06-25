@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace prf::temp{
+namespace rnd::hardware{
 
 class Nvidia
 {

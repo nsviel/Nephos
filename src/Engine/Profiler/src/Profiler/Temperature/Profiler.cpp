@@ -41,26 +41,8 @@ float Profiler::find_GPU_temperature(){
   nvmlDevice_t device;
   //---------------------------
 
-  nvmlInit();
-  nvmlDeviceGetHandleByIndex(0, &device);
-
-  unsigned int temp;
-  nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temp);
-
-  unsigned long long energy;
-  nvmlDeviceGetTotalEnergyConsumption(device, &energy); //mJ
-
-  unsigned int speed;
-  nvmlDeviceGetFanSpeed(device, &speed);
-
-  unsigned int power;
-  nvmlDeviceGetPowerUsage(device, &power); // in mW
-  nvmlShutdown();
-
-  say(energy);
-
   //---------------------------
-  return static_cast<float>(temp);
+  return 0;
 }
 
 }

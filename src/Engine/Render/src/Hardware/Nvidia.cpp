@@ -3,7 +3,7 @@
 #include <nvml.h>
 
 
-namespace prf::temp{
+namespace rnd::hardware{
 
 //Constructor / Destructor
 Nvidia::Nvidia(){
