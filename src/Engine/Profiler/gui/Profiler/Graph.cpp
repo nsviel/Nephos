@@ -19,7 +19,26 @@ Graph::Graph(prf::Node* node_profiler){
 Graph::~Graph(){}
 
 //Main function
-void Graph::show_info(){
+void Graph::show_profiler(prf::base::Profiler* profiler){
+  prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler);
+  //---------------------------
+
+  this->draw_info();
+
+  if(ImGui::BeginTabBar("tasker_gui##4567")){
+    ImVec2 graph_dim = ImGui::GetContentRegionAvail();
+
+    //this->draw_graph_all(graph);
+    //this->draw_graph_unique(graph);
+
+    ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
+
+//Graph function
+void Graph::draw_info(){
   if(selected_tasker == nullptr) return;
   //---------------------------
 
@@ -43,23 +62,6 @@ void Graph::show_info(){
 
   //---------------------------
 }
-void Graph::show_profiler(prf::base::Profiler* profiler){
-  prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler);
-  //---------------------------
-
-  if(ImGui::BeginTabBar("tasker_gui##4567")){
-    ImVec2 graph_dim = ImGui::GetContentRegionAvail();
-
-    this->draw_graph_all(graph);
-    this->draw_graph_unique(graph);
-
-    ImGui::EndTabBar();
-  }
-
-  //---------------------------
-}
-
-//Graph function
 void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   //---------------------------
 

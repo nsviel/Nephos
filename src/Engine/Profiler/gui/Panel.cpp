@@ -47,47 +47,13 @@ void Panel::run_panel(){
 void Panel::design_panel(){
   //---------------------------
 
-  this->main_info();
-  this->main_button();
-  this->draw_profiler();
+  this->draw_tab_profiler();
 
   //---------------------------
 }
 
 //Subfunction
-void Panel::main_info(){
-  //---------------------------
-
-  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
-  ImGui::BeginTable("profiler_panel##info", 2);
-  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
-
-  //GPU device
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Device"); ImGui::TableNextColumn();
-  prf::vulkan::Profiler* profiler_vulkan = prf_manager->get_profiler_vulkan();
-  string gpu = gui_vulkan->get_selected_gpu_name(profiler_vulkan);
-  ImGui::TextColored(color, "%s", gpu.c_str());
-
-  //Selected tasker
-  if(selected_profiler != nullptr){
-    selected_profiler->show_info();
-  }
-
-  ImGui::EndTable();
-
-  //---------------------------
-}
-void Panel::main_button(){
-  //---------------------------
-
-  if(selected_profiler != nullptr){
-    selected_profiler->show_command();
-  }
-
-  //---------------------------
-}
-void Panel::draw_profiler(){
+void Panel::draw_tab_profiler(){
   std::list<prf::base::Profiler*> list_profiler = prf_manager->get_list_profiler();
   //---------------------------
 
@@ -98,29 +64,32 @@ void Panel::draw_profiler(){
       ImVec2 graph_dim = ImGui::GetContentRegionAvail();
       ImGui::SetNextItemWidth(graph_dim.x / list_profiler.size());
       if(ImGui::BeginTabItem(profiler->name.c_str())){
-
-
-        //Graph tab
-        if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
-          this->selected_profiler = gui_graph;
-          gui_graph->show_profiler(graph);
-        }
-        //Vulkan tab
-        else if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler)){
-          this->selected_profiler = gui_vulkan;
-          gui_vulkan->show_profiler(vulkan);
-        }
-        //Hardware tab
-        else if(prf::hardware::Profiler* temperature = dynamic_cast<prf::hardware::Profiler*>(profiler)){
-          this->selected_profiler = gui_hardware;
-          gui_hardware->show_profiler(temperature);
-        }
-
+        this->draw_profiler(profiler);
         ImGui::EndTabItem();
       }
     }
 
     ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
+void Panel::draw_profiler(prf::base::Profiler* profiler){
+  //---------------------------
+
+  switch(profiler->type){
+    case prf::base::GRAPH:{
+      gui_graph->show_profiler(profiler);
+      break;
+    }
+    case prf::base::VULKAN:{
+      gui_vulkan->show_profiler(profiler);
+      break;
+    }
+    case prf::base::HARDWARE:{
+      gui_hardware->show_profiler(profiler);
+      break;
+    }
   }
 
   //---------------------------

@@ -18,33 +18,38 @@ Vulkan::~Vulkan(){}
 
 //Main function
 void Vulkan::show_profiler(prf::base::Profiler* profiler){
-  prf::vulkan::Profiler* prf_vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler);
-
   //---------------------------
 
+  //Retrieve vulkan info struct
+  prf::vulkan::Profiler* prf_vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler);
+  if(prf_vulkan == nullptr) return;
   prf::vulkan::Structure* prf_struct = prf_vulkan->get_prf_struct();
-  ImVec2 graph_dim = ImGui::GetContentRegionAvail();
 
-  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  //Draw general info
+  this->draw_info(prf_struct);
+
+  //Draw specific info
   if(ImGui::BeginTabBar("Vulkan##profiler_vulkan")){
+    ImVec2 dimension = ImGui::GetContentRegionAvail();
+
     //Device tab
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("Device##profiler_vulkan", NULL)){
-      this->draw_tab_device(prf_struct, graph_dim);
+      this->draw_tab_device(prf_struct, dimension);
       ImGui::EndTabItem();
     }
 
     //Queue tab
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("Queue##profiler_vulkan", NULL)){
-      this->draw_tab_queue(prf_struct, graph_dim);
+      this->draw_tab_queue(prf_struct, dimension);
       ImGui::EndTabItem();
     }
 
     //Thread tab
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("Thread##profiler_vulkan", NULL)){
-      this->draw_tab_thread(prf_struct, graph_dim);
+      this->draw_tab_thread(prf_struct, dimension);
       ImGui::EndTabItem();
     }
 
@@ -55,7 +60,23 @@ void Vulkan::show_profiler(prf::base::Profiler* profiler){
 }
 
 //Tab function
-void Vulkan::draw_tab_thread(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim){
+void Vulkan::draw_info(prf::vulkan::Structure* prf_struct){
+  //---------------------------
+
+  ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  ImGui::BeginTable("profiler_panel##info", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+
+  //GPU device
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Device"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%s", prf_struct->selected_device.name.c_str());
+
+  ImGui::EndTable();
+
+  //---------------------------
+}
+void Vulkan::draw_tab_thread(prf::vulkan::Structure* prf_struct, ImVec2 dimension){
   //---------------------------
 
   ImVec4 green = ImVec4(0.5, 1, 0.5, 1);
@@ -84,7 +105,7 @@ void Vulkan::draw_tab_thread(prf::vulkan::Structure* prf_struct, ImVec2 graph_di
 
   //---------------------------
 }
-void Vulkan::draw_tab_queue(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim){
+void Vulkan::draw_tab_queue(prf::vulkan::Structure* prf_struct, ImVec2 dimension){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
@@ -129,7 +150,7 @@ void Vulkan::draw_tab_queue(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim
 
   //---------------------------
 }
-void Vulkan::draw_tab_device(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim){
+void Vulkan::draw_tab_device(prf::vulkan::Structure* prf_struct, ImVec2 dimension){
   //---------------------------
 
   if(ImGui::BeginTabBar("vulkan_device##tab_bar")){
@@ -257,15 +278,5 @@ void Vulkan::draw_device_queue_families(prf::vulkan::Device& device){
 
   //---------------------------
 }
-std::string Vulkan::get_selected_gpu_name(prf::vulkan::Profiler* prf_vulkan){
-  prf::vulkan::Structure* prf_struct = prf_vulkan->get_prf_struct();
-  //---------------------------
-
-  return prf_struct->selected_device.name;
-
-  //---------------------------
-}
-
-
 
 }

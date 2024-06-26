@@ -30,13 +30,11 @@ public:
   void design_panel();
 
   //Subfunction
-  void main_info();
-  void main_button();
-  void draw_profiler();
+  void draw_tab_profiler();
+  void draw_profiler(prf::base::Profiler* profiler);
 
 private:
   prf::Manager* prf_manager;
-  prf::gui::Profiler* selected_profiler = nullptr;
   prf::gui::Vulkan* gui_vulkan;
   prf::gui::Graph* gui_graph;
   prf::gui::Hardware* gui_hardware;

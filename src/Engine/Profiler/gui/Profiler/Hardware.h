@@ -1,16 +1,16 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
-#include <Profiler/gui/Profiler/Structure/Profiler.h>
 
 namespace prf{class Node;}
+namespace prf::base{class Profiler;}
 namespace prf::hardware{class Profiler;}
 namespace utl::implot{class Plot;}
 
 
 namespace prf::gui{
 
-class Hardware : public prf::gui::Profiler
+class Hardware
 {
 public:
   //Constructor / Destructor

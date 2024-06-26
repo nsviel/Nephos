@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
-#include <Profiler/gui/Profiler/Structure/Profiler.h>
 
 namespace prf{class Node;}
 namespace prf{class Manager;}
+namespace prf::base{class Profiler;}
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
 namespace prf::improfil{class Manager;}
@@ -13,7 +13,7 @@ namespace prf::gui{class Profiler;}
 
 namespace prf::gui{
 
-class Graph : public prf::gui::Profiler
+class Graph
 {
 public:
   //Constructor / Destructor
@@ -22,10 +22,10 @@ public:
 
 public:
   //Main function
-  void show_info();
   void show_profiler(prf::base::Profiler* profiler);
 
   //Graph function
+  void draw_info();
   void draw_graph_all(prf::graph::Profiler* profiler);
   void draw_graph_unique(prf::graph::Profiler* profiler);
 
