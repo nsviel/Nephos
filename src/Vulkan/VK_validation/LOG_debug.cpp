@@ -1,5 +1,8 @@
 #include "LOG_debug.h"
 
+#include <iostream>
+#include <string>
+
 
 //Main function
 void LOG_debug::validation_message(const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData){

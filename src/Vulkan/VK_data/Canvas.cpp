@@ -32,13 +32,13 @@ void Canvas::init(){
   xyz.push_back(vec3(-1.0f, 1.0f, 0.0f));
 
   vector<vec2> uv;
-  uv.push_back(vec2(1.0f,  0.0f));
-  uv.push_back(vec2(0.0f,  0.0f));
-  uv.push_back(vec2(0.0f,  1.0f));
+  uv.push_back(glm::vec2(1.0f,  0.0f));
+  uv.push_back(glm::vec2(0.0f,  0.0f));
+  uv.push_back(glm::vec2(0.0f,  1.0f));
 
-  uv.push_back(vec2(1.0f,  1.0f));
-  uv.push_back(vec2(1.0f,  0.0f));
-  uv.push_back(vec2(0.0f,  1.0f));
+  uv.push_back(glm::vec2(1.0f,  1.0f));
+  uv.push_back(glm::vec2(1.0f,  0.0f));
+  uv.push_back(glm::vec2(0.0f,  1.0f));
 
   //Canvas data
   utl::base::Data* data = new utl::base::Data();

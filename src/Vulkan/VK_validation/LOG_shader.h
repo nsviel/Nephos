@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 
 //Singleton class to store Shader printf output

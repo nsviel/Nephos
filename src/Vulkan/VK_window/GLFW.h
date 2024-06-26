@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
 
 namespace vk::structure{class Vulkan;}
 
@@ -30,8 +30,8 @@ public:
   //Sizing function
   bool is_window_resized();
   void update_window_dim();
-  void set_window_constraint_min(vec2 constraint);
-  void set_window_constraint_max(vec2 constraint);
+  void set_window_constraint_min(glm::vec2 constraint);
+  void set_window_constraint_max(glm::vec2 constraint);
 
   //Input function
   void wait_event();

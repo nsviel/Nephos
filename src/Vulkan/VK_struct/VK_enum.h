@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 
 enum attachment_idx{
   ATTACHMENT_INDEX_COLOR = 0,

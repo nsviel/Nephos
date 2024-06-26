@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 
 //Memory
 typedef VkMemoryPropertyFlags memory_flag;

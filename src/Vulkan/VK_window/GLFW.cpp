@@ -128,7 +128,7 @@ bool GLFW::is_window_resized(){
   //---------------------------
   return false;
 }
-void GLFW::set_window_constraint_min(vec2 constraint){
+void GLFW::set_window_constraint_min(glm::vec2 constraint){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
@@ -136,7 +136,7 @@ void GLFW::set_window_constraint_min(vec2 constraint){
 
   //---------------------------
 }
-void GLFW::set_window_constraint_max(vec2 constraint){
+void GLFW::set_window_constraint_max(glm::vec2 constraint){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
