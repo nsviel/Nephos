@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Utility/Specific/Common.h>
+#include <Vulkan/VK_struct/Struct_physical_device.h>
+#include <vulkan/vulkan.h>
 
 
 namespace vk::structure{

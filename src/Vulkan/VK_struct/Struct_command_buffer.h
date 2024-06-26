@@ -1,12 +1,10 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Struct_query.h>
+#include <Vulkan/VK_struct/Struct_fence.h>
 #include <vulkan/vulkan.h>
 #include <string>
 #include <mutex>
-
-namespace vk::structure{struct Query;}
-namespace vk::structure{struct Fence;}
 
 
 namespace vk::structure{

@@ -1,13 +1,6 @@
 #pragma once
 
-
-
-#include <string>
-#include <vector>
-#include <list>
-#include <map>
 #include <glm/glm.hpp>
-#include <iostream>
 
 
 namespace vk::structure{

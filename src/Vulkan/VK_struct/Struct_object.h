@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
 #include <Vulkan/VK_struct/VK_typedef.h>
-
-
-#include <Utility/Specific/Common.h>
+#include <Vulkan/VK_struct/Struct_buffer.h>
+#include <Vulkan/VK_struct/Struct_texture.h>
+#include <Vulkan/VK_struct/Struct_binding.h>
+#include <list>
 
 
 namespace vk::structure{

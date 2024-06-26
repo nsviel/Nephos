@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Vulkan/Namespace.h>
-#include <Utility/Namespace.h>
-#include <Utility/Specific/Common.h>
+#include <Vulkan/VK_struct/Struct_binding.h>
+#include <vector>
+#include <string>
 
 
 //Binding requirement -> Name, Type size, binding, desriptor type, shader stage

@@ -1,6 +1,9 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Vulkan/VK_struct/Struct_queue.h>
+#include <vulkan/vulkan.h>
+#include <string>
+#include <vector>
 
 
 namespace vk::structure{
@@ -10,10 +13,10 @@ struct Physical_device{
 
   //Information
   std::string name = "";
-  bool has_extension_support = false;
-  bool discrete_gpu = false;
   uint32_t max_image_dim = 0;
   uint64_t timestamp_period = 0;
+  bool has_extension_support = false;
+  bool discrete_gpu = false;
   int selection_score = 0;
   int vendor_ID = 0;
 

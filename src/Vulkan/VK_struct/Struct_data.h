@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Utility/Specific/Common.h>
+#include <Vulkan/VK_struct/Struct_texture.h>
+#include <Vulkan/VK_struct/Struct_object.h>
+#include <list>
 
 
 namespace vk::structure{
