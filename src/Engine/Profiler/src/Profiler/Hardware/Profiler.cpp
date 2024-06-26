@@ -36,7 +36,7 @@ void Profiler::add_queue(prf::hardware::queue::Type type, int ID_family){
   queue.number++;
   queue.family_ID = ID_family;
   queue.thread_ID = utl::thread::get_ID_str();
-  prf_struct->vec_queue.push_back(queue);
+  prf_struct->gpu.vec_queue.push_back(queue);
 
   //---------------------------
 }

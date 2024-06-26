@@ -197,12 +197,12 @@ void Hardware::draw_gpu_info(prf::hardware::Structure* prf_struct){
   //Device
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Device"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", prf_struct->selected_device.name.c_str());
+  ImGui::TextColored(color, "%s", prf_struct->gpu.name.c_str());
 
   //Temperature
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Temperature"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", prf_struct->selected_device.name.c_str());
+  ImGui::TextColored(color, "%s", prf_struct->gpu.name.c_str());
 
   ImGui::EndTable();
 
@@ -229,8 +229,8 @@ void Hardware::draw_gpu_queue(prf::hardware::Structure* prf_struct){
   ImGui::TableSetupColumn("Thread");
   ImGui::TableHeadersRow();
 
-  for(int i=0; i<prf_struct->vec_queue.size(); i++){
-    prf::hardware::Queue& queue = prf_struct->vec_queue[i];
+  for(int i=0; i<prf_struct->gpu.vec_queue.size(); i++){
+    prf::hardware::Queue& queue = prf_struct->gpu.vec_queue[i];
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     switch(queue.type){

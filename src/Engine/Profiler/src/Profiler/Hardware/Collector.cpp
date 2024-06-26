@@ -55,7 +55,7 @@ void Collector::collect_vulkan_device(vk::structure::Vulkan* vk_struct){
 
     //Check if it is the selected one
     if(physical_device.name == vk_struct->device.physical_device.name){
-      prf_struct->selected_device = device_info;
+      prf_struct->gpu.name = physical_device.name;
     }
 
     prf_struct->vec_device.push_back(device_info);
