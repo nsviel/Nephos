@@ -165,7 +165,7 @@ void Descriptor::create_layout_from_required(vk::structure::Binding* binding){
 
 }
 
-VkDescriptorSetLayout Descriptor::create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding){
+VkDescriptorSetLayout Descriptor::create_layout(std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
   //---------------------------
 
   //Combination and info

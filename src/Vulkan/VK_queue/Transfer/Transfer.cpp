@@ -107,7 +107,7 @@ void Transfer::process_command(){
 }
 
 //Submission
-void Transfer::build_submission(vector<VkSubmitInfo>& vec_info){
+void Transfer::build_submission(std::vector<VkSubmitInfo>& vec_info){
   //---------------------------
 
   for(int i=0; i<vec_command_onrun.size(); i++){
@@ -121,7 +121,7 @@ void Transfer::build_submission(vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Transfer::make_submission(vector<VkSubmitInfo>& vec_info){
+void Transfer::make_submission(std::vector<VkSubmitInfo>& vec_info){
   this->thread_idle = false;
   //---------------------------
 

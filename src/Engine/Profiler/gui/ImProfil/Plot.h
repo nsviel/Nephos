@@ -24,7 +24,7 @@ public:
 
   //Task function
   void add_task(float ts_begin, float ts_end, string name, glm::vec4 color = {});
-  void add_vec_task(vector<prf::graph::structure::Task> vec_task);
+  void add_vec_task(std::vector<prf::graph::structure::Task> vec_task);
 
   //Subfunction
   vec4 get_next_color();

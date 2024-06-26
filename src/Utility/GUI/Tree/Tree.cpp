@@ -76,7 +76,7 @@ void Tree::construct_node(string path, vector<utl::gui::tree::Node*>& nodes){
     //---------------------------
   }
 }
-void Tree::construct_node_root(vector<string>& vec_path, vector<utl::gui::tree::Node*>& nodes){
+void Tree::construct_node_root(std::vector<string>& vec_path, vector<utl::gui::tree::Node*>& nodes){
   //---------------------------
 
   for(int i=0; i<vec_path.size(); i++){
@@ -186,7 +186,7 @@ void Tree::display_node(utl::gui::tree::Node* node, vector<utl::gui::tree::Node*
     //---------------------------
   }
 }
-void Tree::display_node_root(vector<utl::gui::tree::Node*>& all_nodes){
+void Tree::display_node_root(std::vector<utl::gui::tree::Node*>& all_nodes){
   //---------------------------
 
   for(int i=0; i<all_nodes.size(); i++){

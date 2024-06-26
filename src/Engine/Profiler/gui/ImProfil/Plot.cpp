@@ -75,7 +75,7 @@ void Plot::add_task(float ts_begin, float ts_end, string name, glm::vec4 color){
 
   //---------------------------
 }
-void Plot::add_vec_task(vector<prf::graph::structure::Task> vec_task){
+void Plot::add_vec_task(std::vector<prf::graph::structure::Task> vec_task){
   //---------------------------
 
   //Assign tasks

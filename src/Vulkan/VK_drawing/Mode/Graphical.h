@@ -25,9 +25,9 @@ public:
 
   //Subfunction
   bool acquire_image(vk::structure::Semaphore& semaphore);
-  void record_renderpass(vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore);
-  void copy_to_swapchain(vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore);
-  void submit_presentation(vector<vk::structure::Command*>& vec_command);
+  void record_renderpass(std::vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore);
+  void copy_to_swapchain(std::vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore);
+  void submit_presentation(std::vector<vk::structure::Command*>& vec_command);
   
 private:
   vk::memory::Transfer* vk_transfer;

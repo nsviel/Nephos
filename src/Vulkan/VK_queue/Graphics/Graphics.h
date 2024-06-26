@@ -31,13 +31,13 @@ public:
 
   //Command
   void add_command(vk::structure::Command* command);
-  void add_graphics(vector<vk::structure::Command*> vec_command);
-  void add_presentation(vector<vk::structure::Command*> vec_command);
+  void add_graphics(std::vector<vk::structure::Command*> vec_command);
+  void add_presentation(std::vector<vk::structure::Command*> vec_command);
   void process_command();
 
   //Submission
-  void build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
-  void make_submission(vector<VkSubmitInfo>& vec_info);
+  void build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
+  void make_submission(std::vector<VkSubmitInfo>& vec_info);
   void post_submission(VkSemaphore& semaphore_done);
 
   inline bool is_thread_idle(){return thread_idle;}

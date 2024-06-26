@@ -44,7 +44,7 @@ bool Graphical::acquire_image(vk::structure::Semaphore& semaphore){
   //---------------------------
   return sucess;
 }
-void Graphical::record_renderpass(vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore){
+void Graphical::record_renderpass(std::vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore){
   //---------------------------
 
   for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
@@ -69,7 +69,7 @@ void Graphical::record_renderpass(vector<vk::structure::Command*>& vec_command, 
 
   //---------------------------
 }
-void Graphical::copy_to_swapchain(vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore){
+void Graphical::copy_to_swapchain(std::vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore){
   //---------------------------
 
   //Copy renderpass to swapchain image
@@ -85,7 +85,7 @@ void Graphical::copy_to_swapchain(vector<vk::structure::Command*>& vec_command, 
 
   //---------------------------
 }
-void Graphical::submit_presentation(vector<vk::structure::Command*>& vec_command){
+void Graphical::submit_presentation(std::vector<vk::structure::Command*>& vec_command){
   //---------------------------
 
   //Submission

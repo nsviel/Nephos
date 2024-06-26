@@ -26,7 +26,7 @@ VLP16::VLP16(){
 VLP16::~VLP16(){}
 
 //Main function
-utl::base::Data* VLP16::parse_packet(vector<int> packet_dec){
+utl::base::Data* VLP16::parse_packet(std::vector<int> packet_dec){
   utl::base::Data* data_udp = new utl::base::Data();
   //---------------------------
 
@@ -44,7 +44,7 @@ utl::base::Data* VLP16::parse_packet(vector<int> packet_dec){
 }
 
 //Subfunctions
-bool VLP16::parse_header(vector<int>& packet_dec){
+bool VLP16::parse_header(std::vector<int>& packet_dec){
   //---------------------------
 
   //Check if data is laser or position information
@@ -64,7 +64,7 @@ bool VLP16::parse_header(vector<int>& packet_dec){
   //---------------------------
   return true;
 }
-void VLP16::parse_vector(vector<int> packet){
+void VLP16::parse_vector(std::vector<int> packet){
   blocks.clear();
   //---------------------------
 
@@ -338,7 +338,7 @@ vector<float> VLP16::calc_timing_offsets(){
     //-----------------------
     return timing_offsets;
 }
-void VLP16::make_supressElements(vector<vec3>& vec, vector<int> idx){
+void VLP16::make_supressElements(std::vector<vec3>& vec, vector<int> idx){
   if(idx.size() == 0)return;
   //---------------------------
 
@@ -363,7 +363,7 @@ void VLP16::make_supressElements(vector<vec3>& vec, vector<int> idx){
   //---------------------------
   vec = vec_b;
 }
-void VLP16::make_supressElements(vector<float>& vec, vector<int> idx){
+void VLP16::make_supressElements(std::vector<float>& vec, vector<int> idx){
   if(idx.size() == 0)return;
   //---------------------------
 

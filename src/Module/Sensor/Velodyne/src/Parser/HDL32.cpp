@@ -24,7 +24,7 @@ HDL32::HDL32(){
 HDL32::~HDL32(){}
 
 //Main function
-utl::base::Data* HDL32::parse_packet(vector<int> packet){
+utl::base::Data* HDL32::parse_packet(std::vector<int> packet){
   utl::base::Data* cloud = new utl::base::Data();
   //---------------------------
 
@@ -49,7 +49,7 @@ utl::base::Data* HDL32::parse_packet(vector<int> packet){
 }
 
 //Subfunctions
-void HDL32::parse_vector(vector<int> packet){
+void HDL32::parse_vector(std::vector<int> packet){
   blocks.clear();
   //---------------------------
 
@@ -300,7 +300,7 @@ vector<float> HDL32::calc_timing_offsets(){
     //-----------------------
     return timing_offsets;
 }
-void HDL32::make_supressElements(vector<vec3>& vec, vector<int> idx){
+void HDL32::make_supressElements(std::vector<vec3>& vec, vector<int> idx){
   if(idx.size() == 0)return;
   //---------------------------
 
@@ -325,7 +325,7 @@ void HDL32::make_supressElements(vector<vec3>& vec, vector<int> idx){
   //---------------------------
   vec = vec_b;
 }
-void HDL32::make_supressElements(vector<float>& vec, vector<int> idx){
+void HDL32::make_supressElements(std::vector<float>& vec, vector<int> idx){
   if(idx.size() == 0)return;
   //---------------------------
 

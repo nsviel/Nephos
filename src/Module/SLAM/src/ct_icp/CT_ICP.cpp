@@ -361,7 +361,7 @@ void CT_ICP::do_truc(Cloud* cloud, vector<Point3D>& frame){
 
 	//---------------------------
 }
-void CT_ICP::update_voxelMap(vector<Point3D>& frame){
+void CT_ICP::update_voxelMap(std::vector<Point3D>& frame){
 	//---------------------------
 
 	for(int j=0; j<(int)frame.size(); j++){

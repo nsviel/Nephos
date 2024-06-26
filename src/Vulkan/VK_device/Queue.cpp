@@ -121,7 +121,7 @@ void Queue::create_queue(vk::structure::Queue& queue){
 
   //---------------------------
 }
-void Queue::create_queue_info(vector<VkDeviceQueueCreateInfo>& vec_queue_info){
+void Queue::create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_info){
   std::vector<vk::structure::queue::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   //---------------------------
 

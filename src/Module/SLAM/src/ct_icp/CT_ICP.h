@@ -59,7 +59,7 @@ public:
 private:
 	//Algo functions
 	void do_truc(Cloud* cloud, vector<Point3D>& frame);
-	void update_voxelMap(vector<Point3D>& frame);
+	void update_voxelMap(std::vector<Point3D>& frame);
 
 	//Subfunctions
   void writePoses(string filename, std::vector<TrajectoryFrame> trajectory);

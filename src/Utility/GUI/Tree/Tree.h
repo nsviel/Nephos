@@ -21,9 +21,9 @@ public:
 
   //subfunction
   void construct_node(string path, vector<utl::gui::tree::Node*>& nodes);
-  void construct_node_root(vector<string>& vec_path, vector<utl::gui::tree::Node*>& nodes);
+  void construct_node_root(std::vector<string>& vec_path, vector<utl::gui::tree::Node*>& nodes);
   void display_node(utl::gui::tree::Node* node, vector<utl::gui::tree::Node*>& all_nodes);
-  void display_node_root(vector<utl::gui::tree::Node*>& all_nodes);
+  void display_node_root(std::vector<utl::gui::tree::Node*>& all_nodes);
   void node_child_scan(string path, vector<utl::gui::tree::Node*>& nodes, utl::gui::tree::Node* parent);
   bool check_display_file_format(string path);
   void open_selection(utl::gui::tree::Node* node);

@@ -32,7 +32,7 @@ public:
   void cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set);
   void allocate_descriptor_set(vk::structure::Binding* binding);
   void create_layout_from_required(vk::structure::Binding* binding);
-  VkDescriptorSetLayout create_layout(vector<VkDescriptorSetLayoutBinding>& vec_binding);
+  VkDescriptorSetLayout create_layout(std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
 
 private:
   vk::structure::Vulkan* vk_struct;

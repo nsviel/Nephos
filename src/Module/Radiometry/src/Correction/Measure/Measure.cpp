@@ -121,7 +121,7 @@ void Measure::data_IfR(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vect
 
   //---------------------------
 }
-void Measure::data_IfIt(vector<vec3>& search_xyz, vector<float>& search_Is){
+void Measure::data_IfIt(std::vector<vec3>& search_xyz, vector<float>& search_Is){
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------

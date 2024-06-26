@@ -16,10 +16,10 @@ public:
 
 public:
   //Main function
-  utl::base::Data* parse_packet(vector<int> packet);
+  utl::base::Data* parse_packet(std::vector<int> packet);
 
   //Subfunctions
-  void parse_vector(vector<int> packet);
+  void parse_vector(std::vector<int> packet);
   void parse_blocks();
   void parse_azimuth();
   void parse_coordinates();
@@ -28,8 +28,8 @@ public:
 
   //Subsubfunctions
   vector<float> calc_timing_offsets();
-  void make_supressElements(vector<vec3>& vec, vector<int> idx);
-  void make_supressElements(vector<float>& vec, vector<int> idx);
+  void make_supressElements(std::vector<vec3>& vec, vector<int> idx);
+  void make_supressElements(std::vector<float>& vec, vector<int> idx);
 
 private:
   vector<vector<int>> blocks;

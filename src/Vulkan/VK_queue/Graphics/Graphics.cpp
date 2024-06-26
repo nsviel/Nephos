@@ -93,7 +93,7 @@ void Graphics::add_command(vk::structure::Command* command){
 
   //---------------------------
 }
-void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
+void Graphics::add_graphics(std::vector<vk::structure::Command*> vec_command){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
@@ -108,7 +108,7 @@ void Graphics::add_graphics(vector<vk::structure::Command*> vec_command){
   //---------------------------
 
 }
-void Graphics::add_presentation(vector<vk::structure::Command*> vec_command){
+void Graphics::add_presentation(std::vector<vk::structure::Command*> vec_command){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
@@ -141,7 +141,7 @@ void Graphics::process_command(){
 }
 
 //Submission
-void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
+void Graphics::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
   //---------------------------
 
   for(int i=0; i<vec_command_onrun.size(); i++){
@@ -182,7 +182,7 @@ void Graphics::build_submission(vector<VkSubmitInfo>& vec_info, VkSemaphore& sem
 
   //---------------------------
 }
-void Graphics::make_submission(vector<VkSubmitInfo>& vec_info){
+void Graphics::make_submission(std::vector<VkSubmitInfo>& vec_info){
   this->thread_idle = false;
   //---------------------------
 
