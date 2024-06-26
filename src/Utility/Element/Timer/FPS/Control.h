@@ -6,7 +6,7 @@
 #include <thread>
 
 
-namespace prf::fps{
+namespace utl::timer::fps{
 
 class Control
 {

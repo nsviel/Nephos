@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
-#include <Profiler/src/Timer/Chrono.h>
+#include <Utility/Element/Timer/Chrono.h>
 
 namespace prf::base{class Profiler;}
 namespace prf::graph{class Tasker;}

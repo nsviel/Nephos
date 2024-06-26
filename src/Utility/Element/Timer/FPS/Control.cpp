@@ -1,7 +1,7 @@
 #include "Control.h"
 
 
-namespace prf::fps{
+namespace utl::timer::fps{
 
 // Constructor / Destructor
 Control::Control(int fps_max){

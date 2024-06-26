@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Profiler/src/Profiler/Graph/Structure/Task.h>
+#include <Profiler/src/Graph/Structure/Task.h>
 #include <vector>
 
 

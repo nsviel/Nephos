@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Profiler/src/Profiler/Hardware/Structure/Queue.h>
+#include <Profiler/src/Hardware/Structure/Queue.h>
 #include <vector>
 #include <string>
 

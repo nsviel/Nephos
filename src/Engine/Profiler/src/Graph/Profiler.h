@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Profiler/src/Profiler/Base/Profiler.h>
+#include <Profiler/src/Base/Profiler.h>
 #include <string>
 #include <list>
 

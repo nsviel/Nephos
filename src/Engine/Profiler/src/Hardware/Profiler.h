@@ -1,10 +1,10 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
-#include <Profiler/src/Timer/Chrono.h>
-#include <Profiler/src/Profiler/Base/Profiler.h>
-#include <Profiler/src/Profiler/Hardware/Structure/Queue.h>
-#include <Profiler/src/Profiler/Hardware/Structure/Structure.h>
+#include <Utility/Element/Timer/Chrono.h>
+#include <Profiler/src/Base/Profiler.h>
+#include <Profiler/src/Hardware/Structure/Queue.h>
+#include <Profiler/src/Hardware/Structure/Structure.h>
 
 namespace prf::hardware{class Device;}
 namespace prf::hardware{class Thread;}

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Profiler/src/Profiler/Graph/Structure/Tasker.h>
+#include <Profiler/src/Graph/Structure/Tasker.h>
 #include <string>
 
-namespace prf::fps{class Counter;}
-namespace prf::fps{class Control;}
+namespace utl::timer::fps{class Counter;}
+namespace utl::timer::fps{class Control;}
 namespace prf::graph::structure{class Task;}
 namespace prf::graph::structure{class Tasker;}
 
@@ -37,9 +37,9 @@ public:
   void task_follow_end(std::string name, float time);
 
 private:
-  prf::timer::Chrono timer;
-  prf::fps::Counter* fps_counter;
-  prf::fps::Control* fps_control;
+  utl::timer::Chrono timer;
+  utl::timer::fps::Counter* fps_counter;
+  utl::timer::fps::Control* fps_control;
 };
 
 }

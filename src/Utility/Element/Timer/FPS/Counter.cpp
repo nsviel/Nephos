@@ -1,7 +1,7 @@
 #include "Counter.h"
 
 
-namespace prf::fps{
+namespace utl::timer::fps{
 
 // Constructor / Destructor
 Counter::Counter(){

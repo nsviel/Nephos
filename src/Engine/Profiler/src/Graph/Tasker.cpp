@@ -1,6 +1,7 @@
 #include "Tasker.h"
 
 #include <Profiler/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace prf::graph{
@@ -10,8 +11,8 @@ Tasker::Tasker(std::string name){
   //---------------------------
 
   this->name = name;
-  this->fps_control = new prf::fps::Control(120);
-  this->fps_counter = new prf::fps::Counter();
+  this->fps_control = new utl::timer::fps::Control(120);
+  this->fps_counter = new utl::timer::fps::Counter();
 
   //---------------------------
 }
@@ -109,7 +110,7 @@ void Tasker::task_end(const std::string& name, float time, vec4 color){
 
   //Apply task stuff
   if(time == -1){
-    prf::timer::Timepoint task_end = timer.get_time();
+    utl::timer::Timepoint task_end = timer.get_time();
     task->ts_end = timer.duration_s(this->reference, task_end);
   }else{
     task->ts_end = time;

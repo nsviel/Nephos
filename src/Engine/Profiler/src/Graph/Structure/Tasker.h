@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Profiler/src/Profiler/Graph/Structure/Task.h>
+#include <Profiler/src/Graph/Structure/Task.h>
 #include <Profiler/gui/ImProfil/Plot.h>
-#include <Profiler/src/Timer/Chrono.h>
+#include <Utility/Element/Timer/Chrono.h>
 #include <vector>
 #include <string>
 
@@ -13,7 +13,7 @@ struct Tasker{
   //---------------------------
 
   prf::improfil::Plot plot;
-  prf::timer::Timepoint reference;
+  utl::timer::Timepoint reference;
 
   std::vector<prf::graph::structure::Task> vec_task_current;
   std::vector<prf::graph::structure::Task> vec_task;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Profiler/src/Profiler/Base/Profiler.h>
+#include <Profiler/src/Base/Profiler.h>
 
 namespace prf::base{class Profiler;}
 namespace utl::hardare{class CPU;}
