@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
+#include <string>
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Task;}
@@ -20,8 +21,8 @@ public:
 public:
   //Main function
   void fill_profiler_info();
-  string get_gpu_name();
-  vec4* get_color_background();
+  std::string get_gpu_name();
+  glm::vec4* get_color_background();
   bool is_gpu_discrete();
 
 private:

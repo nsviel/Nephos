@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vulkan/vulkan.h>
 
 namespace vk::image{class Image;}
 namespace vk::memory{class Allocator;}
@@ -11,6 +11,7 @@ namespace vk::structure{class Object;}
 namespace vk::data{class Buffer;}
 namespace vk::instance{class UID;}
 namespace vk::image{class Screenshot;}
+namespace utl::media{class Image;}
 
 
 namespace vk::image{

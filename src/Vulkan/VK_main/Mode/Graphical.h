@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Vulkan/VK_main/Engine.h>
-#include <Utility/Specific/Common.h>
 
 namespace vk::structure{class Vulkan;}
 namespace vk::draw{class Graphical;}

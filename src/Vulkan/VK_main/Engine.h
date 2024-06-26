@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <GLFW/glfw3.h>
+#include <list>
 
 namespace vk::presentation{class Surface;}
 namespace vk::presentation{class Swapchain;}
@@ -25,6 +26,8 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
 namespace vk::queue{class Manager;}
+namespace utl::base{class Data;}
+namespace utl::base{class Pose;}
 
 
 namespace vk::main{
