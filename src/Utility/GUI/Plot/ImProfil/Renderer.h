@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Profiler/gui/ImProfil/Structure/Configuration.h>
+#include "Structure/Configuration.h"
 #include <Utility/GUI/Plot/Namespace.h>
 #include <Utility/Specific/Common.h>
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Profiler/src/Graph/Structure/Task.h>
-#include <Profiler/gui/ImProfil/Plot.h>
+#include <Profiler/src/Dynamic/Structure/Task.h>
+#include <Utility/GUI/Plot/ImProfil/Plot.h>
 #include <Utility/Element/Timer/Chrono.h>
 #include <vector>
 #include <string>

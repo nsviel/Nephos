@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Profiler/gui/ImProfil/Structure/Bar.h>
-#include <Profiler/gui/ImProfil/Structure/Stat.h>
+#include "Bar.h"
+#include "Stat.h"
 #include <glm/glm.hpp>
 #include <vector>
 #include <string>

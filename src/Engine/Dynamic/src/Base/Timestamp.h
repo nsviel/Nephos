@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Data/src/Base/Object.h>
-#include <Profiler/src/Graph/Profiler.h>
+#include <Profiler/src/Dynamic/Profiler.h>
 
 
 namespace dyn::base{

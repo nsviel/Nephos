@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Profiler/src/Graph/Structure/Tasker.h>
+#include <Profiler/src/Dynamic/Structure/Tasker.h>
 #include <string>
 
 namespace utl::timer::fps{class Counter;}
