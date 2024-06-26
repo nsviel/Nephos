@@ -78,11 +78,15 @@ void Plot::add_task(float ts_begin, float ts_end, string name, glm::vec4 color){
 void Plot::add_vec_task(vector<prf::graph::structure::Task> vec_task){
   //---------------------------
 
-  this->vec_task = vec_task;
-
+  //Assign tasks
   for(int i=0; i<vec_task.size(); i++){
     prf::graph::structure::Task& task = vec_task[i];
-    task.color = get_next_color();
+
+    if(task.color == vec4(0, 0, 0, 0)){
+      this->add_task(task.ts_begin, task.ts_end, task.name);
+    }else{
+      this->add_task(task.ts_begin, task.ts_end, task.name, task.color);
+    }
   }
 
   //---------------------------

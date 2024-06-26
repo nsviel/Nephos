@@ -58,7 +58,7 @@ void Collector::collect_vulkan_device(vk::structure::Vulkan* vk_struct){
       prf_struct->selected_device = device_info;
     }
 
-    this->vec_device.push_back(device_info);
+    prf_struct->vec_device.push_back(device_info);
   }
 
   //---------------------------

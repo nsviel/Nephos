@@ -25,7 +25,7 @@ void Graph::show_profiler(prf::base::Profiler* profiler){
 
   this->draw_info();
 
-  if(ImGui::BeginTabBar("tasker_gui##4567")){
+  if(ImGui::BeginTabBar("profiler_tasker_tab")){
 
     this->draw_graph_all(graph);
     this->draw_graph_unique(graph);
@@ -66,21 +66,8 @@ void Graph::draw_info(){
   //---------------------------
 }
 void Graph::draw_graph_all(prf::graph::Profiler* profiler){
-  ImVec2 dimension = ImGui::GetContentRegionAvail();
-  //---------------------------
-
-  //Find not empty taskers
   std::list<prf::graph::Tasker*> list_tasker = profiler->get_list_tasker();
-  std::vector<prf::graph::Tasker*> vec_tasker;
-  for(int i=0; i<list_tasker.size(); i++){
-    prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
-
-    if(!tasker->vec_task.empty()){
-      vec_tasker.push_back(tasker);
-    }
-  }
-  if(vec_tasker.size() < 2) return;
-  dimension = ImVec2(dimension.x, dimension.y / vec_tasker.size() - vec_tasker.size() * 4);
+  //---------------------------
 
   //Stuff to force first-opened tab
   static bool first_tab_open = true;
@@ -90,25 +77,28 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
     first_tab_open = false;
   }
 
-  //All not empty tasker graphs
+  //All not empty tasker graphs*/
+  ImVec2 dimension = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
   string title = "All##" + profiler->name;
-  if(ImGui::BeginTabItem("All##4568", NULL, flag)){
-
+  if(ImGui::BeginTabItem(title.c_str(), NULL, 0)){
     ImGui::BeginTable(title.c_str(), 2);
     ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);
     ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
 
+    //Graph command
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     this->draw_graph_command();
 
+    //Graph plots
     ImGui::TableNextColumn();
-    for(int i=0; i<vec_tasker.size(); i++){
-      this->draw_tasker_graph(vec_tasker[i], dimension);
+    ImVec2 dim_plot = ImVec2(dimension.x, dimension.y / list_tasker.size() - list_tasker.size() * 4);
+    for(int i=0; i<list_tasker.size(); i++){
+      prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
+      this->draw_tasker_graph(tasker, dim_plot);
     }
 
     ImGui::EndTable();
-
     ImGui::EndTabItem();
   }
 
@@ -116,30 +106,29 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
 }
 void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
   ImVec2 dimension = ImGui::GetContentRegionAvail();
-  dimension = ImVec2(dimension.x, dimension.y - 8);
+  dimension = ImVec2(dimension.x, dimension.y - 10);
   //---------------------------
 
   std::list<prf::graph::Tasker*> list_tasker = profiler->get_list_tasker();
   for(int i=0; i<list_tasker.size(); i++){
     prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
 
-    //Improfil graphs
     ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
     string title = tasker->name + "##" + tasker->thread_ID;
-    if(!tasker->vec_task.empty() && ImGui::BeginTabItem(title.c_str(), NULL)){
-
+    if(ImGui::BeginTabItem(title.c_str(), NULL)){
       ImGui::BeginTable(title.c_str(), 2);
       ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);
       ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
 
+      //Graph command
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       this->draw_graph_command();
 
+      //Graph plot
       ImGui::TableNextColumn();
       this->draw_tasker_graph(tasker, dimension);
 
       ImGui::EndTable();
-
       ImGui::EndTabItem();
     }
   }
@@ -185,28 +174,15 @@ void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 dimension){
 
   this->selected_tasker = tasker;
 
-  //Update graph
+  //Update plot
   if(!pause){
-    //Reset graph
     tasker->plot.reset();
-
-    //Assign tasks
-    for(int i=0; i<tasker->vec_task.size(); i++){
-      prf::graph::structure::Task task = tasker->vec_task[i];
-
-      if(task.color == vec4(0, 0, 0, 0)){
-        tasker->plot.add_task(task.ts_begin, task.ts_end, task.name);
-      }else{
-        tasker->plot.add_task(task.ts_begin, task.ts_end, task.name, task.color);
-      }
-    }
-
-    //load data
+    tasker->plot.add_vec_task(tasker->vec_task);
     tasker->plot.update();
   }
 
-  //Render profiler
-  tasker->plot.render_plot(tasker->name, dimension);
+  //Render plot
+  tasker->plot.render(tasker->name, dimension);
 
   //---------------------------
 }

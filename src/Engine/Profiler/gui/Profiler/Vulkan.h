@@ -25,6 +25,7 @@ public:
 
   //Tab function
   void draw_info(prf::vulkan::Structure* prf_struct);
+  void draw_tab(prf::vulkan::Structure* prf_struct);
   void draw_tab_thread(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim);
   void draw_tab_queue(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim);
   void draw_tab_device(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim);
