@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include "LOG_shader.h"
 #include "LOG_debug.h"
 

@@ -1,7 +1,8 @@
 #pragma once
 
 #include <Vulkan/VK_renderpass/Structure/Renderpass.h>
-#include <Utility/Specific/Common.h>
+#include <vulkan/vulkan.h>
+#include <vector>
 
 
 namespace vk::structure{
