@@ -4,8 +4,8 @@
 #include <string>
 
 namespace vk::structure{class Vulkan;}
-namespace vk::structure{class Binding;}
-namespace vk::structure{class Sampler;}
+namespace vk::binding::structure{class Binding;}
+namespace vk::binding::structure{class Sampler;}
 
 
 namespace vk::binding{
@@ -19,8 +19,8 @@ public:
 
 public:
   //Main function
-  void create_sampler(vk::structure::Binding* binding);
-  vk::structure::Sampler* create_sampler_obj(std::string name, int binding, VkDescriptorType type);
+  void create_sampler(vk::binding::structure::Binding* binding);
+  vk::binding::structure::Sampler* create_sampler_obj(std::string name, int binding, VkDescriptorType type);
 
 private:
   vk::structure::Vulkan* vk_struct;

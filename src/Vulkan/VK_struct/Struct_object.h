@@ -3,7 +3,7 @@
 #include <Vulkan/VK_struct/VK_typedef.h>
 #include <Vulkan/VK_struct/Struct_buffer.h>
 #include <Vulkan/VK_struct/Struct_texture.h>
-#include <Vulkan/VK_struct/Struct_binding.h>
+#include <Vulkan/VK_binding/Structure/Binding.h>
 #include <list>
 
 
@@ -41,7 +41,7 @@ struct Object{
   //Binding
   std::list<vk::structure::Texture*> list_vk_texture;
   VkCommandBuffer command_buffer_secondary = VK_NULL_HANDLE;
-  vk::structure::Binding binding;
+  vk::binding::structure::Binding binding;
 
   //---------------------------
 };

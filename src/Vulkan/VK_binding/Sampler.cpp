@@ -16,26 +16,26 @@ Sampler::Sampler(vk::structure::Vulkan* vk_struct){
 Sampler::~Sampler(){}
 
 //Main function
-void Sampler::create_sampler(vk::structure::Binding* binding){
+void Sampler::create_sampler(vk::binding::structure::Binding* binding){
   binding->vec_sampler.clear();
   //---------------------------
 
   std::vector<vk::structure::Descriptor_required>& vec_required = binding->vec_required_binding;
-  vector<vk::structure::Sampler*>& vec_sampler = binding->vec_sampler;
+  vector<vk::binding::structure::Sampler*>& vec_sampler = binding->vec_sampler;
 
   for(int i=0; i<vec_required.size(); i++){
     vk::structure::Descriptor_required& descriptor = vec_required[i];
 
     if(descriptor.type == TYP_IMAGE_SAMPLER || descriptor.type == VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE){
-      vk::structure::Sampler* sampler = create_sampler_obj(descriptor.name, descriptor.binding, descriptor.type);
+      vk::binding::structure::Sampler* sampler = create_sampler_obj(descriptor.name, descriptor.binding, descriptor.type);
       vec_sampler.push_back(sampler);
     }
   }
 
   //---------------------------
 }
-vk::structure::Sampler* Sampler::create_sampler_obj(std::string name, int binding, VkDescriptorType type){
-  vk::structure::Sampler* sampler = new vk::structure::Sampler();
+vk::binding::structure::Sampler* Sampler::create_sampler_obj(std::string name, int binding, VkDescriptorType type){
+  vk::binding::structure::Sampler* sampler = new vk::binding::structure::Sampler();
   //---------------------------
 
   sampler->name = name;

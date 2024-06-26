@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Struct_binding.h>
+#include <Vulkan/VK_binding/Structure/Binding.h>
 #include <vector>
 #include <string>
 
@@ -55,7 +55,7 @@ struct Pipeline{
   VkPipeline pipeline = VK_NULL_HANDLE;
   VkPipelineLayout layout = VK_NULL_HANDLE;
 
-  vk::structure::Binding binding;
+  vk::binding::structure::Binding binding;
   Pipeline_definition definition;
   Pipeline_info info;
 

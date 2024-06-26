@@ -2,7 +2,6 @@
 
 #include <Vulkan/VK_struct/Struct_attachment.h>
 #include <Vulkan/VK_struct/Struct_descriptor.h>
-#include <Vulkan/VK_struct/Struct_binding.h>
 #include <Vulkan/VK_struct/Struct_buffer.h>
 #include <Vulkan/VK_struct/Struct_command_buffer.h>
 #include <Vulkan/VK_struct/Struct_command.h>
