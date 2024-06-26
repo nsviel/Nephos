@@ -9,16 +9,16 @@ namespace prf::vulkan{
 Profiler::Profiler(){
   //---------------------------
 
-  this->prf_info = new prf::vulkan::Info();
-  this->prf_collector = new prf::vulkan::Collector(prf_info);
+  this->prf_struct = new prf::vulkan::Info();
+  this->prf_collector = new prf::vulkan::Collector(prf_struct);
 
   //---------------------------
 }
 Profiler::Profiler(string name, string type){
   //---------------------------
 
-  this->prf_info = new prf::vulkan::Info();
-  this->prf_collector = new prf::vulkan::Collector(prf_info);
+  this->prf_struct = new prf::vulkan::Info();
+  this->prf_collector = new prf::vulkan::Collector(prf_struct);
   this->name = name;
   this->type = type;
 
@@ -27,6 +27,13 @@ Profiler::Profiler(string name, string type){
 Profiler::~Profiler(){}
 
 //Main function
+void Profiler::collect_info(vk::structure::Vulkan* vk_struct){
+  //---------------------------
+
+  prf_collector->collect_info(vk_struct);
+
+  //---------------------------
+}
 void Profiler::add_thread(string name){
   mutex.lock();
   //---------------------------

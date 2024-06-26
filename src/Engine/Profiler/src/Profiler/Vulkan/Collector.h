@@ -3,7 +3,7 @@
 #include <vector>
 
 namespace vk::structure{class Vulkan;}
-namespace prf::vulkan{class Info;}
+namespace prf::vulkan{class Structure;}
 namespace prf::vulkan{class Device;}
 
 
@@ -13,7 +13,7 @@ class Collector
 {
 public:
   //Constructor / Destructor
-  Collector(prf::vulkan::Info* prf_info);
+  Collector(prf::vulkan::Structure* prf_struct);
   ~Collector();
 
 public:
@@ -25,7 +25,7 @@ public:
   void collect_vulkan_device(vk::structure::Vulkan* vk_struct);
 
 private:
-  prf::vulkan::Info* prf_info;
+  prf::vulkan::Structure* prf_struct;
   std::vector<prf::vulkan::Device> vec_device;
 };
 

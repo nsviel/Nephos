@@ -7,10 +7,10 @@
 namespace prf::vulkan{
 
 //Constructor / Destructor
-Collector::Collector(prf::vulkan::Info* prf_info){
+Collector::Collector(prf::vulkan::Structure* prf_struct){
   //---------------------------
 
-  this->prf_info = prf_info;
+  this->prf_struct = prf_struct;
 
   //---------------------------
 }
@@ -30,7 +30,7 @@ void Collector::collect_info(vk::structure::Vulkan* vk_struct){
 void Collector::collect_vulkan_info(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
-  prf_info->selected_gpu = vk_struct->device.physical_device.name;
+  //prf_struct->selected_device = vk_struct->device.physical_device.name;
 
   //---------------------------
 }
