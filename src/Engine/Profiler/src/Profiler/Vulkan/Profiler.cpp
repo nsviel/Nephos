@@ -40,7 +40,7 @@ void Profiler::add_thread(string name){
   //---------------------------
   mutex.unlock();
 }
-void Profiler::add_queue(prf::vulkan::Queue_type type, int ID_family){
+void Profiler::add_queue(prf::vulkan::queue::Type type, int ID_family){
   //---------------------------
 
   prf::vulkan::Queue& queue = map_queue[type];

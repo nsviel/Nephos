@@ -48,7 +48,7 @@ void Collector::collect_vulkan_device(vk::structure::Vulkan* vk_struct){
     device_info.vendorID = physical_device.vendorID;
 
     for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-      prf::vulkan::Queue_family queue_family;
+      prf::vulkan::queue::Family queue_family;
       queue_family.nb_queue = physical_device.vec_queue_family[i].nb_queue;
       queue_family.graphics = physical_device.vec_queue_family[i].capable_graphics;
       queue_family.compute = physical_device.vec_queue_family[i].capable_compute;

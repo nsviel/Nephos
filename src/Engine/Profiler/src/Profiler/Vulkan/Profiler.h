@@ -3,6 +3,7 @@
 #include <Utility/Specific/Common.h>
 #include <Profiler/src/Timer/Chrono.h>
 #include <Profiler/src/Profiler/Structure.h>
+#include <Profiler/src/Profiler/Vulkan/Structure/Queue.h>
 #include <Profiler/src/Profiler/Vulkan/Structure/Info.h>
 
 namespace prf::vulkan{class Device;}
@@ -25,18 +26,18 @@ public:
 public:
   //Main function
   void add_thread(string name);
-  void add_queue(prf::vulkan::Queue_type type, int ID_family);
+  void add_queue(prf::vulkan::queue::Type type, int ID_family);
 
   inline prf::vulkan::Collector* get_prf_collector(){return prf_collector;}
   inline vector<prf::vulkan::Thread>& get_vec_thread(){return vec_thread;}
-  inline map<prf::vulkan::Queue_type, prf::vulkan::Queue>& get_map_queue(){return map_queue;}
+  inline map<prf::vulkan::queue::Type, prf::vulkan::Queue>& get_map_queue(){return map_queue;}
 
 private:
   prf::vulkan::Collector* prf_collector;
   prf::vulkan::Info* prf_info;
   std::vector<prf::vulkan::Thread> vec_thread;
   std::vector<prf::vulkan::Device> vec_device;
-  std::map<prf::vulkan::Queue_type, prf::vulkan::Queue> map_queue;
+  std::map<prf::vulkan::queue::Type, prf::vulkan::Queue> map_queue;
   std::mutex mutex;
 };
 

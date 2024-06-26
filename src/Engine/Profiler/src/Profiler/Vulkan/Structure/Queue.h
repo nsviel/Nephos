@@ -1,11 +1,9 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 
+namespace prf::vulkan::queue{
 
-namespace prf::vulkan{
-
-struct Queue_family{
+struct Family{
   //---------------------------
 
   int nb_queue = 0;
@@ -18,11 +16,15 @@ struct Queue_family{
   //---------------------------
 };
 
-enum Queue_type{
+enum Type{
   GRAPHICS = 0,
   PRESENTATION = 1,
   TRANSFER = 2,
 };
+
+}
+
+namespace prf::vulkan{
 
 struct Queue{
   //---------------------------
@@ -32,6 +34,5 @@ struct Queue{
 
   //---------------------------
 };
-
 
 }

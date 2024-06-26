@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <thread>
+#include <string>
 
 
 namespace prf::vulkan{
@@ -17,7 +18,7 @@ struct Thread{
 struct Info{
   //---------------------------
 
-  string selected_gpu;
+  std::string selected_gpu;
 
   //---------------------------
 };

@@ -109,9 +109,9 @@ void Queue::find_queue_family_assigment(){
     cout<<"[error] in presentation queue family assigment"<<endl;
   }
 
-  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::GRAPHICS, pool.graphics.family_ID);
-  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::PRESENTATION, pool.presentation.family_ID);
-  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::TRANSFER, pool.transfer.family_ID);
+  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::queue::GRAPHICS, pool.graphics.family_ID);
+  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::queue::PRESENTATION, pool.presentation.family_ID);
+  vk_struct->profiler->prf_vulkan->add_queue(prf::vulkan::queue::TRANSFER, pool.transfer.family_ID);
 
   //---------------------------
 }
