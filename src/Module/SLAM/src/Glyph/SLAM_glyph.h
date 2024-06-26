@@ -33,7 +33,7 @@ public:
   void update_glyph_trajectory(Collection* collection);
 
   //Accesseur
-  Glyph* get_glyph_byName(string querry);
+  Glyph* get_glyph_byName(std::string querry);
 
   inline bool* get_with_keypoint(){return &with_keypoint;}
   inline bool* get_with_neighbor(){return &with_neighbor;}

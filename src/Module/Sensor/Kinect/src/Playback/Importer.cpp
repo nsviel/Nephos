@@ -51,7 +51,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
 }
 
 //Subfunction
-float Importer::find_mkv_ts_beg(string path){
+float Importer::find_mkv_ts_beg(std::string path){
   //---------------------------
 
   k4a::playback playback = k4a::playback::open(path.c_str());;
@@ -69,7 +69,7 @@ float Importer::find_mkv_ts_beg(string path){
   //---------------------------
   return ts_beg;
 }
-float Importer::find_mkv_ts_end(string path){
+float Importer::find_mkv_ts_end(std::string path){
   //---------------------------
 
   k4a::playback playback = k4a::playback::open(path.c_str());;

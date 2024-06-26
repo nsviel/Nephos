@@ -13,7 +13,7 @@ class Plot{
 public:
   //Constructor / Destructor
   Plot();
-  Plot(string name);
+  Plot(std::string name);
   ~Plot();
 
 public:

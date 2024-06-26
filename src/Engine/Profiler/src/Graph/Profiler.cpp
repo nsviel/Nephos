@@ -13,7 +13,7 @@ Profiler::Profiler(){
 
   //---------------------------
 }
-Profiler::Profiler(string name){
+Profiler::Profiler(std::string name){
   //---------------------------
 
   this->name = name;

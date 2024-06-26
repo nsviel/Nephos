@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::command{class Command_buffer;}
 namespace vk::command{class Allocator;}
 namespace vk::structure{class Vulkan;}

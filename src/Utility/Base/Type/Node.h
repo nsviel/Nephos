@@ -22,7 +22,7 @@ public:
   virtual void wait(){}
   virtual void config(){}
 
-  utl::gui::Panel* add_panel(string name, string icon, bool value){
+  utl::gui::Panel* add_panel(std::string name, string icon, bool value){
     //---------------------------
 
     utl::gui::Panel* panel = new utl::gui::Panel(name, icon, value);

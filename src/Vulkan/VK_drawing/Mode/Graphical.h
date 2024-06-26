@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/VK_drawing/Drawer.h>
-#include <Utility/Specific/Common.h>
+#include <vector>
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Semaphore;}
@@ -28,7 +28,7 @@ public:
   void record_renderpass(std::vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore);
   void copy_to_swapchain(std::vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore);
   void submit_presentation(std::vector<vk::structure::Command*>& vec_command);
-  
+
 private:
   vk::memory::Transfer* vk_transfer;
 };

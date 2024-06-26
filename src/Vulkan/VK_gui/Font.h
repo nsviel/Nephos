@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <imgui/implot/implot.h>
+#include <string>
 
 namespace vk::command{class Command_buffer;}
 namespace vk::command{class Allocator;}

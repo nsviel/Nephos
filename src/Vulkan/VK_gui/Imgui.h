@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <imgui/implot/implot.h>
 
 namespace vk::instance{class Pool;}
@@ -10,6 +9,7 @@ namespace vk::structure{class Command_buffer;}
 namespace vk::image{class Texture;}
 namespace vk::gui{class Font;}
 namespace vk::window{class GLFW;}
+namespace utl::media{class Image;}
 
 
 namespace vk::gui{

@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vulkan/vulkan.h>
+#include <vector>
 
 namespace vk::image{class Image;}
 namespace vk::structure{class Vulkan;}

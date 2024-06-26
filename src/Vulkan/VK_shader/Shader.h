@@ -26,7 +26,7 @@ public:
   VkShaderModule create_shader_module(const std::vector<char>& code);
   std::vector<char> read_file(const std::string& filename);
   void recompile_shader(utl::shader::Info* shader_info);
-  void run_recompilation(string path_glsl, string path_spir);
+  void run_recompilation(std::string path_glsl, string path_spir);
 
 private:
   vk::structure::Vulkan* vk_struct;

@@ -19,7 +19,7 @@ struct Filler{
   utl::gui::tree::Node* node_selected;
 
   //Function
-  std::function<void(string path)> fct_on_click;
+  std::function<void(std::string path)> fct_on_click;
 
   //---------------------------
 };

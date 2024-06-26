@@ -16,7 +16,7 @@ public:
 
 	void   tic();
 	double toc(bool print=true);
-	double toc(string str, bool print=true);
+	double toc(std::string str, bool print=true);
 
 private:
 	clock_t _t;

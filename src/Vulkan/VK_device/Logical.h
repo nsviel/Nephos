@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::device{class Physical;}
 namespace vk::structure{class Vulkan;}
 namespace vk::device{class Queue;}

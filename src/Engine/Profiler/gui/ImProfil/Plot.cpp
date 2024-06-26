@@ -15,7 +15,7 @@ Plot::Plot(){
 
   //---------------------------
 }
-Plot::Plot(string name){
+Plot::Plot(std::string name){
   //---------------------------
 
   this->name = name;

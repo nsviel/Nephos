@@ -58,7 +58,7 @@ void Tree::construct_tree(utl::gui::tree::Filler* filler){
 }
 
 //subfunction
-void Tree::construct_node(string path, vector<utl::gui::tree::Node*>& nodes){
+void Tree::construct_node(std::string path, vector<utl::gui::tree::Node*>& nodes){
   if(path != ""){
     //---------------------------
 
@@ -98,7 +98,7 @@ void Tree::construct_node_root(std::vector<string>& vec_path, vector<utl::gui::t
 
   //---------------------------
 }
-void Tree::node_child_scan(string path, vector<utl::gui::tree::Node*>& nodes, utl::gui::tree::Node* parent){
+void Tree::node_child_scan(std::string path, vector<utl::gui::tree::Node*>& nodes, utl::gui::tree::Node* parent){
   vector<string> list_path = utl::path::list_all_path(path);
   //---------------------------
 
@@ -208,7 +208,7 @@ void Tree::display_node_root(std::vector<utl::gui::tree::Node*>& all_nodes){
 
   //---------------------------
 }
-bool Tree::check_display_file_format(string path){
+bool Tree::check_display_file_format(std::string path){
   string format = utl::path::get_format_from_path(path);
   //---------------------------
 

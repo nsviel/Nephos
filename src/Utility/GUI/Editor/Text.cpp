@@ -91,7 +91,7 @@ void Text::display_status(){
 
   //---------------------------
 }
-void Text::load_from_file(string path){
+void Text::load_from_file(std::string path){
   //---------------------------
 
   //Open file
@@ -115,7 +115,7 @@ void Text::load_from_file(string path){
   //---------------------------
   editor->set_is_text_changed(false);
 }
-void Text::save_to_file(string path){
+void Text::save_to_file(std::string path){
   //---------------------------
 
   string new_text = editor->GetText();

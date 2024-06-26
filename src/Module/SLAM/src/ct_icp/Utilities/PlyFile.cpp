@@ -2,7 +2,7 @@
 #include "PlyFile.h"
 
 
-PlyFile::PlyFile(string path, openMode flag) : File(path, flag), _header(""), _format(binary_little_endian), 
+PlyFile::PlyFile(std::string path, openMode flag) : File(path, flag), _header(""), _format(binary_little_endian), 
 _propertyNum(0), _propertyType(NULL), _propertySize(NULL), _propertyName(NULL), 
 _numPoints(0), _pointSize(0)
 {

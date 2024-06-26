@@ -17,7 +17,7 @@ struct Subpass{
       return vec_pipeline[0];
     }
   }
-  vk::structure::Pipeline* get_pipeline_byName(string name){
+  vk::structure::Pipeline* get_pipeline_byName(std::string name){
     for(int i=0; i<vec_pipeline.size(); i++){
       if(vec_pipeline[i]->definition.name == name){
         return vec_pipeline[i];

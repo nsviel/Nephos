@@ -387,7 +387,7 @@ void CT_ICP::update_voxelMap(std::vector<Point3D>& frame){
 }
 
 //Subfunctions
-void CT_ICP::writePoses(string filename, std::vector<TrajectoryFrame> trajectory){
+void CT_ICP::writePoses(std::string filename, std::vector<TrajectoryFrame> trajectory){
 	ofstream pFile(filename);
 	if(pFile.is_open())
 	{

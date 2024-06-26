@@ -24,7 +24,7 @@ class PlyFile :
 	public File
 {
 public:
-	PlyFile(string path, openMode flag);
+	PlyFile(std::string path, openMode flag);
 	~PlyFile();
 
 	void readFile(char*& points, int& pointSize, int& numPoints);

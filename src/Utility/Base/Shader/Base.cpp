@@ -10,7 +10,7 @@ Base::Base(){
 }
 Base::~Base(){}
 
-utl::shader::Info* Base::get_shader_info(string title){
+utl::shader::Info* Base::get_shader_info(std::string title){
   //---------------------------
 
   for(int i=0; i<vec_shader_info.size(); i++){

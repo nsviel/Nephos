@@ -63,7 +63,7 @@ void SLAM_parameter::make_config(int conf){
   //---------------------------
   this->predefined_conf = conf;
 }
-void SLAM_parameter::make_config(string conf){
+void SLAM_parameter::make_config(std::string conf){
   //---------------------------
 
   if(conf == "velodyne_vlp16" || conf == "scala"){

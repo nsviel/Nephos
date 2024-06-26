@@ -1,6 +1,7 @@
 #include "Data.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::data{
@@ -10,7 +11,7 @@ Data::Data(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_buffer = new Buffer(vk_struct);
+  this->vk_buffer = new vk::data::Buffer(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_command_buffer = new vk::command::Command_buffer(vk_struct);
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);

@@ -62,7 +62,7 @@ private:
 	void update_voxelMap(std::vector<Point3D>& frame);
 
 	//Subfunctions
-  void writePoses(string filename, std::vector<TrajectoryFrame> trajectory);
+  void writePoses(std::string filename, std::vector<TrajectoryFrame> trajectory);
   int frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>& voxels_map, std::list<Point3D>& keypoints, std::vector<TrajectoryFrame>& trajectory, int index_frame);
   void sub_sample_frame(std::vector<Point3D>& frame, double size_voxel);
   void grid_sampling(std::vector<Point3D>& frame, std::list<Point3D>& keypoints, double size_voxel_subsampling);

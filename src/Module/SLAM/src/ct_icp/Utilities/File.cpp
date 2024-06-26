@@ -1,7 +1,7 @@
 #include "File.h"
 
 
-File::File(string path, openMode flag) : _path(path), _mode(flag)
+File::File(std::string path, openMode flag) : _path(path), _mode(flag)
 {
 	switch (_mode)
 	{

@@ -701,7 +701,7 @@ void GUI_Slam::state_transformation(){
 
   //---------------------------
 }
-void GUI_Slam::display_stat(string title, vec3 abs, vec3 rlt){
+void GUI_Slam::display_stat(std::string title, vec3 abs, vec3 rlt){
   //---------------------------
 
   ImGui::Text("%s", title.c_str());

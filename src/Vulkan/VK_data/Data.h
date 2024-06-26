@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::data{class Buffer;}
 namespace vk::image{class Texture;}
 namespace vk::command{class Command_buffer;}
@@ -12,6 +10,8 @@ namespace vk::structure{class Pipeline;}
 namespace vk::instance{class UID;}
 namespace vk::synchro{class Synchro;}
 namespace vk::binding{class Type;}
+namespace utl::base{class Data;}
+namespace utl::base{class Pose;}
 
 
 namespace vk::data{
@@ -39,7 +39,7 @@ public:
 
 private:
   vk::structure::Vulkan* vk_struct;
-  Buffer* vk_buffer;
+  vk::data::Buffer* vk_buffer;
   vk::image::Texture* vk_texture;
   vk::command::Command_buffer* vk_command_buffer;
   vk::binding::Descriptor* vk_descriptor;

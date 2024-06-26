@@ -25,8 +25,8 @@ public:
   utl::base::Element* import(utl::base::Path path);
 
   //Subfunction
-  float find_mkv_ts_beg(string path);
-  float find_mkv_ts_end(string path);
+  float find_mkv_ts_beg(std::string path);
+  float find_mkv_ts_end(std::string path);
   dat::base::Set* manage_set_parent();
 
 private:

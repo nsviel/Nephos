@@ -25,7 +25,7 @@ double PersoTimer::toc(bool print)
 	return _dt;
 }
 
-double PersoTimer::toc(string str, bool print)
+double PersoTimer::toc(std::string str, bool print)
 {
 	_dt = (float)(clock() - _t) / ((float)CLOCKS_PER_SEC);
 	if(print){

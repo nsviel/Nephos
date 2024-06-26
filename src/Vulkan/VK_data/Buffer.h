@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::memory{class Allocator;}
 namespace vk::memory{class Transfer;}
 namespace vk::structure{class Vulkan;}

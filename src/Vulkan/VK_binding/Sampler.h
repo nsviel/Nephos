@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vulkan/vulkan.h>
+#include <string>
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Binding;}
@@ -19,7 +20,7 @@ public:
 public:
   //Main function
   void create_sampler(vk::structure::Binding* binding);
-  vk::structure::Sampler* create_sampler_obj(string name, int binding, VkDescriptorType type);
+  vk::structure::Sampler* create_sampler_obj(std::string name, int binding, VkDescriptorType type);
 
 private:
   vk::structure::Vulkan* vk_struct;

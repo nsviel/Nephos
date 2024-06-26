@@ -229,7 +229,7 @@ void SLAM_glyph::update_glyph_trajectory(Collection* collection){
 }
 
 //Accesseurs
-Glyph* SLAM_glyph::get_glyph_byName(string querry){
+Glyph* SLAM_glyph::get_glyph_byName(std::string querry){
 	//---------------------------
 
 	//Search for corresponding shader and out it

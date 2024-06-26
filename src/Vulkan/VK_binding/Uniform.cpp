@@ -35,7 +35,7 @@ void Uniform::create_uniform_buffers(vk::structure::Binding* binding){
 
   //---------------------------
 }
-vk::structure::Uniform* Uniform::create_uniform_buffer(string name, size_t size, int binding){
+vk::structure::Uniform* Uniform::create_uniform_buffer(std::string name, size_t size, int binding){
   vk::structure::Uniform* uniform = new vk::structure::Uniform();
   //---------------------------
 
@@ -63,7 +63,7 @@ void Uniform::clean_uniform(vk::structure::Binding* binding){
 }
 
 //Uniform update
-template <typename T> void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, T value){
+template <typename T> void Uniform::update_uniform(std::string uniform_name, vk::structure::Binding* binding, T value){
   bool has_been_found = false;
   //---------------------------
 
@@ -93,8 +93,8 @@ template <typename T> void Uniform::update_uniform(string uniform_name, vk::stru
 
   //---------------------------
 }
-template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, glm::mat4 value);
-template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, int value);
-template void Uniform::update_uniform(string uniform_name, vk::structure::Binding* binding, vk::render::edl::Structure value);
+template void Uniform::update_uniform(std::string uniform_name, vk::structure::Binding* binding, glm::mat4 value);
+template void Uniform::update_uniform(std::string uniform_name, vk::structure::Binding* binding, int value);
+template void Uniform::update_uniform(std::string uniform_name, vk::structure::Binding* binding, vk::render::edl::Structure value);
 
 }

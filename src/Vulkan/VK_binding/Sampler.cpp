@@ -34,7 +34,7 @@ void Sampler::create_sampler(vk::structure::Binding* binding){
 
   //---------------------------
 }
-vk::structure::Sampler* Sampler::create_sampler_obj(string name, int binding, VkDescriptorType type){
+vk::structure::Sampler* Sampler::create_sampler_obj(std::string name, int binding, VkDescriptorType type){
   vk::structure::Sampler* sampler = new vk::structure::Sampler();
   //---------------------------
 

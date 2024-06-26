@@ -18,7 +18,7 @@ Reloader::Reloader(vk::structure::Vulkan* vk_struct){
 Reloader::~Reloader(){}
 
 //Main function
-void Reloader::hot_shader_reload(string shader_1, string shader_2){
+void Reloader::hot_shader_reload(std::string shader_1, string shader_2){
   //---------------------------
 
   if(shader_1 == "Scene"){

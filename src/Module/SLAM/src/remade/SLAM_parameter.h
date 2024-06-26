@@ -24,7 +24,7 @@ public:
 public:
   //Configuration function
   void make_config(int conf);
-  void make_config(string conf);
+  void make_config(std::string conf);
 
   //Specific function
   void make_config_default();
