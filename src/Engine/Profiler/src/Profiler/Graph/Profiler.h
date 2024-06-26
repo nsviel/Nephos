@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <Profiler/src/Profiler/Base/Profiler.h>
+#include <string>
+#include <list>
 
 namespace prf::graph{class Tasker;}
 namespace prf::base{class Profiler;}
@@ -14,7 +15,7 @@ class Profiler : public prf::base::Profiler
 public:
   //Constructor / Destructor
   Profiler();
-  Profiler(string name, string type);
+  Profiler(std::string name);
   ~Profiler();
 
 public:
@@ -23,8 +24,8 @@ public:
   void clean();
 
   //Tasker function
-  prf::graph::Tasker* new_tasker(string name);
-  prf::graph::Tasker* get_or_create_tasker(string name);
+  prf::graph::Tasker* new_tasker(std::string name);
+  prf::graph::Tasker* get_or_create_tasker(std::string name);
   void new_tasker(prf::graph::Tasker* tasker);
   void remove_tasker(prf::graph::Tasker* tasker);
 

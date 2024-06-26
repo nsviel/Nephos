@@ -12,15 +12,8 @@ Profiler::Profiler(){
   this->prf_struct = new prf::vulkan::Structure();
   this->prf_collector = new prf::vulkan::Collector(prf_struct);
 
-  //---------------------------
-}
-Profiler::Profiler(string name, string type){
-  //---------------------------
-
-  this->prf_struct = new prf::vulkan::Structure();
-  this->prf_collector = new prf::vulkan::Collector(prf_struct);
-  this->name = name;
-  this->type = type;
+  this->name = "Vulkan";
+  this->type = prf::base::VULKAN;
 
   //---------------------------
 }

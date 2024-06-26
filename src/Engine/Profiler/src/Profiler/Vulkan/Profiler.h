@@ -21,7 +21,6 @@ class Profiler : public prf::base::Profiler
 public:
   //Constructor / Destructor
   Profiler();
-  Profiler(string name, string type);
   ~Profiler();
 
 public:

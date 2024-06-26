@@ -9,13 +9,15 @@ namespace prf::graph{
 Profiler::Profiler(){
   //---------------------------
 
+  this->type = prf::base::GRAPH;
+
   //---------------------------
 }
-Profiler::Profiler(string name, string type){
+Profiler::Profiler(string name){
   //---------------------------
 
   this->name = name;
-  this->type = type;
+  this->type = prf::base::GRAPH;
 
   //---------------------------
 }
@@ -44,7 +46,7 @@ void Profiler::clean(){
 }
 
 //Tasker function
-prf::graph::Tasker* Profiler::new_tasker(string name){
+prf::graph::Tasker* Profiler::new_tasker(std::string name){
   //---------------------------
 
   prf::graph::Tasker* tasker = new prf::graph::Tasker(name);
@@ -60,7 +62,7 @@ void Profiler::new_tasker(prf::graph::Tasker* tasker){
 
   //---------------------------
 }
-prf::graph::Tasker* Profiler::get_or_create_tasker(string name){
+prf::graph::Tasker* Profiler::get_or_create_tasker(std::string name){
   //---------------------------
 
   for(int i=0; i<list_tasker.size(); i++){

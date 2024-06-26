@@ -13,6 +13,7 @@ Profiler::Profiler(){
   //this->rnd_cpu = new utl::hardare::CPU();
   //this->rnd_gpu = new utl::hardare::Nvidia();
   this->name = "Hardware";
+  this->type = prf::base::HARDWARE;
 
   //---------------------------
 }
