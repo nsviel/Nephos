@@ -77,7 +77,7 @@ void Image::wait_thread(){
 
 //Data function
 void Image::find_data_from_capture(k4n::structure::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler.get_or_create_tasker("data");
+  prf::graph::Tasker* tasker = sensor->profiler.fetch_tasker("data");
   //---------------------------
 
   tasker->loop_begin();

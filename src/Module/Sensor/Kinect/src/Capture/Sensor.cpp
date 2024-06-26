@@ -49,7 +49,7 @@ void Sensor::thread_init(){
   //---------------------------
 }
 void Sensor::thread_loop(){
-  prf::graph::Tasker* tasker = profiler.get_or_create_tasker("capture");
+  prf::graph::Tasker* tasker = profiler.fetch_tasker("capture");
   //---------------------------
 
   tasker->loop_begin();

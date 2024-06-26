@@ -24,8 +24,7 @@ public:
   void clean();
 
   //Tasker function
-  prf::graph::Tasker* new_tasker(std::string name);
-  prf::graph::Tasker* get_or_create_tasker(std::string name);
+  prf::graph::Tasker* fetch_tasker(std::string name);
   void insert_tasker(prf::graph::Tasker* tasker);
   void remove_tasker(prf::graph::Tasker* tasker);
 

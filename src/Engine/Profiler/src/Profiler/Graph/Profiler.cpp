@@ -46,9 +46,18 @@ void Profiler::clean(){
 }
 
 //Tasker function
-prf::graph::Tasker* Profiler::new_tasker(std::string name){
+prf::graph::Tasker* Profiler::fetch_tasker(std::string name){
   //---------------------------
 
+  //Check if tasker name already exists
+  for(int i=0; i<list_tasker.size(); i++){
+    prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
+    if(tasker->get_name() == name){
+      return tasker;
+    }
+  }
+
+  //Else create new one
   prf::graph::Tasker* tasker = new prf::graph::Tasker(name);
   this->list_tasker.push_back(tasker);
 
@@ -58,24 +67,18 @@ prf::graph::Tasker* Profiler::new_tasker(std::string name){
 void Profiler::insert_tasker(prf::graph::Tasker* tasker){
   //---------------------------
 
-  this->list_tasker.push_back(tasker);
-
-  //---------------------------
-}
-prf::graph::Tasker* Profiler::get_or_create_tasker(std::string name){
-  //---------------------------
-
+  //Check if tasker name already exists
   for(int i=0; i<list_tasker.size(); i++){
     prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
     if(tasker->get_name() == name){
-      return tasker;
+      return;
     }
   }
 
-  prf::graph::Tasker* tasker = new_tasker(name);
+  //Else insert it
+  this->list_tasker.push_back(tasker);
 
   //---------------------------
-  return tasker;
 }
 void Profiler::remove_tasker(prf::graph::Tasker* tasker){
   //---------------------------

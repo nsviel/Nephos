@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
-#include <Profiler/gui/Profiler/Struct_profiler.h>
+#include <Profiler/gui/Profiler/Structure/Profiler.h>
 
 namespace prf{class Node;}
 namespace prf::vulkan{class Profiler;}

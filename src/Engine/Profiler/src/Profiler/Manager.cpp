@@ -11,8 +11,8 @@ Manager::Manager(){
 
   //Main profiler
   this->profiler_main = new prf::graph::Profiler("Main");
-  profiler_main->new_tasker("cpu");
-  profiler_main->new_tasker("gpu");
+  profiler_main->fetch_tasker("cpu");
+  profiler_main->fetch_tasker("gpu");
   this->add_profiler(profiler_main);
 
   //Vulkan profiler
@@ -49,8 +49,8 @@ void Manager::remove_profiler(prf::base::Profiler* profiler){
 void Manager::loop_begin(int max_fps){
   //---------------------------
 
-  prf::graph::Tasker* tasker_cpu = profiler_main->get_or_create_tasker("cpu");
-  prf::graph::Tasker* tasker_gpu = profiler_main->get_or_create_tasker("gpu");
+  prf::graph::Tasker* tasker_cpu = profiler_main->fetch_tasker("cpu");
+  prf::graph::Tasker* tasker_gpu = profiler_main->fetch_tasker("gpu");
 
   tasker_cpu->loop_begin(max_fps);
   tasker_gpu->loop_begin();
@@ -60,8 +60,8 @@ void Manager::loop_begin(int max_fps){
 void Manager::loop_end(){
   //---------------------------
 
-  prf::graph::Tasker* tasker_cpu = profiler_main->get_or_create_tasker("cpu");
-  prf::graph::Tasker* tasker_gpu = profiler_main->get_or_create_tasker("gpu");
+  prf::graph::Tasker* tasker_cpu = profiler_main->fetch_tasker("cpu");
+  prf::graph::Tasker* tasker_gpu = profiler_main->fetch_tasker("gpu");
 
   tasker_cpu->loop_end();
   tasker_gpu->loop_end();

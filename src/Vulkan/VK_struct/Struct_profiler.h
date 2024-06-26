@@ -14,8 +14,8 @@ struct Profiler{
     prf::Manager* prf_manager = node_profiler->get_prf_manager();
     prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
 
-    this->tasker_main = profiler->get_or_create_tasker("cpu");
-    this->tasker_gpu = profiler->get_or_create_tasker("gpu");
+    this->tasker_main = profiler->fetch_tasker("cpu");
+    this->tasker_gpu = profiler->fetch_tasker("gpu");
     this->prf_vulkan = prf_manager->get_profiler_vulkan();
     this->prf_vulkan->add_thread("Main");
   }
