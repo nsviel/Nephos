@@ -8,15 +8,12 @@
 #include <Vulkan/VK_struct/Struct_image.h>
 #include <Vulkan/VK_struct/Struct_texture.h>
 #include <Vulkan/VK_struct/Struct_object.h>
-#include <Vulkan/VK_struct/Struct_semaphore.h>
 #include <Vulkan/VK_struct/Struct_data.h>
 #include <Vulkan/VK_struct/Struct_framebuffer.h>
 #include <Vulkan/VK_struct/Struct_parameter.h>
 #include <Vulkan/VK_struct/Struct_pipeline.h>
 #include <Vulkan/VK_struct/Struct_query.h>
-#include <Vulkan/VK_struct/Struct_fence.h>
 #include <Vulkan/VK_struct/Struct_pool.h>
-#include <Vulkan/VK_queue/Structure/Queue.h>
 #include <Vulkan/VK_struct/Struct_physical_device.h>
 #include <Vulkan/VK_struct/Struct_device.h>
 #include <Vulkan/VK_struct/Struct_instance.h>

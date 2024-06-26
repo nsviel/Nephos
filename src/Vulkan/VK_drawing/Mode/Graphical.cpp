@@ -21,7 +21,7 @@ void Graphical::draw_frame(){
 
   //Init
   vector<vk::structure::Command*> vec_command;
-  vk::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
+  vk::synchro::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
 
   //Rendering
   if(!acquire_image(semaphore)) return;
@@ -33,7 +33,7 @@ void Graphical::draw_frame(){
 }
 
 //Subfunction
-bool Graphical::acquire_image(vk::structure::Semaphore& semaphore){
+bool Graphical::acquire_image(vk::synchro::structure::Semaphore& semaphore){
   //---------------------------
 
   //Acquire next image
@@ -44,7 +44,7 @@ bool Graphical::acquire_image(vk::structure::Semaphore& semaphore){
   //---------------------------
   return sucess;
 }
-void Graphical::record_renderpass(std::vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore){
+void Graphical::record_renderpass(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore& semaphore){
   //---------------------------
 
   for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
@@ -69,7 +69,7 @@ void Graphical::record_renderpass(std::vector<vk::structure::Command*>& vec_comm
 
   //---------------------------
 }
-void Graphical::copy_to_swapchain(std::vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore){
+void Graphical::copy_to_swapchain(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore& semaphore){
   //---------------------------
 
   //Copy renderpass to swapchain image

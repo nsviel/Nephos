@@ -26,7 +26,7 @@ void Semaphore::init_pool(){
 
   //Create a pool of semaphore number
   for(int i=0; i<number; i++){
-    vk::structure::Semaphore vk_semaphore;
+    vk::synchro::structure::Semaphore vk_semaphore;
 
     this->create_semaphore(&vk_semaphore);
     vk_semaphore.is_available = true;
@@ -41,7 +41,7 @@ void Semaphore::clean_pool(){
   //---------------------------
 
   for(int i=0; i<pool->size; i++){
-    vk::structure::Semaphore* vk_semaphore = &pool->tank[i];
+    vk::synchro::structure::Semaphore* vk_semaphore = &pool->tank[i];
     this->clean_semaphore(vk_semaphore);
   }
 
@@ -52,7 +52,7 @@ void Semaphore::reset_pool(){
   //---------------------------
 
   for(int i=0; i<pool->size; i++){
-    vk::structure::Semaphore* semaphore = &pool->tank[i];
+    vk::synchro::structure::Semaphore* semaphore = &pool->tank[i];
     this->reset_semaphore(semaphore);
   }
 
@@ -60,7 +60,7 @@ void Semaphore::reset_pool(){
 }
 
 //Semaphore function
-void Semaphore::create_semaphore(vk::structure::Semaphore* semaphore){
+void Semaphore::create_semaphore(vk::synchro::structure::Semaphore* semaphore){
   VkResult result;
   //---------------------------
 
@@ -74,14 +74,14 @@ void Semaphore::create_semaphore(vk::structure::Semaphore* semaphore){
 
   //---------------------------
 }
-void Semaphore::clean_semaphore(vk::structure::Semaphore* semaphore){
+void Semaphore::clean_semaphore(vk::synchro::structure::Semaphore* semaphore){
   //---------------------------
 
   vkDestroySemaphore(vk_struct->device.handle, semaphore->handle, nullptr);
 
   //---------------------------
 }
-void Semaphore::reset_semaphore(vk::structure::Semaphore* semaphore){
+void Semaphore::reset_semaphore(vk::synchro::structure::Semaphore* semaphore){
   //---------------------------
 /*
   // Initialize semaphore signal info
@@ -103,7 +103,7 @@ void Semaphore::reset_semaphore(vk::structure::Semaphore* semaphore){
 }
 
 //Subfunction
-vk::structure::Semaphore* Semaphore::query_free_semaphore(){
+vk::synchro::structure::Semaphore* Semaphore::query_free_semaphore(){
   vk::pool::Semaphore* pool = &vk_struct->pools.semaphore;
   //---------------------------
 
@@ -111,7 +111,7 @@ vk::structure::Semaphore* Semaphore::query_free_semaphore(){
 
   //Find the first free command buffer
   for(int i=0; i<pool->tank.size(); i++){
-    vk::structure::Semaphore* vk_semaphore = &pool->tank[i];
+    vk::synchro::structure::Semaphore* vk_semaphore = &pool->tank[i];
 
     if(vk_semaphore->is_available){
       vk_semaphore->is_available = false;

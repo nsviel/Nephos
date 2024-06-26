@@ -7,7 +7,7 @@
 namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class Surface;}
 namespace vk::structure{class Vulkan;}
-namespace vk::structure{class Fence;}
+namespace vk::synchro::structure{class Fence;}
 namespace vk::window{class GLFW;}
 
 

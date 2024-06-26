@@ -186,7 +186,7 @@ void Graphics::make_submission(std::vector<VkSubmitInfo>& vec_info){
   this->thread_idle = false;
   //---------------------------
 
-  vk::structure::Fence* fence = vk_fence->query_free_fence();
+  vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
 
   VkQueue queue = vk_struct->device.queue.graphics.handle;
   VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->handle);

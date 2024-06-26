@@ -8,7 +8,7 @@
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command;}
 namespace vk::structure{class Command_buffer;}
-namespace vk::structure{class Fence;}
+namespace vk::synchro::structure{class Fence;}
 namespace vk::synchro{class Fence;}
 namespace vk::instance{class Query;}
 

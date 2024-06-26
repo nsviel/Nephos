@@ -27,7 +27,7 @@ void Fence::init_pool(){
 
   //Create a pool of fence number
   for(int i=0; i<number; i++){
-    vk::structure::Fence vk_fence;
+    vk::synchro::structure::Fence vk_fence;
 
     this->create_fence(&vk_fence);
     this->reset_fence(&vk_fence);
@@ -38,11 +38,11 @@ void Fence::init_pool(){
   //---------------------------
 }
 void Fence::clean_pool(){
-  std::vector<vk::structure::Fence>& pool = vk_struct->pools.fence.tank;
+  std::vector<vk::synchro::structure::Fence>& pool = vk_struct->pools.fence.tank;
   //---------------------------
 
   for(int i=0; i<vk_struct->pools.fence.size; i++){
-    vk::structure::Fence* vk_fence = &pool[i];
+    vk::synchro::structure::Fence* vk_fence = &pool[i];
 
     this->clean_fence(vk_fence);
   }
@@ -51,7 +51,7 @@ void Fence::clean_pool(){
 }
 
 //Fence function
-void Fence::create_fence(vk::structure::Fence* fence){
+void Fence::create_fence(vk::synchro::structure::Fence* fence){
   //---------------------------
 
   VkFenceCreateInfo info{};
@@ -65,14 +65,14 @@ void Fence::create_fence(vk::structure::Fence* fence){
 
   //---------------------------
 }
-void Fence::clean_fence(vk::structure::Fence* fence){
+void Fence::clean_fence(vk::synchro::structure::Fence* fence){
   //---------------------------
 
   vkDestroyFence(vk_struct->device.handle, fence->handle, nullptr);
 
   //---------------------------
 }
-void Fence::reset_fence(vk::structure::Fence* fence){
+void Fence::reset_fence(vk::synchro::structure::Fence* fence){
   if(fence == nullptr) return;
   //---------------------------
 
@@ -87,7 +87,7 @@ void Fence::reset_fence(vk::structure::Fence* fence){
 }
 
 //Subfunction
-vk::structure::Fence* Fence::query_free_fence(){
+vk::synchro::structure::Fence* Fence::query_free_fence(){
   vk::pool::Fence* pool = &vk_struct->pools.fence;
   //---------------------------
 
@@ -100,7 +100,7 @@ vk::structure::Fence* Fence::query_free_fence(){
 
   //Find the first free command buffer
   int index;
-  vk::structure::Fence* fence;
+  vk::synchro::structure::Fence* fence;
   do{
     index = distr(gen); // Generate a random index
     fence = &pool->tank[index];
@@ -117,7 +117,7 @@ vk::structure::Fence* Fence::query_free_fence(){
   //---------------------------
   return nullptr;
 }
-bool Fence::is_fence_available(vk::structure::Fence* fence){
+bool Fence::is_fence_available(vk::synchro::structure::Fence* fence){
   bool is_available = false;
   //---------------------------
 

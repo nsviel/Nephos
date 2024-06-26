@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Struct_command_buffer.h>
-#include <Vulkan/VK_struct/Struct_fence.h>
-#include <Vulkan/VK_struct/Struct_semaphore.h>
+#include <Vulkan/VK_synchronization/Structure/Fence.h>
+#include <Vulkan/VK_synchronization/Structure/Semaphore.h>
 #include <Vulkan/VK_struct/Struct_descriptor.h>
 #include <vulkan/vulkan.h>
 #include <vector>
@@ -28,7 +28,7 @@ struct Fence{
   //---------------------------
 
   std::mutex mutex;
-  std::vector<vk::structure::Fence> tank;
+  std::vector<vk::synchro::structure::Fence> tank;
   uint32_t size = 100;
 
   //---------------------------
@@ -38,7 +38,7 @@ struct Semaphore{
   //---------------------------
 
   std::mutex mutex;
-  std::vector<vk::structure::Semaphore> tank;
+  std::vector<vk::synchro::structure::Semaphore> tank;
   uint32_t size = 100;
 
   //---------------------------

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Vulkan/VK_struct/Struct_query.h>
-#include <Vulkan/VK_struct/Struct_fence.h>
+#include <Vulkan/VK_synchronization/Structure/Fence.h>
 #include <vulkan/vulkan.h>
 #include <string>
 #include <mutex>
@@ -18,7 +18,7 @@ struct Command_buffer{
   std::string name = "";
   std::mutex mutex;
   vk::structure::Query query;
-  vk::structure::Fence* fence = nullptr;
+  vk::synchro::structure::Fence* fence = nullptr;
   VkCommandBuffer handle = VK_NULL_HANDLE;
   float timestamp = 0;
   bool is_available = true;

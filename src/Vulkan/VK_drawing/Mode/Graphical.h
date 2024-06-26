@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace vk::structure{class Vulkan;}
-namespace vk::structure{class Semaphore;}
+namespace vk::synchro::structure{class Semaphore;}
 namespace vk::structure{class Command;}
 namespace vk::structure{class Renderpass;}
 namespace vk::memory{class Transfer;}
@@ -24,9 +24,9 @@ public:
   void draw_frame();
 
   //Subfunction
-  bool acquire_image(vk::structure::Semaphore& semaphore);
-  void record_renderpass(std::vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore);
-  void copy_to_swapchain(std::vector<vk::structure::Command*>& vec_command, vk::structure::Semaphore& semaphore);
+  bool acquire_image(vk::synchro::structure::Semaphore& semaphore);
+  void record_renderpass(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore& semaphore);
+  void copy_to_swapchain(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore& semaphore);
   void submit_presentation(std::vector<vk::structure::Command*>& vec_command);
 
 private:

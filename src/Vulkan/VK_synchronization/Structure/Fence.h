@@ -3,7 +3,7 @@
 #include <vulkan/vulkan.h>
 
 
-namespace vk::structure{
+namespace vk::synchro::structure{
 
 struct Fence{
   //---------------------------

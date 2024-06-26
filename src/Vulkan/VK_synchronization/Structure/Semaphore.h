@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vulkan/vulkan.h>
 
 
-namespace vk::structure{
+namespace vk::synchro::structure{
 
 struct Semaphore{
   //---------------------------

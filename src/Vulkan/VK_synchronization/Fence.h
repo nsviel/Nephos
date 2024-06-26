@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 namespace vk::structure{class Vulkan;}
-namespace vk::structure{class Fence;}
+namespace vk::synchro::structure{class Fence;}
 
 
 namespace vk::synchro{
@@ -21,13 +21,13 @@ public:
   void clean_pool();
 
   //Fence function
-  void create_fence(vk::structure::Fence* fence);
-  void clean_fence(vk::structure::Fence* fence);
-  void reset_fence(vk::structure::Fence* fence);
+  void create_fence(vk::synchro::structure::Fence* fence);
+  void clean_fence(vk::synchro::structure::Fence* fence);
+  void reset_fence(vk::synchro::structure::Fence* fence);
 
   //Subfunction
-  vk::structure::Fence* query_free_fence();
-  bool is_fence_available(vk::structure::Fence* fence);
+  vk::synchro::structure::Fence* query_free_fence();
+  bool is_fence_available(vk::synchro::structure::Fence* fence);
 
 private:
   vk::structure::Vulkan* vk_struct;
