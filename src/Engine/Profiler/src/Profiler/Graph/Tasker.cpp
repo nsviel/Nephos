@@ -65,7 +65,7 @@ void Tasker::loop_end(){
   //---------------------------
 
   //Control fps and measure sleep time
-  if(is_fps_control){
+  if(this->is_fps_control){
     this->task_begin("sleep");
     fps_control->stop_loop();
     this->task_end("sleep", vec4(50, 50, 50, 255));

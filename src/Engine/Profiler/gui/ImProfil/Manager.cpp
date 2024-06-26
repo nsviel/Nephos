@@ -71,7 +71,7 @@ void Manager::add_task(float ts_begin, float ts_end, string name){
   //---------------------------
 
   //Insert task
-  prf::base::Task task;
+  prf::graph::structure::Task task;
   task.ts_begin = ts_begin;
   task.ts_end = ts_end;
   task.name = name;
@@ -87,7 +87,7 @@ void Manager::add_task(float ts_begin, float ts_end, string name, vec4 color){
   //---------------------------
 
   //Insert task
-  prf::base::Task task;
+  prf::graph::structure::Task task;
   task.ts_begin = ts_begin;
   task.ts_end = ts_end;
   task.name = name;
@@ -99,13 +99,13 @@ void Manager::add_task(float ts_begin, float ts_end, string name, vec4 color){
 
   //---------------------------
 }
-void Manager::add_vec_task(vector<prf::base::Task> vec_task){
+void Manager::add_vec_task(vector<prf::graph::structure::Task> vec_task){
   //---------------------------
 
   this->vec_task = vec_task;
 
   for(int i=0; i<vec_task.size(); i++){
-    prf::base::Task& task = vec_task[i];
+    prf::graph::structure::Task& task = vec_task[i];
     task.color = get_next_color();
   }
 

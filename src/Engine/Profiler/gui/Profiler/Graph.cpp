@@ -145,34 +145,33 @@ void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
   //---------------------------
 }
 void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim){
-  prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
   //---------------------------
 
   this->selected_tasker = tasker;
 
   if(!pause){
     //Reset graph
-    gui_graph->reset();
+    tasker->graph.reset();
 
     //Assign tasks
-    vector<prf::graph::structure::Task>& vec_task = tasker->get_vec_task();
 
-    for(int i=0; i<vec_task.size(); i++){
-      prf::graph::structure::Task task = vec_task[i];
+
+    for(int i=0; i<tasker->vec_task.size(); i++){
+      prf::graph::structure::Task task = tasker->vec_task[i];
 
       if(task.color == vec4(0, 0, 0, 0)){
-        gui_graph->add_task(task.ts_begin, task.ts_end, task.name);
+        tasker->graph.add_task(task.ts_begin, task.ts_end, task.name);
       }else{
-        gui_graph->add_task(task.ts_begin, task.ts_end, task.name, task.color);
+        tasker->graph.add_task(task.ts_begin, task.ts_end, task.name, task.color);
       }
     }
 
     //load data
-    gui_graph->load_data_to_graph();
+    tasker->graph.load_data_to_graph();
   }
 
   //Render profiler
-  gui_graph->render_child(graph_dim);
+  tasker->graph.render_child(graph_dim);
 
   //---------------------------
 }
@@ -188,9 +187,8 @@ void Graph::set_graphs_max_time(int value){
 
       for(int i=0; i<list_tasker.size(); i++){
         prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
-        prf::improfil::Manager* gui_graph = tasker->get_gui_graph();
 
-        gui_graph->set_time_max(value);
+        tasker->graph.set_time_max(value);
       }
     }
   }

@@ -17,7 +17,6 @@ struct Tasker{
 
   std::vector<prf::graph::structure::Task> vec_task_current;
   std::vector<prf::graph::structure::Task> vec_task;
-  std::string name = "";
   std::string thread_ID = "";
   float loop_fps = 0;
   bool is_fps_control = false;
