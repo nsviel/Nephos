@@ -55,7 +55,7 @@ prf::graph::Tasker* Profiler::new_tasker(std::string name){
   //---------------------------
   return tasker;
 }
-void Profiler::new_tasker(prf::graph::Tasker* tasker){
+void Profiler::insert_tasker(prf::graph::Tasker* tasker){
   //---------------------------
 
   this->list_tasker.push_back(tasker);
@@ -77,7 +77,6 @@ prf::graph::Tasker* Profiler::get_or_create_tasker(std::string name){
   //---------------------------
   return tasker;
 }
-
 void Profiler::remove_tasker(prf::graph::Tasker* tasker){
   //---------------------------
 
