@@ -13,6 +13,7 @@ struct Structure{
   prf::vulkan::Device selected_device;
   std::vector<prf::vulkan::Thread> vec_thread;
   std::vector<prf::vulkan::Device> vec_device;
+  std::map<prf::vulkan::queue::Type, prf::vulkan::Queue> map_queue;
   std::mutex mutex;
 
   //---------------------------

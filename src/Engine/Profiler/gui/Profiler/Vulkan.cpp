@@ -18,6 +18,7 @@ Vulkan::~Vulkan(){}
 
 //Main function
 void Vulkan::draw_profiler(prf::vulkan::Profiler* prf_vulkan){
+  prf::vulkan::Structure* prf_struct = prf_vulkan->get_prf_struct();
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
 
@@ -26,21 +27,21 @@ void Vulkan::draw_profiler(prf::vulkan::Profiler* prf_vulkan){
     //Device tab
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("Device##profiler_vulkan", NULL)){
-      this->draw_tab_device(prf_vulkan, graph_dim);
+      this->draw_tab_device(prf_struct, graph_dim);
       ImGui::EndTabItem();
     }
 
     //Queue tab
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("Queue##profiler_vulkan", NULL)){
-      this->draw_tab_queue(prf_vulkan, graph_dim);
+      this->draw_tab_queue(prf_struct, graph_dim);
       ImGui::EndTabItem();
     }
 
     //Thread tab
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("Thread##profiler_vulkan", NULL)){
-      this->draw_tab_thread(prf_vulkan, graph_dim);
+      this->draw_tab_thread(prf_struct, graph_dim);
       ImGui::EndTabItem();
     }
 
@@ -51,8 +52,7 @@ void Vulkan::draw_profiler(prf::vulkan::Profiler* prf_vulkan){
 }
 
 //Tab function
-void Vulkan::draw_tab_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
-  prf::vulkan::Structure* prf_struct = prf_vulkan->get_prf_struct();
+void Vulkan::draw_tab_thread(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim){
   //---------------------------
 
   ImVec4 green = ImVec4(0.5, 1, 0.5, 1);
@@ -83,8 +83,7 @@ void Vulkan::draw_tab_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim
 
   //---------------------------
 }
-void Vulkan::draw_tab_queue(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
-  map<prf::vulkan::queue::Type, prf::vulkan::Queue>& map_queue = prf_vulkan->get_map_queue();
+void Vulkan::draw_tab_queue(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
@@ -105,37 +104,36 @@ void Vulkan::draw_tab_queue(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim)
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Graphics");
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::queue::GRAPHICS].number);
+  ImGui::TextColored(color, "%d", prf_struct->map_queue[prf::vulkan::queue::GRAPHICS].number);
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::queue::GRAPHICS].ID_family);
+  ImGui::TextColored(color, "%d", prf_struct->map_queue[prf::vulkan::queue::GRAPHICS].ID_family);
 
   //Presentation
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Presentation");
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::queue::PRESENTATION].number);
+  ImGui::TextColored(color, "%d", prf_struct->map_queue[prf::vulkan::queue::PRESENTATION].number);
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::queue::PRESENTATION].ID_family);
+  ImGui::TextColored(color, "%d", prf_struct->map_queue[prf::vulkan::queue::PRESENTATION].ID_family);
 
   //Transfer
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Transfer");
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::queue::TRANSFER].number);
+  ImGui::TextColored(color, "%d", prf_struct->map_queue[prf::vulkan::queue::TRANSFER].number);
   ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", map_queue[prf::vulkan::queue::TRANSFER].ID_family);
+  ImGui::TextColored(color, "%d", prf_struct->map_queue[prf::vulkan::queue::TRANSFER].ID_family);
 
   ImGui::EndTable();
 
   //---------------------------
 }
-void Vulkan::draw_tab_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
-  /*vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
+void Vulkan::draw_tab_device(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim){
   //---------------------------
 
   if(ImGui::BeginTabBar("vulkan_device##tab_bar")){
-    for(int i=0; i< vec_device.size(); i++){
-      prf::vulkan::Device& device = vec_device[i];
+    for(int i=0; i<prf_struct->vec_device.size(); i++){
+      prf::vulkan::Device& device = prf_struct->vec_device[i];
 
       if(ImGui::BeginTabItem(device.name.c_str(), NULL)){
         this->draw_device_info(device);
@@ -147,7 +145,7 @@ void Vulkan::draw_tab_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim
     }
     ImGui::EndTabBar();
   }
-*/
+
   //---------------------------
 }
 
@@ -258,5 +256,15 @@ void Vulkan::draw_device_queue_families(prf::vulkan::Device& device){
 
   //---------------------------
 }
+std::string Vulkan::get_selected_gpu_name(prf::vulkan::Profiler* prf_vulkan){
+  prf::vulkan::Structure* prf_struct = prf_vulkan->get_prf_struct();
+  //---------------------------
+
+  return prf_struct->selected_device.name;
+
+  //---------------------------
+}
+
+
 
 }

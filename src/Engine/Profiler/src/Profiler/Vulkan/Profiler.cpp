@@ -50,7 +50,7 @@ void Profiler::add_thread(string name){
 void Profiler::add_queue(prf::vulkan::queue::Type type, int ID_family){
   //---------------------------
 
-  prf::vulkan::Queue& queue = map_queue[type];
+  prf::vulkan::Queue& queue = prf_struct->map_queue[type];
   queue.number++;
   queue.ID_family = ID_family;
 

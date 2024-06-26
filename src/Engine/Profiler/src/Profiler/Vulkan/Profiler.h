@@ -31,14 +31,10 @@ public:
   void collect_info(vk::structure::Vulkan* vk_struct);
 
   inline prf::vulkan::Structure* get_prf_struct(){return prf_struct;}
-  inline map<prf::vulkan::queue::Type, prf::vulkan::Queue>& get_map_queue(){return map_queue;}
 
 private:
   prf::vulkan::Collector* prf_collector;
   prf::vulkan::Structure* prf_struct;
-
-
-  std::map<prf::vulkan::queue::Type, prf::vulkan::Queue> map_queue;
 };
 
 }

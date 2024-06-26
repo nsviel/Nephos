@@ -21,7 +21,6 @@ public:
   void collect_info(vk::structure::Vulkan* vk_struct);
 
   //Subfunction
-  void collect_vulkan_info(vk::structure::Vulkan* vk_struct);
   void collect_vulkan_device(vk::structure::Vulkan* vk_struct);
 
 private:
