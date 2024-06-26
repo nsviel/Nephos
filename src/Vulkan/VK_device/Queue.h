@@ -5,7 +5,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Physical_device;}
-namespace vk::structure{class Queue;}
+namespace vk::queue::structure{class Queue;}
 
 
 namespace vk::device{
@@ -23,7 +23,7 @@ public:
   void find_queue_family_assigment();
 
   //Queue object
-  void create_queue(vk::structure::Queue& queue);
+  void create_queue(vk::queue::structure::Queue& queue);
   void create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_info);
 
   //Subfunction

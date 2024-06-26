@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Struct_queue.h>
+#include <Vulkan/VK_queue/Structure/Family.h>
 #include <vulkan/vulkan.h>
 #include <string>
 #include <vector>
@@ -30,7 +30,7 @@ struct Physical_device{
 
   std::vector<VkSurfaceFormatKHR> formats;
   std::vector<VkPresentModeKHR> presentation_mode;
-  std::vector<vk::structure::queue::Family> vec_queue_family;
+  std::vector<vk::queue::structure::Family> vec_queue_family;
 
   //---------------------------
 };

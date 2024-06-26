@@ -68,7 +68,7 @@ void Logical::create_logical_device(){
   //---------------------------
 }
 void Logical::create_device_queue(){
-  vk::structure::queue::Pool& pool = vk_struct->device.queue;
+  vk::queue::structure::Pool& pool = vk_struct->device.queue;
   //---------------------------
 
   vk_dev_queue->create_queue(pool.graphics);

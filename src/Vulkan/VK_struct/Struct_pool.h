@@ -1,6 +1,11 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Vulkan/VK_struct/Struct_command_buffer.h>
+#include <Vulkan/VK_struct/Struct_fence.h>
+#include <Vulkan/VK_struct/Struct_semaphore.h>
+#include <Vulkan/VK_struct/Struct_descriptor.h>
+#include <vulkan/vulkan.h>
+#include <vector>
 #include <mutex>
 
 

@@ -32,7 +32,7 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
   // Count the number of each type of queue
   for(int i=0; i<nb_queue_family; i++){
     //Queue family properties
-    vk::structure::queue::Family queue_family;
+    vk::queue::structure::Family queue_family;
     queue_family.ID = i;
     queue_family.property = queue_families[i];
     queue_family.nb_queue = queue_family.property.queueCount;
@@ -56,11 +56,11 @@ void Queue::find_queue_family_composition(vk::structure::Physical_device& physic
 void Queue::find_queue_family_assigment(){
   //---------------------------
 
-  std::vector<vk::structure::queue::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
-  vk::structure::queue::Pool& pool = vk_struct->device.queue;
+  std::vector<vk::queue::structure::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
+  vk::queue::structure::Pool& pool = vk_struct->device.queue;
 
   for(int i=0; i<vec_queue_family.size(); i++){
-    vk::structure::queue::Family& family = vec_queue_family[i];
+    vk::queue::structure::Family& family = vec_queue_family[i];
     bool several_queue = family.nb_queue > 1;
 
     //Graphics
@@ -113,7 +113,7 @@ void Queue::find_queue_family_assigment(){
 }
 
 //Queue object
-void Queue::create_queue(vk::structure::Queue& queue){
+void Queue::create_queue(vk::queue::structure::Queue& queue){
   if(queue.family_ID == -1) return;
   //---------------------------
 
@@ -122,17 +122,17 @@ void Queue::create_queue(vk::structure::Queue& queue){
   //---------------------------
 }
 void Queue::create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_info){
-  std::vector<vk::structure::queue::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
+  std::vector<vk::queue::structure::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   //---------------------------
 
   for(int i=0; i<vec_queue_family.size(); i++){
-    vk::structure::queue::Family& family = vec_queue_family[i];
+    vk::queue::structure::Family& family = vec_queue_family[i];
     if(family.vec_queue.size() == 0) continue;
 
     //Get set of queue index
     set<int> set_index;
     for(int j=0; j<family.vec_queue.size(); j++){
-      vk::structure::Queue* queue = family.vec_queue[j];
+      vk::queue::structure::Queue* queue = family.vec_queue[j];
       set_index.insert(queue->family_index);
     }
 
@@ -164,7 +164,7 @@ bool Queue::suitability_for_presentation(vk::structure::Physical_device& physica
   bool is_transfer_able = false;
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::structure::queue::Family& queue_family = physical_device.vec_queue_family[i];
+    vk::queue::structure::Family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
     if(queue_family.capable_graphics && queue_family.capable_presentation){
@@ -192,7 +192,7 @@ bool Queue::suitability_for_graphics(vk::structure::Physical_device& physical_de
   bool is_transfer_able = false;
 
   for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-    vk::structure::queue::Family& queue_family = physical_device.vec_queue_family[i];
+    vk::queue::structure::Family& queue_family = physical_device.vec_queue_family[i];
 
     //Querying for graphics family
     if(queue_family.capable_graphics){

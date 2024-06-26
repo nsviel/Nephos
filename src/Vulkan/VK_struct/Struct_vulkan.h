@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Vulkan/VK_queue/Structure/Class.h>
 #include <Application/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Profiler/Namespace.h>
@@ -35,7 +36,7 @@ struct Vulkan{
   vk::structure::Pool pools;
   vk::structure::Command command;
   vk::structure::Synchro synchro;
-  vk::structure::queue::Class queue;
+  vk::queue::structure::Class queue;
 
   //---------------------------
 };

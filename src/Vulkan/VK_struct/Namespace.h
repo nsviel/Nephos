@@ -17,7 +17,7 @@
 #include <Vulkan/VK_struct/Struct_query.h>
 #include <Vulkan/VK_struct/Struct_fence.h>
 #include <Vulkan/VK_struct/Struct_pool.h>
-#include <Vulkan/VK_struct/Struct_queue.h>
+#include <Vulkan/VK_queue/Structure/Queue.h>
 #include <Vulkan/VK_struct/Struct_physical_device.h>
 #include <Vulkan/VK_struct/Struct_device.h>
 #include <Vulkan/VK_struct/Struct_instance.h>
