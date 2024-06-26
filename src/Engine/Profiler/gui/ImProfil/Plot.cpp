@@ -1,35 +1,35 @@
-#include "Manager.h"
+#include "Plot.h"
 
 #include <Profiler/Namespace.h>
 
 
 namespace prf::improfil{
 
-Manager::Manager(){
+Plot::Plot(){
   //---------------------------
 
-  this->graph = new prf::improfil::Graph();
+  this->graph = new prf::improfil::Renderer();
   this->idx_color = 0;
   this->max_nb_data = 100;
   this->vec_color = prf::improfil::colormap::viridis;
 
   //---------------------------
 }
-Manager::Manager(string name){
+Plot::Plot(string name){
   //---------------------------
 
   this->name = name;
-  this->graph = new prf::improfil::Graph();
+  this->graph = new prf::improfil::Renderer();
   this->idx_color = 0;
   this->max_nb_data = 100;
   this->vec_color = prf::improfil::colormap::viridis;
 
   //---------------------------
 }
-Manager::~Manager(){}
+Plot::~Plot(){}
 
 //Main function
-void Manager::render_overlay(ImVec2 image_pose){
+void Plot::render_overlay(ImVec2 image_pose){
   //---------------------------
 /*
   renderer.graph->load_graph_data(vec_task);
@@ -57,7 +57,7 @@ void Manager::render_overlay(ImVec2 image_pose){
 */
   //---------------------------
 }
-void Manager::render_child(ImVec2 dimension){
+void Plot::render_child(ImVec2 dimension){
   string title = name + "##graph";
   //---------------------------
 
@@ -70,14 +70,14 @@ void Manager::render_child(ImVec2 dimension){
 
   //---------------------------
 }
-void Manager::load_data_to_graph(){
+void Plot::load_data_to_graph(){
   //---------------------------
 
   this->graph->load_graph_data(vec_task);
 
   //---------------------------
 }
-void Manager::add_task(float ts_begin, float ts_end, string name){
+void Plot::add_task(float ts_begin, float ts_end, string name){
   //---------------------------
 
   //Insert task
@@ -93,7 +93,7 @@ void Manager::add_task(float ts_begin, float ts_end, string name){
 
   //---------------------------
 }
-void Manager::add_task(float ts_begin, float ts_end, string name, vec4 color){
+void Plot::add_task(float ts_begin, float ts_end, string name, vec4 color){
   //---------------------------
 
   //Insert task
@@ -109,7 +109,7 @@ void Manager::add_task(float ts_begin, float ts_end, string name, vec4 color){
 
   //---------------------------
 }
-void Manager::add_vec_task(vector<prf::graph::structure::Task> vec_task){
+void Plot::add_vec_task(vector<prf::graph::structure::Task> vec_task){
   //---------------------------
 
   this->vec_task = vec_task;
@@ -121,7 +121,7 @@ void Manager::add_vec_task(vector<prf::graph::structure::Task> vec_task){
 
   //---------------------------
 }
-void Manager::reset(){
+void Plot::reset(){
   //---------------------------
 
   this->vec_task.clear();
@@ -131,7 +131,7 @@ void Manager::reset(){
 }
 
 //Subfunction
-vec4 Manager::get_next_color(){
+vec4 Plot::get_next_color(){
   vec4 color;
   //---------------------------
 
@@ -143,7 +143,7 @@ vec4 Manager::get_next_color(){
   //---------------------------
   return color;
 }
-void Manager::set_time_max(int value){
+void Plot::set_time_max(int value){
   //---------------------------
 
   float* time_max = graph->get_max_time();

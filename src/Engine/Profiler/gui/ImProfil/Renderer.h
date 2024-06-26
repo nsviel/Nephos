@@ -10,12 +10,12 @@ namespace prf::graph::structure{class Task;}
 
 namespace prf::improfil{
 
-class Graph
+class Renderer
 {
 public:
   //Constructor
-  Graph();
-  ~Graph();
+  Renderer();
+  ~Renderer();
 
 public:
   //Main function

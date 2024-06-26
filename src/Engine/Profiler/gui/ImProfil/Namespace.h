@@ -1,5 +1,5 @@
 #pragma once
 
 #include <Profiler/gui/ImProfil/Structure/Namespace.h>
-#include <Profiler/gui/ImProfil/Manager.h>
-#include <Profiler/gui/ImProfil/Graph.h>
+#include <Profiler/gui/ImProfil/Plot.h>
+#include <Profiler/gui/ImProfil/Renderer.h>

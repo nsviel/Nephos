@@ -61,8 +61,8 @@ void Panel::draw_tab_profiler(){
     for(int i=0; i<list_profiler.size(); i++){
       prf::base::Profiler* profiler = *next(list_profiler.begin(), i);
 
-      ImVec2 graph_dim = ImGui::GetContentRegionAvail();
-      ImGui::SetNextItemWidth(graph_dim.x / list_profiler.size());
+      ImVec2 dimension = ImGui::GetContentRegionAvail();
+      ImGui::SetNextItemWidth(dimension.x / list_profiler.size());
       if(ImGui::BeginTabItem(profiler->name.c_str())){
         this->draw_profiler(profiler);
         ImGui::EndTabItem();

@@ -26,10 +26,9 @@ void Graph::show_profiler(prf::base::Profiler* profiler){
   this->draw_info();
 
   if(ImGui::BeginTabBar("tasker_gui##4567")){
-    ImVec2 graph_dim = ImGui::GetContentRegionAvail();
 
-    //this->draw_graph_all(graph);
-    //this->draw_graph_unique(graph);
+    this->draw_graph_all(graph);
+    this->draw_graph_unique(graph);
 
     ImGui::EndTabBar();
   }
@@ -43,6 +42,8 @@ void Graph::draw_info(){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
+  ImGui::BeginTable("profiler_panel##info", 2);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
 
   //Thread
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -59,6 +60,8 @@ void Graph::draw_info(){
   ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", selected_tasker->fps); //io.Framerate
   ImGui::SameLine();
   ImGui::Text(" FPS ]");
+
+  ImGui::EndTable();
 
   //---------------------------
 }
@@ -86,8 +89,8 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   }
 
   //All not empty tasker graphs
-  ImVec2 graph_dim = ImGui::GetContentRegionAvail();
-  ImGui::SetNextItemWidth(graph_dim.x / (list_tasker.size() + 1));
+  ImVec2 dimension = ImGui::GetContentRegionAvail();
+  ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
   string title = "All##" + profiler->name;
   if(ImGui::BeginTabItem("All##4568", NULL, flag)){
 
@@ -100,10 +103,10 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
 
     ImGui::TableNextColumn();
 
-    graph_dim = ImVec2(graph_dim.x, graph_dim.y / vec_tasker.size() - 3);
+    dimension = ImVec2(dimension.x, dimension.y / vec_tasker.size() - 3);
 
     for(int i=0; i<vec_tasker.size(); i++){
-      this->draw_tasker_graph(vec_tasker[i], graph_dim);
+      this->draw_tasker_graph(vec_tasker[i], dimension);
     }
 
     ImGui::EndTable();
@@ -121,8 +124,8 @@ void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
     prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
 
     //Improfil graphs
-    ImVec2 graph_dim = ImGui::GetContentRegionAvail();
-    ImGui::SetNextItemWidth(graph_dim.x / (list_tasker.size() + 1));
+    ImVec2 dimension = ImGui::GetContentRegionAvail();
+    ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
     string title = tasker->name + "##" + tasker->thread_ID;
     if(!tasker->vec_task.empty() && ImGui::BeginTabItem(title.c_str(), NULL)){
 
@@ -134,7 +137,7 @@ void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
       this->draw_graph_command();
 
       ImGui::TableNextColumn();
-      this->draw_tasker_graph(tasker, graph_dim);
+      this->draw_tasker_graph(tasker, dimension);
 
       ImGui::EndTable();
 
@@ -174,39 +177,37 @@ void Graph::draw_graph_command(){
   if(ImGui::VSliderInt("Y axis", ImVec2(22, ImGui::GetContentRegionAvail().y), &max_time, 100, 10, "%d")){
     this->set_graphs_max_time(max_time);
   }
-  ImGui::PopStyleColor(2);
-  ImGui::PopStyleVar(5);
+  ImGui::PopStyleColor(5);
 
   //---------------------------
 }
-void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim){
+void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 dimension){
   //---------------------------
 
   this->selected_tasker = tasker;
 
+  //Update graph
   if(!pause){
     //Reset graph
-    tasker->graph.reset();
+    tasker->plot.reset();
 
     //Assign tasks
-
-
     for(int i=0; i<tasker->vec_task.size(); i++){
       prf::graph::structure::Task task = tasker->vec_task[i];
 
       if(task.color == vec4(0, 0, 0, 0)){
-        tasker->graph.add_task(task.ts_begin, task.ts_end, task.name);
+        tasker->plot.add_task(task.ts_begin, task.ts_end, task.name);
       }else{
-        tasker->graph.add_task(task.ts_begin, task.ts_end, task.name, task.color);
+        tasker->plot.add_task(task.ts_begin, task.ts_end, task.name, task.color);
       }
     }
 
     //load data
-    tasker->graph.load_data_to_graph();
+    tasker->plot.load_data_to_graph();
   }
 
   //Render profiler
-  tasker->graph.render_child(graph_dim);
+  tasker->plot.render_child(dimension);
 
   //---------------------------
 }
@@ -223,7 +224,7 @@ void Graph::set_graphs_max_time(int value){
       for(int i=0; i<list_tasker.size(); i++){
         prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
 
-        tasker->graph.set_time_max(value);
+        tasker->plot.set_time_max(value);
       }
     }
   }

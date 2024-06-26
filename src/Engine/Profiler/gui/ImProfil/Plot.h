@@ -3,18 +3,18 @@
 #include <Utility/GUI/Plot/Namespace.h>
 #include <Utility/Specific/Common.h>
 
-namespace prf::improfil{class Graph;}
+namespace prf::improfil{class Renderer;}
 namespace prf::graph::structure{class Task;}
 
 
 namespace prf::improfil{
 
-class Manager{
+class Plot{
 public:
   //Constructor / Destructor
-  Manager();
-  Manager(string name);
-  ~Manager();
+  Plot();
+  Plot(string name);
+  ~Plot();
 
 public:
   //Main function
@@ -31,7 +31,7 @@ public:
   void reset();
 
 private:
-  prf::improfil::Graph* graph;
+  prf::improfil::Renderer* graph;
   vector<prf::graph::structure::Task> vec_task;
   vector<vec4> vec_color;
   string name = "";

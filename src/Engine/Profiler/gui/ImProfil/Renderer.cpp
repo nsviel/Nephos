@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "Renderer.h"
 
 #include <Profiler/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace prf::improfil{
 
 //Constructor
-Graph::Graph(){
+Renderer::Renderer(){
   //---------------------------
 
   this->bar_max_nb = 400;
@@ -24,10 +24,10 @@ Graph::Graph(){
 
   //---------------------------
 }
-Graph::~Graph(){}
+Renderer::~Renderer(){}
 
 //Main function
-void Graph::load_graph_data(const std::vector<prf::graph::structure::Task>& vec_task){
+void Renderer::load_graph_data(const std::vector<prf::graph::structure::Task>& vec_task){
   //update the graph with new task data
   //---------------------------
 
@@ -83,7 +83,7 @@ void Graph::load_graph_data(const std::vector<prf::graph::structure::Task>& vec_
 
   //---------------------------
 }
-void Graph::rebuild_task_stats(size_t bar_end){
+void Renderer::rebuild_task_stats(size_t bar_end){
   //---------------------------
 
   //Reset task
@@ -121,7 +121,7 @@ void Graph::rebuild_task_stats(size_t bar_end){
 }
 
 //Render
-void Graph::render_graph(ImVec2 dimension){
+void Renderer::render_graph(ImVec2 dimension){
   const glm::vec2 widget_pose = glm::vec2(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y);
   //---------------------------
 
@@ -138,7 +138,7 @@ void Graph::render_graph(ImVec2 dimension){
 
   //---------------------------
 }
-void Graph::render_serie(ImDrawList *draw_list){
+void Renderer::render_serie(ImDrawList *draw_list){
   //---------------------------
 
   //Objectif outline zone
@@ -173,7 +173,7 @@ void Graph::render_serie(ImDrawList *draw_list){
 
   //---------------------------
 }
-void Graph::render_legend(ImDrawList *draw_list){
+void Renderer::render_legend(ImDrawList *draw_list){
   //---------------------------
 
   float markerMidWidth = 30.0f;
@@ -235,7 +235,7 @@ void Graph::render_legend(ImDrawList *draw_list){
 }
 
 //Subfunction
-void Graph::render_background_tics(ImDrawList *draw_list){
+void Renderer::render_background_tics(ImDrawList *draw_list){
   //---------------------------
 
   for(float time = 0.0f; time <= max_time_s*1000.0f; time += 5.0f){
@@ -246,7 +246,7 @@ void Graph::render_background_tics(ImDrawList *draw_list){
 
   //---------------------------
 }
-void Graph::render_serie_task_rect(ImDrawList *draw_list, prf::graph::structure::Task& task, glm::vec2 bar_pose){
+void Renderer::render_serie_task_rect(ImDrawList *draw_list, prf::graph::structure::Task& task, glm::vec2 bar_pose){
   float height_threshold = 1.0f;
   //---------------------------
 
@@ -263,7 +263,7 @@ void Graph::render_serie_task_rect(ImDrawList *draw_list, prf::graph::structure:
 
   //---------------------------
 }
-void Graph::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 color){
+void Renderer::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 color){
   //---------------------------
 
   this->draw_rect(draw_list, leftMinPoint, leftMaxPoint, color, true);
@@ -278,7 +278,7 @@ void Graph::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, 
 
   //---------------------------
 }
-void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::graph::structure::Task task){
+void Renderer::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::graph::structure::Task task){
   //---------------------------
 
   glm::vec2 text_margin = glm::vec2(5.0f, -3.0f);
@@ -297,7 +297,7 @@ void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, v
 }
 
 //Primitives
-void Graph::draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickness, vec4 color){
+void Renderer::draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickness, vec4 color){
   //---------------------------
 
   float scaling_factor = graph_dim.y / max_time_s;
@@ -311,7 +311,7 @@ void Graph::draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickn
 
   //---------------------------
 }
-void Graph::draw_zone(ImDrawList *draw_list, float ts_begin_ms, float ts_end_ms, vec4 color){
+void Renderer::draw_zone(ImDrawList *draw_list, float ts_begin_ms, float ts_end_ms, vec4 color){
   //---------------------------
 
   float scaling_factor = graph_dim.y / max_time_s;
@@ -329,7 +329,7 @@ void Graph::draw_zone(ImDrawList *draw_list, float ts_begin_ms, float ts_end_ms,
 
   //---------------------------
 }
-void Graph::draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, vec4 color, bool filled = true){
+void Renderer::draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, vec4 color, bool filled = true){
   //---------------------------
 
   if(filled)
@@ -339,14 +339,14 @@ void Graph::draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPo
 
   //---------------------------
 }
-void Graph::draw_text(ImDrawList *draw_list, glm::vec2 point, vec4 color, const char *text){
+void Renderer::draw_text(ImDrawList *draw_list, glm::vec2 point, vec4 color, const char *text){
   //---------------------------
 
   draw_list->AddText(ImVec2(point.x, point.y), IM_COL32(color.x, color.y, color.z, color.w), text);
 
   //---------------------------
 }
-void Graph::draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled = true){
+void Renderer::draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled = true){
   //---------------------------
 
   if(filled)
