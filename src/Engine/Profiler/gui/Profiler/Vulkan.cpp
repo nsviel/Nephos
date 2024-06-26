@@ -52,7 +52,7 @@ void Vulkan::draw_profiler(prf::vulkan::Profiler* prf_vulkan){
 
 //Tab function
 void Vulkan::draw_tab_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
-  vector<prf::vulkan::Thread>& vec_thread = prf_vulkan->get_vec_thread();
+  prf::vulkan::Structure* prf_struct = prf_vulkan->get_prf_struct();
   //---------------------------
 
   ImVec4 green = ImVec4(0.5, 1, 0.5, 1);
@@ -64,8 +64,8 @@ void Vulkan::draw_tab_thread(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim
   ImGui::TableSetupColumn("ID");
   ImGui::TableHeadersRow();
 
-  for(int i=0; i<vec_thread.size(); i++){
-    prf::vulkan::Thread& thread = vec_thread[i];
+  for(int i=0; i<prf_struct->vec_thread.size(); i++){
+    prf::vulkan::Thread& thread = prf_struct->vec_thread[i];
 
     //Thread name
     ImGui::TableNextRow();

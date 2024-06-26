@@ -9,7 +9,7 @@ namespace prf::vulkan{
 Profiler::Profiler(){
   //---------------------------
 
-  this->prf_struct = new prf::vulkan::Info();
+  this->prf_struct = new prf::vulkan::Structure();
   this->prf_collector = new prf::vulkan::Collector(prf_struct);
 
   //---------------------------
@@ -17,7 +17,7 @@ Profiler::Profiler(){
 Profiler::Profiler(string name, string type){
   //---------------------------
 
-  this->prf_struct = new prf::vulkan::Info();
+  this->prf_struct = new prf::vulkan::Structure();
   this->prf_collector = new prf::vulkan::Collector(prf_struct);
   this->name = name;
   this->type = type;
@@ -35,17 +35,17 @@ void Profiler::collect_info(vk::structure::Vulkan* vk_struct){
   //---------------------------
 }
 void Profiler::add_thread(string name){
-  mutex.lock();
+  prf_struct->mutex.lock();
   //---------------------------
 
   prf::vulkan::Thread thread;
   thread.ID = std::this_thread::get_id();
   thread.name = name;
 
-  vec_thread.push_back(thread);
+  prf_struct->vec_thread.push_back(thread);
 
   //---------------------------
-  mutex.unlock();
+  prf_struct->mutex.unlock();
 }
 void Profiler::add_queue(prf::vulkan::queue::Type type, int ID_family){
   //---------------------------

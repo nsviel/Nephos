@@ -30,17 +30,15 @@ public:
   void add_queue(prf::vulkan::queue::Type type, int ID_family);
   void collect_info(vk::structure::Vulkan* vk_struct);
 
-  inline prf::vulkan::Collector* get_prf_collector(){return prf_collector;}
-  inline vector<prf::vulkan::Thread>& get_vec_thread(){return vec_thread;}
+  inline prf::vulkan::Structure* get_prf_struct(){return prf_struct;}
   inline map<prf::vulkan::queue::Type, prf::vulkan::Queue>& get_map_queue(){return map_queue;}
 
 private:
   prf::vulkan::Collector* prf_collector;
   prf::vulkan::Structure* prf_struct;
-  std::vector<prf::vulkan::Thread> vec_thread;
-  std::vector<prf::vulkan::Device> vec_device;
+
+
   std::map<prf::vulkan::queue::Type, prf::vulkan::Queue> map_queue;
-  std::mutex mutex;
 };
 
 }
