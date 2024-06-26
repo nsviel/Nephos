@@ -66,8 +66,8 @@ void Panel::main_info(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Device"); ImGui::TableNextColumn();
   prf::vulkan::Profiler* profiler_vulkan = prf_manager->get_profiler_vulkan();
-  string gpu = profiler_vulkan->get_info()->selected_gpu;
-  ImGui::TextColored(color, "%s", gpu.c_str());
+  //string gpu = profiler_vulkan->get_info()->selected_gpu;
+  //ImGui::TextColored(color, "%s", gpu.c_str());
 
   //Selected tasker
   if(selected_profiler != nullptr){

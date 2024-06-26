@@ -130,7 +130,7 @@ void Vulkan::draw_tab_queue(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim)
   //---------------------------
 }
 void Vulkan::draw_tab_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim){
-  vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
+  /*vector<prf::vulkan::Device>& vec_device = prf_vulkan->get_info_device();
   //---------------------------
 
   if(ImGui::BeginTabBar("vulkan_device##tab_bar")){
@@ -147,7 +147,7 @@ void Vulkan::draw_tab_device(prf::vulkan::Profiler* prf_vulkan, ImVec2 graph_dim
     }
     ImGui::EndTabBar();
   }
-
+*/
   //---------------------------
 }
 

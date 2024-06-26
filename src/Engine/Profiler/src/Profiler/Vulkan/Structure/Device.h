@@ -5,19 +5,6 @@
 
 namespace prf::vulkan{
 
-struct Queue_family{
-  //---------------------------
-
-  int nb_queue = 0;
-  bool graphics = 0;
-  bool compute = 0;
-  bool transfer = 0;
-  bool sparseBinding = 0;
-  bool presentation = 0;
-
-  //---------------------------
-};
-
 struct Device{
   //---------------------------
 

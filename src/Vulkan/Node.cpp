@@ -33,7 +33,7 @@ void Node::init(){
   vk_window->init();
   vk_render->init();
   vk_engine->init();
-  vk_interface->fill_info();
+  vk_interface->fill_profiler_info();
 
   //---------------------------
 }

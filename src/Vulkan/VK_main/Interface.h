@@ -18,12 +18,8 @@ public:
   ~Interface();
 
 public:
-  //Profiler vulkan info
-  void fill_info();
-  void fill_vulkan_info(prf::vulkan::Profiler* prf_vulkan);
-  void fill_vulkan_device(prf::vulkan::Profiler* prf_vulkan);
-
-  //Subfunction
+  //Main function
+  void fill_profiler_info();
   string get_gpu_name();
   vec4* get_color_background();
   bool is_gpu_discrete();
