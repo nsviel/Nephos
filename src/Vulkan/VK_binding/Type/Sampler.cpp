@@ -46,4 +46,32 @@ vk::binding::structure::Sampler* Sampler::create_sampler_obj(std::string name, i
   return sampler;
 }
 
+//Subfunction
+vk::structure::Descriptor_required Sampler::sampler_color(){
+  //---------------------------
+
+  vk::structure::Descriptor_required descriptor;
+  descriptor.name = "tex_color";
+  descriptor.size = 0;
+  descriptor.binding = 1;
+  descriptor.type = TYP_IMAGE_SAMPLER;
+  descriptor.stage = TYP_SHADER_FS;
+
+  //---------------------------
+  return descriptor;
+}
+vk::structure::Descriptor_required Sampler::sampler_depth(){
+  //---------------------------
+
+  vk::structure::Descriptor_required descriptor;
+  descriptor.name = "tex_depth";
+  descriptor.size = 0;
+  descriptor.binding = 4;
+  descriptor.type = TYP_IMAGE_SAMPLER;
+  descriptor.stage = TYP_SHADER_FS;
+
+  //---------------------------
+  return descriptor;
+}
+
 }

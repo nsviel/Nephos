@@ -16,7 +16,6 @@ Renderpass::Renderpass(vk::structure::Vulkan* vk_struct){
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
   this->vk_drawer = new vk::draw::Drawer(vk_struct);
-  this->vk_type = new vk::binding::Type(vk_struct);
   this->shader_scene = new vk::render::scene::Shader(vk_struct);
 
   //---------------------------
@@ -70,7 +69,7 @@ void Renderpass::pipeline_line(vk::structure::Subpass* subpass){
 
   //Descriptor
   vk::structure::Descriptor_required descriptor;
-  descriptor = vk_type->uniform_mvp();
+  descriptor = vk_uniform->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
   //---------------------------
@@ -93,9 +92,9 @@ void Renderpass::pipeline_point(vk::structure::Subpass* subpass){
 
   //Descriptor
   vk::structure::Descriptor_required descriptor;
-  descriptor = vk_type->uniform_mvp();
+  descriptor = vk_uniform->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
-  descriptor = vk_type->uniform_point_size();
+  descriptor = vk_uniform->uniform_point_size();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
   //---------------------------
@@ -118,7 +117,7 @@ void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
 
   //Descriptor
   vk::structure::Descriptor_required descriptor;
-  descriptor = vk_type->uniform_mvp();
+  descriptor = vk_uniform->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
   //---------------------------

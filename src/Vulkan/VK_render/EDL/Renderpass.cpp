@@ -17,7 +17,7 @@ Renderpass::Renderpass(vk::structure::Vulkan* vk_struct){
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_drawer = new vk::draw::Drawer(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
-  this->vk_type = new vk::binding::Type(vk_struct);
+  this->vk_sampler = new vk::binding::Sampler(vk_struct);
 
   //---------------------------
 }
@@ -66,11 +66,11 @@ void Renderpass::pipeline_edl(vk::structure::Subpass* subpass){
 
   //Descriptor
   vk::structure::Descriptor_required descriptor;
-  descriptor = vk_type->sampler_color();
+  descriptor = vk_sampler->sampler_color();
   pipeline->binding.vec_required_binding.push_back(descriptor);
-  descriptor = vk_type->sampler_depth();
+  descriptor = vk_sampler->sampler_depth();
   pipeline->binding.vec_required_binding.push_back(descriptor);
-  descriptor = vk_type->uniform_edl();
+  descriptor = vk_uniform->uniform_edl();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
   //---------------------------

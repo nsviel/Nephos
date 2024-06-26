@@ -9,7 +9,7 @@ namespace vk::structure{class Object;}
 namespace vk::structure{class Pipeline;}
 namespace vk::instance{class UID;}
 namespace vk::synchro{class Synchro;}
-namespace vk::binding{class Type;}
+namespace vk::binding{class Uniform;}
 namespace utl::base{class Data;}
 namespace utl::base{class Pose;}
 
@@ -45,7 +45,7 @@ private:
   vk::binding::Descriptor* vk_descriptor;
   vk::instance::UID* vk_uid;
   vk::synchro::Synchro* vk_synchro;
-  vk::binding::Type* vk_type;
+  vk::binding::Uniform* vk_uniform;
 };
 
 }

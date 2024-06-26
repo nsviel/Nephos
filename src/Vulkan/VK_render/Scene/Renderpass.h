@@ -5,7 +5,6 @@ namespace vk::renderpass{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
-namespace vk::binding{class Type;}
 namespace vk::draw{class Drawer;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Subpass;}
@@ -50,7 +49,6 @@ private:
   vk::main::Engine* vk_engine;
   vk::renderpass::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
-  vk::binding::Type* vk_type;
   vk::render::scene::Shader* shader_scene;
 };
 

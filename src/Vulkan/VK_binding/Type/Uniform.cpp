@@ -97,4 +97,45 @@ template void Uniform::update_uniform(std::string uniform_name, vk::binding::str
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding* binding, int value);
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding* binding, vk::render::edl::Structure value);
 
+//Subfunction
+vk::structure::Descriptor_required Uniform::uniform_point_size(){
+  //---------------------------
+
+  vk::structure::Descriptor_required descriptor;
+  descriptor.name = "point_size";
+  descriptor.size = sizeof(int);
+  descriptor.binding = 1;
+  descriptor.type = TYP_UNIFORM;
+  descriptor.stage = TYP_SHADER_VS;
+
+  //---------------------------
+  return descriptor;
+}
+vk::structure::Descriptor_required Uniform::uniform_mvp(){
+  //---------------------------
+
+  vk::structure::Descriptor_required descriptor;
+  descriptor.name = "mvp";
+  descriptor.size = sizeof(mat4);
+  descriptor.binding = 0;
+  descriptor.type = TYP_UNIFORM;
+  descriptor.stage = TYP_SHADER_VS;
+
+  //---------------------------
+  return descriptor;
+}
+vk::structure::Descriptor_required Uniform::uniform_edl(){
+  //---------------------------
+
+  vk::structure::Descriptor_required descriptor;
+  descriptor.name = "EDL_param";
+  descriptor.size = sizeof(vk::render::edl::Structure);
+  descriptor.binding = 5;
+  descriptor.type = TYP_UNIFORM;
+  descriptor.stage = TYP_SHADER_FS;
+
+  //---------------------------
+  return descriptor;
+}
+
 }
