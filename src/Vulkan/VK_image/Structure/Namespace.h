@@ -1,6 +1,4 @@
 #pragma once
 
-#include <Vulkan/VK_binding/Descriptor.h>
-#include <Vulkan/VK_binding/Type.h>
-#include <Vulkan/VK_binding/Sampler.h>
-#include <Vulkan/VK_binding/Uniform.h>
+#include <Vulkan/VK_image/Structure/Image.h>
+#include <Vulkan/VK_image/Structure/Texture.h>

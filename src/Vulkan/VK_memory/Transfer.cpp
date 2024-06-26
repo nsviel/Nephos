@@ -25,7 +25,7 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
   //Get texture structures
   vk::structure::Image* image = &texture->vk_image;
   utl::media::Image* utl_image = texture->utl_image;
-  vk::structure::Buffer* buffer = &texture->stagger;
+  vk::data::structure::Buffer* buffer = &texture->stagger;
 
   //Copy data to stagging buffer
   void* staging_data;
@@ -201,7 +201,7 @@ vk::structure::Command_buffer* Transfer::copy_image_to_image(vk::structure::Imag
 }
 
 //Buffer GPU function
-void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
+void Transfer::copy_data_to_gpu(vk::data::structure::Buffer* buffer, const void* data, VkDeviceSize data_size){
   if(data_size == 0) return;
   //---------------------------
 
@@ -216,7 +216,7 @@ void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data,
 
   //---------------------------
 }
-void Transfer::copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize data_size){
+void Transfer::copy_data_to_gpu(vk::data::structure::Buffer* buffer, vk::data::structure::Buffer* stagger, const void* data, VkDeviceSize data_size){
   if(data_size == 0) return;
   //---------------------------
 

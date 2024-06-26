@@ -4,7 +4,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
-namespace vk::structure{class Buffer;}
+namespace vk::data::structure{class Buffer;}
 
 
 namespace vk::memory{
@@ -21,8 +21,8 @@ public:
   void allocate_image_memory(vk::structure::Image* image);
 
   //Buffer memory
-  void allocate_empty_stagger_buffer(vk::structure::Buffer* buffer, VkDeviceSize size);
-  void allocate_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceSize size);
+  void allocate_empty_stagger_buffer(vk::data::structure::Buffer* buffer, VkDeviceSize size);
+  void allocate_empty_vertex_buffer(vk::data::structure::Buffer* buffer, VkDeviceSize size);
 
   //Subfunction
   void bind_buffer_memory(VkMemoryPropertyFlags properties, VkBuffer& buffer, VkDeviceMemory& bufferMemory);

@@ -79,7 +79,7 @@ void Buffer::clean_buffers(vk::structure::Object* vk_object){
 
   //---------------------------
 }
-void Buffer::clean_buffer(vk::structure::Buffer* buffer){
+void Buffer::clean_buffer(vk::data::structure::Buffer* buffer){
   //---------------------------
 
   if(buffer->vbo != VK_NULL_HANDLE){

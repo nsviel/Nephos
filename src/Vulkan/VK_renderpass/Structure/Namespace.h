@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Vulkan/VK_binding/Descriptor.h>
-#include <Vulkan/VK_binding/Type.h>
-#include <Vulkan/VK_binding/Sampler.h>
-#include <Vulkan/VK_binding/Uniform.h>
+#include <Vulkan/VK_renderpass/Structure/Attachment.h>
+#include <Vulkan/VK_renderpass/Structure/Framebuffer.h>
+#include <Vulkan/VK_renderpass/Structure/Pipeline.h>
+#include <Vulkan/VK_renderpass/Structure/Renderpass.h>
+#include <Vulkan/VK_renderpass/Structure/Subpass.h>

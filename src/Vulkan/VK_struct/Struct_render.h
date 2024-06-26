@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
+#include <Vulkan/VK_renderpass/Structure/Renderpass.h>
 #include <Utility/Specific/Common.h>
 
 

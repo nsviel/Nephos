@@ -1,8 +1,8 @@
 #pragma once
 
 #include <Vulkan/VK_struct/VK_typedef.h>
-#include <Vulkan/VK_struct/Struct_buffer.h>
-#include <Vulkan/VK_struct/Struct_texture.h>
+#include <Vulkan/VK_data/Structure/Buffer.h>
+#include <Vulkan/VK_image/Structure/Texture.h>
 #include <Vulkan/VK_binding/Structure/Binding.h>
 #include <list>
 
@@ -12,12 +12,12 @@ namespace vk::structure{
 struct Buffers{
   //---------------------------
 
-  vk::structure::Buffer xyz;
-  vk::structure::Buffer xyz_stagger;
-  vk::structure::Buffer rgba;
-  vk::structure::Buffer rgba_stagger;
-  vk::structure::Buffer uv;
-  vk::structure::Buffer uv_stagger;
+  vk::data::structure::Buffer xyz;
+  vk::data::structure::Buffer xyz_stagger;
+  vk::data::structure::Buffer rgba;
+  vk::data::structure::Buffer rgba_stagger;
+  vk::data::structure::Buffer uv;
+  vk::data::structure::Buffer uv_stagger;
 
   //---------------------------
 };

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Struct_image.h>
+#include <Vulkan/VK_image/Structure/Image.h>
 #include <vulkan/vulkan.h>
 
 

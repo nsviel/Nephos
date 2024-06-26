@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Vulkan/VK_binding/Structure/Binding.h>
+#include <vulkan/vulkan.h>
 #include <vector>
 #include <string>
 

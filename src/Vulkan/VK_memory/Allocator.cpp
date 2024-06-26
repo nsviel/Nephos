@@ -37,7 +37,7 @@ void Allocator::allocate_image_memory(vk::structure::Image* image){
 }
 
 //Buffer GPU function
-void Allocator::allocate_empty_stagger_buffer(vk::structure::Buffer* buffer, VkDeviceSize size){
+void Allocator::allocate_empty_stagger_buffer(vk::data::structure::Buffer* buffer, VkDeviceSize size){
   if(size == 0) return;
   //---------------------------
 
@@ -48,7 +48,7 @@ void Allocator::allocate_empty_stagger_buffer(vk::structure::Buffer* buffer, VkD
 
   //---------------------------
 }
-void Allocator::allocate_empty_vertex_buffer(vk::structure::Buffer* buffer, VkDeviceSize size){
+void Allocator::allocate_empty_vertex_buffer(vk::data::structure::Buffer* buffer, VkDeviceSize size){
   if(size == 0) return;
   //---------------------------
 

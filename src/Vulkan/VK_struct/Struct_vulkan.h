@@ -1,6 +1,9 @@
 #pragma once
 
+#include <Vulkan/VK_data/Structure/Data.h>
 #include <Vulkan/VK_queue/Structure/Class.h>
+#include <Vulkan/VK_device/Structure/Device.h>
+#include <Vulkan/VK_instance/Structure/Instance.h>
 #include <Application/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Profiler/Namespace.h>
@@ -31,7 +34,7 @@ struct Vulkan{
   vk::structure::Instance instance;
   vk::structure::Device device;
   vk::structure::Swapchain swapchain;
-  vk::structure::Data data;
+  vk::data::structure::Data data;
   vk::structure::Parameter param;
   vk::structure::Pool pools;
   vk::structure::Command command;

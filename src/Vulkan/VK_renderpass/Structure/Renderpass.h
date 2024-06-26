@@ -1,7 +1,10 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Utility/Specific/Common.h>
+#include <Vulkan/VK_renderpass/Structure/Subpass.h>
+#include <Vulkan/VK_renderpass/Structure/Framebuffer.h>
+#include <vulkan/vulkan.h>
+#include <vector>
+#include <string>
 
 
 namespace vk::structure{

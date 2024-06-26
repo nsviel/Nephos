@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vulkan/vulkan.h>
-#include <vector>
+#include <Vulkan/VK_image/Structure/Image.h>
+#include <Vulkan/VK_data/Structure/Buffer.h>
 #include <string>
 
 
@@ -17,7 +17,7 @@ struct Texture{
   //Structure
   utl::media::Image* utl_image;
   vk::structure::Image vk_image;
-  vk::structure::Buffer stagger;
+  vk::data::structure::Buffer stagger;
 
   //---------------------------
 };

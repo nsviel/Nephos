@@ -9,7 +9,7 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Image;}
 namespace vk::structure{class Texture;}
 namespace vk::structure{class Command_buffer;}
-namespace vk::structure{class Buffer;}
+namespace vk::data::structure{class Buffer;}
 
 
 namespace vk::memory{
@@ -31,8 +31,8 @@ public:
   vk::structure::Command_buffer* copy_image_to_image(vk::structure::Image* image_src, vk::structure::Image* image_dst);
 
   //Data copy function
-  void copy_data_to_gpu(vk::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize);
-  void copy_data_to_gpu(vk::structure::Buffer* buffer, vk::structure::Buffer* stagger, const void* data, VkDeviceSize dataSize);
+  void copy_data_to_gpu(vk::data::structure::Buffer* buffer, const void* data, VkDeviceSize dataSize);
+  void copy_data_to_gpu(vk::data::structure::Buffer* buffer, vk::data::structure::Buffer* stagger, const void* data, VkDeviceSize dataSize);
 
 private:
   vk::structure::Vulkan* vk_struct;

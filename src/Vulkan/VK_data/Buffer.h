@@ -4,7 +4,7 @@ namespace vk::memory{class Allocator;}
 namespace vk::memory{class Transfer;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Object;}
-namespace vk::structure{class Buffer;}
+namespace vk::data::structure{class Buffer;}
 
 
 namespace vk::data{
@@ -21,7 +21,7 @@ public:
   void create_buffers(vk::structure::Object* vk_object);
   void update_buffer(vk::structure::Object* vk_object);
   void clean_buffers(vk::structure::Object* vk_object);
-  void clean_buffer(vk::structure::Buffer* buffer);
+  void clean_buffer(vk::data::structure::Buffer* buffer);
 
   //Subfunction
   int get_size_buffer(vk::structure::Object* vk_object);
