@@ -7,7 +7,7 @@ namespace prf{class Structure;}
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
 namespace prf::vulkan{class Profiler;}
-namespace prf::temp{class Profiler;}
+namespace prf::hardware{class Profiler;}
 
 
 namespace prf{
@@ -36,7 +36,7 @@ private:
   std::list<prf::Structure*> list_profiler;
   prf::graph::Profiler* profiler_main;
   prf::vulkan::Profiler* profiler_vulkan;
-  prf::temp::Profiler* profiler_temp;
+  prf::hardware::Profiler* profiler_hardware;
 };
 
 }

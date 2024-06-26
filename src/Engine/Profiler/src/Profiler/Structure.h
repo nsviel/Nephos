@@ -1,18 +1,18 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 
 namespace prf{
 
 struct Structure{
   //---------------------------
-  
+
   virtual void clean(){}
   virtual void show_info(){}
 
-  string name = "";
-  string type = "";
+  std::string name = "";
+  std::string type = "";
 
   //---------------------------
 };

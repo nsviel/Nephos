@@ -4,7 +4,7 @@
 #include <Profiler/gui/Profiler/Struct_profiler.h>
 
 namespace prf{class Node;}
-namespace prf::temp{class Profiler;}
+namespace prf::hardware{class Profiler;}
 namespace utl::implot{class Plot;}
 
 
@@ -19,13 +19,13 @@ public:
 
 public:
   //Main function
-  void draw_profiler(prf::temp::Profiler* temperature);
+  void draw_profiler(prf::hardware::Profiler* temperature);
 
   //Tab function
 
 private:
   utl::implot::Plot* gui_plot;
-  prf::temp::Profiler* prf_temp;
+  prf::hardware::Profiler* prf_temp;
 };
 
 }

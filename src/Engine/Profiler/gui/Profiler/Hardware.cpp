@@ -12,14 +12,14 @@ Hardware::Hardware(prf::Node* node_profiler){
   //---------------------------
 
   this->gui_plot = new utl::implot::Plot();
-  this->prf_temp = new prf::temp::Profiler();
+  this->prf_temp = new prf::hardware::Profiler();
 
   //---------------------------
 }
 Hardware::~Hardware(){}
 
 //Main function
-void Hardware::draw_profiler(prf::temp::Profiler* temperature){
+void Hardware::draw_profiler(prf::hardware::Profiler* temperature){
   //---------------------------
 
 

@@ -109,7 +109,7 @@ void Panel::draw_profiler(){
           gui_vulkan->draw_profiler(vulkan);
         }
         //Hardware tab
-        else if(prf::temp::Profiler* temperature = dynamic_cast<prf::temp::Profiler*>(profiler)){
+        else if(prf::hardware::Profiler* temperature = dynamic_cast<prf::hardware::Profiler*>(profiler)){
           this->selected_profiler = gui_hardware;
           gui_hardware->draw_profiler(temperature);
         }

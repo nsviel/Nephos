@@ -7,7 +7,7 @@ namespace utl::hardare{class CPU;}
 namespace utl::hardare{class Nvidia;}
 
 
-namespace prf::temp{
+namespace prf::hardware{
 
 class Profiler : public prf::Structure
 {

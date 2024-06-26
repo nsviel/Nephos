@@ -1,17 +1,17 @@
 #include "Profiler.h"
 
-#include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
-namespace prf::temp{
+namespace prf::hardware{
 
 //Constructor / Destructor
 Profiler::Profiler(){
   //---------------------------
 
-  //this->rnd_cpu = new rnd::hardare::CPU();
-  //this->rnd_gpu = new rnd::hardare::Nvidia();
+  this->rnd_cpu = new utl::hardare::CPU();
+  this->rnd_gpu = new utl::hardare::Nvidia();
   this->name = "Hardware";
 
   //---------------------------
