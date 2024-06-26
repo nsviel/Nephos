@@ -1,17 +1,15 @@
 #include "Plot.h"
 
-#include <Profiler/Namespace.h>
 
-
-namespace prf::improfil{
+namespace utl::improfil{
 
 Plot::Plot(){
   //---------------------------
 
-  this->renderer = new prf::improfil::Renderer();
+  this->renderer = new utl::improfil::Renderer();
   this->idx_color = 0;
   this->max_nb_data = 100;
-  this->vec_color = prf::improfil::colormap::viridis;
+  this->vec_color = utl::improfil::colormap::viridis;
 
   //---------------------------
 }
@@ -19,10 +17,10 @@ Plot::Plot(std::string name){
   //---------------------------
 
   this->name = name;
-  this->renderer = new prf::improfil::Renderer();
+  this->renderer = new utl::improfil::Renderer();
   this->idx_color = 0;
   this->max_nb_data = 100;
-  this->vec_color = prf::improfil::colormap::viridis;
+  this->vec_color = utl::improfil::colormap::viridis;
 
   //---------------------------
 }
@@ -63,7 +61,7 @@ void Plot::add_task(float ts_begin, float ts_end, std::string name, glm::vec4 co
   //---------------------------
 
   //Insert task
-  prf::graph::structure::Task task;
+  utl::improfil::Task task;
   task.ts_begin = ts_begin;
   task.ts_end = ts_end;
   task.name = name;
@@ -75,12 +73,12 @@ void Plot::add_task(float ts_begin, float ts_end, std::string name, glm::vec4 co
 
   //---------------------------
 }
-void Plot::add_vec_task(std::vector<prf::graph::structure::Task> vec_task){
+void Plot::add_vec_task(std::vector<utl::improfil::Task> vec_task){
   //---------------------------
 
   //Assign tasks
   for(int i=0; i<vec_task.size(); i++){
-    prf::graph::structure::Task& task = vec_task[i];
+    utl::improfil::Task& task = vec_task[i];
 
     if(task.color == vec4(0, 0, 0, 0)){
       this->add_task(task.ts_begin, task.ts_end, task.name);

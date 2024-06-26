@@ -4,12 +4,12 @@
 #include <Utility/GUI/Plot/Namespace.h>
 #include <Utility/Specific/Common.h>
 
-namespace prf::improfil{class Bar;}
-namespace prf::improfil{class Stat;}
+namespace utl::improfil{class Bar;}
+namespace utl::improfil{class Stat;}
 namespace prf::graph::structure{class Task;}
 
 
-namespace prf::improfil{
+namespace utl::improfil{
 
 class Renderer
 {
@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  void load_graph_data(const std::vector<prf::graph::structure::Task>& vec_task);
+  void load_graph_data(const std::vector<utl::improfil::Task>& vec_task);
   void render_graph(ImVec2 size);
   void rebuild_task_stats(size_t endFrame);
 
@@ -33,9 +33,9 @@ private:
 
   //Subfunction
   void render_background_tics(ImDrawList *draw_list);
-  void render_serie_task_rect(ImDrawList *draw_list, prf::graph::structure::Task& task, glm::vec2 bar_pose);
+  void render_serie_task_rect(ImDrawList *draw_list, utl::improfil::Task& task, glm::vec2 bar_pose);
   void render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
-  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::graph::structure::Task task);
+  void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::improfil::Task task);
 
   //Primitives
   void draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickness, vec4 color);
@@ -45,7 +45,7 @@ private:
   void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled);
 
 private:
-  prf::improfil::Configuration config;
+  utl::improfil::Configuration config;
 };
 
 }

@@ -8,14 +8,14 @@
 #include <map>
 
 
-namespace prf::improfil{
+namespace utl::improfil{
 
 struct Configuration{
   //---------------------------
 
   std::map<std::string, std::size_t> map_idx;
-  std::vector<prf::improfil::Stat> vec_stat;
-  std::vector<prf::improfil::Bar> vec_bar;
+  std::vector<utl::improfil::Stat> vec_stat;
+  std::vector<utl::improfil::Bar> vec_bar;
   std::size_t current_idx = 0;
 
   glm::vec2 graph_dim;

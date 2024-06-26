@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace prf::gui{
@@ -177,7 +178,7 @@ void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 dimension){
   //Update plot
   if(!pause){
     tasker->plot.reset();
-    tasker->plot.add_vec_task(tasker->vec_task);
+    //tasker->plot.add_vec_task(tasker->vec_task);
     tasker->plot.update();
   }
 

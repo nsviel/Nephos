@@ -12,7 +12,7 @@ namespace prf::graph::structure{
 struct Tasker{
   //---------------------------
 
-  prf::improfil::Plot plot;
+  utl::improfil::Plot plot;
   utl::timer::Timepoint reference;
 
   std::vector<prf::graph::structure::Task> vec_task_current;

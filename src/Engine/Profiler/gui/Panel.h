@@ -7,7 +7,7 @@ namespace prf{class Manager;}
 namespace prf::base{class Profiler;}
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
-namespace prf::improfil{class Manager;}
+namespace utl::improfil{class Manager;}
 namespace prf::hardware{class Profiler;}
 namespace prf::gui{class Profiler;}
 namespace prf::gui{class Graph;}

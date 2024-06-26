@@ -65,6 +65,25 @@ void Importer::load_set(utl::base::Path path){
 
   //---------------------------
 }
+void Importer::load_object(utl::base::Path path){
+  if(!check_path(path.build())) return;
+  //---------------------------
+
+  //Load
+  utl::base::Element* element = this->import_from_path(path);
+  if(element == nullptr) return;
+
+  //Convert
+  dat::base::Object* object = nullptr;
+  if(element->type == utl::element::ENTITY){
+    object = dynamic_cast<dat::base::Object*>(element);
+  }
+
+  //Insert
+  ldr_operation->insert_object(object);
+
+  //---------------------------
+}
 void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
   if(!check_path(path.build())) return;
   //---------------------------

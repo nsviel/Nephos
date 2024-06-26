@@ -1,9 +1,7 @@
 #include "Renderer.h"
 
-#include <Profiler/Namespace.h>
 
-
-namespace prf::improfil{
+namespace utl::improfil{
 
 //Constructor
 Renderer::Renderer(){
@@ -11,7 +9,7 @@ Renderer::Renderer(){
 
   this->config.vec_bar.resize(config.bar_max_nb);
 
-  for(prf::improfil::Bar& bar : config.vec_bar){
+  for(utl::improfil::Bar& bar : config.vec_bar){
     bar.vec_task.reserve(config.bar_max_nb_task);
   }
 
@@ -20,12 +18,12 @@ Renderer::Renderer(){
 Renderer::~Renderer(){}
 
 //Main function
-void Renderer::load_graph_data(const std::vector<prf::graph::structure::Task>& vec_task){
+void Renderer::load_graph_data(const std::vector<utl::improfil::Task>& vec_task){
   //update the graph with new task data
   //---------------------------
 
   // Get the current bar that needs to be updated and clear it
-  prf::improfil::Bar& current_bar = config.vec_bar[config.current_idx];
+  utl::improfil::Bar& current_bar = config.vec_bar[config.current_idx];
   current_bar.vec_task.resize(0);
 
   // Iterate through each task in the input data
@@ -59,7 +57,7 @@ void Renderer::load_graph_data(const std::vector<prf::graph::structure::Task>& v
     // If the task name is not found, add it to the map and create a new task_stats entry
     if(it == config.map_idx.end()){
       config.map_idx[task.name] = config.vec_stat.size();
-      prf::improfil::Stat task_stats;
+      utl::improfil::Stat task_stats;
       task_stats.max_time = -1.0;
       config.vec_stat.push_back(task_stats);
     }
@@ -88,7 +86,7 @@ void Renderer::rebuild_task_stats(size_t bar_end){
 
   for(size_t bar_number=0; bar_number<config.bar_max_nb; bar_number++){
     size_t bar_idx = (bar_end - 1 - bar_number + config.vec_bar.size()) % config.vec_bar.size();
-    prf::improfil::Bar& bar = config.vec_bar[bar_idx];
+    utl::improfil::Bar& bar = config.vec_bar[bar_idx];
 
     for(size_t task_index=0; task_index<bar.vec_task.size(); task_index++){
       auto &task = bar.vec_task[task_index];
@@ -151,8 +149,8 @@ void Renderer::render_serie(ImDrawList *draw_list){
     }
 
     // Iterate through each task in the ith bar
-    prf::improfil::Bar& bar = config.vec_bar[bar_idx];
-    for(prf::graph::structure::Task& task : bar.vec_task){
+    utl::improfil::Bar& bar = config.vec_bar[bar_idx];
+    for(utl::improfil::Task& task : bar.vec_task){
       this->render_serie_task_rect(draw_list, task, bar_pose);
     }
   }
@@ -178,7 +176,7 @@ void Renderer::render_legend(ImDrawList *draw_list){
   float markerRightRectSpacing = 4.0f;
 
   //Initialization
-  prf::improfil::Bar& current_bar = config.vec_bar[(config.current_idx - 1 + 2 * config.vec_bar.size()) % config.vec_bar.size()];
+  utl::improfil::Bar& current_bar = config.vec_bar[(config.current_idx - 1 + 2 * config.vec_bar.size()) % config.vec_bar.size()];
   for(auto &task_stat : config.vec_stat){
     task_stat.on_screen_index = size_t(-1);
   }
@@ -190,7 +188,7 @@ void Renderer::render_legend(ImDrawList *draw_list){
   // Iterate through vec_task in the current bar
   size_t cpt_task = 0;
   for(size_t task_index = 0; task_index < current_bar.vec_task.size(); task_index++){
-    prf::graph::structure::Task& task = current_bar.vec_task[task_index];
+    utl::improfil::Task& task = current_bar.vec_task[task_index];
     auto &stat = config.vec_stat[current_bar.task_stat_index[task_index]];
 
     // Skip vec_task beyond the maximum number to show
@@ -239,7 +237,7 @@ void Renderer::render_background_tics(ImDrawList *draw_list){
 
   //---------------------------
 }
-void Renderer::render_serie_task_rect(ImDrawList *draw_list, prf::graph::structure::Task& task, glm::vec2 bar_pose){
+void Renderer::render_serie_task_rect(ImDrawList *draw_list, utl::improfil::Task& task, glm::vec2 bar_pose){
   float height_threshold = 1.0f;
   //---------------------------
 
@@ -271,7 +269,7 @@ void Renderer::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoin
 
   //---------------------------
 }
-void Renderer::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::graph::structure::Task task){
+void Renderer::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::improfil::Task task){
   //---------------------------
 
   glm::vec2 text_margin = glm::vec2(5.0f, -3.0f);

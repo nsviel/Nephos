@@ -3,11 +3,11 @@
 #include <Utility/GUI/Plot/Namespace.h>
 #include <Utility/Specific/Common.h>
 
-namespace prf::improfil{class Renderer;}
+namespace utl::improfil{class Renderer;}
 namespace prf::graph::structure{class Task;}
 
 
-namespace prf::improfil{
+namespace utl::improfil{
 
 class Plot{
 public:
@@ -24,7 +24,7 @@ public:
 
   //Task function
   void add_task(float ts_begin, float ts_end, std::string name, glm::vec4 color = {});
-  void add_vec_task(std::vector<prf::graph::structure::Task> vec_task);
+  void add_vec_task(std::vector<utl::improfil::Task> vec_task);
 
   //Subfunction
   vec4 get_next_color();
@@ -32,8 +32,8 @@ public:
 
 
 private:
-  prf::improfil::Renderer* renderer;
-  vector<prf::graph::structure::Task> vec_task;
+  utl::improfil::Renderer* renderer;
+  vector<utl::improfil::Task> vec_task;
   vector<vec4> vec_color;
   string name = "";
   int idx_color;
