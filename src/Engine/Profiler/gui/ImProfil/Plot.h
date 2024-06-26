@@ -18,20 +18,21 @@ public:
 
 public:
   //Main function
-  void render_child(ImVec2 size);
-  void render_overlay(ImVec2 image_pose);
-  void load_data_to_graph();
-  void add_task(float ts_begin, float ts_end, string name);
-  void add_task(float ts_begin, float ts_end, string name, vec4 color);
+  void render(std::string name, ImVec2 size);
+  void update();
+  void reset();
+
+  //Task function
+  void add_task(float ts_begin, float ts_end, string name, glm::vec4 color = {});
   void add_vec_task(vector<prf::graph::structure::Task> vec_task);
 
   //Subfunction
   vec4 get_next_color();
   void set_time_max(int value);
-  void reset();
+
 
 private:
-  prf::improfil::Renderer* graph;
+  prf::improfil::Renderer* renderer;
   vector<prf::graph::structure::Task> vec_task;
   vector<vec4> vec_color;
   string name = "";

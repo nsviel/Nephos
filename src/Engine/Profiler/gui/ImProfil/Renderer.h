@@ -21,10 +21,13 @@ public:
 public:
   //Main function
   void load_graph_data(const std::vector<prf::graph::structure::Task>& vec_task);
+  void render_graph(ImVec2 size);
   void rebuild_task_stats(size_t endFrame);
 
+  inline float* get_max_time(){return &config.max_time_s;}
+
+private:
   //Render
-  void render_graph(ImVec2 size);
   void render_serie(ImDrawList *draw_list);
   void render_legend(ImDrawList *draw_list);
 
@@ -34,9 +37,6 @@ public:
   void render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
   void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::graph::structure::Task task);
 
-  inline float* get_max_time(){return &config.max_time_s;}
-
-private:
   //Primitives
   void draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickness, vec4 color);
   void draw_zone(ImDrawList *draw_list, float ts_begin_ms, float ts_end_ms, vec4 color);

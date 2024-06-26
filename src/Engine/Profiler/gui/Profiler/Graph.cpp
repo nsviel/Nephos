@@ -66,6 +66,7 @@ void Graph::draw_info(){
   //---------------------------
 }
 void Graph::draw_graph_all(prf::graph::Profiler* profiler){
+  ImVec2 dimension = ImGui::GetContentRegionAvail();
   //---------------------------
 
   //Find not empty taskers
@@ -79,6 +80,7 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
     }
   }
   if(vec_tasker.size() < 2) return;
+  dimension = ImVec2(dimension.x, dimension.y / vec_tasker.size() - vec_tasker.size() * 4);
 
   //Stuff to force first-opened tab
   static bool first_tab_open = true;
@@ -89,7 +91,6 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   }
 
   //All not empty tasker graphs
-  ImVec2 dimension = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
   string title = "All##" + profiler->name;
   if(ImGui::BeginTabItem("All##4568", NULL, flag)){
@@ -102,9 +103,6 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
     this->draw_graph_command();
 
     ImGui::TableNextColumn();
-
-    dimension = ImVec2(dimension.x, dimension.y / vec_tasker.size() - 3);
-
     for(int i=0; i<vec_tasker.size(); i++){
       this->draw_tasker_graph(vec_tasker[i], dimension);
     }
@@ -117,6 +115,8 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   //---------------------------
 }
 void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
+  ImVec2 dimension = ImGui::GetContentRegionAvail();
+  dimension = ImVec2(dimension.x, dimension.y - 8);
   //---------------------------
 
   std::list<prf::graph::Tasker*> list_tasker = profiler->get_list_tasker();
@@ -124,7 +124,6 @@ void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
     prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
 
     //Improfil graphs
-    ImVec2 dimension = ImGui::GetContentRegionAvail();
     ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
     string title = tasker->name + "##" + tasker->thread_ID;
     if(!tasker->vec_task.empty() && ImGui::BeginTabItem(title.c_str(), NULL)){
@@ -203,11 +202,11 @@ void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 dimension){
     }
 
     //load data
-    tasker->plot.load_data_to_graph();
+    tasker->plot.update();
   }
 
   //Render profiler
-  tasker->plot.render_child(dimension);
+  tasker->plot.render_plot(tasker->name, dimension);
 
   //---------------------------
 }

@@ -8,7 +8,7 @@ namespace prf::improfil{
 Plot::Plot(){
   //---------------------------
 
-  this->graph = new prf::improfil::Renderer();
+  this->renderer = new prf::improfil::Renderer();
   this->idx_color = 0;
   this->max_nb_data = 100;
   this->vec_color = prf::improfil::colormap::viridis;
@@ -19,7 +19,7 @@ Plot::Plot(string name){
   //---------------------------
 
   this->name = name;
-  this->graph = new prf::improfil::Renderer();
+  this->renderer = new prf::improfil::Renderer();
   this->idx_color = 0;
   this->max_nb_data = 100;
   this->vec_color = prf::improfil::colormap::viridis;
@@ -29,55 +29,37 @@ Plot::Plot(string name){
 Plot::~Plot(){}
 
 //Main function
-void Plot::render_overlay(ImVec2 image_pose){
-  //---------------------------
-/*
-  renderer.graph->load_graph_data(vec_task);
-
-  ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
-  ImGui::SetNextWindowBgAlpha(0.0f);
-  ImGui::SetNextWindowSize(ImVec2(300, 75));
-  ImGuiWindowFlags flags;
-  flags |= ImGuiWindowFlags_NoMove;
-  flags |= ImGuiWindowFlags_NoTitleBar;
-  flags |= ImGuiWindowFlags_NoResize;
-  flags |= ImGuiWindowFlags_NoSavedSettings;
-  flags |= ImGuiWindowFlags_NoFocusOnAppearing;
-  flags |= ImGuiWindowFlags_NoNav;
-  flags |= ImGuiWindowFlags_NoNavFocus;
-  flags |= ImGuiWindowFlags_NoScrollbar;
-
-  ImGui::Begin("##profiler_overlay", 0, flags);
-
-  ImVec2 available_size = ImGui::GetContentRegionAvail();
-
-  graph->render_graph(available_size);
-
-  ImGui::End();
-*/
-  //---------------------------
-}
-void Plot::render_child(ImVec2 dimension){
-  string title = name + "##graph";
+void Plot::render(std::string name, ImVec2 dimension){
+  string title = name + "##renderer";
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));
   ImGui::BeginChild(title.c_str(), ImVec2(0, dimension.y));
-  graph->render_graph(dimension);
+  renderer->render_graph(dimension);
   ImGui::End();
   ImGui::PopStyleColor();
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() + dimension.y + 5);
 
   //---------------------------
 }
-void Plot::load_data_to_graph(){
+void Plot::update(){
   //---------------------------
 
-  this->graph->load_graph_data(vec_task);
+  renderer->load_graph_data(vec_task);
 
   //---------------------------
 }
-void Plot::add_task(float ts_begin, float ts_end, string name){
+void Plot::reset(){
+  //---------------------------
+
+  this->vec_task.clear();
+  this->idx_color = 0;
+
+  //---------------------------
+}
+
+//Task function
+void Plot::add_task(float ts_begin, float ts_end, string name, glm::vec4 color){
   //---------------------------
 
   //Insert task
@@ -85,23 +67,7 @@ void Plot::add_task(float ts_begin, float ts_end, string name){
   task.ts_begin = ts_begin;
   task.ts_end = ts_end;
   task.name = name;
-  task.color = get_next_color();
-  vec_task.push_back(task);
-
-  //Remove old one
-  if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
-
-  //---------------------------
-}
-void Plot::add_task(float ts_begin, float ts_end, string name, vec4 color){
-  //---------------------------
-
-  //Insert task
-  prf::graph::structure::Task task;
-  task.ts_begin = ts_begin;
-  task.ts_end = ts_end;
-  task.name = name;
-  task.color = color;
+  task.color = (color == glm::vec4(0, 0, 0, 0)) ? get_next_color() : color;
   vec_task.push_back(task);
 
   //Remove old one
@@ -118,14 +84,6 @@ void Plot::add_vec_task(vector<prf::graph::structure::Task> vec_task){
     prf::graph::structure::Task& task = vec_task[i];
     task.color = get_next_color();
   }
-
-  //---------------------------
-}
-void Plot::reset(){
-  //---------------------------
-
-  this->vec_task.clear();
-  this->idx_color = 0;
 
   //---------------------------
 }
@@ -146,7 +104,7 @@ vec4 Plot::get_next_color(){
 void Plot::set_time_max(int value){
   //---------------------------
 
-  float* time_max = graph->get_max_time();
+  float* time_max = renderer->get_max_time();
   *time_max = float(value) / 1000;
 
   //---------------------------

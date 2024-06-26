@@ -112,8 +112,6 @@ void Renderer::rebuild_task_stats(size_t bar_end){
 
   //---------------------------
 }
-
-//Render
 void Renderer::render_graph(ImVec2 dimension){
   const glm::vec2 widget_pose = glm::vec2(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y);
   //---------------------------
@@ -131,6 +129,8 @@ void Renderer::render_graph(ImVec2 dimension){
 
   //---------------------------
 }
+
+//Render
 void Renderer::render_serie(ImDrawList *draw_list){
   //---------------------------
 
