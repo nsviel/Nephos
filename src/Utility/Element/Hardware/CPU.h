@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace rnd::hardware{
+namespace utl::hardware{
 
 class CPU
 {

@@ -3,7 +3,7 @@
 #include <nvml.h>
 
 
-namespace rnd::hardware{
+namespace utl::hardware{
 
 //Constructor / Destructor
 Nvidia::Nvidia(){

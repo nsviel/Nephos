@@ -1,11 +1,10 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <Profiler/src/Profiler/Structure.h>
 
 namespace prf{class Structure;}
-namespace rnd::hardare{class CPU;}
-namespace rnd::hardare{class Nvidia;}
+namespace utl::hardare{class CPU;}
+namespace utl::hardare{class Nvidia;}
 
 
 namespace prf::temp{
@@ -19,13 +18,13 @@ public:
 
 public:
   //Main function
-  void reset();
+  void update_tic();
 
   //Subfunction
 
 private:
-  rnd::hardare::CPU* rnd_cpu;
-  rnd::hardare::Nvidia* rnd_gpu;
+  utl::hardare::CPU* rnd_cpu;
+  utl::hardare::Nvidia* rnd_gpu;
 };
 
 }

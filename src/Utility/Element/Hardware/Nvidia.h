@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 
 
-namespace rnd::hardware{
+namespace utl::hardware{
 
 class Nvidia
 {
