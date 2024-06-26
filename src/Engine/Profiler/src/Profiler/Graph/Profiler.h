@@ -25,7 +25,6 @@ public:
 
   //Tasker function
   prf::graph::Tasker* fetch_tasker(std::string name);
-  void insert_tasker(prf::graph::Tasker* tasker);
   void remove_tasker(prf::graph::Tasker* tasker);
 
   inline std::list<prf::graph::Tasker*> get_list_tasker(){return list_tasker;}

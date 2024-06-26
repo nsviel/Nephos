@@ -250,7 +250,7 @@ STBRP_DEF void stbrp_setup_allow_out_of_mem(stbrp_context *context, int allow_ou
       // the rectangles easily fit). @TODO a smarter approach would be to only
       // quantize once we've hit OOM, then we could get rid of this parameter.
       context->align = 1;
-   else {
+   else{
       // if it's not ok to run out of memory, then quantize the widths
       // so that num_nodes is always enough nodes.
       //
@@ -323,7 +323,7 @@ static int stbrp__skyline_find_min_y(stbrp_context *c, stbrp_node *first, int x0
             visited_width += node->next->x - x0;
          else
             visited_width += node->next->x - node->x;
-      } else {
+      }else{
          // add waste area
          int under_width = node->next->x - node->x;
          if(under_width + visited_width > width)
@@ -373,7 +373,7 @@ static stbrp__findresult stbrp__skyline_find_best_pos(stbrp_context *c, int widt
             best_y = y;
             best = prev;
          }
-      } else {
+      }else{
          // best-fit
          if(y + height <= c->height){
             // can only use it if it first vertically
@@ -478,7 +478,7 @@ static stbrp__findresult stbrp__skyline_pack_rectangle(stbrp_context *context, i
       stbrp_node *next = cur->next;
       cur->next = node;
       cur = next;
-   } else {
+   }else{
       *res.prev_link = node;
    }
 
@@ -558,12 +558,12 @@ STBRP_DEF int stbrp_pack_rects(stbrp_context *context, stbrp_rect *rects, int nu
    for(i=0; i < num_rects; ++i){
       if(rects[i].w == 0 || rects[i].h == 0){
          rects[i].x = rects[i].y = 0;  // empty rect needs no space
-      } else {
+      }else{
          stbrp__findresult fr = stbrp__skyline_pack_rectangle(context, rects[i].w, rects[i].h);
          if(fr.prev_link){
             rects[i].x = (stbrp_coord) fr.x;
             rects[i].y = (stbrp_coord) fr.y;
-         } else {
+         }else{
             rects[i].x = rects[i].y = STBRP__MAXVAL;
          }
       }

@@ -355,7 +355,7 @@ void AddTextVertical(ImDrawList *DrawList, ImVec2 pos, ImU32 col, const char *te
         if(c < 0x80){
             s += 1;
         }
-        else {
+        else{
             s += ImTextCharFromUtf8(&c, s, text_end);
             if(c == 0) // Malformed UTF-8?
                 break;
@@ -685,7 +685,7 @@ bool ShowLegendEntries(ImPlotItemGroup& items, const ImRect& legend_bb, bool hov
             col_txt_hl = ImMixU32(col_txt, col_item, 64);
             any_item_hovered = true;
         }
-        else {
+        else{
             col_txt_hl = ImGui::GetColorU32(col_txt);
         }
         ImU32 col_icon;
@@ -826,7 +826,7 @@ void Locator_SymLog(ImPlotTicker& ticker, const ImPlotRange& range, float pixels
         AddTicksLogarithmic(ImPlotRange(1,range.Max), exp_min_p,exp_max_p,exp_step,ticker,formatter,formatter_data);
         AddTicksLogarithmic(ImPlotRange(range.Min,-1),exp_min_n,exp_max_n,exp_step,ticker,formatter,formatter_data);
     }
-    else {
+    else{
         Locator_Log10(ticker, range, pixels, vertical, formatter, formatter_data);
     }
 }
@@ -1094,7 +1094,7 @@ int FormatTime(const ImPlotTime& t, char* buffer, int size, ImPlotTimeFmt fmt, b
             default:                      return 0;
         }
     }
-    else {
+    else{
         const char* ap = Tm.tm_hour < 12 ? "am" : "pm";
         const int hr   = (Tm.tm_hour == 0 || Tm.tm_hour == 12) ? 12 : Tm.tm_hour % 12;
         switch(fmt){
@@ -1129,7 +1129,7 @@ int FormatDate(const ImPlotTime& t, char* buffer, int size, ImPlotDateFmt fmt, b
             default:                    return 0;
         }
     }
-    else {
+    else{
         switch (fmt){
             case ImPlotDateFmt_DayMo:   return ImFormatString(buffer, size, "%d/%d", mon, day);
             case ImPlotDateFmt_DayMoYr: return ImFormatString(buffer, size, "%d/%d/%02d", mon, day, yr);
@@ -1289,7 +1289,7 @@ void Locator_Time(ImPlotTicker& ticker, const ImPlotRange& range, float pixels, 
             t1 = t2;
         }
     }
-    else {
+    else{
         const ImPlotDateTimeSpec fmty = GetDateTimeFmt(TimeFormatLevel0, ImPlotTimeUnit_Yr);
         const float label_width = GetDateTimeWidth(fmty);
         const int   max_labels  = (int)(max_density * pixels / label_width);
@@ -1402,7 +1402,7 @@ void ShowAxisContextMenu(ImPlotAxis& axis, ImPlotAxis* equal_axis, bool /*time_a
         }
         EndDisabledControls(axis.IsLockedMax() || always_locked);
     }
-    else {
+    else{
         BeginDisabledControls(always_locked);
         ImGui::CheckboxFlags("##LockMin", (unsigned int*)&axis.Flags, ImPlotAxisFlags_LockMin);
         EndDisabledControls(always_locked);
@@ -1607,7 +1607,7 @@ void LabelAxisValue(const ImPlotAxis& axis, double value, char* buff, int size, 
                             : GetUnitForRange(axis.Range.Size() / (gp.CurrentPlot->PlotRect.GetWidth() / 100)); // TODO: magic value!
         FormatDateTime(ImPlotTime::FromDouble(value), buff, size, GetDateTimeFmt(TimeFormatMouseCursor, unit));
     }
-    else {
+    else{
         if(round)
             value = RoundAxisValue(axis, value);
         axis.Formatter(value, buff, size, axis.FormatterData);
@@ -1658,7 +1658,7 @@ void PadAndDatumAxesX(ImPlotPlot& plot, float& pad_T, float& pad_B, ImPlotAlignm
             axis.Datum2 = last_T;
             last_T = axis.Datum1;
         }
-        else {
+        else{
             if(count_B++ > 0)
                 pad_B += K + P;
             if(label)
@@ -1683,7 +1683,7 @@ void PadAndDatumAxesX(ImPlotPlot& plot, float& pad_T, float& pad_B, ImPlotAlignm
                 axis.Datum1 += delta_T;
                 axis.Datum2 += count_T++ > 1 ? delta_T : 0;
             }
-            else {
+            else{
                 axis.Datum1 -= delta_B;
                 axis.Datum2 -= count_B++ > 1 ? delta_B : 0;
             }
@@ -1737,7 +1737,7 @@ void PadAndDatumAxesY(ImPlotPlot& plot, float& pad_L, float& pad_R, ImPlotAlignm
             axis.Datum2 = last_R;
             last_R = axis.Datum1;
         }
-        else {
+        else{
             if(count_L++ > 0)
                 pad_L += K + P;
             if(label)
@@ -1765,7 +1765,7 @@ void PadAndDatumAxesY(ImPlotPlot& plot, float& pad_L, float& pad_R, ImPlotAlignm
                 axis.Datum1 -= delta_R;
                 axis.Datum2 -= count_R++ > 1 ? delta_R : 0;
             }
-            else {
+            else{
                 axis.Datum1 += delta_L;
                 axis.Datum2 += count_L++ > 1 ? delta_L : 0;
             }
@@ -2072,7 +2072,7 @@ bool UpdateInput(ImPlotPlot& plot){
                 gp.OpenContextThisFrame = false;
                 plot.Selected      = false;
             }
-            else {
+            else{
                 // TODO: Handle only min or max locked cases
                 const bool full_width  = ImHasFlag(IO.KeyMods, gp.InputMap.SelectHorzMod) || AllAxesInputLocked(&plot.Axes[ImAxis_X1], IMPLOT_NUM_X_AXES);
                 const bool full_height = ImHasFlag(IO.KeyMods, gp.InputMap.SelectVertMod) || AllAxesInputLocked(&plot.Axes[ImAxis_Y1], IMPLOT_NUM_Y_AXES);
@@ -2085,7 +2085,7 @@ bool UpdateInput(ImPlotPlot& plot){
                 plot.Selected = true;
             }
         }
-        else {
+        else{
             plot.Selected = false;
         }
     }
@@ -2992,7 +2992,7 @@ void EndPlot(){
                     if(rect.Contains(mouse_pos))
                         x_axis.Flags |= ImPlotAxisFlags_Opposite;
                 }
-                else {
+                else{
                     ImRect rect(plot.PlotRect.Min.x - 5, plot.PlotRect.Max.y - 5,
                                 plot.PlotRect.Max.x + 5, plot.PlotRect.Max.y + 5);
                     if(mouse_pos.y > plot.PlotRect.Min.y + 10)
@@ -3016,7 +3016,7 @@ void EndPlot(){
                     if(rect.Contains(mouse_pos))
                         y_axis.Flags |= ImPlotAxisFlags_Opposite;
                 }
-                else {
+                else{
                     ImRect rect(plot.PlotRect.Min.x - 5, plot.PlotRect.Min.y - 5,
                                 plot.PlotRect.Min.x + 5, plot.PlotRect.Max.y + 5);
                     if(mouse_pos.x < plot.PlotRect.Max.x - 10)
@@ -3077,7 +3077,7 @@ void EndPlot(){
             ImVec2 legend_offset = legend.RectClamped.Min - legend.Rect.Min + scroll_offset;
             legend.Rect.Min += legend_offset;
             legend.Rect.Max += legend_offset;
-        } else {
+        }else{
             legend.Scroll = ImVec2(0,0);
         }
 
@@ -3101,7 +3101,7 @@ void EndPlot(){
             ImGui::EndPopup();
         }
     }
-    else {
+    else{
         plot.Items.Legend.Rect = ImRect();
     }
 
@@ -3126,17 +3126,17 @@ void EndPlot(){
                 pos = ImVec2(axis.Datum1 + gp.Style.LabelPadding.x, pix - size.y * 0.5f);
                 DrawList.AddTriangleFilled(ImVec2(axis.Datum1,pix), pos, pos + ImVec2(0,size.y), tag.ColorBg);
             }
-            else {
+            else{
                 pos = ImVec2(axis.Datum1 - size.x - gp.Style.LabelPadding.x, pix - size.y * 0.5f);
                 DrawList.AddTriangleFilled(pos + ImVec2(size.x,0), ImVec2(axis.Datum1,pix), pos+size, tag.ColorBg);
             }
         }
-        else {
+        else{
             if(axis.IsOpposite()){
                 pos = ImVec2(pix - size.x * 0.5f, axis.Datum1 - size.y - gp.Style.LabelPadding.y );
                 DrawList.AddTriangleFilled(pos + ImVec2(0,size.y), pos + size, ImVec2(pix,axis.Datum1), tag.ColorBg);
             }
-            else {
+            else{
                 pos = ImVec2(pix - size.x * 0.5f, axis.Datum1 + gp.Style.LabelPadding.y);
                 DrawList.AddTriangleFilled(pos, ImVec2(pix,axis.Datum1), pos + ImVec2(size.x, 0), tag.ColorBg);
             }
@@ -3321,7 +3321,7 @@ void SubplotSetCell(int idx){
         row = idx % subplot.Rows;
         col = idx / subplot.Rows;
     }
-    else {
+    else{
         row = idx / subplot.Cols;
         col = idx % subplot.Cols;
     }
@@ -3596,7 +3596,7 @@ void EndSubplots(){
             ImVec2 legend_offset = legend.RectClamped.Min - legend.Rect.Min + scroll_offset;
             legend.Rect.Min += legend_offset;
             legend.Rect.Max += legend_offset;
-        } else {
+        }else{
             legend.Scroll = ImVec2(0,0);
         }
 
@@ -3618,7 +3618,7 @@ void EndSubplots(){
             ImGui::EndPopup();
         }
     }
-    else {
+    else{
         subplot.Items.Legend.Rect = ImRect();
     }
     // remove items
@@ -4595,7 +4595,7 @@ void RenderColorBar(const ImU32* colors, int size, ImDrawList& DrawList, const I
                 col1 = colors[size-i-1];
                 col2 = continuous ? colors[size-i-2] : col1;
             }
-            else {
+            else{
                 col1 = colors[i];
                 col2 = continuous ? colors[i+1] : col1;
             }
@@ -4603,7 +4603,7 @@ void RenderColorBar(const ImU32* colors, int size, ImDrawList& DrawList, const I
             rect.TranslateY(step);
         }
     }
-    else {
+    else{
         const float step = bounds.GetWidth() / n;
         ImRect rect(bounds.Min.x, bounds.Min.y, bounds.Min.x + step, bounds.Max.y);
         for(int i = 0; i < n; ++i){
@@ -4611,7 +4611,7 @@ void RenderColorBar(const ImU32* colors, int size, ImDrawList& DrawList, const I
                 col1 = colors[size-i-1];
                 col2 = continuous ? colors[size-i-2] : col1;
             }
-            else {
+            else{
                 col1 = colors[i];
                 col2 = continuous ? colors[i+1] : col1;
             }
@@ -4651,7 +4651,7 @@ void ColormapScale(const char* label, double scale_min, double scale_max, const 
     float bar_w           = 20;
     if(frame_size.x == 0)
         frame_size.x = bar_w + pad + 2 * gp.Style.PlotPadding.x;
-    else {
+    else{
         bar_w = frame_size.x - (pad + 2 * gp.Style.PlotPadding.x);
         if(bar_w < gp.Style.MajorTickLen.y)
             bar_w = gp.Style.MajorTickLen.y;
@@ -5113,7 +5113,7 @@ void ShowStyleEditor(ImPlotStyle* ref){
                         ImGui::PopID();
                     }
                 }
-                else {
+                else{
                     if(ImPlot::ColormapButton("##",ImVec2(-1,0),i))
                         edit = true;
                 }

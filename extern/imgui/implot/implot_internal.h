@@ -360,7 +360,7 @@ struct ImPlotColormapData {
                 Tables.push_back(keys[i]);
             TableSizes.push_back(key_count);
         }
-        else {
+        else{
             int max_size = 255 * (key_count-1) + 1;
             Tables.reserve(off + max_size);
             // ImU32 last = keys[0];
@@ -810,7 +810,7 @@ struct ImPlotAxis
             ScaleMin = TransformForward(Range.Min, TransformData);
             ScaleMax = TransformForward(Range.Max, TransformData);
         }
-        else {
+        else{
             ScaleMin = Range.Min;
             ScaleMax = Range.Max;
         }
@@ -891,7 +891,7 @@ struct ImPlotAxis
         if(ImHasFlag(Flags, ImPlotAxisFlags_PanStretch)){
             return IsInputLocked();
         }
-        else {
+        else{
             if(IsLockedMin() || IsLockedMax() || IsAutoFitting())
                 return false;
             if(increasing)
@@ -929,8 +929,8 @@ struct ImPlotAlignmentData {
         float bak_a = pad_a; float bak_b = pad_b;
         if(PadAMax < pad_a){ PadAMax = pad_a; }
         if(PadBMax < pad_b){ PadBMax = pad_b; }
-        if(pad_a < PadA)    { pad_a = PadA; delta_a = pad_a - bak_a; } else { delta_a = 0; }
-        if(pad_b < PadB)    { pad_b = PadB; delta_b = pad_b - bak_b; } else { delta_b = 0; }
+        if(pad_a < PadA)    { pad_a = PadA; delta_a = pad_a - bak_a; }else{ delta_a = 0; }
+        if(pad_b < PadB)    { pad_b = PadB; delta_b = pad_b - bak_b; }else{ delta_b = 0; }
     }
     void End()   { PadA = PadAMax; PadB = PadBMax;      }
     void Reset(){ PadA = PadB = PadAMax = PadBMax = 0; }
@@ -1075,7 +1075,7 @@ struct ImPlotPlot
             TitleOffset = TextBuffer.size();
             TextBuffer.append(title, title + strlen(title) + 1);
         }
-        else {
+        else{
             TitleOffset = -1;
         }
     }
@@ -1106,7 +1106,7 @@ struct ImPlotPlot
             axis.LabelOffset = TextBuffer.size();
             TextBuffer.append(label, label + strlen(label) + 1);
         }
-        else {
+        else{
             axis.LabelOffset = -1;
         }
     }

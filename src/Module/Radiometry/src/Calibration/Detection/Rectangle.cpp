@@ -33,13 +33,13 @@ void Rectangle::detect_rectangle(cv::Mat& image, utl::media::Image* output){
 
 
 
-bool lines_intersect(cv::Vec2f line1, cv::Vec2f line2, cv::Point2f& intersection) {
+bool lines_intersect(cv::Vec2f line1, cv::Vec2f line2, cv::Point2f& intersection){
     float rho1 = line1[0], theta1 = line1[1];
     float rho2 = line2[0], theta2 = line2[1];
     float A1 = cos(theta1), B1 = sin(theta1);
     float A2 = cos(theta2), B2 = sin(theta2);
     float det = A1 * B2 - A2 * B1;
-    if (std::abs(det) < 1e-2) return false;
+    if(std::abs(det) < 1e-2) return false;
     intersection.x = (rho2 * B1 - rho1 * B2) / det;
     intersection.y = (rho1 * A2 - rho2 * A1) / det;
     return true;
@@ -65,7 +65,7 @@ void Rectangle::compute_rectangle_detection(cv::Mat& image, utl::media::Image* o
   cv::HoughCircles(image, circles, mode, ratio, min_dist, param_1, param_2, min_radius, max_radius);
 
    // Draw detected circles
-   for (size_t i = 0; i < circles.size(); i++) {
+   for(size_t i = 0; i < circles.size(); i++){
        cv::Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
        int radius = cvRound(circles[i][2]);
 

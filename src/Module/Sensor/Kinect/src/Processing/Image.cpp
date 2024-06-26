@@ -105,10 +105,9 @@ void Image::find_data_from_capture(k4n::structure::Sensor* sensor){
   tasker->loop_end();
 
   //End
-  float fps = tasker->get_loop_fps();
-  sensor->color.data.fps = fps;
-  sensor->depth.data.fps = fps;
-  sensor->ir.data.fps = fps;
+  sensor->color.data.fps = tasker->fps;
+  sensor->depth.data.fps = tasker->fps;
+  sensor->ir.data.fps = tasker->fps;
   sensor->timestamp.current = sensor->color.data.timestamp;
 
   //---------------------------

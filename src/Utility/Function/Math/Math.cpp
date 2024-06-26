@@ -218,19 +218,19 @@ void compute_mean_and_std(const std::vector<float>& vec, float& mean, float& std
   float sum = std::accumulate(vec.begin(), vec.end(), 0.0f);
   mean = sum / vec.size();
   std = 0.0f;
-  for (const auto& val : vec) {
+  for(const auto& val : vec){
       std += (val - mean) * (val - mean);
   }
   std = std::sqrt(std / vec.size());
 
   //-----------------------------
 }
-std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid) {
+std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid){
   std::vector<float> vec_out(vec);
   //-----------------------------
 
   int size = vec.size();
-  if (size == 0) return vec_out;
+  if(size == 0) return vec_out;
 
   // Compute mean and standard deviation
   float mean, std;
@@ -240,24 +240,24 @@ std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid) {
   float min = std::numeric_limits<float>::max();
   float max = std::numeric_limits<float>::lowest();
 
-  for (auto& val : vec) {
-    if (val != value_to_avoid) {
-      if (val > mean + 3 * std || val < mean - 3 * std) {
+  for(auto& val : vec){
+    if(val != value_to_avoid){
+      if(val > mean + 3 * std || val < mean - 3 * std){
         val = value_to_avoid;
-      } else {
-        if (val > max) max = val;
-        if (val < min) min = val;
+      }else{
+        if(val > max) max = val;
+        if(val < min) min = val;
       }
     }
   }
 
   // Normalization
   float range = max - min;
-  if (range > 0) {
-    for (int i = 0; i < size; ++i) {
-      if (vec[i] != value_to_avoid) {
+  if(range > 0){
+    for(int i = 0; i < size; ++i){
+      if(vec[i] != value_to_avoid){
         vec_out[i] = (vec[i] - min) / range;
-      } else {
+      }else{
         vec_out[i] = value_to_avoid;
       }
     }
@@ -445,7 +445,7 @@ double truncate(double value, int decimalPlaces){
   //---------------------------
 
   double factor = 1.0;
-  for (int i = 0; i < decimalPlaces; ++i){
+  for(int i = 0; i < decimalPlaces; ++i){
     factor *= 10.0;
   }
   int truncatedValue = static_cast<int>(value * factor);

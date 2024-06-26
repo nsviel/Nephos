@@ -103,7 +103,7 @@ double RandomGauss(){
 			} while(S >= 1 || S == 0);
 
 		X = V1 * sqrt(-2 * log(S) / S);
-	} else
+	}else
 		X = V2 * sqrt(-2 * log(S) / S);
 	phase = 1 - phase;
 	return X;
@@ -131,7 +131,7 @@ struct ScrollingBuffer {
     void AddPoint(float x, float y){
         if(Data.size() < MaxSize)
             Data.push_back(ImVec2(x,y));
-        else {
+        else{
             Data[Offset] = ImVec2(x,y);
             Offset =  (Offset + 1) % MaxSize;
         }
@@ -484,7 +484,7 @@ void Demo_BarGroups(){
             ImPlot::SetupAxisTicks(ImAxis_Y1,positions, groups, glabels);
             ImPlot::PlotBarGroups(ilabels,data,items,groups,size,0,flags|ImPlotBarGroupsFlags_Horizontal);
         }
-        else {
+        else{
             ImPlot::SetupAxes("Student","Score",ImPlotAxisFlags_AutoFit,ImPlotAxisFlags_AutoFit);
             ImPlot::SetupAxisTicks(ImAxis_X1,positions, groups, glabels);
             ImPlot::PlotBarGroups(ilabels,data,items,groups,size,0,flags);
@@ -2074,7 +2074,7 @@ void Demo_LegendPopups(){
             ImPlot::SetNextFillStyle(color);
             ImPlot::PlotBars("Right Click Me", vals, 101);
         }
-        else {
+        else{
             if(markers) ImPlot::SetNextMarkerStyle(ImPlotMarker_Square);
             ImPlot::SetNextLineStyle(color, thickness);
             ImPlot::PlotLine("Right Click Me", vals, 101);

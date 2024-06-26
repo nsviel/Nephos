@@ -45,11 +45,11 @@ void Graph::show_info(){
   //FPS
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Loop"); ImGui::TableNextColumn();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / selected_tasker->loop_fps);
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / selected_tasker->fps);
   ImGui::SameLine();
   ImGui::Text(" ms/frame [");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", selected_tasker->loop_fps); //io.Framerate
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", selected_tasker->fps); //io.Framerate
   ImGui::SameLine();
   ImGui::Text(" FPS ]");
 
@@ -97,7 +97,7 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   for(int i=0; i<list_tasker.size(); i++){
     prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
 
-    if(!tasker->is_empty()){
+    if(!tasker->vec_task.empty()){
       vec_tasker.push_back(tasker);
     }
   }
@@ -136,7 +136,7 @@ void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
     //Improfil graphs
     ImGui::SetNextItemWidth(100);
     string title = tasker->name + "##45454";
-    if(!tasker->is_empty() && ImGui::BeginTabItem(title.c_str(), NULL)){
+    if(!tasker->vec_task.empty() && ImGui::BeginTabItem(title.c_str(), NULL)){
       this->draw_tasker_graph(tasker, graph_dim);
       ImGui::EndTabItem();
     }

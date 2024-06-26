@@ -125,7 +125,7 @@ IMPLOT_INLINE void GetLineRenderProps(const ImDrawList& draw_list, float& half_w
         tex_uv1 = ImVec2(tex_uvs.z, tex_uvs.w);
         half_weight += 1;
     }
-    else {
+    else{
         tex_uv0 = tex_uv1 = draw_list._Data->TexUvWhitePixel;
     }
 }
@@ -298,7 +298,7 @@ ImPlotItem* RegisterOrGetItem(const char* label_id, ImPlotItemFlags flags, bool*
         item->NameOffset = Items.Legend.Labels.size();
         Items.Legend.Labels.append(label_id, label_id + strlen(label_id) + 1);
     }
-    else {
+    else{
         item->Show = true;
     }
     return item;
@@ -371,12 +371,12 @@ void BustColorCache(const char* plot_title_id){
     if(plot_title_id == nullptr){
         BustItemCache();
     }
-    else {
+    else{
         ImGuiID id = ImGui::GetCurrentWindow()->GetID(plot_title_id);
         ImPlotPlot* plot = gp.Plots.GetByKey(id);
         if(plot != nullptr)
             plot->Items.Reset();
-        else {
+        else{
             ImPlotSubplot* subplot = gp.Subplots.GetByKey(id);
             if(subplot != nullptr)
                 subplot->Items.Reset();
@@ -425,7 +425,7 @@ bool BeginItem(const char* label_id, ImPlotItemFlags flags, ImPlotCol recolor_fr
         gp.CurrentItem  = nullptr;
         return false;
     }
-    else {
+    else{
         ImVec4 item_color = ImGui::ColorConvertU32ToFloat4(item->Color);
         // stage next item colors
         s.Colors[ImPlotCol_Line]           = IsColorAuto(s.Colors[ImPlotCol_Line])          ? ( IsColorAuto(ImPlotCol_Line)           ? item_color                 : gp.Style.Colors[ImPlotCol_Line]          ) : s.Colors[ImPlotCol_Line];
@@ -1370,7 +1370,7 @@ void RenderPrimitivesEx(const _Renderer& renderer, ImDrawList& draw_list, const 
         if(cnt >= ImMin(64u, prims)){
             if(prims_culled >= cnt)
                 prims_culled -= cnt; // reuse previous reservation
-            else {
+            else{
                 // add more elements to previous reservation
                 draw_list.PrimReserve((cnt - prims_culled) * renderer.IdxConsumed, (cnt - prims_culled) * renderer.VtxConsumed);
                 prims_culled = 0;
@@ -1591,7 +1591,7 @@ void PlotLineEx(const char* label_id, const _Getter& getter, ImPlotLineFlags fla
                     else
                         RenderPrimitives1<RendererLineStrip>(GetterLoop<_Getter>(getter),col_line,s.LineWeight);
                 }
-                else {
+                else{
                     if(ImHasFlag(flags, ImPlotLineFlags_SkipNaN))
                         RenderPrimitives1<RendererLineStripSkip>(getter,col_line,s.LineWeight);
                     else
@@ -1874,7 +1874,7 @@ void PlotBars(const char* label_id, const T* values, int count, double bar_size,
         GetterXY<IndexerConst,IndexerLin>  getter2(IndexerConst(0),IndexerLin(1.0,shift),count);
         PlotBarsHEx(label_id, getter1, getter2, bar_size, flags);
     }
-    else {
+    else{
         GetterXY<IndexerLin,IndexerIdx<T>> getter1(IndexerLin(1.0,shift),IndexerIdx<T>(values,count,offset,stride),count);
         GetterXY<IndexerLin,IndexerConst>  getter2(IndexerLin(1.0,shift),IndexerConst(0),count);
         PlotBarsVEx(label_id, getter1, getter2, bar_size, flags);
@@ -1888,7 +1888,7 @@ void PlotBars(const char* label_id, const T* xs, const T* ys, int count, double 
         GetterXY<IndexerConst, IndexerIdx<T>> getter2(IndexerConst(0),IndexerIdx<T>(ys,count,offset,stride),count);
         PlotBarsHEx(label_id, getter1, getter2, bar_size, flags);
     }
-    else {
+    else{
         GetterXY<IndexerIdx<T>,IndexerIdx<T>> getter1(IndexerIdx<T>(xs,count,offset,stride),IndexerIdx<T>(ys,count,offset,stride),count);
         GetterXY<IndexerIdx<T>,IndexerConst>  getter2(IndexerIdx<T>(xs,count,offset,stride),IndexerConst(0),count);
         PlotBarsVEx(label_id, getter1, getter2, bar_size, flags);
@@ -1907,7 +1907,7 @@ void PlotBarsG(const char* label_id, ImPlotGetter getter_func, void* data, int c
         GetterOverrideX<GetterFuncPtr> getter2(getter1,0);
         PlotBarsHEx(label_id, getter1, getter2, bar_size, flags);
     }
-    else {
+    else{
         GetterFuncPtr getter1(getter_func, data, count);
         GetterOverrideY<GetterFuncPtr> getter2(getter1,0);
         PlotBarsVEx(label_id, getter1, getter2, bar_size, flags);
@@ -1943,7 +1943,7 @@ void PlotBarGroups(const char* const label_ids[], const T* values, int item_coun
                             curr_max[g] = curr_min[g] + v;
                             pos[g]      += v;
                         }
-                        else {
+                        else{
                             curr_max[g] = neg[g];
                             curr_min[g] = curr_max[g] + v;
                             neg[g]      += v;
@@ -1955,7 +1955,7 @@ void PlotBarGroups(const char* const label_ids[], const T* values, int item_coun
                 PlotBarsHEx(label_ids[i],getter1,getter2,group_size,0);
             }
         }
-        else {
+        else{
             for(int i = 0; i < item_count; ++i){
                 if(!IsItemHidden(label_ids[i])){
                     for(int g = 0; g < group_count; ++g){
@@ -1965,7 +1965,7 @@ void PlotBarGroups(const char* const label_ids[], const T* values, int item_coun
                             curr_max[g] = curr_min[g] + v;
                             pos[g]      += v;
                         }
-                        else {
+                        else{
                             curr_max[g] = neg[g];
                             curr_min[g] = curr_max[g] + v;
                             neg[g]      += v;
@@ -1978,7 +1978,7 @@ void PlotBarGroups(const char* const label_ids[], const T* values, int item_coun
             }
         }
     }
-    else {
+    else{
         const double subsize = group_size / item_count;
         if(horz){
             for(int i = 0; i < item_count; ++i){
@@ -1986,7 +1986,7 @@ void PlotBarGroups(const char* const label_ids[], const T* values, int item_coun
                 PlotBars(label_ids[i],&values[i*group_count],group_count,subsize,subshift+shift,ImPlotBarsFlags_Horizontal);
             }
         }
-        else {
+        else{
             for(int i = 0; i < item_count; ++i){
                 const double subshift = (i+0.5)*subsize - group_size/2;
                 PlotBars(label_ids[i],&values[i*group_count],group_count,subsize,subshift+shift);
@@ -2072,7 +2072,7 @@ void PlotErrorBars(const char* label_id, const T* xs, const T* ys, const T* neg,
         GetterXY<IndexerAdd<IndexerIdx<T>,IndexerIdx<T>>,IndexerIdx<T>> getter_n(indexer_xn, indexer_y, count);
         PlotErrorBarsHEx(label_id, getter_p, getter_n, flags);
     }
-    else {
+    else{
         IndexerAdd<IndexerIdx<T>,IndexerIdx<T>> indexer_yp(indexer_y, indexer_p, 1,  1);
         IndexerAdd<IndexerIdx<T>,IndexerIdx<T>> indexer_yn(indexer_y, indexer_n, 1, -1);
         GetterXY<IndexerIdx<T>,IndexerAdd<IndexerIdx<T>,IndexerIdx<T>>> getter_p(indexer_x, indexer_yp, count);
@@ -2123,7 +2123,7 @@ void PlotStems(const char* label_id, const T* values, int count, double ref, dou
         GetterXY<IndexerConst,IndexerLin>  get_base(IndexerConst(ref),IndexerLin(scale,start),count);
         PlotStemsEx(label_id, get_mark, get_base, flags);
     }
-    else {
+    else{
         GetterXY<IndexerLin,IndexerIdx<T>> get_mark(IndexerLin(scale,start),IndexerIdx<T>(values,count,offset,stride),count);
         GetterXY<IndexerLin,IndexerConst>  get_base(IndexerLin(scale,start),IndexerConst(ref),count);
         PlotStemsEx(label_id, get_mark, get_base, flags);
@@ -2137,7 +2137,7 @@ void PlotStems(const char* label_id, const T* xs, const T* ys, int count, double
         GetterXY<IndexerConst,IndexerIdx<T>>  get_base(IndexerConst(ref),IndexerIdx<T>(ys,count,offset,stride),count);
         PlotStemsEx(label_id, get_mark, get_base, flags);
     }
-    else {
+    else{
         GetterXY<IndexerIdx<T>,IndexerIdx<T>> get_mark(IndexerIdx<T>(xs,count,offset,stride),IndexerIdx<T>(ys,count,offset,stride),count);
         GetterXY<IndexerIdx<T>,IndexerConst>  get_base(IndexerIdx<T>(xs,count,offset,stride),IndexerConst(ref),count);
         PlotStemsEx(label_id, get_mark, get_base, flags);
@@ -2173,7 +2173,7 @@ void PlotInfLines(const char* label_id, const T* values, int count, ImPlotInfLin
             EndItem();
         }
     }
-    else {
+    else{
         GetterXY<IndexerIdx<T>,IndexerConst> get_min(IndexerIdx<T>(values,count,offset,stride),IndexerConst(lims.Y.Min),count);
         GetterXY<IndexerIdx<T>,IndexerConst> get_max(IndexerIdx<T>(values,count,offset,stride),IndexerConst(lims.Y.Max),count);
         if(BeginItemEx(label_id, FitterX<GetterXY<IndexerIdx<T>,IndexerConst>>(get_min), flags, ImPlotCol_Line)){
@@ -2232,7 +2232,7 @@ double PieChartSum(const T* values, int count, bool ignore_hidden){
             }
         }
     }
-    else {
+    else{
         for(int i = 0; i < count; ++i){
             sum += (double)values[i];
         }
@@ -2266,7 +2266,7 @@ void PlotPieChartEx(const char* const label_ids[], const T* values, int count, I
                 if(percent < 0.5){
                     RenderPieSlice(draw_list, center, radius, a0, a1, col);
                 }
-                else {
+                else{
                     RenderPieSlice(draw_list, center, radius, a0, a0 + (a1 - a0) * 0.5, col);
                     RenderPieSlice(draw_list, center, radius, a0 + (a1 - a0) * 0.5, a1, col);
                 }
@@ -2431,7 +2431,7 @@ void RenderHeatmap(ImDrawList& draw_list, const T* values, int rows, int cols, d
         GetterHeatmapColMaj<T> getter(values, rows, cols, scale_min, scale_max, (bounds_max.x - bounds_min.x) / cols, (bounds_max.y - bounds_min.y) / rows, bounds_min.x, yref, ydir);
         RenderPrimitives1<RendererRectC>(getter);
     }
-    else {
+    else{
         GetterHeatmapRowMaj<T> getter(values, rows, cols, scale_min, scale_max, (bounds_max.x - bounds_min.x) / cols, (bounds_max.y - bounds_min.y) / rows, bounds_min.x, yref, ydir);
         RenderPrimitives1<RendererRectC>(getter);
     }
@@ -2459,7 +2459,7 @@ void RenderHeatmap(ImDrawList& draw_list, const T* values, int rows, int cols, d
                 }
             }
         }
-        else {
+        else{
             for(int r = 0; r < rows; ++r){
                 for(int c = 0; c < cols; ++c){
                     ImPlotPoint p;
@@ -2784,7 +2784,7 @@ void PlotText(const char* text, double x, double y, const ImVec2& pixel_offset, 
         }
         AddTextVertical(&draw_list, pos, colTxt, text);
     }
-    else {
+    else{
         ImVec2 siz = ImGui::CalcTextSize(text);
         ImVec2 pos = PlotToPixels(ImPlotPoint(x,y),IMPLOT_AUTO,IMPLOT_AUTO) - siz * 0.5f + pixel_offset;
         if(FitThisFrame() && !ImHasFlag(flags, ImPlotItemFlags_NoFit)){

@@ -533,7 +533,7 @@ void plot_surface(const std::vector<::std::vector<Numeric>> &x,
     if(it->first == "linewidth" || it->first == "alpha"){
       PyDict_SetItemString(kwargs, it->first.c_str(),
         PyFloat_FromDouble(std::stod(it->second)));
-    } else {
+    }else{
       PyDict_SetItemString(kwargs, it->first.c_str(),
         PyString_FromString(it->second.c_str()));
     }
@@ -548,7 +548,7 @@ void plot_surface(const std::vector<::std::vector<Numeric>> &x,
   if(!PyObject_IsTrue(fig_exists)){
     fig = PyObject_CallObject(detail::_interpreter::get().s_python_function_figure,
       detail::_interpreter::get().s_python_empty_tuple);
-  } else {
+  }else{
     fig = PyObject_CallObject(detail::_interpreter::get().s_python_function_figure,
       fig_args);
   }
@@ -717,7 +717,7 @@ void plot3(const std::vector<Numeric> &x,
   if(!PyObject_IsTrue(fig_exists)){
     fig = PyObject_CallObject(detail::_interpreter::get().s_python_function_figure,
       detail::_interpreter::get().s_python_empty_tuple);
-  } else {
+  }else{
     fig = PyObject_CallObject(detail::_interpreter::get().s_python_function_figure,
       fig_args);
   }
@@ -1119,7 +1119,7 @@ bool scatter(const std::vector<NumericX>& x,
   if(!PyObject_IsTrue(fig_exists)){
     fig = PyObject_CallObject(detail::_interpreter::get().s_python_function_figure,
       detail::_interpreter::get().s_python_empty_tuple);
-  } else {
+  }else{
     fig = PyObject_CallObject(detail::_interpreter::get().s_python_function_figure,
       fig_args);
   }
@@ -1879,7 +1879,7 @@ inline long figure(long number = -1)
     PyObject *res;
     if(number == -1)
         res = PyObject_CallObject(detail::_interpreter::get().s_python_function_figure, detail::_interpreter::get().s_python_empty_tuple);
-    else {
+    else{
         assert(number > 0);
 
         // Make sure interpreter is initialised
@@ -2108,7 +2108,7 @@ inline void xticks(const std::vector<Numeric> &ticks, const std::vector<std::str
         // construct positional args
         args = PyTuple_New(1);
         PyTuple_SetItem(args, 0, ticksarray);
-    } else {
+    }else{
         // make tuple of tick labels
         PyObject* labelstuple = PyTuple_New(labels.size());
         for(size_t i = 0; i < labels.size(); i++)
@@ -2157,7 +2157,7 @@ inline void yticks(const std::vector<Numeric> &ticks, const std::vector<std::str
         // construct positional args
         args = PyTuple_New(1);
         PyTuple_SetItem(args, 0, ticksarray);
-    } else {
+    }else{
         // make tuple of tick labels
         PyObject* labelstuple = PyTuple_New(labels.size());
         for(size_t i = 0; i < labels.size(); i++)
@@ -2415,7 +2415,7 @@ inline void axvspan(double xmin, double xmax, double ymin = 0., double ymax = 1.
       if(it->first == "linewidth" || it->first == "alpha"){
         PyDict_SetItemString(kwargs, it->first.c_str(),
           PyFloat_FromDouble(std::stod(it->second)));
-      } else {
+      }else{
         PyDict_SetItemString(kwargs, it->first.c_str(),
           PyString_FromString(it->second.c_str()));
       }

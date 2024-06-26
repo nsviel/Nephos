@@ -94,18 +94,18 @@ float Surface::evaluate(float x, float y){
   std::vector<float> x_powers(m + 1, 1.0f);
   std::vector<float> y_powers(n + 1, 1.0f);
 
-  for (int i = 1; i <= m; ++i){
+  for(int i = 1; i <= m; ++i){
     x_powers[i] = x_powers[i - 1] * x;
   }
 
-  for (int j = 1; j <= n; ++j){
+  for(int j = 1; j <= n; ++j){
     y_powers[j] = y_powers[j - 1] * y;
   }
 
   float fit = 0;
   int cpt = 0;
-  for (int i = 0; i <= m; ++i){
-    for (int j = 0; j <= n; ++j){
+  for(int i = 0; i <= m; ++i){
+    for(int j = 0; j <= n; ++j){
       fit += P[cpt] * x_powers[i] * y_powers[j];
       cpt++;
     }
@@ -116,20 +116,20 @@ float Surface::evaluate(float x, float y){
 }
 
 //Subfunction
-Eigen::MatrixXf Surface::jacobian(std::vector<glm::vec3>& data) {
+Eigen::MatrixXf Surface::jacobian(std::vector<glm::vec3>& data){
   int num_points = data.size();
   Eigen::MatrixXf J(num_points, num_param);
   //---------------------------
 
-  for (int k = 0; k < num_points; ++k) {
+  for(int k = 0; k < num_points; ++k){
     float x = data[k].x;
     float y = data[k].y;
 
     int cpt = 0;
     float x_power = 1.0f;
-    for (int i = 0; i <= m; ++i) {
+    for(int i = 0; i <= m; ++i){
       float y_power = 1.0f;
-      for (int j = 0; j <= n; ++j) {
+      for(int j = 0; j <= n; ++j){
         J(k, cpt++) = x_power * y_power;
         y_power *= y; // Update y_power for the next iteration
       }

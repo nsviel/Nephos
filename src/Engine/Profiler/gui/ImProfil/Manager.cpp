@@ -5,10 +5,20 @@
 
 namespace prf::improfil{
 
+Manager::Manager(){
+  //---------------------------
+
+  this->graph = new prf::improfil::Graph();
+  this->idx_color = 0;
+  this->max_nb_data = 100;
+  this->vec_color = prf::improfil::colormap::viridis;
+
+  //---------------------------
+}
 Manager::Manager(string name){
   //---------------------------
 
-  this-> name = name;
+  this->name = name;
   this->graph = new prf::improfil::Graph();
   this->idx_color = 0;
   this->max_nb_data = 100;

@@ -107,7 +107,7 @@ std::string formatted_size(std::string path){
   std::stringstream result;
   if(unitIndex == 0){
     result << std::fixed << std::setprecision(0) << fileSizeBytes << " " << sizeUnits[unitIndex];
-  } else {
+  }else{
     result << std::fixed << std::setprecision(1) << fileSizeBytes << " " << sizeUnits[unitIndex];
   }
 
@@ -139,7 +139,7 @@ void clear(std::string path){
 
   if(outputFile.is_open()){
     outputFile.close();
-  } else {
+  }else{
     std::cout << "Failed to open the file forclearing." << std::endl;
   }
 
@@ -167,19 +167,19 @@ uint8_t* load_binary(std::string path){
         // Successfully read the file
         // Use the buffer as needed
         free(buffer); // Release the allocated memory
-      } else {
+      }else{
         // Handle error ifnot all bytes were read
         fprintf(stderr, "Error reading all bytes from file\n");
         return nullptr;
       }
-    } else {
+    }else{
       // Handle error ifmemory allocation fails
       fprintf(stderr, "Error allocating memory\n");
       return nullptr;
     }
 
     fclose(file); // Close the file
-  } else {
+  }else{
     // Handle error iffile cannot be opened
     fprintf(stderr, "Error opening file forreading: %s\n", "truc.bin");
     return nullptr;

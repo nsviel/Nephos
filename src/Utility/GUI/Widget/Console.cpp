@@ -131,7 +131,7 @@ void Console::add_file(std::string prefix, std::string path){
   std::ofstream outputFile(path.c_str(), std::ofstream::out);
   if(outputFile.is_open()){
     outputFile.close();
-  } else {
+  }else{
     std::cerr << "Failed to open the file for clearing." << std::endl;
     return;
   }

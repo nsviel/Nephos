@@ -103,12 +103,12 @@ void CT_ICP::algo(Collection* collection){
 			trajectory[index_frame].center_R = Eigen::MatrixXd::Identity(3, 3);
 			trajectory[index_frame].center_t = Eigen::Vector3d(0., 0., 0.);
 		}
-		else {
+		else{
 			if(index_frame == 1){
 				trajectory[index_frame].center_R = Eigen::MatrixXd::Identity(3, 3);
 				trajectory[index_frame].center_t = Eigen::Vector3d(0., 0., 0.);
 			}
-			else {
+			else{
 				//Init guess of the next position of the trajectory
 				Eigen::Matrix3d R_next_center = trajectory[index_frame - 1].center_R * trajectory[index_frame - 2].center_R.inverse() * trajectory[index_frame - 1].center_R;
 				Eigen::Vector3d t_next_center = trajectory[index_frame - 1].center_t + trajectory[index_frame - 1].center_R * trajectory[index_frame - 2].center_R.inverse() * (trajectory[index_frame - 1].center_t - trajectory[index_frame - 2].center_t);
@@ -184,7 +184,7 @@ void CT_ICP::algo(Collection* collection){
 					(*current_list).push_back(frame[j].pt);
 				}
 			}
-			else {
+			else{
 				voxels_map[Voxel(kx, ky, kz)].push_back(frame[j].pt);
 			}
 		}
@@ -229,12 +229,12 @@ void CT_ICP::algo(Cloud* cloud){
 		trajectory[index_frame].center_R = Eigen::MatrixXd::Identity(3, 3);
 		trajectory[index_frame].center_t = Eigen::Vector3d(0., 0., 0.);
 	}
-	else {
+	else{
 		if(index_frame == 1){
 			trajectory[index_frame].center_R = Eigen::MatrixXd::Identity(3, 3);
 			trajectory[index_frame].center_t = Eigen::Vector3d(0., 0., 0.);
 		}
-		else {
+		else{
 			//Init guess of the next position of the trajectory
 			Eigen::Matrix3d R_next_center = trajectory[index_frame - 1].center_R * trajectory[index_frame - 2].center_R.inverse() * trajectory[index_frame - 1].center_R;
 			Eigen::Vector3d t_next_center = trajectory[index_frame - 1].center_t + trajectory[index_frame - 1].center_R * trajectory[index_frame - 2].center_R.inverse() * (trajectory[index_frame - 1].center_t - trajectory[index_frame - 2].center_t);
@@ -320,7 +320,7 @@ void CT_ICP::algo(Cloud* cloud){
 				(*current_list).push_back(frame[j].pt);
 			}
 		}
-		else {
+		else{
 			voxels_map[Voxel(kx, ky, kz)].push_back(frame[j].pt);
 		}
 	}
@@ -378,7 +378,7 @@ void CT_ICP::update_voxelMap(vector<Point3D>& frame){
 				(*current_list).push_back(frame[j].pt);
 			}
 		}
-		else {
+		else{
 			voxels_map[Voxel(kx, ky, kz)].push_back(frame[j].pt);
 		}
 	}
@@ -407,7 +407,7 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 	if(index_frame < 50){
 		nb_voxels_visited = 1;
 	}
-	else {
+	else{
 		nb_voxels_visited = 1;
 	}
 
@@ -518,7 +518,7 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 				if(index_frame == 1){
 					current_max_dist_plane = current_max_dist_plane = START_DIST_TO_PLANE_FRAME_TO_MODEL - (double)iter / (double)(NUMBER_ITER_FRAME_TO_MODEL - 1) * (START_DIST_TO_PLANE_FRAME_TO_MODEL - MAX_DIST_TO_PLANE_FRAME_TO_MODEL);
 				}
-				else {
+				else{
 					current_max_dist_plane = MAX_DIST_TO_PLANE_FRAME_TO_MODEL;
 				}
 				if(fabs(dist_to_plane) < current_max_dist_plane){

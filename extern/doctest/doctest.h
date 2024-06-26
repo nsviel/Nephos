@@ -2493,7 +2493,7 @@ int registerReporter(const char* name, int priority, bool isReporter){
                 DOCTEST_RB.m_threw_as = true;                                                      \
             } catch(...){ DOCTEST_RB.translateException(); }                                      \
             DOCTEST_ASSERT_LOG_REACT_RETURN(DOCTEST_RB);                                           \
-        } else { /* NOLINT(*-else-after-return) */                                                 \
+        }else{ /* NOLINT(*-else-after-return) */                                                 \
             DOCTEST_FUNC_SCOPE_RET(false);                                                         \
         }                                                                                          \
     } DOCTEST_FUNC_SCOPE_END
@@ -2507,7 +2507,7 @@ int registerReporter(const char* name, int priority, bool isReporter){
                 DOCTEST_CAST_TO_VOID(expr)                                                         \
             } catch(...){ DOCTEST_RB.translateException(); }                                      \
             DOCTEST_ASSERT_LOG_REACT_RETURN(DOCTEST_RB);                                           \
-        } else { /* NOLINT(*-else-after-return) */                                                 \
+        }else{ /* NOLINT(*-else-after-return) */                                                 \
            DOCTEST_FUNC_SCOPE_RET(false);                                                          \
         }                                                                                          \
     } DOCTEST_FUNC_SCOPE_END
@@ -3561,15 +3561,15 @@ using ticks_t = timer_large_integer::type;
             if(currentTest->m_should_fail){
                 if(failure_flags){
                     failure_flags |= TestCaseFailureReason::ShouldHaveFailedAndDid;
-                } else {
+                }else{
                     failure_flags |= TestCaseFailureReason::ShouldHaveFailedButDidnt;
                 }
-            } else if(failure_flags && currentTest->m_may_fail){
+            }else if(failure_flags && currentTest->m_may_fail){
                 failure_flags |= TestCaseFailureReason::CouldHaveFailedAndDid;
-            } else if(currentTest->m_expected_failures > 0){
+            }else if(currentTest->m_expected_failures > 0){
                 if(numAssertsFailedCurrentTest == currentTest->m_expected_failures){
                     failure_flags |= TestCaseFailureReason::FailedExactlyNumTimes;
-                } else {
+                }else{
                     failure_flags |= TestCaseFailureReason::DidntFailExactlyNumTimes;
                 }
             }
@@ -3600,7 +3600,7 @@ char* String::allocate(size_type sz){
         buf[sz] = '\0';
         setLast(last - sz);
         return buf;
-    } else {
+    }else{
         setOnHeap();
         data.size = sz;
         data.capacity = data.size + 1;
@@ -3614,13 +3614,13 @@ void String::setOnHeap() noexcept { *reinterpret_cast<unsigned char*>(&buf[last]
 void String::setLast(size_type in) noexcept { buf[last] = char(in); }
 void String::setSize(size_type sz) noexcept {
     if(isOnStack()){ buf[sz] = '\0'; setLast(last - sz); }
-    else { data.ptr[sz] = '\0'; data.size = sz; }
+    else{ data.ptr[sz] = '\0'; data.size = sz; }
 }
 
 void String::copy(const String& other){
     if(other.isOnStack()){
         memcpy(buf, other.buf, len);
-    } else {
+    }else{
         memcpy(allocate(other.data.size), other.data.ptr, other.data.size);
     }
 }
@@ -3669,7 +3669,7 @@ String& String::operator+=(const String& other){
             memcpy(buf + my_old_size, other.c_str(), other_size + 1);
             // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
             setLast(last - total_size);
-        } else {
+        }else{
             // alloc new chunk
             char* temp = new char[total_size + 1];
             // copy current data to new location before writing in the union
@@ -3682,12 +3682,12 @@ String& String::operator+=(const String& other){
             // transfer the rest of the data
             memcpy(data.ptr + my_old_size, other.c_str(), other_size + 1);
         }
-    } else {
+    }else{
         if(data.capacity > total_size){
             // append to the current heap block
             data.size = total_size;
             memcpy(data.ptr + my_old_size, other.c_str(), other_size + 1);
-        } else {
+        }else{
             // resize
             data.capacity *= 2;
             if(data.capacity <= total_size)
@@ -3769,7 +3769,7 @@ String::size_type String::find(char ch, size_type pos) const {
     const char* it = begin + pos;
     for(; it < end && *it != ch; it++);
     if(it < end){ return static_cast<size_type>(it - begin); }
-    else { return npos; }
+    else{ return npos; }
 }
 
 String::size_type String::rfind(char ch, size_type pos) const {
@@ -3777,7 +3777,7 @@ String::size_type String::rfind(char ch, size_type pos) const {
     const char* it = begin + std::min(pos, size() - 1);
     for(; it >= begin && *it != ch; it--);
     if(it >= begin){ return static_cast<size_type>(it - begin); }
-    else { return npos; }
+    else{ return npos; }
 }
 
 int String::compare(const char* other, bool no_case) const {
@@ -3917,7 +3917,7 @@ DOCTEST_DEFINE_INTERFACE(IContextScope)
 namespace detail {
     void filldata<const void*>::fill(std::ostream* stream, const void* in){
         if(in){ *stream << in; }
-        else { *stream << "nullptr"; }
+        else{ *stream << "nullptr"; }
     }
 
     template <typename T>
@@ -4130,11 +4130,11 @@ namespace {
                 }
                 mp = wild;
                 cp = str + 1;
-            } else if((caseSensitive ? (*wild == *str) : (tolower(*wild) == tolower(*str))) ||
+            }else if((caseSensitive ? (*wild == *str) : (tolower(*wild) == tolower(*str))) ||
                       (*wild == '?')){
                 wild++;
                 str++;
-            } else {
+            }else{
                 wild = mp;   //!OCLINT parameter reassignment
                 str  = cp++; //!OCLINT parameter reassignment
             }
@@ -4217,13 +4217,13 @@ namespace detail {
                 m_entered = true;
                 DOCTEST_ITERATE_THROUGH_REPORTERS(subcase_start, m_signature);
             }
-        } else {
+        }else{
             if(g_cs->subcaseStack[g_cs->currentSubcaseDepth] == m_signature){
                 // This subcase is reentered via control flow.
                 g_cs->currentSubcaseDepth++;
                 m_entered = true;
                 DOCTEST_ITERATE_THROUGH_REPORTERS(subcase_start, m_signature);
-            } else if(g_cs->nextSubcaseStack.size() <= g_cs->currentSubcaseDepth
+            }else if(g_cs->nextSubcaseStack.size() <= g_cs->currentSubcaseDepth
                     && g_cs->fullyTraversedSubcases.find(hash(hash(g_cs->subcaseStack, g_cs->currentSubcaseDepth), hash(m_signature)))
                     == g_cs->fullyTraversedSubcases.end()){
                 if(checkFilters()){ return; }
@@ -4249,7 +4249,7 @@ namespace detail {
                 g_cs->fullyTraversedSubcases.insert(hash(g_cs->subcaseStack));
                 g_cs->nextSubcaseStack.clear();
                 g_cs->reachedLeaf = true;
-            } else if(g_cs->nextSubcaseStack.empty()){
+            }else if(g_cs->nextSubcaseStack.empty()){
                 // All children are finished.
                 g_cs->fullyTraversedSubcases.insert(hash(g_cs->subcaseStack));
             }
@@ -4932,13 +4932,13 @@ namespace detail {
     bool ResultBuilder::log(){
         if(m_at & assertType::is_throws){ //!OCLINT bitwise operator in conditional
             m_failed = !m_threw;
-        } else if((m_at & assertType::is_throws_as) && (m_at & assertType::is_throws_with)){ //!OCLINT
+        }else if((m_at & assertType::is_throws_as) && (m_at & assertType::is_throws_with)){ //!OCLINT
             m_failed = !m_threw_as || !m_exception_string.check(m_exception);
-        } else if(m_at & assertType::is_throws_as){ //!OCLINT bitwise operator in conditional
+        }else if(m_at & assertType::is_throws_as){ //!OCLINT bitwise operator in conditional
             m_failed = !m_threw_as;
-        } else if(m_at & assertType::is_throws_with){ //!OCLINT bitwise operator in conditional
+        }else if(m_at & assertType::is_throws_with){ //!OCLINT bitwise operator in conditional
             m_failed = !m_exception_string.check(m_exception);
-        } else if(m_at & assertType::is_nothrow){ //!OCLINT bitwise operator in conditional
+        }else if(m_at & assertType::is_nothrow){ //!OCLINT bitwise operator in conditional
             m_failed = m_threw;
         }
 
@@ -4951,7 +4951,7 @@ namespace detail {
 
             if(m_failed)
                 addFailedAssert(m_at);
-        } else if(m_failed){
+        }else if(m_failed){
             failed_out_of_a_testing_context(*this);
         }
 
@@ -5334,7 +5334,7 @@ namespace {
             m_os << "/>";
             m_tagIsOpen = false;
         }
-        else {
+        else{
             m_os << m_indent << "</" << m_tags.back() << ">";
         }
         m_os << std::endl;
@@ -5448,7 +5448,7 @@ namespace {
                     open_ts_tag = true;
                 }
             }
-            else {
+            else{
                 open_ts_tag = true; // first test case ==> first test suite
             }
 
@@ -5487,7 +5487,7 @@ namespace {
                     xml.scopedElement("Reporter")
                             .writeAttribute("priority", curr.first.first)
                             .writeAttribute("name", curr.first.second);
-            } else if(opt.count || opt.list_test_cases){
+            }else if(opt.count || opt.list_test_cases){
                 for(unsigned i = 0; i < in.num_data; ++i){
                     xml.scopedElement("TestCase").writeAttribute("name", in.data[i]->m_name)
                         .writeAttribute("testsuite", in.data[i]->m_test_suite)
@@ -5497,7 +5497,7 @@ namespace {
                 }
                 xml.scopedElement("OverallResultsTestCases")
                         .writeAttribute("unskipped", in.run_stats->numTestCasesPassingFilters);
-            } else if(opt.list_test_suites){
+            }else if(opt.list_test_suites){
                 for(unsigned i = 0; i < in.num_data; ++i)
                     xml.scopedElement("TestSuite").writeAttribute("name", in.data[i]->m_test_suite);
                 xml.scopedElement("OverallResultsTestCases")
@@ -5657,7 +5657,7 @@ namespace {
 
         if(rb.m_at & assertType::is_throws){ //!OCLINT bitwise operator in conditional
             s << (rb.m_threw ? "threw as expected!" : "did NOT throw at all!") << "\n";
-        } else if((rb.m_at & assertType::is_throws_as) &&
+        }else if((rb.m_at & assertType::is_throws_as) &&
                     (rb.m_at & assertType::is_throws_with)){ //!OCLINT
             s << Color::Cyan << assertString(rb.m_at) << "( " << rb.m_expr << ", \""
                 << rb.m_exception_string.c_str()
@@ -5665,13 +5665,13 @@ namespace {
             if(rb.m_threw){
                 if(!rb.m_failed){
                     s << "threw as expected!\n";
-                } else {
+                }else{
                     s << "threw a DIFFERENT exception! (contents: " << rb.m_exception << ")\n";
                 }
-            } else {
+            }else{
                 s << "did NOT throw at all!\n";
             }
-        } else if(rb.m_at &
+        }else if(rb.m_at &
                     assertType::is_throws_as){ //!OCLINT bitwise operator in conditional
             s << Color::Cyan << assertString(rb.m_at) << "( " << rb.m_expr << ", "
                 << rb.m_exception_type << " ) " << Color::None
@@ -5679,7 +5679,7 @@ namespace {
                                                 "threw a DIFFERENT exception: ") :
                                 "did NOT throw at all!")
                 << Color::Cyan << rb.m_exception << "\n";
-        } else if(rb.m_at &
+        }else if(rb.m_at &
                     assertType::is_throws_with){ //!OCLINT bitwise operator in conditional
             s << Color::Cyan << assertString(rb.m_at) << "( " << rb.m_expr << ", \""
                 << rb.m_exception_string.c_str()
@@ -5688,10 +5688,10 @@ namespace {
                                                 "threw a DIFFERENT exception: ") :
                                 "did NOT throw at all!")
                 << Color::Cyan << rb.m_exception << "\n";
-        } else if(rb.m_at & assertType::is_nothrow){ //!OCLINT bitwise operator in conditional
+        }else if(rb.m_at & assertType::is_nothrow){ //!OCLINT bitwise operator in conditional
             s << (rb.m_threw ? "THREW exception: " : "didn't throw!") << Color::Cyan
                 << rb.m_exception << "\n";
-        } else {
+        }else{
             s << (rb.m_threw ? "THREW exception: " :
                                 (!rb.m_failed ? "is correct!\n" : "is NOT correct!\n"));
             if(rb.m_threw)
@@ -6211,11 +6211,11 @@ namespace {
         void report_query(const QueryData& in) override {
             if(opt.version){
                 printVersion();
-            } else if(opt.help){
+            }else if(opt.help){
                 printHelp();
-            } else if(opt.list_reporters){
+            }else if(opt.list_reporters){
                 printRegisteredReporters();
-            } else if(opt.count || opt.list_test_cases){
+            }else if(opt.count || opt.list_test_cases){
                 if(opt.list_test_cases){
                     s << Color::Cyan << "[doctest] " << Color::None
                       << "listing all test case names\n";
@@ -6231,7 +6231,7 @@ namespace {
                   << "unskipped test cases passing the current filters: "
                   << g_cs->numTestCasesPassingFilters << "\n";
 
-            } else if(opt.list_test_suites){
+            }else if(opt.list_test_suites){
                 s << Color::Cyan << "[doctest] " << Color::None << "listing all test suites\n";
                 separator_to_stream();
 
@@ -6320,14 +6320,14 @@ namespace {
 
             if(st.failure_flags & TestCaseFailureReason::ShouldHaveFailedButDidnt){
                 s << Color::Red << "Should have failed but didn't! Marking it as failed!\n";
-            } else if(st.failure_flags & TestCaseFailureReason::ShouldHaveFailedAndDid){
+            }else if(st.failure_flags & TestCaseFailureReason::ShouldHaveFailedAndDid){
                 s << Color::Yellow << "Failed as expected so marking it as not failed\n";
-            } else if(st.failure_flags & TestCaseFailureReason::CouldHaveFailedAndDid){
+            }else if(st.failure_flags & TestCaseFailureReason::CouldHaveFailedAndDid){
                 s << Color::Yellow << "Allowed to fail so marking it as not failed\n";
-            } else if(st.failure_flags & TestCaseFailureReason::DidntFailExactlyNumTimes){
+            }else if(st.failure_flags & TestCaseFailureReason::DidntFailExactlyNumTimes){
                 s << Color::Red << "Didn't fail exactly " << tc->m_expected_failures
                   << " times so marking it as failed!\n";
-            } else if(st.failure_flags & TestCaseFailureReason::FailedExactlyNumTimes){
+            }else if(st.failure_flags & TestCaseFailureReason::FailedExactlyNumTimes){
                 s << Color::Yellow << "Failed exactly " << tc->m_expected_failures
                   << " times as expected so marking it as not failed!\n";
             }
@@ -6471,7 +6471,7 @@ namespace {
                             *value = temp;
                             return true;
                         }
-                    } else {
+                    }else{
                         // just a flag - no value
                         return true;
                     }
@@ -6529,9 +6529,9 @@ namespace {
                 }
                 if(character == '\\'){
                     seenBackslash = true;
-                } else if(character == ','){
+                }else if(character == ','){
                     flush();
-                } else {
+                }else{
                     s.put(character);
                 }
             }
@@ -6566,7 +6566,7 @@ namespace {
                 res = theInt; //!OCLINT parameter reassignment
                 return true;
             }
-        } else {
+        }else{
             // boolean
             const char positive[][5] = { "1", "true", "on", "yes" };  // 5 - strlen("true") + 1
             const char negative[][6] = { "0", "false", "off", "no" }; // 6 - strlen("false") + 1
@@ -6807,11 +6807,11 @@ int Context::run(){
     if(p->cout == nullptr){
         if(p->quiet){
             p->cout = &discardOut;
-        } else if(p->out.size()){
+        }else if(p->out.size()){
             // to a file if specified
             fstr.open(p->out.c_str(), std::fstream::out);
             p->cout = &fstr;
-        } else {
+        }else{
 #ifndef DOCTEST_CONFIG_NO_INCLUDE_IOSTREAM
             // stdout by default
             p->cout = &std::cout;
@@ -6880,11 +6880,11 @@ int Context::run(){
     if(!testArray.empty()){
         if(p->order_by.compare("file", true) == 0){
             std::sort(testArray.begin(), testArray.end(), fileOrderComparator);
-        } else if(p->order_by.compare("suite", true) == 0){
+        }else if(p->order_by.compare("suite", true) == 0){
             std::sort(testArray.begin(), testArray.end(), suiteOrderComparator);
-        } else if(p->order_by.compare("name", true) == 0){
+        }else if(p->order_by.compare("name", true) == 0){
             std::sort(testArray.begin(), testArray.end(), nameOrderComparator);
-        } else if(p->order_by.compare("rand", true) == 0){
+        }else if(p->order_by.compare("rand", true) == 0){
             std::srand(p->rand_seed);
 
             // random_shuffle implementation
@@ -6897,7 +6897,7 @@ int Context::run(){
                 first[i]         = first[idxToSwap];
                 first[idxToSwap] = temp;
             }
-        } else if(p->order_by.compare("none", true) == 0){
+        }else if(p->order_by.compare("none", true) == 0){
             // means no sorting - beneficial for death tests which call into the executable
             // with a specific test case in mind - we don't want to slow down the startup times
         }
@@ -7044,7 +7044,7 @@ DOCTEST_MSVC_SUPPRESS_WARNING_POP
 
     if(!query_mode){
         DOCTEST_ITERATE_THROUGH_REPORTERS(test_run_end, *g_cs);
-    } else {
+    }else{
         QueryData qdata;
         qdata.run_stats = g_cs;
         qdata.data      = queryResults.data();

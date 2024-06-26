@@ -138,13 +138,13 @@ void Screenshot::export_image_to_binary(vk::structure::Image* image){
           }
 
           fclose(file); // Close the file
-      } else {
+      }else{
           // Handle error if file cannot be opened
           fprintf(stderr, "Error opening file for writing: %s\n", "truc.bin");
       }
 
       vkUnmapMemory(vk_struct->device.handle, staging_mem);
-  } else {
+  }else{
       // Handle error if memory mapping fails
       fprintf(stderr, "Error mapping memory: %d\n", mapResult);
   }

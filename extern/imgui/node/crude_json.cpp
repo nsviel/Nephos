@@ -249,7 +249,7 @@ void value::dump(dump_context_t& context, int level) const
                 bool first = true;
                 for(auto& entry : *object_ptr(m_Storage))
                 {
-                    if(!first){ context.out << ','; context.write_newline(); } else first = false;
+                    if(!first){ context.out << ','; context.write_newline(); }else first = false;
                     context.write_indent(level + 1);
                     context.out << '\"' << entry.first << "\":";
                     if(!entry.second.is_structured())
@@ -277,7 +277,7 @@ void value::dump(dump_context_t& context, int level) const
                 bool first = true;
                 for(auto& entry : *array_ptr(m_Storage))
                 {
-                    if(!first){ context.out << ','; context.write_newline(); } else first = false;
+                    if(!first){ context.out << ','; context.write_newline(); }else first = false;
                     if(!entry.is_structured())
                     {
                         context.write_indent(level + 1);

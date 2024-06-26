@@ -64,22 +64,6 @@ prf::graph::Tasker* Profiler::fetch_tasker(std::string name){
   //---------------------------
   return tasker;
 }
-void Profiler::insert_tasker(prf::graph::Tasker* tasker){
-  //---------------------------
-
-  //Check if tasker name already exists
-  for(int i=0; i<list_tasker.size(); i++){
-    prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
-    if(tasker->name == name){
-      return;
-    }
-  }
-
-  //Else insert it
-  this->list_tasker.push_back(tasker);
-
-  //---------------------------
-}
 void Profiler::remove_tasker(prf::graph::Tasker* tasker){
   //---------------------------
 

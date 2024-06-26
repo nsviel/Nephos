@@ -101,11 +101,11 @@ template<typename T> T template_null(const T& value){
   //---------------------------
 
   // Return a null value for the type T
-  if constexpr (std::is_arithmetic_v<T>) {
+  if constexpr (std::is_arithmetic_v<T>){
     return static_cast<T>(0);  // For numeric types
-  } else if constexpr (std::is_same_v<T, std::string>) {
+  }else if constexpr (std::is_same_v<T, std::string>){
     return "";  // For std::string
-  } else {
+  }else{
     return T();  // For other types, return default-constructed T
   }
 

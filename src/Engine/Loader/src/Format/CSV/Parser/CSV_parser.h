@@ -146,9 +146,9 @@ namespace aria {
 
               if(c == m_quote){
                 m_state = State::IN_QUOTED_FIELD;
-              } else if(c == m_delimiter){
+              }else if(c == m_delimiter){
                 return Field(m_fieldbuf);
-              } else {
+              }else{
                 m_state = State::IN_FIELD;
                 m_fieldbuf += c;
               }
@@ -166,7 +166,7 @@ namespace aria {
               if(c == m_delimiter){
                 m_state = State::START_OF_FIELD;
                 return Field(m_fieldbuf);
-              } else {
+              }else{
                 m_fieldbuf += c;
               }
 
@@ -176,7 +176,7 @@ namespace aria {
               m_cursor++;
               if(c == m_quote){
                 m_state = State::IN_ESCAPED_QUOTE;
-              } else {
+              }else{
                 m_fieldbuf += c;
               }
 
@@ -193,10 +193,10 @@ namespace aria {
               if(c == m_quote){
                 m_state = State::IN_QUOTED_FIELD;
                 m_fieldbuf += c;
-              } else if(c == m_delimiter){
+              }else if(c == m_delimiter){
                 m_state = State::START_OF_FIELD;
                 return Field(m_fieldbuf);
-              } else {
+              }else{
                 m_state = State::IN_FIELD;
                 m_fieldbuf += c;
               }
@@ -329,7 +329,7 @@ namespace aria {
               case FieldType::DATA:
                 if(num_fields < m_row.size()){
                   m_row[num_fields] = std::move(*field.data);
-                } else {
+                }else{
                   m_row.push_back(std::move(*field.data));
                 }
                 num_fields++;

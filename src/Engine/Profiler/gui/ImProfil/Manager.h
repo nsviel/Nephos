@@ -12,6 +12,7 @@ namespace prf::improfil{
 class Manager{
 public:
   //Constructor / Destructor
+  Manager();
   Manager(string name);
   ~Manager();
 
@@ -33,7 +34,7 @@ private:
   prf::improfil::Graph* graph;
   vector<prf::graph::structure::Task> vec_task;
   vector<vec4> vec_color;
-  string name;
+  string name = "";
   int idx_color;
   int max_nb_data;
 };
