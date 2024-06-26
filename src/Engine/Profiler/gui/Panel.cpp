@@ -15,7 +15,7 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
 
   this->prf_manager = node_profiler->get_prf_manager();
   this->gui_graph = new prf::gui::Graph(node_profiler);
-  this->gui_hardware = new prf::gui::Hardware(node_profiler);
+  this->gui_hardware = new prf::gui::hardware::Tab(node_profiler);
 
   this->show_window = show_window;
   this->name = "Profiler";

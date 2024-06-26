@@ -1,24 +1,24 @@
-#include "Hardware.h"
+#include "GPU.h"
 
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace prf::gui{
+namespace prf::gui::hardware{
 
 //Constructor / Destructor
-Hardware::Hardware(prf::Node* node_profiler){
+GPU::GPU(prf::Node* node_profiler){
   //---------------------------
 
 
 
   //---------------------------
 }
-Hardware::~Hardware(){}
+GPU::~GPU(){}
 
 //Main function
-void Hardware::show_profiler(prf::base::Profiler* profiler){
+void GPU::show_profiler(prf::base::Profiler* profiler){
   //---------------------------
 
   //Retrieve vulkan info struct
@@ -51,7 +51,7 @@ void Hardware::show_profiler(prf::base::Profiler* profiler){
 }
 
 //Tab function
-void Hardware::draw_tab_device(prf::hardware::Structure* prf_struct, ImVec2 dimension){
+void GPU::draw_tab_device(prf::hardware::Structure* prf_struct, ImVec2 dimension){
   //---------------------------
 
   if(ImGui::BeginTabBar("vulkan_device##tab_bar")){
@@ -71,7 +71,7 @@ void Hardware::draw_tab_device(prf::hardware::Structure* prf_struct, ImVec2 dime
 
   //---------------------------
 }
-void Hardware::draw_tab_gpu(prf::hardware::Structure* prf_struct, ImVec2 dimension){
+void GPU::draw_tab_gpu(prf::hardware::Structure* prf_struct, ImVec2 dimension){
   //---------------------------
 
   this->draw_gpu_info(prf_struct);
@@ -81,7 +81,7 @@ void Hardware::draw_tab_gpu(prf::hardware::Structure* prf_struct, ImVec2 dimensi
 }
 
 //Subfunction
-void Hardware::draw_device_info(prf::hardware::Device& device){
+void GPU::draw_device_info(prf::hardware::Device& device){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
@@ -120,7 +120,7 @@ void Hardware::draw_device_info(prf::hardware::Device& device){
 
   //---------------------------
 }
-void Hardware::draw_device_queue_families(prf::hardware::Device& device){
+void GPU::draw_device_queue_families(prf::hardware::Device& device){
   //---------------------------
 
   int size = device.vec_queue_family.size() + 1;
@@ -187,7 +187,7 @@ void Hardware::draw_device_queue_families(prf::hardware::Device& device){
 
   //---------------------------
 }
-void Hardware::draw_gpu_info(prf::hardware::Structure* prf_struct){
+void GPU::draw_gpu_info(prf::hardware::Structure* prf_struct){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
@@ -204,12 +204,27 @@ void Hardware::draw_gpu_info(prf::hardware::Structure* prf_struct){
   ImGui::Text("Temperature"); ImGui::TableNextColumn();
   ImGui::TextColored(color, "%d°", prf_struct->gpu.temperature);
 
+  //Consumption
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Total consumption"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%.2f J", prf_struct->gpu.total_consumption);
+
+  //Power
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Power usage"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d W", prf_struct->gpu.power_usage);
+
+  //Fan speed
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Fan speed"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%d rpm", prf_struct->gpu.fan_speed);
+
   ImGui::EndTable();
 
   //---------------------------
   ImGui::Separator();
 }
-void Hardware::draw_gpu_queue(prf::hardware::Structure* prf_struct){
+void GPU::draw_gpu_queue(prf::hardware::Structure* prf_struct){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Queue");

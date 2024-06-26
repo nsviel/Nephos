@@ -10,14 +10,14 @@ namespace prf::hardware{class Structure;}
 namespace prf::gui{class Profiler;}
 
 
-namespace prf::gui{
+namespace prf::gui::hardware{
 
-class Hardware
+class Tab
 {
 public:
   //Constructor / Destructor
-  Hardware(prf::Node* node_profiler);
-  ~Hardware();
+  Tab(prf::Node* node_profiler);
+  ~Tab();
 
 public:
   //Main function

@@ -11,6 +11,7 @@ Node::Node(){
   //---------------------------
 
   this->prf_manager = new prf::Manager();
+  this->prf_hardware = new prf::hardware::Profiler();
   this->gui_panel = new prf::gui::Panel(this, &prf_panel->is_open);
 
   //---------------------------
@@ -36,6 +37,7 @@ void Node::loop(){
 
   prf_manager->loop_end();
   prf_manager->loop_begin(120);
+  prf_hardware->collect_gpu_info();
 
   //---------------------------
 }

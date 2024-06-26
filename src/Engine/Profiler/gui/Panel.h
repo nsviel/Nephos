@@ -11,7 +11,7 @@ namespace prf::improfil{class Manager;}
 namespace prf::hardware{class Profiler;}
 namespace prf::gui{class Profiler;}
 namespace prf::gui{class Graph;}
-namespace prf::gui{class Hardware;}
+namespace prf::gui::hardware{class Tab;}
 
 
 namespace prf::gui{
@@ -35,7 +35,7 @@ public:
 private:
   prf::Manager* prf_manager;
   prf::gui::Graph* gui_graph;
-  prf::gui::Hardware* gui_hardware;
+  prf::gui::hardware::Tab* gui_hardware;
 
   bool* show_window;
   string gpu = "";

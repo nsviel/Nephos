@@ -27,6 +27,7 @@ public:
   //Main function
   void add_queue(prf::hardware::queue::Type type, int ID_family);
   void collect_info(vk::structure::Vulkan* vk_struct);
+  void collect_gpu_info();
 
   inline prf::hardware::Structure* get_prf_struct(){return prf_struct;}
 
