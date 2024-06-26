@@ -101,17 +101,17 @@ void Panel::draw_profiler(){
         //Graph tab
         if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
           this->selected_profiler = gui_graph;
-          gui_graph->draw_profiler(graph);
+          gui_graph->show_profiler(graph);
         }
         //Vulkan tab
         else if(prf::vulkan::Profiler* vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler)){
           this->selected_profiler = gui_vulkan;
-          gui_vulkan->draw_profiler(vulkan);
+          gui_vulkan->show_profiler(vulkan);
         }
         //Hardware tab
         else if(prf::hardware::Profiler* temperature = dynamic_cast<prf::hardware::Profiler*>(profiler)){
           this->selected_profiler = gui_hardware;
-          gui_hardware->draw_profiler(temperature);
+          gui_hardware->show_profiler(temperature);
         }
 
         ImGui::EndTabItem();

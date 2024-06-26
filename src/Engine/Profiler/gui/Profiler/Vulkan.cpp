@@ -17,7 +17,7 @@ Vulkan::Vulkan(prf::Node* node_profiler){
 Vulkan::~Vulkan(){}
 
 //Main function
-void Vulkan::draw_profiler(prf::vulkan::Profiler* prf_vulkan){
+void Vulkan::show_profiler(prf::vulkan::Profiler* prf_vulkan){
   prf::vulkan::Structure* prf_struct = prf_vulkan->get_prf_struct();
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------

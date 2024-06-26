@@ -19,7 +19,7 @@ public:
 
 public:
   //Main function
-  void draw_profiler(prf::hardware::Profiler* temperature);
+  void show_profiler(prf::hardware::Profiler* temperature);
 
   //Tab function
 

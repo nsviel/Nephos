@@ -40,7 +40,7 @@ void Tasker::loop_begin(int fps){
 
   //Init loop task
   this->reference = timer.get_time();
-  this->name = utl::thread::get_ID_str();
+  this->thread_ID = utl::thread::get_ID_str();
 
   //FPS control
   this->is_fps_control = (fps != -1) ? true : false;
@@ -82,6 +82,7 @@ void Tasker::task_begin(std::string name, float time){
     return;
   }
 
+  //Start timestamp
   double ts = time;
   if(ts == -1){
     ts = timer.duration_s(this->reference, timer.get_time());
@@ -127,6 +128,7 @@ prf::graph::structure::Task* Tasker::retrieve_task(const std::string& name){
   //Search for corresponding task
   for(int i=0; i<vec_task_current.size(); i++){
     prf::graph::structure::Task* task = &vec_task_current[i];
+
     if(task->name == name){
       return task;
     }

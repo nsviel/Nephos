@@ -19,7 +19,7 @@ Hardware::Hardware(prf::Node* node_profiler){
 Hardware::~Hardware(){}
 
 //Main function
-void Hardware::draw_profiler(prf::hardware::Profiler* temperature){
+void Hardware::show_profiler(prf::hardware::Profiler* temperature){
   //---------------------------
 
 

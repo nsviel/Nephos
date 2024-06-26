@@ -19,18 +19,6 @@ Graph::Graph(prf::Node* node_profiler){
 Graph::~Graph(){}
 
 //Main function
-void Graph::draw_profiler(prf::graph::Profiler* profiler){
-  //---------------------------
-
-  if(ImGui::BeginTabBar("tasker_gui##4567")){
-    this->draw_graph_all(profiler);
-    this->draw_graph_unique(profiler);
-
-    ImGui::EndTabBar();
-  }
-
-  //---------------------------
-}
 void Graph::show_info(){
   if(selected_tasker == nullptr) return;
   //---------------------------
@@ -55,7 +43,32 @@ void Graph::show_info(){
 
   //---------------------------
 }
-void Graph::show_command(){
+void Graph::show_profiler(prf::graph::Profiler* profiler){
+  //---------------------------
+
+  if(ImGui::BeginTabBar("tasker_gui##4567")){
+
+    ImGui::BeginTable("##detection_stats", 2);
+    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);
+    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthStretch);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    this->draw_graph_command();
+
+    ImGui::TableNextColumn();
+    this->draw_graph_all(profiler);
+    this->draw_graph_unique(profiler);
+
+    ImGui::EndTable();
+
+    ImGui::EndTabBar();
+  }
+
+  //---------------------------
+}
+
+//Draw function
+void Graph::draw_graph_command(){
   //---------------------------
 
   //Play button -> if paused
@@ -75,17 +88,12 @@ void Graph::show_command(){
     ImGui::PopStyleColor();
   }
 
-  //Graph max time
-  ImGui::SameLine();
-  ImGui::SetNextItemWidth(150);
-  if(ImGui::SliderInt("Y axis", &max_time, 10, 100, "%d ms")){
+  if(ImGui::VSliderInt("Y axis", ImVec2(20, ImGui::GetContentRegionAvail().y), &max_time, 10, 100, "%d ms")){
     this->set_graphs_max_time(max_time);
   }
 
   //---------------------------
 }
-
-//Subfunction
 void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
   //---------------------------
@@ -175,6 +183,8 @@ void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim){
 
   //---------------------------
 }
+
+//Subfunction
 void Graph::set_graphs_max_time(int value){
   std::list<prf::base::Profiler*> list_profiler = prf_manager->get_list_profiler();
   //---------------------------
