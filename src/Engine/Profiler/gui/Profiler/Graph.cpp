@@ -48,18 +48,8 @@ void Graph::show_profiler(prf::graph::Profiler* profiler){
 
   if(ImGui::BeginTabBar("tasker_gui##4567")){
 
-    ImGui::BeginTable("##detection_stats", 2);
-    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);
-    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthStretch);
-
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    this->draw_graph_command();
-
-    ImGui::TableNextColumn();
     this->draw_graph_all(profiler);
     this->draw_graph_unique(profiler);
-
-    ImGui::EndTable();
 
     ImGui::EndTabBar();
   }
@@ -71,9 +61,7 @@ void Graph::show_profiler(prf::graph::Profiler* profiler){
 void Graph::draw_graph_command(){
   //---------------------------
 
-
-
-  //Play button -> if paused
+  //Play / pause button
   if(pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##profiler_play", ImVec2(20, 0))){
@@ -81,7 +69,6 @@ void Graph::draw_graph_command(){
     }
     ImGui::PopStyleColor();
   }
-  //Pause button -> if not paused
   else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##profiler_pause")){
@@ -90,8 +77,7 @@ void Graph::draw_graph_command(){
     ImGui::PopStyleColor();
   }
 
-
-
+  //Max visible ms
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_SliderGrab, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_SliderGrabActive, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
@@ -133,12 +119,24 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   //All not empty tasker graphs
   ImGui::SetNextItemWidth(100);
   if(ImGui::BeginTabItem("All##4568", NULL, flag)){
+
+    ImGui::BeginTable("##detection_stats", 2);
+    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);
+    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthStretch);
+
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    this->draw_graph_command();
+
+    ImGui::TableNextColumn();
     prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
     graph_dim = ImVec2(graph_dim.x, graph_dim.y/vec_tasker.size() - 3);
 
     for(int i=0; i<vec_tasker.size(); i++){
       this->draw_tasker_graph(vec_tasker[i], graph_dim);
     }
+
+    ImGui::EndTable();
+
     ImGui::EndTabItem();
   }
 
@@ -156,7 +154,21 @@ void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
     ImGui::SetNextItemWidth(100);
     string title = tasker->name + "##45454";
     if(!tasker->vec_task.empty() && ImGui::BeginTabItem(title.c_str(), NULL)){
+
+      ImGui::BeginTable("##detection_stats", 2);
+      ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);
+      ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthStretch);
+
+      ImGui::TableNextRow(); ImGui::TableNextColumn();
+      this->draw_graph_command();
+
+      ImGui::TableNextColumn();
       this->draw_tasker_graph(tasker, graph_dim);
+
+      ImGui::EndTable();
+
+
+
       ImGui::EndTabItem();
     }
   }
