@@ -71,10 +71,12 @@ void Graph::show_profiler(prf::graph::Profiler* profiler){
 void Graph::draw_graph_command(){
   //---------------------------
 
+
+
   //Play button -> if paused
   if(pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
-    if(ImGui::Button(ICON_FA_PLAY "##profiler_play")){
+    if(ImGui::Button(ICON_FA_PLAY "##profiler_play", ImVec2(20, 0))){
       pause = false;
     }
     ImGui::PopStyleColor();
@@ -88,9 +90,18 @@ void Graph::draw_graph_command(){
     ImGui::PopStyleColor();
   }
 
-  if(ImGui::VSliderInt("Y axis", ImVec2(20, ImGui::GetContentRegionAvail().y), &max_time, 10, 100, "%d ms")){
+
+
+  ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+  ImGui::PushStyleColor(ImGuiCol_SliderGrab, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
+  ImGui::PushStyleColor(ImGuiCol_SliderGrabActive, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
+  ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+  ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+  if(ImGui::VSliderInt("Y axis", ImVec2(22, ImGui::GetContentRegionAvail().y), &max_time, 100, 10, "%d")){
     this->set_graphs_max_time(max_time);
   }
+  ImGui::PopStyleColor(2);
+  ImGui::PopStyleVar(5);
 
   //---------------------------
 }
