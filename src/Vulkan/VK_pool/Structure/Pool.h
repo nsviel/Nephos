@@ -1,9 +1,9 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Struct_command_buffer.h>
+#include <Vulkan/VK_command/Structure/Command_buffer.h>
 #include <Vulkan/VK_synchronization/Structure/Fence.h>
 #include <Vulkan/VK_synchronization/Structure/Semaphore.h>
-#include <Vulkan/VK_struct/Struct_descriptor.h>
+#include <Vulkan/VK_binding/Structure/Descriptor.h>
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <mutex>

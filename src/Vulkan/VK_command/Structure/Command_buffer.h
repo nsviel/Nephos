@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Struct_query.h>
+#include <Vulkan/VK_pool/Structure/Query.h>
 #include <Vulkan/VK_synchronization/Structure/Fence.h>
 #include <vulkan/vulkan.h>
 #include <string>

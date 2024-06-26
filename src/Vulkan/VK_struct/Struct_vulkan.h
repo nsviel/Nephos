@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Vulkan/VK_window/Structure/Window.h>
 #include <Vulkan/VK_data/Structure/Data.h>
 #include <Vulkan/VK_queue/Structure/Class.h>
 #include <Vulkan/VK_device/Structure/Device.h>
@@ -38,7 +39,6 @@ struct Vulkan{
   vk::structure::Parameter param;
   vk::structure::Pool pools;
   vk::structure::Command command;
-  vk::structure::Synchro synchro;
   vk::queue::structure::Class queue;
 
   //---------------------------

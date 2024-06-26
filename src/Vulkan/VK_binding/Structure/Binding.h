@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Struct_descriptor.h>
+#include <Vulkan/VK_binding/Structure/Descriptor.h>
 #include <Vulkan/VK_binding/Structure/Sampler.h>
 #include <Vulkan/VK_binding/Structure/Uniform.h>
 #include <Vulkan/VK_binding/Structure/Push_constant.h>

@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Struct_pool.h>
+#include <Vulkan/VK_pool/Structure/Pool.h>
 #include <vulkan/vulkan.h>
+#include <vector>
 
 
 namespace vk::queue::structure{
@@ -14,7 +15,7 @@ struct Queue{
   int family_ID = -1;
   int family_index = 0;
 
-  vector<vk::pool::Command_buffer*> vec_pool;
+  std::vector<vk::pool::Command_buffer*> vec_pool;
 
   //---------------------------
 };

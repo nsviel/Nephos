@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Struct_command_buffer.h>
+#include <Vulkan/VK_command/Structure/Command_buffer.h>
 #include <vulkan/vulkan.h>
 
 
