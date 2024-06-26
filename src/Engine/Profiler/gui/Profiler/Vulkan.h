@@ -21,7 +21,7 @@ public:
 
 public:
   //Main function
-  void show_profiler(prf::vulkan::Profiler* prf_vulkan);
+  void show_profiler(prf::base::Profiler* profiler);
 
   //Tab function
   void draw_tab_thread(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim);

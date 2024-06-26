@@ -23,15 +23,15 @@ public:
 public:
   //Main function
   void show_info();
-  void show_profiler(prf::graph::Profiler* profiler);
+  void show_profiler(prf::base::Profiler* profiler);
 
-  //Draw function
-  void draw_graph_command();
+  //Graph function
   void draw_graph_all(prf::graph::Profiler* profiler);
   void draw_graph_unique(prf::graph::Profiler* profiler);
-  void draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim);
 
   //Subfunction
+  void draw_graph_command();
+  void draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim);
   void set_graphs_max_time(int value);
 
   inline bool& get_pause(){return pause;}

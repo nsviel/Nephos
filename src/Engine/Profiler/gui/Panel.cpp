@@ -95,8 +95,10 @@ void Panel::draw_profiler(){
     for(int i=0; i<list_profiler.size(); i++){
       prf::base::Profiler* profiler = *next(list_profiler.begin(), i);
 
-      ImGui::SetNextItemWidth(100);
+      ImVec2 graph_dim = ImGui::GetContentRegionAvail();
+      ImGui::SetNextItemWidth(graph_dim.x / list_profiler.size());
       if(ImGui::BeginTabItem(profiler->name.c_str())){
+
 
         //Graph tab
         if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){

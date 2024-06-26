@@ -17,10 +17,13 @@ Vulkan::Vulkan(prf::Node* node_profiler){
 Vulkan::~Vulkan(){}
 
 //Main function
-void Vulkan::show_profiler(prf::vulkan::Profiler* prf_vulkan){
+void Vulkan::show_profiler(prf::base::Profiler* profiler){
+  prf::vulkan::Profiler* prf_vulkan = dynamic_cast<prf::vulkan::Profiler*>(profiler);
+
+  //---------------------------
+
   prf::vulkan::Structure* prf_struct = prf_vulkan->get_prf_struct();
   ImVec2 graph_dim = ImGui::GetContentRegionAvail();
-  //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
   if(ImGui::BeginTabBar("Vulkan##profiler_vulkan")){
