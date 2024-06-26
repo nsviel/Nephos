@@ -14,7 +14,6 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
   this->prf_manager = node_profiler->get_prf_manager();
-  this->gui_vulkan = new prf::gui::Vulkan(node_profiler);
   this->gui_graph = new prf::gui::Graph(node_profiler);
   this->gui_hardware = new prf::gui::Hardware(node_profiler);
 
@@ -80,10 +79,6 @@ void Panel::draw_profiler(prf::base::Profiler* profiler){
   switch(profiler->type){
     case prf::base::GRAPH:{
       gui_graph->show_profiler(profiler);
-      break;
-    }
-    case prf::base::VULKAN:{
-      gui_vulkan->show_profiler(profiler);
       break;
     }
     case prf::base::HARDWARE:{
