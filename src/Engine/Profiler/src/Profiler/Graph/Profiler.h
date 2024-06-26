@@ -1,15 +1,15 @@
 #pragma once
 
 #include <Utility/Specific/Common.h>
-#include <Profiler/src/Profiler/Structure.h>
+#include <Profiler/src/Profiler/Base/Profiler.h>
 
 namespace prf::graph{class Tasker;}
-namespace prf{class Structure;}
+namespace prf::base{class Profiler;}
 
 
 namespace prf::graph{
 
-class Profiler : public prf::Structure
+class Profiler : public prf::base::Profiler
 {
 public:
   //Constructor / Destructor

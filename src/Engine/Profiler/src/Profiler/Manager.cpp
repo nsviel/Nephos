@@ -28,14 +28,14 @@ Manager::Manager(){
 Manager::~Manager(){}
 
 //Main function
-void Manager::add_profiler(prf::Structure* profiler){
+void Manager::add_profiler(prf::base::Profiler* profiler){
   //---------------------------
 
   this->list_profiler.push_back(profiler);
 
   //---------------------------
 }
-void Manager::remove_profiler(prf::Structure* profiler){
+void Manager::remove_profiler(prf::base::Profiler* profiler){
   //---------------------------
 
   profiler->clean();

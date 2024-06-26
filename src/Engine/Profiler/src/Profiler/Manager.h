@@ -3,7 +3,7 @@
 #include <Utility/Specific/Common.h>
 #include <Profiler/src/Timer/Chrono.h>
 
-namespace prf{class Structure;}
+namespace prf::base{class Profiler;}
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
 namespace prf::vulkan{class Profiler;}
@@ -21,8 +21,8 @@ public:
 
 public:
   //Main function
-  void add_profiler(prf::Structure* profiler);
-  void remove_profiler(prf::Structure* profiler);
+  void add_profiler(prf::base::Profiler* profiler);
+  void remove_profiler(prf::base::Profiler* profiler);
 
   //Subfunction
   void loop_begin(int max_fps);
@@ -30,10 +30,10 @@ public:
 
   inline prf::graph::Profiler* get_profiler_main(){return profiler_main;}
   inline prf::vulkan::Profiler* get_profiler_vulkan(){return profiler_vulkan;}
-  inline std::list<prf::Structure*> get_list_profiler(){return list_profiler;}
+  inline std::list<prf::base::Profiler*> get_list_profiler(){return list_profiler;}
 
 private:
-  std::list<prf::Structure*> list_profiler;
+  std::list<prf::base::Profiler*> list_profiler;
   prf::graph::Profiler* profiler_main;
   prf::vulkan::Profiler* profiler_vulkan;
   prf::hardware::Profiler* profiler_hardware;

@@ -3,9 +3,9 @@
 #include <string>
 
 
-namespace prf{
+namespace prf::base{
 
-struct Structure{
+struct Profiler{
   //---------------------------
 
   virtual void clean(){}

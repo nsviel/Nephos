@@ -2,7 +2,7 @@
 
 #include <Utility/Specific/Common.h>
 #include <Profiler/src/Timer/Chrono.h>
-#include <Profiler/src/Profiler/Structure.h>
+#include <Profiler/src/Profiler/Base/Profiler.h>
 #include <Profiler/src/Profiler/Vulkan/Structure/Queue.h>
 #include <Profiler/src/Profiler/Vulkan/Structure/Info.h>
 
@@ -10,12 +10,12 @@ namespace prf::vulkan{class Device;}
 namespace prf::vulkan{class Thread;}
 namespace prf::vulkan{class Queue;}
 namespace prf::vulkan{class Collector;}
-namespace prf{class Structure;}
+namespace prf::base{class Profiler;}
 
 
 namespace prf::vulkan{
 
-class Profiler : public prf::Structure
+class Profiler : public prf::base::Profiler
 {
 public:
   //Constructor / Destructor
