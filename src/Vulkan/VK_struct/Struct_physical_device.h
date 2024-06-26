@@ -15,7 +15,7 @@ struct Physical_device{
   uint32_t max_image_dim = 0;
   uint64_t timestamp_period = 0;
   int selection_score = 0;
-  int vendorID = 0;
+  int vendor_ID = 0;
 
   //Properties
   VkPhysicalDevice handle = VK_NULL_HANDLE;

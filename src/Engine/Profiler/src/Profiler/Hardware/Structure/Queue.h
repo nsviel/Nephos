@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace prf::vulkan::queue{
+namespace prf::hardware::queue{
 
 struct Family{
   //---------------------------
@@ -24,13 +24,15 @@ enum Type{
 
 }
 
-namespace prf::vulkan{
+namespace prf::hardware{
 
 struct Queue{
   //---------------------------
 
+  prf::hardware::queue::Type type;
+  std::string thread_ID = "";
+  int family_ID = -1;
   int number = 0;
-  int ID_family = -1;
 
   //---------------------------
 };

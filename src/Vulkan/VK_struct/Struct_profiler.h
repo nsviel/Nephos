@@ -17,12 +17,11 @@ struct Profiler{
     this->tasker_main = profiler->fetch_tasker("cpu");
     this->tasker_gpu = profiler->fetch_tasker("gpu");
     this->prf_vulkan = prf_manager->get_profiler_vulkan();
-    this->prf_vulkan->add_thread("Main");
   }
 
   prf::graph::Tasker* tasker_main;
   prf::graph::Tasker* tasker_gpu;
-  prf::vulkan::Profiler* prf_vulkan;
+  prf::hardware::Profiler* prf_vulkan;
 
   //---------------------------
 };

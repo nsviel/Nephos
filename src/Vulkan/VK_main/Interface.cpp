@@ -18,7 +18,7 @@ Interface::~Interface(){}
 
 //Main function
 void Interface::fill_profiler_info(){
-  prf::vulkan::Profiler* prf_vulkan = vk_struct->profiler->prf_vulkan;
+  prf::hardware::Profiler* prf_vulkan = vk_struct->profiler->prf_vulkan;
   //---------------------------
 
   prf_vulkan->collect_info(vk_struct);

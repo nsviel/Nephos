@@ -1,11 +1,11 @@
 #pragma once
 
-#include <Profiler/src/Profiler/Vulkan/Structure/Queue.h>
+#include <Profiler/src/Profiler/Hardware/Structure/Queue.h>
 #include <vector>
 #include <string>
 
 
-namespace prf::vulkan{
+namespace prf::hardware{
 
 struct Device{
   //---------------------------
@@ -15,13 +15,16 @@ struct Device{
   bool has_extension_support;
   bool discrete_gpu;
   uint32_t max_image_dim;
-  int vendorID;
+  int vendor_ID;
 
   //GPU queues
   int ID_family_graphics = -1;
   int ID_family_transfer = -1;
   int ID_family_presentation = -1;
-  std::vector<prf::vulkan::queue::Family> vec_queue_family;
+  std::vector<prf::hardware::queue::Family> vec_queue_family;
+
+  //GPU info
+
 
   //---------------------------
 };

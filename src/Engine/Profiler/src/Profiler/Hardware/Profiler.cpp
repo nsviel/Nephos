@@ -10,44 +10,35 @@ namespace prf::hardware{
 Profiler::Profiler(){
   //---------------------------
 
-  //this->rnd_cpu = new utl::hardare::CPU();
-  //this->rnd_gpu = new utl::hardare::Nvidia();
-  this->name = "Hardware";
-  this->type = prf::base::HARDWARE;
+  this->prf_struct = new prf::hardware::Structure();
+  this->prf_collector = new prf::hardware::Collector(prf_struct);
+
+  this->name = "Vulkan";
+  this->type = prf::base::VULKAN;
 
   //---------------------------
 }
 Profiler::~Profiler(){}
 
 //Main function
-void Profiler::update_tic(){
+void Profiler::collect_info(vk::structure::Vulkan* vk_struct){
   //---------------------------
-/*
-  static int cpt = 0;
-  static float max_gpu = 0;
-  static float max_cpu = 0;
 
-  int temp_cpu = rnd_cpu->get_temperature();
-  int temp_gpu = rnd_gpu->get_temperature();
-  cpt++;
+  prf_collector->collect_info(vk_struct);
 
-  cpu_temps.push_back(temp_cpu);
-  gpu_temps.push_back(temp_gpu);
-  vec_time.push_back(cpt);
-
-  if(cpu_temps.size() > nb_element) cpu_temps.erase(cpu_temps.begin());
-  if(gpu_temps.size() > nb_element) gpu_temps.erase(gpu_temps.begin());
-  if(vec_time.size() > nb_element) vec_time.erase(vec_time.begin());
-
-  float max_current_cpu = (float)*std::max_element(cpu_temps.begin(), cpu_temps.end());
-  float max_current_gpu = (float)*std::max_element(gpu_temps.begin(), gpu_temps.end());
-  if(max_current_cpu > max_cpu) max_cpu = max_current_cpu;
-  if(max_current_gpu > max_gpu) max_gpu = max_current_gpu;
-*/
   //---------------------------
 }
+void Profiler::add_queue(prf::hardware::queue::Type type, int ID_family){
+  //---------------------------
 
-//Subfunction
+  prf::hardware::Queue queue;
+  queue.type = type;
+  queue.number++;
+  queue.family_ID = ID_family;
+  queue.thread_ID = utl::thread::get_ID_str();
+  prf_struct->vec_queue.push_back(queue);
 
+  //---------------------------
+}
 
 }

@@ -4,9 +4,9 @@
 
 namespace prf{class Node;}
 namespace prf::base{class Profiler;}
-namespace prf::vulkan{class Profiler;}
-namespace prf::vulkan{class Device;}
-namespace prf::vulkan{class Structure;}
+namespace prf::hardware{class Profiler;}
+namespace prf::hardware{class Device;}
+namespace prf::hardware{class Structure;}
 namespace prf::gui{class Profiler;}
 
 
@@ -24,15 +24,14 @@ public:
   void show_profiler(prf::base::Profiler* profiler);
 
   //Tab function
-  void draw_info(prf::vulkan::Structure* prf_struct);
-  void draw_tab(prf::vulkan::Structure* prf_struct);
-  void draw_tab_thread(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim);
-  void draw_tab_queue(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim);
-  void draw_tab_device(prf::vulkan::Structure* prf_struct, ImVec2 graph_dim);
+  void draw_tab_gpu(prf::hardware::Structure* prf_struct, ImVec2 graph_dim);
+  void draw_tab_device(prf::hardware::Structure* prf_struct, ImVec2 graph_dim);
 
   //Subfunction
-  void draw_device_info(prf::vulkan::Device& device);
-  void draw_device_queue_families(prf::vulkan::Device& device);
+  void draw_device_info(prf::hardware::Device& device);
+  void draw_device_queue_families(prf::hardware::Device& device);
+  void draw_gpu_info(prf::hardware::Structure* prf_struct);
+  void draw_gpu_queue(prf::hardware::Structure* prf_struct);
 
 private:
 };

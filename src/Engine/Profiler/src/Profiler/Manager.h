@@ -6,7 +6,6 @@
 namespace prf::base{class Profiler;}
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
-namespace prf::vulkan{class Profiler;}
 namespace prf::hardware{class Profiler;}
 
 
@@ -29,13 +28,12 @@ public:
   void loop_end();
 
   inline prf::graph::Profiler* get_profiler_main(){return profiler_main;}
-  inline prf::vulkan::Profiler* get_profiler_vulkan(){return profiler_vulkan;}
+  inline prf::hardware::Profiler* get_profiler_hardware(){return profiler_hardware;}
   inline std::list<prf::base::Profiler*> get_list_profiler(){return list_profiler;}
 
 private:
   std::list<prf::base::Profiler*> list_profiler;
   prf::graph::Profiler* profiler_main;
-  prf::vulkan::Profiler* profiler_vulkan;
   prf::hardware::Profiler* profiler_hardware;
 };
 

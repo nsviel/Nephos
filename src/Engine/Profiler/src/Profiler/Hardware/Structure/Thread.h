@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace prf::vulkan{
+namespace prf::hardware{
 
 struct Thread{
   //---------------------------

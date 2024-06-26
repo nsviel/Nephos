@@ -5,7 +5,7 @@
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Task;}
 namespace prf::graph{class Tasker;}
-namespace prf::vulkan{class Profiler;}
+namespace prf::hardware{class Profiler;}
 
 
 namespace vk::main{

@@ -15,11 +15,7 @@ Manager::Manager(){
   profiler_main->fetch_tasker("gpu");
   this->add_profiler(profiler_main);
 
-  //Vulkan profiler
-  this->profiler_vulkan = new prf::vulkan::Profiler();
-  this->add_profiler(profiler_vulkan);
-
-  //Temperature profiler
+  //Hardware profiler
   this->profiler_hardware = new prf::hardware::Profiler();
   this->add_profiler(profiler_hardware);
 

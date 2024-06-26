@@ -118,7 +118,7 @@ void Physical::rate_device_suitability(vk::structure::Physical_device& physical_
   //---------------------------
 
   //If llvmpipe, set score to the minimum
-  if(physical_device.vendorID == 65541){
+  if(physical_device.vendor_ID == 65541){
     physical_device.selection_score = 0;
     return;
   }
@@ -243,7 +243,7 @@ void Physical::find_physical_device_properties(vk::structure::Physical_device& p
   vkGetPhysicalDeviceProperties(physical_device.handle, &properties);
   physical_device.properties = properties;
   physical_device.name = properties.deviceName;
-  physical_device.vendorID = properties.vendorID;
+  physical_device.vendor_ID = properties.vendorID;
   physical_device.type = properties.deviceType;
   physical_device.max_image_dim = properties.limits.maxImageDimension2D;
 

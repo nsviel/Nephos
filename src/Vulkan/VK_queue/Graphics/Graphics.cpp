@@ -33,7 +33,8 @@ void Graphics::run_thread(){
   //---------------------------
 
   //Save thread information
-  vk_struct->profiler->prf_vulkan->add_thread("Graphics queue");
+  vk_struct->profiler->prf_vulkan->add_queue(prf::hardware::queue::GRAPHICS, vk_struct->device.queue.graphics.family_ID);
+  vk_struct->profiler->prf_vulkan->add_queue(prf::hardware::queue::PRESENTATION, vk_struct->device.queue.presentation.family_ID);
 
   //Start thread loop
   this->thread_running = true;
