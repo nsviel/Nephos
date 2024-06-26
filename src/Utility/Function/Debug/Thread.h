@@ -1,16 +1,12 @@
 #pragma once
 
 #include <string>
+#include <thread>
 
 
-namespace thread{
+namespace utl::thread{
 
-std::string get_ID(){
-  //---------------------------
-
-  return std::stringstream{} << std::this_thread::get_id()).str();
-
-  //---------------------------
-}
+std::thread::id get_ID();
+std::string get_ID_str();
 
 }

@@ -9,8 +9,8 @@ namespace prf::vulkan{
 struct Thread{
   //---------------------------
 
-  std::thread::id ID;
-  std::string name;
+  std::string ID = "";
+  std::string name = "";
 
   //---------------------------
 };

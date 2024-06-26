@@ -1,5 +1,6 @@
 #include "Profiler.h"
 
+#include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 
 
@@ -32,7 +33,7 @@ void Profiler::add_thread(string name){
   //---------------------------
 
   prf::vulkan::Thread thread;
-  thread.ID = std::this_thread::get_id();
+  thread.ID = utl::thread::get_ID_str();
   thread.name = name;
 
   prf_struct->vec_thread.push_back(thread);

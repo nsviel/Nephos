@@ -88,7 +88,7 @@ void Allocator::clean_command_buffer_pool(vk::structure::Queue* queue){
 //Command buffer pool use
 vk::pool::Command_buffer* Allocator::query_free_pool(vk::structure::Queue* queue){
   vector<vk::pool::Command_buffer*>& vec_pool = queue->vec_pool;
-  std::thread::id this_thread_ID = std::this_thread::get_id();
+  std::thread::id this_thread_ID = utl::thread::get_ID();
   //---------------------------
 
   //Return pool associated with thread ID

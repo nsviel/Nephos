@@ -74,9 +74,7 @@ void Vulkan::draw_tab_thread(prf::vulkan::Structure* prf_struct, ImVec2 graph_di
 
     //Thread ID
     ImGui::TableNextColumn();
-    std::stringstream ss;
-    ss << thread.ID;
-    ImGui::TextColored(blue, "%s", ss.str().c_str());
+    ImGui::TextColored(blue, "%s", thread.ID.c_str());
   }
 
   ImGui::EndTable();

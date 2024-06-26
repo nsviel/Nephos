@@ -45,7 +45,7 @@ void Tasker::loop_begin(){
   this->vec_task_current.clear();
   this->reference = timer.get_time();
   this->is_fps_control = false;
-  this->thread_ID = (std::stringstream{} << std::this_thread::get_id()).str();
+  this->thread_ID = utl::thread::get_ID_str();
 
   //---------------------------
 }
@@ -56,7 +56,7 @@ void Tasker::loop_begin(int fps){
   this->vec_task_current.clear();
   this->reference = timer.get_time();
   this->is_fps_control = true;
-  this->thread_ID = (std::stringstream{} << std::this_thread::get_id()).str();
+  this->thread_ID = utl::thread::get_ID_str();
 
   //Set fps control
   fps_control->set_fps_max(fps);
