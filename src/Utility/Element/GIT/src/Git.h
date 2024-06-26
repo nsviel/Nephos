@@ -28,11 +28,11 @@ public:
 
   inline string get_last_tag(){return last_tag;}
   inline vector<string> get_vec_branch(){return vec_branch;}
-  inline vector<pair<string, string>> get_vec_branch_formatted(){return vec_branch_format;}
+  inline vector<pair<string, std::string>> get_vec_branch_formatted(){return vec_branch_format;}
 
 private:
   vector<string> vec_branch;
-  vector<pair<string, string>> vec_branch_format;
+  vector<pair<string, std::string>> vec_branch_format;
   git_repository* repo;
   string last_tag;
 };

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::renderpass{class Attachment;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Renderpass;}

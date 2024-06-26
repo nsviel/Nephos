@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vulkan/vulkan.h>
 
 namespace vk::image{class Color;}
 namespace vk::image{class Depth;}

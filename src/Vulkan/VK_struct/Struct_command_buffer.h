@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <Vulkan/VK_struct/Struct_query.h>
+#include <vulkan/vulkan.h>
+#include <string>
 #include <mutex>
 
 namespace vk::structure{struct Query;}
@@ -16,7 +17,7 @@ struct Command_buffer{
   int UID = 0;
 
   //Command
-  string name = "";
+  std::string name = "";
   std::mutex mutex;
   vk::structure::Query query;
   vk::structure::Fence* fence = nullptr;

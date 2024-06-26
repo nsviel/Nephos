@@ -42,7 +42,7 @@ void Model::export_model(dyn::base::Sensor* sensor){
 }
 
 //Subfunction
-void Model::write_device_info(dyn::base::Sensor* sensor, string& path){
+void Model::write_device_info(dyn::base::Sensor* sensor, std::string& path){
   //---------------------------
 
   //Info
@@ -57,7 +57,7 @@ void Model::write_device_info(dyn::base::Sensor* sensor, string& path){
 
   //---------------------------
 }
-void Model::write_depth_mode_model(dyn::base::Sensor* sensor, string& path){
+void Model::write_depth_mode_model(dyn::base::Sensor* sensor, std::string& path){
   dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 
@@ -87,7 +87,7 @@ void Model::write_depth_mode_model(dyn::base::Sensor* sensor, string& path){
 
   //---------------------------
 }
-void Model::read_device_info(dyn::base::Sensor* sensor, string& path){
+void Model::read_device_info(dyn::base::Sensor* sensor, std::string& path){
   //---------------------------
 
   //Info
@@ -101,7 +101,7 @@ void Model::read_device_info(dyn::base::Sensor* sensor, string& path){
 
   //---------------------------
 }
-void Model::read_depth_mode_model(dyn::base::Sensor* sensor, string& path){
+void Model::read_depth_mode_model(dyn::base::Sensor* sensor, std::string& path){
   dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 

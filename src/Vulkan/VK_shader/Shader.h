@@ -1,8 +1,10 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vulkan/vulkan.h>
+#include <string>
+#include <vector>
 
-namespace utl::base{class Shader_info;}
+namespace utl::shader{class Info;}
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Pipeline;}
 
@@ -26,12 +28,12 @@ public:
   VkShaderModule create_shader_module(const std::vector<char>& code);
   std::vector<char> read_file(const std::string& filename);
   void recompile_shader(utl::shader::Info* shader_info);
-  void run_recompilation(std::string path_glsl, string path_spir);
+  void run_recompilation(std::string path_glsl, std::string path_spir);
 
 private:
   vk::structure::Vulkan* vk_struct;
 
-  string path_output;
+  std::string path_output;
 };
 
 }

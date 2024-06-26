@@ -44,7 +44,7 @@ void Git::draw_information(){
   //---------------------------
 }
 void Git::draw_branches(){
-  vector<pair<string, string>> vec_branch = git->get_vec_branch_formatted();
+  vector<pair<string, std::string>> vec_branch = git->get_vec_branch_formatted();
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Branches");
@@ -56,7 +56,7 @@ void Git::draw_branches(){
   ImGui::BeginTable("git_table", 2, flags);
 
   for(int i=0; i<vec_branch.size(); i++){
-    pair<string, string> branch = vec_branch[i];
+    pair<string, std::string> branch = vec_branch[i];
 
     ImGui::TableNextRow();
 

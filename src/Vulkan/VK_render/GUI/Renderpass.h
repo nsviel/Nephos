@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::main{class Engine;}
 namespace vk::gui{class Imgui;}
 namespace vk::structure{class Vulkan;}
@@ -23,7 +21,7 @@ public:
   void init_renderpass();
   void create_subpass(vk::structure::Renderpass* renderpass);
   void pipeline_triangle(vk::structure::Subpass* subpass);
-  
+
   //Draw function
   void draw(vk::structure::Subpass* subpass);
 

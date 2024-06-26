@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::renderpass{class Pipeline;}
 namespace vk::renderpass{class Framebuffer;}
 namespace vk::renderpass{class Subpass;}

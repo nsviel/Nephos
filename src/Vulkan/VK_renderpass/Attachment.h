@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::image{class Color;}
 namespace vk::image{class Depth;}
 namespace vk::structure{class Vulkan;}

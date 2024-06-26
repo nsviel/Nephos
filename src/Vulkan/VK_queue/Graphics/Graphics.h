@@ -1,6 +1,9 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vulkan/vulkan.h>
+#include <vector>
+#include <thread>
+#include <mutex>
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command;}

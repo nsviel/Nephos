@@ -23,7 +23,7 @@ public:
   void reset();
 
   //Task function
-  void add_task(float ts_begin, float ts_end, string name, glm::vec4 color = {});
+  void add_task(float ts_begin, float ts_end, std::string name, glm::vec4 color = {});
   void add_vec_task(std::vector<prf::graph::structure::Task> vec_task);
 
   //Subfunction

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Utility/Base/Shader/Base.h>
 
 namespace vk::structure{class Vulkan;}
 

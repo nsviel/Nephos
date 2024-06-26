@@ -407,7 +407,7 @@ string Image::retrieve_format_from_k4a(k4a_image_format_t color_format){
   //---------------------------
   return format;
 }
-void Image::retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data, string& format){
+void Image::retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data, std::string& format){
   //---------------------------
 
   if(format == "MJPEG"){

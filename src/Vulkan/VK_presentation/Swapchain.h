@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::device{class Physical;}
 namespace vk::draw{class Viewport;}
 namespace vk::presentation{class Frame;}

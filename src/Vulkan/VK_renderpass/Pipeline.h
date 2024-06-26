@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vulkan/vulkan.h>
 
 namespace vk::binding{class Descriptor;}
 namespace vk::draw{class Viewport;}

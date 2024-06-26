@@ -59,7 +59,7 @@ void Plot::reset(){
 }
 
 //Task function
-void Plot::add_task(float ts_begin, float ts_end, string name, glm::vec4 color){
+void Plot::add_task(float ts_begin, float ts_end, std::string name, glm::vec4 color){
   //---------------------------
 
   //Insert task

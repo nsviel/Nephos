@@ -1,7 +1,9 @@
 #pragma once
 
 #include <Vulkan/VK_struct/VK_typedef.h>
-#include <Utility/Specific/Common.h>
+#include <vulkan/vulkan.h>
+#include <vector>
+#include <string>
 
 
 namespace vk::structure{
@@ -48,9 +50,9 @@ struct Binding{
   Descriptor descriptor;
 
   //Binding elements
-  vector<vk::structure::Push_constant*> vec_pushcst;
-  vector<vk::structure::Uniform*> vec_uniform;
-  vector<vk::structure::Sampler*> vec_sampler;
+  std::vector<vk::structure::Push_constant*> vec_pushcst;
+  std::vector<vk::structure::Uniform*> vec_uniform;
+  std::vector<vk::structure::Sampler*> vec_sampler;
 
   //---------------------------
 };

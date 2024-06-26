@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vk::main{class Engine;}
 namespace vk::renderpass{class Pipeline;}
 namespace vk::draw{class Viewport;}
@@ -13,6 +11,7 @@ namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 namespace vk::render::scene{class Shader;}
+namespace utl::base{class Data;}
 
 
 namespace vk::render::scene{
