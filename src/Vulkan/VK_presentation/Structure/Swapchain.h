@@ -1,18 +1,11 @@
 #pragma once
 
-#include <Vulkan/VK_struct/Namespace.h>
-#include <Utility/Specific/Common.h>
+#include <Vulkan/VK_presentation/Structure/Frame.h>
+#include <vulkan/vulkan.h>
+#include <vector>
 
 
 namespace vk::structure{
-
-struct Frame{
-  //---------------------------
-
-  vk::structure::Image color;
-
-  //---------------------------
-};
 
 struct Swapchain{
   //---------------------------
