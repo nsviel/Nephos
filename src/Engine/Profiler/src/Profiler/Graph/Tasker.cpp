@@ -42,10 +42,11 @@ void Tasker::loop_begin(){
   //---------------------------
 
   //Init loop task
-  this->vec_task_current.clear();
   this->reference = timer.get_time();
-  this->is_fps_control = false;
   this->thread_ID = utl::thread::get_ID_str();
+
+  //FPS control
+  this->is_fps_control = false;
 
   //---------------------------
 }
@@ -53,12 +54,11 @@ void Tasker::loop_begin(int fps){
   //---------------------------
 
   //Init loop task
-  this->vec_task_current.clear();
   this->reference = timer.get_time();
-  this->is_fps_control = true;
   this->thread_ID = utl::thread::get_ID_str();
 
-  //Set fps control
+  //FPS control
+  this->is_fps_control = true;
   fps_control->set_fps_max(fps);
   fps_control->start_loop();
 
@@ -74,11 +74,12 @@ void Tasker::loop_end(){
     this->task_end("sleep", vec4(50, 50, 50, 255));
   }
 
-  //Get loop fps
+  //Get loop fps count
   this->loop_fps = fps_counter->update();
 
   //Update disposal task vector by this loop task vector
   this->vec_task = vec_task_current;
+  vec_task_current.clear();
 
   //---------------------------
 }
