@@ -67,34 +67,45 @@ void Manager::load_data_to_graph(){
 
   //---------------------------
 }
-void Manager::add_task(float time_beg, float time_end, string name){
+void Manager::add_task(float ts_begin, float ts_end, string name){
   //---------------------------
 
-  prf::graph::Task task;
-  vec4 color = get_next_color();
-  task = {time_beg, time_end, name, color};
+  //Insert task
+  prf::base::Task task;
+  task.ts_begin = ts_begin;
+  task.ts_end = ts_end;
+  task.name = name;
+  task.color = get_next_color();
   vec_task.push_back(task);
+
+  //Remove old one
   if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
 
   //---------------------------
 }
-void Manager::add_task(float time_beg, float time_end, string name, vec4 color){
+void Manager::add_task(float ts_begin, float ts_end, string name, vec4 color){
   //---------------------------
 
-  prf::graph::Task task;
-  task = {time_beg, time_end, name, color};
+  //Insert task
+  prf::base::Task task;
+  task.ts_begin = ts_begin;
+  task.ts_end = ts_end;
+  task.name = name;
+  task.color = color;
   vec_task.push_back(task);
+
+  //Remove old one
   if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
 
   //---------------------------
 }
-void Manager::add_vec_task(vector<prf::graph::Task> vec_task){
+void Manager::add_vec_task(vector<prf::base::Task> vec_task){
   //---------------------------
 
   this->vec_task = vec_task;
 
   for(int i=0; i<vec_task.size(); i++){
-    prf::graph::Task& task = vec_task[i];
+    prf::base::Task& task = vec_task[i];
     task.color = get_next_color();
   }
 

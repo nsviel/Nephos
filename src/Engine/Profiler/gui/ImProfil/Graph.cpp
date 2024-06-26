@@ -27,7 +27,7 @@ Graph::Graph(){
 Graph::~Graph(){}
 
 //Main function
-void Graph::load_graph_data(const std::vector<prf::graph::Task>& vec_task){
+void Graph::load_graph_data(const std::vector<prf::base::Task>& vec_task){
   //update the graph with new task data
   //---------------------------
 
@@ -48,7 +48,7 @@ void Graph::load_graph_data(const std::vector<prf::graph::Task>& vec_task){
       else{
         // If the current and previous tasks have the same color and name,
         // update the end time of the last task in the current bar
-        current_bar.vec_task.back().time_end = vec_task[task_index].time_end;
+        current_bar.vec_task.back().ts_end = vec_task[task_index].ts_end;
       }
     }
   }
@@ -100,7 +100,7 @@ void Graph::rebuild_task_stats(size_t bar_end){
     for(size_t task_index=0; task_index<bar.vec_task.size(); task_index++){
       auto &task = bar.vec_task[task_index];
       auto &stats = vec_stat[bar.task_stat_index[task_index]];
-      stats.max_time = std::max(stats.max_time, task.time_end - task.time_beg);
+      stats.max_time = std::max(stats.max_time, task.ts_end - task.ts_begin);
     }
   }
 
@@ -159,7 +159,7 @@ void Graph::render_serie(ImDrawList *draw_list){
 
     // Iterate through each task in the ith bar
     prf::improfil::Bar& bar = vec_bar[bar_idx];
-    for(prf::graph::Task& task : bar.vec_task){
+    for(prf::base::Task& task : bar.vec_task){
       this->render_serie_task_rect(draw_list, task, bar_pose);
     }
   }
@@ -197,7 +197,7 @@ void Graph::render_legend(ImDrawList *draw_list){
   // Iterate through vec_task in the current bar
   size_t cpt_task = 0;
   for(size_t task_index = 0; task_index < current_bar.vec_task.size(); task_index++){
-    prf::graph::Task& task = current_bar.vec_task[task_index];
+    prf::base::Task& task = current_bar.vec_task[task_index];
     auto &stat = vec_stat[current_bar.task_stat_index[task_index]];
 
     // Skip vec_task beyond the maximum number to show
@@ -215,8 +215,8 @@ void Graph::render_legend(ImDrawList *draw_list){
 
     // Calculate heights for task rendering
     float scaling_factor = graph_dim.y / max_time_s;
-    float task_start_height = float(task.time_beg) * scaling_factor;
-    float task_end_height = float(task.time_end) * scaling_factor;
+    float task_start_height = float(task.ts_begin) * scaling_factor;
+    float task_end_height = float(task.ts_end) * scaling_factor;
 
     // Calculate positions for left and right markers
     glm::vec2 markerLeftRectMin = legend_pose + glm::vec2(markerLeftRectMargin, graph_dim.y);
@@ -246,14 +246,14 @@ void Graph::render_background_tics(ImDrawList *draw_list){
 
   //---------------------------
 }
-void Graph::render_serie_task_rect(ImDrawList *draw_list, prf::graph::Task& task, glm::vec2 bar_pose){
+void Graph::render_serie_task_rect(ImDrawList *draw_list, prf::base::Task& task, glm::vec2 bar_pose){
   float height_threshold = 1.0f;
   //---------------------------
 
   // Calculate the heights based on task start and end times
   float scaling_factor = graph_dim.y / max_time_s;
-  float task_start_height = float(task.time_beg) * scaling_factor;
-  float task_end_height = float(task.time_end) * scaling_factor;
+  float task_start_height = float(task.ts_begin) * scaling_factor;
+  float task_end_height = float(task.ts_end) * scaling_factor;
 
   if(abs(task_end_height - task_start_height) > height_threshold){
     glm::vec2 rect_start = bar_pose + glm::vec2(0.0f, -task_start_height);
@@ -278,14 +278,14 @@ void Graph::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, 
 
   //---------------------------
 }
-void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::graph::Task task){
+void Graph::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::base::Task task){
   //---------------------------
 
   glm::vec2 text_margin = glm::vec2(5.0f, -3.0f);
   float name_offset = 40.0f;
   vec4 text_color = task.color;
 
-  float taskTimeMs = float(task.time_end - task.time_beg);
+  float taskTimeMs = float(task.ts_end - task.ts_begin);
   std::ostringstream timeText;
   timeText.precision(2);
   timeText << std::fixed << std::string("[") << (taskTimeMs * 1000.0f);
@@ -311,19 +311,19 @@ void Graph::draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickn
 
   //---------------------------
 }
-void Graph::draw_zone(ImDrawList *draw_list, float time_beg_ms, float time_end_ms, vec4 color){
+void Graph::draw_zone(ImDrawList *draw_list, float ts_begin_ms, float ts_end_ms, vec4 color){
   //---------------------------
 
   float scaling_factor = graph_dim.y / max_time_s;
 
-  float line_time_beg = time_beg_ms / 1000.0f * scaling_factor;
-  float line_time_end = time_end_ms / 1000.0f * scaling_factor;
+  float line_ts_begin = ts_begin_ms / 1000.0f * scaling_factor;
+  float line_ts_end = ts_end_ms / 1000.0f * scaling_factor;
   glm::vec2 line_beg;
   line_beg.x = graph_pose.x;
-  line_beg.y = graph_pose.y + graph_dim.y - line_time_beg;
+  line_beg.y = graph_pose.y + graph_dim.y - line_ts_begin;
   glm::vec2 line_end;
   line_end.x = graph_pose.x + graph_dim.x;
-  line_end.y = graph_pose.y + graph_dim.y - line_time_end;
+  line_end.y = graph_pose.y + graph_dim.y - line_ts_end;
 
   this->draw_rect(draw_list, line_beg, line_end, color, true);
 

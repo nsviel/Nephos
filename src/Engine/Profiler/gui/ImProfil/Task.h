@@ -9,7 +9,7 @@ namespace prf::improfil{
 struct Bar{
   //---------------------------
 
-  std::vector<prf::graph::Task> vec_task;
+  std::vector<prf::base::Task> vec_task;
   std::vector<size_t> task_stat_index;
 
   //---------------------------

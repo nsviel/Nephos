@@ -86,7 +86,7 @@ void Tasker::task_begin(string name){
   //Check if tasj already exists
   if(vec_task_current.size() != 0){
     for(int i=0; i<vec_task_current.size(); i++){
-      prf::graph::Task& task = vec_task_current[i];
+      prf::base::Task& task = vec_task_current[i];
 
       if(task.name == name){
         cout<<"[error] task already exists -> "<<name<<endl;
@@ -98,7 +98,11 @@ void Tasker::task_begin(string name){
   //Insert task in vector
   prf::timer::Timepoint task_beg = timer.get_time();
   double A = timer.duration_s(reference, task_beg);
-  prf::graph::Task task = {A, 0, name};
+
+  prf::base::Task task;
+  task.ts_begin = A;
+  task.ts_end = 0;
+  task.name = name;
   this->vec_task_current.push_back(task);
 
   //---------------------------
@@ -109,7 +113,7 @@ void Tasker::task_begin(string name, float time){
   //Check if tasj already exists
   if(vec_task_current.size() != 0){
     for(int i=0; i<vec_task_current.size(); i++){
-      prf::graph::Task& task = vec_task_current[i];
+      prf::base::Task& task = vec_task_current[i];
 
       if(task.name == name){
         cout<<"[error] task already exists -> "<<name<<endl;
@@ -119,7 +123,10 @@ void Tasker::task_begin(string name, float time){
   }
 
   //Insert task in vector
-  prf::graph::Task task = {time, 0, name};
+  prf::base::Task task;
+  task.ts_begin = time;
+  task.ts_end = 0;
+  task.name = name;
   this->vec_task_current.push_back(task);
 
   //---------------------------
@@ -127,15 +134,18 @@ void Tasker::task_begin(string name, float time){
 void Tasker::task_follow_begin(string name){
   //---------------------------
 
-  float time_beg = 0;
+  float ts_begin = 0;
   int index = vec_task_current.size() - 1;
   if(index >= 0){
-    prf::graph::Task& previous_task = vec_task_current[index];
-    time_beg = previous_task.time_end;
+    prf::base::Task& previous_task = vec_task_current[index];
+    ts_begin = previous_task.ts_end;
   }
 
   //Insert task in vector
-  prf::graph::Task task = {time_beg, 0, name};
+  prf::base::Task task;
+  task.ts_begin = ts_begin;
+  task.ts_end = 0;
+  task.name = name;
   this->vec_task_current.push_back(task);
 
   //---------------------------
@@ -144,10 +154,10 @@ void Tasker::task_follow_end(string name, float time){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){
-    prf::graph::Task& task = vec_task_current[i];
+    prf::base::Task& task = vec_task_current[i];
 
     if(task.name == name){
-      task.time_end = task.time_beg + time;
+      task.ts_end = task.ts_begin + time;
       return;
     }
   }
@@ -158,11 +168,11 @@ void Tasker::task_end(string name){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){
-    prf::graph::Task& task = vec_task_current[i];
+    prf::base::Task& task = vec_task_current[i];
 
     if(task.name == name){
       prf::timer::Timepoint task_end = timer.get_time();
-      task.time_end = timer.duration_s(reference, task_end);
+      task.ts_end = timer.duration_s(reference, task_end);
       return;
     }
   }
@@ -173,10 +183,10 @@ void Tasker::task_end(string name, float time){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){
-    prf::graph::Task& task = vec_task_current[i];
+    prf::base::Task& task = vec_task_current[i];
 
     if(task.name == name){
-      task.time_end = time;
+      task.ts_end = time;
       return;
     }
   }
@@ -187,11 +197,11 @@ void Tasker::task_end(string name, vec4 color){
   //---------------------------
 
   for(int i=0; i<vec_task_current.size(); i++){
-    prf::graph::Task& task = vec_task_current[i];
+    prf::base::Task& task = vec_task_current[i];
 
     if(task.name == name){
       prf::timer::Timepoint task_end = timer.get_time();
-      task.time_end = timer.duration_s(reference, task_end);
+      task.ts_end = timer.duration_s(reference, task_end);
       task.color = color;
       return;
     }

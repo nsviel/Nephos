@@ -155,15 +155,15 @@ void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim){
     gui_graph->reset();
 
     //Assign tasks
-    vector<prf::graph::Task>& vec_task = tasker->get_vec_task();
+    vector<prf::base::Task>& vec_task = tasker->get_vec_task();
 
     for(int i=0; i<vec_task.size(); i++){
-      prf::graph::Task task = vec_task[i];
+      prf::base::Task task = vec_task[i];
 
       if(task.color == vec4(0, 0, 0, 0)){
-        gui_graph->add_task(task.time_beg, task.time_end, task.name);
+        gui_graph->add_task(task.ts_begin, task.ts_end, task.name);
       }else{
-        gui_graph->add_task(task.time_beg, task.time_end, task.name, task.color);
+        gui_graph->add_task(task.ts_begin, task.ts_end, task.name, task.color);
       }
     }
 

@@ -5,7 +5,7 @@
 
 namespace prf::fps{class Counter;}
 namespace prf::fps{class Control;}
-namespace prf::graph{class Task;}
+namespace prf::base{class Task;}
 namespace prf::improfil{class Manager;}
 
 
@@ -37,8 +37,8 @@ public:
   void task_follow_begin(string name);
   void task_follow_end(string name, float time);
 
-  inline void set_vec_task(vector<prf::graph::Task>& value){this->vec_task = value;}
-  inline vector<prf::graph::Task>& get_vec_task(){return vec_task;}
+  inline void set_vec_task(vector<prf::base::Task>& value){this->vec_task = value;}
+  inline vector<prf::base::Task>& get_vec_task(){return vec_task;}
   inline float get_loop_fps(){return loop_fps;}
   inline prf::improfil::Manager* get_gui_graph(){return gui_graph;}
   inline std::string get_name(){return name;}
@@ -52,8 +52,8 @@ private:
   prf::improfil::Manager* gui_graph;
   prf::timer::Timepoint reference;
 
-  vector<prf::graph::Task> vec_task_current;
-  vector<prf::graph::Task> vec_task;
+  vector<prf::base::Task> vec_task_current;
+  vector<prf::base::Task> vec_task;
   string name;
   string thread_ID = "";
   float loop_fps;
