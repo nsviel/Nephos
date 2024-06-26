@@ -27,8 +27,7 @@ public:
   void loop_end();
 
   //Task function
-  void task_begin(std::string name);
-  void task_begin(std::string name, float time);
+  void task_begin(std::string name, float time = -1);
   void task_end(const std::string& name, float time = -1, vec4 color = {});
 
   void task_follow_begin(std::string name);

@@ -72,33 +72,6 @@ void Tasker::loop_end(){
 }
 
 //Task function
-void Tasker::task_begin(std::string name){
-  //---------------------------
-
-  //Check if tasj already exists
-  if(vec_task_current.size() != 0){
-    for(int i=0; i<vec_task_current.size(); i++){
-      prf::graph::structure::Task& task = vec_task_current[i];
-
-      if(task.name == name){
-        //cout<<"[error] task already exists -> "<<name<<endl;
-        return;
-      }
-    }
-  }
-
-  //Insert task in vector
-  prf::timer::Timepoint task_beg = timer.get_time();
-  double A = timer.duration_s(this->reference, task_beg);
-
-  prf::graph::structure::Task task;
-  task.ts_begin = A;
-  task.ts_end = 0;
-  task.name = name;
-  this->vec_task_current.push_back(task);
-
-  //---------------------------
-}
 void Tasker::task_begin(std::string name, float time){
   //---------------------------
 
@@ -114,15 +87,52 @@ void Tasker::task_begin(std::string name, float time){
     }
   }
 
+  double ts = time;
+  if(ts == -1){
+    ts = timer.duration_s(this->reference, timer.get_time());
+  }
+
   //Insert task in vector
   prf::graph::structure::Task task;
-  task.ts_begin = time;
+  task.ts_begin = ts;
   task.ts_end = 0;
   task.name = name;
   this->vec_task_current.push_back(task);
 
   //---------------------------
 }
+void Tasker::task_end(const std::string& name, float time, vec4 color){
+  //---------------------------
+
+  //Search for corresponding task
+  prf::graph::structure::Task* task = nullptr;
+  for(int i=0; i<vec_task_current.size(); i++){
+    prf::graph::structure::Task* m_task = &vec_task_current[i];
+    if(m_task->name == name){
+      task = m_task;
+      break;
+    }
+  }
+  if(task == nullptr){
+    std::cout << "[error] task not started" << std::endl;
+    return;
+  }
+
+
+  if(time == -1){
+    prf::timer::Timepoint task_end = timer.get_time();
+    task.ts_end = timer.duration_s(this->reference, task_end);
+  }else{
+    task.ts_end = time;
+  }
+  if(color != vec4{0, 0, 0, 0}){
+    task.color = color;
+  }
+  return;
+
+  //---------------------------
+}
+
 void Tasker::task_follow_begin(std::string name){
   //---------------------------
 
@@ -153,28 +163,6 @@ void Tasker::task_follow_end(std::string name, float time){
       return;
     }
   }
-
-  //---------------------------
-}
-void Tasker::task_end(const std::string& name, float time, vec4 color){
-  //---------------------------
-
-  for(auto& task : vec_task_current){
-    if(task.name == name){
-      if(time == -1){
-        prf::timer::Timepoint task_end = timer.get_time();
-        task.ts_end = timer.duration_s(this->reference, task_end);
-      }else{
-        task.ts_end = time;
-      }
-      if(color != vec4{0, 0, 0, 0}){
-        task.color = color;
-      }
-      return;
-    }
-  }
-
-  std::cout << "[error] task not started" << std::endl;
 
   //---------------------------
 }
