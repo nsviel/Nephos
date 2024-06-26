@@ -40,16 +40,16 @@ void Graph::show_info(){
   //Thread
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Thread"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", selected_tasker->get_thread_ID().c_str());
+  ImGui::TextColored(color, "%s", selected_tasker->thread_ID.c_str());
 
   //FPS
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Loop"); ImGui::TableNextColumn();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / selected_tasker->get_loop_fps());
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", 1000.0f / selected_tasker->loop_fps);
   ImGui::SameLine();
   ImGui::Text(" ms/frame [");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", selected_tasker->get_loop_fps()); //io.Framerate
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%.1f", selected_tasker->loop_fps); //io.Framerate
   ImGui::SameLine();
   ImGui::Text(" FPS ]");
 
@@ -135,7 +135,7 @@ void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
 
     //Improfil graphs
     ImGui::SetNextItemWidth(100);
-    string title = tasker->get_name() + "##45454";
+    string title = tasker->name + "##45454";
     if(!tasker->is_empty() && ImGui::BeginTabItem(title.c_str(), NULL)){
       this->draw_tasker_graph(tasker, graph_dim);
       ImGui::EndTabItem();
@@ -155,10 +155,10 @@ void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 graph_dim){
     gui_graph->reset();
 
     //Assign tasks
-    vector<prf::base::Task>& vec_task = tasker->get_vec_task();
+    vector<prf::graph::structure::Task>& vec_task = tasker->get_vec_task();
 
     for(int i=0; i<vec_task.size(); i++){
-      prf::base::Task task = vec_task[i];
+      prf::graph::structure::Task task = vec_task[i];
 
       if(task.color == vec4(0, 0, 0, 0)){
         gui_graph->add_task(task.ts_begin, task.ts_end, task.name);

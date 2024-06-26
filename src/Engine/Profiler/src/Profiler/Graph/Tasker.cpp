@@ -12,8 +12,6 @@ Tasker::Tasker(string name){
   this->name = name;
   this->fps_control = new prf::fps::Control(120);
   this->fps_counter = new prf::fps::Counter();
-  this->gui_graph = new prf::improfil::Manager(name);
-  this->is_fps_control = false;
 
   //---------------------------
 }
@@ -22,7 +20,6 @@ Tasker::~Tasker(){
 
   delete fps_control;
   delete fps_counter;
-  delete gui_graph;
 
   //---------------------------
 }
@@ -43,7 +40,7 @@ void Tasker::loop_begin(){
 
   //Init loop task
   this->reference = timer.get_time();
-  this->thread_ID = utl::thread::get_ID_str();
+  this->name = utl::thread::get_ID_str();
 
   //FPS control
   this->is_fps_control = false;
@@ -55,7 +52,7 @@ void Tasker::loop_begin(int fps){
 
   //Init loop task
   this->reference = timer.get_time();
-  this->thread_ID = utl::thread::get_ID_str();
+  this->name = utl::thread::get_ID_str();
 
   //FPS control
   this->is_fps_control = true;
@@ -78,8 +75,8 @@ void Tasker::loop_end(){
   this->loop_fps = fps_counter->update();
 
   //Update disposal task vector by this loop task vector
-  this->vec_task = vec_task_current;
-  vec_task_current.clear();
+  this->vec_task = this->vec_task_current;
+  this->vec_task_current.clear();
 
   //---------------------------
 }
@@ -89,9 +86,9 @@ void Tasker::task_begin(string name){
   //---------------------------
 
   //Check if tasj already exists
-  if(vec_task_current.size() != 0){
-    for(int i=0; i<vec_task_current.size(); i++){
-      prf::base::Task& task = vec_task_current[i];
+  if(this->vec_task_current.size() != 0){
+    for(int i=0; i<this->vec_task_current.size(); i++){
+      prf::graph::structure::Task& task = this->vec_task_current[i];
 
       if(task.name == name){
         cout<<"[error] task already exists -> "<<name<<endl;
@@ -102,9 +99,9 @@ void Tasker::task_begin(string name){
 
   //Insert task in vector
   prf::timer::Timepoint task_beg = timer.get_time();
-  double A = timer.duration_s(reference, task_beg);
+  double A = timer.duration_s(this->reference, task_beg);
 
-  prf::base::Task task;
+  prf::graph::structure::Task task;
   task.ts_begin = A;
   task.ts_end = 0;
   task.name = name;
@@ -116,9 +113,9 @@ void Tasker::task_begin(string name, float time){
   //---------------------------
 
   //Check if tasj already exists
-  if(vec_task_current.size() != 0){
-    for(int i=0; i<vec_task_current.size(); i++){
-      prf::base::Task& task = vec_task_current[i];
+  if(this->vec_task_current.size() != 0){
+    for(int i=0; i<this->vec_task_current.size(); i++){
+      prf::graph::structure::Task& task = this->vec_task_current[i];
 
       if(task.name == name){
         cout<<"[error] task already exists -> "<<name<<endl;
@@ -128,7 +125,7 @@ void Tasker::task_begin(string name, float time){
   }
 
   //Insert task in vector
-  prf::base::Task task;
+  prf::graph::structure::Task task;
   task.ts_begin = time;
   task.ts_end = 0;
   task.name = name;
@@ -140,14 +137,14 @@ void Tasker::task_follow_begin(string name){
   //---------------------------
 
   float ts_begin = 0;
-  int index = vec_task_current.size() - 1;
+  int index = this->vec_task_current.size() - 1;
   if(index >= 0){
-    prf::base::Task& previous_task = vec_task_current[index];
+    prf::graph::structure::Task& previous_task = this->vec_task_current[index];
     ts_begin = previous_task.ts_end;
   }
 
   //Insert task in vector
-  prf::base::Task task;
+  prf::graph::structure::Task task;
   task.ts_begin = ts_begin;
   task.ts_end = 0;
   task.name = name;
@@ -158,8 +155,8 @@ void Tasker::task_follow_begin(string name){
 void Tasker::task_follow_end(string name, float time){
   //---------------------------
 
-  for(int i=0; i<vec_task_current.size(); i++){
-    prf::base::Task& task = vec_task_current[i];
+  for(int i=0; i<this->vec_task_current.size(); i++){
+    prf::graph::structure::Task& task = this->vec_task_current[i];
 
     if(task.name == name){
       task.ts_end = task.ts_begin + time;
@@ -172,12 +169,12 @@ void Tasker::task_follow_end(string name, float time){
 void Tasker::task_end(string name){
   //---------------------------
 
-  for(int i=0; i<vec_task_current.size(); i++){
-    prf::base::Task& task = vec_task_current[i];
+  for(int i=0; i<this->vec_task_current.size(); i++){
+    prf::graph::structure::Task& task = this->vec_task_current[i];
 
     if(task.name == name){
       prf::timer::Timepoint task_end = timer.get_time();
-      task.ts_end = timer.duration_s(reference, task_end);
+      task.ts_end = timer.duration_s(this->reference, task_end);
       return;
     }
   }
@@ -187,8 +184,8 @@ void Tasker::task_end(string name){
 void Tasker::task_end(string name, float time){
   //---------------------------
 
-  for(int i=0; i<vec_task_current.size(); i++){
-    prf::base::Task& task = vec_task_current[i];
+  for(int i=0; i<this->vec_task_current.size(); i++){
+    prf::graph::structure::Task& task = this->vec_task_current[i];
 
     if(task.name == name){
       task.ts_end = time;
@@ -201,12 +198,12 @@ void Tasker::task_end(string name, float time){
 void Tasker::task_end(string name, vec4 color){
   //---------------------------
 
-  for(int i=0; i<vec_task_current.size(); i++){
-    prf::base::Task& task = vec_task_current[i];
+  for(int i=0; i<this->vec_task_current.size(); i++){
+    prf::graph::structure::Task& task = this->vec_task_current[i];
 
     if(task.name == name){
       prf::timer::Timepoint task_end = timer.get_time();
-      task.ts_end = timer.duration_s(reference, task_end);
+      task.ts_end = timer.duration_s(this->reference, task_end);
       task.color = color;
       return;
     }
