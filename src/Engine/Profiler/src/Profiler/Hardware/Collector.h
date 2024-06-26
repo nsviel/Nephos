@@ -5,6 +5,7 @@
 namespace vk::structure{class Vulkan;}
 namespace prf::hardware{class Structure;}
 namespace prf::hardware{class Device;}
+namespace utl::hardware{class Nvidia;}
 
 
 namespace prf::hardware{
@@ -19,13 +20,14 @@ public:
 public:
   //Profiler vulkan info
   void collect_info(vk::structure::Vulkan* vk_struct);
+  void collect_gpu_info();
 
   //Subfunction
   void collect_vulkan_device(vk::structure::Vulkan* vk_struct);
 
 private:
   prf::hardware::Structure* prf_struct;
-  std::vector<prf::hardware::Device> vec_device;
+  utl::hardware::Nvidia* utl_nvidia;
 };
 
 }

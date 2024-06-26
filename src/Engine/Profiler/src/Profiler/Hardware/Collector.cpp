@@ -11,6 +11,7 @@ Collector::Collector(prf::hardware::Structure* prf_struct){
   //---------------------------
 
   this->prf_struct = prf_struct;
+  this->utl_nvidia = new utl::hardware::Nvidia();
 
   //---------------------------
 }
@@ -21,6 +22,16 @@ void Collector::collect_info(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
   this->collect_vulkan_device(vk_struct);
+
+  //---------------------------
+}
+void Collector::collect_gpu_info(){
+  //---------------------------
+
+  prf_struct->gpu.temperature = utl_nvidia->get_temperature();
+  prf_struct->gpu.total_consumption = utl_nvidia->get_total_consumption();
+  prf_struct->gpu.fan_speed = utl_nvidia->get_fan_speed();
+  prf_struct->gpu.power_usage = utl_nvidia->get_power_usage();
 
   //---------------------------
 }

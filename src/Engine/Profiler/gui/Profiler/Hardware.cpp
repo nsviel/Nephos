@@ -202,7 +202,7 @@ void Hardware::draw_gpu_info(prf::hardware::Structure* prf_struct){
   //Temperature
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Temperature"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", prf_struct->gpu.name.c_str());
+  ImGui::TextColored(color, "%d°", prf_struct->gpu.temperature);
 
   ImGui::EndTable();
 

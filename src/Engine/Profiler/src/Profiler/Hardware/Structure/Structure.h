@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Profiler/src/Profiler/Hardware/Structure/Thread.h>
 #include <Profiler/src/Profiler/Hardware/Structure/Device.h>
 #include <Profiler/src/Profiler/Hardware/Structure/CPU.h>
 #include <Profiler/src/Profiler/Hardware/Structure/GPU.h>
