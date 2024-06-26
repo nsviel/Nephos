@@ -9,17 +9,10 @@ namespace prf::improfil{
 Renderer::Renderer(){
   //---------------------------
 
-  this->bar_max_nb = 400;
-  this->bar_width = 4;
-  this->bar_gap = 0;
-  this->bar_max_nb_task = 100;
-  this->vec_bar.resize(bar_max_nb);
-  this->legend_width = 200;
-  this->border_color = vec4(255, 255, 255, 25);
-  this->max_time_s = 50.0f / 1000.0f;
+  this->config.vec_bar.resize(config.bar_max_nb);
 
-  for(prf::improfil::Bar& bar : vec_bar){
-    bar.vec_task.reserve(bar_max_nb_task);
+  for(prf::improfil::Bar& bar : config.vec_bar){
+    bar.vec_task.reserve(config.bar_max_nb_task);
   }
 
   //---------------------------
@@ -32,7 +25,7 @@ void Renderer::load_graph_data(const std::vector<prf::graph::structure::Task>& v
   //---------------------------
 
   // Get the current bar that needs to be updated and clear it
-  prf::improfil::Bar& current_bar = vec_bar[current_bar_idx];
+  prf::improfil::Bar& current_bar = config.vec_bar[config.current_idx];
   current_bar.vec_task.resize(0);
 
   // Iterate through each task in the input data
@@ -61,25 +54,25 @@ void Renderer::load_graph_data(const std::vector<prf::graph::structure::Task>& v
     auto &task = current_bar.vec_task[task_index];
 
     // Check if the task name exists in the map
-    auto it = map_task_to_stat_idx.find(task.name);
+    auto it = config.map_idx.find(task.name);
 
     // If the task name is not found, add it to the map and create a new task_stats entry
-    if(it == map_task_to_stat_idx.end()){
-      map_task_to_stat_idx[task.name] = vec_stat.size();
+    if(it == config.map_idx.end()){
+      config.map_idx[task.name] = config.vec_stat.size();
       prf::improfil::Stat task_stats;
       task_stats.max_time = -1.0;
-      vec_stat.push_back(task_stats);
+      config.vec_stat.push_back(task_stats);
     }
 
     // Set the task_stat_index for the current task in the current bar
-    current_bar.task_stat_index[task_index] = map_task_to_stat_idx[task.name];
+    current_bar.task_stat_index[task_index] = config.map_idx[task.name];
   }
 
   // Move to the next bar in the circular buffer
-  current_bar_idx = (current_bar_idx + 1) % vec_bar.size();
+  config.current_idx = (config.current_idx + 1) % config.vec_bar.size();
 
   // Rebuild task statistics based on the updated bars
-  this->rebuild_task_stats(current_bar_idx);
+  this->rebuild_task_stats(config.current_idx);
 
   //---------------------------
 }
@@ -87,34 +80,34 @@ void Renderer::rebuild_task_stats(size_t bar_end){
   //---------------------------
 
   //Reset task
-  for(auto &task_stat : vec_stat){
+  for(auto &task_stat : config.vec_stat){
     task_stat.max_time = -1.0f;
     task_stat.priority_order = size_t(-1);
     task_stat.on_screen_index = size_t(-1);
   }
 
-  for(size_t bar_number=0; bar_number<bar_max_nb; bar_number++){
-    size_t bar_idx = (bar_end - 1 - bar_number + vec_bar.size()) % vec_bar.size();
-    prf::improfil::Bar& bar = vec_bar[bar_idx];
+  for(size_t bar_number=0; bar_number<config.bar_max_nb; bar_number++){
+    size_t bar_idx = (bar_end - 1 - bar_number + config.vec_bar.size()) % config.vec_bar.size();
+    prf::improfil::Bar& bar = config.vec_bar[bar_idx];
 
     for(size_t task_index=0; task_index<bar.vec_task.size(); task_index++){
       auto &task = bar.vec_task[task_index];
-      auto &stats = vec_stat[bar.task_stat_index[task_index]];
+      auto &stats = config.vec_stat[bar.task_stat_index[task_index]];
       stats.max_time = std::max(stats.max_time, task.ts_end - task.ts_begin);
     }
   }
 
   //Reorder task according to their priority
   std::vector<size_t> stat_priority;
-  stat_priority.resize(vec_stat.size());
-  for(size_t stat_index = 0; stat_index < vec_stat.size(); stat_index++){
+  stat_priority.resize(config.vec_stat.size());
+  for(size_t stat_index = 0; stat_index < config.vec_stat.size(); stat_index++){
     stat_priority[stat_index] = stat_index;
   }
 
-  std::sort(stat_priority.begin(), stat_priority.end(), [this](size_t left, size_t right){return vec_stat[left].max_time > vec_stat[right].max_time; });
-  for(size_t stat_number = 0; stat_number < vec_stat.size(); stat_number++){
+  std::sort(stat_priority.begin(), stat_priority.end(), [this](size_t left, size_t right){return config.vec_stat[left].max_time > config.vec_stat[right].max_time; });
+  for(size_t stat_number = 0; stat_number < config.vec_stat.size(); stat_number++){
     size_t stat_index = stat_priority[stat_number];
-    vec_stat[stat_index].priority_order = stat_number;
+    config.vec_stat[stat_index].priority_order = stat_number;
   }
 
   //---------------------------
@@ -125,12 +118,12 @@ void Renderer::render_graph(ImVec2 dimension){
   const glm::vec2 widget_pose = glm::vec2(ImGui::GetCursorScreenPos().x, ImGui::GetCursorScreenPos().y);
   //---------------------------
 
-  this->graph_pose = widget_pose;
-  this->graph_dim.x = int(dimension.x) - legend_width;
-  this->graph_dim.y = int(dimension.y);
+  config.graph_pose = widget_pose;
+  config.graph_dim.x = int(dimension.x) - config.legend_width;
+  config.graph_dim.y = int(dimension.y);
 
-  this->legend_dim = glm::vec2(legend_width, graph_dim.y);
-  this->legend_pose = widget_pose + glm::vec2(graph_dim.x, 0.0f);
+  config.legend_dim = glm::vec2(config.legend_width, config.graph_dim.y);
+  config.legend_pose = widget_pose + glm::vec2(config.graph_dim.x, 0.0f);
 
   ImDrawList* draw_list = ImGui::GetWindowDrawList();
   this->render_serie(draw_list);
@@ -144,21 +137,21 @@ void Renderer::render_serie(ImDrawList *draw_list){
   //Objectif outline zone
   this->draw_zone(draw_list, 0, 16.7f, vec4(44, 150, 44, 30));
 
-  for(int i=0; i<vec_bar.size(); i++){
+  for(int i=0; i<config.vec_bar.size(); i++){
     // Get bar index compared to the current bar
-    size_t bar_idx = (current_bar_idx - 1 - i + 2 * vec_bar.size()) % vec_bar.size();
+    size_t bar_idx = (config.current_idx - 1 - i + 2 * config.vec_bar.size()) % config.vec_bar.size();
 
     // Calculate the position of the bar
-    float x_offset = graph_dim.x - 1 - bar_width - (bar_width + bar_gap) * i;
-    float y_offset = graph_dim.y - 1;
+    float x_offset = config.graph_dim.x - 1 - config.bar_width - (config.bar_width + config.bar_gap) * i;
+    float y_offset = config.graph_dim.y - 1;
     glm::vec2 offset(x_offset, y_offset);
-    glm::vec2 bar_pose = graph_pose + offset;
-    if(bar_pose.x < graph_pose.x + 1){
+    glm::vec2 bar_pose = config.graph_pose + offset;
+    if(bar_pose.x < config.graph_pose.x + 1){
       break;
     }
 
     // Iterate through each task in the ith bar
-    prf::improfil::Bar& bar = vec_bar[bar_idx];
+    prf::improfil::Bar& bar = config.vec_bar[bar_idx];
     for(prf::graph::structure::Task& task : bar.vec_task){
       this->render_serie_task_rect(draw_list, task, bar_pose);
     }
@@ -185,20 +178,20 @@ void Renderer::render_legend(ImDrawList *draw_list){
   float markerRightRectSpacing = 4.0f;
 
   //Initialization
-  prf::improfil::Bar& current_bar = vec_bar[(current_bar_idx - 1 + 2 * vec_bar.size()) % vec_bar.size()];
-  for(auto &task_stat : vec_stat){
+  prf::improfil::Bar& current_bar = config.vec_bar[(config.current_idx - 1 + 2 * config.vec_bar.size()) % config.vec_bar.size()];
+  for(auto &task_stat : config.vec_stat){
     task_stat.on_screen_index = size_t(-1);
   }
 
   //Find number of displayed vec_task
-  size_t max_task = size_t(graph_dim.y / (markerRightRectHeight + markerRightRectSpacing));
-  size_t nb_task = std::min<size_t>(vec_stat.size(), max_task);
+  size_t max_task = size_t(config.graph_dim.y / (markerRightRectHeight + markerRightRectSpacing));
+  size_t nb_task = std::min<size_t>(config.vec_stat.size(), max_task);
 
   // Iterate through vec_task in the current bar
   size_t cpt_task = 0;
   for(size_t task_index = 0; task_index < current_bar.vec_task.size(); task_index++){
     prf::graph::structure::Task& task = current_bar.vec_task[task_index];
-    auto &stat = vec_stat[current_bar.task_stat_index[task_index]];
+    auto &stat = config.vec_stat[current_bar.task_stat_index[task_index]];
 
     // Skip vec_task beyond the maximum number to show
     if(stat.priority_order >= nb_task){
@@ -214,16 +207,16 @@ void Renderer::render_legend(ImDrawList *draw_list){
     }
 
     // Calculate heights for task rendering
-    float scaling_factor = graph_dim.y / max_time_s;
+    float scaling_factor = config.graph_dim.y / config.max_time_s;
     float task_start_height = float(task.ts_begin) * scaling_factor;
     float task_end_height = float(task.ts_end) * scaling_factor;
 
     // Calculate positions for left and right markers
-    glm::vec2 markerLeftRectMin = legend_pose + glm::vec2(markerLeftRectMargin, graph_dim.y);
+    glm::vec2 markerLeftRectMin = config.legend_pose + glm::vec2(markerLeftRectMargin, config.graph_dim.y);
     glm::vec2 markerLeftRectMax = markerLeftRectMin + glm::vec2(markerLeftRectWidth, 0.0f);
     markerLeftRectMin.y -= task_start_height;
     markerLeftRectMax.y -= task_end_height;
-    glm::vec2 markerRightRectMin = legend_pose + glm::vec2(markerLeftRectMargin + markerLeftRectWidth + markerMidWidth, graph_dim.y - markerRigthRectMargin - (markerRightRectHeight + markerRightRectSpacing) * stat.on_screen_index);
+    glm::vec2 markerRightRectMin = config.legend_pose + glm::vec2(markerLeftRectMargin + markerLeftRectWidth + markerMidWidth, config.graph_dim.y - markerRigthRectMargin - (markerRightRectHeight + markerRightRectSpacing) * stat.on_screen_index);
     glm::vec2 markerRightRectMax = markerRightRectMin + glm::vec2(markerRightRectWidth, -markerRightRectHeight);
 
     // Render the task marker and legend text
@@ -238,7 +231,7 @@ void Renderer::render_legend(ImDrawList *draw_list){
 void Renderer::render_background_tics(ImDrawList *draw_list){
   //---------------------------
 
-  for(float time = 0.0f; time <= max_time_s*1000.0f; time += 5.0f){
+  for(float time = 0.0f; time <= config.max_time_s*1000.0f; time += 5.0f){
     int lineWidth = (int)(time / 5.0f) % 2 == 0 ? 1 : 2;
     vec4 color(255, 255, 255, 20);
     this->draw_line_at_time(draw_list, time, lineWidth, color);
@@ -251,13 +244,13 @@ void Renderer::render_serie_task_rect(ImDrawList *draw_list, prf::graph::structu
   //---------------------------
 
   // Calculate the heights based on task start and end times
-  float scaling_factor = graph_dim.y / max_time_s;
+  float scaling_factor = config.graph_dim.y / config.max_time_s;
   float task_start_height = float(task.ts_begin) * scaling_factor;
   float task_end_height = float(task.ts_end) * scaling_factor;
 
   if(abs(task_end_height - task_start_height) > height_threshold){
     glm::vec2 rect_start = bar_pose + glm::vec2(0.0f, -task_start_height);
-    glm::vec2 rect_end = bar_pose + glm::vec2(bar_width, -task_end_height);
+    glm::vec2 rect_end = bar_pose + glm::vec2(config.bar_width, -task_end_height);
     this->draw_rect(draw_list, rect_start, rect_end, task.color, true);
   }
 
@@ -300,13 +293,13 @@ void Renderer::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint
 void Renderer::draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickness, vec4 color){
   //---------------------------
 
-  float scaling_factor = graph_dim.y / max_time_s;
+  float scaling_factor = config.graph_dim.y / config.max_time_s;
 
   float line_time = time_ms / 1000.0f * scaling_factor;
   glm::vec2 line_beg;
-  line_beg.x = graph_pose.x;
-  line_beg.y = graph_pose.y + graph_dim.y - line_time - thickness;
-  glm::vec2 line_end = graph_pose + glm::vec2(graph_dim.x, graph_dim.y - line_time);
+  line_beg.x = config.graph_pose.x;
+  line_beg.y = config.graph_pose.y + config.graph_dim.y - line_time - thickness;
+  glm::vec2 line_end = config.graph_pose + glm::vec2(config.graph_dim.x, config.graph_dim.y - line_time);
   this->draw_rect(draw_list, line_beg, line_end, color, true);
 
   //---------------------------
@@ -314,16 +307,16 @@ void Renderer::draw_line_at_time(ImDrawList *draw_list, float time_ms, float thi
 void Renderer::draw_zone(ImDrawList *draw_list, float ts_begin_ms, float ts_end_ms, vec4 color){
   //---------------------------
 
-  float scaling_factor = graph_dim.y / max_time_s;
+  float scaling_factor = config.graph_dim.y / config.max_time_s;
 
   float line_ts_begin = ts_begin_ms / 1000.0f * scaling_factor;
   float line_ts_end = ts_end_ms / 1000.0f * scaling_factor;
   glm::vec2 line_beg;
-  line_beg.x = graph_pose.x;
-  line_beg.y = graph_pose.y + graph_dim.y - line_ts_begin;
+  line_beg.x = config.graph_pose.x;
+  line_beg.y = config.graph_pose.y + config.graph_dim.y - line_ts_begin;
   glm::vec2 line_end;
-  line_end.x = graph_pose.x + graph_dim.x;
-  line_end.y = graph_pose.y + graph_dim.y - line_ts_end;
+  line_end.x = config.graph_pose.x + config.graph_dim.x;
+  line_end.y = config.graph_pose.y + config.graph_dim.y - line_ts_end;
 
   this->draw_rect(draw_list, line_beg, line_end, color, true);
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Profiler/gui/ImProfil/Structure/Configuration.h>
 #include <Utility/GUI/Plot/Namespace.h>
 #include <Utility/Specific/Common.h>
 
@@ -33,7 +34,7 @@ public:
   void render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 col);
   void render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, prf::graph::structure::Task task);
 
-  inline float* get_max_time(){return &max_time_s;}
+  inline float* get_max_time(){return &config.max_time_s;}
 
 private:
   //Primitives
@@ -44,21 +45,7 @@ private:
   void draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled);
 
 private:
-  std::vector<prf::improfil::Stat> vec_stat;
-  std::map<std::string, size_t> map_task_to_stat_idx;
-  std::vector<prf::improfil::Bar> vec_bar;
-  size_t current_bar_idx = 0;
-  vec4 border_color;
-  vec2 graph_dim;
-  vec2 graph_pose;
-  vec2 legend_dim;
-  vec2 legend_pose;
-  float max_time_s;
-  int legend_width;
-  int bar_max_nb;
-  int bar_max_nb_task;
-  int bar_width;
-  int bar_gap;
+  prf::improfil::Configuration config;
 };
 
 }
