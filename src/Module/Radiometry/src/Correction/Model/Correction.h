@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <stdint.h>
+#include <vector>
 
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
@@ -10,6 +11,7 @@ namespace rad::correction::io{class Model;}
 namespace dyn::base{class Sensor;}
 namespace dat{class Image;}
 namespace dat{class Selection;}
+namespace utl::media{class Image;}
 
 
 namespace rad::correction{

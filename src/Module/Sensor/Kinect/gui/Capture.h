@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace gui{class Node;}
 namespace k4n{class Node;}
 namespace k4n{class Structure;}

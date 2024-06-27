@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Utility/Base/Type/Node.h>
 
 namespace prf{class Node;}
 namespace dat{class Node;}
