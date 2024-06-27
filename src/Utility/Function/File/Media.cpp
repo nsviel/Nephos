@@ -3,6 +3,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <image/stb_image.h>
 #include <unistd.h>
+#include <fcntl.h>  
 
 
 namespace utl::media{

@@ -2,7 +2,7 @@
 
 #include <Utility/GUI/Tree/Node.h>
 #include <Utility/GUI/Tree/Filler.h>
-#include <Utility/Specific/Common.h>
+#include <vector>
 
 
 namespace utl::gui{
@@ -30,7 +30,7 @@ public:
 
 private:
   std::vector<utl::gui::tree::Node*> nodes_root;
-  std::vector<vector<utl::gui::tree::Node*>> nodes_path_vec;
+  std::vector<std::vector<utl::gui::tree::Node*>> nodes_path_vec;
   utl::gui::tree::Filler* filler = nullptr;
 };
 

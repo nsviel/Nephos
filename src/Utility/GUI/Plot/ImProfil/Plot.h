@@ -1,7 +1,10 @@
 #pragma once
 
 #include <Utility/GUI/Plot/Namespace.h>
-#include <Utility/Specific/Common.h>
+#include <imgui/core/imgui.h>
+#include <glm/glm.hpp>
+#include <vector>
+#include <string>
 
 namespace utl::improfil{class Renderer;}
 namespace prf::graph::structure{class Task;}

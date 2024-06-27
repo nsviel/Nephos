@@ -40,7 +40,7 @@ void Measure::init(){
 
   //Measure
   sphere->size = sphere->R_size * sphere->It_size;
-  sphere->data = vector<glm::vec3>(sphere->size, vec3(-1, -1, -1));
+  sphere->data = vector<glm::vec3>(sphere->size, glm::vec3(-1, -1, -1));
 
   //---------------------------
 }

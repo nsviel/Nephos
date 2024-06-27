@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <imgui/implot/implot.h>
 
 

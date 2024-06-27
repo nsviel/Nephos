@@ -1,7 +1,9 @@
 #pragma once
 
 #include <Utility/GUI/Tree/Node.h>
-#include <Utility/Specific/Common.h>
+#include <functional>
+#include <vector>
+#include <string>
 
 
 namespace utl::gui::tree{

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Utility/Base/Type/Plot.h>
 
 namespace utl::implot{class Style;}
 

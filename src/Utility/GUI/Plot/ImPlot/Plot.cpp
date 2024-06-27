@@ -2,6 +2,7 @@
 #include "Namespace.h"
 
 #include <imgui/implot/implot.h>
+#include <algorithm>
 
 
 namespace utl::implot{
@@ -127,8 +128,8 @@ bool Plot::plot_heatmap(utl::base::Plot* plot, utl::base::Axis* x_axis, utl::bas
     ImPlot::PlotLine("Y current", x_width, y_current, 2);
 
     //Line floating text
-    ImPlot::PlotText(to_string(x_axis->current).c_str(), x_axis->current, plot->axis_y.max, ImVec2(10, 50), ImPlotTextFlags_Vertical);
-    ImPlot::PlotText(to_string(y_axis->current).c_str(), plot->axis_x.max, y_axis->current, ImVec2(-20, -10));
+    ImPlot::PlotText(std::to_string(x_axis->current).c_str(), x_axis->current, plot->axis_y.max, ImVec2(10, 50), ImPlotTextFlags_Vertical);
+    ImPlot::PlotText(std::to_string(y_axis->current).c_str(), plot->axis_x.max, y_axis->current, ImVec2(-20, -10));
 
     // End the plot
     ImPlot::EndPlot();
@@ -257,8 +258,8 @@ void Plot::plot_scatter_rdm(){
 void Plot::plot_constant_in_time(){
   //---------------------------
 
-  static vector<float> vec_c;
-  static vector<float> vec_d;
+  static std::vector<float> vec_c;
+  static std::vector<float> vec_d;
   static int cpt = 0;
 
   cpt++;
@@ -279,7 +280,7 @@ void Plot::plot_constant_in_time(){
     ImPlot::SetupAxisLimits(ImAxis_X1, cpt - 100, cpt, ImGuiCond_Always);
     ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 60);
 
-    std::string value = to_string(vec_d[0]) + " fps";
+    std::string value = std::to_string(vec_d[0]) + " fps";
     ImPlot::PlotText(value.c_str(), cpt - 10, vec_d[0] + 5);
     ImPlot::PlotLine("", vec_c.data(), vec_d.data(), vec_d.size());
     ImPlot::PlotShaded("", vec_c.data(), vec_d.data(), vec_d.size(), -INFINITY, 0);

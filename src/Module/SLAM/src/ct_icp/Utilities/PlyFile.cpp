@@ -154,7 +154,7 @@ void PlyFile::writeHeader()
 
 
 		_header += "element vertex ";
-		_header += to_string(_numPoints);
+		_header += std::to_string(_numPoints);
 		_header += "\n";
 
 

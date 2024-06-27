@@ -188,7 +188,7 @@ void Entity::pose_info(dat::base::Entity* entity){
   }
   ImGui::SameLine();
   if(ImGui::Button("R", ImVec2(15,0))){
-    ope_operation->make_translation_from_root(entity, vec3(0, 0, 0));
+    ope_operation->make_translation_from_root(entity, glm::vec3(0, 0, 0));
   }
 
   //---------------------------

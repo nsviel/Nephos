@@ -177,7 +177,7 @@ void SLAM::print_result(){
   //---------------------------
 
   std::string path = "../src/Module/SLAM/result.dat";
-  std::string result = to_string(time_slam);
+  std::string result = std::to_string(time_slam);
 
   ofstream file;
   file.open(path, std::ofstream::out | std::ofstream::trunc);

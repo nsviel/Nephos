@@ -4,8 +4,6 @@
 namespace ed = ax::NodeEditor;
 
 
-
-
 struct Platform;
 struct Renderer;
 

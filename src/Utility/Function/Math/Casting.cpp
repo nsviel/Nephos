@@ -1,9 +1,9 @@
-#include "Transtypage.h"
+#include "Casting.h"
 
 #include <bits/stdc++.h>
 
 
-namespace transtypage{
+namespace utl::casting{
 
 //EIGEN TO EIGEN
 Eigen::Vector4d eigen_4d(Eigen::Vector3d in){
