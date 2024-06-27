@@ -1,8 +1,5 @@
 #include "Tab.h"
 
-#include <Engine/Namespace.h>
-#include <Vulkan/Namespace.h>
-#include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 
 
@@ -42,7 +39,7 @@ void Tab::draw_dynamic_tabbar(){
 
     ImGui::SetNextItemWidth(width / 2.0f);
     if(ImGui::BeginTabItem("GPU##tabitem", NULL)){
-      gui_graph->draw_tab();
+      //gui_graph->draw_tab();
       ImGui::EndTabItem();
     }
 

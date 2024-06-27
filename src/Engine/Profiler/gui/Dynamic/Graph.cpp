@@ -6,7 +6,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace prf::gui{
+namespace prf::gui::dynamic{
 
 //Constructor / Destructor
 Graph::Graph(prf::Node* node_profiler){

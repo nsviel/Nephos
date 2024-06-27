@@ -14,7 +14,7 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
   this->prf_manager = node_profiler->get_prf_manager();
-  this->gui_graph = new prf::gui::Graph(node_profiler);
+  this->tab_dynamic = new prf::gui::dynamic::Tab(node_profiler);
   this->tab_hardware = new prf::gui::hardware::Tab(node_profiler);
 
   this->show_window = show_window;
@@ -81,7 +81,7 @@ void Panel::draw_profiler(prf::base::Profiler* profiler){
 
   switch(profiler->type){
     case prf::base::GRAPH:{
-      gui_graph->show_profiler(profiler);
+      //tab_dynamic->show_profiler(profiler);
       break;
     }
   }

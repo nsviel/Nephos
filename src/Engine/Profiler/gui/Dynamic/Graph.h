@@ -11,7 +11,7 @@ namespace utl::improfil{class Plot;}
 namespace prf::gui{class Profiler;}
 
 
-namespace prf::gui{
+namespace prf::gui::dynamic{
 
 class Graph
 {

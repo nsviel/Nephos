@@ -10,7 +10,7 @@ namespace prf::graph{class Profiler;}
 namespace utl::improfil{class Manager;}
 namespace prf::hardware{class Profiler;}
 namespace prf::gui{class Profiler;}
-namespace prf::gui{class Graph;}
+namespace prf::gui::dynamic{class Tab;}
 namespace prf::gui::hardware{class Tab;}
 
 
@@ -34,7 +34,7 @@ public:
 
 private:
   prf::Manager* prf_manager;
-  prf::gui::Graph* gui_graph;
+  prf::gui::dynamic::Tab* tab_dynamic;
   prf::gui::hardware::Tab* tab_hardware;
 
   std::string gpu = "";
