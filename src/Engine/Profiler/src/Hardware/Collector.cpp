@@ -39,7 +39,7 @@ void Collector::collect_gpu_info(){
   prf_struct->hardware.gpu.total_consumption = utl_nvidia->get_total_consumption();
   prf_struct->hardware.gpu.fan_speed = utl_nvidia->get_fan_speed();
   prf_struct->hardware.gpu.power_usage = utl_nvidia->get_power_usage();
-  
+
   //---------------------------
 }
 void Collector::collect_vulkan_device(){
@@ -75,6 +75,15 @@ void Collector::collect_vulkan_device(){
     }
 
     prf_struct->hardware.vec_device.push_back(device_info);
+  }
+
+  //---------------------------
+}
+void Collector::collect_vulkan_queue(){
+  //---------------------------
+
+  for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){
+
   }
 
   //---------------------------

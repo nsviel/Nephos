@@ -20,7 +20,7 @@ GPU::GPU(prf::Node* node_profiler){
 GPU::~GPU(){}
 
 //Main function
-void GPU::draw_tab(ImVec2 dimension){
+void GPU::draw_tab(){
   //---------------------------
 
   prf_hardware->loop();

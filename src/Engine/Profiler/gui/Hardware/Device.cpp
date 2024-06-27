@@ -19,7 +19,7 @@ Device::Device(prf::Node* node_profiler){
 Device::~Device(){}
 
 //Main function
-void Device::draw_tab(ImVec2 dimension){
+void Device::draw_tab(){
   //---------------------------
 
   if(ImGui::BeginTabBar("vulkan_device##tab_bar")){

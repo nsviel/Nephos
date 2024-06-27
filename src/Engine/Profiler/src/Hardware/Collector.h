@@ -25,6 +25,7 @@ public:
   //Subfunction
   void collect_gpu_info();
   void collect_vulkan_device();
+  void collect_vulkan_queue();
 
 private:
   prf::Structure* prf_struct;

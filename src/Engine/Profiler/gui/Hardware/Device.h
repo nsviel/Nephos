@@ -22,7 +22,7 @@ public:
 
 public:
   //Main function
-  void draw_tab(ImVec2 dimension);
+  void draw_tab();
 
   //Subfunction
   void draw_device_info(prf::hardware::Device& device);

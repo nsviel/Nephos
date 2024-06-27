@@ -38,19 +38,19 @@ void Tab::draw_hardware_tabbar(){
 
   //Draw specific info
   if(ImGui::BeginTabBar("Hardware##tabbar")){
-    ImVec2 dimension = ImGui::GetContentRegionAvail();
+    int width = ImGui::GetContentRegionAvail().x;
 
     //GPU tab
-    ImGui::SetNextItemWidth(100);
+    ImGui::SetNextItemWidth(width / 2.0f);
     if(ImGui::BeginTabItem("GPU##tabitem", NULL)){
-      gui_gpu->draw_tab(dimension);
+      gui_gpu->draw_tab();
       ImGui::EndTabItem();
     }
 
     //Device tab
-    ImGui::SetNextItemWidth(100);
+    ImGui::SetNextItemWidth(width / 2.0f);
     if(ImGui::BeginTabItem("Devices##tabitem", NULL)){
-      gui_device->draw_tab(dimension);
+      gui_device->draw_tab();
       ImGui::EndTabItem();
     }
 
