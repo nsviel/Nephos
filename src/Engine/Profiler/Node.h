@@ -5,6 +5,7 @@
 namespace eng{class Node;}
 namespace vk{class Node;}
 namespace prf{class Manager;}
+namespace prf{class Structure;}
 namespace prf::hardware{class Profiler;}
 namespace prf::gui{class Panel;}
 
@@ -31,6 +32,7 @@ private:
   eng::Node* node_engine;
   vk::Node* node_vulkan;
 
+  prf::Structure* prf_struct;
   prf::Manager* prf_manager;
   prf::hardware::Profiler* prf_hardware;
   prf::gui::Panel* gui_panel;

@@ -14,6 +14,7 @@ Node::Node(eng::Node* node_engine){
   this->node_engine = node_engine;
   this->node_vulkan = node_engine->get_node_vulkan();
 
+  this->prf_struct = new prf::Structure();
   this->prf_manager = new prf::Manager();
   this->prf_hardware = new prf::hardware::Profiler(this);
   this->gui_panel = new prf::gui::Panel(this, &prf_panel->is_open);
