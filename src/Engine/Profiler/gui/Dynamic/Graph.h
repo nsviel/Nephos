@@ -22,7 +22,7 @@ public:
 
 public:
   //Main function
-  void show_profiler(prf::base::Profiler* profiler);
+  void draw_profiler(prf::base::Profiler* profiler);
 
   //Graph function
   void draw_info();

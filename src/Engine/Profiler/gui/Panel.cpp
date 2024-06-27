@@ -1,10 +1,6 @@
 #include "Panel.h"
 
 #include <Profiler/Namespace.h>
-#include <Engine/Namespace.h>
-#include <Vulkan/Namespace.h>
-#include <Utility/Namespace.h>
-#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace prf::gui{
@@ -13,7 +9,6 @@ namespace prf::gui{
 Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
-  this->prf_manager = node_profiler->get_prf_manager();
   this->tab_dynamic = new prf::gui::dynamic::Tab(node_profiler);
   this->tab_hardware = new prf::gui::hardware::Tab(node_profiler);
 
@@ -44,11 +39,11 @@ void Panel::run_panel(){
   //---------------------------
 }
 void Panel::design_panel(){
-  int width = ImGui::GetContentRegionAvail().x / list_profiler.size() + 1;
+  int width = ImGui::GetContentRegionAvail().x / 2;
   //---------------------------
 
   if(ImGui::BeginTabBar("profiler_panel##graph")){
-    tab_hardware->draw_tab(width);
+    tab_dynamic->draw_tab(width);
     tab_hardware->draw_tab(width);
 
     ImGui::EndTabBar();

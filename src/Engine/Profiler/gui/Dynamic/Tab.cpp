@@ -1,6 +1,7 @@
 #include "Tab.h"
 
 #include <Profiler/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace prf::gui::dynamic{
@@ -9,6 +10,7 @@ namespace prf::gui::dynamic{
 Tab::Tab(prf::Node* node_profiler){
   //---------------------------
 
+  this->prf_manager = node_profiler->get_prf_manager();
   this->gui_graph = new prf::gui::dynamic::Graph(node_profiler);
 
   //---------------------------
@@ -20,7 +22,7 @@ void Tab::draw_tab(int width){
   //---------------------------
 
   ImGui::SetNextItemWidth(width);
-  if(ImGui::BeginTabItem("Hardware")){
+  if(ImGui::BeginTabItem("Dynamic")){
     this->draw_dynamic_tabbar();
 
     ImGui::EndTabItem();
@@ -31,19 +33,20 @@ void Tab::draw_tab(int width){
 
 //Subfunction
 void Tab::draw_dynamic_tabbar(){
+  std::list<prf::base::Profiler*> list_profiler = prf_manager->get_list_profiler();
+  int width = ImGui::GetContentRegionAvail().x / list_profiler.size();
   //---------------------------
 
-  //Draw specific info
-  if(ImGui::BeginTabBar("Hardware##tabbar")){
-    int width = ImGui::GetContentRegionAvail().x;
+  if(ImGui::BeginTabBar("profiler_panel##graph")){
+    for(int i=0; i<list_profiler.size(); i++){
+      prf::base::Profiler* profiler = *next(list_profiler.begin(), i);
 
-
-    ImGui::SetNextItemWidth(width / 2.0f);
-    if(ImGui::BeginTabItem("GPU##tabitem", NULL)){
-      //gui_graph->draw_tab();
-      ImGui::EndTabItem();
+      ImGui::SetNextItemWidth(width);
+      if(ImGui::BeginTabItem(profiler->name.c_str())){
+        gui_graph->draw_profiler(profiler);
+        ImGui::EndTabItem();
+      }
     }
-
 
     ImGui::EndTabBar();
   }
