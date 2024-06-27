@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
+#include <vector>
 
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
