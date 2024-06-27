@@ -53,10 +53,10 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
-  //node_profiler->loop();
-  //tasker_main->task_begin("eng");
   //---------------------------
 
+  node_profiler->loop();
+  tasker_main->task_begin("eng");
 
   node_data->loop();
   node_loader->loop();
@@ -65,19 +65,22 @@ void Node::loop(){
   node_dynamic->loop();
   node_radio->loop();
 
+  tasker_main->task_end("eng");
+
   //---------------------------
-  //tasker_main->task_end("eng");
 }
 void Node::gui(){
   //---------------------------
 
   tasker_main->task_begin("eng::gui");
+
   node_camera->gui();
   node_data->gui();
   node_loader->gui();
   node_render->gui();
   node_dynamic->gui();
   node_radio->gui();
+
   tasker_main->task_end("eng::gui");
 
   //---------------------------
