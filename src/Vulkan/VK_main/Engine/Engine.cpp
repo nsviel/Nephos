@@ -36,46 +36,7 @@ Engine::Engine(vk::Structure* vk_struct){
 }
 Engine::~Engine(){}
 
-//Data function
-void Engine::insert_data(utl::base::Data* data, utl::base::Pose* pose){
-  if(data == nullptr) return;
-  //---------------------------
-
-  //Check if data already in engine
-  bool is_in_list = false;
-  vk::structure::Object* vk_object;
-  for(int i=0; i<vk_struct->data.list_vk_object.size(); i++){
-    vk_object = *next(vk_struct->data.list_vk_object.begin(), i);
-
-    if(data->UID == vk_object->data->UID){
-      vk_data->update_data(data, vk_object);
-      return;
-    }
-  }
-
-  //If not, insert it
-  vk_data->insert_data(data, pose);
-
-  //---------------------------
-}
-void Engine::remove_data(utl::base::Data* data){
-  std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
-  //---------------------------
-
-  bool is_in_list = false;
-  for(int i=0; i<list_vk_object.size(); i++){
-    vk::structure::Object* vk_object = *next(list_vk_object.begin(),i);
-
-    if(data->UID == vk_object->data->UID){
-
-      vk_data->clean_vk_object(vk_object);
-    }
-  }
-
-  //---------------------------
-}
-
-//Renderpass function
+//Main function
 void Engine::add_renderpass_description(vk::structure::Renderpass* renderpass){
   //---------------------------
 
@@ -89,16 +50,6 @@ vk::structure::Renderpass* Engine::get_renderpass(int i){
   return vk_struct->render.vec_renderpass[i];
 
   //---------------------------
-}
-vk::structure::Object* Engine::get_canvas(){
-  //---------------------------
-
-  return &vk_struct->data.canvas;
-
-  //---------------------------
-}
-std::list<vk::structure::Object*> Engine::get_list_data(){
-  return vk_struct->data.list_vk_object;
 }
 void Engine::set_window(GLFWwindow* window){
   vk_struct->window.handle = window;

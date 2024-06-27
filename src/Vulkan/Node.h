@@ -13,6 +13,7 @@ namespace vk::synchro{class Synchro;}
 namespace vk::image{class Screenshot;}
 namespace vk::render{class Render;}
 namespace vk::window{class GLFW;}
+namespace vk::data{class Data;}
 
 
 namespace vk{
@@ -38,6 +39,7 @@ public:
   inline vk::render::Render* get_vk_render(){return vk_render;}
   inline vk::image::Screenshot* get_vk_screenshot(){return vk_screenshot;}
   inline vk::window::GLFW* get_vk_window(){return vk_window;}
+  inline vk::data::Data* get_vk_data(){return vk_data;}
 
 private:
   vk::Structure* vk_struct;
@@ -49,6 +51,7 @@ private:
   vk::synchro::Synchro* vk_synchro;
   vk::image::Screenshot* vk_screenshot;
   vk::window::GLFW* vk_window;
+  vk::data::Data* vk_data;
 };
 
 }

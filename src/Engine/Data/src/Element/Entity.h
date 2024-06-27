@@ -9,7 +9,7 @@ namespace dat{class Structure;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Object;}
 namespace dat::base{class Glyph;}
-namespace vk::main{class Engine;}
+namespace vk::data{class Data;}
 namespace eng{class Node;}
 namespace sce{class Operation;}
 namespace cam{class Control;}
@@ -39,7 +39,7 @@ public:
 private:
   cam::Node* node_camera;
   eng::Node* node_engine;
-  vk::main::Engine* vk_engine;
+  vk::data::Data* vk_data;
   dat::Structure* dat_struct;
   dat::UID* dat_uid;
   cam::Control* cam_control;

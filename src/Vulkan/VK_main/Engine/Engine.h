@@ -45,15 +45,9 @@ public:
   virtual void loop(){}
   virtual void clean(){}
 
-  //Data function
-  void insert_data(utl::base::Data* data, utl::base::Pose* pose);
-  void remove_data(utl::base::Data* data);
-
-  //Renderpass function
+  //Main function
   void add_renderpass_description(vk::structure::Renderpass* renderpass);
   vk::structure::Renderpass* get_renderpass(int i);
-  vk::structure::Object* get_canvas();
-  std::list<vk::structure::Object*> get_list_data();
   void set_window(GLFWwindow* window);
 
 protected:

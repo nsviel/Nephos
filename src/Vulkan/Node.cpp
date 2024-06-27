@@ -17,6 +17,7 @@ Node::Node(bool* running){
   this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_screenshot = new vk::image::Screenshot(vk_struct);
+  this->vk_data = new vk::data::Data(vk_struct);
   this->vk_window = new vk::window::GLFW(vk_struct);
 
   //---------------------------

@@ -112,7 +112,7 @@ void Renderpass::draw_canvas(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk_viewport->cmd_viewport(subpass->command_buffer->handle);
-  vk_drawer->cmd_draw_data(subpass->command_buffer->handle, vk_engine->get_canvas());
+  vk_drawer->cmd_draw_data(subpass->command_buffer->handle, &vk_struct->data.canvas);
 
   //---------------------------
 }

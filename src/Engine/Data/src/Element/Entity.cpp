@@ -21,7 +21,7 @@ Entity::Entity(dat::Node* node_data){
   this->cam_control = node_camera->get_cam_control();
   this->dat_struct = node_data->get_dat_struct();
   this->dat_uid = node_data->get_dat_uid();
-  this->vk_engine = node_vulkan->get_vk_engine();
+  this->vk_data = node_vulkan->get_vk_data();
   this->ope_location = new ope::attribut::Location();
 
   //---------------------------
@@ -47,7 +47,7 @@ void Entity::remove_entity(dat::base::Entity* entity){
   //----------------------------
 
   entity->clean();
-  vk_engine->remove_data(data);
+  vk_data->remove(data);
 
   //Remove glyph data
   for(int i=0; i<entity->list_glyph.size(); i++){
@@ -89,7 +89,7 @@ void Entity::update_data(dat::base::Entity* entity){
   utl::base::Pose* pose = &entity->pose;;
   //----------------------------
 //ICIIII
-  vk_engine->insert_data(data, pose);
+  vk_data->insert(data, pose);
 
   //Update attribut
   ope_location->compute_centroid(entity);

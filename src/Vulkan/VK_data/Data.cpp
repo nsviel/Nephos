@@ -36,9 +36,60 @@ void Data::clean(){
 
   //---------------------------
 }
+void Data::insert(utl::base::Data* data, utl::base::Pose* pose){
+  if(data == nullptr) return;
+  //---------------------------
 
-//Data function
-void Data::insert_data(utl::base::Data* data, utl::base::Pose* pose){
+  //Check if data already in engine
+  bool is_in_list = false;
+  vk::structure::Object* vk_object;
+  for(int i=0; i<vk_struct->data.list_vk_object.size(); i++){
+    vk_object = *next(vk_struct->data.list_vk_object.begin(), i);
+
+    if(data->UID == vk_object->data->UID){
+      this->update_vk_object(data, vk_object);
+      return;
+    }
+  }
+
+  //If not, insert it
+  this->create_vk_object(data, pose);
+
+  //---------------------------
+}
+void Data::remove(utl::base::Data* data){
+  std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
+  //---------------------------
+
+  bool is_in_list = false;
+  for(int i=0; i<list_vk_object.size(); i++){
+    vk::structure::Object* vk_object = *next(list_vk_object.begin(),i);
+
+    if(data->UID == vk_object->data->UID){
+      this->clean_vk_object(vk_object);
+    }
+  }
+
+  //---------------------------
+}
+
+//Subfunction
+void Data::update_vk_object(utl::base::Data* data, vk::structure::Object* vk_object){
+    //---------------------------
+
+    vk_object->data = data;
+    this->check_data(vk_object);
+
+    //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
+    if(vk_object->buffer.xyz.mem == 0){
+      vk_buffer->create_buffers(vk_object);
+    }else{
+      vk_buffer->update_buffer(vk_object);
+    }
+
+    //---------------------------
+}
+void Data::create_vk_object(utl::base::Data* data, utl::base::Pose* pose){
   //---------------------------
 
   //Creat new data struct
@@ -66,21 +117,6 @@ void Data::insert_data(utl::base::Data* data, utl::base::Pose* pose){
   vk_struct->data.list_vk_object.push_back(vk_object);
 
   //---------------------------
-}
-void Data::update_data(utl::base::Data* data, vk::structure::Object* vk_object){
-    //---------------------------
-
-    vk_object->data = data;
-    this->check_data(vk_object);
-
-    //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
-    if(vk_object->buffer.xyz.mem == 0){
-      vk_buffer->create_buffers(vk_object);
-    }else{
-      vk_buffer->update_buffer(vk_object);
-    }
-
-    //---------------------------
 }
 void Data::clean_vk_object(vk::structure::Object* vk_object){
   std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
