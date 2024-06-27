@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
 namespace rad::calibration{class Node;}
@@ -24,7 +23,7 @@ public:
   //Subfunction
   void compute_rectangle_detection(cv::Mat& image, utl::media::Image* output);
   void draw_detected_rectangle(cv::Mat& image);
-  bool is_rectangle(const vector<cv::Point>& contour);
+  bool is_rectangle(const std::vector<cv::Point>& contour);
 
 private:
   rad::calibration::Structure* rad_struct;

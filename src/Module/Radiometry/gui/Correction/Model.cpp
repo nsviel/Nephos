@@ -199,7 +199,7 @@ void Model::plot_measure_IfR(float height){
   //---------------------------
 
   if(plot->IfR.title == "") return;
-  plot->IfR.dimension = ivec2(-1, height);
+  plot->IfR.dimension = glm::ivec2(-1, height);
   utl_plot->plot_regression(&plot->IfR);
 
   //---------------------------
@@ -209,7 +209,7 @@ void Model::plot_measure_IfIt(float height){
   //---------------------------
 
   if(plot->IfIt.title == "") return;
-  plot->IfIt.dimension = ivec2(-1, height);
+  plot->IfIt.dimension = glm::ivec2(-1, height);
   utl_plot->plot_regression(&plot->IfIt);
 
   //---------------------------
@@ -220,7 +220,7 @@ void Model::plot_model_heatmap(dyn::base::Sensor* sensor, float height){
   //---------------------------
 
   if(plot->IfRIt.title == "") return;
-  plot->IfRIt.dimension = ivec2(-1, height);
+  plot->IfRIt.dimension = glm::ivec2(-1, height);
   bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &model->axis_x, &model->axis_y);
   if(need_update){
     rad_plot->update_plot_data(sensor);

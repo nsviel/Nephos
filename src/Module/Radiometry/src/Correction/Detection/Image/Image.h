@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction::structure{class Circle;}
 namespace dyn::base{class Sensor;}
+namespace utl::media{class Image;}
 
 
 namespace rad::correction::image{

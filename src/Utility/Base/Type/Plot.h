@@ -1,5 +1,9 @@
 #pragma once
 
+#include <glm/glm.hpp>
+#include <string>
+#include <vector>
+
 
 namespace utl::base{
 
@@ -26,7 +30,7 @@ struct Plot{
   std::string title = "";
   std::string axis_x_name = "";
   std::string axis_y_name = "";
-  glm::ivec2 dimension = ivec2(0, 0);
+  glm::ivec2 dimension = glm::ivec2(0, 0);
   glm::vec2 highlight = glm::vec2(0, 0);
 
   //Data

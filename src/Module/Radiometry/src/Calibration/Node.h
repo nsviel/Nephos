@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Radiometry/src/Calibration/Structure.h>
-#include <Utility/Specific/Common.h>
 
 namespace rad{class Node;}
 namespace rad::calibration{class Structure;}
@@ -20,7 +19,7 @@ public:
 public:
   //Main function
   void loop();
-  
+
   inline rad::Node* get_node_radio(){return node_radio;}
   inline rad::calibration::Structure* get_rad_struct(){return rad_struct;}
   inline rad::calibration::Process* get_rad_process(){return rad_process;}

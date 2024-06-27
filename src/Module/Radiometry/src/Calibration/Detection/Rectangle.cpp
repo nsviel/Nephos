@@ -87,7 +87,7 @@ void Rectangle::draw_detected_rectangle(cv::Mat& image){
 
   //---------------------------
 }
-bool Rectangle::is_rectangle(const vector<cv::Point>& contour){
+bool Rectangle::is_rectangle(const std::vector<cv::Point>& contour){
   const double minAspectRatio = 0.95;
   const double maxAspectRatio = 1.05;
   //---------------------------

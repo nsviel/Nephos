@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <opencv2/opencv.hpp>
 
 namespace rad::calibration{class Node;}
 namespace rad::calibration{class Structure;}
 namespace rad::calibration::structure{class Circle;}
 namespace dyn::base{class Sensor;}
+namespace utl::media{class Image;}
 
 
 namespace rad::calibration{

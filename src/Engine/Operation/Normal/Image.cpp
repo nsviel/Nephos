@@ -42,11 +42,11 @@ void Image::compute_normal_with_gradient(dyn::base::Sensor* sensor, int width, i
       int idx = y * width + x;
 
       // Compute neighboring pixel indices
-      ivec2 idx_center = ivec2(x, y);
-      ivec2 idx_left = ivec2(std::max(x - 1, 0), y);
-      ivec2 idx_right = ivec2(std::min(x + 1, width - 1), y);
-      ivec2 idx_up = ivec2(x, std::max(y - 1, 0));
-      ivec2 idx_down = ivec2(x, std::min(y + 1, height - 1));
+      ivec2 idx_center = glm::ivec2(x, y);
+      ivec2 idx_left = glm::ivec2(std::max(x - 1, 0), y);
+      ivec2 idx_right = glm::ivec2(std::min(x + 1, width - 1), y);
+      ivec2 idx_up = glm::ivec2(x, std::max(y - 1, 0));
+      ivec2 idx_down = glm::ivec2(x, std::min(y + 1, height - 1));
 
       // Retrieve depth values of neighboring pixels
       glm::vec3 depth_center = sensor->convert_depth_2d_to_3d(idx_center);

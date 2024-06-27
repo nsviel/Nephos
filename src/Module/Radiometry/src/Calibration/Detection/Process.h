@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace rad::calibration{class Node;}
 namespace rad::calibration{class Structure;}
 namespace rad::calibration{class Detection;}
