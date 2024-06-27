@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <imgui/editor/Text/editor_text.h>
+#include <string>
 
 
 namespace utl::gui::editor{
@@ -29,7 +29,7 @@ public:
   void save_to_current_file();
   std::string get_text();
 
-  inline string get_status(){return status;}
+  inline std::string get_status(){return status;}
   inline bool is_text_changed(){return editor->IsTextChanged();}
   inline void set_read_only(bool value){editor->SetReadOnly(value);}
   inline void set_language(std::string value){editor->set_language_definition(value);}

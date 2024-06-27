@@ -1,5 +1,7 @@
 #include "Text.h"
 
+#include <fstream>
+
 
 namespace utl::gui::editor{
 
@@ -95,7 +97,7 @@ void Text::load_from_file(std::string path){
   //---------------------------
 
   //Open file
-  ifstream file;
+  std::ifstream file;
   file.open(path.c_str());
 
   //Get first line
@@ -120,7 +122,7 @@ void Text::save_to_file(std::string path){
 
   std::string new_text = editor->GetText();
 
-  ofstream file;
+  std::ofstream file;
   file.open (path);
   file << new_text;
   file.close();
@@ -134,7 +136,7 @@ void Text::save_to_current_file(){
 
   std::string new_text = editor->GetText();
 
-  ofstream file;
+  std::ofstream file;
   file.open(current_file_path);
   file << new_text;
   file.close();
@@ -143,7 +145,7 @@ void Text::save_to_current_file(){
   this->has_been_saved = true;
   this->status = "Saved";
 }
-string Text::get_text(){
+std::string Text::get_text(){
   //---------------------------
 
   std::string new_text = editor->GetText();

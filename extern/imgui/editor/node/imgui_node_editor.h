@@ -8,6 +8,7 @@
 //
 // CREDITS
 //   Written by Michal Cichon
+// https://github.com/thedmd/imgui-node-editor
 //------------------------------------------------------------------------------
 # ifndef __IMGUI_NODE_EDITOR_H__
 # define __IMGUI_NODE_EDITOR_H__
@@ -15,7 +16,7 @@
 
 
 //------------------------------------------------------------------------------
-#include "../core/imgui.h"
+#include "../../core/imgui.h"
 # include <cstdint> // std::uintXX_t
 # include <utility> // std::move
 

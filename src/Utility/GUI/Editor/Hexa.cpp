@@ -1,5 +1,7 @@
 #include "Hexa.h"
 
+#include <imgui/editor/editor_memory.h>
+
 
 namespace utl::gui::editor{
 

@@ -1,12 +1,9 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-#include <imgui/node/imgui_node_editor.h>
-
 
 namespace utl::gui::editor{
 
-class Node : public utl::base::Node
+class Node
 {
 public:
   //Constructor / Destructor

@@ -1,5 +1,6 @@
-//https://github.com/thedmd/imgui-node-editor
 #include "Node.h"
+
+#include <imgui/editor/node/imgui_node_editor.h>
 
 
 namespace utl::gui::editor{

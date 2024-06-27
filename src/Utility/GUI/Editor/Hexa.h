@@ -1,8 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-#include <imgui/editor/editor_memory.h>
-
 
 namespace utl::gui::editor{
 

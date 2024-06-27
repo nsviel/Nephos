@@ -26,7 +26,7 @@ public:
   //Subfunction
   void format_branch();
 
-  inline string get_last_tag(){return last_tag;}
+  inline std::string get_last_tag(){return last_tag;}
   inline std::vector<string> get_vec_branch(){return vec_branch;}
   inline std::vector<pair<string, std::string>> get_vec_branch_formatted(){return vec_branch_format;}
 

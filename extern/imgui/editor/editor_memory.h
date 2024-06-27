@@ -50,6 +50,8 @@
 
 #include <stdio.h>      // sprintf, scanf
 #include <stdint.h>     // uint8_t, etc.
+#include "../core/imgui.h"
+#include "../core/imgui_internal.h"
 
 #ifdef _MSC_VER
 #define _PRISizeT   "I"
