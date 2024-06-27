@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Vulkan/VK_struct/VK_typedef.h>
 #include <Vulkan/VK_data/Structure/Buffer.h>
 #include <Vulkan/VK_image/Structure/Texture.h>
 #include <Vulkan/VK_binding/Structure/Binding.h>

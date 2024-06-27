@@ -33,7 +33,8 @@ void Transfer::run_thread(){
   //---------------------------
 
   //Save thread information
-  vk_struct->profiler->prf_vulkan->add_queue(prf::hardware::queue::TRANSFER, vk_struct->device.queue.transfer.family_ID);
+  vk_struct->device.queue.transfer.type = vk::queue::TRANSFER;
+  vk_struct->device.queue.transfer.thread_ID = utl::thread::get_ID_str();
 
   //Start thread loop
   this->thread_running = true;
