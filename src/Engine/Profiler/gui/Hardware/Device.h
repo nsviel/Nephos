@@ -3,6 +3,7 @@
 #include <imgui/core/imgui.h>
 
 namespace prf{class Node;}
+namespace prf{class Structure;}
 namespace prf::base{class Profiler;}
 namespace prf::hardware{class Profiler;}
 namespace prf::hardware{class Device;}
@@ -28,6 +29,7 @@ public:
   void draw_device_queue_families(prf::hardware::Device& device);
 
 private:
+  prf::Structure* prf_struct;
 };
 
 }

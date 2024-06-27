@@ -12,7 +12,7 @@ namespace prf::gui::hardware{
 Device::Device(prf::Node* node_profiler){
   //---------------------------
 
-
+  this->prf_struct = node_profiler->get_prf_struct();
 
   //---------------------------
 }
@@ -23,8 +23,8 @@ void Device::draw_tab(ImVec2 dimension){
   //---------------------------
 
   if(ImGui::BeginTabBar("vulkan_device##tab_bar")){
-    for(int i=0; i<prf_struct->vec_device.size(); i++){
-      prf::hardware::Device& device = prf_struct->vec_device[i];
+    for(int i=0; i<prf_struct->hardware.vec_device.size(); i++){
+      prf::hardware::Device& device = prf_struct->hardware.vec_device[i];
 
       if(ImGui::BeginTabItem(device.name.c_str(), NULL)){
         this->draw_device_info(device);

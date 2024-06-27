@@ -23,6 +23,17 @@ Tab::~Tab(){}
 void Tab::draw_tab(){
   //---------------------------
 
+  ImGui::BeginTabItem("Hardware");
+  this->draw_subtab();
+  ImGui::EndTabItem();
+
+  //---------------------------
+}
+
+//Subfunction
+void Tab::draw_subtab(){
+  //---------------------------
+
   //Draw specific info
   if(ImGui::BeginTabBar("Hardware##profiler_vulkan")){
     ImVec2 dimension = ImGui::GetContentRegionAvail();
@@ -46,7 +57,5 @@ void Tab::draw_tab(){
 
   //---------------------------
 }
-
-//Subfunction
 
 }

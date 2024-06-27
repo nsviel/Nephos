@@ -3,6 +3,7 @@
 #include <imgui/core/imgui.h>
 
 namespace prf{class Node;}
+namespace prf{class Structure;}
 namespace prf::base{class Profiler;}
 namespace prf::hardware{class Profiler;}
 namespace prf::hardware{class Device;}
@@ -24,10 +25,11 @@ public:
   void draw_tab(ImVec2 dimension);
 
   //Subfunction
-  void draw_gpu_info(prf::hardware::Structure* prf_struct);
-  void draw_gpu_queue(prf::hardware::Structure* prf_struct);
+  void draw_gpu_info();
+  void draw_gpu_queue();
 
 private:
+  prf::Structure* prf_struct;
 };
 
 }

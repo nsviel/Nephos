@@ -24,7 +24,8 @@ public:
   void draw_tab();
 
   //Subfunction
-
+  void draw_subtab();
+  
 private:
   prf::gui::hardware::Device* gui_device;
   prf::gui::hardware::GPU* gui_gpu;

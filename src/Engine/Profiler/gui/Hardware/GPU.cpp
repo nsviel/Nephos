@@ -12,7 +12,7 @@ namespace prf::gui::hardware{
 GPU::GPU(prf::Node* node_profiler){
   //---------------------------
 
-
+  this->prf_struct = node_profiler->get_prf_struct();
 
   //---------------------------
 }
@@ -22,51 +22,51 @@ GPU::~GPU(){}
 void GPU::draw_tab(ImVec2 dimension){
   //---------------------------
 
-  this->draw_gpu_info(prf_struct);
-  this->draw_gpu_queue(prf_struct);
+  this->draw_gpu_info();
+  this->draw_gpu_queue();
 
   //---------------------------
 }
 
 //Subfunction
-void GPU::draw_gpu_info(prf::hardware::Structure* prf_struct){
+void GPU::draw_gpu_info(){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
   ImGui::BeginTable("profiler_panel##info", 2);
-  ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 75.0f);
+  ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 125.0f);
 
   //Device
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Device"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", prf_struct->gpu.name.c_str());
+  ImGui::TextColored(color, "%s", prf_struct->hardware.gpu.name.c_str());
 
   //Temperature
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Temperature"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d°", prf_struct->gpu.temperature);
+  ImGui::TextColored(color, "%d°", prf_struct->hardware.gpu.temperature);
 
   //Consumption
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Total consumption"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%.2f J", prf_struct->gpu.total_consumption);
+  ImGui::TextColored(color, "%.2f J", prf_struct->hardware.gpu.total_consumption);
 
   //Power
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Power usage"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d W", prf_struct->gpu.power_usage);
+  ImGui::TextColored(color, "%d W", prf_struct->hardware.gpu.power_usage);
 
   //Fan speed
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Fan speed"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d rpm", prf_struct->gpu.fan_speed);
+  ImGui::TextColored(color, "%d rpm", prf_struct->hardware.gpu.fan_speed);
 
   ImGui::EndTable();
 
   //---------------------------
   ImGui::Separator();
 }
-void GPU::draw_gpu_queue(prf::hardware::Structure* prf_struct){
+void GPU::draw_gpu_queue(){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Queue");
@@ -86,8 +86,8 @@ void GPU::draw_gpu_queue(prf::hardware::Structure* prf_struct){
   ImGui::TableSetupColumn("Thread");
   ImGui::TableHeadersRow();
 
-  for(int i=0; i<prf_struct->gpu.vec_queue.size(); i++){
-    prf::hardware::Queue& queue = prf_struct->gpu.vec_queue[i];
+  for(int i=0; i<prf_struct->hardware.gpu.vec_queue.size(); i++){
+    prf::hardware::Queue& queue = prf_struct->hardware.gpu.vec_queue[i];
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     switch(queue.type){
