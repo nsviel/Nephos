@@ -21,7 +21,7 @@ Graph::~Graph(){}
 
 //Main function
 void Graph::draw_profiler(prf::dynamic::Profiler* profiler){
-  prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler);
+  prf::dynamic::Profiler* graph = dynamic_cast<prf::dynamic::Profiler*>(profiler);
   //---------------------------
 
   this->draw_info();
@@ -66,8 +66,8 @@ void Graph::draw_info(){
 
   //---------------------------
 }
-void Graph::draw_graph_all(prf::graph::Profiler* profiler){
-  std::list<prf::graph::Tasker*> list_tasker = profiler->get_list_tasker();
+void Graph::draw_graph_all(prf::dynamic::Profiler* profiler){
+  std::list<prf::dynamic::Tasker*> list_tasker = profiler->get_list_tasker();
   //---------------------------
 
   //Stuff to force first-opened tab
@@ -95,7 +95,7 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
     ImGui::TableNextColumn();
     ImVec2 dim_plot = ImVec2(dimension.x, dimension.y / list_tasker.size() - list_tasker.size() * 4);
     for(int i=0; i<list_tasker.size(); i++){
-      prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
+      prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
       this->draw_tasker_graph(tasker, dim_plot);
     }
 
@@ -105,14 +105,14 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
 
   //---------------------------
 }
-void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
+void Graph::draw_graph_unique(prf::dynamic::Profiler* profiler){
   ImVec2 dimension = ImGui::GetContentRegionAvail();
   dimension = ImVec2(dimension.x, dimension.y - 10);
   //---------------------------
 
-  std::list<prf::graph::Tasker*> list_tasker = profiler->get_list_tasker();
+  std::list<prf::dynamic::Tasker*> list_tasker = profiler->get_list_tasker();
   for(int i=0; i<list_tasker.size(); i++){
-    prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
+    prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
 
     ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
     std::string title = tasker->name + "##" + tasker->thread_ID;
@@ -170,7 +170,7 @@ void Graph::draw_graph_command(){
 
   //---------------------------
 }
-void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 dimension){
+void Graph::draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension){
   //---------------------------
 
   this->selected_tasker = tasker;
@@ -194,11 +194,11 @@ void Graph::set_graphs_max_time(int value){
   for(int i=0; i<list_profiler.size(); i++){
     prf::dynamic::Profiler* profiler = *next(list_profiler.begin(), i);
 
-    if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
-      std::list<prf::graph::Tasker*> list_tasker = graph->get_list_tasker();
+    if(prf::dynamic::Profiler* graph = dynamic_cast<prf::dynamic::Profiler*>(profiler)){
+      std::list<prf::dynamic::Tasker*> list_tasker = graph->get_list_tasker();
 
       for(int i=0; i<list_tasker.size(); i++){
-        prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
+        prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
 
         tasker->plot.set_time_max(value);
       }

@@ -6,7 +6,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::structure{class Sensor;}
-namespace prf::graph{class Tasker;}
+namespace prf::dynamic{class Tasker;}
 namespace utl::thread{class Pool;}
 namespace dyn::cloud{class Operation;}
 

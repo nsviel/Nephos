@@ -3,7 +3,7 @@
 #include <Profiler/Namespace.h>
 
 
-namespace prf::graph{
+namespace prf::dynamic{
 
 //Constructor / Destructor
 Profiler::Profiler(){
@@ -26,7 +26,7 @@ void Profiler::reset(){
   //---------------------------
 
   for(int i=0; i<list_tasker.size(); i++){
-    prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
+    prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
     tasker->reset();
   }
 
@@ -44,25 +44,25 @@ void Profiler::clean(){
 }
 
 //Tasker function
-prf::graph::Tasker* Profiler::fetch_tasker(std::string name){
+prf::dynamic::Tasker* Profiler::fetch_tasker(std::string name){
   //---------------------------
 
   //Check if tasker name already exists
   for(int i=0; i<list_tasker.size(); i++){
-    prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
+    prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
     if(tasker->name == name){
       return tasker;
     }
   }
 
   //Else create new one
-  prf::graph::Tasker* tasker = new prf::graph::Tasker(name);
+  prf::dynamic::Tasker* tasker = new prf::dynamic::Tasker(name);
   this->list_tasker.push_back(tasker);
 
   //---------------------------
   return tasker;
 }
-void Profiler::remove_tasker(prf::graph::Tasker* tasker){
+void Profiler::remove_tasker(prf::dynamic::Tasker* tasker){
   //---------------------------
 
   list_tasker.remove(tasker);

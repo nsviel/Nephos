@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace prf::graph{
+namespace prf::dynamic{
 
 //Constructor / Destructor
 Tasker::Tasker(std::string name){

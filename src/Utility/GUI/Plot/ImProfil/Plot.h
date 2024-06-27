@@ -7,7 +7,6 @@
 #include <string>
 
 namespace utl::improfil{class Renderer;}
-namespace prf::graph::structure{class Task;}
 
 
 namespace utl::improfil{

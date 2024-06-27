@@ -3,14 +3,14 @@
 #include <Profiler/Namespace.h>
 
 
-namespace prf{
+namespace prf::dynamic{
 
 //Constructor / Destructor
 Manager::Manager(){
   //---------------------------
 
   //Main profiler
-  this->profiler_main = new prf::graph::Profiler("Main");
+  this->profiler_main = new prf::dynamic::Profiler("Main");
   profiler_main->fetch_tasker("cpu");
   profiler_main->fetch_tasker("gpu");
   this->add_profiler(profiler_main);
@@ -41,8 +41,8 @@ void Manager::remove_profiler(prf::dynamic::Profiler* profiler){
 void Manager::loop_begin(int max_fps){
   //---------------------------
 
-  prf::graph::Tasker* tasker_cpu = profiler_main->fetch_tasker("cpu");
-  prf::graph::Tasker* tasker_gpu = profiler_main->fetch_tasker("gpu");
+  prf::dynamic::Tasker* tasker_cpu = profiler_main->fetch_tasker("cpu");
+  prf::dynamic::Tasker* tasker_gpu = profiler_main->fetch_tasker("gpu");
 
   tasker_cpu->loop_begin(max_fps);
   tasker_gpu->loop_begin();
@@ -52,8 +52,8 @@ void Manager::loop_begin(int max_fps){
 void Manager::loop_end(){
   //---------------------------
 
-  prf::graph::Tasker* tasker_cpu = profiler_main->fetch_tasker("cpu");
-  prf::graph::Tasker* tasker_gpu = profiler_main->fetch_tasker("gpu");
+  prf::dynamic::Tasker* tasker_cpu = profiler_main->fetch_tasker("cpu");
+  prf::dynamic::Tasker* tasker_gpu = profiler_main->fetch_tasker("gpu");
 
   tasker_cpu->loop_end();
   tasker_gpu->loop_end();

@@ -1,16 +1,15 @@
 #pragma once
 
-#include <Profiler/src/Dynamic/Structure/Profiler.h>
 #include <string>
 #include <list>
 
-namespace prf::graph{class Tasker;}
+namespace prf::dynamic{class Tasker;}
 namespace prf::dynamic{class Profiler;}
 
 
-namespace prf::graph{
+namespace prf::dynamic{
 
-class Profiler : public prf::dynamic::Profiler
+class Profiler
 {
 public:
   //Constructor / Destructor
@@ -24,13 +23,16 @@ public:
   void clean();
 
   //Tasker function
-  prf::graph::Tasker* fetch_tasker(std::string name);
-  void remove_tasker(prf::graph::Tasker* tasker);
+  prf::dynamic::Tasker* fetch_tasker(std::string name);
+  void remove_tasker(prf::dynamic::Tasker* tasker);
 
-  inline std::list<prf::graph::Tasker*> get_list_tasker(){return list_tasker;}
+  inline std::list<prf::dynamic::Tasker*> get_list_tasker(){return list_tasker;}
+
+public:
+  std::string name = "";
 
 private:
-  std::list<prf::graph::Tasker*> list_tasker;
+  std::list<prf::dynamic::Tasker*> list_tasker;
 };
 
 }

@@ -31,7 +31,7 @@ void Registration::start_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 }
 void Registration::run_thread(k4n::structure::Sensor* sensor){
-  //prf::graph::Tasker* tasker = sensor->profiler->fetch_tasker("registration");
+  //prf::dynamic::Tasker* tasker = sensor->profiler->fetch_tasker("registration");
   //---------------------------
 
   //tasker->loop_begin();

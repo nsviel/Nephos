@@ -32,7 +32,7 @@ struct Sensor : public dat::base::Object, public utl::base::Thread{
   dyn::base::Timestamp timestamp;
   dyn::base::State state;
   dyn::base::Calibration calibration;
-  prf::graph::Profiler profiler;
+  prf::dynamic::Profiler profiler;
 
   std::string device_name = "";
   std::string serial_number = "";

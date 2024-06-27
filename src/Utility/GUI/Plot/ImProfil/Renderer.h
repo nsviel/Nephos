@@ -10,7 +10,6 @@
 
 namespace utl::improfil{class Bar;}
 namespace utl::improfil{class Stat;}
-namespace prf::graph::structure{class Task;}
 
 
 namespace utl::improfil{

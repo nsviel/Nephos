@@ -12,7 +12,7 @@ namespace dyn{class Node;}
 namespace prf{class Node;}
 namespace rad{class Node;}
 namespace eng{class Structure;}
-namespace prf::graph{class Tasker;}
+namespace prf::dynamic{class Tasker;}
 namespace utl::thread{class Pool;}
 
 
@@ -54,7 +54,7 @@ private:
   rnd::Node* node_render = nullptr;
   prf::Node* node_profiler = nullptr;
   dyn::Node* node_dynamic = nullptr;
-  prf::graph::Tasker* tasker_main;
+  prf::dynamic::Tasker* tasker_main;
   utl::thread::Pool* thread_pool;
 
   bool* app_running;

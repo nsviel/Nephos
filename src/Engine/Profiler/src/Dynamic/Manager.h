@@ -4,11 +4,11 @@
 #include <list>
 
 namespace prf::dynamic{class Profiler;}
-namespace prf::graph{class Tasker;}
+namespace prf::dynamic{class Tasker;}
 namespace prf::graph{class Profiler;}
 
 
-namespace prf{
+namespace prf::dynamic{
 
 class Manager
 {
@@ -26,12 +26,12 @@ public:
   void loop_begin(int max_fps);
   void loop_end();
 
-  inline prf::graph::Profiler* get_profiler_main(){return profiler_main;}
+  inline prf::dynamic::Profiler* get_profiler_main(){return profiler_main;}
   inline std::list<prf::dynamic::Profiler*> get_list_profiler(){return list_profiler;}
 
 private:
   std::list<prf::dynamic::Profiler*> list_profiler;
-  prf::graph::Profiler* profiler_main;
+  prf::dynamic::Profiler* profiler_main;
 };
 
 }

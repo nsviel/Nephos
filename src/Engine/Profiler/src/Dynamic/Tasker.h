@@ -1,17 +1,15 @@
 #pragma once
 
-#include <Profiler/src/Dynamic/Structure/Tasker.h>
 #include <string>
 
 namespace utl::timer::fps{class Counter;}
 namespace utl::timer::fps{class Control;}
-namespace prf::graph::structure{class Task;}
-namespace prf::graph::structure{class Tasker;}
+namespace prf::dynamic{class Task;}
 
 
-namespace prf::graph{
+namespace prf::dynamic{
 
-class Tasker : public prf::dynamic::Tasker
+class Tasker
 {
 public:
   //Constructor / Destructor
@@ -34,10 +32,21 @@ public:
   //Subfunction
   prf::dynamic::Task* retrieve_task(const std::string& name);
 
+public:
+  std::string name = "";
+  utl::improfil::Plot plot;
+  std::string thread_ID = "";
+  float fps = 0;
+
 private:
   utl::timer::Chrono timer;
   utl::timer::fps::Counter* fps_counter;
   utl::timer::fps::Control* fps_control;
+
+  utl::timer::Timepoint reference;
+  std::vector<prf::dynamic::Task> vec_task_current;
+  std::vector<prf::dynamic::Task> vec_task;
+  bool is_fps_control = false;
 };
 
 }
