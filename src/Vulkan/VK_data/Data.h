@@ -33,12 +33,6 @@ public:
   void clean_vk_object(vk::structure::Object* vk_object);
   void check_data(vk::structure::Object* vk_object);
 
-  //Pipeline data description
-  void pipeline_data_description(vk::structure::Pipeline* pipeline);
-  void pipeline_binding_description(vk::structure::Pipeline* pipeline);
-  void pipeline_attribut_description(vk::structure::Pipeline* pipeline);
-  void pipeline_vertex_input_info(vk::structure::Pipeline* pipeline);
-
 private:
   vk::Structure* vk_struct;
   vk::data::Buffer* vk_buffer;

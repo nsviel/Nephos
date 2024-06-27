@@ -5,7 +5,7 @@
 namespace vk::binding{class Descriptor;}
 namespace vk::draw{class Viewport;}
 namespace vk::shader{class Shader;}
-namespace vk::data{class Data;}
+namespace vk::pipeline{class Data;}
 namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
@@ -50,7 +50,7 @@ private:
   vk::Structure* vk_struct;
   vk::binding::Descriptor* vk_descriptor;
   vk::shader::Shader* vk_shader;
-  vk::data::Data* vk_data;
+  vk::pipeline::Data* vk_data;
 };
 
 }
