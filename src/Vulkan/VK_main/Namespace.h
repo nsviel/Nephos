@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Vulkan/VK_main/Interface.h>
-#include <Vulkan/VK_main/Engine.h>
-#include <Vulkan/VK_main/Mode/Graphical.h>
-#include <Vulkan/VK_main/Mode/Headless.h>
+#include <Vulkan/VK_main/Structure/Namespace.h>
+#include <Vulkan/VK_main/Mode/Namespace.h>
+#include <Vulkan/VK_main/Engine/Namespace.h>
