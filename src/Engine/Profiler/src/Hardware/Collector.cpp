@@ -84,7 +84,8 @@ void Collector::collect_vulkan_queue(){
   //---------------------------
 
   this->add_queue(vk_struct->device.queue.graphics, prf::hardware::queue::GRAPHICS);
-
+  this->add_queue(vk_struct->device.queue.presentation, prf::hardware::queue::PRESENTATION);
+  this->add_queue(vk_struct->device.queue.transfer, prf::hardware::queue::TRANSFER);
 
   //---------------------------
 }

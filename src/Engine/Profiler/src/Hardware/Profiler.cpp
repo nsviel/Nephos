@@ -21,8 +21,7 @@ Profiler::~Profiler(){}
 void Profiler::init(){
   //---------------------------
 
-  prf_collector->collect_vulkan_device();
-  prf_collector->collect_gpu_info();
+  prf_collector->collect_info();
 
   //---------------------------
 }
