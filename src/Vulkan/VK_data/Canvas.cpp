@@ -23,13 +23,13 @@ void Canvas::init(){
 
   //Generic quad coordinates and UV
   std::vector<glm::vec3> xyz;
-  xyz.push_back(vec3(1.0f, -1.0f, 0.0f));
-  xyz.push_back(vec3(-1.0f, -1.0f, 0.0f));
-  xyz.push_back(vec3(-1.0f, 1.0f, 0.0f));
+  xyz.push_back(glm::vec3(1.0f, -1.0f, 0.0f));
+  xyz.push_back(glm::vec3(-1.0f, -1.0f, 0.0f));
+  xyz.push_back(glm::vec3(-1.0f, 1.0f, 0.0f));
 
-  xyz.push_back(vec3(1.0f, 1.0f, 0.0f));
-  xyz.push_back(vec3(1.0f, -1.0f, 0.0f));
-  xyz.push_back(vec3(-1.0f, 1.0f, 0.0f));
+  xyz.push_back(glm::vec3(1.0f, 1.0f, 0.0f));
+  xyz.push_back(glm::vec3(1.0f, -1.0f, 0.0f));
+  xyz.push_back(glm::vec3(-1.0f, 1.0f, 0.0f));
 
   std::vector<glm::vec2> uv;
   uv.push_back(glm::vec2(1.0f,  0.0f));

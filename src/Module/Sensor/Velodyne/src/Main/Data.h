@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vld{class Node;}
 namespace vld::structure{class Main;}
 namespace eng{class Node;}

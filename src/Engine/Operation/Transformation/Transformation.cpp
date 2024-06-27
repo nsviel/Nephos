@@ -154,7 +154,7 @@ void Transformation::make_transformation(utl::base::Pose* pose, glm::vec3 COM, g
 }
 
 //Subfunction
-glm::mat4 Transformation::get_translation_mat(vec3 trans){
+glm::mat4 Transformation::get_translation_mat(glm::vec3 trans){
   glm::mat4 translation(1.0);
   //---------------------------
 
@@ -165,7 +165,7 @@ glm::mat4 Transformation::get_translation_mat(vec3 trans){
   //---------------------------
   return translation;
 }
-glm::mat4 Transformation::get_translation_mat_neye(vec3 trans){
+glm::mat4 Transformation::get_translation_mat_neye(glm::vec3 trans){
   glm::mat4 translation(0.0);
   //---------------------------
 
@@ -176,7 +176,7 @@ glm::mat4 Transformation::get_translation_mat_neye(vec3 trans){
   //---------------------------
   return translation;
 }
-glm::mat4 Transformation::get_rotation_mat(vec3 r){
+glm::mat4 Transformation::get_rotation_mat(glm::vec3 r){
   glm::mat4 Rx(1.0);
   glm::mat4 Ry(1.0);
   glm::mat4 Rz(1.0);

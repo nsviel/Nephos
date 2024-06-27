@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <thread>
 
 namespace vld::structure{class Main;}
 namespace vld::processing{class Player;}

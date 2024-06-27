@@ -1,5 +1,7 @@
 #include "Base.h"
 
+#include <iostream>
+
 
 namespace utl::shader{
 
@@ -24,7 +26,7 @@ utl::shader::Info* Base::get_shader_info(std::string title){
   //---------------------------
   return nullptr;
 }
-string Base::get_glsl_path_vs(int ID_subclass){
+std::string Base::get_glsl_path_vs(int ID_subclass){
   //---------------------------
 
   std::string path_vs = vec_shader_info[ID_subclass]->path_glsl_vs;
@@ -32,7 +34,7 @@ string Base::get_glsl_path_vs(int ID_subclass){
   //---------------------------
   return path_vs;
 }
-string Base::get_glsl_path_fs(int ID_subclass){
+std::string Base::get_glsl_path_fs(int ID_subclass){
   //---------------------------
 
   std::string path_fs = vec_shader_info[ID_subclass]->path_glsl_fs;

@@ -1,6 +1,7 @@
 #include "Physical.h"
 
 #include <Vulkan/Namespace.h>
+#include <set>
 
 
 namespace vk::device{
@@ -97,9 +98,9 @@ void Physical::find_best_physical_device(){
   if(candidates.rbegin()->first > 0){
     vk_struct->device.physical_device = candidates.rbegin()->second;
   }else{
-    std::cout<<"[error] failed to find a suitable GPU"<<endl;
-    std::cout<<"-------------------------------------"<<endl;
-    std::cout<<"Detected physical devices:"<<endl;
+    std::cout<<"[error] failed to find a suitable GPU"<<std::endl;
+    std::cout<<"-------------------------------------"<<std::endl;
+    std::cout<<"Detected physical devices:"<<std::endl;
     for(auto it = candidates.begin(); it != candidates.end(); ++it){
       int score = it->first;
       const vk::device::structure::Physical& device = it->second;
@@ -296,7 +297,7 @@ void Physical::find_surface_format(vk::device::structure::Physical& physical_dev
   uint32_t nb_format;
   vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, vk_struct->window.surface, &nb_format, nullptr);
   if(nb_format == 0){
-    std::cout<<"[error] No physical device surface format"<<endl;
+    std::cout<<"[error] No physical device surface format"<<std::endl;
   }
 
   //Get supported surface format list
@@ -313,7 +314,7 @@ void Physical::find_presentation_mode(vk::device::structure::Physical& physical_
   uint32_t nb_mode_presentation;
   vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.handle, vk_struct->window.surface, &nb_mode_presentation, nullptr);
   if(nb_mode_presentation == 0){
-    std::cout<<"[error] No physical device surface presentation mode"<<endl;
+    std::cout<<"[error] No physical device surface presentation mode"<<std::endl;
   }
 
   //Get presentation mode list

@@ -22,10 +22,10 @@ void Interface::fill_profiler_info(){
 
   //---------------------------
 }
-string Interface::get_gpu_name(){
+std::string Interface::get_gpu_name(){
   return vk_struct->device.physical_device.name;
 }
-vec4* Interface::get_color_background(){
+glm::vec4* Interface::get_color_background(){
   return &vk_struct->param.background_color;
 }
 bool Interface::is_gpu_discrete(){

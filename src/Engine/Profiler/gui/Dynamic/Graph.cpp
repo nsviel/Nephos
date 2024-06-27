@@ -195,7 +195,7 @@ void Graph::set_graphs_max_time(int value){
     prf::base::Profiler* profiler = *next(list_profiler.begin(), i);
 
     if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
-      list<prf::graph::Tasker*> list_tasker = graph->get_list_tasker();
+      std::list<prf::graph::Tasker*> list_tasker = graph->get_list_tasker();
 
       for(int i=0; i<list_tasker.size(); i++){
         prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);

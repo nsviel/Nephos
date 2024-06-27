@@ -2,6 +2,7 @@
 
 #include <Camera/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 
 namespace cam{
@@ -19,7 +20,7 @@ Projection::Projection(cam::Node* node_camera){
 Projection::~Projection(){}
 
 //Main function
-mat4 Projection::compute_proj_perspective(cam::Entity* camera){
+glm::mat4 Projection::compute_proj_perspective(cam::Entity* camera){
   glm::mat4 cam_proj = glm::mat4(1.0f);
   if(camera == nullptr) return cam_proj;
   //---------------------------
@@ -39,7 +40,7 @@ mat4 Projection::compute_proj_perspective(cam::Entity* camera){
   //---------------------------
   return cam_proj;
 }
-mat4 Projection::compute_proj_ortho(cam::Entity* camera){
+glm::mat4 Projection::compute_proj_ortho(cam::Entity* camera){
   glm::mat4 cam_proj = glm::mat4(1.0f);
   if(camera == nullptr) return cam_proj;
   //---------------------------

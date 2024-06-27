@@ -149,7 +149,7 @@ void Pipeline::clean_pipeline_shader_module(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   for(int i=0; i<pipeline->info.vec_shader_couple.size(); i++){
-    pair<VkShaderModule, VkShaderModule> shader_couple = pipeline->info.vec_shader_couple[i];
+    std::pair<VkShaderModule, VkShaderModule> shader_couple = pipeline->info.vec_shader_couple[i];
     vkDestroyShaderModule(vk_struct->device.handle, shader_couple.first, nullptr);
     vkDestroyShaderModule(vk_struct->device.handle, shader_couple.second, nullptr);
   }
@@ -303,12 +303,12 @@ void Pipeline::find_pipeline_topology_state(vk::structure::Pipeline* pipeline){
 void Pipeline::check_struct_pipeline_input(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  if(pipeline->definition.name == "") cout<<"[error] Pipeline init input -> no name"<<endl;
-  //if(pipeline->definition.topology == "") cout<<"[error] Pipeline init input -> no topology"<<endl;
-  //if(pipeline->path_shader_vs == "") cout<<"[error] Pipeline init input -> no path_shader_vs"<<endl;
-  //if(pipeline->path_shader_fs == "") cout<<"[error] Pipeline init input -> no path_shader_fs"<<endl;
-  //if(pipeline->definition.vec_data_name.size() == 0) cout<<"[error] Pipeline init input -> no vec_data_name"<<endl;
-  //if(pipeline->binding.vec_required_binding.size() == 0) cout<<"[error] Pipeline init input -> no vec_required_binding"<<endl;
+  if(pipeline->definition.name == "") std::cout<<"[error] Pipeline init input -> no name"<<std::endl;
+  //if(pipeline->definition.topology == "") std::cout<<"[error] Pipeline init input -> no topology"<<std::endl;
+  //if(pipeline->path_shader_vs == "") std::cout<<"[error] Pipeline init input -> no path_shader_vs"<<std::endl;
+  //if(pipeline->path_shader_fs == "") std::cout<<"[error] Pipeline init input -> no path_shader_fs"<<std::endl;
+  //if(pipeline->definition.vec_data_name.size() == 0) std::cout<<"[error] Pipeline init input -> no vec_data_name"<<std::endl;
+  //if(pipeline->binding.vec_required_binding.size() == 0) std::cout<<"[error] Pipeline init input -> no vec_required_binding"<<std::endl;
 
   //---------------------------
 }

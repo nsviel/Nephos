@@ -1,6 +1,7 @@
 #include "Queue.h"
 
 #include <Vulkan/Namespace.h>
+#include <set>
 
 
 namespace vk::device{
@@ -100,13 +101,13 @@ void Queue::find_queue_family_assigment(){
 
   //check for good assigment
   if(pool.graphics.family_ID == -1){
-    std::cout<<"[error] in graphics queue family assigment"<<endl;
+    std::cout<<"[error] in graphics queue family assigment"<<std::endl;
   }
   if(pool.transfer.family_ID == -1){
-    std::cout<<"[error] in transfer queue family assigment"<<endl;
+    std::cout<<"[error] in transfer queue family assigment"<<std::endl;
   }
   if(pool.presentation.family_ID == -1 && !vk_struct->param.headless){
-    std::cout<<"[error] in presentation queue family assigment"<<endl;
+    std::cout<<"[error] in presentation queue family assigment"<<std::endl;
   }
 
   //---------------------------
@@ -130,7 +131,7 @@ void Queue::create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_in
     if(family.vec_queue.size() == 0) continue;
 
     //Get set of queue index
-    set<int> set_index;
+    std::set<int> set_index;
     for(int j=0; j<family.vec_queue.size(); j++){
       vk::queue::structure::Queue* queue = family.vec_queue[j];
       set_index.insert(queue->family_index);

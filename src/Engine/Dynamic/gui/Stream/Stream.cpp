@@ -65,7 +65,7 @@ void Stream::design_panel(dat::base::Entity* entity){
 
 //All devices
 void Stream::draw_stream_tabbar(dat::base::Entity* entity){
-  list<utl::media::Image*> list_image = entity->list_image;
+  std::list<utl::media::Image*> list_image = entity->list_image;
   //---------------------------
 
   //Display capture images

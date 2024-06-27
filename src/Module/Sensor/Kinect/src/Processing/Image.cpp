@@ -434,7 +434,7 @@ void Image::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& da
 
   int ret = tjDecompress2(tj_handle, &mpeg[0], size, bgra.data(), width, 0, height, TJPF_RGBA, flags);
   if(ret != 0){
-    std::cout<<"[error] MPEG convertion error"<<endl;
+    std::cout<<"[error] MPEG convertion error"<<std::endl;
   }
   data = bgra;
 

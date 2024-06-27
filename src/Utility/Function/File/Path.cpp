@@ -12,6 +12,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <random>
+#include <list>
 #include <fstream>
 #include <unistd.h>
 #include <filesystem>
@@ -248,18 +249,18 @@ std::vector<std::string> list_all_dir(std::string path){
 
   struct dirent* files;
   DIR* directory = opendir(path.c_str());
-  std::vector<std::string> list;
+  std::vector<std::string> vec_dir;
 
   //Check if directory exists
   if(utl::directory::is_exist(path) == false || is_dir_or_file(path) == "file"){
-    return list;
+    return vec_dir;
   }
 
   //Filtre and store files present in the folder
   while((files = readdir(directory)) != NULL){
     std::string name = files->d_name;
     if((strchr(files->d_name, '.')) == NULL){
-      list.push_back(name + "/");
+      vec_dir.push_back(name + "/");
     }
   }
 
@@ -267,7 +268,7 @@ std::vector<std::string> list_all_dir(std::string path){
   closedir(directory);
 
   //---------------------------
-  return list;
+  return vec_dir;
 }
 
 }

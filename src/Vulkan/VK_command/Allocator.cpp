@@ -1,6 +1,7 @@
 #include "Allocator.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::command{
@@ -112,7 +113,7 @@ vk::pool::structure::Command_buffer* Allocator::query_free_pool(vk::queue::struc
     }
   }
 
-  std::cout<<"[error] Command buffer pool availbility problem"<<endl;
+  std::cout<<"[error] Command buffer pool availbility problem"<<std::endl;
 
   //---------------------------
   return nullptr;

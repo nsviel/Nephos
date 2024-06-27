@@ -2,6 +2,7 @@
 
 #include <Camera/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 
 namespace cam::mode{
@@ -112,7 +113,7 @@ void Arcball::camera_zoom(cam::Entity* camera, float speed){
 }
 
 //Subfunction
-mat4 Arcball::compute_camera_view(cam::Entity* camera){
+glm::mat4 Arcball::compute_camera_view(cam::Entity* camera){
   glm::mat4 cam_view = glm::mat4(1.0f);
   if(camera == nullptr) return cam_view;
   //---------------------------

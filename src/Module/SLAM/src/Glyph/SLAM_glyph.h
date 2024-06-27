@@ -47,7 +47,7 @@ private:
   SLAM_map* slam_map;
   Object* objectManager;
 
-  list<Glyph*>* list_glyph;
+  std::list<Glyph*>* list_glyph;
 
   bool with_keypoint;
   bool with_neighbor;

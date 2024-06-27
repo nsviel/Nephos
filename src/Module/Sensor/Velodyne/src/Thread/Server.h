@@ -1,10 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Utility/Base/Type/Data.h>
+#include <thread>
 
-namespace dat{class Graph;}
-namespace ldr::io{class Importer;}
-namespace dat{class Set;}
 namespace vld{class Node;}
 namespace vld::structure{class Main;}
 namespace vld::processing{class Player;}
@@ -13,6 +11,9 @@ namespace vld::utils{class Server;}
 namespace vld::parser{class VLP16;}
 namespace vld::main{class Data;}
 namespace vld::thread{class Screenshot;}
+namespace dat{class Graph;}
+namespace ldr::io{class Importer;}
+namespace dat{class Set;}
 
 
 namespace vld::thread{

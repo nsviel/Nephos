@@ -24,11 +24,11 @@ void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, const std::vector<
   //------------------------
 
   if(xyz.size() == 0){
-    //cout<<"[error] no point given to ransac"<<endl;
+    //cout<<"[error] no point given to ransac"<<std::endl;
     return;
   }
   if(xyz.size() != Nxyz.size()){
-    std::cout<<"[error] location and normal size"<<endl;
+    std::cout<<"[error] location and normal size"<<std::endl;
     return;
   }
 

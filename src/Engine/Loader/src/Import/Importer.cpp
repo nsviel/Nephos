@@ -126,18 +126,18 @@ bool Importer::check_path(std::string path){
 
   //Check file existence
   if(utl::file::is_exist(path) == false){
-    std::cout<<"[error] File doesn't exists at "<<path<<endl;
+    std::cout<<"[error] File doesn't exists at "<<path<<std::endl;
     return false;
   }
 
   //Check file format
   std::string format = utl::path::get_format_from_path(path);
   if(!this->is_format_supported(format)){
-    std::cout<<"[error] '"<<format<<"' file format not supported"<<endl;
-    std::cout<<"Supported file formats:"<<endl;
+    std::cout<<"[error] '"<<format<<"' file format not supported"<<std::endl;
+    std::cout<<"Supported file formats:"<<std::endl;
     for(int i=0; i<vec_importer.size(); i++){
       ldr::base::Importer* importer = vec_importer[i];
-      std::cout<<"o "<<importer->format<<endl;
+      std::cout<<"o "<<importer->format<<std::endl;
     }
     return false;
   }

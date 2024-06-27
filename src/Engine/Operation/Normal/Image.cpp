@@ -67,7 +67,7 @@ void Image::compute_normal_with_gradient(dyn::base::Sensor* sensor, int width, i
       }
 
       // Compute the vector from the surface to the camera
-      glm::vec3 to_camera = glm::normalize(vec3(0, 0, 0) - depth_center);
+      glm::vec3 to_camera = glm::normalize(glm::vec3(0, 0, 0) - depth_center);
       if(glm::dot(normal, to_camera) < 0){
         // Flip the normal to point towards the camera
         normal *= -1;

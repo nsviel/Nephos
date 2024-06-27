@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 /*
 class Node_engine;
 class Node_operation;

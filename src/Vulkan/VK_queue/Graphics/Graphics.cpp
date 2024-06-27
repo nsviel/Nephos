@@ -1,6 +1,7 @@
 #include "Graphics.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::queue{
@@ -175,7 +176,7 @@ void Graphics::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore
       submit_info.commandBufferCount = 1;
       submit_info.pCommandBuffers = &command->command_buffer->handle;
     }else{
-      std::cout<<"[error] command buffer is VK_NULL"<<endl;
+      std::cout<<"[error] command buffer is VK_NULL"<<std::endl;
     }
 
     vec_info.push_back(submit_info);

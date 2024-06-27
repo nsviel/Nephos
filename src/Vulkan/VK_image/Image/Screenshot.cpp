@@ -92,7 +92,7 @@ void Screenshot::export_image_to_bmp(vk::structure::Image* image){
   int channels = 4;  // Assuming RGBA data
   std::string filename = "temp.bmp";
   if(stbi_write_bmp(filename.c_str(), image->width, image->height, channels, mappedData) == 0){
-    std::cout<<"[error] Failed to write BMP file"<<endl;
+    std::cout<<"[error] Failed to write BMP file"<<std::endl;
     return;
   }
 

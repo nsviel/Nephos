@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <thread>
 
 namespace vld{class Node;}
 namespace vk::image{class Screenshot;}

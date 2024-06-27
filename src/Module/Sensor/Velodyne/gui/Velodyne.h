@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 namespace eng{class Node;}
 namespace vld{class Node;}
@@ -29,9 +29,9 @@ private:
   vld::gui::Player* gui_player;
   vld::gui::Server* gui_server;
 
-  bool* show_window;
   std::string name;
   std::string open_tab = "";
+  bool* show_window;
 };
 
 }

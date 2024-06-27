@@ -1,6 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Utility/Base/Shader/Info.h>
+#include <vector>
+#include <string>
 
 
 namespace utl::shader{

@@ -33,11 +33,11 @@ SLAM_glyph::SLAM_glyph(SLAM* slam){
   Car* carObject = objectManager->get_object_car();
 
   this->list_glyph = new list<Glyph*>();
-  list_glyph->push_back(trajObject->get_glyph());
-  list_glyph->push_back(mapObject->get_localmap());
-  list_glyph->push_back(mapObject->get_localcloud());
-  list_glyph->push_back(carObject->get_glyph());
-  list_glyph->push_back(matchObject->get_glyph());
+  std::list_glyph->push_back(trajObject->get_glyph());
+  std::list_glyph->push_back(mapObject->get_localmap());
+  std::list_glyph->push_back(mapObject->get_localcloud());
+  std::list_glyph->push_back(carObject->get_glyph());
+  std::list_glyph->push_back(matchObject->get_glyph());
 
   this->with_keypoint = false;
   this->with_neighbor = false;
@@ -111,7 +111,7 @@ void SLAM_glyph::update_glyph_keypoint(Cloud* cloud){
     //---------------------------
 
     for(int i=0; i<frame->xyz.size(); i++){
-      xyz.push_back(vec3(frame->xyz[i](0), frame->xyz[i](1), frame->xyz[i](2)));
+      xyz.push_back(glm::vec3(frame->xyz[i](0), frame->xyz[i](1), frame->xyz[i](2)));
       rgb.push_back(vec4(frame->ts_n[i], 1 - frame->ts_n[i], 0, 1));
     }
 
@@ -134,10 +134,10 @@ void SLAM_glyph::update_glyph_nn(Cloud* cloud){
     // Frame keypoint nearest neighbor location and normal
     for(int i=0; i<frame->xyz.size(); i++){
       if(fct_is_nan(frame->nn[i]) == false){
-        xyz.push_back(vec3(frame->nn[i](0), frame->nn[i](1), frame->nn[i](2)));
+        xyz.push_back(glm::vec3(frame->nn[i](0), frame->nn[i](1), frame->nn[i](2)));
         rgb.push_back(vec4(frame->ts_n[i], 1 - frame->ts_n[i], 1, 1));
       }else{
-        xyz.push_back(vec3(frame->nn[i](0), frame->nn[i](1), frame->nn[i](2)));
+        xyz.push_back(glm::vec3(frame->nn[i](0), frame->nn[i](1), frame->nn[i](2)));
         rgb.push_back(vec4(1, 1, 1, 1));
       }
     }
@@ -159,8 +159,8 @@ void SLAM_glyph::update_glyph_matching(Cloud* cloud){
 
     // Frame keypoint nearest neighbor location and normal
     for(int i=0; i<frame->xyz.size(); i++){
-      xyz_matching.push_back(vec3(frame->xyz[i](0), frame->xyz[i](1), frame->xyz[i](2)));
-      xyz_matching.push_back(vec3(frame->nn[i](0), frame->nn[i](1), frame->nn[i](2)));
+      xyz_matching.push_back(glm::vec3(frame->xyz[i](0), frame->xyz[i](1), frame->xyz[i](2)));
+      xyz_matching.push_back(glm::vec3(frame->nn[i](0), frame->nn[i](1), frame->nn[i](2)));
     }
 
     // Update matching glyph
@@ -179,11 +179,11 @@ void SLAM_glyph::update_glyph_normal(Cloud* cloud){
 
   // Frame keypoint nearest neighbor location and normal
   for(int i=0; i<frame->nn.size(); i++){
-    xyz.push_back(vec3(frame->nn[i](0), frame->nn[i](1), frame->nn[i](2)));
+    xyz.push_back(glm::vec3(frame->nn[i](0), frame->nn[i](1), frame->nn[i](2)));
     if(fct_is_nan(frame->N_nn[i]) == false){
-      Nxyz.push_back(vec3(frame->N_nn[i](0), frame->N_nn[i](1), frame->N_nn[i](2)));
+      Nxyz.push_back(glm::vec3(frame->N_nn[i](0), frame->N_nn[i](1), frame->N_nn[i](2)));
     }else{
-      Nxyz.push_back(vec3(0, 0, 0));
+      Nxyz.push_back(glm::vec3(0, 0, 0));
     }
   }
 

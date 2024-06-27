@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+namespace utl::base{class Data;}
 
 
 namespace vld::processing{

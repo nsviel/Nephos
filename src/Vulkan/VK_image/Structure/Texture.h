@@ -2,6 +2,7 @@
 
 #include <Vulkan/VK_image/Structure/Image.h>
 #include <Vulkan/VK_data/Structure/Buffer.h>
+#include <Utility/Base/Media/Image.h>
 #include <string>
 
 

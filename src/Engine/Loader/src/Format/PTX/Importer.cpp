@@ -22,7 +22,7 @@ Importer::~Importer(){}
 
 //Main function
 utl::base::Element* Importer::import(utl::base::Path path){
-/*  list_ptxCloud = new std::list<PTXCloud*>;
+/*  std::list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;
   //---------------------------
 
@@ -47,7 +47,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
         break;
       }
       std::cout <<"New cloud - nb of lines : "<<PC_line<< std::endl;
-      list_ptxCloud->push_back(cloud);
+      std::list_ptxCloud->push_back(cloud);
       cloud = new PTXCloud;
       PC_line = 0;
     }
@@ -57,7 +57,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
 
     PC_line++;
   }
-  list_ptxCloud->push_back(cloud);
+  std::list_ptxCloud->push_back(cloud);
 
   //Scanner at origin
   if(option_scannerAtOrigin){

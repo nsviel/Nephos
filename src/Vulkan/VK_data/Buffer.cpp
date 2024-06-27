@@ -24,7 +24,7 @@ void Buffer::create_buffers(vk::structure::Object* vk_object){
 
   int max_data = get_size_buffer(vk_object);
   if(max_data == 0){
-    //cout<<"[error] max buffer size equal 0"<<endl;
+    //cout<<"[error] max buffer size equal 0"<<std::endl;
     return;
   }
 

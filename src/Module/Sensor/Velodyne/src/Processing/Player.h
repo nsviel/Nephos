@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace vld::structure{class Main;}
 
 
@@ -26,7 +24,7 @@ public:
   void determine_range();
   void compute_visibility();
   void forward_index(int index);
-  
+
 private:
   vld::structure::Main* vld_struct;
 };

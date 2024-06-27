@@ -3,6 +3,8 @@
 #include <Vulkan/VK_data/Structure/Buffer.h>
 #include <Vulkan/VK_image/Structure/Texture.h>
 #include <Vulkan/VK_binding/Structure/Binding.h>
+#include <Utility/Base/Type/Data.h>
+#include <Utility/Base/Type/Pose.h>
 #include <list>
 
 

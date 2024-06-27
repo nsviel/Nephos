@@ -141,7 +141,7 @@ void Data::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
       attribut.offset = 0;
     }
     else{
-      std::cout<<"[error] data description"<<endl;
+      std::cout<<"[error] data description"<<std::endl;
       break;
     }
 
@@ -175,7 +175,7 @@ void Data::pipeline_binding_description(vk::structure::Pipeline* pipeline){
       description.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
     }
     else{
-      std::cout<<"[error] data description"<<endl;
+      std::cout<<"[error] data description"<<std::endl;
       break;
     }
 

@@ -1,6 +1,8 @@
 #include "Docking.h"
 
 #include <GUI/Namespace.h>
+#include <imgui/core/imgui.h>
+#include <iostream>
 
 
 namespace gui::interface{
@@ -54,7 +56,7 @@ void Docking::dock_save_state(){
   //---------------------------
 
   ImGui::SaveIniSettingsToDisk("../media/config/gui/imgui.ini");
-  std::cout<<"[OK] Imgui docking state saved"<<endl;
+  std::cout<<"[OK] Imgui docking state saved"<<std::endl;
 
   //---------------------------
 }

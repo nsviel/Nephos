@@ -116,7 +116,7 @@ vk::structure::Descriptor_required Uniform::uniform_mvp(){
 
   vk::structure::Descriptor_required descriptor;
   descriptor.name = "mvp";
-  descriptor.size = sizeof(mat4);
+  descriptor.size = sizeof(glm::mat4);
   descriptor.binding = 0;
   descriptor.type = TYP_UNIFORM;
   descriptor.stage = TYP_SHADER_VS;

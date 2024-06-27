@@ -1,7 +1,8 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <Utility/Base/GUI/Panel.h>
+#include <vector>
+#include <string>
 
 
 namespace utl::base{

@@ -1,6 +1,8 @@
 #include "Imgui.h"
 
 #include <Vulkan/Namespace.h>
+#include <imgui/core/imgui_impl_glfw.h>
+#include <imgui/vulkan/imgui_impl_vulkan.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 

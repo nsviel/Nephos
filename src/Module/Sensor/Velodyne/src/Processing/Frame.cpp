@@ -1,5 +1,7 @@
 #include "Frame.h"
 
+#include <Utility/Namespace.h>
+
 
 namespace vld::processing{
 

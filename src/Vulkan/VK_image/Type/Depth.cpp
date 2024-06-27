@@ -66,7 +66,7 @@ VkFormat Depth::find_supported_format(const std::vector<VkFormat>& format_candid
     }
     else{
       tiling_ok = false;
-      std::cout<<"[error] Depth format -> tiling not correct"<<endl;
+      std::cout<<"[error] Depth format -> tiling not correct"<<std::endl;
     }
 
     if(tiling_ok){

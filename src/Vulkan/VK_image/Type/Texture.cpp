@@ -24,7 +24,7 @@ Texture::~Texture(){}
 
 //Main function
 void Texture::clean(){
-  list<vk::structure::Texture*>& list_vk_texture = vk_struct->data.list_vk_texture;
+  std::list<vk::structure::Texture*>& list_vk_texture = vk_struct->data.list_vk_texture;
   //---------------------------
 
   for(int i=0; i<list_vk_texture.size(); i++){
@@ -154,14 +154,14 @@ VkFormat Texture::find_texture_format(utl::media::Image* image){
     format = VK_FORMAT_R16_UINT;
   }
   else{
-    std::cout<<"[error] texture format not recognized [-> "<<image->format<<"]"<<endl;
+    std::cout<<"[error] texture format not recognized [-> "<<image->format<<"]"<<std::endl;
   }
 
   //---------------------------
   return format;
 }
 vk::structure::Texture* Texture::query_texture(int UID){
-  list<vk::structure::Texture*>& list_vk_texture = vk_struct->data.list_vk_texture;
+  std::list<vk::structure::Texture*>& list_vk_texture = vk_struct->data.list_vk_texture;
   //---------------------------
 
   for(int i=0; i<list_vk_texture.size(); i++){

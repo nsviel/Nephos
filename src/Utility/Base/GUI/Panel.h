@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 
 namespace utl::gui{
@@ -8,7 +8,7 @@ namespace utl::gui{
 struct Panel{
   //---------------------------
 
-  Panel(const string& n, const string& i, bool o) : name(n), icon(i), is_open(o){}
+  Panel(const std::string& n, const std::string& i, bool o) : name(n), icon(i), is_open(o){}
 
   std::string name;
   std::string icon;

@@ -1,6 +1,7 @@
 #include "Panel.h"
 
 #include <Camera/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace cam::gui{

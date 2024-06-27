@@ -136,7 +136,7 @@ vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::poo
   }while(true);
 
   //Error message
-  std::cout<<"[error] not enough free command buffer"<<endl;
+  std::cout<<"[error] not enough free command buffer"<<std::endl;
 
   //---------------------------
   return nullptr;

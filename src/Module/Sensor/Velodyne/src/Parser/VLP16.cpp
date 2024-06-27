@@ -101,7 +101,7 @@ void VLP16::parse_blocks(){
     // 0xffee is upper block
     if(block_flag != 65518){
       std::string log = "Capture - Problem block flag "+to_string(block_flag)+" instead of "+to_string(65518);
-      std::cout<<log<<endl;
+      std::cout<<log<<std::endl;
       return;
     }
 
@@ -236,7 +236,7 @@ void VLP16::parse_timestamp(){
 
   //Check for positive timestamp
   if(packet_ts_s < 0){
-    //cout<<"[error] UDP capture - negative timestamp"<<endl;
+    //cout<<"[error] UDP capture - negative timestamp"<<std::endl;
   }
 
   // calculating relative timestamp [microsec] of each firing
