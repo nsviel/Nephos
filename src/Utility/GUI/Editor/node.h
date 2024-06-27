@@ -1,4 +1,5 @@
-#include <Utility/Specific/Common.h>
+#pragma once
+
 #include <imgui/node/imgui_node_editor.h>
 
 namespace ed = ax::NodeEditor;
