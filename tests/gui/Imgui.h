@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <GLFW/glfw3.h>
 
 

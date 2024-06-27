@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vector>
 
 namespace test{class Base;}
 
@@ -18,7 +18,7 @@ public:
 
 
 private:
-  vector<test::Base*> vec_test;
+  std::vector<test::Base*> vec_test;
 };
 
 }
