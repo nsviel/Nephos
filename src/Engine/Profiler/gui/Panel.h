@@ -38,8 +38,8 @@ private:
   prf::gui::hardware::Tab* gui_hardware;
 
   bool* show_window;
-  string gpu = "";
-  string name;
+  std::string gpu = "";
+  std::string name;
   int width;
 };
 

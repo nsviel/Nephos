@@ -65,7 +65,7 @@ void SLAM_map::update_map(Collection* collection, int subset_ID){
   //---------------------------
 
   //Local map
-  vector<vec3> xyz_map = slam_sampling->sub_sampling_subset(cloud, 0.2);
+  std::vector<vec3> xyz_map = slam_sampling->sub_sampling_subset(cloud, 0.2);
   this->add_pointToMap(local_map, xyz_map); //frame->xyz
   this->end_clearTooFarVoxels(local_map, frame->trans_e);
 
@@ -104,7 +104,7 @@ void SLAM_map::add_pointToMap(slamap* map, vector<vec3>& xyz){
     //if the voxel already exists
     if(it != map->map.end()){
       //Get corresponding voxel
-      vector<Eigen::Vector3d>& voxel_xyz = it.value();
+      std::vector<Eigen::Vector3d>& voxel_xyz = it.value();
 
       //If the voxel is not full
       if(voxel_xyz.size() < map->voxel_capacity){
@@ -126,7 +126,7 @@ void SLAM_map::add_pointToMap(slamap* map, vector<vec3>& xyz){
     }
     //else create a new voxel
     else{
-      vector<Eigen::Vector3d> voxel;
+      std::vector<Eigen::Vector3d> voxel;
       voxel.push_back(point);
       map->map.insert({key, voxel});
     }
@@ -150,7 +150,7 @@ void SLAM_map::add_pointToMap(slamap* map, Cloud* cloud){
     //if the voxel already exists
     if(it != map->map.end()){
       //Get corresponding voxel
-      vector<Eigen::Vector3d>& voxel_xyz = it.value();
+      std::vector<Eigen::Vector3d>& voxel_xyz = it.value();
 
       //If the voxel is not full
       if(voxel_xyz.size() < map->voxel_capacity){
@@ -172,7 +172,7 @@ void SLAM_map::add_pointToMap(slamap* map, Cloud* cloud){
     }
     //else create a new voxel
     else{
-      vector<Eigen::Vector3d> voxel;
+      std::vector<Eigen::Vector3d> voxel;
       voxel.push_back(point);
       map->map.insert({key, voxel});
     }
@@ -205,7 +205,7 @@ void SLAM_map::add_pointToCloud(slamap* map, Cloud* cloud){
     //if the voxel already exists
     if(it != map->cloud.end()){
       //Get corresponding voxel
-      vector<Eigen::Vector4d>& voxel_xyz = it.value();
+      std::vector<Eigen::Vector4d>& voxel_xyz = it.value();
 
       //If the voxel is not full
       if(voxel_xyz.size() < map->voxel_capacity){
@@ -230,7 +230,7 @@ void SLAM_map::add_pointToCloud(slamap* map, Cloud* cloud){
     }
     //else create a new voxel
     else{
-      vector<Eigen::Vector4d> voxel;
+      std::vector<Eigen::Vector4d> voxel;
       voxel.push_back(point_4d);
       map->cloud.insert({key, voxel});
     }
@@ -244,7 +244,7 @@ void SLAM_map::save_local_cloud(){
 
   //Put local cloud data into a new cloud
   for(cloudMap_it it = local_cloud->cloud.begin(); it != local_cloud->cloud.end(); it++){
-    vector<Eigen::Vector4d>& voxel_xyz = it.value();
+    std::vector<Eigen::Vector4d>& voxel_xyz = it.value();
     for(int i=0; i<voxel_xyz.size(); i++){
       Eigen::Vector4d& point = voxel_xyz[i];
 
@@ -264,7 +264,7 @@ void SLAM_map::save_local_cloud(){
 
 //Voxel specific functions
 void SLAM_map::end_clearTooFarVoxels(slamap* map, Eigen::Vector3d &pose){
-  vector<int> voxels_to_erase;
+  std::vector<int> voxels_to_erase;
   //---------------------------
 
   //Retrieve all voxel which are too far from current pose

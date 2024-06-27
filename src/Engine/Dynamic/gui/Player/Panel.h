@@ -25,8 +25,8 @@ private:
   dyn::gui::Operation* gui_operation;
 
   bool* show_window;
-  string name;
-  string open_tab = "";
+  std::string name;
+  std::string open_tab = "";
 };
 
 }

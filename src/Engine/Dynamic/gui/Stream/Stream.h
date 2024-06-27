@@ -36,9 +36,9 @@ private:
   dat::Set* dat_set;
   dyn::gui::Overlay* gui_overlay;
 
-  vector<rnd::Stream*> vec_stream;
-  string open_tab = "";
-  string name;
+  std::vector<rnd::Stream*> vec_stream;
+  std::string open_tab = "";
+  std::string name;
   bool* show_window;
 };
 

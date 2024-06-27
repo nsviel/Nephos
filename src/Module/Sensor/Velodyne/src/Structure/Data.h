@@ -6,7 +6,7 @@ namespace vld::structure{
 struct Data{
   //---------------------------
 
-  vector<dat::base::Set*> vec_set;
+  std::vector<dat::base::Set*> vec_set;
   dat::base::Set* current_set = nullptr;
 
   dat::base::Object* object = nullptr;

@@ -26,7 +26,7 @@ void Queue::find_queue_family_composition(vk::device::structure::Physical& physi
   }
 
   // Retrieve information about each queue family
-  vector<VkQueueFamilyProperties> queue_families(nb_queue_family);
+  std::vector<VkQueueFamilyProperties> queue_families(nb_queue_family);
   vkGetPhysicalDeviceQueueFamilyProperties(physical_device.handle, &nb_queue_family, queue_families.data());
 
   // Count the number of each type of queue
@@ -137,7 +137,7 @@ void Queue::create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_in
     }
 
     //Get associated priority vector
-    vector<float> vec_priority;
+    std::vector<float> vec_priority;
     for(const auto& element : set_index){
       vec_priority.push_back(1.0f);
     }

@@ -133,7 +133,7 @@ void Graphics::process_command(){
 
   //Submission stuff
   VkSemaphore semaphore;
-  vector<VkSubmitInfo> vec_info;
+  std::vector<VkSubmitInfo> vec_info;
   this->build_submission(vec_info, semaphore);
   this->make_submission(vec_info);
   this->post_submission(semaphore);

@@ -22,7 +22,7 @@ void Uniform::create_uniform_buffers(vk::binding::structure::Binding* binding){
   //---------------------------
 
   std::vector<vk::structure::Descriptor_required>& vec_required = binding->vec_required_binding;
-  vector<vk::binding::structure::Uniform*>& vec_uniform = binding->vec_uniform;
+  std::vector<vk::binding::structure::Uniform*>& vec_uniform = binding->vec_uniform;
 
   for(int i=0; i<vec_required.size(); i++){
     vk::structure::Descriptor_required& descriptor = vec_required[i];

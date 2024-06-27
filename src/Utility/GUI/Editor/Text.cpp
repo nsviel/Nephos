@@ -99,9 +99,9 @@ void Text::load_from_file(std::string path){
   file.open(path.c_str());
 
   //Get first line
-  string line;
+  std::string line;
   std::getline(file, line);
-  string buffer = line;
+  std::string buffer = line;
 
   //Get following lines
   while(std::getline(file, line)){
@@ -118,7 +118,7 @@ void Text::load_from_file(std::string path){
 void Text::save_to_file(std::string path){
   //---------------------------
 
-  string new_text = editor->GetText();
+  std::string new_text = editor->GetText();
 
   ofstream file;
   file.open (path);
@@ -132,7 +132,7 @@ void Text::save_to_file(std::string path){
 void Text::save_to_current_file(){
   //---------------------------
 
-  string new_text = editor->GetText();
+  std::string new_text = editor->GetText();
 
   ofstream file;
   file.open(current_file_path);
@@ -146,7 +146,7 @@ void Text::save_to_current_file(){
 string Text::get_text(){
   //---------------------------
 
-  string new_text = editor->GetText();
+  std::string new_text = editor->GetText();
 
   //---------------------------
   return new_text;

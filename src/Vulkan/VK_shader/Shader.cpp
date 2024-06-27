@@ -132,7 +132,7 @@ void Shader::recompile_shader(utl::shader::Info* shader_info){
 void Shader::run_recompilation(std::string path_glsl, std::string path_spir){
   //---------------------------
 
-  string command = "../src/Utility/Specific/Compile.sh " + path_glsl + " " + path_spir + " >> " + path_output +" 2>&1";
+  std::string command = "../src/Utility/Specific/Compile.sh " + path_glsl + " " + path_spir + " >> " + path_output +" 2>&1";
   int result = system(command.c_str());
   if(result != 0){
     cout<<"[error] Shader compilation GLSL -> SPIR-V\n"<<command<<endl;

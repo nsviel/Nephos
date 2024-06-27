@@ -49,7 +49,7 @@ void Tree::construct_tree(utl::gui::tree::Filler* filler){
 
   //Construct predefined init path nodes
   for(int i=0; i<filler->vec_path_folder.size(); i++){
-    vector<utl::gui::tree::Node*> nodes_path;
+    std::vector<utl::gui::tree::Node*> nodes_path;
     this->construct_node(filler->vec_path_folder[i], nodes_path);
     this->nodes_path_vec.push_back(nodes_path);
   }
@@ -99,7 +99,7 @@ void Tree::construct_node_root(std::vector<string>& vec_path, vector<utl::gui::t
   //---------------------------
 }
 void Tree::node_child_scan(std::string path, vector<utl::gui::tree::Node*>& nodes, utl::gui::tree::Node* parent){
-  vector<string> list_path = utl::path::list_all_path(path);
+  std::vector<string> list_path = utl::path::list_all_path(path);
   //---------------------------
 
   bool is_sub_folder = false;
@@ -109,7 +109,7 @@ void Tree::node_child_scan(std::string path, vector<utl::gui::tree::Node*>& node
   parent->already_open = true;
 
   for(int i=0; i<list_path.size(); i++){
-    string path_file = list_path[i];
+    std::string path_file = list_path[i];
 
     utl::gui::tree::Node* node = new utl::gui::tree::Node();
     node->name = utl::path::get_filename_from_path(path_file);
@@ -209,7 +209,7 @@ void Tree::display_node_root(std::vector<utl::gui::tree::Node*>& all_nodes){
   //---------------------------
 }
 bool Tree::check_display_file_format(std::string path){
-  string format = utl::path::get_format_from_path(path);
+  std::string format = utl::path::get_format_from_path(path);
   //---------------------------
 
   for(int i=0; i<filler->accepted_format.size(); i++){

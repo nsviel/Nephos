@@ -93,7 +93,7 @@ bool Rectangle::is_rectangle(const vector<cv::Point>& contour){
   //---------------------------
 
   // Approximate the contour to a polygon
-  vector<cv::Point> approx;
+  std::vector<cv::Point> approx;
   cv::approxPolyDP(contour, approx, cv::arcLength(contour, true) * 0.02, true);
 
   // Check if the polygon has 4 vertices and is convex

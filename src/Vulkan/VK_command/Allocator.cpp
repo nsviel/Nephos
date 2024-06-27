@@ -62,7 +62,7 @@ void Allocator::create_command_buffer_pool(vk::queue::structure::Queue* queue){
   //---------------------------
 }
 void Allocator::reset_command_buffer_pool(vk::queue::structure::Queue* queue){
-  vector<vk::pool::structure::Command_buffer*>& vec_pool = queue->vec_pool;
+  std::vector<vk::pool::structure::Command_buffer*>& vec_pool = queue->vec_pool;
   //---------------------------
 
   for(int i=0; i<vec_pool.size(); i++){
@@ -73,7 +73,7 @@ void Allocator::reset_command_buffer_pool(vk::queue::structure::Queue* queue){
   //---------------------------
 }
 void Allocator::clean_command_buffer_pool(vk::queue::structure::Queue* queue){
-  vector<vk::pool::structure::Command_buffer*>& vec_pool = queue->vec_pool;
+  std::vector<vk::pool::structure::Command_buffer*>& vec_pool = queue->vec_pool;
   //---------------------------
 
   for(int i=0; i<vec_pool.size(); i++){
@@ -87,7 +87,7 @@ void Allocator::clean_command_buffer_pool(vk::queue::structure::Queue* queue){
 
 //Command buffer pool use
 vk::pool::structure::Command_buffer* Allocator::query_free_pool(vk::queue::structure::Queue* queue){
-  vector<vk::pool::structure::Command_buffer*>& vec_pool = queue->vec_pool;
+  std::vector<vk::pool::structure::Command_buffer*>& vec_pool = queue->vec_pool;
   std::thread::id this_thread_ID = utl::thread::get_ID();
   //---------------------------
 

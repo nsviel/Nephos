@@ -29,8 +29,8 @@ public:
   void open_selection(utl::gui::tree::Node* node);
 
 private:
-  vector<utl::gui::tree::Node*> nodes_root;
-  vector<vector<utl::gui::tree::Node*>> nodes_path_vec;
+  std::vector<utl::gui::tree::Node*> nodes_root;
+  std::vector<vector<utl::gui::tree::Node*>> nodes_path_vec;
   utl::gui::tree::Filler* filler = nullptr;
 };
 

@@ -33,9 +33,9 @@ public:
 
 private:
   utl::improfil::Renderer* renderer;
-  vector<utl::improfil::Task> vec_task;
-  vector<vec4> vec_color;
-  string name = "";
+  std::vector<utl::improfil::Task> vec_task;
+  std::vector<vec4> vec_color;
+  std::string name = "";
   int idx_color;
   int max_nb_data;
 };

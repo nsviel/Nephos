@@ -138,14 +138,14 @@ void Detection::detection_stats(){
   ImGui::TableNextRow();
 
   //Display number of detected circle
-  string nb_circle = to_string(rad_struct->hough.nb_detection);
+  std::string nb_circle = to_string(rad_struct->hough.nb_detection);
   ImGui::TableNextColumn();
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Circle");
   ImGui::SameLine();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", nb_circle.c_str());
 
   //Display number of detected rectangle
-  string nb_rectangle = to_string(rad_struct->hough.nb_detection);
+  std::string nb_rectangle = to_string(rad_struct->hough.nb_detection);
   ImGui::TableNextColumn();
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Rectangle");
   ImGui::SameLine();

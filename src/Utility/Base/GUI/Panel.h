@@ -10,8 +10,8 @@ struct Panel{
 
   Panel(const string& n, const string& i, bool o) : name(n), icon(i), is_open(o){}
 
-  string name;
-  string icon;
+  std::string name;
+  std::string icon;
   bool is_open;
 
   //---------------------------

@@ -32,7 +32,7 @@ private:
   rad::gui::correction::Tab* gui_correction;
   rad::gui::calibration::Tab* gui_calibration;
 
-  string name;
+  std::string name;
   bool* show_window;
 };
 

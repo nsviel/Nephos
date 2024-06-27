@@ -70,7 +70,7 @@ private:
   SLAM_sampling* slam_sampling;
 
   float time_slam;
-  string lidar_model;
+  std::string lidar_model;
   int nb_thread;
 };
 

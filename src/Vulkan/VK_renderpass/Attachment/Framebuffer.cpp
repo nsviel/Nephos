@@ -75,7 +75,7 @@ void Framebuffer::create_framebuffer_handle(vk::structure::Renderpass* renderpas
   //---------------------------
 
   //Create frambuffer
-  vector<VkImageView> attachments;
+  std::vector<VkImageView> attachments;
   attachments.push_back(framebuffer->color.view);
   attachments.push_back(framebuffer->depth.view);
 

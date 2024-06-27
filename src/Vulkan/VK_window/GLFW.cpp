@@ -46,7 +46,7 @@ void GLFW::create_window(){
 
   int width  = vk_struct->window.dimension.x;
   int height = vk_struct->window.dimension.y;
-  string title = vk_struct->window.title;
+  std::string title = vk_struct->window.title;
 
   glfwInit();
   glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);

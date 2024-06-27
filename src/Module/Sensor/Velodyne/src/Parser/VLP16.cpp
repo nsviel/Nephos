@@ -49,7 +49,7 @@ bool VLP16::parse_header(std::vector<int>& packet_dec){
 
   //Check if data is laser or position information
   if(packet_dec.size() == 1248){
-    vector<int> new_packet(1206);
+    std::vector<int> new_packet(1206);
     copy(packet_dec.begin() + 42, packet_dec.end(), new_packet.begin());
     packet_dec = new_packet;
   }
@@ -73,7 +73,7 @@ void VLP16::parse_vector(std::vector<int> packet){
 
   // velodyne has 12 blocks each 100 bytes data
   for(int i=0; i<12; i++){
-    vector<int> block_i;
+    std::vector<int> block_i;
 
     for(int j=0; j<100; j++){
       block_i.push_back(packet[j + i*100]);
@@ -92,14 +92,14 @@ void VLP16::parse_blocks(){
 
   // iterate through each block
   for(int i=0; i<blocks.size(); i++){
-    vector<int> block_i = blocks[i];
+    std::vector<int> block_i = blocks[i];
 
     // block structure: id1 | id2 | azimuth1 | azimuth2 | distance + intensity
     int block_flag = block_i[0]*256 + block_i[1];
 
     // 0xffee is upper block
     if(block_flag != 65518){
-      string log = "Capture - Problem block flag "+to_string(block_flag)+" instead of "+to_string(65518);
+      std::string log = "Capture - Problem block flag "+to_string(block_flag)+" instead of "+to_string(65518);
       cout<<log<<endl;
       return;
     }
@@ -110,7 +110,7 @@ void VLP16::parse_blocks(){
 
     // convert the rest into a matrix 32*3
     for(int i=0; i<32; i++){
-      vector<float> point;
+      std::vector<float> point;
 
       for(int j=0; j<3; j++){
         point.push_back(block_i[j + i*3 + 4]);
@@ -130,7 +130,7 @@ void VLP16::parse_azimuth(){
   //---------------------------
 
   //Get the actual azimuth for each data point
-  vector<float> azimuth_points;
+  std::vector<float> azimuth_points;
   for(int i=0; i<packet_A.size(); i++){
 
     // Determine the azimuth Gap between data blocks
@@ -185,14 +185,14 @@ void VLP16::parse_coordinates(){
   }
 
   //Convert azimuth from degree to radian
-  vector<float> azimuth;
+  std::vector<float> azimuth;
   for(int i=0; i<packet_A.size(); i++){
     float az = packet_A[i] * M_PI / 180;
     azimuth.push_back(az);
   }
 
   //Convert elevation from degree to radian
-  vector<float> elevation;
+  std::vector<float> elevation;
   for(int i=0; i<2; i++){
     for(int j=0; j<16; j++){
       float value = laser_angles[j] * M_PI / 180;
@@ -239,7 +239,7 @@ void VLP16::parse_timestamp(){
   }
 
   // calculating relative timestamp [microsec] of each firing
-  vector<float> timing_offsets = calc_timing_offsets();
+  std::vector<float> timing_offsets = calc_timing_offsets();
   for(int i=0; i<timing_offsets.size(); i++){
     float ts = packet_ts_s + timing_offsets[i] / 1000000;
     packet_t.push_back(ts);
@@ -253,11 +253,11 @@ void VLP16::reorder_by_azimuth(utl::base::Data* cloud){
   //---------------------------
 
   //Reorder points in function of their azimuth
-  vector<vec3> xyz_b;
-  vector<float> R_b;
-  vector<float> I_b;
-  vector<float> A_b;
-  vector<float> t_b;
+  std::vector<vec3> xyz_b;
+  std::vector<float> R_b;
+  std::vector<float> I_b;
+  std::vector<float> A_b;
+  std::vector<float> t_b;
   for(auto i: math::sort_by_index(packet_A)){
     xyz_b.push_back(packet_xyz[i]);
     t_b.push_back(packet_t[i]);
@@ -294,7 +294,7 @@ void VLP16::supress_empty_data(){
   //---------------------------
 
   if(supress_emptyElements){
-    vector<int> idx;
+    std::vector<int> idx;
     for(int i=0; i<packet_R.size(); i++){
       if(packet_R[i] == 0){
         idx.push_back(i);
@@ -317,7 +317,7 @@ void VLP16::supress_empty_data(){
 
 //Subsubfunctions
 vector<float> VLP16::calc_timing_offsets(){
-    vector<float> timing_offsets;
+    std::vector<float> timing_offsets;
     //-----------------------
 
     //constants
@@ -346,7 +346,7 @@ void VLP16::make_supressElements(std::vector<vec3>& vec, vector<int> idx){
   sort(idx.begin(), idx.end());
 
   //Recreate vector -> Fastest delection method
-  vector<vec3> vec_b;
+  std::vector<vec3> vec_b;
   int cpt = 0;
 
   for(int i=0; i<vec.size(); i++){
@@ -371,7 +371,7 @@ void VLP16::make_supressElements(std::vector<float>& vec, vector<int> idx){
   sort(idx.begin(), idx.end());
 
   //Recreate vector -> Fastest delection method
-  vector<float> vec_b;
+  std::vector<float> vec_b;
   int cpt = 0;
 
   for(int i=0; i<vec.size(); i++){

@@ -30,8 +30,8 @@ private:
   vld::gui::Server* gui_server;
 
   bool* show_window;
-  string name;
-  string open_tab = "";
+  std::string name;
+  std::string open_tab = "";
 };
 
 }

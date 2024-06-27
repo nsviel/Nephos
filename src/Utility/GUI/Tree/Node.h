@@ -8,9 +8,9 @@ namespace utl::gui::tree{
 struct Node{
   //---------------------------
 
-  string name;
-  string type;
-  string path;
+  std::string name;
+  std::string type;
+  std::string path;
   float size = -1;
   bool already_open = false;
   bool end_folder;

@@ -105,8 +105,8 @@ void SLAM_glyph::reset_glyph(){
 void SLAM_glyph::update_glyph_keypoint(Cloud* cloud){
   if(with_keypoint){
     Glyph* keypoint = &cloud->glyphs["keypoint"];
-    vector<vec3>& xyz = keypoint->xyz;
-    vector<vec4>& rgb = keypoint->rgb;
+    std::vector<vec3>& xyz = keypoint->xyz;
+    std::vector<vec4>& rgb = keypoint->rgb;
     Frame* frame = &cloud->frame;
     //---------------------------
 
@@ -121,8 +121,8 @@ void SLAM_glyph::update_glyph_keypoint(Cloud* cloud){
 void SLAM_glyph::update_glyph_nn(Cloud* cloud){
   if(with_neighbor){
     Glyph* keypoint = &cloud->glyphs["keypoint"];
-    vector<vec3>& xyz = keypoint->xyz;
-    vector<vec4>& rgb = keypoint->rgb;
+    std::vector<vec3>& xyz = keypoint->xyz;
+    std::vector<vec4>& rgb = keypoint->rgb;
     Frame* frame = &cloud->frame;
     //---------------------------
 
@@ -147,7 +147,7 @@ void SLAM_glyph::update_glyph_nn(Cloud* cloud){
 }
 void SLAM_glyph::update_glyph_matching(Cloud* cloud){
   if(with_matching){
-    vector<vec3> xyz_matching;
+    std::vector<vec3> xyz_matching;
     Frame* frame = &cloud->frame;
     vec4 color = vec4(0.7f, 0.1f, 0.1f, 1.0f);
     //---------------------------
@@ -172,8 +172,8 @@ void SLAM_glyph::update_glyph_matching(Cloud* cloud){
   }
 }
 void SLAM_glyph::update_glyph_normal(Cloud* cloud){
-  vector<vec3> xyz;
-  vector<vec3> Nxyz;
+  std::vector<vec3> xyz;
+  std::vector<vec3> Nxyz;
   Frame* frame = &cloud->frame;
   //---------------------------
 

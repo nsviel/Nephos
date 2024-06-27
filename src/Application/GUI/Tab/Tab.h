@@ -39,9 +39,9 @@ private:
   gui::tab::dev::Menu* dev_menu;
   gui::tab::eng::Menu* eng_menu;
 
-  vector<string> vec_tab;
-  string active_tab;
-  string tab_to_open;
+  std::vector<string> vec_tab;
+  std::string active_tab;
+  std::string tab_to_open;
 };
 
 }

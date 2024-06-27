@@ -81,7 +81,7 @@ void Server::capture_data(){
   //---------------------------
 
   //Receive data
-  vector<int> packet_dec = vld_server->capture();
+  std::vector<int> packet_dec = vld_server->capture();
   if(packet_dec.size() == 0) return;
   vld_data->create_object();
   thread_screenshot->start_thread();
@@ -103,7 +103,7 @@ void Server::capture_data(){
 void Server::update_object(utl::base::Data* data){
   //---------------------------
 
-  string name = "capture_" + to_string(vld_struct->data.current_frame_ID++);
+  std::string name = "capture_" + to_string(vld_struct->data.current_frame_ID++);
   dat::base::Object* object = vld_struct->data.object;
   object->name = name;
   object->data.name = name + "::data";

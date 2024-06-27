@@ -20,13 +20,13 @@ public:
   void recv_data();
   void disconnect();
 
-  inline vector<int> get_data_dec(){return packet_dec;}
+  inline std::vector<int> get_data_dec(){return packet_dec;}
   inline bool get_is_binded(){return is_binded;}
   inline int get_status_code(){return code;}
   inline void set_port(int value){this->port = value;}
 
 private:
-  vector<int> packet_dec;
+  std::vector<int> packet_dec;
   bool is_binded;
   int packet_size;
   int port;

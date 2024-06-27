@@ -38,7 +38,7 @@ void Plot::plot_heatmap(utl::base::Plot* plot){
     ImPlot::SetupAxes(nullptr, nullptr, axis_flag, axis_flag);
 
     // Plot the heatmap
-    string truc = plot->title + "##heatmap";
+    std::string truc = plot->title + "##heatmap";
     ImPlot::PlotHeatmap(truc.c_str(), plot->axis_z.data.data(), plot->axis_x.size, plot->axis_y.size, plot->axis_z.min, plot->axis_z.max, nullptr, ImPlotPoint(plot->axis_x.min, plot->axis_y.min), ImPlotPoint(plot->axis_x.max, plot->axis_y.max));
 
     // End the plot
@@ -80,7 +80,7 @@ bool Plot::plot_heatmap(utl::base::Plot* plot, utl::base::Axis* x_axis, utl::bas
     ImPlot::SetupAxes(nullptr, nullptr, axis_x_flag, axis_y_flag);
 
     // Plot the heatmap
-    string ID = plot->title + "##heatmap";
+    std::string ID = plot->title + "##heatmap";
     ImPlot::PlotHeatmap(ID.c_str(), plot->axis_z.data.data(), plot->axis_y.size, plot->axis_x.size, plot->axis_z.min, plot->axis_z.max, nullptr, ImPlotPoint(plot->axis_x.min, plot->axis_y.min), ImPlotPoint(plot->axis_x.max, plot->axis_y.max));
 
     // Draw x bounds
@@ -156,7 +156,7 @@ void Plot::plot_regression(utl::base::Plot* plot){
     ImPlot::SetupAxes(plot->axis_x_name.c_str(), plot->axis_x_name.c_str(), axis_flag, axis_flag);
 
     // Plot the data
-    string ID = plot->title + "##scatter";
+    std::string ID = plot->title + "##scatter";
     ImPlot::PlotScatter(ID.c_str(), plot->axis_x.data.data(), plot->axis_y.data.data(), plot->axis_x.data.size());
 
     // Plot an additional point in a different color
@@ -164,14 +164,14 @@ void Plot::plot_regression(utl::base::Plot* plot){
       ImVec4 color = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
       ImPlot::PushStyleColor(ImPlotCol_MarkerFill, color);
       ImPlot::PushStyleColor(ImPlotCol_MarkerOutline, color);
-      string machin = plot->title + "##highlight";
+      std::string machin = plot->title + "##highlight";
       ImPlot::PlotScatter(machin.c_str(), &plot->highlight.x, &plot->highlight.y, 1);
       ImPlot::PopStyleColor(2);
     }
 
     // Plot the regression line
     if(plot->axis_y.fitting.size() != 0){
-      string ID = plot->title + "##fitting";
+      std::string ID = plot->title + "##fitting";
       ImPlot::PushStyleColor(ImPlotCol_Line, IM_COL32(255, 0, 0, 255));
       ImPlot::PushStyleVar(ImPlotStyleVar_MarkerSize, 1);
       ImPlot::PlotScatter(ID.c_str(), plot->axis_x.data.data(), plot->axis_y.fitting.data(), plot->axis_y.fitting.size());
@@ -201,7 +201,7 @@ void Plot::plot_scatter(utl::base::Plot* plot){
     ImPlot::SetupAxes(plot->axis_x_name.c_str(), plot->axis_x_name.c_str(), axis_flag, axis_flag);
 
     // Plot the data
-    string truc = plot->title + "##scatter";
+    std::string truc = plot->title + "##scatter";
     ImPlot::PlotScatter(truc.c_str(), plot->axis_x.data.data(), plot->axis_y.data.data(), plot->axis_x.data.size());
 
     // Plot an additional point in a different color
@@ -209,7 +209,7 @@ void Plot::plot_scatter(utl::base::Plot* plot){
       ImVec4 color = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
       ImPlot::PushStyleColor(ImPlotCol_MarkerFill, color);
       ImPlot::PushStyleColor(ImPlotCol_MarkerOutline, color);
-      string machin = plot->title + "##highlight";
+      std::string machin = plot->title + "##highlight";
       ImPlot::PlotScatter(machin.c_str(), &plot->highlight.x, &plot->highlight.y, 1);
       ImPlot::PopStyleColor(2);
     }
@@ -279,7 +279,7 @@ void Plot::plot_constant_in_time(){
     ImPlot::SetupAxisLimits(ImAxis_X1, cpt - 100, cpt, ImGuiCond_Always);
     ImPlot::SetupAxisLimits(ImAxis_Y1, 0, 60);
 
-    string value = to_string(vec_d[0]) + " fps";
+    std::string value = to_string(vec_d[0]) + " fps";
     ImPlot::PlotText(value.c_str(), cpt - 10, vec_d[0] + 5);
     ImPlot::PlotLine("", vec_c.data(), vec_d.data(), vec_d.size());
     ImPlot::PlotShaded("", vec_c.data(), vec_d.data(), vec_d.size(), -INFINITY, 0);

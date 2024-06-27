@@ -42,7 +42,7 @@ void SLAM_normal::compute_normal(Frame* frame){
   //Compute all point normal
   #pragma omp parallel for num_threads(nb_thread)
   for(int i=0; i<frame->xyz.size(); i++){
-    vector<Eigen::Vector3d> kNN = compute_kNN_search(frame->xyz[i]);
+    std::vector<Eigen::Vector3d> kNN = compute_kNN_search(frame->xyz[i]);
     this->compute_knn_normal(frame, kNN, i);
     this->compute_normal_direction(frame, i);
   }
@@ -72,7 +72,7 @@ vector<Eigen::Vector3d> SLAM_normal::compute_kNN_search(Eigen::Vector3d& point){
 
         //If we found a voxel with at least one point
         if(it != local_map->map.end()){
-          vector<Eigen::Vector3d>& voxel_ijk = it.value();
+          std::vector<Eigen::Vector3d>& voxel_ijk = it.value();
 
           //We store all NN voxel point
           for(int i=0; i<voxel_ijk.size(); i++){
@@ -101,7 +101,7 @@ vector<Eigen::Vector3d> SLAM_normal::compute_kNN_search(Eigen::Vector3d& point){
   //Retrieve the kNN of the query point
   int size = priority_queue.size();
 
-  vector<Eigen::Vector3d> kNN(size);
+  std::vector<Eigen::Vector3d> kNN(size);
   for(int i=0; i<size; i++){
     kNN[size - 1 - i] = std::get<1>(priority_queue.top());
     priority_queue.pop();

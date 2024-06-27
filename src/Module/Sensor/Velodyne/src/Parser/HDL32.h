@@ -27,17 +27,17 @@ public:
   void final_check(utl::base::Data* cloud);
 
   //Subsubfunctions
-  vector<float> calc_timing_offsets();
+  std::vector<float> calc_timing_offsets();
   void make_supressElements(std::vector<vec3>& vec, vector<int> idx);
   void make_supressElements(std::vector<float>& vec, vector<int> idx);
 
 private:
-  vector<vector<int>> blocks;
-  vector<vec3> packet_xyz;
-  vector<float> packet_R;
-  vector<float> packet_I;
-  vector<float> packet_A;
-  vector<float> packet_t;
+  std::vector<vector<int>> blocks;
+  std::vector<vec3> packet_xyz;
+  std::vector<float> packet_R;
+  std::vector<float> packet_I;
+  std::vector<float> packet_A;
+  std::vector<float> packet_t;
 
   int nb_laser;
   int nb_sequences;

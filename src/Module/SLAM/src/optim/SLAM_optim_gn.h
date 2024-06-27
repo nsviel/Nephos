@@ -45,7 +45,7 @@ private:
 private:
   SLAM_normal* slam_normal;
 
-  vector<Eigen::VectorXd> vec_u;
+  std::vector<Eigen::VectorXd> vec_u;
   Eigen::VectorXd X;
   double lambda_location_consistency;
   double lambda_constant_velocity;

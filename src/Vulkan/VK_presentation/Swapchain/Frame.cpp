@@ -40,7 +40,7 @@ void Frame::create_frame(){
   //---------------------------
 }
 void Frame::clean_frame(){
-  vector<vk::structure::Frame*>& vec_frame = vk_struct->swapchain.vec_frame;
+  std::vector<vk::structure::Frame*>& vec_frame = vk_struct->swapchain.vec_frame;
   //---------------------------
 
   //Vec images

@@ -51,7 +51,7 @@ void Extension::extension_window(){
 
   uint32_t glfw_extension_nb = 0;
   const char** glfw_extensions = glfwGetRequiredInstanceExtensions(&glfw_extension_nb);
-  vector<const char*> extensions(glfw_extensions, glfw_extensions + glfw_extension_nb);
+  std::vector<const char*> extensions(glfw_extensions, glfw_extensions + glfw_extension_nb);
 
   for(int i=0; i<extensions.size(); i++){
     vk_struct->instance.extension_instance.push_back(extensions[i]);

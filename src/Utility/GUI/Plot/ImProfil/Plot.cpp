@@ -28,7 +28,7 @@ Plot::~Plot(){}
 
 //Main function
 void Plot::render(std::string name, ImVec2 dimension){
-  string title = name + "##renderer";
+  std::string title = name + "##renderer";
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_ChildBg, ImVec4(0, 0, 0, 1));

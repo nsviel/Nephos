@@ -72,7 +72,7 @@ void Option::option_color(){
 void Option::option_wheel(){
   //---------------------------
 
-  vector<const char*> vec_mode = gui_wheel->get_vec_mode();
+  std::vector<const char*> vec_mode = gui_wheel->get_vec_mode();
   int* mode = gui_wheel->get_mode();
   ImGui::Combo("Wheel mode", mode, vec_mode.data(), vec_mode.size());
 

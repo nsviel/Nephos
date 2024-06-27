@@ -42,8 +42,8 @@ void Descriptor::update_descriptor_uniform(vk::binding::structure::Binding* bind
   //---------------------------
 
   //Make list of writeable uniform
-  vector<VkWriteDescriptorSet> vec_descriptor_write;
-  vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
+  std::vector<VkWriteDescriptorSet> vec_descriptor_write;
+  std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
   for(int i=0; i<binding->vec_uniform.size(); i++){
     vk::binding::structure::Uniform* uniform = binding->vec_uniform[i];
 
@@ -144,7 +144,7 @@ void Descriptor::create_layout_from_required(vk::binding::structure::Binding* bi
   std::vector<vk::structure::Descriptor_required>& vec_required_binding = binding->vec_required_binding;
   //---------------------------
 
-  vector<VkDescriptorSetLayoutBinding> vec_binding;
+  std::vector<VkDescriptorSetLayoutBinding> vec_binding;
   for(int i=0; i<vec_required_binding.size(); i++){
     vk::structure::Descriptor_required& req_binding = vec_required_binding[i];
 

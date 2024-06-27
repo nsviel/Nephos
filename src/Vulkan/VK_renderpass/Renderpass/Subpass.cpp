@@ -134,12 +134,12 @@ void Subpass::create_subpass_description(vk::structure::Subpass* subpass){
 
   //Format elements
   uint32_t nb_color_attachment = 0;
-  vector<VkAttachmentReference*> vec_color;
+  std::vector<VkAttachmentReference*> vec_color;
   for(int i=0; i<subpass->vec_color.size(); i++){
     vec_color.push_back(&subpass->vec_color[0].reference);
   }
   nb_color_attachment += subpass->vec_color.size();
-  vector<VkAttachmentReference*> vec_color_resolve;
+  std::vector<VkAttachmentReference*> vec_color_resolve;
   for(int i=0; i<subpass->vec_color_resolve.size(); i++){
     vec_color_resolve.push_back(&subpass->vec_color_resolve[0].reference);
   }

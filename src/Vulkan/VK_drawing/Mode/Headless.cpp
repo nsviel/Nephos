@@ -23,7 +23,7 @@ void Headless::draw_frame(){
   vk::synchro::structure::Semaphore* semaphore = nullptr;
 
   //Renderpass
-  vector<vk::structure::Command*> vec_command;
+  std::vector<vk::structure::Command*> vec_command;
   for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
     vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
 

@@ -20,7 +20,7 @@ public:
   //Main function
   bool binding(int port, int packet_size);
   void disconnect();
-  vector<int> capture();
+  std::vector<int> capture();
 
 private:
   utl::network::Server* sock_server;

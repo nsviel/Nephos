@@ -21,7 +21,7 @@ void Sampler::create_sampler(vk::binding::structure::Binding* binding){
   //---------------------------
 
   std::vector<vk::structure::Descriptor_required>& vec_required = binding->vec_required_binding;
-  vector<vk::binding::structure::Sampler*>& vec_sampler = binding->vec_sampler;
+  std::vector<vk::binding::structure::Sampler*>& vec_sampler = binding->vec_sampler;
 
   for(int i=0; i<vec_required.size(); i++){
     vk::structure::Descriptor_required& descriptor = vec_required[i];

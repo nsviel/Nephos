@@ -22,7 +22,7 @@ void Graphical::draw_frame(){
   //---------------------------
 
   //Init
-  vector<vk::structure::Command*> vec_command;
+  std::vector<vk::structure::Command*> vec_command;
   vk::synchro::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
 
   //Rendering

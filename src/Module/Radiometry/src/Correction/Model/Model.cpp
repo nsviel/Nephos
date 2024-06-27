@@ -120,7 +120,7 @@ float Model::apply_model(float x, float y){
 
   /*
   //Function and coef from python code
-  vector<float> vec_coef;
+  std::vector<float> vec_coef;
   vec_coef.push_back(8.74097349);
   vec_coef.push_back(-1.42552352);
   vec_coef.push_back(-0.0182150385);

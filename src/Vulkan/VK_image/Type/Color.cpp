@@ -55,7 +55,7 @@ VkFormat Color::find_color_format(){
   if(vk_struct->param.headless){
     format = VK_FORMAT_R8G8B8A8_UNORM;
   }else{
-    vector<VkSurfaceFormatKHR> surface_format = vk_struct->device.physical_device.formats;
+    std::vector<VkSurfaceFormatKHR> surface_format = vk_struct->device.physical_device.formats;
     VkSurfaceFormatKHR surfaceFormat = retrieve_surface_format(surface_format);
     format = surfaceFormat.format;
   }

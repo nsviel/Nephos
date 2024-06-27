@@ -98,7 +98,7 @@ void Glyph::draw_detection_sphere(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Glyph::draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::correction::structure::Circle>& vec_circle){
-  vector<rad::correction::glyph::Sphere*>& vec_sphere = rad_struct->hough.vec_glyph;
+  std::vector<rad::correction::glyph::Sphere*>& vec_sphere = rad_struct->hough.vec_glyph;
   //---------------------------
 
   int size = std::min(vec_sphere.size(), vec_circle.size());
@@ -130,7 +130,7 @@ void Glyph::reset_calibration_sphere(){
   //---------------------------
 }
 void Glyph::reset_detection_sphere(){
-  vector<rad::correction::glyph::Sphere*>& vec_sphere = rad_struct->hough.vec_glyph;
+  std::vector<rad::correction::glyph::Sphere*>& vec_sphere = rad_struct->hough.vec_glyph;
   //---------------------------
 
   for(int i=0; i<vec_sphere.size(); i++){

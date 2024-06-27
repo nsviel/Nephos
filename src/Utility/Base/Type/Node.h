@@ -34,18 +34,18 @@ public:
   void add_node_panel(utl::base::Node* node){
     //---------------------------
 
-    vector<utl::gui::Panel*> node_vec_panel = node->get_vec_panel();
+    std::vector<utl::gui::Panel*> node_vec_panel = node->get_vec_panel();
     this->vec_panel.insert(vec_panel.end(), node_vec_panel.begin(), node_vec_panel.end());
 
     //---------------------------
   }
 
-  inline vector<utl::gui::Panel*> get_vec_panel(){return vec_panel;}
+  inline std::vector<utl::gui::Panel*> get_vec_panel(){return vec_panel;}
 
 protected:
   utl::base::Node* upnode;
-  vector<utl::base::Node*> vec_node;
-  vector<utl::gui::Panel*> vec_panel;
+  std::vector<utl::base::Node*> vec_node;
+  std::vector<utl::gui::Panel*> vec_panel;
 };
 
 }

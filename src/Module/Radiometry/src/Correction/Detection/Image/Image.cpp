@@ -102,7 +102,7 @@ void Image::draw_circle(cv::Mat& image, vector<rad::correction::structure::Circl
 void Image::draw_bounding_box(cv::Mat& image){
   //------------------------
 
-  vector<rad::correction::structure::Circle>& vec_circle = rad_struct->hough.vec_circle;
+  std::vector<rad::correction::structure::Circle>& vec_circle = rad_struct->hough.vec_circle;
   if(vec_circle.size() == 0) return;
 
   rad::correction::structure::Circle& circle = vec_circle[0];

@@ -152,13 +152,13 @@ void Git::format_branch(){
   //---------------------------
 
   for(int i=0; i<vec_branch.size(); i++){
-    string& branch = vec_branch[i];
+    std::string& branch = vec_branch[i];
 
     //Local branch
-    string local = "refs/heads";
-    string remote = "refs/remotes";
+    std::string local = "refs/heads";
+    std::string remote = "refs/remotes";
     if(branch.find(local) != std::string::npos){
-      string name = branch.substr(local.length()+1, branch.length()-1);
+      std::string name = branch.substr(local.length()+1, branch.length()-1);
       pair<string, std::string> format;
       format.first = "local";
       format.second = name;
@@ -166,7 +166,7 @@ void Git::format_branch(){
     }
     //Remote branch
     else if(branch.find(remote) != std::string::npos){
-      string name = branch.substr(remote.length()+1, branch.length()-1);
+      std::string name = branch.substr(remote.length()+1, branch.length()-1);
       pair<string, std::string> format;
       format.first = "remote";
       format.second = name;

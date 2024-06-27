@@ -20,7 +20,7 @@ struct Family{
   bool capable_presentation = 0;
 
   VkQueueFamilyProperties property = {};
-  vector<vk::queue::structure::Queue*> vec_queue;
+  std::vector<vk::queue::structure::Queue*> vec_queue;
 
   //---------------------------
 };

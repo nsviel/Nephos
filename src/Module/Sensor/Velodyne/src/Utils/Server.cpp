@@ -56,7 +56,7 @@ void Server::disconnect(){
   //---------------------------
 }
 vector<int> Server::capture(){
-  vector<int> data_dec;
+  std::vector<int> data_dec;
   //---------------------------
 
   if(sock_server->get_is_binded()){

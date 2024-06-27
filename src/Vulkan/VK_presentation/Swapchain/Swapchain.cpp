@@ -140,7 +140,7 @@ void Swapchain::find_swapchain_max_nb_image(){
   vk_struct->swapchain.max_frame = nb_image;
 }
 void Swapchain::find_swapchain_surface_format(){
-  vector<VkSurfaceFormatKHR>& dev_format = vk_struct->device.physical_device.formats;
+  std::vector<VkSurfaceFormatKHR>& dev_format = vk_struct->device.physical_device.formats;
   VkSurfaceFormatKHR swapchain_format = dev_format[0];
   //---------------------------
 
@@ -156,7 +156,7 @@ void Swapchain::find_swapchain_surface_format(){
   vk_struct->swapchain.format = swapchain_format;
 }
 void Swapchain::find_swapchain_presentation_mode(){
-  vector<VkPresentModeKHR>& dev_mode = vk_struct->device.physical_device.presentation_mode;
+  std::vector<VkPresentModeKHR>& dev_mode = vk_struct->device.physical_device.presentation_mode;
   //---------------------------
 
   //4 possible modes:

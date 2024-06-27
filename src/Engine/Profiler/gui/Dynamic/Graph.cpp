@@ -81,7 +81,7 @@ void Graph::draw_graph_all(prf::graph::Profiler* profiler){
   //All not empty tasker graphs*/
   ImVec2 dimension = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
-  string title = "All##" + profiler->name;
+  std::string title = "All##" + profiler->name;
   if(ImGui::BeginTabItem(title.c_str(), NULL, 0)){
     ImGui::BeginTable(title.c_str(), 2);
     ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);
@@ -115,7 +115,7 @@ void Graph::draw_graph_unique(prf::graph::Profiler* profiler){
     prf::graph::Tasker* tasker = *next(list_tasker.begin(), i);
 
     ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
-    string title = tasker->name + "##" + tasker->thread_ID;
+    std::string title = tasker->name + "##" + tasker->thread_ID;
     if(ImGui::BeginTabItem(title.c_str(), NULL)){
       ImGui::BeginTable(title.c_str(), 2);
       ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);

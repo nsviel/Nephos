@@ -36,7 +36,7 @@ void Depth::create_depth_image(vk::structure::Image* depth){
 VkFormat Depth::find_depth_format(){
   //---------------------------
 
-  vector<VkFormat> format_candidates;
+  std::vector<VkFormat> format_candidates;
   format_candidates.push_back(VK_FORMAT_D32_SFLOAT);
   format_candidates.push_back(VK_FORMAT_D32_SFLOAT_S8_UINT);
   format_candidates.push_back(VK_FORMAT_D24_UNORM_S8_UINT);

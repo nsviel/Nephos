@@ -27,14 +27,14 @@ public:
   void format_branch();
 
   inline string get_last_tag(){return last_tag;}
-  inline vector<string> get_vec_branch(){return vec_branch;}
-  inline vector<pair<string, std::string>> get_vec_branch_formatted(){return vec_branch_format;}
+  inline std::vector<string> get_vec_branch(){return vec_branch;}
+  inline std::vector<pair<string, std::string>> get_vec_branch_formatted(){return vec_branch_format;}
 
 private:
-  vector<string> vec_branch;
-  vector<pair<string, std::string>> vec_branch_format;
+  std::vector<string> vec_branch;
+  std::vector<pair<string, std::string>> vec_branch_format;
   git_repository* repo;
-  string last_tag;
+  std::string last_tag;
 };
 
 }

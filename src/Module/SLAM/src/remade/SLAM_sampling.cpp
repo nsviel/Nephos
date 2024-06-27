@@ -30,7 +30,7 @@ SLAM_sampling::~SLAM_sampling(){}
 
 //Sampling functions
 vector<vec3> SLAM_sampling::sub_sampling_subset(Cloud* cloud, float voxel_size){
-  vector<vec3> xyz_sampled;
+  std::vector<vec3> xyz_sampled;
   float size_voxel = 0.2;
   //---------------------------
 

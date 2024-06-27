@@ -176,8 +176,8 @@ void SLAM::reset_visibility(Collection* collection, int subset_ID){
 void SLAM::print_result(){
   //---------------------------
 
-  string path = "../src/Module/SLAM/result.dat";
-  string result = to_string(time_slam);
+  std::string path = "../src/Module/SLAM/result.dat";
+  std::string result = to_string(time_slam);
 
   ofstream file;
   file.open(path, std::ofstream::out | std::ofstream::trunc);

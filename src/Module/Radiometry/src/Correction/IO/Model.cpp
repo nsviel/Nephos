@@ -23,7 +23,7 @@ Model::~Model(){}
 void Model::import_model(dyn::base::Sensor* sensor){
   //---------------------------
 
-  string path = sensor->calibration.path.build();
+  std::string path = sensor->calibration.path.build();
   this->read_device_info(sensor, path);
   this->read_depth_mode_model(sensor, path);
   rad_model->update_model(sensor);
@@ -34,7 +34,7 @@ void Model::import_model(dyn::base::Sensor* sensor){
 void Model::export_model(dyn::base::Sensor* sensor){
   //---------------------------
 
-  string path = sensor->calibration.path.build();
+  std::string path = sensor->calibration.path.build();
   this->write_device_info(sensor, path);
   this->write_depth_mode_model(sensor, path);
 

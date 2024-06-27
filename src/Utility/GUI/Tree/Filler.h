@@ -10,9 +10,9 @@ struct Filler{
   //---------------------------
 
   //Pathes
-  vector<string> accepted_format;
-  vector<string> vec_path_folder;
-  vector<string> vec_path_file;
+  std::vector<string> accepted_format;
+  std::vector<string> vec_path_folder;
+  std::vector<string> vec_path_file;
 
   //Selection
   bool is_selection = false;

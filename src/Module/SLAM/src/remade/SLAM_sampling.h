@@ -14,7 +14,7 @@ public:
 
 public:
   //Sampling functions
-  vector<vec3> sub_sampling_subset(Cloud* cloud, float voxel_size);
+  std::vector<vec3> sub_sampling_subset(Cloud* cloud, float voxel_size);
   void grid_sampling_subset(Cloud* cloud);
 
   inline double* get_min_root_distance(){return &min_root_distance;}

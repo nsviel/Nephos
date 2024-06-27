@@ -90,7 +90,7 @@ void Stream::draw_stream_tabbar(dat::base::Entity* entity){
       utl::media::Image* image = *next(list_image.begin(), i);
 
       ImGui::SetNextItemWidth(100);
-      string title = image->name + "##4567";
+      std::string title = image->name + "##4567";
       if(ImGui::BeginTabItem(title.c_str(), NULL)){
         this->draw_stream_image(image, size, i);
         ImGui::EndTabItem();

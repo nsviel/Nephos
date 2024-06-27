@@ -68,14 +68,14 @@ void Localmap::update_localmap(slamap* map){
   if(localmap->is_visible){
     //---------------------------
 
-    vector<vec3>& gly_xyz = localmap->xyz;
-    vector<vec4>& gly_rgb = localmap->rgb;
+    std::vector<vec3>& gly_xyz = localmap->xyz;
+    std::vector<vec4>& gly_rgb = localmap->rgb;
 
     gly_xyz.clear();
     gly_rgb.clear();
 
     for(voxelMap_it it = map->map.begin(); it != map->map.end(); it++){
-      vector<Eigen::Vector3d>& voxel_xyz = it.value();
+      std::vector<Eigen::Vector3d>& voxel_xyz = it.value();
       for(int i=0; i<voxel_xyz.size(); i++){
         Eigen::Vector3d& point = voxel_xyz[i];
 
@@ -94,14 +94,14 @@ void Localmap::update_localcloud(slamap* map){
   if(localcloud->is_visible){
     //---------------------------
 
-    vector<vec3>& gly_xyz = localcloud->xyz;
-    vector<vec4>& gly_rgb = localcloud->rgb;
+    std::vector<vec3>& gly_xyz = localcloud->xyz;
+    std::vector<vec4>& gly_rgb = localcloud->rgb;
 
     gly_xyz.clear();
     gly_rgb.clear();
 
     for(cloudMap_it it = map->cloud.begin(); it != map->cloud.end(); it++){
-      vector<Eigen::Vector4d>& voxel_xyz = it.value();
+      std::vector<Eigen::Vector4d>& voxel_xyz = it.value();
       for(int i=0; i<voxel_xyz.size(); i++){
         Eigen::Vector4d& point = voxel_xyz[i];
 

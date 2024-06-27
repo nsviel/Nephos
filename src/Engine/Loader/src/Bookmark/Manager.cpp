@@ -26,7 +26,7 @@ void Manager::init(){
 
   //Read existing bookmarks
   utl::file::check_or_create(path_bookmark_file);
-  vector<std::string> vec_path = utl::file::read_vec_path(path_bookmark_file);
+  std::vector<std::string> vec_path = utl::file::read_vec_path(path_bookmark_file);
   for(int i=0; i<vec_path.size(); i++){
     this->add_abs_path(vec_path[i]);
   }
@@ -83,7 +83,7 @@ void Manager::remove_path(std::string path){
 void Manager::save_on_file(){
   //---------------------------
 
-  vector<std::string> vec_path;
+  std::vector<std::string> vec_path;
   for(int i=0; i<list_item.size(); i++){
     ldr::bookmark::Item& item = *next(list_item.begin(), i);
     if(item.is_supressible){

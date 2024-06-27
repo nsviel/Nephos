@@ -67,7 +67,7 @@ void Physical::find_all_physical_device(){
   }
 
   //List all available GPU and take suitable one
-  vector<VkPhysicalDevice> vec_physical_device(nb_device);
+  std::vector<VkPhysicalDevice> vec_physical_device(nb_device);
   vkEnumeratePhysicalDevices(vk_struct->instance.handle, &nb_device, vec_physical_device.data());
 
   //Store physical device properties
@@ -270,7 +270,7 @@ void Physical::find_physical_device_support(vk::device::structure::Physical& phy
   vkEnumerateDeviceExtensionProperties(physical_device.handle, nullptr, &num_ext, vec_ext_capable.data());
 
   //Check if all required extension are in the list
-  vector<const char*> vec_ext_required = vk_struct->instance.extension_device;
+  std::vector<const char*> vec_ext_required = vk_struct->instance.extension_device;
   std::set<std::string> set_ext_required(vec_ext_required.begin(), vec_ext_required.end());
   for(const auto& extension : vec_ext_capable){
     set_ext_required.erase(extension.extensionName);
@@ -300,7 +300,7 @@ void Physical::find_surface_format(vk::device::structure::Physical& physical_dev
   }
 
   //Get supported surface format list
-  vector<VkSurfaceFormatKHR> formats(nb_format);
+  std::vector<VkSurfaceFormatKHR> formats(nb_format);
   vkGetPhysicalDeviceSurfaceFormatsKHR(physical_device.handle, vk_struct->window.surface, &nb_format, formats.data());
 
   //---------------------------
@@ -317,7 +317,7 @@ void Physical::find_presentation_mode(vk::device::structure::Physical& physical_
   }
 
   //Get presentation mode list
-  vector<VkPresentModeKHR> presentation_mode(nb_mode_presentation);
+  std::vector<VkPresentModeKHR> presentation_mode(nb_mode_presentation);
   vkGetPhysicalDeviceSurfacePresentModesKHR(physical_device.handle, vk_struct->window.surface, &nb_mode_presentation, presentation_mode.data());
 
   //---------------------------

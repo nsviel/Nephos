@@ -381,7 +381,7 @@ void Image::find_color_to_depth(k4n::structure::Sensor* sensor){
 
 //Subfunction
 string Image::retrieve_format_from_k4a(k4a_image_format_t color_format){
-  string format = "";
+  std::string format = "";
   //---------------------------
 
   if(color_format == K4A_IMAGE_FORMAT_COLOR_MJPG){
@@ -429,7 +429,7 @@ void Image::retrieve_bgra_from_mjpeg(k4a::image& image, vector<uint8_t>& data){
   int height = image.get_height_pixels();
   int size = image.get_size();
   uint8_t* mpeg = image.get_buffer();
-  vector<uint8_t> bgra(width * height * tjPixelSize[TJPF_RGBA]);
+  std::vector<uint8_t> bgra(width * height * tjPixelSize[TJPF_RGBA]);
   int flags = TJFLAG_FASTDCT | TJFLAG_FASTUPSAMPLE;
 
   int ret = tjDecompress2(tj_handle, &mpeg[0], size, bgra.data(), width, 0, height, TJPF_RGBA, flags);

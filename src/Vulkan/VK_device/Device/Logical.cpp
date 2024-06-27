@@ -41,7 +41,7 @@ void Logical::clean(){
 void Logical::create_logical_device(){
   //---------------------------
 
-  vector<VkDeviceQueueCreateInfo> vec_queue_info;
+  std::vector<VkDeviceQueueCreateInfo> vec_queue_info;
   vk_dev_queue->create_queue_info(vec_queue_info);
 
   //Specifying used device features

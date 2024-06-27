@@ -49,8 +49,8 @@ void Measure::init(){
 void Measure::process_measure(dyn::base::Sensor* sensor){
   //---------------------------
 
-  vector<vec3>& search_xyz = rad_struct->ransac.search_xyz;
-  vector<float>& search_Is = rad_struct->ransac.search_Is;
+  std::vector<vec3>& search_xyz = rad_struct->ransac.search_xyz;
+  std::vector<float>& search_Is = rad_struct->ransac.search_Is;
   rad_struct->state.data = rad::correction::HAS_DATA;
 
   this->data_measure(sensor, search_xyz, search_Is);

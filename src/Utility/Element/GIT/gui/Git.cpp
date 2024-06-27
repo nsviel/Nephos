@@ -31,7 +31,7 @@ void Git::draw_information(){
   //---------------------------
 
   //Print last tag
-  string last_tag = git->get_last_tag();
+  std::string last_tag = git->get_last_tag();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "v%s", last_tag.c_str());
   ImGui::SameLine();
   //ImFont* font_small = gui_font->get_font_small();
@@ -44,7 +44,7 @@ void Git::draw_information(){
   //---------------------------
 }
 void Git::draw_branches(){
-  vector<pair<string, std::string>> vec_branch = git->get_vec_branch_formatted();
+  std::vector<pair<string, std::string>> vec_branch = git->get_vec_branch_formatted();
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Branches");

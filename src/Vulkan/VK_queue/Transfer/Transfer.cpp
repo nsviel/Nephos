@@ -99,7 +99,7 @@ void Transfer::process_command(){
   mutex.unlock();
 
   //Submission stuff
-  vector<VkSubmitInfo> vec_info;
+  std::vector<VkSubmitInfo> vec_info;
   this->build_submission(vec_info);
   this->make_submission(vec_info);
   this->post_submission();

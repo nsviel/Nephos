@@ -27,7 +27,7 @@ public:
   void load_from_file(std::string path);
   void save_to_file(std::string path);
   void save_to_current_file();
-  string get_text();
+  std::string get_text();
 
   inline string get_status(){return status;}
   inline bool is_text_changed(){return editor->IsTextChanged();}
@@ -37,8 +37,8 @@ public:
 private:
   TextEditor* editor;
 
-  string status;
-  string current_file_path;
+  std::string status;
+  std::string current_file_path;
   bool has_been_saved;
 };
 
