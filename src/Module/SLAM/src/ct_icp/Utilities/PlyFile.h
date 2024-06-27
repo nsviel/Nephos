@@ -28,7 +28,7 @@ public:
 	~PlyFile();
 
 	void readFile(char*& points, int& pointSize, int& numPoints);
-	void writeFile(char* points, int numPoints, list<string> properties, list<plyTypes> types);
+	void writeFile(char* points, int numPoints, std::list<std::string> properties, std::list<plyTypes> types);
 
 	void displayInfos();
 

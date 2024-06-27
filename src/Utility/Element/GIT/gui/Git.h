@@ -1,7 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-#include <Utility/Element/Namespace.h>
+namespace utl::element{class Git;}
 
 
 namespace utl::element::gui{

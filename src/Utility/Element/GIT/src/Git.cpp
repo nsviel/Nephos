@@ -1,5 +1,9 @@
 #include "Git.h"
 
+#include <iostream>
+#include <sstream>  
+#include <iomanip>
+
 
 namespace utl::element{
 
@@ -159,7 +163,7 @@ void Git::format_branch(){
     std::string remote = "refs/remotes";
     if(branch.find(local) != std::string::npos){
       std::string name = branch.substr(local.length()+1, branch.length()-1);
-      pair<string, std::string> format;
+      std::pair<std::string, std::string> format;
       format.first = "local";
       format.second = name;
       vec_branch_format.push_back(format);
@@ -167,7 +171,7 @@ void Git::format_branch(){
     //Remote branch
     else if(branch.find(remote) != std::string::npos){
       std::string name = branch.substr(remote.length()+1, branch.length()-1);
-      pair<string, std::string> format;
+      std::pair<std::string, std::string> format;
       format.first = "remote";
       format.second = name;
       vec_branch_format.push_back(format);

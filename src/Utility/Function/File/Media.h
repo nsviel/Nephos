@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <Utility/Base/Media/Image.h>
+#include <string>
 
 
 namespace utl::media{

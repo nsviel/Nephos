@@ -1,6 +1,8 @@
 #include "Git.h"
 
+#include <Utility/Element/GIT/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
+#include <imgui/core/imgui.h>
 
 
 namespace utl::element::gui{
@@ -44,7 +46,7 @@ void Git::draw_information(){
   //---------------------------
 }
 void Git::draw_branches(){
-  std::vector<pair<string, std::string>> vec_branch = git->get_vec_branch_formatted();
+  std::vector<std::pair<std::string, std::string>> vec_branch = git->get_vec_branch_formatted();
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Branches");
@@ -56,7 +58,7 @@ void Git::draw_branches(){
   ImGui::BeginTable("git_table", 2, flags);
 
   for(int i=0; i<vec_branch.size(); i++){
-    pair<string, std::string> branch = vec_branch[i];
+    std::pair<std::string, std::string> branch = vec_branch[i];
 
     ImGui::TableNextRow();
 

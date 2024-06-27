@@ -2,8 +2,8 @@
 #include "PlyFile.h"
 
 
-PlyFile::PlyFile(std::string path, openMode flag) : File(path, flag), _header(""), _format(binary_little_endian), 
-_propertyNum(0), _propertyType(NULL), _propertySize(NULL), _propertyName(NULL), 
+PlyFile::PlyFile(std::string path, openMode flag) : File(path, flag), _header(""), _format(binary_little_endian),
+_propertyNum(0), _propertyType(NULL), _propertySize(NULL), _propertyName(NULL),
 _numPoints(0), _pointSize(0)
 {
 	if(_mode == fileOpenMode_IN)
@@ -27,32 +27,32 @@ void PlyFile::readHeader()
 	// GET HEADER
 	// ------------------------------------------------------------------------------------------
 	string tmpStr = "";
-	
+
 	do
 	{
 		getline(_file, tmpStr);
 		_header += tmpStr + "\n";
 	} while(tmpStr.find("end_header") != 0);
 
-	
+
 	// PARSE HEADER
 	// ------------------------------------------------------------------------------------------
 	stringstream streamHeader(_header);
-	string strTmp = "";
-	list<plyTypes> typePptTmp;
-	list<int>      sizePptTmp;
-	list<string>   namePptTmp;
+	std::string strTmp = "";
+	std::list<plyTypes> typePptTmp;
+	std::list<int>      sizePptTmp;
+	std::list<std::string>   namePptTmp;
 
 	while(!streamHeader.eof())
 	{
 		streamHeader >> strTmp;
-		
+
 		if(strTmp.compare("format") == 0)
 		{
 			streamHeader >> strTmp;
 			if(strTmp.compare("binary_little_endian") == 0)      _format = binary_little_endian;
 			else if(strTmp.compare("binary_big_endian") == 0)    _format = binary_big_endian;
-			else if(strTmp.compare("ascii") == 0)                _format = ascii;	
+			else if(strTmp.compare("ascii") == 0)                _format = ascii;
 		}
 
 		if(strTmp.compare("element") == 0)
@@ -100,7 +100,7 @@ void PlyFile::readHeader()
 			namePptTmp.push_back(strTmp);
 		}
 	}
-	
+
 
 	// FILL PROPERTIES ARRAYS
 	// ------------------------------------------------------------------------------------------
@@ -239,7 +239,7 @@ void PlyFile::readFile(char*& points, int& pointSize, int& numPoints)
 		cout << "WARNING: function not implemented for ascii file" << std::endl;
 		break;
 	}
-	}	
+	}
 }
 
 
@@ -298,7 +298,7 @@ void PlyFile::writeFile(char* points, int numPoints, list<string> properties, li
 
 	// ----- Write points ---------------------------------------------------
 	unsigned long long int bufferSize = (unsigned long long int)_pointSize*(unsigned long long int)_numPoints;
-	
+
 	unsigned long long int n = bufferSize / (unsigned long long int)WRITE_SIZE;
 	unsigned long long int r = bufferSize % (unsigned long long int)WRITE_SIZE;
 
