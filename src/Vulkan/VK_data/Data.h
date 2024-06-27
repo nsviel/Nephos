@@ -25,9 +25,11 @@ public:
 
 public:
   //Main function
+  void clean();
+
+  //Data function
   void insert_data(utl::base::Data* data, utl::base::Pose* pose);
   void update_data(utl::base::Data* data, vk::structure::Object* vk_object);
-  void clean();
   void clean_vk_object(vk::structure::Object* vk_object);
   void check_data(vk::structure::Object* vk_object);
 

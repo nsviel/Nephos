@@ -40,7 +40,7 @@ void Manager::create_camera(){
   camera->is_suppressible = false;
   camera->pose.movable = false;
 
-  dat_glyph->insert_glyph(camera);
+  //dat_glyph->insert_glyph(camera);
   dat_set->insert_entity(set_scene, camera);
 
   cam_struct->vec_camera.push_back(camera);

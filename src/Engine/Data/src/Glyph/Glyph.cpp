@@ -45,6 +45,8 @@ void Glyph::insert_glyph(dat::base::Entity* entity){
 
   //----------------------------
 }
+
+//Update function
 void Glyph::update_glyph(dat::base::Entity* entity){
   //----------------------------
 
@@ -77,6 +79,8 @@ void Glyph::update_glyph(dat::base::Object* object, int type){
 
   //----------------------------
 }
+
+//Subfunction
 void Glyph::create_glyph(dat::base::Glyph* glyph){
   //----------------------------
 

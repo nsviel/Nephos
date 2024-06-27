@@ -11,6 +11,7 @@ namespace dat{class Node;}
 namespace dyn{class Node;}
 namespace prf{class Node;}
 namespace rad{class Node;}
+namespace eng{class Structure;}
 namespace prf::graph{class Tasker;}
 namespace utl::thread{class Pool;}
 
@@ -40,9 +41,11 @@ public:
   inline ldr::Node* get_node_loader(){return node_loader;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline rad::Node* get_node_radio(){return node_radio;}
+  inline eng::Structure* get_eng_struct(){return eng_struct;}
   inline utl::thread::Pool* get_thread_pool(){return thread_pool;}
 
 private:
+  eng::Structure* eng_struct;
   rad::Node* node_radio;
   vk::Node* node_vulkan = nullptr;
   ldr::Node* node_loader = nullptr;

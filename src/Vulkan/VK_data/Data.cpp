@@ -24,6 +24,20 @@ Data::Data(vk::Structure* vk_struct){
 Data::~Data(){}
 
 //Main function
+void Data::clean(){
+  std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
+  //---------------------------
+
+  auto it = list_vk_object.begin();
+  while(it != list_vk_object.end()){
+    this->clean_vk_object(*it);
+    it = list_vk_object.begin();
+  }
+
+  //---------------------------
+}
+
+//Data function
 void Data::insert_data(utl::base::Data* data, utl::base::Pose* pose){
   //---------------------------
 
@@ -54,31 +68,19 @@ void Data::insert_data(utl::base::Data* data, utl::base::Pose* pose){
   //---------------------------
 }
 void Data::update_data(utl::base::Data* data, vk::structure::Object* vk_object){
-  //---------------------------
+    //---------------------------
 
-  vk_object->data = data;
-  this->check_data(vk_object);
+    vk_object->data = data;
+    this->check_data(vk_object);
 
-  //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
-  if(vk_object->buffer.xyz.mem == 0){
-    vk_buffer->create_buffers(vk_object);
-  }else{
-    vk_buffer->update_buffer(vk_object);
-  }
+    //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
+    if(vk_object->buffer.xyz.mem == 0){
+      vk_buffer->create_buffers(vk_object);
+    }else{
+      vk_buffer->update_buffer(vk_object);
+    }
 
-  //---------------------------
-}
-void Data::clean(){
-  std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
-  //---------------------------
-
-  auto it = list_vk_object.begin();
-  while(it != list_vk_object.end()){
-    this->clean_vk_object(*it);
-    it = list_vk_object.begin();
-  }
-
-  //---------------------------
+    //---------------------------
 }
 void Data::clean_vk_object(vk::structure::Object* vk_object){
   std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;

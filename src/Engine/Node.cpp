@@ -20,6 +20,7 @@ Node::Node(app::Node* node_app){
   //---------------------------
 
   this->app_running = node_app->get_app_running();
+  this->eng_struct = new eng::Structure();
   this->node_vulkan = new vk::Node(app_running);
   this->node_profiler = new prf::Node(this);
   this->node_camera = new cam::Node(this);

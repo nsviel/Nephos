@@ -25,8 +25,12 @@ public:
   void insert_glyph(dat::base::Set* set, dat::base::Glyph* glyph);
   void insert_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph);
   void insert_glyph(dat::base::Entity* entity);
+
+  //Update function
   void update_glyph(dat::base::Entity* entity);
   void update_glyph(dat::base::Object* object, int type);
+
+  //Subfunction
   void create_glyph(dat::base::Glyph* glyph);
 
 private:

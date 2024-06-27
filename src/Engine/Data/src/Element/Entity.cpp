@@ -40,10 +40,6 @@ void Entity::init_entity(dat::base::Entity* entity){
   this->update_pose(entity);
   this->update_data(entity);
 
-  //Init attribut
-  ope_location->compute_centroid(entity);
-  ope_location->compute_range(entity);
-
   //---------------------------
 }
 void Entity::remove_entity(dat::base::Entity* entity){
@@ -92,7 +88,7 @@ void Entity::update_data(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;;
   //----------------------------
-
+//ICIIII
   vk_engine->insert_data(data, pose);
 
   //Update attribut
