@@ -1,5 +1,7 @@
 #pragma once
 
+#include <nvml.h>
+
 
 namespace utl::hardware{
 
@@ -12,15 +14,16 @@ public:
 
 public:
   //Main function
-  float get_total_consumption();
-  int get_temperature();
-  int get_fan_speed();
-  int get_power_usage();
+  void init();
 
   //Subfunction
+  float get_total_consumption();
+  float get_power_usage();
+  int get_temperature();
+  int get_fan_speed();
 
 private:
-
+  nvmlDevice_t device;
 };
 
 }

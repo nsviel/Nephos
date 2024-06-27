@@ -25,8 +25,7 @@ public:
 public:
   //Main function
   void init();
-
-  void add_queue(prf::hardware::queue::Type type, int ID_family);
+  void loop();
 
 private:
   prf::Structure* prf_struct;

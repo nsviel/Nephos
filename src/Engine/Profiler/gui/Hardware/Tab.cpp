@@ -23,31 +23,33 @@ Tab::~Tab(){}
 void Tab::draw_tab(){
   //---------------------------
 
-  ImGui::BeginTabItem("Hardware");
-  this->draw_subtab();
-  ImGui::EndTabItem();
+  if(ImGui::BeginTabItem("Hardware")){
+    this->draw_hardware_tabbar();
+
+    ImGui::EndTabItem();
+  }
 
   //---------------------------
 }
 
 //Subfunction
-void Tab::draw_subtab(){
+void Tab::draw_hardware_tabbar(){
   //---------------------------
 
   //Draw specific info
-  if(ImGui::BeginTabBar("Hardware##profiler_vulkan")){
+  if(ImGui::BeginTabBar("Hardware##tabbar")){
     ImVec2 dimension = ImGui::GetContentRegionAvail();
 
     //GPU tab
     ImGui::SetNextItemWidth(100);
-    if(ImGui::BeginTabItem("GPU##profiler_vulkan", NULL)){
+    if(ImGui::BeginTabItem("GPU##tabitem", NULL)){
       gui_gpu->draw_tab(dimension);
       ImGui::EndTabItem();
     }
 
     //Device tab
     ImGui::SetNextItemWidth(100);
-    if(ImGui::BeginTabItem("Devices##profiler_vulkan", NULL)){
+    if(ImGui::BeginTabItem("Devices##tabitem", NULL)){
       gui_device->draw_tab(dimension);
       ImGui::EndTabItem();
     }

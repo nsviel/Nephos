@@ -13,6 +13,7 @@ GPU::GPU(prf::Node* node_profiler){
   //---------------------------
 
   this->prf_struct = node_profiler->get_prf_struct();
+  this->prf_hardware = node_profiler->get_prf_hardware();
 
   //---------------------------
 }
@@ -21,6 +22,8 @@ GPU::~GPU(){}
 //Main function
 void GPU::draw_tab(ImVec2 dimension){
   //---------------------------
+
+  prf_hardware->loop();
 
   this->draw_gpu_info();
   this->draw_gpu_queue();
@@ -49,12 +52,12 @@ void GPU::draw_gpu_info(){
   //Consumption
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Total consumption"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%.2f J", prf_struct->hardware.gpu.total_consumption);
+  ImGui::TextColored(color, "%.2f kJ", prf_struct->hardware.gpu.total_consumption);
 
   //Power
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Power usage"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d W", prf_struct->hardware.gpu.power_usage);
+  ImGui::TextColored(color, "%.2f W", prf_struct->hardware.gpu.power_usage);
 
   //Fan speed
   ImGui::TableNextRow(); ImGui::TableNextColumn();

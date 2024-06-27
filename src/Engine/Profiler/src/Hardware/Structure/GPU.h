@@ -14,8 +14,8 @@ struct GPU{
 
   std::vector<prf::hardware::Queue> vec_queue;
   float total_consumption = -1;
+  float power_usage = -1;
   int temperature = -1;
-  int power_usage = -1;
   int fan_speed = -1;
 
   //---------------------------

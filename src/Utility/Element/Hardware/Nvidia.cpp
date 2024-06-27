@@ -1,6 +1,6 @@
 #include "Nvidia.h"
 
-#include <nvml.h>
+
 
 
 namespace utl::hardware{
@@ -12,6 +12,7 @@ Nvidia::Nvidia(){
   nvmlInit();
 
   //---------------------------
+  this->init();
 }
 Nvidia::~Nvidia(){
   //---------------------------
@@ -22,37 +23,47 @@ Nvidia::~Nvidia(){
 }
 
 //Main function
+void Nvidia::init(){
+  //---------------------------
+
+  nvmlReturn_t result = nvmlDeviceGetHandleByIndex(0, &device);
+  if(result != NVML_SUCCESS){
+    return;
+  }
+
+  //---------------------------
+}
+
+//Subfunction
 float Nvidia::get_total_consumption(){
   unsigned long long energy;
   //---------------------------
 
-  nvmlDevice_t device;
-  nvmlReturn_t result;
-
-  result = nvmlDeviceGetHandleByIndex(0, &device);
-  if(result != NVML_SUCCESS){
-    return -1;
-  }
-  result = nvmlDeviceGetTotalEnergyConsumption(device, &energy);
+  nvmlReturn_t result = nvmlDeviceGetTotalEnergyConsumption(device, &energy);
   if(result != NVML_SUCCESS){
     return -1;
   }
 
   //---------------------------
-  return (float)energy / 1000;
+  return (float)energy / 1000000;
+}
+float Nvidia::get_power_usage(){
+  unsigned int power;
+  //---------------------------
+
+  nvmlReturn_t result = nvmlDeviceGetPowerUsage(device, &power);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+
+  //---------------------------
+  return (float)power / 1000.0f;
 }
 int Nvidia::get_temperature(){
   unsigned int temp;
   //---------------------------
 
-  nvmlDevice_t device;
-  nvmlReturn_t result;
-
-  result = nvmlDeviceGetHandleByIndex(0, &device);
-  if(result != NVML_SUCCESS){
-    return -1;
-  }
-  result = nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temp);
+  nvmlReturn_t result = nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temp);
   if(result != NVML_SUCCESS){
     return -1;
   }
@@ -64,14 +75,7 @@ int Nvidia::get_fan_speed(){
   unsigned int speed;
   //---------------------------
 
-  nvmlDevice_t device;
-  nvmlReturn_t result;
-
-  result = nvmlDeviceGetHandleByIndex(0, &device);
-  if(result != NVML_SUCCESS){
-    return -1;
-  }
-  result = nvmlDeviceGetFanSpeed(device, &speed);
+  nvmlReturn_t result = nvmlDeviceGetFanSpeed(device, &speed);
   if(result != NVML_SUCCESS){
     return -1;
   }
@@ -79,26 +83,5 @@ int Nvidia::get_fan_speed(){
   //---------------------------
   return speed;
 }
-int Nvidia::get_power_usage(){
-  unsigned int power;
-  //---------------------------
-
-  nvmlDevice_t device;
-  nvmlReturn_t result;
-
-  result = nvmlDeviceGetHandleByIndex(0, &device);
-  if(result != NVML_SUCCESS){
-    return -1;
-  }
-  result = nvmlDeviceGetPowerUsage(device, &power);
-  if(result != NVML_SUCCESS){
-    return -1;
-  }
-
-  //---------------------------
-  return power;
-}
-
-//Subfunction
 
 }

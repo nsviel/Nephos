@@ -8,6 +8,7 @@ namespace prf::base{class Profiler;}
 namespace prf::hardware{class Profiler;}
 namespace prf::hardware{class Device;}
 namespace prf::hardware{class Structure;}
+namespace prf::hardware{class Profiler;}
 namespace prf::gui{class Profiler;}
 
 
@@ -30,6 +31,7 @@ public:
 
 private:
   prf::Structure* prf_struct;
+  prf::hardware::Profiler* prf_hardware;
 };
 
 }

@@ -21,19 +21,15 @@ Profiler::~Profiler(){}
 void Profiler::init(){
   //---------------------------
 
-  prf_collector->collect_info();
+  prf_collector->collect_vulkan_device();
+  prf_collector->collect_gpu_info();
 
   //---------------------------
 }
-void Profiler::add_queue(prf::hardware::queue::Type type, int ID_family){
+void Profiler::loop(){
   //---------------------------
 
-  prf::hardware::Queue queue;
-  queue.type = type;
-  queue.number++;
-  queue.family_ID = ID_family;
-  queue.thread_ID = utl::thread::get_ID_str();
-  prf_struct->hardware.gpu.vec_queue.push_back(queue);
+  prf_collector->collect_gpu_info();
 
   //---------------------------
 }
