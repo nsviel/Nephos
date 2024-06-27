@@ -1,11 +1,6 @@
 #pragma once
 
 namespace prf{class Node;}
-namespace prf::base{class Profiler;}
-namespace prf::hardware{class Profiler;}
-namespace prf::hardware{class Device;}
-namespace prf::hardware{class Structure;}
-namespace prf::gui{class Profiler;}
 namespace prf::gui::hardware{class Device;}
 namespace prf::gui::hardware{class GPU;}
 
