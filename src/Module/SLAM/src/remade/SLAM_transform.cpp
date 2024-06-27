@@ -96,13 +96,13 @@ void SLAM_transform::transform_subset(Cloud* cloud){
     //Apply transformation
     Eigen::Vector3d point {cloud->xyz[i].x, cloud->xyz[i].y, cloud->xyz[i].z};
     point = R * point + t;
-    cloud->xyz[i] = vec3(point(0), point(1), point(2));
+    cloud->xyz[i] = glm::vec3(point(0), point(1), point(2));
   }
 
   //Update cloud pose
   cloud->pose_T = frame->trans_b;
   cloud->pose_R = frame->rotat_b;
-  cloud->root = vec3(frame->trans_b(0), frame->trans_b(1), frame->trans_b(2));
+  cloud->root = glm::vec3(frame->trans_b(0), frame->trans_b(1), frame->trans_b(2));
 
   //---------------------------
   sceneManager->update_buffer_location(cloud);

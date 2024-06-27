@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Loader/src/Base/Importer.h>
-#include <Utility/Specific/Common.h>
+#include <string>
 
 namespace k4n{class Node;}
 namespace eng{class Node;}

@@ -48,10 +48,10 @@ void Axis::construct(){
   //---------------------------
 
   //Location
-  glm::vec3 root = vec3(0, 0, 0);
-  glm::vec3 x = vec3(0.1,0,0);
-  glm::vec3 y = vec3(0,0.1,0);
-  glm::vec3 z = vec3(0,0,0.1);
+  glm::vec3 root = glm::vec3(0, 0, 0);
+  glm::vec3 x = glm::vec3(0.1,0,0);
+  glm::vec3 y = glm::vec3(0,0.1,0);
+  glm::vec3 z = glm::vec3(0,0,0.1);
   xyz.push_back(root);
   xyz.push_back(x);
   xyz.push_back(root);

@@ -51,7 +51,7 @@ void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, const std::vector<
     this->evaluate(pose);
   }
 
-  if(best_center != vec3(0, 0, 0)){
+  if(best_center != glm::vec3(0, 0, 0)){
     pose = best_center;
   }
 

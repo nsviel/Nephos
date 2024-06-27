@@ -48,9 +48,9 @@ void Trajectory::update(Collection* collection){
     Cloud* cloud_m1 = (Cloud*)*next(collection->list_obj.begin(), j-1);
 
     if(cloud_m0->is_visible && cloud_m1->is_visible){
-      vec3 root_m0 = cloud_m0->root;
-      vec3 root_m1 = cloud_m1->root;
-      vec4 color = trajectory->unicolor;
+      glm::vec3 root_m0 = cloud_m0->root;
+      glm::vec3 root_m1 = cloud_m1->root;
+      glm::vec4 color = trajectory->unicolor;
 
       //Add begin point
       trajectory->xyz.push_back(root_m0);

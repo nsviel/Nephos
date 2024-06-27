@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
+#include <vector>
 
 namespace dyn{class Structure;}
 namespace k4n{class Node;}
@@ -26,7 +27,7 @@ public:
   void find_ir_level(k4n::structure::Sensor* sensor);
 
   //Depth function
-  vec3 convert_depth_2d_to_3d(k4n::structure::Sensor* sensor, ivec2 point_2d);
+  glm::vec3 convert_depth_2d_to_3d(k4n::structure::Sensor* sensor, glm::ivec2 point_2d);
   void convert_depth_into_color(k4n::structure::Sensor* sensor);
   void find_depth_mode_range(k4n::structure::Sensor* sensor);
 

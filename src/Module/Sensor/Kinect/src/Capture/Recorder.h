@@ -1,7 +1,8 @@
 #pragma once
 
 #include <Dynamic/src/Base/Recorder.h>
-#include <Utility/Specific/Common.h>
+#include <thread>
+#include <string>
 
 namespace k4n::structure{class Sensor;}
 

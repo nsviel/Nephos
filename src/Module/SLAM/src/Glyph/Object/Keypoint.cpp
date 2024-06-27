@@ -39,7 +39,7 @@ void Keypoint::update_keypoint_location(Cloud* cloud){
   //Construct glyph
   RGB_key.clear();
   for(int i=0; i<ts_key.size(); i++){
-    vec4 rgb = vec4(ts_key[i], 1 - ts_key[i], color[2], 1);
+    glm::vec4 rgb = vec4(ts_key[i], 1 - ts_key[i], color[2], 1);
     RGB_key.push_back(rgb);
   }
 
@@ -68,10 +68,10 @@ void Keypoint::update_keypoint_normal(Cloud* cloud){
   //Construct normal
   float lgt = 0.05 * normal->draw_point_size;
   for(int i=0; i<xyz_k.size(); i++){
-    vec3& xyz = xyz_k[i];
-    vec3& nxyz = Nxyz_k[i];
+    glm::vec3& xyz = xyz_k[i];
+    glm::vec3& nxyz = Nxyz_k[i];
 
-    vec3 n_vec = vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
+    glm::vec3 n_vec = glm::vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
 
     xyz_n.push_back(xyz);
     xyz_n.push_back(n_vec);

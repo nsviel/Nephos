@@ -70,7 +70,7 @@ void Panel::cam_info(){
       ImGui::DragFloat3("##444", floatArray, 0.01f, -100.0f, 100.0f, "%.2f");
       ImGui::SameLine();
       if(ImGui::Button("R")){
-        camera->cam_P = vec3(0, 0, 0);
+        camera->cam_P = glm::vec3(0, 0, 0);
       }
       break;
     }

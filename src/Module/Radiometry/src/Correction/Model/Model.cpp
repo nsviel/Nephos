@@ -100,7 +100,7 @@ float Model::rmse_model(dyn::base::Sensor* sensor){
   int N = rad_struct->measure.data.size();
   float E = 0;
   for(int i=0; i<N; i++){
-    vec3& data = rad_struct->measure.data[i];
+    glm::vec3& data = rad_struct->measure.data[i];
     if(data.x < model->axis_x.bound[0] || data.x > model->axis_x.bound[1]) continue;
     if(data.y < model->axis_y.bound[0] || data.y > model->axis_y.bound[1]) continue;
     if(data.x < 0 || data.y < 0) continue;

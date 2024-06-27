@@ -120,7 +120,7 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, glm:
 
     //Color
     if(rgb.size() != 0){
-      vec3 RGB = use_rgba ? vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
+      glm::vec3 RGB = use_rgba ? vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
       file << std::setprecision(0) << RGB.x * 255 <<" "<< RGB.y * 255 <<" "<< RGB.z * 255 <<" ";
     }
 
@@ -172,7 +172,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm
         //Color
         case format::ply::R:{
           for(int k=0; k<3; k++){
-            vec3 RGB = use_rgba ? vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
+            glm::vec3 RGB = use_rgba ? vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
             int color_int = RGB[k] * 255;
             memcpy(block_data + offset, &color_int, sizeof(u_char));
             offset += sizeof(u_char);

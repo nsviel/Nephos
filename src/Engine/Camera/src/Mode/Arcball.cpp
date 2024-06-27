@@ -131,9 +131,9 @@ void Arcball::rotate_by_angle(cam::Entity* camera, glm::vec2 angle){
   //---------------------------
 
   // Get the homogenous position of the camera and pivot point
-  vec4 cam_P(camera->cam_P.x, camera->cam_P.y, camera->cam_P.z, 1);
-  vec4 cam_COM(camera->cam_COM.x, camera->cam_COM.y, camera->cam_COM.z, 1);
-  vec4 cam_R(camera->cam_R.x, camera->cam_R.y, camera->cam_R.z, 1);
+  glm::vec4 cam_P(camera->cam_P.x, camera->cam_P.y, camera->cam_P.z, 1);
+  glm::vec4 cam_COM(camera->cam_COM.x, camera->cam_COM.y, camera->cam_COM.z, 1);
+  glm::vec4 cam_R(camera->cam_R.x, camera->cam_R.y, camera->cam_R.z, 1);
 
   // step 2: Rotate the camera around the pivot point on the first axis.
   glm::mat4x4 Rz(1.0f);

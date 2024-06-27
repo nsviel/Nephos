@@ -92,7 +92,7 @@ void Plot::add_vec_task(std::vector<utl::improfil::Task> vec_task){
 
 //Subfunction
 vec4 Plot::get_next_color(){
-  vec4 color;
+  glm::vec4 color;
   //---------------------------
 
   color = vec_color[idx_color];

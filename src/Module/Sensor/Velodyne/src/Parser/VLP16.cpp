@@ -204,7 +204,7 @@ void VLP16::parse_coordinates(){
   //Carthesian coodinates
   int k = 0;
   for(int i=0; i<packet_R.size(); i++){
-    vec3 xyz;
+    glm::vec3 xyz;
 
     xyz.x = packet_R[i] * cos(elevation[k]) * sin(azimuth[i]);
     xyz.y = packet_R[i] * cos(elevation[k]) * cos(azimuth[i]);

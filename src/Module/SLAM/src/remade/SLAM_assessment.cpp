@@ -164,14 +164,14 @@ bool SLAM_assessment::compute_assessment_rlt(Collection* collection, int subset_
   //---------------------------
 
   //Compute relative stats for current frame
-  vec3 diff_angle = vec3(0);
+  glm::vec3 diff_angle = glm::vec3(0);
   if(frame_m0->ID >= 1){
     frame_m0->ego_trans = (frame_m0->trans_e - frame_m0->trans_b).norm();
     frame_m0->ego_rotat = AngularDistance(frame_m0->rotat_b, frame_m0->rotat_e);
     frame_m0->diff_trans = (frame_m0->trans_b - frame_m1->trans_b).norm() + (frame_m0->trans_e - frame_m1->trans_e).norm();
     frame_m0->diff_rotat = AngularDistance(frame_m1->rotat_b, frame_m0->rotat_b) + AngularDistance(frame_m1->rotat_e, frame_m0->rotat_e);
-    vec3 angles_m0 = poseManager->compute_anglesFromTransformationMatrix(frame_m0->rotat_b);
-    vec3 angles_m1 = poseManager->compute_anglesFromTransformationMatrix(frame_m1->rotat_b);
+    glm::vec3 angles_m0 = poseManager->compute_anglesFromTransformationMatrix(frame_m0->rotat_b);
+    glm::vec3 angles_m1 = poseManager->compute_anglesFromTransformationMatrix(frame_m1->rotat_b);
     diff_angle = angles_m1 - angles_m0;
   }
 
@@ -256,7 +256,7 @@ void SLAM_assessment::compute_statistics(Collection* collection, int subset_ID, 
   local_map->size = local_map->map.size();
 
   //Relative parameters
-  vec3 trans_b_rlt, trans_e_rlt;
+  glm::vec3 trans_b_rlt, trans_e_rlt;
   if(frame_m1 != nullptr && frame_m0->ID != 0){
     for(int i=0; i<3; i++){
       trans_b_rlt[i] = frame_m0->trans_b(i) - frame_m1->trans_e(i);
@@ -264,14 +264,14 @@ void SLAM_assessment::compute_statistics(Collection* collection, int subset_ID, 
     }
   }
 
-  vec3 rotat_b_rlt, rotat_e_rlt;
+  glm::vec3 rotat_b_rlt, rotat_e_rlt;
   if(frame_m1 != nullptr && frame_m0->ID != 0){
-    vec3 a1_b = poseManager->compute_anglesFromTransformationMatrix(frame_m0->rotat_b);
-    vec3 a2_b = poseManager->compute_anglesFromTransformationMatrix(frame_m1->rotat_e);
+    glm::vec3 a1_b = poseManager->compute_anglesFromTransformationMatrix(frame_m0->rotat_b);
+    glm::vec3 a2_b = poseManager->compute_anglesFromTransformationMatrix(frame_m1->rotat_e);
     rotat_b_rlt = a1_b - a2_b;
 
-    vec3 a1_e = poseManager->compute_anglesFromTransformationMatrix(frame_m0->rotat_e);
-    vec3 a2_e = poseManager->compute_anglesFromTransformationMatrix(frame_m0->rotat_b);
+    glm::vec3 a1_e = poseManager->compute_anglesFromTransformationMatrix(frame_m0->rotat_e);
+    glm::vec3 a2_e = poseManager->compute_anglesFromTransformationMatrix(frame_m0->rotat_b);
     rotat_e_rlt = a1_e - a2_e;
   }
 

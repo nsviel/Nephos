@@ -191,7 +191,7 @@ void SLAM_map::add_pointToCloud(slamap* map, Cloud* cloud){
     if(cloud->I.size() != 0){
       Is = cloud->I[i];
     }
-    vec3 xyz = cloud->xyz[i];
+    glm::vec3 xyz = cloud->xyz[i];
     point_3d << xyz.x, xyz.y, xyz.z;
     point_4d << xyz.x, xyz.y, xyz.z, Is;
 
@@ -248,8 +248,8 @@ void SLAM_map::save_local_cloud(){
     for(int i=0; i<voxel_xyz.size(); i++){
       Eigen::Vector4d& point = voxel_xyz[i];
 
-      vec3 xyz = vec3(point(0), point(1), point(2));
-      vec4 rgb = vec4(point(3), point(3), point(3), 1);
+      glm::vec3 xyz = glm::vec3(point(0), point(1), point(2));
+      glm::vec4 rgb = vec4(point(3), point(3), point(3), 1);
 
       cloud->xyz.push_back(xyz);
       cloud->I.push_back(point(3));

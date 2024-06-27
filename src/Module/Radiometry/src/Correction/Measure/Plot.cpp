@@ -162,7 +162,7 @@ void Plot::reset_plot_data(){
   //I(R, It)
   for(int i=0; i<plot->IfRIt.axis_z.data.size(); i++){
     plot->IfRIt.axis_z.data[i] = 0;
-    rad_struct->measure.data[i] = vec3(-1, -1, -1);
+    rad_struct->measure.data[i] = glm::vec3(-1, -1, -1);
   }
 
   //---------------------------

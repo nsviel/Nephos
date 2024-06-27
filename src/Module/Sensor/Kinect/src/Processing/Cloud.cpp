@@ -163,7 +163,7 @@ void Cloud::retrieve_location(k4n::structure::Sensor* sensor, int i){
   double x_m = -x / 1000.0f;
   double y_m = -y / 1000.0f;
   double z_m = z / 1000.0f;
-  this->xyz = vec3(z_m, x_m, y_m);
+  this->xyz = glm::vec3(z_m, x_m, y_m);
 
   //Range calculation
   this->R = math::distance_from_origin(xyz);

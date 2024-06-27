@@ -165,7 +165,7 @@ void CT_ICP::algo(Collection* collection){
 				Eigen::Vector3d point;
 				point << cloud->xyz[j].x, cloud->xyz[j].y, cloud->xyz[j].z;
 				point = trajectory[index_frame].center_R * point + trajectory[index_frame].center_t;
-				cloud->xyz[j] = vec3(point(0), point(1), point(2));
+				cloud->xyz[j] = glm::vec3(point(0), point(1), point(2));
 			}
 		}
 
@@ -297,11 +297,11 @@ void CT_ICP::algo(Cloud* cloud){
 			Eigen::Vector3d point;
 			point << cloud->xyz[j].x, cloud->xyz[j].y, cloud->xyz[j].z;
 			point = trajectory[index_frame].center_R * point + trajectory[index_frame].center_t;
-			cloud->xyz[j] = vec3(point(0), point(1), point(2));
+			cloud->xyz[j] = glm::vec3(point(0), point(1), point(2));
 		}
 		cloud->pose_T = trajectory[index_frame].center_t;
 		cloud->pose_R = trajectory[index_frame].center_R;
-		cloud->root = vec3(cloud->pose_T(0), cloud->pose_T(1), cloud->pose_T(2));
+		cloud->root = glm::vec3(cloud->pose_T(0), cloud->pose_T(1), cloud->pose_T(2));
 	}
 
 	//Update Voxel Map

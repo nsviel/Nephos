@@ -45,7 +45,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::base::Data* data){
       const Voxel& voxel = it->second;
       #pragma omp parallel for
       for(int i=0; i<voxel_size; i++){
-        vec4 point = voxel[i];
+        glm::vec4 point = voxel[i];
         vec_goodness[point.w] = false;
       }
 
@@ -66,7 +66,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::base::Data* data, float voxe
     int kz = static_cast<int>(data->xyz[i].z / voxel_size);
     int kw = i;
     int key = (kx*2000 + ky)*1000 + kz;
-    vec4 point = vec4(data->xyz[i].x, data->xyz[i].y, data->xyz[i].z, i);
+    glm::vec4 point = vec4(data->xyz[i].x, data->xyz[i].y, data->xyz[i].z, i);
     voxel_map[key].push_back(point);
 	}
 
@@ -76,7 +76,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::base::Data* data, float voxe
 
       Voxel voxel = it->second;
       for(int i=0; i<voxel.size(); i++){
-        vec4 point = voxel[i];
+        glm::vec4 point = voxel[i];
         vec_goodness[point.w] = false;
       }
 

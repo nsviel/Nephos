@@ -1,14 +1,14 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
 #include <k4a/k4a.hpp>
+#include <vector>
 
 namespace k4n{class Node;}
 namespace k4n::structure{class Sensor;}
 namespace prf::graph{class Tasker;}
 namespace utl::thread{class Pool;}
 namespace dyn::cloud{class Operation;}
-
 
 
 namespace k4n::processing{

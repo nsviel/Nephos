@@ -3,10 +3,9 @@
 #include <Kinect/src/Structure/Firmware.h>
 #include <Kinect/src/Structure/Namespace.h>
 #include <Dynamic/src/Base/Sensor.h>
-#include <Utility/Specific/Common.h>
-
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
+#include <glm/glm.hpp>
 
 namespace k4n::device{class Structure;}
 namespace k4n::color{class Structure;}
@@ -34,7 +33,7 @@ struct Sensor : public dyn::base::Sensor{
     //---------------------------
   }
 
-  vec3 convert_depth_2d_to_3d(ivec2 point_2d){
+  glm::vec3 convert_depth_2d_to_3d(ivec2 point_2d){
     //---------------------------
 
     uint16_t* buffer = reinterpret_cast<uint16_t*>(depth.data.buffer);
@@ -49,14 +48,14 @@ struct Sensor : public dyn::base::Sensor{
     //Convert it into 3D coordinate
     k4a_float3_t target_xyz;
     bool success = device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
-    vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
+    glm::vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
 
     //Apply transformation
     float inv_scale = 1.0f / 1000.0f;
     xyzw.x = -xyzw.x * inv_scale;
     xyzw.y = -xyzw.y * inv_scale;
     xyzw.z = xyzw.z * inv_scale;
-    vec3 pose = vec3(xyzw.z, xyzw.x, xyzw.y);
+    glm::vec3 pose = glm::vec3(xyzw.z, xyzw.x, xyzw.y);
 
     //---------------------------
     return pose;

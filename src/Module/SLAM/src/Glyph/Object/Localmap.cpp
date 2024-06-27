@@ -79,8 +79,8 @@ void Localmap::update_localmap(slamap* map){
       for(int i=0; i<voxel_xyz.size(); i++){
         Eigen::Vector3d& point = voxel_xyz[i];
 
-        vec3 xyz = vec3(point(0), point(1), point(2));
-        vec4 rgb = localmap->unicolor;
+        glm::vec3 xyz = glm::vec3(point(0), point(1), point(2));
+        glm::vec4 rgb = localmap->unicolor;
 
         gly_xyz.push_back(xyz);
         gly_rgb.push_back(rgb);
@@ -105,8 +105,8 @@ void Localmap::update_localcloud(slamap* map){
       for(int i=0; i<voxel_xyz.size(); i++){
         Eigen::Vector4d& point = voxel_xyz[i];
 
-        vec3 xyz = vec3(point(0), point(1), point(2));
-        vec4 rgb = localcloud->unicolor;
+        glm::vec3 xyz = glm::vec3(point(0), point(1), point(2));
+        glm::vec4 rgb = localcloud->unicolor;
 
         gly_xyz.push_back(xyz);
         gly_rgb.push_back(rgb);

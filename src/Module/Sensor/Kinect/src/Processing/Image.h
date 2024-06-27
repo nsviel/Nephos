@@ -1,8 +1,10 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <image/turbojpeg.h>
 #include <k4a/k4a.hpp>
+#include <stdint.h>
+#include <vector>
+#include <string>
 
 namespace k4n{class Node;}
 namespace k4n{class Structure;}

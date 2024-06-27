@@ -55,7 +55,7 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
 
     //Color
     if(data->rgb.size() != 0){
-      vec3 RGB = use_rgba ? vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
+      glm::vec3 RGB = use_rgba ? vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
       file << std::setprecision(0) <<" "<< RGB.x * 255 <<" "<< RGB.y * 255 <<" "<< RGB.z * 255;
     }
 

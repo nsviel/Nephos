@@ -55,12 +55,12 @@ void Normal::update_normal_cloud(Cloud* cloud){
   //Construct glyph
   float lgt = 0.05 * glyph->draw_point_size;
   for(int i=0; i<xyz_s.size(); i++){
-    vec3& xyz = xyz_s[i];
-    vec3& nxyz = Nxyz_s[i];
+    glm::vec3& xyz = xyz_s[i];
+    glm::vec3& nxyz = Nxyz_s[i];
 
     if(SLAM_utility::fct_is_nan(nxyz)) continue;
 
-    vec3 vec_n = vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
+    glm::vec3 vec_n = glm::vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
 
     xyz_n.push_back(xyz);
     xyz_n.push_back(vec_n);
@@ -92,12 +92,12 @@ void Normal::update_normal_cloud(Cloud* cloud, std::vector<glm::vec3>& xyz_s, st
   //Construct normal
   float lgt = 0.05 * normal->draw_point_size;
   for(int i=0; i<xyz_s.size(); i++){
-    vec3& xyz = xyz_s[i];
-    vec3& nxyz = Nxyz_s[i];
+    glm::vec3& xyz = xyz_s[i];
+    glm::vec3& nxyz = Nxyz_s[i];
 
     if(SLAM_utility::fct_is_nan(nxyz)) continue;
 
-    vec3 vec_n = vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
+    glm::vec3 vec_n = glm::vec3(xyz.x + nxyz.x * lgt, xyz.y + nxyz.y * lgt, xyz.z + nxyz.z * lgt);
 
     xyz_n.push_back(xyz);
     xyz_n.push_back(vec_n);

@@ -62,7 +62,7 @@ void Option::option_color(){
   //---------------------------
 
   //Background color
-  vec4* screen_color = vk_interface->get_color_background();
+  glm::vec4* screen_color = vk_interface->get_color_background();
   ImGui::SetNextItemWidth(width);
   ImGui::ColorEdit4("Background", (float*)screen_color);
 

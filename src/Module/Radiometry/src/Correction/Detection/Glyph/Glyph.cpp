@@ -30,7 +30,7 @@ void Glyph::create_sphere_glyph(){
   //Detection spheres
   for(int i=0; i<20; i++){
     rad::correction::glyph::Sphere* sphere = new rad::correction::glyph::Sphere(node_engine);
-    vec4 color = math::random(i);
+    glm::vec4 color = math::random(i);
     sphere->set_color(color);
     dat_glyph->create_glyph(sphere);
 
@@ -108,8 +108,8 @@ void Glyph::draw_sphere_glyph(dyn::base::Sensor* sensor, std::vector<rad::correc
     rad::correction::glyph::Sphere* sphere = vec_sphere[i];
 
     //Add sphere radius to the detected circle center
-    vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);
-    vec3 dir = glm::normalize(pose);
+    glm::vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);
+    glm::vec3 dir = glm::normalize(pose);
     pose = pose + dir * (rad_struct->ransac.sphere_diameter / 2);
 
     //Position sphere

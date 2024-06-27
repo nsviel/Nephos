@@ -231,7 +231,7 @@ void Renderer::render_background_tics(ImDrawList *draw_list){
 
   for(float time = 0.0f; time <= config.max_time_s*1000.0f; time += 5.0f){
     int lineWidth = (int)(time / 5.0f) % 2 == 0 ? 1 : 2;
-    vec4 color(255, 255, 255, 20);
+    glm::vec4 color(255, 255, 255, 20);
     this->draw_line_at_time(draw_list, time, lineWidth, color);
   }
 
@@ -274,7 +274,7 @@ void Renderer::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint
 
   glm::vec2 text_margin = glm::vec2(5.0f, -3.0f);
   float name_offset = 40.0f;
-  vec4 text_color = task.color;
+  glm::vec4 text_color = task.color;
 
   float taskTimeMs = float(task.ts_end - task.ts_begin);
   std::ostringstream timeText;

@@ -15,7 +15,7 @@ struct Ransac{
   float thres_radius = 0.02;
   float search_radius = 0.15;
   float sphere_diameter = 0.139;
-  glm::vec3 current_pose = vec3(0, 0, 0);
+  glm::vec3 current_pose = glm::vec3(0, 0, 0);
   rad::correction::glyph::Sphere* glyph;
 
   std::vector<glm::vec3> search_xyz;

@@ -43,7 +43,7 @@ void Car::create_glyph(){
 }
 void Car::update_glyph(Collection* collection){
   Cloud* cloud = (Cloud*)collection->selected_obj;
-  vec3 trans_abs = cloud->root;
+  glm::vec3 trans_abs = cloud->root;
   //---------------------------
 
   glyph->xyz = glyph->xyz_init;

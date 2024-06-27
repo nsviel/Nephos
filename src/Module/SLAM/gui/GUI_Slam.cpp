@@ -475,7 +475,7 @@ void GUI_Slam::parameter_localCloud(){
     //Local cloud color
     ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
     Glyph* localcloud = slam_glyph->get_glyph_byName("localcloud");
-    vec4* rgb = &localcloud->unicolor;
+    glm::vec4* rgb = &localcloud->unicolor;
     ImGui::ColorEdit4("Color", (float*)rgb, flags);
     ImGui::Separator();
 
@@ -665,15 +665,15 @@ void GUI_Slam::state_localmap(){
 void GUI_Slam::state_transformation(){
   //---------------------------
 
-  vec3 trans_b = vec3(0, 0, 0);
-  vec3 rotat_b = vec3(0, 0, 0);
-  vec3 trans_e = vec3(0, 0, 0);
-  vec3 rotat_e = vec3(0, 0, 0);
+  glm::vec3 trans_b = glm::vec3(0, 0, 0);
+  glm::vec3 rotat_b = glm::vec3(0, 0, 0);
+  glm::vec3 trans_e = glm::vec3(0, 0, 0);
+  glm::vec3 rotat_e = glm::vec3(0, 0, 0);
 
-  vec3 trans_b_rlt = vec3(0, 0, 0);
-  vec3 rotat_b_rlt = vec3(0, 0, 0);
-  vec3 trans_e_rlt = vec3(0, 0, 0);
-  vec3 rotat_e_rlt = vec3(0, 0, 0);
+  glm::vec3 trans_b_rlt = glm::vec3(0, 0, 0);
+  glm::vec3 rotat_b_rlt = glm::vec3(0, 0, 0);
+  glm::vec3 trans_e_rlt = glm::vec3(0, 0, 0);
+  glm::vec3 rotat_e_rlt = glm::vec3(0, 0, 0);
 
   if(sceneManager->get_is_list_empty() == false){
     Collection* collection = sceneManager->get_selected_collection();
@@ -685,9 +685,9 @@ void GUI_Slam::state_transformation(){
     trans_e_rlt = frame->trans_e_rlt;
     rotat_e_rlt = frame->rotat_e_rlt;
 
-    trans_b = vec3(frame->trans_b(0), frame->trans_b(1), frame->trans_b(2));
+    trans_b = glm::vec3(frame->trans_b(0), frame->trans_b(1), frame->trans_b(2));
     rotat_b = frame->angle_b;
-    trans_e = vec3(frame->trans_e(0), frame->trans_e(1), frame->trans_e(2));
+    trans_e = glm::vec3(frame->trans_e(0), frame->trans_e(1), frame->trans_e(2));
     rotat_e = frame->angle_e;
   }
 
@@ -735,7 +735,7 @@ void GUI_Slam::display_stat(std::string title, vec3 abs, vec3 rlt){
   //---------------------------
 }
 vec3 GUI_Slam::compute_anglesFromTransformationMatrix(const mat4& mat){
-  vec3 angles;
+  glm::vec3 angles;
   //---------------------------
 
   float ax = atan2(mat[2][1], mat[2][2]);
@@ -746,7 +746,7 @@ vec3 GUI_Slam::compute_anglesFromTransformationMatrix(const mat4& mat){
   ay = (ay * 180) / M_PI;
   az = (az * 180) / M_PI;
 
-  angles = vec3(ax, ay, az);
+  angles = glm::vec3(ax, ay, az);
 
   //---------------------------
   return angles;

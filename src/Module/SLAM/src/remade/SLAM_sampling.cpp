@@ -49,7 +49,7 @@ vector<glm::vec3> SLAM_sampling::sub_sampling_subset(Cloud* cloud, float voxel_s
   for(auto it = grid.begin(); it != grid.end(); it++){
 		if(it->second.size() > 0){
       Eigen::Vector4d point = it->second[0];
-      vec3 xyz = vec3(point(0), point(1), point(2));
+      glm::vec3 xyz = glm::vec3(point(0), point(1), point(2));
 			xyz_sampled.push_back(xyz);
 		}
 	}
@@ -73,7 +73,7 @@ void SLAM_sampling::grid_sampling_subset(Cloud* cloud){
   cloudMap grid;
   Eigen::Vector4d point;
   for(int i=0; i<cloud->xyz.size(); i++){
-    vec3 xyz = cloud->xyz[i];
+    glm::vec3 xyz = cloud->xyz[i];
     double ts_n = cloud->ts_n[i];
     double dist = fct_distance_origin(xyz);
 

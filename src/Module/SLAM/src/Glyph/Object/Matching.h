@@ -21,7 +21,7 @@ public:
 
 private:
   Glyph* matching;
-  vec4 color;
+  glm::vec4 color;
 };
 
 }

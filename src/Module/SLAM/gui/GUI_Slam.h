@@ -50,7 +50,7 @@ public:
   void state_localmap();
   void state_transformation();
   void display_stat(std::string title, vec3 abs, vec3 rlt);
-  vec3 compute_anglesFromTransformationMatrix(const mat4& mat);
+  glm::vec3 compute_anglesFromTransformationMatrix(const mat4& mat);
 
   inline SLAM* get_slamManager(){return slamManager;}
 

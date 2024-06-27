@@ -27,7 +27,7 @@ private:
   Glyph* localmap;
   Glyph* localcloud;
 
-  vec4 color;
+  glm::vec4 color;
 };
 
 }

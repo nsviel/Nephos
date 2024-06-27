@@ -1,12 +1,12 @@
 #pragma once
 
 #include <Kinect/src/Structure/Sensor.h>
-#include <Utility/Specific/Common.h>
 
 namespace k4n{class Node;}
 namespace k4n::processing{class Image;}
 namespace k4n::playback{class Configuration;}
 namespace k4n::gui{class Playback;}
+namespace utl::base{class Path;}
 
 
 namespace k4n::playback{

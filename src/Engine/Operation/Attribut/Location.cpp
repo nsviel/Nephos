@@ -114,7 +114,7 @@ void Location::compute_MinMax(dat::base::Entity* entity){
   glm::vec3 max = glm::vec3(-1000000, -1000000, -1000000);
 
   for(int i=0; i<XYZ.size(); i++){
-    vec4 xys_h = vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
+    glm::vec4 xys_h = vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
     xys_h = xys_h * pose->model;
 
     for(int j=0; j<3; j++){
@@ -188,7 +188,7 @@ void Location::retrieve_z_vector(dat::base::Entity* entity, std::vector<float>& 
 
   #pragma omp parallel for
   for(int i=0; i<xyz.size(); i++){
-    vec4 xyz_h = vec4(xyz[i].x, xyz[i].y, xyz[i].z, 1);
+    glm::vec4 xyz_h = vec4(xyz[i].x, xyz[i].y, xyz[i].z, 1);
     xyz_h = xyz_h * pose->model;
     z_vec[i] = xyz_h.z;
   }

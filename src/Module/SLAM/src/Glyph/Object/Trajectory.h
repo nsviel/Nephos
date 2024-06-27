@@ -22,7 +22,7 @@ public:
 private:
   Glyph* trajectory;
 
-  vec4 color;
+  glm::vec4 color;
   int width;
 };
 

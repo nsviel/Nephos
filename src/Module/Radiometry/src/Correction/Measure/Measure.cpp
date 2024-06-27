@@ -92,7 +92,7 @@ void Measure::data_measure(dyn::base::Sensor* sensor, std::vector<glm::vec3>& se
       int index = j * plot->IfRIt.axis_x.size + i;
       if(index >= 0 && index < plot->IfRIt.axis_z.size){
         plot->IfRIt.axis_z.data[index] = Is;
-        sphere->data[index] = vec3(R, It, Is);
+        sphere->data[index] = glm::vec3(R, It, Is);
       }
     }
   }
@@ -127,7 +127,7 @@ void Measure::data_IfIt(std::vector<glm::vec3>& search_xyz, std::vector<float>& 
   //---------------------------
 
   //Init parameter
-  glm::vec3 root = vec3(0, 0, 0);
+  glm::vec3 root = glm::vec3(0, 0, 0);
   glm::vec3 pose = rad_struct->ransac.current_pose;
   float radius = rad_struct->ransac.sphere_diameter / 2;
   float thres_sphere = rad_struct->ransac.thres_sphere;
@@ -137,7 +137,7 @@ void Measure::data_IfIt(std::vector<glm::vec3>& search_xyz, std::vector<float>& 
 
   //Insert measure
   for(int i=0; i<search_xyz.size(); i++){
-    vec3& xyz = search_xyz[i];
+    glm::vec3& xyz = search_xyz[i];
     float distance = math::distance(xyz, pose) - radius - 0.04;
 
     if(distance <= thres_sphere){

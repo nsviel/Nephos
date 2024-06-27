@@ -184,8 +184,8 @@ void Operation::make_normal_from_depth_image(k4n::structure::Sensor* sensor){
       value_2 = depth[id_2 * 2] | (depth[id_2 * 2 + 1] << 8);
       float dzdy = (value_1 - value_2) / 2.0;
 
-      vec3 d(-dzdx, -dzdy, 1.0f);
-      vec3 n = glm::normalize(d);
+      glm::vec3 d(-dzdx, -dzdy, 1.0f);
+      glm::vec3 n = glm::normalize(d);
 
       Nxyz.push_back(n);
     }

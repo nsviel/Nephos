@@ -27,7 +27,7 @@ public:
   void add_vec_task(std::vector<utl::improfil::Task> vec_task);
 
   //Subfunction
-  vec4 get_next_color();
+  glm::vec4 get_next_color();
   void set_time_max(int value);
 
 
