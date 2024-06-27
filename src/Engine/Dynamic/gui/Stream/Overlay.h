@@ -1,9 +1,10 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <imgui/core/imgui.h>
 
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
+namespace utl::media{class Image;}
 
 
 namespace dyn::gui{

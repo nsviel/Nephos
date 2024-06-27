@@ -55,7 +55,7 @@ void Transformation::draw_matrix(utl::base::Element* element){
 
   //Model matrix
   ImVec2 width = ImGui::GetContentRegionAvail();
-  mat4& model = pose->model;
+  glm::mat4& model = pose->model;
   ImGui::Columns(4, "ModelMat");
   for(int i=0; i<4; i++){
     ImGui::Separator();

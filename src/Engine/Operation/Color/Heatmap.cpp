@@ -14,9 +14,9 @@ Heatmap::Heatmap(){
   this->ope_location = new ope::attribut::Location();
 
   this->is_normalization = false;
-  this->range_norm = vec2(0.0f, 1.0f);
-  this->range_height = vec2(-1.0f, 2.0f);
-  this->range_intensity = vec2(0.0f, 1.0f);
+  this->range_norm = glm::vec2(0.0f, 1.0f);
+  this->range_height = glm::vec2(-1.0f, 2.0f);
+  this->range_intensity = glm::vec2(0.0f, 1.0f);
 
   //---------------------------
 }
@@ -79,7 +79,7 @@ void Heatmap::heatmap_incidence_angle(dat::base::Entity* entity){
 
   //Prepare data
   std::vector<float> It = data->It;
-  math::normalize(It, vec2(0, 90));
+  math::normalize(It, glm::vec2(0, 90));
 
   //Compute heatmap
   this->compute_heatmap(It, data->rgba);
@@ -100,7 +100,7 @@ void Heatmap::heatmap_height(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Heatmap::heatmap_height(dat::base::Entity* entity, vec2 range){
+void Heatmap::heatmap_height(dat::base::Entity* entity, glm::vec2 range){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -121,7 +121,7 @@ void Heatmap::heatmap_range(dat::base::Entity* entity){
 
   //Prepare data
   std::vector<float> R = data->R;
-  math::normalize(R, vec2(0, 10));
+  math::normalize(R, glm::vec2(0, 10));
 
   //Compute heatmap
   this->compute_heatmap(R, data->rgba);

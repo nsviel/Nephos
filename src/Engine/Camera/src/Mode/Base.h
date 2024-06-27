@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <glm/glm.hpp>
 
 namespace cam{class Entity;}
 
@@ -26,7 +26,7 @@ public:
   virtual void camera_zoom(cam::Entity* camera, float speed){}
 
   //Camera matrix
-  virtual mat4 compute_camera_view(cam::Entity* camera){return mat4(1);}
+  virtual glm::mat4 compute_camera_view(cam::Entity* camera){return glm::mat4(1);}
 };
 
 }

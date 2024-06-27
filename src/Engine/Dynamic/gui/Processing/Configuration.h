@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace dyn{class Node;}
 namespace utl::base{class Element;}
 
@@ -20,7 +18,7 @@ public:
 
   //Subfunction
   void sensor_config(utl::base::Element* element);
-  
+
 private:
 
 };

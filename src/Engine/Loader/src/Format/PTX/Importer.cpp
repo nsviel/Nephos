@@ -115,7 +115,7 @@ bool Importer::Exporter(std::string path){
     //transformation matrix
     glm::mat4& transMat = collection->list_entity[0].trans;
     glm::mat4& rotMat = collection->list_entity[0].rotat;
-    mat4 finalMat = transpose(transMat * rotMat);
+    glm::mat4 finalMat = transpose(transMat * rotMat);
     file << setprecision(6) << finalMat[0][0] << " " << finalMat[0][1] << " " << finalMat[0][2] << " " << finalMat[0][3] << std::endl;
     file << setprecision(6) << finalMat[1][0] << " " << finalMat[1][1] << " " << finalMat[1][2] << " " << finalMat[1][3] << std::endl;
     file << setprecision(6) << finalMat[2][0] << " " << finalMat[2][1] << " " << finalMat[2][2] << " " << finalMat[2][3] << std::endl;

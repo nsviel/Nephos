@@ -76,7 +76,7 @@ void Tree::construct_node(std::string path, std::vector<utl::gui::tree::Node*>& 
     //---------------------------
   }
 }
-void Tree::construct_node_root(std::vector<string>& vec_path, std::vector<utl::gui::tree::Node*>& nodes){
+void Tree::construct_node_root(std::vector<std::string>& vec_path, std::vector<utl::gui::tree::Node*>& nodes){
   //---------------------------
 
   for(int i=0; i<vec_path.size(); i++){
@@ -99,7 +99,7 @@ void Tree::construct_node_root(std::vector<string>& vec_path, std::vector<utl::g
   //---------------------------
 }
 void Tree::node_child_scan(std::string path, std::vector<utl::gui::tree::Node*>& nodes, utl::gui::tree::Node* parent){
-  std::vector<string> list_path = utl::path::list_all_path(path);
+  std::vector<std::string> list_path = utl::path::list_all_path(path);
   //---------------------------
 
   bool is_sub_folder = false;

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace dyn{class Node;}
 namespace utl::base{class Element;}
 

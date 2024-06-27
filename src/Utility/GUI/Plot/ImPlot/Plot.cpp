@@ -160,7 +160,7 @@ void Plot::plot_regression(utl::base::Plot* plot){
     ImPlot::PlotScatter(ID.c_str(), plot->axis_x.data.data(), plot->axis_y.data.data(), plot->axis_x.data.size());
 
     // Plot an additional point in a different color
-    if(plot->highlight != vec2(-1, -1)){
+    if(plot->highlight != glm::vec2(-1, -1)){
       ImVec4 color = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
       ImPlot::PushStyleColor(ImPlotCol_MarkerFill, color);
       ImPlot::PushStyleColor(ImPlotCol_MarkerOutline, color);
@@ -205,7 +205,7 @@ void Plot::plot_scatter(utl::base::Plot* plot){
     ImPlot::PlotScatter(truc.c_str(), plot->axis_x.data.data(), plot->axis_y.data.data(), plot->axis_x.data.size());
 
     // Plot an additional point in a different color
-    if(plot->highlight != vec2(-1, -1)){
+    if(plot->highlight != glm::vec2(-1, -1)){
       ImVec4 color = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
       ImPlot::PushStyleColor(ImPlotCol_MarkerFill, color);
       ImPlot::PushStyleColor(ImPlotCol_MarkerOutline, color);

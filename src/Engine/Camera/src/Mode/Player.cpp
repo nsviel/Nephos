@@ -14,7 +14,7 @@ Player::Player(cam::Node* node_camera){
 
   this->vk_window = node_vulkan->get_vk_window();
 
-  this->mouse_pose_old = vec2(0.0f);
+  this->mouse_pose_old = glm::vec2(0.0f);
 
   //---------------------------
 }
@@ -70,8 +70,8 @@ void Player::camera_mouse(cam::Entity* camera){
   float& elevation = camera->angle_elevation;
 
   //Cursor movement
-  vec2 mouse_pose = vk_window->get_mouse_pose();
-  vec2 window_center = camera->panel_center;
+  glm::vec2 mouse_pose = vk_window->get_mouse_pose();
+  glm::vec2 window_center = camera->panel_center;
 
   if(mouse_pose != mouse_pose_old){
     vk_window->set_mouse_pose(window_center);

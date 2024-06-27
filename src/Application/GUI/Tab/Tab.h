@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vector>
+#include <string>
 
 namespace gui{class Node;}
 namespace eng{class Node;}
@@ -39,7 +40,7 @@ private:
   gui::tab::dev::Menu* dev_menu;
   gui::tab::eng::Menu* eng_menu;
 
-  std::vector<string> vec_tab;
+  std::vector<std::string> vec_tab;
   std::string active_tab;
   std::string tab_to_open;
 };

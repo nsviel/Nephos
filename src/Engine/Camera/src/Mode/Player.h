@@ -34,7 +34,7 @@ public:
 private:
   vk::window::GLFW* vk_window;
 
-  vec2 mouse_pose_old;
+  glm::vec2 mouse_pose_old;
 };
 
 }

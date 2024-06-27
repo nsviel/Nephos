@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 namespace dyn{class Node;}
 namespace dyn::gui{class Operation;}
@@ -24,9 +24,9 @@ private:
   dyn::gui::Player* gui_player;
   dyn::gui::Operation* gui_operation;
 
-  bool* show_window;
   std::string name;
   std::string open_tab = "";
+  bool* show_window;
 };
 
 }

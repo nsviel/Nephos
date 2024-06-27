@@ -52,8 +52,8 @@ void Swapchain::recreate_swapchain(){
   //---------------------------
 
   //Pause if window is minimized
-  vec2 dim = vk_struct->window.dimension;
-  while(dim == vec2(0, 0)){
+  glm::vec2 dim = vk_struct->window.dimension;
+  while(dim == glm::vec2(0, 0)){
     vk_window->wait_event();
   }
 

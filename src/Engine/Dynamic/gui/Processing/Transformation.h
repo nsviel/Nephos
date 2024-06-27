@@ -1,11 +1,9 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace ope{class Operation;}
-namespace dat::base{class Element;}
+namespace utl::base{class Element;}
 
 
 namespace dyn::gui{

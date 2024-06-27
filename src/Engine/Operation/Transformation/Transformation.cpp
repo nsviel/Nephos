@@ -43,9 +43,9 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 COM, glm::ve
   //---------------------------
 
   glm::vec3 radian = math::degree_to_radian(degree);
-  mat4 rotation = get_rotation_mat(radian);
-  mat4 COM_mat = get_translation_mat_neye(COM);
-  mat4 root_mat = get_translation_mat_neye(pose->root);
+  glm::mat4 rotation = get_rotation_mat(radian);
+  glm::mat4 COM_mat = get_translation_mat_neye(COM);
+  glm::mat4 root_mat = get_translation_mat_neye(pose->root);
 
   pose->rotat *= rotation;
 
@@ -65,8 +65,8 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 degree){
 
   glm::vec3& COM = pose->COM;
   glm::vec3 radian = math::degree_to_radian(degree);
-  mat4 rotation = get_rotation_mat(radian);
-  mat4 COM_mat = get_translation_mat_neye(COM);
+  glm::mat4 rotation = get_rotation_mat(radian);
+  glm::mat4 COM_mat = get_translation_mat_neye(COM);
 
   pose->rotat *= rotation;
 
@@ -85,7 +85,7 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 COM, mat4 ro
   //---------------------------
 
   //glm::vec3& COM = pose->COM;
-  mat4 COM_mat = get_translation_mat_neye(COM);
+  glm::mat4 COM_mat = get_translation_mat_neye(COM);
 
   pose->rotat *= rotation;
 

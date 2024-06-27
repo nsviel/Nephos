@@ -29,8 +29,8 @@ public:
   void camera_zoom(cam::Entity* camera, float speed);
 
   //Subfunction
-  mat4 compute_camera_view(cam::Entity* camera);
-  void rotate_by_angle(cam::Entity* camera, vec2 angle);
+  glm::mat4 compute_camera_view(cam::Entity* camera);
+  void rotate_by_angle(cam::Entity* camera, glm::vec2 angle);
   void displace_camera_COM(cam::Entity* camera, const glm::vec3& displacement);
 
 private:

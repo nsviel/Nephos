@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace dat{class Selection;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}

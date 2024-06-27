@@ -108,7 +108,7 @@ void GLFW::update_window_dim(){
   int width, height;
   glfwGetFramebufferSize(vk_struct->window.handle, &width, &height);
 
-  vk_struct->window.dimension = vec2(width, height);
+  vk_struct->window.dimension = glm::vec2(width, height);
   vk_struct->window.center = glm::vec2(width/2, height/2);
 
   //---------------------------
@@ -169,7 +169,7 @@ void GLFW::set_mouse_pose(glm::vec2 pose){
   //---------------------------
 }
 glm::vec2 GLFW::get_mouse_pose(){
-  if(vk_struct->window.handle == nullptr) return vec2(0, 0);
+  if(vk_struct->window.handle == nullptr) return glm::vec2(0, 0);
   //---------------------------
 
   double xpos, ypos;

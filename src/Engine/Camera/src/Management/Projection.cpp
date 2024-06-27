@@ -28,7 +28,7 @@ mat4 Projection::compute_proj_perspective(cam::Entity* camera){
   float z_far = camera->clip_far;
   float fov = glm::radians(camera->fov);
 
-  vec2 window_dim = vk_window->get_dimension();
+  glm::vec2 window_dim = vk_window->get_dimension();
   float ratio = window_dim.x / window_dim.y;
 
   cam_proj = glm::perspective(fov, ratio, z_near, z_far);

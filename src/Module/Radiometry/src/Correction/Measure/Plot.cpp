@@ -27,7 +27,7 @@ void Plot::init(){
 
   //I(R)
   plot->IfR.title = "I(R)";
-  plot->IfR.highlight = vec2(0, 0);
+  plot->IfR.highlight = glm::vec2(0, 0);
   plot->IfR.axis_x.resolution = sphere->R_resolution;
   plot->IfR.axis_x.min = sphere->R_range.x;
   plot->IfR.axis_x.max = sphere->R_range.y;
@@ -114,7 +114,7 @@ void Plot::update_plot_data(dyn::base::Sensor* sensor){
       }
 
       if(R > model->axis_x.current && R < model->axis_x.current + 0.05){
-        plot->IfR.highlight = vec2(R, I);
+        plot->IfR.highlight = glm::vec2(R, I);
       }
     }
 

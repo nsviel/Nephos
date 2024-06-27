@@ -68,8 +68,8 @@ void Model::update_model(dyn::base::Sensor* sensor){
 void Model::find_model_bound(dyn::base::Sensor* sensor){
   //---------------------------
 
-  vec2 R_bound = vec2(1000, 0);
-  vec2 It_bound = vec2(1000, 0);
+  glm::vec2 R_bound = glm::vec2(1000, 0);
+  glm::vec2 It_bound = glm::vec2(1000, 0);
 
   for(int i=0; i<rad_struct->measure.data.size(); i++){
     //R

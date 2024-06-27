@@ -77,7 +77,7 @@ void Renderer::engine_texture(){
     ImVec2 panel_size = ImGui::GetWindowSize();
     int center_x = panel_pose.x + panel_size.x * 0.5f;
     int center_y = panel_pose.y + panel_size.y * 0.5f;
-    vec2 panel_center = vec2(center_x, center_y);
+    glm::vec2 panel_center = glm::vec2(center_x, center_y);
 
     dyn_control->run_control();
     dat_control->run_control();

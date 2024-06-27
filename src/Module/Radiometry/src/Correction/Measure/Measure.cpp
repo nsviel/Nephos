@@ -115,7 +115,7 @@ void Measure::data_IfR(dyn::base::Sensor* sensor, std::vector<glm::vec3>& search
   if(index >= 0 && index < plot->IfR.axis_x.data.size()){
     plot->IfR.axis_x.data[index] = R;
     plot->IfR.axis_y.data[index] = Is;
-    plot->IfR.highlight = vec2(R, Is);
+    plot->IfR.highlight = glm::vec2(R, Is);
     model->axis_x.current = R;
   }
 
