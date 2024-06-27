@@ -1,9 +1,5 @@
 #pragma once
 
 #include <Vulkan/VK_image/Structure/Namespace.h>
-#include <Vulkan/VK_image/Image.h>
-#include <Vulkan/VK_image/Transition.h>
-#include <Vulkan/VK_image/Color.h>
-#include <Vulkan/VK_image/Depth.h>
-#include <Vulkan/VK_image/Screenshot.h>
-#include <Vulkan/VK_image/Texture.h>
+#include <Vulkan/VK_image/Image/Namespace.h>
+#include <Vulkan/VK_image/Type/Namespace.h>
