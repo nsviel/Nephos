@@ -1,6 +1,7 @@
 #include "Buffer.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::data{
@@ -18,7 +19,7 @@ Buffer::Buffer(vk::Structure* vk_struct){
 Buffer::~Buffer(){}
 
 //Main function
-void Buffer::create_buffers(vk::structure::Object* vk_object){
+void Buffer::create_buffer(vk::structure::Object* vk_object){
   VkDeviceSize size;
   //---------------------------
 

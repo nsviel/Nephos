@@ -149,6 +149,24 @@ void sayMean(std::vector<glm::vec3> truc){
   mean.z = mean.z / truc.size();
   std::cout<< "mean-> " << mean[0] <<" "<< mean[1] <<" "<< mean[2] <<std::endl;
 }
+void sayThread(std::string name){
+  //---------------------------
+
+  std::stringstream ss;
+  ss << std::this_thread::get_id();
+  std::cout<<name<< " thread ID -> " << ss.str() << std::endl;
+
+  //---------------------------
+}
+void sayThread(){
+  //---------------------------
+
+  std::stringstream ss;
+  ss << std::this_thread::get_id();
+  std::cout<< "Thread ID -> " << ss.str() << std::endl;
+
+  //---------------------------
+}
 void sayHello(){
   std::cout<<"Hello ! "<<std::endl;
 }

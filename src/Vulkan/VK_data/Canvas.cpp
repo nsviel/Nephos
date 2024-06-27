@@ -50,7 +50,7 @@ void Canvas::init(){
 
   //Create vk object
   vk_struct->data.canvas.data = data;
-  vk_buffer->create_buffers(&vk_struct->data.canvas);
+  vk_buffer->create_buffer(&vk_struct->data.canvas);
 
   //---------------------------
 }

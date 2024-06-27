@@ -82,7 +82,7 @@ void Data::update_vk_object(utl::base::Data* data, vk::structure::Object* vk_obj
 
     //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
     if(vk_object->buffer.xyz.mem == 0){
-      vk_buffer->create_buffers(vk_object);
+      vk_buffer->create_buffer(vk_object);
     }else{
       vk_buffer->update_buffer(vk_object);
     }
@@ -109,7 +109,7 @@ void Data::create_vk_object(utl::base::Data* data, utl::base::Pose* pose){
 
   //Apply adequat init functions
   this->check_data(vk_object);
-  vk_buffer->create_buffers(vk_object);
+  vk_buffer->create_buffer(vk_object);
   vk_descriptor->create_layout_from_required(&vk_object->binding);
   vk_descriptor->create_binding(&vk_object->binding);
 

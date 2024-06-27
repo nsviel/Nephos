@@ -54,9 +54,8 @@ void Init::load_entity(){
   //ldr_loader->load_object(versaille_2, versaille_2_t);
   //ldr_loader->load_object(cerfav);
   //ldr_loader->load_object(dragon);
-  //ldr_loader->load_object(sphere);
+  ldr_loader->load_object(sphere);
   //ldr_loader->load_set(pcap);
-  //ldr_loader->load_object(mire);
   //ldr_loader->load_object(mire);
 
   //----------------------------

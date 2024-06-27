@@ -32,7 +32,6 @@ public:
   void clean();
 
   inline vk::Structure* get_vk_struct(){return vk_struct;}
-  inline vk::main::Engine* get_vk_engine(){return vk_engine;}
   inline vk::gui::Imgui* get_vk_imgui(){return vk_imgui;}
   inline vk::main::Interface* get_vk_interface(){return vk_interface;}
   inline vk::image::Texture* get_vk_texture(){return vk_texture;}
