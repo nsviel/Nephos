@@ -5,7 +5,7 @@
 #include <Vulkan/VK_window/Structure/Window.h>
 #include <Vulkan/VK_data/Structure/Data.h>
 #include <Vulkan/VK_queue/Structure/Class.h>
-#include <Vulkan/VK_device/Structure/Device.h>
+#include <Vulkan/VK_device/Structure/Logical.h>
 #include <Vulkan/VK_instance/Structure/Instance.h>
 #include <Vulkan/VK_presentation/Structure/Swapchain.h>
 #include <Application/Node.h>
@@ -36,7 +36,7 @@ struct Vulkan{
   vk::structure::Window window;
   vk::structure::Panel panel;
   vk::structure::Instance instance;
-  vk::structure::Device device;
+  vk::device::structure::Logical device;
   vk::structure::Swapchain swapchain;
   vk::data::structure::Data data;
   vk::structure::Parameter param;

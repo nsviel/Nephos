@@ -6,9 +6,9 @@
 #include <vector>
 
 
-namespace vk::structure{
+namespace vk::device::structure{
 
-struct Physical_device{
+struct Physical{
   //---------------------------
 
   //Information

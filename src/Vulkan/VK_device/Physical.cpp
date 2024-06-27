@@ -72,7 +72,7 @@ void Physical::find_all_physical_device(){
 
   //Store physical device properties
   for(VkPhysicalDevice device : vec_physical_device){
-    vk::structure::Physical_device physical_device;
+    vk::device::structure::Physical physical_device;
     physical_device.handle = device;
     this->find_physical_device_properties(physical_device);
     this->find_physical_device_limits(physical_device);
@@ -85,9 +85,9 @@ void Physical::find_best_physical_device(){
   //---------------------------
 
   // Use an ordered map to automatically sort candidates by increasing score
-  std::multimap<int, vk::structure::Physical_device> candidates;
+  std::multimap<int, vk::device::structure::Physical> candidates;
   for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){
-    vk::structure::Physical_device& physical_device = vk_struct->instance.vec_physical_device[i];
+    vk::device::structure::Physical& physical_device = vk_struct->instance.vec_physical_device[i];
     this->rate_device_suitability(physical_device);
     candidates.insert(std::make_pair(physical_device.selection_score, physical_device));
   }
@@ -102,7 +102,7 @@ void Physical::find_best_physical_device(){
     cout<<"Detected physical devices:"<<endl;
     for(auto it = candidates.begin(); it != candidates.end(); ++it){
       int score = it->first;
-      const vk::structure::Physical_device& device = it->second;
+      const vk::device::structure::Physical& device = it->second;
       std::cout<<"-> Physical_device: "<<device.name<< " << score "<<score<<std::endl;
     }
     exit(0);
@@ -113,7 +113,7 @@ void Physical::find_best_physical_device(){
 
   //---------------------------
 }
-void Physical::rate_device_suitability(vk::structure::Physical_device& physical_device){
+void Physical::rate_device_suitability(vk::device::structure::Physical& physical_device){
   int score = 0;
   //---------------------------
 
@@ -152,7 +152,7 @@ void Physical::rate_device_suitability(vk::structure::Physical_device& physical_
   //---------------------------
   physical_device.selection_score = score;
 }
-bool Physical::device_suitability_onscreen(vk::structure::Physical_device& physical_device){
+bool Physical::device_suitability_onscreen(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   //Queue suitability
@@ -184,7 +184,7 @@ bool Physical::device_suitability_onscreen(vk::structure::Physical_device& physi
   //---------------------------
   return true;
 }
-bool Physical::device_suitability_offscreen(vk::structure::Physical_device& physical_device){
+bool Physical::device_suitability_offscreen(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   //Queue suitable
@@ -213,7 +213,7 @@ bool Physical::device_suitability_offscreen(vk::structure::Physical_device& phys
 }
 
 //Specific properties
-void Physical::find_physical_device_limits(vk::structure::Physical_device& physical_device){
+void Physical::find_physical_device_limits(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   VkPhysicalDeviceProperties device_properties;
@@ -236,7 +236,7 @@ void Physical::find_physical_device_limits(vk::structure::Physical_device& physi
 
   //---------------------------
 }
-void Physical::find_physical_device_properties(vk::structure::Physical_device& physical_device){
+void Physical::find_physical_device_properties(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   VkPhysicalDeviceProperties properties;
@@ -249,7 +249,7 @@ void Physical::find_physical_device_properties(vk::structure::Physical_device& p
 
   //---------------------------
 }
-void Physical::find_physical_device_features(vk::structure::Physical_device& physical_device){
+void Physical::find_physical_device_features(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   VkPhysicalDeviceFeatures supportedFeatures;
@@ -258,7 +258,7 @@ void Physical::find_physical_device_features(vk::structure::Physical_device& phy
   //---------------------------
   physical_device.features = supportedFeatures;
 }
-void Physical::find_physical_device_support(vk::structure::Physical_device& physical_device){
+void Physical::find_physical_device_support(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   //Get physical_device extension number
@@ -279,7 +279,7 @@ void Physical::find_physical_device_support(vk::structure::Physical_device& phys
   //---------------------------
   physical_device.has_extension_support = set_ext_required.empty();
 }
-void Physical::find_surface_capability(vk::structure::Physical_device& physical_device){
+void Physical::find_surface_capability(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   //Get basic surface capabilities
@@ -289,7 +289,7 @@ void Physical::find_surface_capability(vk::structure::Physical_device& physical_
   //---------------------------
   physical_device.capabilities = capabilities;
 }
-void Physical::find_surface_format(vk::structure::Physical_device& physical_device){
+void Physical::find_surface_format(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   //Get supported surface format number
@@ -306,7 +306,7 @@ void Physical::find_surface_format(vk::structure::Physical_device& physical_devi
   //---------------------------
   physical_device.formats = formats;
 }
-void Physical::find_presentation_mode(vk::structure::Physical_device& physical_device){
+void Physical::find_presentation_mode(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   //Get presentation mode number
@@ -323,7 +323,7 @@ void Physical::find_presentation_mode(vk::structure::Physical_device& physical_d
   //---------------------------
   physical_device.presentation_mode = presentation_mode;
 }
-void Physical::find_max_usable_sample_count(vk::structure::Physical_device& physical_device){
+void Physical::find_max_usable_sample_count(vk::device::structure::Physical& physical_device){
   VkSampleCountFlagBits max_sample;
   //---------------------------
 

@@ -41,7 +41,7 @@ void Collector::collect_vulkan_device(vk::structure::Vulkan* vk_struct){
   //---------------------------
 
   for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){
-    vk::structure::Physical_device& physical_device = vk_struct->instance.vec_physical_device[i];
+    vk::device::structure::Physical& physical_device = vk_struct->instance.vec_physical_device[i];
 
     //Device info
     prf::hardware::Device device_info;

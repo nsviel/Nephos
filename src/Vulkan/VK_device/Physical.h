@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk::structure{class Vulkan;}
-namespace vk::structure{class Physical_device;}
+namespace vk::device::structure{class Physical;}
 namespace vk::device{class Queue;}
 
 
@@ -20,21 +20,21 @@ public:
   void compute_extent();
 
   //Device selection
-  void rate_device_suitability(vk::structure::Physical_device& dev_physical);
-  bool device_suitability_onscreen(vk::structure::Physical_device& dev_physical);
-  bool device_suitability_offscreen(vk::structure::Physical_device& dev_physical);
+  void rate_device_suitability(vk::device::structure::Physical& dev_physical);
+  bool device_suitability_onscreen(vk::device::structure::Physical& dev_physical);
+  bool device_suitability_offscreen(vk::device::structure::Physical& dev_physical);
 
   //Specific properties
   void find_all_physical_device();
   void find_best_physical_device();
-  void find_physical_device_limits(vk::structure::Physical_device& dev_physical);
-  void find_physical_device_properties(vk::structure::Physical_device& dev_physical);
-  void find_physical_device_features(vk::structure::Physical_device& dev_physical);
-  void find_physical_device_support(vk::structure::Physical_device& dev_physical);
-  void find_surface_capability(vk::structure::Physical_device& dev_physical);
-  void find_surface_format(vk::structure::Physical_device& dev_physical);
-  void find_presentation_mode(vk::structure::Physical_device& dev_physical);
-  void find_max_usable_sample_count(vk::structure::Physical_device& dev_physical);
+  void find_physical_device_limits(vk::device::structure::Physical& dev_physical);
+  void find_physical_device_properties(vk::device::structure::Physical& dev_physical);
+  void find_physical_device_features(vk::device::structure::Physical& dev_physical);
+  void find_physical_device_support(vk::device::structure::Physical& dev_physical);
+  void find_surface_capability(vk::device::structure::Physical& dev_physical);
+  void find_surface_format(vk::device::structure::Physical& dev_physical);
+  void find_presentation_mode(vk::device::structure::Physical& dev_physical);
+  void find_max_usable_sample_count(vk::device::structure::Physical& dev_physical);
 
 private:
   vk::structure::Vulkan* vk_struct;

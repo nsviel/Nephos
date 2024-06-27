@@ -16,7 +16,7 @@ Queue::Queue(vk::structure::Vulkan* vk_struct){
 Queue::~Queue(){}
 
 //Queue family
-void Queue::find_queue_family_composition(vk::structure::Physical_device& physical_device){
+void Queue::find_queue_family_composition(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   uint32_t nb_queue_family = 0;
@@ -156,7 +156,7 @@ void Queue::create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_in
 }
 
 //Subfunction
-bool Queue::suitability_for_presentation(vk::structure::Physical_device& physical_device){
+bool Queue::suitability_for_presentation(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   bool is_device_suitable = false;
@@ -184,7 +184,7 @@ bool Queue::suitability_for_presentation(vk::structure::Physical_device& physica
   //---------------------------
   return is_device_suitable;
 }
-bool Queue::suitability_for_graphics(vk::structure::Physical_device& physical_device){
+bool Queue::suitability_for_graphics(vk::device::structure::Physical& physical_device){
   //---------------------------
 
   bool is_device_suitable = false;

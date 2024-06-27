@@ -1,18 +1,18 @@
 #pragma once
 
 #include <Vulkan/VK_queue/Structure/Pool.h>
-#include <Vulkan/VK_device/Structure/Physical_device.h>
+#include <Vulkan/VK_device/Structure/Physical.h>
 #include <vulkan/vulkan.h>
 
 
-namespace vk::structure{
+namespace vk::device::structure{
 
-struct Device{
+struct Logical{
   //---------------------------
 
   VkDevice handle = VK_NULL_HANDLE;
   vk::queue::structure::Pool queue;
-  vk::structure::Physical_device physical_device;
+  vk::device::structure::Physical physical_device;
 
   //---------------------------
 };

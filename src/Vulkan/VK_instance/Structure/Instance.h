@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_device/Structure/Physical_device.h>
+#include <Vulkan/VK_device/Structure/Physical.h>
 #include <vulkan/vulkan.h>
 #include <vector>
 
@@ -15,7 +15,7 @@ struct Instance{
   int max_frame_inflight = 2;
   std::vector<const char*> extension_instance;
   std::vector<const char*> extension_device;
-  std::vector<vk::structure::Physical_device> vec_physical_device;
+  std::vector<vk::device::structure::Physical> vec_physical_device;
 
   //---------------------------
 };
