@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace prf::graph::structure{
+namespace prf::dynamic{
 
 struct Task{
   //---------------------------

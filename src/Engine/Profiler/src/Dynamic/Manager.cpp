@@ -20,14 +20,14 @@ Manager::Manager(){
 Manager::~Manager(){}
 
 //Main function
-void Manager::add_profiler(prf::base::Profiler* profiler){
+void Manager::add_profiler(prf::dynamic::Profiler* profiler){
   //---------------------------
 
   this->list_profiler.push_back(profiler);
 
   //---------------------------
 }
-void Manager::remove_profiler(prf::base::Profiler* profiler){
+void Manager::remove_profiler(prf::dynamic::Profiler* profiler){
   //---------------------------
 
   profiler->clean();

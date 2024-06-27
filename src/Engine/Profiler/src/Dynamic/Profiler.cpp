@@ -9,7 +9,6 @@ namespace prf::graph{
 Profiler::Profiler(){
   //---------------------------
 
-  this->type = prf::base::GRAPH;
 
   //---------------------------
 }
@@ -17,7 +16,6 @@ Profiler::Profiler(std::string name){
   //---------------------------
 
   this->name = name;
-  this->type = prf::base::GRAPH;
 
   //---------------------------
 }

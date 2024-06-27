@@ -9,7 +9,7 @@ namespace prf::hardware{class Device;}
 namespace prf::hardware{class Thread;}
 namespace prf::hardware{class Queue;}
 namespace prf::hardware{class Collector;}
-namespace prf::base{class Profiler;}
+namespace prf::dynamic{class Profiler;}
 namespace vk{class Structure;}
 
 

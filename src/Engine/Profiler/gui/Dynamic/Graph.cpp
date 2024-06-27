@@ -20,7 +20,7 @@ Graph::Graph(prf::Node* node_profiler){
 Graph::~Graph(){}
 
 //Main function
-void Graph::draw_profiler(prf::base::Profiler* profiler){
+void Graph::draw_profiler(prf::dynamic::Profiler* profiler){
   prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler);
   //---------------------------
 
@@ -188,11 +188,11 @@ void Graph::draw_tasker_graph(prf::graph::Tasker* tasker, ImVec2 dimension){
   //---------------------------
 }
 void Graph::set_graphs_max_time(int value){
-  std::list<prf::base::Profiler*> list_profiler = prf_manager->get_list_profiler();
+  std::list<prf::dynamic::Profiler*> list_profiler = prf_manager->get_list_profiler();
   //---------------------------
 
   for(int i=0; i<list_profiler.size(); i++){
-    prf::base::Profiler* profiler = *next(list_profiler.begin(), i);
+    prf::dynamic::Profiler* profiler = *next(list_profiler.begin(), i);
 
     if(prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler)){
       std::list<prf::graph::Tasker*> list_tasker = graph->get_list_tasker();

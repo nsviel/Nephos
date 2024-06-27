@@ -5,12 +5,12 @@
 #include <list>
 
 namespace prf::graph{class Tasker;}
-namespace prf::base{class Profiler;}
+namespace prf::dynamic{class Profiler;}
 
 
 namespace prf::graph{
 
-class Profiler : public prf::base::Profiler
+class Profiler : public prf::dynamic::Profiler
 {
 public:
   //Constructor / Destructor

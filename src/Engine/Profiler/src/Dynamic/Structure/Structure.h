@@ -9,7 +9,7 @@
 
 namespace prf::dynamic{
 
-struct Tasker{
+struct Structure{
   //---------------------------
 
   utl::improfil::Plot plot;

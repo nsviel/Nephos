@@ -3,13 +3,7 @@
 #include <string>
 
 
-namespace prf::base{
-
-enum Type{
-  GRAPH = 0,
-  HARDWARE = 1,
-  VULKAN = 2,
-};
+namespace prf::dynamic{
 
 struct Profiler{
   //---------------------------

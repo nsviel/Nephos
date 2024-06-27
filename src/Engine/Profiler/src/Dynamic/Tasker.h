@@ -11,7 +11,7 @@ namespace prf::graph::structure{class Tasker;}
 
 namespace prf::graph{
 
-class Tasker : public prf::graph::structure::Tasker
+class Tasker : public prf::dynamic::Tasker
 {
 public:
   //Constructor / Destructor
@@ -21,6 +21,7 @@ public:
 public:
   //Main function
   void reset();
+  void loop(int fps = -1);
 
   //Loop function
   void loop_begin(int fps = -1);
@@ -31,8 +32,8 @@ public:
   void task_end(const std::string& name, float time = -1, glm::vec4 color = {});
 
   //Subfunction
-  prf::graph::structure::Task* retrieve_task(const std::string& name);
-  
+  prf::dynamic::Task* retrieve_task(const std::string& name);
+
 private:
   utl::timer::Chrono timer;
   utl::timer::fps::Counter* fps_counter;

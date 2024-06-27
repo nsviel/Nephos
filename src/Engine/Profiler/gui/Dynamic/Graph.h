@@ -4,7 +4,7 @@
 
 namespace prf{class Node;}
 namespace prf{class Manager;}
-namespace prf::base{class Profiler;}
+namespace prf::dynamic{class Profiler;}
 namespace prf::graph{class Tasker;}
 namespace prf::graph{class Profiler;}
 namespace utl::improfil{class Plot;}
@@ -22,7 +22,7 @@ public:
 
 public:
   //Main function
-  void draw_profiler(prf::base::Profiler* profiler);
+  void draw_profiler(prf::dynamic::Profiler* profiler);
 
   //Graph function
   void draw_info();
