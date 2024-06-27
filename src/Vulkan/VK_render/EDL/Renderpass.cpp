@@ -11,7 +11,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->shader_edl = new vk::render::edl::Shader(vk_struct);
-  this->vk_engine = new vk::main::Engine(vk_struct);
+  this->vk_renderpass = new vk::renderpass::Renderpass(vk_struct);
   this->vk_pipeline = new vk::renderpass::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
@@ -35,7 +35,7 @@ void Renderpass::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  vk_engine->add_renderpass_description(renderpass);
+  vk_renderpass->add_renderpass_description(renderpass);
 }
 void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
@@ -90,7 +90,7 @@ void Renderpass::update_binding(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk::render::edl::Structure* edl_struct = shader_edl->get_edl_struct();
-  vk::structure::Renderpass* renderpass_scene = vk_engine->get_renderpass(0);
+  vk::structure::Renderpass* renderpass_scene = vk_struct->render.vec_renderpass[0];
   vk::structure::Framebuffer* frame_scene = renderpass_scene->framebuffer;
   vk::structure::Pipeline* pipeline = subpass->get_pipeline();
 

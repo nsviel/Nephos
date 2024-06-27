@@ -1,10 +1,10 @@
 #pragma once
 
-namespace vk::main{class Engine;}
-namespace vk::gui{class Imgui;}
 namespace vk{class Structure;}
+namespace vk::renderpass{class Renderpass;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
+namespace vk::gui{class Imgui;}
 
 
 namespace vk::render::gui{
@@ -27,7 +27,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::main::Engine* vk_engine;
+  vk::renderpass::Renderpass* vk_renderpass;
   vk::gui::Imgui* vk_imgui;
 };
 

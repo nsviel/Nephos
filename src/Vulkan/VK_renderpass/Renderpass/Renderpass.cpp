@@ -100,5 +100,12 @@ void Renderpass::clean_renderpass(vk::structure::Renderpass* renderpass){
 
   //---------------------------
 }
+void Renderpass::add_renderpass_description(vk::structure::Renderpass* renderpass){
+  //---------------------------
+
+  vk_struct->render.vec_renderpass.push_back(renderpass);
+
+  //---------------------------
+}
 
 }

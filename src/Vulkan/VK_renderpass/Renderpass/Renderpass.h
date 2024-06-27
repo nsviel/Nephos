@@ -24,7 +24,8 @@ public:
   //Subfunction
   void create_renderpass(vk::structure::Renderpass* renderpass);
   void clean_renderpass(vk::structure::Renderpass* renderpass);
-
+  void add_renderpass_description(vk::structure::Renderpass* renderpass);
+  
 private:
   vk::Structure* vk_struct;
   vk::renderpass::Pipeline* vk_pipeline;

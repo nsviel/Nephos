@@ -37,18 +37,13 @@ class Engine
 public:
   //Constructor / Destructor
   Engine(vk::Structure* vk_struct);
-  ~Engine();
+  ~Engine(){}
 
 public:
   //Main function
   virtual void init(){}
   virtual void loop(){}
   virtual void clean(){}
-
-  //Main function
-  void add_renderpass_description(vk::structure::Renderpass* renderpass);
-  vk::structure::Renderpass* get_renderpass(int i);
-  void set_window(GLFWwindow* window);
 
 protected:
   vk::Structure* vk_struct;

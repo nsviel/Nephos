@@ -34,25 +34,5 @@ Engine::Engine(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Engine::~Engine(){}
-
-//Main function
-void Engine::add_renderpass_description(vk::structure::Renderpass* renderpass){
-  //---------------------------
-
-  vk_struct->render.vec_renderpass.push_back(renderpass);
-
-  //---------------------------
-}
-vk::structure::Renderpass* Engine::get_renderpass(int i){
-  //---------------------------
-
-  return vk_struct->render.vec_renderpass[i];
-
-  //---------------------------
-}
-void Engine::set_window(GLFWwindow* window){
-  vk_struct->window.handle = window;
-}
 
 }

@@ -1,12 +1,12 @@
 #pragma once
 
-namespace vk::main{class Engine;}
+namespace vk{class Structure;}
+namespace vk::renderpass{class Renderpass;}
 namespace vk::renderpass{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
 namespace vk::draw{class Drawer;}
-namespace vk{class Structure;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 namespace vk::render::scene{class Shader;}
@@ -46,7 +46,7 @@ private:
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
   vk::draw::Drawer* vk_drawer;
-  vk::main::Engine* vk_engine;
+  vk::renderpass::Renderpass* vk_renderpass;
   vk::renderpass::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::render::scene::Shader* shader_scene;

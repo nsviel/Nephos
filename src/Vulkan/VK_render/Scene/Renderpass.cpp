@@ -10,7 +10,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_engine = new vk::main::Engine(vk_struct);
+  this->vk_renderpass = new vk::renderpass::Renderpass(vk_struct);
   this->vk_pipeline = new vk::renderpass::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
@@ -34,7 +34,7 @@ void Renderpass::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  vk_engine->add_renderpass_description(renderpass);
+  vk_renderpass->add_renderpass_description(renderpass);
 }
 void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
