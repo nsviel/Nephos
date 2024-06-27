@@ -21,7 +21,7 @@ Command_buffer::Command_buffer(vk::structure::Vulkan* vk_struct){
 Command_buffer::~Command_buffer(){}
 
 //Pool function
-void Command_buffer::init_pool(vk::pool::Command_buffer* pool){
+void Command_buffer::init_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   //Number of command buffer
@@ -42,7 +42,7 @@ void Command_buffer::init_pool(vk::pool::Command_buffer* pool){
 
   //---------------------------
 }
-void Command_buffer::reset_pool(vk::pool::Command_buffer* pool){
+void Command_buffer::reset_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   //Clear all old command buffer
@@ -57,7 +57,7 @@ void Command_buffer::reset_pool(vk::pool::Command_buffer* pool){
 
   //---------------------------
 }
-void Command_buffer::clean_pool(vk::pool::Command_buffer* pool){
+void Command_buffer::clean_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   //Clear all old command buffer
@@ -72,7 +72,7 @@ void Command_buffer::clean_pool(vk::pool::Command_buffer* pool){
 }
 
 //Command buffer function
-void Command_buffer::create_command_buffer_primary(vk::pool::Command_buffer* pool, vk::structure::Command_buffer* command_buffer){
+void Command_buffer::create_command_buffer_primary(vk::pool::structure::Command_buffer* pool, vk::structure::Command_buffer* command_buffer){
   //---------------------------
 
   //Command buffer allocation
@@ -90,7 +90,7 @@ void Command_buffer::create_command_buffer_primary(vk::pool::Command_buffer* poo
   //---------------------------
 }
 void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data){
-  vk::pool::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->device.queue.transfer);
+  vk::pool::structure::Command_buffer* pool = vk_allocator->query_free_pool(&vk_struct->device.queue.transfer);
   //---------------------------
 
   //Command buffer allocation
@@ -109,7 +109,7 @@ void Command_buffer::create_command_buffer_secondary(vk::structure::Object* data
 }
 
 //Command buffer lifetime
-vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::pool::Command_buffer* pool){
+vk::structure::Command_buffer* Command_buffer::query_free_command_buffer(vk::pool::structure::Command_buffer* pool){
   if(pool == nullptr) return nullptr;
   //---------------------------
 
@@ -199,7 +199,7 @@ void Command_buffer::end_command_buffer(vk::structure::Command_buffer* command_b
 
   //---------------------------
 }
-int Command_buffer::find_num_available_command(vk::pool::Command_buffer* pool){
+int Command_buffer::find_num_available_command(vk::pool::structure::Command_buffer* pool){
   int num = 0;
   //---------------------------
 

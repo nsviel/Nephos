@@ -86,7 +86,7 @@ void Pool::clean_descriptor_pool(){
 }
 
 //Command pool
-void Pool::create_command_pool(vk::pool::Command_buffer* pool, int family_ID){
+void Pool::create_command_pool(vk::pool::structure::Command_buffer* pool, int family_ID){
   //---------------------------
 
   //Command pool info
@@ -103,7 +103,7 @@ void Pool::create_command_pool(vk::pool::Command_buffer* pool, int family_ID){
 
   //---------------------------
 }
-void Pool::reset_command_pool(vk::pool::Command_buffer* pool){
+void Pool::reset_command_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   VkResult result = vkResetCommandPool(vk_struct->device.handle, pool->allocator, 0);
@@ -113,7 +113,7 @@ void Pool::reset_command_pool(vk::pool::Command_buffer* pool){
 
   //---------------------------
 }
-void Pool::clean_command_pool(vk::pool::Command_buffer* pool){
+void Pool::clean_command_pool(vk::pool::structure::Command_buffer* pool){
   //---------------------------
 
   vkDestroyCommandPool(vk_struct->device.handle, pool->allocator, nullptr);

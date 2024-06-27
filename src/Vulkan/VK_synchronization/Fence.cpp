@@ -18,7 +18,7 @@ Fence::~Fence(){}
 
 //Pool function
 void Fence::init_pool(){
-  vk::pool::Fence* pool = &vk_struct->pools.fence;
+  vk::pool::structure::Fence* pool = &vk_struct->pools.fence;
   //---------------------------
 
   //Number of fence
@@ -88,7 +88,7 @@ void Fence::reset_fence(vk::synchro::structure::Fence* fence){
 
 //Subfunction
 vk::synchro::structure::Fence* Fence::query_free_fence(){
-  vk::pool::Fence* pool = &vk_struct->pools.fence;
+  vk::pool::structure::Fence* pool = &vk_struct->pools.fence;
   //---------------------------
 
   std::lock_guard<std::mutex> lock(pool->mutex);

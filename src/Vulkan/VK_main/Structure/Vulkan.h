@@ -38,7 +38,7 @@ struct Vulkan{
   vk::structure::Swapchain swapchain;
   vk::data::structure::Data data;
   vk::structure::Parameter param;
-  vk::structure::Pool pools;
+  vk::pool::structure::Pool pools;
   vk::structure::Command command;
   //vk::structure::Profiler profiler;
   vk::queue::structure::Class queue;

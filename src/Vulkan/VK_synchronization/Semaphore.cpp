@@ -17,7 +17,7 @@ Semaphore::~Semaphore(){}
 
 //Pool function
 void Semaphore::init_pool(){
-  vk::pool::Semaphore* pool = &vk_struct->pools.semaphore;
+  vk::pool::structure::Semaphore* pool = &vk_struct->pools.semaphore;
   //---------------------------
 
   //Number of semaphore
@@ -37,7 +37,7 @@ void Semaphore::init_pool(){
   //---------------------------
 }
 void Semaphore::clean_pool(){
-  vk::pool::Semaphore* pool = &vk_struct->pools.semaphore;
+  vk::pool::structure::Semaphore* pool = &vk_struct->pools.semaphore;
   //---------------------------
 
   for(int i=0; i<pool->size; i++){
@@ -48,7 +48,7 @@ void Semaphore::clean_pool(){
   //---------------------------
 }
 void Semaphore::reset_pool(){
-  vk::pool::Semaphore* pool = &vk_struct->pools.semaphore;
+  vk::pool::structure::Semaphore* pool = &vk_struct->pools.semaphore;
   //---------------------------
 
   for(int i=0; i<pool->size; i++){
@@ -104,7 +104,7 @@ void Semaphore::reset_semaphore(vk::synchro::structure::Semaphore* semaphore){
 
 //Subfunction
 vk::synchro::structure::Semaphore* Semaphore::query_free_semaphore(){
-  vk::pool::Semaphore* pool = &vk_struct->pools.semaphore;
+  vk::pool::structure::Semaphore* pool = &vk_struct->pools.semaphore;
   //---------------------------
 
   std::lock_guard<std::mutex> lock(pool->mutex);

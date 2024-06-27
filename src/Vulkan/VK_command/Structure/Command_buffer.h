@@ -17,7 +17,7 @@ struct Command_buffer{
   //Command
   std::string name = "";
   std::mutex mutex;
-  vk::structure::Query query;
+  vk::pool::structure::Query query;
   vk::synchro::structure::Fence* fence = nullptr;
   VkCommandBuffer handle = VK_NULL_HANDLE;
   float timestamp = 0;

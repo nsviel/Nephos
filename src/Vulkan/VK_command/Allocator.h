@@ -2,7 +2,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::queue::structure{class Queue;}
-namespace vk::pool{class Command_buffer;}
+namespace vk::pool::structure{class Command_buffer;}
 namespace vk::command{class Command_buffer;}
 namespace vk::instance{class Pool;}
 
@@ -28,7 +28,7 @@ public:
   void clean_command_buffer_pool(vk::queue::structure::Queue* queue);
 
   //Command buffer pool use
-  vk::pool::Command_buffer* query_free_pool(vk::queue::structure::Queue* queue);
+  vk::pool::structure::Command_buffer* query_free_pool(vk::queue::structure::Queue* queue);
 
 private:
   vk::structure::Vulkan* vk_struct;

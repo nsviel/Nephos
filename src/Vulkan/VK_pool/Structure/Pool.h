@@ -5,14 +5,14 @@
 #include <Vulkan/VK_pool/Structure/Descriptor.h>
 
 
-namespace vk::structure{
+namespace vk::pool::structure{
 
 struct Pool{
   //---------------------------
 
-  vk::pool::Fence fence;
-  vk::pool::Semaphore semaphore;
-  vk::pool::Descriptor descriptor;
+  vk::pool::structure::Fence fence;
+  vk::pool::structure::Semaphore semaphore;
+  vk::pool::structure::Descriptor descriptor;
 
   //---------------------------
 };

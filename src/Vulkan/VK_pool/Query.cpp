@@ -16,10 +16,10 @@ Query::Query(vk::structure::Vulkan* vk_struct){
 Query::~Query(){}
 
 //Main function
-vk::structure::Query Query::create_query_pool(){
+vk::pool::structure::Query Query::create_query_pool(){
   //---------------------------
 
-  vk::structure::Query query_pool;
+  vk::pool::structure::Query query_pool;
   query_pool.nb_query = 10;
 
   // Allocate space in the query pool for timestamp queries
@@ -32,7 +32,7 @@ vk::structure::Query Query::create_query_pool(){
   //---------------------------
   return query_pool;
 }
-void Query::clean_query_pool(vk::structure::Query* query_pool){
+void Query::clean_query_pool(vk::pool::structure::Query* query_pool){
   //---------------------------
 
   vkDestroyQueryPool(vk_struct->device.handle, query_pool->pool, nullptr);
@@ -61,7 +61,7 @@ void Query::end_query_pass(vk::structure::Command_buffer* command_buffer){
   //---------------------------
 }
 void Query::find_query_timestamp(vk::structure::Command_buffer* command_buffer){
-  vk::structure::Query* query = &command_buffer->query;
+  vk::pool::structure::Query* query = &command_buffer->query;
   //---------------------------
 
   vk_struct->profiler->tasker_gpu->task_follow_begin(command_buffer->name);

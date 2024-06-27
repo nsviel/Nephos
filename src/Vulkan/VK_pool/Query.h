@@ -2,7 +2,7 @@
 
 namespace vk::structure{class Vulkan;}
 namespace vk::structure{class Command_buffer;}
-namespace vk::structure{class Query;}
+namespace vk::pool::structure{class Query;}
 
 
 namespace vk::instance{
@@ -16,8 +16,8 @@ public:
 
 public:
   //Main function
-  vk::structure::Query create_query_pool();
-  void clean_query_pool(vk::structure::Query* query_pool);
+  vk::pool::structure::Query create_query_pool();
+  void clean_query_pool(vk::pool::structure::Query* query_pool);
 
   //Subfunction
   void begin_query_pass(vk::structure::Command_buffer* command_buffer);

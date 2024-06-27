@@ -9,7 +9,7 @@
 #include <mutex>
 
 
-namespace vk::pool{
+namespace vk::pool::structure{
 
 struct Descriptor{
   //---------------------------

@@ -15,7 +15,7 @@ struct Queue{
   int family_ID = -1;
   int family_index = 0;
 
-  std::vector<vk::pool::Command_buffer*> vec_pool;
+  std::vector<vk::pool::structure::Command_buffer*> vec_pool;
 
   //---------------------------
 };

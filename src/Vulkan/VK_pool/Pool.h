@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk::structure{class Vulkan;}
-namespace vk::pool{class Command_buffer;}
+namespace vk::pool::structure{class Command_buffer;}
 namespace vk::main{class Thread;}
 
 
@@ -25,9 +25,9 @@ public:
   void clean_descriptor_pool();
 
   //Command pool
-  void create_command_pool(vk::pool::Command_buffer* pool, int family_ID);
-  void reset_command_pool(vk::pool::Command_buffer* pool);
-  void clean_command_pool(vk::pool::Command_buffer* pool);
+  void create_command_pool(vk::pool::structure::Command_buffer* pool, int family_ID);
+  void reset_command_pool(vk::pool::structure::Command_buffer* pool);
+  void clean_command_pool(vk::pool::structure::Command_buffer* pool);
 
 private:
   vk::structure::Vulkan* vk_struct;

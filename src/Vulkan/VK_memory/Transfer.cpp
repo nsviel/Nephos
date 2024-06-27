@@ -41,7 +41,7 @@ void Transfer::copy_buffer_to_image(vk::structure::Image* image, VkBuffer buffer
   //---------------------------
 
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
+  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
@@ -72,7 +72,7 @@ void Transfer::copy_image_to_buffer(vk::structure::Image* image, VkBuffer buffer
   //---------------------------
 
   //Image transition from undefined layout to read only layout
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
+  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
@@ -100,7 +100,7 @@ void Transfer::copy_image_to_image_standalone(vk::structure::Image* image_src, v
   //---------------------------
 
   // Image transition from undefined layout to transfer source layout
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
+  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
@@ -134,7 +134,7 @@ void Transfer::blit_image_to_image(vk::structure::Image* image_src, vk::structur
   //---------------------------
 
   // Image transition from undefined layout to transfer source layout
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
+  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
@@ -171,7 +171,7 @@ vk::structure::Command_buffer* Transfer::copy_image_to_image(vk::structure::Imag
   //---------------------------
 
   // Image transition from undefined layout to transfer source layout
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
+  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.graphics);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   vk_command_buffer->start_command_buffer_primary(command_buffer);
 
@@ -230,7 +230,7 @@ void Transfer::copy_data_to_gpu(vk::data::structure::Buffer* buffer, vk::data::s
   vkUnmapMemory(vk_struct->device.handle, stagger->mem);
 
   // Create command buffer to cpy on gpu
-  vk::pool::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.transfer);
+  vk::pool::structure::Command_buffer* pool = vk_command_allocator->query_free_pool(&vk_struct->device.queue.transfer);
   vk::structure::Command_buffer* command_buffer = vk_command_buffer->query_free_command_buffer(pool);
   command_buffer->name = "transfer::data";
   if(command_buffer == nullptr) return;
