@@ -34,10 +34,10 @@ Operation::~Operation(){}
 void Operation::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  this->thread_idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
+  this->thread_idle = false;
   thread_pool->add_task(task_function);
 
   //---------------------------
@@ -45,11 +45,11 @@ void Operation::start_thread(dyn::base::Sensor* sensor){
 void Operation::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  //dyn_recorder->start_thread(sensor);
-  //dyn_normal->start_thread(sensor);
-  //dyn_radio->start_thread(sensor);
+  dyn_recorder->start_thread(sensor);
+  dyn_normal->start_thread(sensor);
+  dyn_radio->start_thread(sensor);
 
-  //this->colorize_object(sensor);
+  this->colorize_object(sensor);
   this->update_object(sensor);
 
   //---------------------------

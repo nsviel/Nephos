@@ -21,6 +21,7 @@ Node::Node(app::Node* node_app){
 
   this->app_running = node_app->get_app_running();
   this->eng_struct = new eng::Structure();
+  this->thread_pool = new utl::thread::Pool(50);
   this->node_vulkan = new vk::Node(app_running);
   this->node_profiler = new prf::Node(this);
   this->node_camera = new cam::Node(this);
@@ -29,7 +30,6 @@ Node::Node(app::Node* node_app){
   this->node_dynamic = new dyn::Node(this);
   this->node_render = new rnd::Node(this);
   this->node_loader = new ldr::Node(this);
-  this->thread_pool = new utl::thread::Pool(50);
 
   this->add_node_panel(node_camera);
   this->add_node_panel(node_loader);

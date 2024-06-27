@@ -57,7 +57,7 @@ void Image::run_thread(k4n::structure::Sensor* sensor){
   k4n_cloud->start_thread(sensor);
 
   //Dynamic operation
-  //dyn_operation->start_thread(sensor);
+  dyn_operation->start_thread(sensor);
 
   //---------------------------
   this->thread_idle = true;

@@ -28,10 +28,10 @@ Cloud::~Cloud(){}
 void Cloud::start_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
-  this->thread_idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
+  this->thread_idle = false;
   thread_pool->add_task(task_function);
 
   //---------------------------
