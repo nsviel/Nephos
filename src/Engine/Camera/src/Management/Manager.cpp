@@ -36,7 +36,7 @@ void Manager::create_camera(){
 
   cam::Entity* camera = new cam::Entity();
   camera->ID = cam_struct->ID++;
-  camera->name = "camera_" + to_string(camera->ID);
+  camera->name = "camera_" + std::to_string(camera->ID);
   camera->is_suppressible = false;
   camera->pose.movable = false;
 

@@ -95,7 +95,7 @@ bool SLAM_assessment::compute_assessment_time(float time){
   //---------------------------
 
   if(time > thres_time){
-    std::string log = "SLAM time too long: " + to_string((int)time) + "/" + to_string(thres_time) + " ms";
+    std::string log = "SLAM time too long: " + std::to_string((int)time) + "/" + std::to_string(thres_time) + " ms";
     console.AddLog("error", log);
     return false;
   }else{
@@ -113,7 +113,7 @@ bool SLAM_assessment::compute_assessment_abs(Frame* frame_m0, Frame* frame_m1){
     frame_m0->ego_trans = (frame_m0->trans_e - frame_m0->trans_b).norm();
     if(frame_m0->ego_trans > thres_ego_trans){
 
-      std::string log = "Ego translation [" + to_string(frame_m0->ego_trans) + "/" + to_string(thres_ego_trans) + "]";
+      std::string log = "Ego translation [" + std::to_string(frame_m0->ego_trans) + "/" + std::to_string(thres_ego_trans) + "]";
       console.AddLog("error", log);
       success = false;
     }
@@ -122,7 +122,7 @@ bool SLAM_assessment::compute_assessment_abs(Frame* frame_m0, Frame* frame_m1){
     frame_m0->ego_rotat = AngularDistance(frame_m0->rotat_b, frame_m0->rotat_e);
     if(frame_m0->ego_rotat > thres_ego_rotat){
 
-      std::string log = "Ego rotation [" + to_string(frame_m0->ego_rotat) + "/" + to_string(thres_ego_rotat) + "]";
+      std::string log = "Ego rotation [" + std::to_string(frame_m0->ego_rotat) + "/" + std::to_string(thres_ego_rotat) + "]";
       console.AddLog("error", log);
       success = false;
     }
@@ -133,13 +133,13 @@ bool SLAM_assessment::compute_assessment_abs(Frame* frame_m0, Frame* frame_m1){
       frame_m0->diff_rotat = AngularDistance(frame_m1->rotat_b, frame_m0->rotat_b) + AngularDistance(frame_m1->rotat_e, frame_m0->rotat_e);
       if(frame_m0->diff_trans > thres_pose_trans){
 
-        std::string log = "Pose translation [" + to_string(frame_m0->diff_trans) + "/" + to_string(thres_pose_trans) + "]";
+        std::string log = "Pose translation [" + std::to_string(frame_m0->diff_trans) + "/" + std::to_string(thres_pose_trans) + "]";
         console.AddLog("error", log);
         success = false;
       }
       if(frame_m0->diff_rotat > thres_pose_rotat){
 
-        std::string log = "Pose rotation [" + to_string(frame_m0->diff_rotat) + "/" + to_string(thres_pose_rotat) + "]";
+        std::string log = "Pose rotation [" + std::to_string(frame_m0->diff_rotat) + "/" + std::to_string(thres_pose_rotat) + "]";
         console.AddLog("error", log);
         success = false;
       }
@@ -148,7 +148,7 @@ bool SLAM_assessment::compute_assessment_abs(Frame* frame_m0, Frame* frame_m1){
     //Test 4: check if ICP has converged
     if(frame_m0->opti_score > thres_optimMinNorm){
 
-      std::string log = "Optimization score [" + to_string(frame_m0->opti_score) + "/" + to_string(thres_optimMinNorm) + "]";
+      std::string log = "Optimization score [" + std::to_string(frame_m0->opti_score) + "/" + std::to_string(thres_optimMinNorm) + "]";
       console.AddLog("error", log);
       success = false;
     }
@@ -181,47 +181,47 @@ bool SLAM_assessment::compute_assessment_rlt(Collection* collection, int subset_
 
     //Test 1: check ego distance
     if(frame_m0->ego_trans > sum_ego_trans + 1){
-      std::string log = "Ego relative translation [" + to_string(frame_m0->ego_trans) + "/" + to_string(sum_ego_trans) + "]";
+      std::string log = "Ego relative translation [" + std::to_string(frame_m0->ego_trans) + "/" + std::to_string(sum_ego_trans) + "]";
       console.AddLog("error", log);
       success = false;
     }
 
     //Test 2: Ego angular distance
     if(frame_m0->ego_rotat > sum_ego_rotat + 1 && sum_ego_rotat != 0){
-      std::string log = "Ego relative rotation [" + to_string(frame_m0->ego_rotat) + "/" + to_string(sum_ego_rotat) + "]";
+      std::string log = "Ego relative rotation [" + std::to_string(frame_m0->ego_rotat) + "/" + std::to_string(sum_ego_rotat) + "]";
       console.AddLog("error", log);
       success = false;
     }
 
     //Test 3: check relative distance between two poses
     if(frame_m0->diff_trans > sum_diff_trans + 1){
-      std::string log = "Pose relative translation [" + to_string(frame_m0->diff_trans) + "/" + to_string(sum_diff_trans) + "]";
+      std::string log = "Pose relative translation [" + std::to_string(frame_m0->diff_trans) + "/" + std::to_string(sum_diff_trans) + "]";
       console.AddLog("error", log);
       success = false;
     }
 
     //Test 4: check relative rotation between two poses
     if(frame_m0->diff_rotat > sum_diff_rotat + 1 && frame_m0->diff_rotat != 0 && sum_diff_rotat != 0){
-      std::string log = "Pose relative rotation [" + to_string(frame_m0->diff_rotat) + "/" + to_string(sum_diff_rotat) + "]";
+      std::string log = "Pose relative rotation [" + std::to_string(frame_m0->diff_rotat) + "/" + std::to_string(sum_diff_rotat) + "]";
       console.AddLog("error", log);
       success = false;
     }
 
     //Test 5: check if ICP has converged
     if(frame_m0->opti_score > sum_opti_score + 1){
-      std::string log = "Optimization relative score [" + to_string(frame_m0->opti_score) + "/" + to_string(sum_opti_score) + "]";
+      std::string log = "Optimization relative score [" + std::to_string(frame_m0->opti_score) + "/" + std::to_string(sum_opti_score) + "]";
       console.AddLog("error", log);
       success = false;
     }
 
     //Test 6: restriction on X & Y rotation axis
     if(diff_angle.x > thres_diff_angle){
-      std::string log = "Relative X axis rotation [" + to_string(diff_angle.x) + "/" + to_string(thres_diff_angle) + "]";
+      std::string log = "Relative X axis rotation [" + std::to_string(diff_angle.x) + "/" + std::to_string(thres_diff_angle) + "]";
       console.AddLog("error", log);
       success = false;
     }
     if(diff_angle.y > thres_diff_angle){
-      std::string log = "Relative Y axis rotation [" + to_string(diff_angle.y) + "/" + to_string(thres_diff_angle) + "]";
+      std::string log = "Relative Y axis rotation [" + std::to_string(diff_angle.y) + "/" + std::to_string(thres_diff_angle) + "]";
       console.AddLog("error", log);
       success = false;
     }
@@ -234,7 +234,7 @@ bool SLAM_assessment::compute_assessment_rsd(Frame* frame){
   //---------------------------
 
   if(frame->ID != 0 && frame->nb_residual < nb_residual_min){
-    std::string log = "Not enough keypoints: " + to_string(frame->nb_residual) + "/" + to_string(nb_residual_min);
+    std::string log = "Not enough keypoints: " + std::to_string(frame->nb_residual) + "/" + std::to_string(nb_residual_min);
     console.AddLog("error", log);
     return false;
   }

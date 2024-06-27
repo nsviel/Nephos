@@ -249,7 +249,7 @@ void SLAM_map::save_local_cloud(){
       Eigen::Vector4d& point = voxel_xyz[i];
 
       glm::vec3 xyz = glm::vec3(point(0), point(1), point(2));
-      glm::vec4 rgb = vec4(point(3), point(3), point(3), 1);
+      glm::vec4 rgb = glm::vec4(point(3), point(3), point(3), 1);
 
       cloud->xyz.push_back(xyz);
       cloud->I.push_back(point(3));

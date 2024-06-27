@@ -80,7 +80,7 @@ void Plot::add_vec_task(std::vector<utl::improfil::Task> vec_task){
   for(int i=0; i<vec_task.size(); i++){
     utl::improfil::Task& task = vec_task[i];
 
-    if(task.color == vec4(0, 0, 0, 0)){
+    if(task.color == glm::vec4(0, 0, 0, 0)){
       this->add_task(task.ts_begin, task.ts_end, task.name);
     }else{
       this->add_task(task.ts_begin, task.ts_end, task.name, task.color);
@@ -91,7 +91,7 @@ void Plot::add_vec_task(std::vector<utl::improfil::Task> vec_task){
 }
 
 //Subfunction
-vec4 Plot::get_next_color(){
+glm::vec4 Plot::get_next_color(){
   glm::vec4 color;
   //---------------------------
 

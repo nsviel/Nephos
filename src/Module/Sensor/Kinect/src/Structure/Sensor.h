@@ -48,7 +48,7 @@ struct Sensor : public dyn::base::Sensor{
     //Convert it into 3D coordinate
     k4a_float3_t target_xyz;
     bool success = device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
-    glm::vec4 xyzw = vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
+    glm::vec4 xyzw = glm::vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
 
     //Apply transformation
     float inv_scale = 1.0f / 1000.0f;

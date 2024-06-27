@@ -32,8 +32,8 @@ void Plot::init(){
   plot->IfR.axis_x.min = sphere->R_range.x;
   plot->IfR.axis_x.max = sphere->R_range.y;
   plot->IfR.axis_x.size = sphere->R_size;
-  plot->IfR.axis_x.data = vector<float>(sphere->R_size, 0.0f);
-  plot->IfR.axis_y.data = vector<float>(sphere->R_size, 0.0f);
+  plot->IfR.axis_x.data = std::vector<float>(sphere->R_size, 0.0f);
+  plot->IfR.axis_y.data = std::vector<float>(sphere->R_size, 0.0f);
 
   //I(It)
   plot->IfIt.title = "I(It)";
@@ -41,8 +41,8 @@ void Plot::init(){
   plot->IfIt.axis_x.min = sphere->It_range.x;
   plot->IfIt.axis_x.max = sphere->It_range.y;
   plot->IfIt.axis_x.size = sphere->It_size;
-  plot->IfIt.axis_x.data = vector<float>(sphere->It_size, 0.0f);
-  plot->IfIt.axis_y.data = vector<float>(sphere->It_size, 0.0f);
+  plot->IfIt.axis_x.data = std::vector<float>(sphere->It_size, 0.0f);
+  plot->IfIt.axis_y.data = std::vector<float>(sphere->It_size, 0.0f);
 
   //I(R, It)
   plot->IfRIt.title = "I(R, It)";
@@ -57,7 +57,7 @@ void Plot::init(){
   plot->IfRIt.axis_z.size = sphere->size;
   plot->IfRIt.axis_z.min = sphere->I_range.x;
   plot->IfRIt.axis_z.max = sphere->I_range.y;
-  plot->IfRIt.axis_z.data = vector<float>(sphere->size, 0.0f);
+  plot->IfRIt.axis_z.data = std::vector<float>(sphere->size, 0.0f);
 
   //---------------------------
 }

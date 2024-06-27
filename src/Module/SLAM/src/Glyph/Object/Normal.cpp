@@ -13,7 +13,7 @@ Normal::Normal(){
   this->width = 1;
   this->size = 1;
   this->is_visible = false;
-  this->color = vec4(0.11f, 0.35f, 0.69f, 1.0f);
+  this->color = glm::vec4(0.11f, 0.35f, 0.69f, 1.0f);
 
   //---------------------------
 }

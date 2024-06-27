@@ -380,7 +380,7 @@ void Image::find_color_to_depth(k4n::structure::Sensor* sensor){
 }
 
 //Subfunction
-string Image::retrieve_format_from_k4a(k4a_image_format_t color_format){
+std::string Image::retrieve_format_from_k4a(k4a_image_format_t color_format){
   std::string format = "";
   //---------------------------
 

@@ -59,7 +59,7 @@ void Tasker::loop_end(){
   if(is_fps_control){
     this->task_begin("sleep");
     fps_control->stop_loop();
-    this->task_end("sleep", -1, vec4(50, 50, 50, 255));
+    this->task_end("sleep", -1, glm::vec4(50, 50, 50, 255));
   }
 
   //Get loop fps count
@@ -98,7 +98,7 @@ void Tasker::task_begin(std::string name, float time){
 */
   //---------------------------
 }
-void Tasker::task_end(const std::string& name, float time, vec4 color){
+void Tasker::task_end(const std::string& name, float time, glm::vec4 color){
   //---------------------------
 /*
   //Search for corresponding task
@@ -115,7 +115,7 @@ void Tasker::task_end(const std::string& name, float time, vec4 color){
   }else{
     task->ts_end = time;
   }
-  if(color != vec4{0, 0, 0, 0}){
+  if(color != glm::vec4{0, 0, 0, 0}){
     task->color = color;
   }
 */

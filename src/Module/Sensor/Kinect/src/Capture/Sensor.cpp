@@ -16,7 +16,7 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
 
   this->vec_recorder.push_back(new k4n::capture::Recorder());
   this->device.idx_dev = index;
-  this->name = "capture_" + to_string(index);
+  this->name = "capture_" + std::to_string(index);
   this->data.name = name;
 
   //---------------------------

@@ -100,7 +100,7 @@ void VLP16::parse_blocks(){
 
     // 0xffee is upper block
     if(block_flag != 65518){
-      std::string log = "Capture - Problem block flag "+to_string(block_flag)+" instead of "+to_string(65518);
+      std::string log = "Capture - Problem block flag "+ std::to_string(block_flag)+" instead of "+ std::to_string(65518);
       std::cout<<log<<std::endl;
       return;
     }
@@ -317,7 +317,7 @@ void VLP16::supress_empty_data(){
 }
 
 //Subsubfunctions
-vector<float> VLP16::calc_timing_offsets(){
+std::vector<float> VLP16::calc_timing_offsets(){
     std::vector<float> timing_offsets;
     //-----------------------
 

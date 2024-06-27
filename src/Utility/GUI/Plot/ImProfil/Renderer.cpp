@@ -133,7 +133,7 @@ void Renderer::render_serie(ImDrawList *draw_list){
   //---------------------------
 
   //Objectif outline zone
-  this->draw_zone(draw_list, 0, 16.7f, vec4(44, 150, 44, 30));
+  this->draw_zone(draw_list, 0, 16.7f, glm::vec4(44, 150, 44, 30));
 
   for(int i=0; i<config.vec_bar.size(); i++){
     // Get bar index compared to the current bar
@@ -159,8 +159,8 @@ void Renderer::render_serie(ImDrawList *draw_list){
   this->render_background_tics(draw_list);
 
   //Objectif outline line
-  this->draw_line_at_time(draw_list, 16.7f, 1, vec4(44, 150, 44, 255));
-  this->draw_line_at_time(draw_list, 33.3f, 1, vec4(150, 150, 44, 255));
+  this->draw_line_at_time(draw_list, 16.7f, 1, glm::vec4(44, 150, 44, 255));
+  this->draw_line_at_time(draw_list, 33.3f, 1, glm::vec4(150, 150, 44, 255));
 
   //---------------------------
 }
@@ -254,7 +254,7 @@ void Renderer::render_serie_task_rect(ImDrawList *draw_list, utl::improfil::Task
 
   //---------------------------
 }
-void Renderer::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, vec4 color){
+void Renderer::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoint, glm::vec2 leftMaxPoint, glm::vec2 rightMinPoint, glm::vec2 rightMaxPoint, glm::vec4 color){
   //---------------------------
 
   this->draw_rect(draw_list, leftMinPoint, leftMaxPoint, color, true);
@@ -269,7 +269,7 @@ void Renderer::render_legend_marker(ImDrawList *draw_list, glm::vec2 leftMinPoin
 
   //---------------------------
 }
-void Renderer::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, vec4 col, utl::improfil::Task task){
+void Renderer::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint, glm::vec4 col, utl::improfil::Task task){
   //---------------------------
 
   glm::vec2 text_margin = glm::vec2(5.0f, -3.0f);
@@ -288,7 +288,7 @@ void Renderer::render_legend_text(ImDrawList *draw_list, glm::vec2 rightMaxPoint
 }
 
 //Primitives
-void Renderer::draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickness, vec4 color){
+void Renderer::draw_line_at_time(ImDrawList *draw_list, float time_ms, float thickness, glm::vec4 color){
   //---------------------------
 
   float scaling_factor = config.graph_dim.y / config.max_time_s;
@@ -302,7 +302,7 @@ void Renderer::draw_line_at_time(ImDrawList *draw_list, float time_ms, float thi
 
   //---------------------------
 }
-void Renderer::draw_zone(ImDrawList *draw_list, float ts_begin_ms, float ts_end_ms, vec4 color){
+void Renderer::draw_zone(ImDrawList *draw_list, float ts_begin_ms, float ts_end_ms, glm::vec4 color){
   //---------------------------
 
   float scaling_factor = config.graph_dim.y / config.max_time_s;
@@ -320,7 +320,7 @@ void Renderer::draw_zone(ImDrawList *draw_list, float ts_begin_ms, float ts_end_
 
   //---------------------------
 }
-void Renderer::draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, vec4 color, bool filled = true){
+void Renderer::draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 maxPoint, glm::vec4 color, bool filled = true){
   //---------------------------
 
   if(filled)
@@ -330,14 +330,14 @@ void Renderer::draw_rect(ImDrawList *draw_list, glm::vec2 minPoint, glm::vec2 ma
 
   //---------------------------
 }
-void Renderer::draw_text(ImDrawList *draw_list, glm::vec2 point, vec4 color, const char *text){
+void Renderer::draw_text(ImDrawList *draw_list, glm::vec2 point, glm::vec4 color, const char *text){
   //---------------------------
 
   draw_list->AddText(ImVec2(point.x, point.y), IM_COL32(color.x, color.y, color.z, color.w), text);
 
   //---------------------------
 }
-void Renderer::draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, vec4 color, bool filled = true){
+void Renderer::draw_triangle(ImDrawList *draw_list, std::array<glm::vec2, 3> points, glm::vec4 color, bool filled = true){
   //---------------------------
 
   if(filled)

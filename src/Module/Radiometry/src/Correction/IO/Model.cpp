@@ -52,7 +52,7 @@ void Model::write_device_info(dyn::base::Sensor* sensor, std::string& path){
   //Depth modes
   for(int i=0; i<sensor->vec_depth_mode.size(); i++){
     std::string& depth_mode = sensor->vec_depth_mode[i];
-    utl::json::write_value(path, "depth_mode" + to_string(i), depth_mode);
+    utl::json::write_value(path, "depth_mode" + std::to_string(i), depth_mode);
   }
 
   //---------------------------
@@ -82,7 +82,7 @@ void Model::write_depth_mode_model(dyn::base::Sensor* sensor, std::string& path)
   //Coefficient
   for(int i=0; i<model->coefficient.size(); i++){
     float& coef = model->coefficient[i];
-    utl::json::write_value(path, depth_mode + ".coefficient." + to_string(i), coef);
+    utl::json::write_value(path, depth_mode + ".coefficient." + std::to_string(i), coef);
   }
 
   //---------------------------
@@ -91,12 +91,12 @@ void Model::read_device_info(dyn::base::Sensor* sensor, std::string& path){
   //---------------------------
 
   //Info
-  //sensor->serial_number = utl::json::read_value<string>(path, "info.serial_number");
+  //sensor->serial_number = utl::json::read_value<std::string>(path, "info.serial_number");
 
   //Depth modes
   for(int i=0; i<sensor->vec_depth_mode.size(); i++){
     std::string& depth_mode = sensor->vec_depth_mode[i];
-    utl::json::write_value(path, "depth_mode" + to_string(i), depth_mode);
+    utl::json::write_value(path, "depth_mode" + std::to_string(i), depth_mode);
   }
 
   //---------------------------
@@ -108,7 +108,7 @@ void Model::read_depth_mode_model(dyn::base::Sensor* sensor, std::string& path){
   std::string depth_mode = "NFOV";
 
   model->rmse = utl::json::read_value<float>(path, depth_mode + ".model_rmse");
-  std::string path_measure = utl::json::read_value<string>(path, depth_mode + ".name_measure");
+  std::string path_measure = utl::json::read_value<std::string>(path, depth_mode + ".name_measure");
   rad_struct->measure.path.insert(path_measure);
 
   //X variable
@@ -125,7 +125,7 @@ void Model::read_depth_mode_model(dyn::base::Sensor* sensor, std::string& path){
   model->coefficient.clear();
   int nb_coefficient = utl::json::read_value<int>(path, depth_mode + ".nb_coefficient");
   for(int i=0; i<nb_coefficient; i++){
-    float coef = utl::json::read_value<float>(path, depth_mode + ".coefficient." +  to_string(i));
+    float coef = utl::json::read_value<float>(path, depth_mode + ".coefficient." + std::to_string(i));
     model->coefficient.push_back(coef);
   }
 

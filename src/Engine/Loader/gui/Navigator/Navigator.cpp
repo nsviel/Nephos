@@ -91,13 +91,13 @@ void Navigator::draw_header(ldr::base::Path& path){
     static char str_n[256];
     ImGui::SetNextItemWidth(125);
     if(ImGui::InputText("##addfolder", str_n, IM_ARRAYSIZE(str_n), ImGuiInputTextFlags_EnterReturnsTrue)){
-      std::string path_new_dir = path.folder + "/" + (string)str_n;
+      std::string path_new_dir = path.folder + "/" + (std::string)str_n;
       utl::directory::create(path_new_dir);
       ImGui::CloseCurrentPopup();
     }
     ImGui::SameLine();
     if(ImGui::Button("Create##addfolder")){
-      std::string path_new_dir = path.folder + "/" + (string)str_n;
+      std::string path_new_dir = path.folder + "/" + (std::string)str_n;
       utl::directory::create(path_new_dir);
       ImGui::CloseCurrentPopup();
     }

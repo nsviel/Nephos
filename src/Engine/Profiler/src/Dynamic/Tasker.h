@@ -28,7 +28,7 @@ public:
 
   //Task function
   void task_begin(std::string name, float time = -1);
-  void task_end(const std::string& name, float time = -1, vec4 color = {});
+  void task_end(const std::string& name, float time = -1, glm::vec4 color = {});
 
   //Subfunction
   prf::graph::structure::Task* retrieve_task(const std::string& name);

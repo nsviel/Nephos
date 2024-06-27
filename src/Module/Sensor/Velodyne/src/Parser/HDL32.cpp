@@ -279,7 +279,7 @@ void HDL32::final_check(utl::base::Data* cloud){
 }
 
 //Subsubfunctions
-vector<float> HDL32::calc_timing_offsets(){
+std::vector<float> HDL32::calc_timing_offsets(){
     std::vector<float> timing_offsets;
     //-----------------------
 

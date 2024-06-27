@@ -112,7 +112,7 @@ void Panel::display_path(utl::base::Element* element){
     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
     ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
     if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
-      ldr_struct->transformation.path.name = (string)str_n;
+      ldr_struct->transformation.path.name = (std::string)str_n;
     }
     ImGui::PopStyleColor(2);
   }

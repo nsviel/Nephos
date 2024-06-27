@@ -8,7 +8,7 @@ Matching::Matching(){
   //---------------------------
 
   this->name = "matching";
-  this->color = vec4(0.11f, 0.35f, 0.69f, 1.0f);
+  this->color = glm::vec4(0.11f, 0.35f, 0.69f, 1.0f);
 
   //---------------------------
   this->create_glyph();

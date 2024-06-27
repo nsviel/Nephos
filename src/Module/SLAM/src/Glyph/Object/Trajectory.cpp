@@ -8,7 +8,7 @@ Trajectory::Trajectory(){
   //---------------------------
 
   this->name = "trajectory";
-  this->color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+  this->color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
   this->is_visible = false;
   this->width = 2;
 

@@ -5,6 +5,7 @@
 #include <Operation/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Loader/Namespace.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 
 namespace rad::correction::glyph{
@@ -68,7 +69,7 @@ void Sphere::reset_glyph(){
 void Sphere::construct(glm::vec4 color){
   //---------------------------
 
-  data.rgba = std::vector<glm::vec4>(data.xyz.size(), vec4(0, 0, 0, 0));
+  data.rgba = std::vector<glm::vec4>(data.xyz.size(), glm::vec4(0, 0, 0, 0));
   for(int j=0; j<data.xyz.size(); j++){
     data.rgba[j] = color;
   }

@@ -149,7 +149,7 @@ void SLAM_glyph::update_glyph_matching(Cloud* cloud){
   if(with_matching){
     std::vector<glm::vec3> xyz_matching;
     Frame* frame = &cloud->frame;
-    glm::vec4 color = vec4(0.7f, 0.1f, 0.1f, 1.0f);
+    glm::vec4 color = glm::vec4(0.7f, 0.1f, 0.1f, 1.0f);
     //---------------------------
 
     //Initial checks

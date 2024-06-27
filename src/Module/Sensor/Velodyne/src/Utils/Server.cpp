@@ -55,7 +55,7 @@ void Server::disconnect(){
 
   //---------------------------
 }
-vector<int> Server::capture(){
+std::vector<int> Server::capture(){
   std::vector<int> data_dec;
   //---------------------------
 

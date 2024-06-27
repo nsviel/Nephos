@@ -8,7 +8,7 @@ Keypoint::Keypoint(){
   //---------------------------
 
   this->name = "keypoint";
-  this->color = vec4(0.7f, 0.1f, 0.1f, 1.0f);
+  this->color = glm::vec4(0.7f, 0.1f, 0.1f, 1.0f);
   this->is_visible = false;
 
   //---------------------------
@@ -39,7 +39,7 @@ void Keypoint::update_keypoint_location(Cloud* cloud){
   //Construct glyph
   RGB_key.clear();
   for(int i=0; i<ts_key.size(); i++){
-    glm::vec4 rgb = vec4(ts_key[i], 1 - ts_key[i], color[2], 1);
+    glm::vec4 rgb = glm::vec4(ts_key[i], 1 - ts_key[i], color[2], 1);
     RGB_key.push_back(rgb);
   }
 

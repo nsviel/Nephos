@@ -40,7 +40,7 @@ void Measure::init(){
 
   //Measure
   sphere->size = sphere->R_size * sphere->It_size;
-  sphere->data = vector<glm::vec3>(sphere->size, glm::vec3(-1, -1, -1));
+  sphere->data = std::vector<glm::vec3>(sphere->size, glm::vec3(-1, -1, -1));
 
   //---------------------------
 }
@@ -132,8 +132,8 @@ void Measure::data_IfIt(std::vector<glm::vec3>& search_xyz, std::vector<float>& 
   float radius = rad_struct->ransac.sphere_diameter / 2;
   float thres_sphere = rad_struct->ransac.thres_sphere;
 
-  plot->IfIt.axis_x.data = vector<float>(plot->IfIt.axis_x.data.size(), 0.0f);
-  plot->IfIt.axis_y.data = vector<float>(plot->IfIt.axis_y.data.size(), 0.0f);
+  plot->IfIt.axis_x.data = std::vector<float>(plot->IfIt.axis_x.data.size(), 0.0f);
+  plot->IfIt.axis_y.data = std::vector<float>(plot->IfIt.axis_y.data.size(), 0.0f);
 
   //Insert measure
   for(int i=0; i<search_xyz.size(); i++){
