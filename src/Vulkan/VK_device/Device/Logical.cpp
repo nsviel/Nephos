@@ -68,12 +68,12 @@ void Logical::create_logical_device(){
   //---------------------------
 }
 void Logical::create_device_queue(){
-  vk::queue::structure::Pool& pool = vk_struct->device.queue;
+  vk::queue::structure::Set& set = vk_struct->device.queue;
   //---------------------------
 
-  vk_dev_queue->create_queue(pool.graphics);
-  vk_dev_queue->create_queue(pool.presentation);
-  vk_dev_queue->create_queue(pool.transfer);
+  vk_dev_queue->create_queue(set.graphics);
+  vk_dev_queue->create_queue(set.presentation);
+  vk_dev_queue->create_queue(set.transfer);
 
   //---------------------------
 }

@@ -25,8 +25,9 @@ Collector::~Collector(){}
 void Collector::collect_info(){
   //---------------------------
 
-  this->collect_vulkan_device();
   this->collect_gpu_info();
+  this->collect_vulkan_device();
+  this->collect_vulkan_queue();
 
   //---------------------------
 }
@@ -82,26 +83,23 @@ void Collector::collect_vulkan_device(){
 void Collector::collect_vulkan_queue(){
   //---------------------------
 
-  for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){
+  this->add_queue(vk_struct->device.queue.graphics, prf::hardware::queue::GRAPHICS);
 
-  }
+
+  //---------------------------
+}
+void Collector::add_queue(vk::queue::structure::Queue& queue, int type){
+  //---------------------------
+
+  prf::hardware::Queue prf_queue;
+  prf_queue.type = (prf::hardware::queue::Type)type;
+  prf_queue.number++;
+  prf_queue.family_ID = queue.family_ID;
+  prf_queue.thread_ID = queue.thread_ID;
+  prf_struct->hardware.gpu.vec_queue.push_back(prf_queue);
 
   //---------------------------
 }
 
-/*
-void Profiler::add_queue(prf::hardware::queue::Type type, int ID_family){
-  //---------------------------
-
-  prf::hardware::Queue queue;
-  queue.type = type;
-  queue.number++;
-  queue.family_ID = ID_family;
-  queue.thread_ID = utl::thread::get_ID_str();
-  prf_struct->hardware.gpu.vec_queue.push_back(queue);
-
-  //---------------------------
-}
-*/
 
 }

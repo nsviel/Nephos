@@ -6,7 +6,7 @@
 
 namespace vk::queue::structure{
 
-struct Pool{
+struct Set{
   //---------------------------
 
   vk::queue::structure::Queue graphics;

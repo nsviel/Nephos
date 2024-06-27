@@ -7,6 +7,7 @@ namespace prf{class Structure;}
 namespace prf::hardware{class Device;}
 namespace utl::hardware{class Nvidia;}
 namespace vk{class Structure;}
+namespace vk::queue::structure{class Queue;}
 
 
 namespace prf::hardware{
@@ -26,6 +27,7 @@ public:
   void collect_gpu_info();
   void collect_vulkan_device();
   void collect_vulkan_queue();
+  void add_queue(vk::queue::structure::Queue& queue, int type);
 
 private:
   prf::Structure* prf_struct;
