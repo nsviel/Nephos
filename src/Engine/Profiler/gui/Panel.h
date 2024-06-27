@@ -35,7 +35,7 @@ public:
 private:
   prf::Manager* prf_manager;
   prf::gui::Graph* gui_graph;
-  prf::gui::hardware::Tab* gui_hardware;
+  prf::gui::hardware::Tab* tab_hardware;
 
   std::string gpu = "";
   std::string name;

@@ -20,13 +20,8 @@ Tab::Tab(prf::Node* node_profiler){
 Tab::~Tab(){}
 
 //Main function
-void Tab::show_profiler(prf::base::Profiler* profiler){
+void Tab::draw_tab(){
   //---------------------------
-/*
-  //Retrieve vulkan info struct
-  prf::hardware::Profiler* prf_vulkan = dynamic_cast<prf::hardware::Profiler*>(profiler);
-  if(prf_vulkan == nullptr) return;
-  prf::hardware::Structure* prf_struct = prf_vulkan->get_prf_struct();
 
   //Draw specific info
   if(ImGui::BeginTabBar("Hardware##profiler_vulkan")){
@@ -35,20 +30,20 @@ void Tab::show_profiler(prf::base::Profiler* profiler){
     //GPU tab
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("GPU##profiler_vulkan", NULL)){
-      gui_gpu->draw_tab(prf_struct, dimension);
+      gui_gpu->draw_tab(dimension);
       ImGui::EndTabItem();
     }
 
     //Device tab
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("Devices##profiler_vulkan", NULL)){
-      gui_device->draw_tab(prf_struct, dimension);
+      gui_device->draw_tab(dimension);
       ImGui::EndTabItem();
     }
 
     ImGui::EndTabBar();
   }
-*/
+
   //---------------------------
 }
 

@@ -28,6 +28,7 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline prf::Structure* get_prf_struct(){return prf_struct;}
   inline prf::Manager* get_prf_manager(){return prf_manager;}
+  inline prf::hardware::Profiler* get_prf_hardware(){return prf_hardware;}
 
 private:
   eng::Node* node_engine;

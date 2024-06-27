@@ -21,7 +21,7 @@ public:
 
 public:
   //Main function
-  void draw_tab(prf::hardware::Structure* prf_struct, ImVec2 graph_dim);
+  void draw_tab(ImVec2 dimension);
 
   //Subfunction
   void draw_device_info(prf::hardware::Device& device);

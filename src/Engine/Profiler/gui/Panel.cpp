@@ -15,7 +15,7 @@ Panel::Panel(prf::Node* node_profiler, bool* show_window){
 
   this->prf_manager = node_profiler->get_prf_manager();
   this->gui_graph = new prf::gui::Graph(node_profiler);
-  this->gui_hardware = new prf::gui::hardware::Tab(node_profiler);
+  this->tab_hardware = new prf::gui::hardware::Tab(node_profiler);
 
   this->show_window = show_window;
   this->name = "Profiler";
@@ -68,6 +68,8 @@ void Panel::draw_tab_profiler(){
       }
     }
 
+    tab_hardware->draw_tab();
+
     ImGui::EndTabBar();
   }
 
@@ -79,10 +81,6 @@ void Panel::draw_profiler(prf::base::Profiler* profiler){
   switch(profiler->type){
     case prf::base::GRAPH:{
       gui_graph->show_profiler(profiler);
-      break;
-    }
-    case prf::base::HARDWARE:{
-      gui_hardware->show_profiler(profiler);
       break;
     }
   }
