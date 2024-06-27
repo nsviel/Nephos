@@ -10,7 +10,7 @@ extern "C" {
 
 namespace vk::image{class Image;}
 namespace vk::image{class Transition;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Image;}
 namespace vk::command{class Command_buffer;}
 namespace vk::command{class Allocator;}
@@ -24,7 +24,7 @@ class Screenshot
 {
 public:
   //Constructor / Destructor
-  Screenshot(vk::structure::Vulkan* vk_struct);
+  Screenshot(vk::Structure* vk_struct);
   ~Screenshot();
 
 public:
@@ -38,7 +38,7 @@ public:
   VkDeviceSize calculate_image_size(VkFormat format, VkExtent3D extent);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::image::Image* vk_image;
   vk::image::Transition* vk_transition;
   vk::command::Command_buffer* vk_command_buffer;

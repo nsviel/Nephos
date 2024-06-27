@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 
 
 namespace vk::window{
@@ -11,7 +11,7 @@ class GLFW
 {
 public:
   //Constructor / Destructor
-  GLFW(vk::structure::Vulkan* vk_struct);
+  GLFW(vk::Structure* vk_struct);
   ~GLFW();
 
 public:
@@ -40,7 +40,7 @@ public:
   glm::vec2 get_dimension();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

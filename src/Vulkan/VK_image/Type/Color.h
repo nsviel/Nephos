@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace vk::image{class Image;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Image;}
 
 
@@ -14,7 +14,7 @@ class Color
 {
 public:
   //Constructor / Destructor
-  Color(vk::structure::Vulkan* vk_struct);
+  Color(vk::Structure* vk_struct);
   ~Color();
 
 public:
@@ -26,7 +26,7 @@ public:
   VkFormat find_color_format();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::image::Image* vk_image;
 };
 

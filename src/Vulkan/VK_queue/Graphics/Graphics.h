@@ -5,7 +5,7 @@
 #include <thread>
 #include <mutex>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Command;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::synchro::structure{class Fence;}
@@ -19,7 +19,7 @@ class Graphics
 {
 public:
   //Constructor / Destructor
-  Graphics(vk::structure::Vulkan* vk_struct);
+  Graphics(vk::Structure* vk_struct);
   ~Graphics();
 
 public:
@@ -46,7 +46,7 @@ public:
   inline bool is_thread_idle(){return thread_idle;}
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::synchro::Fence* vk_fence;
   vk::instance::Query* vk_query;
 

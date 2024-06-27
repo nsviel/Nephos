@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::device::structure{class Physical;}
 namespace vk::device{class Queue;}
 
@@ -11,7 +11,7 @@ class Physical
 {
 public:
   //Constructor / Destructor
-  Physical(vk::structure::Vulkan* vk_struct);
+  Physical(vk::Structure* vk_struct);
   ~Physical();
 
 public:
@@ -37,7 +37,7 @@ public:
   void find_max_usable_sample_count(vk::device::structure::Physical& dev_physical);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::device::Queue* vk_dev_queue;
 };
 

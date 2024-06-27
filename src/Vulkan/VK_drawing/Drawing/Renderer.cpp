@@ -7,7 +7,7 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-Renderer::Renderer(vk::structure::Vulkan* vk_struct){
+Renderer::Renderer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

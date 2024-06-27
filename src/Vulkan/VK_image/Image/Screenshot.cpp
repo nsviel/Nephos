@@ -10,7 +10,7 @@
 namespace vk::image{
 
 //Constructor / Destructor
-Screenshot::Screenshot(vk::structure::Vulkan* vk_struct){
+Screenshot::Screenshot(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

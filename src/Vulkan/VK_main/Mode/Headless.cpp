@@ -6,7 +6,7 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Headless::Headless(vk::structure::Vulkan* vk_struct) : vk::main::Engine(vk_struct){
+Headless::Headless(vk::Structure* vk_struct) : vk::main::Engine(vk_struct){
   //---------------------------
 
   this->vk_drawer = new vk::draw::Headless(vk_struct);

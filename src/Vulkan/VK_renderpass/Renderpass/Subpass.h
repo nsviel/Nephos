@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk::renderpass{class Attachment;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Subpass;}
 
@@ -12,7 +12,7 @@ class Subpass
 {
 public:
   //Constructor / Destructor
-  Subpass(vk::structure::Vulkan* vk_struct);
+  Subpass(vk::Structure* vk_struct);
   ~Subpass();
 
 public:
@@ -28,7 +28,7 @@ public:
   void create_subpass_description(vk::structure::Subpass* subpass);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::renderpass::Attachment* vk_attachment;
 };
 

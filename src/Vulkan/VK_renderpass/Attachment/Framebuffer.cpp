@@ -6,7 +6,7 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-Framebuffer::Framebuffer(vk::structure::Vulkan* vk_struct){
+Framebuffer::Framebuffer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

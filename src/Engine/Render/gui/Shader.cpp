@@ -14,7 +14,7 @@ Shader::Shader(rnd::Node* node_render, bool* show_window){
   //---------------------------
 
   vk::Node* node_vulkan = node_render->get_node_vulkan();
-  vk::structure::Vulkan* vk_struct = node_vulkan->get_vk_struct();
+  vk::Structure* vk_struct = node_vulkan->get_vk_struct();
 
   this->vk_reload = new vk::shader::Reloader(vk_struct);
   this->vk_render = node_vulkan->get_vk_render();

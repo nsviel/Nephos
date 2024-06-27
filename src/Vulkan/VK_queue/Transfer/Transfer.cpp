@@ -7,7 +7,7 @@
 namespace vk::queue{
 
 //Constructor / Destructor
-Transfer::Transfer(vk::structure::Vulkan* vk_struct){
+Transfer::Transfer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

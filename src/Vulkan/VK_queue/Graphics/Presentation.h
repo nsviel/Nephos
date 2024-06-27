@@ -6,7 +6,7 @@
 
 namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class Surface;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::synchro::structure{class Fence;}
 namespace vk::window{class GLFW;}
 
@@ -17,7 +17,7 @@ class Presentation
 {
 public:
   //Constructor / Destructor
-  Presentation(vk::structure::Vulkan* vk_struct);
+  Presentation(vk::Structure* vk_struct);
   ~Presentation();
 
 public:
@@ -33,7 +33,7 @@ public:
   inline bool is_thread_idle(){return thread_idle;}
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::presentation::Surface* vk_surface;
   vk::presentation::Swapchain* vk_swapchain;
   vk::window::GLFW* vk_window;

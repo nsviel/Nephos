@@ -5,7 +5,7 @@
 namespace vk::image{class Image;}
 namespace vk::memory{class Allocator;}
 namespace vk::memory{class Transfer;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Texture;}
 namespace vk::structure{class Object;}
 namespace vk::data{class Buffer;}
@@ -20,7 +20,7 @@ class Texture
 {
 public:
   //Constructor / Destructor
-  Texture(vk::structure::Vulkan* vk_struct);
+  Texture(vk::Structure* vk_struct);
   ~Texture();
 
 public:
@@ -42,7 +42,7 @@ public:
   vk::structure::Texture* query_texture(int UID);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::memory::Allocator* vk_mem_allocator;
   vk::memory::Transfer* vk_mem_transfer;
   vk::data::Buffer* vk_buffer;

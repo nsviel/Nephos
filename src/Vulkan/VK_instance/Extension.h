@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 
 
 namespace vk::instance{
@@ -9,7 +9,7 @@ class Extension
 {
 public:
   //Constructor / Destructor
-  Extension(vk::structure::Vulkan* vk_struct);
+  Extension(vk::Structure* vk_struct);
   ~Extension();
 
 public:
@@ -22,7 +22,7 @@ public:
   void extension_device();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

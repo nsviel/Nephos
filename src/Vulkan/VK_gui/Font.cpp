@@ -7,7 +7,7 @@
 namespace vk::gui{
 
 //Constructor / Destructor
-Font::Font(vk::structure::Vulkan* vk_struct){
+Font::Font(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

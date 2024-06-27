@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::pool::structure{class Query;}
 
@@ -11,7 +11,7 @@ class Query
 {
 public:
   //Constructor / Destructor
-  Query(vk::structure::Vulkan* vk_struct);
+  Query(vk::Structure* vk_struct);
   ~Query();
 
 public:
@@ -25,7 +25,7 @@ public:
   void find_query_timestamp(vk::structure::Command_buffer* command_buffer);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

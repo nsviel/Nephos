@@ -2,7 +2,7 @@
 
 namespace vk::data{class Buffer;}
 namespace vk::data{class Data;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 
 
 namespace vk::data{
@@ -11,7 +11,7 @@ class Canvas
 {
 public:
   //Constructor / Destructor
-  Canvas(vk::structure::Vulkan* vk_struct);
+  Canvas(vk::Structure* vk_struct);
   ~Canvas();
 
 public:
@@ -20,7 +20,7 @@ public:
   void clean();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::data::Buffer* vk_buffer;
   vk::data::Data* vk_data;
 };

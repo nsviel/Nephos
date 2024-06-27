@@ -3,7 +3,7 @@
 #include <vulkan/vulkan.h>
 #include <vector>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::device::structure{class Physical;}
 namespace vk::queue::structure{class Queue;}
 
@@ -14,7 +14,7 @@ class Queue
 {
 public:
   //Constructor / Destructor
-  Queue(vk::structure::Vulkan* vk_struct);
+  Queue(vk::Structure* vk_struct);
   ~Queue();
 
 public:
@@ -31,7 +31,7 @@ public:
   bool suitability_for_graphics(vk::device::structure::Physical& physical_device);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

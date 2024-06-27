@@ -6,7 +6,7 @@
 namespace vk::binding{
 
 //Constructor / Destructor
-Sampler::Sampler(vk::structure::Vulkan* vk_struct){
+Sampler::Sampler(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

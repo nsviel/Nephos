@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 
 
 namespace vk::synchro{
@@ -9,7 +9,7 @@ class Synchro
 {
 public:
   //Constructor / Destructor
-  Synchro(vk::structure::Vulkan* vk_struct);
+  Synchro(vk::Structure* vk_struct);
   ~Synchro();
 
 public:
@@ -19,7 +19,7 @@ public:
   void end_idle();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

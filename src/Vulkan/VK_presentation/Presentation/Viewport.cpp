@@ -6,7 +6,7 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-Viewport::Viewport(vk::structure::Vulkan* vk_struct){
+Viewport::Viewport(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

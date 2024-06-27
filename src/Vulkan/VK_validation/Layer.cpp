@@ -6,7 +6,7 @@
 namespace vk::validation{
 
 //Constructor / Destructor
-Layer::Layer(vk::structure::Vulkan* vk_struct){
+Layer::Layer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

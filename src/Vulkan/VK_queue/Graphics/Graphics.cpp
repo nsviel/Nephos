@@ -6,7 +6,7 @@
 namespace vk::queue{
 
 //Constructor / Destructor
-Graphics::Graphics(vk::structure::Vulkan* vk_struct){
+Graphics::Graphics(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

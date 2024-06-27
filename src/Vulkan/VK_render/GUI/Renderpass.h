@@ -2,7 +2,7 @@
 
 namespace vk::main{class Engine;}
 namespace vk::gui{class Imgui;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 
@@ -13,7 +13,7 @@ class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::structure::Vulkan* vk_struct);
+  Renderpass(vk::Structure* vk_struct);
   ~Renderpass();
 
 public:
@@ -26,7 +26,7 @@ public:
   void draw(vk::structure::Subpass* subpass);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::main::Engine* vk_engine;
   vk::gui::Imgui* vk_imgui;
 };

@@ -4,11 +4,11 @@
 
 namespace utl{class Node;}
 namespace utl::element{class Window;}
+namespace vk{class Structure;}
 namespace vk::main{class Engine;}
 namespace vk::gui{class Imgui;}
 namespace vk::main{class Interface;}
 namespace vk::image{class Texture;}
-namespace vk::structure{class Vulkan;}
 namespace vk::synchro{class Synchro;}
 namespace vk::image{class Screenshot;}
 namespace vk::render{class Render;}
@@ -30,7 +30,7 @@ public:
   void loop();
   void clean();
 
-  inline vk::structure::Vulkan* get_vk_struct(){return vk_struct;}
+  inline vk::Structure* get_vk_struct(){return vk_struct;}
   inline vk::main::Engine* get_vk_engine(){return vk_engine;}
   inline vk::gui::Imgui* get_vk_imgui(){return vk_imgui;}
   inline vk::main::Interface* get_vk_interface(){return vk_interface;}
@@ -40,7 +40,7 @@ public:
   inline vk::window::GLFW* get_vk_window(){return vk_window;}
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::render::Render* vk_render;
   vk::main::Engine* vk_engine;
   vk::gui::Imgui* vk_imgui;

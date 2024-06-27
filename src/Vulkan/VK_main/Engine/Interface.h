@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <string>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Task;}
 namespace prf::graph{class Tasker;}
 namespace prf::hardware{class Profiler;}
@@ -15,7 +15,7 @@ class Interface
 {
 public:
   //Constructor / Destructor
-  Interface(vk::structure::Vulkan* vk_struct);
+  Interface(vk::Structure* vk_struct);
   ~Interface();
 
 public:
@@ -26,7 +26,7 @@ public:
   bool is_gpu_discrete();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

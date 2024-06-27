@@ -2,7 +2,7 @@
 
 namespace vk::memory{class Allocator;}
 namespace vk::memory{class Transfer;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Object;}
 namespace vk::data::structure{class Buffer;}
 
@@ -13,7 +13,7 @@ class Buffer
 {
 public:
   //Constructor / Destructor
-  Buffer(vk::structure::Vulkan* vk_struct);
+  Buffer(vk::Structure* vk_struct);
   ~Buffer();
 
 public:
@@ -27,7 +27,7 @@ public:
   int get_size_buffer(vk::structure::Object* vk_object);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::memory::Allocator* vk_mem_allocator;
   vk::memory::Transfer* vk_mem_transfer;
 };

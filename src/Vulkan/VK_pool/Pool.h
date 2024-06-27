@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::pool::structure{class Command_buffer;}
 namespace vk::main{class Thread;}
 
@@ -11,7 +11,7 @@ class Pool
 {
 public:
   //Constructor / Destructor
-  Pool(vk::structure::Vulkan* vk_struct);
+  Pool(vk::Structure* vk_struct);
   ~Pool();
 
 public:
@@ -30,7 +30,7 @@ public:
   void clean_command_pool(vk::pool::structure::Command_buffer* pool);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::main::Thread* vk_thread;
 };
 

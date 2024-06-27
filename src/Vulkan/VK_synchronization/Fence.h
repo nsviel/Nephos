@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::synchro::structure{class Fence;}
 
 
@@ -10,7 +10,7 @@ class Fence
 {
 public:
   //Constructor / Destructor
-  Fence(vk::structure::Vulkan* vk_struct);
+  Fence(vk::Structure* vk_struct);
   ~Fence();
 
 public:
@@ -28,7 +28,7 @@ public:
   bool is_fence_available(vk::synchro::structure::Fence* fence);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::pool::structure{class Command_buffer;}
 namespace vk::structure{class Renderpass;}
@@ -18,7 +18,7 @@ class Command_buffer
 {
 public:
   //Constructor / Destructor
-  Command_buffer(vk::structure::Vulkan* vk_struct);
+  Command_buffer(vk::Structure* vk_struct);
   ~Command_buffer();
 
 public:
@@ -39,7 +39,7 @@ public:
   int find_num_available_command(vk::pool::structure::Command_buffer* pool);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::synchro::Fence* vk_fence;
   vk::command::Allocator* vk_allocator;
   vk::instance::Query* vk_query;

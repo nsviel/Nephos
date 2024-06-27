@@ -4,7 +4,7 @@
 
 namespace vk::instance{class Pool;}
 namespace vk::presentation{class Surface;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::image{class Texture;}
 namespace vk::gui{class Font;}
@@ -18,7 +18,7 @@ class Imgui
 {
 public:
   //Constructor / Destructor
-  Imgui(vk::structure::Vulkan* vk_struct);
+  Imgui(vk::Structure* vk_struct);
   ~Imgui();
 
 public:
@@ -40,7 +40,7 @@ public:
   ImTextureID query_engine_texture();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::structure::Command_buffer* command_buffer;
   vk::instance::Pool* vk_pool;
   vk::presentation::Surface* vk_surface;

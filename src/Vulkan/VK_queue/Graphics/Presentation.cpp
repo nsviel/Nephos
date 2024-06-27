@@ -6,7 +6,7 @@
 namespace vk::queue{
 
 //Constructor / Destructor
-Presentation::Presentation(vk::structure::Vulkan* vk_struct){
+Presentation::Presentation(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

@@ -6,7 +6,7 @@
 namespace vk::device{
 
 //Constructor / Destructor
-Logical::Logical(vk::structure::Vulkan* vk_struct){
+Logical::Logical(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

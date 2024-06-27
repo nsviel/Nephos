@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::window{class GLFW;}
 
 
@@ -10,7 +10,7 @@ class Surface
 {
 public:
   //Constructor / Destructor
-  Surface(vk::structure::Vulkan* vk_struct);
+  Surface(vk::Structure* vk_struct);
   ~Surface();
 
 public:
@@ -19,7 +19,7 @@ public:
   void clean();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::window::GLFW* vk_window;
 };
 

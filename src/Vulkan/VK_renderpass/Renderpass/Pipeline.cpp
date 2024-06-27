@@ -6,7 +6,7 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-Pipeline::Pipeline(vk::structure::Vulkan* vk_struct){
+Pipeline::Pipeline(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

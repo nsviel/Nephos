@@ -2,7 +2,7 @@
 
 #include <vulkan/vulkan.h>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Image;}
 namespace vk::data::structure{class Buffer;}
 
@@ -13,7 +13,7 @@ class Allocator
 {
 public:
   //Constructor / Destructor
-  Allocator(vk::structure::Vulkan* vk_struct);
+  Allocator(vk::Structure* vk_struct);
   ~Allocator();
 
 public:
@@ -30,7 +30,7 @@ public:
   uint32_t find_memory_type(uint32_t typeFilter, VkMemoryPropertyFlags properties);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

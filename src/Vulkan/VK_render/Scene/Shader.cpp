@@ -5,7 +5,7 @@
 
 namespace vk::render::scene{
 
-Shader::Shader(vk::structure::Vulkan* vk_struct){
+Shader::Shader(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

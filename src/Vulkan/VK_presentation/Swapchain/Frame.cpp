@@ -6,7 +6,7 @@
 namespace vk::presentation{
 
 //Constructor / Destructor
-Frame::Frame(vk::structure::Vulkan* vk_struct){
+Frame::Frame(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

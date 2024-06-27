@@ -3,7 +3,7 @@
 #include <vulkan/vulkan.h>
 
 namespace vk::memory{class Allocator;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Transition;}
 namespace vk::structure{class Image;}
 
@@ -14,7 +14,7 @@ class Transition
 {
 public:
   //Constructor / Destructor
-  Transition(vk::structure::Vulkan* vk_struct);
+  Transition(vk::Structure* vk_struct);
   ~Transition();
 
 public:
@@ -27,7 +27,7 @@ public:
   VkPipelineStageFlags find_stage_flag(VkImageLayout& layout);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::memory::Allocator* vk_mem_allocator;
 };
 

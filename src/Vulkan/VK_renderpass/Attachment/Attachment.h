@@ -2,7 +2,7 @@
 
 namespace vk::image{class Color;}
 namespace vk::image{class Depth;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Attachment;}
 
 
@@ -12,7 +12,7 @@ class Attachment
 {
 public:
   //Constructor / Destructor
-  Attachment(vk::structure::Vulkan* vk_struct);
+  Attachment(vk::Structure* vk_struct);
   ~Attachment();
 
 public:
@@ -27,7 +27,7 @@ public:
   void depth_reference(vk::structure::Attachment& depth);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::image::Color* vk_color;
   vk::image::Depth* vk_depth;
 };

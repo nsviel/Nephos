@@ -5,7 +5,7 @@
 
 namespace vk::binding{class Uniform;}
 namespace vk::binding{class Sampler;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::binding::structure{class Binding;}
 namespace vk::structure{class Image;}
 namespace vk::structure{class Pipeline;}
@@ -17,7 +17,7 @@ class Descriptor
 {
 public:
   //Constructor / Destructor
-  Descriptor(vk::structure::Vulkan* vk_struct);
+  Descriptor(vk::Structure* vk_struct);
   ~Descriptor();
 
 public:
@@ -36,7 +36,7 @@ public:
   VkDescriptorSetLayout create_layout(std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::binding::Uniform* vk_uniform;
   vk::binding::Sampler* vk_sampler;
 };

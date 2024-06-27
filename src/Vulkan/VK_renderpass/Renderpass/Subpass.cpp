@@ -18,7 +18,7 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-Subpass::Subpass(vk::structure::Vulkan* vk_struct){
+Subpass::Subpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

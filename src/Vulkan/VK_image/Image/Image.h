@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk::memory{class Allocator;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Image;}
 
 
@@ -11,7 +11,7 @@ class Image
 {
 public:
   //Constructor / Destructor
-  Image(vk::structure::Vulkan* vk_struct);
+  Image(vk::Structure* vk_struct);
   ~Image();
 
 public:
@@ -30,7 +30,7 @@ public:
   void generate_mipmap(vk::structure::Image* image);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::memory::Allocator* vk_mem_allocator;
 };
 

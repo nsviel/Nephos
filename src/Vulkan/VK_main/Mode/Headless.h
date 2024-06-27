@@ -2,7 +2,7 @@
 
 #include <Vulkan/VK_main/Engine/Engine.h>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::draw{class Headless;}
 
 
@@ -12,7 +12,7 @@ class Headless : public vk::main::Engine
 {
 public:
   //Constructor / Destructor
-  Headless(vk::structure::Vulkan* vk_struct);
+  Headless(vk::Structure* vk_struct);
   ~Headless();
 
 public:

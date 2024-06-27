@@ -6,7 +6,7 @@
 namespace vk::data{
 
 //Constructor / Destructor
-Canvas::Canvas(vk::structure::Vulkan* vk_struct){
+Canvas::Canvas(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

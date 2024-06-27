@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace vk::image{class Image;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Image;}
 
 
@@ -14,7 +14,7 @@ class Depth
 {
 public:
   //Constructor / Destructor
-  Depth(vk::structure::Vulkan* vk_struct);
+  Depth(vk::Structure* vk_struct);
   ~Depth();
 
 public:
@@ -27,7 +27,7 @@ public:
   VkFormat find_depth_format();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::image::Image* vk_image;
 };
 

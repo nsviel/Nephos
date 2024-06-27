@@ -3,7 +3,7 @@
 #include <string>
 
 namespace vk::memory{class Allocator;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Descriptor_required;}
 namespace vk::binding::structure{class Binding;}
 namespace vk::binding::structure{class Uniform;}
@@ -15,7 +15,7 @@ class Uniform
 {
 public:
   //Constructor / Destructor
-  Uniform(vk::structure::Vulkan* vk_struct);
+  Uniform(vk::Structure* vk_struct);
   ~Uniform();
 
 public:
@@ -33,7 +33,7 @@ public:
   vk::structure::Descriptor_required uniform_edl();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::memory::Allocator* vk_mem_allocator;
 };
 

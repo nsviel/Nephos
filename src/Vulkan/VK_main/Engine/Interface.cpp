@@ -6,7 +6,7 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Interface::Interface(vk::structure::Vulkan* vk_struct){
+Interface::Interface(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

@@ -11,6 +11,9 @@ namespace prf::hardware{
 Collector::Collector(prf::Node* node_profiler){
   //---------------------------
 
+  vk::Node* node_vulkan = node_profiler->get_node_vulkan();
+
+  this->vk_struct = node_vulkan->get_vk_struct();
   this->prf_struct = node_profiler->get_prf_struct();
   this->utl_nvidia = new utl::hardware::Nvidia();
 
@@ -19,7 +22,7 @@ Collector::Collector(prf::Node* node_profiler){
 Collector::~Collector(){}
 
 //Profiler vulkan info
-void Collector::collect_info(vk::structure::Vulkan* vk_struct){
+void Collector::collect_info(vk::Structure* vk_struct){
   //---------------------------
 
   this->collect_vulkan_device(vk_struct);
@@ -38,7 +41,7 @@ void Collector::collect_gpu_info(){
 }
 
 //Subfunction
-void Collector::collect_vulkan_device(vk::structure::Vulkan* vk_struct){
+void Collector::collect_vulkan_device(vk::Structure* vk_struct){
   //---------------------------
 
   for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){

@@ -6,7 +6,7 @@
 namespace vk::device{
 
 //Constructor / Destructor
-Queue::Queue(vk::structure::Vulkan* vk_struct){
+Queue::Queue(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

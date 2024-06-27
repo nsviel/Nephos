@@ -6,7 +6,7 @@
 namespace vk::shader{
 
 //Constructor / Destructor
-Reloader::Reloader(vk::structure::Vulkan* vk_struct){
+Reloader::Reloader(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

@@ -5,7 +5,7 @@
 namespace rnd{class Node;}
 namespace vk::gui{class Imgui;}
 namespace vk::main{class Interface;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace eng{class Node;}
 namespace cam::gui{class Control;}
 namespace dat::gui{class Control;}
@@ -36,7 +36,7 @@ private:
   dyn::gui::Control* dyn_control;
   vk::gui::Imgui* vk_imgui;
   vk::main::Interface* vk_interface;
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 
   std::string name;
   bool has_been_initialized;

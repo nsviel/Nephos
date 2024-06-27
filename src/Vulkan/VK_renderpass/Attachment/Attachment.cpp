@@ -18,7 +18,7 @@
 namespace vk::renderpass{
 
 //Constructor / Destructor
-Attachment::Attachment(vk::structure::Vulkan* vk_struct){
+Attachment::Attachment(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

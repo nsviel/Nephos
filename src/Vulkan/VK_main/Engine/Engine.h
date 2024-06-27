@@ -22,7 +22,7 @@ namespace vk::command{class Command_buffer;}
 namespace vk::synchro{class Fence;}
 namespace vk::synchro{class Semaphore;}
 namespace vk::renderpass{class Renderpass;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Object;}
 namespace vk::queue{class Manager;}
@@ -36,7 +36,7 @@ class Engine
 {
 public:
   //Constructor / Destructor
-  Engine(vk::structure::Vulkan* vk_struct);
+  Engine(vk::Structure* vk_struct);
   ~Engine();
 
 public:
@@ -57,7 +57,7 @@ public:
   void set_window(GLFWwindow* window);
 
 protected:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::instance::Extension* vk_extension;
   vk::presentation::Surface* vk_surface;
   vk::instance::Instance* vk_instance;

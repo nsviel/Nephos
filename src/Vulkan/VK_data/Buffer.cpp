@@ -6,7 +6,7 @@
 namespace vk::data{
 
 //Constructor / Destructor
-Buffer::Buffer(vk::structure::Vulkan* vk_struct){
+Buffer::Buffer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

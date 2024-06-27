@@ -6,7 +6,7 @@
 namespace vk::synchro{
 
 //Constructor / Destructor
-Semaphore::Semaphore(vk::structure::Vulkan* vk_struct){
+Semaphore::Semaphore(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

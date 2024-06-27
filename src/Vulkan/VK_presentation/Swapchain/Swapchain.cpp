@@ -6,7 +6,7 @@
 namespace vk::presentation{
 
 //Constructor / Destructor
-Swapchain::Swapchain(vk::structure::Vulkan* vk_struct){
+Swapchain::Swapchain(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

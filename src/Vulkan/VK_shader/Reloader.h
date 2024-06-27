@@ -3,7 +3,7 @@
 #include <string>
 
 namespace vk::renderpass{class Pipeline;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 namespace vk::synchro{class Synchro;}
@@ -15,7 +15,7 @@ class Reloader
 {
 public:
   //Constructor / Destructor
-  Reloader(vk::structure::Vulkan* vk_struct);
+  Reloader(vk::Structure* vk_struct);
   ~Reloader();
 
 public:
@@ -24,7 +24,7 @@ public:
   void recreate_pipeline(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::renderpass::Pipeline* vk_pipeline;
   vk::synchro::Synchro* vk_synchro;
 };

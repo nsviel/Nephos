@@ -7,7 +7,7 @@
 namespace vk::command{
 
 //Constructor / Destructor
-Command_buffer::Command_buffer(vk::structure::Vulkan* vk_struct){
+Command_buffer::Command_buffer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

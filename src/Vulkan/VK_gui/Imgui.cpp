@@ -7,7 +7,7 @@
 namespace vk::gui{
 
 //Constructor / Destructor
-Imgui::Imgui(vk::structure::Vulkan* vk_struct){
+Imgui::Imgui(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

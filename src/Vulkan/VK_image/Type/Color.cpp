@@ -6,7 +6,7 @@
 namespace vk::image{
 
 //Constructor / Destructor
-Color::Color(vk::structure::Vulkan* vk_struct){
+Color::Color(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

@@ -3,7 +3,7 @@
 #include <Vulkan/VK_drawing/Drawing/Drawer.h>
 #include <vector>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::synchro::structure{class Semaphore;}
 namespace vk::structure{class Command;}
 namespace vk::structure{class Renderpass;}
@@ -17,7 +17,7 @@ class Graphical : public vk::draw::Drawer
 {
 public:
   //Constructor / Destructor
-  Graphical(vk::structure::Vulkan* vk_struct);
+  Graphical(vk::Structure* vk_struct);
   ~Graphical();
 
 public:

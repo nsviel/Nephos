@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::render::edl{class Shader;}
 namespace vk::render::scene{class Shader;}
 namespace vk::render::edl{class Renderpass;}
@@ -14,7 +14,7 @@ class Render
 {
 public:
   //Constructor / Destructor
-  Render(vk::structure::Vulkan* vk_struct);
+  Render(vk::Structure* vk_struct);
   ~Render();
 
 public:
@@ -25,7 +25,7 @@ public:
   inline vk::render::scene::Shader* get_shader_scene(){return shader_scene;}
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::render::edl::Shader* shader_edl;
   vk::render::scene::Shader* shader_scene;
 

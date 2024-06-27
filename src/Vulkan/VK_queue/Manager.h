@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 
 
 namespace vk::queue{
@@ -15,7 +15,7 @@ class Manager
 {
 public:
   //Constructor / Destructor
-  Manager(vk::structure::Vulkan* vk_struct);
+  Manager(vk::Structure* vk_struct);
   ~Manager();
 
 public:
@@ -24,7 +24,7 @@ public:
   void clean();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

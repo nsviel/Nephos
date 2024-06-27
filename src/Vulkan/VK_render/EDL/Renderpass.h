@@ -10,7 +10,7 @@ namespace vk::draw{class Drawer;}
 namespace vk::render::edl{class Shader;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::render::edl{class Shader;}
 
 
@@ -20,7 +20,7 @@ class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::structure::Vulkan* vk_struct);
+  Renderpass(vk::Structure* vk_struct);
   ~Renderpass();
 
 public:
@@ -35,7 +35,7 @@ public:
   void draw_canvas(vk::structure::Subpass* subpass);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::render::edl::Shader* shader_edl;
   vk::main::Engine* vk_engine;
   vk::renderpass::Pipeline* vk_pipeline;

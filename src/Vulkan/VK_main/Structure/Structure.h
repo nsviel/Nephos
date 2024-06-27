@@ -12,13 +12,13 @@
 #include <Vulkan/VK_pool/Structure/Pool.h>
 
 
-namespace vk::structure{
+namespace vk{
 
-struct Vulkan{
+struct Structure{
   //---------------------------
 
   //Constructor
-  Vulkan(bool* running){
+  Structure(bool* running){
     this->window.running = running;
   }
 

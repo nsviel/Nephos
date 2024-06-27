@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Frame;}
 namespace vk::synchro::structure{class Semaphore;}
 
@@ -11,7 +11,7 @@ class Semaphore
 {
 public:
   //Constructor / Destructor
-  Semaphore(vk::structure::Vulkan* vk_struct);
+  Semaphore(vk::Structure* vk_struct);
   ~Semaphore();
 
 public:
@@ -29,7 +29,7 @@ public:
   vk::synchro::structure::Semaphore* query_free_semaphore();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

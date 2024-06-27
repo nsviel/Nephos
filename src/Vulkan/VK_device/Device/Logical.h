@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk::device{class Physical;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::device{class Queue;}
 
 
@@ -11,7 +11,7 @@ class Logical
 {
 public:
   //Constructor / Destructor
-  Logical(vk::structure::Vulkan* vk_struct);
+  Logical(vk::Structure* vk_struct);
   ~Logical();
 
 public:
@@ -24,7 +24,7 @@ public:
   void create_device_queue();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::device::Physical* vk_dev_physical;
   vk::device::Queue* vk_dev_queue;
 };

@@ -6,7 +6,7 @@ namespace vk::binding{class Descriptor;}
 namespace vk::draw{class Viewport;}
 namespace vk::shader{class Shader;}
 namespace vk::data{class Data;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 
@@ -17,7 +17,7 @@ class Pipeline
 {
 public:
   //Constructor / Destructor
-  Pipeline(vk::structure::Vulkan* vk_struct);
+  Pipeline(vk::Structure* vk_struct);
   ~Pipeline();
 
 public:
@@ -47,7 +47,7 @@ public:
   void check_struct_pipeline_input(vk::structure::Pipeline* pipeline);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::binding::Descriptor* vk_descriptor;
   vk::shader::Shader* vk_shader;
   vk::data::Data* vk_data;

@@ -6,7 +6,7 @@ namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
 namespace vk::draw{class Drawer;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 namespace vk::render::scene{class Shader;}
@@ -19,7 +19,7 @@ class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::structure::Vulkan* vk_struct);
+  Renderpass(vk::Structure* vk_struct);
   ~Renderpass();
 
 public:
@@ -42,7 +42,7 @@ public:
   bool check_data(utl::base::Data* data, int typology);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::binding::Descriptor* vk_descriptor;
   vk::binding::Uniform* vk_uniform;
   vk::draw::Drawer* vk_drawer;

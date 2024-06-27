@@ -3,7 +3,7 @@
 #include <vulkan/vulkan.h>
 #include <string>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Descriptor_required;}
 namespace vk::binding::structure{class Binding;}
 namespace vk::binding::structure{class Sampler;}
@@ -15,7 +15,7 @@ class Sampler
 {
 public:
   //Constructor / Destructor
-  Sampler(vk::structure::Vulkan* vk_struct);
+  Sampler(vk::Structure* vk_struct);
   ~Sampler();
 
 public:
@@ -28,7 +28,7 @@ public:
   vk::structure::Descriptor_required sampler_depth();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

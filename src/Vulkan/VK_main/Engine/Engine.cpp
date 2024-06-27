@@ -7,7 +7,7 @@
 namespace vk::main{
 
 //Constructor / Destructor
-Engine::Engine(vk::structure::Vulkan* vk_struct){
+Engine::Engine(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

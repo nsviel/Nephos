@@ -6,7 +6,7 @@
 namespace vk::instance{
 
 //Constructor / Destructor
-UID::UID(vk::structure::Vulkan* vk_struct){
+UID::UID(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

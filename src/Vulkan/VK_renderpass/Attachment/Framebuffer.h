@@ -5,7 +5,7 @@
 namespace vk::image{class Color;}
 namespace vk::image{class Depth;}
 namespace vk::image{class Image;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Framebuffer;}
 namespace vk::structure{class Frame;}
@@ -17,7 +17,7 @@ class Framebuffer
 {
 public:
   //Constructor / Destructor
-  Framebuffer(vk::structure::Vulkan* vk_struct);
+  Framebuffer(vk::Structure* vk_struct);
   ~Framebuffer();
 
 public:
@@ -32,7 +32,7 @@ public:
   void clean_framebuffer_handle(VkFramebuffer& fbo);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::image::Color* vk_color;
   vk::image::Depth* vk_depth;
   vk::image::Image* vk_image;

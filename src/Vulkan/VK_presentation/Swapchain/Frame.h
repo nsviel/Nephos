@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::image{class Image;}
 namespace vk::image{class Color;}
 
@@ -11,7 +11,7 @@ class Frame
 {
 public:
   //Constructor / Destructor
-  Frame(vk::structure::Vulkan* vk_struct);
+  Frame(vk::Structure* vk_struct);
   ~Frame();
 
 public:
@@ -20,7 +20,7 @@ public:
   void clean_frame();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::image::Image* vk_image;
   vk::image::Color* vk_color;
 };

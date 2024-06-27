@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk::validation{class Layer;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 
 
 namespace vk::instance{
@@ -10,7 +10,7 @@ class Instance
 {
 public:
   //Constructor / Destructor
-  Instance(vk::structure::Vulkan* vk_struct);
+  Instance(vk::Structure* vk_struct);
   ~Instance();
 
 public:
@@ -23,7 +23,7 @@ public:
 
 private:
   vk::validation::Layer* vk_validation;
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 };
 
 }

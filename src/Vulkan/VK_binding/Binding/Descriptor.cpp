@@ -6,7 +6,7 @@
 namespace vk::binding{
 
 //Constructor / Destructor
-Descriptor::Descriptor(vk::structure::Vulkan* vk_struct){
+Descriptor::Descriptor(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

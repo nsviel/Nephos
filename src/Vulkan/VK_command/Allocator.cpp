@@ -6,7 +6,7 @@
 namespace vk::command{
 
 //Constructor / Destructor
-Allocator::Allocator(vk::structure::Vulkan* vk_struct){
+Allocator::Allocator(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

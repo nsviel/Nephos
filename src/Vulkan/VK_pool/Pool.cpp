@@ -6,7 +6,7 @@
 namespace vk::instance{
 
 //Constructor / Destructor
-Pool::Pool(vk::structure::Vulkan* vk_struct){
+Pool::Pool(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

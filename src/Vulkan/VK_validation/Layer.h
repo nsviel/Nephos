@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 
 
 namespace vk::validation{
@@ -13,7 +13,7 @@ class Layer
 {
 public:
   //Constructor / Destructor
-  Layer(vk::structure::Vulkan* vk_struct);
+  Layer(vk::Structure* vk_struct);
   ~Layer();
 
 public:
@@ -34,7 +34,7 @@ public:
   inline std::vector<const char*> get_validation_layers(){return validation_layers;};
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 
   bool with_validation_layer;
   bool with_best_practice;

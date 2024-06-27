@@ -6,7 +6,7 @@
 namespace vk::queue{
 
 //Constructor / Destructor
-Manager::Manager(vk::structure::Vulkan* vk_struct){
+Manager::Manager(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

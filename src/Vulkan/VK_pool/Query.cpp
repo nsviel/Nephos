@@ -6,7 +6,7 @@
 namespace vk::instance{
 
 //Constructor / Destructor
-Query::Query(vk::structure::Vulkan* vk_struct){
+Query::Query(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

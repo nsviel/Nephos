@@ -7,7 +7,7 @@
 namespace vk::synchro{
 
 //Constructor / Destructor
-Fence::Fence(vk::structure::Vulkan* vk_struct){
+Fence::Fence(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

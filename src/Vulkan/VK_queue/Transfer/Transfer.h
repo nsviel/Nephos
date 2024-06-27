@@ -5,7 +5,7 @@
 #include <thread>
 #include <mutex>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::synchro::structure{class Fence;}
 namespace vk::synchro{class Fence;}
@@ -18,7 +18,7 @@ class Transfer
 {
 public:
   //Constructor / Destructor
-  Transfer(vk::structure::Vulkan* vk_struct);
+  Transfer(vk::Structure* vk_struct);
   ~Transfer();
 
 public:
@@ -41,7 +41,7 @@ public:
   inline bool is_thread_idle(){return thread_idle;}
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::synchro::Fence* vk_fence;
   vk::instance::Query* vk_query;
 

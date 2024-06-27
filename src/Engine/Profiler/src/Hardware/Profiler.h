@@ -10,7 +10,7 @@ namespace prf::hardware{class Thread;}
 namespace prf::hardware{class Queue;}
 namespace prf::hardware{class Collector;}
 namespace prf::base{class Profiler;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 
 
 namespace prf::hardware{
@@ -25,7 +25,7 @@ public:
 public:
   //Main function
   void add_queue(prf::hardware::queue::Type type, int ID_family);
-  void collect_info(vk::structure::Vulkan* vk_struct);
+  void collect_info(vk::Structure* vk_struct);
   void collect_gpu_info();
 
 private:

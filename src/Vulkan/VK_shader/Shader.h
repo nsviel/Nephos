@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace utl::shader{class Info;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Pipeline;}
 
 
@@ -15,7 +15,7 @@ class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(vk::structure::Vulkan* vk_struct);
+  Shader(vk::Structure* vk_struct);
   ~Shader();
 
 public:
@@ -31,7 +31,7 @@ public:
   void run_recompilation(std::string path_glsl, std::string path_spir);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
 
   std::string path_output;
 };

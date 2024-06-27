@@ -2,7 +2,7 @@
 
 #include <Vulkan/VK_main/Engine/Engine.h>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::draw{class Graphical;}
 namespace vk::window{class GLFW;}
 
@@ -13,7 +13,7 @@ class Graphical : public vk::main::Engine
 {
 public:
   //Constructor / Destructor
-  Graphical(vk::structure::Vulkan* vk_struct);
+  Graphical(vk::Structure* vk_struct);
   ~Graphical();
 
 public:

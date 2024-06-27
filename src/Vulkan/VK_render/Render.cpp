@@ -6,7 +6,7 @@
 namespace vk::render{
 
 //Constructor / Destructor
-Render::Render(vk::structure::Vulkan* vk_struct){
+Render::Render(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

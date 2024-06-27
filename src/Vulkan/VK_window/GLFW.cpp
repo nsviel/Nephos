@@ -6,7 +6,7 @@
 namespace vk::window{
 
 //Constructor / Destructor
-GLFW::GLFW(vk::structure::Vulkan* vk_struct){
+GLFW::GLFW(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

@@ -5,7 +5,7 @@
 
 namespace vk::command{class Command_buffer;}
 namespace vk::command{class Allocator;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 
 
 namespace vk::gui{
@@ -14,7 +14,7 @@ class Font
 {
 public:
   //Constructor / Destructor
-  Font(vk::structure::Vulkan* vk_struct);
+  Font(vk::Structure* vk_struct);
   ~Font();
 
 public:
@@ -27,7 +27,7 @@ public:
   void font_build();
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::command::Allocator* vk_allocator;
   vk::command::Command_buffer* vk_command_buffer;
 

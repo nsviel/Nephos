@@ -4,7 +4,7 @@ namespace vk::data{class Buffer;}
 namespace vk::image{class Texture;}
 namespace vk::command{class Command_buffer;}
 namespace vk::binding{class Descriptor;}
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::structure{class Object;}
 namespace vk::structure{class Pipeline;}
 namespace vk::instance{class UID;}
@@ -20,7 +20,7 @@ class Data
 {
 public:
   //Constructor / Destructor
-  Data(vk::structure::Vulkan* vk_struct);
+  Data(vk::Structure* vk_struct);
   ~Data();
 
 public:
@@ -38,7 +38,7 @@ public:
   void pipeline_vertex_input_info(vk::structure::Pipeline* pipeline);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::data::Buffer* vk_buffer;
   vk::image::Texture* vk_texture;
   vk::command::Command_buffer* vk_command_buffer;

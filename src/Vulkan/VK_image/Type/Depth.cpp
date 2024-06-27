@@ -6,7 +6,7 @@
 namespace vk::image{
 
 //Constructor / Destructor
-Depth::Depth(vk::structure::Vulkan* vk_struct){
+Depth::Depth(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

@@ -7,7 +7,7 @@
 namespace vk::draw{
 
 //Constructor / Destructor
-Graphical::Graphical(vk::structure::Vulkan* vk_struct) : vk::draw::Drawer(vk_struct){
+Graphical::Graphical(vk::Structure* vk_struct) : vk::draw::Drawer(vk_struct){
   //---------------------------
 
   this->vk_transfer = new vk::memory::Transfer(vk_struct);

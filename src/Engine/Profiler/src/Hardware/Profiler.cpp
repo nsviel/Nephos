@@ -25,7 +25,7 @@ void Profiler::collect_gpu_info(){
 
   //---------------------------
 }
-void Profiler::collect_info(vk::structure::Vulkan* vk_struct){
+void Profiler::collect_info(vk::Structure* vk_struct){
   //---------------------------
 
   prf_collector->collect_info(vk_struct);

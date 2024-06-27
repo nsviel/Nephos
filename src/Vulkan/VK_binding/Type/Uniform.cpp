@@ -6,7 +6,7 @@
 namespace vk::binding{
 
 //Constructor / Destructor
-Uniform::Uniform(vk::structure::Vulkan* vk_struct){
+Uniform::Uniform(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;

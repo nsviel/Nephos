@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::queue::structure{class Queue;}
 namespace vk::pool::structure{class Command_buffer;}
 namespace vk::command{class Command_buffer;}
@@ -13,7 +13,7 @@ class Allocator
 {
 public:
   //Constructor / Destructor
-  Allocator(vk::structure::Vulkan* vk_struct);
+  Allocator(vk::Structure* vk_struct);
   ~Allocator();
 
 public:
@@ -31,7 +31,7 @@ public:
   vk::pool::structure::Command_buffer* query_free_pool(vk::queue::structure::Queue* queue);
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::instance::Pool* vk_pool;
   vk::command::Command_buffer* vk_command_buffer;
 };

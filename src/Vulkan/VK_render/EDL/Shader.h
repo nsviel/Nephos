@@ -2,7 +2,7 @@
 
 #include <Utility/Base/Shader/Base.h>
 
-namespace vk::structure{class Vulkan;}
+namespace vk{class Structure;}
 namespace vk::render::edl{class Structure;}
 
 
@@ -12,7 +12,7 @@ class Shader : public utl::shader::Base
 {
 public:
   //Contrustor / destructor
-  Shader(vk::structure::Vulkan* vk_struct);
+  Shader(vk::Structure* vk_struct);
   ~Shader();
 
   //Main function
@@ -22,7 +22,7 @@ public:
   inline vk::render::edl::Structure* get_edl_struct(){return edl_struct;}
 
 private:
-  vk::structure::Vulkan* vk_struct;
+  vk::Structure* vk_struct;
   vk::render::edl::Structure* edl_struct;
 };
 

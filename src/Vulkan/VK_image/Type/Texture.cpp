@@ -7,7 +7,7 @@
 namespace vk::image{
 
 //Constructor / Destructor
-Texture::Texture(vk::structure::Vulkan* vk_struct){
+Texture::Texture(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
