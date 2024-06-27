@@ -47,7 +47,7 @@ void Device::draw_device_info(prf::hardware::Device& device){
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
   ImGui::BeginTable("vulkan_device##table", 2);
 
-  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthStretch, 75.0f);
+  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 125.0f);
 
   //GPU name
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -83,16 +83,21 @@ void Device::draw_device_info(prf::hardware::Device& device){
 void Device::draw_device_queue_families(prf::hardware::Device& device){
   //---------------------------
 
-  int size = device.vec_queue_family.size() + 1;
+  int size = device.vec_queue_family.size() + 2;
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
-  static ImGuiTableFlags flags = ImGuiTableFlags_BordersV | ImGuiTableFlags_BordersOuterH | ImGuiTableFlags_RowBg | ImGuiTableFlags_ContextMenuInBody;
-  ImGui::BeginTable("vulkan_thread##table", size, flags);
+  ImGuiTableFlags flag;
+  flag |= ImGuiTableFlags_BordersV;
+  flag |= ImGuiTableFlags_BordersOuterH;
+  flag |= ImGuiTableFlags_RowBg;
+  flag |= ImGuiTableFlags_ContextMenuInBody;
+  ImGui::BeginTable("vulkan_thread##table", size, flag);
 
   //Family index
-  ImGui::TableSetupColumn("Family");
+  ImGui::TableSetupColumn("Family", ImGuiTableColumnFlags_WidthFixed, 125.0f);
   for(int i=0; i<device.vec_queue_family.size(); i++){
-    ImGui::TableSetupColumn(std::to_string(i).c_str(), ImGuiTableColumnFlags_WidthFixed, 20.0f);
+    ImGui::TableSetupColumn(std::to_string(i).c_str(), ImGuiTableColumnFlags_WidthFixed, 25.0f);
   }
+  ImGui::TableSetupColumn("");
   ImGui::TableHeadersRow();
 
   //Queue count
@@ -142,6 +147,8 @@ void Device::draw_device_queue_families(prf::hardware::Device& device){
     ImGui::TableNextColumn();
     if(device.vec_queue_family[i].presentation) ImGui::TextColored(color, "X");
   }
+
+  ImGui::TableNextColumn();
 
   ImGui::EndTable();
 
