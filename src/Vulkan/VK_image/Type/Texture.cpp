@@ -154,7 +154,7 @@ VkFormat Texture::find_texture_format(utl::media::Image* image){
     format = VK_FORMAT_R16_UINT;
   }
   else{
-    cout<<"[error] texture format not recognized [-> "<<image->format<<"]"<<endl;
+    std::cout<<"[error] texture format not recognized [-> "<<image->format<<"]"<<endl;
   }
 
   //---------------------------

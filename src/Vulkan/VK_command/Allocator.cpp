@@ -112,7 +112,7 @@ vk::pool::structure::Command_buffer* Allocator::query_free_pool(vk::queue::struc
     }
   }
 
-  cout<<"[error] Command buffer pool availbility problem"<<endl;
+  std::cout<<"[error] Command buffer pool availbility problem"<<endl;
 
   //---------------------------
   return nullptr;

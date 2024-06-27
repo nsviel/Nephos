@@ -98,7 +98,7 @@ void Importer::parse_header_format(std::string format){
   else if(format == "binary_little_endian") header.format = format::ply::BINARY_LITTLE_ENDIAN;
   else if(format == "binary_big_endian") header.format = format::ply::BINARY_BIG_ENDIAN;
   else{
-    cout<<"[warning] Unknown format: "<<format<<endl;
+    std::cout<<"[warning] Unknown format: "<<format<<endl;
   }
 
   //---------------------------
@@ -116,7 +116,7 @@ void Importer::parse_header_property(std::string type, std::string field){
   else if(type == "uchar") property.type = format::ply::UCHAR;
   else if(type == "ushort") property.type = format::ply::USHORT;
   else{
-    cout<<"[warning] Unknown property type: "<<type<<endl;
+    std::cout<<"[warning] Unknown property type: "<<type<<endl;
     return;
   }
 

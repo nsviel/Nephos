@@ -22,7 +22,7 @@ std::vector<size_t> sort_by_index(const std::vector<float> &v){
   /*Sorting functions
     --->Sort by order, keeping trace of indices
     Use with for(auto i: math::sort_by_index(v)){
-                cout << v[i] << endl;
+                std::cout << v[i] << std::endl;
               }
   */
   //---------------------------
@@ -41,7 +41,7 @@ std::vector<size_t> sort_by_index_greater(const std::vector<float> &v){
   /*Sorting functions
     --->Sort by order, keeping trace of indices
     Use with for(auto i: math::sort_by_index(v)){
-                cout << v[i] << endl;
+                std::cout << v[i] << std::endl;
               }
   */
   //---------------------------

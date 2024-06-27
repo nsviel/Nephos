@@ -102,24 +102,24 @@ bool Importer::Exporter(std::string path){
     if(collection->list_entity[0].has_color) nbRows++;
     if(collection->list_entity[0].N.size() != 0) nbRows++;
     //number of columns
-    file << collection->list_entity[0].nb_point << endl;
+    file << collection->list_entity[0].nb_point << std::endl;
     //number of rows
-    file << nbRows << endl;
+    file << nbRows << std::endl;
     //scanner registered position
     glm::vec3& ScanPos = collection->scanner.Position;
-    file << ScanPos.x << " " << ScanPos.y << " " << ScanPos.z << endl;
+    file << ScanPos.x << " " << ScanPos.y << " " << ScanPos.z << std::endl;
     //scanner orientation
-    file << 1 << " " << 0 << " " << 0 << endl;
-    file << 0 << " " << 1 << " " << 0 << endl;
-    file << 0 << " " << 0 << " " << 1 << endl;
+    file << 1 << " " << 0 << " " << 0 << std::endl;
+    file << 0 << " " << 1 << " " << 0 << std::endl;
+    file << 0 << " " << 0 << " " << 1 << std::endl;
     //transformation matrix
     glm::mat4& transMat = collection->list_entity[0].trans;
     glm::mat4& rotMat = collection->list_entity[0].rotat;
     mat4 finalMat = transpose(transMat * rotMat);
-    file << setprecision(6) << finalMat[0][0] << " " << finalMat[0][1] << " " << finalMat[0][2] << " " << finalMat[0][3] << endl;
-    file << setprecision(6) << finalMat[1][0] << " " << finalMat[1][1] << " " << finalMat[1][2] << " " << finalMat[1][3] << endl;
-    file << setprecision(6) << finalMat[2][0] << " " << finalMat[2][1] << " " << finalMat[2][2] << " " << finalMat[2][3] << endl;
-    file << setprecision(6) << finalMat[3][0] << " " << finalMat[3][1] << " " << finalMat[3][2] << " " << finalMat[3][3] << endl;
+    file << setprecision(6) << finalMat[0][0] << " " << finalMat[0][1] << " " << finalMat[0][2] << " " << finalMat[0][3] << std::endl;
+    file << setprecision(6) << finalMat[1][0] << " " << finalMat[1][1] << " " << finalMat[1][2] << " " << finalMat[1][3] << std::endl;
+    file << setprecision(6) << finalMat[2][0] << " " << finalMat[2][1] << " " << finalMat[2][2] << " " << finalMat[2][3] << std::endl;
+    file << setprecision(6) << finalMat[3][0] << " " << finalMat[3][1] << " " << finalMat[3][2] << " " << finalMat[3][3] << std::endl;
     //***********************************
 
     //----->DATA
@@ -149,7 +149,7 @@ bool Importer::Exporter(std::string path){
         file << setprecision(precision) <<" "<< nor[i].x <<" "<< nor[i].y <<" "<< nor[i].z;
 
       //We end the line
-      file << endl;
+      file << std::endl;
     }
   }
   */

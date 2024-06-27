@@ -28,7 +28,7 @@ void Ransac::ransac_sphere(const std::vector<glm::vec3>& xyz, const std::vector<
     return;
   }
   if(xyz.size() != Nxyz.size()){
-    cout<<"[error] location and normal size"<<endl;
+    std::cout<<"[error] location and normal size"<<endl;
     return;
   }
 

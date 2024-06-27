@@ -40,7 +40,7 @@ bool Stream::check_image(utl::media::Image* utl_image){
     return false;
   }
   if(utl_image->format == ""){
-    cout<<"[error] stream image should have format specified"<<endl;
+    std::cout<<"[error] stream image should have format specified"<<endl;
     return false;
   }
 

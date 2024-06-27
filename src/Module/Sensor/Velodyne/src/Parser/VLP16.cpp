@@ -100,7 +100,7 @@ void VLP16::parse_blocks(){
     // 0xffee is upper block
     if(block_flag != 65518){
       std::string log = "Capture - Problem block flag "+to_string(block_flag)+" instead of "+to_string(65518);
-      cout<<log<<endl;
+      std::cout<<log<<endl;
       return;
     }
 
@@ -275,16 +275,16 @@ void VLP16::reorder_by_azimuth(utl::base::Data* cloud){
 
   //Check data size
   if(packet_xyz.size() != packet_R.size()){
-    cout<< "Problem packet size R" << endl;
+    std::cout<< "Problem packet size R" << std::endl;
   }
   if(packet_xyz.size() != packet_A.size()){
-    cout<< "Problem packet size A" << endl;
+    std::cout<< "Problem packet size A" << std::endl;
   }
   if(packet_xyz.size() != packet_t.size()){
-    cout<< "Problem packet size t" << endl;
+    std::cout<< "Problem packet size t" << std::endl;
   }
   if(packet_xyz.size() != packet_I.size()){
-    cout<< "Problem packet size I" << endl;
+    std::cout<< "Problem packet size I" << std::endl;
   }
 
   //---------------------------
@@ -308,7 +308,7 @@ void VLP16::supress_empty_data(){
     this->make_supressElements(packet_xyz, idx);
 
     if(packet_xyz.size() == 0){
-      cout << "No data in the packet" << endl;
+      std::cout << "No data in the packet" << std::endl;
     }
   }
 

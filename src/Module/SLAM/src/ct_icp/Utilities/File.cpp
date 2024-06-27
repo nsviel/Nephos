@@ -19,7 +19,7 @@ File::File(std::string path, openMode flag) : _path(path), _mode(flag)
 
 	if(!_file.good())
 	{
-		cout << "ERROR: can't open " << _path << endl;
+		cout << "ERROR: can't open " << _path << std::endl;
 	}
 }
 

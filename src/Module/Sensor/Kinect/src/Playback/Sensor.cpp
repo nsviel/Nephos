@@ -35,7 +35,7 @@ void Sensor::thread_init(){
   if(path == "") return;
   this->playback = k4a::playback::open(path.c_str());
   if(!playback){
-    cout<<"[error] Sensor opening problem"<<endl;
+    std::cout<<"[error] Sensor opening problem"<<endl;
     return;
   }
 
@@ -134,10 +134,10 @@ void Sensor::manage_query(float value){
   //---------------------------
 
   if(value > timestamp.end){
-    cout<<"[error] timestamp superior file end"<<endl;
+    std::cout<<"[error] timestamp superior file end"<<endl;
     exit(0);
   }else if(value < timestamp.begin){
-    cout<<"[error] timestamp inferior file begin"<<endl;
+    std::cout<<"[error] timestamp inferior file begin"<<endl;
     exit(0);
   }
 

@@ -84,7 +84,7 @@ void SLAM_sampling::grid_sampling_subset(Cloud* cloud){
       int key = (kx*2000 + ky)*1000 + kz;
 
       if(key >= INT_MAX || key <= INT_MIN){
-        cout<<"[error] Int min or max value for key"<<endl;
+        std::cout<<"[error] Int min or max value for key"<<endl;
       }
 
       point << xyz.x, xyz.y, xyz.z, ts_n;

@@ -22,7 +22,7 @@ void Frame::create_frame(){
   //---------------------------
 
   if(vk_struct->swapchain.vec_image.size() == 0){
-    cout<<"[error] swapchain image size equal zero"<<endl;
+    std::cout<<"[error] swapchain image size equal zero"<<endl;
     return;
   }
 

@@ -54,7 +54,7 @@ void Docking::dock_save_state(){
   //---------------------------
 
   ImGui::SaveIniSettingsToDisk("../media/config/gui/imgui.ini");
-  cout<<"[OK] Imgui docking state saved"<<endl;
+  std::cout<<"[OK] Imgui docking state saved"<<endl;
 
   //---------------------------
 }

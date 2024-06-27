@@ -84,16 +84,16 @@ void Descriptor::update_descriptor_sampler(vk::binding::structure::Binding* bind
     }
   }
   if(sampler == nullptr){
-    cout<<"------------------------"<<endl;
-    cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<image->name<<"\033[0m"<<endl;
-    cout<<"Existing uniform names: "<<endl;
+    std::cout<<"------------------------"<<endl;
+    std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<image->name<<"\033[0m"<<endl;
+    std::cout<<"Existing uniform names: "<<endl;
 
     for(int i=0; i<binding->vec_sampler.size(); i++){
       vk::binding::structure::Sampler* sampler = binding->vec_sampler[i];
-      cout<<"\033[1;32m"<<sampler->name<<"\033[0m"<<endl;
+      std::cout<<"\033[1;32m"<<sampler->name<<"\033[0m"<<endl;
     }
 
-    cout<<"------------------------"<<endl;
+    std::cout<<"------------------------"<<endl;
     exit(0);
   }
 

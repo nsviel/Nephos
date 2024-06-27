@@ -1,5 +1,6 @@
 #include "Server.h"
 
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -34,7 +35,7 @@ void Server::binding(int port_server, int packet_size_max){
   // Creating socket file descriptor
   this->sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
   if(sock < 0){
-    cout << "socket creation failed" << endl;
+    std::cout << "socket creation failed" << std::endl;
     exit(EXIT_FAILURE);
   }
 
@@ -61,7 +62,7 @@ void Server::binding(int port_server, int packet_size_max){
   if(binding == 0){
     this->is_binded = true;
   }else{
-    cout << "[error] Socket binding failed for port [" << port << "]" << endl;
+    std::cout << "[error] Socket binding failed for port [" << port << "]" << std::endl;
     this->is_binded = false;
   }
 
@@ -85,7 +86,7 @@ void Server::recv_data(){
   packet_dec.clear();
   if(udp_size != 0 && udp_size != 512){
     for(int i=0; i<udp_size; i++){
-      bitset<8> octet(buffer[i]);
+      std::bitset<8> octet(buffer[i]);
 
       int octet_32 = octet.to_ulong();
       packet_dec.push_back(octet_32);

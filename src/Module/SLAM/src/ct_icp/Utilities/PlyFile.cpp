@@ -231,12 +231,12 @@ void PlyFile::readFile(char*& points, int& pointSize, int& numPoints)
 	}
 	case binary_big_endian:
 	{
-		cout << "WARNING: function not implemented for binary big endian file" << endl;
+		cout << "WARNING: function not implemented for binary big endian file" << std::endl;
 		break;
 	}
 	case ascii:
 	{
-		cout << "WARNING: function not implemented for ascii file" << endl;
+		cout << "WARNING: function not implemented for ascii file" << std::endl;
 		break;
 	}
 	}	
@@ -252,7 +252,7 @@ void PlyFile::writeFile(char* points, int numPoints, list<string> properties, li
 
 	if(properties.size() != types.size())
 	{
-		cout << "Warning : mismatch between properties and types" << endl;
+		cout << "Warning : mismatch between properties and types" << std::endl;
 		return;
 	}
 
@@ -314,15 +314,15 @@ void PlyFile::writeFile(char* points, int numPoints, list<string> properties, li
 
 void PlyFile::displayInfos()
 {
-	cout << "------------------------------------------------------" << endl;
-	cout << " PLY File : " << _path << endl;
-	cout << "------------------------------------------------------" << endl;
-	cout << "  - format     : " << _format << endl;
-	cout << "  - num points : " << _numPoints << endl;
-	cout << "  - properties : " << endl;
+	cout << "------------------------------------------------------" << std::endl;
+	cout << " PLY File : " << _path << std::endl;
+	cout << "------------------------------------------------------" << std::endl;
+	cout << "  - format     : " << _format << std::endl;
+	cout << "  - num points : " << _numPoints << std::endl;
+	cout << "  - properties : " << std::endl;
 	for(int i(0); i < _propertyNum; i++)
 	{
-		cout << "     - " << _propertyName[i] << " :	" << _propertyType[i] << " |	" << _propertySize[i] << " bytes " << endl;
+		cout << "     - " << _propertyName[i] << " :	" << _propertyType[i] << " |	" << _propertySize[i] << " bytes " << std::endl;
 	}
-	cout << "------------------------------------------------------" << endl << endl;
+	cout << "------------------------------------------------------" << std::endl << std::endl;
 }

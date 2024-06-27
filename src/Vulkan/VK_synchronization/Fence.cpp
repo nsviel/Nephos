@@ -78,7 +78,7 @@ void Fence::reset_fence(vk::synchro::structure::Fence* fence){
 
   VkResult result = vkResetFences(vk_struct->device.handle, 1, &fence->handle);
   if(result != VK_SUCCESS){
-    cout<<"[error] reseting fence"<<endl;
+    std::cout<<"[error] reseting fence"<<endl;
   }
 
   fence->is_available = true;
@@ -112,7 +112,7 @@ vk::synchro::structure::Fence* Fence::query_free_fence(){
   }while(true);
 
   //Error message
-  cout<<"[error] not enough fence"<<endl;
+  std::cout<<"[error] not enough fence"<<endl;
 
   //---------------------------
   return nullptr;

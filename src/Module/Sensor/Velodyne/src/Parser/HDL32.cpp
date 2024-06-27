@@ -84,7 +84,7 @@ void HDL32::parse_blocks(){
 
     // 0xffee is upper block
     if(block_flag != 65518){
-      cout << "Problem of block flag" << endl;
+      std::cout << "Problem of block flag" << std::endl;
     }
 
     //Get block azimuth
@@ -234,7 +234,7 @@ void HDL32::final_check(utl::base::Data* cloud){
     this->make_supressElements(packet_xyz, idx);
 
     if(packet_xyz.size() == 0){
-      cout << "No data in the packet" << endl;
+      std::cout << "No data in the packet" << std::endl;
     }
   }
 
@@ -261,16 +261,16 @@ void HDL32::final_check(utl::base::Data* cloud){
 
   //Check data size
   if(packet_xyz.size() != packet_R.size()){
-    cout<< "Problem packet size R" << endl;
+    std::cout<< "Problem packet size R" << std::endl;
   }
   if(packet_xyz.size() != packet_A.size()){
-    cout<< "Problem packet size A" << endl;
+    std::cout<< "Problem packet size A" << std::endl;
   }
   if(packet_xyz.size() != packet_t.size()){
-    cout<< "Problem packet size t" << endl;
+    std::cout<< "Problem packet size t" << std::endl;
   }
   if(packet_xyz.size() != packet_I.size()){
-    cout<< "Problem packet size I" << endl;
+    std::cout<< "Problem packet size I" << std::endl;
   }
 
   //---------------------------

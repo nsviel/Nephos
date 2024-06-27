@@ -48,7 +48,7 @@ void Subpass::create_subpass(vk::structure::Renderpass* renderpass){
       this->create_subpass_description(subpass);
     }
     else{
-      cout<<"[error] subpass target not recognized"<<endl;
+      std::cout<<"[error] subpass target not recognized"<<endl;
     }
   }
 

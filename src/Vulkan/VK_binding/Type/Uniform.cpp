@@ -78,16 +78,16 @@ template <typename T> void Uniform::update_uniform(std::string uniform_name, vk:
 
   //Error reporte
   if(!has_been_found){
-    cout << "------------------------" << endl;
-    cout << "[error] Update uniform -> name not recognized \033[1;31m" << uniform_name << "\033[0m" << endl;
-    cout << "Existing uniform names: " << endl;
+    std::cout << "------------------------" << std::endl;
+    std::cout << "[error] Update uniform -> name not recognized \033[1;31m" << uniform_name << "\033[0m" << std::endl;
+    std::cout << "Existing uniform names: " << std::endl;
 
     for(int i = 0; i < binding->vec_uniform.size(); i++){
       vk::binding::structure::Uniform* uniform = binding->vec_uniform[i];
-      cout << "\033[1;32m" << uniform->name << "\033[0m" << endl;
+      std::cout << "\033[1;32m" << uniform->name << "\033[0m" << std::endl;
     }
 
-    cout << "------------------------" << endl;
+    std::cout << "------------------------" << std::endl;
     exit(0);
   }
 

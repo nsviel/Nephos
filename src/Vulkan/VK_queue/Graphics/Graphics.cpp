@@ -175,7 +175,7 @@ void Graphics::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore
       submit_info.commandBufferCount = 1;
       submit_info.pCommandBuffers = &command->command_buffer->handle;
     }else{
-      cout<<"[error] command buffer is VK_NULL"<<endl;
+      std::cout<<"[error] command buffer is VK_NULL"<<endl;
     }
 
     vec_info.push_back(submit_info);

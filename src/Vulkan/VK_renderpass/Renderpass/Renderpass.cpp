@@ -24,7 +24,7 @@ void Renderpass::init(){
 
   //Check for renderpass demande
   if(vk_struct->render.vec_renderpass.size() == 0){
-    cout<<"[error] No renderpass initiated"<<endl;
+    std::cout<<"[error] No renderpass initiated"<<endl;
     exit(0);
   }
 

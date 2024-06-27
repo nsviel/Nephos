@@ -43,7 +43,7 @@ VkSurfaceFormatKHR Color::retrieve_surface_format(const std::vector<VkSurfaceFor
     }
   }
 
-  cout<<"[error] Standard RGB is no available"<<endl;
+  std::cout<<"[error] Standard RGB is no available"<<endl;
 
   //---------------------------
   return dev_format[0];

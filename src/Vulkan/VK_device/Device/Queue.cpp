@@ -100,13 +100,13 @@ void Queue::find_queue_family_assigment(){
 
   //check for good assigment
   if(pool.graphics.family_ID == -1){
-    cout<<"[error] in graphics queue family assigment"<<endl;
+    std::cout<<"[error] in graphics queue family assigment"<<endl;
   }
   if(pool.transfer.family_ID == -1){
-    cout<<"[error] in transfer queue family assigment"<<endl;
+    std::cout<<"[error] in transfer queue family assigment"<<endl;
   }
   if(pool.presentation.family_ID == -1 && !vk_struct->param.headless){
-    cout<<"[error] in presentation queue family assigment"<<endl;
+    std::cout<<"[error] in presentation queue family assigment"<<endl;
   }
 
   //---------------------------

@@ -120,7 +120,7 @@ vk::synchro::structure::Semaphore* Semaphore::query_free_semaphore(){
   }
 
   //Error message
-  cout<<"[error] not enough semaphore"<<endl;
+  std::cout<<"[error] not enough semaphore"<<endl;
 
   //---------------------------
   return nullptr;
