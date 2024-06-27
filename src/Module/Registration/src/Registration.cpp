@@ -31,13 +31,13 @@ void Registration::start_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 }
 void Registration::run_thread(k4n::structure::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler->fetch_tasker("registration");
+  //prf::graph::Tasker* tasker = sensor->profiler->fetch_tasker("registration");
   //---------------------------
 
-  tasker->loop_begin();
+  //tasker->loop_begin();
 
 
-  tasker->loop_end();
+  //tasker->loop_end();
 
   //---------------------------
   this->idle = true;

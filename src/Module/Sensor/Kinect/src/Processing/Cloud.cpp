@@ -68,42 +68,42 @@ void Cloud::convert_image_into_cloud(k4n::structure::Sensor* sensor){
   if(sensor->color.cloud.size != sensor->depth.cloud.size * 2) return;
   //---------------------------
 
-  prf::graph::Tasker* tasker = sensor->profiler.fetch_tasker("cloud");
-  tasker->loop_begin();
+  //prf::graph::Tasker* tasker = sensor->profiler.fetch_tasker("cloud");
+  //tasker->loop_begin();
 
-  this->convertion_init(sensor, tasker);
-  this->convertion_data(sensor, tasker);
-  this->convertion_transfer(sensor, tasker);
+  this->convertion_init(sensor);
+  this->convertion_data(sensor);
+  this->convertion_transfer(sensor);
 
-  tasker->loop_end();
+  //tasker->loop_end();
 
   //---------------------------
 }
-void Cloud::convertion_init(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker){
+void Cloud::convertion_init(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Depth transformation
-  tasker->task_begin("transformation");
+  //tasker->task_begin("transformation");
   this->retrieve_cloud(sensor);
-  tasker->task_end("transformation");
+  //tasker->task_end("transformation");
 
   //Resize vectors
-  tasker->task_begin("reserve");
+  //tasker->task_begin("reserve");
   int size = sensor->depth.cloud.size;
   vec_xyz.clear(); vec_xyz.reserve(size);
   vec_rgb.clear(); vec_rgb.reserve(size);
   vec_rgba.clear(); vec_rgba.reserve(size);
   vec_ir.clear(); vec_ir.reserve(size);
   vec_r.clear(); vec_r.reserve(size);
-  tasker->task_end("reserve");
+  //tasker->task_end("reserve");
 
   //---------------------------
 }
-void Cloud::convertion_data(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker){
+void Cloud::convertion_data(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Fille vector with data
-  tasker->task_begin("data");
+  //tasker->task_begin("data");
   #pragma omp parallel for
   for(int i=0; i<sensor->depth.cloud.size; i++){
     this->retrieve_location(sensor, i);
@@ -111,17 +111,17 @@ void Cloud::convertion_data(k4n::structure::Sensor* sensor, prf::graph::Tasker* 
     this->retrieve_ir(sensor, i);
     this->insert_data(i);
   }
-  tasker->task_end("data");
+  //tasker->task_end("data");
 
   //---------------------------
 }
-void Cloud::convertion_transfer(k4n::structure::Sensor* sensor, prf::graph::Tasker* tasker){
+void Cloud::convertion_transfer(k4n::structure::Sensor* sensor){
   utl::base::Data* data = &sensor->data;
   dat::base::Set* master = sensor->set_parent;
   //---------------------------
 
   //Cloud data copy
-  tasker->task_begin("copying");
+  //tasker->task_begin("copying");
   data->xyz = vec_xyz;
   data->rgb = vec_rgb;
   data->Is = vec_ir;
@@ -131,7 +131,7 @@ void Cloud::convertion_transfer(k4n::structure::Sensor* sensor, prf::graph::Task
   data->width = sensor->depth.cloud.width;
   data->height = sensor->depth.cloud.height;
   sensor->device.idx_cloud++;
-  tasker->task_end("copying");
+  //tasker->task_end("copying");
 
   //---------------------------
 }

@@ -34,6 +34,7 @@ void Normal::start_thread(dyn::base::Sensor* sensor){
   if(thread.joinable()){
     this->thread.join();
   }
+  this->thread_idle = false;
   this->thread = std::thread(&Normal::run_thread, this, sensor);
 
   //---------------------------

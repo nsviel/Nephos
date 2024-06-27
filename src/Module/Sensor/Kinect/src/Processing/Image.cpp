@@ -39,7 +39,7 @@ Image::~Image(){
 void Image::start_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
-  this->idle = false;
+  this->thread_idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };
@@ -57,16 +57,16 @@ void Image::run_thread(k4n::structure::Sensor* sensor){
   k4n_cloud->start_thread(sensor);
 
   //Dynamic operation
-  dyn_operation->start_thread(sensor);
+  //dyn_operation->start_thread(sensor);
 
   //---------------------------
-  this->idle = true;
+  this->thread_idle = true;
 }
 void Image::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  while(idle == false){
+  while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
   k4n_cloud->wait_thread();
@@ -77,37 +77,37 @@ void Image::wait_thread(){
 
 //Data function
 void Image::find_data_from_capture(k4n::structure::Sensor* sensor){
-  prf::graph::Tasker* tasker = sensor->profiler.fetch_tasker("data");
+  //prf::graph::Tasker* tasker = sensor->profiler.fetch_tasker("data");
   //---------------------------
 
-  tasker->loop_begin();
+  //tasker->loop_begin();
 
   //Depth data
-  tasker->task_begin("depth");
+  //tasker->task_begin("depth");
   this->find_data_depth(sensor);
-  tasker->task_end("depth");
+  //tasker->task_end("depth");
 
   //Color data
-  tasker->task_begin("color");
+  //tasker->task_begin("color");
   this->find_data_color(sensor);
-  tasker->task_end("color");
+  //tasker->task_end("color");
 
   //Infrared data
-  tasker->task_begin("infrared");
+  //tasker->task_begin("infrared");
   this->find_data_ir(sensor);
-  tasker->task_end("infrared");
+  //tasker->task_end("infrared");
 
   //Cloud data
-  tasker->task_begin("transformation");
+  //tasker->task_begin("transformation");
   this->find_data_cloud(sensor);
-  tasker->task_end("transformation");
+  //tasker->task_end("transformation");
 
-  tasker->loop_end();
+  //tasker->loop_end();
 
   //End
-  sensor->color.data.fps = tasker->fps;
-  sensor->depth.data.fps = tasker->fps;
-  sensor->ir.data.fps = tasker->fps;
+  //sensor->color.data.fps = tasker->fps;
+  //sensor->depth.data.fps = tasker->fps;
+  //sensor->ir.data.fps = tasker->fps;
   sensor->timestamp.current = sensor->color.data.timestamp;
 
   //---------------------------

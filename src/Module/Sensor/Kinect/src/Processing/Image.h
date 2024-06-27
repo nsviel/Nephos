@@ -59,7 +59,7 @@ private:
   dat::Image* dat_image;
 
   tjhandle tj_handle;
-  bool idle = true;
+  bool thread_idle = true;
 };
 
 }
