@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace prf::gui::hardware{

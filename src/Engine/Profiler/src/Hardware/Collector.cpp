@@ -2,6 +2,7 @@
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace prf::hardware{

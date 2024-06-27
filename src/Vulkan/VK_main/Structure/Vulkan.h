@@ -12,7 +12,6 @@
 #include <Vulkan/VK_pool/Structure/Pool.h>
 
 #include <Application/Node.h>
-#include <Profiler/Namespace.h>
 
 
 
