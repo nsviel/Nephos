@@ -27,6 +27,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
+  prf_hardware->init();
 
   //---------------------------
 }
@@ -42,7 +43,6 @@ void Node::loop(){
 
   prf_manager->loop_end();
   prf_manager->loop_begin(120);
-  prf_hardware->collect_gpu_info();
 
   //---------------------------
 }

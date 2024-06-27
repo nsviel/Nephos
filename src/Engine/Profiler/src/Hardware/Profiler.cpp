@@ -18,17 +18,10 @@ Profiler::Profiler(prf::Node* node_profiler){
 Profiler::~Profiler(){}
 
 //Main function
-void Profiler::collect_gpu_info(){
+void Profiler::init(){
   //---------------------------
 
-  prf_collector->collect_gpu_info();
-
-  //---------------------------
-}
-void Profiler::collect_info(vk::Structure* vk_struct){
-  //---------------------------
-
-  prf_collector->collect_info(vk_struct);
+  prf_collector->collect_info();
 
   //---------------------------
 }

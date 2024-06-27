@@ -51,6 +51,7 @@ void Node::init(){
   node_camera->init();
   node_render->init();
   node_radio->init();
+  node_profiler->init();
 
   //---------------------------
 }

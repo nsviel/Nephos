@@ -22,13 +22,16 @@ Collector::Collector(prf::Node* node_profiler){
 Collector::~Collector(){}
 
 //Profiler vulkan info
-void Collector::collect_info(vk::Structure* vk_struct){
+void Collector::collect_info(){
   //---------------------------
 
-  this->collect_vulkan_device(vk_struct);
+  this->collect_vulkan_device();
+  this->collect_gpu_info();
 
   //---------------------------
 }
+
+//Subfunction
 void Collector::collect_gpu_info(){
   //---------------------------
 
@@ -39,9 +42,7 @@ void Collector::collect_gpu_info(){
 
   //---------------------------
 }
-
-//Subfunction
-void Collector::collect_vulkan_device(vk::Structure* vk_struct){
+void Collector::collect_vulkan_device(){
   //---------------------------
 
   for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){

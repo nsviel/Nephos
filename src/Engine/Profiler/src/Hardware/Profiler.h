@@ -24,9 +24,9 @@ public:
 
 public:
   //Main function
+  void init();
+
   void add_queue(prf::hardware::queue::Type type, int ID_family);
-  void collect_info(vk::Structure* vk_struct);
-  void collect_gpu_info();
 
 private:
   prf::Structure* prf_struct;

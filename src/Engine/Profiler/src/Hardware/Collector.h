@@ -20,11 +20,11 @@ public:
 
 public:
   //Profiler vulkan info
-  void collect_info(vk::Structure* vk_struct);
-  void collect_gpu_info();
+  void collect_info();
 
   //Subfunction
-  void collect_vulkan_device(vk::Structure* vk_struct);
+  void collect_gpu_info();
+  void collect_vulkan_device();
 
 private:
   prf::Structure* prf_struct;
