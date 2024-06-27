@@ -29,8 +29,6 @@ public:
   void design_panel();
 
   //Subfunction
-  void draw_tab_profiler();
-  void draw_profiler(prf::base::Profiler* profiler);
 
 private:
   prf::Manager* prf_manager;

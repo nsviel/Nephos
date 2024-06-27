@@ -44,49 +44,18 @@ void Panel::run_panel(){
   //---------------------------
 }
 void Panel::design_panel(){
-  //---------------------------
-
-  this->draw_tab_profiler();
-
-  //---------------------------
-}
-
-//Subfunction
-void Panel::draw_tab_profiler(){
-  std::list<prf::base::Profiler*> list_profiler = prf_manager->get_list_profiler();
   int width = ImGui::GetContentRegionAvail().x / list_profiler.size() + 1;
   //---------------------------
 
   if(ImGui::BeginTabBar("profiler_panel##graph")){
-    for(int i=0; i<list_profiler.size(); i++){
-      prf::base::Profiler* profiler = *next(list_profiler.begin(), i);
-
-      ImGui::SetNextItemWidth(width);
-      if(ImGui::BeginTabItem(profiler->name.c_str())){
-        this->draw_profiler(profiler);
-        ImGui::EndTabItem();
-      }
-    }
-
-    ImGui::SetNextItemWidth(width);
-    tab_hardware->draw_tab();
+    tab_hardware->draw_tab(width);
+    tab_hardware->draw_tab(width);
 
     ImGui::EndTabBar();
   }
-
   //---------------------------
 }
-void Panel::draw_profiler(prf::base::Profiler* profiler){
-  //---------------------------
 
-  switch(profiler->type){
-    case prf::base::GRAPH:{
-      //tab_dynamic->show_profiler(profiler);
-      break;
-    }
-  }
-
-  //---------------------------
-}
+//Subfunction
 
 }

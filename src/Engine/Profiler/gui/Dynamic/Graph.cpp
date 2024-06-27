@@ -24,6 +24,27 @@ void Graph::show_profiler(prf::base::Profiler* profiler){
   prf::graph::Profiler* graph = dynamic_cast<prf::graph::Profiler*>(profiler);
   //---------------------------
 
+  /*
+    std::list<prf::base::Profiler*> list_profiler = prf_manager->get_list_profiler();
+    
+  if(ImGui::BeginTabBar("profiler_panel##graph")){
+    for(int i=0; i<list_profiler.size(); i++){
+      prf::base::Profiler* profiler = *next(list_profiler.begin(), i);
+
+      ImGui::SetNextItemWidth(width);
+      if(ImGui::BeginTabItem(profiler->name.c_str())){
+        this->draw_profiler(profiler);
+        ImGui::EndTabItem();
+      }
+    }
+
+    ImGui::SetNextItemWidth(width);
+    tab_hardware->draw_tab();
+
+    ImGui::EndTabBar();
+  }
+  */
+
   this->draw_info();
 
   if(ImGui::BeginTabBar("profiler_tasker_tab")){

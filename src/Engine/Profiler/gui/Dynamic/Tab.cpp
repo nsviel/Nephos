@@ -16,9 +16,10 @@ Tab::Tab(prf::Node* node_profiler){
 Tab::~Tab(){}
 
 //Main function
-void Tab::draw_tab(){
+void Tab::draw_tab(int width){
   //---------------------------
 
+  ImGui::SetNextItemWidth(width);
   if(ImGui::BeginTabItem("Hardware")){
     this->draw_dynamic_tabbar();
 

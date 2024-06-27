@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  void draw_tab();
+  void draw_tab(int width);
 
   //Subfunction
   void draw_dynamic_tabbar();
