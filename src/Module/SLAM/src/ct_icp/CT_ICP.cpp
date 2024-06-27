@@ -341,7 +341,7 @@ void CT_ICP::reset(){
 }
 
 // Algo functions
-void CT_ICP::do_truc(Cloud* cloud, vector<Point3D>& frame){
+void CT_ICP::do_truc(Cloud* cloud, std::vector<Point3D>& frame){
 	//---------------------------
 
 	for(int j=0; j<cloud->xyz.size(); j++){
@@ -466,7 +466,7 @@ int CT_ICP::frame_to_model(std::unordered_map<Voxel, std::list<Eigen::Vector3d>>
 					}
 				}
 
-				std::sort(vector_neighbors.begin(), vector_neighbors.end(), [](const std::pair<double, Eigen::Vector3d>& left, const std::pair<double, Eigen::Vector3d>& right){return left.first < right.first; });
+				std::sort(vector_neighbors.begin(), std::vector_neighbors.end(), [](const std::pair<double, Eigen::Vector3d>& left, const std::pair<double, Eigen::Vector3d>& right){return left.first < right.first; });
 
 				int real_number_neighbors = std::min(MAX_NUMBER_NEIGHBORS, (int)vector_neighbors.size());
 				vector_neighbors.resize(real_number_neighbors);

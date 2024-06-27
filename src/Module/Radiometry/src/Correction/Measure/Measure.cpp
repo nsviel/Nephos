@@ -40,7 +40,7 @@ void Measure::init(){
 
   //Measure
   sphere->size = sphere->R_size * sphere->It_size;
-  sphere->data = vector<vec3>(sphere->size, vec3(-1, -1, -1));
+  sphere->data = vector<glm::vec3>(sphere->size, vec3(-1, -1, -1));
 
   //---------------------------
 }
@@ -49,7 +49,7 @@ void Measure::init(){
 void Measure::process_measure(dyn::base::Sensor* sensor){
   //---------------------------
 
-  std::vector<vec3>& search_xyz = rad_struct->ransac.search_xyz;
+  std::vector<glm::vec3>& search_xyz = rad_struct->ransac.search_xyz;
   std::vector<float>& search_Is = rad_struct->ransac.search_Is;
   rad_struct->state.data = rad::correction::HAS_DATA;
 
@@ -59,7 +59,7 @@ void Measure::process_measure(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Measure::data_measure(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vector<float>& search_Is){
+void Measure::data_measure(dyn::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
   rad::correction::structure::Model* model = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
@@ -99,7 +99,7 @@ void Measure::data_measure(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, 
 
   //---------------------------
 }
-void Measure::data_IfR(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vector<float>& search_Is){
+void Measure::data_IfR(dyn::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
   rad::correction::structure::Model* model = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
@@ -121,7 +121,7 @@ void Measure::data_IfR(dyn::base::Sensor* sensor, vector<vec3>& search_xyz, vect
 
   //---------------------------
 }
-void Measure::data_IfIt(std::vector<vec3>& search_xyz, vector<float>& search_Is){
+void Measure::data_IfIt(std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------

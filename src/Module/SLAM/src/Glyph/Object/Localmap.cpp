@@ -68,8 +68,8 @@ void Localmap::update_localmap(slamap* map){
   if(localmap->is_visible){
     //---------------------------
 
-    std::vector<vec3>& gly_xyz = localmap->xyz;
-    std::vector<vec4>& gly_rgb = localmap->rgb;
+    std::vector<glm::vec3>& gly_xyz = localmap->xyz;
+    std::vector<glm::vec4>& gly_rgb = localmap->rgb;
 
     gly_xyz.clear();
     gly_rgb.clear();
@@ -94,8 +94,8 @@ void Localmap::update_localcloud(slamap* map){
   if(localcloud->is_visible){
     //---------------------------
 
-    std::vector<vec3>& gly_xyz = localcloud->xyz;
-    std::vector<vec4>& gly_rgb = localcloud->rgb;
+    std::vector<glm::vec3>& gly_xyz = localcloud->xyz;
+    std::vector<glm::vec4>& gly_rgb = localcloud->rgb;
 
     gly_xyz.clear();
     gly_rgb.clear();

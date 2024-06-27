@@ -65,7 +65,7 @@ void SLAM_map::update_map(Collection* collection, int subset_ID){
   //---------------------------
 
   //Local map
-  std::vector<vec3> xyz_map = slam_sampling->sub_sampling_subset(cloud, 0.2);
+  std::vector<glm::vec3> xyz_map = slam_sampling->sub_sampling_subset(cloud, 0.2);
   this->add_pointToMap(local_map, xyz_map); //frame->xyz
   this->end_clearTooFarVoxels(local_map, frame->trans_e);
 
@@ -87,7 +87,7 @@ void SLAM_map::reset_map(){
 }
 
 //sub-function
-void SLAM_map::add_pointToMap(slamap* map, vector<vec3>& xyz){
+void SLAM_map::add_pointToMap(slamap* map, std::vector<glm::vec3>& xyz){
   //---------------------------
 
   for(int i=0; i<xyz.size(); i++){

@@ -51,7 +51,7 @@ inline const std::vector<glm::vec3> viridis_long = {
   glm::vec3(253.0f/255.0f, 231.0f/255.0f, 37.0f/255.0f)
 };
 
-inline const vector<vec3> magma = {
+inline const vector<glm::vec3> magma = {
   vec3(0.001462, 0.000466, 0.013866), vec3(0.043830, 0.033830, 0.141886),
   vec3(0.232077, 0.059889, 0.437695), vec3(0.439062, 0.120298, 0.506555),
   vec3(0.620005, 0.183840, 0.497524), vec3(0.804752, 0.249911, 0.442102),

@@ -32,7 +32,7 @@ public:
 private:
   //Sub-function
   std::vector<Eigen::Vector3d> compute_kNN_search(Eigen::Vector3d &point);
-  void compute_knn_normal(Frame* frame, vector<Eigen::Vector3d>& kNN, int i);
+  void compute_knn_normal(Frame* frame, std::vector<Eigen::Vector3d>& kNN, int i);
   void compute_normal_direction(Frame* frame, int i);
 
 private:

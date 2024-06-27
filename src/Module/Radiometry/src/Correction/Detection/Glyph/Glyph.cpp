@@ -97,7 +97,7 @@ void Glyph::draw_detection_sphere(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Glyph::draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::correction::structure::Circle>& vec_circle){
+void Glyph::draw_sphere_glyph(dyn::base::Sensor* sensor, std::vector<rad::correction::structure::Circle>& vec_circle){
   std::vector<rad::correction::glyph::Sphere*>& vec_sphere = rad_struct->hough.vec_glyph;
   //---------------------------
 

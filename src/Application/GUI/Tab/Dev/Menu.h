@@ -1,8 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-#include <GUI/Namespace.h>
-
 
 namespace gui::tab::dev{
 

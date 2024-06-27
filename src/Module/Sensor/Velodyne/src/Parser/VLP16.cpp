@@ -1,5 +1,6 @@
 #include "VLP16.h"
 
+#include <Utility/Namespace.h>
 #include <chrono>
 
 /*
@@ -253,7 +254,7 @@ void VLP16::reorder_by_azimuth(utl::base::Data* cloud){
   //---------------------------
 
   //Reorder points in function of their azimuth
-  std::vector<vec3> xyz_b;
+  std::vector<glm::vec3> xyz_b;
   std::vector<float> R_b;
   std::vector<float> I_b;
   std::vector<float> A_b;
@@ -338,7 +339,7 @@ vector<float> VLP16::calc_timing_offsets(){
     //-----------------------
     return timing_offsets;
 }
-void VLP16::make_supressElements(std::vector<vec3>& vec, vector<int> idx){
+void VLP16::make_supressElements(std::vector<glm::vec3>& vec, std::vector<int> idx){
   if(idx.size() == 0)return;
   //---------------------------
 
@@ -346,7 +347,7 @@ void VLP16::make_supressElements(std::vector<vec3>& vec, vector<int> idx){
   sort(idx.begin(), idx.end());
 
   //Recreate vector -> Fastest delection method
-  std::vector<vec3> vec_b;
+  std::vector<glm::vec3> vec_b;
   int cpt = 0;
 
   for(int i=0; i<vec.size(); i++){
@@ -363,7 +364,7 @@ void VLP16::make_supressElements(std::vector<vec3>& vec, vector<int> idx){
   //---------------------------
   vec = vec_b;
 }
-void VLP16::make_supressElements(std::vector<float>& vec, vector<int> idx){
+void VLP16::make_supressElements(std::vector<float>& vec, std::vector<int> idx){
   if(idx.size() == 0)return;
   //---------------------------
 

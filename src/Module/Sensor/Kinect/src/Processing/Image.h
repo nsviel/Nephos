@@ -44,8 +44,8 @@ public:
 
   //Subfunction
   std::string retrieve_format_from_k4a(k4a_image_format_t color_format);
-  void retrieve_data_from_capture(k4a::image& image, vector<uint8_t>& data, std::string& format);
-  void retrieve_bgra_from_mjpeg(k4a::image& image, vector<uint8_t>& data);
+  void retrieve_data_from_capture(k4a::image& image, std::vector<uint8_t>& data, std::string& format);
+  void retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data);
   uint8_t* retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height);
 
 private:

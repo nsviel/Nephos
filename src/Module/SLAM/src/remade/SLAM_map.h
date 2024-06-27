@@ -25,7 +25,7 @@ public:
   void reset_map();
 
   //Sub-function
-  void add_pointToMap(slamap* map, vector<vec3>& xyz);
+  void add_pointToMap(slamap* map, std::vector<glm::vec3>& xyz);
   void add_pointToMap(slamap* map, Cloud* cloud);
   void add_pointToCloud(slamap* map, Cloud* cloud);
   void save_local_cloud();

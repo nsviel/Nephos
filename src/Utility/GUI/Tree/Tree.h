@@ -20,11 +20,11 @@ public:
   void construct_tree(utl::gui::tree::Filler* filler);
 
   //subfunction
-  void construct_node(std::string path, vector<utl::gui::tree::Node*>& nodes);
-  void construct_node_root(std::vector<string>& vec_path, vector<utl::gui::tree::Node*>& nodes);
-  void display_node(utl::gui::tree::Node* node, vector<utl::gui::tree::Node*>& all_nodes);
+  void construct_node(std::string path, std::vector<utl::gui::tree::Node*>& nodes);
+  void construct_node_root(std::vector<string>& vec_path, std::vector<utl::gui::tree::Node*>& nodes);
+  void display_node(utl::gui::tree::Node* node, std::vector<utl::gui::tree::Node*>& all_nodes);
   void display_node_root(std::vector<utl::gui::tree::Node*>& all_nodes);
-  void node_child_scan(std::string path, vector<utl::gui::tree::Node*>& nodes, utl::gui::tree::Node* parent);
+  void node_child_scan(std::string path, std::vector<utl::gui::tree::Node*>& nodes, utl::gui::tree::Node* parent);
   bool check_display_file_format(std::string path);
   void open_selection(utl::gui::tree::Node* node);
 

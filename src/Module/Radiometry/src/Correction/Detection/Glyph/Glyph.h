@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <vector>
 
 namespace dyn::base{class Sensor;}
 namespace rad::correction{class Node;}
@@ -28,7 +28,7 @@ public:
   //Subfunction
   void draw_calibration_sphere(dyn::base::Sensor* sensor);
   void draw_detection_sphere(dyn::base::Sensor* sensor);
-  void draw_sphere_glyph(dyn::base::Sensor* sensor, vector<rad::correction::structure::Circle>& vec_circle);
+  void draw_sphere_glyph(dyn::base::Sensor* sensor, std::vector<rad::correction::structure::Circle>& vec_circle);
 
   //Reset function
   void reset_calibration_sphere();

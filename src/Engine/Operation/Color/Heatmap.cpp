@@ -139,7 +139,7 @@ void Heatmap::compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& 
   }
 
   //Compute heatmap from input vector
-  std::vector<vec3>& colormap = ope_colormap->get_colormap_selected();
+  std::vector<glm::vec3>& colormap = ope_colormap->get_colormap_selected();
   const size_t colormap_size = colormap.size();
 
   #pragma omp parallel for

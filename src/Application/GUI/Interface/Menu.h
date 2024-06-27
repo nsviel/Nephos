@@ -1,11 +1,9 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
-namespace utl::element::gui{class Git;}
 namespace gui{class Node;}
 namespace gui::style{class Font;}
 namespace gui::interface{class Docking;}
+namespace utl::element::gui{class Git;}
 
 
 namespace gui::interface{
@@ -25,10 +23,10 @@ public:
   void menu_git();
 
 private:
-  utl::element::gui::Git* gui_git;
-  gui::interface::Docking* gui_docking;
   gui::Node* gui;
   gui::style::Font* gui_font;
+  gui::interface::Docking* gui_docking;
+  utl::element::gui::Git* gui_git;
 
   bool show_demo;
 };

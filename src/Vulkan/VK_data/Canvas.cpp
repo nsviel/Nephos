@@ -22,7 +22,7 @@ void Canvas::init(){
   //---------------------------
 
   //Generic quad coordinates and UV
-  std::vector<vec3> xyz;
+  std::vector<glm::vec3> xyz;
   xyz.push_back(vec3(1.0f, -1.0f, 0.0f));
   xyz.push_back(vec3(-1.0f, -1.0f, 0.0f));
   xyz.push_back(vec3(-1.0f, 1.0f, 0.0f));
@@ -31,7 +31,7 @@ void Canvas::init(){
   xyz.push_back(vec3(1.0f, -1.0f, 0.0f));
   xyz.push_back(vec3(-1.0f, 1.0f, 0.0f));
 
-  std::vector<vec2> uv;
+  std::vector<glm::vec2> uv;
   uv.push_back(glm::vec2(1.0f,  0.0f));
   uv.push_back(glm::vec2(0.0f,  0.0f));
   uv.push_back(glm::vec2(0.0f,  1.0f));

@@ -58,7 +58,7 @@ public:
 
 private:
 	//Algo functions
-	void do_truc(Cloud* cloud, vector<Point3D>& frame);
+	void do_truc(Cloud* cloud, std::vector<Point3D>& frame);
 	void update_voxelMap(std::vector<Point3D>& frame);
 
 	//Subfunctions

@@ -32,8 +32,8 @@ void Keypoint::update_keypoint_location(Cloud* cloud){
   Glyph* keypoint = &cloud->glyphs["keypoint"];
   //---------------------------
 
-  std::vector<vec3>& XYZ_key = keypoint->xyz;
-  std::vector<vec4>& RGB_key = keypoint->rgb;
+  std::vector<glm::vec3>& XYZ_key = keypoint->xyz;
+  std::vector<glm::vec4>& RGB_key = keypoint->rgb;
   std::vector<float>& ts_key = keypoint->ts;
 
   //Construct glyph
@@ -51,10 +51,10 @@ void Keypoint::update_keypoint_normal(Cloud* cloud){
   //---------------------------
 
   //Get vector values
-  std::vector<vec3>& xyz_k = keypoint->xyz;
-  std::vector<vec3>& Nxyz_k = keypoint->Nxyz;
-  std::vector<vec3>& xyz_n = normal->xyz;
-  std::vector<vec4>& rgb_n = normal->rgb;
+  std::vector<glm::vec3>& xyz_k = keypoint->xyz;
+  std::vector<glm::vec3>& Nxyz_k = keypoint->Nxyz;
+  std::vector<glm::vec3>& xyz_n = normal->xyz;
+  std::vector<glm::vec4>& rgb_n = normal->rgb;
 
   //Check vector length
   if(xyz_k.size() == 0 || Nxyz_k.size() == 0 || Nxyz_k.size() != xyz_k.size()){

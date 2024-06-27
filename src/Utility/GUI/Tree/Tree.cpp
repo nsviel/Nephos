@@ -58,7 +58,7 @@ void Tree::construct_tree(utl::gui::tree::Filler* filler){
 }
 
 //subfunction
-void Tree::construct_node(std::string path, vector<utl::gui::tree::Node*>& nodes){
+void Tree::construct_node(std::string path, std::vector<utl::gui::tree::Node*>& nodes){
   if(path != ""){
     //---------------------------
 
@@ -76,7 +76,7 @@ void Tree::construct_node(std::string path, vector<utl::gui::tree::Node*>& nodes
     //---------------------------
   }
 }
-void Tree::construct_node_root(std::vector<string>& vec_path, vector<utl::gui::tree::Node*>& nodes){
+void Tree::construct_node_root(std::vector<string>& vec_path, std::vector<utl::gui::tree::Node*>& nodes){
   //---------------------------
 
   for(int i=0; i<vec_path.size(); i++){
@@ -98,7 +98,7 @@ void Tree::construct_node_root(std::vector<string>& vec_path, vector<utl::gui::t
 
   //---------------------------
 }
-void Tree::node_child_scan(std::string path, vector<utl::gui::tree::Node*>& nodes, utl::gui::tree::Node* parent){
+void Tree::node_child_scan(std::string path, std::vector<utl::gui::tree::Node*>& nodes, utl::gui::tree::Node* parent){
   std::vector<string> list_path = utl::path::list_all_path(path);
   //---------------------------
 
@@ -140,7 +140,7 @@ void Tree::node_child_scan(std::string path, vector<utl::gui::tree::Node*>& node
 
   //---------------------------
 }
-void Tree::display_node(utl::gui::tree::Node* node, vector<utl::gui::tree::Node*>& all_nodes){
+void Tree::display_node(utl::gui::tree::Node* node, std::vector<utl::gui::tree::Node*>& all_nodes){
   if(all_nodes.size() != 0){
     //---------------------------
 

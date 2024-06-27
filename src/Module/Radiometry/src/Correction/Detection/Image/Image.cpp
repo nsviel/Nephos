@@ -81,7 +81,7 @@ void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
 }
 
 //Shape function
-void Image::draw_circle(cv::Mat& image, vector<rad::correction::structure::Circle>& vec_circle){
+void Image::draw_circle(cv::Mat& image, std::vector<rad::correction::structure::Circle>& vec_circle){
   if(vec_circle.size() == 0) return;
   //------------------------
 

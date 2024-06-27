@@ -110,7 +110,7 @@ vector<Eigen::Vector3d> SLAM_normal::compute_kNN_search(Eigen::Vector3d& point){
   //---------------------------
   return kNN;
 }
-void SLAM_normal::compute_knn_normal(Frame* frame, vector<Eigen::Vector3d>& kNN, int i){
+void SLAM_normal::compute_knn_normal(Frame* frame, std::vector<Eigen::Vector3d>& kNN, int i){
   // Computes normal and planarity coefficient
   //---------------------------
 

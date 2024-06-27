@@ -15,7 +15,7 @@ public:
 public:
   void create_glyph(Cloud* cloud);
   void update_normal_cloud(Cloud* cloud);
-  void update_normal_cloud(Cloud* cloud, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s);
+  void update_normal_cloud(Cloud* cloud, std::vector<glm::vec3>& xyz_s, std::vector<glm::vec3>& Nxyz_s);
 
   inline int* get_size(){return &size;}
 

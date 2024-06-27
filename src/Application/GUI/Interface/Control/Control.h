@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace eng{class Node;}
 namespace gui{class Node;}
 namespace gui{class Tab;}

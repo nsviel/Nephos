@@ -28,7 +28,7 @@ public:
   void convert_into_utl_image(cv::Mat& input, utl::media::Image* output);
 
   //Shape function
-  void draw_circle(cv::Mat& image, vector<rad::correction::structure::Circle>& vec_circle);
+  void draw_circle(cv::Mat& image, std::vector<rad::correction::structure::Circle>& vec_circle);
   void draw_bounding_box(cv::Mat& image);
 
 private:

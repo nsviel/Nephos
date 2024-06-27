@@ -48,8 +48,8 @@ void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
 void Ransac::reset_search_space(){
   //---------------------------
 
-  std::vector<vec3>& search_xyz = rad_struct->ransac.search_xyz;
-  std::vector<vec3>& search_Nxyz = rad_struct->ransac.search_Nxyz;
+  std::vector<glm::vec3>& search_xyz = rad_struct->ransac.search_xyz;
+  std::vector<glm::vec3>& search_Nxyz = rad_struct->ransac.search_Nxyz;
   std::vector<float>& search_Is = rad_struct->ransac.search_Is;
 
   search_xyz.clear();
@@ -59,8 +59,8 @@ void Ransac::reset_search_space(){
   //---------------------------
 }
 void Ransac::reduce_search_space(dyn::base::Sensor* sensor){
-  std::vector<vec3>& vec_xyz = sensor->data.xyz;
-  std::vector<vec3>& vec_Nxyz = sensor->data.Nxyz;
+  std::vector<glm::vec3>& vec_xyz = sensor->data.xyz;
+  std::vector<glm::vec3>& vec_Nxyz = sensor->data.Nxyz;
   //---------------------------
 
   glm::vec3 pose = rad_struct->ransac.current_pose;

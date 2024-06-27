@@ -38,10 +38,10 @@ void Normal::update_normal_cloud(Cloud* cloud){
   //---------------------------
 
   //Get vector values
-  std::vector<vec3>& xyz_s = cloud->xyz;
-  std::vector<vec3>& Nxyz_s = cloud->Nxyz;
-  std::vector<vec3>& xyz_n = glyph->xyz;
-  std::vector<vec4>& rgb_n = glyph->rgb;
+  std::vector<glm::vec3>& xyz_s = cloud->xyz;
+  std::vector<glm::vec3>& Nxyz_s = cloud->Nxyz;
+  std::vector<glm::vec3>& xyz_n = glyph->xyz;
+  std::vector<glm::vec4>& rgb_n = glyph->rgb;
 
   //Check vector length
   if(xyz_s.size() == 0 || Nxyz_s.size() == 0 || Nxyz_s.size() != xyz_s.size()){
@@ -71,14 +71,14 @@ void Normal::update_normal_cloud(Cloud* cloud){
 
   //---------------------------
 }
-void Normal::update_normal_cloud(Cloud* cloud, vector<vec3>& xyz_s, vector<vec3>& Nxyz_s){
+void Normal::update_normal_cloud(Cloud* cloud, std::vector<glm::vec3>& xyz_s, std::vector<glm::vec3>& Nxyz_s){
   Glyph* normal = &cloud->glyphs["normal"];
   normal->draw_point_size = size;
   //---------------------------
 
   //Get vector values
-  std::vector<vec3>& xyz_n = normal->xyz;
-  std::vector<vec4>& rgb_n = normal->rgb;
+  std::vector<glm::vec3>& xyz_n = normal->xyz;
+  std::vector<glm::vec4>& rgb_n = normal->rgb;
 
   //Check vector length
   if(xyz_s.size() == 0 || Nxyz_s.size() == 0 || Nxyz_s.size() != xyz_s.size()){

@@ -28,8 +28,8 @@ void Matching::create_glyph(){
 
   //---------------------------
 }
-void Matching::update_matching(std::vector<vec3>& xyz){
-  std::vector<vec4>& rgb = matching->rgb;
+void Matching::update_matching(std::vector<glm::vec3>& xyz){
+  std::vector<glm::vec4>& rgb = matching->rgb;
   matching->xyz = xyz;
   //---------------------------
 

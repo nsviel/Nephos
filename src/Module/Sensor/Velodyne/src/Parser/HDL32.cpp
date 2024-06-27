@@ -1,5 +1,7 @@
 #include "HDL32.h"
 
+#include <Utility/Namespace.h>
+
 /*
 *  1 packet = 1 data-frame = 1248 total bytes = 1206 used bytes = 1200 data + 4 timestamp + 2 factory bytes
 *  1 packet data = 1200 bytes = 12 blocks of 100 bytes = 24 firing sequences of the 16 laser
@@ -239,7 +241,7 @@ void HDL32::final_check(utl::base::Data* cloud){
   }
 
   //Reorder points in function of their timestamp
-  std::vector<vec3> xyz_b;
+  std::vector<glm::vec3> xyz_b;
   std::vector<float> R_b;
   std::vector<float> I_b;
   std::vector<float> A_b;
@@ -300,7 +302,7 @@ vector<float> HDL32::calc_timing_offsets(){
     //-----------------------
     return timing_offsets;
 }
-void HDL32::make_supressElements(std::vector<vec3>& vec, vector<int> idx){
+void HDL32::make_supressElements(std::vector<glm::vec3>& vec, std::vector<int> idx){
   if(idx.size() == 0)return;
   //---------------------------
 
@@ -308,7 +310,7 @@ void HDL32::make_supressElements(std::vector<vec3>& vec, vector<int> idx){
   sort(idx.begin(), idx.end());
 
   //Recreate vector -> Fastest delection method
-  std::vector<vec3> vec_b;
+  std::vector<glm::vec3> vec_b;
   int cpt = 0;
 
   for(int i=0; i<vec.size(); i++){
@@ -325,7 +327,7 @@ void HDL32::make_supressElements(std::vector<vec3>& vec, vector<int> idx){
   //---------------------------
   vec = vec_b;
 }
-void HDL32::make_supressElements(std::vector<float>& vec, vector<int> idx){
+void HDL32::make_supressElements(std::vector<float>& vec, std::vector<int> idx){
   if(idx.size() == 0)return;
   //---------------------------
 

@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <imgui/core/imgui.h>
+#include <vector>
 
 namespace gui{class Node;}
 

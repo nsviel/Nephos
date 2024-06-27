@@ -165,7 +165,7 @@ void Operation::make_normal_from_depth_image(k4n::structure::Sensor* sensor){
 
   int width = sensor->depth.data.width;
   int height = sensor->depth.data.height;
-  std::vector<vec3> Nxyz;
+  std::vector<glm::vec3> Nxyz;
 
  //BUT OBTENIR UNE NORMAL IMAGE FROM DEPTH IMAGE
 

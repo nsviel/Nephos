@@ -23,9 +23,9 @@ public:
   void process_measure(dyn::base::Sensor* sensor);
 
   //Subfunction
-  void data_measure(dyn::base::Sensor* sensor, vector<vec3>& sphere_xyz, vector<float>& sphere_i);
-  void data_IfR(dyn::base::Sensor* sensor, vector<vec3>& sphere_xyz, vector<float>& sphere_i);
-  void data_IfIt(std::vector<vec3>& sphere_xyz, vector<float>& sphere_i);
+  void data_measure(dyn::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
+  void data_IfR(dyn::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
+  void data_IfIt(std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
 
 private:
   rad::correction::Structure* rad_struct;
