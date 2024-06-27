@@ -22,7 +22,7 @@ Tab::~Tab(){}
 //Main function
 void Tab::show_profiler(prf::base::Profiler* profiler){
   //---------------------------
-
+/*
   //Retrieve vulkan info struct
   prf::hardware::Profiler* prf_vulkan = dynamic_cast<prf::hardware::Profiler*>(profiler);
   if(prf_vulkan == nullptr) return;
@@ -48,7 +48,7 @@ void Tab::show_profiler(prf::base::Profiler* profiler){
 
     ImGui::EndTabBar();
   }
-
+*/
   //---------------------------
 }
 

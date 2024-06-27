@@ -4,6 +4,7 @@
 #include <Profiler/src/Hardware/Structure/Structure.h>
 
 namespace prf{class Node;}
+namespace prf{class Structure;}
 namespace prf::hardware{class Device;}
 namespace prf::hardware{class Thread;}
 namespace prf::hardware{class Queue;}
@@ -27,11 +28,10 @@ public:
   void collect_info(vk::structure::Vulkan* vk_struct);
   void collect_gpu_info();
 
-  inline prf::hardware::Structure* get_prf_struct(){return prf_struct;}
-
 private:
+  prf::Structure* prf_struct;
   prf::hardware::Collector* prf_collector;
-  prf::hardware::Structure* prf_struct;
+
 };
 
 }

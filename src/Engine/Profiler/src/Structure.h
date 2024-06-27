@@ -1,6 +1,6 @@
 #pragma once
 
-#include <string>
+#include <Profiler/src/Hardware/Structure/Structure.h>
 
 
 namespace prf{
@@ -8,6 +8,7 @@ namespace prf{
 struct Structure{
   //---------------------------
 
+  prf::hardware::Structure hardware;
 
   //---------------------------
 };

@@ -2,10 +2,11 @@
 
 #include <vector>
 
-namespace vk::structure{class Vulkan;}
-namespace prf::hardware{class Structure;}
+namespace prf{class Node;}
+namespace prf{class Structure;}
 namespace prf::hardware{class Device;}
 namespace utl::hardware{class Nvidia;}
+namespace vk::structure{class Vulkan;}
 
 
 namespace prf::hardware{
@@ -14,7 +15,7 @@ class Collector
 {
 public:
   //Constructor / Destructor
-  Collector(prf::hardware::Structure* prf_struct);
+  Collector(prf::Node* node_profiler);
   ~Collector();
 
 public:
@@ -26,7 +27,7 @@ public:
   void collect_vulkan_device(vk::structure::Vulkan* vk_struct);
 
 private:
-  prf::hardware::Structure* prf_struct;
+  prf::Structure* prf_struct;
   utl::hardware::Nvidia* utl_nvidia;
 };
 

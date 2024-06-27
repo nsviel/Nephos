@@ -10,8 +10,8 @@ namespace prf::hardware{
 Profiler::Profiler(prf::Node* node_profiler){
   //---------------------------
 
-  this->prf_struct = new prf::hardware::Structure();
-  this->prf_collector = new prf::hardware::Collector(prf_struct);
+  this->prf_struct = node_profiler->get_prf_struct();
+  this->prf_collector = new prf::hardware::Collector(node_profiler);
 
   //---------------------------
 }
@@ -40,7 +40,7 @@ void Profiler::add_queue(prf::hardware::queue::Type type, int ID_family){
   queue.number++;
   queue.family_ID = ID_family;
   queue.thread_ID = utl::thread::get_ID_str();
-  prf_struct->gpu.vec_queue.push_back(queue);
+  prf_struct->hardware.gpu.vec_queue.push_back(queue);
 
   //---------------------------
 }

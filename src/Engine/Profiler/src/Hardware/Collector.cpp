@@ -8,10 +8,10 @@
 namespace prf::hardware{
 
 //Constructor / Destructor
-Collector::Collector(prf::hardware::Structure* prf_struct){
+Collector::Collector(prf::Node* node_profiler){
   //---------------------------
 
-  this->prf_struct = prf_struct;
+  this->prf_struct = node_profiler->get_prf_struct();
   this->utl_nvidia = new utl::hardware::Nvidia();
 
   //---------------------------
@@ -29,10 +29,10 @@ void Collector::collect_info(vk::structure::Vulkan* vk_struct){
 void Collector::collect_gpu_info(){
   //---------------------------
 
-  prf_struct->gpu.temperature = utl_nvidia->get_temperature();
-  prf_struct->gpu.total_consumption = utl_nvidia->get_total_consumption();
-  prf_struct->gpu.fan_speed = utl_nvidia->get_fan_speed();
-  prf_struct->gpu.power_usage = utl_nvidia->get_power_usage();
+  prf_struct->hardware.gpu.temperature = utl_nvidia->get_temperature();
+  prf_struct->hardware.gpu.total_consumption = utl_nvidia->get_total_consumption();
+  prf_struct->hardware.gpu.fan_speed = utl_nvidia->get_fan_speed();
+  prf_struct->hardware.gpu.power_usage = utl_nvidia->get_power_usage();
 
   //---------------------------
 }
@@ -67,10 +67,10 @@ void Collector::collect_vulkan_device(vk::structure::Vulkan* vk_struct){
 
     //Check if it is the selected one
     if(physical_device.name == vk_struct->device.physical_device.name){
-      prf_struct->gpu.name = physical_device.name;
+      prf_struct->hardware.gpu.name = physical_device.name;
     }
 
-    prf_struct->vec_device.push_back(device_info);
+    prf_struct->hardware.vec_device.push_back(device_info);
   }
 
   //---------------------------
