@@ -2,6 +2,7 @@
 
 #include <Velodyne/Namespace.h>
 #include <Utility/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace vld::gui{
