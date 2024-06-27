@@ -20,7 +20,7 @@ Node::Node(app::Node* node_app){
   //---------------------------
 
   this->node_profiler = new prf::Node();
-  this->node_vulkan = new vk::Node(node_app);
+  this->node_vulkan = new vk::Node(node_app->get_app_running());
   this->node_camera = new cam::Node(this);
   this->node_data = new dat::Node(this);
   this->node_radio = new rad::Node(this);

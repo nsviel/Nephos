@@ -2,7 +2,6 @@
 
 #include <Utility/Base/Type/Node.h>
 
-namespace app{class Node;}
 namespace utl{class Node;}
 namespace utl::element{class Window;}
 namespace vk::main{class Engine;}
@@ -22,7 +21,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(app::Node* node_app);
+  Node(bool* running);
   ~Node();
 
 public:

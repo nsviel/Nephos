@@ -11,9 +11,6 @@
 #include <Vulkan/VK_presentation/Structure/Swapchain.h>
 #include <Vulkan/VK_pool/Structure/Pool.h>
 
-#include <Application/Node.h>
-
-
 
 namespace vk::structure{
 
@@ -21,11 +18,11 @@ struct Vulkan{
   //---------------------------
 
   //Constructor
-  Vulkan(app::Node* node_app){
-    this->window.running = node_app->get_app_running();
+  Vulkan(bool* running){
+    this->window.running = running;
   }
 
-
+  //Structure
   vk::structure::Render render;
   vk::structure::Window window;
   vk::structure::Panel panel;
