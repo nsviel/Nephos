@@ -14,6 +14,7 @@ struct Renderpass{
 
   //Info
   std::string name = "";
+  float duration = -1;
 
   //Renderpass stuff
   VkRenderPass handle = VK_NULL_HANDLE;

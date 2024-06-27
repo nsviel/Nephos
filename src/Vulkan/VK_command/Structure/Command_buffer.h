@@ -20,7 +20,7 @@ struct Command_buffer{
   vk::pool::structure::Query query;
   vk::synchro::structure::Fence* fence = nullptr;
   VkCommandBuffer handle = VK_NULL_HANDLE;
-  float timestamp = 0;
+  float duration = 0;
   bool is_available = true;
   bool is_recorded = false;
   bool is_resetable = true;

@@ -64,15 +64,11 @@ void Query::find_query_timestamp(vk::structure::Command_buffer* command_buffer){
   vk::pool::structure::Query* query = &command_buffer->query;
   //---------------------------
 
-  vk_struct->profiler->tasker_gpu->task_follow_begin(command_buffer->name);
-
   uint64_t timestamps[query->nb_query];
   vkGetQueryPoolResults(vk_struct->device.handle, query->pool, 0, query->nb_query, sizeof(uint64_t) * query->nb_query, timestamps, sizeof(uint64_t), VK_QUERY_RESULT_64_BIT);
 
   float delta = float(timestamps[1] - timestamps[0]) * vk_struct->device.physical_device.timestamp_period / 1000000000.0f;
-  command_buffer->timestamp = delta;
-
-  vk_struct->profiler->tasker_gpu->task_follow_end(command_buffer->name, delta);
+  command_buffer->duration = delta;
 
   //---------------------------
 }

@@ -3,7 +3,7 @@
 
 namespace vk::structure{
 
-struct Profiler_{
+struct Profiler{
   //---------------------------
 
 

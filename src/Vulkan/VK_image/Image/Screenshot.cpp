@@ -3,6 +3,8 @@
 #include <Vulkan/Namespace.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <image/stb_image_write.h>
+#include <fstream>
+#include <iostream>
 
 
 namespace vk::image{
@@ -64,7 +66,7 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   vkFreeMemory(vk_struct->device.handle, staging_mem, nullptr);
 
   std::string finalFilename = "image.jpeg";
-  std::filesystem::rename(filename, finalFilename); // Rename temporary file to final filename
+  std::rename(filename.c_str(), finalFilename.c_str()); // Rename temporary file to final filename
 
   //---------------------------
 }
@@ -101,7 +103,7 @@ void Screenshot::export_image_to_bmp(vk::structure::Image* image){
   vkFreeMemory(vk_struct->device.handle, staging_mem, nullptr);
 
   std::string finalFilename = "image.bmp";
-  std::filesystem::rename(filename, finalFilename); // Rename temporary file to final filename
+  std::rename(filename.c_str(), finalFilename.c_str()); // Rename temporary file to final filename
 
   //---------------------------
 }

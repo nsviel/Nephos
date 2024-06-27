@@ -75,7 +75,7 @@ void Tasker::loop_end(){
 //Task function
 void Tasker::task_begin(std::string name, float time){
   //---------------------------
-
+/*
   //Check if task already exists
   prf::graph::structure::Task* exist = retrieve_task(name);
   if(exist != nullptr){
@@ -95,12 +95,12 @@ void Tasker::task_begin(std::string name, float time){
   task.ts_end = 0;
   task.name = name;
   this->vec_task_current.push_back(task);
-
+*/
   //---------------------------
 }
 void Tasker::task_end(const std::string& name, float time, vec4 color){
   //---------------------------
-
+/*
   //Search for corresponding task
   prf::graph::structure::Task* task = retrieve_task(name);
   if(task == nullptr){
@@ -118,7 +118,7 @@ void Tasker::task_end(const std::string& name, float time, vec4 color){
   if(color != vec4{0, 0, 0, 0}){
     task->color = color;
   }
-
+*/
   //---------------------------
 }
 

@@ -1,5 +1,6 @@
 #include "Graphical.h"
 
+#include <Utility/Element/Timer/Chrono.h>
 #include <Vulkan/Namespace.h>
 
 
@@ -10,6 +11,7 @@ Graphical::Graphical(vk::structure::Vulkan* vk_struct) : vk::draw::Drawer(vk_str
   //---------------------------
 
   this->vk_transfer = new vk::memory::Transfer(vk_struct);
+  this->utl_chrono = new utl::timer::Chrono();
 
   //---------------------------
 }
@@ -49,8 +51,7 @@ void Graphical::record_renderpass(std::vector<vk::structure::Command*>& vec_comm
 
   for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
     vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
-    string name = "eng::rp::" + renderpass->name;
-    vk_struct->profiler->tasker_main->task_begin(name);
+    utl::timer::Timepoint ts = utl_chrono->start_t();
 
     //Run renderpass
     vk_render->run_renderpass(renderpass);
@@ -64,7 +65,7 @@ void Graphical::record_renderpass(std::vector<vk::structure::Command*>& vec_comm
     command->semaphore_done = semaphore.handle;
     vec_command.push_back(command);
 
-    vk_struct->profiler->tasker_main->task_end(name);
+    renderpass->duration = utl_chrono->stop_ms(ts);
   }
 
   //---------------------------

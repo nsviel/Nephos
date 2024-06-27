@@ -8,6 +8,7 @@ namespace vk::synchro::structure{class Semaphore;}
 namespace vk::structure{class Command;}
 namespace vk::structure{class Renderpass;}
 namespace vk::memory{class Transfer;}
+namespace utl::timer{class Chrono;}
 
 
 namespace vk::draw{
@@ -31,6 +32,7 @@ public:
 
 private:
   vk::memory::Transfer* vk_transfer;
+  utl::timer::Chrono* utl_chrono;
 };
 
 }

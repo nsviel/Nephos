@@ -32,10 +32,6 @@ Node::Node(app::Node* node_app){
   this->node_render = new rnd::Node(this);
   this->node_loader = new ldr::Node(this);
 
-  prf::Manager* prf_manager = node_profiler->get_prf_manager();
-  prf::graph::Profiler* profiler = prf_manager->get_profiler_main();
-  this->tasker_main =  profiler->fetch_tasker("cpu");
-
   this->add_node_panel(node_camera);
   this->add_node_panel(node_loader);
   this->add_node_panel(node_data);

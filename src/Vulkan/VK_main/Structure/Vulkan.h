@@ -23,13 +23,10 @@ struct Vulkan{
 
   //Constructor
   Vulkan(app::Node* node_app){
-    prf::Node* node_profiler = node_app->get_node_profiler();
-    this->profiler = new vk::structure::Profiler(node_profiler);
     this->window.running = node_app->get_app_running();
   }
 
 
-  vk::structure::Profiler* profiler;
   vk::structure::Render render;
   vk::structure::Window window;
   vk::structure::Panel panel;
@@ -40,7 +37,7 @@ struct Vulkan{
   vk::structure::Parameter param;
   vk::pool::structure::Pool pools;
   vk::structure::Command command;
-  //vk::structure::Profiler profiler;
+  vk::structure::Profiler profiler;
   vk::queue::structure::Class queue;
 
   //---------------------------
