@@ -1,11 +1,9 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-#include <Utility/Element/Timer/Chrono.h>
-#include <Profiler/src/Base/Profiler.h>
 #include <Profiler/src/Hardware/Structure/Queue.h>
 #include <Profiler/src/Hardware/Structure/Structure.h>
 
+namespace prf{class Node;}
 namespace prf::hardware{class Device;}
 namespace prf::hardware{class Thread;}
 namespace prf::hardware{class Queue;}
@@ -16,11 +14,11 @@ namespace vk::structure{class Vulkan;}
 
 namespace prf::hardware{
 
-class Profiler : public prf::base::Profiler
+class Profiler
 {
 public:
   //Constructor / Destructor
-  Profiler();
+  Profiler(prf::Node* node_profiler);
   ~Profiler();
 
 public:

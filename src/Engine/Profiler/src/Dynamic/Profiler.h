@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Profiler/src/Base/Profiler.h>
+#include <Profiler/src/Dynamic/Structure/Profiler.h>
 #include <string>
 #include <list>
 

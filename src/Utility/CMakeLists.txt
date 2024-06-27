@@ -4,13 +4,7 @@ set(LIBRARY_NAME LIBRARY_UTILITY)
 # Source files
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
-  Base/*.cpp
-  Element/*.cpp
-  Function/*.cpp
-  Network/*.cpp
-  Specific/*.cpp
-  Thread/*.cpp
-  GUI/*.cpp
+  *.cpp
 )
 
 #-----------------

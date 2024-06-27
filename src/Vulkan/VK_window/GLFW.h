@@ -22,9 +22,8 @@ public:
 
   //Window function
   void create_window();
-  void close_window();
+  void window_closing();
   void destroy_window();
-  bool window_closing();
   void create_surface();
 
   //Sizing function
@@ -35,7 +34,7 @@ public:
 
   //Input function
   void wait_event();
-  void window_input();
+  void window_poll_event();
   void set_mouse_pose(glm::vec2 pos);
   glm::vec2 get_mouse_pose();
   glm::vec2 get_dimension();

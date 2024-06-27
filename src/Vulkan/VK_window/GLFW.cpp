@@ -26,7 +26,7 @@ void GLFW::init(){
 void GLFW::loop(){
   //---------------------------
 
-  this->window_input();
+  this->window_poll_event();
   this->window_closing();
 
   //---------------------------
@@ -62,11 +62,19 @@ void GLFW::create_window(){
 
   //---------------------------
 }
-void GLFW::close_window(){
+void GLFW::window_closing(){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 
-  glfwSetWindowShouldClose(vk_struct->window.handle, true);
+  bool& app_running = *vk_struct->window.running;
+  bool window_closing = glfwWindowShouldClose(vk_struct->window.handle);
+
+  if(app_running == false){
+    glfwSetWindowShouldClose(vk_struct->window.handle, true);
+  }else if(window_closing){
+    app_running = false;
+    glfwSetWindowShouldClose(vk_struct->window.handle, true);
+  }
 
   //---------------------------
 }
@@ -78,16 +86,6 @@ void GLFW::destroy_window(){
   glfwTerminate();
 
   //---------------------------
-}
-bool GLFW::window_closing(){
-  if(vk_struct->window.handle == nullptr) return false;
-  //---------------------------
-
-  bool closing = glfwWindowShouldClose(vk_struct->window.handle);
-  if(closing) *vk_struct->window.running = false;
-
-  //---------------------------
-  return closing;
 }
 void GLFW::create_surface(){
   if(vk_struct->window.handle == nullptr) return;
@@ -154,7 +152,7 @@ void GLFW::wait_event(){
 
   //---------------------------
 }
-void GLFW::window_input(){
+void GLFW::window_poll_event(){
   if(vk_struct->window.handle == nullptr) return;
   //---------------------------
 

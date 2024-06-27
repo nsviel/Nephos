@@ -7,14 +7,11 @@
 namespace prf::hardware{
 
 //Constructor / Destructor
-Profiler::Profiler(){
+Profiler::Profiler(prf::Node* node_profiler){
   //---------------------------
 
   this->prf_struct = new prf::hardware::Structure();
   this->prf_collector = new prf::hardware::Collector(prf_struct);
-
-  this->name = "Hardware";
-  this->type = prf::base::HARDWARE;
 
   //---------------------------
 }

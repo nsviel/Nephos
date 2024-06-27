@@ -53,6 +53,8 @@ private:
   dyn::Node* node_dynamic = nullptr;
   prf::graph::Tasker* tasker_main;
   utl::thread::Pool* thread_pool;
+
+  bool* app_running;
 };
 
 }

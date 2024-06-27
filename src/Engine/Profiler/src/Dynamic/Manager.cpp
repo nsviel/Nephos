@@ -15,10 +15,6 @@ Manager::Manager(){
   profiler_main->fetch_tasker("gpu");
   this->add_profiler(profiler_main);
 
-  //Hardware profiler
-  this->profiler_hardware = new prf::hardware::Profiler();
-  this->add_profiler(profiler_hardware);
-
   //---------------------------
 }
 Manager::~Manager(){}

@@ -4,7 +4,6 @@
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Kinect/Namespace.h>
-#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace sce{
