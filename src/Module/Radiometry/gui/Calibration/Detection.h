@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Render/src/Display/Stream.h>
-#include <Utility/Specific/Common.h>
 
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
@@ -30,7 +29,7 @@ public:
   void detection_image(dyn::base::Sensor* sensor);
   void parameter_canny();
   void parameter_hough();
-  
+
 private:
   rad::calibration::Structure* rad_struct;
   rad::calibration::Process* rad_process;

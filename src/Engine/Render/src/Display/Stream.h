@@ -1,11 +1,12 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <imgui/core/imgui.h>
 
 namespace eng{class Node;}
 namespace vk::image{class Texture;}
 namespace vk::gui{class Imgui;}
 namespace vk::structure{class Texture;}
+namespace utl::media{class Image;}
 
 
 namespace rnd{
@@ -30,8 +31,8 @@ private:
   vk::image::Texture* vk_texture;
   vk::gui::Imgui* vk_imgui;
 
-  int current_UID = -1;
   float current_timestamp = -1;
+  int current_UID = -1;
 };
 
 }

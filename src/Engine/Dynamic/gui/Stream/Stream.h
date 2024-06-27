@@ -1,16 +1,19 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <imgui/core/imgui.h>
+#include <string>
+#include <vector>
 
 namespace dyn{class Node;}
+namespace dyn::gui{class Overlay;}
 namespace dat{class Selection;}
-namespace eng{class Node;}
 namespace dat{class Set;}
-namespace rnd{class Stream;}
-namespace utl::base{class Element;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
-namespace dyn::gui{class Overlay;}
+namespace eng{class Node;}
+namespace rnd{class Stream;}
+namespace utl::base{class Element;}
+namespace utl::media{class Image;}
 
 
 namespace dyn::gui{

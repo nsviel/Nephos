@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
+#include <string>
 
 namespace prf{class Node;}
 namespace prf{class Manager;}
@@ -37,9 +37,9 @@ private:
   prf::gui::Graph* gui_graph;
   prf::gui::hardware::Tab* gui_hardware;
 
-  bool* show_window;
   std::string gpu = "";
   std::string name;
+  bool* show_window;
   int width;
 };
 

@@ -1,8 +1,7 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
 #include <Operation/Namespace.h>
-#include <cstdint>
+#include <glm/glm.hpp>
 
 
 namespace dyn::colorization{

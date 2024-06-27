@@ -1,14 +1,12 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
-namespace dyn::base{class Sensor;}
-namespace utl::thread{class Pool;}
-namespace utl::media{class Image;}
 namespace rad::calibration{class Node;}
 namespace rad::calibration{class Structure;}
 namespace rad::calibration{class Image;}
 namespace rad::calibration{class Rectangle;}
+namespace dyn::base{class Sensor;}
+namespace utl::thread{class Pool;}
+namespace utl::media{class Image;}
 namespace dat{class Image;}
 
 

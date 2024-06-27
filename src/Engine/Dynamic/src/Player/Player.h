@@ -2,7 +2,6 @@
 
 #include <Dynamic/src/Base/State.h>
 #include <Dynamic/src/Base/Timestamp.h>
-#include <Utility/Specific/Common.h>
 
 namespace dyn{class Node;}
 namespace dat{class Selection;}

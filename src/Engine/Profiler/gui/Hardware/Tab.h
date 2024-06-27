@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace prf{class Node;}
 namespace prf::base{class Profiler;}
 namespace prf::hardware{class Profiler;}

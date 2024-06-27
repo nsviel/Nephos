@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Utility/Specific/Common.h>
-
 namespace rad{class Node;}
 namespace rad::gui::correction{class Detection;}
 namespace rad::gui::correction{class Model;}
