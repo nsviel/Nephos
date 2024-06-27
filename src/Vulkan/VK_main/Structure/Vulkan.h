@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Vulkan/VK_main/Structure/Profiler.h>
 #include <Vulkan/VK_command/Structure/Command.h>
 #include <Vulkan/VK_drawing/Structure/Render.h>
 #include <Vulkan/VK_window/Structure/Window.h>
@@ -8,6 +9,7 @@
 #include <Vulkan/VK_device/Structure/Logical.h>
 #include <Vulkan/VK_instance/Structure/Instance.h>
 #include <Vulkan/VK_presentation/Structure/Swapchain.h>
+#include <Vulkan/VK_pool/Structure/Pool.h>
 #include <Application/Node.h>
 #include <Vulkan/Namespace.h>
 #include <Profiler/Namespace.h>
@@ -26,11 +28,7 @@ struct Vulkan{
     this->window.running = node_app->get_app_running();
   }
 
-  //General
-  std::string name = "";
-  int UID = 0;
 
-  //Structure
   vk::structure::Profiler* profiler;
   vk::structure::Render render;
   vk::structure::Window window;
@@ -42,6 +40,7 @@ struct Vulkan{
   vk::structure::Parameter param;
   vk::structure::Pool pools;
   vk::structure::Command command;
+  //vk::structure::Profiler profiler;
   vk::queue::structure::Class queue;
 
   //---------------------------
