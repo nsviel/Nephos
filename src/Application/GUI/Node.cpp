@@ -16,7 +16,7 @@ Node::Node(app::Node* node_app){
 
   this->node_engine = node_app->get_node_engine();
   this->node_scene = node_app->get_node_scene();
-  this->node_profiler = node_app->get_node_profiler();
+  this->node_profiler = node_engine->get_node_profiler();
 
   this->gui_tab = new gui::Tab(this);
   this->gui_style = new gui::style::Config(this);

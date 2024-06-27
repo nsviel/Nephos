@@ -19,11 +19,7 @@ namespace eng{
 Node::Node(app::Node* node_app){
   //---------------------------
 
-  //Dependancy
-  this->node_profiler = node_app->get_node_profiler();
-
-  //Child
-  this->thread_pool = new utl::thread::Pool(50);
+  this->node_profiler = new prf::Node();
   this->node_vulkan = new vk::Node(node_app);
   this->node_camera = new cam::Node(this);
   this->node_data = new dat::Node(this);
@@ -31,6 +27,7 @@ Node::Node(app::Node* node_app){
   this->node_dynamic = new dyn::Node(this);
   this->node_render = new rnd::Node(this);
   this->node_loader = new ldr::Node(this);
+  this->thread_pool = new utl::thread::Pool(50);
 
   this->add_node_panel(node_camera);
   this->add_node_panel(node_loader);
@@ -56,8 +53,10 @@ void Node::init(){
   //---------------------------
 }
 void Node::loop(){
-  tasker_main->task_begin("eng");
+  //node_profiler->loop();
+  //tasker_main->task_begin("eng");
   //---------------------------
+
 
   node_data->loop();
   node_loader->loop();
@@ -67,7 +66,7 @@ void Node::loop(){
   node_radio->loop();
 
   //---------------------------
-  tasker_main->task_end("eng");
+  //tasker_main->task_end("eng");
 }
 void Node::gui(){
   //---------------------------

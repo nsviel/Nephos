@@ -32,10 +32,7 @@ public:
 
   //Subfunction
   prf::graph::structure::Task* retrieve_task(const std::string& name);
-
-  void task_follow_begin(std::string name);
-  void task_follow_end(std::string name, float time);
-
+  
 private:
   utl::timer::Chrono timer;
   utl::timer::fps::Counter* fps_counter;

@@ -38,7 +38,7 @@ void Tasker::reset(){
 //Loop function
 void Tasker::loop_begin(int fps){
   //---------------------------
-
+/*
   //Init loop task
   this->reference = timer.get_time();
   this->thread_ID = utl::thread::get_ID_str();
@@ -49,12 +49,12 @@ void Tasker::loop_begin(int fps){
     fps_control->set_fps_max(fps);
     fps_control->start_loop();
   }
-
+*/
   //---------------------------
 }
 void Tasker::loop_end(){
   //---------------------------
-
+/*
   //Control fps and measure sleep time
   if(is_fps_control){
     this->task_begin("sleep");
@@ -68,7 +68,7 @@ void Tasker::loop_end(){
   //Update disposal task vector by this loop task vector
   this->vec_task = vec_task_current;
   this->vec_task_current.clear();
-
+*/
   //---------------------------
 }
 
@@ -137,40 +137,6 @@ prf::graph::structure::Task* Tasker::retrieve_task(const std::string& name){
 
   //---------------------------
   return nullptr;
-}
-
-void Tasker::task_follow_begin(std::string name){
-  //---------------------------
-
-  float ts_begin = 0;
-  int index = vec_task_current.size() - 1;
-  if(index >= 0){
-    prf::graph::structure::Task& previous_task = vec_task_current[index];
-    ts_begin = previous_task.ts_end;
-  }
-
-  //Insert task in vector
-  prf::graph::structure::Task task;
-  task.ts_begin = ts_begin;
-  task.ts_end = 0;
-  task.name = name;
-  this->vec_task_current.push_back(task);
-
-  //---------------------------
-}
-void Tasker::task_follow_end(std::string name, float time){
-  //---------------------------
-
-  for(int i=0; i<vec_task_current.size(); i++){
-    prf::graph::structure::Task& task = vec_task_current[i];
-
-    if(task.name == name){
-      task.ts_end = task.ts_begin + time;
-      return;
-    }
-  }
-
-  //---------------------------
 }
 
 }
