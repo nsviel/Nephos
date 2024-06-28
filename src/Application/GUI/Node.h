@@ -5,14 +5,14 @@
 namespace app{class Node;}
 namespace eng{class Node;}
 namespace sce{class Node;}
-namespace prf{class Node;}
 
+namespace gui{class Tab;}
 namespace gui::interface{class Control;}
 namespace gui::interface{class Docking;}
-namespace gui{class Tab;}
 namespace gui::style{class Config;}
 namespace gui::style{class Font;}
 namespace gui::style{class Theme;}
+namespace prf::dynamic{class Tasker;}
 
 
 namespace gui{
@@ -30,7 +30,6 @@ public:
 
   inline eng::Node* get_node_engine(){return node_engine;}
   inline sce::Node* get_node_scene(){return node_scene;}
-  inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline gui::interface::Control* get_gui_control(){return gui_control;}
   inline gui::interface::Docking* get_gui_docking(){return gui_docking;}
@@ -42,7 +41,6 @@ private:
   //Dependancy
   eng::Node* node_engine;
   sce::Node* node_scene;
-  prf::Node* node_profiler;
 
   //Child
   gui::interface::Control* gui_control;
@@ -51,6 +49,7 @@ private:
   gui::style::Config* gui_style;
   gui::style::Font* gui_font;
   gui::style::Theme* gui_theme;
+  prf::dynamic::Tasker* tasker;
 };
 
 }

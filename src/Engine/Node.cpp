@@ -37,6 +37,11 @@ Node::Node(app::Node* node_app){
   this->add_node_panel(node_render);
   this->add_node_panel(node_dynamic);
   this->add_node_panel(node_radio);
+  this->add_node_panel(node_profiler);
+
+  //Tasker CPU
+  prf::dynamic::Manager* prf_dynamic = node_profiler->get_prf_dynamic();
+  this->tasker = prf_dynamic->get_tasker_cpu();
 
   //---------------------------
 }
@@ -44,9 +49,6 @@ Node::~Node(){}
 
 void Node::init(){
   //---------------------------
-
-  prf::dynamic::Manager* prf_dynamic = node_profiler->get_prf_dynamic();
-  this->tasker = prf_dynamic->get_tasker_cpu();
 
   node_vulkan->init();
   node_data->init();
@@ -88,6 +90,7 @@ void Node::gui(){
   node_radio->gui();
 
   tasker->task_end("eng::gui");
+  node_profiler->gui();
 
   //---------------------------
 }

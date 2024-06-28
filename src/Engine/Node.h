@@ -43,6 +43,7 @@ public:
   inline rad::Node* get_node_radio(){return node_radio;}
   inline eng::Structure* get_eng_struct(){return eng_struct;}
   inline utl::thread::Pool* get_thread_pool(){return thread_pool;}
+  inline prf::dynamic::Tasker* get_tasker_cpu(){return tasker;}
 
 private:
   eng::Structure* eng_struct;

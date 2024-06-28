@@ -16,7 +16,6 @@ Node::Node(app::Node* node_app){
 
   this->node_engine = node_app->get_node_engine();
   this->node_scene = node_app->get_node_scene();
-  this->node_profiler = node_engine->get_node_profiler();
 
   this->gui_tab = new gui::Tab(this);
   this->gui_style = new gui::style::Config(this);
@@ -24,8 +23,8 @@ Node::Node(app::Node* node_app){
   this->gui_theme = new gui::style::Theme(this);
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
+  this->tasker = node_engine->get_tasker_cpu();
 
-  this->add_node_panel(node_profiler);
   this->add_node_panel(node_scene);
 
   //---------------------------
@@ -53,10 +52,14 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
+  tasker->task_begin("gui::loop");
+
   ImGui::NewFrame();
   gui_docking->dock_main_node();
   gui_tab->loop();
   gui_control->run_control();
+
+  tasker->task_end("gui::loop");
 
   //---------------------------
 }
