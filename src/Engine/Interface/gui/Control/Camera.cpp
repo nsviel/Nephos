@@ -1,5 +1,6 @@
 #include "Camera.h"
 
+#include <Interface/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Vulkan/Namespace.h>
 
@@ -7,7 +8,7 @@
 namespace itf::gui{
 
 //Constructor / Destructor
-Camera::Camera(cam::Node* node_camera){
+Camera::Camera(itf::Node* node_interface){
   //---------------------------
 
   vk::Node* node_vulkan = node_camera->get_node_vulkan();

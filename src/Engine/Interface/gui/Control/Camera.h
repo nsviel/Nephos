@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 
-namespace cam{class Node;}
+namespace itf{class Node;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
 namespace cam{class Structure;}
@@ -15,7 +15,7 @@ class Camera
 {
 public:
   //Constructor / Destructor
-  Camera(cam::Node* node_camera);
+  Camera(itf::Node* node_interface);
   ~Camera();
 
 public:

@@ -41,7 +41,7 @@ std::string a = "hey";
   void set_next_camera_mode();
 
 private:
-  cam::projection::Perspective* cam_proj;
+  cam::projection::Perspective* cam_perspective;
   cam::Structure* cam_struct;
 
   std::vector<cam::mode::Base*> vec_mode;

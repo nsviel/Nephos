@@ -17,6 +17,7 @@ Node::Node(eng::Node* node_engine){
   //Dependancy
   this->node_engine = node_engine;
   this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_camera = node_engine->get_node_camera();
 
   //Child
   this->itf_struct = new itf::Structure();
