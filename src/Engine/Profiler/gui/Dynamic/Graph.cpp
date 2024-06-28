@@ -26,14 +26,8 @@ void Graph::draw_profiler(prf::dynamic::Profiler* profiler){
 
   if(ImGui::BeginTabBar("profiler_tasker_tab")){
 
-    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
-    ImGui::BeginChild("PlotChildWindow", ImVec2(0, 0), false);
-
     this->draw_tasker_all(profiler);
     this->draw_tasker_separated(profiler);
-
-    ImGui::EndChild();
-    ImGui::PopStyleVar();
 
     ImGui::EndTabBar();
   }
@@ -81,6 +75,7 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
   if(first_tab_open){
     flag = ImGuiTabItemFlags_SetSelected;
     first_tab_open = false;
+    this->current_tasker = *next(list_tasker.begin(), 0);
   }
 
   //Dimension
@@ -99,21 +94,24 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
 
     //Graph command
     ImGui::TableNextRow(); ImGui::TableNextColumn();
+
     this->draw_graph_command();
 
     //Graph plots
     ImGui::TableNextColumn();
 
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
+    ImGui::BeginChild("PlotChildWindow", ImVec2(0, 0), false);
     dim = ImGui::GetContentRegionAvail();
     ImVec2 dimension = ImVec2(dim.x, dim.y / list_tasker.size());
-
     for(int i=0; i<list_tasker.size(); i++){
       prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
       this->draw_tasker_graph(tasker, dimension);
     }
+    ImGui::EndChild();
+    ImGui::PopStyleVar();
 
     ImGui::EndTable();
-
     ImGui::EndTabItem();
   }
 
@@ -138,14 +136,22 @@ void Graph::draw_tasker_separated(prf::dynamic::Profiler* profiler){
       ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);
       ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
 
+      this->current_tasker = tasker;
+
       //Graph command
       ImGui::TableNextRow(); ImGui::TableNextColumn();
+
       this->draw_graph_command();
 
       //Graph plot
       ImGui::TableNextColumn();
+
+      ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
+      ImGui::BeginChild("PlotChildWindow", ImVec2(0, 0), false);
       dim = ImGui::GetContentRegionAvail();
       this->draw_tasker_graph(tasker, dim);
+      ImGui::EndChild();
+      ImGui::PopStyleVar();
 
       ImGui::EndTable();
       ImGui::EndTabItem();
@@ -188,8 +194,6 @@ void Graph::draw_graph_command(){
 }
 void Graph::draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension){
   //---------------------------
-
-  this->current_tasker = tasker;
 
   //Update plot
   if(!prf_struct->dynamic.pause){

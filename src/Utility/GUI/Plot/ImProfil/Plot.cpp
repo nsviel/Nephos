@@ -36,7 +36,7 @@ void Plot::render(std::string name, ImVec2 dimension){
   renderer->render_graph(dimension);
   ImGui::End();
   ImGui::PopStyleColor();
-  ImGui::SetCursorPosY(ImGui::GetCursorPosY() + dimension.y + 5);
+  ImGui::SetCursorPosY(ImGui::GetCursorPosY() + dimension.y);
 
   //---------------------------
 }
