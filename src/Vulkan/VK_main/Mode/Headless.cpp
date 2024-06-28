@@ -42,6 +42,7 @@ void Headless::loop(){
 
   vk_drawer->draw_frame();
   vk_semaphore->reset_pool();
+  vk_profiler->reset();
 
   //---------------------------
 }

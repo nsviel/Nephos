@@ -70,6 +70,11 @@ void Query::find_query_timestamp(vk::structure::Command_buffer* command_buffer){
   float delta = float(timestamps[1] - timestamps[0]) * vk_struct->device.physical_device.timestamp_period / 1000000000.0f;
   command_buffer->duration = delta;
 
+  vk::profiler::Command_buffer prf_command;
+  prf_command.name = command_buffer->name;
+  prf_command.duration = command_buffer->duration;
+  vk_struct->profiler.vec_command_buffer.push_back(prf_command);
+
   //---------------------------
 }
 

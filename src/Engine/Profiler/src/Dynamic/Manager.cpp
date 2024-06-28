@@ -1,6 +1,7 @@
 #include "Manager.h"
 
 #include <Profiler/Namespace.h>
+#include <Vulkan/Namespace.h>
 
 
 namespace prf::dynamic{
@@ -9,9 +10,10 @@ namespace prf::dynamic{
 Manager::Manager(prf::Node* node_profiler){
   //---------------------------
 
+  vk::Node* node_vulkan = node_profiler->get_node_vulkan();
+
   this->prf_struct = node_profiler->get_prf_struct();
-
-
+  this->vk_struct = node_vulkan->get_vk_struct();
 
   //---------------------------
 }
@@ -57,17 +59,20 @@ void Manager::remove_profiler(prf::dynamic::Profiler* profiler){
 
   //---------------------------
 }
+void Manager::collect_gpu_task(){
+  prf::dynamic::Tasker* tasker = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
+  //---------------------------
+
+  for(int i=0; i<vk_struct->profiler.vec_command_buffer.size(); i++){
+
+  }
+
+  //---------------------------
+}
 prf::dynamic::Tasker* Manager::get_tasker_cpu(){
   //---------------------------
 
   return prf_struct->dynamic.profiler_main.fetch_tasker("cpu");
-
-  //---------------------------
-}
-prf::dynamic::Tasker* Manager::get_tasker_gpu(){
-  //---------------------------
-
-  return prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
 
   //---------------------------
 }

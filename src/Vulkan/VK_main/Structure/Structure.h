@@ -33,7 +33,7 @@ struct Structure{
   vk::structure::Parameter param;
   vk::pool::structure::Pool pools;
   vk::structure::Command command;
-  vk::structure::Profiler profiler;
+  vk::profiler::Structure profiler;
   vk::queue::structure::Class queue;
 
   //---------------------------

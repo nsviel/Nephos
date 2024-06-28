@@ -9,6 +9,7 @@ namespace prf{class Structure;}
 namespace prf::dynamic{class Profiler;}
 namespace prf::dynamic{class Tasker;}
 namespace prf::graph{class Profiler;}
+namespace vk{class Structure;}
 
 
 namespace prf::dynamic{
@@ -28,11 +29,12 @@ public:
   //Subfunction
   void add_profiler(prf::dynamic::Profiler* profiler, std::string name);
   void remove_profiler(prf::dynamic::Profiler* profiler);
+  void collect_gpu_task();
   prf::dynamic::Tasker* get_tasker_cpu();
-  prf::dynamic::Tasker* get_tasker_gpu();
 
 private:
   prf::Structure* prf_struct;
+  vk::Structure* vk_struct;
 };
 
 }
