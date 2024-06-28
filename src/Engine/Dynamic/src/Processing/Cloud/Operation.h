@@ -1,17 +1,12 @@
 #pragma once
 
-namespace dat::element{class Entity;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::cloud{class Recorder;}
-namespace dyn::base{class Sensor;}
-namespace dat::base{class Entity;}
-namespace utl::thread{class Pool;}
-namespace ope{class Voxelizer;}
-namespace ope{class Triangulation;}
-namespace ope::color{class Colorizer;}
 namespace dyn::cloud{class Normal;}
 namespace dyn::cloud{class Radiometry;}
+namespace dyn::cloud{class Finalizer;}
+namespace dyn::base{class Sensor;}
 
 
 namespace dyn::cloud{
@@ -25,28 +20,15 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor);
-  void run_thread(dyn::base::Sensor* sensor);
-  void wait_thread();
-
-  //Subfunction
-  void colorize_object(dat::base::Entity* entity);
-  void voxelize_object(dyn::base::Sensor* sensor);
-  void triangularize_object(dyn::base::Sensor* sensor);
-  void update_object(dyn::base::Sensor* sensor);
+  void run_operation(dyn::base::Sensor* sensor)
+  void wait_operation();
 
 private:
-  dat::element::Entity* dat_entity;
   dyn::Structure* dyn_struct;
   dyn::cloud::Recorder* dyn_recorder;
-  ope::Voxelizer* ope_voxelizer;
-  ope::Triangulation* ope_trianguler;
-  ope::color::Colorizer* ope_colorizer;
+  dyn::cloud::Finalizer* dyn_finalizer;
   dyn::cloud::Normal* dyn_normal;
   dyn::cloud::Radiometry* dyn_radio;
-
-  utl::thread::Pool* thread_pool;
-  bool thread_idle = true;
 };
 
 }

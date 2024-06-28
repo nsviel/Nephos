@@ -66,6 +66,7 @@ void Graph::draw_info(){
 }
 void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
   std::list<prf::dynamic::Tasker*> list_tasker = profiler->get_list_tasker();
+  if(list_tasker.size() < 2) return;
   //---------------------------
 
   //Stuff to force first-opened tab
@@ -80,7 +81,7 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
   ImVec2 dimension = ImGui::GetContentRegionAvail();
   ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
   std::string title = "All##" + profiler->name;
-  if(ImGui::BeginTabItem(title.c_str(), NULL, 0)){
+  if(ImGui::BeginTabItem(title.c_str(), NULL, flag)){
 
     //Command + plot
     ImGui::BeginTable(title.c_str(), 2);
@@ -116,7 +117,7 @@ void Graph::draw_tasker_separated(prf::dynamic::Profiler* profiler){
     prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
 
     ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
-    std::string title = tasker->name + "##" + tasker->thread_ID;
+    std::string title = tasker->name + "##tasker_unique_plot";
     if(ImGui::BeginTabItem(title.c_str(), NULL)){
       ImGui::BeginTable(title.c_str(), 2);
       ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);

@@ -65,9 +65,7 @@ void Sensor::thread_loop(){
   k4n_image->start_thread(this);
 
   //Loop sleeping
-  tasker->task_begin("pause");
   this->manage_pause();
-  tasker->task_end("pause");
 
   //---------------------------
 }

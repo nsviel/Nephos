@@ -77,38 +77,30 @@ void Image::wait_thread(){
 
 //Data function
 void Image::find_data_from_capture(k4n::structure::Sensor* sensor){
-  //prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("data");
+  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("data");
   //---------------------------
 
-  //tasker->loop_begin();
+  tasker->loop();
 
   //Depth data
-  //tasker->task_begin("depth");
+  tasker->task_begin("depth");
   this->find_data_depth(sensor);
-  //tasker->task_end("depth");
+  tasker->task_end("depth");
 
   //Color data
-  //tasker->task_begin("color");
+  tasker->task_begin("color");
   this->find_data_color(sensor);
-  //tasker->task_end("color");
+  tasker->task_end("color");
 
   //Infrared data
-  //tasker->task_begin("infrared");
+  tasker->task_begin("infrared");
   this->find_data_ir(sensor);
-  //tasker->task_end("infrared");
+  tasker->task_end("infrared");
 
   //Cloud data
-  //tasker->task_begin("transformation");
+  tasker->task_begin("transformation");
   this->find_data_cloud(sensor);
-  //tasker->task_end("transformation");
-
-  //tasker->loop_end();
-
-  //End
-  //sensor->color.data.fps = tasker->fps;
-  //sensor->depth.data.fps = tasker->fps;
-  //sensor->ir.data.fps = tasker->fps;
-  sensor->timestamp.current = sensor->color.data.timestamp;
+  tasker->task_end("transformation");
 
   //---------------------------
 }
@@ -171,6 +163,9 @@ void Image::find_data_color(k4n::structure::Sensor* sensor){
   sensor->color.image.type = utl::media::COLOR;
   sensor->color.image.timestamp = sensor->color.data.timestamp;
   dat_image->add_image(sensor, &sensor->color.image);
+
+  //Current timestamp
+  sensor->timestamp.current = sensor->color.data.timestamp;
 
   //---------------------------
 }
