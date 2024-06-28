@@ -3,7 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Loader/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace dyn::cloud{
@@ -13,7 +13,6 @@ Recorder::Recorder(dyn::Node* node_dynamic){
   //---------------------------
 
   eng::Node* node_engine = node_dynamic->get_node_engine();
-  ldr::Node* node_loader = node_engine->get_node_loader();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->thread_pool = node_engine->get_thread_pool();
@@ -27,7 +26,6 @@ Recorder::~Recorder(){}
 void Recorder::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
-  this->wait_thread();
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };

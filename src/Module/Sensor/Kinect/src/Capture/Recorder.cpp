@@ -18,25 +18,29 @@ Recorder::Recorder(){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::record_sensor(dyn::base::Sensor* sensor, std::string path){
+bool Recorder::record_sensor(dyn::base::Sensor* sensor, std::string path){
   //---------------------------
 
   if(k4n::structure::Sensor* k4n_sensor = dynamic_cast<k4n::structure::Sensor*>(sensor)){
-    if(!k4n_sensor->device.handle.is_valid() || path == "") return;
+    if(!k4n_sensor->device.handle.is_valid() || path == "") return false;
 
     k4a::record& recorder = k4n_sensor->device.recorder;
     if(sensor->state.record && !recorder.is_valid()){
       this->export_start(k4n_sensor, path);
+      return true;
     }
     else if(sensor->state.record && recorder.is_valid()){
       this->export_record(k4n_sensor, path);
+      return true;
     }
     else if(!sensor->state.record && recorder.is_valid()){
       this->export_stop(k4n_sensor);
+      return true;
     }
   }
 
   //---------------------------
+  return false;
 }
 
 //Subfunction

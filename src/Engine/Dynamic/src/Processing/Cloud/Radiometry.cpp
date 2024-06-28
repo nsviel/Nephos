@@ -2,7 +2,7 @@
 
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
-#include <Utility/Namespace.h>
+#include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
 
 

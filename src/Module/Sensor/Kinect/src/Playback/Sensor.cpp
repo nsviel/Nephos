@@ -116,12 +116,8 @@ void Sensor::manage_pause(){
 
   //If pause, wait until end pause or end thread
   if(state.pause || !state.play){
-    //Clear profiler
-    this->profiler.reset();
-
-    //Pause loop
     std::unique_lock<std::mutex> lock(mtx);
-    cv.wait(lock, [this] { return !state.pause || !thread_running; });
+    cv.wait(lock, [this] { return !state.pause || !thread_running;});
   }
 
   //---------------------------

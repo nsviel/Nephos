@@ -12,7 +12,7 @@ namespace dyn::base{
 struct Recorder{
   //---------------------------
 
-  virtual void record_sensor(dyn::base::Sensor* sensor, std::string path){}
+  virtual bool record_sensor(dyn::base::Sensor* sensor, std::string path){return false;}
 
   std::string format = "";
   float size = 0;
