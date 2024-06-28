@@ -7,21 +7,17 @@ namespace cam{class Node;}
 namespace cam{class Entity;}
 
 
-namespace cam{
+namespace cam::projection{
 
-class Projection
+class Perspective
 {
 public:
-  Projection(cam::Node* node_camera);
-  ~Projection();
+  Perspective(cam::Node* node_camera);
+  ~Perspective();
 
 public:
   //Main function
   glm::mat4 compute_proj_perspective(cam::Entity* camera);
-  glm::mat4 compute_proj_ortho(cam::Entity* camera);
-
-  //Subfunction
-  void ortho_zoom(cam::Entity* camera, float value);
 
 private:
   vk::window::GLFW* vk_window;

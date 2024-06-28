@@ -5,3 +5,4 @@
 #include <Camera/src/Mode/Namespace.h>
 #include <Camera/src/Control/Namespace.h>
 #include <Camera/src/Management/Namespace.h>
+#include <Camera/src/Projection/Namespace.h>

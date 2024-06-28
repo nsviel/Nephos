@@ -11,7 +11,7 @@ Control::Control(cam::Node* node_camera){
   //---------------------------
 
   this->cam_struct = node_camera->get_cam_struct();
-  this->cam_proj = new cam::Projection(node_camera);
+  this->cam_perspective = new cam::projection::Perspective(node_camera);
 
   this->vec_mode.push_back(new cam::mode::Player(node_camera));
   this->vec_mode.push_back(new cam::mode::Arcball(node_camera));
@@ -82,7 +82,7 @@ void Control::control_zoom(float value){
       break;
     }
     case CAMERA_PROJ_ORTHOGRAPHIC:{
-      cam_proj->ortho_zoom(camera, value);
+      //cam_proj->ortho_zoom(camera, value);
       break;
     }
   }
@@ -117,11 +117,11 @@ glm::mat4 Control::compute_camera_proj(){
 
   switch(camera->projection){
     case CAMERA_PROJ_PERSPECTIVE:{
-      projection = cam_proj->compute_proj_perspective(camera);
+      projection = cam_perspective->compute_proj_perspective(camera);
       break;
     }
     case CAMERA_PROJ_ORTHOGRAPHIC:{
-      projection = cam_proj->compute_proj_ortho(camera);
+      //projection = cam_proj->compute_proj_ortho(camera);
       break;
     }
   }

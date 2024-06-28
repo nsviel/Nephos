@@ -5,7 +5,7 @@
 #include <string>
 
 namespace cam{class Node;}
-namespace cam{class Projection;}
+namespace cam::projection{class Perspective;}
 namespace cam::mode{class Base;}
 namespace cam{class Entity;}
 namespace cam{class Structure;}
@@ -41,7 +41,7 @@ std::string a = "hey";
   void set_next_camera_mode();
 
 private:
-  cam::Projection* cam_proj;
+  cam::projection::Perspective* cam_proj;
   cam::Structure* cam_struct;
 
   std::vector<cam::mode::Base*> vec_mode;
