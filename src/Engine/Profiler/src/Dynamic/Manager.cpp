@@ -37,6 +37,7 @@ void Manager::loop(int max_fps){
   //GPU tasker
   prf::dynamic::Tasker* tasker_gpu = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
   tasker_gpu->loop();
+  this->collect_gpu_task();
 
   //---------------------------
 }
@@ -63,8 +64,13 @@ void Manager::collect_gpu_task(){
   prf::dynamic::Tasker* tasker = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
   //---------------------------
 
+  float ts_current = 0;
   for(int i=0; i<vk_struct->profiler.vec_command_buffer.size(); i++){
+    std::string& name = vk_struct->profiler.vec_command_buffer[i].name;
+    float& duration = vk_struct->profiler.vec_command_buffer[i].duration;
 
+    tasker->add_task(name, ts_current, ts_current + duration);
+    ts_current += duration;
   }
 
   //---------------------------

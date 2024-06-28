@@ -127,6 +127,19 @@ void Tasker::task_end(const std::string& name, float time, glm::vec4 color){
 
   //---------------------------
 }
+void Tasker::add_task(const std::string& name, float ts_begin, float ts_end, glm::vec4 color){
+  //---------------------------
+
+  //Insert task in vector
+  prf::dynamic::Task task;
+  task.ts_begin = ts_begin;
+  task.ts_end = ts_end;
+  task.name = name;
+  task.color = color;
+  this->vec_task_buffer.push_back(task);
+
+  //---------------------------
+}
 
 //Subfunction
 prf::dynamic::Task* Tasker::find_task(const std::string& name){
