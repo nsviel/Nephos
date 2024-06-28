@@ -77,7 +77,7 @@ void Image::wait_thread(){
 
 //Data function
 void Image::find_data_from_capture(k4n::structure::Sensor* sensor){
-  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("data");
+  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::data");
   //---------------------------
 
   tasker->loop();

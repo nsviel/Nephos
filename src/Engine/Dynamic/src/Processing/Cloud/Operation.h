@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  void run_operation(dyn::base::Sensor* sensor)
+  void run_operation(dyn::base::Sensor* sensor);
   void wait_operation();
 
 private:

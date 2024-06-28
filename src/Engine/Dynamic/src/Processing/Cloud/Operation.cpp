@@ -10,19 +10,11 @@ namespace dyn::cloud{
 Operation::Operation(dyn::Node* node_dynamic){
   //---------------------------
 
-  eng::Node* node_engine = node_dynamic->get_node_engine();
-  dat::Node* node_data = node_engine->get_node_data();
-
-  this->dat_entity = node_data->get_dat_entity();
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->ope_voxelizer = new ope::Voxelizer();
-  this->ope_trianguler = new ope::Triangulation();
-  this->ope_colorizer = new ope::color::Colorizer();
   this->dyn_normal = new dyn::cloud::Normal(node_dynamic);
   this->dyn_recorder = new dyn::cloud::Recorder(node_dynamic);
   this->dyn_radio = new dyn::cloud::Radiometry(node_dynamic);
   this->dyn_finalizer = new dyn::cloud::Finalizer(node_dynamic);
-  this->thread_pool = node_engine->get_thread_pool();
 
   //---------------------------
 }

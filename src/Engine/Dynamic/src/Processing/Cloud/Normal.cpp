@@ -4,6 +4,7 @@
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
+#include <Profiler/Namespace.h>
 #include <cstdlib>
 #include <chrono>
 
@@ -40,21 +41,20 @@ void Normal::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Normal::run_thread(dyn::base::Sensor* sensor){
-  utl::base::Data* data = &sensor->data;
+  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::normal");
   //---------------------------
 
-  //Compute normal
-  ope_normal->set_knn(dyn_struct->operation.normal.knn);
-  ope_normal->compute_normal(data);
-  dyn_struct->operation.normal.time = ope_normal->get_time();
+  tasker->loop();
 
-  //Make normal image
-  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::NORMAL);
-  image->timestamp = sensor->timestamp.current;
-  ope_converter->convert_normal_to_image(data, image);
-  ope_location->compute_incidence_angle(sensor);
+  //Normal
+  tasker->task_begin("normal");
+  this->compute_normal(sensor);
+  tasker->task_end("normal");
 
-  //dat_glyph->update_glyph(sensor, dat::base::object::NORMAL);
+  //Image
+  tasker->task_begin("image");
+  this->compute_image(sensor);
+  tasker->task_end("image");
 
   //---------------------------
   this->thread_idle = true;
@@ -66,6 +66,29 @@ void Normal::wait_thread(){
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+
+  //---------------------------
+}
+
+//Subfunction
+void Normal::compute_normal(dyn::base::Sensor* sensor){
+  //---------------------------
+
+  ope_normal->set_knn(dyn_struct->operation.normal.knn);
+  ope_normal->compute_normal(&sensor->data);
+  dyn_struct->operation.normal.time = ope_normal->get_time();
+  ope_location->compute_incidence_angle(sensor);
+
+  //---------------------------
+}
+void Normal::compute_image(dyn::base::Sensor* sensor){
+  //---------------------------
+
+  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::NORMAL);
+  image->timestamp = sensor->timestamp.current;
+  ope_converter->convert_normal_to_image(&sensor->data, image);
+
+  //dat_glyph->update_glyph(sensor, dat::base::object::NORMAL);
 
   //---------------------------
 }

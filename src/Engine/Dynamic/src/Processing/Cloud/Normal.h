@@ -30,6 +30,10 @@ public:
   void run_thread(dyn::base::Sensor* sensor);
   void wait_thread();
 
+  //Subfunction
+  void compute_normal(dyn::base::Sensor* sensor);
+  void compute_image(dyn::base::Sensor* sensor);
+
 private:
   dyn::Structure* dyn_struct;
   dat::element::Image* dat_image;

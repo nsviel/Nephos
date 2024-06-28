@@ -5,6 +5,7 @@
 #include <Dynamic/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Data/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace dyn::cloud{
@@ -14,7 +15,7 @@ Finalizer::Finalizer(dyn::Node* node_dynamic){
   //---------------------------
 
   eng::Node* node_engine = node_dynamic->get_node_engine();
-  dat::Node* node_data = node_engine->get_node_data();
+  dat::Node* node_data = node_dynamic->get_node_data();
 
   this->dat_entity = node_data->get_dat_entity();
   this->dyn_struct = node_dynamic->get_dyn_struct();
@@ -38,10 +39,20 @@ void Finalizer::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Finalizer::run_thread(dyn::base::Sensor* sensor){
+  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::finalizer");
   //---------------------------
 
+  tasker->loop();
+
+  //Colorization
+  tasker->task_begin("colorization");
   this->colorize_object(sensor);
+  tasker->task_end("colorization");
+
+  //Update
+  tasker->task_begin("update");
   this->update_object(sensor);
+  tasker->task_end("update");
 
   //---------------------------
   this->thread_idle = true;
