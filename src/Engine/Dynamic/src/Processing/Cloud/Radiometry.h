@@ -6,7 +6,7 @@ namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace rad::correction{class Correction;}
-namespace dat{class Image;}
+namespace dat::element{class Image;}
 
 
 namespace dyn::cloud{
@@ -27,7 +27,7 @@ public:
 private:
   dyn::Structure* dyn_struct;
   rad::correction::Correction* rad_correction;
-  dat::Image* dat_image;
+  dat::element::Image* dat_image;
 
   std::thread thread;
   bool thread_idle = true;

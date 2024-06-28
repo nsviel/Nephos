@@ -4,12 +4,12 @@
 #include <string>
 
 namespace dat{class Node;}
-namespace dat{class UID;}
+namespace dat::graph{class UID;}
 namespace dat::base{class Entity;}
 namespace utl::media{class Image;}
 
 
-namespace dat{
+namespace dat::element{
 
 class Image
 {
@@ -31,7 +31,7 @@ public:
   utl::media::Image* get_or_create_image(dat::base::Entity* entity, std::string name);
 
 private:
-  dat::UID* dat_uid;
+  dat::graph::UID* dat_uid;
 };
 
 }

@@ -3,7 +3,7 @@
 #include <string>
 
 namespace dat{class Node;}
-namespace dat{class Set;}
+namespace dat::element{class Set;}
 namespace dat::base{class Set;}
 
 
@@ -27,7 +27,7 @@ public:
   inline void set_selected_set(dat::base::Set* set){this->set_selected = set;}
 
 private:
-  dat::Set* dat_set;
+  dat::element::Set* dat_set;
 
   dat::base::Set* set_selected;
   std::string panel_name;

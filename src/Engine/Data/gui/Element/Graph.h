@@ -4,8 +4,8 @@
 
 namespace dat{class Node;}
 namespace dat{class Graph;}
-namespace dat{class Set;}
-namespace dat{class Selection;}
+namespace dat::element{class Set;}
+namespace dat::graph{class Selection;}
 namespace dat{class Structure;}
 namespace dat::gui{class Entity;}
 namespace dat::gui{class Set;}
@@ -43,8 +43,8 @@ private:
   dat::gui::Entity* rnd_object;
   dat::gui::Set* rnd_set;
   dat::Graph* dat_graph;
-  dat::Selection* dat_selection;
-  dat::Set* dat_set;
+  dat::graph::Selection* dat_selection;
+  dat::element::Set* dat_set;
   dat::Structure* dat_struct;
 
   std::string name;

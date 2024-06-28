@@ -11,7 +11,7 @@ namespace ldr::gui{class File;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace dyn::player{class Player;}
-namespace dat{class Selection;}
+namespace dat::graph{class Selection;}
 
 
 namespace ldr::gui::exporter{
@@ -41,7 +41,7 @@ private:
   dyn::player::Player* dyn_player;
   dyn::Structure* dyn_struct;
   ldr::Structure* ldr_struct;
-  dat::Selection* dat_selection;
+  dat::graph::Selection* dat_selection;
 
   std::vector<std::string> vec_format;
 };

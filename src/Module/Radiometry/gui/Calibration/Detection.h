@@ -7,7 +7,7 @@ namespace rad{class Node;}
 namespace rad::calibration{class Structure;}
 namespace rad::calibration{class Process;}
 namespace rnd{class Stream;}
-namespace dat{class Image;}
+namespace dat::element{class Image;}
 
 
 namespace rad::gui::calibration{
@@ -34,7 +34,7 @@ private:
   rad::calibration::Structure* rad_struct;
   rad::calibration::Process* rad_process;
   rnd::Stream* stream;
-  dat::Image* dat_image;
+  dat::element::Image* dat_image;
 };
 
 }

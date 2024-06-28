@@ -1,6 +1,6 @@
 #pragma once
 
-namespace dat{class Entity;}
+namespace dat::element{class Entity;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::cloud{class Recorder;}
@@ -36,7 +36,7 @@ public:
   void update_object(dyn::base::Sensor* sensor);
 
 private:
-  dat::Entity* dat_entity;
+  dat::element::Entity* dat_entity;
   dyn::Structure* dyn_struct;
   dyn::cloud::Recorder* dyn_recorder;
   ope::Voxelizer* ope_voxelizer;

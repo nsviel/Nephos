@@ -9,7 +9,7 @@ namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::io{class Transformation;}
 namespace utl::base{class Element;}
-namespace dat{class Selection;}
+namespace dat::graph{class Selection;}
 
 
 namespace ldr::gui::transformation{
@@ -37,7 +37,7 @@ public:
 private:
   ldr::Structure* ldr_struct;
   ldr::io::Transformation* ldr_transformation;
-  dat::Selection* dat_selection;
+  dat::graph::Selection* dat_selection;
 
   std::string name;
   bool* show_window;

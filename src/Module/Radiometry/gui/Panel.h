@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace dat{class Selection;}
+namespace dat::graph{class Selection;}
 namespace rad{class Node;}
 namespace rad::gui::correction{class Tab;}
 namespace rad::gui::calibration{class Tab;}
@@ -28,7 +28,7 @@ public:
   void tab_calibration(dyn::base::Sensor* sensor);
 
 private:
-  dat::Selection* dat_selection;
+  dat::graph::Selection* dat_selection;
   rad::gui::correction::Tab* gui_correction;
   rad::gui::calibration::Tab* gui_calibration;
 

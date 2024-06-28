@@ -3,7 +3,7 @@
 #include <thread>
 
 namespace k4n{class Node;}
-namespace dat{class Set;}
+namespace dat::element{class Set;}
 namespace dat{class Graph;}
 namespace dat::base{class Set;}
 namespace ldr::importer{class Operation;}
@@ -31,7 +31,7 @@ public:
 
 private:
   k4n::Node* node_k4n;
-  dat::Set* dat_set;
+  dat::element::Set* dat_set;
   dat::Graph* dat_graph;
   ldr::importer::Operation* ldr_operation;
 

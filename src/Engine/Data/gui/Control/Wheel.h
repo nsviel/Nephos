@@ -7,7 +7,7 @@ namespace dat{class Node;}
 namespace eng{class Node;}
 namespace ope{class Operation;}
 namespace ope::attribut{class Location;}
-namespace dat{class Selection;}
+namespace dat::graph{class Selection;}
 
 enum Wheel_mode{
   WHEEL_R_X = 0,
@@ -37,7 +37,7 @@ public:
   inline int* get_mode(){return &mode;}
 
 private:
-  dat::Selection* dat_selection;
+  dat::graph::Selection* dat_selection;
   eng::Node* node_engine;
   ope::Operation* ope_operation;
   ope::attribut::Location* ope_location;

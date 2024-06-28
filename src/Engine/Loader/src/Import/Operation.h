@@ -6,11 +6,11 @@
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::io{class Transformation;}
-namespace dat{class Entity;}
+namespace dat::element{class Entity;}
 namespace dat{class Graph;}
-namespace dat{class Set;}
+namespace dat::element{class Set;}
 namespace dat{class Glyph;}
-namespace dat{class Selection;}
+namespace dat::graph{class Selection;}
 namespace dat::base{class Object;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
@@ -41,11 +41,11 @@ public:
 private:
   ldr::Structure* ldr_struct;
   ldr::io::Transformation* ldr_transformation;
-  dat::Entity* dat_entity;
+  dat::element::Entity* dat_entity;
   dat::Graph* dat_graph;
-  dat::Set* dat_set;
+  dat::element::Set* dat_set;
   dat::Glyph* dat_glyph;
-  dat::Selection* dat_selection;
+  dat::graph::Selection* dat_selection;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
 };

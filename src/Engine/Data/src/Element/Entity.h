@@ -4,7 +4,7 @@
 
 namespace cam{class Node;}
 namespace dat{class Node;}
-namespace dat{class UID;}
+namespace dat::graph{class UID;}
 namespace dat{class Structure;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Object;}
@@ -18,7 +18,7 @@ namespace ope::attribut{class Location;}
 
 
 
-namespace dat{
+namespace dat::element{
 
 class Entity
 {
@@ -41,7 +41,7 @@ private:
   eng::Node* node_engine;
   vk::data::Data* vk_data;
   dat::Structure* dat_struct;
-  dat::UID* dat_uid;
+  dat::graph::UID* dat_uid;
   cam::Control* cam_control;
   ope::attribut::Location* ope_location;
 };

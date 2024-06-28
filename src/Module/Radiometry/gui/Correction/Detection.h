@@ -8,7 +8,7 @@ namespace rad::correction{class Structure;}
 namespace rad::correction{class Process;}
 namespace rad::correction::image{class Hough;}
 namespace rnd{class Stream;}
-namespace dat{class Image;}
+namespace dat::element{class Image;}
 
 
 namespace rad::gui::correction{
@@ -40,7 +40,7 @@ private:
   rad::correction::Process* rad_process;
   rad::correction::image::Hough* rad_hough;
   rnd::Stream* stream;
-  dat::Image* dat_image;
+  dat::element::Image* dat_image;
 };
 
 }

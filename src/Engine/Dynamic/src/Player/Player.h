@@ -4,8 +4,8 @@
 #include <Dynamic/src/Base/Timestamp.h>
 
 namespace dyn{class Node;}
-namespace dat{class Selection;}
-namespace dat{class Set;}
+namespace dat::graph{class Selection;}
+namespace dat::element{class Set;}
 
 
 namespace dyn::player{
@@ -43,8 +43,8 @@ public:
   inline dyn::base::Timestamp* get_timestamp(){return &timestamp;}
 
 public:
-  dat::Selection* dat_selection;
-  dat::Set* dat_set;
+  dat::graph::Selection* dat_selection;
+  dat::element::Set* dat_set;
 
   dyn::base::Timestamp timestamp;
   dyn::base::State state;

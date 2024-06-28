@@ -5,7 +5,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace dat{
+namespace dat::graph{
 
 //Constructor / Destructor
 Selection::Selection(dat::Node* node_data){

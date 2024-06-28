@@ -1,6 +1,6 @@
 #pragma once
 
-namespace dat{class Selection;}
+namespace dat::graph{class Selection;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::cloud{class Operation;}
@@ -30,7 +30,7 @@ public:
   void draw_ope_normal(utl::base::Element* element);
 
 private:
-  dat::Selection* dat_selection;
+  dat::graph::Selection* dat_selection;
   dyn::cloud::Operation* dyn_operation;
   dyn::Structure* dyn_struct;
   dyn::gui::Colorization* dyn_colorization;

@@ -1,8 +1,8 @@
 #pragma once
 
 namespace dat{class Node;}
-namespace dat{class Selection;}
-namespace dat{class Set;}
+namespace dat::graph{class Selection;}
+namespace dat::element{class Set;}
 namespace dat::gui{class Wheel;}
 namespace ope{class Operation;}
 
@@ -30,8 +30,8 @@ public:
   inline dat::gui::Wheel* get_gui_wheel(){return gui_wheel;}
 
 private:
-  dat::Selection* dat_selection;
-  dat::Set* dat_set;
+  dat::graph::Selection* dat_selection;
+  dat::element::Set* dat_set;
   ope::Operation* ope_operation;
   dat::gui::Wheel* gui_wheel;
 };

@@ -5,8 +5,8 @@ namespace rad::correction{class Structure;}
 namespace rad::correction::image{class Detection;}
 namespace rad::correction::cloud{class Detection;}
 namespace rad::correction{class Glyph;}
-namespace dat{class Selection;}
-namespace dat{class Image;}
+namespace dat::graph{class Selection;}
+namespace dat::element{class Image;}
 namespace dyn::base{class Sensor;}
 
 
@@ -33,8 +33,8 @@ private:
   rad::correction::image::Detection* rad_image_detection;
   rad::correction::cloud::Detection* rad_cloud_detection;
   rad::correction::Glyph* rad_glyph;
-  dat::Selection* dat_selection;
-  dat::Image* dat_image;
+  dat::graph::Selection* dat_selection;
+  dat::element::Image* dat_image;
 };
 
 }

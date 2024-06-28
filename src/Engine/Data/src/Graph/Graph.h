@@ -4,7 +4,7 @@
 
 namespace cam{class Entity;}
 namespace dat{class Node;}
-namespace dat{class Set;}
+namespace dat::element{class Set;}
 namespace dat{class Structure;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
@@ -33,7 +33,7 @@ public:
 
 private:
   dat::Node* node_data;
-  dat::Set* dat_set;
+  dat::element::Set* dat_set;
   dat::Structure* dat_struct;
 };
 

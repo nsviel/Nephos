@@ -3,7 +3,7 @@
 #include <Data/Namespace.h>
 
 
-namespace dat{
+namespace dat::element{
 
 //Constructor / Destructor
 Set::Set(dat::Node* node_data){
@@ -11,7 +11,7 @@ Set::Set(dat::Node* node_data){
 
   this->node_data = node_data;
   this->dat_struct = node_data->get_dat_struct();
-  this->dat_entity = new dat::Entity(node_data);
+  this->dat_entity = new dat::element::Entity(node_data);
   this->dat_uid = node_data->get_dat_uid();
 
   //---------------------------

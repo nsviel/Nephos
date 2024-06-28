@@ -3,7 +3,7 @@
 namespace rad::calibration{class Node;}
 namespace rad::calibration{class Structure;}
 namespace rad::calibration{class Detection;}
-namespace dat{class Selection;}
+namespace dat::graph{class Selection;}
 
 
 namespace rad::calibration{
@@ -27,7 +27,7 @@ public:
 private:
   rad::calibration::Structure* rad_struct;
   rad::calibration::Detection* rad_detection;
-  dat::Selection* dat_selection;
+  dat::graph::Selection* dat_selection;
 };
 
 }

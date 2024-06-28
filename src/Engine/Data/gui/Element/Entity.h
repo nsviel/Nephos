@@ -3,9 +3,9 @@
 #include <string>
 
 namespace dat{class Node;}
-namespace dat{class Selection;}
-namespace dat{class Set;}
-namespace dat{class Entity;}
+namespace dat::graph{class Selection;}
+namespace dat::element{class Set;}
+namespace dat::element{class Entity;}
 namespace dat::base{class Entity;}
 namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
@@ -46,9 +46,9 @@ public:
 private:
   ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
-  dat::Selection* dat_selection;
-  dat::Set* dat_set;
-  dat::Entity* dat_entity;
+  dat::graph::Selection* dat_selection;
+  dat::element::Set* dat_set;
+  dat::element::Entity* dat_entity;
 
   dat::base::Entity* entity;
   std::string panel_name;

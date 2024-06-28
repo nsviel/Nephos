@@ -5,7 +5,7 @@ namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::structure{class Sensor;}
 namespace k4n::capture{class Configuration;}
-namespace dat{class Set;}
+namespace dat::element{class Set;}
 namespace dat::base{class Set;}
 
 
@@ -35,7 +35,7 @@ public:
 private:
   k4n::Structure* k4n_struct;
   k4n::capture::Configuration* k4n_config;
-  dat::Set* dat_set;
+  dat::element::Set* dat_set;
 
   int item_width;
 };

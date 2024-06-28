@@ -10,7 +10,7 @@ namespace utl::media{class Image;}
 namespace rad::correction{class Glyph;}
 namespace rad::correction::image{class Hough;}
 namespace rad::correction::image{class Image;}
-namespace dat{class Image;}
+namespace dat::element{class Image;}
 
 
 namespace rad::correction::image{
@@ -37,7 +37,7 @@ private:
   rad::correction::Glyph* rad_glyph;
   rad::correction::image::Hough* rad_hough;
   rad::correction::image::Image* rad_image;
-  dat::Image* dat_image;
+  dat::element::Image* dat_image;
 
   std::thread thread;
   bool thread_idle = true;

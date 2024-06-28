@@ -9,8 +9,8 @@ namespace rad::correction{class Node;}
 namespace rad::correction{class Model;}
 namespace rad::correction::io{class Model;}
 namespace dyn::base{class Sensor;}
-namespace dat{class Image;}
-namespace dat{class Selection;}
+namespace dat::element{class Image;}
+namespace dat::graph{class Selection;}
 namespace utl::media{class Image;}
 
 
@@ -33,8 +33,8 @@ public:
   float apply_correction(float I_raw, float R, float It);
 
 private:
-  dat::Image* dat_image;
-  dat::Selection* dat_selection;
+  dat::element::Image* dat_image;
+  dat::graph::Selection* dat_selection;
   rad::correction::Structure* rad_struct;
   rad::correction::Model* rad_model;
   rad::correction::io::Model* rad_io_model;

@@ -6,8 +6,8 @@
 
 namespace dyn{class Node;}
 namespace dyn::gui{class Overlay;}
-namespace dat{class Selection;}
-namespace dat{class Set;}
+namespace dat::graph{class Selection;}
+namespace dat::element{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace eng{class Node;}
@@ -35,8 +35,8 @@ public:
 
 private:
   eng::Node* node_engine;
-  dat::Selection* dat_selection;
-  dat::Set* dat_set;
+  dat::graph::Selection* dat_selection;
+  dat::element::Set* dat_set;
   dyn::gui::Overlay* gui_overlay;
 
   std::vector<rnd::Stream*> vec_stream;

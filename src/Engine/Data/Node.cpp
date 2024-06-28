@@ -20,13 +20,13 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->dat_struct = new dat::Structure();
-  this->dat_uid = new dat::UID(this);
-  this->dat_set = new dat::Set(this);
+  this->dat_uid = new dat::graph::UID(this);
+  this->dat_set = new dat::element::Set(this);
   this->dat_graph = new dat::Graph(this);
-  this->dat_entity = new dat::Entity(this);
+  this->dat_entity = new dat::element::Entity(this);
   this->dat_glyph = new dat::Glyph(this);
-  this->dat_image = new dat::Image(this);
-  this->dat_selection = new dat::Selection(this);
+  this->dat_image = new dat::element::Image(this);
+  this->dat_selection = new dat::graph::Selection(this);
   this->gui_graph = new dat::gui::Graph(this, &dat_panel->is_open);
   this->gui_wheel = new dat::gui::Wheel(this);
   this->gui_control = new dat::gui::Control(this);

@@ -4,7 +4,7 @@
 
 namespace cam{class Entity;}
 namespace dat{class Node;}
-namespace dat{class Set;}
+namespace dat::element{class Set;}
 namespace dat{class Graph;}
 namespace dat{class Structure;}
 namespace dat::base{class Set;}
@@ -12,7 +12,7 @@ namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
 
 
-namespace dat{
+namespace dat::graph{
 
 class Selection
 {
@@ -32,7 +32,7 @@ public:
 
 private:
   dat::Graph* dat_graph;
-  dat::Set* dat_set;
+  dat::element::Set* dat_set;
   dat::Structure* dat_struct;
 };
 

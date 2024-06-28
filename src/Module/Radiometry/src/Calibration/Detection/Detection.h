@@ -7,7 +7,7 @@ namespace rad::calibration{class Rectangle;}
 namespace dyn::base{class Sensor;}
 namespace utl::thread{class Pool;}
 namespace utl::media{class Image;}
-namespace dat{class Image;}
+namespace dat::element{class Image;}
 
 
 namespace rad::calibration{
@@ -33,7 +33,7 @@ private:
   rad::calibration::Structure* rad_struct;
   rad::calibration::Image* rad_image;
   rad::calibration::Rectangle* rad_rectangle;
-  dat::Image* dat_image;
+  dat::element::Image* dat_image;
 
   bool thread_idle = true;
 };

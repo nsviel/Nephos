@@ -3,8 +3,8 @@
 #include <string>
 
 namespace dat{class Node;}
-namespace dat{class Entity;}
-namespace dat{class Set;}
+namespace dat::element{class Entity;}
+namespace dat::element{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Glyph;}
 namespace dat::base{class Set;}
@@ -35,8 +35,8 @@ public:
 
 private:
   dat::Node* node_data;
-  dat::Entity* dat_entity;
-  dat::Set* dat_set;
+  dat::element::Entity* dat_entity;
+  dat::element::Set* dat_set;
 };
 
 }

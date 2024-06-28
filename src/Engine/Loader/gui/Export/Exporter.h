@@ -9,7 +9,7 @@ namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::io{class Exporter;}
 namespace ldr::gui{class File;}
-namespace dat{class Selection;}
+namespace dat::graph{class Selection;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
 
@@ -42,7 +42,7 @@ public:
 private:
   ldr::Structure* ldr_struct;
   ldr::io::Exporter* ldr_exporter;
-  dat::Selection* dat_selection;
+  dat::graph::Selection* dat_selection;
 };
 
 }

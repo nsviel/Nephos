@@ -4,7 +4,7 @@
 #include <Data/src/Glyph/Grid/Structure.h>
 
 namespace eng{class Node;}
-namespace dat{class Entity;}
+namespace dat::element{class Entity;}
 namespace dat{class Glyph;}
 namespace dat::glyph::grid{class Mesh;}
 namespace dat::glyph::grid{class Axis;}
@@ -28,7 +28,7 @@ public:
 
 private:
   eng::Node* node_engine;
-  dat::Entity* dat_entity;
+  dat::element::Entity* dat_entity;
   dat::Glyph* dat_glyph;
 
   int nb_cell;

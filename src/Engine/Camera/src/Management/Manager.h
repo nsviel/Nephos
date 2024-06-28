@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace dat{class Graph;}
-namespace dat{class Set;}
+namespace dat::element{class Set;}
 namespace eng{class Node;}
 namespace cam{class Node;}
 namespace cam{class Entity;}
@@ -29,7 +29,7 @@ public:
 
 private:
   dat::Graph* dat_graph;
-  dat::Set* dat_set;
+  dat::element::Set* dat_set;
   eng::Node* node_engine;
   cam::Structure* cam_struct;
   cam::Control* cam_control;

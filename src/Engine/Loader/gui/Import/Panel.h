@@ -11,7 +11,7 @@ namespace ldr::io{class Importer;}
 namespace ldr::gui{class File;}
 namespace ldr::bookmark{class Manager;}
 namespace dat{class Graph;}
-namespace dat{class Set;}
+namespace dat::element{class Set;}
 namespace dat::base{class Entity;}
 
 
@@ -42,7 +42,7 @@ private:
   ldr::Structure* ldr_struct;
   ldr::io::Importer* ldr_importer;
   ldr::bookmark::Manager* ldr_bookmark;
-  dat::Set* dat_set;
+  dat::element::Set* dat_set;
   dat::Graph* dat_graph;
 
   std::string name;

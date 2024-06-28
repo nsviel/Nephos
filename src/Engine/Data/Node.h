@@ -6,12 +6,12 @@ namespace vk{class Node;}
 namespace cam{class Node;}
 namespace eng{class Node;}
 namespace dat{class Graph;}
-namespace dat{class Entity;}
-namespace dat{class Set;}
-namespace dat{class Image;}
-namespace dat{class UID;}
+namespace dat::element{class Entity;}
+namespace dat::element{class Set;}
+namespace dat::element{class Image;}
+namespace dat::graph{class UID;}
 namespace dat{class Glyph;}
-namespace dat{class Selection;}
+namespace dat::graph{class Selection;}
 namespace dat{class Structure;}
 namespace dat::gui{class Graph;}
 namespace dat::gui{class Control;}
@@ -39,11 +39,11 @@ public:
   inline cam::Node* get_node_camera(){return node_camera;}
 
   inline dat::Graph* get_dat_graph(){return dat_graph;}
-  inline dat::Selection* get_dat_selection(){return dat_selection;}
-  inline dat::Entity* get_dat_entity(){return dat_entity;}
-  inline dat::Set* get_dat_set(){return dat_set;}
-  inline dat::UID* get_dat_uid(){return dat_uid;}
-  inline dat::Image* get_dat_image(){return dat_image;}
+  inline dat::graph::Selection* get_dat_selection(){return dat_selection;}
+  inline dat::element::Entity* get_dat_entity(){return dat_entity;}
+  inline dat::element::Set* get_dat_set(){return dat_set;}
+  inline dat::graph::UID* get_dat_uid(){return dat_uid;}
+  inline dat::element::Image* get_dat_image(){return dat_image;}
   inline dat::Glyph* get_dat_glyph(){return dat_glyph;}
   inline dat::Structure* get_dat_struct(){return dat_struct;}
   inline dat::gui::Control* get_gui_control(){return gui_control;}
@@ -58,12 +58,12 @@ private:
   //Child
   dat::Structure* dat_struct;
   dat::Graph* dat_graph;
-  dat::Entity* dat_entity;
-  dat::Set* dat_set;
+  dat::element::Entity* dat_entity;
+  dat::element::Set* dat_set;
   dat::Glyph* dat_glyph;
-  dat::UID* dat_uid;
-  dat::Image* dat_image;
-  dat::Selection* dat_selection;
+  dat::graph::UID* dat_uid;
+  dat::element::Image* dat_image;
+  dat::graph::Selection* dat_selection;
   dat::gui::Graph* gui_graph;
   dat::gui::Control* gui_control;
   dat::gui::Wheel* gui_wheel;

@@ -5,8 +5,8 @@ namespace vld::structure{class Main;}
 namespace eng{class Node;}
 namespace ldr::io{class Importer;}
 namespace dat{class Graph;}
-namespace dat{class Set;}
-namespace dat{class Entity;}
+namespace dat::element{class Set;}
+namespace dat::element{class Entity;}
 
 
 namespace vld::main{
@@ -27,8 +27,8 @@ private:
   vld::structure::Main* vld_struct;
   dat::Graph* dat_graph;
   ldr::io::Importer* ldr_loader;
-  dat::Set* dat_set;
-  dat::Entity* dat_entity;
+  dat::element::Set* dat_set;
+  dat::element::Entity* dat_entity;
 };
 
 }

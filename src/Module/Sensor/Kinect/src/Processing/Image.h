@@ -13,7 +13,7 @@ namespace k4n::processing{class Cloud;}
 namespace k4n::processing{class Operation;}
 namespace utl::thread{class Pool;}
 namespace dyn::image{class Operation;}
-namespace dat{class Image;}
+namespace dat::element{class Image;}
 
 
 namespace k4n::processing{
@@ -56,7 +56,7 @@ private:
   k4n::processing::Operation* k4n_operation;
   utl::thread::Pool* thread_pool;
   dyn::image::Operation* dyn_operation;
-  dat::Image* dat_image;
+  dat::element::Image* dat_image;
 
   tjhandle tj_handle;
   bool thread_idle = true;
