@@ -28,8 +28,6 @@ Node::Node(eng::Node* node_engine){
   this->dat_image = new dat::element::Image(this);
   this->dat_selection = new dat::graph::Selection(this);
   this->gui_graph = new dat::gui::Graph(this, &dat_panel->is_open);
-  this->gui_wheel = new dat::gui::Wheel(this);
-  this->gui_control = new dat::gui::Control(this);
 
   //---------------------------
 }

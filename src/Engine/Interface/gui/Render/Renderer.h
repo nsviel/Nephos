@@ -9,7 +9,7 @@ namespace vk::main{class Interface;}
 namespace vk{class Structure;}
 namespace eng{class Node;}
 namespace itf::gui{class Camera;}
-namespace dat::gui{class Control;}
+namespace itf::gui{class Element;}
 namespace dyn::gui{class Control;}
 
 
@@ -34,7 +34,7 @@ public:
 private:
   itf::gui::Camera* cam_control;
   itf::control::Camera* itf_camera;
-  dat::gui::Control* dat_control;
+  itf::gui::Element* itf_element;
   dyn::gui::Control* dyn_control;
   vk::gui::Imgui* vk_imgui;
   vk::main::Interface* vk_interface;

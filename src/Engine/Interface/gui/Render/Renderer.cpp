@@ -25,7 +25,7 @@ Renderer::Renderer(itf::Node* node_interface){
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
   this->itf_camera = node_interface->get_itf_camera();
-  this->dat_control = node_data->get_gui_control();
+  this->itf_element = node_interface->get_gui_element();
   this->cam_control = node_interface->get_gui_camera();
   this->dyn_control = node_dynamic->get_gui_control();
   this->vk_imgui = node_vulkan->get_vk_imgui();
@@ -81,7 +81,7 @@ void Renderer::engine_texture(){
     glm::vec2 panel_center = glm::vec2(center_x, center_y);
 
     dyn_control->run_control();
-    dat_control->run_control();
+    itf_element->run_control();
     cam_control->run_control(panel_center);
   }else{
     itf_camera->disable_camera_view();

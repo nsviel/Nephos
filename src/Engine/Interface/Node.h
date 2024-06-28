@@ -13,6 +13,7 @@ namespace itf::gui{class Camera;}
 namespace itf::gui{class Option;}
 namespace itf::gui{class Shader;}
 namespace itf::gui{class Renderer;}
+namespace itf::gui{class Element;}
 
 
 namespace itf{
@@ -38,6 +39,7 @@ public:
   inline itf::control::Camera* get_itf_camera(){return itf_camera;}
   inline itf::control::Wheel* get_itf_wheel(){return itf_wheel;}
   inline itf::gui::Camera* get_gui_camera(){return gui_camera;}
+  inline itf::gui::Element* get_gui_element(){return gui_element;}
 
 private:
   eng::Node* node_engine;
@@ -52,6 +54,7 @@ private:
   itf::gui::Option* gui_option;
   itf::gui::Shader* gui_shader;
   itf::gui::Renderer* gui_render;
+  itf::gui::Element* gui_element;
 };
 
 }

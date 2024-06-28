@@ -14,8 +14,6 @@ namespace dat{class Glyph;}
 namespace dat::graph{class Selection;}
 namespace dat{class Structure;}
 namespace dat::gui{class Graph;}
-namespace dat::gui{class Control;}
-namespace dat::gui{class Wheel;}
 
 
 namespace dat{
@@ -46,8 +44,6 @@ public:
   inline dat::element::Image* get_dat_image(){return dat_image;}
   inline dat::Glyph* get_dat_glyph(){return dat_glyph;}
   inline dat::Structure* get_dat_struct(){return dat_struct;}
-  inline dat::gui::Control* get_gui_control(){return gui_control;}
-  inline dat::gui::Wheel* get_gui_wheel(){return gui_wheel;}
 
 private:
   //Dependancy
@@ -65,8 +61,6 @@ private:
   dat::element::Image* dat_image;
   dat::graph::Selection* dat_selection;
   dat::gui::Graph* gui_graph;
-  dat::gui::Control* gui_control;
-  dat::gui::Wheel* gui_wheel;
 
   bool show_scene = true;
   bool show_loader = true;

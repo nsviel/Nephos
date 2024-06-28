@@ -3,9 +3,9 @@
 #include <string>
 
 namespace itf{class Node;}
+namespace itf{class Structure;}
 namespace eng{class Node;}
-namespace dat::gui{class Control;}
-namespace dat::gui{class Wheel;}
+namespace itf::control{class Wheel;}
 namespace vk::main{class Interface;}
 
 
@@ -27,10 +27,10 @@ public:
   void option_color();
   void option_wheel();
   void visualization_mode();
-  
+
 private:
-  dat::gui::Control* gui_control;
-  dat::gui::Wheel* gui_wheel;
+  itf::Structure* itf_struct;
+  itf::control::Wheel* itf_wheel;
   vk::main::Interface* vk_interface;
 
   std::string name;
