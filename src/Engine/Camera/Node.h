@@ -30,7 +30,6 @@ public:
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline eng::Node* get_node_engine(){return node_engine;}
 
   inline cam::Control* get_cam_control(){return cam_control;}
   inline cam::Manager* get_cam_manager(){return cam_manager;}
@@ -40,7 +39,6 @@ private:
   //Dependancy
   vk::Node* node_vulkan;
   dat::Node* node_data;
-  eng::Node* node_engine;
 
   //Child
   cam::Structure* cam_struct;

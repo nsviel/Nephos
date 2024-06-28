@@ -3,7 +3,6 @@
 #include <Utility/Base/Type/Node.h>
 
 namespace vk{class Node;}
-namespace cam{class Node;}
 namespace eng{class Node;}
 namespace dat{class Graph;}
 namespace dat::element{class Entity;}
@@ -34,7 +33,6 @@ public:
 
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
-  inline cam::Node* get_node_camera(){return node_camera;}
 
   inline dat::Graph* get_dat_graph(){return dat_graph;}
   inline dat::graph::Selection* get_dat_selection(){return dat_selection;}
@@ -49,7 +47,6 @@ private:
   //Dependancy
   eng::Node* node_engine;
   vk::Node* node_vulkan;
-  cam::Node* node_camera;
 
   //Child
   dat::Structure* dat_struct;

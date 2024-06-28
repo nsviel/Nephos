@@ -15,12 +15,12 @@ Entity::Entity(dat::Node* node_data){
 
   eng::Node* node_engine = node_data->get_node_engine();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
-  cam::Node* node_camera = node_engine->get_node_camera();
+
 
   this->node_engine = node_engine;
   this->dat_struct = node_data->get_dat_struct();
   this->dat_uid = node_data->get_dat_uid();
-  this->cam_control = node_camera->get_cam_control();
+
   this->vk_data = node_vulkan->get_vk_data();
   this->ope_location = new ope::attribut::Location();
 
@@ -101,6 +101,9 @@ void Entity::update_pose(dat::base::Entity* entity){
   utl::base::Pose* pose = &entity->pose;;
   //----------------------------
 
+  cam::Node* node_camera = node_engine->get_node_camera();
+  this->cam_control = node_camera->get_cam_control();
+  
   //Update own pose
   cam_control->compute_camera_mvp(pose);
 

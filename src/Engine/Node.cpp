@@ -23,8 +23,8 @@ Node::Node(app::Node* node_app){
   this->thread_pool = new utl::thread::Pool(50);
   this->node_vulkan = new vk::Node(app_running);
   this->node_profiler = new prf::Node(this);
-  this->node_camera = new cam::Node(this);
   this->node_data = new dat::Node(this);
+  this->node_camera = new cam::Node(this);
   this->node_radio = new rad::Node(this);
   this->node_dynamic = new dyn::Node(this);
   this->node_interface = new itf::Node(this);
