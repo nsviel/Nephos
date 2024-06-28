@@ -48,28 +48,26 @@ void Sensor::thread_loop(){
   prf::dynamic::Tasker* tasker = profiler.fetch_tasker("kinect::playback");
   //---------------------------
 
-  //tasker->loop_begin(30);
+  tasker->loop(30);
 
   //Next capture
-  //tasker->task_begin("capture");
+  tasker->task_begin("capture");
   k4a::capture* capture = manage_new_capture();
   if(capture == nullptr) return;
-  //tasker->task_end("capture");
+  tasker->task_end("capture");
 
   //Wait previous threads to finish
-  //tasker->task_begin("wait");
+  tasker->task_begin("wait");
   this->manage_old_capture(capture);
-  //tasker->task_end("wait");
+  tasker->task_end("wait");
 
   //Run processing
   k4n_image->start_thread(this);
 
   //Loop sleeping
-  //tasker->task_begin("pause");
+  tasker->task_begin("pause");
   this->manage_pause();
-  //tasker->task_end("pause");
-
-  //tasker->loop_end();
+  tasker->task_end("pause");
 
   //---------------------------
 }

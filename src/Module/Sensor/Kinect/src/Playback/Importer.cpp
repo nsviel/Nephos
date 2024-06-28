@@ -3,7 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <Data/Namespace.h>
-#include <Profiler/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace k4n::playback{
@@ -13,7 +13,7 @@ Importer::Importer(k4n::Node* node_k4n){
   //---------------------------
 
   dat::Node* node_data = node_k4n->get_node_data();
-  prf::Node* node_profiler = node_k4n->get_node_profiler();
+  dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
 
   this->node_k4n = node_k4n;
   this->node_engine = node_k4n->get_node_engine();
@@ -21,6 +21,7 @@ Importer::Importer(k4n::Node* node_k4n){
   this->dat_entity = node_data->get_dat_entity();
   this->dat_set = node_data->get_dat_set();
   this->dat_glyph = node_data->get_dat_glyph();
+  this->dyn_sensor = node_dynamic->get_dyn_sensor();
 
   this->format = ".mkv";
   this->require_discrete_gpu = true;
@@ -47,6 +48,8 @@ utl::base::Element* Importer::import(utl::base::Path path){
   //Associated set
   sensor->set_parent = manage_set_parent();
   sensor->start_thread();
+
+  dyn_sensor->init_sensor(sensor);
 
   //---------------------------
   return sensor;
