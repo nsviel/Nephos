@@ -29,15 +29,15 @@ Camera::~Camera(){}
 void Camera::run_control(glm::vec2 center){
   //---------------------------
 
-  this->control_keyboard_camMove();
+  this->control_keyboard();
   this->control_mouse(center);
-  this->control_mouse_wheel();
+  this->control_wheel();
 
   //---------------------------
 }
 
 //Subfunction
-void Camera::control_keyboard_camMove(){
+void Camera::control_keyboard(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -83,8 +83,7 @@ void Camera::control_mouse(glm::vec2 center){
 
   //---------------------------
 }
-void Camera::control_mouse_wheel(){
-  static int wheel_mode = 0;
+void Camera::control_wheel(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 

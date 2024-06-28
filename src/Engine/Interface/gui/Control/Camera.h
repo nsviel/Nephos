@@ -25,9 +25,9 @@ public:
   void run_control(glm::vec2 center);
 
   //Subfunction
-  void control_keyboard_camMove();
+  void control_keyboard();
   void control_mouse(glm::vec2 center);
-  void control_mouse_wheel();
+  void control_wheel();
 
 private:
   vk::window::GLFW* vk_window;

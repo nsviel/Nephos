@@ -29,7 +29,7 @@ void Control::run_control(){
 
   this->control_keyboard_oneAction();
   this->control_keyboard_translation();
-  this->control_mouse_wheel();
+  this->control_wheel();
 
   //---------------------------
 }
@@ -113,7 +113,7 @@ void Control::control_keyboard_translation(){
 }
 
 //Mouse
-void Control::control_mouse_wheel(){
+void Control::control_wheel(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 

@@ -25,7 +25,7 @@ public:
   void control_keyboard_translation();
 
   //Mouse
-  void control_mouse_wheel();
+  void control_wheel();
 
   inline dat::gui::Wheel* get_gui_wheel(){return gui_wheel;}
 
