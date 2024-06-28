@@ -26,8 +26,14 @@ void Graph::draw_profiler(prf::dynamic::Profiler* profiler){
 
   if(ImGui::BeginTabBar("profiler_tasker_tab")){
 
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
+    ImGui::BeginChild("PlotChildWindow", ImVec2(0, 0), false);
+
     this->draw_tasker_all(profiler);
     this->draw_tasker_separated(profiler);
+
+    ImGui::EndChild();
+    ImGui::PopStyleVar();
 
     ImGui::EndTabBar();
   }
@@ -77,9 +83,12 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
     first_tab_open = false;
   }
 
-  //All not empty tasker graphs*/
-  ImVec2 dimension = ImGui::GetContentRegionAvail();
-  ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
+  //Dimension
+  ImVec2 dim = ImGui::GetContentRegionAvail();
+  int width = dim.x / (list_tasker.size() + 1);
+
+  //Tasker tabs
+  ImGui::SetNextItemWidth(width);
   std::string title = "All##" + profiler->name;
   if(ImGui::BeginTabItem(title.c_str(), NULL, flag)){
 
@@ -94,10 +103,13 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
 
     //Graph plots
     ImGui::TableNextColumn();
-    ImVec2 dim_plot = ImVec2(dimension.x, dimension.y / list_tasker.size() - list_tasker.size() * 4);
+
+    dim = ImGui::GetContentRegionAvail();
+    ImVec2 dimension = ImVec2(dim.x, dim.y / list_tasker.size());
+
     for(int i=0; i<list_tasker.size(); i++){
       prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
-      this->draw_tasker_graph(tasker, dim_plot);
+      this->draw_tasker_graph(tasker, dimension);
     }
 
     ImGui::EndTable();
@@ -108,15 +120,18 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
   //---------------------------
 }
 void Graph::draw_tasker_separated(prf::dynamic::Profiler* profiler){
-  ImVec2 dimension = ImGui::GetContentRegionAvail();
-  dimension = ImVec2(dimension.x, dimension.y - 10);
   //---------------------------
 
   std::list<prf::dynamic::Tasker*> list_tasker = profiler->get_list_tasker();
   for(int i=0; i<list_tasker.size(); i++){
     prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
 
-    ImGui::SetNextItemWidth(dimension.x / (list_tasker.size() + 1));
+    //Dimension
+    ImVec2 dim = ImGui::GetContentRegionAvail();
+    int width = dim.x / (list_tasker.size() + 1);
+
+    //Tasker tab
+    ImGui::SetNextItemWidth(width);
     std::string title = tasker->name + "##tasker_unique_plot";
     if(ImGui::BeginTabItem(title.c_str(), NULL)){
       ImGui::BeginTable(title.c_str(), 2);
@@ -129,7 +144,8 @@ void Graph::draw_tasker_separated(prf::dynamic::Profiler* profiler){
 
       //Graph plot
       ImGui::TableNextColumn();
-      this->draw_tasker_graph(tasker, dimension);
+      dim = ImGui::GetContentRegionAvail();
+      this->draw_tasker_graph(tasker, dim);
 
       ImGui::EndTable();
       ImGui::EndTabItem();

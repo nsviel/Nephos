@@ -28,7 +28,7 @@ public:
 
   //Subfunction
   void draw_graph_command();
-  void draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 graph_dim);
+  void draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension);
 
 private:
   prf::Structure* prf_struct;
