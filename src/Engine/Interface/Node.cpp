@@ -18,10 +18,12 @@ Node::Node(eng::Node* node_engine){
   this->node_engine = node_engine;
   this->node_vulkan = node_engine->get_node_vulkan();
   this->node_camera = node_engine->get_node_camera();
+  this->node_data = node_engine->get_node_data();
 
   //Child
   this->itf_struct = new itf::Structure();
   this->itf_camera = new itf::control::Camera(this);
+  this->itf_wheel = new itf::control::Wheel(this);
   this->gui_camera = new itf::gui::Camera(this);
   this->gui_option = new itf::gui::Option(this, &opt_panel->is_open);
   this->gui_shader = new itf::gui::Shader(this, &sha_panel->is_open);
