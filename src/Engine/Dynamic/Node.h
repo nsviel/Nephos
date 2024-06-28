@@ -14,7 +14,6 @@ namespace dyn::cloud{class Operation;}
 namespace dyn::image{class Operation;}
 namespace dyn::gui{class Panel;}
 namespace dyn::gui{class Stream;}
-namespace dyn::gui{class Control;}
 
 
 namespace dyn{
@@ -44,7 +43,6 @@ public:
   inline dyn::cloud::Operation* get_ope_cloud(){return dyn_ope_cloud;}
   inline dyn::image::Operation* get_ope_image(){return dyn_ope_image;}
   inline dyn::gui::Panel* get_gui_player(){return gui_player;}
-  inline dyn::gui::Control* get_gui_control(){return gui_control;}
 
 private:
   eng::Node* node_engine;
@@ -59,7 +57,6 @@ private:
   dyn::image::Operation* dyn_ope_image;
   dyn::gui::Panel* gui_player;
   dyn::gui::Stream* gui_stream;
-  dyn::gui::Control* gui_control;
 };
 
 }

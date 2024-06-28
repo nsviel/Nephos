@@ -1,18 +1,18 @@
 #pragma once
 
 namespace dat::graph{class Selection;}
-namespace dyn{class Node;}
+namespace itf{class Node;}
 namespace dyn::player{class Player;}
 
 
-namespace dyn::gui{
+namespace itf::gui{
 
-class Control
+class Player
 {
 public:
   //Constructor / Destructor
-  Control(dyn::Node* node_dynamic);
-  ~Control();
+  Player(itf::Node* node_interface);
+  ~Player();
 
 public:
   //Main function

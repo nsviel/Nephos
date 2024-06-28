@@ -1,26 +1,28 @@
-#include "Control.h"
+#include "Player.h"
 
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
+#include <Interface/Namespace.h>
 
 
-namespace dyn::gui{
+namespace itf::gui{
 
 //Constructor / Destructor
-Control::Control(dyn::Node* node_dynamic){
+Player::Player(itf::Node* node_interface){
   //---------------------------
 
-  dat::Node* node_data = node_dynamic->get_node_data();
+  dat::Node* node_data = node_interface->get_node_data();
+  dyn::Node* node_dynamic = node_interface->get_node_dynamic();
 
   this->dat_selection = node_data->get_dat_selection();
   this->dyn_player = node_dynamic->get_dyn_player();
 
   //---------------------------
 }
-Control::~Control(){}
+Player::~Player(){}
 
 //Main function
-void Control::run_control(){
+void Player::run_control(){
   //---------------------------
 
   this->control_keyboard();
@@ -29,7 +31,7 @@ void Control::run_control(){
 }
 
 //Keyboard
-void Control::control_keyboard(){
+void Player::control_keyboard(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
