@@ -68,5 +68,30 @@ void Camera::cam_up(){
   //---------------------------
 }
 
+//Subfunction
+void Camera::enable_camera_view(glm::vec2 center){
+  cam::Entity* camera = cam_struct->cam_current;
+  //----------------------------
+
+  itf_struct->control.cursor_pose = vk_window->get_mouse_pose();
+
+  ImGui::GetIO().MouseDrawCursor = false;
+  vk_window->set_mouse_pose(center);
+  camera->cam_move = true;
+  camera->panel_center = center;
+
+  //----------------------------
+}
+void Camera::disable_camera_view(){
+  cam::Entity* camera = cam_struct->cam_current;
+  //----------------------------
+
+  if(camera->cam_move){
+    vk_window->set_mouse_pose(itf_struct->control.cursor_pose);
+    camera->cam_move = false;
+  }
+
+  //----------------------------
+}
 
 }

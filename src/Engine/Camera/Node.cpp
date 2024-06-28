@@ -24,7 +24,6 @@ Node::Node(eng::Node* node_engine){
   this->cam_control = new cam::Control(this);
   this->cam_manager = new cam::Manager(this);
   this->cam_pather = new cam::Pather(this);
-  this->gui_control = new cam::gui::Control(this);
   this->gui_panel = new cam::gui::Panel(this, &cam_panel->is_open);
 
   //---------------------------

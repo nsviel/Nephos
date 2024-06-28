@@ -27,16 +27,17 @@ public:
   void cam_right();
   void cam_down();
   void cam_up();
-  
+
+  //Subfunction
+  void enable_camera_view(glm::vec2 center);
+  void disable_camera_view();
+
 private:
   itf::Structure* itf_struct;
   vk::window::GLFW* vk_window;
   cam::Control* cam_control;
   cam::Manager* cam_manager;
   cam::Structure* cam_struct;
-
-  glm::vec2 cursor_pose = glm::vec2(0, 0);
-  bool is_fast = false;
 };
 
 }

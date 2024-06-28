@@ -24,6 +24,7 @@ Renderer::Renderer(itf::Node* node_interface){
   dat::Node* node_data = node_engine->get_node_data();
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
+  this->itf_camera = node_interface->get_itf_camera();
   this->dat_control = node_data->get_gui_control();
   this->cam_control = node_interface->get_gui_camera();
   this->dyn_control = node_dynamic->get_gui_control();
@@ -83,7 +84,7 @@ void Renderer::engine_texture(){
     dat_control->run_control();
     cam_control->run_control(panel_center);
   }else{
-    cam_control->disable_camera_view();
+    itf_camera->disable_camera_view();
   }
 
   //---------------------------
