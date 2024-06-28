@@ -65,6 +65,15 @@ void Tasker::loop(int fps){
 
   //---------------------------
 }
+void Tasker::update(){
+  //---------------------------
+
+  this->plot.reset();
+  //this->plot.add_vec_task(tasker->vec_task);
+  this->plot.update();
+
+  //---------------------------
+}
 
 //Loop function
 void Tasker::loop_begin(int fps){

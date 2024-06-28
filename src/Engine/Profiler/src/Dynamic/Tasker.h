@@ -24,6 +24,7 @@ public:
   //Main function
   void reset();
   void loop(int fps = -1);
+  void update();
 
   //Loop function
   void loop_begin(int fps = -1);

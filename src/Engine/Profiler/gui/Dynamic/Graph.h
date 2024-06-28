@@ -27,22 +27,17 @@ public:
 
   //Graph function
   void draw_info();
-  void draw_graph_all(prf::dynamic::Profiler* profiler);
-  void draw_graph_unique(prf::dynamic::Profiler* profiler);
+  void draw_tasker_all(prf::dynamic::Profiler* profiler);
+  void draw_tasker_separated(prf::dynamic::Profiler* profiler);
 
   //Subfunction
   void draw_graph_command();
   void draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 graph_dim);
-  void set_graphs_max_time(int value);
-
-  inline bool& get_pause(){return pause;}
 
 private:
   prf::Structure* prf_struct;
   prf::dynamic::Manager* prf_manager;
-  prf::dynamic::Tasker* selected_tasker = nullptr;
-  bool pause;
-  int max_time = 50;
+  prf::dynamic::Tasker* current_tasker = nullptr;
 };
 
 }

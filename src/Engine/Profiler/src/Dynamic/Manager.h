@@ -21,11 +21,12 @@ public:
 
 public:
   //Main function
-  void add_profiler(prf::dynamic::Profiler* profiler);
-  void remove_profiler(prf::dynamic::Profiler* profiler);
+  void init();
+  void loop(int max_fps);
 
   //Subfunction
-  void loop(int max_fps);
+  void add_profiler(prf::dynamic::Profiler* profiler);
+  void remove_profiler(prf::dynamic::Profiler* profiler);
 
 private:
   prf::Structure* prf_struct;
