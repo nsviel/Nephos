@@ -21,6 +21,7 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->itf_struct = new itf::Structure();
+  this->itf_camera = new itf::control::Camera(this); 
   this->gui_option = new itf::gui::Option(this, &opt_panel->is_open);
   this->gui_shader = new itf::gui::Shader(this, &sha_panel->is_open);
   this->gui_render = new itf::gui::Renderer(this);

@@ -9,7 +9,7 @@ namespace itf::control{
 struct Structure{
   //---------------------------
 
-
+  bool cam_fast = false;
 
   //---------------------------
 };

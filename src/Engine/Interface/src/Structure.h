@@ -1,7 +1,6 @@
 #pragma once
 
-#include <glm/glm.hpp>
-#include <string>
+#include <Interface/src/Control/Structure.h>
 
 
 namespace itf{
@@ -9,7 +8,7 @@ namespace itf{
 struct Structure{
   //---------------------------
 
-
+  itf::control::Structure control;
 
   //---------------------------
 };

@@ -14,6 +14,8 @@ Camera::Camera(itf::Node* node_interface){
   cam::Node* node_camera = node_interface->get_node_camera();
   vk::Node* node_vulkan = node_interface->get_node_vulkan();
 
+  this->itf_struct = node_interface->get_itf_struct();
+  this->itf_camera = node_interface->get_itf_camera();
   this->vk_window = node_vulkan->get_vk_window();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_manager = node_camera->get_cam_manager();
@@ -43,40 +45,25 @@ void Camera::control_keyboard_camMove(){
     if(io.MouseDown[1]){
 
       //Shift speed up
-      bool is_fast = false;
-      if(io.KeysDown[340]){
-        is_fast = true;
-      }
+      itf_struct->control.cam_fast = (io.KeysDown[340]) ? true : false;
 
       //Z key or Up key
-      if(io.KeysDown[571] || io.KeysDown[515]){
-        cam_control->control_keyboard(cam::CAMERA_FORWARD, is_fast);
-      }
+      if(io.KeysDown[571] || io.KeysDown[515]) itf_camera->cam_forward();
 
       //S key or Down key
-      if(io.KeysDown[564] || io.KeysDown[516]){
-        cam_control->control_keyboard(cam::CAMERA_BACKWARD, is_fast);
-      }
+      if(io.KeysDown[564] || io.KeysDown[516]) itf_camera->cam_backward();
 
       //Q key or Left key
-      if(io.KeysDown[562] || io.KeysDown[513]){
-        cam_control->control_keyboard(cam::CAMERA_LEFT, is_fast);
-      }
+      if(io.KeysDown[562] || io.KeysDown[513]) itf_camera->cam_left();
 
       //D key or Left key
-      if(io.KeysDown[549] || io.KeysDown[514]){
-        cam_control->control_keyboard(cam::CAMERA_RIGHT, is_fast);
-      }
+      if(io.KeysDown[549] || io.KeysDown[514]) itf_camera->cam_right();
 
       //A key
-      if(io.KeysDown[546]){
-        cam_control->control_keyboard(cam::CAMERA_DOWN, is_fast);
-      }
+      if(io.KeysDown[546]) itf_camera->cam_down();
 
       //E key
-      if(io.KeysDown[550]){
-        cam_control->control_keyboard(cam::CAMERA_UP, is_fast);
-      }
+      if(io.KeysDown[550]) itf_camera->cam_up();
     }
   }
 
