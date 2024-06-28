@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <Data/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace k4n::playback{
@@ -12,6 +13,7 @@ Importer::Importer(k4n::Node* node_k4n){
   //---------------------------
 
   dat::Node* node_data = node_k4n->get_node_data();
+  prf::Node* node_profiler = node_k4n->get_node_profiler();
 
   this->node_k4n = node_k4n;
   this->node_engine = node_k4n->get_node_engine();
