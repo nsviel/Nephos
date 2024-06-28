@@ -29,7 +29,7 @@ Tasker::~Tasker(){
 void Tasker::reset(){
   //---------------------------
 
-  this->vec_task_current.clear();
+  this->vec_task_buffer.clear();
   this->vec_task.clear();
 
   //---------------------------
@@ -48,20 +48,17 @@ void Tasker::loop(int fps){
   this->reference = timer.get_time();
   this->thread_ID = utl::thread::get_ID_str();
 
-  //FPS control
+  //FPS
+  this->fps = fps_counter->update();
   this->is_fps_control = (fps != -1) ? true : false;
   if(is_fps_control){
     fps_control->set_fps_max(fps);
     fps_control->start_loop();
   }
 
-  //Get loop fps count
-  this->fps = fps_counter->update();
-
-  //Update disposal task vector by this loop task vector
-  this->vec_task = vec_task_current;
-  this->vec_task_current.clear();
-
+  //Update current task vector by buffer one
+  this->vec_task = vec_task_buffer;
+  this->vec_task_buffer.clear();
 
   //---------------------------
 }
@@ -103,7 +100,7 @@ void Tasker::task_begin(std::string name, float time){
   task.ts_begin = ts;
   task.ts_end = 0;
   task.name = name;
-  this->vec_task_current.push_back(task);
+  this->vec_task_buffer.push_back(task);
 
   //---------------------------
 }
@@ -136,8 +133,8 @@ prf::dynamic::Task* Tasker::find_task(const std::string& name){
   //---------------------------
 
   //Search for corresponding task
-  for(int i=0; i<vec_task_current.size(); i++){
-    prf::dynamic::Task* task = &vec_task_current[i];
+  for(int i=0; i<vec_task_buffer.size(); i++){
+    prf::dynamic::Task* task = &vec_task_buffer[i];
 
     if(task->name == name){
       return task;

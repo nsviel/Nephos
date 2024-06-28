@@ -14,7 +14,6 @@ class Profiler
 public:
   //Constructor / Destructor
   Profiler();
-  Profiler(std::string name);
   ~Profiler();
 
 public:

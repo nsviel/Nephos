@@ -25,7 +25,7 @@ public:
   void reset();
   void loop(int fps = -1);
   void update();
-  
+
   //Task function
   void task_begin(std::string name, float time = -1);
   void task_end(const std::string& name, float time = -1, glm::vec4 color = {});
@@ -45,7 +45,7 @@ private:
   utl::timer::fps::Control* fps_control;
 
   utl::timer::Timepoint reference;
-  std::vector<prf::dynamic::Task> vec_task_current;
+  std::vector<prf::dynamic::Task> vec_task_buffer;
   std::vector<prf::dynamic::Task> vec_task;
   bool is_fps_control = false;
 };

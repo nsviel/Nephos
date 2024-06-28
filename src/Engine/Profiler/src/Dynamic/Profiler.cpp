@@ -12,13 +12,6 @@ Profiler::Profiler(){
 
   //---------------------------
 }
-Profiler::Profiler(std::string name){
-  //---------------------------
-
-  this->name = name;
-
-  //---------------------------
-}
 Profiler::~Profiler(){}
 
 //Main function

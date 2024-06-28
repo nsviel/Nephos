@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Element/Timer/Chrono.h>
+#include <string>
 #include <list>
 
 namespace prf{class Node;}
@@ -25,7 +26,7 @@ public:
   void loop(int max_fps);
 
   //Subfunction
-  void add_profiler(prf::dynamic::Profiler* profiler);
+  void add_profiler(prf::dynamic::Profiler* profiler, std::string name);
   void remove_profiler(prf::dynamic::Profiler* profiler);
   prf::dynamic::Tasker* get_tasker_cpu();
   prf::dynamic::Tasker* get_tasker_gpu();

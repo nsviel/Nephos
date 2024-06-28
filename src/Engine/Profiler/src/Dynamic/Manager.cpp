@@ -21,11 +21,7 @@ Manager::~Manager(){}
 void Manager::init(){
   //---------------------------
 
-  //Main profiler
-  prf_struct->dynamic.profiler_main = prf::dynamic::Profiler("Main");
-  prf_struct->dynamic.profiler_main.fetch_tasker("cpu");
-  prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
-  this->add_profiler(&prf_struct->dynamic.profiler_main);
+  this->add_profiler(&prf_struct->dynamic.profiler_main, "Main");
 
   //---------------------------
 }
@@ -44,9 +40,10 @@ void Manager::loop(int max_fps){
 }
 
 //Subfunction
-void Manager::add_profiler(prf::dynamic::Profiler* profiler){
+void Manager::add_profiler(prf::dynamic::Profiler* profiler, std::string name){
   //---------------------------
 
+  profiler->name = name;
   prf_struct->dynamic.list_profiler.push_back(profiler);
 
   //---------------------------
