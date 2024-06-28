@@ -19,6 +19,7 @@ Node::Node(eng::Node* node_engine){
   this->node_vulkan = node_engine->get_node_vulkan();
 
   //Child
+  this->itf_struct = new itf::Structure();
   this->gui_option = new itf::gui::Option(this, &opt_panel->is_open);
   this->gui_shader = new itf::gui::Shader(this, &sha_panel->is_open);
   this->gui_render = new itf::gui::Renderer(this);
