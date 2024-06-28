@@ -86,32 +86,34 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
   ImGui::SetNextItemWidth(width);
   std::string title = "All##" + profiler->name;
   if(ImGui::BeginTabItem(title.c_str(), NULL, flag)){
+    //Child
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
+    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0.0f, 0.0f));
+    ImGui::BeginChild("child##tasker_plot", ImVec2(0, 0), false);
 
-    //Command + plot
+    //Table
     ImGui::BeginTable(title.c_str(), 2);
-    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);
+    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 24);
     ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
 
     //Graph command
     ImGui::TableNextRow(); ImGui::TableNextColumn();
-
     this->draw_graph_command();
 
     //Graph plots
     ImGui::TableNextColumn();
-
-    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
-    ImGui::BeginChild("PlotChildWindow", ImVec2(0, 0), false);
     dim = ImGui::GetContentRegionAvail();
     ImVec2 dimension = ImVec2(dim.x, dim.y / list_tasker.size());
     for(int i=0; i<list_tasker.size(); i++){
       prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
-      this->draw_tasker_graph(tasker, dimension);
+      this->draw_tasker_graph(tasker, dimension, profiler->pause);
     }
-    ImGui::EndChild();
-    ImGui::PopStyleVar();
 
     ImGui::EndTable();
+
+    ImGui::EndChild();
+    ImGui::PopStyleVar(2);
+
     ImGui::EndTabItem();
   }
 
@@ -132,28 +134,32 @@ void Graph::draw_tasker_separated(prf::dynamic::Profiler* profiler){
     ImGui::SetNextItemWidth(width);
     std::string title = tasker->name + "##tasker_unique_plot";
     if(ImGui::BeginTabItem(title.c_str(), NULL)){
+      //Child
+      ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
+      ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0.0f, 0.0f));
+      ImGui::BeginChild("child##tasker_plot", ImVec2(0, 0), false);
+
+      //Table
       ImGui::BeginTable(title.c_str(), 2);
-      ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 17.5);
+      ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 24);
       ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
 
       this->current_tasker = tasker;
 
       //Graph command
       ImGui::TableNextRow(); ImGui::TableNextColumn();
-
       this->draw_graph_command();
 
       //Graph plot
       ImGui::TableNextColumn();
-
-      ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
-      ImGui::BeginChild("PlotChildWindow", ImVec2(0, 0), false);
       dim = ImGui::GetContentRegionAvail();
-      this->draw_tasker_graph(tasker, dim);
-      ImGui::EndChild();
-      ImGui::PopStyleVar();
+      this->draw_tasker_graph(tasker, dim, profiler->pause);
 
       ImGui::EndTable();
+
+      ImGui::EndChild();
+      ImGui::PopStyleVar(2);
+
       ImGui::EndTabItem();
     }
   }
@@ -168,7 +174,7 @@ void Graph::draw_graph_command(){
   //Play / pause button
   if(prf_struct->dynamic.pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
-    if(ImGui::Button(ICON_FA_PLAY "##profiler_play", ImVec2(20, 0))){
+    if(ImGui::Button(ICON_FA_PLAY "##profiler_play")){
       prf_struct->dynamic.pause = false;
     }
     ImGui::PopStyleColor();
@@ -187,16 +193,16 @@ void Graph::draw_graph_command(){
   ImGui::PushStyleColor(ImGuiCol_SliderGrabActive, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
-  ImGui::VSliderInt("Y axis", ImVec2(22, ImGui::GetContentRegionAvail().y), &prf_struct->dynamic.max_time, 100, 10, "%d");
+  ImGui::VSliderInt("Y axis", ImGui::GetContentRegionAvail(), &prf_struct->dynamic.max_time, 100, 10, "%d");
   ImGui::PopStyleColor(5);
 
   //---------------------------
 }
-void Graph::draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension){
+void Graph::draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension, bool pause){
   //---------------------------
 
   //Update plot
-  if(!prf_struct->dynamic.pause){
+  if(!prf_struct->dynamic.pause && !pause){
     tasker->update();
   }
 

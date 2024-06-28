@@ -28,7 +28,8 @@ public:
 
 public:
   std::string name = "";
-
+  bool pause = false;
+  
 private:
   std::list<prf::dynamic::Tasker*> list_tasker;
 };
