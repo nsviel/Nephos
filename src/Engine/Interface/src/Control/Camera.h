@@ -27,7 +27,8 @@ public:
   void cam_right();
   void cam_down();
   void cam_up();
-
+  void cam_zoom(float value);
+  
   //Subfunction
   void enable_camera_view(glm::vec2 center);
   void disable_camera_view();

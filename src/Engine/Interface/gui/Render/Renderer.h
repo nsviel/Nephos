@@ -5,7 +5,6 @@
 namespace itf{class Node;}
 namespace itf::control{class Camera;}
 namespace vk::gui{class Imgui;}
-namespace vk::main{class Interface;}
 namespace vk{class Structure;}
 namespace eng{class Node;}
 namespace itf::gui{class Camera;}
@@ -32,12 +31,11 @@ public:
   void resize();
 
 private:
-  itf::gui::Camera* cam_control;
+  itf::gui::Camera* gui_camera;
   itf::control::Camera* itf_camera;
   itf::gui::Element* itf_element;
   itf::gui::Player* itf_player;
   vk::gui::Imgui* vk_imgui;
-  vk::main::Interface* vk_interface;
   vk::Structure* vk_struct;
 
   std::string name;

@@ -1,15 +1,9 @@
 #include "Renderer.h"
 
-#include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Camera/Namespace.h>
-#include <Operation/Namespace.h>
-#include <Dynamic/Namespace.h>
-#include <Vulkan/Namespace.h>
 #include <Interface/Namespace.h>
 #include <Data/Namespace.h>
-#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace itf::gui{
@@ -18,18 +12,14 @@ namespace itf::gui{
 Renderer::Renderer(itf::Node* node_interface){
   //---------------------------
 
-  eng::Node* node_engine = node_interface->get_node_engine();
   vk::Node* node_vulkan = node_interface->get_node_vulkan();
-  cam::Node* node_camera = node_engine->get_node_camera();
-  dat::Node* node_data = node_engine->get_node_data();
-  dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
   this->itf_camera = node_interface->get_itf_camera();
   this->itf_element = node_interface->get_gui_element();
-  this->cam_control = node_interface->get_gui_camera();
+  this->gui_camera = node_interface->get_gui_camera();
   this->itf_player = node_interface->get_gui_player();
+
   this->vk_imgui = node_vulkan->get_vk_imgui();
-  this->vk_interface = node_vulkan->get_vk_interface();
   this->vk_struct = node_vulkan->get_vk_struct();
 
   this->name = "Renderer";
@@ -82,7 +72,7 @@ void Renderer::engine_texture(){
 
     itf_player->run_control();
     itf_element->run_control();
-    cam_control->run_control(panel_center);
+    gui_camera->run_control(panel_center);
   }else{
     itf_camera->disable_camera_view();
   }

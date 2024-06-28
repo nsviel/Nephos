@@ -67,6 +67,13 @@ void Camera::cam_up(){
 
   //---------------------------
 }
+void Camera::cam_zoom(float value){
+  //---------------------------
+
+  cam_control->control_zoom(value);
+
+  //---------------------------
+}
 
 //Subfunction
 void Camera::enable_camera_view(glm::vec2 center){

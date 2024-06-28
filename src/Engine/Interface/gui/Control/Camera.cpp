@@ -11,15 +11,8 @@ namespace itf::gui{
 Camera::Camera(itf::Node* node_interface){
   //---------------------------
 
-  cam::Node* node_camera = node_interface->get_node_camera();
-  vk::Node* node_vulkan = node_interface->get_node_vulkan();
-
   this->itf_struct = node_interface->get_itf_struct();
   this->itf_camera = node_interface->get_itf_camera();
-  this->vk_window = node_vulkan->get_vk_window();
-  this->cam_struct = node_camera->get_cam_struct();
-  this->cam_manager = node_camera->get_cam_manager();
-  this->cam_control = node_camera->get_cam_control();
 
   //---------------------------
 }
@@ -68,7 +61,6 @@ void Camera::control_keyboard(){
   //---------------------------
 }
 void Camera::control_mouse(glm::vec2 center){
-  cam::Entity* camera = cam_struct->cam_current;
   //----------------------------
 
   //Right click - Camera movement
@@ -89,7 +81,7 @@ void Camera::control_wheel(){
 
   //Wheel + right clicked - Camera zoom
   if(io.MouseWheel && io.MouseDownDuration[1] >= 0.0f){
-    cam_control->control_zoom(io.MouseWheel);
+    itf_camera->cam_zoom(io.MouseWheel);
   }
 
   //----------------------------
