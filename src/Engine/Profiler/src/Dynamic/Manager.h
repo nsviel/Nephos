@@ -27,6 +27,8 @@ public:
   //Subfunction
   void add_profiler(prf::dynamic::Profiler* profiler);
   void remove_profiler(prf::dynamic::Profiler* profiler);
+  prf::dynamic::Tasker* get_tasker_cpu();
+  prf::dynamic::Tasker* get_tasker_gpu();
 
 private:
   prf::Structure* prf_struct;

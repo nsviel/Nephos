@@ -11,7 +11,6 @@ Tab::Tab(prf::Node* node_profiler){
   //---------------------------
 
   this->prf_struct = node_profiler->get_prf_struct();
-  this->prf_manager = node_profiler->get_prf_manager();
   this->gui_graph = new prf::gui::dynamic::Graph(node_profiler);
 
   //---------------------------

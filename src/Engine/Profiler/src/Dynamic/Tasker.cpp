@@ -69,45 +69,14 @@ void Tasker::update(){
   //---------------------------
 
   this->plot.reset();
-  //this->plot.add_vec_task(tasker->vec_task);
+
+  //Assign tasks
+  for(int i=0; i<vec_task.size(); i++){
+    prf::dynamic::Task& task = vec_task[i];
+    this->plot.add_task(task.ts_begin, task.ts_end, task.name, task.color);
+  }
+
   this->plot.update();
-
-  //---------------------------
-}
-
-//Loop function
-void Tasker::loop_begin(int fps){
-  //---------------------------
-
-  //Init loop task
-  this->reference = timer.get_time();
-  this->thread_ID = utl::thread::get_ID_str();
-
-  //FPS control
-  this->is_fps_control = (fps != -1) ? true : false;
-  if(is_fps_control){
-    fps_control->set_fps_max(fps);
-    fps_control->start_loop();
-  }
-
-  //---------------------------
-}
-void Tasker::loop_end(){
-  //---------------------------
-
-  //Control fps and measure sleep time
-  if(is_fps_control){
-    this->task_begin("sleep");
-    fps_control->stop_loop();
-    this->task_end("sleep", -1, glm::vec4(50, 50, 50, 255));
-  }
-
-  //Get loop fps count
-  this->fps = fps_counter->update();
-
-  //Update disposal task vector by this loop task vector
-  this->vec_task = vec_task_current;
-  this->vec_task_current.clear();
 
   //---------------------------
 }

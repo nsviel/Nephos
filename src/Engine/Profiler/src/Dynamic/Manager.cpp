@@ -34,13 +34,11 @@ void Manager::loop(int max_fps){
 
   //CPU tasker
   prf::dynamic::Tasker* tasker_cpu = prf_struct->dynamic.profiler_main.fetch_tasker("cpu");
-  tasker_cpu->loop_end();
-  tasker_cpu->loop_begin(max_fps);
+  tasker_cpu->loop(max_fps);
 
   //GPU tasker
   prf::dynamic::Tasker* tasker_gpu = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
-  tasker_gpu->loop_end();
-  tasker_gpu->loop_begin();
+  tasker_gpu->loop();
 
   //---------------------------
 }
@@ -59,6 +57,20 @@ void Manager::remove_profiler(prf::dynamic::Profiler* profiler){
   profiler->clean();
   prf_struct->dynamic.list_profiler.remove(profiler);
   delete profiler;
+
+  //---------------------------
+}
+prf::dynamic::Tasker* Manager::get_tasker_cpu(){
+  //---------------------------
+
+  return prf_struct->dynamic.profiler_main.fetch_tasker("cpu");
+
+  //---------------------------
+}
+prf::dynamic::Tasker* Manager::get_tasker_gpu(){
+  //---------------------------
+
+  return prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
 
   //---------------------------
 }

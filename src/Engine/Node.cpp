@@ -45,6 +45,9 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
+  prf::dynamic::Manager* prf_dynamic = node_profiler->get_prf_dynamic();
+  this->tasker = prf_dynamic->get_tasker_cpu();
+
   node_vulkan->init();
   node_data->init();
   node_loader->init();
@@ -59,7 +62,7 @@ void Node::loop(){
   //---------------------------
 
   node_profiler->loop();
-  //tasker_main->task_begin("eng");
+  tasker->task_begin("eng");
 
   node_data->loop();
   node_loader->loop();
@@ -68,14 +71,14 @@ void Node::loop(){
   node_dynamic->loop();
   node_radio->loop();
 
-  //tasker_main->task_end("eng");
+  tasker->task_end("eng");
 
   //---------------------------
 }
 void Node::gui(){
   //---------------------------
 
-  //tasker_main->task_begin("eng::gui");
+  tasker->task_begin("eng::gui");
 
   node_camera->gui();
   node_data->gui();
@@ -84,7 +87,7 @@ void Node::gui(){
   node_dynamic->gui();
   node_radio->gui();
 
-  //tasker_main->task_end("eng::gui");
+  tasker->task_end("eng::gui");
 
   //---------------------------
 }

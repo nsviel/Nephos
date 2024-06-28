@@ -4,12 +4,8 @@
 
 namespace prf{class Node;}
 namespace prf{class Structure;}
-namespace prf::dynamic{class Manager;}
 namespace prf::dynamic{class Profiler;}
 namespace prf::dynamic{class Tasker;}
-namespace prf::graph{class Profiler;}
-namespace utl::improfil{class Plot;}
-namespace prf::gui{class Profiler;}
 
 
 namespace prf::gui::dynamic{
@@ -36,7 +32,6 @@ public:
 
 private:
   prf::Structure* prf_struct;
-  prf::dynamic::Manager* prf_manager;
   prf::dynamic::Tasker* current_tasker = nullptr;
 };
 

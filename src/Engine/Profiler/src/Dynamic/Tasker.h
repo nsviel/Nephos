@@ -25,11 +25,7 @@ public:
   void reset();
   void loop(int fps = -1);
   void update();
-
-  //Loop function
-  void loop_begin(int fps = -1);
-  void loop_end();
-
+  
   //Task function
   void task_begin(std::string name, float time = -1);
   void task_end(const std::string& name, float time = -1, glm::vec4 color = {});

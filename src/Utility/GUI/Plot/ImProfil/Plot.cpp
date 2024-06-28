@@ -56,7 +56,19 @@ void Plot::reset(){
   //---------------------------
 }
 
-//Task function
+//Subfunction
+glm::vec4 Plot::get_next_color(){
+  glm::vec4 color;
+  //---------------------------
+
+  color = vec_color[idx_color];
+  idx_color++;
+
+  if(idx_color >= vec_color.size()) idx_color = 0;
+
+  //---------------------------
+  return color;
+}
 void Plot::add_task(float ts_begin, float ts_end, std::string name, glm::vec4 color){
   //---------------------------
 
@@ -72,36 +84,6 @@ void Plot::add_task(float ts_begin, float ts_end, std::string name, glm::vec4 co
   if(vec_task.size() > max_nb_data) vec_task.erase(vec_task.begin());
 
   //---------------------------
-}
-void Plot::add_vec_task(std::vector<utl::improfil::Task> vec_task){
-  //---------------------------
-
-  //Assign tasks
-  for(int i=0; i<vec_task.size(); i++){
-    utl::improfil::Task& task = vec_task[i];
-
-    if(task.color == glm::vec4(0, 0, 0, 0)){
-      this->add_task(task.ts_begin, task.ts_end, task.name);
-    }else{
-      this->add_task(task.ts_begin, task.ts_end, task.name, task.color);
-    }
-  }
-
-  //---------------------------
-}
-
-//Subfunction
-glm::vec4 Plot::get_next_color(){
-  glm::vec4 color;
-  //---------------------------
-
-  color = vec_color[idx_color];
-  idx_color++;
-
-  if(idx_color >= vec_color.size()) idx_color = 0;
-
-  //---------------------------
-  return color;
 }
 void Plot::set_time_max(int value){
   //---------------------------

@@ -54,7 +54,7 @@ private:
   rnd::Node* node_render = nullptr;
   prf::Node* node_profiler = nullptr;
   dyn::Node* node_dynamic = nullptr;
-  prf::dynamic::Tasker* tasker_main;
+  prf::dynamic::Tasker* tasker;
   utl::thread::Pool* thread_pool;
 
   bool* app_running;

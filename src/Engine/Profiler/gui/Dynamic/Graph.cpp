@@ -13,7 +13,6 @@ Graph::Graph(prf::Node* node_profiler){
   //---------------------------
 
   this->prf_struct = node_profiler->get_prf_struct();
-  this->prf_manager = node_profiler->get_prf_manager();
 
   //---------------------------
 }

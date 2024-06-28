@@ -24,14 +24,10 @@ public:
   void update();
   void reset();
 
-  //Task function
-  void add_task(float ts_begin, float ts_end, std::string name, glm::vec4 color = {});
-  void add_vec_task(std::vector<utl::improfil::Task> vec_task);
-
   //Subfunction
   glm::vec4 get_next_color();
+  void add_task(float ts_begin, float ts_end, std::string name, glm::vec4 color = {});
   void set_time_max(int value);
-
 
 private:
   utl::improfil::Renderer* renderer;
