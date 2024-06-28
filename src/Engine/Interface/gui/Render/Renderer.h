@@ -7,7 +7,7 @@ namespace vk::gui{class Imgui;}
 namespace vk::main{class Interface;}
 namespace vk{class Structure;}
 namespace eng{class Node;}
-namespace cam::gui{class Control;}
+namespace itf::gui{class Camera;}
 namespace dat::gui{class Control;}
 namespace dyn::gui{class Control;}
 
@@ -31,7 +31,7 @@ public:
   void resize();
 
 private:
-  cam::gui::Control* cam_control;
+  itf::gui::Camera* cam_control;
   dat::gui::Control* dat_control;
   dyn::gui::Control* dyn_control;
   vk::gui::Imgui* vk_imgui;

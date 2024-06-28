@@ -25,7 +25,7 @@ Renderer::Renderer(itf::Node* node_interface){
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
   this->dat_control = node_data->get_gui_control();
-  this->cam_control = node_camera->get_gui_control();
+  this->cam_control = node_interface->get_gui_camera();
   this->dyn_control = node_dynamic->get_gui_control();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_interface = node_vulkan->get_vk_interface();
