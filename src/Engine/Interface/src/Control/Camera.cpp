@@ -11,6 +11,7 @@ namespace itf::control{
 Camera::Camera(itf::Node* node_interface){
   //---------------------------
 
+  cam::Node* node_camera = node_interface->get_node_camera();
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
   this->vk_window = node_vulkan->get_vk_window();
