@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace rnd{class Node;}
+namespace itf{class Node;}
 namespace vk::gui{class Imgui;}
 namespace vk::main{class Interface;}
 namespace vk{class Structure;}
@@ -12,13 +12,13 @@ namespace dat::gui{class Control;}
 namespace dyn::gui{class Control;}
 
 
-namespace rnd::gui{
+namespace itf::gui{
 
 class Renderer
 {
 public:
   //Constructor / Destructor
-  Renderer(rnd::Node* node_render);
+  Renderer(itf::Node* node_interface);
   ~Renderer();
 
 public:

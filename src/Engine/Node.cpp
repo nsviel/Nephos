@@ -6,7 +6,7 @@
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Camera/Namespace.h>
-#include <Render/Namespace.h>
+#include <Interface/Namespace.h>
 #include <Data/Namespace.h>
 #include <Loader/Namespace.h>
 #include <Dynamic/Namespace.h>
@@ -20,7 +20,6 @@ Node::Node(app::Node* node_app){
   //---------------------------
 
   this->app_running = node_app->get_app_running();
-  this->eng_struct = new eng::Structure();
   this->thread_pool = new utl::thread::Pool(50);
   this->node_vulkan = new vk::Node(app_running);
   this->node_profiler = new prf::Node(this);
@@ -28,13 +27,13 @@ Node::Node(app::Node* node_app){
   this->node_data = new dat::Node(this);
   this->node_radio = new rad::Node(this);
   this->node_dynamic = new dyn::Node(this);
-  this->node_render = new rnd::Node(this);
+  this->node_interface = new itf::Node(this);
   this->node_loader = new ldr::Node(this);
 
   this->add_node_panel(node_camera);
   this->add_node_panel(node_loader);
   this->add_node_panel(node_data);
-  this->add_node_panel(node_render);
+  this->add_node_panel(node_interface);
   this->add_node_panel(node_dynamic);
   this->add_node_panel(node_radio);
   this->add_node_panel(node_profiler);
@@ -54,7 +53,7 @@ void Node::init(){
   node_data->init();
   node_loader->init();
   node_camera->init();
-  node_render->init();
+  node_interface->init();
   node_radio->init();
   node_profiler->init();
 
@@ -85,7 +84,7 @@ void Node::gui(){
   node_camera->gui();
   node_data->gui();
   node_loader->gui();
-  node_render->gui();
+  node_interface->gui();
   node_dynamic->gui();
   node_radio->gui();
 

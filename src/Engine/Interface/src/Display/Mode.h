@@ -3,7 +3,7 @@
 namespace eng{class Node;}
 
 
-namespace rnd{
+namespace itf{
 
 class Mode
 {

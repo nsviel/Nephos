@@ -6,12 +6,11 @@ namespace app{class Node;}
 namespace ldr{class Node;}
 namespace vk{class Node;}
 namespace cam{class Node;}
-namespace rnd{class Node;}
+namespace itf{class Node;}
 namespace dat{class Node;}
 namespace dyn{class Node;}
 namespace prf{class Node;}
 namespace rad{class Node;}
-namespace eng{class Structure;}
 namespace prf::dynamic{class Tasker;}
 namespace utl::thread{class Pool;}
 
@@ -41,18 +40,16 @@ public:
   inline ldr::Node* get_node_loader(){return node_loader;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline rad::Node* get_node_radio(){return node_radio;}
-  inline eng::Structure* get_eng_struct(){return eng_struct;}
   inline utl::thread::Pool* get_thread_pool(){return thread_pool;}
   inline prf::dynamic::Tasker* get_tasker_cpu(){return tasker;}
 
 private:
-  eng::Structure* eng_struct;
   rad::Node* node_radio;
   vk::Node* node_vulkan = nullptr;
   ldr::Node* node_loader = nullptr;
   dat::Node* node_data = nullptr;
   cam::Node* node_camera = nullptr;
-  rnd::Node* node_render = nullptr;
+  itf::Node* node_interface = nullptr;
   prf::Node* node_profiler = nullptr;
   dyn::Node* node_dynamic = nullptr;
   prf::dynamic::Tasker* tasker;

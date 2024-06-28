@@ -5,7 +5,7 @@
 #include <Dynamic/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Data/Namespace.h>
-#include <Render/Namespace.h>
+#include <Interface/Namespace.h>
 
 
 namespace dyn::gui{
@@ -22,7 +22,7 @@ Stream::Stream(dyn::Node* node_dynamic, bool* show_window){
   this->gui_overlay = new dyn::gui::Overlay();
 
   for(int i=0; i<10; i++){
-    rnd::Stream* stream = new rnd::Stream(node_engine);
+    itf::Stream* stream = new itf::Stream(node_engine);
     this->vec_stream.push_back(stream);
   }
 

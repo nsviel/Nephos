@@ -1,12 +1,12 @@
 #pragma once
 
-#include <Render/src/Display/Stream.h>
+#include <Interface/src/Display/Stream.h>
 
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad::calibration{class Structure;}
 namespace rad::calibration{class Process;}
-namespace rnd{class Stream;}
+namespace itf{class Stream;}
 namespace dat::element{class Image;}
 
 
@@ -33,7 +33,7 @@ public:
 private:
   rad::calibration::Structure* rad_struct;
   rad::calibration::Process* rad_process;
-  rnd::Stream* stream;
+  itf::Stream* stream;
   dat::element::Image* dat_image;
 };
 

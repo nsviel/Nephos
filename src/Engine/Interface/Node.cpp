@@ -2,11 +2,11 @@
 
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Render/Namespace.h>
+#include <Interface/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace rnd{
+namespace itf{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
@@ -19,9 +19,9 @@ Node::Node(eng::Node* node_engine){
   this->node_vulkan = node_engine->get_node_vulkan();
 
   //Child
-  this->gui_option = new rnd::gui::Option(this, &opt_panel->is_open);
-  this->gui_shader = new rnd::gui::Shader(this, &sha_panel->is_open);
-  this->gui_render = new rnd::gui::Renderer(this);
+  this->gui_option = new itf::gui::Option(this, &opt_panel->is_open);
+  this->gui_shader = new itf::gui::Shader(this, &sha_panel->is_open);
+  this->gui_render = new itf::gui::Renderer(this);
 
   //---------------------------
 }

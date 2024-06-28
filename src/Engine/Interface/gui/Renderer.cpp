@@ -7,19 +7,19 @@
 #include <Operation/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Render/Namespace.h>
+#include <Interface/Namespace.h>
 #include <Data/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace rnd::gui{
+namespace itf::gui{
 
 //Constructor / Destructor
-Renderer::Renderer(rnd::Node* node_render){
+Renderer::Renderer(itf::Node* node_interface){
   //---------------------------
 
-  eng::Node* node_engine = node_render->get_node_engine();
-  vk::Node* node_vulkan = node_render->get_node_vulkan();
+  eng::Node* node_engine = node_interface->get_node_engine();
+  vk::Node* node_vulkan = node_interface->get_node_vulkan();
   cam::Node* node_camera = node_engine->get_node_camera();
   dat::Node* node_data = node_engine->get_node_data();
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();

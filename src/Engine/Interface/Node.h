@@ -4,12 +4,12 @@
 
 namespace vk{class Node;}
 namespace eng{class Node;}
-namespace rnd::gui{class Option;}
-namespace rnd::gui{class Shader;}
-namespace rnd::gui{class Renderer;}
+namespace itf::gui{class Option;}
+namespace itf::gui{class Shader;}
+namespace itf::gui{class Renderer;}
 
 
-namespace rnd{
+namespace itf{
 
 class Node : public utl::base::Node
 {
@@ -32,9 +32,9 @@ private:
   eng::Node* node_engine;
   vk::Node* node_vulkan;
 
-  rnd::gui::Option* gui_option;
-  rnd::gui::Shader* gui_shader;
-  rnd::gui::Renderer* gui_render;
+  itf::gui::Option* gui_option;
+  itf::gui::Shader* gui_shader;
+  itf::gui::Renderer* gui_render;
 };
 
 }

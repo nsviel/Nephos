@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_RENDER)
+set(LIBRARY_NAME LIBRARY_INTERFACE)
 
 #-----------------
 # Source files

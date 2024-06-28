@@ -5,17 +5,17 @@
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
 #include <Operation/Namespace.h>
-#include <Render/Namespace.h>
+#include <Interface/Namespace.h>
 
 
-namespace rnd::gui{
+namespace itf::gui{
 
 //Constructor / Destructor
-Option::Option(rnd::Node* node_render, bool* show_window){
+Option::Option(itf::Node* node_interface, bool* show_window){
   //---------------------------
 
-  eng::Node* node_engine = node_render->get_node_engine();
-  vk::Node* node_vulkan = node_render->get_node_vulkan();
+  eng::Node* node_engine = node_interface->get_node_engine();
+  vk::Node* node_vulkan = node_interface->get_node_vulkan();
   dat::Node* node_data = node_engine->get_node_data();
 
   this->gui_control = node_data->get_gui_control();

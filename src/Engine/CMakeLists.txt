@@ -5,7 +5,7 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 #-----------------
 add_subdirectory(Camera)
 add_subdirectory(Operation)
-add_subdirectory(Render)
+add_subdirectory(Interface)
 add_subdirectory(Loader)
 add_subdirectory(Data)
 add_subdirectory(Dynamic)
@@ -29,7 +29,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_CAMERA
   LIBRARY_LOADER
   LIBRARY_OPERATION
-  LIBRARY_RENDER
+  LIBRARY_INTERFACE
   LIBRARY_DYNAMIC
 )
 

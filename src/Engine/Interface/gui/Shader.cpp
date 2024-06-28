@@ -4,16 +4,16 @@
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Render/Namespace.h>
+#include <Interface/Namespace.h>
 
 
-namespace rnd::gui{
+namespace itf::gui{
 
 //Constructor / Destructor
-Shader::Shader(rnd::Node* node_render, bool* show_window){
+Shader::Shader(itf::Node* node_interface, bool* show_window){
   //---------------------------
 
-  vk::Node* node_vulkan = node_render->get_node_vulkan();
+  vk::Node* node_vulkan = node_interface->get_node_vulkan();
   vk::Structure* vk_struct = node_vulkan->get_vk_struct();
 
   this->vk_reload = new vk::shader::Reloader(vk_struct);

@@ -2,20 +2,20 @@
 
 #include <string>
 
-namespace rnd{class Node;}
+namespace itf{class Node;}
 namespace eng{class Node;}
 namespace dat::gui{class Control;}
 namespace dat::gui{class Wheel;}
 namespace vk::main{class Interface;}
 
 
-namespace rnd::gui{
+namespace itf::gui{
 
 class Option
 {
 public:
   //Constructor / Destructor
-  Option(rnd::Node* node_render, bool* show_window);
+  Option(itf::Node* node_interface, bool* show_window);
   ~Option();
 
 public:

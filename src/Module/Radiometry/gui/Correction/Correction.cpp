@@ -18,8 +18,8 @@ Correction::Correction(rad::Node* node_radio){
 
   this->dat_image = node_data->get_dat_image();
   this->rad_struct = node_correction->get_rad_struct();
-  this->stream_1 = new rnd::Stream(node_engine);
-  this->stream_2 = new rnd::Stream(node_engine);
+  this->stream_1 = new itf::Stream(node_engine);
+  this->stream_2 = new itf::Stream(node_engine);
 
   //---------------------------
 }

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-namespace rnd{class Node;}
+namespace itf{class Node;}
 namespace vk::shader{class Reloader;}
 namespace vk::render{class Render;}
 namespace eng{class Node;}
@@ -11,13 +11,13 @@ namespace utl::gui::widget{class Console;}
 namespace utl::gui::editor{class Text;}
 
 
-namespace rnd::gui{
+namespace itf::gui{
 
 class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(rnd::Node* node_render, bool* show_window);
+  Shader(itf::Node* node_interface, bool* show_window);
   ~Shader();
 
 public:

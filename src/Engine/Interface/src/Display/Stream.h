@@ -9,7 +9,7 @@ namespace vk::structure{class Texture;}
 namespace utl::media{class Image;}
 
 
-namespace rnd{
+namespace itf{
 
 class Stream
 {
