@@ -3,6 +3,8 @@
 #include <Utility/Element/Timer/Chrono.h>
 #include <list>
 
+namespace prf{class Node;}
+namespace prf{class Structure;}
 namespace prf::dynamic{class Profiler;}
 namespace prf::dynamic{class Tasker;}
 namespace prf::graph{class Profiler;}
@@ -14,7 +16,7 @@ class Manager
 {
 public:
   //Constructor / Destructor
-  Manager();
+  Manager(prf::Node* node_profiler);
   ~Manager();
 
 public:
@@ -23,15 +25,10 @@ public:
   void remove_profiler(prf::dynamic::Profiler* profiler);
 
   //Subfunction
-  void loop_begin(int max_fps);
-  void loop_end();
-
-  inline prf::dynamic::Profiler* get_profiler_main(){return profiler_main;}
-  inline std::list<prf::dynamic::Profiler*> get_list_profiler(){return list_profiler;}
+  void loop(int max_fps);
 
 private:
-  std::list<prf::dynamic::Profiler*> list_profiler;
-  prf::dynamic::Profiler* profiler_main;
+  prf::Structure* prf_struct;
 };
 
 }

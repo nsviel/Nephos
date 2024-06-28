@@ -12,6 +12,7 @@ namespace prf::gui::dynamic{
 Graph::Graph(prf::Node* node_profiler){
   //---------------------------
 
+  this->prf_struct = node_profiler->get_prf_struct();
   this->prf_manager = node_profiler->get_prf_manager();
   this->pause = false;
 
@@ -188,7 +189,7 @@ void Graph::draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension){
   //---------------------------
 }
 void Graph::set_graphs_max_time(int value){
-  std::list<prf::dynamic::Profiler*> list_profiler = prf_manager->get_list_profiler();
+  std::list<prf::dynamic::Profiler*>& list_profiler = prf_struct->dynamic.list_profiler;
   //---------------------------
 
   for(int i=0; i<list_profiler.size(); i++){

@@ -1,5 +1,9 @@
 #pragma once
 
+#include <Utility/GUI/Plot/ImProfil/Plot.h>
+#include <Utility/Element/Timer/Chrono.h>
+#include <glm/glm.hpp>
+#include <vector>
 #include <string>
 
 namespace utl::timer::fps{class Counter;}
@@ -30,7 +34,7 @@ public:
   void task_end(const std::string& name, float time = -1, glm::vec4 color = {});
 
   //Subfunction
-  prf::dynamic::Task* retrieve_task(const std::string& name);
+  prf::dynamic::Task* find_task(const std::string& name);
 
 public:
   std::string name = "";

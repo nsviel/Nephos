@@ -24,7 +24,6 @@ public:
 
   //Tasker function
   prf::dynamic::Tasker* fetch_tasker(std::string name);
-  void remove_tasker(prf::dynamic::Tasker* tasker);
 
   inline std::list<prf::dynamic::Tasker*> get_list_tasker(){return list_tasker;}
 

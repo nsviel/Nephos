@@ -3,6 +3,7 @@
 #include <imgui/core/imgui.h>
 
 namespace prf{class Node;}
+namespace prf{class Structure;}
 namespace prf::dynamic{class Manager;}
 namespace prf::dynamic{class Profiler;}
 namespace prf::dynamic{class Tasker;}
@@ -37,6 +38,7 @@ public:
   inline bool& get_pause(){return pause;}
 
 private:
+  prf::Structure* prf_struct;
   prf::dynamic::Manager* prf_manager;
   prf::dynamic::Tasker* selected_tasker = nullptr;
   bool pause;

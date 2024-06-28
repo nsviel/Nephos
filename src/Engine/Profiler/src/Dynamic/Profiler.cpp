@@ -62,12 +62,5 @@ prf::dynamic::Tasker* Profiler::fetch_tasker(std::string name){
   //---------------------------
   return tasker;
 }
-void Profiler::remove_tasker(prf::dynamic::Tasker* tasker){
-  //---------------------------
-
-  list_tasker.remove(tasker);
-
-  //---------------------------
-}
 
 }

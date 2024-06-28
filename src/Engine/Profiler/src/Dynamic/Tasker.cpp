@@ -108,7 +108,7 @@ void Tasker::task_begin(std::string name, float time){
   //---------------------------
 
   //Check if task already exists
-  prf::dynamic::Task* exist = retrieve_task(name);
+  prf::dynamic::Task* exist = find_task(name);
   if(exist != nullptr){
     std::cout << "[error] task already started [" << name << "]" << std::endl;
     return;
@@ -133,7 +133,7 @@ void Tasker::task_end(const std::string& name, float time, glm::vec4 color){
   //---------------------------
 
   //Search for corresponding task
-  prf::dynamic::Task* task = retrieve_task(name);
+  prf::dynamic::Task* task = find_task(name);
   if(task == nullptr){
     std::cout << "[error] task not started" << std::endl;
     return;
@@ -154,7 +154,7 @@ void Tasker::task_end(const std::string& name, float time, glm::vec4 color){
 }
 
 //Subfunction
-prf::dynamic::Task* Tasker::retrieve_task(const std::string& name){
+prf::dynamic::Task* Tasker::find_task(const std::string& name){
   //---------------------------
 
   //Search for corresponding task

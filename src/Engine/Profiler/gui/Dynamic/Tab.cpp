@@ -10,6 +10,7 @@ namespace prf::gui::dynamic{
 Tab::Tab(prf::Node* node_profiler){
   //---------------------------
 
+  this->prf_struct = node_profiler->get_prf_struct();
   this->prf_manager = node_profiler->get_prf_manager();
   this->gui_graph = new prf::gui::dynamic::Graph(node_profiler);
 
@@ -33,7 +34,7 @@ void Tab::draw_tab(int width){
 
 //Subfunction
 void Tab::draw_dynamic_tabbar(){
-  std::list<prf::dynamic::Profiler*> list_profiler = prf_manager->get_list_profiler();
+  std::list<prf::dynamic::Profiler*>& list_profiler = prf_struct->dynamic.list_profiler;
   int width = ImGui::GetContentRegionAvail().x / list_profiler.size();
   //---------------------------
 
