@@ -37,10 +37,15 @@ void Recorder::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Recorder::run_thread(dyn::base::Sensor* sensor){
+  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::recording");
   //---------------------------
 
-  this->check_path(sensor);
-  this->make_recording(sensor);
+  tasker->loop();
+
+  //Recording
+  tasker->task_begin("recording");
+  this->compute_recording(sensor);
+  tasker->task_end("recording");
 
   //---------------------------
   this->thread_idle = true;
@@ -57,15 +62,7 @@ void Recorder::wait_thread(){
 }
 
 //Subfunction
-void Recorder::check_path(dyn::base::Sensor* sensor){
-  utl::base::Data* data = &sensor->data;
-  //---------------------------
-
-  //data->path.build() = data->path.directory + "/" + data->name + "." + data->path.format;
-
-  //---------------------------
-}
-void Recorder::make_recording(dyn::base::Sensor* sensor){
+void Recorder::compute_recording(dyn::base::Sensor* sensor){
   std::string path = sensor->data.path.build();
   //---------------------------
 

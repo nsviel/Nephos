@@ -25,8 +25,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void check_path(dyn::base::Sensor* sensor);
-  void make_recording(dyn::base::Sensor* sensor);
+  void compute_recording(dyn::base::Sensor* sensor);
 
 private:
   dyn::Structure* dyn_struct;

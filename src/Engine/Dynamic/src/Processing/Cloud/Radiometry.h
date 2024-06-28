@@ -24,6 +24,9 @@ public:
   void run_thread(dyn::base::Sensor* sensor);
   void wait_thread();
 
+  //Subfunction
+  void compute_correction(dyn::base::Sensor* sensor);
+
 private:
   dyn::Structure* dyn_struct;
   rad::correction::Correction* rad_correction;

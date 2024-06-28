@@ -35,10 +35,15 @@ void Radiometry::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Radiometry::run_thread(dyn::base::Sensor* sensor){
+  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::correction");
   //---------------------------
 
-  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::INTENSITY);
-  rad_correction->make_image_correction(sensor, image);
+  tasker->loop();
+
+  //Correction
+  tasker->task_begin("correction");
+  this->compute_correction(sensor);
+  tasker->task_end("correction");
 
   //---------------------------
   this->thread_idle = true;
@@ -50,6 +55,16 @@ void Radiometry::wait_thread(){
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+
+  //---------------------------
+}
+
+//Subfunction
+void Radiometry::compute_correction(dyn::base::Sensor* sensor){
+  //---------------------------
+
+  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::INTENSITY);
+  rad_correction->make_image_correction(sensor, image);
 
   //---------------------------
 }
