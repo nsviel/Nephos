@@ -39,7 +39,6 @@ void Element::run_control(){
 
 //Keyboard
 void Element::control_keyboard_oneAction(){
-  ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
   //Tab key
@@ -47,7 +46,7 @@ void Element::control_keyboard_oneAction(){
 
   //Suppr key - Delete selected
   if(ImGui::IsKeyPressed(ImGuiKey_Delete)) itf_element->remove_current();
-  
+
   //----------------------------
 }
 void Element::control_keyboard_translation(){
@@ -55,51 +54,50 @@ void Element::control_keyboard_translation(){
   //----------------------------
 
   if(io.MouseDown[1]) return;
-  for(int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
-    utl::base::Element* element = dat_selection->get_selected_element();
 
-    //Shift speed up
-    float translation_qtt = 0.01;
-    if(io.KeysDown[340]){
-      //translation_qtt = cloud_trans_speed * 5;
-    }
+  utl::base::Element* element = dat_selection->get_selected_element();
 
-    // Z key
-    if(io.KeysDown[571]){
-      glm::vec3 translation = glm::vec3(translation_qtt, 0, 0);
-      ope_operation->make_translation(element, translation);
-      break;
-    }
-    // S key
-    if(io.KeysDown[564]){
-      glm::vec3 translation = glm::vec3(-translation_qtt, 0, 0);
-      ope_operation->make_translation(element, translation);
-      break;
-    }
-    // D key
-    if(io.KeysDown[549]){
-      glm::vec3 translation = glm::vec3(0, translation_qtt, 0);
-      ope_operation->make_translation(element, translation);
-      break;
-    }
-    // Q key
-    if(io.KeysDown[562]){
-      glm::vec3 translation = glm::vec3(0, -translation_qtt, 0);
-      ope_operation->make_translation(element, translation);
-      break;
-    }
-    // A key
-    if(io.KeysDown[546]){
-      glm::vec3 translation = glm::vec3(0, 0, translation_qtt);
-      ope_operation->make_translation(element, translation);
-      break;
-    }
-    // E key
-    if(io.KeysDown[550]){
-      glm::vec3 translation = glm::vec3(0, 0, -translation_qtt);
-      ope_operation->make_translation(element, translation);
-      break;
-    }
+  //Shift speed up
+  float translation_qtt = 0.01;
+  if(io.KeysDown[340]){
+    //translation_qtt = cloud_trans_speed * 5;
+  }
+
+  // Z key
+  if(io.KeysDown[571]){
+    glm::vec3 translation = glm::vec3(translation_qtt, 0, 0);
+    ope_operation->make_translation(element, translation);
+
+  }
+  // S key
+  if(io.KeysDown[564]){
+    glm::vec3 translation = glm::vec3(-translation_qtt, 0, 0);
+    ope_operation->make_translation(element, translation);
+
+  }
+  // D key
+  if(io.KeysDown[549]){
+    glm::vec3 translation = glm::vec3(0, translation_qtt, 0);
+    ope_operation->make_translation(element, translation);
+
+  }
+  // Q key
+  if(io.KeysDown[562]){
+    glm::vec3 translation = glm::vec3(0, -translation_qtt, 0);
+    ope_operation->make_translation(element, translation);
+
+  }
+  // A key
+  if(io.KeysDown[546]){
+    glm::vec3 translation = glm::vec3(0, 0, translation_qtt);
+    ope_operation->make_translation(element, translation);
+
+  }
+  // E key
+  if(io.KeysDown[550]){
+    glm::vec3 translation = glm::vec3(0, 0, -translation_qtt);
+    ope_operation->make_translation(element, translation);
+
   }
 
   //----------------------------

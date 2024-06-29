@@ -35,28 +35,27 @@ void Camera::control_keyboard(){
   //----------------------------
 
   if(!io.MouseDown[1]) return;
-  for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
-    //Shift speed up
-    itf_struct->control.cam_fast = (io.KeysDown[340]) ? true : false;
 
-    //Z key or Up key
-    if(io.KeysDown[571] || io.KeysDown[515]) itf_camera->cam_forward();
+  //Shift speed up
+  itf_struct->control.cam_fast = (io.KeysDown[340]) ? true : false;
 
-    //S key or Down key
-    if(io.KeysDown[564] || io.KeysDown[516]) itf_camera->cam_backward();
+  //Z key or Up key
+  if(io.KeysDown[571] || io.KeysDown[515]) itf_camera->cam_forward();
 
-    //Q key or Left key
-    if(io.KeysDown[562] || io.KeysDown[513]) itf_camera->cam_left();
+  //S key or Down key
+  if(io.KeysDown[564] || io.KeysDown[516]) itf_camera->cam_backward();
 
-    //D key or Left key
-    if(io.KeysDown[549] || io.KeysDown[514]) itf_camera->cam_right();
+  //Q key or Left key
+  if(io.KeysDown[562] || io.KeysDown[513]) itf_camera->cam_left();
 
-    //A key
-    if(io.KeysDown[546]) itf_camera->cam_down();
+  //D key or Left key
+  if(io.KeysDown[549] || io.KeysDown[514]) itf_camera->cam_right();
 
-    //E key
-    if(io.KeysDown[550]) itf_camera->cam_up();
-  }
+  //A key
+  if(io.KeysDown[546]) itf_camera->cam_down();
+
+  //E key
+  if(io.KeysDown[550]) itf_camera->cam_up();
 
   //---------------------------
 }

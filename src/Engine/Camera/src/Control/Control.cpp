@@ -27,7 +27,7 @@ void Control::control_keyboard(int direction, bool fast){
   //---------------------------
 
   //Compute camera movment speed value
-  float cam_speed = camera->velocity * 0.000016;
+  float cam_speed = camera->velocity * 0.01;
   if(fast){
     cam_speed *= 5;
   }

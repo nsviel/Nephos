@@ -1,6 +1,7 @@
 #include "Element.h"
 
 #include <Interface/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace itf::control{
@@ -14,12 +15,61 @@ Element::Element(itf::Node* node_interface){
   this->itf_struct = node_interface->get_itf_struct();
   this->dat_selection = node_data->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
-  
+
   //---------------------------
 }
 Element::~Element(){}
 
 //Main function
+void Element::element_forward(){
+  //---------------------------
+
+
+  //---------------------------
+}
+void Element::element_backward(){
+  //---------------------------
+
+
+
+  //---------------------------
+}
+void Element::element_left(){
+  //---------------------------
+
+
+  //---------------------------
+}
+void Element::element_right(){
+  //---------------------------
+
+
+
+  //---------------------------
+}
+void Element::element_down(){
+  //---------------------------
+
+
+
+  //---------------------------
+}
+void Element::element_up(){
+  //---------------------------
+
+
+
+  //---------------------------
+}
+void Element::element_zoom(float value){
+  //---------------------------
+
+
+
+  //---------------------------
+}
+
+//Subfunction
 void Element::select_next(){
   //---------------------------
 

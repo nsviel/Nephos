@@ -20,6 +20,15 @@ public:
 
 public:
   //Main function
+  void element_forward();
+  void element_backward();
+  void element_left();
+  void element_right();
+  void element_down();
+  void element_up();
+  void element_zoom(float value);
+
+  //Subfunction
   void select_next();
   void remove_current();
 
