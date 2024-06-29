@@ -39,8 +39,8 @@ void State::load_state(std::string filename){
   }
 
   std::string path_file = path.build();
-  //ImGui::LoadIniSettingsFromDisk(path_file.c_str());
-  std::cout<<"[OK] Imgui load state at "<<path_file<<std::endl;
+  ImGui::LoadIniSettingsFromDisk(path_file.c_str());
+  //std::cout<<"[OK] Imgui load state at "<<path_file<<std::endl;
 
   //---------------------------
 }

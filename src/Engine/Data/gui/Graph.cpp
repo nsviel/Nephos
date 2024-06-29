@@ -61,32 +61,55 @@ void Graph::design_panel(){
 }
 
 //Subfunction
-void Graph::draw_window_background() {
+void Graph::draw_window_background(){
   //-------------------------------
 
-  float x1 = ImGui::GetCurrentWindow()->WorkRect.Min.x;
-  float x2 = ImGui::GetCurrentWindow()->WorkRect.Max.x;
+  // Get window dimensions and position
+  ImVec2 window_pos = ImGui::GetCursorScreenPos();
+  ImVec2 window_size = ImGui::GetWindowSize();
+//  ImVec2 content_size = ImGui::GetWindowContentRegionMax(); // Available content size in the window
+
+  ImVec2 content_min = ImGui::GetWindowContentRegionMin();
+  ImVec2 content_max = ImGui::GetWindowContentRegionMax();
+  ImVec2 content_size = ImVec2(content_max.x - content_min.x, content_max.y - content_min.y);
+say(content_size);
+
+  float x1 = window_pos.x;
+  float x2 = window_pos.x + content_size.x; // Use content size instead of full window size
   float item_spacing_y = ImGui::GetStyle().ItemSpacing.y;
   float line_height = ImGui::GetTextLineHeightWithSpacing();
-  int row_count = 100;
+
+  // Calculate maximum rows to fit within the visible content area minus one line
+  int row_count = static_cast<int>((content_size.y - item_spacing_y) / line_height) - 1;
+  int window_row_count = static_cast<int>((window_size.y - item_spacing_y) / line_height) - 1;
+
+  if(window_row_count > row_count) row_count = window_row_count;
+
   ImU32 col_even = IM_COL32(35, 35, 35, 255);
   ImU32 col_odd = IM_COL32(25, 25, 25, 255);
 
   ImDrawList* draw_list = ImGui::GetWindowDrawList();
-  ImVec2 window_pos = ImGui::GetCursorScreenPos();
 
   ImGuiListClipper clipper;
   clipper.Begin(row_count, line_height);
   while (clipper.Step()) {
-    for (int row_n = clipper.DisplayStart; row_n < clipper.DisplayEnd; row_n++) {
-      ImU32 col = (row_n & 1) ? col_odd : col_even;
-      if ((col & IM_COL32_A_MASK) == 0)
-        continue;
-      float y1 = window_pos.y + (line_height * row_n);
-      float y2 = y1 + line_height;
-      draw_list->AddRectFilled(ImVec2(x1, y1), ImVec2(x2, y2), col);
-    }
+      for (int row_n = clipper.DisplayStart; row_n < clipper.DisplayEnd; row_n++) {
+          ImU32 col = (row_n & 1) ? col_odd : col_even;
+          if ((col & IM_COL32_A_MASK) == 0)
+              continue;
+          float y1 = window_pos.y + (line_height * row_n);
+          float y2 = y1 + line_height;
+
+          // Ensure drawing does not exceed visible content area minus one line
+          if (y1 > window_pos.y + content_size.y - line_height)
+              break;
+
+          draw_list->AddRectFilled(ImVec2(x1, y1), ImVec2(x2, y2), col);
+      }
   }
+
+  //Reset cursor
+  ImGui::SetCursorPos(ImVec2(ImGui::GetWindowPos().x + ImGui::GetStyle().WindowPadding.x, ImGui::GetWindowPos().y + ImGui::GetStyle().WindowPadding.y));
 
   //-------------------------------
 }
