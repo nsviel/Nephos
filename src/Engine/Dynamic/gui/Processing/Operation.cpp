@@ -48,7 +48,7 @@ void Operation::design_operation(){
   dyn_colorization->design_colorization(element);
 
   //Normal
-  this->draw_ope_normal(element);
+  this->draw_ope_misc(element);
   ImGui::PopStyleColor();
 
   //---------------------------
@@ -56,12 +56,14 @@ void Operation::design_operation(){
 }
 
 //Subfunction
-void Operation::draw_ope_normal(utl::base::Element* element){
+void Operation::draw_ope_misc(utl::base::Element* element){
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
-  if(ImGui::CollapsingHeader("Normal##dynamic")){
+  if(ImGui::CollapsingHeader("Operation##dynamic")){
+    ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
+
     //Parameter: kNN
     ImGui::SetNextItemWidth(100);
     ImGui::SliderInt("kNN", &dyn_struct->operation.normal.knn, 1, 10);
@@ -70,7 +72,6 @@ void Operation::draw_ope_normal(utl::base::Element* element){
     ImGui::Text("Time");
     ImGui::SameLine();
     ImGui::TextColored(color, "%.2f ms", dyn_struct->operation.normal.time);
-
   }
 
   //---------------------------

@@ -44,6 +44,14 @@ void State::load_state(std::string filename){
 
   //---------------------------
 }
+void State::reload_state(){
+  if(!reload) return;
+  //---------------------------
+
+
+  //---------------------------
+  reload = false;
+}
 
 //Subfunction
 void State::update_file_list(){

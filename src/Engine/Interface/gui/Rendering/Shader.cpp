@@ -60,7 +60,7 @@ void Shader::run_panel(){
 }
 void Shader::design_panel(){
   //---------------------------
-
+/*
   this->check_read_only();
   this->check_reload();
   itf_shader->shader_combo_class();
@@ -68,7 +68,7 @@ void Shader::design_panel(){
   itf_shader->shader_command();
   itf_shader->shader_tabs();
   itf_shader->shader_control();
-
+*/
   //---------------------------
 }
 void Shader::check_read_only(){
@@ -129,7 +129,7 @@ void Shader::shader_combo_class(){
 }
 void Shader::shader_combo_subclass(){
   //---------------------------
-
+/*
   if(vec_shader_subclass.size() > 1){
     if(ImGui::BeginCombo("##shader_combo_subclass", vec_shader_subclass[ID_subclass].c_str())){
       for(int i=0; i<vec_shader_subclass.size(); ++i){
@@ -149,7 +149,7 @@ void Shader::shader_combo_subclass(){
   }else{
     this->ID_subclass = 0;
   }
-
+*/
   //---------------------------
 }
 void Shader::shader_command(){

@@ -27,7 +27,7 @@ public:
   void design_operation();
 
   //Subfunction
-  void draw_ope_normal(utl::base::Element* element);
+  void draw_ope_misc(utl::base::Element* element);
 
 private:
   dat::graph::Selection* dat_selection;

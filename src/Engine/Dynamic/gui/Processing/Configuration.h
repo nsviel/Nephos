@@ -2,6 +2,7 @@
 
 namespace dyn{class Node;}
 namespace utl::base{class Element;}
+namespace dyn::base{class Sensor;}
 
 
 namespace dyn::gui{
@@ -17,7 +18,7 @@ public:
   void design_configuration(utl::base::Element* element);
 
   //Subfunction
-  void sensor_config(utl::base::Element* element);
+  void sensor_config(dyn::base::Sensor* sensor);
 
 private:
 

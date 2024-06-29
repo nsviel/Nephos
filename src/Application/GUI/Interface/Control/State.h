@@ -21,6 +21,7 @@ public:
   //Main function
   void save_state();
   void load_state(std::string filename = "");
+  void reload_state();
 
   //Subfunction
   void update_file_list();
@@ -31,6 +32,7 @@ public:
 private:
   std::vector<std::string> vec_file;
   utl::base::Path path;
+  bool reload = false;
 };
 
 }
