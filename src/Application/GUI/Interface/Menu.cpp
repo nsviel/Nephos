@@ -11,12 +11,10 @@ namespace gui::interface{
 Menu::Menu(gui::Node* node_gui){
   //---------------------------
 
-  this->gui = node_gui;
+  this->gui_struct = node_gui->get_gui_struct();
   this->gui_font = node_gui->get_gui_font();
   this->gui_git = new utl::element::gui::Git();
   this->gui_state = node_gui->get_gui_state();
-
-  this->show_demo = false;
 
   //---------------------------
 }
@@ -49,7 +47,7 @@ void Menu::menu_imgui(){
 
   if(ImGui::BeginMenu(ICON_FA_BOOK, "menu_imgui")){
     //Demo window
-    ImGui::Checkbox("Demo window", &show_demo);
+    ImGui::Checkbox("Demo window", &gui_struct->show_demo);
 
     //Demo file
     if(ImGui::Button("Demo file", ImVec2(120, 0))){
@@ -58,14 +56,14 @@ void Menu::menu_imgui(){
 
     //Save docking state
     if(ImGui::Button("Save dock state", ImVec2(120, 0))){
-      gui_state->dock_save_state();
+      gui_state->save_state();
     }
 
     ImGui::EndMenu();
   }
 
-  if(show_demo){
-    ImGui::ShowDemoWindow(&show_demo);
+  if(gui_struct->show_demo){
+    ImGui::ShowDemoWindow(&gui_struct->show_demo);
   }
 
   //---------------------------

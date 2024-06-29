@@ -1,9 +1,11 @@
 #pragma once
 
+#include <Utility/Base/Type/Path.h>
 #include <vector>
 #include <string>
 
 namespace gui{class Node;}
+namespace utl::base{class Path;}
 
 
 namespace gui::interface{
@@ -17,12 +19,14 @@ public:
 
 public:
   //Main function
-  void dock_save_state();
-  void dock_load_state();
+  void save_state();
+  void load_state();
+
+  inline std::vector<std::string> get_vec_path(){return vec_path;}
 
 private:
   std::vector<std::string> vec_path;
-  std::string current;
+  utl::base::Path path;
 };
 
 }

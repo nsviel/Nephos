@@ -17,6 +17,7 @@ Node::Node(app::Node* node_app){
   this->node_engine = node_app->get_node_engine();
   this->node_scene = node_app->get_node_scene();
 
+  this->gui_struct = new gui::Structure();
   this->gui_tab = new gui::Tab(this);
   this->gui_style = new gui::style::Config(this);
   this->gui_font = new gui::style::Font(this);
@@ -46,7 +47,7 @@ void Node::init(){
   gui_font->init_font();
   gui_style->init_style();
   gui_theme->init_theme();
-  gui_state->dock_load_state();
+  gui_state->load_state();
 
   //---------------------------
 }
