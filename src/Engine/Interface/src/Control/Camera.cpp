@@ -28,42 +28,42 @@ Camera::~Camera(){}
 void Camera::cam_forward(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_FORWARD, itf_struct->control.cam_fast);
+  cam_control->control_keyboard(cam::CAMERA_FORWARD, itf_struct->control.key_fast);
 
   //---------------------------
 }
 void Camera::cam_backward(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_BACKWARD, itf_struct->control.cam_fast);
+  cam_control->control_keyboard(cam::CAMERA_BACKWARD, itf_struct->control.key_fast);
 
   //---------------------------
 }
 void Camera::cam_left(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_LEFT, itf_struct->control.cam_fast);
+  cam_control->control_keyboard(cam::CAMERA_LEFT, itf_struct->control.key_fast);
 
   //---------------------------
 }
 void Camera::cam_right(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_RIGHT, itf_struct->control.cam_fast);
+  cam_control->control_keyboard(cam::CAMERA_RIGHT, itf_struct->control.key_fast);
 
   //---------------------------
 }
 void Camera::cam_down(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_DOWN, itf_struct->control.cam_fast);
+  cam_control->control_keyboard(cam::CAMERA_DOWN, itf_struct->control.key_fast);
 
   //---------------------------
 }
 void Camera::cam_up(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_UP, itf_struct->control.cam_fast);
+  cam_control->control_keyboard(cam::CAMERA_UP, itf_struct->control.key_fast);
 
   //---------------------------
 }

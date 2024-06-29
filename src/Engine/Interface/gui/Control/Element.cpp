@@ -16,6 +16,7 @@ Element::Element(itf::Node* node_interface){
 
   dat::Node* node_data = node_interface->get_node_data();
 
+  this->itf_struct = node_interface->get_itf_struct();
   this->dat_selection = node_data->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
   this->ope_operation = new ope::Operation();
@@ -55,50 +56,26 @@ void Element::control_keyboard_translation(){
 
   if(io.MouseDown[1]) return;
 
-  utl::base::Element* element = dat_selection->get_selected_element();
-
-  //Shift speed up
-  float translation_qtt = 0.01;
-  if(io.KeysDown[340]){
-    //translation_qtt = cloud_trans_speed * 5;
-  }
+  //Shift key
+  itf_struct->control.key_fast = (io.KeysDown[340]) ? true : false;
 
   // Z key
-  if(io.KeysDown[571]){
-    glm::vec3 translation = glm::vec3(translation_qtt, 0, 0);
-    ope_operation->make_translation(element, translation);
+  if(io.KeysDown[571]) itf_element->element_forward();
 
-  }
   // S key
-  if(io.KeysDown[564]){
-    glm::vec3 translation = glm::vec3(-translation_qtt, 0, 0);
-    ope_operation->make_translation(element, translation);
+  if(io.KeysDown[564]) itf_element->element_backward();
 
-  }
   // D key
-  if(io.KeysDown[549]){
-    glm::vec3 translation = glm::vec3(0, translation_qtt, 0);
-    ope_operation->make_translation(element, translation);
+  if(io.KeysDown[549]) itf_element->element_right();
 
-  }
   // Q key
-  if(io.KeysDown[562]){
-    glm::vec3 translation = glm::vec3(0, -translation_qtt, 0);
-    ope_operation->make_translation(element, translation);
+  if(io.KeysDown[562]) itf_element->element_left();
 
-  }
   // A key
-  if(io.KeysDown[546]){
-    glm::vec3 translation = glm::vec3(0, 0, translation_qtt);
-    ope_operation->make_translation(element, translation);
+  if(io.KeysDown[546]) itf_element->element_down();
 
-  }
   // E key
-  if(io.KeysDown[550]){
-    glm::vec3 translation = glm::vec3(0, 0, -translation_qtt);
-    ope_operation->make_translation(element, translation);
-
-  }
+  if(io.KeysDown[550]) itf_element->element_up();
 
   //----------------------------
 }

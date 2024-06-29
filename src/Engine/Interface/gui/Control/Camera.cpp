@@ -37,7 +37,7 @@ void Camera::control_keyboard(){
   if(!io.MouseDown[1]) return;
 
   //Shift speed up
-  itf_struct->control.cam_fast = (io.KeysDown[340]) ? true : false;
+  itf_struct->control.key_fast = (io.KeysDown[340]) ? true : false;
 
   //Z key or Up key
   if(io.KeysDown[571] || io.KeysDown[515]) itf_camera->cam_forward();

@@ -10,7 +10,8 @@ struct Structure{
   //---------------------------
 
   glm::vec2 cursor_pose = glm::vec2(0, 0);
-  bool cam_fast = false;
+  float element_trans = 0.01;
+  bool key_fast = false;
   int wheel_mode = 2;
 
   //---------------------------

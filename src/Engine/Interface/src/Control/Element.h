@@ -7,6 +7,7 @@ namespace itf{class Node;}
 namespace itf{class Structure;}
 namespace dat::graph{class Selection;}
 namespace dat::element{class Set;}
+namespace ope{class Operation;}
 
 
 namespace itf::control{
@@ -36,6 +37,7 @@ private:
   itf::Structure* itf_struct;
   dat::graph::Selection* dat_selection;
   dat::element::Set* dat_set;
+  ope::Operation* ope_operation;
 };
 
 }
