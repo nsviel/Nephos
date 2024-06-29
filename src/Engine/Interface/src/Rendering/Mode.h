@@ -3,7 +3,7 @@
 namespace eng{class Node;}
 
 
-namespace itf{
+namespace itf::render{
 
 class Mode
 {

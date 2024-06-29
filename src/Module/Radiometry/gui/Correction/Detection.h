@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Interface/src/Rendering/Stream.h>
+#include <Interface/gui/Rendering/Stream.h>
 
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction{class Process;}
 namespace rad::correction::image{class Hough;}
-namespace itf{class Stream;}
+namespace itf::gui{class Stream;}
 namespace dat::element{class Image;}
 
 
@@ -39,7 +39,7 @@ private:
   rad::correction::Structure* rad_struct;
   rad::correction::Process* rad_process;
   rad::correction::image::Hough* rad_hough;
-  itf::Stream* stream;
+  itf::gui::Stream* stream;
   dat::element::Image* dat_image;
 };
 

@@ -11,7 +11,7 @@ namespace dat::element{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace eng{class Node;}
-namespace itf{class Stream;}
+namespace itf::gui{class Stream;}
 namespace utl::base{class Element;}
 namespace utl::media{class Image;}
 
@@ -39,7 +39,7 @@ private:
   dat::element::Set* dat_set;
   dyn::gui::Overlay* gui_overlay;
 
-  std::vector<itf::Stream*> vec_stream;
+  std::vector<itf::gui::Stream*> vec_stream;
   std::string open_tab = "";
   std::string name;
   bool* show_window;

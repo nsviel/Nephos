@@ -4,7 +4,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace itf{
+namespace itf::gui{
 
 //Constructor / Destructor
 Stream::Stream(eng::Node* node_engine){
@@ -19,12 +19,12 @@ Stream::Stream(eng::Node* node_engine){
 Stream::~Stream(){}
 
 //Main function
-void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 size){
+void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 dimension){
   if(!check_image(utl_image)) return;
   //---------------------------
 
   this->convert_data_into_texture(utl_image);
-  this->render_image(utl_image, size);
+  this->render_image(utl_image, dimension);
 
   //---------------------------
 }
@@ -66,11 +66,11 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image){
 
   //---------------------------
 }
-void Stream::render_image(utl::media::Image* utl_image, ImVec2& size){
+void Stream::render_image(utl::media::Image* utl_image, ImVec2& dimension){
   if(utl_image->texture_ID == -1) return;
   //---------------------------
 
-  ImGui::Image(utl_image->gui_texture_ID, size);
+  ImGui::Image(utl_image->gui_texture_ID, dimension);
 
   //---------------------------
 }

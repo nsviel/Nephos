@@ -9,7 +9,7 @@ namespace vk::structure{class Texture;}
 namespace utl::media{class Image;}
 
 
-namespace itf{
+namespace itf::gui{
 
 class Stream
 {
@@ -20,12 +20,12 @@ public:
 
 public:
   //Main function
-  void draw_stream(utl::media::Image* utl_image, ImVec2 size);
+  void draw_stream(utl::media::Image* utl_image, ImVec2 dimension);
 
   //Subfunction
   bool check_image(utl::media::Image* utl_image);
   void convert_data_into_texture(utl::media::Image* utl_image);
-  void render_image(utl::media::Image* utl_image, ImVec2& size);
+  void render_image(utl::media::Image* utl_image, ImVec2& dimension);
 
 private:
   vk::image::Texture* vk_texture;

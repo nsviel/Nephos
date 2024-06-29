@@ -22,7 +22,7 @@ Stream::Stream(dyn::Node* node_dynamic, bool* show_window){
   this->gui_overlay = new dyn::gui::Overlay();
 
   for(int i=0; i<10; i++){
-    itf::Stream* stream = new itf::Stream(node_engine);
+    itf::gui::Stream* stream = new itf::gui::Stream(node_engine);
     this->vec_stream.push_back(stream);
   }
 
