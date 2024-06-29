@@ -7,12 +7,12 @@ namespace itf::control{class Wheel;}
 
 namespace itf::gui{
 
-class Element
+class Wheel
 {
 public:
   //Constructor / Destructor
-  Element(itf::Node* node_interface);
-  ~Element();
+  Wheel(itf::Node* node_interface);
+  ~Wheel();
 
 public:
   //Main function

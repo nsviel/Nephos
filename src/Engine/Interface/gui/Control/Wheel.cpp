@@ -1,17 +1,12 @@
-#include "Element.h"
+#include "Wheel.h"
 
-#include <Engine/Namespace.h>
-#include <Utility/Namespace.h>
-#include <Data/Namespace.h>
 #include <Interface/Namespace.h>
-#include <Operation/Namespace.h>
-#include <glm/glm.hpp>
 
 
 namespace itf::gui{
 
 //Constructor / Destructor
-Element::Element(itf::Node* node_interface){
+Wheel::Wheel(itf::Node* node_interface){
   //---------------------------
 
   this->itf_struct = node_interface->get_itf_struct();
@@ -19,10 +14,10 @@ Element::Element(itf::Node* node_interface){
 
   //---------------------------
 }
-Element::~Element(){}
+Wheel::~Wheel(){}
 
 //Main function
-void Element::run_control(){
+void Wheel::run_control(){
   //---------------------------
 
   this->control_wheel();
@@ -31,7 +26,7 @@ void Element::run_control(){
 }
 
 //Subfunction
-void Element::control_wheel(){
+void Wheel::control_wheel(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
