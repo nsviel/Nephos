@@ -67,12 +67,7 @@ void Graph::draw_window_background(){
   // Get window dimensions and position
   ImVec2 window_pos = ImGui::GetCursorScreenPos();
   ImVec2 window_size = ImGui::GetWindowSize();
-//  ImVec2 content_size = ImGui::GetWindowContentRegionMax(); // Available content size in the window
-
-  ImVec2 content_min = ImGui::GetWindowContentRegionMin();
-  ImVec2 content_max = ImGui::GetWindowContentRegionMax();
-  ImVec2 content_size = ImVec2(content_max.x - content_min.x, content_max.y - content_min.y);
-say(content_size);
+  ImVec2 content_size = ImGui::GetWindowContentRegionMax(); // Available content size in the window
 
   float x1 = window_pos.x;
   float x2 = window_pos.x + content_size.x; // Use content size instead of full window size

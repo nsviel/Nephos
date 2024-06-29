@@ -62,52 +62,51 @@ void Element::control_keyboard_translation(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
+  if(io.MouseDown[1]) return;
   for(int i = 0; i < IM_ARRAYSIZE(io.KeysDown); i++){
-    if(!io.MouseDown[1]){
-      utl::base::Element* element = dat_selection->get_selected_element();
+    utl::base::Element* element = dat_selection->get_selected_element();
 
-      //Shift speed up
-      float translation_qtt = 0.01;
-      if(io.KeysDown[340]){
-        //translation_qtt = cloud_trans_speed * 5;
-      }
+    //Shift speed up
+    float translation_qtt = 0.01;
+    if(io.KeysDown[340]){
+      //translation_qtt = cloud_trans_speed * 5;
+    }
 
-      // Z key
-      if(io.KeysDown[571]){
-        glm::vec3 translation = glm::vec3(translation_qtt, 0, 0);
-        ope_operation->make_translation(element, translation);
-        break;
-      }
-      // S key
-      if(io.KeysDown[564]){
-        glm::vec3 translation = glm::vec3(-translation_qtt, 0, 0);
-        ope_operation->make_translation(element, translation);
-        break;
-      }
-      // D key
-      if(io.KeysDown[549]){
-        glm::vec3 translation = glm::vec3(0, translation_qtt, 0);
-        ope_operation->make_translation(element, translation);
-        break;
-      }
-      // Q key
-      if(io.KeysDown[562]){
-        glm::vec3 translation = glm::vec3(0, -translation_qtt, 0);
-        ope_operation->make_translation(element, translation);
-        break;
-      }
-      // A key
-      if(io.KeysDown[546]){
-        glm::vec3 translation = glm::vec3(0, 0, translation_qtt);
-        ope_operation->make_translation(element, translation);
-        break;
-      }
-      // E key
-      if(io.KeysDown[550]){
-        glm::vec3 translation = glm::vec3(0, 0, -translation_qtt);
-        ope_operation->make_translation(element, translation);
-        break;
-      }
+    // Z key
+    if(io.KeysDown[571]){
+      glm::vec3 translation = glm::vec3(translation_qtt, 0, 0);
+      ope_operation->make_translation(element, translation);
+      break;
+    }
+    // S key
+    if(io.KeysDown[564]){
+      glm::vec3 translation = glm::vec3(-translation_qtt, 0, 0);
+      ope_operation->make_translation(element, translation);
+      break;
+    }
+    // D key
+    if(io.KeysDown[549]){
+      glm::vec3 translation = glm::vec3(0, translation_qtt, 0);
+      ope_operation->make_translation(element, translation);
+      break;
+    }
+    // Q key
+    if(io.KeysDown[562]){
+      glm::vec3 translation = glm::vec3(0, -translation_qtt, 0);
+      ope_operation->make_translation(element, translation);
+      break;
+    }
+    // A key
+    if(io.KeysDown[546]){
+      glm::vec3 translation = glm::vec3(0, 0, translation_qtt);
+      ope_operation->make_translation(element, translation);
+      break;
+    }
+    // E key
+    if(io.KeysDown[550]){
+      glm::vec3 translation = glm::vec3(0, 0, -translation_qtt);
+      ope_operation->make_translation(element, translation);
+      break;
     }
   }
 
@@ -125,7 +124,7 @@ void Element::control_wheel(){
   }
 
   //Wheel actions
-  if(io.MouseWheel && io.MouseDownDuration[1] == -1){
+  if(!io.MouseDown[1] && io.MouseWheel){
     float direction = math::sign(io.MouseWheel);
     itf_wheel->make_action(direction);
   }

@@ -34,7 +34,7 @@ void Camera::control_keyboard(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  if(io.MouseDown[1])
+  if(!io.MouseDown[1]) return;
   for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
     //Shift speed up
     itf_struct->control.cam_fast = (io.KeysDown[340]) ? true : false;
@@ -80,7 +80,7 @@ void Camera::control_wheel(){
   //----------------------------
 
   //Wheel + right clicked - Camera zoom
-  if(io.MouseWheel && io.MouseDownDuration[1] >= 0.0f){
+  if(io.MouseDown[1] && io.MouseWheel){
     itf_camera->cam_zoom(io.MouseWheel);
   }
 
