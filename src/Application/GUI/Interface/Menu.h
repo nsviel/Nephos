@@ -2,7 +2,7 @@
 
 namespace gui{class Node;}
 namespace gui::style{class Font;}
-namespace gui::interface{class Docking;}
+namespace gui::interface{class State;}
 namespace utl::element::gui{class Git;}
 
 
@@ -25,7 +25,7 @@ public:
 private:
   gui::Node* gui;
   gui::style::Font* gui_font;
-  gui::interface::Docking* gui_docking;
+  gui::interface::State* gui_state;
   utl::element::gui::Git* gui_git;
 
   bool show_demo;

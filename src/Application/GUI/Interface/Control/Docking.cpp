@@ -52,20 +52,5 @@ void Docking::dock_main_node(){
 
   //---------------------------
 }
-void Docking::dock_save_state(){
-  //---------------------------
-
-  ImGui::SaveIniSettingsToDisk("../media/config/gui/imgui.ini");
-  std::cout<<"[OK] Imgui docking state saved"<<std::endl;
-
-  //---------------------------
-}
-void Docking::dock_load_state(){
-  //---------------------------
-
-  ImGui::LoadIniSettingsFromDisk("../media/config/gui/imgui.ini");
-
-  //---------------------------
-}
 
 }

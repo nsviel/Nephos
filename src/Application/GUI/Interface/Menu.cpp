@@ -14,7 +14,7 @@ Menu::Menu(gui::Node* node_gui){
   this->gui = node_gui;
   this->gui_font = node_gui->get_gui_font();
   this->gui_git = new utl::element::gui::Git();
-  this->gui_docking = node_gui->get_gui_docking();
+  this->gui_state = node_gui->get_gui_state();
 
   this->show_demo = false;
 
@@ -48,18 +48,18 @@ void Menu::menu_imgui(){
   //---------------------------
 
   if(ImGui::BeginMenu(ICON_FA_BOOK, "menu_imgui")){
-    //Save docking state
-    if(ImGui::Button("Save dock state", ImVec2(120, 0))){
-      gui_docking->dock_save_state();
-    }
+    //Demo window
+    ImGui::Checkbox("Demo window", &show_demo);
 
     //Demo file
     if(ImGui::Button("Demo file", ImVec2(120, 0))){
       int ret = system("xed ../extern/imgui/core/imgui_demo.cpp");
     }
 
-    //Demo window
-    ImGui::Checkbox("Demo window", &show_demo);
+    //Save docking state
+    if(ImGui::Button("Save dock state", ImVec2(120, 0))){
+      gui_state->dock_save_state();
+    }
 
     ImGui::EndMenu();
   }

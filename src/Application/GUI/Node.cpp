@@ -23,6 +23,7 @@ Node::Node(app::Node* node_app){
   this->gui_theme = new gui::style::Theme(this);
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
+  this->gui_state = new gui::interface::State(this);
   this->tasker = node_engine->get_tasker_cpu();
 
   this->add_node_panel(node_scene);
@@ -45,7 +46,7 @@ void Node::init(){
   gui_font->init_font();
   gui_style->init_style();
   gui_theme->init_theme();
-  gui_docking->dock_load_state();
+  gui_state->dock_load_state();
 
   //---------------------------
 }
