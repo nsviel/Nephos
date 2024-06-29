@@ -58,23 +58,11 @@ void Shader::run_panel(){
 
   //---------------------------
 }
-void Shader::init_panel(){
-  //---------------------------
-
-  vec_shader_class.push_back("Scene");
-  vec_shader_class.push_back("EDL");
-  vec_shader_class.push_back("Canvas");
-
-  this->retrieve_shader_subclasses();
-  this->shader_file_selection();
-
-  //---------------------------
-}
 void Shader::design_panel(){
   //---------------------------
 
-  itf_shader->check_read_only();
-  itf_shader->check_reload();
+  this->check_read_only();
+  this->check_reload();
   itf_shader->shader_combo_class();
   itf_shader->shader_combo_subclass();
   itf_shader->shader_command();
@@ -83,11 +71,42 @@ void Shader::design_panel(){
 
   //---------------------------
 }
+void Shader::check_read_only(){
+  //---------------------------
+/*
+  bool window_hovered = ImGui::IsWindowHovered(ImGuiHoveredFlags_ChildWindows|ImGuiHoveredFlags_AllowWhenBlockedByActiveItem);
+  if(window_hovered == false || read_only_forced){
+    this->read_only = true;
+  }
+  else if(window_hovered && read_only_forced == false){
+    this->read_only = false;
+  }
+  else if(window_hovered && read_only_forced){
+    this->read_only = true;
+  }
+
+  editor_vs->set_read_only(read_only);
+  editor_fs->set_read_only(read_only);
+*/
+  //---------------------------
+}
+void Shader::check_reload(){
+  //---------------------------
+/*
+  bool has_vs_changed = editor_vs->is_text_changed();
+  bool has_fs_changed = editor_fs->is_text_changed();
+  if(has_vs_changed || has_fs_changed){
+    has_been_reloaded = false;
+  }
+*/
+  //---------------------------
+}
+
 
 //Design fnunction
 void Shader::shader_combo_class(){
   //---------------------------
-
+/*
   if(ImGui::BeginCombo("##shader_combo_class", vec_shader_class[ID_class].c_str())){
     for(int i=0; i<vec_shader_class.size(); ++i){
       const bool is_selected = (ID_class == i);
@@ -105,7 +124,7 @@ void Shader::shader_combo_class(){
     }
     ImGui::EndCombo();
   }
-
+*/
   //---------------------------
 }
 void Shader::shader_combo_subclass(){
@@ -135,7 +154,7 @@ void Shader::shader_combo_subclass(){
 }
 void Shader::shader_command(){
   //---------------------------
-
+/*
   //Button commands
   if(ImGui::Button("Reload", ImVec2(item_width, 0))){
     this->reload_vulkan_shader();
@@ -157,12 +176,12 @@ void Shader::shader_command(){
   this->display_reload();
   ImGui::SameLine();
   this->display_status();
-
+*/
   //---------------------------
 }
 void Shader::shader_tabs(){
   //---------------------------
-
+/*
   if(ImGui::BeginTabBar("shader_editor")){
     if(ImGui::BeginTabItem("Vertex")){
         editor_vs->run_editor();
@@ -180,37 +199,14 @@ void Shader::shader_tabs(){
     }
     ImGui::EndTabBar();
   }
-
+*/
   //---------------------------
 }
 
 //File selection
-void Shader::retrieve_shader_subclasses(){
-  //---------------------------
-
-  std::string selection = vec_shader_class[ID_class];
-
-  std::vector<utl::shader::Info*> vec_shader_info;
-  if(selection == "EDL"){
-    vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
-    vec_shader_info = shader_edl->get_vec_shader_info();
-  }
-  else if(selection == "Scene"){
-    vk::render::scene::Shader* shader_scene = vk_render->get_shader_scene();
-    vec_shader_info = shader_scene->get_vec_shader_info();
-  }
-
-  this->vec_shader_subclass.clear();
-  for(int i=0; i<vec_shader_info.size(); i++){
-    std::string title = vec_shader_info[i]->title;
-    this->vec_shader_subclass.push_back(title);
-  }
-
-  //---------------------------
-}
 void Shader::shader_file_selection(){
   //---------------------------
-
+/*
   std::string path_vs = get_path_vs_from_selection();
   std::string path_fs = get_path_fs_from_selection();
 
@@ -219,44 +215,8 @@ void Shader::shader_file_selection(){
     editor_vs->load_from_file(path_vs);
     editor_fs->load_from_file(path_fs);
   }
-
+*/
   //---------------------------
-}
-std::string Shader::get_path_vs_from_selection(){
-  //---------------------------
-
-  std::string selection = vec_shader_class[ID_class];
-  std::string path_vs = "";
-
-  if(selection == "EDL"){
-    vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
-    path_vs = shader_edl->get_glsl_path_vs(ID_subclass);
-  }
-  else if(selection == "Scene"){
-    vk::render::scene::Shader* shader_scene = vk_render->get_shader_scene();
-    path_vs = shader_scene->get_glsl_path_vs(ID_subclass);
-  }
-
-  //---------------------------
-  return path_vs;
-}
-std::string Shader::get_path_fs_from_selection(){
-  //---------------------------
-
-  std::string selection = vec_shader_class[ID_class];
-  std::string path_fs = "";
-
-  if(selection == "EDL"){
-    vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
-    path_fs = shader_edl->get_glsl_path_fs(ID_subclass);
-  }
-  else if(selection == "Scene"){
-    vk::render::scene::Shader* shader_scene = vk_render->get_shader_scene();
-    path_fs = shader_scene->get_glsl_path_fs(ID_subclass);
-  }
-
-  //---------------------------
-  return path_fs;
 }
 
 //Parameter
@@ -269,7 +229,7 @@ void Shader::show_parameter(){
 
   //---------------------------
 }
-void Shader::parameter_EDL(){
+void Shader::parameter_EDL(){/*
   vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
   vk::render::edl::Structure* edl_param = shader_edl->get_edl_struct();
   //---------------------------
@@ -288,25 +248,15 @@ void Shader::parameter_EDL(){
   if(ImGui::SliderFloat("Strength", &edl_param->strength, 1.0f, 100.0f)){
     shader_edl->update_shader();
   }
-
+*/
   //---------------------------
 }
 
 //Shader specific
-void Shader::check_reload(){
-  //---------------------------
 
-  bool has_vs_changed = editor_vs->is_text_changed();
-  bool has_fs_changed = editor_fs->is_text_changed();
-  if(has_vs_changed || has_fs_changed){
-    has_been_reloaded = false;
-  }
-
-  //---------------------------
-}
 void Shader::display_reload(){
   //---------------------------
-
+/*
   std::string status;
   ImVec4 color;
   if(has_been_reloaded){
@@ -321,7 +271,7 @@ void Shader::display_reload(){
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Reload: ");
   ImGui::SameLine();
   ImGui::TextColored(color, "%s", status.c_str());
-
+*/
   //---------------------------
 }
 void Shader::display_status(){
@@ -341,47 +291,14 @@ void Shader::display_status(){
 void Shader::shader_control(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
-
-  for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
-    //CTRL + S - save to file
-    if(io.KeysDown[527] && ImGui::IsKeyPressed(ImGuiKey_S)){
-      this->reload_vulkan_shader();
-      break;
-    }
-
+/*
+  //CTRL + S - save to file
+  if(io.KeysDown[527] && ImGui::IsKeyPressed(ImGuiKey_S)){
+    this->reload_vulkan_shader();
   }
-
+*/
   //----------------------------
 }
-void Shader::reload_vulkan_shader(){
-  //---------------------------
 
-  gui_console->clear_log();
-  std::string shader_class = vec_shader_class[ID_class];
-  std::string shader_subclass = vec_shader_subclass[ID_subclass];
-  vk_reload->hot_shader_reload(shader_class, shader_subclass);
-  this->has_been_reloaded = true;
-
-  //---------------------------
-}
-void Shader::check_read_only(){
-  //---------------------------
-
-  bool window_hovered = ImGui::IsWindowHovered(ImGuiHoveredFlags_ChildWindows|ImGuiHoveredFlags_AllowWhenBlockedByActiveItem);
-  if(window_hovered == false || read_only_forced){
-    this->read_only = true;
-  }
-  else if(window_hovered && read_only_forced == false){
-    this->read_only = false;
-  }
-  else if(window_hovered && read_only_forced){
-    this->read_only = true;
-  }
-
-  editor_vs->set_read_only(read_only);
-  editor_fs->set_read_only(read_only);
-
-  //---------------------------
-}
 
 }

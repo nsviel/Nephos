@@ -38,7 +38,7 @@ Shader::Shader(itf::Node* node_interface){
 Shader::~Shader(){}
 
 //Main function
-void Shader::init_panel(){
+void Shader::init(){
   //---------------------------
 
   vec_shader_class.push_back("Scene");

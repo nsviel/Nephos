@@ -24,7 +24,6 @@ public:
 public:
   //Main function
   void run_panel();
-  void init_panel();
   void design_panel();
 
   //Design function
@@ -42,14 +41,10 @@ public:
   void display_reload();
   void display_status();
   void shader_control();
-  void reload_vulkan_shader();
   void check_read_only();
 
   //Subfunction
-  void retrieve_shader_subclasses();
   void shader_file_selection();
-  std::string get_path_vs_from_selection();
-  std::string get_path_fs_from_selection();
 
 private:
   itf::render::Shader* itf_shader;

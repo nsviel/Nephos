@@ -22,7 +22,7 @@ public:
 
 public:
   //Main function
-  void init_panel();
+  void init();
   void design_panel();
 
   //Design function
