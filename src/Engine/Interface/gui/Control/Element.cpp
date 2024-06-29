@@ -1,11 +1,6 @@
 #include "Element.h"
 
-#include <Engine/Namespace.h>
-#include <Utility/Namespace.h>
-#include <Data/Namespace.h>
 #include <Interface/Namespace.h>
-#include <Operation/Namespace.h>
-#include <glm/glm.hpp>
 
 
 namespace itf::gui{
@@ -14,13 +9,7 @@ namespace itf::gui{
 Element::Element(itf::Node* node_interface){
   //---------------------------
 
-  dat::Node* node_data = node_interface->get_node_data();
-
   this->itf_struct = node_interface->get_itf_struct();
-  this->dat_selection = node_data->get_dat_selection();
-  this->dat_set = node_data->get_dat_set();
-  this->ope_operation = new ope::Operation();
-  this->itf_wheel = node_interface->get_itf_wheel();
   this->itf_element = node_interface->get_itf_element();
 
   //---------------------------
@@ -33,7 +22,6 @@ void Element::run_control(){
 
   this->control_keyboard_oneAction();
   this->control_keyboard_translation();
-  this->control_wheel();
 
   //---------------------------
 }
@@ -79,25 +67,5 @@ void Element::control_keyboard_translation(){
 
   //----------------------------
 }
-
-//Mouse
-void Element::control_wheel(){
-  ImGuiIO io = ImGui::GetIO();
-  //----------------------------
-
-  //Wheel click - Change mouse wheel mode
-  if(ImGui::IsMouseClicked(2)){
-    itf_wheel->change_mode();
-  }
-
-  //Wheel actions
-  if(!io.MouseDown[1] && io.MouseWheel){
-    float direction = math::sign(io.MouseWheel);
-    itf_wheel->make_action(direction);
-  }
-
-  //----------------------------
-}
-
 
 }
