@@ -9,6 +9,7 @@ namespace utl::path{
 std::string get_name_from_path(std::string path);
 std::string get_format_from_path(std::string path);
 std::string get_format_from_filename(std::string path);
+std::string get_name_from_filename(const std::string& path);
 std::string get_name_and_parent_from_path(std::string path);
 std::string get_filename_from_path(std::string path);
 std::string get_type_from_path(std::string path);

@@ -87,6 +87,26 @@ std::string get_format_from_filename(std::string path){
   //---------------------------
   return format;
 }
+std::string get_name_from_filename(const std::string& path){
+  // Return the file name without the path
+  //---------------------------
+
+  if (path.empty()) return "(not defined)";
+
+  // Find the position of the last directory separator
+  size_t last_separator = path.find_last_of("/\\");
+
+  // If no separator is found, return the original path as it does not contain any directories
+  if (last_separator == std::string::npos) {
+      return path;
+  }
+
+  // Extract and return the substring following the last separator
+  std::string file_name = path.substr(last_separator + 1);
+
+  //---------------------------
+  return file_name;
+}
 std::string get_type_from_path(std::string path){
   //Return file type (folder / file)
   //---------------------------

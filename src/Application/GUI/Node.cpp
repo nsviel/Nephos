@@ -17,14 +17,14 @@ Node::Node(app::Node* node_app){
   this->node_engine = node_app->get_node_engine();
   this->node_scene = node_app->get_node_scene();
 
-  this->gui_struct = new gui::Structure();
+  this->gui_demo = new gui::interface::Demo(this);
+  this->gui_state = new gui::interface::State(this);
   this->gui_tab = new gui::Tab(this);
   this->gui_style = new gui::style::Config(this);
   this->gui_font = new gui::style::Font(this);
   this->gui_theme = new gui::style::Theme(this);
   this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
-  this->gui_state = new gui::interface::State(this);
   this->tasker = node_engine->get_tasker_cpu();
 
   this->add_node_panel(node_scene);
@@ -60,6 +60,7 @@ void Node::loop(){
   gui_docking->docking_space();
   gui_tab->loop();
   gui_control->run_control();
+  gui_demo->loop();
 
   tasker->task_end("gui::loop");
 

@@ -13,7 +13,7 @@ State::State(gui::Node* gui){
   //---------------------------
 
   this->path.insert("../media/config/gui/default.ini");
-  this->vec_path = utl::path::list_all_file(path.directory, ".ini");
+  this->vec_file = utl::path::list_all_file(path.directory, ".ini");
 
   //---------------------------
 }
@@ -29,11 +29,15 @@ void State::save_state(){
 
   //---------------------------
 }
-void State::load_state(){
+void State::load_state(std::string file){
   //---------------------------
 
-  std::string path = this->path.build();
-  ImGui::LoadIniSettingsFromDisk(path.c_str());
+  if(file != ""){
+    path.filename(file);
+  }
+
+  std::string path_file = path.build();
+  ImGui::LoadIniSettingsFromDisk(path_file.c_str());
 
   //---------------------------
 }

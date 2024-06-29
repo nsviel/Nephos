@@ -10,23 +10,24 @@ namespace utl::base{class Path;}
 
 namespace gui::interface{
 
-class State
+class Demo
 {
 public:
   //Constructor / Destructor
-  State(gui::Node* gui);
-  ~State();
+  Demo(gui::Node* gui);
+  ~Demo();
 
 public:
   //Main function
-  void save_state();
-  void load_state(std::string file = "");
+  void loop();
 
-  inline std::vector<std::string> get_vec_file(){return vec_file;}
+  //Subfunction
+  void open_demo_file();
+
+  inline bool* get_show_demo(){return &show_demo;}
 
 private:
-  std::vector<std::string> vec_file;
-  utl::base::Path path;
+  bool show_demo = false;
 };
 
 }

@@ -1,9 +1,9 @@
 #pragma once
 
 namespace gui{class Node;}
-namespace gui{class Structure;}
 namespace gui::style{class Font;}
 namespace gui::interface{class State;}
+namespace gui::interface{class Demo;}
 namespace utl::element::gui{class Git;}
 
 
@@ -24,8 +24,8 @@ public:
   void menu_git();
 
 private:
-  gui::Structure* gui_struct;
   gui::style::Font* gui_font;
+  gui::interface::Demo* gui_demo;
   gui::interface::State* gui_state;
   utl::element::gui::Git* gui_git;
 };
