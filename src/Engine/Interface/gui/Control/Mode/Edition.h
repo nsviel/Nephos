@@ -3,6 +3,7 @@
 namespace itf{class Node;}
 namespace itf{class Structure;}
 namespace itf::control{class Element;}
+namespace itf::control{class Wheel;}
 
 
 namespace itf::gui{
@@ -18,13 +19,15 @@ public:
   //Main function
   void run_control();
 
-  //Keyboard
+  //Subfunction
   void control_keyboard_oneAction();
   void control_keyboard_translation();
+  void control_wheel();
 
 private:
   itf::Structure* itf_struct;
   itf::control::Element* itf_element;
+  itf::control::Wheel* itf_wheel;
 };
 
 }
