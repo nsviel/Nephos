@@ -56,7 +56,7 @@ void Node::loop(){
   tasker->task_begin("gui::loop");
 
   ImGui::NewFrame();
-  gui_docking->dock_main_node();
+  gui_docking->docking_space();
   gui_tab->loop();
   gui_control->run_control();
 

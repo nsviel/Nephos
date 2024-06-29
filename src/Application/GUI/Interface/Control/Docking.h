@@ -14,7 +14,7 @@ public:
 
 public:
   //Main function
-  void dock_main_node();
+  void docking_space();
 
 private:
 };

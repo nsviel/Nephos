@@ -11,6 +11,7 @@ namespace gui::interface{
 State::State(gui::Node* gui){
   //---------------------------
 
+  this->current = "../media/config/gui/imgui.ini";
 
   //---------------------------
 }
@@ -20,7 +21,7 @@ State::~State(){}
 void State::dock_save_state(){
   //---------------------------
 
-  ImGui::SaveIniSettingsToDisk("../media/config/gui/imgui.ini");
+  ImGui::SaveIniSettingsToDisk(current.c_str());
   std::cout<<"[OK] Imgui docking state saved"<<std::endl;
 
   //---------------------------
@@ -28,7 +29,7 @@ void State::dock_save_state(){
 void State::dock_load_state(){
   //---------------------------
 
-  ImGui::LoadIniSettingsFromDisk("../media/config/gui/imgui.ini");
+  ImGui::LoadIniSettingsFromDisk(current.c_str());
 
   //---------------------------
 }
