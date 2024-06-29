@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Interface/gui/Control/Camera.h>
-#include <Interface/gui/Control/Element.h>
-#include <Interface/gui/Control/Player.h>
+#include <Interface/gui/Control/Mode/Namespace.h>
+#include <Interface/gui/Control/Module/Namespace.h>
 #include <Interface/gui/Control/Control.h>
-#include <Interface/gui/Control/Wheel.h>

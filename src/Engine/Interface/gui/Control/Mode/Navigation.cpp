@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "Navigation.h"
 
 #include <Interface/Namespace.h>
 #include <Camera/Namespace.h>
@@ -8,7 +8,7 @@
 namespace itf::gui{
 
 //Constructor / Destructor
-Camera::Camera(itf::Node* node_interface){
+Navigation::Navigation(itf::Node* node_interface){
   //---------------------------
 
   this->itf_struct = node_interface->get_itf_struct();
@@ -16,10 +16,10 @@ Camera::Camera(itf::Node* node_interface){
 
   //---------------------------
 }
-Camera::~Camera(){}
+Navigation::~Navigation(){}
 
 //Main function
-void Camera::run_control(glm::vec2 center){
+void Navigation::run_control(glm::vec2 center){
   //---------------------------
 
   this->control_keyboard();
@@ -30,7 +30,7 @@ void Camera::run_control(glm::vec2 center){
 }
 
 //Subfunction
-void Camera::control_keyboard(){
+void Navigation::control_keyboard(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
@@ -59,7 +59,7 @@ void Camera::control_keyboard(){
 
   //---------------------------
 }
-void Camera::control_mouse(glm::vec2 center){
+void Navigation::control_mouse(glm::vec2 center){
   //----------------------------
 
   //Right click - Camera movement
@@ -74,7 +74,7 @@ void Camera::control_mouse(glm::vec2 center){
 
   //---------------------------
 }
-void Camera::control_wheel(){
+void Navigation::control_wheel(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 

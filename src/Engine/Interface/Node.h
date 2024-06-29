@@ -11,12 +11,12 @@ namespace itf{class Structure;}
 namespace itf::control{class Camera;}
 namespace itf::control{class Wheel;}
 namespace itf::control{class Element;}
-namespace itf::gui{class Camera;}
+namespace itf::gui{class Navigation;}
 namespace itf::gui{class Option;}
 namespace itf::gui{class Player;}
 namespace itf::gui{class Shader;}
 namespace itf::gui{class Renderer;}
-namespace itf::gui{class Element;}
+namespace itf::gui{class Edition;}
 
 
 namespace itf{
@@ -43,8 +43,8 @@ public:
   inline itf::control::Camera* get_itf_camera(){return itf_camera;}
   inline itf::control::Wheel* get_itf_wheel(){return itf_wheel;}
   inline itf::control::Element* get_itf_element(){return itf_element;}
-  inline itf::gui::Camera* get_gui_camera(){return gui_camera;}
-  inline itf::gui::Element* get_gui_element(){return gui_element;}
+  inline itf::gui::Navigation* get_gui_navigation(){return gui_navigation;}
+  inline itf::gui::Edition* get_gui_edition(){return gui_edition;}
   inline itf::gui::Player* get_gui_player(){return gui_player;}
 
 private:
@@ -58,12 +58,12 @@ private:
   itf::control::Camera* itf_camera;
   itf::control::Wheel* itf_wheel;
   itf::control::Element* itf_element;
-  itf::gui::Camera* gui_camera;
+  itf::gui::Navigation* gui_navigation;
   itf::gui::Player* gui_player;
   itf::gui::Option* gui_option;
   itf::gui::Shader* gui_shader;
   itf::gui::Renderer* gui_render;
-  itf::gui::Element* gui_element;
+  itf::gui::Edition* gui_edition;
 };
 
 }

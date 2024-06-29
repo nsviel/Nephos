@@ -9,12 +9,12 @@ namespace itf::control{class Camera;}
 
 namespace itf::gui{
 
-class Camera
+class Navigation
 {
 public:
   //Constructor / Destructor
-  Camera(itf::Node* node_interface);
-  ~Camera();
+  Navigation(itf::Node* node_interface);
+  ~Navigation();
 
 public:
   //Main function

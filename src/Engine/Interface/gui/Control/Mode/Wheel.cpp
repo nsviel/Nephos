@@ -37,8 +37,8 @@ void Wheel::control_wheel(){
 
   //Wheel actions
   if(!io.MouseDown[1] && io.MouseWheel){
-    float direction = math::sign(io.MouseWheel);
-    itf_wheel->make_action(direction);
+    //float direction = math::sign(io.MouseWheel);
+    //itf_wheel->make_action(direction);
   }
 
   //----------------------------

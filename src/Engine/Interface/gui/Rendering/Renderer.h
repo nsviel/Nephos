@@ -7,8 +7,8 @@ namespace itf::control{class Camera;}
 namespace vk::gui{class Imgui;}
 namespace vk{class Structure;}
 namespace eng{class Node;}
-namespace itf::gui{class Camera;}
-namespace itf::gui{class Element;}
+namespace itf::gui{class Navigation;}
+namespace itf::gui{class Edition;}
 namespace itf::gui{class Player;}
 
 
@@ -31,9 +31,9 @@ public:
   void resize();
 
 private:
-  itf::gui::Camera* gui_camera;
+  itf::gui::Navigation* gui_navigation;
   itf::control::Camera* itf_camera;
-  itf::gui::Element* itf_element;
+  itf::gui::Edition* gui_edition;
   itf::gui::Player* itf_player;
   vk::gui::Imgui* vk_imgui;
   vk::Structure* vk_struct;

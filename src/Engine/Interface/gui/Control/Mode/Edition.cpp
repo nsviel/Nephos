@@ -1,4 +1,4 @@
-#include "Element.h"
+#include "Edition.h"
 
 #include <Interface/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace itf::gui{
 
 //Constructor / Destructor
-Element::Element(itf::Node* node_interface){
+Edition::Edition(itf::Node* node_interface){
   //---------------------------
 
   this->itf_struct = node_interface->get_itf_struct();
@@ -14,10 +14,10 @@ Element::Element(itf::Node* node_interface){
 
   //---------------------------
 }
-Element::~Element(){}
+Edition::~Edition(){}
 
 //Main function
-void Element::run_control(){
+void Edition::run_control(){
   //---------------------------
 
   this->control_keyboard_oneAction();
@@ -27,7 +27,7 @@ void Element::run_control(){
 }
 
 //Keyboard
-void Element::control_keyboard_oneAction(){
+void Edition::control_keyboard_oneAction(){
   //----------------------------
 
   //Tab key
@@ -38,7 +38,7 @@ void Element::control_keyboard_oneAction(){
 
   //----------------------------
 }
-void Element::control_keyboard_translation(){
+void Edition::control_keyboard_translation(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
