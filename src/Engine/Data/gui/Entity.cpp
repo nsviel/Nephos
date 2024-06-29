@@ -3,6 +3,7 @@
 #include <Data/Namespace.h>
 #include <Operation/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
+#include <imgui/core/imgui.h>
 
 
 namespace dat::gui{

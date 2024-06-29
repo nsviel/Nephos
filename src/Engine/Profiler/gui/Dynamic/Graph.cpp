@@ -4,6 +4,7 @@
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
+#include <imgui/core/imgui.h>
 
 
 namespace prf::gui::dynamic{

@@ -20,9 +20,13 @@ public:
 public:
   //Main function
   void save_state();
-  void load_state(std::string file = "");
+  void load_state(std::string filename = "");
+
+  //Subfunction
+  void update_file_list();
 
   inline std::vector<std::string> get_vec_file(){return vec_file;}
+  inline utl::base::Path* get_current_path(){return &path;}
 
 private:
   std::vector<std::string> vec_file;

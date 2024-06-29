@@ -18,14 +18,22 @@ Theme::~Theme(){}
 void Theme::init_theme(){
   //---------------------------
 
-  this->color_window();
-  this->color_widget();
+  this->theme_main();
+  this->theme_window();
+  this->theme_widget();
 
   //---------------------------
 }
 
 //Subfunction
-void Theme::color_window(){
+void Theme::theme_main(){
+  //---------------------------
+
+  ImGui::StyleColorsDark();
+
+  //---------------------------
+}
+void Theme::theme_window(){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -43,7 +51,7 @@ void Theme::color_window(){
 
   //---------------------------
 }
-void Theme::color_widget(){
+void Theme::theme_widget(){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 

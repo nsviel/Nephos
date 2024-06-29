@@ -248,7 +248,7 @@ std::vector<std::string> list_all_file(std::string path){
   while((files = readdir(directory)) != NULL){
     std::string name = files->d_name;
 
-    if(name != "."){
+    if(name != "." && name != ".."){
       path_vec.push_back(name);
     }
   }

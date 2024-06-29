@@ -19,7 +19,7 @@ std::string formatted_size(std::string path);
 
 //Operation
 void clear(std::string path);
-void check_or_create(std::string path);
+bool check_or_create(std::string path);
 uint8_t* load_binary(std::string path);
 
 //Export / import

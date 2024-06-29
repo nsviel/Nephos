@@ -12,10 +12,10 @@ namespace gui::interface{
 State::State(gui::Node* gui){
   //---------------------------
 
-  this->path.insert("../media/config/gui/default.ini");
-  this->vec_file = utl::path::list_all_file(path.directory, ".ini");
+  this->path.insert("../media/config/gui/state/default.ini");
 
   //---------------------------
+  this->update_file_list();
 }
 State::~State(){}
 
@@ -23,21 +23,33 @@ State::~State(){}
 void State::save_state(){
   //---------------------------
 
-  std::string path = this->path.build();
-  ImGui::SaveIniSettingsToDisk(path.c_str());
-  std::cout<<"[OK] Imgui docking state saved"<<std::endl;
+  std::string path_file = path.build();
+  ImGui::SaveIniSettingsToDisk(path_file.c_str());
+  std::cout<<"[OK] Imgui state saved at "<<path_file<<std::endl;
+
+  this->update_file_list();
 
   //---------------------------
 }
-void State::load_state(std::string file){
+void State::load_state(std::string filename){
   //---------------------------
 
-  if(file != ""){
-    path.filename(file);
+  if(filename != ""){
+    path.filename(filename);
   }
 
   std::string path_file = path.build();
-  ImGui::LoadIniSettingsFromDisk(path_file.c_str());
+  //ImGui::LoadIniSettingsFromDisk(path_file.c_str());
+  std::cout<<"[OK] Imgui load state at "<<path_file<<std::endl;
+
+  //---------------------------
+}
+
+//Subfunction
+void State::update_file_list(){
+  //---------------------------
+
+  this->vec_file = utl::path::list_all_file(path.directory);
 
   //---------------------------
 }

@@ -23,6 +23,10 @@ public:
   void menu_imgui();
   void menu_git();
 
+  //Subfunction
+  void menu_demo();
+  void menu_state();
+
 private:
   gui::style::Font* gui_font;
   gui::interface::Demo* gui_demo;

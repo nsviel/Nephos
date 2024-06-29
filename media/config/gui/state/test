@@ -1,0 +1,195 @@
+[Window][Debug##Default]
+Pos=60,60
+Size=400,400
+Collapsed=0
+
+[Window][##table]
+Size=410,428
+Collapsed=0
+
+[Window][dock_space_main]
+Pos=0,0
+Size=1024,500
+Collapsed=0
+
+[Window][Renderer]
+Pos=421,19
+Size=203,481
+Collapsed=0
+DockId=0x00000004,0
+
+[Window][Scene]
+Pos=0,19
+Size=399,481
+Collapsed=0
+DockId=0x00000007,1
+
+[Window][Player]
+Pos=0,654
+Size=263,514
+Collapsed=0
+DockId=0x00000006,0
+
+[Window][Stream]
+Pos=265,19
+Size=393,1149
+Collapsed=0
+DockId=0x00000001,1
+
+[Window][Loader]
+Pos=265,19
+Size=485,481
+Collapsed=0
+DockId=0x00000001,2
+
+[Window][Graph]
+Pos=0,19
+Size=219,251
+Collapsed=0
+DockId=0x00000007,0
+
+[Window][Camera]
+Pos=0,19
+Size=263,264
+Collapsed=0
+DockId=0x00000007,1
+
+[Window][Set]
+Pos=60,60
+Size=32,32
+Collapsed=0
+
+[Window][[Set]  Scene]
+Pos=60,60
+Size=180,115
+Collapsed=0
+
+[Window][[Set]  Graph]
+Pos=60,60
+Size=180,115
+Collapsed=0
+
+[Window][Entity]
+Pos=60,60
+Size=32,32
+Collapsed=0
+
+[Window][[Entity]  world::axis]
+Pos=60,60
+Size=179,208
+Collapsed=0
+
+[Window][Dear ImGui Demo]
+Pos=581,19
+Size=443,481
+Collapsed=0
+DockId=0x00000004,1
+
+[Window][Player_kinect]
+Pos=325,19
+Size=183,481
+Collapsed=0
+DockId=0x00000001,1
+
+[Window][Profiler]
+Pos=221,19
+Size=198,481
+Collapsed=0
+DockId=0x00000003,0
+
+[Window][Stream_kinect]
+Pos=328,19
+Size=232,481
+Collapsed=0
+DockId=0x00000001,2
+
+[Window][[Entity]  bench_1]
+Pos=296,82
+Size=199,247
+Collapsed=0
+
+[Window][[Set]  kinect]
+Pos=60,60
+Size=165,99
+Collapsed=0
+
+[Window][[Entity]  camera_0]
+Pos=60,60
+Size=191,224
+Collapsed=0
+
+[Window][Radiometry]
+Pos=626,19
+Size=398,481
+Collapsed=0
+DockId=0x0000000A,0
+
+[Window][Dear ImGui Style Editor]
+Pos=685,62
+Size=360,475
+Collapsed=0
+
+[Window][Option]
+Pos=265,19
+Size=485,481
+Collapsed=0
+DockId=0x00000001,1
+
+[Window][Exporter]
+Pos=265,19
+Size=393,481
+Collapsed=0
+DockId=0x00000001,1
+
+[Window][Panel]
+Pos=0,272
+Size=219,228
+Collapsed=0
+DockId=0x00000008,0
+
+[Window][Import##555]
+Pos=265,19
+Size=393,481
+Collapsed=0
+DockId=0x00000001,1
+
+[Window][Export##555]
+Pos=265,19
+Size=393,481
+Collapsed=0
+DockId=0x00000001,2
+
+[Window][Transformation##555]
+Pos=265,19
+Size=393,481
+Collapsed=0
+DockId=0x00000001,1
+
+[Window][Shader]
+Pos=265,19
+Size=393,481
+Collapsed=0
+DockId=0x00000001,1
+
+[Table][0xDA36A7E0,6]
+RefScale=13
+Column 0  Width=29 Sort=0v
+Column 1  Width=72
+Column 2  Width=74
+Column 3  Width=64
+Column 4  Weight=1.0000
+Column 5  Width=-1
+
+[Docking][Data]
+DockSpace         ID=0x098FD236 Window=0xF3B39054 Pos=0,19 Size=1024,481 Split=X Selected=0xD4E24632
+  DockNode        ID=0x00000009 Parent=0x098FD236 SizeRef=624,481 Split=X
+    DockNode      ID=0x00000001 Parent=0x00000009 SizeRef=219,481 Split=Y Selected=0x95AC42D5
+      DockNode    ID=0x00000005 Parent=0x00000001 SizeRef=327,633 Split=Y Selected=0x95AC42D5
+        DockNode  ID=0x00000007 Parent=0x00000005 SizeRef=263,251 Selected=0x95AC42D5
+        DockNode  ID=0x00000008 Parent=0x00000005 SizeRef=263,228 Selected=0xFFEA1EA4
+      DockNode    ID=0x00000006 Parent=0x00000001 SizeRef=327,514 Selected=0xF6D15C51
+    DockNode      ID=0x00000002 Parent=0x00000009 SizeRef=403,481 Split=X Selected=0xD4E24632
+      DockNode    ID=0x00000003 Parent=0x00000002 SizeRef=198,481 Selected=0x1E6EB881
+      DockNode    ID=0x00000004 Parent=0x00000002 SizeRef=203,481 CentralNode=1 Selected=0xD4E24632
+  DockNode        ID=0x0000000A Parent=0x098FD236 SizeRef=398,481 Selected=0xD3301F3F
+

@@ -116,21 +116,23 @@ std::string formatted_size(std::string path){
 }
 
 //Operation
-void check_or_create(std::string path){
-    bool is_exists;
-    //---------------------------
+bool check_or_create(std::string path){
+  //---------------------------
 
-    //Check file existence
-    std::ifstream infile(path.c_str());
-    is_exists = infile.good();
+  //Check file existence
+  std::ifstream infile(path.c_str());
+  bool is_exists = infile.good();
 
-    //Create file
-    if(is_exists == false){
-      std::ofstream file(path);
-    }
-
-    //---------------------------
+  //Create file
+  if(is_exists == false){
+    std::ofstream file(path);
+    file.close();
+    return false;
   }
+
+  //---------------------------
+  return true;
+}
 void clear(std::string path){
   //---------------------------
 

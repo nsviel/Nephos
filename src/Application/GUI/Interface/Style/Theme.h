@@ -17,8 +17,9 @@ public:
   void init_theme();
 
   //Subfunction
-  void color_window();
-  void color_widget();
+  void theme_main();
+  void theme_window();
+  void theme_widget();
 
 private:
 

@@ -1,6 +1,8 @@
 #include "Imgui.h"
 
+#include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <imgui/core/imgui.h>
 #include <imgui/core/imgui_impl_glfw.h>
 #include <imgui/vulkan/imgui_impl_vulkan.h>
 #include <fontawesome/IconsFontAwesome6.h>
@@ -59,7 +61,7 @@ void Imgui::clean(){
 }
 void Imgui::loop(){
   //---------------------------
-
+  
   this->glfw_new_frame();
 
   //---------------------------

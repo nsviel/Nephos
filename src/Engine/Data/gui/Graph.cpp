@@ -61,31 +61,31 @@ void Graph::design_panel(){
 }
 
 //Subfunction
-void Graph::draw_window_background(){
+void Graph::draw_window_background() {
   //-------------------------------
 
   float x1 = ImGui::GetCurrentWindow()->WorkRect.Min.x;
   float x2 = ImGui::GetCurrentWindow()->WorkRect.Max.x;
   float item_spacing_y = ImGui::GetStyle().ItemSpacing.y;
-  float item_offset_y = -item_spacing_y * 0.1f;
-  float line_height = ImGui::GetTextLineHeight() + item_spacing_y;
+  float line_height = ImGui::GetTextLineHeightWithSpacing();
   int row_count = 100;
   ImU32 col_even = IM_COL32(35, 35, 35, 255);
   ImU32 col_odd = IM_COL32(25, 25, 25, 255);
 
   ImDrawList* draw_list = ImGui::GetWindowDrawList();
-  float y0 = ImGui::GetCursorScreenPos().y + (float)(int)item_offset_y;
+  ImVec2 window_pos = ImGui::GetCursorScreenPos();
 
-  int row_display_start;
-  int row_display_end;
-  ImGui::CalcListClipping(row_count, line_height, &row_display_start, &row_display_end);
-  for(int row_n = row_display_start; row_n < row_display_end; row_n++){
-    ImU32 col = (row_n & 1) ? col_odd : col_even;
-    if((col & IM_COL32_A_MASK) == 0)
-      continue;
-    float y1 = y0 + (line_height * row_n);
-    float y2 = y1 + line_height;
-    draw_list->AddRectFilled(ImVec2(x1, y1), ImVec2(x2, y2), col);
+  ImGuiListClipper clipper;
+  clipper.Begin(row_count, line_height);
+  while (clipper.Step()) {
+    for (int row_n = clipper.DisplayStart; row_n < clipper.DisplayEnd; row_n++) {
+      ImU32 col = (row_n & 1) ? col_odd : col_even;
+      if ((col & IM_COL32_A_MASK) == 0)
+        continue;
+      float y1 = window_pos.y + (line_height * row_n);
+      float y2 = y1 + line_height;
+      draw_list->AddRectFilled(ImVec2(x1, y1), ImVec2(x2, y2), col);
+    }
   }
 
   //-------------------------------

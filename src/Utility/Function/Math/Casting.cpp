@@ -284,6 +284,18 @@ std::vector<ImU32> vec_vec3_to_ImU32(std::vector<glm::vec3> vec){
   //---------------------------
   return vec_imu32;
 }
+std::vector<const char*> vec_str_to_cchar(const std::vector<std::string>& vec_str){
+  std::vector<const char*> vec_cstr;
+  //---------------------------
+
+  vec_cstr.reserve(vec_str.size());  // Reserve space to improve performance
+  for (const auto& str : vec_str) {
+    vec_cstr.push_back(str.c_str());
+  }
+
+  //---------------------------
+  return vec_cstr;
+}
 bool string_to_bool(std::string const& s){
   bool sucess = false;
   //---------------------------
