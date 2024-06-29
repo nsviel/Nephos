@@ -42,21 +42,12 @@ void Element::control_keyboard_oneAction(){
   ImGuiIO io = ImGui::GetIO();
   //----------------------------
 
-  for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
-    //Tab key
-    if(ImGui::IsKeyPressed(ImGuiKey_Tab)){
-      dat_selection->select_next_element();
-      break;
-    }
+  //Tab key
+  if(ImGui::IsKeyPressed(ImGuiKey_Tab)) itf_element->select_next();
 
-    //Suppr key - Delete selected
-    if(ImGui::IsKeyPressed(ImGuiKey_Delete)){
-      dat::base::Set* set = dat_selection->get_selected_set();
-      dat_set->remove_entity(set, set->active_entity);
-      break;
-    }
-  }
-
+  //Suppr key - Delete selected
+  if(ImGui::IsKeyPressed(ImGuiKey_Delete)) itf_element->remove_current();
+  
   //----------------------------
 }
 void Element::control_keyboard_translation(){
