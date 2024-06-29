@@ -4,6 +4,7 @@ namespace itf{class Node;}
 namespace dat::graph{class Selection;}
 namespace dat::element{class Set;}
 namespace itf::control{class Wheel;}
+namespace itf::control{class Element;}
 namespace ope{class Operation;}
 
 
@@ -32,6 +33,7 @@ private:
   dat::element::Set* dat_set;
   ope::Operation* ope_operation;
   itf::control::Wheel* itf_wheel;
+  itf::control::Element* itf_element;
 };
 
 }

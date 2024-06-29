@@ -20,6 +20,7 @@ Element::Element(itf::Node* node_interface){
   this->dat_set = node_data->get_dat_set();
   this->ope_operation = new ope::Operation();
   this->itf_wheel = node_interface->get_itf_wheel();
+  this->itf_element = node_interface->get_itf_element();
 
   //---------------------------
 }

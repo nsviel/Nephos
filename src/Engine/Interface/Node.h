@@ -10,6 +10,7 @@ namespace dat{class Node;}
 namespace itf{class Structure;}
 namespace itf::control{class Camera;}
 namespace itf::control{class Wheel;}
+namespace itf::control{class Element;}
 namespace itf::gui{class Camera;}
 namespace itf::gui{class Option;}
 namespace itf::gui{class Player;}
@@ -41,6 +42,7 @@ public:
   inline itf::Structure* get_itf_struct(){return itf_struct;}
   inline itf::control::Camera* get_itf_camera(){return itf_camera;}
   inline itf::control::Wheel* get_itf_wheel(){return itf_wheel;}
+  inline itf::control::Element* get_itf_element(){return itf_element;}
   inline itf::gui::Camera* get_gui_camera(){return gui_camera;}
   inline itf::gui::Element* get_gui_element(){return gui_element;}
   inline itf::gui::Player* get_gui_player(){return gui_player;}
@@ -55,6 +57,7 @@ private:
   itf::Structure* itf_struct;
   itf::control::Camera* itf_camera;
   itf::control::Wheel* itf_wheel;
+  itf::control::Element* itf_element;
   itf::gui::Camera* gui_camera;
   itf::gui::Player* gui_player;
   itf::gui::Option* gui_option;

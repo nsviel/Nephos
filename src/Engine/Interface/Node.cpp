@@ -25,6 +25,7 @@ Node::Node(eng::Node* node_engine){
   this->itf_struct = new itf::Structure();
   this->itf_camera = new itf::control::Camera(this);
   this->itf_wheel = new itf::control::Wheel(this);
+  this->itf_element = new itf::control::Element(this);
   this->gui_camera = new itf::gui::Camera(this);
   this->gui_element = new itf::gui::Element(this);
   this->gui_player = new itf::gui::Player(this);
