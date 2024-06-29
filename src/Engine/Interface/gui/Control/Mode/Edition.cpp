@@ -1,6 +1,7 @@
 #include "Edition.h"
 
 #include <Interface/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace itf::gui{
@@ -23,6 +24,7 @@ void Edition::run_control(){
 
   this->control_keyboard_oneAction();
   this->control_keyboard_translation();
+  this->control_wheel();
 
   //---------------------------
 }
@@ -79,8 +81,7 @@ void Edition::control_wheel(){
 
   //Wheel actions
   if(!io.MouseDown[1] && io.MouseWheel){
-    //float direction = math::sign(io.MouseWheel);
-    //itf_wheel->make_action(direction);
+    itf_wheel->make_action(io.MouseWheel);
   }
 
   //----------------------------

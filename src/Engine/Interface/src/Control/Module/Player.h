@@ -16,10 +16,9 @@ public:
 
 public:
   //Main function
-  void run_control();
-
-  //Keyboard
-  void control_keyboard();
+  void make_pause();
+  void make_forward();
+  void make_backward();
 
 private:
   dat::graph::Selection* dat_selection;

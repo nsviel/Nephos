@@ -29,7 +29,7 @@ public:
 
 public:
   //Main function
-  void make_action(float direction);
+  void make_action(float value);
 
   //Subfunction
   void change_mode();

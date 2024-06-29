@@ -27,11 +27,12 @@ Wheel::Wheel(itf::Node* node_interface){
 Wheel::~Wheel(){}
 
 //Main function
-void Wheel::make_action(float direction){
+void Wheel::make_action(float value){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
   //Rotation quantity
+  float direction = math::sign(value);
   float radian = 5 * M_PI/180 * 50;
   glm::vec3 R;
 

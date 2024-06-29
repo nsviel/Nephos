@@ -1,8 +1,8 @@
 #pragma once
 
-namespace dat::graph{class Selection;}
 namespace itf{class Node;}
-namespace dyn::player{class Player;}
+namespace itf{class Structure;}
+namespace itf::control{class Player;}
 
 
 namespace itf::gui{
@@ -22,8 +22,8 @@ public:
   void control_keyboard();
 
 private:
-  dat::graph::Selection* dat_selection;
-  dyn::player::Player* dyn_player;
+  itf::Structure* itf_struct;
+  itf::control::Player* itf_player;
 };
 
 }

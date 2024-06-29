@@ -10,6 +10,7 @@ namespace dat{class Node;}
 namespace itf{class Structure;}
 namespace itf::control{class Navigation;}
 namespace itf::control{class Wheel;}
+namespace itf::control{class Player;}
 namespace itf::control{class Edition;}
 namespace itf::gui{class Option;}
 namespace itf::gui{class Control;}
@@ -40,6 +41,7 @@ public:
   inline itf::Structure* get_itf_struct(){return itf_struct;}
   inline itf::control::Navigation* get_itf_navigation(){return itf_navigation;}
   inline itf::control::Wheel* get_itf_wheel(){return itf_wheel;}
+  inline itf::control::Player* get_itf_player(){return itf_player;}
   inline itf::control::Edition* get_itf_edition(){return itf_edition;}
   inline itf::gui::Control* get_gui_control(){return gui_control;}
 
@@ -53,6 +55,7 @@ private:
   itf::Structure* itf_struct;
   itf::control::Navigation* itf_navigation;
   itf::control::Wheel* itf_wheel;
+  itf::control::Player* itf_player;
   itf::control::Edition* itf_edition;
   itf::gui::Control* gui_control;
   itf::gui::Option* gui_option;

@@ -22,42 +22,26 @@ Player::Player(itf::Node* node_interface){
 Player::~Player(){}
 
 //Main function
-void Player::run_control(){
+void Player::make_pause(){
   //---------------------------
 
-  this->control_keyboard();
-
-  //---------------------------
-}
-
-//Keyboard
-void Player::control_keyboard(){
-  ImGuiIO io = ImGui::GetIO();
-  //----------------------------
-
-  for(int i=0; i<IM_ARRAYSIZE(io.KeysDown); i++){
-
-    //Tab key
-    if(ImGui::IsKeyPressed(ImGuiKey_Space)){
-      dyn_player->button_pause();
-      break;
-    }
-
-    //Left arrow key
-    if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)){
-      //player->ts_forward = -1;
-      break;
-    }
-
-    //Right arrow key
-    if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)){
-      //player->ts_forward = 1;
-      break;
-    }
-  }
+  dyn_player->button_pause();
 
   //---------------------------
 }
+void Player::make_forward(){
+  //---------------------------
 
+  //player->ts_forward = -1;
+
+  //---------------------------
+}
+void Player::make_backward(){
+  //---------------------------
+
+  //player->ts_forward = 1;
+
+  //---------------------------
+}
 
 }
