@@ -15,10 +15,7 @@ Renderer::Renderer(itf::Node* node_interface){
   vk::Node* node_vulkan = node_interface->get_node_vulkan();
 
   this->itf_navigation = node_interface->get_itf_navigation();
-  this->gui_edition = node_interface->get_gui_edition();
-  this->gui_navigation = node_interface->get_gui_navigation();
-  this->itf_player = node_interface->get_gui_player();
-
+  this->gui_control = node_interface->get_gui_control();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_struct = node_vulkan->get_vk_struct();
 
@@ -70,9 +67,7 @@ void Renderer::engine_texture(){
     int center_y = panel_pose.y + panel_size.y * 0.5f;
     glm::vec2 panel_center = glm::vec2(center_x, center_y);
 
-    itf_player->run_control();
-    gui_edition->run_control();
-    gui_navigation->run_control(panel_center);
+    gui_control->run_control(panel_center);
   }else{
     itf_navigation->disable_camera_view();
   }

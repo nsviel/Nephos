@@ -11,12 +11,10 @@ namespace itf{class Structure;}
 namespace itf::control{class Navigation;}
 namespace itf::control{class Wheel;}
 namespace itf::control{class Edition;}
-namespace itf::gui{class Navigation;}
 namespace itf::gui{class Option;}
-namespace itf::gui{class Player;}
+namespace itf::gui{class Control;}
 namespace itf::gui{class Shader;}
 namespace itf::gui{class Renderer;}
-namespace itf::gui{class Edition;}
 
 
 namespace itf{
@@ -43,9 +41,7 @@ public:
   inline itf::control::Navigation* get_itf_navigation(){return itf_navigation;}
   inline itf::control::Wheel* get_itf_wheel(){return itf_wheel;}
   inline itf::control::Edition* get_itf_edition(){return itf_edition;}
-  inline itf::gui::Navigation* get_gui_navigation(){return gui_navigation;}
-  inline itf::gui::Edition* get_gui_edition(){return gui_edition;}
-  inline itf::gui::Player* get_gui_player(){return gui_player;}
+  inline itf::gui::Control* get_gui_control(){return gui_control;}
 
 private:
   eng::Node* node_engine;
@@ -58,12 +54,11 @@ private:
   itf::control::Navigation* itf_navigation;
   itf::control::Wheel* itf_wheel;
   itf::control::Edition* itf_edition;
-  itf::gui::Navigation* gui_navigation;
-  itf::gui::Player* gui_player;
+  itf::gui::Control* gui_control;
   itf::gui::Option* gui_option;
   itf::gui::Shader* gui_shader;
   itf::gui::Renderer* gui_render;
-  itf::gui::Edition* gui_edition;
+
 };
 
 }

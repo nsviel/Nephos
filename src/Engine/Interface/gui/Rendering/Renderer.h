@@ -7,9 +7,7 @@ namespace itf::control{class Navigation;}
 namespace vk::gui{class Imgui;}
 namespace vk{class Structure;}
 namespace eng{class Node;}
-namespace itf::gui{class Navigation;}
-namespace itf::gui{class Edition;}
-namespace itf::gui{class Player;}
+namespace itf::gui{class Control;}
 
 
 namespace itf::gui{
@@ -31,10 +29,8 @@ public:
   void resize();
 
 private:
-  itf::gui::Navigation* gui_navigation;
+  itf::gui::Control* gui_control;
   itf::control::Navigation* itf_navigation;
-  itf::gui::Edition* gui_edition;
-  itf::gui::Player* itf_player;
   vk::gui::Imgui* vk_imgui;
   vk::Structure* vk_struct;
 
