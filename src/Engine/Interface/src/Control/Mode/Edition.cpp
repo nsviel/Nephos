@@ -1,4 +1,4 @@
-#include "Element.h"
+#include "Edition.h"
 
 #include <Interface/Namespace.h>
 #include <Data/Namespace.h>
@@ -8,7 +8,7 @@
 namespace itf::control{
 
 //Constructor / Destructor
-Element::Element(itf::Node* node_interface){
+Edition::Edition(itf::Node* node_interface){
   //---------------------------
 
   dat::Node* node_data = node_interface->get_node_data();
@@ -20,10 +20,10 @@ Element::Element(itf::Node* node_interface){
 
   //---------------------------
 }
-Element::~Element(){}
+Edition::~Edition(){}
 
 //Main function
-void Element::element_forward(){
+void Edition::element_forward(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
@@ -32,7 +32,7 @@ void Element::element_forward(){
 
   //---------------------------
 }
-void Element::element_backward(){
+void Edition::element_backward(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
@@ -41,7 +41,7 @@ void Element::element_backward(){
 
   //---------------------------
 }
-void Element::element_left(){
+void Edition::element_left(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
@@ -50,7 +50,7 @@ void Element::element_left(){
 
   //---------------------------
 }
-void Element::element_right(){
+void Edition::element_right(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
@@ -59,7 +59,7 @@ void Element::element_right(){
 
   //---------------------------
 }
-void Element::element_down(){
+void Edition::element_down(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
@@ -68,7 +68,7 @@ void Element::element_down(){
 
   //---------------------------
 }
-void Element::element_up(){
+void Edition::element_up(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
@@ -77,7 +77,7 @@ void Element::element_up(){
 
   //---------------------------
 }
-void Element::element_zoom(float value){
+void Edition::element_zoom(float value){
   //---------------------------
 
 
@@ -86,14 +86,14 @@ void Element::element_zoom(float value){
 }
 
 //Subfunction
-void Element::select_next(){
+void Edition::select_next(){
   //---------------------------
 
   dat_selection->select_next_element();
 
   //---------------------------
 }
-void Element::remove_current(){
+void Edition::remove_current(){
   dat::base::Set* set = dat_selection->get_selected_set();
   //---------------------------
 

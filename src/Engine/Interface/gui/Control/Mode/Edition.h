@@ -2,7 +2,7 @@
 
 namespace itf{class Node;}
 namespace itf{class Structure;}
-namespace itf::control{class Element;}
+namespace itf::control{class Edition;}
 namespace itf::control{class Wheel;}
 
 
@@ -26,7 +26,7 @@ public:
 
 private:
   itf::Structure* itf_struct;
-  itf::control::Element* itf_element;
+  itf::control::Edition* itf_edition;
   itf::control::Wheel* itf_wheel;
 };
 

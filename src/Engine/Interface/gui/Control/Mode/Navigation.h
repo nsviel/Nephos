@@ -4,7 +4,7 @@
 
 namespace itf{class Node;}
 namespace itf{class Structure;}
-namespace itf::control{class Camera;}
+namespace itf::control{class Navigation;}
 
 
 namespace itf::gui{
@@ -27,7 +27,7 @@ public:
 
 private:
   itf::Structure* itf_struct;
-  itf::control::Camera* itf_camera;
+  itf::control::Navigation* itf_navigation;
 };
 
 }

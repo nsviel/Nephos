@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Interface/src/Control/Mode/Camera.h>
-#include <Interface/src/Control/Mode/Element.h>
+#include <Interface/src/Control/Mode/Navigation.h>
+#include <Interface/src/Control/Mode/Edition.h>

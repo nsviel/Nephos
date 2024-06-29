@@ -14,7 +14,7 @@ Renderer::Renderer(itf::Node* node_interface){
 
   vk::Node* node_vulkan = node_interface->get_node_vulkan();
 
-  this->itf_camera = node_interface->get_itf_camera();
+  this->itf_navigation = node_interface->get_itf_navigation();
   this->gui_edition = node_interface->get_gui_edition();
   this->gui_navigation = node_interface->get_gui_navigation();
   this->itf_player = node_interface->get_gui_player();
@@ -74,7 +74,7 @@ void Renderer::engine_texture(){
     gui_edition->run_control();
     gui_navigation->run_control(panel_center);
   }else{
-    itf_camera->disable_camera_view();
+    itf_navigation->disable_camera_view();
   }
 
   //---------------------------

@@ -10,9 +10,9 @@ Edition::Edition(itf::Node* node_interface){
   //---------------------------
 
   this->itf_struct = node_interface->get_itf_struct();
-  this->itf_element = node_interface->get_itf_element();
+  this->itf_edition = node_interface->get_itf_edition();
   this->itf_wheel = node_interface->get_itf_wheel();
-  
+
   //---------------------------
 }
 Edition::~Edition(){}
@@ -32,10 +32,10 @@ void Edition::control_keyboard_oneAction(){
   //----------------------------
 
   //Tab key
-  if(ImGui::IsKeyPressed(ImGuiKey_Tab)) itf_element->select_next();
+  if(ImGui::IsKeyPressed(ImGuiKey_Tab)) itf_edition->select_next();
 
   //Suppr key - Delete selected
-  if(ImGui::IsKeyPressed(ImGuiKey_Delete)) itf_element->remove_current();
+  if(ImGui::IsKeyPressed(ImGuiKey_Delete)) itf_edition->remove_current();
 
   //----------------------------
 }
@@ -49,22 +49,22 @@ void Edition::control_keyboard_translation(){
   itf_struct->control.key_fast = (io.KeysDown[340]) ? true : false;
 
   // Z key
-  if(io.KeysDown[571]) itf_element->element_forward();
+  if(io.KeysDown[571]) itf_edition->element_forward();
 
   // S key
-  if(io.KeysDown[564]) itf_element->element_backward();
+  if(io.KeysDown[564]) itf_edition->element_backward();
 
   // D key
-  if(io.KeysDown[549]) itf_element->element_right();
+  if(io.KeysDown[549]) itf_edition->element_right();
 
   // Q key
-  if(io.KeysDown[562]) itf_element->element_left();
+  if(io.KeysDown[562]) itf_edition->element_left();
 
   // A key
-  if(io.KeysDown[546]) itf_element->element_down();
+  if(io.KeysDown[546]) itf_edition->element_down();
 
   // E key
-  if(io.KeysDown[550]) itf_element->element_up();
+  if(io.KeysDown[550]) itf_edition->element_up();
 
   //----------------------------
 }

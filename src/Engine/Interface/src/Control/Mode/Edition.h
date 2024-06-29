@@ -12,12 +12,12 @@ namespace ope{class Operation;}
 
 namespace itf::control{
 
-class Element
+class Edition
 {
 public:
   //Constructor / Destructor
-  Element(itf::Node* node_interface);
-  ~Element();
+  Edition(itf::Node* node_interface);
+  ~Edition();
 
 public:
   //Main function

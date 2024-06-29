@@ -8,9 +8,9 @@ namespace cam{class Node;}
 namespace dyn{class Node;}
 namespace dat{class Node;}
 namespace itf{class Structure;}
-namespace itf::control{class Camera;}
+namespace itf::control{class Navigation;}
 namespace itf::control{class Wheel;}
-namespace itf::control{class Element;}
+namespace itf::control{class Edition;}
 namespace itf::gui{class Navigation;}
 namespace itf::gui{class Option;}
 namespace itf::gui{class Player;}
@@ -40,9 +40,9 @@ public:
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
   inline itf::Structure* get_itf_struct(){return itf_struct;}
-  inline itf::control::Camera* get_itf_camera(){return itf_camera;}
+  inline itf::control::Navigation* get_itf_navigation(){return itf_navigation;}
   inline itf::control::Wheel* get_itf_wheel(){return itf_wheel;}
-  inline itf::control::Element* get_itf_element(){return itf_element;}
+  inline itf::control::Edition* get_itf_edition(){return itf_edition;}
   inline itf::gui::Navigation* get_gui_navigation(){return gui_navigation;}
   inline itf::gui::Edition* get_gui_edition(){return gui_edition;}
   inline itf::gui::Player* get_gui_player(){return gui_player;}
@@ -55,9 +55,9 @@ private:
   dyn::Node* node_dynamic;
 
   itf::Structure* itf_struct;
-  itf::control::Camera* itf_camera;
+  itf::control::Navigation* itf_navigation;
   itf::control::Wheel* itf_wheel;
-  itf::control::Element* itf_element;
+  itf::control::Edition* itf_edition;
   itf::gui::Navigation* gui_navigation;
   itf::gui::Player* gui_player;
   itf::gui::Option* gui_option;

@@ -12,7 +12,7 @@ Navigation::Navigation(itf::Node* node_interface){
   //---------------------------
 
   this->itf_struct = node_interface->get_itf_struct();
-  this->itf_camera = node_interface->get_itf_camera();
+  this->itf_navigation = node_interface->get_itf_navigation();
 
   //---------------------------
 }
@@ -40,22 +40,22 @@ void Navigation::control_keyboard(){
   itf_struct->control.key_fast = (io.KeysDown[340]) ? true : false;
 
   //Z key or Up key
-  if(io.KeysDown[571] || io.KeysDown[515]) itf_camera->cam_forward();
+  if(io.KeysDown[571] || io.KeysDown[515]) itf_navigation->cam_forward();
 
   //S key or Down key
-  if(io.KeysDown[564] || io.KeysDown[516]) itf_camera->cam_backward();
+  if(io.KeysDown[564] || io.KeysDown[516]) itf_navigation->cam_backward();
 
   //Q key or Left key
-  if(io.KeysDown[562] || io.KeysDown[513]) itf_camera->cam_left();
+  if(io.KeysDown[562] || io.KeysDown[513]) itf_navigation->cam_left();
 
   //D key or Left key
-  if(io.KeysDown[549] || io.KeysDown[514]) itf_camera->cam_right();
+  if(io.KeysDown[549] || io.KeysDown[514]) itf_navigation->cam_right();
 
   //A key
-  if(io.KeysDown[546]) itf_camera->cam_down();
+  if(io.KeysDown[546]) itf_navigation->cam_down();
 
   //E key
-  if(io.KeysDown[550]) itf_camera->cam_up();
+  if(io.KeysDown[550]) itf_navigation->cam_up();
 
   //---------------------------
 }
@@ -64,12 +64,12 @@ void Navigation::control_mouse(glm::vec2 center){
 
   //Right click - Camera movement
   if(ImGui::IsMouseClicked(1)){
-    itf_camera->enable_camera_view(center);
+    itf_navigation->enable_camera_view(center);
   }
 
   //Release - back to normal
   else if(ImGui::IsMouseReleased(1)){
-    itf_camera->disable_camera_view();
+    itf_navigation->disable_camera_view();
   }
 
   //---------------------------
@@ -80,7 +80,7 @@ void Navigation::control_wheel(){
 
   //Wheel + right clicked - Camera zoom
   if(io.MouseDown[1] && io.MouseWheel){
-    itf_camera->cam_zoom(io.MouseWheel);
+    itf_navigation->cam_zoom(io.MouseWheel);
   }
 
   //----------------------------

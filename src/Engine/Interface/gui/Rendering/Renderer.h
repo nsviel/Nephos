@@ -3,7 +3,7 @@
 #include <string>
 
 namespace itf{class Node;}
-namespace itf::control{class Camera;}
+namespace itf::control{class Navigation;}
 namespace vk::gui{class Imgui;}
 namespace vk{class Structure;}
 namespace eng{class Node;}
@@ -32,7 +32,7 @@ public:
 
 private:
   itf::gui::Navigation* gui_navigation;
-  itf::control::Camera* itf_camera;
+  itf::control::Navigation* itf_navigation;
   itf::gui::Edition* gui_edition;
   itf::gui::Player* itf_player;
   vk::gui::Imgui* vk_imgui;

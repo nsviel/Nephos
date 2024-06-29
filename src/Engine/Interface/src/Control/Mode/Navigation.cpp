@@ -1,4 +1,4 @@
-#include "Camera.h"
+#include "Navigation.h"
 
 #include <Interface/Namespace.h>
 #include <Camera/Namespace.h>
@@ -8,7 +8,7 @@
 namespace itf::control{
 
 //Constructor / Destructor
-Camera::Camera(itf::Node* node_interface){
+Navigation::Navigation(itf::Node* node_interface){
   //---------------------------
 
   cam::Node* node_camera = node_interface->get_node_camera();
@@ -22,52 +22,52 @@ Camera::Camera(itf::Node* node_interface){
 
   //---------------------------
 }
-Camera::~Camera(){}
+Navigation::~Navigation(){}
 
 //Main function
-void Camera::cam_forward(){
+void Navigation::cam_forward(){
   //---------------------------
 
   cam_control->control_keyboard(cam::CAMERA_FORWARD, itf_struct->control.key_fast);
 
   //---------------------------
 }
-void Camera::cam_backward(){
+void Navigation::cam_backward(){
   //---------------------------
 
   cam_control->control_keyboard(cam::CAMERA_BACKWARD, itf_struct->control.key_fast);
 
   //---------------------------
 }
-void Camera::cam_left(){
+void Navigation::cam_left(){
   //---------------------------
 
   cam_control->control_keyboard(cam::CAMERA_LEFT, itf_struct->control.key_fast);
 
   //---------------------------
 }
-void Camera::cam_right(){
+void Navigation::cam_right(){
   //---------------------------
 
   cam_control->control_keyboard(cam::CAMERA_RIGHT, itf_struct->control.key_fast);
 
   //---------------------------
 }
-void Camera::cam_down(){
+void Navigation::cam_down(){
   //---------------------------
 
   cam_control->control_keyboard(cam::CAMERA_DOWN, itf_struct->control.key_fast);
 
   //---------------------------
 }
-void Camera::cam_up(){
+void Navigation::cam_up(){
   //---------------------------
 
   cam_control->control_keyboard(cam::CAMERA_UP, itf_struct->control.key_fast);
 
   //---------------------------
 }
-void Camera::cam_zoom(float value){
+void Navigation::cam_zoom(float value){
   //---------------------------
 
   cam_control->control_zoom(value);
@@ -76,7 +76,7 @@ void Camera::cam_zoom(float value){
 }
 
 //Subfunction
-void Camera::enable_camera_view(glm::vec2 center){
+void Navigation::enable_camera_view(glm::vec2 center){
   cam::Entity* camera = cam_struct->cam_current;
   //----------------------------
 
@@ -89,7 +89,7 @@ void Camera::enable_camera_view(glm::vec2 center){
 
   //----------------------------
 }
-void Camera::disable_camera_view(){
+void Navigation::disable_camera_view(){
   cam::Entity* camera = cam_struct->cam_current;
   //----------------------------
 

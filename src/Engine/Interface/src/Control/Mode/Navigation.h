@@ -12,12 +12,12 @@ namespace vk::window{class GLFW;}
 
 namespace itf::control{
 
-class Camera
+class Navigation
 {
 public:
   //Constructor / Destructor
-  Camera(itf::Node* node_interface);
-  ~Camera();
+  Navigation(itf::Node* node_interface);
+  ~Navigation();
 
 public:
   //Main function
@@ -28,7 +28,7 @@ public:
   void cam_down();
   void cam_up();
   void cam_zoom(float value);
-  
+
   //Subfunction
   void enable_camera_view(glm::vec2 center);
   void disable_camera_view();
