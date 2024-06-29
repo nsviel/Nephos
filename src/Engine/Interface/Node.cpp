@@ -27,6 +27,7 @@ Node::Node(eng::Node* node_engine){
   this->itf_edition = new itf::control::Edition(this);
   this->itf_player = new itf::control::Player(this);
   this->itf_wheel = new itf::control::Wheel(this);
+  this->itf_shader = new itf::render::Shader(this);
   this->gui_control = new itf::gui::Control(this);
   this->gui_option = new itf::gui::Option(this, &opt_panel->is_open);
   this->gui_shader = new itf::gui::Shader(this, &sha_panel->is_open);

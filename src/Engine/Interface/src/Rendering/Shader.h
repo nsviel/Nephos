@@ -17,12 +17,11 @@ class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(itf::Node* node_interface, bool* show_window);
+  Shader(itf::Node* node_interface);
   ~Shader();
 
 public:
   //Main function
-  void run_panel();
   void init_panel();
   void design_panel();
 

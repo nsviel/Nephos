@@ -10,7 +10,7 @@
 namespace itf::render{
 
 //Constructor / Destructor
-Shader::Shader(itf::Node* node_interface, bool* show_window){
+Shader::Shader(itf::Node* node_interface){
   //---------------------------
 
   vk::Node* node_vulkan = node_interface->get_node_vulkan();
@@ -29,8 +29,6 @@ Shader::Shader(itf::Node* node_interface, bool* show_window){
   this->has_been_reloaded = true;
   this->read_only = false;
   this->read_only_forced = false;
-  this->show_window = show_window;
-  this->name = "Shader";
 
   editor_vs->set_language("glsl");
   editor_fs->set_language("glsl");
@@ -40,23 +38,6 @@ Shader::Shader(itf::Node* node_interface, bool* show_window){
 Shader::~Shader(){}
 
 //Main function
-void Shader::run_panel(){
-  //---------------------------
-
-  if(*show_window){
-    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
-    ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(FLT_MAX, 500));
-    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
-
-      this->design_panel();
-
-      ImGui::End();
-    }
-    ImGui::PopStyleColor();
-  }
-
-  //---------------------------
-}
 void Shader::init_panel(){
   //---------------------------
 

@@ -22,6 +22,7 @@ Shader::Shader(itf::Node* node_interface, bool* show_window){
   this->editor_vs = new utl::gui::editor::Text();
   this->editor_fs = new utl::gui::editor::Text();
   this->gui_console = new utl::gui::widget::Console();
+  this->itf_shader = node_interface->get_itf_shader();
 
   this->item_width = 100;
   this->ID_class = 0;
@@ -72,20 +73,13 @@ void Shader::init_panel(){
 void Shader::design_panel(){
   //---------------------------
 
-  this->check_read_only();
-  this->check_reload();
-  this->shader_combo_class();
-  this->shader_combo_subclass();
-  this->shader_command();
-  this->shader_tabs();
-  this->shader_control();
-
-  /*
-  std::string message = LOG_shader::get_instance().get_shader_printf();
-  gui_console->add_log(message);
-  gui_console->add_file("error", "output.txt");
-  gui_console->draw_console("truc");
-  */
+  itf_shader->check_read_only();
+  itf_shader->check_reload();
+  itf_shader->shader_combo_class();
+  itf_shader->shader_combo_subclass();
+  itf_shader->shader_command();
+  itf_shader->shader_tabs();
+  itf_shader->shader_control();
 
   //---------------------------
 }

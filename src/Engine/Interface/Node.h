@@ -12,6 +12,7 @@ namespace itf::control{class Navigation;}
 namespace itf::control{class Wheel;}
 namespace itf::control{class Player;}
 namespace itf::control{class Edition;}
+namespace itf::render{class Shader;}
 namespace itf::gui{class Option;}
 namespace itf::gui{class Control;}
 namespace itf::gui{class Shader;}
@@ -43,6 +44,7 @@ public:
   inline itf::control::Wheel* get_itf_wheel(){return itf_wheel;}
   inline itf::control::Player* get_itf_player(){return itf_player;}
   inline itf::control::Edition* get_itf_edition(){return itf_edition;}
+  inline itf::render::Shader* get_itf_shader(){return itf_shader;}
   inline itf::gui::Control* get_gui_control(){return gui_control;}
 
 private:
@@ -57,6 +59,7 @@ private:
   itf::control::Wheel* itf_wheel;
   itf::control::Player* itf_player;
   itf::control::Edition* itf_edition;
+  itf::render::Shader* itf_shader;
   itf::gui::Control* gui_control;
   itf::gui::Option* gui_option;
   itf::gui::Shader* gui_shader;

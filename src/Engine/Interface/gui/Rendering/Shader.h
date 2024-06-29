@@ -9,6 +9,7 @@ namespace vk::render{class Render;}
 namespace eng{class Node;}
 namespace utl::gui::widget{class Console;}
 namespace utl::gui::editor{class Text;}
+namespace itf::render{class Shader;}
 
 
 namespace itf::gui{
@@ -51,6 +52,7 @@ public:
   std::string get_path_fs_from_selection();
 
 private:
+  itf::render::Shader* itf_shader;
   vk::shader::Reloader* vk_reload;
   vk::render::Render* vk_render;
   eng::Node* node_engine;
