@@ -8,8 +8,9 @@ namespace prf::hardware{
 struct CPU{
   //---------------------------
 
-  std::string name;
+  std::string name = "";
   float temperature = -1;
+  int nb_core = -1;
 
   //---------------------------
 };

@@ -2,6 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <fstream>
+#include <set>
 
 
 namespace utl::hardware{
@@ -16,17 +17,7 @@ CPU::CPU(){
 CPU::~CPU(){}
 
 //Main function
-float CPU::get_temperature(){
-  //---------------------------
-
-  std::ifstream file("/sys/class/thermal/thermal_zone0/temp");
-  float temp;
-  file >> temp;
-
-  //---------------------------
-  return temp / 1000.0; // The temperature is usually reported in millidegrees Celsius
-}
-std::string get_cpu_name(){
+std::string get_name(){
   //---------------------------
 
   std::ifstream cpuinfo("/proc/cpuinfo");
@@ -51,8 +42,17 @@ std::string get_cpu_name(){
   //---------------------------
   return cpu_name;
 }
+float CPU::get_temperature(){
+  //---------------------------
 
-int get_number_of_cpus(){
+  std::ifstream file("/sys/class/thermal/thermal_zone0/temp");
+  float temp;
+  file >> temp;
+
+  //---------------------------
+  return temp / 1000.0; // The temperature is usually reported in millidegrees Celsius
+}
+int get_number_of_core(){
   //---------------------------
 
   std::ifstream cpuinfo("/proc/cpuinfo");

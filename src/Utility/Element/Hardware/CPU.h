@@ -12,7 +12,9 @@ public:
 
 public:
   //Main function
+  std::string get_name();
   float get_temperature();
+  int get_number_of_core();
 
 private:
 
