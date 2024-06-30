@@ -48,6 +48,8 @@ void GPU::draw_gpu_info(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Temperature"); ImGui::TableNextColumn();
   ImGui::TextColored(color, "%d°", prf_struct->hardware.gpu.temperature);
+  ImGui::SameLine();
+  ImGui::Text("[%d°]", prf_struct->hardware.gpu.temperature_max);
 
   //Consumption
   ImGui::TableNextRow(); ImGui::TableNextColumn();

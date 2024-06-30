@@ -16,6 +16,7 @@ struct GPU{
   float total_consumption = -1;
   float power_usage = -1;
   int temperature = -1;
+  int temperature_max = -1;
   int fan_speed = -1;
 
   //---------------------------

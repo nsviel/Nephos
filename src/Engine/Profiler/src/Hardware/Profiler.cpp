@@ -29,6 +29,7 @@ void Profiler::loop(){
   //---------------------------
 
   prf_collector->collect_gpu_info();
+  prf_collector->collect_cpu_info();
 
   //---------------------------
 }

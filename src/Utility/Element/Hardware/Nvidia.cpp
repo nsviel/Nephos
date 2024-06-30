@@ -1,6 +1,6 @@
 #include "Nvidia.h"
 
-
+#include <Utility/Namespace.h>
 
 
 namespace utl::hardware{
@@ -64,6 +64,42 @@ int Nvidia::get_temperature(){
   //---------------------------
 
   nvmlReturn_t result = nvmlDeviceGetTemperature(device, NVML_TEMPERATURE_GPU, &temp);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+
+  //---------------------------
+  return temp;
+}
+int Nvidia::get_temperature_max_slowdown(){
+  unsigned int temp;
+  //---------------------------
+
+  nvmlReturn_t result = nvmlDeviceGetTemperatureThreshold(device, NVML_TEMPERATURE_THRESHOLD_SLOWDOWN, &temp);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+
+  //---------------------------
+  return temp;
+}
+int Nvidia::get_temperature_max_shutdown(){
+  unsigned int temp;
+  //---------------------------
+
+  nvmlReturn_t result = nvmlDeviceGetTemperatureThreshold(device, NVML_TEMPERATURE_THRESHOLD_SHUTDOWN, &temp);
+  if(result != NVML_SUCCESS){
+    return -1;
+  }
+
+  //---------------------------
+  return temp;
+}
+int Nvidia::get_temperature_max_gpu(){
+  unsigned int temp;
+  //---------------------------
+
+  nvmlReturn_t result = nvmlDeviceGetTemperatureThreshold(device, NVML_TEMPERATURE_THRESHOLD_GPU_MAX, &temp);
   if(result != NVML_SUCCESS){
     return -1;
   }

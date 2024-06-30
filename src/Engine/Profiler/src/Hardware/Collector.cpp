@@ -16,6 +16,7 @@ Collector::Collector(prf::Node* node_profiler){
   this->vk_struct = node_vulkan->get_vk_struct();
   this->prf_struct = node_profiler->get_prf_struct();
   this->utl_nvidia = new utl::hardware::Nvidia();
+  this->utl_cpu = new utl::hardware::CPU();
 
   //---------------------------
 }
@@ -26,6 +27,7 @@ void Collector::collect_info(){
   //---------------------------
 
   this->collect_gpu_info();
+  this->collect_cpu_info();
   this->collect_vulkan_device();
   this->collect_vulkan_queue();
 
@@ -37,9 +39,17 @@ void Collector::collect_gpu_info(){
   //---------------------------
 
   prf_struct->hardware.gpu.temperature = utl_nvidia->get_temperature();
+  prf_struct->hardware.gpu.temperature_max = utl_nvidia->get_temperature_max_shutdown();
   prf_struct->hardware.gpu.total_consumption = utl_nvidia->get_total_consumption();
   prf_struct->hardware.gpu.fan_speed = utl_nvidia->get_fan_speed();
   prf_struct->hardware.gpu.power_usage = utl_nvidia->get_power_usage();
+
+  //---------------------------
+}
+void Collector::collect_cpu_info(){
+  //---------------------------
+
+  prf_struct->hardware.cpu.temperature = utl_cpu->get_temperature();
 
   //---------------------------
 }

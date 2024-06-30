@@ -10,6 +10,7 @@ Tab::Tab(prf::Node* node_profiler){
   //---------------------------
 
   this->gui_gpu = new prf::gui::hardware::GPU(node_profiler);
+  this->gui_cpu = new prf::gui::hardware::CPU(node_profiler);
   this->gui_device = new prf::gui::hardware::Device(node_profiler);
 
   //---------------------------
@@ -39,14 +40,21 @@ void Tab::draw_hardware_tabbar(){
     int width = ImGui::GetContentRegionAvail().x;
 
     //GPU tab
-    ImGui::SetNextItemWidth(width / 2.0f);
+    ImGui::SetNextItemWidth(width / 3.0f);
     if(ImGui::BeginTabItem("GPU##tabitem", NULL)){
       gui_gpu->draw_tab();
       ImGui::EndTabItem();
     }
 
+    //CPU tab
+    ImGui::SetNextItemWidth(width / 3.0f);
+    if(ImGui::BeginTabItem("CPU##tabitem", NULL)){
+      gui_gpu->draw_tab();
+      ImGui::EndTabItem();
+    }
+
     //Device tab
-    ImGui::SetNextItemWidth(width / 2.0f);
+    ImGui::SetNextItemWidth(width / 3.0f);
     if(ImGui::BeginTabItem("Devices##tabitem", NULL)){
       gui_device->draw_tab();
       ImGui::EndTabItem();

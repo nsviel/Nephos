@@ -3,6 +3,7 @@
 namespace prf{class Node;}
 namespace prf::gui::hardware{class Device;}
 namespace prf::gui::hardware{class GPU;}
+namespace prf::gui::hardware{class CPU;}
 
 
 namespace prf::gui::hardware{
@@ -24,6 +25,7 @@ public:
 private:
   prf::gui::hardware::Device* gui_device;
   prf::gui::hardware::GPU* gui_gpu;
+  prf::gui::hardware::CPU* gui_cpu;
 };
 
 }
