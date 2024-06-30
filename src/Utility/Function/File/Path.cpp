@@ -200,13 +200,13 @@ std::vector<std::string> list_all_file(std::string path, std::string format){
   DIR* directory = opendir(path.c_str());
   std::vector<std::string> path_vec;
 
-  if (!utl::directory::is_exist(path) || is_dir_or_file(path) == "file"){
+  if(!utl::directory::is_exist(path) || is_dir_or_file(path) == "file"){
     std::cout << "[error] Directory does not exist: " << path << std::endl;
     return path_vec;
   }
 
   // Filtre and store files present in the folder
-  while ((files = readdir(directory)) != NULL){
+  while((files = readdir(directory)) != NULL){
     std::string name = files->d_name;
 
     // Skip the special directories "." and ".."

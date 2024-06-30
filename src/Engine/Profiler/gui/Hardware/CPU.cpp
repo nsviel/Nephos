@@ -41,14 +41,12 @@ void CPU::draw_cpu_info(){
   //Device
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Device"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", prf_struct->hardware.gpu.name.c_str());
+  ImGui::TextColored(color, "%s", prf_struct->hardware.cpu.name.c_str());
 
   //Temperature
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Temperature"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d°", prf_struct->hardware.gpu.temperature);
-  ImGui::SameLine();
-  ImGui::Text("[%d°]", prf_struct->hardware.gpu.temperature_max);
+  ImGui::TextColored(color, "%.2f°", prf_struct->hardware.cpu.temperature);
 
   ImGui::EndTable();
 

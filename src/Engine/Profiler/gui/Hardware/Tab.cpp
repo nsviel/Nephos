@@ -49,7 +49,7 @@ void Tab::draw_hardware_tabbar(){
     //CPU tab
     ImGui::SetNextItemWidth(width / 3.0f);
     if(ImGui::BeginTabItem("CPU##tabitem", NULL)){
-      gui_gpu->draw_tab();
+      gui_cpu->draw_tab();
       ImGui::EndTabItem();
     }
 

@@ -9,7 +9,7 @@ struct CPU{
   //---------------------------
 
   std::string name;
-  int temperature = -1;
+  float temperature = -1;
 
   //---------------------------
 };
