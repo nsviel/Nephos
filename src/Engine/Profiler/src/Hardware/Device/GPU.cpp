@@ -51,7 +51,7 @@ void GPU::collect_vulkan_device(){
     vk::device::structure::Physical& physical_device = vk_struct->instance.vec_physical_device[i];
 
     //Device info
-    prf::hardware::Device device_info;
+    prf::hardware::structure::Device device_info;
     device_info.name = physical_device.name;
     device_info.has_extension_support = physical_device.has_extension_support;
     device_info.discrete_gpu = physical_device.discrete_gpu;
@@ -60,7 +60,7 @@ void GPU::collect_vulkan_device(){
 
     //Gather device queue info
     for(int i=0; i<physical_device.vec_queue_family.size(); i++){
-      prf::hardware::queue::Family queue_family;
+      prf::hardware::structure::queue::Family queue_family;
       queue_family.nb_queue = physical_device.vec_queue_family[i].nb_queue;
       queue_family.graphics = physical_device.vec_queue_family[i].capable_graphics;
       queue_family.compute = physical_device.vec_queue_family[i].capable_compute;
@@ -84,17 +84,17 @@ void GPU::collect_vulkan_device(){
 void GPU::collect_vulkan_queue(){
   //---------------------------
 
-  this->add_queue(vk_struct->device.queue.graphics, prf::hardware::queue::GRAPHICS);
-  this->add_queue(vk_struct->device.queue.presentation, prf::hardware::queue::PRESENTATION);
-  this->add_queue(vk_struct->device.queue.transfer, prf::hardware::queue::TRANSFER);
+  this->add_queue(vk_struct->device.queue.graphics, prf::hardware::structure::queue::GRAPHICS);
+  this->add_queue(vk_struct->device.queue.presentation, prf::hardware::structure::queue::PRESENTATION);
+  this->add_queue(vk_struct->device.queue.transfer, prf::hardware::structure::queue::TRANSFER);
 
   //---------------------------
 }
 void GPU::add_queue(vk::queue::structure::Queue& queue, int type){
   //---------------------------
 
-  prf::hardware::Queue prf_queue;
-  prf_queue.type = (prf::hardware::queue::Type)type;
+  prf::hardware::structure::Queue prf_queue;
+  prf_queue.type = (prf::hardware::structure::queue::Type)type;
   prf_queue.number++;
   prf_queue.family_ID = queue.family_ID;
   prf_queue.thread_ID = queue.thread_ID;

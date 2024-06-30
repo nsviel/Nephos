@@ -3,7 +3,7 @@
 #include <string>
 
 
-namespace prf::hardware::queue{
+namespace prf::hardware::structure::queue{
 
 struct Family{
   //---------------------------
@@ -26,12 +26,12 @@ enum Type{
 
 }
 
-namespace prf::hardware{
+namespace prf::hardware::structure{
 
 struct Queue{
   //---------------------------
 
-  prf::hardware::queue::Type type;
+  prf::hardware::structure::queue::Type type;
   std::string thread_ID = "";
   int family_ID = -1;
   int number = 0;

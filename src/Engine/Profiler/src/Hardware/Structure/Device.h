@@ -5,7 +5,7 @@
 #include <string>
 
 
-namespace prf::hardware{
+namespace prf::hardware::structure{
 
 struct Device{
   //---------------------------
@@ -21,7 +21,7 @@ struct Device{
   int ID_family_graphics = -1;
   int ID_family_transfer = -1;
   int ID_family_presentation = -1;
-  std::vector<prf::hardware::queue::Family> vec_queue_family;
+  std::vector<prf::hardware::structure::queue::Family> vec_queue_family;
 
   //GPU info
 

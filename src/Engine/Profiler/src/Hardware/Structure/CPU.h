@@ -3,7 +3,7 @@
 #include <string>
 
 
-namespace prf::hardware{
+namespace prf::hardware::structure{
 
 struct CPU{
   //---------------------------

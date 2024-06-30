@@ -6,8 +6,8 @@ namespace prf{class Node;}
 namespace prf{class Structure;}
 namespace prf::dynamic{class Profiler;}
 namespace prf::hardware{class Profiler;}
-namespace prf::hardware{class Device;}
 namespace prf::hardware{class Structure;}
+namespace prf::hardware::structure{class Device;}
 namespace prf::gui{class Profiler;}
 
 
@@ -25,8 +25,8 @@ public:
   void draw_tab();
 
   //Subfunction
-  void draw_device_info(prf::hardware::Device& device);
-  void draw_device_queue_families(prf::hardware::Device& device);
+  void draw_device_info(prf::hardware::structure::Device& device);
+  void draw_device_queue_families(prf::hardware::structure::Device& device);
 
 private:
   prf::Structure* prf_struct;

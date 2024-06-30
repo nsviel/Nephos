@@ -11,9 +11,9 @@ namespace prf::hardware{
 struct Structure{
   //---------------------------
 
-  std::vector<prf::hardware::Device> vec_device;
-  prf::hardware::GPU gpu;
-  prf::hardware::CPU cpu;
+  std::vector<prf::hardware::structure::Device> vec_device;
+  prf::hardware::structure::GPU gpu;
+  prf::hardware::structure::CPU cpu;
 
   //---------------------------
 };

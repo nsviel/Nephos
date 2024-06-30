@@ -5,14 +5,14 @@
 #include <string>
 
 
-namespace prf::hardware{
+namespace prf::hardware::structure{
 
 struct GPU{
   //---------------------------
 
   std::string name;
 
-  std::vector<prf::hardware::Queue> vec_queue;
+  std::vector<prf::hardware::structure::Queue> vec_queue;
   float total_consumption = -1;
   float power_usage = -1;
   int temperature = -1;

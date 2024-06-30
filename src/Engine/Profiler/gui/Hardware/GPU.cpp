@@ -92,19 +92,19 @@ void GPU::draw_gpu_queue(){
   ImGui::TableHeadersRow();
 
   for(int i=0; i<prf_struct->hardware.gpu.vec_queue.size(); i++){
-    prf::hardware::Queue& queue = prf_struct->hardware.gpu.vec_queue[i];
+    prf::hardware::structure::Queue& queue = prf_struct->hardware.gpu.vec_queue[i];
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     switch(queue.type){
-      case prf::hardware::queue::GRAPHICS:{
+      case prf::hardware::structure::queue::GRAPHICS:{
         ImGui::Text("Graphics");
         break;
       }
-      case prf::hardware::queue::PRESENTATION:{
+      case prf::hardware::structure::queue::PRESENTATION:{
         ImGui::Text("Presentation");
         break;
       }
-      case prf::hardware::queue::TRANSFER:{
+      case prf::hardware::structure::queue::TRANSFER:{
         ImGui::Text("Transfer");
         break;
       }

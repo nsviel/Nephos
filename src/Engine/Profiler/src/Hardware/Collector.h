@@ -4,7 +4,7 @@
 
 namespace prf{class Node;}
 namespace prf{class Structure;}
-namespace prf::hardware{class Device;}
+namespace prf::hardware::structure{class Device;}
 namespace utl::hardware{class Nvidia;}
 namespace utl::hardware{class CPU;}
 namespace vk{class Structure;}

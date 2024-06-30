@@ -24,7 +24,7 @@ void Device::draw_tab(){
 
   if(ImGui::BeginTabBar("vulkan_device##tab_bar")){
     for(int i=0; i<prf_struct->hardware.vec_device.size(); i++){
-      prf::hardware::Device& device = prf_struct->hardware.vec_device[i];
+      prf::hardware::structure::Device& device = prf_struct->hardware.vec_device[i];
 
       if(ImGui::BeginTabItem(device.name.c_str(), NULL)){
         this->draw_device_info(device);
@@ -41,7 +41,7 @@ void Device::draw_tab(){
 }
 
 //Subfunction
-void Device::draw_device_info(prf::hardware::Device& device){
+void Device::draw_device_info(prf::hardware::structure::Device& device){
   //---------------------------
 
   ImVec4 color = ImVec4(0.5, 1, 0.5, 1);
@@ -80,7 +80,7 @@ void Device::draw_device_info(prf::hardware::Device& device){
 
   //---------------------------
 }
-void Device::draw_device_queue_families(prf::hardware::Device& device){
+void Device::draw_device_queue_families(prf::hardware::structure::Device& device){
   //---------------------------
 
   int size = device.vec_queue_family.size() + 2;
