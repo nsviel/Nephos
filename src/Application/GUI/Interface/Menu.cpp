@@ -92,7 +92,7 @@ void Menu::menu_state(){
 
   //Data
   std::vector<std::string> vec_file = gui_state->get_vec_file();
-  utl::base::Path* path = gui_state->get_path();
+  utl::base::Path* save_path = gui_state->get_save_path();
 
   //Save GUI state
   if(ImGui::Button("Save##state_save", ImVec2(120, 0))){
@@ -103,9 +103,9 @@ void Menu::menu_state(){
 
     ImGui::SetNextItemWidth(125);
     static char str_n[256];
-    strncpy(str_n, path->name.c_str(), sizeof(str_n) - 1);
+    strncpy(str_n, save_path->name.c_str(), sizeof(str_n) - 1);
     if(ImGui::InputText("##state_save", str_n, IM_ARRAYSIZE(str_n))){
-      path->name = str_n;
+      save_path->name = str_n;
     }
 
     if(ImGui::Button("Save##state_save")){
@@ -118,11 +118,11 @@ void Menu::menu_state(){
 
   //Load GUI state
   ImGui::SetNextItemWidth(120);
-  static int idx = 0;
+  int idx = gui_state->get_idx_current_path();
   std::vector<const char*> vec_file_cchar = utl::casting::vec_str_to_cchar(vec_file);
   if(ImGui::Combo("##imgui_init_states", &idx, vec_file_cchar.data(), vec_file_cchar.size())){
     std::string filename = (std::string)vec_file_cchar[idx];
-    //gui_state->reload_state(filename);
+    gui_state->load_state(filename);
   }
 
   //---------------------------

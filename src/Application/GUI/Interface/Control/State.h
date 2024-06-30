@@ -26,13 +26,15 @@ public:
   void load_state(std::string filename);
   void reload_state();
   void update_file_list();
+  int get_idx_current_path();
 
   inline std::vector<std::string> get_vec_file(){return vec_file;}
-  inline utl::base::Path* get_path(){return &path;}
+  inline utl::base::Path* get_save_path(){return &save_path;}
 
 private:
   std::vector<std::string> vec_file;
-  utl::base::Path path;
+  utl::base::Path current_path;
+  utl::base::Path save_path;
   bool flag_reload = false;
 };
 

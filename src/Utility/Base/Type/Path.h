@@ -24,6 +24,7 @@ struct Path{
     this->format = utl::path::get_format_from_filename(filename);
   }
   std::string build(){return directory + name + format;}
+  std::string filename(){return name + format;}
 
   std::string directory = "";
   std::string name = "";

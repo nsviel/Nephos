@@ -78,34 +78,29 @@ std::string get_format_from_path(std::string path){
   //---------------------------
   return format;
 }
-std::string get_format_from_filename(std::string path){
+std::string get_format_from_filename(std::string filename){
   //---------------------------
 
-  if(path == "") return "(not defined)";
-  std::string format = path.substr(path.find_last_of("."), std::string::npos);
+  if(filename == "") return "(not defined)";
+  std::string format = filename.substr(filename.find_last_of("."), std::string::npos);
 
   //---------------------------
   return format;
 }
-std::string get_name_from_filename(const std::string& path){
-  // Return the file name without the path
+std::string get_name_from_filename(const std::string& filename){
+  std::string name;
   //---------------------------
 
-  if (path.empty()) return "(not defined)";
-
-  // Find the position of the last directory separator
-  size_t last_separator = path.find_last_of("/\\");
-
-  // If no separator is found, return the original path as it does not contain any directories
-  if (last_separator == std::string::npos) {
-      return path;
+  if(filename.empty()) return "(not defined)";
+  size_t last_dot = filename.find_last_of('.');
+  if(last_dot != std::string::npos){
+    name = filename.substr(0, last_dot);
+  }else{
+    name = filename;
   }
 
-  // Extract and return the substring following the last separator
-  std::string file_name = path.substr(last_separator + 1);
-
   //---------------------------
-  return file_name;
+  return name;
 }
 std::string get_type_from_path(std::string path){
   //Return file type (folder / file)
@@ -205,19 +200,19 @@ std::vector<std::string> list_all_file(std::string path, std::string format){
   DIR* directory = opendir(path.c_str());
   std::vector<std::string> path_vec;
 
-  if (!utl::directory::is_exist(path) || is_dir_or_file(path) == "file") {
+  if (!utl::directory::is_exist(path) || is_dir_or_file(path) == "file"){
     std::cout << "[error] Directory does not exist: " << path << std::endl;
     return path_vec;
   }
 
   // Filtre and store files present in the folder
-  while ((files = readdir(directory)) != NULL) {
+  while ((files = readdir(directory)) != NULL){
     std::string name = files->d_name;
 
     // Skip the special directories "." and ".."
-    if (name != "." && name != ".."){
+    if(name != "." && name != ".."){
       // Check if the file has a .ini extension
-      if (name.size() >= 4 && name.substr(name.size() - 4) == format){
+      if(name.size() >= 4 && name.substr(name.size() - 4) == format){
         path_vec.push_back(name);
       }
     }

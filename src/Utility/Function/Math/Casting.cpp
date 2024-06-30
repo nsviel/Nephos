@@ -289,7 +289,7 @@ std::vector<const char*> vec_str_to_cchar(const std::vector<std::string>& vec_st
   //---------------------------
 
   vec_cstr.reserve(vec_str.size());  // Reserve space to improve performance
-  for (const auto& str : vec_str) {
+  for (const auto& str : vec_str){
     vec_cstr.push_back(str.c_str());
   }
 
