@@ -21,18 +21,7 @@ GPU::GPU(prf::Node* node_profiler){
 }
 GPU::~GPU(){}
 
-//Profiler vulkan info
-void GPU::collect_info(){
-  //---------------------------
-
-  this->collect_gpu_info();
-  this->collect_vulkan_device();
-  this->collect_vulkan_queue();
-
-  //---------------------------
-}
-
-//Subfunction
+//Main function
 void GPU::collect_gpu_info(){
   //---------------------------
 
@@ -44,6 +33,16 @@ void GPU::collect_gpu_info(){
 
   //---------------------------
 }
+void GPU::collect_vulkan_info(){
+  //---------------------------
+
+  this->collect_vulkan_device();
+  this->collect_vulkan_queue();
+
+  //---------------------------
+}
+
+//Subfunction
 void GPU::collect_vulkan_device(){
   //---------------------------
 
@@ -102,6 +101,5 @@ void GPU::add_queue(vk::queue::structure::Queue& queue, int type){
 
   //---------------------------
 }
-
 
 }

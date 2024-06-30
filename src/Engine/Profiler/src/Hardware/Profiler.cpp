@@ -11,7 +11,8 @@ Profiler::Profiler(prf::Node* node_profiler){
   //---------------------------
 
   this->prf_struct = node_profiler->get_prf_struct();
-  this->prf_collector = new prf::hardware::Collector(node_profiler);
+  this->cpu_device = new prf::hardware::CPU(node_profiler);
+  this->gpu_device = new prf::hardware::GPU(node_profiler);
 
   //---------------------------
 }
@@ -21,15 +22,23 @@ Profiler::~Profiler(){}
 void Profiler::init(){
   //---------------------------
 
-  prf_collector->collect_info();
+  //CPU
+  cpu_device->collect_cpu_info();
+
+  //GPU
+  gpu_device->collect_gpu_info();
+  gpu_device->collect_vulkan_info();
 
   //---------------------------
 }
 void Profiler::loop(){
   //---------------------------
 
-  prf_collector->collect_gpu_info();
-  prf_collector->collect_cpu_info();
+  //CPU
+  cpu_device->collect_cpu_info();
+
+  //GPU
+  gpu_device->collect_gpu_info();
 
   //---------------------------
 }

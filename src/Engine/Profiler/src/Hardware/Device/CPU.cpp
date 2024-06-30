@@ -17,7 +17,7 @@ CPU::CPU(prf::Node* node_profiler){
 }
 CPU::~CPU(){}
 
-//Profiler vulkan info
+//Main function
 void CPU::collect_info(){
   //---------------------------
 

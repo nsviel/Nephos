@@ -20,11 +20,11 @@ public:
   ~GPU();
 
 public:
-  //Profiler vulkan info
-  void collect_info();
+  //Main function
+  void collect_gpu_info();
+  void collect_vulkan_info();
 
   //Subfunction
-  void collect_gpu_info();
   void collect_vulkan_device();
   void collect_vulkan_queue();
   void add_queue(vk::queue::structure::Queue& queue, int type);

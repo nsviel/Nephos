@@ -17,7 +17,7 @@ CPU::CPU(){
 CPU::~CPU(){}
 
 //Main function
-std::string get_name(){
+std::string CPU::get_name(){
   //---------------------------
 
   std::ifstream cpuinfo("/proc/cpuinfo");
@@ -52,7 +52,7 @@ float CPU::get_temperature(){
   //---------------------------
   return temp / 1000.0; // The temperature is usually reported in millidegrees Celsius
 }
-int get_number_of_core(){
+int CPU::get_number_of_core(){
   //---------------------------
 
   std::ifstream cpuinfo("/proc/cpuinfo");

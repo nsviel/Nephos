@@ -5,12 +5,8 @@
 
 namespace prf{class Node;}
 namespace prf{class Structure;}
-namespace prf::hardware{class Device;}
-namespace prf::hardware{class Thread;}
-namespace prf::hardware{class Queue;}
-namespace prf::hardware{class Collector;}
-namespace prf::dynamic{class Profiler;}
-namespace vk{class Structure;}
+namespace prf::hardware{class CPU;}
+namespace prf::hardware{class GPU;}
 
 
 namespace prf::hardware{
@@ -29,8 +25,8 @@ public:
 
 private:
   prf::Structure* prf_struct;
-  prf::hardware::Collector* prf_collector;
-
+  prf::hardware::CPU* cpu_device;
+  prf::hardware::GPU* gpu_device;
 };
 
 }

@@ -17,7 +17,7 @@ public:
   ~CPU();
 
 public:
-  //Profiler vulkan info
+  //Main function
   void collect_info();
 
   //Subfunction
