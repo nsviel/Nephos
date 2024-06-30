@@ -92,13 +92,19 @@ void Menu::menu_state(){
 
   //Data
   std::vector<std::string> vec_file = gui_state->get_vec_file();
-  utl::base::Path* current_path = gui_state->get_current_path();
-  utl::base::Path* save_path = gui_state->get_save_path();
+  utl::base::Path* path_current = gui_state->get_path_current();
+  utl::base::Path* path_save = gui_state->get_path_save();
 
   //Current file
   ImGui::Text("Current");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", current_path->filename().c_str());
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", path_current->filename().c_str());
+
+  if(gui_state->get_is_default() == false){
+    if(ImGui::Button("Make default##state", ImVec2(120, 0))){
+      gui_state->make_current_default();
+    }
+  }
 
   //Save GUI state
   if(ImGui::Button("Save##state_save", ImVec2(120, 0))){
@@ -109,9 +115,9 @@ void Menu::menu_state(){
 
     ImGui::SetNextItemWidth(125);
     static char str_n[256];
-    strncpy(str_n, save_path->name.c_str(), sizeof(str_n) - 1);
+    strncpy(str_n, path_save->name.c_str(), sizeof(str_n) - 1);
     if(ImGui::InputText("##state_save", str_n, IM_ARRAYSIZE(str_n))){
-      save_path->name = str_n;
+      path_save->name = str_n;
     }
 
     if(ImGui::Button("Save##state_save")){
@@ -124,7 +130,7 @@ void Menu::menu_state(){
 
   //Load GUI state
   ImGui::SetNextItemWidth(120);
-  int idx = gui_state->get_idx_current_path();
+  int idx = gui_state->get_idx_path_current();
   std::vector<const char*> vec_file_cchar = utl::casting::vec_str_to_cchar(vec_file);
   if(ImGui::Combo("##imgui_init_states", &idx, vec_file_cchar.data(), vec_file_cchar.size())){
     std::string filename = (std::string)vec_file_cchar[idx];

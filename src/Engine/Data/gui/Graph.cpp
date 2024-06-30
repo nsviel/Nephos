@@ -232,7 +232,7 @@ void Graph::draw_window_background(int nb_row){
   ImVec2 content_size = ImGui::GetWindowContentRegionMax(); // Available content size in the window
   float item_spacing_y = ImGui::GetStyle().ItemSpacing.y;
   float line_height = ImGui::GetTextLineHeightWithSpacing();
-  int row_count = static_cast<int>((content_size.y - item_spacing_y) / line_height) - 1;
+  int row_count = static_cast<int>((content_size.y - item_spacing_y) / line_height) - 2;
   row_count = row_count - nb_row;
 
   // Ensure the table fills the entire height
