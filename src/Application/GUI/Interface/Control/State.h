@@ -29,6 +29,7 @@ public:
   int get_idx_current_path();
 
   inline std::vector<std::string> get_vec_file(){return vec_file;}
+  inline utl::base::Path* get_current_path(){return &current_path;}
   inline utl::base::Path* get_save_path(){return &save_path;}
 
 private:

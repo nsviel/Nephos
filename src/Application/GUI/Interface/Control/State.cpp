@@ -36,7 +36,7 @@ void State::save_state(){
 
   std::string path_file = save_path.build();
   ImGui::SaveIniSettingsToDisk(path_file.c_str());
-  std::cout<<"[OK] Imgui state saved at "<<path_file<<std::endl;
+  //std::cout<<"[OK] Imgui state saved at "<<path_file<<std::endl;
 
   this->update_file_list();
 
@@ -57,7 +57,7 @@ void State::reload_state(){
 
   std::string path_file = save_path.build();
   ImGui::LoadIniSettingsFromDisk(path_file.c_str());
-  std::cout<<"[OK] Imgui state reloaded at "<<path_file<<std::endl;
+  //std::cout<<"[OK] Imgui state reloaded at "<<path_file<<std::endl;
   this->current_path = save_path;
 
   //---------------------------

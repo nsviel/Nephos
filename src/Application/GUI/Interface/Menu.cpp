@@ -92,7 +92,13 @@ void Menu::menu_state(){
 
   //Data
   std::vector<std::string> vec_file = gui_state->get_vec_file();
+  utl::base::Path* current_path = gui_state->get_current_path();
   utl::base::Path* save_path = gui_state->get_save_path();
+
+  //Current file
+  ImGui::Text("Current");
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", current_path->filename().c_str());
 
   //Save GUI state
   if(ImGui::Button("Save##state_save", ImVec2(120, 0))){
