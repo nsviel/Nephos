@@ -15,7 +15,7 @@ Theme::Theme(gui::Node* gui){
 Theme::~Theme(){}
 
 //Main function
-void Theme::init_theme(){
+void Theme::init(){
   //---------------------------
 
   this->theme_main();

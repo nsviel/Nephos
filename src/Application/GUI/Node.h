@@ -11,7 +11,7 @@ namespace gui::interface{class Control;}
 namespace gui::interface{class Demo;}
 namespace gui::interface{class Docking;}
 namespace gui::interface{class State;}
-namespace gui::style{class Config;}
+namespace gui::style{class Style;}
 namespace gui::style{class Font;}
 namespace gui::style{class Theme;}
 namespace prf::dynamic{class Tasker;}
@@ -37,7 +37,7 @@ public:
   inline gui::interface::Demo* get_gui_demo(){return gui_demo;}
   inline gui::interface::Control* get_gui_control(){return gui_control;}
   inline gui::interface::State* get_gui_state(){return gui_state;}
-  inline gui::style::Config* get_gui_style(){return gui_style;}
+  inline gui::style::Style* get_gui_style(){return gui_style;}
   inline gui::style::Font* get_gui_font(){return gui_font;}
 
 private:
@@ -51,7 +51,7 @@ private:
   gui::interface::Control* gui_control;
   gui::interface::Docking* gui_docking;
   gui::interface::State* gui_state;
-  gui::style::Config* gui_style;
+  gui::style::Style* gui_style;
   gui::style::Font* gui_font;
   gui::style::Theme* gui_theme;
   prf::dynamic::Tasker* tasker;

@@ -20,6 +20,16 @@ State::State(gui::Node* gui){
 State::~State(){}
 
 //Main function
+void State::init(){
+  //---------------------------
+
+  std::string path_file = path.build();
+  ImGui::LoadIniSettingsFromDisk(path_file.c_str());
+
+  //---------------------------
+}
+
+//Subfunction
 void State::save_state(){
   //---------------------------
 
@@ -52,8 +62,6 @@ void State::reload_state(){
   //---------------------------
   reload = false;
 }
-
-//Subfunction
 void State::update_file_list(){
   //---------------------------
 

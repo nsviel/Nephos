@@ -5,16 +5,16 @@ namespace gui{class Node;}
 
 namespace gui::style{
 
-class Config
+class Style
 {
 public:
   //Constructor / Destructor
-  Config(gui::Node* gui);
-  ~Config();
+  Style(gui::Node* gui);
+  ~Style();
 
 public:
   //Main function
-  void init_style();
+  void init();
 
   //Subfunction
   void style_window();

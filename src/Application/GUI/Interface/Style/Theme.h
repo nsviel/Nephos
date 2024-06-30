@@ -14,7 +14,7 @@ public:
 
 public:
   //Main function
-  void init_theme();
+  void init();
 
   //Subfunction
   void theme_main();

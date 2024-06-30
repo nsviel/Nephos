@@ -20,7 +20,7 @@ Node::Node(app::Node* node_app){
   this->gui_demo = new gui::interface::Demo(this);
   this->gui_state = new gui::interface::State(this);
   this->gui_tab = new gui::Tab(this);
-  this->gui_style = new gui::style::Config(this);
+  this->gui_style = new gui::style::Style(this);
   this->gui_font = new gui::style::Font(this);
   this->gui_theme = new gui::style::Theme(this);
   this->gui_control = new gui::interface::Control(this);
@@ -45,9 +45,9 @@ void Node::init(){
   //---------------------------
 
   gui_font->init_font();
-  gui_style->init_style();
-  gui_theme->init_theme();
-  gui_state->load_state();
+  gui_style->init();
+  gui_theme->init();
+  gui_state->init();
 
   //---------------------------
 }

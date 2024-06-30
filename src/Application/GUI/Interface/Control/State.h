@@ -19,11 +19,11 @@ public:
 
 public:
   //Main function
-  void save_state();
-  void load_state(std::string filename = "");
-  void reload_state();
+  void init();
 
   //Subfunction
+  void save_state();
+  void reload_state();
   void update_file_list();
 
   inline std::vector<std::string> get_vec_file(){return vec_file;}
