@@ -22,10 +22,7 @@ Profiler::~Profiler(){}
 void Profiler::init(){
   //---------------------------
 
-  //CPU
   cpu_device->collect_cpu_info();
-
-  //GPU
   gpu_device->collect_gpu_info();
   gpu_device->collect_vulkan_info();
 
@@ -33,12 +30,9 @@ void Profiler::init(){
 }
 void Profiler::loop(){
   //---------------------------
-
-  //CPU
-  cpu_device->collect_cpu_info();
-
-  //GPU
-  gpu_device->collect_gpu_info();
+  
+  cpu_device->collect_cpu_variable();
+  gpu_device->collect_gpu_variable();
 
   //---------------------------
 }

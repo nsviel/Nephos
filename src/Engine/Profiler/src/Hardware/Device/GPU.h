@@ -22,6 +22,7 @@ public:
 public:
   //Main function
   void collect_gpu_info();
+  void collect_gpu_variable();
   void collect_vulkan_info();
 
   //Subfunction

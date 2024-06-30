@@ -22,11 +22,18 @@ GPU::GPU(prf::Node* node_profiler){
 GPU::~GPU(){}
 
 //Main function
+
 void GPU::collect_gpu_info(){
   //---------------------------
 
-  prf_struct->hardware.gpu.temperature = utl_nvidia->get_temperature();
   prf_struct->hardware.gpu.temperature_max = utl_nvidia->get_temperature_max_shutdown();
+
+  //---------------------------
+}
+void GPU::collect_gpu_variable(){
+  //---------------------------
+
+  prf_struct->hardware.gpu.temperature = utl_nvidia->get_temperature();
   prf_struct->hardware.gpu.total_consumption = utl_nvidia->get_total_consumption();
   prf_struct->hardware.gpu.fan_speed = utl_nvidia->get_fan_speed();
   prf_struct->hardware.gpu.power_usage = utl_nvidia->get_power_usage();

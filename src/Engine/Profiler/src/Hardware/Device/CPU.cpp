@@ -18,24 +18,20 @@ CPU::CPU(prf::Node* node_profiler){
 CPU::~CPU(){}
 
 //Main function
-void CPU::collect_info(){
-  //---------------------------
-
-  this->collect_cpu_info();
-
-  //---------------------------
-}
-
-//Subfunction
 void CPU::collect_cpu_info(){
   //---------------------------
 
   prf_struct->hardware.cpu.name = utl_cpu->get_name();
-  prf_struct->hardware.cpu.temperature = utl_cpu->get_temperature();
   prf_struct->hardware.cpu.nb_core = utl_cpu->get_number_of_core();
 
   //---------------------------
 }
+void CPU::collect_cpu_variable(){
+  //---------------------------
 
+  prf_struct->hardware.cpu.temperature = utl_cpu->get_temperature();
+
+  //---------------------------
+}
 
 }

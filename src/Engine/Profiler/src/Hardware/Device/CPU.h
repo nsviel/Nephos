@@ -18,10 +18,8 @@ public:
 
 public:
   //Main function
-  void collect_info();
-
-  //Subfunction
   void collect_cpu_info();
+  void collect_cpu_variable();
 
 private:
   prf::Structure* prf_struct;
