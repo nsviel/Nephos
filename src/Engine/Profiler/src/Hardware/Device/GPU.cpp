@@ -1,4 +1,4 @@
-#include "Collector.h"
+#include "GPU.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,7 +8,7 @@
 namespace prf::hardware{
 
 //Constructor / Destructor
-Collector::Collector(prf::Node* node_profiler){
+GPU::GPU(prf::Node* node_profiler){
   //---------------------------
 
   vk::Node* node_vulkan = node_profiler->get_node_vulkan();
@@ -16,18 +16,16 @@ Collector::Collector(prf::Node* node_profiler){
   this->vk_struct = node_vulkan->get_vk_struct();
   this->prf_struct = node_profiler->get_prf_struct();
   this->utl_nvidia = new utl::hardware::Nvidia();
-  this->utl_cpu = new utl::hardware::CPU();
 
   //---------------------------
 }
-Collector::~Collector(){}
+GPU::~GPU(){}
 
 //Profiler vulkan info
-void Collector::collect_info(){
+void GPU::collect_info(){
   //---------------------------
 
   this->collect_gpu_info();
-  this->collect_cpu_info();
   this->collect_vulkan_device();
   this->collect_vulkan_queue();
 
@@ -35,7 +33,7 @@ void Collector::collect_info(){
 }
 
 //Subfunction
-void Collector::collect_gpu_info(){
+void GPU::collect_gpu_info(){
   //---------------------------
 
   prf_struct->hardware.gpu.temperature = utl_nvidia->get_temperature();
@@ -46,16 +44,7 @@ void Collector::collect_gpu_info(){
 
   //---------------------------
 }
-void Collector::collect_cpu_info(){
-  //---------------------------
-
-  prf_struct->hardware.cpu.name = utl_cpu->get_name();
-  prf_struct->hardware.cpu.temperature = utl_cpu->get_temperature();
-  prf_struct->hardware.cpu.nb_core = utl_cpu->get_number_of_core();
-
-  //---------------------------
-}
-void Collector::collect_vulkan_device(){
+void GPU::collect_vulkan_device(){
   //---------------------------
 
   for(int i=0; i<vk_struct->instance.vec_physical_device.size(); i++){
@@ -92,7 +81,7 @@ void Collector::collect_vulkan_device(){
 
   //---------------------------
 }
-void Collector::collect_vulkan_queue(){
+void GPU::collect_vulkan_queue(){
   //---------------------------
 
   this->add_queue(vk_struct->device.queue.graphics, prf::hardware::queue::GRAPHICS);
@@ -101,7 +90,7 @@ void Collector::collect_vulkan_queue(){
 
   //---------------------------
 }
-void Collector::add_queue(vk::queue::structure::Queue& queue, int type){
+void GPU::add_queue(vk::queue::structure::Queue& queue, int type){
   //---------------------------
 
   prf::hardware::Queue prf_queue;
