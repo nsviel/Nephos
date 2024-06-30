@@ -23,6 +23,7 @@ void CPU::collect_cpu_info(){
 
   prf_struct->hardware.cpu.name = utl_cpu->get_name();
   prf_struct->hardware.cpu.nb_core = utl_cpu->get_number_of_core();
+  prf_struct->hardware.cpu.temperature_max = utl_cpu->get_temperature_max();
 
   //---------------------------
 }

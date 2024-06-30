@@ -47,6 +47,8 @@ void CPU::draw_cpu_info(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Temperature"); ImGui::TableNextColumn();
   ImGui::TextColored(color, "%.2f°", prf_struct->hardware.cpu.temperature);
+  ImGui::SameLine();
+  ImGui::Text("[%d°]", prf_struct->hardware.cpu.temperature_max);
 
   ImGui::EndTable();
 

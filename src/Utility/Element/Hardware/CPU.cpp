@@ -52,6 +52,16 @@ float CPU::get_temperature(){
   //---------------------------
   return temp / 1000.0; // The temperature is usually reported in millidegrees Celsius
 }
+float CPU::get_temperature_max(){
+  //---------------------------
+
+  std::ifstream file("sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_crit");
+  float temp;
+  file >> temp;
+
+  //---------------------------
+  return temp / 1000.0; // The temperature is usually reported in millidegrees Celsius
+}
 int CPU::get_number_of_core(){
   //---------------------------
 
