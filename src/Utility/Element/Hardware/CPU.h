@@ -15,7 +15,7 @@ public:
   //Main function
   std::string get_name();
   float get_temperature();
-  float get_temperature_max();
+  int get_temperature_max();
   int get_number_of_core();
 
 private:

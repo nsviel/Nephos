@@ -45,22 +45,30 @@ std::string CPU::get_name(){
 float CPU::get_temperature(){
   //---------------------------
 
+  float temp = -1;
   std::ifstream file("/sys/class/thermal/thermal_zone0/temp");
-  float temp;
-  file >> temp;
+  if(file.is_open()){
+    file >> temp;
+    temp /= 1000.0f; // The temperature is usually reported in millidegrees Celsius
+    file.close();
+  }
 
   //---------------------------
-  return temp / 1000.0; // The temperature is usually reported in millidegrees Celsius
+  return temp;
 }
-float CPU::get_temperature_max(){
+int CPU::get_temperature_max(){
   //---------------------------
 
+  float temp = -1;
   std::ifstream file("sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_crit");
-  float temp;
-  file >> temp;
+  if(file.is_open()){
+    file >> temp;
+    temp /= 1000.0f; // The temperature is usually reported in millidegrees Celsius
+    file.close();
+  }
 
   //---------------------------
-  return temp / 1000.0; // The temperature is usually reported in millidegrees Celsius
+  return (int)temp;
 }
 int CPU::get_number_of_core(){
   //---------------------------
