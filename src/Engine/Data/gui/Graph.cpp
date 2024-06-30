@@ -54,93 +54,47 @@ void Graph::run_panel(){
 void Graph::design_panel(){
   //---------------------------
 
-  this->draw_window_background();
+  //this->draw_window_background();
   this->draw_file_tree();
 
   //---------------------------
 }
 
 //Subfunction
-void Graph::draw_window_background(){
-  //-------------------------------
-
-  // Get window dimensions and position
-  ImVec2 window_pos = ImGui::GetCursorScreenPos();
-  ImVec2 window_size = ImGui::GetWindowSize();
-  ImVec2 content_size = ImGui::GetWindowContentRegionMax(); // Available content size in the window
-
-  float x1 = window_pos.x;
-  float x2 = window_pos.x + content_size.x; // Use content size instead of full window size
-  float item_spacing_y = ImGui::GetStyle().ItemSpacing.y;
-  float line_height = ImGui::GetTextLineHeightWithSpacing();
-
-  // Calculate maximum rows to fit within the visible content area minus one line
-  int row_count = static_cast<int>((content_size.y - item_spacing_y) / line_height) - 1;
-  int window_row_count = static_cast<int>((window_size.y - item_spacing_y) / line_height) - 1;
-
-  if(window_row_count > row_count) row_count = window_row_count;
-
-  ImU32 col_even = IM_COL32(35, 35, 35, 255);
-  ImU32 col_odd = IM_COL32(25, 25, 25, 255);
-
-  ImDrawList* draw_list = ImGui::GetWindowDrawList();
-
-  ImGuiListClipper clipper;
-  clipper.Begin(row_count, line_height);
-  while (clipper.Step()) {
-      for (int row_n = clipper.DisplayStart; row_n < clipper.DisplayEnd; row_n++) {
-          ImU32 col = (row_n & 1) ? col_odd : col_even;
-          if ((col & IM_COL32_A_MASK) == 0)
-              continue;
-          float y1 = window_pos.y + (line_height * row_n);
-          float y2 = y1 + line_height;
-
-          // Ensure drawing does not exceed visible content area minus one line
-          if (y1 > window_pos.y + content_size.y - line_height)
-              break;
-
-          draw_list->AddRectFilled(ImVec2(x1, y1), ImVec2(x2, y2), col);
-      }
-  }
-
-  //Reset cursor
-  ImGui::SetCursorPos(ImVec2(ImGui::GetWindowPos().x + ImGui::GetStyle().WindowPadding.x, ImGui::GetWindowPos().y + ImGui::GetStyle().WindowPadding.y));
-
-  //-------------------------------
-}
 void Graph::draw_file_tree(){
   dat::base::Set* set_main = dat_graph->get_set_main();
   //---------------------------
 
-  static ImGuiTableFlags flags;
-  flags |= ImGuiTableFlags_SizingFixedFit;
-  flags |= ImGuiTableFlags_NoBordersInBody;
-  flags |= ImGuiTableFlags_SizingFixedSame;
+  static ImGuiTableFlags flag;
+  flag |= ImGuiTableFlags_NoBordersInBody;
+  flag |= ImGuiTableFlags_SizingFixedSame;
+  flag |= ImGuiTableFlags_RowBg;
 
   ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, 10);
   ImGui::SetNextWindowSize(ImVec2(400, 400));
-  ImGui::BeginTable("data_view", 2);
+  ImGui::BeginTable("data_view", 2, flag);
   ImGui::TableSetupColumn("Name##scene_tree", ImGuiTableColumnFlags_WidthStretch);
   ImGui::TableSetupColumn("Bin##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 25);
 
   //Database
+  int nb_row = 0;
   for(int row_i=0; row_i<set_main->list_subset.size(); row_i++){
     dat::base::Set* set = *next(set_main->list_subset.begin(), row_i);
 
     if(set->nb_entity != 0 || set->nb_subset != 0){
       ImGui::PushID(set->name.c_str());
-      this->tree_set(set);
+      nb_row += tree_set(set) + 1;
       ImGui::PopID();
     }
   }
+
+  this->draw_window_background(nb_row);
 
   ImGui::EndTable();
   ImGui::PopStyleVar();
 
   //---------------------------
 }
-
-//File tree
 int Graph::tree_set(dat::base::Set* set){
   int nb_row = 0;
   //---------------------------
@@ -149,17 +103,17 @@ int Graph::tree_set(dat::base::Set* set){
   if(set->is_suppressible && is_empty) return 0;
 
   //Set node elements
-  ImGuiTreeNodeFlags flags;
-  flags |= ImGuiTreeNodeFlags_OpenOnArrow;
-  flags |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
-  flags |= (set == dat_struct->selection) ? ImGuiTreeNodeFlags_Selected : 0;
-  flags |= ImGuiTreeNodeFlags_SpanFullWidth;
+  ImGuiTreeNodeFlags flag;
+  flag |= ImGuiTreeNodeFlags_OpenOnArrow;
+  flag |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
+  flag |= (set == dat_struct->selection) ? ImGuiTreeNodeFlags_Selected : 0;
+  flag |= ImGuiTreeNodeFlags_SpanFullWidth;
   std::string name = set->icon + "   " + set->name;
 
   //Set row
   ImGui::TableNextRow();
   ImGui::TableNextColumn();
-  bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flags);
+  bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag);
 
   //If set is double-clicked, open set panel
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
@@ -224,13 +178,13 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   nb_row++;
 
   //Entity row element
-  ImGuiTreeNodeFlags flags;
-  flags |= ImGuiTreeNodeFlags_OpenOnArrow;
-  flags |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
-  flags |= ImGuiTreeNodeFlags_Leaf;
-  flags |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
-  flags |= ImGuiTreeNodeFlags_SpanFullWidth;
-  flags |= (entity_selected  && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
+  ImGuiTreeNodeFlags flag;
+  flag |= ImGuiTreeNodeFlags_OpenOnArrow;
+  flag |= ImGuiTreeNodeFlags_OpenOnDoubleClick;
+  flag |= ImGuiTreeNodeFlags_Leaf;
+  flag |= ImGuiTreeNodeFlags_NoTreePushOnOpen;
+  flag |= ImGuiTreeNodeFlags_SpanFullWidth;
+  flag |= (entity_selected  && entity->is_suppressible) ? ImGuiTreeNodeFlags_Selected : 0;
   std::string icon = ICON_FA_FILE;
   std::string name = icon + "   " + entity->name;
 
@@ -243,7 +197,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   // Display leaf
   ImGui::TableNextRow();
   ImGui::TableNextColumn();
-  ImGui::TreeNodeEx(name.c_str(), flags);
+  ImGui::TreeNodeEx(name.c_str(), flag);
 
   /*if(entity_active || entity_selected){
     ImGui::PopStyleColor(3);
@@ -270,6 +224,25 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   ImGui::PopStyleColor(2);
 
   //---------------------------
+}
+void Graph::draw_window_background(int nb_row){
+  //-------------------------------
+
+  // Get window dimensions and position
+  ImVec2 content_size = ImGui::GetWindowContentRegionMax(); // Available content size in the window
+  float item_spacing_y = ImGui::GetStyle().ItemSpacing.y;
+  float line_height = ImGui::GetTextLineHeightWithSpacing();
+  int row_count = static_cast<int>((content_size.y - item_spacing_y) / line_height) - 1;
+  row_count = row_count - nb_row;
+
+  // Ensure the table fills the entire height
+  for (int i = 0; i < row_count; i++){
+    ImGui::TableNextRow();
+    ImGui::TableNextColumn();
+    ImGui::Text(" ");
+  }
+
+  //-------------------------------
 }
 
 }

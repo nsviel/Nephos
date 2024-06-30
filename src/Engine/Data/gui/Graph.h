@@ -28,13 +28,11 @@ public:
   void design_panel();
 
   //Subfunction
-  void draw_window_background();
   void draw_file_tree();
-
-  //File tree
   int tree_set(dat::base::Set* set);
   void tree_set_open(dat::base::Set* set, int& nb_row);
   void tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row);
+  void draw_window_background(int nb_row);
 
   bool show_panel_entity   = false;
   bool show_panel_set      = false;
