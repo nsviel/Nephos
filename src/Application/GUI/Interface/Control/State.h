@@ -23,16 +23,17 @@ public:
 
   //Subfunction
   void save_state();
+  void load_state(std::string filename);
   void reload_state();
   void update_file_list();
 
   inline std::vector<std::string> get_vec_file(){return vec_file;}
-  inline utl::base::Path* get_current_path(){return &path;}
+  inline utl::base::Path* get_path(){return &path;}
 
 private:
   std::vector<std::string> vec_file;
   utl::base::Path path;
-  bool reload = false;
+  bool flag_reload = false;
 };
 
 }

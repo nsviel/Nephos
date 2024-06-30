@@ -41,26 +41,25 @@ void State::save_state(){
 
   //---------------------------
 }
-void State::load_state(std::string filename){
+void State::load_state(string filename){
+  if(filename == "") return;
   //---------------------------
 
-  if(filename != ""){
-    path.filename(filename);
-  }
-
-  std::string path_file = path.build();
-  ImGui::LoadIniSettingsFromDisk(path_file.c_str());
-  //std::cout<<"[OK] Imgui load state at "<<path_file<<std::endl;
+  this->path.insert_filename(filename);
+  this->flag_reload = true;
 
   //---------------------------
 }
 void State::reload_state(){
-  if(!reload) return;
+  if(!flag_reload) return;
   //---------------------------
 
+  std::string path_file = path.build();
+  ImGui::LoadIniSettingsFromDisk(path_file.c_str());
+  std::cout<<"[OK] Imgui state reloaded at "<<path_file<<std::endl;
 
   //---------------------------
-  reload = false;
+  flag_reload = false;
 }
 void State::update_file_list(){
   //---------------------------

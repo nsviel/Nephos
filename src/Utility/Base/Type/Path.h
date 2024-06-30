@@ -19,7 +19,7 @@ struct Path{
     this->name = utl::path::get_name_from_path(path);
     this->format = utl::path::get_format_from_path(path);
   }
-  void filename(std::string filename){
+  void insert_filename(std::string filename){
     this->name = utl::path::get_name_from_filename(filename);
     this->format = utl::path::get_format_from_filename(filename);
   }

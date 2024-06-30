@@ -37,7 +37,6 @@ public:
   inline gui::interface::Demo* get_gui_demo(){return gui_demo;}
   inline gui::interface::Control* get_gui_control(){return gui_control;}
   inline gui::interface::State* get_gui_state(){return gui_state;}
-  inline gui::style::Style* get_gui_style(){return gui_style;}
   inline gui::style::Font* get_gui_font(){return gui_font;}
 
 private:
