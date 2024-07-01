@@ -1,7 +1,6 @@
 #include "Player.h"
 
 #include <Dynamic/Namespace.h>
-#include <Data/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -11,10 +10,7 @@ namespace dyn::gui{
 Player::Player(dyn::Node* node_dynamic){
   //---------------------------
 
-  dat::Node* node_data = node_dynamic->get_node_data();
-
   this->dyn_player = node_dynamic->get_dyn_player();
-  this->dat_selection = node_data->get_dat_selection();
 
   //---------------------------
 }

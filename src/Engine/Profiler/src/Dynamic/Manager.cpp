@@ -2,6 +2,7 @@
 
 #include <Profiler/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace prf::dynamic{
@@ -56,7 +57,7 @@ void Manager::remove_profiler(prf::dynamic::Profiler* profiler){
 
   profiler->clean();
   prf_struct->dynamic.list_profiler.remove(profiler);
-  delete profiler;
+  //delete profiler;
 
   //---------------------------
 }

@@ -7,6 +7,7 @@ namespace k4n::processing{class Image;}
 namespace k4n::playback{class Configuration;}
 namespace k4n::gui{class Playback;}
 namespace utl::base{class Path;}
+namespace dyn::element{class Sensor;}
 
 
 namespace k4n::playback{
@@ -35,6 +36,7 @@ public:
   k4n::processing::Image* k4n_image;
   k4n::playback::Configuration* k4n_config;
   k4n::gui::Playback* gui_playback;
+  dyn::element::Sensor* dyn_sensor;
 
   k4a::playback playback;
 };

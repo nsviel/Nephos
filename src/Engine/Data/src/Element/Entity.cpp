@@ -40,6 +40,11 @@ void Entity::init_entity(dat::base::Entity* entity){
   this->update_pose(entity);
   this->update_data(entity);
 
+  //Init sensor
+  //if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+  //  dyn_sensor->init_sensor(sensor);
+  //}
+
   //---------------------------
 }
 void Entity::remove_entity(dat::base::Entity* entity){
@@ -103,7 +108,7 @@ void Entity::update_pose(dat::base::Entity* entity){
 
   cam::Node* node_camera = node_engine->get_node_camera();
   this->cam_control = node_camera->get_cam_control();
-  
+
   //Update own pose
   cam_control->compute_camera_mvp(pose);
 

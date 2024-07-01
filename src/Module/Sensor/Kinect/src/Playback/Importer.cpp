@@ -49,8 +49,6 @@ utl::base::Element* Importer::import(utl::base::Path path){
   sensor->set_parent = manage_set_parent();
   sensor->start_thread();
 
-  dyn_sensor->init_sensor(sensor);
-
   //---------------------------
   return sensor;
 }

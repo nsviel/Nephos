@@ -26,6 +26,7 @@ Correction::~Correction(){}
 
 //Main function
 void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir){
+  if(sensor == nullptr || ir == nullptr) return;
   //---------------------------
 
   if(!rad_model->is_model_loaded(sensor)){

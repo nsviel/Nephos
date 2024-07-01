@@ -44,8 +44,6 @@ public:
   inline std::vector<utl::gui::Panel*> get_vec_panel(){return vec_panel;}
 
 protected:
-  utl::base::Node* upnode;
-  std::vector<utl::base::Node*> vec_node;
   std::vector<utl::gui::Panel*> vec_panel;
 };
 

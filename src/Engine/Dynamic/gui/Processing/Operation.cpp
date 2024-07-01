@@ -48,7 +48,7 @@ void Operation::design_operation(){
   dyn_colorization->design_colorization(element);
 
   //Normal
-  this->draw_ope_misc(element);
+  this->draw_ope_misc();
   ImGui::PopStyleColor();
 
   //---------------------------
@@ -56,7 +56,7 @@ void Operation::design_operation(){
 }
 
 //Subfunction
-void Operation::draw_ope_misc(utl::base::Element* element){
+void Operation::draw_ope_misc(){
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);

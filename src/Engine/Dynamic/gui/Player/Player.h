@@ -1,6 +1,5 @@
 #pragma once
 
-namespace dat::graph{class Selection;}
 namespace dyn{class Node;}
 namespace dyn::player{class Player;}
 
@@ -28,7 +27,6 @@ public:
 
 private:
   dyn::player::Player* dyn_player;
-  dat::graph::Selection* dat_selection;
 };
 
 }

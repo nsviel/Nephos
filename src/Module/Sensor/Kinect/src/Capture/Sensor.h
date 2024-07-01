@@ -6,6 +6,7 @@ namespace k4n{class Node;}
 namespace k4n::processing{class Image;}
 namespace k4n::capture{class Configuration;}
 namespace k4n::gui{class Capture;}
+namespace dyn::element{class Sensor;}
 
 
 namespace k4n::capture{
@@ -33,6 +34,7 @@ private:
   k4n::processing::Image* k4n_image;
   k4n::capture::Configuration* k4n_config;
   k4n::gui::Capture* gui_capture;
+  dyn::element::Sensor* dyn_sensor;
 };
 
 

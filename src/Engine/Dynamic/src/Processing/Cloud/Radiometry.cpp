@@ -63,7 +63,7 @@ void Radiometry::wait_thread(){
 void Radiometry::compute_correction(dyn::base::Sensor* sensor){
   //---------------------------
 
-  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::INTENSITY);
+  utl::media::Image* image = dat_image->get_image(sensor, utl::media::INTENSITY);
   rad_correction->make_image_correction(sensor, image);
 
   //---------------------------

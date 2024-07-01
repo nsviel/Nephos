@@ -2,6 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace k4n::capture{
@@ -10,9 +11,12 @@ namespace k4n::capture{
 Sensor::Sensor(k4n::Node* node_k4n, int index){
   //---------------------------
 
+  dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
+
   this->k4n_image = new k4n::processing::Image(node_k4n);
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->gui_capture = new k4n::gui::Capture(node_k4n);
+  this->dyn_sensor = node_dynamic->get_dyn_sensor();
 
   this->vec_recorder.push_back(new k4n::capture::Recorder());
   this->device.idx_dev = index;
@@ -20,11 +24,13 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
   this->data.name = name;
 
   //---------------------------
+  dyn_sensor->init_sensor(this);
 }
 Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
+  dyn_sensor->remove_sensor(this);
 
   //---------------------------
 }
@@ -49,31 +55,27 @@ void Sensor::thread_init(){
   //---------------------------
 }
 void Sensor::thread_loop(){
-  prf::dynamic::Tasker* tasker = profiler.fetch_tasker("capture");
+  prf::dynamic::Tasker* tasker = profiler.fetch_tasker("kinect::loop");
   //---------------------------
 
-  //tasker->loop_begin();
+  tasker->loop();
 
   //Next capture
-  //tasker->task_begin("capture");
+  tasker->task_begin("capture");
   k4a::capture* capture = manage_new_capture();
   if(capture == nullptr) return;
-  //tasker->task_end("capture");
+  tasker->task_end("capture");
 
   //Wait previous threads to finish
-  //tasker->task_begin("wait");
+  tasker->task_begin("wait");
   this->manage_old_capture(capture);
-  //tasker->task_end("wait");
+  tasker->task_end("wait");
 
   //Run processing
   k4n_image->start_thread(this);
 
   //Loop sleeping
-  //tasker->task_begin("pause");
   this->manage_pause();
-  //tasker->task_end("pause");
-
-  //tasker->loop_end();
 
   //---------------------------
 }
@@ -124,12 +126,10 @@ void Sensor::manage_pause(){
 
   //If pause, wait until end pause or end thread
   if(state.pause || !state.play){
-    //Clear profiler
-    this->profiler.reset();
-
-    //Pause loop
+    profiler.pause = true;
     std::unique_lock<std::mutex> lock(mtx);
-    cv.wait(lock, [this] { return !state.pause || !thread_running; });
+    cv.wait(lock, [this] { return !state.pause || !thread_running;});
+    profiler.pause = false;
   }
 
   //---------------------------
