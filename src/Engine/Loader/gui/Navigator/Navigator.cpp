@@ -11,9 +11,8 @@ namespace ldr::gui{
 Navigator::Navigator(ldr::Node* node_loader, bool with_bookmark){
   //---------------------------
 
-  this->nav_struct = new ldr::gui::navigator::Structure();
-  this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
+  this->nav_struct = new ldr::gui::navigator::Structure();
   this->nav_organisation = new ldr::gui::navigator::Organisation(nav_struct);
   this->nav_header = new ldr::gui::navigator::Header(nav_struct);
   this->nav_selection = new ldr::gui::navigator::Selection(nav_struct);
@@ -58,7 +57,6 @@ void Navigator::draw_content(utl::base::Path& path){
   //Content draw
   nav_organisation->sort_items();
   this->draw_item_content(path);
-  this->draw_item_file(path);
 
   ImGui::EndTable();
 

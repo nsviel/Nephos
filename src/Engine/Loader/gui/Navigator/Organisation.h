@@ -4,13 +4,8 @@
 #include <string>
 #include <vector>
 
-namespace ldr{class Node;}
-namespace ldr{class Structure;}
-namespace ldr::io{class Importer;}
-namespace ldr::gui::navigator{class File;}
-namespace ldr::bookmark{class Manager;}
-namespace utl::base{class Path;}
 namespace ldr::gui::navigator{class Structure;}
+namespace utl::base{class Path;}
 
 
 namespace ldr::gui::navigator{
