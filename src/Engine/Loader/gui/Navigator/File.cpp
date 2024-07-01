@@ -3,11 +3,11 @@
 #include <Loader/Namespace.h>
 
 
-namespace ldr::gui{
+namespace ldr::gui::navigator{
 
 const ImGuiTableSortSpecs* File::current_sort_specs = nullptr;
 
-bool File::compare_with_specs(const ldr::gui::File& a, const ldr::gui::File& b){
+bool File::compare_with_specs(const ldr::gui::navigator::File& a, const ldr::gui::navigator::File& b){
   //---------------------------
 
   // Check if either path is ".." and handle it as a special case
@@ -35,7 +35,7 @@ bool File::compare_with_specs(const ldr::gui::File& a, const ldr::gui::File& b){
   //---------------------------
   return false;
 }
-void File::sort_file_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::File>& vec_file){
+void File::sort_file_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::navigator::File>& vec_file){
   //---------------------------
 
   current_sort_specs = sort_specs;

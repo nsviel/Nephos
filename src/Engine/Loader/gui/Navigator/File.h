@@ -8,7 +8,7 @@
 namespace ldr::bookmark{class Item;}
 
 
-namespace ldr::gui{
+namespace ldr::gui::navigator{
 
 struct File{
   //---------------------------
@@ -17,8 +17,8 @@ struct File{
 
   //Sorting stuff
   static const ImGuiTableSortSpecs* current_sort_specs;
-  static bool compare_with_specs(const ldr::gui::File& a, const ldr::gui::File& b);
-  static void sort_file_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::File>& vec_file);
+  static bool compare_with_specs(const ldr::gui::navigator::File& a, const ldr::gui::navigator::File& b);
+  static void sort_file_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::navigator::File>& vec_file);
 
   //---------------------------
 };

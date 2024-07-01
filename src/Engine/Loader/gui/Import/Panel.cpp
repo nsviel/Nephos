@@ -134,7 +134,7 @@ void Panel::draw_bookmark_tab(){
 
   for(int i=0; i<list_item.size(); i++){
     ldr::bookmark::Item& item = *next(list_item.begin(), i);
-    ldr::gui::File file;
+    ldr::gui::navigator::File file;
     file.item = item;
 
     //File type icon
@@ -176,7 +176,7 @@ void Panel::item_operation(){
   //Retrieve all good selected files to load
   std::vector<std::string> vec_path;
   for(int i=0; i<vec_file.size(); i++){
-    ldr::gui::File& file = vec_file[i];
+    ldr::gui::navigator::File& file = vec_file[i];
     if(vec_selection.contains(file.item.ID)){
       if(ldr_importer->is_format_supported(file.item.format)){
         vec_path.push_back(file.item.path);

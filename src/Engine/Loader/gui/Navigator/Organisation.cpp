@@ -5,7 +5,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::gui{
+namespace ldr::gui::navigator{
 
 //Constructor / Destructor
 Organisation::Organisation(ldr::Node* node_loader){
@@ -47,8 +47,8 @@ void Organisation::item_organisation(std::vector<std::string>& vec_path){
 
   // Sort data
   if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-    ldr::gui::File::sort_file_by_specs(sort_specs, vec_folder);
-    ldr::gui::File::sort_file_by_specs(sort_specs, vec_file);
+    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, vec_folder);
+    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, vec_file);
   }
 
   //---------------------------
@@ -58,7 +58,7 @@ void Organisation::item_organisation(std::vector<std::string>& vec_path){
 void Organisation::insert_file(std::string& path, int& ID){
   //---------------------------
 
-  ldr::gui::File file;
+  ldr::gui::navigator::File file;
   file.item.ID = ID++;
   file.item.type = ldr::bookmark::FILE;
   file.item.path = path;
@@ -77,7 +77,7 @@ void Organisation::insert_file(std::string& path, int& ID){
 void Organisation::insert_folder(std::string& path, int& ID){
   //---------------------------
 
-  ldr::gui::File file;
+  ldr::gui::navigator::File file;
   file.item.ID = ID++;
   file.item.type = ldr::bookmark::FOLDER;
   file.item.name = utl::path::get_filename_from_path(path);

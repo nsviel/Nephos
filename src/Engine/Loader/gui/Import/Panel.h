@@ -8,7 +8,7 @@
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::io{class Importer;}
-namespace ldr::gui{class File;}
+namespace ldr::gui::navigator{class File;}
 namespace ldr::bookmark{class Manager;}
 namespace dat{class Graph;}
 namespace dat::element{class Set;}
