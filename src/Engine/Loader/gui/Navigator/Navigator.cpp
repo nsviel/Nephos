@@ -9,14 +9,14 @@
 namespace ldr::gui{
 
 //Constructor / Destructor
-Navigator::Navigator(ldr::Node* node_loader){
+Navigator::Navigator(ldr::Node* node_loader, bool with_bookmark){
   //---------------------------
 
   this->nav_struct = new ldr::gui::navigator::Structure();
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
 
-  nav_struct->with_bookmark = nav_struct->with_bookmark;
+  nav_struct->with_bookmark = with_bookmark;
   nav_struct->default_path = utl::path::get_current_parent_path_abs();
 
   //---------------------------

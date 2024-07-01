@@ -17,7 +17,7 @@ namespace utl::base{class Element;}
 
 namespace ldr::gui::exporter{
 
-class Panel : public ldr::gui::Navigator
+class Panel
 {
 public:
   //Constructor / Destructor
@@ -37,6 +37,7 @@ private:
   ldr::Structure* ldr_struct;
   ldr::io::Exporter* ldr_exporter;
   dat::graph::Selection* dat_selection;
+  ldr::gui::Navigator* gui_navigator;
   ldr::gui::exporter::Exporter* gui_exporter;
   ldr::gui::exporter::Recorder* gui_recorder;
 

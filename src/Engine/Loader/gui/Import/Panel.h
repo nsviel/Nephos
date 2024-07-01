@@ -17,7 +17,7 @@ namespace dat::base{class Entity;}
 
 namespace ldr::gui::importer{
 
-class Panel : public ldr::gui::Navigator
+class Panel
 {
 public:
   //Constructor / Destructor
@@ -44,7 +44,8 @@ private:
   ldr::bookmark::Manager* ldr_bookmark;
   dat::element::Set* dat_set;
   dat::Graph* dat_graph;
-
+  ldr::gui::Navigator* gui_navigator;
+  
   std::string name;
   bool goto_file_tab = false;
   bool* show_window;

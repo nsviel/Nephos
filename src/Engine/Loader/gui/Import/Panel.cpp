@@ -10,7 +10,7 @@
 namespace ldr::gui::importer{
 
 //Constructor / Destructor
-Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
+Panel::Panel(ldr::Node* node_loader, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_loader->get_node_data();
@@ -20,11 +20,11 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(no
   this->ldr_struct = node_loader->get_ldr_struct();
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
+  this->gui_navigator = new ldr::gui::Navigator(node_loader, true);
 
   this->name = "Import##555";
   this->show_window = show_window;
-  this->with_bookmark = true;
-
+  
   //---------------------------
 }
 Panel::~Panel(){}
@@ -66,7 +66,7 @@ void Panel::draw_header(){
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Load##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
     this->item_operation();
-    this->vec_selection.clear();
+    //this->vec_selection.clear();
   }
   ImGui::PopStyleColor(2);
 
@@ -112,7 +112,7 @@ void Panel::draw_body(){
     //File manager loader
     ImGui::SetNextItemWidth(size.x/2);
     if(ImGui::BeginTabItem("File##50", NULL, flag)){
-      this->draw_navigator(ldr_struct->importer.path);
+      gui_navigator->draw_navigator(ldr_struct->importer.path);
       ImGui::EndTabItem();
     }
 
@@ -172,7 +172,7 @@ void Panel::draw_bookmark_tab(){
 //Operation function
 void Panel::item_operation(){
   //---------------------------
-
+/*
   //Retrieve all good selected files to load
   std::vector<std::string> vec_path;
   for(int i=0; i<vec_file.size(); i++){
@@ -191,7 +191,7 @@ void Panel::item_operation(){
     path.insert(vec_path[i]);
     ldr_importer->load_object(path);
   }
-
+*/
   //---------------------------
 }
 void Panel::item_bookmark(std::string file_path){

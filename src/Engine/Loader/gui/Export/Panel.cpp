@@ -11,7 +11,7 @@
 namespace ldr::gui::exporter{
 
 //Constructor / Destructor
-Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
+Panel::Panel(ldr::Node* node_loader, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_loader->get_node_data();
@@ -19,12 +19,12 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(no
   this->ldr_struct = node_loader->get_ldr_struct();
   this->dat_selection = node_data->get_dat_selection();
   this->ldr_exporter = node_loader->get_ldr_exporter();
+  this->gui_navigator = new ldr::gui::Navigator(node_loader, false);
   this->gui_exporter = new ldr::gui::exporter::Exporter(node_loader);
   this->gui_recorder = new ldr::gui::exporter::Recorder(node_loader);
 
   this->name = "Export##555";
   this->show_window = show_window;
-  this->with_bookmark = false;
 
   //---------------------------
 }
@@ -61,7 +61,7 @@ void Panel::design_panel(utl::base::Element* element){
   else{
     gui_exporter->draw_header(element);
   }
-  this->draw_navigator(ldr_struct->exporter.path);
+  gui_navigator->draw_navigator(ldr_struct->exporter.path);
 
   //---------------------------
   ImGui::Separator();
