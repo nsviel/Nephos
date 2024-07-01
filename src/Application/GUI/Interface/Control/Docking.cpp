@@ -17,6 +17,15 @@ Docking::Docking(gui::Node* gui){
 Docking::~Docking(){}
 
 //Main function
+void State::loop(){
+  //---------------------------
+
+  this->docking_space();
+
+  //---------------------------
+}
+
+//Subfunction
 void Docking::docking_space(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------

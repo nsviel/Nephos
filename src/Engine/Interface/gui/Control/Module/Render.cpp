@@ -1,6 +1,7 @@
 #include "Render.h"
 
 #include <Interface/Namespace.h>
+#include <Engine/Namespace.h>
 
 
 namespace itf::gui{
@@ -37,7 +38,6 @@ void Render::control_keyboard(){
   //R key - Reset
   if(ImGui::IsKeyPressed(ImGuiKey_R)){
     node_engine->reset();
-    break;
   }
 
   //---------------------------

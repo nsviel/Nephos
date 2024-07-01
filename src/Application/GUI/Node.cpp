@@ -42,7 +42,7 @@ Node::~Node(){
 void Node::init(){
   //---------------------------
 
-  gui_font->init_font();
+  gui_font->init();
   gui_style->init();
   gui_theme->init();
   gui_state->init();
@@ -54,9 +54,9 @@ void Node::loop(){
 
   tasker->task_begin("gui::loop");
 
-  gui_state->reload_state();
+  gui_state->loop();
   ImGui::NewFrame();
-  gui_docking->docking_space();
+  gui_docking->loop();
   gui_tab->loop();
   gui_demo->loop();
 

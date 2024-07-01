@@ -30,6 +30,13 @@ void State::init(){
 
   //---------------------------
 }
+void State::loop(){
+  //---------------------------
+
+  this->reload_state();
+
+  //---------------------------
+}
 
 //Subfunction
 void State::save_state(){

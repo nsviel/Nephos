@@ -20,6 +20,7 @@ public:
 public:
   //Main function
   void init();
+  void loop();
 
   //Subfunction
   void save_state();

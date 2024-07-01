@@ -15,7 +15,7 @@ Font::Font(gui::Node* node_gui){
 Font::~Font(){}
 
 //Main function
-void Font::init_font(){
+void Font::init(){
   //---------------------------
 
   //this->gui_select_font();

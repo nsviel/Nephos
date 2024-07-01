@@ -14,6 +14,9 @@ public:
 
 public:
   //Main function
+  void loop();
+
+  //Subfunction
   void docking_space();
 
 private:
