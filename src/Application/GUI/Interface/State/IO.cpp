@@ -68,5 +68,27 @@ void IO::update_list_file(){
 
   //---------------------------
 }
+void IO::make_current_default(){
+  //---------------------------
+
+  std::string path = gui_struct->path_default.build();
+  //gui_io->state_save();
+
+  //---------------------------
+}
+int IO::get_idx_path_current(){
+  int idx = -1;
+  //---------------------------
+
+  for(int i=0; i<gui_struct->vec_file.size(); i++){
+    std::string& filename = gui_struct->vec_file[i];
+    if(gui_struct->path_current.filename() == filename){
+      return i;
+    }
+  }
+
+  //---------------------------
+  return idx;
+}
 
 }

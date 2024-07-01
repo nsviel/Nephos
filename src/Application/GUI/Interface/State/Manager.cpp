@@ -58,7 +58,7 @@ void Manager::gui(){
 
   if(gui_struct->path_current.name != gui_struct->path_default.name){
     if(ImGui::Button("Make default##state", ImVec2(120, 0))){
-      this->make_current_default();
+      gui_io->make_current_default();
     }
   }
 
@@ -87,7 +87,7 @@ void Manager::gui(){
 
   //Load GUI state
   ImGui::SetNextItemWidth(120);
-  int idx = get_idx_path_current();
+  int idx = gui_io->get_idx_path_current();
   std::vector<const char*> vec_file_cchar = utl::casting::vec_str_to_cchar(gui_struct->vec_file);
   if(ImGui::Combo("##imgui_init_states", &idx, vec_file_cchar.data(), vec_file_cchar.size())){
     std::string filename = (std::string)vec_file_cchar[idx];
@@ -99,28 +99,6 @@ void Manager::gui(){
 }
 
 //Subfunction
-void Manager::make_current_default(){
-  //---------------------------
 
-
-  std::string path = gui_struct->path_default.build();
-  //gui_io->state_save();
-
-  //---------------------------
-}
-int Manager::get_idx_path_current(){
-  int idx = -1;
-  //---------------------------
-
-  for(int i=0; i<gui_struct->vec_file.size(); i++){
-    std::string& filename = gui_struct->vec_file[i];
-    if(gui_struct->path_current.filename() == filename){
-      return i;
-    }
-  }
-
-  //---------------------------
-  return idx;
-}
 
 }

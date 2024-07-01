@@ -22,13 +22,6 @@ public:
   void loop();
   void gui();
 
-  //Subfunction
-
-  void reload_state();
-
-  void make_current_default();
-  int get_idx_path_current();
-
 private:
   gui::state::IO* gui_io;
   gui::state::Structure* gui_struct;
