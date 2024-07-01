@@ -8,14 +8,14 @@ namespace gui{class Node;}
 namespace utl::base{class Path;}
 
 
-namespace gui::interface{
+namespace gui::state{
 
-class State
+class Manager
 {
 public:
   //Constructor / Destructor
-  State(gui::Node* gui);
-  ~State();
+  Manager(gui::Node* gui);
+  ~Manager();
 
 public:
   //Main function

@@ -18,7 +18,7 @@ Node::Node(app::Node* node_app){
   this->node_scene = node_app->get_node_scene();
 
   this->gui_demo = new gui::interface::Demo(this);
-  this->gui_state = new gui::interface::State(this);
+  this->gui_state = new gui::state::Manager(this);
   this->gui_tab = new gui::Tab(this);
   this->gui_style = new gui::style::Style(this);
   this->gui_font = new gui::style::Font(this);

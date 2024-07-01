@@ -2,7 +2,7 @@
 
 namespace gui{class Node;}
 namespace gui::style{class Font;}
-namespace gui::interface{class State;}
+namespace gui::state{class Manager;}
 namespace gui::interface{class Demo;}
 namespace utl::element::gui{class Git;}
 
@@ -30,7 +30,7 @@ public:
 private:
   gui::style::Font* gui_font;
   gui::interface::Demo* gui_demo;
-  gui::interface::State* gui_state;
+  gui::state::Manager* gui_state;
   utl::element::gui::Git* gui_git;
 };
 

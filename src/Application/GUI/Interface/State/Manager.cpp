@@ -1,4 +1,4 @@
-#include "State.h"
+#include "Manager.h"
 
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
@@ -6,10 +6,10 @@
 #include <iostream>
 
 
-namespace gui::interface{
+namespace gui::state{
 
 //Constructor / Destructor
-State::State(gui::Node* gui){
+Manager::Manager(gui::Node* gui){
   //---------------------------
 
   this->path_default.insert("../media/config/gui/state/default.ini");
@@ -19,10 +19,10 @@ State::State(gui::Node* gui){
   //---------------------------
   this->update_file_list();
 }
-State::~State(){}
+Manager::~Manager(){}
 
 //Main function
-void State::init(){
+void Manager::init(){
   //---------------------------
 
   std::string path_file = path_current.build();
@@ -30,7 +30,7 @@ void State::init(){
 
   //---------------------------
 }
-void State::loop(){
+void Manager::loop(){
   //---------------------------
 
   this->reload_state();
@@ -39,7 +39,7 @@ void State::loop(){
 }
 
 //Subfunction
-void State::save_state(){
+void Manager::save_state(){
   //---------------------------
 
   std::string path_file = path_save.build();
@@ -50,7 +50,7 @@ void State::save_state(){
 
   //---------------------------
 }
-void State::load_state(std::string filename){
+void Manager::load_state(std::string filename){
   if(filename == "") return;
   //---------------------------
 
@@ -59,7 +59,7 @@ void State::load_state(std::string filename){
 
   //---------------------------
 }
-void State::reload_state(){
+void Manager::reload_state(){
   if(!flag_reload) return;
   //---------------------------
 
@@ -71,14 +71,14 @@ void State::reload_state(){
   //---------------------------
   flag_reload = false;
 }
-void State::update_file_list(){
+void Manager::update_file_list(){
   //---------------------------
 
   this->vec_file = utl::path::list_all_file(path_current.directory);
 
   //---------------------------
 }
-void State::make_current_default(){
+void Manager::make_current_default(){
   //---------------------------
 
   std::string path_file = path_default.build();
@@ -86,7 +86,7 @@ void State::make_current_default(){
 
   //---------------------------
 }
-int State::get_idx_path_current(){
+int Manager::get_idx_path_current(){
   int idx = -1;
   //---------------------------
 
