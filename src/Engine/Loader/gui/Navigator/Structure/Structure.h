@@ -13,6 +13,7 @@ struct Structure{
 
   std::vector<ldr::gui::navigator::File> vec_folder;
   std::vector<ldr::gui::navigator::File> vec_file;
+  std::vector<ldr::gui::navigator::File> vec_item;
   std::string default_path = "";
   ImVector<int> vec_selection;
   bool goto_file_tab = false;

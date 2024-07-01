@@ -30,10 +30,7 @@ public:
 
   //Subfunction
   void draw_content(utl::base::Path& path);
-  void draw_item_folder(utl::base::Path& path);
-  void draw_item_file(utl::base::Path& path);
-
-  //Item function
+  void draw_item_content(utl::base::Path& path);
   void draw_content_file(ldr::gui::navigator::File& file);
   void draw_bookmark_icon(ldr::gui::navigator::File& bookmark);
 

@@ -25,6 +25,7 @@ void Organisation::recolt_items(utl::base::Path& path){
   //Clear vectors
   nav_struct->vec_folder.clear();
   nav_struct->vec_file.clear();
+  nav_struct->vec_item.clear();
 
   //Organize files
   int ID = 0;
@@ -44,9 +45,20 @@ void Organisation::recolt_items(utl::base::Path& path){
 void Organisation::sort_items(){
   //---------------------------
 
+  //Sort both vectors
   if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
     ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_folder);
     ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_file);
+  }
+
+  //Insert folders
+  for(int i=0; i<nav_struct->vec_folder.size(); i++){
+    nav_struct->vec_item.push_back(nav_struct->vec_folder[i]);
+  }
+
+  //Insert files
+  for(int i=0; i<nav_struct->vec_file.size(); i++){
+    nav_struct->vec_item.push_back(nav_struct->vec_file[i]);
   }
 
   //---------------------------

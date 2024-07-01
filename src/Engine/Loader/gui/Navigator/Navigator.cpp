@@ -57,19 +57,19 @@ void Navigator::draw_content(utl::base::Path& path){
 
   //Content draw
   nav_organisation->sort_items();
-  this->draw_item_folder(path);
+  this->draw_item_content(path);
   this->draw_item_file(path);
 
   ImGui::EndTable();
 
   //---------------------------
 }
-void Navigator::draw_item_folder(utl::base::Path& path){
+void Navigator::draw_item_content(utl::base::Path& path){
   //---------------------------
 
-  // Populate the table - Folder
-  for(int i=0; i<nav_struct->vec_folder.size(); i++){
-    ldr::gui::navigator::File& file = nav_struct->vec_folder[i];
+  // Populate the table
+  for(int i=0; i<nav_struct->vec_item.size(); i++){
+    ldr::gui::navigator::File& file = nav_struct->vec_item[i];
 
     this->draw_content_file(file);
     this->draw_bookmark_icon(file);
@@ -78,26 +78,6 @@ void Navigator::draw_item_folder(utl::base::Path& path){
 
   //---------------------------
 }
-void Navigator::draw_item_file(utl::base::Path& path){
-  //---------------------------
-
-  // Populate the table - File
-  ImGuiSelectableFlags flags;
-  flags |= ImGuiSelectableFlags_SpanAllColumns;
-  flags |= ImGuiSelectableFlags_AllowOverlap;
-  flags |= ImGuiSelectableFlags_AllowDoubleClick;
-  for(int i=0; i<nav_struct->vec_file.size(); i++){
-    ldr::gui::navigator::File& file = nav_struct->vec_file[i];
-
-    this->draw_content_file(file);
-    this->draw_bookmark_icon(file);
-    nav_selection->selection_item(file);
-  }
-
-  //---------------------------
-}
-
-//Item function
 void Navigator::draw_content_file(ldr::gui::navigator::File& file){
   //---------------------------
 
