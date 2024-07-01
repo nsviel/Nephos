@@ -3,7 +3,8 @@
 #include <string>
 
 namespace gui{class Node;}
-namespace gui::state{class IO;}
+namespace gui::state{class Saver;}
+namespace gui::state{class Loader;}
 namespace gui::state{class Logic;}
 namespace gui::state{class Structure;}
 
@@ -24,7 +25,8 @@ public:
   void gui();
 
 private:
-  gui::state::IO* gui_io;
+  gui::state::Saver* gui_save;
+  gui::state::Loader* gui_load;
   gui::state::Logic* gui_logic;
   gui::state::Structure* gui_struct;
 };

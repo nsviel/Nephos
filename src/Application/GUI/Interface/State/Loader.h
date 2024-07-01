@@ -9,17 +9,16 @@ namespace utl::base{class Path;}
 
 namespace gui::state{
 
-class IO
+class Loader
 {
 public:
   //Constructor / Destructor
-  IO(gui::state::Structure* gui_struct);
-  ~IO();
+  Loader(gui::state::Structure* gui_struct);
+  ~Loader();
 
 public:
   //Main function
-  void state_save(std::string path);
-  void state_load(std::string path);
+  void load_state(std::string path);
 
   //Subfunction
 

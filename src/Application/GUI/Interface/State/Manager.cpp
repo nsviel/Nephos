@@ -13,7 +13,8 @@ Manager::Manager(gui::Node* node_gui){
   //---------------------------
 
   this->gui_struct = new gui::state::Structure();
-  this->gui_io = new gui::state::IO(gui_struct);
+  this->gui_save = new gui::state::Saver(gui_struct);
+  this->gui_load = new gui::state::Loader(gui_struct);
   this->gui_logic = new gui::state::Logic(gui_struct);
 
   //---------------------------
@@ -30,7 +31,7 @@ void Manager::init(){
   gui_struct->path_current.insert(default_path);
   gui_struct->path_save.insert(default_path);
 
-  gui_io->state_load(default_path);
+  gui_load->load_state(default_path);
   gui_logic->update_list_file();
 
   //---------------------------
@@ -39,7 +40,7 @@ void Manager::loop(){
   //---------------------------
 
   if(gui_struct->flag_reload){
-    gui_io->state_load(gui_struct->path_save.build());
+    gui_load->load_state(gui_struct->path_save.build());
     gui_logic->update_list_file();
     gui_struct->path_current = gui_struct->path_save;
     gui_struct->flag_reload = false;
@@ -79,7 +80,7 @@ void Manager::gui(){
 
     if(ImGui::Button("Save##state_save")){
         std::string path = gui_struct->path_save.build();
-      //gui_io->state_save();
+      //gui_save->state_save();
       ImGui::CloseCurrentPopup();
     }
 

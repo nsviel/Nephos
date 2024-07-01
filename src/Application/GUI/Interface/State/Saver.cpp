@@ -1,4 +1,4 @@
-#include "IO.h"
+#include "Saver.h"
 
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
@@ -10,17 +10,17 @@
 namespace gui::state{
 
 //Constructor / Destructor
-IO::IO(gui::state::Structure* gui_struct){
+Saver::Saver(gui::state::Structure* gui_struct){
   //---------------------------
 
   this->gui_struct = gui_struct;
 
   //---------------------------
 }
-IO::~IO(){}
+Saver::~Saver(){}
 
 //Main function
-void IO::state_save(std::string path){
+void Saver::save_state(std::string path){
   //---------------------------
 
   size_t size;
@@ -34,27 +34,6 @@ void IO::state_save(std::string path){
     file.close();
   }else{
     std::cerr << "Failed to open file for saving settings: " << path << std::endl;
-  }
-
-  //---------------------------
-}
-void IO::state_load(std::string path){
-  //---------------------------
-
-  std::ifstream file(path.c_str());
-  if(file.is_open()){
-    nlohmann::json j;
-    file >> j;
-    file.close();
-
-    if(j.contains("imgui_settings")){
-      std::string settings = j["imgui_settings"];
-      ImGui::LoadIniSettingsFromMemory(settings.c_str(), settings.size());
-    }else{
-      std::cerr << "JSON does not contain 'imgui_settings' key." << std::endl;
-    }
-  }else{
-    std::cerr << "Failed to open file for loading settings: " << path << std::endl;
   }
 
   //---------------------------
