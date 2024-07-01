@@ -2,9 +2,6 @@
 
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
-#include <imgui/core/imgui.h>
-#include <nlohmann/json.hpp>
-#include <iostream>
 
 
 namespace gui::state{
@@ -24,19 +21,18 @@ void Loader::load_state(std::string path){
   //---------------------------
 
   nlohmann::json j;
-  this->open_json(j);
+  this->open_json(j, path);
   this->extract_ini_settings(j);
 
   //---------------------------
 }
 
 //Subfunction
-void Loader::open_json(nlohmann::json& j){
+void Loader::open_json(nlohmann::json& j, std::string path){
   //---------------------------
 
   std::ifstream file(path.c_str());
   if(file.is_open()){
-    nlohmann::json j;
     file >> j;
     file.close();
   }else{

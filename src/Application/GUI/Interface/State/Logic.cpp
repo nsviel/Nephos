@@ -23,7 +23,7 @@ Logic::~Logic(){}
 void Logic::update_list_file(){
   //---------------------------
 
-  gui_struct->vec_file = utl::path::list_all_file(gui_struct->path_current.directory);
+  gui_struct->vec_file = utl::path::list_all_file(gui_struct->path_current.directory, ".json");
 
   //---------------------------
 }

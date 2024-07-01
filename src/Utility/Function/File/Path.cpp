@@ -193,7 +193,7 @@ std::string reconstruct_path(std::string dir, std::string name, std::string form
   return (path == "") ? "(not defined)" : path;
 }
 
-std::vector<std::string> list_all_file(std::string path, std::string format){
+std::vector<std::string> list_all_file(std::string path, std::string required_format){
   //---------------------------
 
   struct dirent* files;
@@ -207,14 +207,12 @@ std::vector<std::string> list_all_file(std::string path, std::string format){
 
   // Filtre and store files present in the folder
   while((files = readdir(directory)) != NULL){
-    std::string name = files->d_name;
+    std::string filename = files->d_name;
+    std::string format = utl::path::get_format_from_filename(filename);
 
     // Skip the special directories "." and ".."
-    if(name != "." && name != ".."){
-      // Check if the file has a .ini extension
-      if(name.size() >= 4 && name.substr(name.size() - 4) == format){
-        path_vec.push_back(name);
-      }
+    if(filename != "." && filename != ".." && format == required_format){
+      path_vec.push_back(filename);
     }
   }
 

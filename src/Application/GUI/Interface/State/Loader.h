@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Type/Path.h>
+#include <nlohmann/json.hpp>
 #include <string>
 
 namespace gui::state{class Structure;}
@@ -21,7 +22,7 @@ public:
   void load_state(std::string path);
 
   //Subfunction
-  void open_json(nlohmann::json& j);
+  void open_json(nlohmann::json& j, std::string path);
   void extract_ini_settings(nlohmann::json& j);
 
 private:
