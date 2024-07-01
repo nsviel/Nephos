@@ -14,34 +14,20 @@ namespace utl::base{class Path;}
 
 namespace ldr::gui{
 
-class Navigator
+class Organisation
 {
 public:
   //Constructor / Destructor
-  Navigator(ldr::Node* node_loader);
-  ~Navigator();
+  Organisation(ldr::Node* node_loader);
+  ~Organisation();
 
 public:
   //Main function
-  void draw_navigator(utl::base::Path& path);
+  void item_organisation(std::vector<std::string>& vec_path);
 
   //Subfunction
-  void draw_header(utl::base::Path& path);
-  void draw_file_content(utl::base::Path& path);
-  void draw_bookmark(ldr::gui::File& bookmark);
-
-  //Item function
-  void item_organisation(std::vector<std::string>& vec_path);
   void insert_file(std::string& path, int& ID);
   void insert_folder(std::string& path, int& ID);
-
-  void item_folder(utl::base::Path& path);
-  void item_file(utl::base::Path& path);
-  void item_selection(utl::base::Path& path);
-  void make_selection(ldr::gui::File& file, bool& already_selected);
-
-  virtual void item_filtering(std::vector<std::string>& vec_path){}
-  virtual void item_operation(){}
 
 protected:
   ldr::Structure* ldr_struct;

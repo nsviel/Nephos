@@ -175,35 +175,17 @@ void Navigator::item_organisation(std::vector<std::string>& vec_path){
   vec_folder.clear();
   vec_file.clear();
   for(int i=0; i<vec_path.size(); i++){
-    ldr::gui::File file;
     std::string current_path = vec_path[i];
     std::string current_filename = utl::path::get_filename_from_path(current_path);
     //Remove hidden files
     if(current_filename[0] == '.' && current_filename[1] != '.') continue;
 
     //Get file info
-    file.item.ID = ID++;
-    file.item.type = utl::directory::is_directory(current_path) ? ldr::bookmark::FOLDER : ldr::bookmark::FILE;
-    if(file.item.type == ldr::bookmark::FOLDER){
-      file.item.name = utl::path::get_filename_from_path(current_path);
-      file.item.path = current_path;
-      file.item.icon = std::string(ICON_FA_FOLDER);
-      file.item.size = "---";
-      file.item.weight = 0;
-      file.item.format = "---";
-      file.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
-      file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-      vec_folder.push_back(file);
-    }else if(file.item.type == ldr::bookmark::FILE){
-      file.item.path = current_path;
-      file.item.name = utl::path::get_name_from_path(current_path);
-      file.item.icon = std::string(ICON_FA_FILE);
-      file.item.size = utl::file::formatted_size(current_path);
-      file.item.weight = utl::file::size(current_path);
-      file.item.format = utl::path::get_format_from_path(current_path);
-      file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-      file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-      vec_file.push_back(file);
+    bool is_dir = utl::directory::is_directory(current_path);
+    if(is_dir){
+      this->insert_folder(current_path, ID);
+    }else{
+      this->insert_file(current_path, ID);
     }
   }
 
@@ -215,6 +197,45 @@ void Navigator::item_organisation(std::vector<std::string>& vec_path){
 
   //---------------------------
 }
+void Navigator::insert_file(std::string& path, int& ID){
+  //---------------------------
+
+  ldr::gui::File file;
+  file.item.ID = ID++;
+  file.item.type = ldr::bookmark::FILE;
+  file.item.path = path;
+  file.item.name = utl::path::get_name_from_path(path);
+  file.item.icon = std::string(ICON_FA_FILE);
+  file.item.size = utl::file::formatted_size(path);
+  file.item.weight = utl::file::size(path);
+  file.item.format = utl::path::get_format_from_path(path);
+  file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+  file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+
+  this->vec_file.push_back(file);
+
+  //---------------------------
+}
+void Navigator::insert_folder(std::string& path, int& ID){
+  //---------------------------
+
+  ldr::gui::File file;
+  file.item.ID = ID++;
+  file.item.type = ldr::bookmark::FOLDER;
+  file.item.name = utl::path::get_filename_from_path(path);
+  file.item.path = path;
+  file.item.icon = std::string(ICON_FA_FOLDER);
+  file.item.size = "---";
+  file.item.weight = 0;
+  file.item.format = "---";
+  file.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
+  file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+
+  this->vec_folder.push_back(file);
+
+  //---------------------------
+}
+
 void Navigator::item_folder(utl::base::Path& path){
   //---------------------------
 
@@ -241,9 +262,10 @@ void Navigator::item_folder(utl::base::Path& path){
 
     //Selection stuff
     ImGui::SameLine();
-    const bool item_is_selected = vec_selection.contains(file.item.ID);
+    bool item_is_selected = vec_selection.contains(file.item.ID);
     std::string name = "##" + std::to_string(file.item.ID);
     if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
+      this->make_selection(file, item_is_selected);
 
       if(ImGui::IsMouseDoubleClicked(0)){
         if(file.item.name == ".."){
@@ -254,9 +276,6 @@ void Navigator::item_folder(utl::base::Path& path){
           path.directory += "/" + file.item.name;
           this->vec_selection.clear();
         }
-      }else{
-        vec_selection.clear();
-        vec_selection.push_back(file.item.ID);
       }
 
     }
@@ -291,22 +310,10 @@ void Navigator::item_file(utl::base::Path& path){
 
     //Selection stuff
     ImGui::SameLine();
-    const bool item_is_selected = vec_selection.contains(file.item.ID);
+    bool item_is_selected = vec_selection.contains(file.item.ID);
     std::string name = "##" + std::to_string(file.item.ID);
     if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
-      //Add selection to list
-      if(ImGui::GetIO().KeyCtrl){
-        if(item_is_selected){
-          vec_selection.find_erase_unsorted(file.item.ID);
-        }
-        else{
-          vec_selection.push_back(file.item.ID);
-        }
-      }else{
-        vec_selection.clear();
-        vec_selection.push_back(file.item.ID);
-        this->item_selection(path);
-      }
+      this->make_selection(file, item_is_selected);
 
       //If double clicked, load it
       if(ImGui::IsMouseDoubleClicked(0)){
@@ -315,6 +322,24 @@ void Navigator::item_file(utl::base::Path& path){
         this->item_operation();
       }
     }
+  }
+
+  //---------------------------
+}
+void Navigator::make_selection(ldr::gui::File& file, bool& already_selected){
+  ImGuiIO& io = ImGui::GetIO();
+  //---------------------------
+
+  if(io.KeyCtrl){
+    if(already_selected){
+      vec_selection.find_erase_unsorted(file.item.ID);
+    }
+    else{
+      vec_selection.push_back(file.item.ID);
+    }
+  }else{
+    vec_selection.clear();
+    vec_selection.push_back(file.item.ID);
   }
 
   //---------------------------
