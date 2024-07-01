@@ -12,7 +12,7 @@ class Font
 {
 public:
   //Constructor / Destructor
-  Font(gui::Node* gui);
+  Font(gui::Node* node_gui);
   ~Font();
 
 public:

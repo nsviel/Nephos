@@ -24,7 +24,7 @@ Menu::~Menu(){}
 void Menu::menu(){
   //---------------------------
 
-  //this->menu_option();
+  //this->menu_font();
   this->menu_imgui();
   this->menu_git();
 
@@ -32,11 +32,11 @@ void Menu::menu(){
 }
 
 //Subfunction
-void Menu::menu_option(){
+void Menu::menu_font(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
-  if(ImGui::BeginMenu(ICON_FA_GEAR, "menu_option")){
+  if(ImGui::BeginMenu(ICON_FA_GEAR, "menu_font")){
     gui_font->combo_font_gui();
     gui_font->combo_font_editor();
     ImGui::EndMenu();

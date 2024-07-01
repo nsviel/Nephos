@@ -9,7 +9,7 @@ class Docking
 {
 public:
   //Constructor / Destructor
-  Docking(gui::Node* gui);
+  Docking(gui::Node* node_gui);
   ~Docking();
 
 public:

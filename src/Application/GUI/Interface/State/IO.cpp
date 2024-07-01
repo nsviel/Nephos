@@ -10,7 +10,7 @@
 namespace gui::state{
 
 //Constructor / Destructor
-IO::IO(gui::Node* gui){
+IO::IO(gui::Node* node_gui){
   //---------------------------
 
   //---------------------------

@@ -9,7 +9,7 @@
 namespace gui::interface{
 
 //Constructor / Destructor
-Demo::Demo(gui::Node* gui){
+Demo::Demo(gui::Node* node_gui){
   //---------------------------
 
   //---------------------------

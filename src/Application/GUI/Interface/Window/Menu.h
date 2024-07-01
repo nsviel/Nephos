@@ -13,7 +13,7 @@ class Menu
 {
 public:
   //Constructor / Destructor
-  Menu(gui::Node* gui);
+  Menu(gui::Node* node_gui);
   ~Menu();
 
 public:
@@ -21,7 +21,7 @@ public:
   void menu();
 
   //Subfunction
-  void menu_option();
+  void menu_font();
   void menu_imgui();
   void menu_git();
 

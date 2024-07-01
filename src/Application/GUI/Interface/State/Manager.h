@@ -5,6 +5,7 @@
 #include <string>
 
 namespace gui{class Node;}
+namespace gui::state{class IO;}
 namespace utl::base{class Path;}
 
 
@@ -14,7 +15,7 @@ class Manager
 {
 public:
   //Constructor / Destructor
-  Manager(gui::Node* gui);
+  Manager(gui::Node* node_gui);
   ~Manager();
 
 public:
@@ -37,6 +38,8 @@ public:
   inline bool get_is_default(){return path_current.name == path_default.name;}
 
 private:
+  gui::state::IO* gui_io;
+
   std::vector<std::string> vec_file;
   utl::base::Path path_default;
   utl::base::Path path_current;

@@ -9,7 +9,7 @@ class Theme
 {
 public:
   //Constructor / Destructor
-  Theme(gui::Node* gui);
+  Theme(gui::Node* node_gui);
   ~Theme();
 
 public:

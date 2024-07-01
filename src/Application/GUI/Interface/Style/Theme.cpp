@@ -6,7 +6,7 @@
 namespace gui::style{
 
 //Constructor / Destructor
-Theme::Theme(gui::Node* gui){
+Theme::Theme(gui::Node* node_gui){
   //---------------------------
 
 

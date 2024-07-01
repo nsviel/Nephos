@@ -14,7 +14,7 @@ class IO
 {
 public:
   //Constructor / Destructor
-  IO(gui::Node* gui);
+  IO(gui::Node* node_gui);
   ~IO();
 
 public:

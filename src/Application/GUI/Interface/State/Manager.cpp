@@ -9,8 +9,10 @@
 namespace gui::state{
 
 //Constructor / Destructor
-Manager::Manager(gui::Node* gui){
+Manager::Manager(gui::Node* node_gui){
   //---------------------------
+
+  this->gui_io = new gui::state::IO(node_gui);
 
   this->path_default.insert("../media/config/gui/state/default.ini");
   this->path_current = path_default;

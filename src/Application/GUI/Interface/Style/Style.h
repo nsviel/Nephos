@@ -9,7 +9,7 @@ class Style
 {
 public:
   //Constructor / Destructor
-  Style(gui::Node* gui);
+  Style(gui::Node* node_gui);
   ~Style();
 
 public:

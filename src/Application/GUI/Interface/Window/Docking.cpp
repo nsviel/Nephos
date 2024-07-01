@@ -8,7 +8,7 @@
 namespace gui::interface{
 
 //Constructor / Destructor
-Docking::Docking(gui::Node* gui){
+Docking::Docking(gui::Node* node_gui){
   //---------------------------
 
 

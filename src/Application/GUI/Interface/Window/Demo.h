@@ -14,7 +14,7 @@ class Demo
 {
 public:
   //Constructor / Destructor
-  Demo(gui::Node* gui);
+  Demo(gui::Node* node_gui);
   ~Demo();
 
 public:
