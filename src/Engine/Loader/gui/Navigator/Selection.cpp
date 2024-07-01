@@ -18,7 +18,7 @@ Selection::Selection(ldr::gui::navigator::Structure* nav_struct){
 Selection::~Selection(){}
 
 //Main function
-void Selection::make_selection(ldr::gui::navigator::File& file, bool& already_selected){
+void Selection::control_selection(ldr::gui::navigator::File& file, bool& already_selected){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
@@ -36,7 +36,7 @@ void Selection::make_selection(ldr::gui::navigator::File& file, bool& already_se
 
   //---------------------------
 }
-void Selection::item_selection(utl::base::Path& path){
+void Selection::item_selection_truc(utl::base::Path& path){
   //---------------------------
 
   int selection = nav_struct->vec_selection[nav_struct->vec_selection.size() - 1];
@@ -52,5 +52,64 @@ void Selection::item_selection(utl::base::Path& path){
 
   //---------------------------
 }
+
+
+
+void Selection::selection_item(ldr::gui::navigator::File& file){
+  //---------------------------
+
+  ImGuiSelectableFlags flag;
+  flag |= ImGuiSelectableFlags_SpanAllColumns;
+  flag |= ImGuiSelectableFlags_AllowOverlap;
+  flag |= ImGuiSelectableFlags_AllowDoubleClick;
+
+  bool item_is_selected = nav_struct->vec_selection.contains(file.item.ID);
+  std::string label = "##" + std::to_string(file.item.ID);
+  ImGui::SameLine();
+  if(ImGui::Selectable(label.c_str(), item_is_selected, flag)){
+    this->control_selection(file, item_is_selected);
+
+    if(file.item.type == ldr::bookmark::FOLDER){
+      this->selection_folder(file);
+    }else{
+      this->selection_file(file);
+    }
+
+  }
+
+  //---------------------------
+}
+void Selection::selection_file(ldr::gui::navigator::File& file){
+  //---------------------------
+
+  //If double clicked, load it
+  if(ImGui::IsMouseDoubleClicked(0)){
+    nav_struct->vec_selection.clear();
+    nav_struct->vec_selection.push_back(file.item.ID);
+    //this->item_operation();
+  }
+
+  //---------------------------
+}
+void Selection::selection_folder(ldr::gui::navigator::File& file){
+  //---------------------------
+/*
+  //If double clicked, enter in it
+  if(ImGui::IsMouseDoubleClicked(0)){
+    if(file.item.name == ".."){
+      std::filesystem::path fs_path = path.directory;
+      path.directory = fs_path.parent_path();
+      nav_struct->vec_selection.clear();
+    }else{
+      path.directory += "/" + file.item.name;
+      nav_struct->vec_selection.clear();
+    }
+  }
+*/
+  //---------------------------
+}
+
+
+
 
 }

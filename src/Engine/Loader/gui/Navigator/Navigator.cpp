@@ -68,35 +68,12 @@ void Navigator::draw_item_folder(utl::base::Path& path){
   //---------------------------
 
   // Populate the table - Folder
-  ImGuiSelectableFlags flags;
-  flags |= ImGuiSelectableFlags_SpanAllColumns;
-  flags |= ImGuiSelectableFlags_AllowOverlap;
-  flags |= ImGuiSelectableFlags_AllowDoubleClick;
   for(int i=0; i<nav_struct->vec_folder.size(); i++){
     ldr::gui::navigator::File& file = nav_struct->vec_folder[i];
 
     this->draw_content_file(file);
     this->draw_bookmark_icon(file);
-
-    //Selection stuff
-    ImGui::SameLine();
-    bool item_is_selected = nav_struct->vec_selection.contains(file.item.ID);
-    std::string name = "##" + std::to_string(file.item.ID);
-    if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
-      nav_selection->make_selection(file, item_is_selected);
-
-      if(ImGui::IsMouseDoubleClicked(0)){
-        if(file.item.name == ".."){
-          std::filesystem::path fs_path = path.directory;
-          path.directory = fs_path.parent_path();
-          nav_struct->vec_selection.clear();
-        }else{
-          path.directory += "/" + file.item.name;
-          nav_struct->vec_selection.clear();
-        }
-      }
-
-    }
+    nav_selection->selection_item(file);
   }
 
   //---------------------------
@@ -114,21 +91,7 @@ void Navigator::draw_item_file(utl::base::Path& path){
 
     this->draw_content_file(file);
     this->draw_bookmark_icon(file);
-
-    //Selection stuff
-    ImGui::SameLine();
-    bool item_is_selected = nav_struct->vec_selection.contains(file.item.ID);
-    std::string name = "##" + std::to_string(file.item.ID);
-    if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
-      nav_selection->make_selection(file, item_is_selected);
-
-      //If double clicked, load it
-      if(ImGui::IsMouseDoubleClicked(0)){
-        nav_struct->vec_selection.clear();
-        nav_struct->vec_selection.push_back(file.item.ID);
-        this->item_operation();
-      }
-    }
+    nav_selection->selection_item(file);
   }
 
   //---------------------------

@@ -23,8 +23,13 @@ public:
 
 public:
   //Main function
-  void item_selection(utl::base::Path& path);
-  void make_selection(ldr::gui::navigator::File& file, bool& already_selected);
+
+  void control_selection(ldr::gui::navigator::File& file, bool& already_selected);
+  void item_selection_truc(utl::base::Path& path);
+
+  void selection_item(ldr::gui::navigator::File& file);
+  void selection_folder(ldr::gui::navigator::File& file);
+  void selection_file(ldr::gui::navigator::File& file);
 
 protected:
   ldr::gui::navigator::Structure* nav_struct;
