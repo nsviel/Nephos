@@ -34,6 +34,8 @@ public:
   //Subfunction
   prf::dynamic::Task* find_task(const std::string& name);
 
+  inline bool is_idle(){return vec_task.size() == 0;}
+
 public:
   std::string name = "";
   utl::improfil::Plot plot;

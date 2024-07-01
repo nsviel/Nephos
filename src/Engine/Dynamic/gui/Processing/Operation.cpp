@@ -64,6 +64,9 @@ void Operation::draw_ope_misc(){
   if(ImGui::CollapsingHeader("Operation##dynamic")){
     ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
 
+    //Enable
+    ImGui::Checkbox("Activated", &dyn_struct->operation.normal.enable);
+
     //Parameter: kNN
     ImGui::SetNextItemWidth(100);
     ImGui::SliderInt("kNN", &dyn_struct->operation.normal.knn, 1, 10);

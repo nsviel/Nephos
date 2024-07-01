@@ -107,7 +107,9 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
     ImVec2 dimension = ImVec2(dim.x, dim.y / list_tasker.size());
     for(int i=0; i<list_tasker.size(); i++){
       prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
-      this->draw_tasker_graph(tasker, dimension, profiler->pause);
+      if(!tasker->is_idle()){
+        this->draw_tasker_graph(tasker, dimension, profiler->pause);
+      }
     }
 
     ImGui::EndTable();

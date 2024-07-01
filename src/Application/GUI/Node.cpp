@@ -23,7 +23,6 @@ Node::Node(app::Node* node_app){
   this->gui_style = new gui::style::Style(this);
   this->gui_font = new gui::style::Font(this);
   this->gui_theme = new gui::style::Theme(this);
-  this->gui_control = new gui::interface::Control(this);
   this->gui_docking = new gui::interface::Docking(this);
   this->tasker = node_engine->get_tasker_cpu();
 
@@ -35,7 +34,6 @@ Node::~Node(){
   //---------------------------
 
   delete gui_tab;
-  delete gui_control;
 
   //---------------------------
 }
@@ -60,7 +58,6 @@ void Node::loop(){
   ImGui::NewFrame();
   gui_docking->docking_space();
   gui_tab->loop();
-  gui_control->run_control();
   gui_demo->loop();
 
   tasker->task_end("gui::loop");

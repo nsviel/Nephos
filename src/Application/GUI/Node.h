@@ -7,7 +7,6 @@ namespace eng{class Node;}
 namespace sce{class Node;}
 
 namespace gui{class Tab;}
-namespace gui::interface{class Control;}
 namespace gui::interface{class Demo;}
 namespace gui::interface{class Docking;}
 namespace gui::interface{class State;}
@@ -35,7 +34,6 @@ public:
 
   inline gui::Tab* get_gui_tab(){return gui_tab;}
   inline gui::interface::Demo* get_gui_demo(){return gui_demo;}
-  inline gui::interface::Control* get_gui_control(){return gui_control;}
   inline gui::interface::State* get_gui_state(){return gui_state;}
   inline gui::style::Font* get_gui_font(){return gui_font;}
 
@@ -47,7 +45,6 @@ private:
   //Child
   gui::Tab* gui_tab;
   gui::interface::Demo* gui_demo;
-  gui::interface::Control* gui_control;
   gui::interface::Docking* gui_docking;
   gui::interface::State* gui_state;
   gui::style::Style* gui_style;

@@ -30,6 +30,7 @@ Normal::~Normal(){}
 
 //Main function
 void Normal::start_thread(dyn::base::Sensor* sensor){
+  if(!dyn_struct->operation.normal.enable) return;
   //---------------------------
 
   if(thread.joinable()){

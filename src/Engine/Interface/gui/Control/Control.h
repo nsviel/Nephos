@@ -7,6 +7,7 @@ namespace itf{class Structure;}
 namespace itf::gui{class Edition;}
 namespace itf::gui{class Navigation;}
 namespace itf::gui{class Player;}
+namespace itf::gui{class Render;}
 
 
 namespace itf::gui{
@@ -27,6 +28,7 @@ private:
   itf::gui::Navigation* gui_navigation;
   itf::gui::Edition* gui_edition;
   itf::gui::Player* gui_player;
+  itf::gui::Render* gui_render;
 };
 
 }
