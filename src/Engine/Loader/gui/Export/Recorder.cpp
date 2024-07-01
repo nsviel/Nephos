@@ -78,13 +78,13 @@ void Recorder::display_path(){
   ImGui::Text("Directory"); ImGui::TableNextColumn();
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
-  std::string current_path = ldr_struct->exporter.path.folder;
+  std::string current_path = ldr_struct->exporter.path.directory;
   if(current_path == "") current_path = "(not defined)";
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::PopStyleColor();
   ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
-    utl::directory::open(ldr_struct->exporter.path.folder);
+    utl::directory::open(ldr_struct->exporter.path.directory);
   }
 
   //Filename
@@ -179,7 +179,7 @@ void Recorder::item_operation(){
 
   utl::base::Data* data = &entity->data;
   data->name = ldr_struct->exporter.path.name;
-  data->path.directory = ldr_struct->exporter.path.folder;
+  data->path.directory = ldr_struct->exporter.path.directory;
   data->path.name = data->name;
   data->path.format = format;
 

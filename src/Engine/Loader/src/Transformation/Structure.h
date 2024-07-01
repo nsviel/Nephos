@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/src/Base/Path.h>
+#include <Utility/Base/Type/Path.h>
 #include <string>
 
 
@@ -9,7 +9,7 @@ namespace ldr::transformation{
 struct Structure{
   //---------------------------
 
-  ldr::base::Path path;
+  utl::base::Path path;
 
   //---------------------------
 };

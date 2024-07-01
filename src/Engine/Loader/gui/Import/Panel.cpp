@@ -78,7 +78,7 @@ void Panel::draw_header(){
   //Selected file path
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Path"); ImGui::TableNextColumn();
-  std::string path = utl::path::reconstruct_path(ldr_struct->importer.path.folder, ldr_struct->importer.path.name, ldr_struct->importer.path.format);
+  std::string path = utl::path::reconstruct_path(ldr_struct->importer.path.directory, ldr_struct->importer.path.name, ldr_struct->importer.path.format);
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", path.c_str());
   ImGui::EndTable();
 
@@ -199,7 +199,7 @@ void Panel::item_bookmark(std::string file_path){
 
   //If selection is a directory go display his content
   if(utl::directory::is_directory(file_path)){
-    ldr_struct->importer.path.folder = file_path;
+    ldr_struct->importer.path.directory = file_path;
     this->goto_file_tab = true;
   }
   //If selection is a file go load it

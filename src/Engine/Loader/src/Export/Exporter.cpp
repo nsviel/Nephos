@@ -39,8 +39,7 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
 void Exporter::init_path(){
   //---------------------------
 
-  ldr_struct->exporter.path.base = utl::path::get_current_parent_path_abs();
-  ldr_struct->exporter.path.folder = utl::path::get_current_parent_path_abs();
+  ldr_struct->exporter.path.directory = utl::path::get_current_parent_path_abs();
   ldr_struct->exporter.path.format = "ply";
 
   //---------------------------

@@ -102,7 +102,7 @@ void Connection::create_sensor(int index){
   k4n::capture::Sensor* sensor = new k4n::capture::Sensor(node_k4n, index);
   sensor->name = "capture_" + std::to_string(index);
   sensor->data.name = sensor->name;
-  sensor->data.path.format = "mkv";
+  sensor->data.path.format = ".mkv";
   sensor->data.path.directory = utl::path::get_current_path_abs();
   sensor->pose.model[2][3] = 1;
 

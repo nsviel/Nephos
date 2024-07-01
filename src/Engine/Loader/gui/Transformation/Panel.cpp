@@ -94,13 +94,13 @@ void Panel::display_path(utl::base::Element* element){
   ImGui::Text("Directory"); ImGui::TableNextColumn();
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
-  std::string current_path = ldr_struct->transformation.path.folder;
+  std::string current_path = ldr_struct->transformation.path.directory;
   if(current_path == "") current_path = "(not defined)";
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::PopStyleColor();
   ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
-    utl::directory::open(ldr_struct->transformation.path.folder);
+    utl::directory::open(ldr_struct->transformation.path.directory);
   }
 
   //Filename
@@ -192,7 +192,7 @@ void Panel::item_operation(){
   if(element == nullptr) return;
   //---------------------------
 
-  std::string path_file = utl::path::reconstruct_path(ldr_struct->transformation.path.folder, ldr_struct->transformation.path.name, ldr_struct->transformation.path.format);
+  std::string path_file = utl::path::reconstruct_path(ldr_struct->transformation.path.directory, ldr_struct->transformation.path.name, ldr_struct->transformation.path.format);
   ldr_transformation->load_transformation(element, path_file);
 
   //---------------------------
