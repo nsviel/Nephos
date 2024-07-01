@@ -33,6 +33,7 @@ public:
   void draw_item_file(utl::base::Path& path);
 
   //Item function
+  void draw_content_file(ldr::gui::navigator::File& file);
   void draw_bookmark_icon(ldr::gui::navigator::File& bookmark);
   void item_selection(utl::base::Path& path);
   void make_selection(ldr::gui::navigator::File& file, bool& already_selected);

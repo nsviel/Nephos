@@ -39,6 +39,7 @@ void Navigator::draw_navigator(utl::base::Path& path){
 void Navigator::draw_content(utl::base::Path& path){
   //---------------------------
 
+  //Content table
   static ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_BordersV;
   flags |= ImGuiTableFlags_BordersOuterH;
@@ -47,13 +48,13 @@ void Navigator::draw_content(utl::base::Path& path){
   flags |= ImGuiTableFlags_NoBordersInBody;
   flags |= ImGuiTableFlags_Sortable;
   ImGui::BeginTable("init_tree", 4, flags);
-  // The first column will use the default _WidthStretch when ScrollX is Off and _WidthFixed when ScrollX is On
   ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ldr::bookmark::NAME);
   ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, ldr::bookmark::FORMAT);
   ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, ldr::bookmark::WEIGHT);
   ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
   ImGui::TableHeadersRow();
 
+  //Content draw
   nav_organisation->sort_items();
   this->draw_item_folder(path);
   this->draw_item_file(path);
@@ -155,6 +156,24 @@ void Navigator::draw_item_file(utl::base::Path& path){
 }
 
 //Item function
+void Navigator::draw_content_file(ldr::gui::navigator::File& file){
+  //---------------------------
+
+  ImGui::TableNextRow();
+  ImGui::TableNextColumn();
+  ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
+  ImGui::TextColored(color_icon, "%s", file.item.icon.c_str());
+  ImGui::SameLine();
+  ImVec4 color_text = ImVec4(file.item.color_text.r, file.item.color_text.g, file.item.color_text.b, file.item.color_text.a);
+  ImGui::TextColored(color_text, "%s", file.item.name.c_str());
+  ImGui::TableNextColumn();
+  ImGui::TextColored(color_text, "%s", file.item.format.c_str());
+  ImGui::TableNextColumn();
+  ImGui::TextColored(color_text, "%s", file.item.size.c_str());
+  ImGui::TableNextColumn();
+
+  //---------------------------
+}
 void Navigator::draw_bookmark_icon(ldr::gui::navigator::File& file){
   if(nav_struct->with_bookmark == false) return;
   //---------------------------
