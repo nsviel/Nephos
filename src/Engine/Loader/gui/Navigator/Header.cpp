@@ -5,7 +5,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::gui{
+namespace ldr::gui::navigator{
 
 //Constructor / Destructor
 Header::Header(ldr::gui::navigator::Structure* nav_struct){

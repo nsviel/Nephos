@@ -7,6 +7,7 @@
 namespace ldr{class Node;}
 namespace ldr::gui::navigator{class Structure;}
 namespace ldr::gui::navigator{class Organisation;}
+namespace ldr::gui::navigator{class Header;}
 namespace ldr::io{class Importer;}
 namespace ldr::gui::navigator{class File;}
 namespace ldr::bookmark{class Manager;}
@@ -27,7 +28,6 @@ public:
   void draw_navigator(utl::base::Path& path);
 
   //Subfunction
-  void draw_header(utl::base::Path& path);
   void draw_file_content(utl::base::Path& path);
   void draw_bookmark(ldr::gui::navigator::File& bookmark);
 
@@ -44,6 +44,7 @@ protected:
   ldr::io::Importer* ldr_importer;
   ldr::bookmark::Manager* ldr_bookmark;
   ldr::gui::navigator::Organisation* nav_organisation;
+  ldr::gui::navigator::Header* nav_header;
 };
 
 }

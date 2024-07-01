@@ -8,7 +8,7 @@ namespace ldr::gui::navigator{class Structure;}
 namespace utl::base{class Path;}
 
 
-namespace ldr::gui{
+namespace ldr::gui::navigator{
 
 class Header
 {
