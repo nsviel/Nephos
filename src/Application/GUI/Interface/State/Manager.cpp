@@ -14,6 +14,7 @@ Manager::Manager(gui::Node* node_gui){
 
   this->gui_struct = new gui::state::Structure();
   this->gui_io = new gui::state::IO(gui_struct);
+  this->gui_logic = new gui::state::Logic(gui_struct);
 
   //---------------------------
 }
@@ -30,7 +31,7 @@ void Manager::init(){
   gui_struct->path_save.insert(default_path);
 
   gui_io->state_load(default_path);
-  gui_io->update_list_file();
+  gui_logic->update_list_file();
 
   //---------------------------
 }
@@ -39,7 +40,7 @@ void Manager::loop(){
 
   if(gui_struct->flag_reload){
     gui_io->state_load(gui_struct->path_save.build());
-    gui_io->update_list_file();
+    gui_logic->update_list_file();
     gui_struct->path_current = gui_struct->path_save;
     gui_struct->flag_reload = false;
   }
@@ -58,7 +59,7 @@ void Manager::gui(){
 
   if(gui_struct->path_current.name != gui_struct->path_default.name){
     if(ImGui::Button("Make default##state", ImVec2(120, 0))){
-      gui_io->make_current_default();
+      gui_logic->make_current_default();
     }
   }
 
@@ -87,7 +88,7 @@ void Manager::gui(){
 
   //Load GUI state
   ImGui::SetNextItemWidth(120);
-  int idx = gui_io->get_idx_path_current();
+  int idx = gui_logic->get_idx_path_current();
   std::vector<const char*> vec_file_cchar = utl::casting::vec_str_to_cchar(gui_struct->vec_file);
   if(ImGui::Combo("##imgui_init_states", &idx, vec_file_cchar.data(), vec_file_cchar.size())){
     std::string filename = (std::string)vec_file_cchar[idx];

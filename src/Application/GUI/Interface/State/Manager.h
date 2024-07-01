@@ -4,6 +4,7 @@
 
 namespace gui{class Node;}
 namespace gui::state{class IO;}
+namespace gui::state{class Logic;}
 namespace gui::state{class Structure;}
 
 
@@ -24,6 +25,7 @@ public:
 
 private:
   gui::state::IO* gui_io;
+  gui::state::Logic* gui_logic;
   gui::state::Structure* gui_struct;
 };
 

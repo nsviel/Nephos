@@ -9,19 +9,18 @@ namespace utl::base{class Path;}
 
 namespace gui::state{
 
-class IO
+class Logic
 {
 public:
   //Constructor / Destructor
-  IO(gui::state::Structure* gui_struct);
-  ~IO();
+  Logic(gui::state::Structure* gui_struct);
+  ~Logic();
 
 public:
   //Main function
-  void state_save(std::string path);
-  void state_load(std::string path);
-
-  //Subfunction
+  void update_list_file();
+  void make_current_default();
+  int get_idx_path_current();
 
 private:
   gui::state::Structure* gui_struct;
