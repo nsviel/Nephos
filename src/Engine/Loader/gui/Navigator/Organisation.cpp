@@ -82,6 +82,15 @@ void Organisation::insert_folder(std::string& path, int& ID){
 
   //---------------------------
 }
+bool Organisation::is_hidden_file(std::string& path){
+  //---------------------------
+
+  std::string filename = utl::path::get_filename_from_path(path);
+  if(filename[0] == '.' && filename[1] != '.') return true;
+
+  //---------------------------
+  return false;
+}
 void Organisation::sort_data(){
   //---------------------------
 
@@ -91,15 +100,6 @@ void Organisation::sort_data(){
   }
 
   //---------------------------
-}
-bool Organisation::is_hidden_file(std::string& path){
-  //---------------------------
-
-  std::string filename = utl::path::get_filename_from_path(current_path);
-  if(filename[0] == '.' && filename[1] != '.') return true;
-
-  //---------------------------
-  return false;
 }
 
 }

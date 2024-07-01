@@ -130,7 +130,6 @@ void Navigator::draw_file_content(utl::base::Path& path){
   ImGui::TableHeadersRow();
 
   std::vector<std::string> vec_path = utl::path::list_all_path(path.directory);
-  this->item_filtering(vec_path);
   nav_organisation->item_organisation(vec_path);
   this->item_folder(path);
   this->item_file(path);

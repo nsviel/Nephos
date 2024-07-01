@@ -37,7 +37,6 @@ public:
   void item_selection(utl::base::Path& path);
   void make_selection(ldr::gui::navigator::File& file, bool& already_selected);
 
-  virtual void item_filtering(std::vector<std::string>& vec_path){}
   virtual void item_operation(){}
 
 protected:

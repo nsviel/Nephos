@@ -29,8 +29,8 @@ public:
   //Subfunction
   void insert_file(std::string& path, int& ID);
   void insert_folder(std::string& path, int& ID);
-  void sort_data();
   bool is_hidden_file(std::string& path);
+  void sort_data();
 
 protected:
   ldr::gui::navigator::Structure* nav_struct;
