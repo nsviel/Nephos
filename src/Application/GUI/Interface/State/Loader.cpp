@@ -23,26 +23,39 @@ Loader::~Loader(){}
 void Loader::load_state(std::string path){
   //---------------------------
 
-  std::ifstream file(path.c_str());
-  if(file.is_open()){
-    nlohmann::json j;
-    file >> j;
-    file.close();
-
-    if(j.contains("imgui_settings")){
-      std::string settings = j["imgui_settings"];
-      ImGui::LoadIniSettingsFromMemory(settings.c_str(), settings.size());
-    }else{
-      std::cerr << "JSON does not contain 'imgui_settings' key." << std::endl;
-    }
-  }else{
-    std::cerr << "Failed to open file for loading settings: " << path << std::endl;
-  }
+  nlohmann::json j;
+  this->open_json(j);
+  this->extract_ini_settings(j);
 
   //---------------------------
 }
 
 //Subfunction
+void Loader::open_json(nlohmann::json& j){
+  //---------------------------
 
+  std::ifstream file(path.c_str());
+  if(file.is_open()){
+    nlohmann::json j;
+    file >> j;
+    file.close();
+  }else{
+    std::cerr << "[error] Failed to open file for loading settings: " << path << std::endl;
+  }
+
+  //---------------------------
+}
+void Loader::extract_ini_settings(nlohmann::json& j){
+  //---------------------------
+
+  if(j.contains("imgui_settings")){
+    std::string settings = j["imgui_settings"];
+    ImGui::LoadIniSettingsFromMemory(settings.c_str(), settings.size());
+  }else{
+    std::cerr << "[error] JSON does not contain 'imgui_settings' key." << std::endl;
+  }
+
+  //---------------------------
+}
 
 }

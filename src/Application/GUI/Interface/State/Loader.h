@@ -21,6 +21,8 @@ public:
   void load_state(std::string path);
 
   //Subfunction
+  void open_json(nlohmann::json& j);
+  void extract_ini_settings(nlohmann::json& j);
 
 private:
   gui::state::Structure* gui_struct;
