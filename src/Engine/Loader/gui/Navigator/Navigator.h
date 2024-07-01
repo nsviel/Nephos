@@ -8,6 +8,7 @@ namespace ldr{class Node;}
 namespace ldr::gui::navigator{class Structure;}
 namespace ldr::gui::navigator{class Organisation;}
 namespace ldr::gui::navigator{class Header;}
+namespace ldr::gui::navigator{class Selection;}
 namespace ldr::io{class Importer;}
 namespace ldr::gui::navigator{class File;}
 namespace ldr::bookmark{class Manager;}
@@ -35,8 +36,6 @@ public:
   //Item function
   void draw_content_file(ldr::gui::navigator::File& file);
   void draw_bookmark_icon(ldr::gui::navigator::File& bookmark);
-  void item_selection(utl::base::Path& path);
-  void make_selection(ldr::gui::navigator::File& file, bool& already_selected);
 
   virtual void item_operation(){}
 
@@ -46,6 +45,7 @@ protected:
   ldr::bookmark::Manager* ldr_bookmark;
   ldr::gui::navigator::Organisation* nav_organisation;
   ldr::gui::navigator::Header* nav_header;
+  ldr::gui::navigator::Selection* nav_selection;
 };
 
 }

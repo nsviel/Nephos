@@ -16,6 +16,7 @@ Navigator::Navigator(ldr::Node* node_loader, bool with_bookmark){
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
   this->nav_organisation = new ldr::gui::navigator::Organisation(nav_struct);
   this->nav_header = new ldr::gui::navigator::Header(nav_struct);
+  this->nav_selection = new ldr::gui::navigator::Selection(nav_struct);
 
   nav_struct->with_bookmark = with_bookmark;
   nav_struct->default_path = utl::path::get_current_parent_path_abs();
@@ -74,18 +75,7 @@ void Navigator::draw_item_folder(utl::base::Path& path){
   for(int i=0; i<nav_struct->vec_folder.size(); i++){
     ldr::gui::navigator::File& file = nav_struct->vec_folder[i];
 
-    //Item icon
-    ImGui::TableNextColumn();
-    ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
-    ImGui::TextColored(color_icon, "%s", file.item.icon.c_str());
-    ImGui::SameLine();
-    ImVec4 color_text = ImVec4(file.item.color_text.r, file.item.color_text.g, file.item.color_text.b, file.item.color_text.a);
-    ImGui::TextColored(color_text, "%s", file.item.name.c_str());
-    ImGui::TableNextColumn();
-    ImGui::TextColored(color_text, "%s", file.item.format.c_str());
-    ImGui::TableNextColumn();
-    ImGui::TextColored(color_text, "%s", file.item.size.c_str());
-    ImGui::TableNextColumn();
+    this->draw_content_file(file);
     this->draw_bookmark_icon(file);
 
     //Selection stuff
@@ -93,7 +83,7 @@ void Navigator::draw_item_folder(utl::base::Path& path){
     bool item_is_selected = nav_struct->vec_selection.contains(file.item.ID);
     std::string name = "##" + std::to_string(file.item.ID);
     if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
-      this->make_selection(file, item_is_selected);
+      nav_selection->make_selection(file, item_is_selected);
 
       if(ImGui::IsMouseDoubleClicked(0)){
         if(file.item.name == ".."){
@@ -122,18 +112,7 @@ void Navigator::draw_item_file(utl::base::Path& path){
   for(int i=0; i<nav_struct->vec_file.size(); i++){
     ldr::gui::navigator::File& file = nav_struct->vec_file[i];
 
-    ImGui::TableNextRow();
-    ImGui::TableNextColumn();
-    ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
-    ImGui::TextColored(color_icon, "%s", file.item.icon.c_str());
-    ImGui::SameLine();
-    ImVec4 color_text = ImVec4(file.item.color_text.r, file.item.color_text.g, file.item.color_text.b, file.item.color_text.a);
-    ImGui::TextColored(color_text, "%s", file.item.name.c_str());
-    ImGui::TableNextColumn();
-    ImGui::TextColored(color_text, "%s", file.item.format.c_str());
-    ImGui::TableNextColumn();
-    ImGui::TextColored(color_text, "%s", file.item.size.c_str());
-    ImGui::TableNextColumn();
+    this->draw_content_file(file);
     this->draw_bookmark_icon(file);
 
     //Selection stuff
@@ -141,7 +120,7 @@ void Navigator::draw_item_file(utl::base::Path& path){
     bool item_is_selected = nav_struct->vec_selection.contains(file.item.ID);
     std::string name = "##" + std::to_string(file.item.ID);
     if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
-      this->make_selection(file, item_is_selected);
+      nav_selection->make_selection(file, item_is_selected);
 
       //If double clicked, load it
       if(ImGui::IsMouseDoubleClicked(0)){
@@ -159,18 +138,24 @@ void Navigator::draw_item_file(utl::base::Path& path){
 void Navigator::draw_content_file(ldr::gui::navigator::File& file){
   //---------------------------
 
-  ImGui::TableNextRow();
-  ImGui::TableNextColumn();
   ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
+  ImVec4 color_text = ImVec4(file.item.color_text.r, file.item.color_text.g, file.item.color_text.b, file.item.color_text.a);
+
+  ImGui::TableNextRow();
+
+  //Item icon + name
+  ImGui::TableNextColumn();
   ImGui::TextColored(color_icon, "%s", file.item.icon.c_str());
   ImGui::SameLine();
-  ImVec4 color_text = ImVec4(file.item.color_text.r, file.item.color_text.g, file.item.color_text.b, file.item.color_text.a);
   ImGui::TextColored(color_text, "%s", file.item.name.c_str());
+
+  //Item format
   ImGui::TableNextColumn();
   ImGui::TextColored(color_text, "%s", file.item.format.c_str());
+
+  //Item size
   ImGui::TableNextColumn();
   ImGui::TextColored(color_text, "%s", file.item.size.c_str());
-  ImGui::TableNextColumn();
 
   //---------------------------
 }
@@ -185,6 +170,7 @@ void Navigator::draw_bookmark_icon(ldr::gui::navigator::File& file){
 
   //Draw bookmark button
   std::string ID = file.item.path + "##bookmarkbutton";
+  ImGui::TableNextColumn();
   ImGui::PushID(ID.c_str());
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
   ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
@@ -198,40 +184,6 @@ void Navigator::draw_bookmark_icon(ldr::gui::navigator::File& file){
   }
   ImGui::PopStyleColor(2);
   ImGui::PopID();
-
-  //---------------------------
-}
-void Navigator::make_selection(ldr::gui::navigator::File& file, bool& already_selected){
-  ImGuiIO& io = ImGui::GetIO();
-  //---------------------------
-
-  if(io.KeyCtrl){
-    if(already_selected){
-      nav_struct->vec_selection.find_erase_unsorted(file.item.ID);
-    }
-    else{
-      nav_struct->vec_selection.push_back(file.item.ID);
-    }
-  }else{
-    nav_struct->vec_selection.clear();
-    nav_struct->vec_selection.push_back(file.item.ID);
-  }
-
-  //---------------------------
-}
-void Navigator::item_selection(utl::base::Path& path){
-  //---------------------------
-
-  int selection = nav_struct->vec_selection[nav_struct->vec_selection.size() - 1];
-  for(int i=0; i<nav_struct->vec_file.size(); i++){
-    ldr::gui::navigator::File& file = nav_struct->vec_file[i];
-
-    if(file.item.ID == selection){
-      path.directory = utl::path::get_dir_from_path(file.item.path);
-      path.name = utl::path::get_name_from_path(file.item.path);
-      path.format = utl::path::get_format_from_path(file.item.path);
-    }
-  }
 
   //---------------------------
 }

@@ -4,3 +4,4 @@
 #include <Loader/gui/Navigator/Navigator.h>
 #include <Loader/gui/Navigator/Organisation.h>
 #include <Loader/gui/Navigator/Header.h>
+#include <Loader/gui/Navigator/Selection.h>
