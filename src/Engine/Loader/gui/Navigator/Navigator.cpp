@@ -2,6 +2,7 @@
 
 #include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Loader/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -11,12 +12,12 @@ namespace ldr::gui{
 Navigator::Navigator(ldr::Node* node_loader){
   //---------------------------
 
-  this->ldr_struct = node_loader->get_ldr_struct();
+  this->nav_struct = new ldr::gui::navigator::Structure();
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
 
-  this->with_bookmark = with_bookmark;
-  this->default_path = utl::path::get_current_parent_path_abs();
+  nav_struct->with_bookmark = nav_struct->with_bookmark;
+  nav_struct->default_path = utl::path::get_current_parent_path_abs();
 
   //---------------------------
 }
@@ -43,7 +44,7 @@ void Navigator::draw_header(utl::base::Path& path){
   //Reset current dir
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_HOUSE "##222")){
-    path.directory = default_path;
+    path.directory = nav_struct->default_path;
   }
   ImGui::SameLine();
   ImGui::SeparatorEx(ImGuiSeparatorFlags_Vertical);
@@ -139,7 +140,7 @@ void Navigator::draw_file_content(utl::base::Path& path){
   //---------------------------
 }
 void Navigator::draw_bookmark(ldr::gui::navigator::File& file){
-  if(with_bookmark == false) return;
+  if(nav_struct->with_bookmark == false) return;
   //---------------------------
 
   //Button background if already bookmarked
@@ -172,8 +173,8 @@ void Navigator::item_organisation(std::vector<std::string>& vec_path){
 
   //Item transposition
   int ID = 0;
-  vec_folder.clear();
-  vec_file.clear();
+  nav_struct->vec_folder.clear();
+  nav_struct->vec_file.clear();
   for(int i=0; i<vec_path.size(); i++){
     std::string current_path = vec_path[i];
     std::string current_filename = utl::path::get_filename_from_path(current_path);
@@ -191,8 +192,8 @@ void Navigator::item_organisation(std::vector<std::string>& vec_path){
 
   // Sort data
   if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, vec_folder);
-    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, vec_file);
+    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_folder);
+    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_file);
   }
 
   //---------------------------
@@ -212,7 +213,7 @@ void Navigator::insert_file(std::string& path, int& ID){
   file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
   file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
 
-  this->vec_file.push_back(file);
+  nav_struct->vec_file.push_back(file);
 
   //---------------------------
 }
@@ -231,7 +232,7 @@ void Navigator::insert_folder(std::string& path, int& ID){
   file.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
   file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
 
-  this->vec_folder.push_back(file);
+  nav_struct->vec_folder.push_back(file);
 
   //---------------------------
 }
@@ -244,8 +245,8 @@ void Navigator::item_folder(utl::base::Path& path){
   flags |= ImGuiSelectableFlags_SpanAllColumns;
   flags |= ImGuiSelectableFlags_AllowOverlap;
   flags |= ImGuiSelectableFlags_AllowDoubleClick;
-  for(int i=0; i<vec_folder.size(); i++){
-    ldr::gui::navigator::File& file = vec_folder[i];
+  for(int i=0; i<nav_struct->vec_folder.size(); i++){
+    ldr::gui::navigator::File& file = nav_struct->vec_folder[i];
 
     ImGui::TableNextColumn();
     ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
@@ -262,7 +263,7 @@ void Navigator::item_folder(utl::base::Path& path){
 
     //Selection stuff
     ImGui::SameLine();
-    bool item_is_selected = vec_selection.contains(file.item.ID);
+    bool item_is_selected = nav_struct->vec_selection.contains(file.item.ID);
     std::string name = "##" + std::to_string(file.item.ID);
     if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
       this->make_selection(file, item_is_selected);
@@ -271,10 +272,10 @@ void Navigator::item_folder(utl::base::Path& path){
         if(file.item.name == ".."){
           std::filesystem::path fs_path = path.directory;
           path.directory = fs_path.parent_path();
-          this->vec_selection.clear();
+          nav_struct->vec_selection.clear();
         }else{
           path.directory += "/" + file.item.name;
-          this->vec_selection.clear();
+          nav_struct->vec_selection.clear();
         }
       }
 
@@ -291,8 +292,8 @@ void Navigator::item_file(utl::base::Path& path){
   flags |= ImGuiSelectableFlags_SpanAllColumns;
   flags |= ImGuiSelectableFlags_AllowOverlap;
   flags |= ImGuiSelectableFlags_AllowDoubleClick;
-  for(int i=0; i<vec_file.size(); i++){
-    ldr::gui::navigator::File& file = vec_file[i];
+  for(int i=0; i<nav_struct->vec_file.size(); i++){
+    ldr::gui::navigator::File& file = nav_struct->vec_file[i];
 
     ImGui::TableNextRow();
     ImGui::TableNextColumn();
@@ -310,15 +311,15 @@ void Navigator::item_file(utl::base::Path& path){
 
     //Selection stuff
     ImGui::SameLine();
-    bool item_is_selected = vec_selection.contains(file.item.ID);
+    bool item_is_selected = nav_struct->vec_selection.contains(file.item.ID);
     std::string name = "##" + std::to_string(file.item.ID);
     if(ImGui::Selectable(name.c_str(), item_is_selected, flags)){
       this->make_selection(file, item_is_selected);
 
       //If double clicked, load it
       if(ImGui::IsMouseDoubleClicked(0)){
-        vec_selection.clear();
-        vec_selection.push_back(file.item.ID);
+        nav_struct->vec_selection.clear();
+        nav_struct->vec_selection.push_back(file.item.ID);
         this->item_operation();
       }
     }
@@ -332,14 +333,14 @@ void Navigator::make_selection(ldr::gui::navigator::File& file, bool& already_se
 
   if(io.KeyCtrl){
     if(already_selected){
-      vec_selection.find_erase_unsorted(file.item.ID);
+      nav_struct->vec_selection.find_erase_unsorted(file.item.ID);
     }
     else{
-      vec_selection.push_back(file.item.ID);
+      nav_struct->vec_selection.push_back(file.item.ID);
     }
   }else{
-    vec_selection.clear();
-    vec_selection.push_back(file.item.ID);
+    nav_struct->vec_selection.clear();
+    nav_struct->vec_selection.push_back(file.item.ID);
   }
 
   //---------------------------
@@ -347,9 +348,9 @@ void Navigator::make_selection(ldr::gui::navigator::File& file, bool& already_se
 void Navigator::item_selection(utl::base::Path& path){
   //---------------------------
 
-  int selection = vec_selection[vec_selection.size() - 1];
-  for(int i=0; i<vec_file.size(); i++){
-    ldr::gui::navigator::File& file = vec_file[i];
+  int selection = nav_struct->vec_selection[nav_struct->vec_selection.size() - 1];
+  for(int i=0; i<nav_struct->vec_file.size(); i++){
+    ldr::gui::navigator::File& file = nav_struct->vec_file[i];
 
     if(file.item.ID == selection){
       path.directory = utl::path::get_dir_from_path(file.item.path);

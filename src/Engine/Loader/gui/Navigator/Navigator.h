@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace ldr{class Node;}
-namespace ldr{class Structure;}
+namespace ldr::gui::navigator{class Structure;}
 namespace ldr::io{class Importer;}
 namespace ldr::gui::navigator{class File;}
 namespace ldr::bookmark{class Manager;}
@@ -44,7 +44,7 @@ public:
   virtual void item_operation(){}
 
 protected:
-  ldr::Structure* ldr_struct;
+  ldr::gui::navigator::Structure* nav_struct;
   ldr::io::Importer* ldr_importer;
   ldr::bookmark::Manager* ldr_bookmark;
 
