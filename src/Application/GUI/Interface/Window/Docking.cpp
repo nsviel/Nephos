@@ -17,7 +17,7 @@ Docking::Docking(gui::Node* gui){
 Docking::~Docking(){}
 
 //Main function
-void State::loop(){
+void Docking::loop(){
   //---------------------------
 
   this->docking_space();
