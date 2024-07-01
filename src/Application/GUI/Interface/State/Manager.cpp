@@ -37,6 +37,55 @@ void Manager::loop(){
 
   //---------------------------
 }
+void Manager::gui(){
+  //---------------------------
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "State");
+
+  //Current file
+  ImGui::Text("Current");
+  ImGui::SameLine();
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", path_current.filename().c_str());
+
+  if(path_current.name != path_default.name){
+    if(ImGui::Button("Make default##state", ImVec2(120, 0))){
+      this->make_current_default();
+    }
+  }
+
+  //Save GUI state
+  if(ImGui::Button("Save##state_save", ImVec2(120, 0))){
+    ImGui::OpenPopup("state_save_popup");
+  }
+  if(ImGui::BeginPopup("state_save_popup")){
+    ImGui::Text("File name");
+
+    ImGui::SetNextItemWidth(125);
+    static char str_n[256];
+    strncpy(str_n, path_save.name.c_str(), sizeof(str_n) - 1);
+    if(ImGui::InputText("##state_save", str_n, IM_ARRAYSIZE(str_n))){
+      path_save.name = str_n;
+    }
+
+    if(ImGui::Button("Save##state_save")){
+      this->save_state();
+      ImGui::CloseCurrentPopup();
+    }
+
+    ImGui::EndPopup();
+  }
+
+  //Load GUI state
+  ImGui::SetNextItemWidth(120);
+  int idx = get_idx_path_current();
+  std::vector<const char*> vec_file_cchar = utl::casting::vec_str_to_cchar(vec_file);
+  if(ImGui::Combo("##imgui_init_states", &idx, vec_file_cchar.data(), vec_file_cchar.size())){
+    std::string filename = (std::string)vec_file_cchar[idx];
+    this->load_state(filename);
+  }
+
+  //---------------------------
+}
 
 //Subfunction
 void Manager::save_state(){

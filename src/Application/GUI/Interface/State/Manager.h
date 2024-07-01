@@ -21,6 +21,7 @@ public:
   //Main function
   void init();
   void loop();
+  void gui();
 
   //Subfunction
   void save_state();

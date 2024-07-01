@@ -20,6 +20,7 @@ public:
 public:
   //Main function
   void loop();
+  void gui();
 
   //Subfunction
   void open_demo_file();

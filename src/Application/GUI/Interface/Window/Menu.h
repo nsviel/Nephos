@@ -19,13 +19,11 @@ public:
 public:
   //Menu function
   void menu();
+
+  //Subfunction
   void menu_option();
   void menu_imgui();
   void menu_git();
-
-  //Subfunction
-  void menu_demo();
-  void menu_state();
 
 private:
   gui::style::Font* gui_font;

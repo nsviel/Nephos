@@ -26,6 +26,22 @@ void Demo::loop(){
 
   //---------------------------
 }
+void Demo::gui(){
+  //---------------------------
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Demo");
+
+  //Demo window
+  ImGui::Checkbox("Window", &show_demo);
+
+  //Demo file
+  if(ImGui::Button("Open file", ImVec2(120, 0))){
+    this->open_demo_file();
+  }
+
+  //---------------------------
+  ImGui::Separator();
+}
 
 //Subfunction
 void Demo::open_demo_file(){
