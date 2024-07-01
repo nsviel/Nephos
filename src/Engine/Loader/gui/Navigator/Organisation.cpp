@@ -21,30 +21,24 @@ Organisation::~Organisation(){}
 void Organisation::item_organisation(std::vector<std::string>& vec_path){
   //---------------------------
 
-  //Item transposition
+  //Clear vectors
+  nav_struct->vec_folder.clear();
+  nav_struct->vec_file.clear();
+
+  //Organize files
   int ID = 0;
-  vec_folder.clear();
-  vec_file.clear();
   for(int i=0; i<vec_path.size(); i++){
     std::string current_path = vec_path[i];
-    std::string current_filename = utl::path::get_filename_from_path(current_path);
-    //Remove hidden files
-    if(current_filename[0] == '.' && current_filename[1] != '.') continue;
+    if(is_hidden_file(current_path)) continue;
 
-    //Get file info
-    bool is_dir = utl::directory::is_directory(current_path);
-    if(is_dir){
+    if(utl::directory::is_directory(current_path)){
       this->insert_folder(current_path, ID);
     }else{
       this->insert_file(current_path, ID);
     }
   }
 
-  // Sort data
-  if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, vec_folder);
-    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, vec_file);
-  }
+  this->sort_data();
 
   //---------------------------
 }
@@ -65,7 +59,7 @@ void Organisation::insert_file(std::string& path, int& ID){
   file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
   file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
 
-  this->vec_file.push_back(file);
+  nav_struct->vec_file.push_back(file);
 
   //---------------------------
 }
@@ -84,9 +78,28 @@ void Organisation::insert_folder(std::string& path, int& ID){
   file.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
   file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
 
-  this->vec_folder.push_back(file);
+  nav_struct->vec_folder.push_back(file);
 
   //---------------------------
+}
+void Organisation::sort_data(){
+  //---------------------------
+
+  if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
+    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_folder);
+    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_file);
+  }
+
+  //---------------------------
+}
+bool Organisation::is_hidden_file(std::string& path){
+  //---------------------------
+
+  std::string filename = utl::path::get_filename_from_path(current_path);
+  if(filename[0] == '.' && filename[1] != '.') return true;
+
+  //---------------------------
+  return false;
 }
 
 }
