@@ -6,6 +6,7 @@
 
 namespace gui{class Node;}
 namespace gui::state{class IO;}
+namespace gui::state{class Structure;}
 namespace utl::base{class Path;}
 
 
@@ -25,26 +26,15 @@ public:
   void gui();
 
   //Subfunction
-  void save_state();
   void load_state(std::string filename);
   void reload_state();
   void update_file_list();
   void make_current_default();
   int get_idx_path_current();
 
-  inline std::vector<std::string> get_vec_file(){return vec_file;}
-  inline utl::base::Path* get_path_current(){return &path_current;}
-  inline utl::base::Path* get_path_save(){return &path_save;}
-  inline bool get_is_default(){return path_current.name == path_default.name;}
-
 private:
   gui::state::IO* gui_io;
-
-  std::vector<std::string> vec_file;
-  utl::base::Path path_default;
-  utl::base::Path path_current;
-  utl::base::Path path_save;
-  bool flag_reload = false;
+  gui::state::Structure* gui_struct;
 };
 
 }

@@ -1,0 +1,22 @@
+#pragma once
+
+#include <Utility/Base/Type/Path.h>
+#include <string>
+#include <vector>
+
+
+namespace gui::state{
+
+struct Structure{
+  //---------------------------
+
+  std::vector<std::string> vec_file;
+  utl::base::Path path_default;
+  utl::base::Path path_current;
+  utl::base::Path path_save;
+  bool flag_reload = false;
+
+  //---------------------------
+};
+
+}
