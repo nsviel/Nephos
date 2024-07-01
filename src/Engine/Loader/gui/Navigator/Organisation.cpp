@@ -18,7 +18,7 @@ Organisation::Organisation(ldr::gui::navigator::Structure* nav_struct){
 Organisation::~Organisation(){}
 
 //Main function
-void Organisation::organize_items(utl::base::Path& path){
+void Organisation::recolt_items(utl::base::Path& path){
   std::vector<std::string> vec_path = utl::path::list_all_path(path.directory);
   //---------------------------
 
@@ -39,7 +39,15 @@ void Organisation::organize_items(utl::base::Path& path){
     }
   }
 
-  this->sort_data();
+  //---------------------------
+}
+void Organisation::sort_items(){
+  //---------------------------
+
+  if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
+    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_folder);
+    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_file);
+  }
 
   //---------------------------
 }
@@ -91,16 +99,6 @@ bool Organisation::is_hidden_file(std::string& path){
 
   //---------------------------
   return false;
-}
-void Organisation::sort_data(){
-  //---------------------------
-
-  if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_folder);
-    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_file);
-  }
-
-  //---------------------------
 }
 
 }

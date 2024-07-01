@@ -24,13 +24,13 @@ public:
 
 public:
   //Main function
-  void organize_items(utl::base::Path& path);
+  void recolt_items(utl::base::Path& path);
+  void sort_items();
 
   //Subfunction
   void insert_file(std::string& path, int& ID);
   void insert_folder(std::string& path, int& ID);
   bool is_hidden_file(std::string& path);
-  void sort_data();
 
 protected:
   ldr::gui::navigator::Structure* nav_struct;

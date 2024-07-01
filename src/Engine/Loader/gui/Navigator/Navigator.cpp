@@ -26,18 +26,17 @@ Navigator::~Navigator(){}
 
 //Main function
 void Navigator::draw_navigator(utl::base::Path& path){
-
   //---------------------------
 
   nav_header->draw_header(path);
-  nav_organisation->organize_items(path);
-  this->draw_file_content(path);
+  nav_organisation->recolt_items(path);
+  this->draw_content(path);
 
   //---------------------------
 }
 
 //Subfunction
-void Navigator::draw_file_content(utl::base::Path& path){
+void Navigator::draw_content(utl::base::Path& path){
   //---------------------------
 
   static ImGuiTableFlags flags;
@@ -55,14 +54,15 @@ void Navigator::draw_file_content(utl::base::Path& path){
   ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
   ImGui::TableHeadersRow();
 
-  this->item_folder(path);
-  this->item_file(path);
+  nav_organisation->sort_items();
+  this->draw_item_folder(path);
+  this->draw_item_file(path);
 
   ImGui::EndTable();
 
   //---------------------------
 }
-void Navigator::item_folder(utl::base::Path& path){
+void Navigator::draw_item_folder(utl::base::Path& path){
   //---------------------------
 
   // Populate the table - Folder
@@ -73,6 +73,7 @@ void Navigator::item_folder(utl::base::Path& path){
   for(int i=0; i<nav_struct->vec_folder.size(); i++){
     ldr::gui::navigator::File& file = nav_struct->vec_folder[i];
 
+    //Item icon
     ImGui::TableNextColumn();
     ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
     ImGui::TextColored(color_icon, "%s", file.item.icon.c_str());
@@ -109,7 +110,7 @@ void Navigator::item_folder(utl::base::Path& path){
 
   //---------------------------
 }
-void Navigator::item_file(utl::base::Path& path){
+void Navigator::draw_item_file(utl::base::Path& path){
   //---------------------------
 
   // Populate the table - File

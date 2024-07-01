@@ -28,9 +28,9 @@ public:
   void draw_navigator(utl::base::Path& path);
 
   //Subfunction
-  void draw_file_content(utl::base::Path& path);
-  void item_folder(utl::base::Path& path);
-  void item_file(utl::base::Path& path);
+  void draw_content(utl::base::Path& path);
+  void draw_item_folder(utl::base::Path& path);
+  void draw_item_file(utl::base::Path& path);
 
   //Item function
   void draw_bookmark_icon(ldr::gui::navigator::File& bookmark);

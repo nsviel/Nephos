@@ -23,7 +23,7 @@ public:
 
   //Subfunction
   void draw_directory_trail(utl::base::Path& path);
-  void draw_add_directory(utl::base::Path& path);
+  void draw_directory_add(utl::base::Path& path);
 
 protected:
   ldr::gui::navigator::Structure* nav_struct;

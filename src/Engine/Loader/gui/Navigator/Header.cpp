@@ -29,7 +29,7 @@ void Header::draw_header(utl::base::Path& path){
   this->draw_directory_trail(path);
 
   ImGui::TableNextColumn();
-  this->draw_add_directory(path);
+  this->draw_directory_add(path);
 
   ImGui::EndTable();
 
@@ -81,7 +81,7 @@ void Header::draw_directory_trail(utl::base::Path& path){
 
   //---------------------------
 }
-void Header::draw_add_directory(utl::base::Path& path){
+void Header::draw_directory_add(utl::base::Path& path){
   //---------------------------
 
   //Add folder button
