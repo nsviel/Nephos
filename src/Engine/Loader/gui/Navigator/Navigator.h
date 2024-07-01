@@ -18,7 +18,7 @@ class Navigator
 {
 public:
   //Constructor / Destructor
-  Navigator(ldr::Node* node_loader, bool with_bookmark));
+  Navigator(ldr::Node* node_loader, bool with_bookmark);
   ~Navigator();
 
 public:

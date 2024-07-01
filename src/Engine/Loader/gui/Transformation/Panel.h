@@ -14,7 +14,7 @@ namespace dat::graph{class Selection;}
 
 namespace ldr::gui::transformation{
 
-class Panel : public ldr::gui::Navigator
+class Panel
 {
 public:
   //Constructor / Destructor
@@ -33,10 +33,11 @@ public:
   void display_matrix(utl::base::Element* element);
   void item_filtering(std::vector<std::string>& vec_path);
   void item_operation();
-  
+
 private:
   ldr::Structure* ldr_struct;
   ldr::io::Transformation* ldr_transformation;
+  ldr::gui::Navigator* gui_navigator;
   dat::graph::Selection* dat_selection;
 
   std::string name;

@@ -8,7 +8,7 @@
 namespace ldr::gui::transformation{
 
 //Constructor / Destructor
-Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(node_loader){
+Panel::Panel(ldr::Node* node_loader, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_loader->get_node_data();
@@ -16,10 +16,10 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window) : ldr::gui::Navigator(no
   this->ldr_struct = node_loader->get_ldr_struct();
   this->ldr_transformation = node_loader->get_ldr_transformation();
   this->dat_selection = node_data->get_dat_selection();
+  this->gui_navigator = new ldr::gui::Navigator(node_loader, false);
 
   this->name = "Transformation##555";
   this->show_window = show_window;
-  this->with_bookmark = false;
 
   //---------------------------
 }
@@ -53,7 +53,7 @@ void Panel::design_panel(utl::base::Element* element){
   this->display_path(element);
   this->display_format(element);
   this->display_matrix(element);
-  this->draw_navigator(ldr_struct->transformation.path);
+  gui_navigator->draw_navigator(ldr_struct->transformation.path);
 
   //---------------------------
 }
