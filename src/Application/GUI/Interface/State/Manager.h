@@ -1,13 +1,10 @@
 #pragma once
 
-#include <Utility/Base/Type/Path.h>
-#include <vector>
 #include <string>
 
 namespace gui{class Node;}
 namespace gui::state{class IO;}
 namespace gui::state{class Structure;}
-namespace utl::base{class Path;}
 
 
 namespace gui::state{
@@ -26,9 +23,9 @@ public:
   void gui();
 
   //Subfunction
-  void load_state(std::string filename);
+
   void reload_state();
-  void update_file_list();
+
   void make_current_default();
   int get_idx_path_current();
 

@@ -13,14 +13,9 @@ Manager::Manager(gui::Node* node_gui){
   //---------------------------
 
   this->gui_struct = new gui::state::Structure();
-  this->gui_io = new gui::state::IO(node_gui);
-
-  gui_struct->path_default.insert("../media/config/gui/default.json");
-  gui_struct->path_current = gui_struct->path_default;
-  gui_struct->path_save = gui_struct->path_default;
+  this->gui_io = new gui::state::IO(gui_struct);
 
   //---------------------------
-  this->update_file_list();
 }
 Manager::~Manager(){}
 
@@ -28,15 +23,26 @@ Manager::~Manager(){}
 void Manager::init(){
   //---------------------------
 
-  std::string path = gui_struct->path_current.build();
-  gui_io->state_load(path);
+  std::string default_path = "../media/config/gui/default.json";
+
+  gui_struct->path_default.insert(default_path);
+  gui_struct->path_current.insert(default_path);
+  gui_struct->path_save.insert(default_path);
+
+  gui_io->state_load(default_path);
+  gui_io->update_list_file();
 
   //---------------------------
 }
 void Manager::loop(){
   //---------------------------
 
-  this->reload_state();
+  if(gui_struct->flag_reload){
+    gui_io->state_load(gui_struct->path_save.build());
+    gui_io->update_list_file();
+    gui_struct->path_current = gui_struct->path_save;
+    gui_struct->flag_reload = false;
+  }
 
   //---------------------------
 }
@@ -71,6 +77,7 @@ void Manager::gui(){
     }
 
     if(ImGui::Button("Save##state_save")){
+        std::string path = gui_struct->path_save.build();
       //gui_io->state_save();
       ImGui::CloseCurrentPopup();
     }
@@ -84,46 +91,20 @@ void Manager::gui(){
   std::vector<const char*> vec_file_cchar = utl::casting::vec_str_to_cchar(gui_struct->vec_file);
   if(ImGui::Combo("##imgui_init_states", &idx, vec_file_cchar.data(), vec_file_cchar.size())){
     std::string filename = (std::string)vec_file_cchar[idx];
-    this->load_state(filename);
+    gui_struct->path_save.insert_filename(filename);
+    gui_struct->flag_reload = true;
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Manager::load_state(std::string filename){
-  if(filename == "") return;
-  //---------------------------
-
-  gui_struct->path_save.insert_filename(filename);
-  gui_struct->flag_reload = true;
-
-  //---------------------------
-}
-void Manager::reload_state(){
-  if(!gui_struct->flag_reload) return;
-  //---------------------------
-
-  std::string path_file = gui_struct->path_save.build();
-  ImGui::LoadIniSettingsFromDisk(path_file.c_str());
-  //std::cout<<"[OK] Imgui state reloaded at "<<path_file<<std::endl;
-  gui_struct->path_current = gui_struct->path_save;
-
-  //---------------------------
-  gui_struct->flag_reload = false;
-}
-void Manager::update_file_list(){
-  //---------------------------
-
-  gui_struct->vec_file = utl::path::list_all_file(gui_struct->path_current.directory);
-
-  //---------------------------
-}
 void Manager::make_current_default(){
   //---------------------------
 
-  std::string path_file = gui_struct->path_default.build();
-  ImGui::SaveIniSettingsToDisk(path_file.c_str());
+
+  std::string path = gui_struct->path_default.build();
+  //gui_io->state_save();
 
   //---------------------------
 }

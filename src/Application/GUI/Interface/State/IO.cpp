@@ -10,8 +10,10 @@
 namespace gui::state{
 
 //Constructor / Destructor
-IO::IO(gui::Node* node_gui){
+IO::IO(gui::state::Structure* gui_struct){
   //---------------------------
+
+  this->gui_struct = gui_struct;
 
   //---------------------------
 }
@@ -54,6 +56,15 @@ void IO::state_load(std::string path){
   }else{
     std::cerr << "Failed to open file for loading settings: " << path << std::endl;
   }
+
+  //---------------------------
+}
+
+//Subfunction
+void IO::update_list_file(){
+  //---------------------------
+
+  gui_struct->vec_file = utl::path::list_all_file(gui_struct->path_current.directory);
 
   //---------------------------
 }

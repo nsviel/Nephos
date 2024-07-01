@@ -1,10 +1,9 @@
 #pragma once
 
 #include <Utility/Base/Type/Path.h>
-#include <vector>
 #include <string>
 
-namespace gui{class Node;}
+namespace gui::state{class Structure;}
 namespace utl::base{class Path;}
 
 
@@ -14,7 +13,7 @@ class IO
 {
 public:
   //Constructor / Destructor
-  IO(gui::Node* node_gui);
+  IO(gui::state::Structure* gui_struct);
   ~IO();
 
 public:
@@ -22,8 +21,11 @@ public:
   void state_save(std::string path);
   void state_load(std::string path);
 
-private:
+  //Subfunction
+  void update_list_file();
 
+private:
+  gui::state::Structure* gui_struct;
 };
 
 }
