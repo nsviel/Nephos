@@ -2,7 +2,6 @@
 
 #include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Loader/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -15,6 +14,7 @@ Navigator::Navigator(ldr::Node* node_loader, bool with_bookmark){
   this->nav_struct = new ldr::gui::navigator::Structure();
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
+  this->nav_organisation = new ldr::gui::navigator::Organisation(nav_struct);
 
   nav_struct->with_bookmark = with_bookmark;
   nav_struct->default_path = utl::path::get_current_parent_path_abs();
@@ -131,7 +131,7 @@ void Navigator::draw_file_content(utl::base::Path& path){
 
   std::vector<std::string> vec_path = utl::path::list_all_path(path.directory);
   this->item_filtering(vec_path);
-  this->item_organisation(vec_path);
+  nav_organisation->item_organisation(vec_path);
   this->item_folder(path);
   this->item_file(path);
 
@@ -168,75 +168,6 @@ void Navigator::draw_bookmark(ldr::gui::navigator::File& file){
 }
 
 //Item function
-void Navigator::item_organisation(std::vector<std::string>& vec_path){
-  //---------------------------
-
-  //Item transposition
-  int ID = 0;
-  nav_struct->vec_folder.clear();
-  nav_struct->vec_file.clear();
-  for(int i=0; i<vec_path.size(); i++){
-    std::string current_path = vec_path[i];
-    std::string current_filename = utl::path::get_filename_from_path(current_path);
-    //Remove hidden files
-    if(current_filename[0] == '.' && current_filename[1] != '.') continue;
-
-    //Get file info
-    bool is_dir = utl::directory::is_directory(current_path);
-    if(is_dir){
-      this->insert_folder(current_path, ID);
-    }else{
-      this->insert_file(current_path, ID);
-    }
-  }
-
-  // Sort data
-  if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_folder);
-    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, nav_struct->vec_file);
-  }
-
-  //---------------------------
-}
-void Navigator::insert_file(std::string& path, int& ID){
-  //---------------------------
-
-  ldr::gui::navigator::File file;
-  file.item.ID = ID++;
-  file.item.type = ldr::bookmark::FILE;
-  file.item.path = path;
-  file.item.name = utl::path::get_name_from_path(path);
-  file.item.icon = std::string(ICON_FA_FILE);
-  file.item.size = utl::file::formatted_size(path);
-  file.item.weight = utl::file::size(path);
-  file.item.format = utl::path::get_format_from_path(path);
-  file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-  file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-
-  nav_struct->vec_file.push_back(file);
-
-  //---------------------------
-}
-void Navigator::insert_folder(std::string& path, int& ID){
-  //---------------------------
-
-  ldr::gui::navigator::File file;
-  file.item.ID = ID++;
-  file.item.type = ldr::bookmark::FOLDER;
-  file.item.name = utl::path::get_filename_from_path(path);
-  file.item.path = path;
-  file.item.icon = std::string(ICON_FA_FOLDER);
-  file.item.size = "---";
-  file.item.weight = 0;
-  file.item.format = "---";
-  file.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
-  file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-
-  nav_struct->vec_folder.push_back(file);
-
-  //---------------------------
-}
-
 void Navigator::item_folder(utl::base::Path& path){
   //---------------------------
 

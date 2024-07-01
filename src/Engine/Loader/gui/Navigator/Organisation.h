@@ -10,6 +10,7 @@ namespace ldr::io{class Importer;}
 namespace ldr::gui::navigator{class File;}
 namespace ldr::bookmark{class Manager;}
 namespace utl::base{class Path;}
+namespace ldr::gui::navigator{class Structure;}
 
 
 namespace ldr::gui::navigator{
@@ -18,7 +19,7 @@ class Organisation
 {
 public:
   //Constructor / Destructor
-  Organisation(ldr::Node* node_loader);
+  Organisation(ldr::gui::navigator::Structure* nav_struct);
   ~Organisation();
 
 public:
@@ -30,9 +31,7 @@ public:
   void insert_folder(std::string& path, int& ID);
 
 protected:
-  ldr::Structure* ldr_struct;
-  ldr::io::Importer* ldr_importer;
-  ldr::bookmark::Manager* ldr_bookmark;
+  ldr::gui::navigator::Structure* nav_struct;
 
   std::vector<ldr::gui::navigator::File> vec_folder;
   std::vector<ldr::gui::navigator::File> vec_file;

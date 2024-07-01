@@ -6,6 +6,7 @@
 
 namespace ldr{class Node;}
 namespace ldr::gui::navigator{class Structure;}
+namespace ldr::gui::navigator{class Organisation;}
 namespace ldr::io{class Importer;}
 namespace ldr::gui::navigator{class File;}
 namespace ldr::bookmark{class Manager;}
@@ -31,10 +32,6 @@ public:
   void draw_bookmark(ldr::gui::navigator::File& bookmark);
 
   //Item function
-  void item_organisation(std::vector<std::string>& vec_path);
-  void insert_file(std::string& path, int& ID);
-  void insert_folder(std::string& path, int& ID);
-
   void item_folder(utl::base::Path& path);
   void item_file(utl::base::Path& path);
   void item_selection(utl::base::Path& path);
@@ -47,13 +44,7 @@ protected:
   ldr::gui::navigator::Structure* nav_struct;
   ldr::io::Importer* ldr_importer;
   ldr::bookmark::Manager* ldr_bookmark;
-
-  std::vector<ldr::gui::navigator::File> vec_folder;
-  std::vector<ldr::gui::navigator::File> vec_file;
-  std::string default_path;
-  ImVector<int> vec_selection;
-  bool goto_file_tab = false;
-  bool with_bookmark = true;
+  ldr::gui::navigator::Organisation* nav_organisation;
 };
 
 }

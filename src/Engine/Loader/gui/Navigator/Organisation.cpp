@@ -8,15 +8,10 @@
 namespace ldr::gui::navigator{
 
 //Constructor / Destructor
-Organisation::Organisation(ldr::Node* node_loader){
+Organisation::Organisation(ldr::gui::navigator::Structure* nav_struct){
   //---------------------------
 
-  this->ldr_struct = node_loader->get_ldr_struct();
-  this->ldr_importer = node_loader->get_ldr_importer();
-  this->ldr_bookmark = node_loader->get_ldr_bookmark();
-
-  this->with_bookmark = with_bookmark;
-  this->default_path = utl::path::get_current_parent_path_abs();
+  this->nav_struct = nav_struct;
 
   //---------------------------
 }
