@@ -29,11 +29,11 @@ public:
 
   //Subfunction
   void draw_file_content(utl::base::Path& path);
-  void draw_bookmark(ldr::gui::navigator::File& bookmark);
-
-  //Item function
   void item_folder(utl::base::Path& path);
   void item_file(utl::base::Path& path);
+
+  //Item function
+  void draw_bookmark_icon(ldr::gui::navigator::File& bookmark);
   void item_selection(utl::base::Path& path);
   void make_selection(ldr::gui::navigator::File& file, bool& already_selected);
 

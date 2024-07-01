@@ -21,6 +21,10 @@ public:
   //Main function
   void draw_header(utl::base::Path& path);
 
+  //Subfunction
+  void draw_directory_trail(utl::base::Path& path);
+  void draw_add_directory(utl::base::Path& path);
+
 protected:
   ldr::gui::navigator::Structure* nav_struct;
 };

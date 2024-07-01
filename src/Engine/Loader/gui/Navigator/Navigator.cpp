@@ -26,9 +26,11 @@ Navigator::~Navigator(){}
 
 //Main function
 void Navigator::draw_navigator(utl::base::Path& path){
+
   //---------------------------
 
   nav_header->draw_header(path);
+  nav_organisation->organize_items(path);
   this->draw_file_content(path);
 
   //---------------------------
@@ -53,8 +55,6 @@ void Navigator::draw_file_content(utl::base::Path& path){
   ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
   ImGui::TableHeadersRow();
 
-  std::vector<std::string> vec_path = utl::path::list_all_path(path.directory);
-  nav_organisation->item_organisation(vec_path);
   this->item_folder(path);
   this->item_file(path);
 
@@ -62,35 +62,6 @@ void Navigator::draw_file_content(utl::base::Path& path){
 
   //---------------------------
 }
-void Navigator::draw_bookmark(ldr::gui::navigator::File& file){
-  if(nav_struct->with_bookmark == false) return;
-  //---------------------------
-
-  //Button background if already bookmarked
-  bool is_bookmarked = ldr_bookmark->is_path_bookmarked(file.item.path);
-  int bg_alpha;
-  is_bookmarked ? bg_alpha = 255 : bg_alpha = 0;
-
-  //Draw bookmark button
-  std::string ID = file.item.path + "##bookmarkbutton";
-  ImGui::PushID(ID.c_str());
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
-  ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
-  if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark")){
-    if(is_bookmarked){
-      ldr_bookmark->remove_path(file.item.path);
-    }else{
-      ldr_bookmark->add_abs_path(file.item.path);
-    }
-    ldr_bookmark->save_on_file();
-  }
-  ImGui::PopStyleColor(2);
-  ImGui::PopID();
-
-  //---------------------------
-}
-
-//Item function
 void Navigator::item_folder(utl::base::Path& path){
   //---------------------------
 
@@ -113,7 +84,7 @@ void Navigator::item_folder(utl::base::Path& path){
     ImGui::TableNextColumn();
     ImGui::TextColored(color_text, "%s", file.item.size.c_str());
     ImGui::TableNextColumn();
-    this->draw_bookmark(file);
+    this->draw_bookmark_icon(file);
 
     //Selection stuff
     ImGui::SameLine();
@@ -161,7 +132,7 @@ void Navigator::item_file(utl::base::Path& path){
     ImGui::TableNextColumn();
     ImGui::TextColored(color_text, "%s", file.item.size.c_str());
     ImGui::TableNextColumn();
-    this->draw_bookmark(file);
+    this->draw_bookmark_icon(file);
 
     //Selection stuff
     ImGui::SameLine();
@@ -178,6 +149,35 @@ void Navigator::item_file(utl::base::Path& path){
       }
     }
   }
+
+  //---------------------------
+}
+
+//Item function
+void Navigator::draw_bookmark_icon(ldr::gui::navigator::File& file){
+  if(nav_struct->with_bookmark == false) return;
+  //---------------------------
+
+  //Button background if already bookmarked
+  bool is_bookmarked = ldr_bookmark->is_path_bookmarked(file.item.path);
+  int bg_alpha;
+  is_bookmarked ? bg_alpha = 255 : bg_alpha = 0;
+
+  //Draw bookmark button
+  std::string ID = file.item.path + "##bookmarkbutton";
+  ImGui::PushID(ID.c_str());
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
+  ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
+  if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark")){
+    if(is_bookmarked){
+      ldr_bookmark->remove_path(file.item.path);
+    }else{
+      ldr_bookmark->add_abs_path(file.item.path);
+    }
+    ldr_bookmark->save_on_file();
+  }
+  ImGui::PopStyleColor(2);
+  ImGui::PopID();
 
   //---------------------------
 }

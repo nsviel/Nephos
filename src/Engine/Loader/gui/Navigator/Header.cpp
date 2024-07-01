@@ -25,8 +25,22 @@ void Header::draw_header(utl::base::Path& path){
   ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthStretch);
   ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthFixed, 25.0f);
 
-  //Reset current dir
   ImGui::TableNextRow(); ImGui::TableNextColumn();
+  this->draw_directory_trail(path);
+
+  ImGui::TableNextColumn();
+  this->draw_add_directory(path);
+
+  ImGui::EndTable();
+
+  //---------------------------
+}
+
+//Subfunction
+void Header::draw_directory_trail(utl::base::Path& path){
+  //---------------------------
+
+  //Reset current dir
   if(ImGui::Button(ICON_FA_HOUSE "##222")){
     path.directory = nav_struct->default_path;
   }
@@ -65,8 +79,12 @@ void Header::draw_header(utl::base::Path& path){
     ImGui::PopID();
   }
 
+  //---------------------------
+}
+void Header::draw_add_directory(utl::base::Path& path){
+  //---------------------------
+
   //Add folder button
-  ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_FOLDER_PLUS "##addfolder")){
     ImGui::OpenPopup("my_select_popup");
   }
@@ -90,8 +108,6 @@ void Header::draw_header(utl::base::Path& path){
 
     ImGui::EndPopup();
   }
-
-  ImGui::EndTable();
 
   //---------------------------
 }

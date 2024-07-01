@@ -24,7 +24,7 @@ public:
 
 public:
   //Main function
-  void item_organisation(std::vector<std::string>& vec_path);
+  void organize_items(utl::base::Path& path);
 
   //Subfunction
   void insert_file(std::string& path, int& ID);

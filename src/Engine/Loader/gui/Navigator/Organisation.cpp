@@ -18,7 +18,8 @@ Organisation::Organisation(ldr::gui::navigator::Structure* nav_struct){
 Organisation::~Organisation(){}
 
 //Main function
-void Organisation::item_organisation(std::vector<std::string>& vec_path){
+void Organisation::organize_items(utl::base::Path& path){
+  std::vector<std::string> vec_path = utl::path::list_all_path(path.directory);
   //---------------------------
 
   //Clear vectors
