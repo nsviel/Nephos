@@ -37,7 +37,10 @@ void Content::draw_content(utl::base::Path& path){
   ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, utl::gui::navigator::NAME);
   ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, utl::gui::navigator::FORMAT);
   ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, utl::gui::navigator::WEIGHT);
-  //ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
+  for(int i=0; i<nav_struct->vec_icon.size(); i++){
+    std::string label = "##icon_" + std::to_string(i);
+    ImGui::TableSetupColumn(label.c_str(), ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
+  }
   ImGui::TableHeadersRow();
 
   //Content draw
