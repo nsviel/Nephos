@@ -122,7 +122,7 @@ void Bookmark::bookmark_icon(std::string path){
   ImGui::PushID(ID.c_str());
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
   ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
-  if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark")){
+  if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark", ImGui::GetContentRegionAvail())){
     if(is_bookmarked){
       ldr_bookmark->remove_path(path);
     }else{
