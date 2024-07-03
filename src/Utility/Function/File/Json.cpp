@@ -1,37 +1,18 @@
 #include "Json.h"
 
-#include <Utility/Namespace.h>
+#include <Utility/Function/File/File.h>
 #include <iostream>
 #include <fstream>
-#include <string>
 
 
 namespace utl::json{
 
-nlohmann::json read_json(const std::string& path){
-  //---------------------------
-
-  std::ifstream file(path);
-  if(!file.is_open()){
-    return nlohmann::json();
-  }
-
-  // Check if the file is empty
-  if(file.peek() == std::ifstream::traits_type::eof()){
-    return nlohmann::json();
-  }
-
-  nlohmann::json j;
-  file >> j;
-
-  //---------------------------
-  return j;
-}
+//Main function
 template<typename T> void write_value(const std::string& path, const std::string& key, const T& value){
   //---------------------------
 
   // Read JSON data from file
-  nlohmann::json data = read_json(path);
+  nlohmann::json data = utl::json::read_json(path);
 
   // Split the key by dots
   std::istringstream keyStream(key);
@@ -57,45 +38,66 @@ template<typename T> void write_value(const std::string& path, const std::string
   //---------------------------
 }
 template<typename T> T read_value(const std::string& path, std::string key){
-  T result;
+    T result;
+    //---------------------------
+
+    if(utl::file::is_exist(path) == false) return result;
+
+    // Read JSON data from file
+    std::ifstream file(path);
+    if(!file.is_open()){
+      std::cerr << "[Error] File " << path << " does not exist." << std::endl;
+      return result; // Return default-constructed result
+    }
+
+    nlohmann::json j;
+    file >> j;
+
+    // Split the key by dots
+    std::istringstream keyStream(key);
+    std::string segment;
+    nlohmann::json* current = &j;
+
+    while(std::getline(keyStream, segment, '.')){
+      // Check if the segment exists
+      if(!current->contains(segment)){
+        std::cerr << "[Error] Key segment '" << segment << "' not found in JSON file." << std::endl;
+        return result; // Return default-constructed result
+      }
+      // Move to the next level
+      current = &(*current)[segment];
+    }
+
+    // Try to parse the value at the final nested level into the result
+    try{
+      result = current->get<T>();
+    }catch (const std::exception& e){
+      std::cerr << "[Error] Failed to parse value for key '" << key << "': " << e.what() << std::endl;
+    }
+
+    //---------------------------
+    return result;
+  }
+
+//Subfunction
+nlohmann::json read_json(const std::string& path){
   //---------------------------
 
-  if(utl::file::is_exist(path) == false) return result;
-
-  // Read JSON data from file
   std::ifstream file(path);
   if(!file.is_open()){
-    std::cerr << "[Error] File " << path << " does not exist." << std::endl;
-    return result; // Return default-constructed result
+    return nlohmann::json();
+  }
+
+  // Check if the file is empty
+  if(file.peek() == std::ifstream::traits_type::eof()){
+    return nlohmann::json();
   }
 
   nlohmann::json j;
   file >> j;
 
-  // Split the key by dots
-  std::istringstream keyStream(key);
-  std::string segment;
-  nlohmann::json* current = &j;
-
-  while(std::getline(keyStream, segment, '.')){
-    // Check if the segment exists
-    if(!current->contains(segment)){
-      std::cerr << "[Error] Key segment '" << segment << "' not found in JSON file." << std::endl;
-      return result; // Return default-constructed result
-    }
-    // Move to the next level
-    current = &(*current)[segment];
-  }
-
-  // Try to parse the value at the final nested level into the result
-  try{
-    result = current->get<T>();
-  }catch (const std::exception& e){
-    std::cerr << "[Error] Failed to parse value for key '" << key << "': " << e.what() << std::endl;
-  }
-
   //---------------------------
-  return result;
+  return j;
 }
 template<typename T> T template_null(const T& value){
   //---------------------------

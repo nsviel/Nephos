@@ -80,8 +80,7 @@ void Manager::gui(){
     }
 
     if(ImGui::Button("Save##state_save")){
-        std::string path = sta_struct->path_save.build();
-      //gui_save->state_save();
+      gui_save->save_state();
       ImGui::CloseCurrentPopup();
     }
 

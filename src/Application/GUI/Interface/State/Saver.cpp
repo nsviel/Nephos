@@ -2,6 +2,7 @@
 
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Utility/Function/File/Json.h>
 
 
 namespace gui::state{
@@ -10,6 +11,7 @@ namespace gui::state{
 Saver::Saver(gui::state::Manager* manager){
   //---------------------------
 
+  this->node_gui = manager->get_node_gui();
   this->sta_struct = manager->get_sta_struct();
 
   //---------------------------
@@ -17,45 +19,36 @@ Saver::Saver(gui::state::Manager* manager){
 Saver::~Saver(){}
 
 //Main function
-void Saver::save_state(std::string path){
+void Saver::save_state(){
   //---------------------------
 
-  nlohmann::json j;
-  this->build_json_ini_settings(j);
-  this->dump_json(j, path);
+  std::string path = sta_struct->path_save.build();
+  this->write_ini_settings(path);
+  this->write_panel(path);
 
   //---------------------------
 }
 
 //Subfunction
-void Saver::build_json_ini_settings(nlohmann::json& j){
+void Saver::write_ini_settings(std::string& path){
   //---------------------------
 
   size_t size;
   const char* settings = ImGui::SaveIniSettingsToMemory(&size);
-  j["imgui_settings"] = std::string(settings, size);
+  utl::json::write_value(path, "imgui_settings", std::string(settings, size));
 
   //---------------------------
 }
-void Saver::build_json_panel(nlohmann::json& j){
-  //  std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel();
+void Saver::write_panel(std::string& path){
+  std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel();
   //---------------------------
 
-  size_t size;
-  const char* settings = ImGui::SaveIniSettingsToMemory(&size);
-  j["imgui_settings"] = std::string(settings, size);
+  for(int i=0; i<vec_panel.size(); i++){
+    utl::gui::Panel* panel = vec_panel[i];
 
-  //---------------------------
-}
-void Saver::dump_json(nlohmann::json& j, std::string path){
-  //---------------------------
-
-  std::ofstream file(path.c_str());
-  if(file.is_open()){
-    file << j.dump(4);  // Pretty print with 4 spaces indentation
-    file.close();
-  }else{
-    std::cerr << "[error] Failed to open file for saving settings: " << path << std::endl;
+    std::string key = "panel." + panel->name;
+    bool value = panel->is_open;
+    //utl::json::write_value(path, key, value);
   }
 
   //---------------------------
