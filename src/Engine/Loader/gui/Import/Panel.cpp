@@ -66,7 +66,6 @@ void Panel::draw_header(){
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Load##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
     this->item_operation();
-    //this->vec_selection.clear();
   }
   ImGui::PopStyleColor(2);
 

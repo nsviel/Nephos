@@ -14,6 +14,11 @@ struct Path{
   Path(){}
   Path(std::string path){insert(path);}
 
+  void insert(utl::base::Path path){
+    this->directory = path.directory;
+    this->name = path.name;
+    this->format = path.format;
+  }
   void insert(std::string path){
     this->directory = utl::path::get_dir_from_path(path);
     this->name = utl::path::get_name_from_path(path);

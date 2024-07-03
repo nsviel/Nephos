@@ -32,10 +32,9 @@ void Selection::selection_item(utl::base::Path& path, ldr::gui::navigator::File&
   if(ImGui::Selectable(label.c_str(), item_is_selected, flag)){
     this->control_selection(file, item_is_selected);
 
-    if(file.item.type == ldr::bookmark::FOLDER){
-      this->selection_folder(path, file);
-    }else{
-      this->selection_file(file);
+    //Double click
+    if(ImGui::IsMouseDoubleClicked(0)){
+      this->double_click(path, file);
     }
   }
 
@@ -55,55 +54,59 @@ void Selection::control_selection(ldr::gui::navigator::File& file, bool& already
       nav_struct->vec_selection.push_back(file.item.ID);
     }
   }else{
-    nav_struct->vec_selection.clear();
+    this->clear_selection();
     nav_struct->vec_selection.push_back(file.item.ID);
   }
 
   //---------------------------
 }
-void Selection::selection_folder(utl::base::Path& path, ldr::gui::navigator::File& file){
+void Selection::double_click(utl::base::Path& path, ldr::gui::navigator::File& file){
   //---------------------------
 
-  //If double clicked, enter in it
-  if(ImGui::IsMouseDoubleClicked(0)){
+  if(file.item.type == ldr::bookmark::FOLDER){
     if(file.item.name == ".."){
       if(path.directory != "/home/") path.directory = utl::path::get_parent_path(path.directory);
-      nav_struct->vec_selection.clear();
+      this->clear_selection();
     }else{
       std::string item_name = file.item.name;
       if(file.item.type == ldr::bookmark::FOLDER) item_name += "/";
       path.directory += item_name;
-      nav_struct->vec_selection.clear();
+      this->clear_selection();
     }
-  }
-
-  //---------------------------
-}
-void Selection::selection_file(ldr::gui::navigator::File& file){
-  //---------------------------
-
-  //If double clicked, load it
-  if(ImGui::IsMouseDoubleClicked(0)){
-    nav_struct->vec_selection.clear();
+  }else{
+    this->clear_selection();
     nav_struct->vec_selection.push_back(file.item.ID);
-    //this->item_operation();
+    this->call_function();
   }
 
   //---------------------------
 }
-void Selection::item_selection_truc(utl::base::Path& path){
+void Selection::clear_selection(){
   //---------------------------
 
-  int selection = nav_struct->vec_selection[nav_struct->vec_selection.size() - 1];
-  for(int i=0; i<nav_struct->vec_file.size(); i++){
-    ldr::gui::navigator::File& file = nav_struct->vec_file[i];
+  nav_struct->vec_selection.clear();
 
-    if(file.item.ID == selection){
-      path.directory = utl::path::get_dir_from_path(file.item.path);
-      path.name = utl::path::get_name_from_path(file.item.path);
-      path.format = utl::path::get_format_from_path(file.item.path);
-    }
+  //---------------------------
+}
+
+//External function
+void Selection::add_function(std::function<void()> func){
+  //---------------------------
+
+  this->fct_item_operation = func;
+
+  //---------------------------
+}
+void Selection::call_function(){
+  //---------------------------
+
+  if(!fct_item_operation){
+    std::cerr << "No function set in Navigator!" << std::endl;
+    return;
   }
+
+  this->fct_item_operation();
+  this->clear_selection();
 
   //---------------------------
 }
