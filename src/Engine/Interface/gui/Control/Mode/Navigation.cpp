@@ -19,11 +19,11 @@ Navigation::Navigation(itf::Node* node_interface){
 Navigation::~Navigation(){}
 
 //Main function
-void Navigation::run_control(glm::vec2 center){
+void Navigation::run_control(){
   //---------------------------
 
   this->control_keyboard();
-  this->control_mouse(center);
+  this->control_mouse();
   this->control_wheel();
 
   //---------------------------
@@ -59,12 +59,12 @@ void Navigation::control_keyboard(){
 
   //---------------------------
 }
-void Navigation::control_mouse(glm::vec2 center){
+void Navigation::control_mouse(){
   //----------------------------
 
   //Right click - Camera movement
   if(ImGui::IsMouseClicked(1)){
-    itf_navigation->enable_camera_view(center);
+    itf_navigation->enable_camera_view();
   }
 
   //Release - back to normal

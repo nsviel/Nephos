@@ -21,7 +21,7 @@ public:
 
 public:
   //Main function
-  void run_control(glm::vec2 center);
+  void run_control();
 
 private:
   itf::Structure* itf_struct;

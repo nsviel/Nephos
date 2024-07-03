@@ -30,7 +30,7 @@ public:
   void cam_zoom(float value);
 
   //Subfunction
-  void enable_camera_view(glm::vec2 center);
+  void enable_camera_view();
   void disable_camera_view();
 
 private:

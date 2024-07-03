@@ -76,9 +76,16 @@ void Navigation::cam_zoom(float value){
 }
 
 //Subfunction
-void Navigation::enable_camera_view(glm::vec2 center){
+void Navigation::enable_camera_view(){
   cam::Entity* camera = cam_struct->cam_current;
   //----------------------------
+
+  //Get center of the current panel
+  ImVec2 panel_pose = ImGui::GetWindowPos();
+  ImVec2 panel_size = ImGui::GetWindowSize();
+  int center_x = panel_pose.x + panel_size.x * 0.5f;
+  int center_y = panel_pose.y + panel_size.y * 0.5f;
+  glm::vec2 center = glm::vec2(center_x, center_y);
 
   itf_struct->control.cursor_pose = vk_window->get_mouse_pose();
 

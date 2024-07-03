@@ -20,13 +20,13 @@ Control::Control(itf::Node* node_interface){
 Control::~Control(){}
 
 //Main function
-void Control::run_control(glm::vec2 center){
+void Control::run_control(){
   //---------------------------
 
   gui_render->run_control();
   gui_player->run_control();
   gui_edition->run_control();
-  gui_navigation->run_control(center);
+  gui_navigation->run_control();
 
   //---------------------------
 }

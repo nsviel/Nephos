@@ -42,7 +42,6 @@ void Renderer::run_panel(){
 void Renderer::design_panel(){
   //---------------------------
 
-  ImVec2 image_pose = ImGui::GetCursorScreenPos();
   this->engine_texture();
 
   //---------------------------
@@ -53,21 +52,15 @@ void Renderer::engine_texture(){
   if(vk_struct->param.headless) return;
   //---------------------------
 
-  ImVec2 image_pose = ImGui::GetCursorScreenPos();
+  //Retrieve rendering texture
   ImTextureID texture = vk_imgui->query_engine_texture();
   if(texture == 0) return;
-  ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-  ImGui::Image(texture, ImVec2{viewportPanelSize.x, viewportPanelSize.y});
+
+  //Display at window dimension
+  ImGui::Image(texture, ImGui::GetContentRegionAvail());
+
   if(ImGui::IsItemHovered()){
-
-    //Get center of the current panel
-    ImVec2 panel_pose = ImGui::GetWindowPos();
-    ImVec2 panel_size = ImGui::GetWindowSize();
-    int center_x = panel_pose.x + panel_size.x * 0.5f;
-    int center_y = panel_pose.y + panel_size.y * 0.5f;
-    glm::vec2 panel_center = glm::vec2(center_x, center_y);
-
-    gui_control->run_control(panel_center);
+    gui_control->run_control();
   }else{
     itf_navigation->disable_camera_view();
   }

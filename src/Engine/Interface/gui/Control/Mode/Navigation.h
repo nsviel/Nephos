@@ -18,11 +18,11 @@ public:
 
 public:
   //Main function
-  void run_control(glm::vec2 center);
+  void run_control();
 
   //Subfunction
   void control_keyboard();
-  void control_mouse(glm::vec2 center);
+  void control_mouse();
   void control_wheel();
 
 private:
