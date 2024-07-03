@@ -1,13 +1,14 @@
 #include "File.h"
 
-#include <Loader/Namespace.h>
+#include <algorithm>
+#include <iostream>
 
 
-namespace ldr::gui::navigator{
+namespace utl::gui::navigator{
 
 const ImGuiTableSortSpecs* File::current_sort_specs = nullptr;
 
-bool File::compare_with_specs(const ldr::gui::navigator::File& a, const ldr::gui::navigator::File& b){
+bool File::compare_with_specs(const utl::gui::navigator::File& a, const utl::gui::navigator::File& b){
   //---------------------------
 
   // Check if either path is ".." and handle it as a special case
@@ -21,9 +22,9 @@ bool File::compare_with_specs(const ldr::gui::navigator::File& a, const ldr::gui
     const ImGuiTableColumnSortSpecs* sort_spec = &current_sort_specs->Specs[n];
     int delta = 0;
     switch (sort_spec->ColumnUserID){
-      case ldr::bookmark::NAME: delta = a.item.name.compare(b.item.name); break;
-      case ldr::bookmark::WEIGHT: delta = (a.item.weight > b.item.weight) ? 1 : (a.item.weight < b.item.weight) ? -1 : 0; break;
-      case ldr::bookmark::FORMAT: delta = a.item.format.compare(b.item.format); break;
+      case utl::gui::navigator::NAME: delta = a.item.name.compare(b.item.name); break;
+      case utl::gui::navigator::WEIGHT: delta = (a.item.weight > b.item.weight) ? 1 : (a.item.weight < b.item.weight) ? -1 : 0; break;
+      case utl::gui::navigator::FORMAT: delta = a.item.format.compare(b.item.format); break;
       default: std::cerr << "Unhandled column ID: " << sort_spec->ColumnUserID << std::endl; break;
     }
     if(delta > 0)
@@ -35,7 +36,7 @@ bool File::compare_with_specs(const ldr::gui::navigator::File& a, const ldr::gui
   //---------------------------
   return false;
 }
-void File::sort_file_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<ldr::gui::navigator::File>& vec_file){
+void File::sort_file_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<utl::gui::navigator::File>& vec_file){
   //---------------------------
 
   current_sort_specs = sort_specs;

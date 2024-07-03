@@ -1,14 +1,13 @@
 #include "Header.h"
 
-#include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::gui::navigator{
+namespace utl::gui::navigator{
 
 //Constructor / Destructor
-Header::Header(ldr::gui::navigator::Structure* nav_struct){
+Header::Header(utl::gui::navigator::Structure* nav_struct){
   //---------------------------
 
   this->nav_struct = nav_struct;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/gui/Navigator/Navigator.h>
+#include <Utility/GUI/Navigator/Navigator.h>
 #include <imgui/core/imgui.h>
 #include <string>
 #include <vector>

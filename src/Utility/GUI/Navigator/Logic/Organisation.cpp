@@ -1,14 +1,13 @@
 #include "Organisation.h"
 
-#include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::gui::navigator{
+namespace utl::gui::navigator{
 
 //Constructor / Destructor
-Organisation::Organisation(ldr::gui::navigator::Structure* nav_struct){
+Organisation::Organisation(utl::gui::navigator::Structure* nav_struct){
   //---------------------------
 
   this->nav_struct = nav_struct;
@@ -62,8 +61,8 @@ void Organisation::sort_items(){
 
   //Sort items
   if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, vec_folder);
-    ldr::gui::navigator::File::sort_file_by_specs(sort_specs, vec_file);
+    utl::gui::navigator::File::sort_file_by_specs(sort_specs, vec_folder);
+    utl::gui::navigator::File::sort_file_by_specs(sort_specs, vec_file);
   }
 
   //Copy items
@@ -73,12 +72,12 @@ void Organisation::sort_items(){
 
   //---------------------------
 }
-void Organisation::insert_file(std::vector<ldr::gui::navigator::File>& vec_item, std::string& path, int& ID){
+void Organisation::insert_file(std::vector<utl::gui::navigator::File>& vec_item, std::string& path, int& ID){
   //---------------------------
 
-  ldr::gui::navigator::File file;
+  utl::gui::navigator::File file;
   file.item.ID = ID++;
-  file.item.type = ldr::bookmark::FILE;
+  file.item.type = utl::gui::navigator::FILE;
   file.item.path = path;
   file.item.name = utl::path::get_name_from_path(path);
   file.item.icon = std::string(ICON_FA_FILE);
@@ -92,12 +91,12 @@ void Organisation::insert_file(std::vector<ldr::gui::navigator::File>& vec_item,
 
   //---------------------------
 }
-void Organisation::insert_folder(std::vector<ldr::gui::navigator::File>& vec_item, std::string& path, int& ID){
+void Organisation::insert_folder(std::vector<utl::gui::navigator::File>& vec_item, std::string& path, int& ID){
   //---------------------------
 
-  ldr::gui::navigator::File file;
+  utl::gui::navigator::File file;
   file.item.ID = ID++;
-  file.item.type = ldr::bookmark::FOLDER;
+  file.item.type = utl::gui::navigator::FOLDER;
   file.item.name = utl::path::get_filename_from_path(path);
   file.item.path = path;
   file.item.icon = std::string(ICON_FA_FOLDER);

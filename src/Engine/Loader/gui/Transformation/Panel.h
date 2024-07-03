@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/gui/Navigator/Navigator.h>
+#include <Utility/GUI/Navigator/Navigator.h>
 #include <imgui/core/imgui.h>
 #include <string>
 #include <vector>
@@ -37,7 +37,7 @@ public:
 private:
   ldr::Structure* ldr_struct;
   ldr::io::Transformation* ldr_transformation;
-  ldr::gui::Navigator* gui_navigator;
+  utl::gui::Navigator* gui_navigator;
   dat::graph::Selection* dat_selection;
 
   std::string name;

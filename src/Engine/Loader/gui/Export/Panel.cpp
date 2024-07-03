@@ -19,7 +19,7 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window){
   this->ldr_struct = node_loader->get_ldr_struct();
   this->dat_selection = node_data->get_dat_selection();
   this->ldr_exporter = node_loader->get_ldr_exporter();
-  this->gui_navigator = new ldr::gui::Navigator();
+  this->gui_navigator = new utl::gui::Navigator();
   this->gui_exporter = new ldr::gui::exporter::Exporter(node_loader);
   this->gui_recorder = new ldr::gui::exporter::Recorder(node_loader);
 

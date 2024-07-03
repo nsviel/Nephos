@@ -39,10 +39,10 @@ void Bookmark::draw_tab(int width){
 void Bookmark::draw_content(){
   std::list<ldr::bookmark::Item> list_item = ldr_bookmark->get_list_item();
   //---------------------------
-
+/*
   for(int i=0; i<list_item.size(); i++){
     ldr::bookmark::Item& item = *next(list_item.begin(), i);
-    ldr::gui::navigator::File file;
+    utl::gui::navigator::File file;
     file.item = item;
 
     //File type icon
@@ -73,7 +73,7 @@ void Bookmark::draw_content(){
       ImGui::PopID();
     }
   }
-
+*/
   //---------------------------
 }
 

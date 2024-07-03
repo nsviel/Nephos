@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Loader/gui/Navigator/Navigator.h>
+#include <Utility/GUI/Navigator/Navigator.h>
 
 namespace ldr{class Structure;}
 namespace ldr::gui::importer{class Panel;}
-namespace ldr::gui{class Navigator;}
+namespace utl::gui{class Navigator;}
 
 
 namespace ldr::gui::importer{
@@ -24,7 +24,7 @@ public:
 
 private:
   ldr::Structure* ldr_struct;
-  ldr::gui::Navigator* gui_navigator;
+  utl::gui::Navigator* gui_navigator;
 
   bool open_tab;
 };

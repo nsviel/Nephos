@@ -4,17 +4,17 @@
 #include <string>
 #include <vector>
 
-namespace ldr::gui::navigator{class Structure;}
+namespace utl::gui::navigator{class Structure;}
 namespace utl::base{class Path;}
 
 
-namespace ldr::gui::navigator{
+namespace utl::gui::navigator{
 
 class Header
 {
 public:
   //Constructor / Destructor
-  Header(ldr::gui::navigator::Structure* nav_struct);
+  Header(utl::gui::navigator::Structure* nav_struct);
   ~Header();
 
 public:
@@ -26,7 +26,7 @@ public:
   void draw_directory_add(utl::base::Path& path);
 
 protected:
-  ldr::gui::navigator::Structure* nav_struct;
+  utl::gui::navigator::Structure* nav_struct;
 };
 
 }

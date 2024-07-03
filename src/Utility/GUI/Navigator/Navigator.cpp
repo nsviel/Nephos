@@ -1,19 +1,18 @@
 #include "Navigator.h"
 
-#include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::gui{
+namespace utl::gui{
 
 //Constructor / Destructor
 Navigator::Navigator(){
   //---------------------------
 
-  this->nav_struct = new ldr::gui::navigator::Structure();
-  this->nav_header = new ldr::gui::navigator::Header(nav_struct);
-  this->nav_content = new ldr::gui::navigator::Content(nav_struct);
+  this->nav_struct = new utl::gui::navigator::Structure();
+  this->nav_header = new utl::gui::navigator::Header(nav_struct);
+  this->nav_content = new utl::gui::navigator::Content(nav_struct);
 
   nav_struct->default_path = utl::path::get_current_directory_path();
 

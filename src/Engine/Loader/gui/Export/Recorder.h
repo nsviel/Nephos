@@ -1,13 +1,13 @@
 #pragma once
 
-#include <Loader/gui/Navigator/Navigator.h>
+#include <Utility/GUI/Navigator/Navigator.h>
 #include <imgui/core/imgui.h>
 #include <string>
 #include <vector>
 
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
-namespace ldr::gui::navigator{class File;}
+namespace utl::gui::navigator{class File;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace dyn::player{class Player;}

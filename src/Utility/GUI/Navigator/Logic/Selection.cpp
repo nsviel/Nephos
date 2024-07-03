@@ -1,14 +1,13 @@
 #include "Selection.h"
 
-#include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::gui::navigator{
+namespace utl::gui::navigator{
 
 //Constructor / Destructor
-Selection::Selection(ldr::gui::navigator::Structure* nav_struct){
+Selection::Selection(utl::gui::navigator::Structure* nav_struct){
   //---------------------------
 
   this->nav_struct = nav_struct;
@@ -18,7 +17,7 @@ Selection::Selection(ldr::gui::navigator::Structure* nav_struct){
 Selection::~Selection(){}
 
 //Main function
-void Selection::selection_item(utl::base::Path& path, ldr::gui::navigator::File& file){
+void Selection::selection_item(utl::base::Path& path, utl::gui::navigator::File& file){
   //---------------------------
 
   ImGuiSelectableFlags flag;
@@ -42,7 +41,7 @@ void Selection::selection_item(utl::base::Path& path, ldr::gui::navigator::File&
 }
 
 //Subfunction
-void Selection::control_selection(ldr::gui::navigator::File& file, bool& already_selected){
+void Selection::control_selection(utl::gui::navigator::File& file, bool& already_selected){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
@@ -60,16 +59,16 @@ void Selection::control_selection(ldr::gui::navigator::File& file, bool& already
 
   //---------------------------
 }
-void Selection::double_click(utl::base::Path& path, ldr::gui::navigator::File& file){
+void Selection::double_click(utl::base::Path& path, utl::gui::navigator::File& file){
   //---------------------------
 
-  if(file.item.type == ldr::bookmark::FOLDER){
+  if(file.item.type == utl::gui::navigator::FOLDER){
     if(file.item.name == ".."){
       if(path.directory != "/home/") path.directory = utl::path::get_parent_path(path.directory);
       this->clear_selection();
     }else{
       std::string item_name = file.item.name;
-      if(file.item.type == ldr::bookmark::FOLDER) item_name += "/";
+      if(file.item.type == utl::gui::navigator::FOLDER) item_name += "/";
       path.directory += item_name;
       this->clear_selection();
     }

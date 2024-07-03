@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/gui/Navigator/Navigator.h>
+#include <Utility/GUI/Navigator/Navigator.h>
 #include <imgui/core/imgui.h>
 #include <string>
 #include <vector>
@@ -8,7 +8,7 @@
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::io{class Exporter;}
-namespace ldr::gui::navigator{class File;}
+namespace utl::gui::navigator{class File;}
 namespace ldr::gui::exporter{class Exporter;}
 namespace ldr::gui::exporter{class Recorder;}
 namespace dat::graph{class Selection;}
@@ -37,7 +37,7 @@ private:
   ldr::Structure* ldr_struct;
   ldr::io::Exporter* ldr_exporter;
   dat::graph::Selection* dat_selection;
-  ldr::gui::Navigator* gui_navigator;
+  utl::gui::Navigator* gui_navigator;
   ldr::gui::exporter::Exporter* gui_exporter;
   ldr::gui::exporter::Recorder* gui_recorder;
 

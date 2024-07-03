@@ -2,13 +2,13 @@
 
 #include <functional>
 
-namespace ldr::gui::navigator{class Structure;}
-namespace ldr::gui::navigator{class Header;}
-namespace ldr::gui::navigator{class Content;}
+namespace utl::gui::navigator{class Structure;}
+namespace utl::gui::navigator{class Header;}
+namespace utl::gui::navigator{class Content;}
 namespace utl::base{class Path;}
 
 
-namespace ldr::gui{
+namespace utl::gui{
 
 class Navigator
 {
@@ -26,9 +26,9 @@ public:
   void add_fct_item_icon(std::function<void()> func);
 
 protected:
-  ldr::gui::navigator::Structure* nav_struct;
-  ldr::gui::navigator::Header* nav_header;
-  ldr::gui::navigator::Content* nav_content;
+  utl::gui::navigator::Structure* nav_struct;
+  utl::gui::navigator::Header* nav_header;
+  utl::gui::navigator::Content* nav_content;
 };
 
 }

@@ -1,19 +1,18 @@
 #include "Content.h"
 
-#include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::gui::navigator{
+namespace utl::gui::navigator{
 
 //Constructor / Destructor
-Content::Content(ldr::gui::navigator::Structure* nav_struct){
+Content::Content(utl::gui::navigator::Structure* nav_struct){
   //---------------------------
 
   this->nav_struct = nav_struct;
-  this->nav_organisation = new ldr::gui::navigator::Organisation(nav_struct);
-  this->nav_selection = new ldr::gui::navigator::Selection(nav_struct);
+  this->nav_organisation = new utl::gui::navigator::Organisation(nav_struct);
+  this->nav_selection = new utl::gui::navigator::Selection(nav_struct);
 
   //---------------------------
 }
@@ -35,16 +34,16 @@ void Content::draw_content(utl::base::Path& path){
   int nb_column = 3 + nav_struct->vec_icon.size();
 
   ImGui::BeginTable("init_tree", nb_column, flags);
-  ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, ldr::bookmark::NAME);
-  ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, ldr::bookmark::FORMAT);
-  ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, ldr::bookmark::WEIGHT);
+  ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthStretch | ImGuiTableColumnFlags_NoHide | ImGuiTableColumnFlags_DefaultSort, 175, utl::gui::navigator::NAME);
+  ImGui::TableSetupColumn("Format", ImGuiTableColumnFlags_WidthFixed, 75, utl::gui::navigator::FORMAT);
+  ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 75, utl::gui::navigator::WEIGHT);
   //ImGui::TableSetupColumn("##bookmark_1", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
   ImGui::TableHeadersRow();
 
   //Content draw
   nav_organisation->update_item_list(path);
   for(int i=0; i<nav_struct->vec_item.size(); i++){
-    ldr::gui::navigator::File& file = nav_struct->vec_item[i];
+    utl::gui::navigator::File& file = nav_struct->vec_item[i];
 
     this->draw_item(file);
     this->draw_icon(file);
@@ -57,7 +56,7 @@ void Content::draw_content(utl::base::Path& path){
 }
 
 //Subfunction
-void Content::draw_item(ldr::gui::navigator::File& file){
+void Content::draw_item(utl::gui::navigator::File& file){
   //---------------------------
 
   ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
@@ -81,7 +80,7 @@ void Content::draw_item(ldr::gui::navigator::File& file){
 
   //---------------------------
 }
-void Content::draw_icon(ldr::gui::navigator::File& file){
+void Content::draw_icon(utl::gui::navigator::File& file){
   //---------------------------
 
   for(int i=0; i<nav_struct->vec_icon.size(); i++){

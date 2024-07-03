@@ -1,0 +1,39 @@
+#pragma once
+
+#include <imgui/core/imgui.h>
+#include <iostream>
+#include <string>
+#include <vector>
+
+namespace ldr{class Node;}
+namespace utl::gui::navigator{class Structure;}
+namespace utl::gui::navigator{class File;}
+namespace utl::base{class Path;}
+
+
+namespace utl::gui::navigator{
+
+class Selection
+{
+public:
+  //Constructor / Destructor
+  Selection(utl::gui::navigator::Structure* nav_struct);
+  ~Selection();
+
+public:
+  //Main function
+  void selection_item(utl::base::Path& path, utl::gui::navigator::File& file);
+
+  //Subfunction
+  void control_selection(utl::gui::navigator::File& file, bool& already_selected);
+  void double_click(utl::base::Path& path, utl::gui::navigator::File& file);
+  void clear_selection();
+  void item_operation();
+
+protected:
+  utl::gui::navigator::Structure* nav_struct;
+
+  ImVector<int> vec_selection;
+};
+
+}
