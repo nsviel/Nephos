@@ -47,8 +47,7 @@ void Saver::write_panel(std::string& path){
     utl::gui::Panel* panel = vec_panel[i];
 
     std::string key = "panel." + panel->name;
-    bool value = panel->is_open;
-    //utl::json::write_value(path, key, value);
+    utl::json::write_value(path, key, panel->is_open);
   }
 
   //---------------------------

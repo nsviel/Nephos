@@ -8,7 +8,36 @@
 namespace utl::json{
 
 //Main function
-template<typename T> void write_value(const std::string& path, const std::string& key, const T& value){
+template<typename T> void write_value(const std::string& path, std::string key, const T& value){
+  //---------------------------
+
+  // Read JSON data from file
+  nlohmann::json data = utl::json::read_json(path);
+
+  // Split the key by dots
+  std::istringstream keyStream(key);
+  std::string segment;
+  nlohmann::json* current = &data;
+
+  while(std::getline(keyStream, segment, '.')){
+    // If the segment does not exist, create a new nested JSON object
+    if(!current->contains(segment)){
+      (*current)[segment] = nlohmann::json::object();
+    }
+    // Move to the next level
+    current = &(*current)[segment];
+  }
+
+  // Set the value at the final nested level
+  *current = value;
+
+  // Write JSON to file
+  std::ofstream file(path);
+  file << std::setw(4) << data << std::endl;
+
+  //---------------------------
+}
+void write_value(const std::string& path, std::string key, const bool& value){
   //---------------------------
 
   // Read JSON data from file
