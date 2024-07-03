@@ -3,6 +3,8 @@
 
 namespace utl::base{
 
+std::vector<utl::gui::Panel*> Node::vec_panel_shared;
+
 //Constructor / Destructor
 Node::Node(){
   //---------------------------
@@ -18,6 +20,7 @@ utl::gui::Panel* Node::add_panel(std::string name, std::string icon, bool value)
 
   utl::gui::Panel* panel = new utl::gui::Panel(name, icon, value);
   this->vec_panel.push_back(panel);
+  Node::vec_panel_shared.push_back(panel);
 
   //---------------------------
   return panel;

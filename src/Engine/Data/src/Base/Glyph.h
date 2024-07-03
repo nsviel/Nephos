@@ -5,11 +5,6 @@
 #include <glm/glm.hpp>
 #include <string>
 
-namespace vk{class Node;}
-namespace eng{class Node;}
-namespace cam{class Node;}
-namespace dat{class Node;}
-
 
 namespace dat::base{
 
@@ -41,7 +36,7 @@ public:
   inline void set_color(glm::vec4 color){this->color = color;}
 
   int type = -1;
-  
+
 protected:
   std::string path = "";
   glm::vec4 color = glm::vec4(1, 1, 1, 1);

@@ -6,7 +6,6 @@
 #include <list>
 
 namespace dat::base{class Entity;}
-namespace dyn{class Player;}
 
 
 namespace dat::base{

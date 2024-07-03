@@ -7,8 +7,8 @@
 #include <string>
 #include <list>
 
-namespace dat::base{class Glyph;}
 namespace dat::base{class Set;}
+namespace dat::base{class Glyph;}
 
 
 namespace dat::base{

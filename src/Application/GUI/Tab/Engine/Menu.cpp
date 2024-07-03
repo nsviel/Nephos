@@ -3,7 +3,10 @@
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Camera/Namespace.h>
+#include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
+
+namespace engine = eng;
 
 
 namespace gui::tab::eng{
@@ -12,10 +15,10 @@ namespace gui::tab::eng{
 Menu::Menu(gui::Node* node_gui){
   //---------------------------
 
-  this->node_gui = node_gui;
-  this->node_engine = node_gui->get_node_engine();
-
+  engine::Node* node_engine = node_gui->get_node_engine();
   cam::Node* node_camera = node_engine->get_node_camera();
+
+  this->node_gui = node_gui;
   this->cam_manager = node_camera->get_cam_manager();
 
   //---------------------------
@@ -47,11 +50,10 @@ void Menu::draw(){
 
 //Subfunction
 void Menu::menu_panel(){
-  std::vector<utl::gui::Panel*> vec_panel;
+  std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel_shared();
   //---------------------------
 
   //Node engine panels
-  vec_panel = node_engine->get_vec_panel();
   for(int i=0; i<vec_panel.size(); i++){
     utl::gui::Panel* panel = vec_panel[i];
     std::string title = panel->icon + " " + panel->name;
@@ -69,7 +71,7 @@ void Menu::menu_panel(){
   //---------------------------
 }
 void Menu::menu_shortcut(std::string name){
-  std::vector<utl::gui::Panel*> vec_panel = node_engine->get_vec_panel();
+  std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel_shared();
   //---------------------------
 
   for(int i=0; i<vec_panel.size(); i++){

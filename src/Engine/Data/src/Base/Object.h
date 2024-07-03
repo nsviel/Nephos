@@ -11,7 +11,8 @@
 
 
 namespace dat::base{
-  namespace object{
+
+namespace object{
   enum Glyph{
     AABB = 0,
     AXIS = 1,

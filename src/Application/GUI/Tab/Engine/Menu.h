@@ -4,8 +4,6 @@
 
 namespace gui{class Node;}
 namespace cam{class Manager;}
-namespace eng{class Node;}
-namespace engine = eng;
 
 
 namespace gui::tab::eng{
@@ -28,7 +26,6 @@ public:
 
 private:
   gui::Node* node_gui;
-  engine::Node* node_engine;
   cam::Manager* cam_manager;
 };
 
