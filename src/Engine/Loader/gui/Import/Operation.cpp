@@ -23,9 +23,10 @@ Operation::~Operation(){}
 
 //Main function
 void Operation::init_navigator(){
+  utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
   //---------------------------
 
-
+  utl_navigator->add_fct_item_operation([this]() {this->item_operation();});
 
   //---------------------------
 }
@@ -70,26 +71,25 @@ void Operation::draw_header(){
 //Subfunction
 void Operation::item_operation(){
   //---------------------------
-/*
-  //Retrieve all good selected files to load
+
+  //Retrieve all selected files to load
   std::vector<std::string> vec_path;
-  for(int i=0; i<vec_file.size(); i++){
-    utl::gui::navigator::File& file = vec_file[i];
-    if(vec_selection.contains(file.item.ID)){
-      if(ldr_importer->is_format_supported(file.item.format)){
-        vec_path.push_back(file.item.path);
+  for(int i=0; i<nav_struct->vec_item.size(); i++){
+    utl::gui::navigator::Item& item = nav_struct->vec_item[i];
+
+    if(vec_selection.contains(item.ID)){
+      if(ldr_importer->is_format_supported(item.format)){
+        vec_path.push_back(item.path);
       }
     }
   }
-  if(vec_path.size() == 0) return;
 
   //Run all file loading
   for(int i=0; i<vec_path.size(); i++){
-    utl::base::Path path;
-    path.insert(vec_path[i]);
+    utl::base::Path path(vec_path[i]);
     ldr_importer->load_object(path);
   }
-*/
+
   //---------------------------
 }
 

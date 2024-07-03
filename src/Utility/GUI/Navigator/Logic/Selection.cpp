@@ -91,7 +91,7 @@ void Selection::item_operation(){
   //---------------------------
 
   if(!nav_struct->fct_item_operation){
-    std::cerr << "No function set in Navigator!" << std::endl;
+    std::cerr << "[error] No function set in Navigator" << std::endl;
     return;
   }
 
