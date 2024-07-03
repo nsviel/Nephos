@@ -18,7 +18,7 @@ Selection::Selection(ldr::gui::navigator::Structure* nav_struct){
 Selection::~Selection(){}
 
 //Main function
-void Selection::selection_item(ldr::gui::navigator::File& file){
+void Selection::selection_item(utl::base::Path& path, ldr::gui::navigator::File& file){
   //---------------------------
 
   ImGuiSelectableFlags flag;
@@ -33,42 +33,12 @@ void Selection::selection_item(ldr::gui::navigator::File& file){
     this->control_selection(file, item_is_selected);
 
     if(file.item.type == ldr::bookmark::FOLDER){
-      this->selection_folder(file);
+      this->selection_folder(path, file);
     }else{
       this->selection_file(file);
     }
-
   }
 
-  //---------------------------
-}
-void Selection::selection_file(ldr::gui::navigator::File& file){
-  //---------------------------
-
-  //If double clicked, load it
-  if(ImGui::IsMouseDoubleClicked(0)){
-    nav_struct->vec_selection.clear();
-    nav_struct->vec_selection.push_back(file.item.ID);
-    //this->item_operation();
-  }
-
-  //---------------------------
-}
-void Selection::selection_folder(ldr::gui::navigator::File& file){
-  //---------------------------
-/*
-  //If double clicked, enter in it
-  if(ImGui::IsMouseDoubleClicked(0)){
-    if(file.item.name == ".."){
-      std::filesystem::path fs_path = path.directory;
-      path.directory = fs_path.parent_path();
-      nav_struct->vec_selection.clear();
-    }else{
-      path.directory += "/" + file.item.name;
-      nav_struct->vec_selection.clear();
-    }
-  }
-*/
   //---------------------------
 }
 
@@ -87,6 +57,34 @@ void Selection::control_selection(ldr::gui::navigator::File& file, bool& already
   }else{
     nav_struct->vec_selection.clear();
     nav_struct->vec_selection.push_back(file.item.ID);
+  }
+
+  //---------------------------
+}
+void Selection::selection_folder(utl::base::Path& path, ldr::gui::navigator::File& file){
+  //---------------------------
+
+  //If double clicked, enter in it
+  if(ImGui::IsMouseDoubleClicked(0)){
+    if(file.item.name == ".."){
+      if(path.directory != "/home/") path.directory = utl::path::get_parent_path(path.directory);
+      nav_struct->vec_selection.clear();
+    }else{
+      path.directory += file.item.name;
+      nav_struct->vec_selection.clear();
+    }
+  }
+
+  //---------------------------
+}
+void Selection::selection_file(ldr::gui::navigator::File& file){
+  //---------------------------
+
+  //If double clicked, load it
+  if(ImGui::IsMouseDoubleClicked(0)){
+    nav_struct->vec_selection.clear();
+    nav_struct->vec_selection.push_back(file.item.ID);
+    //this->item_operation();
   }
 
   //---------------------------

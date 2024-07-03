@@ -24,7 +24,7 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window){
 
   this->name = "Import##555";
   this->show_window = show_window;
-  
+
   //---------------------------
 }
 Panel::~Panel(){}
@@ -78,7 +78,7 @@ void Panel::draw_header(){
   //Selected file path
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Path"); ImGui::TableNextColumn();
-  std::string path = utl::path::reconstruct_path(ldr_struct->importer.path.directory, ldr_struct->importer.path.name, ldr_struct->importer.path.format);
+  std::string path = ldr_struct->importer.path.build();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", path.c_str());
   ImGui::EndTable();
 

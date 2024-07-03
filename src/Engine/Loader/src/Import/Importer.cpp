@@ -108,7 +108,7 @@ void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
 void Importer::init_path(){
   //---------------------------
 
-  ldr_struct->importer.path.directory = utl::path::get_current_parent_path_abs();
+  ldr_struct->importer.path.directory = utl::path::get_current_directory_path();
   ldr_struct->importer.path.format = ".ply";
 
   //---------------------------

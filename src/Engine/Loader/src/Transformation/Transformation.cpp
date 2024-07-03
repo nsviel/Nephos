@@ -51,7 +51,7 @@ void Transformation::save_transformation(utl::base::Element* element, std::strin
 void Transformation::init_path(){
   //---------------------------
 
-  ldr_struct->transformation.path.directory = utl::path::get_current_parent_path_abs();
+  ldr_struct->transformation.path.directory = utl::path::get_current_directory_path();
   ldr_struct->transformation.path.format = ".json";
 
   //---------------------------

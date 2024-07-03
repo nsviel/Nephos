@@ -199,7 +199,7 @@ void selection_directory(std::string& path){
   //---------------------------
 
   //Get absolute executable location
-  std::string zenity = "zenity --file-selection --directory --title='Select directory' --filename=" + path + "/";
+  std::string zenity = "zenity --file-selection --directory --title='Select directory' --filename=" + path;
 
   //Retrieve dir path
   FILE *file = popen(zenity.c_str(), "r");

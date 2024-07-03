@@ -126,14 +126,19 @@ std::string get_current_path_abs(){
   //---------------------------
   return absPath;
 }
-std::string get_current_parent_path_abs(){
+std::string get_current_directory_path(){
   //---------------------------
 
   fs::path currentPath = fs::current_path();
-  fs::path absolutePath = currentPath.parent_path();
+  std::string dir_path = currentPath.parent_path().string();
+
+  // Ensure the parent path ends with a slash
+  if(!dir_path.empty() && dir_path.back() != '/'){
+    dir_path += '/';
+  }
 
   //---------------------------
-  return absolutePath.string();
+  return dir_path;
 }
 std::string get_absolute_path(const std::string& relativePath){
   //---------------------------
@@ -165,6 +170,26 @@ std::string get_dir_from_path(std::string path){
 
   //---------------------------
   return directory;
+}
+std::string get_parent_path(std::string path){
+  if(path == "") return "(not defined)";
+  //---------------------------
+
+  //Remove the trailing slash if it exists
+  if(path.back() == '/'){
+    path.pop_back();
+  }
+
+  std::filesystem::path fs_path(path);
+  std::string parent = fs_path.parent_path().string();
+
+  // Ensure the parent path ends with a slash
+  if(!parent.empty() && parent.back() != '/'){
+    parent += '/';
+  }
+
+  //---------------------------
+  return parent;
 }
 std::string is_dir_or_file(std::string path){
   std::string type;
@@ -275,7 +300,7 @@ std::vector<std::string> list_all_path(std::string path_dir){
   //Filtre and store files present in the folder
   while((files = readdir(directory)) != NULL){
     std::string path_file = files->d_name;
-    std::string path_full = path_dir + "/" + path_file;
+    std::string path_full = path_dir + path_file;
 
     if(path_file != "."){
       path_vec.push_back(path_full);

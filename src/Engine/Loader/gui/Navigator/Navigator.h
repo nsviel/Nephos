@@ -29,8 +29,7 @@ public:
 
   //Subfunction
   void draw_content(utl::base::Path& path);
-  void draw_item_content(utl::base::Path& path);
-  void draw_content_file(ldr::gui::navigator::File& file);
+  void draw_item_content(ldr::gui::navigator::File& file);
   void draw_bookmark_icon(ldr::gui::navigator::File& bookmark);
 
   virtual void item_operation(){}

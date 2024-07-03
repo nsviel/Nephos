@@ -18,7 +18,7 @@ Navigator::Navigator(ldr::Node* node_loader, bool with_bookmark){
   this->nav_selection = new ldr::gui::navigator::Selection(nav_struct);
 
   nav_struct->with_bookmark = with_bookmark;
-  nav_struct->default_path = utl::path::get_current_parent_path_abs();
+  nav_struct->default_path = utl::path::get_current_directory_path();
 
   //---------------------------
 }
@@ -56,27 +56,19 @@ void Navigator::draw_content(utl::base::Path& path){
 
   //Content draw
   nav_organisation->sort_items();
-  this->draw_item_content(path);
+  for(int i=0; i<nav_struct->vec_item.size(); i++){
+    ldr::gui::navigator::File& file = nav_struct->vec_item[i];
+
+    this->draw_item_content(file);
+    this->draw_bookmark_icon(file);
+    nav_selection->selection_item(path, file);
+  }
 
   ImGui::EndTable();
 
   //---------------------------
 }
-void Navigator::draw_item_content(utl::base::Path& path){
-  //---------------------------
-
-  // Populate the table
-  for(int i=0; i<nav_struct->vec_item.size(); i++){
-    ldr::gui::navigator::File& file = nav_struct->vec_item[i];
-
-    this->draw_content_file(file);
-    this->draw_bookmark_icon(file);
-    nav_selection->selection_item(file);
-  }
-
-  //---------------------------
-}
-void Navigator::draw_content_file(ldr::gui::navigator::File& file){
+void Navigator::draw_item_content(ldr::gui::navigator::File& file){
   //---------------------------
 
   ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
