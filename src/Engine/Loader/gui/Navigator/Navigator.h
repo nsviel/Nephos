@@ -1,14 +1,10 @@
 #pragma once
 
-#include <imgui/core/imgui.h>
-#include <string>
-#include <vector>
+#include <functional>
 
 namespace ldr::gui::navigator{class Structure;}
-namespace ldr::gui::navigator{class Organisation;}
 namespace ldr::gui::navigator{class Header;}
-namespace ldr::gui::navigator{class Selection;}
-namespace ldr::gui::navigator{class File;}
+namespace ldr::gui::navigator{class Content;}
 namespace utl::base{class Path;}
 
 
@@ -26,14 +22,13 @@ public:
   void draw_navigator(utl::base::Path& path);
 
   //Subfunction
-  void draw_content(utl::base::Path& path);
-  void draw_item(ldr::gui::navigator::File& file);
+  void add_fct_item_operation(std::function<void()> func);
+  void add_fct_item_icon(std::function<void()> func);
 
 protected:
   ldr::gui::navigator::Structure* nav_struct;
-  ldr::gui::navigator::Organisation* nav_organisation;
   ldr::gui::navigator::Header* nav_header;
-  ldr::gui::navigator::Selection* nav_selection;
+  ldr::gui::navigator::Content* nav_content;
 };
 
 }

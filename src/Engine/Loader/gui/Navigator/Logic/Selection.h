@@ -1,7 +1,6 @@
 #pragma once
 
 #include <imgui/core/imgui.h>
-#include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -29,10 +28,7 @@ public:
   void control_selection(ldr::gui::navigator::File& file, bool& already_selected);
   void double_click(utl::base::Path& path, ldr::gui::navigator::File& file);
   void clear_selection();
-
-  //External function
-  void add_function(std::function<void()> func);
-  void call_function();
+  void item_operation();
 
 protected:
   ldr::gui::navigator::Structure* nav_struct;

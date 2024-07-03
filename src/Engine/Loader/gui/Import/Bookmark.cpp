@@ -113,7 +113,6 @@ void Bookmark::item_bookmark_icon(){
 
   //Draw bookmark button
   std::string ID = file.item.path + "##bookmarkbutton";
-  ImGui::TableNextColumn();
   ImGui::PushID(ID.c_str());
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
   ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));

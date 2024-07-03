@@ -76,7 +76,7 @@ void Selection::double_click(utl::base::Path& path, ldr::gui::navigator::File& f
   }else{
     this->clear_selection();
     this->vec_selection.push_back(file.item.ID);
-    this->call_function();
+    this->item_operation();
   }
 
   //---------------------------
@@ -88,16 +88,7 @@ void Selection::clear_selection(){
 
   //---------------------------
 }
-
-//External function
-void Selection::add_function(std::function<void()> func){
-  //---------------------------
-
-  nav_struct->fct_item_operation = func;
-
-  //---------------------------
-}
-void Selection::call_function(){
+void Selection::item_operation(){
   //---------------------------
 
   if(!nav_struct->fct_item_operation){
