@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/GUI/Navigator/Structure/File.h>
+#include <Utility/GUI/Navigator/Structure/Item.h>
 #include <functional>
 #include <vector>
 #include <string>

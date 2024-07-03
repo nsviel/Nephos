@@ -23,6 +23,7 @@ public:
 
 public:
   //Main function
+  void init_navigator();
   void draw_tab(int width);
 
   //Subfunction

@@ -13,7 +13,7 @@ Navigator::Navigator(ldr::gui::importer::Panel* gui_panel){
   ldr::Node* node_loader = gui_panel->get_node_loader();
 
   this->ldr_struct = node_loader->get_ldr_struct();
-  this->gui_navigator = new utl::gui::Navigator();
+  this->utl_navigator = new utl::gui::Navigator();
 
   //---------------------------
 }
@@ -32,7 +32,7 @@ void Navigator::draw_tab(int width){
 
   ImGui::SetNextItemWidth(width);
   if(ImGui::BeginTabItem("Navigator##50", NULL, flag)){
-    gui_navigator->draw_navigator(ldr_struct->importer.path);
+    utl_navigator->draw_navigator(ldr_struct->importer.path);
     ImGui::EndTabItem();
   }
 

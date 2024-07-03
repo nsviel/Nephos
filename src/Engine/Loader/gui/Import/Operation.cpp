@@ -14,12 +14,21 @@ Operation::Operation(ldr::gui::importer::Panel* gui_panel){
 
   this->ldr_struct = node_loader->get_ldr_struct();
   this->ldr_importer = node_loader->get_ldr_importer();
+  this->gui_navigator = gui_panel->get_gui_navigator();
 
   //---------------------------
+  this->init_navigator();
 }
 Operation::~Operation(){}
 
 //Main function
+void Operation::init_navigator(){
+  //---------------------------
+
+
+
+  //---------------------------
+}
 void Operation::draw_header(){
   //---------------------------
 
