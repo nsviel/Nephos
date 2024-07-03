@@ -30,6 +30,7 @@ public:
   void task_begin(std::string name, float time = -1);
   void task_end(const std::string& name, float time = -1, glm::vec4 color = {});
   void add_task(const std::string& name, float ts_begin, float ts_end, glm::vec4 color = {});
+  void remove_task(const std::string& name);
 
   //Subfunction
   prf::dynamic::Task* find_task(const std::string& name);

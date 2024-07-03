@@ -13,6 +13,7 @@ struct Task{
   std::string name = "";
   double ts_begin = -1;
   double ts_end = -1;
+  bool empty = false;
 
   //---------------------------
 };

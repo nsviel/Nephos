@@ -114,15 +114,22 @@ void Tasker::task_end(const std::string& name, float time, glm::vec4 color){
     return;
   }
 
-  //Apply task stuff
+  //Task time
   if(time == -1){
     utl::timer::Timepoint task_end = timer.get_time();
     task->ts_end = timer.duration_s(this->reference, task_end);
   }else{
     task->ts_end = time;
   }
+
+  //Task color
   if(color != glm::vec4{0, 0, 0, 0}){
     task->color = color;
+  }
+
+  //Prevent from very low time tasks (< 0.01ms)
+  if(task->ts_end - task->ts_begin < 0.00001){
+    this->remove_task(name);
   }
 
   //---------------------------
@@ -137,6 +144,17 @@ void Tasker::add_task(const std::string& name, float ts_begin, float ts_end, glm
   task.name = name;
   task.color = color;
   this->vec_task_buffer.push_back(task);
+
+  //---------------------------
+}
+void Tasker::remove_task(const std::string& name){
+  //---------------------------
+
+  // Use std::remove_if to move matching tasks to the end of the vector
+  auto it = std::remove_if(vec_task_buffer.begin(), vec_task_buffer.end(), [&name](const prf::dynamic::Task& task) {return task.name == name;});
+
+  // Erase the matching tasks from the vector
+  vec_task_buffer.erase(it, vec_task_buffer.end());
 
   //---------------------------
 }

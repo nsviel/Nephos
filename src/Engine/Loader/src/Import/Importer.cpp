@@ -65,6 +65,21 @@ void Importer::load_set(utl::base::Path path){
 
   //---------------------------
 }
+void Importer::load_directory(utl::base::Path path){
+  //---------------------------
+
+  //Get vector of all directory files
+  std::vector<std::string> vec_file = utl::path::list_all_file(path.directory);
+
+  //Load object one by one
+  for(int i=0; i<vec_file.size(); i++){
+    utl::base::Path utl_path(vec_file[i]);
+    utl_path.directory = path.directory;
+    this->load_object(utl_path);
+  }
+
+  //---------------------------
+}
 void Importer::load_object(utl::base::Path path){
   if(!check_path(path.build())) return;
   //---------------------------

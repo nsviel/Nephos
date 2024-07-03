@@ -188,7 +188,11 @@ void Binary::parse_face_little_endian(std::ifstream& file){
 
     //Location
     for(int j=0; j<idx.size(); j++){
-      data.xyz.push_back(data_tmp.xyz[idx[j]]);
+      int& index = idx[j];
+
+      if(index < data_tmp.xyz.size()){
+        data.xyz.push_back(data_tmp.xyz[index]);
+      }
     }
   }
 

@@ -21,15 +21,14 @@ public:
   void reset();
   void clean();
 
-  //Tasker function
+  //Subfunction
   prf::dynamic::Tasker* fetch_tasker(std::string name);
-
-  inline std::list<prf::dynamic::Tasker*> get_list_tasker(){return list_tasker;}
+  std::list<prf::dynamic::Tasker*> get_list_tasker();
 
 public:
   std::string name = "";
   bool pause = false;
-  
+
 private:
   std::list<prf::dynamic::Tasker*> list_tasker;
 };

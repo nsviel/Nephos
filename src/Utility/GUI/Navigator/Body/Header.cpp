@@ -72,7 +72,7 @@ void Header::draw_directory_trail(utl::base::Path& path){
 
     ImGui::PushID(i);
     element_path += "/" + element;
-    if(ImGui::Button(element.c_str())){
+    if(ImGui::Button(element.c_str(), ImVec2(0, 20))){
       path.directory = element_path + "/";
     }
     ImGui::PopID();

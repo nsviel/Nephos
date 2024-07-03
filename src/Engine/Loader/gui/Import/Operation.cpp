@@ -70,10 +70,15 @@ void Operation::draw_header(){
 }
 
 //Subfunction
-void Operation::item_operation(utl::base::Path path){
+void Operation::item_operation(utl::base::Path utl_path){
   //---------------------------
 
-  ldr_importer->load_object(path);
+  std::string path = utl_path.build();
+  if(utl::path::is_dir_or_file(path) == "file"){
+    ldr_importer->load_object(utl_path);
+  }else{
+    ldr_importer->load_directory(utl_path);
+  }
 
   //---------------------------
 }

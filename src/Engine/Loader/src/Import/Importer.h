@@ -32,6 +32,7 @@ public:
   //Main function
   utl::base::Data* load_data(std::string path);
   void load_set(utl::base::Path file_path);
+  void load_directory(utl::base::Path path);
   void load_object(utl::base::Path file_path);
   void load_object(utl::base::Path file_path, utl::base::Path path_transfo);
 

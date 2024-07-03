@@ -247,24 +247,32 @@ std::vector<std::string> list_all_file(std::string path){
   DIR* directory = opendir(path.c_str());
   std::vector<std::string> path_vec;
 
-  if(utl::directory::is_exist(path) == false || is_dir_or_file(path) == "file"){
-    std::cout<<"[error] Directory does not exists: "<<path<<std::endl;
+  if (utl::directory::is_exist(path) == false || is_dir_or_file(path) == "file") {
+    std::cout << "[error] Directory does not exists: " << path << std::endl;
     return path_vec;
   }
 
-  //Filtre and store files present in the folder
-  while((files = readdir(directory)) != NULL){
+  // Filter and store files present in the folder
+  while ((files = readdir(directory)) != NULL) {
     std::string name = files->d_name;
 
-    if(name != "." && name != ".."){
-      path_vec.push_back(name);
+    if (name != "." && name != "..") {
+      std::string full_path = path + "/" + name;
+
+      struct stat path_stat;
+      stat(full_path.c_str(), &path_stat);
+
+      // Check if it is a regular file
+      if (S_ISREG(path_stat.st_mode)) {
+        path_vec.push_back(name);
+      }
     }
   }
 
-  //Close and return the file names list
+  // Close and return the file names list
   closedir(directory);
 
-  //Sort vector in alphabetic order
+  // Sort vector in alphabetic order
   std::sort(path_vec.begin(), path_vec.end());
 
   //---------------------------
