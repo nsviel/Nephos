@@ -98,7 +98,7 @@ void Organisation::insert_folder(std::vector<utl::gui::navigator::Item>& vec_ite
   item.ID = ID++;
   item.type = utl::gui::navigator::FOLDER;
   item.name = utl::path::get_filename_from_path(path);
-  item.path = path;
+  item.path = path + "/";
   item.icon = std::string(ICON_FA_FOLDER);
   item.size = "---";
   item.weight = 0;
