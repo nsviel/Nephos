@@ -1,18 +1,11 @@
 #pragma once
 
-#include <Loader/gui/Navigator/Navigator.h>
-#include <imgui/core/imgui.h>
 #include <string>
-#include <vector>
 
 namespace ldr{class Node;}
-namespace ldr{class Structure;}
-namespace ldr::io{class Importer;}
-namespace ldr::gui::navigator{class File;}
-namespace ldr::bookmark{class Manager;}
-namespace dat{class Graph;}
-namespace dat::element{class Set;}
-namespace dat::base{class Entity;}
+namespace ldr::gui::importer{class Bookmark;}
+namespace ldr::gui::importer{class Operation;}
+namespace ldr::gui::importer{class Navigator;}
 
 
 namespace ldr::gui::importer{
@@ -29,25 +22,15 @@ public:
   void run_panel();
   void design_panel();
 
-  //Subfunction
-  void draw_header();
-  void draw_body();
-  void draw_bookmark_tab();
-
-  //Operation function
-  void item_operation();
-  void item_bookmark(std::string path);
+  inline ldr::Node* get_node_loader(){return node_loader;}
 
 private:
-  ldr::Structure* ldr_struct;
-  ldr::io::Importer* ldr_importer;
-  ldr::bookmark::Manager* ldr_bookmark;
-  dat::element::Set* dat_set;
-  dat::Graph* dat_graph;
-  ldr::gui::Navigator* gui_navigator;
-  
+  ldr::Node* node_loader;
+  ldr::gui::importer::Navigator* gui_navigator;
+  ldr::gui::importer::Bookmark* gui_bookmark;
+  ldr::gui::importer::Operation* gui_operation;
+
   std::string name;
-  bool goto_file_tab = false;
   bool* show_window;
 };
 

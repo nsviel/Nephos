@@ -2,6 +2,7 @@
 
 #include <Loader/gui/Navigator/Structure/File.h>
 #include <imgui/core/imgui.h>
+#include <functional>
 #include <vector>
 #include <string>
 
@@ -11,6 +12,7 @@ namespace ldr::gui::navigator{
 struct Structure{
   //---------------------------
 
+  std::function<void()> fct_item_operation;
   std::vector<ldr::gui::navigator::File> vec_folder;
   std::vector<ldr::gui::navigator::File> vec_file;
   std::vector<ldr::gui::navigator::File> vec_item;

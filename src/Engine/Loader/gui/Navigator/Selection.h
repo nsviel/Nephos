@@ -36,7 +36,6 @@ public:
 
 protected:
   ldr::gui::navigator::Structure* nav_struct;
-  std::function<void()> fct_item_operation;
 };
 
 }

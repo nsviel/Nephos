@@ -93,19 +93,19 @@ void Selection::clear_selection(){
 void Selection::add_function(std::function<void()> func){
   //---------------------------
 
-  this->fct_item_operation = func;
+  nav_struct->fct_item_operation = func;
 
   //---------------------------
 }
 void Selection::call_function(){
   //---------------------------
 
-  if(!fct_item_operation){
+  if(!nav_struct->fct_item_operation){
     std::cerr << "No function set in Navigator!" << std::endl;
     return;
   }
 
-  this->fct_item_operation();
+  nav_struct->fct_item_operation();
   this->clear_selection();
 
   //---------------------------
