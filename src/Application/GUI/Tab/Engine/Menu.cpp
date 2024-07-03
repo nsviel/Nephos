@@ -50,18 +50,10 @@ void Menu::draw(){
 
 //Subfunction
 void Menu::menu_panel(){
-  std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel_shared();
+  std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel();
   //---------------------------
 
-  //Node engine panels
-  for(int i=0; i<vec_panel.size(); i++){
-    utl::gui::Panel* panel = vec_panel[i];
-    std::string title = panel->icon + " " + panel->name;
-    ImGui::Checkbox(title.c_str(), &panel->is_open);
-  }
-
-  //GUI panels
-  vec_panel = node_gui->get_vec_panel();
+  //Node panels
   for(int i=0; i<vec_panel.size(); i++){
     utl::gui::Panel* panel = vec_panel[i];
     std::string title = panel->icon + " " + panel->name;
@@ -71,7 +63,7 @@ void Menu::menu_panel(){
   //---------------------------
 }
 void Menu::menu_shortcut(std::string name){
-  std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel_shared();
+  std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel();
   //---------------------------
 
   for(int i=0; i<vec_panel.size(); i++){

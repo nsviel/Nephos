@@ -30,14 +30,6 @@ Node::Node(app::Node* node_app){
   this->node_interface = new itf::Node(this);
   this->node_loader = new ldr::Node(this);
 
-  this->add_node_panel(node_camera);
-  this->add_node_panel(node_loader);
-  this->add_node_panel(node_data);
-  this->add_node_panel(node_interface);
-  this->add_node_panel(node_dynamic);
-  this->add_node_panel(node_radio);
-  this->add_node_panel(node_profiler);
-
   //Tasker CPU
   prf::dynamic::Manager* prf_dynamic = node_profiler->get_prf_dynamic();
   this->tasker = prf_dynamic->get_tasker_cpu();

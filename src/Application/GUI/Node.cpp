@@ -26,8 +26,6 @@ Node::Node(app::Node* node_app){
   this->gui_docking = new gui::interface::Docking(this);
   this->tasker = node_engine->get_tasker_cpu();
 
-  this->add_node_panel(node_scene);
-
   //---------------------------
 }
 Node::~Node(){

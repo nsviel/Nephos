@@ -25,14 +25,11 @@ public:
 
   //Subfunction
   utl::gui::Panel* add_panel(std::string name, std::string icon, bool value);
-  void add_node_panel(utl::base::Node* node);
 
   inline std::vector<utl::gui::Panel*> get_vec_panel(){return vec_panel;}
-  inline std::vector<utl::gui::Panel*> get_vec_panel_shared(){return vec_panel_shared;}
 
 protected:
-  std::vector<utl::gui::Panel*> vec_panel;
-  static std::vector<utl::gui::Panel*> vec_panel_shared;
+  static std::vector<utl::gui::Panel*> vec_panel;
 };
 
 }

@@ -19,8 +19,6 @@ Node::Node(app::Node* node_app){
   //Child
   this->sce_init = new sce::Init(this);
 
-  this->add_node_panel(node_kinect);
-
   //---------------------------
 }
 Node::~Node(){}
