@@ -60,7 +60,7 @@ void Bookmark::draw_content(){
 
     //Bookmark name button
     ImGui::SameLine();
-    std::string path_bookmark = item.path.build();
+    std::string path_bookmark = item.path.build(); say(path_bookmark);
     int trash_space = item.is_supressible ? 30 : 0;
     int size = ImGui::GetContentRegionAvail().x - trash_space;
 
