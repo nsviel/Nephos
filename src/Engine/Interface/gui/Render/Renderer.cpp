@@ -59,6 +59,7 @@ void Renderer::engine_texture(){
   //Display at window dimension
   ImGui::Image(texture, ImGui::GetContentRegionAvail());
 
+  //Control
   if(ImGui::IsItemHovered()){
     gui_control->run_control();
   }else{
