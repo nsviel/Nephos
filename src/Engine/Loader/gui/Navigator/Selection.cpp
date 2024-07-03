@@ -26,7 +26,7 @@ void Selection::selection_item(utl::base::Path& path, ldr::gui::navigator::File&
   flag |= ImGuiSelectableFlags_AllowOverlap;
   flag |= ImGuiSelectableFlags_AllowDoubleClick;
 
-  bool item_is_selected = nav_struct->vec_selection.contains(file.item.ID);
+  bool item_is_selected = vec_selection.contains(file.item.ID);
   std::string label = "##" + std::to_string(file.item.ID);
   ImGui::SameLine();
   if(ImGui::Selectable(label.c_str(), item_is_selected, flag)){
@@ -48,14 +48,14 @@ void Selection::control_selection(ldr::gui::navigator::File& file, bool& already
 
   if(io.KeyCtrl){
     if(already_selected){
-      nav_struct->vec_selection.find_erase_unsorted(file.item.ID);
+      this->vec_selection.find_erase_unsorted(file.item.ID);
     }
     else{
-      nav_struct->vec_selection.push_back(file.item.ID);
+      this->vec_selection.push_back(file.item.ID);
     }
   }else{
     this->clear_selection();
-    nav_struct->vec_selection.push_back(file.item.ID);
+    this->vec_selection.push_back(file.item.ID);
   }
 
   //---------------------------
@@ -75,7 +75,7 @@ void Selection::double_click(utl::base::Path& path, ldr::gui::navigator::File& f
     }
   }else{
     this->clear_selection();
-    nav_struct->vec_selection.push_back(file.item.ID);
+    this->vec_selection.push_back(file.item.ID);
     this->call_function();
   }
 
@@ -84,7 +84,7 @@ void Selection::double_click(utl::base::Path& path, ldr::gui::navigator::File& f
 void Selection::clear_selection(){
   //---------------------------
 
-  nav_struct->vec_selection.clear();
+  this->vec_selection.clear();
 
   //---------------------------
 }

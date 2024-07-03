@@ -4,13 +4,11 @@
 #include <string>
 #include <vector>
 
-namespace ldr{class Node;}
 namespace ldr::gui::navigator{class Structure;}
 namespace ldr::gui::navigator{class Organisation;}
 namespace ldr::gui::navigator{class Header;}
 namespace ldr::gui::navigator{class Selection;}
 namespace ldr::gui::navigator{class File;}
-namespace ldr::bookmark{class Manager;}
 namespace utl::base{class Path;}
 
 
@@ -20,7 +18,7 @@ class Navigator
 {
 public:
   //Constructor / Destructor
-  Navigator(ldr::Node* node_loader, bool with_bookmark);
+  Navigator();
   ~Navigator();
 
 public:
@@ -29,17 +27,13 @@ public:
 
   //Subfunction
   void draw_content(utl::base::Path& path);
-  void draw_item_content(ldr::gui::navigator::File& file);
-  void draw_bookmark_icon(ldr::gui::navigator::File& bookmark);
-
-  virtual void item_operation(){}
+  void draw_item(ldr::gui::navigator::File& file);
 
 protected:
   ldr::gui::navigator::Structure* nav_struct;
   ldr::gui::navigator::Organisation* nav_organisation;
   ldr::gui::navigator::Header* nav_header;
   ldr::gui::navigator::Selection* nav_selection;
-  ldr::bookmark::Manager* ldr_bookmark;
 };
 
 }

@@ -8,16 +8,14 @@
 namespace ldr::gui{
 
 //Constructor / Destructor
-Navigator::Navigator(ldr::Node* node_loader, bool with_bookmark){
+Navigator::Navigator(){
   //---------------------------
 
-  this->ldr_bookmark = node_loader->get_ldr_bookmark();
   this->nav_struct = new ldr::gui::navigator::Structure();
   this->nav_organisation = new ldr::gui::navigator::Organisation(nav_struct);
   this->nav_header = new ldr::gui::navigator::Header(nav_struct);
   this->nav_selection = new ldr::gui::navigator::Selection(nav_struct);
 
-  nav_struct->with_bookmark = with_bookmark;
   nav_struct->default_path = utl::path::get_current_directory_path();
 
   //---------------------------
@@ -58,8 +56,7 @@ void Navigator::draw_content(utl::base::Path& path){
   for(int i=0; i<nav_struct->vec_item.size(); i++){
     ldr::gui::navigator::File& file = nav_struct->vec_item[i];
 
-    this->draw_item_content(file);
-    this->draw_bookmark_icon(file);
+    this->draw_item(file);
     nav_selection->selection_item(path, file);
   }
 
@@ -67,7 +64,7 @@ void Navigator::draw_content(utl::base::Path& path){
 
   //---------------------------
 }
-void Navigator::draw_item_content(ldr::gui::navigator::File& file){
+void Navigator::draw_item(ldr::gui::navigator::File& file){
   //---------------------------
 
   ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
@@ -91,33 +88,6 @@ void Navigator::draw_item_content(ldr::gui::navigator::File& file){
 
   //---------------------------
 }
-void Navigator::draw_bookmark_icon(ldr::gui::navigator::File& file){
-  if(nav_struct->with_bookmark == false) return;
-  //---------------------------
 
-  //Button background if already bookmarked
-  bool is_bookmarked = ldr_bookmark->is_path_bookmarked(file.item.path);
-  int bg_alpha;
-  is_bookmarked ? bg_alpha = 255 : bg_alpha = 0;
-
-  //Draw bookmark button
-  std::string ID = file.item.path + "##bookmarkbutton";
-  ImGui::TableNextColumn();
-  ImGui::PushID(ID.c_str());
-  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
-  ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
-  if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark")){
-    if(is_bookmarked){
-      ldr_bookmark->remove_path(file.item.path);
-    }else{
-      ldr_bookmark->add_abs_path(file.item.path);
-    }
-    ldr_bookmark->save_on_file();
-  }
-  ImGui::PopStyleColor(2);
-  ImGui::PopID();
-
-  //---------------------------
-}
 
 }

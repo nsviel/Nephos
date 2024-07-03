@@ -36,6 +36,8 @@ public:
 
 protected:
   ldr::gui::navigator::Structure* nav_struct;
+
+  ImVector<int> vec_selection;
 };
 
 }

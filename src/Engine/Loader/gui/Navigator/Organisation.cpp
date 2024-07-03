@@ -37,7 +37,7 @@ void Organisation::update_item_list(utl::base::Path& path){
 void Organisation::recolt_items(std::string& directory){
   std::vector<std::string> vec_path = utl::path::list_all_path(directory);
   //---------------------------
-sayHello();
+
   //Item vectors
   this->vec_file.clear();
   this->vec_folder.clear();

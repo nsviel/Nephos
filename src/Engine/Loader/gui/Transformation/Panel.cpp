@@ -16,7 +16,7 @@ Panel::Panel(ldr::Node* node_loader, bool* show_window){
   this->ldr_struct = node_loader->get_ldr_struct();
   this->ldr_transformation = node_loader->get_ldr_transformation();
   this->dat_selection = node_data->get_dat_selection();
-  this->gui_navigator = new ldr::gui::Navigator(node_loader, false);
+  this->gui_navigator = new ldr::gui::Navigator();
 
   this->name = "Transformation##555";
   this->show_window = show_window;

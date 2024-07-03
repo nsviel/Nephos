@@ -13,7 +13,7 @@ Navigator::Navigator(ldr::gui::importer::Panel* gui_panel){
   ldr::Node* node_loader = gui_panel->get_node_loader();
 
   this->ldr_struct = node_loader->get_ldr_struct();
-  this->gui_navigator = new ldr::gui::Navigator(node_loader, true);
+  this->gui_navigator = new ldr::gui::Navigator();
 
   //---------------------------
 }
