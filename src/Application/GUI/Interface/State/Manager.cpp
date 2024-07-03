@@ -12,10 +12,11 @@ namespace gui::state{
 Manager::Manager(gui::Node* node_gui){
   //---------------------------
 
-  this->gui_struct = new gui::state::Structure();
-  this->gui_save = new gui::state::Saver(gui_struct);
-  this->gui_load = new gui::state::Loader(gui_struct);
-  this->gui_logic = new gui::state::Logic(gui_struct);
+  this->node_gui = node_gui;
+  this->sta_struct = new gui::state::Structure();
+  this->gui_save = new gui::state::Saver(this);
+  this->gui_load = new gui::state::Loader(this);
+  this->gui_logic = new gui::state::Logic(this);
 
   //---------------------------
 }
@@ -27,9 +28,9 @@ void Manager::init(){
 
   std::string default_path = "../media/config/gui/default.json";
 
-  gui_struct->path_default.insert(default_path);
-  gui_struct->path_current.insert(default_path);
-  gui_struct->path_save.insert(default_path);
+  sta_struct->path_default.insert(default_path);
+  sta_struct->path_current.insert(default_path);
+  sta_struct->path_save.insert(default_path);
 
   gui_load->load_state(default_path);
   gui_logic->update_list_file();
@@ -39,11 +40,11 @@ void Manager::init(){
 void Manager::loop(){
   //---------------------------
 
-  if(gui_struct->flag_reload){
-    gui_load->load_state(gui_struct->path_save.build());
+  if(sta_struct->flag_reload){
+    gui_load->load_state(sta_struct->path_save.build());
     gui_logic->update_list_file();
-    gui_struct->path_current = gui_struct->path_save;
-    gui_struct->flag_reload = false;
+    sta_struct->path_current = sta_struct->path_save;
+    sta_struct->flag_reload = false;
   }
 
   //---------------------------
@@ -56,9 +57,9 @@ void Manager::gui(){
   //Current file
   ImGui::Text("Current");
   ImGui::SameLine();
-  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", gui_struct->path_current.filename().c_str());
+  ImGui::TextColored(ImVec4(0.5, 1, 0.5, 1), "%s", sta_struct->path_current.filename().c_str());
 
-  if(gui_struct->path_current.name != gui_struct->path_default.name){
+  if(sta_struct->path_current.name != sta_struct->path_default.name){
     if(ImGui::Button("Make default##state", ImVec2(120, 0))){
       gui_logic->make_current_default();
     }
@@ -73,13 +74,13 @@ void Manager::gui(){
 
     ImGui::SetNextItemWidth(125);
     static char str_n[256];
-    strncpy(str_n, gui_struct->path_save.name.c_str(), sizeof(str_n) - 1);
+    strncpy(str_n, sta_struct->path_save.name.c_str(), sizeof(str_n) - 1);
     if(ImGui::InputText("##state_save", str_n, IM_ARRAYSIZE(str_n))){
-      gui_struct->path_save.name = str_n;
+      sta_struct->path_save.name = str_n;
     }
 
     if(ImGui::Button("Save##state_save")){
-        std::string path = gui_struct->path_save.build();
+        std::string path = sta_struct->path_save.build();
       //gui_save->state_save();
       ImGui::CloseCurrentPopup();
     }
@@ -90,11 +91,11 @@ void Manager::gui(){
   //Load GUI state
   ImGui::SetNextItemWidth(120);
   int idx = gui_logic->get_idx_path_current();
-  std::vector<const char*> vec_file_cchar = utl::casting::vec_str_to_cchar(gui_struct->vec_file);
+  std::vector<const char*> vec_file_cchar = utl::casting::vec_str_to_cchar(sta_struct->vec_file);
   if(ImGui::Combo("##imgui_init_states", &idx, vec_file_cchar.data(), vec_file_cchar.size())){
     std::string filename = (std::string)vec_file_cchar[idx];
-    gui_struct->path_save.insert_filename(filename);
-    gui_struct->flag_reload = true;
+    sta_struct->path_save.insert_filename(filename);
+    sta_struct->flag_reload = true;
   }
 
   //---------------------------

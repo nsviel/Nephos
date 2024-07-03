@@ -7,10 +7,10 @@
 namespace gui::state{
 
 //Constructor / Destructor
-Saver::Saver(gui::state::Structure* gui_struct){
+Saver::Saver(gui::state::Manager* manager){
   //---------------------------
 
-  this->gui_struct = gui_struct;
+  this->sta_struct = manager->get_sta_struct();
 
   //---------------------------
 }
@@ -29,6 +29,16 @@ void Saver::save_state(std::string path){
 
 //Subfunction
 void Saver::build_json_ini_settings(nlohmann::json& j){
+  //---------------------------
+
+  size_t size;
+  const char* settings = ImGui::SaveIniSettingsToMemory(&size);
+  j["imgui_settings"] = std::string(settings, size);
+
+  //---------------------------
+}
+void Saver::build_json_panel(nlohmann::json& j){
+  //  std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel();
   //---------------------------
 
   size_t size;

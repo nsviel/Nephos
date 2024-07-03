@@ -10,10 +10,10 @@
 namespace gui::state{
 
 //Constructor / Destructor
-Logic::Logic(gui::state::Structure* gui_struct){
+Logic::Logic(gui::state::Manager* manager){
   //---------------------------
 
-  this->gui_struct = gui_struct;
+  this->sta_struct = manager->get_sta_struct();
 
   //---------------------------
 }
@@ -23,14 +23,14 @@ Logic::~Logic(){}
 void Logic::update_list_file(){
   //---------------------------
 
-  gui_struct->vec_file = utl::path::list_all_file(gui_struct->path_current.directory, ".json");
+  sta_struct->vec_file = utl::path::list_all_file(sta_struct->path_current.directory, ".json");
 
   //---------------------------
 }
 void Logic::make_current_default(){
   //---------------------------
 
-  std::string path = gui_struct->path_default.build();
+  std::string path = sta_struct->path_default.build();
   //gui_io->state_save();
 
   //---------------------------
@@ -39,9 +39,9 @@ int Logic::get_idx_path_current(){
   int idx = -1;
   //---------------------------
 
-  for(int i=0; i<gui_struct->vec_file.size(); i++){
-    std::string& filename = gui_struct->vec_file[i];
-    if(gui_struct->path_current.filename() == filename){
+  for(int i=0; i<sta_struct->vec_file.size(); i++){
+    std::string& filename = sta_struct->vec_file[i];
+    if(sta_struct->path_current.filename() == filename){
       return i;
     }
   }

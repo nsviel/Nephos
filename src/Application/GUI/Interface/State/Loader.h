@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <string>
 
+namespace gui::state{class Manager;}
 namespace gui::state{class Structure;}
 namespace utl::base{class Path;}
 
@@ -14,7 +15,7 @@ class Loader
 {
 public:
   //Constructor / Destructor
-  Loader(gui::state::Structure* gui_struct);
+  Loader(gui::state::Manager* manager);
   ~Loader();
 
 public:
@@ -26,7 +27,7 @@ public:
   void extract_ini_settings(nlohmann::json& j);
 
 private:
-  gui::state::Structure* gui_struct;
+  gui::state::Structure* sta_struct;
 };
 
 }

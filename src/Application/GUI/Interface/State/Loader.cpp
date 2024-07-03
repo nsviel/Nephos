@@ -7,10 +7,10 @@
 namespace gui::state{
 
 //Constructor / Destructor
-Loader::Loader(gui::state::Structure* gui_struct){
+Loader::Loader(gui::state::Manager* manager){
   //---------------------------
 
-  this->gui_struct = gui_struct;
+  this->sta_struct = manager->get_sta_struct();
 
   //---------------------------
 }

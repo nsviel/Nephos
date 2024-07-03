@@ -3,6 +3,7 @@
 #include <Utility/Base/Data/Path.h>
 #include <string>
 
+namespace gui::state{class Manager;}
 namespace gui::state{class Structure;}
 namespace utl::base{class Path;}
 
@@ -13,7 +14,7 @@ class Logic
 {
 public:
   //Constructor / Destructor
-  Logic(gui::state::Structure* gui_struct);
+  Logic(gui::state::Manager* manager);
   ~Logic();
 
 public:
@@ -23,7 +24,7 @@ public:
   int get_idx_path_current();
 
 private:
-  gui::state::Structure* gui_struct;
+  gui::state::Structure* sta_struct;
 };
 
 }
