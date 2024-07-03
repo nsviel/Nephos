@@ -10,6 +10,7 @@ namespace gui::state{
 Loader::Loader(gui::state::Manager* manager){
   //---------------------------
 
+  this->node_gui = manager->get_node_gui();
   this->sta_struct = manager->get_sta_struct();
 
   //---------------------------
@@ -20,36 +21,33 @@ Loader::~Loader(){}
 void Loader::load_state(std::string path){
   //---------------------------
 
-  nlohmann::json j;
-  this->open_json(j, path);
-  this->extract_ini_settings(j);
+  this->read_ini_settings(path);
+  this->read_panel(path);
 
   //---------------------------
 }
 
 //Subfunction
-void Loader::open_json(nlohmann::json& j, std::string path){
+void Loader::read_ini_settings(std::string& path){
   //---------------------------
 
-  std::ifstream file(path.c_str());
-  if(file.is_open()){
-    file >> j;
-    file.close();
-  }else{
-    std::cerr << "[error] Failed to open file for loading settings: " << path << std::endl;
-  }
+  std::string settings = utl::json::read_value<std::string>(path, "imgui_settings");
+  ImGui::LoadIniSettingsFromMemory(settings.c_str(), settings.size());
 
   //---------------------------
 }
-void Loader::extract_ini_settings(nlohmann::json& j){
+void Loader::read_panel(std::string& path){
+  std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel();
   //---------------------------
 
-  if(j.contains("imgui_settings")){
-    std::string settings = j["imgui_settings"];
-    ImGui::LoadIniSettingsFromMemory(settings.c_str(), settings.size());
-  }else{
-    std::cerr << "[error] JSON does not contain 'imgui_settings' key." << std::endl;
+  for(int i=0; i<vec_panel.size(); i++){
+    utl::gui::Panel* panel = vec_panel[i];
+
+
   }
+
+  //std::string key = "panel." + panel->name;
+  //utl::json::write_value(path, key, panel->is_open);
 
   //---------------------------
 }

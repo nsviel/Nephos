@@ -1,9 +1,9 @@
 #pragma once
 
 #include <Utility/Base/Data/Path.h>
-#include <nlohmann/json.hpp>
 #include <string>
 
+namespace gui{class Node;}
 namespace gui::state{class Manager;}
 namespace gui::state{class Structure;}
 namespace utl::base{class Path;}
@@ -23,10 +23,11 @@ public:
   void load_state(std::string path);
 
   //Subfunction
-  void open_json(nlohmann::json& j, std::string path);
-  void extract_ini_settings(nlohmann::json& j);
+  void read_ini_settings(std::string& path);
+  void read_panel(std::string& path);
 
 private:
+  gui::Node* node_gui;
   gui::state::Structure* sta_struct;
 };
 
