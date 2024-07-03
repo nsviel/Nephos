@@ -23,6 +23,7 @@ public:
   void design_panel();
 
   inline ldr::Node* get_node_loader(){return node_loader;}
+  inline ldr::gui::importer::Navigator* get_gui_navigator(){return gui_navigator;}
 
 private:
   ldr::Node* node_loader;

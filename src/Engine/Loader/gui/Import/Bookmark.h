@@ -5,12 +5,11 @@
 #include <string>
 #include <vector>
 
-namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::io{class Importer;}
-namespace ldr::gui::navigator{class File;}
-namespace ldr::gui::importer{class Panel;}
 namespace ldr::bookmark{class Manager;}
+namespace ldr::gui::importer{class Panel;}
+namespace ldr::gui::importer{class Navigator;}
 
 
 namespace ldr::gui::importer{
@@ -35,6 +34,7 @@ private:
   ldr::Structure* ldr_struct;
   ldr::io::Importer* ldr_importer;
   ldr::bookmark::Manager* ldr_bookmark;
+  ldr::gui::importer::Navigator* gui_navigator;
 };
 
 }

@@ -18,6 +18,7 @@ Bookmark::Bookmark(ldr::gui::importer::Panel* gui_panel){
   this->ldr_struct = node_loader->get_ldr_struct();
   this->ldr_importer = node_loader->get_ldr_importer();
   this->ldr_bookmark = node_loader->get_ldr_bookmark();
+  this->gui_navigator = gui_panel->get_gui_navigator();
 
   //---------------------------
 }
@@ -28,7 +29,7 @@ void Bookmark::draw_tab(int width){
   //---------------------------
 
   ImGui::SetNextItemWidth(width);
-  if(ImGui::BeginTabItem("Navigator##50", NULL)){
+  if(ImGui::BeginTabItem("Bookmark##50", NULL)){
     this->draw_content();
     ImGui::EndTabItem();
   }
@@ -83,7 +84,8 @@ void Bookmark::item_bookmark(std::string file_path){
   //If selection is a directory go display his content
   if(utl::directory::is_directory(file_path)){
     ldr_struct->importer.path.directory = file_path;
-  //  this->goto_file_tab = true;
+    bool& open_tab = gui_navigator->get_open_tab();
+    open_tab = true;
   }
   //If selection is a file go load it
   else{

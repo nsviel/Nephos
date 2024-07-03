@@ -25,12 +25,10 @@ void Navigator::draw_tab(int width){
 
   //Flag to force navigator tab in case of bookmark folder
   ImGuiTabItemFlags flag = 0;
-/*
-  if(goto_file_tab){
+  if(open_tab){
     flag = ImGuiTabItemFlags_SetSelected;
-    //this->goto_file_tab = false;
+    this->open_tab = false;
   }
-*/
 
   ImGui::SetNextItemWidth(width);
   if(ImGui::BeginTabItem("Navigator##50", NULL, flag)){

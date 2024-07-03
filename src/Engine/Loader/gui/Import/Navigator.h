@@ -20,9 +20,13 @@ public:
   //Main function
   void draw_tab(int width);
 
+  inline bool& get_open_tab(){return open_tab;}
+
 private:
   ldr::Structure* ldr_struct;
   ldr::gui::Navigator* gui_navigator;
+
+  bool open_tab;
 };
 
 }
