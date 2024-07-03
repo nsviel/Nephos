@@ -1,9 +1,6 @@
 #pragma once
 
-#include <Utility/GUI/Navigator/Navigator.h>
-#include <imgui/core/imgui.h>
 #include <string>
-#include <vector>
 
 namespace ldr{class Structure;}
 namespace ldr::io{class Importer;}
@@ -28,8 +25,8 @@ public:
 
   //Subfunction
   void draw_content();
-  void item_bookmark(std::string path);
-  void item_bookmark_icon();
+  void bookmark_button(std::string path);
+  void bookmark_icon(std::string path);
 
 private:
   ldr::Structure* ldr_struct;

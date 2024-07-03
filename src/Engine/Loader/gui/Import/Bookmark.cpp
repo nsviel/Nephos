@@ -27,9 +27,10 @@ Bookmark::~Bookmark(){}
 
 //Main function
 void Bookmark::init_navigator(){
+  utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
   //---------------------------
 
-
+  utl_navigator->add_fct_item_icon([this](std::string path) {this->bookmark_icon(path);});
 
   //---------------------------
 }
@@ -64,7 +65,7 @@ void Bookmark::draw_content(){
     int size = ImGui::GetContentRegionAvail().x - trash_space;
     ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0.04, 0.5));
     if(ImGui::Button(item.name.c_str(), ImVec2(size, 0))){
-      this->item_bookmark(item.path);
+      this->bookmark_button(item.path);
     }
     ImGui::PopStyleVar();
     ImGui::SetItemTooltip("%s", item.path.c_str());
@@ -84,7 +85,7 @@ void Bookmark::draw_content(){
 
   //---------------------------
 }
-void Bookmark::item_bookmark(std::string file_path){
+void Bookmark::bookmark_button(std::string file_path){
   //---------------------------
 
   //If selection is a directory go display his content
@@ -108,31 +109,30 @@ void Bookmark::item_bookmark(std::string file_path){
 
   //---------------------------
 }
-void Bookmark::item_bookmark_icon(){
-//  if(nav_struct->with_bookmark == false) return;
+void Bookmark::bookmark_icon(std::string path){
   //---------------------------
-/*
+
   //Button background if already bookmarked
-  bool is_bookmarked = ldr_bookmark->is_path_bookmarked(item.path);
+  bool is_bookmarked = ldr_bookmark->is_path_bookmarked(path);
   int bg_alpha;
   is_bookmarked ? bg_alpha = 255 : bg_alpha = 0;
 
   //Draw bookmark button
-  std::string ID = item.path + "##bookmarkbutton";
+  std::string ID = path + "##bookmarkbutton";
   ImGui::PushID(ID.c_str());
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, bg_alpha));
   ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
   if(ImGui::Button(ICON_FA_BOOKMARK "##addbookmark")){
     if(is_bookmarked){
-      ldr_bookmark->remove_path(item.path);
+      ldr_bookmark->remove_path(path);
     }else{
-      ldr_bookmark->add_abs_path(item.path);
+      ldr_bookmark->add_abs_path(path);
     }
     ldr_bookmark->save_on_file();
   }
   ImGui::PopStyleColor(2);
   ImGui::PopID();
-*/
+
   //---------------------------
 }
 

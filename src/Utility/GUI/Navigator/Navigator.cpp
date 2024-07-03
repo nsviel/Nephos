@@ -46,7 +46,7 @@ void Navigator::add_fct_item_operation(std::function<void(utl::base::Path)> func
 
   //---------------------------
 }
-void Navigator::add_fct_item_icon(std::function<void()> func){
+void Navigator::add_fct_item_icon(std::function<void(std::string path)> func){
   //---------------------------
 
   nav_struct->vec_icon.push_back(func);

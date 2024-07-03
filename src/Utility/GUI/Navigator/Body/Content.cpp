@@ -85,7 +85,7 @@ void Content::draw_icon(utl::gui::navigator::Item& item){
 
   for(int i=0; i<nav_struct->vec_icon.size(); i++){
     ImGui::TableNextColumn();
-    nav_struct->vec_icon[i]();
+    nav_struct->vec_icon[i](item.path);
   }
 
   //---------------------------

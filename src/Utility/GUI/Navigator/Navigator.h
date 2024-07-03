@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <string>
 
 namespace utl::gui::navigator{class Structure;}
 namespace utl::gui::navigator{class Header;}
@@ -25,7 +26,7 @@ public:
 
   //Subfunction
   void add_fct_item_operation(std::function<void(utl::base::Path)> func);
-  void add_fct_item_icon(std::function<void()> func);
+  void add_fct_item_icon(std::function<void(std::string path)> func);
 
   inline utl::gui::navigator::Structure* get_nav_struct(){return nav_struct;}
   inline utl::gui::navigator::Selection* get_nav_selection(){return nav_selection;}

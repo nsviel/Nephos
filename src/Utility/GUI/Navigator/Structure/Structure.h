@@ -13,7 +13,7 @@ struct Structure{
   //---------------------------
 
   //Function
-  std::vector<std::function<void()>> vec_icon;
+  std::vector<std::function<void(std::string path)>> vec_icon;
   std::function<void(utl::base::Path)> fct_item_operation;
 
   //Data
