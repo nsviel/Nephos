@@ -61,8 +61,8 @@ void Organisation::sort_items(){
 
   //Sort items
   if(ImGuiTableSortSpecs* sort_specs = ImGui::TableGetSortSpecs()){
-    utl::gui::navigator::File::sort_file_by_specs(sort_specs, vec_folder);
-    utl::gui::navigator::File::sort_file_by_specs(sort_specs, vec_file);
+    utl::gui::navigator::Sorting::sort_file_by_specs(sort_specs, vec_folder);
+    utl::gui::navigator::Sorting::sort_file_by_specs(sort_specs, vec_file);
   }
 
   //Copy items

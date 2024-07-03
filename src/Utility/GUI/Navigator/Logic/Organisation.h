@@ -29,7 +29,7 @@ public:
   void insert_folder(std::vector<utl::gui::navigator::Item>& vec_item, std::string& path, int& ID);
   bool is_hidden_file(std::string& path);
 
-protected:
+private:
   utl::gui::navigator::Structure* nav_struct;
 
   std::vector<utl::gui::navigator::Item> vec_folder;

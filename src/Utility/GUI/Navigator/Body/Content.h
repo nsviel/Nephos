@@ -24,7 +24,7 @@ public:
   void draw_item(utl::gui::navigator::Item& file);
   void draw_icon(utl::gui::navigator::Item& file);
 
-protected:
+private:
   utl::gui::navigator::Structure* nav_struct;
   utl::gui::navigator::Organisation* nav_organisation;
   utl::gui::navigator::Selection* nav_selection;

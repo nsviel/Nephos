@@ -30,7 +30,7 @@ public:
   void clear_selection();
   void item_operation();
 
-protected:
+private:
   utl::gui::navigator::Structure* nav_struct;
 
   ImVector<int> vec_selection;

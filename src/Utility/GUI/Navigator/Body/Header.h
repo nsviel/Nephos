@@ -25,7 +25,7 @@ public:
   void draw_directory_trail(utl::base::Path& path);
   void draw_directory_add(utl::base::Path& path);
 
-protected:
+private:
   utl::gui::navigator::Structure* nav_struct;
 };
 

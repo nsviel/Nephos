@@ -25,7 +25,7 @@ public:
   void add_fct_item_operation(std::function<void()> func);
   void add_fct_item_icon(std::function<void()> func);
 
-protected:
+private:
   utl::gui::navigator::Structure* nav_struct;
   utl::gui::navigator::Header* nav_header;
   utl::gui::navigator::Content* nav_content;

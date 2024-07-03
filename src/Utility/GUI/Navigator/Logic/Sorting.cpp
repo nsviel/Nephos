@@ -1,4 +1,4 @@
-#include "File.h"
+#include "Sorting.h"
 
 #include <algorithm>
 #include <iostream>
@@ -6,9 +6,9 @@
 
 namespace utl::gui::navigator{
 
-const ImGuiTableSortSpecs* File::current_sort_specs = nullptr;
+const ImGuiTableSortSpecs* Sorting::current_sort_specs = nullptr;
 
-bool File::compare_with_specs(const utl::gui::navigator::Item& a, const utl::gui::navigator::Item& b){
+bool Sorting::compare_with_specs(const utl::gui::navigator::Item& a, const utl::gui::navigator::Item& b){
   //---------------------------
 
   // Check if either path is ".." and handle it as a special case
@@ -36,7 +36,7 @@ bool File::compare_with_specs(const utl::gui::navigator::Item& a, const utl::gui
   //---------------------------
   return false;
 }
-void File::sort_file_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<utl::gui::navigator::Item>& vec_item){
+void Sorting::sort_file_by_specs(ImGuiTableSortSpecs* sort_specs, std::vector<utl::gui::navigator::Item>& vec_item){
   //---------------------------
 
   current_sort_specs = sort_specs;

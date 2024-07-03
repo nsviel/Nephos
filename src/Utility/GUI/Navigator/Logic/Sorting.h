@@ -10,7 +10,7 @@ namespace utl::gui::navigator{class Item;}
 
 namespace utl::gui::navigator{
 
-struct File{
+struct Sorting{
   //---------------------------
 
   static const ImGuiTableSortSpecs* current_sort_specs;
