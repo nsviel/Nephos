@@ -26,7 +26,7 @@ void Operation::init_navigator(){
   utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
   //---------------------------
 
-  utl_navigator->add_fct_item_operation([this]() {this->item_operation();});
+  utl_navigator->add_fct_item_operation([this](utl::base::Path path) {this->item_operation(path);});
 
   //---------------------------
 }
@@ -37,7 +37,8 @@ void Operation::draw_header(){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Load##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
-    this->item_operation();
+    utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
+    utl_navigator->make_selection_operation();
   }
   ImGui::PopStyleColor(2);
 
@@ -69,26 +70,10 @@ void Operation::draw_header(){
 }
 
 //Subfunction
-void Operation::item_operation(){
+void Operation::item_operation(utl::base::Path path){
   //---------------------------
 
-  //Retrieve all selected files to load
-  std::vector<std::string> vec_path;
-  for(int i=0; i<nav_struct->vec_item.size(); i++){
-    utl::gui::navigator::Item& item = nav_struct->vec_item[i];
-
-    if(vec_selection.contains(item.ID)){
-      if(ldr_importer->is_format_supported(item.format)){
-        vec_path.push_back(item.path);
-      }
-    }
-  }
-
-  //Run all file loading
-  for(int i=0; i<vec_path.size(); i++){
-    utl::base::Path path(vec_path[i]);
-    ldr_importer->load_object(path);
-  }
+  ldr_importer->load_object(path);
 
   //---------------------------
 }

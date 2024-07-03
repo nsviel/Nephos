@@ -7,10 +7,10 @@
 namespace utl::gui::navigator{
 
 //Constructor / Destructor
-Selection::Selection(utl::gui::navigator::Structure* nav_struct){
+Selection::Selection(utl::gui::Navigator* navigator){
   //---------------------------
 
-  this->nav_struct = nav_struct;
+  this->nav_struct = navigator->get_nav_struct();
 
   //---------------------------
 }
@@ -95,7 +95,22 @@ void Selection::item_operation(){
     return;
   }
 
-  nav_struct->fct_item_operation();
+  //Retrieve all selected files to load
+  std::vector<std::string> vec_path;
+  for(int i=0; i<nav_struct->vec_item.size(); i++){
+    utl::gui::navigator::Item& item = nav_struct->vec_item[i];
+
+    if(vec_selection.contains(item.ID)){
+      vec_path.push_back(item.path);
+    }
+  }
+
+  //Run all file loading
+  for(int i=0; i<vec_path.size(); i++){
+    utl::base::Path path(vec_path[i]);
+    nav_struct->fct_item_operation(path);
+  }
+
   this->clear_selection();
 
   //---------------------------

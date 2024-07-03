@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+namespace utl::gui{class Navigator;}
 namespace utl::gui::navigator{class Structure;}
 namespace utl::gui::navigator{class Item;}
 namespace utl::base{class Path;}
@@ -15,7 +16,7 @@ class Organisation
 {
 public:
   //Constructor / Destructor
-  Organisation(utl::gui::navigator::Structure* nav_struct);
+  Organisation(utl::gui::Navigator* navigator);
   ~Organisation();
 
 public:

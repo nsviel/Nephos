@@ -1,5 +1,6 @@
 #pragma once
 
+namespace utl::gui{class Navigator;}
 namespace utl::gui::navigator{class Structure;}
 namespace utl::gui::navigator{class Organisation;}
 namespace utl::gui::navigator{class Selection;}
@@ -13,7 +14,7 @@ class Content
 {
 public:
   //Constructor / Destructor
-  Content(utl::gui::navigator::Structure* nav_struct);
+  Content(utl::gui::Navigator* navigator);
   ~Content();
 
 public:

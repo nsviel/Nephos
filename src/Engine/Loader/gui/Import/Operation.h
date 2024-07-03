@@ -9,6 +9,7 @@ namespace ldr{class Structure;}
 namespace ldr::io{class Importer;}
 namespace ldr::gui::importer{class Panel;}
 namespace ldr::gui::importer{class Navigator;}
+namespace utl::base{class Path;}
 
 
 namespace ldr::gui::importer{
@@ -26,7 +27,7 @@ public:
   void draw_header();
 
   //Subfunction
-  void item_operation();
+  void item_operation(utl::base::Path path);
 
 private:
   ldr::Structure* ldr_struct;

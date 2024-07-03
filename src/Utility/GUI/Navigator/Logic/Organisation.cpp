@@ -7,10 +7,10 @@
 namespace utl::gui::navigator{
 
 //Constructor / Destructor
-Organisation::Organisation(utl::gui::navigator::Structure* nav_struct){
+Organisation::Organisation(utl::gui::Navigator* navigator){
   //---------------------------
 
-  this->nav_struct = nav_struct;
+  this->nav_struct = navigator->get_nav_struct();
 
   //---------------------------
 }

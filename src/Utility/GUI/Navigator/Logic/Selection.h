@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace ldr{class Node;}
+namespace utl::gui{class Navigator;}
 namespace utl::gui::navigator{class Structure;}
 namespace utl::gui::navigator{class Item;}
 namespace utl::base{class Path;}
@@ -17,7 +17,7 @@ class Selection
 {
 public:
   //Constructor / Destructor
-  Selection(utl::gui::navigator::Structure* nav_struct);
+  Selection(utl::gui::Navigator* navigator);
   ~Selection();
 
 public:

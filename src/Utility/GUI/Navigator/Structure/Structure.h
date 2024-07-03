@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/GUI/Navigator/Structure/Item.h>
+#include <Utility/Base/Type/Path.h>
 #include <functional>
 #include <vector>
 #include <string>
@@ -13,7 +14,7 @@ struct Structure{
 
   //Function
   std::vector<std::function<void()>> vec_icon;
-  std::function<void()> fct_item_operation;
+  std::function<void(utl::base::Path)> fct_item_operation;
 
   //Data
   std::vector<utl::gui::navigator::Item> vec_item;
