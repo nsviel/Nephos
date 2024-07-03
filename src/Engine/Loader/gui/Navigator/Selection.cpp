@@ -70,7 +70,9 @@ void Selection::selection_folder(utl::base::Path& path, ldr::gui::navigator::Fil
       if(path.directory != "/home/") path.directory = utl::path::get_parent_path(path.directory);
       nav_struct->vec_selection.clear();
     }else{
-      path.directory += file.item.name;
+      std::string item_name = file.item.name;
+      if(file.item.type == ldr::bookmark::FOLDER) item_name += "/";
+      path.directory += item_name;
       nav_struct->vec_selection.clear();
     }
   }
