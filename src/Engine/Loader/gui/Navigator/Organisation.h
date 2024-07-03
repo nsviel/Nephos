@@ -5,6 +5,7 @@
 #include <vector>
 
 namespace ldr::gui::navigator{class Structure;}
+namespace ldr::gui::navigator{class File;}
 namespace utl::base{class Path;}
 
 
@@ -19,16 +20,21 @@ public:
 
 public:
   //Main function
-  void recolt_items(utl::base::Path& path);
-  void sort_items();
+  void update_item_list(utl::base::Path& path);
 
   //Subfunction
-  void insert_file(std::string& path, int& ID);
-  void insert_folder(std::string& path, int& ID);
+  void recolt_items(std::string& directory);
+  void sort_items();
+  void insert_file(std::vector<ldr::gui::navigator::File>& vec_item, std::string& path, int& ID);
+  void insert_folder(std::vector<ldr::gui::navigator::File>& vec_item, std::string& path, int& ID);
   bool is_hidden_file(std::string& path);
 
 protected:
   ldr::gui::navigator::Structure* nav_struct;
+
+  std::vector<ldr::gui::navigator::File> vec_folder;
+  std::vector<ldr::gui::navigator::File> vec_file;
+  std::string curr_dir = "";
 };
 
 }

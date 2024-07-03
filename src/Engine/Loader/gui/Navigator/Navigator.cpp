@@ -29,7 +29,6 @@ void Navigator::draw_navigator(utl::base::Path& path){
   //---------------------------
 
   nav_header->draw_header(path);
-  nav_organisation->recolt_items(path);
   this->draw_content(path);
 
   //---------------------------
@@ -55,7 +54,7 @@ void Navigator::draw_content(utl::base::Path& path){
   ImGui::TableHeadersRow();
 
   //Content draw
-  nav_organisation->sort_items();
+  nav_organisation->update_item_list(path);
   for(int i=0; i<nav_struct->vec_item.size(); i++){
     ldr::gui::navigator::File& file = nav_struct->vec_item[i];
 
