@@ -36,8 +36,6 @@ void Manager::load_file_bookmark(){
   //Read existing bookmarks
   std::vector<std::string> vec_path = utl::file::read_vec_path(path_bookmark_file);
 
-  sayVec(vec_path);
-
   //Insert bookmarks
   for(int i=0; i<vec_path.size(); i++){
     this->add_abs_path(vec_path[i]);

@@ -157,7 +157,7 @@ std::string get_absolute_path(const std::string& relativePath){
   return absolutePath.string();
 }
 std::string get_dir_from_path(std::string path){
-  if(path == "") return "(not defined)";
+  if(path == "") return "";
   //---------------------------
 
   std::filesystem::path path_obj(path);

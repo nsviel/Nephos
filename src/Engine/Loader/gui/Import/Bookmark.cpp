@@ -60,12 +60,13 @@ void Bookmark::draw_content(){
 
     //Bookmark name button
     ImGui::SameLine();
-    std::string path_bookmark = item.path.build(); say(path_bookmark);
+    std::string path_bookmark = item.path.build();
     int trash_space = item.is_supressible ? 30 : 0;
     int size = ImGui::GetContentRegionAvail().x - trash_space;
 
     ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0.04, 0.5));
-    if(ImGui::Button(item.path.name.c_str(), ImVec2(size, 0))){
+    std::string label = (item.path.name == "") ? item.path.directory : item.path.name;
+    if(ImGui::Button(label.c_str(), ImVec2(size, 0))){
       this->bookmark_button(path_bookmark);
     }
     ImGui::PopStyleVar();
