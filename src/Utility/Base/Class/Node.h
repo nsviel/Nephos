@@ -10,8 +10,8 @@ namespace utl::base{
 class Node
 {
 public:
-  Node(){}
-  ~Node(){}
+  Node();
+  ~Node();
 
 public:
   //Main function

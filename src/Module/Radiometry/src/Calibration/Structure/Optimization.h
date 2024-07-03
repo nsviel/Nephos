@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Type/Plot.h>
+#include <Utility/Base/Data/Plot.h>
 #include <string>
 #include <vector>
 

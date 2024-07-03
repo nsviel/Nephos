@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/GUI/Navigator/Structure/Item.h>
-#include <Utility/Base/Type/Path.h>
+#include <Utility/Base/Data/Path.h>
 #include <functional>
 #include <vector>
 #include <string>

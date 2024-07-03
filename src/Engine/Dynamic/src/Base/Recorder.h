@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Dynamic/src/Base/Sensor.h>
-#include <Utility/Base/Type/Data.h>
+#include <Utility/Base/Data/Data.h>
 #include <string>
 
 namespace dyn::base{class Sensor;}

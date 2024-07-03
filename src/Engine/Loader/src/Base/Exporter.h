@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Utility/Base/Type/Data.h>
-#include <Utility/Base/Type/Pose.h>
+#include <Utility/Base/Data/Data.h>
+#include <Utility/Base/Data/Pose.h>
 #include <vector>
 #include <string>
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Data/src/Base/Entity.h>
-#include <Utility/Base/Type/Data.h>
+#include <Utility/Base/Data/Data.h>
 #include <glm/glm.hpp>
 #include <string>
 

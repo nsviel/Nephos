@@ -3,6 +3,8 @@
 #include <Vulkan/VK_renderpass/Structure/Pipeline.h>
 #include <Vulkan/VK_renderpass/Structure/Attachment.h>
 #include <vulkan/vulkan.h>
+#include <functional>
+#include <iostream>
 #include <vector>
 #include <string>
 

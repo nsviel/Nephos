@@ -1,16 +1,7 @@
 #pragma once
 
-#include <Utility/Base/Type/Element.h>
-#include <Utility/Base/Type/Path.h>
+#include <Utility/Base/Data/Path.h>
 #include <glm/glm.hpp>
-#include <vulkan/vulkan.h>
-#include <Eigen/Dense>
-#include <iostream>
-#include <string>
-#include <vector>
-#include <list>
-#include <map>
-#include <mutex>
 
 
 namespace utl::base{

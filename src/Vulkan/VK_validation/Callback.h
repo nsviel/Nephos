@@ -2,6 +2,7 @@
 
 #include "LOG_shader.h"
 #include "LOG_debug.h"
+#include <cstring>
 
 
 namespace vk::validation{

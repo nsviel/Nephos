@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Type/Node.h>
+#include <Utility/Base/Class/Node.h>
 
 namespace utl{class Node;}
 namespace utl::element{class Window;}

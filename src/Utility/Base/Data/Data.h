@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Utility/Base/Type/Element.h>
-#include <Utility/Base/Type/Topology.h>
-#include <Utility/Base/Type/Path.h>
+#include <Utility/Base/Data/Element.h>
+#include <Utility/Base/Data/Topology.h>
+#include <Utility/Base/Data/Path.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
