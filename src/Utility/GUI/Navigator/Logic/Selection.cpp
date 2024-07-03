@@ -17,7 +17,7 @@ Selection::Selection(utl::gui::navigator::Structure* nav_struct){
 Selection::~Selection(){}
 
 //Main function
-void Selection::selection_item(utl::base::Path& path, utl::gui::navigator::File& file){
+void Selection::selection_item(utl::base::Path& path, utl::gui::navigator::Item& item){
   //---------------------------
 
   ImGuiSelectableFlags flag;
@@ -25,15 +25,15 @@ void Selection::selection_item(utl::base::Path& path, utl::gui::navigator::File&
   flag |= ImGuiSelectableFlags_AllowOverlap;
   flag |= ImGuiSelectableFlags_AllowDoubleClick;
 
-  bool item_is_selected = vec_selection.contains(file.item.ID);
-  std::string label = "##" + std::to_string(file.item.ID);
+  bool item_is_selected = vec_selection.contains(item.ID);
+  std::string label = "##" + std::to_string(item.ID);
   ImGui::SameLine();
   if(ImGui::Selectable(label.c_str(), item_is_selected, flag)){
-    this->control_selection(file, item_is_selected);
+    this->control_selection(item, item_is_selected);
 
     //Double click
     if(ImGui::IsMouseDoubleClicked(0)){
-      this->double_click(path, file);
+      this->double_click(path, item);
     }
   }
 
@@ -41,40 +41,40 @@ void Selection::selection_item(utl::base::Path& path, utl::gui::navigator::File&
 }
 
 //Subfunction
-void Selection::control_selection(utl::gui::navigator::File& file, bool& already_selected){
+void Selection::control_selection(utl::gui::navigator::Item& item, bool& already_selected){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
   if(io.KeyCtrl){
     if(already_selected){
-      this->vec_selection.find_erase_unsorted(file.item.ID);
+      this->vec_selection.find_erase_unsorted(item.ID);
     }
     else{
-      this->vec_selection.push_back(file.item.ID);
+      this->vec_selection.push_back(item.ID);
     }
   }else{
     this->clear_selection();
-    this->vec_selection.push_back(file.item.ID);
+    this->vec_selection.push_back(item.ID);
   }
 
   //---------------------------
 }
-void Selection::double_click(utl::base::Path& path, utl::gui::navigator::File& file){
+void Selection::double_click(utl::base::Path& path, utl::gui::navigator::Item& item){
   //---------------------------
 
-  if(file.item.type == utl::gui::navigator::FOLDER){
-    if(file.item.name == ".."){
+  if(item.type == utl::gui::navigator::FOLDER){
+    if(item.name == ".."){
       if(path.directory != "/home/") path.directory = utl::path::get_parent_path(path.directory);
       this->clear_selection();
     }else{
-      std::string item_name = file.item.name;
-      if(file.item.type == utl::gui::navigator::FOLDER) item_name += "/";
+      std::string item_name = item.name;
+      if(item.type == utl::gui::navigator::FOLDER) item_name += "/";
       path.directory += item_name;
       this->clear_selection();
     }
   }else{
     this->clear_selection();
-    this->vec_selection.push_back(file.item.ID);
+    this->vec_selection.push_back(item.ID);
     this->item_operation();
   }
 

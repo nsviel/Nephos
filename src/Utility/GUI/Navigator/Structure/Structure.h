@@ -11,9 +11,12 @@ namespace utl::gui::navigator{
 struct Structure{
   //---------------------------
 
-  std::vector<utl::gui::navigator::File> vec_item;
+  //Function
   std::vector<std::function<void()>> vec_icon;
   std::function<void()> fct_item_operation;
+
+  //Data
+  std::vector<utl::gui::navigator::Item> vec_item;
   std::string default_path = "";
   bool with_bookmark = true;
 

@@ -43,11 +43,11 @@ void Content::draw_content(utl::base::Path& path){
   //Content draw
   nav_organisation->update_item_list(path);
   for(int i=0; i<nav_struct->vec_item.size(); i++){
-    utl::gui::navigator::File& file = nav_struct->vec_item[i];
+    utl::gui::navigator::Item& item = nav_struct->vec_item[i];
 
-    this->draw_item(file);
-    this->draw_icon(file);
-    nav_selection->selection_item(path, file);
+    this->draw_item(item);
+    this->draw_icon(item);
+    nav_selection->selection_item(path, item);
   }
 
   ImGui::EndTable();
@@ -56,31 +56,31 @@ void Content::draw_content(utl::base::Path& path){
 }
 
 //Subfunction
-void Content::draw_item(utl::gui::navigator::File& file){
+void Content::draw_item(utl::gui::navigator::Item& item){
   //---------------------------
 
-  ImVec4 color_icon = ImVec4(file.item.color_icon.r, file.item.color_icon.g, file.item.color_icon.b, file.item.color_icon.a);
-  ImVec4 color_text = ImVec4(file.item.color_text.r, file.item.color_text.g, file.item.color_text.b, file.item.color_text.a);
+  ImVec4 color_icon = ImVec4(item.color_icon.r, item.color_icon.g, item.color_icon.b, item.color_icon.a);
+  ImVec4 color_text = ImVec4(item.color_text.r, item.color_text.g, item.color_text.b, item.color_text.a);
 
   ImGui::TableNextRow();
 
   //Item icon + name
   ImGui::TableNextColumn();
-  ImGui::TextColored(color_icon, "%s", file.item.icon.c_str());
+  ImGui::TextColored(color_icon, "%s", item.icon.c_str());
   ImGui::SameLine();
-  ImGui::TextColored(color_text, "%s", file.item.name.c_str());
+  ImGui::TextColored(color_text, "%s", item.name.c_str());
 
   //Item format
   ImGui::TableNextColumn();
-  ImGui::TextColored(color_text, "%s", file.item.format.c_str());
+  ImGui::TextColored(color_text, "%s", item.format.c_str());
 
   //Item size
   ImGui::TableNextColumn();
-  ImGui::TextColored(color_text, "%s", file.item.size.c_str());
+  ImGui::TextColored(color_text, "%s", item.size.c_str());
 
   //---------------------------
 }
-void Content::draw_icon(utl::gui::navigator::File& file){
+void Content::draw_icon(utl::gui::navigator::Item& item){
   //---------------------------
 
   for(int i=0; i<nav_struct->vec_icon.size(); i++){

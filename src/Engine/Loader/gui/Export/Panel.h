@@ -8,7 +8,7 @@
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace ldr::io{class Exporter;}
-namespace utl::gui::navigator{class File;}
+namespace utl::gui::navigator{class Item;}
 namespace ldr::gui::exporter{class Exporter;}
 namespace ldr::gui::exporter{class Recorder;}
 namespace dat::graph{class Selection;}

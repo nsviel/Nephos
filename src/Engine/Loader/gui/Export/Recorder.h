@@ -7,7 +7,7 @@
 
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
-namespace utl::gui::navigator{class File;}
+namespace utl::gui::navigator{class Item;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace dyn::player{class Player;}

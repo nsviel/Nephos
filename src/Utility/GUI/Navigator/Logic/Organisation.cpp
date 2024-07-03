@@ -72,41 +72,41 @@ void Organisation::sort_items(){
 
   //---------------------------
 }
-void Organisation::insert_file(std::vector<utl::gui::navigator::File>& vec_item, std::string& path, int& ID){
+void Organisation::insert_file(std::vector<utl::gui::navigator::Item>& vec_item, std::string& path, int& ID){
   //---------------------------
 
-  utl::gui::navigator::File file;
-  file.item.ID = ID++;
-  file.item.type = utl::gui::navigator::FILE;
-  file.item.path = path;
-  file.item.name = utl::path::get_name_from_path(path);
-  file.item.icon = std::string(ICON_FA_FILE);
-  file.item.size = utl::file::formatted_size(path);
-  file.item.weight = utl::file::size(path);
-  file.item.format = utl::path::get_format_from_path(path);
-  file.item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
-  file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+  utl::gui::navigator::Item item;
+  item.ID = ID++;
+  item.type = utl::gui::navigator::FILE;
+  item.path = path;
+  item.name = utl::path::get_name_from_path(path);
+  item.icon = std::string(ICON_FA_FILE);
+  item.size = utl::file::formatted_size(path);
+  item.weight = utl::file::size(path);
+  item.format = utl::path::get_format_from_path(path);
+  item.color_icon = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+  item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
 
-  vec_item.push_back(file);
+  vec_item.push_back(item);
 
   //---------------------------
 }
-void Organisation::insert_folder(std::vector<utl::gui::navigator::File>& vec_item, std::string& path, int& ID){
+void Organisation::insert_folder(std::vector<utl::gui::navigator::Item>& vec_item, std::string& path, int& ID){
   //---------------------------
 
-  utl::gui::navigator::File file;
-  file.item.ID = ID++;
-  file.item.type = utl::gui::navigator::FOLDER;
-  file.item.name = utl::path::get_filename_from_path(path);
-  file.item.path = path;
-  file.item.icon = std::string(ICON_FA_FOLDER);
-  file.item.size = "---";
-  file.item.weight = 0;
-  file.item.format = "---";
-  file.item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
-  file.item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
+  utl::gui::navigator::Item item;
+  item.ID = ID++;
+  item.type = utl::gui::navigator::FOLDER;
+  item.name = utl::path::get_filename_from_path(path);
+  item.path = path;
+  item.icon = std::string(ICON_FA_FOLDER);
+  item.size = "---";
+  item.weight = 0;
+  item.format = "---";
+  item.color_icon = glm::vec4(0.5f, 0.63f, 0.75f, 0.9f);
+  item.color_text = glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
 
-  vec_item.push_back(file);
+  vec_item.push_back(item);
 
   //---------------------------
 }
