@@ -192,7 +192,7 @@ void Panel::item_operation(){
   if(element == nullptr) return;
   //---------------------------
 
-  std::string path_file = utl::path::reconstruct_path(ldr_struct->transformation.path.directory, ldr_struct->transformation.path.name, ldr_struct->transformation.path.format);
+  std::string path_file = ldr_struct->transformation.path.build();
   ldr_transformation->load_transformation(element, path_file);
 
   //---------------------------

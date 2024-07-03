@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Base/Type/Path.h>
 #include <glm/glm.hpp>
 #include <string>
 
@@ -23,9 +24,7 @@ struct Item{
   //Item stuff
   int ID = -1;
   int type = ldr::bookmark::FILE;
-  std::string path = "";
-  std::string name = "";
-  std::string format = "";
+  utl::base::Path path;
   std::string size = "";
   std::string icon = "";
   glm::vec4 color_icon;

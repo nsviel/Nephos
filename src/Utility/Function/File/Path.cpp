@@ -70,7 +70,7 @@ std::string get_format_from_path(std::string path){
   std::string name_format = path.substr(path.find_last_of("/\\") + 1);
   size_t dot_position = name_format.find_last_of(".");
   if(dot_position == std::string::npos){
-    return "-";
+    return "";
   }
 
   std::string format = name_format.substr(dot_position);
@@ -208,16 +208,6 @@ std::string is_dir_or_file(std::string path){
   //---------------------------
   return type;
 }
-std::string reconstruct_path(std::string dir, std::string name, std::string format){
-  //---------------------------
-
-  std::string filename = (format != "-") ? name + format : name;
-  std::string path = (filename != "") ? dir + filename : dir;
-
-  //---------------------------
-  return (path == "") ? "(not defined)" : path;
-}
-
 std::vector<std::string> list_all_file(std::string path, std::string required_format){
   //---------------------------
 

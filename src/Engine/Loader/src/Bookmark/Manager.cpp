@@ -23,25 +23,68 @@ void Manager::init(){
 
   this->add_relative_path("../media/point_cloud/bunny.ply");
   this->add_relative_path("../media/point_cloud/dragon.ply");
+  this->load_file_bookmark();
+
+  //---------------------------
+}
+
+//Item management
+void Manager::load_file_bookmark(){
+  utl::file::check_or_create(path_bookmark_file);
+  //---------------------------
 
   //Read existing bookmarks
-  utl::file::check_or_create(path_bookmark_file);
   std::vector<std::string> vec_path = utl::file::read_vec_path(path_bookmark_file);
+
+  sayVec(vec_path);
+
+  //Insert bookmarks
   for(int i=0; i<vec_path.size(); i++){
     this->add_abs_path(vec_path[i]);
   }
 
   //---------------------------
 }
+void Manager::save_file_bookmark(){
+  //---------------------------
 
-//Item management
+  //Make vector of temporary bookmarks
+  std::vector<std::string> vec_path;
+  for(int i=0; i<list_item.size(); i++){
+    ldr::bookmark::Item& item = *next(list_item.begin(), i);
+
+    if(item.is_supressible){
+      vec_path.push_back(item.path.build());
+    }
+  }
+
+  //Write them on file
+  utl::file::write_vec_path(path_bookmark_file, vec_path);
+
+  //---------------------------
+}
+void Manager::remove_path(std::string path){
+  //---------------------------
+
+  for(auto it = list_item.begin(); it != list_item.end(); ++it){
+    ldr::bookmark::Item& item = *it;
+
+    if(item.path.build() == path){
+      list_item.erase(it);
+      return;
+    }
+  }
+
+  //---------------------------
+}
+
+//Subfunction
 void Manager::add_abs_path(std::string path){
   if(!utl::file::is_exist_silent(path)) return;
   //---------------------------
 
   ldr::bookmark::Item item;
-  item.path = path;
-  item.name = utl::path::get_name_from_path(path);
+  item.path.insert(path);
   item.type = utl::directory::is_directory(path) ? ldr::bookmark::FOLDER : ldr::bookmark::FILE;
   item.icon = utl::directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
   item.color_icon = utl::directory::is_directory(path) ? glm::vec4(0.5f, 0.63f, 0.75f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
@@ -57,8 +100,7 @@ void Manager::add_relative_path(std::string path){
   //---------------------------
 
   ldr::bookmark::Item item;
-  item.path = utl::path::get_absolute_path(path);
-  item.name = utl::path::get_name_from_path(path);
+  item.path.insert(utl::path::get_absolute_path(path));
   item.icon = utl::directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
   item.color_icon = utl::directory::is_directory(path) ? glm::vec4(0.5f, 0.63f, 0.75f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = false;
@@ -68,40 +110,13 @@ void Manager::add_relative_path(std::string path){
 
   //---------------------------
 }
-void Manager::remove_path(std::string path){
-  //---------------------------
-
-  auto it = std::find_if(list_item.begin(), list_item.end(), [&](const ldr::bookmark::Item& item){ return item.path == path; });
-  if(it != list_item.end()){
-    list_item.erase(it);
-  }
-
-  //---------------------------
-}
-
-//Subfunction
-void Manager::save_on_file(){
-  //---------------------------
-
-  std::vector<std::string> vec_path;
-  for(int i=0; i<list_item.size(); i++){
-    ldr::bookmark::Item& item = *next(list_item.begin(), i);
-    if(item.is_supressible){
-      vec_path.push_back(item.path);
-    }
-  }
-
-  utl::file::write_vec_path(path_bookmark_file, vec_path);
-
-  //---------------------------
-}
 bool Manager::is_path_bookmarked(std::string path){
   //---------------------------
 
   for(int i=0; i<list_item.size(); i++){
     ldr::bookmark::Item& item = *next(list_item.begin(), i);
 
-    if(path == item.path){
+    if(path == item.path.build()){
       return true;
     }
   }
@@ -116,7 +131,7 @@ void Manager::sort_list_item(){
     switch(a.type){
       case ldr::bookmark::FOLDER:{
         if(b.type == ldr::bookmark::FOLDER){
-          return a.name < b.name;
+          return a.path.name < b.path.name;
         }else{
           return true;
         }
@@ -126,12 +141,12 @@ void Manager::sort_list_item(){
         if(b.type == ldr::bookmark::FOLDER){
           return false;
         }else{
-          return a.name < b.name;
+          return a.path.name < b.path.name;
         }
         break;
       }
       default:{
-        return a.name < b.name;
+        return a.path.name < b.path.name;
       }
     }
   });

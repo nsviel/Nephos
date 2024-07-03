@@ -60,24 +60,25 @@ void Bookmark::draw_content(){
 
     //Bookmark name button
     ImGui::SameLine();
-    int trash_space = 0;
-    item.is_supressible ? trash_space = 30 : 0;
+    std::string path_bookmark = item.path.build();
+    int trash_space = item.is_supressible ? 30 : 0;
     int size = ImGui::GetContentRegionAvail().x - trash_space;
+
     ImGui::PushStyleVar(ImGuiStyleVar_ButtonTextAlign, ImVec2(0.04, 0.5));
-    if(ImGui::Button(item.name.c_str(), ImVec2(size, 0))){
-      this->bookmark_button(item.path);
+    if(ImGui::Button(item.path.name.c_str(), ImVec2(size, 0))){
+      this->bookmark_button(path_bookmark);
     }
     ImGui::PopStyleVar();
-    ImGui::SetItemTooltip("%s", item.path.c_str());
+    ImGui::SetItemTooltip("%s", path_bookmark.c_str());
 
     //Bookmark supression
     if(item.is_supressible){
       ImGui::SameLine();
-      std::string ID = item.path + "##supressionbookmark";
+      std::string ID = path_bookmark + "##supressionbookmark";
       ImGui::PushID(ID.c_str());
       if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
-        ldr_bookmark->remove_path(item.path);
-        ldr_bookmark->save_on_file();
+        ldr_bookmark->remove_path(path_bookmark);
+        ldr_bookmark->save_file_bookmark();
       }
       ImGui::PopID();
     }
@@ -128,7 +129,7 @@ void Bookmark::bookmark_icon(std::string path){
     }else{
       ldr_bookmark->add_abs_path(path);
     }
-    ldr_bookmark->save_on_file();
+    ldr_bookmark->save_file_bookmark();
   }
   ImGui::PopStyleColor(2);
   ImGui::PopID();
