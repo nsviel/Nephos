@@ -43,11 +43,9 @@ void Loader::read_panel(std::string& path){
   for(int i=0; i<vec_panel.size(); i++){
     utl::gui::Panel* panel = vec_panel[i];
 
-
+    std::string key = "panel." + panel->name;
+    utl::json::read_value(path, key, panel->is_open);
   }
-
-  //std::string key = "panel." + panel->name;
-  //utl::json::write_value(path, key, panel->is_open);
 
   //---------------------------
 }
