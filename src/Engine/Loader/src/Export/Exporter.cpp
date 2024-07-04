@@ -15,6 +15,7 @@ Exporter::Exporter(ldr::Node* node_loader){
 
   this->insert_exporter(new format::ply::Exporter());
   this->insert_exporter(new format::pts::Exporter());
+  this->insert_exporter(new format::hdf5::Exporter());
 
   //---------------------------
 }
