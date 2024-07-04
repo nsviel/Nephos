@@ -32,6 +32,8 @@ struct Structure{
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
   k4a_hardware_version_t version = {0};
 
+  std::vector<uint16_t> table_xy;
+
   //---------------------------
 };
 

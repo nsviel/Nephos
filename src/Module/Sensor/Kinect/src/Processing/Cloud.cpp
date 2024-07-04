@@ -19,6 +19,7 @@ Cloud::Cloud(k4n::Node* node_k4n){
 
   this->thread_pool = node_engine->get_thread_pool();
   this->dyn_operation = node_dynamic->get_ope_cloud();
+  this->k4n_operation = new k4n::processing::Operation(node_k4n);
 
   //---------------------------
 }
@@ -84,6 +85,7 @@ void Cloud::convertion_init(k4n::structure::Sensor* sensor){
 
   //Depth transformation
   //tasker->task_begin("transformation");
+  //this->retrieve_table_xy(sensor);
   this->retrieve_cloud(sensor);
   //tasker->task_end("transformation");
 
@@ -148,6 +150,60 @@ void Cloud::retrieve_cloud(k4n::structure::Sensor* sensor){
   sensor->depth.cloud.buffer = cloud_image.get_buffer();
   sensor->depth.cloud.size = cloud_image.get_size() / (3 * sizeof(int16_t));
 
+  //---------------------------
+}
+void Cloud::retrieve_table_xy(k4n::structure::Sensor* sensor){
+  //---------------------------
+
+  //Create cloud image
+  k4a::image table_xy = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, sensor->depth.cloud.width, sensor->depth.cloud.height, sensor->depth.cloud.width * sizeof(int16_t) * 3);
+
+
+  std::vector<uint8_t> truc;
+for(int i=0; i<sensor->depth.cloud.size; i++){
+  truc.push_back(1);
+}
+
+  k4a::image machin = k4a::image::create_from_buffer(
+    K4A_IMAGE_FORMAT_DEPTH16,
+    sensor->depth.cloud.width,
+    sensor->depth.cloud.height,
+    sensor->depth.cloud.width * static_cast<int>(sizeof(uint16_t)),
+    truc.data(),
+    sensor->depth.cloud.size,
+    nullptr,
+    nullptr);
+
+
+k4a_calibration_type_t calibration_type = sensor->depth.cloud.calibration_type;
+
+
+
+  //Transform depth into cloud
+  sensor->device.transformation.depth_image_to_point_cloud(machin, calibration_type, &table_xy);
+  int size = table_xy.get_size() / (3 * sizeof(int16_t));
+  uint8_t* buffer = table_xy.get_buffer();
+
+  std::vector<uint16_t> bidule = sensor->device.table_xy;
+
+
+k4n_operation->convert_uint8_to_vec_uint16(buffer, size, sensor->device.table_xy);
+
+if(bidule.size() == 0) return;
+
+
+int cpt = 0;
+for(int i=0; i<size; i++){
+
+
+  float arf = sensor->device.table_xy[i] - bidule[i];
+  if(arf != 0) {
+    say(arf);
+cpt ++;
+  }
+}
+
+//say(cpt);
   //---------------------------
 }
 void Cloud::retrieve_location(k4n::structure::Sensor* sensor, int i){

@@ -9,6 +9,7 @@ namespace k4n::structure{class Sensor;}
 namespace prf::dynamic{class Tasker;}
 namespace utl::thread{class Pool;}
 namespace dyn::cloud{class Operation;}
+namespace k4n::processing{class Operation;}
 
 
 namespace k4n::processing{
@@ -33,6 +34,7 @@ public:
   void convertion_transfer(k4n::structure::Sensor* sensor);
 
   //Data retrieval
+  void retrieve_table_xy(k4n::structure::Sensor* sensor);
   void retrieve_cloud(k4n::structure::Sensor* sensor);
   void retrieve_location(k4n::structure::Sensor* sensor, int i);
   void retrieve_color(k4n::structure::Sensor* sensor, int i);
@@ -42,6 +44,7 @@ public:
 private:
   utl::thread::Pool* thread_pool;
   dyn::cloud::Operation* dyn_operation;
+  k4n::processing::Operation* k4n_operation;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec3> vec_rgb;
