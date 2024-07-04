@@ -2,7 +2,7 @@
 # Project
 #-----------------
 cmake_minimum_required(VERSION 3.5)
-project(NEPHOS LANGUAGES CXX)
+project(NEPHOS LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

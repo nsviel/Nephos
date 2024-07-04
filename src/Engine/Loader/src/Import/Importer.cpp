@@ -20,6 +20,7 @@ Importer::Importer(ldr::Node* node_loader){
   this->insert_importer(new format::pts::Importer());
   this->insert_importer(new format::ptx::Importer());
   this->insert_importer(new format::xyz::Importer());
+  this->insert_importer(new format::hdf5::Importer());
 
   //---------------------------
 }

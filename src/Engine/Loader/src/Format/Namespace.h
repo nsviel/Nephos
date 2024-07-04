@@ -6,3 +6,4 @@
 #include <Loader/src/Format/XYZ/Importer.h>
 #include <Loader/src/Format/PLY/Namespace.h>
 #include <Loader/src/Format/PTS/Namespace.h>
+#include <Loader/src/Format/HDF5/Namespace.h>
