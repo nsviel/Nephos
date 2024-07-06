@@ -1,15 +1,14 @@
 #pragma once
 
 namespace k4n{class Node;}
-namespace k4n{class Structure;}
 namespace k4n::structure{class Sensor;}
 namespace k4n::processing{class Cloud;}
-namespace utl::thread{class Pool;}
-namespace dyn::image{class Operation;}
 namespace k4n::processing::image{class Transformation;}
 namespace k4n::processing::image{class Color;}
 namespace k4n::processing::image{class Depth;}
 namespace k4n::processing::image{class Infrared;}
+namespace utl::thread{class Pool;}
+namespace dyn::image{class Operation;}
 
 
 namespace k4n::processing::image{
@@ -28,17 +27,17 @@ public:
   void wait_thread();
 
   //Subfunction
-  void find_data_from_capture(k4n::structure::Sensor* device);
+  void extract_image_data(k4n::structure::Sensor* device);
+  void run_operation(k4n::structure::Sensor* sensor);
 
 private:
-  k4n::Structure* k4n_struct;
   k4n::processing::Cloud* k4n_cloud;
-  utl::thread::Pool* thread_pool;
-  dyn::image::Operation* dyn_operation;
   k4n::processing::image::Transformation* k4n_transformation;
   k4n::processing::image::Color* k4n_color;
   k4n::processing::image::Depth* k4n_depth;
   k4n::processing::image::Infrared* k4n_ir;
+  utl::thread::Pool* thread_pool;
+  dyn::image::Operation* dyn_operation;
 
   bool thread_idle = true;
 };
