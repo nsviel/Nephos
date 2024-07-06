@@ -13,18 +13,11 @@ namespace k4n::processing::image{
 Transformation::Transformation(k4n::Node* node_k4n){
   //---------------------------
 
-  this->tj_handle = tjInitDecompress();
   this->k4n_struct = node_k4n->get_k4n_structure();
 
   //---------------------------
 }
-Transformation::~Transformation(){
-  //---------------------------
-
-  tjDestroy(tj_handle);
-
-  //---------------------------
-}
+Transformation::~Transformation(){}
 
 //Main function
 void Transformation::find_depth_to_color(k4n::structure::Sensor* sensor){

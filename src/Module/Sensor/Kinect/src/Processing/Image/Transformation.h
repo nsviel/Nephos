@@ -32,9 +32,6 @@ public:
 
 private:
   k4n::Structure* k4n_struct;
-
-  tjhandle tj_handle;
-  bool thread_idle = true;
 };
 
 }
