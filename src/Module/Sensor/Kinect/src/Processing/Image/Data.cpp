@@ -1,4 +1,4 @@
-#include "Image.h"
+#include "Data.h"
 
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
@@ -7,77 +7,28 @@
 #include <Data/Namespace.h>
 
 
-namespace k4n::processing{
+namespace k4n::processing::image{
 
 //Constructor / Destructor
-Image::Image(k4n::Node* node_k4n){
+Data::Data(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
   dat::Node* node_data = node_k4n->get_node_data();
 
-  this->tj_handle = tjInitDecompress();
   this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_operation = new k4n::processing::Operation(node_k4n);
-  this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
-  this->thread_pool = node_engine->get_thread_pool();
-  this->dyn_operation = node_dynamic->get_ope_image();
+  this->k4n_format = new k4n::processing::image::Format(node_k4n);
   this->dat_image = node_data->get_dat_image();
   this->k4n_transformation = new k4n::processing::image::Transformation(node_k4n);
 
   //---------------------------
 }
-Image::~Image(){
-  //---------------------------
-
-  tjDestroy(tj_handle);
-
-  //---------------------------
-}
+Data::~Data(){}
 
 //Main function
-void Image::start_thread(k4n::structure::Sensor* sensor){
-  //---------------------------
-
-  this->thread_idle = false;
-  auto task_function = [this, sensor](){
-    this->run_thread(sensor);
-  };
-  thread_pool->add_task(task_function);
-
-  //---------------------------
-}
-void Image::run_thread(k4n::structure::Sensor* sensor){
-  //---------------------------
-
-  //Retrieve data from capture
-  this->find_data_from_capture(sensor);
-
-  //Convert data into cloud
-  k4n_cloud->start_thread(sensor);
-
-  //Dynamic operation
-  dyn_operation->start_thread(sensor);
-
-  //---------------------------
-  this->thread_idle = true;
-}
-void Image::wait_thread(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-  k4n_cloud->wait_thread();
-  dyn_operation->wait_thread();
-
-  //---------------------------
-}
-
-//Data function
-void Image::find_data_from_capture(k4n::structure::Sensor* sensor){
+void Data::find_data_from_capture(k4n::structure::Sensor* sensor){
   prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::data");
   //---------------------------
 
@@ -107,7 +58,7 @@ void Image::find_data_from_capture(k4n::structure::Sensor* sensor){
 }
 
 //Subfunction
-void Image::find_data_depth(k4n::structure::Sensor* sensor){
+void Data::find_data_depth(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
@@ -121,7 +72,7 @@ void Image::find_data_depth(k4n::structure::Sensor* sensor){
   sensor->depth.data.height = depth.get_height_pixels();
   sensor->depth.data.buffer = depth.get_buffer();
   sensor->depth.data.size = depth.get_size();
-  sensor->depth.data.format = retrieve_format_from_k4a(depth.get_format());
+  sensor->depth.data.format = k4n_format->retrieve_format_from_k4a(depth.get_format());
   sensor->depth.data.temperature = sensor->device.capture->get_temperature_c();
   sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
   k4n_operation->convert_uint8_to_vec_uint16(sensor->depth.data.buffer, sensor->depth.data.size, sensor->buffer_depth);
@@ -139,7 +90,7 @@ void Image::find_data_depth(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Image::find_data_color(k4n::structure::Sensor* sensor){
+void Data::find_data_color(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
@@ -153,7 +104,7 @@ void Image::find_data_color(k4n::structure::Sensor* sensor){
   sensor->color.data.width = color.get_width_pixels();
   sensor->color.data.height = color.get_height_pixels();
   sensor->color.data.buffer = color.get_buffer();
-  sensor->color.data.format = retrieve_format_from_k4a(color.get_format());
+  sensor->color.data.format = k4n_format->retrieve_format_from_k4a(color.get_format());
   sensor->color.data.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
 
   //Image
@@ -172,7 +123,7 @@ void Image::find_data_color(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Image::find_data_ir(k4n::structure::Sensor* sensor){
+void Data::find_data_ir(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
@@ -186,7 +137,7 @@ void Image::find_data_ir(k4n::structure::Sensor* sensor){
   sensor->ir.data.height = ir.get_height_pixels();
   sensor->ir.data.buffer = ir.get_buffer();
   sensor->ir.data.size = ir.get_size();
-  sensor->ir.data.format = retrieve_format_from_k4a(ir.get_format());
+  sensor->ir.data.format = k4n_format->retrieve_format_from_k4a(ir.get_format());
   sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
   k4n_operation->convert_uint8_to_vec_uint16(sensor->ir.data.buffer, sensor->ir.data.size, sensor->buffer_ir);
 
@@ -203,7 +154,7 @@ void Image::find_data_ir(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Image::find_data_cloud(k4n::structure::Sensor* sensor){
+void Data::find_data_cloud(k4n::structure::Sensor* sensor){
   sensor->color.cloud = {};
   sensor->ir.cloud = {};
   sensor->depth.cloud = {};
@@ -227,71 +178,5 @@ void Image::find_data_cloud(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-
-//Subfunction
-std::string Image::retrieve_format_from_k4a(k4a_image_format_t color_format){
-  std::string format = "";
-  //---------------------------
-
-  if(color_format == K4A_IMAGE_FORMAT_COLOR_MJPG){
-    format = "MJPEG";
-  }else if(color_format == K4A_IMAGE_FORMAT_COLOR_NV12){
-    format = "NV12";
-  }else if(color_format == K4A_IMAGE_FORMAT_COLOR_YUY2){
-    format = "YUY2";
-  }else if(color_format == K4A_IMAGE_FORMAT_COLOR_BGRA32){
-    format = "B8G8R8A8_SRGB";
-  }else if(color_format == K4A_IMAGE_FORMAT_DEPTH16){
-    format = "DEPTH16";
-  }else if(color_format == K4A_IMAGE_FORMAT_IR16){
-    format = "IR16";
-  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM8){
-    format = "CUSTOM8";
-  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM16){
-    format = "CUSTOM16";
-  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM){
-    format = "CUSTOM";
-  }
-
-  //---------------------------
-  return format;
-}
-void Image::retrieve_data_from_capture(k4a::image& image, std::vector<uint8_t>& data, std::string& format){
-  //---------------------------
-
-  if(format == "MJPEG"){
-    this->retrieve_bgra_from_mjpeg(image, data);
-    format = "B8G8R8A8_SRGB";
-  }else{
-    uint8_t* image_data = image.get_buffer();
-    size_t size = image.get_size();
-    data = std::vector<uint8_t>(image_data, image_data + size);
-    format = "B8G8R8A8_SRGB";
-  }
-
-  //---------------------------
-}
-void Image::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data){
-  //---------------------------
-
-  int width = image.get_width_pixels();
-  int height = image.get_height_pixels();
-  int size = image.get_size();
-  uint8_t* mpeg = image.get_buffer();
-  std::vector<uint8_t> bgra(width * height * tjPixelSize[TJPF_RGBA]);
-  int flags = TJFLAG_FASTDCT | TJFLAG_FASTUPSAMPLE;
-
-  int ret = tjDecompress2(tj_handle, &mpeg[0], size, bgra.data(), width, 0, height, TJPF_RGBA, flags);
-  if(ret != 0){
-    std::cout<<"[error] MPEG convertion error"<<std::endl;
-  }
-  data = bgra;
-
-  //Creat a new k4a image with RGBA data format
-  image = k4a::image::create_from_buffer(K4A_IMAGE_FORMAT_COLOR_BGRA32, width, height, width * 4, data.data(), data.size(), nullptr, nullptr);
-
-  //---------------------------
-}
-
 
 }

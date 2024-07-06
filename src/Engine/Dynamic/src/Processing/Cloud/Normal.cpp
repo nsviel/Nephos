@@ -4,6 +4,7 @@
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <cstdlib>
 #include <chrono>
@@ -15,8 +16,10 @@ namespace dyn::cloud{
 Normal::Normal(dyn::Node* node_dynamic){
   //---------------------------
 
+  eng::Node* node_engine = node_dynamic->get_node_engine();
   dat::Node* node_data = node_dynamic->get_node_data();
 
+  this->thread_pool = node_engine->get_thread_pool();
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dat_image = node_data->get_dat_image();
   this->dat_glyph = node_data->get_dat_glyph();
@@ -33,11 +36,11 @@ void Normal::start_thread(dyn::base::Sensor* sensor){
   if(!dyn_struct->operation.normal.enable) return;
   //---------------------------
 
-  if(thread.joinable()){
-    this->thread.join();
-  }
   this->thread_idle = false;
-  this->thread = std::thread(&Normal::run_thread, this, sensor);
+  auto task_function = [this, sensor](){
+    this->run_thread(sensor);
+  };
+  thread_pool->add_task(task_function);
 
   //---------------------------
 }
