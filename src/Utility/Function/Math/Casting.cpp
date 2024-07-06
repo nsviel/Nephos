@@ -307,5 +307,31 @@ bool string_to_bool(std::string const& s){
   //---------------------------
   return sucess;
 }
+void uint8_to_vec_uint8(const uint8_t* input, size_t size, std::vector<uint8_t>& output){
+  //---------------------------
+
+  output = std::vector<uint8_t>(input, input + size);
+
+  //---------------------------
+}
+void uint8_to_vec_uint16(const uint8_t* input, size_t size, std::vector<uint16_t>& output){
+  //---------------------------
+
+  // Ensure the input size is even, as each uint16_t is 2 uint8_t
+  if(size % 2 != 0){
+    throw std::invalid_argument("[error] Input size must be even to convert to uint16_t.");
+  }
+
+  // Resize the output vector to hold the correct number of uint16_t values
+  size_t outputSize = size / 2;
+  output.resize(outputSize);
+
+  // Convert each pair of uint8_t values into a single uint16_t value
+  for(size_t i = 0; i < outputSize; ++i){
+    output[i] = static_cast<uint16_t>(input[2 * i]) | (static_cast<uint16_t>(input[2 * i + 1]) << 8);
+  }
+
+  //---------------------------
+}
 
 }

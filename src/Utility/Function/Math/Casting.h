@@ -41,5 +41,7 @@ std::vector<float> vec_double_to_float(std::vector<double> vec);
 std::vector<ImU32> vec_vec3_to_ImU32(std::vector<glm::vec3> vec);
 std::vector<const char*> vec_str_to_cchar(const std::vector<std::string>& vec_str);
 bool string_to_bool(std::string const& s);
+void uint8_to_vec_uint8(const uint8_t* input, size_t size, std::vector<uint8_t>& output);
+void uint8_to_vec_uint16(const uint8_t* input, size_t size, std::vector<uint16_t>& output);
 
 }

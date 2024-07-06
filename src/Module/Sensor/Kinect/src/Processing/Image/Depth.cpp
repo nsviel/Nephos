@@ -15,7 +15,6 @@ Depth::Depth(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
 
-  this->k4n_operation = new k4n::processing::Operation(node_k4n);
   this->dat_image = node_data->get_dat_image();
 
   //---------------------------
@@ -50,7 +49,7 @@ void Depth::retrieve_data(k4n::structure::Sensor* sensor){
   sensor->depth.data.format = retrieve_format(depth.get_format());
   sensor->depth.data.temperature = sensor->device.capture->get_temperature_c();
   sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
-  k4n_operation->convert_uint8_to_vec_uint16(sensor->depth.data.buffer, sensor->depth.data.size, sensor->buffer_depth);
+  utl::casting::uint8_to_vec_uint16(sensor->depth.data.buffer, sensor->depth.data.size, sensor->buffer_depth);
 
   //---------------------------
 }
@@ -125,6 +124,28 @@ std::string Depth::retrieve_format(k4a_image_format_t color_format){
 
   //---------------------------
   return format;
+}
+void Depth::find_depth_mode_range(k4n::structure::Sensor* sensor){
+  //---------------------------
+
+  if(sensor->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){
+    sensor->depth.config.range_min = 500;
+    sensor->depth.config.range_max = 5800;
+  }
+  else if(sensor->depth.config.mode == K4A_DEPTH_MODE_NFOV_UNBINNED){
+    sensor->depth.config.range_min = 500;
+    sensor->depth.config.range_max = 4000;
+  }
+  else if(sensor->depth.config.mode == K4A_DEPTH_MODE_WFOV_2X2BINNED){
+    sensor->depth.config.range_min = 250;
+    sensor->depth.config.range_max = 3000;
+  }
+  else if(sensor->depth.config.mode == K4A_DEPTH_MODE_WFOV_UNBINNED){
+    sensor->depth.config.range_min = 250;
+    sensor->depth.config.range_max = 2500;
+  }
+
+  //---------------------------
 }
 
 }

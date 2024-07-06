@@ -19,7 +19,6 @@ Cloud::Cloud(k4n::Node* node_k4n){
 
   this->thread_pool = node_engine->get_thread_pool();
   this->dyn_operation = node_dynamic->get_ope_cloud();
-  this->k4n_operation = new k4n::processing::Operation(node_k4n);
 
   //---------------------------
 }
@@ -187,7 +186,7 @@ k4a_calibration_type_t calibration_type = sensor->depth.cloud.calibration_type;
   std::vector<uint16_t> bidule = sensor->device.table_xy;
 
 
-k4n_operation->convert_uint8_to_vec_uint16(buffer, size, sensor->device.table_xy);
+utl::casting::uint8_to_vec_uint16(buffer, size, sensor->device.table_xy);
 
 if(bidule.size() == 0) return;
 

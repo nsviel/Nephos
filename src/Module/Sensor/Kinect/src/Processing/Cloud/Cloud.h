@@ -9,7 +9,6 @@ namespace k4n::structure{class Sensor;}
 namespace prf::dynamic{class Tasker;}
 namespace utl::thread{class Pool;}
 namespace dyn::cloud{class Operation;}
-namespace k4n::processing{class Operation;}
 
 
 namespace k4n::processing{
@@ -44,7 +43,6 @@ public:
 private:
   utl::thread::Pool* thread_pool;
   dyn::cloud::Operation* dyn_operation;
-  k4n::processing::Operation* k4n_operation;
 
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec3> vec_rgb;

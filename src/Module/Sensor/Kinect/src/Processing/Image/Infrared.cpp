@@ -17,7 +17,6 @@ Infrared::Infrared(k4n::Node* node_k4n){
   dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->k4n_operation = new k4n::processing::Operation(node_k4n);
   this->dat_image = node_data->get_dat_image();
 
   //---------------------------
@@ -51,7 +50,7 @@ void Infrared::retrieve_data(k4n::structure::Sensor* sensor){
   sensor->ir.data.size = ir.get_size();
   sensor->ir.data.format = retrieve_format(ir.get_format());
   sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
-  k4n_operation->convert_uint8_to_vec_uint16(sensor->ir.data.buffer, sensor->ir.data.size, sensor->buffer_ir);
+  utl::casting::uint8_to_vec_uint16(sensor->ir.data.buffer, sensor->ir.data.size, sensor->buffer_ir);
 
   //---------------------------
 }
@@ -120,6 +119,20 @@ std::string Infrared::retrieve_format(k4a_image_format_t color_format){
 
   //---------------------------
   return format;
+}
+void Infrared::find_ir_level(k4n::structure::Sensor* sensor){
+  //---------------------------
+
+  if(sensor->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){
+    sensor->ir.config.level_min = 0;
+    sensor->ir.config.level_max = 100;
+  }
+  else{
+    sensor->depth.config.range_min = 0;
+    sensor->depth.config.range_max = 1000;
+  }
+
+  //---------------------------
 }
 
 }
