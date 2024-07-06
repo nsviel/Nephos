@@ -12,3 +12,4 @@
 #include <Kinect/src/Structure/Structure.h>
 #include <Kinect/src/Structure/Sensor.h>
 #include <Kinect/src/Structure/Firmware.h>
+#include <Kinect/src/Structure/Cloud.h>

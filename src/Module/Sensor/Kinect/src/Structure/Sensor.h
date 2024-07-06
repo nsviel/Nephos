@@ -61,6 +61,7 @@ struct Sensor : public dyn::base::Sensor{
     return pose;
   }
 
+  k4n::structure::Cloud cloud;
   k4n::device::Structure device;
   k4n::color::Structure color;
   k4n::depth::Structure depth;

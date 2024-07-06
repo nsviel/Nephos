@@ -6,6 +6,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::structure{class Sensor;}
+namespace k4n::processing::cloud{class XY_table;}
 namespace utl::base{class Data;}
 
 
@@ -34,6 +35,7 @@ public:
   void retrieve_ir(k4n::structure::Sensor* sensor, int i);
 
 private:
+  k4n::processing::cloud::XY_table* k4n_xytable;
   utl::base::Data buffer_data;
 };
 

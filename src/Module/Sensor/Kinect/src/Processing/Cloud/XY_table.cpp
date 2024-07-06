@@ -18,56 +18,62 @@ XY_table::~XY_table(){}
 //Main function
 void XY_table::retrieve_table_xy(k4n::structure::Sensor* sensor){
   //---------------------------
-
-  //Create cloud image
-  k4a::image table_xy = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, sensor->depth.cloud.width, sensor->depth.cloud.height, sensor->depth.cloud.width * sizeof(int16_t) * 3);
-
-
-  std::vector<uint8_t> truc;
-for(int i=0; i<sensor->depth.cloud.size; i++){
-  truc.push_back(1);
-}
-
-  k4a::image machin = k4a::image::create_from_buffer(
+/*
+  //Create full 1 value image
+  std::vector<uint8_t> vec_2;
+  for(size_t i=0; i<sensor->depth.data.size; i++){
+    vec_2.push_back(i % 2); // Alternating 0 and 1
+  }
+  k4a::image image_full_1 = k4a::image::create_from_buffer(
     K4A_IMAGE_FORMAT_DEPTH16,
-    sensor->depth.cloud.width,
-    sensor->depth.cloud.height,
-    sensor->depth.cloud.width * static_cast<int>(sizeof(uint16_t)),
-    truc.data(),
-    sensor->depth.cloud.size,
+    sensor->depth.data.width,
+    sensor->depth.data.height,
+    sensor->depth.data.width * sizeof(uint16_t),
+    vec_2.data(),
+    vec_2.size(),
     nullptr,
-    nullptr);
-
-
-k4a_calibration_type_t calibration_type = sensor->depth.cloud.calibration_type;
-
-
+    nullptr
+  );
 
   //Transform depth into cloud
-  sensor->device.transformation.depth_image_to_point_cloud(machin, calibration_type, &table_xy);
+  k4a::image table_xy = k4a::image::create(
+    K4A_IMAGE_FORMAT_CUSTOM,
+    sensor->depth.data.width,
+    sensor->depth.data.height,
+    sensor->depth.data.width * sizeof(int16_t) * 3
+  );
+  sensor->device.transformation.depth_image_to_point_cloud(image_full_1, K4A_CALIBRATION_TYPE_DEPTH, &table_xy);
+
+  //Convert buffer to vector of uint16_t
   int size = table_xy.get_size() / (3 * sizeof(int16_t));
-  uint8_t* buffer = table_xy.get_buffer();
 
-  std::vector<uint16_t> bidule = sensor->device.table_xy;
+  //Post-processing
+  uint8_t* ran_buffer = table_xy.get_buffer();
+  const int16_t* buffer_depth = reinterpret_cast<int16_t*>(ran_buffer);
+  for(int i=0; i<size; i++){
+    //Raw values
+    int idx = i * 3;
+    float x = buffer_depth[idx + 0];
+    float y = buffer_depth[idx + 1];
+    float z = buffer_depth[idx + 2];
 
+    //Convert coordinate in meter and X axis oriented.
+    float x_m = -x / 1000.0f;
+    float y_m = -y / 1000.0f;
+    float z_m = z / 1000.0f;
 
-utl::casting::uint8_to_vec_uint16(buffer, size, sensor->device.table_xy);
+    //Compute final values
+    glm::vec3 xyz = glm::vec3(z_m, x_m, y_m);
 
-if(bidule.size() == 0) return;
-
-
-int cpt = 0;
-for(int i=0; i<size; i++){
-
-
-  float arf = sensor->device.table_xy[i] - bidule[i];
-  if(arf != 0) {
-    say(arf);
-cpt ++;
+    say("----");
+    say(xyz);
   }
-}
 
-//say(cpt);
+
+
+*/
+
+
   //---------------------------
 }
 

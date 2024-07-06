@@ -11,6 +11,7 @@ namespace k4n::processing::cloud{
 Data::Data(k4n::Node* node_k4n){
   //---------------------------
 
+  this->k4n_xytable = new k4n::processing::cloud::XY_table(node_k4n);
 
   //---------------------------
 }
@@ -40,6 +41,8 @@ void Data::extract_data(k4n::structure::Sensor* sensor){
   this->extraction_transfer(sensor);
   tasker->task_end("transfer");
 
+  k4n_xytable->retrieve_table_xy(sensor);
+
   //---------------------------
 }
 
@@ -59,7 +62,12 @@ void Data::extraction_init(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Create cloud image
-  k4a::image cloud_image = k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM, sensor->depth.cloud.width, sensor->depth.cloud.height, sensor->depth.cloud.width * sizeof(int16_t) * 3);
+  k4a::image cloud_image = k4a::image::create(
+    K4A_IMAGE_FORMAT_CUSTOM,
+    sensor->depth.cloud.width,
+    sensor->depth.cloud.height,
+    sensor->depth.cloud.width * sizeof(int16_t) * 3
+  );
 
   //Transform depth into cloud
   sensor->device.transformation.depth_image_to_point_cloud(sensor->depth.cloud.k4a_image, sensor->depth.cloud.calibration_type, &cloud_image);
