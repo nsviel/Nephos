@@ -52,10 +52,10 @@ void Data::convertion_init(k4n::structure::Sensor* sensor){
   //Resize vectors
   int size = sensor->depth.cloud.size;
   buffer_data.xyz.clear(); buffer_data.xyz.reserve(size);
-  vec_rgb.clear(); vec_rgb.reserve(size);
-  vec_rgba.clear(); vec_rgba.reserve(size);
-  vec_ir.clear(); vec_ir.reserve(size);
-  vec_r.clear(); vec_r.reserve(size);
+  buffer_data.rgb.clear(); buffer_data.rgb.reserve(size);
+  buffer_data.rgba.clear(); buffer_data.rgba.reserve(size);
+  buffer_data.Is.clear(); buffer_data.Is.reserve(size);
+  buffer_data.R.clear(); buffer_data.R.reserve(size);
 
   //---------------------------
 }
@@ -68,7 +68,6 @@ void Data::convertion_data(k4n::structure::Sensor* sensor){
     this->retrieve_location(sensor, i);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
-    this->insert_data(i);
   }
 
   //---------------------------
@@ -80,9 +79,10 @@ void Data::convertion_transfer(k4n::structure::Sensor* sensor){
 
   //Cloud data copy
   data->xyz = buffer_data.xyz;
-  data->rgb = vec_rgb;
-  data->Is = vec_ir;
-  data->R = vec_r;
+  data->rgb = buffer_data.rgb;
+  data->rgba = buffer_data.rgba;
+  data->Is = buffer_data.Is;
+  data->R = buffer_data.R;
 
   data->size = buffer_data.xyz.size();
   data->width = sensor->depth.cloud.width;
@@ -120,9 +120,10 @@ void Data::retrieve_location(k4n::structure::Sensor* sensor, int i){
   double y_m = -y / 1000.0f;
   double z_m = z / 1000.0f;
   glm::vec3 xyz = glm::vec3(z_m, x_m, y_m);
+  float R = math::distance_from_origin(xyz);
 
   buffer_data.xyz.push_back(xyz);
-  this->R = math::distance_from_origin(xyz);
+  buffer_data.R.push_back(R);
 
   //---------------------------
 }
@@ -134,7 +135,11 @@ void Data::retrieve_color(k4n::structure::Sensor* sensor, int i){
   float r = static_cast<float>(buffer_color[index + 2]) / 255.0f;
   float g = static_cast<float>(buffer_color[index + 1]) / 255.0f;
   float b = static_cast<float>(buffer_color[index + 0]) / 255.0f;
-  this->rgb = glm::vec3(r, g, b);
+  glm::vec3 rgb = glm::vec3(r, g, b);
+  glm::vec4 rgba = glm::vec4(r, g, b, 1.0f);
+
+  buffer_data.rgb.push_back(rgb);
+  buffer_data.rgba.push_back(rgba);
 
   //---------------------------
 }
@@ -142,20 +147,12 @@ void Data::retrieve_ir(k4n::structure::Sensor* sensor, int i){
   const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor->ir.cloud.buffer);
   //---------------------------
 
-  this->ir = buffer_ir[i];
+  float ir = buffer_ir[i];
   //vec3 Nxyz = sensor->buffer_Nxyz[i];
   //float It = math::compute_It(xyz, Nxyz, glm::vec3(0, 0, 0));
   //this->ir = rad_correction->apply_correction(I_raw, R, It);
 
-  //---------------------------
-}
-void Data::insert_data(int i){
-  //---------------------------
-
-  vec_rgb.push_back(rgb);
-  vec_rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
-  vec_ir.push_back(ir);
-  vec_r.push_back(R);
+  buffer_data.Is.push_back(ir);
 
   //---------------------------
 }

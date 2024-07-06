@@ -32,20 +32,10 @@ public:
   void retrieve_location(k4n::structure::Sensor* sensor, int i);
   void retrieve_color(k4n::structure::Sensor* sensor, int i);
   void retrieve_ir(k4n::structure::Sensor* sensor, int i);
-  void insert_data(int i);
   bool check_condition(k4n::structure::Sensor* sensor);
 
 private:
   utl::base::Data buffer_data;
-
-  std::vector<glm::vec3> vec_rgb;
-  std::vector<glm::vec4> vec_rgba;
-  std::vector<float> vec_ir;
-  std::vector<float> vec_r;
-
-  glm::vec3 rgb;
-  float ir;
-  float R;
 };
 
 }
