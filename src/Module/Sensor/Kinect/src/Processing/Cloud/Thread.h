@@ -2,11 +2,12 @@
 
 namespace k4n{class Node;}
 namespace k4n::structure{class Sensor;}
+namespace k4n::processing::cloud{class Data;}
 namespace utl::thread{class Pool;}
 namespace dyn::cloud{class Operation;}
 
 
-namespace k4n::processing{
+namespace k4n::processing::cloud{
 
 class Thread
 {
@@ -26,6 +27,7 @@ public:
   void run_operation(k4n::structure::Sensor* sensor);
 
 private:
+  k4n::processing::cloud::Data* k4n_data;
   utl::thread::Pool* thread_pool;
   dyn::cloud::Operation* dyn_operation;
 

@@ -1,32 +1,23 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include <k4a/k4a.hpp>
 #include <vector>
 
 namespace k4n{class Node;}
 namespace k4n::structure{class Sensor;}
-namespace prf::dynamic{class Tasker;}
-namespace utl::thread{class Pool;}
-namespace dyn::cloud{class Operation;}
 
 
-namespace k4n::processing{
+namespace k4n::processing::cloud{
 
-class Cloud
+class Data
 {
 public:
   //Constructor / Destructor
-  Cloud(k4n::Node* node_k4n);
-  ~Cloud();
+  Data(k4n::Node* node_k4n);
+  ~Data();
 
 public:
   //Main function
-  void start_thread(k4n::structure::Sensor* sensor);
-  void run_thread(k4n::structure::Sensor* sensor);
-  void wait_thread();
-
-  //Loop function
   void convert_image_into_cloud(k4n::structure::Sensor* sensor);
   void convertion_init(k4n::structure::Sensor* sensor);
   void convertion_data(k4n::structure::Sensor* sensor);
@@ -41,9 +32,6 @@ public:
   void insert_data(int i);
 
 private:
-  utl::thread::Pool* thread_pool;
-  dyn::cloud::Operation* dyn_operation;
-
   std::vector<glm::vec3> vec_xyz;
   std::vector<glm::vec3> vec_rgb;
   std::vector<glm::vec4> vec_rgba;
@@ -54,7 +42,6 @@ private:
   glm::vec3 rgb;
   float ir;
   float R;
-  bool thread_idle = true;
 };
 
 }

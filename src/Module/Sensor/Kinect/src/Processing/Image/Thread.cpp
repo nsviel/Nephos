@@ -15,7 +15,7 @@ Thread::Thread(k4n::Node* node_k4n){
   eng::Node* node_engine = node_k4n->get_node_engine();
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
-  this->k4n_cloud = new k4n::processing::Cloud(node_k4n);
+  this->k4n_cloud = new k4n::processing::cloud::Thread(node_k4n);
   this->k4n_transformation = new k4n::processing::image::Transformation(node_k4n);
   this->k4n_color = new k4n::processing::image::Color(node_k4n);
   this->k4n_depth = new k4n::processing::image::Depth(node_k4n);

@@ -7,7 +7,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace k4n::processing{
+namespace k4n::processing::cloud{
 
 //Constructor / Destructor
 Thread::Thread(k4n::Node* node_k4n){
@@ -18,6 +18,7 @@ Thread::Thread(k4n::Node* node_k4n){
 
   this->thread_pool = node_engine->get_thread_pool();
   this->dyn_operation = node_dynamic->get_ope_cloud();
+  this->k4n_data = new k4n::processing::cloud::Data(node_k4n);
 
   //---------------------------
 }
@@ -38,9 +39,8 @@ void Thread::start_thread(k4n::structure::Sensor* sensor){
 void Thread::run_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
-
-
-
+  this->extract_data(sensor);
+  this->run_operation(sensor);
 
   //---------------------------
   this->thread_idle = true;
@@ -61,7 +61,7 @@ void Thread::wait_thread(){
 void Thread::extract_data(k4n::structure::Sensor* sensor){
   //---------------------------
 
-  //this->convert_image_into_cloud(sensor);
+  k4n_data->convert_image_into_cloud(sensor);
 
   //---------------------------
 }

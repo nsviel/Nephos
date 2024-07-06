@@ -1,67 +1,22 @@
-#include "Cloud.h"
+#include "Data.h"
 
 #include <Kinect/Namespace.h>
-#include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
-#include <Dynamic/Namespace.h>
-#include <execution>
 
 
-namespace k4n::processing{
+namespace k4n::processing::cloud{
 
 //Constructor / Destructor
-Cloud::Cloud(k4n::Node* node_k4n){
+Data::Data(k4n::Node* node_k4n){
   //---------------------------
-
-  eng::Node* node_engine = node_k4n->get_node_engine();
-  dyn::Node* node_dynamic = node_engine->get_node_dynamic();
-
-  this->thread_pool = node_engine->get_thread_pool();
-  this->dyn_operation = node_dynamic->get_ope_cloud();
 
   //---------------------------
 }
-Cloud::~Cloud(){}
+Data::~Data(){}
 
 //Main function
-void Cloud::start_thread(k4n::structure::Sensor* sensor){
-  //---------------------------
-
-  auto task_function = [this, sensor](){
-    this->run_thread(sensor);
-  };
-  this->thread_idle = false;
-  thread_pool->add_task(task_function);
-
-  //---------------------------
-}
-void Cloud::run_thread(k4n::structure::Sensor* sensor){
-  //---------------------------
-
-  //Convert data into a cloud
-  this->convert_image_into_cloud(sensor);
-
-  //Dynamic operation
-  dyn_operation->run_operation(sensor);
-
-  //---------------------------
-  this->thread_idle = true;
-}
-void Cloud::wait_thread(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-  dyn_operation->wait_operation();
-
-  //---------------------------
-}
-
-//Loop function
-void Cloud::convert_image_into_cloud(k4n::structure::Sensor* sensor){
+void Data::convert_image_into_cloud(k4n::structure::Sensor* sensor){
   if(!sensor->depth.cloud.k4a_image.is_valid()) return;
   if(!sensor->ir.cloud.k4a_image.is_valid()) return;
   if(sensor->color.cloud.buffer == nullptr) return;
@@ -79,7 +34,7 @@ void Cloud::convert_image_into_cloud(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::convertion_init(k4n::structure::Sensor* sensor){
+void Data::convertion_init(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Depth transformation
@@ -100,7 +55,7 @@ void Cloud::convertion_init(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::convertion_data(k4n::structure::Sensor* sensor){
+void Data::convertion_data(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Fille vector with data
@@ -116,7 +71,7 @@ void Cloud::convertion_data(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::convertion_transfer(k4n::structure::Sensor* sensor){
+void Data::convertion_transfer(k4n::structure::Sensor* sensor){
   utl::base::Data* data = &sensor->data;
   dat::base::Set* master = sensor->set_parent;
   //---------------------------
@@ -138,7 +93,7 @@ void Cloud::convertion_transfer(k4n::structure::Sensor* sensor){
 }
 
 //Data retrieval
-void Cloud::retrieve_cloud(k4n::structure::Sensor* sensor){
+void Data::retrieve_cloud(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Create cloud image
@@ -151,7 +106,7 @@ void Cloud::retrieve_cloud(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Cloud::retrieve_table_xy(k4n::structure::Sensor* sensor){
+void Data::retrieve_table_xy(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Create cloud image
@@ -205,7 +160,7 @@ cpt ++;
 //say(cpt);
   //---------------------------
 }
-void Cloud::retrieve_location(k4n::structure::Sensor* sensor, int i){
+void Data::retrieve_location(k4n::structure::Sensor* sensor, int i){
   const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->depth.cloud.buffer);
   //---------------------------
 
@@ -225,7 +180,7 @@ void Cloud::retrieve_location(k4n::structure::Sensor* sensor, int i){
 
   //---------------------------
 }
-void Cloud::retrieve_color(k4n::structure::Sensor* sensor, int i){
+void Data::retrieve_color(k4n::structure::Sensor* sensor, int i){
   const uint8_t* buffer_color = sensor->color.cloud.buffer;
   //---------------------------
 
@@ -237,7 +192,7 @@ void Cloud::retrieve_color(k4n::structure::Sensor* sensor, int i){
 
   //---------------------------
 }
-void Cloud::retrieve_ir(k4n::structure::Sensor* sensor, int i){
+void Data::retrieve_ir(k4n::structure::Sensor* sensor, int i){
   const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor->ir.cloud.buffer);
   //---------------------------
 
@@ -248,7 +203,7 @@ void Cloud::retrieve_ir(k4n::structure::Sensor* sensor, int i){
 
   //---------------------------
 }
-void Cloud::insert_data(int i){
+void Data::insert_data(int i){
   //---------------------------
 
   vec_xyz.push_back(xyz);

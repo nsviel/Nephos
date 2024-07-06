@@ -2,7 +2,7 @@
 
 namespace k4n{class Node;}
 namespace k4n::structure{class Sensor;}
-namespace k4n::processing{class Cloud;}
+namespace k4n::processing::cloud{class Thread;}
 namespace k4n::processing::image{class Transformation;}
 namespace k4n::processing::image{class Color;}
 namespace k4n::processing::image{class Depth;}
@@ -31,7 +31,7 @@ public:
   void run_operation(k4n::structure::Sensor* sensor);
 
 private:
-  k4n::processing::Cloud* k4n_cloud;
+  k4n::processing::cloud::Thread* k4n_cloud;
   k4n::processing::image::Transformation* k4n_transformation;
   k4n::processing::image::Color* k4n_color;
   k4n::processing::image::Depth* k4n_depth;
