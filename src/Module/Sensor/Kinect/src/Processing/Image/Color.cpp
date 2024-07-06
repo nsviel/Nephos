@@ -89,5 +89,44 @@ std::string Color::retrieve_format(k4a_image_format_t color_format){
   //---------------------------
   return format;
 }
+void Color::retrieve_data_from_capture(k4a::image& image, std::vector<uint8_t>& data, std::string& format){
+  //---------------------------
+/*
+this->tj_handle = tjInitDecompress();
+tjDestroy(tj_handle);
+
+  if(format == "MJPEG"){
+    this->retrieve_bgra_from_mjpeg(image, data);
+    format = "B8G8R8A8_SRGB";
+  }else{
+    uint8_t* image_data = image.get_buffer();
+    size_t size = image.get_size();
+    data = std::vector<uint8_t>(image_data, image_data + size);
+    format = "B8G8R8A8_SRGB";
+  }
+*/
+  //---------------------------
+}
+void Color::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data){
+  //---------------------------
+/*
+  int width = image.get_width_pixels();
+  int height = image.get_height_pixels();
+  int size = image.get_size();
+  uint8_t* mpeg = image.get_buffer();
+  std::vector<uint8_t> bgra(width * height * tjPixelSize[TJPF_RGBA]);
+  int flags = TJFLAG_FASTDCT | TJFLAG_FASTUPSAMPLE;
+
+  int ret = tjDecompress2(tj_handle, &mpeg[0], size, bgra.data(), width, 0, height, TJPF_RGBA, flags);
+  if(ret != 0){
+    std::cout<<"[error] MPEG convertion error"<<std::endl;
+  }
+  data = bgra;
+
+  //Creat a new k4a image with RGBA data format
+  image = k4a::image::create_from_buffer(K4A_IMAGE_FORMAT_COLOR_BGRA32, width, height, width * 4, data.data(), data.size(), nullptr, nullptr);
+*/
+  //---------------------------
+}
 
 }

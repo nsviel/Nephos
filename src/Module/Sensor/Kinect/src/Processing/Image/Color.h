@@ -25,6 +25,8 @@ public:
   void retrieve_data(k4n::structure::Sensor* sensor);
   void retrieve_image(k4n::structure::Sensor* sensor);
   std::string retrieve_format(k4a_image_format_t color_format);
+  void retrieve_data_from_capture(k4a::image& image, std::vector<uint8_t>& data, std::string& format);
+  void retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data);
 
 private:
   dat::element::Image* dat_image;
