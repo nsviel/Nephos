@@ -1,4 +1,4 @@
-#include "Thread.h"
+#include "Processing.h"
 
 #include <Kinect/Namespace.h>
 #include <Engine/Namespace.h>
@@ -9,7 +9,7 @@
 namespace k4n{
 
 //Constructor / Destructor
-Thread::Thread(k4n::Node* node_k4n){
+Processing::Processing(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
@@ -20,10 +20,10 @@ Thread::Thread(k4n::Node* node_k4n){
 
   //---------------------------
 }
-Thread::~Thread(){}
+Processing::~Processing(){}
 
 //Main function
-void Thread::start_thread(k4n::structure::Sensor* sensor){
+void Processing::start_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
   this->thread_idle = false;
@@ -34,16 +34,22 @@ void Thread::start_thread(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Thread::run_thread(k4n::structure::Sensor* sensor){
+void Processing::run_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
-  k4n_image->start_thread(sensor);
-  k4n_cloud->start_thread(sensor);
+  //k4n_image->start_thread(sensor);
+  //k4n_cloud->start_thread(sensor);
+
+  k4n_image->extract_data(sensor);
+  k4n_image->run_operation(sensor);
+
+  k4n_cloud->extract_data(sensor);
+  k4n_cloud->run_operation(sensor);
 
   //---------------------------
   this->thread_idle = true;
 }
-void Thread::wait_thread(){
+void Processing::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 

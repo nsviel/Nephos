@@ -15,7 +15,6 @@ Thread::Thread(k4n::Node* node_k4n){
   eng::Node* node_engine = node_k4n->get_node_engine();
   dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
-  this->k4n_cloud = new k4n::processing::cloud::Thread(node_k4n);
   this->k4n_transformation = new k4n::processing::image::Transformation(node_k4n);
   this->k4n_color = new k4n::processing::image::Color(node_k4n);
   this->k4n_depth = new k4n::processing::image::Depth(node_k4n);
@@ -55,7 +54,6 @@ void Thread::wait_thread(){
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  k4n_cloud->wait_thread();
   dyn_operation->wait_thread();
 
   //---------------------------
@@ -92,9 +90,6 @@ void Thread::extract_data(k4n::structure::Sensor* sensor){
 }
 void Thread::run_operation(k4n::structure::Sensor* sensor){
   //---------------------------
-
-  //Convert data into cloud
-  k4n_cloud->start_thread(sensor);
 
   //Dynamic operation
   dyn_operation->start_thread(sensor);

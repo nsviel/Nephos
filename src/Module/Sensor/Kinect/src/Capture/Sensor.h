@@ -3,7 +3,7 @@
 #include <Kinect/src/Structure/Sensor.h>
 
 namespace k4n{class Node;}
-namespace k4n::processing::image{class Thread;}
+namespace k4n{class Processing;}
 namespace k4n::capture{class Configuration;}
 namespace k4n::gui{class Capture;}
 namespace dyn::element{class Sensor;}
@@ -31,7 +31,7 @@ public:
   void gui_config();
 
 private:
-  k4n::processing::image::Thread* k4n_image;
+  k4n::Processing* k4n_image;
   k4n::capture::Configuration* k4n_config;
   k4n::gui::Capture* gui_capture;
   dyn::element::Sensor* dyn_sensor;

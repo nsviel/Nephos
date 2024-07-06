@@ -14,7 +14,7 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
 
   dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
 
-  this->k4n_image = new k4n::processing::image::Thread(node_k4n);
+  this->k4n_processing = new k4n::Processing(node_k4n);
   this->k4n_config = new k4n::playback::Configuration(node_k4n);
   this->dyn_sensor = node_dynamic->get_dyn_sensor();
   this->gui_playback = new k4n::gui::Playback(node_k4n);
@@ -73,7 +73,7 @@ void Sensor::thread_loop(){
   tasker->task_end("wait");
 
   //Run processing
-  k4n_image->start_thread(this);
+  k4n_processing->start_thread(this);
 
   //Loop sleeping
   this->manage_pause();
@@ -83,7 +83,7 @@ void Sensor::thread_loop(){
 void Sensor::thread_end(){
   //---------------------------
 
-  k4n_image->wait_thread();
+  k4n_processing->wait_thread();
   this->playback.close();
 
   //---------------------------
@@ -110,7 +110,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   capture_queue.push(capture);
 
   // Check if the queue size exceeds 5
-  k4n_image->wait_thread();
+  k4n_processing->wait_thread();
   if(capture_queue.size() > 5){
     // Delete the oldest capture
     delete capture_queue.front();

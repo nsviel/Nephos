@@ -9,12 +9,12 @@ namespace utl::thread{class Pool;}
 
 namespace k4n{
 
-class Thread
+class Processing
 {
 public:
   //Constructor / Destructor
-  Thread(k4n::Node* node_k4n);
-  ~Thread();
+  Processing(k4n::Node* node_k4n);
+  ~Processing();
 
 public:
   //Main function
