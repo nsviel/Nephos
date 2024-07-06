@@ -23,6 +23,7 @@ Data::Data(k4n::Node* node_k4n){
   this->dat_image = node_data->get_dat_image();
   this->k4n_transformation = new k4n::processing::image::Transformation(node_k4n);
   this->k4n_color = new k4n::processing::image::Color(node_k4n);
+  this->k4n_depth = new k4n::processing::image::Depth(node_k4n);
 
   //---------------------------
 }
@@ -37,7 +38,7 @@ void Data::find_data_from_capture(k4n::structure::Sensor* sensor){
 
   //Depth data
   tasker->task_begin("depth");
-  this->find_data_depth(sensor);
+  k4n_depth->find_data_depth(sensor);
   tasker->task_end("depth");
 
   //Color data
@@ -59,38 +60,6 @@ void Data::find_data_from_capture(k4n::structure::Sensor* sensor){
 }
 
 //Subfunction
-void Data::find_data_depth(k4n::structure::Sensor* sensor){
-  //---------------------------
-
-  //Get k4a image
-  k4a::image depth = sensor->device.capture->get_depth_image();
-  if(!depth.is_valid()) return;
-
-  //Data
-  sensor->depth.data.name = "depth";
-  sensor->depth.data.k4a_image = depth;
-  sensor->depth.data.width = depth.get_width_pixels();
-  sensor->depth.data.height = depth.get_height_pixels();
-  sensor->depth.data.buffer = depth.get_buffer();
-  sensor->depth.data.size = depth.get_size();
-  sensor->depth.data.format = k4n_format->retrieve_format_from_k4a(depth.get_format());
-  sensor->depth.data.temperature = sensor->device.capture->get_temperature_c();
-  sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
-  k4n_operation->convert_uint8_to_vec_uint16(sensor->depth.data.buffer, sensor->depth.data.size, sensor->buffer_depth);
-
-  //Image
-  k4n_operation->convert_depth_into_color(sensor);
-  sensor->depth.image.name = "Depth";
-  sensor->depth.image.size = sensor->depth.image.data.size();
-  sensor->depth.image.width = sensor->depth.data.width;
-  sensor->depth.image.height = sensor->depth.data.height;
-  sensor->depth.image.format = "R8G8B8A8_SRGB";
-  sensor->depth.image.type = utl::media::DEPTH;
-  sensor->depth.image.timestamp = sensor->depth.data.timestamp;
-  dat_image->add_image(sensor, &sensor->depth.image);
-
-  //---------------------------
-}
 void Data::find_data_ir(k4n::structure::Sensor* sensor){
   //---------------------------
 
