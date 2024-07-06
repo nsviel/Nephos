@@ -3,7 +3,7 @@
 #include <Kinect/src/Structure/Sensor.h>
 
 namespace k4n{class Node;}
-namespace k4n::processing{class Image;}
+namespace k4n::processing::image{class Thread;}
 namespace k4n::playback{class Configuration;}
 namespace k4n::gui{class Playback;}
 namespace utl::base{class Path;}
@@ -33,7 +33,7 @@ public:
   void gui_config();
 
 public:
-  k4n::processing::Image* k4n_image;
+  k4n::processing::image::Thread* k4n_image;
   k4n::playback::Configuration* k4n_config;
   k4n::gui::Playback* gui_playback;
   dyn::element::Sensor* dyn_sensor;
