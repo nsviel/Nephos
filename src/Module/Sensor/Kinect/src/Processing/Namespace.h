@@ -2,3 +2,4 @@
 
 #include <Kinect/src/Processing/Image/Namespace.h>
 #include <Kinect/src/Processing/Cloud/Namespace.h>
+#include <Kinect/src/Processing/Processing.h>
