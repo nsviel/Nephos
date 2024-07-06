@@ -19,17 +19,19 @@ public:
 public:
   //Main function
   void convert_image_into_cloud(k4n::structure::Sensor* sensor);
+
+  
   void convertion_init(k4n::structure::Sensor* sensor);
   void convertion_data(k4n::structure::Sensor* sensor);
   void convertion_transfer(k4n::structure::Sensor* sensor);
 
   //Data retrieval
-  void retrieve_table_xy(k4n::structure::Sensor* sensor);
   void retrieve_cloud(k4n::structure::Sensor* sensor);
   void retrieve_location(k4n::structure::Sensor* sensor, int i);
   void retrieve_color(k4n::structure::Sensor* sensor, int i);
   void retrieve_ir(k4n::structure::Sensor* sensor, int i);
   void insert_data(int i);
+  bool check_condition(k4n::structure::Sensor* sensor);
 
 private:
   std::vector<glm::vec3> vec_xyz;
