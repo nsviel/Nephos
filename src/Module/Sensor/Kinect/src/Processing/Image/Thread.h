@@ -27,7 +27,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void extract_image_data(k4n::structure::Sensor* device);
+  void extract_data(k4n::structure::Sensor* device);
   void run_operation(k4n::structure::Sensor* sensor);
 
 private:
