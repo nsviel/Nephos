@@ -19,7 +19,7 @@ public:
 
 public:
   //Main function
-  void find_data_depth(k4n::structure::Sensor* sensor);
+  void extract_data(k4n::structure::Sensor* sensor);
 
   //Subfunction
   void retrieve_data(k4n::structure::Sensor* sensor);

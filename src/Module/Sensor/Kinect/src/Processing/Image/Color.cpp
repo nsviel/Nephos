@@ -22,7 +22,7 @@ Color::Color(k4n::Node* node_k4n){
 Color::~Color(){}
 
 //Main function
-void Color::find_data_color(k4n::structure::Sensor* sensor){
+void Color::extract_data(k4n::structure::Sensor* sensor){
   //---------------------------
 
   this->retrieve_data(sensor);

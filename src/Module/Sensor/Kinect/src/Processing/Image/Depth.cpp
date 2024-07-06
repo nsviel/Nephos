@@ -23,7 +23,7 @@ Depth::Depth(k4n::Node* node_k4n){
 Depth::~Depth(){}
 
 //Main function
-void Depth::find_data_depth(k4n::structure::Sensor* sensor){
+void Depth::extract_data(k4n::structure::Sensor* sensor){
   //---------------------------
 
   this->retrieve_data(sensor);
