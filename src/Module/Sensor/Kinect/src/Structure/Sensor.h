@@ -2,6 +2,7 @@
 
 #include <Kinect/src/Structure/Firmware.h>
 #include <Kinect/src/Structure/Namespace.h>
+#include <Kinect/src/Structure/Cloud.h>
 #include <Dynamic/src/Base/Sensor.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
