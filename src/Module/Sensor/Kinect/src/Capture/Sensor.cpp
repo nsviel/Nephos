@@ -19,7 +19,7 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
   this->dyn_sensor = node_dynamic->get_dyn_sensor();
 
   this->vec_recorder.push_back(new k4n::capture::Recorder());
-  this->device.idx_dev = index;
+  this->device.index = index;
   this->name = "capture_" + std::to_string(index);
   this->data.name = name;
 
@@ -40,8 +40,8 @@ void Sensor::thread_init(){
   //---------------------------
 
   //Init
-  this->device.idx_dev = 0;
-  this->device.handle = k4a::device::open(device.idx_dev);
+  this->device.index = 0;
+  this->device.handle = k4a::device::open(device.index);
   if(!device.handle.is_valid()) return;
   this->serial_number = device.handle.get_serialnum();
   this->device.version = device.handle.get_version();

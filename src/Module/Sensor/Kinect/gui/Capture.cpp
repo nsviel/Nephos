@@ -72,7 +72,7 @@ void Capture::show_list_device(dat::base::Set* set){
 
         //Sensor ID
         ImGui::TableNextColumn();
-        ImGui::Text("%d", sensor->device.idx_dev);
+        ImGui::Text("%d", sensor->device.index);
 
         //Sensor serial number
         ImGui::TableNextColumn();

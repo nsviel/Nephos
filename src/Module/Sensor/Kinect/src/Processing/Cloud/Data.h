@@ -20,19 +20,18 @@ public:
 
 public:
   //Main function
-  void convert_image_into_cloud(k4n::structure::Sensor* sensor);
+  void extract_cloud(k4n::structure::Sensor* sensor);
 
+  //Subfunction
+  bool check_condition(k4n::structure::Sensor* sensor);
+  void extraction_init(k4n::structure::Sensor* sensor);
+  void extraction_data(k4n::structure::Sensor* sensor);
+  void extraction_transfer(k4n::structure::Sensor* sensor);
 
-  void convertion_init(k4n::structure::Sensor* sensor);
-  void convertion_data(k4n::structure::Sensor* sensor);
-  void convertion_transfer(k4n::structure::Sensor* sensor);
-
-  //Data retrieval
-  void retrieve_cloud(k4n::structure::Sensor* sensor);
+  //Data function
   void retrieve_location(k4n::structure::Sensor* sensor, int i);
   void retrieve_color(k4n::structure::Sensor* sensor, int i);
   void retrieve_ir(k4n::structure::Sensor* sensor, int i);
-  bool check_condition(k4n::structure::Sensor* sensor);
 
 private:
   utl::base::Data buffer_data;

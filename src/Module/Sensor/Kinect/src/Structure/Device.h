@@ -19,8 +19,7 @@ struct Structure{
   //---------------------------
 
   //General parameters
-  int idx_dev = -1;
-  int idx_cloud = 0;
+  int index = -1;
   int mode = k4n::device::PLAYBACK;
 
   //K4A device related objects

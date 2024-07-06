@@ -61,7 +61,7 @@ void Thread::wait_thread(){
 void Thread::extract_data(k4n::structure::Sensor* sensor){
   //---------------------------
 
-  k4n_data->convert_image_into_cloud(sensor);
+  k4n_data->extract_cloud(sensor);
 
   //---------------------------
 }
