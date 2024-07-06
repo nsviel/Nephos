@@ -13,10 +13,13 @@ Processing::Processing(k4n::Node* node_k4n){
   //---------------------------
 
   eng::Node* node_engine = node_k4n->get_node_engine();
+  dyn::Node* node_dynamic = node_engine->get_node_dynamic();
 
   this->thread_pool = node_engine->get_thread_pool();
-  this->k4n_image = new k4n::processing::image::Thread(node_k4n);
-  this->k4n_cloud = new k4n::processing::cloud::Thread(node_k4n);
+  this->k4n_image = new k4n::processing::image::Data(node_k4n);
+  this->k4n_cloud = new k4n::processing::cloud::Data(node_k4n);
+  this->dyn_ope_image = node_dynamic->get_ope_image();
+  this->dyn_ope_cloud = node_dynamic->get_ope_cloud();
 
   //---------------------------
 }
@@ -40,10 +43,6 @@ void Processing::run_thread(k4n::structure::Sensor* sensor){
   this->image_processing(sensor);
   this->cloud_processing(sensor);
 
-
-
-
-
   //---------------------------
   this->thread_idle = true;
 }
@@ -54,8 +53,8 @@ void Processing::wait_thread(){
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  k4n_image->wait_thread();
-  k4n_cloud->wait_thread();
+  dyn_ope_image->wait_thread();
+  dyn_ope_cloud->wait_operation();
 
   //---------------------------
 }
@@ -65,7 +64,7 @@ void Processing::image_processing(k4n::structure::Sensor* sensor){
   //---------------------------
 
   k4n_image->extract_data(sensor);
-  k4n_image->run_operation(sensor);
+  dyn_ope_image->start_thread(sensor);
 
   //---------------------------
 }
@@ -73,7 +72,7 @@ void Processing::cloud_processing(k4n::structure::Sensor* sensor){
   //---------------------------
 
   k4n_cloud->extract_data(sensor);
-  k4n_cloud->run_operation(sensor);
+  dyn_ope_cloud->run_operation(sensor);
 
   //---------------------------
 }

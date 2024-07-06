@@ -20,7 +20,7 @@ public:
 
 public:
   //Main function
-  void extract_cloud(k4n::structure::Sensor* sensor);
+  void extract_data(k4n::structure::Sensor* sensor);
 
   //Subfunction
   bool check_condition(k4n::structure::Sensor* sensor);

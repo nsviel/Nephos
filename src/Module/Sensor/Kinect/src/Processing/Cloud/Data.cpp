@@ -11,12 +11,13 @@ namespace k4n::processing::cloud{
 Data::Data(k4n::Node* node_k4n){
   //---------------------------
 
+
   //---------------------------
 }
 Data::~Data(){}
 
 //Main function
-void Data::extract_cloud(k4n::structure::Sensor* sensor){
+void Data::extract_data(k4n::structure::Sensor* sensor){
   if(check_condition(sensor) == false) return;
   //---------------------------
 
@@ -111,14 +112,14 @@ void Data::retrieve_location(k4n::structure::Sensor* sensor, int i){
 
   //Raw values
   int idx = i * 3;
-  double x = buffer_depth[idx + 0];
-  double y = buffer_depth[idx + 1];
-  double z = buffer_depth[idx + 2];
+  float x = buffer_depth[idx + 0];
+  float y = buffer_depth[idx + 1];
+  float z = buffer_depth[idx + 2];
 
   //Convert coordinate in meter and X axis oriented.
-  double x_m = -x / 1000.0f;
-  double y_m = -y / 1000.0f;
-  double z_m = z / 1000.0f;
+  float x_m = -x / 1000.0f;
+  float y_m = -y / 1000.0f;
+  float z_m = z / 1000.0f;
 
   //Compute final values
   glm::vec3 xyz = glm::vec3(z_m, x_m, y_m);
