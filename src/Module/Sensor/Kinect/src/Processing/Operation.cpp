@@ -48,15 +48,14 @@ void Operation::convert_uint8_to_vec_uint16(const uint8_t* input, size_t size, s
 
 //IR function
 void Operation::convert_ir_into_color(k4n::structure::Sensor* sensor){
-  k4n::structure::Data* data = &sensor->ir.data;
-  uint8_t* buffer = data->buffer;
+  uint8_t* buffer = sensor->ir.data.buffer;
   uint16_t level_min = sensor->ir.config.level_min;
   uint16_t level_max = sensor->ir.config.level_max;
   //---------------------------
 
-  std::vector<uint8_t> output = std::vector<uint8_t>(data->size * 4, 0);
+  std::vector<uint8_t> output = std::vector<uint8_t>(sensor->ir.data.size * 4, 0);
 
-  for(int i=0, j=0; i<data->size; i+=2, j+=4){
+  for(int i=0, j=0; i<sensor->ir.data.size; i+=2, j+=4){
     // Extract the 16-bit infrared value
     float ir = static_cast<uint16_t>(buffer[i]) | (static_cast<uint16_t>(buffer[i + 1]) << 8);
 
@@ -96,15 +95,14 @@ void Operation::find_ir_level(k4n::structure::Sensor* sensor){
 
 //Depth function
 void Operation::convert_depth_into_color(k4n::structure::Sensor* sensor){
-  k4n::structure::Data* data = &sensor->depth.data;
-  uint8_t* inputBuffer = data->buffer;
+  uint8_t* inputBuffer = sensor->depth.data.buffer;
   uint16_t range_min = sensor->depth.config.range_min;
   uint16_t range_max = sensor->depth.config.range_max;
   //---------------------------
 
-  std::vector<uint8_t> output = std::vector<uint8_t>(data->size * 4, 0);
+  std::vector<uint8_t> output = std::vector<uint8_t>(sensor->depth.data.size * 4, 0);
 
-  for(int i=0, j=0; i<data->size; i+=2, j+=4){
+  for(int i=0, j=0; i<sensor->depth.data.size; i+=2, j+=4){
     uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
 
     float R = 0.0f;
@@ -191,7 +189,7 @@ void Operation::make_normal_from_depth_image(k4n::structure::Sensor* sensor){
     }
   }
 
-data->Nxyz = Nxyz;
+  data->Nxyz = Nxyz;
 
 /*
   for(int x = 0; x < depth.rows; ++x)

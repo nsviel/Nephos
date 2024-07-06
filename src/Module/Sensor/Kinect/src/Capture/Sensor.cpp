@@ -13,7 +13,7 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
 
   dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
 
-  this->k4n_image = new k4n::processing::Image(node_k4n);
+  this->k4n_image = new k4n::processing::image::Thread(node_k4n);
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->gui_capture = new k4n::gui::Capture(node_k4n);
   this->dyn_sensor = node_dynamic->get_dyn_sensor();

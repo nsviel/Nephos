@@ -22,6 +22,7 @@ Data::Data(k4n::Node* node_k4n){
   this->k4n_format = new k4n::processing::image::Format(node_k4n);
   this->dat_image = node_data->get_dat_image();
   this->k4n_transformation = new k4n::processing::image::Transformation(node_k4n);
+  this->k4n_color = new k4n::processing::image::Color(node_k4n);
 
   //---------------------------
 }
@@ -41,7 +42,7 @@ void Data::find_data_from_capture(k4n::structure::Sensor* sensor){
 
   //Color data
   tasker->task_begin("color");
-  this->find_data_color(sensor);
+  k4n_color->find_data_color(sensor);
   tasker->task_end("color");
 
   //Infrared data
@@ -87,39 +88,6 @@ void Data::find_data_depth(k4n::structure::Sensor* sensor){
   sensor->depth.image.type = utl::media::DEPTH;
   sensor->depth.image.timestamp = sensor->depth.data.timestamp;
   dat_image->add_image(sensor, &sensor->depth.image);
-
-  //---------------------------
-}
-void Data::find_data_color(k4n::structure::Sensor* sensor){
-  //---------------------------
-
-  //Get k4a image
-  k4a::image color = sensor->device.capture->get_color_image();
-  if(!color.is_valid()) return;
-
-  //Data
-  sensor->color.data.name = "color";
-  sensor->color.data.k4a_image = color;
-  sensor->color.data.size = color.get_size();
-  sensor->color.data.width = color.get_width_pixels();
-  sensor->color.data.height = color.get_height_pixels();
-  sensor->color.data.buffer = color.get_buffer();
-  sensor->color.data.format = k4n_format->retrieve_format_from_k4a(color.get_format());
-  sensor->color.data.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
-
-  //Image
-  sensor->color.image.name = "Color";
-  sensor->color.image.data = std::vector<uint8_t>(sensor->color.data.buffer, sensor->color.data.buffer + sensor->color.data.size);
-  sensor->color.image.size = sensor->color.image.data.size();
-  sensor->color.image.width = sensor->color.data.width;
-  sensor->color.image.height = sensor->color.data.height;
-  sensor->color.image.format = sensor->color.data.format;
-  sensor->color.image.type = utl::media::COLOR;
-  sensor->color.image.timestamp = sensor->color.data.timestamp;
-  dat_image->add_image(sensor, &sensor->color.image);
-
-  //Current timestamp
-  sensor->timestamp.current = sensor->color.data.timestamp;
 
   //---------------------------
 }

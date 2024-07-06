@@ -13,6 +13,7 @@ namespace k4n::processing{class Cloud;}
 namespace k4n::processing{class Operation;}
 namespace k4n::processing::image{class Transformation;}
 namespace k4n::processing::image{class Format;}
+namespace k4n::processing::image{class Color;}
 namespace utl::thread{class Pool;}
 namespace dyn::image{class Operation;}
 namespace dat::element{class Image;}
@@ -33,7 +34,6 @@ public:
 
   //Subfunction
   void find_data_depth(k4n::structure::Sensor* sensor);
-  void find_data_color(k4n::structure::Sensor* sensor);
   void find_data_ir(k4n::structure::Sensor* sensor);
   void find_data_cloud(k4n::structure::Sensor* sensor);
 
@@ -44,6 +44,7 @@ private:
   k4n::processing::image::Format* k4n_format;
   dat::element::Image* dat_image;
   k4n::processing::image::Transformation* k4n_transformation;
+  k4n::processing::image::Color* k4n_color;
 };
 
 }
