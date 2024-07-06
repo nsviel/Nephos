@@ -61,7 +61,7 @@ void Thread::wait_thread(){
 
 //Subfunction
 void Thread::extract_data(k4n::structure::Sensor* sensor){
-  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::data");
+  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::image");
   //---------------------------
 
   tasker->loop();

@@ -1,10 +1,12 @@
 #pragma once
 
+#include <Utility/Base/Data/Data.h>
 #include <glm/glm.hpp>
 #include <vector>
 
 namespace k4n{class Node;}
 namespace k4n::structure{class Sensor;}
+namespace utl::base{class Data;}
 
 
 namespace k4n::processing::cloud{
@@ -20,7 +22,7 @@ public:
   //Main function
   void convert_image_into_cloud(k4n::structure::Sensor* sensor);
 
-  
+
   void convertion_init(k4n::structure::Sensor* sensor);
   void convertion_data(k4n::structure::Sensor* sensor);
   void convertion_transfer(k4n::structure::Sensor* sensor);
@@ -34,13 +36,13 @@ public:
   bool check_condition(k4n::structure::Sensor* sensor);
 
 private:
-  std::vector<glm::vec3> vec_xyz;
+  utl::base::Data buffer_data;
+
   std::vector<glm::vec3> vec_rgb;
   std::vector<glm::vec4> vec_rgba;
   std::vector<float> vec_ir;
   std::vector<float> vec_r;
 
-  glm::vec3 xyz;
   glm::vec3 rgb;
   float ir;
   float R;

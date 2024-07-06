@@ -20,14 +20,24 @@ void Data::convert_image_into_cloud(k4n::structure::Sensor* sensor){
   if(check_condition(sensor) == false) return;
   //---------------------------
 
-  //prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("cloud");
-  //tasker->loop_begin();
+  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::cloud");
 
+  tasker->loop();
+
+  //init
+  tasker->task_begin("init");
   this->convertion_init(sensor);
-  this->convertion_data(sensor);
-  this->convertion_transfer(sensor);
+  tasker->task_end("init");
 
-  //tasker->loop_end();
+  //Extraction
+  tasker->task_begin("extraction");
+  this->convertion_data(sensor);
+  tasker->task_end("extraction");
+
+  //Transfer
+  tasker->task_begin("transfer");
+  this->convertion_transfer(sensor);
+  tasker->task_end("transfer");
 
   //---------------------------
 }
@@ -37,19 +47,15 @@ void Data::convertion_init(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Depth transformation
-  //tasker->task_begin("transformation");
   this->retrieve_cloud(sensor);
-  //tasker->task_end("transformation");
 
   //Resize vectors
-  //tasker->task_begin("reserve");
   int size = sensor->depth.cloud.size;
-  vec_xyz.clear(); vec_xyz.reserve(size);
+  buffer_data.xyz.clear(); buffer_data.xyz.reserve(size);
   vec_rgb.clear(); vec_rgb.reserve(size);
   vec_rgba.clear(); vec_rgba.reserve(size);
   vec_ir.clear(); vec_ir.reserve(size);
   vec_r.clear(); vec_r.reserve(size);
-  //tasker->task_end("reserve");
 
   //---------------------------
 }
@@ -57,7 +63,6 @@ void Data::convertion_data(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Fille vector with data
-  //tasker->task_begin("data");
   #pragma omp parallel for
   for(int i=0; i<sensor->depth.cloud.size; i++){
     this->retrieve_location(sensor, i);
@@ -65,7 +70,6 @@ void Data::convertion_data(k4n::structure::Sensor* sensor){
     this->retrieve_ir(sensor, i);
     this->insert_data(i);
   }
-  //tasker->task_end("data");
 
   //---------------------------
 }
@@ -75,17 +79,15 @@ void Data::convertion_transfer(k4n::structure::Sensor* sensor){
   //---------------------------
 
   //Cloud data copy
-  //tasker->task_begin("copying");
-  data->xyz = vec_xyz;
+  data->xyz = buffer_data.xyz;
   data->rgb = vec_rgb;
   data->Is = vec_ir;
   data->R = vec_r;
 
-  data->size = vec_xyz.size();
+  data->size = buffer_data.xyz.size();
   data->width = sensor->depth.cloud.width;
   data->height = sensor->depth.cloud.height;
   sensor->device.idx_cloud++;
-  //tasker->task_end("copying");
 
   //---------------------------
 }
@@ -117,9 +119,9 @@ void Data::retrieve_location(k4n::structure::Sensor* sensor, int i){
   double x_m = -x / 1000.0f;
   double y_m = -y / 1000.0f;
   double z_m = z / 1000.0f;
-  this->xyz = glm::vec3(z_m, x_m, y_m);
+  glm::vec3 xyz = glm::vec3(z_m, x_m, y_m);
 
-  //Range calculation
+  buffer_data.xyz.push_back(xyz);
   this->R = math::distance_from_origin(xyz);
 
   //---------------------------
@@ -150,7 +152,6 @@ void Data::retrieve_ir(k4n::structure::Sensor* sensor, int i){
 void Data::insert_data(int i){
   //---------------------------
 
-  vec_xyz.push_back(xyz);
   vec_rgb.push_back(rgb);
   vec_rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
   vec_ir.push_back(ir);
