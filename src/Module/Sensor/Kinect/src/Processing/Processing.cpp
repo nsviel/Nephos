@@ -37,14 +37,12 @@ void Processing::start_thread(k4n::structure::Sensor* sensor){
 void Processing::run_thread(k4n::structure::Sensor* sensor){
   //---------------------------
 
-  //k4n_image->start_thread(sensor);
-  //k4n_cloud->start_thread(sensor);
+  this->image_processing(sensor);
+  this->cloud_processing(sensor);
 
-  k4n_image->extract_data(sensor);
-  k4n_image->run_operation(sensor);
 
-  k4n_cloud->extract_data(sensor);
-  k4n_cloud->run_operation(sensor);
+
+
 
   //---------------------------
   this->thread_idle = true;
@@ -63,6 +61,21 @@ void Processing::wait_thread(){
 }
 
 //Subfunction
+void Processing::image_processing(k4n::structure::Sensor* sensor){
+  //---------------------------
 
+  k4n_image->extract_data(sensor);
+  k4n_image->run_operation(sensor);
+
+  //---------------------------
+}
+void Processing::cloud_processing(k4n::structure::Sensor* sensor){
+  //---------------------------
+
+  k4n_cloud->extract_data(sensor);
+  k4n_cloud->run_operation(sensor);
+
+  //---------------------------
+}
 
 }
