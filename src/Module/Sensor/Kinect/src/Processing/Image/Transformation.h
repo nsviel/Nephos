@@ -22,13 +22,13 @@ public:
 
 public:
   //Main function
+  void make_transformation(k4n::structure::Sensor* sensor);
+
+  //Subfunction
   void find_depth_to_color(k4n::structure::Sensor* sensor);
   void find_depth_and_ir_to_color(k4n::structure::Sensor* sensor);
   void find_ir_to_color(k4n::structure::Sensor* sensor);
   void find_color_to_depth(k4n::structure::Sensor* sensor);
-
-  //Subfunction
-  uint8_t* retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height);
 
 private:
   k4n::Structure* k4n_struct;

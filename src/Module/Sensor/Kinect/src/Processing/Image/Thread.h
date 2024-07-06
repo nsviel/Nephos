@@ -29,7 +29,6 @@ public:
 
   //Subfunction
   void find_data_from_capture(k4n::structure::Sensor* device);
-  void find_data_cloud(k4n::structure::Sensor* sensor);
 
 private:
   k4n::Structure* k4n_struct;

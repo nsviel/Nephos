@@ -92,32 +92,8 @@ void Thread::find_data_from_capture(k4n::structure::Sensor* sensor){
 
   //Cloud data
   tasker->task_begin("transformation");
-  this->find_data_cloud(sensor);
+  k4n_transformation->make_transformation(sensor);
   tasker->task_end("transformation");
-
-  //---------------------------
-}
-void Thread::find_data_cloud(k4n::structure::Sensor* sensor){
-  sensor->color.cloud = {};
-  sensor->ir.cloud = {};
-  sensor->depth.cloud = {};
-  //---------------------------
-
-  switch(k4n_struct->config.depth.transformation_mode){
-    case k4n::depth::DEPTH_TO_COLOR:{
-      k4n_transformation->find_depth_and_ir_to_color(sensor);
-      sensor->color.cloud = sensor->color.data;
-      sensor->depth.cloud.calibration_type = K4A_CALIBRATION_TYPE_COLOR;
-      break;
-    }
-    case k4n::depth::COLOR_TO_DEPTH:{
-      k4n_transformation->find_color_to_depth(sensor);
-      sensor->depth.cloud = sensor->depth.data;
-      sensor->ir.cloud = sensor->ir.data;
-      sensor->depth.cloud.calibration_type = K4A_CALIBRATION_TYPE_DEPTH;
-      break;
-    }
-  }
 
   //---------------------------
 }

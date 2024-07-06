@@ -20,6 +20,32 @@ Transformation::Transformation(k4n::Node* node_k4n){
 Transformation::~Transformation(){}
 
 //Main function
+void Transformation::make_transformation(k4n::structure::Sensor* sensor){
+  sensor->color.cloud = {};
+  sensor->ir.cloud = {};
+  sensor->depth.cloud = {};
+  //---------------------------
+
+  switch(k4n_struct->config.depth.transformation_mode){
+    case k4n::depth::DEPTH_TO_COLOR:{
+      this->find_depth_and_ir_to_color(sensor);
+      sensor->color.cloud = sensor->color.data;
+      sensor->depth.cloud.calibration_type = K4A_CALIBRATION_TYPE_COLOR;
+      break;
+    }
+    case k4n::depth::COLOR_TO_DEPTH:{
+      this->find_color_to_depth(sensor);
+      sensor->depth.cloud = sensor->depth.data;
+      sensor->ir.cloud = sensor->ir.data;
+      sensor->depth.cloud.calibration_type = K4A_CALIBRATION_TYPE_DEPTH;
+      break;
+    }
+  }
+
+  //---------------------------
+}
+
+//Subfunction
 void Transformation::find_depth_to_color(k4n::structure::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
@@ -138,7 +164,7 @@ void Transformation::find_color_to_depth(k4n::structure::Sensor* sensor){
   //---------------------------
 
   if(sensor->color.data.format == "YUY2"){
-    sensor->color.data.k4a_image = k4a::image::create_from_buffer(
+    /*sensor->color.data.k4a_image = k4a::image::create_from_buffer(
       K4A_IMAGE_FORMAT_COLOR_BGRA32,
       sensor->ir.data.width,
       sensor->ir.data.height,
@@ -147,7 +173,7 @@ void Transformation::find_color_to_depth(k4n::structure::Sensor* sensor){
       sensor->ir.data.width * sensor->ir.data.height * 3,
       nullptr,
       nullptr);
-    sensor->color.data.format = "B8G8R8A8_SRGB";
+    sensor->color.data.format = "B8G8R8A8_SRGB";*/
   }
 
   //Convert it into a depth POV representation
@@ -169,43 +195,7 @@ void Transformation::find_color_to_depth(k4n::structure::Sensor* sensor){
 }
 
 //Subfunction
-uint8_t* Transformation::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height){
-  uint8_t* bgrImage = new uint8_t[width * height * 3];
-  //---------------------------
 
-  for(int i = 0; i < width * height; i += 2){
-    uint8_t y0 = yuy2Image[2 * i];
-    uint8_t u = yuy2Image[2 * i + 1];
-    uint8_t y1 = yuy2Image[2 * i + 2];
-    uint8_t v = yuy2Image[2 * i + 3];
-
-    // Convert YUV to RGB
-    int c = y0 - 16;
-    int d = u - 128;
-    int e = v - 128;
-
-    int r0 = (298 * c + 409 * e + 128) >> 8;
-    int g0 = (298 * c - 100 * d - 208 * e + 128) >> 8;
-    int b0 = (298 * c + 516 * d + 128) >> 8;
-
-    c = y1 - 16;
-
-    int r1 = (298 * c + 409 * e + 128) >> 8;
-    int g1 = (298 * c - 100 * d - 208 * e + 128) >> 8;
-    int b1 = (298 * c + 516 * d + 128) >> 8;
-
-    // Store BGR values
-    bgrImage[3 * i] = static_cast<uint8_t>(std::max(0, std::min(255, b0)));
-    bgrImage[3 * i + 1] = static_cast<uint8_t>(std::max(0, std::min(255, g0)));
-    bgrImage[3 * i + 2] = static_cast<uint8_t>(std::max(0, std::min(255, r0)));
-    bgrImage[3 * i + 3] = static_cast<uint8_t>(std::max(0, std::min(255, b1)));
-    bgrImage[3 * i + 4] = static_cast<uint8_t>(std::max(0, std::min(255, g1)));
-    bgrImage[3 * i + 5] = static_cast<uint8_t>(std::max(0, std::min(255, r1)));
-  }
-
-  //---------------------------
-  return bgrImage;
-}
 
 
 }
