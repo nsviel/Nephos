@@ -7,7 +7,7 @@
 #include <Data/Namespace.h>
 
 
-namespace k4n::processing{
+namespace k4n::processing::image{
 
 //Constructor / Destructor
 Transformation::Transformation(k4n::Node* node_k4n){
@@ -176,27 +176,6 @@ void Transformation::find_color_to_depth(k4n::structure::Sensor* sensor){
 }
 
 //Subfunction
-void Transformation::retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data){
-  //---------------------------
-
-  int width = image.get_width_pixels();
-  int height = image.get_height_pixels();
-  int size = image.get_size();
-  uint8_t* mpeg = image.get_buffer();
-  std::vector<uint8_t> bgra(width * height * tjPixelSize[TJPF_RGBA]);
-  int flags = TJFLAG_FASTDCT | TJFLAG_FASTUPSAMPLE;
-
-  int ret = tjDecompress2(tj_handle, &mpeg[0], size, bgra.data(), width, 0, height, TJPF_RGBA, flags);
-  if(ret != 0){
-    std::cout<<"[error] MPEG convertion error"<<std::endl;
-  }
-  data = bgra;
-
-  //Creat a new k4a image with RGBA data format
-  image = k4a::image::create_from_buffer(K4A_IMAGE_FORMAT_COLOR_BGRA32, width, height, width * 4, data.data(), data.size(), nullptr, nullptr);
-
-  //---------------------------
-}
 uint8_t* Transformation::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height){
   uint8_t* bgrImage = new uint8_t[width * height * 3];
   //---------------------------

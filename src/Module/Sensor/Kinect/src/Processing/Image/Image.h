@@ -11,6 +11,7 @@ namespace k4n{class Structure;}
 namespace k4n::structure{class Sensor;}
 namespace k4n::processing{class Cloud;}
 namespace k4n::processing{class Operation;}
+namespace k4n::processing::image{class Transformation;}
 namespace utl::thread{class Pool;}
 namespace dyn::image{class Operation;}
 namespace dat::element{class Image;}
@@ -38,17 +39,10 @@ public:
   void find_data_ir(k4n::structure::Sensor* sensor);
   void find_data_cloud(k4n::structure::Sensor* sensor);
 
-  //Transformed data
-  void find_depth_to_color(k4n::structure::Sensor* sensor);
-  void find_depth_and_ir_to_color(k4n::structure::Sensor* sensor);
-  void find_ir_to_color(k4n::structure::Sensor* sensor);
-  void find_color_to_depth(k4n::structure::Sensor* sensor);
-
   //Subfunction
   std::string retrieve_format_from_k4a(k4a_image_format_t color_format);
   void retrieve_data_from_capture(k4a::image& image, std::vector<uint8_t>& data, std::string& format);
   void retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data);
-  uint8_t* retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height);
 
 private:
   k4n::Structure* k4n_struct;
@@ -57,6 +51,7 @@ private:
   utl::thread::Pool* thread_pool;
   dyn::image::Operation* dyn_operation;
   dat::element::Image* dat_image;
+  k4n::processing::image::Transformation* k4n_transformation;
 
   tjhandle tj_handle;
   bool thread_idle = true;

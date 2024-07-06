@@ -11,7 +11,7 @@ namespace k4n{class Structure;}
 namespace k4n::structure{class Sensor;}
 
 
-namespace k4n::processing{
+namespace k4n::processing::image{
 
 class Transformation
 {
@@ -28,7 +28,6 @@ public:
   void find_color_to_depth(k4n::structure::Sensor* sensor);
 
   //Subfunction
-  void retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data);
   uint8_t* retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height);
 
 private:
