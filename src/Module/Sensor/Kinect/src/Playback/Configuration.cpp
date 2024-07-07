@@ -32,6 +32,7 @@ void Configuration::find_configuration(k4n::playback::Sensor* sensor){
 
   //Depth
   sensor->depth.config.mode_str = find_mode_depth(configuration.depth_mode);
+  sensor->depth.config.resolution = find_resolution_depth(configuration.depth_mode);
   sensor->depth.config.enabled = configuration.depth_track_enabled;
   sensor->depth.config.mode = configuration.depth_mode;
   sensor->playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor->depth.config.firmware_version);
@@ -136,6 +137,40 @@ std::string Configuration::find_mode_depth(int mode){
     }
     case K4A_DEPTH_MODE_PASSIVE_IR:{
       mode_str = "Passive IR";
+      break;
+    }
+  }
+
+  //---------------------------
+  return mode_str;
+}
+std::string Configuration::find_resolution_depth(int mode){
+  std::string mode_str = "";
+  //---------------------------
+
+  switch(mode){
+    case K4A_DEPTH_MODE_OFF:{
+      mode_str = "";
+      break;
+    }
+    case K4A_DEPTH_MODE_NFOV_2X2BINNED:{
+      mode_str = "320x288";
+      break;
+    }
+    case K4A_DEPTH_MODE_NFOV_UNBINNED:{
+      mode_str = "640x576";
+      break;
+    }
+    case K4A_DEPTH_MODE_WFOV_2X2BINNED:{
+      mode_str = "512x512";
+      break;
+    }
+    case K4A_DEPTH_MODE_WFOV_UNBINNED:{
+      mode_str = "1024x1024";
+      break;
+    }
+    case K4A_DEPTH_MODE_PASSIVE_IR:{
+      mode_str = "1024x1024";
       break;
     }
   }

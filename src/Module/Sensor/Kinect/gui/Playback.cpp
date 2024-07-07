@@ -148,8 +148,8 @@ void Playback::show_info_depth(k4n::playback::Sensor* sensor){
   ImGui::TextColored(color, "%s", sensor->depth.config.enabled ? "Yes" : "No");
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("IR enabled"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->ir.config.enabled ? "Yes" : "No");
+  ImGui::Text("Depth resolution"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%s", sensor->depth.config.resolution.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth mode"); ImGui::TableNextColumn();
@@ -158,6 +158,10 @@ void Playback::show_info_depth(k4n::playback::Sensor* sensor){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
   ImGui::TextColored(color, "%s", sensor->depth.config.firmware_version.c_str());
+
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("IR enabled"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%s", sensor->ir.config.enabled ? "Yes" : "No");
 
   ImGui::EndTable();
 

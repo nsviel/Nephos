@@ -25,6 +25,7 @@ public:
   std::string find_mode_fps(int mode);
   std::string find_mode_synchro(int mode);
   std::string find_mode_depth(int mode);
+  std::string find_resolution_depth(int mode);
   std::string find_mode_color_resolution(int mode);
   std::string find_mode_color_format(int mode);
 

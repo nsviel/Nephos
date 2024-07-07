@@ -163,19 +163,6 @@ void Transformation::find_color_to_depth(k4n::structure::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 
-  if(sensor->color.data.format == "YUY2"){
-    /*sensor->color.data.k4a_image = k4a::image::create_from_buffer(
-      K4A_IMAGE_FORMAT_COLOR_BGRA32,
-      sensor->ir.data.width,
-      sensor->ir.data.height,
-      sensor->ir.data.width * static_cast<int>(sizeof(uint32_t)),
-      retrieve_bgra_from_yuy2(sensor->color.data.buffer, sensor->ir.data.width, sensor->ir.data.height),
-      sensor->ir.data.width * sensor->ir.data.height * 3,
-      nullptr,
-      nullptr);
-    sensor->color.data.format = "B8G8R8A8_SRGB";*/
-  }
-
   //Convert it into a depth POV representation
   k4a::image color_to_depth = sensor->device.transformation.color_image_to_depth_camera(sensor->depth.data.k4a_image, sensor->color.data.k4a_image);
   if(!color_to_depth.is_valid()) return;

@@ -26,6 +26,8 @@ void Data::extract_data(k4n::structure::Sensor* sensor){
 
   tasker->loop();
 
+  k4n_xytable->retrieve_table_xy(sensor);
+
   //init
   tasker->task_begin("init");
   this->extraction_init(sensor);
@@ -40,8 +42,6 @@ void Data::extract_data(k4n::structure::Sensor* sensor){
   tasker->task_begin("transfer");
   this->extraction_transfer(sensor);
   tasker->task_end("transfer");
-
-  k4n_xytable->retrieve_table_xy(sensor);
 
   //---------------------------
 }

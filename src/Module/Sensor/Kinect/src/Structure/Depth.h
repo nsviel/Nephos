@@ -16,16 +16,13 @@ enum Mode{
 struct Configuration{
   //---------------------------
 
-  bool enabled = true;
-
+  k4a_depth_mode_t mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
   std::string mode_str = "";
   std::string firmware_version = "";
-
-  k4a_depth_mode_t mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
-
+  std::string resolution = "";
   uint16_t range_min = 500;
   uint16_t range_max = 4000;
-
+  bool enabled = true;
   int transformation_mode = k4n::depth::COLOR_TO_DEPTH;
 
   //---------------------------

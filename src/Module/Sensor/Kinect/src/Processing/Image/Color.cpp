@@ -132,6 +132,19 @@ uint8_t* Color::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int
   uint8_t* bgrImage = new uint8_t[width * height * 3];
   //---------------------------
 
+  /*if(sensor->color.data.format == "YUY2"){
+    sensor->color.data.k4a_image = k4a::image::create_from_buffer(
+      K4A_IMAGE_FORMAT_COLOR_BGRA32,
+      sensor->ir.data.width,
+      sensor->ir.data.height,
+      sensor->ir.data.width * static_cast<int>(sizeof(uint32_t)),
+      retrieve_bgra_from_yuy2(sensor->color.data.buffer, sensor->ir.data.width, sensor->ir.data.height),
+      sensor->ir.data.width * sensor->ir.data.height * 3,
+      nullptr,
+      nullptr);
+    sensor->color.data.format = "B8G8R8A8_SRGB";
+  }*/
+
   for(int i = 0; i < width * height; i += 2){
     uint8_t y0 = yuy2Image[2 * i];
     uint8_t u = yuy2Image[2 * i + 1];

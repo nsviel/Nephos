@@ -18,7 +18,7 @@ XY_table::~XY_table(){}
 //Main function
 void XY_table::retrieve_table_xy(k4n::structure::Sensor* sensor){
   //---------------------------
-/*
+
   //Create full 1 value image
   std::vector<uint8_t> vec_2;
   for(size_t i=0; i<sensor->depth.data.size; i++){
@@ -42,8 +42,9 @@ void XY_table::retrieve_table_xy(k4n::structure::Sensor* sensor){
     sensor->depth.data.height,
     sensor->depth.data.width * sizeof(int16_t) * 3
   );
-  sensor->device.transformation.depth_image_to_point_cloud(image_full_1, K4A_CALIBRATION_TYPE_DEPTH, &table_xy);
+  //sensor->device.transformation.depth_image_to_point_cloud(image_full_1, K4A_CALIBRATION_TYPE_DEPTH, &table_xy);
 
+  /*
   //Convert buffer to vector of uint16_t
   int size = table_xy.get_size() / (3 * sizeof(int16_t));
 
@@ -57,25 +58,22 @@ void XY_table::retrieve_table_xy(k4n::structure::Sensor* sensor){
     float y = buffer_depth[idx + 1];
     float z = buffer_depth[idx + 2];
 
-    //Convert coordinate in meter and X axis oriented.
-    float x_m = -x / 1000.0f;
-    float y_m = -y / 1000.0f;
-    float z_m = z / 1000.0f;
-
     //Compute final values
-    glm::vec3 xyz = glm::vec3(z_m, x_m, y_m);
+    glm::vec3 xyz = glm::vec3(x, y, z);
 
     say("----");
     say(xyz);
-  }
+  }*/
 
+  k4a::image color_to_depth = sensor->device.transformation.color_image_to_depth_camera(image_full_1, sensor->color.data.k4a_image);
+  if(!color_to_depth.is_valid()) return;
 
-
-*/
-
+  say(sensor->color.data.k4a_image.get_size());
+  say(color_to_depth.get_size());
 
   //---------------------------
 }
+
 
 
 }
