@@ -26,7 +26,7 @@ void Data::extract_data(k4n::structure::Sensor* sensor){
 
   tasker->loop();
 
-  k4n_xytable->retrieve_table_xy(sensor);
+  //k4n_xytable->retrieve_table_xy(sensor);
 
   //init
   tasker->task_begin("init");
@@ -70,7 +70,7 @@ void Data::extraction_init(k4n::structure::Sensor* sensor){
   );
 
   //Transform depth into cloud
-  sensor->device.transformation.depth_image_to_point_cloud(sensor->depth.cloud.k4a_image, sensor->depth.cloud.calibration_type, &cloud_image);
+  sensor->device.transformation.depth_image_to_point_cloud(sensor->depth.cloud.k4a_image, sensor->cloud.calibration_type, &cloud_image);
   sensor->depth.cloud.buffer = cloud_image.get_buffer();
   sensor->depth.cloud.size = cloud_image.get_size() / (3 * sizeof(int16_t));
 

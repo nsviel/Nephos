@@ -16,11 +16,10 @@ struct Data{
 
   //Sensor field data
   k4a::image k4a_image;
+  uint8_t* buffer = nullptr;
   int width = 0;
   int height = 0;
   int size = 0;
-  uint8_t* buffer = nullptr;
-  k4a_calibration_type_t calibration_type;
 
   //Specific sensor field info
   float fps = 0;
