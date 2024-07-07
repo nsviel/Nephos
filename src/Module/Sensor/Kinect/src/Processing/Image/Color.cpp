@@ -78,16 +78,27 @@ std::string Color::retrieve_format(k4a_image_format_t color_format){
   std::string format = "";
   //---------------------------
 
-  if(color_format == K4A_IMAGE_FORMAT_COLOR_MJPG){
-    format = "MJPEG";
-  }else if(color_format == K4A_IMAGE_FORMAT_COLOR_NV12){
-    format = "NV12";
-  }else if(color_format == K4A_IMAGE_FORMAT_COLOR_YUY2){
-    format = "YUY2";
-  }else if(color_format == K4A_IMAGE_FORMAT_COLOR_BGRA32){
-    format = "B8G8R8A8_SRGB";
-  }else{
-    std::cout<<"[error] kinect color image format"<<std::endl;
+  switch(color_format){
+    case K4A_IMAGE_FORMAT_COLOR_MJPG:{
+      format = "MJPEG";
+      break;
+    }
+    case K4A_IMAGE_FORMAT_COLOR_NV12:{
+      format = "NV12";
+      break;
+    }
+    case K4A_IMAGE_FORMAT_COLOR_YUY2:{
+      format = "YUY2";
+      break;
+    }
+    case K4A_IMAGE_FORMAT_COLOR_BGRA32:{
+      format = "B8G8R8A8_SRGB";
+      break;
+    }
+    default:{
+      std::cout<<"[error] kinect color image format"<<std::endl;
+      break;
+    }
   }
 
   //---------------------------

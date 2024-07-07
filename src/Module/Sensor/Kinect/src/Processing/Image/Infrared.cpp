@@ -76,16 +76,23 @@ std::string Infrared::retrieve_format(k4a_image_format_t color_format){
   std::string format = "";
   //---------------------------
 
-  if(color_format == K4A_IMAGE_FORMAT_DEPTH16){
-    format = "DEPTH16";
-  }else if(color_format == K4A_IMAGE_FORMAT_IR16){
-    format = "IR16";
-  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM8){
-    format = "CUSTOM8";
-  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM16){
-    format = "CUSTOM16";
-  }else{
-    std::cout<<"[error] kinect infrared image format"<<std::endl;
+  switch(color_format){
+    case K4A_IMAGE_FORMAT_IR16:{
+      format = "IR16";
+      break;
+    }
+    case K4A_IMAGE_FORMAT_CUSTOM8:{
+      format = "CUSTOM8";
+      break;
+    }
+    case K4A_IMAGE_FORMAT_CUSTOM16:{
+      format = "CUSTOM16";
+      break;
+    }
+    default:{
+      std::cout<<"[error] kinect infrared image format"<<std::endl;
+      break;
+    }
   }
 
   //---------------------------

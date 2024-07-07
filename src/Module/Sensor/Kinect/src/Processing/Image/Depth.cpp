@@ -75,6 +75,32 @@ void Depth::retrieve_image(k4n::structure::Sensor* sensor){
 }
 
 //Subfunction
+std::string Depth::retrieve_format(k4a_image_format_t color_format){
+  std::string format = "";
+  //---------------------------
+
+  switch(color_format){
+    case K4A_IMAGE_FORMAT_DEPTH16:{
+      format = "DEPTH16";
+      break;
+    }
+    case K4A_IMAGE_FORMAT_CUSTOM8:{
+      format = "CUSTOM8";
+      break;
+    }
+    case K4A_IMAGE_FORMAT_CUSTOM16:{
+      format = "CUSTOM16";
+      break;
+    }
+    default:{
+      std::cout<<"[error] kinect depth image format"<<std::endl;
+      break;
+    }
+  }
+
+  //---------------------------
+  return format;
+}
 void Depth::convert_image_into_color(k4n::structure::Sensor* sensor, std::vector<uint8_t>& buffer){
   uint8_t* inputBuffer = sensor->depth.data.buffer;
   uint16_t range_min = sensor->depth.config.range_min;
@@ -110,43 +136,30 @@ void Depth::convert_image_into_color(k4n::structure::Sensor* sensor, std::vector
 
   //---------------------------
 }
-std::string Depth::retrieve_format(k4a_image_format_t color_format){
-  std::string format = "";
-  //---------------------------
-
-  if(color_format == K4A_IMAGE_FORMAT_DEPTH16){
-    format = "DEPTH16";
-  }else if(color_format == K4A_IMAGE_FORMAT_IR16){
-    format = "IR16";
-  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM8){
-    format = "CUSTOM8";
-  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM16){
-    format = "CUSTOM16";
-  }else{
-    std::cout<<"[error] kinect depth image format"<<std::endl;
-  }
-
-  //---------------------------
-  return format;
-}
 void Depth::find_depth_mode_range(k4n::structure::Sensor* sensor){
   //---------------------------
 
-  if(sensor->depth.config.mode == K4A_DEPTH_MODE_NFOV_2X2BINNED){
-    sensor->depth.config.range_min = 500;
-    sensor->depth.config.range_max = 5800;
-  }
-  else if(sensor->depth.config.mode == K4A_DEPTH_MODE_NFOV_UNBINNED){
-    sensor->depth.config.range_min = 500;
-    sensor->depth.config.range_max = 4000;
-  }
-  else if(sensor->depth.config.mode == K4A_DEPTH_MODE_WFOV_2X2BINNED){
-    sensor->depth.config.range_min = 250;
-    sensor->depth.config.range_max = 3000;
-  }
-  else if(sensor->depth.config.mode == K4A_DEPTH_MODE_WFOV_UNBINNED){
-    sensor->depth.config.range_min = 250;
-    sensor->depth.config.range_max = 2500;
+  switch(sensor->depth.config.mode){
+    case K4A_DEPTH_MODE_NFOV_2X2BINNED:{
+      sensor->depth.config.range_min = 500;
+      sensor->depth.config.range_max = 5800;
+      break;
+    }
+    case K4A_DEPTH_MODE_NFOV_UNBINNED:{
+      sensor->depth.config.range_min = 500;
+      sensor->depth.config.range_max = 4000;
+      break;
+    }
+    case K4A_DEPTH_MODE_WFOV_2X2BINNED:{
+      sensor->depth.config.range_min = 250;
+      sensor->depth.config.range_max = 3000;
+      break;
+    }
+    case K4A_DEPTH_MODE_WFOV_UNBINNED:{
+      sensor->depth.config.range_min = 250;
+      sensor->depth.config.range_max = 2500;
+      break;
+    }
   }
 
   //---------------------------
