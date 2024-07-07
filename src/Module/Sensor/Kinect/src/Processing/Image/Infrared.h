@@ -21,11 +21,13 @@ public:
   //Main function
   void extract_data(k4n::structure::Sensor* sensor);
 
-  //Subfunction
+  //Data function
   void retrieve_data(k4n::structure::Sensor* sensor);
   void retrieve_image(k4n::structure::Sensor* sensor);
-  void convert_image_into_color(k4n::structure::Sensor* sensor);
+
+  //Subfunction
   std::string retrieve_format(k4a_image_format_t color_format);
+  void convert_image_into_color(k4n::structure::Sensor* sensor);
   void find_ir_level(k4n::structure::Sensor* sensor);
 
 private:

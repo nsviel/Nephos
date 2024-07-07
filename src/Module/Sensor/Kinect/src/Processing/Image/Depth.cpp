@@ -31,7 +31,7 @@ void Depth::extract_data(k4n::structure::Sensor* sensor){
   //---------------------------
 }
 
-//Subfunction
+//Data function
 void Depth::retrieve_data(k4n::structure::Sensor* sensor){
   //---------------------------
 
@@ -56,10 +56,14 @@ void Depth::retrieve_data(k4n::structure::Sensor* sensor){
 void Depth::retrieve_image(k4n::structure::Sensor* sensor){
   //---------------------------
 
+  //Colorization
+  std::vector<uint8_t> buffer;
+  this->convert_image_into_color(sensor, buffer);
+
   //Image
-  this->convert_image_into_color(sensor);
   sensor->depth.image.name = "Depth";
-  sensor->depth.image.size = sensor->depth.image.data.size();
+  sensor->depth.image.data = buffer;
+  sensor->depth.image.size = buffer.size();
   sensor->depth.image.width = sensor->depth.data.width;
   sensor->depth.image.height = sensor->depth.data.height;
   sensor->depth.image.format = "R8G8B8A8_SRGB";
@@ -69,13 +73,15 @@ void Depth::retrieve_image(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Depth::convert_image_into_color(k4n::structure::Sensor* sensor){
+
+//Subfunction
+void Depth::convert_image_into_color(k4n::structure::Sensor* sensor, std::vector<uint8_t>& buffer){
   uint8_t* inputBuffer = sensor->depth.data.buffer;
   uint16_t range_min = sensor->depth.config.range_min;
   uint16_t range_max = sensor->depth.config.range_max;
   //---------------------------
 
-  std::vector<uint8_t> output = std::vector<uint8_t>(sensor->depth.data.size * 4, 0);
+  buffer = std::vector<uint8_t>(sensor->depth.data.size * 4, 0);
 
   for(int i=0, j=0; i<sensor->depth.data.size; i+=2, j+=4){
     uint16_t r = *reinterpret_cast<const uint16_t*>(&inputBuffer[i]);
@@ -96,13 +102,11 @@ void Depth::convert_image_into_color(k4n::structure::Sensor* sensor){
       ImGui::ColorConvertHSVtoRGB(hue, 1.f, 1.f, R, G, B);
     }
 
-    output[j] = static_cast<uint8_t>(R * 255);
-    output[j + 1] = static_cast<uint8_t>(G * 255);
-    output[j + 2] = static_cast<uint8_t>(B * 255);
-    output[j + 3] = 255;
+    buffer[j] = static_cast<uint8_t>(R * 255);
+    buffer[j + 1] = static_cast<uint8_t>(G * 255);
+    buffer[j + 2] = static_cast<uint8_t>(B * 255);
+    buffer[j + 3] = 255;
   }
-
-  sensor->depth.image.data = output;
 
   //---------------------------
 }

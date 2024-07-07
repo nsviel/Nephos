@@ -21,14 +21,16 @@ public:
   //Main function
   void extract_data(k4n::structure::Sensor* sensor);
 
-  //Subfunction
+  //Data function
   void retrieve_data(k4n::structure::Sensor* sensor);
   void retrieve_image(k4n::structure::Sensor* sensor);
+
+  //Subfunction
   std::string retrieve_format(k4a_image_format_t color_format);
+  uint8_t* retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height);
   void retrieve_data_from_capture(k4a::image& image, std::vector<uint8_t>& data, std::string& format);
   void retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data);
-  uint8_t* retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int height);
-  
+
 private:
   dat::element::Image* dat_image;
 };

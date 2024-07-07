@@ -33,7 +33,7 @@ void Infrared::extract_data(k4n::structure::Sensor* sensor){
   //---------------------------
 }
 
-//Subfunction
+//Data function
 void Infrared::retrieve_data(k4n::structure::Sensor* sensor){
   //---------------------------
 
@@ -70,6 +70,27 @@ void Infrared::retrieve_image(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
+
+//Subfunction
+std::string Infrared::retrieve_format(k4a_image_format_t color_format){
+  std::string format = "";
+  //---------------------------
+
+  if(color_format == K4A_IMAGE_FORMAT_DEPTH16){
+    format = "DEPTH16";
+  }else if(color_format == K4A_IMAGE_FORMAT_IR16){
+    format = "IR16";
+  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM8){
+    format = "CUSTOM8";
+  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM16){
+    format = "CUSTOM16";
+  }else{
+    std::cout<<"[error] kinect infrared image format"<<std::endl;
+  }
+
+  //---------------------------
+  return format;
+}
 void Infrared::convert_image_into_color(k4n::structure::Sensor* sensor){
   uint8_t* buffer = sensor->ir.data.buffer;
   uint16_t level_min = sensor->ir.config.level_min;
@@ -100,25 +121,6 @@ void Infrared::convert_image_into_color(k4n::structure::Sensor* sensor){
   sensor->ir.image.data = output;
 
   //---------------------------
-}
-std::string Infrared::retrieve_format(k4a_image_format_t color_format){
-  std::string format = "";
-  //---------------------------
-
-  if(color_format == K4A_IMAGE_FORMAT_DEPTH16){
-    format = "DEPTH16";
-  }else if(color_format == K4A_IMAGE_FORMAT_IR16){
-    format = "IR16";
-  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM8){
-    format = "CUSTOM8";
-  }else if(color_format == K4A_IMAGE_FORMAT_CUSTOM16){
-    format = "CUSTOM16";
-  }else{
-    std::cout<<"[error] kinect infrared image format"<<std::endl;
-  }
-
-  //---------------------------
-  return format;
 }
 void Infrared::find_ir_level(k4n::structure::Sensor* sensor){
   //---------------------------
