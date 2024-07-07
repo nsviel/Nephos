@@ -21,22 +21,16 @@ Transformation::~Transformation(){}
 
 //Main function
 void Transformation::make_transformation(k4n::structure::Sensor* sensor){
-  sensor->color.cloud = {};
-  sensor->ir.cloud = {};
-  sensor->depth.cloud = {};
   //---------------------------
 
   switch(k4n_struct->config.depth.transformation_mode){
     case k4n::depth::DEPTH_TO_COLOR:{
       this->find_depth_to_color(sensor);
-      sensor->color.cloud = sensor->color.data;
       sensor->cloud.calibration_type = K4A_CALIBRATION_TYPE_COLOR;
       break;
     }
     case k4n::depth::COLOR_TO_DEPTH:{
       this->find_color_to_depth(sensor);
-      sensor->depth.cloud = sensor->depth.data;
-      sensor->ir.cloud = sensor->ir.data;
       sensor->cloud.calibration_type = K4A_CALIBRATION_TYPE_DEPTH;
       break;
     }
@@ -79,22 +73,18 @@ void Transformation::find_depth_to_color(k4n::structure::Sensor* sensor){
   if(!depth_transformed.is_valid()) return;
 
   //Depth transformed
-  sensor->depth.cloud.name = "depth_to_color";
-  sensor->depth.cloud.k4a_image = depth_transformed;
-  sensor->depth.cloud.size = depth_transformed.get_size();
-  sensor->depth.cloud.width = depth_transformed.get_width_pixels();
-  sensor->depth.cloud.height = depth_transformed.get_height_pixels();
-  sensor->depth.cloud.buffer = depth_transformed.get_buffer();
-  sensor->depth.cloud.format = sensor->depth.data.format;
+  sensor->depth.data.k4a_image = depth_transformed;
+  sensor->depth.data.size = depth_transformed.get_size();
+  sensor->depth.data.width = depth_transformed.get_width_pixels();
+  sensor->depth.data.height = depth_transformed.get_height_pixels();
+  sensor->depth.data.buffer = depth_transformed.get_buffer();
 
   //IR transformed
-  sensor->ir.cloud.name = "ir_to_color";
-  sensor->ir.cloud.k4a_image = ir_transformed;
-  sensor->ir.cloud.size = ir_transformed.get_size();
-  sensor->ir.cloud.width = ir_transformed.get_width_pixels();
-  sensor->ir.cloud.height = ir_transformed.get_height_pixels();
-  sensor->ir.cloud.buffer = ir_transformed.get_buffer();
-  sensor->ir.cloud.format = sensor->ir.data.format;
+  sensor->ir.data.k4a_image = ir_transformed;
+  sensor->ir.data.size = ir_transformed.get_size();
+  sensor->ir.data.width = ir_transformed.get_width_pixels();
+  sensor->ir.data.height = ir_transformed.get_height_pixels();
+  sensor->ir.data.buffer = ir_transformed.get_buffer();
 
   //---------------------------
 }
@@ -107,11 +97,11 @@ void Transformation::find_color_to_depth(k4n::structure::Sensor* sensor){
   if(!color_to_depth.is_valid()) return;
 
   //Fill data structure
-  sensor->color.cloud.k4a_image = color_to_depth;
-  sensor->color.cloud.size = color_to_depth.get_size();
-  sensor->color.cloud.width = color_to_depth.get_width_pixels();
-  sensor->color.cloud.height = color_to_depth.get_height_pixels();
-  sensor->color.cloud.buffer = color_to_depth.get_buffer();
+  sensor->color.data.k4a_image = color_to_depth;
+  sensor->color.data.size = color_to_depth.get_size();
+  sensor->color.data.width = color_to_depth.get_width_pixels();
+  sensor->color.data.height = color_to_depth.get_height_pixels();
+  sensor->color.data.buffer = color_to_depth.get_buffer();
 
   //---------------------------
 }

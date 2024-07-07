@@ -25,7 +25,6 @@ struct Structure{
 
   k4n::infrared::Configuration config;
   k4n::structure::Data data;
-  k4n::structure::Data cloud;
   utl::media::Image image;
 
   //---------------------------

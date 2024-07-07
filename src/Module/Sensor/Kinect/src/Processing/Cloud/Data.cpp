@@ -50,10 +50,10 @@ void Data::extract_data(k4n::structure::Sensor* sensor){
 bool Data::check_condition(k4n::structure::Sensor* sensor){
   //---------------------------
 
-  if(!sensor->depth.cloud.k4a_image.is_valid()) return false;
-  if(!sensor->ir.cloud.k4a_image.is_valid()) return false;
-  if(sensor->color.cloud.buffer == nullptr) return false;
-  if(sensor->color.cloud.size != sensor->depth.cloud.size * 2) return false;
+  if(!sensor->depth.data.k4a_image.is_valid()) return false;
+  if(!sensor->ir.data.k4a_image.is_valid()) return false;
+  if(sensor->color.data.buffer == nullptr) return false;
+  if(sensor->color.data.size != sensor->depth.data.size * 2) return false;
 
   //---------------------------
   return true;
@@ -64,21 +64,21 @@ void Data::extraction_init(k4n::structure::Sensor* sensor){
   //Create cloud image
   k4a::image cloud_image = k4a::image::create(
     K4A_IMAGE_FORMAT_CUSTOM,
-    sensor->depth.cloud.width,
-    sensor->depth.cloud.height,
-    sensor->depth.cloud.width * sizeof(int16_t) * 3
+    sensor->depth.data.width,
+    sensor->depth.data.height,
+    sensor->depth.data.width * sizeof(int16_t) * 3
   );
 
   //Transform depth into cloud
-  sensor->device.transformation.depth_image_to_point_cloud(sensor->depth.cloud.k4a_image, sensor->cloud.calibration_type, &cloud_image);
-  sensor->depth.cloud.buffer = cloud_image.get_buffer();
-  sensor->depth.cloud.size = cloud_image.get_size() / (3 * sizeof(int16_t));
+  sensor->device.transformation.depth_image_to_point_cloud(sensor->depth.data.k4a_image, sensor->cloud.calibration_type, &cloud_image);
+  sensor->depth.data.buffer = cloud_image.get_buffer();
+  sensor->depth.data.size = cloud_image.get_size() / (3 * sizeof(int16_t));
 
   //Resize vectors
-  buffer_data.xyz.resize(sensor->depth.cloud.size);
-  buffer_data.rgb.resize(sensor->depth.cloud.size);
-  buffer_data.Is.resize(sensor->depth.cloud.size);
-  buffer_data.R.resize(sensor->depth.cloud.size);
+  buffer_data.xyz.resize(sensor->depth.data.size);
+  buffer_data.rgb.resize(sensor->depth.data.size);
+  buffer_data.Is.resize(sensor->depth.data.size);
+  buffer_data.R.resize(sensor->depth.data.size);
 
   //---------------------------
 }
@@ -87,7 +87,7 @@ void Data::extraction_data(k4n::structure::Sensor* sensor){
 
   //Fille vector with data
   #pragma omp parallel for
-  for(int i=0; i<sensor->depth.cloud.size; i++){
+  for(int i=0; i<sensor->depth.data.size; i++){
     this->retrieve_location(sensor, i);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
@@ -106,16 +106,16 @@ void Data::extraction_transfer(k4n::structure::Sensor* sensor){
   data->R = buffer_data.R;
 
   //Info
-  data->size = sensor->depth.cloud.size;
-  data->width = sensor->depth.cloud.width;
-  data->height = sensor->depth.cloud.height;
+  data->size = sensor->depth.data.size;
+  data->width = sensor->depth.data.width;
+  data->height = sensor->depth.data.height;
 
   //---------------------------
 }
 
 //Data function
 void Data::retrieve_location(k4n::structure::Sensor* sensor, int i){
-  const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->depth.cloud.buffer);
+  const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->depth.data.buffer);
   //---------------------------
 
   //Raw values
@@ -140,7 +140,7 @@ void Data::retrieve_location(k4n::structure::Sensor* sensor, int i){
   //---------------------------
 }
 void Data::retrieve_color(k4n::structure::Sensor* sensor, int i){
-  const uint8_t* buffer_color = sensor->color.cloud.buffer;
+  const uint8_t* buffer_color = sensor->color.data.buffer;
   //---------------------------
 
   //Raw values
@@ -155,7 +155,7 @@ void Data::retrieve_color(k4n::structure::Sensor* sensor, int i){
   //---------------------------
 }
 void Data::retrieve_ir(k4n::structure::Sensor* sensor, int i){
-  const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor->ir.cloud.buffer);
+  const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor->ir.data.buffer);
   //---------------------------
 
   //Raw values

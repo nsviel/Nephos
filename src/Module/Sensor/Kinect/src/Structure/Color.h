@@ -146,7 +146,6 @@ struct Structure{
 
   k4n::color::Configuration config;
   k4n::structure::Data data;
-  k4n::structure::Data cloud;
   utl::media::Image image;
 
   //---------------------------
