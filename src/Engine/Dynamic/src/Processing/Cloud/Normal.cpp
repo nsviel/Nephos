@@ -36,6 +36,7 @@ void Normal::start_thread(dyn::base::Sensor* sensor){
   if(!dyn_struct->operation.normal.enable) return;
   //---------------------------
 
+  this->wait_thread();
   this->thread_idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);

@@ -24,6 +24,8 @@ Operation::~Operation(){}
 void Operation::run_operation(dyn::base::Sensor* sensor){
   //---------------------------
 
+  //this->wait_operation();
+
   dyn_recorder->start_thread(sensor);
   dyn_normal->start_thread(sensor);
   dyn_radio->start_thread(sensor);
@@ -34,10 +36,9 @@ void Operation::run_operation(dyn::base::Sensor* sensor){
 void Operation::wait_operation(){
   //---------------------------
 
-  dyn_recorder->wait_thread();
   dyn_normal->wait_thread();
   dyn_radio->wait_thread();
-  dyn_finalizer->wait_thread();
+
 
   //---------------------------
 }

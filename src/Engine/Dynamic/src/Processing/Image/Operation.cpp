@@ -25,6 +25,7 @@ Operation::~Operation(){}
 void Operation::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
+  this->wait_thread();
   this->thread_idle = false;
   auto task_function = [this, sensor](){
     this->run_thread(sensor);

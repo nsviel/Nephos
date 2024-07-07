@@ -18,17 +18,17 @@ struct Data : public utl::base::Element{
   }
 
   //State
+  bool is_visible = true;
   int nb_data_max = -1;
   int width = -1;
   int height = -1;
   int size = -1;
-  bool is_visible = true;
 
   //Infos
-  glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
-  glm::vec3 centroid = glm::vec3(0.0f, 0.0f, 0.0f);
   utl::base::Topology topology;
   utl::base::Path path;
+  glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
+  glm::vec3 centroid = glm::vec3(0.0f, 0.0f, 0.0f);
 
   //Data
   std::vector<glm::vec3> xyz; //XYZ location

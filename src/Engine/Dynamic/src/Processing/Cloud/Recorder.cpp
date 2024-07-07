@@ -26,6 +26,7 @@ Recorder::~Recorder(){}
 void Recorder::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
+  this->wait_thread();
   auto task_function = [this, sensor](){
     this->run_thread(sensor);
   };

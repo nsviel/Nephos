@@ -53,7 +53,6 @@ void Processing::wait_thread(){
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
-  dyn_ope_image->wait_thread();
   dyn_ope_cloud->wait_operation();
 
   //---------------------------
