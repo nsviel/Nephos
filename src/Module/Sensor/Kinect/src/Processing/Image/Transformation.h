@@ -26,8 +26,6 @@ public:
 
   //Subfunction
   void find_depth_to_color(k4n::structure::Sensor* sensor);
-  void find_depth_and_ir_to_color(k4n::structure::Sensor* sensor);
-  void find_ir_to_color(k4n::structure::Sensor* sensor);
   void find_color_to_depth(k4n::structure::Sensor* sensor);
 
 private:
