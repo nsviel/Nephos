@@ -9,7 +9,7 @@ namespace utl::thread{
 void Worker::start_thread(){
   //---------------------------
 
-  std::lock_guard<std::mutex> lock(mtx);
+  std::lock_guard<std::mutex> lock(mutex);
   if(!thread_running){
     this->thread_running = true;
     this->thread = std::thread(&Worker::run_thread, this);
@@ -34,7 +34,7 @@ void Worker::stop_thread(){
   //---------------------------
 
   {
-    std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::mutex> lock(mutex);
     this->thread_running = false;
   }
   cv.notify_all();
@@ -48,7 +48,7 @@ void Worker::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
-  std::unique_lock<std::mutex> lock(mtx);
+  std::unique_lock<std::mutex> lock(mutex);
   cv.wait(lock, [this] { return !thread_running; });
 
   //---------------------------

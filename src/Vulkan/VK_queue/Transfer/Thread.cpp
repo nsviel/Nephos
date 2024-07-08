@@ -33,7 +33,7 @@ void Thread::thread_loop(){
 
   //Wait for command
   std::unique_lock<std::mutex> lock(mutex);
-  cv.wait(lock, [this] { return (!queue.empty() && !pause) || !thread_running;});
+  cv.wait(lock, [this]{return (!queue.empty() && !pause) || !thread_running;});
   if(!thread_running) return;
 
   //Submit command

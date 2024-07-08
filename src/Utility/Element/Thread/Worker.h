@@ -29,7 +29,7 @@ protected:
   std::atomic<bool> thread_running{false};
   std::condition_variable cv;
   std::thread thread;
-  std::mutex mtx;
+  std::mutex mutex;
 };
 
 }

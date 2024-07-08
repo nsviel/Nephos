@@ -3,8 +3,6 @@
 #include <Utility/Element/Thread/Worker.h>
 #include <vulkan/vulkan.h>
 #include <vector>
-#include <thread>
-#include <mutex>
 #include <queue>
 
 namespace vk{class Structure;}
@@ -35,7 +33,6 @@ private:
   vk::queue::transfer::Submission* vk_submission;
 
   std::queue<std::vector<vk::structure::Command_buffer*>> queue;
-  std::mutex mutex;
   bool pause = false;
 };
 

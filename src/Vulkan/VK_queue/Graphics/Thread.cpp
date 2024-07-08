@@ -11,8 +11,6 @@ Thread::Thread(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_fence = new vk::synchro::Fence(vk_struct);
-  this->vk_query = new vk::instance::Query(vk_struct);
   this->vk_submission = new vk::queue::graphics::Submission(vk_struct);
 
   //---------------------------
@@ -37,8 +35,9 @@ void Thread::thread_loop(){
 
   //Wait for command
   std::unique_lock<std::mutex> lock(mutex);
-  cv.wait(lock, [this] { return (!queue.empty() && !pause) || !thread_running;});
-
+  cv.wait(lock, [this]{return (!queue.empty() && !pause) || !thread_running;});
+  if(!thread_running) return;
+  
   //Submit command
   vk_submission->process_command(queue.front(), with_presentation);
   queue.pop();
