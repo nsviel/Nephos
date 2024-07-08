@@ -15,7 +15,8 @@ Thread::Thread(vk::Structure* vk_struct){
   this->vk_surface = new vk::presentation::Surface(vk_struct);
   this->vk_window = new vk::window::GLFW(vk_struct);
   this->vk_submission = new vk::queue::presentation::Submission(vk_struct);
-
+  this->vk_fence = new vk::synchro::Fence(vk_struct);
+  
   //---------------------------
   this->start_thread();
 }
@@ -70,10 +71,10 @@ void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
 
 
 
+vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
 
 
-
-  vk_struct->queue.graphics->add_presentation(vec_command);
+  vk_struct->queue.graphics->add_command(vec_command, fence);
 
   VkSemaphore semaphore;
   for(int i=0; i<vec_command.size(); i++){

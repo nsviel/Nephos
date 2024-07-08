@@ -10,6 +10,7 @@ namespace vk::command::structure{class Set;}
 namespace vk::structure{class Command;}
 namespace vk::queue::graphics{class Submission;}
 namespace vk::synchro{class Fence;}
+namespace vk::synchro::structure{class Fence;}
 
 
 namespace vk::queue::graphics{
@@ -29,6 +30,7 @@ public:
   //Subfunction
   void add_command(vk::structure::Command* command);
   void add_command(std::vector<vk::structure::Command*> vec_command);
+  void add_command(std::vector<vk::structure::Command*> vec_command, vk::synchro::structure::Fence* fence);
   void add_presentation(std::vector<vk::structure::Command*> vec_command);
 
 private:

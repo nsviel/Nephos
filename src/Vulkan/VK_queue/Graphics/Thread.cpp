@@ -13,7 +13,7 @@ Thread::Thread(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_submission = new vk::queue::graphics::Submission(vk_struct);
   this->vk_fence = new vk::synchro::Fence(vk_struct);
-  
+
   //---------------------------
   this->start_thread();
 
@@ -72,6 +72,24 @@ void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
   vk::command::structure::Set set;
   set.vec_command = vec_command;
   set.fence = vk_fence->query_free_fence();
+  queue.push(set);
+
+  mutex.unlock();
+  cv.notify_one();
+
+  //---------------------------
+
+}
+void Thread::add_command(std::vector<vk::structure::Command*> vec_command, vk::synchro::structure::Fence* fence){
+  if(vk_struct->queue.standby) return;
+  //---------------------------
+
+  mutex.lock();
+
+  this->with_presentation = true;
+  vk::command::structure::Set set;
+  set.vec_command = vec_command;
+  set.fence = fence;
   queue.push(set);
 
   mutex.unlock();

@@ -12,6 +12,7 @@ namespace vk::synchro::structure{class Fence;}
 namespace vk::window{class GLFW;}
 namespace vk::structure{class Command;}
 namespace vk::queue::presentation{class Submission;}
+namespace vk::synchro{class Fence;}
 
 
 namespace vk::queue::presentation{
@@ -41,6 +42,7 @@ private:
   vk::presentation::Swapchain* vk_swapchain;
   vk::window::GLFW* vk_window;
   vk::queue::presentation::Submission* vk_submission;
+  vk::synchro::Fence* vk_fence;
 
   std::queue<std::vector<vk::structure::Command*>> queue;
   bool thread_idle = true;
