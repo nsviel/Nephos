@@ -12,14 +12,14 @@ namespace vk::window{class GLFW;}
 namespace vk::structure{class Command;}
 
 
-namespace vk::queue{
+namespace vk::queue::presentation{
 
-class Presentation
+class Thread
 {
 public:
   //Constructor / Destructor
-  Presentation(vk::Structure* vk_struct);
-  ~Presentation();
+  Thread(vk::Structure* vk_struct);
+  ~Thread();
 
 public:
   //Main function

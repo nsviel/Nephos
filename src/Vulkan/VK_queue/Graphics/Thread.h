@@ -27,7 +27,7 @@ public:
 
   //Subfunction
   void add_command(vk::structure::Command* command);
-  void add_graphics(std::vector<vk::structure::Command*> vec_command);
+  void add_command(std::vector<vk::structure::Command*> vec_command);
   void add_presentation(std::vector<vk::structure::Command*> vec_command);
 
 private:

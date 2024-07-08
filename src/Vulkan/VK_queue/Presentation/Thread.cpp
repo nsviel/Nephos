@@ -1,12 +1,12 @@
-#include "Presentation.h"
+#include "Thread.h"
 
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::queue{
+namespace vk::queue::presentation{
 
 //Constructor / Destructor
-Presentation::Presentation(vk::Structure* vk_struct){
+Thread::Thread(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -16,10 +16,10 @@ Presentation::Presentation(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Presentation::~Presentation(){}
+Thread::~Thread(){}
 
 //Main function
-void Presentation::wait_for_idle(){
+void Thread::wait_for_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
@@ -29,7 +29,7 @@ void Presentation::wait_for_idle(){
 
   //---------------------------
 }
-bool Presentation::acquire_next_image(VkSemaphore& semaphore){
+bool Thread::acquire_next_image(VkSemaphore& semaphore){
   vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------
 
@@ -50,7 +50,7 @@ bool Presentation::acquire_next_image(VkSemaphore& semaphore){
   //---------------------------
   return true;
 }
-void Presentation::image_presentation(VkSemaphore& semaphore){
+void Thread::image_presentation(VkSemaphore& semaphore){
   this->thread_idle = false;
   //---------------------------
 
@@ -60,7 +60,7 @@ void Presentation::image_presentation(VkSemaphore& semaphore){
   //---------------------------
   this->thread_idle = true;
 }
-void Presentation::add_presentation_command(std::vector<vk::structure::Command*> vec_command){
+void Thread::add_presentation_command(std::vector<vk::structure::Command*> vec_command){
   //---------------------------
 
   vk::structure::Command* command = vec_command[vec_command.size() - 1];
@@ -76,7 +76,7 @@ void Presentation::add_presentation_command(std::vector<vk::structure::Command*>
 }
 
 //Subfunction
-void Presentation::submit_presentation(VkSemaphore& semaphore){
+void Thread::submit_presentation(VkSemaphore& semaphore){
   vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------
 
@@ -102,7 +102,7 @@ void Presentation::submit_presentation(VkSemaphore& semaphore){
 
   //---------------------------
 }
-void Presentation::next_frame_ID(){
+void Thread::next_frame_ID(){
   vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------
 

@@ -41,7 +41,7 @@ void Headless::draw_frame(){
   }
 
   //Submission
-  vk_struct->queue.graphics->add_graphics(vec_command);
+  vk_struct->queue.graphics->add_command(vec_command);
 
   //---------------------------
 }

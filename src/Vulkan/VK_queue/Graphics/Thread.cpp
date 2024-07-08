@@ -37,7 +37,7 @@ void Thread::thread_loop(){
   std::unique_lock<std::mutex> lock(mutex);
   cv.wait(lock, [this]{return (!queue.empty() && !pause) || !thread_running;});
   if(!thread_running) return;
-  
+
   //Submit command
   vk_submission->process_command(queue.front(), with_presentation);
   queue.pop();
@@ -59,6 +59,7 @@ void Thread::add_command(vk::structure::Command* command){
   //---------------------------
 
   mutex.lock();
+
   this->with_presentation = false;
   std::vector<vk::structure::Command*> vec_command;
   vec_command.push_back(command);
@@ -69,13 +70,15 @@ void Thread::add_command(vk::structure::Command* command){
 
   //---------------------------
 }
-void Thread::add_graphics(std::vector<vk::structure::Command*> vec_command){
+void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
   mutex.lock();
+
   this->with_presentation = false;
   queue.push(vec_command);
+
   mutex.unlock();
   cv.notify_one();
 
@@ -87,8 +90,10 @@ void Thread::add_presentation(std::vector<vk::structure::Command*> vec_command){
   //---------------------------
 
   mutex.lock();
+
   this->with_presentation = true;
   queue.push(vec_command);
+
   mutex.unlock();
   cv.notify_one();
 
