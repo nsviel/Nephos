@@ -23,11 +23,12 @@ public:
 
 public:
   //Main function
+  void create_layout(vk::binding::structure::Binding* binding);
   void clean_layout(vk::binding::structure::Binding* binding);
 
   //Subfunction
-  void create_layout_from_required(vk::binding::structure::Binding* binding);
-  VkDescriptorSetLayout create_layout(std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
+  void make_required_binding(vk::binding::structure::Binding* binding, std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
+  void create_layout(vk::binding::structure::Binding* binding, std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
 
 private:
   vk::Structure* vk_struct;

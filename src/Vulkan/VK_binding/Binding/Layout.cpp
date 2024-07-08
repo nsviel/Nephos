@@ -16,6 +16,16 @@ Layout::Layout(vk::Structure* vk_struct){
 Layout::~Layout(){}
 
 //Main function
+void Layout::create_layout(vk::binding::structure::Binding* binding){
+  std::vector<vk::binding::structure::Required>& vec_required_binding = binding->vec_required_binding;
+  //---------------------------
+
+  std::vector<VkDescriptorSetLayoutBinding> vec_binding;
+  this->make_required_binding(binding, vec_binding);
+  this->create_layout(binding, vec_binding);
+
+  //---------------------------
+}
 void Layout::clean_layout(vk::binding::structure::Binding* binding){
   //---------------------------
 
@@ -25,11 +35,10 @@ void Layout::clean_layout(vk::binding::structure::Binding* binding){
 }
 
 //Subfunction
-void Layout::create_layout_from_required(vk::binding::structure::Binding* binding){
+void Layout::make_required_binding(vk::binding::structure::Binding* binding, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
   std::vector<vk::binding::structure::Required>& vec_required_binding = binding->vec_required_binding;
   //---------------------------
 
-  std::vector<VkDescriptorSetLayoutBinding> vec_binding;
   for(int i=0; i<vec_required_binding.size(); i++){
     vk::binding::structure::Required& required = vec_required_binding[i];
 
@@ -43,13 +52,9 @@ void Layout::create_layout_from_required(vk::binding::structure::Binding* bindin
     vec_binding.push_back(layout_binding);
   }
 
-  //Create descriptor layout from requirements
-  binding->descriptor.layout = create_layout(vec_binding);
-
   //---------------------------
-
 }
-VkDescriptorSetLayout Layout::create_layout(std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
+void Layout::create_layout(vk::binding::structure::Binding* binding, std::vector<VkDescriptorSetLayoutBinding>& vec_binding){
   //---------------------------
 
   //Combination and info
@@ -65,8 +70,9 @@ VkDescriptorSetLayout Layout::create_layout(std::vector<VkDescriptorSetLayoutBin
     throw std::runtime_error("failed to create descriptor set layout!");
   }
 
+  binding->descriptor.layout = descriptor_layout;
+
   //---------------------------
-  return descriptor_layout;
 }
 
 }

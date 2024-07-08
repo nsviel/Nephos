@@ -19,6 +19,17 @@ Descriptor::Descriptor(vk::Structure* vk_struct){
 Descriptor::~Descriptor(){}
 
 //Main function
+void Descriptor::create_binding(vk::binding::structure::Binding* binding){
+  //---------------------------
+
+  vk_layout->create_layout(binding);
+  vk_uniform->create_uniform_buffers(binding);
+  vk_sampler->create_sampler(binding);
+  this->allocate_descriptor_set(binding);
+  vk_uniform->update_uniform(binding);
+
+  //---------------------------
+}
 void Descriptor::clean_binding(vk::binding::structure::Binding* binding){
   //---------------------------
 
@@ -51,18 +62,6 @@ void Descriptor::allocate_descriptor_set(vk::binding::structure::Binding* bindin
   }
 
   //---------------------------
-}
-void Descriptor::create_layout_from_required(vk::binding::structure::Binding* binding){
-  //---------------------------
-
-  vk_layout->create_layout_from_required(binding);
-  vk_uniform->create_uniform_buffers(binding);
-  vk_sampler->create_sampler(binding);
-  this->allocate_descriptor_set(binding);
-  vk_uniform->update_uniform(binding);
-
-  //---------------------------
-
 }
 void Descriptor::make_required_descriptor(utl::base::Data* data, vk::binding::structure::Binding* binding){
   //---------------------------

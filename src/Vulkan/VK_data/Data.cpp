@@ -104,7 +104,7 @@ void Data::create_vk_object(utl::base::Data* data, utl::base::Pose* pose){
 
   //Descriptor
   vk_descriptor->make_required_descriptor(data, &vk_object->binding);
-  vk_descriptor->create_layout_from_required(&vk_object->binding);
+  vk_descriptor->create_binding(&vk_object->binding);
 
   //Insert data struct into set
   vk_struct->data.list_vk_object.push_back(vk_object);

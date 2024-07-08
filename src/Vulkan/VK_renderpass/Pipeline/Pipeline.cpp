@@ -60,7 +60,7 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, vk:
   //---------------------------
 
   //Pipeline layout & binding
-  vk_descriptor->create_layout_from_required(&pipeline->binding);
+  vk_descriptor->create_binding(&pipeline->binding);
   this->check_struct_pipeline_input(pipeline);
   vk_shader->create_pipeline_shader(pipeline);
   vk_data->pipeline_data_description(pipeline);
