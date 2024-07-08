@@ -9,6 +9,7 @@ namespace vk::presentation{class Surface;}
 namespace vk{class Structure;}
 namespace vk::synchro::structure{class Fence;}
 namespace vk::window{class GLFW;}
+namespace vk::structure{class Command;}
 
 
 namespace vk::queue{
@@ -25,7 +26,7 @@ public:
   void wait_for_idle();
   bool acquire_next_image(VkSemaphore& semaphore);
   void image_presentation(VkSemaphore& semaphore);
-  void add_presentation_command();
+  void add_presentation_command(std::vector<vk::structure::Command*> vec_command);
 
   //Subfunction
   void submit_presentation(VkSemaphore& semaphore);

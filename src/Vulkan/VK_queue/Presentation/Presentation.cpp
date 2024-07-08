@@ -60,26 +60,18 @@ void Presentation::image_presentation(VkSemaphore& semaphore){
   //---------------------------
   this->thread_idle = true;
 }
-void Presentation::add_presentation_command(){
-  /*if(!thread_running) return;
+void Presentation::add_presentation_command(std::vector<vk::structure::Command*> vec_command){
   //---------------------------
 
-  //Passing the command torch
-  this->vec_command_onrun = vec_command_prepa;
-  this->vec_command_prepa.clear();
+  vk::structure::Command* command = vec_command[vec_command.size() - 1];
+  VkSemaphore& semaphore = command->semaphore_done;
 
-  //Submission stuff
-  VkSemaphore semaphore;
-  std::vector<VkSubmitInfo> vec_info;
-  this->build_submission(vec_info, semaphore);
-  this->make_submission(vec_info);
-  this->post_submission();
 
-  //If required, make image presentation
-  if(with_presentation){
-    vk_struct->queue.presentation->image_presentation(semaphore);
-  }
-*/
+
+  vk_struct->queue.graphics->add_presentation(vec_command);
+  //vk_struct->queue.graphics->wait_for_idle();
+  //this->image_presentation(semaphore);
+
   //---------------------------
 }
 
