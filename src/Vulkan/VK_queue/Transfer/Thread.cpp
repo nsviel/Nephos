@@ -31,12 +31,14 @@ void Thread::thread_init(){
 void Thread::thread_loop(){
   //---------------------------
 
-  this->wait_for_command();
+  //Wait for command
+  std::unique_lock<std::mutex> lock(mutex);
+  cv.wait(lock, [this] { return (!queue.empty() && !thread_pause) || !thread_running;});
+  if(!thread_running) return;
 
-  this->thread_idle = false;
+  //Submit command
   vk_submission->process_command(queue.front());
   queue.pop();
-  this->thread_idle = true;
 
   //---------------------------
 }
@@ -50,20 +52,11 @@ void Thread::add_command(vk::structure::Command_buffer* command){
     std::vector<vk::structure::Command_buffer*> vec_command;
     vec_command.push_back(command);
     queue.push(vec_command);
+    cv.notify_one();
   }
 
   //---------------------------
   mutex.unlock();
-}
-void Thread::wait_for_command(){
-  //For internal thread to wait for to submit commands
-  //---------------------------
-
-  while((queue.empty() || vk_struct->queue.standby) && thread_running){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
 }
 void Thread::wait_for_idle(){
   //For external thread to wait this queue thread idle
@@ -72,6 +65,14 @@ void Thread::wait_for_idle(){
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+
+  //---------------------------
+}
+void Thread::set_thread_pause(bool value){
+  //---------------------------
+
+  this->thread_pause = value;
+  cv.notify_one();
 
   //---------------------------
 }

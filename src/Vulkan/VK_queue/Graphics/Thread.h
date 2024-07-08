@@ -6,6 +6,7 @@
 #include <thread>
 #include <mutex>
 #include <queue>
+#include <condition_variable>
 
 namespace vk{class Structure;}
 namespace vk::structure{class Command;}
@@ -34,7 +35,6 @@ public:
   void add_command(vk::structure::Command* command);
   void add_graphics(std::vector<vk::structure::Command*> vec_command);
   void add_presentation(std::vector<vk::structure::Command*> vec_command);
-  void wait_for_command();
   void wait_for_idle();
 
   inline bool is_thread_idle(){return thread_idle;}
@@ -45,8 +45,6 @@ private:
   vk::instance::Query* vk_query;
   vk::queue::graphics::Submission* vk_submission;
 
-  std::vector<vk::structure::Command*> vec_command_onrun;
-  std::vector<vk::structure::Command*> vec_command_prepa;
   std::queue<std::vector<vk::structure::Command*>> queue;
   bool thread_idle = true;
   bool with_presentation = false;

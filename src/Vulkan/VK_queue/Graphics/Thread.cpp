@@ -35,17 +35,13 @@ void Thread::thread_init(){
 void Thread::thread_loop(){
   //---------------------------
 
-  this->wait_for_command();
+  //Wait for command
+  std::unique_lock<std::mutex> lock(mutex);
+  cv.wait(lock, [this] { return !queue.empty() || !thread_running; });
 
-  //Passing the command torch
-  mutex.lock();
-  this->vec_command_onrun = vec_command_prepa;
-  this->vec_command_prepa.clear();
-  mutex.unlock();
-
-  this->thread_idle = false;
-  vk_submission->process_command(vec_command_onrun, with_presentation);
-  this->thread_idle = true;
+  //Submit command
+  vk_submission->process_command(queue.front(), with_presentation);
+  queue.pop();
 
   //---------------------------
 }
@@ -58,10 +54,13 @@ void Thread::add_command(vk::structure::Command* command){
   this->wait_for_idle();
 
   mutex.lock();
-  this->thread_idle = false;
   this->with_presentation = false;
-  vec_command_prepa.push_back(command);
+  std::vector<vk::structure::Command*> vec_command;
+  vec_command.push_back(command);
+  queue.push(vec_command);
+
   mutex.unlock();
+  cv.notify_one();
 
   //---------------------------
 }
@@ -72,10 +71,10 @@ void Thread::add_graphics(std::vector<vk::structure::Command*> vec_command){
   this->wait_for_idle();
 
   mutex.lock();
-  this->thread_idle = false;
   this->with_presentation = false;
-  vec_command_prepa = vec_command;
+  queue.push(vec_command);
   mutex.unlock();
+  cv.notify_one();
 
   //---------------------------
 
@@ -87,20 +86,10 @@ void Thread::add_presentation(std::vector<vk::structure::Command*> vec_command){
   this->wait_for_idle();
 
   mutex.lock();
-  this->thread_idle = false;
   this->with_presentation = true;
-  vec_command_prepa = vec_command;
+  queue.push(vec_command);
   mutex.unlock();
-
-  //---------------------------
-}
-void Thread::wait_for_command(){
-  //For internal thread to wait for to submit commands
-  //---------------------------
-
-  while((vec_command_prepa.empty()) && thread_running){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
+  cv.notify_one();
 
   //---------------------------
 }

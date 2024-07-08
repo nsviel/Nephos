@@ -28,8 +28,8 @@ public:
 
   //Subfunction
   void add_command(vk::structure::Command_buffer* command);
-  void wait_for_command();
   void wait_for_idle();
+  void set_thread_pause(bool value);
 
   inline bool is_thread_idle(){return thread_idle;}
 
@@ -39,6 +39,7 @@ private:
 
   std::queue<std::vector<vk::structure::Command_buffer*>> queue;
   std::mutex mutex;
+  bool thread_pause = false;
   bool thread_idle = true;
 };
 
