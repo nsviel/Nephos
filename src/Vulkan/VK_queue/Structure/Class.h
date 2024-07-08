@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Vulkan/VK_queue/Transfer/Transfer.h>
+#include <Vulkan/VK_queue/Transfer/Thread.h>
 #include <Vulkan/VK_queue/Graphics/Graphics.h>
 #include <Vulkan/VK_queue/Presentation/Presentation.h>
 
@@ -11,7 +11,7 @@ struct Class{
   //---------------------------
 
   bool standby = false;
-  vk::queue::Transfer* transfer;
+  vk::queue::transfer::Thread* transfer;
   vk::queue::Graphics* graphics;
   vk::queue::Presentation* presentation;
 

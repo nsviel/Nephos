@@ -13,14 +13,14 @@ namespace vk::synchro{class Fence;}
 namespace vk::instance{class Query;}
 
 
-namespace vk::queue{
+namespace vk::queue::transfer{
 
-class Transfer : public utl::thread::Worker
+class Thread : public utl::thread::Worker
 {
 public:
   //Constructor / Destructor
-  Transfer(vk::Structure* vk_struct);
-  ~Transfer();
+  Thread(vk::Structure* vk_struct);
+  ~Thread();
 
 public:
   //Main function

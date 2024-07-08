@@ -1,14 +1,14 @@
-#include "Transfer.h"
+#include "Submission.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 #include <thread>
 
 
-namespace vk::queue{
+namespace vk::queue::transfer{
 
 //Constructor / Destructor
-Transfer::Transfer(vk::Structure* vk_struct){
+Submission::Submission(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -18,10 +18,10 @@ Transfer::Transfer(vk::Structure* vk_struct){
   //---------------------------
   this->start_thread();
 }
-Transfer::~Transfer(){}
+Submission::~Submission(){}
 
 //Main function
-void Transfer::thread_init(){
+void Submission::thread_init(){
   //---------------------------
 
   vk_struct->device.queue.transfer.type = vk::queue::TRANSFER;
@@ -29,7 +29,7 @@ void Transfer::thread_init(){
 
   //---------------------------
 }
-void Transfer::thread_loop(){
+void Submission::thread_loop(){
   //---------------------------
 
   this->wait_for_command();
@@ -37,7 +37,7 @@ void Transfer::thread_loop(){
 
   //---------------------------
 }
-void Transfer::wait_for_idle(){
+void Submission::wait_for_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
@@ -49,7 +49,7 @@ void Transfer::wait_for_idle(){
 }
 
 //Command
-void Transfer::wait_for_command(){
+void Submission::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
 
@@ -59,18 +59,7 @@ void Transfer::wait_for_command(){
 
   //---------------------------
 }
-void Transfer::add_command(vk::structure::Command_buffer* command){
-  mutex.lock();
-  //---------------------------
-
-  if(command->is_recorded){
-    vec_command_prepa.push_back(command);
-  }
-
-  //---------------------------
-  mutex.unlock();
-}
-void Transfer::process_command(){
+void Submission::process_command(){
   if(!thread_running) return;
   //---------------------------
 
@@ -90,7 +79,7 @@ void Transfer::process_command(){
 }
 
 //Submission
-void Transfer::build_submission(std::vector<VkSubmitInfo>& vec_info){
+void Submission::build_submission(std::vector<VkSubmitInfo>& vec_info){
   //---------------------------
 
   for(int i=0; i<vec_command_onrun.size(); i++){
@@ -104,7 +93,7 @@ void Transfer::build_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Transfer::make_submission(std::vector<VkSubmitInfo>& vec_info){
+void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
   this->thread_idle = false;
   //---------------------------
 
@@ -124,7 +113,7 @@ void Transfer::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Transfer::post_submission(){
+void Submission::post_submission(){
   //---------------------------
   //say("-----");
   //Reset command buffer
