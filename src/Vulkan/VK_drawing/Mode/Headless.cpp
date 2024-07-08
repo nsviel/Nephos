@@ -18,7 +18,7 @@ Headless::~Headless(){}
 void Headless::draw_frame(){
   //---------------------------
 
-  vk_struct->queue.graphics->wait_for_idle();
+  //vk_struct->queue.graphics->wait_for_idle();
   vk_struct->queue.presentation->wait_for_idle();
   vk::synchro::structure::Semaphore* semaphore = nullptr;
 

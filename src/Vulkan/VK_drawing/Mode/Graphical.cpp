@@ -42,7 +42,7 @@ bool Graphical::acquire_image(vk::synchro::structure::Semaphore& semaphore){
   //---------------------------
 
   //Acquire next image
-  vk_struct->queue.graphics->wait_for_idle();
+  //vk_struct->queue.graphics->wait_for_idle();
   vk_struct->queue.presentation->wait_for_idle();
   bool sucess = vk_struct->queue.presentation->acquire_next_image(semaphore.handle);
 

@@ -37,11 +37,19 @@ void Thread::thread_loop(){
 
   //Wait for command
   std::unique_lock<std::mutex> lock(mutex);
-  cv.wait(lock, [this] { return !queue.empty() || !thread_running; });
+  cv.wait(lock, [this] { return (!queue.empty() && !pause) || !thread_running;});
 
   //Submit command
   vk_submission->process_command(queue.front(), with_presentation);
   queue.pop();
+
+  //---------------------------
+}
+void Thread::thread_pause(bool value){
+  //---------------------------
+
+  this->pause = value;
+  cv.notify_one();
 
   //---------------------------
 }
@@ -50,8 +58,6 @@ void Thread::thread_loop(){
 void Thread::add_command(vk::structure::Command* command){
   if(vk_struct->queue.standby) return;
   //---------------------------
-
-  this->wait_for_idle();
 
   mutex.lock();
   this->with_presentation = false;
@@ -68,8 +74,6 @@ void Thread::add_graphics(std::vector<vk::structure::Command*> vec_command){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
-  this->wait_for_idle();
-
   mutex.lock();
   this->with_presentation = false;
   queue.push(vec_command);
@@ -83,8 +87,6 @@ void Thread::add_presentation(std::vector<vk::structure::Command*> vec_command){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
-  this->wait_for_idle();
-
   mutex.lock();
   this->with_presentation = true;
   queue.push(vec_command);
@@ -93,15 +95,6 @@ void Thread::add_presentation(std::vector<vk::structure::Command*> vec_command){
 
   //---------------------------
 }
-void Thread::wait_for_idle(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
 
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
-}
 
 }

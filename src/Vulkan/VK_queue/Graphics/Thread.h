@@ -30,14 +30,12 @@ public:
   //Main function
   void thread_init();
   void thread_loop();
+  void thread_pause(bool value);
 
   //Subfunction
   void add_command(vk::structure::Command* command);
   void add_graphics(std::vector<vk::structure::Command*> vec_command);
   void add_presentation(std::vector<vk::structure::Command*> vec_command);
-  void wait_for_idle();
-
-  inline bool is_thread_idle(){return thread_idle;}
 
 private:
   vk::Structure* vk_struct;
@@ -46,8 +44,8 @@ private:
   vk::queue::graphics::Submission* vk_submission;
 
   std::queue<std::vector<vk::structure::Command*>> queue;
-  bool thread_idle = true;
   bool with_presentation = false;
+  bool pause = false;
   std::mutex mutex;
 };
 

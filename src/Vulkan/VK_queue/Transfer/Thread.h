@@ -25,13 +25,10 @@ public:
   //Main function
   void thread_init();
   void thread_loop();
+  void thread_pause(bool value);
 
   //Subfunction
   void add_command(vk::structure::Command_buffer* command);
-  void wait_for_idle();
-  void set_thread_pause(bool value);
-
-  inline bool is_thread_idle(){return thread_idle;}
 
 private:
   vk::Structure* vk_struct;
@@ -39,8 +36,7 @@ private:
 
   std::queue<std::vector<vk::structure::Command_buffer*>> queue;
   std::mutex mutex;
-  bool thread_pause = false;
-  bool thread_idle = true;
+  bool pause = false;
 };
 
 }
