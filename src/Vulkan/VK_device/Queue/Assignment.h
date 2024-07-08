@@ -19,7 +19,6 @@ public:
 
 public:
   //Main function
-  void find_queue_family_composition(vk::device::structure::Physical& physical_device);
   void find_queue_family_assigment();
 
 private:

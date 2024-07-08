@@ -11,7 +11,7 @@ Logical::Logical(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_dev_physical = new vk::device::Physical(vk_struct);
-  this->vk_queue = new vk::device::Queue(vk_struct);
+  this->vk_queue = new vk::device::queue::Manager(vk_struct);
 
   //---------------------------
 }
@@ -22,7 +22,6 @@ void Logical::init(){
   //---------------------------
 
   vk_dev_physical->find_physical_device();
-  vk_queue->find_queue_family_assigment();
   this->create_logical_device();
   this->create_device_queue();
 

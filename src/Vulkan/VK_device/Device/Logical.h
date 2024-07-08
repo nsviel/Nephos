@@ -2,7 +2,7 @@
 
 namespace vk::device{class Physical;}
 namespace vk{class Structure;}
-namespace vk::device{class Queue;}
+namespace vk::device::queue{class Manager;}
 
 
 namespace vk::device{
@@ -26,7 +26,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::device::Physical* vk_dev_physical;
-  vk::device::Queue* vk_dev_queue;
+  vk::device::queue::Manager* vk_queue;
 };
 
 }

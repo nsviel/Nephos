@@ -17,43 +17,7 @@ Assignment::Assignment(vk::Structure* vk_struct){
 Assignment::~Assignment(){}
 
 //Main function
-void Assignment::find_queue_family_composition(vk::device::structure::Physical& physical_device){
-  //---------------------------
 
-  uint32_t nb_queue_family = 0;
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device.handle, &nb_queue_family, nullptr);
-  if(nb_queue_family == 0){
-    throw std::runtime_error("[error] No queue families on selected GPU");
-  }
-
-  // Retrieve information about each queue family
-  std::vector<VkQueueFamilyProperties> queue_families(nb_queue_family);
-  vkGetPhysicalDeviceQueueFamilyProperties(physical_device.handle, &nb_queue_family, queue_families.data());
-
-  // Count the number of each type of queue
-  for(int i=0; i<nb_queue_family; i++){
-    //Queue family properties
-    vk::queue::structure::Family queue_family;
-    queue_family.ID = i;
-    queue_family.property = queue_families[i];
-    queue_family.nb_queue = queue_family.property.queueCount;
-    queue_family.capable_graphics = (queue_family.property.queueFlags & VK_QUEUE_GRAPHICS_BIT) ? true : false;
-    queue_family.capable_compute = (queue_family.property.queueFlags & VK_QUEUE_COMPUTE_BIT) ? true : false;
-    queue_family.capable_transfer = (queue_family.property.queueFlags & VK_QUEUE_TRANSFER_BIT) ? true : false;
-    queue_family.capable_sparseBinding = (queue_family.property.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT) ? true : false;
-
-    //Presentation property
-    if(!vk_struct->param.headless){
-      VkBool32 presentation_supported = false;
-      vkGetPhysicalDeviceSurfaceSupportKHR(physical_device.handle, i, vk_struct->window.surface, &presentation_supported);
-      queue_family.capable_presentation = presentation_supported;
-    }
-
-    physical_device.vec_queue_family.push_back(queue_family);
-  }
-
-  //---------------------------
-}
 void Assignment::find_queue_family_assigment(){
   //---------------------------
 
