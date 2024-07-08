@@ -50,6 +50,7 @@ void Sensor::thread_init(){
     return;
   }
 
+  //Init configuration
   k4n_config->find_configuration(this);
   k4n_config->find_calibration(this);
 

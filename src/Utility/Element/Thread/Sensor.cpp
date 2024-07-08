@@ -22,7 +22,6 @@ void Sensor::run_thread(){
 
   while(thread_running){
     this->thread_loop();
-    this->pause_thread();
   }
 
   this->thread_end();
@@ -35,7 +34,6 @@ void Sensor::stop_thread(){
   {
     std::lock_guard<std::mutex> lock(mtx);
     this->thread_running = false;
-    this->thread_pause = false; // Ensure the thread is not paused when stopping
   }
   cv.notify_all();
   if(thread.joinable()){
@@ -50,14 +48,6 @@ void Sensor::wait_thread(){
 
   std::unique_lock<std::mutex> lock(mtx);
   cv.wait(lock, [this] { return !thread_running; });
-
-  //---------------------------
-}
-void Sensor::pause_thread(){
-  //---------------------------
-
-  std::unique_lock<std::mutex> lock(mtx);
-  cv.wait(lock, [this] { return !thread_running || !thread_pause; });
 
   //---------------------------
 }
