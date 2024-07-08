@@ -65,7 +65,6 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, vk:
   vk_shader->create_pipeline_shader(pipeline);
   vk_data->pipeline_data_description(pipeline);
   this->create_pipeline_layout(pipeline);
-  vk_descriptor->create_binding(&pipeline->binding);
 
   //Pipeline obj
   this->find_pipeline_topology_state(pipeline);

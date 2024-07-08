@@ -65,7 +65,7 @@ void Renderpass::pipeline_edl(vk::structure::Subpass* subpass){
   pipeline->definition.vec_data_name.push_back("tex_coord");
 
   //Descriptor
-  vk::structure::Descriptor_required descriptor;
+  vk::binding::structure::Required descriptor;
   descriptor = vk_sampler->sampler_color();
   pipeline->binding.vec_required_binding.push_back(descriptor);
   descriptor = vk_sampler->sampler_depth();

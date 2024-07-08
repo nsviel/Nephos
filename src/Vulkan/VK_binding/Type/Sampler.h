@@ -4,7 +4,7 @@
 #include <string>
 
 namespace vk{class Structure;}
-namespace vk::structure{class Descriptor_required;}
+namespace vk::binding::structure{class Required;}
 namespace vk::binding::structure{class Binding;}
 namespace vk::binding::structure{class Sampler;}
 
@@ -24,8 +24,8 @@ public:
   vk::binding::structure::Sampler* create_sampler_obj(std::string name, int binding, VkDescriptorType type);
 
   //Subfunction
-  vk::structure::Descriptor_required sampler_color();
-  vk::structure::Descriptor_required sampler_depth();
+  vk::binding::structure::Required sampler_color();
+  vk::binding::structure::Required sampler_depth();
 
 private:
   vk::Structure* vk_struct;

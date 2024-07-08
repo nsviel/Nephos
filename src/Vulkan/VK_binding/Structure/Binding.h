@@ -13,8 +13,8 @@ struct Binding{
   //---------------------------
 
   //Binding description
-  std::vector<vk::structure::Descriptor_required> vec_required_binding;
-  vk::structure::Descriptor descriptor;
+  std::vector<vk::binding::structure::Required> vec_required_binding;
+  vk::binding::structure::Descriptor descriptor;
 
   //Binding elements
   std::vector<vk::binding::structure::Push_constant*> vec_pushcst;

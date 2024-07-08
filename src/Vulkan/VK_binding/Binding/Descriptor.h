@@ -9,6 +9,7 @@ namespace vk{class Structure;}
 namespace vk::binding::structure{class Binding;}
 namespace vk::structure{class Image;}
 namespace vk::structure{class Pipeline;}
+namespace utl::base{class Data;}
 
 
 namespace vk::binding{
@@ -22,7 +23,6 @@ public:
 
 public:
   //Main function
-  void create_binding(vk::binding::structure::Binding* binding);
   void clean_binding(vk::binding::structure::Binding* binding);
 
   //Descriptor set update
@@ -33,6 +33,7 @@ public:
   void cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set);
   void allocate_descriptor_set(vk::binding::structure::Binding* binding);
   void create_layout_from_required(vk::binding::structure::Binding* binding);
+  void make_required_descriptor(utl::base::Data* data, vk::binding::structure::Binding* binding);
   VkDescriptorSetLayout create_layout(std::vector<VkDescriptorSetLayoutBinding>& vec_binding);
 
 private:

@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace vk::structure{
+namespace vk::binding::structure{
 
 struct Descriptor{
   //---------------------------
@@ -16,7 +16,7 @@ struct Descriptor{
   //---------------------------
 };
 
-struct Descriptor_required{
+struct Required{
   //---------------------------
 
   //Consistent attribut binding:

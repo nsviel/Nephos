@@ -21,11 +21,11 @@ void Uniform::create_uniform_buffers(vk::binding::structure::Binding* binding){
   binding->vec_uniform.clear();
   //---------------------------
 
-  std::vector<vk::structure::Descriptor_required>& vec_required = binding->vec_required_binding;
+  std::vector<vk::binding::structure::Required>& vec_required = binding->vec_required_binding;
   std::vector<vk::binding::structure::Uniform*>& vec_uniform = binding->vec_uniform;
 
   for(int i=0; i<vec_required.size(); i++){
-    vk::structure::Descriptor_required& descriptor = vec_required[i];
+    vk::binding::structure::Required& descriptor = vec_required[i];
 
     if(descriptor.type == TYP_UNIFORM){
       vk::binding::structure::Uniform* uniform = create_uniform_buffer(descriptor.name, descriptor.size, descriptor.binding);
@@ -98,10 +98,10 @@ template void Uniform::update_uniform(std::string uniform_name, vk::binding::str
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding* binding, vk::render::edl::Structure value);
 
 //Subfunction
-vk::structure::Descriptor_required Uniform::uniform_point_size(){
+vk::binding::structure::Required Uniform::uniform_point_size(){
   //---------------------------
 
-  vk::structure::Descriptor_required descriptor;
+  vk::binding::structure::Required descriptor;
   descriptor.name = "point_size";
   descriptor.size = sizeof(int);
   descriptor.binding = 1;
@@ -111,10 +111,10 @@ vk::structure::Descriptor_required Uniform::uniform_point_size(){
   //---------------------------
   return descriptor;
 }
-vk::structure::Descriptor_required Uniform::uniform_mvp(){
+vk::binding::structure::Required Uniform::uniform_mvp(){
   //---------------------------
 
-  vk::structure::Descriptor_required descriptor;
+  vk::binding::structure::Required descriptor;
   descriptor.name = "mvp";
   descriptor.size = sizeof(glm::mat4);
   descriptor.binding = 0;
@@ -124,10 +124,10 @@ vk::structure::Descriptor_required Uniform::uniform_mvp(){
   //---------------------------
   return descriptor;
 }
-vk::structure::Descriptor_required Uniform::uniform_edl(){
+vk::binding::structure::Required Uniform::uniform_edl(){
   //---------------------------
 
-  vk::structure::Descriptor_required descriptor;
+  vk::binding::structure::Required descriptor;
   descriptor.name = "EDL_param";
   descriptor.size = sizeof(vk::render::edl::Structure);
   descriptor.binding = 5;

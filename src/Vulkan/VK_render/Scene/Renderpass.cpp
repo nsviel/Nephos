@@ -68,7 +68,7 @@ void Renderpass::pipeline_line(vk::structure::Subpass* subpass){
   pipeline->definition.vec_data_name.push_back("color");
 
   //Descriptor
-  vk::structure::Descriptor_required descriptor;
+  vk::binding::structure::Required descriptor;
   descriptor = vk_uniform->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 
@@ -91,7 +91,7 @@ void Renderpass::pipeline_point(vk::structure::Subpass* subpass){
   pipeline->definition.vec_data_name.push_back("color");
 
   //Descriptor
-  vk::structure::Descriptor_required descriptor;
+  vk::binding::structure::Required descriptor;
   descriptor = vk_uniform->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
   descriptor = vk_uniform->uniform_point_size();
@@ -116,7 +116,7 @@ void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
   pipeline->definition.vec_data_name.push_back("color");
 
   //Descriptor
-  vk::structure::Descriptor_required descriptor;
+  vk::binding::structure::Required descriptor;
   descriptor = vk_uniform->uniform_mvp();
   pipeline->binding.vec_required_binding.push_back(descriptor);
 

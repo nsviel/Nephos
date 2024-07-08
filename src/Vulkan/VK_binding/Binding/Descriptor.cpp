@@ -18,16 +18,6 @@ Descriptor::Descriptor(vk::Structure* vk_struct){
 Descriptor::~Descriptor(){}
 
 //Main function
-void Descriptor::create_binding(vk::binding::structure::Binding* binding){
-  //---------------------------
-
-  vk_uniform->create_uniform_buffers(binding);
-  vk_sampler->create_sampler(binding);
-  this->allocate_descriptor_set(binding);
-  this->update_descriptor_uniform(binding);
-
-  //---------------------------
-}
 void Descriptor::clean_binding(vk::binding::structure::Binding* binding){
   //---------------------------
 
@@ -141,12 +131,12 @@ void Descriptor::allocate_descriptor_set(vk::binding::structure::Binding* bindin
   //---------------------------
 }
 void Descriptor::create_layout_from_required(vk::binding::structure::Binding* binding){
-  std::vector<vk::structure::Descriptor_required>& vec_required_binding = binding->vec_required_binding;
+  std::vector<vk::binding::structure::Required>& vec_required_binding = binding->vec_required_binding;
   //---------------------------
 
   std::vector<VkDescriptorSetLayoutBinding> vec_binding;
   for(int i=0; i<vec_required_binding.size(); i++){
-    vk::structure::Descriptor_required& req_binding = vec_required_binding[i];
+    vk::binding::structure::Required& req_binding = vec_required_binding[i];
 
     //Convert it into descriptor binding
     VkDescriptorSetLayoutBinding layout_binding{};
@@ -160,6 +150,25 @@ void Descriptor::create_layout_from_required(vk::binding::structure::Binding* bi
 
   //Create descriptor layout from requirements
   binding->descriptor.layout = create_layout(vec_binding);
+
+  vk_uniform->create_uniform_buffers(binding);
+  vk_sampler->create_sampler(binding);
+  this->allocate_descriptor_set(binding);
+  this->update_descriptor_uniform(binding);
+
+  //---------------------------
+
+}
+void Descriptor::make_required_descriptor(utl::base::Data* data, vk::binding::structure::Binding* binding){
+  //---------------------------
+
+  vk::binding::structure::Required descriptor = vk_uniform->uniform_mvp();
+  binding->vec_required_binding.push_back(vk_uniform->uniform_mvp());
+
+  if(data->topology.type == utl::topology::POINT){
+    vk::binding::structure::Required descriptor = vk_uniform->uniform_point_size();
+    binding->vec_required_binding.push_back(vk_uniform->uniform_point_size());
+  }
 
   //---------------------------
 

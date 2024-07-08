@@ -98,20 +98,13 @@ void Data::create_vk_object(utl::base::Data* data, utl::base::Pose* pose){
   vk_object->pose = pose;
   vk_object->UID = vk_uid->query_free_UID();
 
-  //Descriptor
-  vk::structure::Descriptor_required descriptor = vk_uniform->uniform_mvp();
-  vk_object->binding.vec_required_binding.push_back(descriptor);
-
-  if(data->topology.type == utl::topology::POINT){
-    vk::structure::Descriptor_required descriptor = vk_uniform->uniform_point_size();
-    vk_object->binding.vec_required_binding.push_back(descriptor);
-  }
-
-  //Apply adequat init functions
+  //Data
   this->check_data(vk_object);
   vk_buffer->create_buffer(vk_object);
+
+  //Descriptor
+  vk_descriptor->make_required_descriptor(data, &vk_object->binding);
   vk_descriptor->create_layout_from_required(&vk_object->binding);
-  vk_descriptor->create_binding(&vk_object->binding);
 
   //Insert data struct into set
   vk_struct->data.list_vk_object.push_back(vk_object);
