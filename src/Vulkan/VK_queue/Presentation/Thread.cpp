@@ -87,15 +87,9 @@ void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
     }
   }
 
-  while(set->done == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
+  set->wait_until_done();
+  this->image_presentation(semaphore);
   delete set;
-
-
-  vk_struct->queue.presentation->image_presentation(semaphore);
-  //vk_struct->queue.graphics->wait_for_idle();
-  //this->image_presentation(semaphore);
 
   //---------------------------
 }

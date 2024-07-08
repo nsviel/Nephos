@@ -113,7 +113,7 @@ void Submission::post_submission(vk::command::structure::Set* set){
   if(set->supress){
     delete set;
   }else{
-    set->done = true;
+    set->mark_as_done();
   }
 
   //---------------------------
