@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Element/Thread/Thread.h>
 #include <string>
 #include <vector>
 
@@ -21,7 +20,7 @@ namespace ldr::base{class Importer;}
 
 namespace ldr::io{
 
-class Importer : public utl::base::Thread
+class Importer
 {
 public:
   //Constructor / Destructor

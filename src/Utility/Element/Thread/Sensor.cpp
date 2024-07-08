@@ -1,21 +1,21 @@
-#include "Thread.h"
+#include "Sensor.h"
 
 
-namespace utl::base{
+namespace utl::thread{
 
 //Main function
-void Thread::start_thread(){
+void Sensor::start_thread(){
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mtx);
   if(!thread_running){
     this->thread_running = true;
-    this->thread = std::thread(&Thread::run_thread, this);
+    this->thread = std::thread(&Sensor::run_thread, this);
   }
 
   //---------------------------
 }
-void Thread::run_thread(){
+void Sensor::run_thread(){
   //---------------------------
 
   this->thread_init();
@@ -29,7 +29,7 @@ void Thread::run_thread(){
 
   //---------------------------
 }
-void Thread::stop_thread(){
+void Sensor::stop_thread(){
   //---------------------------
 
   {
@@ -44,7 +44,7 @@ void Thread::stop_thread(){
 
   //---------------------------
 }
-void Thread::wait_thread(){
+void Sensor::wait_thread(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
@@ -53,7 +53,7 @@ void Thread::wait_thread(){
 
   //---------------------------
 }
-void Thread::pause_thread(){
+void Sensor::pause_thread(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mtx);

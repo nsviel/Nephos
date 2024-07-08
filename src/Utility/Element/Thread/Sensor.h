@@ -6,9 +6,9 @@
 #include <atomic>
 
 
-namespace utl::base {
+namespace utl::thread {
 
-class Thread {
+class Sensor {
 public:
   //Main function
   void start_thread();
