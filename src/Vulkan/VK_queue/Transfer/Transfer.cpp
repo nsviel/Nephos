@@ -21,38 +21,19 @@ Transfer::Transfer(vk::Structure* vk_struct){
 Transfer::~Transfer(){}
 
 //Main function
-void Transfer::start_thread(){
+void Transfer::thread_init(){
   //---------------------------
 
-  if(!thread_running){
-    this->thread = std::thread(&Transfer::run_thread, this);
-  }
-
-  //---------------------------
-}
-void Transfer::run_thread(){
-  //---------------------------
-
-  //Save thread information
   vk_struct->device.queue.transfer.type = vk::queue::TRANSFER;
   vk_struct->device.queue.transfer.thread_ID = utl::thread::get_ID_str();
 
-  //Start thread loop
-  this->thread_running = true;
-  while(thread_running){
-    this->wait_for_command();
-    this->process_command();
-  }
-
   //---------------------------
 }
-void Transfer::stop_thread(){
+void Transfer::thread_loop(){
   //---------------------------
 
-  this->thread_running = false;
-  if(thread.joinable()){
-    thread.join();
-  }
+  this->wait_for_command();
+  this->process_command();
 
   //---------------------------
 }

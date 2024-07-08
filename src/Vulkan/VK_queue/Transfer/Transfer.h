@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Element/Thread/Worker.h>
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <thread>
@@ -14,7 +15,7 @@ namespace vk::instance{class Query;}
 
 namespace vk::queue{
 
-class Transfer
+class Transfer : public utl::thread::Worker
 {
 public:
   //Constructor / Destructor
@@ -23,9 +24,8 @@ public:
 
 public:
   //Main function
-  void start_thread();
-  void run_thread();
-  void stop_thread();
+  void thread_init();
+  void thread_loop();
   void wait_for_idle();
 
   //Command
@@ -47,9 +47,7 @@ private:
 
   std::vector<vk::structure::Command_buffer*> vec_command_prepa;
   std::vector<vk::structure::Command_buffer*> vec_command_onrun;
-  std::thread thread;
   std::mutex mutex;
-  bool thread_running = false;
   bool thread_idle = true;
 };
 
