@@ -4,6 +4,7 @@
 #include <Vulkan/VK_binding/Structure/Sampler.h>
 #include <Vulkan/VK_binding/Structure/Uniform.h>
 #include <Vulkan/VK_binding/Structure/Push_constant.h>
+#include <vulkan/vulkan.h>
 #include <vector>
 
 
@@ -14,6 +15,7 @@ struct Binding{
 
   //Binding description
   std::vector<vk::binding::structure::Required> vec_required_binding;
+  std::vector<VkDescriptorSetLayoutBinding> vec_layout;
   vk::binding::structure::Descriptor descriptor;
 
   //Binding elements
