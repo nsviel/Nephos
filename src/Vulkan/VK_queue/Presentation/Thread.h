@@ -10,6 +10,7 @@ namespace vk{class Structure;}
 namespace vk::synchro::structure{class Fence;}
 namespace vk::window{class GLFW;}
 namespace vk::structure{class Command;}
+namespace vk::queue::presentation{class Submission;}
 
 
 namespace vk::queue::presentation{
@@ -26,11 +27,9 @@ public:
   void wait_for_idle();
   bool acquire_next_image(VkSemaphore& semaphore);
   void image_presentation(VkSemaphore& semaphore);
-  void add_presentation_command(std::vector<vk::structure::Command*> vec_command);
 
   //Subfunction
-  void submit_presentation(VkSemaphore& semaphore);
-  void next_frame_ID();
+  void add_command(std::vector<vk::structure::Command*> vec_command);
 
   inline bool is_thread_idle(){return thread_idle;}
 
@@ -39,6 +38,7 @@ private:
   vk::presentation::Surface* vk_surface;
   vk::presentation::Swapchain* vk_swapchain;
   vk::window::GLFW* vk_window;
+  vk::queue::presentation::Submission* vk_submission;
 
   bool thread_idle = true;
 };

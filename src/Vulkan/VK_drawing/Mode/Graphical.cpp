@@ -93,7 +93,7 @@ void Graphical::submit_presentation(std::vector<vk::structure::Command*>& vec_co
   //---------------------------
 
   //Submission
-  vk_struct->queue.presentation->add_presentation_command(vec_command);
+  vk_struct->queue.presentation->add_command(vec_command);
 
   //---------------------------
 }

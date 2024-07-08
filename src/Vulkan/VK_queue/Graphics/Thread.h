@@ -23,7 +23,6 @@ public:
   //Main function
   void thread_init();
   void thread_loop();
-  void thread_pause(bool value);
 
   //Subfunction
   void add_command(vk::structure::Command* command);
@@ -36,7 +35,6 @@ private:
 
   std::queue<std::vector<vk::structure::Command*>> queue;
   bool with_presentation = false;
-  bool pause = false;
 };
 
 }

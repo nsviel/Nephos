@@ -13,13 +13,17 @@ public:
   //Main function
   void start_thread();
   void stop_thread();
-  void wait_thread();
+
+  //State function
   void update_state(){cv.notify_all();}
+  void set_pause(bool value);
 
   inline bool is_thread_running(){return thread_running;}
+  inline void set_thread_pause(bool value){thread_paused = value;}
 
 private:
   void run_thread();
+  void thread_pause();
 
 protected:
   virtual void thread_init(){}
@@ -27,6 +31,7 @@ protected:
   virtual void thread_end(){}
 
   std::atomic<bool> thread_running{false};
+  std::atomic<bool> thread_paused{false};
   std::condition_variable cv;
   std::thread thread;
   std::mutex mutex;

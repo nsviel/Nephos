@@ -24,6 +24,7 @@ void Worker::run_thread(){
 
   while(thread_running){
     this->thread_loop();
+    this->thread_pause();
   }
 
   this->thread_end();
@@ -44,12 +45,22 @@ void Worker::stop_thread(){
 
   //---------------------------
 }
-void Worker::wait_thread(){
-  //For external thread to wait this queue thread idle
+
+//State function
+void Worker::thread_pause(){
   //---------------------------
 
+  //Wait for command
   std::unique_lock<std::mutex> lock(mutex);
-  cv.wait(lock, [this] { return !thread_running; });
+  cv.wait(lock, [this]{return !thread_paused || !thread_running;});
+
+  //---------------------------
+}
+void Worker::set_pause(bool value){
+  //---------------------------
+
+  this->thread_paused = value;
+  cv.notify_all();
 
   //---------------------------
 }
