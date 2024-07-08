@@ -21,72 +21,26 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::thread_init(){
+void Submission::process_command(std::vector<vk::structure::Command_buffer*> vec_command){
   //---------------------------
 
-  vk_struct->device.queue.transfer.type = vk::queue::TRANSFER;
-  vk_struct->device.queue.transfer.thread_ID = utl::thread::get_ID_str();
-
-  //---------------------------
-}
-void Submission::thread_loop(){
-  //---------------------------
-
-  this->wait_for_command();
-  this->process_command();
-
-  //---------------------------
-}
-void Submission::wait_for_idle(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
-}
-
-//Command
-void Submission::wait_for_command(){
-  //For internal thread to wait for to submit commands
-  //---------------------------
-
-  while((vec_command_prepa.empty() || vk_struct->queue.standby) && thread_running){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
-}
-void Submission::process_command(){
-  if(!thread_running) return;
-  //---------------------------
-
-  //Passing the command torch
-  mutex.lock();
-  this->vec_command_onrun = vec_command_prepa;
-  this->vec_command_prepa.clear();
-  mutex.unlock();
-
-  //Submission stuff
   std::vector<VkSubmitInfo> vec_info;
-  this->build_submission(vec_info);
+  this->build_submission(vec_command, vec_info);
   this->make_submission(vec_info);
-  this->post_submission();
+  this->post_submission(vec_command);
 
   //---------------------------
 }
 
 //Submission
-void Submission::build_submission(std::vector<VkSubmitInfo>& vec_info){
+void Submission::build_submission(std::vector<vk::structure::Command_buffer*> vec_command, std::vector<VkSubmitInfo>& vec_info){
   //---------------------------
 
-  for(int i=0; i<vec_command_onrun.size(); i++){
+  for(int i=0; i<vec_command.size(); i++){
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
     submit_info.commandBufferCount = 1;
-    submit_info.pCommandBuffers = &vec_command_onrun[i]->handle;
+    submit_info.pCommandBuffers = &vec_command[i]->handle;
 
     vec_info.push_back(submit_info);
   }
@@ -94,7 +48,7 @@ void Submission::build_submission(std::vector<VkSubmitInfo>& vec_info){
   //---------------------------
 }
 void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
-  this->thread_idle = false;
+
   //---------------------------
 
   vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
@@ -113,12 +67,12 @@ void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Submission::post_submission(){
+void Submission::post_submission(std::vector<vk::structure::Command_buffer*> vec_command){
   //---------------------------
   //say("-----");
   //Reset command buffer
-  for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command_buffer* command_buffer = vec_command_onrun[i];
+  for(int i=0; i<vec_command.size(); i++){
+    vk::structure::Command_buffer* command_buffer = vec_command[i];
 
     //say(command_buffer->handle);
     std::lock_guard<std::mutex> lock(command_buffer->mutex);
@@ -128,10 +82,9 @@ void Submission::post_submission(){
       command_buffer->is_available = true;
     }
   }
-  this->vec_command_onrun.clear();
+  vec_command.clear();
 
   //---------------------------
-  this->thread_idle = true;
 }
 
 }

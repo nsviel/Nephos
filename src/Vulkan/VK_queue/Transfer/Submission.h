@@ -24,31 +24,19 @@ public:
 
 public:
   //Main function
-  void thread_init();
-  void thread_loop();
-  void wait_for_idle();
-
-  //Command
-  void wait_for_command();
-  void add_command(vk::structure::Command_buffer* command);
-  void process_command();
+  void process_command(std::vector<vk::structure::Command_buffer*> vec_command);
 
   //Submission
-  void build_submission(std::vector<VkSubmitInfo>& vec_info);
+  void build_submission(std::vector<vk::structure::Command_buffer*> vec_command, std::vector<VkSubmitInfo>& vec_info);
   void make_submission(std::vector<VkSubmitInfo>& vec_info);
-  void post_submission();
-
-  inline bool is_thread_idle(){return thread_idle;}
+  void post_submission(std::vector<vk::structure::Command_buffer*> vec_command);
 
 private:
   vk::Structure* vk_struct;
   vk::synchro::Fence* vk_fence;
   vk::instance::Query* vk_query;
 
-  std::vector<vk::structure::Command_buffer*> vec_command_prepa;
-  std::vector<vk::structure::Command_buffer*> vec_command_onrun;
   std::mutex mutex;
-  bool thread_idle = true;
 };
 
 }
