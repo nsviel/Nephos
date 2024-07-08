@@ -1,7 +1,7 @@
 #pragma once
 
 namespace k4n{class Node;}
-namespace k4n::structure{class Sensor;}
+namespace k4n::base{class Sensor;}
 namespace k4n::processing::cloud{class Data;}
 namespace k4n::processing::image{class Data;}
 namespace dyn::image{class Operation;}
@@ -20,13 +20,13 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::structure::Sensor* sensor);
-  void run_thread(k4n::structure::Sensor* sensor);
+  void start_thread(k4n::base::Sensor* sensor);
+  void run_thread(k4n::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void image_processing(k4n::structure::Sensor* sensor);
-  void cloud_processing(k4n::structure::Sensor* sensor);
+  void image_processing(k4n::base::Sensor* sensor);
+  void cloud_processing(k4n::base::Sensor* sensor);
 
 private:
   k4n::processing::image::Data* k4n_image;

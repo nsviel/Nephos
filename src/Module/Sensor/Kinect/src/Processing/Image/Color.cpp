@@ -22,7 +22,7 @@ Color::Color(k4n::Node* node_k4n){
 Color::~Color(){}
 
 //Main function
-void Color::extract_data(k4n::structure::Sensor* sensor){
+void Color::extract_data(k4n::base::Sensor* sensor){
   //---------------------------
 
   this->retrieve_data(sensor);
@@ -35,7 +35,7 @@ void Color::extract_data(k4n::structure::Sensor* sensor){
 }
 
 //Data function
-void Color::retrieve_data(k4n::structure::Sensor* sensor){
+void Color::retrieve_data(k4n::base::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
@@ -56,7 +56,7 @@ void Color::retrieve_data(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Color::retrieve_image(k4n::structure::Sensor* sensor){
+void Color::retrieve_image(k4n::base::Sensor* sensor){
   //---------------------------
 
   //Image

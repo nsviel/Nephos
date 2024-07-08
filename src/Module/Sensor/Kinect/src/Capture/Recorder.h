@@ -4,7 +4,7 @@
 #include <thread>
 #include <string>
 
-namespace k4n::structure{class Sensor;}
+namespace k4n::base{class Sensor;}
 
 
 namespace k4n::capture{
@@ -21,9 +21,9 @@ public:
   bool record_sensor(dyn::base::Sensor* sensor, std::string path);
 
   //Subfunction
-  void export_start(k4n::structure::Sensor* sensor, std::string path);
-  void export_record(k4n::structure::Sensor* sensor, std::string path);
-  void export_stop(k4n::structure::Sensor* sensor);
+  void export_start(k4n::base::Sensor* sensor, std::string path);
+  void export_record(k4n::base::Sensor* sensor, std::string path);
+  void export_stop(k4n::base::Sensor* sensor);
 
 private:
   std::thread thread;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Structure/Sensor.h>
+#include <Kinect/src/Base/Sensor.h>
 
 namespace k4n{class Node;}
 namespace k4n{class Processing;}
@@ -12,7 +12,7 @@ namespace dyn::element{class Sensor;}
 
 namespace k4n::playback{
 
-class Sensor : public k4n::structure::Sensor
+class Sensor : public k4n::base::Sensor
 {
 public:
   //Constructor / Destructor

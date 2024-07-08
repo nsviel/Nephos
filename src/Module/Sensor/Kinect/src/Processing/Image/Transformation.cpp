@@ -20,7 +20,7 @@ Transformation::Transformation(k4n::Node* node_k4n){
 Transformation::~Transformation(){}
 
 //Main function
-void Transformation::make_transformation(k4n::structure::Sensor* sensor){
+void Transformation::make_transformation(k4n::base::Sensor* sensor){
   //---------------------------
 
   switch(k4n_struct->config.depth.transformation_mode){
@@ -40,7 +40,7 @@ void Transformation::make_transformation(k4n::structure::Sensor* sensor){
 }
 
 //Subfunction
-void Transformation::find_depth_to_color(k4n::structure::Sensor* sensor){
+void Transformation::find_depth_to_color(k4n::base::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 
@@ -88,7 +88,7 @@ void Transformation::find_depth_to_color(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Transformation::find_color_to_depth(k4n::structure::Sensor* sensor){
+void Transformation::find_color_to_depth(k4n::base::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 

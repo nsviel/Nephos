@@ -1,7 +1,7 @@
 #pragma once
 
 namespace k4n{class Node;}
-namespace k4n::structure{class Sensor;}
+namespace k4n::base{class Sensor;}
 namespace k4n::processing::image{class Transformation;}
 namespace k4n::processing::image{class Color;}
 namespace k4n::processing::image{class Depth;}
@@ -19,11 +19,11 @@ public:
 
 public:
   //Main function
-  void extract_data(k4n::structure::Sensor* device);
+  void extract_data(k4n::base::Sensor* device);
 
   //Subfunction
-  void extract_image_data(k4n::structure::Sensor* sensor);
-  void make_transformation(k4n::structure::Sensor* sensor);
+  void extract_image_data(k4n::base::Sensor* sensor);
+  void make_transformation(k4n::base::Sensor* sensor);
 
 private:
   k4n::processing::image::Transformation* k4n_transformation;

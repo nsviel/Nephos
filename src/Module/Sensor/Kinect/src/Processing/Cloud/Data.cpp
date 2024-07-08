@@ -18,7 +18,7 @@ Data::Data(k4n::Node* node_k4n){
 Data::~Data(){}
 
 //Main function
-void Data::extract_data(k4n::structure::Sensor* sensor){
+void Data::extract_data(k4n::base::Sensor* sensor){
   if(check_condition(sensor) == false) return;
   //---------------------------
 
@@ -47,7 +47,7 @@ void Data::extract_data(k4n::structure::Sensor* sensor){
 }
 
 //Subfunction
-bool Data::check_condition(k4n::structure::Sensor* sensor){
+bool Data::check_condition(k4n::base::Sensor* sensor){
   //---------------------------
 
   if(!sensor->depth.data.k4a_image.is_valid()) return false;
@@ -58,7 +58,7 @@ bool Data::check_condition(k4n::structure::Sensor* sensor){
   //---------------------------
   return true;
 }
-void Data::extraction_init(k4n::structure::Sensor* sensor){
+void Data::extraction_init(k4n::base::Sensor* sensor){
   //---------------------------
 
   //Create cloud image
@@ -82,7 +82,7 @@ void Data::extraction_init(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Data::extraction_data(k4n::structure::Sensor* sensor){
+void Data::extraction_data(k4n::base::Sensor* sensor){
   //---------------------------
 
   //Fille vector with data
@@ -95,7 +95,7 @@ void Data::extraction_data(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Data::extraction_transfer(k4n::structure::Sensor* sensor){
+void Data::extraction_transfer(k4n::base::Sensor* sensor){
   utl::base::Data* data = &sensor->data;
   //---------------------------
 
@@ -114,7 +114,7 @@ void Data::extraction_transfer(k4n::structure::Sensor* sensor){
 }
 
 //Data function
-void Data::retrieve_location(k4n::structure::Sensor* sensor, int i){
+void Data::retrieve_location(k4n::base::Sensor* sensor, int i){
   const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->depth.data.buffer);
   //---------------------------
 
@@ -139,7 +139,7 @@ void Data::retrieve_location(k4n::structure::Sensor* sensor, int i){
 
   //---------------------------
 }
-void Data::retrieve_color(k4n::structure::Sensor* sensor, int i){
+void Data::retrieve_color(k4n::base::Sensor* sensor, int i){
   const uint8_t* buffer_color = sensor->color.data.buffer;
   //---------------------------
 
@@ -154,7 +154,7 @@ void Data::retrieve_color(k4n::structure::Sensor* sensor, int i){
 
   //---------------------------
 }
-void Data::retrieve_ir(k4n::structure::Sensor* sensor, int i){
+void Data::retrieve_ir(k4n::base::Sensor* sensor, int i){
   const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor->ir.data.buffer);
   //---------------------------
 

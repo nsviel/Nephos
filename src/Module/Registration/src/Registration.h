@@ -1,7 +1,7 @@
 #pragma once
 
 namespace k4n{class Node;}
-namespace k4n::structure{class Sensor;}
+namespace k4n::base{class Sensor;}
 namespace utl::thread{class Pool;}
 
 
@@ -16,8 +16,8 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::structure::Sensor* sensor);
-  void run_thread(k4n::structure::Sensor* sensor);
+  void start_thread(k4n::base::Sensor* sensor);
+  void run_thread(k4n::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction

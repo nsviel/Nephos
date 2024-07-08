@@ -24,7 +24,7 @@ Infrared::Infrared(k4n::Node* node_k4n){
 Infrared::~Infrared(){}
 
 //Main function
-void Infrared::extract_data(k4n::structure::Sensor* sensor){
+void Infrared::extract_data(k4n::base::Sensor* sensor){
   //---------------------------
 
   this->retrieve_data(sensor);
@@ -34,7 +34,7 @@ void Infrared::extract_data(k4n::structure::Sensor* sensor){
 }
 
 //Data function
-void Infrared::retrieve_data(k4n::structure::Sensor* sensor){
+void Infrared::retrieve_data(k4n::base::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
@@ -54,7 +54,7 @@ void Infrared::retrieve_data(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Infrared::retrieve_image(k4n::structure::Sensor* sensor){
+void Infrared::retrieve_image(k4n::base::Sensor* sensor){
   //---------------------------
 
   //Image
@@ -98,7 +98,7 @@ std::string Infrared::retrieve_format(k4a_image_format_t color_format){
   //---------------------------
   return format;
 }
-void Infrared::convert_image_into_color(k4n::structure::Sensor* sensor){
+void Infrared::convert_image_into_color(k4n::base::Sensor* sensor){
   uint8_t* buffer = sensor->ir.data.buffer;
   uint16_t level_min = sensor->ir.config.level_min;
   uint16_t level_max = sensor->ir.config.level_max;
@@ -129,7 +129,7 @@ void Infrared::convert_image_into_color(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Infrared::find_ir_level(k4n::structure::Sensor* sensor){
+void Infrared::find_ir_level(k4n::base::Sensor* sensor){
   //---------------------------
 
   if(sensor->depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){

@@ -22,7 +22,7 @@ Data::Data(k4n::Node* node_k4n){
 Data::~Data(){}
 
 //Main function
-void Data::extract_data(k4n::structure::Sensor* sensor){
+void Data::extract_data(k4n::base::Sensor* sensor){
   //---------------------------
 
   this->extract_image_data(sensor);
@@ -32,7 +32,7 @@ void Data::extract_data(k4n::structure::Sensor* sensor){
 }
 
 //Subfunction
-void Data::extract_image_data(k4n::structure::Sensor* sensor){
+void Data::extract_image_data(k4n::base::Sensor* sensor){
   prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::image");
   //---------------------------
 
@@ -55,7 +55,7 @@ void Data::extract_image_data(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Data::make_transformation(k4n::structure::Sensor* sensor){
+void Data::make_transformation(k4n::base::Sensor* sensor){
   prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::image");
   //---------------------------
 

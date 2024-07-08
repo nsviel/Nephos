@@ -16,7 +16,7 @@ XY_table::XY_table(k4n::Node* node_k4n){
 XY_table::~XY_table(){}
 
 //Main function
-void XY_table::retrieve_table_xy(k4n::structure::Sensor* sensor){
+void XY_table::retrieve_table_xy(k4n::base::Sensor* sensor){
   //---------------------------
 
   //Create full 1 value image

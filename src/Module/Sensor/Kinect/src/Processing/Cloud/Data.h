@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace k4n{class Node;}
-namespace k4n::structure{class Sensor;}
+namespace k4n::base{class Sensor;}
 namespace k4n::processing::cloud{class XY_table;}
 namespace utl::base{class Data;}
 
@@ -21,18 +21,18 @@ public:
 
 public:
   //Main function
-  void extract_data(k4n::structure::Sensor* sensor);
+  void extract_data(k4n::base::Sensor* sensor);
 
   //Subfunction
-  bool check_condition(k4n::structure::Sensor* sensor);
-  void extraction_init(k4n::structure::Sensor* sensor);
-  void extraction_data(k4n::structure::Sensor* sensor);
-  void extraction_transfer(k4n::structure::Sensor* sensor);
+  bool check_condition(k4n::base::Sensor* sensor);
+  void extraction_init(k4n::base::Sensor* sensor);
+  void extraction_data(k4n::base::Sensor* sensor);
+  void extraction_transfer(k4n::base::Sensor* sensor);
 
   //Data function
-  void retrieve_location(k4n::structure::Sensor* sensor, int i);
-  void retrieve_color(k4n::structure::Sensor* sensor, int i);
-  void retrieve_ir(k4n::structure::Sensor* sensor, int i);
+  void retrieve_location(k4n::base::Sensor* sensor, int i);
+  void retrieve_color(k4n::base::Sensor* sensor, int i);
+  void retrieve_ir(k4n::base::Sensor* sensor, int i);
 
 private:
   k4n::processing::cloud::XY_table* k4n_xytable;

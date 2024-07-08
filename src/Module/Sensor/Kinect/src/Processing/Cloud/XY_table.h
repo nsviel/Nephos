@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace k4n{class Node;}
-namespace k4n::structure{class Sensor;}
+namespace k4n::base{class Sensor;}
 
 
 namespace k4n::processing::cloud{
@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  void retrieve_table_xy(k4n::structure::Sensor* sensor);
+  void retrieve_table_xy(k4n::base::Sensor* sensor);
 
 private:
 };

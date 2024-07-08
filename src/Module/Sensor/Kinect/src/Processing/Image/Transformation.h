@@ -8,7 +8,7 @@
 
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
-namespace k4n::structure{class Sensor;}
+namespace k4n::base{class Sensor;}
 
 
 namespace k4n::processing::image{
@@ -22,11 +22,11 @@ public:
 
 public:
   //Main function
-  void make_transformation(k4n::structure::Sensor* sensor);
+  void make_transformation(k4n::base::Sensor* sensor);
 
   //Subfunction
-  void find_depth_to_color(k4n::structure::Sensor* sensor);
-  void find_color_to_depth(k4n::structure::Sensor* sensor);
+  void find_depth_to_color(k4n::base::Sensor* sensor);
+  void find_color_to_depth(k4n::base::Sensor* sensor);
 
 private:
   k4n::Structure* k4n_struct;

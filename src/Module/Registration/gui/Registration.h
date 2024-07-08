@@ -1,7 +1,7 @@
 #pragma once
 
 namespace k4n{class Node;}
-namespace k4n::structure{class Sensor;}
+namespace k4n::base{class Sensor;}
 
 
 namespace k4n::gui{
@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  void draw_registration(k4n::structure::Sensor* sensor);
+  void draw_registration(k4n::base::Sensor* sensor);
 
   //Subfunction
 

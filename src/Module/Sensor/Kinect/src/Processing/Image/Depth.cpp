@@ -22,7 +22,7 @@ Depth::Depth(k4n::Node* node_k4n){
 Depth::~Depth(){}
 
 //Main function
-void Depth::extract_data(k4n::structure::Sensor* sensor){
+void Depth::extract_data(k4n::base::Sensor* sensor){
   //---------------------------
 
   this->retrieve_data(sensor);
@@ -32,7 +32,7 @@ void Depth::extract_data(k4n::structure::Sensor* sensor){
 }
 
 //Data function
-void Depth::retrieve_data(k4n::structure::Sensor* sensor){
+void Depth::retrieve_data(k4n::base::Sensor* sensor){
   //---------------------------
 
   //Get k4a image
@@ -53,7 +53,7 @@ void Depth::retrieve_data(k4n::structure::Sensor* sensor){
 
   //---------------------------
 }
-void Depth::retrieve_image(k4n::structure::Sensor* sensor){
+void Depth::retrieve_image(k4n::base::Sensor* sensor){
   //---------------------------
 
   //Colorization
@@ -101,7 +101,7 @@ std::string Depth::retrieve_format(k4a_image_format_t color_format){
   //---------------------------
   return format;
 }
-void Depth::convert_image_into_color(k4n::structure::Sensor* sensor, std::vector<uint8_t>& buffer){
+void Depth::convert_image_into_color(k4n::base::Sensor* sensor, std::vector<uint8_t>& buffer){
   uint8_t* inputBuffer = sensor->depth.data.buffer;
   uint16_t range_min = sensor->depth.config.range_min;
   uint16_t range_max = sensor->depth.config.range_max;
@@ -136,7 +136,7 @@ void Depth::convert_image_into_color(k4n::structure::Sensor* sensor, std::vector
 
   //---------------------------
 }
-void Depth::find_depth_mode_range(k4n::structure::Sensor* sensor){
+void Depth::find_depth_mode_range(k4n::base::Sensor* sensor){
   //---------------------------
 
   switch(sensor->depth.config.mode){
