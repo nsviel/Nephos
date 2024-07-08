@@ -1,6 +1,6 @@
 #include "Graphical.h"
 
-#include <Utility/Element/Timer/Chrono.h>
+#include <Utility/Namespace.h>
 #include <Vulkan/Namespace.h>
 
 
@@ -25,8 +25,11 @@ void Graphical::draw_frame(){
   std::vector<vk::structure::Command*> vec_command;
   vk::synchro::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
 
+  //Acquiere image
+  bool sucess = acquire_image(semaphore);
+  if(!sucess) return;
+
   //Rendering
-  if(!acquire_image(semaphore)) return;
   this->record_renderpass(vec_command, semaphore);
   this->copy_to_swapchain(vec_command, semaphore);
   this->submit_presentation(vec_command);

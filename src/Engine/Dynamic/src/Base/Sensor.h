@@ -12,7 +12,7 @@ namespace dyn::base{class Recorder;}
 
 namespace dyn::base{
 
-struct Sensor : public dat::base::Object, public utl::thread::Sensor{
+struct Sensor : public dat::base::Object, public utl::thread::Worker{
   //---------------------------
 
   void clean(){

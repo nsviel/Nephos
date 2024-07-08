@@ -8,7 +8,7 @@
 
 namespace utl::thread {
 
-class Sensor {
+class Task {
 public:
   //Main function
   void start_thread();
