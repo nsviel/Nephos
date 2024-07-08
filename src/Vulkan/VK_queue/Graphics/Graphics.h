@@ -28,15 +28,15 @@ public:
   void thread_init();
   void thread_loop();
 
-  //Processing
+  //Subfunction
   void wait_for_command();
   void wait_for_idle();
+  void process_command();
 
   //Command
   void add_command(vk::structure::Command* command);
   void add_graphics(std::vector<vk::structure::Command*> vec_command);
   void add_presentation(std::vector<vk::structure::Command*> vec_command);
-  void process_command();
 
   //Submission
   void build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
@@ -53,9 +53,7 @@ private:
   std::vector<vk::structure::Command*> vec_command_onrun;
   std::vector<vk::structure::Command*> vec_command_prepa;
   bool thread_idle = true;
-  bool thread_running = false;
   bool with_presentation = false;
-  std::thread thread;
   std::mutex mutex;
 };
 

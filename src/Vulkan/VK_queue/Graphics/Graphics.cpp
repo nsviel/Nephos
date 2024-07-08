@@ -34,17 +34,13 @@ void Graphics::thread_init(){
 void Graphics::thread_loop(){
   //---------------------------
 
-  //Start thread loop
-  this->thread_running = true;
-  while(thread_running){
-    this->wait_for_command();
-    this->process_command();
-  }
+  this->wait_for_command();
+  this->process_command();
 
   //---------------------------
 }
 
-//Waiters
+//Subfunction
 void Graphics::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
@@ -62,6 +58,23 @@ void Graphics::wait_for_idle(){
   while(thread_idle == false){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
+
+  //---------------------------
+}
+void Graphics::process_command(){
+  if(!thread_running) return;
+  //---------------------------
+
+  //Passing the command torch
+  this->vec_command_onrun = vec_command_prepa;
+  this->vec_command_prepa.clear();
+
+  //Submission stuff
+  VkSemaphore semaphore;
+  std::vector<VkSubmitInfo> vec_info;
+  this->build_submission(vec_info, semaphore);
+  this->make_submission(vec_info);
+  this->post_submission(semaphore);
 
   //---------------------------
 }
@@ -107,23 +120,6 @@ void Graphics::add_presentation(std::vector<vk::structure::Command*> vec_command
   this->with_presentation = true;
   vec_command_prepa = vec_command;
   mutex.unlock();
-
-  //---------------------------
-}
-void Graphics::process_command(){
-  if(!thread_running) return;
-  //---------------------------
-
-  //Passing the command torch
-  this->vec_command_onrun = vec_command_prepa;
-  this->vec_command_prepa.clear();
-
-  //Submission stuff
-  VkSemaphore semaphore;
-  std::vector<VkSubmitInfo> vec_info;
-  this->build_submission(vec_info, semaphore);
-  this->make_submission(vec_info);
-  this->post_submission(semaphore);
 
   //---------------------------
 }
