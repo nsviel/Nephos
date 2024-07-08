@@ -8,9 +8,6 @@
 
 namespace vk{class Structure;}
 namespace vk::structure{class Command_buffer;}
-namespace vk::synchro::structure{class Fence;}
-namespace vk::synchro{class Fence;}
-namespace vk::instance{class Query;}
 namespace vk::queue::transfer{class Submission;}
 
 
@@ -37,8 +34,6 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::synchro::Fence* vk_fence;
-  vk::instance::Query* vk_query;
   vk::queue::transfer::Submission* vk_submission;
 
   std::vector<vk::structure::Command_buffer*> vec_command_prepa;

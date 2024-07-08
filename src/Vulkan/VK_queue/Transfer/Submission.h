@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Element/Thread/Worker.h>
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <thread>
@@ -15,7 +14,7 @@ namespace vk::instance{class Query;}
 
 namespace vk::queue::transfer{
 
-class Submission : public utl::thread::Worker
+class Submission
 {
 public:
   //Constructor / Destructor

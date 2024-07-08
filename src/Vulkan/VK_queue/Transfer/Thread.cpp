@@ -12,8 +12,6 @@ Thread::Thread(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_fence = new vk::synchro::Fence(vk_struct);
-  this->vk_query = new vk::instance::Query(vk_struct);
   this->vk_submission = new vk::queue::transfer::Submission(vk_struct);
 
   //---------------------------

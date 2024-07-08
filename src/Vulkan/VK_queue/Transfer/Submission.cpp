@@ -16,7 +16,6 @@ Submission::Submission(vk::Structure* vk_struct){
   this->vk_query = new vk::instance::Query(vk_struct);
 
   //---------------------------
-  this->start_thread();
 }
 Submission::~Submission(){}
 
