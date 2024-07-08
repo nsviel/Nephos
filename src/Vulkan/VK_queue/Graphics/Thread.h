@@ -31,7 +31,6 @@ public:
   void add_command(vk::structure::Command* command);
   void add_command(std::vector<vk::structure::Command*> vec_command);
   void add_command(vk::command::structure::Set* set);
-  void add_presentation(std::vector<vk::structure::Command*> vec_command);
 
 private:
   vk::Structure* vk_struct;
@@ -39,7 +38,6 @@ private:
   vk::queue::graphics::Submission* vk_submission;
 
   std::queue<vk::command::structure::Set*> queue;
-  bool with_presentation = false;
 };
 
 }

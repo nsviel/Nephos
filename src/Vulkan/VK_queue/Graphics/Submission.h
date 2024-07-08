@@ -25,7 +25,7 @@ public:
 
 public:
   //Main function
-  void process_command(vk::command::structure::Set* set, bool with_presentation);
+  void process_command(vk::command::structure::Set* set);
 
   //Subfunction
   void build_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
@@ -37,7 +37,6 @@ private:
   vk::synchro::Fence* vk_fence;
   vk::instance::Query* vk_query;
 
-  bool with_presentation = false;
   std::mutex mutex;
 };
 

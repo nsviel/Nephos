@@ -20,7 +20,7 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::process_command(vk::command::structure::Set* set, bool with_presentation){
+void Submission::process_command(vk::command::structure::Set* set){
   //---------------------------
 
   //Submission stuff
@@ -29,11 +29,6 @@ void Submission::process_command(vk::command::structure::Set* set, bool with_pre
   this->build_submission(set, vec_info, semaphore);
   this->make_submission(set, vec_info);
   this->post_submission(set);
-
-  //If required, make image presentation
-  if(with_presentation){
-    vk_struct->queue.presentation->image_presentation(semaphore);
-  }
 
   //---------------------------
 }
@@ -83,15 +78,16 @@ void Submission::build_submission(vk::command::structure::Set* set, std::vector<
 void Submission::make_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info){
   //---------------------------
 
+  vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
+
   VkQueue queue = vk_struct->device.queue.graphics.handle;
-  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), set->fence->handle);
+  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }
 
-  vkWaitForFences(vk_struct->device.handle, 1, &set->fence->handle, VK_TRUE, UINT64_MAX);
-  vk_fence->reset_fence(set->fence);
-  set->done = true;
+  vkWaitForFences(vk_struct->device.handle, 1, &fence->handle, VK_TRUE, UINT64_MAX);
+  vk_fence->reset_fence(fence);
 
   //---------------------------
 }
@@ -116,6 +112,8 @@ void Submission::post_submission(vk::command::structure::Set* set){
 
   if(set->supress){
     delete set;
+  }else{
+    set->done = true;
   }
 
   //---------------------------
