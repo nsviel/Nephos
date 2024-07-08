@@ -1,6 +1,7 @@
 #include "Manager.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 #include <set>
 
 
@@ -30,31 +31,18 @@ void Manager::create_queue_info(std::vector<VkDeviceQueueCreateInfo>& vec_queue_
   std::vector<vk::queue::structure::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   //---------------------------
 
-  vk_assigment->find_queue_family_assigment();
+  vk_assigment->assign_queue();
 
   for(int i=0; i<vec_queue_family.size(); i++){
     vk::queue::structure::Family& family = vec_queue_family[i];
     if(family.vec_queue.size() == 0) continue;
 
-    //Get set of queue index
-    std::set<int> set_index;
-    for(int j=0; j<family.vec_queue.size(); j++){
-      vk::queue::structure::Queue* queue = family.vec_queue[j];
-      set_index.insert(queue->family_index);
-    }
-
-    //Get associated priority vector
-    std::vector<float> vec_priority;
-    for(const auto& element : set_index){
-      vec_priority.push_back(1.0f);
-    }
-
     //Create queue info accordingly
     VkDeviceQueueCreateInfo queue_info{};
     queue_info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
     queue_info.queueFamilyIndex = static_cast<uint32_t>(family.ID);
-    queue_info.queueCount = set_index.size();
-    queue_info.pQueuePriorities = vec_priority.data();
+    queue_info.queueCount = family.vec_queue.size();
+    queue_info.pQueuePriorities = family.vec_priority.data();
 
     vec_queue_info.push_back(queue_info);
   }

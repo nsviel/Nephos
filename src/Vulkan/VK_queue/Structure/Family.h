@@ -21,6 +21,7 @@ struct Family{
 
   VkQueueFamilyProperties property = {};
   std::vector<vk::queue::structure::Queue*> vec_queue;
+  std::vector<float> vec_priority;
 
   //---------------------------
 };

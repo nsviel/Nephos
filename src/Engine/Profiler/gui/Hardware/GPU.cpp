@@ -82,12 +82,13 @@ void GPU::draw_gpu_queue(){
   flags |= ImGuiTableFlags_BordersOuterH;
   flags |= ImGuiTableFlags_RowBg;
   flags |= ImGuiTableFlags_ContextMenuInBody;
-  ImGui::BeginTable("vulkan_queue##table", 4, flags);
+  ImGui::BeginTable("vulkan_queue##table", 5, flags);
 
   //Family index
   ImGui::TableSetupColumn("");
   ImGui::TableSetupColumn("Number");
   ImGui::TableSetupColumn("Family");
+  ImGui::TableSetupColumn("Index");
   ImGui::TableSetupColumn("Thread");
   ImGui::TableHeadersRow();
 
@@ -113,6 +114,8 @@ void GPU::draw_gpu_queue(){
     ImGui::TextColored(color, "%d", queue.number);
     ImGui::TableNextColumn();
     ImGui::TextColored(color, "%d", queue.family_ID);
+    ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%d", queue.family_idx);
     ImGui::TableNextColumn();
     ImGui::TextColored(color, "%s", queue.thread_ID.c_str());
   }

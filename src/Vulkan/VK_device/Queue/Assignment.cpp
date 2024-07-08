@@ -17,19 +17,19 @@ Assignment::Assignment(vk::Structure* vk_struct){
 Assignment::~Assignment(){}
 
 //Main function
-void Assignment::find_queue_family_assigment(){
+void Assignment::assign_queue(){
   //---------------------------
 
-  this->find_graphics_queue();
-  this->find_presentation_queue();
-  this->find_transfer_queue();
+  this->assign_graphics_queue();
+  this->assign_presentation_queue();
+  this->assign_transfer_queue();
   this->check_proper_assigment();
 
   //---------------------------
 }
 
 //Subfunction
-void Assignment::find_graphics_queue(){
+void Assignment::assign_graphics_queue(){
   std::vector<vk::queue::structure::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   vk::queue::structure::Set& set = vk_struct->device.queue;
   //---------------------------
@@ -41,12 +41,14 @@ void Assignment::find_graphics_queue(){
       set.graphics.family_ID = i;
       set.graphics.family_index = family.current_index++;
       family.vec_queue.push_back(&set.graphics);
+      family.vec_priority.push_back(1.0);
+      break;
     }
   }
 
   //---------------------------
 }
-void Assignment::find_presentation_queue(){
+void Assignment::assign_presentation_queue(){
   std::vector<vk::queue::structure::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   vk::queue::structure::Set& set = vk_struct->device.queue;
   //---------------------------
@@ -58,12 +60,14 @@ void Assignment::find_presentation_queue(){
       set.presentation.family_ID = i;
       set.presentation.family_index = family.current_index++;
       family.vec_queue.push_back(&set.presentation);
+      family.vec_priority.push_back(1.0);
+      break;
     }
   }
 
   //---------------------------
 }
-void Assignment::find_transfer_queue(){
+void Assignment::assign_transfer_queue(){
   std::vector<vk::queue::structure::Family>& vec_queue_family = vk_struct->device.physical_device.vec_queue_family;
   vk::queue::structure::Set& set = vk_struct->device.queue;
   //---------------------------
@@ -71,22 +75,12 @@ void Assignment::find_transfer_queue(){
   for(int i=0; i<vec_queue_family.size(); i++){
     vk::queue::structure::Family& family = vec_queue_family[i];
 
-    if(family.capable_transfer && set.transfer.family_ID == -1){ // If transfer not assigned
-      //Discrete GPU
-      if(vk_struct->device.physical_device.discrete_gpu){
-        if(i != set.graphics.family_ID && i==2){
-          set.transfer.family_ID = i;
-          set.transfer.family_index = family.current_index++;
-          family.vec_queue.push_back(&set.transfer);
-          break;
-        }
-      }
-      //Integrated GPU
-      else{
-        set.transfer.family_ID = i;
-        set.transfer.family_index = family.current_index++;
-        family.vec_queue.push_back(&set.transfer);
-      }
+    if(family.capable_transfer && set.transfer.family_ID == -1){
+      set.transfer.family_ID = i;
+      set.transfer.family_index = family.current_index++;
+      family.vec_queue.push_back(&set.transfer);
+      family.vec_priority.push_back(1.0);
+      break;
     }
   }
 

@@ -103,6 +103,7 @@ void GPU::add_queue(vk::queue::structure::Queue& queue, int type){
   prf_queue.type = (prf::hardware::structure::queue::Type)type;
   prf_queue.number++;
   prf_queue.family_ID = queue.family_ID;
+  prf_queue.family_idx = queue.family_index;
   prf_queue.thread_ID = queue.thread_ID;
   prf_struct->hardware.gpu.vec_queue.push_back(prf_queue);
 

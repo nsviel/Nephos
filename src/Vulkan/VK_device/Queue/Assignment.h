@@ -19,12 +19,12 @@ public:
 
 public:
   //Main function
-  void find_queue_family_assigment();
+  void assign_queue();
 
   //Subfunction
-  void find_graphics_queue();
-  void find_presentation_queue();
-  void find_transfer_queue();
+  void assign_graphics_queue();
+  void assign_presentation_queue();
+  void assign_transfer_queue();
   void check_proper_assigment();
 
 private:

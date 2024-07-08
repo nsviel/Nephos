@@ -34,6 +34,7 @@ struct Queue{
   prf::hardware::structure::queue::Type type;
   std::string thread_ID = "";
   int family_ID = -1;
+  int family_idx = -1;
   int number = 0;
 
   //---------------------------
