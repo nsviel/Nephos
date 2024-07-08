@@ -19,6 +19,8 @@ public:
 public:
   //Main function
   void retrieve_table_xy(k4n::base::Sensor* sensor);
+  void main_image(k4n::base::Sensor* sensor);
+  void point_by_point(k4n::base::Sensor* sensor);
 
 private:
 };

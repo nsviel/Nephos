@@ -26,7 +26,7 @@ void Data::extract_data(k4n::base::Sensor* sensor){
 
   tasker->loop();
 
-  //k4n_xytable->retrieve_table_xy(sensor);
+
 
   //init
   tasker->task_begin("init");
@@ -42,6 +42,8 @@ void Data::extract_data(k4n::base::Sensor* sensor){
   tasker->task_begin("transfer");
   this->extraction_transfer(sensor);
   tasker->task_end("transfer");
+
+    k4n_xytable->retrieve_table_xy(sensor);
 
   //---------------------------
 }
@@ -71,14 +73,14 @@ void Data::extraction_init(k4n::base::Sensor* sensor){
 
   //Transform depth into cloud
   sensor->device.transformation.depth_image_to_point_cloud(sensor->depth.data.k4a_image, sensor->cloud.calibration_type, &cloud_image);
-  sensor->depth.data.buffer = cloud_image.get_buffer();
-  sensor->depth.data.size = cloud_image.get_size() / (3 * sizeof(int16_t));
+  sensor->cloud.buffer = cloud_image.get_buffer();
+  sensor->cloud.size = cloud_image.get_size() / (3 * sizeof(int16_t));
 
   //Resize vectors
-  buffer_data.xyz.resize(sensor->depth.data.size);
-  buffer_data.rgb.resize(sensor->depth.data.size);
-  buffer_data.Is.resize(sensor->depth.data.size);
-  buffer_data.R.resize(sensor->depth.data.size);
+  buffer_data.xyz.resize(sensor->cloud.size);
+  buffer_data.rgb.resize(sensor->cloud.size);
+  buffer_data.Is.resize(sensor->cloud.size);
+  buffer_data.R.resize(sensor->cloud.size);
 
   //---------------------------
 }
@@ -87,11 +89,30 @@ void Data::extraction_data(k4n::base::Sensor* sensor){
 
   //Fille vector with data
   #pragma omp parallel for
-  for(int i=0; i<sensor->depth.data.size; i++){
-    this->retrieve_location(sensor, i);
+  for(int i=0; i<sensor->cloud.size; i++){
+    //this->retrieve_location(sensor, i);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
   }
+
+  std::vector<glm::vec3> vec_xyz(sensor->cloud.size);
+  for(int i=0; i<sensor->cloud.size; i++){
+    //Real location
+    const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->cloud.buffer);
+    int idx = i * 3;
+    float x = buffer_depth[idx + 0];
+    float y = buffer_depth[idx + 1];
+    float z = buffer_depth[idx + 2];
+    float x_m = -x / 1000.0f;
+    float y_m = -y / 1000.0f;
+    float z_m = z / 1000.0f;
+    glm::vec3 xyz = glm::vec3(z_m, x_m, y_m);
+    buffer_data[i] = xyz;
+
+
+  }
+    buffer_data.xyz = vec_xyz;
+    sensor->data.xyz = vec_xyz;
 
   //---------------------------
 }
@@ -106,16 +127,16 @@ void Data::extraction_transfer(k4n::base::Sensor* sensor){
   data->R = buffer_data.R;
 
   //Info
-  data->size = sensor->depth.data.size;
-  data->width = sensor->depth.data.width;
-  data->height = sensor->depth.data.height;
+  data->size = sensor->cloud.size;
+  data->width = sensor->cloud.width;
+  data->height = sensor->cloud.height;
 
   //---------------------------
 }
 
 //Data function
 void Data::retrieve_location(k4n::base::Sensor* sensor, int i){
-  const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->depth.data.buffer);
+  const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->cloud.buffer);
   //---------------------------
 
   //Raw values
