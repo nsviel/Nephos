@@ -69,6 +69,12 @@ void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
   //---------------------------
 
 
+
+
+
+
+  vk_struct->queue.graphics->add_presentation(vec_command);
+
   VkSemaphore semaphore;
   for(int i=0; i<vec_command.size(); i++){
     vk::structure::Command* command = vec_command[i];
@@ -79,11 +85,7 @@ void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
     }
   }
 
-
-
-  vk_struct->queue.graphics->add_presentation(vec_command);
-
-  vk_struct->queue.presentation->image_presentation(semaphore);
+  //vk_struct->queue.presentation->image_presentation(semaphore);
   //vk_struct->queue.graphics->wait_for_idle();
   //this->image_presentation(semaphore);
 

@@ -51,9 +51,9 @@ void Thread::add_command(vk::structure::Command* command){
   mutex.lock();
 
   this->with_presentation = false;
-  std::vector<vk::structure::Command*> vec_command;
-  vec_command.push_back(command);
-  queue.push(vec_command);
+  vk::command::structure::Set set;
+  set.vec_command.push_back(command);
+  queue.push(set);
 
   mutex.unlock();
   cv.notify_one();
@@ -67,7 +67,9 @@ void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
   mutex.lock();
 
   this->with_presentation = false;
-  queue.push(vec_command);
+  vk::command::structure::Set set;
+  set.vec_command = vec_command;
+  queue.push(set);
 
   mutex.unlock();
   cv.notify_one();
@@ -82,7 +84,9 @@ void Thread::add_presentation(std::vector<vk::structure::Command*> vec_command){
   mutex.lock();
 
   this->with_presentation = true;
-  queue.push(vec_command);
+  vk::command::structure::Set set;
+  set.vec_command = vec_command;
+  queue.push(set);
 
   mutex.unlock();
   cv.notify_one();

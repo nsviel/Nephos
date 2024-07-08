@@ -14,11 +14,12 @@ struct Command_buffer{
 
   int UID = 0;
 
-  //Command
+  //Addon
+  vk::pool::structure::Query query;
   std::string name = "";
   std::mutex mutex;
-  vk::pool::structure::Query query;
-  vk::synchro::structure::Fence* fence = nullptr;
+
+  //Command
   VkCommandBuffer handle = VK_NULL_HANDLE;
   float duration = 0;
   bool is_available = true;

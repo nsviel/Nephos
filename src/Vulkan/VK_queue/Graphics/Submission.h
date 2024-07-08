@@ -7,7 +7,7 @@
 #include <queue>
 
 namespace vk{class Structure;}
-namespace vk::structure{class Command;}
+namespace vk::command::structure{class Set;}
 namespace vk::structure{class Command_buffer;}
 namespace vk::synchro::structure{class Fence;}
 namespace vk::synchro{class Fence;}
@@ -25,12 +25,12 @@ public:
 
 public:
   //Main function
-  void process_command(std::vector<vk::structure::Command*> vec_command, bool with_presentation);
+  void process_command(vk::command::structure::Set set, bool with_presentation);
 
   //Subfunction
-  void build_submission(std::vector<vk::structure::Command*> vec_command, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
+  void build_submission(vk::command::structure::Set& set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
   void make_submission(std::vector<VkSubmitInfo>& vec_info);
-  void post_submission(std::vector<vk::structure::Command*> vec_command);
+  void post_submission(vk::command::structure::Set& set);
 
 private:
   vk::Structure* vk_struct;

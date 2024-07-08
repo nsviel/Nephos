@@ -6,6 +6,7 @@
 #include <queue>
 
 namespace vk{class Structure;}
+namespace vk::command::structure{class Set;}
 namespace vk::structure{class Command;}
 namespace vk::queue::graphics{class Submission;}
 
@@ -33,7 +34,7 @@ private:
   vk::Structure* vk_struct;
   vk::queue::graphics::Submission* vk_submission;
 
-  std::queue<std::vector<vk::structure::Command*>> queue;
+  std::queue<vk::command::structure::Set> queue;
   bool with_presentation = false;
 };
 

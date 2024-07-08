@@ -20,30 +20,30 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::process_command(std::vector<vk::structure::Command*> vec_command, bool with_presentation){
+void Submission::process_command(vk::command::structure::Set set, bool with_presentation){
   //---------------------------
 
   //Submission stuff
   VkSemaphore semaphore;
   std::vector<VkSubmitInfo> vec_info;
-  this->build_submission(vec_command, vec_info, semaphore);
+  this->build_submission(set, vec_info, semaphore);
   this->make_submission(vec_info);
-  this->post_submission(vec_command);
+  this->post_submission(set);
 
   //If required, make image presentation
   if(with_presentation){
-    //vk_struct->queue.presentation->image_presentation(semaphore);
+    vk_struct->queue.presentation->image_presentation(semaphore);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Submission::build_submission(std::vector<vk::structure::Command*> vec_command, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
+void Submission::build_submission(vk::command::structure::Set& set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
   //---------------------------
 
-  for(int i=0; i<vec_command.size(); i++){
-    vk::structure::Command* command = vec_command[i];
+  for(int i=0; i<set.vec_command.size(); i++){
+    vk::structure::Command* command = set.vec_command[i];
 
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -56,8 +56,8 @@ void Submission::build_submission(std::vector<vk::structure::Command*> vec_comma
 
     //Semaphore done
     if(command->semaphore_done != VK_NULL_HANDLE){
-      submit_info.signalSemaphoreCount = 1;
       submit_info.pSignalSemaphores = &command->semaphore_done;
+      submit_info.signalSemaphoreCount = 1;
 
       semaphore = command->semaphore_done;
     }
@@ -96,12 +96,12 @@ void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Submission::post_submission(std::vector<vk::structure::Command*> vec_command){
+void Submission::post_submission(vk::command::structure::Set& set){
   //---------------------------
 
   //Reset all command
-  for(int i=0; i<vec_command.size(); i++){
-    vk::structure::Command* command = vec_command[i];
+  for(int i=0; i<set.vec_command.size(); i++){
+    vk::structure::Command* command = set.vec_command[i];
 
     //Command buffer timestamp
     vk_query->find_query_timestamp(command->command_buffer);
