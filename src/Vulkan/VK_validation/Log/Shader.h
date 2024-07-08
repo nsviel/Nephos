@@ -3,12 +3,14 @@
 #include <string>
 
 
+namespace vk::validation::log{
+
 //Singleton class to store Shader printf output
-class LOG_shader
+class Shader
 {
 public:
-  static LOG_shader& get_instance(){
-    static LOG_shader instance;
+  static Shader& get_instance(){
+    static Shader instance;
     return instance;
   }
   void add_shader_printf(const std::string& message){
@@ -19,6 +21,8 @@ public:
   }
 
 private:
-  LOG_shader() = default;
+  Shader() = default;
   std::string shader_printf;
 };
+
+}

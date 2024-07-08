@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Vulkan/VK_validation/Log/LOG_debug.h>
-#include <Vulkan/VK_validation/Log/LOG_shader.h>
+#include <Vulkan/VK_validation/Log/Debug.h>
+#include <Vulkan/VK_validation/Log/Shader.h>
 #include <cstring>
 
 
@@ -15,11 +15,11 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL Callback(VkDebugUtilsMessageSeverityFlagBi
   //Shader printf
   size_t shaderPos = message.find("[SHADER]");
   if(shaderPos != std::string::npos){
-    LOG_shader::get_instance().add_shader_printf(message);
+    vk::validation::log::Shader::get_instance().add_shader_printf(message);
   }
   //Common validation layer message
   else if(message_type == VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT){
-    LOG_debug::get_instance().print_validation_error(message);
+    vk::validation::log::Debug::get_instance().print_validation_error(message);
   }
 
   //---------------------------

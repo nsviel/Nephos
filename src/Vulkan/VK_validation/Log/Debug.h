@@ -4,13 +4,13 @@
 #include <string>
 
 
-namespace vk::validation{
+namespace vk::validation::log{
 
-class LOG_debug
+class Debug
 {
 public:
-  static LOG_debug& get_instance(){
-    static LOG_debug instance;
+  static Debug& get_instance(){
+    static Debug instance;
     return instance;
   }
 
@@ -22,7 +22,7 @@ public:
   void print_message_ID(std::string message);
 
 private:
-  LOG_debug() = default;
+  Debug() = default;
 };
 
 }

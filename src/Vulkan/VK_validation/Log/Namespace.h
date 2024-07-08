@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Vulkan/VK_validation/Log/LOG_debug.h>
-#include <Vulkan/VK_validation/Log/LOG_shader.h>
+#include <Vulkan/VK_validation/Log/Debug.h>
+#include <Vulkan/VK_validation/Log/Shader.h>
