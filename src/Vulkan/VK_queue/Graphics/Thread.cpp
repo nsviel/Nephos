@@ -1,27 +1,28 @@
-#include "Graphics.h"
+#include "Thread.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace vk::queue{
+namespace vk::queue::graphics{
 
 //Constructor / Destructor
-Graphics::Graphics(vk::Structure* vk_struct){
+Thread::Thread(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
   this->vk_fence = new vk::synchro::Fence(vk_struct);
   this->vk_query = new vk::instance::Query(vk_struct);
-
+  this->vk_submission = new vk::queue::transfer::Submission(vk_struct);
+  
   //---------------------------
   this->start_thread();
 
 }
-Graphics::~Graphics(){}
+Thread::~Thread(){}
 
 //Main function
-void Graphics::thread_init(){
+void Thread::thread_init(){
   //---------------------------
 
   vk_struct->device.queue.graphics.type = vk::queue::GRAPHICS;
@@ -31,27 +32,30 @@ void Graphics::thread_init(){
 
   //---------------------------
 }
-void Graphics::thread_loop(){
+void Thread::thread_loop(){
   //---------------------------
 
   this->wait_for_command();
+
+  this->thread_idle = false;
   this->process_command();
+  this->thread_idle = true;
 
   //---------------------------
 }
 
 //Subfunction
-void Graphics::wait_for_command(){
+void Thread::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
 
-  while((vec_command_prepa.empty() && queue_command.empty()) && thread_running){
+  while((vec_command_prepa.empty()) && thread_running){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 
   //---------------------------
 }
-void Graphics::wait_for_idle(){
+void Thread::wait_for_idle(){
   //For external thread to wait this queue thread idle
   //---------------------------
 
@@ -61,7 +65,7 @@ void Graphics::wait_for_idle(){
 
   //---------------------------
 }
-void Graphics::process_command(){
+void Thread::process_command(){
   if(!thread_running) return;
   //---------------------------
 
@@ -85,7 +89,7 @@ void Graphics::process_command(){
 }
 
 //Command
-void Graphics::add_command(vk::structure::Command* command){
+void Thread::add_command(vk::structure::Command* command){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
@@ -99,7 +103,7 @@ void Graphics::add_command(vk::structure::Command* command){
 
   //---------------------------
 }
-void Graphics::add_graphics(std::vector<vk::structure::Command*> vec_command){
+void Thread::add_graphics(std::vector<vk::structure::Command*> vec_command){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
@@ -114,7 +118,7 @@ void Graphics::add_graphics(std::vector<vk::structure::Command*> vec_command){
   //---------------------------
 
 }
-void Graphics::add_presentation(std::vector<vk::structure::Command*> vec_command){
+void Thread::add_presentation(std::vector<vk::structure::Command*> vec_command){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
@@ -123,19 +127,16 @@ void Graphics::add_presentation(std::vector<vk::structure::Command*> vec_command
   mutex.lock();
   this->thread_idle = false;
   this->with_presentation = true;
-//  vec_command_prepa = vec_command;
-
-  queue_command.emplace(vec_command);
-
+  vec_command_prepa = vec_command;
   mutex.unlock();
 
   //---------------------------
 }
 
 //Submission
-void Graphics::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
+void Thread::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
   //---------------------------
-if(queue_command.size() == 0){
+
   for(int i=0; i<vec_command_onrun.size(); i++){
     vk::structure::Command* command = vec_command_onrun[i];
 
@@ -171,50 +172,10 @@ if(queue_command.size() == 0){
 
     vec_info.push_back(submit_info);
   }
-}
-else{
-  std::vector<vk::structure::Command*> vec_command = queue_command.front();
-  for(int i=0; i<vec_command.size(); i++){
-    vk::structure::Command* command = vec_command[i];
-
-    VkSubmitInfo submit_info{};
-    submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-
-    //Semaphore wait
-    if(command->semaphore_wait != VK_NULL_HANDLE){
-      submit_info.waitSemaphoreCount = 1;
-      submit_info.pWaitSemaphores = &command->semaphore_wait;
-    }
-
-    //Semaphore done
-    if(command->semaphore_done != VK_NULL_HANDLE){
-      submit_info.signalSemaphoreCount = 1;
-      submit_info.pSignalSemaphores = &command->semaphore_done;
-
-      semaphore = command->semaphore_done;
-    }
-
-    //Pipeline wait stage
-    if(command->wait_stage != 0){
-      submit_info.pWaitDstStageMask = &command->wait_stage;
-    }
-
-    //Command buffer
-    if(command->command_buffer->handle != VK_NULL_HANDLE){
-      submit_info.commandBufferCount = 1;
-      submit_info.pCommandBuffers = &command->command_buffer->handle;
-    }else{
-      std::cout<<"[error] command buffer is VK_NULL"<<std::endl;
-    }
-
-    vec_info.push_back(submit_info);
-  }
-
-}
 
   //---------------------------
 }
-void Graphics::make_submission(std::vector<VkSubmitInfo>& vec_info){
+void Thread::make_submission(std::vector<VkSubmitInfo>& vec_info){
   this->thread_idle = false;
   //---------------------------
 
@@ -231,7 +192,7 @@ void Graphics::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Graphics::post_submission(){
+void Thread::post_submission(){
   //---------------------------
 
   //Reset all command
@@ -249,9 +210,8 @@ void Graphics::post_submission(){
     }
 
     delete command;
-
   }
-if(queue_command.size() != 0)queue_command.pop();
+
   //---------------------------
   this->thread_idle = true;
 }

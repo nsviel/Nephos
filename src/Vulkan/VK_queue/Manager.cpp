@@ -20,7 +20,7 @@ void Manager::init(){
   //---------------------------
 
   vk_struct->queue.transfer = new vk::queue::transfer::Thread(vk_struct);
-  vk_struct->queue.graphics = new vk::queue::Graphics(vk_struct);
+  vk_struct->queue.graphics = new vk::queue::graphics::Thread(vk_struct);
   vk_struct->queue.presentation = new vk::queue::Presentation(vk_struct);
 
   //---------------------------

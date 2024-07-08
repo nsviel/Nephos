@@ -1,13 +1,13 @@
-#include "Graphics.h"
+#include "Submission.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace vk::queue{
+namespace vk::queue::graphics{
 
 //Constructor / Destructor
-Graphics::Graphics(vk::Structure* vk_struct){
+Submission::Submission(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -15,54 +15,12 @@ Graphics::Graphics(vk::Structure* vk_struct){
   this->vk_query = new vk::instance::Query(vk_struct);
 
   //---------------------------
-  this->start_thread();
 
 }
-Graphics::~Graphics(){}
+Submission::~Submission(){}
 
 //Main function
-void Graphics::thread_init(){
-  //---------------------------
-
-  vk_struct->device.queue.graphics.type = vk::queue::GRAPHICS;
-  vk_struct->device.queue.graphics.thread_ID = utl::thread::get_ID_str();
-  vk_struct->device.queue.presentation.type = vk::queue::PRESENTATION;
-  vk_struct->device.queue.presentation.thread_ID = utl::thread::get_ID_str();
-
-  //---------------------------
-}
-void Graphics::thread_loop(){
-  //---------------------------
-
-  this->wait_for_command();
-  this->process_command();
-
-  //---------------------------
-}
-
-//Subfunction
-void Graphics::wait_for_command(){
-  //For internal thread to wait for to submit commands
-  //---------------------------
-
-  while((vec_command_prepa.empty()) && thread_running){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
-}
-void Graphics::wait_for_idle(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
-}
-void Graphics::process_command(){
-  if(!thread_running) return;
+void Submission::process_command(){
   //---------------------------
 
   //Passing the command torch
@@ -84,53 +42,8 @@ void Graphics::process_command(){
   //---------------------------
 }
 
-//Command
-void Graphics::add_command(vk::structure::Command* command){
-  if(vk_struct->queue.standby) return;
-  //---------------------------
-
-  this->wait_for_idle();
-
-  mutex.lock();
-  this->thread_idle = false;
-  this->with_presentation = false;
-  vec_command_prepa.push_back(command);
-  mutex.unlock();
-
-  //---------------------------
-}
-void Graphics::add_graphics(std::vector<vk::structure::Command*> vec_command){
-  if(vk_struct->queue.standby) return;
-  //---------------------------
-
-  this->wait_for_idle();
-
-  mutex.lock();
-  this->thread_idle = false;
-  this->with_presentation = false;
-  vec_command_prepa = vec_command;
-  mutex.unlock();
-
-  //---------------------------
-
-}
-void Graphics::add_presentation(std::vector<vk::structure::Command*> vec_command){
-  if(vk_struct->queue.standby) return;
-  //---------------------------
-
-  this->wait_for_idle();
-
-  mutex.lock();
-  this->thread_idle = false;
-  this->with_presentation = true;
-  vec_command_prepa = vec_command;
-  mutex.unlock();
-
-  //---------------------------
-}
-
-//Submission
-void Graphics::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
+//Subfunction
+void Submission::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
   //---------------------------
 
   for(int i=0; i<vec_command_onrun.size(); i++){
@@ -171,8 +84,7 @@ void Graphics::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore
 
   //---------------------------
 }
-void Graphics::make_submission(std::vector<VkSubmitInfo>& vec_info){
-  this->thread_idle = false;
+void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
   //---------------------------
 
   vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
@@ -188,7 +100,7 @@ void Graphics::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Graphics::post_submission(){
+void Submission::post_submission(){
   //---------------------------
 
   //Reset all command
@@ -209,7 +121,6 @@ void Graphics::post_submission(){
   }
 
   //---------------------------
-  this->thread_idle = true;
 }
 
 

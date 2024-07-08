@@ -13,16 +13,17 @@ namespace vk::structure{class Command_buffer;}
 namespace vk::synchro::structure{class Fence;}
 namespace vk::synchro{class Fence;}
 namespace vk::instance{class Query;}
+namespace vk::queue::graphics{class Submission;}
 
 
-namespace vk::queue{
+namespace vk::queue::graphics{
 
-class Graphics : public utl::thread::Worker
+class Thread : public utl::thread::Worker
 {
 public:
   //Constructor / Destructor
-  Graphics(vk::Structure* vk_struct);
-  ~Graphics();
+  Thread(vk::Structure* vk_struct);
+  ~Thread();
 
 public:
   //Main function
@@ -50,6 +51,7 @@ private:
   vk::Structure* vk_struct;
   vk::synchro::Fence* vk_fence;
   vk::instance::Query* vk_query;
+  vk::queue::graphics::Submission* vk_submission;
 
   std::vector<vk::structure::Command*> vec_command_onrun;
   std::vector<vk::structure::Command*> vec_command_prepa;
