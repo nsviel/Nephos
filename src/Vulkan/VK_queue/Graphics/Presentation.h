@@ -25,6 +25,7 @@ public:
   void wait_for_idle();
   bool acquire_next_image(VkSemaphore& semaphore);
   void image_presentation(VkSemaphore& semaphore);
+  void add_presentation_command();
 
   //Subfunction
   void submit_presentation(VkSemaphore& semaphore);

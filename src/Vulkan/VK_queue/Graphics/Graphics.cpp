@@ -74,7 +74,12 @@ void Graphics::process_command(){
   std::vector<VkSubmitInfo> vec_info;
   this->build_submission(vec_info, semaphore);
   this->make_submission(vec_info);
-  this->post_submission(semaphore);
+  this->post_submission();
+
+  //If required, make image presentation
+  if(with_presentation){
+    vk_struct->queue.presentation->image_presentation(semaphore);
+  }
 
   //---------------------------
 }
@@ -183,13 +188,8 @@ void Graphics::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Graphics::post_submission(VkSemaphore& semaphore){
+void Graphics::post_submission(){
   //---------------------------
-
-  //If required, make image presentation
-  if(with_presentation){
-    vk_struct->queue.presentation->image_presentation(semaphore);
-  }
 
   //Reset all command
   for(int i=0; i<vec_command_onrun.size(); i++){

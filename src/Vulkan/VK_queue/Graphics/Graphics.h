@@ -5,6 +5,7 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+#include <queue>
 
 namespace vk{class Structure;}
 namespace vk::structure{class Command;}
@@ -41,7 +42,7 @@ public:
   //Submission
   void build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
   void make_submission(std::vector<VkSubmitInfo>& vec_info);
-  void post_submission(VkSemaphore& semaphore_done);
+  void post_submission();
 
   inline bool is_thread_idle(){return thread_idle;}
 
@@ -52,6 +53,7 @@ private:
 
   std::vector<vk::structure::Command*> vec_command_onrun;
   std::vector<vk::structure::Command*> vec_command_prepa;
+  std::queue<vk::structure::Command*> queue_command;
   bool thread_idle = true;
   bool with_presentation = false;
   std::mutex mutex;
