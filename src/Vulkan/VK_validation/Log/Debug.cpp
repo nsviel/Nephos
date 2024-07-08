@@ -47,11 +47,15 @@ void Debug::print_header(std::string message){
 void Debug::print_message_ID(std::string message){
   //---------------------------
 
-  // Extract and print the MessageID and OBJ ERROR
+  //Message ID title
   size_t msg_start = message.find("MessageID = ");
   size_t msg_end = message.find(" |", msg_start);
   std::string msg_title = message.substr(msg_start, msg_end - msg_start);
+
+  //Message ID body
   std::string msg_body = message.substr(msg_end + 3);
+  size_t link_start = msg_body.find_last_of("(") - 1;
+  msg_body = msg_body.substr(0, link_start) + ".";
 
   std::cerr << "\033[1;33m" << msg_title << "\033[0m" << std::endl;
   std::cerr << msg_body << std::endl;
