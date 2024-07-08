@@ -23,6 +23,9 @@ public:
 
 public:
   //Main function
+  void process_command(VkSemaphore& semaphore);
+
+  //Subfunction
   void submit_presentation(VkSemaphore& semaphore);
   void next_frame_ID();
 

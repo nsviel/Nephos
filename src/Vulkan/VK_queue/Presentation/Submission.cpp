@@ -19,6 +19,16 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
+void Submission::process_command(VkSemaphore& semaphore){
+  //---------------------------
+
+  this->submit_presentation(semaphore);
+  this->next_frame_ID();
+
+  //---------------------------
+}
+
+//Subfunction
 void Submission::submit_presentation(VkSemaphore& semaphore){
   vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vulkan/vulkan.h>
+
 namespace vk::device{class Physical;}
 namespace vk::draw{class Viewport;}
 namespace vk::presentation{class Frame;}
@@ -29,6 +31,7 @@ public:
   void recreate_swapchain();
   void retrieve_swapchain_image();
   void create_swapchain_handle();
+  bool acquire_next_image(VkSemaphore& semaphore);
   void find_swapchain_max_nb_image();
   void find_swapchain_surface_format();
   void find_swapchain_presentation_mode();

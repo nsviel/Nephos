@@ -15,7 +15,6 @@ public:
   void stop_thread();
 
   //State function
-  void update_state(){cv.notify_all();}
   void set_pause(bool value);
 
   inline bool is_thread_running(){return thread_running;}

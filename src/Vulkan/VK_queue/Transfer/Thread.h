@@ -23,7 +23,6 @@ public:
   //Main function
   void thread_init();
   void thread_loop();
-  void thread_pause(bool value);
 
   //Subfunction
   void add_command(vk::structure::Command_buffer* command);
@@ -33,7 +32,6 @@ private:
   vk::queue::transfer::Submission* vk_submission;
 
   std::queue<std::vector<vk::structure::Command_buffer*>> queue;
-  bool pause = false;
 };
 
 }

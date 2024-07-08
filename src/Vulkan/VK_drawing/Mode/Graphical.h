@@ -5,6 +5,7 @@
 
 namespace vk{class Structure;}
 namespace vk::synchro::structure{class Semaphore;}
+namespace vk::presentation{class Swapchain;}
 namespace vk::structure{class Command;}
 namespace vk::structure{class Renderpass;}
 namespace vk::memory{class Transfer;}
@@ -32,6 +33,7 @@ public:
 
 private:
   vk::memory::Transfer* vk_transfer;
+  vk::presentation::Swapchain* vk_swapchain;
   utl::timer::Chrono* utl_chrono;
 };
 

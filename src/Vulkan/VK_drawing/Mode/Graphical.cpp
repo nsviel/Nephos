@@ -11,6 +11,7 @@ Graphical::Graphical(vk::Structure* vk_struct) : vk::draw::Drawer(vk_struct){
   //---------------------------
 
   this->vk_transfer = new vk::memory::Transfer(vk_struct);
+  this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
   this->utl_chrono = new utl::timer::Chrono();
 
   //---------------------------
@@ -44,7 +45,7 @@ bool Graphical::acquire_image(vk::synchro::structure::Semaphore& semaphore){
   //Acquire next image
   //vk_struct->queue.graphics->wait_for_idle();
   vk_struct->queue.presentation->wait_for_idle();
-  bool sucess = vk_struct->queue.presentation->acquire_next_image(semaphore.handle);
+  bool sucess = vk_swapchain->acquire_next_image(semaphore.handle);
 
   //---------------------------
   return sucess;

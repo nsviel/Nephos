@@ -33,20 +33,12 @@ void Thread::thread_loop(){
 
   //Wait for command
   std::unique_lock<std::mutex> lock(mutex);
-  cv.wait(lock, [this]{return (!queue.empty() && !pause) || !thread_running;});
+  cv.wait(lock, [this]{return (!queue.empty() && !thread_paused) || !thread_running;});
   if(!thread_running) return;
 
   //Submit command
   vk_submission->process_command(queue.front());
   queue.pop();
-
-  //---------------------------
-}
-void Thread::thread_pause(bool value){
-  //---------------------------
-
-  this->pause = value;
-  cv.notify_one();
 
   //---------------------------
 }

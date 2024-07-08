@@ -30,33 +30,11 @@ void Thread::wait_for_idle(){
 
   //---------------------------
 }
-bool Thread::acquire_next_image(VkSemaphore& semaphore){
-  vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
-  //---------------------------
-
-  //Acquiring an image from the swap chain
-  if(vk_window->is_window_resized()){
-    vk_swapchain->recreate_swapchain();
-    return false;
-  }
-  VkResult result = vkAcquireNextImageKHR(vk_struct->device.handle, swapchain->handle, UINT64_MAX, semaphore, VK_NULL_HANDLE, &swapchain->current_ID);
-  if(result == VK_ERROR_OUT_OF_DATE_KHR){
-    vk_swapchain->recreate_swapchain();
-    return false;
-  }else if(result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR){
-    throw std::runtime_error("[error] failed to acquire swap chain image");
-    return false;
-  }
-
-  //---------------------------
-  return true;
-}
 void Thread::image_presentation(VkSemaphore& semaphore){
   this->thread_idle = false;
   //---------------------------
 
-  vk_submission->submit_presentation(semaphore);
-  vk_submission->next_frame_ID();
+  vk_submission->process_command(semaphore);
 
   //---------------------------
   this->thread_idle = true;
