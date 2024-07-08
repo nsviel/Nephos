@@ -21,16 +21,7 @@ Graphics::Graphics(vk::Structure* vk_struct){
 Graphics::~Graphics(){}
 
 //Main function
-void Graphics::start_thread(){
-  //---------------------------
-
-  if(!thread_running){
-    this->thread = std::thread(&Graphics::run_thread, this);
-  }
-
-  //---------------------------
-}
-void Graphics::run_thread(){
+void Graphics::thread_init(){
   //---------------------------
 
   vk_struct->device.queue.graphics.type = vk::queue::GRAPHICS;
@@ -38,21 +29,16 @@ void Graphics::run_thread(){
   vk_struct->device.queue.presentation.type = vk::queue::PRESENTATION;
   vk_struct->device.queue.presentation.thread_ID = utl::thread::get_ID_str();
 
+  //---------------------------
+}
+void Graphics::thread_loop(){
+  //---------------------------
+
   //Start thread loop
   this->thread_running = true;
   while(thread_running){
     this->wait_for_command();
     this->process_command();
-  }
-
-  //---------------------------
-}
-void Graphics::stop_thread(){
-  //---------------------------
-
-  this->thread_running = false;
-  if(thread.joinable()){
-    thread.join();
   }
 
   //---------------------------

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Element/Thread/Worker.h>
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <thread>
@@ -15,7 +16,7 @@ namespace vk::instance{class Query;}
 
 namespace vk::queue{
 
-class Graphics
+class Graphics : public utl::thread::Worker
 {
 public:
   //Constructor / Destructor
@@ -24,9 +25,8 @@ public:
 
 public:
   //Main function
-  void start_thread();
-  void run_thread();
-  void stop_thread();
+  void thread_init();
+  void thread_loop();
 
   //Processing
   void wait_for_command();
