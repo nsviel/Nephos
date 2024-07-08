@@ -33,14 +33,9 @@ void Thread::thread_loop(){
 
   this->wait_for_command();
 
-  //Passing the command torch
-  mutex.lock();
-  this->vec_command_onrun = vec_command_prepa;
-  this->vec_command_prepa.clear();
-  mutex.unlock();
-
   this->thread_idle = false;
-  vk_submission->process_command(vec_command_onrun);
+  vk_submission->process_command(queue.front());
+  queue.pop();
   this->thread_idle = true;
 
   //---------------------------
@@ -52,7 +47,9 @@ void Thread::add_command(vk::structure::Command_buffer* command){
   //---------------------------
 
   if(command->is_recorded){
-    vec_command_prepa.push_back(command);
+    std::vector<vk::structure::Command_buffer*> vec_command;
+    vec_command.push_back(command);
+    queue.push(vec_command);
   }
 
   //---------------------------
@@ -62,7 +59,7 @@ void Thread::wait_for_command(){
   //For internal thread to wait for to submit commands
   //---------------------------
 
-  while((vec_command_prepa.empty() || vk_struct->queue.standby) && thread_running){
+  while((queue.empty() || vk_struct->queue.standby) && thread_running){
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 

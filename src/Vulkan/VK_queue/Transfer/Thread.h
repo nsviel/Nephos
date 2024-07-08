@@ -5,6 +5,7 @@
 #include <vector>
 #include <thread>
 #include <mutex>
+#include <queue>
 
 namespace vk{class Structure;}
 namespace vk::structure{class Command_buffer;}
@@ -36,8 +37,7 @@ private:
   vk::Structure* vk_struct;
   vk::queue::transfer::Submission* vk_submission;
 
-  std::vector<vk::structure::Command_buffer*> vec_command_prepa;
-  std::vector<vk::structure::Command_buffer*> vec_command_onrun;
+  std::queue<std::vector<vk::structure::Command_buffer*>> queue;
   std::mutex mutex;
   bool thread_idle = true;
 };

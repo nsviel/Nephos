@@ -47,6 +47,7 @@ private:
 
   std::vector<vk::structure::Command*> vec_command_onrun;
   std::vector<vk::structure::Command*> vec_command_prepa;
+  std::queue<std::vector<vk::structure::Command*>> queue;
   bool thread_idle = true;
   bool with_presentation = false;
   std::mutex mutex;
