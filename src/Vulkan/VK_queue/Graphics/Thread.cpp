@@ -52,9 +52,9 @@ void Thread::add_command(vk::structure::Command* command){
   mutex.lock();
 
   this->with_presentation = false;
-  vk::command::structure::Set set;
-  set.vec_command.push_back(command);
-  set.fence = vk_fence->query_free_fence();
+  vk::command::structure::Set* set = new vk::command::structure::Set();
+  set->vec_command.push_back(command);
+  set->fence = vk_fence->query_free_fence();
   queue.push(set);
 
   mutex.unlock();
@@ -69,9 +69,9 @@ void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
   mutex.lock();
 
   this->with_presentation = false;
-  vk::command::structure::Set set;
-  set.vec_command = vec_command;
-  set.fence = vk_fence->query_free_fence();
+  vk::command::structure::Set* set = new vk::command::structure::Set();
+  set->vec_command = vec_command;
+  set->fence = vk_fence->query_free_fence();
   queue.push(set);
 
   mutex.unlock();
@@ -80,16 +80,13 @@ void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
   //---------------------------
 
 }
-void Thread::add_command(std::vector<vk::structure::Command*> vec_command, vk::synchro::structure::Fence* fence){
+void Thread::add_command(vk::command::structure::Set* set){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
   mutex.lock();
 
   this->with_presentation = true;
-  vk::command::structure::Set set;
-  set.vec_command = vec_command;
-  set.fence = fence;
   queue.push(set);
 
   mutex.unlock();
@@ -105,9 +102,9 @@ void Thread::add_presentation(std::vector<vk::structure::Command*> vec_command){
   mutex.lock();
 
   this->with_presentation = true;
-  vk::command::structure::Set set;
-  set.vec_command = vec_command;
-  set.fence = vk_fence->query_free_fence();
+  vk::command::structure::Set* set = new vk::command::structure::Set();
+  set->vec_command = vec_command;
+  set->fence = vk_fence->query_free_fence();
   queue.push(set);
 
   mutex.unlock();

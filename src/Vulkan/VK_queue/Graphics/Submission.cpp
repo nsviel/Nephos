@@ -20,7 +20,7 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::process_command(vk::command::structure::Set set, bool with_presentation){
+void Submission::process_command(vk::command::structure::Set* set, bool with_presentation){
   //---------------------------
 
   //Submission stuff
@@ -39,11 +39,11 @@ void Submission::process_command(vk::command::structure::Set set, bool with_pres
 }
 
 //Subfunction
-void Submission::build_submission(vk::command::structure::Set& set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
+void Submission::build_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
   //---------------------------
 
-  for(int i=0; i<set.vec_command.size(); i++){
-    vk::structure::Command* command = set.vec_command[i];
+  for(int i=0; i<set->vec_command.size(); i++){
+    vk::structure::Command* command = set->vec_command[i];
 
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -80,38 +80,42 @@ void Submission::build_submission(vk::command::structure::Set& set, std::vector<
 
   //---------------------------
 }
-void Submission::make_submission(vk::command::structure::Set& set, std::vector<VkSubmitInfo>& vec_info){
+void Submission::make_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info){
   //---------------------------
 
   VkQueue queue = vk_struct->device.queue.graphics.handle;
-  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), set.fence->handle);
+  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), set->fence->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }
 
-  vkWaitForFences(vk_struct->device.handle, 1, &set.fence->handle, VK_TRUE, UINT64_MAX);
-  vk_fence->reset_fence(set.fence);
+  vkWaitForFences(vk_struct->device.handle, 1, &set->fence->handle, VK_TRUE, UINT64_MAX);
+  vk_fence->reset_fence(set->fence);
+  set->done = true;
 
   //---------------------------
 }
-void Submission::post_submission(vk::command::structure::Set& set){
+void Submission::post_submission(vk::command::structure::Set* set){
   //---------------------------
 
   //Reset all command
-  for(int i=0; i<set.vec_command.size(); i++){
-    vk::structure::Command* command = set.vec_command[i];
+  for (auto& command : set->vec_command) {
+      // Command buffer timestamp
+      vk_query->find_query_timestamp(command->command_buffer);
 
-    //Command buffer timestamp
-    vk_query->find_query_timestamp(command->command_buffer);
+      // Command buffer reset
+      if (command->command_buffer->is_resetable) {
+          command->command_buffer->is_recorded = false;
+          command->command_buffer->query.is_available = true;
+          command->command_buffer->is_available = true;
+      }
 
-    //Command buffer reset
-    if(command->command_buffer->is_resetable){
-      command->command_buffer->is_recorded = false;
-      command->command_buffer->query.is_available = true;
-      command->command_buffer->is_available = true;
-    }
+      // Clean up the command object
+      delete command;
+  }
 
-    delete command;
+  if(set->supress){
+    delete set;
   }
 
   //---------------------------

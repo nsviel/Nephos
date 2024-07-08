@@ -11,6 +11,8 @@ struct Set{
 
   std::vector<vk::structure::Command*> vec_command;
   vk::synchro::structure::Fence* fence = nullptr;
+  bool supress = true;
+  bool done = false;
 
   //---------------------------
 };

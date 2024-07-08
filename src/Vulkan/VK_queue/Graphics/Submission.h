@@ -25,12 +25,12 @@ public:
 
 public:
   //Main function
-  void process_command(vk::command::structure::Set set, bool with_presentation);
+  void process_command(vk::command::structure::Set* set, bool with_presentation);
 
   //Subfunction
-  void build_submission(vk::command::structure::Set& set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
-  void make_submission(vk::command::structure::Set& set, std::vector<VkSubmitInfo>& vec_info);
-  void post_submission(vk::command::structure::Set& set);
+  void build_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
+  void make_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info);
+  void post_submission(vk::command::structure::Set* set);
 
 private:
   vk::Structure* vk_struct;

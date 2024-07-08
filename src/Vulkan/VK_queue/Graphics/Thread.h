@@ -30,7 +30,7 @@ public:
   //Subfunction
   void add_command(vk::structure::Command* command);
   void add_command(std::vector<vk::structure::Command*> vec_command);
-  void add_command(std::vector<vk::structure::Command*> vec_command, vk::synchro::structure::Fence* fence);
+  void add_command(vk::command::structure::Set* set);
   void add_presentation(std::vector<vk::structure::Command*> vec_command);
 
 private:
@@ -38,7 +38,7 @@ private:
   vk::synchro::Fence* vk_fence;
   vk::queue::graphics::Submission* vk_submission;
 
-  std::queue<vk::command::structure::Set> queue;
+  std::queue<vk::command::structure::Set*> queue;
   bool with_presentation = false;
 };
 
