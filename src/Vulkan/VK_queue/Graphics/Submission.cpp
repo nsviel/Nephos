@@ -20,19 +20,15 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::process_command(){
+void Submission::process_command(std::vector<vk::structure::Command*> vec_command){
   //---------------------------
-
-  //Passing the command torch
-  this->vec_command_onrun = vec_command_prepa;
-  this->vec_command_prepa.clear();
 
   //Submission stuff
   VkSemaphore semaphore;
   std::vector<VkSubmitInfo> vec_info;
-  this->build_submission(vec_info, semaphore);
+  this->build_submission(vec_command, vec_info, semaphore);
   this->make_submission(vec_info);
-  this->post_submission();
+  this->post_submission(vec_command);
 
   //If required, make image presentation
   if(with_presentation){
@@ -43,11 +39,11 @@ void Submission::process_command(){
 }
 
 //Subfunction
-void Submission::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
+void Submission::build_submission(std::vector<vk::structure::Command*> vec_command, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
   //---------------------------
 
-  for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command* command = vec_command_onrun[i];
+  for(int i=0; i<vec_command.size(); i++){
+    vk::structure::Command* command = vec_command[i];
 
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -100,12 +96,12 @@ void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Submission::post_submission(){
+void Submission::post_submission(std::vector<vk::structure::Command*> vec_command){
   //---------------------------
 
   //Reset all command
-  for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command* command = vec_command_onrun[i];
+  for(int i=0; i<vec_command.size(); i++){
+    vk::structure::Command* command = vec_command[i];
 
     //Command buffer timestamp
     vk_query->find_query_timestamp(command->command_buffer);

@@ -13,8 +13,8 @@ Thread::Thread(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_fence = new vk::synchro::Fence(vk_struct);
   this->vk_query = new vk::instance::Query(vk_struct);
-  this->vk_submission = new vk::queue::transfer::Submission(vk_struct);
-  
+  this->vk_submission = new vk::queue::graphics::Submission(vk_struct);
+
   //---------------------------
   this->start_thread();
 
@@ -37,8 +37,14 @@ void Thread::thread_loop(){
 
   this->wait_for_command();
 
+  //Passing the command torch
+  mutex.lock();
+  this->vec_command_onrun = vec_command_prepa;
+  this->vec_command_prepa.clear();
+  mutex.unlock();
+
   this->thread_idle = false;
-  this->process_command();
+  this->process_command(vec_command_onrun);
   this->thread_idle = true;
 
   //---------------------------
@@ -65,20 +71,15 @@ void Thread::wait_for_idle(){
 
   //---------------------------
 }
-void Thread::process_command(){
-  if(!thread_running) return;
+void Thread::process_command(std::vector<vk::structure::Command*> vec_command){
   //---------------------------
-
-  //Passing the command torch
-  this->vec_command_onrun = vec_command_prepa;
-  this->vec_command_prepa.clear();
 
   //Submission stuff
   VkSemaphore semaphore;
   std::vector<VkSubmitInfo> vec_info;
-  this->build_submission(vec_info, semaphore);
+  this->build_submission(vec_command, vec_info, semaphore);
   this->make_submission(vec_info);
-  this->post_submission();
+  this->post_submission(vec_command);
 
   //If required, make image presentation
   if(with_presentation){
@@ -134,11 +135,11 @@ void Thread::add_presentation(std::vector<vk::structure::Command*> vec_command){
 }
 
 //Submission
-void Thread::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
+void Thread::build_submission(std::vector<vk::structure::Command*> vec_command, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
   //---------------------------
 
-  for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command* command = vec_command_onrun[i];
+  for(int i=0; i<vec_command.size(); i++){
+    vk::structure::Command* command = vec_command[i];
 
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -176,7 +177,6 @@ void Thread::build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& 
   //---------------------------
 }
 void Thread::make_submission(std::vector<VkSubmitInfo>& vec_info){
-  this->thread_idle = false;
   //---------------------------
 
   vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
@@ -192,12 +192,12 @@ void Thread::make_submission(std::vector<VkSubmitInfo>& vec_info){
 
   //---------------------------
 }
-void Thread::post_submission(){
+void Thread::post_submission(std::vector<vk::structure::Command*> vec_command){
   //---------------------------
 
   //Reset all command
-  for(int i=0; i<vec_command_onrun.size(); i++){
-    vk::structure::Command* command = vec_command_onrun[i];
+  for(int i=0; i<vec_command.size(); i++){
+    vk::structure::Command* command = vec_command[i];
 
     //Command buffer timestamp
     vk_query->find_query_timestamp(command->command_buffer);
@@ -213,7 +213,6 @@ void Thread::post_submission(){
   }
 
   //---------------------------
-  this->thread_idle = true;
 }
 
 

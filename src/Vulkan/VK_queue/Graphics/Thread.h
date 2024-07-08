@@ -33,7 +33,7 @@ public:
   //Subfunction
   void wait_for_command();
   void wait_for_idle();
-  void process_command();
+  void process_command(std::vector<vk::structure::Command*> vec_command);
 
   //Command
   void add_command(vk::structure::Command* command);
@@ -41,9 +41,9 @@ public:
   void add_presentation(std::vector<vk::structure::Command*> vec_command);
 
   //Submission
-  void build_submission(std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
+  void build_submission(std::vector<vk::structure::Command*> vec_command, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
   void make_submission(std::vector<VkSubmitInfo>& vec_info);
-  void post_submission();
+  void post_submission(std::vector<vk::structure::Command*> vec_command);
 
   inline bool is_thread_idle(){return thread_idle;}
 
@@ -55,7 +55,6 @@ private:
 
   std::vector<vk::structure::Command*> vec_command_onrun;
   std::vector<vk::structure::Command*> vec_command_prepa;
-  std::queue<std::vector<vk::structure::Command*>> queue_command;
   bool thread_idle = true;
   bool with_presentation = false;
   std::mutex mutex;
