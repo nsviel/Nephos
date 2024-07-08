@@ -29,7 +29,7 @@ public:
 
   //Subfunction
   void build_submission(vk::command::structure::Set& set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
-  void make_submission(std::vector<VkSubmitInfo>& vec_info);
+  void make_submission(vk::command::structure::Set& set, std::vector<VkSubmitInfo>& vec_info);
   void post_submission(vk::command::structure::Set& set);
 
 private:

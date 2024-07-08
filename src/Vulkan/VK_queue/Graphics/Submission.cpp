@@ -27,7 +27,7 @@ void Submission::process_command(vk::command::structure::Set set, bool with_pres
   VkSemaphore semaphore;
   std::vector<VkSubmitInfo> vec_info;
   this->build_submission(set, vec_info, semaphore);
-  this->make_submission(vec_info);
+  this->make_submission(set, vec_info);
   this->post_submission(set);
 
   //If required, make image presentation
@@ -80,19 +80,17 @@ void Submission::build_submission(vk::command::structure::Set& set, std::vector<
 
   //---------------------------
 }
-void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
+void Submission::make_submission(vk::command::structure::Set& set, std::vector<VkSubmitInfo>& vec_info){
   //---------------------------
 
-  vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
-
   VkQueue queue = vk_struct->device.queue.graphics.handle;
-  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->handle);
+  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), set.fence->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }
 
-  vkWaitForFences(vk_struct->device.handle, 1, &fence->handle, VK_TRUE, UINT64_MAX);
-  vk_fence->reset_fence(fence);
+  vkWaitForFences(vk_struct->device.handle, 1, &set.fence->handle, VK_TRUE, UINT64_MAX);
+  vk_fence->reset_fence(set.fence);
 
   //---------------------------
 }

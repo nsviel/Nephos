@@ -9,6 +9,7 @@ namespace vk{class Structure;}
 namespace vk::command::structure{class Set;}
 namespace vk::structure{class Command;}
 namespace vk::queue::graphics{class Submission;}
+namespace vk::synchro{class Fence;}
 
 
 namespace vk::queue::graphics{
@@ -32,6 +33,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
+  vk::synchro::Fence* vk_fence;
   vk::queue::graphics::Submission* vk_submission;
 
   std::queue<vk::command::structure::Set> queue;
