@@ -11,7 +11,7 @@ Logical::Logical(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_dev_physical = new vk::device::Physical(vk_struct);
-  this->vk_dev_queue = new vk::device::Queue(vk_struct);
+  this->vk_queue = new vk::device::Queue(vk_struct);
 
   //---------------------------
 }
@@ -22,7 +22,7 @@ void Logical::init(){
   //---------------------------
 
   vk_dev_physical->find_physical_device();
-  vk_dev_queue->find_queue_family_assigment();
+  vk_queue->find_queue_family_assigment();
   this->create_logical_device();
   this->create_device_queue();
 
@@ -42,7 +42,7 @@ void Logical::create_logical_device(){
   //---------------------------
 
   std::vector<VkDeviceQueueCreateInfo> vec_queue_info;
-  vk_dev_queue->create_queue_info(vec_queue_info);
+  vk_queue->create_queue_info(vec_queue_info);
 
   //Specifying used device features
   VkPhysicalDeviceFeatures device_features{};
@@ -71,9 +71,9 @@ void Logical::create_device_queue(){
   vk::queue::structure::Set& set = vk_struct->device.queue;
   //---------------------------
 
-  vk_dev_queue->create_queue(set.graphics);
-  vk_dev_queue->create_queue(set.presentation);
-  vk_dev_queue->create_queue(set.transfer);
+  vk_queue->create_queue(set.graphics);
+  vk_queue->create_queue(set.presentation);
+  vk_queue->create_queue(set.transfer);
 
   //---------------------------
 }

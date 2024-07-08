@@ -12,7 +12,7 @@ Physical::Physical(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_dev_queue = new vk::device::Queue(vk_struct);
+  this->vk_queue = new vk::device::queue::Manager(vk_struct);
 
   //---------------------------
 }
@@ -158,8 +158,8 @@ bool Physical::device_suitability_onscreen(vk::device::structure::Physical& phys
   //---------------------------
 
   //Queue suitability
-  vk_dev_queue->find_queue_family_composition(physical_device);
-  bool queue_ok = vk_dev_queue->suitability_for_presentation(physical_device);
+  vk_queue->find_queue_family_composition(physical_device);
+  bool queue_ok = vk_queue->suitability_for_presentation(physical_device);
   if(queue_ok == false) return false;
 
   //Extension suitable
@@ -190,8 +190,8 @@ bool Physical::device_suitability_offscreen(vk::device::structure::Physical& phy
   //---------------------------
 
   //Queue suitable
-  vk_dev_queue->find_queue_family_composition(physical_device);
-  bool queue_ok = vk_dev_queue->suitability_for_graphics(physical_device);
+  vk_queue->find_queue_family_composition(physical_device);
+  bool queue_ok = vk_queue->suitability_for_graphics(physical_device);
   if(queue_ok == false) return false;
 
   //Extension suitable
