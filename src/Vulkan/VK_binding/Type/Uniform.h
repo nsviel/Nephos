@@ -21,8 +21,8 @@ public:
 public:
   //Main function
   void create_uniform_buffers(vk::binding::structure::Binding* binding);
-  vk::binding::structure::Uniform* create_uniform_buffer(std::string name, size_t size, int binding);
   void clean_uniform(vk::binding::structure::Binding* binding);
+  void update_uniform(vk::binding::structure::Binding* binding);
 
   //uniform update
   template <typename T> void update_uniform(std::string uniform_name, vk::binding::structure::Binding* binding, T value);

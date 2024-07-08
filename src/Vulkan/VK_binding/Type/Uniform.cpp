@@ -28,27 +28,20 @@ void Uniform::create_uniform_buffers(vk::binding::structure::Binding* binding){
     vk::binding::structure::Required& descriptor = vec_required[i];
 
     if(descriptor.type == TYP_UNIFORM){
-      vk::binding::structure::Uniform* uniform = create_uniform_buffer(descriptor.name, descriptor.size, descriptor.binding);
+      vk::binding::structure::Uniform* uniform = new vk::binding::structure::Uniform();
+      uniform->name = descriptor.name;
+      uniform->binding = descriptor.binding;
+      uniform->size = descriptor.size;
+
+      vk_mem_allocator->create_gpu_buffer(uniform->size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
+      vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
+      vkMapMemory(vk_struct->device.handle, uniform->mem, 0, uniform->size, 0, &uniform->mapped);
+
       vec_uniform.push_back(uniform);
     }
   }
 
   //---------------------------
-}
-vk::binding::structure::Uniform* Uniform::create_uniform_buffer(std::string name, size_t size, int binding){
-  vk::binding::structure::Uniform* uniform = new vk::binding::structure::Uniform();
-  //---------------------------
-
-    uniform->name = name;
-    uniform->binding = binding;
-    uniform->size = size;
-
-    vk_mem_allocator->create_gpu_buffer(size, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, uniform->buffer);
-    vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, uniform->buffer, uniform->mem);
-    vkMapMemory(vk_struct->device.handle, uniform->mem, 0, size, 0, &uniform->mapped);
-
-  //---------------------------
-  return uniform;
 }
 void Uniform::clean_uniform(vk::binding::structure::Binding* binding){
   //---------------------------
@@ -57,6 +50,42 @@ void Uniform::clean_uniform(vk::binding::structure::Binding* binding){
     vk::binding::structure::Uniform* uniform = binding->vec_uniform[i];
     vkDestroyBuffer(vk_struct->device.handle, uniform->buffer, nullptr);
     vkFreeMemory(vk_struct->device.handle, uniform->mem, nullptr);
+  }
+
+  //---------------------------
+}
+void Uniform::update_uniform(vk::binding::structure::Binding* binding){
+  //---------------------------
+
+  //Make list of writeable uniform
+  std::vector<VkWriteDescriptorSet> vec_descriptor_write;
+  std::vector<VkDescriptorBufferInfo> vec_descriptor_buffer_info;
+  for(int i=0; i<binding->vec_uniform.size(); i++){
+    vk::binding::structure::Uniform* uniform = binding->vec_uniform[i];
+
+    VkDescriptorBufferInfo descriptor_info = {};
+    descriptor_info.buffer = uniform->buffer;
+    descriptor_info.offset = 0;
+    descriptor_info.range = uniform->size;
+    vec_descriptor_buffer_info.push_back(descriptor_info);
+  }
+
+  for(int i=0; i<binding->vec_uniform.size(); i++){
+    vk::binding::structure::Uniform* uniform = binding->vec_uniform[i];
+    VkWriteDescriptorSet write_uniform = {};
+    write_uniform.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+    write_uniform.dstSet = binding->descriptor.set;
+    write_uniform.dstBinding = uniform->binding;
+    write_uniform.dstArrayElement = 0;
+    write_uniform.descriptorType = TYP_UNIFORM;
+    write_uniform.descriptorCount = 1;
+    write_uniform.pBufferInfo = &vec_descriptor_buffer_info[i];
+    vec_descriptor_write.push_back(write_uniform);
+  }
+
+  //Update descriptor
+  if(vec_descriptor_write.size() != 0){
+    vkUpdateDescriptorSets(vk_struct->device.handle, static_cast<uint32_t>(vec_descriptor_write.size()), vec_descriptor_write.data(), 0, nullptr);
   }
 
   //---------------------------
