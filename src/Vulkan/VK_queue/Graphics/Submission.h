@@ -25,7 +25,7 @@ public:
 
 public:
   //Main function
-  void process_command(std::vector<vk::structure::Command*> vec_command);
+  void process_command(std::vector<vk::structure::Command*> vec_command, bool with_presentation);
 
   //Subfunction
   void build_submission(std::vector<vk::structure::Command*> vec_command, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);

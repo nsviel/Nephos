@@ -20,7 +20,7 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::process_command(std::vector<vk::structure::Command*> vec_command){
+void Submission::process_command(std::vector<vk::structure::Command*> vec_command, bool with_presentation){
   //---------------------------
 
   //Submission stuff

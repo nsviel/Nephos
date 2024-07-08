@@ -31,19 +31,11 @@ public:
   void thread_loop();
 
   //Subfunction
-  void wait_for_command();
-  void wait_for_idle();
-  void process_command(std::vector<vk::structure::Command*> vec_command);
-
-  //Command
   void add_command(vk::structure::Command* command);
   void add_graphics(std::vector<vk::structure::Command*> vec_command);
   void add_presentation(std::vector<vk::structure::Command*> vec_command);
-
-  //Submission
-  void build_submission(std::vector<vk::structure::Command*> vec_command, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
-  void make_submission(std::vector<VkSubmitInfo>& vec_info);
-  void post_submission(std::vector<vk::structure::Command*> vec_command);
+  void wait_for_command();
+  void wait_for_idle();
 
   inline bool is_thread_idle(){return thread_idle;}
 
