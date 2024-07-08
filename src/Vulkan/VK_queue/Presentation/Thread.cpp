@@ -11,11 +11,7 @@ Thread::Thread(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
-  this->vk_surface = new vk::presentation::Surface(vk_struct);
-  this->vk_window = new vk::window::GLFW(vk_struct);
   this->vk_submission = new vk::queue::presentation::Submission(vk_struct);
-  this->vk_fence = new vk::synchro::Fence(vk_struct);
 
   //---------------------------
   this->start_thread();
@@ -40,8 +36,8 @@ void Thread::thread_loop(){
   if(!thread_running) return;
 
   //Submit command
-  //vk_submission->process_command(queue.front());
-  //queue.pop();
+  vk_submission->process_command(queue.front());
+  queue.pop();
 
   //---------------------------
 }
@@ -50,13 +46,10 @@ void Thread::thread_loop(){
 void Thread::add_command(vk::command::structure::Set* set){
   //---------------------------
 
-  set->supress = false;
-  vk_struct->queue.graphics->add_command(set);
-  set->wait_until_done();
-  vk_submission->process_command(set->semaphore);
-  delete set;
-
-  //queue.push(set);
+  mutex.lock();
+  queue.push(set);
+  mutex.unlock();
+  cv.notify_one();
 
   //---------------------------
 }

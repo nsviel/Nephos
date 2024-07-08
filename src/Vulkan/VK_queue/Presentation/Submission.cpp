@@ -19,16 +19,28 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::process_command(VkSemaphore& semaphore){
+void Submission::process_command(vk::command::structure::Set* set){
   //---------------------------
 
-  this->submit_presentation(semaphore);
+  this->submit_rendering(set);
+  this->submit_presentation(set->semaphore);
   this->next_frame_ID();
+
+  delete set;
 
   //---------------------------
 }
 
 //Subfunction
+void Submission::submit_rendering(vk::command::structure::Set* set){
+  //---------------------------
+
+  set->supress = false;
+  vk_struct->queue.graphics->add_command(set);
+  set->wait_until_done();
+
+  //---------------------------
+}
 void Submission::submit_presentation(VkSemaphore& semaphore){
   vk::structure::Swapchain* swapchain = &vk_struct->swapchain;
   //---------------------------

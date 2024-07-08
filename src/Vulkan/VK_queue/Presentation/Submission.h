@@ -10,6 +10,7 @@ namespace vk{class Structure;}
 namespace vk::synchro::structure{class Fence;}
 namespace vk::window{class GLFW;}
 namespace vk::structure{class Command;}
+namespace vk::command::structure{class Set;}
 
 
 namespace vk::queue::presentation{
@@ -23,9 +24,10 @@ public:
 
 public:
   //Main function
-  void process_command(VkSemaphore& semaphore);
+  void process_command(vk::command::structure::Set* set);
 
   //Subfunction
+  void submit_rendering(vk::command::structure::Set* set);
   void submit_presentation(VkSemaphore& semaphore);
   void next_frame_ID();
 
