@@ -21,6 +21,12 @@ public:
   //Main function
   void find_queue_family_assigment();
 
+  //Subfunction
+  void find_graphics_queue();
+  void find_presentation_queue();
+  void find_transfer_queue();
+  void check_proper_assigment();
+
 private:
   vk::Structure* vk_struct;
 };
