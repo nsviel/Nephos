@@ -96,8 +96,8 @@ void Renderpass::update_binding(vk::structure::Subpass* subpass){
 
   for(int i=0; i<subpass->vec_pipeline.size(); i++){
     vk::structure::Pipeline* pipeline = subpass->vec_pipeline[i];
-    vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->color);
-    vk_descriptor->update_descriptor_sampler(&pipeline->binding, &frame_scene->depth);
+    vk_sampler->update_sampler(&pipeline->binding, &frame_scene->color);
+    vk_sampler->update_sampler(&pipeline->binding, &frame_scene->depth);
   }
 
   shader_edl->update_shader();

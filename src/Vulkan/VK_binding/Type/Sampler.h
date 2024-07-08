@@ -7,6 +7,7 @@ namespace vk{class Structure;}
 namespace vk::binding::structure{class Required;}
 namespace vk::binding::structure{class Binding;}
 namespace vk::binding::structure{class Sampler;}
+namespace vk::structure{class Image;}
 
 
 namespace vk::binding{
@@ -21,7 +22,7 @@ public:
 public:
   //Main function
   void create_sampler(vk::binding::structure::Binding* binding);
-  vk::binding::structure::Sampler* create_sampler_obj(std::string name, int binding, VkDescriptorType type);
+  void update_sampler(vk::binding::structure::Binding* binding, vk::structure::Image* image);
 
   //Subfunction
   vk::binding::structure::Required sampler_color();

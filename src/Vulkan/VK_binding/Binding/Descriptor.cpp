@@ -64,47 +64,6 @@ void Descriptor::update_descriptor_uniform(vk::binding::structure::Binding* bind
 
   //---------------------------
 }
-void Descriptor::update_descriptor_sampler(vk::binding::structure::Binding* binding, vk::structure::Image* image){
-  //---------------------------
-
-  vk::binding::structure::Sampler* sampler = nullptr;
-  for(int i=0; i<binding->vec_sampler.size(); i++){
-    if(image->name == binding->vec_sampler[i]->name){
-      sampler = binding->vec_sampler[i];
-    }
-  }
-  if(sampler == nullptr){
-    std::cout<<"------------------------"<<std::endl;
-    std::cout<<"[error] Update sampler -> name not recognized \033[1;31m"<<image->name<<"\033[0m"<<std::endl;
-    std::cout<<"Existing uniform names: "<<std::endl;
-
-    for(int i=0; i<binding->vec_sampler.size(); i++){
-      vk::binding::structure::Sampler* sampler = binding->vec_sampler[i];
-      std::cout<<"\033[1;32m"<<sampler->name<<"\033[0m"<<std::endl;
-    }
-
-    std::cout<<"------------------------"<<std::endl;
-    exit(0);
-  }
-
-  VkDescriptorImageInfo image_info = {};
-  image_info.imageLayout = image->layout;
-  image_info.imageView = image->view;
-  image_info.sampler = image->sampler;
-
-  VkWriteDescriptorSet write_sampler = {};
-  write_sampler.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-  write_sampler.dstSet = binding->descriptor.set;
-  write_sampler.dstBinding = sampler->binding;
-  write_sampler.dstArrayElement = 0;
-  write_sampler.descriptorType = sampler->type;
-  write_sampler.descriptorCount = 1;
-  write_sampler.pImageInfo = &image_info;
-
-  vkUpdateDescriptorSets(vk_struct->device.handle, 1, &write_sampler, 0, nullptr);
-
-  //---------------------------
-}
 
 //Subfunction
 void Descriptor::cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set){
