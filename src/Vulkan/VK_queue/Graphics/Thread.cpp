@@ -25,8 +25,6 @@ void Thread::thread_init(){
 
   vk_struct->device.queue.graphics.type = vk::queue::GRAPHICS;
   vk_struct->device.queue.graphics.thread_ID = utl::thread::get_ID_str();
-  vk_struct->device.queue.presentation.type = vk::queue::PRESENTATION;
-  vk_struct->device.queue.presentation.thread_ID = utl::thread::get_ID_str();
 
   //---------------------------
 }

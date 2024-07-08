@@ -32,7 +32,7 @@ void Submission::process_command(std::vector<vk::structure::Command*> vec_comman
 
   //If required, make image presentation
   if(with_presentation){
-    vk_struct->queue.presentation->image_presentation(semaphore);
+    //vk_struct->queue.presentation->image_presentation(semaphore);
   }
 
   //---------------------------

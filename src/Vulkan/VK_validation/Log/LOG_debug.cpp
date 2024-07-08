@@ -4,19 +4,36 @@
 #include <string>
 
 
+namespace vk::validation{
+
 //Main function
-void LOG_debug::validation_message(const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData){
+void LOG_debug::print_validation_error(std::string message){
+  //---------------------------
+
+  this->print_header(message);
+  this->print_message_ID(message);
+
+  //---------------------------
+}
+
+//Subfunction
+void LOG_debug::print_header(std::string message){
   //---------------------------
 
   // Split the message into individual objects
-  std::string message(pCallbackData->pMessage);
-  size_t pose_obj_start = message.find("dat::base::Object ");
+  size_t pose_obj_start = message.find("Object ");
   std::string validation_error = message.substr(0, pose_obj_start);
 
   std::cerr << "--------------------------" << std::endl;
   std::cerr << "[" << "\033[1;32mVL\033[0m] " << validation_error << std::endl;
 
+  //---------------------------
+}
+void LOG_debug::print_message_ID(std::string message){
+  //---------------------------
+
   // Split the message into individual objects
+  size_t pose_obj_start = message.find("Object ");
   while(pose_obj_start != std::string::npos){
     size_t pose_obj_end = message.find(";", pose_obj_start);
     std::string obj_info = message.substr(pose_obj_start, pose_obj_end - pose_obj_start);
@@ -49,4 +66,6 @@ void LOG_debug::validation_message(const VkDebugUtilsMessengerCallbackDataEXT* p
   std::cerr << objErrorInfo << std::endl;
 
   //---------------------------
+}
+
 }

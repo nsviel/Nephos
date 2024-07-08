@@ -1,7 +1,10 @@
 #pragma once
 
 #include <vulkan/vulkan.h>
+#include <string>
 
+
+namespace vk::validation{
 
 class LOG_debug
 {
@@ -12,8 +15,14 @@ public:
   }
 
   //Main function
-  void validation_message(const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData);
+  void print_validation_error(std::string message);
+
+  //Subfunction
+  void print_header(std::string message);
+  void print_message_ID(std::string message);
 
 private:
   LOG_debug() = default;
 };
+
+}

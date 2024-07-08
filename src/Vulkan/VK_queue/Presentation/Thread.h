@@ -1,8 +1,9 @@
 #pragma once
 
+#include <Utility/Element/Thread/Worker.h>
 #include <vulkan/vulkan.h>
 #include <vector>
-#include <thread>
+#include <queue>
 
 namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class Surface;}
@@ -15,7 +16,7 @@ namespace vk::queue::presentation{class Submission;}
 
 namespace vk::queue::presentation{
 
-class Thread
+class Thread : public utl::thread::Worker
 {
 public:
   //Constructor / Destructor
@@ -24,10 +25,12 @@ public:
 
 public:
   //Main function
-  void wait_for_idle();
-  void image_presentation(VkSemaphore& semaphore);
+  void thread_init();
+  void thread_loop();
 
   //Subfunction
+  void wait_for_idle();
+  void image_presentation(VkSemaphore& semaphore);
   void add_command(std::vector<vk::structure::Command*> vec_command);
 
   inline bool is_thread_idle(){return thread_idle;}
@@ -39,6 +42,7 @@ private:
   vk::window::GLFW* vk_window;
   vk::queue::presentation::Submission* vk_submission;
 
+  std::queue<std::vector<vk::structure::Command*>> queue;
   bool thread_idle = true;
 };
 
