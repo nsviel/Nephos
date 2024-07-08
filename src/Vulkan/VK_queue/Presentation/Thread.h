@@ -11,6 +11,7 @@ namespace vk{class Structure;}
 namespace vk::synchro::structure{class Fence;}
 namespace vk::window{class GLFW;}
 namespace vk::structure{class Command;}
+namespace vk::command::structure{class Set;}
 namespace vk::queue::presentation{class Submission;}
 namespace vk::synchro{class Fence;}
 
@@ -32,7 +33,7 @@ public:
   //Subfunction
   void wait_for_idle();
   void image_presentation(VkSemaphore& semaphore);
-  void add_command(std::vector<vk::structure::Command*> vec_command);
+  void add_command(vk::command::structure::Set* set);
 
   inline bool is_thread_idle(){return thread_idle;}
 

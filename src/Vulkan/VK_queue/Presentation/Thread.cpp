@@ -47,48 +47,13 @@ void Thread::thread_loop(){
 }
 
 //Subfunction
-void Thread::wait_for_idle(){
-  //For external thread to wait this queue thread idle
+void Thread::add_command(vk::command::structure::Set* set){
   //---------------------------
 
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-
-  //---------------------------
-}
-void Thread::image_presentation(VkSemaphore& semaphore){
-  this->thread_idle = false;
-  //---------------------------
-
-  vk_submission->process_command(semaphore);
-
-  //---------------------------
-  this->thread_idle = true;
-}
-void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
-  //---------------------------
-
-
-  vk::command::structure::Set* set = new vk::command::structure::Set();
-  set->vec_command = vec_command;
   set->supress = false;
-
-
   vk_struct->queue.graphics->add_command(set);
-
-  VkSemaphore semaphore;
-  for(int i=0; i<vec_command.size(); i++){
-    vk::structure::Command* command = vec_command[i];
-
-    //Semaphore done
-    if(command->semaphore_done != VK_NULL_HANDLE){
-      semaphore = command->semaphore_done;
-    }
-  }
-
   set->wait_until_done();
-  this->image_presentation(semaphore);
+  vk_submission->process_command(set->semaphore);
   delete set;
 
   //---------------------------

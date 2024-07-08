@@ -33,7 +33,7 @@ void Graphical::draw_frame(){
   //Rendering
   this->record_renderpass(vec_command, semaphore);
   this->copy_to_swapchain(vec_command, semaphore);
-  this->submit_presentation(vec_command);
+  this->submit_presentation(vec_command, semaphore);
 
   //---------------------------
 }
@@ -44,7 +44,7 @@ bool Graphical::acquire_image(vk::synchro::structure::Semaphore& semaphore){
 
   //Acquire next image
   //vk_struct->queue.graphics->wait_for_idle();
-  vk_struct->queue.presentation->wait_for_idle();
+  //vk_struct->queue.presentation->wait_for_idle();
   bool sucess = vk_swapchain->acquire_next_image(semaphore.handle);
 
   //---------------------------
@@ -90,11 +90,15 @@ void Graphical::copy_to_swapchain(std::vector<vk::structure::Command*>& vec_comm
 
   //---------------------------
 }
-void Graphical::submit_presentation(std::vector<vk::structure::Command*>& vec_command){
+void Graphical::submit_presentation(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore& semaphore){
   //---------------------------
 
+  vk::command::structure::Set* set = new vk::command::structure::Set();
+  set->vec_command = vec_command;
+  set->semaphore = semaphore.handle;
+
   //Submission
-  vk_struct->queue.presentation->add_command(vec_command);
+  vk_struct->queue.presentation->add_command(set);
 
   //---------------------------
 }
