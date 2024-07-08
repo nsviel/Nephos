@@ -31,11 +31,7 @@ public:
   void thread_loop();
 
   //Subfunction
-  void wait_for_idle();
-  void image_presentation(VkSemaphore& semaphore);
   void add_command(vk::command::structure::Set* set);
-
-  inline bool is_thread_idle(){return thread_idle;}
 
 private:
   vk::Structure* vk_struct;
@@ -45,8 +41,7 @@ private:
   vk::queue::presentation::Submission* vk_submission;
   vk::synchro::Fence* vk_fence;
 
-  std::queue<std::vector<vk::structure::Command*>> queue;
-  bool thread_idle = true;
+  std::queue<vk::command::structure::Set*> queue;
 };
 
 }

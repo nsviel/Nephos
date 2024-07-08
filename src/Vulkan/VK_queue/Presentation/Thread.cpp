@@ -56,6 +56,8 @@ void Thread::add_command(vk::command::structure::Set* set){
   vk_submission->process_command(set->semaphore);
   delete set;
 
+  //queue.push(set);
+
   //---------------------------
 }
 
