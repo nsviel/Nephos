@@ -9,6 +9,7 @@ namespace k4n::structure{
 struct Cloud{
   //---------------------------
 
+  std::vector<glm::vec2> table_xy;
   k4a::image k4a_image;
   k4a_calibration_type_t calibration_type;
   uint8_t* buffer = nullptr;

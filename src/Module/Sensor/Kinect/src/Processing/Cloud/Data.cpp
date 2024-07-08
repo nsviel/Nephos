@@ -26,7 +26,7 @@ void Data::extract_data(k4n::base::Sensor* sensor){
 
   tasker->loop();
 
-
+  k4n_xytable->find_table_xy(sensor);
 
   //init
   tasker->task_begin("init");
@@ -42,8 +42,6 @@ void Data::extract_data(k4n::base::Sensor* sensor){
   tasker->task_begin("transfer");
   this->extraction_transfer(sensor);
   tasker->task_end("transfer");
-
-    k4n_xytable->retrieve_table_xy(sensor);
 
   //---------------------------
 }
@@ -90,29 +88,10 @@ void Data::extraction_data(k4n::base::Sensor* sensor){
   //Fille vector with data
   #pragma omp parallel for
   for(int i=0; i<sensor->cloud.size; i++){
-    //this->retrieve_location(sensor, i);
+    this->retrieve_location(sensor, i);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
   }
-
-  std::vector<glm::vec3> vec_xyz(sensor->cloud.size);
-  for(int i=0; i<sensor->cloud.size; i++){
-    //Real location
-    const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->cloud.buffer);
-    int idx = i * 3;
-    float x = buffer_depth[idx + 0];
-    float y = buffer_depth[idx + 1];
-    float z = buffer_depth[idx + 2];
-    float x_m = -x / 1000.0f;
-    float y_m = -y / 1000.0f;
-    float z_m = z / 1000.0f;
-    glm::vec3 xyz = glm::vec3(z_m, x_m, y_m);
-    buffer_data[i] = xyz;
-
-
-  }
-    buffer_data.xyz = vec_xyz;
-    sensor->data.xyz = vec_xyz;
 
   //---------------------------
 }

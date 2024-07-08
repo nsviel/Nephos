@@ -115,6 +115,17 @@ void say(glm::vec4 truc){
 
   //---------------------------
 }
+void sayVecVec2(std::vector<glm::vec2>& vec){
+  //---------------------------
+
+  std::cout<<"---------"<<std::endl;
+  for(int i=0; i<vec.size(); i++){
+    std::cout<<std::fixed<<std::setprecision(5)<<"line."<<i<<" -> "<<vec[i].x<<" "<<vec[i].y<<std::endl;
+  }
+  std::cout<<"---------"<<std::endl;
+
+  //---------------------------
+}
 void sayVecVec3(std::vector<glm::vec3>& vec){
   //---------------------------
 
