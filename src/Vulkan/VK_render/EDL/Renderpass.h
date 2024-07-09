@@ -12,6 +12,7 @@ namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 namespace vk{class Structure;}
 namespace vk::render::edl{class Shader;}
+namespace vk::render::edl{class Drawer;}
 
 
 namespace vk::render::edl{
@@ -47,6 +48,7 @@ private:
   vk::draw::Drawer* vk_drawer;
   vk::binding::Uniform* vk_uniform;
   vk::binding::Sampler* vk_sampler;
+  vk::render::edl::Drawer* vk_edl_drawer;
 };
 
 }

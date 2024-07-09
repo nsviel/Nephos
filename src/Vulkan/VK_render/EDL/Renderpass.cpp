@@ -19,6 +19,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   this->vk_drawer = new vk::draw::Drawer(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
   this->vk_sampler = new vk::binding::Sampler(vk_struct);
+  this->vk_edl_drawer = new vk::render::edl::Drawer(vk_struct);
 
   //---------------------------
 }
@@ -50,7 +51,7 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = vk::renderpass::SHADER;
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw_edl(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){vk_edl_drawer->draw_edl(subpass);};
 
   this->create_pipeline_edl(subpass);
 
