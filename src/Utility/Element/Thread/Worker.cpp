@@ -9,9 +9,8 @@ namespace utl::thread{
 void Worker::start_thread(){
   //---------------------------
 
-  std::lock_guard<std::mutex> lock(mutex);
-  if(!thread_running){
-    this->thread_running = true;
+  if(!thread_running.load()){
+    thread_running.store(true);
     this->thread = std::thread(&Worker::run_thread, this);
   }
 
@@ -22,7 +21,7 @@ void Worker::run_thread(){
 
   this->thread_init();
 
-  while(thread_running){
+  while(thread_running.load()){
     this->thread_loop();
     this->thread_pause();
   }
@@ -34,10 +33,7 @@ void Worker::run_thread(){
 void Worker::stop_thread(){
   //---------------------------
 
-  {
-    std::lock_guard<std::mutex> lock(mutex);
-    this->thread_running = false;
-  }
+  thread_running.store(false);
   cv.notify_all();
   if(thread.joinable()){
     thread.join();
@@ -50,16 +46,16 @@ void Worker::stop_thread(){
 void Worker::thread_pause(){
   //---------------------------
 
-  //Wait for command
+  // Wait for command
   std::unique_lock<std::mutex> lock(mutex);
-  cv.wait(lock, [this]{return !thread_paused || !thread_running;});
+  cv.wait(lock, [this] { return !thread_paused.load() || !thread_running.load(); });
 
   //---------------------------
 }
 void Worker::set_pause(bool value){
   //---------------------------
 
-  this->thread_paused = value;
+  thread_paused.store(value);
   cv.notify_all();
 
   //---------------------------

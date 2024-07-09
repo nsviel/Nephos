@@ -1,6 +1,7 @@
 #include "Sampler.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::binding{

@@ -54,7 +54,7 @@ void Debug::print_message_ID(std::string message){
 
   //Message ID body
   std::string msg_body = message.substr(msg_end + 3);
-  size_t link_start = msg_body.find_last_of("(") - 1;
+  //size_t link_start = msg_body.find_last_of("https://") - 2;
   //msg_body = msg_body.substr(0, link_start) + ".";
 
   std::cerr << "\033[1;33m" << msg_title << "\033[0m" << std::endl;
