@@ -22,14 +22,14 @@ Shader::~Shader(){}
 void Shader::create_pipeline_shader(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  this->create_pipeline_shader_module(pipeline);
-  this->create_pipeline_shader_info(pipeline);
+  this->create_shader_module(pipeline);
+  this->create_shader_info(pipeline);
 
   //---------------------------
 }
 
 //Subfunction
-void Shader::create_pipeline_shader_module(vk::structure::Pipeline* pipeline){
+void Shader::create_shader_module(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   //Load spir format shaders
@@ -48,7 +48,7 @@ void Shader::create_pipeline_shader_module(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
-void Shader::create_pipeline_shader_info(vk::structure::Pipeline* pipeline){
+void Shader::create_shader_info(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   std::pair<VkShaderModule, VkShaderModule>& shader_couple = pipeline->info.vec_shader_couple[0];

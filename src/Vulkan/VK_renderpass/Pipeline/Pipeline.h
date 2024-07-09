@@ -34,9 +34,6 @@ public:
   void create_pipeline_obj(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline);
   void create_pipeline_layout(vk::structure::Pipeline* pipeline);
 
-  //Subfunction
-  void check_struct_pipeline_input(vk::structure::Pipeline* pipeline);
-
 private:
   vk::Structure* vk_struct;
   vk::binding::Descriptor* vk_descriptor;

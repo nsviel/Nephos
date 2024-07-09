@@ -62,7 +62,6 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, vk:
 
   //Pipeline layout & binding
   vk_descriptor->create_binding(&pipeline->binding);
-  this->check_struct_pipeline_input(pipeline);
   vk_shader->create_pipeline_shader(pipeline);
   vk_data->pipeline_data_description(pipeline);
   this->create_pipeline_layout(pipeline);
@@ -148,20 +147,6 @@ void Pipeline::clean_pipeline_shader_module(vk::structure::Pipeline* pipeline){
   }
   pipeline->info.vec_shader_couple.clear();
   pipeline->info.shader_stage.clear();
-
-  //---------------------------
-}
-
-//Subfunction
-void Pipeline::check_struct_pipeline_input(vk::structure::Pipeline* pipeline){
-  //---------------------------
-
-  if(pipeline->definition.name == "") std::cout<<"[error] Pipeline init input -> no name"<<std::endl;
-  //if(pipeline->definition.topology == "") std::cout<<"[error] Pipeline init input -> no topology"<<std::endl;
-  //if(pipeline->path_shader_vs == "") std::cout<<"[error] Pipeline init input -> no path_shader_vs"<<std::endl;
-  //if(pipeline->path_shader_fs == "") std::cout<<"[error] Pipeline init input -> no path_shader_fs"<<std::endl;
-  //if(pipeline->definition.vec_data_name.size() == 0) std::cout<<"[error] Pipeline init input -> no vec_data_name"<<std::endl;
-  //if(pipeline->binding.vec_required_binding.size() == 0) std::cout<<"[error] Pipeline init input -> no vec_required_binding"<<std::endl;
 
   //---------------------------
 }

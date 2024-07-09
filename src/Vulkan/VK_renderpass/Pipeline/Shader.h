@@ -24,8 +24,8 @@ public:
   void create_pipeline_shader(vk::structure::Pipeline* pipeline);
 
   //Subfunction
-  void create_pipeline_shader_module(vk::structure::Pipeline* pipeline);
-  void create_pipeline_shader_info(vk::structure::Pipeline* pipeline);
+  void create_shader_module(vk::structure::Pipeline* pipeline);
+  void create_shader_info(vk::structure::Pipeline* pipeline);
 
 private:
   vk::Structure* vk_struct;
