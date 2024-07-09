@@ -17,7 +17,7 @@ class Drawer
 {
 public:
   //Constructor / Destructor
-  Drawer(vk::Structure* vk_struct);
+  Drawer(vk::Structure* vk_struct, vk::render::edl::Shader* vk_shader);
   ~Drawer();
 
 public:
@@ -30,7 +30,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::render::edl::Shader* shader_edl;
+  vk::render::edl::Shader* vk_shader;
   vk::pipeline::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::binding::Descriptor* vk_descriptor;

@@ -16,7 +16,7 @@ class Renderpass
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::Structure* vk_struct);
+  Renderpass(vk::Structure* vk_struct, vk::render::edl::Shader* vk_shader);
   ~Renderpass();
 
 public:
