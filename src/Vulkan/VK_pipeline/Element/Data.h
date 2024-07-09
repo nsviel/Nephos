@@ -20,7 +20,6 @@ public:
   //subfunction
   void pipeline_binding_description(vk::structure::Pipeline* pipeline);
   void pipeline_attribut_description(vk::structure::Pipeline* pipeline);
-  void pipeline_vertex_input_info(vk::structure::Pipeline* pipeline);
 
 private:
   vk::Structure* vk_struct;

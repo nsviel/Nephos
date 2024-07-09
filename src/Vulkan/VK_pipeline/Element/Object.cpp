@@ -19,6 +19,7 @@ Object::~Object(){}
 void Object::create_pipeline_object(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
+  this->info_pipeline_vertex(pipeline);
   this->info_pipeline_topology(pipeline);
   this->info_pipeline_dynamic(pipeline);
   this->info_pipeline_viewport(pipeline);
@@ -33,6 +34,18 @@ void Object::create_pipeline_object(vk::structure::Renderpass* renderpass, vk::s
 }
 
 //Subfunction
+void Object::info_pipeline_vertex(vk::structure::Pipeline* pipeline){
+  //---------------------------
+
+  info_vertex = {};
+  info_vertex.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+  info_vertex.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline->element.data_description.size());
+  info_vertex.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline->element.attribut_description.size());
+  info_vertex.pVertexBindingDescriptions = pipeline->element.data_description.data();
+  info_vertex.pVertexAttributeDescriptions = pipeline->element.attribut_description.data();
+
+  //---------------------------
+}
 void Object::info_pipeline_topology(vk::structure::Pipeline* pipeline){
   //---------------------------
 
@@ -174,7 +187,7 @@ void Object::create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::s
   pipeline_info.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
   pipeline_info.stageCount = static_cast<uint32_t>(pipeline->element.shader_stage.size());
   pipeline_info.pStages = pipeline->element.shader_stage.data();
-  pipeline_info.pVertexInputState = &pipeline->element.vertex_input_info;
+  pipeline_info.pVertexInputState = &info_vertex;
   pipeline_info.pInputAssemblyState = &info_topology;
   pipeline_info.pViewportState = &info_viewport;
   pipeline_info.pRasterizationState = &info_rasterization;
