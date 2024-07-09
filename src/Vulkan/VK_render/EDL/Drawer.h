@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vk::renderpass{class Renderpass;}
+namespace vk{class Structure;}
 namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
@@ -9,9 +9,6 @@ namespace vk::binding{class Sampler;}
 namespace vk::draw{class Drawer;}
 namespace vk::render::edl{class Shader;}
 namespace vk::structure{class Subpass;}
-namespace vk::structure{class Renderpass;}
-namespace vk{class Structure;}
-namespace vk::render::edl{class Shader;}
 
 
 namespace vk::render::edl{
@@ -34,7 +31,6 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::render::edl::Shader* shader_edl;
-  vk::renderpass::Renderpass* vk_renderpass;
   vk::pipeline::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::binding::Descriptor* vk_descriptor;

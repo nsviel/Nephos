@@ -11,8 +11,7 @@ Drawer::Drawer(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->shader_edl = new vk::render::edl::Shader(vk_struct);
-  this->vk_renderpass = new vk::renderpass::Renderpass(vk_struct);
+  this->shader_edl = new vk::render::edl::Shader(vk_struct);  
   this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
