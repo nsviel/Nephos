@@ -10,29 +10,27 @@ namespace vk::draw{class Drawer;}
 namespace vk::structure{class Subpass;}
 namespace vk::structure{class Renderpass;}
 namespace vk::render::scene{class Shader;}
-namespace vk::render::scene{class Drawer;}
 namespace utl::base{class Data;}
 
 
 namespace vk::render::scene{
 
-class Renderpass
+class Drawer
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::Structure* vk_struct);
-  ~Renderpass();
+  Drawer(vk::Structure* vk_struct);
+  ~Drawer();
 
 public:
   //Main function
-  void init();
+  void draw_scene(vk::structure::Subpass* subpass);
 
-  //Init functions
-  void create_renderpass(vk::structure::Renderpass* renderpass);
-  void create_subpass(vk::structure::Renderpass* renderpass);
-  void create_pipeline_line(vk::structure::Subpass* subpass);
-  void create_pipeline_point(vk::structure::Subpass* subpass);
-  void create_pipeline_triangle(vk::structure::Subpass* subpass);
+  //Subfunction
+  bool check_data(utl::base::Data* data, int typology);
+  void cmd_draw_point(vk::structure::Subpass* subpass);
+  void cmd_draw_line(vk::structure::Subpass* subpass);
+  void cmd_draw_triangle(vk::structure::Subpass* subpass);
 
 private:
   vk::Structure* vk_struct;
@@ -43,7 +41,6 @@ private:
   vk::pipeline::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::render::scene::Shader* shader_scene;
-  vk::render::scene::Drawer* vk_sce_drawer;
 };
 
 }
