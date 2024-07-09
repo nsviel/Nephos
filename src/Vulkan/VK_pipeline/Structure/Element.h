@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Vulkan/VK_pipeline/Structure/Shader.h>
 #include <Vulkan/VK_binding/Structure/Binding.h>
 #include <Utility/Base/Shader/Info.h>
 #include <vulkan/vulkan.h>
@@ -14,8 +15,10 @@ struct Element{
 
   std::vector<std::pair<VkShaderModule, VkShaderModule>> vec_shader_couple;
   std::vector<VkPipelineShaderStageCreateInfo> shader_stage;
-  std::vector<VkVertexInputBindingDescription> vertex_binding;
-  std::vector<VkVertexInputAttributeDescription> vertex_attribut;
+  std::vector<vk::pipeline::structure::Shader> vec_shader;
+
+  std::vector<VkVertexInputBindingDescription> vec_vertex_binding;
+  std::vector<VkVertexInputAttributeDescription> vec_vertex_attribut;
   std::vector<VkDynamicState> vec_dynamic_state;
 
   //---------------------------

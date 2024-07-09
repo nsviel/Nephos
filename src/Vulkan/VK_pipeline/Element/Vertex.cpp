@@ -28,7 +28,7 @@ void Vertex::pipeline_vertex_description(vk::structure::Pipeline* pipeline){
 
 //Subfunction
 void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
-  std::vector<VkVertexInputAttributeDescription> vertex_attribut;
+  std::vector<VkVertexInputAttributeDescription> vec_vertex_attribut;
   //---------------------------
 
   std::vector<vk::pipeline::Attribut>& vec_attribut = pipeline->info.vec_attribut;
@@ -63,14 +63,14 @@ void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
       }
     }
 
-    vertex_attribut.push_back(attribut);
+    vec_vertex_attribut.push_back(attribut);
   }
 
   //---------------------------
-  pipeline->element.vertex_attribut = vertex_attribut;
+  pipeline->element.vec_vertex_attribut = vec_vertex_attribut;
 }
 void Vertex::flow_vertex_binding(vk::structure::Pipeline* pipeline){
-  std::vector<VkVertexInputBindingDescription> vertex_binding;
+  std::vector<VkVertexInputBindingDescription> vec_vertex_binding;
   //---------------------------
 
   std::vector<vk::pipeline::Attribut>& vec_attribut = pipeline->info.vec_attribut;
@@ -102,11 +102,11 @@ void Vertex::flow_vertex_binding(vk::structure::Pipeline* pipeline){
       }
     }
 
-    vertex_binding.push_back(description);
+    vec_vertex_binding.push_back(description);
   }
 
   //---------------------------
-  pipeline->element.vertex_binding = vertex_binding;
+  pipeline->element.vec_vertex_binding = vec_vertex_binding;
 }
 
 }
