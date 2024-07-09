@@ -58,8 +58,7 @@ void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle";
-  pipeline->definition.purpose = "presentation";
-  pipeline->definition.topology = "triangle";
+  pipeline->definition.topology = utl::topology::TRIANGLE;
   pipeline->definition.shader = shader_info;
 
   //---------------------------

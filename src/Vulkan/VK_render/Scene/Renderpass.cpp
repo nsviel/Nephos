@@ -61,8 +61,7 @@ void Renderpass::pipeline_line(vk::structure::Subpass* subpass){
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "line";
-  pipeline->definition.topology = "line";
-  pipeline->definition.purpose = "graphics";
+  pipeline->definition.topology = utl::topology::LINE;
   pipeline->definition.shader = shader_info;
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
@@ -84,8 +83,7 @@ void Renderpass::pipeline_point(vk::structure::Subpass* subpass){
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "point";
-  pipeline->definition.topology = "point";
-  pipeline->definition.purpose = "graphics";
+  pipeline->definition.topology = utl::topology::POINT;
   pipeline->definition.shader = shader_info;
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");
@@ -109,8 +107,7 @@ void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle";
-  pipeline->definition.topology = "triangle";
-  pipeline->definition.purpose = "graphics";
+  pipeline->definition.topology = utl::topology::TRIANGLE;
   pipeline->definition.shader = shader_info;
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("color");

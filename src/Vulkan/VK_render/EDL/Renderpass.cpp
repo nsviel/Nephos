@@ -59,8 +59,7 @@ void Renderpass::pipeline_edl(vk::structure::Subpass* subpass){
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
   pipeline->definition.name = "triangle_EDL";
-  pipeline->definition.topology = "triangle";
-  pipeline->definition.purpose = "graphics";
+  pipeline->definition.topology = utl::topology::TRIANGLE;
   pipeline->definition.shader = shader_info;
   pipeline->definition.vec_data_name.push_back("location");
   pipeline->definition.vec_data_name.push_back("tex_coord");

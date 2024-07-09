@@ -160,14 +160,19 @@ void Element::find_pipeline_topology_state(vk::structure::Pipeline* pipeline){
   input_assembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
   input_assembly.primitiveRestartEnable = VK_FALSE;
 
-  if(pipeline->definition.topology == "point"){
-    input_assembly.topology = VK_PRIMITIVE_TOPOLOGY_POINT_LIST;
-  }
-  else if(pipeline->definition.topology == "line"){
-    input_assembly.topology = VK_PRIMITIVE_TOPOLOGY_LINE_LIST;
-  }
-  else if(pipeline->definition.topology == "triangle"){
-    input_assembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+  switch(pipeline->definition.topology){
+    case utl::topology::POINT:{
+      input_assembly.topology = VK_PRIMITIVE_TOPOLOGY_POINT_LIST;
+      break;
+    }
+    case utl::topology::LINE:{
+      input_assembly.topology = VK_PRIMITIVE_TOPOLOGY_LINE_LIST;
+      break;
+    }
+    case utl::topology::TRIANGLE:{
+      input_assembly.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+      break;
+    }
   }
 
   //---------------------------

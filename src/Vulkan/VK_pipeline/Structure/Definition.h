@@ -15,8 +15,7 @@ struct Definition{
 
   //Info
   std::string name = "";
-  std::string topology = "";
-  std::string purpose = "";
+  utl::topology::Type topology = utl::topology::POINT;
 
   utl::shader::Info* shader;
   std::vector<std::string> vec_data_name;
