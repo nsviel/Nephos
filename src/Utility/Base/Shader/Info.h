@@ -16,9 +16,8 @@ struct Info{
   std::string path_spir_vs = "";
   std::string path_spir_fs = "";
 
-  bool compile_shader = false;
+  bool with_recompilation = false;
   bool with_depth_test = false;
-  bool has_parameter = false;
 
   //---------------------------
 };

@@ -33,9 +33,8 @@ void Shader::init_shader(){
   shader_info->path_glsl_fs = "../media/shader/EDL/glsl/shader_edl_fs.frag";
   shader_info->path_spir_vs = "../media/shader/EDL/spir/shader_edl_vs.spv";
   shader_info->path_spir_fs = "../media/shader/EDL/spir/shader_edl_fs.spv";
-  shader_info->compile_shader = false;
+  shader_info->with_recompilation = false;
   shader_info->with_depth_test = true;
-  shader_info->has_parameter = true;
   this->vec_shader_info.push_back(shader_info);
 
   //---------------------------

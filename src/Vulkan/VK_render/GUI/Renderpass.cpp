@@ -52,7 +52,7 @@ void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
   shader_info->folder = "Canvas";
   shader_info->path_spir_vs = "../media/shader/Empty/spir/shader_empty_vs.spv";
   shader_info->path_spir_fs = "../media/shader/Empty/spir/shader_empty_fs.spv";
-  shader_info->compile_shader = false;
+  shader_info->with_recompilation = false;
   shader_info->with_depth_test = false;
 
   //Pipeline
