@@ -19,6 +19,39 @@ Layout::~Layout(){}
 void Layout::create_pipeline_layout(vk::structure::Pipeline* pipeline){
   //---------------------------
 
+  this->create_simple_layout(pipeline);
+
+  //---------------------------
+}
+void Layout::clean_pipeline_layout(vk::structure::Pipeline* pipeline){
+  //---------------------------
+
+  vkDestroyPipelineLayout(vk_struct->device.handle, pipeline->layout, nullptr);
+
+  //---------------------------
+}
+
+//Subfunction
+void Layout::create_simple_layout(vk::structure::Pipeline* pipeline){
+  //---------------------------
+
+  //Pipeline layout info
+  VkPipelineLayoutCreateInfo pipeline_layout_info{};
+  pipeline_layout_info.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
+  pipeline_layout_info.setLayoutCount = 1;
+  pipeline_layout_info.pSetLayouts = &pipeline->binding.descriptor.layout;
+
+  //Pipeline layout creation
+  VkResult result = vkCreatePipelineLayout(vk_struct->device.handle, &pipeline_layout_info, nullptr, &pipeline->layout);
+  if(result != VK_SUCCESS){
+    throw std::runtime_error("[error] failed to create pipeline layout!");
+  }
+
+  //---------------------------
+}
+void Layout::create_pushconstant_layout(vk::structure::Pipeline* pipeline){
+  //---------------------------
+
   //Push constant for MVP matrix
   //VkPushConstantRange pushconstant_range = {};
   //pushconstant_range.stageFlags = TYP_SHADER_VS;
@@ -38,13 +71,6 @@ void Layout::create_pipeline_layout(vk::structure::Pipeline* pipeline){
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create pipeline layout!");
   }
-
-  //---------------------------
-}
-void Layout::clean_pipeline_layout(vk::structure::Pipeline* pipeline){
-  //---------------------------
-
-  vkDestroyPipelineLayout(vk_struct->device.handle, pipeline->layout, nullptr);
 
   //---------------------------
 }

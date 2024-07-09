@@ -20,6 +20,10 @@ public:
   void create_pipeline_layout(vk::structure::Pipeline* pipeline);
   void clean_pipeline_layout(vk::structure::Pipeline* pipeline);
 
+  //Subfunction
+  void create_simple_layout(vk::structure::Pipeline* pipeline);
+  void create_pushconstant_layout(vk::structure::Pipeline* pipeline);
+
 private:
   vk::Structure* vk_struct;
 };
