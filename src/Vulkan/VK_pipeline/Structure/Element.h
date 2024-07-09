@@ -18,16 +18,6 @@ struct Element{
   std::vector<VkVertexInputAttributeDescription> attribut_description;
   std::vector<std::pair<VkShaderModule, VkShaderModule>> vec_shader_couple;
 
-  VkPipelineVertexInputStateCreateInfo vertex_input_info = {};
-  VkPipelineInputAssemblyStateCreateInfo input_assembly = {};
-  VkPipelineViewportStateCreateInfo viewport_state = {};
-  VkPipelineRasterizationStateCreateInfo rasterizer = {};
-  VkPipelineMultisampleStateCreateInfo multisampling = {};
-  VkPipelineDepthStencilStateCreateInfo depth_stencil = {};
-  VkPipelineColorBlendStateCreateInfo color_blend_info = {};
-  VkPipelineColorBlendAttachmentState color_blend_attachment = {};
-  VkPipelineDynamicStateCreateInfo dynamic_state = {};
-
   //---------------------------
 };
 
