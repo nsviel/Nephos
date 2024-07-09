@@ -13,7 +13,6 @@ namespace vk::pipeline::structure{
 struct Element{
   //---------------------------
 
-  std::vector<std::pair<VkShaderModule, VkShaderModule>> vec_shader_couple;
   std::vector<VkPipelineShaderStageCreateInfo> shader_stage;
   std::vector<vk::pipeline::structure::Shader> vec_shader;
 

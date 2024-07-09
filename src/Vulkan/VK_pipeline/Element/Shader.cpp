@@ -30,13 +30,13 @@ void Shader::create_pipeline_shader(vk::structure::Pipeline* pipeline){
 void Shader::clean_pipeline_shader(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  for(int i=0; i<pipeline->element.vec_shader_couple.size(); i++){
-    std::pair<VkShaderModule, VkShaderModule> shader_couple = pipeline->element.vec_shader_couple[i];
-    vkDestroyShaderModule(vk_struct->device.handle, shader_couple.first, nullptr);
-    vkDestroyShaderModule(vk_struct->device.handle, shader_couple.second, nullptr);
+  for(int i=0; i<pipeline->element.vec_shader.size(); i++){
+    vk::pipeline::structure::Shader& shader = pipeline->element.vec_shader[i];
+
+    vkDestroyShaderModule(vk_struct->device.handle, shader.vs, nullptr);
+    vkDestroyShaderModule(vk_struct->device.handle, shader.fs, nullptr);
   }
-  pipeline->element.vec_shader_couple.clear();
-  pipeline->element.shader_stage.clear();
+  pipeline->element.vec_shader.clear();
 
   //---------------------------
 }
@@ -54,23 +54,23 @@ void Shader::create_shader_module(vk::structure::Pipeline* pipeline){
   VkShaderModule module_vert = vk_shader->create_shader_module(code_vert);
   VkShaderModule module_frag = vk_shader->create_shader_module(code_frag);
 
-  std::pair<VkShaderModule, VkShaderModule> shader_couple;
-  shader_couple.first = module_vert;
-  shader_couple.second = module_frag;
-  pipeline->element.vec_shader_couple.push_back(shader_couple);
+  vk::pipeline::structure::Shader shader;
+  shader.vs = module_vert;
+  shader.fs = module_frag;
+  pipeline->element.vec_shader.push_back(shader);
 
   //---------------------------
 }
 void Shader::create_shader_info(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  std::pair<VkShaderModule, VkShaderModule>& shader_couple = pipeline->element.vec_shader_couple[0];
+  vk::pipeline::structure::Shader& shader = pipeline->element.vec_shader[0];
 
   //Vertex shader link in pipeline
   VkPipelineShaderStageCreateInfo info_vert{};
   info_vert.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
   info_vert.stage = TYP_SHADER_VS;
-  info_vert.module = shader_couple.first;
+  info_vert.module = shader.vs;
   info_vert.pName = "main";
   info_vert.pSpecializationInfo = nullptr;
 
@@ -78,7 +78,7 @@ void Shader::create_shader_info(vk::structure::Pipeline* pipeline){
   VkPipelineShaderStageCreateInfo info_frag{};
   info_frag.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
   info_frag.stage = VK_SHADER_STAGE_FRAGMENT_BIT;
-  info_frag.module = shader_couple.second;
+  info_frag.module = shader.fs;
   info_frag.pName = "main";
   info_frag.pSpecializationInfo = nullptr;
 
