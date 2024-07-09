@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Vulkan/VK_renderpass/Renderpass/Subpass.h>
 #include <Vulkan/VK_renderpass/Structure/Pipeline.h>
 #include <Vulkan/VK_renderpass/Structure/Attachment.h>
 #include <vulkan/vulkan.h>
@@ -33,10 +34,10 @@ struct Subpass{
   }
 
   //Subpass info
-  std::string target = "";
   VkSubpassDescription description = {};
   VkSubpassDependency dependency = {};
   vk::structure::Command_buffer* command_buffer;
+  vk::renderpass::Target target = vk::renderpass::SHADER;
 
   //Attachment
   vk::structure::Attachment depth;

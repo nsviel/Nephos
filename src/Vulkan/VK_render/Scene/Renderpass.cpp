@@ -34,13 +34,13 @@ void Renderpass::init_renderpass(){
   this->create_subpass(renderpass);
 
   //---------------------------
-  vk_renderpass->add_renderpass_description(renderpass);
+  vk_struct->render.vec_renderpass.push_back(renderpass);
 }
 void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
-  subpass->target = "shader";
+  subpass->target = vk::renderpass::SHADER;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw_scene(subpass);};
 
   this->pipeline_line(subpass);

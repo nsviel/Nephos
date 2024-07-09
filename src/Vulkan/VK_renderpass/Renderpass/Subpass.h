@@ -8,6 +8,12 @@ namespace vk::structure{class Subpass;}
 
 namespace vk::renderpass{
 
+enum Target{
+  SHADER = 0,
+  TRANSFER = 1,
+  PRESENTATION = 2,
+};
+
 class Subpass
 {
 public:
@@ -19,12 +25,10 @@ public:
   //Main function
   void create_subpass(vk::structure::Renderpass* renderpass);
 
-  //Subpass type
+  //Subfunction
   void create_subpass_shader(vk::structure::Subpass* subpass);
   void create_subpass_transfert(vk::structure::Subpass* subpass);
   void create_subpass_presentation(vk::structure::Subpass* subpass);
-
-  //Subfunction
   void create_subpass_description(vk::structure::Subpass* subpass);
 
 private:

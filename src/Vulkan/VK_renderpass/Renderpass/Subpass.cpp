@@ -35,27 +35,32 @@ void Subpass::create_subpass(vk::structure::Renderpass* renderpass){
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
     vk::structure::Subpass* subpass = renderpass->vec_subpass[i];
 
-    if(subpass->target == "shader"){
-      this->create_subpass_shader(subpass);
-      this->create_subpass_description(subpass);
+    switch(subpass->target){
+      case vk::renderpass::SHADER:{
+        this->create_subpass_shader(subpass);
+        break;
+      }
+      case vk::renderpass::TRANSFER:{
+        this->create_subpass_transfert(subpass);
+        break;
+      }
+      case vk::renderpass::PRESENTATION:{
+        this->create_subpass_presentation(subpass);
+        break;
+      }
+      default:{
+        std::cout<<"[error] subpass target not recognized"<<std::endl;
+        return;
+      }
     }
-    else if(subpass->target == "transfert"){
-      this->create_subpass_transfert(subpass);
-      this->create_subpass_description(subpass);
-    }
-    else if(subpass->target == "presentation"){
-      this->create_subpass_presentation(subpass);
-      this->create_subpass_description(subpass);
-    }
-    else{
-      std::cout<<"[error] subpass target not recognized"<<std::endl;
-    }
+
+    this->create_subpass_description(subpass);
   }
 
   //---------------------------
 }
 
-//Subpass type
+//Subfunction
 void Subpass::create_subpass_shader(vk::structure::Subpass* subpass){
   //---------------------------
 
@@ -127,8 +132,6 @@ void Subpass::create_subpass_presentation(vk::structure::Subpass* subpass){
 
   //---------------------------
 }
-
-//Subfunction
 void Subpass::create_subpass_description(vk::structure::Subpass* subpass){
   //---------------------------
 

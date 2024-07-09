@@ -31,10 +31,7 @@ void Renderpass::init(){
   //Create renderpass according to the vec of renderpass demande
   for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
     vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
-    vk_subpass->create_subpass(renderpass);
-    this->create_renderpass(renderpass);
-    vk_pipeline->create_pipeline(renderpass);
-    vk_framebuffer->create_framebuffer(renderpass);
+    this->init_renderpass(renderpass);
 
   }
 
@@ -52,6 +49,16 @@ void Renderpass::clean(){
 }
 
 //Subfunction
+void Renderpass::init_renderpass(vk::structure::Renderpass* renderpass){
+  //---------------------------
+
+  vk_subpass->create_subpass(renderpass);
+  this->create_renderpass(renderpass);
+  vk_pipeline->create_pipeline(renderpass);
+  vk_framebuffer->create_framebuffer(renderpass);
+
+  //---------------------------
+}
 void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
@@ -61,15 +68,22 @@ void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
   std::vector<VkAttachmentDescription> vec_attachment;
   for(int i=0; i<renderpass->vec_subpass.size(); i++){
     vk::structure::Subpass* subpass = renderpass->vec_subpass[i];
+
+    // Add subpass description & dependency
     vec_description.push_back(subpass->description);
     vec_dependency.push_back(subpass->dependency);
 
+    // Add color attachments
     for(int j=0; j<subpass->vec_color.size(); j++){
       vec_attachment.push_back(subpass->vec_color[j].description);
     }
+
+    // Add color resolve attachments
     for(int j=0; j<subpass->vec_color_resolve.size(); j++){
       vec_attachment.push_back(subpass->vec_color_resolve[j].description);
     }
+    
+    // Add depth attachment
     vec_attachment.push_back(subpass->depth.description);
   }
 
@@ -97,13 +111,6 @@ void Renderpass::clean_renderpass(vk::structure::Renderpass* renderpass){
   vk_framebuffer->clean_framebuffer(renderpass);
   vkDestroyRenderPass(vk_struct->device.handle, renderpass->handle, nullptr);
   vk_pipeline->clean_pipeline(renderpass);
-
-  //---------------------------
-}
-void Renderpass::add_renderpass_description(vk::structure::Renderpass* renderpass){
-  //---------------------------
-
-  vk_struct->render.vec_renderpass.push_back(renderpass);
 
   //---------------------------
 }
