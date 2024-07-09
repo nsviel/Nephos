@@ -55,7 +55,7 @@ void Renderpass::create_pipeline_triangle(vk::structure::Subpass* subpass){
 
   //Shader
   utl::shader::Info* shader_info = new utl::shader::Info();
-  shader_info->title = "Canvas";
+  shader_info->name = "Canvas";
   shader_info->path_spir_vs = "../media/shader/Empty/spir/shader_empty_vs.spv";
   shader_info->path_spir_fs = "../media/shader/Empty/spir/shader_empty_fs.spv";
   shader_info->with_recompilation = false;

@@ -14,7 +14,12 @@ public:
   Base();
   ~Base();
 
-  utl::shader::Info* get_shader_info(std::string title);
+public:
+  //Main function
+  virtual void build_shader_info(){}
+
+  //Subfunction
+  utl::shader::Info* get_shader_info(std::string name);
   std::string get_glsl_path_vs(int ID_subclass);
   std::string get_glsl_path_fs(int ID_subclass);
 

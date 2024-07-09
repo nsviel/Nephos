@@ -15,8 +15,9 @@ public:
   Shader(vk::Structure* vk_struct);
   ~Shader();
 
+public:
   //Main function
-  void init_shader();
+  void build_shader_info();
   void update_shader();
 
   inline vk::render::edl::Structure* get_edl_struct(){return edl_struct;}

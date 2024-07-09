@@ -13,8 +13,9 @@ public:
   Shader(vk::Structure* vk_struct);
   ~Shader();
 
+public:
   //Main function
-  void init_shader();
+  void build_shader_info();
 
   //Subfunction
   void init_shader_line();

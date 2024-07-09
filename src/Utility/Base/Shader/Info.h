@@ -9,7 +9,7 @@ struct Info{
   //---------------------------
 
   //Configuration
-  std::string title = "";
+  std::string name = "";
   bool with_recompilation = false;
   bool with_depth_test = false;
 

@@ -84,8 +84,8 @@ void Shader::retrieve_shader_subclasses(){
 
   this->vec_shader_subclass.clear();
   for(int i=0; i<vec_shader_info.size(); i++){
-    std::string title = vec_shader_info[i]->title;
-    this->vec_shader_subclass.push_back(title);
+    std::string& name = vec_shader_info[i]->name;
+    this->vec_shader_subclass.push_back(name);
   }
 
   //---------------------------

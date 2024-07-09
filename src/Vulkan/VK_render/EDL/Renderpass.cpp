@@ -24,6 +24,7 @@ Renderpass::~Renderpass(){}
 void Renderpass::init(){
   //---------------------------
 
+  vk_shader->build_shader_info();
   vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
   this->create_renderpass(renderpass);
   this->create_subpass(renderpass);

@@ -12,16 +12,17 @@ Base::Base(){
 }
 Base::~Base(){}
 
-utl::shader::Info* Base::get_shader_info(std::string title){
+//Subfunction
+utl::shader::Info* Base::get_shader_info(std::string name){
   //---------------------------
 
   for(int i=0; i<vec_shader_info.size(); i++){
-    if(title == vec_shader_info[i]->title){
+    if(name == vec_shader_info[i]->name){
       return vec_shader_info[i];
     }
   }
 
-  std::cout<<"[error] Didn't find shader info from title "<<title<<std::endl;
+  std::cout<<"[error] Didn't find shader info from name -> "<<name<<std::endl;
 
   //---------------------------
   return nullptr;
