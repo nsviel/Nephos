@@ -33,22 +33,17 @@ void Drawer::draw_scene(vk::structure::Subpass* subpass){
 }
 
 //Subfunction
-bool Drawer::check_data(utl::base::Data* data, int topology){
-  bool data_ok = false;
+bool Drawer::check_data(utl::base::Data* data, int typology){
   //---------------------------
 
-  bool is_visible = data->is_visible;
-  bool has_topology = data->topology.type == topology;
-  bool has_xyz = data->xyz.size() != 0;
-  bool has_rgba = data->rgba.size() != 0;
-  bool same_length = data->rgba.size() == data->xyz.size();
-
-  if(is_visible && has_topology && has_xyz && has_rgba && same_length){
-    data_ok = true;
-  }
+  if(data->topology.type != typology) return false;
+  if(data->is_visible == false) return false;
+  if(data->xyz.size() == 0) return false;
+  if(data->rgba.size() == 0) return false;
+  if(data->rgba.size() != data->xyz.size()) return false;
 
   //---------------------------
-  return data_ok;
+  return true;
 }
 void Drawer::cmd_draw_point(vk::structure::Subpass* subpass){
   std::list<vk::structure::Object*>& list_data = vk_struct->data.list_vk_object;
@@ -110,7 +105,6 @@ void Drawer::cmd_draw_triangle(vk::structure::Subpass* subpass){
     utl::base::Pose* pose = vk_object->pose;
 
     if(check_data(data, utl::topology::TRIANGLE)){
-
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->handle, pipeline, vk_object->binding.descriptor.set);
       vk_drawer->cmd_draw_data(subpass->command_buffer->handle, vk_object);
