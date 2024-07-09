@@ -39,10 +39,10 @@ void Object::info_pipeline_vertex(vk::structure::Pipeline* pipeline){
 
   info_vertex = {};
   info_vertex.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-  info_vertex.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline->element.data_description.size());
-  info_vertex.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline->element.attribut_description.size());
-  info_vertex.pVertexBindingDescriptions = pipeline->element.data_description.data();
-  info_vertex.pVertexAttributeDescriptions = pipeline->element.attribut_description.data();
+  info_vertex.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline->element.vertex_binding.size());
+  info_vertex.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline->element.vertex_attribut.size());
+  info_vertex.pVertexBindingDescriptions = pipeline->element.vertex_binding.data();
+  info_vertex.pVertexAttributeDescriptions = pipeline->element.vertex_attribut.data();
 
   //---------------------------
 }
@@ -73,17 +73,17 @@ void Object::info_pipeline_topology(vk::structure::Pipeline* pipeline){
 void Object::info_pipeline_dynamic(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  static std::vector<VkDynamicState> dynamic_state_object;
-  dynamic_state_object.clear();
-  dynamic_state_object.push_back(VK_DYNAMIC_STATE_VIEWPORT);
-  dynamic_state_object.push_back(VK_DYNAMIC_STATE_SCISSOR);
-  dynamic_state_object.push_back(VK_DYNAMIC_STATE_LINE_WIDTH);
+  std::vector<VkDynamicState>& vec_dynamic_state = pipeline->element.vec_dynamic_state;
+  vec_dynamic_state.clear();
+  vec_dynamic_state.push_back(VK_DYNAMIC_STATE_VIEWPORT);
+  vec_dynamic_state.push_back(VK_DYNAMIC_STATE_SCISSOR);
+  vec_dynamic_state.push_back(VK_DYNAMIC_STATE_LINE_WIDTH);
 
   //Dynamic internal variables (viewport, line width, ...)
   info_dynamic = {};
   info_dynamic.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
-  info_dynamic.dynamicStateCount = static_cast<uint32_t>(dynamic_state_object.size());
-  info_dynamic.pDynamicStates = dynamic_state_object.data();
+  info_dynamic.dynamicStateCount = static_cast<uint32_t>(vec_dynamic_state.size());
+  info_dynamic.pDynamicStates = vec_dynamic_state.data();
 
   //---------------------------
 }
