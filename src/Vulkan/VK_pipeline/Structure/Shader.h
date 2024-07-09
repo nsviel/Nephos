@@ -14,7 +14,6 @@ namespace vk::pipeline::structure{
 struct Shader{
   //---------------------------
 
-  VkPipelineShaderStageCreateInfo stage;
   VkShaderModule vs;
   VkShaderModule fs;
 

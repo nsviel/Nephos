@@ -62,7 +62,7 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, vk:
 
   //Pipeline obj
   vk_object->create_pipeline_object(renderpass, pipeline);
-  vk_shader->clean_pipeline_shader(pipeline);
+  vk_shader->clean_pipeline_shader();
 
   //---------------------------
 }

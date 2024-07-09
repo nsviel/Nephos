@@ -13,9 +13,7 @@ namespace vk::pipeline::structure{
 struct Element{
   //---------------------------
 
-  std::vector<VkPipelineShaderStageCreateInfo> shader_stage;
-  std::vector<vk::pipeline::structure::Shader> vec_shader;
-
+  std::vector<VkPipelineShaderStageCreateInfo> vec_shader_stage;
   std::vector<VkVertexInputBindingDescription> vec_vertex_binding;
   std::vector<VkVertexInputAttributeDescription> vec_vertex_attribut;
   std::vector<VkDynamicState> vec_dynamic_state;

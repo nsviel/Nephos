@@ -1,4 +1,4 @@
-#include "Shader.h"
+#include "File.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,7 +8,7 @@
 namespace vk::shader{
 
 //Constructor / Destructor
-Shader::Shader(vk::Structure* vk_struct){
+File::File(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -18,30 +18,10 @@ Shader::Shader(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Shader::~Shader(){}
+File::~File(){}
 
 //Main function
-VkShaderModule Shader::create_shader_module(const std::vector<char>& code){
-  //Shader modules are just a thin wrapper around the shader bytecode
-  //---------------------------
-
-  //Shader module info
-  VkShaderModuleCreateInfo create_info{};
-  create_info.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-  create_info.codeSize = code.size();
-  create_info.pCode = reinterpret_cast<const uint32_t*>(code.data());
-
-  //Shader module creation
-  VkShaderModule shaderModule;
-  VkResult result = vkCreateShaderModule(vk_struct->device.handle, &create_info, nullptr, &shaderModule);
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create shader module!");
-  }
-
-  //---------------------------
-  return shaderModule;
-}
-std::vector<char> Shader::read_file(const std::string& path){
+std::vector<char> File::read_file(const std::string& path){
   std::ifstream file(path, std::ios::ate | std::ios::binary);
   //---------------------------
 
@@ -60,7 +40,7 @@ std::vector<char> Shader::read_file(const std::string& path){
   //---------------------------
   return buffer;
 }
-void Shader::recompile_shader(utl::shader::Info* shader_info){
+void File::recompile_shader(utl::shader::Info* shader_info){
   //---------------------------
 
   //Compile shader from GLSL to SPIR-V
@@ -71,7 +51,7 @@ void Shader::recompile_shader(utl::shader::Info* shader_info){
 
   //---------------------------
 }
-void Shader::run_recompilation(std::string path_glsl, std::string path_spir){
+void File::run_recompilation(std::string path_glsl, std::string path_spir){
   //---------------------------
 
   std::string command = "../src/Utility/Specific/Compile.sh " + path_glsl + " " + path_spir + " >> " + path_output +" 2>&1";

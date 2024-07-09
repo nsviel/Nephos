@@ -187,8 +187,8 @@ void Object::create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::s
 
   VkGraphicsPipelineCreateInfo pipeline_info{};
   pipeline_info.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-  pipeline_info.stageCount = static_cast<uint32_t>(pipeline->element.shader_stage.size());
-  pipeline_info.pStages = pipeline->element.shader_stage.data();
+  pipeline_info.stageCount = static_cast<uint32_t>(pipeline->element.vec_shader_stage.size());
+  pipeline_info.pStages = pipeline->element.vec_shader_stage.data();
   pipeline_info.pVertexInputState = &info_vertex;
   pipeline_info.pInputAssemblyState = &info_topology;
   pipeline_info.pViewportState = &info_viewport;

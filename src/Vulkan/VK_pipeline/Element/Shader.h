@@ -7,7 +7,8 @@
 namespace utl::shader{class Info;}
 namespace vk{class Structure;}
 namespace vk::structure{class Pipeline;}
-namespace vk::shader{class Shader;}
+namespace vk::pipeline::structure{class Shader;}
+namespace vk::shader{class File;}
 
 
 namespace vk::pipeline{
@@ -22,17 +23,18 @@ public:
 public:
   //Main function
   void create_pipeline_shader(vk::structure::Pipeline* pipeline);
-  void clean_pipeline_shader(vk::structure::Pipeline* pipeline);
+  void clean_pipeline_shader();
 
   //Subfunction
   void create_shader_module(vk::structure::Pipeline* pipeline);
   void create_shader_info(vk::structure::Pipeline* pipeline);
+  VkShaderModule create_module(const std::vector<char>& code);
 
 private:
   vk::Structure* vk_struct;
-  vk::shader::Shader* vk_shader;
+  vk::shader::File* vk_file;
 
-  std::string path_output;
+  std::vector<vk::pipeline::structure::Shader> vec_shader;
 };
 
 }
