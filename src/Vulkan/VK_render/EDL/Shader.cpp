@@ -28,7 +28,6 @@ void Shader::init_shader(){
   //Add shader info
   utl::shader::Info* shader_info = new utl::shader::Info();
   shader_info->title = "EDL";
-  shader_info->folder = "EDL";
   shader_info->path_glsl_vs = "../media/shader/EDL/glsl/shader_edl_vs.vert";
   shader_info->path_glsl_fs = "../media/shader/EDL/glsl/shader_edl_fs.frag";
   shader_info->path_spir_vs = "../media/shader/EDL/spir/shader_edl_vs.spv";

@@ -23,7 +23,6 @@ void Shader::init_shader(){
   //Add shader info - Line
   shader_info = new utl::shader::Info();
   shader_info->title = "Line";
-  shader_info->folder = "Scene";
   shader_info->path_glsl_vs = "../media/shader/Scene/glsl/shader_line_vs.vert";
   shader_info->path_glsl_fs = "../media/shader/Scene/glsl/shader_line_fs.frag";
   shader_info->path_spir_vs = "../media/shader/Scene/spir/shader_line_vs.spv";
@@ -35,7 +34,6 @@ void Shader::init_shader(){
   //Add shader info - Point
   shader_info = new utl::shader::Info();
   shader_info->title = "Point";
-  shader_info->folder = "Scene";
   shader_info->path_glsl_vs = "../media/shader/Scene/glsl/shader_point_vs.vert";
   shader_info->path_glsl_fs = "../media/shader/Scene/glsl/shader_point_fs.frag";
   shader_info->path_spir_vs = "../media/shader/Scene/spir/shader_point_vs.spv";
@@ -47,7 +45,6 @@ void Shader::init_shader(){
   //Add shader info - Triangle
   shader_info = new utl::shader::Info();
   shader_info->title = "Triangle";
-  shader_info->folder = "Scene";
   shader_info->path_glsl_vs = "../media/shader/Scene/glsl/shader_line_vs.vert";
   shader_info->path_glsl_fs = "../media/shader/Scene/glsl/shader_line_fs.frag";
   shader_info->path_spir_vs = "../media/shader/Scene/spir/shader_line_vs.spv";
