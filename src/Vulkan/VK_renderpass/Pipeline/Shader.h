@@ -22,6 +22,7 @@ public:
 public:
   //Main function
   void create_pipeline_shader(vk::structure::Pipeline* pipeline);
+  void clean_pipeline_shader(vk::structure::Pipeline* pipeline);
 
   //Subfunction
   void create_shader_module(vk::structure::Pipeline* pipeline);

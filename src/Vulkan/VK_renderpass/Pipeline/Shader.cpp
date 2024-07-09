@@ -27,6 +27,19 @@ void Shader::create_pipeline_shader(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
+void Shader::clean_pipeline_shader(vk::structure::Pipeline* pipeline){
+  //---------------------------
+
+  for(int i=0; i<pipeline->info.vec_shader_couple.size(); i++){
+    std::pair<VkShaderModule, VkShaderModule> shader_couple = pipeline->info.vec_shader_couple[i];
+    vkDestroyShaderModule(vk_struct->device.handle, shader_couple.first, nullptr);
+    vkDestroyShaderModule(vk_struct->device.handle, shader_couple.second, nullptr);
+  }
+  pipeline->info.vec_shader_couple.clear();
+  pipeline->info.shader_stage.clear();
+
+  //---------------------------
+}
 
 //Subfunction
 void Shader::create_shader_module(vk::structure::Pipeline* pipeline){

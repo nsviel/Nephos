@@ -14,22 +14,18 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::renderpass{
 
-class Pipeline
+class Layout
 {
 public:
   //Constructor / Destructor
-  Pipeline(vk::Structure* vk_struct);
-  ~Pipeline();
+  Layout(vk::Structure* vk_struct);
+  ~Layout();
 
 public:
   //Main function
-  void create_pipeline(vk::structure::Renderpass* renderpass);
-  void cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline);
-  void clean_pipeline(vk::structure::Renderpass* renderpass);
   void clean_pipeline_struct(vk::structure::Pipeline* pipeline);
 
   //Pipeline creation
-  void create_pipeline_struct(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline);
   void create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline);
   void create_pipeline_layout(vk::structure::Pipeline* pipeline);
 
