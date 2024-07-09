@@ -63,8 +63,8 @@ void Renderpass::pipeline_line(vk::structure::Subpass* subpass){
   pipeline->info.name = "line";
   pipeline->info.topology = utl::topology::LINE;
   pipeline->info.shader = shader_info;
-  pipeline->info.vec_data_name.push_back("location");
-  pipeline->info.vec_data_name.push_back("color");
+  pipeline->info.vec_attribut.push_back(vk::pipeline::XYZ);
+  pipeline->info.vec_attribut.push_back(vk::pipeline::RGBA);
 
   //Descriptor
   vk::binding::structure::Required descriptor;
@@ -85,8 +85,8 @@ void Renderpass::pipeline_point(vk::structure::Subpass* subpass){
   pipeline->info.name = "point";
   pipeline->info.topology = utl::topology::POINT;
   pipeline->info.shader = shader_info;
-  pipeline->info.vec_data_name.push_back("location");
-  pipeline->info.vec_data_name.push_back("color");
+  pipeline->info.vec_attribut.push_back(vk::pipeline::XYZ);
+  pipeline->info.vec_attribut.push_back(vk::pipeline::RGBA);
 
   //Descriptor
   vk::binding::structure::Required descriptor;
@@ -109,8 +109,8 @@ void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
   pipeline->info.name = "triangle";
   pipeline->info.topology = utl::topology::TRIANGLE;
   pipeline->info.shader = shader_info;
-  pipeline->info.vec_data_name.push_back("location");
-  pipeline->info.vec_data_name.push_back("color");
+  pipeline->info.vec_attribut.push_back(vk::pipeline::XYZ);
+  pipeline->info.vec_attribut.push_back(vk::pipeline::RGBA);
 
   //Descriptor
   vk::binding::structure::Required descriptor;
