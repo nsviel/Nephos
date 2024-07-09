@@ -20,14 +20,14 @@ Vertex::~Vertex(){}
 void Vertex::pipeline_vertex_description(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  this->pipeline_binding_description(pipeline);
-  this->pipeline_attribut_description(pipeline);
+  this->single_vertex_attribut(pipeline);
+  this->flow_vertex_attribut(pipeline);
 
   //---------------------------
 }
 
 //Subfunction
-void Vertex::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
+void Vertex::single_vertex_attribut(vk::structure::Pipeline* pipeline){
   std::vector<VkVertexInputAttributeDescription> attribut_description;
   //---------------------------
 
@@ -64,7 +64,7 @@ void Vertex::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
   //---------------------------
   pipeline->element.attribut_description = attribut_description;
 }
-void Vertex::pipeline_binding_description(vk::structure::Pipeline* pipeline){
+void Vertex::flow_vertex_attribut(vk::structure::Pipeline* pipeline){
   std::vector<VkVertexInputBindingDescription> data_description;
   //---------------------------
 

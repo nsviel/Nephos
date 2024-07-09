@@ -10,9 +10,6 @@ Layout::Layout(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
-  this->vk_shader = new vk::pipeline::Shader(vk_struct);
-  this->vk_data = new vk::pipeline::Data(vk_struct);
 
   //---------------------------
 }
