@@ -11,7 +11,7 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
-  this->vk_shader = new vk::shader::Shader(vk_struct);
+  this->vk_shader = new vk::renderpass::Shader(vk_struct);
   this->vk_data = new vk::pipeline::Data(vk_struct);
   this->vk_element = new vk::renderpass::Element(vk_struct);
 
@@ -68,14 +68,7 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, vk:
   this->create_pipeline_layout(pipeline);
 
   //Pipeline obj
-  vk_element->find_pipeline_topology_state(pipeline);
-  vk_element->find_pipeline_dynamic_state(pipeline);
-  vk_element->find_pipeline_viewport_state(pipeline);
-  vk_element->find_pipeline_rasterization_state(pipeline);
-  vk_element->find_pipeline_multisampling_state(pipeline);
-  vk_element->find_pipeline_blend_attachment_state(pipeline);
-  vk_element->find_pipeline_blend_state(pipeline);
-  vk_element->find_pipeline_depth_state(pipeline);
+  vk_element->find_pipeline_element(pipeline);
   this->create_pipeline_obj(renderpass, pipeline);
   this->clean_pipeline_shader_module(pipeline);
 

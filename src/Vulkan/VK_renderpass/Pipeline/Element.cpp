@@ -19,6 +19,22 @@ Element::Element(vk::Structure* vk_struct){
 Element::~Element(){}
 
 //Main function
+void Element::find_pipeline_element(vk::structure::Pipeline* pipeline){
+  //---------------------------
+
+  this->find_pipeline_topology_state(pipeline);
+  this->find_pipeline_dynamic_state(pipeline);
+  this->find_pipeline_viewport_state(pipeline);
+  this->find_pipeline_rasterization_state(pipeline);
+  this->find_pipeline_multisampling_state(pipeline);
+  this->find_pipeline_blend_attachment_state(pipeline);
+  this->find_pipeline_blend_state(pipeline);
+  this->find_pipeline_depth_state(pipeline);
+
+  //---------------------------
+}
+
+//Subfunction
 void Element::find_pipeline_dynamic_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 

@@ -22,6 +22,9 @@ public:
 
 public:
   //Main function
+  void find_pipeline_element(vk::structure::Pipeline* pipeline);
+
+  //Subfunction
   void find_pipeline_dynamic_state(vk::structure::Pipeline* pipeline);
   void find_pipeline_viewport_state(vk::structure::Pipeline* pipeline);
   void find_pipeline_rasterization_state(vk::structure::Pipeline* pipeline);
