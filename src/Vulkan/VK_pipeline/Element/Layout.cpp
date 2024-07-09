@@ -30,7 +30,7 @@ void Layout::clean_pipeline_layout(vk::structure::Pipeline* pipeline){
 void Layout::clean_pipeline_handle(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  vkDestroyPipeline(vk_struct->device.handle, pipeline->pipeline, nullptr);
+  vkDestroyPipeline(vk_struct->device.handle, pipeline->handle, nullptr);
 
   //---------------------------
 }
@@ -58,7 +58,7 @@ void Layout::create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::s
   pipeline_info.basePipelineIndex = -1; // Optional
   pipeline->info.info = pipeline_info;
 
-  VkResult result = vkCreateGraphicsPipelines(vk_struct->device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->pipeline);
+  VkResult result = vkCreateGraphicsPipelines(vk_struct->device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->handle);
 
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create graphics pipeline!");

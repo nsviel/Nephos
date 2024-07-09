@@ -79,7 +79,7 @@ void Pipeline::clean_pipeline_struct(vk::structure::Pipeline* pipeline){
 void Pipeline::cmd_bind_pipeline(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  vkCmdBindPipeline(command_buffer, TYP_BIND_PIPELINE_GRAPHICS, pipeline->pipeline);
+  vkCmdBindPipeline(command_buffer, TYP_BIND_PIPELINE_GRAPHICS, pipeline->handle);
 
   //---------------------------
 }
