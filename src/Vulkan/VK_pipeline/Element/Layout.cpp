@@ -13,7 +13,6 @@ Layout::Layout(vk::Structure* vk_struct){
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_shader = new vk::pipeline::Shader(vk_struct);
   this->vk_data = new vk::pipeline::Data(vk_struct);
-  this->vk_element = new vk::pipeline::Element(vk_struct);
 
   //---------------------------
 }
@@ -36,35 +35,6 @@ void Layout::clean_pipeline_handle(vk::structure::Pipeline* pipeline){
 }
 
 //Pipeline creation / cleaning
-void Layout::create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
-  //---------------------------
-
-  VkGraphicsPipelineCreateInfo pipeline_info{};
-  pipeline_info.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-  pipeline_info.stageCount = static_cast<uint32_t>(pipeline->element.shader_stage.size());
-  pipeline_info.pStages = pipeline->element.shader_stage.data();
-  pipeline_info.pVertexInputState = &pipeline->element.vertex_input_info;
-  pipeline_info.pInputAssemblyState = &pipeline->element.input_assembly;
-  pipeline_info.pViewportState = &pipeline->element.viewport_state;
-  pipeline_info.pRasterizationState = &pipeline->element.rasterizer;
-  pipeline_info.pMultisampleState = &pipeline->element.multisampling;
-  pipeline_info.pDepthStencilState = &pipeline->element.depth_stencil;
-  pipeline_info.pColorBlendState = &pipeline->element.color_blend_info;
-  pipeline_info.pDynamicState = &pipeline->element.dynamic_state;
-  pipeline_info.layout = pipeline->layout;
-  pipeline_info.renderPass = renderpass->handle;
-  pipeline_info.subpass = 0;
-  pipeline_info.basePipelineHandle = VK_NULL_HANDLE; // Optional
-  pipeline_info.basePipelineIndex = -1; // Optional
-
-  VkResult result = vkCreateGraphicsPipelines(vk_struct->device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->handle);
-
-  if(result != VK_SUCCESS){
-    throw std::runtime_error("[error] failed to create graphics pipeline!");
-  }
-
-  //---------------------------
-}
 void Layout::create_pipeline_layout(vk::structure::Pipeline* pipeline){
   //---------------------------
 
