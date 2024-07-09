@@ -17,11 +17,21 @@ Shader::~Shader(){}
 
 //Main function
 void Shader::init_shader(){
-  utl::shader::Info* shader_info;
+  //---------------------------
+
+  this->init_shader_line();
+  this->init_shader_point();
+  this->init_shader_triangle();
+
+  //---------------------------
+}
+
+//Subfunction
+void Shader::init_shader_line(){
   //---------------------------
 
   //Add shader info - Line
-  shader_info = new utl::shader::Info();
+  utl::shader::Info* shader_info = new utl::shader::Info();
   shader_info->title = "Line";
   shader_info->path_glsl_vs = "../media/shader/Scene/glsl/shader_line_vs.vert";
   shader_info->path_glsl_fs = "../media/shader/Scene/glsl/shader_line_fs.frag";
@@ -31,8 +41,13 @@ void Shader::init_shader(){
   shader_info->with_depth_test = true;
   this->vec_shader_info.push_back(shader_info);
 
+  //---------------------------
+}
+void Shader::init_shader_point(){
+  //---------------------------
+
   //Add shader info - Point
-  shader_info = new utl::shader::Info();
+  utl::shader::Info* shader_info = new utl::shader::Info();
   shader_info->title = "Point";
   shader_info->path_glsl_vs = "../media/shader/Scene/glsl/shader_point_vs.vert";
   shader_info->path_glsl_fs = "../media/shader/Scene/glsl/shader_point_fs.frag";
@@ -42,8 +57,13 @@ void Shader::init_shader(){
   shader_info->with_depth_test = true;
   this->vec_shader_info.push_back(shader_info);
 
+  //---------------------------
+}
+void Shader::init_shader_triangle(){
+  //---------------------------
+
   //Add shader info - Triangle
-  shader_info = new utl::shader::Info();
+  utl::shader::Info* shader_info = new utl::shader::Info();
   shader_info->title = "Triangle";
   shader_info->path_glsl_vs = "../media/shader/Scene/glsl/shader_line_vs.vert";
   shader_info->path_glsl_fs = "../media/shader/Scene/glsl/shader_line_fs.frag";

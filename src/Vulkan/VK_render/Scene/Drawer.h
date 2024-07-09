@@ -7,6 +7,7 @@ namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
 namespace vk::draw{class Drawer;}
 namespace vk::structure{class Subpass;}
+namespace utl::base{class Data;}
 
 
 namespace vk::render::scene{

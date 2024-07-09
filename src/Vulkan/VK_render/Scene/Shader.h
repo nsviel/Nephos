@@ -16,6 +16,11 @@ public:
   //Main function
   void init_shader();
 
+  //Subfunction
+  void init_shader_line();
+  void init_shader_point();
+  void init_shader_triangle();
+
 private:
   vk::Structure* vk_struct;
 };
