@@ -1,4 +1,4 @@
-#include "Data.h"
+#include "Vertex.h"
 
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,17 +7,17 @@
 namespace vk::pipeline{
 
 //Constructor / Destructor
-Data::Data(vk::Structure* vk_struct){
+Vertex::Vertex(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
 
   //---------------------------
 }
-Data::~Data(){}
+Vertex::~Vertex(){}
 
 //Main function
-void Data::pipeline_data_description(vk::structure::Pipeline* pipeline){
+void Vertex::pipeline_vertex_description(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   this->pipeline_binding_description(pipeline);
@@ -27,7 +27,7 @@ void Data::pipeline_data_description(vk::structure::Pipeline* pipeline){
 }
 
 //Subfunction
-void Data::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
+void Vertex::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
   std::vector<VkVertexInputAttributeDescription> attribut_description;
   //---------------------------
 
@@ -64,7 +64,7 @@ void Data::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
   //---------------------------
   pipeline->element.attribut_description = attribut_description;
 }
-void Data::pipeline_binding_description(vk::structure::Pipeline* pipeline){
+void Vertex::pipeline_binding_description(vk::structure::Pipeline* pipeline){
   std::vector<VkVertexInputBindingDescription> data_description;
   //---------------------------
 

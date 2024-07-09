@@ -6,16 +6,16 @@ namespace vk::structure{class Pipeline;}
 
 namespace vk::pipeline{
 
-class Data
+class Vertex
 {
 public:
   //Constructor / Destructor
-  Data(vk::Structure* vk_struct);
-  ~Data();
+  Vertex(vk::Structure* vk_struct);
+  ~Vertex();
 
 public:
   //Main function
-  void pipeline_data_description(vk::structure::Pipeline* pipeline);
+  void pipeline_vertex_description(vk::structure::Pipeline* pipeline);
 
   //subfunction
   void pipeline_binding_description(vk::structure::Pipeline* pipeline);

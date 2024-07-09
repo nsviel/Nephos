@@ -12,7 +12,7 @@ Pipeline::Pipeline(vk::Structure* vk_struct){
   this->vk_struct = vk_struct;
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_shader = new vk::pipeline::Shader(vk_struct);
-  this->vk_data = new vk::pipeline::Data(vk_struct);
+  this->vk_vertex = new vk::pipeline::Vertex(vk_struct);
   this->vk_object = new vk::pipeline::Object(vk_struct);
   this->vk_layout = new vk::pipeline::Layout(vk_struct);
 
@@ -57,7 +57,7 @@ void Pipeline::create_pipeline_struct(vk::structure::Renderpass* renderpass, vk:
   //Pipeline layout & binding
   vk_descriptor->create_binding(&pipeline->binding);
   vk_shader->create_pipeline_shader(pipeline);
-  vk_data->pipeline_data_description(pipeline);
+  vk_vertex->pipeline_vertex_description(pipeline);
   vk_layout->create_pipeline_layout(pipeline);
 
   //Pipeline obj
