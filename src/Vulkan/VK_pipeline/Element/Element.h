@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vulkan/vulkan.h>
+#include <vector>
 
 namespace vk::binding{class Descriptor;}
 namespace vk::draw{class Viewport;}
@@ -39,6 +40,8 @@ private:
   vk::binding::Descriptor* vk_descriptor;
   vk::shader::Shader* vk_shader;
   vk::pipeline::Data* vk_data;
+
+  std::vector<VkDynamicState> dynamic_state_object;
 };
 
 }

@@ -41,16 +41,16 @@ void Layout::create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::s
 
   VkGraphicsPipelineCreateInfo pipeline_info{};
   pipeline_info.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-  pipeline_info.stageCount = static_cast<uint32_t>(pipeline->info.shader_stage.size());
-  pipeline_info.pStages = pipeline->info.shader_stage.data();
-  pipeline_info.pVertexInputState = &pipeline->info.vertex_input_info;
-  pipeline_info.pInputAssemblyState = &pipeline->info.input_assembly;
-  pipeline_info.pViewportState = &pipeline->info.viewport_state;
-  pipeline_info.pRasterizationState = &pipeline->info.rasterizer;
-  pipeline_info.pMultisampleState = &pipeline->info.multisampling;
-  pipeline_info.pDepthStencilState = &pipeline->info.depth_stencil;
-  pipeline_info.pColorBlendState = &pipeline->info.color_blend_info;
-  pipeline_info.pDynamicState = &pipeline->info.dynamic_state;
+  pipeline_info.stageCount = static_cast<uint32_t>(pipeline->element.shader_stage.size());
+  pipeline_info.pStages = pipeline->element.shader_stage.data();
+  pipeline_info.pVertexInputState = &pipeline->element.vertex_input_info;
+  pipeline_info.pInputAssemblyState = &pipeline->element.input_assembly;
+  pipeline_info.pViewportState = &pipeline->element.viewport_state;
+  pipeline_info.pRasterizationState = &pipeline->element.rasterizer;
+  pipeline_info.pMultisampleState = &pipeline->element.multisampling;
+  pipeline_info.pDepthStencilState = &pipeline->element.depth_stencil;
+  pipeline_info.pColorBlendState = &pipeline->element.color_blend_info;
+  pipeline_info.pDynamicState = &pipeline->element.dynamic_state;
   pipeline_info.layout = pipeline->layout;
   pipeline_info.renderPass = renderpass->handle;
   pipeline_info.subpass = 0;

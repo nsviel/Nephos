@@ -46,14 +46,14 @@ void Shader::create_pipeline_shader_module(vk::structure::Pipeline* pipeline){
   std::pair<VkShaderModule, VkShaderModule> shader_couple;
   shader_couple.first = module_vert;
   shader_couple.second = module_frag;
-  pipeline->info.vec_shader_couple.push_back(shader_couple);
+  pipeline->element.vec_shader_couple.push_back(shader_couple);
 
   //---------------------------
 }
 void Shader::create_pipeline_shader_info(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  std::pair<VkShaderModule, VkShaderModule>& shader_couple = pipeline->info.vec_shader_couple[0];
+  std::pair<VkShaderModule, VkShaderModule>& shader_couple = pipeline->element.vec_shader_couple[0];
 
   //Vertex shader link in pipeline
   VkPipelineShaderStageCreateInfo info_vert{};
@@ -72,8 +72,8 @@ void Shader::create_pipeline_shader_info(vk::structure::Pipeline* pipeline){
   info_frag.pSpecializationInfo = nullptr;
 
   //Shader info array
-  pipeline->info.shader_stage.push_back(info_vert);
-  pipeline->info.shader_stage.push_back(info_frag);
+  pipeline->element.shader_stage.push_back(info_vert);
+  pipeline->element.shader_stage.push_back(info_frag);
 
   //---------------------------
 }

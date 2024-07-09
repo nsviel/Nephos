@@ -9,7 +9,7 @@
 
 namespace vk::pipeline::structure{
 
-struct Info{
+struct Element{
   //---------------------------
 
   //Pipeline info elements

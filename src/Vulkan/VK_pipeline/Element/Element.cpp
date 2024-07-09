@@ -38,20 +38,20 @@ void Element::find_pipeline_element(vk::structure::Pipeline* pipeline){
 void Element::find_pipeline_dynamic_state(vk::structure::Pipeline* pipeline){
   //---------------------------
 
-  pipeline->info.dynamic_state_object.clear();
-  pipeline->info.dynamic_state_object.push_back(VK_DYNAMIC_STATE_VIEWPORT);
-  pipeline->info.dynamic_state_object.push_back(VK_DYNAMIC_STATE_SCISSOR);
-  pipeline->info.dynamic_state_object.push_back(VK_DYNAMIC_STATE_LINE_WIDTH);
+  dynamic_state_object.clear();
+  dynamic_state_object.push_back(VK_DYNAMIC_STATE_VIEWPORT);
+  dynamic_state_object.push_back(VK_DYNAMIC_STATE_SCISSOR);
+  dynamic_state_object.push_back(VK_DYNAMIC_STATE_LINE_WIDTH);
 
   //Dynamic internal variables (viewport, line width, ...)
   //the subsequent values has to be given at runtime
   VkPipelineDynamicStateCreateInfo dynamic_state{};
   dynamic_state.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
-  dynamic_state.dynamicStateCount = static_cast<uint32_t>(pipeline->info.dynamic_state_object.size());
-  dynamic_state.pDynamicStates = pipeline->info.dynamic_state_object.data();
+  dynamic_state.dynamicStateCount = static_cast<uint32_t>(dynamic_state_object.size());
+  dynamic_state.pDynamicStates = dynamic_state_object.data();
 
   //---------------------------
-  pipeline->info.dynamic_state = dynamic_state;
+  pipeline->element.dynamic_state = dynamic_state;
 }
 void Element::find_pipeline_viewport_state(vk::structure::Pipeline* pipeline){
   //---------------------------
@@ -65,7 +65,7 @@ void Element::find_pipeline_viewport_state(vk::structure::Pipeline* pipeline){
   viewport_state.pScissors = &vk_struct->render.scissor;
 
   //---------------------------
-  pipeline->info.viewport_state = viewport_state;
+  pipeline->element.viewport_state = viewport_state;
 }
 void Element::find_pipeline_rasterization_state(vk::structure::Pipeline* pipeline){
   //---------------------------
@@ -84,7 +84,7 @@ void Element::find_pipeline_rasterization_state(vk::structure::Pipeline* pipelin
   rasterizer.depthBiasSlopeFactor = 0.0f; // Optional
 
   //---------------------------
-  pipeline->info.rasterizer = rasterizer;
+  pipeline->element.rasterizer = rasterizer;
 }
 void Element::find_pipeline_multisampling_state(vk::structure::Pipeline* pipeline){
   //---------------------------
@@ -99,7 +99,7 @@ void Element::find_pipeline_multisampling_state(vk::structure::Pipeline* pipelin
   multisampling.alphaToOneEnable = VK_FALSE; // Optional
 
   //---------------------------
-  pipeline->info.multisampling = multisampling;
+  pipeline->element.multisampling = multisampling;
 }
 void Element::find_pipeline_depth_state(vk::structure::Pipeline* pipeline){
   //---------------------------
@@ -117,7 +117,7 @@ void Element::find_pipeline_depth_state(vk::structure::Pipeline* pipeline){
   depth_stencil.back = {}; // Optional
 
   //---------------------------
-  pipeline->info.depth_stencil = depth_stencil;
+  pipeline->element.depth_stencil = depth_stencil;
 }
 void Element::find_pipeline_blend_attachment_state(vk::structure::Pipeline* pipeline){
   //---------------------------
@@ -134,7 +134,7 @@ void Element::find_pipeline_blend_attachment_state(vk::structure::Pipeline* pipe
 
   //---------------------------
 
-  pipeline->info.color_blend_attachment = color_blend_attachment;
+  pipeline->element.color_blend_attachment = color_blend_attachment;
 }
 void Element::find_pipeline_blend_state(vk::structure::Pipeline* pipeline){
   //---------------------------
@@ -144,14 +144,14 @@ void Element::find_pipeline_blend_state(vk::structure::Pipeline* pipeline){
   color_blend_info.logicOpEnable = VK_FALSE;
   color_blend_info.logicOp = VK_LOGIC_OP_COPY; // Optional
   color_blend_info.attachmentCount = 1;
-  color_blend_info.pAttachments = &pipeline->info.color_blend_attachment;
+  color_blend_info.pAttachments = &pipeline->element.color_blend_attachment;
   color_blend_info.blendConstants[0] = 0.0f; // Optional
   color_blend_info.blendConstants[1] = 0.0f; // Optional
   color_blend_info.blendConstants[2] = 0.0f; // Optional
   color_blend_info.blendConstants[3] = 0.0f; // Optional
 
   //---------------------------
-  pipeline->info.color_blend_info = color_blend_info;
+  pipeline->element.color_blend_info = color_blend_info;
 }
 void Element::find_pipeline_topology_state(vk::structure::Pipeline* pipeline){
   //---------------------------
@@ -176,7 +176,7 @@ void Element::find_pipeline_topology_state(vk::structure::Pipeline* pipeline){
   }
 
   //---------------------------
-  pipeline->info.input_assembly = input_assembly;
+  pipeline->element.input_assembly = input_assembly;
 }
 
 }

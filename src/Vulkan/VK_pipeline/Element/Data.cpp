@@ -63,7 +63,7 @@ void Data::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
   }
 
   //---------------------------
-  pipeline->info.attribut_description = attribut_description;
+  pipeline->element.attribut_description = attribut_description;
 }
 void Data::pipeline_binding_description(vk::structure::Pipeline* pipeline){
   std::vector<VkVertexInputBindingDescription> data_description;
@@ -97,20 +97,20 @@ void Data::pipeline_binding_description(vk::structure::Pipeline* pipeline){
   }
 
   //---------------------------
-  pipeline->info.data_description = data_description;
+  pipeline->element.data_description = data_description;
 }
 void Data::pipeline_vertex_input_info(vk::structure::Pipeline* pipeline){
   //---------------------------
 
   VkPipelineVertexInputStateCreateInfo vertex_input_info{};
   vertex_input_info.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-  vertex_input_info.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline->info.data_description.size());
-  vertex_input_info.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline->info.attribut_description.size());
-  vertex_input_info.pVertexBindingDescriptions = pipeline->info.data_description.data();
-  vertex_input_info.pVertexAttributeDescriptions = pipeline->info.attribut_description.data();
+  vertex_input_info.vertexBindingDescriptionCount = static_cast<uint32_t>(pipeline->element.data_description.size());
+  vertex_input_info.vertexAttributeDescriptionCount = static_cast<uint32_t>(pipeline->element.attribut_description.size());
+  vertex_input_info.pVertexBindingDescriptions = pipeline->element.data_description.data();
+  vertex_input_info.pVertexAttributeDescriptions = pipeline->element.attribut_description.data();
 
   //---------------------------
-  pipeline->info.vertex_input_info = vertex_input_info;
+  pipeline->element.vertex_input_info = vertex_input_info;
 }
 
 }
