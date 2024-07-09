@@ -180,6 +180,8 @@ void Object::info_pipeline_depth(vk::structure::Pipeline* pipeline){
 
   //---------------------------
 }
+
+//Creation function
 void Object::create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::structure::Pipeline* pipeline){
   //---------------------------
 
@@ -206,6 +208,13 @@ void Object::create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::s
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create graphics pipeline!");
   }
+
+  //---------------------------
+}
+void Object::clean_pipeline_handle(vk::structure::Pipeline* pipeline){
+  //---------------------------
+
+  vkDestroyPipeline(vk_struct->device.handle, pipeline->handle, nullptr);
 
   //---------------------------
 }

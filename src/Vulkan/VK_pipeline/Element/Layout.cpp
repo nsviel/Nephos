@@ -16,22 +16,6 @@ Layout::Layout(vk::Structure* vk_struct){
 Layout::~Layout(){}
 
 //Main function
-void Layout::clean_pipeline_layout(vk::structure::Pipeline* pipeline){
-  //---------------------------
-
-  vkDestroyPipelineLayout(vk_struct->device.handle, pipeline->layout, nullptr);
-
-  //---------------------------
-}
-void Layout::clean_pipeline_handle(vk::structure::Pipeline* pipeline){
-  //---------------------------
-
-  vkDestroyPipeline(vk_struct->device.handle, pipeline->handle, nullptr);
-
-  //---------------------------
-}
-
-//Pipeline creation / cleaning
 void Layout::create_pipeline_layout(vk::structure::Pipeline* pipeline){
   //---------------------------
 
@@ -54,6 +38,13 @@ void Layout::create_pipeline_layout(vk::structure::Pipeline* pipeline){
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] failed to create pipeline layout!");
   }
+
+  //---------------------------
+}
+void Layout::clean_pipeline_layout(vk::structure::Pipeline* pipeline){
+  //---------------------------
+
+  vkDestroyPipelineLayout(vk_struct->device.handle, pipeline->layout, nullptr);
 
   //---------------------------
 }
