@@ -23,23 +23,22 @@ public:
   ~Renderpass();
 
 public:
-  //Init functions
-  void init_renderpass();
-  void create_subpass(vk::structure::Renderpass* renderpass);
+  //Main function
+  void init();
 
-  //Pipeline function
-  void pipeline_line(vk::structure::Subpass* subpass);
-  void pipeline_point(vk::structure::Subpass* subpass);
-  void pipeline_triangle(vk::structure::Subpass* subpass);
+  //Init functions
+  void create_renderpass(vk::structure::Renderpass* renderpass);
+  void create_subpass(vk::structure::Renderpass* renderpass);
+  void create_pipeline_line(vk::structure::Subpass* subpass);
+  void create_pipeline_point(vk::structure::Subpass* subpass);
+  void create_pipeline_triangle(vk::structure::Subpass* subpass);
 
   //Draw function
   void draw_scene(vk::structure::Subpass* subpass);
+  bool check_data(utl::base::Data* data, int typology);
   void cmd_draw_point(vk::structure::Subpass* subpass);
   void cmd_draw_line(vk::structure::Subpass* subpass);
   void cmd_draw_triangle(vk::structure::Subpass* subpass);
-
-  //Subfunction
-  bool check_data(utl::base::Data* data, int typology);
 
 private:
   vk::Structure* vk_struct;

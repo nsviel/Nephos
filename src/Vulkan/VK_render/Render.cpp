@@ -25,9 +25,9 @@ Render::~Render(){}
 void Render::init(){
   //---------------------------
 
-  rp_scene->init_renderpass();
-  rp_edl->init_renderpass();
-  if(!vk_struct->param.headless) rp_gui->init_renderpass();
+  rp_scene->init();
+  rp_edl->init();
+  rp_gui->init();
 
   //---------------------------
 }

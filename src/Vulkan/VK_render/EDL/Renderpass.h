@@ -24,10 +24,13 @@ public:
   ~Renderpass();
 
 public:
+  //Main function
+  void init();
+
   //Init functions
-  void init_renderpass();
+  void create_renderpass(vk::structure::Renderpass* renderpass);
   void create_subpass(vk::structure::Renderpass* renderpass);
-  void pipeline_edl(vk::structure::Subpass* subpass);
+  void create_pipeline_edl(vk::structure::Subpass* subpass);
 
   //Draw function
   void draw_edl(vk::structure::Subpass* subpass);

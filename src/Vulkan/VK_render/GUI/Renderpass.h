@@ -18,9 +18,12 @@ public:
 
 public:
   //Main function
-  void init_renderpass();
+  void init();
+
+  //Init function
+  void create_renderpass(vk::structure::Renderpass* renderpass);
   void create_subpass(vk::structure::Renderpass* renderpass);
-  void pipeline_triangle(vk::structure::Subpass* subpass);
+  void create_pipeline_triangle(vk::structure::Subpass* subpass);
 
   //Draw function
   void draw(vk::structure::Subpass* subpass);

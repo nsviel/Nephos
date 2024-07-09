@@ -22,19 +22,25 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
 }
 Renderpass::~Renderpass(){}
 
-//Init function
-void Renderpass::init_renderpass(){
+//Main function
+void Renderpass::init(){
   //---------------------------
 
-  //Renderpass
   vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
-  renderpass->name = "scene";
-
-  //Pipeline
+  this->create_renderpass(renderpass);
   this->create_subpass(renderpass);
 
   //---------------------------
+}
+
+//Init function
+void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
+  //---------------------------
+
+  renderpass->name = "scene";
   vk_struct->render.vec_renderpass.push_back(renderpass);
+
+  //---------------------------
 }
 void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
@@ -43,16 +49,14 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   subpass->target = vk::renderpass::SHADER;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw_scene(subpass);};
 
-  this->pipeline_line(subpass);
-  this->pipeline_point(subpass);
-  this->pipeline_triangle(subpass);
+  this->create_pipeline_line(subpass);
+  this->create_pipeline_point(subpass);
+  this->create_pipeline_triangle(subpass);
 
   //---------------------------
   renderpass->vec_subpass.push_back(subpass);
 }
-
-//Pipeline function
-void Renderpass::pipeline_line(vk::structure::Subpass* subpass){
+void Renderpass::create_pipeline_line(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
@@ -74,7 +78,7 @@ void Renderpass::pipeline_line(vk::structure::Subpass* subpass){
   //---------------------------
   subpass->vec_pipeline.push_back(pipeline);
 }
-void Renderpass::pipeline_point(vk::structure::Subpass* subpass){
+void Renderpass::create_pipeline_point(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
@@ -98,7 +102,7 @@ void Renderpass::pipeline_point(vk::structure::Subpass* subpass){
   //---------------------------
   subpass->vec_pipeline.push_back(pipeline);
 }
-void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
+void Renderpass::create_pipeline_triangle(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
@@ -131,6 +135,23 @@ void Renderpass::draw_scene(vk::structure::Subpass* subpass){
   this->cmd_draw_triangle(subpass);
 
   //---------------------------
+}
+bool Renderpass::check_data(utl::base::Data* data, int topology){
+  bool data_ok = false;
+  //---------------------------
+
+  bool is_visible = data->is_visible;
+  bool has_topology = data->topology.type == topology;
+  bool has_xyz = data->xyz.size() != 0;
+  bool has_rgba = data->rgba.size() != 0;
+  bool same_length = data->rgba.size() == data->xyz.size();
+
+  if(is_visible && has_topology && has_xyz && has_rgba && same_length){
+    data_ok = true;
+  }
+
+  //---------------------------
+  return data_ok;
 }
 void Renderpass::cmd_draw_point(vk::structure::Subpass* subpass){
   std::list<vk::structure::Object*>& list_data = vk_struct->data.list_vk_object;
@@ -200,25 +221,6 @@ void Renderpass::cmd_draw_triangle(vk::structure::Subpass* subpass){
   }
 
   //---------------------------
-}
-
-//Subfunction
-bool Renderpass::check_data(utl::base::Data* data, int topology){
-  bool data_ok = false;
-  //---------------------------
-
-  bool is_visible = data->is_visible;
-  bool has_topology = data->topology.type == topology;
-  bool has_xyz = data->xyz.size() != 0;
-  bool has_rgba = data->rgba.size() != 0;
-  bool same_length = data->rgba.size() == data->xyz.size();
-
-  if(is_visible && has_topology && has_xyz && has_rgba && same_length){
-    data_ok = true;
-  }
-
-  //---------------------------
-  return data_ok;
 }
 
 }

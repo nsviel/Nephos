@@ -25,18 +25,25 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
 Renderpass::~Renderpass(){}
 
 //Init function
-void Renderpass::init_renderpass(){
+void Renderpass::init(){
   //---------------------------
 
-  //Renderpass
   vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
-  renderpass->name = "edl";
-
-  //Pipeline
+  this->create_renderpass(renderpass);
   this->create_subpass(renderpass);
 
   //---------------------------
+}
+
+//Init function
+void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
+  //---------------------------
+
+  renderpass->name = "edl";
   vk_struct->render.vec_renderpass.push_back(renderpass);
+
+  //---------------------------
+
 }
 void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
@@ -45,12 +52,12 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   subpass->target = vk::renderpass::SHADER;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw_edl(subpass);};
 
-  this->pipeline_edl(subpass);
+  this->create_pipeline_edl(subpass);
 
   //---------------------------
   renderpass->vec_subpass.push_back(subpass);
 }
-void Renderpass::pipeline_edl(vk::structure::Subpass* subpass){
+void Renderpass::create_pipeline_edl(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
@@ -65,13 +72,13 @@ void Renderpass::pipeline_edl(vk::structure::Subpass* subpass){
   pipeline->info.vec_attribut.push_back(vk::pipeline::UV);
 
   //Descriptor
-  vk::binding::structure::Required descriptor;
-  descriptor = vk_sampler->sampler_color();
-  pipeline->binding.vec_required_binding.push_back(descriptor);
-  descriptor = vk_sampler->sampler_depth();
-  pipeline->binding.vec_required_binding.push_back(descriptor);
-  descriptor = vk_uniform->uniform_edl();
-  pipeline->binding.vec_required_binding.push_back(descriptor);
+  vk::binding::structure::Required sampler_color = vk_sampler->sampler_color();
+  vk::binding::structure::Required sampler_depth = vk_sampler->sampler_depth();
+  vk::binding::structure::Required uniform_edl = vk_uniform->uniform_edl();
+
+  pipeline->binding.vec_required_binding.push_back(sampler_color);
+  pipeline->binding.vec_required_binding.push_back(sampler_depth);
+  pipeline->binding.vec_required_binding.push_back(uniform_edl);
 
   //---------------------------
   subpass->vec_pipeline.push_back(pipeline);

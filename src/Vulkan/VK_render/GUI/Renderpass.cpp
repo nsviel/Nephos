@@ -17,19 +17,26 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
 }
 Renderpass::~Renderpass(){}
 
-//Init function
-void Renderpass::init_renderpass(){
+//Main function
+void Renderpass::init(){
+  if(vk_struct->param.headless) return;
   //---------------------------
 
-  //Renderpass
   vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
-  renderpass->name = "gui";
-
-  //Pipeline
+  this->create_renderpass(renderpass);
   this->create_subpass(renderpass);
 
   //---------------------------
+}
+
+//Init function
+void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
+  //---------------------------
+
+  renderpass->name = "gui";
   vk_struct->render.vec_renderpass.push_back(renderpass);
+
+  //---------------------------
 }
 void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
@@ -38,12 +45,12 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
   subpass->target = vk::renderpass::PRESENTATION;
   subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw(subpass);};
 
-  this->pipeline_triangle(subpass);
+  this->create_pipeline_triangle(subpass);
 
   //---------------------------
   renderpass->vec_subpass.push_back(subpass);
 }
-void Renderpass::pipeline_triangle(vk::structure::Subpass* subpass){
+void Renderpass::create_pipeline_triangle(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
