@@ -10,14 +10,9 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_renderpass = new vk::renderpass::Renderpass(vk_struct);
-  this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
-  this->vk_viewport = new vk::draw::Viewport(vk_struct);
-  this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);
-  this->vk_drawer = new vk::draw::Drawer(vk_struct);
-  this->shader_scene = new vk::render::scene::Shader(vk_struct);
-  this->vk_sce_drawer = new vk::render::scene::Drawer(vk_struct);
+  this->vk_shader = new vk::render::scene::Shader(vk_struct);
+  this->vk_drawer = new vk::render::scene::Drawer(vk_struct);
 
   //---------------------------
 }
@@ -48,7 +43,7 @@ void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = vk::renderpass::SHADER;
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){vk_sce_drawer->draw_scene(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){vk_drawer->draw_scene(subpass);};
 
   this->create_pipeline_line(subpass);
   this->create_pipeline_point(subpass);
@@ -61,7 +56,7 @@ void Renderpass::create_pipeline_line(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
-  utl::shader::Info* shader_info = shader_scene->get_shader_info("Line");
+  utl::shader::Info* shader_info = vk_shader->get_shader_info("Line");
 
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
@@ -83,7 +78,7 @@ void Renderpass::create_pipeline_point(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
-  utl::shader::Info* shader_info = shader_scene->get_shader_info("Point");
+  utl::shader::Info* shader_info = vk_shader->get_shader_info("Point");
 
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
@@ -107,7 +102,7 @@ void Renderpass::create_pipeline_triangle(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
-  utl::shader::Info* shader_info = shader_scene->get_shader_info("Triangle");
+  utl::shader::Info* shader_info = vk_shader->get_shader_info("Triangle");
 
   //Pipeline
   vk::structure::Pipeline* pipeline = new vk::structure::Pipeline();
