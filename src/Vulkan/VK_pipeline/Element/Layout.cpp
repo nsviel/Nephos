@@ -56,7 +56,6 @@ void Layout::create_pipeline_handle(vk::structure::Renderpass* renderpass, vk::s
   pipeline_info.subpass = 0;
   pipeline_info.basePipelineHandle = VK_NULL_HANDLE; // Optional
   pipeline_info.basePipelineIndex = -1; // Optional
-  pipeline->info.info = pipeline_info;
 
   VkResult result = vkCreateGraphicsPipelines(vk_struct->device.handle, VK_NULL_HANDLE, 1, &pipeline_info, nullptr, &pipeline->handle);
 

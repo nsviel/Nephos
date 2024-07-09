@@ -12,8 +12,6 @@ namespace vk::pipeline::structure{
 struct Info{
   //---------------------------
 
-  VkGraphicsPipelineCreateInfo info = {};
-
   //Pipeline info elements
   std::vector<VkPipelineShaderStageCreateInfo> shader_stage;
   std::vector<VkDynamicState> dynamic_state_object;
