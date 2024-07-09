@@ -11,7 +11,7 @@ namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
 
 
-namespace vk::renderpass{
+namespace vk::pipeline{
 
 class Element
 {

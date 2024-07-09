@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk::renderpass{class Renderpass;}
-namespace vk::renderpass{class Pipeline;}
+namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
@@ -38,7 +38,7 @@ private:
   vk::Structure* vk_struct;
   vk::render::edl::Shader* shader_edl;
   vk::renderpass::Renderpass* vk_renderpass;
-  vk::renderpass::Pipeline* vk_pipeline;
+  vk::pipeline::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::binding::Descriptor* vk_descriptor;
   vk::draw::Drawer* vk_drawer;

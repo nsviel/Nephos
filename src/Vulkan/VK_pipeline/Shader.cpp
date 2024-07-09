@@ -5,7 +5,7 @@
 #include <Utility/Function/File/File.h>
 
 
-namespace vk::renderpass{
+namespace vk::pipeline{
 
 //Constructor / Destructor
 Shader::Shader(vk::Structure* vk_struct){

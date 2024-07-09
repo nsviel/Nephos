@@ -2,7 +2,7 @@
 
 namespace vk{class Structure;}
 namespace vk::renderpass{class Renderpass;}
-namespace vk::renderpass{class Pipeline;}
+namespace vk::pipeline{class Pipeline;}
 namespace vk::draw{class Viewport;}
 namespace vk::binding{class Descriptor;}
 namespace vk::binding{class Uniform;}
@@ -47,7 +47,7 @@ private:
   vk::binding::Uniform* vk_uniform;
   vk::draw::Drawer* vk_drawer;
   vk::renderpass::Renderpass* vk_renderpass;
-  vk::renderpass::Pipeline* vk_pipeline;
+  vk::pipeline::Pipeline* vk_pipeline;
   vk::draw::Viewport* vk_viewport;
   vk::render::scene::Shader* shader_scene;
 };

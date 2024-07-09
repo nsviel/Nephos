@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace vk::renderpass{class Pipeline;}
+namespace vk::pipeline{class Pipeline;}
 namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::structure{class Pipeline;}
@@ -25,7 +25,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::renderpass::Pipeline* vk_pipeline;
+  vk::pipeline::Pipeline* vk_pipeline;
   vk::synchro::Synchro* vk_synchro;
 };
 

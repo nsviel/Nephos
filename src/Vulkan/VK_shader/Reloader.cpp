@@ -10,7 +10,7 @@ Reloader::Reloader(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_pipeline = new vk::renderpass::Pipeline(vk_struct);
+  this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
 
   //---------------------------

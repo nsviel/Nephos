@@ -11,7 +11,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_renderpass = new vk::renderpass::Renderpass(vk_struct);
-  this->vk_pipeline = new vk::renderpass::Pipeline(vk_struct);
+  this->vk_pipeline = new vk::pipeline::Pipeline(vk_struct);
   this->vk_viewport = new vk::draw::Viewport(vk_struct);
   this->vk_descriptor = new vk::binding::Descriptor(vk_struct);
   this->vk_uniform = new vk::binding::Uniform(vk_struct);

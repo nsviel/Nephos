@@ -20,4 +20,5 @@
 #include <Vulkan/VK_synchronization/Namespace.h>
 #include <Vulkan/VK_memory/Namespace.h>
 #include <Vulkan/VK_pool/Namespace.h>
+#include <Vulkan/VK_pipeline/Namespace.h>
 #include <Vulkan/VK_window/Namespace.h>
