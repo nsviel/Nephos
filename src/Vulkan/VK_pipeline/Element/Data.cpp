@@ -32,7 +32,7 @@ void Data::pipeline_attribut_description(vk::structure::Pipeline* pipeline){
   std::vector<VkVertexInputAttributeDescription> attribut_description;
   //---------------------------
 
-  std::vector<std::string>& vec_data_name = pipeline->definition.vec_data_name;
+  std::vector<std::string>& vec_data_name = pipeline->info.vec_data_name;
   for(int i=0; i<vec_data_name.size(); i++){
     VkVertexInputAttributeDescription attribut{};
 
@@ -69,7 +69,7 @@ void Data::pipeline_binding_description(vk::structure::Pipeline* pipeline){
   std::vector<VkVertexInputBindingDescription> data_description;
   //---------------------------
 
-  std::vector<std::string>& vec_data_name = pipeline->definition.vec_data_name;
+  std::vector<std::string>& vec_data_name = pipeline->info.vec_data_name;
   for(int i=0; i<vec_data_name.size(); i++){
     VkVertexInputBindingDescription description{};
 

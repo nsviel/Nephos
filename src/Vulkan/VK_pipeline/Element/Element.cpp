@@ -106,8 +106,8 @@ void Element::find_pipeline_depth_state(vk::structure::Pipeline* pipeline){
 
   VkPipelineDepthStencilStateCreateInfo depth_stencil = {};
   depth_stencil.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
-  depth_stencil.depthTestEnable = (pipeline->definition.shader->with_depth_test) ? VK_TRUE : VK_FALSE;
-  depth_stencil.depthWriteEnable = (pipeline->definition.shader->with_depth_test) ? VK_TRUE : VK_FALSE;
+  depth_stencil.depthTestEnable = (pipeline->info.shader->with_depth_test) ? VK_TRUE : VK_FALSE;
+  depth_stencil.depthWriteEnable = (pipeline->info.shader->with_depth_test) ? VK_TRUE : VK_FALSE;
   depth_stencil.depthCompareOp = VK_COMPARE_OP_LESS;
   depth_stencil.depthBoundsTestEnable = VK_FALSE;
   depth_stencil.minDepthBounds = 0.0f; // Optional
@@ -160,7 +160,7 @@ void Element::find_pipeline_topology_state(vk::structure::Pipeline* pipeline){
   input_assembly.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
   input_assembly.primitiveRestartEnable = VK_FALSE;
 
-  switch(pipeline->definition.topology){
+  switch(pipeline->info.topology){
     case utl::topology::POINT:{
       input_assembly.topology = VK_PRIMITIVE_TOPOLOGY_POINT_LIST;
       break;

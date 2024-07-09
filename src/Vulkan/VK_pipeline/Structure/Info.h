@@ -10,7 +10,7 @@
 
 namespace vk::pipeline::structure{
 
-struct Definition{
+struct Info{
   //---------------------------
 
   //Info

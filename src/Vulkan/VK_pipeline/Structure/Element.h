@@ -14,7 +14,6 @@ struct Element{
 
   //Pipeline info elements
   std::vector<VkPipelineShaderStageCreateInfo> shader_stage;
-  std::vector<VkDynamicState> dynamic_state_object;
   std::vector<VkVertexInputBindingDescription> data_description;
   std::vector<VkVertexInputAttributeDescription> attribut_description;
   std::vector<std::pair<VkShaderModule, VkShaderModule>> vec_shader_couple;
