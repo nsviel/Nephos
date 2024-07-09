@@ -7,24 +7,9 @@
 #include <string>
 
 
-//Binding requirement -> Name, Type size, binding, desriptor type, shader stage
-typedef std::vector<std::tuple<std::string, std::size_t, int, VkDescriptorType, VkShaderStageFlagBits>> vec_descriptor_required;
+namespace vk::pipeline::structure{
 
-struct Pipeline_definition{
-  //---------------------------
-
-  //Info
-  std::string name = "";
-  std::string topology = "";
-  std::string purpose = "";
-
-  utl::shader::Info* shader;
-  std::vector<std::string> vec_data_name;
-  vec_descriptor_required binding;
-
-  //---------------------------
-};
-struct Pipeline_info{
+struct Info{
   //---------------------------
 
   VkGraphicsPipelineCreateInfo info = {};
@@ -45,21 +30,6 @@ struct Pipeline_info{
   VkPipelineColorBlendStateCreateInfo color_blend_info = {};
   VkPipelineColorBlendAttachmentState color_blend_attachment = {};
   VkPipelineDynamicStateCreateInfo dynamic_state = {};
-
-  //---------------------------
-};
-
-namespace vk::structure{
-
-struct Pipeline{
-  //---------------------------
-
-  VkPipeline pipeline = VK_NULL_HANDLE;
-  VkPipelineLayout layout = VK_NULL_HANDLE;
-
-  vk::binding::structure::Binding binding;
-  Pipeline_definition definition;
-  Pipeline_info info;
 
   //---------------------------
 };
