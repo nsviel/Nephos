@@ -1,15 +1,15 @@
-#include "Pool0.h"
+#include "Pool.h"
 
 
-namespace utl::thread {
+namespace utl::thread::routine{
 
 //Constructor / Destructor
-Pool0::Pool0(){
+Pool::Pool(){
   //---------------------------
 
   //---------------------------
 }
-Pool0::~Pool0(){
+Pool::~Pool(){
   //---------------------------
 
   this->wait();
@@ -18,7 +18,7 @@ Pool0::~Pool0(){
 }
 
 //Main function
-void Pool0::run(){
+void Pool::run(){
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mutex);
@@ -28,7 +28,7 @@ void Pool0::run(){
 
   //---------------------------
 }
-void Pool0::wait(){
+void Pool::wait(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mutex);
@@ -40,7 +40,7 @@ void Pool0::wait(){
 }
 
 //Subfunction
-void Pool0::add_task(std::unique_ptr<utl::thread::Routine> task){
+void Pool::add_task(std::unique_ptr<utl::thread::Routine> task){
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mutex);
@@ -48,7 +48,7 @@ void Pool0::add_task(std::unique_ptr<utl::thread::Routine> task){
 
   //---------------------------
 }
-bool Pool0::remove_task(utl::thread::Routine* task){
+bool Pool::remove_task(utl::thread::Routine* task){
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mutex);
