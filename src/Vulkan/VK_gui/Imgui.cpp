@@ -36,21 +36,6 @@ void Imgui::init(){
 
   //---------------------------
 }
-void Imgui::draw(vk::structure::Command_buffer* command_buffer){
-  if(vk_struct->param.headless) return;
-  //---------------------------
-
-  if(vk_struct->window.resizing) return;
-  if(vk_window->is_window_resized()) return;
-
-  ImGui::Render();
-  vk_struct->gui.draw = ImGui::GetDrawData();
-  if(vk_struct->gui.draw == nullptr) return;
-
-  ImGui_ImplVulkan_RenderDrawData(vk_struct->gui.draw, command_buffer->handle);
-
-  //---------------------------
-}
 void Imgui::clean(){
   //---------------------------
 
@@ -96,6 +81,22 @@ void Imgui::create_context(){
     init_info.QueueFamily = vk_struct->device.queue.graphics.family_ID;
     ImGui_ImplVulkan_Init(&init_info, renderpass->handle);
   }
+
+  //---------------------------
+}
+void Imgui::draw_frame(vk::structure::Command_buffer* command_buffer){
+  if(vk_struct->param.headless) return;
+  //---------------------------
+
+  //Check resizing
+  if(vk_struct->window.resizing) return;
+  if(vk_window->is_window_resized()) return;
+
+  //Draw imgui stuff
+  ImGui::Render();
+  ImDrawData* draw = ImGui::GetDrawData();
+  if(draw == nullptr) return;
+  ImGui_ImplVulkan_RenderDrawData(draw, command_buffer->handle);
 
   //---------------------------
 }

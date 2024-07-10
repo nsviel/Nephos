@@ -25,13 +25,13 @@ public:
 public:
   //Main function
   void init();
-  void draw(vk::structure::Command_buffer* command_buffer);
   void clean();
   void loop();
 
   //Context
   void create_context();
   void new_frame();
+  void draw_frame(vk::structure::Command_buffer* command_buffer);
   void glfw_clean();
   void glfw_new_frame();
 

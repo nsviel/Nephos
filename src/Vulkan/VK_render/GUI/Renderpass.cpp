@@ -75,7 +75,7 @@ void Renderpass::create_pipeline_triangle(vk::structure::Subpass* subpass){
 void Renderpass::draw(vk::structure::Subpass* subpass){
   //---------------------------
 
-  vk_imgui->draw(subpass->command_buffer);
+  vk_imgui->draw_frame(subpass->command_buffer);
 
   //---------------------------
 }
