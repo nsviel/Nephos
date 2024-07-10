@@ -9,6 +9,8 @@
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::base{class Sensor;}
+namespace k4n::processing::image{class Depth_to_color;}
+namespace k4n::processing::image{class Color_to_depth;}
 
 
 namespace k4n::processing::image{
@@ -24,12 +26,11 @@ public:
   //Main function
   void make_transformation(k4n::base::Sensor* sensor);
 
-  //Subfunction
-  void find_depth_to_color(k4n::base::Sensor* sensor);
-  void find_color_to_depth(k4n::base::Sensor* sensor);
 
 private:
   k4n::Structure* k4n_struct;
+  k4n::processing::image::Depth_to_color* k4n_depth_to_color;
+  k4n::processing::image::Color_to_depth* k4n_color_to_depth;
 };
 
 }
