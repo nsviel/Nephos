@@ -75,19 +75,19 @@ void Data::remove(utl::base::Data* data){
 
 //Subfunction
 void Data::update_vk_object(utl::base::Data* data, vk::structure::Object* vk_object){
-    //---------------------------
+  //---------------------------
 
-    vk_object->data = data;
-    this->check_data(vk_object);
+  vk_object->data = data;
+  this->check_data(vk_object);
 
-    //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
-    if(vk_object->buffer.xyz.mem == 0){
-      vk_buffer->create_buffer(vk_object);
-    }else{
-      vk_buffer->update_buffer(vk_object);
-    }
+  //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
+  if(vk_object->buffer.xyz.mem == 0){
+    vk_buffer->create_buffer(vk_object);
+  }else{
+    vk_buffer->update_buffer(vk_object);
+  }
 
-    //---------------------------
+  //---------------------------
 }
 void Data::create_vk_object(utl::base::Data* data, utl::base::Pose* pose){
   //---------------------------
@@ -115,12 +115,13 @@ void Data::clean_vk_object(vk::structure::Object* vk_object){
   std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
   //---------------------------
 
-  vk_synchro->wait_idle_and_pause();
+  //vk_synchro->wait_idle_and_pause();
+
   vk_buffer->clean_buffers(vk_object);
   vk_texture->clean_texture(vk_object);
   vk_descriptor->clean_binding(&vk_object->binding);
   list_vk_object.remove(vk_object);
-  vk_synchro->end_idle();
+  //vk_synchro->end_idle();
 
   //---------------------------
 }

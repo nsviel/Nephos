@@ -22,6 +22,13 @@ Sensor::Sensor(){
 Sensor::~Sensor(){}
 
 //Main function
+void Sensor::clean(){
+  //---------------------------
+
+  this->stop_thread();
+
+  //---------------------------
+}
 glm::vec3 Sensor::convert_depth_2d_to_3d(ivec2 point_2d){
   //---------------------------
 

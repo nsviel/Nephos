@@ -34,9 +34,10 @@ void Operation::run_operation(dyn::base::Sensor* sensor){
 void Operation::wait_operation(){
   //---------------------------
 
+  dyn_recorder->wait_thread();
   //dyn_normal->wait_thread();
   //dyn_radio->wait_thread();
-
+  dyn_finalizer->wait_thread();
 
   //---------------------------
 }

@@ -22,6 +22,7 @@ struct Sensor : public dyn::base::Sensor{
 
   Sensor();
   ~Sensor();
+  void clean();
   glm::vec3 convert_depth_2d_to_3d(ivec2 point_2d);
 
   k4n::structure::Cloud cloud;

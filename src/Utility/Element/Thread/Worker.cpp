@@ -33,8 +33,11 @@ void Worker::run_thread(){
 void Worker::stop_thread(){
   //---------------------------
 
+  //Stop signal
   thread_running.store(false);
   cv.notify_all();
+
+  //Wait termination
   if(thread.joinable()){
     thread.join();
   }
