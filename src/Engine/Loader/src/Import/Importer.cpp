@@ -112,6 +112,7 @@ void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
   dat::base::Object* object = nullptr;
   if(element->type == utl::element::ENTITY){
     object = dynamic_cast<dat::base::Object*>(element);
+    object->pose.path = path_transfo;
   }
 
   //Insert

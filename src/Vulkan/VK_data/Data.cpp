@@ -115,13 +115,10 @@ void Data::clean_vk_object(vk::structure::Object* vk_object){
   std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
   //---------------------------
 
-  //vk_synchro->wait_idle_and_pause();
-
   vk_buffer->clean_buffers(vk_object);
   vk_texture->clean_texture(vk_object);
   vk_descriptor->clean_binding(&vk_object->binding);
   list_vk_object.remove(vk_object);
-  //vk_synchro->end_idle();
 
   //---------------------------
 }
