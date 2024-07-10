@@ -26,8 +26,6 @@ void Data::extract_data(k4n::base::Sensor* sensor){
 
   tasker->loop();
 
-  k4n_xytable->find_table_xy(sensor);
-
   //init
   tasker->task_begin("init");
   this->extraction_init(sensor);
@@ -77,6 +75,7 @@ void Data::extraction_init(k4n::base::Sensor* sensor){
   //Resize vectors
   buffer_data.xyz.resize(sensor->cloud.size);
   buffer_data.rgb.resize(sensor->cloud.size);
+  buffer_data.rgba.resize(sensor->cloud.size);
   buffer_data.Is.resize(sensor->cloud.size);
   buffer_data.R.resize(sensor->cloud.size);
 
@@ -102,6 +101,7 @@ void Data::extraction_transfer(k4n::base::Sensor* sensor){
   //Data
   data->xyz = buffer_data.xyz;
   data->rgb = buffer_data.rgb;
+  data->rgba = buffer_data.rgba;
   data->Is = buffer_data.Is;
   data->R = buffer_data.R;
 
@@ -151,6 +151,7 @@ void Data::retrieve_color(k4n::base::Sensor* sensor, int i){
 
   //Store
   buffer_data.rgb[i] = glm::vec3(r, g, b);
+  buffer_data.rgba[i] = glm::vec4(r, g, b, 1);
 
   //---------------------------
 }
