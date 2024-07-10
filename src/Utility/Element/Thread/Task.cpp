@@ -1,55 +1,54 @@
 #include "Task.h"
 
-#include <Utility/Namespace.h>
 
+namespace utl::thread {
 
-namespace utl::thread{
-
-//Main function
-void Task::start_thread(){
+void Task::start(std::function<void()> task) {
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mtx);
-  if(!thread_running){
-    this->thread_running = true;
-    this->thread = std::thread(&Task::run_thread, this);
+  if (!running) {
+    this->task = std::move(task);
+    running = true;
+    thread = std::thread(&Task::run, this);
   }
 
   //---------------------------
 }
-void Task::run_thread(){
-  //---------------------------
 
-  this->thread_init();
-
-  while(thread_running){
-    this->thread_loop();
-  }
-
-  this->thread_end();
-
-  //---------------------------
-}
-void Task::stop_thread(){
+void Task::stop() {
   //---------------------------
 
   {
     std::lock_guard<std::mutex> lock(mtx);
-    this->thread_running = false;
+    running = false;
   }
   cv.notify_all();
-  if(thread.joinable()){
+  if (thread.joinable()) {
     thread.join();
   }
 
   //---------------------------
 }
-void Task::wait_thread(){
-  //For external thread to wait this queue thread idle
+
+void Task::wait() {
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mtx);
-  cv.wait(lock, [this] { return !thread_running; });
+  cv.wait(lock, [this] { return !running; });
+
+  //---------------------------
+}
+
+void Task::run() {
+  //---------------------------
+
+  std::unique_lock<std::mutex> lock(mtx);
+  if (task) {
+      task();
+  }
+  running = false;
+  cv.notify_all();
 
   //---------------------------
 }
