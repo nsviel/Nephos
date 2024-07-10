@@ -13,23 +13,21 @@ namespace utl::thread {
 class Task {
 public:
   Task();
-  virtual ~Task();
+  ~Task();
 
 public:
   //Main function
-  void start_thread();
+  virtual void start_thread();
   void stop_thread();
   void wait_thread();
 
   std::future<bool> get_future();
 
 protected:
+  void loop_thread();
   virtual void thread_function(){}
 
-private:
-  void loop_thread();
-
-private:
+protected:
   std::thread thread;
   std::mutex mtx;
   std::condition_variable cv;

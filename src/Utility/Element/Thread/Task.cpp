@@ -9,7 +9,6 @@ Task::Task(){
 
   this->run = false;
   this->close = false;
-  this->thread = std::thread(&Task::loop_thread, this);
 
   //---------------------------
 }
@@ -30,6 +29,10 @@ void Task::start_thread(){
   {
     std::lock_guard<std::mutex> lock(mtx);
     this->run = true;
+
+    // Thread is already running, do nothing
+    if (thread.joinable()) return;
+    this->thread = std::thread(&Task::loop_thread, this);
   }
 
   cv.notify_all();

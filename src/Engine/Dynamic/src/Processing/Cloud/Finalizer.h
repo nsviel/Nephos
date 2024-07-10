@@ -12,7 +12,7 @@ namespace ope::color{class Colorizer;}
 
 namespace dyn::cloud{
 
-class Finalizer : public utl::thread::Task
+class Finalizer// : public utl::thread::Task
 {
 public:
   //Constructor / Destructor
@@ -22,7 +22,7 @@ public:
 public:
   //Main function
   void start_thread(dyn::base::Sensor* sensor);
-  void run_thread(dyn::base::Sensor* sensor);
+  void thread_function(dyn::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction

@@ -32,14 +32,14 @@ void Finalizer::start_thread(dyn::base::Sensor* sensor){
 
   this->wait_thread();
   auto task_function = [this, sensor](){
-    this->run_thread(sensor);
+    this->thread_function(sensor);
   };
   this->thread_idle = false;
   thread_pool->add_task(task_function);
 
   //---------------------------
 }
-void Finalizer::run_thread(dyn::base::Sensor* sensor){
+void Finalizer::thread_function(dyn::base::Sensor* sensor){
   prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::finalizer");
   //---------------------------
 
