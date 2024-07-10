@@ -24,9 +24,6 @@ public:
   bool remove_task(utl::thread::Task* task);
 
 private:
-  void worker_thread();
-
-private:
   std::vector<std::unique_ptr<utl::thread::Task>> tasks;
   std::mutex mutex;
 };

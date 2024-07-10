@@ -5,6 +5,7 @@
 #include <condition_variable>
 #include <functional>
 #include <atomic>
+#include <future>
 
 
 namespace utl::thread {
@@ -15,23 +16,26 @@ public:
   virtual ~Task();
 
 public:
+  //Main function
   void start_thread();
   void stop_thread();
   void wait_thread();
 
-  inline bool is_running(){return running;}
+  std::future<bool> get_future();
 
 protected:
   virtual void thread_function(){}
 
 private:
-  void run();
+  void loop_thread();
 
 private:
   std::thread thread;
   std::mutex mtx;
   std::condition_variable cv;
-  std::atomic<bool> running;
+  std::atomic<bool> run;
+  std::atomic<bool> close;
+  std::promise<bool> is_running;
 };
 
 }

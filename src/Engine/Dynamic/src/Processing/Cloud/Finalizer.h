@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Utility/Element/Thread/Task.h>
+
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
@@ -10,7 +12,7 @@ namespace ope::color{class Colorizer;}
 
 namespace dyn::cloud{
 
-class Finalizer
+class Finalizer : public utl::thread::Task
 {
 public:
   //Constructor / Destructor
