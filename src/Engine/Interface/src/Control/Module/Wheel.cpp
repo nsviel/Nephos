@@ -29,6 +29,7 @@ Wheel::~Wheel(){}
 //Main function
 void Wheel::make_action(float value){
   utl::base::Element* element = dat_selection->get_selected_element();
+  if(element == nullptr) return;
   //---------------------------
 
   //Rotation quantity

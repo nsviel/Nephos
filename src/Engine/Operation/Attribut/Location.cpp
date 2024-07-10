@@ -45,8 +45,10 @@ void Location::compute_COM(utl::base::Element* element){
   //---------------------------
 }
 void Location::compute_COM(dat::base::Set* set){
-  glm::vec3 COM = glm::vec3(0, 0, 0);
+  if(set == nullptr) return;
   //---------------------------
+
+  glm::vec3 COM = glm::vec3(0, 0, 0);
 
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
@@ -60,9 +62,11 @@ void Location::compute_COM(dat::base::Set* set){
   set->pose.COM = COM;
 }
 void Location::compute_COM(dat::base::Entity* entity){
+  if(entity == nullptr) return;
+  //---------------------------
+
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;
-  //---------------------------
 
   this->compute_centroid(entity);
 

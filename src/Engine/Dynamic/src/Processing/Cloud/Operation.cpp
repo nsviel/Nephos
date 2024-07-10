@@ -27,7 +27,13 @@ void Operation::run_operation(dyn::base::Sensor* sensor){
   dyn_recorder->start_thread(sensor);
   //dyn_normal->start_thread(sensor);
   //dyn_radio->start_thread(sensor);
-  dyn_finalizer->start_task(sensor);
+
+  //The troutine pose probleme, is faut qu'il soit dédié à un sensor
+  //pour l'instant c'est la meme qqsoit le sensor
+  //Du coup 2 playback = laggs
+  //dyn_finalizer->start_task(sensor);
+  dyn_finalizer->colorize_object(sensor);
+  dyn_finalizer->update_object(sensor);
 
   //---------------------------
 }
