@@ -49,7 +49,8 @@ void Transformation::find_depth_to_color(k4n::base::Sensor* sensor){
     sensor->device.calibration.color_camera_calibration.resolution_width,
     sensor->device.calibration.color_camera_calibration.resolution_height,
     sensor->device.calibration.color_camera_calibration.resolution_width *
-    static_cast<int>(sizeof(uint16_t)));
+    static_cast<int>(sizeof(uint16_t))
+  );
 
   //IR images
   k4a::image ir = k4a::image::create_from_buffer(
@@ -60,13 +61,15 @@ void Transformation::find_depth_to_color(k4n::base::Sensor* sensor){
     sensor->ir.data.buffer,
     sensor->ir.data.size,
     nullptr,
-    nullptr);
+    nullptr
+  );
   k4a::image ir_transformed = k4a::image::create(
     K4A_IMAGE_FORMAT_CUSTOM16,
     sensor->device.calibration.color_camera_calibration.resolution_width,
     sensor->device.calibration.color_camera_calibration.resolution_height,
     sensor->device.calibration.color_camera_calibration.resolution_width *
-    static_cast<int>(sizeof(uint16_t)));
+    static_cast<int>(sizeof(uint16_t))
+  );
 
   uint32_t value_no_data = 0;
   sensor->device.transformation.depth_image_to_color_camera_custom(sensor->depth.data.k4a_image, ir, &depth_transformed, &ir_transformed, K4A_TRANSFORMATION_INTERPOLATION_TYPE_LINEAR, value_no_data);
@@ -88,12 +91,53 @@ void Transformation::find_depth_to_color(k4n::base::Sensor* sensor){
 
   //---------------------------
 }
+
+struct Vec2Hash {
+    std::size_t operator()(const glm::ivec2& vec) const {
+        // Combine hash of x and y using a simple hash function
+        return std::hash<int>()(vec.x) ^ (std::hash<int>()(vec.y) << 1);
+    }
+};
+
+// Define equality operator for glm::ivec2
+struct Vec2Equal {
+    bool operator()(const glm::ivec2& a, const glm::ivec2& b) const {
+        return a.x == b.x && a.y == b.y;
+    }
+};
 void Transformation::find_color_to_depth(k4n::base::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 
+  // Iterate through each pixel coordinate in the color image
+  std::unordered_map<glm::ivec2, glm::ivec2, Vec2Hash, Vec2Equal> table_xy;
+  for (int y = 0; y < sensor->color.data.height; ++y) {
+    for (int x = 0; x < sensor->color.data.width; ++x) {
+      // Convert color coordinate to depth coordinate
+      k4a_float2_t source_point2d = { static_cast<float>(x), static_cast<float>(y) };
+      k4a_float2_t target_point2d;
+      bool ok = sensor->device.calibration.convert_color_2d_to_depth_2d(source_point2d, sensor->depth.data.k4a_image, &target_point2d);
+      if(!ok) continue;
+
+      //Save coordinate mapping
+      int depthX = static_cast<int>(std::round(target_point2d.xy.x));
+      int depthY = static_cast<int>(std::round(target_point2d.xy.y));
+      table_xy[glm::ivec2(depthX, depthY)] = glm::ivec2(x, y);
+    }
+  }
+
+  say(table_xy.size());
+
+
+
   //Convert it into a depth POV representation
-  k4a::image color_to_depth = sensor->device.transformation.color_image_to_depth_camera(sensor->depth.data.k4a_image, sensor->color.data.k4a_image);
+  k4a::image color_to_depth = k4a::image::create(
+    K4A_IMAGE_FORMAT_COLOR_BGRA32,
+    sensor->depth.data.width,
+    sensor->depth.data.height,
+    sensor->depth.data.width * 4
+  );
+  sensor->device.transformation.color_image_to_depth_camera(sensor->depth.data.k4a_image, sensor->color.data.k4a_image, &color_to_depth);
   if(!color_to_depth.is_valid()) return;
 
   //Fill data structure
