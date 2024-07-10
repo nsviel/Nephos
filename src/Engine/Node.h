@@ -44,6 +44,7 @@ public:
   inline prf::dynamic::Tasker* get_tasker_cpu(){return tasker;}
 
 private:
+  app::Node* node_app;
   rad::Node* node_radio;
   vk::Node* node_vulkan = nullptr;
   ldr::Node* node_loader = nullptr;
@@ -54,8 +55,6 @@ private:
   dyn::Node* node_dynamic = nullptr;
   prf::dynamic::Tasker* tasker;
   utl::thread::Pool* thread_pool;
-
-  bool* app_running;
 };
 
 }

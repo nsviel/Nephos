@@ -1,5 +1,6 @@
 #pragma once
 
+namespace vk{class Node;}
 namespace eng{class Node;}
 namespace gui{class Node;}
 namespace sce{class Node;}
@@ -23,11 +24,13 @@ public:
   void loop();
   void end();
 
+  inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline sce::Node* get_node_scene(){return node_scene;}
   inline eng::Node* get_node_engine(){return node_engine;}
-  inline bool* get_app_running(){return &running;}
+  inline void close(){this->running = false;}
 
 private:
+  vk::Node* node_vulkan;
   eng::Node* node_engine;
   gui::Node* node_gui;
   sce::Node* node_scene;

@@ -19,9 +19,9 @@ namespace eng{
 Node::Node(app::Node* node_app){
   //---------------------------
 
-  this->app_running = node_app->get_app_running();
+  this->node_app = node_app;
   this->thread_pool = new utl::thread::Pool(50);
-  this->node_vulkan = new vk::Node(app_running);
+  this->node_vulkan = node_app->get_node_vulkan();
   this->node_profiler = new prf::Node(this);
   this->node_data = new dat::Node(this);
   this->node_camera = new cam::Node(this);
@@ -106,7 +106,7 @@ void Node::reset(){
 void Node::close(){
   //---------------------------
 
-  *app_running = false;
+  node_app->close();
 
   //---------------------------
 }

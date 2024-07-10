@@ -3,6 +3,7 @@
 #include <GUI/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
+#include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -12,6 +13,7 @@ namespace app{
 Node::Node(){
   //---------------------------
 
+  this->node_vulkan = new vk::Node(&running);
   this->node_engine = new eng::Node(this);
   this->node_scene = new sce::Node(this);
   this->node_gui = new gui::Node(this);
@@ -46,8 +48,16 @@ void Node::loop(){
 
   while(running){
     node_scene->loop();
-    node_gui->loop();
+
+
+    ImGui::NewFrame();
+    gui::interface::Docking docking;
+    docking.loop();
+
+
+    node_engine->gui();
     node_engine->loop();
+    node_gui->loop();
   }
 
   //---------------------------

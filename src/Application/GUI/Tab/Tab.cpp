@@ -75,9 +75,9 @@ void Tab::draw_tab(){
 
   //Draw selected tab panels
   if(active_tab == "Engine"){
-    //node_scene->gui();
-    node_engine->gui();
-    //eng_menu->draw();
+    node_scene->gui();
+    //node_engine->gui();
+    eng_menu->draw();
   }
   else if(active_tab == "Dev"){
     dev_menu->draw();
