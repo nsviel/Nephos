@@ -4,32 +4,34 @@
 #include <mutex>
 #include <condition_variable>
 #include <functional>
+#include <atomic>
+
 
 namespace utl::thread {
 
 class Task {
 public:
-  Task() : running(false) {}
-  Task(Task&& other) noexcept; // Move constructor
-  Task& operator=(Task&& other) noexcept; // Move assignment operator
-  ~Task();
+  Task();
+  virtual ~Task();
 
 public:
-  void start(std::function<void()> task);
-  void stop();
-  void wait();
+  void start_thread();
+  void stop_thread();
+  void wait_thread();
 
-  bool is_running() const { return running; }
+  inline bool is_running(){return running;}
+
+protected:
+  virtual void thread_function(){}
 
 private:
   void run();
 
 private:
-  std::function<void()> task;
   std::thread thread;
   std::mutex mtx;
   std::condition_variable cv;
-  bool running;
+  std::atomic<bool> running;
 };
 
 }

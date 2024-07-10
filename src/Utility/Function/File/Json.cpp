@@ -110,14 +110,14 @@ template<typename T> T read_value(const std::string& path, std::string key){
 void read_value(const std::string& path, const std::string& key, bool& value){
   //---------------------------
 
-  if (!utl::file::is_exist(path)) {
+  if(!utl::file::is_exist(path)){
     std::cerr << "[Error] File " << path << " does not exist." << std::endl;
     return; // Exit function if file does not exist
   }
 
   // Read JSON data from file
   std::ifstream file(path);
-  if (!file.is_open()) {
+  if(!file.is_open()){
     std::cerr << "[Error] Failed to open file: " << path << std::endl;
     return; // Exit function if file could not be opened
   }
@@ -131,9 +131,9 @@ void read_value(const std::string& path, const std::string& key, bool& value){
     std::string segment;
     nlohmann::json* current = &j;
 
-    while (std::getline(keyStream, segment, '.')) {
+    while (std::getline(keyStream, segment, '.')){
       // Check if the segment exists
-      if (!current->contains(segment)) {
+      if(!current->contains(segment)){
         std::cerr << "[Error] Key segment '" << segment << "' not found in JSON file." << std::endl;
         return; // Exit function if key segment not found
       }
@@ -142,13 +142,13 @@ void read_value(const std::string& path, const std::string& key, bool& value){
     }
 
     // Try to parse the value at the final nested level into the value argument
-    if (current->is_boolean()) {
+    if(current->is_boolean()){
       value = current->get<bool>(); // Assign value only if it's a boolean
     } else {
       std::cerr << "[Error] Value for key '" << key << "' is not a boolean in JSON file." << std::endl;
     }
   }
-  catch (const std::exception& e) {
+  catch (const std::exception& e){
     std::cerr << "[Error] Failed to parse value for key '" << key << "': " << e.what() << std::endl;
   }
 

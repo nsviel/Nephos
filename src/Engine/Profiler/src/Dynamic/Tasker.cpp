@@ -151,7 +151,7 @@ void Tasker::remove_task(const std::string& name){
   //---------------------------
 
   // Use std::remove_if to move matching tasks to the end of the vector
-  auto it = std::remove_if(vec_task_buffer.begin(), vec_task_buffer.end(), [&name](const prf::dynamic::Task& task) {return task.name == name;});
+  auto it = std::remove_if(vec_task_buffer.begin(), vec_task_buffer.end(), [&name](const prf::dynamic::Task& task){return task.name == name;});
 
   // Erase the matching tasks from the vector
   vec_task_buffer.erase(it, vec_task_buffer.end());

@@ -30,7 +30,7 @@ void Bookmark::init_navigator(){
   utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
   //---------------------------
 
-  utl_navigator->add_fct_item_icon([this](std::string path) {this->bookmark_icon(path);});
+  utl_navigator->add_fct_item_icon([this](std::string path){this->bookmark_icon(path);});
 
   //---------------------------
 }

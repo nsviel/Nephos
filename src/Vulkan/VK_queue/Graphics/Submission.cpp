@@ -95,12 +95,12 @@ void Submission::post_submission(vk::command::structure::Set* set){
   //---------------------------
 
   //Reset all command
-  for (auto& command : set->vec_command) {
+  for (auto& command : set->vec_command){
       // Command buffer timestamp
       vk_query->find_query_timestamp(command->command_buffer);
 
       // Command buffer reset
-      if (command->command_buffer->is_resetable) {
+      if(command->command_buffer->is_resetable){
           command->command_buffer->is_recorded = false;
           command->command_buffer->query.is_available = true;
           command->command_buffer->is_available = true;

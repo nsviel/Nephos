@@ -3,59 +3,64 @@
 
 namespace utl::thread {
 
-Pool0::Pool0(int nb_threads) : running(true) {
+//Constructor / Destructor
+Pool0::Pool0(){
   //---------------------------
 
-  tasks.reserve(nb_threads); // Reserve space for nb_threads Task objects
-  for (int i = 0; i < nb_threads; ++i) {
-    tasks.push_back(Task()); // Push back a default-initialized Task object
-  }
+  //---------------------------
+}
+Pool0::~Pool0(){
+  //---------------------------
+
+  this->wait();
 
   //---------------------------
 }
 
-Pool0::~Pool0() {
+//Main function
+void Pool0::run(){
   //---------------------------
 
-  {
-    std::unique_lock<std::mutex> lock(mutex);
-    running = false;
-  }
-  condition.notify_all();
-  for (auto& task : tasks) {
-    task.stop();
+  std::lock_guard<std::mutex> lock(mutex);
+  for (auto& task : tasks){
+    task->start_thread();
   }
 
   //---------------------------
 }
-
-void Pool0::add_task(std::function<void()> task) {
+void Pool0::wait(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mutex);
-  // Find the first available task slot and start it
-  for (auto& task_instance : tasks) {
-    if (!task_instance.is_running()) {
-      task_instance.start(std::move(task));
-      return;
-    }
+  for (auto& task : tasks){
+    task->wait_thread();
   }
-  // If all tasks are busy, queue the task for later execution
-  queue_task.push(std::move(task));
-  condition.notify_one();
 
   //---------------------------
 }
 
-void Pool0::wait_all() {
+//Subfunction
+void Pool0::add_task(std::unique_ptr<utl::thread::Task> task){
   //---------------------------
 
-  std::unique_lock<std::mutex> lock(mutex);
-  for (auto& task : tasks) {
-    task.wait();
+  std::lock_guard<std::mutex> lock(mutex);
+  tasks.push_back(std::move(task));
+
+  //---------------------------
+}
+bool Pool0::remove_task(utl::thread::Task* task){
+  //---------------------------
+
+  std::lock_guard<std::mutex> lock(mutex);
+  auto it = std::remove_if(tasks.begin(), tasks.end(), [task](const std::unique_ptr<utl::thread::Task>& t){ return t.get() == task; });
+  if(it != tasks.end()){
+    (*it)->stop_thread();
+    tasks.erase(it, tasks.end());
+    return true;
   }
 
   //---------------------------
+  return false;
 }
 
 }

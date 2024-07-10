@@ -26,7 +26,7 @@ void Operation::init_navigator(){
   utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
   //---------------------------
 
-  utl_navigator->add_fct_item_operation([this](utl::base::Path path) {this->item_operation(path);});
+  utl_navigator->add_fct_item_operation([this](utl::base::Path path){this->item_operation(path);});
 
   //---------------------------
 }

@@ -3,12 +3,17 @@
 
 namespace utl::thread {
 
-void Task::start(std::function<void()> task) {
+//Constructor / Destructor
+Task::Task() : running(false){}
+Task::~Task(){
+  stop_thread();
+}
+
+void Task::start_thread(){
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mtx);
-  if (!running) {
-    this->task = std::move(task);
+  if(!running){
     running = true;
     thread = std::thread(&Task::run, this);
   }
@@ -16,7 +21,7 @@ void Task::start(std::function<void()> task) {
   //---------------------------
 }
 
-void Task::stop() {
+void Task::stop_thread(){
   //---------------------------
 
   {
@@ -24,14 +29,14 @@ void Task::stop() {
     running = false;
   }
   cv.notify_all();
-  if (thread.joinable()) {
+  if(thread.joinable()){
     thread.join();
   }
 
   //---------------------------
 }
 
-void Task::wait() {
+void Task::wait_thread(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mtx);
@@ -39,15 +44,14 @@ void Task::wait() {
 
   //---------------------------
 }
-
-void Task::run() {
+void Task::run(){
   //---------------------------
 
-  std::unique_lock<std::mutex> lock(mtx);
-  if (task) {
-      task();
+  thread_function(); // Call the overridden function
+  {
+    std::lock_guard<std::mutex> lock(mtx);
+    running = false;
   }
-  running = false;
   cv.notify_all();
 
   //---------------------------

@@ -1,28 +1,34 @@
 #pragma once
 
-#include "Task.h"
+#include <Utility/Element/Thread/Task.h>
+#include <condition_variable>
 #include <vector>
 #include <functional>
 #include <queue>
 #include <mutex>
-#include <condition_variable>
+
 
 namespace utl::thread {
 
 class Pool0 {
 public:
-  Pool0(int nb_threads);
+  Pool0();
   ~Pool0();
 
-  void add_task(std::function<void()> task);
-  void wait_all();
+  //Main function
+  void run();
+  void wait();
+
+  //Subfunction
+  void add_task(std::unique_ptr<utl::thread::Task> task);
+  bool remove_task(utl::thread::Task* task);
 
 private:
-  std::vector<Task> tasks;
-  std::queue<std::function<void()>> queue_task;
+  void worker_thread();
+
+private:
+  std::vector<std::unique_ptr<utl::thread::Task>> tasks;
   std::mutex mutex;
-  std::condition_variable condition;
-  bool running;
 };
 
 }
