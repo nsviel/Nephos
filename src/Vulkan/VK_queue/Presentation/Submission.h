@@ -28,7 +28,7 @@ public:
 
 public:
   //Main function
-  void process_command();
+  void make_rendering();
 
   //Subfunction
   void submit_rendering(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore* semaphore);

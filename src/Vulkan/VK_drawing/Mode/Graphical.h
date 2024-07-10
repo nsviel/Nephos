@@ -28,7 +28,6 @@ public:
   //Subfunction
   void record_renderpass(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore& semaphore);
   void copy_to_swapchain(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore& semaphore);
-  void submit_presentation(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore& semaphore);
 
 private:
   vk::memory::Transfer* vk_transfer;

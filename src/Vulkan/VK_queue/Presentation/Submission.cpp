@@ -23,7 +23,7 @@ Submission::Submission(vk::Structure* vk_struct){
 Submission::~Submission(){}
 
 //Main function
-void Submission::process_command(){
+void Submission::make_rendering(){
   //---------------------------
 
   //Init

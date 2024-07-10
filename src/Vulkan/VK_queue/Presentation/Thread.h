@@ -23,7 +23,8 @@ public:
   void thread_loop();
 
   //Subfunction
-  void add_command();
+  void make_rendering_thread();
+  void make_rendering();
 
 private:
   vk::Structure* vk_struct;

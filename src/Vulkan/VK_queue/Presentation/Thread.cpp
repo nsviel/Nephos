@@ -36,20 +36,27 @@ void Thread::thread_loop(){
   if(!thread_running) return;
 
   //Submit command
-  vk_submission->process_command();
+  vk_submission->make_rendering();
   queue.pop();
 
   //---------------------------
 }
 
 //Subfunction
-void Thread::add_command(){
+void Thread::make_rendering_thread(){
   //---------------------------
 
   mutex.lock();
   queue.push(true);
   mutex.unlock();
   cv.notify_one();
+
+  //---------------------------
+}
+void Thread::make_rendering(){
+  //---------------------------
+
+  vk_submission->make_rendering();
 
   //---------------------------
 }
