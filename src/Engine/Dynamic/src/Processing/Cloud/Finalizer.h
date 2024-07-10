@@ -21,9 +21,7 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor);
-  void run_thread(dyn::base::Sensor* sensor);
-  void wait_thread();
+  void thread_task();
 
   //Subfunction
   void colorize_object(dyn::base::Sensor* sensor);

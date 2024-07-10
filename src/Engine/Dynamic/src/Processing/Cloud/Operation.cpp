@@ -15,7 +15,6 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->dyn_recorder = new dyn::cloud::Recorder(node_dynamic);
   this->dyn_radio = new dyn::cloud::Radiometry(node_dynamic);
   this->dyn_finalizer = new dyn::cloud::Finalizer(node_dynamic);
-  this->dyn_test = new dyn::cloud::Finalizer_test(node_dynamic);
 
   //---------------------------
 }
@@ -28,8 +27,7 @@ void Operation::run_operation(dyn::base::Sensor* sensor){
   dyn_recorder->start_thread(sensor);
   //dyn_normal->start_thread(sensor);
   //dyn_radio->start_thread(sensor);
-  dyn_finalizer->start_thread(sensor);
-  dyn_test->start_task(sensor);
+  dyn_finalizer->start_task(sensor);
 
   //---------------------------
 }
@@ -39,7 +37,7 @@ void Operation::wait_operation(){
   dyn_recorder->wait_thread();
   //dyn_normal->wait_thread();
   //dyn_radio->wait_thread();
-  dyn_finalizer->wait_thread();
+  dyn_finalizer->wait_task();
 
   //---------------------------
 }
