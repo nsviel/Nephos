@@ -20,6 +20,7 @@ Imgui::Imgui(vk::Structure* vk_struct){
   this->vk_window = new vk::window::GLFW(vk_struct);
   this->vk_texture = new vk::image::Texture(vk_struct);
   this->vk_font = new vk::gui::Font(vk_struct);
+  this->vk_docking = new vk::gui::Docking();
 
   //---------------------------
 }
@@ -95,6 +96,14 @@ void Imgui::create_context(){
     init_info.QueueFamily = vk_struct->device.queue.graphics.family_ID;
     ImGui_ImplVulkan_Init(&init_info, renderpass->handle);
   }
+
+  //---------------------------
+}
+void Imgui::new_frame(){
+  //---------------------------
+
+  ImGui::NewFrame();
+  vk_docking->loop();
 
   //---------------------------
 }

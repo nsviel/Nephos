@@ -9,6 +9,7 @@ namespace vk::structure{class Command_buffer;}
 namespace vk::image{class Texture;}
 namespace vk::gui{class Font;}
 namespace vk::window{class GLFW;}
+namespace vk::gui{class Docking;}
 namespace utl::media{class Image;}
 
 
@@ -30,6 +31,7 @@ public:
 
   //Context
   void create_context();
+  void new_frame();
   void glfw_clean();
   void glfw_new_frame();
 
@@ -47,6 +49,7 @@ private:
   vk::image::Texture* vk_texture;
   vk::window::GLFW* vk_window;
   vk::gui::Font* vk_font;
+  vk::gui::Docking* vk_docking;
 };
 
 }
