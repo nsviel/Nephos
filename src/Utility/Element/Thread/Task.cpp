@@ -31,13 +31,12 @@ void Task::start_task(){
   {
     std::lock_guard<std::mutex> lock(mtx);
     this->run = true;
+    cv.notify_all();
 
     // Thread is already running, do nothing
     if (thread.joinable()) return;
     this->thread = std::thread(&Task::loop_task, this);
   }
-
-  cv.notify_all();
 
   //---------------------------
 }
@@ -61,7 +60,7 @@ void Task::wait_task(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mtx);
-  cv.wait(lock, [this] { return run.load(); });
+  cv.wait(lock, [this] { return !run; });
 
   //---------------------------
 }
@@ -74,10 +73,7 @@ void Task::loop_task(){
     {
       std::unique_lock<std::mutex> lock(mtx);
       cv.wait(lock, [this] { return run || close; });
-
-      if(close){
-        return;
-      }
+      if(close) return;
     }
 
     // Execute the task
@@ -86,6 +82,7 @@ void Task::loop_task(){
     {
       std::lock_guard<std::mutex> lock(mtx);
       this->run = false;
+      cv.notify_all();
     }
   }
 

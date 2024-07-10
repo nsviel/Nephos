@@ -6,6 +6,7 @@ namespace dyn::cloud{class Recorder;}
 namespace dyn::cloud{class Normal;}
 namespace dyn::cloud{class Radiometry;}
 namespace dyn::cloud{class Finalizer;}
+namespace dyn::cloud{class Finalizer_test;}
 namespace dyn::base{class Sensor;}
 
 
@@ -27,6 +28,7 @@ private:
   dyn::Structure* dyn_struct;
   dyn::cloud::Recorder* dyn_recorder;
   dyn::cloud::Finalizer* dyn_finalizer;
+  dyn::cloud::Finalizer_test* dyn_test;
   dyn::cloud::Normal* dyn_normal;
   dyn::cloud::Radiometry* dyn_radio;
 };
