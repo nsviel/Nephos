@@ -15,6 +15,7 @@ Submission::Submission(vk::Structure* vk_struct){
   this->vk_window = new vk::window::GLFW(vk_struct);
   this->vk_drawer = new vk::draw::Graphical(vk_struct);
   this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
+  this->vk_imgui = new vk::gui::Imgui(vk_struct);
 
   //---------------------------
 }
@@ -41,7 +42,7 @@ void Submission::process_command(){
   this->submit_presentation(&semaphore);
   this->next_frame_ID();
   vk_semaphore->reset_pool();
-  
+  vk_imgui->loop();
   //---------------------------
 }
 

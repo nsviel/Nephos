@@ -37,6 +37,7 @@ void Node::run(){
 void Node::init(){
   //---------------------------
 
+  node_vulkan->init();
   node_engine->init();
   node_gui->init();
   node_scene->init();
@@ -47,17 +48,18 @@ void Node::loop(){
   //---------------------------
 
   vk::gui::Imgui* vk_imgui = node_vulkan->get_vk_imgui();
-
+    vk_imgui->new_frame();
   while(running){
     node_scene->loop();
 
 
-    vk_imgui->new_frame();
+
 
 
     node_engine->gui();
     node_gui->loop();
     node_engine->loop();
+    node_vulkan->loop();
   }
 
   //---------------------------

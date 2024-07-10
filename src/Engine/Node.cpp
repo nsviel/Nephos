@@ -41,7 +41,6 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_vulkan->init();
   node_data->init();
   node_loader->init();
   node_camera->init();
@@ -60,7 +59,6 @@ void Node::loop(){
   node_data->loop();
   node_loader->loop();
   node_camera->loop();
-  node_vulkan->loop();
   node_dynamic->loop();
   node_radio->loop();
 

@@ -14,6 +14,7 @@ namespace vk::structure{class Command;}
 namespace vk::command::structure{class Set;}
 namespace vk::draw{class Graphical;}
 namespace vk::synchro{class Semaphore;}
+namespace vk::gui{class Imgui;}
 
 
 namespace vk::queue::presentation{
@@ -41,6 +42,7 @@ private:
   vk::window::GLFW* vk_window;
   vk::draw::Graphical* vk_drawer;
   vk::synchro::Semaphore* vk_semaphore;
+  vk::gui::Imgui* vk_imgui;
 };
 
 }
