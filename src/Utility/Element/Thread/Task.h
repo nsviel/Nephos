@@ -17,15 +17,15 @@ public:
 
 public:
   //Main function
-  virtual void start_thread();
-  void stop_thread();
-  void wait_thread();
+  virtual void start_task();
+  void stop_task();
+  void wait_task();
 
-  std::future<bool> get_future();
+  inline bool is_done(){return run;}
 
 protected:
-  void loop_thread();
-  virtual void thread_function(){}
+  void loop_task();
+  virtual void thread_task(){}
 
 protected:
   std::thread thread;
@@ -33,7 +33,6 @@ protected:
   std::condition_variable cv;
   std::atomic<bool> run;
   std::atomic<bool> close;
-  std::promise<bool> is_running;
 };
 
 }

@@ -15,9 +15,9 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor);
+  void start_task(dyn::base::Sensor* sensor);
 
-private:
+protected:
   dyn::base::Sensor* sensor = nullptr;
 };
 

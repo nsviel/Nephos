@@ -1,5 +1,7 @@
 #include "Task.h"
 
+#include <Utility/Namespace.h>
+
 
 namespace utl::thread {
 
@@ -15,16 +17,16 @@ Task::Task(){
 Task::~Task(){
   //---------------------------
 
-  this->stop_thread();
+  this->stop_task();
 
   //---------------------------
 }
 
 //Main function
-void Task::start_thread(){
+void Task::start_task(){
   //---------------------------
 
-  this->wait_thread();
+  this->wait_task();
 
   {
     std::lock_guard<std::mutex> lock(mtx);
@@ -32,15 +34,14 @@ void Task::start_thread(){
 
     // Thread is already running, do nothing
     if (thread.joinable()) return;
-    this->thread = std::thread(&Task::loop_thread, this);
+    this->thread = std::thread(&Task::loop_task, this);
   }
 
   cv.notify_all();
-  is_running.set_value(true);
 
   //---------------------------
 }
-void Task::stop_thread(){
+void Task::stop_task(){
   //---------------------------
 
   {
@@ -54,21 +55,19 @@ void Task::stop_thread(){
     thread.join();
   }
 
-  is_running.set_value(false);
-
   //---------------------------
 }
-void Task::wait_thread(){
+void Task::wait_task(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mtx);
-  cv.wait(lock, [this] { return !run; });
+  cv.wait(lock, [this] { return run.load(); });
 
   //---------------------------
 }
 
 //Subfunction
-void Task::loop_thread(){
+void Task::loop_task(){
   //---------------------------
 
   while(true){
@@ -82,20 +81,15 @@ void Task::loop_thread(){
     }
 
     // Execute the task
-    this->thread_function();
+    this->thread_task();
 
     {
       std::lock_guard<std::mutex> lock(mtx);
       this->run = false;
     }
-
-    is_running.set_value(false);
   }
 
   //---------------------------
-}
-std::future<bool> Task::get_future(){
-  return is_running.get_future();
 }
 
 }

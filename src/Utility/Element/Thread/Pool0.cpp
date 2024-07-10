@@ -23,7 +23,7 @@ void Pool0::run(){
 
   std::lock_guard<std::mutex> lock(mutex);
   for (auto& task : tasks){
-    task->start_thread();
+    task->start_task();
   }
 
   //---------------------------
@@ -33,7 +33,7 @@ void Pool0::wait(){
 
   std::unique_lock<std::mutex> lock(mutex);
   for (auto& task : tasks){
-    task->wait_thread();
+    task->wait_task();
   }
 
   //---------------------------
@@ -54,7 +54,7 @@ bool Pool0::remove_task(utl::thread::Task* task){
   std::lock_guard<std::mutex> lock(mutex);
   auto it = std::remove_if(tasks.begin(), tasks.end(), [task](const std::unique_ptr<utl::thread::Task>& t){ return t.get() == task; });
   if(it != tasks.end()){
-    (*it)->stop_thread();
+    (*it)->stop_task();
     tasks.erase(it, tasks.end());
     return true;
   }

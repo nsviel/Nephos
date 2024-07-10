@@ -15,11 +15,11 @@ Task::Task(){
 Task::~Task(){}
 
 //Main function
-void Task::start_thread(dyn::base::Sensor* sensor){
+void Task::start_task(dyn::base::Sensor* sensor){
   //---------------------------
-
+say("----");
   this->sensor = sensor;
-  this->wait_thread();
+  this->wait_task();
 
   {
     std::lock_guard<std::mutex> lock(mtx);
@@ -27,12 +27,11 @@ void Task::start_thread(dyn::base::Sensor* sensor){
 
     // Thread is already running, do nothing
     if (thread.joinable()) return;
-    this->thread = std::thread(&Task::loop_thread, this);
+    this->thread = std::thread(&Task::loop_task, this);
   }
 
   cv.notify_all();
-  is_running.set_value(true);
-
+sayHello();
   //---------------------------
 }
 

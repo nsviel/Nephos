@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Element/Thread/Task.h>
+#include <Dynamic/src/Thread/Task.h>
 
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
@@ -12,7 +12,7 @@ namespace ope::color{class Colorizer;}
 
 namespace dyn::cloud{
 
-class Finalizer// : public utl::thread::Task
+class Finalizer : public dyn::thread::Task
 {
 public:
   //Constructor / Destructor
@@ -21,9 +21,7 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor);
-  void thread_function(dyn::base::Sensor* sensor);
-  void wait_thread();
+  void thread_task();
 
   //Subfunction
   void colorize_object(dyn::base::Sensor* sensor);

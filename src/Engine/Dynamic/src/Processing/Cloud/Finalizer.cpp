@@ -27,19 +27,7 @@ Finalizer::Finalizer(dyn::Node* node_dynamic){
 Finalizer::~Finalizer(){}
 
 //Main function
-void Finalizer::start_thread(dyn::base::Sensor* sensor){
-  //---------------------------
-
-  this->wait_thread();
-  auto task_function = [this, sensor](){
-    this->thread_function(sensor);
-  };
-  this->thread_idle = false;
-  thread_pool->add_task(task_function);
-
-  //---------------------------
-}
-void Finalizer::thread_function(dyn::base::Sensor* sensor){
+void Finalizer::thread_task(){
   prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::finalizer");
   //---------------------------
 
@@ -57,15 +45,6 @@ void Finalizer::thread_function(dyn::base::Sensor* sensor){
 
   //---------------------------
   this->thread_idle = true;
-}
-void Finalizer::wait_thread(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-  //---------------------------
 }
 
 //Subfunction
