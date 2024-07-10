@@ -8,9 +8,12 @@ namespace vk::presentation{class Swapchain;}
 namespace vk::presentation{class Surface;}
 namespace vk{class Structure;}
 namespace vk::synchro::structure{class Fence;}
+namespace vk::synchro::structure{class Semaphore;}
 namespace vk::window{class GLFW;}
 namespace vk::structure{class Command;}
 namespace vk::command::structure{class Set;}
+namespace vk::draw{class Graphical;}
+namespace vk::synchro{class Semaphore;}
 
 
 namespace vk::queue::presentation{
@@ -24,11 +27,11 @@ public:
 
 public:
   //Main function
-  void process_command(vk::command::structure::Set* set);
+  void process_command();
 
   //Subfunction
-  void submit_rendering(vk::command::structure::Set* set);
-  void submit_presentation(VkSemaphore& semaphore);
+  void submit_rendering(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore* semaphore);
+  void submit_presentation(vk::synchro::structure::Semaphore* semaphore);
   void next_frame_ID();
 
 private:
@@ -36,6 +39,8 @@ private:
   vk::presentation::Surface* vk_surface;
   vk::presentation::Swapchain* vk_swapchain;
   vk::window::GLFW* vk_window;
+  vk::draw::Graphical* vk_drawer;
+  vk::synchro::Semaphore* vk_semaphore;
 };
 
 }

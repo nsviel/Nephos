@@ -16,12 +16,6 @@ Interface::Interface(vk::Structure* vk_struct){
 Interface::~Interface(){}
 
 //Main function
-void Interface::fill_profiler_info(){
-  //---------------------------
-
-
-  //---------------------------
-}
 std::string Interface::get_gpu_name(){
   return vk_struct->device.physical_device.name;
 }

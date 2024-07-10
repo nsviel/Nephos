@@ -23,13 +23,13 @@ public:
   void thread_loop();
 
   //Subfunction
-  void add_command(vk::command::structure::Set* set);
+  void add_command();
 
 private:
   vk::Structure* vk_struct;
   vk::queue::presentation::Submission* vk_submission;
 
-  std::queue<vk::command::structure::Set*> queue;
+  std::queue<bool> queue;
 };
 
 }

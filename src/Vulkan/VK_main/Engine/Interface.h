@@ -20,7 +20,6 @@ public:
 
 public:
   //Main function
-  void fill_profiler_info();
   std::string get_gpu_name();
   glm::vec4* get_color_background();
   bool is_gpu_discrete();

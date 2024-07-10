@@ -36,18 +36,18 @@ void Thread::thread_loop(){
   if(!thread_running) return;
 
   //Submit command
-  vk_submission->process_command(queue.front());
+  vk_submission->process_command();
   queue.pop();
 
   //---------------------------
 }
 
 //Subfunction
-void Thread::add_command(vk::command::structure::Set* set){
+void Thread::add_command(){
   //---------------------------
 
   mutex.lock();
-  queue.push(set);
+  queue.push(true);
   mutex.unlock();
   cv.notify_one();
 

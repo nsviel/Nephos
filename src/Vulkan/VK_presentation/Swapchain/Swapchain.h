@@ -7,6 +7,7 @@ namespace vk::draw{class Viewport;}
 namespace vk::presentation{class Frame;}
 namespace vk::renderpass{class Framebuffer;}
 namespace vk::presentation{class Surface;}
+namespace vk::synchro::structure{class Semaphore;}
 namespace vk{class Structure;}
 namespace vk::synchro{class Synchro;}
 namespace vk::window{class GLFW;}
@@ -31,10 +32,10 @@ public:
   void recreate_swapchain();
   void retrieve_swapchain_image();
   void create_swapchain_handle();
-  bool acquire_next_image(VkSemaphore& semaphore);
   void find_swapchain_max_nb_image();
   void find_swapchain_surface_format();
   void find_swapchain_presentation_mode();
+  bool acquire_next_image(vk::synchro::structure::Semaphore* semaphore);
 
 private:
   vk::Structure* vk_struct;
