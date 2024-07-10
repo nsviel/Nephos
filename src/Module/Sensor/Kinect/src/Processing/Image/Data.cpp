@@ -12,10 +12,12 @@ namespace k4n::processing::image{
 Data::Data(k4n::Node* node_k4n){
   //---------------------------
 
-  this->k4n_transformation = new k4n::processing::image::Transformation(node_k4n);
+  this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_color = new k4n::processing::image::Color(node_k4n);
   this->k4n_depth = new k4n::processing::image::Depth(node_k4n);
   this->k4n_ir = new k4n::processing::image::Infrared(node_k4n);
+  this->k4n_depth_to_color = new k4n::processing::image::Depth_to_color();
+  this->k4n_color_to_depth = new k4n::processing::image::Color_to_depth();
 
   //---------------------------
 }
@@ -60,7 +62,16 @@ void Data::make_transformation(k4n::base::Sensor* sensor){
   //---------------------------
 
   tasker->task_begin("transformation");
-  k4n_transformation->make_transformation(sensor);
+  switch(k4n_struct->config.depth.transformation_mode){
+    case k4n::depth::DEPTH_TO_COLOR:{
+      k4n_depth_to_color->make_transformation(sensor);
+      break;
+    }
+    case k4n::depth::COLOR_TO_DEPTH:{
+      k4n_color_to_depth->make_transformation(sensor);
+      break;
+    }
+  }
   tasker->task_end("transformation");
 
   //---------------------------
