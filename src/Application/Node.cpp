@@ -4,6 +4,7 @@
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Module/Node.h>
 #include <Utility/Namespace.h>
 
 
@@ -15,6 +16,7 @@ Node::Node(){
 
   this->node_vulkan = new vk::Node(&running);
   this->node_engine = new eng::Node(this);
+  //this->node_module = new mod::Node(this);
   this->node_scene = new sce::Node(this);
   this->node_gui = new gui::Node(this);
 

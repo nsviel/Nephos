@@ -4,6 +4,7 @@ namespace vk{class Node;}
 namespace eng{class Node;}
 namespace gui{class Node;}
 namespace sce{class Node;}
+namespace mod{class Node;}
 
 
 namespace app{
@@ -34,6 +35,7 @@ private:
   eng::Node* node_engine;
   gui::Node* node_gui;
   sce::Node* node_scene;
+  mod::Node* node_module;
 
   bool running = true;
 };
