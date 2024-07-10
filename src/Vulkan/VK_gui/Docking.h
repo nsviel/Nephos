@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gui::interface{
+namespace vk::gui{
 
 class Docking
 {

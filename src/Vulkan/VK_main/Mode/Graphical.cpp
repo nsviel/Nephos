@@ -44,9 +44,7 @@ void Graphical::init(){
 void Graphical::loop(){
   //---------------------------
 
-  vk_semaphore->reset_pool();
   vk_drawer->draw_frame();
-
   vk_profiler->reset();
 
   //---------------------------

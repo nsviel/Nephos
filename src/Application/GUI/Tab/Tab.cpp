@@ -5,6 +5,7 @@
 #include <GUI/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace gui{
@@ -74,9 +75,9 @@ void Tab::draw_tab(){
 
   //Draw selected tab panels
   if(active_tab == "Engine"){
-    node_scene->gui();
+    //node_scene->gui();
     node_engine->gui();
-    eng_menu->draw();
+    //eng_menu->draw();
   }
   else if(active_tab == "Dev"){
     dev_menu->draw();

@@ -1,11 +1,10 @@
 #include "Docking.h"
 
-#include <GUI/Namespace.h>
 #include <imgui/core/imgui.h>
 #include <iostream>
 
 
-namespace gui::interface{
+namespace vk::gui{
 
 //Constructor / Destructor
 Docking::Docking(){

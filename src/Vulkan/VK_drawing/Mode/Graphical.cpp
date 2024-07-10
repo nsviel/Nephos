@@ -40,7 +40,10 @@ void Graphical::draw_frame(){
   this->copy_to_swapchain(vec_command, semaphore);
   this->submit_presentation(vec_command, semaphore);*/
 
-  vk_struct->queue.presentation->add_command();
+  //vk_struct->queue.presentation->add_command();
+
+  vk::queue::presentation::Submission subission(vk_struct);
+  subission.process_command();
 
   //---------------------------
 }

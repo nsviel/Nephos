@@ -40,7 +40,8 @@ void Submission::process_command(){
   this->submit_rendering(vec_command, &semaphore);
   this->submit_presentation(&semaphore);
   this->next_frame_ID();
-
+  vk_semaphore->reset_pool();
+  
   //---------------------------
 }
 
