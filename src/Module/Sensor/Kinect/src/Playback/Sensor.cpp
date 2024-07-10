@@ -104,7 +104,6 @@ k4a::capture* Sensor::manage_new_capture(){
   return capture;
 }
 void Sensor::manage_old_capture(k4a::capture* capture){
-  static std::queue<k4a::capture*> capture_queue;
   //---------------------------
 
   // Add the new capture to the queue
