@@ -25,7 +25,7 @@ Task::~Task(){
 //Main function
 void Task::start_task(){
   //---------------------------
-
+sayHello();
   this->wait_task();
 
   {
