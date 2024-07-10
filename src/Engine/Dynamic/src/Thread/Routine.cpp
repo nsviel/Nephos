@@ -1,4 +1,4 @@
-#include "Task.h"
+#include "Routine.h"
 
 #include <Dynamic/Namespace.h>
 
@@ -6,16 +6,16 @@
 namespace dyn::thread{
 
 //Constructor / Destructor
-Task::Task(){
+Routine::Routine(){
   //---------------------------
 
 
   //---------------------------
 }
-Task::~Task(){}
+Routine::~Routine(){}
 
 //Main function
-void Task::start_task(dyn::base::Sensor* sensor){
+void Routine::start_task(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->sensor = sensor;
@@ -28,7 +28,7 @@ void Task::start_task(dyn::base::Sensor* sensor){
 
     // Thread is already running, do nothing
     if (thread.joinable()) return;
-    this->thread = std::thread(&Task::loop_task, this);
+    this->thread = std::thread(&Routine::loop_task, this);
   }
 
   //---------------------------

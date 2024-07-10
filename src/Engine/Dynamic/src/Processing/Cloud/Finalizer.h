@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Dynamic/src/Thread/Task.h>
+#include <Dynamic/src/Thread/Routine.h>
 
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
@@ -12,7 +12,7 @@ namespace ope::color{class Colorizer;}
 
 namespace dyn::cloud{
 
-class Finalizer : public dyn::thread::Task
+class Finalizer : public dyn::thread::Routine
 {
 public:
   //Constructor / Destructor

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Element/Thread/Task.h>
+#include <Utility/Element/Thread/Routine.h>
 #include <condition_variable>
 #include <vector>
 #include <functional>
@@ -20,11 +20,11 @@ public:
   void wait();
 
   //Subfunction
-  void add_task(std::unique_ptr<utl::thread::Task> task);
-  bool remove_task(utl::thread::Task* task);
+  void add_task(std::unique_ptr<utl::thread::Routine> task);
+  bool remove_task(utl::thread::Routine* task);
 
 private:
-  std::vector<std::unique_ptr<utl::thread::Task>> tasks;
+  std::vector<std::unique_ptr<utl::thread::Routine>> tasks;
   std::mutex mutex;
 };
 

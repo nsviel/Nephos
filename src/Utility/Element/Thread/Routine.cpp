@@ -1,4 +1,4 @@
-#include "Task.h"
+#include "Routine.h"
 
 #include <Utility/Namespace.h>
 
@@ -6,7 +6,7 @@
 namespace utl::thread {
 
 //Constructor / Destructor
-Task::Task(){
+Routine::Routine(){
   //---------------------------
 
   this->run = false;
@@ -14,7 +14,7 @@ Task::Task(){
 
   //---------------------------
 }
-Task::~Task(){
+Routine::~Routine(){
   //---------------------------
 
   this->stop_task();
@@ -23,7 +23,7 @@ Task::~Task(){
 }
 
 //Main function
-void Task::start_task(){
+void Routine::start_task(){
   //---------------------------
 
   this->wait_task();
@@ -35,12 +35,12 @@ void Task::start_task(){
 
     // Thread is already running, do nothing
     if (thread.joinable()) return;
-    this->thread = std::thread(&Task::loop_task, this);
+    this->thread = std::thread(&Routine::loop_task, this);
   }
 
   //---------------------------
 }
-void Task::stop_task(){
+void Routine::stop_task(){
   //---------------------------
 
   {
@@ -56,7 +56,7 @@ void Task::stop_task(){
 
   //---------------------------
 }
-void Task::wait_task(){
+void Routine::wait_task(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mtx);
@@ -66,7 +66,7 @@ void Task::wait_task(){
 }
 
 //Subfunction
-void Task::loop_task(){
+void Routine::loop_task(){
   //---------------------------
 
   while(true){

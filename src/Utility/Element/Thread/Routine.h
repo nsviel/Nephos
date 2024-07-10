@@ -10,10 +10,10 @@
 
 namespace utl::thread {
 
-class Task {
+class Routine {
 public:
-  Task();
-  ~Task();
+  Routine();
+  ~Routine();
 
 public:
   //Main function

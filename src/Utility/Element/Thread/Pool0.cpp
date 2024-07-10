@@ -40,7 +40,7 @@ void Pool0::wait(){
 }
 
 //Subfunction
-void Pool0::add_task(std::unique_ptr<utl::thread::Task> task){
+void Pool0::add_task(std::unique_ptr<utl::thread::Routine> task){
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mutex);
@@ -48,11 +48,11 @@ void Pool0::add_task(std::unique_ptr<utl::thread::Task> task){
 
   //---------------------------
 }
-bool Pool0::remove_task(utl::thread::Task* task){
+bool Pool0::remove_task(utl::thread::Routine* task){
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mutex);
-  auto it = std::remove_if(tasks.begin(), tasks.end(), [task](const std::unique_ptr<utl::thread::Task>& t){ return t.get() == task; });
+  auto it = std::remove_if(tasks.begin(), tasks.end(), [task](const std::unique_ptr<utl::thread::Routine>& t){ return t.get() == task; });
   if(it != tasks.end()){
     (*it)->stop_task();
     tasks.erase(it, tasks.end());
