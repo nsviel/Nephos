@@ -12,18 +12,16 @@ namespace ope::color{class Colorizer;}
 
 namespace dyn::cloud{
 
-class Finalizer : public dyn::thread::Task
+class Finalizer_test : public dyn::thread::Task
 {
 public:
   //Constructor / Destructor
-  Finalizer(dyn::Node* node_dynamic);
-  ~Finalizer();
+  Finalizer_test(dyn::Node* node_dynamic);
+  ~Finalizer_test();
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor);
-  void run_thread(dyn::base::Sensor* sensor);
-  void wait_thread();
+  void thread_task();
 
   //Subfunction
   void colorize_object(dyn::base::Sensor* sensor);
