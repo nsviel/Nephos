@@ -64,8 +64,7 @@ void Imgui::loop(){
   //---------------------------
 
   this->glfw_new_frame();
-  this->new_frame();
-  
+
   //---------------------------
 }
 

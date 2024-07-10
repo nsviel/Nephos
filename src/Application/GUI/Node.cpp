@@ -52,10 +52,9 @@ void Node::loop(){
 
   tasker->task_begin("gui::loop");
 
-  //A virer dans thread presentation ou pas
-  //gui_state->loop();
-
-
+  gui_state->loop();
+  ImGui::NewFrame();
+  gui_docking->loop();
   gui_tab->loop();
   gui_demo->loop();
 

@@ -55,14 +55,15 @@ void Node::loop(){
 
   node_profiler->loop();
   tasker->task_begin("eng::loop");
-
   node_data->loop();
-  node_loader->loop();
   node_camera->loop();
   node_dynamic->loop();
   node_radio->loop();
-
   tasker->task_end("eng::loop");
+
+  tasker->task_begin("eng::vulkan");
+  node_vulkan->loop();
+  tasker->task_end("eng::vulkan");
 
   //---------------------------
 }
