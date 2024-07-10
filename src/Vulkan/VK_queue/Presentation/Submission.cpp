@@ -25,7 +25,7 @@ Submission::~Submission(){}
 //Main function
 void Submission::process_command(){
   //---------------------------
-say("----");
+
   //Init
   std::vector<vk::structure::Command*> vec_command;
   vk::synchro::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
@@ -33,11 +33,11 @@ say("----");
   //Acquiere image
   bool sucess = vk_swapchain->acquire_next_image(&semaphore);
   if(!sucess) return;
-sayHello();
+
   //Rendering
   vk_drawer->record_renderpass(vec_command, semaphore);
   vk_drawer->copy_to_swapchain(vec_command, semaphore);
-sayHello();
+
   //Submission
   this->submit_rendering(vec_command, &semaphore);
   this->submit_presentation(&semaphore);
@@ -52,10 +52,6 @@ sayHello();
 void Submission::submit_rendering(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore* semaphore){
   //---------------------------
 
-  if(vk_window->is_window_resized()){
-    vk_swapchain->recreate_swapchain();
-    return;
-  }
   vk::command::structure::Set* set = new vk::command::structure::Set();
   set->vec_command = vec_command;
   set->semaphore = semaphore->handle;

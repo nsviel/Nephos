@@ -19,7 +19,8 @@ Swapchain::Swapchain(vk::Structure* vk_struct){
   this->vk_synchro = new vk::synchro::Synchro(vk_struct);
   this->vk_window = new vk::window::GLFW(vk_struct);
   this->vk_imgui = new vk::gui::Imgui(vk_struct);
-
+  this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
+  
   //---------------------------
 }
 Swapchain::~Swapchain(){}
@@ -69,6 +70,8 @@ void Swapchain::recreate_swapchain(){
   vk_framebuffer->create_framebuffers();
   vk_synchro->end_idle();
   vk_imgui->update_render_descriptor();
+  vk_semaphore->reset_pool();  this->vk_semaphore = new vk::synchro::Semaphore(vk_struct);
+  
 
   //---------------------------
 }

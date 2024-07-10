@@ -44,10 +44,10 @@ void Imgui::draw(vk::structure::Command_buffer* command_buffer){
   if(vk_window->is_window_resized()) return;
 
   ImGui::Render();
-  ImDrawData* draw = ImGui::GetDrawData();
-  if(draw == nullptr) return;
+  vk_struct->gui.draw = ImGui::GetDrawData();
+  if(vk_struct->gui.draw == nullptr) return;
 
-  ImGui_ImplVulkan_RenderDrawData(draw, command_buffer->handle);
+  ImGui_ImplVulkan_RenderDrawData(vk_struct->gui.draw, command_buffer->handle);
 
   //---------------------------
 }

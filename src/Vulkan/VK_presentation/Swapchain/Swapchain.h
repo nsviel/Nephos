@@ -12,6 +12,7 @@ namespace vk{class Structure;}
 namespace vk::synchro{class Synchro;}
 namespace vk::window{class GLFW;}
 namespace vk::gui{class Imgui;}
+namespace vk::synchro{class Semaphore;}
 
 
 namespace vk::presentation{
@@ -47,6 +48,7 @@ private:
   vk::synchro::Synchro* vk_synchro;
   vk::window::GLFW* vk_window;
   vk::gui::Imgui* vk_imgui;
+  vk::synchro::Semaphore* vk_semaphore;
 };
 
 }

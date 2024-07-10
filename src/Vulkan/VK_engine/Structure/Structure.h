@@ -10,6 +10,7 @@
 #include <Vulkan/VK_instance/Structure/Instance.h>
 #include <Vulkan/VK_presentation/Structure/Swapchain.h>
 #include <Vulkan/VK_pool/Structure/Pool.h>
+#include <Vulkan/VK_gui/Structure/Structure.h>
 
 
 namespace vk{
@@ -35,6 +36,7 @@ struct Structure{
   vk::structure::Command command;
   vk::profiler::Structure profiler;
   vk::queue::structure::Class queue;
+  vk::gui::Structure gui;
 
   //---------------------------
 };
