@@ -5,17 +5,7 @@
 
 namespace k4n::processing::image{
 
-struct Vec2Hash {
-  std::size_t operator()(const glm::ivec2& vec) const {
-    // Combine hash of x and y using a simple hash function
-    return std::hash<int>()(vec.x) ^ (std::hash<int>()(vec.y) << 1);
-  }
-};
-struct Vec2Equal {
-  bool operator()(const glm::ivec2& a, const glm::ivec2& b) const {
-    return a.x == b.x && a.y == b.y;
-  }
-};
+
 
 //Constructor / Destructor
 Table_xy::Table_xy(k4n::Node* node_k4n){
@@ -30,22 +20,24 @@ Table_xy::~Table_xy(){}
 //Main function
 void Table_xy::thread_function(){
   if(sensor == nullptr) return;
+  if(k4n_struct->transformation.table_xy.size() != 0) return;
   //---------------------------
 
   if(k4n::base::Sensor* k4n_sensor = dynamic_cast<k4n::base::Sensor*>(sensor)){
-    this->table_color_to_depth(k4n_sensor);
+    cmap map_xy;
+    this->table_color_to_depth(k4n_sensor, map_xy);
+    this->convert_table_to_glm(k4n_sensor, map_xy);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Table_xy::table_color_to_depth(k4n::base::Sensor* sensor){
+void Table_xy::table_color_to_depth(k4n::base::Sensor* sensor, cmap& map_xy){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 
   // Iterate through each pixel coordinate in the color image
-  std::unordered_map<glm::ivec2, glm::ivec2, Vec2Hash, Vec2Equal> map_xy;
   for(int y=0; y<sensor->color.data.height; y++){
     for(int x=0; x<sensor->color.data.width; x++){
       // Convert color coordinate to depth coordinate
@@ -63,10 +55,8 @@ void Table_xy::table_color_to_depth(k4n::base::Sensor* sensor){
 
   //---------------------------
 }
-void Table_xy::convert_table_to_glm(k4n::base::Sensor* sensor){
+void Table_xy::convert_table_to_glm(k4n::base::Sensor* sensor, cmap& map_xy){
   //---------------------------
-
-  std::unordered_map<glm::ivec2, glm::ivec2, Vec2Hash, Vec2Equal> map_xy;
 
   std::vector<glm::ivec4>& table_xy = k4n_struct->transformation.table_xy;
   for(int y=0; y<sensor->color.data.height; y++){
