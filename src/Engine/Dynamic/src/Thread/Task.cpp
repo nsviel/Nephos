@@ -1,4 +1,4 @@
-#include "Routine.h"
+#include "Task.h"
 
 #include <Dynamic/Namespace.h>
 
@@ -6,23 +6,23 @@
 namespace dyn::thread{
 
 //Constructor / Destructor
-Routine::Routine(){
+Task::Task(){
   //---------------------------
 
 
   //---------------------------
 }
-Routine::~Routine(){}
+
+Task::~Task(){}
 
 //Main function
-void Routine::start_task(dyn::base::Sensor* sensor){
+void Task::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   this->sensor = sensor;
-  this->run_task();
-  
+  this->run_thread();
+
   //---------------------------
 }
-
 
 }

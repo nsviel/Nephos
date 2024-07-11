@@ -13,14 +13,17 @@ public:
   Task();
   virtual ~Task();
 
-  void start_thread();
+public:
+  //Main function
+  virtual void start_thread();
   void wait_thread();
-
-protected:
-  virtual void thread_function(){}
 
 private:
   void loop_thread();
+
+protected:
+  void run_thread();
+  virtual void thread_function(){}
 
   std::thread thread;
   std::mutex mtx;

@@ -26,17 +26,7 @@ Routine::~Routine(){
 void Routine::start_task(){
   //---------------------------
 
-  this->wait_task();
-
-  {
-    std::lock_guard<std::mutex> lock(mtx);
-    this->run = true;
-    cv.notify_all();
-
-    // Thread is already running, do nothing
-    if (thread.joinable()) return;
-    this->thread = std::thread(&Routine::loop_task, this);
-  }
+  this->run_task();
 
   //---------------------------
 }
@@ -66,6 +56,23 @@ void Routine::wait_task(){
 }
 
 //Subfunction
+void Routine::run_task(){
+  //---------------------------
+
+  this->wait_task();
+
+  {
+    std::lock_guard<std::mutex> lock(mtx);
+    this->run = true;
+    cv.notify_all();
+
+    // Thread is already running, do nothing
+    if (thread.joinable()) return;
+    this->thread = std::thread(&Routine::loop_task, this);
+  }
+
+  //---------------------------
+}
 void Routine::loop_task(){
   //---------------------------
 

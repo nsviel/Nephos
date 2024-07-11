@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Dynamic/src/Thread/Task.h>
+
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::base{class Sensor;}
@@ -7,7 +9,7 @@ namespace k4n::base{class Sensor;}
 
 namespace k4n::processing::image{
 
-class Table_xy
+class Table_xy : public dyn::thread::Task
 {
 public:
   //Constructor / Destructor
@@ -16,7 +18,10 @@ public:
 
 public:
   //Main function
-  void find_color_to_depth_table(k4n::base::Sensor* sensor);
+  void thread_function();
+
+  //Subfunction
+  void table_color_to_depth(k4n::base::Sensor* sensor);
 
 private:
   k4n::Structure* k4n_struct;

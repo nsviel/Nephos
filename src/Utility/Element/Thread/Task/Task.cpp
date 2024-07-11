@@ -3,6 +3,7 @@
 
 namespace utl::thread{
 
+//Constructor / Destructor
 Task::Task(){
   //---------------------------
 
@@ -10,7 +11,6 @@ Task::Task(){
 
   //---------------------------
 }
-
 Task::~Task(){
   //---------------------------
 
@@ -19,7 +19,28 @@ Task::~Task(){
   //---------------------------
 }
 
+//Mainfunction
 void Task::start_thread(){
+  //---------------------------
+
+  this->run_thread();
+
+  //---------------------------
+}
+void Task::wait_thread(){
+  //---------------------------
+
+  std::unique_lock<std::mutex> lock(mtx);
+  cv.wait(lock, [this] {return done.load();});
+  if (thread.joinable()) {
+    thread.join();
+  }
+
+  //---------------------------
+}
+
+//Subfunction
+void Task::run_thread(){
   //---------------------------
 
   {
@@ -33,19 +54,6 @@ void Task::start_thread(){
 
   //---------------------------
 }
-
-void Task::wait_thread(){
-  //---------------------------
-
-  std::unique_lock<std::mutex> lock(mtx);
-  cv.wait(lock, [this] {return done.load();});
-  if (thread.joinable()) {
-    thread.join();
-  }
-
-  //---------------------------
-}
-
 void Task::loop_thread(){
   //---------------------------
 

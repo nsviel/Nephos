@@ -23,11 +23,13 @@ public:
 
   inline bool is_done(){return run;}
 
-protected:
+private:
   void loop_task();
-  virtual void thread_task(){}
 
 protected:
+  void run_task();
+  virtual void thread_task(){}
+
   std::thread thread;
   std::mutex mtx;
   std::condition_variable cv;

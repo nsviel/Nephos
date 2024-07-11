@@ -5,6 +5,18 @@
 
 namespace k4n::processing::image{
 
+struct Vec2Hash {
+  std::size_t operator()(const glm::ivec2& vec) const {
+    // Combine hash of x and y using a simple hash function
+    return std::hash<int>()(vec.x) ^ (std::hash<int>()(vec.y) << 1);
+  }
+};
+struct Vec2Equal {
+  bool operator()(const glm::ivec2& a, const glm::ivec2& b) const {
+    return a.x == b.x && a.y == b.y;
+  }
+};
+
 //Constructor / Destructor
 Table_xy::Table_xy(k4n::Node* node_k4n){
   //---------------------------
@@ -16,18 +28,19 @@ Table_xy::Table_xy(k4n::Node* node_k4n){
 Table_xy::~Table_xy(){}
 
 //Main function
-struct Vec2Hash {
-    std::size_t operator()(const glm::ivec2& vec) const {
-        // Combine hash of x and y using a simple hash function
-        return std::hash<int>()(vec.x) ^ (std::hash<int>()(vec.y) << 1);
-    }
-};
-struct Vec2Equal {
-    bool operator()(const glm::ivec2& a, const glm::ivec2& b) const {
-        return a.x == b.x && a.y == b.y;
-    }
-};
-void Table_xy::find_color_to_depth_table(k4n::base::Sensor* sensor){
+void Table_xy::thread_function(){
+  if(sensor == nullptr) return;
+  //---------------------------
+
+  if(k4n::base::Sensor* k4n_sensor = dynamic_cast<k4n::base::Sensor*>(sensor)){
+    this->table_color_to_depth(k4n_sensor);
+  }
+  
+  //---------------------------
+}
+
+//Subfunction
+void Table_xy::table_color_to_depth(k4n::base::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 
