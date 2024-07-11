@@ -7,7 +7,7 @@ namespace eng{class Node;}
 namespace ldr{class Node;}
 namespace dyn{class Node;}
 namespace dat{class Graph;}
-namespace utl::thread{class Pool;}
+namespace utl::thread::task{class Pool;}
 namespace k4n::capture{class Connection;}
 namespace k4n{class Structure;}
 
@@ -41,7 +41,7 @@ private:
   dyn::Node* node_dynamic;
 
   //Child
-  utl::thread::Pool* thread_pool;
+  utl::thread::task::Pool* thread_pool;
   k4n::capture::Connection* k4n_connection;
   k4n::Structure* k4n_structure;
 };

@@ -5,7 +5,7 @@
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace dyn::base{class Sensor;}
-namespace utl::thread{class Pool;}
+namespace utl::thread::task{class Pool;}
 namespace utl::media{class Image;}
 namespace rad::correction{class Glyph;}
 namespace rad::correction::image{class Hough;}
@@ -32,7 +32,7 @@ public:
   void make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image, utl::media::Image* output);
 
 private:
-  utl::thread::Pool* thread_pool;
+  utl::thread::task::Pool* thread_pool;
   rad::correction::Structure* rad_struct;
   rad::correction::Glyph* rad_glyph;
   rad::correction::image::Hough* rad_hough;

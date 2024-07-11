@@ -13,7 +13,7 @@ namespace dyn::base{class Sensor;}
 namespace ope::image{class Converter;}
 namespace ope::normal{class Structured;}
 namespace ope::attribut{class Location;}
-namespace utl::thread{class Pool;}
+namespace utl::thread::task{class Pool;}
 
 
 namespace dyn::cloud{
@@ -42,7 +42,7 @@ private:
   ope::normal::Structured* ope_normal;
   ope::image::Converter* ope_converter;
   ope::attribut::Location* ope_location;
-  utl::thread::Pool* thread_pool;
+  utl::thread::task::Pool* thread_pool;
 
   std::thread thread;
   bool thread_idle = true;

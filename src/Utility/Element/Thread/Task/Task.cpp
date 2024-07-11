@@ -6,7 +6,6 @@ namespace utl::thread{
 Task::Task(){
   //---------------------------
 
-  this->run = false;
   this->done = false;
 
   //---------------------------
@@ -39,7 +38,7 @@ void Task::wait_thread(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mtx);
-  cv.wait(lock, [this] { return done; });
+  cv.wait(lock, [this] {return done.load();});
   if (thread.joinable()) {
     thread.join();
   }

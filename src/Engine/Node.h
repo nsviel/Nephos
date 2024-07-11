@@ -12,7 +12,7 @@ namespace dyn{class Node;}
 namespace prf{class Node;}
 namespace rad{class Node;}
 namespace prf::dynamic{class Tasker;}
-namespace utl::thread{class Pool;}
+namespace utl::thread::task{class Pool;}
 
 
 namespace eng{
@@ -40,7 +40,7 @@ public:
   inline ldr::Node* get_node_loader(){return node_loader;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline rad::Node* get_node_radio(){return node_radio;}
-  inline utl::thread::Pool* get_thread_pool(){return thread_pool;}
+  inline utl::thread::task::Pool* get_thread_pool(){return thread_pool;}
   inline prf::dynamic::Tasker* get_tasker_cpu(){return tasker;}
 
 private:
@@ -54,7 +54,7 @@ private:
   prf::Node* node_profiler = nullptr;
   dyn::Node* node_dynamic = nullptr;
   prf::dynamic::Tasker* tasker;
-  utl::thread::Pool* thread_pool;
+  utl::thread::task::Pool* thread_pool;
 };
 
 }

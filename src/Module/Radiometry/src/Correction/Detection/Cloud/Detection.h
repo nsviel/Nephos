@@ -9,7 +9,7 @@ namespace rad::correction{class Glyph;}
 namespace rad::correction::cloud{class Ransac;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
-namespace utl::thread{class Pool;}
+namespace utl::thread::task{class Pool;}
 
 
 namespace rad::correction::cloud{
@@ -31,7 +31,7 @@ public:
   void validate_bbox(dyn::base::Sensor* sensor);
 
 private:
-  utl::thread::Pool* thread_pool;
+  utl::thread::task::Pool* thread_pool;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
   rad::correction::Glyph* rad_glyph;

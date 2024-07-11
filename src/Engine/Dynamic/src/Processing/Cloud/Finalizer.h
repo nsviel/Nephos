@@ -6,7 +6,7 @@ namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace dat::element{class Entity;}
-namespace utl::thread{class Pool;}
+namespace utl::thread::task{class Pool;}
 namespace ope::color{class Colorizer;}
 
 
@@ -31,7 +31,7 @@ private:
   dyn::Structure* dyn_struct;
   dat::element::Entity* dat_entity;
   ope::color::Colorizer* ope_colorizer;
-  utl::thread::Pool* thread_pool;
+  utl::thread::task::Pool* thread_pool;
 
   bool thread_idle = true;
 };
