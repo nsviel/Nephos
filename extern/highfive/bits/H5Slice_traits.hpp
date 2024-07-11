@@ -95,7 +95,7 @@ struct RegularHyperSlab {
         auto n_dims = rank();
         auto dims = std::vector<size_t>(n_dims, 0);
 
-        for (size_t i = 0; i < n_dims; ++i) {
+        for(size_t i = 0; i < n_dims; ++i) {
             dims[i] = count[i] * (block.empty() ? 1 : block[i]);
         }
 
@@ -163,7 +163,7 @@ class HyperSlab {
 
     DataSpace apply(const DataSpace& space_) const {
         auto space = space_.clone();
-        for (const auto& sel: selects) {
+        for(const auto& sel: selects) {
             if (sel.op == Op::None) {
                 detail::h5s_select_none(space.getId());
             } else {

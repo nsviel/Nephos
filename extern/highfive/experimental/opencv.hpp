@@ -23,7 +23,7 @@ struct inspector<cv::Mat_<T>> {
         // could be padded. The steps/strides are in bytes.
         int rank = type.dims;
         size_t ld = sizeof(T);
-        for (int i = rank - 1; i >= 0; --i) {
+        for(int i = rank - 1; i >= 0; --i) {
             if (static_cast<size_t>(type.step[i]) != ld) {
                 throw DataSetException("Padded cv::Mat_ are not supported.");
             }
@@ -76,7 +76,7 @@ struct inspector<cv::Mat_<T>> {
             return dims;
         }
 
-        for (size_t i = 0; i < local_rank; ++i) {
+        for(size_t i = 0; i < local_rank; ++i) {
             dims[i] = static_cast<size_t>(val.size[static_cast<int>(i)]);
         }
 
@@ -126,7 +126,7 @@ struct inspector<cv::Mat_<T>> {
         auto local_rank = val.dims;
         auto subdims = std::vector<size_t>(dims.begin() + local_rank, dims.end());
         auto subsize = compute_total_size(subdims);
-        for (auto it = val.begin(); it != val.end(); ++it) {
+        for(auto it = val.begin(); it != val.end(); ++it) {
             inspector<value_type>::serialize(*it, subdims, m);
             m += subsize;
         }
@@ -138,7 +138,7 @@ struct inspector<cv::Mat_<T>> {
         auto local_rank = val.dims;
         auto subdims = std::vector<size_t>(dims.begin() + local_rank, dims.end());
         auto subsize = compute_total_size(subdims);
-        for (auto it = val.begin(); it != val.end(); ++it) {
+        for(auto it = val.begin(); it != val.end(); ++it) {
             inspector<value_type>::unserialize(vec_align, subdims, *it);
             vec_align += subsize;
         }

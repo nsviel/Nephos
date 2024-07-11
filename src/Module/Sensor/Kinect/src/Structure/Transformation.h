@@ -2,6 +2,8 @@
 
 #include <Kinect/src/Structure/Data.h>
 #include <k4a/k4a.hpp>
+#include <glm/glm.hpp>
+#include <vector>
 
 
 namespace k4n::transformation{
@@ -17,7 +19,7 @@ struct Structure{
   int mode = k4n::transformation::COLOR_TO_DEPTH;
 
   //Color to depth coordinate mapping
-  glm::ivec4 table_xy;
+  std::vector<glm::ivec4> table_xy;
 
   //---------------------------
 };

@@ -39,7 +39,7 @@ struct io_impl: public default_io_impl<T> {
                     path,
                     "H5Easy::dump: Dimension of the index and the existing field do not match");
             }
-            for (size_t i = 0; i < dims.size(); ++i) {
+            for(size_t i = 0; i < dims.size(); ++i) {
                 shape[i] = std::max(dims[i], idx[i] + 1);
             }
             if (shape != dims) {
@@ -62,7 +62,7 @@ struct io_impl: public default_io_impl<T> {
             }
         }
         std::vector<size_t> shape(idx.size());
-        for (size_t i = 0; i < idx.size(); ++i) {
+        for(size_t i = 0; i < idx.size(); ++i) {
             shape[i] = idx[i] + 1;
         }
         DataSpace dataspace = DataSpace(shape, unlim_shape);

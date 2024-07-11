@@ -289,7 +289,7 @@ inline void CompoundType::create(size_t size) {
         size_t current_size = 0, max_atomic_size = 0;
 
         // Do a first pass to find the total size of the compound datatype
-        for (auto& member: members) {
+        for(auto& member: members) {
             size_t member_size = detail::h5t_get_size(member.base_type.getId());
 
             if (member_size == 0) {
@@ -319,7 +319,7 @@ inline void CompoundType::create(size_t size) {
     _hid = detail::h5t_create(H5T_COMPOUND, size);
 
     // Loop over all the members and insert them into the datatype
-    for (const auto& member: members) {
+    for(const auto& member: members) {
         detail::h5t_insert(_hid, member.name.c_str(), member.offset, member.base_type.getId());
     }
 }
@@ -337,7 +337,7 @@ inline void EnumType<T>::create() {
     _hid = detail::h5t_enum_create(AtomicType<typename std::underlying_type<T>::type>{}.getId());
 
     // Loop over all the members and insert them into the datatype
-    for (const auto& member: members) {
+    for(const auto& member: members) {
         detail::h5t_enum_insert(_hid, member.name.c_str(), &(member.value));
     }
 }

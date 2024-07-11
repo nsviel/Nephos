@@ -240,7 +240,7 @@ class CompoundType: public DataType {
         }
         size_t n_members = static_cast<size_t>(detail::h5t_get_nmembers(_hid));
         members.reserve(n_members);
-        for (unsigned i = 0; i < n_members; i++) {
+        for(unsigned i = 0; i < n_members; i++) {
             char* name = detail::h5t_get_member_name(_hid, i);
             size_t offset = detail::h5t_get_member_offset(_hid, i);
             hid_t member_hid = detail::h5t_get_member_type(_hid, i);

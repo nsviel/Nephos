@@ -236,7 +236,7 @@ void Graph::draw_window_background(int nb_row){
   row_count = row_count - nb_row;
 
   // Ensure the table fills the entire height
-  for (int i = 0; i < row_count; i++){
+  for(int i = 0; i < row_count; i++){
     ImGui::TableNextRow();
     ImGui::TableNextColumn();
     ImGui::Text(" ");

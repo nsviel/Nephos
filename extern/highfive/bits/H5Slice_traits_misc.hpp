@@ -61,7 +61,7 @@ inline ElementSet::ElementSet(const std::vector<std::size_t>& element_ids)
     : _ids(element_ids) {}
 
 inline ElementSet::ElementSet(const std::vector<std::vector<std::size_t>>& element_ids) {
-    for (const auto& vec: element_ids) {
+    for(const auto& vec: element_ids) {
         std::copy(vec.begin(), vec.end(), std::back_inserter(_ids));
     }
 }
@@ -107,7 +107,7 @@ inline void build_hyper_slab(HyperSlab& slab,
                              HyperCube& cube,
                              const std::vector<std::array<size_t, 2>>& slices,
                              const Slices&... higher_slices) {
-    for (const auto& slice: slices) {
+    for(const auto& slice: slices) {
         build_hyper_slab(slab, axis, cube, slice, higher_slices...);
     }
 }
@@ -118,7 +118,7 @@ inline void build_hyper_slab(HyperSlab& slab,
                              HyperCube& cube,
                              const std::vector<size_t>& ids,
                              const Slices&... higher_slices) {
-    for (const auto& id: ids) {
+    for(const auto& id: ids) {
         auto slice = std::array<size_t, 2>{id, id + 1};
         build_hyper_slab(slab, axis, cube, slice, higher_slices...);
     }
@@ -186,7 +186,7 @@ inline void compute_squashed_shape(size_t axis,
                                    const std::vector<std::array<size_t, 2>>& slices,
                                    const Slices&... higher_slices) {
     shape[axis] = 0;
-    for (const auto& slice: slices) {
+    for(const auto& slice: slices) {
         shape[axis] += slice[1] - slice[0];
     }
     compute_squashed_shape(axis + 1, shape, higher_slices...);
@@ -263,7 +263,7 @@ inline Selection SliceTraits<Derivate>::select(const std::vector<size_t>& column
     std::vector<size_t> offsets(dims.size(), 0);
 
     HyperSlab slab;
-    for (const auto& column: columns) {
+    for(const auto& column: columns) {
         offsets.back() = column;
         slab |= RegularHyperSlab(offsets, counts);
     }

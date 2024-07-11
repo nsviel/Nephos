@@ -26,7 +26,7 @@ inline std::vector<size_t> squeeze(const std::vector<size_t>& dims,
                                    const std::vector<size_t>& axes) {
     auto n_dims = dims.size();
     auto mask = std::vector<bool>(n_dims, false);
-    for (size_t i = 0; i < axes.size(); ++i) {
+    for(size_t i = 0; i < axes.size(); ++i) {
         if (axes[i] >= n_dims) {
             throw Exception("Out of range: axes[" + std::to_string(i) +
                             "] == " + std::to_string(axes[i]) + " >= " + std::to_string(n_dims));
@@ -36,7 +36,7 @@ inline std::vector<size_t> squeeze(const std::vector<size_t>& dims,
     }
 
     auto squeezed_dims = std::vector<size_t>{};
-    for (size_t i = 0; i < n_dims; ++i) {
+    for(size_t i = 0; i < n_dims; ++i) {
         if (!mask[i]) {
             squeezed_dims.push_back(dims[i]);
         } else {

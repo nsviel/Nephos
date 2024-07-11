@@ -32,13 +32,13 @@ struct inspector<boost::multi_array<T, Dims>> {
     static std::vector<size_t> getDimensions(const type& val) {
         auto rank = getRank(val);
         std::vector<size_t> sizes(rank, 1ul);
-        for (size_t i = 0; i < ndim; ++i) {
+        for(size_t i = 0; i < ndim; ++i) {
             sizes[i] = val.shape()[i];
         }
         if (val.size() != 0) {
             auto s = inspector<value_type>::getDimensions(val.data()[0]);
             sizes.resize(ndim + s.size());
-            for (size_t i = 0; i < s.size(); ++i) {
+            for(size_t i = 0; i < s.size(); ++i) {
                 sizes[ndim + i] = s[i];
             }
         }
@@ -60,7 +60,7 @@ struct inspector<boost::multi_array<T, Dims>> {
                                            dims.begin() + Dims,
                                            std::size_t{1},
                                            std::multiplies<size_t>());
-        for (size_t i = 0; i < size; ++i) {
+        for(size_t i = 0; i < size; ++i) {
             inspector<value_type>::prepare(*(val.origin() + i), next_dims);
         }
     }
@@ -87,7 +87,7 @@ struct inspector<boost::multi_array<T, Dims>> {
         size_t size = val.num_elements();
         auto subdims = std::vector<size_t>(dims.begin() + ndim, dims.end());
         size_t subsize = compute_total_size(subdims);
-        for (size_t i = 0; i < size; ++i) {
+        for(size_t i = 0; i < size; ++i) {
             inspector<value_type>::serialize(*(val.origin() + i), subdims, m + i * subsize);
         }
     }
@@ -97,7 +97,7 @@ struct inspector<boost::multi_array<T, Dims>> {
         assert_c_order(val);
         std::vector<size_t> next_dims(dims.begin() + ndim, dims.end());
         size_t subsize = compute_total_size(next_dims);
-        for (size_t i = 0; i < val.num_elements(); ++i) {
+        for(size_t i = 0; i < val.num_elements(); ++i) {
             inspector<value_type>::unserialize(vec_align + i * subsize,
                                                next_dims,
                                                *(val.origin() + i));
@@ -153,7 +153,7 @@ struct inspector<boost::numeric::ublas::matrix<T>> {
         size_t size = val.size1() * val.size2();
         auto subdims = std::vector<size_t>(dims.begin() + ndim, dims.end());
         size_t subsize = compute_total_size(subdims);
-        for (size_t i = 0; i < size; ++i) {
+        for(size_t i = 0; i < size; ++i) {
             inspector<value_type>::serialize(*(&val(0, 0) + i), subdims, m + i * subsize);
         }
     }
@@ -164,7 +164,7 @@ struct inspector<boost::numeric::ublas::matrix<T>> {
         std::vector<size_t> next_dims(dims.begin() + ndim, dims.end());
         size_t subsize = compute_total_size(next_dims);
         size_t size = val.size1() * val.size2();
-        for (size_t i = 0; i < size; ++i) {
+        for(size_t i = 0; i < size; ++i) {
             inspector<value_type>::unserialize(vec_align + i * subsize,
                                                next_dims,
                                                *(&val(0, 0) + i));

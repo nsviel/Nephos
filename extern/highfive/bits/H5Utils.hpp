@@ -66,7 +66,7 @@ inline std::string format_vector(const Container& container) {
     auto sout = std::stringstream{};
 
     sout << "[ ";
-    for (size_t i = 0; i < container.size(); ++i) {
+    for(size_t i = 0; i < container.size(); ++i) {
         sout << container[i] << (i == container.size() - 1 ? "" : ", ");
     }
     sout << "]";

@@ -48,7 +48,7 @@ struct inspector<std::span<T, Extent>> {
         if (!val.empty()) {
             auto s = inspector<value_type>::getDimensions(val[0]);
             assert(s.size() + ndim == sizes.size());
-            for (size_t i = 0; i < s.size(); ++i) {
+            for(size_t i = 0; i < s.size(); ++i) {
                 sizes[i + ndim] = s[i];
             }
         }
@@ -61,7 +61,7 @@ struct inspector<std::span<T, Extent>> {
             throw DataSpaceException("Mismatching rank.");
         }
 
-        for (size_t i = 0; i < actual_dims.size(); ++i) {
+        for(size_t i = 0; i < actual_dims.size(); ++i) {
             if (actual_dims[i] != expected_dims[i]) {
                 throw DataSpaceException("Mismatching dimensions.");
             }
@@ -81,7 +81,7 @@ struct inspector<std::span<T, Extent>> {
         if (!val.empty()) {
             auto subdims = std::vector<size_t>(dims.begin() + ndim, dims.end());
             size_t subsize = compute_total_size(subdims);
-            for (const auto& e: val) {
+            for(const auto& e: val) {
                 inspector<value_type>::serialize(e, subdims, m);
                 m += subsize;
             }
@@ -92,7 +92,7 @@ struct inspector<std::span<T, Extent>> {
     static void unserialize(const It& vec_align, const std::vector<size_t>& dims, type& val) {
         std::vector<size_t> subdims(dims.begin() + ndim, dims.end());
         size_t subsize = compute_total_size(subdims);
-        for (size_t i = 0; i < dims[0]; ++i) {
+        for(size_t i = 0; i < dims[0]; ++i) {
             inspector<value_type>::unserialize(vec_align + i * subsize, subdims, val[i]);
         }
     }

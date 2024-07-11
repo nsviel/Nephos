@@ -77,8 +77,8 @@ struct eigen_inspector {
 
         auto subdims = std::vector<size_t>(dims.begin() + ndim, dims.end());
         auto subsize = compute_total_size(subdims);
-        for (Eigen::Index i = 0; i < n_rows; ++i) {
-            for (Eigen::Index j = 0; j < n_cols; ++j) {
+        for(Eigen::Index i = 0; i < n_rows; ++i) {
+            for(Eigen::Index j = 0; j < n_cols; ++j) {
                 inspector<value_type>::serialize(val(i, j), dims, m);
                 m += subsize;
             }
@@ -100,8 +100,8 @@ struct eigen_inspector {
 
         auto subdims = std::vector<size_t>(dims.begin() + ndim, dims.end());
         auto subsize = compute_total_size(subdims);
-        for (Eigen::Index i = 0; i < n_rows; ++i) {
-            for (Eigen::Index j = 0; j < n_cols; ++j) {
+        for(Eigen::Index i = 0; i < n_rows; ++i) {
+            for(Eigen::Index j = 0; j < n_cols; ++j) {
                 inspector<value_type>::unserialize(vec_align, subdims, val(i, j));
                 vec_align += subsize;
             }

@@ -244,7 +244,7 @@ struct inspector<std::vector<T>> {
         sizes[0] = val.size();
         if (!val.empty()) {
             auto s = inspector<value_type>::getDimensions(val[0]);
-            for (size_t i = 0; i < s.size(); ++i) {
+            for(size_t i = 0; i < s.size(); ++i) {
                 sizes[i + ndim] = s[i];
             }
         }
@@ -254,7 +254,7 @@ struct inspector<std::vector<T>> {
     static void prepare(type& val, const std::vector<size_t>& dims) {
         val.resize(dims[0]);
         std::vector<size_t> next_dims(dims.begin() + 1, dims.end());
-        for (auto&& e: val) {
+        for(auto&& e: val) {
             inspector<value_type>::prepare(e, next_dims);
         }
     }
@@ -272,7 +272,7 @@ struct inspector<std::vector<T>> {
         if (!val.empty()) {
             auto subdims = std::vector<size_t>(dims.begin() + 1, dims.end());
             size_t subsize = compute_total_size(subdims);
-            for (auto&& e: val) {
+            for(auto&& e: val) {
                 inspector<value_type>::serialize(e, subdims, m);
                 m += subsize;
             }
@@ -283,7 +283,7 @@ struct inspector<std::vector<T>> {
     static void unserialize(const It& vec_align, const std::vector<size_t>& dims, type& val) {
         std::vector<size_t> next_dims(dims.begin() + 1, dims.end());
         size_t next_size = compute_total_size(next_dims);
-        for (size_t i = 0; i < dims[0]; ++i) {
+        for(size_t i = 0; i < dims[0]; ++i) {
             inspector<value_type>::unserialize(vec_align + i * next_size, next_dims, val[i]);
         }
     }
@@ -328,7 +328,7 @@ struct inspector<std::vector<bool>> {
     }
 
     static void serialize(const type& val, const std::vector<size_t>& /* dims*/, hdf5_type* m) {
-        for (size_t i = 0; i < val.size(); ++i) {
+        for(size_t i = 0; i < val.size(); ++i) {
             m[i] = val[i] ? 1 : 0;
         }
     }
@@ -336,7 +336,7 @@ struct inspector<std::vector<bool>> {
     static void unserialize(const hdf5_type* vec_align,
                             const std::vector<size_t>& dims,
                             type& val) {
-        for (size_t i = 0; i < dims[0]; ++i) {
+        for(size_t i = 0; i < dims[0]; ++i) {
             val[i] = vec_align[i] != 0 ? true : false;
         }
     }
@@ -377,7 +377,7 @@ struct inspector<std::array<T, N>> {
         }
 
         std::vector<size_t> next_dims(dims.begin() + 1, dims.end());
-        for (auto&& e: val) {
+        for(auto&& e: val) {
             inspector<value_type>::prepare(e, next_dims);
         }
     }
@@ -394,7 +394,7 @@ struct inspector<std::array<T, N>> {
     static void serialize(const type& val, const std::vector<size_t>& dims, It m) {
         auto subdims = std::vector<size_t>(dims.begin() + 1, dims.end());
         size_t subsize = compute_total_size(subdims);
-        for (auto& e: val) {
+        for(auto& e: val) {
             inspector<value_type>::serialize(e, subdims, m);
             m += subsize;
         }
@@ -410,7 +410,7 @@ struct inspector<std::array<T, N>> {
         }
         std::vector<size_t> next_dims(dims.begin() + 1, dims.end());
         size_t next_size = compute_total_size(next_dims);
-        for (size_t i = 0; i < dims[0]; ++i) {
+        for(size_t i = 0; i < dims[0]; ++i) {
             inspector<value_type>::unserialize(vec_align + i * next_size, next_dims, val[i]);
         }
     }
@@ -484,7 +484,7 @@ struct inspector<T[N]> {
         }
 
         std::vector<size_t> next_dims(dims.begin() + 1, dims.end());
-        for (size_t i = 0; i < dims[0]; ++i) {
+        for(size_t i = 0; i < dims[0]; ++i) {
             inspector<value_type>::prepare(val[i], next_dims);
         }
     }
@@ -513,7 +513,7 @@ struct inspector<T[N]> {
     static void serialize(const type& val, const std::vector<size_t>& dims, hdf5_type* m) {
         auto subdims = std::vector<size_t>(dims.begin() + 1, dims.end());
         size_t subsize = compute_total_size(subdims);
-        for (size_t i = 0; i < N; ++i) {
+        for(size_t i = 0; i < N; ++i) {
             inspector<value_type>::serialize(val[i], subdims, m + i * subsize);
         }
     }

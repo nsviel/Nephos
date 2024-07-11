@@ -22,7 +22,7 @@ void Pool::run(){
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mutex);
-  for (auto& task : tasks){
+  for(auto& task : tasks){
     task->start_task();
   }
 
@@ -32,7 +32,7 @@ void Pool::wait(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mutex);
-  for (auto& task : tasks){
+  for(auto& task : tasks){
     task->wait_task();
   }
 

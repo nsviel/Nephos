@@ -104,7 +104,7 @@ enum class BufferMode { Read, Write };
 /// \brief String length in bytes excluding the `\0`.
 ///
 inline size_t char_buffer_size(char const* const str, size_t max_string_length) {
-    for (size_t i = 0; i <= max_string_length; ++i) {
+    for(size_t i = 0; i <= max_string_length; ++i) {
         if (str[i] == '\0') {
             return i;
         }
