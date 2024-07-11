@@ -40,9 +40,9 @@ void Playback::show_transformation_mode(dat::base::Set* set){
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
 
-  ImGui::RadioButton("Depth to color", &k4n_struct->config.depth.transformation_mode, k4n::depth::DEPTH_TO_COLOR);
+  ImGui::RadioButton("Depth to color", &k4n_struct->transformation.mode, k4n::transformation::DEPTH_TO_COLOR);
   ImGui::SameLine();
-  ImGui::RadioButton("Color to depth", &k4n_struct->config.depth.transformation_mode, k4n::depth::COLOR_TO_DEPTH);
+  ImGui::RadioButton("Color to depth", &k4n_struct->transformation.mode, k4n::transformation::COLOR_TO_DEPTH);
 
   //---------------------------
   ImGui::Separator();

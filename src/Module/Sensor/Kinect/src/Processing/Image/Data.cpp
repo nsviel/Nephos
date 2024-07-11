@@ -62,12 +62,12 @@ void Data::make_transformation(k4n::base::Sensor* sensor){
   //---------------------------
 
   tasker->task_begin("transformation");
-  switch(k4n_struct->config.depth.transformation_mode){
-    case k4n::depth::DEPTH_TO_COLOR:{
+  switch(k4n_struct->transformation.mode){
+    case k4n::transformation::DEPTH_TO_COLOR:{
       k4n_depth_to_color->make_transformation(sensor);
       break;
     }
-    case k4n::depth::COLOR_TO_DEPTH:{
+    case k4n::transformation::COLOR_TO_DEPTH:{
       k4n_color_to_depth->make_transformation(sensor);
       break;
     }
