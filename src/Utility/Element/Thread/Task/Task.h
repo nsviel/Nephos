@@ -1,39 +1,31 @@
 #pragma once
 
 #include <thread>
-#include <condition_variable>
 #include <mutex>
+#include <condition_variable>
 #include <atomic>
 
 
-namespace utl::thread {
+namespace utl::thread{
 
-class Worker {
+class Task {
 public:
-  //Main function
+  Task();
+  virtual ~Task();
+
   void start_thread();
-  void stop_thread();
-
-  //State function
-  void set_pause(bool value);
-
-  inline bool is_thread_running(){return thread_running;}
-  inline void set_thread_pause(bool value){thread_paused = value;}
-
-private:
-  void run_thread();
-  void thread_pause();
+  void wait_thread();
 
 protected:
-  virtual void thread_init(){}
-  virtual void thread_loop(){}
-  virtual void thread_end(){}
+  virtual void thread_function(){}
 
-  std::atomic<bool> thread_running{false};
-  std::atomic<bool> thread_paused{false};
-  std::condition_variable cv;
+private:
+  void loop_thread();
+
   std::thread thread;
-  std::mutex mutex;
+  std::mutex mtx;
+  std::condition_variable cv;
+  std::atomic<bool> done;
 };
 
 }
