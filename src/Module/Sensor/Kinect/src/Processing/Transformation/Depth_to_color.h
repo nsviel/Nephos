@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 
+namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
 
 
@@ -15,7 +16,7 @@ class Depth_to_color
 {
 public:
   //Constructor / Destructor
-  Depth_to_color();
+  Depth_to_color(k4n::Node* node_k4n);
   ~Depth_to_color();
 
 public:

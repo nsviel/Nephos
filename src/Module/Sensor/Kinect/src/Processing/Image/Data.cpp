@@ -16,8 +16,8 @@ Data::Data(k4n::Node* node_k4n){
   this->k4n_color = new k4n::processing::image::Color(node_k4n);
   this->k4n_depth = new k4n::processing::image::Depth(node_k4n);
   this->k4n_ir = new k4n::processing::image::Infrared(node_k4n);
-  this->k4n_depth_to_color = new k4n::processing::image::Depth_to_color();
-  this->k4n_color_to_depth = new k4n::processing::image::Color_to_depth();
+  this->k4n_depth_to_color = new k4n::processing::image::Depth_to_color(node_k4n);
+  this->k4n_color_to_depth = new k4n::processing::image::Color_to_depth(node_k4n);
 
   //---------------------------
 }

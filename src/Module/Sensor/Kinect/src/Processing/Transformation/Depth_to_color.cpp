@@ -10,7 +10,7 @@
 namespace k4n::processing::image{
 
 //Constructor / Destructor
-Depth_to_color::Depth_to_color(){
+Depth_to_color::Depth_to_color(k4n::Node* node_k4n){
   //---------------------------
 
 
