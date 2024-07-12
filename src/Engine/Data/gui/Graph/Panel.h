@@ -13,14 +13,14 @@ namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
 
-namespace dat::gui{
+namespace dat::gui::graph{
 
-class Graph
+class Panel
 {
 public:
   //Constructor / Destructor
-  Graph(dat::Node* node_data, bool* show_window);
-  ~Graph();
+  Panel(dat::Node* node_data, bool* show_window);
+  ~Panel();
 
 public:
   //Main function

@@ -1,3 +1,3 @@
 #pragma once
 
-#include <Data/gui/Graph/Graph.h>
+#include <Data/gui/Graph/Panel.h>

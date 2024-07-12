@@ -1,4 +1,4 @@
-#include "Graph.h"
+#include "Panel.h"
 
 #include <Engine/Namespace.h>
 #include <Data/Namespace.h>
@@ -7,10 +7,10 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace dat::gui{
+namespace dat::gui::graph{
 
 //Constructor / Destructor
-Graph::Graph(dat::Node* node_data, bool* show_window){
+Panel::Panel(dat::Node* node_data, bool* show_window){
   //---------------------------
 
   this->dat_graph = node_data->get_dat_graph();
@@ -25,10 +25,10 @@ Graph::Graph(dat::Node* node_data, bool* show_window){
 
   //---------------------------
 }
-Graph::~Graph(){}
+Panel::~Panel(){}
 
 //Main function
-void Graph::run_panel(){
+void Panel::run_panel(){
   //---------------------------
 
   gui_entity->run_panel();
@@ -51,7 +51,7 @@ void Graph::run_panel(){
 
   //---------------------------
 }
-void Graph::design_panel(){
+void Panel::design_panel(){
   //---------------------------
 
   //this->draw_window_background();
@@ -61,7 +61,7 @@ void Graph::design_panel(){
 }
 
 //Subfunction
-void Graph::draw_file_tree(){
+void Panel::draw_file_tree(){
   dat::base::Set* set_main = dat_graph->get_set_main();
   //---------------------------
 
@@ -96,7 +96,7 @@ void Graph::draw_file_tree(){
 
   //---------------------------
 }
-int Graph::tree_set(dat::base::Set* set){
+int Panel::tree_set(dat::base::Set* set){
   int nb_row = 0;
   //---------------------------
 
@@ -155,7 +155,7 @@ int Graph::tree_set(dat::base::Set* set){
   //---------------------------
   return nb_row;
 }
-void Graph::tree_set_open(dat::base::Set* set, int& nb_row){
+void Panel::tree_set_open(dat::base::Set* set, int& nb_row){
   //---------------------------
 
   //List all direct entities
@@ -171,7 +171,7 @@ void Graph::tree_set_open(dat::base::Set* set, int& nb_row){
 
   //---------------------------
 }
-void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row){
+void Panel::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row){
   bool entity_selected = (entity == dat_struct->selection);
   bool entity_active = (entity == entity->set_parent->active_entity);
   //---------------------------
@@ -237,7 +237,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
 
   //---------------------------
 }
-void Graph::draw_window_background(int nb_row){
+void Panel::draw_window_background(int nb_row){
   //-------------------------------
 
   // Get window dimensions and position

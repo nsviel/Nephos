@@ -12,7 +12,7 @@ namespace dat::graph{class UID;}
 namespace dat{class Glyph;}
 namespace dat::graph{class Selection;}
 namespace dat{class Structure;}
-namespace dat::gui{class Graph;}
+namespace dat::gui::graph{class Panel;}
 
 
 namespace dat{
@@ -57,7 +57,7 @@ private:
   dat::graph::UID* dat_uid;
   dat::element::Image* dat_image;
   dat::graph::Selection* dat_selection;
-  dat::gui::Graph* gui_graph;
+  dat::gui::graph::Panel* gui_graph;
 
   bool show_scene = true;
   bool show_loader = true;
