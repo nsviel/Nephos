@@ -18,24 +18,7 @@ struct Data : public utl::base::Element{
   Data(){
     this->type = utl::element::DATA;
   }
-  std::vector<float>& get_attribut_data(std::string name){
-    for(int i=0; i<vec_attribut.size(); i++){
-      utl::base::data::Attribut& attribut = vec_attribut[i];
-      if(attribut.name == name) return attribut.data;
-    }
-    std::cout<<"[error] attribut name doesn't exists"<<std::endl;
-    static std::vector<float> empty_vector;
-    return empty_vector;
-  }
-  utl::base::data::Attribut* get_attribut(std::string name){
-    for(int i=0; i<vec_attribut.size(); i++){
-      utl::base::data::Attribut& attribut = vec_attribut[i];
-      if(attribut.name == name) return &attribut;
-    }
-    std::cout<<"[error] attribut name doesn't exists"<<std::endl;
-    return nullptr;
-  }
-
+  
   //State
   bool is_visible = true;
   int nb_data_max = -1;

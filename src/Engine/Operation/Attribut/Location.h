@@ -6,6 +6,7 @@
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
+namespace utl::base{class Attribut;}
 
 
 namespace ope::attribut{
@@ -31,6 +32,7 @@ public:
   void retrieve_z_vector(dat::base::Entity* entity, std::vector<float>& z_vec);
 
 private:
+  utl::base::Attribut* utl_attribut;
 };
 
 }

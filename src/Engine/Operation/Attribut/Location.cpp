@@ -6,7 +6,13 @@
 namespace ope::attribut{
 
 // Constructor / Destructor
-Location::Location(){}
+Location::Location(){
+  //---------------------------
+
+  this->utl_attribut = new utl::base::Attribut();
+
+  //---------------------------
+}
 Location::~Location(){}
 
 //Main function
@@ -142,7 +148,7 @@ void Location::compute_range(dat::base::Entity* entity){
   //---------------------------
 
 
-  std::vector<float>& R = data->get_attribut_data("R");
+  std::vector<float>& R = data->R;
   std::vector<glm::vec3>& xyz = data->xyz;
 
   R.resize(xyz.size(), 0.0f);
