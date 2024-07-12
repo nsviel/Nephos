@@ -52,36 +52,28 @@ void Exporter::export_binary(utl::base::Data* data, glm::mat4 mat, std::string p
 void Exporter::find_vec_property(utl::base::Data* data){
   //---------------------------
 
-  fmt::ply::Header header;
+  fmt::ply::exporter::Structure exporter;
 
-  fmt::ply::Property property;
-  property.field = fmt::ply::XYZ;
-  property.type = fmt::ply::FLOAT32;
-  header.vec_property.push_back(property);
-/*  header.vec_property.push_back(fmt::ply::VOID);
-  header.vec_property.push_back(fmt::ply::VOID);
-  header.nb_property = 3;
-
+  if(data->xyz.size() != 0){
+    exporter.vec_property.push_back(fmt::ply::XYZ);
+    exporter.nb_property += 3;
+  }
   if(data->rgb.size() != 0){
-    header.vec_property.push_back(fmt::ply::R);
-    header.vec_property.push_back(fmt::ply::VOID);
-    header.vec_property.push_back(fmt::ply::VOID);
-    header.nb_property += 3;
+    exporter.vec_property.push_back(fmt::ply::RGB);
+    exporter.nb_property += 3;
   }
   if(data->Nxyz.size() != 0){
-    header.vec_property.push_back(fmt::ply::NX);
-    header.vec_property.push_back(fmt::ply::VOID);
-    header.vec_property.push_back(fmt::ply::VOID);
-    header.nb_property += 3;
+    exporter.vec_property.push_back(fmt::ply::NXYZ);
+    exporter.nb_property += 3;
   }
   if(data->Is.size() != 0){
-    header.vec_property.push_back(fmt::ply::I);
-    header.nb_property++;
+    exporter.vec_property.push_back(fmt::ply::I);
+    exporter.nb_property++;
   }
   if(data->ts.size() != 0){
-    header.vec_property.push_back(fmt::ply::TS);
-    header.nb_property++;
-  }*/
+    exporter.vec_property.push_back(fmt::ply::TS);
+    exporter.nb_property++;
+  }
 
   //---------------------------
 }

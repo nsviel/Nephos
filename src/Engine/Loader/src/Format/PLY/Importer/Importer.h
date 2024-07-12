@@ -31,16 +31,14 @@ public:
 
 private:
   //Header
-  bool parse_header(std::string path);
-  void parse_header_format(std::string format);
-  void parse_header_property(std::string type, std::string field);
-  bool parse_header_size(std::string nb_vertex);
+  bool parse_header(fmt::ply::Header& header);
+  void parse_header_format(fmt::ply::Header& header, std::string format);
+  bool parse_header_size(fmt::ply::Header& header, std::string nb_vertex);
+  void parse_header_property(fmt::ply::Header& header, std::string type, std::string field);
 
 private:
   fmt::ply::importer::Ascii* ply_ascii;
   fmt::ply::importer::Binary* ply_binary;
-
-  fmt::ply::Header header;
 };
 
 }

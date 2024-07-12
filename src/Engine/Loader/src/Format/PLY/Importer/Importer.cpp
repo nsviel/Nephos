@@ -31,7 +31,8 @@ utl::base::Element* Importer::import(utl::base::Path path){
   object->data.path.format = format;
 
   //Header
-  if(!parse_header(path.build())) return nullptr;
+  fmt::ply::Header header(path.build());
+  if(!parse_header(header)) return nullptr;
 
   //Parsing
   switch(header.encoding){
@@ -53,13 +54,11 @@ utl::base::Element* Importer::import(utl::base::Path path){
 }
 
 //Header
-bool Importer::parse_header(std::string path){
+bool Importer::parse_header(fmt::ply::Header& header){
   //---------------------------
 
   //Init
-  this->header = {};
-  this->header.path = path;
-  std::ifstream file(path);
+  std::ifstream file(header.path);
 
   // Separate the header
   std::string line, h1, h2, h3, h4;
@@ -71,15 +70,15 @@ bool Importer::parse_header(std::string path){
 
     //Retrieve format
     if(h1 == "format"){
-      this->parse_header_format(h2);
+      this->parse_header_format(header, h2);
     }
     //Retrieve number of point
     else if(h1 + h2 == "elementvertex"){
-      if(!parse_header_size(h3)) return false;
+      if(!parse_header_size(header, h3)) return false;
     }
     //Retrieve property
     else if(h1 == "property" && vertex_ended == false){
-      this->parse_header_property(h2, h3);
+      this->parse_header_property(header, h2, h3);
     }
     //Retrieve property
     else if(h1 + h2 == "elementface"){
@@ -92,7 +91,7 @@ bool Importer::parse_header(std::string path){
   //---------------------------
   return true;
 }
-void Importer::parse_header_format(std::string format){
+void Importer::parse_header_format(fmt::ply::Header& header, std::string format){
   //---------------------------
 
   if(format == "ascii") header.encoding = fmt::ply::ASCII;
@@ -104,7 +103,20 @@ void Importer::parse_header_format(std::string format){
 
   //---------------------------
 }
-void Importer::parse_header_property(std::string type, std::string field){
+bool Importer::parse_header_size(fmt::ply::Header& header, std::string value){
+  //---------------------------
+
+  int nb_vertex = std::stoi(value);
+  if(nb_vertex < 0){
+    std::cout<<"[error] ply file number vertex wrong"<<std::endl;
+    return false;
+  }
+  header.nb_vertex = nb_vertex;
+
+  //---------------------------
+  return true;
+}
+void Importer::parse_header_property(fmt::ply::Header& header, std::string type, std::string field){
   fmt::ply::Property property;
   //---------------------------
 
@@ -136,18 +148,6 @@ void Importer::parse_header_property(std::string type, std::string field){
 
   //---------------------------
 }
-bool Importer::parse_header_size(std::string value){
-  //---------------------------
 
-  int nb_vertex = std::stoi(value);
-  if(nb_vertex < 0){
-    std::cout<<"[error] ply file number vertex wrong"<<std::endl;
-    return false;
-  }
-  header.nb_vertex = nb_vertex;
-
-  //---------------------------
-  return true;
-}
 
 }

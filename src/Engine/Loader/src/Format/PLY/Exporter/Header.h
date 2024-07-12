@@ -22,10 +22,10 @@ public:
 
 public:
   //Main function
-  void write_header(std::ofstream& file, std::string format, utl::base::Data* data);
+  void write_header(std::ofstream& file, std::string encoding, utl::base::Data* data);
 
   //Subfunction
-  void write_info(std::ofstream& file, std::string& format, utl::base::Data* data);
+  void write_info(std::ofstream& file, std::string& encoding, utl::base::Data* data);
   void write_property_xyz(std::ofstream& file);
   void write_property_attribut(std::ofstream& file, utl::base::Data* data);
 

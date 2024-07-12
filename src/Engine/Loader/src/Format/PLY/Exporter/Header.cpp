@@ -14,13 +14,13 @@ Header::Header(){
 Header::~Header(){}
 
 //Main exporter functions
-void Header::write_header(std::ofstream& file, std::string format, utl::base::Data* data){
+void Header::write_header(std::ofstream& file, std::string encoding, utl::base::Data* data){
   //---------------------------
 
   this->vec_property.clear();
 
 
-  this->write_info(file, format, data);
+  this->write_info(file, encoding, data);
   this->write_property_xyz(file);
   this->write_property_attribut(file, data);
   file << "end_header" <<std::endl;
@@ -29,11 +29,11 @@ void Header::write_header(std::ofstream& file, std::string format, utl::base::Da
 }
 
 //Subfunction
-void Header::write_info(std::ofstream& file, std::string& format, utl::base::Data* data){
+void Header::write_info(std::ofstream& file, std::string& encoding, utl::base::Data* data){
   //---------------------------
 
   file << "ply" << std::endl;
-  file << "format " + format + " 1.0" << std::endl;
+  file << "format " + encoding + " 1.0" << std::endl;
   int nb_vertex = (data->size > 0) ? data->size : data->xyz.size();
   file << "element vertex " << nb_vertex << std::endl;
 
