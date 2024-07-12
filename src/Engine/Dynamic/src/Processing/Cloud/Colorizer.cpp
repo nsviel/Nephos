@@ -35,20 +35,36 @@ void Colorizer::thread_task(){
 
   //Colorization
   tasker->task_begin("colorization");
-  this->colorize_object(sensor);
+  this->colorize_entity(sensor);
   tasker->task_end("colorization");
-
-  //Update
-  tasker->task_begin("update");
-  this->update_object(sensor);
-  tasker->task_end("update");
 
   //---------------------------
   this->thread_idle = true;
 }
 
 //Subfunction
-void Colorizer::colorize_object(dat::base::Entity* entity){
+void Colorizer::colorize_element(utl::base::Element* element){
+  //---------------------------
+
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
+    this->colorize_set(set);
+  }else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    this->colorize_entity(entity);
+  }
+
+  //---------------------------
+}
+void Colorizer::colorize_set(dat::base::Set* set){
+  //---------------------------
+
+  for(int i=0; i<set->list_entity.size(); i++){
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+    this->colorize_entity(entity);
+  }
+
+  //---------------------------
+}
+void Colorizer::colorize_entity(dat::base::Entity* entity){
   //---------------------------
 
   ope::color::Configuration config;
@@ -59,12 +75,6 @@ void Colorizer::colorize_object(dat::base::Entity* entity){
   config.unicolor = dyn_struct->colorization.unicolor;
 
   ope_colorizer->make_colorization(entity, config);
-
-  //---------------------------
-}
-void Colorizer::update_object(dat::base::Entity* entity){
-  //---------------------------
-
   dat_entity->update_data(entity);
   //dat_entity->update_glyph(sensor->get_object());
 

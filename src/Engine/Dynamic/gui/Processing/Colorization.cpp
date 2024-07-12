@@ -26,26 +26,14 @@ void Colorization::design_colorization(utl::base::Element* element){
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Colorization##dynamic")){
 
+    //Main mode
     this->colorization_mode(element);
     ImGui::Separator();
     this->heatmap_mode(element);
 
+    //Mode option
     this->option_intensity(element);
     this->option_height(element);
-
-    this->update_element(element);
-  }
-
-  //---------------------------
-}
-void Colorization::update_element(utl::base::Element* element){
-  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
-  //---------------------------
-
-  if(entity && update_color){
-    dyn_colorizer->colorize_object(entity);
-    dyn_colorizer->update_object(entity);
-    this->update_color = false;
   }
 
   //---------------------------
@@ -59,52 +47,52 @@ void Colorization::colorization_mode(utl::base::Element* element){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("RGB##colorization", &dyn_struct->colorization.color_mode, ope::color::RGB)){
-    this->update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("##unicolor", &dyn_struct->colorization.color_mode, ope::color::UNICOLOR)){
-    this->update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
   if(ImGui::ColorEdit4("##unicolor_choice", (float*)&dyn_struct->colorization.unicolor, flags)){
-    this->update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("I##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY)){
-    this->update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("I inv##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_INV)){
-    this->update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("I cor##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_COR)){
-    this->update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("I cal##colorization", &dyn_struct->colorization.color_mode, ope::color::INTENSITY_CAL)){
-    this->update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("N##colorization", &dyn_struct->colorization.color_mode, ope::color::NORMAL)){
-    this->update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("It##colorization", &dyn_struct->colorization.color_mode, ope::color::INCIDENCE_ANGLE)){
-    this->update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("Heatmap##colorization", &dyn_struct->colorization.color_mode, ope::color::HEATMAP)){
-    update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("Structure##colorization", &dyn_struct->colorization.color_mode, ope::color::STRUCTURE)){
-    update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
 
   ImGui::EndTable();
@@ -119,30 +107,30 @@ void Colorization::heatmap_mode(utl::base::Element* element){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY)){
-    update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
   ImGui::SameLine();
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("I cor##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY_COR)){
-    update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
   ImGui::SameLine();
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("I cal##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY_CAL)){
-    update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("H##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::HEIGHT)){
-    update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("R##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::RANGE)){
-    update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("It##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INCIDENCE_ANGLE)){
-    update_color = true;
+    dyn_colorizer->colorize_element(element);
   }
 
   ImGui::EndTable();

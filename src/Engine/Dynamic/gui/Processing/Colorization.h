@@ -19,7 +19,6 @@ public:
 public:
   //Main function
   void design_colorization(utl::base::Element* element);
-  void update_element(utl::base::Element* element);
 
   //Mode function
   void colorization_mode(utl::base::Element* element);
@@ -32,8 +31,6 @@ public:
 private:
   dyn::cloud::Colorizer* dyn_colorizer;
   dyn::Structure* dyn_struct;
-
-  bool update_color = false;
 };
 
 }
