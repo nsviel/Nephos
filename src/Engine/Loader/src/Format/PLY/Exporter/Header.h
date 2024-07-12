@@ -22,16 +22,14 @@ public:
 
 public:
   //Main function
-  void write_header(std::ofstream& file, std::string encoding, utl::base::Data* data);
+  void write_header(fmt::ply::exporter::Structure& exporter, std::ofstream& file);
 
   //Subfunction
-  void write_info(std::ofstream& file, std::string& encoding, utl::base::Data* data);
-  void write_property_xyz(std::ofstream& file);
-  void write_property_attribut(std::ofstream& file, utl::base::Data* data);
+  void write_info(fmt::ply::exporter::Structure& exporter, std::ofstream& file);
+  void write_property(fmt::ply::exporter::Structure& exporter, std::ofstream& file);
 
 private:
-  int property_number = 3;
-  std::vector<int> vec_property;
+
 };
 
 }

@@ -22,12 +22,14 @@ Exporter::~Exporter(){}
 
 //Main exporter functions
 void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path){
-  std::string format = "ascii";
+  std::string encoding = "ascii";
   //---------------------------
 
   std::ofstream file(path);
 
-  this->write_header(file, format, data);
+  fmt::ply::exporter::Structure exporter;
+  this->build_structure(exporter, data, encoding);
+  this->write_header(file, encoding, data);
   this->write_data_ascii(file, data, mat);
 
   file.close();
@@ -35,12 +37,14 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
   //---------------------------
 }
 void Exporter::export_binary(utl::base::Data* data, glm::mat4 mat, std::string path){
-  std::string format = "binary_little_endian";
+  std::string encoding = "binary_little_endian";
   //---------------------------
 
   std::ofstream file(path, std::ios::binary);
 
-  this->write_header(file, format, data);
+  fmt::ply::exporter::Structure exporter;
+  this->build_structure(exporter, data, encoding);
+  this->write_header(file, encoding, data);
   this->write_data_binary(file, data, mat);
 
   file.close();
@@ -49,10 +53,11 @@ void Exporter::export_binary(utl::base::Data* data, glm::mat4 mat, std::string p
 }
 
 //Subfunction
-void Exporter::find_vec_property(utl::base::Data* data){
+void Exporter::build_structure(fmt::ply::exporter::Structure& exporter, utl::base::Data* data, std::string encoding){
   //---------------------------
 
-  fmt::ply::exporter::Structure exporter;
+  exporter.nb_vertex = (data->size > 0) ? data->size : data->xyz.size();
+  exporter.encoding = encoding;
 
   if(data->xyz.size() != 0){
     exporter.vec_property.push_back(fmt::ply::XYZ);
