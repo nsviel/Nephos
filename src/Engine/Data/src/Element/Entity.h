@@ -15,6 +15,7 @@ namespace sce{class Operation;}
 namespace cam{class Control;}
 namespace utl::media{class Image;}
 namespace ope::attribut{class Location;}
+namespace ope::attribut{class Attribut;}
 
 
 namespace dat::element{
@@ -43,6 +44,7 @@ private:
   dat::graph::UID* dat_uid;
   cam::Control* cam_control;
   ope::attribut::Location* ope_location;
+  ope::attribut::Attribut* ope_attribut;
 };
 
 }

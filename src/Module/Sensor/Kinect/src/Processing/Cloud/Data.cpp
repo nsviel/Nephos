@@ -75,11 +75,11 @@ void Data::extraction_init(k4n::base::Sensor* sensor){
   sensor->cloud.size = cloud_image.get_size() / (3 * sizeof(int16_t));
 
   //Resize vectors
-  buffer_data.xyz.resize(sensor->cloud.size);
-  buffer_data.rgb.resize(sensor->cloud.size);
-  buffer_data.rgba.resize(sensor->cloud.size);
-  buffer_data.Is.resize(sensor->cloud.size);
-  buffer_data.R.resize(sensor->cloud.size);
+  buffer.xyz.resize(sensor->cloud.size);
+  buffer.rgb.resize(sensor->cloud.size);
+  buffer.rgba.resize(sensor->cloud.size);
+  buffer.Is.resize(sensor->cloud.size);
+  buffer.R.resize(sensor->cloud.size);
 
   //---------------------------
 }
@@ -103,11 +103,11 @@ void Data::extraction_transfer(k4n::base::Sensor* sensor){
   std::vector<float>& vec_R = utl_attribut->get_attribut_data(data, "R");
 
   //Data
-  data->xyz = buffer_data.xyz;
-  data->rgb = buffer_data.rgb;
-  data->rgba = buffer_data.rgba;
-  data->Is = buffer_data.Is;
-  vec_R = buffer_data.R;
+  data->xyz = buffer.xyz;
+  data->rgb = buffer.rgb;
+  data->rgba = buffer.rgba;
+  data->Is = buffer.Is;
+  vec_R = buffer.R;
 
   //Info
   data->size = sensor->cloud.size;
@@ -138,8 +138,8 @@ void Data::retrieve_location(k4n::base::Sensor* sensor, int i){
   float R = math::distance_from_origin(xyz);
 
   //Store
-  buffer_data.xyz[i] = xyz;
-  buffer_data.R[i] = R;
+  buffer.xyz[i] = xyz;
+  buffer.R[i] = R;
 
   //---------------------------
 }
@@ -154,8 +154,8 @@ void Data::retrieve_color(k4n::base::Sensor* sensor, int i){
   float b = static_cast<float>(buffer_color[idx + 0]) / 255.0f;
 
   //Store
-  buffer_data.rgb[i] = glm::vec3(r, g, b);
-  buffer_data.rgba[i] = glm::vec4(r, g, b, 1);
+  buffer.rgb[i] = glm::vec3(r, g, b);
+  buffer.rgba[i] = glm::vec4(r, g, b, 1);
 
   //---------------------------
 }
@@ -167,7 +167,7 @@ void Data::retrieve_ir(k4n::base::Sensor* sensor, int i){
   float ir = buffer_ir[i];
 
   //Store
-  buffer_data.Is[i] = ir;
+  buffer.Is[i] = ir;
 
   //---------------------------
 }

@@ -219,7 +219,7 @@ void HDL32::parse_timestamp(){
 }
 void HDL32::final_check(utl::base::Data* cloud){
   //---------------------------
-
+/*
   //Supress points when no distance are measured
   if(supress_emptyElements){
     std::vector<int> idx;
@@ -274,7 +274,7 @@ void HDL32::final_check(utl::base::Data* cloud){
   if(packet_xyz.size() != packet_I.size()){
     std::cout<< "Problem packet size I" << std::endl;
   }
-
+*/
   //---------------------------
 }
 

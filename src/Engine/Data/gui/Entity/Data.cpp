@@ -12,7 +12,7 @@ Data::Data(dat::Node* node_data){
   //---------------------------
 
   this->dat_entity = node_data->get_dat_entity();
-  this->ope_location = new ope::attribut::Location();
+  this->ope_attribut = new ope::attribut::Attribut();
   this->ope_operation = new ope::Operation();
 
   this->item_width = 100;
@@ -78,7 +78,7 @@ void Data::entity_data(dat::base::Entity* entity){
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
   flags |= ImGuiColorEditFlags_AlphaBar;
   if(ImGui::ColorEdit4("##entity_unicolor", (float*)&data->unicolor, flags)){
-    ope_location->set_unicolor(entity);
+    ope_attribut->set_unicolor(entity);
   }
 
   //---------------------------

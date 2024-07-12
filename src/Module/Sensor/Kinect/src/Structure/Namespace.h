@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Kinect/src/Structure/Synchro.h>
+#include <Kinect/src/Structure/Buffer.h>
 #include <Kinect/src/Structure/Color.h>
 #include <Kinect/src/Structure/Configuration.h>
 #include <Kinect/src/Structure/Data.h>

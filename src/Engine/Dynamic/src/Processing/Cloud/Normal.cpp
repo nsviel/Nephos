@@ -25,7 +25,7 @@ Normal::Normal(dyn::Node* node_dynamic){
   this->dat_glyph = node_data->get_dat_glyph();
   this->ope_converter = new ope::image::Converter();
   this->ope_normal = new ope::normal::Structured();
-  this->ope_location = new ope::attribut::Location();
+  this->ope_attribut = new ope::attribut::Attribut();
 
   //---------------------------
 }
@@ -82,7 +82,7 @@ void Normal::compute_normal(dyn::base::Sensor* sensor){
   ope_normal->set_knn(dyn_struct->operation.normal.knn);
   ope_normal->compute_normal(&sensor->data);
   dyn_struct->operation.normal.time = ope_normal->get_time();
-  ope_location->compute_incidence_angle(sensor);
+  ope_attribut->compute_incidence_angle(sensor);
 
   //---------------------------
 }

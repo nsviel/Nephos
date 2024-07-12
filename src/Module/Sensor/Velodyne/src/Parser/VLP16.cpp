@@ -266,7 +266,7 @@ void VLP16::reorder_by_azimuth(utl::base::Data* cloud){
     A_b.push_back(packet_A[i]);
     I_b.push_back(packet_I[i]);
   }
-
+/*
   //Store data into udp cloud structure
   cloud->xyz = xyz_b;
   cloud->ts = t_b;
@@ -287,7 +287,7 @@ void VLP16::reorder_by_azimuth(utl::base::Data* cloud){
   if(packet_xyz.size() != packet_I.size()){
     std::cout<< "Problem packet size I" << std::endl;
   }
-
+*/
   //---------------------------
 }
 void VLP16::supress_empty_data(){

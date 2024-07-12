@@ -22,6 +22,7 @@ Entity::Entity(dat::Node* node_data){
 
   this->vk_data = node_vulkan->get_vk_data();
   this->ope_location = new ope::attribut::Location();
+  this->ope_attribut = new ope::attribut::Attribut();
 
   //---------------------------
 }
@@ -97,7 +98,7 @@ void Entity::update_data(dat::base::Entity* entity){
 
   //Update attribut
   ope_location->compute_centroid(entity);
-  ope_location->compute_range(entity);
+  ope_attribut->compute_range(entity);
 
   //----------------------------
 }

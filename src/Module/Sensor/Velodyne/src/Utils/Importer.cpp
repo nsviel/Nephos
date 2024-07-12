@@ -139,7 +139,7 @@ void Importer::parser_vlp16(dat::base::Set* dataset, std::string path){
   vld::processing::Frame vld_frame;
   vld::parser::VLP16 parser;
   //---------------------------
-
+/*
   int cpt = 0;
   for(int i=0; i<file_packets.size(); i++){
     utl::base::Data* data = parser.parse_packet(file_packets[i]);
@@ -164,7 +164,7 @@ void Importer::parser_vlp16(dat::base::Set* dataset, std::string path){
       //dataset->vec_data.push_back(entity);
     }
   }
-
+*/
   //---------------------------
 }
 void Importer::parser_hdl32(dat::base::Set* dataset, std::string path){

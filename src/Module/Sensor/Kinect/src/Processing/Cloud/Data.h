@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Kinect/src/Structure/Buffer.h>
 #include <Utility/Base/Data/Data.h>
 #include <glm/glm.hpp>
 #include <vector>
@@ -39,7 +40,7 @@ public:
 private:
   k4n::Structure* k4n_struct;
   k4n::processing::cloud::XY_table* k4n_xytable;
-  utl::base::Data buffer_data;
+  k4n::structure::Buffer buffer;
   utl::base::Attribut* utl_attribut;
 };
 

@@ -80,7 +80,7 @@ void Frame::reset_frame(){
 //Subfunctions
 void Frame::add_data_to_frame(utl::base::Data* data){
   //---------------------------
-
+/*
   std::vector<float>& vec_R = utl_attribut->get_attribut_data(data, "R");
 
   for(int i=0; i<data->xyz.size(); i++){
@@ -90,14 +90,14 @@ void Frame::add_data_to_frame(utl::base::Data* data){
     frame_onrun->A.push_back(data->A[i]);
     frame_onrun->ts.push_back(data->ts[i]);
   }
-
+*/
   //---------------------------
 }
 void Frame::end_data_to_frame(utl::base::Data* data, int index){
   //---------------------------
-
+/*
   std::vector<float>& vec_R = utl_attribut->get_attribut_data(data, "R");
-  
+
   for(int i=0; i<index; i++){
     frame_onrun->xyz.push_back(data->xyz[i]);
     frame_onrun->R.push_back(vec_R[i]);
@@ -117,7 +117,7 @@ void Frame::end_data_to_frame(utl::base::Data* data, int index){
     frame_onrun->A.push_back(data->A[i]);
     frame_onrun->ts.push_back(data->ts[i]);
   }
-
+*/
   //---------------------------
 }
 
