@@ -17,6 +17,7 @@ public:
 
 public:
   //Main function
+  void set_attribut_data(utl::base::Data* data, std::string name, std::vector<float>& vec);
   std::vector<float>& get_attribut_data(utl::base::Data* data, std::string name);
   utl::base::data::Attribut* get_or_create_attribut(utl::base::Data* data, std::string name);
 

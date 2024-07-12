@@ -101,12 +101,13 @@ void Data::extraction_transfer(k4n::base::Sensor* sensor){
   //---------------------------
 
   std::vector<float>& vec_R = utl_attribut->get_attribut_data(data, "R");
+  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
 
   //Data
   data->xyz = buffer.xyz;
   data->rgb = buffer.rgb;
   data->rgba = buffer.rgba;
-  data->Is = buffer.Is;
+  vec_I = buffer.Is;
   vec_R = buffer.R;
 
   //Info

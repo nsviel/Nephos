@@ -10,6 +10,8 @@ namespace fmt::pts{
 Exporter::Exporter(){
   //---------------------------
 
+  this->utl_attribut = new utl::base::Attribut();
+  
   this->format = ".pts";
   this->vec_encoding.push_back(ldr::io::ASCII);
 
@@ -35,7 +37,7 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
   std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& N = data->Nxyz;
-  std::vector<float>& Is = data->Is;
+  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
 
   //Write in the file
   int precision = 6;
@@ -49,8 +51,8 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
     file << std::setprecision(precision) << xyzw.x <<" "<< xyzw.y <<" "<< xyzw.z ;
 
     //Intensity
-    if(data->Is.size() != 0){
-      file << std::setprecision(0) <<" "<< int(Is[i] * 255);
+    if(vec_I.size() != 0){
+      file << std::setprecision(0) <<" "<< int(vec_I[i] * 255);
     }
 
     //Color

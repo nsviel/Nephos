@@ -10,6 +10,8 @@ namespace fmt::pts{
 Importer::Importer(){
   //---------------------------
 
+  this->utl_attribut = new utl::base::Attribut();
+
   this->nbptMax = 40000000;
   this->Is_format = fmt::pts::FM2048_2048;
   this->format = ".pts";
@@ -217,6 +219,8 @@ void Importer::Loader_data(utl::base::Data* data, int FILE_config){
   float x,y,z,r,g,b,I,nx,ny,nz;
   //---------------------------
 
+  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+
   switch(FILE_config){
     case 0: iss >> x >> y >> z; break;
     case 1: iss >> x >> y >> z >> I; break;
@@ -237,16 +241,16 @@ void Importer::Loader_data(utl::base::Data* data, int FILE_config){
   if(hasIntensity){
     switch(Is_format){
       case fmt::pts::F0_1:{
-        data->Is.push_back(I);
+        vec_I.push_back(I);
         break;
       }
       case fmt::pts::F0_255:{
-        data->Is.push_back(I/255);
+        vec_I.push_back(I/255);
         break;
       }
       case fmt::pts::FM2048_2048:{
         float Is = (I + 2048) / 4096;
-        data->Is.push_back(Is);
+        vec_I.push_back(Is);
         break;
       }
     }
@@ -262,7 +266,7 @@ void Importer::Loader_data(utl::base::Data* data, int FILE_config){
     data->rgb.push_back(glm::vec4((r/255), (g/255), (b/255), 1.0f));
     //if reflectance value is coded in rgb format
     if(hasIntensity == false && r == g && g == b){
-        data->Is.push_back(r/255);
+        vec_I.push_back(r/255);
         hasIntensity = true;
     }
   }

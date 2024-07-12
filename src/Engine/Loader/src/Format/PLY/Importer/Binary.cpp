@@ -9,6 +9,8 @@ namespace fmt::ply::importer{
 Binary::Binary(){
   //---------------------------
 
+  this->utl_attribut = new utl::base::Attribut();
+
   //---------------------------
 }
 Binary::~Binary(){}
@@ -38,8 +40,8 @@ void Binary::parse_binary(fmt::ply::importer::Structure* ply_struct, dat::base::
   //Store result
   object->data.xyz = buffer.xyz;
   object->data.Nxyz = buffer.Nxyz;
-  object->data.Is = buffer.Is;
   object->data.size = buffer.xyz.size();
+  utl_attribut->set_attribut_data(&object->data, "I", buffer.Is);
 
   //Close file
   file.close();

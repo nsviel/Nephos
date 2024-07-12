@@ -12,6 +12,7 @@
 #include <stdint.h>
 #include <cstdint>
 
+namespace utl::base{class Attribut;}
 
 
 namespace fmt::ply::importer{
@@ -49,6 +50,8 @@ public:
   float get_ushort_from_binary(char* block_data, int& offset);
 
 private:
+  utl::base::Attribut* utl_attribut;
+
   fmt::ply::Buffer buffer;
 };
 

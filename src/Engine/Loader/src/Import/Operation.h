@@ -16,6 +16,7 @@ namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace ope{class Transformation;}
 namespace ope{class Operation;}
+namespace utl::base{class Attribut;}
 
 
 namespace ldr::importer{
@@ -48,6 +49,7 @@ private:
   dat::graph::Selection* dat_selection;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
+  utl::base::Attribut* utl_attribut;
 };
 
 }

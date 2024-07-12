@@ -25,11 +25,11 @@ Heatmap::~Heatmap(){}
 //Main function
 void Heatmap::heatmap_intensity(dat::base::Entity* entity, int diviser){
   utl::base::Data* data = &entity->data;
-  if(data->Is.size() == 0) return;
   //---------------------------
 
   //Prepare data
-  std::vector<float> Is = data->Is;
+  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  std::vector<float> Is = vec_I;
   math::divise(Is, diviser);
   math::normalize(Is, range_intensity);
 

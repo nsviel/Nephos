@@ -15,13 +15,21 @@ Attribut::Attribut(){
 Attribut::~Attribut(){}
 
 //Subfunction
+void Attribut::set_attribut_data(utl::base::Data* data, std::string name, std::vector<float>& vec){
+  //---------------------------
+
+  utl::base::data::Attribut* attribut = get_or_create_attribut(data, name);
+  attribut->data = vec;
+
+  //---------------------------
+}
 std::vector<float>& Attribut::get_attribut_data(utl::base::Data* data, std::string name){
   //---------------------------
 
   utl::base::data::Attribut* attribut = get_or_create_attribut(data, name);
 
   //---------------------------
-  return attribut->data;;
+  return attribut->data;
 }
 utl::base::data::Attribut* Attribut::get_or_create_attribut(utl::base::Data* data, std::string name){
   //---------------------------

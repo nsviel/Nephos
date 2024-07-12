@@ -9,6 +9,8 @@
 #include <fstream>
 #include <iostream>
 
+namespace utl::base{class Attribut;}
+
 
 namespace fmt::pts{
 
@@ -24,6 +26,7 @@ public:
   void export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path);
 
 private:
+  utl::base::Attribut* utl_attribut;
 };
 
 }

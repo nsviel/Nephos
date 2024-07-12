@@ -12,6 +12,8 @@
 #include <stdint.h>
 #include <cstdint>
 
+namespace utl::base{class Attribut;}
+
 
 namespace fmt::ply::importer{
 
@@ -33,6 +35,8 @@ public:
   int get_property_id(fmt::ply::importer::Structure* ply_struct, fmt::ply::Field field);
 
 private:
+  utl::base::Attribut* utl_attribut;
+
   fmt::ply::Buffer buffer;
 };
 

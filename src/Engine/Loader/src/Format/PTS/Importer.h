@@ -9,6 +9,8 @@
 #include <fstream>
 #include <iostream>
 
+namespace utl::base{class Attribut;}
+
 
 namespace fmt::pts{
 
@@ -42,6 +44,8 @@ private:
   int check_size(std::string path, bool FILE_hasHeader);
 
 private:
+  utl::base::Attribut* utl_attribut;
+
   std::vector<float> line_columns;
   std::vector<std::string> dataFormat;
   std::string line;

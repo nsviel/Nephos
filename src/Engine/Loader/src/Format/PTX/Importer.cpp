@@ -218,7 +218,7 @@ void Importer::Loader_data(PTXCloud* cloud){
 void Importer::Loader_assembling(utl::base::Data* entity){
   //Assemble into an unique cloud
   //---------------------------
-
+/*
   for(int i=0; i<list_ptxCloud->size(); i++){
     PTXCloud* cloud = *std::next(list_ptxCloud->begin(),i);
 
@@ -228,6 +228,7 @@ void Importer::Loader_assembling(utl::base::Data* entity){
       entity->rgb.push_back(cloud->color[j]);
     }
   }
+  */
   //---------------------------
 }
 void Importer::Loader_cloudTransformation(){

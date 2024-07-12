@@ -37,8 +37,6 @@ struct Data : public utl::base::Element{
   std::vector<glm::vec2> uv;    //UV coordinate
   std::vector<utl::base::data::Attribut> vec_attribut;
 
-  std::vector<float> Is; //Intensity
-
   //---------------------------
 };
 

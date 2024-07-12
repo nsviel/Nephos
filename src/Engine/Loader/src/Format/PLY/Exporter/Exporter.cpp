@@ -11,11 +11,11 @@ Exporter::Exporter(){
   //---------------------------
 
   this->ldr_header = new fmt::ply::exporter::Header();
+  this->utl_attribut = new utl::base::Attribut();
 
   this->format = ".ply";
   this->vec_encoding.push_back(ldr::io::ASCII);
   this->vec_encoding.push_back(ldr::io::BINARY);
-  this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
 }
@@ -82,14 +82,15 @@ void Exporter::build_structure(fmt::ply::exporter::Structure& exporter, utl::bas
   }
 
   //Intensity
-  if(data->Is.size() != 0){
+  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  if(vec_I.size() != 0){
     exporter.vec_property.push_back(fmt::ply::I);
     exporter.nb_property++;
   }
 
   //Timestamp
-  std::vector<float>& ts = utl_attribut->get_attribut_data(data, "ts");
-  if(ts.size() != 0){
+  std::vector<float>& vec_ts = utl_attribut->get_attribut_data(data, "ts");
+  if(vec_ts.size() != 0){
     exporter.vec_property.push_back(fmt::ply::TS);
     exporter.nb_property++;
   }
@@ -103,7 +104,7 @@ void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::of
   std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
-  std::vector<float>& Is = data->Is;
+  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
   int precision = 6;
 
   //Write data in the file
@@ -126,8 +127,8 @@ void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::of
     }
 
     //Intensity
-    if(Is.size() != 0){
-      file << std::setprecision(precision) << Is[i] << " ";
+    if(vec_I.size() != 0){
+      file << std::setprecision(precision) << vec_I[i] << " ";
     }
 
     file << std::endl;
@@ -142,8 +143,8 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
   std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
-  std::vector<float>& Is = data->Is;
-  std::vector<float>& ts = utl_attribut->get_attribut_data(data, "ts");
+  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  std::vector<float>& vec_ts = utl_attribut->get_attribut_data(data, "ts");
   int precision = 6;
 
   //Prepare data writing by blocks
@@ -179,7 +180,7 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
 
         //Intensity
         case fmt::ply::I:{
-          memcpy(block_data + offset, &Is[i], sizeof(float));
+          memcpy(block_data + offset, &vec_I[i], sizeof(float));
           offset += sizeof(float);
           break;
         }
@@ -193,7 +194,7 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
 
         //Timestamp
         case fmt::ply::TS:{
-          memcpy(block_data + offset, &ts[i], sizeof(float));
+          memcpy(block_data + offset, &vec_ts[i], sizeof(float));
           offset += sizeof(float);
           break;
         }

@@ -95,8 +95,9 @@ void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Co
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  for(int i=0; i<data->Is.size(); i++){
-    float Is = data->Is[i];// / config.intensity_diviser;
+  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  for(int i=0; i<vec_I.size(); i++){
+    float& Is = vec_I[i];
     data->rgba[i] = glm::vec4(Is, Is, Is, 1);
   }
 
@@ -106,9 +107,10 @@ void Colorizer::colorization_intensity_inv(dat::base::Entity* entity, ope::color
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  for(int i=0; i<data->Is.size(); i++){
-    float Is = data->Is[i] / config.intensity_diviser;
-    data->rgba[i] = glm::vec4(1 - Is, 1 - Is, 1 - Is, 1);
+  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  for(int i=0; i<vec_I.size(); i++){
+    float Iinv = 1 - vec_I[i];
+    data->rgba[i] = glm::vec4(Iinv, Iinv, Iinv, 1);
   }
 
   //---------------------------

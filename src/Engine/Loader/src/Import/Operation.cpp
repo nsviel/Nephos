@@ -23,6 +23,7 @@ Operation::Operation(ldr::Node* node_loader){
   this->dat_selection = node_data->get_dat_selection();
   this->ope_transform = new ope::Transformation();
   this->ope_operation = new ope::Operation();
+  this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
 }
@@ -67,6 +68,8 @@ void Operation::ope_color(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
+  std::vector<float>& vec_I = utl_attribut->get_attribut_data(&entity->data, "I");
+
   //If color
   if(entity->data.rgb.size() != 0){
     for(int i=0; i<entity->data.rgb.size(); i++){
@@ -75,9 +78,9 @@ void Operation::ope_color(dat::base::Entity* entity){
     }
   }
   //Else if intensity
-  else if(entity->data.Is.size() != 0){
-    for(int i=0; i<entity->data.Is.size(); i++){
-      float& Is = entity->data.Is[i];
+  else if(vec_I.size() != 0){
+    for(int i=0; i<vec_I.size(); i++){
+      float& Is = vec_I[i];
       entity->data.rgba.push_back(glm::vec4(Is, Is, Is, 1));
     }
   }

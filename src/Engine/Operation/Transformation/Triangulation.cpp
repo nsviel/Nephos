@@ -21,7 +21,7 @@ void Triangulation::make_triangulation(utl::base::Data* data){
   if(data->xyz.size() == 0) return;
   if(data->width == -1 || data->height == -1) return;
   //---------------------------
-
+/*
   //Prepare data
   std::vector<glm::vec3> xyz;
   std::vector<glm::vec3> rgb;
@@ -111,7 +111,7 @@ void Triangulation::make_triangulation(utl::base::Data* data){
   data->Nxyz = Nxyz_triangle;
   data->size = xyz.size();
   data->Nxyz = Nxyz_point;
-
+*/
   //---------------------------
 }
 
