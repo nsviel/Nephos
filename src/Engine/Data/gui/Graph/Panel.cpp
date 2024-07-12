@@ -130,22 +130,7 @@ int Panel::tree_set(dat::base::Set* set){
 
   //Bin button
   ImGui::TableNextColumn();
-  if(set->is_suppressible){
-    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
-    ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
-
-    if(set->is_locked){
-      if(ImGui::SmallButton(ICON_FA_LOCK "##tree_set")){
-        set->is_locked = false;
-      }
-    }else{
-      if(ImGui::SmallButton(ICON_FA_UNLOCK "##tree_set")){
-        set->is_locked = true;
-      }
-    }
-
-    ImGui::PopStyleColor(2);
-  }
+  gui_button->button_locked(set);
 
   //If set open, display elements
   if(is_node_open){
@@ -218,13 +203,7 @@ void Panel::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
 
   //Visibility button
   ImGui::TableNextColumn();
-  ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
-  ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
-  //std::string tag = std::string(ICON_FA_EYE) + "##" + entity->name + std::to_string(nb_row);
-  //if(ImGui::SmallButton(tag.c_str())){
-
-  //}
-  ImGui::PopStyleColor(2);
+  gui_button->button_visibility(entity);
 
   //Supression button
   ImGui::TableNextColumn();
