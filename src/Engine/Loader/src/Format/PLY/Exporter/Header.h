@@ -27,6 +27,7 @@ public:
   //Subfunction
   void write_info(fmt::ply::exporter::Structure& exporter, std::ofstream& file);
   void write_property(fmt::ply::exporter::Structure& exporter, std::ofstream& file);
+  void write_end(std::ofstream& file);
 
 private:
 

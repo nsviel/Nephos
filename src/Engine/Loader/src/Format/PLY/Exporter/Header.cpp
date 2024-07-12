@@ -18,8 +18,8 @@ void Header::write_header(fmt::ply::exporter::Structure& exporter, std::ofstream
   //---------------------------
 
   this->write_info(exporter, file);
-  this->write_property(file, data);
-  file << "end_header" <<std::endl;
+  this->write_property(exporter, file);
+  this->write_end(file);
 
   //---------------------------
 }
@@ -69,6 +69,13 @@ void Header::write_property(fmt::ply::exporter::Structure& exporter, std::ofstre
       }
     }
   }
+
+  //---------------------------
+}
+void Header::write_end(std::ofstream& file){
+  //---------------------------
+
+  file << "end_header" <<std::endl;
 
   //---------------------------
 }
