@@ -7,6 +7,8 @@ namespace dat::graph{class Selection;}
 namespace dat::element{class Set;}
 namespace dat::element{class Entity;}
 namespace dat::base{class Entity;}
+namespace dat::gui::entity{class Topology;}
+namespace dat::gui::entity{class Data;}
 namespace ope::attribut{class Location;}
 namespace ope{class Operation;}
 namespace utl::base{class Data;}
@@ -36,12 +38,6 @@ public:
   void entity_data(dat::base::Entity* entity);
   void entity_pose(dat::base::Entity* entity);
 
-  //Primitive
-  void entity_typology(dat::base::Entity* entity);
-  void topology_line(utl::base::Data* data);
-  void topology_point(utl::base::Data* data);
-  void topology_triangle(utl::base::Data* data);
-
   inline void set_entity(dat::base::Entity* entity){this->entity = entity;}
 
 private:
@@ -50,6 +46,8 @@ private:
   dat::graph::Selection* dat_selection;
   dat::element::Set* dat_set;
   dat::element::Entity* dat_entity;
+  dat::gui::entity::Topology* gui_topology;
+  dat::gui::entity::Data* gui_data;
 
   dat::base::Entity* entity;
   std::string panel_name;
