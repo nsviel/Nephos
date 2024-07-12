@@ -30,6 +30,7 @@ public:
   void export_with_encoding(ldr::base::Exporter* exporter, dat::base::Entity* entity, std::string path);
   void insert_exporter(ldr::base::Exporter* exporter);
   bool is_format_supported(std::string format);
+  bool is_current_config();
   std::vector<std::string> get_supported_format();
   std::vector<int> get_supported_encoding(std::string format);
 

@@ -46,9 +46,17 @@ void Exporter::display_action(){
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
-  if(ImGui::Button("Export##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
-    this->item_operation();
+
+  if(ldr_exporter->is_current_config()){
+    if(ImGui::Button("Save current##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+      this->item_operation();
+    }
+  }else{
+    if(ImGui::Button("Export##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+      this->item_operation();
+    }
   }
+
   ImGui::PopStyleColor(2);
 
   //---------------------------

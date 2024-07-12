@@ -87,6 +87,13 @@ bool Exporter::is_format_supported(std::string format){
   //---------------------------
   return false;
 }
+bool Exporter::is_current_config(){
+  //---------------------------
+
+
+  //---------------------------
+  return false;
+}
 std::vector<std::string> Exporter::get_supported_format(){
   std::vector<std::string> vec_format;
   //---------------------------
