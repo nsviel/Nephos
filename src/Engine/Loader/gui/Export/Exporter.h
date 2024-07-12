@@ -37,7 +37,7 @@ public:
   //Subfunction
   void item_filtering(std::vector<std::string>& vec_path);
   void item_update(utl::base::Element* element);
-  void item_operation();
+  void item_operation(dat::base::Entity* entity);
 
 private:
   ldr::Structure* ldr_struct;

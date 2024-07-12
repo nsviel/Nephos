@@ -50,7 +50,7 @@ void Recorder::display_action(dyn::base::Sensor* sensor){
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Record##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
       dyn_player->button_record();
-      this->item_operation();
+      this->item_operation(sensor);
     }
     ImGui::PopStyleColor(2);
   }else{
@@ -58,7 +58,7 @@ void Recorder::display_action(dyn::base::Sensor* sensor){
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(150, 50, 50, 255));
     if(ImGui::Button("Stop##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
       dyn_player->button_record();
-      this->item_operation();
+      this->item_operation(sensor);
     }
     ImGui::PopStyleColor(2);
   }
@@ -171,8 +171,7 @@ void Recorder::item_update(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Recorder::item_operation(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+void Recorder::item_operation(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 

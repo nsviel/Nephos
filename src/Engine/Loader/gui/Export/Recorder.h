@@ -13,6 +13,7 @@ namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace dyn::player{class Player;}
 namespace dat::graph{class Selection;}
+namespace dat::base{class Entity;}
 
 
 namespace ldr::gui::exporter{
@@ -36,7 +37,7 @@ public:
   //Subfunction
   void item_filtering(std::vector<std::string>& vec_path);
   void item_update(dyn::base::Sensor* sensor);
-  void item_operation();
+  void item_operation(dat::base::Entity* entity);
 
 private:
   dyn::player::Player* dyn_player;

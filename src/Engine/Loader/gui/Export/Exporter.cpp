@@ -42,18 +42,19 @@ void Exporter::draw_header(utl::base::Element* element){
 
 //Header function
 void Exporter::display_action(){
+  dat::base::Entity* entity = dat_selection->get_selected_entity();
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
 
-  if(ldr_exporter->is_current_config()){
+  if(ldr_exporter->is_current_config(entity)){
     if(ImGui::Button("Save current##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
-      this->item_operation();
+      this->item_operation(entity);
     }
   }else{
     if(ImGui::Button("Export##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
-      this->item_operation();
+      this->item_operation(entity);
     }
   }
 
@@ -215,8 +216,7 @@ void Exporter::item_update(utl::base::Element* element){
 
   //---------------------------
 }
-void Exporter::item_operation(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+void Exporter::item_operation(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 

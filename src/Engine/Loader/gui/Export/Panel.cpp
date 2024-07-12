@@ -94,11 +94,11 @@ void Panel::item_operation(){
 
   //If dynamic object
   if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
-    gui_recorder->item_operation();
+    gui_recorder->item_operation(entity);
   }
   //Else, it's static object
   else{
-    gui_exporter->item_operation();
+    gui_exporter->item_operation(entity);
   }
 
   //---------------------------
