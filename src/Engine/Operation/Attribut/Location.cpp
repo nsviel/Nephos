@@ -77,8 +77,8 @@ void Location::compute_COM(dat::base::Entity* entity){
   this->compute_centroid(entity);
 
   //Transform the centroid by the model matrix
-  glm::vec4 centroid_h = glm::vec4(data->centroid, 1.0f);
-  pose->COM = pose->model * centroid_h;
+  glm::vec4 centroid = glm::vec4(data->centroid, 1.0f);
+  pose->COM = centroid * pose->model;
 
   //---------------------------
 }

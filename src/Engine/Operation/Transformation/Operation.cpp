@@ -109,7 +109,7 @@ void Operation::make_rotation(utl::base::Element* element, glm::vec3 COM, glm::v
     }
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    ope_transform->make_rotation(&entity->pose, value);
+    ope_transform->make_rotation(&entity->pose, COM, value);
   }
 
   //---------------------------
