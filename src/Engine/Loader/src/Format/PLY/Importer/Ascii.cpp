@@ -28,10 +28,10 @@ void Ascii::parse_ascii(dat::base::Object* object, fmt::ply::Header* header){
   this->parse_face(file);
 
   //Store result
-  object->data.xyz = data.xyz;
-  object->data.Nxyz = data.Nxyz;
-  object->data.Is = data.Is;
-  object->data.size = data.xyz.size();
+  object->data.xyz = buffer.xyz;
+  object->data.Nxyz = buffer.Nxyz;
+  object->data.Is = buffer.Is;
+  object->data.size = buffer.xyz.size();
 
   //Close file
   file.close();
@@ -41,7 +41,7 @@ void Ascii::parse_ascii(dat::base::Object* object, fmt::ply::Header* header){
 
 //Parser
 void Ascii::parse_vertex(std::ifstream& file){
-  this->data = {};
+  this->buffer = {};
   //---------------------------
 
   //Retrieve vertex data
@@ -60,19 +60,19 @@ void Ascii::parse_vertex(std::ifstream& file){
     //Location
     int id_x = get_property_id(fmt::ply::XYZ);
     if(id_x != -1){
-      data.xyz.push_back(glm::vec3(row[id_x], row[id_x+1], row[id_x+2]));
+      buffer.xyz.push_back(glm::vec3(row[id_x], row[id_x+1], row[id_x+2]));
     }
 
     //Normal
     int id_nx = get_property_id(fmt::ply::NXYZ);
     if(id_nx != -1){
-      data.Nxyz.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
+      buffer.Nxyz.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
     }
 
     //Intensity
     int id_i = get_property_id(fmt::ply::I);
     if(id_i != -1){
-      data.Is.push_back(row[id_i]);
+      buffer.Is.push_back(row[id_i]);
     }
   }
 
@@ -83,8 +83,8 @@ void Ascii::parse_face(std::ifstream& file){
   //---------------------------
 
   //Init
-  utl::base::Data data_tmp = data;
-  this->data = {};
+  fmt::ply::Buffer buffer_tmp = buffer;
+  this->buffer = {};
 
   //Retrieve face data
   std::string line;
@@ -103,16 +103,16 @@ void Ascii::parse_face(std::ifstream& file){
     //Retrieve face data
     for(int i=0; i<nb_vertice; i++){
       //Location
-      data.xyz.push_back(data_tmp.xyz[idx[i]]);
+      buffer.xyz.push_back(buffer_tmp.xyz[idx[i]]);
 
       //Normal
       if(get_property_id(fmt::ply::NXYZ) != -1){
-        data.Nxyz.push_back(data_tmp.Nxyz[idx[i]]);
+        buffer.Nxyz.push_back(buffer_tmp.Nxyz[idx[i]]);
       }
 
       //Intensity
       if(get_property_id(fmt::ply::I) != -1){
-        data.Is.push_back(data_tmp.Is[idx[i]]);
+        buffer.Is.push_back(buffer_tmp.Is[idx[i]]);
       }
     }
   }

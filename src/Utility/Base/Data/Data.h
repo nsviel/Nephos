@@ -33,14 +33,13 @@ struct Data : public utl::base::Element{
   glm::vec3 centroid = glm::vec3(0.0f, 0.0f, 0.0f);
 
   //Data
-  std::vector<glm::vec3> xyz; //XYZ location
-  std::vector<glm::vec3> rgb; //RGB color
-  std::vector<glm::vec4> rgba; //Displayed color data
-  std::vector<glm::vec3> Nxyz; //Normal
-  std::vector<glm::vec2> uv;  //UV coordinate
+  std::vector<glm::vec3> xyz;   //XYZ location
+  std::vector<glm::vec3> rgb;   //RGB color
+  std::vector<glm::vec4> rgba;  //Displayed color data
+  std::vector<glm::vec3> Nxyz;  //Normal
+  std::vector<glm::vec2> uv;    //UV coordinate
   std::vector<utl::base::data::Attribut> vec_attribut;
 
-  std::vector<float> ts; //Timestamp
   std::vector<float> Is; //Intensity
   std::vector<float> Is_cor; //Corrected intensity
   std::vector<float> Is_cal; //Calibrated intensity

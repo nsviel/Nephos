@@ -52,7 +52,7 @@ public:
 
 private:
   fmt::ply::Header* header = nullptr;
-  utl::base::Data data;
+  fmt::ply::Buffer buffer;
 };
 
 }

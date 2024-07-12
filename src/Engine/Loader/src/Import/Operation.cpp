@@ -67,15 +67,24 @@ void Operation::ope_color(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  //If no color, fill it with white
-  if(entity->data.rgb.size() == 0){
-    for(int i=0; i<entity->data.xyz.size(); i++){
-      entity->data.rgba.push_back(glm::vec4(1, 1, 1, 1));
-    }
-  }else{
+  //If color
+  if(entity->data.rgb.size() != 0){
     for(int i=0; i<entity->data.rgb.size(); i++){
       glm::vec3& rgb = entity->data.rgb[i];
       entity->data.rgba.push_back(glm::vec4(rgb.x, rgb.y, rgb.z, 1));
+    }
+  }
+  //Else if intensity
+  else if(entity->data.Is.size() != 0){
+    for(int i=0; i<entity->data.Is.size(); i++){
+      float& Is = entity->data.Is[i];
+      entity->data.rgba.push_back(glm::vec4(Is, Is, Is, 1));
+    }
+  }
+  //Else fill with white
+  else{
+    for(int i=0; i<entity->data.xyz.size(); i++){
+      entity->data.rgba.push_back(glm::vec4(1, 1, 1, 1));
     }
   }
 

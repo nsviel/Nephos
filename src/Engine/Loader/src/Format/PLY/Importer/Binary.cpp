@@ -37,10 +37,10 @@ void Binary::parse_binary(dat::base::Object* object, fmt::ply::Header* header){
   }
 
   //Store result
-  object->data.xyz = data.xyz;
-  object->data.Nxyz = data.Nxyz;
-  object->data.Is = data.Is;
-  object->data.size = data.xyz.size();
+  object->data.xyz = buffer.xyz;
+  object->data.Nxyz = buffer.Nxyz;
+  object->data.Is = buffer.Is;
+  object->data.size = buffer.xyz.size();
 
   //Close file
   file.close();
@@ -50,7 +50,7 @@ void Binary::parse_binary(dat::base::Object* object, fmt::ply::Header* header){
 
 //Parser
 void Binary::parse_vertex_little_endian(std::ifstream& file){
-  this->data = {};
+  this->buffer = {};
   //---------------------------
 
   //Read data
@@ -108,11 +108,11 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
   }
 
   //Resize std::vectors accordingly
-  data.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(fmt::ply::TS) != -1) data.ts.resize(header->nb_vertex, 0);
-  if(get_property_id(fmt::ply::I) != -1) data.Is.resize(header->nb_vertex, 0);
-  if(get_property_id(fmt::ply::NXYZ) != -1) data.Nxyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(fmt::ply::RGB) != -1) data.rgb.resize(header->nb_vertex, glm::vec4(0,0,0,0));
+  buffer.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(fmt::ply::TS) != -1) buffer.ts.resize(header->nb_vertex, 0);
+  if(get_property_id(fmt::ply::I) != -1) buffer.Is.resize(header->nb_vertex, 0);
+  if(get_property_id(fmt::ply::NXYZ) != -1) buffer.Nxyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(fmt::ply::RGB) != -1) buffer.rgb.resize(header->nb_vertex, glm::vec4(0,0,0,0));
 
   //Insert data in the adequate std::vector
   //#pragma omp parallel for
@@ -123,12 +123,12 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
       switch(property->field){
         case fmt::ply::XYZ:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-          data.xyz[i] = point;
+          buffer.xyz[i] = point;
           break;
         }
         case fmt::ply::NXYZ:{ //Normal
           glm::vec3 normal = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-          data.Nxyz[i] = normal;
+          buffer.Nxyz[i] = normal;
           break;
         }
         case fmt::ply::RGB:{ //Color
@@ -136,17 +136,17 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
           float green = block_vec[j+1][i] / 255;
           float blue = block_vec[j+2][i] / 255;
           glm::vec4 rgb = glm::vec4(red, green, blue, 1.0f);
-          data.rgb[i] = rgb;
+          buffer.rgb[i] = rgb;
           break;
         }
         case fmt::ply::I:{ //Intensity
           float Is = block_vec[j][i];
-          data.Is[i] = Is;
+          buffer.Is[i] = Is;
           break;
         }
         case fmt::ply::TS:{ //Timestamp
           float ts = block_vec[j][i];
-          data.ts[i] = ts;
+          buffer.ts[i] = ts;
           break;
         }
       }
@@ -161,8 +161,8 @@ void Binary::parse_face_little_endian(std::ifstream& file){
   //---------------------------
 
   //Init
-  utl::base::Data data_tmp = data;
-  this->data = {};
+  fmt::ply::Buffer buffer_tmp = buffer;
+  this->buffer = {};
 
   //Get face index
   int block_size_id = 4 * header->nb_face * sizeof(int);
@@ -190,8 +190,8 @@ void Binary::parse_face_little_endian(std::ifstream& file){
     for(int j=0; j<idx.size(); j++){
       int& index = idx[j];
 
-      if(index < data_tmp.xyz.size()){
-        data.xyz.push_back(data_tmp.xyz[index]);
+      if(index < buffer_tmp.xyz.size()){
+        buffer.xyz.push_back(buffer_tmp.xyz[index]);
       }
     }
   }
@@ -207,7 +207,7 @@ void Binary::parse_face_little_endian(std::ifstream& file){
   //---------------------------
 }
 void Binary::parse_vertex_big_endian(std::ifstream& file){
-  this->data = {};
+  this->buffer = {};
   //---------------------------
 
   //Read data
@@ -227,9 +227,9 @@ void Binary::parse_vertex_big_endian(std::ifstream& file){
   }
 
   //Resize std::vectors accordingly
-  data.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(fmt::ply::TS) != -1) data.ts.resize(header->nb_vertex, 0);
-  if(get_property_id(fmt::ply::I) != -1) data.Is.resize(header->nb_vertex, 0);
+  buffer.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(fmt::ply::TS) != -1) buffer.ts.resize(header->nb_vertex, 0);
+  if(get_property_id(fmt::ply::I) != -1) buffer.Is.resize(header->nb_vertex, 0);
 
   //Insert data in the adequate std::vector
   #pragma omp parallel for
@@ -240,17 +240,17 @@ void Binary::parse_vertex_big_endian(std::ifstream& file){
       switch(property->field){
         case fmt::ply::XYZ:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
-          data.xyz[i] = point;
+          buffer.xyz[i] = point;
           break;
         }
         case fmt::ply::I:{ //Intensity
           float Is = block_vec[j][i];
-          data.Is[i] = Is;
+          buffer.Is[i] = Is;
           break;
         }
         case fmt::ply::TS:{ //Timestamp
           float ts = block_vec[j][i];
-          data.ts[i] = ts;
+          buffer.ts[i] = ts;
           break;
         }
       }
@@ -265,8 +265,8 @@ void Binary::parse_face_big_endian(std::ifstream& file){
   //---------------------------
 
   //Init
-  utl::base::Data data_tmp = data;
-  this->data = {};
+  fmt::ply::Buffer buffer_tmp = buffer;
+  this->buffer = {};
 
   //Get face index
   int block_size_id = 4 * header->nb_face * sizeof(int);
@@ -292,7 +292,7 @@ void Binary::parse_face_big_endian(std::ifstream& file){
 
     //Location
     for(int j=0; j<idx.size(); j++){
-      data.xyz.push_back(data_tmp.xyz[idx[j]]);
+      buffer.xyz.push_back(buffer_tmp.xyz[idx[j]]);
     }
   }
 
