@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/src/Format/PLY/Utils.h>
+#include <Loader/src/Format/PLY/Structure/Namespace.h>
 #include <Loader/src/Base/Importer.h>
 #include <Utility/Function/File/Path.h>
 #include <Utility/Function/Math/Math.h>
