@@ -34,10 +34,10 @@ void Menu::draw(){
     this->menu_panel();
     ImGui::EndMenu();
   }
-  if(ImGui::MenuItem(ICON_FA_FILE_ARROW_DOWN "##Loader")){
+  if(ImGui::MenuItem(ICON_FA_DOWNLOAD "##Loader")){
     this->menu_shortcut("Loader");
   }
-  if(ImGui::MenuItem(ICON_FA_DOWNLOAD "##Exporter")){
+  if(ImGui::MenuItem(ICON_FA_FLOPPY_DISK "##Exporter")){
     this->menu_shortcut("Exporter");
   }
   if(ImGui::MenuItem(ICON_FA_CAMERA)){

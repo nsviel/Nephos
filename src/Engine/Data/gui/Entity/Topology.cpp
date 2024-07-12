@@ -43,16 +43,18 @@ void Topology::topology_line(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
+  ImVec4 color = ImVec4(0.2330f, 0.5392f, 0.6686f, 1.0f);
+
   //Draw type
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Topology"); ImGui::TableNextColumn();
-  ImGui::Text("line");
+  ImGui::TextColored(color, "line");
 
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
   std::string nb_point = math::thousand_separator(data->size / 2);
-  ImGui::Text("%s", nb_point.c_str());
+  ImGui::TextColored(color, "%s", nb_point.c_str());
 
   //Line width
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -71,7 +73,7 @@ void Topology::topology_line(utl::base::Data* data){
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", data->topology.width);
+  ImGui::TextColored(color, "%d", data->topology.width);
 
   //---------------------------
 }
@@ -79,16 +81,18 @@ void Topology::topology_point(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
+  ImVec4 color = ImVec4(0.2330f, 0.5392f, 0.6686f, 1.0f);
+
   //Draw type
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Topology"); ImGui::TableNextColumn();
-  ImGui::Text("point");
+  ImGui::TextColored(color, "point");
 
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
   std::string nb_point = math::thousand_separator(data->size);
-  ImGui::Text("%s", nb_point.c_str());
+  ImGui::TextColored(color, "%s", nb_point.c_str());
 
   //Point size
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -107,7 +111,7 @@ void Topology::topology_point(utl::base::Data* data){
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::Text("%d", data->topology.width);
+  ImGui::TextColored(color, "%d", data->topology.width);
 
   //---------------------------
 }
@@ -115,16 +119,18 @@ void Topology::topology_triangle(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
+  ImVec4 color = ImVec4(0.2330f, 0.5392f, 0.6686f, 1.0f);
+
   //Draw type
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Topology"); ImGui::TableNextColumn();
-  ImGui::Text("triangle");
+  ImGui::TextColored(color, "triangle");
 
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
   std::string nb_point = math::thousand_separator(data->size / 3);
-  ImGui::Text("%s", nb_point.c_str());
+  ImGui::TextColored(color, "%s", nb_point.c_str());
 
   //---------------------------
 }

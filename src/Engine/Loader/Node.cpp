@@ -10,8 +10,8 @@ namespace ldr{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* panel_loader = add_panel("Loader", ICON_FA_FILE_ARROW_DOWN, false);
-  utl::gui::Panel* panel_export = add_panel("Exporter", ICON_FA_DOWNLOAD, false);
+  utl::gui::Panel* panel_loader = add_panel("Loader", ICON_FA_DOWNLOAD, false);
+  utl::gui::Panel* panel_export = add_panel("Exporter", ICON_FA_FLOPPY_DISK, false);
   utl::gui::Panel* panel_transfo = add_panel("Transformation", ICON_FA_PEN_TO_SQUARE, false);
   //---------------------------
 
