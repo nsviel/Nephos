@@ -1,6 +1,8 @@
 #pragma once
 
+#include <Loader/src/Format/PLY/Structure/Property.h>
 #include <Utility/Namespace.h>
+#include <vector>
 #include <string>
 
 
