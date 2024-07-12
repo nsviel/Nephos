@@ -29,7 +29,7 @@ void Sensor::clean(){
 
   //---------------------------
 }
-glm::vec3 Sensor::convert_depth_2d_to_3d(ivec2 point_2d){
+glm::vec3 Sensor::convert_depth_2d_to_3d(glm::ivec2 point_2d){
   //---------------------------
 
   uint16_t* buffer = reinterpret_cast<uint16_t*>(depth.data.buffer);

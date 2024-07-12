@@ -1,6 +1,7 @@
 #pragma once
 
 namespace utl::base{class Data;}
+namespace utl::base{class Attribut;}
 
 
 namespace vld::processing{
@@ -26,6 +27,7 @@ public:
 private:
   utl::base::Data* frame_onrun;
   utl::base::Data* frame_ended;
+  utl::base::Attribut* utl_attribut;
 };
 
 }

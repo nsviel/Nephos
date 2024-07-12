@@ -28,10 +28,11 @@ enum Mode{
   INTENSITY_INV = 3,
   INTENSITY_COR = 4,
   INTENSITY_CAL = 5,
-  NORMAL = 6,
-  INCIDENCE_ANGLE = 7,
-  HEATMAP = 8,
-  STRUCTURE = 9,
+  LOCATION = 6,
+  NORMAL = 7,
+  INCIDENCE_ANGLE = 8,
+  HEATMAP = 9,
+  STRUCTURE = 10,
 };
 
 namespace heatmap{
@@ -65,6 +66,7 @@ public:
   void colorization_intensity_cal(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_incidence_angle(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_normal(dat::base::Entity* entity, ope::color::Configuration& config);
+  void colorization_location(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_heatmap(dat::base::Entity* entity, ope::color::Configuration& config);
   void colorization_structure(dat::base::Entity* entity);
 

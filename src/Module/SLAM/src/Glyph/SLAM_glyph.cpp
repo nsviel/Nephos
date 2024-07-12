@@ -112,7 +112,7 @@ void SLAM_glyph::update_glyph_keypoint(Cloud* cloud){
 
     for(int i=0; i<frame->xyz.size(); i++){
       xyz.push_back(glm::vec3(frame->xyz[i](0), frame->xyz[i](1), frame->xyz[i](2)));
-      rgb.push_back(vec4(frame->ts_n[i], 1 - frame->ts_n[i], 0, 1));
+      rgb.push_back(glm::vec4(frame->ts_n[i], 1 - frame->ts_n[i], 0, 1));
     }
 
     //---------------------------
@@ -135,10 +135,10 @@ void SLAM_glyph::update_glyph_nn(Cloud* cloud){
     for(int i=0; i<frame->xyz.size(); i++){
       if(fct_is_nan(frame->nn[i]) == false){
         xyz.push_back(glm::vec3(frame->nn[i](0), frame->nn[i](1), frame->nn[i](2)));
-        rgb.push_back(vec4(frame->ts_n[i], 1 - frame->ts_n[i], 1, 1));
+        rgb.push_back(glm::vec4(frame->ts_n[i], 1 - frame->ts_n[i], 1, 1));
       }else{
         xyz.push_back(glm::vec3(frame->nn[i](0), frame->nn[i](1), frame->nn[i](2)));
-        rgb.push_back(vec4(1, 1, 1, 1));
+        rgb.push_back(glm::vec4(1, 1, 1, 1));
       }
     }
 

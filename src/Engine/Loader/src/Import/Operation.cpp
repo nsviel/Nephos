@@ -70,12 +70,12 @@ void Operation::ope_color(dat::base::Entity* entity){
   //If no color, fill it with white
   if(entity->data.rgb.size() == 0){
     for(int i=0; i<entity->data.xyz.size(); i++){
-      entity->data.rgba.push_back(vec4(1, 1, 1, 1));
+      entity->data.rgba.push_back(glm::vec4(1, 1, 1, 1));
     }
   }else{
     for(int i=0; i<entity->data.rgb.size(); i++){
       glm::vec3& rgb = entity->data.rgb[i];
-      entity->data.rgba.push_back(vec4(rgb.x, rgb.y, rgb.z, 1));
+      entity->data.rgba.push_back(glm::vec4(rgb.x, rgb.y, rgb.z, 1));
     }
   }
 

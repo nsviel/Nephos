@@ -42,11 +42,11 @@ void Image::compute_normal_with_gradient(dyn::base::Sensor* sensor, int width, i
       int idx = y * width + x;
 
       // Compute neighboring pixel indices
-      ivec2 idx_center = glm::ivec2(x, y);
-      ivec2 idx_left = glm::ivec2(std::max(x - 1, 0), y);
-      ivec2 idx_right = glm::ivec2(std::min(x + 1, width - 1), y);
-      ivec2 idx_up = glm::ivec2(x, std::max(y - 1, 0));
-      ivec2 idx_down = glm::ivec2(x, std::min(y + 1, height - 1));
+      glm::ivec2 idx_center = glm::ivec2(x, y);
+      glm::ivec2 idx_left = glm::ivec2(std::max(x - 1, 0), y);
+      glm::ivec2 idx_right = glm::ivec2(std::min(x + 1, width - 1), y);
+      glm::ivec2 idx_up = glm::ivec2(x, std::max(y - 1, 0));
+      glm::ivec2 idx_down = glm::ivec2(x, std::min(y + 1, height - 1));
 
       // Retrieve depth values of neighboring pixels
       glm::vec3 depth_center = sensor->convert_depth_2d_to_3d(idx_center);
@@ -89,7 +89,7 @@ tic();
   for(int y = 0; y < height; ++y){
     for(int x = 0; x < width; ++x){
       //Check
-      glm::vec3 depth = sensor->convert_depth_2d_to_3d(ivec2(x, y));
+      glm::vec3 depth = sensor->convert_depth_2d_to_3d(glm::ivec2(x, y));
       if(depth == glm::vec3(0, 0, 0)) continue;
 
       //kNN
@@ -163,7 +163,7 @@ void Image::compute_neigbor(dyn::base::Sensor* sensor, std::vector<glm::vec3>& v
     for(int kx = -half_window; kx <= half_window; ++kx){
       int nx = std::clamp(x + kx, 0, width - 1);
       int ny = std::clamp(y + ky, 0, height - 1);
-      ivec2 neighbor_idx(nx, ny);
+      glm::ivec2 neighbor_idx(nx, ny);
 
       glm::vec3 depth = sensor->convert_depth_2d_to_3d(neighbor_idx);
       if(depth == glm::vec3(0, 0, 0)) continue;

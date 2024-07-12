@@ -11,6 +11,7 @@ Frame::Frame(){
 
   this->frame_onrun = new utl::base::Data();
   this->frame_ended = new utl::base::Data();
+  this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
 }
@@ -80,9 +81,11 @@ void Frame::reset_frame(){
 void Frame::add_data_to_frame(utl::base::Data* data){
   //---------------------------
 
+  std::vector<float>& vec_R = utl_attribut->get_attribut_data(data, "R");
+
   for(int i=0; i<data->xyz.size(); i++){
     frame_onrun->xyz.push_back(data->xyz[i]);
-    frame_onrun->R.push_back(data->R[i]);
+    frame_onrun->R.push_back(vec_R[i]);
     frame_onrun->Is.push_back(data->Is[i]/255);
     frame_onrun->A.push_back(data->A[i]);
     frame_onrun->ts.push_back(data->ts[i]);
@@ -93,9 +96,11 @@ void Frame::add_data_to_frame(utl::base::Data* data){
 void Frame::end_data_to_frame(utl::base::Data* data, int index){
   //---------------------------
 
+  std::vector<float>& vec_R = utl_attribut->get_attribut_data(data, "R");
+  
   for(int i=0; i<index; i++){
     frame_onrun->xyz.push_back(data->xyz[i]);
-    frame_onrun->R.push_back(data->R[i]);
+    frame_onrun->R.push_back(vec_R[i]);
     frame_onrun->Is.push_back(data->Is[i]/255);
     frame_onrun->A.push_back(data->A[i]);
     frame_onrun->ts.push_back(data->ts[i]);
@@ -107,7 +112,7 @@ void Frame::end_data_to_frame(utl::base::Data* data, int index){
 
   for(int i=index; i<data->xyz.size(); i++){
     frame_onrun->xyz.push_back(data->xyz[i]);
-    frame_onrun->R.push_back(data->R[i]);
+    frame_onrun->R.push_back(vec_R[i]);
     frame_onrun->Is.push_back(data->Is[i]/255);
     frame_onrun->A.push_back(data->A[i]);
     frame_onrun->ts.push_back(data->ts[i]);

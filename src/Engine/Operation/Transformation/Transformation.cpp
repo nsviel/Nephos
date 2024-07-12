@@ -24,7 +24,7 @@ void Transformation::make_translation(utl::base::Pose* pose, glm::vec3 trans){
 
   //---------------------------
 }
-void Transformation::make_translation(utl::base::Pose* pose, mat4 translation){
+void Transformation::make_translation(utl::base::Pose* pose, glm::mat4 translation){
   if(!pose->movable) return;
   //---------------------------
 
@@ -56,7 +56,7 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 COM, glm::ve
   pose->model += COM_mat;
 
   // Apply rotation to the root
-  pose->root = mat3(rotation) * (pose->root - COM) + COM;
+  pose->root = glm::mat3(rotation) * (pose->root - COM) + COM;
 
   //---------------------------
 }
@@ -77,11 +77,11 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 degree){
   pose->model += COM_mat;
 
   // Apply rotation to the root
-  pose->root = mat3(rotation) * (pose->root - COM) + COM;
+  pose->root = glm::mat3(rotation) * (pose->root - COM) + COM;
 
   //---------------------------
 }
-void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 COM, mat4 rotation){
+void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 COM, glm::mat4 rotation){
   if(!pose->movable) return;
   //---------------------------
 
@@ -96,7 +96,7 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 COM, mat4 ro
   pose->model += COM_mat;
 
   // Apply rotation to the root
-  pose->root = mat3(rotation) * (pose->root - COM) + COM;
+  pose->root = glm::mat3(rotation) * (pose->root - COM) + COM;
 
   //---------------------------
 }

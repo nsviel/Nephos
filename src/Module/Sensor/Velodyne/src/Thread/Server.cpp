@@ -118,7 +118,7 @@ void Server::update_object(utl::base::Data* data){
   //If no color, fill it with white
   if(object->data.rgb.size() == 0){
     for(int i=0; i<data->xyz.size(); i++){
-      object->data.rgb.push_back(vec4(1,1,1,1));
+      object->data.rgb.push_back(glm::vec4(1,1,1,1));
     }
   }
 

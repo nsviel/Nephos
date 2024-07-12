@@ -12,6 +12,7 @@ Heatmap::Heatmap(){
 
   this->ope_colormap = new ope::color::Colormap();
   this->ope_location = new ope::attribut::Location();
+  this->utl_attribut = new utl::base::Attribut();
 
   this->is_normalization = false;
   this->range_norm = glm::vec2(0.0f, 1.0f);
@@ -116,11 +117,13 @@ void Heatmap::heatmap_height(dat::base::Entity* entity, glm::vec2 range){
 }
 void Heatmap::heatmap_range(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
-  if(data->R.size() == 0) return;
   //---------------------------
 
   //Prepare data
-  std::vector<float> R = data->R;
+  std::vector<float>& R_data = utl_attribut->get_attribut_data(data, "R");
+  if(R_data.size() == 0) return;
+
+  std::vector<float> R = R_data;
   math::normalize(R, glm::vec2(0, 10));
 
   //Compute heatmap

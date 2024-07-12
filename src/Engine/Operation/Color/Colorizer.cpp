@@ -174,6 +174,27 @@ void Colorizer::colorization_normal(dat::base::Entity* entity, ope::color::Confi
 
   //---------------------------
 }
+void Colorizer::colorization_location(dat::base::Entity* entity, ope::color::Configuration& config){
+  utl::base::Data* data = &entity->data;
+  utl::base::Pose* pose = &entity->pose;
+  //---------------------------
+
+  std::vector<glm::vec3>& xyz = data->xyz;
+
+  //Compute heatmap
+  #pragma omp parallel for
+  for(int i=0; i<xyz.size(); i++){
+    glm::vec4 normal = glm::vec4(xyz[i], 1.0) * pose->model;
+
+    float R = (1 + normal.x) / 2;
+    float G = (1 + normal.y) / 2;
+    float B = (1 + normal.z) / 2;
+
+    data->rgba[i] = glm::vec4(R, G, B, 1.0f);
+  }
+
+  //---------------------------
+}
 void Colorizer::colorization_heatmap(dat::base::Entity* entity, ope::color::Configuration& config){
   //---------------------------
 

@@ -13,6 +13,7 @@ Data::Data(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_xytable = new k4n::processing::cloud::XY_table(node_k4n);
+  this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
 }
@@ -99,12 +100,14 @@ void Data::extraction_transfer(k4n::base::Sensor* sensor){
   utl::base::Data* data = &sensor->data;
   //---------------------------
 
+  std::vector<float>& vec_R = utl_attribut->get_attribut_data(data, "R");
+
   //Data
   data->xyz = buffer_data.xyz;
   data->rgb = buffer_data.rgb;
   data->rgba = buffer_data.rgba;
   data->Is = buffer_data.Is;
-  data->R = buffer_data.R;
+  vec_R = buffer_data.R;
 
   //Info
   data->size = sensor->cloud.size;

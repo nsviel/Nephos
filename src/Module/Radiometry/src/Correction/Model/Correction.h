@@ -12,6 +12,7 @@ namespace dyn::base{class Sensor;}
 namespace dat::element{class Image;}
 namespace dat::graph{class Selection;}
 namespace utl::media{class Image;}
+namespace utl::base{class Attribut;}
 
 
 namespace rad::correction{
@@ -38,6 +39,7 @@ private:
   rad::correction::Structure* rad_struct;
   rad::correction::Model* rad_model;
   rad::correction::io::Model* rad_io_model;
+  utl::base::Attribut* utl_attribut;
 };
 
 }

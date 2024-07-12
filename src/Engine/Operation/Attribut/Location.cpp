@@ -147,8 +147,7 @@ void Location::compute_range(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-
-  std::vector<float>& R = data->R;
+  std::vector<float>& R = utl_attribut->get_attribut_data(data, "R");
   std::vector<glm::vec3>& xyz = data->xyz;
 
   R.resize(xyz.size(), 0.0f);
@@ -166,7 +165,7 @@ void Location::compute_incidence_angle(dat::base::Entity* entity){
   //---------------------------
 
   std::vector<float>& It = data->It;
-  std::vector<float>& R = data->R;
+  std::vector<float>& R = utl_attribut->get_attribut_data(data, "R");
   std::vector<glm::vec3>& xyz = data->xyz;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
 

@@ -6,8 +6,7 @@
 namespace ope::color{class Colormap;}
 namespace ope::attribut{class Location;}
 namespace dat::base{class Entity;}
-
-using namespace glm;
+namespace utl::base{class Attribut;}
 
 
 namespace ope::color{
@@ -36,6 +35,7 @@ public:
 private:
   ope::color::Colormap* ope_colormap;
   ope::attribut::Location* ope_location;
+  utl::base::Attribut* utl_attribut;
 
   glm::vec2 range_norm;
   glm::vec2 range_height;

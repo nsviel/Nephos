@@ -40,7 +40,7 @@ void Glyph::create_sphere_glyph(){
   //Calibration sphere
   rad::correction::glyph::Sphere* sphere = new rad::correction::glyph::Sphere(node_engine);
   rad_struct->ransac.glyph = sphere;
-  sphere->set_color(vec4(0, 1, 0, 1));
+  sphere->set_color(glm::vec4(0, 1, 0, 1));
   dat_glyph->create_glyph(sphere);
 
   //---------------------------

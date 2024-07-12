@@ -18,16 +18,10 @@ Attribut::~Attribut(){}
 std::vector<float>& Attribut::get_attribut_data(utl::base::Data* data, std::string name){
   //---------------------------
 
-  for(int i=0; i<data->vec_attribut.size(); i++){
-    utl::base::data::Attribut& attribut = data->vec_attribut[i];
-    if(attribut.name == name) return attribut.data;
-  }
-
-  std::cout<<"[error] attribut name doesn't exists"<<std::endl;
-  static std::vector<float> empty_vector;
+  utl::base::data::Attribut* attribut = get_or_create_attribut(data, name);
 
   //---------------------------
-  return empty_vector;
+  return attribut->data;;
 }
 utl::base::data::Attribut* Attribut::get_or_create_attribut(utl::base::Data* data, std::string name){
   //---------------------------

@@ -87,7 +87,7 @@ void Voxelizer::find_voxel_min_number_of_point(utl::base::Data* data, float voxe
 }
 void Voxelizer::reconstruct_data_by_goodness(utl::base::Data* data){
   //---------------------------
-
+  /*
   // Use std::remove_if to move the unwanted elements to the end
   auto newEnd = std::remove_if(vec_goodness.begin(), vec_goodness.end(), [](bool g){ return !g; });
 
@@ -100,7 +100,7 @@ void Voxelizer::reconstruct_data_by_goodness(utl::base::Data* data){
   // Update the nb_point
   data->size = data->xyz.size();
 
-  /*
+
   std::vector<glm::vec3> xyz;
   std::vector<glm::vec4> rgb;
   std::vector<float> R;
