@@ -31,7 +31,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
   object->data.path.format = format;
 
   //Header
-  this->parse_header(path.build());
+  if(!parse_header(path.build())) return nullptr;
 
   //Parsing
   switch(header.format){
@@ -53,7 +53,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
 }
 
 //Header
-void Importer::parse_header(std::string path){
+bool Importer::parse_header(std::string path){
   //---------------------------
 
   //Init
@@ -75,7 +75,7 @@ void Importer::parse_header(std::string path){
     }
     //Retrieve number of point
     else if(h1 + h2 == "elementvertex"){
-      header.nb_vertex = std::stoi(h3);
+      if(!parse_header_size(h3)) return false;
     }
     //Retrieve property
     else if(h1 == "property" && vertex_ended == false){
@@ -90,6 +90,7 @@ void Importer::parse_header(std::string path){
   }while(line.find("end_header") != 0);
 
   //---------------------------
+  return true;
 }
 void Importer::parse_header_format(std::string format){
   //---------------------------
@@ -141,6 +142,19 @@ void Importer::parse_header_property(std::string type, std::string field){
   header.vec_property.push_back(property);
 
   //---------------------------
+}
+bool Importer::parse_header_size(std::string value){
+  //---------------------------
+
+  int nb_vertex = std::stoi(value);
+  if(nb_vertex < 0){
+    std::cout<<"[error] ply file number vertex wrong"<<std::endl;
+    return false;
+  }
+  header.nb_vertex = nb_vertex;
+
+  //---------------------------
+  return true;
 }
 
 }

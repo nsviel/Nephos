@@ -31,9 +31,10 @@ public:
 
 private:
   //Header
-  void parse_header(std::string path);
+  bool parse_header(std::string path);
   void parse_header_format(std::string format);
   void parse_header_property(std::string type, std::string field);
+  bool parse_header_size(std::string nb_vertex);
 
 private:
   format::ply::importer::Ascii* ply_ascii;

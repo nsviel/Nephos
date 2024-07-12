@@ -85,7 +85,7 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
     this->property_number += 3;
   }
   if(data->Is.size() != 0){
-    file << "property float32 scalar_field" << std::endl;
+    file << "property float32 intensity" << std::endl;
 
     vec_property.push_back(format::ply::I);
     property_number++;
