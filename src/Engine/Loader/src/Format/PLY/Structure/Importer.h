@@ -7,15 +7,9 @@
 #include <string>
 
 
-namespace fmt::ply{
+namespace fmt::ply::importer{
 
-struct Importer{
-
-  Importer(){}
-  Importer(std::string path){
-    this->path = path;
-  }
-
+struct Structure{
   fmt::ply::Encoding encoding = fmt::ply::ASCII;
   utl::topology::Type topology = utl::topology::POINT;
   std::vector<fmt::ply::Property> vec_property;

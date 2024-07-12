@@ -15,17 +15,16 @@ Ascii::Ascii(){
 Ascii::~Ascii(){}
 
 //Main function
-void Ascii::parse_ascii(dat::base::Object* object, fmt::ply::Header* header){
-  this->header = header;
+void Ascii::parse_ascii(fmt::ply::importer::Structure* ply_struct, dat::base::Object* object){
   //---------------------------
 
   //Open file
-  std::ifstream file(header->path);
+  std::ifstream file(ply_struct->path);
   this->pass_header(file);
 
   //Read data
-  this->parse_vertex(file);
-  this->parse_face(file);
+  this->parse_vertex(ply_struct, file);
+  this->parse_face(ply_struct, file);
 
   //Store result
   object->data.xyz = buffer.xyz;
@@ -39,38 +38,50 @@ void Ascii::parse_ascii(dat::base::Object* object, fmt::ply::Header* header){
   //---------------------------
 }
 
-//Parser
-void Ascii::parse_vertex(std::ifstream& file){
+//Subfunction
+void Ascii::pass_header(std::ifstream& file){
+  std::string line;
+  //---------------------------
+
+  while(std::getline(file, line)){
+    if(line == "end_header"){
+      break;
+    }
+  }
+
+  //---------------------------
+}
+void Ascii::parse_vertex(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
   this->buffer = {};
   //---------------------------
 
   //Retrieve vertex data
   std::string line;
-  for(int i=0; i<header->nb_vertex; i++){
+  for(int i=0; i<ply_struct->nb_vertex; i++){
     //Data
     std::getline(file, line);
     std::istringstream iss(line);
     std::vector<float> row;
-    for(int i=0; i<header->vec_property.size(); i++){
+    for(int i=0; i<ply_struct->vec_property.size(); i++){
       float d;
       iss >> d;
       row.push_back(d);
     }
 
     //Location
-    int id_x = get_property_id(fmt::ply::XYZ);
+    int id_x = get_property_id(ply_struct, fmt::ply::XYZ);
     if(id_x != -1){
       buffer.xyz.push_back(glm::vec3(row[id_x], row[id_x+1], row[id_x+2]));
     }
 
     //Normal
-    int id_nx = get_property_id(fmt::ply::NXYZ);
+    int id_nx = get_property_id(ply_struct, fmt::ply::NXYZ);
     if(id_nx != -1){
       buffer.Nxyz.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
     }
 
     //Intensity
-    int id_i = get_property_id(fmt::ply::I);
+    int id_i = get_property_id(ply_struct, fmt::ply::I);
     if(id_i != -1){
       buffer.Is.push_back(row[id_i]);
     }
@@ -78,8 +89,8 @@ void Ascii::parse_vertex(std::ifstream& file){
 
   //---------------------------
 }
-void Ascii::parse_face(std::ifstream& file){
-  if(header->nb_face == 0) return;
+void Ascii::parse_face(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
+  if(ply_struct->nb_face == 0) return;
   //---------------------------
 
   //Init
@@ -106,12 +117,12 @@ void Ascii::parse_face(std::ifstream& file){
       buffer.xyz.push_back(buffer_tmp.xyz[idx[i]]);
 
       //Normal
-      if(get_property_id(fmt::ply::NXYZ) != -1){
+      if(get_property_id(ply_struct, fmt::ply::NXYZ) != -1){
         buffer.Nxyz.push_back(buffer_tmp.Nxyz[idx[i]]);
       }
 
       //Intensity
-      if(get_property_id(fmt::ply::I) != -1){
+      if(get_property_id(ply_struct, fmt::ply::I) != -1){
         buffer.Is.push_back(buffer_tmp.Is[idx[i]]);
       }
     }
@@ -119,33 +130,19 @@ void Ascii::parse_face(std::ifstream& file){
 
   //Deduce drawing type
   if(nb_vertice == 3){
-    header->topology = utl::topology::TRIANGLE;
+    ply_struct->topology = utl::topology::TRIANGLE;
   }
   else if(nb_vertice == 4){
-    header->topology = utl::topology::QUAD;
+    ply_struct->topology = utl::topology::QUAD;
   }
 
   //---------------------------
 }
-
-//Subfunction
-void Ascii::pass_header(std::ifstream& file){
-  std::string line;
+int Ascii::get_property_id(fmt::ply::importer::Structure* ply_struct, fmt::ply::Field field){
   //---------------------------
 
-  while(std::getline(file, line)){
-    if(line == "end_header"){
-      break;
-    }
-  }
-
-  //---------------------------
-}
-int Ascii::get_property_id(fmt::ply::Field field){
-  //---------------------------
-
-  for(int i=0; i<header->vec_property.size(); i++){
-    fmt::ply::Property* property = &header->vec_property[i];
+  for(int i=0; i<ply_struct->vec_property.size(); i++){
+    fmt::ply::Property* property = &ply_struct->vec_property[i];
 
     if(property->field == field){
       return i;

@@ -24,18 +24,15 @@ public:
 
 public:
   //Main function
-  void parse_ascii(dat::base::Object* object, fmt::ply::Header* header);
-
-  //Parser
-  void parse_vertex(std::ifstream& file);
-  void parse_face(std::ifstream& file);
+  void parse_ascii(fmt::ply::importer::Structure* ply_struct, dat::base::Object* object);
 
   //Subfunction
   void pass_header(std::ifstream& file);
-  int get_property_id(fmt::ply::Field field);
+  void parse_vertex(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
+  void parse_face(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
+  int get_property_id(fmt::ply::importer::Structure* ply_struct, fmt::ply::Field field);
 
 private:
-  fmt::ply::Header* header = nullptr;
   fmt::ply::Buffer buffer;
 };
 

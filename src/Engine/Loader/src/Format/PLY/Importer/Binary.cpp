@@ -14,24 +14,23 @@ Binary::Binary(){
 Binary::~Binary(){}
 
 //Main function
-void Binary::parse_binary(dat::base::Object* object, fmt::ply::Header* header){
-  this->header = header;
+void Binary::parse_binary(fmt::ply::importer::Structure* ply_struct, dat::base::Object* object){
   //---------------------------
 
   //Open file
-  std::ifstream file(header->path, std::ios::binary);
+  std::ifstream file(ply_struct->path, std::ios::binary);
   this->pass_header(file);
 
   //Read data
-  switch(header->encoding){
+  switch(ply_struct->encoding){
     case BINARY_LITTLE_ENDIAN:{
-      this->parse_vertex_little_endian(file);
-      this->parse_face_little_endian(file);
+      this->parse_vertex_little_endian(ply_struct, file);
+      this->parse_face_little_endian(ply_struct, file);
       break;
     }
     case BINARY_BIG_ENDIAN:{
-      this->parse_vertex_big_endian(file);
-      this->parse_face_big_endian(file);
+      this->parse_vertex_big_endian(ply_struct, file);
+      this->parse_face_big_endian(ply_struct, file);
       break;
     }
   }
@@ -48,23 +47,35 @@ void Binary::parse_binary(dat::base::Object* object, fmt::ply::Header* header){
   //---------------------------
 }
 
-//Parser
-void Binary::parse_vertex_little_endian(std::ifstream& file){
+//Subfunction
+void Binary::pass_header(std::ifstream& file){
+  std::string line;
+  //---------------------------
+
+  while(std::getline(file, line)){
+    if(line == "end_header"){
+      break;
+    }
+  }
+
+  //---------------------------
+}
+void Binary::parse_vertex_little_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
   this->buffer = {};
   //---------------------------
 
   //Read data
-  int block_size = header->vec_property.size() * header->nb_vertex * sizeof(float);
+  int block_size = ply_struct->vec_property.size() * ply_struct->nb_vertex * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(header->vec_property.size(), std::vector<float>(header->nb_vertex));
-  for(int i=0; i<header->nb_vertex; i++){
-    for(int j=0; j<header->vec_property.size(); j++){
-      fmt::ply::Property* property = &header->vec_property[j];
+  block_vec.resize(ply_struct->vec_property.size(), std::vector<float>(ply_struct->nb_vertex));
+  for(int i=0; i<ply_struct->nb_vertex; i++){
+    for(int j=0; j<ply_struct->vec_property.size(); j++){
+      fmt::ply::Property* property = &ply_struct->vec_property[j];
 
       switch(property->type){
         case fmt::ply::FLOAT32:{
@@ -108,17 +119,17 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
   }
 
   //Resize std::vectors accordingly
-  buffer.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(fmt::ply::TS) != -1) buffer.ts.resize(header->nb_vertex, 0);
-  if(get_property_id(fmt::ply::I) != -1) buffer.Is.resize(header->nb_vertex, 0);
-  if(get_property_id(fmt::ply::NXYZ) != -1) buffer.Nxyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(fmt::ply::RGB) != -1) buffer.rgb.resize(header->nb_vertex, glm::vec4(0,0,0,0));
+  buffer.xyz.resize(ply_struct->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(ply_struct, fmt::ply::TS) != -1) buffer.ts.resize(ply_struct->nb_vertex, 0);
+  if(get_property_id(ply_struct, fmt::ply::I) != -1) buffer.Is.resize(ply_struct->nb_vertex, 0);
+  if(get_property_id(ply_struct, fmt::ply::NXYZ) != -1) buffer.Nxyz.resize(ply_struct->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(ply_struct, fmt::ply::RGB) != -1) buffer.rgb.resize(ply_struct->nb_vertex, glm::vec4(0,0,0,0));
 
   //Insert data in the adequate std::vector
   //#pragma omp parallel for
-  for(int i=0; i<header->nb_vertex; i++){
-    for(int j=0; j<header->vec_property.size(); j++){
-      fmt::ply::Property* property = &header->vec_property[j];
+  for(int i=0; i<ply_struct->nb_vertex; i++){
+    for(int j=0; j<ply_struct->vec_property.size(); j++){
+      fmt::ply::Property* property = &ply_struct->vec_property[j];
 
       switch(property->field){
         case fmt::ply::XYZ:{ //Location
@@ -156,8 +167,8 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
 
   //---------------------------
 }
-void Binary::parse_face_little_endian(std::ifstream& file){
-  if(header->nb_face == 0) return;
+void Binary::parse_face_little_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
+  if(ply_struct->nb_face == 0) return;
   //---------------------------
 
   //Init
@@ -165,14 +176,14 @@ void Binary::parse_face_little_endian(std::ifstream& file){
   this->buffer = {};
 
   //Get face index
-  int block_size_id = 4 * header->nb_face * sizeof(int);
+  int block_size_id = 4 * ply_struct->nb_face * sizeof(int);
   char* block_data_id = new char[block_size_id];
   file.read(block_data_id, block_size_id);
 
   //Convert raw data into decimal data
   int offset = 0;
   int nb_vertice;
-  for(int i=0; i<header->nb_face; i++){
+  for(int i=0; i<ply_struct->nb_face; i++){
     //Get number of face vertices
     int value =  (int)*((unsigned char *) (block_data_id + offset));
     offset += sizeof(unsigned char);
@@ -198,44 +209,44 @@ void Binary::parse_face_little_endian(std::ifstream& file){
 
   //Deduce drawing type
   if(nb_vertice == 3){
-    header->topology = utl::topology::TRIANGLE;
+    ply_struct->topology = utl::topology::TRIANGLE;
   }
   else if(nb_vertice == 4){
-    header->topology = utl::topology::QUAD;
+    ply_struct->topology = utl::topology::QUAD;
   }
 
   //---------------------------
 }
-void Binary::parse_vertex_big_endian(std::ifstream& file){
+void Binary::parse_vertex_big_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
   this->buffer = {};
   //---------------------------
 
   //Read data
-  int block_size = header->vec_property.size() * header->nb_vertex * sizeof(float);
+  int block_size = ply_struct->vec_property.size() * ply_struct->nb_vertex * sizeof(float);
   char* block_data = new char[block_size];
   file.read(block_data, block_size);
 
   //Convert raw data into decimal data
   int offset = 0;
   std::vector<std::vector<float>> block_vec;
-  block_vec.resize(header->vec_property.size(), std::vector<float>(header->nb_vertex));
-  for(int i=0; i<header->nb_vertex; i++){
-    for(int j=0; j<header->vec_property.size(); j++){
+  block_vec.resize(ply_struct->vec_property.size(), std::vector<float>(ply_struct->nb_vertex));
+  for(int i=0; i<ply_struct->nb_vertex; i++){
+    for(int j=0; j<ply_struct->vec_property.size(); j++){
       float value = get_float_from_binary(block_data, offset);
       block_vec[j][i] = reverse_float(value);
     }
   }
 
   //Resize std::vectors accordingly
-  buffer.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(fmt::ply::TS) != -1) buffer.ts.resize(header->nb_vertex, 0);
-  if(get_property_id(fmt::ply::I) != -1) buffer.Is.resize(header->nb_vertex, 0);
+  buffer.xyz.resize(ply_struct->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(ply_struct, fmt::ply::TS) != -1) buffer.ts.resize(ply_struct->nb_vertex, 0);
+  if(get_property_id(ply_struct, fmt::ply::I) != -1) buffer.Is.resize(ply_struct->nb_vertex, 0);
 
   //Insert data in the adequate std::vector
   #pragma omp parallel for
-  for(int i=0; i<header->nb_vertex; i++){
-    for(int j=0; j<header->vec_property.size(); j++){
-      fmt::ply::Property* property = &header->vec_property[j];
+  for(int i=0; i<ply_struct->nb_vertex; i++){
+    for(int j=0; j<ply_struct->vec_property.size(); j++){
+      fmt::ply::Property* property = &ply_struct->vec_property[j];
 
       switch(property->field){
         case fmt::ply::XYZ:{ //Location
@@ -260,8 +271,8 @@ void Binary::parse_vertex_big_endian(std::ifstream& file){
 
   //---------------------------
 }
-void Binary::parse_face_big_endian(std::ifstream& file){
-  if(header->nb_face == 0) return;
+void Binary::parse_face_big_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
+  if(ply_struct->nb_face == 0) return;
   //---------------------------
 
   //Init
@@ -269,14 +280,14 @@ void Binary::parse_face_big_endian(std::ifstream& file){
   this->buffer = {};
 
   //Get face index
-  int block_size_id = 4 * header->nb_face * sizeof(int);
+  int block_size_id = 4 * ply_struct->nb_face * sizeof(int);
   char* block_data_id = new char[block_size_id];
   file.read(block_data_id, block_size_id);
 
   //Convert raw data into decimal data
   int offset = 0;
   int nb_vertice;
-  for(int i=0; i<header->nb_face; i++){
+  for(int i=0; i<ply_struct->nb_face; i++){
     //Get number of face vertices
     int value =  (int)*((unsigned char *) (block_data_id + offset));
     offset += sizeof(unsigned char);
@@ -298,53 +309,13 @@ void Binary::parse_face_big_endian(std::ifstream& file){
 
   //Deduce drawing type
   if(nb_vertice == 3){
-    header->topology = utl::topology::TRIANGLE;
+    ply_struct->topology = utl::topology::TRIANGLE;
   }
   else if(nb_vertice == 4){
-    header->topology = utl::topology::QUAD;
+    ply_struct->topology = utl::topology::QUAD;
   }
 
   //---------------------------
-}
-
-//Subfunction
-void Binary::pass_header(std::ifstream& file){
-  std::string line;
-  //---------------------------
-
-  while(std::getline(file, line)){
-    if(line == "end_header"){
-      break;
-    }
-  }
-
-  //---------------------------
-}
-float Binary::reverse_float(const float inFloat){
-   float retVal;
-   char *floatToConvert = ( char* ) & inFloat;
-   char *returnFloat = ( char* ) & retVal;
-
-   // swap the bytes into a temporary buffer
-   returnFloat[0] = floatToConvert[3];
-   returnFloat[1] = floatToConvert[2];
-   returnFloat[2] = floatToConvert[1];
-   returnFloat[3] = floatToConvert[0];
-
-   return retVal;
-}
-int Binary::reverse_int(const int inInt){
-   int retVal;
-   char *intToConvert = ( char* ) & inInt;
-   char *returnInt = ( char* ) & retVal;
-
-   // swap the bytes into a temporary buffer
-   returnInt[0] = intToConvert[3];
-   returnInt[1] = intToConvert[2];
-   returnInt[2] = intToConvert[1];
-   returnInt[3] = intToConvert[0];
-
-   return retVal;
 }
 void Binary::reorder_by_timestamp(utl::base::Data* data){/*
   std::vector<glm::vec3> pos;
@@ -375,11 +346,11 @@ void Binary::reorder_by_timestamp(utl::base::Data* data){/*
 */
   //---------------------------
 }
-int Binary::get_property_id(fmt::ply::Field field){
+int Binary::get_property_id(fmt::ply::importer::Structure* ply_struct, fmt::ply::Field field){
   //---------------------------
 
-  for(int i=0; i<header->vec_property.size(); i++){
-    fmt::ply::Property* property = &header->vec_property[i];
+  for(int i=0; i<ply_struct->vec_property.size(); i++){
+    fmt::ply::Property* property = &ply_struct->vec_property[i];
 
     if(property->field == field){
       return i;
@@ -391,6 +362,32 @@ int Binary::get_property_id(fmt::ply::Field field){
 }
 
 //Binary type
+float Binary::reverse_float(const float inFloat){
+   float retVal;
+   char *floatToConvert = ( char* ) & inFloat;
+   char *returnFloat = ( char* ) & retVal;
+
+   // swap the bytes into a temporary buffer
+   returnFloat[0] = floatToConvert[3];
+   returnFloat[1] = floatToConvert[2];
+   returnFloat[2] = floatToConvert[1];
+   returnFloat[3] = floatToConvert[0];
+
+   return retVal;
+}
+int Binary::reverse_int(const int inInt){
+   int retVal;
+   char *intToConvert = ( char* ) & inInt;
+   char *returnInt = ( char* ) & retVal;
+
+   // swap the bytes into a temporary buffer
+   returnInt[0] = intToConvert[3];
+   returnInt[1] = intToConvert[2];
+   returnInt[2] = intToConvert[1];
+   returnInt[3] = intToConvert[0];
+
+   return retVal;
+}
 float Binary::get_float_from_binary(char* block_data, int& offset){
   //---------------------------
 

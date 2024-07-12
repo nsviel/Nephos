@@ -25,22 +25,20 @@ public:
 
 public:
   //Main function
-  void parse_binary(dat::base::Object* object, fmt::ply::Header* header);
-
-  //Parser
-  void parse_vertex_little_endian(std::ifstream& file);
-  void parse_face_little_endian(std::ifstream& file);
-  void parse_vertex_big_endian(std::ifstream& file);
-  void parse_face_big_endian(std::ifstream& file);
+  void parse_binary(fmt::ply::importer::Structure* ply_struct, dat::base::Object* object);
 
   //Subfunction
   void pass_header(std::ifstream& file);
-  float reverse_float(const float inFloat);
-  int reverse_int(const int inInt);
+  void parse_vertex_little_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
+  void parse_face_little_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
+  void parse_vertex_big_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
+  void parse_face_big_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
   void reorder_by_timestamp(utl::base::Data* data);
-  int get_property_id(fmt::ply::Field field);
+  int get_property_id(fmt::ply::importer::Structure* ply_struct, fmt::ply::Field field);
 
   //Binary type
+  float reverse_float(const float inFloat);
+  int reverse_int(const int inInt);
   float get_float_from_binary(char* data, int& offset);
   float get_double_from_binary(char* block_data, int& offset);
   float get_int_from_binary(char* data, int& offset);
@@ -51,7 +49,6 @@ public:
   float get_ushort_from_binary(char* block_data, int& offset);
 
 private:
-  fmt::ply::Header* header = nullptr;
   fmt::ply::Buffer buffer;
 };
 

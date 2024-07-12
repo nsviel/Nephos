@@ -31,34 +31,35 @@ utl::base::Element* Importer::import(utl::base::Path path){
   object->data.path.format = format;
 
   //Header
-  fmt::ply::Importer importer(path.build());
-  if(!parse_header(importer)) return nullptr;
+  fmt::ply::importer::Structure ply_struct;
+  ply_struct.path = path.build();
+  if(!parse_header(ply_struct)) return nullptr;
 
   //Parsing
-  switch(importer.encoding){
+  switch(ply_struct.encoding){
     case ASCII:{
-      ply_ascii->parse_ascii(object, &importer);
+      ply_ascii->parse_ascii(&ply_struct, object);
       break;
     }
     case BINARY_LITTLE_ENDIAN:
     case BINARY_BIG_ENDIAN:{
-      ply_binary->parse_binary(object, &importer);
+      ply_binary->parse_binary(&ply_struct, object);
       break;
     }
   }
 
-  object->data.topology.type = importer.topology;
+  object->data.topology.type = ply_struct.topology;
 
   //---------------------------
   return object;
 }
 
 //Header
-bool Importer::parse_header(fmt::ply::Importer& importer){
+bool Importer::parse_header(fmt::ply::importer::Structure& ply_struct){
   //---------------------------
 
   //Init
-  std::ifstream file(importer.path);
+  std::ifstream file(ply_struct.path);
 
   // Separate the header
   std::string line, h1, h2, h3, h4;
@@ -70,20 +71,20 @@ bool Importer::parse_header(fmt::ply::Importer& importer){
 
     //Retrieve format
     if(h1 == "format"){
-      this->parse_header_format(importer, h2);
+      this->parse_header_format(ply_struct, h2);
     }
     //Retrieve number of point
     else if(h1 + h2 == "elementvertex"){
-      if(!parse_header_size(importer, h3)) return false;
+      if(!parse_header_size(ply_struct, h3)) return false;
     }
     //Retrieve property
     else if(h1 == "property" && vertex_ended == false){
-      this->parse_header_property(importer, h2, h3);
+      this->parse_header_property(ply_struct, h2, h3);
     }
     //Retrieve property
     else if(h1 + h2 == "elementface"){
       vertex_ended = true;
-      importer.nb_face = std::stoi(h3);
+      ply_struct.nb_face = std::stoi(h3);
     }
 
   }while(line.find("end_header") != 0);
@@ -91,19 +92,19 @@ bool Importer::parse_header(fmt::ply::Importer& importer){
   //---------------------------
   return true;
 }
-void Importer::parse_header_format(fmt::ply::Importer& importer, std::string format){
+void Importer::parse_header_format(fmt::ply::importer::Structure& ply_struct, std::string format){
   //---------------------------
 
-  if(format == "ascii") importer.encoding = fmt::ply::ASCII;
-  else if(format == "binary_little_endian") importer.encoding = fmt::ply::BINARY_LITTLE_ENDIAN;
-  else if(format == "binary_big_endian") importer.encoding = fmt::ply::BINARY_BIG_ENDIAN;
+  if(format == "ascii") ply_struct.encoding = fmt::ply::ASCII;
+  else if(format == "binary_little_endian") ply_struct.encoding = fmt::ply::BINARY_LITTLE_ENDIAN;
+  else if(format == "binary_big_endian") ply_struct.encoding = fmt::ply::BINARY_BIG_ENDIAN;
   else{
     std::cout<<"[warning] Unknown format: "<<format<<std::endl;
   }
 
   //---------------------------
 }
-bool Importer::parse_header_size(fmt::ply::Importer& importer, std::string value){
+bool Importer::parse_header_size(fmt::ply::importer::Structure& ply_struct, std::string value){
   //---------------------------
 
   int nb_vertex = std::stoi(value);
@@ -111,12 +112,12 @@ bool Importer::parse_header_size(fmt::ply::Importer& importer, std::string value
     std::cout<<"[error] ply file number vertex wrong"<<std::endl;
     return false;
   }
-  importer.nb_vertex = nb_vertex;
+  ply_struct.nb_vertex = nb_vertex;
 
   //---------------------------
   return true;
 }
-void Importer::parse_header_property(fmt::ply::Importer& importer, std::string type, std::string field){
+void Importer::parse_header_property(fmt::ply::importer::Structure& ply_struct, std::string type, std::string field){
   fmt::ply::Property property;
   //---------------------------
 
@@ -144,7 +145,7 @@ void Importer::parse_header_property(fmt::ply::Importer& importer, std::string t
   }
 
   //Store property
-  importer.vec_property.push_back(property);
+  ply_struct.vec_property.push_back(property);
 
   //---------------------------
 }
