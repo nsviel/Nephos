@@ -79,10 +79,10 @@ void Exporter::update_current_path(utl::base::Element* element){
   dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
   if(!entity) return;
 
-  static dat::base::Entity* old_entity = entity;
+  static dat::base::Entity* old_entity = nullptr;
 
   //If entity different from previous one, change curent path
-  if(entity->UID != old_entity->UID){
+  if(!old_entity || entity->UID != old_entity->UID){
     ldr_struct->exporter.path.insert(entity->data.path.build());
     if(!is_format_supported(entity->data.path.format)) ldr_struct->exporter.path.format = "ply";
     old_entity = entity;
@@ -107,9 +107,6 @@ bool Exporter::is_format_supported(std::string format){
 bool Exporter::is_current_config(dat::base::Entity* entity){
   //---------------------------
 
-say("---");
-say(entity->data.path.build());
-say(ldr_struct->exporter.path.build());
   if(entity->data.path.build() == ldr_struct->exporter.path.build()){
     return true;
   }

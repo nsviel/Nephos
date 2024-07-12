@@ -49,7 +49,7 @@ void Exporter::display_action(){
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
 
   if(ldr_exporter->is_current_config(entity)){
-    if(ImGui::Button("Save current##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+    if(ImGui::Button("Save##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
       this->item_operation(entity);
     }
   }else{
