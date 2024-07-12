@@ -10,12 +10,19 @@ namespace dyn::thread{
 class Routine : public utl::thread::Routine
 {
 public:
-  Routine();
-  virtual ~Routine();
+  Routine(){}
+  virtual ~Routine(){}
 
 public:
   //Main function
-  void start_task(dyn::base::Sensor* sensor);
+  void start_task(dyn::base::Sensor* sensor){
+    //---------------------------
+
+    this->sensor = sensor;
+    this->run_task();
+
+    //---------------------------
+  }
 
 protected:
   dyn::base::Sensor* sensor = nullptr;

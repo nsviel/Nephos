@@ -1,17 +1,17 @@
 #pragma once
 
-#include <Utility/Element/Thread/Task/Task.h>
+#include <Utility/Element/Thread/Task/Job.h>
 
 namespace dyn::base{class Sensor;}
 
 
 namespace dyn::thread{
 
-class Task : public utl::thread::Task
+class Job : public utl::thread::Job
 {
 public:
-  Task(){}
-  virtual ~Task(){}
+  Job(){}
+  virtual ~Job(){}
 
 public:
   //Main function

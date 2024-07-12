@@ -1,28 +1,18 @@
 #pragma once
 
-#include <Dynamic/src/Thread/Task.h>
+#include <Kinect/src/Structure/Transformation.h>
+#include <Dynamic/src/Thread/Job.h>
+#include <glm/glm.hpp>
+#include <unordered_map>
 
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::base{class Sensor;}
 
-struct Vec2Hash {
-  std::size_t operator()(const glm::ivec2& vec) const {
-    // Combine hash of x and y using a simple hash function
-    return std::hash<int>()(vec.x) ^ (std::hash<int>()(vec.y) << 1);
-  }
-};
-struct Vec2Equal {
-  bool operator()(const glm::ivec2& a, const glm::ivec2& b) const {
-    return a.x == b.x && a.y == b.y;
-  }
-};
-typedef std::unordered_map<glm::ivec2, glm::ivec2, Vec2Hash, Vec2Equal> cmap;
-
 
 namespace k4n::processing::image{
 
-class Table_xy : public dyn::thread::Task
+class Table_xy : public dyn::thread::Job
 {
 public:
   //Constructor / Destructor
@@ -34,11 +24,15 @@ public:
   void thread_function();
 
   //Subfunction
-  void table_color_to_depth(k4n::base::Sensor* sensor, cmap& map_xy);
-  void convert_table_to_glm(k4n::base::Sensor* sensor, cmap& map_xy);
+  void table_color_to_depth(k4n::base::Sensor* sensor);
+  void convert_table_to_glm(k4n::base::Sensor* sensor);
+
+  using dyn::thread::Job::start_thread;
 
 private:
   k4n::Structure* k4n_struct;
+
+  k4n::transformation::cmap map_xy;
 };
 
 }

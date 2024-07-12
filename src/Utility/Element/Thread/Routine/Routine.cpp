@@ -2,6 +2,11 @@
 
 #include <Utility/Namespace.h>
 
+/*
+Processing thread which is call regularly at each frame
+continuously waiting for a new start_task()
+*/
+
 
 namespace utl::thread {
 

@@ -2,6 +2,11 @@
 
 #include <Utility/Namespace.h>
 
+/*
+Continuous big thread
+with init, end and inside while loop
+*/
+
 
 namespace utl::thread{
 

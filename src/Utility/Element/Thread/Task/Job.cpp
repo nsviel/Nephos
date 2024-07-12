@@ -1,22 +1,22 @@
-#include "Task.h"
+#include "Job.h"
 
 /*
-Time-to-time job thread
-waiting previous completion before rerunning
+One time job thread
+once done it does not rerun
 */
 
 
 namespace utl::thread{
 
 //Constructor / Destructor
-Task::Task(){
+Job::Job(){
   //---------------------------
 
   this->done = false;
 
   //---------------------------
 }
-Task::~Task(){
+Job::~Job(){
   //---------------------------
 
   this->wait_thread();
@@ -25,14 +25,14 @@ Task::~Task(){
 }
 
 //Mainfunction
-void Task::start_thread(){
+void Job::start_thread(){
   //---------------------------
 
   this->run_thread();
 
   //---------------------------
 }
-void Task::wait_thread(){
+void Job::wait_thread(){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mtx);
@@ -45,21 +45,19 @@ void Task::wait_thread(){
 }
 
 //Subfunction
-void Task::run_thread(){
+void Job::run_thread(){
+  if(done) return;
   //---------------------------
 
-  if(done){
-    std::lock_guard<std::mutex> lock(mtx);
-    if (thread.joinable()) {
-      thread.join();
-    }
-    this->done = false;
-    this->thread = std::thread(&Task::loop_thread, this);
+  std::lock_guard<std::mutex> lock(mtx);
+  if (thread.joinable()) {
+    thread.join();
   }
+  this->thread = std::thread(&Job::loop_thread, this);
 
   //---------------------------
 }
-void Task::loop_thread(){
+void Job::loop_thread(){
   //---------------------------
 
   this->thread_function();
