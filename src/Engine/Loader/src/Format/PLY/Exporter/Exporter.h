@@ -27,16 +27,12 @@ public:
   void export_binary(utl::base::Data* data, glm::mat4 mat, std::string path);
 
   //Subfunction
-  void build_structure(fmt::ply::exporter::Structure& exporter, utl::base::Data* data, std::string encoding);
-  void write_header(std::ofstream& file, std::string format, utl::base::Data* data);
-  void write_data_ascii(std::ofstream& file, utl::base::Data* data, glm::mat4& mat);
-  void write_data_binary(std::ofstream& file, utl::base::Data* data, glm::mat4& mat);
+  void build_structure(fmt::ply::exporter::Structure& exporter, utl::base::Data* data);
+  void write_data_ascii(fmt::ply::exporter::Structure& exporter, std::ofstream& file, utl::base::Data* data);
+  void write_data_binary(fmt::ply::exporter::Structure& exporter, std::ofstream& file, utl::base::Data* data);
 
 private:
   fmt::ply::exporter::Header* ldr_header;
-
-  int property_number = 3;
-  std::vector<int> vec_property;
 };
 
 }

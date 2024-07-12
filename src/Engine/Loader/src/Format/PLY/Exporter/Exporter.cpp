@@ -22,42 +22,45 @@ Exporter::~Exporter(){}
 
 //Main exporter functions
 void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path){
-  std::string encoding = "ascii";
   //---------------------------
 
-  std::ofstream file(path);
-
+  //Make exporter structure
   fmt::ply::exporter::Structure exporter;
-  this->build_structure(exporter, data, encoding);
-  this->write_header(file, encoding, data);
-  this->write_data_ascii(file, data, mat);
+  exporter.encoding = "ascii";
+  exporter.mat = mat;
+  this->build_structure(exporter, data);
 
+  //Write on file
+  std::ofstream file(path);
+  ldr_header->write_header(exporter, file);
+  this->write_data_ascii(exporter, file, data);
   file.close();
 
   //---------------------------
 }
 void Exporter::export_binary(utl::base::Data* data, glm::mat4 mat, std::string path){
-  std::string encoding = "binary_little_endian";
   //---------------------------
 
-  std::ofstream file(path, std::ios::binary);
-
+  //Make exporter structure
   fmt::ply::exporter::Structure exporter;
-  this->build_structure(exporter, data, encoding);
-  this->write_header(file, encoding, data);
-  this->write_data_binary(file, data, mat);
+  exporter.encoding = "binary_little_endian";
+  exporter.mat = mat;
+  this->build_structure(exporter, data);
 
+  //Write on file
+  std::ofstream file(path, std::ios::binary);
+  ldr_header->write_header(exporter, file);
+  this->write_data_binary(exporter, file, data);
   file.close();
 
   //---------------------------
 }
 
 //Subfunction
-void Exporter::build_structure(fmt::ply::exporter::Structure& exporter, utl::base::Data* data, std::string encoding){
+void Exporter::build_structure(fmt::ply::exporter::Structure& exporter, utl::base::Data* data){
   //---------------------------
 
   exporter.nb_vertex = (data->size > 0) ? data->size : data->xyz.size();
-  exporter.encoding = encoding;
 
   if(data->xyz.size() != 0){
     exporter.vec_property.push_back(fmt::ply::XYZ);
@@ -82,58 +85,7 @@ void Exporter::build_structure(fmt::ply::exporter::Structure& exporter, utl::bas
 
   //---------------------------
 }
-void Exporter::write_header(std::ofstream& file, std::string format, utl::base::Data* data){
-  //---------------------------
-
-
-
-  this->vec_property.clear();
-
-  //Write header
-  file << "ply" << std::endl;
-  file << "format " + format + " 1.0" << std::endl;
-  int nb_vertex = (data->size > 0) ? data->size : data->xyz.size();
-  file << "element vertex " << nb_vertex << std::endl;
-
-  file << "property float32 x" << std::endl;
-  file << "property float32 y" << std::endl;
-  file << "property float32 z" << std::endl;
-  vec_property.push_back(fmt::ply::XYZ);
-  this->property_number = 3;
-
-  if(data->rgb.size() != 0){
-    file << "property uchar red" << std::endl;
-    file << "property uchar green" << std::endl;
-    file << "property uchar blue" << std::endl;
-
-    vec_property.push_back(fmt::ply::RGB);
-    this->property_number += 3;
-  }
-  if(data->Nxyz.size() != 0){
-    file << "property float32 nx" << std::endl;
-    file << "property float32 ny" << std::endl;
-    file << "property float32 nz" << std::endl;
-
-    vec_property.push_back(fmt::ply::NXYZ);
-    this->property_number += 3;
-  }
-  if(data->Is.size() != 0){
-    file << "property float32 intensity" << std::endl;
-
-    vec_property.push_back(fmt::ply::I);
-    property_number++;
-  }
-  if(data->ts.size() != 0){
-    file << "property float32 timestamp" << std::endl;
-
-    vec_property.push_back(fmt::ply::TS);
-    property_number++;
-  }
-  file << "end_header" <<std::endl;
-
-  //---------------------------
-}
-void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, glm::mat4& mat){
+void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::ofstream& file, utl::base::Data* data){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
@@ -148,7 +100,7 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, glm:
     file << std::fixed;
 
     //Location
-    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * mat;
+    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * exporter.mat;
     file << std::setprecision(precision) << xyzw.x <<" "<< xyzw.y <<" "<< xyzw.z <<" ";
 
     //Color
@@ -172,7 +124,7 @@ void Exporter::write_data_ascii(std::ofstream& file, utl::base::Data* data, glm:
 
   //---------------------------
 }
-void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm::mat4& mat){
+void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::ofstream& file, utl::base::Data* data){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
@@ -184,19 +136,20 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm
   int precision = 6;
 
   //Prepare data writing by blocks
-  int block_size = property_number * xyz.size() * sizeof(float);
+  int block_size = exporter.nb_property * xyz.size() * sizeof(float);
   char* block_data = new char[block_size];
 
   //Convert decimal data into binary data
   int offset = 0;
   int cpt_property = 0;
   for(int i=0; i<xyz.size(); i++){
-    for(int j=0; j<property_number; j++){
+    for(int j=0; j<exporter.vec_property.size(); j++){
+      fmt::ply::Field& field = exporter.vec_property[j];
 
-      switch(vec_property[j]){
+      switch(field){
         //Location
         case fmt::ply::XYZ:{
-          glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * mat;
+          glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * exporter.mat;
           memcpy(block_data + offset, &xyzw, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
           break;
