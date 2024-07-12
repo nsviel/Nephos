@@ -49,6 +49,7 @@ void Correction::make_correction(dyn::base::Sensor* sensor, utl::media::Image* i
   utl::base::Data* data = &sensor->data;
   std::vector<float>& vec_R = utl_attribut->get_attribut_data(data, "R");
   std::vector<float>& vec_It = utl_attribut->get_attribut_data(data, "It");
+  std::vector<float>& vec_Icor = utl_attribut->get_attribut_data(data, "I_cor");
   std::vector<float> Is_cor = std::vector<float>(data->xyz.size(), 0.0f);
 
   #pragma omp parallel for
@@ -79,7 +80,7 @@ void Correction::make_correction(dyn::base::Sensor* sensor, utl::media::Image* i
     }
   }
 
-  data->Is_cor = Is_cor;
+  vec_Icor = Is_cor;
 
   //---------------------------
 }

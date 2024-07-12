@@ -3,7 +3,6 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-namespace ope::color{class Colormap;}
 namespace ope::attribut{class Location;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Attribut;}
@@ -33,7 +32,6 @@ public:
   inline glm::vec2* get_range_height(){return &range_height;}
 
 private:
-  ope::color::Colormap* ope_colormap;
   ope::attribut::Location* ope_location;
   utl::base::Attribut* utl_attribut;
 

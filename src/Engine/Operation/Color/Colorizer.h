@@ -5,7 +5,6 @@
 #include <glm/glm.hpp>
 
 namespace ope::color{class Heatmap;}
-namespace ope::color{class Colormap;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Attribut;}
 
@@ -38,7 +37,6 @@ public:
 
 private:
   ope::color::Heatmap* ope_heatmap;
-  ope::color::Colormap* ope_colormap;
   utl::base::Attribut* utl_attribut;
 };
 

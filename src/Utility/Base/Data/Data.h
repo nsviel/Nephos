@@ -38,7 +38,6 @@ struct Data : public utl::base::Element{
   std::vector<utl::base::data::Attribut> vec_attribut;
 
   std::vector<float> Is; //Intensity
-  std::vector<float> Is_cor; //Corrected intensity
 
   //---------------------------
 };

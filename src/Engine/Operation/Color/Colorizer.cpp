@@ -11,7 +11,6 @@ Colorizer::Colorizer(){
   //---------------------------
 
   this->ope_heatmap = new ope::color::Heatmap();
-  this->ope_colormap = new ope::color::Colormap();
   this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
@@ -118,8 +117,9 @@ void Colorizer::colorization_intensity_cor(dat::base::Entity* entity, ope::color
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  for(int i=0; i<data->Is_cor.size(); i++){
-    float& Is = data->Is_cor[i];
+  std::vector<float>& vec_Icor = utl_attribut->get_attribut_data(data, "I_cor");
+  for(int i=0; i<vec_Icor.size(); i++){
+    float& Is = vec_Icor[i];
     data->rgba[i] = glm::vec4(Is, Is, Is, 1);
   }
 

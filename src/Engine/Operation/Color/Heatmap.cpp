@@ -10,7 +10,6 @@ namespace ope::color{
 Heatmap::Heatmap(){
   //---------------------------
 
-  this->ope_colormap = new ope::color::Colormap();
   this->ope_location = new ope::attribut::Location();
   this->utl_attribut = new utl::base::Attribut();
 
@@ -21,13 +20,7 @@ Heatmap::Heatmap(){
 
   //---------------------------
 }
-Heatmap::~Heatmap(){
-  //---------------------------
-
-  delete ope_colormap;
-
-  //---------------------------
-}
+Heatmap::~Heatmap(){}
 
 //Main function
 void Heatmap::heatmap_intensity(dat::base::Entity* entity, int diviser){
@@ -47,11 +40,11 @@ void Heatmap::heatmap_intensity(dat::base::Entity* entity, int diviser){
 }
 void Heatmap::heatmap_intensity_cor(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
-  if(data->Is_cor.size() == 0) return;
   //---------------------------
 
   //Prepare data
-  std::vector<float> Is = data->Is_cor;
+  std::vector<float>& vec_Icor = utl_attribut->get_attribut_data(data, "I_cor");
+  std::vector<float> Is = vec_Icor;
   math::normalize(Is, range_intensity);
 
   //Compute heatmap
@@ -143,7 +136,7 @@ void Heatmap::compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& 
   }
 
   //Compute heatmap from input vector
-  std::vector<glm::vec3>& colormap = ope_colormap->get_colormap_selected();
+  std::vector<glm::vec3>& colormap = ope::colormap::viridis_long;
   const size_t colormap_size = colormap.size();
 
   #pragma omp parallel for
