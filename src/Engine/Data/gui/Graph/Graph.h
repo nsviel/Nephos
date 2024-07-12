@@ -7,8 +7,8 @@ namespace dat{class Graph;}
 namespace dat::element{class Set;}
 namespace dat::graph{class Selection;}
 namespace dat{class Structure;}
-namespace dat::gui{class Entity;}
-namespace dat::gui{class Set;}
+namespace dat::gui::entity{class Panel;}
+namespace dat::gui::set{class Panel;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
@@ -38,8 +38,8 @@ public:
   bool show_panel_set      = false;
 
 private:
-  dat::gui::Entity* rnd_object;
-  dat::gui::Set* rnd_set;
+  dat::gui::entity::Panel* gui_entity;
+  dat::gui::set::Panel* gui_set;
   dat::Graph* dat_graph;
   dat::graph::Selection* dat_selection;
   dat::element::Set* dat_set;

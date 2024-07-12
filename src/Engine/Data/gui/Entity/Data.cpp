@@ -31,6 +31,7 @@ void Data::draw_entity_data(dat::base::Entity* entity){
   this->entity_pose(entity);
 
   //---------------------------
+  ImGui::Separator();
 }
 
 //Subfunction
@@ -81,7 +82,6 @@ void Data::entity_data(dat::base::Entity* entity){
   }
 
   //---------------------------
-  ImGui::Separator();
 }
 void Data::entity_pose(dat::base::Entity* entity){
   utl::base::Pose* pose = &entity->pose;;

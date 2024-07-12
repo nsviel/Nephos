@@ -7,14 +7,14 @@ namespace dat::element{class Set;}
 namespace dat::base{class Set;}
 
 
-namespace dat::gui{
+namespace dat::gui::set{
 
-class Set
+class Panel
 {
 public:
   //Constructor / Destructor
-  Set(dat::Node* node_data, bool* show_window);
-  ~Set();
+  Panel(dat::Node* node_data, bool* show_window);
+  ~Panel();
 
   //Main function
   void run_panel();

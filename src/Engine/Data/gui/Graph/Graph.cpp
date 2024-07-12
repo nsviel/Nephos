@@ -17,8 +17,8 @@ Graph::Graph(dat::Node* node_data, bool* show_window){
   this->dat_selection = node_data->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
   this->dat_struct = node_data->get_dat_struct();
-  this->rnd_set = new dat::gui::Set(node_data, &show_panel_set);
-  this->rnd_object = new dat::gui::Entity(node_data, &show_panel_entity);
+  this->gui_set = new dat::gui::set::Panel(node_data, &show_panel_set);
+  this->gui_entity = new dat::gui::entity::Panel(node_data, &show_panel_entity);
 
   this->name = "Graph";
   this->show_window = show_window;
@@ -31,8 +31,8 @@ Graph::~Graph(){}
 void Graph::run_panel(){
   //---------------------------
 
-  rnd_object->run_panel();
-  rnd_set->run_panel();
+  gui_entity->run_panel();
+  gui_set->run_panel();
 
   if(*show_window){
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
@@ -118,7 +118,7 @@ int Graph::tree_set(dat::base::Set* set){
 
   //If set is double-clicked, open set panel
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
-    rnd_set->set_selected_set(set);
+    gui_set->set_selected_set(set);
     this->show_panel_set = true;
   }
 
@@ -211,7 +211,7 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
 
   // If entity double-clicked
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
-    rnd_object->set_entity(entity);
+    gui_entity->set_entity(entity);
     this->show_panel_entity = true;
   }
 

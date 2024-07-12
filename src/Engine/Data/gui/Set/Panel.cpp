@@ -1,12 +1,12 @@
-#include "Set.h"
+#include "Panel.h"
 
 #include <Data/Namespace.h>
 
 
-namespace dat::gui{
+namespace dat::gui::set{
 
 //Constructor / Destructor
-Set::Set(dat::Node* node_data, bool* show_window){
+Panel::Panel(dat::Node* node_data, bool* show_window){
   //---------------------------
 
   this->dat_set = node_data->get_dat_set();
@@ -17,10 +17,10 @@ Set::Set(dat::Node* node_data, bool* show_window){
 
   //---------------------------
 }
-Set::~Set(){}
+Panel::~Panel(){}
 
 //Main function
-void Set::run_panel(){
+void Panel::run_panel(){
   //---------------------------
 
   if(*panel_show){
@@ -36,7 +36,7 @@ void Set::run_panel(){
 
   //---------------------------
 }
-void Set::design_panel(){
+void Panel::design_panel(){
   //---------------------------
 
   this->set_info(set_selected);
@@ -46,14 +46,14 @@ void Set::design_panel(){
 }
 
 //Subfunction
-void Set::set_info(dat::base::Set* set){
+void Panel::set_info(dat::base::Set* set){
   //---------------------------
 
   this->panel_name = "[Set]  " + set->name;
 
   //---------------------------
 }
-void Set::set_parameter(dat::base::Set* set){
+void Panel::set_parameter(dat::base::Set* set){
   //---------------------------
 
   ImGui::BeginTable("object##table", 2, ImGuiTableFlags_BordersInnerV);

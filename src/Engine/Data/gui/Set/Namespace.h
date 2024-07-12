@@ -1,3 +1,3 @@
 #pragma once
 
-#include <Data/gui/Set/Set.h>
+#include <Data/gui/Set/Panel.h>
