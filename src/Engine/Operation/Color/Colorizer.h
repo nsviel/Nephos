@@ -5,46 +5,10 @@
 namespace ope::color{class Heatmap;}
 namespace ope::color{class Colormap;}
 namespace dat::base{class Entity;}
+namespace utl::base{class Attribut;}
 
 
 namespace ope::color{
-
-struct Configuration{
-  //---------------------------
-
-  glm::vec4 unicolor;
-  glm::vec2 heatmap_range_height;
-  float intensity_diviser;
-  int color_mode;
-  int heatmap_mode;
-
-  //---------------------------
-};
-
-enum Mode{
-  RGB = 0,
-  UNICOLOR = 1,
-  INTENSITY = 2,
-  INTENSITY_INV = 3,
-  INTENSITY_COR = 4,
-  INTENSITY_CAL = 5,
-  LOCATION = 6,
-  NORMAL = 7,
-  INCIDENCE_ANGLE = 8,
-  HEATMAP = 9,
-  STRUCTURE = 10,
-};
-
-namespace heatmap{
-enum Mode{
-  INTENSITY = 0,
-  INTENSITY_COR = 1,
-  INTENSITY_CAL = 2,
-  INCIDENCE_ANGLE = 3,
-  HEIGHT = 4,
-  RANGE = 5,
-};
-}
 
 class Colorizer
 {
@@ -73,6 +37,7 @@ public:
 private:
   ope::color::Heatmap* ope_heatmap;
   ope::color::Colormap* ope_colormap;
+  utl::base::Attribut* utl_attribut;
 };
 
 }

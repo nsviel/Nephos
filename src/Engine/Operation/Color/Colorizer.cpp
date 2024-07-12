@@ -12,6 +12,7 @@ Colorizer::Colorizer(){
 
   this->ope_heatmap = new ope::color::Heatmap();
   this->ope_colormap = new ope::color::Colormap();
+  this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
 }
@@ -128,8 +129,9 @@ void Colorizer::colorization_incidence_angle(dat::base::Entity* entity, ope::col
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  for(int i=0; i<data->It.size(); i++){
-    float It = data->It[i];
+  std::vector<float>& vec_It = utl_attribut->get_attribut_data(data, "It");
+  for(int i=0; i<vec_It.size(); i++){
+    float It = vec_It[i];
 
     if(std::isnan(It)){
       It = 1;

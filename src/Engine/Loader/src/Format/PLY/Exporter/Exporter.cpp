@@ -15,6 +15,7 @@ Exporter::Exporter(){
   this->format = ".ply";
   this->vec_encoding.push_back(ldr::io::ASCII);
   this->vec_encoding.push_back(ldr::io::BINARY);
+  this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
 }
@@ -62,23 +63,33 @@ void Exporter::build_structure(fmt::ply::exporter::Structure& exporter, utl::bas
 
   exporter.nb_vertex = (data->size > 0) ? data->size : data->xyz.size();
 
+  //Location
   if(data->xyz.size() != 0){
     exporter.vec_property.push_back(fmt::ply::XYZ);
     exporter.nb_property += 3;
   }
+
+  //Color
   if(data->rgb.size() != 0){
     exporter.vec_property.push_back(fmt::ply::RGB);
     exporter.nb_property += 3;
   }
+
+  //Normal
   if(data->Nxyz.size() != 0){
     exporter.vec_property.push_back(fmt::ply::NXYZ);
     exporter.nb_property += 3;
   }
+
+  //Intensity
   if(data->Is.size() != 0){
     exporter.vec_property.push_back(fmt::ply::I);
     exporter.nb_property++;
   }
-  if(data->ts.size() != 0){
+
+  //Timestamp
+  std::vector<float>& ts = utl_attribut->get_attribut_data(data, "ts");
+  if(ts.size() != 0){
     exporter.vec_property.push_back(fmt::ply::TS);
     exporter.nb_property++;
   }
@@ -132,7 +143,7 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
   std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
   std::vector<float>& Is = data->Is;
-  std::vector<float>& ts = data->ts;
+  std::vector<float>& ts = utl_attribut->get_attribut_data(data, "ts");
   int precision = 6;
 
   //Prepare data writing by blocks

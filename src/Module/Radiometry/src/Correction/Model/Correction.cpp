@@ -48,6 +48,7 @@ void Correction::make_correction(dyn::base::Sensor* sensor, utl::media::Image* i
 
   utl::base::Data* data = &sensor->data;
   std::vector<float>& vec_R = utl_attribut->get_attribut_data(data, "R");
+  std::vector<float>& vec_It = utl_attribut->get_attribut_data(data, "It");
   std::vector<float> Is_cor = std::vector<float>(data->xyz.size(), 0.0f);
 
   #pragma omp parallel for
@@ -61,8 +62,8 @@ void Correction::make_correction(dyn::base::Sensor* sensor, utl::media::Image* i
 
       //If to prevent correction of image borders
       if(I_raw != 0){
-        float& It = data->It[idx];
-        float& R = vec_R[idx];
+        float& It = vec_It[idx];
+        float& R  = vec_R[idx];
 
         I_cor = apply_correction(I_raw, R, It);
       }

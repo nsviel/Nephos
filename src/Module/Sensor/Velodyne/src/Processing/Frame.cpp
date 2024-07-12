@@ -21,7 +21,7 @@ Frame::~Frame(){}
 bool Frame::build_frame(utl::base::Data* data){
   bool frame_ended = false;
   //---------------------------
-
+/*
   //check if the new cloud begin by a revolution
   // frame_index -1: new frame
   // frame_index 0: frame end and restart at 0
@@ -60,7 +60,7 @@ bool Frame::build_frame(utl::base::Data* data){
       frame_ended = true;
     }
   }
-
+*/
   //---------------------------
   delete data;
   return frame_ended;

@@ -83,7 +83,7 @@ void Exporter::update_current_path(utl::base::Element* element){
 
   //If entity different from previous one, change curent path
   if(!old_entity || entity->UID != old_entity->UID){
-    ldr_struct->exporter.path.insert(entity->data.path.build());
+    ldr_struct->exporter.path.insert(entity->data.path);
     if(!is_format_supported(entity->data.path.format)) ldr_struct->exporter.path.format = "ply";
     old_entity = entity;
   }

@@ -15,12 +15,9 @@ namespace utl::base{
 struct Data : public utl::base::Element{
   //---------------------------
 
-  Data(){
-    this->type = utl::element::DATA;
-  }
-
   //State
   bool is_visible = true;
+  int type = utl::element::DATA;
   int nb_data_max = -1;
   int width = -1;
   int height = -1;
@@ -43,9 +40,6 @@ struct Data : public utl::base::Element{
   std::vector<float> Is; //Intensity
   std::vector<float> Is_cor; //Corrected intensity
   std::vector<float> Is_cal; //Calibrated intensity
-  std::vector<float> It; //Incidence angle
-  std::vector<float> A; //Azimuth
-  std::vector<int> idx; //Index
 
   //---------------------------
 };
