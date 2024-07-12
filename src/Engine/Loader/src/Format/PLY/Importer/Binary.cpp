@@ -17,11 +17,11 @@ Binary::~Binary(){}
 void Binary::parse_binary(dat::base::Object* object, format::ply::Header* header){
   this->header = header;
   //---------------------------
-sayHello();
+
   //Open file
   std::ifstream file(header->path, std::ios::binary);
   this->pass_header(file);
-sayHello();
+
   //Read data
   switch(header->format){
     case BINARY_LITTLE_ENDIAN:{
@@ -35,13 +35,13 @@ sayHello();
       break;
     }
   }
-sayHello();
+
   //Store result
   object->data.xyz = data.xyz;
   object->data.Nxyz = data.Nxyz;
   object->data.Is = data.Is;
   object->data.size = data.xyz.size();
-sayHello();
+
   //Close file
   file.close();
 

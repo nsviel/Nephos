@@ -9,6 +9,7 @@
 #include <iomanip> //setprecision
 
 namespace utl::base{class Pose;}
+namespace format::ply::exporter{class Header;}
 
 
 namespace format::ply{
@@ -31,6 +32,8 @@ public:
   void write_data_binary(std::ofstream& file, utl::base::Data* data, glm::mat4& mat);
 
 private:
+  format::ply::exporter::Header* ldr_header;
+
   int property_number = 3;
   std::vector<int> vec_property;
 };

@@ -1,5 +1,6 @@
 #include "Exporter.h"
 
+#include <Loader/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -8,6 +9,8 @@ namespace format::ply{
 //Constructor / Destructor
 Exporter::Exporter(){
   //---------------------------
+
+  this->ldr_header = new format::ply::exporter::Header();
 
   this->format = ".ply";
   this->vec_encoding.push_back(ldr::io::ASCII);
@@ -54,7 +57,8 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
   //Write header
   file << "ply" << std::endl;
   file << "format " + format + " 1.0" << std::endl;
-  file << "element vertex " << data->size << std::endl;
+  int nb_vertex = (data->size > 0) ? data->size : data->xyz.size();
+  file << "element vertex " << nb_vertex << std::endl;
 
   file << "property float32 x" << std::endl;
   file << "property float32 y" << std::endl;
