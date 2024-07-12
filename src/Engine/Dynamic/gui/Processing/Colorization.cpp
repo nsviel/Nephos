@@ -106,30 +106,30 @@ void Colorization::heatmap_mode(utl::base::Element* element){
   ImGui::BeginTable("heatmap##mode", 3);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY)){
+  if(ImGui::RadioButton("I##heatmap", &dyn_struct->colorization.heatmap_mode, ope::heatmap::INTENSITY)){
     dyn_colorizer->colorize_element(element);
   }
   ImGui::SameLine();
   ImGui::TableNextColumn();
-  if(ImGui::RadioButton("I cor##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY_COR)){
+  if(ImGui::RadioButton("I cor##heatmap", &dyn_struct->colorization.heatmap_mode, ope::heatmap::INTENSITY_COR)){
     dyn_colorizer->colorize_element(element);
   }
   ImGui::SameLine();
   ImGui::TableNextColumn();
-  if(ImGui::RadioButton("I cal##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INTENSITY_CAL)){
+  if(ImGui::RadioButton("I cal##heatmap", &dyn_struct->colorization.heatmap_mode, ope::heatmap::INTENSITY_CAL)){
     dyn_colorizer->colorize_element(element);
   }
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::RadioButton("H##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::HEIGHT)){
+  if(ImGui::RadioButton("H##heatmap", &dyn_struct->colorization.heatmap_mode, ope::heatmap::HEIGHT)){
     dyn_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
-  if(ImGui::RadioButton("R##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::RANGE)){
+  if(ImGui::RadioButton("R##heatmap", &dyn_struct->colorization.heatmap_mode, ope::heatmap::RANGE)){
     dyn_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
-  if(ImGui::RadioButton("It##heatmap", &dyn_struct->colorization.heatmap_mode, ope::color::heatmap::INCIDENCE_ANGLE)){
+  if(ImGui::RadioButton("It##heatmap", &dyn_struct->colorization.heatmap_mode, ope::heatmap::INCIDENCE_ANGLE)){
     dyn_colorizer->colorize_element(element);
   }
 
@@ -145,7 +145,7 @@ void Colorization::option_intensity(utl::base::Element* element){
   //---------------------------
 
   //Intensity cursor
-  if(mode == ope::color::INTENSITY || mode == ope::color::INTENSITY_INV || mode == ope::color::HEATMAP && heatmap == ope::color::heatmap::INTENSITY){
+  if(mode == ope::color::INTENSITY || mode == ope::color::INTENSITY_INV || mode == ope::color::HEATMAP && heatmap == ope::heatmap::INTENSITY){
     ImGui::Separator();
     ImGui::SetNextItemWidth(100);
     ImGui::SliderInt("I diviser", &dyn_struct->operation.intensity.diviser, 1, 10000);
@@ -154,7 +154,7 @@ void Colorization::option_intensity(utl::base::Element* element){
   //---------------------------
 }
 void Colorization::option_height(utl::base::Element* element){
-  if(dyn_struct->colorization.heatmap_mode != ope::color::heatmap::HEIGHT) return;
+  if(dyn_struct->colorization.heatmap_mode != ope::heatmap::HEIGHT) return;
   //---------------------------
 
   //Height heatmap

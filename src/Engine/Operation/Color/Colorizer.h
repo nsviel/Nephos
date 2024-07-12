@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Operation/Color/Structure/Configuration.h>
 #include <glm/glm.hpp>
 
 namespace ope::color{class Heatmap;}

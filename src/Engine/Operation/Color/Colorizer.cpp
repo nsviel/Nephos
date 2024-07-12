@@ -201,27 +201,27 @@ void Colorizer::colorization_heatmap(dat::base::Entity* entity, ope::color::Conf
   //---------------------------
 
   switch(config.heatmap_mode){
-    case ope::color::heatmap::INTENSITY:{
+    case ope::heatmap::INTENSITY:{
       ope_heatmap->heatmap_intensity(entity, config.intensity_diviser);
       break;
     }
-    case ope::color::heatmap::INTENSITY_COR:{
+    case ope::heatmap::INTENSITY_COR:{
       ope_heatmap->heatmap_intensity_cor(entity);
       break;
     }
-    case ope::color::heatmap::INTENSITY_CAL:{
+    case ope::heatmap::INTENSITY_CAL:{
       ope_heatmap->heatmap_intensity_cal(entity);
       break;
     }
-    case ope::color::heatmap::INCIDENCE_ANGLE:{
+    case ope::heatmap::INCIDENCE_ANGLE:{
       ope_heatmap->heatmap_incidence_angle(entity);
       break;
     }
-    case ope::color::heatmap::HEIGHT:{
+    case ope::heatmap::HEIGHT:{
       ope_heatmap->heatmap_height(entity, config.heatmap_range_height);
       break;
     }
-    case ope::color::heatmap::RANGE:{
+    case ope::heatmap::RANGE:{
       ope_heatmap->heatmap_range(entity);
       break;
     }
