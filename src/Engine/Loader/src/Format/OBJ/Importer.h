@@ -8,7 +8,7 @@
 #include <fstream>
 
 
-namespace format::obj{
+namespace fmt::obj{
 
 struct Vertex{
   //---------------------------

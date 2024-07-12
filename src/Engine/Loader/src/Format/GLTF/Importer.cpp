@@ -5,7 +5,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 
 
-namespace format::gltf{
+namespace fmt::gltf{
 
 //Constructor / Destructor
 Importer::Importer(){

@@ -10,7 +10,7 @@
 #include <iostream>
 
 
-namespace format::pts{
+namespace fmt::pts{
 
 enum IFormat{
   F0_1 = 0,
@@ -53,7 +53,7 @@ private:
   int config;
   int nbptMax;
   int FILE_size, FILE_config;
-  format::pts::IFormat Is_format;
+  fmt::pts::IFormat Is_format;
 };
 
 }

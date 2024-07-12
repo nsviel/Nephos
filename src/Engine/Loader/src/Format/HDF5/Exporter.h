@@ -10,7 +10,7 @@
 #include <iostream>
 
 
-namespace format::hdf5{
+namespace fmt::hdf5{
 
 class Exporter : public ldr::base::Exporter
 {

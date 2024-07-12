@@ -6,7 +6,7 @@
 #include <string>
 
 
-namespace format::ply{
+namespace fmt::ply{
 
 enum Encoding{
   ASCII = 0,
@@ -15,10 +15,11 @@ enum Encoding{
 };
 
 struct Header{
-  format::ply::Encoding encoding = format::ply::ASCII;
+  fmt::ply::Encoding encoding = fmt::ply::ASCII;
   utl::topology::Type topology = utl::topology::POINT;
-  std::vector<format::ply::Property> vec_property;
+  std::vector<fmt::ply::Property> vec_property;
   std::string path = "";
+  int nb_property = 0;
   int nb_vertex = 0;
   int nb_face = 0;
 };

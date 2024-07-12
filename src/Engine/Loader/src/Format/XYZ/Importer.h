@@ -8,7 +8,7 @@
 #include <fstream>
 
 
-namespace format::xyz{
+namespace fmt::xyz{
 
 class Importer : public ldr::base::Importer
 {

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace format::ply{
+namespace fmt::ply{
 
 enum Type{
   FLOAT32 = 0,
@@ -29,8 +29,8 @@ enum Field{
 };
 
 struct Property{
-  format::ply::Field field;
-  format::ply::Type type;
+  fmt::ply::Field field;
+  fmt::ply::Type type;
   int size = 0;
 };
 

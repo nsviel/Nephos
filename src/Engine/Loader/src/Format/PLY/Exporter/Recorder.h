@@ -2,11 +2,11 @@
 
 #include <Dynamic/src/Base/Recorder.h>
 
-namespace format::ply{class Exporter;}
+namespace fmt::ply{class Exporter;}
 namespace utl::base{class Pose;}
 
 
-namespace format::ply{
+namespace fmt::ply{
 
 class Recorder : public dyn::base::Recorder
 {
@@ -20,7 +20,7 @@ public:
   void record_binary(utl::base::Data* data, glm::mat4 mat, std::string path);
 
 private:
-  format::ply::Exporter* ply_exporter;
+  fmt::ply::Exporter* ply_exporter;
 };
 
 }

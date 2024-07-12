@@ -4,13 +4,13 @@
 #include <Utility/Namespace.h>
 
 
-namespace format::ply{
+namespace fmt::ply{
 
 //Constructor / Destructor
 Exporter::Exporter(){
   //---------------------------
 
-  this->ldr_header = new format::ply::exporter::Header();
+  this->ldr_header = new fmt::ply::exporter::Header();
 
   this->format = ".ply";
   this->vec_encoding.push_back(ldr::io::ASCII);
@@ -52,38 +52,40 @@ void Exporter::export_binary(utl::base::Data* data, glm::mat4 mat, std::string p
 void Exporter::find_vec_property(utl::base::Data* data){
   //---------------------------
 
-  this->vec_property.clear();
+  fmt::ply::Header header;
 
-  vec_property.push_back(format::ply::X);
-  vec_property.push_back(format::ply::VOID);
-  vec_property.push_back(format::ply::VOID);
-  this->property_number = 3;
+  header.vec_property.push_back(fmt::ply::X);
+  header.vec_property.push_back(fmt::ply::VOID);
+  header.vec_property.push_back(fmt::ply::VOID);
+  header.nb_property = 3;
 
   if(data->rgb.size() != 0){
-    vec_property.push_back(format::ply::R);
-    vec_property.push_back(format::ply::VOID);
-    vec_property.push_back(format::ply::VOID);
-    this->property_number += 3;
+    header.vec_property.push_back(fmt::ply::R);
+    header.vec_property.push_back(fmt::ply::VOID);
+    header.vec_property.push_back(fmt::ply::VOID);
+    header.nb_property += 3;
   }
   if(data->Nxyz.size() != 0){
-    vec_property.push_back(format::ply::NX);
-    vec_property.push_back(format::ply::VOID);
-    vec_property.push_back(format::ply::VOID);
-    this->property_number += 3;
+    header.vec_property.push_back(fmt::ply::NX);
+    header.vec_property.push_back(fmt::ply::VOID);
+    header.vec_property.push_back(fmt::ply::VOID);
+    header.nb_property += 3;
   }
   if(data->Is.size() != 0){
-    vec_property.push_back(format::ply::I);
-    property_number++;
+    header.vec_property.push_back(fmt::ply::I);
+    header.nb_property++;
   }
   if(data->ts.size() != 0){
-    vec_property.push_back(format::ply::TS);
-    property_number++;
+    header.vec_property.push_back(fmt::ply::TS);
+    header.nb_property++;
   }
 
   //---------------------------
 }
 void Exporter::write_header(std::ofstream& file, std::string format, utl::base::Data* data){
   //---------------------------
+
+
 
   this->vec_property.clear();
 
@@ -96,9 +98,9 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
   file << "property float32 x" << std::endl;
   file << "property float32 y" << std::endl;
   file << "property float32 z" << std::endl;
-  vec_property.push_back(format::ply::X);
-  vec_property.push_back(format::ply::VOID);
-  vec_property.push_back(format::ply::VOID);
+  vec_property.push_back(fmt::ply::X);
+  vec_property.push_back(fmt::ply::VOID);
+  vec_property.push_back(fmt::ply::VOID);
   this->property_number = 3;
 
   if(data->rgb.size() != 0){
@@ -106,9 +108,9 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
     file << "property uchar green" << std::endl;
     file << "property uchar blue" << std::endl;
 
-    vec_property.push_back(format::ply::R);
-    vec_property.push_back(format::ply::VOID);
-    vec_property.push_back(format::ply::VOID);
+    vec_property.push_back(fmt::ply::R);
+    vec_property.push_back(fmt::ply::VOID);
+    vec_property.push_back(fmt::ply::VOID);
     this->property_number += 3;
   }
   if(data->Nxyz.size() != 0){
@@ -116,21 +118,21 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
     file << "property float32 ny" << std::endl;
     file << "property float32 nz" << std::endl;
 
-    vec_property.push_back(format::ply::NX);
-    vec_property.push_back(format::ply::VOID);
-    vec_property.push_back(format::ply::VOID);
+    vec_property.push_back(fmt::ply::NX);
+    vec_property.push_back(fmt::ply::VOID);
+    vec_property.push_back(fmt::ply::VOID);
     this->property_number += 3;
   }
   if(data->Is.size() != 0){
     file << "property float32 intensity" << std::endl;
 
-    vec_property.push_back(format::ply::I);
+    vec_property.push_back(fmt::ply::I);
     property_number++;
   }
   if(data->ts.size() != 0){
     file << "property float32 timestamp" << std::endl;
 
-    vec_property.push_back(format::ply::TS);
+    vec_property.push_back(fmt::ply::TS);
     property_number++;
   }
   file << "end_header" <<std::endl;
@@ -199,7 +201,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm
 
       switch(vec_property[j]){
         //Location
-        case format::ply::X:{
+        case fmt::ply::X:{
           glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * mat;
           memcpy(block_data + offset, &xyzw, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
@@ -207,7 +209,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm
         }
 
         //Color
-        case format::ply::R:{
+        case fmt::ply::R:{
           for(int k=0; k<3; k++){
             glm::vec3 RGB = use_rgba ? glm::vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
             int color_int = RGB[k] * 255;
@@ -218,21 +220,21 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm
         }
 
         //Intensity
-        case format::ply::I:{
+        case fmt::ply::I:{
           memcpy(block_data + offset, &Is[i], sizeof(float));
           offset += sizeof(float);
           break;
         }
 
         //Normal
-        case format::ply::NX:{
+        case fmt::ply::NX:{
           memcpy(block_data + offset, &Nxyz[i], sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
           break;
         }
 
         //Timestamp
-        case format::ply::TS:{
+        case fmt::ply::TS:{
           memcpy(block_data + offset, &ts[i], sizeof(float));
           offset += sizeof(float);
           break;

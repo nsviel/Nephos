@@ -14,7 +14,7 @@
 #include <iostream>
 
 
-namespace format::hdf5{
+namespace fmt::hdf5{
 
 class Importer : public ldr::base::Importer
 {

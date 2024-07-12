@@ -14,13 +14,13 @@ Importer::Importer(ldr::Node* node_loader){
   this->ldr_struct = node_loader->get_ldr_struct();
   this->ldr_operation = node_loader->get_ldr_import_ope();
 
-  this->insert_importer(new format::ply::Importer());
-  this->insert_importer(new format::obj::Importer());
-  this->insert_importer(new format::csv::Importer());
-  this->insert_importer(new format::pts::Importer());
-  this->insert_importer(new format::ptx::Importer());
-  this->insert_importer(new format::xyz::Importer());
-  this->insert_importer(new format::hdf5::Importer());
+  this->insert_importer(new fmt::ply::Importer());
+  this->insert_importer(new fmt::obj::Importer());
+  this->insert_importer(new fmt::csv::Importer());
+  this->insert_importer(new fmt::pts::Importer());
+  this->insert_importer(new fmt::ptx::Importer());
+  this->insert_importer(new fmt::xyz::Importer());
+  this->insert_importer(new fmt::hdf5::Importer());
 
   //---------------------------
 }

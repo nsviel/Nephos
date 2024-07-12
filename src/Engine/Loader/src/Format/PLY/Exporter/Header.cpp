@@ -3,7 +3,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace format::ply::exporter{
+namespace fmt::ply::exporter{
 
 //Constructor / Destructor
 Header::Header(){
@@ -45,9 +45,9 @@ void Header::write_property_xyz(std::ofstream& file){
   file << "property float32 x" << std::endl;
   file << "property float32 y" << std::endl;
   file << "property float32 z" << std::endl;
-  vec_property.push_back(format::ply::X);
-  vec_property.push_back(format::ply::VOID);
-  vec_property.push_back(format::ply::VOID);
+  vec_property.push_back(fmt::ply::X);
+  vec_property.push_back(fmt::ply::VOID);
+  vec_property.push_back(fmt::ply::VOID);
   this->property_number = 3;
 
   //---------------------------
@@ -60,9 +60,9 @@ void Header::write_property_attribut(std::ofstream& file, utl::base::Data* data)
     file << "property uchar green" << std::endl;
     file << "property uchar blue" << std::endl;
 
-    vec_property.push_back(format::ply::R);
-    vec_property.push_back(format::ply::VOID);
-    vec_property.push_back(format::ply::VOID);
+    vec_property.push_back(fmt::ply::R);
+    vec_property.push_back(fmt::ply::VOID);
+    vec_property.push_back(fmt::ply::VOID);
     this->property_number += 3;
   }
   if(data->Nxyz.size() != 0){
@@ -70,21 +70,21 @@ void Header::write_property_attribut(std::ofstream& file, utl::base::Data* data)
     file << "property float32 ny" << std::endl;
     file << "property float32 nz" << std::endl;
 
-    vec_property.push_back(format::ply::NX);
-    vec_property.push_back(format::ply::VOID);
-    vec_property.push_back(format::ply::VOID);
+    vec_property.push_back(fmt::ply::NX);
+    vec_property.push_back(fmt::ply::VOID);
+    vec_property.push_back(fmt::ply::VOID);
     this->property_number += 3;
   }
   if(data->Is.size() != 0){
     file << "property float32 intensity" << std::endl;
 
-    vec_property.push_back(format::ply::I);
+    vec_property.push_back(fmt::ply::I);
     property_number++;
   }
   if(data->ts.size() != 0){
     file << "property float32 timestamp" << std::endl;
 
-    vec_property.push_back(format::ply::TS);
+    vec_property.push_back(fmt::ply::TS);
     property_number++;
   }
 

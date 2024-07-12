@@ -1,7 +1,7 @@
 #include "Importer.h"
 
 
-namespace format::ptx{
+namespace fmt::ptx{
 
 //Constructor / Destructor
 Importer::Importer(){

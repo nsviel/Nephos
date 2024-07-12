@@ -3,7 +3,7 @@
 #include <Data/Namespace.h>
 
 
-namespace format::obj{
+namespace fmt::obj{
 
 //Constructor / Destructor
 Importer::Importer(){

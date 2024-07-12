@@ -14,7 +14,7 @@
 
 
 
-namespace format::ply::importer{
+namespace fmt::ply::importer{
 
 class Binary
 {
@@ -25,7 +25,7 @@ public:
 
 public:
   //Main function
-  void parse_binary(dat::base::Object* object, format::ply::Header* header);
+  void parse_binary(dat::base::Object* object, fmt::ply::Header* header);
 
   //Parser
   void parse_vertex_little_endian(std::ifstream& file);
@@ -38,7 +38,7 @@ public:
   float reverse_float(const float inFloat);
   int reverse_int(const int inInt);
   void reorder_by_timestamp(utl::base::Data* data);
-  int get_property_id(format::ply::Field field);
+  int get_property_id(fmt::ply::Field field);
 
   //Binary type
   float get_float_from_binary(char* data, int& offset);
@@ -51,7 +51,7 @@ public:
   float get_ushort_from_binary(char* block_data, int& offset);
 
 private:
-  format::ply::Header* header = nullptr;
+  fmt::ply::Header* header = nullptr;
   utl::base::Data data;
 };
 

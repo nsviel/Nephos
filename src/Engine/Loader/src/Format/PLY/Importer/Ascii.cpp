@@ -3,7 +3,7 @@
 #include <Data/Namespace.h>
 
 
-namespace format::ply::importer{
+namespace fmt::ply::importer{
 
 //Constructor / Destructor
 Ascii::Ascii(){
@@ -15,7 +15,7 @@ Ascii::Ascii(){
 Ascii::~Ascii(){}
 
 //Main function
-void Ascii::parse_ascii(dat::base::Object* object, format::ply::Header* header){
+void Ascii::parse_ascii(dat::base::Object* object, fmt::ply::Header* header){
   this->header = header;
   //---------------------------
 
@@ -58,19 +58,19 @@ void Ascii::parse_vertex(std::ifstream& file){
     }
 
     //Location
-    int id_x = get_property_id(format::ply::X);
+    int id_x = get_property_id(fmt::ply::X);
     if(id_x != -1){
       data.xyz.push_back(glm::vec3(row[id_x], row[id_x+1], row[id_x+2]));
     }
 
     //Normal
-    int id_nx = get_property_id(format::ply::NX);
+    int id_nx = get_property_id(fmt::ply::NX);
     if(id_nx != -1){
       data.Nxyz.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
     }
 
     //Intensity
-    int id_i = get_property_id(format::ply::I);
+    int id_i = get_property_id(fmt::ply::I);
     if(id_i != -1){
       data.Is.push_back(row[id_i]);
     }
@@ -106,12 +106,12 @@ void Ascii::parse_face(std::ifstream& file){
       data.xyz.push_back(data_tmp.xyz[idx[i]]);
 
       //Normal
-      if(get_property_id(format::ply::NX) != -1){
+      if(get_property_id(fmt::ply::NX) != -1){
         data.Nxyz.push_back(data_tmp.Nxyz[idx[i]]);
       }
 
       //Intensity
-      if(get_property_id(format::ply::I) != -1){
+      if(get_property_id(fmt::ply::I) != -1){
         data.Is.push_back(data_tmp.Is[idx[i]]);
       }
     }
@@ -141,11 +141,11 @@ void Ascii::pass_header(std::ifstream& file){
 
   //---------------------------
 }
-int Ascii::get_property_id(format::ply::Field field){
+int Ascii::get_property_id(fmt::ply::Field field){
   //---------------------------
 
   for(int i=0; i<header->vec_property.size(); i++){
-    format::ply::Property* property = &header->vec_property[i];
+    fmt::ply::Property* property = &header->vec_property[i];
 
     if(property->field == field){
       return i;

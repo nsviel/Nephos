@@ -4,14 +4,14 @@
 #include <Loader/Namespace.h>
 
 
-namespace format::ply{
+namespace fmt::ply{
 
 //Constructor / Destructor
 Importer::Importer(){
   //---------------------------
 
-  this->ply_ascii = new format::ply::importer::Ascii();
-  this->ply_binary = new format::ply::importer::Binary();
+  this->ply_ascii = new fmt::ply::importer::Ascii();
+  this->ply_binary = new fmt::ply::importer::Binary();
 
   this->format = ".ply";
 
@@ -95,9 +95,9 @@ bool Importer::parse_header(std::string path){
 void Importer::parse_header_format(std::string format){
   //---------------------------
 
-  if(format == "ascii") header.encoding = format::ply::ASCII;
-  else if(format == "binary_little_endian") header.encoding = format::ply::BINARY_LITTLE_ENDIAN;
-  else if(format == "binary_big_endian") header.encoding = format::ply::BINARY_BIG_ENDIAN;
+  if(format == "ascii") header.encoding = fmt::ply::ASCII;
+  else if(format == "binary_little_endian") header.encoding = fmt::ply::BINARY_LITTLE_ENDIAN;
+  else if(format == "binary_big_endian") header.encoding = fmt::ply::BINARY_BIG_ENDIAN;
   else{
     std::cout<<"[warning] Unknown format: "<<format<<std::endl;
   }
@@ -105,37 +105,37 @@ void Importer::parse_header_format(std::string format){
   //---------------------------
 }
 void Importer::parse_header_property(std::string type, std::string field){
-  format::ply::Property property;
+  fmt::ply::Property property;
   //---------------------------
 
   //Property type
-  if(type == "float" || type == "float32") property.type = format::ply::FLOAT32;
-  else if(type == "float64" || type == "double") property.type = format::ply::FLOAT64;
-  else if(type == "uint" || type == "uint8") property.type = format::ply::UINT8;
-  else if(type == "uint16") property.type = format::ply::UINT16;
-  else if(type == "int" || type == "int32") property.type = format::ply::UINT32;
-  else if(type == "uchar") property.type = format::ply::UCHAR;
-  else if(type == "ushort") property.type = format::ply::USHORT;
+  if(type == "float" || type == "float32") property.type = fmt::ply::FLOAT32;
+  else if(type == "float64" || type == "double") property.type = fmt::ply::FLOAT64;
+  else if(type == "uint" || type == "uint8") property.type = fmt::ply::UINT8;
+  else if(type == "uint16") property.type = fmt::ply::UINT16;
+  else if(type == "int" || type == "int32") property.type = fmt::ply::UINT32;
+  else if(type == "uchar") property.type = fmt::ply::UCHAR;
+  else if(type == "ushort") property.type = fmt::ply::USHORT;
   else{
     std::cout<<"[warning] Unknown property type: "<<type<<std::endl;
     return;
   }
 
   //Property field
-  if(field == "x") property.field = format::ply::X;
-  else if(field == "y") property.field = format::ply::Y;
-  else if(field == "z") property.field = format::ply::Z;
-  else if(field == "timestamp") property.field = format::ply::TS;
-  else if(field == "nx") property.field = format::ply::NX;
-  else if(field == "ny") property.field = format::ply::NY;
-  else if(field == "nz") property.field = format::ply::NZ;
-  else if(field == "red") property.field = format::ply::R;
-  else if(field == "green") property.field = format::ply::G;
-  else if(field == "blue") property.field = format::ply::B;
-  else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "intensity") property.field = format::ply::I;
+  if(field == "x") property.field = fmt::ply::X;
+  else if(field == "y") property.field = fmt::ply::Y;
+  else if(field == "z") property.field = fmt::ply::Z;
+  else if(field == "timestamp") property.field = fmt::ply::TS;
+  else if(field == "nx") property.field = fmt::ply::NX;
+  else if(field == "ny") property.field = fmt::ply::NY;
+  else if(field == "nz") property.field = fmt::ply::NZ;
+  else if(field == "red") property.field = fmt::ply::R;
+  else if(field == "green") property.field = fmt::ply::G;
+  else if(field == "blue") property.field = fmt::ply::B;
+  else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "intensity") property.field = fmt::ply::I;
   else{
     //cout<<"[warning] Unknown property field: "<<field<<std::endl;
-    property.field = format::ply::VOID;
+    property.field = fmt::ply::VOID;
   }
 
   //Store property

@@ -4,7 +4,7 @@
 #include <fstream>
 
 
-namespace format::csv{
+namespace fmt::csv{
 
 //Constructor / Destructor
 Importer::Importer(){

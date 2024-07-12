@@ -3,7 +3,7 @@
 #include <Data/Namespace.h>
 
 
-namespace format::ply::importer{
+namespace fmt::ply::importer{
 
 //Constructor / Destructor
 Binary::Binary(){
@@ -14,7 +14,7 @@ Binary::Binary(){
 Binary::~Binary(){}
 
 //Main function
-void Binary::parse_binary(dat::base::Object* object, format::ply::Header* header){
+void Binary::parse_binary(dat::base::Object* object, fmt::ply::Header* header){
   this->header = header;
   //---------------------------
 
@@ -64,40 +64,40 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
   block_vec.resize(header->vec_property.size(), std::vector<float>(header->nb_vertex));
   for(int i=0; i<header->nb_vertex; i++){
     for(int j=0; j<header->vec_property.size(); j++){
-      format::ply::Property* property = &header->vec_property[j];
+      fmt::ply::Property* property = &header->vec_property[j];
 
       switch(property->type){
-        case format::ply::FLOAT32:{
+        case fmt::ply::FLOAT32:{
           float value = get_float_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case format::ply::FLOAT64:{
+        case fmt::ply::FLOAT64:{
           float value = get_double_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case format::ply::UINT8:{
+        case fmt::ply::UINT8:{
           float value = get_uint8_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case format::ply::UINT16:{
+        case fmt::ply::UINT16:{
           float value = get_uint16_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case format::ply::UINT32:{
+        case fmt::ply::UINT32:{
           float value = get_uint32_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case format::ply::UCHAR:{
+        case fmt::ply::UCHAR:{
           float value = get_uchar_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case format::ply::USHORT:{
+        case fmt::ply::USHORT:{
           float value = get_ushort_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
@@ -109,29 +109,29 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
 
   //Resize std::vectors accordingly
   data.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(format::ply::TS) != -1) data.ts.resize(header->nb_vertex, 0);
-  if(get_property_id(format::ply::I) != -1) data.Is.resize(header->nb_vertex, 0);
-  if(get_property_id(format::ply::NX) != -1) data.Nxyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(format::ply::R) != -1) data.rgb.resize(header->nb_vertex, glm::vec4(0,0,0,0));
+  if(get_property_id(fmt::ply::TS) != -1) data.ts.resize(header->nb_vertex, 0);
+  if(get_property_id(fmt::ply::I) != -1) data.Is.resize(header->nb_vertex, 0);
+  if(get_property_id(fmt::ply::NX) != -1) data.Nxyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(fmt::ply::R) != -1) data.rgb.resize(header->nb_vertex, glm::vec4(0,0,0,0));
 
   //Insert data in the adequate std::vector
   //#pragma omp parallel for
   for(int i=0; i<header->nb_vertex; i++){
     for(int j=0; j<header->vec_property.size(); j++){
-      format::ply::Property* property = &header->vec_property[j];
+      fmt::ply::Property* property = &header->vec_property[j];
 
       switch(property->field){
-        case format::ply::X:{ //Location
+        case fmt::ply::X:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
           data.xyz[i] = point;
           break;
         }
-        case format::ply::NX:{ //Normal
+        case fmt::ply::NX:{ //Normal
           glm::vec3 normal = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
           data.Nxyz[i] = normal;
           break;
         }
-        case format::ply::R:{ //Color
+        case fmt::ply::R:{ //Color
           float red = block_vec[j][i] / 255;
           float green = block_vec[j+1][i] / 255;
           float blue = block_vec[j+2][i] / 255;
@@ -139,12 +139,12 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
           data.rgb[i] = rgb;
           break;
         }
-        case format::ply::I:{ //Intensity
+        case fmt::ply::I:{ //Intensity
           float Is = block_vec[j][i];
           data.Is[i] = Is;
           break;
         }
-        case format::ply::TS:{ //Timestamp
+        case fmt::ply::TS:{ //Timestamp
           float ts = block_vec[j][i];
           data.ts[i] = ts;
           break;
@@ -228,27 +228,27 @@ void Binary::parse_vertex_big_endian(std::ifstream& file){
 
   //Resize std::vectors accordingly
   data.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(format::ply::TS) != -1) data.ts.resize(header->nb_vertex, 0);
-  if(get_property_id(format::ply::I) != -1) data.Is.resize(header->nb_vertex, 0);
+  if(get_property_id(fmt::ply::TS) != -1) data.ts.resize(header->nb_vertex, 0);
+  if(get_property_id(fmt::ply::I) != -1) data.Is.resize(header->nb_vertex, 0);
 
   //Insert data in the adequate std::vector
   #pragma omp parallel for
   for(int i=0; i<header->nb_vertex; i++){
     for(int j=0; j<header->vec_property.size(); j++){
-      format::ply::Property* property = &header->vec_property[j];
+      fmt::ply::Property* property = &header->vec_property[j];
 
       switch(property->field){
-        case format::ply::X:{ //Location
+        case fmt::ply::X:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
           data.xyz[i] = point;
           break;
         }
-        case format::ply::I:{ //Intensity
+        case fmt::ply::I:{ //Intensity
           float Is = block_vec[j][i];
           data.Is[i] = Is;
           break;
         }
-        case format::ply::TS:{ //Timestamp
+        case fmt::ply::TS:{ //Timestamp
           float ts = block_vec[j][i];
           data.ts[i] = ts;
           break;
@@ -375,11 +375,11 @@ void Binary::reorder_by_timestamp(utl::base::Data* data){/*
 */
   //---------------------------
 }
-int Binary::get_property_id(format::ply::Field field){
+int Binary::get_property_id(fmt::ply::Field field){
   //---------------------------
 
   for(int i=0; i<header->vec_property.size(); i++){
-    format::ply::Property* property = &header->vec_property[i];
+    fmt::ply::Property* property = &header->vec_property[i];
 
     if(property->field == field){
       return i;

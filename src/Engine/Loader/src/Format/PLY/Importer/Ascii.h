@@ -13,7 +13,7 @@
 #include <cstdint>
 
 
-namespace format::ply::importer{
+namespace fmt::ply::importer{
 
 class Ascii
 {
@@ -24,7 +24,7 @@ public:
 
 public:
   //Main function
-  void parse_ascii(dat::base::Object* object, format::ply::Header* header);
+  void parse_ascii(dat::base::Object* object, fmt::ply::Header* header);
 
   //Parser
   void parse_vertex(std::ifstream& file);
@@ -32,10 +32,10 @@ public:
 
   //Subfunction
   void pass_header(std::ifstream& file);
-  int get_property_id(format::ply::Field field);
+  int get_property_id(fmt::ply::Field field);
 
 private:
-  format::ply::Header* header = nullptr;
+  fmt::ply::Header* header = nullptr;
   utl::base::Data data;
 };
 

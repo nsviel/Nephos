@@ -4,13 +4,13 @@
 #include <Loader/Namespace.h>
 
 
-namespace format::ply{
+namespace fmt::ply{
 
 //Constructor / Destructor
 Recorder::Recorder(){
   //---------------------------
 
-  this->ply_exporter = new format::ply::Exporter();
+  this->ply_exporter = new fmt::ply::Exporter();
   this->format = ".ply";
 
   //---------------------------

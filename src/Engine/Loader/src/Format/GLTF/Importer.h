@@ -10,7 +10,7 @@
 #include <fstream>
 
 
-namespace format::gltf{
+namespace fmt::gltf{
 
 class Importer : public ldr::base::Importer
 {

@@ -12,11 +12,11 @@
 #include <stdint.h>
 #include <cstdint>
 
-namespace format::ply::importer{class Ascii;}
-namespace format::ply::importer{class Binary;}
+namespace fmt::ply::importer{class Ascii;}
+namespace fmt::ply::importer{class Binary;}
 
 
-namespace format::ply{
+namespace fmt::ply{
 
 class Importer : public ldr::base::Importer
 {
@@ -37,10 +37,10 @@ private:
   bool parse_header_size(std::string nb_vertex);
 
 private:
-  format::ply::importer::Ascii* ply_ascii;
-  format::ply::importer::Binary* ply_binary;
+  fmt::ply::importer::Ascii* ply_ascii;
+  fmt::ply::importer::Binary* ply_binary;
 
-  format::ply::Header header;
+  fmt::ply::Header header;
 };
 
 }

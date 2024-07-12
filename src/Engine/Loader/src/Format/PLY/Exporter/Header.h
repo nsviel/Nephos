@@ -11,7 +11,7 @@
 namespace utl::base{class Pose;}
 
 
-namespace format::ply::exporter{
+namespace fmt::ply::exporter{
 
 class Header
 {
