@@ -1,4 +1,4 @@
-#include "Finalizer.h"
+#include "Colorizer.h"
 
 #include <Utility/Namespace.h>
 #include <Operation/Namespace.h>
@@ -11,7 +11,7 @@
 namespace dyn::cloud{
 
 //Constructor / Destructor
-Finalizer::Finalizer(dyn::Node* node_dynamic){
+Colorizer::Colorizer(dyn::Node* node_dynamic){
   //---------------------------
 
   eng::Node* node_engine = node_dynamic->get_node_engine();
@@ -24,10 +24,10 @@ Finalizer::Finalizer(dyn::Node* node_dynamic){
 
   //---------------------------
 }
-Finalizer::~Finalizer(){}
+Colorizer::~Colorizer(){}
 
 //Main function
-void Finalizer::thread_task(){
+void Colorizer::thread_task(){
   prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::finalizer");
   //---------------------------
 
@@ -48,7 +48,7 @@ void Finalizer::thread_task(){
 }
 
 //Subfunction
-void Finalizer::colorize_object(dyn::base::Sensor* sensor){
+void Colorizer::colorize_object(dat::base::Entity* entity){
   //---------------------------
 
   ope::color::Configuration config;
@@ -58,14 +58,14 @@ void Finalizer::colorize_object(dyn::base::Sensor* sensor){
   config.heatmap_range_height = dyn_struct->colorization.range_height;
   config.unicolor = dyn_struct->colorization.unicolor;
 
-  ope_colorizer->make_colorization(sensor, config);
+  ope_colorizer->make_colorization(entity, config);
 
   //---------------------------
 }
-void Finalizer::update_object(dyn::base::Sensor* sensor){
+void Colorizer::update_object(dat::base::Entity* entity){
   //---------------------------
 
-  dat_entity->update_data(sensor);
+  dat_entity->update_data(entity);
   //dat_entity->update_glyph(sensor->get_object());
 
   //---------------------------

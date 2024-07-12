@@ -12,7 +12,7 @@ Colorization::Colorization(dyn::Node* node_dynamic){
   //---------------------------
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->dyn_operation = node_dynamic->get_ope_cloud();
+  this->dyn_colorizer = new dyn::cloud::Colorizer(node_dynamic);
 
   //---------------------------
 }
@@ -39,11 +39,12 @@ void Colorization::design_colorization(utl::base::Element* element){
   //---------------------------
 }
 void Colorization::update_element(utl::base::Element* element){
+  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
   //---------------------------
 
-  if(update_color){
-    //dyn_operation->colorize_object(entity);
-    //dyn_operation->update_object(entity);
+  if(entity && update_color){
+    dyn_colorizer->colorize_object(entity);
+    dyn_colorizer->update_object(entity);
     this->update_color = false;
   }
 

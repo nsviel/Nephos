@@ -5,6 +5,7 @@
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
+namespace dat::base{class Entity;}
 namespace dat::element{class Entity;}
 namespace utl::thread::task{class Pool;}
 namespace ope::color{class Colorizer;}
@@ -12,20 +13,20 @@ namespace ope::color{class Colorizer;}
 
 namespace dyn::cloud{
 
-class Finalizer : public dyn::thread::Routine
+class Colorizer : public dyn::thread::Routine
 {
 public:
   //Constructor / Destructor
-  Finalizer(dyn::Node* node_dynamic);
-  ~Finalizer();
+  Colorizer(dyn::Node* node_dynamic);
+  ~Colorizer();
 
 public:
   //Main function
   void thread_task();
 
   //Subfunction
-  void colorize_object(dyn::base::Sensor* sensor);
-  void update_object(dyn::base::Sensor* sensor);
+  void colorize_object(dat::base::Entity* entity);
+  void update_object(dat::base::Entity* entity);
 
 private:
   dyn::Structure* dyn_struct;

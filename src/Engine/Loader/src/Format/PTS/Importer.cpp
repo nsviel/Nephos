@@ -235,14 +235,20 @@ void Importer::Loader_data(utl::base::Data* data, int FILE_config){
 
   //Reflectance data
   if(hasIntensity){
-    if(IdataFormat == 0){
-      data->Is.push_back(I);
-    }else
-    if(IdataFormat == 1){
-      data->Is.push_back(I/255);
-    }else
-    if(IdataFormat == 2){
-      data->Is.push_back((I+2048)/4096);
+    switch(IdataFormat){
+      case 0:{
+        data->Is.push_back(I);
+        break;
+      }
+      case 1:{
+        data->Is.push_back(I/255);
+        break;
+      }
+      case 2:{
+        float Is = (I + 2048) / 4096;
+        data->Is.push_back(Is);
+        break;
+      }
     }
   }
 

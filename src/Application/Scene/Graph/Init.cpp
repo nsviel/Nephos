@@ -51,17 +51,18 @@ void Init::load_entity(){
   utl::base::Path mire("/home/aether/Desktop/Mire.mkv");
 
   utl::base::Path ply("/home/aether/Desktop/Point_cloud/ply/half_sphere.ply");
+  utl::base::Path pts("/home/aether/Desktop/Point_cloud/pts/pts_regis_01.pts");
 
   //Create playback list
   ldr_struct->importer.remove_old = false;
   //ldr_loader->load_object(versaille_0, versaille_0_t);
   //ldr_loader->load_object(versaille_2, versaille_2_t);
-  ldr_loader->load_object(cerfav);
-  //ldr_loader->load_object(dragon);
+  //ldr_loader->load_object(cerfav);
+  ldr_loader->load_object(dragon);
   //ldr_loader->load_object(sphere);
   //ldr_loader->load_set(pcap);
   //ldr_loader->load_object(mire);
-  //ldr_loader->load_object(ply);
+  //ldr_loader->load_object(pts);
 
   //----------------------------
 }

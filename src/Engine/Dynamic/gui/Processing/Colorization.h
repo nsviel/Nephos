@@ -2,7 +2,7 @@
 
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
-namespace dyn::cloud{class Operation;}
+namespace dyn::cloud{class Colorizer;}
 namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
 
@@ -30,7 +30,7 @@ public:
   void option_height(utl::base::Element* element);
 
 private:
-  dyn::cloud::Operation* dyn_operation;
+  dyn::cloud::Colorizer* dyn_colorizer;
   dyn::Structure* dyn_struct;
 
   bool update_color = false;

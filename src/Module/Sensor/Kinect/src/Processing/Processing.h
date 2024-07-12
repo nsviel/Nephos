@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Dynamic/src/Thread/Routine.h>
+
 namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
 namespace k4n::processing::cloud{class Data;}
@@ -11,7 +13,7 @@ namespace utl::thread::task{class Pool;}
 
 namespace k4n{
 
-class Processing
+class Processing : public dyn::thread::Routine
 {
 public:
   //Constructor / Destructor
