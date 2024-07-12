@@ -27,7 +27,8 @@ Recorder::Recorder(ldr::Node* node_loader){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::draw_header(dyn::base::Sensor* sensor){
+void Recorder::draw_header(utl::base::Element* element){
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
   //---------------------------
 
   this->item_update(sensor);

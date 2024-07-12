@@ -73,6 +73,22 @@ void Exporter::insert_exporter(ldr::base::Exporter* exporter){
 
   //---------------------------
 }
+void Exporter::update_current_path(utl::base::Element* element){
+  //---------------------------
+
+  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
+  if(!entity) return;
+
+  static dat::base::Entity* old_entity = entity;
+
+  //If entity different from previous one, change curent path
+  if(entity->UID != old_entity->UID){
+    ldr_struct->exporter.path.insert(entity->data.path.build());
+    old_entity = entity;
+  }
+
+  //---------------------------
+}
 bool Exporter::is_format_supported(std::string format){
   //---------------------------
 
@@ -90,6 +106,17 @@ bool Exporter::is_format_supported(std::string format){
 bool Exporter::is_current_config(){
   //---------------------------
 
+
+  //---------------------------
+  return false;
+}
+bool Exporter::is_recording(utl::base::Element* element){
+  //---------------------------
+
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
+  if(sensor && sensor->vec_recorder.size() != 0){
+    return true;
+  }
 
   //---------------------------
   return false;

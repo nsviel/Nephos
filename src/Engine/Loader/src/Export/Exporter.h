@@ -29,8 +29,10 @@ public:
   void init_path();
   void export_with_encoding(ldr::base::Exporter* exporter, dat::base::Entity* entity, std::string path);
   void insert_exporter(ldr::base::Exporter* exporter);
+  void update_current_path(utl::base::Element* element);
   bool is_format_supported(std::string format);
   bool is_current_config();
+  bool is_recording(utl::base::Element* element);
   std::vector<std::string> get_supported_format();
   std::vector<int> get_supported_encoding(std::string format);
 

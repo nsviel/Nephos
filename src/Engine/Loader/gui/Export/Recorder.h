@@ -8,6 +8,7 @@
 namespace ldr{class Node;}
 namespace ldr{class Structure;}
 namespace utl::gui::navigator{class Item;}
+namespace utl::base{class Element;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace dyn::player{class Player;}
@@ -25,7 +26,7 @@ public:
 
 public:
   //Main function
-  void draw_header(dyn::base::Sensor* sensor);
+  void draw_header(utl::base::Element* element);
 
   //Header function
   void display_action(dyn::base::Sensor* sensor);

@@ -52,15 +52,17 @@ void Panel::run_panel(){
 void Panel::design_panel(utl::base::Element* element){
   //---------------------------
 
-  //If dynamic object have recorder
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
-  if(sensor && sensor->vec_recorder.size() != 0){
-    gui_recorder->draw_header(sensor);
+  //Recorder
+  if(ldr_exporter->is_recording(element)){
+    gui_recorder->draw_header(element);
   }
-  //Else just exporter
+  //Exporter
   else{
     gui_exporter->draw_header(element);
   }
+
+  //Navigator
+  ldr_exporter->update_current_path(element);
   gui_navigator->draw_navigator(ldr_struct->exporter.path);
 
   //---------------------------
