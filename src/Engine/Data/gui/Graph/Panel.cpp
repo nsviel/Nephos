@@ -19,6 +19,7 @@ Panel::Panel(dat::Node* node_data, bool* show_window){
   this->dat_struct = node_data->get_dat_struct();
   this->gui_set = new dat::gui::set::Panel(node_data, &show_panel_set);
   this->gui_entity = new dat::gui::entity::Panel(node_data, &show_panel_entity);
+  this->gui_button = new dat::gui::graph::Button(node_data);
 
   this->name = "Graph";
   this->show_window = show_window;

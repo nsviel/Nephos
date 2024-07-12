@@ -7,10 +7,11 @@ namespace dat{class Graph;}
 namespace dat::element{class Set;}
 namespace dat::graph{class Selection;}
 namespace dat{class Structure;}
-namespace dat::gui::entity{class Panel;}
-namespace dat::gui::set{class Panel;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
+namespace dat::gui::entity{class Panel;}
+namespace dat::gui::set{class Panel;}
+namespace dat::gui::graph{class Button;}
 
 
 namespace dat::gui::graph{
@@ -38,12 +39,13 @@ public:
   bool show_panel_set      = false;
 
 private:
-  dat::gui::entity::Panel* gui_entity;
-  dat::gui::set::Panel* gui_set;
+  dat::Structure* dat_struct;
   dat::Graph* dat_graph;
   dat::graph::Selection* dat_selection;
   dat::element::Set* dat_set;
-  dat::Structure* dat_struct;
+  dat::gui::entity::Panel* gui_entity;
+  dat::gui::set::Panel* gui_set;
+  dat::gui::graph::Button* gui_button;
 
   std::string name;
   bool* show_window;
