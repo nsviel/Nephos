@@ -15,7 +15,7 @@ Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
   this->gui_operation = new dyn::gui::Operation(node_dynamic);
 
   this->show_window = show_window;
-  this->name = "Panel";
+  this->name = "Player";
 
   //---------------------------
 }
