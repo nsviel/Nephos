@@ -72,8 +72,9 @@ void Graph::draw_file_tree(){
 
   ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, 10);
   ImGui::SetNextWindowSize(ImVec2(400, 400));
-  ImGui::BeginTable("data_view", 2, flag);
+  ImGui::BeginTable("data_view", 3, flag);
   ImGui::TableSetupColumn("Name##scene_tree", ImGuiTableColumnFlags_WidthStretch);
+  ImGui::TableSetupColumn("Visibility##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 25);
   ImGui::TableSetupColumn("Bin##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 25);
 
   //Database
@@ -214,6 +215,17 @@ void Graph::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
     this->show_panel_entity = true;
   }
 
+  //Visibility button
+  ImGui::TableNextColumn();
+  ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+  ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+  //std::string tag = std::string(ICON_FA_EYE) + "##" + entity->name + std::to_string(nb_row);
+  //if(ImGui::SmallButton(tag.c_str())){
+
+  //}
+  ImGui::PopStyleColor(2);
+
+  //Supression button
   ImGui::TableNextColumn();
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));

@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Data/gui/Entity.h>
-#include <Data/gui/Graph.h>
-#include <Data/gui/Set.h>
+#include <Data/gui/Entity/Namespace.h>
+#include <Data/gui/Graph/Namespace.h>
+#include <Data/gui/Set/Namespace.h>

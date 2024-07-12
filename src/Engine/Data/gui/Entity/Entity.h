@@ -33,13 +33,14 @@ public:
 
   //Parameter
   void entity_info(dat::base::Entity* entity);
-  void data_info(dat::base::Entity* entity);
-  void pose_info(dat::base::Entity* entity);
+  void entity_data(dat::base::Entity* entity);
+  void entity_pose(dat::base::Entity* entity);
 
   //Primitive
-  void primitive_line(utl::base::Data* data);
-  void primitive_point(utl::base::Data* data);
-  void primitive_triangle(utl::base::Data* data);
+  void entity_typology(dat::base::Entity* entity);
+  void topology_line(utl::base::Data* data);
+  void topology_point(utl::base::Data* data);
+  void topology_triangle(utl::base::Data* data);
 
   inline void set_entity(dat::base::Entity* entity){this->entity = entity;}
 

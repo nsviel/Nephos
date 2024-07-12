@@ -99,8 +99,9 @@ void Entity::entity_parameter(dat::base::Entity* entity){
   ImGui::BeginTable("entity##table", 2, ImGuiTableFlags_BordersInnerV);
 
   this->entity_info(entity);
-  this->data_info(entity);
-  this->pose_info(entity);
+  this->entity_data(entity);
+  this->entity_typology(entity);
+  this->entity_pose(entity);
 
   ImGui::EndTable();
 
@@ -131,7 +132,7 @@ void Entity::entity_info(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Entity::data_info(dat::base::Entity* entity){
+void Entity::entity_data(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   if(data == nullptr) return;
   //---------------------------
@@ -154,25 +155,10 @@ void Entity::data_info(dat::base::Entity* entity){
     ope_location->set_unicolor(entity);
   }
 
-  //Primitive size
-  switch(data->topology.type){
-    case utl::topology::POINT:{
-      this->primitive_point(data);
-      break;
-    }
-    case utl::topology::LINE:{
-      this->primitive_line(data);
-      break;
-    }
-    case utl::topology::TRIANGLE:{
-      this->primitive_triangle(data);
-      break;
-    }
-  }
-
   //---------------------------
+  ImGui::Separator();
 }
-void Entity::pose_info(dat::base::Entity* entity){
+void Entity::entity_pose(dat::base::Entity* entity){
   utl::base::Pose* pose = &entity->pose;;
   if(pose == nullptr) return;
   //---------------------------
@@ -196,7 +182,30 @@ void Entity::pose_info(dat::base::Entity* entity){
 }
 
 //Primitive
-void Entity::primitive_line(utl::base::Data* data){
+void Entity::entity_typology(dat::base::Entity* entity){
+  utl::base::Data* data = &entity->data;
+  if(data == nullptr) return;
+  //---------------------------
+
+  //Primitive size
+  switch(data->topology.type){
+    case utl::topology::POINT:{
+      this->topology_point(data);
+      break;
+    }
+    case utl::topology::LINE:{
+      this->topology_line(data);
+      break;
+    }
+    case utl::topology::TRIANGLE:{
+      this->topology_triangle(data);
+      break;
+    }
+  }
+
+  //---------------------------
+}
+void Entity::topology_line(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -232,7 +241,7 @@ void Entity::primitive_line(utl::base::Data* data){
 
   //---------------------------
 }
-void Entity::primitive_point(utl::base::Data* data){
+void Entity::topology_point(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -249,7 +258,7 @@ void Entity::primitive_point(utl::base::Data* data){
 
   //Point size
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Point size"); ImGui::TableNextColumn();
+  ImGui::Text("Size"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
     data->topology.width--;
@@ -268,7 +277,7 @@ void Entity::primitive_point(utl::base::Data* data){
 
   //---------------------------
 }
-void Entity::primitive_triangle(utl::base::Data* data){
+void Entity::topology_triangle(utl::base::Data* data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
