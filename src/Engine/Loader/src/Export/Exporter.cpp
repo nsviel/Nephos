@@ -107,6 +107,9 @@ bool Exporter::is_format_supported(std::string format){
 bool Exporter::is_current_config(dat::base::Entity* entity){
   //---------------------------
 
+say("---");
+say(entity->data.path.build());
+say(ldr_struct->exporter.path.build());
   if(entity->data.path.build() == ldr_struct->exporter.path.build()){
     return true;
   }
