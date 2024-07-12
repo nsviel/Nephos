@@ -83,7 +83,7 @@ void Ascii::parse_face(std::ifstream& file){
   //---------------------------
 
   //Init
-  format::ply::Data data_tmp = data;
+  utl::base::Data data_tmp = data;
   this->data = {};
 
   //Retrieve face data

@@ -161,7 +161,7 @@ void Binary::parse_face_little_endian(std::ifstream& file){
   //---------------------------
 
   //Init
-  format::ply::Data data_tmp = data;
+  utl::base::Data data_tmp = data;
   this->data = {};
 
   //Get face index
@@ -265,7 +265,7 @@ void Binary::parse_face_big_endian(std::ifstream& file){
   //---------------------------
 
   //Init
-  format::ply::Data data_tmp = data;
+  utl::base::Data data_tmp = data;
   this->data = {};
 
   //Get face index

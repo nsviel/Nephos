@@ -52,7 +52,7 @@ public:
 
 private:
   format::ply::Header* header = nullptr;
-  format::ply::Data data;
+  utl::base::Data data;
 };
 
 }
