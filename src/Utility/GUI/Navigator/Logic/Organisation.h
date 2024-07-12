@@ -35,7 +35,6 @@ private:
 
   std::vector<utl::gui::navigator::Item> vec_folder;
   std::vector<utl::gui::navigator::Item> vec_file;
-  std::string curr_dir = "";
 };
 
 }

@@ -12,6 +12,12 @@
 
 namespace format::pts{
 
+enum IFormat{
+  F0_1 = 0,
+  F0_255 = 1,
+  FM2048_2048 = 2,
+};
+
 class Importer : public ldr::base::Importer
 {
 public:
@@ -47,7 +53,7 @@ private:
   int config;
   int nbptMax;
   int FILE_size, FILE_config;
-  int IdataFormat;
+  format::pts::IFormat Is_format;
 };
 
 }

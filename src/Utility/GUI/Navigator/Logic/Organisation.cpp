@@ -21,10 +21,11 @@ void Organisation::update_item_list(utl::base::Path& path){
   //---------------------------
 
   //Get current directory items
-  if(curr_dir != path.directory){
+  /*if(curr_dir != path.directory){
     this->recolt_items(path.directory);
     curr_dir = path.directory;
-  }
+  }*/
+  this->recolt_items(path.directory);
 
   //Sort items
   this->sort_items();

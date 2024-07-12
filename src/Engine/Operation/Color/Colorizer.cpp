@@ -96,7 +96,7 @@ void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Co
   //---------------------------
 
   for(int i=0; i<data->Is.size(); i++){
-    float Is = data->Is[i] / config.intensity_diviser;
+    float Is = data->Is[i];// / config.intensity_diviser;
     data->rgba[i] = glm::vec4(Is, Is, Is, 1);
   }
 

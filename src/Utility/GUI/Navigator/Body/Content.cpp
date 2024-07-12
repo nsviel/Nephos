@@ -22,6 +22,16 @@ Content::~Content(){}
 void Content::draw_content(utl::base::Path& path){
   //---------------------------
 
+  nav_organisation->recolt_items(path.directory);
+  this->draw_table(path);
+
+  //---------------------------
+}
+
+//Subfunction
+void Content::draw_table(utl::base::Path& path){
+  //---------------------------
+
   //Content table
   static ImGuiTableFlags flags;
   flags |= ImGuiTableFlags_BordersV;
@@ -44,7 +54,7 @@ void Content::draw_content(utl::base::Path& path){
   ImGui::TableHeadersRow();
 
   //Content draw
-  nav_organisation->update_item_list(path);
+  nav_organisation->sort_items();
   for(int i=0; i<nav_struct->vec_item.size(); i++){
     utl::gui::navigator::Item& item = nav_struct->vec_item[i];
 
@@ -57,8 +67,6 @@ void Content::draw_content(utl::base::Path& path){
 
   //---------------------------
 }
-
-//Subfunction
 void Content::draw_item(utl::gui::navigator::Item& item){
   //---------------------------
 

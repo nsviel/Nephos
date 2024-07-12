@@ -11,7 +11,7 @@ Importer::Importer(){
   //---------------------------
 
   this->nbptMax = 40000000;
-  this->IdataFormat = 2;
+  this->Is_format = format::pts::FM2048_2048;
   this->format = ".pts";
 
   //---------------------------
@@ -155,7 +155,7 @@ void Importer::Loader_configuration(){
         hasColor = true;
         hasIntensity = true;
         hasNormal = false;
-        IdataFormat = 0;
+        Is_format = format::pts::F0_1;
         break;
       }
       break;
@@ -175,7 +175,7 @@ void Importer::Loader_configuration(){
         hasColor = true;
         hasIntensity = true;
         hasNormal = false;
-        IdataFormat = 0;
+        Is_format = format::pts::F0_1;
 
         break;
       }
@@ -189,7 +189,7 @@ void Importer::Loader_configuration(){
 
         if(line_columns[3]>=0 && line_columns[3]<=1){
           std::cout<<"I scale: [0;1]"<< std::endl;
-          IdataFormat = 0;
+          Is_format = format::pts::F0_1;
         }
       }
       break;
@@ -235,17 +235,17 @@ void Importer::Loader_data(utl::base::Data* data, int FILE_config){
 
   //Reflectance data
   if(hasIntensity){
-    switch(IdataFormat){
-      case 0:{
+    switch(Is_format){
+      case format::pts::F0_1:{
         data->Is.push_back(I);
         break;
       }
-      case 1:{
+      case format::pts::F0_255:{
         data->Is.push_back(I/255);
         break;
       }
-      case 2:{
-        float Is = (I + 2048) / 4096;say(Is);
+      case format::pts::FM2048_2048:{
+        float Is = (I + 2048) / 4096;
         data->Is.push_back(Is);
         break;
       }
@@ -399,7 +399,7 @@ int Importer::check_configuration(std::string path){
         hasColor = true;
         hasIntensity = true;
         hasNormal = false;
-        IdataFormat = 0;
+        Is_format = format::pts::F0_1;
         break;
       }
 
@@ -413,7 +413,7 @@ int Importer::check_configuration(std::string path){
         hasColor = true;
         hasIntensity = true;
         hasNormal = false;
-        IdataFormat = 0;
+        Is_format = format::pts::F0_1;
         break;
       }
       break;
@@ -433,7 +433,7 @@ int Importer::check_configuration(std::string path){
         hasColor = true;
         hasIntensity = true;
         hasNormal = true;
-        IdataFormat = 0;
+        Is_format = format::pts::F0_1;
 
         break;
       }
@@ -443,7 +443,7 @@ int Importer::check_configuration(std::string path){
         hasColor = true;
         hasIntensity = true;
         hasNormal = true;
-        IdataFormat = 2;
+        Is_format = format::pts::FM2048_2048;
 
         break;
       }
@@ -456,7 +456,7 @@ int Importer::check_configuration(std::string path){
         float I =line_columns[3];
         bool Isc1 = abs(I) >= 0 && abs(I) <= 1;
         if(Isc1){
-          IdataFormat = 0;
+          Is_format = format::pts::F0_1;
         }
       }
       break;

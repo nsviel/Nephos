@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace utl::gui{class Navigator;}
 namespace utl::gui::navigator{class Structure;}
 namespace utl::gui::navigator{class Organisation;}
@@ -22,6 +24,7 @@ public:
   void draw_content(utl::base::Path& path);
 
   //Subfunction
+  void draw_table(utl::base::Path& path);
   void draw_item(utl::gui::navigator::Item& file);
   void draw_icon(utl::gui::navigator::Item& file);
 
@@ -29,6 +32,8 @@ private:
   utl::gui::navigator::Structure* nav_struct;
   utl::gui::navigator::Organisation* nav_organisation;
   utl::gui::navigator::Selection* nav_selection;
+
+  std::string curr_dir = "";
 };
 
 }
