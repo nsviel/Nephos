@@ -23,7 +23,7 @@ void Binary::parse_binary(dat::base::Object* object, format::ply::Header* header
   this->pass_header(file);
 
   //Read data
-  switch(header->format){
+  switch(header->encoding){
     case BINARY_LITTLE_ENDIAN:{
       this->parse_vertex_little_endian(file);
       this->parse_face_little_endian(file);

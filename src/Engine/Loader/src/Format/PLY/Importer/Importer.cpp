@@ -34,7 +34,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
   if(!parse_header(path.build())) return nullptr;
 
   //Parsing
-  switch(header.format){
+  switch(header.encoding){
     case ASCII:{
       ply_ascii->parse_ascii(object, &header);
       break;
@@ -95,9 +95,9 @@ bool Importer::parse_header(std::string path){
 void Importer::parse_header_format(std::string format){
   //---------------------------
 
-  if(format == "ascii") header.format = format::ply::ASCII;
-  else if(format == "binary_little_endian") header.format = format::ply::BINARY_LITTLE_ENDIAN;
-  else if(format == "binary_big_endian") header.format = format::ply::BINARY_BIG_ENDIAN;
+  if(format == "ascii") header.encoding = format::ply::ASCII;
+  else if(format == "binary_little_endian") header.encoding = format::ply::BINARY_LITTLE_ENDIAN;
+  else if(format == "binary_big_endian") header.encoding = format::ply::BINARY_BIG_ENDIAN;
   else{
     std::cout<<"[warning] Unknown format: "<<format<<std::endl;
   }

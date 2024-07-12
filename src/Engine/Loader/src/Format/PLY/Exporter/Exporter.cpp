@@ -49,6 +49,39 @@ void Exporter::export_binary(utl::base::Data* data, glm::mat4 mat, std::string p
 }
 
 //Subfunction
+void Exporter::find_vec_property(utl::base::Data* data){
+  //---------------------------
+
+  this->vec_property.clear();
+
+  vec_property.push_back(format::ply::X);
+  vec_property.push_back(format::ply::VOID);
+  vec_property.push_back(format::ply::VOID);
+  this->property_number = 3;
+
+  if(data->rgb.size() != 0){
+    vec_property.push_back(format::ply::R);
+    vec_property.push_back(format::ply::VOID);
+    vec_property.push_back(format::ply::VOID);
+    this->property_number += 3;
+  }
+  if(data->Nxyz.size() != 0){
+    vec_property.push_back(format::ply::NX);
+    vec_property.push_back(format::ply::VOID);
+    vec_property.push_back(format::ply::VOID);
+    this->property_number += 3;
+  }
+  if(data->Is.size() != 0){
+    vec_property.push_back(format::ply::I);
+    property_number++;
+  }
+  if(data->ts.size() != 0){
+    vec_property.push_back(format::ply::TS);
+    property_number++;
+  }
+
+  //---------------------------
+}
 void Exporter::write_header(std::ofstream& file, std::string format, utl::base::Data* data){
   //---------------------------
 

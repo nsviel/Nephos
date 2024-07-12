@@ -6,7 +6,7 @@
 
 namespace format::ply{
 
-enum Format{
+enum Encoding{
   ASCII = 0,
   BINARY_LITTLE_ENDIAN = 1,
   BINARY_BIG_ENDIAN = 2,
@@ -47,7 +47,7 @@ struct Header{
   std::string path = "";
   std::vector<format::ply::Property> vec_property;
   utl::topology::Type topology = utl::topology::POINT;
-  int format = format::ply::ASCII;
+  format::ply::Encoding encoding = format::ply::ASCII;
   int nb_vertex = 0;
   int nb_face = 0;
 };
