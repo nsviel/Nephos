@@ -31,34 +31,34 @@ utl::base::Element* Importer::import(utl::base::Path path){
   object->data.path.format = format;
 
   //Header
-  fmt::ply::Header header(path.build());
-  if(!parse_header(header)) return nullptr;
+  fmt::ply::Importer importer(path.build());
+  if(!parse_header(importer)) return nullptr;
 
   //Parsing
-  switch(header.encoding){
+  switch(importer.encoding){
     case ASCII:{
-      ply_ascii->parse_ascii(object, &header);
+      ply_ascii->parse_ascii(object, &importer);
       break;
     }
     case BINARY_LITTLE_ENDIAN:
     case BINARY_BIG_ENDIAN:{
-      ply_binary->parse_binary(object, &header);
+      ply_binary->parse_binary(object, &importer);
       break;
     }
   }
 
-  object->data.topology.type = header.topology;
+  object->data.topology.type = importer.topology;
 
   //---------------------------
   return object;
 }
 
 //Header
-bool Importer::parse_header(fmt::ply::Header& header){
+bool Importer::parse_header(fmt::ply::Importer& importer){
   //---------------------------
 
   //Init
-  std::ifstream file(header.path);
+  std::ifstream file(importer.path);
 
   // Separate the header
   std::string line, h1, h2, h3, h4;
@@ -70,20 +70,20 @@ bool Importer::parse_header(fmt::ply::Header& header){
 
     //Retrieve format
     if(h1 == "format"){
-      this->parse_header_format(header, h2);
+      this->parse_header_format(importer, h2);
     }
     //Retrieve number of point
     else if(h1 + h2 == "elementvertex"){
-      if(!parse_header_size(header, h3)) return false;
+      if(!parse_header_size(importer, h3)) return false;
     }
     //Retrieve property
     else if(h1 == "property" && vertex_ended == false){
-      this->parse_header_property(header, h2, h3);
+      this->parse_header_property(importer, h2, h3);
     }
     //Retrieve property
     else if(h1 + h2 == "elementface"){
       vertex_ended = true;
-      header.nb_face = std::stoi(h3);
+      importer.nb_face = std::stoi(h3);
     }
 
   }while(line.find("end_header") != 0);
@@ -91,19 +91,19 @@ bool Importer::parse_header(fmt::ply::Header& header){
   //---------------------------
   return true;
 }
-void Importer::parse_header_format(fmt::ply::Header& header, std::string format){
+void Importer::parse_header_format(fmt::ply::Importer& importer, std::string format){
   //---------------------------
 
-  if(format == "ascii") header.encoding = fmt::ply::ASCII;
-  else if(format == "binary_little_endian") header.encoding = fmt::ply::BINARY_LITTLE_ENDIAN;
-  else if(format == "binary_big_endian") header.encoding = fmt::ply::BINARY_BIG_ENDIAN;
+  if(format == "ascii") importer.encoding = fmt::ply::ASCII;
+  else if(format == "binary_little_endian") importer.encoding = fmt::ply::BINARY_LITTLE_ENDIAN;
+  else if(format == "binary_big_endian") importer.encoding = fmt::ply::BINARY_BIG_ENDIAN;
   else{
     std::cout<<"[warning] Unknown format: "<<format<<std::endl;
   }
 
   //---------------------------
 }
-bool Importer::parse_header_size(fmt::ply::Header& header, std::string value){
+bool Importer::parse_header_size(fmt::ply::Importer& importer, std::string value){
   //---------------------------
 
   int nb_vertex = std::stoi(value);
@@ -111,12 +111,12 @@ bool Importer::parse_header_size(fmt::ply::Header& header, std::string value){
     std::cout<<"[error] ply file number vertex wrong"<<std::endl;
     return false;
   }
-  header.nb_vertex = nb_vertex;
+  importer.nb_vertex = nb_vertex;
 
   //---------------------------
   return true;
 }
-void Importer::parse_header_property(fmt::ply::Header& header, std::string type, std::string field){
+void Importer::parse_header_property(fmt::ply::Importer& importer, std::string type, std::string field){
   fmt::ply::Property property;
   //---------------------------
 
@@ -144,7 +144,7 @@ void Importer::parse_header_property(fmt::ply::Header& header, std::string type,
   }
 
   //Store property
-  header.vec_property.push_back(property);
+  importer.vec_property.push_back(property);
 
   //---------------------------
 }

@@ -31,10 +31,10 @@ public:
 
 private:
   //Header
-  bool parse_header(fmt::ply::Header& header);
-  void parse_header_format(fmt::ply::Header& header, std::string format);
-  bool parse_header_size(fmt::ply::Header& header, std::string nb_vertex);
-  void parse_header_property(fmt::ply::Header& header, std::string type, std::string field);
+  bool parse_header(fmt::ply::Importer& importer);
+  void parse_header_format(fmt::ply::Importer& importer, std::string format);
+  bool parse_header_size(fmt::ply::Importer& importer, std::string nb_vertex);
+  void parse_header_property(fmt::ply::Importer& importer, std::string type, std::string field);
 
 private:
   fmt::ply::importer::Ascii* ply_ascii;

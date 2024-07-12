@@ -9,10 +9,10 @@
 
 namespace fmt::ply{
 
-struct Header{
+struct Importer{
 
-  Header(){}
-  Header(std::string path){
+  Importer(){}
+  Importer(std::string path){
     this->path = path;
   }
 
