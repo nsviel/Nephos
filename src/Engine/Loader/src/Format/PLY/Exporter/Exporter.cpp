@@ -54,8 +54,11 @@ void Exporter::find_vec_property(utl::base::Data* data){
 
   fmt::ply::Header header;
 
-  header.vec_property.push_back(fmt::ply::X);
-  header.vec_property.push_back(fmt::ply::VOID);
+  fmt::ply::Property property;
+  property.field = fmt::ply::X;
+  property.type = fmt::ply::FLOAT32;
+  header.vec_property.push_back(property);
+/*  header.vec_property.push_back(fmt::ply::VOID);
   header.vec_property.push_back(fmt::ply::VOID);
   header.nb_property = 3;
 
@@ -78,7 +81,7 @@ void Exporter::find_vec_property(utl::base::Data* data){
   if(data->ts.size() != 0){
     header.vec_property.push_back(fmt::ply::TS);
     header.nb_property++;
-  }
+  }*/
 
   //---------------------------
 }
@@ -98,9 +101,7 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
   file << "property float32 x" << std::endl;
   file << "property float32 y" << std::endl;
   file << "property float32 z" << std::endl;
-  vec_property.push_back(fmt::ply::X);
-  vec_property.push_back(fmt::ply::VOID);
-  vec_property.push_back(fmt::ply::VOID);
+  vec_property.push_back(fmt::ply::XYZ);
   this->property_number = 3;
 
   if(data->rgb.size() != 0){
@@ -108,9 +109,7 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
     file << "property uchar green" << std::endl;
     file << "property uchar blue" << std::endl;
 
-    vec_property.push_back(fmt::ply::R);
-    vec_property.push_back(fmt::ply::VOID);
-    vec_property.push_back(fmt::ply::VOID);
+    vec_property.push_back(fmt::ply::RGB);
     this->property_number += 3;
   }
   if(data->Nxyz.size() != 0){
@@ -118,9 +117,7 @@ void Exporter::write_header(std::ofstream& file, std::string format, utl::base::
     file << "property float32 ny" << std::endl;
     file << "property float32 nz" << std::endl;
 
-    vec_property.push_back(fmt::ply::NX);
-    vec_property.push_back(fmt::ply::VOID);
-    vec_property.push_back(fmt::ply::VOID);
+    vec_property.push_back(fmt::ply::NXYZ);
     this->property_number += 3;
   }
   if(data->Is.size() != 0){

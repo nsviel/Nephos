@@ -15,17 +15,11 @@ enum Type{
 
 enum Field{
   VOID = 0,
-  X = 1,
-  Y = 2,
-  Z = 3,
-  NX = 4,
-  NY = 5,
-  NZ = 6,
-  R = 7,
-  G = 8,
-  B = 9,
-  I = 10,
-  TS = 11,
+  XYZ = 1,
+  NXYZ = 2,
+  RGB = 3,
+  I = 4,
+  TS = 5,
 };
 
 struct Property{

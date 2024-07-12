@@ -121,17 +121,17 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
       fmt::ply::Property* property = &header->vec_property[j];
 
       switch(property->field){
-        case fmt::ply::X:{ //Location
+        case fmt::ply::XYZ:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
           data.xyz[i] = point;
           break;
         }
-        case fmt::ply::NX:{ //Normal
+        case fmt::ply::NXYZ:{ //Normal
           glm::vec3 normal = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
           data.Nxyz[i] = normal;
           break;
         }
-        case fmt::ply::R:{ //Color
+        case fmt::ply::RGB:{ //Color
           float red = block_vec[j][i] / 255;
           float green = block_vec[j+1][i] / 255;
           float blue = block_vec[j+2][i] / 255;
@@ -238,7 +238,7 @@ void Binary::parse_vertex_big_endian(std::ifstream& file){
       fmt::ply::Property* property = &header->vec_property[j];
 
       switch(property->field){
-        case fmt::ply::X:{ //Location
+        case fmt::ply::XYZ:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
           data.xyz[i] = point;
           break;

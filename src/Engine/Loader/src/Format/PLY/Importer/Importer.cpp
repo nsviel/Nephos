@@ -122,16 +122,10 @@ void Importer::parse_header_property(std::string type, std::string field){
   }
 
   //Property field
-  if(field == "x") property.field = fmt::ply::X;
-  else if(field == "y") property.field = fmt::ply::Y;
-  else if(field == "z") property.field = fmt::ply::Z;
+  if(field == "x") property.field = fmt::ply::XYZ;
   else if(field == "timestamp") property.field = fmt::ply::TS;
-  else if(field == "nx") property.field = fmt::ply::NX;
-  else if(field == "ny") property.field = fmt::ply::NY;
-  else if(field == "nz") property.field = fmt::ply::NZ;
-  else if(field == "red") property.field = fmt::ply::R;
-  else if(field == "green") property.field = fmt::ply::G;
-  else if(field == "blue") property.field = fmt::ply::B;
+  else if(field == "nx") property.field = fmt::ply::NXYZ;
+  else if(field == "red") property.field = fmt::ply::RGB;
   else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "intensity") property.field = fmt::ply::I;
   else{
     //cout<<"[warning] Unknown property field: "<<field<<std::endl;
