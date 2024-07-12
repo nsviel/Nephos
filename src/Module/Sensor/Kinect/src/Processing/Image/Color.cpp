@@ -42,8 +42,6 @@ void Color::retrieve_data(k4n::base::Sensor* sensor){
   k4a::image color = sensor->device.capture->get_color_image();
   if(!color.is_valid()) return;
 
-  //Subfunction
-
   //Data
   sensor->color.data.name = "color";
   sensor->color.data.k4a_image = color;

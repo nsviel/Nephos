@@ -23,16 +23,14 @@ Color_to_depth::~Color_to_depth(){}
 void Color_to_depth::make_transformation(k4n::base::Sensor* sensor){
   //---------------------------
 
-  table_xy->start_thread(sensor);
-  this->find_color_to_depth(sensor);
-
+  this->k4a_color_to_depth(sensor);
   sensor->cloud.calibration_type = K4A_CALIBRATION_TYPE_DEPTH;
 
   //---------------------------
 }
 
 //Subfunction
-void Color_to_depth::find_color_to_depth(k4n::base::Sensor* sensor){
+void Color_to_depth::k4a_color_to_depth(k4n::base::Sensor* sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 
@@ -52,6 +50,13 @@ void Color_to_depth::find_color_to_depth(k4n::base::Sensor* sensor){
   sensor->color.data.width = color_to_depth.get_width_pixels();
   sensor->color.data.height = color_to_depth.get_height_pixels();
   sensor->color.data.buffer = color_to_depth.get_buffer();
+
+  //---------------------------
+}
+void Color_to_depth::table_color_to_depth(k4n::base::Sensor* sensor){
+  if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
+  //---------------------------
+
 
   //---------------------------
 }

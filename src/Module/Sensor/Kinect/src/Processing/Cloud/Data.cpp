@@ -11,6 +11,7 @@ namespace k4n::processing::cloud{
 Data::Data(k4n::Node* node_k4n){
   //---------------------------
 
+  this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_xytable = new k4n::processing::cloud::XY_table(node_k4n);
 
   //---------------------------

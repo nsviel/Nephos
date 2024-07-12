@@ -25,7 +25,8 @@ public:
   void make_transformation(k4n::base::Sensor* sensor);
 
   //Subfunction
-  void find_color_to_depth(k4n::base::Sensor* sensor);
+  void k4a_color_to_depth(k4n::base::Sensor* sensor);
+  void table_color_to_depth(k4n::base::Sensor* sensor);
 
 private:
   k4n::processing::image::Table_xy* table_xy;

@@ -25,7 +25,7 @@ public:
 
   //Subfunction
   void table_color_to_depth(k4n::base::Sensor* sensor);
-  void convert_table_to_glm(k4n::base::Sensor* sensor);
+  void apply_map(k4n::base::Sensor* sensor, int i);
 
   using dyn::thread::Job::start_thread;
 

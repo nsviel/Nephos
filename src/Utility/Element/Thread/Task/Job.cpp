@@ -13,6 +13,7 @@ Job::Job(){
   //---------------------------
 
   this->done = false;
+  this->run = false;
 
   //---------------------------
 }
@@ -46,13 +47,11 @@ void Job::wait_thread(){
 
 //Subfunction
 void Job::run_thread(){
-  if(done) return;
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mtx);
-  if (thread.joinable()) {
-    thread.join();
-  }
+  if(done || run) return;
+  this->run = true;
   this->thread = std::thread(&Job::loop_thread, this);
 
   //---------------------------
@@ -65,6 +64,7 @@ void Job::loop_thread(){
   {
     std::lock_guard<std::mutex> lock(mtx);
     this->done = true;
+    this->run = false;
     cv.notify_all();
   }
 
