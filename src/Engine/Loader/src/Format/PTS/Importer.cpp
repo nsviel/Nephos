@@ -245,7 +245,7 @@ void Importer::Loader_data(utl::base::Data* data, int FILE_config){
         break;
       }
       case 2:{
-        float Is = (I + 2048) / 4096;
+        float Is = (I + 2048) / 4096;say(Is);
         data->Is.push_back(Is);
         break;
       }
