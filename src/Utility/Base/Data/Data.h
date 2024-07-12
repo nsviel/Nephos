@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Utility/Base/Data/Attribut.h>
 #include <Utility/Base/Data/Element.h>
 #include <Utility/Base/Data/Topology.h>
 #include <Utility/Base/Data/Path.h>
@@ -16,6 +17,23 @@ struct Data : public utl::base::Element{
 
   Data(){
     this->type = utl::element::DATA;
+  }
+  std::vector<float>& get_attribut_data(std::string name){
+    for(int i=0; i<vec_attribut.size(); i++){
+      utl::base::data::Attribut& attribut = vec_attribut[i];
+      if(attribut.name == name) return attribut.data;
+    }
+    std::cout<<"[error] attribut name doesn't exists"<<std::endl;
+    static std::vector<float> empty_vector;
+    return empty_vector;
+  }
+  utl::base::data::Attribut* get_attribut(std::string name){
+    for(int i=0; i<vec_attribut.size(); i++){
+      utl::base::data::Attribut& attribut = vec_attribut[i];
+      if(attribut.name == name) return &attribut;
+    }
+    std::cout<<"[error] attribut name doesn't exists"<<std::endl;
+    return nullptr;
   }
 
   //State
@@ -37,6 +55,8 @@ struct Data : public utl::base::Element{
   std::vector<glm::vec4> rgba; //Displayed color data
   std::vector<glm::vec3> Nxyz; //Normal
   std::vector<glm::vec2> uv;  //UV coordinate
+  std::vector<utl::base::data::Attribut> vec_attribut;
+
   std::vector<float> ts; //Timestamp
   std::vector<float> Is; //Intensity
   std::vector<float> Is_cor; //Corrected intensity

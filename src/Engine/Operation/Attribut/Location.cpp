@@ -141,7 +141,8 @@ void Location::compute_range(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  std::vector<float>& R = data->R;
+
+  std::vector<float>& R = data->get_attribut_data("R");
   std::vector<glm::vec3>& xyz = data->xyz;
 
   R.resize(xyz.size(), 0.0f);
