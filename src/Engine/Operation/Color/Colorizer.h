@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Operation/Color/Colormap/Namespace.h>
 #include <Operation/Color/Structure/Configuration.h>
 #include <glm/glm.hpp>
 

@@ -148,8 +148,9 @@ void Colorizer::colorization_intensity_cal(dat::base::Entity* entity, ope::color
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  for(int i=0; i<data->Is_cal.size(); i++){
-    float& Is = data->Is_cal[i];
+  std::vector<float>& vec_Ical = utl_attribut->get_attribut_data(data, "I_cal");
+  for(int i=0; i<vec_Ical.size(); i++){
+    float& Is = vec_Ical[i];
     data->rgba[i] = glm::vec4(Is, Is, Is, 1);
   }
 
@@ -238,7 +239,7 @@ void Colorizer::colorization_structure(dat::base::Entity* entity){
   int num_cols = data->width;
 
   // Define a color gradient from red to blue
-  std::vector<glm::vec3>& colormap = ope_colormap->get_colormap_selected();
+  std::vector<glm::vec3>& colormap = ope::colormap::viridis_long;
 
   // Calculate the step size for color interpolation along rows and columns
   float row_step = 1.0f / (num_rows - 1);

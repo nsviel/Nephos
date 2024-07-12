@@ -61,11 +61,11 @@ void Heatmap::heatmap_intensity_cor(dat::base::Entity* entity){
 }
 void Heatmap::heatmap_intensity_cal(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
-  if(data->Is_cal.size() == 0) return;
   //---------------------------
 
   //Prepare data
-  std::vector<float> Is = data->Is_cal;
+  std::vector<float>& vec_Ical = utl_attribut->get_attribut_data(data, "I_cal");
+  std::vector<float> Is = vec_Ical;
   math::normalize(Is, range_intensity);
 
   //Compute heatmap

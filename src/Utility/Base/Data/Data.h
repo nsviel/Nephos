@@ -39,7 +39,6 @@ struct Data : public utl::base::Element{
 
   std::vector<float> Is; //Intensity
   std::vector<float> Is_cor; //Corrected intensity
-  std::vector<float> Is_cal; //Calibrated intensity
 
   //---------------------------
 };
