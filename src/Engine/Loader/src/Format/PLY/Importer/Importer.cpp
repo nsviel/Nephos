@@ -128,7 +128,6 @@ void Importer::parse_header_property(std::string type, std::string field){
   else if(field == "red") property.field = fmt::ply::RGB;
   else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "intensity") property.field = fmt::ply::I;
   else{
-    //cout<<"[warning] Unknown property field: "<<field<<std::endl;
     property.field = fmt::ply::VOID;
   }
 

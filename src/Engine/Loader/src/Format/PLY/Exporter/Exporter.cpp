@@ -55,7 +55,7 @@ void Exporter::find_vec_property(utl::base::Data* data){
   fmt::ply::Header header;
 
   fmt::ply::Property property;
-  property.field = fmt::ply::X;
+  property.field = fmt::ply::XYZ;
   property.type = fmt::ply::FLOAT32;
   header.vec_property.push_back(property);
 /*  header.vec_property.push_back(fmt::ply::VOID);
@@ -198,7 +198,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm
 
       switch(vec_property[j]){
         //Location
-        case fmt::ply::X:{
+        case fmt::ply::XYZ:{
           glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * mat;
           memcpy(block_data + offset, &xyzw, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
@@ -206,7 +206,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm
         }
 
         //Color
-        case fmt::ply::R:{
+        case fmt::ply::RGB:{
           for(int k=0; k<3; k++){
             glm::vec3 RGB = use_rgba ? glm::vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
             int color_int = RGB[k] * 255;
@@ -224,7 +224,7 @@ void Exporter::write_data_binary(std::ofstream& file, utl::base::Data* data, glm
         }
 
         //Normal
-        case fmt::ply::NX:{
+        case fmt::ply::NXYZ:{
           memcpy(block_data + offset, &Nxyz[i], sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
           break;

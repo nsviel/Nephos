@@ -111,8 +111,8 @@ void Binary::parse_vertex_little_endian(std::ifstream& file){
   data.xyz.resize(header->nb_vertex, glm::vec3(0,0,0));
   if(get_property_id(fmt::ply::TS) != -1) data.ts.resize(header->nb_vertex, 0);
   if(get_property_id(fmt::ply::I) != -1) data.Is.resize(header->nb_vertex, 0);
-  if(get_property_id(fmt::ply::NX) != -1) data.Nxyz.resize(header->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(fmt::ply::R) != -1) data.rgb.resize(header->nb_vertex, glm::vec4(0,0,0,0));
+  if(get_property_id(fmt::ply::NXYZ) != -1) data.Nxyz.resize(header->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(fmt::ply::RGB) != -1) data.rgb.resize(header->nb_vertex, glm::vec4(0,0,0,0));
 
   //Insert data in the adequate std::vector
   //#pragma omp parallel for
