@@ -1,4 +1,4 @@
-#include "Stream.h"
+#include "Panel.h"
 
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,10 +8,10 @@
 #include <Interface/Namespace.h>
 
 
-namespace dyn::gui{
+namespace dyn::gui::stream{
 
 //Constructor / Destructor
-Stream::Stream(dyn::Node* node_dynamic, bool* show_window){
+Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_dynamic->get_node_data();
@@ -19,7 +19,7 @@ Stream::Stream(dyn::Node* node_dynamic, bool* show_window){
   this->node_engine = node_dynamic->get_node_engine();
   this->dat_selection = node_data->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
-  this->gui_overlay = new dyn::gui::Overlay();
+  this->gui_overlay = new dyn::gui::stream::Overlay();
 
   for(int i=0; i<10; i++){
     itf::gui::Stream* stream = new itf::gui::Stream(node_engine);
@@ -31,10 +31,10 @@ Stream::Stream(dyn::Node* node_dynamic, bool* show_window){
 
   //---------------------------
 }
-Stream::~Stream(){}
+Panel::~Panel(){}
 
 //Main function
-void Stream::run_panel(){
+void Panel::run_panel(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   //---------------------------
@@ -58,7 +58,7 @@ void Stream::run_panel(){
 
   //---------------------------
 }
-void Stream::design_panel(dat::base::Entity* entity){
+void Panel::design_panel(dat::base::Entity* entity){
   //---------------------------
 
   this->draw_stream_tabbar(entity);
@@ -67,7 +67,7 @@ void Stream::design_panel(dat::base::Entity* entity){
 }
 
 //All devices
-void Stream::draw_stream_tabbar(dat::base::Entity* entity){
+void Panel::draw_stream_tabbar(dat::base::Entity* entity){
   std::list<utl::media::Image*> list_image = entity->list_image;
   //---------------------------
 
@@ -105,7 +105,7 @@ void Stream::draw_stream_tabbar(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Stream::draw_stream_image(utl::media::Image* image, ImVec2 size, int idx){
+void Panel::draw_stream_image(utl::media::Image* image, ImVec2 size, int idx){
   if(idx >= vec_stream.size()) return;
   //---------------------------
 

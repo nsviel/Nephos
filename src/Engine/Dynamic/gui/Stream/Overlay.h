@@ -7,7 +7,7 @@ namespace dat::base{class Entity;}
 namespace utl::media{class Image;}
 
 
-namespace dyn::gui{
+namespace dyn::gui::stream{
 
 class Overlay
 {

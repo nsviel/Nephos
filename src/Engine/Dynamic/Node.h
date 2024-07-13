@@ -13,7 +13,7 @@ namespace dyn::element{class Sensor;}
 namespace dyn::cloud{class Operation;}
 namespace dyn::image{class Operation;}
 namespace dyn::gui::player{class Panel;}
-namespace dyn::gui{class Stream;}
+namespace dyn::gui::stream{class Panel;}
 
 
 namespace dyn{
@@ -54,7 +54,7 @@ private:
   dyn::cloud::Operation* dyn_ope_cloud;
   dyn::image::Operation* dyn_ope_image;
   dyn::gui::player::Panel* gui_player;
-  dyn::gui::Stream* gui_stream;
+  dyn::gui::stream::Panel* gui_stream;
 };
 
 }

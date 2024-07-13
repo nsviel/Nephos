@@ -25,7 +25,7 @@ Node::Node(eng::Node* node_engine){
   this->dyn_ope_cloud = new dyn::cloud::Operation(this);
   this->dyn_ope_image = new dyn::image::Operation(this);
   this->gui_player = new dyn::gui::player::Panel(this, &panel_player->is_open);
-  this->gui_stream = new dyn::gui::Stream(this, &panel_stream->is_open);
+  this->gui_stream = new dyn::gui::stream::Panel(this, &panel_stream->is_open);
 
   //---------------------------
 }
