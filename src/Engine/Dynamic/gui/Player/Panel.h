@@ -4,10 +4,10 @@
 
 namespace dyn{class Node;}
 namespace dyn::gui{class Operation;}
-namespace dyn::gui{class Player;}
+namespace dyn::gui::player{class Player;}
 
 
-namespace dyn::gui{
+namespace dyn::gui::player{
 
 class Panel
 {
@@ -21,7 +21,7 @@ public:
   void design_panel();
 
 private:
-  dyn::gui::Player* gui_player;
+  dyn::gui::player::Player* gui_player;
   dyn::gui::Operation* gui_operation;
 
   std::string name;

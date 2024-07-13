@@ -86,7 +86,7 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
   ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
   ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0.0f, 0.0f));
   if(ImGui::BeginTabItem(title.c_str(), NULL, flag)){
-    ImVec2 image_pose = ImGui::GetCursorScreenPos();
+    ImVec2 pose = ImGui::GetCursorScreenPos();
     ImVec2 dim = ImGui::GetContentRegionAvail();
 
     //Child
@@ -97,26 +97,13 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
     ImVec2 dimension = ImVec2(dim.x, dim.y / list_tasker.size());
     for(int i=0; i<list_tasker.size(); i++){
       prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
-      if(!tasker->is_idle()){
-        //this->draw_tasker_graph(tasker, dimension, profiler->pause);
-      }
+      this->draw_tasker_graph(tasker, dimension, profiler->pause);
     }
 
     ImGui::EndChild();
 
     //Graph command
-    ImGuiWindowFlags flags;
-    flags |= ImGuiWindowFlags_NoMove;
-    flags |= ImGuiWindowFlags_AlwaysAutoResize;
-    flags |= ImGuiWindowFlags_NoSavedSettings;
-    flags |= ImGuiWindowFlags_NoFocusOnAppearing;
-    flags |= ImGuiWindowFlags_NoDecoration;
-    flags |= ImGuiWindowFlags_NoDocking;
-    ImGui::SetNextWindowBgAlpha(0.0f);
-    ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
-    ImGui::Begin("kzehfdize#hell", nullptr, flags);
-    this->draw_graph_command(dim);
-    ImGui::End();
+    this->draw_graph_command(dim, pose);
 
     ImGui::EndTabItem();
   }
@@ -139,33 +126,14 @@ void Graph::draw_tasker_separated(prf::dynamic::Profiler* profiler){
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0.0f, 0.0f));
 
     if(ImGui::BeginTabItem(title.c_str(), NULL)){
-      ImVec2 image_pose = ImGui::GetCursorScreenPos();
+      ImVec2 pose = ImGui::GetCursorScreenPos();
       ImVec2 dim = ImGui::GetContentRegionAvail();
 
-      //Child
-      ImGui::BeginChild("child##tasker_plot", ImVec2(0, 0), false);
-
       //Graph plot
-      this->current_tasker = tasker;
       this->draw_tasker_graph(tasker, dim, profiler->pause);
 
-      ImGui::EndChild();
-
       //Graph command
-      ImGuiWindowFlags flags;
-      flags |= ImGuiWindowFlags_NoMove;
-      flags |= ImGuiWindowFlags_AlwaysAutoResize;
-      flags |= ImGuiWindowFlags_NoSavedSettings;
-      flags |= ImGuiWindowFlags_NoFocusOnAppearing;
-      flags |= ImGuiWindowFlags_NoDecoration;
-      flags |= ImGuiWindowFlags_NoDocking;
-      ImGui::SetNextWindowBgAlpha(0.0f);
-      ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
-      ImGui::Begin("kzehfdize#hell", nullptr, flags);
-
-      this->draw_graph_command(dim);
-
-      ImGui::End();
+      this->draw_graph_command(dim, pose);
 
       ImGui::EndTabItem();
     }
@@ -177,8 +145,42 @@ void Graph::draw_tasker_separated(prf::dynamic::Profiler* profiler){
 }
 
 //Subfunction
-void Graph::draw_graph_command(ImVec2 dimension){
+void Graph::draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension, bool pause){
+  if(tasker->is_idle()) return;
   //---------------------------
+
+  //Child
+  ImGui::BeginChild("child##tasker_plot", ImVec2(0, 0), false);
+
+  this->current_tasker = tasker;
+
+  //Update plot
+  if(!prf_struct->dynamic.pause && !pause){
+    tasker->update();
+  }
+
+  //Render plot
+  tasker->plot.set_time_max(prf_struct->dynamic.max_time);
+  tasker->plot.render(tasker->name, dimension);
+
+  ImGui::EndChild();
+
+  //---------------------------
+}
+void Graph::draw_graph_command(ImVec2 dimension, ImVec2 pose){
+  //---------------------------
+
+  ImGuiWindowFlags flags;
+  flags |= ImGuiWindowFlags_NoMove;
+  flags |= ImGuiWindowFlags_AlwaysAutoResize;
+  flags |= ImGuiWindowFlags_NoSavedSettings;
+  flags |= ImGuiWindowFlags_NoFocusOnAppearing;
+  flags |= ImGuiWindowFlags_NoDecoration;
+  flags |= ImGuiWindowFlags_NoDocking;
+  ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+  ImGui::SetNextWindowBgAlpha(0.0f);
+  ImGui::SetNextWindowPos(pose, ImGuiCond_Always);
+  ImGui::Begin("kzehfdize#hell", nullptr, flags);
 
   //Play / pause button
   if(prf_struct->dynamic.pause){
@@ -202,25 +204,11 @@ void Graph::draw_graph_command(ImVec2 dimension){
   ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(0.0f, 0.0f, 0.0f, 0.2f));
   ImGui::PushStyleColor(ImGuiCol_SliderGrab, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_SliderGrabActive, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
-
-
-
   ImGui::VSliderInt("##Y_axis", ImVec2(24, dimension.y), &prf_struct->dynamic.max_time, 100, 10, "%d");
   ImGui::PopStyleColor(6);
 
-  //---------------------------
-}
-void Graph::draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension, bool pause){
-  //---------------------------
-
-  //Update plot
-  if(!prf_struct->dynamic.pause && !pause){
-    tasker->update();
-  }
-
-  //Render plot
-  tasker->plot.set_time_max(prf_struct->dynamic.max_time);
-  tasker->plot.render(tasker->name, dimension);
+  ImGui::End();
+  ImGui::PopStyleColor();
 
   //---------------------------
 }

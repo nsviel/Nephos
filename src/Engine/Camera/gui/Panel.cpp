@@ -25,8 +25,11 @@ void Panel::run_panel(){
   //---------------------------
 
   if(*show_window){
+    ImGuiWindowFlags flag;
+    flag |= ImGuiWindowFlags_NoCollapse;
+    flag |= ImGuiWindowFlags_AlwaysAutoResize;
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
-    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+    if(ImGui::Begin(name.c_str(), show_window, flag) == 1){
 
       this->design_panel();
 

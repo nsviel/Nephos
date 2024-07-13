@@ -27,8 +27,8 @@ public:
   void draw_tasker_separated(prf::dynamic::Profiler* profiler);
 
   //Subfunction
-  void draw_graph_command(ImVec2 dimension);
   void draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension, bool pause);
+  void draw_graph_command(ImVec2 dimension, ImVec2 pose);
 
 private:
   prf::Structure* prf_struct;
