@@ -79,46 +79,48 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
     this->current_tasker = *next(list_tasker.begin(), 0);
   }
 
-  //Dimension
-  ImVec2 dim = ImGui::GetContentRegionAvail();
-  int width = dim.x / (list_tasker.size() + 1);
-
   //Tasker tabs
-  ImGui::SetNextItemWidth(width);
   std::string title = "All##" + profiler->name;
+  int width = ImGui::GetContentRegionAvail().x / (list_tasker.size() + 1);
+  ImGui::SetNextItemWidth(width);
+  ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
+  ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0.0f, 0.0f));
   if(ImGui::BeginTabItem(title.c_str(), NULL, flag)){
+    ImVec2 image_pose = ImGui::GetCursorScreenPos();
+    ImVec2 dim = ImGui::GetContentRegionAvail();
+
     //Child
-    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
-    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0.0f, 0.0f));
     ImGui::BeginChild("child##tasker_plot", ImVec2(0, 0), false);
 
-    //Table
-    ImGui::BeginTable(title.c_str(), 2);
-    ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 24);
-    ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
-
-    //Graph command
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    this->draw_graph_command();
-
     //Graph plots
-    ImGui::TableNextColumn();
     dim = ImGui::GetContentRegionAvail();
     ImVec2 dimension = ImVec2(dim.x, dim.y / list_tasker.size());
     for(int i=0; i<list_tasker.size(); i++){
       prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
       if(!tasker->is_idle()){
-        this->draw_tasker_graph(tasker, dimension, profiler->pause);
+        //this->draw_tasker_graph(tasker, dimension, profiler->pause);
       }
     }
 
-    ImGui::EndTable();
-
     ImGui::EndChild();
-    ImGui::PopStyleVar(2);
+
+    //Graph command
+    ImGuiWindowFlags flags;
+    flags |= ImGuiWindowFlags_NoMove;
+    flags |= ImGuiWindowFlags_AlwaysAutoResize;
+    flags |= ImGuiWindowFlags_NoSavedSettings;
+    flags |= ImGuiWindowFlags_NoFocusOnAppearing;
+    flags |= ImGuiWindowFlags_NoDecoration;
+    flags |= ImGuiWindowFlags_NoDocking;
+    ImGui::SetNextWindowBgAlpha(0.0f);
+    ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
+    ImGui::Begin("kzehfdize#hell", nullptr, flags);
+    this->draw_graph_command(dim);
+    ImGui::End();
 
     ImGui::EndTabItem();
   }
+  ImGui::PopStyleVar(2);
 
   //---------------------------
 }
@@ -129,49 +131,53 @@ void Graph::draw_tasker_separated(prf::dynamic::Profiler* profiler){
   for(int i=0; i<list_tasker.size(); i++){
     prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
 
-    //Dimension
-    ImVec2 dim = ImGui::GetContentRegionAvail();
-    int width = dim.x / (list_tasker.size() + 1);
-
     //Tasker tab
-    ImGui::SetNextItemWidth(width);
     std::string title = tasker->name + "##tasker_unique_plot";
+    int width = ImGui::GetContentRegionAvail().x / (list_tasker.size() + 1);
+    ImGui::SetNextItemWidth(width);
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
+    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0.0f, 0.0f));
+
     if(ImGui::BeginTabItem(title.c_str(), NULL)){
+      ImVec2 image_pose = ImGui::GetCursorScreenPos();
+      ImVec2 dim = ImGui::GetContentRegionAvail();
+
       //Child
-      ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 0.0f));
-      ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0.0f, 0.0f));
       ImGui::BeginChild("child##tasker_plot", ImVec2(0, 0), false);
 
-      //Table
-      ImGui::BeginTable(title.c_str(), 2);
-      ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 24);
-      ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
-
-      this->current_tasker = tasker;
-
-      //Graph command
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      this->draw_graph_command();
-
       //Graph plot
-      ImGui::TableNextColumn();
-      dim = ImGui::GetContentRegionAvail();
+      this->current_tasker = tasker;
       this->draw_tasker_graph(tasker, dim, profiler->pause);
 
-      ImGui::EndTable();
-
       ImGui::EndChild();
-      ImGui::PopStyleVar(2);
+
+      //Graph command
+      ImGuiWindowFlags flags;
+      flags |= ImGuiWindowFlags_NoMove;
+      flags |= ImGuiWindowFlags_AlwaysAutoResize;
+      flags |= ImGuiWindowFlags_NoSavedSettings;
+      flags |= ImGuiWindowFlags_NoFocusOnAppearing;
+      flags |= ImGuiWindowFlags_NoDecoration;
+      flags |= ImGuiWindowFlags_NoDocking;
+      ImGui::SetNextWindowBgAlpha(0.0f);
+      ImGui::SetNextWindowPos(image_pose, ImGuiCond_Always);
+      ImGui::Begin("kzehfdize#hell", nullptr, flags);
+
+      this->draw_graph_command(dim);
+
+      ImGui::End();
 
       ImGui::EndTabItem();
     }
+
+    ImGui::PopStyleVar(2);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Graph::draw_graph_command(){
+void Graph::draw_graph_command(ImVec2 dimension){
   //---------------------------
 
   //Play / pause button
@@ -191,13 +197,16 @@ void Graph::draw_graph_command(){
   }
 
   //Max visible ms
-  ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
+  ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+  ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, ImVec4(0.0f, 0.0f, 0.0f, 0.2f));
+  ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(0.0f, 0.0f, 0.0f, 0.2f));
   ImGui::PushStyleColor(ImGuiCol_SliderGrab, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_SliderGrabActive, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
-  ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
-  ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
-  ImGui::VSliderInt("Y axis", ImGui::GetContentRegionAvail(), &prf_struct->dynamic.max_time, 100, 10, "%d");
-  ImGui::PopStyleColor(5);
+
+
+
+  ImGui::VSliderInt("##Y_axis", ImVec2(24, dimension.y), &prf_struct->dynamic.max_time, 100, 10, "%d");
+  ImGui::PopStyleColor(6);
 
   //---------------------------
 }
