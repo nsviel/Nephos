@@ -5,7 +5,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace dyn::gui{
+namespace ope::gui{
 
 //Constructor / Destructor
 Colorization::Colorization(dyn::Node* node_dynamic){

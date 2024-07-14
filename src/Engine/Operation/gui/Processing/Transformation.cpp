@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace dyn::gui{
+namespace ope::gui{
 
 //Constructor / Destructor
 Transformation::Transformation(dyn::Node* node_dynamic){

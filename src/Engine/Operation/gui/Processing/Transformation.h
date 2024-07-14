@@ -6,7 +6,7 @@ namespace ope{class Operation;}
 namespace utl::base{class Element;}
 
 
-namespace dyn::gui{
+namespace ope::gui{
 
 class Transformation
 {

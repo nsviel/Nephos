@@ -4,7 +4,7 @@ namespace dyn{class Node;}
 namespace utl::base{class Element;}
 
 
-namespace dyn::gui{
+namespace ope::gui{
 
 class Info
 {

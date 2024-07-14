@@ -4,7 +4,7 @@ namespace dyn{class Node;}
 namespace dyn{class Structure;}
 
 
-namespace dyn::gui{
+namespace ope::gui{
 
 class Normal
 {

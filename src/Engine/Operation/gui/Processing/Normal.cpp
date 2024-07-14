@@ -6,7 +6,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace dyn::gui{
+namespace ope::gui{
 
 //Constructor / Destructor
 Normal::Normal(dyn::Node* node_dynamic){

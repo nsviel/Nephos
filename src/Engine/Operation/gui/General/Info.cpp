@@ -3,7 +3,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace dyn::gui{
+namespace ope::gui{
 
 //Constructor / Destructor
 Info::Info(dyn::Node* node_dynamic){

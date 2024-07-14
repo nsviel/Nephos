@@ -14,11 +14,11 @@ Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
   dat::Node* node_data = node_dynamic->get_node_data();
 
   this->dat_selection = node_data->get_dat_selection();
-  this->gui_colorization = new dyn::gui::Colorization(node_dynamic);
-  this->gui_transformation = new dyn::gui::Transformation(node_dynamic);
-  this->gui_information = new dyn::gui::Info(node_dynamic);
-  this->gui_configuration = new dyn::gui::Configuration(node_dynamic);
-  this->gui_normal = new dyn::gui::Normal(node_dynamic);
+  this->gui_colorization = new ope::gui::Colorization(node_dynamic);
+  this->gui_transformation = new ope::gui::Transformation(node_dynamic);
+  this->gui_information = new ope::gui::Info(node_dynamic);
+  this->gui_configuration = new ope::gui::Configuration(node_dynamic);
+  this->gui_normal = new ope::gui::Normal(node_dynamic);
   this->gui_player = new dyn::gui::Player(node_dynamic);
 
   this->show_window = show_window;

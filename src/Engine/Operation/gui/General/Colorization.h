@@ -7,7 +7,7 @@ namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
 
 
-namespace dyn::gui{
+namespace ope::gui{
 
 class Colorization
 {
