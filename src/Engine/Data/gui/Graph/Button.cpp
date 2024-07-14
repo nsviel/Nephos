@@ -40,6 +40,31 @@ void Button::button_locked(dat::base::Set* set){
 
   //---------------------------
 }
+void Button::button_visibility(dat::base::Set* set){
+  //---------------------------
+
+  ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+  ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+
+  //Is is visible
+  if(set->is_visible){
+    std::string tag = std::string(ICON_FA_EYE) + "##" + std::to_string(set->UID);
+    if(ImGui::SmallButton(tag.c_str())){
+      dat_set->visibility_set(set, false);
+    }
+  }
+  //If not visible
+  else{
+    std::string tag = std::string(ICON_FA_EYE_SLASH) + "##" + std::to_string(set->UID);
+    if(ImGui::SmallButton(tag.c_str())){
+      dat_set->visibility_set(set, true);
+    }
+  }
+
+  ImGui::PopStyleColor(2);
+
+  //---------------------------
+}
 void Button::button_visibility(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
@@ -74,6 +99,19 @@ void Button::button_remove(dat::base::Set* set, dat::base::Entity* entity){
   std::string tag = std::string(ICON_FA_XMARK) + "##" + std::to_string(entity->UID);
   if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){
     dat_set->remove_entity(set, entity);
+  }
+  ImGui::PopStyleColor(2);
+
+  //---------------------------
+}
+void Button::button_remove(dat::base::Set* set){
+  //---------------------------
+
+  ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+  ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+  std::string tag = std::string(ICON_FA_XMARK) + "##" + std::to_string(set->UID);
+  if(ImGui::SmallButton(tag.c_str())){
+    dat_set->remove_all_entity(set);
   }
   ImGui::PopStyleColor(2);
 

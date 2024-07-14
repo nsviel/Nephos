@@ -131,9 +131,13 @@ int Panel::tree_set(dat::base::Set* set){
     dat_selection->select_element(set);
   }
 
-  //Bin button
+  //Visibility button
   ImGui::TableNextColumn();
-  gui_button->button_locked(set);
+  gui_button->button_visibility(set);
+
+  //Remove button
+  ImGui::TableNextColumn();
+  gui_button->button_remove(set);
 
   //If set open, display elements
   if(is_node_open){

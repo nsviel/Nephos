@@ -21,8 +21,10 @@ public:
 public:
   //Main function
   void button_locked(dat::base::Set* set);
+  void button_visibility(dat::base::Set* set);
   void button_visibility(dat::base::Entity* entity);
   void button_remove(dat::base::Set* set, dat::base::Entity* entity);
+  void button_remove(dat::base::Set* set);
 
 private:
   dat::element::Set* dat_set;
