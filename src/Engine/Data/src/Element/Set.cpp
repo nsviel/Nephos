@@ -58,6 +58,7 @@ void Set::reset_set(dat::base::Set* set){
   //---------------------------
 }
 void Set::visibility_set(dat::base::Set* set, bool value){
+  set->is_visible = value;
   //---------------------------
 
   for(int i=0; i<set->list_entity.size(); i++){
@@ -145,7 +146,7 @@ void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
   set->list_entity.push_back(entity);
   set->nb_entity++;
   this->active_entity(set, entity);
-
+  
   //---------------------------
 }
 void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){

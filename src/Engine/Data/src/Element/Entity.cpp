@@ -76,15 +76,20 @@ void Entity::reset_pose(dat::base::Entity* entity){
   //----------------------------
 }
 void Entity::visibility_entity(dat::base::Entity* entity, bool value){
-  utl::base::Data* data = &entity->data;
   //---------------------------
 
-  data->is_visible = value;
+  entity->data.is_visible = value;
 
   //Glyph visibility
   for(int i=0; i<entity->list_glyph.size(); i++){
     dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
     this->visibility_entity(glyph, value);
+  }
+
+  //If visible so parent set is too
+  if(value && entity->set_parent){
+    dat::base::Set* set = entity->set_parent;
+    set->is_visible  = true;
   }
 
   //---------------------------

@@ -66,23 +66,22 @@ void Button::button_visibility(dat::base::Set* set){
   //---------------------------
 }
 void Button::button_visibility(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
 
   //Is is visible
-  if(data->is_visible){
-    std::string tag = std::string(ICON_FA_EYE) + "##" + std::to_string(entity->UID);
-    if(ImGui::SmallButton(tag.c_str())){
+  if(entity->data.is_visible){
+    std::string label = std::string(ICON_FA_EYE) + "##" + std::to_string(entity->UID);
+    if(ImGui::SmallButton(label.c_str())){
       dat_entity->visibility_entity(entity, false);
     }
   }
   //If not visible
   else{
-    std::string tag = std::string(ICON_FA_EYE_SLASH) + "##" + std::to_string(entity->UID);
-    if(ImGui::SmallButton(tag.c_str())){
+    std::string label = std::string(ICON_FA_EYE_SLASH) + "##" + std::to_string(entity->UID);
+    if(ImGui::SmallButton(label.c_str())){
       dat_entity->visibility_entity(entity, true);
     }
   }
