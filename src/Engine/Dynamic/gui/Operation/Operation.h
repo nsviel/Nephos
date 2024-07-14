@@ -9,7 +9,7 @@ namespace dyn::gui{class Transformation;}
 namespace dyn::gui{class Info;}
 namespace dyn::gui{class Configuration;}
 namespace ope{class Operation;}
-namespace ope::normal{class KNN;}
+namespace dyn::gui{class Normal;}
 namespace utl::base{class Element;}
 
 
@@ -27,7 +27,7 @@ public:
   void design_operation();
 
   //Subfunction
-  void draw_ope_misc();
+
 
 private:
   dat::graph::Selection* dat_selection;
@@ -38,7 +38,7 @@ private:
   dyn::gui::Info* dyn_info;
   dyn::gui::Configuration* dyn_config;
   ope::Operation* ope_operation;
-  ope::normal::KNN* ope_normal;
+  dyn::gui::Normal* gui_normal;
 };
 
 }

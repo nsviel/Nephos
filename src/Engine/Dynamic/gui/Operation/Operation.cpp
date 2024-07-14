@@ -22,7 +22,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->dyn_info = new dyn::gui::Info(node_dynamic);
   this->dyn_config = new dyn::gui::Configuration(node_dynamic);
   this->ope_operation = new ope::Operation();
-  this->ope_normal = new ope::normal::KNN();
+  this->gui_normal = new dyn::gui::Normal(node_dynamic);
 
   //---------------------------
 }
@@ -48,7 +48,7 @@ void Operation::design_operation(){
   dyn_colorization->design_colorization(element);
 
   //Normal
-  this->draw_ope_misc();
+  gui_normal->design_normal();
   ImGui::PopStyleColor();
 
   //---------------------------
@@ -56,28 +56,6 @@ void Operation::design_operation(){
 }
 
 //Subfunction
-void Operation::draw_ope_misc(){
-  //---------------------------
 
-  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
-  if(ImGui::CollapsingHeader("Operation##dynamic")){
-    ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
-
-    //Enable
-    ImGui::Checkbox("Activated", &dyn_struct->operation.normal.enable);
-
-    //Parameter: kNN
-    ImGui::SetNextItemWidth(100);
-    ImGui::SliderInt("kNN", &dyn_struct->operation.normal.knn, 1, 10);
-
-    //Computation time
-    ImGui::Text("Time");
-    ImGui::SameLine();
-    ImGui::TextColored(color, "%.2f ms", dyn_struct->operation.normal.time);
-  }
-
-  //---------------------------
-}
 
 }

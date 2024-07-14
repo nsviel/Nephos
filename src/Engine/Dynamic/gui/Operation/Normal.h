@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  void design_operation();
+  void design_normal();
 
   //Subfunction
   void draw_parameter();
