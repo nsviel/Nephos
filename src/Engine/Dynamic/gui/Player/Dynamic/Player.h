@@ -4,7 +4,7 @@ namespace dyn{class Node;}
 namespace dyn::player{class Player;}
 
 
-namespace dyn::gui::player{
+namespace dyn::gui{
 
 class Player
 {

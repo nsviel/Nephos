@@ -11,8 +11,15 @@ namespace dyn::gui::player{
 Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
   //---------------------------
 
-  this->gui_player = new dyn::gui::player::Player(node_dynamic);
-  this->gui_operation = new dyn::gui::Operation(node_dynamic);
+  dat::Node* node_data = node_dynamic->get_node_data();
+
+  this->dat_selection = node_data->get_dat_selection();
+  this->gui_colorization = new dyn::gui::Colorization(node_dynamic);
+  this->gui_transformation = new dyn::gui::Transformation(node_dynamic);
+  this->gui_information = new dyn::gui::Info(node_dynamic);
+  this->gui_configuration = new dyn::gui::Configuration(node_dynamic);
+  this->gui_normal = new dyn::gui::Normal(node_dynamic);
+  this->gui_player = new dyn::gui::Player(node_dynamic);
 
   this->show_window = show_window;
   this->name = "Player";
@@ -43,12 +50,23 @@ void Panel::run_panel(){
   //---------------------------
 }
 void Panel::design_panel(){
+  utl::base::Element* element = dat_selection->get_selected_element();
+  if(element == nullptr) return;
   //---------------------------
+
+  ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
 
   gui_player->design_player();
-  gui_operation->design_operation();
+  gui_information->design_info(element);
+  gui_configuration->design_configuration(element);
+  gui_transformation->design_transformation(element);
+  gui_colorization->design_colorization(element);
+  gui_normal->design_normal();
+
+  ImGui::PopStyleColor();
 
   //---------------------------
+  ImGui::Separator();
 }
 
 }
