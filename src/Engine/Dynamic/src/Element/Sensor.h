@@ -4,6 +4,7 @@ namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace prf::dynamic{class Manager;}
+namespace utl::base{class Element;}
 
 
 namespace dyn::element{
@@ -19,6 +20,7 @@ public:
   //Main function
   void init_sensor(dyn::base::Sensor* sensor);
   void remove_sensor(dyn::base::Sensor* sensor);
+  bool is_dynamic(utl::base::Element* element);
 
 private:
   dyn::Structure* dyn_struct;

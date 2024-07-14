@@ -1,6 +1,7 @@
 #include "Player.h"
 
 #include <Dynamic/Namespace.h>
+#include <Data/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -11,13 +12,15 @@ Player::Player(dyn::Node* node_dynamic){
   //---------------------------
 
   this->dyn_player = node_dynamic->get_dyn_player();
+  this->dyn_sensor = node_dynamic->get_dyn_sensor();
 
   //---------------------------
 }
 Player::~Player(){}
 
 //Main function
-void Player::design_player(){
+void Player::design_player(utl::base::Element* element){
+  if(dyn_sensor->is_dynamic(element) == false) return;
   //---------------------------
 
   this->player_slider();

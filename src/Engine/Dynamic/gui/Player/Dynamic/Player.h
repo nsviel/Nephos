@@ -2,6 +2,8 @@
 
 namespace dyn{class Node;}
 namespace dyn::player{class Player;}
+namespace dyn::element{class Sensor;}
+namespace utl::base{class Element;}
 
 
 namespace dyn::gui{
@@ -14,7 +16,7 @@ public:
   ~Player();
 
   //Main function
-  void design_player();
+  void design_player(utl::base::Element* element);
 
   //Player function
   void player_slider();
@@ -27,6 +29,7 @@ public:
 
 private:
   dyn::player::Player* dyn_player;
+  dyn::element::Sensor* dyn_sensor;
 };
 
 }

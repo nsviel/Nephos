@@ -56,7 +56,7 @@ void Panel::design_panel(){
 
   ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
 
-  gui_player->design_player();
+  gui_player->design_player(element);
   gui_information->design_info(element);
   gui_configuration->design_configuration(element);
   gui_transformation->design_transformation(element);
