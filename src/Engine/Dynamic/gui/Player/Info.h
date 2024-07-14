@@ -3,7 +3,7 @@
 namespace utl::base{class Element;}
 
 
-namespace ope::gui{
+namespace dyn::gui{
 
 class Info
 {
@@ -17,6 +17,8 @@ public:
 
   //Subfunction
   void path_info(utl::base::Element* element);
+  void sensor_info(utl::base::Element* element);
+  void playback_info(utl::base::Element* element);
 
 private:
 
