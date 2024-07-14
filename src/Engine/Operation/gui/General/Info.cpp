@@ -1,6 +1,8 @@
 #include "Info.h"
 
 #include <Operation/Namespace.h>
+#include <Data/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace ope::gui{
@@ -64,7 +66,7 @@ void Info::path_info(utl::base::Element* element){
   ImGui::Separator();
 }
 void Info::sensor_info(utl::base::Element* element){
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
+/*  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
   if(sensor == nullptr) return;
   //---------------------------
 

@@ -7,7 +7,7 @@ namespace dyn::gui{class Player;}
 namespace ope::gui{class Colorization;}
 namespace ope::gui{class Transformation;}
 namespace ope::gui{class Info;}
-namespace ope::gui{class Configuration;}
+namespace dyn::gui{class Configuration;}
 namespace ope::gui{class Normal;}
 namespace dat::graph{class Selection;}
 
@@ -30,7 +30,7 @@ private:
   ope::gui::Colorization* gui_colorization;
   ope::gui::Transformation* gui_transformation;
   ope::gui::Info* gui_information;
-  ope::gui::Configuration* gui_configuration;
+  dyn::gui::Configuration* gui_configuration;
   ope::gui::Normal* gui_normal;
   dat::graph::Selection* dat_selection;
 

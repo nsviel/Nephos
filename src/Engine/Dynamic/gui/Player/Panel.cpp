@@ -15,9 +15,9 @@ Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
 
   this->dat_selection = node_data->get_dat_selection();
   this->gui_colorization = new ope::gui::Colorization(node_dynamic);
-  this->gui_transformation = new ope::gui::Transformation(node_dynamic);
-  this->gui_information = new ope::gui::Info(node_dynamic);
-  this->gui_configuration = new ope::gui::Configuration(node_dynamic);
+  this->gui_transformation = new ope::gui::Transformation();
+  this->gui_information = new ope::gui::Info();
+  this->gui_configuration = new dyn::gui::Configuration(node_dynamic);
   this->gui_normal = new ope::gui::Normal(node_dynamic);
   this->gui_player = new dyn::gui::Player(node_dynamic);
 

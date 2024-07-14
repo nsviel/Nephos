@@ -2,6 +2,7 @@
 
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace ope::gui{
