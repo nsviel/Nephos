@@ -71,6 +71,12 @@ void Set::visibility_set(dat::base::Set* set, bool value){
     this->visibility_set(subset, value);
   }
 
+  //If visible so parent set is too
+  if(value && set->set_parent){
+    dat::base::Set* set_parent = set->set_parent;
+    set_parent->is_visible  = true;
+  }
+
   //---------------------------
 }
 
@@ -146,7 +152,7 @@ void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
   set->list_entity.push_back(entity);
   set->nb_entity++;
   this->active_entity(set, entity);
-  
+
   //---------------------------
 }
 void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
