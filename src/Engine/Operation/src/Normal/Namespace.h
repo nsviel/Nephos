@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Operation/Normal/KNN.h>
-#include <Operation/Normal/Structured.h>
-#include <Operation/Normal/Image.h>
+#include <Operation/src/Normal/KNN.h>
+#include <Operation/src/Normal/Structured.h>
+#include <Operation/src/Normal/Image.h>

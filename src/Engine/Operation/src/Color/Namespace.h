@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Operation/Color/Structure/Namespace.h>
-#include <Operation/Color/Colormap/Namespace.h>
-#include <Operation/Color/Colorizer.h>
-#include <Operation/Color/Heatmap.h>
+#include <Operation/src/Color/Structure/Namespace.h>
+#include <Operation/src/Color/Colormap/Namespace.h>
+#include <Operation/src/Color/Colorizer.h>
+#include <Operation/src/Color/Heatmap.h>

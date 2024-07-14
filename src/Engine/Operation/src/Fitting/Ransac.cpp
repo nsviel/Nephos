@@ -1,7 +1,7 @@
 #include "Ransac.h"
 
 #include <Utility/Namespace.h>
-#include <Operation/Fitting/Sphere.h>
+#include <Operation/src/Fitting/Sphere.h>
 #include <cstdlib> // for srand
 #include <ctime>   // for time and time_t
 #include <random>

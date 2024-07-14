@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Operation/Fitting/Sphere.h>
-#include <Operation/Fitting/Ransac.h>
-#include <Operation/Fitting/Polyfit.h>
-#include <Operation/Fitting/Surface.h>
+#include <Operation/src/Fitting/Sphere.h>
+#include <Operation/src/Fitting/Ransac.h>
+#include <Operation/src/Fitting/Polyfit.h>
+#include <Operation/src/Fitting/Surface.h>

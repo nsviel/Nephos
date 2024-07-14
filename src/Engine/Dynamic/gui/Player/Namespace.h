@@ -1,6 +1,5 @@
 #pragma once
 
 #include <Dynamic/gui/Player/Panel.h>
-#include <Dynamic/gui/Player/Processing/Namespace.h>
-#include <Dynamic/gui/Player/General/Namespace.h>
-#include <Dynamic/gui/Player/Dynamic/Namespace.h>
+#include <Dynamic/gui/Player/Configuration.h>
+#include <Dynamic/gui/Player/Player.h>

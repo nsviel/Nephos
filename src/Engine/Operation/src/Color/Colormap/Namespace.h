@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Operation/Color/Colormap/Viridis.h>
-#include <Operation/Color/Colormap/Magma.h>
+#include <Operation/src/Color/Colormap/Viridis.h>
+#include <Operation/src/Color/Colormap/Magma.h>
