@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Operation/src/Color/Colormap/Namespace.h>
-#include <Operation/src/Color/Structure/Configuration.h>
+#include <Operation/src/Attribut/Color/Colormap/Namespace.h>
+#include <Operation/src/Attribut/Color/Structure/Configuration.h>
 #include <glm/glm.hpp>
 
 namespace ope::color{class Heatmap;}
