@@ -1,16 +1,15 @@
 #include "Transformation.h"
 
-#include <Dynamic/Namespace.h>
+#include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 
 
 namespace ope::gui{
 
 //Constructor / Destructor
-Transformation::Transformation(dyn::Node* node_dynamic){
+Transformation::Transformation(){
   //---------------------------
 
-  this->dyn_struct = node_dynamic->get_dyn_struct();
   this->ope_operation = new ope::Operation();
 
   //---------------------------

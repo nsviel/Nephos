@@ -1,7 +1,5 @@
 #pragma once
 
-namespace dyn{class Node;}
-namespace dyn{class Structure;}
 namespace ope{class Operation;}
 namespace utl::base{class Element;}
 
@@ -12,7 +10,7 @@ class Transformation
 {
 public:
   //Constructor / Destructor
-  Transformation(dyn::Node* node_dynamic);
+  Transformation();
   ~Transformation();
 
 public:
@@ -24,7 +22,6 @@ public:
   void draw_matrix(utl::base::Element* element);
 
 private:
-  dyn::Structure* dyn_struct;
   ope::Operation* ope_operation;
 };
 

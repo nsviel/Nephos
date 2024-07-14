@@ -1,6 +1,5 @@
 #pragma once
 
-namespace dyn{class Node;}
 namespace utl::base{class Element;}
 
 
@@ -10,7 +9,7 @@ class Info
 {
 public:
   //Constructor / Destructor
-  Info(dyn::Node* node_dynamic);
+  Info();
   ~Info();
 
   //Main function

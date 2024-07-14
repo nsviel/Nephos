@@ -1,12 +1,12 @@
 #include "Info.h"
 
-#include <Dynamic/Namespace.h>
+#include <Operation/Namespace.h>
 
 
 namespace ope::gui{
 
 //Constructor / Destructor
-Info::Info(dyn::Node* node_dynamic){
+Info::Info(){
   //---------------------------
 
 
