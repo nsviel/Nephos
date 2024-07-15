@@ -19,7 +19,7 @@ Attribut::~Attribut(){}
 void Attribut::compute_range(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
-
+say("---");
   std::vector<float>& R = utl_attribut->get_attribut_data(data, "R");
   std::vector<glm::vec3>& xyz = data->xyz;
 

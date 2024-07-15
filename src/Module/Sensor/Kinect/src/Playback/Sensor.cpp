@@ -107,14 +107,14 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
 
   // Add the new capture to the queue
-  capture_queue.push(capture);
+  queue.push(capture);
 
   // Check if the queue size exceeds 5
   k4n_processing->wait_thread();
-  if(capture_queue.size() > 5){
+  if(queue.size() > 5){
     // Delete the oldest capture
-    delete capture_queue.front();
-    capture_queue.pop();
+    delete queue.front();
+    queue.pop();
   }
 
   // Update the sensor parameter

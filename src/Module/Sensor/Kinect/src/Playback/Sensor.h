@@ -38,7 +38,7 @@ public:
   k4n::gui::Playback* gui_playback;
   dyn::element::Sensor* dyn_sensor;
 
-  std::queue<k4a::capture*> capture_queue;
+  std::queue<k4a::capture*> queue;
   k4a::playback playback;
 };
 

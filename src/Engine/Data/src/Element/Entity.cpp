@@ -103,7 +103,7 @@ void Entity::update_data(dat::base::Entity* entity){
 
   //Update attribut
   ope_location->compute_centroid(entity);
-  ope_attribut->compute_range(entity);
+  //ope_attribut->compute_range(entity);
 
   //----------------------------
 }

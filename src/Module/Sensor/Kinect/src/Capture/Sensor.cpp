@@ -13,7 +13,7 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
 
   dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
 
-  this->k4n_image = new k4n::Processing(node_k4n);
+  this->k4n_processing = new k4n::Processing(node_k4n);
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->gui_capture = new k4n::gui::Capture(node_k4n);
   this->dyn_sensor = node_dynamic->get_dyn_sensor();
@@ -72,7 +72,7 @@ void Sensor::thread_loop(){
   tasker->task_end("wait");
 
   //Run processing
-  k4n_image->start_thread(this);
+  k4n_processing->start_thread(this);
 
   //Loop sleeping
   this->manage_pause();
@@ -102,18 +102,17 @@ k4a::capture* Sensor::manage_new_capture(){
   return capture;
 }
 void Sensor::manage_old_capture(k4a::capture* capture){
-  static std::queue<k4a::capture*> capture_queue;
   //---------------------------
 
   // Add the new capture to the queue
-  capture_queue.push(capture);
+  queue.push(capture);
 
   // Check if the queue size exceeds 5
-  k4n_image->wait_thread();
-  if(capture_queue.size() > 5){
+  k4n_processing->wait_thread();
+  if(queue.size() > 5){
     // Delete the oldest capture
-    delete capture_queue.front();
-    capture_queue.pop();
+    delete queue.front();
+    queue.pop();
   }
 
   // Update the sensor parameter
