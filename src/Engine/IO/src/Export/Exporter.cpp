@@ -11,7 +11,6 @@ Exporter::Exporter(io::Node* node_io){
   //---------------------------
 
   this->io_struct = node_io->get_io_struct();
-  this->io_operation = node_io->get_io_export_ope();
 
   this->insert_exporter(new fmt::ply::Exporter());
   this->insert_exporter(new fmt::pts::Exporter());

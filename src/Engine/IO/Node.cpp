@@ -25,7 +25,6 @@ Node::Node(eng::Node* node_engine){
   this->io_struct = new io::Structure();
   this->io_import_ope = new io::importer::Operation(this);
   this->io_importer = new io::Importer(this);
-  this->io_export_ope = new io::exporter::Operation(this);
   this->io_exporter = new io::Exporter(this);
   this->io_bookmark = new io::bookmark::Manager(this);
   this->io_transformation = new io::Transformation(this);

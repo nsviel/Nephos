@@ -9,7 +9,6 @@ namespace dyn{class Node;}
 namespace io{class Structure;}
 namespace io{class Importer;}
 namespace io::importer{class Operation;}
-namespace io::exporter{class Operation;}
 namespace io{class Exporter;}
 namespace io{class Transformation;}
 namespace io::bookmark{class Manager;}
@@ -39,7 +38,6 @@ public:
   inline io::Structure* get_io_struct(){return io_struct;}
   inline io::Importer* get_io_importer(){return io_importer;}
   inline io::importer::Operation* get_io_import_ope(){return io_import_ope;}
-  inline io::exporter::Operation* get_io_export_ope(){return io_export_ope;}
   inline io::Exporter* get_io_exporter(){return io_exporter;}
   inline io::Transformation* get_io_transformation(){return io_transformation;}
   inline io::bookmark::Manager* get_io_bookmark(){return io_bookmark;}
@@ -55,7 +53,6 @@ private:
   io::Structure* io_struct;
   io::Importer* io_importer;
   io::importer::Operation* io_import_ope;
-  io::exporter::Operation* io_export_ope;
   io::Exporter* io_exporter;
   io::Transformation* io_transformation;
   io::bookmark::Manager* io_bookmark;

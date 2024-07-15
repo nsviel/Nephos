@@ -58,11 +58,12 @@ void Set::reset_set(dat::base::Set* set){
   //---------------------------
 }
 void Set::visibility_set(dat::base::Set* set, bool value){
-  set->is_visible = value;
+  if(!set) return;
   //---------------------------
 
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+  set->is_visible = value;
+
+  for(dat::base::Entity* entity : set->list_entity){
     dat_entity->visibility_entity(entity, value);
   }
 
@@ -72,9 +73,8 @@ void Set::visibility_set(dat::base::Set* set, bool value){
   }
 
   //If visible so parent set is too
-  if(value && set->set_parent){
-    dat::base::Set* set_parent = set->set_parent;
-    set_parent->is_visible  = true;
+  if(value && set->set_parent && !set->set_parent->is_visible){
+    this->visibility_set(set->set_parent, value);
   }
 
   //---------------------------

@@ -6,7 +6,6 @@
 
 namespace io{class Node;}
 namespace io{class Structure;}
-namespace io::exporter{class Operation;}
 namespace io::base{class Exporter;}
 namespace io::base{class Recorder;}
 namespace dat::base{class Entity;}
@@ -38,7 +37,6 @@ public:
 
 private:
   io::Structure* io_struct;
-  io::exporter::Operation* io_operation;
 
   std::vector<io::exporter::Base*> vec_exporter;
 };
