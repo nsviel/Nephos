@@ -30,7 +30,7 @@ void Operation::make_operation(dat::base::Entity* entity){
 
 //Subfunction
 void Operation::make_transformation(dat::base::Entity* entity){
-  if(!ldr_struct->exporter.transformed) return;
+  if(!ldr_struct->exporter.with_transformation) return;
   //---------------------------
 
   utl::base::Data* data = &entity->data;

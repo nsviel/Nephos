@@ -12,8 +12,8 @@ struct Structure{
 
   utl::base::Path path;
   int encoding = ldr::io::BINARY;
-  bool transformed = false;
-  bool current_colorization = false;
+  bool with_transformation = false;
+  bool with_colorization = false;
 
   //---------------------------
 };

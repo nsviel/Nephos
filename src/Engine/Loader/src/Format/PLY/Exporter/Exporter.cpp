@@ -28,7 +28,8 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
   //Make exporter structure
   fmt::ply::exporter::Structure exporter;
   exporter.encoding = "ascii";
-  exporter.mat = mat;
+  exporter.mat_model = mat;
+  exporter.mat_rotation = glm::mat3(mat);
   this->build_structure(exporter, data);
 
   //Write on file
@@ -45,7 +46,8 @@ void Exporter::export_binary(utl::base::Data* data, glm::mat4 mat, std::string p
   //Make exporter structure
   fmt::ply::exporter::Structure exporter;
   exporter.encoding = "binary_little_endian";
-  exporter.mat = mat;
+  exporter.mat_model = mat;
+  exporter.mat_rotation = glm::mat3(mat);
   this->build_structure(exporter, data);
 
   //Write on file
@@ -112,7 +114,7 @@ void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::of
     file << std::fixed;
 
     //Location
-    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * exporter.mat;
+    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * exporter.mat_model;
     file << std::setprecision(precision) << xyzw.x <<" "<< xyzw.y <<" "<< xyzw.z <<" ";
 
     //Color
@@ -123,7 +125,8 @@ void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::of
 
     //Normal
     if(Nxyz.size() != 0){
-      file << std::setprecision(precision) << Nxyz[i].x <<" "<< Nxyz[i].y <<" "<< Nxyz[i].z <<" ";
+      glm::vec3 normal = Nxyz[i] * exporter.mat_rotation;
+      file << std::setprecision(precision) << normal.x <<" "<< normal.y <<" "<< normal.z <<" ";
     }
 
     //Intensity
@@ -161,7 +164,7 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
       switch(field){
         //Location
         case fmt::ply::XYZ:{
-          glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * exporter.mat;
+          glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * exporter.mat_model;
           memcpy(block_data + offset, &xyzw, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
           break;
@@ -187,7 +190,8 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
 
         //Normal
         case fmt::ply::NXYZ:{
-          memcpy(block_data + offset, &Nxyz[i], sizeof(glm::vec3));
+          glm::vec3 normal = Nxyz[i] * exporter.mat_rotation;
+          memcpy(block_data + offset, &normal, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
           break;
         }
