@@ -132,27 +132,27 @@ void Exporter::display_encording(){
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
   ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
 
-  std::vector<int> vec_encoding = ldr_exporter->get_supported_encoding(ldr_struct->exporter.path.format);
+  std::vector<ldr::exporter::Encoding> vec_encoding = ldr_exporter->get_supported_encoding(ldr_struct->exporter.path.format);
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Encoding"); ImGui::TableNextColumn();
   static int mode = 1;
-  bool condition = (std::find(vec_encoding.begin(), vec_encoding.end(), ldr::io::ASCII) == vec_encoding.end());
+  bool condition = (std::find(vec_encoding.begin(), vec_encoding.end(), ldr::exporter::ASCII) == vec_encoding.end());
   if(condition){
     ImGui::BeginDisabled();
-    mode = ldr::io::BINARY;
+    mode = ldr::exporter::BINARY;
   }
-  if(ImGui::RadioButton("ASCII", &mode, ldr::io::ASCII)){
-    ldr_struct->exporter.encoding = ldr::io::ASCII;
+  if(ImGui::RadioButton("ASCII", &mode, ldr::exporter::ASCII)){
+    ldr_struct->exporter.encoding = ldr::exporter::ASCII;
   }
   if(condition) ImGui::EndDisabled();
   ImGui::SameLine();
-  condition = (std::find(vec_encoding.begin(), vec_encoding.end(), ldr::io::BINARY) == vec_encoding.end());
+  condition = (std::find(vec_encoding.begin(), vec_encoding.end(), ldr::exporter::BINARY) == vec_encoding.end());
   if(condition){
     ImGui::BeginDisabled();
-    mode = ldr::io::ASCII;
+    mode = ldr::exporter::ASCII;
   }
-  if(ImGui::RadioButton("Binary", &mode, ldr::io::BINARY)){
-    ldr_struct->exporter.encoding = ldr::io::BINARY;
+  if(ImGui::RadioButton("Binary", &mode, ldr::exporter::BINARY)){
+    ldr_struct->exporter.encoding = ldr::exporter::BINARY;
   }
   if(condition) ImGui::EndDisabled();
 

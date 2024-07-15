@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/src/Base/Exporter.h>
+#include <Loader/src/Export/Structure/Exporter.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -12,7 +12,7 @@
 
 namespace fmt::hdf5{
 
-class Exporter : public ldr::base::Exporter
+class Exporter : public ldr::exporter::Base
 {
 public:
   //Constructor / Destructor

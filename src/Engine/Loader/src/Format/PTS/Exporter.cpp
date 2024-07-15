@@ -11,9 +11,9 @@ Exporter::Exporter(){
   //---------------------------
 
   this->utl_attribut = new utl::base::Attribut();
-  
+
   this->format = ".pts";
-  this->vec_encoding.push_back(ldr::io::ASCII);
+  this->vec_encoding.push_back(ldr::exporter::ASCII);
 
   //---------------------------
 }

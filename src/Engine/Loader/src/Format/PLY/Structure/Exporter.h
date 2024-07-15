@@ -9,10 +9,11 @@
 namespace fmt::ply::exporter{
 
 struct Structure{
-  glm::mat4 mat_model;
-  glm::mat3 mat_rotation;
   std::vector<fmt::ply::Field> vec_property;
   std::string encoding = "";
+  std::string path = "";
+  glm::mat4 mat_model;
+  glm::mat3 mat_rotation;
   int nb_property = 0;
   int nb_vertex = 0;
 };

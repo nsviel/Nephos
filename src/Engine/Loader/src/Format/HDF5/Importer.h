@@ -4,7 +4,7 @@
 #include <highfive/H5DataSet.hpp>
 #include <highfive/H5DataSpace.hpp>
 
-#include <Loader/src/Base/Importer.h>
+#include <Loader/src/Import/Structure/Importer.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
 #include <string>

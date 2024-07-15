@@ -14,48 +14,43 @@ Exporter::Exporter(){
   this->utl_attribut = new utl::base::Attribut();
 
   this->format = ".ply";
-  this->vec_encoding.push_back(ldr::io::ASCII);
-  this->vec_encoding.push_back(ldr::io::BINARY);
+  this->vec_encoding.push_back(ldr::exporter::ASCII);
+  this->vec_encoding.push_back(ldr::exporter::BINARY);
 
   //---------------------------
 }
 Exporter::~Exporter(){}
 
 //Main exporter functions
-void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path){
+void Exporter::export_data(ldr::exporter::Configuration& config, utl::base::Data* data){
   //---------------------------
-
+/*
   //Make exporter structure
   fmt::ply::exporter::Structure exporter;
-  exporter.encoding = "ascii";
-  exporter.mat_model = mat;
-  exporter.mat_rotation = glm::mat3(mat);
+  exporter.mat_model = config.mat_model;
+  exporter.mat_rotation = glm::mat3(config.mat_model);
   this->build_structure(exporter, data);
 
   //Write on file
-  std::ofstream file(path);
-  ldr_header->write_header(exporter, file);
-  this->write_data_ascii(exporter, file, data);
-  file.close();
-
-  //---------------------------
-}
-void Exporter::export_binary(utl::base::Data* data, glm::mat4 mat, std::string path){
-  //---------------------------
-
-  //Make exporter structure
-  fmt::ply::exporter::Structure exporter;
-  exporter.encoding = "binary_little_endian";
-  exporter.mat_model = mat;
-  exporter.mat_rotation = glm::mat3(mat);
-  this->build_structure(exporter, data);
-
-  //Write on file
-  std::ofstream file(path, std::ios::binary);
-  ldr_header->write_header(exporter, file);
-  this->write_data_binary(exporter, file, data);
-  file.close();
-
+  switch(config.encoding){
+    case ldr::exporter::ASCII:{
+      exporter.encoding = "ascii";
+      std::ofstream file(path);
+      ldr_header->write_header(exporter, file);
+      this->write_data_ascii(exporter, file, data);
+      file.close();
+      break;
+    }
+    case ldr::exporter::BINARY:{
+      exporter.encoding = "binary_little_endian";
+      std::ofstream file(path, std::ios::binary);
+      ldr_header->write_header(exporter, file);
+      this->write_data_binary(exporter, file, data);
+      file.close();
+      break;
+    }
+  }
+*/
   //---------------------------
 }
 
@@ -118,9 +113,12 @@ void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::of
     file << std::setprecision(precision) << xyzw.x <<" "<< xyzw.y <<" "<< xyzw.z <<" ";
 
     //Color
-    if(rgb.size() != 0){
-      glm::vec3 RGB = use_rgba ? glm::vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
+    if(!use_rgba && rgb.size() != 0){
+      glm::vec3& RGB = rgb[i];
       file << std::setprecision(0) << RGB.x * 255 <<" "<< RGB.y * 255 <<" "<< RGB.z * 255 <<" ";
+    }else if(use_rgba && rgba.size() != 0){
+      glm::vec4& RGBA = rgba[i];
+      file << std::setprecision(0) << RGBA.x * 255 <<" "<< RGBA.y * 255 <<" "<< RGBA.z * 255 <<" ";
     }
 
     //Normal

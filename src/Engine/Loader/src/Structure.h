@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Loader/src/Import/Structure.h>
-#include <Loader/src/Export/Structure.h>
+#include <Loader/src/Import/Structure/Structure.h>
+#include <Loader/src/Export/Structure/Structure.h>
 #include <Loader/src/Transformation/Structure.h>
 
 

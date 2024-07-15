@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Loader/src/Format/PLY/Structure/Namespace.h>
-#include <Loader/src/Base/Exporter.h>
+#include <Loader/src/Export/Structure/Exporter.h>
 #include <glm/glm.hpp>
 #include <fstream>
 #include <string>

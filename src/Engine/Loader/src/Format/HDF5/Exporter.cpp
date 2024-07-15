@@ -11,7 +11,7 @@ Exporter::Exporter(){
   //---------------------------
 
   this->format = ".h5";
-  this->vec_encoding.push_back(ldr::io::ASCII);
+  this->vec_encoding.push_back(ldr::exporter::ASCII);
 
   //---------------------------
 }

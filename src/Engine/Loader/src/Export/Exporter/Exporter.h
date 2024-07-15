@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/src/Base/Exporter.h>
+#include <Loader/src/Export/Structure/Exporter.h>
 #include <string>
 #include <vector>
 
@@ -27,20 +27,20 @@ public:
 
   //Subfunction
   void init_path();
-  void export_with_encoding(ldr::base::Exporter* exporter, dat::base::Entity* entity, std::string path);
-  void insert_exporter(ldr::base::Exporter* exporter);
+  void export_with_encoding(ldr::exporter::Base* exporter, dat::base::Entity* entity, std::string path);
+  void insert_exporter(ldr::exporter::Base* exporter);
   void update_current_path(utl::base::Element* element);
   bool is_format_supported(std::string format);
   bool is_current_config(dat::base::Entity* entity);
   bool is_recording(utl::base::Element* element);
   std::vector<std::string> get_supported_format();
-  std::vector<int> get_supported_encoding(std::string format);
+  std::vector<ldr::exporter::Encoding> get_supported_encoding(std::string format);
 
 private:
   ldr::Structure* ldr_struct;
   ldr::exporter::Operation* ldr_operation;
 
-  std::vector<ldr::base::Exporter*> vec_exporter;
+  std::vector<ldr::exporter::Base*> vec_exporter;
 };
 
 }

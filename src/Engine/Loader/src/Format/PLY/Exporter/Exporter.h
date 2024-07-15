@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Loader/src/Format/PLY/Structure/Namespace.h>
-#include <Loader/src/Base/Exporter.h>
+#include <Loader/src/Export/Structure/Exporter.h>
 #include <glm/glm.hpp>
 #include <fstream>
 #include <string>
@@ -15,7 +15,7 @@ namespace fmt::ply::exporter{class Header;}
 
 namespace fmt::ply{
 
-class Exporter : public ldr::base::Exporter
+class Exporter : public ldr::exporter::Base
 {
 public:
   //Constructor / Destructor
@@ -24,8 +24,7 @@ public:
 
 public:
   //Main function
-  void export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path);
-  void export_binary(utl::base::Data* data, glm::mat4 mat, std::string path);
+  void export_data(ldr::exporter::Configuration& config, utl::base::Data* data);
 
   //Subfunction
   void build_structure(fmt::ply::exporter::Structure& exporter, utl::base::Data* data);

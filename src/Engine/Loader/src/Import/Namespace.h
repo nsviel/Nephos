@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Loader/src/Import/Importer.h>
-#include <Loader/src/Import/Operation.h>
-#include <Loader/src/Export/Structure.h>
+#include <Loader/src/Import/Bookmark/Namespace.h>
+#include <Loader/src/Import/Importer/Namespace.h>
+#include <Loader/src/Export/Structure/Namespace.h>
