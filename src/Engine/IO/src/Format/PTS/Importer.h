@@ -20,7 +20,7 @@ enum IFormat{
   FM2048_2048 = 2,
 };
 
-class Importer : public ldr::importer::Base
+class Importer : public io::importer::Base
 {
 public:
   //Constructor / Destructor

@@ -14,7 +14,7 @@ namespace utl::base{class Attribut;}
 
 namespace fmt::pts{
 
-class Exporter : public ldr::exporter::Base
+class Exporter : public io::exporter::Base
 {
 public:
   //Constructor / Destructor

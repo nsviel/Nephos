@@ -15,7 +15,7 @@ namespace fmt::ply::exporter{class Header;}
 
 namespace fmt::ply{
 
-class Exporter : public ldr::exporter::Base
+class Exporter : public io::exporter::Base
 {
 public:
   //Constructor / Destructor
@@ -24,7 +24,7 @@ public:
 
 public:
   //Main function
-  void export_data(ldr::exporter::Configuration& config, utl::base::Data* data);
+  void export_data(io::exporter::Configuration& config, utl::base::Data* data);
 
   //Subfunction
   void build_structure(fmt::ply::exporter::Structure& exporter, utl::base::Data* data);
@@ -32,7 +32,7 @@ public:
   void write_data_binary(fmt::ply::exporter::Structure& exporter, std::ofstream& file, utl::base::Data* data);
 
 private:
-  fmt::ply::exporter::Header* ldr_header;
+  fmt::ply::exporter::Header* io_header;
   utl::base::Attribut* utl_attribut;
 };
 

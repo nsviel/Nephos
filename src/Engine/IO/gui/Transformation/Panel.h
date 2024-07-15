@@ -5,20 +5,20 @@
 #include <string>
 #include <vector>
 
-namespace ldr{class Node;}
-namespace ldr{class Structure;}
-namespace ldr::io{class Transformation;}
+namespace io{class Node;}
+namespace io{class Structure;}
+namespace io::io{class Transformation;}
 namespace utl::base{class Element;}
 namespace dat::graph{class Selection;}
 
 
-namespace ldr::gui::transformation{
+namespace io::gui::transformation{
 
 class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(ldr::Node* node_loader, bool* show_window);
+  Panel(io::Node* node_io, bool* show_window);
   ~Panel();
 
 public:
@@ -35,8 +35,8 @@ public:
   void item_operation();
 
 private:
-  ldr::Structure* ldr_struct;
-  ldr::io::Transformation* ldr_transformation;
+  io::Structure* io_struct;
+  io::Transformation* io_transformation;
   utl::gui::Navigator* gui_navigator;
   dat::graph::Selection* dat_selection;
 

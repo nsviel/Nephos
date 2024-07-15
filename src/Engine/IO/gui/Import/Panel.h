@@ -2,19 +2,19 @@
 
 #include <string>
 
-namespace ldr{class Node;}
-namespace ldr::gui::importer{class Bookmark;}
-namespace ldr::gui::importer{class Operation;}
-namespace ldr::gui::importer{class Navigator;}
+namespace io{class Node;}
+namespace io::gui::importer{class Bookmark;}
+namespace io::gui::importer{class Operation;}
+namespace io::gui::importer{class Navigator;}
 
 
-namespace ldr::gui::importer{
+namespace io::gui::importer{
 
 class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(ldr::Node* node_loader, bool* show_window);
+  Panel(io::Node* node_io, bool* show_window);
   ~Panel();
 
 public:
@@ -22,14 +22,14 @@ public:
   void run_panel();
   void design_panel();
 
-  inline ldr::Node* get_node_loader(){return node_loader;}
-  inline ldr::gui::importer::Navigator* get_gui_navigator(){return gui_navigator;}
+  inline io::Node* get_node_io(){return node_io;}
+  inline io::gui::importer::Navigator* get_gui_navigator(){return gui_navigator;}
 
 private:
-  ldr::Node* node_loader;
-  ldr::gui::importer::Navigator* gui_navigator;
-  ldr::gui::importer::Bookmark* gui_bookmark;
-  ldr::gui::importer::Operation* gui_operation;
+  io::Node* node_io;
+  io::gui::importer::Navigator* gui_navigator;
+  io::gui::importer::Bookmark* gui_bookmark;
+  io::gui::importer::Operation* gui_operation;
 
   std::string name;
   bool* show_window;

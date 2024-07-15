@@ -7,17 +7,17 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::gui::importer{
+namespace io::gui::importer{
 
 //Constructor / Destructor
-Bookmark::Bookmark(ldr::gui::importer::Panel* gui_panel){
+Bookmark::Bookmark(io::gui::importer::Panel* gui_panel){
   //---------------------------
 
-  ldr::Node* node_loader = gui_panel->get_node_loader();
+  io::Node* node_io = gui_panel->get_node_io();
 
-  this->ldr_struct = node_loader->get_ldr_struct();
-  this->ldr_importer = node_loader->get_ldr_importer();
-  this->ldr_bookmark = node_loader->get_ldr_bookmark();
+  this->io_struct = node_io->get_io_struct();
+  this->io_importer = node_io->get_io_importer();
+  this->io_bookmark = node_io->get_io_bookmark();
   this->gui_navigator = gui_panel->get_gui_navigator();
 
   //---------------------------
@@ -48,11 +48,11 @@ void Bookmark::draw_tab(int width){
 
 //Subfunction
 void Bookmark::draw_content(){
-  std::list<ldr::bookmark::Item> list_item = ldr_bookmark->get_list_item();
+  std::list<io::bookmark::Item> list_item = io_bookmark->get_list_item();
   //---------------------------
 
   for(int i=0; i<list_item.size(); i++){
-    ldr::bookmark::Item& item = *next(list_item.begin(), i);
+    io::bookmark::Item& item = *next(list_item.begin(), i);
 
     //File type icon
     ImVec4 color_icon = ImVec4(item.color_icon.r, item.color_icon.g, item.color_icon.b, item.color_icon.a);
@@ -78,8 +78,8 @@ void Bookmark::draw_content(){
       std::string ID = path_bookmark + "##supressionbookmark";
       ImGui::PushID(ID.c_str());
       if(ImGui::Button(ICON_FA_TRASH "##supressionbookmark")){
-        ldr_bookmark->remove_path(path_bookmark);
-        ldr_bookmark->save_file_bookmark();
+        io_bookmark->remove_path(path_bookmark);
+        io_bookmark->save_file_bookmark();
       }
       ImGui::PopID();
     }
@@ -92,7 +92,7 @@ void Bookmark::bookmark_button(std::string file_path){
 
   //If selection is a directory go display his content
   if(utl::directory::is_directory(file_path)){
-    ldr_struct->importer.path.directory = file_path;
+    io_struct->importer.path.directory = file_path;
     bool& open_tab = gui_navigator->get_open_tab();
     open_tab = true;
   }
@@ -101,12 +101,12 @@ void Bookmark::bookmark_button(std::string file_path){
     //File check
     std::string format = utl::path::get_format_from_path(file_path);
     if(!utl::file::is_exist(file_path)) return;
-    if(!ldr_importer->is_format_supported(format)) return;
+    if(!io_importer->is_format_supported(format)) return;
 
     //File load
     utl::base::Path path;
     path.insert(file_path);
-    ldr_importer->load_object(path);
+    io_importer->load_object(path);
   }
 
   //---------------------------
@@ -115,7 +115,7 @@ void Bookmark::bookmark_icon(std::string path){
   //---------------------------
 
   //Button background if already bookmarked
-  bool is_bookmarked = ldr_bookmark->is_path_bookmarked(path);
+  bool is_bookmarked = io_bookmark->is_path_bookmarked(path);
   int bg_alpha;
   is_bookmarked ? bg_alpha = 255 : bg_alpha = 0;
 
@@ -126,11 +126,11 @@ void Bookmark::bookmark_icon(std::string path){
   ImGui::PushStyleColor(ImGuiCol_Border, IM_COL32(46, 133, 45, 0));
   if(ImGui::SmallButton(ICON_FA_BOOKMARK "##addbookmark")){
     if(is_bookmarked){
-      ldr_bookmark->remove_path(path);
+      io_bookmark->remove_path(path);
     }else{
-      ldr_bookmark->add_abs_path(path);
+      io_bookmark->add_abs_path(path);
     }
-    ldr_bookmark->save_file_bookmark();
+    io_bookmark->save_file_bookmark();
   }
   ImGui::PopStyleColor(2);
   ImGui::PopID();

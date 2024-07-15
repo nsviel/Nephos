@@ -4,15 +4,15 @@
 #include <Utility/Namespace.h>
 
 
-namespace ldr::gui::importer{
+namespace io::gui::importer{
 
 //Constructor / Destructor
-Navigator::Navigator(ldr::gui::importer::Panel* gui_panel){
+Navigator::Navigator(io::gui::importer::Panel* gui_panel){
   //---------------------------
 
-  ldr::Node* node_loader = gui_panel->get_node_loader();
+  io::Node* node_io = gui_panel->get_node_io();
 
-  this->ldr_struct = node_loader->get_ldr_struct();
+  this->io_struct = node_io->get_io_struct();
   this->utl_navigator = new utl::gui::Navigator();
 
   //---------------------------
@@ -32,7 +32,7 @@ void Navigator::draw_tab(int width){
 
   ImGui::SetNextItemWidth(width);
   if(ImGui::BeginTabItem("Navigator##50", NULL, flag)){
-    utl_navigator->draw_navigator(ldr_struct->importer.path);
+    utl_navigator->draw_navigator(io_struct->importer.path);
     ImGui::EndTabItem();
   }
 

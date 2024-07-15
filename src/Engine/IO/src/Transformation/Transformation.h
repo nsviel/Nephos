@@ -3,19 +3,19 @@
 #include <vector>
 #include <string>
 
-namespace ldr{class Node;}
-namespace ldr{class Structure;}
+namespace io{class Node;}
+namespace io{class Structure;}
 namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
 
 
-namespace ldr::io{
+namespace io{
 
 class Transformation
 {
 public:
   //Constructor / Destructor
-  Transformation(ldr::Node* node_loader);
+  Transformation(io::Node* node_io);
   ~Transformation();
 
 public:
@@ -30,7 +30,7 @@ public:
   std::vector<std::string> get_supported_format();
 
 private:
-  ldr::Structure* ldr_struct;
+  io::Structure* io_struct;
 };
 
 }

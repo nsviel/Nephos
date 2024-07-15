@@ -2,20 +2,20 @@
 
 #include <string>
 
-namespace ldr{class Structure;}
-namespace ldr::io{class Importer;}
-namespace ldr::bookmark{class Manager;}
-namespace ldr::gui::importer{class Panel;}
-namespace ldr::gui::importer{class Navigator;}
+namespace io{class Structure;}
+namespace io{class Importer;}
+namespace io::bookmark{class Manager;}
+namespace io::gui::importer{class Panel;}
+namespace io::gui::importer{class Navigator;}
 
 
-namespace ldr::gui::importer{
+namespace io::gui::importer{
 
 class Bookmark
 {
 public:
   //Constructor / Destructor
-  Bookmark(ldr::gui::importer::Panel* gui_panel);
+  Bookmark(io::gui::importer::Panel* gui_panel);
   ~Bookmark();
 
 public:
@@ -29,10 +29,10 @@ public:
   void bookmark_icon(std::string path);
 
 private:
-  ldr::Structure* ldr_struct;
-  ldr::io::Importer* ldr_importer;
-  ldr::bookmark::Manager* ldr_bookmark;
-  ldr::gui::importer::Navigator* gui_navigator;
+  io::Structure* io_struct;
+  io::Importer* io_importer;
+  io::bookmark::Manager* io_bookmark;
+  io::gui::importer::Navigator* gui_navigator;
 };
 
 }

@@ -10,19 +10,19 @@ namespace fmt::ply{
 Exporter::Exporter(){
   //---------------------------
 
-  this->ldr_header = new fmt::ply::exporter::Header();
+  this->io_header = new fmt::ply::exporter::Header();
   this->utl_attribut = new utl::base::Attribut();
 
   this->format = ".ply";
-  this->vec_encoding.push_back(ldr::exporter::ASCII);
-  this->vec_encoding.push_back(ldr::exporter::BINARY);
+  this->vec_encoding.push_back(io::exporter::ASCII);
+  this->vec_encoding.push_back(io::exporter::BINARY);
 
   //---------------------------
 }
 Exporter::~Exporter(){}
 
 //Main exporter functions
-void Exporter::export_data(ldr::exporter::Configuration& config, utl::base::Data* data){
+void Exporter::export_data(io::exporter::Configuration& config, utl::base::Data* data){
   //---------------------------
 /*
   //Make exporter structure
@@ -33,18 +33,18 @@ void Exporter::export_data(ldr::exporter::Configuration& config, utl::base::Data
 
   //Write on file
   switch(config.encoding){
-    case ldr::exporter::ASCII:{
+    case io::exporter::ASCII:{
       exporter.encoding = "ascii";
       std::ofstream file(path);
-      ldr_header->write_header(exporter, file);
+      io_header->write_header(exporter, file);
       this->write_data_ascii(exporter, file, data);
       file.close();
       break;
     }
-    case ldr::exporter::BINARY:{
+    case io::exporter::BINARY:{
       exporter.encoding = "binary_little_endian";
       std::ofstream file(path, std::ios::binary);
-      ldr_header->write_header(exporter, file);
+      io_header->write_header(exporter, file);
       this->write_data_binary(exporter, file, data);
       file.close();
       break;

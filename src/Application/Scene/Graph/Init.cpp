@@ -12,10 +12,10 @@ Init::Init(sce::Node* node_scene){
   //---------------------------
 
   eng::Node* node_engine = node_scene->get_node_engine();
-  ldr::Node* node_loader = node_engine->get_node_loader();
+  io::Node* node_io = node_engine->get_node_io();
 
-  this->ldr_loader = node_loader->get_ldr_importer();
-  this->ldr_struct = node_loader->get_ldr_struct();
+  this->io_loader = node_io->get_io_importer();
+  this->io_struct = node_io->get_io_struct();
 
   //---------------------------
 }
@@ -54,15 +54,15 @@ void Init::load_entity(){
   utl::base::Path cath("/home/aether/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply");
 
   //Create playback list
-  ldr_struct->importer.with_clearing = false;
-  //ldr_loader->load_object(versaille_0, versaille_0_t);
-  //ldr_loader->load_object(versaille_2, versaille_2_t);
-  //ldr_loader->load_object(cerfav);
-  ldr_loader->load_object(dragon);
-  //ldr_loader->load_object(sphere);
-  //ldr_loader->load_set(pcap);
-  //ldr_loader->load_object(mire);
-  //ldr_loader->load_object(cath);
+  io_struct->importer.with_clearing = false;
+  //io_loader->load_object(versaille_0, versaille_0_t);
+  //io_loader->load_object(versaille_2, versaille_2_t);
+  //io_loader->load_object(cerfav);
+  io_loader->load_object(dragon);
+  //io_loader->load_object(sphere);
+  //io_loader->load_set(pcap);
+  //io_loader->load_object(mire);
+  //io_loader->load_object(cath);
 
   //----------------------------
 }

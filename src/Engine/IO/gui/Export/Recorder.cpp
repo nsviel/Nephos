@@ -8,18 +8,18 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::gui::exporter{
+namespace io::gui::exporter{
 
 //Constructor / Destructor
-Recorder::Recorder(ldr::Node* node_loader){
+Recorder::Recorder(io::Node* node_io){
   //---------------------------
 
-  dat::Node* node_data = node_loader->get_node_data();
-  dyn::Node* node_dynamic = node_loader->get_node_dynamic();
+  dat::Node* node_data = node_io->get_node_data();
+  dyn::Node* node_dynamic = node_io->get_node_dynamic();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dyn_player = node_dynamic->get_dyn_player();
-  this->ldr_struct = node_loader->get_ldr_struct();
+  this->io_struct = node_io->get_io_struct();
   this->dat_selection = node_data->get_dat_selection();
 
   //---------------------------
@@ -79,24 +79,24 @@ void Recorder::display_path(){
   ImGui::Text("Directory"); ImGui::TableNextColumn();
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
-  std::string current_path = ldr_struct->exporter.path.directory;
+  std::string current_path = io_struct->exporter.path.directory;
   if(current_path == "") current_path = "(not defined)";
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::PopStyleColor();
   ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
-    utl::directory::open(ldr_struct->exporter.path.directory);
+    utl::directory::open(io_struct->exporter.path.directory);
   }
 
   //Filename
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Name"); ImGui::TableNextColumn();
-  strncpy(str_n, ldr_struct->exporter.path.name.c_str(), sizeof(str_n) - 1);
+  strncpy(str_n, io_struct->exporter.path.name.c_str(), sizeof(str_n) - 1);
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
   if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
-    ldr_struct->exporter.path.name = (std::string)str_n;
+    io_struct->exporter.path.name = (std::string)str_n;
   }
   ImGui::PopStyleColor(2);
 
@@ -117,7 +117,7 @@ void Recorder::display_format(){
   static int format = 0;
   for(int i=0; i<vec_format.size(); i++){
     if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
-      ldr_struct->exporter.path.format = vec_format[i];
+      io_struct->exporter.path.format = vec_format[i];
     }
   }
 
@@ -159,9 +159,9 @@ void Recorder::item_update(dyn::base::Sensor* sensor){
   //---------------------------
 
   //Actualize current name
-  if(sensor != nullptr && ldr_struct->exporter.path.name != sensor->name){
+  if(sensor != nullptr && io_struct->exporter.path.name != sensor->name){
     utl::base::Data* data = &sensor->data;
-    ldr_struct->exporter.path.name = sensor->name;
+    io_struct->exporter.path.name = sensor->name;
 
     this->vec_format.clear();
     for(int i=0; i<sensor->vec_recorder.size(); i++){
@@ -175,11 +175,11 @@ void Recorder::item_operation(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  std::string format = (ldr_struct->exporter.path.format != "-") ? ldr_struct->exporter.path.format : "";
+  std::string format = (io_struct->exporter.path.format != "-") ? io_struct->exporter.path.format : "";
 
   utl::base::Data* data = &entity->data;
-  data->name = ldr_struct->exporter.path.name;
-  data->path.directory = ldr_struct->exporter.path.directory;
+  data->name = io_struct->exporter.path.name;
+  data->path.directory = io_struct->exporter.path.directory;
   data->path.name = data->name;
   data->path.format = format;
 

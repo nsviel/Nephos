@@ -18,7 +18,7 @@ namespace fmt::ply::importer{class Binary;}
 
 namespace fmt::ply{
 
-class Importer : public ldr::importer::Base
+class Importer : public io::importer::Base
 {
 public:
   //Constructor / Destructor

@@ -5,16 +5,16 @@
 #include <Utility/Namespace.h>
 
 
-namespace ldr::gui::transformation{
+namespace io::gui::transformation{
 
 //Constructor / Destructor
-Panel::Panel(ldr::Node* node_loader, bool* show_window){
+Panel::Panel(io::Node* node_io, bool* show_window){
   //---------------------------
 
-  dat::Node* node_data = node_loader->get_node_data();
+  dat::Node* node_data = node_io->get_node_data();
 
-  this->ldr_struct = node_loader->get_ldr_struct();
-  this->ldr_transformation = node_loader->get_ldr_transformation();
+  this->io_struct = node_io->get_io_struct();
+  this->io_transformation = node_io->get_io_transformation();
   this->dat_selection = node_data->get_dat_selection();
   this->gui_navigator = new utl::gui::Navigator();
 
@@ -47,13 +47,13 @@ void Panel::run_panel(){
 void Panel::design_panel(utl::base::Element* element){
   //---------------------------
 
-  ldr_transformation->update_path(element);
+  io_transformation->update_path(element);
 
   this->display_loader(element);
   this->display_path(element);
   this->display_format(element);
   this->display_matrix(element);
-  gui_navigator->draw_navigator(ldr_struct->transformation.path);
+  gui_navigator->draw_navigator(io_struct->transformation.path);
 
   //---------------------------
 }
@@ -94,25 +94,25 @@ void Panel::display_path(utl::base::Element* element){
   ImGui::Text("Directory"); ImGui::TableNextColumn();
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
-  std::string current_path = ldr_struct->transformation.path.directory;
+  std::string current_path = io_struct->transformation.path.directory;
   if(current_path == "") current_path = "(not defined)";
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::PopStyleColor();
   ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
-    utl::directory::open(ldr_struct->transformation.path.directory);
+    utl::directory::open(io_struct->transformation.path.directory);
   }
 
   //Filename
   if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Name"); ImGui::TableNextColumn();
-    strncpy(str_n, ldr_struct->transformation.path.name.c_str(), sizeof(str_n) - 1);
+    strncpy(str_n, io_struct->transformation.path.name.c_str(), sizeof(str_n) - 1);
     ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
     ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
     if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
-      ldr_struct->transformation.path.name = (std::string)str_n;
+      io_struct->transformation.path.name = (std::string)str_n;
     }
     ImGui::PopStyleColor(2);
   }
@@ -131,10 +131,10 @@ void Panel::display_format(utl::base::Element* element){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Format"); ImGui::TableNextColumn();
   static int format = 0;
-  std::vector<std::string> vec_format = ldr_transformation->get_supported_format();
+  std::vector<std::string> vec_format = io_transformation->get_supported_format();
   for(int i=0; i<vec_format.size(); i++){
     if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
-      ldr_struct->transformation.path.format = vec_format[i];
+      io_struct->transformation.path.format = vec_format[i];
     }
   }
 
@@ -192,8 +192,8 @@ void Panel::item_operation(){
   if(element == nullptr) return;
   //---------------------------
 
-  std::string path_file = ldr_struct->transformation.path.build();
-  ldr_transformation->load_transformation(element, path_file);
+  std::string path_file = io_struct->transformation.path.build();
+  io_transformation->load_transformation(element, path_file);
 
   //---------------------------
 }

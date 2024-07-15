@@ -3,17 +3,17 @@
 #include <string>
 #include <list>
 
-namespace ldr{class Node;}
-namespace ldr::bookmark{class Item;}
+namespace io{class Node;}
+namespace io::bookmark{class Item;}
 
 
-namespace ldr::bookmark{
+namespace io::bookmark{
 
 class Manager
 {
 public:
   //Constructor / Destructor
-  Manager(ldr::Node* node_loader);
+  Manager(io::Node* node_io);
   ~Manager();
 
 public:
@@ -31,10 +31,10 @@ public:
   bool is_path_bookmarked(std::string path);
   void sort_list_item();
 
-  inline std::list<ldr::bookmark::Item> get_list_item(){return list_item;}
+  inline std::list<io::bookmark::Item> get_list_item(){return list_item;}
 
 private:
-  std::list<ldr::bookmark::Item> list_item;
+  std::list<io::bookmark::Item> list_item;
   std::string path_bookmark_file;
 };
 

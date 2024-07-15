@@ -5,12 +5,12 @@
 #include <string>
 
 
-namespace ldr::exporter{
+namespace io::exporter{
 
 struct Structure{
   //---------------------------
 
-  ldr::exporter::Encoding encoding = ldr::exporter::BINARY;
+  io::exporter::Encoding encoding = io::exporter::BINARY;
   utl::base::Path path;
   bool with_transformation = false;
   bool with_colorization = false;

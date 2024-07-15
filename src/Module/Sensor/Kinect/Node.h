@@ -4,7 +4,7 @@
 
 namespace dat{class Node;}
 namespace eng{class Node;}
-namespace ldr{class Node;}
+namespace io{class Node;}
 namespace dyn{class Node;}
 namespace dat{class Graph;}
 namespace utl::thread::task{class Pool;}
@@ -29,13 +29,13 @@ public:
 
   inline eng::Node* get_node_engine(){return node_engine;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline ldr::Node* get_node_loader(){return node_loader;}
+  inline io::Node* get_node_io(){return node_io;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline k4n::Structure* get_k4n_structure(){return k4n_structure;}
 
 private:
   //Dependancy
-  ldr::Node* node_loader;
+  io::Node* node_io;
   eng::Node* node_engine;
   dat::Node* node_data;
   dyn::Node* node_dynamic;

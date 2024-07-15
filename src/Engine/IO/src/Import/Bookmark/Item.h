@@ -5,7 +5,7 @@
 #include <string>
 
 
-namespace ldr::bookmark{
+namespace io::bookmark{
 
 enum ColumnID{
   NAME,
@@ -23,7 +23,7 @@ struct Item{
 
   //Item stuff
   int ID = -1;
-  int type = ldr::bookmark::FILE;
+  int type = io::bookmark::FILE;
   utl::base::Path path;
   std::string size = "";
   std::string icon = "";

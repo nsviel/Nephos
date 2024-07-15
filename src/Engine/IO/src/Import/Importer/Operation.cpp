@@ -6,16 +6,16 @@
 #include <Utility/Namespace.h>
 
 
-namespace ldr::importer{
+namespace io::importer{
 
 //Constructor / Destructor
-Operation::Operation(ldr::Node* node_loader){
+Operation::Operation(io::Node* node_io){
   //---------------------------
 
-  dat::Node* node_data = node_loader->get_node_data();
+  dat::Node* node_data = node_io->get_node_data();
 
-  this->ldr_struct = node_loader->get_ldr_struct();
-  this->ldr_transformation = node_loader->get_ldr_transformation();
+  this->io_struct = node_io->get_io_struct();
+  this->io_transformation = node_io->get_io_transformation();
   this->dat_entity = node_data->get_dat_entity();
   this->dat_graph = node_data->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
@@ -57,7 +57,7 @@ void Operation::ope_clean(){
   //---------------------------
 
   //Remove old one
-  if(ldr_struct->importer.with_clearing){
+  if(io_struct->importer.with_clearing){
     dat::base::Set* set_graph = dat_graph->get_set_graph();
     dat_set->remove_all_entity(set_graph);
   }
@@ -98,13 +98,13 @@ void Operation::ope_transformation(dat::base::Entity* entity){
   //---------------------------
 
   //Transformation
-  ldr_transformation->load_transformation(entity);
+  io_transformation->load_transformation(entity);
 
   //Scaling
-  ope_transform->make_scaling(&entity->pose, ldr_struct->importer.scaling);
+  ope_transform->make_scaling(&entity->pose, io_struct->importer.scaling);
 
   //Centering
-  if(ldr_struct->importer.with_centering){
+  if(io_struct->importer.with_centering){
     ope_operation->center_object(entity);
   }
 

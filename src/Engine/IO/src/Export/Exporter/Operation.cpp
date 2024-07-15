@@ -4,13 +4,13 @@
 #include <Utility/Namespace.h>
 
 
-namespace ldr::exporter{
+namespace io::exporter{
 
 //Constructor / Destructor
-Operation::Operation(ldr::Node* node_loader){
+Operation::Operation(io::Node* node_io){
   //---------------------------
 
-  this->ldr_struct = node_loader->get_ldr_struct();
+  this->io_struct = node_io->get_io_struct();
 
   //---------------------------
 }
@@ -30,7 +30,7 @@ void Operation::make_operation(dat::base::Entity* entity){
 
 //Subfunction
 void Operation::make_transformation(dat::base::Entity* entity){
-  if(!ldr_struct->exporter.with_transformation) return;
+  if(!io_struct->exporter.with_transformation) return;
   //---------------------------
 
   utl::base::Data* data = &entity->data;

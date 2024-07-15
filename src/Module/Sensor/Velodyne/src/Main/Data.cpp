@@ -14,12 +14,12 @@ Data::Data(vld::Node* node_vld){
 
   eng::Node* node_engine = node_vld->get_node_engine();
   dat::Node* node_data = node_engine->get_node_data();
-  ldr::Node* node_loader = node_engine->get_node_loader();
+  io::Node* node_io = node_engine->get_node_io();
 
   this->node_engine = node_vld->get_node_engine();
   this->vld_struct = node_vld->get_vld_struct();
   this->dat_graph = node_data->get_dat_graph();
-  this->ldr_loader = node_loader->get_ldr_importer();
+  this->io_loader = node_io->get_io_importer();
   this->dat_set = node_data->get_dat_set();
   this->dat_entity = node_data->get_dat_entity();
 

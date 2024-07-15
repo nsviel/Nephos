@@ -4,7 +4,7 @@
 
 namespace eng{class Node;}
 namespace cam{class Control;}
-namespace ldr::io{class Importer;}
+namespace io{class Importer;}
 
 
 namespace rad::correction::glyph{
@@ -27,7 +27,7 @@ public:
   void move_sphere(glm::vec3 pose, float diameter);
 
 private:
-  ldr::io::Importer* ldr_loader;
+  io::Importer* io_loader;
   cam::Control* cam_control;
 
   int size = 20;

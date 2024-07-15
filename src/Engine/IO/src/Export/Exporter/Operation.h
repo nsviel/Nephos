@@ -3,18 +3,18 @@
 #include <string>
 #include <vector>
 
-namespace ldr{class Node;}
-namespace ldr{class Structure;}
+namespace io{class Node;}
+namespace io{class Structure;}
 namespace dat::base{class Entity;}
 
 
-namespace ldr::exporter{
+namespace io::exporter{
 
 class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(ldr::Node* node_loader);
+  Operation(io::Node* node_io);
   ~Operation();
 
 public:
@@ -25,7 +25,7 @@ public:
   void make_transformation(dat::base::Entity* entity);
 
 private:
-  ldr::Structure* ldr_struct;
+  io::Structure* io_struct;
 };
 
 }

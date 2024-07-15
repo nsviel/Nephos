@@ -28,7 +28,7 @@ Node::Node(app::Node* node_app){
   this->node_radio = new rad::Node(this);
   this->node_dynamic = new dyn::Node(this);
   this->node_interface = new itf::Node(this);
-  this->node_loader = new ldr::Node(this);
+  this->node_io = new io::Node(this);
 
   //Tasker CPU
   prf::dynamic::Manager* prf_dynamic = node_profiler->get_prf_dynamic();
@@ -42,7 +42,7 @@ void Node::init(){
   //---------------------------
 
   node_data->init();
-  node_loader->init();
+  node_io->init();
   node_camera->init();
   node_interface->init();
   node_radio->init();
@@ -74,7 +74,7 @@ void Node::gui(){
 
   node_camera->gui();
   node_data->gui();
-  node_loader->gui();
+  node_io->gui();
   node_interface->gui();
   node_dynamic->gui();
   node_radio->gui();
@@ -88,7 +88,7 @@ void Node::clean(){
   //---------------------------
 
   node_data->clean();
-  node_loader->clean();
+  node_io->clean();
   node_vulkan->clean();
 
   //---------------------------

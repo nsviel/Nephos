@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 
-namespace ldr{class Node;}
-namespace ldr{class Structure;}
+namespace io{class Node;}
+namespace io{class Structure;}
 namespace utl::gui::navigator{class Item;}
 namespace utl::base{class Element;}
 namespace dyn{class Structure;}
@@ -16,13 +16,13 @@ namespace dat::graph{class Selection;}
 namespace dat::base{class Entity;}
 
 
-namespace ldr::gui::exporter{
+namespace io::gui::exporter{
 
 class Recorder
 {
 public:
   //Constructor / Destructor
-  Recorder(ldr::Node* node_loader);
+  Recorder(io::Node* node_io);
   ~Recorder();
 
 public:
@@ -42,7 +42,7 @@ public:
 private:
   dyn::player::Player* dyn_player;
   dyn::Structure* dyn_struct;
-  ldr::Structure* ldr_struct;
+  io::Structure* io_struct;
   dat::graph::Selection* dat_selection;
 
   std::vector<std::string> vec_format;

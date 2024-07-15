@@ -14,7 +14,7 @@ Node::Node(eng::Node* node_engine){
   //---------------------------
 
   this->node_engine = node_engine;
-  this->node_loader = node_engine->get_node_loader();
+  this->node_io = node_engine->get_node_io();
   this->node_data = node_engine->get_node_data();
 
   this->vld_struct = new vld::structure::Main();
@@ -28,10 +28,10 @@ Node::~Node(){}
 
 //Main function
 void Node::config(){
-  ldr::io::Importer* ldr_importer = node_loader->get_ldr_importer();
+  io::Importer* io_importer = node_io->get_io_importer();
   //---------------------------
 
-  ldr_importer->insert_importer(new vld::utils::Importer(vld_struct));
+  io_importer->insert_importer(new vld::utils::Importer(vld_struct));
 
   //---------------------------
 }

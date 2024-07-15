@@ -9,20 +9,20 @@ namespace utl::base{class Data;}
 namespace utl::base{class Element;}
 namespace utl::base{class Path;}
 namespace utl::base{class Thread;}
-namespace ldr{class Node;}
-namespace ldr{class Structure;}
-namespace ldr::importer{class Operation;}
-namespace ldr::importer{class Base;}
+namespace io{class Node;}
+namespace io{class Structure;}
+namespace io::importer{class Operation;}
+namespace io::importer{class Base;}
 
 
 
-namespace ldr::io{
+namespace io{
 
 class Importer
 {
 public:
   //Constructor / Destructor
-  Importer(ldr::Node* node_loader);
+  Importer(io::Node* node_io);
   ~Importer();
 
 public:
@@ -35,17 +35,17 @@ public:
 
   //Subfunction
   void init_path();
-  void insert_importer(ldr::importer::Base* importer);
+  void insert_importer(io::importer::Base* importer);
   bool check_path(std::string path);
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
   utl::base::Element* import_from_path(utl::base::Path path);
 
 private:
-  ldr::Structure* ldr_struct;
-  ldr::importer::Operation* ldr_operation;
+  io::Structure* io_struct;
+  io::importer::Operation* io_operation;
 
-  std::vector<ldr::importer::Base*> vec_importer;
+  std::vector<io::importer::Base*> vec_importer;
 };
 
 }

@@ -5,20 +5,20 @@
 #include <string>
 #include <vector>
 
-namespace ldr{class Structure;}
-namespace ldr::io{class Importer;}
-namespace ldr::gui::importer{class Panel;}
-namespace ldr::gui::importer{class Navigator;}
+namespace io{class Structure;}
+namespace io{class Importer;}
+namespace io::gui::importer{class Panel;}
+namespace io::gui::importer{class Navigator;}
 namespace utl::base{class Path;}
 
 
-namespace ldr::gui::importer{
+namespace io::gui::importer{
 
 class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(ldr::gui::importer::Panel* gui_panel);
+  Operation(io::gui::importer::Panel* gui_panel);
   ~Operation();
 
 public:
@@ -30,9 +30,9 @@ public:
   void item_operation(utl::base::Path path);
 
 private:
-  ldr::Structure* ldr_struct;
-  ldr::io::Importer* ldr_importer;
-  ldr::gui::importer::Navigator* gui_navigator;
+  io::Structure* io_struct;
+  io::Importer* io_importer;
+  io::gui::importer::Navigator* gui_navigator;
 };
 
 }

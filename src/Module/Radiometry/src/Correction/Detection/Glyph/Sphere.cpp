@@ -14,10 +14,10 @@ namespace rad::correction::glyph{
 Sphere::Sphere(eng::Node* node_engine){
   //---------------------------
 
-  ldr::Node* node_loader = node_engine->get_node_loader();
+  io::Node* node_io = node_engine->get_node_io();
   cam::Node* node_camera = node_engine->get_node_camera();
 
-  this->ldr_loader = node_loader->get_ldr_importer();
+  this->io_loader = node_io->get_io_importer();
   this->cam_control = node_camera->get_cam_control();
 
   this->name = "object::sphere";
@@ -36,7 +36,7 @@ void Sphere::create(){
   //---------------------------
 
   //Retrieve data from file
-  data = *ldr_loader->load_data(path);
+  data = *io_loader->load_data(path);
   data.name = "object::sphere::data";
   data.is_visible = false;
   data.topology.type = utl::topology::TRIANGLE;

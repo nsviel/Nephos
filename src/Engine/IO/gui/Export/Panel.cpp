@@ -8,20 +8,20 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::gui::exporter{
+namespace io::gui::exporter{
 
 //Constructor / Destructor
-Panel::Panel(ldr::Node* node_loader, bool* show_window){
+Panel::Panel(io::Node* node_io, bool* show_window){
   //---------------------------
 
-  dat::Node* node_data = node_loader->get_node_data();
+  dat::Node* node_data = node_io->get_node_data();
 
-  this->ldr_struct = node_loader->get_ldr_struct();
+  this->io_struct = node_io->get_io_struct();
   this->dat_selection = node_data->get_dat_selection();
-  this->ldr_exporter = node_loader->get_ldr_exporter();
+  this->io_exporter = node_io->get_io_exporter();
   this->gui_navigator = new utl::gui::Navigator();
-  this->gui_exporter = new ldr::gui::exporter::Exporter(node_loader);
-  this->gui_recorder = new ldr::gui::exporter::Recorder(node_loader);
+  this->gui_exporter = new io::gui::exporter::Exporter(node_io);
+  this->gui_recorder = new io::gui::exporter::Recorder(node_io);
 
   this->name = "Export##555";
   this->show_window = show_window;
@@ -56,7 +56,7 @@ void Panel::design_panel(utl::base::Element* element){
   //---------------------------
 
   //Recorder
-  if(ldr_exporter->is_recording(element)){
+  if(io_exporter->is_recording(element)){
     gui_recorder->draw_header(element);
   }
   //Exporter
@@ -65,8 +65,8 @@ void Panel::design_panel(utl::base::Element* element){
   }
 
   //Navigator
-  ldr_exporter->update_current_path(element);
-  gui_navigator->draw_navigator(ldr_struct->exporter.path);
+  io_exporter->update_current_path(element);
+  gui_navigator->draw_navigator(io_struct->exporter.path);
 
   //---------------------------
   ImGui::Separator();

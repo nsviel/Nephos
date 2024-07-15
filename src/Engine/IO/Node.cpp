@@ -6,7 +6,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr{
+namespace io{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
@@ -22,16 +22,16 @@ Node::Node(eng::Node* node_engine){
   this->node_dynamic = node_engine->get_node_dynamic();
 
   //Child
-  this->ldr_struct = new ldr::Structure();
-  this->ldr_import_ope = new ldr::importer::Operation(this);
-  this->ldr_importer = new ldr::io::Importer(this);
-  this->ldr_export_ope = new ldr::exporter::Operation(this);
-  this->ldr_exporter = new ldr::io::Exporter(this);
-  this->ldr_bookmark = new ldr::bookmark::Manager(this);
-  this->ldr_transformation = new ldr::io::Transformation(this);
-  this->gui_import = new ldr::gui::importer::Panel(this, &panel_loader->is_open);
-  this->gui_export = new ldr::gui::exporter::Panel(this, &panel_export->is_open);
-  this->gui_transformation = new ldr::gui::transformation::Panel(this, &panel_transfo->is_open);
+  this->io_struct = new io::Structure();
+  this->io_import_ope = new io::importer::Operation(this);
+  this->io_importer = new io::Importer(this);
+  this->io_export_ope = new io::exporter::Operation(this);
+  this->io_exporter = new io::Exporter(this);
+  this->io_bookmark = new io::bookmark::Manager(this);
+  this->io_transformation = new io::Transformation(this);
+  this->gui_import = new io::gui::importer::Panel(this, &panel_loader->is_open);
+  this->gui_export = new io::gui::exporter::Panel(this, &panel_export->is_open);
+  this->gui_transformation = new io::gui::transformation::Panel(this, &panel_transfo->is_open);
 
   //---------------------------
 }
@@ -40,10 +40,10 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  ldr_bookmark->init();
-  ldr_importer->init_path();
-  ldr_exporter->init_path();
-  ldr_transformation->init_path();
+  io_bookmark->init();
+  io_importer->init_path();
+  io_exporter->init_path();
+  io_transformation->init_path();
 
   //---------------------------
 }

@@ -4,16 +4,16 @@
 #include <Utility/Namespace.h>
 
 
-namespace ldr::gui::importer{
+namespace io::gui::importer{
 
 //Constructor / Destructor
-Operation::Operation(ldr::gui::importer::Panel* gui_panel){
+Operation::Operation(io::gui::importer::Panel* gui_panel){
   //---------------------------
 
-  ldr::Node* node_loader = gui_panel->get_node_loader();
+  io::Node* node_io = gui_panel->get_node_io();
 
-  this->ldr_struct = node_loader->get_ldr_struct();
-  this->ldr_importer = node_loader->get_ldr_importer();
+  this->io_struct = node_io->get_io_struct();
+  this->io_importer = node_io->get_io_importer();
   this->gui_navigator = gui_panel->get_gui_navigator();
 
   //---------------------------
@@ -50,21 +50,21 @@ void Operation::draw_header(){
   //Selected file path
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Path"); ImGui::TableNextColumn();
-  std::string path = ldr_struct->importer.path.build();
+  std::string path = io_struct->importer.path.build();
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", path.c_str());
   ImGui::EndTable();
 
   // Scale new
   ImGui::SetNextItemWidth(75);
-  ImGui::DragFloat("Scale##4567", &ldr_struct->importer.scaling, 0.1, 0.1, 100, "%.2f x");
+  ImGui::DragFloat("Scale##4567", &io_struct->importer.scaling, 0.1, 0.1, 100, "%.2f x");
 
   // Remove old
   ImGui::SameLine();
-  ImGui::Checkbox("Remove##222", &ldr_struct->importer.with_clearing);
+  ImGui::Checkbox("Remove##222", &io_struct->importer.with_clearing);
 
   // Center new
   ImGui::SameLine();
-  ImGui::Checkbox("Centered##222", &ldr_struct->importer.with_centering);
+  ImGui::Checkbox("Centered##222", &io_struct->importer.with_centering);
 
   //---------------------------
 }
@@ -75,9 +75,9 @@ void Operation::item_operation(utl::base::Path utl_path){
 
   std::string path = utl_path.build();
   if(utl::path::is_dir_or_file(path) == "file"){
-    ldr_importer->load_object(utl_path);
+    io_importer->load_object(utl_path);
   }else{
-    ldr_importer->load_directory(utl_path);
+    io_importer->load_directory(utl_path);
   }
 
   //---------------------------

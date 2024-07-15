@@ -2,18 +2,18 @@
 
 #include <Utility/GUI/Navigator/Navigator.h>
 
-namespace ldr{class Structure;}
-namespace ldr::gui::importer{class Panel;}
+namespace io{class Structure;}
+namespace io::gui::importer{class Panel;}
 namespace utl::gui{class Navigator;}
 
 
-namespace ldr::gui::importer{
+namespace io::gui::importer{
 
 class Navigator
 {
 public:
   //Constructor / Destructor
-  Navigator(ldr::gui::importer::Panel* gui_panel);
+  Navigator(io::gui::importer::Panel* gui_panel);
   ~Navigator();
 
 public:
@@ -24,7 +24,7 @@ public:
   inline utl::gui::Navigator* get_utl_navigator(){return utl_navigator;}
 
 private:
-  ldr::Structure* ldr_struct;
+  io::Structure* io_struct;
   utl::gui::Navigator* utl_navigator;
 
   bool open_tab;

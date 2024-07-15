@@ -4,14 +4,14 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace ldr::io{
+namespace io{
 
 //Constructor / Destructor
-Exporter::Exporter(ldr::Node* node_loader){
+Exporter::Exporter(io::Node* node_io){
   //---------------------------
 
-  this->ldr_struct = node_loader->get_ldr_struct();
-  this->ldr_operation = node_loader->get_ldr_export_ope();
+  this->io_struct = node_io->get_io_struct();
+  this->io_operation = node_io->get_io_export_ope();
 
   this->insert_exporter(new fmt::ply::Exporter());
   this->insert_exporter(new fmt::pts::Exporter());
@@ -26,7 +26,7 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
-    ldr::exporter::Base* exporter = vec_exporter[i];
+    io::exporter::Base* exporter = vec_exporter[i];
 
     if(entity->data.path.format == exporter->format){
       this->export_with_encoding(exporter, entity, path);
@@ -40,25 +40,25 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
 void Exporter::init_path(){
   //---------------------------
 
-  ldr_struct->exporter.path.directory = utl::path::get_current_directory_path();
-  ldr_struct->exporter.path.format = "ply";
+  io_struct->exporter.path.directory = utl::path::get_current_directory_path();
+  io_struct->exporter.path.format = "ply";
 
   //---------------------------
 }
-void Exporter::export_with_encoding(ldr::exporter::Base* exporter, dat::base::Entity* entity, std::string path){
+void Exporter::export_with_encoding(io::exporter::Base* exporter, dat::base::Entity* entity, std::string path){
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
-  glm::mat4 mat = (ldr_struct->exporter.with_transformation) ? pose->model : glm::mat4(1);
-  exporter->use_rgba = ldr_struct->exporter.with_colorization;
+  glm::mat4 mat = (io_struct->exporter.with_transformation) ? pose->model : glm::mat4(1);
+  exporter->use_rgba = io_struct->exporter.with_colorization;
 
-  switch(ldr_struct->exporter.encoding){
-    case ldr::exporter::ASCII:{
+  switch(io_struct->exporter.encoding){
+    case io::exporter::ASCII:{
       exporter->export_ascii(data, mat, path);
       break;
     }
-    case ldr::exporter::BINARY:{
+    case io::exporter::BINARY:{
       exporter->export_binary(data, mat, path);
       break;
     }
@@ -66,7 +66,7 @@ void Exporter::export_with_encoding(ldr::exporter::Base* exporter, dat::base::En
 
   //---------------------------
 }
-void Exporter::insert_exporter(ldr::exporter::Base* exporter){
+void Exporter::insert_exporter(io::exporter::Base* exporter){
   //---------------------------
 
   this->vec_exporter.push_back(exporter);
@@ -83,8 +83,8 @@ void Exporter::update_current_path(utl::base::Element* element){
 
   //If entity different from previous one, change curent path
   if(!old_entity || entity->UID != old_entity->UID){
-    ldr_struct->exporter.path.insert(entity->data.path);
-    if(!is_format_supported(entity->data.path.format)) ldr_struct->exporter.path.format = "ply";
+    io_struct->exporter.path.insert(entity->data.path);
+    if(!is_format_supported(entity->data.path.format)) io_struct->exporter.path.format = "ply";
     old_entity = entity;
   }
 
@@ -94,7 +94,7 @@ bool Exporter::is_format_supported(std::string format){
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
-    ldr::exporter::Base* exporter = vec_exporter[i];
+    io::exporter::Base* exporter = vec_exporter[i];
 
     if(format == exporter->format){
       return true;
@@ -107,7 +107,7 @@ bool Exporter::is_format_supported(std::string format){
 bool Exporter::is_current_config(dat::base::Entity* entity){
   //---------------------------
 
-  if(entity->data.path.build() == ldr_struct->exporter.path.build()){
+  if(entity->data.path.build() == io_struct->exporter.path.build()){
     return true;
   }
 
@@ -130,19 +130,19 @@ std::vector<std::string> Exporter::get_supported_format(){
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
-    ldr::exporter::Base* exporter = vec_exporter[i];
+    io::exporter::Base* exporter = vec_exporter[i];
     vec_format.push_back(exporter->format);
   }
 
   //---------------------------
   return vec_format;
 }
-std::vector<ldr::exporter::Encoding> Exporter::get_supported_encoding(std::string format){
-  std::vector<ldr::exporter::Encoding> vec_encoding;
+std::vector<io::exporter::Encoding> Exporter::get_supported_encoding(std::string format){
+  std::vector<io::exporter::Encoding> vec_encoding;
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
-    ldr::exporter::Base* exporter = vec_exporter[i];
+    io::exporter::Base* exporter = vec_exporter[i];
 
     if(format == exporter->format){
       vec_encoding = exporter->vec_encoding;

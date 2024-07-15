@@ -6,19 +6,19 @@ namespace vk{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace dyn{class Node;}
-namespace ldr{class Structure;}
-namespace ldr::io{class Importer;}
-namespace ldr::importer{class Operation;}
-namespace ldr::exporter{class Operation;}
-namespace ldr::io{class Exporter;}
-namespace ldr::io{class Transformation;}
-namespace ldr::bookmark{class Manager;}
-namespace ldr::gui::importer{class Panel;}
-namespace ldr::gui::exporter{class Panel;}
-namespace ldr::gui::transformation{class Panel;}
+namespace io{class Structure;}
+namespace io{class Importer;}
+namespace io::importer{class Operation;}
+namespace io::exporter{class Operation;}
+namespace io{class Exporter;}
+namespace io::transformation{class Transformation;}
+namespace io::bookmark{class Manager;}
+namespace io::gui::importer{class Panel;}
+namespace io::gui::exporter{class Panel;}
+namespace io::gui::transformation{class Panel;}
 
 
-namespace ldr{
+namespace io{
 
 class Node : public utl::base::Node
 {
@@ -36,13 +36,13 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
 
-  inline ldr::Structure* get_ldr_struct(){return ldr_struct;}
-  inline ldr::io::Importer* get_ldr_importer(){return ldr_importer;}
-  inline ldr::importer::Operation* get_ldr_import_ope(){return ldr_import_ope;}
-  inline ldr::exporter::Operation* get_ldr_export_ope(){return ldr_export_ope;}
-  inline ldr::io::Exporter* get_ldr_exporter(){return ldr_exporter;}
-  inline ldr::io::Transformation* get_ldr_transformation(){return ldr_transformation;}
-  inline ldr::bookmark::Manager* get_ldr_bookmark(){return ldr_bookmark;}
+  inline io::Structure* get_io_struct(){return io_struct;}
+  inline io::Importer* get_io_importer(){return io_importer;}
+  inline io::importer::Operation* get_io_import_ope(){return io_import_ope;}
+  inline io::exporter::Operation* get_io_export_ope(){return io_export_ope;}
+  inline io::Exporter* get_io_exporter(){return io_exporter;}
+  inline io::transformation::Transformation* get_io_transformation(){return io_transformation;}
+  inline io::bookmark::Manager* get_io_bookmark(){return io_bookmark;}
 
 private:
   //Dependancy
@@ -52,16 +52,16 @@ private:
   dyn::Node* node_dynamic;
 
   //Child
-  ldr::Structure* ldr_struct;
-  ldr::io::Importer* ldr_importer;
-  ldr::importer::Operation* ldr_import_ope;
-  ldr::exporter::Operation* ldr_export_ope;
-  ldr::io::Exporter* ldr_exporter;
-  ldr::io::Transformation* ldr_transformation;
-  ldr::bookmark::Manager* ldr_bookmark;
-  ldr::gui::importer::Panel* gui_import;
-  ldr::gui::exporter::Panel* gui_export;
-  ldr::gui::transformation::Panel* gui_transformation;
+  io::Structure* io_struct;
+  io::Importer* io_importer;
+  io::importer::Operation* io_import_ope;
+  io::exporter::Operation* io_export_ope;
+  io::Exporter* io_exporter;
+  io::transformation::Transformation* io_transformation;
+  io::bookmark::Manager* io_bookmark;
+  io::gui::importer::Panel* gui_import;
+  io::gui::exporter::Panel* gui_export;
+  io::gui::transformation::Panel* gui_transformation;
 
   bool show_scene = true;
   bool show_loader = true;

@@ -2,7 +2,7 @@
 
 #include <Utility/Base/Class/Node.h>
 
-namespace ldr{class Node;}
+namespace io{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace vld::main{class Capture;}
@@ -34,7 +34,7 @@ public:
 private:
   eng::Node* node_engine;
   dat::Node* node_data;
-  ldr::Node* node_loader;
+  io::Node* node_io;
 
   vld::main::Capture* vld_capture;
   vld::main::Playback* vld_playback;

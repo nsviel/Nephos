@@ -3,13 +3,13 @@
 #include <IO/Namespace.h>
 
 
-namespace ldr::io{
+namespace io{
 
 //Constructor / Destructor
-Transformation::Transformation(ldr::Node* node_loader){
+Transformation::Transformation(io::Node* node_io){
   //---------------------------
 
-  this->ldr_struct = node_loader->get_ldr_struct();
+  this->io_struct = node_io->get_io_struct();
 
   //---------------------------
 }
@@ -51,8 +51,8 @@ void Transformation::save_transformation(utl::base::Element* element, std::strin
 void Transformation::init_path(){
   //---------------------------
 
-  ldr_struct->transformation.path.directory = utl::path::get_current_directory_path();
-  ldr_struct->transformation.path.format = ".json";
+  io_struct->transformation.path.directory = utl::path::get_current_directory_path();
+  io_struct->transformation.path.format = ".json";
 
   //---------------------------
 }
@@ -66,9 +66,9 @@ void Transformation::update_path(utl::base::Element* element){
 
   std::string path = entity->pose.path.build();
   if(path != ""){
-    ldr_struct->transformation.path.directory = utl::path::get_dir_from_path(path);
-    ldr_struct->transformation.path.name = utl::path::get_name_from_path(path);
-    ldr_struct->transformation.path.format = utl::path::get_format_from_path(path);
+    io_struct->transformation.path.directory = utl::path::get_dir_from_path(path);
+    io_struct->transformation.path.name = utl::path::get_name_from_path(path);
+    io_struct->transformation.path.format = utl::path::get_format_from_path(path);
     old_entity = entity;
   }
 

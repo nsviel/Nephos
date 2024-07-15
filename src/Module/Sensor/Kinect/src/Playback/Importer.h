@@ -14,7 +14,7 @@ namespace dyn::element{class Sensor;}
 
 namespace k4n::playback{
 
-class Importer : public ldr::importer::Base
+class Importer : public io::importer::Base
 {
 public:
   //Constructor / Destructor

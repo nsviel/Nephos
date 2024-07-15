@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 
-namespace ldr{class Node;}
-namespace ldr{class Structure;}
-namespace ldr::io{class Transformation;}
+namespace io{class Node;}
+namespace io{class Structure;}
+namespace io::io{class Transformation;}
 namespace dat::element{class Entity;}
 namespace dat{class Graph;}
 namespace dat::element{class Set;}
@@ -19,13 +19,13 @@ namespace ope{class Operation;}
 namespace utl::base{class Attribut;}
 
 
-namespace ldr::importer{
+namespace io::importer{
 
 class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(ldr::Node* node_loader);
+  Operation(io::Node* node_io);
   ~Operation();
 
 public:
@@ -40,8 +40,8 @@ public:
   void ope_insertion(dat::base::Entity* entity);
 
 private:
-  ldr::Structure* ldr_struct;
-  ldr::io::Transformation* ldr_transformation;
+  io::Structure* io_struct;
+  io::Transformation* io_transformation;
   dat::element::Entity* dat_entity;
   dat::Graph* dat_graph;
   dat::element::Set* dat_set;

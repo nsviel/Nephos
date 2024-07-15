@@ -5,14 +5,14 @@
 #include <Utility/Namespace.h>
 
 
-namespace ldr::io{
+namespace io{
 
 //Constructor / Destructor
-Importer::Importer(ldr::Node* node_loader){
+Importer::Importer(io::Node* node_io){
   //---------------------------
 
-  this->ldr_struct = node_loader->get_ldr_struct();
-  this->ldr_operation = node_loader->get_ldr_import_ope();
+  this->io_struct = node_io->get_io_struct();
+  this->io_operation = node_io->get_io_import_ope();
 
   this->insert_importer(new fmt::ply::Importer());
   this->insert_importer(new fmt::obj::Importer());
@@ -62,7 +62,7 @@ void Importer::load_set(utl::base::Path path){
   }
 
   //Insert
-  ldr_operation->insert_set(set);
+  io_operation->insert_set(set);
 
   //---------------------------
 }
@@ -96,7 +96,7 @@ void Importer::load_object(utl::base::Path path){
   }
 
   //Insert
-  ldr_operation->insert_object(object);
+  io_operation->insert_object(object);
 
   //---------------------------
 }
@@ -116,7 +116,7 @@ void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
   }
 
   //Insert
-  ldr_operation->insert_object(object);
+  io_operation->insert_object(object);
 
   //---------------------------
 }
@@ -125,12 +125,12 @@ void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
 void Importer::init_path(){
   //---------------------------
 
-  ldr_struct->importer.path.directory = utl::path::get_current_directory_path();
-  ldr_struct->importer.path.format = ".ply";
+  io_struct->importer.path.directory = utl::path::get_current_directory_path();
+  io_struct->importer.path.format = ".ply";
 
   //---------------------------
 }
-void Importer::insert_importer(ldr::importer::Base* importer){
+void Importer::insert_importer(io::importer::Base* importer){
   //---------------------------
 
   this->vec_importer.push_back(importer);
@@ -152,7 +152,7 @@ bool Importer::check_path(std::string path){
     std::cout<<"[error] '"<<format<<"' file format not supported"<<std::endl;
     std::cout<<"Supported file formats:"<<std::endl;
     for(int i=0; i<vec_importer.size(); i++){
-      ldr::importer::Base* importer = vec_importer[i];
+      io::importer::Base* importer = vec_importer[i];
       std::cout<<"o "<<importer->format<<std::endl;
     }
     return false;
@@ -166,7 +166,7 @@ bool Importer::is_format_supported(std::string format){
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){
-    ldr::importer::Base* importer = vec_importer[i];
+    io::importer::Base* importer = vec_importer[i];
 
     if(format == importer->format){
       return true;
@@ -181,7 +181,7 @@ std::vector<std::string> Importer::get_supported_format(){
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){
-    ldr::importer::Base* importer = vec_importer[i];
+    io::importer::Base* importer = vec_importer[i];
     vec_format.push_back(importer->format);
   }
 
@@ -193,7 +193,7 @@ utl::base::Element* Importer::import_from_path(utl::base::Path path){
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){
-    ldr::importer::Base* importer = vec_importer[i];
+    io::importer::Base* importer = vec_importer[i];
 
     if(importer->format == path.format){
       element = importer->import(path);

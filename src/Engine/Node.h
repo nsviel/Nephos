@@ -3,7 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace app{class Node;}
-namespace ldr{class Node;}
+namespace io{class Node;}
 namespace vk{class Node;}
 namespace cam{class Node;}
 namespace itf{class Node;}
@@ -37,7 +37,7 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline cam::Node* get_node_camera(){return node_camera;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline ldr::Node* get_node_loader(){return node_loader;}
+  inline io::Node* get_node_io(){return node_io;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline rad::Node* get_node_radio(){return node_radio;}
   inline utl::thread::task::Pool* get_thread_pool(){return thread_pool;}
@@ -47,7 +47,7 @@ private:
   app::Node* node_app;
   rad::Node* node_radio;
   vk::Node* node_vulkan = nullptr;
-  ldr::Node* node_loader = nullptr;
+  io::Node* node_io = nullptr;
   dat::Node* node_data = nullptr;
   cam::Node* node_camera = nullptr;
   itf::Node* node_interface = nullptr;

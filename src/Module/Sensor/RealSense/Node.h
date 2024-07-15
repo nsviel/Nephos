@@ -4,7 +4,7 @@ namespace prf{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace rad{class Node;}
-namespace ldr{class Node;}
+namespace io{class Node;}
 
 
 namespace rsx{
@@ -27,7 +27,7 @@ public:
 
 private:
   //Dependancy
-  ldr::Node* node_loader;
+  io::Node* node_io;
   eng::Node* node_engine;
   prf::Node* node_profiler;
   rad::Node* node_radio;

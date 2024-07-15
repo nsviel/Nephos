@@ -13,11 +13,11 @@ namespace k4n::capture{
 Connection::Connection(k4n::Node* node_k4n){
   //---------------------------
 
-  ldr::Node* node_loader = node_k4n->get_node_loader();
+  io::Node* node_io = node_k4n->get_node_io();
   dat::Node* node_data = node_k4n->get_node_data();
 
   this->node_k4n = node_k4n;
-  this->ldr_operation = node_loader->get_ldr_import_ope();
+  this->io_operation = node_io->get_io_import_ope();
   this->dat_set = node_data->get_dat_set();
   this->dat_graph = node_data->get_dat_graph();
 
@@ -85,7 +85,7 @@ void Connection::manage_connected_device(){
   //---------------------------
 
   //Suppress all present entities
-  ldr_operation->ope_clean();
+  io_operation->ope_clean();
 
   //Create required number of new devices
   for(int i=0; i<current_nb_dev; i++){
@@ -109,7 +109,7 @@ void Connection::create_sensor(int index){
   //Sensor initialization
   dat::base::Set* set = manage_set_parent();
   sensor->set_parent = set;
-  ldr_operation->ope_insertion(sensor);
+  io_operation->ope_insertion(sensor);
   sensor->start_thread();
 
   //---------------------------

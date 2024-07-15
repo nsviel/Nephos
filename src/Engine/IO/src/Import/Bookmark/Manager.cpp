@@ -5,10 +5,10 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ldr::bookmark{
+namespace io::bookmark{
 
 //Constructor / Destructor
-Manager::Manager(ldr::Node* node_loader){
+Manager::Manager(io::Node* node_io){
   //---------------------------
 
   this->path_bookmark_file = "../media/config/gui/bookmark.txt";
@@ -49,7 +49,7 @@ void Manager::save_file_bookmark(){
   //Make vector of temporary bookmarks
   std::vector<std::string> vec_path;
   for(int i=0; i<list_item.size(); i++){
-    ldr::bookmark::Item& item = *next(list_item.begin(), i);
+    io::bookmark::Item& item = *next(list_item.begin(), i);
 
     if(item.is_supressible){
       vec_path.push_back(item.path.build());
@@ -65,7 +65,7 @@ void Manager::remove_path(std::string path){
   //---------------------------
 
   for(auto it = list_item.begin(); it != list_item.end(); ++it){
-    ldr::bookmark::Item& item = *it;
+    io::bookmark::Item& item = *it;
 
     if(item.path.build() == path){
       list_item.erase(it);
@@ -81,9 +81,9 @@ void Manager::add_abs_path(std::string path){
   if(!utl::file::is_exist_silent(path)) return;
   //---------------------------
 
-  ldr::bookmark::Item item;
+  io::bookmark::Item item;
   item.path.insert(path);
-  item.type = utl::directory::is_directory(path) ? ldr::bookmark::FOLDER : ldr::bookmark::FILE;
+  item.type = utl::directory::is_directory(path) ? io::bookmark::FOLDER : io::bookmark::FILE;
   item.icon = utl::directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
   item.color_icon = utl::directory::is_directory(path) ? glm::vec4(0.5f, 0.63f, 0.75f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
   item.is_supressible = true;
@@ -97,7 +97,7 @@ void Manager::add_relative_path(std::string path){
   if(!utl::file::is_exist_silent(path)) return;
   //---------------------------
 
-  ldr::bookmark::Item item;
+  io::bookmark::Item item;
   item.path.insert(utl::path::get_absolute_path(path));
   item.icon = utl::directory::is_directory(path) ? ICON_FA_FOLDER : ICON_FA_FILE;
   item.color_icon = utl::directory::is_directory(path) ? glm::vec4(0.5f, 0.63f, 0.75f, 0.9f) : glm::vec4(1.0f, 1.0f, 1.0f, 0.9f);
@@ -112,7 +112,7 @@ bool Manager::is_path_bookmarked(std::string path){
   //---------------------------
 
   for(int i=0; i<list_item.size(); i++){
-    ldr::bookmark::Item& item = *next(list_item.begin(), i);
+    io::bookmark::Item& item = *next(list_item.begin(), i);
 
     if(path == item.path.build()){
       return true;
@@ -125,18 +125,18 @@ bool Manager::is_path_bookmarked(std::string path){
 void Manager::sort_list_item(){
   //---------------------------
 
-  this->list_item.sort([](const ldr::bookmark::Item& a, const ldr::bookmark::Item& b){
+  this->list_item.sort([](const io::bookmark::Item& a, const io::bookmark::Item& b){
     switch(a.type){
-      case ldr::bookmark::FOLDER:{
-        if(b.type == ldr::bookmark::FOLDER){
+      case io::bookmark::FOLDER:{
+        if(b.type == io::bookmark::FOLDER){
           return a.path.name < b.path.name;
         }else{
           return true;
         }
         break;
       }
-      case ldr::bookmark::FILE:{
-        if(b.type == ldr::bookmark::FOLDER){
+      case io::bookmark::FILE:{
+        if(b.type == io::bookmark::FOLDER){
           return false;
         }else{
           return a.path.name < b.path.name;

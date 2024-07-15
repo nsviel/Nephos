@@ -6,7 +6,7 @@ namespace k4n{class Node;}
 namespace dat::element{class Set;}
 namespace dat{class Graph;}
 namespace dat::base{class Set;}
-namespace ldr::importer{class Operation;}
+namespace io::importer{class Operation;}
 
 
 namespace k4n::capture{
@@ -33,7 +33,7 @@ private:
   k4n::Node* node_k4n;
   dat::element::Set* dat_set;
   dat::Graph* dat_graph;
-  ldr::importer::Operation* ldr_operation;
+  io::importer::Operation* io_operation;
 
   std::thread thread;
   bool thread_running = false;
