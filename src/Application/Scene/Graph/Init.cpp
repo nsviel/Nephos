@@ -54,7 +54,7 @@ void Init::load_entity(){
   utl::base::Path cath("/home/aether/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply");
 
   //Create playback list
-  ldr_struct->importer.remove_old = false;
+  ldr_struct->importer.with_clearing = false;
   //ldr_loader->load_object(versaille_0, versaille_0_t);
   //ldr_loader->load_object(versaille_2, versaille_2_t);
   //ldr_loader->load_object(cerfav);

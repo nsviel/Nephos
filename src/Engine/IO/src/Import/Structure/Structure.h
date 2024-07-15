@@ -11,8 +11,8 @@ struct Structure{
 
   utl::base::Path path;
   float scaling = 1;
-  bool center = false;
-  bool remove_old = true;
+  bool with_centering = false;
+  bool with_clearing = true;
 
   //---------------------------
 };

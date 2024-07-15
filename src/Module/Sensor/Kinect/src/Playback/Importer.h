@@ -1,6 +1,6 @@
 #pragma once
 
-#include <IO/src/Import/Structure/Importer.h>
+#include <IO/src/Import/Structure/Base.h>
 #include <string>
 
 namespace k4n{class Node;}
@@ -14,7 +14,7 @@ namespace dyn::element{class Sensor;}
 
 namespace k4n::playback{
 
-class Importer : public ldr::base::Importer
+class Importer : public ldr::importer::Base
 {
 public:
   //Constructor / Destructor

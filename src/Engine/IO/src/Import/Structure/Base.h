@@ -7,9 +7,9 @@
 namespace dat::base{class Object;}
 
 
-namespace ldr::base{
+namespace ldr::importer{
 
-struct Importer{
+struct Base{
   //---------------------------
 
   virtual utl::base::Element* import(utl::base::Path path){return nullptr;}

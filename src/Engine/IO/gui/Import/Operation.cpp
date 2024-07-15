@@ -60,11 +60,11 @@ void Operation::draw_header(){
 
   // Remove old
   ImGui::SameLine();
-  ImGui::Checkbox("Remove##222", &ldr_struct->importer.remove_old);
+  ImGui::Checkbox("Remove##222", &ldr_struct->importer.with_clearing);
 
   // Center new
   ImGui::SameLine();
-  ImGui::Checkbox("Centered##222", &ldr_struct->importer.center);
+  ImGui::Checkbox("Centered##222", &ldr_struct->importer.with_centering);
 
   //---------------------------
 }

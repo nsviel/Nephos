@@ -130,7 +130,7 @@ void Importer::init_path(){
 
   //---------------------------
 }
-void Importer::insert_importer(ldr::base::Importer* importer){
+void Importer::insert_importer(ldr::importer::Base* importer){
   //---------------------------
 
   this->vec_importer.push_back(importer);
@@ -152,7 +152,7 @@ bool Importer::check_path(std::string path){
     std::cout<<"[error] '"<<format<<"' file format not supported"<<std::endl;
     std::cout<<"Supported file formats:"<<std::endl;
     for(int i=0; i<vec_importer.size(); i++){
-      ldr::base::Importer* importer = vec_importer[i];
+      ldr::importer::Base* importer = vec_importer[i];
       std::cout<<"o "<<importer->format<<std::endl;
     }
     return false;
@@ -166,7 +166,7 @@ bool Importer::is_format_supported(std::string format){
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){
-    ldr::base::Importer* importer = vec_importer[i];
+    ldr::importer::Base* importer = vec_importer[i];
 
     if(format == importer->format){
       return true;
@@ -181,7 +181,7 @@ std::vector<std::string> Importer::get_supported_format(){
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){
-    ldr::base::Importer* importer = vec_importer[i];
+    ldr::importer::Base* importer = vec_importer[i];
     vec_format.push_back(importer->format);
   }
 
@@ -193,7 +193,7 @@ utl::base::Element* Importer::import_from_path(utl::base::Path path){
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){
-    ldr::base::Importer* importer = vec_importer[i];
+    ldr::importer::Base* importer = vec_importer[i];
 
     if(importer->format == path.format){
       element = importer->import(path);
