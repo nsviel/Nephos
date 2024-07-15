@@ -6,7 +6,7 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 add_subdirectory(Camera)
 add_subdirectory(Operation)
 add_subdirectory(Interface)
-add_subdirectory(Loader)
+add_subdirectory(IO)
 add_subdirectory(Data)
 add_subdirectory(Dynamic)
 add_subdirectory(Profiler)
@@ -27,7 +27,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_VULKAN
   LIBRARY_CAMERA
-  LIBRARY_LOADER
+  LIBRARY_IO
   LIBRARY_OPERATION
   LIBRARY_INTERFACE
   LIBRARY_DYNAMIC

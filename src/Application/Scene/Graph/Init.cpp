@@ -2,7 +2,7 @@
 
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Loader/Namespace.h>
+#include <IO/Namespace.h>
 
 
 namespace sce{

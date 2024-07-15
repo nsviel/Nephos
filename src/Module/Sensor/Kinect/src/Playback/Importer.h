@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Loader/src/Import/Structure/Importer.h>
+#include <IO/src/Import/Structure/Importer.h>
 #include <string>
 
 namespace k4n{class Node;}

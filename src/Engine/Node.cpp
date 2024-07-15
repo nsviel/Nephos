@@ -8,7 +8,7 @@
 #include <Camera/Namespace.h>
 #include <Interface/Namespace.h>
 #include <Data/Namespace.h>
-#include <Loader/Namespace.h>
+#include <IO/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Radiometry/Namespace.h>
 
