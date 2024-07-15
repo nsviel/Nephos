@@ -1,8 +1,5 @@
 #include "Sphere.h"
 
-#include <Data/Namespace.h>
-#include <Engine/Namespace.h>
-#include <Operation/Namespace.h>
 #include <Camera/Namespace.h>
 #include <IO/Namespace.h>
 #include <glm/gtc/matrix_transform.hpp>
@@ -13,11 +10,11 @@ namespace rad::correction::glyph{
 //Constructor / destructor
 Sphere::Sphere(eng::Node* node_engine){
   //---------------------------
-
+/*
   io::Node* node_io = node_engine->get_node_io();
   cam::Node* node_camera = node_engine->get_node_camera();
 
-  this->io_loader = node_io->get_io_importer();
+  this->io_importer = node_io->get_io_importer();
   this->cam_control = node_camera->get_cam_control();
 
   this->name = "object::sphere";
@@ -26,7 +23,7 @@ Sphere::Sphere(eng::Node* node_engine){
   this->is_permanent = true;
   this->color = glm::vec4(1, 0, 0, 0.5);
   this->path = "../media/glyph/sphere.obj";
-
+*/
   //---------------------------
 }
 Sphere::~Sphere(){}
@@ -34,15 +31,15 @@ Sphere::~Sphere(){}
 //Main function
 void Sphere::create(){
   //---------------------------
-
+/*
   //Retrieve data from file
-  data = *io_loader->load_data(path);
+  data = *io_importer->load_data(path);
   data.name = "object::sphere::data";
   data.is_visible = false;
   data.topology.type = utl::topology::TRIANGLE;
 
   this->construct(color);
-
+*/
   //---------------------------
 }
 void Sphere::update_pose(dat::base::Entity* entity){

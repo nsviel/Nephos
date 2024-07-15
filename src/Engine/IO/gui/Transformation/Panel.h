@@ -7,7 +7,7 @@
 
 namespace io{class Node;}
 namespace io{class Structure;}
-namespace io::io{class Transformation;}
+namespace io{class Transformation;}
 namespace utl::base{class Element;}
 namespace dat::graph{class Selection;}
 

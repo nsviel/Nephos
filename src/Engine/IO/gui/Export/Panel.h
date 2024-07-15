@@ -7,7 +7,7 @@
 
 namespace io{class Node;}
 namespace io{class Structure;}
-namespace io::io{class Exporter;}
+namespace io{class Exporter;}
 namespace utl::gui::navigator{class Item;}
 namespace io::gui::exporter{class Exporter;}
 namespace io::gui::exporter{class Recorder;}

@@ -5,7 +5,7 @@
 
 namespace io{class Node;}
 namespace io{class Structure;}
-namespace io::io{class Transformation;}
+namespace io{class Transformation;}
 namespace dat::element{class Entity;}
 namespace dat{class Graph;}
 namespace dat::element{class Set;}

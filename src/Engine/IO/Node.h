@@ -11,7 +11,7 @@ namespace io{class Importer;}
 namespace io::importer{class Operation;}
 namespace io::exporter{class Operation;}
 namespace io{class Exporter;}
-namespace io::transformation{class Transformation;}
+namespace io{class Transformation;}
 namespace io::bookmark{class Manager;}
 namespace io::gui::importer{class Panel;}
 namespace io::gui::exporter{class Panel;}
@@ -41,7 +41,7 @@ public:
   inline io::importer::Operation* get_io_import_ope(){return io_import_ope;}
   inline io::exporter::Operation* get_io_export_ope(){return io_export_ope;}
   inline io::Exporter* get_io_exporter(){return io_exporter;}
-  inline io::transformation::Transformation* get_io_transformation(){return io_transformation;}
+  inline io::Transformation* get_io_transformation(){return io_transformation;}
   inline io::bookmark::Manager* get_io_bookmark(){return io_bookmark;}
 
 private:
@@ -57,7 +57,7 @@ private:
   io::importer::Operation* io_import_ope;
   io::exporter::Operation* io_export_ope;
   io::Exporter* io_exporter;
-  io::transformation::Transformation* io_transformation;
+  io::Transformation* io_transformation;
   io::bookmark::Manager* io_bookmark;
   io::gui::importer::Panel* gui_import;
   io::gui::exporter::Panel* gui_export;
