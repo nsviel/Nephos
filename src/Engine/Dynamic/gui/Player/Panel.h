@@ -6,6 +6,7 @@ namespace dyn{class Node;}
 namespace dyn::gui{class Player;}
 namespace dyn::gui{class Configuration;}
 namespace dat::graph{class Selection;}
+namespace ope::gui{class Panel;}
 
 
 namespace dyn::gui::player{
@@ -25,6 +26,7 @@ private:
   dyn::gui::Player* gui_player;
   dyn::gui::Configuration* gui_configuration;
   dat::graph::Selection* dat_selection;
+  ope::gui::Panel* ope_panel;
 
   std::string name;
   std::string open_tab = "";

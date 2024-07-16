@@ -12,10 +12,12 @@ Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_dynamic->get_node_data();
+  ope::Node* node_operation = node_dynamic->get_node_operation();
 
   this->dat_selection = node_data->get_dat_selection();
   this->gui_configuration = new dyn::gui::Configuration(node_dynamic);
   this->gui_player = new dyn::gui::Player(node_dynamic);
+  this->ope_panel = node_operation->get_gui_panel();
 
   this->show_window = show_window;
   this->name = "Player";
@@ -54,6 +56,7 @@ void Panel::design_panel(){
 
   gui_player->design_player(element);
   gui_configuration->design_configuration(element);
+  ope_panel->design_panel(element);
 
   ImGui::PopStyleColor();
 

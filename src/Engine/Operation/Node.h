@@ -4,6 +4,7 @@
 
 namespace eng{class Node;}
 namespace ope{class Structure;}
+namespace ope::gui{class Panel;}
 
 
 namespace ope{
@@ -22,10 +23,12 @@ public:
   //Subfunction
 
   inline ope::Structure* get_ope_struct(){return ope_struct;}
+  inline ope::gui::Panel* get_gui_panel(){return gui_panel;}
 
 private:
   eng::Node* node_engine;
   ope::Structure* ope_struct;
+  ope::gui::Panel* gui_panel;
 };
 
 }

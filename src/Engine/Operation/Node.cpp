@@ -12,6 +12,7 @@ Node::Node(eng::Node* node_engine){
 
   this->node_engine = node_engine;
   this->ope_struct = new ope::Structure();
+  this->gui_panel = new ope::gui::Panel(this);
 
   //---------------------------
 }
