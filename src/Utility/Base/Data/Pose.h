@@ -12,7 +12,6 @@ struct Pose{
 
   //State
   bool is_movable = true;
-  bool is_updated = false;
   utl::base::Path path;
 
   //Data

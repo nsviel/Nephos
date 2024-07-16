@@ -34,7 +34,7 @@ void Grid::create(){
 
   //Contruct
   this->construct(nb_cell);
-
+  
   //---------------------------
 }
 void Grid::construct(int nb_cell){
