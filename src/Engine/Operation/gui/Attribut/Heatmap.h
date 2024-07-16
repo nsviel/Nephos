@@ -9,24 +9,16 @@ namespace dat::base{class Entity;}
 
 namespace ope::gui{
 
-class Colorization
+class Heatmap
 {
 public:
   //Constructor / Destructor
-  Colorization(ope::Node* node_dynamic);
-  ~Colorization();
+  Heatmap(ope::Node* node_dynamic);
+  ~Heatmap();
 
 public:
   //Main function
-  void design_colorization(utl::base::Element* element);
-
-  //Mode function
-  void colorization_mode(utl::base::Element* element);
   void heatmap_mode(utl::base::Element* element);
-
-  //Option function
-  void option_intensity(utl::base::Element* element);
-  void option_height(utl::base::Element* element);
 
 private:
   ope::Structure* ope_struct;

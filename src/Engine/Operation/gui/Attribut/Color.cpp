@@ -27,9 +27,9 @@ void Colorization::design_colorization(utl::base::Element* element){
   if(ImGui::CollapsingHeader("Colorization##dynamic")){
 
     //Main mode
-    this->colorization_mode(element);
+    this->color_mode(element);
     ImGui::Separator();
-    this->heatmap_mode(element);
+    //this->heatmap_mode(element);
 
     //Mode option
     this->option_intensity(element);
@@ -39,8 +39,8 @@ void Colorization::design_colorization(utl::base::Element* element){
   //---------------------------
 }
 
-//Mode function
-void Colorization::colorization_mode(utl::base::Element* element){
+//Subfunction
+void Colorization::color_mode(utl::base::Element* element){
   //---------------------------
 
   ImGui::BeginTable("colorization##mode", 2);
@@ -99,46 +99,6 @@ void Colorization::colorization_mode(utl::base::Element* element){
 
   //---------------------------
 }
-void Colorization::heatmap_mode(utl::base::Element* element){
-  if(ope_struct->attribut.color.mode != ope::color::HEATMAP) return;
-  //---------------------------
-
-  ImGui::BeginTable("heatmap##mode", 3);
-
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::RadioButton("I##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::INTENSITY)){
-    ope_colorizer->colorize_element(element);
-  }
-  ImGui::SameLine();
-  ImGui::TableNextColumn();
-  if(ImGui::RadioButton("I cor##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::INTENSITY_COR)){
-    ope_colorizer->colorize_element(element);
-  }
-  ImGui::SameLine();
-  ImGui::TableNextColumn();
-  if(ImGui::RadioButton("I cal##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::INTENSITY_CAL)){
-    ope_colorizer->colorize_element(element);
-  }
-
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::RadioButton("H##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::HEIGHT)){
-    ope_colorizer->colorize_element(element);
-  }
-  ImGui::TableNextColumn();
-  if(ImGui::RadioButton("R##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::RANGE)){
-    ope_colorizer->colorize_element(element);
-  }
-  ImGui::TableNextColumn();
-  if(ImGui::RadioButton("It##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::INCIDENCE_ANGLE)){
-    ope_colorizer->colorize_element(element);
-  }
-
-  ImGui::EndTable();
-
-  //---------------------------
-}
-
-//Option function
 void Colorization::option_intensity(utl::base::Element* element){
   int& mode = ope_struct->attribut.color.mode;
   int& heatmap = ope_struct->attribut.heatmap.mode;
