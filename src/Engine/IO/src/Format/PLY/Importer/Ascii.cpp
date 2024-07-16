@@ -16,16 +16,16 @@ Ascii::Ascii(){
 Ascii::~Ascii(){}
 
 //Main function
-void Ascii::parse_ascii(io::importer::Configuration* ply_struct, dat::base::Object* object){
+void Ascii::parse_ascii(io::importer::Configuration* config, dat::base::Object* object){
   //---------------------------
 
   //Open file
-  std::ifstream file(ply_struct->path);
+  std::ifstream file(config->path);
   this->pass_header(file);
 
   //Read data
-  this->parse_vertex(ply_struct, file);
-  this->parse_face(ply_struct, file);
+  this->parse_vertex(config, file);
+  this->parse_face(config, file);
 
   //Store result
   object->data.xyz = buffer.xyz;
@@ -53,43 +53,43 @@ void Ascii::pass_header(std::ifstream& file){
 
   //---------------------------
 }
-void Ascii::parse_vertex(io::importer::Configuration* ply_struct, std::ifstream& file){
+void Ascii::parse_vertex(io::importer::Configuration* config, std::ifstream& file){
   this->buffer = {};
   //---------------------------
 
   //Retrieve vertex data
   std::string line;
-  for(int i=0; i<ply_struct->nb_vertex; i++){
+  for(int i=0; i<config->nb_vertex; i++){
     //Data
     std::getline(file, line);
     std::istringstream iss(line);
     std::vector<float> row;
-    for(int i=0; i<ply_struct->vec_property.size(); i++){
+    for(int i=0; i<config->vec_property.size(); i++){
       float d;
       iss >> d;
       row.push_back(d);
     }
 
     //Location
-    int id_x = get_property_id(ply_struct, io::importer::XYZ);
+    int id_x = get_property_id(config, io::importer::XYZ);
     if(id_x != -1){
       buffer.xyz.push_back(glm::vec3(row[id_x], row[id_x+1], row[id_x+2]));
     }
 
     //Normal
-    int id_nx = get_property_id(ply_struct, io::importer::NXYZ);
+    int id_nx = get_property_id(config, io::importer::NXYZ);
     if(id_nx != -1){
       buffer.Nxyz.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
     }
 
     //Color
-    int id_rgb = get_property_id(ply_struct, io::importer::RGB);
+    int id_rgb = get_property_id(config, io::importer::RGB);
     if(id_rgb != -1){
       buffer.rgb.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
     }
 
     //Intensity
-    int id_i = get_property_id(ply_struct, io::importer::I);
+    int id_i = get_property_id(config, io::importer::I);
     if(id_i != -1){
       buffer.Is.push_back(row[id_i]);
     }
@@ -97,8 +97,8 @@ void Ascii::parse_vertex(io::importer::Configuration* ply_struct, std::ifstream&
 
   //---------------------------
 }
-void Ascii::parse_face(io::importer::Configuration* ply_struct, std::ifstream& file){
-  if(ply_struct->nb_face == 0) return;
+void Ascii::parse_face(io::importer::Configuration* config, std::ifstream& file){
+  if(config->nb_face == 0) return;
   //---------------------------
 
   //Init
@@ -125,12 +125,12 @@ void Ascii::parse_face(io::importer::Configuration* ply_struct, std::ifstream& f
       buffer.xyz.push_back(buffer_tmp.xyz[idx[i]]);
 
       //Normal
-      if(get_property_id(ply_struct, io::importer::NXYZ) != -1){
+      if(get_property_id(config, io::importer::NXYZ) != -1){
         buffer.Nxyz.push_back(buffer_tmp.Nxyz[idx[i]]);
       }
 
       //Intensity
-      if(get_property_id(ply_struct, io::importer::I) != -1){
+      if(get_property_id(config, io::importer::I) != -1){
         buffer.Is.push_back(buffer_tmp.Is[idx[i]]);
       }
     }
@@ -138,19 +138,19 @@ void Ascii::parse_face(io::importer::Configuration* ply_struct, std::ifstream& f
 
   //Deduce drawing type
   if(nb_vertice == 3){
-    ply_struct->topology = utl::topology::TRIANGLE;
+    config->topology = utl::topology::TRIANGLE;
   }
   else if(nb_vertice == 4){
-    ply_struct->topology = utl::topology::QUAD;
+    config->topology = utl::topology::QUAD;
   }
 
   //---------------------------
 }
-int Ascii::get_property_id(io::importer::Configuration* ply_struct, io::importer::Field field){
+int Ascii::get_property_id(io::importer::Configuration* config, io::importer::Field field){
   //---------------------------
 
-  for(int i=0; i<ply_struct->vec_property.size(); i++){
-    io::importer::Property* property = &ply_struct->vec_property[i];
+  for(int i=0; i<config->vec_property.size(); i++){
+    io::importer::Property* property = &config->vec_property[i];
 
     if(property->field == field){
       return i;

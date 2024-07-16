@@ -13,7 +13,7 @@ Importer::Importer(){
 
   this->utl_attribut = new utl::base::Attribut();
 
-  this->Is_format = fmt::pts::FM2048_2048;
+  this->Is_format = fmt::pts::F2048_2048;
   this->format = ".pts";
 
   //---------------------------
@@ -35,114 +35,19 @@ utl::base::Element* Importer::import(utl::base::Path path){
   //Initialization
   io::importer::Configuration config;
   config.path = path.build();
+
+  //Processing
   this->retrieve_header(config);
   this->retrieve_size(config);
   this->retrieve_configuration(config);
+  this->retrieve_data(config);
+  this->transfer_data(config, &object->data);
 
-
-  /*int file_config = check_configuration(path.build());
-
-
-  //Read file
-  std::ifstream file(config.path);
-  if(config.has_header) std::getline(file, line);
-
-  //Data
-  while(std::getline(file, line)){
-    //If line empty break the while
-    if(line.empty()){
-      break;
-    }
-
-    //Retrieve data
-    this->Loader_data(&object->data, file_config);
-  }
-*/
   //---------------------------
   return object;
 }
 
 //Subfunction
-void Importer::Loader_nbColumns(){
-  //Extraction of each column
-  bool end_loop = false;
-  std::string line_loop = line;
-  line_columns.clear();
-  //---------------------------
-
-  while(!end_loop){
-    if(line_loop.find(" ") != std::string::npos){
-      line_columns.push_back(std::stof(line_loop.substr(0, line_loop.find(" "))));
-      line_loop = line_loop.substr(line_loop.find(" ")+1);
-    }else{
-      line_columns.push_back(std::stof(line_loop));
-      end_loop = true;
-    }
-  }
-
-  //---------------------------
-}
-void Importer::Loader_data(utl::base::Data* data, int file_config){
-  std::istringstream iss(line);
-  float x,y,z,r,g,b,I,nx,ny,nz;
-  //---------------------------
-
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
-
-  switch(file_config){
-    case 0: iss >> x >> y >> z; break;
-    case 1: iss >> x >> y >> z >> I; break;
-    case 2: iss >> x >> y >> z >> nx >> ny >> nz; break;
-    case 3: iss >> x >> y >> z >> r >> g >> b; break;
-    case 4: iss >> x >> y >> z >> I >> r >> g >> b; break;
-    case 5: iss >> x >> y >> z >> I >> nx >> ny >> nz; break;
-    case 6: iss >> x >> y >> z >> r >> g >> b >> nx >> ny >> nz; break;
-    case 7: iss >> x >> y >> z >> I >> r >> g >> b >> nx >> ny >> nz; break;
-    case 8: iss >> x >> y >> z >> r >> g >> b >> I; break;
-    case 9: iss >> x >> y >> z >> r >> g >> b >> I >> nx >> ny >> nz; break;
-  }
-
-  //Position data
-  data->xyz.push_back(glm::vec3(x, y, z));
-
-  //Reflectance data
-  if(hasIntensity){
-    switch(Is_format){
-      case fmt::pts::F0_1:{
-        vec_I.push_back(I);
-        break;
-      }
-      case fmt::pts::F0_255:{
-        vec_I.push_back(I/255);
-        break;
-      }
-      case fmt::pts::FM2048_2048:{
-        float Is = (I + 2048) / 4096;
-        vec_I.push_back(Is);
-        break;
-      }
-    }
-  }
-
-  //Normal data
-  if(hasNormal){
-    data->Nxyz.push_back(glm::vec3(nx, ny, nz));
-  }
-
-  //Color data
-  if(hasColor){
-    data->rgb.push_back(glm::vec4((r/255), (g/255), (b/255), 1.0f));
-    //if reflectance value is coded in rgb format
-    if(hasIntensity == false && r == g && g == b){
-        vec_I.push_back(r/255);
-        hasIntensity = true;
-    }
-  }
-
-  //---------------------------
-}
-
-//Checking function
 void Importer::retrieve_header(io::importer::Configuration& config){
   //---------------------------
 
@@ -274,7 +179,7 @@ void Importer::retrieve_configuration(io::importer::Configuration& config){
         config.vec_property.push_back(io::importer::Property(io::importer::RGB));
         config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
         config.vec_property.push_back(io::importer::Property(io::importer::I));
-        Is_format = fmt::pts::FM2048_2048;
+        Is_format = fmt::pts::F2048_2048;
         break;
       }
       else{//xyz - I - rgb - N
@@ -296,6 +201,87 @@ void Importer::retrieve_configuration(io::importer::Configuration& config){
       config.vec_property.push_back(io::importer::Property(io::importer::RGB));
     }
   }
+
+  //---------------------------
+}
+void Importer::retrieve_data(io::importer::Configuration& config){
+  this->buffer = {};
+  //---------------------------
+
+  //Read file
+  std::ifstream file(config.path);
+  std::string line;
+  if(config.has_header) std::getline(file, line);
+
+  //Data
+  while(std::getline(file, line)){
+    //If line empty break the while
+    if(line.empty()){
+      break;
+    }
+
+    float d;
+    std::istringstream iss(line);
+    for(int i=0; i<config.vec_property.size(); i++){
+      io::importer::Property& property = config.vec_property[i];
+
+      switch(property.field){
+        case io::importer::XYZ:{
+          float x, y, z;
+          iss >> x;
+          iss >> y;
+          iss >> z;
+          buffer.xyz.push_back(glm::vec3(x, y, z));
+          break;
+        }
+        case io::importer::NXYZ:{
+          float nx, ny, nz;
+          iss >> nx;
+          iss >> ny;
+          iss >> nz;
+          buffer.Nxyz.push_back(glm::vec3(nx, ny, nz));
+          break;
+        }
+        case io::importer::RGB:{
+          float r, g, b;
+          iss >> r;
+          iss >> g;
+          iss >> b;
+          buffer.rgb.push_back(glm::vec3(r/255, g/255, b/255));
+          break;
+        }
+        case io::importer::I:{
+          float I;
+          iss >> I;
+
+          switch(Is_format){
+            case fmt::pts::F0_255:{
+              I /= 255;
+              break;
+            }
+            case fmt::pts::F2048_2048:{
+              I = (I + 2048) / 4096;
+              break;
+            }
+          }
+
+          buffer.Is.push_back(I);
+          break;
+        }
+      }
+    }
+  }
+
+  //---------------------------
+}
+void Importer::transfer_data(io::importer::Configuration& config, utl::base::Data* data){
+  //---------------------------
+
+  data->xyz = buffer.xyz;
+  data->Nxyz = buffer.Nxyz;
+  data->rgb = buffer.rgb;
+  data->size = buffer.xyz.size();
+  utl_attribut->set_field_data(data, "I", buffer.Is);
 
   //---------------------------
 }
