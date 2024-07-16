@@ -101,7 +101,8 @@ void Entity::update_data(dat::base::Entity* entity){
 
     //Update attribut
     ope_location->compute_centroid(entity);
-    //ope_attribut->compute_range(entity);
+    ope_attribut->compute_range(entity);
+    ope_location->compute_height(entity);
 
     //Update own glyph pose
     for(int i=0; i<entity->list_glyph.size(); i++){

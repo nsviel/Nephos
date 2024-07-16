@@ -143,19 +143,55 @@ void Location::compute_MinMax(dat::base::Entity* entity){
   pose->max = max;
   pose->COM = centroid;
 }
-void Location::retrieve_z_vector(dat::base::Entity* entity, std::vector<float>& z_vec){
+void Location::compute_height(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
-  z_vec = std::vector<float>(xyz.size());
+  std::vector<float>& vec_h = utl_attribut->get_field_data(data, "H");
+  if(vec_h.size() != 0) return;
+  vec_h = std::vector<float>(xyz.size());
 
   #pragma omp parallel for
   for(int i=0; i<xyz.size(); i++){
     glm::vec4 xyz_h = glm::vec4(xyz[i].x, xyz[i].y, xyz[i].z, 1);
     xyz_h = xyz_h * pose->model;
-    z_vec[i] = xyz_h.z;
+    vec_h[i] = xyz_h.z;
+  }
+
+  //---------------------------
+}
+void Location::compute_range(dat::base::Entity* entity){
+  utl::base::Data* data = &entity->data;
+  //---------------------------
+
+  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<float>& vec_R = utl_attribut->get_field_data(data, "R");
+  if(vec_R.size() != 0) return;
+  vec_R.resize(xyz.size(), 0.0f);
+
+  #pragma omp parallel for
+  for(int i=0; i<xyz.size(); i++){
+    float dist = glm::length(xyz[i]);
+    vec_R[i] = dist;
+  }
+
+  //---------------------------
+}
+void Location::compute_incidence_angle(dat::base::Entity* entity){
+  utl::base::Data* data = &entity->data;
+  //---------------------------
+
+  std::vector<float>& It = utl_attribut->get_field_data(data, "It");
+  std::vector<float>& R = utl_attribut->get_field_data(data, "R");
+  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec3>& Nxyz = data->Nxyz;
+
+  It = std::vector<float>(xyz.size(), 0.0f);
+  for(int i=0; i<xyz.size(); i++){
+    float angle = math::compute_It(xyz[i], Nxyz[i], R[i]);
+    It[i] = angle;
   }
 
   //---------------------------
