@@ -12,7 +12,7 @@ Color::Color(ope::Node* node_operation){
   //---------------------------
 
   this->ope_struct = node_operation->get_ope_struct();
-  this->ope_colorizer = new ope::color::Routine(node_operation);
+  this->ope_colorizer = new ope::color::Colorizer(node_operation);
   this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
@@ -42,36 +42,36 @@ void Color::color_mode(utl::base::Element* element){
   //First line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("RGB##colorization", &ope_struct->attribut.color.mode, ope::color::RGB)){
-    ope_colorizer->colorize_element(element);
+    ope_colorizer->make_colorization(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("##unicolor", &ope_struct->attribut.color.mode, ope::color::UNICOLOR)){
-    ope_colorizer->colorize_element(element);
+    ope_colorizer->make_colorization(element);
   }
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
   if(ImGui::ColorEdit4("##unicolor_choice", (float*)&ope_struct->attribut.color.unicolor, flags)){
-    ope_colorizer->colorize_element(element);
+    ope_colorizer->make_colorization(element);
   }
 
   //Second line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("Nxyz##colorization", &ope_struct->attribut.color.mode, ope::color::NORMAL)){
-    ope_colorizer->colorize_element(element);
+    ope_colorizer->make_colorization(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("Field##colorization", &ope_struct->attribut.color.mode, ope::color::FIELD)){
-    ope_colorizer->colorize_element(element);
+    ope_colorizer->make_colorization(element);
   }
 
   //Third line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("Heatmap##colorization", &ope_struct->attribut.color.mode, ope::color::HEATMAP)){
-    ope_colorizer->colorize_element(element);
+    ope_colorizer->make_colorization(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("Structure##colorization", &ope_struct->attribut.color.mode, ope::color::STRUCTURE)){
-    ope_colorizer->colorize_element(element);
+    ope_colorizer->make_colorization(element);
   }
 
   ImGui::EndTable();
@@ -89,12 +89,20 @@ void Color::color_option(utl::base::Element* element){
     }
     if(!entity) return;
 
+    //Prepare vector of field names
     std::vector<std::string> vec_field;
     for(int i=0; i<entity->data.vec_field.size(); i++){
       utl::base::Field& field = entity->data.vec_field[i];
       vec_field.push_back(field.name);
     }
 
+    //Init
+    if(entity->data.vec_field.size() != 0 && ope_struct->attribut.color.field == ""){
+      ope_struct->attribut.color.field = vec_field[0];
+      ope_struct->attribut.color.range = utl_attribut->get_field_range(&entity->data, vec_field[0]);
+    }
+
+    //Combo field name
     static int selection = 0;
     ImGui::SetNextItemWidth(150);
     if(ImGui::BeginCombo("##shader_combo_class", vec_field[selection].c_str())){

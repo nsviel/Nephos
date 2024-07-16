@@ -19,13 +19,36 @@ Colorizer::Colorizer(ope::Node* node_operation){
 Colorizer::~Colorizer(){}
 
 //Main function
+void Colorizer::make_colorization(utl::base::Element* element){
+  //---------------------------
+
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
+    this->make_colorization(set);
+  }else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+    this->make_colorization(entity);
+  }
+
+  //---------------------------
+}
+void Colorizer::make_colorization(dat::base::Set* set){
+  //---------------------------
+
+  for(int i=0; i<set->list_entity.size(); i++){
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+    this->make_colorization(entity);
+  }
+
+  //---------------------------
+}
 void Colorizer::make_colorization(dat::base::Entity* entity){
   //---------------------------
 
+  //Check color vector
   if(entity->data.rgba.size() != entity->data.xyz.size()){
     entity->data.rgba = std::vector<glm::vec4>(entity->data.xyz.size(), glm::vec4(0.0f));
   }
 
+  //Apply colorization
   switch(ope_struct->attribut.color.mode){
     case ope::color::RGB:{
       this->colorization_rgb(entity);
@@ -52,6 +75,9 @@ void Colorizer::make_colorization(dat::base::Entity* entity){
       break;
     }
   }
+
+  //Mark entity as need update
+  entity->data.is_updated = true;
 
   //---------------------------
 }

@@ -43,6 +43,9 @@ void Data::extract_data(k4n::base::Sensor* sensor){
   this->extraction_transfer(sensor);
   tasker->task_end("transfer");
 
+  ope::attribut::Location ope_location;
+  ope_location.compute_height(sensor);
+
   //---------------------------
 }
 
@@ -102,8 +105,6 @@ void Data::extraction_transfer(k4n::base::Sensor* sensor){
 
   std::vector<float>& vec_R = utl_attribut->get_field_data(data, "R");
   std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
-  std::vector<float>& vec_H = utl_attribut->get_field_data(data, "H");
-  vec_H.clear();
 
   //Data
   data->xyz = buffer.xyz;

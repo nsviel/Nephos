@@ -10,13 +10,6 @@ namespace ope::color{
 Heatmap::Heatmap(){
   //---------------------------
 
-  this->ope_location = new ope::attribut::Location();
-  this->utl_attribut = new utl::base::Attribut();
-
-  this->is_normalization = false;
-  this->range_norm = glm::vec2(0.0f, 1.0f);
-  this->range = glm::vec2(-1.0f, 2.0f);
-  this->range_intensity = glm::vec2(0.0f, 1.0f);
 
   //---------------------------
 }
@@ -27,10 +20,8 @@ void Heatmap::compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& 
   if(v_in.size() == 0) return;
   //---------------------------
 
-  //Normalization of the input vector
-  if(is_normalization){
-    math::normalize(v_in, -1);
-  }
+  //Get rid of bad values
+  math::normalize(v_in, -1);
 
   //Compute heatmap from input vector
   std::vector<glm::vec3>& colormap = utl::colormap::viridis_long;

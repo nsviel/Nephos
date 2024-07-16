@@ -18,7 +18,6 @@ void Check_on(){
 
   //---------------------------
 }
-
 void Cross(ImVec4 color){
   //---------------------------
 
@@ -47,5 +46,35 @@ void Cross(ImVec4 color){
 
   //---------------------------
 }
+void Colorbar(ImVec2 range){
+  //---------------------------
+
+  // Adjust position and size according to your layout
+  ImVec2 position = ImGui::GetCursorScreenPos();
+  ImVec2 size(200, 20); // Example size of the colorbar
+
+  ImGuiWindow* window = ImGui::GetCurrentWindow();
+  ImDrawList* draw_list = ImGui::GetWindowDrawList();
+
+  const int num_colors = 256; // Number of color segments
+  float segment_width = size.x / num_colors;
+
+  for (int i = 0; i < num_colors; ++i) {
+    ImVec2 rect_min = ImVec2(position.x + i * segment_width, position.y);
+    ImVec2 rect_max = ImVec2(position.x + (i + 1) * segment_width, position.y + size.y);
+
+    // Example: Create a gradient from blue to red
+    ImVec4 color = ImVec4(static_cast<float>(i) / num_colors, 0.0f, 1.0f - static_cast<float>(i) / num_colors, 1.0f);
+
+    draw_list->AddRectFilled(rect_min, rect_max, ImGui::ColorConvertFloat4ToU32(color));
+  }
+  ImGui::SetCursorPosY(ImGui::GetCursorPosY() + size.y + 20);
+
+  //---------------------------
+}
+
+
+
+
 
 }

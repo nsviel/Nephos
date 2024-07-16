@@ -6,8 +6,10 @@
 namespace ope{class Node;}
 namespace ope{class Structure;}
 namespace ope::color{class Heatmap;}
-namespace dat::base{class Entity;}
 namespace utl::base{class Attribut;}
+namespace utl::base{class Element;}
+namespace dat::base{class Entity;}
+namespace dat::base{class Set;}
 
 
 namespace ope::color{
@@ -21,6 +23,8 @@ public:
 
 public:
   //Main function
+  void make_colorization(utl::base::Element* element);
+  void make_colorization(dat::base::Set* set);
   void make_colorization(dat::base::Entity* entity);
 
   //Subfunction

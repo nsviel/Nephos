@@ -2,7 +2,7 @@
 
 namespace ope{class Node;}
 namespace ope{class Structure;}
-namespace ope::color{class Routine;}
+namespace ope::color{class Colorizer;}
 namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Attribut;}
@@ -27,7 +27,7 @@ public:
 
 private:
   ope::Structure* ope_struct;
-  ope::color::Routine* ope_colorizer;
+  ope::color::Colorizer* ope_colorizer;
   utl::base::Attribut* utl_attribut;
 };
 

@@ -19,7 +19,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->dyn_normal = new dyn::cloud::Normal(node_dynamic);
   this->dyn_recorder = new dyn::cloud::Recorder(node_dynamic);
   this->dyn_radio = new dyn::cloud::Radiometry(node_dynamic);
-  this->ope_colorizer = new ope::color::Routine(node_operation);
+  this->ope_colorizer = new ope::color::Colorizer(node_operation);
 
   //---------------------------
 }
@@ -37,7 +37,7 @@ void Operation::run_operation(dyn::base::Sensor* sensor){
   //pour l'instant c'est la meme qqsoit le sensor
   //Du coup 2 playback = laggs
   //ope_colorizer->start_task(sensor);
-  ope_colorizer->colorize_entity(sensor);
+  ope_colorizer->make_colorization(sensor);
 
 
   //---------------------------
