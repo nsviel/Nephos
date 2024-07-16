@@ -29,7 +29,7 @@ void Header::write_info(io::exporter::Configuration& config, std::ofstream& file
   //---------------------------
 
   file << "ply" << std::endl;
-  file << "format " + config.encoding + " 1.0" << std::endl;
+  file << "format " + config.format + " 1.0" << std::endl;
   file << "element vertex " << config.nb_vertex << std::endl;
 
   //---------------------------

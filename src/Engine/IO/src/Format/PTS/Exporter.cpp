@@ -20,13 +20,21 @@ Exporter::Exporter(){
 Exporter::~Exporter(){}
 
 //Main function
-void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path){
+void Exporter::export_data(io::exporter::Configuration& config, utl::base::Data* data){
+  //---------------------------
+
+  this->write_data_ascii(config, data);
+
+  //---------------------------
+}
+
+//Subfunction
+void Exporter::write_data_ascii(io::exporter::Configuration& config, utl::base::Data* data){
   //---------------------------
 
   //Create file
-  if(path.substr(path.find_last_of(".") + 1) != "pts") path.append(".pts");
   std::ofstream file;
-  file.open(path);
+  file.open(config.path);
   if(!file){
     std::cout<<"Error in creating file !";
     return;
@@ -36,7 +44,7 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
   std::vector<glm::vec3>& xyz = data->xyz;
   std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec4>& rgba = data->rgba;
-  std::vector<glm::vec3>& N = data->Nxyz;
+  std::vector<glm::vec3>& Nxyz = data->Nxyz;
   std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
 
   //Write in the file
@@ -47,7 +55,7 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
     file << std::fixed;
 
     //Location
-    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * mat;
+    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * config.mat_model;
     file << std::setprecision(precision) << xyzw.x <<" "<< xyzw.y <<" "<< xyzw.z ;
 
     //Intensity
@@ -63,7 +71,8 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
 
     //Normal
     if(data->Nxyz.size() != 0){
-      file << std::setprecision(precision) <<" "<< N[i].x <<" "<< N[i].y <<" "<< N[i].z;
+      glm::vec3 normal = Nxyz[i] * config.mat_rotation;
+      file << std::setprecision(precision) <<" "<< normal.x <<" "<< normal.y <<" "<< normal.z;
     }
 
     //line end
@@ -73,7 +82,5 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
   //---------------------------
   file.close();
 }
-
-
 
 }

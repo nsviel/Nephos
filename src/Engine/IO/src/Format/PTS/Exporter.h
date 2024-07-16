@@ -22,8 +22,11 @@ public:
   ~Exporter();
 
 public:
-  //Main funct
-  void export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path);
+  //Main function
+  void export_data(io::exporter::Configuration& config, utl::base::Data* data);
+
+  //Subfunction
+  void write_data_ascii(io::exporter::Configuration& config, utl::base::Data* data);
 
 private:
   utl::base::Attribut* utl_attribut;

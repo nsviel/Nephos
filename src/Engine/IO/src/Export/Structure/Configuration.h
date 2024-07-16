@@ -11,8 +11,9 @@ namespace io::exporter{
 struct Configuration{
   //---------------------------
 
+  io::exporter::Encoding encoding = io::exporter::BINARY;
   std::vector<io::exporter::Field> vec_property;
-  std::string encoding = "";
+  std::string format = "";
   std::string path = "";
   glm::mat4 mat_model;
   glm::mat3 mat_rotation;

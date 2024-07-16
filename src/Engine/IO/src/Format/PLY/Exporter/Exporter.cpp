@@ -24,33 +24,30 @@ Exporter::~Exporter(){}
 //Main exporter functions
 void Exporter::export_data(io::exporter::Configuration& config, utl::base::Data* data){
   //---------------------------
-/*
+
   //Make exporter structure
-  io::exporter::Configuration config;
-  config.mat_model = config.mat_model;
-  config.mat_rotation = glm::mat3(config.mat_model);
   this->build_structure(config, data);
 
   //Write on file
   switch(config.encoding){
     case io::exporter::ASCII:{
-      config.encoding = "ascii";
-      std::ofstream file(path);
+      config.format = "ascii";
+      std::ofstream file(config.path);
       io_header->write_header(config, file);
       this->write_data_ascii(config, file, data);
       file.close();
       break;
     }
     case io::exporter::BINARY:{
-      config.encoding = "binary_little_endian";
-      std::ofstream file(path, std::ios::binary);
+      config.format = "binary_little_endian";
+      std::ofstream file(config.path, std::ios::binary);
       io_header->write_header(config, file);
       this->write_data_binary(config, file, data);
       file.close();
       break;
     }
   }
-*/
+
   //---------------------------
 }
 
