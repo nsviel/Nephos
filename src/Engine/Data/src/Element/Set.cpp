@@ -26,6 +26,7 @@ void Set::update_set(dat::base::Set* set){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
     dat_entity->update_pose(entity);
+    dat_entity->update_data(entity);
   }
 
   // Recursively process nested sets

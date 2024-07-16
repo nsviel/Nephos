@@ -99,29 +99,37 @@ void Entity::update_data(dat::base::Entity* entity){
   utl::base::Pose* pose = &entity->pose;;
   //----------------------------
 
-  vk_data->insert(data, pose);
+  if(data->is_updated){
+    vk_data->insert(data, pose);
 
-  //Update attribut
-  ope_location->compute_centroid(entity);
-  //ope_attribut->compute_range(entity);
+    //Update attribut
+    ope_location->compute_centroid(entity);
+    //ope_attribut->compute_range(entity);
+
+    data->is_updated = false;
+  }
 
   //----------------------------
 }
 void Entity::update_pose(dat::base::Entity* entity){
-  utl::base::Pose* pose = &entity->pose;;
+  utl::base::Pose* pose = &entity->pose;
   //----------------------------
 
-  cam::Node* node_camera = node_engine->get_node_camera();
-  this->cam_control = node_camera->get_cam_control();
+  if(pose->is_updated){
+    cam::Node* node_camera = node_engine->get_node_camera();
+    this->cam_control = node_camera->get_cam_control();
 
-  //Update own pose
-  cam_control->compute_camera_mvp(pose);
+    //Update own pose
+    cam_control->compute_camera_mvp(pose);
 
-  //Update own glyph pose
-  for(int i=0; i<entity->list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
-    glyph->update_pose(entity);
-    this->update_pose(glyph);
+    //Update own glyph pose
+    for(int i=0; i<entity->list_glyph.size(); i++){
+      dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+      glyph->update_pose(entity);
+      this->update_pose(glyph);
+    }
+
+    pose->is_updated = false;
   }
 
   //----------------------------

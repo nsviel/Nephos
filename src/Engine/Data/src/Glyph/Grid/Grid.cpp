@@ -12,7 +12,7 @@ Grid::Grid(){
   this->name = "grid::main";
   this->nb_cell = 10;
   this->is_suppressible = false;
-  this->pose.movable = false;
+  this->pose.is_movable = false;
 
   this->list_glyph.push_back(new dat::glyph::grid::Mesh());
   this->list_glyph.push_back(new dat::glyph::grid::Axis());

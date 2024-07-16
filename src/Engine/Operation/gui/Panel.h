@@ -3,7 +3,7 @@
 #include <string>
 
 namespace ope{class Node;}
-namespace ope::gui{class Colorization;}
+namespace ope::gui{class Color;}
 namespace ope::gui{class Transformation;}
 namespace ope::gui{class Info;}
 namespace ope::gui{class Normal;}
@@ -23,7 +23,7 @@ public:
   void design_panel(utl::base::Element* element);
 
 private:
-  ope::gui::Colorization* gui_colorization;
+  ope::gui::Color* gui_color;
   ope::gui::Transformation* gui_transformation;
   ope::gui::Info* gui_info;
   ope::gui::Normal* gui_normal;

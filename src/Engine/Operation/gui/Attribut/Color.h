@@ -9,12 +9,12 @@ namespace dat::base{class Entity;}
 
 namespace ope::gui{
 
-class Colorization
+class Color
 {
 public:
   //Constructor / Destructor
-  Colorization(ope::Node* node_dynamic);
-  ~Colorization();
+  Color(ope::Node* node_dynamic);
+  ~Color();
 
 public:
   //Main function

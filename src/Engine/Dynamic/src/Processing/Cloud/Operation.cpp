@@ -38,7 +38,7 @@ void Operation::run_operation(dyn::base::Sensor* sensor){
   //Du coup 2 playback = laggs
   //ope_colorizer->start_task(sensor);
   ope_colorizer->colorize_entity(sensor);
-  dat_entity->update_data(sensor);
+
 
   //---------------------------
 }

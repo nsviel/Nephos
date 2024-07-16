@@ -19,7 +19,7 @@ Sphere::Sphere(eng::Node* node_engine){
 
   this->name = "object::sphere";
   this->is_suppressible = false;
-  this->pose.movable = false;
+  this->pose.is_movable = false;
   this->is_permanent = true;
   this->color = glm::vec4(1, 0, 0, 0.5);
   this->path = "../media/glyph/sphere.obj";

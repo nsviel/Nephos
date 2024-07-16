@@ -12,7 +12,7 @@ Axis::Axis(){
   this->name = "world::axis";
   this->is_suppressible = false;
   this->is_permanent = true;
-  this->pose.movable = false;
+  this->pose.is_movable = false;
 
   //---------------------------
 }

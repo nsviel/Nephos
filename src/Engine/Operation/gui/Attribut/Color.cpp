@@ -1,4 +1,4 @@
-#include "Colorization.h"
+#include "Color.h"
 
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
@@ -8,7 +8,7 @@
 namespace ope::gui{
 
 //Constructor / Destructor
-Colorization::Colorization(ope::Node* node_operation){
+Color::Color(ope::Node* node_operation){
   //---------------------------
 
   this->ope_struct = node_operation->get_ope_struct();
@@ -16,10 +16,10 @@ Colorization::Colorization(ope::Node* node_operation){
 
   //---------------------------
 }
-Colorization::~Colorization(){}
+Color::~Color(){}
 
 //Main function
-void Colorization::design_colorization(utl::base::Element* element){
+void Color::design_colorization(utl::base::Element* element){
   if(element == nullptr) return;
   //---------------------------
 
@@ -40,7 +40,7 @@ void Colorization::design_colorization(utl::base::Element* element){
 }
 
 //Subfunction
-void Colorization::color_mode(utl::base::Element* element){
+void Color::color_mode(utl::base::Element* element){
   //---------------------------
 
   ImGui::BeginTable("colorization##mode", 2);
@@ -99,7 +99,7 @@ void Colorization::color_mode(utl::base::Element* element){
 
   //---------------------------
 }
-void Colorization::option_intensity(utl::base::Element* element){
+void Color::option_intensity(utl::base::Element* element){
   int& mode = ope_struct->attribut.color.mode;
   int& heatmap = ope_struct->attribut.heatmap.mode;
   //---------------------------
@@ -113,7 +113,7 @@ void Colorization::option_intensity(utl::base::Element* element){
 
   //---------------------------
 }
-void Colorization::option_height(utl::base::Element* element){
+void Color::option_height(utl::base::Element* element){
   if(ope_struct->attribut.heatmap.mode != ope::heatmap::HEIGHT) return;
   //---------------------------
 

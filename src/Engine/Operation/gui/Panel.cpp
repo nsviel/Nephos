@@ -10,7 +10,7 @@ namespace ope::gui{
 Panel::Panel(ope::Node* node_operation){
   //---------------------------
 
-  this->gui_colorization = new ope::gui::Colorization(node_operation);
+  this->gui_color = new ope::gui::Color(node_operation);
   this->gui_transformation = new ope::gui::Transformation();
   this->gui_info = new ope::gui::Info();
   this->gui_normal = new ope::gui::Normal(node_operation);
@@ -25,7 +25,7 @@ void Panel::design_panel(utl::base::Element* element){
 
   gui_info->design_info(element);
   gui_transformation->design_transformation(element);
-  gui_colorization->design_colorization(element);
+  gui_color->design_colorization(element);
   gui_normal->design_normal();
 
   //---------------------------

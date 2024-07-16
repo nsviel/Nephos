@@ -56,6 +56,7 @@ void Routine::colorize_entity(dat::base::Entity* entity){
   config.unicolor = ope_struct->attribut.color.unicolor;
 
   ope_colorizer->make_colorization(entity, config);
+  entity->data.is_updated = true;
 
   //---------------------------
 }

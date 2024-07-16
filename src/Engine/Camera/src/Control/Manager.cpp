@@ -35,7 +35,7 @@ void Manager::create_camera(){
   camera->ID = cam_struct->ID++;
   camera->name = "camera_" + std::to_string(camera->ID);
   camera->is_suppressible = false;
-  camera->pose.movable = false;
+  camera->pose.is_movable = false;
 
   dat_glyph->insert_glyph(camera);
   dat_set->insert_entity(set_scene, camera);
