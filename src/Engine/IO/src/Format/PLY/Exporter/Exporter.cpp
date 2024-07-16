@@ -64,7 +64,11 @@ void Exporter::build_structure(io::exporter::Configuration& config, utl::base::D
   }
 
   //Color
-  if(data->rgb.size() != 0){
+  if(config.with_colorization && data->rgba.size() != 0){
+    config.vec_property.push_back(io::exporter::RGB);
+    config.nb_property += 3;
+  }
+  else if(!config.with_colorization && data->rgb.size() != 0){
     config.vec_property.push_back(io::exporter::RGB);
     config.nb_property += 3;
   }
@@ -167,10 +171,10 @@ void Exporter::write_data_binary(io::exporter::Configuration& config, std::ofstr
 
         //Color
         case io::exporter::RGB:{
+          glm::vec3 RGB = config.with_colorization ? glm::vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
           for(int k=0; k<3; k++){
-            glm::vec3 RGB = config.with_colorization ? glm::vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
-            int color_int = RGB[k] * 255;
-            memcpy(block_data + offset, &color_int, sizeof(u_char));
+            int RGB_int = RGB[k] * 255;
+            memcpy(block_data + offset, &RGB_int, sizeof(u_char));
             offset += sizeof(u_char);
           }
           break;

@@ -55,10 +55,10 @@ void Init::load_entity(){
 
   //Create playback list
   io_struct->importer.with_clearing = false;
-  io_loader->load_object(versaille_0, versaille_0_t);
+  //io_loader->load_object(versaille_0, versaille_0_t);
   //io_loader->load_object(versaille_2, versaille_2_t);
   //io_loader->load_object(cerfav);
-  //io_loader->load_object(dragon);
+  io_loader->load_object(dragon);
   //io_loader->load_object(sphere);
   //io_loader->load_set(pcap);
   //io_loader->load_object(mire);

@@ -71,23 +71,30 @@ void Operation::ope_color(dat::base::Entity* entity){
   std::vector<float>& vec_I = utl_attribut->get_field_data(&entity->data, "I");
 
   //If color
-  if(entity->data.rgb.size() != 0){
+  if(entity->data.rgba.size() != 0) return;
+  else if(entity->data.rgb.size() != 0){
+    entity->data.rgba.resize(entity->data.rgb.size(), glm::vec4(0, 0, 0, 0));
+
     for(int i=0; i<entity->data.rgb.size(); i++){
       glm::vec3& rgb = entity->data.rgb[i];
-      entity->data.rgba.push_back(glm::vec4(rgb.x, rgb.y, rgb.z, 1));
+      entity->data.rgba[i] = glm::vec4(rgb.x, rgb.y, rgb.z, 1);
     }
   }
   //Else if intensity
   else if(vec_I.size() != 0){
+    entity->data.rgba.resize(entity->data.rgb.size(), glm::vec4(0, 0, 0, 0));
+
     for(int i=0; i<vec_I.size(); i++){
       float& Is = vec_I[i];
-      entity->data.rgba.push_back(glm::vec4(Is, Is, Is, 1));
+      entity->data.rgba[i] = glm::vec4(Is, Is, Is, 1);
     }
   }
   //Else fill with white
   else{
+    entity->data.rgba.resize(entity->data.rgb.size(), glm::vec4(0, 0, 0, 0));
+
     for(int i=0; i<entity->data.xyz.size(); i++){
-      entity->data.rgba.push_back(glm::vec4(1, 1, 1, 1));
+      entity->data.rgba[i] = glm::vec4(1, 1, 1, 1);
     }
   }
 

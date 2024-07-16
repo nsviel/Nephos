@@ -40,6 +40,8 @@ void Binary::parse_binary(io::importer::Configuration* config, dat::base::Object
   //Store result
   object->data.xyz = buffer.xyz;
   object->data.Nxyz = buffer.Nxyz;
+  object->data.rgb = buffer.rgb;
+  object->data.rgba = buffer.rgba;
   object->data.size = buffer.xyz.size();
   utl_attribut->set_field_data(&object->data, "I", buffer.Is);
 
@@ -125,7 +127,10 @@ void Binary::parse_vertex_little_endian(io::importer::Configuration* config, std
   if(get_property_id(config, io::importer::TS) != -1) buffer.ts.resize(config->nb_vertex, 0);
   if(get_property_id(config, io::importer::I) != -1) buffer.Is.resize(config->nb_vertex, 0);
   if(get_property_id(config, io::importer::NXYZ) != -1) buffer.Nxyz.resize(config->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(config, io::importer::RGB) != -1) buffer.rgb.resize(config->nb_vertex, glm::vec4(0,0,0,0));
+  if(get_property_id(config, io::importer::RGB) != -1){
+    buffer.rgb.resize(config->nb_vertex, glm::vec3(0, 0, 0));
+    buffer.rgba.resize(config->nb_vertex, glm::vec4(0, 0, 0, 0));
+  }
 
   //Insert data in the adequate std::vector
   //#pragma omp parallel for
@@ -150,6 +155,7 @@ void Binary::parse_vertex_little_endian(io::importer::Configuration* config, std
           float blue = block_vec[j+2][i] / 255;
           glm::vec4 rgb = glm::vec4(red, green, blue, 1.0f);
           buffer.rgb[i] = rgb;
+          buffer.rgba[i] = rgb;
           break;
         }
         case io::importer::I:{ //Intensity

@@ -30,6 +30,7 @@ void Ascii::parse_ascii(io::importer::Configuration* ply_struct, dat::base::Obje
   //Store result
   object->data.xyz = buffer.xyz;
   object->data.Nxyz = buffer.Nxyz;
+  object->data.rgb = buffer.rgb;
   object->data.size = buffer.xyz.size();
   utl_attribut->set_field_data(&object->data, "I", buffer.Is);
 
@@ -79,6 +80,12 @@ void Ascii::parse_vertex(io::importer::Configuration* ply_struct, std::ifstream&
     int id_nx = get_property_id(ply_struct, io::importer::NXYZ);
     if(id_nx != -1){
       buffer.Nxyz.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
+    }
+
+    //Color
+    int id_rgb = get_property_id(ply_struct, io::importer::RGB);
+    if(id_rgb != -1){
+      buffer.rgb.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
     }
 
     //Intensity
