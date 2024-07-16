@@ -15,22 +15,9 @@ Attribut::Attribut(){
 Attribut::~Attribut(){}
 
 //Subfunction
-void Attribut::set_field_data(utl::base::Data* data, std::string name, std::vector<float>& vec){
-  //---------------------------
-
-  this->create_field(data, name);
-  utl::base::Field* field = get_field(data, name);
-
-  if(field){
-    field->data = vec;
-  }
-
-  //---------------------------
-}
 std::vector<float>& Attribut::get_field_data(utl::base::Data* data, std::string name){
   //---------------------------
 
-  this->create_field(data, name);
   utl::base::Field* field = get_field(data, name);
 
   // Check if field is nullptr
@@ -41,6 +28,47 @@ std::vector<float>& Attribut::get_field_data(utl::base::Data* data, std::string 
 
   //---------------------------
   return field->data;
+}
+utl::base::Field* Attribut::get_field(utl::base::Data* data, std::string name){
+  //---------------------------
+
+  //Check if field is already present
+  for(int i=0; i<data->vec_field.size(); i++){
+    utl::base::Field& field = data->vec_field[i];
+    if(field.name == name) return &field;
+  }
+
+  //If not found, create it
+  this->create_field(data, name);
+
+  //Remade research
+  for(int i=0; i<data->vec_field.size(); i++){
+    utl::base::Field& field = data->vec_field[i];
+    if(field.name == name) return &field;
+  }
+
+  //---------------------------
+  return nullptr;
+}
+glm::vec2 Attribut::get_field_range(utl::base::Data* data, std::string name){
+  //---------------------------
+
+  utl::base::Field* field = get_field(data, name);
+  glm::vec2 range = glm::vec2(std::min(field->data), std::max(field->data));
+
+  //---------------------------
+  return range;
+}
+void Attribut::set_field_data(utl::base::Data* data, std::string name, std::vector<float>& vec){
+  //---------------------------
+
+  utl::base::Field* field = get_field(data, name);
+
+  if(field){
+    field->data = vec;
+  }
+
+  //---------------------------
 }
 void Attribut::create_field(utl::base::Data* data, std::string name){
   //---------------------------
@@ -58,18 +86,7 @@ void Attribut::create_field(utl::base::Data* data, std::string name){
 
   //---------------------------
 }
-utl::base::Field* Attribut::get_field(utl::base::Data* data, std::string name){
-  //---------------------------
 
-  //Check if field is already present
-  for(int i=0; i<data->vec_field.size(); i++){
-    utl::base::Field& field = data->vec_field[i];
-    if(field.name == name) return &field;
-  }
-
-  //---------------------------
-  return nullptr;
-}
 
 
 }

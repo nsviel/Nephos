@@ -147,8 +147,10 @@ float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, float& R){
 
 //Normalization
 void normalize(std::vector<float>& vec){
-  int size = vec.size();
   //-----------------------------
+
+  int size = vec.size();
+  if(size == 0) return;
 
   //Retrieve min & max
   float min = vec[0];
