@@ -15,6 +15,7 @@ struct Configuration{
   std::string path = "";
   glm::mat4 mat_model;
   glm::mat3 mat_rotation;
+  bool with_transformation = false;
   bool with_colorization = false;
   int nb_vertex = 0;
 
