@@ -45,6 +45,7 @@ void Button::button_visibility(dat::base::Set* set){
 
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+  ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));
 
   //Is is visible
   if(set->is_visible){
@@ -61,7 +62,7 @@ void Button::button_visibility(dat::base::Set* set){
     }
   }
 
-  ImGui::PopStyleColor(2);
+  ImGui::PopStyleColor(3);
 
   //---------------------------
 }
@@ -70,6 +71,7 @@ void Button::button_visibility(dat::base::Entity* entity){
 
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+  ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));
 
   //Is is visible
   if(entity->data.is_visible){
@@ -86,7 +88,7 @@ void Button::button_visibility(dat::base::Entity* entity){
     }
   }
 
-  ImGui::PopStyleColor(2);
+  ImGui::PopStyleColor(3);
 
   //---------------------------
 }
@@ -95,11 +97,14 @@ void Button::button_remove(dat::base::Set* set, dat::base::Entity* entity){
 
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+  ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));
+
   std::string tag = std::string(ICON_FA_XMARK) + "##" + std::to_string(entity->UID);
   if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){
     dat_set->remove_entity(set, entity);
   }
-  ImGui::PopStyleColor(2);
+
+  ImGui::PopStyleColor(3);
 
   //---------------------------
 }
@@ -108,11 +113,14 @@ void Button::button_remove(dat::base::Set* set){
 
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
   ImGui::PushStyleColor(ImGuiCol_Border, ImVec4(0, 0, 0, 0));
+  ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));
+
   std::string tag = std::string(ICON_FA_XMARK) + "##" + std::to_string(set->UID);
   if(ImGui::SmallButton(tag.c_str())){
     dat_set->remove_all_entity(set);
   }
-  ImGui::PopStyleColor(2);
+
+  ImGui::PopStyleColor(3);
 
   //---------------------------
 }
