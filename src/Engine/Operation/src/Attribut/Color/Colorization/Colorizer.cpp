@@ -34,28 +34,12 @@ void Colorizer::make_colorization(dat::base::Entity* entity, ope::color::Configu
       this->colorization_unicolor(entity, config);
       break;
     }
-    case ope::color::INTENSITY:{
+    case ope::color::LOCATION:{
       this->colorization_intensity(entity, config);
-      break;
-    }
-    case ope::color::INTENSITY_INV:{
-      this->colorization_intensity_inv(entity, config);
-      break;
-    }
-    case ope::color::INTENSITY_COR:{
-      this->colorization_intensity_cor(entity, config);
-      break;
-    }
-    case ope::color::INTENSITY_CAL:{
-      this->colorization_intensity_cal(entity, config);
       break;
     }
     case ope::color::NORMAL:{
       this->colorization_normal(entity, config);
-      break;
-    }
-    case ope::color::INCIDENCE_ANGLE:{
-      this->colorization_incidence_angle(entity, config);
       break;
     }
     case ope::color::HEATMAP:{

@@ -6,15 +6,10 @@ namespace ope::color{
 enum Mode{
   RGB = 0,
   UNICOLOR = 1,
-  INTENSITY = 2,
-  INTENSITY_INV = 3,
-  INTENSITY_COR = 4,
-  INTENSITY_CAL = 5,
-  LOCATION = 6,
-  NORMAL = 7,
-  INCIDENCE_ANGLE = 8,
-  HEATMAP = 9,
-  STRUCTURE = 10,
+  LOCATION = 2,
+  NORMAL = 3,
+  STRUCTURE = 4,
+  HEATMAP = 5,
 };
 
 }
