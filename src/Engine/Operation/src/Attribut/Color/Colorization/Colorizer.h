@@ -28,8 +28,8 @@ public:
   void colorization_unicolor(dat::base::Entity* entity);
   void colorization_normal(dat::base::Entity* entity);
   void colorization_field(dat::base::Entity* entity);
-  void colorization_heatmap(dat::base::Entity* entity);
   void colorization_structure(dat::base::Entity* entity);
+  void colorization_heatmap(dat::base::Entity* entity);
 
 private:
   ope::Structure* ope_struct;

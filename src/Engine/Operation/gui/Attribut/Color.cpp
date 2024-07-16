@@ -161,7 +161,6 @@ void Color::mode_field_option(utl::base::Element* element){
     glm::vec2 range = utl_attribut->get_field_range(&entity->data, ope_struct->attribut.color.field);
     float sensitivity = (range.y - range.x) / 100.0f;
     ImGui::DragFloatRange2("Range##321", &ope_struct->attribut.color.range.x, &ope_struct->attribut.color.range.y, sensitivity, range.x, range.y, "%.2f", "%.2f");
-
   }
 
   //---------------------------
@@ -170,21 +169,8 @@ void Color::mode_field_option(utl::base::Element* element){
 void Color::mode_option(utl::base::Element* element){
   //---------------------------
 
-/*
-  //Intensity cursor
-  if(mode == ope::color::INTENSITY || mode == ope::color::INTENSITY_INV || mode == ope::color::HEATMAP && heatmap == ope::heatmap::INTENSITY){
-    ImGui::Separator();
-    ImGui::SetNextItemWidth(100);
-    ImGui::SliderInt("I diviser", &ope_struct->attribut.intensity.diviser, 1, 10000);
-  }
-*/
 
-  if(ope_struct->attribut.heatmap.mode != ope::heatmap::HEIGHT) return;
-  //Height heatmap
-  float min = -10;
-  float max = 10;
-  ImGui::SetNextItemWidth(125);
-  ImGui::DragFloatRange2("Z##321", &ope_struct->attribut.color.range.x, &ope_struct->attribut.color.range.y, 0.1f, min, max, "%.1f", "%.1f");
+
 
   //---------------------------
 }

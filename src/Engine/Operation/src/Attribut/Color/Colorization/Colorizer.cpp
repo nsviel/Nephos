@@ -43,12 +43,12 @@ void Colorizer::make_colorization(dat::base::Entity* entity){
       this->colorization_field(entity);
       break;
     }
-    case ope::color::HEATMAP:{
-      this->colorization_heatmap(entity);
-      break;
-    }
     case ope::color::STRUCTURE:{
       this->colorization_structure(entity);
+      break;
+    }
+    case ope::color::HEATMAP:{
+      this->colorization_heatmap(entity);
       break;
     }
   }
@@ -114,38 +114,6 @@ void Colorizer::colorization_field(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorizer::colorization_heatmap(dat::base::Entity* entity){
-  //---------------------------
-/*
-  switch(ope_struct->attribut.heatmap.mode){
-    case ope::heatmap::INTENSITY:{
-      ope_heatmap->heatmap_intensity(entity, config.intensity_diviser);
-      break;
-    }
-    case ope::heatmap::INTENSITY_COR:{
-      ope_heatmap->heatmap_intensity_cor(entity);
-      break;
-    }
-    case ope::heatmap::INTENSITY_CAL:{
-      ope_heatmap->heatmap_intensity_cal(entity);
-      break;
-    }
-    case ope::heatmap::INCIDENCE_ANGLE:{
-      ope_heatmap->heatmap_incidence_angle(entity);
-      break;
-    }
-    case ope::heatmap::HEIGHT:{
-      ope_heatmap->heatmap_height(entity, config.heatmap_range_height);
-      break;
-    }
-    case ope::heatmap::RANGE:{
-      ope_heatmap->heatmap_range(entity);
-      break;
-    }
-  }
-*/
-  //---------------------------
-}
 void Colorizer::colorization_structure(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
@@ -189,6 +157,38 @@ void Colorizer::colorization_structure(dat::base::Entity* entity){
     }
   }
 
+  //---------------------------
+}
+void Colorizer::colorization_heatmap(dat::base::Entity* entity){
+  //---------------------------
+/*
+  switch(ope_struct->attribut.heatmap.mode){
+    case ope::heatmap::INTENSITY:{
+      ope_heatmap->heatmap_intensity(entity, config.intensity_diviser);
+      break;
+    }
+    case ope::heatmap::INTENSITY_COR:{
+      ope_heatmap->heatmap_intensity_cor(entity);
+      break;
+    }
+    case ope::heatmap::INTENSITY_CAL:{
+      ope_heatmap->heatmap_intensity_cal(entity);
+      break;
+    }
+    case ope::heatmap::INCIDENCE_ANGLE:{
+      ope_heatmap->heatmap_incidence_angle(entity);
+      break;
+    }
+    case ope::heatmap::HEIGHT:{
+      ope_heatmap->heatmap_height(entity, config.heatmap_range_height);
+      break;
+    }
+    case ope::heatmap::RANGE:{
+      ope_heatmap->heatmap_range(entity);
+      break;
+    }
+  }
+*/
   //---------------------------
 }
 
