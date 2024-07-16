@@ -2,7 +2,7 @@
 
 #include <Operation/Namespace.h>
 #include <Data/Namespace.h>
-#include <Utility/Specific/Color.h>
+#include <Utility/Element/Color/Namespace.h>
 
 
 namespace ope::tree{

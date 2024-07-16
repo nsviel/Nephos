@@ -119,7 +119,7 @@ void Colorizer::colorization_structure(dat::base::Entity* entity){
   //---------------------------
 
   // Define a color gradient from red to blue
-  std::vector<glm::vec3>& colormap = ope::colormap::viridis_long;
+  std::vector<glm::vec3>& colormap = utl::colormap::viridis_long;
 
   // Calculate the step size for color interpolation along rows and columns
   float row_step = 1.0f / (data->height - 1);

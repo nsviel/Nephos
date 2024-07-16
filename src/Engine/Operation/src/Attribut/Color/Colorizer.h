@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Operation/src/Attribut/Color/Colormap/Namespace.h>
+#include <Utility/Element/Color/Namespace.h>
 #include <glm/glm.hpp>
 
 namespace ope{class Node;}

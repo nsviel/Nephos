@@ -1,9 +1,12 @@
-#include "Magma.h"
+#pragma once
+
+#include <glm/glm.hpp>
+#include <vector>
 
 
 namespace ope::colormap{
 
-std::vector<glm::vec3> magma = {
+inline std::vector<glm::vec3> magma = {
   glm::vec3(0.001462, 0.000466, 0.013866), glm::vec3(0.043830, 0.033830, 0.141886),
   glm::vec3(0.232077, 0.059889, 0.437695), glm::vec3(0.439062, 0.120298, 0.506555),
   glm::vec3(0.620005, 0.183840, 0.497524), glm::vec3(0.804752, 0.249911, 0.442102),

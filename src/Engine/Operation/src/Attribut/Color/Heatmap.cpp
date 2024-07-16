@@ -33,7 +33,7 @@ void Heatmap::compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& 
   }
 
   //Compute heatmap from input vector
-  std::vector<glm::vec3>& colormap = ope::colormap::viridis_long;
+  std::vector<glm::vec3>& colormap = utl::colormap::viridis_long;
   const size_t colormap_size = colormap.size();
 
   #pragma omp parallel for

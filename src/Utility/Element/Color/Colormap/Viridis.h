@@ -1,14 +1,12 @@
 #pragma once
 
-#include <map>
-#include <string>
-#include <vector>
 #include <glm/glm.hpp>
+#include <vector>
 
 
 namespace utl::colormap{
 
-inline const std::vector<glm::vec3> viridis_short = {
+inline std::vector<glm::vec3> viridis_short = {
   glm::vec3(0.0f),
   glm::vec3(0.267004, 0.004874, 0.329415), glm::vec3(0.252194, 0.269783, 0.531579),
   glm::vec3(0.180629, 0.429975, 0.557282), glm::vec3(0.133743, 0.548535, 0.553541),
@@ -16,7 +14,7 @@ inline const std::vector<glm::vec3> viridis_short = {
   glm::vec3(0.575563, 0.844566, 0.256415), glm::vec3(0.993248, 0.906157, 0.143936)
 };
 
-inline const std::vector<glm::vec3> viridis_long = {
+inline std::vector<glm::vec3> viridis_long = {
   glm::vec3(0.0f),
   glm::vec3(68.0f/255.0f, 1.0f/255.0f, 84.0f/255.0f),
   glm::vec3(71.0f/255.0f, 13.0f/255.0f, 96.0f/255.0f),
@@ -49,14 +47,6 @@ inline const std::vector<glm::vec3> viridis_long = {
   glm::vec3(234.0f/255.0f, 229.0f/255.0f, 26.0f/255.0f),
   glm::vec3(234.0f/255.0f, 229.0f/255.0f, 26.0f/255.0f),
   glm::vec3(253.0f/255.0f, 231.0f/255.0f, 37.0f/255.0f)
-};
-
-inline const std::vector<glm::vec3> magma = {
-  glm::vec3(0.001462, 0.000466, 0.013866), glm::vec3(0.043830, 0.033830, 0.141886),
-  glm::vec3(0.232077, 0.059889, 0.437695), glm::vec3(0.439062, 0.120298, 0.506555),
-  glm::vec3(0.620005, 0.183840, 0.497524), glm::vec3(0.804752, 0.249911, 0.442102),
-  glm::vec3(0.953099, 0.397563, 0.361438), glm::vec3(0.993326, 0.602275, 0.414390),
-  glm::vec3(0.995131, 0.827052, 0.585701), glm::vec3(0.987053, 0.991438, 0.749504)
 };
 
 }

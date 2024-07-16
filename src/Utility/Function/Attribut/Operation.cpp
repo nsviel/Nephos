@@ -1,19 +1,19 @@
 #include "Operation.h"
 
+#include <Utility/Function/Math/Operation.h>
+
 
 namespace attribut{
 
 void compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& rgba){
   if(v_in.size() == 0) return;
   //---------------------------
-
+/*
   //Normalization of the input vector
-  if(is_normalization){
-    math::normalize(v_in, -1);
-  }
+  math::normalize(v_in, -1);
 
   //Compute heatmap from input vector
-  std::vector<glm::vec3>& colormap = ope::colormap::viridis_long;
+  std::vector<glm::vec3>& colormap = utl::colormap::viridis_long;
   const size_t colormap_size = colormap.size();
 
   #pragma omp parallel for
@@ -35,7 +35,7 @@ void compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& rgba){
 
     rgba[i] = color;
   }
-
+*/
   //---------------------------
 }
 

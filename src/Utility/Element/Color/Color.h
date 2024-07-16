@@ -12,18 +12,6 @@
 #define color_a3 "#00828f"
 #define color_a4 "#149676"
 
-
-//AI class colors
-static std::map<std::string, glm::vec4> AI_color_dic = {
-  { "Car", glm::vec4(1.0f, 0.0f, 0.0f, 1.0f) },
-  { "Cyclist", glm::vec4(0.0f, 1.0f, 0.0f, 1.0f) },
-  { "Truck", glm::vec4(1.0f, 1.0f, 0.0f, 1.0f) },
-  { "Bus", glm::vec4(1.0f, 0.0f, 1.0f, 1.0f) },
-  { "Pedestrian", glm::vec4(0.0f, 0.0f, 1.0f, 1.0f) },
-  { "Default", glm::vec4(0.0f, 0.0f, 0.0f, 1.0f) }
-};
-
-
 //Nordic palette
 static glm::vec4 nord0 (0.180392, 0.203922, 0.25098, 1); //Dark
 static glm::vec4 nord1 (0.231373, 0.258824, 0.321569, 1); //Less dark
