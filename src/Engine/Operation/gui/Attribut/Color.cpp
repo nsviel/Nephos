@@ -13,6 +13,7 @@ Color::Color(ope::Node* node_operation){
 
   this->ope_struct = node_operation->get_ope_struct();
   this->ope_colorizer = new ope::color::Routine(node_operation);
+  this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
 }
@@ -137,12 +138,14 @@ void Color::mode_field_option(utl::base::Element* element){
     }
 
     static int selection = 0;
-    ImGui::SetNextItemWidth(100);
+    ImGui::SetNextItemWidth(150);
     if(ImGui::BeginCombo("##shader_combo_class", vec_field[selection].c_str())){
       for(int i=0; i<vec_field.size(); ++i){
         const bool is_selected = (selection == i);
         if(ImGui::Selectable(vec_field[i].c_str(), is_selected)){
           ope_struct->attribut.color.field = vec_field[i];
+          ope_struct->attribut.color.range = utl_attribut->get_field_range(&entity->data, vec_field[i]);
+          selection = i;
         }
 
         if(is_selected){
@@ -152,6 +155,13 @@ void Color::mode_field_option(utl::base::Element* element){
 
       ImGui::EndCombo();
     }
+
+    //Range
+    ImGui::SetNextItemWidth(150);
+    glm::vec2 range = utl_attribut->get_field_range(&entity->data, ope_struct->attribut.color.field);
+    float sensitivity = (range.y - range.x) / 100.0f;
+    ImGui::DragFloatRange2("Range##321", &ope_struct->attribut.color.range.x, &ope_struct->attribut.color.range.y, sensitivity, range.x, range.y, "%.2f", "%.2f");
+
   }
 
   //---------------------------

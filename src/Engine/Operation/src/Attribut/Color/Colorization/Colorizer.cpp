@@ -104,7 +104,7 @@ void Colorizer::colorization_field(dat::base::Entity* entity){
   //Normalization
   std::vector<float>& vec_field = utl_attribut->get_field_data(data, ope_struct->attribut.color.field);
   std::vector<float> field = vec_field;
-  math::normalize(field);
+  math::normalize(field, ope_struct->attribut.color.range);
 
   //Set to color
   for(int i=0; i<field.size(); i++){

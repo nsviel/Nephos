@@ -5,6 +5,7 @@ namespace ope{class Structure;}
 namespace ope::color{class Routine;}
 namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
+namespace utl::base{class Attribut;}
 
 
 namespace ope::gui{
@@ -29,6 +30,7 @@ public:
 private:
   ope::Structure* ope_struct;
   ope::color::Routine* ope_colorizer;
+  utl::base::Attribut* utl_attribut;
 };
 
 }

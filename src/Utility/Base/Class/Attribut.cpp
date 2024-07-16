@@ -53,8 +53,15 @@ utl::base::Field* Attribut::get_field(utl::base::Data* data, std::string name){
 glm::vec2 Attribut::get_field_range(utl::base::Data* data, std::string name){
   //---------------------------
 
+  //Get data
   utl::base::Field* field = get_field(data, name);
-  glm::vec2 range = glm::vec2(std::min(field->data), std::max(field->data));
+  std::vector<float>& vec_data = field->data;
+  if(vec_data.size() == 0) return glm::vec2(0, 0);
+
+  //Get range
+  float min = *std::min_element(vec_data.begin(), vec_data.end());
+  float max = *std::max_element(vec_data.begin(), vec_data.end());
+  glm::vec2 range = glm::vec2(min, max);
 
   //---------------------------
   return range;
