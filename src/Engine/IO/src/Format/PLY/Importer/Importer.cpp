@@ -31,35 +31,35 @@ utl::base::Element* Importer::import(utl::base::Path path){
   object->data.path.format = format;
 
   //Header
-  io::importer::Configuration ply_struct;
-  ply_struct.path = path.build();
-  if(!parse_header(ply_struct)) return nullptr;
+  io::importer::Configuration config;
+  config.path = path.build();
+  if(!parse_header(config)) return nullptr;
 
   //Parsing
-  switch(ply_struct.encoding){
+  switch(config.encoding){
     case io::importer::ASCII:{
-      ply_ascii->parse_ascii(&ply_struct, object);
+      ply_ascii->parse_ascii(&config, object);
       break;
     }
     case io::importer::BINARY_LITTLE_ENDIAN:
     case io::importer::BINARY_BIG_ENDIAN:{
-      ply_binary->parse_binary(&ply_struct, object);
+      ply_binary->parse_binary(&config, object);
       break;
     }
   }
 
-  object->data.topology.type = ply_struct.topology;
+  object->data.topology.type = config.topology;
 
   //---------------------------
   return object;
 }
 
 //Header
-bool Importer::parse_header(io::importer::Configuration& ply_struct){
+bool Importer::parse_header(io::importer::Configuration& config){
   //---------------------------
 
   //Init
-  std::ifstream file(ply_struct.path);
+  std::ifstream file(config.path);
 
   // Separate the header
   std::string line, h1, h2, h3, h4;
@@ -71,20 +71,20 @@ bool Importer::parse_header(io::importer::Configuration& ply_struct){
 
     //Retrieve format
     if(h1 == "format"){
-      this->parse_header_format(ply_struct, h2);
+      this->parse_header_format(config, h2);
     }
     //Retrieve number of point
     else if(h1 + h2 == "elementvertex"){
-      if(!parse_header_size(ply_struct, h3)) return false;
+      if(!parse_header_size(config, h3)) return false;
     }
     //Retrieve property
     else if(h1 == "property" && vertex_ended == false){
-      this->parse_header_property(ply_struct, h2, h3);
+      this->parse_header_property(config, h2, h3);
     }
     //Retrieve property
     else if(h1 + h2 == "elementface"){
       vertex_ended = true;
-      ply_struct.nb_face = std::stoi(h3);
+      config.nb_face = std::stoi(h3);
     }
 
   }while(line.find("end_header") != 0);
@@ -92,19 +92,17 @@ bool Importer::parse_header(io::importer::Configuration& ply_struct){
   //---------------------------
   return true;
 }
-void Importer::parse_header_format(io::importer::Configuration& ply_struct, std::string format){
+void Importer::parse_header_format(io::importer::Configuration& config, std::string format){
   //---------------------------
 
-  if(format == "ascii") ply_struct.encoding = io::importer::ASCII;
-  else if(format == "binary_little_endian") ply_struct.encoding = io::importer::BINARY_LITTLE_ENDIAN;
-  else if(format == "binary_big_endian") ply_struct.encoding = io::importer::BINARY_BIG_ENDIAN;
-  else{
-    std::cout<<"[warning] Unknown format: "<<format<<std::endl;
-  }
+  if(format == "ascii") config.encoding = io::importer::ASCII;
+  else if(format == "binary_little_endian") config.encoding = io::importer::BINARY_LITTLE_ENDIAN;
+  else if(format == "binary_big_endian") config.encoding = io::importer::BINARY_BIG_ENDIAN;
+  else std::cout<<"[warning] Unknown format: "<<format<<std::endl;
 
   //---------------------------
 }
-bool Importer::parse_header_size(io::importer::Configuration& ply_struct, std::string value){
+bool Importer::parse_header_size(io::importer::Configuration& config, std::string value){
   //---------------------------
 
   int nb_vertex = std::stoi(value);
@@ -112,12 +110,12 @@ bool Importer::parse_header_size(io::importer::Configuration& ply_struct, std::s
     std::cout<<"[error] ply file number vertex wrong"<<std::endl;
     return false;
   }
-  ply_struct.nb_vertex = nb_vertex;
+  config.nb_vertex = nb_vertex;
 
   //---------------------------
   return true;
 }
-void Importer::parse_header_property(io::importer::Configuration& ply_struct, std::string type, std::string field){
+void Importer::parse_header_property(io::importer::Configuration& config, std::string type, std::string field){
   io::importer::Property property;
   //---------------------------
 
@@ -145,7 +143,7 @@ void Importer::parse_header_property(io::importer::Configuration& ply_struct, st
   }
 
   //Store property
-  ply_struct.vec_property.push_back(property);
+  config.vec_property.push_back(property);
 
   //---------------------------
 }
