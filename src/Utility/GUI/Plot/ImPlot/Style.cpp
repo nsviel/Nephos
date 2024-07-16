@@ -1,7 +1,7 @@
 #include "Style.h"
 
 #include <Utility/Specific/Colormap.h>
-#include <Utility/Function/Math/Casting.h>
+#include <Utility/Function/Type/Casting.h>
 
 
 namespace utl::implot{
@@ -61,7 +61,7 @@ void Style::make_custom_colormap(){
   //---------------------------
 
   if(heatmap == -1){
-    std::vector<ImU32> data = utl::casting::vec_vec3_to_ImU32(utl::colormap::viridis_long);
+    std::vector<ImU32> data = type::vec_vec3_to_ImU32(utl::colormap::viridis_long);
 
     heatmap = ImPlot::AddColormap("Heatmap", data.data(), data.size());
   }

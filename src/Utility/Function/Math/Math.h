@@ -38,10 +38,7 @@ float calculate_angle(const glm::vec3& v1, const glm::vec3& v2);
 bool normal_same_sense(const glm::vec3& v1, const glm::vec3& v2);
 
 //Conversion
-float degree_to_radian(float degree);
-float radian_to_degree(float radian);
-glm::vec3 degree_to_radian(glm::vec3 degree);
-glm::vec3 radian_to_degree_vec3(glm::vec3 radian);
+
 
 //Checker
 bool is_nan(glm::vec3 vec);

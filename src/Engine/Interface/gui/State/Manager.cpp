@@ -90,7 +90,7 @@ void Manager::gui(){
   //Load GUI state
   ImGui::SetNextItemWidth(120);
   int idx = gui_logic->get_idx_path_current();
-  std::vector<const char*> vec_file_cchar = utl::casting::vec_str_to_cchar(sta_struct->vec_file);
+  std::vector<const char*> vec_file_cchar = type::vec_str_to_cchar(sta_struct->vec_file);
   if(ImGui::Combo("##imgui_init_states", &idx, vec_file_cchar.data(), vec_file_cchar.size())){
     std::string filename = (std::string)vec_file_cchar[idx];
     sta_struct->path_save.insert_filename(filename);

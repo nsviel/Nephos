@@ -43,7 +43,7 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 COM, glm::ve
   if(!pose->is_movable) return;
   //---------------------------
 
-  glm::vec3 radian = math::degree_to_radian(degree);
+  glm::vec3 radian = type::degree_to_radian(degree);
   glm::mat4 rotation = get_rotation_mat(radian);
   glm::mat4 COM_mat = get_translation_mat_neye(COM);
   glm::mat4 root_mat = get_translation_mat_neye(pose->root);
@@ -65,7 +65,7 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 degree){
   //---------------------------
 
   glm::vec3& COM = pose->COM;
-  glm::vec3 radian = math::degree_to_radian(degree);
+  glm::vec3 radian = type::degree_to_radian(degree);
   glm::mat4 rotation = get_rotation_mat(radian);
   glm::mat4 COM_mat = get_translation_mat_neye(COM);
 
@@ -104,7 +104,7 @@ void Transformation::make_rotation_axe_X(utl::base::Pose* pose, float degree){
   if(!pose->is_movable) return;
   //---------------------------
 
-  float radian = math::degree_to_radian(degree);
+  float radian = type::degree_to_radian(degree);
 
   // Matrice de rotation locale autour de l'axe x
   glm::mat4 rotationMatrixXLocal = glm::rotate(glm::mat4(1.0f), radian, glm::vec3(1.0f, 0.0f, 0.0f));

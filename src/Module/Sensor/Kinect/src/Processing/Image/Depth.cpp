@@ -49,7 +49,7 @@ void Depth::retrieve_data(k4n::base::Sensor* sensor){
   sensor->depth.data.format = retrieve_format(depth.get_format());
   sensor->depth.data.temperature = sensor->device.capture->get_temperature_c();
   sensor->depth.data.timestamp = static_cast<float>(depth.get_device_timestamp().count() / 1000000.0f);
-  utl::casting::uint8_to_vec_uint16(sensor->depth.data.buffer, sensor->depth.data.size, sensor->buffer_depth);
+  type::uint8_to_vec_uint16(sensor->depth.data.buffer, sensor->depth.data.size, sensor->buffer_depth);
 
   //---------------------------
 }

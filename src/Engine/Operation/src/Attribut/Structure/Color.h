@@ -12,7 +12,7 @@ struct Color{
 
   glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
   glm::vec2 range = glm::vec2(0, 5);
-  std::string field = "";
+  std::string field = "I";
   int mode = ope::color::RGB;
 
   //---------------------------

@@ -384,46 +384,7 @@ bool normal_same_sense(const glm::vec3& v1, const glm::vec3& v2){
 }
 
 //Conversion
-float degree_to_radian(float degree){
-  float radian;
-  //---------------------------
 
-  radian = degree * 3.14159265358979323846f / 180;
-
-  //---------------------------
-  return radian;
-}
-float radian_to_degree(float radian){
-  float degree;
-  //---------------------------
-
-  degree = (radian * 180) / 3.14159265358979323846f;
-
-  //---------------------------
-  return degree;
-}
-glm::vec3 degree_to_radian(glm::vec3 degree){
-  glm::vec3 radian;
-  //---------------------------
-
-  for(int i=0; i<3; i++){
-    radian[i] = degree[i] * 3.14159265358979323846f / 180;
-  }
-
-  //---------------------------
-  return radian;
-}
-glm::vec3 radian_to_degree_vec3(glm::vec3 radian){
-  glm::vec3 degree;
-  //---------------------------
-
-  for(int i=0; i<3; i++){
-    degree[i] = (radian[i] * 180) / 3.14159265358979323846f;
-  }
-
-  //---------------------------
-  return degree;
-}
 
 //Checker
 bool is_nan(glm::vec3 vec){
