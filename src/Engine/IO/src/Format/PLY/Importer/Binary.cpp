@@ -16,7 +16,7 @@ Binary::Binary(){
 Binary::~Binary(){}
 
 //Main function
-void Binary::parse_binary(fmt::ply::importer::Structure* ply_struct, dat::base::Object* object){
+void Binary::parse_binary(io::importer::Configuration* ply_struct, dat::base::Object* object){
   //---------------------------
 
   //Open file
@@ -62,7 +62,7 @@ void Binary::pass_header(std::ifstream& file){
 
   //---------------------------
 }
-void Binary::parse_vertex_little_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
+void Binary::parse_vertex_little_endian(io::importer::Configuration* ply_struct, std::ifstream& file){
   this->buffer = {};
   //---------------------------
 
@@ -77,7 +77,7 @@ void Binary::parse_vertex_little_endian(fmt::ply::importer::Structure* ply_struc
   block_vec.resize(ply_struct->vec_property.size(), std::vector<float>(ply_struct->nb_vertex));
   for(int i=0; i<ply_struct->nb_vertex; i++){
     for(int j=0; j<ply_struct->vec_property.size(); j++){
-      fmt::ply::Property* property = &ply_struct->vec_property[j];
+      io::importer::Property* property = &ply_struct->vec_property[j];
 
       switch(property->type){
         case fmt::ply::FLOAT32:{
@@ -131,7 +131,7 @@ void Binary::parse_vertex_little_endian(fmt::ply::importer::Structure* ply_struc
   //#pragma omp parallel for
   for(int i=0; i<ply_struct->nb_vertex; i++){
     for(int j=0; j<ply_struct->vec_property.size(); j++){
-      fmt::ply::Property* property = &ply_struct->vec_property[j];
+      io::importer::Property* property = &ply_struct->vec_property[j];
 
       switch(property->field){
         case fmt::ply::XYZ:{ //Location
@@ -169,7 +169,7 @@ void Binary::parse_vertex_little_endian(fmt::ply::importer::Structure* ply_struc
 
   //---------------------------
 }
-void Binary::parse_face_little_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
+void Binary::parse_face_little_endian(io::importer::Configuration* ply_struct, std::ifstream& file){
   if(ply_struct->nb_face == 0) return;
   //---------------------------
 
@@ -219,7 +219,7 @@ void Binary::parse_face_little_endian(fmt::ply::importer::Structure* ply_struct,
 
   //---------------------------
 }
-void Binary::parse_vertex_big_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
+void Binary::parse_vertex_big_endian(io::importer::Configuration* ply_struct, std::ifstream& file){
   this->buffer = {};
   //---------------------------
 
@@ -248,7 +248,7 @@ void Binary::parse_vertex_big_endian(fmt::ply::importer::Structure* ply_struct, 
   #pragma omp parallel for
   for(int i=0; i<ply_struct->nb_vertex; i++){
     for(int j=0; j<ply_struct->vec_property.size(); j++){
-      fmt::ply::Property* property = &ply_struct->vec_property[j];
+      io::importer::Property* property = &ply_struct->vec_property[j];
 
       switch(property->field){
         case fmt::ply::XYZ:{ //Location
@@ -273,7 +273,7 @@ void Binary::parse_vertex_big_endian(fmt::ply::importer::Structure* ply_struct, 
 
   //---------------------------
 }
-void Binary::parse_face_big_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
+void Binary::parse_face_big_endian(io::importer::Configuration* ply_struct, std::ifstream& file){
   if(ply_struct->nb_face == 0) return;
   //---------------------------
 
@@ -348,11 +348,11 @@ void Binary::reorder_by_timestamp(utl::base::Data* data){/*
 */
   //---------------------------
 }
-int Binary::get_property_id(fmt::ply::importer::Structure* ply_struct, fmt::ply::Field field){
+int Binary::get_property_id(io::importer::Configuration* ply_struct, fmt::ply::Field field){
   //---------------------------
 
   for(int i=0; i<ply_struct->vec_property.size(); i++){
-    fmt::ply::Property* property = &ply_struct->vec_property[i];
+    io::importer::Property* property = &ply_struct->vec_property[i];
 
     if(property->field == field){
       return i;

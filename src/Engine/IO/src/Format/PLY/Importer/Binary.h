@@ -3,6 +3,7 @@
 #include <IO/src/Format/PLY/Structure/Namespace.h>
 #include <IO/src/Import/Structure/Base.h>
 #include <IO/src/Import/Structure/Buffer.h>
+#include <IO/src/Import/Structure/Configuration.h>
 #include <Utility/Function/File/Path.h>
 #include <Utility/Function/Math/Operation.h>
 #include <glm/glm.hpp>
@@ -27,16 +28,16 @@ public:
 
 public:
   //Main function
-  void parse_binary(fmt::ply::importer::Structure* ply_struct, dat::base::Object* object);
+  void parse_binary(io::importer::Configuration* ply_struct, dat::base::Object* object);
 
   //Subfunction
   void pass_header(std::ifstream& file);
-  void parse_vertex_little_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
-  void parse_face_little_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
-  void parse_vertex_big_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
-  void parse_face_big_endian(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
+  void parse_vertex_little_endian(io::importer::Configuration* ply_struct, std::ifstream& file);
+  void parse_face_little_endian(io::importer::Configuration* ply_struct, std::ifstream& file);
+  void parse_vertex_big_endian(io::importer::Configuration* ply_struct, std::ifstream& file);
+  void parse_face_big_endian(io::importer::Configuration* ply_struct, std::ifstream& file);
   void reorder_by_timestamp(utl::base::Data* data);
-  int get_property_id(fmt::ply::importer::Structure* ply_struct, fmt::ply::Field field);
+  int get_property_id(io::importer::Configuration* ply_struct, fmt::ply::Field field);
 
   //Binary type
   float reverse_float(const float inFloat);

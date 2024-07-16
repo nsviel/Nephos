@@ -31,7 +31,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
   object->data.path.format = format;
 
   //Header
-  fmt::ply::importer::Structure ply_struct;
+  io::importer::Configuration ply_struct;
   ply_struct.path = path.build();
   if(!parse_header(ply_struct)) return nullptr;
 
@@ -55,7 +55,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
 }
 
 //Header
-bool Importer::parse_header(fmt::ply::importer::Structure& ply_struct){
+bool Importer::parse_header(io::importer::Configuration& ply_struct){
   //---------------------------
 
   //Init
@@ -92,7 +92,7 @@ bool Importer::parse_header(fmt::ply::importer::Structure& ply_struct){
   //---------------------------
   return true;
 }
-void Importer::parse_header_format(fmt::ply::importer::Structure& ply_struct, std::string format){
+void Importer::parse_header_format(io::importer::Configuration& ply_struct, std::string format){
   //---------------------------
 
   if(format == "ascii") ply_struct.encoding = fmt::ply::ASCII;
@@ -104,7 +104,7 @@ void Importer::parse_header_format(fmt::ply::importer::Structure& ply_struct, st
 
   //---------------------------
 }
-bool Importer::parse_header_size(fmt::ply::importer::Structure& ply_struct, std::string value){
+bool Importer::parse_header_size(io::importer::Configuration& ply_struct, std::string value){
   //---------------------------
 
   int nb_vertex = std::stoi(value);
@@ -117,8 +117,8 @@ bool Importer::parse_header_size(fmt::ply::importer::Structure& ply_struct, std:
   //---------------------------
   return true;
 }
-void Importer::parse_header_property(fmt::ply::importer::Structure& ply_struct, std::string type, std::string field){
-  fmt::ply::Property property;
+void Importer::parse_header_property(io::importer::Configuration& ply_struct, std::string type, std::string field){
+  io::importer::Property property;
   //---------------------------
 
   //Property type

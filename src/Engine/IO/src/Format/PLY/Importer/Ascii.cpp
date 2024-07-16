@@ -16,7 +16,7 @@ Ascii::Ascii(){
 Ascii::~Ascii(){}
 
 //Main function
-void Ascii::parse_ascii(fmt::ply::importer::Structure* ply_struct, dat::base::Object* object){
+void Ascii::parse_ascii(io::importer::Configuration* ply_struct, dat::base::Object* object){
   //---------------------------
 
   //Open file
@@ -52,7 +52,7 @@ void Ascii::pass_header(std::ifstream& file){
 
   //---------------------------
 }
-void Ascii::parse_vertex(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
+void Ascii::parse_vertex(io::importer::Configuration* ply_struct, std::ifstream& file){
   this->buffer = {};
   //---------------------------
 
@@ -90,7 +90,7 @@ void Ascii::parse_vertex(fmt::ply::importer::Structure* ply_struct, std::ifstrea
 
   //---------------------------
 }
-void Ascii::parse_face(fmt::ply::importer::Structure* ply_struct, std::ifstream& file){
+void Ascii::parse_face(io::importer::Configuration* ply_struct, std::ifstream& file){
   if(ply_struct->nb_face == 0) return;
   //---------------------------
 
@@ -139,11 +139,11 @@ void Ascii::parse_face(fmt::ply::importer::Structure* ply_struct, std::ifstream&
 
   //---------------------------
 }
-int Ascii::get_property_id(fmt::ply::importer::Structure* ply_struct, fmt::ply::Field field){
+int Ascii::get_property_id(io::importer::Configuration* ply_struct, fmt::ply::Field field){
   //---------------------------
 
   for(int i=0; i<ply_struct->vec_property.size(); i++){
-    fmt::ply::Property* property = &ply_struct->vec_property[i];
+    io::importer::Property* property = &ply_struct->vec_property[i];
 
     if(property->field == field){
       return i;

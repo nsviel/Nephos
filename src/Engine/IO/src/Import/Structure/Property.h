@@ -3,7 +3,7 @@
 #include <IO/src/Format/PLY/Structure/Enum.h>
 
 
-namespace fmt::ply{
+namespace io::importer{
 
 struct Property{
   fmt::ply::Field field;

@@ -3,6 +3,7 @@
 #include <IO/src/Format/PLY/Structure/Namespace.h>
 #include <IO/src/Import/Structure/Base.h>
 #include <IO/src/Import/Structure/Buffer.h>
+#include <IO/src/Import/Structure/Configuration.h>
 #include <Utility/Function/File/Path.h>
 #include <Utility/Function/Math/Operation.h>
 #include <glm/glm.hpp>
@@ -27,13 +28,13 @@ public:
 
 public:
   //Main function
-  void parse_ascii(fmt::ply::importer::Structure* ply_struct, dat::base::Object* object);
+  void parse_ascii(io::importer::Configuration* ply_struct, dat::base::Object* object);
 
   //Subfunction
   void pass_header(std::ifstream& file);
-  void parse_vertex(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
-  void parse_face(fmt::ply::importer::Structure* ply_struct, std::ifstream& file);
-  int get_property_id(fmt::ply::importer::Structure* ply_struct, fmt::ply::Field field);
+  void parse_vertex(io::importer::Configuration* ply_struct, std::ifstream& file);
+  void parse_face(io::importer::Configuration* ply_struct, std::ifstream& file);
+  int get_property_id(io::importer::Configuration* ply_struct, fmt::ply::Field field);
 
 private:
   utl::base::Attribut* utl_attribut;
