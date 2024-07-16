@@ -5,21 +5,20 @@
 
 namespace ope{class Node;}
 namespace ope{class Structure;}
-namespace ope::color{class Heatmap;}
 namespace utl::base{class Attribut;}
 namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Set;}
 
 
-namespace ope::color{
+namespace ope::attribut{
 
-class Colorizer
+class Color
 {
 public:
   //Constructor / Destructor
-  Colorizer(ope::Node* node_operation);
-  ~Colorizer();
+  Color(ope::Node* node_operation);
+  ~Color();
 
 public:
   //Main function
@@ -37,7 +36,6 @@ public:
 
 private:
   ope::Structure* ope_struct;
-  ope::color::Heatmap* ope_heatmap;
   utl::base::Attribut* utl_attribut;
 };
 

@@ -19,7 +19,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->dyn_normal = new dyn::cloud::Normal(node_dynamic);
   this->dyn_recorder = new dyn::cloud::Recorder(node_dynamic);
   this->dyn_radio = new dyn::cloud::Radiometry(node_dynamic);
-  this->ope_colorizer = new ope::color::Colorizer(node_operation);
+  this->ope_color = new ope::attribut::Color(node_operation);
 
   //---------------------------
 }
@@ -36,8 +36,8 @@ void Operation::run_operation(dyn::base::Sensor* sensor){
   //The troutine pose probleme, is faut qu'il soit dédié à un sensor
   //pour l'instant c'est la meme qqsoit le sensor
   //Du coup 2 playback = laggs
-  //ope_colorizer->start_task(sensor);
-  ope_colorizer->make_colorization(sensor);
+  //ope_color->start_task(sensor);
+  ope_color->make_colorization(sensor);
 
 
   //---------------------------

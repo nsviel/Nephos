@@ -1,14 +1,15 @@
 #include "Operation.h"
 
 #include <Utility/Function/Math/Operation.h>
+#include <Utility/Element/Color/Namespace.h>
 
 
-namespace attribut{
+namespace utl::attribut{
 
 void compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& rgba){
   if(v_in.size() == 0) return;
   //---------------------------
-/*
+
   //Normalization of the input vector
   math::normalize(v_in, -1);
 
@@ -35,7 +36,7 @@ void compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& rgba){
 
     rgba[i] = color;
   }
-*/
+
   //---------------------------
 }
 

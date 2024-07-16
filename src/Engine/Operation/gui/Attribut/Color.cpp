@@ -12,7 +12,7 @@ Color::Color(ope::Node* node_operation){
   //---------------------------
 
   this->ope_struct = node_operation->get_ope_struct();
-  this->ope_colorizer = new ope::color::Colorizer(node_operation);
+  this->ope_color = new ope::attribut::Color(node_operation);
   this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
@@ -42,36 +42,36 @@ void Color::color_mode(utl::base::Element* element){
   //First line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("RGB##colorization", &ope_struct->attribut.color.mode, ope::color::RGB)){
-    ope_colorizer->make_colorization(element);
+    ope_color->make_colorization(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("##unicolor", &ope_struct->attribut.color.mode, ope::color::UNICOLOR)){
-    ope_colorizer->make_colorization(element);
+    ope_color->make_colorization(element);
   }
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
   if(ImGui::ColorEdit4("##unicolor_choice", (float*)&ope_struct->attribut.color.unicolor, flags)){
-    ope_colorizer->make_colorization(element);
+    ope_color->make_colorization(element);
   }
 
   //Second line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("Nxyz##colorization", &ope_struct->attribut.color.mode, ope::color::NORMAL)){
-    ope_colorizer->make_colorization(element);
+    ope_color->make_colorization(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("Field##colorization", &ope_struct->attribut.color.mode, ope::color::FIELD)){
-    ope_colorizer->make_colorization(element);
+    ope_color->make_colorization(element);
   }
 
   //Third line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   if(ImGui::RadioButton("Heatmap##colorization", &ope_struct->attribut.color.mode, ope::color::HEATMAP)){
-    ope_colorizer->make_colorization(element);
+    ope_color->make_colorization(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("Structure##colorization", &ope_struct->attribut.color.mode, ope::color::STRUCTURE)){
-    ope_colorizer->make_colorization(element);
+    ope_color->make_colorization(element);
   }
 
   ImGui::EndTable();

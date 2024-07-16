@@ -1,25 +1,25 @@
-#include "Colorizer.h"
+#include "Color.h"
 
+#include <Utility/Function/Attribut/Operation.h>
 #include <Operation/Namespace.h>
 #include <Data/Namespace.h>
 
 
-namespace ope::color{
+namespace ope::attribut{
 
 //Constructor / Destructor
-Colorizer::Colorizer(ope::Node* node_operation){
+Color::Color(ope::Node* node_operation){
   //---------------------------
 
   this->ope_struct = node_operation->get_ope_struct();
-  this->ope_heatmap = new ope::color::Heatmap();
   this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
 }
-Colorizer::~Colorizer(){}
+Color::~Color(){}
 
 //Main function
-void Colorizer::make_colorization(utl::base::Element* element){
+void Color::make_colorization(utl::base::Element* element){
   //---------------------------
 
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
@@ -30,7 +30,7 @@ void Colorizer::make_colorization(utl::base::Element* element){
 
   //---------------------------
 }
-void Colorizer::make_colorization(dat::base::Set* set){
+void Color::make_colorization(dat::base::Set* set){
   //---------------------------
 
   for(int i=0; i<set->list_entity.size(); i++){
@@ -40,7 +40,7 @@ void Colorizer::make_colorization(dat::base::Set* set){
 
   //---------------------------
 }
-void Colorizer::make_colorization(dat::base::Entity* entity){
+void Color::make_colorization(dat::base::Entity* entity){
   //---------------------------
 
   //Check color vector
@@ -83,7 +83,7 @@ void Colorizer::make_colorization(dat::base::Entity* entity){
 }
 
 //Subfunction
-void Colorizer::colorization_rgb(dat::base::Entity* entity){
+void Color::colorization_rgb(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -94,7 +94,7 @@ void Colorizer::colorization_rgb(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorizer::colorization_unicolor(dat::base::Entity* entity){
+void Color::colorization_unicolor(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -102,7 +102,7 @@ void Colorizer::colorization_unicolor(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorizer::colorization_normal(dat::base::Entity* entity){
+void Color::colorization_normal(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
@@ -123,7 +123,7 @@ void Colorizer::colorization_normal(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorizer::colorization_field(dat::base::Entity* entity){
+void Color::colorization_field(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -140,7 +140,7 @@ void Colorizer::colorization_field(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorizer::colorization_structure(dat::base::Entity* entity){
+void Color::colorization_structure(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -181,7 +181,7 @@ void Colorizer::colorization_structure(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorizer::colorization_heatmap(dat::base::Entity* entity){
+void Color::colorization_heatmap(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -191,7 +191,7 @@ void Colorizer::colorization_heatmap(dat::base::Entity* entity){
   math::normalize(field, ope_struct->attribut.color.range, glm::vec2(0, 1));
 
   //Set to color
-  ope_heatmap->compute_heatmap(field, data->rgba);
+  utl::attribut::compute_heatmap(field, data->rgba);
 
   //---------------------------
 }
