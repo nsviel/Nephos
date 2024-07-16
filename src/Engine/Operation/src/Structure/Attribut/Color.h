@@ -4,9 +4,9 @@
 #include <glm/glm.hpp>
 
 
-namespace ope::colorization{
+namespace ope::attribut{
 
-struct Structure{
+struct Color{
   //---------------------------
 
   glm::vec2 range_height = glm::vec2(0, 5);

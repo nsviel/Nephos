@@ -3,6 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace eng{class Node;}
+namespace ope{class Structure;}
 
 
 namespace ope{
@@ -23,6 +24,7 @@ public:
 
 private:
   eng::Node* node_engine;
+  ope::Structure* ope_struct;
 };
 
 }

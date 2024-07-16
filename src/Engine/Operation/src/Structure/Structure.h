@@ -9,8 +9,9 @@ namespace ope{
 struct Structure{
   //---------------------------
 
-  ope::attribut::Structure attribut;
-  ope::colorization::Structure colorization;
+  ope::attribut::Normal normal;
+  ope::attribut::Intensity intensity;
+  ope::attribut::Color color;
 
   //---------------------------
 };

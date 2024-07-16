@@ -11,6 +11,7 @@ Node::Node(eng::Node* node_engine){
   //---------------------------
 
   this->node_engine = node_engine;
+  this->ope_struct = new ope::Structure();
 
   //---------------------------
 }
