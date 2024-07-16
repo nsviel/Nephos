@@ -1,8 +1,8 @@
 #pragma once
 
-namespace dyn{class Node;}
-namespace dyn{class Structure;}
-namespace dyn::cloud{class Colorizer;}
+namespace ope{class Node;}
+namespace ope{class Structure;}
+namespace ope::color{class Routine;}
 namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
 
@@ -13,7 +13,7 @@ class Colorization
 {
 public:
   //Constructor / Destructor
-  Colorization(dyn::Node* node_dynamic);
+  Colorization(ope::Node* node_dynamic);
   ~Colorization();
 
 public:
@@ -29,8 +29,8 @@ public:
   void option_height(utl::base::Element* element);
 
 private:
-  dyn::cloud::Colorizer* dyn_colorizer;
-  dyn::Structure* dyn_struct;
+  ope::Structure* ope_struct;
+  ope::color::Routine* ope_colorizer;
 };
 
 }

@@ -21,6 +21,8 @@ public:
 
   //Subfunction
 
+  inline ope::Structure* get_ope_struct(){return ope_struct;}
+
 private:
   eng::Node* node_engine;
   ope::Structure* ope_struct;

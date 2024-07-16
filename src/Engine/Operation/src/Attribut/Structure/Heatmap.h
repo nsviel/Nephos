@@ -1,11 +1,14 @@
 #pragma once
 
+#include <glm/glm.hpp>
+
 
 namespace ope::attribut{
 
-struct Intensity{
+struct Heatmap{
   //---------------------------
 
+  int mode = ope::heatmap::INTENSITY;
 
   //---------------------------
 };

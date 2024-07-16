@@ -15,7 +15,7 @@ Heatmap::Heatmap(){
 
   this->is_normalization = false;
   this->range_norm = glm::vec2(0.0f, 1.0f);
-  this->range_height = glm::vec2(-1.0f, 2.0f);
+  this->range = glm::vec2(-1.0f, 2.0f);
   this->range_intensity = glm::vec2(0.0f, 1.0f);
 
   //---------------------------
@@ -87,7 +87,7 @@ void Heatmap::heatmap_height(dat::base::Entity* entity){
   //Prepare data
   std::vector<float> z_vec;
   ope_location->retrieve_z_vector(entity, z_vec);
-  math::normalize(z_vec, range_height);
+  math::normalize(z_vec, range);
 
   //Compute heatmap
   this->compute_heatmap(z_vec, data->rgba);

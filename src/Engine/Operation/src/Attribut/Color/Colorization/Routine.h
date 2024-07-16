@@ -1,43 +1,33 @@
 #pragma once
 
-#include <Dynamic/src/Thread/Routine.h>
-
-namespace dyn{class Node;}
-namespace dyn{class Structure;}
-namespace dyn::base{class Sensor;}
+namespace ope{class Node;}
+namespace ope{class Structure;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Set;}
-namespace dat::element{class Entity;}
-namespace utl::thread::task{class Pool;}
 namespace utl::base{class Element;}
 namespace ope::color{class Colorizer;}
 
 
-namespace dyn::cloud{
+namespace ope::color{
 
-class Colorizer : public dyn::thread::Routine
+class Routine
 {
 public:
   //Constructor / Destructor
-  Colorizer(dyn::Node* node_dynamic);
-  ~Colorizer();
+  Routine(ope::Node* node_operation);
+  ~Routine();
 
 public:
   //Main function
-  void thread_task();
+  void colorize_element(utl::base::Element* element);
 
   //Subfunction
-  void colorize_element(utl::base::Element* element);
   void colorize_set(dat::base::Set* set);
   void colorize_entity(dat::base::Entity* entity);
 
 private:
-  dyn::Structure* dyn_struct;
-  dat::element::Entity* dat_entity;
+  ope::Structure* ope_struct;
   ope::color::Colorizer* ope_colorizer;
-  utl::thread::task::Pool* thread_pool;
-
-  bool thread_idle = true;
 };
 
 }

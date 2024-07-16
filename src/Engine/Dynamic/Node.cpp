@@ -18,6 +18,7 @@ Node::Node(eng::Node* node_engine){
   this->node_data = node_engine->get_node_data();
   this->node_radio = node_engine->get_node_radio();
   this->node_profiler = node_engine->get_node_profiler();
+  this->node_operation = node_engine->get_node_operation();
 
   this->dyn_struct = new dyn::Structure();
   this->dyn_player = new dyn::player::Player(this);

@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace dyn{class Node;}
+namespace ope{class Node;}
 namespace ope::gui{class Colorization;}
 namespace ope::gui{class Transformation;}
 namespace ope::gui{class Info;}
@@ -16,7 +16,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(dyn::Node* node_dynamic, bool* show_window);
+  Panel(ope::Node* node_operation);
   ~Panel();
 
   //Main function

@@ -4,11 +4,7 @@
 
 namespace dyn{class Node;}
 namespace dyn::gui{class Player;}
-namespace ope::gui{class Colorization;}
-namespace ope::gui{class Transformation;}
-namespace ope::gui{class Info;}
 namespace dyn::gui{class Configuration;}
-namespace ope::gui{class Normal;}
 namespace dat::graph{class Selection;}
 
 
@@ -27,11 +23,7 @@ public:
 
 private:
   dyn::gui::Player* gui_player;
-  ope::gui::Colorization* gui_colorization;
-  ope::gui::Transformation* gui_transformation;
-  ope::gui::Info* gui_information;
   dyn::gui::Configuration* gui_configuration;
-  ope::gui::Normal* gui_normal;
   dat::graph::Selection* dat_selection;
 
   std::string name;

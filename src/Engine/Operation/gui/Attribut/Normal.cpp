@@ -9,10 +9,10 @@
 namespace ope::gui{
 
 //Constructor / Destructor
-Normal::Normal(dyn::Node* node_dynamic){
+Normal::Normal(ope::Node* node_operation){
   //---------------------------
 
-  this->dyn_struct = node_dynamic->get_dyn_struct();
+  this->ope_struct = node_operation->get_ope_struct();
 
   //---------------------------
 }
@@ -37,16 +37,16 @@ void Normal::draw_parameter(){
     ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
 
     //Enable
-    ImGui::Checkbox("Activated", &dyn_struct->operation.normal.enable);
+    ImGui::Checkbox("Activated", &ope_struct->attribut.normal.enable);
 
     //Parameter: kNN
     ImGui::SetNextItemWidth(100);
-    ImGui::SliderInt("kNN", &dyn_struct->operation.normal.knn, 1, 10);
+    ImGui::SliderInt("kNN", &ope_struct->attribut.normal.knn, 1, 10);
 
     //Computation time
     ImGui::Text("Time");
     ImGui::SameLine();
-    ImGui::TextColored(color, "%.2f ms", dyn_struct->operation.normal.time);
+    ImGui::TextColored(color, "%.2f ms", ope_struct->attribut.normal.time);
   }
 
   //---------------------------

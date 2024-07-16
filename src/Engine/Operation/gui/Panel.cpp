@@ -7,13 +7,13 @@
 namespace ope::gui{
 
 //Constructor / Destructor
-Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
+Panel::Panel(ope::Node* node_operation){
   //---------------------------
 
-  this->gui_colorization = new ope::gui::Colorization(node_dynamic);
+  this->gui_colorization = new ope::gui::Colorization(node_operation);
   this->gui_transformation = new ope::gui::Transformation();
   this->gui_info = new ope::gui::Info();
-  this->gui_normal = new ope::gui::Normal(node_dynamic);
+  this->gui_normal = new ope::gui::Normal(node_operation);
 
   //---------------------------
 }

@@ -29,14 +29,14 @@ public:
   //Heatmap functions
   void compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& rgba);
 
-  inline glm::vec2* get_range_height(){return &range_height;}
+  inline glm::vec2* get_range_height(){return &range;}
 
 private:
   ope::attribut::Location* ope_location;
   utl::base::Attribut* utl_attribut;
 
   glm::vec2 range_norm;
-  glm::vec2 range_height;
+  glm::vec2 range;
   glm::vec2 range_intensity;
   bool is_normalization;
 };

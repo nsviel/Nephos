@@ -5,8 +5,9 @@ namespace dyn{class Structure;}
 namespace dyn::cloud{class Recorder;}
 namespace dyn::cloud{class Normal;}
 namespace dyn::cloud{class Radiometry;}
-namespace dyn::cloud{class Colorizer;}
+namespace ope::color{class Routine;}
 namespace dyn::base{class Sensor;}
+namespace dat::element{class Entity;}
 
 
 namespace dyn::cloud{
@@ -26,9 +27,10 @@ public:
 private:
   dyn::Structure* dyn_struct;
   dyn::cloud::Recorder* dyn_recorder;
-  dyn::cloud::Colorizer* dyn_colorizer;
+  ope::color::Routine* ope_colorizer;
   dyn::cloud::Normal* dyn_normal;
   dyn::cloud::Radiometry* dyn_radio;
+  dat::element::Entity* dat_entity;
 };
 
 }
