@@ -30,6 +30,7 @@ std::vector<float>& Attribut::get_field_data(utl::base::Data* data, std::string 
   return field->data;
 }
 utl::base::Field* Attribut::get_field(utl::base::Data* data, std::string name){
+  if(name == "") return nullptr;
   //---------------------------
 
   //Check if field is already present
@@ -55,6 +56,7 @@ glm::vec2 Attribut::get_field_range(utl::base::Data* data, std::string name){
 
   //Get data
   utl::base::Field* field = get_field(data, name);
+  if(!field) return glm::vec2(0, 0);
   std::vector<float>& vec_data = field->data;
   if(vec_data.size() == 0) return glm::vec2(0, 0);
 
@@ -70,10 +72,9 @@ void Attribut::set_field_data(utl::base::Data* data, std::string name, std::vect
   //---------------------------
 
   utl::base::Field* field = get_field(data, name);
+  if(!field) return;
 
-  if(field){
-    field->data = vec;
-  }
+  field->data = vec;
 
   //---------------------------
 }

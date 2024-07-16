@@ -26,6 +26,7 @@ float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, float& R);
 void normalize(std::vector<float>& vec);
 void normalize(std::vector<float>& vec, glm::vec2 range);
 void normalize(std::vector<float>& vec, float value_to_avoid);
+void normalize(std::vector<float>& vec, glm::vec2 range, glm::vec2 clamp);
 void compute_mean_and_std(const std::vector<float>& vec, float& mean, float& std);
 std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid);
 

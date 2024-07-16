@@ -190,6 +190,32 @@ void normalize(std::vector<float>& vec, glm::vec2 range){
 
   //-----------------------------
 }
+void normalize(std::vector<float>& vec, glm::vec2 range, glm::vec2 clamp){
+  int size = vec.size();
+  //-----------------------------
+
+  //Retrieve min & max
+  float min = (float)range.x;
+  float max = (float)range.y;
+
+  //Normalization
+  #pragma omp parallel for
+  for(int i=0; i<size; i++){
+    float& value = vec[i];
+
+    if(isnan(value) || value < min){
+      value = clamp.x;
+    }
+    else if(value > max){
+      value = clamp.y;
+    }
+    else{
+      value = (value - min) / (max - min);
+    }
+  }
+
+  //-----------------------------
+}
 void normalize(std::vector<float>& vec, float value_to_avoid){
   int size = vec.size();
   //-----------------------------

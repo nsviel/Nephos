@@ -130,6 +130,7 @@ void Color::mode_field_option(utl::base::Element* element){
     if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
       entity = set->active_entity;
     }
+    if(!entity) return;
 
     std::vector<std::string> vec_field;
     for(int i=0; i<entity->data.vec_field.size(); i++){
@@ -141,10 +142,12 @@ void Color::mode_field_option(utl::base::Element* element){
     ImGui::SetNextItemWidth(150);
     if(ImGui::BeginCombo("##shader_combo_class", vec_field[selection].c_str())){
       for(int i=0; i<vec_field.size(); ++i){
+        std::string& field = vec_field[i];
         const bool is_selected = (selection == i);
-        if(ImGui::Selectable(vec_field[i].c_str(), is_selected)){
-          ope_struct->attribut.color.field = vec_field[i];
-          ope_struct->attribut.color.range = utl_attribut->get_field_range(&entity->data, vec_field[i]);
+
+        if(ImGui::Selectable(field.c_str(), is_selected)){
+          ope_struct->attribut.color.field = field;
+          ope_struct->attribut.color.range = utl_attribut->get_field_range(&entity->data, field);
           selection = i;
         }
 
