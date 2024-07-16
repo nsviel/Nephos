@@ -65,7 +65,7 @@ void Exporter::write_data_ascii(io::exporter::Configuration& config, utl::base::
 
     //Color
     if(data->rgb.size() != 0){
-      glm::vec3 RGB = use_rgba ? glm::vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
+      glm::vec3 RGB = config.with_colorization ? glm::vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
       file << std::setprecision(0) <<" "<< RGB.x * 255 <<" "<< RGB.y * 255 <<" "<< RGB.z * 255;
     }
 

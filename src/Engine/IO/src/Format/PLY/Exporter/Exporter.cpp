@@ -110,10 +110,10 @@ void Exporter::write_data_ascii(io::exporter::Configuration& config, std::ofstre
     file << std::setprecision(precision) << xyzw.x <<" "<< xyzw.y <<" "<< xyzw.z <<" ";
 
     //Color
-    if(!use_rgba && rgb.size() != 0){
+    if(!config.with_colorization && rgb.size() != 0){
       glm::vec3& RGB = rgb[i];
       file << std::setprecision(0) << RGB.x * 255 <<" "<< RGB.y * 255 <<" "<< RGB.z * 255 <<" ";
-    }else if(use_rgba && rgba.size() != 0){
+    }else if(config.with_colorization && rgba.size() != 0){
       glm::vec4& RGBA = rgba[i];
       file << std::setprecision(0) << RGBA.x * 255 <<" "<< RGBA.y * 255 <<" "<< RGBA.z * 255 <<" ";
     }
@@ -168,7 +168,7 @@ void Exporter::write_data_binary(io::exporter::Configuration& config, std::ofstr
         //Color
         case io::exporter::RGB:{
           for(int k=0; k<3; k++){
-            glm::vec3 RGB = use_rgba ? glm::vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
+            glm::vec3 RGB = config.with_colorization ? glm::vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
             int color_int = RGB[k] * 255;
             memcpy(block_data + offset, &color_int, sizeof(u_char));
             offset += sizeof(u_char);

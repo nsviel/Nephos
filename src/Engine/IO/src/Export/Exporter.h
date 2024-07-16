@@ -26,7 +26,7 @@ public:
 
   //Subfunction
   void init_path();
-  void export_with_encoding(io::exporter::Base* exporter, dat::base::Entity* entity, std::string path);
+  void export_with_config(io::exporter::Base* exporter, dat::base::Entity* entity, std::string path);
   void insert_exporter(io::exporter::Base* exporter);
   void update_current_path(utl::base::Element* element);
   bool is_format_supported(std::string format);
