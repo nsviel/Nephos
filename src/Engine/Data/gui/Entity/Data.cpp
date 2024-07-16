@@ -12,7 +12,6 @@ Data::Data(dat::Node* node_data){
   //---------------------------
 
   this->dat_entity = node_data->get_dat_entity();
-  this->ope_attribut = new ope::attribut::Attribut();
   this->ope_operation = new ope::Operation();
 
   this->item_width = 100;
@@ -70,15 +69,6 @@ void Data::entity_data(dat::base::Entity* entity){
   ImGui::SetNextItemWidth(item_width);
   if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
     data->path.format = str_f;
-  }
-
-  //Uniform collection color
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Color"); ImGui::TableNextColumn();
-  ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs;
-  flags |= ImGuiColorEditFlags_AlphaBar;
-  if(ImGui::ColorEdit4("##entity_unicolor", (float*)&data->unicolor, flags)){
-    ope_attribut->set_unicolor(entity);
   }
 
   //---------------------------

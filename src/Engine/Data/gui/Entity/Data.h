@@ -5,7 +5,6 @@
 namespace dat{class Node;}
 namespace dat::element{class Entity;}
 namespace dat::base{class Entity;}
-namespace ope::attribut{class Attribut;}
 namespace ope{class Operation;}
 
 
@@ -28,7 +27,6 @@ public:
 
 private:
   dat::element::Entity* dat_entity;
-  ope::attribut::Attribut* ope_attribut;
   ope::Operation* ope_operation;
 
   int item_width;

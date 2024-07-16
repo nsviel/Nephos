@@ -26,13 +26,8 @@ void Color::design_colorization(utl::base::Element* element){
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Colorization##dynamic")){
-    //Mode
     this->color_mode(element);
-    this->heatmap_mode(element);
-
-    //Option
-    this->mode_field_option(element);
-    this->mode_option(element);
+    this->color_option(element);
   }
 
   //---------------------------
@@ -84,45 +79,7 @@ void Color::color_mode(utl::base::Element* element){
   //---------------------------
   ImGui::Separator();
 }
-void Color::heatmap_mode(utl::base::Element* element){
-  if(ope_struct->attribut.color.mode != ope::color::HEATMAP) return;
-  //---------------------------
-
-  ImGui::BeginTable("heatmap##mode", 3);
-
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::RadioButton("I##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::INTENSITY)){
-    ope_colorizer->colorize_element(element);
-  }
-  ImGui::SameLine();
-  ImGui::TableNextColumn();
-  if(ImGui::RadioButton("I cor##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::INTENSITY_COR)){
-    ope_colorizer->colorize_element(element);
-  }
-  ImGui::SameLine();
-  ImGui::TableNextColumn();
-  if(ImGui::RadioButton("I cal##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::INTENSITY_CAL)){
-    ope_colorizer->colorize_element(element);
-  }
-
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::RadioButton("H##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::HEIGHT)){
-    ope_colorizer->colorize_element(element);
-  }
-  ImGui::TableNextColumn();
-  if(ImGui::RadioButton("R##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::RANGE)){
-    ope_colorizer->colorize_element(element);
-  }
-  ImGui::TableNextColumn();
-  if(ImGui::RadioButton("It##heatmap", &ope_struct->attribut.heatmap.mode, ope::heatmap::INCIDENCE_ANGLE)){
-    ope_colorizer->colorize_element(element);
-  }
-
-  ImGui::EndTable();
-
-  //---------------------------
-}
-void Color::mode_field_option(utl::base::Element* element){
+void Color::color_option(utl::base::Element* element){
   //---------------------------
 
   if(ope_struct->attribut.color.mode == ope::color::FIELD || ope_struct->attribut.color.mode == ope::color::HEATMAP){
@@ -165,15 +122,6 @@ void Color::mode_field_option(utl::base::Element* element){
     float sensitivity = (range.y - range.x) / 100.0f;
     ImGui::DragFloatRange2("Range##321", &ope_struct->attribut.color.range.x, &ope_struct->attribut.color.range.y, sensitivity, range.x, range.y, "%.2f", "%.2f");
   }
-
-  //---------------------------
-}
-
-void Color::mode_option(utl::base::Element* element){
-  //---------------------------
-
-
-
 
   //---------------------------
 }

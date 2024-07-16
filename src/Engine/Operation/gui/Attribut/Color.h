@@ -23,9 +23,7 @@ public:
 
   //Subfunction
   void color_mode(utl::base::Element* element);
-  void heatmap_mode(utl::base::Element* element);
-  void mode_field_option(utl::base::Element* element);
-  void mode_option(utl::base::Element* element);
+  void color_option(utl::base::Element* element);
 
 private:
   ope::Structure* ope_struct;
