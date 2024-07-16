@@ -125,7 +125,7 @@ void Color::heatmap_mode(utl::base::Element* element){
 void Color::mode_field_option(utl::base::Element* element){
   //---------------------------
 
-  if(ope_struct->attribut.color.mode == ope::color::FIELD){
+  if(ope_struct->attribut.color.mode == ope::color::FIELD || ope_struct->attribut.color.mode == ope::color::HEATMAP){
     dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
     if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
       entity = set->active_entity;
