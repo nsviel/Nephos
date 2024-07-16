@@ -15,7 +15,7 @@ Routine::Routine(ope::Node* node_operation){
   //---------------------------
 
   this->ope_struct = node_operation->get_ope_struct();
-  this->ope_colorizer = new ope::color::Colorizer();
+  this->ope_colorizer = new ope::color::Colorizer(node_operation);
 
   //---------------------------
 }
@@ -48,14 +48,7 @@ void Routine::colorize_set(dat::base::Set* set){
 void Routine::colorize_entity(dat::base::Entity* entity){
   //---------------------------
 
-  ope::color::Configuration config;
-  config.color_mode = ope_struct->attribut.color.mode;
-  config.heatmap_mode = ope_struct->attribut.heatmap.mode;
-  config.intensity_diviser = ope_struct->attribut.intensity.diviser;
-  config.heatmap_range_height = ope_struct->attribut.color.range;
-  config.unicolor = ope_struct->attribut.color.unicolor;
-
-  ope_colorizer->make_colorization(entity, config);
+  ope_colorizer->make_colorization(entity);
   entity->data.is_updated = true;
 
   //---------------------------

@@ -7,9 +7,10 @@
 namespace ope::color{
 
 //Constructor / Destructor
-Colorizer::Colorizer(){
+Colorizer::Colorizer(ope::Node* node_operation){
   //---------------------------
 
+  this->ope_struct = node_operation->get_ope_struct();
   this->ope_heatmap = new ope::color::Heatmap();
   this->utl_attribut = new utl::base::Attribut();
 
@@ -18,32 +19,32 @@ Colorizer::Colorizer(){
 Colorizer::~Colorizer(){}
 
 //Main function
-void Colorizer::make_colorization(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::make_colorization(dat::base::Entity* entity){
   //---------------------------
 
   if(entity->data.rgba.size() != entity->data.xyz.size()){
     entity->data.rgba = std::vector<glm::vec4>(entity->data.xyz.size(), glm::vec4(0.0f));
   }
 
-  switch(config.color_mode){
+  switch(ope_struct->attribut.color.mode){
     case ope::color::RGB:{
-      this->colorization_rgb(entity, config);
+      this->colorization_rgb(entity);
       break;
     }
     case ope::color::UNICOLOR:{
-      this->colorization_unicolor(entity, config);
+      this->colorization_unicolor(entity);
       break;
     }
     case ope::color::LOCATION:{
-      this->colorization_intensity(entity, config);
+      this->colorization_intensity(entity);
       break;
     }
     case ope::color::NORMAL:{
-      this->colorization_normal(entity, config);
+      this->colorization_normal(entity);
       break;
     }
     case ope::color::HEATMAP:{
-      this->colorization_heatmap(entity, config);
+      this->colorization_heatmap(entity);
       break;
     }
     case ope::color::STRUCTURE:{
@@ -56,7 +57,7 @@ void Colorizer::make_colorization(dat::base::Entity* entity, ope::color::Configu
 }
 
 //Subfunction
-void Colorizer::colorization_rgb(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_rgb(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -67,15 +68,15 @@ void Colorizer::colorization_rgb(dat::base::Entity* entity, ope::color::Configur
 
   //---------------------------
 }
-void Colorizer::colorization_unicolor(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_unicolor(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  data->rgba = std::vector<glm::vec4>(data->rgba.size(), config.unicolor);
+  data->rgba = std::vector<glm::vec4>(data->rgba.size(), ope_struct->attribut.color.unicolor);
 
   //---------------------------
 }
-void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_intensity(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -87,7 +88,7 @@ void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Co
 
   //---------------------------
 }
-void Colorizer::colorization_intensity_inv(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_intensity_inv(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -99,7 +100,7 @@ void Colorizer::colorization_intensity_inv(dat::base::Entity* entity, ope::color
 
   //---------------------------
 }
-void Colorizer::colorization_intensity_cor(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_intensity_cor(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -111,7 +112,7 @@ void Colorizer::colorization_intensity_cor(dat::base::Entity* entity, ope::color
 
   //---------------------------
 }
-void Colorizer::colorization_incidence_angle(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_incidence_angle(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -130,7 +131,7 @@ void Colorizer::colorization_incidence_angle(dat::base::Entity* entity, ope::col
 
   //---------------------------
 }
-void Colorizer::colorization_intensity_cal(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_intensity_cal(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
@@ -142,7 +143,7 @@ void Colorizer::colorization_intensity_cal(dat::base::Entity* entity, ope::color
 
   //---------------------------
 }
-void Colorizer::colorization_normal(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_normal(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
@@ -163,7 +164,7 @@ void Colorizer::colorization_normal(dat::base::Entity* entity, ope::color::Confi
 
   //---------------------------
 }
-void Colorizer::colorization_location(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_location(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
@@ -184,10 +185,10 @@ void Colorizer::colorization_location(dat::base::Entity* entity, ope::color::Con
 
   //---------------------------
 }
-void Colorizer::colorization_heatmap(dat::base::Entity* entity, ope::color::Configuration& config){
+void Colorizer::colorization_heatmap(dat::base::Entity* entity){
   //---------------------------
-
-  switch(config.heatmap_mode){
+/*
+  switch(ope_struct->attribut.heatmap.mode){
     case ope::heatmap::INTENSITY:{
       ope_heatmap->heatmap_intensity(entity, config.intensity_diviser);
       break;
@@ -213,7 +214,7 @@ void Colorizer::colorization_heatmap(dat::base::Entity* entity, ope::color::Conf
       break;
     }
   }
-
+*/
   //---------------------------
 }
 void Colorizer::colorization_structure(dat::base::Entity* entity){

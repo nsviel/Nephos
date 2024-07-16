@@ -9,7 +9,8 @@ enum Mode{
   LOCATION = 2,
   NORMAL = 3,
   STRUCTURE = 4,
-  HEATMAP = 5,
+  FIELD = 5,
+  HEATMAP = 6,
 };
 
 }

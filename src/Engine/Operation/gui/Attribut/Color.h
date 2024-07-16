@@ -22,10 +22,9 @@ public:
 
   //Subfunction
   void color_mode(utl::base::Element* element);
-  void attribut_mode(utl::base::Element* element);
   void heatmap_mode(utl::base::Element* element);
-  void option_intensity(utl::base::Element* element);
-  void option_height(utl::base::Element* element);
+  void mode_field_option(utl::base::Element* element);
+  void mode_option(utl::base::Element* element);
 
 private:
   ope::Structure* ope_struct;
