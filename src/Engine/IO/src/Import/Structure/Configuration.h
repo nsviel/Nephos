@@ -14,6 +14,8 @@ struct Configuration{
   utl::topology::Type topology = utl::topology::POINT;
   std::vector<io::importer::Property> vec_property;
   std::string path = "";
+  bool has_header = true;
+  int nb_property = 0;
   int nb_vertex = 0;
   int nb_face = 0;
 };

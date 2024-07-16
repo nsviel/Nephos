@@ -73,7 +73,7 @@ void Operation::ope_color(dat::base::Entity* entity){
   //If color
   if(entity->data.rgba.size() != 0) return;
   else if(entity->data.rgb.size() != 0){
-    entity->data.rgba.resize(entity->data.rgb.size(), glm::vec4(0, 0, 0, 0));
+    entity->data.rgba.resize(entity->data.xyz.size(), glm::vec4(0, 0, 0, 0));
 
     for(int i=0; i<entity->data.rgb.size(); i++){
       glm::vec3& rgb = entity->data.rgb[i];
@@ -82,7 +82,7 @@ void Operation::ope_color(dat::base::Entity* entity){
   }
   //Else if intensity
   else if(vec_I.size() != 0){
-    entity->data.rgba.resize(entity->data.rgb.size(), glm::vec4(0, 0, 0, 0));
+    entity->data.rgba.resize(entity->data.xyz.size(), glm::vec4(0, 0, 0, 0));
 
     for(int i=0; i<vec_I.size(); i++){
       float& Is = vec_I[i];
@@ -91,7 +91,7 @@ void Operation::ope_color(dat::base::Entity* entity){
   }
   //Else fill with white
   else{
-    entity->data.rgba.resize(entity->data.rgb.size(), glm::vec4(0, 0, 0, 0));
+    entity->data.rgba.resize(entity->data.xyz.size(), glm::vec4(0, 0, 0, 0));
 
     for(int i=0; i<entity->data.xyz.size(); i++){
       entity->data.rgba[i] = glm::vec4(1, 1, 1, 1);

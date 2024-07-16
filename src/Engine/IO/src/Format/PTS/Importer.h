@@ -33,15 +33,14 @@ public:
 
 private:
   //Subfunction
-  void Loader_init();
   void Loader_nbColumns();
   void Loader_configuration();
   void Loader_data(utl::base::Data* data_out, int FILE_config);
 
   //Checking function
-  bool check_header(std::string path);
+  void retrieve_header(io::importer::Configuration& config);
+  void retrieve_size(io::importer::Configuration& config);
   int check_configuration(std::string path);
-  int check_size(std::string path, bool FILE_hasHeader);
 
 private:
   utl::base::Attribut* utl_attribut;
@@ -49,8 +48,7 @@ private:
   std::vector<float> line_columns;
   std::vector<std::string> dataFormat;
   std::string line;
-  bool endHeader, FILE_hasHeader;
-  bool endParameters;
+  bool FILE_hasHeader;
   bool hasColor;
   bool hasIntensity;
   bool hasNormal;

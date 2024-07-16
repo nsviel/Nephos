@@ -52,13 +52,14 @@ void Init::load_entity(){
 
   utl::base::Path ply("/home/aether/Desktop/Point_cloud/ply/half_sphere.ply");
   utl::base::Path cath("/home/aether/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply");
+  utl::base::Path pts("/home/aether/Desktop/Point_cloud/pts/cloud.pts");
 
   //Create playback list
-  io_struct->importer.with_clearing = false;
+  //io_struct->importer.with_clearing = false;
   //io_loader->load_object(versaille_0, versaille_0_t);
   //io_loader->load_object(versaille_2, versaille_2_t);
   //io_loader->load_object(cerfav);
-  io_loader->load_object(dragon);
+  io_loader->load_object(pts);
   //io_loader->load_object(sphere);
   //io_loader->load_set(pcap);
   //io_loader->load_object(mire);

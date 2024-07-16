@@ -1,6 +1,7 @@
 #include "Importer.h"
 
 #include <Data/Namespace.h>
+#include <IO/Namespace.h>
 #include <Utility/Function/File/File.h>
 
 
@@ -33,23 +34,24 @@ utl::base::Element* Importer::import(utl::base::Path path){
   object->data.topology.type = utl::topology::POINT;
 
   //Initialization
-  this->Loader_init();
-  bool FILE_hasHeader = check_header(path.build());
+  io::importer::Configuration config;
+  config.path = path.build();
+  this->retrieve_header(config);
+  this->retrieve_size(config);
+
+
   int FILE_config = check_configuration(path.build());
-  int FILE_size = check_size(path.build(), FILE_hasHeader);
+
 
   //Read file
-  std::ifstream infile1(path.build());
-  while(std::getline(infile1, line)){
+  std::ifstream file(config.path);
+  if(config.has_header) std::getline(file, line);
+
+  //Data
+  while(std::getline(file, line)){
     //If line empty break the while
     if(line.empty()){
       break;
-    }
-
-    //Prevent from reading the header
-    if(FILE_hasHeader){
-      std::getline(infile1, line);
-      FILE_hasHeader = false;
     }
 
     //Retrieve data
@@ -61,18 +63,6 @@ utl::base::Element* Importer::import(utl::base::Path path){
 }
 
 //Subfunction
-void Importer::Loader_init(){
-  //---------------------------
-
-  this->config = -1;
-  this->endHeader = false;
-  this->endParameters = false;
-  this->hasColor = false;
-  this->hasIntensity = false;
-  this->hasNormal = false;
-
-  //---------------------------
-}
 void Importer::Loader_nbColumns(){
   //Extraction of each column
   bool endLoop = false;
@@ -212,7 +202,6 @@ void Importer::Loader_configuration(){
   }
 
   //---------------------------
-  endParameters = true;
 }
 void Importer::Loader_data(utl::base::Data* data, int FILE_config){
   std::istringstream iss(line);
@@ -275,11 +264,13 @@ void Importer::Loader_data(utl::base::Data* data, int FILE_config){
 }
 
 //Checking function
-bool Importer::check_header(std::string path){
-  std::string line;
-  std::ifstream FILE(path);
-  getline(FILE, line);
+void Importer::retrieve_header(io::importer::Configuration& config){
   //---------------------------
+
+  //Get first line
+  std::string line;
+  std::ifstream FILE(config.path);
+  getline(FILE, line);
 
   //Column count
   std::vector<float> line_columns;
@@ -294,11 +285,22 @@ bool Importer::check_header(std::string path){
     }
   }
 
-  //---------------------------
+  //Has header
   if(line_columns.size() <= 1){
-    return true;
+    config.has_header = true;
+  }else{
+    config.has_header = false;
   }
-  return false;
+
+  //---------------------------
+}
+void Importer::retrieve_size(io::importer::Configuration& config){
+  //---------------------------
+
+  config.nb_vertex = utl::file::number_point(path);
+  if(config.has_header) config.nb_vertex -= 1;
+
+  //---------------------------
 }
 int Importer::check_configuration(std::string path){
   std::string line_loop;
@@ -480,19 +482,6 @@ int Importer::check_configuration(std::string path){
   }
   return config;
 }
-int Importer::check_size(std::string path, bool FILE_hasHeader){
-  //---------------------------
 
-  int FILE_size = utl::file::number_point(path);
-  if(FILE_size > nbptMax){
-    std::cout << "Too much points : "<< FILE_size << ">"<< nbptMax << std::endl;
-  }
-  if(FILE_hasHeader){
-    FILE_size = FILE_size-1;
-  }
-
-  //---------------------------
-  return FILE_size;
-}
 
 }
