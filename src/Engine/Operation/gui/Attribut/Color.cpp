@@ -90,7 +90,7 @@ void Color::attribut_mode(utl::base::Element* element){
     entity = set->active_entity;
   }
 
-  for(int i=0; i<entity->data.vec_attribut.size(); i++){
+  for(int i=0; i<entity->data.vec_field.size(); i++){
 
   }
 

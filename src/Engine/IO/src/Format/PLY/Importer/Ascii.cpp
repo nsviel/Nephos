@@ -31,7 +31,7 @@ void Ascii::parse_ascii(fmt::ply::importer::Structure* ply_struct, dat::base::Ob
   object->data.xyz = buffer.xyz;
   object->data.Nxyz = buffer.Nxyz;
   object->data.size = buffer.xyz.size();
-  utl_attribut->set_attribut_data(&object->data, "I", buffer.Is);
+  utl_attribut->set_field_data(&object->data, "I", buffer.Is);
 
   //Close file
   file.close();

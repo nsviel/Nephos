@@ -79,14 +79,14 @@ void Exporter::build_structure(fmt::ply::exporter::Structure& exporter, utl::bas
   }
 
   //Intensity
-  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
   if(vec_I.size() != 0){
     exporter.vec_property.push_back(fmt::ply::I);
     exporter.nb_property++;
   }
 
   //Timestamp
-  std::vector<float>& vec_ts = utl_attribut->get_attribut_data(data, "ts");
+  std::vector<float>& vec_ts = utl_attribut->get_field_data(data, "ts");
   if(vec_ts.size() != 0){
     exporter.vec_property.push_back(fmt::ply::TS);
     exporter.nb_property++;
@@ -101,7 +101,7 @@ void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::of
   std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
-  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
   int precision = 6;
 
   //Write data in the file
@@ -144,8 +144,8 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
   std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
-  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
-  std::vector<float>& vec_ts = utl_attribut->get_attribut_data(data, "ts");
+  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
+  std::vector<float>& vec_ts = utl_attribut->get_field_data(data, "ts");
   int precision = 6;
 
   //Prepare data writing by blocks

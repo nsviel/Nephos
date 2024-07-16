@@ -59,7 +59,7 @@ void Converter::convert_infrared_to_image(utl::base::Data* data, utl::media::Ima
   if(data == nullptr) return;
   //---------------------------
 
-  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
   std::vector<uint8_t> output = std::vector<uint8_t>(vec_I.size() * 4, 0);
 
   // Convert the float value to uint8_t

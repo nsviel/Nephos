@@ -37,7 +37,7 @@ void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string pa
   std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& N = data->Nxyz;
-  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
 
   //Write in the file
   int precision = 6;

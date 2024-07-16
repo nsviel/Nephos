@@ -15,56 +15,56 @@ Attribut::Attribut(){
 Attribut::~Attribut(){}
 
 //Subfunction
-void Attribut::set_attribut_data(utl::base::Data* data, std::string name, std::vector<float>& vec){
+void Attribut::set_field_data(utl::base::Data* data, std::string name, std::vector<float>& vec){
   //---------------------------
 
-  this->create_attribut(data, name);
-  utl::base::data::Attribut* attribut = get_attribut(data, name);
+  this->create_field(data, name);
+  utl::base::Field* field = get_field(data, name);
 
-  if(attribut){
-    attribut->data = vec;
+  if(field){
+    field->data = vec;
   }
 
   //---------------------------
 }
-std::vector<float>& Attribut::get_attribut_data(utl::base::Data* data, std::string name){
+std::vector<float>& Attribut::get_field_data(utl::base::Data* data, std::string name){
   //---------------------------
 
-  this->create_attribut(data, name);
-  utl::base::data::Attribut* attribut = get_attribut(data, name);
+  this->create_field(data, name);
+  utl::base::Field* field = get_field(data, name);
 
-  // Check if attribut is nullptr
-  if(!attribut){
+  // Check if field is nullptr
+  if(!field){
     static std::vector<float> empty_vector;
     return empty_vector;
   }
 
   //---------------------------
-  return attribut->data;
+  return field->data;
 }
-void Attribut::create_attribut(utl::base::Data* data, std::string name){
+void Attribut::create_field(utl::base::Data* data, std::string name){
   //---------------------------
 
-  //Check if attribut is already present
-  for(int i=0; i<data->vec_attribut.size(); i++){
-    utl::base::data::Attribut& attribut = data->vec_attribut[i];
-    if(attribut.name == name) return;
+  //Check if field is already present
+  for(int i=0; i<data->vec_field.size(); i++){
+    utl::base::Field& field = data->vec_field[i];
+    if(field.name == name) return;
   }
 
   //Create it
-  utl::base::data::Attribut attribut;
-  attribut.name = name;
-  data->vec_attribut.push_back(attribut);
+  utl::base::Field field;
+  field.name = name;
+  data->vec_field.push_back(field);
 
   //---------------------------
 }
-utl::base::data::Attribut* Attribut::get_attribut(utl::base::Data* data, std::string name){
+utl::base::Field* Attribut::get_field(utl::base::Data* data, std::string name){
   //---------------------------
 
-  //Check if attribut is already present
-  for(int i=0; i<data->vec_attribut.size(); i++){
-    utl::base::data::Attribut& attribut = data->vec_attribut[i];
-    if(attribut.name == name) return &attribut;
+  //Check if field is already present
+  for(int i=0; i<data->vec_field.size(); i++){
+    utl::base::Field& field = data->vec_field[i];
+    if(field.name == name) return &field;
   }
 
   //---------------------------

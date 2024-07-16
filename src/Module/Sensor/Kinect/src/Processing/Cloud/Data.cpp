@@ -100,8 +100,8 @@ void Data::extraction_transfer(k4n::base::Sensor* sensor){
   utl::base::Data* data = &sensor->data;
   //---------------------------
 
-  //std::vector<float>& vec_R = utl_attribut->get_attribut_data(data, "R");
-  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  //std::vector<float>& vec_R = utl_attribut->get_field_data(data, "R");
+  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
 
   //Data
   data->xyz = buffer.xyz;

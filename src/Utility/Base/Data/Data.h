@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Data/Attribut.h>
+#include <Utility/Base/Data/Field.h>
 #include <Utility/Base/Data/Element.h>
 #include <Utility/Base/Data/Topology.h>
 #include <Utility/Base/Data/Path.h>
@@ -36,7 +36,7 @@ struct Data : public utl::base::Element{
   std::vector<glm::vec4> rgba;  //Displayed color data
   std::vector<glm::vec3> Nxyz;  //Normal
   std::vector<glm::vec2> uv;    //UV coordinate
-  std::vector<utl::base::data::Attribut> vec_attribut;
+  std::vector<utl::base::Field> vec_field;
 
   //---------------------------
 };

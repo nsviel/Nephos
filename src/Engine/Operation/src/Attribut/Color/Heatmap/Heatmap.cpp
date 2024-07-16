@@ -28,7 +28,7 @@ void Heatmap::heatmap_intensity(dat::base::Entity* entity, int diviser){
   //---------------------------
 
   //Prepare data
-  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
   std::vector<float> Is = vec_I;
   math::divise(Is, diviser);
   math::normalize(Is, range_intensity);
@@ -43,7 +43,7 @@ void Heatmap::heatmap_intensity_cor(dat::base::Entity* entity){
   //---------------------------
 
   //Prepare data
-  std::vector<float>& vec_Icor = utl_attribut->get_attribut_data(data, "I_cor");
+  std::vector<float>& vec_Icor = utl_attribut->get_field_data(data, "I_cor");
   std::vector<float> Is = vec_Icor;
   math::normalize(Is, range_intensity);
 
@@ -57,7 +57,7 @@ void Heatmap::heatmap_intensity_cal(dat::base::Entity* entity){
   //---------------------------
 
   //Prepare data
-  std::vector<float>& vec_Ical = utl_attribut->get_attribut_data(data, "I_cal");
+  std::vector<float>& vec_Ical = utl_attribut->get_field_data(data, "I_cal");
   std::vector<float> Is = vec_Ical;
   math::normalize(Is, range_intensity);
 
@@ -71,7 +71,7 @@ void Heatmap::heatmap_incidence_angle(dat::base::Entity* entity){
   //---------------------------
 
   //Prepare data
-  std::vector<float>& vec_It = utl_attribut->get_attribut_data(data, "It");
+  std::vector<float>& vec_It = utl_attribut->get_field_data(data, "It");
   std::vector<float> It = vec_It;
   math::normalize(It, glm::vec2(0, 90));
 
@@ -113,7 +113,7 @@ void Heatmap::heatmap_range(dat::base::Entity* entity){
   //---------------------------
 
   //Prepare data
-  std::vector<float>& R_data = utl_attribut->get_attribut_data(data, "R");
+  std::vector<float>& R_data = utl_attribut->get_field_data(data, "R");
   if(R_data.size() == 0) return;
 
   std::vector<float> R = R_data;

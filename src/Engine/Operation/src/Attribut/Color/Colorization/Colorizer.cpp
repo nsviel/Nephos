@@ -79,7 +79,7 @@ void Colorizer::colorization_intensity(dat::base::Entity* entity, ope::color::Co
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
   for(int i=0; i<vec_I.size(); i++){
     float& Is = vec_I[i];
     data->rgba[i] = glm::vec4(Is, Is, Is, 1);
@@ -91,7 +91,7 @@ void Colorizer::colorization_intensity_inv(dat::base::Entity* entity, ope::color
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
   for(int i=0; i<vec_I.size(); i++){
     float Iinv = 1 - vec_I[i];
     data->rgba[i] = glm::vec4(Iinv, Iinv, Iinv, 1);
@@ -103,7 +103,7 @@ void Colorizer::colorization_intensity_cor(dat::base::Entity* entity, ope::color
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  std::vector<float>& vec_Icor = utl_attribut->get_attribut_data(data, "I_cor");
+  std::vector<float>& vec_Icor = utl_attribut->get_field_data(data, "I_cor");
   for(int i=0; i<vec_Icor.size(); i++){
     float& Is = vec_Icor[i];
     data->rgba[i] = glm::vec4(Is, Is, Is, 1);
@@ -115,7 +115,7 @@ void Colorizer::colorization_incidence_angle(dat::base::Entity* entity, ope::col
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  std::vector<float>& vec_It = utl_attribut->get_attribut_data(data, "It");
+  std::vector<float>& vec_It = utl_attribut->get_field_data(data, "It");
   for(int i=0; i<vec_It.size(); i++){
     float It = vec_It[i];
 
@@ -134,7 +134,7 @@ void Colorizer::colorization_intensity_cal(dat::base::Entity* entity, ope::color
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  std::vector<float>& vec_Ical = utl_attribut->get_attribut_data(data, "I_cal");
+  std::vector<float>& vec_Ical = utl_attribut->get_field_data(data, "I_cal");
   for(int i=0; i<vec_Ical.size(); i++){
     float& Is = vec_Ical[i];
     data->rgba[i] = glm::vec4(Is, Is, Is, 1);

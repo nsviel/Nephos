@@ -4,9 +4,9 @@
 #include <vector>
 
 
-namespace utl::base::data{
+namespace utl::base{
 
-struct Attribut{
+struct Field{
   //---------------------------
 
   std::vector<float> data;

@@ -219,7 +219,7 @@ void Importer::Loader_data(utl::base::Data* data, int FILE_config){
   float x,y,z,r,g,b,I,nx,ny,nz;
   //---------------------------
 
-  std::vector<float>& vec_I = utl_attribut->get_attribut_data(data, "I");
+  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
 
   switch(FILE_config){
     case 0: iss >> x >> y >> z; break;
