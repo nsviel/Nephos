@@ -4,3 +4,4 @@
 #include <Utility/Function/File/Namespace.h>
 #include <Utility/Function/Math/Namespace.h>
 #include <Utility/Function/Type/Namespace.h>
+#include <Utility/Function/Attribut/Namespace.h>
