@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Operation/Namespace.h>
 #include <glm/glm.hpp>
 
 

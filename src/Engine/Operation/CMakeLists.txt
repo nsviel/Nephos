@@ -21,6 +21,7 @@ find_library(LZ4_LIBRARIES NAMES liblz4.so HINTS "lz4/lib")
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
+  LIBRARY_ENGINE
 
   ${OpenCV_LIBS}
   ${LZ4_LIBRARIES}

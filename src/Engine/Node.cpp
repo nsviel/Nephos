@@ -11,6 +11,7 @@
 #include <IO/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Operation/Namespace.h>
 
 
 namespace eng{

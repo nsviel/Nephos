@@ -17,8 +17,7 @@ public:
 
 public:
   //Main function
-  void init();
-  void gui();
+
 
   //Subfunction
 
