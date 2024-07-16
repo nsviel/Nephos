@@ -12,10 +12,6 @@
 #include "File.h"
 
 
-
-using namespace std;
-
-
 enum plyFormat{ binary_little_endian = 0, binary_big_endian = 1, ascii = 2 };
 enum plyTypes{ float32 = 0, float64 = 1, uchar = 2, int32 = 3, uint32 = 4, otherxx = -1 };
 

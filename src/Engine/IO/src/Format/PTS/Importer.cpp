@@ -13,7 +13,6 @@ Importer::Importer(){
 
   this->utl_attribut = new utl::base::Attribut();
 
-  this->nbptMax = 40000000;
   this->Is_format = fmt::pts::FM2048_2048;
   this->format = ".pts";
 
@@ -38,9 +37,10 @@ utl::base::Element* Importer::import(utl::base::Path path){
   config.path = path.build();
   this->retrieve_header(config);
   this->retrieve_size(config);
+  this->retrieve_configuration(config);
 
 
-  int FILE_config = check_configuration(path.build());
+  /*int file_config = check_configuration(path.build());
 
 
   //Read file
@@ -55,9 +55,9 @@ utl::base::Element* Importer::import(utl::base::Path path){
     }
 
     //Retrieve data
-    this->Loader_data(&object->data, FILE_config);
+    this->Loader_data(&object->data, file_config);
   }
-
+*/
   //---------------------------
   return object;
 }
@@ -65,152 +65,31 @@ utl::base::Element* Importer::import(utl::base::Path path){
 //Subfunction
 void Importer::Loader_nbColumns(){
   //Extraction of each column
-  bool endLoop = false;
+  bool end_loop = false;
   std::string line_loop = line;
   line_columns.clear();
   //---------------------------
 
-  while(!endLoop){
+  while(!end_loop){
     if(line_loop.find(" ") != std::string::npos){
       line_columns.push_back(std::stof(line_loop.substr(0, line_loop.find(" "))));
       line_loop = line_loop.substr(line_loop.find(" ")+1);
     }else{
       line_columns.push_back(std::stof(line_loop));
-      endLoop = true;
+      end_loop = true;
     }
   }
 
   //---------------------------
 }
-void Importer::Loader_configuration(){
-  //---------------------------
-
-  switch(line_columns.size()){
-    case 3 :{//xyz
-      config = 0;
-      hasIntensity = false;
-      hasNormal = false;
-      hasColor = false;
-
-      break;
-    }
-    case 4 :{//xyz - I
-      config = 1;
-      hasIntensity = true;
-      hasNormal = false;
-      hasColor = false;
-
-      break;
-    }
-    case 6 :{
-      //xyz - N
-      if(abs(line_columns[3])<=1 && ((abs(line_columns[4])<=1 && abs(line_columns[5])<=1) || std::isnan(line_columns[4]))){
-        config = 2;
-        hasNormal = true;
-        hasColor = false;
-      }
-      //xyz - rgb
-      if((abs(line_columns[3]) == 0 && abs(line_columns[4]) == 0 && abs(line_columns[5]) == 0) ||
-      (abs(line_columns[3])>=1 && abs(line_columns[4])>=1 && abs(line_columns[5]>=1)) ){
-        config = 3;
-        hasColor = true;
-        hasNormal = false;
-        hasIntensity = false;
-      }
-      break;
-    }
-    case 7 :{
-      //xyz - I - rgb
-      if((abs(line_columns[3]) == 0 && abs(line_columns[4]) == 0 && abs(line_columns[5]) == 0) ||
-      (abs(line_columns[3])>=1 && abs(line_columns[4])>=1 && abs(line_columns[5]>=1) &&
-      line_columns[6]>1) ){
-        config = 4;
-        hasColor = true;
-        hasIntensity = true;
-        hasNormal = false;
-        break;
-      }
-      //xyz - I - N
-      if(abs(line_columns[4])<=1.1 && ((abs(line_columns[5])<=1.1 && abs(line_columns[6])<=1.1) || std::isnan(line_columns[5]))){
-        config = 5;
-        hasNormal = true;
-        hasColor = false;
-        hasIntensity = true;
-        break;
-      }
-      //xyz - rgb - I01
-      if(line_columns[3]>=0 && line_columns[3]<=255 &&
-       line_columns[4]>=0 && line_columns[4]<=255 &&
-       line_columns[5]>=0 && line_columns[5]<=255 &&
-       line_columns[6]>=0 && line_columns[6]<=1){
-        config = 8;
-        hasColor = true;
-        hasIntensity = true;
-        hasNormal = false;
-        Is_format = fmt::pts::F0_1;
-        break;
-      }
-      break;
-    }
-    case 9 :{//xyz - rgb - N
-      config = 6;
-      hasColor = true;
-      hasNormal = true;
-      hasIntensity = false;
-
-      break;
-    }
-    case 10 :{
-      //xyz - rgb - N - I
-      if(line_columns[3] >= 1 && line_columns[3] <= 255 && abs(line_columns[6]) >= 0 && abs(line_columns[6]) <= 1 ){
-        config = 9;
-        hasColor = true;
-        hasIntensity = true;
-        hasNormal = false;
-        Is_format = fmt::pts::F0_1;
-
-        break;
-      }
-
-      //xyz - I - rgb - N
-      else{
-        config = 7;
-        hasColor = true;
-        hasIntensity = true;
-        hasNormal = true;
-
-        if(line_columns[3]>=0 && line_columns[3]<=1){
-          std::cout<<"I scale: [0;1]"<< std::endl;
-          Is_format = fmt::pts::F0_1;
-        }
-      }
-      break;
-    }
-    default :{//xyz - rgb
-      config = 3;
-      hasColor = true;
-      hasNormal = false;
-      hasIntensity = false;
-    }
-  }
-
-  //----------------------------
-  if(config == -1){
-    std::cout<<"Failed to find file configuration ..."<< std::endl;
-  }else{
-    std::cout << "config " << config << std::flush;
-  }
-
-  //---------------------------
-}
-void Importer::Loader_data(utl::base::Data* data, int FILE_config){
+void Importer::Loader_data(utl::base::Data* data, int file_config){
   std::istringstream iss(line);
   float x,y,z,r,g,b,I,nx,ny,nz;
   //---------------------------
 
   std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
 
-  switch(FILE_config){
+  switch(file_config){
     case 0: iss >> x >> y >> z; break;
     case 1: iss >> x >> y >> z >> I; break;
     case 2: iss >> x >> y >> z >> nx >> ny >> nz; break;
@@ -267,26 +146,8 @@ void Importer::Loader_data(utl::base::Data* data, int FILE_config){
 void Importer::retrieve_header(io::importer::Configuration& config){
   //---------------------------
 
-  //Get first line
-  std::string line;
-  std::ifstream FILE(config.path);
-  getline(FILE, line);
-
-  //Column count
-  std::vector<float> line_columns;
-  bool endLoop = false;
-  while(!endLoop){
-    if(line.find(" ") != std::string::npos){
-      line_columns.push_back(std::stof(line.substr(0, line.find(" "))));
-      line = line.substr(line.find(" ")+1);
-    }else{
-      line_columns.push_back(std::stof(line));
-      endLoop = true;
-    }
-  }
-
-  //Has header
-  if(line_columns.size() <= 1){
+  std::vector<float> vec_data = retrieve_column(config, 1);
+  if(vec_data.size() <= 1){
     config.has_header = true;
   }else{
     config.has_header = false;
@@ -297,90 +158,60 @@ void Importer::retrieve_header(io::importer::Configuration& config){
 void Importer::retrieve_size(io::importer::Configuration& config){
   //---------------------------
 
-  config.nb_vertex = utl::file::number_point(path);
+  config.nb_vertex = utl::file::number_point(config.path);
   if(config.has_header) config.nb_vertex -= 1;
 
   //---------------------------
 }
-int Importer::check_configuration(std::string path){
-  std::string line_loop;
-  std::ifstream FILE(path);
+void Importer::retrieve_configuration(io::importer::Configuration& config){
   //---------------------------
 
-  //pass the first line
-  getline(FILE, line_loop);
-  getline(FILE, line_loop);
+  std::vector<float> vec_data = retrieve_column(config, 5);
 
-  //Extraction of a line column
-  bool endLoop = false;
-  line_columns.clear();
-  while(!endLoop){
-    if(line_loop.find(" ") != std::string::npos){
-      line_columns.push_back(std::stof(line_loop.substr(0, line_loop.find(" "))));
-      line_loop = line_loop.substr(line_loop.find(" ")+1);
-    }else{
-      line_columns.push_back(std::stof(line_loop));
-      endLoop = true;
-    }
-  }
-
-  //Search file configuration
-  switch(line_columns.size()){
-    case 3 :{
-      //xyz
-      config = 0;
-      hasIntensity = false;
-      hasNormal = false;
-      hasColor = false;
+  switch(vec_data.size()){
+    case 3 :{ // XYZ
+      config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
       break;
     }
-    case 4 :{
-      //xyz - I
-      config = 1;
-      hasIntensity = true;
-      hasNormal = false;
-      hasColor = false;
+    case 4 :{ // XYZI
+      config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+      config.vec_property.push_back(io::importer::Property(io::importer::I));
       break;
     }
     case 6 :{
-      float R =line_columns[3];
-      float G =line_columns[4];
-      float B =line_columns[5];
+      float R =vec_data[3];
+      float G =vec_data[4];
+      float B =vec_data[5];
 
       //xyz - N
       bool color = abs(R) <= 1 && abs(G) <= 1 && abs(B) <= 1;
       bool nan = std::isnan(R) && std::isnan(G) && std::isnan(B);
       if(color || nan){
-        config = 2;
-        hasNormal = true;
-        hasColor = false;
+        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
       }
 
       //xyz - rgb
       bool empty = abs(R) == 0 && abs(G) == 0 && abs(B) == 0;
       bool normal = abs(R) >= 1 && abs(G) >= 1 && abs(B) >= 1;
       if(empty || normal){
-        config = 3;
-        hasColor = true;
-        hasNormal = false;
-        hasIntensity = false;
+        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
       }
       break;
     }
     case 7 :{
-      float I =line_columns[3];
-      float R =line_columns[4];
-      float G =line_columns[5];
-      float B =line_columns[6];
+      float I =vec_data[3];
+      float R =vec_data[4];
+      float G =vec_data[5];
+      float B =vec_data[6];
 
       //xyz - I - rgb
       bool empty = abs(I) == 0 && abs(R) == 0 && abs(G) == 0 && abs(B) == 0;
       bool full = abs(I) >= 1 && abs(R) >= 1 && abs(G) >= 1 && abs(B) >= 1;
       if(empty || full){
-        config = 4;
-        hasColor = true;
-        hasIntensity = true;
-        hasNormal = false;
+        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
         break;
       }
 
@@ -388,10 +219,9 @@ int Importer::check_configuration(std::string path){
       bool normal = abs(R) <= 1.1f && abs(G) <= 1.1 && abs(B) <= 1.1;
       bool nan = std::isnan(R) && std::isnan(G) && std::isnan(B);
       if(normal || nan){
-        config = 5;
-        hasNormal = true;
-        hasColor = false;
-        hasIntensity = true;
+        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::I));
+        config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
         break;
       }
 
@@ -401,10 +231,9 @@ int Importer::check_configuration(std::string path){
       bool a3 = G >= 0 && G <= 255;
       bool a4 = B >= 0 && B <= 1;
       if(a1 && a2 && a3 && a4){
-        config = 8;
-        hasColor = true;
-        hasIntensity = true;
-        hasNormal = false;
+        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
+        config.vec_property.push_back(io::importer::Property(io::importer::I));
         Is_format = fmt::pts::F0_1;
         break;
       }
@@ -415,51 +244,46 @@ int Importer::check_configuration(std::string path){
       bool b3 = G >= 0 && G <= 255;
       bool b4 = B >= 0 && B <= 255;
       if(b1 && b2 && b3 && b4){
-        config = 4;
-        hasColor = true;
-        hasIntensity = true;
-        hasNormal = false;
+        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::I));
+        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
         Is_format = fmt::pts::F0_1;
         break;
       }
       break;
     }
-    case 9 :{
-      //xyz - rgb - N
-      config = 6;
-      hasColor = true;
-      hasNormal = true;
-      hasIntensity = false;
+    case 9 :{ //xyz - rgb - N
+      config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+      config.vec_property.push_back(io::importer::Property(io::importer::RGB));
+      config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
       break;
     }
     case 10 :{
       //xyz - rgb - N - I[0;1]
-      if(line_columns[3] >= 1 && line_columns[3] <= 255 && abs(line_columns[6]) >= 0 && abs(line_columns[6]) <= 1 ){
-        config = 9;
-        hasColor = true;
-        hasIntensity = true;
-        hasNormal = true;
+      if(vec_data[3] >= 1 && vec_data[3] <= 255 && abs(vec_data[6]) >= 0 && abs(vec_data[6]) <= 1 ){
+        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
+        config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::I));
         Is_format = fmt::pts::F0_1;
-
         break;
       }
       //xyz - rgb - N - I[-2048;+2047]
-      else if(line_columns[3] >= 1 && line_columns[3] <= 255 && abs(line_columns[6]) > 1 && abs(line_columns[6]) <= 2048 ){
-        config = 9;
-        hasColor = true;
-        hasIntensity = true;
-        hasNormal = true;
+      else if(vec_data[3] >= 1 && vec_data[3] <= 255 && abs(vec_data[6]) > 1 && abs(vec_data[6]) <= 2048 ){
+        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
+        config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::I));
         Is_format = fmt::pts::FM2048_2048;
-
         break;
       }
       else{//xyz - I - rgb - N
-        config = 7;
-        hasColor = true;
-        hasIntensity = true;
-        hasNormal = true;
+        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+        config.vec_property.push_back(io::importer::Property(io::importer::I));
+        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
+        config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
 
-        float I =line_columns[3];
+        float I =vec_data[3];
         bool Isc1 = abs(I) >= 0 && abs(I) <= 1;
         if(Isc1){
           Is_format = fmt::pts::F0_1;
@@ -467,21 +291,40 @@ int Importer::check_configuration(std::string path){
       }
       break;
     }
-    default :{//xyz - rgb
-      config = 3;
-      hasColor = true;
-      hasNormal = false;
-      hasIntensity = false;
+    default :{  // xyz - rgb
+      config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+      config.vec_property.push_back(io::importer::Property(io::importer::RGB));
     }
   }
 
   //---------------------------
-  if(config == -1){
-    std::cout<<"Failed to find file configuration ..."<<" Nb columns: "<<line_columns.size()<< std::endl;
-    std::cout << "config " << config << std::endl;
-  }
-  return config;
 }
+std::vector<float> Importer::retrieve_column(io::importer::Configuration& config, int idx){
+  //---------------------------
 
+  //Get first line
+  std::string line;
+  std::ifstream file(config.path);
+
+  for(int i=0; i<idx; i++){
+    getline(file, line);
+  }
+
+  //Column count
+  std::vector<float> vec_data;
+  bool end_loop = false;
+  while(!end_loop){
+    if(line.find(" ") != std::string::npos){
+      vec_data.push_back(std::stof(line.substr(0, line.find(" "))));
+      line = line.substr(line.find(" ")+1);
+    }else{
+      vec_data.push_back(std::stof(line));
+      end_loop = true;
+    }
+  }
+
+  //---------------------------
+  return vec_data;
+}
 
 }

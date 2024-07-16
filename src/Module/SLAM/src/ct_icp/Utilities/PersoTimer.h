@@ -6,8 +6,6 @@
 #include <ctime>
 
 
-using namespace std;
-
 class PersoTimer
 {
 public:

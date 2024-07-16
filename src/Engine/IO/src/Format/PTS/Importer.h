@@ -1,5 +1,6 @@
 #pragma once
 
+#include <IO/src/Import/Structure/Configuration.h>
 #include <IO/src/Import/Structure/Base.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
@@ -34,13 +35,13 @@ public:
 private:
   //Subfunction
   void Loader_nbColumns();
-  void Loader_configuration();
   void Loader_data(utl::base::Data* data_out, int FILE_config);
 
   //Checking function
   void retrieve_header(io::importer::Configuration& config);
   void retrieve_size(io::importer::Configuration& config);
-  int check_configuration(std::string path);
+  void retrieve_configuration(io::importer::Configuration& confi);
+  std::vector<float> retrieve_column(io::importer::Configuration& config, int idx);
 
 private:
   utl::base::Attribut* utl_attribut;
@@ -48,13 +49,10 @@ private:
   std::vector<float> line_columns;
   std::vector<std::string> dataFormat;
   std::string line;
-  bool FILE_hasHeader;
+
   bool hasColor;
   bool hasIntensity;
   bool hasNormal;
-  int config;
-  int nbptMax;
-  int FILE_size, FILE_config;
   fmt::pts::IFormat Is_format;
 };
 
