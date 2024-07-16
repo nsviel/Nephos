@@ -5,7 +5,7 @@
 #include <string>
 
 
-namespace ope::attribut{
+namespace ope::attribut::structure{
 
 struct Color{
   //---------------------------

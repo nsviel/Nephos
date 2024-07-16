@@ -7,7 +7,7 @@ namespace ope{
 struct Structure{
   //---------------------------
 
-  ope::Attribut attribut;
+  ope::attribut::Structure attribut;
 
   //---------------------------
 };

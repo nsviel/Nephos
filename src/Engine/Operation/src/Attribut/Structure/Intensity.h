@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ope::attribut{
+namespace ope::attribut::structure{
 
 struct Intensity{
   //---------------------------

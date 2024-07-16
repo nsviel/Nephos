@@ -5,14 +5,14 @@
 #include <Operation/src/Attribut/Structure/Normal.h>
 
 
-namespace ope{
+namespace ope::attribut{
 
-struct Attribut{
+struct Structure{
   //---------------------------
 
-  ope::attribut::Normal normal;
-  ope::attribut::Intensity intensity;
-  ope::attribut::Color color;
+  ope::attribut::structure::Normal normal;
+  ope::attribut::structure::Intensity intensity;
+  ope::attribut::structure::Color color;
 
   //---------------------------
 };
