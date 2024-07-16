@@ -26,13 +26,8 @@ public:
   //Subfunction
   void colorization_rgb(dat::base::Entity* entity);
   void colorization_unicolor(dat::base::Entity* entity);
-  void colorization_intensity(dat::base::Entity* entity);
-  void colorization_intensity_inv(dat::base::Entity* entity);
-  void colorization_intensity_cor(dat::base::Entity* entity);
-  void colorization_intensity_cal(dat::base::Entity* entity);
-  void colorization_incidence_angle(dat::base::Entity* entity);
   void colorization_normal(dat::base::Entity* entity);
-  void colorization_location(dat::base::Entity* entity);
+  void colorization_field(dat::base::Entity* entity);
   void colorization_heatmap(dat::base::Entity* entity);
   void colorization_structure(dat::base::Entity* entity);
 

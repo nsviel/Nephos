@@ -35,12 +35,12 @@ void Colorizer::make_colorization(dat::base::Entity* entity){
       this->colorization_unicolor(entity);
       break;
     }
-    case ope::color::LOCATION:{
-      this->colorization_intensity(entity);
-      break;
-    }
     case ope::color::NORMAL:{
       this->colorization_normal(entity);
+      break;
+    }
+    case ope::color::FIELD:{
+      this->colorization_field(entity);
       break;
     }
     case ope::color::HEATMAP:{
@@ -76,73 +76,6 @@ void Colorizer::colorization_unicolor(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorizer::colorization_intensity(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
-  //---------------------------
-
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
-  for(int i=0; i<vec_I.size(); i++){
-    float& Is = vec_I[i];
-    data->rgba[i] = glm::vec4(Is, Is, Is, 1);
-  }
-
-  //---------------------------
-}
-void Colorizer::colorization_intensity_inv(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
-  //---------------------------
-
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
-  for(int i=0; i<vec_I.size(); i++){
-    float Iinv = 1 - vec_I[i];
-    data->rgba[i] = glm::vec4(Iinv, Iinv, Iinv, 1);
-  }
-
-  //---------------------------
-}
-void Colorizer::colorization_intensity_cor(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
-  //---------------------------
-
-  std::vector<float>& vec_Icor = utl_attribut->get_field_data(data, "I_cor");
-  for(int i=0; i<vec_Icor.size(); i++){
-    float& Is = vec_Icor[i];
-    data->rgba[i] = glm::vec4(Is, Is, Is, 1);
-  }
-
-  //---------------------------
-}
-void Colorizer::colorization_incidence_angle(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
-  //---------------------------
-
-  std::vector<float>& vec_It = utl_attribut->get_field_data(data, "It");
-  for(int i=0; i<vec_It.size(); i++){
-    float It = vec_It[i];
-
-    if(std::isnan(It)){
-      It = 1;
-    }else{
-      It = It / 90;
-    }
-
-    data->rgba[i] = glm::vec4(It, It, It, 1);
-  }
-
-  //---------------------------
-}
-void Colorizer::colorization_intensity_cal(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
-  //---------------------------
-
-  std::vector<float>& vec_Ical = utl_attribut->get_field_data(data, "I_cal");
-  for(int i=0; i<vec_Ical.size(); i++){
-    float& Is = vec_Ical[i];
-    data->rgba[i] = glm::vec4(Is, Is, Is, 1);
-  }
-
-  //---------------------------
-}
 void Colorizer::colorization_normal(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   utl::base::Pose* pose = &entity->pose;
@@ -164,23 +97,19 @@ void Colorizer::colorization_normal(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Colorizer::colorization_location(dat::base::Entity* entity){
+void Colorizer::colorization_field(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
-  utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
-  std::vector<glm::vec3>& xyz = data->xyz;
+  //Normalization
+  std::vector<float>& vec_field = utl_attribut->get_field_data(data, ope_struct->attribut.color.field);
+  std::vector<float> field = vec_field;
+  math::normalize(field, glm::vec2(0, 1));
 
-  //Compute heatmap
-  #pragma omp parallel for
-  for(int i=0; i<xyz.size(); i++){
-    glm::vec4 normal = glm::vec4(xyz[i], 1.0) * pose->model;
-
-    float R = (1 + normal.x) / 2;
-    float G = (1 + normal.y) / 2;
-    float B = (1 + normal.z) / 2;
-
-    data->rgba[i] = glm::vec4(R, G, B, 1.0f);
+  //Set to color
+  for(int i=0; i<field.size(); i++){
+    float& value = field[i];
+    data->rgba[i] = glm::vec4(value, value, value, 1);
   }
 
   //---------------------------

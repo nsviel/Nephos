@@ -60,27 +60,21 @@ void Color::color_mode(utl::base::Element* element){
 
   //Second line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::RadioButton("XYZ##colorization", &ope_struct->attribut.color.mode, ope::color::LOCATION)){
+  if(ImGui::RadioButton("Nxyz##colorization", &ope_struct->attribut.color.mode, ope::color::NORMAL)){
     ope_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
-  if(ImGui::RadioButton("Nxyz##colorization", &ope_struct->attribut.color.mode, ope::color::NORMAL)){
+  if(ImGui::RadioButton("Field##colorization", &ope_struct->attribut.color.mode, ope::color::FIELD)){
     ope_colorizer->colorize_element(element);
   }
 
   //Third line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::RadioButton("Field##colorization", &ope_struct->attribut.color.mode, ope::color::FIELD)){
+  if(ImGui::RadioButton("Heatmap##colorization", &ope_struct->attribut.color.mode, ope::color::HEATMAP)){
     ope_colorizer->colorize_element(element);
   }
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("Structure##colorization", &ope_struct->attribut.color.mode, ope::color::STRUCTURE)){
-    ope_colorizer->colorize_element(element);
-  }
-
-  //Fourth line
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  if(ImGui::RadioButton("Heatmap##colorization", &ope_struct->attribut.color.mode, ope::color::HEATMAP)){
     ope_colorizer->colorize_element(element);
   }
 
@@ -142,11 +136,13 @@ void Color::mode_field_option(utl::base::Element* element){
       vec_field.push_back(field.name);
     }
 
-    if(ImGui::BeginCombo("##shader_combo_class", vec_field[0].c_str())){
+    static int selection = 0;
+    ImGui::SetNextItemWidth(100);
+    if(ImGui::BeginCombo("##shader_combo_class", vec_field[selection].c_str())){
       for(int i=0; i<vec_field.size(); ++i){
-        const bool is_selected = (0 == i);
+        const bool is_selected = (selection == i);
         if(ImGui::Selectable(vec_field[i].c_str(), is_selected)){
-
+          ope_struct->attribut.color.field = vec_field[i];
         }
 
         if(is_selected){

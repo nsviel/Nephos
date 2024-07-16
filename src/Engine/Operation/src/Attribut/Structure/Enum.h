@@ -6,10 +6,9 @@ namespace ope::color{
 enum Mode{
   RGB = 0,
   UNICOLOR = 1,
-  LOCATION = 2,
   NORMAL = 3,
-  STRUCTURE = 4,
-  FIELD = 5,
+  FIELD = 4,
+  STRUCTURE = 5,
   HEATMAP = 6,
 };
 
