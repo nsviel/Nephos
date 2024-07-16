@@ -1,10 +1,43 @@
-#include "truc.h"
+#include "Statistic.h"
+#include "Operation.h"
 
 #include <random>
 
 
 namespace math{
 
+void compute_mean_and_std(const std::vector<float>& vec, float& mean, float& std){
+  //-----------------------------
+
+  float sum = std::accumulate(vec.begin(), vec.end(), 0.0f);
+  mean = sum / vec.size();
+  std = 0.0f;
+  for(const auto& val : vec){
+      std += (val - mean) * (val - mean);
+  }
+  std = std::sqrt(std / vec.size());
+
+  //-----------------------------
+}
+glm::mat3 compute_covariance(const std::vector<glm::vec3>& points){
+  //---------------------------
+
+  glm::vec3 centroid(0.0f);
+  for(const auto& point : points){
+    centroid += point;
+  }
+  centroid /= static_cast<float>(points.size());
+
+  glm::mat3 covariance(0.0f);
+  for(const auto& point : points){
+    glm::vec3 deviation = point - centroid;
+    covariance += glm::outerProduct(deviation, deviation);
+  }
+  covariance /= static_cast<float>(points.size());
+
+  //---------------------------
+  return covariance;
+}
 Eigen::Matrix3f covariance(std::vector<Eigen::Vector3f>& vec){
   //---------------------------
 
@@ -116,6 +149,47 @@ float R2(std::vector<float>& data_X, std::vector<float>& data_Y, std::vector<flo
 
   //---------------------------
   return R_2;
+}
+std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid){
+  std::vector<float> vec_out(vec);
+  //-----------------------------
+
+  int size = vec.size();
+  if(size == 0) return vec_out;
+
+  // Compute mean and standard deviation
+  float mean, std;
+  math::compute_mean_and_std(vec, mean, std);
+
+  // Retrieve min & max, and filter out outliers
+  float min = std::numeric_limits<float>::max();
+  float max = std::numeric_limits<float>::lowest();
+
+  for(auto& val : vec){
+    if(val != value_to_avoid){
+      if(val > mean + 3 * std || val < mean - 3 * std){
+        val = value_to_avoid;
+      }else{
+        if(val > max) max = val;
+        if(val < min) min = val;
+      }
+    }
+  }
+
+  // Normalization
+  float range = max - min;
+  if(range > 0){
+    for(int i = 0; i < size; ++i){
+      if(vec[i] != value_to_avoid){
+        vec_out[i] = (vec[i] - min) / range;
+      }else{
+        vec_out[i] = value_to_avoid;
+      }
+    }
+  }
+
+  //-----------------------------
+  return vec_out;
 }
 
 }

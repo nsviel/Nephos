@@ -3,7 +3,7 @@
 #include <IO/src/Format/PLY/Structure/Namespace.h>
 #include <IO/src/Import/Structure/Base.h>
 #include <Utility/Function/File/Path.h>
-#include <Utility/Function/Math/Math.h>
+#include <Utility/Function/Math/Operation.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>

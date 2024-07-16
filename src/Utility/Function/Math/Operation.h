@@ -12,33 +12,39 @@
 
 namespace math{
 
-//Operation
+// Min
+int min(std::vector<int>& vec);
+float min(std::vector<float>& vec);
+float min(float in1, float in2);
+glm::vec2 min(std::vector<glm::vec2> XY);
+glm::vec3 min(std::vector<glm::vec3> XYZ);
+
+// Max
+float max(std::vector<float>& vec);
+float max(std::vector<std::vector<float>>& vec);
+glm::vec2 max(std::vector<glm::vec2> XY);
+glm::vec3 max(std::vector<glm::vec3> XYZ);
+
+// Centroid
+glm::vec3 centroid(std::vector<glm::vec3>& vec);
+glm::vec3 centroid(glm::vec3& vec1, glm::vec3& vec2);
+Eigen::Vector3f centroid(std::vector<Eigen::Vector3f>& XYZ);
+Eigen::Vector3d centroid(std::vector<Eigen::Vector3d>& XYZ);
+glm::vec3 centroid(const std::vector<glm::vec3>& vec);
+
+// Operation
+float sum(std::vector<float>& vec);
+float mean(std::vector<float>& vec);
 void divise(std::vector<float>& vec, int diviser);
 std::vector<size_t> sort_by_index(const std::vector<float> &v);
 std::vector<size_t> sort_by_index_greater(const std::vector<float> &v);
 std::vector<float> inv(std::vector<float>& vec);
-glm::vec3 centroid(const std::vector<glm::vec3>& vec);
-float dot_product(glm::vec3& vec_A, glm::vec3& vec_B);
-float compute_cosIt(glm::vec3& xyz, glm::vec3& Nxyz, glm::vec3& root);
-float compute_It(glm::vec3& xyz, glm::vec3& Nxyz, float& R);
 
 //Normalization
 void normalize(std::vector<float>& vec);
 void normalize(std::vector<float>& vec, glm::vec2 range);
 void normalize(std::vector<float>& vec, float value_to_avoid);
 void normalize(std::vector<float>& vec, glm::vec2 range, glm::vec2 clamp);
-void compute_mean_and_std(const std::vector<float>& vec, float& mean, float& std);
-std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid);
-
-//Normal
-glm::mat3 compute_covariance(const std::vector<glm::vec3>& points);
-glm::vec3 compute_normal_from_covariance(const glm::mat3& covariance);
-void compute_normal_orientation(glm::vec3& normal, const glm::vec3& point);
-float calculate_angle(const glm::vec3& v1, const glm::vec3& v2);
-bool normal_same_sense(const glm::vec3& v1, const glm::vec3& v2);
-
-//Conversion
-
 
 //Checker
 bool is_nan(glm::vec3 vec);

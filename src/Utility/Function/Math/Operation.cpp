@@ -1,4 +1,4 @@
-#include "Math.h"
+#include "Operation.h"
 
 #include <Utility/Function/Math/Distance.h>
 #include <random>
@@ -6,7 +6,219 @@
 
 namespace math{
 
+//Min
+int min(std::vector<int>& vec){
+  int min = vec[0];
+  int size = vec.size();
+  //---------------------------
+
+  for(int i=0; i<size; i++){
+    if(min > vec[i]) min = vec[i];
+  }
+
+  //---------------------------
+  return min;
+}
+float min(std::vector<float>& vec){
+  float min = vec[0];
+  int size = vec.size();
+  //---------------------------
+
+  for(int i=0; i<size; i++){
+    if(min > vec[i]) min = vec[i];
+  }
+
+  //---------------------------
+  return min;
+}
+float min(float in1, float in2){
+  //---------------------------
+
+  if(in1 > in2){
+    return in2;
+  }else{
+    return in1;
+  }
+
+  //---------------------------
+}
+glm::vec2 min(std::vector<glm::vec2> XY){
+  glm::vec2 min = XY[0];
+  int size = XY.size();
+  //---------------------------
+
+  for(int i=0; i<size; i++){
+    for(int j=0; j<2; j++){
+      if(XY[i][j] <= min[j]) min[j] = XY[i][j];
+    }
+  }
+
+  //---------------------------
+  return min;
+}
+glm::vec3 min(std::vector<glm::vec3> XYZ){
+  glm::vec3 min = glm::vec3(100000000.0f);
+  int size = XYZ.size();
+  //---------------------------
+
+  for(int i=0; i<size; i++){
+    for(int j=0; j<3; j++){
+      if( XYZ[i][j] <= min[j] ) min[j] = XYZ[i][j];
+    }
+  }
+
+  //---------------------------
+  return min;
+}
+
+//Max
+float max(std::vector<float>& vec){
+  int size = vec.size();
+  if(size == 0) return 0;
+  //---------------------------
+
+  float max = vec[0];
+  for(int i=0; i<size; i++){
+    if(max < vec[i]) max = vec[i];
+  }
+
+  //---------------------------
+  return max;
+}
+float max(std::vector<std::vector<float>>& vec){
+  float max = vec[0].size();
+  int size = vec.size();
+  //---------------------------
+
+  for(int i=0; i<size; i++){
+    if(max < vec[i].size()) max = vec[i].size();
+  }
+
+  //---------------------------
+  return max;
+}
+glm::vec2 max(std::vector<glm::vec2> XY){
+  glm::vec2 max = XY[0];
+  int size = XY.size();
+  //---------------------------
+
+  for(int i=0; i<size; i++){
+    for(int j=0; j<2; j++){
+      if(XY[i][j] >= max[j]) max[j] = XY[i][j];
+    }
+  }
+
+  //---------------------------
+  return max;
+}
+glm::vec3 max(std::vector<glm::vec3> XYZ){
+    glm::vec3 max = XYZ[0];
+    int size = XYZ.size();
+    //---------------------------
+
+    for(int i=0; i<size; i++){
+      for(int j=0; j<3; j++){
+        if(XYZ[i][j] >= max[j]) max[j] = XYZ[i][j];
+      }
+    }
+
+    //---------------------------
+    return max;
+  }
+
+//Centroid
+glm::vec3 centroid(std::vector<glm::vec3>& vec){
+  glm::vec3 centroid = glm::vec3(0, 0, 0);
+  //---------------------------
+
+  for(int i=0; i<vec.size(); i++){
+    for(int j=0; j<3; j++){
+      centroid[j] += vec[i][j];
+    }
+  }
+
+  for(int j=0;j<3;j++){
+    centroid[j] /= vec.size();
+  }
+
+  //---------------------------
+  return centroid;
+}
+glm::vec3 centroid(glm::vec3& vec1, glm::vec3& vec2){
+  glm::vec3 centroid = glm::vec3(0, 0, 0);
+  //---------------------------
+
+  centroid.x = (vec1.x + vec2.x) / 2;
+  centroid.y = (vec1.y + vec2.y) / 2;
+  centroid.z = (vec1.z + vec2.z) / 2;
+
+  //---------------------------
+  return centroid;
+}
+Eigen::Vector3f centroid(std::vector<Eigen::Vector3f>& XYZ){
+  Eigen::Vector3f centroid = Eigen::Vector3f::Zero();
+  int size = XYZ.size();
+  //---------------------------
+
+  for(int i=0; i<size; i++){
+    for(int j=0; j<3; j++){
+      centroid(j) += XYZ[i](j);
+    }
+  }
+
+  for(int i=0; i<3; i++){
+    centroid(i) /= size;
+  }
+
+  //---------------------------
+  return centroid;
+}
+Eigen::Vector3d centroid(std::vector<Eigen::Vector3d>& XYZ){
+    Eigen::Vector3d centroid = Eigen::Vector3d::Zero();
+    int size = XYZ.size();
+    //---------------------------
+
+    for(int i=0; i<size; i++){
+      for(int j=0; j<3; j++){
+        centroid(j) += XYZ[i](j);
+      }
+    }
+
+    for(int i=0; i<3; i++){
+      centroid(i) /= (double) size;
+    }
+
+    //---------------------------
+    return centroid;
+  }
+
 //Operation
+float mean(std::vector<float>& vec){
+  int size = vec.size();
+  float sum = 0;
+  //---------------------------
+
+  for(int i=0; i<size; i++){
+    sum += vec[i];
+  }
+  float mean = sum / size;
+
+  //---------------------------
+  return mean;
+}
+float sum(std::vector<float>& vec){
+  //Sum of vector elements
+  float out = 0;
+  int size = vec.size();
+  //---------------------------
+
+  for(int i=0; i<size; i++){
+    out = out + vec[i];
+  }
+
+  //---------------------------
+  return out;
+}
 void divise(std::vector<float>& vec, int diviser){
   //---------------------------
 
@@ -181,79 +393,6 @@ void normalize(std::vector<float>& vec, float value_to_avoid){
   }
 
   //-----------------------------
-}
-void compute_mean_and_std(const std::vector<float>& vec, float& mean, float& std){
-  //-----------------------------
-
-  float sum = std::accumulate(vec.begin(), vec.end(), 0.0f);
-  mean = sum / vec.size();
-  std = 0.0f;
-  for(const auto& val : vec){
-      std += (val - mean) * (val - mean);
-  }
-  std = std::sqrt(std / vec.size());
-
-  //-----------------------------
-}
-std::vector<float> standardize(std::vector<float>& vec, float value_to_avoid){
-  std::vector<float> vec_out(vec);
-  //-----------------------------
-
-  int size = vec.size();
-  if(size == 0) return vec_out;
-
-  // Compute mean and standard deviation
-  float mean, std;
-  math::compute_mean_and_std(vec, mean, std);
-
-  // Retrieve min & max, and filter out outliers
-  float min = std::numeric_limits<float>::max();
-  float max = std::numeric_limits<float>::lowest();
-
-  for(auto& val : vec){
-    if(val != value_to_avoid){
-      if(val > mean + 3 * std || val < mean - 3 * std){
-        val = value_to_avoid;
-      }else{
-        if(val > max) max = val;
-        if(val < min) min = val;
-      }
-    }
-  }
-
-  // Normalization
-  float range = max - min;
-  if(range > 0){
-    for(int i = 0; i < size; ++i){
-      if(vec[i] != value_to_avoid){
-        vec_out[i] = (vec[i] - min) / range;
-      }else{
-        vec_out[i] = value_to_avoid;
-      }
-    }
-  }
-
-  //-----------------------------
-  return vec_out;
-}
-glm::mat3 compute_covariance(const std::vector<glm::vec3>& points){
-  //---------------------------
-
-  glm::vec3 centroid(0.0f);
-  for(const auto& point : points){
-    centroid += point;
-  }
-  centroid /= static_cast<float>(points.size());
-
-  glm::mat3 covariance(0.0f);
-  for(const auto& point : points){
-    glm::vec3 deviation = point - centroid;
-    covariance += glm::outerProduct(deviation, deviation);
-  }
-  covariance /= static_cast<float>(points.size());
-
-  //---------------------------
-  return covariance;
 }
 
 //Checker
