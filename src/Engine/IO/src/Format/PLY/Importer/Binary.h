@@ -1,6 +1,5 @@
 #pragma once
 
-#include <IO/src/Format/PLY/Structure/Namespace.h>
 #include <IO/src/Import/Structure/Base.h>
 #include <IO/src/Import/Structure/Buffer.h>
 #include <IO/src/Import/Structure/Configuration.h>

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <IO/src/Format/PLY/Structure/Namespace.h>
 #include <IO/src/Export/Structure/Base.h>
 #include <glm/glm.hpp>
 #include <fstream>
@@ -22,11 +21,11 @@ public:
 
 public:
   //Main function
-  void write_header(fmt::ply::exporter::Structure& exporter, std::ofstream& file);
+  void write_header(io::exporter::Configuration& config, std::ofstream& file);
 
   //Subfunction
-  void write_info(fmt::ply::exporter::Structure& exporter, std::ofstream& file);
-  void write_property(fmt::ply::exporter::Structure& exporter, std::ofstream& file);
+  void write_info(io::exporter::Configuration& config, std::ofstream& file);
+  void write_property(io::exporter::Configuration& config, std::ofstream& file);
   void write_end(std::ofstream& file);
 
 private:

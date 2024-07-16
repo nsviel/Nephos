@@ -26,26 +26,26 @@ void Exporter::export_data(io::exporter::Configuration& config, utl::base::Data*
   //---------------------------
 /*
   //Make exporter structure
-  fmt::ply::exporter::Structure exporter;
-  exporter.mat_model = config.mat_model;
-  exporter.mat_rotation = glm::mat3(config.mat_model);
-  this->build_structure(exporter, data);
+  io::exporter::Configuration config;
+  config.mat_model = config.mat_model;
+  config.mat_rotation = glm::mat3(config.mat_model);
+  this->build_structure(config, data);
 
   //Write on file
   switch(config.encoding){
     case io::exporter::ASCII:{
-      exporter.encoding = "ascii";
+      config.encoding = "ascii";
       std::ofstream file(path);
-      io_header->write_header(exporter, file);
-      this->write_data_ascii(exporter, file, data);
+      io_header->write_header(config, file);
+      this->write_data_ascii(config, file, data);
       file.close();
       break;
     }
     case io::exporter::BINARY:{
-      exporter.encoding = "binary_little_endian";
+      config.encoding = "binary_little_endian";
       std::ofstream file(path, std::ios::binary);
-      io_header->write_header(exporter, file);
-      this->write_data_binary(exporter, file, data);
+      io_header->write_header(config, file);
+      this->write_data_binary(config, file, data);
       file.close();
       break;
     }
@@ -55,46 +55,46 @@ void Exporter::export_data(io::exporter::Configuration& config, utl::base::Data*
 }
 
 //Subfunction
-void Exporter::build_structure(fmt::ply::exporter::Structure& exporter, utl::base::Data* data){
+void Exporter::build_structure(io::exporter::Configuration& config, utl::base::Data* data){
   //---------------------------
 
-  exporter.nb_vertex = (data->size > 0) ? data->size : data->xyz.size();
+  config.nb_vertex = (data->size > 0) ? data->size : data->xyz.size();
 
   //Location
   if(data->xyz.size() != 0){
-    exporter.vec_property.push_back(io::exporter::XYZ);
-    exporter.nb_property += 3;
+    config.vec_property.push_back(io::exporter::XYZ);
+    config.nb_property += 3;
   }
 
   //Color
   if(data->rgb.size() != 0){
-    exporter.vec_property.push_back(io::exporter::RGB);
-    exporter.nb_property += 3;
+    config.vec_property.push_back(io::exporter::RGB);
+    config.nb_property += 3;
   }
 
   //Normal
   if(data->Nxyz.size() != 0){
-    exporter.vec_property.push_back(io::exporter::NXYZ);
-    exporter.nb_property += 3;
+    config.vec_property.push_back(io::exporter::NXYZ);
+    config.nb_property += 3;
   }
 
   //Intensity
   std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
   if(vec_I.size() != 0){
-    exporter.vec_property.push_back(io::exporter::I);
-    exporter.nb_property++;
+    config.vec_property.push_back(io::exporter::I);
+    config.nb_property++;
   }
 
   //Timestamp
   std::vector<float>& vec_ts = utl_attribut->get_field_data(data, "ts");
   if(vec_ts.size() != 0){
-    exporter.vec_property.push_back(io::exporter::TS);
-    exporter.nb_property++;
+    config.vec_property.push_back(io::exporter::TS);
+    config.nb_property++;
   }
 
   //---------------------------
 }
-void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::ofstream& file, utl::base::Data* data){
+void Exporter::write_data_ascii(io::exporter::Configuration& config, std::ofstream& file, utl::base::Data* data){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
@@ -109,7 +109,7 @@ void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::of
     file << std::fixed;
 
     //Location
-    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * exporter.mat_model;
+    glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * config.mat_model;
     file << std::setprecision(precision) << xyzw.x <<" "<< xyzw.y <<" "<< xyzw.z <<" ";
 
     //Color
@@ -123,7 +123,7 @@ void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::of
 
     //Normal
     if(Nxyz.size() != 0){
-      glm::vec3 normal = Nxyz[i] * exporter.mat_rotation;
+      glm::vec3 normal = Nxyz[i] * config.mat_rotation;
       file << std::setprecision(precision) << normal.x <<" "<< normal.y <<" "<< normal.z <<" ";
     }
 
@@ -137,7 +137,7 @@ void Exporter::write_data_ascii(fmt::ply::exporter::Structure& exporter, std::of
 
   //---------------------------
 }
-void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::ofstream& file, utl::base::Data* data){
+void Exporter::write_data_binary(io::exporter::Configuration& config, std::ofstream& file, utl::base::Data* data){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
@@ -149,20 +149,20 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
   int precision = 6;
 
   //Prepare data writing by blocks
-  int block_size = exporter.nb_property * xyz.size() * sizeof(float);
+  int block_size = config.nb_property * xyz.size() * sizeof(float);
   char* block_data = new char[block_size];
 
   //Convert decimal data into binary data
   int offset = 0;
   int cpt_property = 0;
   for(int i=0; i<xyz.size(); i++){
-    for(int j=0; j<exporter.vec_property.size(); j++){
-      io::exporter::Field& field = exporter.vec_property[j];
+    for(int j=0; j<config.vec_property.size(); j++){
+      io::exporter::Field& field = config.vec_property[j];
 
       switch(field){
         //Location
         case io::exporter::XYZ:{
-          glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * exporter.mat_model;
+          glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * config.mat_model;
           memcpy(block_data + offset, &xyzw, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
           break;
@@ -188,7 +188,7 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
 
         //Normal
         case io::exporter::NXYZ:{
-          glm::vec3 normal = Nxyz[i] * exporter.mat_rotation;
+          glm::vec3 normal = Nxyz[i] * config.mat_rotation;
           memcpy(block_data + offset, &normal, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
           break;

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <IO/src/Import/Structure/Configuration.h>
-#include <IO/src/Format/PLY/Structure/Namespace.h>
 #include <IO/src/Import/Structure/Base.h>
 #include <Utility/Function/File/Path.h>
 #include <Utility/Function/Math/Operation.h>

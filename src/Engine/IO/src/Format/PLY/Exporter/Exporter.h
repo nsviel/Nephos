@@ -1,6 +1,5 @@
 #pragma once
 
-#include <IO/src/Format/PLY/Structure/Namespace.h>
 #include <IO/src/Export/Structure/Base.h>
 #include <glm/glm.hpp>
 #include <fstream>
@@ -27,9 +26,9 @@ public:
   void export_data(io::exporter::Configuration& config, utl::base::Data* data);
 
   //Subfunction
-  void build_structure(fmt::ply::exporter::Structure& exporter, utl::base::Data* data);
-  void write_data_ascii(fmt::ply::exporter::Structure& exporter, std::ofstream& file, utl::base::Data* data);
-  void write_data_binary(fmt::ply::exporter::Structure& exporter, std::ofstream& file, utl::base::Data* data);
+  void build_structure(io::exporter::Configuration& config, utl::base::Data* data);
+  void write_data_ascii(io::exporter::Configuration& config, std::ofstream& file, utl::base::Data* data);
+  void write_data_binary(io::exporter::Configuration& config, std::ofstream& file, utl::base::Data* data);
 
 private:
   fmt::ply::exporter::Header* io_header;

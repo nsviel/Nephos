@@ -14,31 +14,31 @@ Header::Header(){
 Header::~Header(){}
 
 //Main exporter functions
-void Header::write_header(fmt::ply::exporter::Structure& exporter, std::ofstream& file){
+void Header::write_header(io::exporter::Configuration& config, std::ofstream& file){
   //---------------------------
 
-  this->write_info(exporter, file);
-  this->write_property(exporter, file);
+  this->write_info(config, file);
+  this->write_property(config, file);
   this->write_end(file);
 
   //---------------------------
 }
 
 //Subfunction
-void Header::write_info(fmt::ply::exporter::Structure& exporter, std::ofstream& file){
+void Header::write_info(io::exporter::Configuration& config, std::ofstream& file){
   //---------------------------
 
   file << "ply" << std::endl;
-  file << "format " + exporter.encoding + " 1.0" << std::endl;
-  file << "element vertex " << exporter.nb_vertex << std::endl;
+  file << "format " + config.encoding + " 1.0" << std::endl;
+  file << "element vertex " << config.nb_vertex << std::endl;
 
   //---------------------------
 }
-void Header::write_property(fmt::ply::exporter::Structure& exporter, std::ofstream& file){
+void Header::write_property(io::exporter::Configuration& config, std::ofstream& file){
   //---------------------------
 
-  for(int i=0; i<exporter.vec_property.size(); i++){
-    io::exporter::Field& field = exporter.vec_property[i];
+  for(int i=0; i<config.vec_property.size(); i++){
+    io::exporter::Field& field = config.vec_property[i];
 
     switch(field){
       case io::exporter::XYZ:{
