@@ -1,6 +1,6 @@
 #pragma once
 
-#include <IO/src/Format/PLY/Structure/Enum.h>
+#include <IO/src/Export/Structure/Enum.h>
 #include <glm/glm.hpp>
 #include <vector>
 #include <string>
@@ -9,7 +9,7 @@
 namespace fmt::ply::exporter{
 
 struct Structure{
-  std::vector<fmt::ply::Field> vec_property;
+  std::vector<io::exporter::Field> vec_property;
   std::string encoding = "";
   std::string path = "";
   glm::mat4 mat_model;

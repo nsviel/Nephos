@@ -62,33 +62,33 @@ void Exporter::build_structure(fmt::ply::exporter::Structure& exporter, utl::bas
 
   //Location
   if(data->xyz.size() != 0){
-    exporter.vec_property.push_back(fmt::ply::XYZ);
+    exporter.vec_property.push_back(io::exporter::XYZ);
     exporter.nb_property += 3;
   }
 
   //Color
   if(data->rgb.size() != 0){
-    exporter.vec_property.push_back(fmt::ply::RGB);
+    exporter.vec_property.push_back(io::exporter::RGB);
     exporter.nb_property += 3;
   }
 
   //Normal
   if(data->Nxyz.size() != 0){
-    exporter.vec_property.push_back(fmt::ply::NXYZ);
+    exporter.vec_property.push_back(io::exporter::NXYZ);
     exporter.nb_property += 3;
   }
 
   //Intensity
   std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
   if(vec_I.size() != 0){
-    exporter.vec_property.push_back(fmt::ply::I);
+    exporter.vec_property.push_back(io::exporter::I);
     exporter.nb_property++;
   }
 
   //Timestamp
   std::vector<float>& vec_ts = utl_attribut->get_field_data(data, "ts");
   if(vec_ts.size() != 0){
-    exporter.vec_property.push_back(fmt::ply::TS);
+    exporter.vec_property.push_back(io::exporter::TS);
     exporter.nb_property++;
   }
 
@@ -157,11 +157,11 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
   int cpt_property = 0;
   for(int i=0; i<xyz.size(); i++){
     for(int j=0; j<exporter.vec_property.size(); j++){
-      fmt::ply::Field& field = exporter.vec_property[j];
+      io::exporter::Field& field = exporter.vec_property[j];
 
       switch(field){
         //Location
-        case fmt::ply::XYZ:{
+        case io::exporter::XYZ:{
           glm::vec4 xyzw = glm::vec4(xyz[i], 1.0) * exporter.mat_model;
           memcpy(block_data + offset, &xyzw, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
@@ -169,7 +169,7 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
         }
 
         //Color
-        case fmt::ply::RGB:{
+        case io::exporter::RGB:{
           for(int k=0; k<3; k++){
             glm::vec3 RGB = use_rgba ? glm::vec3(rgba[i].x, rgba[i].y, rgba[i].z) : rgb[i];
             int color_int = RGB[k] * 255;
@@ -180,14 +180,14 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
         }
 
         //Intensity
-        case fmt::ply::I:{
+        case io::exporter::I:{
           memcpy(block_data + offset, &vec_I[i], sizeof(float));
           offset += sizeof(float);
           break;
         }
 
         //Normal
-        case fmt::ply::NXYZ:{
+        case io::exporter::NXYZ:{
           glm::vec3 normal = Nxyz[i] * exporter.mat_rotation;
           memcpy(block_data + offset, &normal, sizeof(glm::vec3));
           offset += sizeof(glm::vec3);
@@ -195,7 +195,7 @@ void Exporter::write_data_binary(fmt::ply::exporter::Structure& exporter, std::o
         }
 
         //Timestamp
-        case fmt::ply::TS:{
+        case io::exporter::TS:{
           memcpy(block_data + offset, &vec_ts[i], sizeof(float));
           offset += sizeof(float);
           break;

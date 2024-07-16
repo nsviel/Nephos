@@ -38,32 +38,32 @@ void Header::write_property(fmt::ply::exporter::Structure& exporter, std::ofstre
   //---------------------------
 
   for(int i=0; i<exporter.vec_property.size(); i++){
-    fmt::ply::Field& field = exporter.vec_property[i];
+    io::exporter::Field& field = exporter.vec_property[i];
 
     switch(field){
-      case fmt::ply::XYZ:{
+      case io::exporter::XYZ:{
         file << "property float32 x" << std::endl;
         file << "property float32 y" << std::endl;
         file << "property float32 z" << std::endl;
         break;
       }
-      case fmt::ply::RGB:{
+      case io::exporter::RGB:{
         file << "property uchar red" << std::endl;
         file << "property uchar green" << std::endl;
         file << "property uchar blue" << std::endl;
         break;
       }
-      case fmt::ply::NXYZ:{
+      case io::exporter::NXYZ:{
         file << "property float32 nx" << std::endl;
         file << "property float32 ny" << std::endl;
         file << "property float32 nz" << std::endl;
         break;
       }
-      case fmt::ply::I:{
+      case io::exporter::I:{
         file << "property float32 intensity" << std::endl;
         break;
       }
-      case fmt::ply::TS:{
+      case io::exporter::TS:{
         file << "property float32 timestamp" << std::endl;
         break;
       }

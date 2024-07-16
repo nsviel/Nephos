@@ -70,19 +70,19 @@ void Ascii::parse_vertex(io::importer::Configuration* ply_struct, std::ifstream&
     }
 
     //Location
-    int id_x = get_property_id(ply_struct, fmt::ply::XYZ);
+    int id_x = get_property_id(ply_struct, io::importer::XYZ);
     if(id_x != -1){
       buffer.xyz.push_back(glm::vec3(row[id_x], row[id_x+1], row[id_x+2]));
     }
 
     //Normal
-    int id_nx = get_property_id(ply_struct, fmt::ply::NXYZ);
+    int id_nx = get_property_id(ply_struct, io::importer::NXYZ);
     if(id_nx != -1){
       buffer.Nxyz.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
     }
 
     //Intensity
-    int id_i = get_property_id(ply_struct, fmt::ply::I);
+    int id_i = get_property_id(ply_struct, io::importer::I);
     if(id_i != -1){
       buffer.Is.push_back(row[id_i]);
     }
@@ -118,12 +118,12 @@ void Ascii::parse_face(io::importer::Configuration* ply_struct, std::ifstream& f
       buffer.xyz.push_back(buffer_tmp.xyz[idx[i]]);
 
       //Normal
-      if(get_property_id(ply_struct, fmt::ply::NXYZ) != -1){
+      if(get_property_id(ply_struct, io::importer::NXYZ) != -1){
         buffer.Nxyz.push_back(buffer_tmp.Nxyz[idx[i]]);
       }
 
       //Intensity
-      if(get_property_id(ply_struct, fmt::ply::I) != -1){
+      if(get_property_id(ply_struct, io::importer::I) != -1){
         buffer.Is.push_back(buffer_tmp.Is[idx[i]]);
       }
     }
@@ -139,7 +139,7 @@ void Ascii::parse_face(io::importer::Configuration* ply_struct, std::ifstream& f
 
   //---------------------------
 }
-int Ascii::get_property_id(io::importer::Configuration* ply_struct, fmt::ply::Field field){
+int Ascii::get_property_id(io::importer::Configuration* ply_struct, io::importer::Field field){
   //---------------------------
 
   for(int i=0; i<ply_struct->vec_property.size(); i++){

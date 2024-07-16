@@ -37,12 +37,12 @@ utl::base::Element* Importer::import(utl::base::Path path){
 
   //Parsing
   switch(ply_struct.encoding){
-    case ASCII:{
+    case io::importer::ASCII:{
       ply_ascii->parse_ascii(&ply_struct, object);
       break;
     }
-    case BINARY_LITTLE_ENDIAN:
-    case BINARY_BIG_ENDIAN:{
+    case io::importer::BINARY_LITTLE_ENDIAN:
+    case io::importer::BINARY_BIG_ENDIAN:{
       ply_binary->parse_binary(&ply_struct, object);
       break;
     }
@@ -95,9 +95,9 @@ bool Importer::parse_header(io::importer::Configuration& ply_struct){
 void Importer::parse_header_format(io::importer::Configuration& ply_struct, std::string format){
   //---------------------------
 
-  if(format == "ascii") ply_struct.encoding = fmt::ply::ASCII;
-  else if(format == "binary_little_endian") ply_struct.encoding = fmt::ply::BINARY_LITTLE_ENDIAN;
-  else if(format == "binary_big_endian") ply_struct.encoding = fmt::ply::BINARY_BIG_ENDIAN;
+  if(format == "ascii") ply_struct.encoding = io::importer::ASCII;
+  else if(format == "binary_little_endian") ply_struct.encoding = io::importer::BINARY_LITTLE_ENDIAN;
+  else if(format == "binary_big_endian") ply_struct.encoding = io::importer::BINARY_BIG_ENDIAN;
   else{
     std::cout<<"[warning] Unknown format: "<<format<<std::endl;
   }
@@ -122,26 +122,26 @@ void Importer::parse_header_property(io::importer::Configuration& ply_struct, st
   //---------------------------
 
   //Property type
-  if(type == "float" || type == "float32") property.type = fmt::ply::FLOAT32;
-  else if(type == "float64" || type == "double") property.type = fmt::ply::FLOAT64;
-  else if(type == "uint" || type == "uint8") property.type = fmt::ply::UINT8;
-  else if(type == "uint16") property.type = fmt::ply::UINT16;
-  else if(type == "int" || type == "int32") property.type = fmt::ply::UINT32;
-  else if(type == "uchar") property.type = fmt::ply::UCHAR;
-  else if(type == "ushort") property.type = fmt::ply::USHORT;
+  if(type == "float" || type == "float32") property.type = io::importer::FLOAT32;
+  else if(type == "float64" || type == "double") property.type = io::importer::FLOAT64;
+  else if(type == "uint" || type == "uint8") property.type = io::importer::UINT8;
+  else if(type == "uint16") property.type = io::importer::UINT16;
+  else if(type == "int" || type == "int32") property.type = io::importer::UINT32;
+  else if(type == "uchar") property.type = io::importer::UCHAR;
+  else if(type == "ushort") property.type = io::importer::USHORT;
   else{
     std::cout<<"[warning] Unknown property type: "<<type<<std::endl;
     return;
   }
 
   //Property field
-  if(field == "x") property.field = fmt::ply::XYZ;
-  else if(field == "timestamp") property.field = fmt::ply::TS;
-  else if(field == "nx") property.field = fmt::ply::NXYZ;
-  else if(field == "red") property.field = fmt::ply::RGB;
-  else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "intensity") property.field = fmt::ply::I;
+  if(field == "x") property.field = io::importer::XYZ;
+  else if(field == "timestamp") property.field = io::importer::TS;
+  else if(field == "nx") property.field = io::importer::NXYZ;
+  else if(field == "red") property.field = io::importer::RGB;
+  else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "intensity") property.field = io::importer::I;
   else{
-    property.field = fmt::ply::VOID;
+    property.field = io::importer::VOID;
   }
 
   //Store property

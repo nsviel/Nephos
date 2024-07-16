@@ -28,16 +28,16 @@ public:
 
 public:
   //Main function
-  void parse_binary(io::importer::Configuration* ply_struct, dat::base::Object* object);
+  void parse_binary(io::importer::Configuration* config, dat::base::Object* object);
 
   //Subfunction
   void pass_header(std::ifstream& file);
-  void parse_vertex_little_endian(io::importer::Configuration* ply_struct, std::ifstream& file);
-  void parse_face_little_endian(io::importer::Configuration* ply_struct, std::ifstream& file);
-  void parse_vertex_big_endian(io::importer::Configuration* ply_struct, std::ifstream& file);
-  void parse_face_big_endian(io::importer::Configuration* ply_struct, std::ifstream& file);
+  void parse_vertex_little_endian(io::importer::Configuration* config, std::ifstream& file);
+  void parse_face_little_endian(io::importer::Configuration* config, std::ifstream& file);
+  void parse_vertex_big_endian(io::importer::Configuration* config, std::ifstream& file);
+  void parse_face_big_endian(io::importer::Configuration* config, std::ifstream& file);
   void reorder_by_timestamp(utl::base::Data* data);
-  int get_property_id(io::importer::Configuration* ply_struct, fmt::ply::Field field);
+  int get_property_id(io::importer::Configuration* config, io::importer::Field field);
 
   //Binary type
   float reverse_float(const float inFloat);

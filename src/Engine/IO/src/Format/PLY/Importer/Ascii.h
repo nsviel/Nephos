@@ -34,7 +34,7 @@ public:
   void pass_header(std::ifstream& file);
   void parse_vertex(io::importer::Configuration* ply_struct, std::ifstream& file);
   void parse_face(io::importer::Configuration* ply_struct, std::ifstream& file);
-  int get_property_id(io::importer::Configuration* ply_struct, fmt::ply::Field field);
+  int get_property_id(io::importer::Configuration* ply_struct, io::importer::Field field);
 
 private:
   utl::base::Attribut* utl_attribut;

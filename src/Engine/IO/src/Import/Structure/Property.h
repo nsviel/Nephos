@@ -1,13 +1,13 @@
 #pragma once
 
-#include <IO/src/Format/PLY/Structure/Enum.h>
+#include <IO/src/Import/Structure/Enum.h>
 
 
 namespace io::importer{
 
 struct Property{
-  fmt::ply::Field field;
-  fmt::ply::Type type;
+  io::importer::Field field;
+  io::importer::Type type;
   int size = 0;
 };
 
