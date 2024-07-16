@@ -2,6 +2,7 @@
 
 #include <IO/src/Format/PLY/Structure/Namespace.h>
 #include <IO/src/Import/Structure/Base.h>
+#include <IO/src/Import/Structure/Buffer.h>
 #include <Utility/Function/File/Path.h>
 #include <Utility/Function/Math/Operation.h>
 #include <glm/glm.hpp>
@@ -52,7 +53,7 @@ public:
 private:
   utl::base::Attribut* utl_attribut;
 
-  fmt::ply::Buffer buffer;
+  io::importer::Buffer buffer;
 };
 
 }

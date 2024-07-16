@@ -18,6 +18,7 @@ struct Base{
 
   std::vector<io::exporter::Encoding> vec_encoding;
   std::string format = "";
+  bool use_rgba = true;
 
   //---------------------------
 };

@@ -174,7 +174,7 @@ void Binary::parse_face_little_endian(fmt::ply::importer::Structure* ply_struct,
   //---------------------------
 
   //Init
-  fmt::ply::Buffer buffer_tmp = buffer;
+  io::importer::Buffer buffer_tmp = buffer;
   this->buffer = {};
 
   //Get face index
@@ -278,7 +278,7 @@ void Binary::parse_face_big_endian(fmt::ply::importer::Structure* ply_struct, st
   //---------------------------
 
   //Init
-  fmt::ply::Buffer buffer_tmp = buffer;
+  io::importer::Buffer buffer_tmp = buffer;
   this->buffer = {};
 
   //Get face index

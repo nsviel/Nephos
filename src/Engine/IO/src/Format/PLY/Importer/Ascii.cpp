@@ -95,7 +95,7 @@ void Ascii::parse_face(fmt::ply::importer::Structure* ply_struct, std::ifstream&
   //---------------------------
 
   //Init
-  fmt::ply::Buffer buffer_tmp = buffer;
+  io::importer::Buffer buffer_tmp = buffer;
   this->buffer = {};
 
   //Retrieve face data
