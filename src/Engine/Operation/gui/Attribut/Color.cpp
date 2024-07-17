@@ -55,13 +55,13 @@ void Color::color_mode(utl::base::Element* element){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   this->color_mode_normal(element);
   ImGui::TableNextColumn();
-  this->color_mode_field(element);
+  this->color_mode_structure(element);
 
   //Third line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
-  this->color_mode_heatmap(element);
+  this->color_mode_field(element);
   ImGui::TableNextColumn();
-  this->color_mode_structure(element);
+  this->color_mode_heatmap(element);
 
   ImGui::EndTable();
 
