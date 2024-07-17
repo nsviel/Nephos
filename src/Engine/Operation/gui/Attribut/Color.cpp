@@ -41,22 +41,52 @@ void Color::design_colorization(utl::base::Element* element){
 
 //Subfunction
 void Color::color_mode(utl::base::Element* element){
-  dat::base::Entity* entity = dat_element->get_active_entity(element);
-  if(!entity) return;
   //---------------------------
 
   ImGui::BeginTable("colorization##mode", 2);
 
   //First line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
+  this->color_mode_rgb(element);
+  ImGui::TableNextColumn();
+  this->color_mode_unicolor(element);
+
+  //Second line
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  this->color_mode_normal(element);
+  ImGui::TableNextColumn();
+  this->color_mode_field(element);
+
+  //Third line
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  this->color_mode_heatmap(element);
+  ImGui::TableNextColumn();
+  this->color_mode_structure(element);
+
+  ImGui::EndTable();
+
+  //---------------------------
+  ImGui::Separator();
+}
+void Color::color_mode_rgb(utl::base::Element* element){
+  dat::base::Entity* entity = dat_element->get_active_entity(element);
+  if(!entity) return;
+  //---------------------------
 
   bool condition = (entity->data.rgb.size() != 0);
   if(condition) ImGui::BeginDisabled();
+
   if(ImGui::RadioButton("RGB##colorization", &ope_struct->attribut.color.mode, ope::color::RGB)){
     ope_color->make_colorization(element);
   }
+
   if(condition) ImGui::EndDisabled();
-  ImGui::TableNextColumn();
+
+  //---------------------------
+}
+void Color::color_mode_unicolor(utl::base::Element* element){
+  //---------------------------
+
   if(ImGui::RadioButton("##unicolor", &ope_struct->attribut.color.mode, ope::color::UNICOLOR)){
     ope_color->make_colorization(element);
   }
@@ -66,31 +96,75 @@ void Color::color_mode(utl::base::Element* element){
     ope_color->make_colorization(element);
   }
 
-  //Second line
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  //---------------------------
+}
+void Color::color_mode_normal(utl::base::Element* element){
+  dat::base::Entity* entity = dat_element->get_active_entity(element);
+  if(!entity) return;
+  //---------------------------
+
+  bool condition = (entity->data.Nxyz.size() != 0);
+  if(condition) ImGui::BeginDisabled();
+
   if(ImGui::RadioButton("Nxyz##colorization", &ope_struct->attribut.color.mode, ope::color::NORMAL)){
     ope_color->make_colorization(element);
   }
-  ImGui::TableNextColumn();
+
+  if(condition) ImGui::EndDisabled();
+
+  //---------------------------
+}
+void Color::color_mode_field(utl::base::Element* element){
+  dat::base::Entity* entity = dat_element->get_active_entity(element);
+  if(!entity) return;
+  //---------------------------
+
+  bool condition = (entity->data.vec_field.size() != 0);
+  if(condition) ImGui::BeginDisabled();
+
   if(ImGui::RadioButton("Field##colorization", &ope_struct->attribut.color.mode, ope::color::FIELD)){
     ope_color->make_colorization(element);
   }
 
-  //Third line
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  if(condition) ImGui::EndDisabled();
+
+  //---------------------------
+}
+void Color::color_mode_heatmap(utl::base::Element* element){
+  dat::base::Entity* entity = dat_element->get_active_entity(element);
+  if(!entity) return;
+  //---------------------------
+
+  bool condition = (entity->data.vec_field.size() != 0);
+  if(condition) ImGui::BeginDisabled();
+
   if(ImGui::RadioButton("Heatmap##colorization", &ope_struct->attribut.color.mode, ope::color::HEATMAP)){
     ope_color->make_colorization(element);
   }
-  ImGui::TableNextColumn();
+
+  if(condition) ImGui::EndDisabled();
+
+  //---------------------------
+}
+void Color::color_mode_structure(utl::base::Element* element){
+  dat::base::Entity* entity = dat_element->get_active_entity(element);
+  if(!entity) return;
+  //---------------------------
+
+  bool condition = (entity->data.width != -1);
+  if(condition) ImGui::BeginDisabled();
+
   if(ImGui::RadioButton("Structure##colorization", &ope_struct->attribut.color.mode, ope::color::STRUCTURE)){
     ope_color->make_colorization(element);
   }
 
-  ImGui::EndTable();
+  if(condition) ImGui::EndDisabled();
 
   //---------------------------
-  ImGui::Separator();
 }
+
+
+
 void Color::color_option(utl::base::Element* element){
   //---------------------------
 
