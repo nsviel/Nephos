@@ -21,6 +21,8 @@ public:
   //Main function
   void convert_normal_to_image(utl::base::Data* data, utl::media::Image* image);
   void convert_intensity_to_image(utl::base::Data* data, utl::media::Image* image);
+  void convert_spherical_pc_to_image(utl::base::Data* data, utl::media::Image* image);
+  void convert_whole_spherical_pc_to_image(utl::base::Data* data, utl::media::Image* image);
   void convert_color_to_image(utl::base::Data* data, utl::media::Image* image);
 
 private:

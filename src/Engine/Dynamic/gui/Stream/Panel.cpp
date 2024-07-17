@@ -21,7 +21,7 @@ Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
   this->dat_set = node_data->get_dat_set();
   this->gui_overlay = new dyn::gui::stream::Overlay();
 
-  for(int i=0; i<10; i++){
+  for(int i=0; i<20; i++){
     itf::gui::Stream* stream = new itf::gui::Stream(node_engine);
     this->vec_stream.push_back(stream);
   }
@@ -36,10 +36,9 @@ Panel::~Panel(){}
 //Main function
 void Panel::run_panel(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   //---------------------------
 
-  if(*show_window && sensor != nullptr){
+  if(*show_window && entity->list_image.size() != 0){
     ImGuiWindowFlags flag;
     flag |= ImGuiWindowFlags_NoCollapse;
     flag |= ImGuiWindowFlags_AlwaysAutoResize;
@@ -48,7 +47,7 @@ void Panel::run_panel(){
     ImGui::SetNextWindowSizeConstraints(ImVec2(100, 400), ImVec2(FLT_MAX, FLT_MAX));
     if(ImGui::Begin(name.c_str(), show_window, flag) == 1){
 
-      this->design_panel(sensor);
+      this->design_panel(entity);
 
       ImGui::End();
     }

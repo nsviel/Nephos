@@ -44,7 +44,7 @@ void Operation::draw_ope_image(utl::base::Element* element){
     dat::element::Image* dat_image = node_data->get_dat_image();
     dat::base::Entity* entity = dat_element->get_active_entity(element);
     utl::media::Image* image = dat_image->get_or_create_image(entity, "Intensity");
-    ope_image->convert_intensity_to_image(&entity->data, image);
+    ope_image->convert_spherical_pc_to_image(&entity->data, image);
   }
 
 
