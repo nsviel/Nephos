@@ -6,7 +6,7 @@ namespace ope{class Node;}
 namespace ope::gui{class Color;}
 namespace ope::gui{class Transformation;}
 namespace ope::gui{class Info;}
-namespace ope::gui{class Normal;}
+namespace ope::gui{class Operation;}
 namespace utl::base{class Element;}
 
 
@@ -26,7 +26,7 @@ private:
   ope::gui::Color* gui_color;
   ope::gui::Transformation* gui_transformation;
   ope::gui::Info* gui_info;
-  ope::gui::Normal* gui_normal;
+  ope::gui::Operation* gui_operation;
 };
 
 }

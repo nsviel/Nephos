@@ -87,7 +87,7 @@ void Converter::convert_color_to_image(utl::base::Data* data, utl::media::Image*
   std::vector<uint8_t> output = std::vector<uint8_t>(data->rgb.size() * 4, 0);
 
   // Convert the float value to uint8_t
-  for(int i=0; i<vec_I.size(); i++){
+  for(int i=0; i<data->rgb.size(); i++){
     glm::vec3& rgb = data->rgb[i];
 
     size_t j = i * 4;

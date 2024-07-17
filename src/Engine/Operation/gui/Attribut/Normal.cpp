@@ -32,22 +32,20 @@ void Normal::draw_parameter(){
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
-  if(ImGui::CollapsingHeader("Operation##dynamic")){
-    ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
 
-    //Enable
-    ImGui::Checkbox("Activated", &ope_struct->attribut.normal.enable);
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
 
-    //Parameter: kNN
-    ImGui::SetNextItemWidth(100);
-    ImGui::SliderInt("kNN", &ope_struct->attribut.normal.knn, 1, 10);
+  //Enable
+  ImGui::Checkbox("Activated", &ope_struct->attribut.normal.enable);
 
-    //Computation time
-    ImGui::Text("Time");
-    ImGui::SameLine();
-    ImGui::TextColored(color, "%.2f ms", ope_struct->attribut.normal.time);
-  }
+  //Parameter: kNN
+  ImGui::SetNextItemWidth(100);
+  ImGui::SliderInt("kNN", &ope_struct->attribut.normal.knn, 1, 10);
+
+  //Computation time
+  ImGui::Text("Time");
+  ImGui::SameLine();
+  ImGui::TextColored(color, "%.2f ms", ope_struct->attribut.normal.time);
 
   //---------------------------
 }
