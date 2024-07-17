@@ -54,7 +54,7 @@ void Converter::convert_normal_to_image(utl::base::Data* data, utl::media::Image
 
   //---------------------------
 }
-void Converter::convert_infrared_to_image(utl::base::Data* data, utl::media::Image* image){
+void Converter::convert_intensity_to_image(utl::base::Data* data, utl::media::Image* image){
   if(data == nullptr) return;
   //---------------------------
 
@@ -69,6 +69,31 @@ void Converter::convert_infrared_to_image(utl::base::Data* data, utl::media::Ima
     output[j]     = intensity * 255.0f;
     output[j + 1] = intensity * 255.0f;
     output[j + 2] = intensity * 255.0f;
+    output[j + 3] = 255.0f;
+  }
+
+  //Update image
+  image->size = output.size();
+  image->width = data->width;
+  image->height = data->height;
+  image->data = output;
+
+  //---------------------------
+}
+void Converter::convert_color_to_image(utl::base::Data* data, utl::media::Image* image){
+  if(data == nullptr) return;
+  //---------------------------
+
+  std::vector<uint8_t> output = std::vector<uint8_t>(data->rgb.size() * 4, 0);
+
+  // Convert the float value to uint8_t
+  for(int i=0; i<vec_I.size(); i++){
+    glm::vec3& rgb = data->rgb[i];
+
+    size_t j = i * 4;
+    output[j]     = rgb.x * 255.0f;
+    output[j + 1] = rgb.y * 255.0f;
+    output[j + 2] = rgb.z * 255.0f;
     output[j + 3] = 255.0f;
   }
 
