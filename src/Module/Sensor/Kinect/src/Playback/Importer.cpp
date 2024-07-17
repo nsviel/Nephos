@@ -101,9 +101,8 @@ dat::base::Set* Importer::manage_set_parent(){
   //Create the set
   set = new dat::base::Set();
   set->name = "kinect";
-  set->is_lockable = true;
   set->icon = ICON_FA_USER;
-  set->is_locked = true;
+  set->is_locked = false;
   set->is_suppressible = true;
   dat_set->add_subset(set_graph, set);
 

@@ -93,6 +93,7 @@ void Button::button_visibility(dat::base::Entity* entity){
   //---------------------------
 }
 void Button::button_remove(dat::base::Set* set, dat::base::Entity* entity){
+  if(set->is_locked) return;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
@@ -109,6 +110,7 @@ void Button::button_remove(dat::base::Set* set, dat::base::Entity* entity){
   //---------------------------
 }
 void Button::button_remove(dat::base::Set* set){
+  if(set->is_locked) return;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));

@@ -22,7 +22,6 @@ struct Set : public utl::base::Element{
   //Info
   std::string icon = ICON_FA_FOLDER;
   bool is_visible = true;
-  bool is_lockable = false;
   bool is_locked = false;
   bool is_suppressible = false;
   bool is_open = true;

@@ -28,6 +28,7 @@ void Graph::init(){
   dat::base::Set* set_scene = dat_set->create_subset(&dat_struct->set_main, "Scene");
   set_scene->is_suppressible = false;
   set_scene->is_open = false;
+  set_scene->is_locked = true;
 
   dat_glyph->insert_glyph(set_scene, new dat::glyph::grid::Grid());
   dat_glyph->insert_glyph(set_scene, new dat::glyph::world::Axis());
