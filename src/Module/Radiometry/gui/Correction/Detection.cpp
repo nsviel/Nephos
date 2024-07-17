@@ -160,7 +160,7 @@ void Detection::detection_image(dyn::base::Sensor* sensor){
   //---------------------------
 
   //Display image with detected spheres
-  utl::media::Image* image = dat_image->get_image(sensor, utl::media::DETECTION);
+  utl::media::Image* image = dat_image->get_image(sensor, "Detection");
   if(image == nullptr) return;
   stream->draw_stream(image, ImVec2(available_space.x, available_space.y - 5));
 

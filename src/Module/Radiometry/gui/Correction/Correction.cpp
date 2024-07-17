@@ -39,8 +39,8 @@ void Correction::display_image(dyn::base::Sensor* sensor){
   ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 
-  utl::media::Image* intensity = dat_image->get_image(sensor, utl::media::INTENSITY);
-  utl::media::Image* correction = dat_image->get_image(sensor, utl::media::CORRECTION);
+  utl::media::Image* intensity = dat_image->get_image(sensor, "Intensity");
+  utl::media::Image* correction = dat_image->get_image(sensor, "Correction");
 
   int nb_image = 0;
   nb_image += (intensity != nullptr) ? 1 : 0;

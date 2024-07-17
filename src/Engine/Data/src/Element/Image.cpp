@@ -39,18 +39,6 @@ void Image::manage_UID(utl::media::Image* image){
 }
 
 //Subfunction
-bool Image::has_image_type(dat::base::Entity* entity, int type){
-  //----------------------------
-
-  //Search for already existing image with same type
-  for(int i=0; i<entity->list_image.size(); i++){
-    utl::media::Image* image = *next(entity->list_image.begin(), i);
-    if(image->type == type) return true;
-  }
-
-  //----------------------------
-  return false;
-}
 bool Image::has_image_UID(dat::base::Entity* entity, int UID){
   //----------------------------
 
@@ -63,34 +51,18 @@ bool Image::has_image_UID(dat::base::Entity* entity, int UID){
   //----------------------------
   return false;
 }
-utl::media::Image* Image::get_image(dat::base::Entity* entity, int type){
+utl::media::Image* Image::get_image(dat::base::Entity* entity, std::string name){
+  if(name == "") return nullptr;
   //----------------------------
 
   //Search for already existing image with same type
   for(int i=0; i<entity->list_image.size(); i++){
     utl::media::Image* image = *next(entity->list_image.begin(), i);
-    if(image->type == type) return image;
+    if(image->name == name) return image;
   }
 
   //----------------------------
   return nullptr;
-}
-utl::media::Image* Image::get_or_create_image(dat::base::Entity* entity, int type){
-  //----------------------------
-
-  //Search for already existing image with same type
-  for(int i=0; i<entity->list_image.size(); i++){
-    utl::media::Image* image = *next(entity->list_image.begin(), i);
-    if(image->type == type) return image;
-  }
-
-  //Else create it
-  utl::media::Image* image = new utl::media::Image();
-  image->type = type;
-  this->add_image(entity, image);
-
-  //----------------------------
-  return image;
 }
 utl::media::Image* Image::get_or_create_image(dat::base::Entity* entity, std::string name){
   if(name == "") return nullptr;

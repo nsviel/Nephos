@@ -51,7 +51,6 @@ void Converter::convert_normal_to_image(utl::base::Data* data, utl::media::Image
   image->height = data->height;
   image->data = output;
   image->name = "Normal";
-  image->type = utl::media::NORMAL;
 
   //---------------------------
 }
@@ -78,7 +77,6 @@ void Converter::convert_infrared_to_image(utl::base::Data* data, utl::media::Ima
   image->width = data->width;
   image->height = data->height;
   image->data = output;
-  image->name = utl::media::INTENSITY;
 
   //---------------------------
 }

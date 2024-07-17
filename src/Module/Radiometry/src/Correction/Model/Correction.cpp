@@ -87,7 +87,7 @@ void Correction::make_correction(dyn::base::Sensor* sensor, utl::media::Image* i
 void Correction::update_correction_image(dyn::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
-  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::CORRECTION);
+  utl::media::Image* image = dat_image->get_or_create_image(sensor, "Correction");
   image->name = "Correction";
   image->width = ir->width;
   image->height = ir->height;

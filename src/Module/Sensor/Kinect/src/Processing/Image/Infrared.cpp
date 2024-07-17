@@ -59,12 +59,11 @@ void Infrared::retrieve_image(k4n::base::Sensor* sensor){
 
   //Image
   this->convert_image_into_color(sensor);
-  sensor->ir.image.name = "Infrared";
+  sensor->ir.image.name = "Intensity";
   sensor->ir.image.size = sensor->ir.image.data.size();
   sensor->ir.image.width = sensor->ir.data.width;
   sensor->ir.image.height = sensor->ir.data.height;
   sensor->ir.image.format = "R8G8B8A8_SRGB";
-  sensor->ir.image.type = utl::media::INTENSITY;
   sensor->ir.image.timestamp = sensor->ir.data.timestamp;
   dat_image->add_image(sensor, &sensor->ir.image);
 

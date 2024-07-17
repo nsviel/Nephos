@@ -43,8 +43,8 @@ void Detection::run_thread(dyn::base::Sensor* sensor){
   //---------------------------
 
   if(sensor != nullptr){// && rad_struct->state.detection == rad::calibration::detection::PROCESSING){
-    utl::media::Image* image = dat_image->get_image(sensor, utl::media::INTENSITY);
-    utl::media::Image* output = dat_image->get_or_create_image(sensor, utl::media::DETECTION);
+    utl::media::Image* image = dat_image->get_image(sensor, "Intensity");
+    utl::media::Image* output = dat_image->get_or_create_image(sensor, "Detection");
     if(image == nullptr || output == nullptr) return;
 
     if(image->timestamp != output->timestamp){

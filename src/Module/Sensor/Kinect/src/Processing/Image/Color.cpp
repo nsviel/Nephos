@@ -64,7 +64,6 @@ void Color::retrieve_image(k4n::base::Sensor* sensor){
   sensor->color.image.width = sensor->color.data.width;
   sensor->color.image.height = sensor->color.data.height;
   sensor->color.image.format = sensor->color.data.format;
-  sensor->color.image.type = utl::media::COLOR;
   sensor->color.image.timestamp = sensor->color.data.timestamp;
   dat_image->add_image(sensor, &sensor->color.image);
 

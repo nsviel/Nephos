@@ -7,17 +7,6 @@
 
 namespace utl::media{
 
-enum Type{
-  COLOR = 0,
-  DEPTH = 1,
-  INTENSITY = 2,
-  NORMAL = 3,
-  TEXTURE = 4,
-  DETECTION = 5,
-  CORRECTION = 6,
-  CALIBRATION = 6,
-};
-
 struct Image : public utl::base::Element{
   //---------------------------
 
@@ -27,7 +16,6 @@ struct Image : public utl::base::Element{
   int width = -1;
   int height = -1;
   int size = 0;
-  int type = utl::media::COLOR;
   float timestamp = -1;
 
   //Texture

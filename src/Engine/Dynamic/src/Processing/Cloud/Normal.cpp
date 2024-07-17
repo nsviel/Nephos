@@ -89,7 +89,7 @@ void Normal::compute_normal(dyn::base::Sensor* sensor){
 void Normal::compute_image(dyn::base::Sensor* sensor){
   //---------------------------
 
-  utl::media::Image* image = dat_image->get_or_create_image(sensor, utl::media::NORMAL);
+  utl::media::Image* image = dat_image->get_or_create_image(sensor, "Normal");
   image->timestamp = sensor->timestamp.current;
   ope_converter->convert_normal_to_image(&sensor->data, image);
 
