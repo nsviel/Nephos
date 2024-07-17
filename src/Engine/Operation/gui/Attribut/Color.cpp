@@ -13,6 +13,7 @@ Color::Color(ope::Node* node_operation){
 
   this->ope_struct = node_operation->get_ope_struct();
   this->ope_color = new ope::attribut::Color(node_operation);
+  this->dat_element = new dat::Element();
   this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
@@ -33,17 +34,28 @@ void Color::design_colorization(utl::base::Element* element){
   //---------------------------
 }
 
+
+//REVOIR CETTE FUNCTION
+//diviser color mode
+//mettre color option logic dans src
+
 //Subfunction
 void Color::color_mode(utl::base::Element* element){
+  dat::base::Entity* entity = dat_element->get_active_entity(element);
+  if(!entity) return;
   //---------------------------
 
   ImGui::BeginTable("colorization##mode", 2);
 
   //First line
   ImGui::TableNextRow(); ImGui::TableNextColumn();
+
+  bool condition = (entity->data.rgb.size() != 0);
+  if(condition) ImGui::BeginDisabled();
   if(ImGui::RadioButton("RGB##colorization", &ope_struct->attribut.color.mode, ope::color::RGB)){
     ope_color->make_colorization(element);
   }
+  if(condition) ImGui::EndDisabled();
   ImGui::TableNextColumn();
   if(ImGui::RadioButton("##unicolor", &ope_struct->attribut.color.mode, ope::color::UNICOLOR)){
     ope_color->make_colorization(element);
@@ -83,10 +95,7 @@ void Color::color_option(utl::base::Element* element){
   //---------------------------
 
   if(ope_struct->attribut.color.mode == ope::color::FIELD || ope_struct->attribut.color.mode == ope::color::HEATMAP){
-    dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
-    if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
-      entity = set->active_entity;
-    }
+    dat::base::Entity* entity = dat_element->get_active_entity(element);
     if(!entity) return;
 
     //Prepare vector of field names

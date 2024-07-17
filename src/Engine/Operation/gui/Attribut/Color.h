@@ -4,8 +4,9 @@ namespace ope{class Node;}
 namespace ope{class Structure;}
 namespace ope::attribut{class Color;}
 namespace utl::base{class Element;}
-namespace dat::base{class Entity;}
 namespace utl::base{class Attribut;}
+namespace dat::base{class Entity;}
+namespace dat{class Element;}
 
 
 namespace ope::gui{
@@ -29,6 +30,7 @@ private:
   ope::Structure* ope_struct;
   ope::attribut::Color* ope_color;
   utl::base::Attribut* utl_attribut;
+  dat::Element* dat_element;
 };
 
 }
