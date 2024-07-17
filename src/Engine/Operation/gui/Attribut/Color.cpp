@@ -88,6 +88,7 @@ void Color::color_mode_unicolor(utl::base::Element* element){
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
   if(ImGui::ColorEdit4("##unicolor_choice", (float*)&ope_struct->attribut.color.unicolor, flags)){
+    ope_struct->attribut.color.mode = ope::color::UNICOLOR;
     ope_color->make_colorization(element);
   }
 

@@ -36,7 +36,7 @@ void Target::update_pose(dat::base::Entity* entity){
   //---------------------------
 
   if(cam::Entity* camera = dynamic_cast<cam::Entity*>(entity)){
-    camera->mode == CAMERA_MODE_ARCBALL ? data.is_visible = true : data.is_visible = false;
+    if(camera->mode != CAMERA_MODE_ARCBALL && data.is_visible) data.is_visible = false;
 
     glm::mat4 translation(1.0);
     translation[0][3] = camera->cam_COM.x;
