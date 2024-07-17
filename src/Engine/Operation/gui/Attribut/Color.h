@@ -30,7 +30,6 @@ public:
   void color_mode_field(utl::base::Element* element);
   void color_mode_heatmap(utl::base::Element* element);
   void color_mode_structure(utl::base::Element* element);
-
   void color_option(utl::base::Element* element);
 
 private:

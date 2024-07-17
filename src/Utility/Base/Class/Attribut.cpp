@@ -15,6 +15,20 @@ Attribut::Attribut(){
 Attribut::~Attribut(){}
 
 //Subfunction
+std::vector<std::string> Attribut::get_field_names(utl::base::Data* data){
+  std::vector<std::string> vec_name;
+  //---------------------------
+
+  std::vector<std::string> vec_field;
+  for(int i=0; i<data->vec_field.size(); i++){
+    utl::base::Field& field = data->vec_field[i];
+    vec_name.push_back(field.name);
+  }
+
+  //---------------------------
+  return vec_name;
+
+}
 std::vector<float>& Attribut::get_field_data(utl::base::Data* data, std::string name){
   //---------------------------
 
@@ -34,15 +48,6 @@ utl::base::Field* Attribut::get_field(utl::base::Data* data, std::string name){
   //---------------------------
 
   //Check if field is already present
-  for(int i=0; i<data->vec_field.size(); i++){
-    utl::base::Field& field = data->vec_field[i];
-    if(field.name == name) return &field;
-  }
-
-  //If not found, create it
-  this->create_field(data, name);
-
-  //Remade research
   for(int i=0; i<data->vec_field.size(); i++){
     utl::base::Field& field = data->vec_field[i];
     if(field.name == name) return &field;
@@ -69,8 +74,10 @@ glm::vec2 Attribut::get_field_range(utl::base::Data* data, std::string name){
   return range;
 }
 void Attribut::set_field_data(utl::base::Data* data, std::string name, std::vector<float>& vec){
+  if(vec.size() == 0) return;
   //---------------------------
 
+  this->create_field(data, name);
   utl::base::Field* field = get_field(data, name);
   if(!field) return;
 
@@ -94,7 +101,5 @@ void Attribut::create_field(utl::base::Data* data, std::string name){
 
   //---------------------------
 }
-
-
 
 }

@@ -34,11 +34,6 @@ void Color::design_colorization(utl::base::Element* element){
   //---------------------------
 }
 
-
-//REVOIR CETTE FUNCTION
-//diviser color mode
-//mettre color option logic dans src
-
 //Subfunction
 void Color::color_mode(utl::base::Element* element){
   //---------------------------
@@ -73,7 +68,7 @@ void Color::color_mode_rgb(utl::base::Element* element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data.rgb.size() != 0);
+  bool condition = (entity->data.rgb.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("RGB##colorization", &ope_struct->attribut.color.mode, ope::color::RGB)){
@@ -103,7 +98,7 @@ void Color::color_mode_normal(utl::base::Element* element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data.Nxyz.size() != 0);
+  bool condition = (entity->data.Nxyz.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Nxyz##colorization", &ope_struct->attribut.color.mode, ope::color::NORMAL)){
@@ -119,7 +114,7 @@ void Color::color_mode_field(utl::base::Element* element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data.vec_field.size() != 0);
+  bool condition = (entity->data.vec_field.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Field##colorization", &ope_struct->attribut.color.mode, ope::color::FIELD)){
@@ -135,7 +130,7 @@ void Color::color_mode_heatmap(utl::base::Element* element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data.vec_field.size() != 0);
+  bool condition = (entity->data.vec_field.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Heatmap##colorization", &ope_struct->attribut.color.mode, ope::color::HEATMAP)){
@@ -151,7 +146,7 @@ void Color::color_mode_structure(utl::base::Element* element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data.width != -1);
+  bool condition = (entity->data.width == -1);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Structure##colorization", &ope_struct->attribut.color.mode, ope::color::STRUCTURE)){
@@ -162,9 +157,6 @@ void Color::color_mode_structure(utl::base::Element* element){
 
   //---------------------------
 }
-
-
-
 void Color::color_option(utl::base::Element* element){
   //---------------------------
 
@@ -172,30 +164,26 @@ void Color::color_option(utl::base::Element* element){
     dat::base::Entity* entity = dat_element->get_active_entity(element);
     if(!entity) return;
 
-    //Prepare vector of field names
-    std::vector<std::string> vec_field;
-    for(int i=0; i<entity->data.vec_field.size(); i++){
-      utl::base::Field& field = entity->data.vec_field[i];
-      vec_field.push_back(field.name);
-    }
+    //Get vector of field names
+    std::vector<std::string> vec_name = utl_attribut->get_field_names(&entity->data);
 
     //Init
     if(entity->data.vec_field.size() != 0 && ope_struct->attribut.color.field == ""){
-      ope_struct->attribut.color.field = vec_field[0];
-      ope_struct->attribut.color.range = utl_attribut->get_field_range(&entity->data, vec_field[0]);
+      ope_struct->attribut.color.field = vec_name[0];
+      ope_struct->attribut.color.range = utl_attribut->get_field_range(&entity->data, vec_name[0]);
     }
 
     //Combo field name
     static int selection = 0;
     ImGui::SetNextItemWidth(150);
-    if(ImGui::BeginCombo("##shader_combo_class", vec_field[selection].c_str())){
-      for(int i=0; i<vec_field.size(); ++i){
-        std::string& field = vec_field[i];
+    if(ImGui::BeginCombo("##shader_combo_class", vec_name[selection].c_str())){
+      for(int i=0; i<vec_name.size(); ++i){
+        std::string& name = vec_name[i];
         const bool is_selected = (selection == i);
 
-        if(ImGui::Selectable(field.c_str(), is_selected)){
-          ope_struct->attribut.color.field = field;
-          ope_struct->attribut.color.range = utl_attribut->get_field_range(&entity->data, field);
+        if(ImGui::Selectable(name.c_str(), is_selected)){
+          ope_struct->attribut.color.field = name;
+          ope_struct->attribut.color.range = utl_attribut->get_field_range(&entity->data, name);
           selection = i;
         }
 
