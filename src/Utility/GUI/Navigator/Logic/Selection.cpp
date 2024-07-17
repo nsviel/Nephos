@@ -25,11 +25,11 @@ void Selection::selection_item(utl::base::Path& path, utl::gui::navigator::Item&
   flag |= ImGuiSelectableFlags_AllowOverlap;
   flag |= ImGuiSelectableFlags_AllowDoubleClick;
 
-  bool item_is_selected = vec_selection.contains(item.ID);
+  bool item_is_selected = nav_struct->vec_selected_idx.contains(item.ID);
   std::string label = "##" + std::to_string(item.ID);
   ImGui::SameLine();
   if(ImGui::Selectable(label.c_str(), item_is_selected, flag)){
-    this->control_selection(item, item_is_selected);
+    this->control_selection(path, item, item_is_selected);
 
     //Double click
     if(ImGui::IsMouseDoubleClicked(0)){
@@ -41,20 +41,23 @@ void Selection::selection_item(utl::base::Path& path, utl::gui::navigator::Item&
 }
 
 //Subfunction
-void Selection::control_selection(utl::gui::navigator::Item& item, bool& already_selected){
+void Selection::control_selection(utl::base::Path& path, utl::gui::navigator::Item& item, bool& already_selected){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
   if(io.KeyCtrl){
     if(already_selected){
-      this->vec_selection.find_erase_unsorted(item.ID);
+      nav_struct->vec_selected_idx.find_erase_unsorted(item.ID);
+      this->update_selected_path();
     }
     else{
-      this->vec_selection.push_back(item.ID);
+      nav_struct->vec_selected_idx.push_back(item.ID);
+      this->update_selected_path();
     }
   }else{
     this->clear_selection();
-    this->vec_selection.push_back(item.ID);
+    nav_struct->vec_selected_idx.push_back(item.ID);
+    this->update_selected_path();
   }
 
   //---------------------------
@@ -74,7 +77,7 @@ void Selection::double_click(utl::base::Path& path, utl::gui::navigator::Item& i
     }
   }else{
     this->clear_selection();
-    this->vec_selection.push_back(item.ID);
+    nav_struct->vec_selected_idx.push_back(item.ID);
     this->item_operation();
   }
 
@@ -83,7 +86,8 @@ void Selection::double_click(utl::base::Path& path, utl::gui::navigator::Item& i
 void Selection::clear_selection(){
   //---------------------------
 
-  this->vec_selection.clear();
+  nav_struct->vec_selected_idx.clear();
+  this->update_selected_path();
 
   //---------------------------
 }
@@ -100,7 +104,7 @@ void Selection::item_operation(){
   for(int i=0; i<nav_struct->vec_item.size(); i++){
     utl::gui::navigator::Item& item = nav_struct->vec_item[i];
 
-    if(vec_selection.contains(item.ID)){
+    if(nav_struct->vec_selected_idx.contains(item.ID)){
       vec_path.push_back(item.path);
     }
   }
@@ -112,6 +116,17 @@ void Selection::item_operation(){
   }
 
   this->clear_selection();
+
+  //---------------------------
+}
+void Selection::update_selected_path(){
+  //---------------------------
+
+  nav_struct->vec_selected_path.clear();
+  for(int index : nav_struct->vec_selected_idx){
+    utl::gui::navigator::Item& item = nav_struct->vec_item[index];
+    nav_struct->vec_selected_path.push_back(item.path);
+  }
 
   //---------------------------
 }

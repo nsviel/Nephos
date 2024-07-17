@@ -31,9 +31,13 @@ void Operation::init_navigator(){
   //---------------------------
 }
 void Operation::draw_header(){
+  utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
+  utl::gui::navigator::Structure* nav_struct = utl_navigator->get_nav_struct();
   //---------------------------
 
   //Load button
+  bool condition = (nav_struct->vec_selected_path.size() == 0);
+  if(condition) ImGui::BeginDisabled();
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Load##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
@@ -41,18 +45,22 @@ void Operation::draw_header(){
     utl_navigator->make_selection_operation();
   }
   ImGui::PopStyleColor(2);
+  if(condition) ImGui::EndDisabled();
 
-  // Load button + selected path
-  ImGui::BeginTable("header##exporter", 2);
-  ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
-  ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
-
-  //Selected file path
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Path"); ImGui::TableNextColumn();
-  std::string path = io_struct->importer.path.build();
-  ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", path.c_str());
-  ImGui::EndTable();
+  //Selected file paths
+  if(nav_struct->vec_selected_path.size() != 0){
+    ImGui::BeginTable("header##exporter", 2);
+    ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 50.0f);
+    ImGui::TableSetupColumn("two", ImGuiTableColumnFlags_WidthStretch);
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Path"); ImGui::TableNextColumn();
+    for(int i=0; i<nav_struct->vec_selected_path.size(); i++){
+      std::string& path = nav_struct->vec_selected_path[i];
+      ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", path.c_str());
+      ImGui::TableNextRow(); ImGui::TableNextColumn(); ImGui::TableNextColumn();
+    }
+    ImGui::EndTable();
+  }
 
   // Scale new
   ImGui::SetNextItemWidth(75);

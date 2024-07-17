@@ -46,6 +46,13 @@ void Navigator::add_fct_item_operation(std::function<void(utl::base::Path)> func
 
   //---------------------------
 }
+void Navigator::add_fct_item_selection(std::function<void(utl::base::Path)> func){
+  //---------------------------
+
+  nav_struct->fct_item_selection = func;
+
+  //---------------------------
+}
 void Navigator::add_fct_item_icon(std::function<void(std::string path)> func){
   //---------------------------
 

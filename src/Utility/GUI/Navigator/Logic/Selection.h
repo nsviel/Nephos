@@ -25,15 +25,14 @@ public:
   void selection_item(utl::base::Path& path, utl::gui::navigator::Item& file);
 
   //Subfunction
-  void control_selection(utl::gui::navigator::Item& file, bool& already_selected);
+  void control_selection(utl::base::Path& path, utl::gui::navigator::Item& file, bool& already_selected);
   void double_click(utl::base::Path& path, utl::gui::navigator::Item& file);
   void clear_selection();
   void item_operation();
+  void update_selected_path();
 
 private:
   utl::gui::navigator::Structure* nav_struct;
-
-  ImVector<int> vec_selection;
 };
 
 }
