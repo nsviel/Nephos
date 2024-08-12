@@ -33,9 +33,10 @@ Panel::~Panel(){}
 //Main function
 void Panel::run_panel(){
   utl::base::Element* element = dat_selection->get_selected_element();
+  if(element == nullptr) return;
   //---------------------------
 
-  if(*show_window && element != nullptr){
+  if(*show_window){
     ImGuiWindowFlags flag;
     flag |= ImGuiWindowFlags_NoCollapse;
     flag |= ImGuiWindowFlags_AlwaysAutoResize;

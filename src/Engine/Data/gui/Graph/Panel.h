@@ -6,7 +6,6 @@ namespace dat{class Node;}
 namespace dat{class Graph;}
 namespace dat::element{class Set;}
 namespace dat::graph{class Selection;}
-namespace dat{class Structure;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::gui::entity{class Panel;}
@@ -39,7 +38,6 @@ public:
   bool show_panel_set      = false;
 
 private:
-  dat::Structure* dat_struct;
   dat::Graph* dat_graph;
   dat::graph::Selection* dat_selection;
   dat::element::Set* dat_set;

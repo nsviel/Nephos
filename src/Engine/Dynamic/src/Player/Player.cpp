@@ -49,6 +49,7 @@ void Player::reset(){
 //Player function
 void Player::button_query(float value){
   dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr) return;
   //---------------------------
 
   this->manage_query(set, value);
@@ -58,6 +59,7 @@ void Player::button_query(float value){
 }
 void Player::button_play(){
   dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr) return;
   //---------------------------
 
   if(!state.play){
@@ -73,6 +75,7 @@ void Player::button_play(){
 }
 void Player::button_pause(){
   dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr) return;
   //---------------------------
 
   state.pause = !state.pause;
@@ -83,6 +86,7 @@ void Player::button_pause(){
 }
 void Player::button_stop(){
   dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr) return;
   //---------------------------
 
   state.play = false;
@@ -103,6 +107,7 @@ void Player::button_replay(){
 }
 void Player::button_record(){
   dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr) return;
   //---------------------------
 
   state.record = !state.record;
@@ -113,6 +118,7 @@ void Player::button_record(){
 }
 void Player::button_lock(bool value){
   dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr) return;
   //---------------------------
 
   set->is_locked = value;
@@ -121,6 +127,7 @@ void Player::button_lock(bool value){
 }
 void Player::button_close(){
   dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr) return;
   //---------------------------
 
   dat_set->remove_active_entity(set);
@@ -129,6 +136,7 @@ void Player::button_close(){
 }
 void Player::button_forward(float value){
   dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr) return;
   //---------------------------
 
   float ts_forward = timestamp.current + 5 * value;

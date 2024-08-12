@@ -43,6 +43,7 @@ void Exporter::draw_header(utl::base::Element* element){
 //Header function
 void Exporter::display_action(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
+  if(entity == nullptr) return;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));

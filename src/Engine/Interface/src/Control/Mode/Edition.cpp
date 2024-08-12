@@ -101,6 +101,7 @@ void Edition::select_next(){
 }
 void Edition::remove_current(){
   dat::base::Set* set = dat_selection->get_selected_set();
+  if(set == nullptr) return;
   //---------------------------
 
   dat_set->remove_entity(set, set->active_entity);

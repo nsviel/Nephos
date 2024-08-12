@@ -29,9 +29,10 @@ Panel::~Panel(){}
 void Panel::run_panel(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
   dyn::base::Sensor* sensor= dynamic_cast<dyn::base::Sensor*>(entity);
+  if(sensor == nullptr) return;
   //---------------------------
 
-  if(*show_window && sensor != nullptr){
+  if(*show_window){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(600, 600));

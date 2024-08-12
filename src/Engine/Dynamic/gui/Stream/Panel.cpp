@@ -36,6 +36,7 @@ Panel::~Panel(){}
 //Main function
 void Panel::run_panel(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
+  if(entity == nullptr) return;
   //---------------------------
 
   if(*show_window && entity->list_image.size() != 0){

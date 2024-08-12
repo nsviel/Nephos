@@ -16,7 +16,6 @@ Panel::Panel(dat::Node* node_data, bool* show_window){
   this->dat_graph = node_data->get_dat_graph();
   this->dat_selection = node_data->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
-  this->dat_struct = node_data->get_dat_struct();
   this->gui_set = new dat::gui::set::Panel(node_data, &show_panel_set);
   this->gui_entity = new dat::gui::entity::Panel(node_data, &show_panel_entity);
   this->gui_button = new dat::gui::graph::Button(node_data);
@@ -106,12 +105,13 @@ int Panel::tree_set(dat::base::Set* set){
 
   bool is_empty = dat_set->is_set_empty(set);
   if(set->is_suppressible && is_empty) return 0;
+  utl::base::Element* element = dat_selection->get_selected_element();
 
   //Set node elements
   ImGuiTreeNodeFlags flag;
   flag |= ImGuiTreeNodeFlags_OpenOnArrow;
   flag |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
-  flag |= (set == dat_struct->selection) ? ImGuiTreeNodeFlags_Selected : 0;
+  flag |= (set == element) ? ImGuiTreeNodeFlags_Selected : 0;
   flag |= ImGuiTreeNodeFlags_SpanFullWidth;
   std::string name = set->icon + "   " + set->name;
 
@@ -165,7 +165,7 @@ void Panel::tree_set_open(dat::base::Set* set, int& nb_row){
   //---------------------------
 }
 void Panel::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row){
-  bool entity_selected = (entity == dat_struct->selection);
+  bool entity_selected = (entity == dat_selection->get_selected_element());
   bool entity_active = (entity == entity->set_parent->active_entity);
   //---------------------------
 

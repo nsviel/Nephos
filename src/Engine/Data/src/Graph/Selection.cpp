@@ -91,11 +91,25 @@ void Selection::select_next_element(){
 
 //Accesseur
 utl::base::Element* Selection::get_selected_element(){
-  return dat_struct->selection;
+  utl::base::Element* element = dat_struct->selection;
+  //---------------------------
+
+  if(element == nullptr){
+    this->select_next_element();
+    return nullptr;
+  }
+
+ //---------------------------
+  return element;
 }
 dat::base::Entity* Selection::get_selected_entity(){
   utl::base::Element* element = dat_struct->selection;
   //---------------------------
+
+  if(element == nullptr){
+    this->select_next_element();
+    return nullptr;
+  }
 
   dat::base::Entity* entity;
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
@@ -110,6 +124,11 @@ dat::base::Entity* Selection::get_selected_entity(){
 dat::base::Set* Selection::get_selected_set(){
   utl::base::Element* element = dat_struct->selection;
   //---------------------------
+
+  if(element == nullptr){
+    this->select_next_element();
+    return nullptr;
+  }
 
   dat::base::Set* set;
   if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){

@@ -21,6 +21,7 @@ public:
   Selection(dat::Node* node_data);
   ~Selection();
 
+public:
   //Main function
   void select_element(utl::base::Element* element);
   void select_next_element();
