@@ -28,7 +28,7 @@ Panel::~Panel(){}
 //Main function
 void Panel::run_panel(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::base::Sensor* sensor= dynamic_cast<dyn::base::Sensor*>(entity);
+  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
   if(sensor == nullptr) return;
   //---------------------------
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Utility/Base/Class/Node.h>
+
 namespace prf{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
@@ -7,7 +9,7 @@ namespace rad{class Node;}
 namespace io{class Node;}
 
 
-namespace rsx{
+namespace D455{
 
 class Node : public utl::base::Node
 {
@@ -26,14 +28,10 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
 
 private:
-  //Dependancy
   io::Node* node_io;
   eng::Node* node_engine;
   prf::Node* node_profiler;
-  rad::Node* node_radio;
   dat::Node* node_data;
-
-  //Child
 };
 
 }

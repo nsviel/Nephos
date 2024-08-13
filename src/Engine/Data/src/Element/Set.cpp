@@ -169,9 +169,6 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
       set->nb_entity--;
 
       //Selection & active entity
-      if(dat_struct->selection->UID == entity->UID){
-        dat_struct->selection = nullptr;
-      }
       this->active_next_entity(set);
 
       //Effective remove
@@ -203,11 +200,6 @@ void Set::remove_all_entity(dat::base::Set* set){
   auto it = set->list_entity.begin();
   while(it != set->list_entity.end()){
     dat::base::Entity* entity = *it;
-
-    //Selection
-    if(dat_struct->selection->UID == entity->UID){
-      dat_struct->selection = nullptr;
-    }
 
     //Effective remove
     it = set->list_entity.erase(it);

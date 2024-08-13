@@ -1,13 +1,13 @@
 #include "Node.h"
 
 #include <Engine/Namespace.h>
-#include <RealSense/Namespace.h>
+#include <D455/Namespace.h>
 #include <IO/Namespace.h>
 #include <Data/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 
-namespace rsx{
+namespace D455{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
