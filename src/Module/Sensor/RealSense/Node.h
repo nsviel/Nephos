@@ -7,9 +7,10 @@ namespace dat{class Node;}
 namespace eng{class Node;}
 namespace rad{class Node;}
 namespace io{class Node;}
+namespace rlx{class Class;}
 
 
-namespace D455{
+namespace rlx{
 
 class Node : public utl::base::Node
 {
@@ -32,6 +33,7 @@ private:
   eng::Node* node_engine;
   prf::Node* node_profiler;
   dat::Node* node_data;
+  rlx::Class* rlx_class;
 };
 
 }

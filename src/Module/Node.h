@@ -6,7 +6,7 @@ namespace app{class Node;}
 namespace rad{class Node;}
 namespace eng{class Node;}
 namespace k4n{class Node;}
-namespace D455{class Node;}
+namespace rlx{class Node;}
 
 
 namespace mod{
@@ -29,7 +29,7 @@ public:
 private:
   eng::Node* node_engine;
   k4n::Node* node_kinect;
-  D455::Node* node_D455;
+  rlx::Node* node_realsense;
   rad::Node* node_radio;
 };
 
