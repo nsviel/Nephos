@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/GUI/Plot/ImProfil/Plot.h>
-#include <Utility/Element/Timer/Chrono.h>
+#include <Utility/Component/Timer/Chrono.h>
 #include <glm/glm.hpp>
 #include <vector>
 #include <string>

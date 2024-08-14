@@ -1,6 +1,6 @@
 #include "Style.h"
 
-#include <Utility/Element/Color/Namespace.h>
+#include <Utility/Component/Color/Namespace.h>
 #include <Utility/Function/Type/Casting.h>
 
 
