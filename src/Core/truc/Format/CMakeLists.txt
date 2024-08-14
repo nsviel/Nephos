@@ -1,17 +1,10 @@
-set(LIBRARY_NAME LIBRARY_CORE)
+set(LIBRARY_NAME IO_FORMAT)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Engine)
-add_subdirectory(IO)
-add_subdirectory(Data)
-add_subdirectory(Profiler)
-add_subdirectory(Control)
-add_subdirectory(truc)
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
+  *.cpp
 )
 
 #-----------------
@@ -22,15 +15,9 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
+find_package(HDF5 REQUIRED)
+
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_UTILITY
-  LIBRARY_VULKAN
-  ENGINE_CAMERA
-  LIBRARY_IO
-  LIBRARY_OPERATION
-  ENGINE_RENDERER
-  LIBRARY_DYNAMIC
-  LIBRARY_CONTROL
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
