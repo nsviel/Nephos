@@ -8,7 +8,7 @@ namespace cam{class Node;}
 namespace dyn{class Node;}
 namespace core{class Node;}
 namespace dat{class Node;}
-namespace ctl{class Node;}
+namespace ctr{class Node;}
 namespace rnd{class Shader;}
 namespace rnd::gui{class Option;}
 namespace rnd::gui{class Shader;}
@@ -35,7 +35,7 @@ public:
   inline cam::Node* get_node_camera(){return node_camera;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline ctl::Node* get_node_control(){return node_control;}
+  inline ctr::Node* get_node_control(){return node_control;}
 
   inline rnd::Shader* get_rnd_shader(){return itf_shader;}
 
@@ -45,7 +45,7 @@ private:
   cam::Node* node_camera;
   dat::Node* node_data;
   dyn::Node* node_dynamic;
-  ctl::Node* node_control;
+  ctr::Node* node_control;
 
   rnd::Shader* itf_shader;
   rnd::gui::Option* gui_option;

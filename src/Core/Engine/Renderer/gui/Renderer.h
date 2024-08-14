@@ -3,8 +3,8 @@
 #include <string>
 
 namespace rnd{class Node;}
-namespace ctl::mode{class Navigation;}
-namespace ctl::gui{class Control;}
+namespace ctr::mode{class Navigation;}
+namespace ctr::gui{class Control;}
 namespace vk::gui{class Imgui;}
 namespace vk{class Structure;}
 namespace core{class Node;}
@@ -29,8 +29,8 @@ public:
   void resize();
 
 private:
-  ctl::gui::Control* gui_control;
-  ctl::mode::Navigation* ctl_navigation;
+  ctr::gui::Control* gui_control;
+  ctr::mode::Navigation* ctr_navigation;
   vk::gui::Imgui* vk_imgui;
   vk::Structure* vk_struct;
 

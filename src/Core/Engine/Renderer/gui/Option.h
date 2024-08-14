@@ -4,8 +4,8 @@
 
 namespace rnd{class Node;}
 namespace core{class Node;}
-namespace ctl{class Structure;}
-namespace ctl{class Wheel;}
+namespace ctr{class Structure;}
+namespace ctr{class Wheel;}
 namespace vk::main{class Interface;}
 
 
@@ -29,8 +29,8 @@ public:
   void visualization_mode();
 
 private:
-  ctl::Structure* ctl_struct;
-  ctl::Wheel* ctl_wheel;
+  ctr::Structure* ctr_struct;
+  ctr::Wheel* ctr_wheel;
   vk::main::Interface* vk_interface;
 
   std::string name;

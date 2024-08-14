@@ -9,7 +9,7 @@ namespace dat{class Node;}
 namespace core{class Node;}
 namespace cam{class Node;}
 namespace rnd{class Node;}
-namespace ctl{class Node;}
+namespace ctr{class Node;}
 
 
 namespace eng{
@@ -34,7 +34,7 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
 
   inline cam::Node* get_node_camera(){return node_camera;}
-  inline ctl::Node* get_node_control(){return node_control;}
+  inline ctr::Node* get_node_control(){return node_control;}
 
 private:
   core::Node* node_core;
@@ -44,7 +44,7 @@ private:
 
   cam::Node* node_camera;
   rnd::Node* node_renderer;
-  ctl::Node* node_control;
+  ctr::Node* node_control;
 };
 
 }
