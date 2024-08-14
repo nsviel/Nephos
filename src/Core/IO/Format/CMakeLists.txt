@@ -17,8 +17,6 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 find_package(HDF5 REQUIRED)
 
-find_package(HDF5 REQUIRED)
-
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   IO_EXPORTER

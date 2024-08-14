@@ -21,6 +21,7 @@ public:
   ~Node();
 
 public:
+  //Main function
   void init();
   void gui();
 

@@ -5,6 +5,7 @@
 namespace eng{class Node;}
 namespace io::imp{class Node;}
 namespace io::exp{class Node;}
+namespace io::trf{class Node;}
 
 
 namespace io{
@@ -17,12 +18,17 @@ public:
   ~Node();
 
 public:
+  //Main function
+  void init();
+  void gui();
+
   inline io::imp::Node* get_node_importer(){return node_importer;}
   inline io::exp::Node* get_node_exporter(){return node_exporter;}
 
 private:
   io::imp::Node* node_importer;
   io::exp::Node* node_exporter;
+  io::trf::Node* node_transfor;
 };
 
 }
