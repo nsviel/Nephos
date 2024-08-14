@@ -15,7 +15,7 @@
 #include <Data/Namespace.h>
 
 
-namespace eng{
+namespace core{
 
 //Constructor / Destructor
 Node::Node(app::Node* node_app){

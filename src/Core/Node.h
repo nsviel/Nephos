@@ -17,7 +17,7 @@ namespace prf::dynamic{class Tasker;}
 namespace utl::thread::task{class Pool;}
 
 
-namespace eng{
+namespace core{
 
 class Node : public utl::base::Node
 {

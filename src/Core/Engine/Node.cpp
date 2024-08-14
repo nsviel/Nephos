@@ -1,12 +1,21 @@
 #include "Node.h"
 #include "Namespace.h"
 
+#include <Core/Namespace.h>
+#include <Vulkan/Namespace.h>
+#include <Dynamic/Namespace.h>
+#include <Data/Namespace.h>
+
 
 namespace eng_{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
   //---------------------------
+
+  this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_data = node_engine->get_node_data();
+  this->node_dynamic = node_engine->get_node_dynamic();
 
   this->node_camera = new cam::Node(node_engine);
   this->node_control = new ctl::Node(node_engine);
