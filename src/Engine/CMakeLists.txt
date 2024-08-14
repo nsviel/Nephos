@@ -7,7 +7,6 @@ add_subdirectory(Camera)
 add_subdirectory(Interface)
 add_subdirectory(IO)
 add_subdirectory(Data)
-add_subdirectory(Dynamic)
 add_subdirectory(Profiler)
 
 file(GLOB_RECURSE ALL_SOURCES
