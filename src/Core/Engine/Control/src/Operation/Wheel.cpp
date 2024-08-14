@@ -14,8 +14,7 @@ namespace ctr{
 Wheel::Wheel(ctr::Node* node_control){
   //---------------------------
 
-  core::Node* node_core = node_control->get_node_core();
-  eng::Node* node_engine = node_core->get_node_engine();
+  eng::Node* node_engine = node_control->get_node_engine();
   cam::Node* node_camera = node_engine->get_node_camera();
   dat::Node* node_data = node_control->get_node_data();
   dat::graph::Node* node_graph = node_data->get_node_graph();

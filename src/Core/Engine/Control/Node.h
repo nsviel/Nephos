@@ -28,6 +28,7 @@ public:
 public:
   //Subfunction
   inline core::Node* get_node_core(){return node_core;}
+  inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline cam::Node* get_node_camera(){return node_camera;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
@@ -42,6 +43,7 @@ public:
 
 private:
   core::Node* node_core;
+  eng::Node* node_engine;
   vk::Node* node_vulkan;
   cam::Node* node_camera;
   dat::Node* node_data;
