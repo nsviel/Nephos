@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-namespace io{class Node;}
-namespace io{class Structure;}
+namespace io::exp{class Node;}
+namespace io::exp{class Structure;}
 namespace io::base{class Exporter;}
 namespace io::base{class Recorder;}
 namespace dat::base{class Entity;}
@@ -17,7 +17,7 @@ class Exporter
 {
 public:
   //Constructor / Destructor
-  Exporter(io::Node* node_io);
+  Exporter(io::exp::Node* node_exporter);
   ~Exporter();
 
 public:
@@ -36,7 +36,7 @@ public:
   std::vector<io::exporter::Encoding> get_supported_encoding(std::string format);
 
 private:
-  io::Structure* io_struct;
+  io::exp::Structure* io_struct;
 
   std::vector<io::exporter::Base*> vec_exporter;
 };

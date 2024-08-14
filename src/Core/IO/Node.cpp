@@ -4,6 +4,7 @@
 #include <Element/Namespace.h>
 #include <IO/Namespace.h>
 #include <Importer/Namespace.h>
+#include <Exporter/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -26,7 +27,7 @@ Node::Node(eng::Node* node_engine){
   this->io_struct = new io::Structure();
   this->io_exporter = new io::Exporter(this);
   this->io_transformation = new io::Transformation(this);
-  this->gui_export = new io::gui::exporter::Panel(this, &panel_export->is_open);
+  this->gui_export = new io::exp::gui::Panel(this, &panel_export->is_open);
   this->gui_transformation = new io::gui::transformation::Panel(this, &panel_transfo->is_open);
 
   //---------------------------

@@ -10,7 +10,7 @@ namespace io{class Structure;}
 namespace io{class Exporter;}
 namespace io{class Transformation;}
 namespace io::imp{class Node;}
-namespace io::gui::exporter{class Panel;}
+namespace io::exp::gui{class Panel;}
 namespace io::gui::transformation{class Panel;}
 
 
@@ -49,7 +49,7 @@ private:
   io::Structure* io_struct;
   io::Exporter* io_exporter;
   io::Transformation* io_transformation;
-  io::gui::exporter::Panel* gui_export;
+  io::exp::gui::Panel* gui_export;
   io::gui::transformation::Panel* gui_transformation;
 };
 

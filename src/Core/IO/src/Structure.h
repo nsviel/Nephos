@@ -9,7 +9,6 @@ namespace io{
 struct Structure{
   //---------------------------
 
-  io::exporter::Structure exporter;
   io::transformation::Structure transformation;
 
   //---------------------------

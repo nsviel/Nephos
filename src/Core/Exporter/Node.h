@@ -6,15 +6,12 @@ namespace vk{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace dyn{class Node;}
-namespace io{class Structure;}
-namespace io{class Exporter;}
-namespace io{class Transformation;}
-namespace io::imp{class Node;}
-namespace io::gui::exporter{class Panel;}
-namespace io::gui::transformation{class Panel;}
+namespace io::exp{class Structure;}
+namespace io::exp{class Exporter;}
+namespace io::exp::gui{class Panel;}
 
 
-namespace io{
+namespace io::exp{
 
 class Node : public utl::base::Node
 {
@@ -33,9 +30,8 @@ public:
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline io::imp::Node* get_node_importer(){return node_importer;}
 
-  inline io::Structure* get_io_struct(){return io_struct;}
-  inline io::Exporter* get_io_exporter(){return io_exporter;}
-  inline io::Transformation* get_io_transformation(){return io_transformation;}
+  inline io::exp::Structure* get_io_struct(){return io_struct;}
+  inline io::exp::Exporter* get_io_exporter(){return io_exporter;}
 
 private:
   //Dependancy
@@ -46,11 +42,9 @@ private:
   io::imp::Node* node_importer;
 
   //Child
-  io::Structure* io_struct;
-  io::Exporter* io_exporter;
-  io::Transformation* io_transformation;
-  io::gui::exporter::Panel* gui_export;
-  io::gui::transformation::Panel* gui_transformation;
+  io::exp::Structure* io_struct;
+  io::exp::Exporter* io_exporter;
+  io::exp::gui::Panel* gui_export;
 };
 
 }

@@ -7,10 +7,10 @@
 namespace io{
 
 //Constructor / Destructor
-Exporter::Exporter(io::Node* node_io){
+Exporter::Exporter(io::exp::Node* node_exporter){
   //---------------------------
 
-  this->io_struct = node_io->get_io_struct();
+  this->io_struct = node_exporter->get_io_struct();
 
   this->insert_exporter(new fmt::ply::Exporter());
   this->insert_exporter(new fmt::pts::Exporter());

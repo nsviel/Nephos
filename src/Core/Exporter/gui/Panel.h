@@ -5,23 +5,23 @@
 #include <string>
 #include <vector>
 
-namespace io{class Node;}
-namespace io{class Structure;}
-namespace io{class Exporter;}
+namespace io::exp{class Node;}
+namespace io::exp{class Structure;}
+namespace io::exp{class Exporter;}
+namespace io::exp::gui{class Exporter;}
+namespace io::exp::gui{class Recorder;}
 namespace utl::gui::navigator{class Item;}
-namespace io::gui::exporter{class Exporter;}
-namespace io::gui::exporter{class Recorder;}
-namespace dat::graph{class Selection;}
 namespace utl::base{class Element;}
+namespace dat::graph{class Selection;}
 
 
-namespace io::gui::exporter{
+namespace io::exp::gui{
 
 class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(io::Node* node_io, bool* show_window);
+  Panel(io::exp::Node* node_exporter, bool* show_window);
   ~Panel();
 
 public:
@@ -34,12 +34,12 @@ public:
   void item_operation();
 
 private:
-  io::Structure* io_struct;
-  io::Exporter* io_exporter;
+  io::exp::Structure* io_struct;
+  io::exp::Exporter* io_exporter;
   dat::graph::Selection* dat_selection;
   utl::gui::Navigator* gui_navigator;
-  io::gui::exporter::Exporter* gui_exporter;
-  io::gui::exporter::Recorder* gui_recorder;
+  io::exp::gui::Exporter* gui_exporter;
+  io::exp::gui::Recorder* gui_recorder;
 
   std::string name = "";
   bool* show_window;

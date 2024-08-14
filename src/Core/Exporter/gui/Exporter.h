@@ -5,22 +5,22 @@
 #include <string>
 #include <vector>
 
-namespace io{class Node;}
-namespace io{class Structure;}
-namespace io{class Exporter;}
+namespace io::exp{class Node;}
+namespace io::exp{class Structure;}
+namespace io::exp{class Exporter;}
 namespace utl::gui::navigator{class Item;}
 namespace dat::graph{class Selection;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
 
 
-namespace io::gui::exporter{
+namespace io::exp::gui{
 
 class Exporter
 {
 public:
   //Constructor / Destructor
-  Exporter(io::Node* node_io);
+  Exporter(io::exp::Node* node_exporter);
   ~Exporter();
 
 public:
@@ -40,8 +40,8 @@ public:
   void item_operation(dat::base::Entity* entity);
 
 private:
-  io::Structure* io_struct;
-  io::Exporter* io_exporter;
+  io::exp::Structure* io_struct;
+  io::exp::Exporter* io_exporter;
   dat::graph::Selection* dat_selection;
 };
 

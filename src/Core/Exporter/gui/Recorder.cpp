@@ -9,19 +9,19 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace io::gui::exporter{
+namespace io::exp::gui{
 
 //Constructor / Destructor
-Recorder::Recorder(io::Node* node_io){
+Recorder::Recorder(io::exp::Node* node_exporter){
   //---------------------------
 
-  dat::Node* node_data = node_io->get_node_data();
-  dyn::Node* node_dynamic = node_io->get_node_dynamic();
+  dat::Node* node_data = node_exporter->get_node_data();
+  dyn::Node* node_dynamic = node_exporter->get_node_dynamic();
   dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dyn_player = node_dynamic->get_dyn_player();
-  this->io_struct = node_io->get_io_struct();
+  this->io_struct = node_exporter->get_io_struct();
   this->dat_selection = node_graph->get_dat_selection();
 
   //---------------------------

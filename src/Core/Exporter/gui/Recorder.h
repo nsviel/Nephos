@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 
-namespace io{class Node;}
-namespace io{class Structure;}
+namespace io::exp{class Node;}
+namespace io::exp{class Structure;}
 namespace utl::gui::navigator{class Item;}
 namespace utl::base{class Element;}
 namespace dyn{class Structure;}
@@ -16,13 +16,13 @@ namespace dat::graph{class Selection;}
 namespace dat::base{class Entity;}
 
 
-namespace io::gui::exporter{
+namespace io::exp::gui{
 
 class Recorder
 {
 public:
   //Constructor / Destructor
-  Recorder(io::Node* node_io);
+  Recorder(io::exp::Node* node_exporter);
   ~Recorder();
 
 public:
@@ -42,7 +42,7 @@ public:
 private:
   dyn::player::Player* dyn_player;
   dyn::Structure* dyn_struct;
-  io::Structure* io_struct;
+  io::exp::Structure* io_struct;
   dat::graph::Selection* dat_selection;
 
   std::vector<std::string> vec_format;

@@ -9,18 +9,18 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace io::gui::exporter{
+namespace io::exp::gui{
 
 //Constructor / Destructor
-Exporter::Exporter(io::Node* node_io){
+Exporter::Exporter(io::exp::Node* node_exporter){
   //---------------------------
 
-  dat::Node* node_data = node_io->get_node_data();
+  dat::Node* node_data = node_exporter->get_node_data();
   dat::graph::Node* node_graph = node_data->get_node_graph();
 
-  this->io_struct = node_io->get_io_struct();
+  this->io_struct = node_exporter->get_io_struct();
   this->dat_selection = node_graph->get_dat_selection();
-  this->io_exporter = node_io->get_io_exporter();
+  this->io_exporter = node_exporter->get_io_exporter();
 
   //---------------------------
 }
