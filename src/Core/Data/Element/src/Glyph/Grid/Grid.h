@@ -3,7 +3,7 @@
 #include <Element/src/Base/Glyph.h>
 #include <Element/src/Glyph/Grid/Structure.h>
 
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace dat::elm{class Entity;}
 namespace dat::elm{class Glyph;}
 namespace dat::glyph::grid{class Mesh;}
@@ -27,7 +27,7 @@ public:
   void construct(int nb_cell);
 
 private:
-  eng::Node* node_engine;
+  core::Node* node_core;
   dat::elm::Entity* dat_entity;
   dat::elm::Glyph* dat_glyph;
 

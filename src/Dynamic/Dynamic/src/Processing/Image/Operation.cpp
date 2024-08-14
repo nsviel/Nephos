@@ -12,10 +12,10 @@ namespace dyn::image{
 Operation::Operation(dyn::Node* node_dynamic){
   //---------------------------
 
-  eng::Node* node_engine = node_dynamic->get_node_engine();
+  core::Node* node_core = node_dynamic->get_node_core();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->thread_pool = node_engine->get_thread_pool();
+  this->thread_pool = node_core->get_thread_pool();
 
   //---------------------------
 }

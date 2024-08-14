@@ -7,12 +7,12 @@
 
 namespace prf{
 
-Node::Node(eng::Node* node_engine){
+Node::Node(core::Node* node_core){
   utl::gui::Panel* prf_panel = add_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
-  this->node_engine = node_engine;
-  this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_core = node_core;
+  this->node_vulkan = node_core->get_node_vulkan();
 
   this->prf_struct = new prf::Structure();
   this->prf_dynamic = new prf::dynamic::Manager(this);

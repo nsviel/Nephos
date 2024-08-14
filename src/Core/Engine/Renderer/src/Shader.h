@@ -6,7 +6,7 @@
 namespace rnd{class Node;}
 namespace vk::shader{class Reloader;}
 namespace vk::render{class Render;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace utl::gui::widget{class Console;}
 namespace utl::gui::editor{class Text;}
 
@@ -52,7 +52,7 @@ public:
 private:
   vk::shader::Reloader* vk_reload;
   vk::render::Render* vk_render;
-  eng::Node* node_engine;
+  core::Node* node_core;
   utl::gui::editor::Text* editor_vs;
   utl::gui::editor::Text* editor_fs;
   utl::gui::widget::Console* gui_console;

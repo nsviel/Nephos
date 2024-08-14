@@ -18,7 +18,7 @@ Shader::Shader(rnd::Node* node_interface){
 
   this->vk_reload = new vk::shader::Reloader(vk_struct);
   this->vk_render = node_vulkan->get_vk_render();
-  this->node_engine = node_engine;
+  this->node_core = node_core;
   this->gui_console = new utl::gui::widget::Console();
 
   this->item_width = 100;

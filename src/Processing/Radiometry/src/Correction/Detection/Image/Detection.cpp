@@ -14,7 +14,7 @@ Detection::Detection(rad::correction::Node* node_correction){
   //---------------------------
 
   rad::Node* node_radio = node_correction->get_node_radio();
-  eng::Node* node_engine = node_radio->get_node_engine();
+  core::Node* node_core = node_radio->get_node_core();
   dat::Node* node_data = node_radio->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
 
@@ -22,7 +22,7 @@ Detection::Detection(rad::correction::Node* node_correction){
   this->rad_image = new rad::correction::image::Image(node_correction);
   this->rad_glyph = new rad::correction::Glyph(node_correction);
   this->rad_hough = new rad::correction::image::Hough(node_correction);
-  this->thread_pool = node_engine->get_thread_pool();
+  this->thread_pool = node_core->get_thread_pool();
   this->dat_image = node_element->get_dat_image();
 
   //---------------------------

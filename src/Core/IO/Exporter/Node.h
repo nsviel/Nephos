@@ -4,7 +4,7 @@
 
 namespace vk{class Node;}
 namespace dat{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace dyn{class Node;}
 namespace io::exp{class Structure;}
 namespace io::exp{class Exporter;}
@@ -17,7 +17,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(core::Node* node_core);
   ~Node();
 
 public:
@@ -25,7 +25,7 @@ public:
   void init();
   void gui();
 
-  inline eng::Node* get_node_engine(){return node_engine;}
+  inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
@@ -35,7 +35,7 @@ public:
 
 private:
   //Dependancy
-  eng::Node* node_engine;
+  core::Node* node_core;
   vk::Node* node_vulkan;
   dat::Node* node_data;
   dyn::Node* node_dynamic;

@@ -4,7 +4,7 @@
 #include <string>
 
 namespace gui{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace sce{class Node;}
 
 namespace gui::interface{class Menu;}
@@ -31,7 +31,7 @@ public:
   void next_tab();
 
 private:
-  eng::Node* node_engine;
+  core::Node* node_core;
   sce::Node* node_scene;
 
   gui::interface::Menu* gui_menu;

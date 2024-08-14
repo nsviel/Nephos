@@ -13,9 +13,9 @@ Detection::Detection(rad::correction::Node* node_correction){
   //---------------------------
 
   rad::Node* node_radio = node_correction->get_node_radio();
-  eng::Node* node_engine = node_radio->get_node_engine();
+  core::Node* node_core = node_radio->get_node_core();
 
-  this->thread_pool = node_engine->get_thread_pool();
+  this->thread_pool = node_core->get_thread_pool();
   this->rad_struct = node_correction->get_rad_struct();
   this->rad_glyph = new rad::correction::Glyph(node_correction);
   this->rad_ransac = new rad::correction::cloud::Ransac(node_correction);

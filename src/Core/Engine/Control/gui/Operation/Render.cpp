@@ -12,7 +12,7 @@ Render::Render(ctl::Node* node_control){
   //---------------------------
 
   this->ctl_struct = node_control->get_ctl_struct();
-  this->node_engine = node_control->get_node_engine();
+  this->node_core = node_control->get_node_core();
 
   //---------------------------
 }
@@ -33,12 +33,12 @@ void Render::control_keyboard(){
 
   //Esc key - Close program
   if(ImGui::IsKeyPressed(ImGuiKey_Escape)){
-    node_engine->close();
+    node_core->close();
   }
 
   //R key - Reset
   if(ImGui::IsKeyPressed(ImGuiKey_R)){
-    node_engine->reset();
+    node_core->reset();
   }
 
   //---------------------------

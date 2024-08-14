@@ -4,7 +4,7 @@
 
 namespace vk{class Node;}
 namespace dat{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace sce{class Node;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
@@ -18,7 +18,7 @@ namespace cam{
 class Node : public utl::base::Node
 {
 public:
-  Node(eng::Node* node_engine);
+  Node(core::Node* node_core);
   ~Node();
 
 public:

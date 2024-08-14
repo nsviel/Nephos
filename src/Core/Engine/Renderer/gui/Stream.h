@@ -2,7 +2,7 @@
 
 #include <imgui/core/imgui.h>
 
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace vk::image{class Texture;}
 namespace vk::gui{class Imgui;}
 namespace vk::structure{class Texture;}
@@ -15,7 +15,7 @@ class Stream
 {
 public:
   //Constructor / Destructor
-  Stream(eng::Node* node_engine);
+  Stream(core::Node* node_core);
   ~Stream();
 
 public:

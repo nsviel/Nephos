@@ -4,7 +4,7 @@
 
 namespace app{class Node;}
 namespace rad{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace k4n{class Node;}
 namespace rlx{class Node;}
 
@@ -23,10 +23,10 @@ public:
   void loop();
   void clean();
 
-  inline eng::Node* get_node_engine(){return node_engine;}
+  inline core::Node* get_node_core(){return node_core;}
 
 private:
-  eng::Node* node_engine;
+  core::Node* node_core;
   k4n::Node* node_kinect;
   rlx::Node* node_realsense;
   rad::Node* node_radio;

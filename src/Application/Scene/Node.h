@@ -3,7 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace app{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace sce{class Init;}
 namespace k4n{class Node;}
 
@@ -23,11 +23,11 @@ public:
   void clean();
   void reset();
 
-  inline eng::Node* get_node_engine(){return node_engine;}
+  inline core::Node* get_node_core(){return node_core;}
 
 private:
   //Dependancy
-  eng::Node* node_engine;
+  core::Node* node_core;
   k4n::Node* node_kinect;
 
   //Child

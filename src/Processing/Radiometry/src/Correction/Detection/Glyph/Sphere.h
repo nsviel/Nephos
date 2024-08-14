@@ -2,7 +2,7 @@
 
 #include <Element/src/Base/Glyph.h>
 
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace cam{class Control;}
 //namespace io::imp{class Importer;}
 
@@ -13,7 +13,7 @@ class Sphere : public dat::base::Glyph
 {
 public:
   //Constructor / Destructor
-  Sphere(eng::Node* node_engine);
+  Sphere(core::Node* node_core);
   ~Sphere();
 
 public:

@@ -12,10 +12,10 @@ namespace k4n{
 Processing::Processing(k4n::Node* node_k4n){
   //---------------------------
 
-  eng::Node* node_engine = node_k4n->get_node_engine();
-  dyn::Node* node_dynamic = node_engine->get_node_dynamic();
+  core::Node* node_core = node_k4n->get_node_core();
+  dyn::Node* node_dynamic = node_core->get_node_dynamic();
 
-  this->thread_pool = node_engine->get_thread_pool();
+  this->thread_pool = node_core->get_thread_pool();
   this->k4n_image = new k4n::processing::image::Data(node_k4n);
   this->k4n_cloud = new k4n::processing::cloud::Data(node_k4n);
   this->dyn_ope_image = node_dynamic->get_ope_image();

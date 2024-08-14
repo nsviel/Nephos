@@ -1,6 +1,6 @@
 #pragma once
 
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace sce{class Node;}
 namespace io::imp{class Structure;}
 namespace io::imp{class Importer;}
@@ -24,7 +24,7 @@ public:
   void load_entity();
 
 private:
-  eng::Node* node_engine;
+  core::Node* node_core;
   io::imp::Importer* io_importer;
   io::imp::Structure* io_struct;
   utl::base::Selection* selection = nullptr;

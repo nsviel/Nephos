@@ -18,13 +18,13 @@ Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
   dat::graph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->node_engine = node_dynamic->get_node_engine();
+  this->node_core = node_dynamic->get_node_core();
   this->dat_selection = node_graph->get_dat_selection();
   this->dat_set = node_element->get_dat_set();
   this->gui_overlay = new dyn::gui::stream::Overlay();
 
   for(int i=0; i<20; i++){
-    rnd::gui::Stream* stream = new rnd::gui::Stream(node_engine);
+    rnd::gui::Stream* stream = new rnd::gui::Stream(node_core);
     this->vec_stream.push_back(stream);
   }
 

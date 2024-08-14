@@ -12,14 +12,14 @@
 namespace k4n{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
+Node::Node(core::Node* node_core){
   //---------------------------
 
   //Dependancy
-  this->node_engine = node_engine;
-  this->node_io = node_engine->get_node_io();
-  this->node_data = node_engine->get_node_data();
-  this->node_dynamic = node_engine->get_node_dynamic();
+  this->node_core = node_core;
+  this->node_io = node_core->get_node_io();
+  this->node_data = node_core->get_node_data();
+  this->node_dynamic = node_core->get_node_dynamic();
   io::imp::Node* node_importer = node_io->get_node_importer();
 
   //Child

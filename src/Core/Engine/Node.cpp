@@ -10,16 +10,16 @@
 namespace eng_{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
+Node::Node(core::Node* node_core){
   //---------------------------
 
-  this->node_vulkan = node_engine->get_node_vulkan();
-  this->node_data = node_engine->get_node_data();
-  this->node_dynamic = node_engine->get_node_dynamic();
+  this->node_vulkan = node_core->get_node_vulkan();
+  this->node_data = node_core->get_node_data();
+  this->node_dynamic = node_core->get_node_dynamic();
 
-  this->node_camera = new cam::Node(node_engine);
-  this->node_control = new ctl::Node(node_engine);
-  this->node_renderer = new rnd::Node(node_engine);
+  this->node_camera = new cam::Node(node_core);
+  this->node_control = new ctl::Node(node_core);
+  this->node_renderer = new rnd::Node(node_core);
 
   //---------------------------
 }

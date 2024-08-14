@@ -20,15 +20,15 @@ Node::Node(Node_module* node){
   this->node_module = node;
   //---------------------------
 
-  this->node_engine = node->get_node_engine();
-  this->node_ope = node_engine->get_node_ope();
+  this->node_core = node->get_node_core();
+  this->node_ope = node_core->get_node_ope();
 
-  this->slamManager = new SLAM(node_engine);
+  this->slamManager = new SLAM(node_core);
   this->cticpManager = new CT_ICP();
   this->slam_param = slamManager->get_slam_param();
   this->gui_slam = new GUI_Slam(this);
 
-  Configuration* configManager = node_engine->get_configManager();
+  Configuration* configManager = node_core->get_configManager();
   this->with_slam = configManager->parse_json_b("module", "with_slam");
   this->algo = 0;
 

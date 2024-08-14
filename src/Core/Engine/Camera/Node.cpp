@@ -10,13 +10,13 @@
 namespace cam{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
+Node::Node(core::Node* node_core){
   utl::gui::Panel* cam_panel = add_panel("Camera", ICON_FA_CAMERA, false);
   //---------------------------
 
   //Dependancy
-  this->node_vulkan = node_engine->get_node_vulkan();
-  this->node_data = node_engine->get_node_data();
+  this->node_vulkan = node_core->get_node_vulkan();
+  this->node_data = node_core->get_node_data();
 
   //Child
   this->cam_struct = new cam::Structure();

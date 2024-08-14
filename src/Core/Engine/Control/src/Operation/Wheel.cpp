@@ -18,7 +18,7 @@ Wheel::Wheel(ctl::Node* node_control){
   dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->ctl_struct = node_control->get_ctl_struct();
-  this->node_engine = node_control->get_node_engine();
+  this->node_core = node_control->get_node_core();
   this->dat_selection = node_graph->get_dat_selection();
   this->ope_operation = new ope::Operation();
   this->ope_location = new ope::attribut::Location();
@@ -58,7 +58,7 @@ void Wheel::make_action(float value){
       break;
     }
     case ctl::wheel::CAM_Z:{
-      cam::Node* node_camera = node_engine->get_node_camera();
+      cam::Node* node_camera = node_core->get_node_camera();
       cam::Control* cam_control = node_camera->get_cam_control();
       cam_control->control_wheel(direction * radian);
       break;

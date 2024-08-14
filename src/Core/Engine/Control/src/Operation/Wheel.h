@@ -5,7 +5,7 @@
 
 namespace ctl{class Node;}
 namespace ctl{class Structure;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace ope{class Operation;}
 namespace ope::attribut{class Location;}
 namespace dat::graph{class Selection;}
@@ -31,7 +31,7 @@ public:
 private:
   ctl::Structure* ctl_struct;
   dat::graph::Selection* dat_selection;
-  eng::Node* node_engine;
+  core::Node* node_core;
   ope::Operation* ope_operation;
   ope::attribut::Location* ope_location;
 };

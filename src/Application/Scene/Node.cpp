@@ -13,8 +13,8 @@ Node::Node(app::Node* node_app){
   //---------------------------
 
   //Dependancy
-  this->node_engine = node_app->get_node_engine();
-  this->node_kinect = new k4n::Node(node_engine);
+  this->node_core = node_app->get_node_core();
+  this->node_kinect = new k4n::Node(node_core);
 
   //Child
   this->sce_init = new sce::Init(this);

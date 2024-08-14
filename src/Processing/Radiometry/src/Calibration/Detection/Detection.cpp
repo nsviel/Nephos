@@ -14,14 +14,14 @@ Detection::Detection(rad::calibration::Node* node_detection){
   //---------------------------
 
   rad::Node* node_radio = node_detection->get_node_radio();
-  eng::Node* node_engine = node_radio->get_node_engine();
+  core::Node* node_core = node_radio->get_node_core();
   dat::Node* node_data = node_radio->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->rad_struct = node_detection->get_rad_struct();
   this->rad_image = new rad::calibration::Image(node_detection);
   this->rad_rectangle = new rad::calibration::Rectangle(node_detection);
-  this->thread_pool = node_engine->get_thread_pool();
+  this->thread_pool = node_core->get_thread_pool();
   this->dat_image = node_element->get_dat_image();
 
   //---------------------------

@@ -8,7 +8,7 @@ namespace rad::correction{class Structure;}
 namespace rad::correction::structure{class Circle;}
 namespace dat::elm{class Glyph;}
 namespace dat::elm{class Entity;}
-namespace eng{class Node;}
+namespace core{class Node;}
 
 
 namespace rad::correction{
@@ -35,7 +35,7 @@ public:
   void reset_detection_sphere();
 
 private:
-  eng::Node* node_engine;
+  core::Node* node_core;
   rad::correction::Structure* rad_struct;
   dat::elm::Glyph* dat_glyph;
   dat::elm::Entity* dat_entity;

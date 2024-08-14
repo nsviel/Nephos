@@ -11,13 +11,13 @@
 namespace rlx{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
+Node::Node(core::Node* node_core){
   //---------------------------
 
-  this->node_engine = node_engine;
-  this->node_io = node_engine->get_node_io();
-  this->node_profiler = node_engine->get_node_profiler();
-  this->node_data = node_engine->get_node_data();
+  this->node_core = node_core;
+  this->node_io = node_core->get_node_io();
+  this->node_profiler = node_core->get_node_profiler();
+  this->node_data = node_core->get_node_data();
   //this->rlx_class = new rlx::Class();
 
   //---------------------------

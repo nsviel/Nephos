@@ -15,7 +15,7 @@ Node::Node(){
   //---------------------------
 
   this->node_vulkan = new vk::Node(&running);
-  this->node_engine = new eng::Node(this);
+  this->node_core = new core::Node(this);
   this->node_module = new mod::Node(this);
   this->node_scene = new sce::Node(this);
   this->node_gui = new gui::Node(this);
@@ -41,7 +41,7 @@ void Node::init(){
 
   node_module->init();
   node_vulkan->init();
-  node_engine->init();
+  node_core->init();
   node_gui->init();
   node_scene->init();
 
@@ -53,7 +53,7 @@ void Node::loop(){
   while(running){
     node_scene->loop();
     node_gui->loop();
-    node_engine->loop();
+    node_core->loop();
   }
 
   //---------------------------
@@ -62,7 +62,7 @@ void Node::end(){
   //---------------------------
 
   node_scene->clean();
-  node_engine->clean();
+  node_core->clean();
 
   //---------------------------
 }

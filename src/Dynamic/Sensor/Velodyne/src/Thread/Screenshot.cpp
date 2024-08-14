@@ -11,8 +11,8 @@ namespace vld::thread{
 Screenshot::Screenshot(vld::Node* node_vld){
   //---------------------------
 
-  eng::Node* node_engine = node_vld->get_node_engine();
-  vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  core::Node* node_core = node_vld->get_node_core();
+  vk::Node* node_vulkan = node_core->get_node_vulkan();
 
   this->vk_screenshot = node_vulkan->get_vk_screenshot();
 

@@ -8,11 +8,11 @@
 namespace rad::correction::glyph{
 
 //Constructor / destructor
-Sphere::Sphere(eng::Node* node_engine){
+Sphere::Sphere(core::Node* node_core){
   //---------------------------
 /*
-  io::Node* node_io = node_engine->get_node_io();
-  cam::Node* node_camera = node_engine->get_node_camera();
+  io::Node* node_io = node_core->get_node_io();
+  cam::Node* node_camera = node_core->get_node_camera();
   io::imp::Node* node_importer = node_io->get_node_importer();
 
   this->io_importer = node_importer->get_io_importer();

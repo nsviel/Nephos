@@ -6,7 +6,7 @@ namespace vk{class Node;}
 namespace dyn{class Node;}
 namespace dat{class Node;}
 
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace cam{class Node;}
 namespace rnd{class Node;}
 namespace ctl{class Node;}
@@ -18,7 +18,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(core::Node* node_core);
   ~Node();
 
 public:

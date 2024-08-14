@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace vld{class Node;}
 namespace vld::processing{class Velodyne;}
 namespace vld::structure{class Main;}

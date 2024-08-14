@@ -10,7 +10,7 @@ namespace dat::graph{class Selection;}
 namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace rnd::gui{class Stream;}
 namespace utl::base{class Element;}
 namespace utl::media{class Image;}
@@ -34,7 +34,7 @@ public:
   void draw_stream_image(utl::media::Image* image, ImVec2 image_size, int idx);
 
 private:
-  eng::Node* node_engine;
+  core::Node* node_core;
   dat::graph::Selection* dat_selection;
   dat::elm::Set* dat_set;
   dyn::gui::stream::Overlay* gui_overlay;

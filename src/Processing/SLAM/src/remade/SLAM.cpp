@@ -24,12 +24,12 @@ namespace slam::remade{
 
 //Constructor / Destructor
 SLAM::SLAM(Node_engine* node){
-  this->node_engine = node;
+  this->node_core = node;
   //---------------------------
 
-  Node_scene* node_scene = node_engine->get_node_scene();
+  Node_scene* node_scene = node_core->get_node_scene();
 
-  this->configManager = node_engine->get_configManager();
+  this->configManager = node_core->get_configManager();
   this->sceneManager = node_scene->get_sceneManager();
 
   this->slam_sampling = new SLAM_sampling();

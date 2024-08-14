@@ -34,7 +34,7 @@ public:
   void reset_slam();
   void print_result();
 
-  inline Node_engine* get_node_engine(){return node_engine;}
+  inline Node_engine* get_node_core(){return node_core;}
   inline SLAM_normal* get_slam_normal(){return slam_normal;}
   inline SLAM_optim* get_slam_optim(){return slam_optim;}
   inline SLAM_assessment* get_slam_assess(){return slam_assess;}
@@ -54,7 +54,7 @@ private:
   void reset_visibility(Collection* collection, int subset_ID);
 
 private:
-  Node_engine* node_engine;
+  Node_engine* node_core;
   Scene* sceneManager;
   Configuration* configManager;
 

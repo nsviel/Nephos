@@ -15,9 +15,9 @@ namespace rnd::gui{
 Option::Option(rnd::Node* node_interface, bool* show_window){
   //---------------------------
 
-  eng::Node* node_engine = node_interface->get_node_engine();
+  core::Node* node_core = node_interface->get_node_core();
   vk::Node* node_vulkan = node_interface->get_node_vulkan();
-  dat::Node* node_data = node_engine->get_node_data();
+  dat::Node* node_data = node_core->get_node_data();
 
   //this->ctl_struct = node_interface->get_ctl_struct();
   //this->ctl_wheel = node_interface->get_ctl_wheel();

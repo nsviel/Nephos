@@ -22,8 +22,8 @@ namespace slam::remade{
 SLAM_transform::SLAM_transform(SLAM* slam){
   //---------------------------
 
-  Node_engine* node_engine = slam->get_node_engine();
-  Node_scene* node_scene = node_engine->get_node_scene();
+  Node_engine* node_core = slam->get_node_core();
+  Node_scene* node_scene = node_core->get_node_scene();
 
   this->slam_map = slam->get_slam_map();
   this->sceneManager = node_scene->get_sceneManager();

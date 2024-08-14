@@ -1,6 +1,6 @@
 #pragma once
 
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace ope{class Node;}
 namespace ope::image{class Converter;}
 namespace ope::gui{class Normal;}
@@ -25,7 +25,7 @@ public:
   void draw_ope_image(utl::base::Element* element);
 
 private:
-  eng::Node* node_engine;
+  core::Node* node_core;
   ope::image::Converter* ope_image;
   dat::elm::Element* dat_element;
   ope::gui::Normal* gui_normal;

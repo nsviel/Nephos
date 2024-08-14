@@ -19,9 +19,9 @@ namespace slam::remade{
 SLAM_map::SLAM_map(SLAM* slam){
   //---------------------------
 
-  Node_engine* node_engine = slam->get_node_engine();
-  Node_load* node_load = node_engine->get_node_load();
-  Node_scene* node_scene = node_engine->get_node_scene();
+  Node_engine* node_core = slam->get_node_core();
+  Node_load* node_load = node_core->get_node_load();
+  Node_scene* node_scene = node_core->get_node_scene();
 
   this->sceneManager = node_scene->get_sceneManager();
   this->patherManager = node_load->get_patherManager();

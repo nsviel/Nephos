@@ -10,7 +10,7 @@ namespace dat::base{class Entity;}
 namespace dat::base{class Object;}
 namespace dat::base{class Glyph;}
 namespace vk::data{class Data;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace sce{class Operation;}
 namespace cam{class Control;}
 namespace utl::media{class Image;}
@@ -37,7 +37,7 @@ public:
 
 private:
   cam::Node* node_camera;
-  eng::Node* node_engine;
+  core::Node* node_core;
   vk::data::Data* vk_data;
   dat::elm::Structure* dat_struct;
   dat::elm::UID* dat_uid;

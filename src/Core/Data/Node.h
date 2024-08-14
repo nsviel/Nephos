@@ -3,7 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace vk{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace dat::elm{class Node;}
 namespace dat::graph{class Node;}
 
@@ -14,7 +14,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(core::Node* node_core);
   ~Node();
 
 public:
@@ -24,7 +24,7 @@ public:
   void gui();
   void reset();
 
-  inline eng::Node* get_node_engine(){return node_engine;}
+  inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
   inline dat::elm::Node* get_node_element(){return node_element;}
@@ -32,7 +32,7 @@ public:
 
 private:
   //Dependancy
-  eng::Node* node_engine;
+  core::Node* node_core;
   vk::Node* node_vulkan;
 
   //Child

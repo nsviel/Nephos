@@ -7,7 +7,7 @@ namespace ctl::mode{class Navigation;}
 namespace ctl::gui{class Control;}
 namespace vk::gui{class Imgui;}
 namespace vk{class Structure;}
-namespace eng{class Node;}
+namespace core{class Node;}
 
 
 namespace rnd::gui{

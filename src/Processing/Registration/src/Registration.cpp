@@ -10,9 +10,9 @@ namespace rad::processing{
 Registration::Registration(k4n::Node* node_k4n){
   //---------------------------
 
-  eng::Node* node_engine = node_k4n->get_node_engine();
+  core::Node* node_core = node_k4n->get_node_core();
 
-  this->thread_pool = node_engine->get_thread_pool();
+  this->thread_pool = node_core->get_thread_pool();
 
   //---------------------------
 }

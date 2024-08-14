@@ -14,7 +14,7 @@ namespace gui{
 Node::Node(app::Node* node_app){
   //---------------------------
 
-  this->node_engine = node_app->get_node_engine();
+  this->node_core = node_app->get_node_core();
   this->node_scene = node_app->get_node_scene();
 
   this->gui_demo = new gui::interface::Demo(this);
@@ -24,7 +24,7 @@ Node::Node(app::Node* node_app){
   this->gui_font = new gui::style::Font(this);
   this->gui_theme = new gui::style::Theme(this);
   this->gui_docking = new gui::interface::Docking();
-  this->tasker = node_engine->get_tasker_cpu();
+  this->tasker = node_core->get_tasker_cpu();
 
   //---------------------------
 }

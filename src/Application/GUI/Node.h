@@ -3,7 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace app{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace sce{class Node;}
 
 namespace gui{class Tab;}
@@ -29,7 +29,7 @@ public:
   void init();
   void loop();
 
-  inline eng::Node* get_node_engine(){return node_engine;}
+  inline core::Node* get_node_core(){return node_core;}
   inline sce::Node* get_node_scene(){return node_scene;}
 
   inline gui::Tab* get_gui_tab(){return gui_tab;}
@@ -39,7 +39,7 @@ public:
 
 private:
   //Dependancy
-  eng::Node* node_engine;
+  core::Node* node_core;
   sce::Node* node_scene;
 
   //Child

@@ -12,15 +12,15 @@ namespace rad::gui::correction{
 Correction::Correction(rad::Node* node_radio){
   //---------------------------
 
-  eng::Node* node_engine = node_radio->get_node_engine();
+  core::Node* node_core = node_radio->get_node_core();
   dat::Node* node_data = node_radio->get_node_data();
   rad::correction::Node* node_correction = node_radio->get_node_correction();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->dat_image = node_element->get_dat_image();
   this->rad_struct = node_correction->get_rad_struct();
-  this->stream_1 = new rnd::gui::Stream(node_engine);
-  this->stream_2 = new rnd::gui::Stream(node_engine);
+  this->stream_1 = new rnd::gui::Stream(node_core);
+  this->stream_2 = new rnd::gui::Stream(node_core);
 
   //---------------------------
 }

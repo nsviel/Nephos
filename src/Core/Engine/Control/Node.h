@@ -3,7 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace vk{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace cam{class Node;}
 namespace dyn{class Node;}
 namespace dat{class Node;}
@@ -21,12 +21,12 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(core::Node* node_core);
   ~Node();
 
 public:
   //Subfunction
-  inline eng::Node* get_node_engine(){return node_engine;}
+  inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline cam::Node* get_node_camera(){return node_camera;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
@@ -39,7 +39,7 @@ public:
   inline ctl::gui::Control* get_gui_control(){return gui_control;}
 
 private:
-  eng::Node* node_engine;
+  core::Node* node_core;
   vk::Node* node_vulkan;
   cam::Node* node_camera;
   dat::Node* node_data;

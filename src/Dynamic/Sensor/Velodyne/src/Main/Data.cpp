@@ -13,14 +13,14 @@ namespace vld::main{
 Data::Data(vld::Node* node_vld){
   //---------------------------
 
-  eng::Node* node_engine = node_vld->get_node_engine();
-  dat::Node* node_data = node_engine->get_node_data();
-  io::Node* node_io = node_engine->get_node_io();
+  core::Node* node_core = node_vld->get_node_core();
+  dat::Node* node_data = node_core->get_node_data();
+  io::Node* node_io = node_core->get_node_io();
   dat::graph::Node* node_graph = node_data->get_node_graph();
   io::imp::Node* node_importer = node_io->get_node_importer();
   dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->node_engine = node_vld->get_node_engine();
+  this->node_core = node_vld->get_node_core();
   this->vld_struct = node_vld->get_vld_struct();
   this->dat_graph = node_graph->get_dat_graph();
   this->io_loader = node_importer->get_io_importer();

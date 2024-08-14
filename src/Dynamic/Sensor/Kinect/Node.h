@@ -3,7 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace dat{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace io{class Node;}
 namespace dyn{class Node;}
 namespace dat::graph{class Graph;}
@@ -18,7 +18,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(core::Node* node_core);
   ~Node();
 
 public:
@@ -27,7 +27,7 @@ public:
   void clean();
   void loop();
 
-  inline eng::Node* get_node_engine(){return node_engine;}
+  inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
@@ -36,7 +36,7 @@ public:
 private:
   //Dependancy
   io::Node* node_io;
-  eng::Node* node_engine;
+  core::Node* node_core;
   dat::Node* node_data;
   dyn::Node* node_dynamic;
 

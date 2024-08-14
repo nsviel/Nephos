@@ -3,7 +3,7 @@
 #include <string>
 
 namespace rnd{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace ctl{class Structure;}
 namespace ctl{class Wheel;}
 namespace vk::main{class Interface;}

@@ -33,8 +33,8 @@ GUI_Slam::GUI_Slam(Module_slam* module){
   //---------------------------
 
   Node_module* node_module = module_slam->get_node_module();
-  Node_engine* node_engine = node_module->get_node_engine();
-  Node_scene* node_scene = node_engine->get_node_scene();
+  Node_engine* node_core = node_module->get_node_core();
+  Node_scene* node_scene = node_core->get_node_scene();
 
   this->sceneManager = node_scene->get_sceneManager();
   this->slamManager = module_slam->get_slamManager();

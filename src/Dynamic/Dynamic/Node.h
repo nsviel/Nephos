@@ -2,9 +2,9 @@
 
 #include <Utility/Base/Class/Node.h>
 
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace dat{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace rad{class Node;}
 namespace prf{class Node;}
 namespace ope{class Node;}
@@ -23,7 +23,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(core::Node* node_core);
   ~Node();
 
 public:
@@ -31,7 +31,7 @@ public:
   void gui();
   void reset();
 
-  inline eng::Node* get_node_engine(){return node_engine;}
+  inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
   inline rad::Node* get_node_radio(){return node_radio;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
@@ -45,7 +45,7 @@ public:
   inline dyn::gui::player::Panel* get_gui_player(){return gui_player;}
 
 private:
-  eng::Node* node_engine;
+  core::Node* node_core;
   dat::Node* node_data;
   rad::Node* node_radio;
   prf::Node* node_profiler;

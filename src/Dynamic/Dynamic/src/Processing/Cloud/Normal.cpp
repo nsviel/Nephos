@@ -16,11 +16,11 @@ namespace dyn::cloud{
 Normal::Normal(dyn::Node* node_dynamic){
   //---------------------------
 
-  eng::Node* node_engine = node_dynamic->get_node_engine();
+  core::Node* node_core = node_dynamic->get_node_core();
   dat::Node* node_data = node_dynamic->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->thread_pool = node_engine->get_thread_pool();
+  this->thread_pool = node_core->get_thread_pool();
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dat_image = node_element->get_dat_image();
   this->dat_glyph = node_element->get_dat_glyph();

@@ -12,8 +12,8 @@ namespace sce{
 Init::Init(sce::Node* node_scene){
   //---------------------------
 
-  eng::Node* node_engine = node_scene->get_node_engine();
-  io::Node* node_io = node_engine->get_node_io();
+  core::Node* node_core = node_scene->get_node_core();
+  io::Node* node_io = node_core->get_node_io();
   io::imp::Node* node_importer = node_io->get_node_importer();
 
   this->io_importer = node_importer->get_io_importer();

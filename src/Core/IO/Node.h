@@ -2,7 +2,7 @@
 
 #include <Utility/Base/Class/Node.h>
 
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace io::imp{class Node;}
 namespace io::exp{class Node;}
 namespace io::trf{class Node;}
@@ -14,7 +14,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(core::Node* node_core);
   ~Node();
 
 public:

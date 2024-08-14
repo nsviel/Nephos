@@ -18,7 +18,7 @@ Importer::Importer(k4n::Node* node_k4n){
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->node_k4n = node_k4n;
-  this->node_engine = node_k4n->get_node_engine();
+  this->node_core = node_k4n->get_node_core();
   this->dat_graph = node_graph->get_dat_graph();
   this->dat_entity = node_element->get_dat_entity();
   this->dat_set = node_element->get_dat_set();

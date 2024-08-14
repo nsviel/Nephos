@@ -4,7 +4,7 @@
 
 namespace io{class Node;}
 namespace dat{class Node;}
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace vld::main{class Capture;}
 namespace vld::main{class Playback;}
 namespace vld::structure{class Main;}
@@ -17,7 +17,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(core::Node* node_core);
   ~Node();
 
 public:
@@ -28,11 +28,11 @@ public:
   void clean();
 
   inline dat::Node* get_node_data(){return node_data;}
-  inline eng::Node* get_node_engine(){return node_engine;}
+  inline core::Node* get_node_core(){return node_core;}
   inline vld::structure::Main* get_vld_struct(){return vld_struct;}
 
 private:
-  eng::Node* node_engine;
+  core::Node* node_core;
   dat::Node* node_data;
   io::Node* node_io;
 

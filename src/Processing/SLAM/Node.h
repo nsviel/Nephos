@@ -28,7 +28,7 @@ public:
   void draw_online();
   void online(Collection* collection, int subset_ID);
 
-  inline Node_engine* get_node_engine(){return node_engine;}
+  inline Node_engine* get_node_core(){return node_core;}
   inline Node_operation* get_node_ope(){return node_ope;}
   inline Node_module* get_node_module(){return node_module;}
 
@@ -41,7 +41,7 @@ public:
   inline int* get_algo(){return &algo;}
 
 private:
-  Node_engine* node_engine;
+  Node_engine* node_core;
   Node_operation* node_ope;
   Node_module* node_module;
 

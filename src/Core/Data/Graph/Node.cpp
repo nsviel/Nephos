@@ -15,7 +15,7 @@ Node::Node(dat::Node* node_data){
 
   //Dependancy
   this->node_data = node_data;
-  this->node_engine = node_data->get_node_engine();
+  this->node_core = node_data->get_node_core();
   this->node_vulkan = node_data->get_node_vulkan();
 
   //Child

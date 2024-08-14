@@ -17,7 +17,7 @@ Glyph::Glyph(rad::correction::Node* node_correction){
 
   this->dat_glyph = node_element->get_dat_glyph();
   this->dat_entity = node_element->get_dat_entity();
-  this->node_engine = node_radio->get_node_engine();
+  this->node_core = node_radio->get_node_core();
   this->rad_struct = node_correction->get_rad_struct();
 
   //---------------------------
@@ -30,7 +30,7 @@ void Glyph::create_sphere_glyph(){
 
   //Detection spheres
   for(int i=0; i<20; i++){
-    rad::correction::glyph::Sphere* sphere = new rad::correction::glyph::Sphere(node_engine);
+    rad::correction::glyph::Sphere* sphere = new rad::correction::glyph::Sphere(node_core);
     glm::vec4 color = math::random(i);
     sphere->set_color(color);
     dat_glyph->create_glyph(sphere);
@@ -39,7 +39,7 @@ void Glyph::create_sphere_glyph(){
   }
 
   //Calibration sphere
-  rad::correction::glyph::Sphere* sphere = new rad::correction::glyph::Sphere(node_engine);
+  rad::correction::glyph::Sphere* sphere = new rad::correction::glyph::Sphere(node_core);
   rad_struct->ransac.glyph = sphere;
   sphere->set_color(glm::vec4(0, 1, 0, 1));
   dat_glyph->create_glyph(sphere);

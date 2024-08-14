@@ -7,10 +7,10 @@
 namespace rnd{
 
 //Constructor / Destructor
-Mode::Mode(eng::Node* node_engine){
+Mode::Mode(core::Node* node_core){
   //---------------------------
 
-  dat::Node* node_data = node_engine->get_node_data();
+  dat::Node* node_data = node_core->get_node_data();
 
   //---------------------------
 }

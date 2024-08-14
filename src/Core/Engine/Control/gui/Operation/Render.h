@@ -1,6 +1,6 @@
 #pragma once
 
-namespace eng{class Node;}
+namespace core{class Node;}
 namespace ctl{class Node;}
 namespace ctl{class Structure;}
 
@@ -23,7 +23,7 @@ public:
 
 private:
   ctl::Structure* ctl_struct;
-  eng::Node* node_engine;
+  core::Node* node_core;
 };
 
 }

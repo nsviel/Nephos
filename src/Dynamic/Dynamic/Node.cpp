@@ -9,16 +9,16 @@
 namespace dyn{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
+Node::Node(core::Node* node_core){
   utl::gui::Panel* panel_player = add_panel("Player", ICON_FA_PLAY, true);
   utl::gui::Panel* panel_stream = add_panel("Stream", ICON_FA_FILM, false);
   //---------------------------
 
-  this->node_engine = node_engine;
-  this->node_data = node_engine->get_node_data();
-  this->node_radio = node_engine->get_node_radio();
-  this->node_profiler = node_engine->get_node_profiler();
-  this->node_operation = node_engine->get_node_operation();
+  this->node_core = node_core;
+  this->node_data = node_core->get_node_data();
+  this->node_radio = node_core->get_node_radio();
+  this->node_profiler = node_core->get_node_profiler();
+  this->node_operation = node_core->get_node_operation();
 
   this->dyn_struct = new dyn::Structure();
   this->dyn_player = new dyn::player::Player(this);

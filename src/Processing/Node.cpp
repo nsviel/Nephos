@@ -14,10 +14,10 @@ namespace mod{
 Node::Node(app::Node* node_app){
   //---------------------------
 
-  this->node_engine = node_app->get_node_engine();
-  this->node_kinect = new k4n::Node(node_engine);
-  this->node_realsense = new rlx::Node(node_engine);
-  this->node_radio = new rad::Node(node_engine);
+  this->node_core = node_app->get_node_core();
+  this->node_kinect = new k4n::Node(node_core);
+  this->node_realsense = new rlx::Node(node_core);
+  this->node_radio = new rad::Node(node_core);
 
   //---------------------------
 }
