@@ -13,8 +13,9 @@ Sphere::Sphere(eng::Node* node_engine){
 /*
   io::Node* node_io = node_engine->get_node_io();
   cam::Node* node_camera = node_engine->get_node_camera();
+  io::imp::Node* node_importer = node_io->get_node_importer();
 
-  this->io_importer = node_io->get_io_importer();
+  this->io_importer = node_importer->get_io_importer();
   this->cam_control = node_camera->get_cam_control();
 
   this->name = "object::sphere";

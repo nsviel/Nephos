@@ -19,13 +19,14 @@ Node::Node(eng::Node* node_engine){
   this->node_io = node_engine->get_node_io();
   this->node_data = node_engine->get_node_data();
   this->node_dynamic = node_engine->get_node_dynamic();
+  io::imp::Node* node_importer = node_io->get_node_importer();
 
   //Child
   this->k4n_structure = new k4n::Structure();
   this->k4n_connection = new k4n::capture::Connection(this);
 
   //Importer
-  io::imp::Importer* io_importer = node_io->get_io_importer();
+  io::imp::Importer* io_importer = node_importer->get_io_importer();
   io_importer->insert_importer(new k4n::playback::Importer(this));
 
   //---------------------------

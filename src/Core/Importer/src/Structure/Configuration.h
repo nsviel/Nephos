@@ -10,6 +10,8 @@
 namespace io::imp{
 
 struct Configuration{
+  //---------------------------
+
   io::imp::Encoding encoding = io::imp::ASCII;
   utl::topology::Type topology = utl::topology::POINT;
   std::vector<io::imp::Property> vec_property;
@@ -18,6 +20,8 @@ struct Configuration{
   int nb_property = 0;
   int nb_vertex = 0;
   int nb_face = 0;
+
+  //---------------------------
 };
 
 }

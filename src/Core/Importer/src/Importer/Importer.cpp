@@ -2,6 +2,7 @@
 
 #include <Element/Namespace.h>
 #include <Importer/Namespace.h>
+#include <IO/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -125,8 +126,8 @@ void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
 void Importer::init_path(){
   //---------------------------
 
-  io_struct->importer.path.directory = utl::path::get_current_directory_path();
-  io_struct->importer.path.format = ".ply";
+  io_struct->path.directory = utl::path::get_current_directory_path();
+  io_struct->path.format = ".ply";
 
   //---------------------------
 }

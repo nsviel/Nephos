@@ -2,9 +2,9 @@
 
 #include <string>
 
-namespace io{class Structure;}
-namespace io{class Importer;}
-namespace io::imp::bookmark{class Manager;}
+namespace io::imp{class Structure;}
+namespace io::imp{class Importer;}
+namespace io::imp{class Bookmark;}
 namespace io::imp::gui{class Panel;}
 namespace io::imp::gui{class Navigator;}
 
@@ -15,7 +15,7 @@ class Bookmark
 {
 public:
   //Constructor / Destructor
-  Bookmark(io::gui::importer::Panel* gui_panel);
+  Bookmark(io::imp::gui::Panel* gui_panel);
   ~Bookmark();
 
 public:

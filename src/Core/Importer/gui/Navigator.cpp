@@ -7,10 +7,10 @@
 namespace io::imp::gui{
 
 //Constructor / Destructor
-Navigator::Navigator(io::gui::importer::Panel* gui_panel){
+Navigator::Navigator(io::imp::gui::Panel* gui_panel){
   //---------------------------
 
-  io::imp::Node* node_importer = gui_panel->get_node_io();
+  io::imp::Node* node_importer = gui_panel->get_node_importer();
 
   this->io_struct = node_importer->get_io_struct();
   this->utl_navigator = new utl::gui::Navigator();
@@ -32,7 +32,7 @@ void Navigator::draw_tab(int width){
 
   ImGui::SetNextItemWidth(width);
   if(ImGui::BeginTabItem("Navigator##50", NULL, flag)){
-    utl_navigator->draw_navigator(io_struct->importer.path);
+    utl_navigator->draw_navigator(io_struct->path);
     ImGui::EndTabItem();
   }
 

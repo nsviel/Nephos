@@ -7,10 +7,10 @@
 namespace io::imp::gui{
 
 //Constructor / Destructor
-Operation::Operation(io::gui::importer::Panel* gui_panel){
+Operation::Operation(io::imp::gui::Panel* gui_panel){
   //---------------------------
 
-  io::imp::Node* node_importer = gui_panel->get_node_io();
+  io::imp::Node* node_importer = gui_panel->get_node_importer();
 
   this->io_struct = node_importer->get_io_struct();
   this->io_importer = node_importer->get_io_importer();
@@ -64,15 +64,15 @@ void Operation::draw_header(){
 
   // Scale new
   ImGui::SetNextItemWidth(75);
-  ImGui::DragFloat("Scale##4567", &io_struct->importer.scaling, 0.1, 0.1, 100, "%.2f x");
+  ImGui::DragFloat("Scale##4567", &io_struct->scaling, 0.1, 0.1, 100, "%.2f x");
 
   // Remove old
   ImGui::SameLine();
-  ImGui::Checkbox("Remove##222", &io_struct->importer.with_clearing);
+  ImGui::Checkbox("Remove##222", &io_struct->with_clearing);
 
   // Center new
   ImGui::SameLine();
-  ImGui::Checkbox("Centered##222", &io_struct->importer.with_centering);
+  ImGui::Checkbox("Centered##222", &io_struct->with_centering);
 
   //---------------------------
 }

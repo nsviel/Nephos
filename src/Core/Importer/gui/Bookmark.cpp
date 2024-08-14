@@ -10,10 +10,10 @@
 namespace io::imp::gui{
 
 //Constructor / Destructor
-Bookmark::Bookmark(io::gui::importer::Panel* gui_panel){
+Bookmark::Bookmark(io::imp::gui::Panel* gui_panel){
   //---------------------------
 
-  io::imp::Node* node_importer = gui_panel->get_node_io();
+  io::imp::Node* node_importer = gui_panel->get_node_importer();
 
   this->io_struct = node_importer->get_io_struct();
   this->io_importer = node_importer->get_io_importer();
@@ -92,7 +92,7 @@ void Bookmark::bookmark_button(std::string file_path){
 
   //If selection is a directory go display his content
   if(utl::directory::is_directory(file_path)){
-    io_struct->importer.path.directory = file_path;
+    io_struct->path.directory = file_path;
     bool& open_tab = gui_navigator->get_open_tab();
     open_tab = true;
   }

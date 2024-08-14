@@ -5,7 +5,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace io::imp::bookmark{
+namespace io::imp{
 
 //Constructor / Destructor
 Bookmark::Bookmark(io::imp::Node* node_importer){

@@ -9,6 +9,7 @@ namespace dyn{class Node;}
 namespace io{class Structure;}
 namespace io{class Exporter;}
 namespace io{class Transformation;}
+namespace io::imp{class Node;}
 namespace io::gui::exporter{class Panel;}
 namespace io::gui::transformation{class Panel;}
 
@@ -30,6 +31,7 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
+  inline io::imp::Node* get_node_importer(){return node_importer;}
 
   inline io::Structure* get_io_struct(){return io_struct;}
   inline io::Exporter* get_io_exporter(){return io_exporter;}
@@ -41,6 +43,7 @@ private:
   vk::Node* node_vulkan;
   dat::Node* node_data;
   dyn::Node* node_dynamic;
+  io::imp::Node* node_importer;
 
   //Child
   io::Structure* io_struct;

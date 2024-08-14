@@ -33,7 +33,7 @@ public:
 
   inline io::imp::Structure* get_io_struct(){return io_struct;}
   inline io::imp::Importer* get_io_importer(){return io_importer;}
-  inline io::imp::Operation* get_imp_operation(){return io_import_ope;}
+  inline io::imp::Operation* get_io_operation(){return io_operation;}
   inline io::imp::Bookmark* get_io_bookmark(){return io_bookmark;}
 
 private:
@@ -46,7 +46,7 @@ private:
   //Child
   io::imp::Structure* io_struct;
   io::imp::Importer* io_importer;
-  io::imp::Operation* io_import_ope;
+  io::imp::Operation* io_operation;
   io::imp::Bookmark* io_bookmark;
   io::imp::gui::Panel* gui_import;
 };

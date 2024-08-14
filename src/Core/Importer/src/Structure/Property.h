@@ -6,6 +6,7 @@
 namespace io::imp{
 
 struct Property{
+  //---------------------------
 
   Property(){}
   Property(io::imp::Field field, io::imp::Type type = io::imp::FLOAT32, int size = 0){
@@ -17,6 +18,8 @@ struct Property{
   io::imp::Field field;
   io::imp::Type type;
   int size = 0;
+
+  //---------------------------
 };
 
 }

@@ -13,7 +13,7 @@ class Navigator
 {
 public:
   //Constructor / Destructor
-  Navigator(io::gui::importer::Panel* gui_panel);
+  Navigator(io::imp::gui::Panel* gui_panel);
   ~Navigator();
 
 public:

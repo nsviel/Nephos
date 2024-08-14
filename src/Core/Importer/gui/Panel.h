@@ -22,7 +22,7 @@ public:
   void run_panel();
   void design_panel();
 
-  inline io::Node* get_node_io(){return node_io;}
+  inline io::imp::Node* get_node_importer(){return node_importer;}
   inline io::imp::gui::Navigator* get_gui_navigator(){return gui_navigator;}
 
 private:

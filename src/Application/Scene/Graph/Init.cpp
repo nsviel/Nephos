@@ -13,9 +13,10 @@ Init::Init(sce::Node* node_scene){
 
   eng::Node* node_engine = node_scene->get_node_engine();
   io::Node* node_io = node_engine->get_node_io();
+  io::imp::Node* node_importer = node_io->get_node_importer();
 
-  this->io_loader = node_io->get_io_importer();
-  this->io_struct = node_io->get_io_struct();
+  this->io_loader = node_importer->get_io_importer();
+  this->io_struct = node_importer->get_io_struct();
 
   //---------------------------
 }
@@ -55,7 +56,7 @@ void Init::load_entity(){
   utl::base::Path pts("/home/aether/Desktop/Point_cloud/pts/cloud.pts");
 
   //Create playback list
-  io_struct->importer.with_clearing = false;
+  io_struct->with_clearing = false;
   //io_loader->load_object(versaille_0, versaille_0_t);
   //io_loader->load_object(versaille_2, versaille_2_t);
   //io_loader->load_object(cerfav);

@@ -41,7 +41,7 @@ public:
   utl::base::Element* import_from_path(utl::base::Path path);
 
 private:
-  io::Structure* io_struct;
+  io::imp::Structure* io_struct;
   io::imp::Operation* io_operation;
 
   std::vector<io::imp::Base*> vec_importer;

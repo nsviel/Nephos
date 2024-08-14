@@ -18,7 +18,7 @@ class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(io::gui::importer::Panel* gui_panel);
+  Operation(io::imp::gui::Panel* gui_panel);
   ~Operation();
 
 public:
