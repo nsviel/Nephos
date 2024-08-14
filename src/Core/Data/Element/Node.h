@@ -42,7 +42,6 @@ private:
   //Dependancy
   eng::Node* node_engine;
   vk::Node* node_vulkan;
-  dat::graph::Node* node_graph;
 
   //Child
   dat::elm::Structure* dat_struct;
