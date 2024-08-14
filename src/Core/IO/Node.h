@@ -21,11 +21,6 @@ public:
   inline io::exp::Node* get_node_exporter(){return node_exporter;}
 
 private:
-  //Dependancy
-  eng::Node* node_engine;
-  vk::Node* node_vulkan;
-  dat::Node* node_data;
-  dyn::Node* node_dynamic;
   io::imp::Node* node_importer;
   io::exp::Node* node_exporter;
 };

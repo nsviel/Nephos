@@ -1,6 +1,7 @@
 #include "Exporter.h"
 
 #include <Exporter/Namespace.h>
+#include <Format/Namespace.h>
 #include <Dynamic/Namespace.h>
 
 
@@ -39,8 +40,8 @@ void Exporter::export_entity(dat::base::Entity* entity, std::string path){
 void Exporter::init_path(){
   //---------------------------
 
-  io_struct->exporter.path.directory = utl::path::get_current_directory_path();
-  io_struct->exporter.path.format = "ply";
+  io_struct->path.directory = utl::path::get_current_directory_path();
+  io_struct->path.format = "ply";
 
   //---------------------------
 }
@@ -51,10 +52,10 @@ void Exporter::export_with_config(io::exp::Base* exporter, dat::base::Entity* en
 
   //Make export configuration
   io::exp::Configuration config;
-  config.mat_model = (io_struct->exporter.with_transformation) ? pose->model : glm::mat4(1);
+  config.mat_model = (io_struct->with_transformation) ? pose->model : glm::mat4(1);
   config.mat_rotation = glm::mat3(config.mat_model);
-  config.with_colorization = io_struct->exporter.with_colorization;
-  config.encoding = io_struct->exporter.encoding;
+  config.with_colorization = io_struct->with_colorization;
+  config.encoding = io_struct->encoding;
   config.path = path;
 
   //Export data
@@ -79,8 +80,8 @@ void Exporter::update_current_path(utl::base::Element* element){
 
   //If entity different from previous one, change curent path
   if(!old_entity || entity->UID != old_entity->UID){
-    io_struct->exporter.path.insert(entity->data.path);
-    if(!is_format_supported(entity->data.path.format)) io_struct->exporter.path.format = "ply";
+    io_struct->path.insert(entity->data.path);
+    if(!is_format_supported(entity->data.path.format)) io_struct->path.format = "ply";
     old_entity = entity;
   }
 
@@ -103,7 +104,7 @@ bool Exporter::is_format_supported(std::string format){
 bool Exporter::is_current_config(dat::base::Entity* entity){
   //---------------------------
 
-  if(entity->data.path.build() == io_struct->exporter.path.build()){
+  if(entity->data.path.build() == io_struct->path.build()){
     return true;
   }
 

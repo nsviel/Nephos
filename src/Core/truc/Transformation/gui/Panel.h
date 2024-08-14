@@ -5,20 +5,20 @@
 #include <string>
 #include <vector>
 
-namespace io{class Node;}
-namespace io{class Structure;}
-namespace io{class Transformation;}
+namespace io::trf{class Node;}
+namespace io::trf{class Structure;}
+namespace io::trf{class Transformation;}
 namespace utl::base{class Element;}
 namespace dat::graph{class Selection;}
 
 
-namespace io::gui::transformation{
+namespace io::trf::gui{
 
 class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(io::Node* node_io, bool* show_window);
+  Panel(io::Node* node_transfo, bool* show_window);
   ~Panel();
 
 public:
@@ -35,8 +35,8 @@ public:
   void item_operation();
 
 private:
-  io::Structure* io_struct;
-  io::Transformation* io_transformation;
+  io::trf::Structure* io_struct;
+  io::trf::Transformation* io_transformation;
   utl::gui::Navigator* gui_navigator;
   dat::graph::Selection* dat_selection;
 

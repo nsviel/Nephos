@@ -3,13 +3,13 @@
 #include <IO/Namespace.h>
 
 
-namespace io{
+namespace io::trf{
 
 //Constructor / Destructor
-Transformation::Transformation(io::Node* node_io){
+Transformation::Transformation(io::trf::Node* node_transfo){
   //---------------------------
 
-  this->io_struct = node_io->get_io_struct();
+  this->io_struct = node_transfo->get_io_struct();
 
   //---------------------------
 }
@@ -51,8 +51,8 @@ void Transformation::save_transformation(utl::base::Element* element, std::strin
 void Transformation::init_path(){
   //---------------------------
 
-  io_struct->transformation.path.directory = utl::path::get_current_directory_path();
-  io_struct->transformation.path.format = ".json";
+  io_struct->path.directory = utl::path::get_current_directory_path();
+  io_struct->path.format = ".json";
 
   //---------------------------
 }
@@ -66,9 +66,9 @@ void Transformation::update_path(utl::base::Element* element){
 
   std::string path = entity->pose.path.build();
   if(path != ""){
-    io_struct->transformation.path.directory = utl::path::get_dir_from_path(path);
-    io_struct->transformation.path.name = utl::path::get_name_from_path(path);
-    io_struct->transformation.path.format = utl::path::get_format_from_path(path);
+    io_struct->path.directory = utl::path::get_dir_from_path(path);
+    io_struct->path.name = utl::path::get_name_from_path(path);
+    io_struct->path.format = utl::path::get_format_from_path(path);
     old_entity = entity;
   }
 

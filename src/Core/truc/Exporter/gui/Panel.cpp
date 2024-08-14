@@ -69,7 +69,7 @@ void Panel::design_panel(utl::base::Element* element){
 
   //Navigator
   io_exporter->update_current_path(element);
-  gui_navigator->draw_navigator(io_struct->exporter.path);
+  gui_navigator->draw_navigator(io_struct->path);
 
   //---------------------------
   ImGui::Separator();

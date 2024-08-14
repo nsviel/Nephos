@@ -21,6 +21,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_CORE
   LIBRARY_ELEMENT
+  IO_FORMAT
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
