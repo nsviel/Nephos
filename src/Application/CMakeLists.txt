@@ -19,7 +19,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_ENGINE
+  LIBRARY_CORE
   LIBRARY_GUI
   LIBRARY_SCENE
   LIBRARY_MODULE

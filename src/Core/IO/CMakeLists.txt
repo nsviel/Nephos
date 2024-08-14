@@ -19,7 +19,7 @@ find_package(HDF5 REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
-  LIBRARY_ENGINE
+  LIBRARY_CORE
 
   HDF5::HDF5
 )

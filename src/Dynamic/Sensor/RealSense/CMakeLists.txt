@@ -19,7 +19,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 find_package(realsense2 REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_ENGINE
+  LIBRARY_CORE
   LIBRARY_UTILITY
   LIBRARY_MODULE
 

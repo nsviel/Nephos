@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_ENGINE)
+set(LIBRARY_NAME LIBRARY_CORE)
 
 #-----------------
 # Source files
