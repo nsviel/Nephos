@@ -1,7 +1,7 @@
 #include "Node.h"
 
 #include <Core/Namespace.h>
-#include <Data/Namespace.h>
+#include <Graph/Namespace.h>
 #include <IO/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -18,13 +18,9 @@ Node::Node(eng::Node* node_engine){
   this->node_vulkan = node_engine->get_node_vulkan();
 
   //Child
-  this->dat_struct = new dat::Structure();
+  this->dat_struct = new dat::graph::Structure();
   this->dat_uid = new dat::graph::UID(this);
-  this->dat_set = new dat::element::Set(this);
-  this->dat_graph = new dat::Graph(this);
-  this->dat_entity = new dat::element::Entity(this);
-  this->dat_glyph = new dat::Glyph(this);
-  this->dat_image = new dat::element::Image(this);
+  this->dat_graph = new dat::graph::Graph(this);
   this->dat_selection = new dat::graph::Selection(this);
   this->gui_graph = new dat::graph::gui::Panel(this, &dat_panel->is_open);
 
