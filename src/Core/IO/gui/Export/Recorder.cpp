@@ -5,6 +5,7 @@
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Dynamic/Namespace.h>
+#include <Graph/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -16,11 +17,12 @@ Recorder::Recorder(io::Node* node_io){
 
   dat::Node* node_data = node_io->get_node_data();
   dyn::Node* node_dynamic = node_io->get_node_dynamic();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dyn_player = node_dynamic->get_dyn_player();
   this->io_struct = node_io->get_io_struct();
-  this->dat_selection = node_data->get_dat_selection();
+  this->dat_selection = node_graph->get_dat_selection();
 
   //---------------------------
 }

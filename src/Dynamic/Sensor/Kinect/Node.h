@@ -6,7 +6,7 @@ namespace dat{class Node;}
 namespace eng{class Node;}
 namespace io{class Node;}
 namespace dyn{class Node;}
-namespace dat{class Graph;}
+namespace dat::graph{class Graph;}
 namespace utl::thread::task{class Pool;}
 namespace k4n::capture{class Connection;}
 namespace k4n{class Structure;}

@@ -4,7 +4,7 @@
 
 namespace k4n{class Node;}
 namespace dat::element{class Set;}
-namespace dat{class Graph;}
+namespace dat::graph{class Graph;}
 namespace dat::base{class Set;}
 namespace io::importer{class Operation;}
 
@@ -32,7 +32,7 @@ public:
 private:
   k4n::Node* node_k4n;
   dat::element::Set* dat_set;
-  dat::Graph* dat_graph;
+  dat::graph::Graph* dat_graph;
   io::importer::Operation* io_operation;
 
   std::thread thread;

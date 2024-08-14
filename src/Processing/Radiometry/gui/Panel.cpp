@@ -4,6 +4,7 @@
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace rad::gui{
@@ -13,8 +14,9 @@ Panel::Panel(rad::Node* node_radio, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_radio->get_node_data();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
-  this->dat_selection = node_data->get_dat_selection();
+  this->dat_selection = node_graph->get_dat_selection();
   this->gui_correction = new rad::gui::correction::Tab(node_radio);
   this->gui_calibration = new rad::gui::calibration::Tab(node_radio);
 

@@ -6,7 +6,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace dat{
+namespace dat::graph{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
@@ -16,6 +16,7 @@ Node::Node(eng::Node* node_engine){
   //Dependancy
   this->node_engine = node_engine;
   this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_data = node_engine->get_node_data();
 
   //Child
   this->dat_struct = new dat::graph::Structure();

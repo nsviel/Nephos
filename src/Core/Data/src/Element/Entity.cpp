@@ -5,6 +5,7 @@
 #include <Data/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Camera/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace dat::element{
@@ -15,10 +16,11 @@ Entity::Entity(dat::Node* node_data){
 
   eng::Node* node_engine = node_data->get_node_engine();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->node_engine = node_engine;
   this->dat_struct = node_data->get_dat_struct();
-  this->dat_uid = node_data->get_dat_uid();
+  this->dat_uid = node_graph->get_dat_uid();
 
   this->vk_data = node_vulkan->get_vk_data();
   this->ope_location = new ope::attribut::Location();

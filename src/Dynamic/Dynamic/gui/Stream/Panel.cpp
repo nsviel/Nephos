@@ -5,6 +5,7 @@
 #include <Dynamic/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Data/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Renderer/Namespace.h>
 
 
@@ -15,9 +16,10 @@ Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_dynamic->get_node_data();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->node_engine = node_dynamic->get_node_engine();
-  this->dat_selection = node_data->get_dat_selection();
+  this->dat_selection = node_graph->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
   this->gui_overlay = new dyn::gui::stream::Overlay();
 

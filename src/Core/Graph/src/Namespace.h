@@ -1,5 +1,6 @@
 #pragma once
 
-#include <Data/src/Graph/Graph.h>
-#include <Data/src/Graph/UID.h>
-#include <Data/src/Graph/Selection.h>
+#include <Graph/src/Graph.h>
+#include <Graph/src/UID.h>
+#include <Graph/src/Selection.h>
+#include <Graph/src/Structure.h>

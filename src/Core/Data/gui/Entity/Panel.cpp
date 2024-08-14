@@ -2,6 +2,7 @@
 
 #include <Data/Namespace.h>
 #include <Operation/Namespace.h>
+#include <Graph/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 #include <imgui/core/imgui.h>
 
@@ -12,7 +13,9 @@ namespace dat::gui::entity{
 Panel::Panel(dat::Node* node_data, bool* panel_show){
   //---------------------------
 
-  this->dat_selection = node_data->get_dat_selection();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
+
+  this->dat_selection = node_graph->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
   this->gui_topology = new dat::gui::entity::Topology();
   this->gui_data = new dat::gui::entity::Data(node_data);

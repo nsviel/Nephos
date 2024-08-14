@@ -5,6 +5,7 @@
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Dynamic/Namespace.h>
+#include <Graph/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -15,9 +16,10 @@ Exporter::Exporter(io::Node* node_io){
   //---------------------------
 
   dat::Node* node_data = node_io->get_node_data();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->io_struct = node_io->get_io_struct();
-  this->dat_selection = node_data->get_dat_selection();
+  this->dat_selection = node_graph->get_dat_selection();
   this->io_exporter = node_io->get_io_exporter();
 
   //---------------------------

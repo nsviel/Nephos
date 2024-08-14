@@ -3,6 +3,7 @@
 #include <IO/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace io::gui::transformation{
@@ -12,10 +13,11 @@ Panel::Panel(io::Node* node_io, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_io->get_node_data();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->io_struct = node_io->get_io_struct();
   this->io_transformation = node_io->get_io_transformation();
-  this->dat_selection = node_data->get_dat_selection();
+  this->dat_selection = node_graph->get_dat_selection();
   this->gui_navigator = new utl::gui::Navigator();
 
   this->name = "Transformation##555";

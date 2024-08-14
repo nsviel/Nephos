@@ -13,6 +13,7 @@
 #include <Radiometry/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Control/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace eng{
@@ -33,6 +34,7 @@ Node::Node(app::Node* node_app){
   this->node_control = new ctl::Node(this);
   this->node_interface = new rnd::Node(this);
   this->node_io = new io::Node(this);
+  this->node_graph = new dat::graph::Node(this);
 
   //Tasker CPU
   prf::dynamic::Manager* prf_dynamic = node_profiler->get_prf_dynamic();

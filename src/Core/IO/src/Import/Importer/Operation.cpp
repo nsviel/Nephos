@@ -4,6 +4,7 @@
 #include <Data/Namespace.h>
 #include <IO/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace io::importer{
@@ -13,14 +14,15 @@ Operation::Operation(io::Node* node_io){
   //---------------------------
 
   dat::Node* node_data = node_io->get_node_data();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->io_struct = node_io->get_io_struct();
   this->io_transformation = node_io->get_io_transformation();
   this->dat_entity = node_data->get_dat_entity();
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_graph = node_graph->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
   this->dat_glyph = node_data->get_dat_glyph();
-  this->dat_selection = node_data->get_dat_selection();
+  this->dat_selection = node_graph->get_dat_selection();
   this->ope_transform = new ope::Transformation();
   this->ope_operation = new ope::Operation();
   this->utl_attribut = new utl::base::Attribut();

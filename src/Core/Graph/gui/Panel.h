@@ -2,14 +2,14 @@
 
 #include <string>
 
-namespace dat{class Node;}
-namespace dat{class Graph;}
 namespace dat::element{class Set;}
-namespace dat::graph{class Selection;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::gui::entity{class Panel;}
 namespace dat::gui::set{class Panel;}
+namespace dat::graph{class Node;}
+namespace dat::graph{class Selection;}
+namespace dat::graph{class Graph;}
 namespace dat::graph::gui{class Button;}
 
 
@@ -19,7 +19,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(dat::Node* node_data, bool* show_window);
+  Panel(dat::graph::Node* node_graph, bool* show_window);
   ~Panel();
 
 public:
@@ -38,7 +38,7 @@ public:
   bool show_panel_set      = false;
 
 private:
-  dat::Graph* dat_graph;
+  dat::graph::Graph* dat_graph;
   dat::graph::Selection* dat_selection;
   dat::element::Set* dat_set;
   dat::gui::entity::Panel* gui_entity;

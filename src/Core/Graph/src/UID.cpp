@@ -8,7 +8,7 @@
 namespace dat::graph{
 
 //Constructor / Destructor
-UID::UID(dat::Node* node_data){
+UID::UID(dat::graph::Node* node_graph){
   //---------------------------
 
   this->generator = std::mt19937(std::random_device()());

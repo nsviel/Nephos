@@ -5,6 +5,7 @@
 #include <Data/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Graph/Namespace.h>
 #include <Control/Namespace.h>
 
 
@@ -15,10 +16,11 @@ Wheel::Wheel(ctl::Node* node_control){
   //---------------------------
 
   dat::Node* node_data = node_control->get_node_data();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->ctl_struct = node_control->get_ctl_struct();
   this->node_engine = node_control->get_node_engine();
-  this->dat_selection = node_data->get_dat_selection();
+  this->dat_selection = node_graph->get_dat_selection();
   this->ope_operation = new ope::Operation();
   this->ope_location = new ope::attribut::Location();
 

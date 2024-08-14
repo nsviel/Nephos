@@ -2,6 +2,7 @@
 
 #include <Core/Namespace.h>
 #include <Graph/Namespace.h>
+#include <Data/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Operation/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
@@ -10,15 +11,17 @@
 namespace dat::graph::gui{
 
 //Constructor / Destructor
-Panel::Panel(dat::Node* node_data, bool* show_window){
+Panel::Panel(dat::graph::Node* node_graph, bool* show_window){
   //---------------------------
 
-  this->dat_graph = node_data->get_dat_graph();
-  this->dat_selection = node_data->get_dat_selection();
+  dat::Node* node_data = node_graph->get_node_data();
+
+  this->dat_graph = node_graph->get_dat_graph();
+  this->dat_selection = node_graph->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
   this->gui_set = new dat::gui::set::Panel(node_data, &show_panel_set);
   this->gui_entity = new dat::gui::entity::Panel(node_data, &show_panel_entity);
-  this->gui_button = new dat::graph::gui::Button(node_data);
+  this->gui_button = new dat::graph::gui::Button(node_graph);
 
   this->name = "Graph";
   this->show_window = show_window;

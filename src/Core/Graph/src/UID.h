@@ -14,7 +14,7 @@ class UID
 {
 public:
   //Constructor / Destructor
-  UID(dat::Node* node_data);
+  UID(dat::graph::Node* node_graph);
   ~UID();
 
 public:

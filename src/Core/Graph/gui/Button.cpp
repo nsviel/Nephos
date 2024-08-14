@@ -1,14 +1,17 @@
 #include "Button.h"
 
 #include <Graph/Namespace.h>
+#include <Data/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace dat::graph::gui{
 
 //Constructor / Destructor
-Button::Button(dat::Node* node_data){
+Button::Button(dat::graph::Node* node_graph){
   //---------------------------
+
+  dat::Node* node_data = node_graph->get_node_data();
 
   this->dat_set = node_data->get_dat_set();
   this->dat_entity = node_data->get_dat_entity();

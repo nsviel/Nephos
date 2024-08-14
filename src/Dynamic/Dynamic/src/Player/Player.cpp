@@ -2,6 +2,7 @@
 
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace dyn::player{
@@ -11,8 +12,9 @@ Player::Player(dyn::Node* node_dynamic){
   //---------------------------
 
   dat::Node* node_data = node_dynamic->get_node_data();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
-  this->dat_selection = node_data->get_dat_selection();
+  this->dat_selection = node_graph->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
 
   //---------------------------

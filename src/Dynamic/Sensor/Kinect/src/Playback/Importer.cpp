@@ -4,6 +4,7 @@
 #include <Kinect/Namespace.h>
 #include <Data/Namespace.h>
 #include <Dynamic/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace k4n::playback{
@@ -14,10 +15,11 @@ Importer::Importer(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
   dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->node_k4n = node_k4n;
   this->node_engine = node_k4n->get_node_engine();
-  this->dat_graph = node_data->get_dat_graph();
+  this->dat_graph = node_graph->get_dat_graph();
   this->dat_entity = node_data->get_dat_entity();
   this->dat_set = node_data->get_dat_set();
   this->dat_glyph = node_data->get_dat_glyph();

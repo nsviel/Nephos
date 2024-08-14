@@ -7,7 +7,7 @@ namespace io{class Node;}
 namespace io{class Structure;}
 namespace io{class Transformation;}
 namespace dat::element{class Entity;}
-namespace dat{class Graph;}
+namespace dat::graph{class Graph;}
 namespace dat::element{class Set;}
 namespace dat{class Glyph;}
 namespace dat::graph{class Selection;}
@@ -43,7 +43,7 @@ private:
   io::Structure* io_struct;
   io::Transformation* io_transformation;
   dat::element::Entity* dat_entity;
-  dat::Graph* dat_graph;
+  dat::graph::Graph* dat_graph;
   dat::element::Set* dat_set;
   dat::Glyph* dat_glyph;
   dat::graph::Selection* dat_selection;

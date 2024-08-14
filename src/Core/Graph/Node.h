@@ -4,6 +4,7 @@
 
 namespace vk{class Node;}
 namespace eng{class Node;}
+namespace dat{class Node;}
 namespace dat::graph{class Graph;}
 namespace dat::graph{class UID;}
 namespace dat::graph{class Selection;}
@@ -29,6 +30,7 @@ public:
 
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
+  inline dat::Node* get_node_data(){return node_data;}
 
   inline dat::graph::Graph* get_dat_graph(){return dat_graph;}
   inline dat::graph::Selection* get_dat_selection(){return dat_selection;}
@@ -39,6 +41,7 @@ private:
   //Dependancy
   eng::Node* node_engine;
   vk::Node* node_vulkan;
+  dat::Node* node_data;
 
   //Child
   dat::graph::Structure* dat_struct;

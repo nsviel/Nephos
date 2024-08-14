@@ -4,6 +4,7 @@
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
+#include <Graph/Namespace.h>
 
 
 namespace rad::calibration{
@@ -14,9 +15,10 @@ Process::Process(rad::calibration::Node* node_detection){
 
   rad::Node* node_radio = node_detection->get_node_radio();
   dat::Node* node_data = node_radio->get_node_data();
+  dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->rad_struct = node_detection->get_rad_struct();
-  this->dat_selection = node_data->get_dat_selection();
+  this->dat_selection = node_graph->get_dat_selection();
   this->rad_detection = new rad::calibration::Detection(node_detection);
 
   //---------------------------

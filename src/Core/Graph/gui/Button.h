@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace dat{class Node;}
+namespace dat::graph{class Node;}
 namespace dat::element{class Set;}
 namespace dat::element{class Entity;}
 namespace dat::base{class Set;}
@@ -15,7 +15,7 @@ class Button
 {
 public:
   //Constructor / Destructor
-  Button(dat::Node* node_data);
+  Button(dat::graph::Node* node_graph);
   ~Button();
 
 public:

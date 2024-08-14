@@ -1,6 +1,7 @@
 #include "Selection.h"
 
 #include <Graph/Namespace.h>
+#include <Data/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Dynamic/Namespace.h>
 
@@ -8,11 +9,13 @@
 namespace dat::graph{
 
 //Constructor / Destructor
-Selection::Selection(dat::Node* node_data){
+Selection::Selection(dat::graph::Node* node_graph){
   //---------------------------
 
-  this->dat_graph = node_data->get_dat_graph();
-  this->dat_struct = node_data->get_dat_struct();
+  dat::Node* node_data = node_graph->get_node_data();
+
+  this->dat_graph = node_graph->get_dat_graph();
+  this->dat_struct = node_graph->get_dat_struct();
   this->dat_set = node_data->get_dat_set();
 
   //---------------------------

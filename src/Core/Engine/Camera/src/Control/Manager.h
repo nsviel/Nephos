@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-namespace dat{class Graph;}
+namespace dat::graph{class Graph;}
 namespace dat{class Glyph;}
 namespace dat::element{class Set;}
 namespace eng{class Node;}
@@ -33,7 +33,7 @@ private:
   cam::Structure* cam_struct;
   cam::Control* cam_control;
   vk::image::Screenshot* vk_screenshot;
-  dat::Graph* dat_graph;
+  dat::graph::Graph* dat_graph;
   dat::Glyph* dat_glyph;
   dat::element::Set* dat_set;
 };
