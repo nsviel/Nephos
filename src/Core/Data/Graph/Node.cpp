@@ -29,6 +29,7 @@ Node::Node(eng::Node* node_engine){
 }
 Node::~Node(){}
 
+//Main function
 void Node::init(){
   //---------------------------
 
