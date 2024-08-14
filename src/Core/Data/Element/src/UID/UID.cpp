@@ -1,9 +1,5 @@
 #include "UID.h"
 
-#include <Data/Namespace.h>
-#include <Camera/Namespace.h>
-#include <Dynamic/Namespace.h>
-
 
 namespace dat::elm{
 

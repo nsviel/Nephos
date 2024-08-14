@@ -1,7 +1,7 @@
 #include "Panel.h"
 
 #include <Operation/Namespace.h>
-#include <Data/Namespace.h>
+#include <Element/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 #include <imgui/core/imgui.h>
 
