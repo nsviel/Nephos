@@ -1,18 +1,18 @@
 #pragma once
 
-namespace ctl{class Node;}
-namespace ctl{class Structure;}
-namespace ctl::mode{class Edition;}
-namespace ctl{class Wheel;}
+namespace ctr{class Node;}
+namespace ctr{class Structure;}
+namespace ctr::mode{class Edition;}
+namespace ctr{class Wheel;}
 
 
-namespace ctl::gui{
+namespace ctr::gui{
 
 class Edition
 {
 public:
   //Constructor / Destructor
-  Edition(ctl::Node* node_control);
+  Edition(ctr::Node* node_control);
   ~Edition();
 
 public:
@@ -25,9 +25,9 @@ public:
   void control_wheel();
 
 private:
-  ctl::Structure* ctl_struct;
-  ctl::mode::Edition* ctl_edition;
-  ctl::Wheel* ctl_wheel;
+  ctr::Structure* ctr_struct;
+  ctr::mode::Edition* ctr_edition;
+  ctr::Wheel* ctr_wheel;
 };
 
 }

@@ -3,17 +3,17 @@
 #include <Control/Namespace.h>
 
 
-namespace ctl::gui{
+namespace ctr::gui{
 
 //Constructor / Destructor
-Control::Control(ctl::Node* node_control){
+Control::Control(ctr::Node* node_control){
   //---------------------------
 
-  this->ctl_struct = node_control->get_ctl_struct();
-  this->gui_navigation = new ctl::gui::Navigation(node_control);
-  this->gui_edition = new ctl::gui::Edition(node_control);
-  this->gui_player = new ctl::gui::Player(node_control);
-  this->gui_render = new ctl::gui::Render(node_control);
+  this->ctr_struct = node_control->get_ctr_struct();
+  this->gui_navigation = new ctr::gui::Navigation(node_control);
+  this->gui_edition = new ctr::gui::Edition(node_control);
+  this->gui_player = new ctr::gui::Player(node_control);
+  this->gui_render = new ctr::gui::Render(node_control);
 
   //---------------------------
 }

@@ -3,9 +3,10 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace vk{class Node;}
-namespace core{class Node;}
+namespace eng{class Node;}
 namespace cam{class Node;}
 namespace dyn{class Node;}
+namespace core{class Node;}
 namespace dat{class Node;}
 namespace ctl{class Node;}
 namespace rnd{class Shader;}
@@ -20,7 +21,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(core::Node* node_core);
+  Node(eng::Node* node_engine);
   ~Node();
 
 public:
@@ -35,7 +36,8 @@ public:
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
   inline ctl::Node* get_node_control(){return node_control;}
-  inline rnd::Shader* get_itf_shader(){return itf_shader;}
+
+  inline rnd::Shader* get_rnd_shader(){return itf_shader;}
 
 private:
   core::Node* node_core;

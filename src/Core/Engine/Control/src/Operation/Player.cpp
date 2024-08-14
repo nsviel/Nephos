@@ -5,10 +5,10 @@
 #include <Data/Namespace.h>
 
 
-namespace ctl{
+namespace ctr{
 
 //Constructor / Destructor
-Player::Player(ctl::Node* node_control){
+Player::Player(ctr::Node* node_control){
   //---------------------------
 
   dat::Node* node_data = node_control->get_node_data();

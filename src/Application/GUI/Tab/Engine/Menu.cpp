@@ -2,7 +2,7 @@
 
 #include <GUI/Namespace.h>
 #include <Core/Namespace.h>
-#include <Camera/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -14,10 +14,11 @@ Menu::Menu(gui::Node* node_gui){
   //---------------------------
 
   core::Node* node_core = node_gui->get_node_core();
-  cam::Node* node_camera = node_core->get_node_camera();
+  //eng::Node* node_engine = node_core->get_node_engine();
+  //cam::Node* node_camera = node_engine->get_node_camera();
 
   this->node_gui = node_gui;
-  this->cam_manager = node_camera->get_cam_manager();
+  //this->cam_manager = node_camera->get_cam_manager();
 
   //---------------------------
 }
@@ -75,7 +76,7 @@ void Menu::menu_shortcut(std::string name){
 void Menu::menu_screenshot(){
   //---------------------------
 
-  cam_manager->make_screenshot();
+  //cam_manager->make_screenshot();
 
   //---------------------------
 }

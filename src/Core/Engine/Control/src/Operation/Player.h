@@ -1,17 +1,17 @@
 #pragma once
 
 namespace dat::graph{class Selection;}
-namespace ctl{class Node;}
+namespace ctr{class Node;}
 namespace dyn::player{class Player;}
 
 
-namespace ctl{
+namespace ctr{
 
 class Player
 {
 public:
   //Constructor / Destructor
-  Player(ctl::Node* node_control);
+  Player(ctr::Node* node_control);
   ~Player();
 
 public:

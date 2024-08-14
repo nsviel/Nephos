@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-#include <Camera/Namespace.h>
+#include <Engine/Namespace.h>
 #include <imgui/core/imgui.h>
 
 

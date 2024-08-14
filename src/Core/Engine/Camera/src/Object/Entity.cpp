@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-#include <Camera/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Data/Namespace.h>
 
 

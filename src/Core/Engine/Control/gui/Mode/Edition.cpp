@@ -4,15 +4,15 @@
 #include <Utility/Namespace.h>
 
 
-namespace ctl::gui{
+namespace ctr::gui{
 
 //Constructor / Destructor
-Edition::Edition(ctl::Node* node_control){
+Edition::Edition(ctr::Node* node_control){
   //---------------------------
 
-  this->ctl_struct = node_control->get_ctl_struct();
-  this->ctl_edition = node_control->get_ctl_edition();
-  this->ctl_wheel = node_control->get_ctl_wheel();
+  this->ctr_struct = node_control->get_ctr_struct();
+  this->ctr_edition = node_control->get_ctr_edition();
+  this->ctr_wheel = node_control->get_ctr_wheel();
 
   //---------------------------
 }
@@ -34,10 +34,10 @@ void Edition::control_keyboard_oneAction(){
   //----------------------------
 
   //Tab key
-  if(ImGui::IsKeyPressed(ImGuiKey_Tab)) ctl_edition->select_next();
+  if(ImGui::IsKeyPressed(ImGuiKey_Tab)) ctr_edition->select_next();
 
   //Suppr key - Delete selected
-  if(ImGui::IsKeyPressed(ImGuiKey_Delete)) ctl_edition->remove_current();
+  if(ImGui::IsKeyPressed(ImGuiKey_Delete)) ctr_edition->remove_current();
 
   //----------------------------
 }
@@ -48,25 +48,25 @@ void Edition::control_keyboard_translation(){
   if(io.MouseDown[1]) return;
 
   //Shift key
-  ctl_struct->key_fast = (io.KeysDown[340]) ? true : false;
+  ctr_struct->key_fast = (io.KeysDown[340]) ? true : false;
 
   // Z key
-  if(io.KeysDown[571]) ctl_edition->element_forward();
+  if(io.KeysDown[571]) ctr_edition->element_forward();
 
   // S key
-  if(io.KeysDown[564]) ctl_edition->element_backward();
+  if(io.KeysDown[564]) ctr_edition->element_backward();
 
   // D key
-  if(io.KeysDown[549]) ctl_edition->element_right();
+  if(io.KeysDown[549]) ctr_edition->element_right();
 
   // Q key
-  if(io.KeysDown[562]) ctl_edition->element_left();
+  if(io.KeysDown[562]) ctr_edition->element_left();
 
   // A key
-  if(io.KeysDown[546]) ctl_edition->element_down();
+  if(io.KeysDown[546]) ctr_edition->element_down();
 
   // E key
-  if(io.KeysDown[550]) ctl_edition->element_up();
+  if(io.KeysDown[550]) ctr_edition->element_up();
 
   //----------------------------
 }
@@ -76,12 +76,12 @@ void Edition::control_wheel(){
 
   //Wheel click - Change mouse wheel mode
   if(ImGui::IsMouseClicked(2)){
-    ctl_wheel->change_mode();
+    ctr_wheel->change_mode();
   }
 
   //Wheel actions
   if(!io.MouseDown[1] && io.MouseWheel){
-    ctl_wheel->make_action(io.MouseWheel);
+    ctr_wheel->make_action(io.MouseWheel);
   }
 
   //----------------------------

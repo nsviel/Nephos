@@ -4,7 +4,7 @@
 #include <Operation/Namespace.h>
 #include <Element/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Camera/Namespace.h>
+#include <Engine/Namespace.h>
 
 
 namespace dat::elm{
@@ -116,7 +116,8 @@ void Entity::update_pose(dat::base::Entity* entity){
   utl::base::Pose* pose = &entity->pose;
   //----------------------------
 
-  cam::Node* node_camera = node_core->get_node_camera();
+  eng::Node* node_engine = node_core->get_node_engine();
+  cam::Node* node_camera = node_engine->get_node_camera();
   this->cam_control = node_camera->get_cam_control();
 
   //Update own pose

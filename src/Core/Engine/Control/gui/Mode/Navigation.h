@@ -2,18 +2,18 @@
 
 #include <glm/glm.hpp>
 
-namespace ctl{class Node;}
-namespace ctl{class Structure;}
-namespace ctl::mode{class Navigation;}
+namespace ctr{class Node;}
+namespace ctr{class Structure;}
+namespace ctr::mode{class Navigation;}
 
 
-namespace ctl::gui{
+namespace ctr::gui{
 
 class Navigation
 {
 public:
   //Constructor / Destructor
-  Navigation(ctl::Node* node_control);
+  Navigation(ctr::Node* node_control);
   ~Navigation();
 
 public:
@@ -26,8 +26,8 @@ public:
   void control_wheel();
 
 private:
-  ctl::Structure* ctl_struct;
-  ctl::mode::Navigation* ctl_navigation;
+  ctr::Structure* ctr_struct;
+  ctr::mode::Navigation* ctr_navigation;
 };
 
 }

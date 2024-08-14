@@ -12,7 +12,7 @@ namespace rnd{class Node;}
 namespace ctl{class Node;}
 
 
-namespace eng_{
+namespace eng{
 
 class Node : public utl::base::Node
 {
@@ -28,6 +28,7 @@ public:
   void gui();
   void reset();
 
+  inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
@@ -36,6 +37,7 @@ public:
   inline ctl::Node* get_node_control(){return node_control;}
 
 private:
+  core::Node* node_core;
   vk::Node* node_vulkan;
   dat::Node* node_data;
   dyn::Node* node_dynamic;

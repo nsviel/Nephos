@@ -2,21 +2,21 @@
 
 #include <glm/glm.hpp>
 
-namespace ctl{class Node;}
-namespace ctl{class Structure;}
+namespace ctr{class Node;}
+namespace ctr{class Structure;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
 namespace cam{class Structure;}
 namespace vk::window{class GLFW;}
 
 
-namespace ctl::mode{
+namespace ctr::mode{
 
 class Navigation
 {
 public:
   //Constructor / Destructor
-  Navigation(ctl::Node* node_control);
+  Navigation(ctr::Node* node_control);
   ~Navigation();
 
 public:
@@ -34,7 +34,7 @@ public:
   void disable_camera_view();
 
 private:
-  ctl::Structure* ctl_struct;
+  ctr::Structure* ctr_struct;
   vk::window::GLFW* vk_window;
   cam::Control* cam_control;
   cam::Manager* cam_manager;

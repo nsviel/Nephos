@@ -1,17 +1,17 @@
 #pragma once
 
 namespace core{class Node;}
-namespace ctl{class Node;}
-namespace ctl{class Structure;}
+namespace ctr{class Node;}
+namespace ctr{class Structure;}
 
 
-namespace ctl::gui{
+namespace ctr::gui{
 
 class Render
 {
 public:
   //Constructor / Destructor
-  Render(ctl::Node* node_control);
+  Render(ctr::Node* node_control);
   ~Render();
 
 public:
@@ -22,7 +22,7 @@ public:
   void control_keyboard();
 
 private:
-  ctl::Structure* ctl_struct;
+  ctr::Structure* ctr_struct;
   core::Node* node_core;
 };
 

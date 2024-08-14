@@ -3,20 +3,20 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-namespace ctl{class Node;}
-namespace ctl{class Structure;}
+namespace ctr{class Node;}
+namespace ctr{class Structure;}
 namespace dat::graph{class Selection;}
 namespace dat::elm{class Set;}
 namespace ope{class Operation;}
 
 
-namespace ctl::mode{
+namespace ctr::mode{
 
 class Edition
 {
 public:
   //Constructor / Destructor
-  Edition(ctl::Node* node_control);
+  Edition(ctr::Node* node_control);
   ~Edition();
 
 public:
@@ -34,7 +34,7 @@ public:
   void remove_current();
 
 private:
-  ctl::Structure* ctl_struct;
+  ctr::Structure* ctr_struct;
   dat::graph::Selection* dat_selection;
   dat::elm::Set* dat_set;
   ope::Operation* ope_operation;

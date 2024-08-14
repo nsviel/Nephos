@@ -10,10 +10,10 @@
 namespace rnd::gui{
 
 //Constructor / Destructor
-Shader::Shader(rnd::Node* node_interface, bool* show_window){
+Shader::Shader(rnd::Node* node_renderer, bool* show_window){
   //---------------------------
 
-  vk::Node* node_vulkan = node_interface->get_node_vulkan();
+  vk::Node* node_vulkan = node_renderer->get_node_vulkan();
   vk::Structure* vk_struct = node_vulkan->get_vk_struct();
 
   this->vk_reload = new vk::shader::Reloader(vk_struct);
@@ -22,7 +22,7 @@ Shader::Shader(rnd::Node* node_interface, bool* show_window){
   this->editor_vs = new utl::gui::editor::Text();
   this->editor_fs = new utl::gui::editor::Text();
   this->gui_console = new utl::gui::widget::Console();
-  this->itf_shader = node_interface->get_itf_shader();
+  this->itf_shader = node_renderer->get_rnd_shader();
 
   this->item_width = 100;
   this->ID_class = 0;

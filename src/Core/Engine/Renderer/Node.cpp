@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Core/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Renderer/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
@@ -9,18 +9,18 @@
 namespace rnd{
 
 //Constructor / Destructor
-Node::Node(core::Node* node_core){
+Node::Node(eng::Node* node_engine){
   utl::gui::Panel* opt_panel = add_panel("Option##456", ICON_FA_GEAR, false);
   utl::gui::Panel* sha_panel = add_panel("Shader", ICON_FA_ROAD, false);
   //---------------------------
 
   //Dependancy
-  this->node_core = node_core;
-  this->node_vulkan = node_core->get_node_vulkan();
-  this->node_camera = node_core->get_node_camera();
-  this->node_data = node_core->get_node_data();
-  this->node_dynamic = node_core->get_node_dynamic();
-  this->node_control = node_core->get_node_control();
+  this->node_core = node_engine->get_node_core();
+  this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_camera = node_engine->get_node_camera();
+  this->node_data = node_engine->get_node_data();
+  this->node_dynamic = node_engine->get_node_dynamic();
+  this->node_control = node_engine->get_node_control();
 
   //Child
   this->itf_shader = new rnd::Shader(this);

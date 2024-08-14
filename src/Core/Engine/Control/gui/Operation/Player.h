@@ -1,17 +1,17 @@
 #pragma once
 
-namespace ctl{class Node;}
-namespace ctl{class Structure;}
-namespace ctl{class Player;}
+namespace ctr{class Node;}
+namespace ctr{class Structure;}
+namespace ctr{class Player;}
 
 
-namespace ctl::gui{
+namespace ctr::gui{
 
 class Player
 {
 public:
   //Constructor / Destructor
-  Player(ctl::Node* node_control);
+  Player(ctr::Node* node_control);
   ~Player();
 
 public:
@@ -22,8 +22,8 @@ public:
   void control_keyboard();
 
 private:
-  ctl::Structure* ctl_struct;
-  ctl::Player* ctl_player;
+  ctr::Structure* ctr_struct;
+  ctr::Player* ctr_player;
 };
 
 }

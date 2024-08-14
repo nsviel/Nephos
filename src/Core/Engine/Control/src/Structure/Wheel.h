@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ctl::wheel{
+namespace ctr::wheel{
 
 enum Mode{
   R_X = 0,

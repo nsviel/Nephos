@@ -5,14 +5,12 @@
 namespace app{class Node;}
 namespace io{class Node;}
 namespace vk{class Node;}
-namespace cam{class Node;}
-namespace rnd{class Node;}
 namespace dat{class Node;}
 namespace dyn{class Node;}
 namespace prf{class Node;}
 namespace ope{class Node;}
 namespace rad{class Node;}
-namespace ctl{class Node;}
+namespace eng{class Node;}
 namespace prf::dynamic{class Tasker;}
 namespace utl::thread::task{class Pool;}
 
@@ -37,10 +35,9 @@ public:
 
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
-  inline cam::Node* get_node_camera(){return node_camera;}
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
-  inline ctl::Node* get_node_control(){return node_control;}
+  inline eng::Node* get_node_engine(){return node_engine;}
   inline ope::Node* get_node_operation(){return node_operation;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline rad::Node* get_node_radio(){return node_radio;}
@@ -54,11 +51,9 @@ private:
   vk::Node* node_vulkan = nullptr;
   io::Node* node_io = nullptr;
   dat::Node* node_data = nullptr;
-  cam::Node* node_camera = nullptr;
-  rnd::Node* node_interface = nullptr;
+  eng::Node* node_engine = nullptr;
   prf::Node* node_profiler = nullptr;
   dyn::Node* node_dynamic = nullptr;
-  ctl::Node* node_control = nullptr;
   prf::dynamic::Tasker* tasker;
   utl::thread::task::Pool* thread_pool;
 };

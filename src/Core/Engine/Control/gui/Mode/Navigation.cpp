@@ -1,18 +1,18 @@
 #include "Navigation.h"
 
 #include <Control/Namespace.h>
-#include <Camera/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 
 
-namespace ctl::gui{
+namespace ctr::gui{
 
 //Constructor / Destructor
-Navigation::Navigation(ctl::Node* node_control){
+Navigation::Navigation(ctr::Node* node_control){
   //---------------------------
 
-  this->ctl_struct = node_control->get_ctl_struct();
-  this->ctl_navigation = node_control->get_ctl_navigation();
+  this->ctr_struct = node_control->get_ctr_struct();
+  this->ctr_navigation = node_control->get_ctr_navigation();
 
   //---------------------------
 }
@@ -37,25 +37,25 @@ void Navigation::control_keyboard(){
   if(!io.MouseDown[1]) return;
 
   //Shift speed up
-  ctl_struct->key_fast = (io.KeysDown[340]) ? true : false;
+  ctr_struct->key_fast = (io.KeysDown[340]) ? true : false;
 
   //Z key or Up key
-  if(io.KeysDown[571] || io.KeysDown[515]) ctl_navigation->cam_forward();
+  if(io.KeysDown[571] || io.KeysDown[515]) ctr_navigation->cam_forward();
 
   //S key or Down key
-  if(io.KeysDown[564] || io.KeysDown[516]) ctl_navigation->cam_backward();
+  if(io.KeysDown[564] || io.KeysDown[516]) ctr_navigation->cam_backward();
 
   //Q key or Left key
-  if(io.KeysDown[562] || io.KeysDown[513]) ctl_navigation->cam_left();
+  if(io.KeysDown[562] || io.KeysDown[513]) ctr_navigation->cam_left();
 
   //D key or Left key
-  if(io.KeysDown[549] || io.KeysDown[514]) ctl_navigation->cam_right();
+  if(io.KeysDown[549] || io.KeysDown[514]) ctr_navigation->cam_right();
 
   //A key
-  if(io.KeysDown[546]) ctl_navigation->cam_down();
+  if(io.KeysDown[546]) ctr_navigation->cam_down();
 
   //E key
-  if(io.KeysDown[550]) ctl_navigation->cam_up();
+  if(io.KeysDown[550]) ctr_navigation->cam_up();
 
   //---------------------------
 }
@@ -64,12 +64,12 @@ void Navigation::control_mouse(){
 
   //Right click - Camera movement
   if(ImGui::IsMouseClicked(1)){
-    ctl_navigation->enable_camera_view();
+    ctr_navigation->enable_camera_view();
   }
 
   //Release - back to normal
   else if(ImGui::IsMouseReleased(1)){
-    ctl_navigation->disable_camera_view();
+    ctr_navigation->disable_camera_view();
   }
 
   //---------------------------
@@ -80,7 +80,7 @@ void Navigation::control_wheel(){
 
   //Wheel + right clicked - Camera zoom
   if(io.MouseDown[1] && io.MouseWheel){
-    ctl_navigation->cam_zoom(io.MouseWheel);
+    ctr_navigation->cam_zoom(io.MouseWheel);
   }
 
   //----------------------------

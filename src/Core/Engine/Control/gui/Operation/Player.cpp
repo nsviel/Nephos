@@ -4,14 +4,14 @@
 #include <imgui/core/imgui.h>
 
 
-namespace ctl::gui{
+namespace ctr::gui{
 
 //Constructor / Destructor
-Player::Player(ctl::Node* node_control){
+Player::Player(ctr::Node* node_control){
   //---------------------------
 
-  this->ctl_struct = node_control->get_ctl_struct();
-  this->ctl_player = node_control->get_ctl_player();
+  this->ctr_struct = node_control->get_ctr_struct();
+  this->ctr_player = node_control->get_ctr_player();
 
   //---------------------------
 }
@@ -31,13 +31,13 @@ void Player::control_keyboard(){
   //----------------------------
 
   //Tab key
-  if(ImGui::IsKeyPressed(ImGuiKey_Space)) ctl_player->make_pause();
+  if(ImGui::IsKeyPressed(ImGuiKey_Space)) ctr_player->make_pause();
 
   //Left arrow key
-  if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)) ctl_player->make_forward();
+  if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)) ctr_player->make_forward();
 
   //Right arrow key
-  if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)) ctl_player->make_backward();
+  if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)) ctr_player->make_backward();
 
   //---------------------------
 }

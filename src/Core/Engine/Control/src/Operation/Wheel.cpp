@@ -1,27 +1,30 @@
 #include "Wheel.h"
 
 #include <Core/Namespace.h>
-#include <Camera/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
 #include <Control/Namespace.h>
 
 
-namespace ctl{
+namespace ctr{
 
 //Constructor / Destructor
-Wheel::Wheel(ctl::Node* node_control){
+Wheel::Wheel(ctr::Node* node_control){
   //---------------------------
 
+  core::Node* node_core = node_control->get_node_core();
+  eng::Node* node_engine = node_core->get_node_engine();
+  cam::Node* node_camera = node_engine->get_node_camera();
   dat::Node* node_data = node_control->get_node_data();
   dat::graph::Node* node_graph = node_data->get_node_graph();
 
-  this->ctl_struct = node_control->get_ctl_struct();
-  this->node_core = node_control->get_node_core();
+  this->ctr_struct = node_control->get_ctr_struct();
   this->dat_selection = node_graph->get_dat_selection();
   this->ope_operation = new ope::Operation();
   this->ope_location = new ope::attribut::Location();
+  this->cam_control = node_camera->get_cam_control();
 
   //---------------------------
 }
@@ -38,28 +41,26 @@ void Wheel::make_action(float value){
   float radian = 5 * M_PI/180 * 50;
   glm::vec3 R;
 
-  switch(ctl_struct->wheel_mode){
-    case ctl::wheel::R_Z:{
+  switch(ctr_struct->wheel_mode){
+    case ctr::wheel::R_Z:{
       R = glm::vec3(0, 0, direction * radian);
       ope_location->compute_COM(element);
       ope_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
-    case ctl::wheel::R_Y:{
+    case ctr::wheel::R_Y:{
       R = glm::vec3(0, direction * radian, 0);
       ope_location->compute_COM(element);
       ope_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
-    case ctl::wheel::R_X:{
+    case ctr::wheel::R_X:{
       R = glm::vec3(direction * radian, 0, 0);
       ope_location->compute_COM(element);
       ope_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
-    case ctl::wheel::CAM_Z:{
-      cam::Node* node_camera = node_core->get_node_camera();
-      cam::Control* cam_control = node_camera->get_cam_control();
+    case ctr::wheel::CAM_Z:{
       cam_control->control_wheel(direction * radian);
       break;
     }
@@ -73,11 +74,11 @@ void Wheel::make_action(float value){
 
 //Subfunction
 void Wheel::change_mode(){
-  int& mode = ctl_struct->wheel_mode;
+  int& mode = ctr_struct->wheel_mode;
   //---------------------------
 
   mode--;
-  if(mode == -1) mode = sizeof(ctl::wheel::Mode) - 1;
+  if(mode == -1) mode = sizeof(ctr::wheel::Mode) - 1;
 
   //---------------------------
 }

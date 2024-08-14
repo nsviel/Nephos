@@ -10,11 +10,11 @@
 namespace rnd::gui{
 
 //Constructor / Destructor
-Renderer::Renderer(rnd::Node* node_interface){
+Renderer::Renderer(rnd::Node* node_renderer){
   //---------------------------
 
-  vk::Node* node_vulkan = node_interface->get_node_vulkan();
-  ctl::Node* node_control = node_interface->get_node_control();
+  vk::Node* node_vulkan = node_renderer->get_node_vulkan();
+  ctl::Node* node_control = node_renderer->get_node_control();
 
   this->ctl_navigation = node_control->get_ctl_navigation();
   this->gui_control = node_control->get_gui_control();

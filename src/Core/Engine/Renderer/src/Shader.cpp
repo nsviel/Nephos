@@ -10,10 +10,10 @@
 namespace rnd{
 
 //Constructor / Destructor
-Shader::Shader(rnd::Node* node_interface){
+Shader::Shader(rnd::Node* node_renderer){
   //---------------------------
 
-  vk::Node* node_vulkan = node_interface->get_node_vulkan();
+  vk::Node* node_vulkan = node_renderer->get_node_vulkan();
   vk::Structure* vk_struct = node_vulkan->get_vk_struct();
 
   this->vk_reload = new vk::shader::Reloader(vk_struct);

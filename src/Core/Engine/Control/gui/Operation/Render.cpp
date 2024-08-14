@@ -5,13 +5,13 @@
 #include <imgui/core/imgui.h>
 
 
-namespace ctl::gui{
+namespace ctr::gui{
 
 //Constructor / Destructor
-Render::Render(ctl::Node* node_control){
+Render::Render(ctr::Node* node_control){
   //---------------------------
 
-  this->ctl_struct = node_control->get_ctl_struct();
+  this->ctr_struct = node_control->get_ctr_struct();
   this->node_core = node_control->get_node_core();
 
   //---------------------------

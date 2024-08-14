@@ -12,15 +12,15 @@
 namespace rnd::gui{
 
 //Constructor / Destructor
-Option::Option(rnd::Node* node_interface, bool* show_window){
+Option::Option(rnd::Node* node_renderer, bool* show_window){
   //---------------------------
 
-  core::Node* node_core = node_interface->get_node_core();
-  vk::Node* node_vulkan = node_interface->get_node_vulkan();
+  core::Node* node_core = node_renderer->get_node_core();
+  vk::Node* node_vulkan = node_renderer->get_node_vulkan();
   dat::Node* node_data = node_core->get_node_data();
 
-  //this->ctl_struct = node_interface->get_ctl_struct();
-  //this->ctl_wheel = node_interface->get_ctl_wheel();
+  //this->ctl_struct = node_renderer->get_ctl_struct();
+  //this->ctl_wheel = node_renderer->get_ctl_wheel();
   this->vk_interface = node_vulkan->get_vk_interface();
 
   this->width = 150;
