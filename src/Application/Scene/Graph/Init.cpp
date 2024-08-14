@@ -1,6 +1,6 @@
 #include "Init.h"
 
-#include <Engine/Namespace.h>
+#include <Core/Namespace.h>
 #include <Scene/Namespace.h>
 #include <IO/Namespace.h>
 

@@ -1,6 +1,6 @@
 #include "Importer.h"
 
-#include <Engine/Namespace.h>
+#include <Core/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <Data/Namespace.h>
 #include <Dynamic/Namespace.h>

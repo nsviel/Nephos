@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-#include <Engine/Namespace.h>
+#include <Core/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Vulkan/Namespace.h>

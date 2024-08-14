@@ -1,7 +1,7 @@
 #include "Menu.h"
 
 #include <GUI/Namespace.h>
-#include <Engine/Namespace.h>
+#include <Core/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>

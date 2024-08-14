@@ -7,7 +7,7 @@ add_subdirectory(Application)
 add_subdirectory(Utility)
 add_subdirectory(Dynamic)
 add_subdirectory(Processing)
-add_subdirectory(Engine)
+add_subdirectory(Core)
 add_subdirectory(Vulkan)
 
 #-----------------

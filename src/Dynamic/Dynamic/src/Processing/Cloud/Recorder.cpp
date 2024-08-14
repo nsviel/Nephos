@@ -1,6 +1,6 @@
 #include "Recorder.h"
 
-#include <Engine/Namespace.h>
+#include <Core/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>

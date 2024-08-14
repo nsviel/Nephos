@@ -1,7 +1,7 @@
 #include "Node.h"
 
 #include <GUI/Namespace.h>
-#include <Engine/Namespace.h>
+#include <Core/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Processing/Node.h>

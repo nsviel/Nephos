@@ -1,7 +1,7 @@
 #include "Data.h"
 
 #include <Kinect/Namespace.h>
-#include <Engine/Namespace.h>
+#include <Core/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Dynamic/Namespace.h>
 

@@ -2,7 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
-#include <Engine/Namespace.h>
+#include <Core/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
 
