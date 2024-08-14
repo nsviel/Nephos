@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_RENDERER)
+set(LIBRARY_NAME ENGINE_RENDERER)
 
 #-----------------
 # Source files
@@ -20,7 +20,7 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_CORE
-  LIBRARY_CAMERA
+  ENGINE_CAMERA
 
   Eigen3::Eigen # Eigen
 )

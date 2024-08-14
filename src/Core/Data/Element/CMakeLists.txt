@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_ELEMENT)
+set(LIBRARY_NAME DATA_ELEMENT)
 
 #-----------------
 # Source files
