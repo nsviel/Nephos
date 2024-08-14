@@ -7,7 +7,7 @@ namespace rad{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction{class Process;}
 namespace rad::correction::image{class Hough;}
-namespace itf::gui{class Stream;}
+namespace rnd::gui{class Stream;}
 namespace dat::element{class Image;}
 
 
@@ -39,7 +39,7 @@ private:
   rad::correction::Structure* rad_struct;
   rad::correction::Process* rad_process;
   rad::correction::image::Hough* rad_hough;
-  itf::gui::Stream* stream;
+  rnd::gui::Stream* stream;
   dat::element::Image* dat_image;
 };
 

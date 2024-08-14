@@ -7,10 +7,10 @@
 #include <Renderer/Namespace.h>
 
 
-namespace itf::render{
+namespace rnd{
 
 //Constructor / Destructor
-Shader::Shader(itf::Node* node_interface){
+Shader::Shader(rnd::Node* node_interface){
   //---------------------------
 
   vk::Node* node_vulkan = node_interface->get_node_vulkan();

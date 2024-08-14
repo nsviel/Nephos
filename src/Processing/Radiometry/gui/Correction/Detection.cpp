@@ -20,7 +20,7 @@ Detection::Detection(rad::Node* node_radio){
   this->rad_struct = node_correction->get_rad_struct();
   this->rad_process = node_correction->get_rad_process();
   this->rad_hough = new rad::correction::image::Hough(node_correction);
-  this->stream = new itf::gui::Stream(node_engine);
+  this->stream = new rnd::gui::Stream(node_engine);
   this->dat_image = node_data->get_dat_image();
 
   //---------------------------

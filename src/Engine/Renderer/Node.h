@@ -8,13 +8,13 @@ namespace cam{class Node;}
 namespace dyn{class Node;}
 namespace dat{class Node;}
 namespace ctl{class Node;}
-namespace itf::render{class Shader;}
-namespace itf::gui{class Option;}
-namespace itf::gui{class Shader;}
-namespace itf::gui{class Renderer;}
+namespace rnd{class Shader;}
+namespace rnd::gui{class Option;}
+namespace rnd::gui{class Shader;}
+namespace rnd::gui{class Renderer;}
 
 
-namespace itf{
+namespace rnd{
 
 class Node : public utl::base::Node
 {
@@ -35,7 +35,7 @@ public:
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
   inline ctl::Node* get_node_control(){return node_control;}
-  inline itf::render::Shader* get_itf_shader(){return itf_shader;}
+  inline rnd::Shader* get_itf_shader(){return itf_shader;}
 
 private:
   eng::Node* node_engine;
@@ -45,10 +45,10 @@ private:
   dyn::Node* node_dynamic;
   ctl::Node* node_control;
 
-  itf::render::Shader* itf_shader;
-  itf::gui::Option* gui_option;
-  itf::gui::Shader* gui_shader;
-  itf::gui::Renderer* gui_render;
+  rnd::Shader* itf_shader;
+  rnd::gui::Option* gui_option;
+  rnd::gui::Shader* gui_shader;
+  rnd::gui::Renderer* gui_render;
 
 };
 

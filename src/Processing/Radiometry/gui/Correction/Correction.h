@@ -3,7 +3,7 @@
 namespace rad{class Node;}
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
-namespace itf::gui{class Stream;}
+namespace rnd::gui{class Stream;}
 namespace dat::element{class Image;}
 namespace dyn::base{class Sensor;}
 
@@ -26,8 +26,8 @@ public:
 
 private:
   rad::correction::Structure* rad_struct;
-  itf::gui::Stream* stream_1;
-  itf::gui::Stream* stream_2;
+  rnd::gui::Stream* stream_1;
+  rnd::gui::Stream* stream_2;
   dat::element::Image* dat_image;
 };
 

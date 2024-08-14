@@ -3,22 +3,22 @@
 #include <string>
 #include <vector>
 
-namespace itf{class Node;}
+namespace rnd{class Node;}
 namespace vk::shader{class Reloader;}
 namespace vk::render{class Render;}
 namespace eng{class Node;}
 namespace utl::gui::widget{class Console;}
 namespace utl::gui::editor{class Text;}
-namespace itf::render{class Shader;}
+namespace rnd{class Shader;}
 
 
-namespace itf::gui{
+namespace rnd::gui{
 
 class Shader
 {
 public:
   //Constructor / Destructor
-  Shader(itf::Node* node_interface, bool* show_window);
+  Shader(rnd::Node* node_interface, bool* show_window);
   ~Shader();
 
 public:
@@ -47,7 +47,7 @@ public:
   void shader_file_selection();
 
 private:
-  itf::render::Shader* itf_shader;
+  rnd::Shader* itf_shader;
   vk::shader::Reloader* vk_reload;
   vk::render::Render* vk_render;
   eng::Node* node_engine;

@@ -6,7 +6,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace itf{
+namespace rnd{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
@@ -23,10 +23,10 @@ Node::Node(eng::Node* node_engine){
   this->node_control = node_engine->get_node_control();
 
   //Child
-  this->itf_shader = new itf::render::Shader(this);
-  this->gui_option = new itf::gui::Option(this, &opt_panel->is_open);
-  this->gui_shader = new itf::gui::Shader(this, &sha_panel->is_open);
-  this->gui_render = new itf::gui::Renderer(this);
+  this->itf_shader = new rnd::Shader(this);
+  this->gui_option = new rnd::gui::Option(this, &opt_panel->is_open);
+  this->gui_shader = new rnd::gui::Shader(this, &sha_panel->is_open);
+  this->gui_render = new rnd::gui::Renderer(this);
 
   //---------------------------
 }

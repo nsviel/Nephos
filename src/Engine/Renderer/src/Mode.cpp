@@ -4,7 +4,7 @@
 #include <Data/Namespace.h>
 
 
-namespace itf::render{
+namespace rnd{
 
 //Constructor / Destructor
 Mode::Mode(eng::Node* node_engine){

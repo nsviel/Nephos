@@ -22,7 +22,7 @@ Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
   this->gui_overlay = new dyn::gui::stream::Overlay();
 
   for(int i=0; i<20; i++){
-    itf::gui::Stream* stream = new itf::gui::Stream(node_engine);
+    rnd::gui::Stream* stream = new rnd::gui::Stream(node_engine);
     this->vec_stream.push_back(stream);
   }
 

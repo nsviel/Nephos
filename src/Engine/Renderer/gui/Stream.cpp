@@ -4,7 +4,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace itf::gui{
+namespace rnd::gui{
 
 //Constructor / Destructor
 Stream::Stream(eng::Node* node_engine){

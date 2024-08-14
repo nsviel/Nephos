@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace itf{class Node;}
+namespace rnd{class Node;}
 namespace ctl::mode{class Navigation;}
 namespace ctl::gui{class Control;}
 namespace vk::gui{class Imgui;}
@@ -10,13 +10,13 @@ namespace vk{class Structure;}
 namespace eng{class Node;}
 
 
-namespace itf::gui{
+namespace rnd::gui{
 
 class Renderer
 {
 public:
   //Constructor / Destructor
-  Renderer(itf::Node* node_interface);
+  Renderer(rnd::Node* node_interface);
   ~Renderer();
 
 public:

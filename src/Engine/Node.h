@@ -6,7 +6,7 @@ namespace app{class Node;}
 namespace io{class Node;}
 namespace vk{class Node;}
 namespace cam{class Node;}
-namespace itf{class Node;}
+namespace rnd{class Node;}
 namespace dat{class Node;}
 namespace dyn{class Node;}
 namespace prf{class Node;}
@@ -55,7 +55,7 @@ private:
   io::Node* node_io = nullptr;
   dat::Node* node_data = nullptr;
   cam::Node* node_camera = nullptr;
-  itf::Node* node_interface = nullptr;
+  rnd::Node* node_interface = nullptr;
   prf::Node* node_profiler = nullptr;
   dyn::Node* node_dynamic = nullptr;
   ctl::Node* node_control = nullptr;

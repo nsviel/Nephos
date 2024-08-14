@@ -6,7 +6,7 @@ namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad::calibration{class Structure;}
 namespace rad::calibration{class Process;}
-namespace itf::gui{class Stream;}
+namespace rnd::gui{class Stream;}
 namespace dat::element{class Image;}
 
 
@@ -33,7 +33,7 @@ public:
 private:
   rad::calibration::Structure* rad_struct;
   rad::calibration::Process* rad_process;
-  itf::gui::Stream* stream;
+  rnd::gui::Stream* stream;
   dat::element::Image* dat_image;
 };
 

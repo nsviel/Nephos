@@ -9,10 +9,10 @@
 #include <Control/Namespace.h>
 
 
-namespace itf::gui{
+namespace rnd::gui{
 
 //Constructor / Destructor
-Option::Option(itf::Node* node_interface, bool* show_window){
+Option::Option(rnd::Node* node_interface, bool* show_window){
   //---------------------------
 
   eng::Node* node_engine = node_interface->get_node_engine();
