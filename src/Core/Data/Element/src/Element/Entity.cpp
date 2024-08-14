@@ -7,7 +7,7 @@
 #include <Camera/Namespace.h>
 
 
-namespace dat::element{
+namespace dat::elm{
 
 //Constructor / Destructor
 Entity::Entity(dat::elm::Node* node_element){

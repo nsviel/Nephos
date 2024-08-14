@@ -3,7 +3,7 @@
 #include <Dynamic/Namespace.h>
 #include <Element/Namespace.h>
 #include <Control/Namespace.h>
-#include <Data/Node.h>
+#include <Data/Namespace.h>
 
 
 namespace ctl{

@@ -9,7 +9,7 @@ namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
 
-namespace dat{
+namespace dat::elm{
 
 class Element
 {

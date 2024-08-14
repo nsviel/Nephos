@@ -1,6 +1,6 @@
 #include "Selection.h"
 
-#include <Data/Node.h>
+#include <Data/Namespace.h>
 #include <Element/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Dynamic/Namespace.h>

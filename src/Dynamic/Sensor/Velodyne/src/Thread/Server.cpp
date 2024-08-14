@@ -6,7 +6,7 @@
 #include <Utility/Namespace.h>
 #include <Element/Namespace.h>
 #include <Importer/Namespace.h>
-#include <Data/Node.h>
+#include <Data/Namespace.h>
 
 
 namespace vld::thread{

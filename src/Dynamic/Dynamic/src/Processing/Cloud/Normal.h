@@ -6,8 +6,8 @@
 
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
-namespace dat::element{class Image;}
-namespace dat{class Glyph;}
+namespace dat::elm{class Image;}
+namespace dat::elm{class Glyph;}
 namespace utl::base{class Data;}
 namespace dyn::base{class Sensor;}
 namespace ope::image{class Converter;}
@@ -38,7 +38,7 @@ public:
 private:
   dyn::Structure* dyn_struct;
   dat::elm::Image* dat_image;
-  dat::Glyph* dat_glyph;
+  dat::elm::Glyph* dat_glyph;
   ope::normal::Structured* ope_normal;
   ope::image::Converter* ope_converter;
   ope::attribut::Location* ope_location;

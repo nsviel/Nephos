@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace dat::graph{class Graph;}
-namespace dat{class Glyph;}
+namespace dat::elm{class Glyph;}
 namespace dat::elm{class Set;}
 namespace eng{class Node;}
 namespace cam{class Node;}
@@ -34,7 +34,7 @@ private:
   cam::Control* cam_control;
   vk::image::Screenshot* vk_screenshot;
   dat::graph::Graph* dat_graph;
-  dat::Glyph* dat_glyph;
+  dat::elm::Glyph* dat_glyph;
   dat::elm::Set* dat_set;
 };
 

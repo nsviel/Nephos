@@ -4,7 +4,7 @@
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Element/Namespace.h>
-#include <Data/Node.h>
+#include <Data/Namespace.h>
 
 
 namespace rad::correction{

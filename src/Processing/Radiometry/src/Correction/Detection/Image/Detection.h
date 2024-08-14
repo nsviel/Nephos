@@ -10,7 +10,7 @@ namespace utl::media{class Image;}
 namespace rad::correction{class Glyph;}
 namespace rad::correction::image{class Hough;}
 namespace rad::correction::image{class Image;}
-namespace dat::element{class Image;}
+namespace dat::elm{class Image;}
 
 
 namespace rad::correction::image{

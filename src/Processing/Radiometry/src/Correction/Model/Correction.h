@@ -9,7 +9,7 @@ namespace rad::correction{class Node;}
 namespace rad::correction{class Model;}
 namespace rad::correction::io{class Model;}
 namespace dyn::base{class Sensor;}
-namespace dat::element{class Image;}
+namespace dat::elm{class Image;}
 namespace dat::graph{class Selection;}
 namespace utl::media{class Image;}
 namespace utl::base{class Attribut;}

@@ -1,7 +1,7 @@
 #include "Node.h"
 
 #include <Element/Namespace.h>
-#include <Data/Node.h>
+#include <Data/Namespace.h>
 
 
 namespace dat{

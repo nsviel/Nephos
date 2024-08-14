@@ -6,7 +6,7 @@ namespace rad::correction::image{class Detection;}
 namespace rad::correction::cloud{class Detection;}
 namespace rad::correction{class Glyph;}
 namespace dat::graph{class Selection;}
-namespace dat::element{class Image;}
+namespace dat::elm{class Image;}
 namespace dyn::base{class Sensor;}
 
 

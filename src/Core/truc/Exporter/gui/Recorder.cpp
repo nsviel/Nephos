@@ -1,11 +1,10 @@
 #include "Recorder.h"
 
-#include <Element/Namespace.h>
 #include <Exporter/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Dynamic/Namespace.h>
-#include <Data/Node.h>
+#include <Data/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 

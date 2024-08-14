@@ -4,7 +4,7 @@
 #include <Element/Namespace.h>
 
 
-namespace dat{
+namespace dat::elm{
 
 //Constructor / Destructor
 Element::Element(){

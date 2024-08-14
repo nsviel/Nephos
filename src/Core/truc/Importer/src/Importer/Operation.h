@@ -9,7 +9,7 @@ namespace io{class Transformation;}
 namespace dat::elm{class Entity;}
 namespace dat::graph{class Graph;}
 namespace dat::elm{class Set;}
-namespace dat{class Glyph;}
+namespace dat::elm{class Glyph;}
 namespace dat::graph{class Selection;}
 namespace dat::base{class Object;}
 namespace dat::base{class Set;}
@@ -45,7 +45,7 @@ private:
   dat::elm::Entity* dat_entity;
   dat::graph::Graph* dat_graph;
   dat::elm::Set* dat_set;
-  dat::Glyph* dat_glyph;
+  dat::elm::Glyph* dat_glyph;
   dat::graph::Selection* dat_selection;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;

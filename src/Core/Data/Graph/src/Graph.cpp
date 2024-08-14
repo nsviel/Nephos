@@ -1,6 +1,6 @@
 #include "Graph.h"
 
-#include <Data/Node.h>
+#include <Data/Namespace.h>
 #include <Element/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Dynamic/Namespace.h>
@@ -26,7 +26,7 @@ Graph::~Graph(){}
 //Main function
 void Graph::init(){
   dat::elm::Node* node_element = node_data->get_node_element();
-  dat::Glyph* dat_glyph = node_element->get_dat_glyph();
+  dat::elm::Glyph* dat_glyph = node_element->get_dat_glyph();
   //---------------------------
 
   //Background permanent elements

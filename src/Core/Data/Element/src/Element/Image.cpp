@@ -5,7 +5,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace dat::element{
+namespace dat::elm{
 
 //Constructor / Destructor
 Image::Image(dat::elm::Node* node_element){

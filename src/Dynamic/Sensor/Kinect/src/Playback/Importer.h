@@ -8,7 +8,7 @@ namespace eng{class Node;}
 namespace dat::graph{class Graph;}
 namespace dat::elm{class Entity;}
 namespace dat::elm{class Set;}
-namespace dat{class Glyph;}
+namespace dat::elm{class Glyph;}
 namespace dyn::element{class Sensor;}
 
 
@@ -36,7 +36,7 @@ private:
   dat::graph::Graph* dat_graph;
   dat::elm::Entity* dat_entity;
   dat::elm::Set* dat_set;
-  dat::Glyph* dat_glyph;
+  dat::elm::Glyph* dat_glyph;
   dyn::element::Sensor* dyn_sensor;
 };
 

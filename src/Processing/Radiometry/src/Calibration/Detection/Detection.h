@@ -7,7 +7,7 @@ namespace rad::calibration{class Rectangle;}
 namespace dyn::base{class Sensor;}
 namespace utl::thread::task{class Pool;}
 namespace utl::media{class Image;}
-namespace dat::element{class Image;}
+namespace dat::elm{class Image;}
 
 
 namespace rad::calibration{

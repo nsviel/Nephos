@@ -7,7 +7,7 @@ namespace rad{class Node;}
 namespace rad::calibration{class Structure;}
 namespace rad::calibration{class Process;}
 namespace rnd::gui{class Stream;}
-namespace dat::element{class Image;}
+namespace dat::elm{class Image;}
 
 
 namespace rad::gui::calibration{

@@ -1,6 +1,6 @@
 #include "UID.h"
 
-#include <Data/Node.h>
+#include <Data/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Dynamic/Namespace.h>
 

@@ -5,7 +5,7 @@
 
 namespace eng{class Node;}
 namespace dat::elm{class Entity;}
-namespace dat{class Glyph;}
+namespace dat::elm{class Glyph;}
 namespace dat::glyph::grid{class Mesh;}
 namespace dat::glyph::grid{class Axis;}
 namespace dat::glyph::grid{class Plane;}
@@ -29,7 +29,7 @@ public:
 private:
   eng::Node* node_engine;
   dat::elm::Entity* dat_entity;
-  dat::Glyph* dat_glyph;
+  dat::elm::Glyph* dat_glyph;
 
   int nb_cell;
 };

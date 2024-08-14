@@ -1,11 +1,9 @@
 #include "Operation.h"
 
 #include <Core/Namespace.h>
-#include <Element/Namespace.h>
 #include <Importer/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Graph/Namespace.h>
-#include <Data/Node.h>
+#include <Data/Namespace.h>
 
 
 namespace io::imp{

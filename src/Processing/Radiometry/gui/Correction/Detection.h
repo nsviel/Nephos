@@ -8,7 +8,7 @@ namespace rad::correction{class Structure;}
 namespace rad::correction{class Process;}
 namespace rad::correction::image{class Hough;}
 namespace rnd::gui{class Stream;}
-namespace dat::element{class Image;}
+namespace dat::elm{class Image;}
 
 
 namespace rad::gui::correction{

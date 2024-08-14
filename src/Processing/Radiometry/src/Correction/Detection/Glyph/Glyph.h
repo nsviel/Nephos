@@ -6,7 +6,7 @@ namespace dyn::base{class Sensor;}
 namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction::structure{class Circle;}
-namespace dat{class Glyph;}
+namespace dat::elm{class Glyph;}
 namespace dat::elm{class Entity;}
 namespace eng{class Node;}
 
@@ -37,7 +37,7 @@ public:
 private:
   eng::Node* node_engine;
   rad::correction::Structure* rad_struct;
-  dat::Glyph* dat_glyph;
+  dat::elm::Glyph* dat_glyph;
   dat::elm::Entity* dat_entity;
 };
 

@@ -17,7 +17,7 @@ namespace utl::media{class Image;}
 namespace ope::attribut{class Location;}
 
 
-namespace dat::element{
+namespace dat::elm{
 
 class Entity
 {
