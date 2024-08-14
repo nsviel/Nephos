@@ -5,6 +5,7 @@ set(EXECUTABLE_NAME executable)
 #-----------------
 add_subdirectory(Application)
 add_subdirectory(Utility)
+add_subdirectory(Dynamic)
 add_subdirectory(Module)
 add_subdirectory(Engine)
 add_subdirectory(Vulkan)
