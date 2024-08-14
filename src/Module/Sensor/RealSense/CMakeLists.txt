@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_D455)
+set(LIBRARY_NAME LIBRARY_REALSENSE)
 
 #-----------------
 # Source files
@@ -21,6 +21,7 @@ find_package(realsense2 REQUIRED)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_ENGINE
   LIBRARY_UTILITY
+  LIBRARY_MODULE
 
   ${realsense2_LIBRARY}
 )

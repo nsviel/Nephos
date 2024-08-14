@@ -12,7 +12,8 @@ public:
 
 public:
   //Main function
-
+  void capture();
+  
 private:
 
 };

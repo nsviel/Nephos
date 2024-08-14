@@ -16,7 +16,7 @@ Node::Node(){
 
   this->node_vulkan = new vk::Node(&running);
   this->node_engine = new eng::Node(this);
-  //this->node_module = new mod::Node(this);
+  this->node_module = new mod::Node(this);
   this->node_scene = new sce::Node(this);
   this->node_gui = new gui::Node(this);
 
@@ -39,6 +39,7 @@ void Node::run(){
 void Node::init(){
   //---------------------------
 
+  node_module->init();
   node_vulkan->init();
   node_engine->init();
   node_gui->init();

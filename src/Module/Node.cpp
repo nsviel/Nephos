@@ -4,6 +4,8 @@
 #include <Engine/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Kinect/Namespace.h>
+#include <RealSense/Namespace.h>
+#include <Radiometry/Namespace.h>
 
 
 namespace mod{
@@ -23,7 +25,7 @@ Node::~Node(){}
 
 void Node::init(){
   //---------------------------
-
+sayHello();
   node_kinect->init();
 
   //---------------------------

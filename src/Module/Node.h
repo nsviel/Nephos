@@ -22,7 +22,6 @@ public:
   void init();
   void loop();
   void clean();
-  void reset();
 
   inline eng::Node* get_node_engine(){return node_engine;}
 
