@@ -1,7 +1,7 @@
 #include "Normal.h"
 
 #include <Dynamic/Namespace.h>
-#include <Transformation/Namespace.h>
+#include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
 #include <Engine/Namespace.h>
