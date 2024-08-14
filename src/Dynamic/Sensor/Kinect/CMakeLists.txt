@@ -22,7 +22,7 @@ find_package(k4a REQUIRED)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_CORE
-  DATA_GRAPH
+  CORE_DATA
 
   ${Python_LIBRARIES}
   ${k4a_LIBS}

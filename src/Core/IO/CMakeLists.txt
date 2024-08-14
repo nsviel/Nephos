@@ -3,8 +3,12 @@ set(LIBRARY_NAME LIBRARY_IO)
 #-----------------
 # Source files
 #-----------------
+add_subdirectory(Exporter)
+add_subdirectory(Importer)
+add_subdirectory(Format)
+
 file(GLOB_RECURSE ALL_SOURCES
-  *.cpp
+  Node.cpp
 )
 
 #-----------------

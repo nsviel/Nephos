@@ -20,7 +20,7 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_CORE
-  DATA_GRAPH
+  CORE_DATA
   ENGINE_CAMERA
 
   Eigen3::Eigen # Eigen

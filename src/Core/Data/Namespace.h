@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Node.h"
-
-#include <Element/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
+#include <Data/Element/Namespace.h>
+#include <Data/Graph/Namespace.h>
