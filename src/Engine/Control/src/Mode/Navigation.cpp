@@ -14,7 +14,7 @@ Navigation::Navigation(itf::Node* node_interface){
   cam::Node* node_camera = node_interface->get_node_camera();
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
-  this->itf_struct = node_interface->get_itf_struct();
+  this->itf_struct = node_interface->get_ctl_struct();
   this->vk_window = node_vulkan->get_vk_window();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_manager = node_camera->get_cam_manager();

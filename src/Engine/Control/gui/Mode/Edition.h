@@ -26,8 +26,8 @@ public:
 
 private:
   itf::Structure* itf_struct;
-  itf::control::Edition* itf_edition;
-  itf::control::Wheel* itf_wheel;
+  ctl::mode::Edition* itf_edition;
+  ctl::Wheel* itf_wheel;
 };
 
 }

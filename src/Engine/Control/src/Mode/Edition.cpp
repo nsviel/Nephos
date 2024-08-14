@@ -13,7 +13,7 @@ Edition::Edition(itf::Node* node_interface){
 
   dat::Node* node_data = node_interface->get_node_data();
 
-  this->itf_struct = node_interface->get_itf_struct();
+  this->itf_struct = node_interface->get_ctl_struct();
   this->dat_selection = node_data->get_dat_selection();
   this->dat_set = node_data->get_dat_set();
   this->ope_operation = new ope::Operation();

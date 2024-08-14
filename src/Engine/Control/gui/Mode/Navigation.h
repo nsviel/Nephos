@@ -26,8 +26,8 @@ public:
   void control_wheel();
 
 private:
-  itf::Structure* itf_struct;
-  itf::control::Navigation* ctl_navigation;
+  ctl::Structure* itf_struct;
+  ctl::mode::Navigation* ctl_navigation;
 };
 
 }

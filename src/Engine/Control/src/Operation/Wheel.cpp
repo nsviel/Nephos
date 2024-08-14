@@ -16,7 +16,7 @@ Wheel::Wheel(itf::Node* node_interface){
 
   dat::Node* node_data = node_interface->get_node_data();
 
-  this->itf_struct = node_interface->get_itf_struct();
+  this->itf_struct = node_interface->get_ctl_struct();
   this->node_engine = node_interface->get_node_engine();
   this->dat_selection = node_data->get_dat_selection();
   this->ope_operation = new ope::Operation();
@@ -38,25 +38,25 @@ void Wheel::make_action(float value){
   glm::vec3 R;
 
   switch(itf_struct->control.wheel_mode){
-    case WHEEL_R_Z:{
+    case R_Z:{
       R = glm::vec3(0, 0, direction * radian);
       ope_location->compute_COM(element);
       ope_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
-    case WHEEL_R_Y:{
+    case R_Y:{
       R = glm::vec3(0, direction * radian, 0);
       ope_location->compute_COM(element);
       ope_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
-    case WHEEL_R_X:{
+    case R_X:{
       R = glm::vec3(direction * radian, 0, 0);
       ope_location->compute_COM(element);
       ope_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
-    case WHEEL_CAM_Z:{
+    case CAM_Z:{
       cam::Node* node_camera = node_engine->get_node_camera();
       cam::Control* cam_control = node_camera->get_cam_control();
       cam_control->control_wheel(direction * radian);
@@ -76,7 +76,7 @@ void Wheel::change_mode(){
   //---------------------------
 
   mode--;
-  if(mode == -1) mode = sizeof(itf::control::Wheel_mode) - 1;
+  if(mode == -1) mode = sizeof(ctl::wheel::Mode) - 1;
 
   //---------------------------
 }
@@ -84,10 +84,10 @@ std::vector<const char*> Wheel::get_vec_mode(){
   std::vector<const char*> vec_mode;
   //---------------------------
 
-  vec_mode.push_back("WHEEL_R_X");
-  vec_mode.push_back("WHEEL_R_Y");
-  vec_mode.push_back("WHEEL_R_Z");
-  vec_mode.push_back("WHEEL_CAM_Z");
+  vec_mode.push_back("R_X");
+  vec_mode.push_back("R_Y");
+  vec_mode.push_back("R_Z");
+  vec_mode.push_back("CAM_Z");
 
   //---------------------------
   return vec_mode;

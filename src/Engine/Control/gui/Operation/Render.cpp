@@ -10,7 +10,7 @@ namespace ctl::gui{
 Render::Render(itf::Node* node_interface){
   //---------------------------
 
-  this->itf_struct = node_interface->get_itf_struct();
+  this->itf_struct = node_interface->get_ctl_struct();
   this->node_engine = node_interface->get_node_engine();
 
   //---------------------------

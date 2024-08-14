@@ -11,7 +11,7 @@ namespace ctl::gui{
 Navigation::Navigation(itf::Node* node_interface){
   //---------------------------
 
-  this->itf_struct = node_interface->get_itf_struct();
+  this->itf_struct = node_interface->get_ctl_struct();
   this->ctl_navigation = node_interface->get_ctl_navigation();
 
   //---------------------------

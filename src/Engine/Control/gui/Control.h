@@ -25,8 +25,8 @@ public:
 
 private:
   itf::Structure* itf_struct;
-  itf::gui::Navigation* gui_navigation;
-  itf::gui::Edition* gui_edition;
+  ctl::gui::Navigation* gui_navigation;
+  ctl::gui::Edition* gui_edition;
   itf::gui::Player* gui_player;
   itf::gui::Render* gui_render;
 };

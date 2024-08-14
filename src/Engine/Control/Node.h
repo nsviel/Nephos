@@ -37,9 +37,9 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
   inline ctl::Structure* get_ctl_struct(){return ctl_struct;}
   inline ctl::mode::Navigation* get_ctl_navigation(){return ctl_navigation;}
-  inline ctl::mode::Wheel* get_ctl_wheel(){return ctl_wheel;}
+  inline ctl::mode::Edition* get_ctl_edition(){return ctl_edition;}
+  inline ctl::Wheel* get_ctl_wheel(){return ctl_wheel;}
   inline ctl::Player* get_ctl_player(){return ctl_player;}
-  inline ctl::Edition* get_ctl_edition(){return ctl_edition;}
   inline ctl::gui::Control* get_gui_control(){return gui_control;}
 
 private:

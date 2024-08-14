@@ -14,7 +14,7 @@ struct Structure{
   float speed_translation = 0.01;
   float speed_fast = 0.05;
   bool key_fast = false;
-  int wheel_mode = itf::control::WHEEL_CAM_Z;
+  int wheel_mode = ctl::wheel::CAM_Z;
 
   //---------------------------
 };

@@ -22,8 +22,8 @@ public:
   void control_keyboard();
 
 private:
-  itf::Structure* itf_struct;
-  itf::control::Player* itf_player;
+  ctl::Structure* itf_struct;
+  ctl::Player* itf_player;
 };
 
 }
