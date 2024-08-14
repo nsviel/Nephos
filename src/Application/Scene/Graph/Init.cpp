@@ -2,6 +2,7 @@
 
 #include <Core/Namespace.h>
 #include <Scene/Namespace.h>
+#include <Importer/Namespace.h>
 #include <IO/Namespace.h>
 
 
@@ -15,7 +16,7 @@ Init::Init(sce::Node* node_scene){
   io::Node* node_io = node_engine->get_node_io();
   io::imp::Node* node_importer = node_io->get_node_importer();
 
-  this->io_loader = node_importer->get_io_importer();
+  this->io_importer = node_importer->get_io_importer();
   this->io_struct = node_importer->get_io_struct();
 
   //---------------------------
@@ -57,17 +58,17 @@ void Init::load_entity(){
 
   //Create playback list
   io_struct->with_clearing = false;
-  //io_loader->load_object(versaille_0, versaille_0_t);
-  //io_loader->load_object(versaille_2, versaille_2_t);
-  //io_loader->load_object(cerfav);
-  //io_loader->load_object(pts);
-  //io_loader->load_object(sphere);
-  //io_loader->load_set(pcap);
-  io_loader->load_object(dragon);
-  io_loader->load_object(dragon);
-  io_loader->load_object(dragon);
-  //io_loader->load_object(mire);
-  //io_loader->load_object(cath);
+  //io_importer->load_object(versaille_0, versaille_0_t);
+  //io_importer->load_object(versaille_2, versaille_2_t);
+  //io_importer->load_object(cerfav);
+  //io_importer->load_object(pts);
+  //io_importer->load_object(sphere);
+  //io_importer->load_set(pcap);
+  io_importer->load_object(dragon);
+  io_importer->load_object(dragon);
+  io_importer->load_object(dragon);
+  //io_importer->load_object(mire);
+  //io_importer->load_object(cath);
 
   //----------------------------
 }

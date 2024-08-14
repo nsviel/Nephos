@@ -4,6 +4,7 @@
 #include <Element/Namespace.h>
 #include <Velodyne/Namespace.h>
 #include <IO/Namespace.h>
+#include <Importer/Namespace.h>
 
 
 namespace vld{

@@ -5,6 +5,7 @@
 #include <IO/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Element/Namespace.h>
+#include <Importer/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 

@@ -4,6 +4,7 @@
 #include <RealSense/Namespace.h>
 #include <IO/Namespace.h>
 #include <Element/Namespace.h>
+#include <Importer/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 

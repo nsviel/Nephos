@@ -5,6 +5,7 @@
 #include <Element/Namespace.h>
 #include <IO/Namespace.h>
 #include <Graph/Namespace.h>
+#include <Importer/Namespace.h>
 
 
 namespace vld::main{

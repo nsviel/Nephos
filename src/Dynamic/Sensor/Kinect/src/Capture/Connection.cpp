@@ -4,6 +4,7 @@
 #include <Kinect/Namespace.h>
 #include <IO/Namespace.h>
 #include <Element/Namespace.h>
+#include <Importer/Namespace.h>
 #include <Graph/Namespace.h>
 #include <chrono>
 
@@ -17,9 +18,10 @@ Connection::Connection(k4n::Node* node_k4n){
   io::Node* node_io = node_k4n->get_node_io();
   dat::Node* node_data = node_k4n->get_node_data();
   dat::graph::Node* node_graph = node_data->get_node_graph();
+  io::imp::Node* node_importer = node_io->get_node_importer();
 
   this->node_k4n = node_k4n;
-  this->io_operation = node_io->get_io_operation();
+  this->io_operation = node_importer->get_io_operation();
   this->dat_set = node_data->get_dat_set();
   this->dat_graph = node_graph->get_dat_graph();
 

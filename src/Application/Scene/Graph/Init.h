@@ -25,7 +25,7 @@ public:
 
 private:
   eng::Node* node_engine;
-  io::imp::Importer* io_loader;
+  io::imp::Importer* io_importer;
   io::imp::Structure* io_struct;
   utl::base::Selection* selection = nullptr;
 };
