@@ -34,7 +34,7 @@ public:
   void remove_current();
 
 private:
-  itf::Structure* ctl_struct;
+  ctl::Structure* ctl_struct;
   dat::graph::Selection* dat_selection;
   dat::element::Set* dat_set;
   ope::Operation* ope_operation;

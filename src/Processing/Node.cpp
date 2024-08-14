@@ -25,7 +25,7 @@ Node::~Node(){}
 
 void Node::init(){
   //---------------------------
-sayHello();
+
   node_kinect->init();
 
   //---------------------------

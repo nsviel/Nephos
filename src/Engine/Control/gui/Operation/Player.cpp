@@ -1,6 +1,7 @@
 #include "Player.h"
 
-#include <Interface/Namespace.h>
+#include <Control/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace ctl::gui{

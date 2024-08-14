@@ -5,7 +5,7 @@
 #include <Data/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Interface/Namespace.h>
+#include <Control/Namespace.h>
 
 
 namespace ctl{
@@ -37,26 +37,26 @@ void Wheel::make_action(float value){
   float radian = 5 * M_PI/180 * 50;
   glm::vec3 R;
 
-  switch(ctl_struct->control.wheel_mode){
-    case R_Z:{
+  switch(ctl_struct->wheel_mode){
+    case ctl::wheel::R_Z:{
       R = glm::vec3(0, 0, direction * radian);
       ope_location->compute_COM(element);
       ope_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
-    case R_Y:{
+    case ctl::wheel::R_Y:{
       R = glm::vec3(0, direction * radian, 0);
       ope_location->compute_COM(element);
       ope_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
-    case R_X:{
+    case ctl::wheel::R_X:{
       R = glm::vec3(direction * radian, 0, 0);
       ope_location->compute_COM(element);
       ope_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
-    case CAM_Z:{
+    case ctl::wheel::CAM_Z:{
       cam::Node* node_camera = node_engine->get_node_camera();
       cam::Control* cam_control = node_camera->get_cam_control();
       cam_control->control_wheel(direction * radian);
@@ -72,7 +72,7 @@ void Wheel::make_action(float value){
 
 //Subfunction
 void Wheel::change_mode(){
-  int& mode = ctl_struct->control.wheel_mode;
+  int& mode = ctl_struct->wheel_mode;
   //---------------------------
 
   mode--;

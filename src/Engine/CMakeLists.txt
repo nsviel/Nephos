@@ -8,6 +8,7 @@ add_subdirectory(Interface)
 add_subdirectory(IO)
 add_subdirectory(Data)
 add_subdirectory(Profiler)
+add_subdirectory(Control)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
@@ -29,6 +30,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_OPERATION
   LIBRARY_INTERFACE
   LIBRARY_DYNAMIC
+  LIBRARY_CONTROL
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

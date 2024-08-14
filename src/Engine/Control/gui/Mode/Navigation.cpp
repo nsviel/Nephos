@@ -1,6 +1,6 @@
 #include "Navigation.h"
 
-#include <Interface/Namespace.h>
+#include <Control/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Vulkan/Namespace.h>
 
@@ -37,7 +37,7 @@ void Navigation::control_keyboard(){
   if(!io.MouseDown[1]) return;
 
   //Shift speed up
-  ctl_struct->control.key_fast = (io.KeysDown[340]) ? true : false;
+  ctl_struct->key_fast = (io.KeysDown[340]) ? true : false;
 
   //Z key or Up key
   if(io.KeysDown[571] || io.KeysDown[515]) ctl_navigation->cam_forward();

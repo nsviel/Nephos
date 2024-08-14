@@ -1,6 +1,6 @@
 #include "Navigation.h"
 
-#include <Interface/Namespace.h>
+#include <Control/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Vulkan/Namespace.h>
 
@@ -28,42 +28,42 @@ Navigation::~Navigation(){}
 void Navigation::cam_forward(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_FORWARD, ctl_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_FORWARD, ctl_struct->key_fast);
 
   //---------------------------
 }
 void Navigation::cam_backward(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_BACKWARD, ctl_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_BACKWARD, ctl_struct->key_fast);
 
   //---------------------------
 }
 void Navigation::cam_left(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_LEFT, ctl_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_LEFT, ctl_struct->key_fast);
 
   //---------------------------
 }
 void Navigation::cam_right(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_RIGHT, ctl_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_RIGHT, ctl_struct->key_fast);
 
   //---------------------------
 }
 void Navigation::cam_down(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_DOWN, ctl_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_DOWN, ctl_struct->key_fast);
 
   //---------------------------
 }
 void Navigation::cam_up(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_UP, ctl_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_UP, ctl_struct->key_fast);
 
   //---------------------------
 }
@@ -87,7 +87,7 @@ void Navigation::enable_camera_view(){
   int center_y = panel_pose.y + panel_size.y * 0.5f;
   glm::vec2 center = glm::vec2(center_x, center_y);
 
-  ctl_struct->control.cursor_pose = vk_window->get_mouse_pose();
+  ctl_struct->cursor_pose = vk_window->get_mouse_pose();
 
   ImGui::GetIO().MouseDrawCursor = false;
   vk_window->set_mouse_pose(center);
@@ -101,7 +101,7 @@ void Navigation::disable_camera_view(){
   //----------------------------
 
   if(camera->cam_move){
-    vk_window->set_mouse_pose(ctl_struct->control.cursor_pose);
+    vk_window->set_mouse_pose(ctl_struct->cursor_pose);
     camera->cam_move = false;
   }
 

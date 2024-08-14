@@ -25,7 +25,7 @@ public:
   void control_wheel();
 
 private:
-  itf::Structure* ctl_struct;
+  ctl::Structure* ctl_struct;
   ctl::mode::Edition* ctl_edition;
   ctl::Wheel* ctl_wheel;
 };

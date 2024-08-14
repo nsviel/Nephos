@@ -1,6 +1,6 @@
 #include "Edition.h"
 
-#include <Interface/Namespace.h>
+#include <Control/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -48,7 +48,7 @@ void Edition::control_keyboard_translation(){
   if(io.MouseDown[1]) return;
 
   //Shift key
-  ctl_struct->control.key_fast = (io.KeysDown[340]) ? true : false;
+  ctl_struct->key_fast = (io.KeysDown[340]) ? true : false;
 
   // Z key
   if(io.KeysDown[571]) ctl_edition->element_forward();

@@ -6,6 +6,7 @@
 #include <Data/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Interface/Namespace.h>
+#include <Control/Namespace.h>
 
 
 namespace itf::gui{
@@ -73,7 +74,7 @@ void Option::option_wheel(){
   //---------------------------
 
   //std::vector<const char*> vec_mode = ctl_wheel->get_vec_mode();
-  //ImGui::Combo("Wheel mode", &ctl_struct->control.wheel_mode, vec_mode.data(), vec_mode.size());
+  //ImGui::Combo("Wheel mode", &ctl_struct->wheel_mode, vec_mode.data(), vec_mode.size());
 
   //---------------------------
 }

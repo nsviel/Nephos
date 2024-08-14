@@ -2,7 +2,6 @@
 
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Interface/Namespace.h>
 #include <Control/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -31,25 +30,5 @@ Node::Node(eng::Node* node_engine){
   //---------------------------
 }
 Node::~Node(){}
-
-//Main function
-void Node::init(){
-  //---------------------------
-
-  //gui_shader->init_panel();
-
-  //---------------------------
-}
-void Node::gui(){
-  //---------------------------
-
-  gui_option->run_panel();
-  gui_shader->run_panel();
-  gui_render->run_panel();
-
-  //---------------------------
-}
-
-//Subfunction
 
 }

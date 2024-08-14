@@ -34,7 +34,7 @@ public:
   void disable_camera_view();
 
 private:
-  itf::Structure* ctl_struct;
+  ctl::Structure* ctl_struct;
   vk::window::GLFW* vk_window;
   cam::Control* cam_control;
   cam::Manager* cam_manager;

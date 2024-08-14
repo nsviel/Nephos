@@ -22,7 +22,7 @@ public:
   void control_keyboard();
 
 private:
-  itf::Structure* ctl_struct;
+  ctl::Structure* ctl_struct;
   eng::Node* node_engine;
 };
 

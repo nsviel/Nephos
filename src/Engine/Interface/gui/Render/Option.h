@@ -3,9 +3,9 @@
 #include <string>
 
 namespace itf{class Node;}
-namespace itf{class Structure;}
 namespace eng{class Node;}
-namespace itf::control{class Wheel;}
+namespace ctl{class Structure;}
+namespace ctl{class Wheel;}
 namespace vk::main{class Interface;}
 
 
@@ -29,8 +29,8 @@ public:
   void visualization_mode();
 
 private:
-  itf::Structure* ctl_struct;
-  itf::control::Wheel* ctl_wheel;
+  ctl::Structure* ctl_struct;
+  ctl::Wheel* ctl_wheel;
   vk::main::Interface* vk_interface;
 
   std::string name;

@@ -29,7 +29,7 @@ public:
   std::vector<const char*> get_vec_mode();
 
 private:
-  itf::Structure* ctl_struct;
+  ctl::Structure* ctl_struct;
   dat::graph::Selection* dat_selection;
   eng::Node* node_engine;
   ope::Operation* ope_operation;

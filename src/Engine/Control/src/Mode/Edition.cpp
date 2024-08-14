@@ -1,6 +1,6 @@
 #include "Edition.h"
 
-#include <Interface/Namespace.h>
+#include <Control/Namespace.h>
 #include <Data/Namespace.h>
 #include <Operation/Namespace.h>
 
@@ -27,7 +27,7 @@ void Edition::element_forward(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
-  float speed = ctl_struct->control.key_fast ? ctl_struct->control.speed_fast : ctl_struct->control.speed_translation;
+  float speed = ctl_struct->key_fast ? ctl_struct->speed_fast : ctl_struct->speed_translation;
   glm::vec3 translation = glm::vec3(speed, 0, 0);
   ope_operation->make_translation(element, translation);
 
@@ -37,7 +37,7 @@ void Edition::element_backward(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
-  float speed = ctl_struct->control.key_fast ? ctl_struct->control.speed_fast : ctl_struct->control.speed_translation;
+  float speed = ctl_struct->key_fast ? ctl_struct->speed_fast : ctl_struct->speed_translation;
   glm::vec3 translation = glm::vec3(-speed, 0, 0);
   ope_operation->make_translation(element, translation);
 
@@ -47,7 +47,7 @@ void Edition::element_left(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
-  float speed = ctl_struct->control.key_fast ? ctl_struct->control.speed_fast : ctl_struct->control.speed_translation;
+  float speed = ctl_struct->key_fast ? ctl_struct->speed_fast : ctl_struct->speed_translation;
   glm::vec3 translation = glm::vec3(0, -speed, 0);
   ope_operation->make_translation(element, translation);
 
@@ -57,7 +57,7 @@ void Edition::element_right(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
-  float speed = ctl_struct->control.key_fast ? ctl_struct->control.speed_fast : ctl_struct->control.speed_translation;
+  float speed = ctl_struct->key_fast ? ctl_struct->speed_fast : ctl_struct->speed_translation;
   glm::vec3 translation = glm::vec3(0, speed, 0);
   ope_operation->make_translation(element, translation);
 
@@ -67,7 +67,7 @@ void Edition::element_down(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
-  float speed = ctl_struct->control.key_fast ? ctl_struct->control.speed_fast : ctl_struct->control.speed_translation;
+  float speed = ctl_struct->key_fast ? ctl_struct->speed_fast : ctl_struct->speed_translation;
   glm::vec3 translation = glm::vec3(0, 0, speed);
   ope_operation->make_translation(element, translation);
 
@@ -77,7 +77,7 @@ void Edition::element_up(){
   utl::base::Element* element = dat_selection->get_selected_element();
   //---------------------------
 
-  float speed = ctl_struct->control.key_fast ? ctl_struct->control.speed_fast : ctl_struct->control.speed_translation;
+  float speed = ctl_struct->key_fast ? ctl_struct->speed_fast : ctl_struct->speed_translation;
   glm::vec3 translation = glm::vec3(0, 0, -speed);
   ope_operation->make_translation(element, translation);
 
