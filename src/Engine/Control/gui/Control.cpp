@@ -6,14 +6,14 @@
 namespace ctl::gui{
 
 //Constructor / Destructor
-Control::Control(itf::Node* node_interface){
+Control::Control(ctl::Node* node_control){
   //---------------------------
 
-  this->itf_struct = node_interface->get_ctl_struct();
+  this->ctl_struct = node_control->get_ctl_struct();
   this->gui_navigation = new ctl::gui::Navigation(node_interface);
   this->gui_edition = new ctl::gui::Edition(node_interface);
-  this->gui_player = new itf::gui::Player(node_interface);
-  this->gui_render = new itf::gui::Render(node_interface);
+  this->gui_player = new ctl::gui::Player(node_interface);
+  this->gui_render = new ctl::gui::Render(node_interface);
 
   //---------------------------
 }

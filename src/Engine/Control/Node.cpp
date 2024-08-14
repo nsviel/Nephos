@@ -3,6 +3,7 @@
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Interface/Namespace.h>
+#include <Control/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 

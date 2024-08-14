@@ -16,7 +16,7 @@ class Navigation
 {
 public:
   //Constructor / Destructor
-  Navigation(itf::Node* node_interface);
+  Navigation(ctl::Node* node_control);
   ~Navigation();
 
 public:
@@ -34,7 +34,7 @@ public:
   void disable_camera_view();
 
 private:
-  itf::Structure* itf_struct;
+  itf::Structure* ctl_struct;
   vk::window::GLFW* vk_window;
   cam::Control* cam_control;
   cam::Manager* cam_manager;

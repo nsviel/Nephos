@@ -6,11 +6,11 @@
 namespace ctl::gui{
 
 //Constructor / Destructor
-Player::Player(itf::Node* node_interface){
+Player::Player(ctl::Node* node_control){
   //---------------------------
 
-  this->itf_struct = node_interface->get_ctl_struct();
-  this->itf_player = node_interface->get_itf_player();
+  this->ctl_struct = node_control->get_ctl_struct();
+  this->ctl_player = node_control->get_ctl_player();
 
   //---------------------------
 }
@@ -30,13 +30,13 @@ void Player::control_keyboard(){
   //----------------------------
 
   //Tab key
-  if(ImGui::IsKeyPressed(ImGuiKey_Space)) itf_player->make_pause();
+  if(ImGui::IsKeyPressed(ImGuiKey_Space)) ctl_player->make_pause();
 
   //Left arrow key
-  if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)) itf_player->make_forward();
+  if(ImGui::IsKeyPressed(ImGuiKey_LeftArrow)) ctl_player->make_forward();
 
   //Right arrow key
-  if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)) itf_player->make_backward();
+  if(ImGui::IsKeyPressed(ImGuiKey_RightArrow)) ctl_player->make_backward();
 
   //---------------------------
 }

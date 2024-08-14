@@ -11,13 +11,13 @@
 namespace ctl{
 
 //Constructor / Destructor
-Wheel::Wheel(itf::Node* node_interface){
+Wheel::Wheel(ctl::Node* node_control){
   //---------------------------
 
-  dat::Node* node_data = node_interface->get_node_data();
+  dat::Node* node_data = node_control->get_node_data();
 
-  this->itf_struct = node_interface->get_ctl_struct();
-  this->node_engine = node_interface->get_node_engine();
+  this->ctl_struct = node_control->get_ctl_struct();
+  this->node_engine = node_control->get_node_engine();
   this->dat_selection = node_data->get_dat_selection();
   this->ope_operation = new ope::Operation();
   this->ope_location = new ope::attribut::Location();
@@ -37,7 +37,7 @@ void Wheel::make_action(float value){
   float radian = 5 * M_PI/180 * 50;
   glm::vec3 R;
 
-  switch(itf_struct->control.wheel_mode){
+  switch(ctl_struct->control.wheel_mode){
     case R_Z:{
       R = glm::vec3(0, 0, direction * radian);
       ope_location->compute_COM(element);
@@ -72,7 +72,7 @@ void Wheel::make_action(float value){
 
 //Subfunction
 void Wheel::change_mode(){
-  int& mode = itf_struct->control.wheel_mode;
+  int& mode = ctl_struct->control.wheel_mode;
   //---------------------------
 
   mode--;

@@ -16,7 +16,7 @@ class Control
 {
 public:
   //Constructor / Destructor
-  Control(itf::Node* node_interface);
+  Control(ctl::Node* node_control);
   ~Control();
 
 public:
@@ -24,11 +24,11 @@ public:
   void run_control();
 
 private:
-  itf::Structure* itf_struct;
+  ctl::Structure* ctl_struct;
   ctl::gui::Navigation* gui_navigation;
   ctl::gui::Edition* gui_edition;
-  itf::gui::Player* gui_player;
-  itf::gui::Render* gui_render;
+  ctl::gui::Player* gui_player;
+  ctl::gui::Render* gui_render;
 };
 
 }

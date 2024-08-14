@@ -8,11 +8,11 @@
 namespace ctl::gui{
 
 //Constructor / Destructor
-Navigation::Navigation(itf::Node* node_interface){
+Navigation::Navigation(ctl::Node* node_control){
   //---------------------------
 
-  this->itf_struct = node_interface->get_ctl_struct();
-  this->ctl_navigation = node_interface->get_ctl_navigation();
+  this->ctl_struct = node_control->get_ctl_struct();
+  this->ctl_navigation = node_control->get_ctl_navigation();
 
   //---------------------------
 }
@@ -37,7 +37,7 @@ void Navigation::control_keyboard(){
   if(!io.MouseDown[1]) return;
 
   //Shift speed up
-  itf_struct->control.key_fast = (io.KeysDown[340]) ? true : false;
+  ctl_struct->control.key_fast = (io.KeysDown[340]) ? true : false;
 
   //Z key or Up key
   if(io.KeysDown[571] || io.KeysDown[515]) ctl_navigation->cam_forward();

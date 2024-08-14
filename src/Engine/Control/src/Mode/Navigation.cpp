@@ -8,13 +8,13 @@
 namespace ctl::mode{
 
 //Constructor / Destructor
-Navigation::Navigation(itf::Node* node_interface){
+Navigation::Navigation(ctl::Node* node_control){
   //---------------------------
 
-  cam::Node* node_camera = node_interface->get_node_camera();
+  cam::Node* node_camera = node_control->get_node_camera();
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
 
-  this->itf_struct = node_interface->get_ctl_struct();
+  this->ctl_struct = node_control->get_ctl_struct();
   this->vk_window = node_vulkan->get_vk_window();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_manager = node_camera->get_cam_manager();
@@ -28,42 +28,42 @@ Navigation::~Navigation(){}
 void Navigation::cam_forward(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_FORWARD, itf_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_FORWARD, ctl_struct->control.key_fast);
 
   //---------------------------
 }
 void Navigation::cam_backward(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_BACKWARD, itf_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_BACKWARD, ctl_struct->control.key_fast);
 
   //---------------------------
 }
 void Navigation::cam_left(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_LEFT, itf_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_LEFT, ctl_struct->control.key_fast);
 
   //---------------------------
 }
 void Navigation::cam_right(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_RIGHT, itf_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_RIGHT, ctl_struct->control.key_fast);
 
   //---------------------------
 }
 void Navigation::cam_down(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_DOWN, itf_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_DOWN, ctl_struct->control.key_fast);
 
   //---------------------------
 }
 void Navigation::cam_up(){
   //---------------------------
 
-  cam_control->control_keyboard(cam::CAMERA_UP, itf_struct->control.key_fast);
+  cam_control->control_keyboard(cam::CAMERA_UP, ctl_struct->control.key_fast);
 
   //---------------------------
 }
@@ -87,7 +87,7 @@ void Navigation::enable_camera_view(){
   int center_y = panel_pose.y + panel_size.y * 0.5f;
   glm::vec2 center = glm::vec2(center_x, center_y);
 
-  itf_struct->control.cursor_pose = vk_window->get_mouse_pose();
+  ctl_struct->control.cursor_pose = vk_window->get_mouse_pose();
 
   ImGui::GetIO().MouseDrawCursor = false;
   vk_window->set_mouse_pose(center);
@@ -101,7 +101,7 @@ void Navigation::disable_camera_view(){
   //----------------------------
 
   if(camera->cam_move){
-    vk_window->set_mouse_pose(itf_struct->control.cursor_pose);
+    vk_window->set_mouse_pose(ctl_struct->control.cursor_pose);
     camera->cam_move = false;
   }
 

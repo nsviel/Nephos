@@ -13,7 +13,7 @@ class Navigation
 {
 public:
   //Constructor / Destructor
-  Navigation(itf::Node* node_interface);
+  Navigation(ctl::Node* node_control);
   ~Navigation();
 
 public:
@@ -26,7 +26,7 @@ public:
   void control_wheel();
 
 private:
-  ctl::Structure* itf_struct;
+  ctl::Structure* ctl_struct;
   ctl::mode::Navigation* ctl_navigation;
 };
 

@@ -17,7 +17,7 @@ class Wheel
 {
 public:
   //Constructor / Destructor
-  Wheel(itf::Node* node_interface);
+  Wheel(ctl::Node* node_control);
   ~Wheel();
 
 public:
@@ -29,7 +29,7 @@ public:
   std::vector<const char*> get_vec_mode();
 
 private:
-  itf::Structure* itf_struct;
+  itf::Structure* ctl_struct;
   dat::graph::Selection* dat_selection;
   eng::Node* node_engine;
   ope::Operation* ope_operation;

@@ -16,7 +16,7 @@ class Edition
 {
 public:
   //Constructor / Destructor
-  Edition(itf::Node* node_interface);
+  Edition(ctl::Node* node_control);
   ~Edition();
 
 public:
@@ -34,7 +34,7 @@ public:
   void remove_current();
 
 private:
-  itf::Structure* itf_struct;
+  itf::Structure* ctl_struct;
   dat::graph::Selection* dat_selection;
   dat::element::Set* dat_set;
   ope::Operation* ope_operation;

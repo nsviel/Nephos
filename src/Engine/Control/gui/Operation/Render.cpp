@@ -7,11 +7,11 @@
 namespace ctl::gui{
 
 //Constructor / Destructor
-Render::Render(itf::Node* node_interface){
+Render::Render(ctl::Node* node_control){
   //---------------------------
 
-  this->itf_struct = node_interface->get_ctl_struct();
-  this->node_engine = node_interface->get_node_engine();
+  this->ctl_struct = node_control->get_ctl_struct();
+  this->node_engine = node_control->get_node_engine();
 
   //---------------------------
 }

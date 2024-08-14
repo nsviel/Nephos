@@ -11,7 +11,7 @@ class Render
 {
 public:
   //Constructor / Destructor
-  Render(itf::Node* node_interface);
+  Render(ctl::Node* node_control);
   ~Render();
 
 public:
@@ -22,7 +22,7 @@ public:
   void control_keyboard();
 
 private:
-  itf::Structure* itf_struct;
+  itf::Structure* ctl_struct;
   eng::Node* node_engine;
 };
 

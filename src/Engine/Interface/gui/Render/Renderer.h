@@ -3,11 +3,11 @@
 #include <string>
 
 namespace itf{class Node;}
-namespace itf::control{class Navigation;}
+namespace ctl::mode{class Navigation;}
+namespace ctl::gui{class Control;}
 namespace vk::gui{class Imgui;}
 namespace vk{class Structure;}
 namespace eng{class Node;}
-namespace itf::gui{class Control;}
 
 
 namespace itf::gui{
@@ -29,8 +29,8 @@ public:
   void resize();
 
 private:
-  itf::gui::Control* gui_control;
-  itf::control::Navigation* ctl_navigation;
+  ctl::gui::Control* gui_control;
+  ctl::mode::Navigation* ctl_navigation;
   vk::gui::Imgui* vk_imgui;
   vk::Structure* vk_struct;
 

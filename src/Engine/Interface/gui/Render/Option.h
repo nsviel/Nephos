@@ -29,8 +29,8 @@ public:
   void visualization_mode();
 
 private:
-  itf::Structure* itf_struct;
-  itf::control::Wheel* itf_wheel;
+  itf::Structure* ctl_struct;
+  itf::control::Wheel* ctl_wheel;
   vk::main::Interface* vk_interface;
 
   std::string name;

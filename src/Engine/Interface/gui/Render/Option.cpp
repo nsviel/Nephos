@@ -18,8 +18,8 @@ Option::Option(itf::Node* node_interface, bool* show_window){
   vk::Node* node_vulkan = node_interface->get_node_vulkan();
   dat::Node* node_data = node_engine->get_node_data();
 
-  //this->itf_struct = node_interface->get_ctl_struct();
-  //this->itf_wheel = node_interface->get_itf_wheel();
+  //this->ctl_struct = node_interface->get_ctl_struct();
+  //this->ctl_wheel = node_interface->get_ctl_wheel();
   this->vk_interface = node_vulkan->get_vk_interface();
 
   this->width = 150;
@@ -72,8 +72,8 @@ void Option::option_color(){
 void Option::option_wheel(){
   //---------------------------
 
-  //std::vector<const char*> vec_mode = itf_wheel->get_vec_mode();
-  //ImGui::Combo("Wheel mode", &itf_struct->control.wheel_mode, vec_mode.data(), vec_mode.size());
+  //std::vector<const char*> vec_mode = ctl_wheel->get_vec_mode();
+  //ImGui::Combo("Wheel mode", &ctl_struct->control.wheel_mode, vec_mode.data(), vec_mode.size());
 
   //---------------------------
 }

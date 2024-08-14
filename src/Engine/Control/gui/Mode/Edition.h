@@ -12,7 +12,7 @@ class Edition
 {
 public:
   //Constructor / Destructor
-  Edition(itf::Node* node_interface);
+  Edition(ctl::Node* node_control);
   ~Edition();
 
 public:
@@ -25,9 +25,9 @@ public:
   void control_wheel();
 
 private:
-  itf::Structure* itf_struct;
-  ctl::mode::Edition* itf_edition;
-  ctl::Wheel* itf_wheel;
+  itf::Structure* ctl_struct;
+  ctl::mode::Edition* ctl_edition;
+  ctl::Wheel* ctl_wheel;
 };
 
 }

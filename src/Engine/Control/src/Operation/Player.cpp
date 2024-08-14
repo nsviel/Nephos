@@ -8,11 +8,11 @@
 namespace ctl{
 
 //Constructor / Destructor
-Player::Player(itf::Node* node_interface){
+Player::Player(ctl::Node* node_control){
   //---------------------------
 
-  dat::Node* node_data = node_interface->get_node_data();
-  dyn::Node* node_dynamic = node_interface->get_node_dynamic();
+  dat::Node* node_data = node_control->get_node_data();
+  dyn::Node* node_dynamic = node_control->get_node_dynamic();
 
   this->dat_selection = node_data->get_dat_selection();
   this->dyn_player = node_dynamic->get_dyn_player();

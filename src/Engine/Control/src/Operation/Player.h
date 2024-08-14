@@ -11,7 +11,7 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(itf::Node* node_interface);
+  Player(ctl::Node* node_control);
   ~Player();
 
 public:
