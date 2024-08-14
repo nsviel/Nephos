@@ -4,3 +4,4 @@
 #include "Hardware/Namespace.h"
 #include "Timer/Namespace.h"
 #include "Color/Namespace.h"
+#include "Network/Namespace.h"

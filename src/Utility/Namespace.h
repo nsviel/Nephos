@@ -1,7 +1,6 @@
 #pragma once
 
-#include <Utility/Base/Namespace.h>
-#include <Utility/Element/Namespace.h>
-#include <Utility/Function/Namespace.h>
-#include <Utility/Network/Namespace.h>
-#include <Utility/GUI/Namespace.h>
+#include "Base/Namespace.h"
+#include "Component/Namespace.h"
+#include "Function/Namespace.h"
+#include "GUI/Namespace.h"
