@@ -1,6 +1,6 @@
 #include "Triangulation.h"
 
-#include <Operation/Namespace.h>
+#include <Transformation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <cstdlib>
 

@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Operation/gui/Panel.h>
-#include <Operation/gui/Attribut/Namespace.h>
-#include <Operation/gui/Processing/Namespace.h>
+#include <Transformation/gui/Panel.h>
+#include <Transformation/gui/Attribut/Namespace.h>
+#include <Transformation/gui/Processing/Namespace.h>

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Operation/src/Attribut/Structure/Color.h>
-#include <Operation/src/Attribut/Structure/Intensity.h>
-#include <Operation/src/Attribut/Structure/Normal.h>
+#include <Transformation/src/Attribut/Structure/Color.h>
+#include <Transformation/src/Attribut/Structure/Intensity.h>
+#include <Transformation/src/Attribut/Structure/Normal.h>
 
 
 namespace ope::attribut{

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Operation/src/Attribut/Namespace.h>
-#include <Operation/src/Geometry/Namespace.h>
-#include <Operation/src/Processing/Namespace.h>
-#include <Operation/src/Structure/Namespace.h>
+#include <Transformation/src/Attribut/Namespace.h>
+#include <Transformation/src/Geometry/Namespace.h>
+#include <Transformation/src/Processing/Namespace.h>
+#include <Transformation/src/Structure/Namespace.h>

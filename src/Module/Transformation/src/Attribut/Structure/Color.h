@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Operation/src/Attribut/Structure/Enum.h>
+#include <Transformation/src/Attribut/Structure/Enum.h>
 #include <glm/glm.hpp>
 #include <string>
 

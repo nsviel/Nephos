@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Operation/Node.h>
-#include <Operation/gui/Namespace.h>
-#include <Operation/src/Namespace.h>
+#include <Transformation/Node.h>
+#include <Transformation/gui/Namespace.h>
+#include <Transformation/src/Namespace.h>

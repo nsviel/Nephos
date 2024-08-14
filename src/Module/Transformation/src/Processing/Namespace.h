@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Operation/src/Processing/Image/Namespace.h>
-#include <Operation/src/Processing/Transformation/Namespace.h>
+#include <Transformation/src/Processing/Image/Namespace.h>
+#include <Transformation/src/Processing/Transformation/Namespace.h>

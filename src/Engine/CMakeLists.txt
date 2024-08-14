@@ -4,7 +4,6 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 # Source files
 #-----------------
 add_subdirectory(Camera)
-add_subdirectory(Operation)
 add_subdirectory(Interface)
 add_subdirectory(IO)
 add_subdirectory(Data)

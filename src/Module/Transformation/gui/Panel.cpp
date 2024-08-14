@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-#include <Operation/Namespace.h>
+#include <Transformation/Namespace.h>
 #include <Dynamic/Namespace.h>
 
 
