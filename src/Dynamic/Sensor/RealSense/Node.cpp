@@ -3,7 +3,7 @@
 #include <Core/Namespace.h>
 #include <RealSense/Namespace.h>
 #include <IO/Namespace.h>
-#include <Element/Namespace.h>
+#include <Data/Namespace.h>
 #include <Importer/Namespace.h>
 #include <Radiometry/Namespace.h>
 

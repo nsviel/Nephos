@@ -3,7 +3,6 @@
 #include <string>
 
 namespace dat::elm{class Node;}
-namespace dat::graph{class Selection;}
 namespace dat::elm{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::gui::entity{class Topology;}
@@ -37,7 +36,6 @@ public:
 private:
   ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
-  dat::graph::Selection* dat_selection;
   dat::elm::Set* dat_set;
   dat::gui::entity::Topology* gui_topology;
   dat::gui::entity::Data* gui_data;

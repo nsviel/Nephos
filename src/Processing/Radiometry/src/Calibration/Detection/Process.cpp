@@ -3,7 +3,6 @@
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
-#include <Element/Namespace.h>
 #include <Data/Namespace.h>
 
 

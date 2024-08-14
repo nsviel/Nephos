@@ -2,7 +2,6 @@
 
 #include <Velodyne/Namespace.h>
 #include <Core/Namespace.h>
-#include <Element/Namespace.h>
 #include <IO/Namespace.h>
 #include <Data/Namespace.h>
 #include <Importer/Namespace.h>

@@ -1,7 +1,7 @@
 #include "Node.h"
 
 #include <Core/Namespace.h>
-#include <Element/Namespace.h>
+#include <Data/Namespace.h>
 #include <Importer/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 

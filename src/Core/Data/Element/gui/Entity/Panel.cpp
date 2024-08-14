@@ -1,6 +1,5 @@
 #include "Panel.h"
 
-#include <Element/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Data/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
@@ -13,9 +12,6 @@ namespace dat::gui::entity{
 Panel::Panel(dat::elm::Node* node_element, bool* panel_show){
   //---------------------------
 
-  dat::graph::Node* node_graph = node_element->get_node_graph();
-
-  this->dat_selection = node_graph->get_dat_selection();
   this->dat_set = node_element->get_dat_set();
   this->gui_topology = new dat::gui::entity::Topology();
   this->gui_data = new dat::gui::entity::Data(node_element);
@@ -84,8 +80,7 @@ void Panel::entity_button(dat::base::Entity* entity){
 
   //Suppression
   if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
-    dat::base::Set* set = dat_selection->get_selected_set();
-    if(set == nullptr) return;
+    dat::base::Set* set = entity->set_parent;
     dat_set->remove_entity(set, entity);
     this->close_panel();
     return;

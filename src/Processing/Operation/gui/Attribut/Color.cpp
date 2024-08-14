@@ -1,7 +1,7 @@
 #include "Color.h"
 
 #include <Dynamic/Namespace.h>
-#include <Element/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -13,7 +13,7 @@ Color::Color(ope::Node* node_operation){
 
   this->ope_struct = node_operation->get_ope_struct();
   this->ope_color = new ope::attribut::Color(node_operation);
-  this->dat_element = new dat::Element();
+  this->dat_element = new dat::elm::Element();
   this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------

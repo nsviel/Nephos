@@ -3,7 +3,7 @@
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Profiler/Namespace.h>
-#include <Element/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace dyn::cloud{
@@ -15,8 +15,9 @@ Radiometry::Radiometry(dyn::Node* node_dynamic){
   dat::Node* node_data = node_dynamic->get_node_data();
   rad::Node* node_radio = node_dynamic->get_node_radio();
   rad::correction::Node* node_correction = node_radio->get_node_correction();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->dat_image = node_data->get_dat_image();
+  this->dat_image = node_element->get_dat_image();
   this->rad_correction = node_correction->get_rad_correction();
 
   //---------------------------

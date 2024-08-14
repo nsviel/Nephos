@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Element/Namespace.h>
+#include <Core/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -47,7 +47,7 @@ void Node::clean(){
 void Node::gui(){
   //---------------------------
 
-  node_graph->run_panel();
+  node_graph->gui();
 
   //---------------------------
 }

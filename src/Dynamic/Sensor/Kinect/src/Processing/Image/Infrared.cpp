@@ -4,7 +4,7 @@
 #include <Profiler/Namespace.h>
 #include <Core/Namespace.h>
 #include <Dynamic/Namespace.h>
-#include <Element/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace k4n::processing::image{
@@ -15,9 +15,10 @@ Infrared::Infrared(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
   dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->dat_image = node_data->get_dat_image();
+  this->dat_image = node_element->get_dat_image();
 
   //---------------------------
 }

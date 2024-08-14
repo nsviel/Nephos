@@ -1,7 +1,6 @@
 #include "Correction.h"
 
 #include <Radiometry/Namespace.h>
-#include <Element/Namespace.h>
 #include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
 
@@ -15,11 +14,12 @@ Correction::Correction(rad::correction::Node* node_correction){
   rad::Node* node_radio = node_correction->get_node_radio();
   dat::Node* node_data = node_radio->get_node_data();
   dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->rad_struct = node_correction->get_rad_struct();
   this->rad_model = node_correction->get_rad_model();
   this->rad_io_model = node_correction->get_rad_io_model();
-  this->dat_image = node_data->get_dat_image();
+  this->dat_image = node_element->get_dat_image();
   this->dat_selection = node_graph->get_dat_selection();
   this->utl_attribut = new utl::base::Attribut();
 

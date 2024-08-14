@@ -5,7 +5,7 @@ namespace ope{class Node;}
 namespace ope::image{class Converter;}
 namespace ope::gui{class Normal;}
 namespace utl::base{class Element;}
-namespace dat{class Element;}
+namespace dat::elm{class Element;}
 
 
 namespace ope::gui{
@@ -27,7 +27,7 @@ public:
 private:
   eng::Node* node_engine;
   ope::image::Converter* ope_image;
-  dat::Element* dat_element;
+  dat::elm::Element* dat_element;
   ope::gui::Normal* gui_normal;
 };
 
