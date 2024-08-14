@@ -1,7 +1,7 @@
 #include "Edition.h"
 
 #include <Control/Namespace.h>
-#include <Data/Namespace.h>
+#include <Element/Namespace.h>
 #include <Graph/Namespace.h>
 #include <Operation/Namespace.h>
 

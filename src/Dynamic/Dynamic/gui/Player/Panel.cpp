@@ -1,7 +1,7 @@
 #include "Panel.h"
 
 #include <Dynamic/Namespace.h>
-#include <Data/Namespace.h>
+#include <Element/Namespace.h>
 #include <Graph/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 

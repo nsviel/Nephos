@@ -8,7 +8,6 @@ add_subdirectory(IO)
 add_subdirectory(Data)
 add_subdirectory(Profiler)
 add_subdirectory(Control)
-add_subdirectory(Graph)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

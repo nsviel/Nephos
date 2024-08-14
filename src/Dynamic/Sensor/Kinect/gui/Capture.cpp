@@ -1,7 +1,7 @@
 #include "Capture.h"
 
 #include <Kinect/Namespace.h>
-#include <Data/Namespace.h>
+#include <Element/Namespace.h>
 
 
 namespace k4n::gui{
