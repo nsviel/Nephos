@@ -15,8 +15,7 @@ namespace io::imp{class Operation;}
 namespace io::imp{class Base;}
 
 
-
-namespace io{
+namespace io::imp{
 
 class Importer
 {
@@ -35,7 +34,7 @@ public:
 
   //Subfunction
   void init_path();
-  void insert_importer(io::importer::Base* importer);
+  void insert_importer(io::imp::Base* importer);
   bool check_path(std::string path);
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
@@ -43,9 +42,9 @@ public:
 
 private:
   io::Structure* io_struct;
-  io::importer::Operation* io_operation;
+  io::imp::Operation* io_operation;
 
-  std::vector<io::importer::Base*> vec_importer;
+  std::vector<io::imp::Base*> vec_importer;
 };
 
 }

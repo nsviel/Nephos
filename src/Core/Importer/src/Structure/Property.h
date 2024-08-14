@@ -1,6 +1,6 @@
 #pragma once
 
-#include <IO/src/Import/Structure/Enum.h>
+#include <Importer/src/Structure/Enum.h>
 
 
 namespace io::imp{
@@ -8,14 +8,14 @@ namespace io::imp{
 struct Property{
 
   Property(){}
-  Property(io::importer::Field field, io::importer::Type type = io::importer::FLOAT32, int size = 0){
+  Property(io::imp::Field field, io::imp::Type type = io::imp::FLOAT32, int size = 0){
     this->field = field;
     this->type = type;
     this->size = size;
   }
 
-  io::importer::Field field;
-  io::importer::Type type;
+  io::imp::Field field;
+  io::imp::Type type;
   int size = 0;
 };
 

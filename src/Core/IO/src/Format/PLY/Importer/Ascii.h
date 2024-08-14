@@ -1,8 +1,8 @@
 #pragma once
 
-#include <IO/src/Import/Structure/Base.h>
-#include <IO/src/Import/Structure/Buffer.h>
-#include <IO/src/Import/Structure/Configuration.h>
+#include <Importer/src/Structure/Base.h>
+#include <Importer/src/Structure/Buffer.h>
+#include <Importer/src/Structure/Configuration.h>
 #include <Utility/Function/File/Path.h>
 #include <Utility/Function/Math/Operation.h>
 #include <glm/glm.hpp>
@@ -27,18 +27,18 @@ public:
 
 public:
   //Main function
-  void parse_ascii(io::importer::Configuration* config, dat::base::Object* object);
+  void parse_ascii(io::imp::Configuration* config, dat::base::Object* object);
 
   //Subfunction
   void pass_header(std::ifstream& file);
-  void parse_vertex(io::importer::Configuration* config, std::ifstream& file);
-  void parse_face(io::importer::Configuration* config, std::ifstream& file);
-  int get_property_id(io::importer::Configuration* config, io::importer::Field field);
+  void parse_vertex(io::imp::Configuration* config, std::ifstream& file);
+  void parse_face(io::imp::Configuration* config, std::ifstream& file);
+  int get_property_id(io::imp::Configuration* config, io::imp::Field field);
 
 private:
   utl::base::Attribut* utl_attribut;
 
-  io::importer::Buffer buffer;
+  io::imp::Buffer buffer;
 };
 
 }

@@ -16,7 +16,7 @@ Binary::Binary(){
 Binary::~Binary(){}
 
 //Main function
-void Binary::parse_binary(io::importer::Configuration* config, dat::base::Object* object){
+void Binary::parse_binary(io::imp::Configuration* config, dat::base::Object* object){
   //---------------------------
 
   //Open file
@@ -25,12 +25,12 @@ void Binary::parse_binary(io::importer::Configuration* config, dat::base::Object
 
   //Read data
   switch(config->encoding){
-    case io::importer::BINARY_LITTLE_ENDIAN:{
+    case io::imp::BINARY_LITTLE_ENDIAN:{
       this->parse_vertex_little_endian(config, file);
       this->parse_face_little_endian(config, file);
       break;
     }
-    case io::importer::BINARY_BIG_ENDIAN:{
+    case io::imp::BINARY_BIG_ENDIAN:{
       this->parse_vertex_big_endian(config, file);
       this->parse_face_big_endian(config, file);
       break;
@@ -64,7 +64,7 @@ void Binary::pass_header(std::ifstream& file){
 
   //---------------------------
 }
-void Binary::parse_vertex_little_endian(io::importer::Configuration* config, std::ifstream& file){
+void Binary::parse_vertex_little_endian(io::imp::Configuration* config, std::ifstream& file){
   this->buffer = {};
   //---------------------------
 
@@ -79,40 +79,40 @@ void Binary::parse_vertex_little_endian(io::importer::Configuration* config, std
   block_vec.resize(config->vec_property.size(), std::vector<float>(config->nb_vertex));
   for(int i=0; i<config->nb_vertex; i++){
     for(int j=0; j<config->vec_property.size(); j++){
-      io::importer::Property* property = &config->vec_property[j];
+      io::imp::Property* property = &config->vec_property[j];
 
       switch(property->type){
-        case io::importer::FLOAT32:{
+        case io::imp::FLOAT32:{
           float value = get_float_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case io::importer::FLOAT64:{
+        case io::imp::FLOAT64:{
           float value = get_double_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case io::importer::UINT8:{
+        case io::imp::UINT8:{
           float value = get_uint8_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case io::importer::UINT16:{
+        case io::imp::UINT16:{
           float value = get_uint16_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case io::importer::UINT32:{
+        case io::imp::UINT32:{
           float value = get_uint32_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case io::importer::UCHAR:{
+        case io::imp::UCHAR:{
           float value = get_uchar_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
         }
-        case io::importer::USHORT:{
+        case io::imp::USHORT:{
           float value = get_ushort_from_binary(block_data, offset);
           block_vec[j][i] = value;
           break;
@@ -124,10 +124,10 @@ void Binary::parse_vertex_little_endian(io::importer::Configuration* config, std
 
   //Resize std::vectors accordingly
   buffer.xyz.resize(config->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(config, io::importer::TS) != -1) buffer.ts.resize(config->nb_vertex, 0);
-  if(get_property_id(config, io::importer::I) != -1) buffer.Is.resize(config->nb_vertex, 0);
-  if(get_property_id(config, io::importer::NXYZ) != -1) buffer.Nxyz.resize(config->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(config, io::importer::RGB) != -1){
+  if(get_property_id(config, io::imp::TS) != -1) buffer.ts.resize(config->nb_vertex, 0);
+  if(get_property_id(config, io::imp::I) != -1) buffer.Is.resize(config->nb_vertex, 0);
+  if(get_property_id(config, io::imp::NXYZ) != -1) buffer.Nxyz.resize(config->nb_vertex, glm::vec3(0,0,0));
+  if(get_property_id(config, io::imp::RGB) != -1){
     buffer.rgb.resize(config->nb_vertex, glm::vec3(0, 0, 0));
     buffer.rgba.resize(config->nb_vertex, glm::vec4(0, 0, 0, 0));
   }
@@ -136,20 +136,20 @@ void Binary::parse_vertex_little_endian(io::importer::Configuration* config, std
   //#pragma omp parallel for
   for(int i=0; i<config->nb_vertex; i++){
     for(int j=0; j<config->vec_property.size(); j++){
-      io::importer::Property* property = &config->vec_property[j];
+      io::imp::Property* property = &config->vec_property[j];
 
       switch(property->field){
-        case io::importer::XYZ:{ //Location
+        case io::imp::XYZ:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
           buffer.xyz[i] = point;
           break;
         }
-        case io::importer::NXYZ:{ //Normal
+        case io::imp::NXYZ:{ //Normal
           glm::vec3 normal = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
           buffer.Nxyz[i] = normal;
           break;
         }
-        case io::importer::RGB:{ //Color
+        case io::imp::RGB:{ //Color
           float red = block_vec[j][i] / 255;
           float green = block_vec[j+1][i] / 255;
           float blue = block_vec[j+2][i] / 255;
@@ -158,12 +158,12 @@ void Binary::parse_vertex_little_endian(io::importer::Configuration* config, std
           buffer.rgba[i] = rgb;
           break;
         }
-        case io::importer::I:{ //Intensity
+        case io::imp::I:{ //Intensity
           float Is = block_vec[j][i];
           buffer.Is[i] = Is;
           break;
         }
-        case io::importer::TS:{ //Timestamp
+        case io::imp::TS:{ //Timestamp
           float ts = block_vec[j][i];
           buffer.ts[i] = ts;
           break;
@@ -175,12 +175,12 @@ void Binary::parse_vertex_little_endian(io::importer::Configuration* config, std
 
   //---------------------------
 }
-void Binary::parse_face_little_endian(io::importer::Configuration* config, std::ifstream& file){
+void Binary::parse_face_little_endian(io::imp::Configuration* config, std::ifstream& file){
   if(config->nb_face == 0) return;
   //---------------------------
 
   //Init
-  io::importer::Buffer buffer_tmp = buffer;
+  io::imp::Buffer buffer_tmp = buffer;
   this->buffer = {};
 
   //Get face index
@@ -225,7 +225,7 @@ void Binary::parse_face_little_endian(io::importer::Configuration* config, std::
 
   //---------------------------
 }
-void Binary::parse_vertex_big_endian(io::importer::Configuration* config, std::ifstream& file){
+void Binary::parse_vertex_big_endian(io::imp::Configuration* config, std::ifstream& file){
   this->buffer = {};
   //---------------------------
 
@@ -247,27 +247,27 @@ void Binary::parse_vertex_big_endian(io::importer::Configuration* config, std::i
 
   //Resize std::vectors accordingly
   buffer.xyz.resize(config->nb_vertex, glm::vec3(0,0,0));
-  if(get_property_id(config, io::importer::TS) != -1) buffer.ts.resize(config->nb_vertex, 0);
-  if(get_property_id(config, io::importer::I) != -1) buffer.Is.resize(config->nb_vertex, 0);
+  if(get_property_id(config, io::imp::TS) != -1) buffer.ts.resize(config->nb_vertex, 0);
+  if(get_property_id(config, io::imp::I) != -1) buffer.Is.resize(config->nb_vertex, 0);
 
   //Insert data in the adequate std::vector
   #pragma omp parallel for
   for(int i=0; i<config->nb_vertex; i++){
     for(int j=0; j<config->vec_property.size(); j++){
-      io::importer::Property* property = &config->vec_property[j];
+      io::imp::Property* property = &config->vec_property[j];
 
       switch(property->field){
-        case io::importer::XYZ:{ //Location
+        case io::imp::XYZ:{ //Location
           glm::vec3 point = glm::vec3(block_vec[j][i], block_vec[j+1][i], block_vec[j+2][i]);
           buffer.xyz[i] = point;
           break;
         }
-        case io::importer::I:{ //Intensity
+        case io::imp::I:{ //Intensity
           float Is = block_vec[j][i];
           buffer.Is[i] = Is;
           break;
         }
-        case io::importer::TS:{ //Timestamp
+        case io::imp::TS:{ //Timestamp
           float ts = block_vec[j][i];
           buffer.ts[i] = ts;
           break;
@@ -279,12 +279,12 @@ void Binary::parse_vertex_big_endian(io::importer::Configuration* config, std::i
 
   //---------------------------
 }
-void Binary::parse_face_big_endian(io::importer::Configuration* config, std::ifstream& file){
+void Binary::parse_face_big_endian(io::imp::Configuration* config, std::ifstream& file){
   if(config->nb_face == 0) return;
   //---------------------------
 
   //Init
-  io::importer::Buffer buffer_tmp = buffer;
+  io::imp::Buffer buffer_tmp = buffer;
   this->buffer = {};
 
   //Get face index
@@ -354,11 +354,11 @@ void Binary::reorder_by_timestamp(utl::base::Data* data){/*
 */
   //---------------------------
 }
-int Binary::get_property_id(io::importer::Configuration* config, io::importer::Field field){
+int Binary::get_property_id(io::imp::Configuration* config, io::imp::Field field){
   //---------------------------
 
   for(int i=0; i<config->vec_property.size(); i++){
-    io::importer::Property* property = &config->vec_property[i];
+    io::imp::Property* property = &config->vec_property[i];
 
     if(property->field == field){
       return i;

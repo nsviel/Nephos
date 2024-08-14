@@ -1,8 +1,8 @@
 #pragma once
 
-#include <IO/src/Import/Structure/Base.h>
-#include <IO/src/Import/Structure/Structure.h>
-#include <IO/src/Import/Structure/Buffer.h>
-#include <IO/src/Import/Structure/Configuration.h>
-#include <IO/src/Import/Structure/Property.h>
-#include <IO/src/Import/Structure/Enum.h>
+#include "Base.h"
+#include "Structure.h"
+#include "Buffer.h"
+#include "Configuration.h"
+#include "Property.h"
+#include "Enum.h"

@@ -6,15 +6,11 @@ namespace vk{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace dyn{class Node;}
-namespace io{class Structure;}
-namespace io{class Importer;}
+namespace io::imp{class Structure;}
+namespace io::imp{class Importer;}
 namespace io::imp{class Operation;}
-namespace io{class Exporter;}
-namespace io{class Transformation;}
-namespace io::imp::bookmark{class Manager;}
+namespace io::imp{class Bookmark;}
 namespace io::imp::gui{class Panel;}
-namespace io::gui::exporter{class Panel;}
-namespace io::gui::transformation{class Panel;}
 
 
 namespace io::imp{
@@ -36,9 +32,9 @@ public:
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
 
   inline io::imp::Structure* get_io_struct(){return io_struct;}
-  inline io::Importer* get_io_importer(){return io_importer;}
-  inline io::importer::Operation* get_imp_operation(){return io_import_ope;}
-  inline io::bookmark::Manager* get_io_bookmark(){return io_bookmark;}
+  inline io::imp::Importer* get_io_importer(){return io_importer;}
+  inline io::imp::Operation* get_imp_operation(){return io_import_ope;}
+  inline io::imp::Bookmark* get_io_bookmark(){return io_bookmark;}
 
 private:
   //Dependancy
@@ -48,18 +44,11 @@ private:
   dyn::Node* node_dynamic;
 
   //Child
-  io::Structure* io_struct;
-  io::Importer* io_importer;
-  io::importer::Operation* io_import_ope;
-  io::Exporter* io_exporter;
-  io::Transformation* io_transformation;
-  io::bookmark::Manager* io_bookmark;
-  io::gui::importer::Panel* gui_import;
-  io::gui::exporter::Panel* gui_export;
-  io::gui::transformation::Panel* gui_transformation;
-
-  bool show_scene = true;
-  bool show_loader = true;
+  io::imp::Structure* io_struct;
+  io::imp::Importer* io_importer;
+  io::imp::Operation* io_import_ope;
+  io::imp::Bookmark* io_bookmark;
+  io::imp::gui::Panel* gui_import;
 };
 
 }

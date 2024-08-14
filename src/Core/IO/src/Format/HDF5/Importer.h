@@ -4,7 +4,7 @@
 #include <highfive/H5DataSet.hpp>
 #include <highfive/H5DataSpace.hpp>
 
-#include <IO/src/Import/Structure/Base.h>
+#include <Importer/src/Structure/Base.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -16,7 +16,7 @@
 
 namespace fmt::hdf5{
 
-class Importer : public io::importer::Base
+class Importer : public io::imp::Base
 {
 public:
   //Constructor / Destructor

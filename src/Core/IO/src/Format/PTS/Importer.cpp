@@ -33,7 +33,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
   object->data.topology.type = utl::topology::POINT;
 
   //Initialization
-  io::importer::Configuration config;
+  io::imp::Configuration config;
   config.path = path.build();
 
   //Processing
@@ -48,7 +48,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
 }
 
 //Subfunction
-void Importer::retrieve_header(io::importer::Configuration& config){
+void Importer::retrieve_header(io::imp::Configuration& config){
   //---------------------------
 
   std::vector<float> vec_data = retrieve_column(config, 1);
@@ -60,7 +60,7 @@ void Importer::retrieve_header(io::importer::Configuration& config){
 
   //---------------------------
 }
-void Importer::retrieve_size(io::importer::Configuration& config){
+void Importer::retrieve_size(io::imp::Configuration& config){
   //---------------------------
 
   config.nb_vertex = utl::file::number_point(config.path);
@@ -68,19 +68,19 @@ void Importer::retrieve_size(io::importer::Configuration& config){
 
   //---------------------------
 }
-void Importer::retrieve_configuration(io::importer::Configuration& config){
+void Importer::retrieve_configuration(io::imp::Configuration& config){
   //---------------------------
 
   std::vector<float> vec_data = retrieve_column(config, 5);
 
   switch(vec_data.size()){
     case 3 :{ // XYZ
-      config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
+      config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
       break;
     }
     case 4 :{ // XYZI
-      config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-      config.vec_property.push_back(io::importer::Property(io::importer::I));
+      config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+      config.vec_property.push_back(io::imp::Property(io::imp::I));
       break;
     }
     case 6 :{
@@ -92,16 +92,16 @@ void Importer::retrieve_configuration(io::importer::Configuration& config){
       bool color = abs(R) <= 1 && abs(G) <= 1 && abs(B) <= 1;
       bool nan = std::isnan(R) && std::isnan(G) && std::isnan(B);
       if(color || nan){
-        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::NXYZ));
       }
 
       //xyz - rgb
       bool empty = abs(R) == 0 && abs(G) == 0 && abs(B) == 0;
       bool normal = abs(R) >= 1 && abs(G) >= 1 && abs(B) >= 1;
       if(empty || normal){
-        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
+        config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::RGB));
       }
       break;
     }
@@ -115,8 +115,8 @@ void Importer::retrieve_configuration(io::importer::Configuration& config){
       bool empty = abs(I) == 0 && abs(R) == 0 && abs(G) == 0 && abs(B) == 0;
       bool full = abs(I) >= 1 && abs(R) >= 1 && abs(G) >= 1 && abs(B) >= 1;
       if(empty || full){
-        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
+        config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::RGB));
         break;
       }
 
@@ -124,9 +124,9 @@ void Importer::retrieve_configuration(io::importer::Configuration& config){
       bool normal = abs(R) <= 1.1f && abs(G) <= 1.1 && abs(B) <= 1.1;
       bool nan = std::isnan(R) && std::isnan(G) && std::isnan(B);
       if(normal || nan){
-        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::I));
-        config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::I));
+        config.vec_property.push_back(io::imp::Property(io::imp::NXYZ));
         break;
       }
 
@@ -136,9 +136,9 @@ void Importer::retrieve_configuration(io::importer::Configuration& config){
       bool a3 = G >= 0 && G <= 255;
       bool a4 = B >= 0 && B <= 1;
       if(a1 && a2 && a3 && a4){
-        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
-        config.vec_property.push_back(io::importer::Property(io::importer::I));
+        config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::RGB));
+        config.vec_property.push_back(io::imp::Property(io::imp::I));
         Is_format = fmt::pts::F0_1;
         break;
       }
@@ -149,44 +149,44 @@ void Importer::retrieve_configuration(io::importer::Configuration& config){
       bool b3 = G >= 0 && G <= 255;
       bool b4 = B >= 0 && B <= 255;
       if(b1 && b2 && b3 && b4){
-        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::I));
-        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
+        config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::I));
+        config.vec_property.push_back(io::imp::Property(io::imp::RGB));
         Is_format = fmt::pts::F0_1;
         break;
       }
       break;
     }
     case 9 :{ //xyz - rgb - N
-      config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-      config.vec_property.push_back(io::importer::Property(io::importer::RGB));
-      config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
+      config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+      config.vec_property.push_back(io::imp::Property(io::imp::RGB));
+      config.vec_property.push_back(io::imp::Property(io::imp::NXYZ));
       break;
     }
     case 10 :{
       //xyz - rgb - N - I[0;1]
       if(vec_data[3] >= 1 && vec_data[3] <= 255 && abs(vec_data[6]) >= 0 && abs(vec_data[6]) <= 1 ){
-        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
-        config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::I));
+        config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::RGB));
+        config.vec_property.push_back(io::imp::Property(io::imp::NXYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::I));
         Is_format = fmt::pts::F0_1;
         break;
       }
       //xyz - rgb - N - I[-2048;+2047]
       else if(vec_data[3] >= 1 && vec_data[3] <= 255 && abs(vec_data[6]) > 1 && abs(vec_data[6]) <= 2048 ){
-        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
-        config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::I));
+        config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::RGB));
+        config.vec_property.push_back(io::imp::Property(io::imp::NXYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::I));
         Is_format = fmt::pts::F2048_2048;
         break;
       }
       else{//xyz - I - rgb - N
-        config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-        config.vec_property.push_back(io::importer::Property(io::importer::I));
-        config.vec_property.push_back(io::importer::Property(io::importer::RGB));
-        config.vec_property.push_back(io::importer::Property(io::importer::NXYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+        config.vec_property.push_back(io::imp::Property(io::imp::I));
+        config.vec_property.push_back(io::imp::Property(io::imp::RGB));
+        config.vec_property.push_back(io::imp::Property(io::imp::NXYZ));
 
         float I =vec_data[3];
         bool Isc1 = abs(I) >= 0 && abs(I) <= 1;
@@ -197,14 +197,14 @@ void Importer::retrieve_configuration(io::importer::Configuration& config){
       break;
     }
     default :{  // xyz - rgb
-      config.vec_property.push_back(io::importer::Property(io::importer::XYZ));
-      config.vec_property.push_back(io::importer::Property(io::importer::RGB));
+      config.vec_property.push_back(io::imp::Property(io::imp::XYZ));
+      config.vec_property.push_back(io::imp::Property(io::imp::RGB));
     }
   }
 
   //---------------------------
 }
-void Importer::retrieve_data(io::importer::Configuration& config){
+void Importer::retrieve_data(io::imp::Configuration& config){
   this->buffer = {};
   //---------------------------
 
@@ -223,10 +223,10 @@ void Importer::retrieve_data(io::importer::Configuration& config){
     float d;
     std::istringstream iss(line);
     for(int i=0; i<config.vec_property.size(); i++){
-      io::importer::Property& property = config.vec_property[i];
+      io::imp::Property& property = config.vec_property[i];
 
       switch(property.field){
-        case io::importer::XYZ:{
+        case io::imp::XYZ:{
           float x, y, z;
           iss >> x;
           iss >> y;
@@ -234,7 +234,7 @@ void Importer::retrieve_data(io::importer::Configuration& config){
           buffer.xyz.push_back(glm::vec3(x, y, z));
           break;
         }
-        case io::importer::NXYZ:{
+        case io::imp::NXYZ:{
           float nx, ny, nz;
           iss >> nx;
           iss >> ny;
@@ -242,7 +242,7 @@ void Importer::retrieve_data(io::importer::Configuration& config){
           buffer.Nxyz.push_back(glm::vec3(nx, ny, nz));
           break;
         }
-        case io::importer::RGB:{
+        case io::imp::RGB:{
           float r, g, b;
           iss >> r;
           iss >> g;
@@ -250,7 +250,7 @@ void Importer::retrieve_data(io::importer::Configuration& config){
           buffer.rgb.push_back(glm::vec3(r/255, g/255, b/255));
           break;
         }
-        case io::importer::I:{
+        case io::imp::I:{
           float I;
           iss >> I;
 
@@ -274,7 +274,7 @@ void Importer::retrieve_data(io::importer::Configuration& config){
 
   //---------------------------
 }
-void Importer::transfer_data(io::importer::Configuration& config, utl::base::Data* data){
+void Importer::transfer_data(io::imp::Configuration& config, utl::base::Data* data){
   //---------------------------
 
   data->xyz = buffer.xyz;
@@ -285,7 +285,7 @@ void Importer::transfer_data(io::importer::Configuration& config, utl::base::Dat
 
   //---------------------------
 }
-std::vector<float> Importer::retrieve_column(io::importer::Configuration& config, int idx){
+std::vector<float> Importer::retrieve_column(io::imp::Configuration& config, int idx){
   //---------------------------
 
   //Get first line

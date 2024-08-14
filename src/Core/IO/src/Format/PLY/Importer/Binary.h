@@ -1,8 +1,8 @@
 #pragma once
 
-#include <IO/src/Import/Structure/Base.h>
-#include <IO/src/Import/Structure/Buffer.h>
-#include <IO/src/Import/Structure/Configuration.h>
+#include <Importer/src/Structure/Base.h>
+#include <Importer/src/Structure/Buffer.h>
+#include <Importer/src/Structure/Configuration.h>
 #include <Utility/Function/File/Path.h>
 #include <Utility/Function/Math/Operation.h>
 #include <glm/glm.hpp>
@@ -27,16 +27,16 @@ public:
 
 public:
   //Main function
-  void parse_binary(io::importer::Configuration* config, dat::base::Object* object);
+  void parse_binary(io::imp::Configuration* config, dat::base::Object* object);
 
   //Subfunction
   void pass_header(std::ifstream& file);
-  void parse_vertex_little_endian(io::importer::Configuration* config, std::ifstream& file);
-  void parse_face_little_endian(io::importer::Configuration* config, std::ifstream& file);
-  void parse_vertex_big_endian(io::importer::Configuration* config, std::ifstream& file);
-  void parse_face_big_endian(io::importer::Configuration* config, std::ifstream& file);
+  void parse_vertex_little_endian(io::imp::Configuration* config, std::ifstream& file);
+  void parse_face_little_endian(io::imp::Configuration* config, std::ifstream& file);
+  void parse_vertex_big_endian(io::imp::Configuration* config, std::ifstream& file);
+  void parse_face_big_endian(io::imp::Configuration* config, std::ifstream& file);
   void reorder_by_timestamp(utl::base::Data* data);
-  int get_property_id(io::importer::Configuration* config, io::importer::Field field);
+  int get_property_id(io::imp::Configuration* config, io::imp::Field field);
 
   //Binary type
   float reverse_float(const float inFloat);
@@ -53,7 +53,7 @@ public:
 private:
   utl::base::Attribut* utl_attribut;
 
-  io::importer::Buffer buffer;
+  io::imp::Buffer buffer;
 };
 
 }

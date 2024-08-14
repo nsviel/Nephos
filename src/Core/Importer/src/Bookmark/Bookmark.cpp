@@ -1,4 +1,4 @@
-#include "Manager.h"
+#include "Bookmark.h"
 
 #include <IO/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,17 +8,17 @@
 namespace io::imp::bookmark{
 
 //Constructor / Destructor
-Manager::Manager(io::Node* node_io){
+Bookmark::Bookmark(io::Node* node_io){
   //---------------------------
 
   this->path_bookmark_file = "../media/config/gui/bookmark.txt";
 
   //---------------------------
 }
-Manager::~Manager(){}
+Bookmark::~Bookmark(){}
 
 //Main function
-void Manager::init(){
+void Bookmark::init(){
   //---------------------------
 
   this->add_relative_path("../media/point_cloud/bunny.ply");
@@ -29,7 +29,7 @@ void Manager::init(){
 }
 
 //Item management
-void Manager::load_file_bookmark(){
+void Bookmark::load_file_bookmark(){
   utl::file::check_or_create(path_bookmark_file);
   //---------------------------
 
@@ -43,7 +43,7 @@ void Manager::load_file_bookmark(){
 
   //---------------------------
 }
-void Manager::save_file_bookmark(){
+void Bookmark::save_file_bookmark(){
   //---------------------------
 
   //Make vector of temporary bookmarks
@@ -61,7 +61,7 @@ void Manager::save_file_bookmark(){
 
   //---------------------------
 }
-void Manager::remove_path(std::string path){
+void Bookmark::remove_path(std::string path){
   //---------------------------
 
   for(auto it = list_item.begin(); it != list_item.end(); ++it){
@@ -77,7 +77,7 @@ void Manager::remove_path(std::string path){
 }
 
 //Subfunction
-void Manager::add_abs_path(std::string path){
+void Bookmark::add_abs_path(std::string path){
   if(!utl::file::is_exist_silent(path)) return;
   //---------------------------
 
@@ -93,7 +93,7 @@ void Manager::add_abs_path(std::string path){
 
   //---------------------------
 }
-void Manager::add_relative_path(std::string path){
+void Bookmark::add_relative_path(std::string path){
   if(!utl::file::is_exist_silent(path)) return;
   //---------------------------
 
@@ -108,7 +108,7 @@ void Manager::add_relative_path(std::string path){
 
   //---------------------------
 }
-bool Manager::is_path_bookmarked(std::string path){
+bool Bookmark::is_path_bookmarked(std::string path){
   //---------------------------
 
   for(int i=0; i<list_item.size(); i++){
@@ -122,7 +122,7 @@ bool Manager::is_path_bookmarked(std::string path){
   //---------------------------
   return false;
 }
-void Manager::sort_list_item(){
+void Bookmark::sort_list_item(){
   //---------------------------
 
   this->list_item.sort([](const io::bookmark::Item& a, const io::bookmark::Item& b){

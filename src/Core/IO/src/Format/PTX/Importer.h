@@ -1,6 +1,6 @@
 #pragma once
 
-#include <IO/src/Import/Structure/Base.h>
+#include <Importer/src/Structure/Base.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -30,7 +30,7 @@ struct PTXCloud{
 };
 
 
-class Importer : public io::importer::Base
+class Importer : public io::imp::Base
 {
 public:
   //Constructor / Destructor

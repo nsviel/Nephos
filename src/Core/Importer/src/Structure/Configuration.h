@@ -1,7 +1,7 @@
 #pragma once
 
-#include <IO/src/Import/Structure/Enum.h>
-#include <IO/src/Import/Structure/Property.h>
+#include <Importer/src/Structure/Enum.h>
+#include <Importer/src/Structure/Property.h>
 #include <Utility/Namespace.h>
 #include <vector>
 #include <string>
@@ -10,9 +10,9 @@
 namespace io::imp{
 
 struct Configuration{
-  io::importer::Encoding encoding = io::importer::ASCII;
+  io::imp::Encoding encoding = io::imp::ASCII;
   utl::topology::Type topology = utl::topology::POINT;
-  std::vector<io::importer::Property> vec_property;
+  std::vector<io::imp::Property> vec_property;
   std::string path = "";
   bool has_header = true;
   int nb_property = 0;

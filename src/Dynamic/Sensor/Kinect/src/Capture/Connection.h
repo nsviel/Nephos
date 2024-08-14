@@ -33,7 +33,7 @@ private:
   k4n::Node* node_k4n;
   dat::element::Set* dat_set;
   dat::graph::Graph* dat_graph;
-  io::importer::Operation* io_operation;
+  io::imp::Operation* io_operation;
 
   std::thread thread;
   bool thread_running = false;

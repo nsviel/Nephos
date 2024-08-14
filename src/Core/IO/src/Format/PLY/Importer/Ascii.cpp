@@ -16,7 +16,7 @@ Ascii::Ascii(){
 Ascii::~Ascii(){}
 
 //Main function
-void Ascii::parse_ascii(io::importer::Configuration* config, dat::base::Object* object){
+void Ascii::parse_ascii(io::imp::Configuration* config, dat::base::Object* object){
   //---------------------------
 
   //Open file
@@ -53,7 +53,7 @@ void Ascii::pass_header(std::ifstream& file){
 
   //---------------------------
 }
-void Ascii::parse_vertex(io::importer::Configuration* config, std::ifstream& file){
+void Ascii::parse_vertex(io::imp::Configuration* config, std::ifstream& file){
   this->buffer = {};
   //---------------------------
 
@@ -71,25 +71,25 @@ void Ascii::parse_vertex(io::importer::Configuration* config, std::ifstream& fil
     }
 
     //Location
-    int id_x = get_property_id(config, io::importer::XYZ);
+    int id_x = get_property_id(config, io::imp::XYZ);
     if(id_x != -1){
       buffer.xyz.push_back(glm::vec3(row[id_x], row[id_x+1], row[id_x+2]));
     }
 
     //Normal
-    int id_nx = get_property_id(config, io::importer::NXYZ);
+    int id_nx = get_property_id(config, io::imp::NXYZ);
     if(id_nx != -1){
       buffer.Nxyz.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
     }
 
     //Color
-    int id_rgb = get_property_id(config, io::importer::RGB);
+    int id_rgb = get_property_id(config, io::imp::RGB);
     if(id_rgb != -1){
       buffer.rgb.push_back(glm::vec3(row[id_nx], row[id_nx+1], row[id_nx+2]));
     }
 
     //Intensity
-    int id_i = get_property_id(config, io::importer::I);
+    int id_i = get_property_id(config, io::imp::I);
     if(id_i != -1){
       buffer.Is.push_back(row[id_i]);
     }
@@ -97,12 +97,12 @@ void Ascii::parse_vertex(io::importer::Configuration* config, std::ifstream& fil
 
   //---------------------------
 }
-void Ascii::parse_face(io::importer::Configuration* config, std::ifstream& file){
+void Ascii::parse_face(io::imp::Configuration* config, std::ifstream& file){
   if(config->nb_face == 0) return;
   //---------------------------
 
   //Init
-  io::importer::Buffer buffer_tmp = buffer;
+  io::imp::Buffer buffer_tmp = buffer;
   this->buffer = {};
 
   //Retrieve face data
@@ -125,12 +125,12 @@ void Ascii::parse_face(io::importer::Configuration* config, std::ifstream& file)
       buffer.xyz.push_back(buffer_tmp.xyz[idx[i]]);
 
       //Normal
-      if(get_property_id(config, io::importer::NXYZ) != -1){
+      if(get_property_id(config, io::imp::NXYZ) != -1){
         buffer.Nxyz.push_back(buffer_tmp.Nxyz[idx[i]]);
       }
 
       //Intensity
-      if(get_property_id(config, io::importer::I) != -1){
+      if(get_property_id(config, io::imp::I) != -1){
         buffer.Is.push_back(buffer_tmp.Is[idx[i]]);
       }
     }
@@ -146,11 +146,11 @@ void Ascii::parse_face(io::importer::Configuration* config, std::ifstream& file)
 
   //---------------------------
 }
-int Ascii::get_property_id(io::importer::Configuration* config, io::importer::Field field){
+int Ascii::get_property_id(io::imp::Configuration* config, io::imp::Field field){
   //---------------------------
 
   for(int i=0; i<config->vec_property.size(); i++){
-    io::importer::Property* property = &config->vec_property[i];
+    io::imp::Property* property = &config->vec_property[i];
 
     if(property->field == field){
       return i;

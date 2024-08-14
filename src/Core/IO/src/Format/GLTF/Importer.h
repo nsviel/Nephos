@@ -1,6 +1,6 @@
 #pragma once
 
-#include <IO/src/Import/Structure/Base.h>
+#include <Importer/src/Structure/Base.h>
 #include <Utility/Function/File/Path.h>
 #include <gltf/tiny_gltf.h>
 #include <glm/glm.hpp>
@@ -12,7 +12,7 @@
 
 namespace fmt::gltf{
 
-class Importer : public io::importer::Base
+class Importer : public io::imp::Base
 {
 public:
   //Constructor / Destructor

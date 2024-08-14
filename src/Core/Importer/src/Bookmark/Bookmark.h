@@ -7,14 +7,14 @@ namespace io{class Node;}
 namespace io::imp::bookmark{class Item;}
 
 
-namespace io::imp::bookmark{
+namespace io::imp{
 
-class Manager
+class Bookmark
 {
 public:
   //Constructor / Destructor
-  Manager(io::Node* node_io);
-  ~Manager();
+  Bookmark(io::Node* node_io);
+  ~Bookmark();
 
 public:
   //Main function

@@ -21,10 +21,10 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->io_struct = new io::imp::Structure();
-  this->io_operation = new io::importer::Operation(this);
-  this->io_importer = new io::Importer(this);
-  this->io_bookmark = new io::bookmark::Manager(this);
-  this->gui_import = new io::gui::importer::Panel(this, &panel_loader->is_open);
+  this->io_operation = new io::imp::Operation(this);
+  this->io_importer = new io::imp::Importer(this);
+  this->io_bookmark = new io::imp::Bookmark(this);
+  this->gui_import = new io::imp::gui::Panel(this, &panel_loader->is_open);
 
   //---------------------------
 }

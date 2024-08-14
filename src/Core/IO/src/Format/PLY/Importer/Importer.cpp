@@ -31,18 +31,18 @@ utl::base::Element* Importer::import(utl::base::Path path){
   object->data.path.format = format;
 
   //Header
-  io::importer::Configuration config;
+  io::imp::Configuration config;
   config.path = path.build();
   if(!parse_header(config)) return nullptr;
 
   //Parsing
   switch(config.encoding){
-    case io::importer::ASCII:{
+    case io::imp::ASCII:{
       ply_ascii->parse_ascii(&config, object);
       break;
     }
-    case io::importer::BINARY_LITTLE_ENDIAN:
-    case io::importer::BINARY_BIG_ENDIAN:{
+    case io::imp::BINARY_LITTLE_ENDIAN:
+    case io::imp::BINARY_BIG_ENDIAN:{
       ply_binary->parse_binary(&config, object);
       break;
     }
@@ -55,7 +55,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
 }
 
 //Header
-bool Importer::parse_header(io::importer::Configuration& config){
+bool Importer::parse_header(io::imp::Configuration& config){
   //---------------------------
 
   //Init
@@ -92,17 +92,17 @@ bool Importer::parse_header(io::importer::Configuration& config){
   //---------------------------
   return true;
 }
-void Importer::parse_header_format(io::importer::Configuration& config, std::string format){
+void Importer::parse_header_format(io::imp::Configuration& config, std::string format){
   //---------------------------
 
-  if(format == "ascii") config.encoding = io::importer::ASCII;
-  else if(format == "binary_little_endian") config.encoding = io::importer::BINARY_LITTLE_ENDIAN;
-  else if(format == "binary_big_endian") config.encoding = io::importer::BINARY_BIG_ENDIAN;
+  if(format == "ascii") config.encoding = io::imp::ASCII;
+  else if(format == "binary_little_endian") config.encoding = io::imp::BINARY_LITTLE_ENDIAN;
+  else if(format == "binary_big_endian") config.encoding = io::imp::BINARY_BIG_ENDIAN;
   else std::cout<<"[warning] Unknown format: "<<format<<std::endl;
 
   //---------------------------
 }
-bool Importer::parse_header_size(io::importer::Configuration& config, std::string value){
+bool Importer::parse_header_size(io::imp::Configuration& config, std::string value){
   //---------------------------
 
   int nb_vertex = std::stoi(value);
@@ -115,31 +115,31 @@ bool Importer::parse_header_size(io::importer::Configuration& config, std::strin
   //---------------------------
   return true;
 }
-void Importer::parse_header_property(io::importer::Configuration& config, std::string type, std::string field){
-  io::importer::Property property;
+void Importer::parse_header_property(io::imp::Configuration& config, std::string type, std::string field){
+  io::imp::Property property;
   //---------------------------
 
   //Property type
-  if(type == "float" || type == "float32") property.type = io::importer::FLOAT32;
-  else if(type == "float64" || type == "double") property.type = io::importer::FLOAT64;
-  else if(type == "uint" || type == "uint8") property.type = io::importer::UINT8;
-  else if(type == "uint16") property.type = io::importer::UINT16;
-  else if(type == "int" || type == "int32") property.type = io::importer::UINT32;
-  else if(type == "uchar") property.type = io::importer::UCHAR;
-  else if(type == "ushort") property.type = io::importer::USHORT;
+  if(type == "float" || type == "float32") property.type = io::imp::FLOAT32;
+  else if(type == "float64" || type == "double") property.type = io::imp::FLOAT64;
+  else if(type == "uint" || type == "uint8") property.type = io::imp::UINT8;
+  else if(type == "uint16") property.type = io::imp::UINT16;
+  else if(type == "int" || type == "int32") property.type = io::imp::UINT32;
+  else if(type == "uchar") property.type = io::imp::UCHAR;
+  else if(type == "ushort") property.type = io::imp::USHORT;
   else{
     std::cout<<"[warning] Unknown property type: "<<type<<std::endl;
     return;
   }
 
   //Property field
-  if(field == "x") property.field = io::importer::XYZ;
-  else if(field == "timestamp") property.field = io::importer::TS;
-  else if(field == "nx") property.field = io::importer::NXYZ;
-  else if(field == "red") property.field = io::importer::RGB;
-  else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "intensity") property.field = io::importer::I;
+  if(field == "x") property.field = io::imp::XYZ;
+  else if(field == "timestamp") property.field = io::imp::TS;
+  else if(field == "nx") property.field = io::imp::NXYZ;
+  else if(field == "red") property.field = io::imp::RGB;
+  else if(field == "scalar_field" || field == "scalar_Scalar_field" || field == "intensity") property.field = io::imp::I;
   else{
-    property.field = io::importer::VOID;
+    property.field = io::imp::VOID;
   }
 
   //Store property
