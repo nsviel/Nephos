@@ -11,7 +11,7 @@ namespace io::trf{class Transformation;}
 namespace io::trf::gui{class Panel;}
 
 
-namespace io{
+namespace io::trf{
 
 class Node : public utl::base::Node
 {
@@ -38,7 +38,7 @@ private:
   vk::Node* node_vulkan;
   dat::Node* node_data;
   dyn::Node* node_dynamic;
-  
+
   //Child
   io::trf::Structure* io_struct;
   io::trf::Transformation* io_transformation;

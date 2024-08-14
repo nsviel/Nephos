@@ -18,7 +18,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(io::Node* node_transfo, bool* show_window);
+  Panel(io::trf::Node* node_transfo, bool* show_window);
   ~Panel();
 
 public:

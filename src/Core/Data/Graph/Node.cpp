@@ -20,7 +20,7 @@ Node::Node(eng::Node* node_engine){
 
   //Child
   this->dat_struct = new dat::graph::Structure();
-  this->dat_uid = new dat::graph::UID(this);
+
   this->dat_graph = new dat::graph::Graph(this);
   this->dat_selection = new dat::graph::Selection(this);
   this->gui_graph = new dat::graph::gui::Panel(this, &dat_panel->is_open);

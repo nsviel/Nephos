@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace io::transformation{
+namespace io::trf{
 
 struct Structure{
   //---------------------------

@@ -5,7 +5,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace dat::graph{
+namespace dat{
 
 //Constructor / Destructor
 UID::UID(dat::graph::Node* node_graph){

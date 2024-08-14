@@ -1,7 +1,6 @@
 #include "Set.h"
 
 #include <Element/Namespace.h>
-#include <Graph/Namespace.h>
 
 
 namespace dat::element{
@@ -10,12 +9,10 @@ namespace dat::element{
 Set::Set(dat::Node* node_data){
   //---------------------------
 
-  dat::graph::Node* node_graph = node_data->get_node_graph();
-
   this->node_data = node_data;
   this->dat_struct = node_data->get_dat_struct();
   this->dat_entity = new dat::element::Entity(node_data);
-  this->dat_uid = node_graph->get_dat_uid();
+  this->dat_uid = node_data->get_dat_uid();
 
   //---------------------------
 }

@@ -4,7 +4,7 @@
 #include <string>
 
 namespace dat{class Node;}
-namespace dat::graph{class UID;}
+namespace dat{class UID;}
 namespace dat::base{class Entity;}
 namespace utl::media{class Image;}
 
@@ -29,7 +29,7 @@ public:
   utl::media::Image* get_or_create_image(dat::base::Entity* entity, std::string name);
 
 private:
-  dat::graph::UID* dat_uid;
+  dat::UID* dat_uid;
 };
 
 }

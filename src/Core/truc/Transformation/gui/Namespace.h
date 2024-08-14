@@ -1,3 +1,3 @@
 #pragma once
 
-#include <IO/gui/Transformation/Panel.h>
+#include "Panel.h"

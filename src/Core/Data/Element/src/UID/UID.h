@@ -8,7 +8,7 @@
 namespace dat::graph{class Node;}
 
 
-namespace dat::graph{
+namespace dat{
 
 class UID
 {

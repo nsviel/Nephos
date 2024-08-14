@@ -10,6 +10,7 @@ namespace dat::element{class Image;}
 namespace dat{class Glyph;}
 namespace dat{class Structure;}
 namespace dat::graph{class Node;}
+namespace dat{class UID;}
 
 
 namespace dat{
@@ -37,6 +38,7 @@ public:
   inline dat::Glyph* get_dat_glyph(){return dat_glyph;}
   inline dat::Structure* get_dat_struct(){return dat_struct;}
   inline dat::graph::Node* get_node_graph(){return node_graph;}
+  inline dat::UID* get_dat_uid(){return dat_uid;}
 
 private:
   //Dependancy
@@ -49,6 +51,7 @@ private:
   dat::element::Entity* dat_entity;
   dat::element::Set* dat_set;
   dat::Glyph* dat_glyph;
+  dat::UID* dat_uid;
   dat::element::Image* dat_image;
 
   bool show_scene = true;

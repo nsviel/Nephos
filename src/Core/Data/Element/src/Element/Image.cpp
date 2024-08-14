@@ -3,7 +3,6 @@
 #include <Operation/Namespace.h>
 #include <Element/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Graph/Namespace.h>
 
 
 namespace dat::element{
@@ -12,9 +11,7 @@ namespace dat::element{
 Image::Image(dat::Node* node_data){
   //---------------------------
 
-  dat::graph::Node* node_graph = node_data->get_node_graph();
-
-  this->dat_uid = node_graph->get_dat_uid();
+  this->dat_uid = node_data->get_dat_uid();
 
   //---------------------------
 }
