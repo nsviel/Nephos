@@ -3,7 +3,7 @@
 #include <string>
 #include <list>
 
-namespace io{class Node;}
+namespace io::imp{class Node;}
 namespace io::imp::bookmark{class Item;}
 
 
@@ -13,7 +13,7 @@ class Bookmark
 {
 public:
   //Constructor / Destructor
-  Bookmark(io::Node* node_io);
+  Bookmark(io::imp::Node* node_importer);
   ~Bookmark();
 
 public:

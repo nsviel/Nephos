@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 
-namespace io{class Node;}
-namespace io{class Structure;}
+namespace io::imp{class Node;}
+namespace io::imp{class Structure;}
 namespace io{class Transformation;}
 namespace dat::element{class Entity;}
 namespace dat::graph{class Graph;}
@@ -25,7 +25,7 @@ class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(io::Node* node_io);
+  Operation(io::imp::Node* node_importer);
   ~Operation();
 
 public:
@@ -40,7 +40,7 @@ public:
   void ope_insertion(dat::base::Entity* entity);
 
 private:
-  io::Structure* io_struct;
+  io::imp::Structure* io_struct;
   io::Transformation* io_transformation;
   dat::element::Entity* dat_entity;
   dat::graph::Graph* dat_graph;

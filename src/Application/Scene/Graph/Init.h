@@ -3,7 +3,7 @@
 namespace eng{class Node;}
 namespace sce{class Node;}
 namespace io{class Structure;}
-namespace io{class Importer;}
+namespace io::imp{class Importer;}
 namespace utl::base{class Selection;}
 
 
@@ -25,7 +25,7 @@ public:
 
 private:
   eng::Node* node_engine;
-  io::Importer* io_loader;
+  io::imp::Importer* io_loader;
   io::Structure* io_struct;
   utl::base::Selection* selection = nullptr;
 };

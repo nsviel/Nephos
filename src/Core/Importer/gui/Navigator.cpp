@@ -10,9 +10,9 @@ namespace io::imp::gui{
 Navigator::Navigator(io::gui::importer::Panel* gui_panel){
   //---------------------------
 
-  io::Node* node_io = gui_panel->get_node_io();
+  io::imp::Node* node_importer = gui_panel->get_node_io();
 
-  this->io_struct = node_io->get_io_struct();
+  this->io_struct = node_importer->get_io_struct();
   this->utl_navigator = new utl::gui::Navigator();
 
   //---------------------------

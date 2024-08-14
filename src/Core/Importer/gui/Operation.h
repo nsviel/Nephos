@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 
-namespace io{class Structure;}
-namespace io{class Importer;}
+namespace io::imp{class Structure;}
+namespace io::imp{class Importer;}
 namespace io::imp::gui{class Panel;}
 namespace io::imp::gui{class Navigator;}
 namespace utl::base{class Path;}
@@ -30,9 +30,9 @@ public:
   void item_operation(utl::base::Path path);
 
 private:
-  io::Structure* io_struct;
-  io::Importer* io_importer;
-  io::gui::importer::Navigator* gui_navigator;
+  io::imp::Structure* io_struct;
+  io::imp::Importer* io_importer;
+  io::imp::gui::Navigator* gui_navigator;
 };
 
 }

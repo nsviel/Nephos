@@ -28,7 +28,7 @@ Node::~Node(){}
 
 //Main function
 void Node::config(){
-  io::Importer* io_importer = node_io->get_io_importer();
+  io::imp::Importer* io_importer = node_io->get_io_importer();
   //---------------------------
 
   io_importer->insert_importer(new vld::utils::Importer(vld_struct));

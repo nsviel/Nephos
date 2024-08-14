@@ -21,7 +21,7 @@ class Importer
 {
 public:
   //Constructor / Destructor
-  Importer(io::Node* node_io);
+  Importer(io::imp::Node* node_importer);
   ~Importer();
 
 public:

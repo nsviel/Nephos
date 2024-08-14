@@ -25,7 +25,7 @@ Node::Node(eng::Node* node_engine){
   this->k4n_connection = new k4n::capture::Connection(this);
 
   //Importer
-  io::Importer* io_importer = node_io->get_io_importer();
+  io::imp::Importer* io_importer = node_io->get_io_importer();
   io_importer->insert_importer(new k4n::playback::Importer(this));
 
   //---------------------------

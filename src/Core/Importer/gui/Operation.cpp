@@ -10,10 +10,10 @@ namespace io::imp::gui{
 Operation::Operation(io::gui::importer::Panel* gui_panel){
   //---------------------------
 
-  io::Node* node_io = gui_panel->get_node_io();
+  io::imp::Node* node_importer = gui_panel->get_node_io();
 
-  this->io_struct = node_io->get_io_struct();
-  this->io_importer = node_io->get_io_importer();
+  this->io_struct = node_importer->get_io_struct();
+  this->io_importer = node_importer->get_io_importer();
   this->gui_navigator = gui_panel->get_gui_navigator();
 
   //---------------------------

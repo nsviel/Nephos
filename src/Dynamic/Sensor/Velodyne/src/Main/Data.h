@@ -3,7 +3,7 @@
 namespace vld{class Node;}
 namespace vld::structure{class Main;}
 namespace eng{class Node;}
-namespace io{class Importer;}
+namespace io::imp{class Importer;}
 namespace dat::graph{class Graph;}
 namespace dat::element{class Set;}
 namespace dat::element{class Entity;}
@@ -26,7 +26,7 @@ private:
   eng::Node* node_engine;
   vld::structure::Main* vld_struct;
   dat::graph::Graph* dat_graph;
-  io::Importer* io_loader;
+  io::imp::Importer* io_loader;
   dat::element::Set* dat_set;
   dat::element::Entity* dat_entity;
 };

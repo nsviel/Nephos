@@ -7,13 +7,13 @@
 namespace io::imp::gui{
 
 //Constructor / Destructor
-Panel::Panel(io::Node* node_io, bool* show_window){
+Panel::Panel(io::imp::Node* node_importer, bool* show_window){
   //---------------------------
 
-  this->node_io = node_io;
-  this->gui_navigator = new io::gui::importer::Navigator(this);
-  this->gui_bookmark = new io::gui::importer::Bookmark(this);
-  this->gui_operation = new io::gui::importer::Operation(this);
+  this->node_importer = node_importer;
+  this->gui_navigator = new io::imp::gui::Navigator(this);
+  this->gui_bookmark = new io::imp::gui::Bookmark(this);
+  this->gui_operation = new io::imp::gui::Operation(this);
 
   this->name = "Import##555";
   this->show_window = show_window;

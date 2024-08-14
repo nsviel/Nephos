@@ -8,11 +8,11 @@
 namespace io::imp{
 
 //Constructor / Destructor
-Importer::Importer(io::Node* node_io){
+Importer::Importer(io::imp::Node* node_importer){
   //---------------------------
 
-  this->io_struct = node_io->get_io_struct();
-  this->io_operation = node_io->get_io_import_ope();
+  this->io_struct = node_importer->get_io_struct();
+  this->io_operation = node_importer->get_io_operation();
 
   this->insert_importer(new fmt::ply::Importer());
   this->insert_importer(new fmt::obj::Importer());

@@ -10,14 +10,14 @@
 namespace io::imp{
 
 //Constructor / Destructor
-Operation::Operation(io::Node* node_io){
+Operation::Operation(io::imp::Node* node_importer){
   //---------------------------
 
-  dat::Node* node_data = node_io->get_node_data();
+  dat::Node* node_data = node_importer->get_node_data();
   dat::graph::Node* node_graph = node_data->get_node_graph();
 
-  this->io_struct = node_io->get_io_struct();
-  this->io_transformation = node_io->get_io_transformation();
+  this->io_struct = node_importer->get_io_struct();
+  //this->io_transformation = node_importer->get_io_transformation();
   this->dat_entity = node_data->get_dat_entity();
   this->dat_graph = node_graph->get_dat_graph();
   this->dat_set = node_data->get_dat_set();
@@ -107,7 +107,7 @@ void Operation::ope_transformation(dat::base::Entity* entity){
   //---------------------------
 
   //Transformation
-  io_transformation->load_transformation(entity);
+  //io_transformation->load_transformation(entity);
 
   //Scaling
   ope_transform->make_scaling(&entity->pose, io_struct->importer.scaling);

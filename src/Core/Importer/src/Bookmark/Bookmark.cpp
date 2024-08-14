@@ -8,7 +8,7 @@
 namespace io::imp::bookmark{
 
 //Constructor / Destructor
-Bookmark::Bookmark(io::Node* node_io){
+Bookmark::Bookmark(io::imp::Node* node_importer){
   //---------------------------
 
   this->path_bookmark_file = "../media/config/gui/bookmark.txt";

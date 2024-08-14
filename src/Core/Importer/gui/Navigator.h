@@ -2,7 +2,7 @@
 
 #include <Utility/GUI/Navigator/Navigator.h>
 
-namespace io{class Structure;}
+namespace io::imp{class Structure;}
 namespace io::imp::gui{class Panel;}
 namespace utl::gui{class Navigator;}
 
@@ -24,7 +24,7 @@ public:
   inline utl::gui::Navigator* get_utl_navigator(){return utl_navigator;}
 
 private:
-  io::Structure* io_struct;
+  io::imp::Structure* io_struct;
   utl::gui::Navigator* utl_navigator;
 
   bool open_tab;

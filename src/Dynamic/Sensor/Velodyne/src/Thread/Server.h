@@ -12,7 +12,7 @@ namespace vld::parser{class VLP16;}
 namespace vld::main{class Data;}
 namespace vld::thread{class Screenshot;}
 namespace dat::graph{class Graph;}
-namespace io{class Importer;}
+namespace io::imp{class Importer;}
 namespace dat::element{class Set;}
 
 
@@ -37,7 +37,7 @@ public:
 
 private:
   dat::graph::Graph* dat_graph;
-  io::Importer* io_loader;
+  io::imp::Importer* io_loader;
   dat::element::Set* dat_set;
 
   vld::structure::Main* vld_struct;

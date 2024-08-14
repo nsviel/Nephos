@@ -19,7 +19,7 @@ Connection::Connection(k4n::Node* node_k4n){
   dat::graph::Node* node_graph = node_data->get_node_graph();
 
   this->node_k4n = node_k4n;
-  this->io_operation = node_io->get_io_import_ope();
+  this->io_operation = node_io->get_io_operation();
   this->dat_set = node_data->get_dat_set();
   this->dat_graph = node_graph->get_dat_graph();
 

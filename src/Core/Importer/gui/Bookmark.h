@@ -29,10 +29,10 @@ public:
   void bookmark_icon(std::string path);
 
 private:
-  io::Structure* io_struct;
-  io::Importer* io_importer;
-  io::imp::bookmark::Manager* io_bookmark;
-  io::gui::importer::Navigator* gui_navigator;
+  io::imp::Structure* io_struct;
+  io::imp::Importer* io_importer;
+  io::imp::Bookmark* io_bookmark;
+  io::imp::gui::Navigator* gui_navigator;
 };
 
 }
