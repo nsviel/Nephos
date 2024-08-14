@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace dat::element{class Set;}
+namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::gui::entity{class Panel;}
@@ -40,7 +40,7 @@ public:
 private:
   dat::graph::Graph* dat_graph;
   dat::graph::Selection* dat_selection;
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
   dat::gui::entity::Panel* gui_entity;
   dat::gui::set::Panel* gui_set;
   dat::graph::gui::Button* gui_button;

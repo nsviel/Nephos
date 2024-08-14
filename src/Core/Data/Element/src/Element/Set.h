@@ -2,22 +2,22 @@
 
 #include <string>
 
-namespace dat{class Node;}
-namespace dat{class Structure;}
-namespace dat::element{class Entity;}
-namespace dat{class UID;}
+namespace dat::elm{class Node;}
+namespace dat::elm{class Structure;}
+namespace dat::elm{class Entity;}
+namespace dat::elm{class UID;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Glyph;}
 
 
-namespace dat::element{
+namespace dat::elm{
 
 class Set
 {
 public:
   //Constructor / Destructor
-  Set(dat::Node* node_data);
+  Set(dat::elm::Node* node_element);
   ~Set();
 
 public:
@@ -47,10 +47,9 @@ public:
   bool is_set_empty(dat::base::Set* set);
 
 private:
-  dat::Node* node_data;
-  dat::Structure* dat_struct;
-  dat::element::Entity* dat_entity;
-  dat::UID* dat_uid;
+  dat::elm::Structure* dat_struct;
+  dat::elm::Entity* dat_entity;
+  dat::elm::UID* dat_uid;
 };
 
 }

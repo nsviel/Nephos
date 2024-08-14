@@ -3,7 +3,7 @@
 #include <Core/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Element/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 #include <Vulkan/Namespace.h>
 
 

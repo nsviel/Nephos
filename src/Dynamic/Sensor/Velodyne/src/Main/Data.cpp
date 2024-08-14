@@ -4,7 +4,7 @@
 #include <Core/Namespace.h>
 #include <Element/Namespace.h>
 #include <IO/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 #include <Importer/Namespace.h>
 
 

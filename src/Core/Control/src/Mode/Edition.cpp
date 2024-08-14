@@ -2,7 +2,7 @@
 
 #include <Control/Namespace.h>
 #include <Element/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 #include <Operation/Namespace.h>
 
 

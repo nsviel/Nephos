@@ -6,8 +6,8 @@
 namespace k4n{class Node;}
 namespace eng{class Node;}
 namespace dat::graph{class Graph;}
-namespace dat::element{class Entity;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Entity;}
+namespace dat::elm{class Set;}
 namespace dat{class Glyph;}
 namespace dyn::element{class Sensor;}
 
@@ -34,8 +34,8 @@ private:
   k4n::Node* node_k4n;
   eng::Node* node_engine;
   dat::graph::Graph* dat_graph;
-  dat::element::Entity* dat_entity;
-  dat::element::Set* dat_set;
+  dat::elm::Entity* dat_entity;
+  dat::elm::Set* dat_set;
   dat::Glyph* dat_glyph;
   dyn::element::Sensor* dyn_sensor;
 };

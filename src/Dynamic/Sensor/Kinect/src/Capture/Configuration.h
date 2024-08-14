@@ -4,7 +4,7 @@ namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::base{class Sensor;}
 namespace dat::graph{class Graph;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Set;}
 
 
 namespace k4n::capture{
@@ -28,7 +28,7 @@ public:
 private:
   k4n::Structure* k4n_struct;
   dat::graph::Graph* dat_graph;
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
 };
 
 

@@ -2,8 +2,8 @@
 
 #include <string>
 
-namespace dat{class Node;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Node;}
+namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
 
 
@@ -13,7 +13,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(dat::Node* node_data, bool* show_window);
+  Panel(dat::elm::Node* node_element, bool* show_window);
   ~Panel();
 
   //Main function
@@ -27,7 +27,7 @@ public:
   inline void set_selected_set(dat::base::Set* set){this->set_selected = set;}
 
 private:
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
 
   dat::base::Set* set_selected;
   std::string panel_name;

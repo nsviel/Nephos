@@ -3,16 +3,15 @@
 #include <Element/Namespace.h>
 
 
-namespace dat::element{
+namespace dat::elm{
 
 //Constructor / Destructor
-Set::Set(dat::Node* node_data){
+Set::Set(dat::elm::Node* node_element){
   //---------------------------
 
-  this->node_data = node_data;
-  this->dat_struct = node_data->get_dat_struct();
-  this->dat_entity = new dat::element::Entity(node_data);
-  this->dat_uid = node_data->get_dat_uid();
+  this->dat_struct = node_element->get_dat_struct();
+  this->dat_entity = new dat::elm::Entity(node_element);
+  this->dat_uid = node_element->get_dat_uid();
 
   //---------------------------
 }

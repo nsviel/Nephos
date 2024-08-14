@@ -7,7 +7,7 @@ namespace dyn::cloud{class Normal;}
 namespace dyn::cloud{class Radiometry;}
 namespace ope::attribut{class Color;}
 namespace dyn::base{class Sensor;}
-namespace dat::element{class Entity;}
+namespace dat::elm{class Entity;}
 
 
 namespace dyn::cloud{
@@ -30,7 +30,7 @@ private:
   ope::attribut::Color* ope_color;
   dyn::cloud::Normal* dyn_normal;
   dyn::cloud::Radiometry* dyn_radio;
-  dat::element::Entity* dat_entity;
+  dat::elm::Entity* dat_entity;
 };
 
 }

@@ -7,7 +7,7 @@ namespace dat::base{class Set;}
 namespace utl::base{class Element;}
 
 
-namespace dat{
+namespace dat::elm{
 
 struct Structure{
   //---------------------------

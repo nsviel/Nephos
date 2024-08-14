@@ -8,10 +8,10 @@
 namespace dat::gui::entity{
 
 //Constructor / Destructor
-Data::Data(dat::Node* node_data){
+Data::Data(dat::elm::Node* node_element){
   //---------------------------
 
-  this->dat_entity = node_data->get_dat_entity();
+  this->dat_entity = node_element->get_dat_entity();
   this->ope_operation = new ope::Operation();
 
   this->item_width = 100;

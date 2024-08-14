@@ -13,7 +13,7 @@ namespace vld::main{class Data;}
 namespace vld::thread{class Screenshot;}
 namespace dat::graph{class Graph;}
 namespace io::imp{class Importer;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Set;}
 
 
 namespace vld::thread{
@@ -38,7 +38,7 @@ public:
 private:
   dat::graph::Graph* dat_graph;
   io::imp::Importer* io_loader;
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
 
   vld::structure::Main* vld_struct;
   vld::processing::Player* vld_player;

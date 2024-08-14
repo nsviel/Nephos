@@ -1,14 +1,14 @@
 #include "UID.h"
 
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 #include <Camera/Namespace.h>
 #include <Dynamic/Namespace.h>
 
 
-namespace dat{
+namespace dat::elm{
 
 //Constructor / Destructor
-UID::UID(dat::graph::Node* node_graph){
+UID::UID(){
   //---------------------------
 
   this->generator = std::mt19937(std::random_device()());

@@ -3,15 +3,14 @@
 #include <Element/Namespace.h>
 
 
-namespace dat{
+namespace dat::elm{
 
 //Constructor / Destructor
-Glyph::Glyph(dat::Node* node_data){
+Glyph::Glyph(dat::elm::Node* node_element){
   //---------------------------
 
-  this->node_data = node_data;
-  this->dat_set = node_data->get_dat_set();
-  this->dat_entity = node_data->get_dat_entity();
+  this->dat_set = node_element->get_dat_set();
+  this->dat_entity = node_element->get_dat_entity();
 
   //---------------------------
 }

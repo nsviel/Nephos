@@ -10,15 +10,15 @@
 namespace dat::element{
 
 //Constructor / Destructor
-Entity::Entity(dat::Node* node_data){
+Entity::Entity(dat::elm::Node* node_element){
   //---------------------------
 
-  eng::Node* node_engine = node_data->get_node_engine();
+  eng::Node* node_engine = node_element->get_node_engine();
   vk::Node* node_vulkan = node_engine->get_node_vulkan();
 
   this->node_engine = node_engine;
-  this->dat_struct = node_data->get_dat_struct();
-  this->dat_uid = node_data->get_dat_uid();
+  this->dat_struct = node_element->get_dat_struct();
+  this->dat_uid = node_element->get_dat_uid();
 
   this->vk_data = node_vulkan->get_vk_data();
   this->ope_location = new ope::attribut::Location();

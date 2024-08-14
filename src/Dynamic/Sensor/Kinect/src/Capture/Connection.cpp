@@ -5,7 +5,7 @@
 #include <IO/Namespace.h>
 #include <Element/Namespace.h>
 #include <Importer/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 #include <chrono>
 
 

@@ -5,7 +5,7 @@
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Dynamic/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 

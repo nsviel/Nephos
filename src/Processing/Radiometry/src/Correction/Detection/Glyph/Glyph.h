@@ -7,7 +7,7 @@ namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction::structure{class Circle;}
 namespace dat{class Glyph;}
-namespace dat::element{class Entity;}
+namespace dat::elm{class Entity;}
 namespace eng{class Node;}
 
 
@@ -38,7 +38,7 @@ private:
   eng::Node* node_engine;
   rad::correction::Structure* rad_struct;
   dat::Glyph* dat_glyph;
-  dat::element::Entity* dat_entity;
+  dat::elm::Entity* dat_entity;
 };
 
 }

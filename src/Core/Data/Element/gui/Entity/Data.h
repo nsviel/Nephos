@@ -3,7 +3,7 @@
 #include <string>
 
 namespace dat{class Node;}
-namespace dat::element{class Entity;}
+namespace dat::elm{class Entity;}
 namespace dat::base{class Entity;}
 namespace ope{class Operation;}
 
@@ -14,7 +14,7 @@ class Data
 {
 public:
   //Constructor / Destructor
-  Data(dat::Node* node_data);
+  Data(dat::elm::Node* node_element);
   ~Data();
 
   //Main function
@@ -26,7 +26,7 @@ public:
   void entity_pose(dat::base::Entity* entity);
 
 private:
-  dat::element::Entity* dat_entity;
+  dat::elm::Entity* dat_entity;
   ope::Operation* ope_operation;
 
   int item_width;

@@ -5,7 +5,7 @@
 
 namespace dyn{class Node;}
 namespace dat::graph{class Selection;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Set;}
 
 
 namespace dyn::player{
@@ -44,7 +44,7 @@ public:
 
 public:
   dat::graph::Selection* dat_selection;
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
 
   dyn::base::Timestamp timestamp;
   dyn::base::State state;

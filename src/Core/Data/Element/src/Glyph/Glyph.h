@@ -2,22 +2,22 @@
 
 #include <string>
 
-namespace dat{class Node;}
-namespace dat::element{class Entity;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Node;}
+namespace dat::elm{class Entity;}
+namespace dat::elm{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Glyph;}
 namespace dat::base{class Set;}
 namespace dat::base{class Object;}
 
 
-namespace dat{
+namespace dat::elm{
 
 class Glyph
 {
 public:
   //Constructor / Destructor
-  Glyph(dat::Node* node_data);
+  Glyph(dat::elm::Node* node_element);
   ~Glyph();
 
 public:
@@ -34,9 +34,8 @@ public:
   void create_glyph(dat::base::Glyph* glyph);
 
 private:
-  dat::Node* node_data;
-  dat::element::Entity* dat_entity;
-  dat::element::Set* dat_set;
+  dat::elm::Entity* dat_entity;
+  dat::elm::Set* dat_set;
 };
 
 }

@@ -2,7 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Element/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 
 
 namespace k4n::capture{

@@ -3,9 +3,9 @@
 #include <string>
 
 namespace cam{class Node;}
-namespace dat{class Node;}
-namespace dat{class UID;}
-namespace dat{class Structure;}
+namespace dat::elm{class Node;}
+namespace dat::elm{class UID;}
+namespace dat::elm{class Structure;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Object;}
 namespace dat::base{class Glyph;}
@@ -23,7 +23,7 @@ class Entity
 {
 public:
   //Constructor / Destructor
-  Entity(dat::Node* node_data);
+  Entity(dat::elm::Node* node_element);
   ~Entity();
 
 public:
@@ -39,8 +39,8 @@ private:
   cam::Node* node_camera;
   eng::Node* node_engine;
   vk::data::Data* vk_data;
-  dat::Structure* dat_struct;
-  dat::UID* dat_uid;
+  dat::elm::Structure* dat_struct;
+  dat::elm::UID* dat_uid;
   cam::Control* cam_control;
   ope::attribut::Location* ope_location;
 };

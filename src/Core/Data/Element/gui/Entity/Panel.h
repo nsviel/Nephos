@@ -4,7 +4,7 @@
 
 namespace dat{class Node;}
 namespace dat::graph{class Selection;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::gui::entity{class Topology;}
 namespace dat::gui::entity{class Data;}
@@ -19,7 +19,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(dat::Node* node_data, bool* show_window);
+  Panel(dat::elm::Node* node_element, bool* show_window);
   ~Panel();
 
   //Main function
@@ -38,7 +38,7 @@ private:
   ope::attribut::Location* ope_location;
   ope::Operation* ope_operation;
   dat::graph::Selection* dat_selection;
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
   dat::gui::entity::Topology* gui_topology;
   dat::gui::entity::Data* gui_data;
 

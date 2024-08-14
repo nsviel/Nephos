@@ -3,7 +3,7 @@
 #include <vector>
 
 namespace cam{class Entity;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Set;}
 namespace dat::graph{class Node;}
 namespace dat::graph{class Graph;}
 namespace dat::graph{class Structure;}
@@ -33,7 +33,7 @@ public:
 
 private:
   dat::graph::Graph* dat_graph;
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
   dat::graph::Structure* dat_struct;
 };
 

@@ -5,7 +5,7 @@
 #include <Dynamic/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Element/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 #include <Renderer/Namespace.h>
 
 

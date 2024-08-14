@@ -6,7 +6,7 @@
 namespace ctl{class Node;}
 namespace ctl{class Structure;}
 namespace dat::graph{class Selection;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Set;}
 namespace ope{class Operation;}
 
 
@@ -36,7 +36,7 @@ public:
 private:
   ctl::Structure* ctl_struct;
   dat::graph::Selection* dat_selection;
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
   ope::Operation* ope_operation;
 };
 

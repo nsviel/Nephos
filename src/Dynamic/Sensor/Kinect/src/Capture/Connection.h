@@ -3,7 +3,7 @@
 #include <thread>
 
 namespace k4n{class Node;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Set;}
 namespace dat::graph{class Graph;}
 namespace dat::base{class Set;}
 namespace io::imp{class Operation;}
@@ -31,7 +31,7 @@ public:
 
 private:
   k4n::Node* node_k4n;
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
   dat::graph::Graph* dat_graph;
   io::imp::Operation* io_operation;
 

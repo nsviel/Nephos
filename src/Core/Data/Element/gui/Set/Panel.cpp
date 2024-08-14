@@ -6,10 +6,10 @@
 namespace dat::gui::set{
 
 //Constructor / Destructor
-Panel::Panel(dat::Node* node_data, bool* show_window){
+Panel::Panel(dat::elm::Node* node_element, bool* show_window){
   //---------------------------
 
-  this->dat_set = node_data->get_dat_set();
+  this->dat_set = node_element->get_dat_set();
 
   this->panel_show = show_window;
   this->panel_name = "Set";

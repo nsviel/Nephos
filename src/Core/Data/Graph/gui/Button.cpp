@@ -1,6 +1,6 @@
 #include "Button.h"
 
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 #include <Element/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 

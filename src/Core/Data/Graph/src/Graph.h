@@ -6,7 +6,7 @@ namespace cam{class Entity;}
 namespace dat{class Node;}
 namespace dat::graph{class Node;}
 namespace dat::graph{class Structure;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
@@ -34,7 +34,7 @@ public:
 
 private:
   dat::Node* node_data;
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
   dat::graph::Structure* dat_struct;
 };
 

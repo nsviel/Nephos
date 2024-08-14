@@ -5,7 +5,7 @@
 #include <Element/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 #include <Control/Namespace.h>
 
 

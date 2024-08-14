@@ -3,8 +3,8 @@
 #include <string>
 
 namespace dat::graph{class Node;}
-namespace dat::element{class Set;}
-namespace dat::element{class Entity;}
+namespace dat::elm{class Set;}
+namespace dat::elm{class Entity;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
@@ -27,8 +27,8 @@ public:
   void button_remove(dat::base::Set* set);
 
 private:
-  dat::element::Set* dat_set;
-  dat::element::Entity* dat_entity;
+  dat::elm::Set* dat_set;
+  dat::elm::Entity* dat_entity;
 };
 
 }

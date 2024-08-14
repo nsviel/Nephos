@@ -4,7 +4,7 @@
 #include <Element/Namespace.h>
 #include <Importer/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 
 
 namespace io::imp{

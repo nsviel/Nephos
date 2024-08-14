@@ -8,13 +8,13 @@
 namespace dat::graph{class Node;}
 
 
-namespace dat{
+namespace dat::elm{
 
 class UID
 {
 public:
   //Constructor / Destructor
-  UID(dat::graph::Node* node_graph);
+  UID();
   ~UID();
 
 public:

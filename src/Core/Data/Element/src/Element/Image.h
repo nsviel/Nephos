@@ -3,19 +3,19 @@
 #include <glm/glm.hpp>
 #include <string>
 
-namespace dat{class Node;}
-namespace dat{class UID;}
+namespace dat::elm{class Node;}
+namespace dat::elm{class UID;}
 namespace dat::base{class Entity;}
 namespace utl::media{class Image;}
 
 
-namespace dat::element{
+namespace dat::elm{
 
 class Image
 {
 public:
   //Constructor / Destructor
-  Image(dat::Node* node_data);
+  Image(dat::elm::Node* node_element);
   ~Image();
 
 public:
@@ -29,7 +29,7 @@ public:
   utl::media::Image* get_or_create_image(dat::base::Entity* entity, std::string name);
 
 private:
-  dat::UID* dat_uid;
+  dat::elm::UID* dat_uid;
 };
 
 }

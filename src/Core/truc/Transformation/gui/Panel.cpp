@@ -3,7 +3,7 @@
 #include <IO/Namespace.h>
 #include <Element/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Graph/Namespace.h>
+#include <Data/Node.h>
 
 
 namespace io::trf::gui{

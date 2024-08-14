@@ -8,10 +8,10 @@
 namespace dat::element{
 
 //Constructor / Destructor
-Image::Image(dat::Node* node_data){
+Image::Image(dat::elm::Node* node_element){
   //---------------------------
 
-  this->dat_uid = node_data->get_dat_uid();
+  this->dat_uid = node_element->get_dat_uid();
 
   //---------------------------
 }

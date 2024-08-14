@@ -5,7 +5,7 @@
 
 namespace dat::graph{class Graph;}
 namespace dat{class Glyph;}
-namespace dat::element{class Set;}
+namespace dat::elm{class Set;}
 namespace eng{class Node;}
 namespace cam{class Node;}
 namespace cam{class Entity;}
@@ -35,7 +35,7 @@ private:
   vk::image::Screenshot* vk_screenshot;
   dat::graph::Graph* dat_graph;
   dat::Glyph* dat_glyph;
-  dat::element::Set* dat_set;
+  dat::elm::Set* dat_set;
 };
 
 }
