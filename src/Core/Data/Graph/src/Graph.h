@@ -7,6 +7,7 @@ namespace dat{class Node;}
 namespace dat::graph{class Node;}
 namespace dat::graph{class Structure;}
 namespace dat::elm{class Set;}
+namespace dat::elm{class Glyph;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
@@ -33,7 +34,7 @@ public:
   dat::base::Set* get_set_scene();
 
 private:
-  dat::Node* node_data;
+  dat::elm::Glyph* dat_glyph;
   dat::elm::Set* dat_set;
   dat::graph::Structure* dat_struct;
 };

@@ -14,7 +14,7 @@ Graph::Graph(dat::graph::Node* node_graph){
   dat::Node* node_data = node_graph->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->node_data = node_data;
+  this->dat_glyph = node_element->get_dat_glyph();
   this->dat_struct = node_graph->get_dat_struct();
   this->dat_set = node_element->get_dat_set();
 
@@ -24,8 +24,6 @@ Graph::~Graph(){}
 
 //Main function
 void Graph::init(){
-  dat::elm::Node* node_element = node_data->get_node_element();
-  dat::elm::Glyph* dat_glyph = node_element->get_dat_glyph();
   //---------------------------
 
   //Background permanent elements

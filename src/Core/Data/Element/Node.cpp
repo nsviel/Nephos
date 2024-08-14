@@ -10,12 +10,12 @@
 namespace dat::elm{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
+Node::Node(dat::Node* node_data){
   //---------------------------
 
   //Dependancy
-  this->node_engine = node_engine;
-  this->node_vulkan = node_engine->get_node_vulkan();
+  this->node_engine = node_data->get_node_engine();
+  this->node_vulkan = node_data->get_node_vulkan();
 
   //Child
   this->dat_struct = new dat::elm::Structure();

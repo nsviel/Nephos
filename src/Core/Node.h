@@ -13,7 +13,6 @@ namespace prf{class Node;}
 namespace ope{class Node;}
 namespace rad{class Node;}
 namespace ctl{class Node;}
-namespace dat::graph{class Node;}
 namespace prf::dynamic{class Tasker;}
 namespace utl::thread::task{class Pool;}
 
@@ -40,7 +39,6 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline cam::Node* get_node_camera(){return node_camera;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline dat::graph::Node* get_node_graph(){return node_graph;}
   inline io::Node* get_node_io(){return node_io;}
   inline ctl::Node* get_node_control(){return node_control;}
   inline ope::Node* get_node_operation(){return node_operation;}
@@ -61,7 +59,6 @@ private:
   prf::Node* node_profiler = nullptr;
   dyn::Node* node_dynamic = nullptr;
   ctl::Node* node_control = nullptr;
-  dat::graph::Node* node_graph;
   prf::dynamic::Tasker* tasker;
   utl::thread::task::Pool* thread_pool;
 };

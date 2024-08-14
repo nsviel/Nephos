@@ -26,7 +26,6 @@ Node::Node(app::Node* node_app){
   this->node_vulkan = node_app->get_node_vulkan();
   this->node_profiler = new prf::Node(this);
   this->node_data = new dat::Node(this);
-  this->node_graph = new dat::graph::Node(this);
   this->node_operation = new ope::Node(this);
   this->node_camera = new cam::Node(this);
   this->node_radio = new rad::Node(this);

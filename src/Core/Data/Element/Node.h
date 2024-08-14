@@ -4,6 +4,7 @@
 
 namespace vk{class Node;}
 namespace eng{class Node;}
+namespace dat{class Node;}
 namespace dat::elm{class Entity;}
 namespace dat::elm{class Set;}
 namespace dat::elm{class Image;}
@@ -18,7 +19,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(dat::Node* node_data);
   ~Node();
 
 public:

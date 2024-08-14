@@ -9,18 +9,17 @@
 namespace dat::graph{
 
 //Constructor / Destructor
-Node::Node(eng::Node* node_engine){
+Node::Node(dat::Node* node_data){
   utl::gui::Panel* dat_panel = add_panel("Graph", ICON_FA_FILE, true);
   //---------------------------
 
   //Dependancy
-  this->node_engine = node_engine;
-  this->node_vulkan = node_engine->get_node_vulkan();
-  this->node_data = node_engine->get_node_data();
+  this->node_data = node_data;
+  this->node_engine = node_data->get_node_engine();
+  this->node_vulkan = node_data->get_node_vulkan();
 
   //Child
   this->dat_struct = new dat::graph::Structure();
-
   this->dat_graph = new dat::graph::Graph(this);
   this->dat_selection = new dat::graph::Selection(this);
   this->gui_graph = new dat::graph::gui::Panel(this, &dat_panel->is_open);

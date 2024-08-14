@@ -17,7 +17,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(eng::Node* node_engine);
+  Node(dat::Node* node_data);
   ~Node();
 
 public:
