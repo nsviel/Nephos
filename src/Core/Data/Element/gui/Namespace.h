@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Element/gui/Entity/Namespace.h>
-#include <Element/gui/Set/Namespace.h>
+#include "Entity/Namespace.h"
+#include "Set/Namespace.h"

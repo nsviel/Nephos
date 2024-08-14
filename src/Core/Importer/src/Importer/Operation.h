@@ -19,7 +19,7 @@ namespace ope{class Operation;}
 namespace utl::base{class Attribut;}
 
 
-namespace io::importer{
+namespace io::imp{
 
 class Operation
 {

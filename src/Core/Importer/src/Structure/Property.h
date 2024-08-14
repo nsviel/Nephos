@@ -3,7 +3,7 @@
 #include <IO/src/Import/Structure/Enum.h>
 
 
-namespace io::importer{
+namespace io::imp{
 
 struct Property{
 

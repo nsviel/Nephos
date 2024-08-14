@@ -9,10 +9,10 @@ namespace utl::base{class Data;}
 namespace utl::base{class Element;}
 namespace utl::base{class Path;}
 namespace utl::base{class Thread;}
-namespace io{class Node;}
-namespace io{class Structure;}
-namespace io::importer{class Operation;}
-namespace io::importer{class Base;}
+namespace io::imp{class Node;}
+namespace io::imp{class Structure;}
+namespace io::imp{class Operation;}
+namespace io::imp{class Base;}
 
 
 

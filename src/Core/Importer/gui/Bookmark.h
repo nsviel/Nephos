@@ -4,12 +4,12 @@
 
 namespace io{class Structure;}
 namespace io{class Importer;}
-namespace io::bookmark{class Manager;}
-namespace io::gui::importer{class Panel;}
-namespace io::gui::importer{class Navigator;}
+namespace io::imp::bookmark{class Manager;}
+namespace io::imp::gui{class Panel;}
+namespace io::imp::gui{class Navigator;}
 
 
-namespace io::gui::importer{
+namespace io::imp::gui{
 
 class Bookmark
 {

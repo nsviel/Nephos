@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Element/src/Structure.h>
-#include <Element/src/Base/Namespace.h>
-#include <Element/src/Element/Namespace.h>
-#include <Element/src/Glyph/Namespace.h>
+#include "Structure.h"
+#include "Base/Namespace.h"
+#include "Element/Namespace.h"
+#include "Glyph/Namespace.h"

@@ -3,11 +3,11 @@
 #include <Utility/GUI/Navigator/Navigator.h>
 
 namespace io{class Structure;}
-namespace io::gui::importer{class Panel;}
+namespace io::imp::gui{class Panel;}
 namespace utl::gui{class Navigator;}
 
 
-namespace io::gui::importer{
+namespace io::imp::gui{
 
 class Navigator
 {

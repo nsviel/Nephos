@@ -7,7 +7,7 @@
 #include <Graph/Namespace.h>
 
 
-namespace io::importer{
+namespace io::imp{
 
 //Constructor / Destructor
 Operation::Operation(io::Node* node_io){

@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace io::gui::importer{
+namespace io::imp::gui{
 
 //Constructor / Destructor
 Operation::Operation(io::gui::importer::Panel* gui_panel){

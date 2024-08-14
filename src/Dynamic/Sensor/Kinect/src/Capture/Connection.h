@@ -6,7 +6,7 @@ namespace k4n{class Node;}
 namespace dat::element{class Set;}
 namespace dat::graph{class Graph;}
 namespace dat::base{class Set;}
-namespace io::importer{class Operation;}
+namespace io::imp{class Operation;}
 
 
 namespace k4n::capture{

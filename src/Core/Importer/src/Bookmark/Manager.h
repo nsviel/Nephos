@@ -4,10 +4,10 @@
 #include <list>
 
 namespace io{class Node;}
-namespace io::bookmark{class Item;}
+namespace io::imp::bookmark{class Item;}
 
 
-namespace io::bookmark{
+namespace io::imp::bookmark{
 
 class Manager
 {

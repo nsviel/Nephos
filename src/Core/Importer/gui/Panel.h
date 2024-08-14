@@ -3,12 +3,12 @@
 #include <string>
 
 namespace io{class Node;}
-namespace io::gui::importer{class Bookmark;}
-namespace io::gui::importer{class Operation;}
-namespace io::gui::importer{class Navigator;}
+namespace io::imp::gui{class Bookmark;}
+namespace io::imp::gui{class Operation;}
+namespace io::imp::gui{class Navigator;}
 
 
-namespace io::gui::importer{
+namespace io::imp::gui{
 
 class Panel
 {

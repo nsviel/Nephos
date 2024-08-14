@@ -7,12 +7,12 @@
 
 namespace io{class Structure;}
 namespace io{class Importer;}
-namespace io::gui::importer{class Panel;}
-namespace io::gui::importer{class Navigator;}
+namespace io::imp::gui{class Panel;}
+namespace io::imp::gui{class Navigator;}
 namespace utl::base{class Path;}
 
 
-namespace io::gui::importer{
+namespace io::imp::gui{
 
 class Operation
 {

@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace io::gui::importer{
+namespace io::imp::gui{
 
 //Constructor / Destructor
 Panel::Panel(io::Node* node_io, bool* show_window){

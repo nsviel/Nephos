@@ -17,7 +17,7 @@ namespace io::gui::exporter{class Panel;}
 namespace io::gui::transformation{class Panel;}
 
 
-namespace io{
+namespace io::imp{
 
 class Node : public utl::base::Node
 {
@@ -35,11 +35,9 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
 
-  inline io::Structure* get_io_struct(){return io_struct;}
+  inline io::imp::Structure* get_io_struct(){return io_struct;}
   inline io::Importer* get_io_importer(){return io_importer;}
-  inline io::importer::Operation* get_io_import_ope(){return io_import_ope;}
-  inline io::Exporter* get_io_exporter(){return io_exporter;}
-  inline io::Transformation* get_io_transformation(){return io_transformation;}
+  inline io::importer::Operation* get_imp_operation(){return io_import_ope;}
   inline io::bookmark::Manager* get_io_bookmark(){return io_bookmark;}
 
 private:

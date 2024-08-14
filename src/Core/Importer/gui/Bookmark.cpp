@@ -7,7 +7,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace io::gui::importer{
+namespace io::imp::gui{
 
 //Constructor / Destructor
 Bookmark::Bookmark(io::gui::importer::Panel* gui_panel){

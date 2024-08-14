@@ -7,7 +7,7 @@
 #include <string>
 
 
-namespace io::importer{
+namespace io::imp{
 
 struct Configuration{
   io::importer::Encoding encoding = io::importer::ASCII;

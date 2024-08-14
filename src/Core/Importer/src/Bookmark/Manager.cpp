@@ -5,7 +5,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace io::bookmark{
+namespace io::imp::bookmark{
 
 //Constructor / Destructor
 Manager::Manager(io::Node* node_io){
