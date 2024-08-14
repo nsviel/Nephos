@@ -8,7 +8,7 @@
 #include <Interface/Namespace.h>
 
 
-namespace itf::control{
+namespace ctl::control{
 
 //Constructor / Destructor
 Wheel::Wheel(itf::Node* node_interface){

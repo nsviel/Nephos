@@ -7,16 +7,13 @@ namespace eng{class Node;}
 namespace cam{class Node;}
 namespace dyn{class Node;}
 namespace dat{class Node;}
-namespace itf{class Structure;}
-namespace itf::control{class Navigation;}
-namespace itf::control{class Wheel;}
-namespace itf::control{class Player;}
-namespace itf::control{class Edition;}
-namespace itf::render{class Shader;}
-namespace itf::gui{class Option;}
-namespace itf::gui{class Control;}
-namespace itf::gui{class Shader;}
-namespace itf::gui{class Renderer;}
+namespace ctl{class Structure;}
+namespace ctl::control{class Navigation;}
+namespace ctl::control{class Wheel;}
+namespace ctl::control{class Player;}
+namespace ctl::control{class Edition;}
+namespace ctl::render{class Shader;}
+namespace ctl::gui{class Control;}
 
 
 namespace ctl{
@@ -61,9 +58,6 @@ private:
   itf::control::Edition* itf_edition;
   itf::render::Shader* itf_shader;
   itf::gui::Control* gui_control;
-  itf::gui::Option* gui_option;
-  itf::gui::Shader* gui_shader;
-  itf::gui::Renderer* gui_render;
 
 };
 

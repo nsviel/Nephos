@@ -2,15 +2,15 @@
 
 #include <glm/glm.hpp>
 
-namespace itf{class Node;}
-namespace itf{class Structure;}
-namespace itf::gui{class Edition;}
-namespace itf::gui{class Navigation;}
-namespace itf::gui{class Player;}
-namespace itf::gui{class Render;}
+namespace ctl{class Node;}
+namespace ctl{class Structure;}
+namespace ctl::gui{class Edition;}
+namespace ctl::gui{class Navigation;}
+namespace ctl::gui{class Player;}
+namespace ctl::gui{class Render;}
 
 
-namespace itf::gui{
+namespace ctl::gui{
 
 class Control
 {

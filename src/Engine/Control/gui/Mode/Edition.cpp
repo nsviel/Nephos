@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace itf::gui{
+namespace ctl::gui{
 
 //Constructor / Destructor
 Edition::Edition(itf::Node* node_interface){

@@ -2,15 +2,15 @@
 
 #include <glm/glm.hpp>
 
-namespace itf{class Node;}
-namespace itf{class Structure;}
+namespace ctl{class Node;}
+namespace ctl{class Structure;}
 namespace cam{class Control;}
 namespace cam{class Manager;}
 namespace cam{class Structure;}
 namespace vk::window{class GLFW;}
 
 
-namespace itf::control{
+namespace ctl::mode{
 
 class Navigation
 {

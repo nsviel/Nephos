@@ -3,15 +3,15 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-namespace itf{class Node;}
-namespace itf{class Structure;}
+namespace ctl{class Node;}
+namespace ctl{class Structure;}
 namespace eng{class Node;}
 namespace ope{class Operation;}
 namespace ope::attribut{class Location;}
 namespace dat::graph{class Selection;}
 
 
-namespace itf::control{
+namespace ctl::control{
 
 enum Wheel_mode{
   WHEEL_R_X = 0,

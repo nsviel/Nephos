@@ -2,12 +2,12 @@
 
 #include <glm/glm.hpp>
 
-namespace itf{class Node;}
-namespace itf{class Structure;}
-namespace itf::control{class Navigation;}
+namespace ctl{class Node;}
+namespace ctl{class Structure;}
+namespace ctl::control{class Navigation;}
 
 
-namespace itf::gui{
+namespace ctl::gui{
 
 class Navigation
 {

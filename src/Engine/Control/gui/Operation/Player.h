@@ -1,11 +1,11 @@
-#pragma once
+namespace ctl#pragma once
 
-namespace itf{class Node;}
-namespace itf{class Structure;}
-namespace itf::control{class Player;}
+namespace ctl{class Node;}
+namespace ctl{class Structure;}
+namespace ctl::control{class Player;}
 
 
-namespace itf::gui{
+namespace ctl::gui{
 
 class Player
 {

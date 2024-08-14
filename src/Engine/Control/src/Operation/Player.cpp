@@ -5,7 +5,7 @@
 #include <Interface/Namespace.h>
 
 
-namespace itf::control{
+namespace ctl::control{
 
 //Constructor / Destructor
 Player::Player(itf::Node* node_interface){

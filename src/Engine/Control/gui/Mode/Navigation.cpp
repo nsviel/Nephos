@@ -5,7 +5,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace itf::gui{
+namespace ctl::gui{
 
 //Constructor / Destructor
 Navigation::Navigation(itf::Node* node_interface){

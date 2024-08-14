@@ -3,14 +3,14 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-namespace itf{class Node;}
-namespace itf{class Structure;}
+namespace ctl{class Node;}
+namespace ctl{class Structure;}
 namespace dat::graph{class Selection;}
 namespace dat::element{class Set;}
 namespace ope{class Operation;}
 
 
-namespace itf::control{
+namespace ctl::mode{
 
 class Edition
 {

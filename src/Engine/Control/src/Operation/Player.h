@@ -1,11 +1,11 @@
 #pragma once
 
 namespace dat::graph{class Selection;}
-namespace itf{class Node;}
+namespace ctl{class Node;}
 namespace dyn::player{class Player;}
 
 
-namespace itf::control{
+namespace ctl::control{
 
 class Player
 {

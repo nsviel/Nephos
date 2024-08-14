@@ -5,7 +5,7 @@
 #include <string>
 
 
-namespace itf::control{
+namespace ctl{
 
 struct Structure{
   //---------------------------

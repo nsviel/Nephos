@@ -1,12 +1,12 @@
 #pragma once
 
-namespace itf{class Node;}
-namespace itf{class Structure;}
-namespace itf::control{class Edition;}
-namespace itf::control{class Wheel;}
+namespace ctl{class Node;}
+namespace ctl{class Structure;}
+namespace ctl::control{class Edition;}
+namespace ctl::control{class Wheel;}
 
 
-namespace itf::gui{
+namespace ctl::gui{
 
 class Edition
 {

@@ -1,11 +1,11 @@
 #pragma once
 
 namespace eng{class Node;}
-namespace itf{class Node;}
-namespace itf{class Structure;}
+namespace ctl{class Node;}
+namespace ctl{class Structure;}
 
 
-namespace itf::gui{
+namespace ctl::gui{
 
 class Render
 {

@@ -5,7 +5,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace itf::control{
+namespace ctl::mode{
 
 //Constructor / Destructor
 Navigation::Navigation(itf::Node* node_interface){

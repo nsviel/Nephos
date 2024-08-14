@@ -5,7 +5,7 @@
 #include <Operation/Namespace.h>
 
 
-namespace itf::control{
+namespace ctl::mode{
 
 //Constructor / Destructor
 Edition::Edition(itf::Node* node_interface){

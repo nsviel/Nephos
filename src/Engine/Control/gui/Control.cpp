@@ -3,7 +3,7 @@
 #include <Interface/Namespace.h>
 
 
-namespace itf::gui{
+namespace ctl::gui{
 
 //Constructor / Destructor
 Control::Control(itf::Node* node_interface){
