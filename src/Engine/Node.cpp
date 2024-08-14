@@ -6,7 +6,7 @@
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Camera/Namespace.h>
-#include <Interface/Namespace.h>
+#include <Rendering/Namespace.h>
 #include <Data/Namespace.h>
 #include <IO/Namespace.h>
 #include <Dynamic/Namespace.h>

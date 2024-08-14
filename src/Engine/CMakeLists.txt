@@ -4,7 +4,7 @@ set(LIBRARY_NAME LIBRARY_ENGINE)
 # Source files
 #-----------------
 add_subdirectory(Camera)
-add_subdirectory(Interface)
+add_subdirectory(Rendering)
 add_subdirectory(IO)
 add_subdirectory(Data)
 add_subdirectory(Profiler)
@@ -28,7 +28,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_CAMERA
   LIBRARY_IO
   LIBRARY_OPERATION
-  LIBRARY_INTERFACE
+  LIBRARY_RENDERING
   LIBRARY_DYNAMIC
   LIBRARY_CONTROL
 )

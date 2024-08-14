@@ -5,7 +5,7 @@
 #include <Dynamic/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Data/Namespace.h>
-#include <Interface/Namespace.h>
+#include <Rendering/Namespace.h>
 
 
 namespace dyn::gui::stream{

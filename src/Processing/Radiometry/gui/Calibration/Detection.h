@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Interface/gui/Render/Stream.h>
+#include <Rendering/gui/Stream.h>
 
 namespace dyn::base{class Sensor;}
 namespace rad{class Node;}
