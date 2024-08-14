@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_IO)
+set(LIBRARY_NAME IO_IMPORTER)
 
 #-----------------
 # Source files

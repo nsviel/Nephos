@@ -31,7 +31,7 @@ public:
 private:
   io::Structure* io_struct;
   io::Importer* io_importer;
-  io::bookmark::Manager* io_bookmark;
+  io::imp::bookmark::Manager* io_bookmark;
   io::gui::importer::Navigator* gui_navigator;
 };
 

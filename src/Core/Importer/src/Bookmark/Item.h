@@ -23,7 +23,7 @@ struct Item{
 
   //Item stuff
   int ID = -1;
-  int type = io::bookmark::FILE;
+  int type = io::imp::bookmark::FILE;
   utl::base::Path path;
   std::string size = "";
   std::string icon = "";

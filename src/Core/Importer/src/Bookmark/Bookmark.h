@@ -31,10 +31,10 @@ public:
   bool is_path_bookmarked(std::string path);
   void sort_list_item();
 
-  inline std::list<io::bookmark::Item> get_list_item(){return list_item;}
+  inline std::list<io::imp::bookmark::Item> get_list_item(){return list_item;}
 
 private:
-  std::list<io::bookmark::Item> list_item;
+  std::list<io::imp::bookmark::Item> list_item;
   std::string path_bookmark_file;
 };
 
