@@ -13,10 +13,11 @@ Selection::Selection(dat::graph::Node* node_graph){
   //---------------------------
 
   dat::Node* node_data = node_graph->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->dat_graph = node_graph->get_dat_graph();
   this->dat_struct = node_graph->get_dat_struct();
-  this->dat_set = node_data->get_dat_set();
+  this->dat_set = node_element->get_dat_set();
 
   //---------------------------
 }

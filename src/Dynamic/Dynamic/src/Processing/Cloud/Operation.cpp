@@ -13,8 +13,9 @@ Operation::Operation(dyn::Node* node_dynamic){
 
   dat::Node* node_data = node_dynamic->get_node_data();
   ope::Node* node_operation = node_dynamic->get_node_operation();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->dat_entity = node_data->get_dat_entity();
+  this->dat_entity = node_element->get_dat_entity();
   this->dyn_struct = node_dynamic->get_dyn_struct();
   this->dyn_normal = new dyn::cloud::Normal(node_dynamic);
   this->dyn_recorder = new dyn::cloud::Recorder(node_dynamic);

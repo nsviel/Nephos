@@ -20,10 +20,10 @@ Node::Node(eng::Node* node_engine){
   //Child
   this->dat_struct = new dat::Structure();
   this->dat_uid = new dat::UID();
-  this->dat_set = new dat::element::Set(this);
+  this->dat_set = new dat::elm::Set(this);
   this->dat_entity = new dat::elm::Entity(this);
   this->dat_glyph = new dat::Glyph(this);
-  this->dat_image = new dat::element::Image(this);
+  this->dat_image = new dat::elm::Image(this);
 
   //---------------------------
 }

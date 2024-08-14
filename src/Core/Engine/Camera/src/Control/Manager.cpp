@@ -16,13 +16,14 @@ Manager::Manager(cam::Node* node_camera){
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
   dat::Node* node_data = node_camera->get_node_data();
   dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->vk_screenshot = node_vulkan->get_vk_screenshot();
   this->cam_struct = node_camera->get_cam_struct();
   this->cam_control = node_camera->get_cam_control();
   this->dat_graph = node_graph->get_dat_graph();
-  this->dat_glyph = node_data->get_dat_glyph();
-  this->dat_set = node_data->get_dat_set();
+  this->dat_glyph = node_element->get_dat_glyph();
+  this->dat_set = node_element->get_dat_set();
 
   //---------------------------
 }

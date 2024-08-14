@@ -11,10 +11,11 @@ Capture::Capture(k4n::Node* node_k4n){
   //---------------------------
 
   dat::Node* node_data = node_k4n->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_structure();
-  this->dat_set = node_data->get_dat_set();
+  this->dat_set = node_element->get_dat_set();
 
   this->item_width = 100;
 

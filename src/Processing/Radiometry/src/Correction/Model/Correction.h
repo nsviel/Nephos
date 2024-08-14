@@ -34,7 +34,7 @@ public:
   float apply_correction(float I_raw, float R, float It);
 
 private:
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
   dat::graph::Selection* dat_selection;
   rad::correction::Structure* rad_struct;
   rad::correction::Model* rad_model;

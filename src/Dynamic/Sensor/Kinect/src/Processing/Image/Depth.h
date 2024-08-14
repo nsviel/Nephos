@@ -30,7 +30,7 @@ public:
   void find_depth_mode_range(k4n::base::Sensor* sensor);
 
 private:
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
 };
 
 }

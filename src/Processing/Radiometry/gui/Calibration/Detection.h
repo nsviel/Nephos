@@ -34,7 +34,7 @@ private:
   rad::calibration::Structure* rad_struct;
   rad::calibration::Process* rad_process;
   rnd::gui::Stream* stream;
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
 };
 
 }

@@ -12,9 +12,10 @@ Button::Button(dat::graph::Node* node_graph){
   //---------------------------
 
   dat::Node* node_data = node_graph->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->dat_set = node_data->get_dat_set();
-  this->dat_entity = node_data->get_dat_entity();
+  this->dat_set = node_element->get_dat_set();
+  this->dat_entity = node_element->get_dat_entity();
 
   //---------------------------
 }

@@ -31,7 +31,7 @@ public:
   void find_ir_level(k4n::base::Sensor* sensor);
 
 private:
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
   dyn::Structure* dyn_struct;
 };
 

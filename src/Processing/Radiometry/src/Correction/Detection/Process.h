@@ -34,7 +34,7 @@ private:
   rad::correction::cloud::Detection* rad_cloud_detection;
   rad::correction::Glyph* rad_glyph;
   dat::graph::Selection* dat_selection;
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
 };
 
 }

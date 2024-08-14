@@ -33,8 +33,8 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
   inline dat::elm::Entity* get_dat_entity(){return dat_entity;}
-  inline dat::element::Set* get_dat_set(){return dat_set;}
-  inline dat::element::Image* get_dat_image(){return dat_image;}
+  inline dat::elm::Set* get_dat_set(){return dat_set;}
+  inline dat::elm::Image* get_dat_image(){return dat_image;}
   inline dat::Glyph* get_dat_glyph(){return dat_glyph;}
   inline dat::Structure* get_dat_struct(){return dat_struct;}
   inline dat::graph::Node* get_node_graph(){return node_graph;}
@@ -52,7 +52,7 @@ private:
   dat::elm::Set* dat_set;
   dat::Glyph* dat_glyph;
   dat::UID* dat_uid;
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
 
   bool show_scene = true;
   bool show_loader = true;

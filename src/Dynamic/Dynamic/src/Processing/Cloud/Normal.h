@@ -37,7 +37,7 @@ public:
 
 private:
   dyn::Structure* dyn_struct;
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
   dat::Glyph* dat_glyph;
   ope::normal::Structured* ope_normal;
   ope::image::Converter* ope_converter;

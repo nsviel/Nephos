@@ -30,7 +30,7 @@ public:
 private:
   dyn::Structure* dyn_struct;
   rad::correction::Correction* rad_correction;
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
 
   std::thread thread;
   bool thread_idle = true;

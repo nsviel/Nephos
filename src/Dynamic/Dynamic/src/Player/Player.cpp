@@ -13,9 +13,10 @@ Player::Player(dyn::Node* node_dynamic){
 
   dat::Node* node_data = node_dynamic->get_node_data();
   dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->dat_selection = node_graph->get_dat_selection();
-  this->dat_set = node_data->get_dat_set();
+  this->dat_set = node_element->get_dat_set();
 
   //---------------------------
 }

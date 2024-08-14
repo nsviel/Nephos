@@ -37,7 +37,7 @@ private:
   rad::correction::Glyph* rad_glyph;
   rad::correction::image::Hough* rad_hough;
   rad::correction::image::Image* rad_image;
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
 
   std::thread thread;
   bool thread_idle = true;

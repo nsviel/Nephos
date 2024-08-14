@@ -13,9 +13,10 @@ Glyph::Glyph(rad::correction::Node* node_correction){
 
   rad::Node* node_radio = node_correction->get_node_radio();
   dat::Node* node_data = node_radio->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->dat_glyph = node_data->get_dat_glyph();
-  this->dat_entity = node_data->get_dat_entity();
+  this->dat_glyph = node_element->get_dat_glyph();
+  this->dat_entity = node_element->get_dat_entity();
   this->node_engine = node_radio->get_node_engine();
   this->rad_struct = node_correction->get_rad_struct();
 

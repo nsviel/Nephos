@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace dat{class Node;}
+namespace dat::elm{class Node;}
 namespace dat::graph{class Selection;}
 namespace dat::elm{class Set;}
 namespace dat::base{class Entity;}

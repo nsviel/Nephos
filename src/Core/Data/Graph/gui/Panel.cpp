@@ -15,10 +15,11 @@ Panel::Panel(dat::graph::Node* node_graph, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_graph->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->dat_graph = node_graph->get_dat_graph();
   this->dat_selection = node_graph->get_dat_selection();
-  this->dat_set = node_data->get_dat_set();
+  this->dat_set = node_element->get_dat_set();
   this->gui_set = new dat::gui::set::Panel(node_data, &show_panel_set);
   this->gui_entity = new dat::gui::entity::Panel(node_data, &show_panel_entity);
   this->gui_button = new dat::graph::gui::Button(node_graph);

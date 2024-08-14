@@ -18,11 +18,12 @@ Normal::Normal(dyn::Node* node_dynamic){
 
   eng::Node* node_engine = node_dynamic->get_node_engine();
   dat::Node* node_data = node_dynamic->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->thread_pool = node_engine->get_thread_pool();
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->dat_image = node_data->get_dat_image();
-  this->dat_glyph = node_data->get_dat_glyph();
+  this->dat_image = node_element->get_dat_image();
+  this->dat_glyph = node_element->get_dat_glyph();
   this->ope_converter = new ope::image::Converter();
   this->ope_normal = new ope::normal::Structured();
   this->ope_location = new ope::attribut::Location();

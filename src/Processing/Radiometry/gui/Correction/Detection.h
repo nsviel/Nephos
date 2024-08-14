@@ -40,7 +40,7 @@ private:
   rad::correction::Process* rad_process;
   rad::correction::image::Hough* rad_hough;
   rnd::gui::Stream* stream;
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
 };
 
 }

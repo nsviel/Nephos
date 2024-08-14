@@ -41,7 +41,7 @@ void Operation::draw_ope_image(utl::base::Element* element){
 
   if(ImGui::Button("intensity to image")){
     dat::Node* node_data = node_engine->get_node_data();
-    dat::element::Image* dat_image = node_data->get_dat_image();
+    dat::elm::Image* dat_image = node_data->get_dat_image();
     dat::base::Entity* entity = dat_element->get_active_entity(element);
     utl::media::Image* image = dat_image->get_or_create_image(entity, "Intensity");
     ope_image->convert_spherical_pc_to_image(&entity->data, image);

@@ -28,7 +28,7 @@ private:
   rad::correction::Structure* rad_struct;
   rnd::gui::Stream* stream_1;
   rnd::gui::Stream* stream_2;
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
 };
 
 }

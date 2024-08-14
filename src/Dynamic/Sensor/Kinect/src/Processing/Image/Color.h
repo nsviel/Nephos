@@ -32,7 +32,7 @@ public:
   void retrieve_bgra_from_mjpeg(k4a::image& image, std::vector<uint8_t>& data);
 
 private:
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
 };
 
 }

@@ -33,7 +33,7 @@ private:
   rad::calibration::Structure* rad_struct;
   rad::calibration::Image* rad_image;
   rad::calibration::Rectangle* rad_rectangle;
-  dat::element::Image* dat_image;
+  dat::elm::Image* dat_image;
 
   bool thread_idle = true;
 };
