@@ -8,11 +8,10 @@ namespace cam{class Node;}
 namespace dyn{class Node;}
 namespace dat{class Node;}
 namespace ctl{class Structure;}
-namespace ctl::control{class Navigation;}
-namespace ctl::control{class Wheel;}
-namespace ctl::control{class Player;}
-namespace ctl::control{class Edition;}
-namespace ctl::render{class Shader;}
+namespace ctl::mode{class Navigation;}
+namespace ctl::mode{class Edition;}
+namespace ctl{class Wheel;}
+namespace ctl{class Player;}
 namespace ctl::gui{class Control;}
 
 
@@ -36,13 +35,12 @@ public:
   inline cam::Node* get_node_camera(){return node_camera;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline itf::Structure* get_itf_struct(){return itf_struct;}
-  inline itf::control::Navigation* get_itf_navigation(){return itf_navigation;}
-  inline itf::control::Wheel* get_itf_wheel(){return itf_wheel;}
-  inline itf::control::Player* get_itf_player(){return itf_player;}
-  inline itf::control::Edition* get_itf_edition(){return itf_edition;}
-  inline itf::render::Shader* get_itf_shader(){return itf_shader;}
-  inline itf::gui::Control* get_gui_control(){return gui_control;}
+  inline ctl::Structure* get_ctl_struct(){return ctl_struct;}
+  inline ctl::mode::Navigation* get_ctl_navigation(){return ctl_navigation;}
+  inline ctl::mode::Wheel* get_ctl_wheel(){return ctl_wheel;}
+  inline ctl::Player* get_ctl_player(){return ctl_player;}
+  inline ctl::Edition* get_ctl_edition(){return ctl_edition;}
+  inline ctl::gui::Control* get_gui_control(){return gui_control;}
 
 private:
   eng::Node* node_engine;
@@ -51,14 +49,12 @@ private:
   dat::Node* node_data;
   dyn::Node* node_dynamic;
 
-  itf::Structure* itf_struct;
-  itf::control::Navigation* itf_navigation;
-  itf::control::Wheel* itf_wheel;
-  itf::control::Player* itf_player;
-  itf::control::Edition* itf_edition;
-  itf::render::Shader* itf_shader;
-  itf::gui::Control* gui_control;
-
+  ctl::Structure* ctl_struct;
+  ctl::mode::Navigation* ctl_navigation;
+  ctl::mode::Edition* ctl_edition;
+  ctl::Wheel* ctl_wheel;
+  ctl::Player* ctl_player;
+  ctl::gui::Control* gui_control;
 };
 
 }

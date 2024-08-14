@@ -12,6 +12,7 @@
 #include <Dynamic/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Operation/Namespace.h>
+#include <Control/Namespace.h>
 
 
 namespace eng{
@@ -29,6 +30,7 @@ Node::Node(app::Node* node_app){
   this->node_camera = new cam::Node(this);
   this->node_radio = new rad::Node(this);
   this->node_dynamic = new dyn::Node(this);
+  this->node_control = new ctl::Node(this);
   this->node_interface = new itf::Node(this);
   this->node_io = new io::Node(this);
 

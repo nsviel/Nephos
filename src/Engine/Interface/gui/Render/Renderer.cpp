@@ -4,6 +4,7 @@
 #include <Utility/Namespace.h>
 #include <Interface/Namespace.h>
 #include <Data/Namespace.h>
+#include <Control/Namespace.h>
 
 
 namespace itf::gui{
@@ -13,9 +14,10 @@ Renderer::Renderer(itf::Node* node_interface){
   //---------------------------
 
   vk::Node* node_vulkan = node_interface->get_node_vulkan();
+  ctl::Node* node_control = node_interface->get_node_control();
 
-  this->itf_navigation = node_interface->get_itf_navigation();
-  this->gui_control = node_interface->get_gui_control();
+  this->ctl_navigation = node_control->get_ctl_navigation();
+  this->gui_control = node_control->get_gui_control();
   this->vk_imgui = node_vulkan->get_vk_imgui();
   this->vk_struct = node_vulkan->get_vk_struct();
 
@@ -63,7 +65,7 @@ void Renderer::engine_texture(){
   if(ImGui::IsItemHovered()){
     gui_control->run_control();
   }else{
-    itf_navigation->disable_camera_view();
+    ctl_navigation->disable_camera_view();
   }
 
   //---------------------------

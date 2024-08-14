@@ -30,7 +30,7 @@ public:
 
 private:
   itf::gui::Control* gui_control;
-  itf::control::Navigation* itf_navigation;
+  itf::control::Navigation* ctl_navigation;
   vk::gui::Imgui* vk_imgui;
   vk::Structure* vk_struct;
 

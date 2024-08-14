@@ -4,7 +4,7 @@
 
 namespace ctl{class Node;}
 namespace ctl{class Structure;}
-namespace ctl::control{class Navigation;}
+namespace ctl::mode{class Navigation;}
 
 
 namespace ctl::gui{
@@ -27,7 +27,7 @@ public:
 
 private:
   itf::Structure* itf_struct;
-  itf::control::Navigation* itf_navigation;
+  itf::control::Navigation* ctl_navigation;
 };
 
 }

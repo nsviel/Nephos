@@ -5,7 +5,7 @@ namespace ctl{class Node;}
 namespace dyn::player{class Player;}
 
 
-namespace ctl::control{
+namespace ctl{
 
 class Player
 {

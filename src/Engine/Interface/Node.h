@@ -7,7 +7,7 @@ namespace eng{class Node;}
 namespace cam{class Node;}
 namespace dyn{class Node;}
 namespace dat{class Node;}
-namespace itf{class Structure;}
+namespace ctl{class Node;}
 namespace itf::render{class Shader;}
 namespace itf::gui{class Option;}
 namespace itf::gui{class Shader;}
@@ -34,6 +34,7 @@ public:
   inline cam::Node* get_node_camera(){return node_camera;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
+  inline ctl::Node* get_node_control(){return node_control;}
   inline itf::render::Shader* get_itf_shader(){return itf_shader;}
 
 private:
@@ -42,6 +43,7 @@ private:
   cam::Node* node_camera;
   dat::Node* node_data;
   dyn::Node* node_dynamic;
+  ctl::Node* node_control;
 
   itf::render::Shader* itf_shader;
   itf::gui::Option* gui_option;

@@ -2,8 +2,8 @@
 
 namespace ctl{class Node;}
 namespace ctl{class Structure;}
-namespace ctl::control{class Edition;}
-namespace ctl::control{class Wheel;}
+namespace ctl::mode{class Edition;}
+namespace ctl{class Wheel;}
 
 
 namespace ctl::gui{

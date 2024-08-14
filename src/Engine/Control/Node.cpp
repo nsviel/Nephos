@@ -10,8 +10,6 @@ namespace ctl{
 
 //Constructor / Destructor
 Node::Node(eng::Node* node_engine){
-  utl::gui::Panel* opt_panel = add_panel("Option##456", ICON_FA_GEAR, false);
-  utl::gui::Panel* sha_panel = add_panel("Shader", ICON_FA_ROAD, false);
   //---------------------------
 
   //Dependancy
@@ -22,13 +20,12 @@ Node::Node(eng::Node* node_engine){
   this->node_dynamic = node_engine->get_node_dynamic();
 
   //Child
-  this->itf_struct = new itf::Structure();
-  this->itf_navigation = new itf::control::Navigation(this);
-  this->itf_edition = new itf::control::Edition(this);
-  this->itf_player = new itf::control::Player(this);
-  this->itf_wheel = new itf::control::Wheel(this);
-  this->itf_shader = new itf::render::Shader(this);
-  this->gui_control = new itf::gui::Control(this);
+  this->ctl_struct = new ctl::Structure();
+  this->ctl_navigation = new ctl::mode::Navigation(this);
+  this->ctl_edition = new ctl::mode::Edition(this);
+  this->ctl_player = new ctl::Player(this);
+  this->ctl_wheel = new ctl::Wheel(this);
+  this->gui_control = new ctl::gui::Control(this);
 
   //---------------------------
 }

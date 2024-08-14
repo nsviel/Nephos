@@ -20,6 +20,7 @@ Node::Node(eng::Node* node_engine){
   this->node_camera = node_engine->get_node_camera();
   this->node_data = node_engine->get_node_data();
   this->node_dynamic = node_engine->get_node_dynamic();
+  this->node_control = node_engine->get_node_control();
 
   //Child
   this->itf_shader = new itf::render::Shader(this);

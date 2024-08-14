@@ -1,8 +1,8 @@
-namespace ctl#pragma once
+#pragma once
 
 namespace ctl{class Node;}
 namespace ctl{class Structure;}
-namespace ctl::control{class Player;}
+namespace ctl{class Player;}
 
 
 namespace ctl::gui{

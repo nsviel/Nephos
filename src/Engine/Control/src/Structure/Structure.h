@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Interface/src/Control/Module/Wheel.h>
+#include <Control/src/Structure/Wheel.h>
 #include <glm/glm.hpp>
 #include <string>
 
