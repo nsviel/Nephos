@@ -4,7 +4,7 @@ namespace ope{class Operation;}
 namespace utl::base{class Element;}
 
 
-namespace dat::atr::gui{
+namespace dat::trf::gui{
 
 class Transformation
 {

@@ -1,30 +1,26 @@
-set(LIBRARY_NAME CORE_DATA)
+set(LIBRARY_NAME DATA_TRANSFORMATION)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Element)
-add_subdirectory(Graph)
-add_subdirectory(Player)
-add_subdirectory(Attribut)
-add_subdirectory(Transformation)
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
+  *.cpp
+  *.h
 )
 
 #-----------------
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
+find_package(OpenCV REQUIRED)
+find_library(LZ4_LIBRARIES NAMES liblz4.so HINTS "lz4/lib")
 
 #-----------------
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  DATA_ELEMENT
-  DATA_GRAPH
-  DATA_PLAYER
+  LIBRARY_UTILITY
+  LIBRARY_OPERATION
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
