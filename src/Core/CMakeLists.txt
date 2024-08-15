@@ -21,13 +21,14 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_UTILITY
+  MAIN_UTILITY
   MAIN_VULKAN
+  MAIN_MODULE
+  MAIN_DYNAMIC
 
   CORE_DATA
   CORE_IO
   CORE_ENGINE
-  LIBRARY_DYNAMIC
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

@@ -11,7 +11,7 @@ namespace mod{
 Node::Node(core::Node* node_core){
   //---------------------------
 
-  this->node_radio = new rad::Node(this);
+  this->node_radio = new rad::Node(node_core);
 
   //---------------------------
 }

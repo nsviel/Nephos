@@ -22,9 +22,9 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_UTILITY
+  MAIN_UTILITY
   MAIN_VULKAN
-  LIBRARY_DYNAMIC
+  MAIN_DYNAMIC
 
   ENGINE_CAMERA
   ENGINE_RENDERER

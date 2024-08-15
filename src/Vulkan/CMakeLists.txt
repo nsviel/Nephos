@@ -20,7 +20,7 @@ find_package(Vulkan REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_EXTERN
-  LIBRARY_UTILITY
+  MAIN_UTILITY
 
   ${Vulkan_LIBRARIES}
   -lglfw        # glfw

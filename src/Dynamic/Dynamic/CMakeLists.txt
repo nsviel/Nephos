@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_DYNAMIC)
+set(LIBRARY_NAME MAIN_DYNAMIC)
 
 #-----------------
 # Source files
@@ -16,7 +16,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_UTILITY
+  MAIN_UTILITY
   MAIN_CORE
   CORE_PROFILER
 
