@@ -16,6 +16,7 @@ Data::Data(k4n::Node* node_k4n){
   this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_xytable = new k4n::processing::cloud::XY_table(node_k4n);
   this->utl_attribut = new utl::base::Attribut();
+  this->atr_location = new dat::atr::Location();
 
   //---------------------------
 }
@@ -45,8 +46,7 @@ void Data::extract_data(k4n::base::Sensor* sensor){
   this->extraction_transfer(sensor);
   tasker->task_end("transfer");
 
-  dat::atr::Location atr_location;
-  atr_location.compute_height(sensor);
+  atr_location->compute_height(sensor);
 
   //---------------------------
 }

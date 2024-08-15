@@ -4,7 +4,7 @@ set(LIBRARY_NAME DATA_ATTRIBUT)
 # Source files
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
-  *.h
+  *.cpp
 )
 
 #-----------------

@@ -11,6 +11,7 @@ namespace k4n::base{class Sensor;}
 namespace k4n::processing::cloud{class XY_table;}
 namespace utl::base{class Data;}
 namespace utl::base{class Attribut;}
+namespace dat::atr{class Location;}
 
 
 namespace k4n::processing::cloud{
@@ -42,6 +43,7 @@ private:
   k4n::processing::cloud::XY_table* k4n_xytable;
   k4n::structure::Buffer buffer;
   utl::base::Attribut* utl_attribut;
+  dat::atr::Location* atr_location;
 };
 
 }

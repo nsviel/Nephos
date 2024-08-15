@@ -59,7 +59,7 @@ glm::mat4 Utils::get_rotation_mat(glm::vec3 r){
   //---------------------------
   return rotation;
 }
-glm::mat4 find_transformation_from_file(std::string path){
+glm::mat4 Utils::find_transformation_from_file(std::string path){
   //---------------------------
 
   if(path == ""){
@@ -110,7 +110,7 @@ glm::mat4 find_transformation_from_file(std::string path){
   //---------------------------
   return mat;
 }
-void save_transformation_to_file(glm::mat4& mat, std::string path){
+void Utils::save_transformation_to_file(glm::mat4& mat, std::string path){
   //---------------------------
 
   // Create a JSON object to store the matrix values
@@ -146,14 +146,14 @@ void save_transformation_to_file(glm::mat4& mat, std::string path){
 
   //---------------------------
 }
-void make_transformation_identity(glm::mat4& mat){
+void Utils::make_transformation_identity(glm::mat4& mat){
   //---------------------------
 
   mat = glm::mat4(1.0f);
 
   //---------------------------
 }
-void init_and_heighten_transformation(glm::mat4& mat, float value){
+void Utils::init_and_heighten_transformation(glm::mat4& mat, float value){
   //---------------------------
 
   mat = glm::mat4(1.0f);

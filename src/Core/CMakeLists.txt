@@ -3,9 +3,9 @@ set(LIBRARY_NAME LIBRARY_CORE)
 #-----------------
 # Source files
 #-----------------
+add_subdirectory(Data)
 add_subdirectory(Engine)
 add_subdirectory(IO)
-add_subdirectory(Data)
 add_subdirectory(Profiler)
 
 file(GLOB_RECURSE ALL_SOURCES
@@ -24,8 +24,8 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_VULKAN
 
-  CORE_IO
   CORE_DATA
+  CORE_IO
   CORE_ENGINE
   LIBRARY_OPERATION
   LIBRARY_DYNAMIC

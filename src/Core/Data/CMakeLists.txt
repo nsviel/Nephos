@@ -21,10 +21,10 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
+  DATA_ATTRIBUT
   DATA_ELEMENT
   DATA_GRAPH
   DATA_PLAYER
-  DATA_ATTRIBUT
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
