@@ -10,15 +10,15 @@ namespace dat::ply::gui{
 //Constructor / Destructor
 Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   //---------------------------
-sayHello();
+
   dat::Node* node_data = node_player->get_node_data();
   ope::Node* node_operation = node_player->get_node_operation();
   dat::gph::Node* node_graph = node_data->get_node_graph();
-sayHello();
-  this->dat_selection = node_graph->get_dat_selection();sayHello();
-  this->gui_configuration = new dat::ply::gui::Configuration();sayHello();
-  this->gui_player = new dat::ply::gui::Player(node_player);sayHello();
-  this->ope_panel = node_operation->get_gui_panel();sayHello();
+
+  this->dat_selection = node_graph->get_dat_selection();
+  this->gui_configuration = new dat::ply::gui::Configuration();
+  this->gui_player = new dat::ply::gui::Player(node_player);
+  this->ope_panel = node_operation->get_gui_panel();
 
   this->show_window = show_window;
   this->name = "Player";

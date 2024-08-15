@@ -23,13 +23,11 @@ public:
   //Subfunction
 
   inline core::Node* get_node_core(){return node_core;}
-  inline ope::Structure* get_ope_struct(){return ope_struct;}
-  inline ope::gui::Panel* get_gui_panel(){return gui_panel;}
+
 
 private:
   core::Node* node_core;
-  ope::Structure* ope_struct;
-  ope::gui::Panel* gui_panel;
+
 };
 
 }

@@ -11,8 +11,7 @@ Node::Node(core::Node* node_core){
   //---------------------------
 
   this->node_core = node_core;
-  this->ope_struct = new ope::Structure();
-  this->gui_panel = new ope::gui::Panel(this);
+
 
   //---------------------------
 }
