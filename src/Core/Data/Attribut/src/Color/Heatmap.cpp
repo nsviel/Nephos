@@ -1,12 +1,40 @@
-#include "Operation.h"
+#include "Heatmap.h"
 
-#include <Utility/Function/Math/Operation.h>
-#include <Utility/Component/Color/Namespace.h>
+#include <Operation/Namespace.h>
+#include <Data/Namespace.h>
 
 
-namespace utl::attribut{
+namespace dat::atr{
 
-void compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& rgba){
+//Constructor / Destructor
+Heatmap::Heatmap(dat::atr::Node* node_attribut){
+  //---------------------------
+
+  this->atr_struct = node_attribut->get_atr_struct();
+  this->utl_attribut = new utl::base::Attribut();
+
+  //---------------------------
+}
+Heatmap::~Heatmap(){}
+
+//Main function
+void Heatmap::colorization_heatmap(dat::base::Entity* entity){
+  utl::base::Data* data = &entity->data;
+  //---------------------------
+
+  //Normalization
+  std::vector<float>& vec_field = utl_attribut->get_field_data(data, atr_struct->color.field);
+  std::vector<float> field = vec_field;
+  math::normalize(field, atr_struct->color.range, glm::vec2(0, 1));
+
+  //Set to color
+  this->compute_heatmap(field, data->rgba);
+
+  //---------------------------
+}
+
+//Subfunction
+void Heatmap::compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& rgba){
   if(v_in.size() == 0) return;
   //---------------------------
 

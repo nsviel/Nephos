@@ -6,7 +6,6 @@ set(LIBRARY_NAME LIBRARY_OPERATION)
 
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
-  *.h
 )
 
 #-----------------

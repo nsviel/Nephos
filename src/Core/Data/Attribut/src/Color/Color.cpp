@@ -1,6 +1,5 @@
 #include "Color.h"
 
-#include <Utility/Function/Attribut/Operation.h>
 #include <Operation/Namespace.h>
 #include <Data/Namespace.h>
 
@@ -12,6 +11,7 @@ Color::Color(dat::atr::Node* node_attribut){
   //---------------------------
 
   this->atr_struct = node_attribut->get_atr_struct();
+  this->atr_heatmap = new dat::atr::Heatmap(node_attribut);
   this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
@@ -71,7 +71,7 @@ void Color::make_colorization(dat::base::Entity* entity){
       break;
     }
     case dat::atr::color::HEATMAP:{
-      this->colorization_heatmap(entity);
+      atr_heatmap->colorization_heatmap(entity);
       break;
     }
   }
@@ -178,20 +178,6 @@ void Color::colorization_structure(dat::base::Entity* entity){
       ++index;
     }
   }
-
-  //---------------------------
-}
-void Color::colorization_heatmap(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
-  //---------------------------
-
-  //Normalization
-  std::vector<float>& vec_field = utl_attribut->get_field_data(data, atr_struct->color.field);
-  std::vector<float> field = vec_field;
-  math::normalize(field, atr_struct->color.range, glm::vec2(0, 1));
-
-  //Set to color
-  utl::attribut::compute_heatmap(field, data->rgba);
 
   //---------------------------
 }
