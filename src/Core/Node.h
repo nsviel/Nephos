@@ -8,7 +8,6 @@ namespace vk{class Node;}
 namespace dat{class Node;}
 namespace dyn{class Node;}
 namespace prf{class Node;}
-namespace ope{class Node;}
 namespace rad{class Node;}
 namespace eng{class Node;}
 namespace prf::dynamic{class Tasker;}
@@ -38,7 +37,6 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
   inline eng::Node* get_node_engine(){return node_engine;}
-  inline ope::Node* get_node_operation(){return node_operation;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline rad::Node* get_node_radio(){return node_radio;}
   inline utl::thread::task::Pool* get_thread_pool(){return thread_pool;}
@@ -47,7 +45,6 @@ public:
 private:
   app::Node* node_app;
   rad::Node* node_radio;
-  ope::Node* node_operation;
   vk::Node* node_vulkan = nullptr;
   io::Node* node_io = nullptr;
   dat::Node* node_data = nullptr;

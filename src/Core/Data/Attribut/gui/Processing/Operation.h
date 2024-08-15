@@ -22,11 +22,11 @@ public:
   void design_operation(utl::base::Element* element);
 
   //Subfunction
-  void draw_ope_image(utl::base::Element* element);
+  void draw_img_image(utl::base::Element* element);
 
 private:
   core::Node* node_core;
-  dat::img::Converter* ope_image;
+  dat::img::Converter* img_image;
   dat::elm::Element* dat_element;
   dat::atr::gui::Normal* gui_normal;
 };

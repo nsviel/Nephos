@@ -14,7 +14,7 @@ Operation::Operation(dat::atr::Node* node_attribut){
   //---------------------------
 
   this->node_core = node_attribut->get_node_core();
-  this->ope_image = new dat::img::Converter();
+  this->img_image = new dat::img::Converter();
   this->dat_element = new dat::elm::Element();
   this->gui_normal = new dat::atr::gui::Normal(node_attribut);
 
@@ -29,14 +29,14 @@ void Operation::design_operation(utl::base::Element* element){
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Operation##dynamic")){
     gui_normal->design_normal();
-    this->draw_ope_image(element);
+    this->draw_img_image(element);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Operation::draw_ope_image(utl::base::Element* element){
+void Operation::draw_img_image(utl::base::Element* element){
   //---------------------------
 
   if(ImGui::Button("intensity to image")){
@@ -45,7 +45,7 @@ void Operation::draw_ope_image(utl::base::Element* element){
     dat::elm::Image* dat_image = node_element->get_dat_image();
     dat::base::Entity* entity = dat_element->get_active_entity(element);
     utl::media::Image* image = dat_image->get_or_create_image(entity, "Intensity");
-    ope_image->convert_spherical_pc_to_image(&entity->data, image);
+    img_image->convert_spherical_pc_to_image(&entity->data, image);
   }
 
 

@@ -10,7 +10,6 @@ namespace prc{
 Node::Node(core::Node* node_core){
   //---------------------------
 
-  this->node_operation = new ope::Node(this);
 
   //---------------------------
 }

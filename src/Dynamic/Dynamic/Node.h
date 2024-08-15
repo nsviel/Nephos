@@ -7,7 +7,6 @@ namespace dat{class Node;}
 namespace core{class Node;}
 namespace rad{class Node;}
 namespace prf{class Node;}
-namespace ope{class Node;}
 
 namespace dyn{class Structure;}
 namespace dyn::element{class Sensor;}
@@ -33,7 +32,6 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
   inline rad::Node* get_node_radio(){return node_radio;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
-  inline ope::Node* get_node_operation(){return node_operation;}
 
   inline dyn::Structure* get_dyn_struct(){return dyn_struct;}
   inline dyn::element::Sensor* get_dyn_sensor(){return dyn_sensor;}
@@ -45,7 +43,6 @@ private:
   dat::Node* node_data;
   rad::Node* node_radio;
   prf::Node* node_profiler;
-  ope::Node* node_operation;
 
   dyn::Structure* dyn_struct;
   dyn::element::Sensor* dyn_sensor;

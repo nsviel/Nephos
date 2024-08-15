@@ -7,6 +7,7 @@ add_subdirectory(Element)
 add_subdirectory(Graph)
 add_subdirectory(Player)
 add_subdirectory(Attribut)
+add_subdirectory(Image)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

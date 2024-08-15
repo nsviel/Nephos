@@ -26,7 +26,6 @@ Node::Node(app::Node* node_app){
 
   this->thread_pool = new utl::thread::task::Pool(50);
   this->node_profiler = new prf::Node(this);
-  this->node_operation = new ope::Node(this);
   this->node_data = new dat::Node(this);
   this->node_radio = new rad::Node(this);
   this->node_dynamic = new dyn::Node(this);

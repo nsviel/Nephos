@@ -4,7 +4,6 @@
 
 namespace vk{class Node;}
 namespace core{class Node;}
-namespace ope{class Node;}
 
 namespace dat::elm{class Node;}
 namespace dat::gph{class Node;}
@@ -29,7 +28,6 @@ public:
 
   inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
-  inline ope::Node* get_node_operation(){return node_operation;}
 
   inline dat::elm::Node* get_node_element(){return node_element;}
   inline dat::gph::Node* get_node_graph(){return node_graph;}
@@ -39,7 +37,6 @@ private:
   //Dependancy
   core::Node* node_core;
   vk::Node* node_vulkan;
-  ope::Node* node_operation;
 
   //Child
   dat::elm::Node* node_element;

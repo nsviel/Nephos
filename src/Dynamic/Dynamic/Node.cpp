@@ -16,7 +16,6 @@ Node::Node(core::Node* node_core){
   this->node_data = node_core->get_node_data();
   this->node_radio = node_core->get_node_radio();
   this->node_profiler = node_core->get_node_profiler();
-  this->node_operation = node_core->get_node_operation();
 
   this->dyn_struct = new dyn::Structure();
   this->dyn_sensor = new dyn::element::Sensor(this);
