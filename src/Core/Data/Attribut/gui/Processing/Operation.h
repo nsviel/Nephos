@@ -14,7 +14,7 @@ class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(ope::Node* node_operation);
+  Operation(dat::atr::Node* node_attribut);
   ~Operation();
 
 public:

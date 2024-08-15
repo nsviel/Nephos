@@ -8,7 +8,7 @@
 namespace dat::atr::gui{
 
 //Constructor / Destructor
-Color::Color(ope::Node* node_operation){
+Color::Color(dat::atr::Node* node_attribut){
   //---------------------------
 
   this->ope_struct = node_operation->get_ope_struct();

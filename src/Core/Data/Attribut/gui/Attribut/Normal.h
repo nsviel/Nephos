@@ -10,7 +10,7 @@ class Normal
 {
 public:
   //Constructor / Destructor
-  Normal(ope::Node* node_operation);
+  Normal(dat::atr::Node* node_attribut);
   ~Normal();
 
 public:

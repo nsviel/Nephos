@@ -9,7 +9,7 @@
 namespace dat::atr::gui{
 
 //Constructor / Destructor
-Normal::Normal(ope::Node* node_operation){
+Normal::Normal(dat::atr::Node* node_attribut){
   //---------------------------
 
   this->ope_struct = node_operation->get_ope_struct();

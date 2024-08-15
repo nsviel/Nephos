@@ -15,7 +15,7 @@ class Color
 {
 public:
   //Constructor / Destructor
-  Color(ope::Node* node_dynamic);
+  Color(dat::atr::Node* node_attribut);
   ~Color();
 
 public:

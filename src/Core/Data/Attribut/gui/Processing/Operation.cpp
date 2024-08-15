@@ -10,7 +10,7 @@
 namespace dat::atr::gui{
 
 //Constructor / Destructor
-Operation::Operation(ope::Node* node_operation){
+Operation::Operation(dat::atr::Node* node_attribut){
   //---------------------------
 
   this->node_core = node_operation->get_node_core();

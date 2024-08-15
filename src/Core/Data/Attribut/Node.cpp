@@ -7,7 +7,7 @@
 namespace dat::atr{
 
 //Constructor / Destructor
-Node::Node(core::Node* node_core){
+Node::Node(dat::Node* node_data){
   //---------------------------
 
   this->node_core = node_core;
