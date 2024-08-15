@@ -12,7 +12,7 @@ namespace vk::queue::transfer{class Submission;}
 
 namespace vk::queue::transfer{
 
-class Thread : public utl::thread::Worker
+class Thread : public sys::thread::Worker
 {
 public:
   //Constructor / Destructor

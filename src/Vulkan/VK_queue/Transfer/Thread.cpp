@@ -24,7 +24,7 @@ void Thread::thread_init(){
   //---------------------------
 
   vk_struct->device.queue.transfer.type = vk::queue::TRANSFER;
-  vk_struct->device.queue.transfer.thread_ID = utl::thread::get_ID_str();
+  vk_struct->device.queue.transfer.thread_ID = sys::thread::get_ID_str();
 
   //---------------------------
 }

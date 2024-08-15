@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace utl::hardware{
+namespace sys::hardware{
 
 class CPU
 {

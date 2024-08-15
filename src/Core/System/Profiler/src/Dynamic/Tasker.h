@@ -5,9 +5,9 @@
 #include <vector>
 #include <string>
 
-namespace utl::timer{class Chronos;}
-namespace utl::timer::fps{class Counter;}
-namespace utl::timer::fps{class Control;}
+namespace sys::timer{class Chronos;}
+namespace sys::timer::fps{class Counter;}
+namespace sys::timer::fps{class Control;}
 namespace prf::dynamic{class Task;}
 
 
@@ -44,11 +44,11 @@ public:
   float fps = 0;
 
 private:
-  utl::timer::Chrono* timer;
-  utl::timer::fps::Counter* fps_counter;
-  utl::timer::fps::Control* fps_control;
+  sys::timer::Chrono* timer;
+  sys::timer::fps::Counter* fps_counter;
+  sys::timer::fps::Control* fps_control;
 
-  utl::timer::Timepoint reference;
+  sys::timer::Timepoint reference;
   std::vector<prf::dynamic::Task> vec_task_buffer;
   std::vector<prf::dynamic::Task> vec_task;
   bool is_fps_control = false;

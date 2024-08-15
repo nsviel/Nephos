@@ -7,7 +7,7 @@ namespace rad{class Node;}
 namespace dyn{class Node;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
-namespace utl::thread::task{class Pool;}
+namespace sys::thread::task{class Pool;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace dat::atr{class Color;}
@@ -36,7 +36,7 @@ public:
 private:
   dyn::Structure* dyn_struct;
   rad::Node* node_radio;
-  utl::thread::task::Pool* thread_pool;
+  sys::thread::task::Pool* thread_pool;
 
   bool thread_idle = true;
 };

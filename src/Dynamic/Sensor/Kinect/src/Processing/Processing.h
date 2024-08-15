@@ -8,7 +8,7 @@ namespace k4n::processing::cloud{class Data;}
 namespace k4n::processing::image{class Data;}
 namespace dyn::image{class Operation;}
 namespace dyn::cloud{class Operation;}
-namespace utl::thread::task{class Pool;}
+namespace sys::thread::task{class Pool;}
 
 
 namespace k4n{
@@ -33,7 +33,7 @@ public:
 private:
   k4n::processing::image::Data* k4n_image;
   k4n::processing::cloud::Data* k4n_cloud;
-  utl::thread::task::Pool* thread_pool;
+  sys::thread::task::Pool* thread_pool;
   dyn::image::Operation* dyn_ope_image;
   dyn::cloud::Operation* dyn_ope_cloud;
 

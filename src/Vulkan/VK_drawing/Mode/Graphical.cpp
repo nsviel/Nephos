@@ -12,7 +12,7 @@ Graphical::Graphical(vk::Structure* vk_struct) : vk::draw::Drawer(vk_struct){
 
   this->vk_transfer = new vk::memory::Transfer(vk_struct);
   this->vk_swapchain = new vk::presentation::Swapchain(vk_struct);
-  this->utl_chrono = new utl::timer::Chrono();
+  this->utl_chrono = new sys::timer::Chrono();
 
   //---------------------------
 }
@@ -33,7 +33,7 @@ void Graphical::record_renderpass(std::vector<vk::structure::Command*>& vec_comm
 
   for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
     vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
-    utl::timer::Timepoint ts = utl_chrono->start_t();
+    sys::timer::Timepoint ts = utl_chrono->start_t();
 
     //Run renderpass
     vk_render->run_renderpass(renderpass);

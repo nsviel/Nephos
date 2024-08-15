@@ -23,7 +23,7 @@ void Thread::thread_init(){
   //---------------------------
 
   vk_struct->device.queue.presentation.type = vk::queue::PRESENTATION;
-  vk_struct->device.queue.presentation.thread_ID = utl::thread::get_ID_str();
+  vk_struct->device.queue.presentation.thread_ID = sys::thread::get_ID_str();
 
   //---------------------------
 }

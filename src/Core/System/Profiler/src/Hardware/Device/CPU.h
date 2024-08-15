@@ -4,7 +4,7 @@
 
 namespace prf{class Node;}
 namespace prf{class Structure;}
-namespace utl::hardware{class CPU;}
+namespace sys::hardware{class CPU;}
 
 
 namespace prf::hardware{
@@ -23,7 +23,7 @@ public:
 
 private:
   prf::Structure* prf_struct;
-  utl::hardware::CPU* utl_cpu;
+  sys::hardware::CPU* utl_cpu;
 };
 
 }

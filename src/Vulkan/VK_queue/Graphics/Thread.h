@@ -15,7 +15,7 @@ namespace vk::synchro::structure{class Fence;}
 
 namespace vk::queue::graphics{
 
-class Thread : public utl::thread::Worker
+class Thread : public sys::thread::Worker
 {
 public:
   //Constructor / Destructor

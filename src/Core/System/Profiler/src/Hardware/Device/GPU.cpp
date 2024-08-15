@@ -15,7 +15,7 @@ GPU::GPU(prf::Node* node_profiler){
 
   this->vk_struct = node_vulkan->get_vk_struct();
   this->prf_struct = node_profiler->get_prf_struct();
-  this->utl_nvidia = new utl::hardware::Nvidia();
+  this->utl_nvidia = new sys::hardware::Nvidia();
 
   //---------------------------
 }

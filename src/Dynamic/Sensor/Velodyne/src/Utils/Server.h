@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace utl::network{class Server;}
+namespace sys::network{class Server;}
 
 // Server side implementation of UDP client-server model
 
@@ -23,7 +23,7 @@ public:
   std::vector<int> capture();
 
 private:
-  utl::network::Server* sock_server;
+  sys::network::Server* sock_server;
 };
 
 }

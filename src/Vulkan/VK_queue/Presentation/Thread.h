@@ -10,7 +10,7 @@ namespace vk::queue::presentation{class Submission;}
 
 namespace vk::queue::presentation{
 
-class Thread : public utl::thread::Worker
+class Thread : public sys::thread::Worker
 {
 public:
   //Constructor / Destructor

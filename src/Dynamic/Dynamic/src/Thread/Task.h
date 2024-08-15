@@ -7,7 +7,7 @@ namespace dyn::base{class Sensor;}
 
 namespace dyn::thread{
 
-class Task : public utl::thread::Task
+class Task : public sys::thread::Task
 {
 public:
   Task(){}

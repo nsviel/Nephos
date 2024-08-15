@@ -3,7 +3,7 @@
 #include <nvml.h>
 
 
-namespace utl::hardware{
+namespace sys::hardware{
 
 class Nvidia
 {

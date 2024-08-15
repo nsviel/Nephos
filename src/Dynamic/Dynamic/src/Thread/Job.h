@@ -7,7 +7,7 @@ namespace dyn::base{class Sensor;}
 
 namespace dyn::thread{
 
-class Job : public utl::thread::Job
+class Job : public sys::thread::Job
 {
 public:
   Job(){}

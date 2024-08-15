@@ -12,9 +12,9 @@ Tasker::Tasker(std::string name){
   //---------------------------
 
   this->name = name;
-  this->timer = new utl::timer::Chrono();
-  this->fps_control = new utl::timer::fps::Control(120);
-  this->fps_counter = new utl::timer::fps::Counter();
+  this->timer = new sys::timer::Chrono();
+  this->fps_control = new sys::timer::fps::Control(120);
+  this->fps_counter = new sys::timer::fps::Counter();
 
   //---------------------------
 }
@@ -47,8 +47,8 @@ void Tasker::loop(int fps){
   }
 
   //Init loop task
-  this->reference = timer.get_time();
-  this->thread_ID = utl::thread::get_ID_str();
+  this->reference = timer->get_time();
+  this->thread_ID = sys::thread::get_ID_str();
 
   //FPS
   this->fps = fps_counter->update();
@@ -94,7 +94,7 @@ void Tasker::task_begin(std::string name, float time){
   //Start timestamp
   double ts = time;
   if(ts == -1){
-    ts = timer.duration_s(this->reference, timer.get_time());
+    ts = timer->duration_s(this->reference, timer->get_time());
   }
 
   //Insert task in vector
@@ -118,8 +118,8 @@ void Tasker::task_end(const std::string& name, float time, glm::vec4 color){
 
   //Task time
   if(time == -1){
-    utl::timer::Timepoint task_end = timer.get_time();
-    task->ts_end = timer.duration_s(this->reference, task_end);
+    sys::timer::Timepoint task_end = timer->get_time();
+    task->ts_end = timer->duration_s(this->reference, task_end);
   }else{
     task->ts_end = time;
   }

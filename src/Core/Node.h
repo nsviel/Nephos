@@ -11,7 +11,7 @@ namespace sys{class Node;}
 namespace mod{class Node;}
 namespace eng{class Node;}
 namespace prf::dynamic{class Tasker;}
-namespace utl::thread::task{class Pool;}
+namespace sys::thread::task{class Pool;}
 
 
 namespace core{
@@ -39,7 +39,7 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline mod::Node* get_node_module(){return node_module;}
-  inline utl::thread::task::Pool* get_thread_pool(){return thread_pool;}
+  inline sys::thread::task::Pool* get_thread_pool(){return thread_pool;}
   inline prf::dynamic::Tasker* get_tasker_cpu(){return tasker;}
 
 private:
@@ -52,7 +52,7 @@ private:
   sys::Node* node_system;
   dyn::Node* node_dynamic;
   prf::dynamic::Tasker* tasker;
-  utl::thread::task::Pool* thread_pool;
+  sys::thread::task::Pool* thread_pool;
 };
 
 }

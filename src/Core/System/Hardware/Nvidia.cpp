@@ -1,7 +1,7 @@
 #include "Nvidia.h"
 
 
-namespace utl::hardware{
+namespace sys::hardware{
 
 //Constructor / Destructor
 Nvidia::Nvidia(){

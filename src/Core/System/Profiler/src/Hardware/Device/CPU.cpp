@@ -11,7 +11,7 @@ CPU::CPU(prf::Node* node_profiler){
   //---------------------------
 
   this->prf_struct = node_profiler->get_prf_struct();
-  this->utl_cpu = new utl::hardware::CPU();
+  this->utl_cpu = new sys::hardware::CPU();
 
   //---------------------------
 }

@@ -5,7 +5,7 @@
 namespace prf{class Node;}
 namespace prf{class Structure;}
 namespace prf::hardware{class Device;}
-namespace utl::hardware{class Nvidia;}
+namespace sys::hardware{class Nvidia;}
 namespace vk{class Structure;}
 namespace vk::queue::structure{class Queue;}
 
@@ -33,7 +33,7 @@ public:
 private:
   prf::Structure* prf_struct;
   vk::Structure* vk_struct;
-  utl::hardware::Nvidia* utl_nvidia;
+  sys::hardware::Nvidia* utl_nvidia;
 };
 
 }

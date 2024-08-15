@@ -6,7 +6,7 @@ with init, end and inside while loop
 */
 
 
-namespace utl::thread{
+namespace sys::thread{
 
 //Main function
 void Worker::start_thread(){

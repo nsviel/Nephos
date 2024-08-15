@@ -4,7 +4,7 @@
 #include <set>
 
 
-namespace utl::hardware{
+namespace sys::hardware{
 
 //Constructor / Destructor
 CPU::CPU(){
