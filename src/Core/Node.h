@@ -7,7 +7,7 @@ namespace io{class Node;}
 namespace vk{class Node;}
 namespace dat{class Node;}
 namespace dyn{class Node;}
-namespace prf{class Node;}
+namespace sys{class Node;}
 namespace mod{class Node;}
 namespace eng{class Node;}
 namespace prf::dynamic{class Tasker;}
@@ -32,7 +32,7 @@ public:
   void reset();
   void close();
 
-  inline prf::Node* get_node_profiler(){return node_profiler;}
+  inline prf::Node* get_node_system(){return node_system;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
@@ -49,7 +49,7 @@ private:
   io::Node* node_io;
   dat::Node* node_data;
   eng::Node* node_engine;
-  prf::Node* node_profiler;
+  sys::Node* node_system;
   dyn::Node* node_dynamic;
   prf::dynamic::Tasker* tasker;
   utl::thread::task::Pool* thread_pool;

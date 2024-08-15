@@ -6,7 +6,7 @@ set(LIBRARY_NAME MAIN_CORE)
 add_subdirectory(Data)
 add_subdirectory(Engine)
 add_subdirectory(IO)
-add_subdirectory(Profiler)
+add_subdirectory(System)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
@@ -29,6 +29,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   CORE_DATA
   CORE_IO
   CORE_ENGINE
+  CORE_SYSTEM
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
