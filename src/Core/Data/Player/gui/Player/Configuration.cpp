@@ -15,7 +15,7 @@ Configuration::~Configuration(){}
 
 //Main function
 void Configuration::design_configuration(utl::base::Element* element){
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
+  /*dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -23,7 +23,7 @@ void Configuration::design_configuration(utl::base::Element* element){
   if(ImGui::CollapsingHeader("Configuration##dynamic")){
     this->sensor_config(sensor);
   }
-
+*/
   //---------------------------
 }
 
@@ -32,7 +32,7 @@ void Configuration::sensor_config(dyn::base::Sensor* sensor){
 
   //---------------------------
 
-  sensor->gui_config();
+  //sensor->gui_config();
 
   //---------------------------
   ImGui::Separator();
