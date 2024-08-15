@@ -2,7 +2,7 @@
 
 namespace core{class Node;}
 namespace dat::atr{class Node;}
-namespace ope::image{class Converter;}
+namespace dat::img{class Converter;}
 namespace dat::atr::gui{class Normal;}
 namespace utl::base{class Element;}
 namespace dat::elm{class Element;}
@@ -26,7 +26,7 @@ public:
 
 private:
   core::Node* node_core;
-  ope::image::Converter* ope_image;
+  dat::img::Converter* ope_image;
   dat::elm::Element* dat_element;
   dat::atr::gui::Normal* gui_normal;
 };

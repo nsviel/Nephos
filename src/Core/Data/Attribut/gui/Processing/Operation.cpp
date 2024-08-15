@@ -14,7 +14,7 @@ Operation::Operation(dat::atr::Node* node_attribut){
   //---------------------------
 
   this->node_core = node_attribut->get_node_core();
-  this->ope_image = new ope::image::Converter();
+  this->ope_image = new dat::img::Converter();
   this->dat_element = new dat::elm::Element();
   this->gui_normal = new dat::atr::gui::Normal(node_attribut);
 

@@ -8,7 +8,7 @@ namespace utl::base{class Attribut;}
 namespace utl::media{class Image;}
 
 
-namespace ope::image{
+namespace dat::img{
 
 class Converter
 {

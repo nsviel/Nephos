@@ -6,7 +6,7 @@
 
 namespace utl::base{class Data;}
 namespace dat::base{class Entity;}
-namespace ope::image{class Converter;}
+namespace dat::img{class Converter;}
 
 
 namespace dat::atr::normal{
@@ -29,7 +29,7 @@ public:
   inline void set_knn(int value){this->k = value;}
 
 private:
-  ope::image::Converter* ope_converter;
+  dat::img::Converter* ope_converter;
 
   float R_thres;
   float time;

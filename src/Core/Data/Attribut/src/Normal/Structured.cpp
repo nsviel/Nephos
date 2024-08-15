@@ -13,7 +13,7 @@ namespace dat::atr::normal{
 Structured::Structured(){
   //---------------------------
 
-  this->ope_converter = new ope::image::Converter();
+  this->ope_converter = new dat::img::Converter();
 
   this->time = 0;
   this->R_thres = 0.1f;

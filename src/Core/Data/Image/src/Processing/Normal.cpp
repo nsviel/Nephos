@@ -5,7 +5,7 @@
 #include <cstdlib>
 
 
-namespace ope::image{
+namespace dat::img{
 
 // Constructor / Destructor
 Normal::Normal(){

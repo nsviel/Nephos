@@ -10,7 +10,7 @@ namespace dat::elm{class Image;}
 namespace dat::elm{class Glyph;}
 namespace utl::base{class Data;}
 namespace dyn::base{class Sensor;}
-namespace ope::image{class Converter;}
+namespace dat::img{class Converter;}
 namespace dat::atr::normal{class Structured;}
 namespace dat::atr{class Location;}
 namespace utl::thread::task{class Pool;}
@@ -40,7 +40,7 @@ private:
   dat::elm::Image* dat_image;
   dat::elm::Glyph* dat_glyph;
   dat::atr::normal::Structured* ope_normal;
-  ope::image::Converter* ope_converter;
+  dat::img::Converter* ope_converter;
   dat::atr::Location* atr_location;
   utl::thread::task::Pool* thread_pool;
 

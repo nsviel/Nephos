@@ -7,7 +7,7 @@ namespace utl::media{class Image;}
 namespace dyn::base{class Sensor;}
 
 
-namespace ope::image{
+namespace dat::img{
 
 class Normal
 {
