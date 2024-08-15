@@ -5,7 +5,7 @@
 #include <Data/Namespace.h>
 
 
-namespace prc{
+namespace mod{
 
 //Constructor / Destructor
 Node::Node(core::Node* node_core){

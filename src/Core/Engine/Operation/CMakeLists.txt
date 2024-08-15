@@ -3,7 +3,6 @@ set(LIBRARY_NAME ENGINE_OPERATION)
 #-----------------
 # Source files
 #-----------------
-
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
 )

@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_SCENE)
+set(LIBRARY_NAME APPLICATION_SCENE)
 
 #-----------------
 # Source files

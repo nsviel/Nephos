@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_VULKAN)
+set(LIBRARY_NAME MAIN_VULKAN)
 
 #-----------------
 # Source files

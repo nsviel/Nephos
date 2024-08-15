@@ -8,7 +8,7 @@ namespace core{class Node;}
 namespace rad{class Node;}
 
 
-namespace prc{
+namespace mod{
 
 class Node : public utl::base::Node
 {

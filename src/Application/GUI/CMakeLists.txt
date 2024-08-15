@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_GUI)
+set(LIBRARY_NAME APPLICATION_GUI)
 
 #-----------------
 # Source files

@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_APPLICATION)
+set(LIBRARY_NAME MAIN_APPLICATION)
 
 #-----------------
 # Source files
@@ -20,8 +20,8 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_CORE
-  LIBRARY_GUI
-  LIBRARY_SCENE
+  APPLICATION_GUI
+  APPLICATION_SCENE
   DYNAMIC_SENSOR
 )
 

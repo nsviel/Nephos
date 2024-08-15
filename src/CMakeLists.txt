@@ -21,5 +21,5 @@ add_executable(${EXECUTABLE_NAME}
 # Dependencies
 #-----------------
 target_link_libraries(${EXECUTABLE_NAME}
-  LIBRARY_APPLICATION
+  MAIN_APPLICATION
 )
