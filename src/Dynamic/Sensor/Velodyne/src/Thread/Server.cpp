@@ -17,7 +17,7 @@ Server::Server(vld::Node* node_vld){
   core::Node* node_core = node_vld->get_node_core();
   dat::Node* node_data = node_core->get_node_data();
   io::Node* node_io = node_core->get_node_io();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
   io::imp::Node* node_importer = node_io->get_node_importer();
   dat::elm::Node* node_element = node_data->get_node_element();
 

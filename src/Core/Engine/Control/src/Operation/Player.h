@@ -1,6 +1,6 @@
 #pragma once
 
-namespace dat::graph{class Selection;}
+namespace dat::gph{class Selection;}
 namespace ctr{class Node;}
 namespace dat::ply{class Player;}
 
@@ -21,7 +21,7 @@ public:
   void make_backward();
 
 private:
-  dat::graph::Selection* dat_selection;
+  dat::gph::Selection* dat_selection;
   dat::ply::Player* dyn_player;
 };
 

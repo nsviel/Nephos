@@ -4,7 +4,7 @@
 
 namespace k4n{class Node;}
 namespace dat::elm{class Set;}
-namespace dat::graph{class Graph;}
+namespace dat::gph{class Graph;}
 namespace dat::base{class Set;}
 namespace io::imp{class Operation;}
 
@@ -32,7 +32,7 @@ public:
 private:
   k4n::Node* node_k4n;
   dat::elm::Set* dat_set;
-  dat::graph::Graph* dat_graph;
+  dat::gph::Graph* dat_graph;
   io::imp::Operation* io_operation;
 
   std::thread thread;

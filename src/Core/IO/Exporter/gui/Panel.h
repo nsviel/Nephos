@@ -12,7 +12,7 @@ namespace io::exp::gui{class Exporter;}
 namespace io::exp::gui{class Recorder;}
 namespace utl::gui::navigator{class Item;}
 namespace utl::base{class Element;}
-namespace dat::graph{class Selection;}
+namespace dat::gph{class Selection;}
 
 
 namespace io::exp::gui{
@@ -36,7 +36,7 @@ public:
 private:
   io::exp::Structure* io_struct;
   io::exp::Exporter* io_exporter;
-  dat::graph::Selection* dat_selection;
+  dat::gph::Selection* dat_selection;
   utl::gui::Navigator* gui_navigator;
   io::exp::gui::Exporter* gui_exporter;
   io::exp::gui::Recorder* gui_recorder;

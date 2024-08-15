@@ -4,21 +4,21 @@
 
 namespace cam{class Entity;}
 namespace dat::elm{class Set;}
-namespace dat::graph{class Node;}
-namespace dat::graph{class Graph;}
-namespace dat::graph{class Structure;}
+namespace dat::gph{class Node;}
+namespace dat::gph{class Graph;}
+namespace dat::gph{class Structure;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
 
 
-namespace dat::graph{
+namespace dat::gph{
 
 class Selection
 {
 public:
   //Constructor / Destructor
-  Selection(dat::graph::Node* node_graph);
+  Selection(dat::gph::Node* node_graph);
   ~Selection();
 
 public:
@@ -32,9 +32,9 @@ public:
   dat::base::Set* get_selected_set();
 
 private:
-  dat::graph::Graph* dat_graph;
+  dat::gph::Graph* dat_graph;
   dat::elm::Set* dat_set;
-  dat::graph::Structure* dat_struct;
+  dat::gph::Structure* dat_struct;
 };
 
 }

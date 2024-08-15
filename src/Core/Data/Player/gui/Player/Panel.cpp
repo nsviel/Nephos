@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-#include <Dynamic/Namespace.h>
+#include <Player/Namespace.h>
 #include <Data/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -8,16 +8,16 @@
 namespace dat::ply::gui{
 
 //Constructor / Destructor
-Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
+Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   //---------------------------
 
-  dat::Node* node_data = node_dynamic->get_node_data();
-  ope::Node* node_operation = node_dynamic->get_node_operation();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::Node* node_data = node_player->get_node_data();
+  ope::Node* node_operation = node_player->get_node_operation();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->dat_selection = node_graph->get_dat_selection();
-  this->gui_configuration = new dyn::gui::Configuration(node_dynamic);
-  this->gui_player = new dyn::gui::Player(node_dynamic);
+  this->gui_configuration = new dat::ply::gui::Configuration();
+  this->gui_player = new dat::ply::gui::Player(node_player);
   this->ope_panel = node_operation->get_gui_panel();
 
   this->show_window = show_window;

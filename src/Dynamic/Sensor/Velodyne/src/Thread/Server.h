@@ -11,7 +11,7 @@ namespace vld::utils{class Server;}
 namespace vld::parser{class VLP16;}
 namespace vld::main{class Data;}
 namespace vld::thread{class Screenshot;}
-namespace dat::graph{class Graph;}
+namespace dat::gph{class Graph;}
 namespace io::imp{class Importer;}
 namespace dat::elm{class Set;}
 
@@ -36,7 +36,7 @@ public:
   void update_object(utl::base::Data* data);
 
 private:
-  dat::graph::Graph* dat_graph;
+  dat::gph::Graph* dat_graph;
   io::imp::Importer* io_loader;
   dat::elm::Set* dat_set;
 

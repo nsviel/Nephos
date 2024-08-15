@@ -12,7 +12,7 @@ Panel::Panel(io::trf::Node* node_transfo, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_transfo->get_node_data();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->io_struct = node_transfo->get_io_struct();
   this->io_transformation = node_transfo->get_io_transformation();

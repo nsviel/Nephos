@@ -2,20 +2,20 @@
 
 #include <string>
 
-namespace dat::graph{class Node;}
+namespace dat::gph{class Node;}
 namespace dat::elm{class Set;}
 namespace dat::elm{class Entity;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 
 
-namespace dat::graph::gui{
+namespace dat::gph::gui{
 
 class Button
 {
 public:
   //Constructor / Destructor
-  Button(dat::graph::Node* node_graph);
+  Button(dat::gph::Node* node_graph);
   ~Button();
 
 public:

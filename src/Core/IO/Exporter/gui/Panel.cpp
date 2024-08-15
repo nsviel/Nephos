@@ -15,7 +15,7 @@ Panel::Panel(io::exp::Node* node_exporter, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_exporter->get_node_data();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->io_struct = node_exporter->get_io_struct();
   this->dat_selection = node_graph->get_dat_selection();

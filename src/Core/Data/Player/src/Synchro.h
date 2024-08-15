@@ -1,6 +1,6 @@
 #pragma once
 
-namespace dyn{class Node;}
+namespace dat::ply{class Node;}
 
 
 namespace dat::ply{
@@ -9,7 +9,7 @@ class Synchro
 {
 public:
   //Constructor / Destructor
-  Synchro(dyn::Node* node_dynamic);
+  Synchro(dat::ply::Node* node_player);
   ~Synchro();
 
 public:

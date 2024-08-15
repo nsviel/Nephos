@@ -12,7 +12,7 @@ namespace utl::base{class Element;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
 namespace dat::ply{class Player;}
-namespace dat::graph{class Selection;}
+namespace dat::gph{class Selection;}
 namespace dat::base{class Entity;}
 
 
@@ -43,7 +43,7 @@ private:
   dat::ply::Player* dyn_player;
   dyn::Structure* dyn_struct;
   io::exp::Structure* io_struct;
-  dat::graph::Selection* dat_selection;
+  dat::gph::Selection* dat_selection;
 
   std::vector<std::string> vec_format;
 };

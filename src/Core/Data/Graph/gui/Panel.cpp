@@ -7,10 +7,10 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace dat::graph::gui{
+namespace dat::gph::gui{
 
 //Constructor / Destructor
-Panel::Panel(dat::graph::Node* node_graph, bool* show_window){
+Panel::Panel(dat::gph::Node* node_graph, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_graph->get_node_data();
@@ -21,7 +21,7 @@ Panel::Panel(dat::graph::Node* node_graph, bool* show_window){
   this->dat_set = node_element->get_dat_set();
   this->gui_set = new dat::gui::set::Panel(node_element, &show_panel_set);
   this->gui_entity = new dat::gui::entity::Panel(node_element, &show_panel_entity);
-  this->gui_button = new dat::graph::gui::Button(node_graph);
+  this->gui_button = new dat::gph::gui::Button(node_graph);
 
   this->name = "Graph";
   this->show_window = show_window;

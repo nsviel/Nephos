@@ -1,13 +1,13 @@
 #include "Synchro.h"
 
 #include <Utility/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Player/Namespace.h>
 
 
 namespace dat::ply{
 
 //Constructor / Destructor
-Synchro::Synchro(dyn::Node* node_dynamic){
+Synchro::Synchro(dat::ply::Node* node_player){
   //---------------------------
 
 

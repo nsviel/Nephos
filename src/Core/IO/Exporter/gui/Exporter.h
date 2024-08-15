@@ -9,7 +9,7 @@ namespace io::exp{class Node;}
 namespace io::exp{class Structure;}
 namespace io::exp{class Exporter;}
 namespace utl::gui::navigator{class Item;}
-namespace dat::graph{class Selection;}
+namespace dat::gph{class Selection;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
 
@@ -42,7 +42,7 @@ public:
 private:
   io::exp::Structure* io_struct;
   io::exp::Exporter* io_exporter;
-  dat::graph::Selection* dat_selection;
+  dat::gph::Selection* dat_selection;
 };
 
 }

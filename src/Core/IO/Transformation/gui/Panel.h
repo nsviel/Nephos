@@ -9,7 +9,7 @@ namespace io::trf{class Node;}
 namespace io::trf{class Structure;}
 namespace io::trf{class Transformation;}
 namespace utl::base{class Element;}
-namespace dat::graph{class Selection;}
+namespace dat::gph{class Selection;}
 
 
 namespace io::trf::gui{
@@ -38,7 +38,7 @@ private:
   io::trf::Structure* io_struct;
   io::trf::Transformation* io_transformation;
   utl::gui::Navigator* gui_navigator;
-  dat::graph::Selection* dat_selection;
+  dat::gph::Selection* dat_selection;
 
   std::string name;
   bool* show_window;

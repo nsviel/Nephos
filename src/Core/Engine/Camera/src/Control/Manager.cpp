@@ -14,7 +14,7 @@ Manager::Manager(cam::Node* node_camera){
 
   vk::Node* node_vulkan = node_camera->get_node_vulkan();
   dat::Node* node_data = node_camera->get_node_data();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->vk_screenshot = node_vulkan->get_vk_screenshot();

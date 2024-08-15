@@ -3,8 +3,8 @@
 #include <Dynamic/src/Base/State.h>
 #include <Dynamic/src/Base/Timestamp.h>
 
-namespace dyn{class Node;}
-namespace dat::graph{class Selection;}
+namespace dat::ply{class Node;}
+namespace dat::gph{class Selection;}
 namespace dat::elm{class Set;}
 
 
@@ -14,7 +14,7 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(dyn::Node* node_dynamic);
+  Player(dat::ply::Node* node_player);
   ~Player();
 
   //Main function
@@ -43,7 +43,7 @@ public:
   inline dyn::base::Timestamp* get_timestamp(){return &timestamp;}
 
 public:
-  dat::graph::Selection* dat_selection;
+  dat::gph::Selection* dat_selection;
   dat::elm::Set* dat_set;
 
   dyn::base::Timestamp timestamp;

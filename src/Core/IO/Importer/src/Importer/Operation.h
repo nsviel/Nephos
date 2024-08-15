@@ -7,10 +7,10 @@ namespace io::imp{class Node;}
 namespace io::imp{class Structure;}
 namespace io{class Transformation;}
 namespace dat::elm{class Entity;}
-namespace dat::graph{class Graph;}
+namespace dat::gph{class Graph;}
 namespace dat::elm{class Set;}
 namespace dat::elm{class Glyph;}
-namespace dat::graph{class Selection;}
+namespace dat::gph{class Selection;}
 namespace dat::base{class Object;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
@@ -43,10 +43,10 @@ private:
   io::imp::Structure* io_struct;
   io::Transformation* io_transformation;
   dat::elm::Entity* dat_entity;
-  dat::graph::Graph* dat_graph;
+  dat::gph::Graph* dat_graph;
   dat::elm::Set* dat_set;
   dat::elm::Glyph* dat_glyph;
-  dat::graph::Selection* dat_selection;
+  dat::gph::Selection* dat_selection;
   ope::Transformation* ope_transform;
   ope::Operation* ope_operation;
   utl::base::Attribut* utl_attribut;

@@ -5,7 +5,7 @@
 #include <random>
 #include <mutex>
 
-namespace dat::graph{class Node;}
+namespace dat::gph{class Node;}
 
 
 namespace dat::elm{

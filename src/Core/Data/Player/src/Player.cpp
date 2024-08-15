@@ -7,11 +7,11 @@
 namespace dat::ply{
 
 //Constructor / Destructor
-Player::Player(dyn::Node* node_dynamic){
+Player::Player(dat::ply::Node* node_player){
   //---------------------------
 
-  dat::Node* node_data = node_dynamic->get_node_data();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::Node* node_data = node_player->get_node_data();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->dat_selection = node_graph->get_dat_selection();

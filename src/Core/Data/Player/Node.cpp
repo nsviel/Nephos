@@ -1,8 +1,7 @@
 #include "Node.h"
+#include "Namespace.h"
 
 #include <Core/Namespace.h>
-#include <Dynamic/Namespace.h>
-#include <Radiometry/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -22,7 +21,7 @@ Node::Node(core::Node* node_core){
 
   this->dyn_player = new dat::ply::Player(this);
   this->gui_player = new dat::ply::gui::Panel(this, &panel_player->is_open);
-  this->gui_stream = new dyn::gui::stream::Panel(this, &panel_stream->is_open);
+  this->gui_stream = new dat::stream::gui::Panel(this, &panel_stream->is_open);
 
   //---------------------------
 }

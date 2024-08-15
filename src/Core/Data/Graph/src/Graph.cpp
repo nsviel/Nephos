@@ -5,10 +5,10 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace dat::graph{
+namespace dat::gph{
 
 //Constructor / Destructor
-Graph::Graph(dat::graph::Node* node_graph){
+Graph::Graph(dat::gph::Node* node_graph){
   //---------------------------
 
   dat::Node* node_data = node_graph->get_node_data();

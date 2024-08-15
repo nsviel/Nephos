@@ -17,7 +17,7 @@ Wheel::Wheel(ctr::Node* node_control){
   eng::Node* node_engine = node_control->get_node_engine();
   cam::Node* node_camera = node_engine->get_node_camera();
   dat::Node* node_data = node_control->get_node_data();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->ctr_struct = node_control->get_ctr_struct();
   this->dat_selection = node_graph->get_dat_selection();

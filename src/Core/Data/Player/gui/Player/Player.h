@@ -1,6 +1,6 @@
 #pragma once
 
-namespace dyn{class Node;}
+namespace dat::ply{class Node;}
 namespace dat::ply{class Player;}
 namespace dyn::element{class Sensor;}
 namespace utl::base{class Element;}
@@ -12,7 +12,7 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(dyn::Node* node_dynamic);
+  Player(dat::ply::Node* node_player);
   ~Player();
 
   //Main function

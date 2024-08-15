@@ -14,7 +14,7 @@ Process::Process(rad::correction::Node* node_correction){
 
   rad::Node* node_radio = node_correction->get_node_radio();
   dat::Node* node_data = node_radio->get_node_data();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->rad_struct = node_correction->get_rad_struct();

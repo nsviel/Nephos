@@ -5,7 +5,7 @@
 
 namespace k4n{class Node;}
 namespace core{class Node;}
-namespace dat::graph{class Graph;}
+namespace dat::gph{class Graph;}
 namespace dat::elm{class Entity;}
 namespace dat::elm{class Set;}
 namespace dat::elm{class Glyph;}
@@ -33,7 +33,7 @@ public:
 private:
   k4n::Node* node_k4n;
   core::Node* node_core;
-  dat::graph::Graph* dat_graph;
+  dat::gph::Graph* dat_graph;
   dat::elm::Entity* dat_entity;
   dat::elm::Set* dat_set;
   dat::elm::Glyph* dat_glyph;

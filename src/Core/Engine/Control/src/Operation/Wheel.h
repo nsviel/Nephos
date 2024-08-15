@@ -8,7 +8,7 @@ namespace ctr{class Structure;}
 namespace cam{class Control;}
 namespace ope{class Operation;}
 namespace ope::attribut{class Location;}
-namespace dat::graph{class Selection;}
+namespace dat::gph{class Selection;}
 
 
 namespace ctr{
@@ -30,7 +30,7 @@ public:
 
 private:
   ctr::Structure* ctr_struct;
-  dat::graph::Selection* dat_selection;
+  dat::gph::Selection* dat_selection;
   cam::Control* cam_control;
   ope::Operation* ope_operation;
   ope::attribut::Location* ope_location;

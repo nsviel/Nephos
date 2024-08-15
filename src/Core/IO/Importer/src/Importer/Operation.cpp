@@ -13,7 +13,7 @@ Operation::Operation(io::imp::Node* node_importer){
   //---------------------------
 
   dat::Node* node_data = node_importer->get_node_data();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->io_struct = node_importer->get_io_struct();

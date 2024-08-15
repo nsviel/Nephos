@@ -12,7 +12,7 @@ Edition::Edition(ctr::Node* node_control){
   //---------------------------
 
   dat::Node* node_data = node_control->get_node_data();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->ctr_struct = node_control->get_ctr_struct();

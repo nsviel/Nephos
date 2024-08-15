@@ -16,7 +16,7 @@ Node::Node(core::Node* node_core){
 
   //Child
   this->node_element = new dat::elm::Node(this);
-  this->node_graph = new dat::graph::Node(this);
+  this->node_graph = new dat::gph::Node(this);
   this->node_player = new dat::ply::Node(node_core);
 
   //---------------------------
@@ -35,6 +35,7 @@ void Node::loop(){
   //---------------------------
 
   node_graph->loop();
+  node_player->loop();
 
   //---------------------------
 }
@@ -49,6 +50,7 @@ void Node::gui(){
   //---------------------------
 
   node_graph->gui();
+  node_player->gui();
 
   //---------------------------
 }
@@ -56,6 +58,7 @@ void Node::reset(){
   //---------------------------
 
   node_graph->reset();
+  node_player->reset();
 
   //---------------------------
 }

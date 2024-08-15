@@ -2,26 +2,26 @@
 
 #include <Core/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Player/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Data/Namespace.h>
 #include <Renderer/Namespace.h>
 
 
-namespace dat::ply::gui{
+namespace dat::stream::gui{
 
 //Constructor / Destructor
-Panel::Panel(dyn::Node* node_dynamic, bool* show_window){
+Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   //---------------------------
 
-  dat::Node* node_data = node_dynamic->get_node_data();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::Node* node_data = node_player->get_node_data();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->node_core = node_dynamic->get_node_core();
+  this->node_core = node_player->get_node_core();
   this->dat_selection = node_graph->get_dat_selection();
   this->dat_set = node_element->get_dat_set();
-  this->gui_overlay = new dyn::gui::stream::Overlay();
+  this->gui_overlay = new dat::stream::gui::Overlay();
 
   for(int i=0; i<20; i++){
     rnd::gui::Stream* stream = new rnd::gui::Stream(node_core);

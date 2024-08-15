@@ -6,7 +6,7 @@
 namespace dat::ply::gui{
 
 //Constructor / Destructor
-Configuration::Configuration(dyn::Node* node_dynamic){
+Configuration::Configuration(){
   //---------------------------
 
 

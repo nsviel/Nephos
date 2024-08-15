@@ -16,7 +16,7 @@ Connection::Connection(k4n::Node* node_k4n){
 
   io::Node* node_io = node_k4n->get_node_io();
   dat::Node* node_data = node_k4n->get_node_data();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
   io::imp::Node* node_importer = node_io->get_node_importer();
   dat::elm::Node* node_element = node_data->get_node_element();
 

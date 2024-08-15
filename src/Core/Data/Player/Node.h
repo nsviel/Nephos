@@ -11,7 +11,7 @@ namespace ope{class Node;}
 namespace dyn{class Structure;}
 namespace dat::ply{class Player;}
 namespace dat::ply::gui{class Panel;}
-namespace dyn::gui::stream{class Panel;}
+namespace dat::stream::gui{class Panel;}
 
 
 namespace dat::ply{
@@ -46,7 +46,7 @@ private:
 
   dat::ply::Player* dyn_player;
   dat::ply::gui::Panel* gui_player;
-  dyn::gui::stream::Panel* gui_stream;
+  dat::stream::gui::Panel* gui_stream;
 };
 
 }

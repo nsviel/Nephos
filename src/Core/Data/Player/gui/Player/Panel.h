@@ -2,10 +2,10 @@
 
 #include <string>
 
-namespace dyn{class Node;}
-namespace dyn::gui{class Player;}
-namespace dyn::gui{class Configuration;}
-namespace dat::graph{class Selection;}
+namespace dat::ply{class Node;}
+namespace dat::ply::gui{class Player;}
+namespace dat::ply::gui{class Configuration;}
+namespace dat::gph{class Selection;}
 namespace ope::gui{class Panel;}
 
 
@@ -15,7 +15,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(dyn::Node* node_dynamic, bool* show_window);
+  Panel(dat::ply::Node* node_player, bool* show_window);
   ~Panel();
 
   //Main function
@@ -23,9 +23,9 @@ public:
   void design_panel();
 
 private:
-  dyn::gui::Player* gui_player;
-  dyn::gui::Configuration* gui_configuration;
-  dat::graph::Selection* dat_selection;
+  dat::ply::gui::Player* gui_player;
+  dat::ply::gui::Configuration* gui_configuration;
+  dat::gph::Selection* dat_selection;
   ope::gui::Panel* ope_panel;
 
   std::string name;

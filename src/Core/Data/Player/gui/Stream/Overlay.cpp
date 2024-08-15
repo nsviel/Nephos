@@ -1,9 +1,9 @@
 #include "Overlay.h"
 
-#include <Dynamic/Namespace.h>
+#include <Player/Namespace.h>
 
 
-namespace dat::ply::gui{
+namespace dat::stream::gui{
 
 //Constructor / Destructor
 Overlay::Overlay(){

@@ -1,6 +1,5 @@
 #pragma once
 
-namespace dyn{class Node;}
 namespace utl::base{class Element;}
 namespace dyn::base{class Sensor;}
 
@@ -11,7 +10,7 @@ class Configuration
 {
 public:
   //Constructor / Destructor
-  Configuration(dyn::Node* node_dynamic);
+  Configuration();
   ~Configuration();
 
   //Main function

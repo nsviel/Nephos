@@ -10,7 +10,7 @@ namespace rad::correction{class Model;}
 namespace rad::correction::io{class Model;}
 namespace dyn::base{class Sensor;}
 namespace dat::elm{class Image;}
-namespace dat::graph{class Selection;}
+namespace dat::gph{class Selection;}
 namespace utl::media{class Image;}
 namespace utl::base{class Attribut;}
 
@@ -35,7 +35,7 @@ public:
 
 private:
   dat::elm::Image* dat_image;
-  dat::graph::Selection* dat_selection;
+  dat::gph::Selection* dat_selection;
   rad::correction::Structure* rad_struct;
   rad::correction::Model* rad_model;
   rad::correction::io::Model* rad_io_model;

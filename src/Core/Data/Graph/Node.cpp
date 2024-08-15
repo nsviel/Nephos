@@ -6,7 +6,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace dat::graph{
+namespace dat::gph{
 
 //Constructor / Destructor
 Node::Node(dat::Node* node_data){
@@ -19,10 +19,10 @@ Node::Node(dat::Node* node_data){
   this->node_vulkan = node_data->get_node_vulkan();
 
   //Child
-  this->dat_struct = new dat::graph::Structure();
-  this->dat_graph = new dat::graph::Graph(this);
-  this->dat_selection = new dat::graph::Selection(this);
-  this->gui_graph = new dat::graph::gui::Panel(this, &dat_panel->is_open);
+  this->dat_struct = new dat::gph::Structure();
+  this->dat_graph = new dat::gph::Graph(this);
+  this->dat_selection = new dat::gph::Selection(this);
+  this->gui_graph = new dat::gph::gui::Panel(this, &dat_panel->is_open);
 
   //---------------------------
 }

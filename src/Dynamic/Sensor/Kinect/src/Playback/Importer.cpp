@@ -14,7 +14,7 @@ Importer::Importer(k4n::Node* node_k4n){
 
   dat::Node* node_data = node_k4n->get_node_data();
   dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
-  dat::graph::Node* node_graph = node_data->get_node_graph();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->node_k4n = node_k4n;

@@ -4,10 +4,10 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace dat::graph::gui{
+namespace dat::gph::gui{
 
 //Constructor / Destructor
-Button::Button(dat::graph::Node* node_graph){
+Button::Button(dat::gph::Node* node_graph){
   //---------------------------
 
   dat::Node* node_data = node_graph->get_node_data();

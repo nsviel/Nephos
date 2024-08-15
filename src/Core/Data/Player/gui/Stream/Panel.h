@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 
-namespace dyn{class Node;}
-namespace dyn::gui::stream{class Overlay;}
-namespace dat::graph{class Selection;}
+namespace dat::ply{class Node;}
+namespace dat::stream::gui{class Overlay;}
+namespace dat::gph{class Selection;}
 namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
@@ -16,13 +16,13 @@ namespace utl::base{class Element;}
 namespace utl::media{class Image;}
 
 
-namespace dat::ply::gui{
+namespace dat::stream::gui{
 
 class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(dyn::Node* node_dynamic, bool* show_window);
+  Panel(dat::ply::Node* node_player, bool* show_window);
   ~Panel();
 
   //Main function
@@ -35,9 +35,9 @@ public:
 
 private:
   core::Node* node_core;
-  dat::graph::Selection* dat_selection;
+  dat::gph::Selection* dat_selection;
   dat::elm::Set* dat_set;
-  dyn::gui::stream::Overlay* gui_overlay;
+  dat::stream::gui::Overlay* gui_overlay;
 
   std::vector<rnd::gui::Stream*> vec_stream;
   std::string open_tab = "";

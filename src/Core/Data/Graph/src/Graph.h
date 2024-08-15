@@ -4,8 +4,8 @@
 
 namespace cam{class Entity;}
 namespace dat{class Node;}
-namespace dat::graph{class Node;}
-namespace dat::graph{class Structure;}
+namespace dat::gph{class Node;}
+namespace dat::gph{class Structure;}
 namespace dat::elm{class Set;}
 namespace dat::elm{class Glyph;}
 namespace dat::base{class Set;}
@@ -13,13 +13,13 @@ namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
 
 
-namespace dat::graph{
+namespace dat::gph{
 
 class Graph
 {
 public:
   //Constructor / Destructor
-  Graph(dat::graph::Node* node_graph);
+  Graph(dat::gph::Node* node_graph);
   ~Graph();
 
   //Main function
@@ -36,7 +36,7 @@ public:
 private:
   dat::elm::Glyph* dat_glyph;
   dat::elm::Set* dat_set;
-  dat::graph::Structure* dat_struct;
+  dat::gph::Structure* dat_struct;
 };
 
 }
