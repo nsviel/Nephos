@@ -6,7 +6,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace dyn::ply{
+namespace dat::ply{
 
 //Constructor / Destructor
 Node::Node(core::Node* node_core){
@@ -20,8 +20,8 @@ Node::Node(core::Node* node_core){
   this->node_profiler = node_core->get_node_profiler();
   this->node_operation = node_core->get_node_operation();
 
-  this->dyn_player = new dyn::ply::Player(this);
-  this->gui_player = new dyn::ply::gui::Panel(this, &panel_player->is_open);
+  this->dyn_player = new dat::ply::Player(this);
+  this->gui_player = new dat::ply::gui::Panel(this, &panel_player->is_open);
   this->gui_stream = new dyn::gui::stream::Panel(this, &panel_stream->is_open);
 
   //---------------------------

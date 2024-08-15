@@ -3,7 +3,7 @@
 namespace utl::base{class Element;}
 
 
-namespace dyn::ply::gui{
+namespace dat::ply::gui{
 
 class Info
 {

@@ -17,6 +17,7 @@ Node::Node(core::Node* node_core){
   //Child
   this->node_element = new dat::elm::Node(this);
   this->node_graph = new dat::graph::Node(this);
+  this->node_player = new dat::ply::Node(node_core);
 
   //---------------------------
 }

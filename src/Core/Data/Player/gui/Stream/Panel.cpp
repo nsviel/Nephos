@@ -8,7 +8,7 @@
 #include <Renderer/Namespace.h>
 
 
-namespace dyn::ply::gui{
+namespace dat::ply::gui{
 
 //Constructor / Destructor
 Panel::Panel(dyn::Node* node_dynamic, bool* show_window){

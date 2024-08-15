@@ -16,7 +16,7 @@ namespace utl::base{class Element;}
 namespace utl::media{class Image;}
 
 
-namespace dyn::ply::gui{
+namespace dat::ply::gui{
 
 class Panel
 {

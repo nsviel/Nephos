@@ -9,12 +9,12 @@ namespace rad{class Node;}
 namespace prf{class Node;}
 namespace ope{class Node;}
 namespace dyn{class Structure;}
-namespace dyn::ply{class Player;}
-namespace dyn::ply::gui{class Panel;}
+namespace dat::ply{class Player;}
+namespace dat::ply::gui{class Panel;}
 namespace dyn::gui::stream{class Panel;}
 
 
-namespace dyn::ply{
+namespace dat::ply{
 
 class Node : public utl::base::Node
 {
@@ -34,8 +34,8 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline ope::Node* get_node_operation(){return node_operation;}
 
-  inline dyn::ply::Player* get_dyn_player(){return dyn_player;}
-  inline dyn::ply::gui::Panel* get_gui_player(){return gui_player;}
+  inline dat::ply::Player* get_dyn_player(){return dyn_player;}
+  inline dat::ply::gui::Panel* get_gui_player(){return gui_player;}
 
 private:
   core::Node* node_core;
@@ -44,8 +44,8 @@ private:
   prf::Node* node_profiler;
   ope::Node* node_operation;
 
-  dyn::ply::Player* dyn_player;
-  dyn::ply::gui::Panel* gui_player;
+  dat::ply::Player* dyn_player;
+  dat::ply::gui::Panel* gui_player;
   dyn::gui::stream::Panel* gui_stream;
 };
 

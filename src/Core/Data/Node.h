@@ -6,6 +6,7 @@ namespace vk{class Node;}
 namespace core{class Node;}
 namespace dat::elm{class Node;}
 namespace dat::graph{class Node;}
+namespace dat::ply{class Node;}
 
 
 namespace dat{
@@ -29,6 +30,7 @@ public:
 
   inline dat::elm::Node* get_node_element(){return node_element;}
   inline dat::graph::Node* get_node_graph(){return node_graph;}
+  inline dat::ply::Node* get_node_player(){return node_player;}
 
 private:
   //Dependancy
@@ -38,6 +40,7 @@ private:
   //Child
   dat::elm::Node* node_element;
   dat::graph::Node* node_graph;
+  dat::ply::Node* node_player;
 };
 
 }

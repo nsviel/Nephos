@@ -5,7 +5,7 @@
 #include <imgui/core/imgui.h>
 
 
-namespace dyn::ply::gui{
+namespace dat::ply::gui{
 
 //Constructor / Destructor
 Info::Info(){

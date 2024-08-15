@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_DYNAMIC)
+set(LIBRARY_NAME DYNAMIC_PLAYER)
 
 #-----------------
 # Source files

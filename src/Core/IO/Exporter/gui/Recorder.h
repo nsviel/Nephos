@@ -11,7 +11,7 @@ namespace utl::gui::navigator{class Item;}
 namespace utl::base{class Element;}
 namespace dyn{class Structure;}
 namespace dyn::base{class Sensor;}
-namespace dyn::ply{class Player;}
+namespace dat::ply{class Player;}
 namespace dat::graph{class Selection;}
 namespace dat::base{class Entity;}
 
@@ -40,7 +40,7 @@ public:
   void item_operation(dat::base::Entity* entity);
 
 private:
-  dyn::ply::Player* dyn_player;
+  dat::ply::Player* dyn_player;
   dyn::Structure* dyn_struct;
   io::exp::Structure* io_struct;
   dat::graph::Selection* dat_selection;
