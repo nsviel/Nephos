@@ -22,6 +22,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   DATA_ELEMENT
   DATA_GRAPH
+  DATA_PLAYER
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
