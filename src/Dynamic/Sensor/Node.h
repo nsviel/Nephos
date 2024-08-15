@@ -3,19 +3,18 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace app{class Node;}
-namespace rad{class Node;}
 namespace core{class Node;}
 namespace k4n{class Node;}
 namespace rlx{class Node;}
 
 
-namespace mod{
+namespace sen{
 
 class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(app::Node* node_app);
+  Node(core::Node* node_core);
   ~Node();
 
 public:
@@ -29,7 +28,6 @@ private:
   core::Node* node_core;
   k4n::Node* node_kinect;
   rlx::Node* node_realsense;
-  rad::Node* node_radio;
 };
 
 }

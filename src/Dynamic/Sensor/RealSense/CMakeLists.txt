@@ -21,7 +21,7 @@ find_package(realsense2 REQUIRED)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_CORE
   LIBRARY_UTILITY
-  LIBRARY_MODULE
+  DYNAMIC_SENSOR
 
   ${realsense2_LIBRARY}
 )

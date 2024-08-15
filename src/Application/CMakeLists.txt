@@ -22,7 +22,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_CORE
   LIBRARY_GUI
   LIBRARY_SCENE
-  LIBRARY_MODULE
+  DYNAMIC_SENSOR
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

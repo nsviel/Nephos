@@ -8,16 +8,15 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace mod{
+namespace sen{
 
 //Constructor / Destructor
-Node::Node(app::Node* node_app){
+Node::Node(core::Node* node_core){
   //---------------------------
 
-  this->node_core = node_app->get_node_core();
+  this->node_core = node_core;
   this->node_kinect = new k4n::Node(node_core);
   this->node_realsense = new rlx::Node(node_core);
-  this->node_radio = new rad::Node(node_core);
 
   //---------------------------
 }

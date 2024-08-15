@@ -4,7 +4,7 @@ namespace vk{class Node;}
 namespace core{class Node;}
 namespace gui{class Node;}
 namespace sce{class Node;}
-namespace mod{class Node;}
+namespace sen{class Node;}
 
 
 namespace app{
@@ -35,7 +35,7 @@ private:
   core::Node* node_core;
   gui::Node* node_gui;
   sce::Node* node_scene;
-  mod::Node* node_module;
+  sen::Node* node_dynamic;
 
   bool running = true;
 };

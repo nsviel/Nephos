@@ -4,7 +4,7 @@
 #include <Core/Namespace.h>
 #include <Scene/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Processing/Node.h>
+#include <Sensor/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -16,7 +16,7 @@ Node::Node(){
 
   this->node_vulkan = new vk::Node(&running);
   this->node_core = new core::Node(this);
-  this->node_module = new mod::Node(this);
+  this->node_dynamic = new sen::Node(node_core);
   this->node_scene = new sce::Node(this);
   this->node_gui = new gui::Node(this);
 
@@ -39,7 +39,7 @@ void Node::run(){
 void Node::init(){
   //---------------------------
 
-  node_module->init();
+  node_dynamic->init();
   node_vulkan->init();
   node_core->init();
   node_gui->init();
