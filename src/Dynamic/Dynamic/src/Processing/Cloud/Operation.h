@@ -27,7 +27,7 @@ public:
 private:
   dyn::Structure* dyn_struct;
   dyn::cloud::Recorder* dyn_recorder;
-  dat::atr::Color* ope_color;
+  dat::atr::Color* atr_color;
   dyn::cloud::Normal* dyn_normal;
   dyn::cloud::Radiometry* dyn_radio;
   dat::elm::Entity* dat_entity;

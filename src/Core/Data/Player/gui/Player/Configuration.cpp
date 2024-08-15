@@ -1,7 +1,5 @@
 #include "Configuration.h"
 
-#include <Dynamic/Namespace.h>
-
 
 namespace dat::ply::gui{
 

@@ -1,8 +1,6 @@
 #include "Graph.h"
 
 #include <Data/Namespace.h>
-#include <Engine/Namespace.h>
-#include <Dynamic/Namespace.h>
 
 
 namespace dat::gph{

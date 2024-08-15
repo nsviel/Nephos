@@ -6,6 +6,7 @@ set(LIBRARY_NAME CORE_DATA)
 add_subdirectory(Element)
 add_subdirectory(Graph)
 add_subdirectory(Player)
+add_subdirectory(Attribut)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

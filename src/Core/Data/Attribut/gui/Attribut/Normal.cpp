@@ -1,7 +1,6 @@
 #include "Normal.h"
 
-#include <Dynamic/Namespace.h>
-#include <Data/Namespace.h>
+#include <Attribut/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -36,16 +35,16 @@ void Normal::draw_parameter(){
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Normal");
 
   //Enable
-  ImGui::Checkbox("Activated", &atr_struct->attribut.normal.enable);
+  ImGui::Checkbox("Activated", &atr_struct->normal.enable);
 
   //Parameter: kNN
   ImGui::SetNextItemWidth(100);
-  ImGui::SliderInt("kNN", &atr_struct->attribut.normal.knn, 1, 10);
+  ImGui::SliderInt("kNN", &atr_struct->normal.knn, 1, 10);
 
   //Computation time
   ImGui::Text("Time");
   ImGui::SameLine();
-  ImGui::TextColored(color, "%.2f ms", atr_struct->attribut.normal.time);
+  ImGui::TextColored(color, "%.2f ms", atr_struct->normal.time);
 
   //---------------------------
 }

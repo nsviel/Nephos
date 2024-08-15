@@ -1,6 +1,5 @@
 #include "Color.h"
 
-#include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -12,7 +11,7 @@ Color::Color(dat::atr::Node* node_attribut){
   //---------------------------
 
   this->atr_struct = node_attribut->get_atr_struct();
-  this->atr_color = new dat::atr::Color(node_operation);
+  this->atr_color = new dat::atr::Color(node_attribut);
   this->dat_element = new dat::elm::Element();
   this->utl_attribut = new utl::base::Attribut();
 
@@ -71,7 +70,7 @@ void Color::color_mode_rgb(utl::base::Element* element){
   bool condition = (entity->data.rgb.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
-  if(ImGui::RadioButton("RGB##colorization", &atr_struct->attribut.color.mode, dat::atr::color::RGB)){
+  if(ImGui::RadioButton("RGB##colorization", &atr_struct->color.mode, dat::atr::color::RGB)){
     atr_color->make_colorization(element);
   }
 
@@ -82,13 +81,13 @@ void Color::color_mode_rgb(utl::base::Element* element){
 void Color::color_mode_unicolor(utl::base::Element* element){
   //---------------------------
 
-  if(ImGui::RadioButton("##unicolor", &atr_struct->attribut.color.mode, dat::atr::color::UNICOLOR)){
+  if(ImGui::RadioButton("##unicolor", &atr_struct->color.mode, dat::atr::color::UNICOLOR)){
     atr_color->make_colorization(element);
   }
   ImGui::SameLine();
   ImGuiColorEditFlags flags = ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_AlphaBar;
-  if(ImGui::ColorEdit4("##unicolor_choice", (float*)&atr_struct->attribut.color.unicolor, flags)){
-    atr_struct->attribut.color.mode = dat::atr::color::UNICOLOR;
+  if(ImGui::ColorEdit4("##unicolor_choice", (float*)&atr_struct->color.unicolor, flags)){
+    atr_struct->color.mode = dat::atr::color::UNICOLOR;
     atr_color->make_colorization(element);
   }
 
@@ -102,7 +101,7 @@ void Color::color_mode_normal(utl::base::Element* element){
   bool condition = (entity->data.Nxyz.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
-  if(ImGui::RadioButton("Nxyz##colorization", &atr_struct->attribut.color.mode, dat::atr::color::NORMAL)){
+  if(ImGui::RadioButton("Nxyz##colorization", &atr_struct->color.mode, dat::atr::color::NORMAL)){
     atr_color->make_colorization(element);
   }
 
@@ -118,7 +117,7 @@ void Color::color_mode_field(utl::base::Element* element){
   bool condition = (entity->data.vec_field.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
-  if(ImGui::RadioButton("Field##colorization", &atr_struct->attribut.color.mode, dat::atr::color::FIELD)){
+  if(ImGui::RadioButton("Field##colorization", &atr_struct->color.mode, dat::atr::color::FIELD)){
     atr_color->make_colorization(element);
   }
 
@@ -134,7 +133,7 @@ void Color::color_mode_heatmap(utl::base::Element* element){
   bool condition = (entity->data.vec_field.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
-  if(ImGui::RadioButton("Heatmap##colorization", &atr_struct->attribut.color.mode, dat::atr::color::HEATMAP)){
+  if(ImGui::RadioButton("Heatmap##colorization", &atr_struct->color.mode, dat::atr::color::HEATMAP)){
     atr_color->make_colorization(element);
   }
 
@@ -150,7 +149,7 @@ void Color::color_mode_structure(utl::base::Element* element){
   bool condition = (entity->data.width == -1);
   if(condition) ImGui::BeginDisabled();
 
-  if(ImGui::RadioButton("Structure##colorization", &atr_struct->attribut.color.mode, dat::atr::color::STRUCTURE)){
+  if(ImGui::RadioButton("Structure##colorization", &atr_struct->color.mode, dat::atr::color::STRUCTURE)){
     atr_color->make_colorization(element);
   }
 
@@ -161,7 +160,7 @@ void Color::color_mode_structure(utl::base::Element* element){
 void Color::color_option(utl::base::Element* element){
   //---------------------------
 
-  if(atr_struct->attribut.color.mode == dat::atr::color::FIELD || atr_struct->attribut.color.mode == dat::atr::color::HEATMAP){
+  if(atr_struct->color.mode == dat::atr::color::FIELD || atr_struct->color.mode == dat::atr::color::HEATMAP){
     dat::base::Entity* entity = dat_element->get_active_entity(element);
     if(!entity) return;
 
@@ -169,9 +168,9 @@ void Color::color_option(utl::base::Element* element){
     std::vector<std::string> vec_name = utl_attribut->get_field_names(&entity->data);
 
     //Init
-    if(entity->data.vec_field.size() != 0 && atr_struct->attribut.color.field == ""){
-      atr_struct->attribut.color.field = vec_name[0];
-      atr_struct->attribut.color.range = utl_attribut->get_field_range(&entity->data, vec_name[0]);
+    if(entity->data.vec_field.size() != 0 && atr_struct->color.field == ""){
+      atr_struct->color.field = vec_name[0];
+      atr_struct->color.range = utl_attribut->get_field_range(&entity->data, vec_name[0]);
     }
 
     //Combo field name
@@ -183,8 +182,8 @@ void Color::color_option(utl::base::Element* element){
         const bool is_selected = (selection == i);
 
         if(ImGui::Selectable(name.c_str(), is_selected)){
-          atr_struct->attribut.color.field = name;
-          atr_struct->attribut.color.range = utl_attribut->get_field_range(&entity->data, name);
+          atr_struct->color.field = name;
+          atr_struct->color.range = utl_attribut->get_field_range(&entity->data, name);
           selection = i;
         }
 
@@ -198,9 +197,9 @@ void Color::color_option(utl::base::Element* element){
 
     //Range
     ImGui::SetNextItemWidth(150);
-    glm::vec2 range = utl_attribut->get_field_range(&entity->data, atr_struct->attribut.color.field);
+    glm::vec2 range = utl_attribut->get_field_range(&entity->data, atr_struct->color.field);
     float sensitivity = (range.y - range.x) / 100.0f;
-    ImGui::DragFloatRange2("Range##321", &atr_struct->attribut.color.range.x, &atr_struct->attribut.color.range.y, sensitivity, range.x, range.y, "%.2f", "%.2f");
+    ImGui::DragFloatRange2("Range##321", &atr_struct->color.range.x, &atr_struct->color.range.y, sensitivity, range.x, range.y, "%.2f", "%.2f");
   }
 
   //---------------------------

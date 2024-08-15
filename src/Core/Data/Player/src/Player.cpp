@@ -1,6 +1,5 @@
 #include "Player.h"
 
-#include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
 
 

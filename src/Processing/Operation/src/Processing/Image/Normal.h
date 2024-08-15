@@ -7,14 +7,14 @@ namespace utl::media{class Image;}
 namespace dyn::base{class Sensor;}
 
 
-namespace dat::atr::normal{
+namespace ope::image{
 
-class Image
+class Normal
 {
 public:
   // Constructor / Destructor
-  Image();
-  ~Image();
+  Normal();
+  ~Normal();
 
 public:
   //Main function

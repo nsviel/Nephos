@@ -1,7 +1,6 @@
 #include "Panel.h"
 
 #include <Attribut/Namespace.h>
-#include <Dynamic/Namespace.h>
 
 
 namespace dat::atr::gui{

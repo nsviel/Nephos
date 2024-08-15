@@ -3,6 +3,7 @@
 #include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace k4n::processing::cloud{
@@ -43,8 +44,8 @@ void Data::extract_data(k4n::base::Sensor* sensor){
   this->extraction_transfer(sensor);
   tasker->task_end("transfer");
 
-  dat::atr::Location ope_location;
-  ope_location.compute_height(sensor);
+  dat::atr::Location atr_location;
+  atr_location.compute_height(sensor);
 
   //---------------------------
 }

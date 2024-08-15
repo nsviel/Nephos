@@ -34,7 +34,7 @@ public:
 
 private:
   dat::atr::Structure* atr_struct;
-  dat::atr::Color* ope_color;
+  dat::atr::Color* atr_color;
   utl::base::Attribut* utl_attribut;
   dat::elm::Element* dat_element;
 };
