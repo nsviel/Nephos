@@ -5,14 +5,13 @@
 #include <string>
 #include <vector>
 
-namespace io::trf{class Node;}
-namespace io::trf{class Structure;}
-namespace io::trf{class Transformation;}
+namespace eng::trf{class Node;}
+namespace eng::trf{class IO;}
 namespace utl::base{class Element;}
 namespace dat::gph{class Selection;}
 
 
-namespace io::trf::gui{
+namespace eng::trf::gui{
 
 class Panel
 {
@@ -35,8 +34,7 @@ public:
   void item_operation();
 
 private:
-  io::trf::Structure* io_struct;
-  io::trf::Transformation* io_transformation;
+  eng::trf::Transformation* trf_io;
   utl::gui::Navigator* gui_navigator;
   dat::gph::Selection* dat_selection;
 

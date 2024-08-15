@@ -3,20 +3,18 @@
 #include <vector>
 #include <string>
 
-namespace io::trf{class Node;}
-namespace io::trf{class Structure;}
 namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
 
 
-namespace io::trf{
+namespace eng::trf{
 
-class Transformation
+class IO
 {
 public:
   //Constructor / Destructor
-  Transformation(io::trf::Node* node_transfo);
-  ~Transformation();
+  IO();
+  ~IO();
 
 public:
   //Main function
@@ -30,7 +28,7 @@ public:
   std::vector<std::string> get_supported_format();
 
 private:
-  io::trf::Structure* io_struct;
+  utl::base::Path path;
 };
 
 }

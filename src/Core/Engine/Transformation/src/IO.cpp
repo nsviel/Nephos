@@ -1,22 +1,21 @@
-#include "Transformation.h"
+#include "IO.h"
 
-#include <IO/Namespace.h>
+#include <Transformation/Namespace.h>
 
 
-namespace io::trf{
+namespace eng::trf{
 
 //Constructor / Destructor
-Transformation::Transformation(io::trf::Node* node_transfo){
+IO::IO(){
   //---------------------------
 
-  this->io_struct = node_transfo->get_io_struct();
 
   //---------------------------
 }
-Transformation::~Transformation(){}
+IO::~IO(){}
 
 //Main function
-void Transformation::load_transformation(dat::base::Entity* entity){
+void IO::load_transformation(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
@@ -25,7 +24,7 @@ void Transformation::load_transformation(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Transformation::load_transformation(utl::base::Element* element, std::string path){
+void IO::load_transformation(utl::base::Element* element, std::string path){
   //---------------------------
 
   //Transformation
@@ -38,7 +37,7 @@ void Transformation::load_transformation(utl::base::Element* element, std::strin
 
   //---------------------------
 }
-void Transformation::save_transformation(utl::base::Element* element, std::string path){
+void IO::save_transformation(utl::base::Element* element, std::string path){
   //---------------------------
 
   glm::mat4& mat = element->pose.model;
@@ -48,15 +47,15 @@ void Transformation::save_transformation(utl::base::Element* element, std::strin
 }
 
 //Subfunction
-void Transformation::init_path(){
+void IO::init_path(){
   //---------------------------
 
-  io_struct->path.directory = utl::path::get_current_directory_path();
-  io_struct->path.format = ".json";
+  this->path.directory = utl::path::get_current_directory_path();
+  this->path.format = ".json";
 
   //---------------------------
 }
-void Transformation::update_path(utl::base::Element* element){
+void IO::update_path(utl::base::Element* element){
   dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
   if(entity == nullptr) return;
   //---------------------------
@@ -66,15 +65,15 @@ void Transformation::update_path(utl::base::Element* element){
 
   std::string path = entity->pose.path.build();
   if(path != ""){
-    io_struct->path.directory = utl::path::get_dir_from_path(path);
-    io_struct->path.name = utl::path::get_name_from_path(path);
-    io_struct->path.format = utl::path::get_format_from_path(path);
+    this->path.directory = utl::path::get_dir_from_path(path);
+    this->path.name = utl::path::get_name_from_path(path);
+    this->path.format = utl::path::get_format_from_path(path);
     old_entity = entity;
   }
 
   //---------------------------
 }
-std::vector<std::string> Transformation::get_supported_format(){
+std::vector<std::string> IO::get_supported_format(){
   std::vector<std::string> vec_format;
   //---------------------------
 

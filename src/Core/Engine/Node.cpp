@@ -21,6 +21,7 @@ Node::Node(core::Node* node_core){
   this->node_camera = new cam::Node(this);
   this->node_control = new ctr::Node(this);
   this->node_renderer = new rnd::Node(this);
+  this->node_transfor = new io::trf::Node(node_core);
 
   //---------------------------
 }
@@ -31,6 +32,7 @@ void Node::init(){
 
   node_camera->init();
   node_renderer->init();
+  node_transfor->init();
 
   //---------------------------
 }

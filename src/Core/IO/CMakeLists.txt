@@ -6,7 +6,6 @@ set(LIBRARY_NAME CORE_IO)
 add_subdirectory(Exporter)
 add_subdirectory(Importer)
 add_subdirectory(Format)
-add_subdirectory(Transformation)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

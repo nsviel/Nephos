@@ -5,7 +5,6 @@
 namespace core{class Node;}
 namespace io::imp{class Node;}
 namespace io::exp{class Node;}
-namespace io::trf{class Node;}
 
 
 namespace io{
@@ -28,7 +27,6 @@ public:
 private:
   io::imp::Node* node_importer;
   io::exp::Node* node_exporter;
-  io::trf::Node* node_transfor;
 };
 
 }

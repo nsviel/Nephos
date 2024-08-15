@@ -153,12 +153,12 @@ void make_transformation_identity(glm::mat4& mat){
   //---------------------------
 }
 void init_and_heighten_transformation(glm::mat4& mat, float value){
-    //---------------------------
+  //---------------------------
 
-    mat = glm::mat4(1.0f);
-    mat[2][3] = value;
+  mat = glm::mat4(1.0f);
+  mat[2][3] = value;
 
-    //---------------------------
-  }
+  //---------------------------
+}
 
 }
