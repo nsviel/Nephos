@@ -1,6 +1,7 @@
 #include "Normal.h"
 
 #include <Utility/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <cstdlib>
 
 
@@ -29,7 +30,7 @@ void Normal::compute_normal(dyn::base::Sensor* sensor, utl::media::Image* depth,
 //Method function
 void Normal::compute_normal_with_gradient(dyn::base::Sensor* sensor, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
-
+/*
   vec_Nxyz.clear();
   vec_Nxyz.resize(width * height);
 
@@ -75,12 +76,12 @@ void Normal::compute_normal_with_gradient(dyn::base::Sensor* sensor, int width, 
       vec_Nxyz[idx] = normal;
     }
   }
-
+*/
   //---------------------------
 }
 void Normal::compute_normal_with_cov(dyn::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
-
+/*
   vec_Nxyz.clear();
   vec_Nxyz.resize(width * height);
 tic();
@@ -107,7 +108,7 @@ tic();
       vec_Nxyz[idx] = normal;
     }
   }
-toc_ms("hoy");
+toc_ms("hoy");*/
   //---------------------------
 }
 void Normal::compute_normal_with_cov_img(dyn::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
@@ -152,7 +153,7 @@ void Normal::compute_normal_with_cov_img(dyn::base::Sensor* sensor, utl::media::
 //Subfunction
 void Normal::compute_neigbor(dyn::base::Sensor* sensor, std::vector<glm::vec3>& vec_nn, int x, int y, int width, int height){
   //---------------------------
-
+/*
   int half_window = k / 2;
 
   // Collect neighbors
@@ -168,7 +169,7 @@ void Normal::compute_neigbor(dyn::base::Sensor* sensor, std::vector<glm::vec3>& 
       vec_nn.push_back(depth);
     }
   }
-
+*/
   //---------------------------
 }
 

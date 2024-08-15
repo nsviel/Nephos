@@ -1,5 +1,7 @@
 #include "Configuration.h"
 
+#include <imgui/core/imgui.h>
+
 
 namespace dat::ply::gui{
 

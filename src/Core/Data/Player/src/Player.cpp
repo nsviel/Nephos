@@ -151,7 +151,7 @@ void Player::button_forward(float value){
 
 //Subfunction
 void Player::manage_state(dat::base::Set* set){
-  if(set == nullptr) return;
+/*  if(set == nullptr) return;
   //---------------------------
 
   //Entity
@@ -169,13 +169,13 @@ void Player::manage_state(dat::base::Set* set){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_state(subset);
   }
-
+*/
   //---------------------------
 }
 void Player::manage_update(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
-
+/*
   timestamp = {};
 
   //Entity
@@ -201,13 +201,13 @@ void Player::manage_update(dat::base::Set* set){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_update(subset);
   }
-
+*/
   //---------------------------
 }
 void Player::manage_restart(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
-
+/*
   if(!state.replay){
     state.play = false;
     state.pause = true;
@@ -229,12 +229,12 @@ void Player::manage_restart(dat::base::Set* set){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_restart(subset);
   }
-
+*/
   //---------------------------
 }
 void Player::manage_reset(dat::base::Set* set){
   //---------------------------
-
+/*
   //Entity
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
@@ -249,12 +249,12 @@ void Player::manage_reset(dat::base::Set* set){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_reset(subset);
   }
-
+*/
   //---------------------------
 }
 void Player::manage_query(dat::base::Set* set, float value){
   //---------------------------
-
+/*
   //Entity
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
@@ -269,7 +269,7 @@ void Player::manage_query(dat::base::Set* set, float value){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_query(subset, value);
   }
-
+*/
   //---------------------------
 }
 
