@@ -2,6 +2,7 @@
 
 #include <Attribut/Namespace.h>
 #include <Transformation/Namespace.h>
+#include <Engine/Namespace.h>
 
 
 namespace dat::atr::gui{
@@ -11,9 +12,9 @@ Panel::Panel(dat::atr::Node* node_attribut){
   //---------------------------
 
   this->gui_color = new dat::atr::gui::Color(node_attribut);
-  this->gui_transformation = new eng::trf::gui::Matrix();
   this->gui_info = new dat::atr::gui::Info();
   this->gui_operation = new dat::atr::gui::Operation(node_attribut);
+  this->gui_transformation = new eng::trf::gui::Matrix();
 
   //---------------------------
 }

@@ -4,7 +4,6 @@ set(LIBRARY_NAME DATA_ATTRIBUT)
 # Source files
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
-  *.cpp
   *.h
 )
 
@@ -12,8 +11,6 @@ file(GLOB_RECURSE ALL_SOURCES
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
-find_package(OpenCV REQUIRED)
-find_library(LZ4_LIBRARIES NAMES liblz4.so HINTS "lz4/lib")
 
 #-----------------
 # Dependencies
@@ -21,6 +18,8 @@ find_library(LZ4_LIBRARIES NAMES liblz4.so HINTS "lz4/lib")
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_OPERATION
+  ENGINE_TRANSFORMATION
+  CORE_ENGINE
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

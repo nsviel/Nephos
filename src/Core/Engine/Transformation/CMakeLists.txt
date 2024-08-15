@@ -1,26 +1,23 @@
-set(LIBRARY_NAME DATA_TRANSFORMATION)
+set(LIBRARY_NAME ENGINE_TRANSFORMATION)
 
 #-----------------
 # Source files
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
-  *.h
 )
 
 #-----------------
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
-find_package(OpenCV REQUIRED)
-find_library(LZ4_LIBRARIES NAMES liblz4.so HINTS "lz4/lib")
 
 #-----------------
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
-  LIBRARY_OPERATION
+  DATA_ATTRIBUT
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

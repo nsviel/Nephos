@@ -29,6 +29,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   ENGINE_CAMERA
   ENGINE_RENDERER
   ENGINE_CONTROL
+  ENGINE_TRANSFORMATION
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
