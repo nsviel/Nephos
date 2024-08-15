@@ -23,6 +23,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_CORE
   CORE_DATA
+  DATA_ATTRIBUT
 
   ${Python_LIBRARIES}
   ${k4a_LIBS}

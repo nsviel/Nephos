@@ -10,7 +10,7 @@ namespace core{class Node;}
 namespace cam{class Node;}
 namespace rnd{class Node;}
 namespace ctr{class Node;}
-namespace io::trf{class Node;}
+namespace eng::trf{class Node;}
 
 
 namespace eng{
@@ -46,7 +46,7 @@ private:
   cam::Node* node_camera;
   rnd::Node* node_renderer;
   ctr::Node* node_control;
-  io::trf::Node* node_transfor;
+  eng::trf::Node* node_transfor;
 };
 
 }

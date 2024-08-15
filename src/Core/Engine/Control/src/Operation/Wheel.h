@@ -33,7 +33,7 @@ private:
   dat::gph::Selection* dat_selection;
   cam::Control* cam_control;
   eng::trf::Operation* trf_operation;
-  dat::atr::Location* ope_location;
+  dat::atr::Location* atr_location;
 };
 
 }

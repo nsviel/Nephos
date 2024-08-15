@@ -34,7 +34,7 @@ public:
   inline void set_entity(dat::base::Entity* entity){this->entity = entity;}
 
 private:
-  dat::atr::Location* ope_location;
+  dat::atr::Location* atr_location;
   eng::trf::Operation* trf_operation;
   dat::elm::Set* dat_set;
   dat::gui::entity::Topology* gui_topology;

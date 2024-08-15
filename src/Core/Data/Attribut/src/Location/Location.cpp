@@ -1,6 +1,7 @@
 #include "Location.h"
 
 #include <Data/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace dat::atr{

@@ -4,6 +4,7 @@
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
+#include <Attribut/Namespace.h>
 
 
 namespace k4n::processing::cloud{

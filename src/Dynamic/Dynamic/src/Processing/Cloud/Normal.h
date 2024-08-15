@@ -41,7 +41,7 @@ private:
   dat::elm::Glyph* dat_glyph;
   dat::atr::normal::Structured* ope_normal;
   ope::image::Converter* ope_converter;
-  dat::atr::Location* ope_location;
+  dat::atr::Location* atr_location;
   utl::thread::task::Pool* thread_pool;
 
   std::thread thread;

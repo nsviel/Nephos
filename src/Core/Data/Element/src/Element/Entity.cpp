@@ -22,7 +22,7 @@ Entity::Entity(dat::elm::Node* node_element){
   this->dat_uid = node_element->get_dat_uid();
 
   this->vk_data = node_vulkan->get_vk_data();
-  this->ope_location = new dat::atr::Location();
+  this->atr_location = new dat::atr::Location();
 
   //---------------------------
 }
@@ -100,7 +100,7 @@ void Entity::update_data(dat::base::Entity* entity){
     vk_data->insert(data, pose);
 
     //Update attribut
-    ope_location->compute_centroid(entity);
+    atr_location->compute_centroid(entity);
 
     //Update own glyph pose
     for(int i=0; i<entity->list_glyph.size(); i++){

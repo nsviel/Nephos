@@ -16,7 +16,7 @@ Panel::Panel(dat::elm::Node* node_element, bool* panel_show){
   this->dat_set = node_element->get_dat_set();
   this->gui_topology = new dat::gui::entity::Topology();
   this->gui_data = new dat::gui::entity::Data(node_element);
-  this->ope_location = new dat::atr::Location();
+  this->atr_location = new dat::atr::Location();
   this->trf_operation = new eng::trf::Operation();
 
   this->panel_show = panel_show;

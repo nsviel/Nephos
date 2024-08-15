@@ -42,7 +42,7 @@ private:
   dat::elm::Structure* dat_struct;
   dat::elm::UID* dat_uid;
   cam::Control* cam_control;
-  dat::atr::Location* ope_location;
+  dat::atr::Location* atr_location;
 };
 
 }

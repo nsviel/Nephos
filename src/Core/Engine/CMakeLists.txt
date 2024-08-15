@@ -9,7 +9,7 @@ add_subdirectory(Control)
 add_subdirectory(Transformation)
 
 file(GLOB_RECURSE ALL_SOURCES
-  *.cpp
+  Node.cpp
 )
 
 #-----------------
