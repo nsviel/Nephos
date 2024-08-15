@@ -13,11 +13,12 @@ Node::Node(core::Node* node_core){
   //Dependancy
   this->node_core = node_core;
   this->node_vulkan = node_core->get_node_vulkan();
+  this->node_operation = node_core->get_node_operation();
 
   //Child
   this->node_element = new dat::elm::Node(this);
   this->node_graph = new dat::gph::Node(this);
-  this->node_player = new dat::ply::Node(node_core);
+  this->node_player = new dat::ply::Node(this);
 
   //---------------------------
 }
