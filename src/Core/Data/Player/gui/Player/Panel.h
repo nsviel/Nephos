@@ -26,7 +26,7 @@ private:
   dat::ply::gui::Player* gui_player;
   dat::ply::gui::Configuration* gui_configuration;
   dat::gph::Selection* dat_selection;
-  dat::atr::gui::Panel* ope_panel;
+  dat::atr::gui::Panel* atr_panel;
 
   std::string name;
   std::string open_tab = "";

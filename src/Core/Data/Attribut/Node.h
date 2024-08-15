@@ -2,6 +2,7 @@
 
 #include <Utility/Base/Class/Node.h>
 
+namespace core{class Node;}
 namespace dat{class Node;}
 namespace dat::atr{class Structure;}
 namespace dat::atr::gui{class Panel;}

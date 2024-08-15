@@ -1,19 +1,19 @@
 #include "Panel.h"
 
-#include <Operation/Namespace.h>
+#include <Attribut/Namespace.h>
 #include <Dynamic/Namespace.h>
 
 
 namespace dat::atr::gui{
 
 //Constructor / Destructor
-Panel::Panel(ope::Node* node_operation){
+Panel::Panel(dat::atr::Node* node_attribut){
   //---------------------------
 
-  this->gui_color = new dat::atr::gui::Color(node_operation);
+  this->gui_color = new dat::atr::gui::Color(node_attribut);
   this->gui_transformation = new dat::atr::gui::Transformation();
   this->gui_info = new dat::atr::gui::Info();
-  this->gui_operation = new dat::atr::gui::Operation(node_operation);
+  this->gui_operation = new dat::atr::gui::Operation(node_attribut);
 
   //---------------------------
 }

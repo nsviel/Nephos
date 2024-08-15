@@ -1,7 +1,7 @@
 #include "Node.h"
+#include "Namespace.h"
 
 #include <Core/Namespace.h>
-#include <Operation/Namespace.h>
 
 
 namespace dat::atr{

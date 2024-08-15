@@ -2,6 +2,7 @@
 
 #include <Operation/Namespace.h>
 #include <Element/Namespace.h>
+#include <Attribut/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 #include <imgui/core/imgui.h>
 

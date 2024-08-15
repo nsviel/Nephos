@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Operation/src/Attribut/Structure/Enum.h>
+#include "Enum.h"
+
 #include <glm/glm.hpp>
 #include <string>
 
@@ -13,7 +14,7 @@ struct Color{
   glm::vec4 unicolor = glm::vec4(1, 1, 1, 1);
   glm::vec2 range = glm::vec2(0, 5);
   std::string field = "";
-  int mode = ope::color::RGB;
+  int mode = dat::atr::color::RGB;
 
   //---------------------------
 };

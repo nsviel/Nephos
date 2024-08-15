@@ -13,7 +13,6 @@ Node::Node(core::Node* node_core){
   //Dependancy
   this->node_core = node_core;
   this->node_vulkan = node_core->get_node_vulkan();
-  this->node_operation = node_core->get_node_operation();
 
   //Child
   this->node_attribut = new dat::atr::Node(this);

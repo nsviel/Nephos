@@ -1,7 +1,7 @@
 #pragma once
 
-namespace ope{class Node;}
-namespace ope{class Structure;}
+namespace dat::atr{class Node;}
+namespace dat::atr{class Structure;}
 
 
 namespace dat::atr::gui{
@@ -21,7 +21,7 @@ public:
   void draw_parameter();
 
 private:
-  ope::Structure* ope_struct;
+  dat::atr::Structure* atr_struct;
 };
 
 }

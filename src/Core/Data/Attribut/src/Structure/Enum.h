@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ope::color{
+namespace dat::atr::color{
 
 enum Mode{
   RGB = 0,
@@ -14,7 +14,7 @@ enum Mode{
 
 }
 
-namespace ope::heatmap{
+namespace dat::atr::heatmap{
 
 enum Mode{
   INTENSITY = 0,

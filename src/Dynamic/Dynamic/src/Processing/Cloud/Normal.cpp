@@ -25,7 +25,7 @@ Normal::Normal(dyn::Node* node_dynamic){
   this->dat_image = node_element->get_dat_image();
   this->dat_glyph = node_element->get_dat_glyph();
   this->ope_converter = new ope::image::Converter();
-  this->ope_normal = new ope::normal::Structured();
+  this->ope_normal = new dat::atr::normal::Structured();
   this->ope_location = new dat::atr::Location();
 
   //---------------------------
@@ -47,7 +47,7 @@ void Normal::start_thread(dyn::base::Sensor* sensor){
   //---------------------------
 }
 void Normal::run_thread(dyn::base::Sensor* sensor){
-  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::normal");
+  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("dat::atr::normal");
   //---------------------------
 
   tasker->loop();

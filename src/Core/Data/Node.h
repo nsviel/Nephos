@@ -4,7 +4,6 @@
 
 namespace vk{class Node;}
 namespace core{class Node;}
-namespace ope{class Node;}
 
 namespace dat::atr{class Node;}
 namespace dat::elm{class Node;}
@@ -30,7 +29,6 @@ public:
 
   inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
-  inline ope::Node* get_node_operation(){return node_operation;}
 
   inline dat::atr::Node* get_node_attribut(){return node_attribut;}
   inline dat::elm::Node* get_node_element(){return node_element;}
@@ -41,7 +39,6 @@ private:
   //Dependancy
   core::Node* node_core;
   vk::Node* node_vulkan;
-  ope::Node* node_operation;
 
   //Child
   dat::atr::Node* node_attribut;

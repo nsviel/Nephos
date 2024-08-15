@@ -3,8 +3,8 @@
 #include <Utility/Component/Color/Namespace.h>
 #include <glm/glm.hpp>
 
-namespace ope{class Node;}
-namespace ope{class Structure;}
+namespace dat::atr{class Node;}
+namespace dat::atr{class Structure;}
 namespace utl::base{class Attribut;}
 namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
@@ -35,7 +35,7 @@ public:
   void colorization_heatmap(dat::base::Entity* entity);
 
 private:
-  ope::Structure* ope_struct;
+  dat::atr::Structure* atr_struct;
   utl::base::Attribut* utl_attribut;
 };
 

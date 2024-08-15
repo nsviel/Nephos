@@ -4,7 +4,7 @@
 #include <vector>
 
 
-namespace ope::colormap{
+namespace dat::atr::colormap{
 
 inline std::vector<glm::vec3> magma = {
   glm::vec3(0.001462, 0.000466, 0.013866), glm::vec3(0.043830, 0.033830, 0.141886),

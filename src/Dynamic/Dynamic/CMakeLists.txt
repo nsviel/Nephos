@@ -20,6 +20,8 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_CORE
   LIBRARY_RADIOMETRY
   LIBRARY_PROFILER
+
+  DATA_ATTRIBUT
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

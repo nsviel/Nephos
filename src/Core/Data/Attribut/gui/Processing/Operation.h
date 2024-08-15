@@ -1,7 +1,7 @@
 #pragma once
 
 namespace core{class Node;}
-namespace ope{class Node;}
+namespace dat::atr{class Node;}
 namespace ope::image{class Converter;}
 namespace dat::atr::gui{class Normal;}
 namespace utl::base{class Element;}

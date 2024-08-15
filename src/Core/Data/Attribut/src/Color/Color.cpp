@@ -11,7 +11,7 @@ namespace dat::atr{
 Color::Color(dat::atr::Node* node_attribut){
   //---------------------------
 
-  this->ope_struct = node_operation->get_ope_struct();
+  this->atr_struct = node_attribut->get_atr_struct();
   this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
@@ -49,28 +49,28 @@ void Color::make_colorization(dat::base::Entity* entity){
   }
 
   //Apply colorization
-  switch(ope_struct->attribut.color.mode){
-    case ope::color::RGB:{
+  switch(atr_struct->attribut.color.mode){
+    case dat::atr::color::RGB:{
       this->colorization_rgb(entity);
       break;
     }
-    case ope::color::UNICOLOR:{
+    case dat::atr::color::UNICOLOR:{
       this->colorization_unicolor(entity);
       break;
     }
-    case ope::color::NORMAL:{
+    case dat::atr::color::NORMAL:{
       this->colorization_normal(entity);
       break;
     }
-    case ope::color::FIELD:{
+    case dat::atr::color::FIELD:{
       this->colorization_field(entity);
       break;
     }
-    case ope::color::STRUCTURE:{
+    case dat::atr::color::STRUCTURE:{
       this->colorization_structure(entity);
       break;
     }
-    case ope::color::HEATMAP:{
+    case dat::atr::color::HEATMAP:{
       this->colorization_heatmap(entity);
       break;
     }
@@ -98,7 +98,7 @@ void Color::colorization_unicolor(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  data->rgba = std::vector<glm::vec4>(data->rgba.size(), ope_struct->attribut.color.unicolor);
+  data->rgba = std::vector<glm::vec4>(data->rgba.size(), atr_struct->attribut.color.unicolor);
 
   //---------------------------
 }
@@ -128,9 +128,9 @@ void Color::colorization_field(dat::base::Entity* entity){
   //---------------------------
 
   //Normalization
-  std::vector<float>& vec_field = utl_attribut->get_field_data(data, ope_struct->attribut.color.field);
+  std::vector<float>& vec_field = utl_attribut->get_field_data(data, atr_struct->attribut.color.field);
   std::vector<float> field = vec_field;
-  math::normalize(field, ope_struct->attribut.color.range, glm::vec2(0, 1));
+  math::normalize(field, atr_struct->attribut.color.range, glm::vec2(0, 1));
 
   //Set to color
   for(int i=0; i<field.size(); i++){
@@ -186,9 +186,9 @@ void Color::colorization_heatmap(dat::base::Entity* entity){
   //---------------------------
 
   //Normalization
-  std::vector<float>& vec_field = utl_attribut->get_field_data(data, ope_struct->attribut.color.field);
+  std::vector<float>& vec_field = utl_attribut->get_field_data(data, atr_struct->attribut.color.field);
   std::vector<float> field = vec_field;
-  math::normalize(field, ope_struct->attribut.color.range, glm::vec2(0, 1));
+  math::normalize(field, atr_struct->attribut.color.range, glm::vec2(0, 1));
 
   //Set to color
   utl::attribut::compute_heatmap(field, data->rgba);

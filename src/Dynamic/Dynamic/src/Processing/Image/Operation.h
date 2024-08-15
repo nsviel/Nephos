@@ -11,7 +11,7 @@ namespace utl::thread::task{class Pool;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
 namespace dat::atr{class Color;}
-namespace ope::normal{class KNN;}
+namespace dat::atr::normal{class KNN;}
 
 
 namespace dyn::image{

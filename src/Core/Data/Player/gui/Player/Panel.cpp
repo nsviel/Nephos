@@ -12,13 +12,13 @@ Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   //---------------------------
 
   dat::Node* node_data = node_player->get_node_data();
-  ope::Node* node_operation = node_player->get_node_operation();
+  dat::atr::Node* node_attribut = node_data->get_node_attribut();
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->dat_selection = node_graph->get_dat_selection();
   this->gui_configuration = new dat::ply::gui::Configuration();
   this->gui_player = new dat::ply::gui::Player(node_player);
-  this->ope_panel = node_operation->get_gui_panel();
+  this->atr_panel = node_attribut->get_gui_panel();
 
   this->show_window = show_window;
   this->name = "Player";
@@ -57,7 +57,7 @@ void Panel::design_panel(){
 
   gui_player->design_player(element);
   gui_configuration->design_configuration(element);
-  ope_panel->design_panel(element);
+  atr_panel->design_panel(element);
 
   ImGui::PopStyleColor();
 

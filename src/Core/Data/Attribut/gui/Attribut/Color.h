@@ -1,7 +1,7 @@
 #pragma once
 
-namespace ope{class Node;}
-namespace ope{class Structure;}
+namespace dat::atr{class Node;}
+namespace dat::atr{class Structure;}
 namespace dat::atr{class Color;}
 namespace utl::base{class Element;}
 namespace utl::base{class Attribut;}
@@ -33,7 +33,7 @@ public:
   void color_option(utl::base::Element* element);
 
 private:
-  ope::Structure* ope_struct;
+  dat::atr::Structure* atr_struct;
   dat::atr::Color* ope_color;
   utl::base::Attribut* utl_attribut;
   dat::elm::Element* dat_element;

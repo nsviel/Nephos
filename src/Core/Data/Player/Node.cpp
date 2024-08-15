@@ -15,7 +15,6 @@ Node::Node(dat::Node* node_data){
 
   this->node_data = node_data;
   this->node_core = node_data->get_node_core();
-  this->node_operation = node_data->get_node_operation();
 
   this->dyn_player = new dat::ply::Player(this);
   this->gui_player = new dat::ply::gui::Panel(this, &panel_player->is_open);

@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace ope{class Node;}
+namespace dat::atr{class Node;}
 namespace dat::atr::gui{class Color;}
 namespace dat::atr::gui{class Transformation;}
 namespace dat::atr::gui{class Info;}
@@ -16,7 +16,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(ope::Node* node_operation);
+  Panel(dat::atr::Node* node_attribut);
   ~Panel();
 
   //Main function
