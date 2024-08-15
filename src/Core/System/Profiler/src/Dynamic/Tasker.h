@@ -44,7 +44,7 @@ public:
   float fps = 0;
 
 private:
-  utl::timer::Chrono timer;
+  utl::timer::Chrono* timer;
   utl::timer::fps::Counter* fps_counter;
   utl::timer::fps::Control* fps_control;
 

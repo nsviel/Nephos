@@ -12,6 +12,7 @@ Tasker::Tasker(std::string name){
   //---------------------------
 
   this->name = name;
+  this->timer = new utl::timer::Chrono();
   this->fps_control = new utl::timer::fps::Control(120);
   this->fps_counter = new utl::timer::fps::Counter();
 
