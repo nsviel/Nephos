@@ -5,7 +5,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace dyn::gui{
+namespace dyn::ply::gui{
 
 //Constructor / Destructor
 Player::Player(dyn::Node* node_dynamic){

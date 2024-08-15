@@ -2,7 +2,7 @@
 
 namespace dat::graph{class Selection;}
 namespace ctr{class Node;}
-namespace dyn::player{class Player;}
+namespace dyn::ply{class Player;}
 
 
 namespace ctr{
@@ -22,7 +22,7 @@ public:
 
 private:
   dat::graph::Selection* dat_selection;
-  dyn::player::Player* dyn_player;
+  dyn::ply::Player* dyn_player;
 };
 
 }

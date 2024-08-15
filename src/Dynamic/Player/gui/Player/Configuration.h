@@ -5,7 +5,7 @@ namespace utl::base{class Element;}
 namespace dyn::base{class Sensor;}
 
 
-namespace dyn::gui{
+namespace dyn::ply::gui{
 
 class Configuration
 {

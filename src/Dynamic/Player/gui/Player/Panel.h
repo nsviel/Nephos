@@ -9,7 +9,7 @@ namespace dat::graph{class Selection;}
 namespace ope::gui{class Panel;}
 
 
-namespace dyn::gui::player{
+namespace dyn::ply::gui{
 
 class Panel
 {

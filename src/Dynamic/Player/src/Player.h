@@ -8,7 +8,7 @@ namespace dat::graph{class Selection;}
 namespace dat::elm{class Set;}
 
 
-namespace dyn::player{
+namespace dyn::ply{
 
 class Player
 {

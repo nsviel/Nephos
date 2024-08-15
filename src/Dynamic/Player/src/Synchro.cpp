@@ -4,7 +4,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace dyn::player{
+namespace dyn::ply{
 
 //Constructor / Destructor
 Synchro::Synchro(dyn::Node* node_dynamic){

@@ -3,7 +3,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace dyn::gui{
+namespace dyn::ply::gui{
 
 //Constructor / Destructor
 Configuration::Configuration(dyn::Node* node_dynamic){

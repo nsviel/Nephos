@@ -3,7 +3,7 @@
 namespace dyn{class Node;}
 
 
-namespace dyn::player{
+namespace dyn::ply{
 
 class Synchro
 {

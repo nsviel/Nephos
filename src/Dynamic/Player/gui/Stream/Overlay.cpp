@@ -3,7 +3,7 @@
 #include <Dynamic/Namespace.h>
 
 
-namespace dyn::gui::stream{
+namespace dyn::ply::gui{
 
 //Constructor / Destructor
 Overlay::Overlay(){

@@ -16,7 +16,7 @@ namespace utl::base{class Element;}
 namespace utl::media{class Image;}
 
 
-namespace dyn::gui::stream{
+namespace dyn::ply::gui{
 
 class Panel
 {

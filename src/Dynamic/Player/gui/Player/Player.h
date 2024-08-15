@@ -1,12 +1,12 @@
 #pragma once
 
 namespace dyn{class Node;}
-namespace dyn::player{class Player;}
+namespace dyn::ply{class Player;}
 namespace dyn::element{class Sensor;}
 namespace utl::base{class Element;}
 
 
-namespace dyn::gui{
+namespace dyn::ply::gui{
 
 class Player
 {
@@ -28,7 +28,7 @@ public:
   void player_lock();
 
 private:
-  dyn::player::Player* dyn_player;
+  dyn::ply::Player* dyn_player;
   dyn::element::Sensor* dyn_sensor;
 };
 
