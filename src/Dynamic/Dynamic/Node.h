@@ -8,13 +8,11 @@ namespace core{class Node;}
 namespace rad{class Node;}
 namespace prf{class Node;}
 namespace ope{class Node;}
+
 namespace dyn{class Structure;}
-namespace dyn::ply{class Player;}
 namespace dyn::element{class Sensor;}
 namespace dyn::cloud{class Operation;}
 namespace dyn::image{class Operation;}
-namespace dyn::ply::gui{class Panel;}
-namespace dyn::gui::stream{class Panel;}
 
 
 namespace dyn{
@@ -36,13 +34,11 @@ public:
   inline rad::Node* get_node_radio(){return node_radio;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline ope::Node* get_node_operation(){return node_operation;}
-  
+
   inline dyn::Structure* get_dyn_struct(){return dyn_struct;}
-  inline dyn::ply::Player* get_dyn_player(){return dyn_player;}
   inline dyn::element::Sensor* get_dyn_sensor(){return dyn_sensor;}
   inline dyn::cloud::Operation* get_ope_cloud(){return dyn_ope_cloud;}
   inline dyn::image::Operation* get_ope_image(){return dyn_ope_image;}
-  inline dyn::ply::gui::Panel* get_gui_player(){return gui_player;}
 
 private:
   core::Node* node_core;
@@ -52,12 +48,9 @@ private:
   ope::Node* node_operation;
 
   dyn::Structure* dyn_struct;
-  dyn::ply::Player* dyn_player;
   dyn::element::Sensor* dyn_sensor;
   dyn::cloud::Operation* dyn_ope_cloud;
   dyn::image::Operation* dyn_ope_image;
-  dyn::ply::gui::Panel* gui_player;
-  dyn::gui::stream::Panel* gui_stream;
 };
 
 }
