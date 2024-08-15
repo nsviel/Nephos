@@ -5,7 +5,7 @@
 namespace dat::elm{class Node;}
 namespace dat::elm{class Entity;}
 namespace dat::base{class Entity;}
-namespace ope{class Operation;}
+namespace eng::trf{class Operation;}
 
 
 namespace dat::gui::entity{
@@ -27,7 +27,7 @@ public:
 
 private:
   dat::elm::Entity* dat_entity;
-  ope::Operation* ope_operation;
+  eng::trf::Operation* trf_operation;
 
   int item_width;
 };

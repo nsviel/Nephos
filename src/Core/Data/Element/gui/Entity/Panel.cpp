@@ -1,6 +1,6 @@
 #include "Panel.h"
 
-#include <Operation/Namespace.h>
+#include <Transformation/Namespace.h>
 #include <Element/Namespace.h>
 #include <Attribut/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
@@ -17,7 +17,7 @@ Panel::Panel(dat::elm::Node* node_element, bool* panel_show){
   this->gui_topology = new dat::gui::entity::Topology();
   this->gui_data = new dat::gui::entity::Data(node_element);
   this->ope_location = new dat::atr::Location();
-  this->ope_operation = new ope::Operation();
+  this->trf_operation = new eng::trf::Operation();
 
   this->panel_show = panel_show;
   this->panel_name = "Entity";
@@ -91,7 +91,7 @@ void Panel::entity_button(dat::base::Entity* entity){
   ImGui::SameLine();
   if(entity->pose.is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
     utl::base::Pose* pose = &entity->pose;;
-    ope_operation->center_object(entity, pose->min);
+    trf_operation->center_object(entity, pose->min);
   }
 
   //---------------------------

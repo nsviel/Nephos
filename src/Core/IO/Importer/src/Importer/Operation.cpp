@@ -4,6 +4,7 @@
 #include <Importer/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
+#include <Transformation/Namespace.h>
 
 
 namespace io::imp{
@@ -23,8 +24,8 @@ Operation::Operation(io::imp::Node* node_importer){
   this->dat_set = node_element->get_dat_set();
   this->dat_glyph = node_element->get_dat_glyph();
   this->dat_selection = node_graph->get_dat_selection();
-  this->ope_transform = new ope::Transformation();
-  this->ope_operation = new ope::Operation();
+  this->trf_transform = new eng::trf::Transformation();
+  this->trf_operation = new eng::trf::Operation();
   this->utl_attribut = new utl::base::Attribut();
 
   //---------------------------
@@ -110,11 +111,11 @@ void Operation::ope_transformation(dat::base::Entity* entity){
   //io_transformation->load_transformation(entity);
 
   //Scaling
-  ope_transform->make_scaling(&entity->pose, io_struct->scaling);
+  trf_transform->make_scaling(&entity->pose, io_struct->scaling);
 
   //Centering
   if(io_struct->with_centering){
-    ope_operation->center_object(entity);
+    trf_operation->center_object(entity);
   }
 
   //---------------------------

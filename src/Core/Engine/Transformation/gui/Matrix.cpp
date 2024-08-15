@@ -1,24 +1,24 @@
-#include "Transformation.h"
+#include "Matrix.h"
 
-#include <Operation/Namespace.h>
+#include <Transformation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace dat::trf::gui{
+namespace eng::trf::gui{
 
 //Constructor / Destructor
-Transformation::Transformation(){
+Matrix::Matrix(){
   //---------------------------
 
-  this->ope_operation = new ope::Operation();
+  this->trf_operation = new eng::trf::Operation();
 
   //---------------------------
 }
-Transformation::~Transformation(){}
+Matrix::~Matrix(){}
 
 //Main function
-void Transformation::design_transformation(utl::base::Element* element){
+void Matrix::design_matrix(utl::base::Element* element){
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
@@ -31,7 +31,7 @@ void Transformation::design_transformation(utl::base::Element* element){
 }
 
 //Subfunction
-void Transformation::draw_operation(utl::base::Element* element){
+void Matrix::draw_operation(utl::base::Element* element){
   utl::base::Pose* pose = &element->pose;
   //---------------------------
 
@@ -40,16 +40,16 @@ void Transformation::draw_operation(utl::base::Element* element){
   }
   ImGui::SameLine();
   if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
-    ope_operation->center_object(element);
+    trf_operation->center_object(element);
   }
   ImGui::SameLine();
   if(ImGui::Button(ICON_FA_ARROWS_ROTATE "##xrotation", ImVec2(20, 0))){
-    ope_operation->make_rotation_X_90d(element, 1);
+    trf_operation->make_rotation_X_90d(element, 1);
   }
 
   //---------------------------
 }
-void Transformation::draw_matrix(utl::base::Element* element){
+void Matrix::draw_matrix(utl::base::Element* element){
   utl::base::Pose* pose = &element->pose;
   //---------------------------
 

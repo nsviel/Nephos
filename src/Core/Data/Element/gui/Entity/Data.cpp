@@ -1,7 +1,7 @@
 #include "Data.h"
 
 #include <Element/Namespace.h>
-#include <Operation/Namespace.h>
+#include <Transformation/Namespace.h>
 #include <imgui/core/imgui.h>
 
 
@@ -12,7 +12,7 @@ Data::Data(dat::elm::Node* node_element){
   //---------------------------
 
   this->dat_entity = node_element->get_dat_entity();
-  this->ope_operation = new ope::Operation();
+  this->trf_operation = new eng::trf::Operation();
 
   this->item_width = 100;
 
@@ -86,11 +86,11 @@ void Data::entity_pose(dat::base::Entity* entity){
   std::memcpy(floatArray, &pose->root, sizeof(float) * 3);
   if(ImGui::DragFloat3("##434", floatArray, 0.01f, -100.0f, 100.0f, "%.2f")){
     glm::vec3 new_root(floatArray[0], floatArray[1], floatArray[2]);
-    ope_operation->make_translation_from_root(entity, new_root);
+    trf_operation->make_translation_from_root(entity, new_root);
   }
   ImGui::SameLine();
   if(ImGui::Button("R", ImVec2(15,0))){
-    ope_operation->make_translation_from_root(entity, glm::vec3(0, 0, 0));
+    trf_operation->make_translation_from_root(entity, glm::vec3(0, 0, 0));
   }
 
   //---------------------------

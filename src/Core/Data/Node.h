@@ -9,7 +9,6 @@ namespace dat::atr{class Node;}
 namespace dat::elm{class Node;}
 namespace dat::gph{class Node;}
 namespace dat::ply{class Node;}
-namespace dat::trf{class Node;}
 
 
 namespace dat{
@@ -46,7 +45,6 @@ private:
   dat::elm::Node* node_element;
   dat::gph::Node* node_graph;
   dat::ply::Node* node_player;
-  dat::trf::Node* node_transformation;
 };
 
 }

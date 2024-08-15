@@ -6,6 +6,7 @@ set(LIBRARY_NAME CORE_ENGINE)
 add_subdirectory(Camera)
 add_subdirectory(Renderer)
 add_subdirectory(Control)
+add_subdirectory(Transformation)
 
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp

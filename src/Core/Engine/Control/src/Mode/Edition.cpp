@@ -18,7 +18,7 @@ Edition::Edition(ctr::Node* node_control){
   this->ctr_struct = node_control->get_ctr_struct();
   this->dat_selection = node_graph->get_dat_selection();
   this->dat_set = node_element->get_dat_set();
-  this->ope_operation = new ope::Operation();
+  this->trf_operation = new eng::trf::Operation();
 
   //---------------------------
 }
@@ -31,7 +31,7 @@ void Edition::element_forward(){
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
   glm::vec3 translation = glm::vec3(speed, 0, 0);
-  ope_operation->make_translation(element, translation);
+  trf_operation->make_translation(element, translation);
 
   //---------------------------
 }
@@ -41,7 +41,7 @@ void Edition::element_backward(){
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
   glm::vec3 translation = glm::vec3(-speed, 0, 0);
-  ope_operation->make_translation(element, translation);
+  trf_operation->make_translation(element, translation);
 
   //---------------------------
 }
@@ -51,7 +51,7 @@ void Edition::element_left(){
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
   glm::vec3 translation = glm::vec3(0, -speed, 0);
-  ope_operation->make_translation(element, translation);
+  trf_operation->make_translation(element, translation);
 
   //---------------------------
 }
@@ -61,7 +61,7 @@ void Edition::element_right(){
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
   glm::vec3 translation = glm::vec3(0, speed, 0);
-  ope_operation->make_translation(element, translation);
+  trf_operation->make_translation(element, translation);
 
   //---------------------------
 }
@@ -71,7 +71,7 @@ void Edition::element_down(){
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
   glm::vec3 translation = glm::vec3(0, 0, speed);
-  ope_operation->make_translation(element, translation);
+  trf_operation->make_translation(element, translation);
 
   //---------------------------
 }
@@ -81,7 +81,7 @@ void Edition::element_up(){
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
   glm::vec3 translation = glm::vec3(0, 0, -speed);
-  ope_operation->make_translation(element, translation);
+  trf_operation->make_translation(element, translation);
 
   //---------------------------
 }

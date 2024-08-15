@@ -21,7 +21,7 @@ Wheel::Wheel(ctr::Node* node_control){
 
   this->ctr_struct = node_control->get_ctr_struct();
   this->dat_selection = node_graph->get_dat_selection();
-  this->ope_operation = new ope::Operation();
+  this->trf_operation = new eng::trf::Operation();
   this->ope_location = new dat::atr::Location();
   this->cam_control = node_camera->get_cam_control();
 
@@ -44,19 +44,19 @@ void Wheel::make_action(float value){
     case ctr::wheel::R_Z:{
       R = glm::vec3(0, 0, direction * radian);
       ope_location->compute_COM(element);
-      ope_operation->make_rotation(element, element->pose.COM, R);
+      trf_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
     case ctr::wheel::R_Y:{
       R = glm::vec3(0, direction * radian, 0);
       ope_location->compute_COM(element);
-      ope_operation->make_rotation(element, element->pose.COM, R);
+      trf_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
     case ctr::wheel::R_X:{
       R = glm::vec3(direction * radian, 0, 0);
       ope_location->compute_COM(element);
-      ope_operation->make_rotation(element, element->pose.COM, R);
+      trf_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
     case ctr::wheel::CAM_Z:{

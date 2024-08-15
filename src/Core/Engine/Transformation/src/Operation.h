@@ -2,14 +2,14 @@
 
 #include <glm/glm.hpp>
 
-namespace ope{class Transformation;}
+namespace eng::trf{class Transformation;}
 namespace dat::atr{class Location;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
 
 
-namespace ope{
+namespace eng::trf{
 
 class Operation
 {
@@ -33,8 +33,8 @@ public:
   void make_translation_from_root(dat::base::Entity* entity, glm::vec3 new_root);
 
 private:
-  ope::Transformation* ope_transform;
-  dat::atr::Location* ope_location;
+  eng::trf::Transformation* trf_transform;
+  dat::atr::Location* atr_location;
 };
 
 }

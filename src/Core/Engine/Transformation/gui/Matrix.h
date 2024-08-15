@@ -1,28 +1,28 @@
 #pragma once
 
-namespace ope{class Operation;}
+namespace eng::trf{class Operation;}
 namespace utl::base{class Element;}
 
 
-namespace dat::trf::gui{
+namespace eng::trf::gui{
 
-class Transformation
+class Matrix
 {
 public:
   //Constructor / Destructor
-  Transformation();
-  ~Transformation();
+  Matrix();
+  ~Matrix();
 
 public:
   //Main function
-  void design_transformation(utl::base::Element* element);
+  void design_matrix(utl::base::Element* element);
 
   //Subfunction
   void draw_operation(utl::base::Element* element);
   void draw_matrix(utl::base::Element* element);
 
 private:
-  ope::Operation* ope_operation;
+  eng::trf::Operation* trf_operation;
 };
 
 }

@@ -7,7 +7,7 @@ namespace ctr{class Node;}
 namespace ctr{class Structure;}
 namespace dat::gph{class Selection;}
 namespace dat::elm{class Set;}
-namespace ope{class Operation;}
+namespace eng::trf{class Operation;}
 
 
 namespace ctr::mode{
@@ -37,7 +37,7 @@ private:
   ctr::Structure* ctr_struct;
   dat::gph::Selection* dat_selection;
   dat::elm::Set* dat_set;
-  ope::Operation* ope_operation;
+  eng::trf::Operation* trf_operation;
 };
 
 }

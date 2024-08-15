@@ -6,7 +6,7 @@
 namespace ctr{class Node;}
 namespace ctr{class Structure;}
 namespace cam{class Control;}
-namespace ope{class Operation;}
+namespace eng::trf{class Operation;}
 namespace dat::atr{class Location;}
 namespace dat::gph{class Selection;}
 
@@ -32,7 +32,7 @@ private:
   ctr::Structure* ctr_struct;
   dat::gph::Selection* dat_selection;
   cam::Control* cam_control;
-  ope::Operation* ope_operation;
+  eng::trf::Operation* trf_operation;
   dat::atr::Location* ope_location;
 };
 

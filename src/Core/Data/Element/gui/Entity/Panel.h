@@ -8,7 +8,7 @@ namespace dat::base{class Entity;}
 namespace dat::gui::entity{class Topology;}
 namespace dat::gui::entity{class Data;}
 namespace dat::atr{class Location;}
-namespace ope{class Operation;}
+namespace eng::trf{class Operation;}
 namespace utl::base{class Data;}
 
 
@@ -35,7 +35,7 @@ public:
 
 private:
   dat::atr::Location* ope_location;
-  ope::Operation* ope_operation;
+  eng::trf::Operation* trf_operation;
   dat::elm::Set* dat_set;
   dat::gui::entity::Topology* gui_topology;
   dat::gui::entity::Data* gui_data;

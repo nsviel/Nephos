@@ -14,8 +14,8 @@ namespace dat::gph{class Selection;}
 namespace dat::base{class Object;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
-namespace ope{class Transformation;}
-namespace ope{class Operation;}
+namespace eng::trf{class Transformation;}
+namespace eng::trf{class Operation;}
 namespace utl::base{class Attribut;}
 
 
@@ -47,8 +47,8 @@ private:
   dat::elm::Set* dat_set;
   dat::elm::Glyph* dat_glyph;
   dat::gph::Selection* dat_selection;
-  ope::Transformation* ope_transform;
-  ope::Operation* ope_operation;
+  eng::trf::Transformation* trf_transform;
+  eng::trf::Operation* trf_operation;
   utl::base::Attribut* utl_attribut;
 };
 

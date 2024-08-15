@@ -4,9 +4,9 @@
 
 namespace dat::atr{class Node;}
 namespace dat::atr::gui{class Color;}
-namespace dat::atr::gui{class Transformation;}
 namespace dat::atr::gui{class Info;}
 namespace dat::atr::gui{class Operation;}
+namespace eng::trf::gui{class Matrix;}
 namespace utl::base{class Element;}
 
 
@@ -24,9 +24,9 @@ public:
 
 private:
   dat::atr::gui::Color* gui_color;
-  dat::atr::gui::Transformation* gui_transformation;
   dat::atr::gui::Info* gui_info;
   dat::atr::gui::Operation* gui_operation;
+  eng::trf::gui::Matrix* gui_transformation;
 };
 
 }
