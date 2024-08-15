@@ -17,7 +17,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(io::trf::Node* node_transfo, bool* show_window);
+  Panel(eng::trf::Node* node_transfo, bool* show_window);
   ~Panel();
 
 public:
@@ -34,7 +34,7 @@ public:
   void item_operation();
 
 private:
-  eng::trf::Transformation* trf_io;
+  eng::trf::IO* trf_io;
   utl::gui::Navigator* gui_navigator;
   dat::gph::Selection* dat_selection;
 

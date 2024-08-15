@@ -1,8 +1,11 @@
 #pragma once
 
+#include <Utility/Base/Data/Path.h>
 #include <vector>
 #include <string>
 
+namespace eng::trf{class Utils;}
+namespace utl::base{class Path;}
 namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
 
@@ -27,7 +30,11 @@ public:
   void update_path(utl::base::Element* element);
   std::vector<std::string> get_supported_format();
 
+  inline utl::base::Path* get_path(){return &path;}
+
 private:
+  eng::trf::Utils* trf_utils;
+
   utl::base::Path path;
 };
 

@@ -1,6 +1,8 @@
 #include "IO.h"
 
 #include <Transformation/Namespace.h>
+#include <Utility/Namespace.h>
+#include <Element/Namespace.h>
 
 
 namespace eng::trf{
@@ -9,6 +11,7 @@ namespace eng::trf{
 IO::IO(){
   //---------------------------
 
+  this->trf_utils = new eng::trf::Utils();
 
   //---------------------------
 }
@@ -28,7 +31,7 @@ void IO::load_transformation(utl::base::Element* element, std::string path){
   //---------------------------
 
   //Transformation
-  glm::mat4 mat = utl::transformation::find_transformation_from_file(path);
+  glm::mat4 mat = trf_utils->find_transformation_from_file(path);
 
   if(mat != glm::mat4(1)){
     element->pose.model = mat;
@@ -41,7 +44,7 @@ void IO::save_transformation(utl::base::Element* element, std::string path){
   //---------------------------
 
   glm::mat4& mat = element->pose.model;
-  utl::transformation::save_transformation_to_file(mat, path);
+  trf_utils->save_transformation_to_file(mat, path);
 
   //---------------------------
 }

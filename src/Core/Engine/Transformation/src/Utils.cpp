@@ -1,5 +1,6 @@
 #include "Utils.h"
 
+#include <Utility/Namespace.h>
 #include <glm/gtc/matrix_transform.hpp>
 
 

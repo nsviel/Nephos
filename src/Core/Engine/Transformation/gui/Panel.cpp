@@ -1,5 +1,6 @@
 #include "Panel.h"
 
+#include <Transformation/Namespace.h>
 #include <IO/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
@@ -14,8 +15,7 @@ Panel::Panel(eng::trf::Node* node_transfo, bool* show_window){
   dat::Node* node_data = node_transfo->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
-  this->trf_io = node_transfo->get_io_struct();
-  this->trf_io = node_transfo->get_io_transformation();
+  this->trf_io = node_transfo->get_trf_io();
   this->dat_selection = node_graph->get_dat_selection();
   this->gui_navigator = new utl::gui::Navigator();
 
@@ -55,7 +55,7 @@ void Panel::design_panel(utl::base::Element* element){
   this->display_path(element);
   this->display_format(element);
   this->display_matrix(element);
-  gui_navigator->draw_navigator(trf_io->path);
+  gui_navigator->draw_navigator(*trf_io->get_path());
 
   //---------------------------
 }
@@ -83,6 +83,7 @@ void Panel::display_loader(utl::base::Element* element){
   //---------------------------
 }
 void Panel::display_path(utl::base::Element* element){
+  utl::base::Path* path = trf_io->get_path();
   //---------------------------
 
   ImGui::BeginTable("header##exporter", 3);
@@ -96,25 +97,25 @@ void Panel::display_path(utl::base::Element* element){
   ImGui::Text("Directory"); ImGui::TableNextColumn();
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
-  std::string current_path = trf_io->path.directory;
+  std::string current_path = path->directory;
   if(current_path == "") current_path = "(not defined)";
   ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "%s", current_path.c_str());
   ImGui::PopStyleColor();
   ImGui::TableNextColumn();
   if(ImGui::Button(ICON_FA_FOLDER "##folder_path")){
-    utl::directory::open(trf_io->path.directory);
+    utl::directory::open(path->directory);
   }
 
   //Filename
   if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Name"); ImGui::TableNextColumn();
-    strncpy(str_n, trf_io->path.name.c_str(), sizeof(str_n) - 1);
+    strncpy(str_n, path->name.c_str(), sizeof(str_n) - 1);
     ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x);
     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.4f, 1.0f, 0.4f, 1.0f));
     ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f));
     if(ImGui::InputText("##exporter_name", str_n, IM_ARRAYSIZE(str_n))){
-      trf_io->path.name = (std::string)str_n;
+      path->name = (std::string)str_n;
     }
     ImGui::PopStyleColor(2);
   }
@@ -124,6 +125,7 @@ void Panel::display_path(utl::base::Element* element){
   //---------------------------
 }
 void Panel::display_format(utl::base::Element* element){
+  utl::base::Path* path = trf_io->get_path();
   //---------------------------
 
   ImGui::BeginTable("format##transformation", 2);
@@ -136,7 +138,7 @@ void Panel::display_format(utl::base::Element* element){
   std::vector<std::string> vec_format = trf_io->get_supported_format();
   for(int i=0; i<vec_format.size(); i++){
     if(ImGui::RadioButton(vec_format[i].c_str(), &format, i)){
-      trf_io->path.format = vec_format[i];
+      path->format = vec_format[i];
     }
   }
 
@@ -194,7 +196,8 @@ void Panel::item_operation(){
   if(element == nullptr) return;
   //---------------------------
 
-  std::string path_file = trf_io->path.build();
+  utl::base::Path* path = trf_io->get_path();
+  std::string path_file = path->build();
   trf_io->load_transformation(element, path_file);
 
   //---------------------------
