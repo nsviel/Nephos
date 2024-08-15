@@ -1,30 +1,32 @@
-set(LIBRARY_NAME LIBRARY_OPERATION)
+set(LIBRARY_NAME MODULE_RADIOMETRY)
 
 #-----------------
 # Source files
 #-----------------
-
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
+  *.h
 )
 
 #-----------------
 # Compilation
 #-----------------
 add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
-find_package(OpenCV REQUIRED)
-find_library(LZ4_LIBRARIES NAMES liblz4.so HINTS "lz4/lib")
 
 #-----------------
 # Dependencies
 #-----------------
+find_package(Python REQUIRED COMPONENTS Interpreter Development)
+
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
-  LIBRARY_CORE
+  MAIN_CORE
+  CORE_IO
 
-  ${OpenCV_LIBS}
-  ${LZ4_LIBRARIES}
-  flann
+  ${Python_LIBRARIES}
+  Python::Python
+  python3.10
+  -lpython3.10
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

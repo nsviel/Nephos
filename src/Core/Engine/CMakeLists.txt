@@ -7,6 +7,7 @@ add_subdirectory(Camera)
 add_subdirectory(Renderer)
 add_subdirectory(Control)
 add_subdirectory(Transformation)
+add_subdirectory(Operation)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

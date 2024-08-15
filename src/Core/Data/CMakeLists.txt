@@ -26,6 +26,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   DATA_ELEMENT
   DATA_GRAPH
   DATA_PLAYER
+  DATA_IMAGE
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

@@ -1,5 +1,6 @@
 #include "Node.h"
 
+#include <Radiometry/Namespace.h>
 #include <Core/Namespace.h>
 #include <Data/Namespace.h>
 
@@ -10,6 +11,7 @@ namespace prc{
 Node::Node(core::Node* node_core){
   //---------------------------
 
+  this->node_radio = new rad::Node(this);
 
   //---------------------------
 }
@@ -19,41 +21,23 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_graph->init();
+  node_radio->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  node_graph->loop();
-  node_player->loop();
-
-  //---------------------------
-}
-void Node::clean(){
-  //---------------------------
-
-  node_graph->clean();
+  node_radio->loop();
 
   //---------------------------
 }
 void Node::gui(){
   //---------------------------
 
-  node_graph->gui();
-  node_player->gui();
+  node_radio->gui();
 
   //---------------------------
 }
-void Node::reset(){
-  //---------------------------
-
-  node_graph->reset();
-  node_player->reset();
-
-  //---------------------------
-}
-
 
 }

@@ -19,7 +19,7 @@ find_package(HDF5 REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
-  LIBRARY_CORE
+  MAIN_CORE
   IO_FORMAT
 )
 
