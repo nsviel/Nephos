@@ -1,11 +1,11 @@
 #pragma once
 
 #include <Utility/GUI/Plot/ImProfil/Plot.h>
-#include <Utility/Component/Timer/Chrono.h>
 #include <glm/glm.hpp>
 #include <vector>
 #include <string>
 
+namespace utl::timer{class Chronos;}
 namespace utl::timer::fps{class Counter;}
 namespace utl::timer::fps{class Control;}
 namespace prf::dynamic{class Task;}

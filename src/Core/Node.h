@@ -32,7 +32,7 @@ public:
   void reset();
   void close();
 
-  inline prf::Node* get_node_system(){return node_system;}
+  inline sys::Node* get_node_system(){return node_system;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}

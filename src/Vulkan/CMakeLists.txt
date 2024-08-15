@@ -19,8 +19,9 @@ find_package(glfw3 REQUIRED)
 find_package(Vulkan REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_EXTERN
+  MAIN_EXTERN
   MAIN_UTILITY
+  CORE_SYSTEM
 
   ${Vulkan_LIBRARIES}
   -lglfw        # glfw

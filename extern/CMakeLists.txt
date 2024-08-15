@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_EXTERN)
+set(LIBRARY_NAME MAIN_EXTERN)
 
 #-----------------
 # Source files

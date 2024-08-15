@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Component/Thread/Worker/Worker.h>
+#include <System/Namespace.h>
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <queue>

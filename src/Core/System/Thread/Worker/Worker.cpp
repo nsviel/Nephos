@@ -1,7 +1,5 @@
 #include "Worker.h"
 
-#include <Utility/Namespace.h>
-
 /*
 Continuous big thread
 with init, end and inside while loop

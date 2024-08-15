@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Profiler/gui/Hardware/Tab.h>
-#include <Profiler/gui/Hardware/GPU.h>
-#include <Profiler/gui/Hardware/CPU.h>
-#include <Profiler/gui/Hardware/Device.h>
+#include "Tab.h"
+#include "GPU.h"
+#include "CPU.h"
+#include "Device.h"

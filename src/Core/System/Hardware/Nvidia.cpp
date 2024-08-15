@@ -1,7 +1,5 @@
 #include "Nvidia.h"
 
-#include <Utility/Namespace.h>
-
 
 namespace utl::hardware{
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Profiler/src/Hardware/Structure/Device.h>
-#include <Profiler/src/Hardware/Structure/Queue.h>
-#include <Profiler/src/Hardware/Structure/GPU.h>
-#include <Profiler/src/Hardware/Structure/CPU.h>
-#include <Profiler/src/Hardware/Structure/Structure.h>
+#include "Device.h"
+#include "Queue.h"
+#include "GPU.h"
+#include "CPU.h"
+#include "Structure.h"

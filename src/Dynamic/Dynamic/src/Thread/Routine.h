@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Component/Thread/Routine/Routine.h>
+#include <System/Namespace.h>
 
 namespace dyn::base{class Sensor;}
 

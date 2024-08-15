@@ -1,5 +1,6 @@
 #include "Tasker.h"
 
+#include <System/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 

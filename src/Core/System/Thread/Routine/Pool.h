@@ -1,11 +1,12 @@
 #pragma once
 
-#include <Utility/Component/Thread/Routine/Routine.h>
 #include <condition_variable>
 #include <vector>
 #include <functional>
 #include <queue>
 #include <mutex>
+
+namespace utl::thread{class Routine;}
 
 
 namespace utl::thread::routine{

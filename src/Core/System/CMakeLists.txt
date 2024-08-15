@@ -23,7 +23,9 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  LIBRARY_EXTERN
+  MAIN_EXTERN
+  MAIN_UTILITY
+  CORE_PROFILER
 
   Eigen3::Eigen # Eigen
   -lgit2        # git
