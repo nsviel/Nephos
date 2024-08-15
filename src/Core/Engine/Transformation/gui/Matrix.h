@@ -1,6 +1,7 @@
 #pragma once
 
 namespace eng::trf{class Operation;}
+namespace eng::trf{class Utils;}
 namespace utl::base{class Element;}
 
 
@@ -23,6 +24,7 @@ public:
 
 private:
   eng::trf::Operation* trf_operation;
+  eng::trf::Utils* trf_utils;
 };
 
 }

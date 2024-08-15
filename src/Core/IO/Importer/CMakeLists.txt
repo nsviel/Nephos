@@ -15,14 +15,13 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
-find_package(HDF5 REQUIRED)
-
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   LIBRARY_UTILITY
   LIBRARY_CORE
-  CORE_DATA
-  DATA_ELEMENT
+
   ENGINE_TRANSFORMATION
+  DATA_ELEMENT
+
   IO_FORMAT
 )
 

@@ -7,7 +7,13 @@
 namespace eng::trf{
 
 // Constructor / Destructor
-Transformation::Transformation(){}
+Transformation::Transformation(){
+  //---------------------------
+
+  this->trf_utils = new eng::trf::Utils();
+
+  //---------------------------
+}
 Transformation::~Transformation(){}
 
 // Translation
@@ -15,7 +21,7 @@ void Transformation::make_translation(utl::base::Pose* pose, glm::vec3 trans){
   if(!pose->is_movable) return;
   //---------------------------
 
-  glm::mat4 translation = get_translation_mat(trans);
+  glm::mat4 translation = trf_utils->get_translation_mat(trans);
 
   pose->COM += trans;
   pose->root += trans;
@@ -44,9 +50,9 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 COM, glm::ve
   //---------------------------
 
   glm::vec3 radian = type::degree_to_radian(degree);
-  glm::mat4 rotation = get_rotation_mat(radian);
-  glm::mat4 COM_mat = get_translation_mat_neye(COM);
-  glm::mat4 root_mat = get_translation_mat_neye(pose->root);
+  glm::mat4 rotation = trf_utils->get_rotation_mat(radian);
+  glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
+  glm::mat4 root_mat = trf_utils->get_translation_mat_neye(pose->root);
 
   pose->rotat *= rotation;
 
@@ -66,8 +72,8 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 degree){
 
   glm::vec3& COM = pose->COM;
   glm::vec3 radian = type::degree_to_radian(degree);
-  glm::mat4 rotation = get_rotation_mat(radian);
-  glm::mat4 COM_mat = get_translation_mat_neye(COM);
+  glm::mat4 rotation = trf_utils->get_rotation_mat(radian);
+  glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
 
   pose->rotat *= rotation;
 
@@ -86,7 +92,7 @@ void Transformation::make_rotation(utl::base::Pose* pose, glm::vec3 COM, glm::ma
   //---------------------------
 
   //glm::vec3& COM = pose->COM;
-  glm::mat4 COM_mat = get_translation_mat_neye(COM);
+  glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
 
   pose->rotat *= rotation;
 
@@ -144,7 +150,7 @@ void Transformation::make_scaling(utl::base::Pose* pose, float scale){
 void Transformation::make_transformation(utl::base::Pose* pose, glm::vec3 COM, glm::mat4 translation, glm::mat4 rotation){
   //---------------------------
 
-  glm::mat4 COM_mat = get_translation_mat_neye(COM);
+  glm::mat4 COM_mat = trf_utils->get_translation_mat_neye(COM);
 
   pose->model = translation;
   pose->model -= COM_mat;
@@ -152,56 +158,6 @@ void Transformation::make_transformation(utl::base::Pose* pose, glm::vec3 COM, g
   pose->model += COM_mat;
 
   //---------------------------
-}
-
-//Subfunction
-glm::mat4 Transformation::get_translation_mat(glm::vec3 trans){
-  glm::mat4 translation(1.0);
-  //---------------------------
-
-  translation[0][3] = trans.x;
-  translation[1][3] = trans.y;
-  translation[2][3] = trans.z;
-
-  //---------------------------
-  return translation;
-}
-glm::mat4 Transformation::get_translation_mat_neye(glm::vec3 trans){
-  glm::mat4 translation(0.0);
-  //---------------------------
-
-  translation[0][3] = trans.x;
-  translation[1][3] = trans.y;
-  translation[2][3] = trans.z;
-
-  //---------------------------
-  return translation;
-}
-glm::mat4 Transformation::get_rotation_mat(glm::vec3 r){
-  glm::mat4 Rx(1.0);
-  glm::mat4 Ry(1.0);
-  glm::mat4 Rz(1.0);
-  //---------------------------
-
-  Rx[1][1]=cos(r.x);
-  Rx[2][1]=sin(r.x);
-  Rx[1][2]=-sin(r.x);
-  Rx[2][2]=cos(r.x);
-
-  Ry[0][0]=cos(r.y);
-  Ry[0][2]=sin(r.y);
-  Ry[2][0]=-sin(r.y);
-  Ry[2][2]=cos(r.y);
-
-  Rz[0][0]=cos(r.z);
-  Rz[1][0]=sin(r.z);
-  Rz[0][1]=-sin(r.z);
-  Rz[1][1]=cos(r.z);
-
-  glm::mat4 rotation = Rx * Ry * Rz;
-
-  //---------------------------
-  return rotation;
 }
 
 }

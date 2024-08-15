@@ -5,6 +5,7 @@ set(LIBRARY_NAME ENGINE_TRANSFORMATION)
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
+  *.h
 )
 
 #-----------------

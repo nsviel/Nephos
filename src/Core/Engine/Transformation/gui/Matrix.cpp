@@ -12,6 +12,7 @@ Matrix::Matrix(){
   //---------------------------
 
   this->trf_operation = new eng::trf::Operation();
+  this->trf_utils = new eng::trf::Utils();
 
   //---------------------------
 }
@@ -36,7 +37,7 @@ void Matrix::draw_operation(utl::base::Element* element){
   //---------------------------
 
   if(ImGui::Button("R##transfomatrix", ImVec2(20, 0))){
-    utl::transformation::make_transformation_identity(pose->model);
+    trf_utils->make_transformation_identity(pose->model);
   }
   ImGui::SameLine();
   if(ImGui::Button("C##centerentity", ImVec2(20, 0))){

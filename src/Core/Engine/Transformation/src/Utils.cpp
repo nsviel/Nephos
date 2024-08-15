@@ -1,12 +1,63 @@
-#include "File.h"
+#include "Utils.h"
 
-#include <Utility/Function/File/Json.h>
-#include <iostream>
-#include <fstream>
+#include <glm/gtc/matrix_transform.hpp>
 
 
-namespace utl::transformation{
+namespace eng::trf{
 
+// Constructor / Destructor
+Utils::Utils(){}
+Utils::~Utils(){}
+
+//Main function
+glm::mat4 Utils::get_translation_mat(glm::vec3 trans){
+  glm::mat4 translation(1.0);
+  //---------------------------
+
+  translation[0][3] = trans.x;
+  translation[1][3] = trans.y;
+  translation[2][3] = trans.z;
+
+  //---------------------------
+  return translation;
+}
+glm::mat4 Utils::get_translation_mat_neye(glm::vec3 trans){
+  glm::mat4 translation(0.0);
+  //---------------------------
+
+  translation[0][3] = trans.x;
+  translation[1][3] = trans.y;
+  translation[2][3] = trans.z;
+
+  //---------------------------
+  return translation;
+}
+glm::mat4 Utils::get_rotation_mat(glm::vec3 r){
+  glm::mat4 Rx(1.0);
+  glm::mat4 Ry(1.0);
+  glm::mat4 Rz(1.0);
+  //---------------------------
+
+  Rx[1][1]=cos(r.x);
+  Rx[2][1]=sin(r.x);
+  Rx[1][2]=-sin(r.x);
+  Rx[2][2]=cos(r.x);
+
+  Ry[0][0]=cos(r.y);
+  Ry[0][2]=sin(r.y);
+  Ry[2][0]=-sin(r.y);
+  Ry[2][2]=cos(r.y);
+
+  Rz[0][0]=cos(r.z);
+  Rz[1][0]=sin(r.z);
+  Rz[0][1]=-sin(r.z);
+  Rz[1][1]=cos(r.z);
+
+  glm::mat4 rotation = Rx * Ry * Rz;
+
+  //---------------------------
+  return rotation;
+}
 glm::mat4 find_transformation_from_file(std::string path){
   //---------------------------
 
@@ -101,11 +152,11 @@ void make_transformation_identity(glm::mat4& mat){
 
   //---------------------------
 }
-void apply_transformation_capture(glm::mat4& mat){
+void init_and_heighten_transformation(glm::mat4& mat, float value){
     //---------------------------
 
     mat = glm::mat4(1.0f);
-    mat[2][3] = 1;
+    mat[2][3] = value;
 
     //---------------------------
   }

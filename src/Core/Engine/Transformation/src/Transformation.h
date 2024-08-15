@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 
 namespace utl::base{class Pose;}
+namespace eng::trf{class Utils;}
 
 
 namespace eng::trf{
@@ -31,12 +32,8 @@ public:
   //Transformation
   void make_transformation(utl::base::Pose* pose, glm::vec3 COM, glm::mat4 translation, glm::mat4 rotation);
 
-  //Subfunction
-  glm::mat4 get_translation_mat(glm::vec3 trans);
-  glm::mat4 get_translation_mat_neye(glm::vec3 trans);
-  glm::mat4 get_rotation_mat(glm::vec3 radian);
-
 private:
+  eng::trf::Utils* trf_utils;
 };
 
 }
