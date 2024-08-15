@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_PROFILER)
+set(LIBRARY_NAME CORE_PROFILER)
 
 #-----------------
 # Source files
