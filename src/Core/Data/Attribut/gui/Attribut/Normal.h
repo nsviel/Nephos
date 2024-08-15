@@ -4,7 +4,7 @@ namespace ope{class Node;}
 namespace ope{class Structure;}
 
 
-namespace ope::gui{
+namespace dat::atr::gui{
 
 class Normal
 {

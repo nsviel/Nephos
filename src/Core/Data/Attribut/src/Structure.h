@@ -1,13 +1,15 @@
 #pragma once
 
-#include <Operation/src/Attribut/Structure/Structure.h>
+#include "Structure/Namespace.h"
 
-namespace ope{
+namespace dat::atr{
 
 struct Structure{
   //---------------------------
 
-  ope::attribut::Structure attribut;
+  dat::atr::structure::Normal normal;
+  dat::atr::structure::Intensity intensity;
+  dat::atr::structure::Color color;
 
   //---------------------------
 };

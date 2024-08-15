@@ -11,7 +11,7 @@ namespace dat::base{class Entity;}
 namespace dat::base{class Set;}
 
 
-namespace ope::attribut{
+namespace dat::atr{
 
 class Color
 {

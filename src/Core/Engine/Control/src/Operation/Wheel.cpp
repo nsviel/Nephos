@@ -22,7 +22,7 @@ Wheel::Wheel(ctr::Node* node_control){
   this->ctr_struct = node_control->get_ctr_struct();
   this->dat_selection = node_graph->get_dat_selection();
   this->ope_operation = new ope::Operation();
-  this->ope_location = new ope::attribut::Location();
+  this->ope_location = new dat::atr::Location();
   this->cam_control = node_camera->get_cam_control();
 
   //---------------------------

@@ -3,14 +3,14 @@
 #include <string>
 
 namespace ope{class Node;}
-namespace ope::gui{class Color;}
-namespace ope::gui{class Transformation;}
-namespace ope::gui{class Info;}
-namespace ope::gui{class Operation;}
+namespace dat::atr::gui{class Color;}
+namespace dat::atr::gui{class Transformation;}
+namespace dat::atr::gui{class Info;}
+namespace dat::atr::gui{class Operation;}
 namespace utl::base{class Element;}
 
 
-namespace ope::gui{
+namespace dat::atr::gui{
 
 class Panel
 {
@@ -23,10 +23,10 @@ public:
   void design_panel(utl::base::Element* element);
 
 private:
-  ope::gui::Color* gui_color;
-  ope::gui::Transformation* gui_transformation;
-  ope::gui::Info* gui_info;
-  ope::gui::Operation* gui_operation;
+  dat::atr::gui::Color* gui_color;
+  dat::atr::gui::Transformation* gui_transformation;
+  dat::atr::gui::Info* gui_info;
+  dat::atr::gui::Operation* gui_operation;
 };
 
 }

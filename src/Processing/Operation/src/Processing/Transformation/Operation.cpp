@@ -11,7 +11,7 @@ Operation::Operation(){
   //---------------------------
 
   this->ope_transform = new ope::Transformation();
-  this->ope_location = new ope::attribut::Location();
+  this->ope_location = new dat::atr::Location();
 
   //---------------------------
 }

@@ -10,7 +10,7 @@ namespace dyn::base{class Sensor;}
 namespace utl::thread::task{class Pool;}
 namespace ope{class Voxelizer;}
 namespace ope{class Triangulation;}
-namespace ope::attribut{class Color;}
+namespace dat::atr{class Color;}
 namespace ope::normal{class KNN;}
 
 

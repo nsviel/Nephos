@@ -5,7 +5,7 @@
 #include <imgui/core/imgui.h>
 
 
-namespace ope::gui{
+namespace dat::atr::gui{
 
 //Constructor / Destructor
 Info::Info(){

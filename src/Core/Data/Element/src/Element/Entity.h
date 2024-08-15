@@ -14,7 +14,7 @@ namespace core{class Node;}
 namespace sce{class Operation;}
 namespace cam{class Control;}
 namespace utl::media{class Image;}
-namespace ope::attribut{class Location;}
+namespace dat::atr{class Location;}
 
 
 namespace dat::elm{
@@ -42,7 +42,7 @@ private:
   dat::elm::Structure* dat_struct;
   dat::elm::UID* dat_uid;
   cam::Control* cam_control;
-  ope::attribut::Location* ope_location;
+  dat::atr::Location* ope_location;
 };
 
 }

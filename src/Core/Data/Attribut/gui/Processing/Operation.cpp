@@ -7,7 +7,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ope::gui{
+namespace dat::atr::gui{
 
 //Constructor / Destructor
 Operation::Operation(ope::Node* node_operation){
@@ -16,7 +16,7 @@ Operation::Operation(ope::Node* node_operation){
   this->node_core = node_operation->get_node_core();
   this->ope_image = new ope::image::Converter();
   this->dat_element = new dat::elm::Element();
-  this->gui_normal = new ope::gui::Normal(node_operation);
+  this->gui_normal = new dat::atr::gui::Normal(node_operation);
 
   //---------------------------
 }

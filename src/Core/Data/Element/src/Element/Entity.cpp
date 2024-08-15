@@ -21,7 +21,7 @@ Entity::Entity(dat::elm::Node* node_element){
   this->dat_uid = node_element->get_dat_uid();
 
   this->vk_data = node_vulkan->get_vk_data();
-  this->ope_location = new ope::attribut::Location();
+  this->ope_location = new dat::atr::Location();
 
   //---------------------------
 }

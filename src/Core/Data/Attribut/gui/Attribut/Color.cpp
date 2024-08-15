@@ -5,14 +5,14 @@
 #include <Utility/Namespace.h>
 
 
-namespace ope::gui{
+namespace dat::atr::gui{
 
 //Constructor / Destructor
 Color::Color(ope::Node* node_operation){
   //---------------------------
 
   this->ope_struct = node_operation->get_ope_struct();
-  this->ope_color = new ope::attribut::Color(node_operation);
+  this->ope_color = new dat::atr::Color(node_operation);
   this->dat_element = new dat::elm::Element();
   this->utl_attribut = new utl::base::Attribut();
 

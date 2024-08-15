@@ -8,7 +8,7 @@
 #include <chrono>
 
 
-namespace ope::normal{
+namespace dat::atr::normal{
 
 // Constructor / Destructor
 KNN::KNN(){

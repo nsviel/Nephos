@@ -9,7 +9,7 @@ namespace utl::base{class Element;}
 namespace utl::base{class Attribut;}
 
 
-namespace ope::attribut{
+namespace dat::atr{
 
 class Location
 {

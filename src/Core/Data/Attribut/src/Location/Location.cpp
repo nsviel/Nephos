@@ -3,7 +3,7 @@
 #include <Data/Namespace.h>
 
 
-namespace ope::attribut{
+namespace dat::atr{
 
 // Constructor / Destructor
 Location::Location(){

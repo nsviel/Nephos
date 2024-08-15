@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ope::attribut::structure{
+namespace dat::atr::structure{
 
 struct Normal{
   //---------------------------

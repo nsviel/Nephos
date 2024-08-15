@@ -3,9 +3,11 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace core{class Node;}
+namespace ope{class Structure;}
+namespace dat::atr::gui{class Panel;}
 
 
-namespace ope{
+namespace dat::atr{
 
 class Node : public utl::base::Node
 {

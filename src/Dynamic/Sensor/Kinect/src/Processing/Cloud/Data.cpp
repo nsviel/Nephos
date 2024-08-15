@@ -43,7 +43,7 @@ void Data::extract_data(k4n::base::Sensor* sensor){
   this->extraction_transfer(sensor);
   tasker->task_end("transfer");
 
-  ope::attribut::Location ope_location;
+  dat::atr::Location ope_location;
   ope_location.compute_height(sensor);
 
   //---------------------------

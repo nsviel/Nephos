@@ -7,7 +7,7 @@ namespace utl::base{class Data;}
 namespace dat::base{class Object;}
 
 
-namespace ope::normal{
+namespace dat::atr::normal{
 
 class KNN
 {

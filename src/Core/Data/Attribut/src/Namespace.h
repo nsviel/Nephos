@@ -1,5 +1,6 @@
 #pragma once
 
-#include <Operation/src/Attribut/Color.h>
-#include <Operation/src/Attribut/Location.h>
-#include <Operation/src/Attribut/Normal/Namespace.h>
+#include "Structure.h"
+#include "Color/Namespace.h"
+#include "Location/Namespace.h"
+#include "Normal/Namespace.h"

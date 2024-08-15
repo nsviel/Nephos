@@ -5,7 +5,7 @@ namespace dyn{class Structure;}
 namespace dyn::cloud{class Recorder;}
 namespace dyn::cloud{class Normal;}
 namespace dyn::cloud{class Radiometry;}
-namespace ope::attribut{class Color;}
+namespace dat::atr{class Color;}
 namespace dyn::base{class Sensor;}
 namespace dat::elm{class Entity;}
 
@@ -27,7 +27,7 @@ public:
 private:
   dyn::Structure* dyn_struct;
   dyn::cloud::Recorder* dyn_recorder;
-  ope::attribut::Color* ope_color;
+  dat::atr::Color* ope_color;
   dyn::cloud::Normal* dyn_normal;
   dyn::cloud::Radiometry* dyn_radio;
   dat::elm::Entity* dat_entity;

@@ -3,7 +3,7 @@
 namespace utl::base{class Element;}
 
 
-namespace ope::gui{
+namespace dat::atr::gui{
 
 class Info
 {

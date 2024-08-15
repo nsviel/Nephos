@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 
 namespace ope{class Transformation;}
-namespace ope::attribut{class Location;}
+namespace dat::atr{class Location;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace utl::base{class Element;}
@@ -34,7 +34,7 @@ public:
 
 private:
   ope::Transformation* ope_transform;
-  ope::attribut::Location* ope_location;
+  dat::atr::Location* ope_location;
 };
 
 }

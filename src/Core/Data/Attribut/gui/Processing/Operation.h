@@ -3,12 +3,12 @@
 namespace core{class Node;}
 namespace ope{class Node;}
 namespace ope::image{class Converter;}
-namespace ope::gui{class Normal;}
+namespace dat::atr::gui{class Normal;}
 namespace utl::base{class Element;}
 namespace dat::elm{class Element;}
 
 
-namespace ope::gui{
+namespace dat::atr::gui{
 
 class Operation
 {
@@ -28,7 +28,7 @@ private:
   core::Node* node_core;
   ope::image::Converter* ope_image;
   dat::elm::Element* dat_element;
-  ope::gui::Normal* gui_normal;
+  dat::atr::gui::Normal* gui_normal;
 };
 
 }

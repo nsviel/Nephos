@@ -26,7 +26,7 @@ Normal::Normal(dyn::Node* node_dynamic){
   this->dat_glyph = node_element->get_dat_glyph();
   this->ope_converter = new ope::image::Converter();
   this->ope_normal = new ope::normal::Structured();
-  this->ope_location = new ope::attribut::Location();
+  this->ope_location = new dat::atr::Location();
 
   //---------------------------
 }

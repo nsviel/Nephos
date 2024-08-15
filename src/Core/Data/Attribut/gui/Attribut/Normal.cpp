@@ -6,7 +6,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace ope::gui{
+namespace dat::atr::gui{
 
 //Constructor / Destructor
 Normal::Normal(ope::Node* node_operation){

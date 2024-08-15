@@ -20,7 +20,7 @@ Operation::Operation(dyn::Node* node_dynamic){
   this->dyn_normal = new dyn::cloud::Normal(node_dynamic);
   this->dyn_recorder = new dyn::cloud::Recorder(node_dynamic);
   this->dyn_radio = new dyn::cloud::Radiometry(node_dynamic);
-  this->ope_color = new ope::attribut::Color(node_operation);
+  this->ope_color = new dat::atr::Color(node_operation);
 
   //---------------------------
 }

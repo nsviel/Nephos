@@ -9,7 +9,7 @@ namespace dat::base{class Entity;}
 namespace ope::image{class Converter;}
 
 
-namespace ope::normal{
+namespace dat::atr::normal{
 
 class Structured
 {

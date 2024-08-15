@@ -7,7 +7,7 @@
 #include <chrono>
 
 
-namespace ope::normal{
+namespace dat::atr::normal{
 
 // Constructor / Destructor
 Structured::Structured(){

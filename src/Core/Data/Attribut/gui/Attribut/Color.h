@@ -2,14 +2,14 @@
 
 namespace ope{class Node;}
 namespace ope{class Structure;}
-namespace ope::attribut{class Color;}
+namespace dat::atr{class Color;}
 namespace utl::base{class Element;}
 namespace utl::base{class Attribut;}
 namespace dat::base{class Entity;}
 namespace dat::elm{class Element;}
 
 
-namespace ope::gui{
+namespace dat::atr::gui{
 
 class Color
 {
@@ -34,7 +34,7 @@ public:
 
 private:
   ope::Structure* ope_struct;
-  ope::attribut::Color* ope_color;
+  dat::atr::Color* ope_color;
   utl::base::Attribut* utl_attribut;
   dat::elm::Element* dat_element;
 };
