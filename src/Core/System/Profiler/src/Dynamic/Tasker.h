@@ -6,8 +6,8 @@
 #include <string>
 
 namespace sys::timer{class Chronos;}
-namespace sys::timer::fps{class Counter;}
-namespace sys::timer::fps{class Control;}
+namespace sys::fps{class Counter;}
+namespace sys::fps{class Control;}
 namespace prf::dynamic{class Task;}
 
 
@@ -45,8 +45,8 @@ public:
 
 private:
   sys::timer::Chrono* timer;
-  sys::timer::fps::Counter* fps_counter;
-  sys::timer::fps::Control* fps_control;
+  sys::fps::Counter* fps_counter;
+  sys::fps::Control* fps_control;
 
   sys::timer::Timepoint reference;
   std::vector<prf::dynamic::Task> vec_task_buffer;

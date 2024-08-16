@@ -1,4 +1,3 @@
 #pragma once
 
-#include "CPU.h"
-#include "Nvidia.h"
+#include "src/Namespace.h"

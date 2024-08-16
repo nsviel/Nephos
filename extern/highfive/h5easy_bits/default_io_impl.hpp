@@ -19,24 +19,24 @@ using HighFive::details::inspector;
 
 template <typename T>
 struct default_io_impl {
-    inline static std::vector<size_t> shape(const T& data) {
+    inline static std::vector<size_t> shape(const T& data){
         return inspector<T>::getDimensions(data);
     }
 
     inline static DataSet dump(File& file,
                                const std::string& path,
                                const T& data,
-                               const DumpOptions& options) {
+                               const DumpOptions& options){
         using value_type = typename inspector<T>::base_type;
         DataSet dataset = initDataset<value_type>(file, path, shape(data), options);
         dataset.write(data);
-        if (options.flush()) {
+        if (options.flush()){
             file.flush();
         }
         return dataset;
     }
 
-    inline static T load(const File& file, const std::string& path) {
+    inline static T load(const File& file, const std::string& path){
         return file.getDataSet(path).read<T>();
     }
 
@@ -44,11 +44,11 @@ struct default_io_impl {
                                           const std::string& path,
                                           const std::string& key,
                                           const T& data,
-                                          const DumpOptions& options) {
+                                          const DumpOptions& options){
         using value_type = typename inspector<T>::base_type;
         Attribute attribute = initAttribute<value_type>(file, path, key, shape(data), options);
         attribute.write(data);
-        if (options.flush()) {
+        if (options.flush()){
             file.flush();
         }
         return attribute;
@@ -56,7 +56,7 @@ struct default_io_impl {
 
     inline static T loadAttribute(const File& file,
                                   const std::string& path,
-                                  const std::string& key) {
+                                  const std::string& key){
         DataSet dataset = file.getDataSet(path);
         Attribute attribute = dataset.getAttribute(key);
         return attribute.read<T>();

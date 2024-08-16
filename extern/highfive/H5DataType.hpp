@@ -43,12 +43,12 @@ enum class DataTypeClass {
     Invalid = 0
 };
 
-inline DataTypeClass operator|(DataTypeClass lhs, DataTypeClass rhs) {
+inline DataTypeClass operator|(DataTypeClass lhs, DataTypeClass rhs){
     using T = std::underlying_type<DataTypeClass>::type;
     return static_cast<DataTypeClass>(static_cast<T>(lhs) | static_cast<T>(rhs));
 }
 
-inline DataTypeClass operator&(DataTypeClass lhs, DataTypeClass rhs) {
+inline DataTypeClass operator&(DataTypeClass lhs, DataTypeClass rhs){
     using T = std::underlying_type<DataTypeClass>::type;
     return static_cast<DataTypeClass>(static_cast<T>(lhs) & static_cast<T>(rhs));
 }
@@ -203,7 +203,7 @@ class CompoundType: public DataType {
         member_def(std::string t_name, DataType t_base_type, size_t t_offset = 0)
             : name(std::move(t_name))
             , base_type(std::move(t_base_type))
-            , offset(t_offset) {}
+            , offset(t_offset){}
         std::string name;
         DataType base_type;
         size_t offset;
@@ -216,15 +216,15 @@ class CompoundType: public DataType {
     /// \param t_members
     /// \param size
     inline CompoundType(const std::vector<member_def>& t_members, size_t size = 0)
-        : members(t_members) {
+        : members(t_members){
         create(size);
     }
     inline CompoundType(std::vector<member_def>&& t_members, size_t size = 0)
-        : members(std::move(t_members)) {
+        : members(std::move(t_members)){
         create(size);
     }
     inline CompoundType(const std::initializer_list<member_def>& t_members, size_t size = 0)
-        : members(t_members) {
+        : members(t_members){
         create(size);
     }
 
@@ -232,15 +232,15 @@ class CompoundType: public DataType {
     /// \brief Initializes a compound type from a DataType
     /// \param type
     inline CompoundType(DataType&& type)
-        : DataType(type) {
-        if (getClass() != DataTypeClass::Compound) {
+        : DataType(type){
+        if (getClass() != DataTypeClass::Compound){
             std::ostringstream ss;
             ss << "hid " << _hid << " does not refer to a compound data type";
             throw DataTypeException(ss.str());
         }
         size_t n_members = static_cast<size_t>(detail::h5t_get_nmembers(_hid));
         members.reserve(n_members);
-        for(unsigned i = 0; i < n_members; i++) {
+        for(unsigned i = 0; i < n_members; i++){
             char* name = detail::h5t_get_member_name(_hid, i);
             size_t offset = detail::h5t_get_member_offset(_hid, i);
             hid_t member_hid = detail::h5t_get_member_type(_hid, i);
@@ -280,7 +280,7 @@ class CompoundType: public DataType {
 ///     SECOND = 2,
 /// };
 ///
-/// EnumType<Position> create_enum_position() {
+/// EnumType<Position> create_enum_position(){
 ///     return {{"FIRST", Position::FIRST},
 ///             {"SECOND", Position::SECOND}};
 /// }
@@ -288,7 +288,7 @@ class CompoundType: public DataType {
 /// // You have to register the type inside HighFive
 /// HIGHFIVE_REGISTER_TYPE(Position, create_enum_position)
 ///
-/// void write_first(H5::File& file) {
+/// void write_first(H5::File& file){
 ///     auto dataset = file.createDataSet("/foo", Position::FIRST);
 /// }
 /// \endcode
@@ -300,7 +300,7 @@ class EnumType: public DataType {
     struct member_def {
         member_def(const std::string& t_name, T t_value)
             : name(t_name)
-            , value(std::move(t_value)) {}
+            , value(std::move(t_value)){}
         std::string name;
         T value;
     };
@@ -308,9 +308,9 @@ class EnumType: public DataType {
     EnumType(const EnumType& other) = default;
 
     EnumType(const std::vector<member_def>& t_members)
-        : members(t_members) {
+        : members(t_members){
         static_assert(std::is_enum<T>::value, "EnumType<T>::create takes only enum");
-        if (members.empty()) {
+        if (members.empty()){
             HDF5ErrMapper::ToException<DataTypeException>(
                 "Could not create an enum without members");
         }
@@ -318,7 +318,7 @@ class EnumType: public DataType {
     }
 
     EnumType(std::initializer_list<member_def> t_members)
-        : EnumType(std::vector<member_def>(t_members)) {}
+        : EnumType(std::vector<member_def>(t_members)){}
 
     /// \brief Commit datatype into the given Object
     /// \param object Location to commit object into
@@ -350,7 +350,7 @@ DataType create_and_check_datatype();
 /// \code{.cpp}
 /// namespace app {
 /// enum FooBar { FOO = 1, BAR = 2 };
-/// EnumType create_enum_foobar() {
+/// EnumType create_enum_foobar(){
 ///    return EnumType<FooBar>({{"FOO", FooBar::FOO},
 ///                             {"BAR", FooBar::BAR}});
 /// }
@@ -360,7 +360,7 @@ DataType create_and_check_datatype();
 /// \endcode
 #define HIGHFIVE_REGISTER_TYPE(type, function)                    \
     template <>                                                   \
-    inline HighFive::DataType HighFive::create_datatype<type>() { \
+    inline HighFive::DataType HighFive::create_datatype<type>(){ \
         return function();                                        \
     }
 

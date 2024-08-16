@@ -22,7 +22,7 @@ struct eigen_inspector {
     static_assert(int(EigenType::RowsAtCompileTime) == int(EigenType::MaxRowsAtCompileTime),
                   "Padding isn't supported.");
 
-    static constexpr bool is_row_major() {
+    static constexpr bool is_row_major(){
         return EigenType::ColsAtCompileTime == 1 || EigenType::RowsAtCompileTime == 1 ||
                EigenType::IsRowMajor;
     }
@@ -36,49 +36,49 @@ struct eigen_inspector {
                                                   inspector<value_type>::is_trivially_nestable;
     static constexpr bool is_trivially_nestable = false;
 
-    static size_t getRank(const type& val) {
+    static size_t getRank(const type& val){
         return ndim + inspector<value_type>::getRank(val.data()[0]);
     }
 
-    static std::vector<size_t> getDimensions(const type& val) {
+    static std::vector<size_t> getDimensions(const type& val){
         std::vector<size_t> sizes{static_cast<size_t>(val.rows()), static_cast<size_t>(val.cols())};
         auto s = inspector<value_type>::getDimensions(val.data()[0]);
         sizes.insert(sizes.end(), s.begin(), s.end());
         return sizes;
     }
 
-    static void prepare(type& val, const std::vector<size_t>& dims) {
+    static void prepare(type& val, const std::vector<size_t>& dims){
         if (dims[0] != static_cast<size_t>(val.rows()) ||
-            dims[1] != static_cast<size_t>(val.cols())) {
+            dims[1] != static_cast<size_t>(val.cols())){
             val.resize(static_cast<typename type::Index>(dims[0]),
                        static_cast<typename type::Index>(dims[1]));
         }
     }
 
-    static hdf5_type* data(type& val) {
-        if (!is_trivially_copyable) {
+    static hdf5_type* data(type& val){
+        if (!is_trivially_copyable){
             throw DataSetException("Invalid used of `inspector<Eigen::Matrix<...>>::data`.");
         }
 
         return inspector<value_type>::data(*val.data());
     }
 
-    static const hdf5_type* data(const type& val) {
-        if (!is_trivially_copyable) {
+    static const hdf5_type* data(const type& val){
+        if (!is_trivially_copyable){
             throw DataSetException("Invalid used of `inspector<Eigen::Matrix<...>>::data`.");
         }
 
         return inspector<value_type>::data(*val.data());
     }
 
-    static void serialize(const type& val, const std::vector<size_t>& dims, hdf5_type* m) {
+    static void serialize(const type& val, const std::vector<size_t>& dims, hdf5_type* m){
         Eigen::Index n_rows = val.rows();
         Eigen::Index n_cols = val.cols();
 
         auto subdims = std::vector<size_t>(dims.begin() + ndim, dims.end());
         auto subsize = compute_total_size(subdims);
-        for(Eigen::Index i = 0; i < n_rows; ++i) {
-            for(Eigen::Index j = 0; j < n_cols; ++j) {
+        for(Eigen::Index i = 0; i < n_rows; ++i){
+            for(Eigen::Index j = 0; j < n_cols; ++j){
                 inspector<value_type>::serialize(val(i, j), dims, m);
                 m += subsize;
             }
@@ -87,8 +87,8 @@ struct eigen_inspector {
 
     static void unserialize(const hdf5_type* vec_align,
                             const std::vector<size_t>& dims,
-                            type& val) {
-        if (dims.size() < 2) {
+                            type& val){
+        if (dims.size() < 2){
             std::ostringstream os;
             os << "Impossible to pair DataSet with " << dims.size()
                << " dimensions into an eigen-matrix.";
@@ -100,8 +100,8 @@ struct eigen_inspector {
 
         auto subdims = std::vector<size_t>(dims.begin() + ndim, dims.end());
         auto subsize = compute_total_size(subdims);
-        for(Eigen::Index i = 0; i < n_rows; ++i) {
-            for(Eigen::Index j = 0; j < n_cols; ++j) {
+        for(Eigen::Index i = 0; i < n_rows; ++i){
+            for(Eigen::Index j = 0; j < n_cols; ++j){
                 inspector<value_type>::unserialize(vec_align, subdims, val(i, j));
                 vec_align += subsize;
             }
@@ -148,9 +148,9 @@ struct inspector<Eigen::Map<PlainObjectType, MapOptions>>
     using base_type = typename super::base_type;
     using hdf5_type = typename super::hdf5_type;
 
-    static void prepare(type& val, const std::vector<size_t>& dims) {
+    static void prepare(type& val, const std::vector<size_t>& dims){
         if (dims[0] != static_cast<size_t>(val.rows()) ||
-            dims[1] != static_cast<size_t>(val.cols())) {
+            dims[1] != static_cast<size_t>(val.cols())){
             throw DataSetException("Eigen::Map has invalid shape and can't be resized.");
         }
     }

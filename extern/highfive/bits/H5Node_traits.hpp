@@ -170,7 +170,7 @@ class NodeTraits {
     /// \brief A shorthand to create softlink to any object which provides `getPath`
     /// The link will be created with default properties along with required parent groups
     template <typename T, typename = decltype(&T::getPath)>
-    void createSoftLink(const std::string& linkName, const T& obj) {
+    void createSoftLink(const std::string& linkName, const T& obj){
         static_assert(!std::is_same<T, Attribute>::value,
                       "hdf5 doesn't support soft links to Attributes");
         createSoftLink(linkName, obj.getPath());

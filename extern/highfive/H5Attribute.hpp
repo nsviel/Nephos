@@ -287,7 +287,7 @@ class Attribute: public Object, public PathTraits<Attribute> {
 };
 
 namespace detail {
-inline Attribute make_attribute(hid_t hid) {
+inline Attribute make_attribute(hid_t hid){
     return Attribute(hid);
 }
 }  // namespace detail

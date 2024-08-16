@@ -104,7 +104,7 @@ class DataSet: public Object,
     using Object::Object;  // bring DataSet(hid_t)
 
     DataSet(Object&& o) noexcept
-        : Object(std::move(o)) {}
+        : Object(std::move(o)){}
 
     friend class Reference;
     template <typename Derivate>

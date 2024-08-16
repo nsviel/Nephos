@@ -28,12 +28,12 @@ void Class::capture(){
   pipe.start();
 
   // Capture 30 frames to give autoexposure, etc. a chance to settle
-  for (int i = 0; i < 30; i++) {
+  for (int i = 0; i < 30; i++){
     // Wait for the next set of frames from the camera
     rs2::frameset frames = pipe.wait_for_frames();
   }
 
-  while (true) {
+  while (true){
     // Wait for the next set of frames from the camera
     rs2::frameset frames = pipe.wait_for_frames();
 
@@ -61,7 +61,7 @@ void Class::capture(){
     cv::imshow("Depth Image", depth_display);
 
     // Exit on ESC key
-    if (cv::waitKey(1) == 27) {
+    if (cv::waitKey(1) == 27){
       break;
     }
   }

@@ -25,28 +25,28 @@ struct inspector<boost::multi_array<T, Dims>> {
     static constexpr bool is_trivially_nestable = false;
 
 
-    static size_t getRank(const type& val) {
+    static size_t getRank(const type& val){
         return ndim + inspector<value_type>::getRank(val.data()[0]);
     }
 
-    static std::vector<size_t> getDimensions(const type& val) {
+    static std::vector<size_t> getDimensions(const type& val){
         auto rank = getRank(val);
         std::vector<size_t> sizes(rank, 1ul);
-        for(size_t i = 0; i < ndim; ++i) {
+        for(size_t i = 0; i < ndim; ++i){
             sizes[i] = val.shape()[i];
         }
-        if (val.size() != 0) {
+        if (val.size() != 0){
             auto s = inspector<value_type>::getDimensions(val.data()[0]);
             sizes.resize(ndim + s.size());
-            for(size_t i = 0; i < s.size(); ++i) {
+            for(size_t i = 0; i < s.size(); ++i){
                 sizes[ndim + i] = s[i];
             }
         }
         return sizes;
     }
 
-    static void prepare(type& val, const std::vector<size_t>& dims) {
-        if (dims.size() < ndim) {
+    static void prepare(type& val, const std::vector<size_t>& dims){
+        if (dims.size() < ndim){
             std::ostringstream os;
             os << "Only '" << dims.size() << "' given but boost::multi_array is of size '" << ndim
                << "'.";
@@ -60,44 +60,44 @@ struct inspector<boost::multi_array<T, Dims>> {
                                            dims.begin() + Dims,
                                            std::size_t{1},
                                            std::multiplies<size_t>());
-        for(size_t i = 0; i < size; ++i) {
+        for(size_t i = 0; i < size; ++i){
             inspector<value_type>::prepare(*(val.origin() + i), next_dims);
         }
     }
 
-    static void assert_c_order(const type& val) {
-        if (!(val.storage_order() == boost::c_storage_order())) {
+    static void assert_c_order(const type& val){
+        if (!(val.storage_order() == boost::c_storage_order())){
             throw DataTypeException("Only C storage order is supported for 'boost::multi_array'.");
         }
     }
 
-    static hdf5_type* data(type& val) {
+    static hdf5_type* data(type& val){
         assert_c_order(val);
         return inspector<value_type>::data(*val.data());
     }
 
-    static const hdf5_type* data(const type& val) {
+    static const hdf5_type* data(const type& val){
         assert_c_order(val);
         return inspector<value_type>::data(*val.data());
     }
 
     template <class It>
-    static void serialize(const type& val, const std::vector<size_t>& dims, It m) {
+    static void serialize(const type& val, const std::vector<size_t>& dims, It m){
         assert_c_order(val);
         size_t size = val.num_elements();
         auto subdims = std::vector<size_t>(dims.begin() + ndim, dims.end());
         size_t subsize = compute_total_size(subdims);
-        for(size_t i = 0; i < size; ++i) {
+        for(size_t i = 0; i < size; ++i){
             inspector<value_type>::serialize(*(val.origin() + i), subdims, m + i * subsize);
         }
     }
 
     template <class It>
-    static void unserialize(It vec_align, const std::vector<size_t>& dims, type& val) {
+    static void unserialize(It vec_align, const std::vector<size_t>& dims, type& val){
         assert_c_order(val);
         std::vector<size_t> next_dims(dims.begin() + ndim, dims.end());
         size_t subsize = compute_total_size(next_dims);
-        for(size_t i = 0; i < val.num_elements(); ++i) {
+        for(size_t i = 0; i < val.num_elements(); ++i){
             inspector<value_type>::unserialize(vec_align + i * subsize,
                                                next_dims,
                                                *(val.origin() + i));
@@ -120,19 +120,19 @@ struct inspector<boost::numeric::ublas::matrix<T>> {
                                                   inspector<value_type>::is_trivially_copyable;
     static constexpr bool is_trivially_nestable = false;
 
-    static size_t getRank(const type& val) {
+    static size_t getRank(const type& val){
         return ndim + inspector<value_type>::getRank(val(0, 0));
     }
 
-    static std::vector<size_t> getDimensions(const type& val) {
+    static std::vector<size_t> getDimensions(const type& val){
         std::vector<size_t> sizes{val.size1(), val.size2()};
         auto s = inspector<value_type>::getDimensions(val(0, 0));
         sizes.insert(sizes.end(), s.begin(), s.end());
         return sizes;
     }
 
-    static void prepare(type& val, const std::vector<size_t>& dims) {
-        if (dims.size() < ndim) {
+    static void prepare(type& val, const std::vector<size_t>& dims){
+        if (dims.size() < ndim){
             std::ostringstream os;
             os << "Impossible to pair DataSet with " << dims.size() << " dimensions into a " << ndim
                << " boost::numeric::ublas::matrix";
@@ -141,30 +141,30 @@ struct inspector<boost::numeric::ublas::matrix<T>> {
         val.resize(dims[0], dims[1], false);
     }
 
-    static hdf5_type* data(type& val) {
+    static hdf5_type* data(type& val){
         return inspector<value_type>::data(val(0, 0));
     }
 
-    static const hdf5_type* data(const type& val) {
+    static const hdf5_type* data(const type& val){
         return inspector<value_type>::data(val(0, 0));
     }
 
-    static void serialize(const type& val, const std::vector<size_t>& dims, hdf5_type* m) {
+    static void serialize(const type& val, const std::vector<size_t>& dims, hdf5_type* m){
         size_t size = val.size1() * val.size2();
         auto subdims = std::vector<size_t>(dims.begin() + ndim, dims.end());
         size_t subsize = compute_total_size(subdims);
-        for(size_t i = 0; i < size; ++i) {
+        for(size_t i = 0; i < size; ++i){
             inspector<value_type>::serialize(*(&val(0, 0) + i), subdims, m + i * subsize);
         }
     }
 
     static void unserialize(const hdf5_type* vec_align,
                             const std::vector<size_t>& dims,
-                            type& val) {
+                            type& val){
         std::vector<size_t> next_dims(dims.begin() + ndim, dims.end());
         size_t subsize = compute_total_size(next_dims);
         size_t size = val.size1() * val.size2();
-        for(size_t i = 0; i < size; ++i) {
+        for(size_t i = 0; i < size; ++i){
             inspector<value_type>::unserialize(vec_align + i * subsize,
                                                next_dims,
                                                *(&val(0, 0) + i));

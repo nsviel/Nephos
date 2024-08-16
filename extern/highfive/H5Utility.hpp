@@ -24,15 +24,15 @@ namespace HighFive {
 class SilenceHDF5 {
   public:
     inline SilenceHDF5(bool enable = true)
-        : _client_data(nullptr) {
+        : _client_data(nullptr){
         detail::nothrow::h5e_get_auto2(H5E_DEFAULT, &_func, &_client_data);
 
-        if (enable) {
+        if (enable){
             detail::nothrow::h5e_set_auto2(H5E_DEFAULT, nullptr, nullptr);
         }
     }
 
-    inline ~SilenceHDF5() {
+    inline ~SilenceHDF5(){
         detail::nothrow::h5e_set_auto2(H5E_DEFAULT, _func, _client_data);
     }
 
@@ -57,8 +57,8 @@ enum class LogSeverity {
     Error = HIGHFIVE_LOG_LEVEL_ERROR
 };
 
-inline std::string to_string(LogSeverity severity) {
-    switch (severity) {
+inline std::string to_string(LogSeverity severity){
+    switch (severity){
     case LogSeverity::Debug:
         return "DEBUG";
     case LogSeverity::Info:
@@ -97,7 +97,7 @@ class Logger {
     Logger(Logger&&) = delete;
 
     explicit Logger(callback_type cb)
-        : _cb(std::move(cb)) {}
+        : _cb(std::move(cb)){}
 
     Logger& operator=(const Logger&) = delete;
     Logger& operator=(Logger&&) = delete;
@@ -105,11 +105,11 @@ class Logger {
     inline void log(LogSeverity severity,
                     const std::string& message,
                     const std::string& file,
-                    int line) {
+                    int line){
         _cb(severity, message, file, line);
     }
 
-    inline void set_logging_callback(callback_type cb) {
+    inline void set_logging_callback(callback_type cb){
         _cb = std::move(cb);
     }
 
@@ -120,7 +120,7 @@ class Logger {
 inline void default_logging_callback(LogSeverity severity,
                                      const std::string& message,
                                      const std::string& file,
-                                     int line) {
+                                     int line){
     std::clog << file << ": " << line << " [" << to_string(severity) << "] " << message
               << std::endl;
 }
@@ -132,13 +132,13 @@ inline void default_logging_callback(LogSeverity severity,
 ///
 /// Note: You probably don't need to call this function explicitly.
 ///
-inline Logger& get_global_logger() {
+inline Logger& get_global_logger(){
     static Logger logger(&default_logging_callback);
     return logger;
 }
 
 /// \brief Sets the callback that's used by the logger.
-inline void register_logging_callback(Logger::callback_type cb) {
+inline void register_logging_callback(Logger::callback_type cb){
     auto& logger = get_global_logger();
     logger.set_logging_callback(std::move(cb));
 }
@@ -148,7 +148,7 @@ namespace detail {
 inline void log(LogSeverity severity,
                 const std::string& message,
                 const std::string& file,
-                int line) {
+                int line){
     auto& logger = get_global_logger();
     logger.log(severity, message, file, line);
 }
@@ -160,7 +160,7 @@ inline void log(LogSeverity severity,
 
 // Useful, for the common pattern: if ...; then log something.
 #define HIGHFIVE_LOG_DEBUG_IF(cond, message) \
-    if ((cond)) {                            \
+    if ((cond)){                            \
         HIGHFIVE_LOG_DEBUG((message));       \
     }
 
@@ -175,7 +175,7 @@ inline void log(LogSeverity severity,
 
 // Useful, for the common pattern: if ...; then log something.
 #define HIGHFIVE_LOG_INFO_IF(cond, message) \
-    if ((cond)) {                           \
+    if ((cond)){                           \
         HIGHFIVE_LOG_INFO((message));       \
     }
 
@@ -191,7 +191,7 @@ inline void log(LogSeverity severity,
 
 // Useful, for the common pattern: if ...; then log something.
 #define HIGHFIVE_LOG_WARN_IF(cond, message) \
-    if ((cond)) {                           \
+    if ((cond)){                           \
         HIGHFIVE_LOG_WARN((message));       \
     }
 
@@ -206,7 +206,7 @@ inline void log(LogSeverity severity,
 
 // Useful, for the common pattern: if ...; then log something.
 #define HIGHFIVE_LOG_ERROR_IF(cond, message) \
-    if ((cond)) {                            \
+    if ((cond)){                            \
         HIGHFIVE_LOG_ERROR((message));       \
     }
 

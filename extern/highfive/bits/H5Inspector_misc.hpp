@@ -29,8 +29,8 @@ namespace details {
 
 inline bool checkDimensions(const std::vector<size_t>& dims,
                             size_t min_dim_requested,
-                            size_t max_dim_requested) {
-    if (min_dim_requested <= dims.size() && dims.size() <= max_dim_requested) {
+                            size_t max_dim_requested){
+    if (min_dim_requested <= dims.size() && dims.size() <= max_dim_requested){
         return true;
     }
 
@@ -95,34 +95,34 @@ struct type_helper {
     static constexpr bool is_trivially_copyable = std::is_trivially_copyable<type>::value;
     static constexpr bool is_trivially_nestable = is_trivially_copyable;
 
-    static size_t getRank(const type& /* val */) {
+    static size_t getRank(const type& /* val */){
         return ndim;
     }
 
-    static std::vector<size_t> getDimensions(const type& /* val */) {
+    static std::vector<size_t> getDimensions(const type& /* val */){
         return {};
     }
 
-    static void prepare(type& /* val */, const std::vector<size_t>& /* dims */) {}
+    static void prepare(type& /* val */, const std::vector<size_t>& /* dims */){}
 
-    static hdf5_type* data(type& val) {
+    static hdf5_type* data(type& val){
         static_assert(is_trivially_copyable, "The type is not trivially copyable");
         return &val;
     }
 
-    static const hdf5_type* data(const type& val) {
+    static const hdf5_type* data(const type& val){
         static_assert(is_trivially_copyable, "The type is not trivially copyable");
         return &val;
     }
 
-    static void serialize(const type& val, const std::vector<size_t>& /* dims*/, hdf5_type* m) {
+    static void serialize(const type& val, const std::vector<size_t>& /* dims*/, hdf5_type* m){
         static_assert(is_trivially_copyable, "The type is not trivially copyable");
         *m = val;
     }
 
     static void unserialize(const hdf5_type* vec,
                             const std::vector<size_t>& /* dims */,
-                            type& val) {
+                            type& val){
         static_assert(is_trivially_copyable, "The type is not trivially copyable");
         val = vec[0];
     }
@@ -144,21 +144,21 @@ struct inspector<bool>: type_helper<bool> {
     static constexpr bool is_trivially_copyable = false;
     static constexpr bool is_trivially_nestable = false;
 
-    static hdf5_type* data(type& /* val */) {
+    static hdf5_type* data(type& /* val */){
         throw DataSpaceException("A boolean cannot be read directly.");
     }
 
-    static const hdf5_type* data(const type& /* val */) {
+    static const hdf5_type* data(const type& /* val */){
         throw DataSpaceException("A boolean cannot be written directly.");
     }
 
     static void unserialize(const hdf5_type* vec,
                             const std::vector<size_t>& /* dims */,
-                            type& val) {
+                            type& val){
         val = vec[0] != 0 ? true : false;
     }
 
-    static void serialize(const type& val, const std::vector<size_t>& /* dims*/, hdf5_type* m) {
+    static void serialize(const type& val, const std::vector<size_t>& /* dims*/, hdf5_type* m){
         *m = val ? 1 : 0;
     }
 };
@@ -167,21 +167,21 @@ template <>
 struct inspector<std::string>: type_helper<std::string> {
     using hdf5_type = const char*;
 
-    static hdf5_type* data(type& /* val */) {
+    static hdf5_type* data(type& /* val */){
         throw DataSpaceException("A std::string cannot be read directly.");
     }
 
-    static const hdf5_type* data(const type& /* val */) {
+    static const hdf5_type* data(const type& /* val */){
         throw DataSpaceException("A std::string cannot be written directly.");
     }
 
     template <class It>
-    static void serialize(const type& val, const std::vector<size_t>& /* dims*/, It m) {
+    static void serialize(const type& val, const std::vector<size_t>& /* dims*/, It m){
         (*m).assign(val.data(), val.size(), StringPadding::NullTerminated);
     }
 
     template <class It>
-    static void unserialize(const It& vec, const std::vector<size_t>& /* dims */, type& val) {
+    static void unserialize(const It& vec, const std::vector<size_t>& /* dims */, type& val){
         const auto& view = *vec;
         val.assign(view.data(), view.length());
     }
@@ -194,15 +194,15 @@ struct inspector<Reference>: type_helper<Reference> {
     static constexpr bool is_trivially_copyable = false;
     static constexpr bool is_trivially_nestable = false;
 
-    static hdf5_type* data(type& /* val */) {
+    static hdf5_type* data(type& /* val */){
         throw DataSpaceException("A Reference cannot be read directly.");
     }
 
-    static const hdf5_type* data(const type& /* val */) {
+    static const hdf5_type* data(const type& /* val */){
         throw DataSpaceException("A Reference cannot be written directly.");
     }
 
-    static void serialize(const type& val, const std::vector<size_t>& /* dims*/, hdf5_type* m) {
+    static void serialize(const type& val, const std::vector<size_t>& /* dims*/, hdf5_type* m){
         hobj_ref_t ref;
         val.create_ref(&ref);
         *m = ref;
@@ -210,7 +210,7 @@ struct inspector<Reference>: type_helper<Reference> {
 
     static void unserialize(const hdf5_type* vec,
                             const std::vector<size_t>& /* dims */,
-                            type& val) {
+                            type& val){
         val = type{vec[0]};
     }
 };
@@ -230,49 +230,49 @@ struct inspector<std::vector<T>> {
                                                   inspector<value_type>::is_trivially_nestable;
     static constexpr bool is_trivially_nestable = false;
 
-    static size_t getRank(const type& val) {
-        if (!val.empty()) {
+    static size_t getRank(const type& val){
+        if (!val.empty()){
             return ndim + inspector<value_type>::getRank(val[0]);
         } else {
             return min_ndim;
         }
     }
 
-    static std::vector<size_t> getDimensions(const type& val) {
+    static std::vector<size_t> getDimensions(const type& val){
         auto rank = getRank(val);
         std::vector<size_t> sizes(rank, 1ul);
         sizes[0] = val.size();
-        if (!val.empty()) {
+        if (!val.empty()){
             auto s = inspector<value_type>::getDimensions(val[0]);
-            for(size_t i = 0; i < s.size(); ++i) {
+            for(size_t i = 0; i < s.size(); ++i){
                 sizes[i + ndim] = s[i];
             }
         }
         return sizes;
     }
 
-    static void prepare(type& val, const std::vector<size_t>& dims) {
+    static void prepare(type& val, const std::vector<size_t>& dims){
         val.resize(dims[0]);
         std::vector<size_t> next_dims(dims.begin() + 1, dims.end());
-        for(auto&& e: val) {
+        for(auto&& e: val){
             inspector<value_type>::prepare(e, next_dims);
         }
     }
 
-    static hdf5_type* data(type& val) {
+    static hdf5_type* data(type& val){
         return val.empty() ? nullptr : inspector<value_type>::data(val[0]);
     }
 
-    static const hdf5_type* data(const type& val) {
+    static const hdf5_type* data(const type& val){
         return val.empty() ? nullptr : inspector<value_type>::data(val[0]);
     }
 
     template <class It>
-    static void serialize(const type& val, const std::vector<size_t>& dims, It m) {
-        if (!val.empty()) {
+    static void serialize(const type& val, const std::vector<size_t>& dims, It m){
+        if (!val.empty()){
             auto subdims = std::vector<size_t>(dims.begin() + 1, dims.end());
             size_t subsize = compute_total_size(subdims);
-            for(auto&& e: val) {
+            for(auto&& e: val){
                 inspector<value_type>::serialize(e, subdims, m);
                 m += subsize;
             }
@@ -280,10 +280,10 @@ struct inspector<std::vector<T>> {
     }
 
     template <class It>
-    static void unserialize(const It& vec_align, const std::vector<size_t>& dims, type& val) {
+    static void unserialize(const It& vec_align, const std::vector<size_t>& dims, type& val){
         std::vector<size_t> next_dims(dims.begin() + 1, dims.end());
         size_t next_size = compute_total_size(next_dims);
-        for(size_t i = 0; i < dims[0]; ++i) {
+        for(size_t i = 0; i < dims[0]; ++i){
             inspector<value_type>::unserialize(vec_align + i * next_size, next_dims, val[i]);
         }
     }
@@ -303,40 +303,40 @@ struct inspector<std::vector<bool>> {
     static constexpr bool is_trivially_copyable = false;
     static constexpr bool is_trivially_nestable = false;
 
-    static size_t getRank(const type& /* val */) {
+    static size_t getRank(const type& /* val */){
         return ndim;
     }
 
-    static std::vector<size_t> getDimensions(const type& val) {
+    static std::vector<size_t> getDimensions(const type& val){
         std::vector<size_t> sizes{val.size()};
         return sizes;
     }
 
-    static void prepare(type& val, const std::vector<size_t>& dims) {
-        if (dims.size() > 1) {
+    static void prepare(type& val, const std::vector<size_t>& dims){
+        if (dims.size() > 1){
             throw DataSpaceException("std::vector<bool> is only 1 dimension.");
         }
         val.resize(dims[0]);
     }
 
-    static hdf5_type* data(type& /* val */) {
+    static hdf5_type* data(type& /* val */){
         throw DataSpaceException("A std::vector<bool> cannot be read directly.");
     }
 
-    static const hdf5_type* data(const type& /* val */) {
+    static const hdf5_type* data(const type& /* val */){
         throw DataSpaceException("A std::vector<bool> cannot be written directly.");
     }
 
-    static void serialize(const type& val, const std::vector<size_t>& /* dims*/, hdf5_type* m) {
-        for(size_t i = 0; i < val.size(); ++i) {
+    static void serialize(const type& val, const std::vector<size_t>& /* dims*/, hdf5_type* m){
+        for(size_t i = 0; i < val.size(); ++i){
             m[i] = val[i] ? 1 : 0;
         }
     }
 
     static void unserialize(const hdf5_type* vec_align,
                             const std::vector<size_t>& dims,
-                            type& val) {
-        for(size_t i = 0; i < dims[0]; ++i) {
+                            type& val){
+        for(size_t i = 0; i < dims[0]; ++i){
             val[i] = vec_align[i] != 0 ? true : false;
         }
     }
@@ -358,51 +358,51 @@ struct inspector<std::array<T, N>> {
     static constexpr bool is_trivially_nestable = (sizeof(type) == N * sizeof(T)) &&
                                                   is_trivially_copyable;
 
-    static size_t getRank(const type& val) {
+    static size_t getRank(const type& val){
         return ndim + inspector<value_type>::getRank(val[0]);
     }
 
-    static std::vector<size_t> getDimensions(const type& val) {
+    static std::vector<size_t> getDimensions(const type& val){
         std::vector<size_t> sizes{N};
         auto s = inspector<value_type>::getDimensions(val[0]);
         sizes.insert(sizes.end(), s.begin(), s.end());
         return sizes;
     }
 
-    static void prepare(type& val, const std::vector<size_t>& dims) {
-        if (dims[0] > N) {
+    static void prepare(type& val, const std::vector<size_t>& dims){
+        if (dims[0] > N){
             std::ostringstream os;
             os << "Size of std::array (" << N << ") is too small for dims (" << dims[0] << ").";
             throw DataSpaceException(os.str());
         }
 
         std::vector<size_t> next_dims(dims.begin() + 1, dims.end());
-        for(auto&& e: val) {
+        for(auto&& e: val){
             inspector<value_type>::prepare(e, next_dims);
         }
     }
 
-    static hdf5_type* data(type& val) {
+    static hdf5_type* data(type& val){
         return inspector<value_type>::data(val[0]);
     }
 
-    static const hdf5_type* data(const type& val) {
+    static const hdf5_type* data(const type& val){
         return inspector<value_type>::data(val[0]);
     }
 
     template <class It>
-    static void serialize(const type& val, const std::vector<size_t>& dims, It m) {
+    static void serialize(const type& val, const std::vector<size_t>& dims, It m){
         auto subdims = std::vector<size_t>(dims.begin() + 1, dims.end());
         size_t subsize = compute_total_size(subdims);
-        for(auto& e: val) {
+        for(auto& e: val){
             inspector<value_type>::serialize(e, subdims, m);
             m += subsize;
         }
     }
 
     template <class It>
-    static void unserialize(const It& vec_align, const std::vector<size_t>& dims, type& val) {
-        if (dims[0] != N) {
+    static void unserialize(const It& vec_align, const std::vector<size_t>& dims, type& val){
+        if (dims[0] != N){
             std::ostringstream os;
             os << "Impossible to pair DataSet with " << dims[0] << " elements into an array with "
                << N << " elements.";
@@ -410,7 +410,7 @@ struct inspector<std::array<T, N>> {
         }
         std::vector<size_t> next_dims(dims.begin() + 1, dims.end());
         size_t next_size = compute_total_size(next_dims);
-        for(size_t i = 0; i < dims[0]; ++i) {
+        for(size_t i = 0; i < dims[0]; ++i){
             inspector<value_type>::unserialize(vec_align + i * next_size, next_dims, val[i]);
         }
     }
@@ -433,19 +433,19 @@ struct inspector<T*> {
                                                   inspector<value_type>::is_trivially_nestable;
     static constexpr bool is_trivially_nestable = false;
 
-    static size_t getRank(const type& val) {
-        if (val != nullptr) {
+    static size_t getRank(const type& val){
+        if (val != nullptr){
             return ndim + inspector<value_type>::getRank(val[0]);
         } else {
             return min_ndim;
         }
     }
 
-    static std::vector<size_t> getDimensions(const type& /* val */) {
+    static std::vector<size_t> getDimensions(const type& /* val */){
         throw DataSpaceException("Not possible to have size of a T*");
     }
 
-    static const hdf5_type* data(const type& val) {
+    static const hdf5_type* data(const type& val){
         return reinterpret_cast<const hdf5_type*>(val);
     }
 
@@ -453,7 +453,7 @@ struct inspector<T*> {
        we will fix it one day */
     static void serialize(const type& /* val */,
                           const std::vector<size_t>& /* dims*/,
-                          hdf5_type* /* m */) {
+                          hdf5_type* /* m */){
         throw DataSpaceException("Not possible to serialize a T*");
     }
 };
@@ -474,46 +474,46 @@ struct inspector<T[N]> {
                                                   inspector<value_type>::is_trivially_nestable;
     static constexpr bool is_trivially_nestable = is_trivially_copyable;
 
-    static void prepare(type& val, const std::vector<size_t>& dims) {
-        if (dims.size() < 1) {
+    static void prepare(type& val, const std::vector<size_t>& dims){
+        if (dims.size() < 1){
             throw DataSpaceException("Invalid 'dims', must be at least 1 dimensional.");
         }
 
-        if (dims[0] != N) {
+        if (dims[0] != N){
             throw DataSpaceException("Dimensions mismatch.");
         }
 
         std::vector<size_t> next_dims(dims.begin() + 1, dims.end());
-        for(size_t i = 0; i < dims[0]; ++i) {
+        for(size_t i = 0; i < dims[0]; ++i){
             inspector<value_type>::prepare(val[i], next_dims);
         }
     }
 
-    static size_t getRank(const type& val) {
+    static size_t getRank(const type& val){
         return ndim + inspector<value_type>::getRank(val[0]);
     }
 
-    static std::vector<size_t> getDimensions(const type& val) {
+    static std::vector<size_t> getDimensions(const type& val){
         std::vector<size_t> sizes{N};
         auto s = inspector<value_type>::getDimensions(val[0]);
         sizes.insert(sizes.end(), s.begin(), s.end());
         return sizes;
     }
 
-    static const hdf5_type* data(const type& val) {
+    static const hdf5_type* data(const type& val){
         return inspector<value_type>::data(val[0]);
     }
 
-    static hdf5_type* data(type& val) {
+    static hdf5_type* data(type& val){
         return inspector<value_type>::data(val[0]);
     }
 
     /* it works because there is only T[][][] currently
        we will fix it one day */
-    static void serialize(const type& val, const std::vector<size_t>& dims, hdf5_type* m) {
+    static void serialize(const type& val, const std::vector<size_t>& dims, hdf5_type* m){
         auto subdims = std::vector<size_t>(dims.begin() + 1, dims.end());
         size_t subsize = compute_total_size(subdims);
-        for(size_t i = 0; i < N; ++i) {
+        for(size_t i = 0; i < N; ++i){
             inspector<value_type>::serialize(val[i], subdims, m + i * subsize);
         }
     }

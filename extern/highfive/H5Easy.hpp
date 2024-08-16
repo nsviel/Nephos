@@ -131,7 +131,7 @@ class DumpOptions {
     /// \brief Constructor: overwrite (some of the) defaults.
     /// \param args any of DumpMode(), Flush(), Compression() in arbitrary number and order.
     template <class... Args>
-    DumpOptions(Args... args) {
+    DumpOptions(Args... args){
         set(args...);
     }
 

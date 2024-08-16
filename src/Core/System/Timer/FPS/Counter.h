@@ -8,7 +8,7 @@
 #include <numeric>
 
 
-namespace sys::timer::fps{
+namespace sys::fps{
 
 class Counter
 {

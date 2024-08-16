@@ -39,7 +39,7 @@ inline DataSet NodeTraits<Derivate>::createDataSet(const std::string& dataset_na
                                                    const DataType& dtype,
                                                    const DataSetCreateProps& createProps,
                                                    const DataSetAccessProps& accessProps,
-                                                   bool parents) {
+                                                   bool parents){
     LinkCreateProps lcpl;
     lcpl.add(CreateIntermediateGroup(parents));
     return DataSet(detail::h5d_create2(static_cast<Derivate*>(this)->getId(),
@@ -57,7 +57,7 @@ inline DataSet NodeTraits<Derivate>::createDataSet(const std::string& dataset_na
                                                    const DataSpace& space,
                                                    const DataSetCreateProps& createProps,
                                                    const DataSetAccessProps& accessProps,
-                                                   bool parents) {
+                                                   bool parents){
     return createDataSet(
         dataset_name, space, create_and_check_datatype<T>(), createProps, accessProps, parents);
 }
@@ -68,7 +68,7 @@ inline DataSet NodeTraits<Derivate>::createDataSet(const std::string& dataset_na
                                                    const T& data,
                                                    const DataSetCreateProps& createProps,
                                                    const DataSetAccessProps& accessProps,
-                                                   bool parents) {
+                                                   bool parents){
     DataSet ds =
         createDataSet(dataset_name,
                       DataSpace::From(data),
@@ -89,7 +89,7 @@ inline DataSet NodeTraits<Derivate>::getDataSet(const std::string& dataset_name,
 }
 
 template <typename Derivate>
-inline Group NodeTraits<Derivate>::createGroup(const std::string& group_name, bool parents) {
+inline Group NodeTraits<Derivate>::createGroup(const std::string& group_name, bool parents){
     LinkCreateProps lcpl;
     lcpl.add(CreateIntermediateGroup(parents));
     return detail::make_group(detail::h5g_create2(static_cast<Derivate*>(this)->getId(),
@@ -102,7 +102,7 @@ inline Group NodeTraits<Derivate>::createGroup(const std::string& group_name, bo
 template <typename Derivate>
 inline Group NodeTraits<Derivate>::createGroup(const std::string& group_name,
                                                const GroupCreateProps& createProps,
-                                               bool parents) {
+                                               bool parents){
     LinkCreateProps lcpl;
     lcpl.add(CreateIntermediateGroup(parents));
     return detail::make_group(detail::h5g_create2(static_cast<Derivate*>(this)->getId(),
@@ -136,7 +136,7 @@ inline size_t NodeTraits<Derivate>::getNumberObjects() const {
 
 template <typename Derivate>
 inline std::string NodeTraits<Derivate>::getObjectName(size_t index) const {
-    return details::get_name([&](char* buffer, size_t length) {
+    return details::get_name([&](char* buffer, size_t length){
         return detail::h5l_get_name_by_idx(static_cast<const Derivate*>(this)->getId(),
                                            ".",
                                            H5_INDEX_NAME,
@@ -187,8 +187,8 @@ inline bool NodeTraits<Derivate>::_exist(const std::string& node_name, bool rais
     const auto val = detail::nothrow::h5l_exists(static_cast<const Derivate*>(this)->getId(),
                                                  node_name.c_str(),
                                                  H5P_DEFAULT);
-    if (val < 0) {
-        if (raise_errors) {
+    if (val < 0){
+        if (raise_errors){
             HDF5ErrMapper::ToException<GroupException>("Invalid link for exist()");
         } else {
             return false;
@@ -205,7 +205,7 @@ template <typename Derivate>
 inline bool NodeTraits<Derivate>::exist(const std::string& group_path) const {
     // When there are slashes, first check everything is fine
     // so that subsequent errors are only due to missing intermediate groups
-    if (group_path.find('/') != std::string::npos) {
+    if (group_path.find('/') != std::string::npos){
         _exist("/");  // Shall not throw under normal circumstances
         // Unless "/" (already checked), verify path exists (not throwing errors)
         return (group_path == "/") ? true : _exist(group_path, false);
@@ -223,7 +223,7 @@ inline void NodeTraits<Derivate>::unlink(const std::string& node_name) const {
 // convert internal link types to enum class.
 // This function is internal, so H5L_TYPE_ERROR shall be handled in the calling context
 static inline LinkType _convert_link_type(const H5L_type_t& ltype) noexcept {
-    switch (ltype) {
+    switch (ltype){
     case H5L_TYPE_HARD:
         return LinkType::Hard;
     case H5L_TYPE_SOFT:
@@ -245,7 +245,7 @@ inline LinkType NodeTraits<Derivate>::getLinkType(const std::string& node_name) 
                          &linkinfo,
                          H5P_DEFAULT);
 
-    if (linkinfo.type == H5L_TYPE_ERROR) {
+    if (linkinfo.type == H5L_TYPE_ERROR){
         HDF5ErrMapper::ToException<GroupException>(std::string("Link type of \"") + node_name +
                                                    "\" is H5L_TYPE_ERROR");
     }
@@ -268,8 +268,8 @@ inline void NodeTraits<Derivate>::createSoftLink(const std::string& link_name,
                                                  const std::string& obj_path,
                                                  LinkCreateProps linkCreateProps,
                                                  const LinkAccessProps& linkAccessProps,
-                                                 const bool parents) {
-    if (parents) {
+                                                 const bool parents){
+    if (parents){
         linkCreateProps.add(CreateIntermediateGroup{});
     }
     detail::h5l_create_soft(obj_path.c_str(),
@@ -286,8 +286,8 @@ inline void NodeTraits<Derivate>::createExternalLink(const std::string& link_nam
                                                      const std::string& obj_path,
                                                      LinkCreateProps linkCreateProps,
                                                      const LinkAccessProps& linkAccessProps,
-                                                     const bool parents) {
-    if (parents) {
+                                                     const bool parents){
+    if (parents){
         linkCreateProps.add(CreateIntermediateGroup{});
     }
     detail::h5l_create_external(h5_file.c_str(),
@@ -304,10 +304,10 @@ inline void NodeTraits<Derivate>::createHardLink(const std::string& link_name,
                                                  const T& target_obj,
                                                  LinkCreateProps linkCreateProps,
                                                  const LinkAccessProps& linkAccessProps,
-                                                 const bool parents) {
+                                                 const bool parents){
     static_assert(!std::is_same<T, Attribute>::value,
                   "hdf5 doesn't support hard links to Attributes");
-    if (parents) {
+    if (parents){
         linkCreateProps.add(CreateIntermediateGroup{});
     }
     detail::h5l_create_hard(target_obj.getId(),

@@ -18,7 +18,7 @@ namespace HighFive {
 
 struct HDF5ErrMapper {
     template <typename ExceptionType>
-    static inline herr_t stackWalk(unsigned n, const H5E_error2_t* err_desc, void* client_data) {
+    static inline herr_t stackWalk(unsigned n, const H5E_error2_t* err_desc, void* client_data){
         auto** e_iter = static_cast<ExceptionType**>(client_data);
         (void) n;
 
@@ -40,9 +40,9 @@ struct HDF5ErrMapper {
     }
 
     template <typename ExceptionType>
-    [[noreturn]] static inline void ToException(const std::string& prefix_msg) {
+    [[noreturn]] static inline void ToException(const std::string& prefix_msg){
         hid_t err_stack = H5Eget_current_stack();
-        if (err_stack >= 0) {
+        if (err_stack >= 0){
             ExceptionType e("");
             ExceptionType* e_iter = &e;
 

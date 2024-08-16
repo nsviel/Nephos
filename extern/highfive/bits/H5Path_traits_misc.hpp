@@ -16,12 +16,12 @@
 namespace HighFive {
 
 template <typename Derivate>
-inline PathTraits<Derivate>::PathTraits() {
+inline PathTraits<Derivate>::PathTraits(){
     static_assert(std::is_same<Derivate, Group>::value || std::is_same<Derivate, DataSet>::value ||
                       std::is_same<Derivate, Attribute>::value,
                   "PathTraits can only be applied to Group, DataSet and Attribute");
     const auto& obj = static_cast<const Derivate&>(*this);
-    if (obj.isValid()) {
+    if (obj.isValid()){
         const hid_t file_id = detail::h5i_get_file_id<PropertyException>(obj.getId());
         _file_obj.reset(new File(file_id));
     }
@@ -29,7 +29,7 @@ inline PathTraits<Derivate>::PathTraits() {
 
 template <typename Derivate>
 inline std::string PathTraits<Derivate>::getPath() const {
-    return details::get_name([this](char* buffer, size_t length) {
+    return details::get_name([this](char* buffer, size_t length){
         return detail::h5i_get_name(static_cast<const Derivate&>(*this).getId(), buffer, length);
     });
 }
@@ -37,7 +37,7 @@ inline std::string PathTraits<Derivate>::getPath() const {
 template <typename Derivate>
 inline File& PathTraits<Derivate>::getFile() const {
     const auto& obj = static_cast<const Derivate&>(*this);
-    if (!obj.isValid()) {
+    if (!obj.isValid()){
         throw ObjectException("Invalid call to `PathTraits::getFile` for invalid object");
     }
     return *_file_obj;

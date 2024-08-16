@@ -1,7 +1,7 @@
 #include "Counter.h"
 
 
-namespace sys::timer::fps{
+namespace sys::fps{
 
 // Constructor / Destructor
 Counter::Counter(){

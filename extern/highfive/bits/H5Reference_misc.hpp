@@ -21,8 +21,8 @@
 namespace HighFive {
 
 inline Reference::Reference(const Object& location, const Object& object)
-    : parent_id(location.getId()) {
-    obj_name = details::get_name([&](char* buffer, size_t length) {
+    : parent_id(location.getId()){
+    obj_name = details::get_name([&](char* buffer, size_t length){
         return detail::h5i_get_name(object.getId(), buffer, length);
     });
 }
@@ -40,7 +40,7 @@ inline T Reference::dereference(const Object& location) const {
     static_assert(std::is_same<DataSet, T>::value || std::is_same<Group, T>::value,
                   "We can only (de)reference HighFive::Group or HighFive:DataSet");
     auto obj = get_ref(location);
-    if (obj.getType() != T::type) {
+    if (obj.getType() != T::type){
         HDF5ErrMapper::ToException<ReferenceException>("Trying to dereference the wrong type");
     }
 #if defined __GNUC__ && __GNUC__ < 9

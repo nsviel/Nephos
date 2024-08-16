@@ -23,7 +23,7 @@ namespace HighFive {
 template <typename Derivate>
 inline Attribute AnnotateTraits<Derivate>::createAttribute(const std::string& attribute_name,
                                                            const DataSpace& space,
-                                                           const DataType& dtype) {
+                                                           const DataType& dtype){
     auto attr_id = detail::h5a_create2(static_cast<Derivate*>(this)->getId(),
                                        attribute_name.c_str(),
                                        dtype.getId(),
@@ -36,14 +36,14 @@ inline Attribute AnnotateTraits<Derivate>::createAttribute(const std::string& at
 template <typename Derivate>
 template <typename Type>
 inline Attribute AnnotateTraits<Derivate>::createAttribute(const std::string& attribute_name,
-                                                           const DataSpace& space) {
+                                                           const DataSpace& space){
     return createAttribute(attribute_name, space, create_and_check_datatype<Type>());
 }
 
 template <typename Derivate>
 template <typename T>
 inline Attribute AnnotateTraits<Derivate>::createAttribute(const std::string& attribute_name,
-                                                           const T& data) {
+                                                           const T& data){
     Attribute att =
         createAttribute(attribute_name,
                         DataSpace::From(data),
@@ -53,7 +53,7 @@ inline Attribute AnnotateTraits<Derivate>::createAttribute(const std::string& at
 }
 
 template <typename Derivate>
-inline void AnnotateTraits<Derivate>::deleteAttribute(const std::string& attribute_name) {
+inline void AnnotateTraits<Derivate>::deleteAttribute(const std::string& attribute_name){
     detail::h5a_delete(static_cast<const Derivate*>(this)->getId(), attribute_name.c_str());
 }
 

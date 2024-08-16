@@ -94,7 +94,7 @@ void Converter::convert_spherical_pc_to_image(utl::base::Data* data, utl::media:
   std::vector<cv::Mat> vec_images(num_images, cv::Mat::zeros(height, width, CV_32FC1));
 
   // Loop over each point in the point cloud
-  for(int i = 0; i < vec_xyz.size(); i++) {
+  for(int i = 0; i < vec_xyz.size(); i++){
      glm::vec3& xyz = vec_xyz[i];
      float& Is = vec_I[i];
 
@@ -120,7 +120,7 @@ void Converter::convert_spherical_pc_to_image(utl::base::Data* data, utl::media:
   }
 
   // Normalize and save each image
-  for (int i = 0; i < num_images; i++) {
+  for (int i = 0; i < num_images; i++){
      cv::normalize(vec_images[i], vec_images[i], 0, 1, cv::NORM_MINMAX);
      cv::Mat cv_image_8u;
      vec_images[i].convertTo(cv_image_8u, CV_8UC1, 255.0);

@@ -758,11 +758,11 @@ static void TableSetupColumnFlags(ImGuiTable* table, ImGuiTableColumn* column, I
     if (table->Flags & ImGuiTableFlags_Sortable)
     {
         int count = 0, mask = 0, list = 0;
-        if ((flags & ImGuiTableColumnFlags_PreferSortAscending)  != 0 && (flags & ImGuiTableColumnFlags_NoSortAscending)  == 0) { mask |= 1 << ImGuiSortDirection_Ascending;  list |= ImGuiSortDirection_Ascending  << (count << 1); count++; }
-        if ((flags & ImGuiTableColumnFlags_PreferSortDescending) != 0 && (flags & ImGuiTableColumnFlags_NoSortDescending) == 0) { mask |= 1 << ImGuiSortDirection_Descending; list |= ImGuiSortDirection_Descending << (count << 1); count++; }
-        if ((flags & ImGuiTableColumnFlags_PreferSortAscending)  == 0 && (flags & ImGuiTableColumnFlags_NoSortAscending)  == 0) { mask |= 1 << ImGuiSortDirection_Ascending;  list |= ImGuiSortDirection_Ascending  << (count << 1); count++; }
-        if ((flags & ImGuiTableColumnFlags_PreferSortDescending) == 0 && (flags & ImGuiTableColumnFlags_NoSortDescending) == 0) { mask |= 1 << ImGuiSortDirection_Descending; list |= ImGuiSortDirection_Descending << (count << 1); count++; }
-        if ((table->Flags & ImGuiTableFlags_SortTristate) || count == 0) { mask |= 1 << ImGuiSortDirection_None; count++; }
+        if ((flags & ImGuiTableColumnFlags_PreferSortAscending)  != 0 && (flags & ImGuiTableColumnFlags_NoSortAscending)  == 0){ mask |= 1 << ImGuiSortDirection_Ascending;  list |= ImGuiSortDirection_Ascending  << (count << 1); count++; }
+        if ((flags & ImGuiTableColumnFlags_PreferSortDescending) != 0 && (flags & ImGuiTableColumnFlags_NoSortDescending) == 0){ mask |= 1 << ImGuiSortDirection_Descending; list |= ImGuiSortDirection_Descending << (count << 1); count++; }
+        if ((flags & ImGuiTableColumnFlags_PreferSortAscending)  == 0 && (flags & ImGuiTableColumnFlags_NoSortAscending)  == 0){ mask |= 1 << ImGuiSortDirection_Ascending;  list |= ImGuiSortDirection_Ascending  << (count << 1); count++; }
+        if ((flags & ImGuiTableColumnFlags_PreferSortDescending) == 0 && (flags & ImGuiTableColumnFlags_NoSortDescending) == 0){ mask |= 1 << ImGuiSortDirection_Descending; list |= ImGuiSortDirection_Descending << (count << 1); count++; }
+        if ((table->Flags & ImGuiTableFlags_SortTristate) || count == 0){ mask |= 1 << ImGuiSortDirection_None; count++; }
         column->SortDirectionsAvailList = (ImU8)list;
         column->SortDirectionsAvailMask = (ImU8)mask;
         column->SortDirectionsAvailCount = (ImU8)count;
@@ -3341,7 +3341,7 @@ void ImGui::TableAngledHeadersRowEx(ImGuiID row_id, float angle, float max_label
                         pivot_out += unit_right * (clip_width - ImMax(0.0f, clip_width - label_size.x));
                     pivot_out.x += flip_label ? line_off_curr_x + line_off_step_x : line_off_curr_x;
                     ShadeVertsTransformPos(draw_list, vtx_idx_begin, vtx_idx_end, pivot_in, label_cos_a, label_sin_a, pivot_out); // Rotate and offset
-                    //if (g.IO.KeyShift) { ImDrawList* fg_dl = GetForegroundDrawList(); vtx_idx_begin = fg_dl->_VtxCurrentIdx; fg_dl->AddRect(clip_r.Min, clip_r.Max, IM_COL32(0, 255, 0, 255), 0.0f, 0, 1.0f); ShadeVertsTransformPos(fg_dl, vtx_idx_begin, fg_dl->_VtxCurrentIdx, pivot_in, label_cos_a, label_sin_a, pivot_out); }
+                    //if (g.IO.KeyShift){ ImDrawList* fg_dl = GetForegroundDrawList(); vtx_idx_begin = fg_dl->_VtxCurrentIdx; fg_dl->AddRect(clip_r.Min, clip_r.Max, IM_COL32(0, 255, 0, 255), 0.0f, 0, 1.0f); ShadeVertsTransformPos(fg_dl, vtx_idx_begin, fg_dl->_VtxCurrentIdx, pivot_in, label_cos_a, label_sin_a, pivot_out); }
 
                     label_name = label_name_eol + 1;
                 }
@@ -3747,7 +3747,7 @@ static void TableSettingsHandler_ReadLine(ImGuiContext*, ImGuiSettingsHandler*, 
     float f = 0.0f;
     int column_n = 0, r = 0, n = 0;
 
-    if (sscanf(line, "RefScale=%f", &f) == 1) { settings->RefScale = f; return; }
+    if (sscanf(line, "RefScale=%f", &f) == 1){ settings->RefScale = f; return; }
 
     if (sscanf(line, "Column %d%n", &column_n, &r) == 1)
     {
@@ -3757,7 +3757,7 @@ static void TableSettingsHandler_ReadLine(ImGuiContext*, ImGuiSettingsHandler*, 
         char c = 0;
         ImGuiTableColumnSettings* column = settings->GetColumnSettings() + column_n;
         column->Index = (ImGuiTableColumnIdx)column_n;
-        if (sscanf(line, "UserID=0x%08X%n", (ImU32*)&n, &r)==1) { line = ImStrSkipBlank(line + r); column->UserID = (ImGuiID)n; }
+        if (sscanf(line, "UserID=0x%08X%n", (ImU32*)&n, &r)==1){ line = ImStrSkipBlank(line + r); column->UserID = (ImGuiID)n; }
         if (sscanf(line, "Width=%d%n", &n, &r) == 1)            { line = ImStrSkipBlank(line + r); column->WidthOrWeight = (float)n; column->IsStretch = 0; settings->SaveFlags |= ImGuiTableFlags_Resizable; }
         if (sscanf(line, "Weight=%f%n", &f, &r) == 1)           { line = ImStrSkipBlank(line + r); column->WidthOrWeight = f; column->IsStretch = 1; settings->SaveFlags |= ImGuiTableFlags_Resizable; }
         if (sscanf(line, "Visible=%d%n", &n, &r) == 1)          { line = ImStrSkipBlank(line + r); column->IsEnabled = (ImU8)n; settings->SaveFlags |= ImGuiTableFlags_Hideable; }
@@ -3894,8 +3894,8 @@ static const char* DebugNodeTableGetSizingPolicyDesc(ImGuiTableFlags sizing_poli
     sizing_policy &= ImGuiTableFlags_SizingMask_;
     if (sizing_policy == ImGuiTableFlags_SizingFixedFit)    { return "FixedFit"; }
     if (sizing_policy == ImGuiTableFlags_SizingFixedSame)   { return "FixedSame"; }
-    if (sizing_policy == ImGuiTableFlags_SizingStretchProp) { return "StretchProp"; }
-    if (sizing_policy == ImGuiTableFlags_SizingStretchSame) { return "StretchSame"; }
+    if (sizing_policy == ImGuiTableFlags_SizingStretchProp){ return "StretchProp"; }
+    if (sizing_policy == ImGuiTableFlags_SizingStretchSame){ return "StretchSame"; }
     return "N/A";
 }
 
@@ -3903,9 +3903,9 @@ void ImGui::DebugNodeTable(ImGuiTable* table)
 {
     ImGuiContext& g = *GImGui;
     const bool is_active = (table->LastFrameActive >= g.FrameCount - 2); // Note that fully clipped early out scrolling tables will appear as inactive here.
-    if (!is_active) { PushStyleColor(ImGuiCol_Text, GetStyleColorVec4(ImGuiCol_TextDisabled)); }
+    if (!is_active){ PushStyleColor(ImGuiCol_Text, GetStyleColorVec4(ImGuiCol_TextDisabled)); }
     bool open = TreeNode(table, "Table 0x%08X (%d columns, in '%s')%s", table->ID, table->ColumnsCount, table->OuterWindow->Name, is_active ? "" : " *Inactive*");
-    if (!is_active) { PopStyleColor(); }
+    if (!is_active){ PopStyleColor(); }
     if (IsItemHovered())
         GetForegroundDrawList()->AddRect(table->OuterRect.Min, table->OuterRect.Max, IM_COL32(255, 255, 0, 255));
     if (IsItemVisible() && table->HoveredColumnBody != -1)
@@ -3993,8 +3993,8 @@ void ImGui::DebugNodeTableSettings(ImGuiTableSettings* settings)
 
 #else // #ifndef IMGUI_DISABLE_DEBUG_TOOLS
 
-void ImGui::DebugNodeTable(ImGuiTable*) {}
-void ImGui::DebugNodeTableSettings(ImGuiTableSettings*) {}
+void ImGui::DebugNodeTable(ImGuiTable*){}
+void ImGui::DebugNodeTableSettings(ImGuiTableSettings*){}
 
 #endif
 

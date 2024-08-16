@@ -547,8 +547,8 @@ bool ImGui::ButtonBehavior(const ImRect& bb, ImGuiID id, bool* out_hovered, bool
         for(int button = 0; button < 3; button++)
             if (flags & (ImGuiButtonFlags_MouseButtonLeft << button)) // Handle ImGuiButtonFlags_MouseButtonRight and ImGuiButtonFlags_MouseButtonMiddle here.
             {
-                if (IsMouseClicked(button, ImGuiInputFlags_None, test_owner_id) && mouse_button_clicked == -1) { mouse_button_clicked = button; }
-                if (IsMouseReleased(button, test_owner_id) && mouse_button_released == -1) { mouse_button_released = button; }
+                if (IsMouseClicked(button, ImGuiInputFlags_None, test_owner_id) && mouse_button_clicked == -1){ mouse_button_clicked = button; }
+                if (IsMouseReleased(button, test_owner_id) && mouse_button_released == -1){ mouse_button_released = button; }
             }
 
         // Process initial action
@@ -2101,44 +2101,44 @@ void ImGui::DataTypeApplyOp(ImGuiDataType data_type, int op, void* output, const
     switch (data_type)
     {
         case ImGuiDataType_S8:
-            if (op == '+') { *(ImS8*)output  = ImAddClampOverflow(*(const ImS8*)arg1,  *(const ImS8*)arg2,  IM_S8_MIN,  IM_S8_MAX); }
-            if (op == '-') { *(ImS8*)output  = ImSubClampOverflow(*(const ImS8*)arg1,  *(const ImS8*)arg2,  IM_S8_MIN,  IM_S8_MAX); }
+            if (op == '+'){ *(ImS8*)output  = ImAddClampOverflow(*(const ImS8*)arg1,  *(const ImS8*)arg2,  IM_S8_MIN,  IM_S8_MAX); }
+            if (op == '-'){ *(ImS8*)output  = ImSubClampOverflow(*(const ImS8*)arg1,  *(const ImS8*)arg2,  IM_S8_MIN,  IM_S8_MAX); }
             return;
         case ImGuiDataType_U8:
-            if (op == '+') { *(ImU8*)output  = ImAddClampOverflow(*(const ImU8*)arg1,  *(const ImU8*)arg2,  IM_U8_MIN,  IM_U8_MAX); }
-            if (op == '-') { *(ImU8*)output  = ImSubClampOverflow(*(const ImU8*)arg1,  *(const ImU8*)arg2,  IM_U8_MIN,  IM_U8_MAX); }
+            if (op == '+'){ *(ImU8*)output  = ImAddClampOverflow(*(const ImU8*)arg1,  *(const ImU8*)arg2,  IM_U8_MIN,  IM_U8_MAX); }
+            if (op == '-'){ *(ImU8*)output  = ImSubClampOverflow(*(const ImU8*)arg1,  *(const ImU8*)arg2,  IM_U8_MIN,  IM_U8_MAX); }
             return;
         case ImGuiDataType_S16:
-            if (op == '+') { *(ImS16*)output = ImAddClampOverflow(*(const ImS16*)arg1, *(const ImS16*)arg2, IM_S16_MIN, IM_S16_MAX); }
-            if (op == '-') { *(ImS16*)output = ImSubClampOverflow(*(const ImS16*)arg1, *(const ImS16*)arg2, IM_S16_MIN, IM_S16_MAX); }
+            if (op == '+'){ *(ImS16*)output = ImAddClampOverflow(*(const ImS16*)arg1, *(const ImS16*)arg2, IM_S16_MIN, IM_S16_MAX); }
+            if (op == '-'){ *(ImS16*)output = ImSubClampOverflow(*(const ImS16*)arg1, *(const ImS16*)arg2, IM_S16_MIN, IM_S16_MAX); }
             return;
         case ImGuiDataType_U16:
-            if (op == '+') { *(ImU16*)output = ImAddClampOverflow(*(const ImU16*)arg1, *(const ImU16*)arg2, IM_U16_MIN, IM_U16_MAX); }
-            if (op == '-') { *(ImU16*)output = ImSubClampOverflow(*(const ImU16*)arg1, *(const ImU16*)arg2, IM_U16_MIN, IM_U16_MAX); }
+            if (op == '+'){ *(ImU16*)output = ImAddClampOverflow(*(const ImU16*)arg1, *(const ImU16*)arg2, IM_U16_MIN, IM_U16_MAX); }
+            if (op == '-'){ *(ImU16*)output = ImSubClampOverflow(*(const ImU16*)arg1, *(const ImU16*)arg2, IM_U16_MIN, IM_U16_MAX); }
             return;
         case ImGuiDataType_S32:
-            if (op == '+') { *(ImS32*)output = ImAddClampOverflow(*(const ImS32*)arg1, *(const ImS32*)arg2, IM_S32_MIN, IM_S32_MAX); }
-            if (op == '-') { *(ImS32*)output = ImSubClampOverflow(*(const ImS32*)arg1, *(const ImS32*)arg2, IM_S32_MIN, IM_S32_MAX); }
+            if (op == '+'){ *(ImS32*)output = ImAddClampOverflow(*(const ImS32*)arg1, *(const ImS32*)arg2, IM_S32_MIN, IM_S32_MAX); }
+            if (op == '-'){ *(ImS32*)output = ImSubClampOverflow(*(const ImS32*)arg1, *(const ImS32*)arg2, IM_S32_MIN, IM_S32_MAX); }
             return;
         case ImGuiDataType_U32:
-            if (op == '+') { *(ImU32*)output = ImAddClampOverflow(*(const ImU32*)arg1, *(const ImU32*)arg2, IM_U32_MIN, IM_U32_MAX); }
-            if (op == '-') { *(ImU32*)output = ImSubClampOverflow(*(const ImU32*)arg1, *(const ImU32*)arg2, IM_U32_MIN, IM_U32_MAX); }
+            if (op == '+'){ *(ImU32*)output = ImAddClampOverflow(*(const ImU32*)arg1, *(const ImU32*)arg2, IM_U32_MIN, IM_U32_MAX); }
+            if (op == '-'){ *(ImU32*)output = ImSubClampOverflow(*(const ImU32*)arg1, *(const ImU32*)arg2, IM_U32_MIN, IM_U32_MAX); }
             return;
         case ImGuiDataType_S64:
-            if (op == '+') { *(ImS64*)output = ImAddClampOverflow(*(const ImS64*)arg1, *(const ImS64*)arg2, IM_S64_MIN, IM_S64_MAX); }
-            if (op == '-') { *(ImS64*)output = ImSubClampOverflow(*(const ImS64*)arg1, *(const ImS64*)arg2, IM_S64_MIN, IM_S64_MAX); }
+            if (op == '+'){ *(ImS64*)output = ImAddClampOverflow(*(const ImS64*)arg1, *(const ImS64*)arg2, IM_S64_MIN, IM_S64_MAX); }
+            if (op == '-'){ *(ImS64*)output = ImSubClampOverflow(*(const ImS64*)arg1, *(const ImS64*)arg2, IM_S64_MIN, IM_S64_MAX); }
             return;
         case ImGuiDataType_U64:
-            if (op == '+') { *(ImU64*)output = ImAddClampOverflow(*(const ImU64*)arg1, *(const ImU64*)arg2, IM_U64_MIN, IM_U64_MAX); }
-            if (op == '-') { *(ImU64*)output = ImSubClampOverflow(*(const ImU64*)arg1, *(const ImU64*)arg2, IM_U64_MIN, IM_U64_MAX); }
+            if (op == '+'){ *(ImU64*)output = ImAddClampOverflow(*(const ImU64*)arg1, *(const ImU64*)arg2, IM_U64_MIN, IM_U64_MAX); }
+            if (op == '-'){ *(ImU64*)output = ImSubClampOverflow(*(const ImU64*)arg1, *(const ImU64*)arg2, IM_U64_MIN, IM_U64_MAX); }
             return;
         case ImGuiDataType_Float:
-            if (op == '+') { *(float*)output = *(const float*)arg1 + *(const float*)arg2; }
-            if (op == '-') { *(float*)output = *(const float*)arg1 - *(const float*)arg2; }
+            if (op == '+'){ *(float*)output = *(const float*)arg1 + *(const float*)arg2; }
+            if (op == '-'){ *(float*)output = *(const float*)arg1 - *(const float*)arg2; }
             return;
         case ImGuiDataType_Double:
-            if (op == '+') { *(double*)output = *(const double*)arg1 + *(const double*)arg2; }
-            if (op == '-') { *(double*)output = *(const double*)arg1 - *(const double*)arg2; }
+            if (op == '+'){ *(double*)output = *(const double*)arg1 + *(const double*)arg2; }
+            if (op == '-'){ *(double*)output = *(const double*)arg1 - *(const double*)arg2; }
             return;
         case ImGuiDataType_COUNT: break;
     }
@@ -2228,8 +2228,8 @@ template<typename T>
 static bool DataTypeClampT(T* v, const T* v_min, const T* v_max)
 {
     // Clamp, both sides are optional, return true if modified
-    if (v_min && *v < *v_min) { *v = *v_min; return true; }
-    if (v_max && *v > *v_max) { *v = *v_max; return true; }
+    if (v_min && *v < *v_min){ *v = *v_min; return true; }
+    if (v_max && *v > *v_max){ *v = *v_max; return true; }
     return false;
 }
 
@@ -3419,8 +3419,8 @@ template<typename TYPE>
 static const char* ImAtoi(const char* src, TYPE* output)
 {
     int negative = 0;
-    if (*src == '-') { negative = 1; src++; }
-    if (*src == '+') { src++; }
+    if (*src == '-'){ negative = 1; src++; }
+    if (*src == '+'){ src++; }
     TYPE v = 0;
     while (*src >= '0' && *src <= '9')
         v = (v * 10) + (*src++ - '0');
@@ -4950,8 +4950,8 @@ bool ImGui::InputTextEx(const char* label, const char* hint, char* buf, int buf_
                 if (*s == '\n')
                 {
                     line_count++;
-                    if (searches_result_line_no[0] == -1 && s >= searches_input_ptr[0]) { searches_result_line_no[0] = line_count; if (--searches_remaining <= 0) break; }
-                    if (searches_result_line_no[1] == -1 && s >= searches_input_ptr[1]) { searches_result_line_no[1] = line_count; if (--searches_remaining <= 0) break; }
+                    if (searches_result_line_no[0] == -1 && s >= searches_input_ptr[0]){ searches_result_line_no[0] = line_count; if (--searches_remaining <= 0) break; }
+                    if (searches_result_line_no[1] == -1 && s >= searches_input_ptr[1]){ searches_result_line_no[1] = line_count; if (--searches_remaining <= 0) break; }
                 }
             line_count++;
             if (searches_result_line_no[0] == -1)
@@ -6639,7 +6639,7 @@ bool ImGui::Selectable(const char* label, bool selected, ImGuiSelectableFlags fl
         bb.Max.x += (spacing_x - spacing_L);
         bb.Max.y += (spacing_y - spacing_U);
     }
-    //if (g.IO.KeyCtrl) { GetForegroundDrawList()->AddRect(bb.Min, bb.Max, IM_COL32(0, 255, 0, 255)); }
+    //if (g.IO.KeyCtrl){ GetForegroundDrawList()->AddRect(bb.Min, bb.Max, IM_COL32(0, 255, 0, 255)); }
 
     // Modify ClipRect for the ItemAdd(), faster than doing a PushColumnsBackground/PushTableBackgroundChannel for every Selectable..
     const float backup_clip_rect_min_x = window->ClipRect.Min.x;
@@ -6679,12 +6679,12 @@ bool ImGui::Selectable(const char* label, bool selected, ImGuiSelectableFlags fl
 
     // We use NoHoldingActiveID on menus so user can click and _hold_ on a menu then drag to browse child entries
     ImGuiButtonFlags button_flags = 0;
-    if (flags & ImGuiSelectableFlags_NoHoldingActiveID) { button_flags |= ImGuiButtonFlags_NoHoldingActiveId; }
+    if (flags & ImGuiSelectableFlags_NoHoldingActiveID){ button_flags |= ImGuiButtonFlags_NoHoldingActiveId; }
     if (flags & ImGuiSelectableFlags_NoSetKeyOwner)     { button_flags |= ImGuiButtonFlags_NoSetKeyOwner; }
     if (flags & ImGuiSelectableFlags_SelectOnClick)     { button_flags |= ImGuiButtonFlags_PressedOnClick; }
     if (flags & ImGuiSelectableFlags_SelectOnRelease)   { button_flags |= ImGuiButtonFlags_PressedOnRelease; }
     if (flags & ImGuiSelectableFlags_AllowDoubleClick)  { button_flags |= ImGuiButtonFlags_PressedOnClickRelease | ImGuiButtonFlags_PressedOnDoubleClick; }
-    if ((flags & ImGuiSelectableFlags_AllowOverlap) || (g.LastItemData.InFlags & ImGuiItemFlags_AllowOverlap)) { button_flags |= ImGuiButtonFlags_AllowOverlap; }
+    if ((flags & ImGuiSelectableFlags_AllowOverlap) || (g.LastItemData.InFlags & ImGuiItemFlags_AllowOverlap)){ button_flags |= ImGuiButtonFlags_AllowOverlap; }
 
     const bool was_selected = selected;
     bool hovered, held;
@@ -6693,7 +6693,7 @@ bool ImGui::Selectable(const char* label, bool selected, ImGuiSelectableFlags fl
     // Auto-select when moved into
     // - This will be more fully fleshed in the range-select branch
     // - This is not exposed as it won't nicely work with some user side handling of shift/control
-    // - We cannot do 'if (g.NavJustMovedToId != id) { selected = false; pressed = was_selected; }' for two reasons
+    // - We cannot do 'if (g.NavJustMovedToId != id){ selected = false; pressed = was_selected; }' for two reasons
     //   - (1) it would require focus scope to be set, need exposing PushFocusScope() or equivalent (e.g. BeginSelection() calling PushFocusScope())
     //   - (2) usage will fail with clipped items
     //   The multi-select API aim to fix those issues, e.g. may be replaced with a BeginSelection() API.
@@ -6767,7 +6767,7 @@ bool ImGui::Selectable(const char* label, bool* p_selected, ImGuiSelectableFlags
 // This would typically only be called on the focused window or location you want to grab inputs for, e.g.
 //   if (ImGui::IsWindowFocused(...))
 //       if (ImGuiTypingSelectRequest* req = ImGui::GetTypingSelectRequest())
-//           focus_idx = ImGui::TypingSelectFindMatch(req, my_items.size(), [](void*, int n) { return my_items[n]->Name; }, &my_items, -1);
+//           focus_idx = ImGui::TypingSelectFindMatch(req, my_items.size(), [](void*, int n){ return my_items[n]->Name; }, &my_items, -1);
 // However the code is written in a way where calling it from multiple locations is safe (e.g. to obtain buffer).
 ImGuiTypingSelectRequest* ImGui::GetTypingSelectRequest(ImGuiTypingSelectFlags flags)
 {
@@ -6787,7 +6787,7 @@ ImGuiTypingSelectRequest* ImGui::GetTypingSelectRequest(ImGuiTypingSelectFlags f
         clear_buffer |= g.ActiveId != 0 && g.NavActivateId == 0; // Allow temporary SPACE activation to not interfere
         clear_buffer |= IsKeyPressed(ImGuiKey_Escape) || IsKeyPressed(ImGuiKey_Enter);
         clear_buffer |= IsKeyPressed(ImGuiKey_Backspace) && (flags & ImGuiTypingSelectFlags_AllowBackspace) == 0;
-        //if (clear_buffer) { IMGUI_DEBUG_LOG("GetTypingSelectRequest(): Clear SearchBuffer.\n"); }
+        //if (clear_buffer){ IMGUI_DEBUG_LOG("GetTypingSelectRequest(): Clear SearchBuffer.\n"); }
         if (clear_buffer)
             data->Clear();
     }
@@ -7212,7 +7212,7 @@ struct ImGuiPlotArrayGetterData
     const float* Values;
     int Stride;
 
-    ImGuiPlotArrayGetterData(const float* values, int stride) { Values = values; Stride = stride; }
+    ImGuiPlotArrayGetterData(const float* values, int stride){ Values = values; Stride = stride; }
 };
 
 static float Plot_ArrayGetter(void* data, int idx)
@@ -7318,9 +7318,9 @@ void ImGuiMenuColumns::CalcNextTotalWidth(bool update_offsets)
         want_spacing |= (width > 0);
         if (update_offsets)
         {
-            if (i == 1) { OffsetLabel = offset; }
-            if (i == 2) { OffsetShortcut = offset; }
-            if (i == 3) { OffsetMark = offset; }
+            if (i == 1){ OffsetLabel = offset; }
+            if (i == 2){ OffsetShortcut = offset; }
+            if (i == 3){ OffsetMark = offset; }
         }
         offset += width;
     }
@@ -7677,7 +7677,7 @@ bool ImGui::BeginMenuEx(const char* label, const char* icon, bool enabled)
         }
     }
 
-    if (!enabled) // explicitly close if an open menu becomes disabled, facilitate users code a lot in pattern such as 'if (BeginMenu("options", has_object)) { ..use object.. }'
+    if (!enabled) // explicitly close if an open menu becomes disabled, facilitate users code a lot in pattern such as 'if (BeginMenu("options", has_object)){ ..use object.. }'
         want_close = true;
     if (want_close && IsPopupOpen(id, ImGuiPopupFlags_None))
         ClosePopupToLevel(g.BeginPopupStack.Size, true);
@@ -7876,7 +7876,7 @@ struct ImGuiTabBarSection
     float               Width;                  // Sum of width of tabs in this section (after shrinking down)
     float               Spacing;                // Horizontal spacing at the end of the section.
 
-    ImGuiTabBarSection() { memset(this, 0, sizeof(*this)); }
+    ImGuiTabBarSection(){ memset(this, 0, sizeof(*this)); }
 };
 
 namespace ImGui
@@ -8077,9 +8077,9 @@ static void ImGui::TabBarLayout(ImGuiTabBar* tab_bar)
         if (tab->LastFrameVisible < tab_bar->PrevFrameVisible || tab->WantClose)
         {
             // Remove tab
-            if (tab_bar->VisibleTabId == tab->ID) { tab_bar->VisibleTabId = 0; }
-            if (tab_bar->SelectedTabId == tab->ID) { tab_bar->SelectedTabId = 0; }
-            if (tab_bar->NextSelectedTabId == tab->ID) { tab_bar->NextSelectedTabId = 0; }
+            if (tab_bar->VisibleTabId == tab->ID){ tab_bar->VisibleTabId = 0; }
+            if (tab_bar->SelectedTabId == tab->ID){ tab_bar->SelectedTabId = 0; }
+            if (tab_bar->NextSelectedTabId == tab->ID){ tab_bar->NextSelectedTabId = 0; }
             continue;
         }
         if (tab_dst_n != tab_src_n)
@@ -8407,7 +8407,7 @@ void ImGui::TabBarRemoveTab(ImGuiTabBar* tab_bar, ImGuiID tab_id)
         tab_bar->Tabs.erase(tab);
     if (tab_bar->VisibleTabId == tab_id)      { tab_bar->VisibleTabId = 0; }
     if (tab_bar->SelectedTabId == tab_id)     { tab_bar->SelectedTabId = 0; }
-    if (tab_bar->NextSelectedTabId == tab_id) { tab_bar->NextSelectedTabId = 0; }
+    if (tab_bar->NextSelectedTabId == tab_id){ tab_bar->NextSelectedTabId = 0; }
 }
 
 // Called on manual closure attempt

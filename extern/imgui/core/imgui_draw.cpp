@@ -715,9 +715,9 @@ void ImDrawList::PrimQuadUV(const ImVec2& a, const ImVec2& b, const ImVec2& c, c
 // On AddPolyline() and AddConvexPolyFilled() we intentionally avoid using ImVec2 and superfluous function calls to optimize debug/non-inlined builds.
 // - Those macros expects l-values and need to be used as their own statement.
 // - Those macros are intentionally not surrounded by the 'do {} while (0)' idiom because even that translates to runtime with debug compilers.
-#define IM_NORMALIZE2F_OVER_ZERO(VX,VY)     { float d2 = VX*VX + VY*VY; if (d2 > 0.0f) { float inv_len = ImRsqrt(d2); VX *= inv_len; VY *= inv_len; } } (void)0
+#define IM_NORMALIZE2F_OVER_ZERO(VX,VY)     { float d2 = VX*VX + VY*VY; if (d2 > 0.0f){ float inv_len = ImRsqrt(d2); VX *= inv_len; VY *= inv_len; } } (void)0
 #define IM_FIXNORMAL2F_MAX_INVLEN2          100.0f // 500.0f (see #4053, #3366)
-#define IM_FIXNORMAL2F(VX,VY)               { float d2 = VX*VX + VY*VY; if (d2 > 0.000001f) { float inv_len2 = 1.0f / d2; if (inv_len2 > IM_FIXNORMAL2F_MAX_INVLEN2) inv_len2 = IM_FIXNORMAL2F_MAX_INVLEN2; VX *= inv_len2; VY *= inv_len2; } } (void)0
+#define IM_FIXNORMAL2F(VX,VY)               { float d2 = VX*VX + VY*VY; if (d2 > 0.000001f){ float inv_len2 = 1.0f / d2; if (inv_len2 > IM_FIXNORMAL2F_MAX_INVLEN2) inv_len2 = IM_FIXNORMAL2F_MAX_INVLEN2; VX *= inv_len2; VY *= inv_len2; } } (void)0
 
 // TODO: Thickness anti-aliased lines cap are missing their AA fringe.
 // We avoid using the ImVec2 math operators here to reduce cost to a minimum for debug/non-inlined builds.
@@ -1356,7 +1356,7 @@ static inline ImDrawFlags FixRectCornerFlags(ImDrawFlags flags)
     // - Legacy Support for hard coded ~0 (used to be a suggested equivalent to ImDrawCornerFlags_All)
     if (flags == ~0)                    { return ImDrawFlags_RoundCornersAll; }
     // - Legacy Support for hard coded 0x01 to 0x0F (matching 15 out of 16 old flags combinations). Read details in older version of this code.
-    if (flags >= 0x01 && flags <= 0x0F) { return (flags << 4); }
+    if (flags >= 0x01 && flags <= 0x0F){ return (flags << 4); }
     // We cannot support hard coded 0x00 with 'float rounding > 0.0f' --> replace with ImDrawFlags_RoundCornersNone or use 'float rounding = 0.0f'
 #endif
     */
@@ -1749,8 +1749,8 @@ struct ImTriangulatorNodeSpan
     ImTriangulatorNode**    Data = NULL;
     int                     Size = 0;
 
-    void    push_back(ImTriangulatorNode* node) { Data[Size++] = node; }
-    void    find_erase_unsorted(int idx)        { for(int i = Size - 1; i >= 0; i--) if (Data[i]->Index == idx) { Data[i] = Data[Size - 1]; Size--; return; } }
+    void    push_back(ImTriangulatorNode* node){ Data[Size++] = node; }
+    void    find_erase_unsorted(int idx)        { for(int i = Size - 1; i >= 0; i--) if (Data[i]->Index == idx){ Data[i] = Data[Size - 1]; Size--; return; } }
 };
 
 struct ImTriangulator
@@ -2128,8 +2128,8 @@ void ImDrawListSplitter::Merge(ImDrawList* draw_list)
     for(int i = 1; i < _Count; i++)
     {
         ImDrawChannel& ch = _Channels[i];
-        if (int sz = ch._CmdBuffer.Size) { memcpy(cmd_write, ch._CmdBuffer.Data, sz * sizeof(ImDrawCmd)); cmd_write += sz; }
-        if (int sz = ch._IdxBuffer.Size) { memcpy(idx_write, ch._IdxBuffer.Data, sz * sizeof(ImDrawIdx)); idx_write += sz; }
+        if (int sz = ch._CmdBuffer.Size){ memcpy(cmd_write, ch._CmdBuffer.Data, sz * sizeof(ImDrawCmd)); cmd_write += sz; }
+        if (int sz = ch._IdxBuffer.Size){ memcpy(idx_write, ch._IdxBuffer.Data, sz * sizeof(ImDrawIdx)); idx_write += sz; }
     }
     draw_list->_IdxWritePtr = idx_write;
 
@@ -2578,7 +2578,7 @@ ImFont* ImFontAtlas::AddFontFromFileTTF(const char* filename, float size_pixels,
     {
         // Store a short copy of filename into into the font name for convenience
         const char* p;
-        for(p = filename + strlen(filename); p > filename && p[-1] != '/' && p[-1] != '\\'; p--) {}
+        for(p = filename + strlen(filename); p > filename && p[-1] != '/' && p[-1] != '\\'; p--){}
         ImFormatString(font_cfg.Name, IM_ARRAYSIZE(font_cfg.Name), "%s, %.0fpx", p, size_pixels);
     }
     return AddFontFromMemoryTTF(data, (int)data_size, size_pixels, &font_cfg, glyph_ranges);
@@ -3072,7 +3072,7 @@ void ImFontAtlasBuildPackCustomRects(ImFontAtlas* atlas, void* stbrp_context_opa
     ImVector<ImFontAtlasCustomRect>& user_rects = atlas->CustomRects;
     IM_ASSERT(user_rects.Size >= 1); // We expect at least the default custom rects to be registered, else something went wrong.
 #ifdef __GNUC__
-    if (user_rects.Size < 1) { __builtin_unreachable(); } // Workaround for GCC bug if IM_ASSERT() is defined to conditionally throw (see #5343)
+    if (user_rects.Size < 1){ __builtin_unreachable(); } // Workaround for GCC bug if IM_ASSERT() is defined to conditionally throw (see #5343)
 #endif
 
     ImVector<stbrp_rect> pack_rects;
@@ -4413,8 +4413,8 @@ void ImGui::RenderColorRectWithAlphaCheckerboard(ImDrawList* draw_list, ImVec2 p
                 if (x2 <= x1)
                     continue;
                 ImDrawFlags cell_flags = ImDrawFlags_RoundCornersNone;
-                if (y1 <= p_min.y) { if (x1 <= p_min.x) cell_flags |= ImDrawFlags_RoundCornersTopLeft; if (x2 >= p_max.x) cell_flags |= ImDrawFlags_RoundCornersTopRight; }
-                if (y2 >= p_max.y) { if (x1 <= p_min.x) cell_flags |= ImDrawFlags_RoundCornersBottomLeft; if (x2 >= p_max.x) cell_flags |= ImDrawFlags_RoundCornersBottomRight; }
+                if (y1 <= p_min.y){ if (x1 <= p_min.x) cell_flags |= ImDrawFlags_RoundCornersTopLeft; if (x2 >= p_max.x) cell_flags |= ImDrawFlags_RoundCornersTopRight; }
+                if (y2 >= p_max.y){ if (x1 <= p_min.x) cell_flags |= ImDrawFlags_RoundCornersBottomLeft; if (x2 >= p_max.x) cell_flags |= ImDrawFlags_RoundCornersBottomRight; }
 
                 // Combine flags
                 cell_flags = (flags == ImDrawFlags_RoundCornersNone || cell_flags == ImDrawFlags_RoundCornersNone) ? ImDrawFlags_RoundCornersNone : (cell_flags & flags);
@@ -4449,16 +4449,16 @@ static void stb__match(const unsigned char *data, unsigned int length)
 {
     // INVERSE of memmove... write each byte before copying the next...
     IM_ASSERT(stb__dout + length <= stb__barrier_out_e);
-    if (stb__dout + length > stb__barrier_out_e) { stb__dout += length; return; }
-    if (data < stb__barrier_out_b) { stb__dout = stb__barrier_out_e+1; return; }
+    if (stb__dout + length > stb__barrier_out_e){ stb__dout += length; return; }
+    if (data < stb__barrier_out_b){ stb__dout = stb__barrier_out_e+1; return; }
     while (length--) *stb__dout++ = *data++;
 }
 
 static void stb__lit(const unsigned char *data, unsigned int length)
 {
     IM_ASSERT(stb__dout + length <= stb__barrier_out_e);
-    if (stb__dout + length > stb__barrier_out_e) { stb__dout += length; return; }
-    if (data < stb__barrier_in_b) { stb__dout = stb__barrier_out_e+1; return; }
+    if (stb__dout + length > stb__barrier_out_e){ stb__dout += length; return; }
+    if (data < stb__barrier_in_b){ stb__dout = stb__barrier_out_e+1; return; }
     memcpy(stb__dout, data, length);
     stb__dout += length;
 }
@@ -4469,7 +4469,7 @@ static void stb__lit(const unsigned char *data, unsigned int length)
 
 static const unsigned char *stb_decompress_token(const unsigned char *i)
 {
-    if (*i >= 0x20) { // use fewer if's for cases that expand small
+    if (*i >= 0x20){ // use fewer if's for cases that expand small
         if (*i >= 0x80)       stb__match(stb__dout-i[1]-1, i[0] - 0x80 + 1), i += 2;
         else if (*i >= 0x40)  stb__match(stb__dout-(stb__in2(0) - 0x4000 + 1), i[2]+1), i += 3;
         else /* *i >= 0x20 */ stb__lit(i+1, i[0] - 0x20 + 1), i += 1 + (i[0] - 0x20 + 1);
@@ -4491,8 +4491,8 @@ static unsigned int stb_adler32(unsigned int adler32, unsigned char *buffer, uns
     unsigned long blocklen = buflen % 5552;
 
     unsigned long i;
-    while (buflen) {
-        for(i=0; i + 7 < blocklen; i += 8) {
+    while (buflen){
+        for(i=0; i + 7 < blocklen; i += 8){
             s1 += buffer[0], s2 += s1;
             s1 += buffer[1], s2 += s1;
             s1 += buffer[2], s2 += s1;
@@ -4526,11 +4526,11 @@ static unsigned int stb_decompress(unsigned char *output, const unsigned char *i
     i += 16;
 
     stb__dout = output;
-    for(;;) {
+    for(;;){
         const unsigned char *old_i = i;
         i = stb_decompress_token(i);
-        if (i == old_i) {
-            if (*i == 0x05 && i[1] == 0xfa) {
+        if (i == old_i){
+            if (*i == 0x05 && i[1] == 0xfa){
                 IM_ASSERT(stb__dout == output + olen);
                 if (stb__dout != output + olen) return 0;
                 if (stb_adler32(1, output, olen) != (unsigned int) stb__in4(2))

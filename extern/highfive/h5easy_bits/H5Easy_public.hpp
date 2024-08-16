@@ -12,8 +12,8 @@
 
 namespace H5Easy {
 
-inline Compression::Compression(bool enable) {
-    if (enable) {
+inline Compression::Compression(bool enable){
+    if (enable){
         m_compression_level = 9;
     } else {
         m_compression_level = 0;
@@ -22,36 +22,36 @@ inline Compression::Compression(bool enable) {
 
 template <class T>
 inline Compression::Compression(T level)
-    : m_compression_level(static_cast<unsigned>(level)) {}
+    : m_compression_level(static_cast<unsigned>(level)){}
 
 inline unsigned Compression::get() const {
     return m_compression_level;
 }
 
-inline void DumpOptions::set(DumpMode mode) {
+inline void DumpOptions::set(DumpMode mode){
     m_overwrite = static_cast<bool>(mode);
 }
 
-inline void DumpOptions::set(Flush mode) {
+inline void DumpOptions::set(Flush mode){
     m_flush = static_cast<bool>(mode);
 }
 
-inline void DumpOptions::set(const Compression& level) {
+inline void DumpOptions::set(const Compression& level){
     m_compression_level = level.get();
 }
 
 template <class T, class... Args>
-inline void DumpOptions::set(T arg, Args... args) {
+inline void DumpOptions::set(T arg, Args... args){
     set(arg);
     set(args...);
 }
 
 template <class T>
-inline void DumpOptions::setChunkSize(const std::vector<T>& shape) {
+inline void DumpOptions::setChunkSize(const std::vector<T>& shape){
     m_chunk_size = std::vector<hsize_t>(shape.begin(), shape.end());
 }
 
-inline void DumpOptions::setChunkSize(std::initializer_list<size_t> shape) {
+inline void DumpOptions::setChunkSize(std::initializer_list<size_t> shape){
     m_chunk_size = std::vector<hsize_t>(shape.begin(), shape.end());
 }
 
@@ -79,11 +79,11 @@ inline std::vector<hsize_t> DumpOptions::getChunkSize() const {
     return m_chunk_size;
 }
 
-inline size_t getSize(const File& file, const std::string& path) {
+inline size_t getSize(const File& file, const std::string& path){
     return file.getDataSet(path).getElementCount();
 }
 
-inline std::vector<size_t> getShape(const File& file, const std::string& path) {
+inline std::vector<size_t> getShape(const File& file, const std::string& path){
     return file.getDataSet(path).getDimensions();
 }
 
@@ -91,12 +91,12 @@ template <class T>
 inline DataSet dump(File& file,
                     const std::string& path,
                     const T& data,
-                    const DumpOptions& options) {
+                    const DumpOptions& options){
     return detail::io_impl<T>::dump(file, path, data, options);
 }
 
 template <class T>
-inline DataSet dump(File& file, const std::string& path, const T& data, DumpMode mode) {
+inline DataSet dump(File& file, const std::string& path, const T& data, DumpMode mode){
     return detail::io_impl<T>::dump(file, path, data, DumpOptions(mode));
 }
 
@@ -105,7 +105,7 @@ inline DataSet dump(File& file,
                     const std::string& path,
                     const T& data,
                     const std::vector<size_t>& idx,
-                    const DumpOptions& options) {
+                    const DumpOptions& options){
     return detail::io_impl<T>::dump_extend(file, path, data, idx, options);
 }
 
@@ -114,7 +114,7 @@ inline DataSet dump(File& file,
                     const std::string& path,
                     const T& data,
                     const std::initializer_list<size_t>& idx,
-                    const DumpOptions& options) {
+                    const DumpOptions& options){
     return detail::io_impl<T>::dump_extend(file, path, data, idx, options);
 }
 
@@ -122,7 +122,7 @@ template <class T>
 inline DataSet dump(File& file,
                     const std::string& path,
                     const T& data,
-                    const std::vector<size_t>& idx) {
+                    const std::vector<size_t>& idx){
     return detail::io_impl<T>::dump_extend(file, path, data, idx, DumpOptions());
 }
 
@@ -130,17 +130,17 @@ template <class T>
 inline DataSet dump(File& file,
                     const std::string& path,
                     const T& data,
-                    const std::initializer_list<size_t>& idx) {
+                    const std::initializer_list<size_t>& idx){
     return detail::io_impl<T>::dump_extend(file, path, data, idx, DumpOptions());
 }
 
 template <class T>
-inline T load(const File& file, const std::string& path, const std::vector<size_t>& idx) {
+inline T load(const File& file, const std::string& path, const std::vector<size_t>& idx){
     return detail::io_impl<T>::load_part(file, path, idx);
 }
 
 template <class T>
-inline T load(const File& file, const std::string& path) {
+inline T load(const File& file, const std::string& path){
     return detail::io_impl<T>::load(file, path);
 }
 
@@ -149,7 +149,7 @@ inline Attribute dumpAttribute(File& file,
                                const std::string& path,
                                const std::string& key,
                                const T& data,
-                               DumpMode mode) {
+                               DumpMode mode){
     return detail::io_impl<T>::dumpAttribute(file, path, key, data, DumpOptions(mode));
 }
 
@@ -158,12 +158,12 @@ inline Attribute dumpAttribute(File& file,
                                const std::string& path,
                                const std::string& key,
                                const T& data,
-                               const DumpOptions& options) {
+                               const DumpOptions& options){
     return detail::io_impl<T>::dumpAttribute(file, path, key, data, options);
 }
 
 template <class T>
-inline T loadAttribute(const File& file, const std::string& path, const std::string& key) {
+inline T loadAttribute(const File& file, const std::string& path, const std::string& key){
     return detail::io_impl<T>::loadAttribute(file, path, key);
 }
 

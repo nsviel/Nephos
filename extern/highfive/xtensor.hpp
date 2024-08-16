@@ -40,53 +40,53 @@ struct xtensor_inspector_base {
 
     static constexpr bool is_trivially_nestable = false;
 
-    static size_t getRank(const type& val) {
+    static size_t getRank(const type& val){
         // Non-scalar elements are not supported.
         return val.shape().size();
     }
 
-    static const value_type& getAnyElement(const type& val) {
+    static const value_type& getAnyElement(const type& val){
         return val.unchecked(0);
     }
 
-    static value_type& getAnyElement(type& val) {
+    static value_type& getAnyElement(type& val){
         return val.unchecked(0);
     }
 
-    static std::vector<size_t> getDimensions(const type& val) {
+    static std::vector<size_t> getDimensions(const type& val){
         auto shape = val.shape();
         return {shape.begin(), shape.end()};
     }
 
-    static void prepare(type& val, const std::vector<size_t>& dims) {
+    static void prepare(type& val, const std::vector<size_t>& dims){
         val.resize(Derived::shapeFromDims(dims));
     }
 
-    static hdf5_type* data(type& val) {
-        if (!is_trivially_copyable) {
+    static hdf5_type* data(type& val){
+        if (!is_trivially_copyable){
             throw DataSetException("Invalid used of `inspector<XTensor>::data`.");
         }
 
-        if (val.size() == 0) {
+        if (val.size() == 0){
             return nullptr;
         }
 
         return inspector<value_type>::data(getAnyElement(val));
     }
 
-    static const hdf5_type* data(const type& val) {
-        if (!is_trivially_copyable) {
+    static const hdf5_type* data(const type& val){
+        if (!is_trivially_copyable){
             throw DataSetException("Invalid used of `inspector<XTensor>::data`.");
         }
 
-        if (val.size() == 0) {
+        if (val.size() == 0){
             return nullptr;
         }
 
         return inspector<value_type>::data(getAnyElement(val));
     }
 
-    static void serialize(const type& val, const std::vector<size_t>& dims, hdf5_type* m) {
+    static void serialize(const type& val, const std::vector<size_t>& dims, hdf5_type* m){
         // since we only support scalar types we know all dims belong to us.
         size_t size = compute_total_size(dims);
         xt::adapt(m, size, xt::no_ownership(), dims) = val;
@@ -94,7 +94,7 @@ struct xtensor_inspector_base {
 
     static void unserialize(const hdf5_type* vec_align,
                             const std::vector<size_t>& dims,
-                            type& val) {
+                            type& val){
         // since we only support scalar types we know all dims belong to us.
         size_t size = compute_total_size(dims);
         val = xt::adapt(vec_align, size, xt::no_ownership(), dims);
@@ -117,7 +117,7 @@ struct xtensor_inspector
     static constexpr size_t min_ndim = ndim + inspector<value_type>::min_ndim;
     static constexpr size_t max_ndim = ndim + inspector<value_type>::max_ndim;
 
-    static std::array<size_t, ndim> shapeFromDims(const std::vector<size_t>& dims) {
+    static std::array<size_t, ndim> shapeFromDims(const std::vector<size_t>& dims){
         std::array<size_t, ndim> shape;
         std::copy(dims.cbegin(), dims.cend(), shape.begin());
         return shape;
@@ -139,7 +139,7 @@ struct xarray_inspector
     static constexpr size_t min_ndim = 0 + inspector<value_type>::min_ndim;
     static constexpr size_t max_ndim = 1024 + inspector<value_type>::max_ndim;
 
-    static const std::vector<size_t>& shapeFromDims(const std::vector<size_t>& dims) {
+    static const std::vector<size_t>& shapeFromDims(const std::vector<size_t>& dims){
         return dims;
     }
 };

@@ -17,40 +17,40 @@
 namespace HighFive {
 
 inline Object::Object()
-    : _hid(H5I_INVALID_HID) {}
+    : _hid(H5I_INVALID_HID){}
 
 inline Object::Object(hid_t hid)
-    : _hid(hid) {}
+    : _hid(hid){}
 
 inline Object::Object(const Object& other)
-    : _hid(other._hid) {
-    if (other.isValid()) {
+    : _hid(other._hid){
+    if (other.isValid()){
         detail::h5i_inc_ref(_hid);
     }
 }
 
 inline Object::Object(Object&& other) noexcept
-    : _hid(other._hid) {
+    : _hid(other._hid){
     other._hid = H5I_INVALID_HID;
 }
 
-inline Object& Object::operator=(const Object& other) {
-    if (this != &other) {
-        if ((*this).isValid()) {
+inline Object& Object::operator=(const Object& other){
+    if (this != &other){
+        if ((*this).isValid()){
             detail::h5i_dec_ref(_hid);
         }
 
         _hid = other._hid;
-        if (other.isValid()) {
+        if (other.isValid()){
             detail::h5i_inc_ref(_hid);
         }
     }
     return *this;
 }
 
-inline Object::~Object() {
-    if (isValid()) {
-        if (detail::nothrow::h5i_dec_ref(_hid) < 0) {
+inline Object::~Object(){
+    if (isValid()){
+        if (detail::nothrow::h5i_dec_ref(_hid) < 0){
             HIGHFIVE_LOG_ERROR("Failed to decrease reference count of HID");
         }
     }
@@ -64,8 +64,8 @@ inline hid_t Object::getId() const noexcept {
     return _hid;
 }
 
-static inline ObjectType _convert_object_type(const H5I_type_t& h5type) {
-    switch (h5type) {
+static inline ObjectType _convert_object_type(const H5I_type_t& h5type){
+    switch (h5type){
     case H5I_FILE:
         return ObjectType::File;
     case H5I_GROUP:
@@ -91,9 +91,9 @@ inline ObjectType Object::getType() const {
 inline ObjectInfo Object::getInfo() const {
     ObjectInfo info;
 #if (H5Oget_info_vers < 3)
-    if (H5Oget_info(_hid, &info.raw_info) < 0) {
+    if (H5Oget_info(_hid, &info.raw_info) < 0){
 #else
-    if (H5Oget_info1(_hid, &info.raw_info) < 0) {
+    if (H5Oget_info1(_hid, &info.raw_info) < 0){
 #endif
         HDF5ErrMapper::ToException<ObjectException>("Unable to obtain info for object");
     }

@@ -70,9 +70,9 @@ struct DeepCopyBuffer {
 
     explicit DeepCopyBuffer(const std::vector<size_t>& _dims)
         : buffer(compute_total_size(_dims))
-        , dims(_dims) {}
+        , dims(_dims){}
 
-    hdf5_type* getPointer() {
+    hdf5_type* getPointer(){
         return buffer.data();
     }
 
@@ -80,7 +80,7 @@ struct DeepCopyBuffer {
         return buffer.data();
     }
 
-    hdf5_type* begin() {
+    hdf5_type* begin(){
         return getPointer();
     }
 
@@ -103,9 +103,9 @@ enum class BufferMode { Read, Write };
 ///
 /// \brief String length in bytes excluding the `\0`.
 ///
-inline size_t char_buffer_size(char const* const str, size_t max_string_length) {
-    for(size_t i = 0; i <= max_string_length; ++i) {
-        if (str[i] == '\0') {
+inline size_t char_buffer_size(char const* const str, size_t max_string_length){
+    for(size_t i = 0; i <= max_string_length; ++i){
+        if (str[i] == '\0'){
             return i;
         }
     }
@@ -170,7 +170,7 @@ struct StringBuffer {
       public:
         StringView(StringBuffer<T, buffer_mode>& _buffer, size_t _i)
             : buffer(_buffer)
-            , i(_i) {}
+            , i(_i){}
 
         ///
         /// \brief Assign the in-memory string to the buffer.
@@ -179,18 +179,18 @@ struct StringBuffer {
         /// internal buffer as needed.
         ///
         /// The `length` is the length of the string in bytes.
-        void assign(char const* data, size_t length, StringPadding pad) {
-            if (buffer.isVariableLengthString()) {
-                if (pad == StringPadding::NullTerminated) {
+        void assign(char const* data, size_t length, StringPadding pad){
+            if (buffer.isVariableLengthString()){
+                if (pad == StringPadding::NullTerminated){
                     buffer.variable_length_pointers[i] = data;
                 } else {
                     buffer.variable_length_buffer[i] = std::string(data, length);
                     buffer.variable_length_pointers[i] = buffer.variable_length_buffer[i].data();
                 }
-            } else if (buffer.isFixedLengthString()) {
+            } else if (buffer.isFixedLengthString()){
                 // If the buffer is fixed-length and null-terminated, then
                 // `buffer.string_length` doesn't include the null-character.
-                if (length > buffer.string_length) {
+                if (length > buffer.string_length){
                     throw std::invalid_argument("String length too big.");
                 }
 
@@ -208,13 +208,13 @@ struct StringBuffer {
       public:
         StringConstView(const StringBuffer<T, buffer_mode>& _buffer, size_t _i)
             : buffer(_buffer)
-            , i(_i) {}
+            , i(_i){}
 
         /// \brief Pointer to the first byte of the string.
         ///
         /// The valid indices for this pointer are: 0, ..., length() - 1.
         char const* data() const {
-            if (buffer.isVariableLengthString()) {
+            if (buffer.isVariableLengthString()){
                 return buffer.variable_length_pointers[i];
             } else {
                 return &buffer.fixed_length_buffer[i * buffer.string_size];
@@ -228,7 +228,7 @@ struct StringBuffer {
         /// null-terminated string, the destination buffer needs to be at least
         /// `length() + 1` bytes long.
         size_t length() const {
-            if (buffer.isNullTerminated()) {
+            if (buffer.isNullTerminated()){
                 return char_buffer_size(data(), buffer.string_length);
             } else {
                 return buffer.string_length;
@@ -245,17 +245,17 @@ struct StringBuffer {
       public:
         Iterator(StringBuffer<T, buffer_mode>& _buffer, size_t _pos)
             : buffer(_buffer)
-            , pos(_pos) {}
+            , pos(_pos){}
 
         Iterator operator+(size_t n_strings) const {
             return Iterator(buffer, pos + n_strings);
         }
 
-        void operator+=(size_t n_strings) {
+        void operator+=(size_t n_strings){
             pos += n_strings;
         }
 
-        StringView operator*() {
+        StringView operator*(){
             return StringView(buffer, pos);
         }
 
@@ -273,15 +273,15 @@ struct StringBuffer {
         , padding(file_datatype.getPadding())
         , string_size(file_datatype.isVariableStr() ? size_t(-1) : file_datatype.getSize())
         , string_length(string_size - size_t(isNullTerminated()))
-        , dims(_dims) {
-        if (string_size == 0 && isNullTerminated()) {
+        , dims(_dims){
+        if (string_size == 0 && isNullTerminated()){
             throw DataTypeException(
                 "Fixed-length, null-terminated need at least one byte to store the "
                 "null-character.");
         }
 
         auto n_strings = compute_total_size(dims);
-        if (isVariableLengthString()) {
+        if (isVariableLengthString()){
             variable_length_buffer.resize(n_strings);
             variable_length_pointers.resize(n_strings);
         } else {
@@ -303,19 +303,19 @@ struct StringBuffer {
     }
 
 
-    void* getPointer() {
-        if (file_datatype.isVariableStr()) {
+    void* getPointer(){
+        if (file_datatype.isVariableStr()){
             return variable_length_pointers.data();
         } else {
             return fixed_length_buffer.data();
         }
     }
 
-    Iterator begin() {
+    Iterator begin(){
         return Iterator(*this, 0ul);
     }
 
-    void unserialize(T& val) {
+    void unserialize(T& val){
         inspector<type>::unserialize(begin(), dims, val);
     }
 
@@ -355,7 +355,7 @@ struct Writer<T, typename enable_deep_copy<T>::type>: public DeepCopyBuffer<T> {
     explicit Writer(const T& val,
                     const std::vector<size_t>& _dims,
                     const DataType& /* file_datatype */)
-        : DeepCopyBuffer<T>(_dims) {
+        : DeepCopyBuffer<T>(_dims){
         inspector<T>::serialize(val, _dims, this->begin());
     }
 };
@@ -363,7 +363,7 @@ struct Writer<T, typename enable_deep_copy<T>::type>: public DeepCopyBuffer<T> {
 template <typename T>
 struct Writer<T, typename enable_string_copy<T>::type>: public StringBuffer<T, BufferMode::Write> {
     explicit Writer(const T& val, const std::vector<size_t>& _dims, const DataType& _file_datatype)
-        : StringBuffer<T, BufferMode::Write>(_dims, _file_datatype) {
+        : StringBuffer<T, BufferMode::Write>(_dims, _file_datatype){
         inspector<T>::serialize(val, _dims, this->begin());
     }
 };
@@ -379,7 +379,7 @@ struct Reader<T, typename enable_shallow_copy<T>::type>: public ShallowCopyBuffe
 
   public:
     Reader(const std::vector<size_t>&, type& val, const DataType& /* file_datatype */)
-        : super(val) {}
+        : super(val){}
 };
 
 template <typename T>
@@ -390,7 +390,7 @@ struct Reader<T, typename enable_deep_copy<T>::type>: public DeepCopyBuffer<T> {
 
   public:
     Reader(const std::vector<size_t>& _dims, type&, const DataType& /* file_datatype */)
-        : super(_dims) {}
+        : super(_dims){}
 };
 
 
@@ -400,21 +400,21 @@ struct Reader<T, typename enable_string_copy<T>::type>: public StringBuffer<T, B
     explicit Reader(const std::vector<size_t>& _dims,
                     const T& /* val */,
                     const DataType& _file_datatype)
-        : StringBuffer<T, BufferMode::Write>(_dims, _file_datatype) {}
+        : StringBuffer<T, BufferMode::Write>(_dims, _file_datatype){}
 };
 
 struct data_converter {
     template <typename T>
     static Writer<T> serialize(const typename inspector<T>::type& val,
                                const std::vector<size_t>& dims,
-                               const DataType& file_datatype) {
+                               const DataType& file_datatype){
         return Writer<T>(val, dims, file_datatype);
     }
 
     template <typename T>
     static Reader<T> get_reader(const std::vector<size_t>& dims,
                                 T& val,
-                                const DataType& file_datatype) {
+                                const DataType& file_datatype){
         inspector<T>::prepare(val, dims);
         return Reader<T>(dims, val, file_datatype);
     }

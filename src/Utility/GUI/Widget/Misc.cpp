@@ -59,7 +59,7 @@ void Colorbar(ImVec2 range){
   const int num_colors = 256; // Number of color segments
   float segment_width = size.x / num_colors;
 
-  for (int i = 0; i < num_colors; ++i) {
+  for (int i = 0; i < num_colors; ++i){
     ImVec2 rect_min = ImVec2(position.x + i * segment_width, position.y);
     ImVec2 rect_max = ImVec2(position.x + (i + 1) * segment_width, position.y + size.y);
 

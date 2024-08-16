@@ -22,7 +22,7 @@ namespace {  // unnamed
 
 // libhdf5 uses a preprocessor trick on their oflags
 // we can not declare them constant without a mapper
-inline unsigned convert_open_flag(unsigned openFlags) {
+inline unsigned convert_open_flag(unsigned openFlags){
     unsigned res_open = 0;
     if (openFlags & File::ReadOnly)
         res_open |= H5F_ACC_RDONLY;
@@ -41,13 +41,13 @@ inline unsigned convert_open_flag(unsigned openFlags) {
 inline File::File(const std::string& filename,
                   unsigned openFlags,
                   const FileAccessProps& fileAccessProps)
-    : File(filename, openFlags, FileCreateProps::Default(), fileAccessProps) {}
+    : File(filename, openFlags, FileCreateProps::Default(), fileAccessProps){}
 
 
 inline File::File(const std::string& filename,
                   unsigned openFlags,
                   const FileCreateProps& fileCreateProps,
-                  const FileAccessProps& fileAccessProps) {
+                  const FileAccessProps& fileAccessProps){
     openFlags = convert_open_flag(openFlags);
 
     unsigned createMode = openFlags & (H5F_ACC_TRUNC | H5F_ACC_EXCL);
@@ -57,7 +57,7 @@ inline File::File(const std::string& filename,
 
     // open is default. It's skipped only if flags require creation
     // If open fails it will try create() if H5F_ACC_CREAT is set
-    if (!mustCreate) {
+    if (!mustCreate){
         // Silence open errors if create is allowed
         std::unique_ptr<SilenceHDF5> silencer;
         if (openOrCreate)
@@ -68,7 +68,7 @@ inline File::File(const std::string& filename,
         if (isValid())
             return;  // Done
 
-        if (openOrCreate) {
+        if (openOrCreate){
             // Will attempt to create ensuring wont clobber any file
             createMode = H5F_ACC_EXCL;
         } else {
@@ -83,8 +83,8 @@ inline File::File(const std::string& filename,
 }
 
 inline const std::string& File::getName() const {
-    if (_filename.empty()) {
-        _filename = details::get_name([this](char* buffer, size_t length) {
+    if (_filename.empty()){
+        _filename = details::get_name([this](char* buffer, size_t length){
             return detail::h5f_get_name(getId(), buffer, length);
         });
     }
@@ -112,7 +112,7 @@ inline H5F_fspace_strategy_t File::getFileSpaceStrategy() const {
 inline hsize_t File::getFileSpacePageSize() const {
     auto fcpl = getCreatePropertyList();
 
-    if (getFileSpaceStrategy() != H5F_FSPACE_STRATEGY_PAGE) {
+    if (getFileSpaceStrategy() != H5F_FSPACE_STRATEGY_PAGE){
         HDF5ErrMapper::ToException<FileException>(
             std::string("Cannot obtain page size as paged allocation is not used."));
     }
@@ -121,7 +121,7 @@ inline hsize_t File::getFileSpacePageSize() const {
 }
 #endif
 
-inline void File::flush() {
+inline void File::flush(){
     detail::h5f_flush(_hid, H5F_SCOPE_GLOBAL);
 }
 

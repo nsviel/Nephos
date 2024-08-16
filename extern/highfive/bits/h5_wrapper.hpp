@@ -3,14 +3,14 @@
 
 namespace HighFive {
 namespace detail {
-inline void h5_free_memory(void* mem) {
-    if (H5free_memory(mem) < 0) {
+inline void h5_free_memory(void* mem){
+    if (H5free_memory(mem) < 0){
         throw DataTypeException("Could not free memory allocated by HDF5");
     }
 }
 
 namespace nothrow {
-inline herr_t h5_free_memory(void* mem) {
+inline herr_t h5_free_memory(void* mem){
     return H5free_memory(mem);
 }
 }  // namespace nothrow

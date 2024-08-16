@@ -22,36 +22,36 @@
 namespace HighFive {
 
 inline DataSpace::DataSpace(const std::vector<size_t>& dims)
-    : DataSpace(dims.begin(), dims.end()) {}
+    : DataSpace(dims.begin(), dims.end()){}
 
 template <size_t N>
 inline DataSpace::DataSpace(const std::array<size_t, N>& dims)
-    : DataSpace(dims.begin(), dims.end()) {}
+    : DataSpace(dims.begin(), dims.end()){}
 
 inline DataSpace::DataSpace(const std::initializer_list<size_t>& items)
-    : DataSpace(std::vector<size_t>(items)) {}
+    : DataSpace(std::vector<size_t>(items)){}
 
 template <typename... Args>
 inline DataSpace::DataSpace(size_t dim1, Args... dims)
-    : DataSpace(std::vector<size_t>{dim1, static_cast<size_t>(dims)...}) {}
+    : DataSpace(std::vector<size_t>{dim1, static_cast<size_t>(dims)...}){}
 
 template <class IT, typename>
-inline DataSpace::DataSpace(const IT begin, const IT end) {
+inline DataSpace::DataSpace(const IT begin, const IT end){
     std::vector<hsize_t> real_dims(begin, end);
 
     _hid = detail::h5s_create_simple(int(real_dims.size()), real_dims.data(), nullptr);
 }
 
-inline DataSpace DataSpace::Scalar() {
+inline DataSpace DataSpace::Scalar(){
     return DataSpace(DataSpace::dataspace_scalar);
 }
 
-inline DataSpace DataSpace::Null() {
+inline DataSpace DataSpace::Null(){
     return DataSpace(DataSpace::dataspace_null);
 }
 
-inline DataSpace::DataSpace(const std::vector<size_t>& dims, const std::vector<size_t>& maxdims) {
-    if (dims.size() != maxdims.size()) {
+inline DataSpace::DataSpace(const std::vector<size_t>& dims, const std::vector<size_t>& maxdims){
+    if (dims.size() != maxdims.size()){
         throw DataSpaceException("dims and maxdims must be the same length.");
     }
 
@@ -67,9 +67,9 @@ inline DataSpace::DataSpace(const std::vector<size_t>& dims, const std::vector<s
     _hid = detail::h5s_create_simple(int(dims.size()), real_dims.data(), real_maxdims.data());
 }
 
-inline DataSpace::DataSpace(DataSpace::DataspaceType space_type) {
+inline DataSpace::DataSpace(DataSpace::DataspaceType space_type){
     H5S_class_t h5_dataspace_type;
-    switch (space_type) {
+    switch (space_type){
     case DataSpace::dataspace_scalar:
         h5_dataspace_type = H5S_SCALAR;
         break;
@@ -97,7 +97,7 @@ inline size_t DataSpace::getNumberDimensions() const {
 
 inline std::vector<size_t> DataSpace::getDimensions() const {
     std::vector<hsize_t> dims(getNumberDimensions());
-    if (!dims.empty()) {
+    if (!dims.empty()){
         detail::h5s_get_simple_extent_dims(_hid, dims.data(), nullptr);
     }
     return details::to_vector_size_t(std::move(dims));
@@ -119,13 +119,13 @@ inline std::vector<size_t> DataSpace::getMaxDimensions() const {
 }
 
 template <typename T>
-inline DataSpace DataSpace::From(const T& value) {
+inline DataSpace DataSpace::From(const T& value){
     auto dims = details::inspector<T>::getDimensions(value);
     return DataSpace(dims);
 }
 
 template <std::size_t N, std::size_t Width>
-inline DataSpace DataSpace::FromCharArrayStrings(const char (&)[N][Width]) {
+inline DataSpace DataSpace::FromCharArrayStrings(const char (&)[N][Width]){
     return DataSpace(N);
 }
 
@@ -133,7 +133,7 @@ namespace details {
 
 inline bool checkDimensions(const DataSpace& mem_space,
                             size_t min_dim_requested,
-                            size_t max_dim_requested) {
+                            size_t max_dim_requested){
     return checkDimensions(mem_space.getDimensions(), min_dim_requested, max_dim_requested);
 }
 

@@ -72,7 +72,7 @@ namespace HighFive {
 ///     // the group of file access related setting, i.e. the `fapl`:
 ///     auto mpio_metadata = MPIOCollectiveMetadata(fapl);
 ///
-///     if(mpio_metadata.isCollectiveRead()) {
+///     if(mpio_metadata.isCollectiveRead()){
 ///       // something specific if meta data is read collectively.
 ///     }
 ///
@@ -104,9 +104,9 @@ enum class PropertyType : int {
 
 namespace details {
 template <typename T, typename U>
-T get_plist(const U& obj, hid_t (*f)(hid_t)) {
+T get_plist(const U& obj, hid_t (*f)(hid_t)){
     auto hid = f(obj.getId());
-    if (hid < 0) {
+    if (hid < 0){
         HDF5ErrMapper::ToException<PropertyException>("Unable to get property list");
     }
     T t{};
@@ -142,7 +142,7 @@ class PropertyListBase: public Object {
 /// \cond
 #if HIGHFIVE_HAS_CONCEPTS && __cplusplus >= 202002L
 template <typename P>
-concept PropertyInterface = requires(P p, const hid_t hid) {
+concept PropertyInterface = requires(P p, const hid_t hid){
     {p.apply(hid)};
 };
 
@@ -182,7 +182,7 @@ class PropertyList: public PropertyListBase {
     /// An empty property is needed when one wants `getId()` to immediately
     /// point at a valid HID. This is important when interfacing directly with
     /// HDF5 to set properties that haven't been wrapped by HighFive.
-    static PropertyList<T> Empty() {
+    static PropertyList<T> Empty(){
         auto plist = PropertyList<T>();
         plist._initializeIfNeeded();
 
@@ -683,7 +683,7 @@ class LinkCreationOrder {
     /// \param flags Should be a composition of HighFive::CreationOrder.
     ///
     explicit LinkCreationOrder(unsigned flags)
-        : _flags(flags) {}
+        : _flags(flags){}
 
     explicit LinkCreationOrder(const FileCreateProps& fcpl);
     explicit LinkCreationOrder(const GroupCreateProps& gcpl);

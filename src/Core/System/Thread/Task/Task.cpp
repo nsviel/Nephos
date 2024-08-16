@@ -37,7 +37,7 @@ void Task::wait_thread(){
 
   std::unique_lock<std::mutex> lock(mtx);
   cv.wait(lock, [this] {return done.load();});
-  if (thread.joinable()) {
+  if (thread.joinable()){
     thread.join();
   }
 
@@ -50,7 +50,7 @@ void Task::run_thread(){
 
   if(done){
     std::lock_guard<std::mutex> lock(mtx);
-    if (thread.joinable()) {
+    if (thread.joinable()){
       thread.join();
     }
     this->done = false;

@@ -13,8 +13,8 @@ Tasker::Tasker(std::string name){
 
   this->name = name;
   this->timer = new sys::timer::Chrono();
-  this->fps_control = new sys::timer::fps::Control(120);
-  this->fps_counter = new sys::timer::fps::Counter();
+  this->fps_control = new sys::fps::Control(120);
+  this->fps_counter = new sys::fps::Counter();
 
   //---------------------------
 }

@@ -6,7 +6,7 @@
 #include <thread>
 
 
-namespace sys::timer::fps{
+namespace sys::fps{
 
 class Control
 {

@@ -52,11 +52,11 @@ class ElementSet {
     friend class SliceTraits;
 };
 
-inline std::vector<hsize_t> toHDF5SizeVector(const std::vector<size_t>& from) {
+inline std::vector<hsize_t> toHDF5SizeVector(const std::vector<size_t>& from){
     return detail::convertSizeVector<hsize_t>(from);
 }
 
-inline std::vector<size_t> toSTLSizeVector(const std::vector<hsize_t>& from) {
+inline std::vector<size_t> toSTLSizeVector(const std::vector<hsize_t>& from){
     return detail::convertSizeVector<size_t>(from);
 }
 
@@ -70,12 +70,12 @@ struct RegularHyperSlab {
         : offset(toHDF5SizeVector(offset_))
         , count(toHDF5SizeVector(count_))
         , stride(toHDF5SizeVector(stride_))
-        , block(toHDF5SizeVector(block_)) {}
+        , block(toHDF5SizeVector(block_)){}
 
     static RegularHyperSlab fromHDF5Sizes(std::vector<hsize_t> offset_,
                                           std::vector<hsize_t> count_ = {},
                                           std::vector<hsize_t> stride_ = {},
-                                          std::vector<hsize_t> block_ = {}) {
+                                          std::vector<hsize_t> block_ = {}){
         RegularHyperSlab slab;
         slab.offset = std::move(offset_);
         slab.count = std::move(count_);
@@ -95,7 +95,7 @@ struct RegularHyperSlab {
         auto n_dims = rank();
         auto dims = std::vector<size_t>(n_dims, 0);
 
-        for(size_t i = 0; i < n_dims; ++i) {
+        for(size_t i = 0; i < n_dims; ++i){
             dims[i] = count[i] * (block.empty() ? 1 : block[i]);
         }
 
@@ -110,11 +110,11 @@ struct RegularHyperSlab {
 
 class HyperSlab {
   public:
-    HyperSlab() {
+    HyperSlab(){
         selects.emplace_back(RegularHyperSlab{}, Op::None);
     };
 
-    explicit HyperSlab(const RegularHyperSlab& sel) {
+    explicit HyperSlab(const RegularHyperSlab& sel){
         selects.emplace_back(sel, Op::Set);
     }
 
@@ -124,7 +124,7 @@ class HyperSlab {
         return ret;
     }
 
-    HyperSlab& operator|=(const RegularHyperSlab& sel) {
+    HyperSlab& operator|=(const RegularHyperSlab& sel){
         selects.emplace_back(sel, Op::Or);
         return *this;
     }
@@ -135,7 +135,7 @@ class HyperSlab {
         return ret;
     }
 
-    HyperSlab& operator&=(const RegularHyperSlab& sel) {
+    HyperSlab& operator&=(const RegularHyperSlab& sel){
         selects.emplace_back(sel, Op::And);
         return *this;
     }
@@ -146,25 +146,25 @@ class HyperSlab {
         return ret;
     }
 
-    HyperSlab& operator^=(const RegularHyperSlab& sel) {
+    HyperSlab& operator^=(const RegularHyperSlab& sel){
         selects.emplace_back(sel, Op::Xor);
         return *this;
     }
 
-    HyperSlab& notA(const RegularHyperSlab& sel) {
+    HyperSlab& notA(const RegularHyperSlab& sel){
         selects.emplace_back(sel, Op::NotA);
         return *this;
     }
 
-    HyperSlab& notB(const RegularHyperSlab& sel) {
+    HyperSlab& notB(const RegularHyperSlab& sel){
         selects.emplace_back(sel, Op::NotB);
         return *this;
     }
 
     DataSpace apply(const DataSpace& space_) const {
         auto space = space_.clone();
-        for(const auto& sel: selects) {
-            if (sel.op == Op::None) {
+        for(const auto& sel: selects){
+            if (sel.op == Op::None){
                 detail::h5s_select_none(space.getId());
             } else {
                 detail::h5s_select_hyperslab(space.getId(),
@@ -194,7 +194,7 @@ class HyperSlab {
     };
 
     H5S_seloper_t convert(Op op) const {
-        switch (op) {
+        switch (op){
         case Op::Noop:
             return H5S_SELECT_NOOP;
         case Op::Set:
@@ -223,7 +223,7 @@ class HyperSlab {
     struct Select_: public RegularHyperSlab {
         Select_(const RegularHyperSlab& sel, Op op_)
             : RegularHyperSlab(sel)
-            , op(op_) {}
+            , op(op_){}
 
         Op op;
     };
@@ -279,7 +279,7 @@ class HyperSlab {
 /// a very serious performance problem. In particular,
 ///
 ///     // Avoid:
-///     for(auto i : indices) {
+///     for(auto i : indices){
 ///         dset.select(i).read<double>();
 ///     }
 ///

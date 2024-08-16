@@ -78,7 +78,7 @@ inline std::pair<unsigned int, unsigned int> Group::getEstimatedLinkInfo() const
 }
 
 namespace detail {
-inline Group make_group(hid_t hid) {
+inline Group make_group(hid_t hid){
     return Group(hid);
 }
 }  // namespace detail

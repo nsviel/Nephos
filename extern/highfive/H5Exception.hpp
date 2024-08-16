@@ -26,9 +26,9 @@ class Exception: public std::exception {
         : _errmsg(err_msg)
         , _next()
         , _err_major(0)
-        , _err_minor(0) {}
+        , _err_minor(0){}
 
-    virtual ~Exception() throw() {}
+    virtual ~Exception() throw(){}
 
     ///
     /// \brief get the current exception error message
@@ -42,7 +42,7 @@ class Exception: public std::exception {
     /// \brief define the error message
     /// \param errmsg
     ///
-    inline virtual void setErrorMsg(const std::string& errmsg) {
+    inline virtual void setErrorMsg(const std::string& errmsg){
         _errmsg = errmsg;
     }
 
@@ -85,7 +85,7 @@ class Exception: public std::exception {
 class ObjectException: public Exception {
   public:
     ObjectException(const std::string& err_msg)
-        : Exception(err_msg) {}
+        : Exception(err_msg){}
 };
 
 ///
@@ -94,7 +94,7 @@ class ObjectException: public Exception {
 class DataTypeException: public Exception {
   public:
     DataTypeException(const std::string& err_msg)
-        : Exception(err_msg) {}
+        : Exception(err_msg){}
 };
 
 ///
@@ -103,7 +103,7 @@ class DataTypeException: public Exception {
 class FileException: public Exception {
   public:
     FileException(const std::string& err_msg)
-        : Exception(err_msg) {}
+        : Exception(err_msg){}
 };
 
 ///
@@ -112,7 +112,7 @@ class FileException: public Exception {
 class DataSpaceException: public Exception {
   public:
     DataSpaceException(const std::string& err_msg)
-        : Exception(err_msg) {}
+        : Exception(err_msg){}
 };
 
 ///
@@ -121,7 +121,7 @@ class DataSpaceException: public Exception {
 class AttributeException: public Exception {
   public:
     AttributeException(const std::string& err_msg)
-        : Exception(err_msg) {}
+        : Exception(err_msg){}
 };
 
 ///
@@ -130,7 +130,7 @@ class AttributeException: public Exception {
 class DataSetException: public Exception {
   public:
     DataSetException(const std::string& err_msg)
-        : Exception(err_msg) {}
+        : Exception(err_msg){}
 };
 
 ///
@@ -139,7 +139,7 @@ class DataSetException: public Exception {
 class GroupException: public Exception {
   public:
     GroupException(const std::string& err_msg)
-        : Exception(err_msg) {}
+        : Exception(err_msg){}
 };
 
 ///
@@ -148,7 +148,7 @@ class GroupException: public Exception {
 class PropertyException: public Exception {
   public:
     PropertyException(const std::string& err_msg)
-        : Exception(err_msg) {}
+        : Exception(err_msg){}
 };
 
 ///
@@ -157,7 +157,7 @@ class PropertyException: public Exception {
 class ReferenceException: public Exception {
   public:
     ReferenceException(const std::string& err_msg)
-        : Exception(err_msg) {}
+        : Exception(err_msg){}
 };
 }  // namespace HighFive
 

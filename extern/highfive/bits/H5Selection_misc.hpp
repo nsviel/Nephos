@@ -15,7 +15,7 @@ inline Selection::Selection(const DataSpace& memspace,
                             const DataSet& set)
     : _mem_space(memspace)
     , _file_space(file_space)
-    , _set(set) {}
+    , _set(set){}
 
 inline DataSpace Selection::getSpace() const {
     return _file_space;
@@ -25,7 +25,7 @@ inline DataSpace Selection::getMemSpace() const {
     return _mem_space;
 }
 
-inline DataSet& Selection::getDataset() {
+inline DataSet& Selection::getDataset(){
     return _set;
 }
 
@@ -41,7 +41,7 @@ inline const DataType Selection::getDataType() const {
 namespace detail {
 inline Selection make_selection(const DataSpace& mem_space,
                                 const DataSpace& file_space,
-                                const DataSet& set) {
+                                const DataSet& set){
     return Selection(mem_space, file_space, set);
 }
 }  // namespace detail

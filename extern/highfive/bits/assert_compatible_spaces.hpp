@@ -15,11 +15,11 @@
 namespace HighFive {
 namespace detail {
 
-inline void assert_compatible_spaces(const DataSpace& old, const std::vector<size_t>& dims) {
+inline void assert_compatible_spaces(const DataSpace& old, const std::vector<size_t>& dims){
     auto n_elements_old = old.getElementCount();
     auto n_elements_new = dims.size() == 0 ? 1 : compute_total_size(dims);
 
-    if (n_elements_old != n_elements_new) {
+    if (n_elements_old != n_elements_new){
         throw Exception("Invalid parameter `new_dims` number of elements differ: " +
                         std::to_string(n_elements_old) + " (old) vs. " +
                         std::to_string(n_elements_new) + " (new)");
