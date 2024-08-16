@@ -12,7 +12,7 @@ namespace k4n::base{class Sensor;}
 
 namespace k4n::processing::image{
 
-class Table_xy : public dyn::thread::Job
+class Table_xy : public dyn::prc::thread::Job
 {
 public:
   //Constructor / Destructor
@@ -27,7 +27,7 @@ public:
   void table_color_to_depth(k4n::base::Sensor* sensor);
   void apply_map(k4n::base::Sensor* sensor, int i);
 
-  using dyn::thread::Job::start_thread;
+  using dyn::prc::thread::Job::start_thread;
 
 private:
   k4n::Structure* k4n_struct;

@@ -13,7 +13,7 @@ namespace sys::thread::task{class Pool;}
 
 namespace k4n{
 
-class Processing : public dyn::thread::Routine
+class Processing : public dyn::prc::thread::Routine
 {
 public:
   //Constructor / Destructor
@@ -34,8 +34,8 @@ private:
   k4n::processing::image::Data* k4n_image;
   k4n::processing::cloud::Data* k4n_cloud;
   sys::thread::task::Pool* thread_pool;
-  dyn::image::Operation* dyn_ope_image;
-  dyn::cloud::Operation* dyn_ope_cloud;
+  dyn::prc::image::Operation* dyn_ope_image;
+  dyn::prc::cloud::Operation* dyn_ope_cloud;
 
   bool thread_idle = true;
 };

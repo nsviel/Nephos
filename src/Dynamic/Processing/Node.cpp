@@ -24,8 +24,8 @@ Node::Node(core::Node* node_core){
 
   this->dyn_struct = new dyn::prc::Structure();
   this->dyn_sensor = new dyn::prc::element::Sensor(this);
-  this->dyn_ope_cloud = new dyn::cloud::Operation(this);
-  this->dyn_ope_image = new dyn::image::Operation(this);
+  this->dyn_ope_cloud = new dyn::prc::cloud::Operation(this);
+  this->dyn_ope_image = new dyn::prc::image::Operation(this);
 
   //---------------------------
 }

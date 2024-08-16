@@ -17,9 +17,9 @@ Operation::Operation(dyn::prc::Node* node_dynamic){
 
   this->dat_entity = node_element->get_dat_entity();
   this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->dyn_normal = new dyn::cloud::Normal(node_dynamic);
-  this->dyn_recorder = new dyn::cloud::Recorder(node_dynamic);
-  this->dyn_radio = new dyn::cloud::Radiometry(node_dynamic);
+  this->dyn_normal = new dyn::prc::cloud::Normal(node_dynamic);
+  this->dyn_recorder = new dyn::prc::cloud::Recorder(node_dynamic);
+  this->dyn_radio = new dyn::prc::cloud::Radiometry(node_dynamic);
   this->atr_color = new dat::atr::Color(node_attribut);
 
   //---------------------------

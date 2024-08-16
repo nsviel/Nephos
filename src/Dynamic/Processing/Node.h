@@ -35,8 +35,8 @@ public:
 
   inline dyn::prc::Structure* get_dyn_struct(){return dyn_struct;}
   inline dyn::prc::element::Sensor* get_dyn_sensor(){return dyn_sensor;}
-  inline dyn::cloud::Operation* get_ope_cloud(){return dyn_ope_cloud;}
-  inline dyn::image::Operation* get_ope_image(){return dyn_ope_image;}
+  inline dyn::prc::cloud::Operation* get_ope_cloud(){return dyn_ope_cloud;}
+  inline dyn::prc::image::Operation* get_ope_image(){return dyn_ope_image;}
 
 private:
   core::Node* node_core;
@@ -46,8 +46,8 @@ private:
 
   dyn::prc::Structure* dyn_struct;
   dyn::prc::element::Sensor* dyn_sensor;
-  dyn::cloud::Operation* dyn_ope_cloud;
-  dyn::image::Operation* dyn_ope_image;
+  dyn::prc::cloud::Operation* dyn_ope_cloud;
+  dyn::prc::image::Operation* dyn_ope_image;
 };
 
 }

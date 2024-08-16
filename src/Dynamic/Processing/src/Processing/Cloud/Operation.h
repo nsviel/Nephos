@@ -26,10 +26,10 @@ public:
 
 private:
   dyn::prc::Structure* dyn_struct;
-  dyn::cloud::Recorder* dyn_recorder;
+  dyn::prc::cloud::Recorder* dyn_recorder;
   dat::atr::Color* atr_color;
-  dyn::cloud::Normal* dyn_normal;
-  dyn::cloud::Radiometry* dyn_radio;
+  dyn::prc::cloud::Normal* dyn_normal;
+  dyn::prc::cloud::Radiometry* dyn_radio;
   dat::elm::Entity* dat_entity;
 };
 
