@@ -3,14 +3,14 @@ set(LIBRARY_NAME CORE_SYSTEM)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Profiler)
 add_subdirectory(Hardware)
+add_subdirectory(Network)
+add_subdirectory(Profiler)
+add_subdirectory(Thread)
+add_subdirectory(Timer)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
-  Network/*.cpp
-  Thread/*.cpp
-  Timer/*.cpp
 )
 
 #-----------------
@@ -21,18 +21,14 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
-find_package(Eigen3 3.3 REQUIRED NO_MODULE)
-
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  MAIN_EXTERN
   MAIN_UTILITY
+
   SYSTEM_PROFILER
   SYSTEM_HARDWARE
-
-  Eigen3::Eigen # Eigen
-  -lgit2        # git
-  -lstdc++fs    # std::experimental::filesystem
-  -lnvidia-ml   # Nvidia GPU stuff
+  SYSTEM_NETWORK
+  SYSTEM_THREAD
+  SYSTEM_TIMER
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
