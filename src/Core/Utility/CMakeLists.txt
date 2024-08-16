@@ -16,11 +16,12 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  MAIN_UTILITY
-  ENGINE_OPERATION
-  ENGINE_TRANSFORMATION
-  CORE_ENGINE
+  MAIN_EXTERN
+
+  Eigen3::Eigen # Eigen
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

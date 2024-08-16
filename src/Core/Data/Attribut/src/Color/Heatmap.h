@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <vector>
 
 namespace dat::atr{class Node;}
 namespace dat::atr{class Structure;}

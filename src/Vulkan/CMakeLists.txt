@@ -20,7 +20,7 @@ find_package(Vulkan REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_EXTERN
-  MAIN_UTILITY
+  CORE_UTILITY
   CORE_SYSTEM
 
   ${Vulkan_LIBRARIES}
