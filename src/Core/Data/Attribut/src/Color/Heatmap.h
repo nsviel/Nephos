@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Component/Color/Namespace.h>
 #include <glm/glm.hpp>
 
 namespace dat::atr{class Node;}

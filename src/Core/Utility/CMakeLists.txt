@@ -1,16 +1,11 @@
-set(LIBRARY_NAME MAIN_CORE)
+set(LIBRARY_NAME CORE_UTILITY)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Data)
-add_subdirectory(Engine)
-add_subdirectory(IO)
-add_subdirectory(System)
-add_subdirectory(Utility)
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
+  *.cpp
+  *.h
 )
 
 #-----------------
@@ -23,15 +18,9 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
-  MAIN_VULKAN
-  MAIN_MODULE
-  MAIN_DYNAMIC
-
-  CORE_DATA
-  CORE_IO
+  ENGINE_OPERATION
+  ENGINE_TRANSFORMATION
   CORE_ENGINE
-  CORE_SYSTEM
-  CORE_UTILITY
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
