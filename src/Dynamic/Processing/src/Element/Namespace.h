@@ -1,3 +1,3 @@
 #pragma once
 
-#include <Dynamic/src/Element/Sensor.h>
+#include "Sensor.h"

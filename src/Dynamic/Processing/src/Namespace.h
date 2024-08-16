@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Dynamic/src/Base/Namespace.h>
-#include <Dynamic/src/Processing//Namespace.h>
-#include <Dynamic/src/Structure/Namespace.h>
-#include <Dynamic/src/Element/Namespace.h>
-#include <Dynamic/src/Thread/Namespace.h>
+#include "Base/Namespace.h"
+#include "Processing//Namespace.h"
+#include "Structure/Namespace.h"
+#include "Element/Namespace.h"
+#include "Thread/Namespace.h"

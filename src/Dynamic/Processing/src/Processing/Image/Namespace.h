@@ -1,3 +1,3 @@
 #pragma once
 
-#include <Dynamic/src/Processing/Image/Operation.h>
+#include "Operation.h"
