@@ -16,16 +16,16 @@ class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(dyn::Node* node_dynamic);
+  Operation(dyn::prc::Node* node_dynamic);
   ~Operation();
 
 public:
   //Main function
-  void run_operation(dyn::base::Sensor* sensor);
+  void run_operation(dyn::prc::base::Sensor* sensor);
   void wait_operation();
 
 private:
-  dyn::Structure* dyn_struct;
+  dyn::prc::Structure* dyn_struct;
   dyn::cloud::Recorder* dyn_recorder;
   dat::atr::Color* atr_color;
   dyn::cloud::Normal* dyn_normal;

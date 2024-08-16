@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Dynamic/src/Thread/Routine.h>
+#include <Processing/src/Thread/Routine.h>
 
 namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}

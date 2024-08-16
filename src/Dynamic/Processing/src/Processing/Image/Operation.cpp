@@ -1,7 +1,7 @@
 #include "Operation.h"
 
 #include <Utility/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Core/Namespace.h>
 #include <Radiometry/Namespace.h>
 
@@ -9,7 +9,7 @@
 namespace dyn::prc::image{
 
 //Constructor / Destructor
-Operation::Operation(dyn::Node* node_dynamic){
+Operation::Operation(dyn::prc::Node* node_dynamic){
   //---------------------------
 
   core::Node* node_core = node_dynamic->get_node_core();
@@ -22,7 +22,7 @@ Operation::Operation(dyn::Node* node_dynamic){
 Operation::~Operation(){}
 
 //Main function
-void Operation::start_thread(dyn::base::Sensor* sensor){
+void Operation::start_thread(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   this->wait_thread();
@@ -34,7 +34,7 @@ void Operation::start_thread(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Operation::run_thread(dyn::base::Sensor* sensor){
+void Operation::run_thread(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
 
@@ -53,7 +53,7 @@ void Operation::wait_thread(){
 }
 
 //Subfunction
-void Operation::make_normal_from_depth_image(dyn::base::Sensor* sensor){
+void Operation::make_normal_from_depth_image(dyn::prc::base::Sensor* sensor){
   /*uint8_t* depth = sensor->depth.data.buffer;
   //---------------------------
 
@@ -91,7 +91,7 @@ void Operation::make_normal_from_depth_image(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Operation::convert_normal_into_color(dyn::base::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz){
+void Operation::convert_normal_into_color(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 /*
   std::vector<uint8_t> output = std::vector<uint8_t>(vec_Nxyz.size() * 4, 0);

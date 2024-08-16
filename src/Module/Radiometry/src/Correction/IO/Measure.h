@@ -19,9 +19,9 @@ public:
 
 public:
   //Main function
-  void import_measure(dyn::base::Sensor* sensor);
-  void export_measure(dyn::base::Sensor* sensor);
-  void clear_measure(dyn::base::Sensor* sensor);
+  void import_measure(dyn::prc::base::Sensor* sensor);
+  void export_measure(dyn::prc::base::Sensor* sensor);
+  void clear_measure(dyn::prc::base::Sensor* sensor);
 
 private:
   rad::correction::Structure* rad_struct;

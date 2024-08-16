@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Dynamic/src/Base/State.h>
-#include <Dynamic/src/Base/Timestamp.h>
+#include <Processing/src/Base/State.h>
+#include <Processing/src/Base/Timestamp.h>
 
 namespace dat::ply{class Node;}
 namespace dat::gph{class Selection;}
@@ -39,15 +39,15 @@ public:
   void manage_reset(dat::base::Set* set);
   void manage_query(dat::base::Set* set, float value);
 
-  inline dyn::base::State* get_state(){return &state;}
-  inline dyn::base::Timestamp* get_timestamp(){return &timestamp;}
+  inline dyn::prc::base::State* get_state(){return &state;}
+  inline dyn::prc::base::Timestamp* get_timestamp(){return &timestamp;}
 
 public:
   dat::gph::Selection* dat_selection;
   dat::elm::Set* dat_set;
 
-  dyn::base::Timestamp timestamp;
-  dyn::base::State state;
+  dyn::prc::base::Timestamp timestamp;
+  dyn::prc::base::State state;
 };
 
 }

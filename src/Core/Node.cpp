@@ -6,7 +6,7 @@
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
 #include <IO/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Module/Namespace.h>
 #include <Data/Namespace.h>
 
@@ -24,7 +24,7 @@ Node::Node(app::Node* node_app){
   this->node_system = new sys::Node(this);
   this->node_data = new dat::Node(this);
   this->node_module = new mod::Node(this);
-  this->node_dynamic = new dyn::Node(this);
+  this->node_dynamic = new dyn::prc::Node(this);
   this->node_engine = new eng::Node(this);
   this->node_io = new io::Node(this);
 

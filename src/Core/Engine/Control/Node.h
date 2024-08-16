@@ -31,7 +31,7 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline cam::Node* get_node_camera(){return node_camera;}
-  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
+  inline dyn::prc::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
 
   inline ctr::Structure* get_ctr_struct(){return ctr_struct;}
@@ -47,7 +47,7 @@ private:
   vk::Node* node_vulkan;
   cam::Node* node_camera;
   dat::Node* node_data;
-  dyn::Node* node_dynamic;
+  dyn::prc::Node* node_dynamic;
 
   ctr::Structure* ctr_struct;
   ctr::mode::Navigation* ctr_navigation;

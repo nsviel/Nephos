@@ -22,21 +22,21 @@ class Normal
 {
 public:
   // Constructor / Destructor
-  Normal(dyn::Node* node_dynamic);
+  Normal(dyn::prc::Node* node_dynamic);
   ~Normal();
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor);
-  void run_thread(dyn::base::Sensor* sensor);
+  void start_thread(dyn::prc::base::Sensor* sensor);
+  void run_thread(dyn::prc::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void compute_normal(dyn::base::Sensor* sensor);
-  void compute_image(dyn::base::Sensor* sensor);
+  void compute_normal(dyn::prc::base::Sensor* sensor);
+  void compute_image(dyn::prc::base::Sensor* sensor);
 
 private:
-  dyn::Structure* dyn_struct;
+  dyn::prc::Structure* dyn_struct;
   dat::elm::Image* dat_image;
   dat::elm::Glyph* dat_glyph;
   dat::atr::normal::Structured* ope_normal;

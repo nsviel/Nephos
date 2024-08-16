@@ -1,6 +1,6 @@
 #include "Normal.h"
 
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
@@ -13,7 +13,7 @@
 namespace dyn::prc::cloud{
 
 // Constructor / Destructor
-Normal::Normal(dyn::Node* node_dynamic){
+Normal::Normal(dyn::prc::Node* node_dynamic){
   //---------------------------
 
   core::Node* node_core = node_dynamic->get_node_core();
@@ -33,7 +33,7 @@ Normal::Normal(dyn::Node* node_dynamic){
 Normal::~Normal(){}
 
 //Main function
-void Normal::start_thread(dyn::base::Sensor* sensor){
+void Normal::start_thread(dyn::prc::base::Sensor* sensor){
   if(!dyn_struct->operation.normal.enable) return;
   //---------------------------
 
@@ -46,7 +46,7 @@ void Normal::start_thread(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Normal::run_thread(dyn::base::Sensor* sensor){
+void Normal::run_thread(dyn::prc::base::Sensor* sensor){
   prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("dat::atr::normal");
   //---------------------------
 
@@ -77,7 +77,7 @@ void Normal::wait_thread(){
 }
 
 //Subfunction
-void Normal::compute_normal(dyn::base::Sensor* sensor){
+void Normal::compute_normal(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   ope_normal->set_knn(dyn_struct->operation.normal.knn);
@@ -87,7 +87,7 @@ void Normal::compute_normal(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Normal::compute_image(dyn::base::Sensor* sensor){
+void Normal::compute_image(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   utl::media::Image* image = dat_image->get_or_create_image(sensor, "Normal");

@@ -17,7 +17,7 @@ public:
   void design_configuration(utl::base::Element* element);
 
   //Subfunction
-  void sensor_config(dyn::base::Sensor* sensor);
+  void sensor_config(dyn::prc::base::Sensor* sensor);
 
 private:
 

@@ -37,7 +37,7 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
   inline eng::Node* get_node_engine(){return node_engine;}
-  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
+  inline dyn::prc::Node* get_node_dynamic(){return node_dynamic;}
   inline mod::Node* get_node_module(){return node_module;}
   
   inline sys::thread::task::Pool* get_thread_pool(){return thread_pool;}
@@ -51,7 +51,7 @@ private:
   dat::Node* node_data;
   eng::Node* node_engine;
   sys::Node* node_system;
-  dyn::Node* node_dynamic;
+  dyn::prc::Node* node_dynamic;
   prf::dynamic::Tasker* tasker;
   sys::thread::task::Pool* thread_pool;
 };

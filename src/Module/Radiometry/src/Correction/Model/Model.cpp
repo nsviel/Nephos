@@ -3,7 +3,7 @@
 #include <python/matplotlibcpp.h>
 #include <Radiometry/Namespace.h>
 #include <Operation/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 
 
 namespace rad::correction{
@@ -21,7 +21,7 @@ Model::Model(rad::correction::Node* node_correction){
 Model::~Model(){}
 
 //Main function
-void Model::compute_model(dyn::base::Sensor* sensor){
+void Model::compute_model(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   this->build_model(sensor);
@@ -38,8 +38,8 @@ void Model::clear_model(){
 }
 
 //Subfunction
-void Model::build_model(dyn::base::Sensor* sensor){
-  dyn::base::Model* model = get_model(sensor, "NFOV");
+void Model::build_model(dyn::prc::base::Sensor* sensor){
+  dyn::prc::base::Model* model = get_model(sensor, "NFOV");
   //---------------------------
 
   //Apply logarithmic scale
@@ -56,8 +56,8 @@ void Model::build_model(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Model::update_model(dyn::base::Sensor* sensor){
-  dyn::base::Model* model = get_model(sensor, "NFOV");
+void Model::update_model(dyn::prc::base::Sensor* sensor){
+  dyn::prc::base::Model* model = get_model(sensor, "NFOV");
   //---------------------------
 
   ope_surface->set_degree(model->degree_x, model->degree_y);
@@ -65,7 +65,7 @@ void Model::update_model(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Model::find_model_bound(dyn::base::Sensor* sensor){
+void Model::find_model_bound(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   glm::vec2 R_bound = glm::vec2(1000, 0);
@@ -92,8 +92,8 @@ void Model::find_model_bound(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-float Model::rmse_model(dyn::base::Sensor* sensor){
-  dyn::base::Model* model = get_model(sensor, "NFOV");
+float Model::rmse_model(dyn::prc::base::Sensor* sensor){
+  dyn::prc::base::Model* model = get_model(sensor, "NFOV");
   if(!is_model_build(sensor)) return 0;
   //---------------------------
 
@@ -141,30 +141,30 @@ float Model::apply_model(float x, float y){
 }
 
 //Checker function
-dyn::base::Model* Model::get_model(dyn::base::Sensor* sensor, std::string depth_mode){
+dyn::prc::base::Model* Model::get_model(dyn::prc::base::Sensor* sensor, std::string depth_mode){
   //---------------------------
 
   //Search for model
   for(int i=0; i<sensor->calibration.vec_model.size(); i++){
-    dyn::base::Model* model = &sensor->calibration.vec_model[i];
+    dyn::prc::base::Model* model = &sensor->calibration.vec_model[i];
     if(model->depth_mode == depth_mode){
       return model;
     }
   }
 
   //Else create it
-  dyn::base::Model model;
+  dyn::prc::base::Model model;
   model.depth_mode = depth_mode;
   sensor->calibration.vec_model.push_back(model);
 
   //---------------------------
   return get_model(sensor, depth_mode);
 }
-bool Model::is_model_build(dyn::base::Sensor* sensor){
+bool Model::is_model_build(dyn::prc::base::Sensor* sensor){
   if(is_model_loaded(sensor) == false) return false;
   //---------------------------
 
-  dyn::base::Model* model = get_model(sensor, "NFOV");
+  dyn::prc::base::Model* model = get_model(sensor, "NFOV");
   if(model->coefficient.size() == 0){
     return false;
   }else{
@@ -173,7 +173,7 @@ bool Model::is_model_build(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-bool Model::is_model_loaded(dyn::base::Sensor* sensor){
+bool Model::is_model_loaded(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   if(sensor->calibration.vec_model.size() != 0){

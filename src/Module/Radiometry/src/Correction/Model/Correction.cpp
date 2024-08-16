@@ -1,7 +1,7 @@
 #include "Correction.h"
 
 #include <Radiometry/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -28,7 +28,7 @@ Correction::Correction(rad::correction::Node* node_correction){
 Correction::~Correction(){}
 
 //Main function
-void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Image* ir){
+void Correction::make_image_correction(dyn::prc::base::Sensor* sensor, utl::media::Image* ir){
   if(sensor == nullptr || ir == nullptr) return;
   //---------------------------
 
@@ -45,7 +45,7 @@ void Correction::make_image_correction(dyn::base::Sensor* sensor, utl::media::Im
 }
 
 //Subfunction
-void Correction::make_correction(dyn::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
+void Correction::make_correction(dyn::prc::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
   utl::base::Data* data = &sensor->data;
@@ -86,7 +86,7 @@ void Correction::make_correction(dyn::base::Sensor* sensor, utl::media::Image* i
 
   //---------------------------
 }
-void Correction::update_correction_image(dyn::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
+void Correction::update_correction_image(dyn::prc::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
   utl::media::Image* image = dat_image->get_or_create_image(sensor, "Correction");

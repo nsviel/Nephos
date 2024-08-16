@@ -3,7 +3,7 @@
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Data/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 
 
 namespace rad::gui::correction{
@@ -27,7 +27,7 @@ Correction::Correction(rad::Node* node_radio){
 Correction::~Correction(){}
 
 //Main function
-void Correction::draw_tab(dyn::base::Sensor* sensor){
+void Correction::draw_tab(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   this->display_image(sensor);
@@ -36,7 +36,7 @@ void Correction::draw_tab(dyn::base::Sensor* sensor){
 }
 
 //Subfunction
-void Correction::display_image(dyn::base::Sensor* sensor){
+void Correction::display_image(dyn::prc::base::Sensor* sensor){
   ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 

@@ -30,18 +30,18 @@ public:
   void draw_header(utl::base::Element* element);
 
   //Header function
-  void display_action(dyn::base::Sensor* sensor);
+  void display_action(dyn::prc::base::Sensor* sensor);
   void display_path();
   void display_format();
 
   //Subfunction
   void item_filtering(std::vector<std::string>& vec_path);
-  void item_update(dyn::base::Sensor* sensor);
+  void item_update(dyn::prc::base::Sensor* sensor);
   void item_operation(dat::base::Entity* entity);
 
 private:
   dat::ply::Player* dyn_player;
-  dyn::Structure* dyn_struct;
+  dyn::prc::Structure* dyn_struct;
   io::exp::Structure* io_struct;
   dat::gph::Selection* dat_selection;
 

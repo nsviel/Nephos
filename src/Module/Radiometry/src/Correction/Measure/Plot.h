@@ -21,7 +21,7 @@ public:
 
   //Subfunction
   void plot_measure();
-  void update_plot_data(dyn::base::Sensor* sensor);
+  void update_plot_data(dyn::prc::base::Sensor* sensor);
   void reset_plot_data();
 
 private:

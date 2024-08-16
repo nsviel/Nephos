@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Dynamic/src/Base/Recorder.h>
+#include <Processing/src/Base/Recorder.h>
 #include <thread>
 #include <string>
 
@@ -9,7 +9,7 @@ namespace k4n::base{class Sensor;}
 
 namespace k4n::capture{
 
-class Recorder : public dyn::base::Recorder
+class Recorder : public dyn::prc::base::Recorder
 {
 public:
   //Constructor / Destructor
@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  bool record_sensor(dyn::base::Sensor* sensor, std::string path);
+  bool record_sensor(dyn::prc::base::Sensor* sensor, std::string path);
 
   //Subfunction
   void export_start(k4n::base::Sensor* sensor, std::string path);

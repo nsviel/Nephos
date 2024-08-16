@@ -21,12 +21,12 @@ public:
 
 public:
   //Main function
-  void draw_tab(dyn::base::Sensor* sensor);
+  void draw_tab(dyn::prc::base::Sensor* sensor);
 
   //Subfunction
   void detection_step();
   void detection_parameter();
-  void detection_image(dyn::base::Sensor* sensor);
+  void detection_image(dyn::prc::base::Sensor* sensor);
   void parameter_canny();
   void parameter_hough();
 

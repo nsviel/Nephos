@@ -3,7 +3,7 @@
 #include <Exporter/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Data/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -81,7 +81,7 @@ void Panel::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
 
   //If dynamic object
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity);
   if(sensor && sensor->vec_recorder.size() != 0){
     gui_recorder->item_filtering(vec_path);
   }
@@ -98,7 +98,7 @@ void Panel::item_operation(){
   //---------------------------
 
   //If dynamic object
-  if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+  if(dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity)){
     gui_recorder->item_operation(entity);
   }
   //Else, it's static object

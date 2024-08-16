@@ -66,7 +66,7 @@ void Info::path_info(utl::base::Element* element){
   ImGui::Separator();
 }
 void Info::sensor_info(utl::base::Element* element){
-/*  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
+/*  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(element);
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -120,7 +120,7 @@ void Info::playback_info(utl::base::Element* element){
 
   /*
   dat::base::Set* set = dynamic_cast<dat::base::Set*>(element);
-  dyn::base::Player* player = &set->player;
+  dyn::prc::base::Player* player = &set->player;
   if(player == nullptr) return;
 
   if(ImGui::CollapsingHeader("Info##dynamic")){
@@ -160,7 +160,7 @@ void Info::playback_info(utl::base::Element* element){
     ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
 
     //Recording file size
-    if(master->recorder.mode == dyn::recorder::MKV){
+    if(master->recorder.mode == dyn::prc::recorder::MKV){
       ImGui::TableNextRow(); ImGui::TableNextColumn();
       ImGui::Text("Size"); ImGui::TableNextColumn();
       ImGui::TextColored(color, "%.2f Mo", master->recorder.file_size);

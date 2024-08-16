@@ -2,7 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 
 
 namespace rad::correction{
@@ -46,7 +46,7 @@ void Measure::init(){
 }
 
 //Subfunction
-void Measure::process_measure(dyn::base::Sensor* sensor){
+void Measure::process_measure(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   std::vector<glm::vec3>& search_xyz = rad_struct->ransac.search_xyz;
@@ -59,7 +59,7 @@ void Measure::process_measure(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Measure::data_measure(dyn::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
+void Measure::data_measure(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
   rad::correction::structure::Model* model = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;
@@ -99,7 +99,7 @@ void Measure::data_measure(dyn::base::Sensor* sensor, std::vector<glm::vec3>& se
 
   //---------------------------
 }
-void Measure::data_IfR(dyn::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
+void Measure::data_IfR(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
   rad::correction::structure::Model* model = &rad_struct->model;
   rad::correction::structure::Measure* sphere = &rad_struct->measure;
   rad::correction::structure::Plot* plot = &rad_struct->plot;

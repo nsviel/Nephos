@@ -2,7 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -29,7 +29,7 @@ Panel::~Panel(){}
 //Main function
 void Panel::run_panel(){
   dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity);
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -49,7 +49,7 @@ void Panel::run_panel(){
 
   //---------------------------
 }
-void Panel::design_panel(dyn::base::Sensor* sensor){
+void Panel::design_panel(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 39, 39, 255));
@@ -67,7 +67,7 @@ void Panel::design_panel(dyn::base::Sensor* sensor){
 }
 
 //Subfunction
-void Panel::tab_correction(dyn::base::Sensor* sensor){
+void Panel::tab_correction(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
@@ -79,7 +79,7 @@ void Panel::tab_correction(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Panel::tab_calibration(dyn::base::Sensor* sensor){
+void Panel::tab_calibration(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);

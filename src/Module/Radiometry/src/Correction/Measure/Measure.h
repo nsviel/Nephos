@@ -21,11 +21,11 @@ public:
 public:
   //Main function
   void init();
-  void process_measure(dyn::base::Sensor* sensor);
+  void process_measure(dyn::prc::base::Sensor* sensor);
 
   //Subfunction
-  void data_measure(dyn::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
-  void data_IfR(dyn::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
+  void data_measure(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
+  void data_IfR(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
   void data_IfIt(std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
 
 private:

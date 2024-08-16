@@ -1,4 +1,4 @@
-set(LIBRARY_NAME MAIN_DYNAMIC)
+set(LIBRARY_NAME DYNAMIC_PROCESSING)
 
 #-----------------
 # Source files

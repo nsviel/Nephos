@@ -29,7 +29,7 @@ public:
 
 private:
   dat::ply::Player* dyn_player;
-  dyn::element::Sensor* dyn_sensor;
+  dyn::prc::element::Sensor* dyn_sensor;
 };
 
 }

@@ -33,8 +33,8 @@ public:
   inline rad::Node* get_node_radio(){return node_radio;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
-  inline dyn::Structure* get_dyn_struct(){return dyn_struct;}
-  inline dyn::element::Sensor* get_dyn_sensor(){return dyn_sensor;}
+  inline dyn::prc::Structure* get_dyn_struct(){return dyn_struct;}
+  inline dyn::prc::element::Sensor* get_dyn_sensor(){return dyn_sensor;}
   inline dyn::cloud::Operation* get_ope_cloud(){return dyn_ope_cloud;}
   inline dyn::image::Operation* get_ope_image(){return dyn_ope_image;}
 
@@ -44,8 +44,8 @@ private:
   rad::Node* node_radio;
   prf::Node* node_profiler;
 
-  dyn::Structure* dyn_struct;
-  dyn::element::Sensor* dyn_sensor;
+  dyn::prc::Structure* dyn_struct;
+  dyn::prc::element::Sensor* dyn_sensor;
   dyn::cloud::Operation* dyn_ope_cloud;
   dyn::image::Operation* dyn_ope_image;
 };

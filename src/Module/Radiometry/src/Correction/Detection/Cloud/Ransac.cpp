@@ -2,7 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 
 
 namespace rad::correction::cloud{
@@ -22,7 +22,7 @@ Ransac::Ransac(rad::correction::Node* node_correction){
 Ransac::~Ransac(){}
 
 //Main function
-void Ransac::ransac_sphere(dyn::base::Sensor* sensor){
+void Ransac::ransac_sphere(dyn::prc::base::Sensor* sensor){
   static float current_timestamp = 0;
   //---------------------------
 
@@ -58,7 +58,7 @@ void Ransac::reset_search_space(){
 
   //---------------------------
 }
-void Ransac::reduce_search_space(dyn::base::Sensor* sensor){
+void Ransac::reduce_search_space(dyn::prc::base::Sensor* sensor){
   std::vector<glm::vec3>& vec_xyz = sensor->data.xyz;
   std::vector<glm::vec3>& vec_Nxyz = sensor->data.Nxyz;
   //---------------------------

@@ -1,14 +1,14 @@
 #include "Operation.h"
 
 #include <Utility/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Data/Namespace.h>
 
 
 namespace dyn::prc::cloud{
 
 //Constructor / Destructor
-Operation::Operation(dyn::Node* node_dynamic){
+Operation::Operation(dyn::prc::Node* node_dynamic){
   //---------------------------
 
   dat::Node* node_data = node_dynamic->get_node_data();
@@ -27,7 +27,7 @@ Operation::Operation(dyn::Node* node_dynamic){
 Operation::~Operation(){}
 
 //Main function
-void Operation::run_operation(dyn::base::Sensor* sensor){
+void Operation::run_operation(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   dyn_recorder->start_thread(sensor);

@@ -3,7 +3,7 @@
 #include <Core/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <System/Namespace.h>
 #include <Data/Namespace.h>
 

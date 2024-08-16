@@ -23,12 +23,12 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor);
-  void run_thread(dyn::base::Sensor* sensor);
+  void start_thread(dyn::prc::base::Sensor* sensor);
+  void run_thread(dyn::prc::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void validate_bbox(dyn::base::Sensor* sensor);
+  void validate_bbox(dyn::prc::base::Sensor* sensor);
 
 private:
   sys::thread::task::Pool* thread_pool;

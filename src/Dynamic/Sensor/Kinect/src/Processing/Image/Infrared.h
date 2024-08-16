@@ -32,7 +32,7 @@ public:
 
 private:
   dat::elm::Image* dat_image;
-  dyn::Structure* dyn_struct;
+  dyn::prc::Structure* dyn_struct;
 };
 
 }

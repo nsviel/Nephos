@@ -33,7 +33,7 @@ public:
   inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline cam::Node* get_node_camera(){return node_camera;}
-  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
+  inline dyn::prc::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
   inline ctr::Node* get_node_control(){return node_control;}
 
@@ -44,7 +44,7 @@ private:
   vk::Node* node_vulkan;
   cam::Node* node_camera;
   dat::Node* node_data;
-  dyn::Node* node_dynamic;
+  dyn::prc::Node* node_dynamic;
   ctr::Node* node_control;
 
   rnd::Shader* itf_shader;

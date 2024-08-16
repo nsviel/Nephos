@@ -3,7 +3,7 @@
 #include <Kinect/src/Structure/Firmware.h>
 #include <Kinect/src/Structure/Namespace.h>
 #include <Kinect/src/Structure/Cloud.h>
-#include <Dynamic/src/Base/Sensor.h>
+#include <Processing/src/Base/Sensor.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
 #include <glm/glm.hpp>
@@ -17,7 +17,7 @@ namespace k4n::imu{class Structure;}
 
 namespace k4n::base{
 
-struct Sensor : public dyn::base::Sensor{
+struct Sensor : public dyn::prc::base::Sensor{
   //---------------------------
 
   Sensor();

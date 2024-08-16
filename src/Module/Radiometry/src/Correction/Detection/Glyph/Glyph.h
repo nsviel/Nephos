@@ -26,9 +26,9 @@ public:
   void update_sphere_glyph();
 
   //Subfunction
-  void draw_calibration_sphere(dyn::base::Sensor* sensor);
-  void draw_detection_sphere(dyn::base::Sensor* sensor);
-  void draw_sphere_glyph(dyn::base::Sensor* sensor, std::vector<rad::correction::structure::Circle>& vec_circle);
+  void draw_calibration_sphere(dyn::prc::base::Sensor* sensor);
+  void draw_detection_sphere(dyn::prc::base::Sensor* sensor);
+  void draw_sphere_glyph(dyn::prc::base::Sensor* sensor, std::vector<rad::correction::structure::Circle>& vec_circle);
 
   //Reset function
   void reset_calibration_sphere();

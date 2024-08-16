@@ -2,7 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -35,7 +35,7 @@ void Process::loop(){
   //---------------------------
 
   dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 
   rad_detection->start_thread(sensor);
@@ -49,7 +49,7 @@ void Process::step_detection(){
   //---------------------------
 
   //Verify that we have a sensor type
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 
   //Measurement step logic
@@ -72,7 +72,7 @@ void Process::step_measure(){
 
   //Verify that we have a sensor type
   dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity);
+  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 
   //Measurement step logic

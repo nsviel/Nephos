@@ -158,7 +158,7 @@ void Player::manage_state(dat::base::Set* set){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+    if(dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity)){
       sensor->state = state;
       sensor->set_pause(state.pause);
     }
@@ -182,7 +182,7 @@ void Player::manage_update(dat::base::Set* set){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+    if(dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity)){
       if(sensor->timestamp.begin != -1 && sensor->timestamp.end != -1){
         timestamp.begin = (timestamp.begin != -1) ? std::max(timestamp.begin, sensor->timestamp.begin) : sensor->timestamp.begin;
         timestamp.end = (timestamp.end != -1) ? std::min(timestamp.end, sensor->timestamp.end) : sensor->timestamp.end;
@@ -219,7 +219,7 @@ void Player::manage_restart(dat::base::Set* set){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+    if(dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity)){
       sensor->manage_query(timestamp.begin);
     }
   }
@@ -239,7 +239,7 @@ void Player::manage_reset(dat::base::Set* set){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+    if(dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity)){
       sensor->manage_query(timestamp.begin);
     }
   }
@@ -259,7 +259,7 @@ void Player::manage_query(dat::base::Set* set, float value){
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
-    if(dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(entity)){
+    if(dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity)){
       sensor->manage_query(value);
     }
   }

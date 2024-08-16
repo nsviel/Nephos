@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor){
+  void start_thread(dyn::prc::base::Sensor* sensor){
     //---------------------------
 
     this->sensor = sensor;
@@ -25,7 +25,7 @@ public:
   }
 
 protected:
-  dyn::base::Sensor* sensor = nullptr;
+  dyn::prc::base::Sensor* sensor = nullptr;
 };
 
 }

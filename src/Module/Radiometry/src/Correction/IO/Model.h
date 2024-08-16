@@ -21,14 +21,14 @@ public:
 
 public:
   //Main function
-  void import_model(dyn::base::Sensor* sensor);
-  void export_model(dyn::base::Sensor* sensor);
+  void import_model(dyn::prc::base::Sensor* sensor);
+  void export_model(dyn::prc::base::Sensor* sensor);
 
   //Subfunction
-  void write_device_info(dyn::base::Sensor* sensor, std::string& path);
-  void write_depth_mode_model(dyn::base::Sensor* sensor, std::string& path);
-  void read_device_info(dyn::base::Sensor* sensor, std::string& path);
-  void read_depth_mode_model(dyn::base::Sensor* sensor, std::string& path);
+  void write_device_info(dyn::prc::base::Sensor* sensor, std::string& path);
+  void write_depth_mode_model(dyn::prc::base::Sensor* sensor, std::string& path);
+  void read_device_info(dyn::prc::base::Sensor* sensor, std::string& path);
+  void read_depth_mode_model(dyn::prc::base::Sensor* sensor, std::string& path);
 
 private:
   rad::correction::Structure* rad_struct;

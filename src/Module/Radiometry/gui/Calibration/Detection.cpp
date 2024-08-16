@@ -2,7 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Core/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Data/Namespace.h>
 
@@ -28,7 +28,7 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::draw_tab(dyn::base::Sensor* sensor){
+void Detection::draw_tab(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   this->detection_step();
@@ -124,7 +124,7 @@ void Detection::detection_parameter(){
   //---------------------------
   ImGui::Separator();
 }
-void Detection::detection_image(dyn::base::Sensor* sensor){
+void Detection::detection_image(dyn::prc::base::Sensor* sensor){
   ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 

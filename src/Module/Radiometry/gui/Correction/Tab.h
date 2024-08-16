@@ -18,12 +18,12 @@ public:
 
 public:
   //Main function
-  void design_tab(dyn::base::Sensor* sensor);
+  void design_tab(dyn::prc::base::Sensor* sensor);
 
   //Subfunction
-  void tab_detection(dyn::base::Sensor* sensor);
-  void tab_modeld(dyn::base::Sensor* sensor);
-  void tab_calibration(dyn::base::Sensor* sensor);
+  void tab_detection(dyn::prc::base::Sensor* sensor);
+  void tab_modeld(dyn::prc::base::Sensor* sensor);
+  void tab_calibration(dyn::prc::base::Sensor* sensor);
 
 private:
   rad::gui::correction::Detection* gui_detection;

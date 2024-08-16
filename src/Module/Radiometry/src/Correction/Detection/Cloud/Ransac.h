@@ -23,11 +23,11 @@ public:
 
 public:
   //Main function
-  void ransac_sphere(dyn::base::Sensor* sensor);
+  void ransac_sphere(dyn::prc::base::Sensor* sensor);
 
   //Algo function
   void reset_search_space();
-  void reduce_search_space(dyn::base::Sensor* sensor);
+  void reduce_search_space(dyn::prc::base::Sensor* sensor);
   void apply_ransac();
   void apply_refinement();
 

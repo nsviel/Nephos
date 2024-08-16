@@ -2,7 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 
 
 namespace rad::gui::calibration{
@@ -18,7 +18,7 @@ Tab::Tab(rad::Node* node_radio){
 Tab::~Tab(){}
 
 //Main function
-void Tab::design_tab(dyn::base::Sensor* sensor){
+void Tab::design_tab(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
@@ -37,7 +37,7 @@ void Tab::design_tab(dyn::base::Sensor* sensor){
 }
 
 //Subfunction
-void Tab::tab_detection(dyn::base::Sensor* sensor){
+void Tab::tab_detection(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
@@ -49,7 +49,7 @@ void Tab::tab_detection(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Tab::tab_modeld(dyn::base::Sensor* sensor){
+void Tab::tab_modeld(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);
@@ -61,7 +61,7 @@ void Tab::tab_modeld(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Tab::tab_calibration(dyn::base::Sensor* sensor){
+void Tab::tab_calibration(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x/3-3.33);

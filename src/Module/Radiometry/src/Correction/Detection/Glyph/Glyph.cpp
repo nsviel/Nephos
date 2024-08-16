@@ -1,7 +1,7 @@
 #include "Glyph.h"
 
 #include <Radiometry/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -64,7 +64,7 @@ void Glyph::update_sphere_glyph(){
 }
 
 //Subfunction
-void Glyph::draw_calibration_sphere(dyn::base::Sensor* sensor){
+void Glyph::draw_calibration_sphere(dyn::prc::base::Sensor* sensor){
   rad::correction::glyph::Sphere* sphere = rad_struct->ransac.glyph;
   //---------------------------
 
@@ -75,7 +75,7 @@ void Glyph::draw_calibration_sphere(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Glyph::draw_detection_sphere(dyn::base::Sensor* sensor){
+void Glyph::draw_detection_sphere(dyn::prc::base::Sensor* sensor){
   std::vector<rad::correction::structure::Circle>& vec_circle = rad_struct->hough.vec_circle;
   //---------------------------
 
@@ -98,7 +98,7 @@ void Glyph::draw_detection_sphere(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Glyph::draw_sphere_glyph(dyn::base::Sensor* sensor, std::vector<rad::correction::structure::Circle>& vec_circle){
+void Glyph::draw_sphere_glyph(dyn::prc::base::Sensor* sensor, std::vector<rad::correction::structure::Circle>& vec_circle){
   std::vector<rad::correction::glyph::Sphere*>& vec_sphere = rad_struct->hough.vec_glyph;
   //---------------------------
 

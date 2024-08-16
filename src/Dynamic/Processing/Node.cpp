@@ -3,7 +3,7 @@
 #include <Core/Namespace.h>
 #include <Module/Namespace.h>
 #include <System/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -22,8 +22,8 @@ Node::Node(core::Node* node_core){
   this->node_radio = node_module->get_node_radio();
   this->node_profiler = node_system->get_node_profiler();
 
-  this->dyn_struct = new dyn::Structure();
-  this->dyn_sensor = new dyn::element::Sensor(this);
+  this->dyn_struct = new dyn::prc::Structure();
+  this->dyn_sensor = new dyn::prc::element::Sensor(this);
   this->dyn_ope_cloud = new dyn::cloud::Operation(this);
   this->dyn_ope_image = new dyn::image::Operation(this);
 

@@ -3,7 +3,7 @@
 #include <Kinect/Namespace.h>
 #include <Core/Namespace.h>
 #include <Profiler/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 
 
 namespace k4n{
@@ -13,7 +13,7 @@ Processing::Processing(k4n::Node* node_k4n){
   //---------------------------
 
   core::Node* node_core = node_k4n->get_node_core();
-  dyn::Node* node_dynamic = node_core->get_node_dynamic();
+  dyn::prc::Node* node_dynamic = node_core->get_node_dynamic();
 
   this->thread_pool = node_core->get_thread_pool();
   this->k4n_image = new k4n::processing::image::Data(node_k4n);

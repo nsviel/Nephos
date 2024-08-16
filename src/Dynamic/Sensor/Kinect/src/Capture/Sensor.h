@@ -34,7 +34,7 @@ private:
   k4n::Processing* k4n_processing;
   k4n::capture::Configuration* k4n_config;
   k4n::gui::Capture* gui_capture;
-  dyn::element::Sensor* dyn_sensor;
+  dyn::prc::element::Sensor* dyn_sensor;
 
   std::queue<k4a::capture*> queue;
 };

@@ -24,8 +24,8 @@ struct Intensity{
 struct Structure{
   //---------------------------
 
-  dyn::operation::Normal normal;
-  dyn::operation::Intensity intensity;
+  dyn::prc::operation::Normal normal;
+  dyn::prc::operation::Intensity intensity;
 
   //---------------------------
 };

@@ -3,7 +3,7 @@
 #include <Exporter/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Data/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -15,7 +15,7 @@ Recorder::Recorder(io::exp::Node* node_exporter){
   //---------------------------
 
   dat::Node* node_data = node_exporter->get_node_data();
-  dyn::Node* node_dynamic = node_exporter->get_node_dynamic();
+  dyn::prc::Node* node_dynamic = node_exporter->get_node_dynamic();
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::ply::Node* node_player = node_data->get_node_player();
 
@@ -30,7 +30,7 @@ Recorder::~Recorder(){}
 
 //Main function
 void Recorder::draw_header(utl::base::Element* element){
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
+  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(element);
   //---------------------------
 
   this->item_update(sensor);
@@ -44,7 +44,7 @@ void Recorder::draw_header(utl::base::Element* element){
 }
 
 //Header function
-void Recorder::display_action(dyn::base::Sensor* sensor){
+void Recorder::display_action(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   if(!sensor->state.record){
@@ -157,7 +157,7 @@ void Recorder::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
   vec_path = vec_path_ok;
 }
-void Recorder::item_update(dyn::base::Sensor* sensor){
+void Recorder::item_update(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   //Actualize current name

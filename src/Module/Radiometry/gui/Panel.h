@@ -21,11 +21,11 @@ public:
 public:
   //Main function
   void run_panel();
-  void design_panel(dyn::base::Sensor* sensor);
+  void design_panel(dyn::prc::base::Sensor* sensor);
 
   //Subfunction
-  void tab_correction(dyn::base::Sensor* sensor);
-  void tab_calibration(dyn::base::Sensor* sensor);
+  void tab_correction(dyn::prc::base::Sensor* sensor);
+  void tab_calibration(dyn::prc::base::Sensor* sensor);
 
 private:
   dat::gph::Selection* dat_selection;

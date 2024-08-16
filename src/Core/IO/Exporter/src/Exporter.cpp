@@ -2,7 +2,7 @@
 
 #include <Exporter/Namespace.h>
 #include <Format/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 
 
 namespace io::exp{
@@ -114,7 +114,7 @@ bool Exporter::is_current_config(dat::base::Entity* entity){
 bool Exporter::is_recording(utl::base::Element* element){
   //---------------------------
 
-  dyn::base::Sensor* sensor = dynamic_cast<dyn::base::Sensor*>(element);
+  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(element);
   if(sensor && sensor->vec_recorder.size() != 0){
     return true;
   }

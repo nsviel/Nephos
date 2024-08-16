@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Dynamic/src/Structure/Operation.h>
-#include <Dynamic/src/Structure/Recorder.h>
-#include <Dynamic/src/Structure/Colorization.h>
+#include <Processing/src/Structure/Operation.h>
+#include <Processing/src/Structure/Recorder.h>
+#include <Processing/src/Structure/Colorization.h>
 
 
 namespace dyn::prc{
@@ -10,9 +10,9 @@ namespace dyn::prc{
 struct Structure{
   //---------------------------
 
-  dyn::recorder::Structure recorder;
-  dyn::operation::Structure operation;
-  dyn::colorization::Structure colorization;
+  dyn::prc::recorder::Structure recorder;
+  dyn::prc::operation::Structure operation;
+  dyn::prc::colorization::Structure colorization;
 
   //---------------------------
 };

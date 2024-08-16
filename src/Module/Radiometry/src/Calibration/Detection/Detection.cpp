@@ -3,7 +3,7 @@
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Data/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Core/Namespace.h>
 
 
@@ -29,7 +29,7 @@ Detection::Detection(rad::calibration::Node* node_detection){
 Detection::~Detection(){}
 
 //Main function
-void Detection::start_thread(dyn::base::Sensor* sensor){
+void Detection::start_thread(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   this->thread_idle = false;
@@ -40,7 +40,7 @@ void Detection::start_thread(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::run_thread(dyn::base::Sensor* sensor){
+void Detection::run_thread(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   if(sensor != nullptr){// && rad_struct->state.detection == rad::calibration::detection::PROCESSING){
@@ -70,7 +70,7 @@ void Detection::wait_thread(){
 }
 
 //Subfunction
-void Detection::make_shape_detection(dyn::base::Sensor* sensor, utl::media::Image* image, utl::media::Image* output){
+void Detection::make_shape_detection(dyn::prc::base::Sensor* sensor, utl::media::Image* image, utl::media::Image* output){
   //---------------------------
 
   cv::Mat cv_image, gray, canny;

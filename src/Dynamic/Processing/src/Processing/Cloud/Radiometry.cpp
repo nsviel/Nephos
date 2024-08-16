@@ -1,7 +1,7 @@
 #include "Radiometry.h"
 
 #include <Radiometry/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
 
@@ -9,7 +9,7 @@
 namespace dyn::prc::cloud{
 
 //Constructor / Destructor
-Radiometry::Radiometry(dyn::Node* node_dynamic){
+Radiometry::Radiometry(dyn::prc::Node* node_dynamic){
   //---------------------------
 
   dat::Node* node_data = node_dynamic->get_node_data();
@@ -25,7 +25,7 @@ Radiometry::Radiometry(dyn::Node* node_dynamic){
 Radiometry::~Radiometry(){}
 
 //Main function
-void Radiometry::start_thread(dyn::base::Sensor* sensor){
+void Radiometry::start_thread(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   if(thread.joinable()){
@@ -35,7 +35,7 @@ void Radiometry::start_thread(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Radiometry::run_thread(dyn::base::Sensor* sensor){
+void Radiometry::run_thread(dyn::prc::base::Sensor* sensor){
   prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::correction");
   //---------------------------
 
@@ -61,7 +61,7 @@ void Radiometry::wait_thread(){
 }
 
 //Subfunction
-void Radiometry::compute_correction(dyn::base::Sensor* sensor){
+void Radiometry::compute_correction(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   utl::media::Image* image = dat_image->get_image(sensor, "Intensity");

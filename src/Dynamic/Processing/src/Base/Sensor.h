@@ -3,10 +3,10 @@
 #include <Thread/Namespace.h>
 #include <Element/src/Base/Object.h>
 #include <Profiler/src/Dynamic/Profiler.h>
-#include <Dynamic/src/Base/Timestamp.h>
-#include <Dynamic/src/Base/Calibration.h>
-#include <Dynamic/src/Base/State.h>
-#include <Dynamic/src/Base/Recorder.h>
+#include <Processing/src/Base/Timestamp.h>
+#include <Processing/src/Base/Calibration.h>
+#include <Processing/src/Base/State.h>
+#include <Processing/src/Base/Recorder.h>
 
 namespace dyn::prc::base{class Recorder;}
 
@@ -30,9 +30,9 @@ struct Sensor : public dat::base::Object, public sys::thread::Worker{
   virtual void manage_reset(){}
   virtual void gui_config(){}
 
-  dyn::base::Timestamp timestamp;
-  dyn::base::State state;
-  dyn::base::Calibration calibration;
+  dyn::prc::base::Timestamp timestamp;
+  dyn::prc::base::State state;
+  dyn::prc::base::Calibration calibration;
   prf::dynamic::Profiler profiler;
 
   std::string device_name = "";
@@ -40,7 +40,7 @@ struct Sensor : public dat::base::Object, public sys::thread::Worker{
   std::string depth_mode = "";
   std::vector<uint16_t> buffer_depth;
   std::vector<uint16_t> buffer_ir;
-  std::vector<dyn::base::Recorder*> vec_recorder;
+  std::vector<dyn::prc::base::Recorder*> vec_recorder;
   std::vector<std::string> vec_depth_mode;
 
   //---------------------------

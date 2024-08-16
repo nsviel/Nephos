@@ -22,7 +22,7 @@ Measure::Measure(rad::correction::Node* node_correction){
 Measure::~Measure(){}
 
 //Main function
-void Measure::import_measure(dyn::base::Sensor* sensor){
+void Measure::import_measure(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   std::string path = rad_struct->measure.path.build();
@@ -39,7 +39,7 @@ void Measure::import_measure(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Measure::export_measure(dyn::base::Sensor* sensor){
+void Measure::export_measure(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   std::string path = rad_struct->measure.path.build();
@@ -47,7 +47,7 @@ void Measure::export_measure(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Measure::clear_measure(dyn::base::Sensor* sensor){
+void Measure::clear_measure(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   //Import file model data

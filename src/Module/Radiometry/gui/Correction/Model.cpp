@@ -2,7 +2,7 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 
 
 namespace rad::gui::correction{
@@ -26,7 +26,7 @@ Model::Model(rad::Node* node_radio){
 Model::~Model(){}
 
 //Main function
-void Model::draw_tab(dyn::base::Sensor* sensor){
+void Model::draw_tab(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
   //Parameter
@@ -46,7 +46,7 @@ void Model::draw_tab(dyn::base::Sensor* sensor){
 }
 
 //Subfunction
-void Model::parameter_measure(dyn::base::Sensor* sensor){
+void Model::parameter_measure(dyn::prc::base::Sensor* sensor){
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -110,8 +110,8 @@ void Model::parameter_measure(dyn::base::Sensor* sensor){
 
   //---------------------------
 }
-void Model::parameter_model(dyn::base::Sensor* sensor){
-  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
+void Model::parameter_model(dyn::prc::base::Sensor* sensor){
+  dyn::prc::base::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -214,8 +214,8 @@ void Model::plot_measure_IfIt(float height){
 
   //---------------------------
 }
-void Model::plot_model_heatmap(dyn::base::Sensor* sensor, float height){
-  dyn::base::Model* model = rad_model->get_model(sensor, "NFOV");
+void Model::plot_model_heatmap(dyn::prc::base::Sensor* sensor, float height){
+  dyn::prc::base::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::correction::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 

@@ -15,20 +15,20 @@ class Radiometry
 {
 public:
   //Constructor / Destructor
-  Radiometry(dyn::Node* node_dynamic);
+  Radiometry(dyn::prc::Node* node_dynamic);
   ~Radiometry();
 
 public:
   //Main function
-  void start_thread(dyn::base::Sensor* sensor);
-  void run_thread(dyn::base::Sensor* sensor);
+  void start_thread(dyn::prc::base::Sensor* sensor);
+  void run_thread(dyn::prc::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void compute_correction(dyn::base::Sensor* sensor);
+  void compute_correction(dyn::prc::base::Sensor* sensor);
 
 private:
-  dyn::Structure* dyn_struct;
+  dyn::prc::Structure* dyn_struct;
   rad::correction::Correction* rad_correction;
   dat::elm::Image* dat_image;
 

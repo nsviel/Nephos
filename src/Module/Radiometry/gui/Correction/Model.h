@@ -23,16 +23,16 @@ public:
 
 public:
   //Main function
-  void draw_tab(dyn::base::Sensor* sensor);
+  void draw_tab(dyn::prc::base::Sensor* sensor);
 
   //Subfunction
-  void parameter_measure(dyn::base::Sensor* sensor);
-  void parameter_model(dyn::base::Sensor* sensor);
+  void parameter_measure(dyn::prc::base::Sensor* sensor);
+  void parameter_model(dyn::prc::base::Sensor* sensor);
 
   //Sphere plot function
   void plot_measure_IfR(float height);
   void plot_measure_IfIt(float height);
-  void plot_model_heatmap(dyn::base::Sensor* sensor, float height);
+  void plot_model_heatmap(dyn::prc::base::Sensor* sensor, float height);
 
 private:
   rad::correction::Node* node_correction;

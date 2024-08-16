@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Dynamic/src/Base/Sensor.h>
+#include <Processing/src/Base/Sensor.h>
 #include <Utility/Base/Data/Data.h>
 #include <string>
 
@@ -12,7 +12,7 @@ namespace dyn::prc::base{
 struct Recorder{
   //---------------------------
 
-  virtual bool record_sensor(dyn::base::Sensor* sensor, std::string path){return false;}
+  virtual bool record_sensor(dyn::prc::base::Sensor* sensor, std::string path){return false;}
 
   std::string format = "";
   float size = 0;

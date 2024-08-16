@@ -37,7 +37,7 @@ private:
   dat::elm::Entity* dat_entity;
   dat::elm::Set* dat_set;
   dat::elm::Glyph* dat_glyph;
-  dyn::element::Sensor* dyn_sensor;
+  dyn::prc::element::Sensor* dyn_sensor;
 };
 
 }

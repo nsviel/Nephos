@@ -1,6 +1,6 @@
 #include "Player.h"
 
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Control/Namespace.h>
 #include <Data/Namespace.h>
 
@@ -12,7 +12,7 @@ Player::Player(ctr::Node* node_control){
   //---------------------------
 
   dat::Node* node_data = node_control->get_node_data();
-  dyn::Node* node_dynamic = node_control->get_node_dynamic();
+  dyn::prc::Node* node_dynamic = node_control->get_node_dynamic();
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::ply::Node* node_player = node_data->get_node_player();
 

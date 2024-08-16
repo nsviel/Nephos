@@ -2,7 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 
 
 namespace k4n::capture{
@@ -11,7 +11,7 @@ namespace k4n::capture{
 Sensor::Sensor(k4n::Node* node_k4n, int index){
   //---------------------------
 
-  dyn::Node* node_dynamic = node_k4n->get_node_dynamic();
+  dyn::prc::Node* node_dynamic = node_k4n->get_node_dynamic();
 
   this->k4n_processing = new k4n::Processing(node_k4n);
   this->k4n_config = new k4n::capture::Configuration(node_k4n);

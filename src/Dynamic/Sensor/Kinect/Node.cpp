@@ -3,7 +3,7 @@
 #include <Core/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <IO/Namespace.h>
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Data/Namespace.h>
 #include <Importer/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>

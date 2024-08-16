@@ -13,17 +13,17 @@ class Sensor
 {
 public:
   //Constructor / Destructor
-  Sensor(dyn::Node* node_dynamic);
+  Sensor(dyn::prc::Node* node_dynamic);
   ~Sensor();
 
 public:
   //Main function
-  void init_sensor(dyn::base::Sensor* sensor);
-  void remove_sensor(dyn::base::Sensor* sensor);
+  void init_sensor(dyn::prc::base::Sensor* sensor);
+  void remove_sensor(dyn::prc::base::Sensor* sensor);
   bool is_dynamic(utl::base::Element* element);
 
 private:
-  dyn::Structure* dyn_struct;
+  dyn::prc::Structure* dyn_struct;
   prf::dynamic::Manager* prf_dynamic;
 };
 

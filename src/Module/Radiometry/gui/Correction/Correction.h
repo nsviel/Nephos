@@ -19,10 +19,10 @@ public:
 
 public:
   //Main function
-  void draw_tab(dyn::base::Sensor* sensor);
+  void draw_tab(dyn::prc::base::Sensor* sensor);
 
   //Subfunction
-  void display_image(dyn::base::Sensor* sensor);
+  void display_image(dyn::prc::base::Sensor* sensor);
 
 private:
   rad::correction::Structure* rad_struct;
