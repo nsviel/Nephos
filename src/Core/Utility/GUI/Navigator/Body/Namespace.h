@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Utility/GUI/Navigator/Body/Header.h>
-#include <Utility/GUI/Navigator/Body/Content.h>
+#include "Header.h"
+#include "Content.h"
