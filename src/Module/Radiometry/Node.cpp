@@ -4,6 +4,7 @@
 #include <Profiler/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Dynamic/Namespace.h>
+#include <System/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -14,10 +15,12 @@ Node::Node(core::Node* node_core){
   utl::gui::Panel* rad_panel = add_panel("Radiometry", ICON_FA_FILM, true);
   //---------------------------
 
+  sys::Node* node_system = node_core->get_node_system();
+
   //Dependancy
   this->node_core = node_core;
   this->node_data = node_core->get_node_data();
-  this->node_profiler = node_core->get_node_profiler();
+  this->node_profiler = node_system->get_node_profiler();
 
   //Child
   this->node_correction = new rad::correction::Node(this);

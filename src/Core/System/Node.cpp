@@ -8,7 +8,7 @@ namespace sys{
 Node::Node(core::Node* node_core){
   //---------------------------
 
-  this->node_profiler = new prf::Node(this);
+  this->node_profiler = new prf::Node(node_core);
 
   //---------------------------
 }

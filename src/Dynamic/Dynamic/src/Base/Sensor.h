@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Thread/Namespace.h>
 #include <Element/src/Base/Object.h>
 #include <Profiler/src/Dynamic/Profiler.h>
 #include <Dynamic/src/Base/Timestamp.h>

@@ -4,6 +4,7 @@
 #include <RealSense/Namespace.h>
 #include <IO/Namespace.h>
 #include <Data/Namespace.h>
+#include <System/Namespace.h>
 #include <Importer/Namespace.h>
 #include <Radiometry/Namespace.h>
 
@@ -14,9 +15,11 @@ namespace rlx{
 Node::Node(core::Node* node_core){
   //---------------------------
 
+  sys::Node* node_system = node_core->get_node_system();
+
   this->node_core = node_core;
   this->node_io = node_core->get_node_io();
-  this->node_profiler = node_core->get_node_profiler();
+  this->node_profiler = node_system->get_node_profiler();
   this->node_data = node_core->get_node_data();
   //this->rlx_class = new rlx::Class();
 
