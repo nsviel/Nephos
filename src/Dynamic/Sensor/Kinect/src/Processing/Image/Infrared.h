@@ -5,7 +5,7 @@
 namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
 namespace dat::elm{class Image;}
-namespace dyn{class Structure;}
+namespace dyn::prc{class Structure;}
 
 
 namespace k4n::processing::image{

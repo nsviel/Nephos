@@ -2,4 +2,4 @@
 # Source files
 #-----------------
 add_subdirectory(Sensor)
-add_subdirectory(Dynamic)
+add_subdirectory(Processing)

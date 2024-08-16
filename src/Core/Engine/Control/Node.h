@@ -5,7 +5,7 @@
 namespace vk{class Node;}
 namespace eng{class Node;}
 namespace cam{class Node;}
-namespace dyn{class Node;}
+namespace dyn::prc{class Node;}
 namespace core{class Node;}
 namespace dat{class Node;}
 namespace ctr{class Structure;}

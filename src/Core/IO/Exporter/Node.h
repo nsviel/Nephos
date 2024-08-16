@@ -5,7 +5,7 @@
 namespace vk{class Node;}
 namespace dat{class Node;}
 namespace core{class Node;}
-namespace dyn{class Node;}
+namespace dyn::prc{class Node;}
 namespace io::exp{class Structure;}
 namespace io::exp{class Exporter;}
 namespace io::exp::gui{class Panel;}

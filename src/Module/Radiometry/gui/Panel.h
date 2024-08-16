@@ -6,7 +6,7 @@ namespace dat::gph{class Selection;}
 namespace rad{class Node;}
 namespace rad::gui::correction{class Tab;}
 namespace rad::gui::calibration{class Tab;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 
 
 namespace rad::gui{

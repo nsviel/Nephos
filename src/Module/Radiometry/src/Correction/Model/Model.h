@@ -6,8 +6,8 @@ namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
-namespace dyn::base{class Model;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Model;}
+namespace dyn::prc::base{class Sensor;}
 
 
 namespace rad::correction{

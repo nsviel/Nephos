@@ -6,7 +6,7 @@ namespace k4n{class Node;}
 namespace k4n{class Processing;}
 namespace k4n::capture{class Configuration;}
 namespace k4n::gui{class Capture;}
-namespace dyn::element{class Sensor;}
+namespace dyn::prc::element{class Sensor;}
 
 
 namespace k4n::capture{

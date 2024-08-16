@@ -4,7 +4,7 @@
 #include <vector>
 
 namespace utl::media{class Image;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 
 
 namespace dat::img{

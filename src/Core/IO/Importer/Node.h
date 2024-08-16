@@ -5,7 +5,7 @@
 namespace vk{class Node;}
 namespace dat{class Node;}
 namespace core{class Node;}
-namespace dyn{class Node;}
+namespace dyn::prc{class Node;}
 namespace io::imp{class Structure;}
 namespace io::imp{class Importer;}
 namespace io::imp{class Operation;}

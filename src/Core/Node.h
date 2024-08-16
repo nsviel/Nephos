@@ -6,7 +6,7 @@ namespace app{class Node;}
 namespace io{class Node;}
 namespace vk{class Node;}
 namespace dat{class Node;}
-namespace dyn{class Node;}
+namespace dyn::prc{class Node;}
 namespace sys{class Node;}
 namespace mod{class Node;}
 namespace eng{class Node;}

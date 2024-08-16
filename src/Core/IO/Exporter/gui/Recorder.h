@@ -9,8 +9,8 @@ namespace io::exp{class Node;}
 namespace io::exp{class Structure;}
 namespace utl::gui::navigator{class Item;}
 namespace utl::base{class Element;}
-namespace dyn{class Structure;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc{class Structure;}
+namespace dyn::prc::base{class Sensor;}
 namespace dat::ply{class Player;}
 namespace dat::gph{class Selection;}
 namespace dat::base{class Entity;}

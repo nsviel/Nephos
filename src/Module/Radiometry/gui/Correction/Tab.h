@@ -4,7 +4,7 @@ namespace rad{class Node;}
 namespace rad::gui::correction{class Detection;}
 namespace rad::gui::correction{class Model;}
 namespace rad::gui::correction{class Correction;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 
 
 namespace rad::gui::correction{

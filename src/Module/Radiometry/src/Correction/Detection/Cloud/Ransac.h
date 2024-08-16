@@ -7,7 +7,7 @@ namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction{class Measure;}
 namespace rad::correction{class Glyph;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 

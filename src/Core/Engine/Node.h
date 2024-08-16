@@ -3,7 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace vk{class Node;}
-namespace dyn{class Node;}
+namespace dyn::prc{class Node;}
 namespace dat{class Node;}
 
 namespace core{class Node;}

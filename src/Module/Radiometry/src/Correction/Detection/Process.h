@@ -7,7 +7,7 @@ namespace rad::correction::cloud{class Detection;}
 namespace rad::correction{class Glyph;}
 namespace dat::gph{class Selection;}
 namespace dat::elm{class Image;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 
 
 namespace rad::correction{

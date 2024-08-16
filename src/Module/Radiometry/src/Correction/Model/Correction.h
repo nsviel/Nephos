@@ -8,7 +8,7 @@ namespace rad::correction{class Structure;}
 namespace rad::correction{class Node;}
 namespace rad::correction{class Model;}
 namespace rad::correction::io{class Model;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 namespace dat::elm{class Image;}
 namespace dat::gph{class Selection;}
 namespace utl::media{class Image;}

@@ -6,8 +6,8 @@ namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
 namespace k4n::processing::cloud{class Data;}
 namespace k4n::processing::image{class Data;}
-namespace dyn::image{class Operation;}
-namespace dyn::cloud{class Operation;}
+namespace dyn::prc::image{class Operation;}
+namespace dyn::prc::cloud{class Operation;}
 namespace sys::thread::task{class Pool;}
 
 

@@ -7,7 +7,7 @@ namespace rad::correction{class Structure;}
 namespace rad::correction{class Measure;}
 namespace rad::correction{class Model;}
 namespace rad::correction::io{class Measure;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 
 
 namespace rad::correction::io{

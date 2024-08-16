@@ -2,7 +2,7 @@
 
 namespace rad{class Node;}
 namespace rad::gui::calibration{class Detection;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 
 
 namespace rad::gui::calibration{

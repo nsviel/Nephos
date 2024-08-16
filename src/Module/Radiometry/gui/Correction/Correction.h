@@ -5,7 +5,7 @@ namespace rad::correction{class Node;}
 namespace rad::correction{class Structure;}
 namespace rnd::gui{class Stream;}
 namespace dat::elm{class Image;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 
 
 namespace rad::gui::correction{

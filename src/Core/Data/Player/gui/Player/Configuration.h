@@ -1,7 +1,7 @@
 #pragma once
 
 namespace utl::base{class Element;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 
 
 namespace dat::ply::gui{

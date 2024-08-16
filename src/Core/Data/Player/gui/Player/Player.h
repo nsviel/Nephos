@@ -2,7 +2,7 @@
 
 namespace dat::ply{class Node;}
 namespace dat::ply{class Player;}
-namespace dyn::element{class Sensor;}
+namespace dyn::prc::element{class Sensor;}
 namespace utl::base{class Element;}
 
 

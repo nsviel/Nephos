@@ -7,7 +7,7 @@ namespace k4n{class Processing;}
 namespace k4n::playback{class Configuration;}
 namespace k4n::gui{class Playback;}
 namespace utl::base{class Path;}
-namespace dyn::element{class Sensor;}
+namespace dyn::prc::element{class Sensor;}
 
 
 namespace k4n::playback{

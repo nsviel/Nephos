@@ -2,7 +2,7 @@
 
 #include <Renderer/gui/Stream.h>
 
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad::correction{class Structure;}
 namespace rad::correction{class Process;}

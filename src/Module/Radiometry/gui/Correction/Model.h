@@ -9,7 +9,7 @@ namespace rad::correction{class Plot;}
 namespace rad::correction::io{class Measure;}
 namespace rad::correction::io{class Model;}
 namespace utl::implot{class Plot;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 
 
 namespace rad::gui::correction{

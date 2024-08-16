@@ -5,7 +5,7 @@
 namespace rad::calibration{class Node;}
 namespace rad::calibration{class Structure;}
 namespace rad::calibration::structure{class Circle;}
-namespace dyn::base{class Sensor;}
+namespace dyn::prc::base{class Sensor;}
 namespace utl::media{class Image;}
 
 
