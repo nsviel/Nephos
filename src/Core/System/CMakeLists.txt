@@ -6,6 +6,7 @@ set(LIBRARY_NAME CORE_SYSTEM)
 add_subdirectory(Profiler)
 
 file(GLOB_RECURSE ALL_SOURCES
+  Node.cpp
   Hardware/*.cpp
   Network/*.cpp
   Thread/*.cpp
