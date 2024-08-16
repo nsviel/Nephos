@@ -4,6 +4,8 @@
 #include <glm/glm.hpp>
 
 
+namespace utl::colormap{
+
 //Nord palette
 //https://www.nordtheme.com/docs/colors-and-palettes
 inline std::vector<glm::vec4> nordic_palette = {
@@ -24,3 +26,5 @@ inline std::vector<glm::vec4> nordic_palette = {
   glm::vec4(0.639216, 0.745098, 0.54902, 1),   // Green
   glm::vec4(0.705882, 0.556863, 0.678431, 1)   // Purple
 };
+
+}
