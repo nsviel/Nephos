@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Renderer/gui/Renderer.h>
-#include <Renderer/gui/Shader.h>
-#include <Renderer/gui/Option.h>
-#include <Renderer/gui/Stream.h>
+#include "Renderer.h"
+#include "Shader.h"
+#include "Option.h"
+#include "Stream.h"

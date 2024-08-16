@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Control/src/Mode/Namespace.h>
-#include <Control/src/Operation/Namespace.h>
-#include <Control/src/Structure/Namespace.h>
+#include "Mode/Namespace.h"
+#include "Operation/Namespace.h"
+#include "Structure/Namespace.h"

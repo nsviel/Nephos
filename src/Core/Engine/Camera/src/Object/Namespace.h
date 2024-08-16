@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Camera/src/Object/Entity.h>
-#include <Camera/src/Object/Target.h>
+#include "Entity.h"
+#include "Target.h"

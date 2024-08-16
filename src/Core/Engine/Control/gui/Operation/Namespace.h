@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Control/gui/Operation/Player.h>
-#include <Control/gui/Operation/Render.h>
+#include "Player.h"
+#include "Render.h"
