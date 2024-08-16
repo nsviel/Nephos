@@ -22,6 +22,7 @@ Node::Node(core::Node* node_core){
 }
 Node::~Node(){}
 
+//Main function
 void Node::init(){
   //---------------------------
 

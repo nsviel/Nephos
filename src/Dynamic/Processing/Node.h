@@ -24,6 +24,7 @@ public:
   ~Node();
 
 public:
+  //Main function
   void loop();
   void gui();
   void reset();

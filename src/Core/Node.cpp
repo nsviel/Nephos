@@ -18,13 +18,16 @@ Node::Node(app::Node* node_app){
   //---------------------------
 
   this->node_app = node_app;
+
   this->node_vulkan = node_app->get_node_vulkan();
 
   this->thread_pool = new sys::thread::task::Pool(50);
   this->node_system = new sys::Node(this);
   this->node_data = new dat::Node(this);
   this->node_module = new mod::Node(this);
-  this->node_dynamic = new dyn::prc::Node(this);
+
+  this->node_dynamic = new dyn::Node(this);
+
   this->node_engine = new eng::Node(this);
   this->node_io = new io::Node(this);
 
@@ -45,6 +48,7 @@ void Node::init(){
   node_engine->init();
   node_module->init();
   node_system->init();
+  node_dynamic->init();
 
   //---------------------------
 }
@@ -87,6 +91,7 @@ void Node::clean(){
   node_data->clean();
   node_io->clean();
   node_vulkan->clean();
+  node_dynamic->clean();
 
   //---------------------------
 }

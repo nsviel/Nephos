@@ -6,7 +6,7 @@ namespace app{class Node;}
 namespace io{class Node;}
 namespace vk{class Node;}
 namespace dat{class Node;}
-namespace dyn::prc{class Node;}
+namespace dyn{class Node;}
 namespace sys{class Node;}
 namespace mod{class Node;}
 namespace eng{class Node;}
@@ -37,9 +37,9 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
   inline eng::Node* get_node_engine(){return node_engine;}
-  inline dyn::prc::Node* get_node_dynamic(){return node_dynamic;}
+  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline mod::Node* get_node_module(){return node_module;}
-  
+
   inline sys::thread::task::Pool* get_thread_pool(){return thread_pool;}
   inline prf::dynamic::Tasker* get_tasker_cpu(){return tasker;}
 
@@ -51,7 +51,7 @@ private:
   dat::Node* node_data;
   eng::Node* node_engine;
   sys::Node* node_system;
-  dyn::prc::Node* node_dynamic;
+  dyn::Node* node_dynamic;
   prf::dynamic::Tasker* tasker;
   sys::thread::task::Pool* thread_pool;
 };

@@ -2,7 +2,7 @@
 
 #include <Utility/Base/Class/Node.h>
 
-namespace dyn::proc{class Node;}
+namespace dyn::prc{class Node;}
 namespace sen{class Node;}
 namespace core{class Node;}
 
@@ -17,9 +17,11 @@ public:
   ~Node();
 
 public:
+  voit init();
   void loop();
   void gui();
   void reset();
+  void clean();
 
   inline dyn::prc::Node* get_node_processing(){return node_processing;}
   inline sen::Node* get_node_sensor(){return node_sensor;}
