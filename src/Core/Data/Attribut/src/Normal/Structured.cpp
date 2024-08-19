@@ -1,8 +1,10 @@
 #include "Structured.h"
 
+#include <Data/Attribut/Namespace.h>
+#include <Data/Element/Namespace.h>
+#include <Data/Image/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Data/Namespace.h>
 #include <cstdlib>
 #include <chrono>
 

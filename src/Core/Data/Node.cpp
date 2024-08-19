@@ -1,7 +1,11 @@
 #include "Node.h"
 
 #include <Core/Namespace.h>
-#include <Data/Namespace.h>
+#include <Data/Element/Namespace.h>
+#include <Data/Graph/Namespace.h>
+#include <Data/Player/Namespace.h>
+#include <Data/Attribut/Namespace.h>
+#include <Data/Image/Namespace.h>
 
 
 namespace dat{

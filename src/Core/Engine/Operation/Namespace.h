@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Fitting/Namespace.h"
-#include "Meshing/Namespace.h"
-#include "Tree/Namespace.h"
-#include "Voxelization/Namespace.h"
+#include <Operation/Fitting/Namespace.h>
+#include <Operation/Meshing/Namespace.h>
+#include <Operation/Tree/Namespace.h>
+#include <Operation/Voxelization/Namespace.h>

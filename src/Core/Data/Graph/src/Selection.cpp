@@ -1,6 +1,7 @@
 #include "Selection.h"
 
 #include <Data/Namespace.h>
+#include <Data/Graph/Namespace.h>
 
 
 namespace dat::gph{

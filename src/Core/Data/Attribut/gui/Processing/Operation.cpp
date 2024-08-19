@@ -1,8 +1,11 @@
 #include "Operation.h"
 
+#include <Data/Namespace.h>
+#include <Data/Attribut/Namespace.h>
+#include <Data/Element/Namespace.h>
+#include <Data/Image/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Data/Namespace.h>
 #include <Core/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 

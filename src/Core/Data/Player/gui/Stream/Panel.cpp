@@ -1,10 +1,13 @@
 #include "Panel.h"
 
+#include <Data/Namespace.h>
+#include <Data/Player/Namespace.h>
+#include <Data/Graph/Namespace.h>
+#include <Data/Element/Namespace.h>
 #include <Core/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Player/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Data/Namespace.h>
 #include <Renderer/Namespace.h>
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Data/Namespace.h>
+#include <Data/Attribut/Namespace.h>
 #include <glm/glm.hpp>
 
 
