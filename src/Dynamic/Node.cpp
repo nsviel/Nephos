@@ -1,6 +1,7 @@
 #include "Node.h"
 
 #include <Dynamic/Namespace.h>
+#include <Core/Namespace.h>
 
 
 namespace dyn{
@@ -9,8 +10,10 @@ namespace dyn{
 Node::Node(core::Node* node_core){
   //---------------------------
 
-  this->node_processing = new dyn::prc::Node(node_core);
-  this->node_sensor = new sen::Node(node_core);
+  this->node_core = node_core;
+  this->node_module = node_core->get_node_module();
+  this->node_processing = new dyn::prc::Node(this);
+  this->node_sensor = new sen::Node(this);
 
   //---------------------------
 }

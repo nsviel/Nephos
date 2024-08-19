@@ -2,6 +2,7 @@
 
 #include <Utility/Base/Class/Node.h>
 
+namespace dyn{class Node;}
 namespace app{class Node;}
 namespace core{class Node;}
 //namespace k4n{class Node;}
@@ -14,7 +15,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(core::Node* node_core);
+  Node(dyn::Node* node_dynamic);
   ~Node();
 
 public:

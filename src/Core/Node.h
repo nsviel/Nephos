@@ -35,8 +35,6 @@ public:
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
   inline eng::Node* get_node_engine(){return node_engine;}
-  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
-  inline mod::Node* get_node_module(){return node_module;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline sys::thread::task::Pool* get_thread_pool(){return thread_pool;}

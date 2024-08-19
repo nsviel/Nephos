@@ -1,5 +1,6 @@
 #include "Node.h"
 
+#include <Dynamic/Namespace.h>
 #include <Core/Namespace.h>
 #include <Module/Namespace.h>
 #include <Utility/Namespace.h>
@@ -12,13 +13,12 @@
 namespace dyn::prc{
 
 //Constructor / Destructor
-Node::Node(core::Node* node_core){
+Node::Node(dyn::Node* node_dynamic){
   //---------------------------
 
-  mod::Node* node_module = node_core->get_node_module();
-  eng::Node* node_engine = node_core->get_node_engine();
+  mod::Node* node_module = node_dynamic->get_node_module();
 
-  this->node_core = node_core;
+  this->node_core = node_dynamic->get_node_core();
   this->node_data = node_core->get_node_data();
   this->node_radio = node_module->get_node_radio();
   this->node_profiler = node_core->get_node_profiler();
