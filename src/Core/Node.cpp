@@ -43,8 +43,6 @@ void Node::init(){
   node_data->init();
   node_io->init();
   node_engine->init();
-  node_module->init();
-  node_dynamic->init();
   node_profiler->init();
 
   //---------------------------
@@ -55,9 +53,6 @@ void Node::loop(){
   tasker->task_begin("eng::loop");
   node_data->loop();
   node_engine->loop();
-  node_dynamic->loop();
-  node_module->loop();
-
   tasker->task_end("eng::loop");
 
   tasker->task_begin("eng::vulkan");
@@ -76,8 +71,7 @@ void Node::gui(){
   node_data->gui();
   node_io->gui();
   node_engine->gui();
-  node_dynamic->gui();
-  node_module->gui();
+
 
   tasker->task_end("eng::gui");
   node_profiler->gui();

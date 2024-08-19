@@ -26,6 +26,7 @@ public:
   //Subfunction
   void init();
   void loop();
+  void gui();
   void reset();
   void end();
 

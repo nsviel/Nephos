@@ -41,9 +41,10 @@ void Node::run(){
 void Node::init(){
   //---------------------------
 
-  node_dynamic->init();
   node_vulkan->init();
   node_core->init();
+  node_dynamic->init();
+  node_module->init();
   node_gui->init();
   node_scene->init();
 
@@ -56,7 +57,17 @@ void Node::loop(){
     node_scene->loop();
     node_gui->loop();
     node_core->loop();
+    node_dynamic->loop();
+    node_module->loop();
   }
+
+  //---------------------------
+}
+void Node::gui(){
+  //---------------------------
+
+  node_dynamic->gui();
+  node_module->gui();
 
   //---------------------------
 }
