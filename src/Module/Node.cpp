@@ -11,7 +11,7 @@ namespace mod{
 Node::Node(core::Node* node_core){
   //---------------------------
 
-  this->node_radio = new rad::Node(node_core);
+  //this->node_radio = new rad::Node(node_core);
 
   //---------------------------
 }
@@ -21,21 +21,21 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_radio->init();
+  //node_radio->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  node_radio->loop();
+  //node_radio->loop();
 
   //---------------------------
 }
 void Node::gui(){
   //---------------------------
 
-  node_radio->gui();
+  //node_radio->gui();
 
   //---------------------------
 }

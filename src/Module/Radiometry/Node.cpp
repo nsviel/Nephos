@@ -21,7 +21,7 @@ Node::Node(core::Node* node_core){
   //Dependancy
   this->node_core = node_core;
   this->node_data = node_core->get_node_data();
-  this->node_profiler = node_engine->get_node_profiler();
+  this->node_profiler = node_core->get_node_profiler();
 
   //Child
   this->node_correction = new rad::correction::Node(this);

@@ -1,9 +1,8 @@
 #pragma once
 
 #include <Engine/Node.h>
-#include <Engine/Camera/Namespace.h>
-#include <Engine/Control/Namespace.h>
-#include <Engine/Renderer/Namespace.h>
-#include <Engine/Transformation/Namespace.h>
-#include <Engine/Operation/Namespace.h>
-#include <Engine/Profiler/Namespace.h>
+#include <Camera/Namespace.h>
+#include <Control/Namespace.h>
+#include <Operation/Namespace.h>
+#include <Renderer/Namespace.h>
+#include <Transformation/Namespace.h>

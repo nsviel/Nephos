@@ -6,6 +6,7 @@ set(LIBRARY_NAME MAIN_CORE)
 add_subdirectory(Data)
 add_subdirectory(Engine)
 add_subdirectory(IO)
+add_subdirectory(Profiler)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp

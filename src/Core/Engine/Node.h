@@ -5,7 +5,7 @@
 namespace vk{class Node;}
 namespace dyn{class Node;}
 namespace dat{class Node;}
-namespace prf{class Node;}
+
 
 namespace core{class Node;}
 namespace cam{class Node;}
@@ -37,7 +37,7 @@ public:
 
   inline cam::Node* get_node_camera(){return node_camera;}
   inline ctr::Node* get_node_control(){return node_control;}
-  inline prf::Node* get_node_profiler(){return node_profiler;}
+
 
 private:
   core::Node* node_core;
@@ -45,7 +45,6 @@ private:
   dat::Node* node_data;
   dyn::Node* node_dynamic;
 
-  prf::Node* node_profiler;
   cam::Node* node_camera;
   rnd::Node* node_renderer;
   ctr::Node* node_control;

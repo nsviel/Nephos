@@ -3,6 +3,7 @@
 #include <Control/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Camera/Namespace.h>
 
 
 namespace ctr::mode{

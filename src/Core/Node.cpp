@@ -16,13 +16,14 @@ namespace core{
 //Constructor / Destructor
 Node::Node(app::Node* node_app){
   //---------------------------
-sayHello();
+
   this->node_app = node_app;
 
   this->node_vulkan = node_app->get_node_vulkan();
 
   this->thread_pool = new sys::thread::task::Pool(50);
   this->node_data = new dat::Node(this);
+  this->node_profiler = new prf::Node(this);
   this->node_module = new mod::Node(this);
 
   this->node_dynamic = new dyn::Node(this);
@@ -31,10 +32,9 @@ sayHello();
   this->node_io = new io::Node(this);
 
   //Tasker CPU
-  prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::dynamic::Manager* prf_dynamic = node_profiler->get_prf_dynamic();
   this->tasker = prf_dynamic->get_tasker_cpu();
-sayHello();
+
   //---------------------------
 }
 Node::~Node(){}
@@ -47,6 +47,7 @@ void Node::init(){
   node_engine->init();
   node_module->init();
   node_dynamic->init();
+  node_profiler->init();
 
   //---------------------------
 }
@@ -58,6 +59,7 @@ void Node::loop(){
   node_engine->loop();
   node_dynamic->loop();
   node_module->loop();
+  node_profiler->loop();
   tasker->task_end("eng::loop");
 
   tasker->task_begin("eng::vulkan");
@@ -78,7 +80,7 @@ void Node::gui(){
   node_module->gui();
 
   tasker->task_end("eng::gui");
-
+  node_profiler->gui();
   //---------------------------
 }
 void Node::clean(){

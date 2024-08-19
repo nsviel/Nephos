@@ -8,7 +8,6 @@ add_subdirectory(Renderer)
 add_subdirectory(Control)
 add_subdirectory(Transformation)
 add_subdirectory(Operation)
-add_subdirectory(Profiler)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
