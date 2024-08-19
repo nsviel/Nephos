@@ -1,7 +1,7 @@
 #include "Node.h"
 #include "Namespace.h"
 
-#include <Core/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace dat::atr{
@@ -10,7 +10,7 @@ namespace dat::atr{
 Node::Node(dat::Node* node_data){
   //---------------------------
 
-  this->node_core = node_core;
+  this->node_element = node_data->get_node_element();
   this->atr_struct = new dat::atr::Structure();
   this->gui_panel = new dat::atr::gui::Panel(this);
 

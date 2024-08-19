@@ -1,7 +1,7 @@
 #include "Element.h"
 
+#include <Data/Element/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Element/Namespace.h>
 
 
 namespace dat::elm{

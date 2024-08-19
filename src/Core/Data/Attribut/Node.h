@@ -2,8 +2,8 @@
 
 #include <Utility/Base/Class/Node.h>
 
-namespace core{class Node;}
 namespace dat{class Node;}
+namespace dat::elm{class Node;}
 namespace dat::atr{class Structure;}
 namespace dat::atr::gui{class Panel;}
 
@@ -18,12 +18,12 @@ public:
   ~Node();
 
 public:
-  inline core::Node* get_node_core(){return node_core;}
+  inline dat::elm::Node* get_node_element(){return node_element;}
   inline dat::atr::Structure* get_atr_struct(){return atr_struct;}
   inline dat::atr::gui::Panel* get_gui_panel(){return gui_panel;}
 
 private:
-  core::Node* node_core;
+  dat::elm::Node* node_element;
   dat::atr::Structure* atr_struct;
   dat::atr::gui::Panel* gui_panel;
 };

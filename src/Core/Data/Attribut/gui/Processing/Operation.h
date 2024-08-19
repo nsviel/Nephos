@@ -1,11 +1,12 @@
 #pragma once
 
-namespace core{class Node;}
 namespace dat::atr{class Node;}
 namespace dat::img{class Converter;}
+namespace dat::elm{class Element;}
+namespace dat::elm{class Image;}
 namespace dat::atr::gui{class Normal;}
 namespace utl::base{class Element;}
-namespace dat::elm{class Element;}
+
 
 
 namespace dat::atr::gui{
@@ -25,9 +26,9 @@ public:
   void draw_img_image(utl::base::Element* element);
 
 private:
-  core::Node* node_core;
   dat::img::Converter* img_image;
   dat::elm::Element* dat_element;
+  dat::elm::Image* dat_image;
   dat::atr::gui::Normal* gui_normal;
 };
 

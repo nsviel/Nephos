@@ -1,6 +1,6 @@
 #include "Grid.h"
 
-#include <Element/Namespace.h>
+#include <Data/Element/Namespace.h>
 
 
 namespace dat::glyph::grid{
@@ -34,7 +34,7 @@ void Grid::create(){
 
   //Contruct
   this->construct(nb_cell);
-  
+
   //---------------------------
 }
 void Grid::construct(int nb_cell){

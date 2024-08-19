@@ -1,7 +1,6 @@
 #include "Axis.h"
 
-#include <Element/Namespace.h>
-#include <Engine/Namespace.h>
+#include <Data/Element/Namespace.h>
 
 
 namespace dat::glyph::object{
