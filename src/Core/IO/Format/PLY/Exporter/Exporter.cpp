@@ -11,7 +11,7 @@ Exporter::Exporter(){
   //---------------------------
 
   this->io_header = new fmt::ply::exporter::Header();
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
 
   this->format = ".ply";
   this->vec_encoding.push_back(io::exp::ASCII);
@@ -80,14 +80,14 @@ void Exporter::build_structure(io::exp::Configuration& config, utl::base::Data* 
   }
 
   //Intensity
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   if(vec_I.size() != 0){
     config.vec_property.push_back(io::exp::I);
     config.nb_property++;
   }
 
   //Timestamp
-  std::vector<float>& vec_ts = utl_attribut->get_field_data(data, "ts");
+  std::vector<float>& vec_ts = atr_field->get_field_data(data, "ts");
   if(vec_ts.size() != 0){
     config.vec_property.push_back(io::exp::TS);
     config.nb_property++;
@@ -102,7 +102,7 @@ void Exporter::write_data_ascii(io::exp::Configuration& config, std::ofstream& f
   std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   int precision = 6;
 
   //Write data in the file
@@ -145,8 +145,8 @@ void Exporter::write_data_binary(io::exp::Configuration& config, std::ofstream& 
   std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
-  std::vector<float>& vec_ts = utl_attribut->get_field_data(data, "ts");
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
+  std::vector<float>& vec_ts = atr_field->get_field_data(data, "ts");
   int precision = 6;
 
   //Prepare data writing by blocks

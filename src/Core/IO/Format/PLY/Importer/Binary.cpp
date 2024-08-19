@@ -9,7 +9,7 @@ namespace fmt::ply::importer{
 Binary::Binary(){
   //---------------------------
 
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
 
   //---------------------------
 }
@@ -43,7 +43,7 @@ void Binary::parse_binary(io::imp::Configuration* config, dat::base::Object* obj
   object->data.rgb = buffer.rgb;
   object->data.rgba = buffer.rgba;
   object->data.size = buffer.xyz.size();
-  utl_attribut->set_field_data(&object->data, "I", buffer.Is);
+  atr_field->set_field_data(&object->data, "I", buffer.Is);
 
   //Close file
   file.close();

@@ -10,7 +10,7 @@ namespace dat::img{
 Converter::Converter(){
   //---------------------------
 
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
 
   //---------------------------
 }
@@ -57,7 +57,7 @@ void Converter::convert_intensity_to_image(utl::base::Data* data, utl::media::Im
   if(data == nullptr) return;
   //---------------------------
 
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   std::vector<uint8_t> output = std::vector<uint8_t>(vec_I.size() * 4, 0);
 
   // Convert the float value to uint8_t
@@ -83,7 +83,7 @@ void Converter::convert_spherical_pc_to_image(utl::base::Data* data, utl::media:
   if(data == nullptr) return;
   //---------------------------
 
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   std::vector<glm::vec3>& vec_xyz = data->xyz;
   int width = 10000;
   int height = 5000;
@@ -134,7 +134,7 @@ void Converter::convert_whole_spherical_pc_to_image(utl::base::Data* data, utl::
   if(data == nullptr) return;
   //---------------------------
 
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   std::vector<glm::vec3>& vec_xyz = data->xyz;
   int width = 20000;
   int height = 10000;

@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 
 namespace utl::base{class Data;}
-namespace utl::base{class Attribut;}
+namespace dat::atr{class Field;}
 namespace utl::media{class Image;}
 
 
@@ -26,7 +26,7 @@ public:
   void convert_color_to_image(utl::base::Data* data, utl::media::Image* image);
 
 private:
-  utl::base::Attribut* utl_attribut;
+  dat::atr::Field* atr_field;
 };
 
 }

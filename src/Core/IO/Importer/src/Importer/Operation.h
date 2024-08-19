@@ -16,7 +16,7 @@ namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace eng::trf{class Transformation;}
 namespace eng::trf{class Operation;}
-namespace utl::base{class Attribut;}
+namespace dat::atr{class Field;}
 
 
 namespace io::imp{
@@ -49,7 +49,7 @@ private:
   dat::gph::Selection* dat_selection;
   eng::trf::Transformation* trf_transform;
   eng::trf::Operation* trf_operation;
-  utl::base::Attribut* utl_attribut;
+  dat::atr::Field* atr_field;
 };
 
 }

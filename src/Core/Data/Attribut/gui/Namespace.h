@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Panel.h"
-#include "Attribut/Namespace.h"
-#include "Processing/Namespace.h"
+#include <Attribut/gui/Panel.h>
+#include <Attribut/gui/Attribut/Namespace.h>
+#include <Attribut/gui/Processing/Namespace.h>

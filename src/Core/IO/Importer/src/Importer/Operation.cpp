@@ -26,7 +26,7 @@ Operation::Operation(io::imp::Node* node_importer){
   this->dat_selection = node_graph->get_dat_selection();
   this->trf_transform = new eng::trf::Transformation();
   this->trf_operation = new eng::trf::Operation();
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
 
   //---------------------------
 }
@@ -71,7 +71,7 @@ void Operation::ope_color(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  std::vector<float>& vec_I = utl_attribut->get_field_data(&entity->data, "I");
+  std::vector<float>& vec_I = atr_field->get_field_data(&entity->data, "I");
 
   //If color
   if(entity->data.rgba.size() != 0) return;

@@ -10,7 +10,7 @@ namespace fmt::pts{
 Exporter::Exporter(){
   //---------------------------
 
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
 
   this->format = ".pts";
   this->vec_encoding.push_back(io::exp::ASCII);
@@ -45,7 +45,7 @@ void Exporter::write_data_ascii(io::exp::Configuration& config, utl::base::Data*
   std::vector<glm::vec3>& rgb = data->rgb;
   std::vector<glm::vec4>& rgba = data->rgba;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
 
   //Write in the file
   int precision = 6;

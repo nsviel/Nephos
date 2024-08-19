@@ -11,7 +11,7 @@ namespace fmt::pts{
 Importer::Importer(){
   //---------------------------
 
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
 
   this->Is_format = fmt::pts::F2048_2048;
   this->format = ".pts";
@@ -281,7 +281,7 @@ void Importer::transfer_data(io::imp::Configuration& config, utl::base::Data* da
   data->Nxyz = buffer.Nxyz;
   data->rgb = buffer.rgb;
   data->size = buffer.xyz.size();
-  utl_attribut->set_field_data(data, "I", buffer.Is);
+  atr_field->set_field_data(data, "I", buffer.Is);
 
   //---------------------------
 }

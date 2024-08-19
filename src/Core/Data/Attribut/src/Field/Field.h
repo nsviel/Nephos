@@ -8,13 +8,13 @@ namespace utl::base{class Data;}
 namespace utl::base{class Field;}
 
 
-namespace utl::base{
+namespace dat::atr{
 
-class Attribut
+class Field
 {
 public:
-  Attribut();
-  ~Attribut();
+  Field();
+  ~Field();
 
 public:
   //Main function

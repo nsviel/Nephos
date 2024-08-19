@@ -5,7 +5,7 @@
 namespace dat::atr{class Node;}
 namespace dat::atr{class Structure;}
 namespace dat::atr{class Heatmap;}
-namespace utl::base{class Attribut;}
+namespace dat::atr{class Field;}
 namespace utl::base{class Element;}
 namespace dat::base{class Entity;}
 namespace dat::base{class Set;}
@@ -36,7 +36,7 @@ public:
 private:
   dat::atr::Structure* atr_struct;
   dat::atr::Heatmap* atr_heatmap;
-  utl::base::Attribut* utl_attribut;
+  dat::atr::Field* atr_field;
 };
 
 }

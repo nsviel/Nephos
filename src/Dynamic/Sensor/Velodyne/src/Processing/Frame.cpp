@@ -11,7 +11,7 @@ Frame::Frame(){
 
   this->frame_onrun = new utl::base::Data();
   this->frame_ended = new utl::base::Data();
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
 
   //---------------------------
 }
@@ -81,7 +81,7 @@ void Frame::reset_frame(){
 void Frame::add_data_to_frame(utl::base::Data* data){
   //---------------------------
 /*
-  std::vector<float>& vec_R = utl_attribut->get_field_data(data, "R");
+  std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
 
   for(int i=0; i<data->xyz.size(); i++){
     frame_onrun->xyz.push_back(data->xyz[i]);
@@ -96,7 +96,7 @@ void Frame::add_data_to_frame(utl::base::Data* data){
 void Frame::end_data_to_frame(utl::base::Data* data, int index){
   //---------------------------
 /*
-  std::vector<float>& vec_R = utl_attribut->get_field_data(data, "R");
+  std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
 
   for(int i=0; i<index; i++){
     frame_onrun->xyz.push_back(data->xyz[i]);

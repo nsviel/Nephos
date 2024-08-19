@@ -4,7 +4,7 @@ namespace dat::atr{class Node;}
 namespace dat::atr{class Structure;}
 namespace dat::atr{class Color;}
 namespace utl::base{class Element;}
-namespace utl::base{class Attribut;}
+namespace dat::atr{class Field;}
 namespace dat::base{class Entity;}
 namespace dat::elm{class Element;}
 
@@ -35,7 +35,7 @@ public:
 private:
   dat::atr::Structure* atr_struct;
   dat::atr::Color* atr_color;
-  utl::base::Attribut* utl_attribut;
+  dat::atr::Field* atr_field;
   dat::elm::Element* dat_element;
 };
 

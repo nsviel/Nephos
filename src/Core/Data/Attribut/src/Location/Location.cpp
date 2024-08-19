@@ -11,7 +11,7 @@ namespace dat::atr{
 Location::Location(){
   //---------------------------
 
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
 
   //---------------------------
 }
@@ -151,7 +151,7 @@ void Location::compute_height(dat::base::Entity* entity){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<float>& vec_h = utl_attribut->get_field_data(data, "H");
+  std::vector<float>& vec_h = atr_field->get_field_data(data, "H");
   if(vec_h.size() != 0) return;
   vec_h = std::vector<float>(xyz.size());
 
@@ -169,7 +169,7 @@ void Location::compute_range(dat::base::Entity* entity){
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<float>& vec_R = utl_attribut->get_field_data(data, "R");
+  std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
   if(vec_R.size() != 0) return;
   vec_R.resize(xyz.size(), 0.0f);
 
@@ -185,8 +185,8 @@ void Location::compute_incidence_angle(dat::base::Entity* entity){
   utl::base::Data* data = &entity->data;
   //---------------------------
 
-  std::vector<float>& It = utl_attribut->get_field_data(data, "It");
-  std::vector<float>& R = utl_attribut->get_field_data(data, "R");
+  std::vector<float>& It = atr_field->get_field_data(data, "It");
+  std::vector<float>& R = atr_field->get_field_data(data, "R");
   std::vector<glm::vec3>& xyz = data->xyz;
   std::vector<glm::vec3>& Nxyz = data->Nxyz;
 

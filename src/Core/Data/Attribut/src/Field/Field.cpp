@@ -1,21 +1,21 @@
-#include "Attribut.h"
+#include "Field.h"
 
 #include <Utility/Namespace.h>
 
 
-namespace utl::base{
+namespace dat::atr{
 
 //Constructor / Destructor
-Attribut::Attribut(){
+Field::Field(){
   //---------------------------
 
 
   //---------------------------
 }
-Attribut::~Attribut(){}
+Field::~Field(){}
 
 //Subfunction
-std::vector<std::string> Attribut::get_field_names(utl::base::Data* data){
+std::vector<std::string> Field::get_field_names(utl::base::Data* data){
   std::vector<std::string> vec_name;
   //---------------------------
 
@@ -29,7 +29,7 @@ std::vector<std::string> Attribut::get_field_names(utl::base::Data* data){
   return vec_name;
 
 }
-std::vector<float>& Attribut::get_field_data(utl::base::Data* data, std::string name){
+std::vector<float>& Field::get_field_data(utl::base::Data* data, std::string name){
   //---------------------------
 
   utl::base::Field* field = get_field(data, name);
@@ -43,7 +43,7 @@ std::vector<float>& Attribut::get_field_data(utl::base::Data* data, std::string 
   //---------------------------
   return field->data;
 }
-utl::base::Field* Attribut::get_field(utl::base::Data* data, std::string name){
+utl::base::Field* Field::get_field(utl::base::Data* data, std::string name){
   if(name == "") return nullptr;
   //---------------------------
 
@@ -56,7 +56,7 @@ utl::base::Field* Attribut::get_field(utl::base::Data* data, std::string name){
   //---------------------------
   return nullptr;
 }
-glm::vec2 Attribut::get_field_range(utl::base::Data* data, std::string name){
+glm::vec2 Field::get_field_range(utl::base::Data* data, std::string name){
   //---------------------------
 
   //Get data
@@ -73,7 +73,7 @@ glm::vec2 Attribut::get_field_range(utl::base::Data* data, std::string name){
   //---------------------------
   return range;
 }
-void Attribut::set_field_data(utl::base::Data* data, std::string name, std::vector<float>& vec){
+void Field::set_field_data(utl::base::Data* data, std::string name, std::vector<float>& vec){
   if(vec.size() == 0) return;
   //---------------------------
 
@@ -85,7 +85,7 @@ void Attribut::set_field_data(utl::base::Data* data, std::string name, std::vect
 
   //---------------------------
 }
-void Attribut::create_field(utl::base::Data* data, std::string name){
+void Field::create_field(utl::base::Data* data, std::string name){
   //---------------------------
 
   //Check if field is already present

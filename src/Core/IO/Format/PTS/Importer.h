@@ -11,7 +11,7 @@
 #include <fstream>
 #include <iostream>
 
-namespace utl::base{class Attribut;}
+namespace dat::atr{class Field;}
 
 
 namespace fmt::pts{
@@ -43,7 +43,7 @@ private:
   std::vector<float> retrieve_column(io::imp::Configuration& config, int idx);
 
 private:
-  utl::base::Attribut* utl_attribut;
+  dat::atr::Field* atr_field;
 
   io::imp::Buffer buffer;
   fmt::pts::Format Is_format;

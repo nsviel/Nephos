@@ -21,7 +21,7 @@ Correction::Correction(rad::correction::Node* node_correction){
   this->rad_io_model = node_correction->get_rad_io_model();
   this->dat_image = node_element->get_dat_image();
   this->dat_selection = node_graph->get_dat_selection();
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
 
   //---------------------------
 }
@@ -49,9 +49,9 @@ void Correction::make_correction(dyn::prc::base::Sensor* sensor, utl::media::Ima
   //---------------------------
 
   utl::base::Data* data = &sensor->data;
-  std::vector<float>& vec_R = utl_attribut->get_field_data(data, "R");
-  std::vector<float>& vec_It = utl_attribut->get_field_data(data, "It");
-  std::vector<float>& vec_Icor = utl_attribut->get_field_data(data, "I_cor");
+  std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
+  std::vector<float>& vec_It = atr_field->get_field_data(data, "It");
+  std::vector<float>& vec_Icor = atr_field->get_field_data(data, "I_cor");
   std::vector<float> Is_cor = std::vector<float>(data->xyz.size(), 0.0f);
 
   #pragma omp parallel for

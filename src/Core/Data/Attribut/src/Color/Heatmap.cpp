@@ -12,7 +12,7 @@ Heatmap::Heatmap(dat::atr::Node* node_attribut){
   //---------------------------
 
   this->atr_struct = node_attribut->get_atr_struct();
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
 
   //---------------------------
 }
@@ -24,7 +24,7 @@ void Heatmap::colorization_heatmap(dat::base::Entity* entity){
   //---------------------------
 
   //Normalization
-  std::vector<float>& vec_field = utl_attribut->get_field_data(data, atr_struct->color.field);
+  std::vector<float>& vec_field = atr_field->get_field_data(data, atr_struct->color.field);
   std::vector<float> field = vec_field;
   math::normalize(field, atr_struct->color.range, glm::vec2(0, 1));
 

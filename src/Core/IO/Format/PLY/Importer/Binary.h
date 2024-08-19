@@ -13,7 +13,7 @@
 #include <stdint.h>
 #include <cstdint>
 
-namespace utl::base{class Attribut;}
+namespace dat::atr{class Field;}
 
 
 namespace fmt::ply::importer{
@@ -51,7 +51,7 @@ public:
   float get_ushort_from_binary(char* block_data, int& offset);
 
 private:
-  utl::base::Attribut* utl_attribut;
+  dat::atr::Field* atr_field;
 
   io::imp::Buffer buffer;
 };

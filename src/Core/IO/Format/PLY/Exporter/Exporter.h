@@ -8,7 +8,7 @@
 #include <iomanip> //setprecision
 
 namespace utl::base{class Pose;}
-namespace utl::base{class Attribut;}
+namespace dat::atr{class Field;}
 namespace fmt::ply::exporter{class Header;}
 
 
@@ -32,7 +32,7 @@ public:
 
 private:
   fmt::ply::exporter::Header* io_header;
-  utl::base::Attribut* utl_attribut;
+  dat::atr::Field* atr_field;
 };
 
 }
