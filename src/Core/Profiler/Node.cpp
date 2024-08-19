@@ -11,7 +11,6 @@ Node::Node(core::Node* node_core){
   utl::gui::Panel* prf_panel = add_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
-  this->node_core = node_core;
   this->node_vulkan = node_core->get_node_vulkan();
 
   this->prf_struct = new prf::Structure();

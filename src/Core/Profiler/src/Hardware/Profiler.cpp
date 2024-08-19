@@ -1,7 +1,7 @@
 #include "Profiler.h"
 
-#include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace prf::hardware{
@@ -30,7 +30,7 @@ void Profiler::init(){
 }
 void Profiler::loop(){
   //---------------------------
-  
+
   cpu_device->collect_cpu_variable();
   gpu_device->collect_gpu_variable();
 
