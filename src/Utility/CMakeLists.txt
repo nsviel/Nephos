@@ -1,4 +1,4 @@
-set(LIBRARY_NAME SYSTEM_HARDWARE)
+set(LIBRARY_NAME CORE_UTILITY)
 
 #-----------------
 # Source files
@@ -15,9 +15,13 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  CORE_UTILITY
-  CORE_SYSTEM
+  MAIN_EXTERN
+
+  Eigen3::Eigen # Eigen
+  -lstdc++fs    # std::experimental::filesystem
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

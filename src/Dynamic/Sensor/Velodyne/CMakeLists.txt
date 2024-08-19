@@ -5,7 +5,6 @@ set(LIBRARY_NAME LIBRARY_VELODYNE)
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
-  *.h
 )
 
 #-----------------

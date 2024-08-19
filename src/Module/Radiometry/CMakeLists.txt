@@ -5,7 +5,6 @@ set(LIBRARY_NAME MODULE_RADIOMETRY)
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
-  *.h
 )
 
 #-----------------

@@ -6,7 +6,6 @@ set(LIBRARY_NAME ENGINE_CAMERA)
 
 file(GLOB_RECURSE ALL_SOURCES
   *.cpp
-  *.h
 )
 
 #-----------------

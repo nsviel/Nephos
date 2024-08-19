@@ -22,6 +22,7 @@ Node::Node(core::Node* node_core){
   this->node_control = new ctr::Node(this);
   this->node_renderer = new rnd::Node(this);
   this->node_transfor = new eng::trf::Node(this);
+  this->node_profiler = new prf::Node(node_core);
 
   //---------------------------
 }
@@ -33,6 +34,7 @@ void Node::init(){
   node_camera->init();
   node_renderer->init();
   node_transfor->init();
+  node_profiler->init();
 
   //---------------------------
 }
@@ -40,6 +42,7 @@ void Node::loop(){
   //---------------------------
 
   node_camera->loop();
+  node_profiler->loop();
 
   //---------------------------
 }
@@ -48,6 +51,7 @@ void Node::gui(){
 
   node_camera->gui();
   node_renderer->gui();
+  node_profiler->gui();
 
   //---------------------------
 }
