@@ -1,8 +1,9 @@
 #include "Panel.h"
 
-#include <Transformation/Namespace.h>
-#include <Element/Namespace.h>
-#include <Attribut/Namespace.h>
+#include <Data/Element/Namespace.h>
+#include <Data/Attribut/Namespace.h>
+#include <Data/Element/Namespace.h>
+#include <Engine/Transformation/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 #include <imgui/core/imgui.h>
 

@@ -18,8 +18,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
   ENGINE_TRANSFORMATION
-  MAIN_CORE
-
+  CORE_DATA
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

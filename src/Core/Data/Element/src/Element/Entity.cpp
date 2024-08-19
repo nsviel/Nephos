@@ -1,10 +1,11 @@
 #include "Entity.h"
 
+#include <Data/Element/Namespace.h>
+#include <Data/Attribut/Namespace.h>
+
 #include <Core/Namespace.h>
 #include <Operation/Namespace.h>
-#include <Element/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Attribut/Namespace.h>
 #include <Engine/Namespace.h>
 
 

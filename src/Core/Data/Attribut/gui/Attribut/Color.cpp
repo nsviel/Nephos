@@ -1,6 +1,7 @@
 #include "Color.h"
 
-#include <Data/Namespace.h>
+#include <Data/Attribut/Namespace.h>
+#include <Data/Element/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -12,8 +13,8 @@ Color::Color(dat::atr::Node* node_attribut){
 
   this->atr_struct = node_attribut->get_atr_struct();
   this->atr_color = new dat::atr::Color(node_attribut);
-  this->dat_element = new dat::elm::Element();
   this->atr_field = new dat::atr::Field();
+  this->dat_element = new dat::elm::Element();
 
   //---------------------------
 }

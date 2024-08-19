@@ -1,7 +1,7 @@
 #include "Data.h"
 
-#include <Element/Namespace.h>
-#include <Transformation/Namespace.h>
+#include <Data/Element/Namespace.h>
+#include <Engine/Transformation/Namespace.h>
 #include <imgui/core/imgui.h>
 
 

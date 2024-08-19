@@ -19,8 +19,8 @@ Node::Node(core::Node* node_core){
   this->node_vulkan = node_core->get_node_vulkan();
 
   //Child
-  this->node_attribut = new dat::atr::Node(this);
   this->node_element = new dat::elm::Node(this);
+  this->node_attribut = new dat::atr::Node(this);
   this->node_graph = new dat::gph::Node(this);
   this->node_player = new dat::ply::Node(this);
 

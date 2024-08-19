@@ -18,8 +18,4 @@ Node::Node(dat::Node* node_data){
 }
 Node::~Node(){}
 
-//Main function
-
-//Subfunction
-
 }

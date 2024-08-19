@@ -29,7 +29,7 @@ public:
   inline void set_knn(int value){this->k = value;}
 
 private:
-  dat::img::Converter* ope_converter;
+  dat::img::Converter* img_converter;
 
   float R_thres;
   float time;

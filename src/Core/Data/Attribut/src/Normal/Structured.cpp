@@ -1,9 +1,6 @@
 #include "Structured.h"
 
-#include <Data/Attribut/Namespace.h>
-#include <Data/Element/Namespace.h>
-#include <Data/Image/Namespace.h>
-#include <Operation/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 #include <cstdlib>
 #include <chrono>
@@ -15,7 +12,7 @@ namespace dat::atr::normal{
 Structured::Structured(){
   //---------------------------
 
-  this->ope_converter = new dat::img::Converter();
+  this->img_converter = new dat::img::Converter();
 
   this->time = 0;
   this->R_thres = 0.1f;

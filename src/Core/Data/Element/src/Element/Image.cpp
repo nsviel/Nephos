@@ -1,6 +1,6 @@
 #include "Image.h"
 
-#include <Element/Namespace.h>
+#include <Data/Element/Namespace.h>
 #include <Utility/Namespace.h>
 
 

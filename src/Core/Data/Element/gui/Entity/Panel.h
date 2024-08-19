@@ -7,7 +7,6 @@ namespace dat::elm{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::gui::entity{class Topology;}
 namespace dat::gui::entity{class Data;}
-namespace dat::atr{class Location;}
 namespace eng::trf{class Operation;}
 namespace utl::base{class Data;}
 
@@ -34,7 +33,6 @@ public:
   inline void set_entity(dat::base::Entity* entity){this->entity = entity;}
 
 private:
-  dat::atr::Location* atr_location;
   eng::trf::Operation* trf_operation;
   dat::elm::Set* dat_set;
   dat::gui::entity::Topology* gui_topology;
