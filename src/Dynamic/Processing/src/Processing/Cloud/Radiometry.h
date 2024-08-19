@@ -15,7 +15,7 @@ class Radiometry
 {
 public:
   //Constructor / Destructor
-  Radiometry(dyn::prc::Node* node_dynamic);
+  Radiometry(dyn::prc::Node* node_processing);
   ~Radiometry();
 
 public:

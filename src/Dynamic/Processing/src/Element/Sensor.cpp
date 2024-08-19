@@ -9,12 +9,12 @@
 namespace dyn::prc::element{
 
 //Constructor / Destructor
-Sensor::Sensor(dyn::prc::Node* node_dynamic){
+Sensor::Sensor(dyn::prc::Node* node_processing){
   //---------------------------
 
-  prf::Node* node_profiler = node_dynamic->get_node_profiler();
+  prf::Node* node_profiler = node_processing->get_node_profiler();
 
-  this->dyn_struct = node_dynamic->get_dyn_struct();
+  this->dyn_struct = node_processing->get_dyn_struct();
   this->prf_dynamic = node_profiler->get_prf_dynamic();
 
   //---------------------------

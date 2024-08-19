@@ -19,7 +19,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 find_package(OpenCV REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  CORE_UTILITY
+  MAIN_UTILITY
 
   ${OpenCV_LIBS}
 )

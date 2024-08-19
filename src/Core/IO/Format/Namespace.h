@@ -1,9 +1,9 @@
 #pragma once
 
-#include "OBJ/Importer.h"
-#include "CSV/Importer.h"
-#include "PTX/Importer.h"
-#include "XYZ/Importer.h"
-#include "PLY/Namespace.h"
-#include "PTS/Namespace.h"
-#include "HDF5/Namespace.h"
+#include <IO/Format/OBJ/Importer.h>
+#include <IO/Format/CSV/Importer.h>
+#include <IO/Format/PTX/Importer.h>
+#include <IO/Format/XYZ/Importer.h>
+#include <IO/Format/PLY/Namespace.h>
+#include <IO/Format/PTS/Namespace.h>
+#include <IO/Format/HDF5/Namespace.h>

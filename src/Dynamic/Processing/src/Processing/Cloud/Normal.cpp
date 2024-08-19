@@ -13,15 +13,15 @@
 namespace dyn::prc::cloud{
 
 // Constructor / Destructor
-Normal::Normal(dyn::prc::Node* node_dynamic){
+Normal::Normal(dyn::prc::Node* node_processing){
   //---------------------------
 
-  core::Node* node_core = node_dynamic->get_node_core();
-  dat::Node* node_data = node_dynamic->get_node_data();
+  core::Node* node_core = node_processing->get_node_core();
+  dat::Node* node_data = node_processing->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
-
+  
   this->thread_pool = node_core->get_thread_pool();
-  this->dyn_struct = node_dynamic->get_dyn_struct();
+  this->dyn_struct = node_processing->get_dyn_struct();
   this->dat_image = node_element->get_dat_image();
   this->dat_glyph = node_element->get_dat_glyph();
   this->ope_converter = new dat::img::Converter();

@@ -20,7 +20,7 @@ class Operation
 {
 public:
   //Constructor / Destructor
-  Operation(dyn::prc::Node* node_dynamic);
+  Operation(dyn::prc::Node* node_processing);
   ~Operation();
 
 public:

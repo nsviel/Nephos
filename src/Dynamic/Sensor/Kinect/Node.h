@@ -5,7 +5,7 @@
 namespace dat{class Node;}
 namespace core{class Node;}
 namespace io{class Node;}
-namespace dyn::prc{class Node;}
+namespace dyn{class Node;}
 namespace dat::gph{class Graph;}
 namespace sys::thread::task{class Pool;}
 namespace k4n::capture{class Connection;}
@@ -38,7 +38,7 @@ private:
   io::Node* node_io;
   core::Node* node_core;
   dat::Node* node_data;
-  dyn::prc::Node* node_dynamic;
+  dyn::Node* node_dynamic;
 
   //Child
   sys::thread::task::Pool* thread_pool;

@@ -22,7 +22,7 @@ class Normal
 {
 public:
   // Constructor / Destructor
-  Normal(dyn::prc::Node* node_dynamic);
+  Normal(dyn::prc::Node* node_processing);
   ~Normal();
 
 public:

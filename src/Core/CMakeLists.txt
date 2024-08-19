@@ -20,7 +20,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  CORE_UTILITY
+  MAIN_UTILITY
   MAIN_VULKAN
   MAIN_MODULE
   DYNAMIC_PROCESSING
@@ -28,8 +28,6 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   CORE_DATA
   CORE_IO
   CORE_ENGINE
-  CORE_SYSTEM
-  CORE_UTILITY
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

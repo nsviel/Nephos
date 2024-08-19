@@ -13,7 +13,7 @@ class Sensor
 {
 public:
   //Constructor / Destructor
-  Sensor(dyn::prc::Node* node_dynamic);
+  Sensor(dyn::prc::Node* node_processing);
   ~Sensor();
 
 public:

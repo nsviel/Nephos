@@ -22,7 +22,6 @@ Node::Node(app::Node* node_app){
   this->node_vulkan = node_app->get_node_vulkan();
 
   this->thread_pool = new sys::thread::task::Pool(50);
-  this->node_system = new sys::Node(this);
   this->node_data = new dat::Node(this);
   this->node_module = new mod::Node(this);
 
@@ -32,7 +31,7 @@ Node::Node(app::Node* node_app){
   this->node_io = new io::Node(this);
 
   //Tasker CPU
-  prf::Node* node_profiler = node_system->get_node_profiler();
+  prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::dynamic::Manager* prf_dynamic = node_profiler->get_prf_dynamic();
   this->tasker = prf_dynamic->get_tasker_cpu();
 

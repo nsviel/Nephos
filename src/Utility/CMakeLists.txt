@@ -1,4 +1,4 @@
-set(LIBRARY_NAME CORE_UTILITY)
+set(LIBRARY_NAME MAIN_UTILITY)
 
 #-----------------
 # Source files

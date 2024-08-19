@@ -9,11 +9,11 @@
 namespace dyn::prc::cloud{
 
 //Constructor / Destructor
-Radiometry::Radiometry(dyn::prc::Node* node_dynamic){
+Radiometry::Radiometry(dyn::prc::Node* node_processing){
   //---------------------------
 
-  dat::Node* node_data = node_dynamic->get_node_data();
-  rad::Node* node_radio = node_dynamic->get_node_radio();
+  dat::Node* node_data = node_processing->get_node_data();
+  rad::Node* node_radio = node_processing->get_node_radio();
   rad::correction::Node* node_correction = node_radio->get_node_correction();
   dat::elm::Node* node_element = node_data->get_node_element();
 

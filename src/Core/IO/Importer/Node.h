@@ -5,7 +5,7 @@
 namespace vk{class Node;}
 namespace dat{class Node;}
 namespace core{class Node;}
-namespace dyn::prc{class Node;}
+namespace dyn{class Node;}
 namespace io::imp{class Structure;}
 namespace io::imp{class Importer;}
 namespace io::imp{class Operation;}
@@ -30,7 +30,7 @@ public:
   inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline dyn::prc::Node* get_node_dynamic(){return node_dynamic;}
+  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
 
   inline io::imp::Structure* get_io_struct(){return io_struct;}
   inline io::imp::Importer* get_io_importer(){return io_importer;}
@@ -42,7 +42,7 @@ private:
   core::Node* node_core;
   vk::Node* node_vulkan;
   dat::Node* node_data;
-  dyn::prc::Node* node_dynamic;
+  dyn::Node* node_dynamic;
 
   //Child
   io::imp::Structure* io_struct;

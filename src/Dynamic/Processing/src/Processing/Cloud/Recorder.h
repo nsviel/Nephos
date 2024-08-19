@@ -15,7 +15,7 @@ class Recorder : public dyn::prc::base::Recorder
 {
 public:
   //Constructor / Destructor
-  Recorder(dyn::prc::Node* node_dynamic);
+  Recorder(dyn::prc::Node* node_processing);
   ~Recorder();
 
 public:

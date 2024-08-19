@@ -18,7 +18,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  CORE_UTILITY
+  MAIN_UTILITY
   MAIN_VULKAN
 
   Eigen3::Eigen # Eigen

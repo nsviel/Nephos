@@ -19,7 +19,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  CORE_UTILITY
+  MAIN_UTILITY
 
   DYNAMIC_PROCESSING
   DYNAMIC_SENSOR

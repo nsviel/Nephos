@@ -9,12 +9,12 @@
 namespace dyn::prc::image{
 
 //Constructor / Destructor
-Operation::Operation(dyn::prc::Node* node_dynamic){
+Operation::Operation(dyn::prc::Node* node_processing){
   //---------------------------
 
-  core::Node* node_core = node_dynamic->get_node_core();
+  core::Node* node_core = node_processing->get_node_core();
 
-  this->dyn_struct = node_dynamic->get_dyn_struct();
+  this->dyn_struct = node_processing->get_dyn_struct();
   this->thread_pool = node_core->get_thread_pool();
 
   //---------------------------

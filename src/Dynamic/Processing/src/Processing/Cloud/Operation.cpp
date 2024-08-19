@@ -8,18 +8,18 @@
 namespace dyn::prc::cloud{
 
 //Constructor / Destructor
-Operation::Operation(dyn::prc::Node* node_dynamic){
+Operation::Operation(dyn::prc::Node* node_processing){
   //---------------------------
 
-  dat::Node* node_data = node_dynamic->get_node_data();
+  dat::Node* node_data = node_processing->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
   dat::atr::Node* node_attribut = node_data->get_node_attribut();
 
   this->dat_entity = node_element->get_dat_entity();
-  this->dyn_struct = node_dynamic->get_dyn_struct();
-  this->dyn_normal = new dyn::prc::cloud::Normal(node_dynamic);
-  this->dyn_recorder = new dyn::prc::cloud::Recorder(node_dynamic);
-  this->dyn_radio = new dyn::prc::cloud::Radiometry(node_dynamic);
+  this->dyn_struct = node_processing->get_dyn_struct();
+  this->dyn_normal = new dyn::prc::cloud::Normal(node_processing);
+  this->dyn_recorder = new dyn::prc::cloud::Recorder(node_processing);
+  this->dyn_radio = new dyn::prc::cloud::Radiometry(node_processing);
   this->atr_color = new dat::atr::Color(node_attribut);
 
   //---------------------------

@@ -3,7 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace vk{class Node;}
-namespace dyn::prc{class Node;}
+namespace dyn{class Node;}
 namespace dat{class Node;}
 namespace prf{class Node;}
 
@@ -32,7 +32,7 @@ public:
 
   inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
-  inline dyn::prc::Node* get_node_dynamic(){return node_dynamic;}
+  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
 
   inline cam::Node* get_node_camera(){return node_camera;}
@@ -43,7 +43,7 @@ private:
   core::Node* node_core;
   vk::Node* node_vulkan;
   dat::Node* node_data;
-  dyn::prc::Node* node_dynamic;
+  dyn::Node* node_dynamic;
 
   prf::Node* node_profiler;
   cam::Node* node_camera;

@@ -15,11 +15,12 @@ Recorder::Recorder(io::exp::Node* node_exporter){
   //---------------------------
 
   dat::Node* node_data = node_exporter->get_node_data();
-  dyn::prc::Node* node_dynamic = node_exporter->get_node_dynamic();
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::ply::Node* node_player = node_data->get_node_player();
+  dyn::Node* node_dynamic = node_exporter->get_node_dynamic();
+  dyn::prc::Node* node_processing = node_dynamic->get_node_processing();
 
-  this->dyn_struct = node_dynamic->get_dyn_struct();
+  this->dyn_struct = node_processing->get_dyn_struct();
   this->dyn_player = node_player->get_dyn_player();
   this->io_struct = node_exporter->get_io_struct();
   this->dat_selection = node_graph->get_dat_selection();

@@ -18,7 +18,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 find_package(Python REQUIRED COMPONENTS Interpreter Development)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  CORE_UTILITY
+  MAIN_UTILITY
   MAIN_CORE
   CORE_IO
 

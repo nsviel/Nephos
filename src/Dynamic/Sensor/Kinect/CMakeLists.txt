@@ -19,7 +19,7 @@ find_package(Python REQUIRED COMPONENTS Interpreter Development)
 find_package(k4a REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  CORE_UTILITY
+  MAIN_UTILITY
   MAIN_CORE
   CORE_DATA
   DATA_ATTRIBUT

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Thread/Namespace.h>
+#include <Utility/Namespace.h>
 
 namespace dyn::prc::base{class Sensor;}
 
