@@ -2,8 +2,8 @@
 
 #include <Utility/Base/Class/Node.h>
 
-namespace vk{class Node;}
 namespace core{class Node;}
+namespace vk{class Node;}
 
 namespace dat::atr{class Node;}
 namespace dat::elm{class Node;}
@@ -27,7 +27,6 @@ public:
   void gui();
   void reset();
 
-  inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
   inline dat::atr::Node* get_node_attribut(){return node_attribut;}
@@ -37,7 +36,6 @@ public:
 
 private:
   //Dependancy
-  core::Node* node_core;
   vk::Node* node_vulkan;
 
   //Child

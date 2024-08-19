@@ -1,9 +1,6 @@
 #include "Node.h"
 
 #include <Data/Namespace.h>
-#include <Data/Graph/Namespace.h>
-#include <Core/Namespace.h>
-#include <IO/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -16,7 +13,6 @@ Node::Node(dat::Node* node_data){
 
   //Dependancy
   this->node_element = node_data->get_node_element();
-  this->node_core = node_data->get_node_core();
   this->node_vulkan = node_data->get_node_vulkan();
 
   //Child

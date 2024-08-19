@@ -17,7 +17,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
-  MAIN_CORE
+  MAIN_VULKAN
   DATA_ELEMENT
 )
 
