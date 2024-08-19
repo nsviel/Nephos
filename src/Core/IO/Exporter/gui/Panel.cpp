@@ -1,10 +1,9 @@
 #include "Panel.h"
 
-#include <Exporter/Namespace.h>
-#include <Engine/Operation/Namespace.h>
-#include <Utility/Namespace.h>
-#include <Processing/Namespace.h>
+#include <IO/Exporter/Namespace.h>
 #include <Data/Namespace.h>
+#include <Dynamic/Namespace.h>
+#include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -18,8 +17,8 @@ Panel::Panel(io::exp::Node* node_exporter, bool* show_window){
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->io_struct = node_exporter->get_io_struct();
-  this->dat_selection = node_graph->get_dat_selection();
   this->io_exporter = node_exporter->get_io_exporter();
+  this->dat_selection = node_graph->get_dat_selection();
   this->gui_navigator = new utl::gui::Navigator();
   this->gui_exporter = new io::exp::gui::Exporter(node_exporter);
   this->gui_recorder = new io::exp::gui::Recorder(node_exporter);

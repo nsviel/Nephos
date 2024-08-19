@@ -1,7 +1,7 @@
 #include "Node.h"
 
-#include <IO/Exporter/Namespace.h>
-#include <IO/Importer/Namespace.h>
+#include <Core/Namespace.h>
+#include <IO/Namespace.h>
 
 
 namespace io{
@@ -10,8 +10,12 @@ namespace io{
 Node::Node(core::Node* node_core){
   //---------------------------
 
-  this->node_importer = new io::imp::Node(node_core);
-  this->node_exporter = new io::exp::Node(node_core);
+  //Dependancy
+  this->node_data = node_core->get_node_data();
+
+  //Child
+  this->node_importer = new io::imp::Node(this);
+  this->node_exporter = new io::exp::Node(this);
 
   //---------------------------
 }

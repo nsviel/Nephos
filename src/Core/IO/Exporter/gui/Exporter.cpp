@@ -1,10 +1,8 @@
 #include "Exporter.h"
 
-#include <Exporter/Namespace.h>
-#include <Engine/Operation/Namespace.h>
-#include <Utility/Namespace.h>
-#include <Processing/Namespace.h>
+#include <IO/Exporter/Namespace.h>
 #include <Data/Namespace.h>
+#include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -18,8 +16,8 @@ Exporter::Exporter(io::exp::Node* node_exporter){
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->io_struct = node_exporter->get_io_struct();
-  this->dat_selection = node_graph->get_dat_selection();
   this->io_exporter = node_exporter->get_io_exporter();
+  this->dat_selection = node_graph->get_dat_selection();
 
   //---------------------------
 }

@@ -1,8 +1,6 @@
 #include "Bookmark.h"
 
-#include <Data/Namespace.h>
-#include <Importer/Namespace.h>
-#include <Engine/Operation/Namespace.h>
+#include <IO/Importer/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 

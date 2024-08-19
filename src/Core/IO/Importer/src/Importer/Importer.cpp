@@ -1,9 +1,7 @@
 #include "Importer.h"
 
-#include <Data/Namespace.h>
-#include <Importer/Namespace.h>
-#include <IO/Namespace.h>
-#include <Format/Namespace.h>
+#include <IO/Importer/Namespace.h>
+#include <IO/Format/Namespace.h>
 #include <Utility/Namespace.h>
 
 

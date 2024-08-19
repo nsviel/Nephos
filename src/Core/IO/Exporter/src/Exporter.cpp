@@ -1,8 +1,8 @@
 #include "Exporter.h"
 
-#include <Exporter/Namespace.h>
-#include <Format/Namespace.h>
-#include <Processing/Namespace.h>
+#include <IO/Exporter/Namespace.h>
+#include <IO/Format/Namespace.h>
+#include <Dynamic/Namespace.h>
 
 
 namespace io::exp{

@@ -9,7 +9,6 @@ namespace io::exp{class Node;}
 namespace io::exp{class Structure;}
 namespace utl::gui::navigator{class Item;}
 namespace utl::base{class Element;}
-namespace dyn::prc{class Structure;}
 namespace dyn::prc::base{class Sensor;}
 namespace dat::ply{class Player;}
 namespace dat::gph{class Selection;}
@@ -41,7 +40,6 @@ public:
 
 private:
   dat::ply::Player* dyn_player;
-  dyn::prc::Structure* dyn_struct;
   io::exp::Structure* io_struct;
   dat::gph::Selection* dat_selection;
 

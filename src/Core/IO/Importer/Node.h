@@ -2,10 +2,8 @@
 
 #include <Utility/Base/Class/Node.h>
 
-namespace vk{class Node;}
 namespace dat{class Node;}
-namespace core{class Node;}
-namespace dyn{class Node;}
+namespace io{class Node;}
 namespace io::imp{class Structure;}
 namespace io::imp{class Importer;}
 namespace io::imp{class Operation;}
@@ -19,7 +17,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(core::Node* node_core);
+  Node(io::Node* node_io);
   ~Node();
 
 public:
@@ -27,10 +25,7 @@ public:
   void init();
   void gui();
 
-  inline core::Node* get_node_core(){return node_core;}
-  inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
 
   inline io::imp::Structure* get_io_struct(){return io_struct;}
   inline io::imp::Importer* get_io_importer(){return io_importer;}
@@ -39,10 +34,7 @@ public:
 
 private:
   //Dependancy
-  core::Node* node_core;
-  vk::Node* node_vulkan;
   dat::Node* node_data;
-  dyn::Node* node_dynamic;
 
   //Child
   io::imp::Structure* io_struct;
