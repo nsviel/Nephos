@@ -3,6 +3,8 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace core{class Node;}
+namespace dat{class Node;}
+namespace dat::elm{class Node;}
 namespace dat::atr{class Node;}
 namespace dat::gph{class Node;}
 

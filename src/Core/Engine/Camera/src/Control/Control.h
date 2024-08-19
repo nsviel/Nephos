@@ -10,6 +10,7 @@ namespace cam::mode{class Base;}
 namespace cam{class Entity;}
 namespace cam{class Structure;}
 namespace utl::base{class Pose;}
+namespace dat::base{class Entity;}
 
 
 namespace cam{
@@ -26,8 +27,9 @@ public:
   void control_mouse();
   void control_wheel(float value);
   void control_zoom(float value);
-std::string a = "hey";
+
   //Camera matrix
+  void update_pose(dat::base::Entity* entity);
   glm::mat4 compute_camera_view();
   glm::mat4 compute_camera_proj();
   glm::mat4 compute_camera_mvp();

@@ -99,6 +99,22 @@ void Control::control_wheel(float value){
 }
 
 //Camera matrix
+void Control::update_pose(dat::base::Entity* entity){
+  utl::base::Pose* pose = &entity->pose;
+  //----------------------------
+
+  //Update own pose
+  this->compute_camera_mvp(pose);
+
+  //Update own glyph pose
+  for(int i=0; i<entity->list_glyph.size(); i++){
+    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+    glyph->update_pose(entity);
+    this->update_pose(glyph);
+  }
+
+  //----------------------------
+}
 glm::mat4 Control::compute_camera_view(){
   cam::Entity* camera = cam_struct->cam_current;
   //---------------------------
