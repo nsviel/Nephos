@@ -13,16 +13,3 @@ enum Mode{
 };
 
 }
-
-namespace dat::atr::heatmap{
-
-enum Mode{
-  INTENSITY = 0,
-  INTENSITY_COR = 1,
-  INTENSITY_CAL = 2,
-  INCIDENCE_ANGLE = 3,
-  HEIGHT = 4,
-  RANGE = 5,
-};
-
-}
