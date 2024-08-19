@@ -20,7 +20,7 @@ Detection::Detection(rad::Node* node_radio){
 
   this->rad_struct = node_calibration->get_rad_struct();
   this->rad_process = node_calibration->get_rad_process();
-  this->stream = new rnd::gui::Stream(node_core);
+  this->stream = new rnd::gui::Stream(node_core->get_node_vulkan());
   this->dat_image = node_element->get_dat_image();
 
   //---------------------------

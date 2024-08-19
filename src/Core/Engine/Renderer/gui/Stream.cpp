@@ -1,16 +1,14 @@
 #include "Stream.h"
 
-#include <Core/Namespace.h>
 #include <Vulkan/Namespace.h>
 
 
 namespace rnd::gui{
 
 //Constructor / Destructor
-Stream::Stream(core::Node* node_core){
+Stream::Stream(vk::Node* node_vulkan){
   //---------------------------
 
-  vk::Node* node_vulkan = node_core->get_node_vulkan();
   this->vk_texture = node_vulkan->get_vk_texture();
   this->vk_imgui = node_vulkan->get_vk_imgui();
 

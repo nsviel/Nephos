@@ -3,10 +3,8 @@
 #include <Data/Player/Namespace.h>
 #include <Data/Graph/Namespace.h>
 #include <Data/Element/Namespace.h>
-#include <Core/Namespace.h>
-#include <Utility/Namespace.h>
-#include <Player/Namespace.h>
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 #include <Renderer/Namespace.h>
 
 
@@ -18,14 +16,14 @@ Panel::Panel(dat::ply::Node* node_player, bool* show_window){
 
   dat::gph::Node* node_graph = node_player->get_node_graph();
   dat::elm::Node* node_element = node_player->get_node_element();
+  vk::Node* node_vulkan = node_player->get_node_vulkan();
 
-  this->node_core = node_player->get_node_core();
   this->dat_selection = node_graph->get_dat_selection();
   this->dat_set = node_element->get_dat_set();
   this->gui_overlay = new dat::stream::gui::Overlay();
 
   for(int i=0; i<20; i++){
-    rnd::gui::Stream* stream = new rnd::gui::Stream(node_core);
+    rnd::gui::Stream* stream = new rnd::gui::Stream(node_vulkan);
     this->vec_stream.push_back(stream);
   }
 

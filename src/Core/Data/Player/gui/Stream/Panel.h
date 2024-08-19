@@ -10,7 +10,6 @@ namespace dat::gph{class Selection;}
 namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
-namespace core{class Node;}
 namespace rnd::gui{class Stream;}
 namespace utl::base{class Element;}
 namespace utl::media{class Image;}
@@ -34,7 +33,6 @@ public:
   void draw_stream_image(utl::media::Image* image, ImVec2 image_size, int idx);
 
 private:
-  core::Node* node_core;
   dat::gph::Selection* dat_selection;
   dat::elm::Set* dat_set;
   dat::stream::gui::Overlay* gui_overlay;

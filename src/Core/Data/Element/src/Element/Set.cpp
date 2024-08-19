@@ -18,7 +18,7 @@ Set::Set(dat::elm::Node* node_element){
 Set::~Set(){}
 
 //Set function
-void Set::update_set(dat::base::Set* set){
+void Set::update_data(dat::base::Set* set){
   //---------------------------
 
   // Process entities within the current set
@@ -30,7 +30,7 @@ void Set::update_set(dat::base::Set* set){
   // Recursively process nested sets
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
-    this->update_set(subset);
+    this->update_data(subset);
   }
 
   //---------------------------

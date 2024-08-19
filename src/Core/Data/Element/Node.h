@@ -3,7 +3,6 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace vk{class Node;}
-namespace core{class Node;}
 namespace dat{class Node;}
 namespace dat::elm{class Entity;}
 namespace dat::elm{class Set;}
@@ -29,7 +28,6 @@ public:
   void gui();
   void reset();
 
-  inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
   inline dat::elm::Entity* get_dat_entity(){return dat_entity;}
@@ -41,7 +39,6 @@ public:
 
 private:
   //Dependancy
-  core::Node* node_core;
   vk::Node* node_vulkan;
 
   //Child
