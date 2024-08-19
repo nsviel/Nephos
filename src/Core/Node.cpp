@@ -1,13 +1,11 @@
 #include "Node.h"
 
-#include <Application/Node.h>
+#include <Application/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
 #include <IO/Namespace.h>
-#include <Dynamic/Namespace.h>
-#include <Module/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -22,10 +20,6 @@ Node::Node(app::Node* node_app){
   this->node_vulkan = node_app->get_node_vulkan();
   this->node_data = new dat::Node(this);
   this->node_profiler = new prf::Node(this);
-
-  this->node_module = new mod::Node(this);
-  this->node_dynamic = new dyn::Node(this);
-
   this->node_engine = new eng::Node(this);
   this->node_io = new io::Node(this);
 
@@ -84,7 +78,6 @@ void Node::clean(){
   node_data->clean();
   node_io->clean();
   node_vulkan->clean();
-  node_dynamic->clean();
 
   //---------------------------
 }
@@ -93,7 +86,6 @@ void Node::reset(){
 
   node_engine->reset();
   node_data->reset();
-  node_dynamic->reset();
 
   //---------------------------
 }

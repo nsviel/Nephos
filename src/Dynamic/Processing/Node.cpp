@@ -15,19 +15,19 @@ namespace dyn::prc{
 //Constructor / Destructor
 Node::Node(dyn::Node* node_dynamic){
   //---------------------------
-
+sayHello();
   mod::Node* node_module = node_dynamic->get_node_module();
-
+sayHello();
   this->node_core = node_dynamic->get_node_core();
   this->node_data = node_core->get_node_data();
   this->node_radio = node_module->get_node_radio();
   this->node_profiler = node_core->get_node_profiler();
-
+sayHello();
   this->dyn_struct = new dyn::prc::Structure();
   this->dyn_sensor = new dyn::prc::element::Sensor(this);
   this->dyn_ope_cloud = new dyn::prc::cloud::Operation(this);
   this->dyn_ope_image = new dyn::prc::image::Operation(this);
-
+sayHello();
   //---------------------------
 }
 Node::~Node(){}

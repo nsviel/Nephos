@@ -1,11 +1,13 @@
 #include "Node.h"
 
-#include <GUI/Namespace.h>
 #include <Core/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Sensor/Namespace.h>
+#include <Dynamic/Namespace.h>
+#include <Module/Namespace.h>
 #include <Utility/Namespace.h>
+
+#include <GUI/Namespace.h>
+#include <Scene/Namespace.h>
 
 
 namespace app{
@@ -19,6 +21,7 @@ Node::Node(){
   this->node_core = new core::Node(this);
   this->node_module = new mod::Node(this);
   this->node_dynamic = new dyn::Node(this);
+  
   this->node_scene = new sce::Node(this);
   this->node_gui = new gui::Node(this);
 

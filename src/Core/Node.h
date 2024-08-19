@@ -7,8 +7,6 @@ namespace app{class Node;}
 namespace io{class Node;}
 namespace vk{class Node;}
 namespace dat{class Node;}
-namespace dyn{class Node;}
-namespace mod{class Node;}
 namespace eng{class Node;}
 namespace prf::dynamic{class Tasker;}
 namespace sys::thread::task{class Pool;}
@@ -41,12 +39,10 @@ public:
   inline prf::dynamic::Tasker* get_tasker_cpu(){return tasker;}
 
 private:
-  mod::Node* node_module;
   vk::Node* node_vulkan;
   io::Node* node_io;
   dat::Node* node_data;
   eng::Node* node_engine;
-  dyn::Node* node_dynamic;
   prf::Node* node_profiler;
   prf::dynamic::Tasker* tasker;
   sys::thread::task::Pool* thread_pool;

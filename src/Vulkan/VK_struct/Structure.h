@@ -10,6 +10,8 @@
 #include <Vulkan/VK_instance/Structure/Instance.h>
 #include <Vulkan/VK_presentation/Structure/Swapchain.h>
 #include <Vulkan/VK_pool/Structure/Pool.h>
+#include <Vulkan/VK_engine/Structure/Parameter.h>
+#include <Vulkan/VK_engine/Structure/Profiler.h>
 
 
 namespace vk{
