@@ -1,6 +1,5 @@
 #pragma once
 
-namespace core{class Node;}
 namespace ctr{class Node;}
 namespace ctr{class Structure;}
 
@@ -24,7 +23,6 @@ public:
 private:
   ctr::Node* node_control;
   ctr::Structure* ctr_struct;
-  core::Node* node_core;
 };
 
 }

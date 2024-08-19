@@ -1,7 +1,5 @@
 #pragma once
 
-namespace core{class Node;}
-
 
 namespace rnd{
 
@@ -9,7 +7,7 @@ class Mode
 {
 public:
   //Constructor / Destructor
-  Mode(core::Node* node_core);
+  Mode();
   ~Mode();
 
 public:

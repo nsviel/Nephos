@@ -1,6 +1,5 @@
 #include "Voxelizer.h"
 
-#include <Engine/Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <cstdlib>
 

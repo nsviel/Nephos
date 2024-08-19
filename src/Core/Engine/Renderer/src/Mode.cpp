@@ -1,16 +1,15 @@
 #include "Mode.h"
 
-#include <Core/Namespace.h>
-#include <Data/Namespace.h>
+
 
 
 namespace rnd{
 
 //Constructor / Destructor
-Mode::Mode(core::Node* node_core){
+Mode::Mode(){
   //---------------------------
 
-  dat::Node* node_data = node_core->get_node_data();
+
 
   //---------------------------
 }

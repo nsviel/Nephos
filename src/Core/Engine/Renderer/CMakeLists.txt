@@ -19,8 +19,8 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
-  MAIN_CORE
-  ENGINE_CAMERA
+  MAIN_VULKAN
+  CORE_ENGINE
 
   Eigen3::Eigen # Eigen
 )

@@ -1,12 +1,8 @@
 #include "Option.h"
 
-#include <Core/Namespace.h>
+#include <Engine/Renderer/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Data/Namespace.h>
-#include <Engine/Operation/Namespace.h>
-#include <Renderer/Namespace.h>
-#include <Engine/Control/Namespace.h>
 
 
 namespace rnd::gui{
@@ -15,9 +11,7 @@ namespace rnd::gui{
 Option::Option(rnd::Node* node_renderer, bool* show_window){
   //---------------------------
 
-  core::Node* node_core = node_renderer->get_node_core();
   vk::Node* node_vulkan = node_renderer->get_node_vulkan();
-  dat::Node* node_data = node_core->get_node_data();
 
   //this->ctr_struct = node_renderer->get_ctr_struct();
   //this->ctr_wheel = node_renderer->get_ctr_wheel();

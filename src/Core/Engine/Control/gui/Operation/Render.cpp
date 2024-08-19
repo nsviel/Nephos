@@ -12,7 +12,6 @@ Render::Render(ctr::Node* node_control){
 
   this->node_control = node_control;
   this->ctr_struct = node_control->get_ctr_struct();
-  this->node_core = node_control->get_node_core();
 
   //---------------------------
 }

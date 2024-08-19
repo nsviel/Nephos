@@ -1,8 +1,6 @@
 #include "Node.h"
 
 #include <Engine/Namespace.h>
-#include <Vulkan/Namespace.h>
-#include <Renderer/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -15,15 +13,11 @@ Node::Node(eng::Node* node_engine){
   //---------------------------
 
   //Dependancy
-  this->node_core = node_engine->get_node_core();
   this->node_vulkan = node_engine->get_node_vulkan();
-  this->node_camera = node_engine->get_node_camera();
-  this->node_data = node_engine->get_node_data();
-  this->node_dynamic = node_engine->get_node_dynamic();
   this->node_control = node_engine->get_node_control();
 
   //Child
-  this->itf_shader = new rnd::Shader(this);
+  this->rnd_shader = new rnd::Shader(this);
   this->gui_option = new rnd::gui::Option(this, &opt_panel->is_open);
   this->gui_shader = new rnd::gui::Shader(this, &sha_panel->is_open);
   this->gui_render = new rnd::gui::Renderer(this);
