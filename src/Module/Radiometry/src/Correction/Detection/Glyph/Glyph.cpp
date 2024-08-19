@@ -53,12 +53,12 @@ void Glyph::update_sphere_glyph(){
   std::vector<rad::correction::glyph::Sphere*>& vec_glyph = rad_struct->hough.vec_glyph;
   for(int i=0; i<vec_glyph.size(); i++){
     rad::correction::glyph::Sphere* sphere = vec_glyph[i];
-    dat_entity->update_pose(sphere);
+    //dat_entity->update_pose(sphere);
   }
 
   //Calibration sphere
   rad::correction::glyph::Sphere* sphere = rad_struct->ransac.glyph;
-  dat_entity->update_pose(sphere);
+  //dat_entity->update_pose(sphere);
 
   //---------------------------
 }

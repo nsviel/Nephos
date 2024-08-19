@@ -47,6 +47,10 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
+    dat::gph::Node* node_graph = node_data->get_node_graph();
+    dat::gph::Structure* dat_struct = node_graph->get_dat_struct();
+
+  cam_control->update_pose(&dat_struct->set_main);
   cam_control->control_mouse();
   cam_pather->loop();
 

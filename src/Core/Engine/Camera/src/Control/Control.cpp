@@ -1,5 +1,6 @@
 #include "Control.h"
 
+#include <Data/Element/Namespace.h>
 #include <Engine/Camera/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -99,6 +100,23 @@ void Control::control_wheel(float value){
 }
 
 //Camera matrix
+void Control::update_pose(dat::base::Set* set){
+  //---------------------------
+
+  // Process entities within the current set
+  for(int i=0; i<set->list_entity.size(); i++){
+    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+    this->update_pose(entity);
+  }
+
+  // Recursively process nested sets
+  for(int i=0; i<set->list_subset.size(); i++){
+    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+    this->update_pose(subset);
+  }
+
+  //---------------------------
+}
 void Control::update_pose(dat::base::Entity* entity){
   utl::base::Pose* pose = &entity->pose;
   //----------------------------
@@ -115,6 +133,7 @@ void Control::update_pose(dat::base::Entity* entity){
 
   //----------------------------
 }
+
 glm::mat4 Control::compute_camera_view(){
   cam::Entity* camera = cam_struct->cam_current;
   //---------------------------

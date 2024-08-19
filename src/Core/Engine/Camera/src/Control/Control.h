@@ -11,6 +11,7 @@ namespace cam{class Entity;}
 namespace cam{class Structure;}
 namespace utl::base{class Pose;}
 namespace dat::base{class Entity;}
+namespace dat::base{class Set;}
 
 
 namespace cam{
@@ -29,7 +30,9 @@ public:
   void control_zoom(float value);
 
   //Camera matrix
+  void update_pose(dat::base::Set* set);
   void update_pose(dat::base::Entity* entity);
+
   glm::mat4 compute_camera_view();
   glm::mat4 compute_camera_proj();
   glm::mat4 compute_camera_mvp();

@@ -2,11 +2,7 @@
 
 #include <Data/Element/Namespace.h>
 #include <Data/Attribut/Namespace.h>
-
-#include <Core/Namespace.h>
-#include <Operation/Namespace.h>
 #include <Vulkan/Namespace.h>
-#include <Engine/Namespace.h>
 
 
 namespace dat::elm{
@@ -15,13 +11,9 @@ namespace dat::elm{
 Entity::Entity(dat::elm::Node* node_element){
   //---------------------------
 
-  core::Node* node_core = node_element->get_node_core();
-  vk::Node* node_vulkan = node_core->get_node_vulkan();
+  vk::Node* node_vulkan = node_element->get_node_vulkan();
 
-  this->node_core = node_core;
-  this->dat_struct = node_element->get_dat_struct();
   this->dat_uid = node_element->get_dat_uid();
-
   this->vk_data = node_vulkan->get_vk_data();
   this->atr_location = new dat::atr::Location();
 
@@ -110,26 +102,6 @@ void Entity::update_data(dat::base::Entity* entity){
     }
 
     data->is_updated = false;
-  }
-
-  //----------------------------
-}
-void Entity::update_pose(dat::base::Entity* entity){
-  utl::base::Pose* pose = &entity->pose;
-  //----------------------------
-
-  eng::Node* node_engine = node_core->get_node_engine();
-  cam::Node* node_camera = node_engine->get_node_camera();
-  this->cam_control = node_camera->get_cam_control();
-
-  //Update own pose
-  cam_control->compute_camera_mvp(pose);
-
-  //Update own glyph pose
-  for(int i=0; i<entity->list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
-    glyph->update_pose(entity);
-    this->update_pose(glyph);
   }
 
   //----------------------------
