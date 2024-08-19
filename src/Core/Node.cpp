@@ -16,7 +16,7 @@ namespace core{
 //Constructor / Destructor
 Node::Node(app::Node* node_app){
   //---------------------------
-
+sayHello();
   this->node_app = node_app;
 
   this->node_vulkan = node_app->get_node_vulkan();
@@ -34,7 +34,7 @@ Node::Node(app::Node* node_app){
   prf::Node* node_profiler = node_engine->get_node_profiler();
   prf::dynamic::Manager* prf_dynamic = node_profiler->get_prf_dynamic();
   this->tasker = prf_dynamic->get_tasker_cpu();
-
+sayHello();
   //---------------------------
 }
 Node::~Node(){}
