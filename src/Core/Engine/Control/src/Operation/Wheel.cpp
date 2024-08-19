@@ -1,13 +1,10 @@
 #include "Wheel.h"
 
-#include <Core/Namespace.h>
-#include <Engine/Namespace.h>
-#include <Engine/Operation/Namespace.h>
 #include <Engine/Transformation/Namespace.h>
-#include <Utility/Namespace.h>
+#include <Engine/Control/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Data/Namespace.h>
-#include <Engine/Control/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace ctr{
@@ -16,8 +13,7 @@ namespace ctr{
 Wheel::Wheel(ctr::Node* node_control){
   //---------------------------
 
-  eng::Node* node_engine = node_control->get_node_engine();
-  cam::Node* node_camera = node_engine->get_node_camera();
+  cam::Node* node_camera = node_control->get_node_camera();
   dat::Node* node_data = node_control->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
 

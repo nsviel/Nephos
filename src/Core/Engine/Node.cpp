@@ -1,15 +1,10 @@
 #include "Node.h"
 
+#include <Engine/Namespace.h>
 #include <Core/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Data/Namespace.h>
 #include <Dynamic/Namespace.h>
-
-#include <Engine/Transformation/Namespace.h>
-#include <Engine/Renderer/Namespace.h>
-#include <Engine/Camera/Namespace.h>
-#include <Engine/Control/Namespace.h>
-#include <Engine/Operation/Namespace.h>
 
 
 namespace eng{

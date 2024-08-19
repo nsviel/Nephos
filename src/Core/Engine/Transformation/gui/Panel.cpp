@@ -1,9 +1,8 @@
 #include "Panel.h"
 
 #include <Engine/Transformation/Namespace.h>
-#include <IO/Namespace.h>
-#include <Utility/Namespace.h>
 #include <Data/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::trf::gui{

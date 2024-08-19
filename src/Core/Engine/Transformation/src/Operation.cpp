@@ -1,9 +1,8 @@
 #include "Operation.h"
 
-#include <Utility/Namespace.h>
 #include <Engine/Transformation/Namespace.h>
-#include <Attribut/Namespace.h>
-#include <Element/Namespace.h>
+#include <Data/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace eng::trf{

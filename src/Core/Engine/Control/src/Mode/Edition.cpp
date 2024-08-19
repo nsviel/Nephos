@@ -1,8 +1,8 @@
 #include "Edition.h"
 
 #include <Engine/Control/Namespace.h>
-#include <Data/Namespace.h>
 #include <Engine/Transformation/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace ctr::mode{
