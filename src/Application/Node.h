@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Utility/Base/Class/Node.h>
+
 namespace vk{class Node;}
 namespace core{class Node;}
 namespace gui{class Node;}
@@ -9,7 +11,7 @@ namespace sen{class Node;}
 
 namespace app{
 
-class Node
+class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor

@@ -14,6 +14,7 @@ namespace app{
 Node::Node(){
   //---------------------------
 
+  this->root = this;
   this->node_vulkan = new vk::Node(&running);
   this->node_core = new core::Node(this);
   this->node_dynamic = new sen::Node(node_core);
@@ -62,7 +63,7 @@ void Node::reset(){
   //---------------------------
 
   node_core->reset();
-  
+
   //---------------------------
 }
 void Node::end(){

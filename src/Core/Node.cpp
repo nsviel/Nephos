@@ -17,16 +17,13 @@ namespace core{
 Node::Node(app::Node* node_app){
   //---------------------------
 
-  this->root = this;
-  this->node_app = node_app;
+  this->thread_pool = new sys::thread::task::Pool(50);
 
   this->node_vulkan = node_app->get_node_vulkan();
-
-  this->thread_pool = new sys::thread::task::Pool(50);
   this->node_data = new dat::Node(this);
   this->node_profiler = new prf::Node(this);
-  this->node_module = new mod::Node(this);
 
+  this->node_module = new mod::Node(this);
   this->node_dynamic = new dyn::Node(this);
 
   this->node_engine = new eng::Node(this);
@@ -84,6 +81,7 @@ void Node::gui(){
 
   tasker->task_end("eng::gui");
   node_profiler->gui();
+
   //---------------------------
 }
 void Node::clean(){
@@ -102,13 +100,6 @@ void Node::reset(){
   node_engine->reset();
   node_data->reset();
   node_dynamic->reset();
-
-  //---------------------------
-}
-void Node::close(){
-  //---------------------------
-
-  node_app->close();
 
   //---------------------------
 }

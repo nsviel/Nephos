@@ -30,7 +30,6 @@ public:
   void gui();
   void clean();
   void reset();
-  void close();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline dat::Node* get_node_data(){return node_data;}
@@ -44,14 +43,13 @@ public:
   inline prf::dynamic::Tasker* get_tasker_cpu(){return tasker;}
 
 private:
-  app::Node* node_app;
   mod::Node* node_module;
   vk::Node* node_vulkan;
   io::Node* node_io;
   dat::Node* node_data;
   eng::Node* node_engine;
   dyn::Node* node_dynamic;
-    prf::Node* node_profiler;
+  prf::Node* node_profiler;
   prf::dynamic::Tasker* tasker;
   sys::thread::task::Pool* thread_pool;
 };
