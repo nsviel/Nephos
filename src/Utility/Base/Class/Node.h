@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Base/GUI/Panel.h>
+#include <Utility/Base/Class/Panel.h>
 #include <vector>
 #include <string>
 

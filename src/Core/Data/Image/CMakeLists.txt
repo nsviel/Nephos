@@ -20,6 +20,7 @@ find_package(OpenCV REQUIRED)
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
+  CORE_DATA
 
   ${OpenCV_LIBS}
 )

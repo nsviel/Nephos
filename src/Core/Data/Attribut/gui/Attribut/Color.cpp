@@ -1,7 +1,6 @@
 #include "Color.h"
 
-#include <Data/Attribut/Namespace.h>
-#include <Data/Element/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
 

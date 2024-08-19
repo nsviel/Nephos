@@ -1,5 +1,6 @@
 #include "Converter.h"
 
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 #include <opencv2/opencv.hpp>
 

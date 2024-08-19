@@ -1,5 +1,6 @@
 #include "Frame.h"
 
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
 

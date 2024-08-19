@@ -1,6 +1,7 @@
 #include "Exporter.h"
 #include "Header.h"
 
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
 
