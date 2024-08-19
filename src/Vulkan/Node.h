@@ -3,7 +3,6 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace utl{class Node;}
-namespace utl::element{class Window;}
 namespace vk{class Structure;}
 namespace vk::main{class Engine;}
 namespace vk::gui{class Imgui;}
