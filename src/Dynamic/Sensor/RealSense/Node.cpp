@@ -5,6 +5,7 @@
 #include <IO/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Engine/Namespace.h>
 #include <Importer/Namespace.h>
 #include <Radiometry/Namespace.h>
 

@@ -17,7 +17,7 @@ public:
   ~Node();
 
 public:
-  voit init();
+  void init();
   void loop();
   void gui();
   void reset();

@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Arcball.h"
-#include "Player.h"
+#include <Camera/src/Mode/Arcball.h>
+#include <Camera/src/Mode/Player.h>

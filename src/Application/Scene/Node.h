@@ -5,7 +5,6 @@
 namespace app{class Node;}
 namespace core{class Node;}
 namespace sce{class Init;}
-namespace k4n{class Node;}
 
 
 namespace sce{
@@ -28,13 +27,9 @@ public:
 private:
   //Dependancy
   core::Node* node_core;
-  k4n::Node* node_kinect;
 
   //Child
   sce::Init* sce_init;
-
-  bool show_scene = true;
-  bool show_loader = true;
 };
 
 }

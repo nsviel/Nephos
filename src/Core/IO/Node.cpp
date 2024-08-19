@@ -1,5 +1,7 @@
 #include "Node.h"
-#include "Namespace.h"
+
+#include <IO/Exporter/Namespace.h>
+#include <IO/Importer/Namespace.h>
 
 
 namespace io{

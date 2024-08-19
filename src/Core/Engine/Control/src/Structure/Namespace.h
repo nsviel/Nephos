@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Wheel.h"
-#include "Structure.h"
+#include <Control/src/Structure/Wheel.h>
+#include <Control/src/Structure/Structure.h>

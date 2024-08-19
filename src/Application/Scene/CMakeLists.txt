@@ -18,7 +18,6 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
   CORE_IO
-  LIBRARY_KINECT
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

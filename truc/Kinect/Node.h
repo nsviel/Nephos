@@ -30,7 +30,7 @@ public:
   inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
-  inline dyn::prc::Node* get_node_dynamic(){return node_dynamic;}
+  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline k4n::Structure* get_k4n_structure(){return k4n_structure;}
 
 private:

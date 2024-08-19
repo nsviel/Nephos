@@ -5,7 +5,7 @@
 namespace vk{class Node;}
 namespace eng{class Node;}
 namespace cam{class Node;}
-namespace dyn::prc{class Node;}
+namespace dyn{class Node;}
 namespace core{class Node;}
 namespace dat{class Node;}
 namespace ctr{class Node;}
@@ -33,7 +33,7 @@ public:
   inline core::Node* get_node_core(){return node_core;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline cam::Node* get_node_camera(){return node_camera;}
-  inline dyn::prc::Node* get_node_dynamic(){return node_dynamic;}
+  inline dyn::Node* get_node_dynamic(){return node_dynamic;}
   inline dat::Node* get_node_data(){return node_data;}
   inline ctr::Node* get_node_control(){return node_control;}
 
@@ -44,7 +44,7 @@ private:
   vk::Node* node_vulkan;
   cam::Node* node_camera;
   dat::Node* node_data;
-  dyn::prc::Node* node_dynamic;
+  dyn::Node* node_dynamic;
   ctr::Node* node_control;
 
   rnd::Shader* itf_shader;

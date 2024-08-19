@@ -4,7 +4,7 @@
 
 namespace app{class Node;}
 namespace core{class Node;}
-namespace k4n{class Node;}
+//namespace k4n{class Node;}
 namespace rlx{class Node;}
 
 
@@ -27,7 +27,7 @@ public:
 
 private:
   core::Node* node_core;
-  k4n::Node* node_kinect;
+  //k4n::Node* node_kinect;
   rlx::Node* node_realsense;
 };
 

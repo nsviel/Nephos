@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Navigation.h"
-#include "Edition.h"
+#include <Control/src/Mode/Navigation.h>
+#include <Control/src/Mode/Edition.h>

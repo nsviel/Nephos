@@ -1,3 +1,3 @@
 #pragma once
 
-#include "Panel.h"
+#include <Camera/gui/Panel.h>

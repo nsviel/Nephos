@@ -12,7 +12,6 @@ Player::Player(ctr::Node* node_control){
   //---------------------------
 
   dat::Node* node_data = node_control->get_node_data();
-  dyn::prc::Node* node_dynamic = node_control->get_node_dynamic();
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::ply::Node* node_player = node_data->get_node_player();
 

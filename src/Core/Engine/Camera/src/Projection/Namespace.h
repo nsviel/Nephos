@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Perspective.h"
-#include "Orthographic.h"
+#include <Camera/src/Projection/Perspective.h>
+#include <Camera/src/Projection/Orthographic.h>

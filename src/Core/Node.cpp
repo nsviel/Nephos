@@ -6,7 +6,7 @@
 #include <Profiler/Namespace.h>
 #include <Engine/Namespace.h>
 #include <IO/Namespace.h>
-#include <Processing/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <Module/Namespace.h>
 #include <Data/Namespace.h>
 
@@ -46,7 +46,6 @@ void Node::init(){
   node_io->init();
   node_engine->init();
   node_module->init();
-  node_system->init();
   node_dynamic->init();
 
   //---------------------------
@@ -54,7 +53,6 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  node_system->loop();
   tasker->task_begin("eng::loop");
   node_data->loop();
   node_engine->loop();
@@ -80,7 +78,6 @@ void Node::gui(){
   node_module->gui();
 
   tasker->task_end("eng::gui");
-  node_system->gui();
 
   //---------------------------
 }
