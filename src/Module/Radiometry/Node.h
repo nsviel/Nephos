@@ -2,6 +2,7 @@
 
 #include <Utility/Base/Class/Node.h>
 
+namespace mod{class Node;}
 namespace prf{class Node;}
 namespace core{class Node;}
 namespace dat{class Node;}
@@ -16,7 +17,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(core::Node* node_core);
+  Node(mod::Node* node_module);
   ~Node();
 
 public:

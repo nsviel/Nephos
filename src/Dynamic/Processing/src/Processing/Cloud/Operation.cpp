@@ -19,7 +19,7 @@ Operation::Operation(dyn::prc::Node* node_processing){
   this->dyn_struct = node_processing->get_dyn_struct();
   this->dyn_normal = new dyn::prc::cloud::Normal(node_processing);
   this->dyn_recorder = new dyn::prc::cloud::Recorder(node_processing);
-  this->dyn_radio = new dyn::prc::cloud::Radiometry(node_processing);
+  //this->dyn_radio = new dyn::prc::cloud::Radiometry(node_processing);
   this->atr_color = new dat::atr::Color(node_attribut);
 
   //---------------------------
