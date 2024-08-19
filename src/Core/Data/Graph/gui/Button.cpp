@@ -1,6 +1,5 @@
 #include "Button.h"
 
-#include <Data/Namespace.h>
 #include <Data/Graph/Namespace.h>
 #include <Data/Element/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
@@ -12,8 +11,7 @@ namespace dat::gph::gui{
 Button::Button(dat::gph::Node* node_graph){
   //---------------------------
 
-  dat::Node* node_data = node_graph->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::elm::Node* node_element = node_graph->get_node_element();
 
   this->dat_set = node_element->get_dat_set();
   this->dat_entity = node_element->get_dat_entity();

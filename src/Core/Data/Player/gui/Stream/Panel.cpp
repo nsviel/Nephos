@@ -1,6 +1,5 @@
 #include "Panel.h"
 
-#include <Data/Namespace.h>
 #include <Data/Player/Namespace.h>
 #include <Data/Graph/Namespace.h>
 #include <Data/Element/Namespace.h>
@@ -17,9 +16,8 @@ namespace dat::stream::gui{
 Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   //---------------------------
 
-  dat::Node* node_data = node_player->get_node_data();
-  dat::gph::Node* node_graph = node_data->get_node_graph();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::gph::Node* node_graph = node_player->get_node_graph();
+  dat::elm::Node* node_element = node_player->get_node_element();
 
   this->node_core = node_player->get_node_core();
   this->dat_selection = node_graph->get_dat_selection();

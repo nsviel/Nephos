@@ -1,7 +1,7 @@
 #include "Synchro.h"
 
+#include <Data/Player/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Player/Namespace.h>
 
 
 namespace dat::ply{

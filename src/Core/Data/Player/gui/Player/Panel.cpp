@@ -1,6 +1,5 @@
 #include "Panel.h"
 
-#include <Data/Namespace.h>
 #include <Data/Player/Namespace.h>
 #include <Data/Graph/Namespace.h>
 #include <Data/Attribut/Namespace.h>
@@ -13,9 +12,8 @@ namespace dat::ply::gui{
 Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   //---------------------------
 
-  dat::Node* node_data = node_player->get_node_data();
-  dat::atr::Node* node_attribut = node_data->get_node_attribut();
-  dat::gph::Node* node_graph = node_data->get_node_graph();
+  dat::atr::Node* node_attribut = node_player->get_node_attribut();
+  dat::gph::Node* node_graph = node_player->get_node_graph();
 
   this->dat_selection = node_graph->get_dat_selection();
   this->gui_configuration = new dat::ply::gui::Configuration();

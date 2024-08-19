@@ -1,6 +1,6 @@
 #include "Overlay.h"
 
-#include <Player/Namespace.h>
+#include <Data/Player/Namespace.h>
 
 
 namespace dat::stream::gui{

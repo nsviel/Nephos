@@ -1,6 +1,6 @@
 #include "Control.h"
 
-#include <Engine/Namespace.h>
+#include <Engine/Camera/Namespace.h>
 #include <Utility/Namespace.h>
 
 

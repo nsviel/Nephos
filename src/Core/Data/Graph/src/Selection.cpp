@@ -1,7 +1,7 @@
 #include "Selection.h"
 
-#include <Data/Namespace.h>
 #include <Data/Graph/Namespace.h>
+#include <Data/Element/Namespace.h>
 
 
 namespace dat::gph{
@@ -10,8 +10,7 @@ namespace dat::gph{
 Selection::Selection(dat::gph::Node* node_graph){
   //---------------------------
 
-  dat::Node* node_data = node_graph->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::elm::Node* node_element = node_graph->get_node_element();
 
   this->dat_graph = node_graph->get_dat_graph();
   this->dat_struct = node_graph->get_dat_struct();

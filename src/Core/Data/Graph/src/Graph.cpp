@@ -1,6 +1,5 @@
 #include "Graph.h"
 
-#include <Data/Namespace.h>
 #include <Data/Graph/Namespace.h>
 #include <Data/Element/Namespace.h>
 
@@ -11,8 +10,7 @@ namespace dat::gph{
 Graph::Graph(dat::gph::Node* node_graph){
   //---------------------------
 
-  dat::Node* node_data = node_graph->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::elm::Node* node_element = node_graph->get_node_element();
 
   this->dat_glyph = node_element->get_dat_glyph();
   this->dat_struct = node_graph->get_dat_struct();

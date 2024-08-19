@@ -1,7 +1,7 @@
 #include "Panel.h"
 
-#include <Data/Namespace.h>
 #include <Data/Graph/Namespace.h>
+#include <Data/Element/Namespace.h>
 #include <Core/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Operation/Namespace.h>
@@ -14,8 +14,7 @@ namespace dat::gph::gui{
 Panel::Panel(dat::gph::Node* node_graph, bool* show_window){
   //---------------------------
 
-  dat::Node* node_data = node_graph->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
+  dat::elm::Node* node_element = node_graph->get_node_element();
 
   this->dat_graph = node_graph->get_dat_graph();
   this->dat_selection = node_graph->get_dat_selection();

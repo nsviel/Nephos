@@ -13,7 +13,9 @@ Node::Node(dat::Node* node_data){
   utl::gui::Panel* panel_stream = add_panel("Stream", ICON_FA_FILM, false);
   //---------------------------
 
-  this->node_data = node_data;
+  this->node_attribut = node_data->get_node_attribut();
+  this->node_graph = node_data->get_node_graph();
+  this->node_element = node_data->get_node_element();
   this->node_core = node_data->get_node_core();
 
   this->dyn_player = new dat::ply::Player(this);
