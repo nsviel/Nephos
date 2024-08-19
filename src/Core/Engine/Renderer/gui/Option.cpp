@@ -4,9 +4,9 @@
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Data/Namespace.h>
-#include <Operation/Namespace.h>
+#include <Engine/Operation/Namespace.h>
 #include <Renderer/Namespace.h>
-#include <Control/Namespace.h>
+#include <Engine/Control/Namespace.h>
 
 
 namespace rnd::gui{

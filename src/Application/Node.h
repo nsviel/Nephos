@@ -23,6 +23,7 @@ public:
   //Subfunction
   void init();
   void loop();
+  void reset();
   void end();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}

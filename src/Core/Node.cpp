@@ -17,6 +17,7 @@ namespace core{
 Node::Node(app::Node* node_app){
   //---------------------------
 
+  this->root = this;
   this->node_app = node_app;
 
   this->node_vulkan = node_app->get_node_vulkan();

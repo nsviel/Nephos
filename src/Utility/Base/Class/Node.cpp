@@ -4,6 +4,7 @@
 namespace utl::base{
 
 std::vector<utl::gui::Panel*> Node::vec_panel;
+utl::base::Node* Node::root;
 
 //Constructor / Destructor
 Node::Node(){

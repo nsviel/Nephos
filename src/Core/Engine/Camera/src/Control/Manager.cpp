@@ -1,7 +1,6 @@
 #include "Manager.h"
 
-#include <Core/Namespace.h>
-#include <Engine/Namespace.h>
+#include <Engine/Camera/Namespace.h>
 #include <Data/Namespace.h>
 #include <Vulkan/Namespace.h>
 

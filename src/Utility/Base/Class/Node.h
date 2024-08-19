@@ -22,6 +22,7 @@ public:
   virtual void clean(){}
   virtual void wait(){}
   virtual void config(){}
+  virtual void close(){}
 
   //Subfunction
   utl::gui::Panel* add_panel(std::string name, std::string icon, bool value);
@@ -30,6 +31,7 @@ public:
 
 protected:
   static std::vector<utl::gui::Panel*> vec_panel;
+  static utl::base::Node* root;
 };
 
 }

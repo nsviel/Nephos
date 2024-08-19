@@ -2,12 +2,12 @@
 
 #include <Core/Namespace.h>
 #include <Engine/Namespace.h>
-#include <Operation/Namespace.h>
+#include <Engine/Operation/Namespace.h>
 #include <Transformation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Camera/Namespace.h>
 #include <Data/Namespace.h>
-#include <Control/Namespace.h>
+#include <Engine/Control/Namespace.h>
 
 
 namespace ctr{

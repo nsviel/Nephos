@@ -26,7 +26,10 @@ public:
   ~Node();
 
 public:
-  //Subfunction
+  //Main function
+  void reset();
+  void close();
+
   inline core::Node* get_node_core(){return node_core;}
   inline eng::Node* get_node_engine(){return node_engine;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}

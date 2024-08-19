@@ -1,7 +1,7 @@
 #include "Panel.h"
 
 #include <Exporter/Namespace.h>
-#include <Operation/Namespace.h>
+#include <Engine/Operation/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Processing/Namespace.h>
 #include <Data/Namespace.h>

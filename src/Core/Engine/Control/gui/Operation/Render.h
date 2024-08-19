@@ -22,6 +22,7 @@ public:
   void control_keyboard();
 
 private:
+  ctr::Node* node_control;
   ctr::Structure* ctr_struct;
   core::Node* node_core;
 };

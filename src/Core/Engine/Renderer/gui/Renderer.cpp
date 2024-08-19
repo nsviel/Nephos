@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 #include <Renderer/Namespace.h>
 #include <Data/Namespace.h>
-#include <Control/Namespace.h>
+#include <Engine/Control/Namespace.h>
 
 
 namespace rnd::gui{

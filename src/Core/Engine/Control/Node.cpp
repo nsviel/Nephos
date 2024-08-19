@@ -1,8 +1,6 @@
 #include "Node.h"
 
 #include <Engine/Namespace.h>
-#include <Vulkan/Namespace.h>
-#include <Control/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -32,5 +30,21 @@ Node::Node(eng::Node* node_engine){
   //---------------------------
 }
 Node::~Node(){}
+
+//Main function
+void Node::reset(){
+  //---------------------------
+
+  this->root->reset();
+
+  //---------------------------
+}
+void Node::close(){
+  //---------------------------
+
+  this->root->close();
+
+  //---------------------------
+}
 
 }

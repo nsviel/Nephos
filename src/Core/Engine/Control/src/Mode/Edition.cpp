@@ -1,6 +1,6 @@
 #include "Edition.h"
 
-#include <Control/Namespace.h>
+#include <Engine/Control/Namespace.h>
 #include <Data/Namespace.h>
 #include <Transformation/Namespace.h>
 

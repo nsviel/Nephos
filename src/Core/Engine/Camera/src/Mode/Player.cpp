@@ -1,6 +1,6 @@
 #include "Player.h"
 
-#include <Engine/Namespace.h>
+#include <Engine/Camera/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <glm/gtc/matrix_transform.hpp>
 
