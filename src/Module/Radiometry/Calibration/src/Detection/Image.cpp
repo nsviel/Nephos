@@ -1,6 +1,7 @@
 #include "Image.h"
 
 #include <Radiometry/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace rad::cal{

@@ -1,7 +1,7 @@
 #include "Tab.h"
 
-#include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace rad::cor::gui{

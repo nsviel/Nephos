@@ -1,9 +1,9 @@
 #include "Correction.h"
 
-#include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Data/Namespace.h>
 #include <Core/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace rad::cor::gui{

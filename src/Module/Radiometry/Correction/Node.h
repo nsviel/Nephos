@@ -3,6 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace rad{class Node;}
+
 namespace rad::cor{class Structure;}
 namespace rad::cor{class Process;}
 namespace rad::cor{class Measure;}
@@ -28,6 +29,7 @@ public:
   void loop();
 
   inline rad::Node* get_node_radio(){return node_radio;}
+
   inline rad::cor::Structure* get_rad_struct(){return rad_struct;}
   inline rad::cor::Process* get_rad_process(){return rad_process;}
   inline rad::cor::Model* get_rad_model(){return rad_model;}
@@ -39,6 +41,7 @@ public:
 
 private:
   rad::Node* node_radio;
+
   rad::cor::Structure* rad_struct;
   rad::cor::Process* rad_process;
   rad::cor::Measure* rad_measure;

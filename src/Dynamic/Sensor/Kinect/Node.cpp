@@ -12,11 +12,11 @@
 namespace k4n{
 
 //Constructor / Destructor
-Node::Node(core::Node* node_core){
+Node::Node(dyn::sen::Node* node_sensor){
   //---------------------------
 
   //Dependancy
-  this->node_core = node_core;
+  this->node_core = node_sensor->get_node_core();
   this->node_io = node_core->get_node_io();
   this->node_data = node_core->get_node_data();
   this->node_dynamic = node_core->get_node_dynamic();

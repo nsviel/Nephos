@@ -1,8 +1,8 @@
 #include "Process.h"
 
-#include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Data/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace rad::cal{

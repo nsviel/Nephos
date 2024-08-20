@@ -3,7 +3,7 @@
 #include <Dynamic/Namespace.h>
 #include <Core/Namespace.h>
 
-//#include <Kinect/Namespace.h>
+#include <Kinect/Namespace.h>
 #include <RealSense/Namespace.h>
 #include <Velodyne/Namespace.h>
 
@@ -15,8 +15,9 @@ Node::Node(dyn::Node* node_dynamic){
   //---------------------------
 
   this->node_core = node_dynamic->get_node_core();
+  this->node_processing = node_dynamic->get_node_processing();
 
-  //this->node_kinect = new k4n::Node(this);
+  this->node_kinect = new k4n::Node(this);
   this->node_realsense = new rlx::Node(this);
   this->node_velodyne = new vld::Node(this);
 

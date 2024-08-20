@@ -1,12 +1,9 @@
 #include "Node.h"
 
+#include <Radiometry/Namespace.h>
 #include <Module/Namespace.h>
 #include <Core/Namespace.h>
-#include <Profiler/Namespace.h>
-#include <Radiometry/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Engine/Namespace.h>
-#include <Data/Namespace.h>
 
 
 namespace rad{
@@ -17,8 +14,8 @@ Node::Node(mod::Node* node_module){
   //---------------------------
 
   //Dependancy
-  this->node_core = node_module->get_node_core();
   this->node_vulkan = node_module->get_node_vulkan();
+  this->node_core = node_module->get_node_core();
   this->node_data = node_core->get_node_data();
   this->node_profiler = node_core->get_node_profiler();
 

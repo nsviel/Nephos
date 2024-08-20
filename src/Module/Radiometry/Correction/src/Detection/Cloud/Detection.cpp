@@ -1,8 +1,8 @@
 #include "Detection.h"
 
-#include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
 #include <Core/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace rad::cor::cloud{

@@ -1,9 +1,10 @@
 #include "Node.h"
 
 #include <Application/Namespace.h>
-#include <Radiometry/Namespace.h>
 #include <Core/Namespace.h>
 #include <Data/Namespace.h>
+
+#include <Radiometry/Namespace.h>
 
 
 namespace mod{
@@ -12,7 +13,10 @@ namespace mod{
 Node::Node(app::Node* node_app){
   //---------------------------
 
-  //this->node_radio = new rad::Node(node_core);
+  this->node_core = node_app->get_node_core();
+  this->node_vulkan = node_app->get_node_vulkan();
+
+  this->node_radio = new rad::Node(this);
 
   //---------------------------
 }

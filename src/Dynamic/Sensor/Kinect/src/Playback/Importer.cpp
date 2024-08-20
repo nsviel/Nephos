@@ -13,7 +13,7 @@ Importer::Importer(k4n::Node* node_k4n){
   //---------------------------
 
   dat::Node* node_data = node_k4n->get_node_data();
-  dyn::prc::Node* node_dynamic = node_k4n->get_node_dynamic();
+  dyn::prc::Node* node_processing = node_k4n->get_node_processing();
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
@@ -23,7 +23,7 @@ Importer::Importer(k4n::Node* node_k4n){
   this->dat_entity = node_element->get_dat_entity();
   this->dat_set = node_element->get_dat_set();
   this->dat_glyph = node_element->get_dat_glyph();
-  this->dyn_sensor = node_dynamic->get_dyn_sensor();
+  this->dyn_sensor = node_processing->get_dyn_sensor();
 
   this->format = ".mkv";
   this->require_discrete_gpu = true;

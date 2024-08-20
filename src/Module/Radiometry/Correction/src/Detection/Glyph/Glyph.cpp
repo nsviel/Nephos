@@ -1,7 +1,7 @@
 #include "Glyph.h"
 
-#include <Data/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace rad::cor{

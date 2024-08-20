@@ -11,6 +11,7 @@ Node::Node(rad::Node* node_radio){
   //---------------------------
 
   this->node_radio = node_radio;
+  
   this->rad_struct = new rad::cor::Structure();
   this->rad_process = new rad::cor::Process(this);
   this->rad_model = new rad::cor::Model(this);

@@ -1,7 +1,7 @@
 #include "Measure.h"
 
-#include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Utility/Namespace.h>
 #include <python/matplotlibcpp.h>
 
 

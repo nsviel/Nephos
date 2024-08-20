@@ -11,12 +11,12 @@ namespace k4n::capture{
 Sensor::Sensor(k4n::Node* node_k4n, int index){
   //---------------------------
 
-  dyn::prc::Node* node_dynamic = node_k4n->get_node_dynamic();
+  dyn::prc::Node* node_processing = node_k4n->get_node_processing();
 
   this->k4n_processing = new k4n::Processing(node_k4n);
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->gui_capture = new k4n::gui::Capture(node_k4n);
-  this->dyn_sensor = node_dynamic->get_dyn_sensor();
+  this->dyn_sensor = node_processing->get_dyn_sensor();
 
   this->vec_recorder.push_back(new k4n::capture::Recorder());
   this->device.index = index;

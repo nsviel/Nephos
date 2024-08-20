@@ -1,6 +1,7 @@
 #include "Rectangle.h"
 
 #include <Radiometry/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace rad::cal{
@@ -15,7 +16,7 @@ Rectangle::Rectangle(rad::cal::Node* node_detection){
   rad_struct->hough.param_1 = 300;
   rad_struct->hough.param_2 = 0.9;
   rad_struct->hough.cv_mode = cv::HOUGH_GRADIENT_ALT;
-  
+
   //---------------------------
 }
 Rectangle::~Rectangle(){}

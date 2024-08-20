@@ -14,10 +14,10 @@ Infrared::Infrared(k4n::Node* node_k4n){
   //---------------------------
 
   dat::Node* node_data = node_k4n->get_node_data();
-  dyn::prc::Node* node_dynamic = node_k4n->get_node_dynamic();
+  dyn::prc::Node* node_processing = node_k4n->get_node_processing();
   dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->dyn_struct = node_dynamic->get_dyn_struct();
+  this->dyn_struct = node_processing->get_dyn_struct();
   this->dat_image = node_element->get_dat_image();
 
   //---------------------------
