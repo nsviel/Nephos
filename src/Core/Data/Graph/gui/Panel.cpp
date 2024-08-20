@@ -124,7 +124,7 @@ int Panel::tree_set(dat::base::Set* set){
   //If set is double-clicked, open set panel
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
     gui_set->set_selected_set(set);
-    this->show_panel_set = true;
+    gui_set->show_panel(true);
   }
 
   //Set selection
@@ -206,7 +206,7 @@ void Panel::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
   // If entity double-clicked
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
     gui_entity->set_entity(entity);
-    this->show_panel_entity = true;
+    gui_entity->show_panel(true);
   }
 
   //Visibility button

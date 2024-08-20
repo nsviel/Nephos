@@ -31,6 +31,7 @@ public:
   void entity_parameter(dat::base::Entity* entity);
 
   inline void set_entity(dat::base::Entity* entity){this->entity = entity;}
+  inline void show_panel(bool value){this->panel_show = value;}
 
 private:
   eng::trf::Operation* trf_operation;

@@ -34,9 +34,6 @@ public:
   void tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row);
   void draw_window_background(int nb_row);
 
-  bool show_panel_entity   = false;
-  bool show_panel_set      = false;
-
 private:
   dat::gph::Graph* dat_graph;
   dat::gph::Selection* dat_selection;

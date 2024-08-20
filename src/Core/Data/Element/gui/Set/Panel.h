@@ -25,7 +25,8 @@ public:
   void set_parameter(dat::base::Set* set);
 
   inline void set_selected_set(dat::base::Set* set){this->set_selected = set;}
-
+  inline void show_panel(bool value){this->panel_show = value;}
+  
 private:
   dat::elm::Set* dat_set;
 
