@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Node.h"
-#include "Interface/Namespace.h"
-#include "Tab/Namespace.h"
+#include <GUI/Node.h>
+#include <GUI/Interface/Namespace.h>
+#include <GUI/Tab/Namespace.h>

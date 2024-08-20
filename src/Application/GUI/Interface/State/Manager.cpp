@@ -2,8 +2,6 @@
 
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
-#include <imgui/core/imgui.h>
-#include <iostream>
 
 
 namespace gui::state{

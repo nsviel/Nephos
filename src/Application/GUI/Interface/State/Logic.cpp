@@ -3,8 +3,6 @@
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
 #include <imgui/core/imgui.h>
-#include <nlohmann/json.hpp>
-#include <iostream>
 
 
 namespace gui::state{

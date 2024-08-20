@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Docking.h"
-#include "Menu.h"
-#include "Demo.h"
+#include <GUI/Interface/Window/Docking.h>
+#include <GUI/Interface/Window/Menu.h>
+#include <GUI/Interface/Window/Demo.h>
