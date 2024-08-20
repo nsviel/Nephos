@@ -1,6 +1,7 @@
 #include "Node.h"
 
 #include <Radiometry/Namespace.h>
+#include <Radiometry/Calibration/Namespace.h>
 #include <Core/Namespace.h>
 
 

@@ -1,9 +1,12 @@
 #include "Node.h"
 
-#include <Radiometry/Namespace.h>
 #include <Module/Namespace.h>
 #include <Core/Namespace.h>
 #include <Utility/Namespace.h>
+
+#include <Radiometry/gui/Namespace.h>
+#include <Radiometry/Calibration/Namespace.h>
+#include <Radiometry/Correction/Namespace.h>
 
 
 namespace rad{

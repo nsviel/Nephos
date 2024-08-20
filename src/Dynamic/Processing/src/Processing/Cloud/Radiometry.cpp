@@ -2,6 +2,7 @@
 
 #include <Processing/Namespace.h>
 #include <Radiometry/Namespace.h>
+#include <Radiometry/Correction/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
 
