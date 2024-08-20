@@ -1,6 +1,8 @@
 #include "Panel.h"
 
 #include <Data/Element/Namespace.h>
+#include <Utility/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace dat::gui::set{

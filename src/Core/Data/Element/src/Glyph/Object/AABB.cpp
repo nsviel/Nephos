@@ -1,6 +1,6 @@
 #include "AABB.h"
 
-#include <Data/Element/Namespace.h>
+#include <Data/Base/Namespace.h>
 
 
 namespace dat::glyph::object{

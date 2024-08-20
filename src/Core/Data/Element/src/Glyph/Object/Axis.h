@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/Operation/Namespace.h>
-#include <Element/src/Base/Glyph.h>
+#include <Base/Entity/Glyph.h>
 
 
 namespace dat::glyph::object{

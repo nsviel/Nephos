@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Element/src/Base/Object.h>
+#include <Base/Entity/Object.h>
 #include <Profiler/src/Dynamic/Profiler.h>
 
 

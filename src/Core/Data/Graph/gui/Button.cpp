@@ -3,6 +3,7 @@
 #include <Data/Graph/Namespace.h>
 #include <Data/Element/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
+#include <imgui/core/imgui.h>
 
 
 namespace dat::gph::gui{

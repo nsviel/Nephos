@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Utility/Namespace.h>
-#include <Element/src/Base/Object.h>
+#include <Base/Entity/Object.h>
 #include <Profiler/src/Dynamic/Profiler.h>
 #include <Processing/src/Base/Timestamp.h>
 #include <Processing/src/Base/Calibration.h>

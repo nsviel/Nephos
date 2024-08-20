@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Element/src/Base/Entity.h>
-#include <Element/src/Base/Set.h>
+#include <Base/Element/Entity.h>
+#include <Base/Element/Set.h>
 #include <string>
 
 namespace dat::base{class Object;}

@@ -6,6 +6,7 @@
 #include <Engine/Namespace.h>
 #include <Engine/Operation/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
+#include <imgui/core/imgui.h>
 
 
 namespace dat::gph::gui{

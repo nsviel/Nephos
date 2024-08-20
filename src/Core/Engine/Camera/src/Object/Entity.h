@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Element/src/Base/Entity.h>
+#include <Base/Element/Entity.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <list>

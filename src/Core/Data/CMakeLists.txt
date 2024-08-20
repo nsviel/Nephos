@@ -23,7 +23,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_CORE
-  
+
   DATA_ATTRIBUT
   DATA_ELEMENT
   DATA_GRAPH

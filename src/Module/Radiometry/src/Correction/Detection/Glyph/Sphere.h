@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Element/src/Base/Glyph.h>
+#include <Base/Entity/Glyph.h>
 
 namespace core{class Node;}
 namespace cam{class Control;}

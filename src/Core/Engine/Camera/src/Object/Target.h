@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Element/src/Base/Glyph.h>
+#include <Base/Entity/Glyph.h>
 
 
 namespace cam::glyph{
