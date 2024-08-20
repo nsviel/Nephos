@@ -17,7 +17,7 @@ Node::Node(app::Node* node_app){
   this->node_core = node_app->get_node_core();
   this->node_scene = node_app->get_node_scene();
 
-  this->gui_demo = new gui::interface::Demo(this);
+  this->gui_demo = new gui::menu::Demo(this);
   this->gui_state = new gui::state::Manager(this);
   this->gui_tab = new gui::Tab(this);
   this->gui_style = new gui::style::Style(this);

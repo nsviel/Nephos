@@ -7,8 +7,8 @@ namespace gui{class Node;}
 namespace core{class Node;}
 namespace sce{class Node;}
 
-namespace gui::interface{class Menu;}
-namespace gui::tab::eng{class Menu;}
+namespace gui::menu{class Left;}
+namespace gui::menu{class Center;}
 
 
 namespace gui{
@@ -27,18 +27,13 @@ public:
   //Tab function
   void draw_tab_menu();
   void draw_tab();
-  void next_tab();
 
 private:
   core::Node* node_core;
   sce::Node* node_scene;
 
-  gui::interface::Menu* gui_menu;
-  gui::tab::eng::Menu* eng_menu;
-
-  std::vector<std::string> vec_tab;
-  std::string active_tab;
-  std::string tab_to_open;
+  gui::menu::Left* menu_left;
+  gui::menu::Center* menu_center;
 };
 
 }

@@ -5,7 +5,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace gui::interface{
+namespace gui::menu{
 
 //Constructor / Destructor
 Left::Left(gui::Node* node_gui){
