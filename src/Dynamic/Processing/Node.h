@@ -27,7 +27,6 @@ public:
 public:
   //Main function
   void loop();
-  void gui();
   void reset();
 
   inline core::Node* get_node_core(){return node_core;}

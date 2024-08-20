@@ -25,7 +25,6 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_processing->loop();
   node_sensor->init();
 
   //---------------------------
@@ -33,29 +32,14 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  node_processing->loop();
-  node_sensor->init();
-
-  //---------------------------
-}
-void Node::gui(){
-  //---------------------------
-
-  node_processing->gui();
-
-  //---------------------------
-}
-void Node::reset(){
-  //---------------------------
-
-  node_processing->reset();
+  node_sensor->loop();
 
   //---------------------------
 }
 void Node::clean(){
   //---------------------------
 
-  node_sensor->reset();
+  node_sensor->clean();
 
   //---------------------------
 }

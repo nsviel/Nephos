@@ -24,11 +24,9 @@ public:
 
 public:
   //Main function
-  void config();
   void init();
   void loop();
   void gui();
-  void clean();
 
   inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}

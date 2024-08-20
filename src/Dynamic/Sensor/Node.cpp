@@ -29,21 +29,24 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  //node_kinect->init();
+  node_kinect->init();
+  node_velodyne->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-//  node_kinect->loop();
+  node_kinect->loop();
+  node_velodyne->gui();
 
   //---------------------------
 }
 void Node::clean(){
   //---------------------------
 
-  //node_kinect->clean();
+  node_kinect->clean();
+  node_velodyne->clean();
 
   //---------------------------
 }

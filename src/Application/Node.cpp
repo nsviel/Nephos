@@ -21,7 +21,7 @@ Node::Node(){
   this->node_core = new core::Node(this);
   this->node_module = new mod::Node(this);
   this->node_dynamic = new dyn::Node(this);
-  
+
   this->node_scene = new sce::Node(this);
   this->node_gui = new gui::Node(this);
 
@@ -69,7 +69,6 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-  node_dynamic->gui();
   node_module->gui();
 
   //---------------------------
