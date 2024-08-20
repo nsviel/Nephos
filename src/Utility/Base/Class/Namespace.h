@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Node.h"
-#include "Panel.h"
+#include <Utility/Base/Class/Node.h>
+#include <Utility/Base/Class/Panel.h>

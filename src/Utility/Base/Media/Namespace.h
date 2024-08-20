@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Image.h"
-#include "Video.h"
-#include "Texture.h"
+#include <Utility/Base/Media/Image.h>
+#include <Utility/Base/Media/Video.h>
+#include <Utility/Base/Media/Texture.h>

@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Item.h"
-#include "Structure.h"
+#include <Utility/GUI/Navigator/Structure/Item.h>
+#include <Utility/GUI/Navigator/Structure/Structure.h>
