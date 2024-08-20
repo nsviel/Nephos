@@ -35,22 +35,22 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  //node_correction->init();
+  node_correction->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-//  node_correction->loop();
-  //node_calibration->loop();
+  node_correction->loop();
+  node_calibration->loop();
 
   //---------------------------
 }
 void Node::gui(){
   //---------------------------
 
-//  gui_panel->run_panel();
+  gui_panel->run_panel();
 
   //---------------------------
 }
