@@ -30,9 +30,11 @@ Renderer::~Renderer(){}
 void Renderer::run_panel(){
   //---------------------------
 
+  ImGuiWindowFlags flag = ImGuiWindowFlags_NoCollapse;
+
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
   ImGui::SetNextWindowSizeConstraints(ImVec2(100, 100), ImVec2(500, 500));
-  if(ImGui::Begin(name.c_str(), NULL)){
+  if(ImGui::Begin(name.c_str(), NULL, flag)){
     this->design_panel();
     ImGui::End();
   }

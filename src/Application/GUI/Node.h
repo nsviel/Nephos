@@ -27,6 +27,7 @@ public:
 public:
   void init();
   void loop();
+  void gui();
 
   inline core::Node* get_node_core(){return node_core;}
   inline sce::Node* get_node_scene(){return node_scene;}

@@ -1,7 +1,6 @@
 #include "Layout.h"
 
 #include <GUI/Namespace.h>
-#include <Core/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -11,7 +10,7 @@ namespace gui{
 Layout::Layout(gui::Node* node_gui){
   //---------------------------
 
-  this->node_core = node_gui->get_node_core();
+  this->node_gui = node_gui;
 
   this->gui_state = node_gui->get_gui_state();
   this->gui_demo = node_gui->get_gui_demo();
@@ -63,7 +62,7 @@ void Layout::draw_menu(){
 void Layout::draw_panel(){
   //---------------------------
 
-  node_core->gui();
+  node_gui->gui();
 
 
   //---------------------------

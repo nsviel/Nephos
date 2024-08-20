@@ -4,7 +4,6 @@
 #include <string>
 
 namespace gui{class Node;}
-namespace core{class Node;}
 
 namespace gui{class Docking;}
 namespace gui::state{class Manager;}
@@ -32,7 +31,7 @@ public:
   void draw_panel();
 
 private:
-  core::Node* node_core;
+  gui::Node* node_gui;
 
   gui::Docking* gui_docking;
   gui::state::Manager* gui_state;

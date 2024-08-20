@@ -28,7 +28,7 @@ void Panel::run_panel(){
   if(*show_window){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
-sayHello();
+
       this->design_panel();
 
       ImGui::End();
