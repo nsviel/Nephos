@@ -42,7 +42,7 @@ struct HDF5ErrMapper {
     template <typename ExceptionType>
     [[noreturn]] static inline void ToException(const std::string& prefix_msg){
         hid_t err_stack = H5Eget_current_stack();
-        if (err_stack >= 0){
+        if(err_stack >= 0){
             ExceptionType e("");
             ExceptionType* e_iter = &e;
 

@@ -5875,10 +5875,10 @@ bool TinyGLTF::LoadFromString(Model *model, std::string *err, std::string *warn,
 #if(defined(__cpp_exceptions) || defined(__EXCEPTIONS) || \
      defined(_CPPUNWIND)) &&                               \
     !defined(TINYGLTF_NOEXCEPTION)
-  try {
+  try{
     detail::JsonParse(v, json_str, json_str_length, true);
 
-  } catch (const std::exception &e){
+  } catch(const std::exception &e){
     if(err){
       (*err) = e.what();
     }

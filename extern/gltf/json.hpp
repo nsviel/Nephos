@@ -21441,7 +21441,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
 
     The function is basically equivalent to executing
     @code {.cpp}
-    try {
+    try{
         return at(key);
     } catch(out_of_range){
         return default_value;
@@ -21522,7 +21522,7 @@ class basic_json // NOLINT(cppcoreguidelines-special-member-functions,hicpp-spec
 
     The function is basically equivalent to executing
     @code {.cpp}
-    try {
+    try{
         return at(ptr);
     } catch(out_of_range){
         return default_value;

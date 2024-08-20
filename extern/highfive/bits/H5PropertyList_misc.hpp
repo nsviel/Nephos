@@ -57,7 +57,7 @@ inline PropertyListBase::PropertyListBase() noexcept
 
 template <PropertyType T>
 inline void PropertyList<T>::_initializeIfNeeded(){
-    if (_hid != H5P_DEFAULT){
+    if(_hid != H5P_DEFAULT){
         return;
     }
     _hid = detail::h5p_create(convert_plist_type(T));
@@ -74,7 +74,7 @@ template <PropertyType T>
 template <typename F, typename... Args>
 inline void RawPropertyList<T>::add(const F& funct, const Args&... args){
     this->_initializeIfNeeded();
-    if (funct(this->_hid, args...) < 0){
+    if(funct(this->_hid, args...) < 0){
         HDF5ErrMapper::ToException<PropertyException>("Error setting raw hdf5 property.");
     }
 }
@@ -289,7 +289,7 @@ inline Chunking::Chunking(DataSetCreateProps& plist, size_t max_dims)
     auto n_loaded =
         detail::h5p_get_chunk(plist.getId(), static_cast<int>(_dims.size()), _dims.data());
 
-    if (n_loaded >= static_cast<int>(_dims.size())){
+    if(n_loaded >= static_cast<int>(_dims.size())){
         *this = Chunking(plist, 8 * max_dims);
     } else {
         _dims.resize(static_cast<size_t>(n_loaded));
@@ -305,7 +305,7 @@ inline Chunking::Chunking(hsize_t item, Args... args)
     : Chunking(std::vector<hsize_t>{item, static_cast<hsize_t>(args)...}){}
 
 inline void Deflate::apply(const hid_t hid) const {
-    if (detail::h5z_filter_avail(H5Z_FILTER_DEFLATE) == 0){
+    if(detail::h5z_filter_avail(H5Z_FILTER_DEFLATE) == 0){
         HDF5ErrMapper::ToException<PropertyException>("Deflate filter unavailable.");
     }
 
@@ -316,7 +316,7 @@ inline Deflate::Deflate(unsigned int level)
     : _level(level){}
 
 inline void Szip::apply(const hid_t hid) const {
-    if (detail::h5z_filter_avail(H5Z_FILTER_SZIP) == 0){
+    if(detail::h5z_filter_avail(H5Z_FILTER_SZIP) == 0){
         HDF5ErrMapper::ToException<PropertyException>("SZIP filter unavailable.");
     }
 
@@ -336,7 +336,7 @@ inline unsigned Szip::getPixelsPerBlock() const {
 }
 
 inline void Shuffle::apply(const hid_t hid) const {
-    if (detail::h5z_filter_avail(H5Z_FILTER_SHUFFLE) == 0){
+    if(detail::h5z_filter_avail(H5Z_FILTER_SHUFFLE) == 0){
         HDF5ErrMapper::ToException<PropertyException>("Shuffle filter unavailable.");
     }
 
@@ -416,7 +416,7 @@ inline UseCollectiveIO::UseCollectiveIO(const DataTransferProps& dxpl){
 
     detail::h5p_get_dxpl_mpio(dxpl.getId(), &collective);
 
-    if (collective != H5FD_MPIO_COLLECTIVE && collective != H5FD_MPIO_INDEPENDENT){
+    if(collective != H5FD_MPIO_COLLECTIVE && collective != H5FD_MPIO_INDEPENDENT){
         throw std::logic_error("H5Pget_dxpl_mpio returned something strange.");
     }
 

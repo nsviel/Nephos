@@ -40,7 +40,7 @@ inline T Reference::dereference(const Object& location) const {
     static_assert(std::is_same<DataSet, T>::value || std::is_same<Group, T>::value,
                   "We can only (de)reference HighFive::Group or HighFive:DataSet");
     auto obj = get_ref(location);
-    if (obj.getType() != T::type){
+    if(obj.getType() != T::type){
         HDF5ErrMapper::ToException<ReferenceException>("Trying to dereference the wrong type");
     }
 #if defined __GNUC__ && __GNUC__ < 9
@@ -51,7 +51,7 @@ inline T Reference::dereference(const Object& location) const {
 }
 
 inline Object Reference::get_ref(const Object& location) const {
-#if (H5Rdereference_vers == 2)
+#if(H5Rdereference_vers == 2)
     hid_t res = detail::h5r_dereference(location.getId(), H5P_DEFAULT, H5R_OBJECT, &href);
 #else
     hid_t res = detail::h5r_dereference(location.getId(), H5R_OBJECT, &href);

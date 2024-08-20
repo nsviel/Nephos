@@ -106,7 +106,7 @@ namespace details {
 template <typename T, typename U>
 T get_plist(const U& obj, hid_t (*f)(hid_t)){
     auto hid = f(obj.getId());
-    if (hid < 0){
+    if(hid < 0){
         HDF5ErrMapper::ToException<PropertyException>("Unable to get property list");
     }
     T t{};

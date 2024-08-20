@@ -120,7 +120,7 @@ class ObjectInfo {
     time_t getModificationTime() const noexcept;
 
   protected:
-#if (H5Oget_info_vers < 3)
+#if(H5Oget_info_vers < 3)
     H5O_info_t raw_info;
 #else
     // Use compat H5O_info1_t while getAddress() is supported (deprecated)

@@ -35,7 +35,7 @@ inline std::string Attribute::getName() const {
 }
 
 inline size_t Attribute::getStorageSize() const {
-    if (!this->isValid()){
+    if(!this->isValid()){
         throw AttributeException("Invalid call to `DataSet::getFile` for invalid object");
     }
 
@@ -74,7 +74,7 @@ inline void Attribute::read(T& array) const {
         [this]() -> std::string { return this->getName(); },
         details::BufferInfo<T>::Operation::read);
 
-    if (!details::checkDimensions(mem_space, buffer_info.getMinRank(), buffer_info.getMaxRank())){
+    if(!details::checkDimensions(mem_space, buffer_info.getMinRank(), buffer_info.getMaxRank())){
         std::ostringstream ss;
         ss << "Impossible to read attribute of dimensions " << mem_space.getNumberDimensions()
            << " into arrays of dimensions: " << buffer_info.getMinRank() << "(min) to "
@@ -83,7 +83,7 @@ inline void Attribute::read(T& array) const {
     }
     auto dims = mem_space.getDimensions();
 
-    if (mem_space.getElementCount() == 0){
+    if(mem_space.getElementCount() == 0){
         details::inspector<T>::prepare(array, dims);
         return;
     }
@@ -96,7 +96,7 @@ inline void Attribute::read(T& array) const {
     auto t = buffer_info.data_type;
     auto c = t.getClass();
 
-    if (c == DataTypeClass::VarLen || t.isVariableStr()){
+    if(c == DataTypeClass::VarLen || t.isVariableStr()){
 #if H5_VERSION_GE(1, 12, 0)
         // This one have been created in 1.12.0
         (void) detail::h5t_reclaim(t.getId(), mem_space.getId(), H5P_DEFAULT, r.getPointer());
@@ -128,7 +128,7 @@ inline void Attribute::write(const T& buffer){
     const DataSpace& mem_space = getMemSpace();
     auto dims = mem_space.getDimensions();
 
-    if (mem_space.getElementCount() == 0){
+    if(mem_space.getElementCount() == 0){
         return;
     }
 
@@ -139,7 +139,7 @@ inline void Attribute::write(const T& buffer){
         [this]() -> std::string { return this->getName(); },
         details::BufferInfo<T>::Operation::write);
 
-    if (!details::checkDimensions(mem_space, buffer_info.getMinRank(), buffer_info.getMaxRank())){
+    if(!details::checkDimensions(mem_space, buffer_info.getMinRank(), buffer_info.getMaxRank())){
         std::ostringstream ss;
         ss << "Impossible to write attribute of dimensions " << mem_space.getNumberDimensions()
            << " into arrays of dimensions: " << buffer_info.getMinRank() << "(min) to "

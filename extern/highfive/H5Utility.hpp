@@ -27,7 +27,7 @@ class SilenceHDF5 {
         : _client_data(nullptr){
         detail::nothrow::h5e_get_auto2(H5E_DEFAULT, &_func, &_client_data);
 
-        if (enable){
+        if(enable){
             detail::nothrow::h5e_set_auto2(H5E_DEFAULT, nullptr, nullptr);
         }
     }
@@ -160,7 +160,7 @@ inline void log(LogSeverity severity,
 
 // Useful, for the common pattern: if ...; then log something.
 #define HIGHFIVE_LOG_DEBUG_IF(cond, message) \
-    if ((cond)){                            \
+    if((cond)){                            \
         HIGHFIVE_LOG_DEBUG((message));       \
     }
 
@@ -175,7 +175,7 @@ inline void log(LogSeverity severity,
 
 // Useful, for the common pattern: if ...; then log something.
 #define HIGHFIVE_LOG_INFO_IF(cond, message) \
-    if ((cond)){                           \
+    if((cond)){                           \
         HIGHFIVE_LOG_INFO((message));       \
     }
 
@@ -191,7 +191,7 @@ inline void log(LogSeverity severity,
 
 // Useful, for the common pattern: if ...; then log something.
 #define HIGHFIVE_LOG_WARN_IF(cond, message) \
-    if ((cond)){                           \
+    if((cond)){                           \
         HIGHFIVE_LOG_WARN((message));       \
     }
 
@@ -206,7 +206,7 @@ inline void log(LogSeverity severity,
 
 // Useful, for the common pattern: if ...; then log something.
 #define HIGHFIVE_LOG_ERROR_IF(cond, message) \
-    if ((cond)){                            \
+    if((cond)){                            \
         HIGHFIVE_LOG_ERROR((message));       \
     }
 

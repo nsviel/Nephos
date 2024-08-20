@@ -280,7 +280,7 @@ inline Selection SliceTraits<Derivate>::select(const ElementSet& elements) const
     const hsize_t* data = nullptr;
     const DataSpace space = slice.getSpace().clone();
     const std::size_t length = elements._ids.size();
-    if (length % space.getNumberDimensions() != 0){
+    if(length % space.getNumberDimensions() != 0){
         throw DataSpaceException(
             "Number of coordinates in elements picking "
             "should be a multiple of the dimensions.");
@@ -290,7 +290,7 @@ inline Selection SliceTraits<Derivate>::select(const ElementSet& elements) const
 
     // optimised at compile time
     // switch for data conversion on 32bits platforms
-    if (std::is_same<std::size_t, hsize_t>::value){
+    if(std::is_same<std::size_t, hsize_t>::value){
         // `if constexpr` can't be used, thus a reinterpret_cast is needed.
         data = reinterpret_cast<const hsize_t*>(&(elements._ids[0]));
     } else {
@@ -332,7 +332,7 @@ inline void SliceTraits<Derivate>::read(T& array, const DataTransferProps& xfer_
         [&slice]() -> std::string { return details::get_dataset(slice).getPath(); },
         details::BufferInfo<T>::Operation::read);
 
-    if (!details::checkDimensions(mem_space, buffer_info.getMinRank(), buffer_info.getMaxRank())){
+    if(!details::checkDimensions(mem_space, buffer_info.getMinRank(), buffer_info.getMaxRank())){
         std::ostringstream ss;
         ss << "Impossible to read DataSet of dimensions " << mem_space.getNumberDimensions()
            << " into arrays of dimensions: " << buffer_info.getMinRank() << "(min) to "
@@ -348,7 +348,7 @@ inline void SliceTraits<Derivate>::read(T& array, const DataTransferProps& xfer_
 
     auto t = buffer_info.data_type;
     auto c = t.getClass();
-    if (c == DataTypeClass::VarLen || t.isVariableStr()){
+    if(c == DataTypeClass::VarLen || t.isVariableStr()){
 #if H5_VERSION_GE(1, 12, 0)
         // This one have been created in 1.12.0
         (void)
@@ -407,7 +407,7 @@ inline void SliceTraits<Derivate>::write(const T& buffer, const DataTransferProp
         [&slice]() -> std::string { return details::get_dataset(slice).getPath(); },
         details::BufferInfo<T>::Operation::write);
 
-    if (!details::checkDimensions(mem_space, buffer_info.getMinRank(), buffer_info.getMaxRank())){
+    if(!details::checkDimensions(mem_space, buffer_info.getMinRank(), buffer_info.getMaxRank())){
         std::ostringstream ss;
         ss << "Impossible to write buffer with dimensions n = " << buffer_info.getRank(buffer)
            << "into dataset with dimensions " << details::format_vector(mem_space.getDimensions())

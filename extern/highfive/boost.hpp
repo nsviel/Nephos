@@ -35,7 +35,7 @@ struct inspector<boost::multi_array<T, Dims>> {
         for(size_t i = 0; i < ndim; ++i){
             sizes[i] = val.shape()[i];
         }
-        if (val.size() != 0){
+        if(val.size() != 0){
             auto s = inspector<value_type>::getDimensions(val.data()[0]);
             sizes.resize(ndim + s.size());
             for(size_t i = 0; i < s.size(); ++i){
@@ -46,7 +46,7 @@ struct inspector<boost::multi_array<T, Dims>> {
     }
 
     static void prepare(type& val, const std::vector<size_t>& dims){
-        if (dims.size() < ndim){
+        if(dims.size() < ndim){
             std::ostringstream os;
             os << "Only '" << dims.size() << "' given but boost::multi_array is of size '" << ndim
                << "'.";
@@ -66,7 +66,7 @@ struct inspector<boost::multi_array<T, Dims>> {
     }
 
     static void assert_c_order(const type& val){
-        if (!(val.storage_order() == boost::c_storage_order())){
+        if(!(val.storage_order() == boost::c_storage_order())){
             throw DataTypeException("Only C storage order is supported for 'boost::multi_array'.");
         }
     }
@@ -132,7 +132,7 @@ struct inspector<boost::numeric::ublas::matrix<T>> {
     }
 
     static void prepare(type& val, const std::vector<size_t>& dims){
-        if (dims.size() < ndim){
+        if(dims.size() < ndim){
             std::ostringstream os;
             os << "Impossible to pair DataSet with " << dims.size() << " dimensions into a " << ndim
                << " boost::numeric::ublas::matrix";

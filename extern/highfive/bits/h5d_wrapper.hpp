@@ -10,7 +10,7 @@ namespace detail {
 #if !H5_VERSION_GE(1, 12, 0)
 inline herr_t h5d_vlen_reclaim(hid_t type_id, hid_t space_id, hid_t dxpl_id, void* buf){
     herr_t err = H5Dvlen_reclaim(type_id, space_id, dxpl_id, buf);
-    if (err < 0){
+    if(err < 0){
         throw DataSetException("Failed to reclaim HDF5 internal memory");
     }
 
@@ -28,7 +28,7 @@ inline hsize_t h5d_get_storage_size(hid_t dset_id){
 
 inline hid_t h5d_get_space(hid_t dset_id){
     hid_t dset = H5Dget_space(dset_id);
-    if (dset == H5I_INVALID_HID){
+    if(dset == H5I_INVALID_HID){
         HDF5ErrMapper::ToException<DataSetException>(
             std::string("Unable to get dataspace of the dataset"));
     }
@@ -38,7 +38,7 @@ inline hid_t h5d_get_space(hid_t dset_id){
 
 inline hid_t h5d_get_type(hid_t dset_id){
     hid_t type_id = H5Dget_type(dset_id);
-    if (type_id == H5I_INVALID_HID){
+    if(type_id == H5I_INVALID_HID){
         HDF5ErrMapper::ToException<DataSetException>(
             std::string("Unable to get datatype of the dataset"));
     }
@@ -53,7 +53,7 @@ inline herr_t h5d_read(hid_t dset_id,
                        hid_t dxpl_id,
                        void* buf){
     herr_t err = H5Dread(dset_id, mem_type_id, mem_space_id, file_space_id, dxpl_id, buf);
-    if (err < 0){
+    if(err < 0){
         HDF5ErrMapper::ToException<DataSetException>(std::string("Unable to read the dataset"));
     }
 
@@ -67,7 +67,7 @@ inline herr_t h5d_write(hid_t dset_id,
                         hid_t dxpl_id,
                         const void* buf){
     herr_t err = H5Dwrite(dset_id, mem_type_id, mem_space_id, file_space_id, dxpl_id, buf);
-    if (err < 0){
+    if(err < 0){
         HDF5ErrMapper::ToException<DataSetException>(std::string("Unable to write the dataset"));
     }
 
@@ -76,7 +76,7 @@ inline herr_t h5d_write(hid_t dset_id,
 
 inline haddr_t h5d_get_offset(hid_t dset_id){
     uint64_t addr = H5Dget_offset(dset_id);
-    if (addr == HADDR_UNDEF){
+    if(addr == HADDR_UNDEF){
         HDF5ErrMapper::ToException<DataSetException>("Cannot get offset of DataSet.");
     }
     return addr;
@@ -85,7 +85,7 @@ inline haddr_t h5d_get_offset(hid_t dset_id){
 
 inline herr_t h5d_set_extent(hid_t dset_id, const hsize_t size[]){
     herr_t err = H5Dset_extent(dset_id, size);
-    if (H5Dset_extent(dset_id, size) < 0){
+    if(H5Dset_extent(dset_id, size) < 0){
         HDF5ErrMapper::ToException<DataSetException>("Could not resize dataset.");
     }
 
@@ -101,7 +101,7 @@ inline hid_t h5d_create2(hid_t loc_id,
                          hid_t dapl_id){
     hid_t dataset_id = H5Dcreate2(loc_id, name, type_id, space_id, lcpl_id, dcpl_id, dapl_id);
 
-    if (dataset_id == H5I_INVALID_HID){
+    if(dataset_id == H5I_INVALID_HID){
         HDF5ErrMapper::ToException<DataSetException>(
             std::string("Failed to create the dataset \"") + name + "\":");
     }
@@ -112,7 +112,7 @@ inline hid_t h5d_create2(hid_t loc_id,
 inline hid_t h5d_open2(hid_t loc_id, const char* name, hid_t dapl_id){
     hid_t dataset_id = H5Dopen2(loc_id, name, dapl_id);
 
-    if (dataset_id == H5I_INVALID_HID){
+    if(dataset_id == H5I_INVALID_HID){
         HDF5ErrMapper::ToException<DataSetException>(std::string("Unable to open the dataset \"") +
                                                      name + "\":");
     }

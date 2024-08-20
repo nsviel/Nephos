@@ -253,7 +253,7 @@ std::vector<std::string> list_all_file(std::string path){
   }
 
   // Filter and store files present in the folder
-  while ((files = readdir(directory)) != NULL){
+  while((files = readdir(directory)) != NULL){
     std::string name = files->d_name;
 
     if(name != "." && name != ".."){

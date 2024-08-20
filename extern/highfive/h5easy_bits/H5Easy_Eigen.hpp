@@ -27,10 +27,10 @@ struct io_impl<T, typename std::enable_if<std::is_base_of<Eigen::DenseBase<T>, T
     // When creating a dataset for an Eigen object, the shape of the dataset is
     // 1D for vectors. (legacy reasons)
     inline static std::vector<size_t> file_shape(const T& data){
-        if (std::decay<T>::type::RowsAtCompileTime == 1){
+        if(std::decay<T>::type::RowsAtCompileTime == 1){
             return {static_cast<size_t>(data.cols())};
         }
-        if (std::decay<T>::type::ColsAtCompileTime == 1){
+        if(std::decay<T>::type::ColsAtCompileTime == 1){
             return {static_cast<size_t>(data.rows())};
         }
         return inspector<T>::getDimensions(data);
@@ -48,13 +48,13 @@ struct io_impl<T, typename std::enable_if<std::is_base_of<Eigen::DenseBase<T>, T
                                                 const D& dataset){
         std::vector<size_t> dims = dataset.getDimensions();
 
-        if (dims.size() == 1 && T::RowsAtCompileTime == 1){
+        if(dims.size() == 1 && T::RowsAtCompileTime == 1){
             return std::vector<size_t>{1, dims[0]};
         }
-        if (dims.size() == 1 && T::ColsAtCompileTime == 1){
+        if(dims.size() == 1 && T::ColsAtCompileTime == 1){
             return std::vector<size_t>{dims[0], 1};
         }
-        if (dims.size() == 2){
+        if(dims.size() == 2){
             return dims;
         }
 
@@ -71,7 +71,7 @@ struct io_impl<T, typename std::enable_if<std::is_base_of<Eigen::DenseBase<T>, T
         std::vector<size_t> mem_dims = mem_shape(data);
         DataSet dataset = initDataset<value_type>(file, path, file_dims, options);
         dataset.reshapeMemSpace(mem_dims).write(data);
-        if (options.flush()){
+        if(options.flush()){
             file.flush();
         }
         return dataset;
@@ -94,7 +94,7 @@ struct io_impl<T, typename std::enable_if<std::is_base_of<Eigen::DenseBase<T>, T
         std::vector<size_t> mem_dims = mem_shape(data);
         Attribute attribute = initAttribute<value_type>(file, path, key, file_dims, options);
         attribute.reshapeMemSpace(mem_dims).write(data);
-        if (options.flush()){
+        if(options.flush()){
             file.flush();
         }
         return attribute;

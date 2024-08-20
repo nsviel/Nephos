@@ -187,8 +187,8 @@ inline bool NodeTraits<Derivate>::_exist(const std::string& node_name, bool rais
     const auto val = detail::nothrow::h5l_exists(static_cast<const Derivate*>(this)->getId(),
                                                  node_name.c_str(),
                                                  H5P_DEFAULT);
-    if (val < 0){
-        if (raise_errors){
+    if(val < 0){
+        if(raise_errors){
             HDF5ErrMapper::ToException<GroupException>("Invalid link for exist()");
         } else {
             return false;
@@ -205,7 +205,7 @@ template <typename Derivate>
 inline bool NodeTraits<Derivate>::exist(const std::string& group_path) const {
     // When there are slashes, first check everything is fine
     // so that subsequent errors are only due to missing intermediate groups
-    if (group_path.find('/') != std::string::npos){
+    if(group_path.find('/') != std::string::npos){
         _exist("/");  // Shall not throw under normal circumstances
         // Unless "/" (already checked), verify path exists (not throwing errors)
         return (group_path == "/") ? true : _exist(group_path, false);
@@ -245,7 +245,7 @@ inline LinkType NodeTraits<Derivate>::getLinkType(const std::string& node_name) 
                          &linkinfo,
                          H5P_DEFAULT);
 
-    if (linkinfo.type == H5L_TYPE_ERROR){
+    if(linkinfo.type == H5L_TYPE_ERROR){
         HDF5ErrMapper::ToException<GroupException>(std::string("Link type of \"") + node_name +
                                                    "\" is H5L_TYPE_ERROR");
     }
@@ -269,7 +269,7 @@ inline void NodeTraits<Derivate>::createSoftLink(const std::string& link_name,
                                                  LinkCreateProps linkCreateProps,
                                                  const LinkAccessProps& linkAccessProps,
                                                  const bool parents){
-    if (parents){
+    if(parents){
         linkCreateProps.add(CreateIntermediateGroup{});
     }
     detail::h5l_create_soft(obj_path.c_str(),
@@ -287,7 +287,7 @@ inline void NodeTraits<Derivate>::createExternalLink(const std::string& link_nam
                                                      LinkCreateProps linkCreateProps,
                                                      const LinkAccessProps& linkAccessProps,
                                                      const bool parents){
-    if (parents){
+    if(parents){
         linkCreateProps.add(CreateIntermediateGroup{});
     }
     detail::h5l_create_external(h5_file.c_str(),
@@ -307,7 +307,7 @@ inline void NodeTraits<Derivate>::createHardLink(const std::string& link_name,
                                                  const bool parents){
     static_assert(!std::is_same<T, Attribute>::value,
                   "hdf5 doesn't support hard links to Attributes");
-    if (parents){
+    if(parents){
         linkCreateProps.add(CreateIntermediateGroup{});
     }
     detail::h5l_create_hard(target_obj.getId(),

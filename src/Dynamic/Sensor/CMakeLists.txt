@@ -21,8 +21,9 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_CORE
-  APPLICATION_SCENE
+
   LIBRARY_REALSENSE
+  LIBRARY_VELODYNE
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

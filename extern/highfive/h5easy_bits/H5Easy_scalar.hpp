@@ -29,11 +29,11 @@ struct io_impl: public default_io_impl<T> {
                                       const DumpOptions& options){
         std::vector<size_t> ones(idx.size(), 1);
 
-        if (file.exist(path)){
+        if(file.exist(path)){
             DataSet dataset = file.getDataSet(path);
             std::vector<size_t> dims = dataset.getDimensions();
             std::vector<size_t> shape = dims;
-            if (dims.size() != idx.size()){
+            if(dims.size() != idx.size()){
                 throw detail::error(
                     file,
                     path,
@@ -42,11 +42,11 @@ struct io_impl: public default_io_impl<T> {
             for(size_t i = 0; i < dims.size(); ++i){
                 shape[i] = std::max(dims[i], idx[i] + 1);
             }
-            if (shape != dims){
+            if(shape != dims){
                 dataset.resize(shape);
             }
             dataset.select(idx, ones).write(data);
-            if (options.flush()){
+            if(options.flush()){
                 file.flush();
             }
             return dataset;
@@ -55,9 +55,9 @@ struct io_impl: public default_io_impl<T> {
         const size_t unlim = DataSpace::UNLIMITED;
         std::vector<size_t> unlim_shape(idx.size(), unlim);
         std::vector<hsize_t> chunks(idx.size(), 10);
-        if (options.isChunked()){
+        if(options.isChunked()){
             chunks = options.getChunkSize();
-            if (chunks.size() != idx.size()){
+            if(chunks.size() != idx.size()){
                 throw error(file, path, "H5Easy::dump: Incorrect dimension ChunkSize");
             }
         }
@@ -70,7 +70,7 @@ struct io_impl: public default_io_impl<T> {
         props.add(Chunking(chunks));
         DataSet dataset = file.createDataSet(path, dataspace, AtomicType<T>(), props, {}, true);
         dataset.select(idx, ones).write(data);
-        if (options.flush()){
+        if(options.flush()){
             file.flush();
         }
         return dataset;

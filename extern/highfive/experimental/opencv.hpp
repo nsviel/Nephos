@@ -24,7 +24,7 @@ struct inspector<cv::Mat_<T>> {
         int rank = type.dims;
         size_t ld = sizeof(T);
         for(int i = rank - 1; i >= 0; --i){
-            if (static_cast<size_t>(type.step[i]) != ld){
+            if(static_cast<size_t>(type.step[i]) != ld){
                 throw DataSetException("Padded cv::Mat_ are not supported.");
             }
 
@@ -44,7 +44,7 @@ struct inspector<cv::Mat_<T>> {
     static constexpr bool is_trivially_nestable = false;
 
     static size_t getRank(const type& val){
-        if (val.empty()){
+        if(val.empty()){
             return min_ndim;
 
         } else {
@@ -70,7 +70,7 @@ struct inspector<cv::Mat_<T>> {
         auto rank = getRank(val);
         std::vector<size_t> dims(rank, 1ul);
 
-        if (val.empty()){
+        if(val.empty()){
             dims[0] = 0ul;
             dims[1] = 1ul;
             return dims;
@@ -93,11 +93,11 @@ struct inspector<cv::Mat_<T>> {
     static hdf5_type* data(type& val){
         assert_row_major(val);
 
-        if (!is_trivially_copyable){
+        if(!is_trivially_copyable){
             throw DataSetException("Invalid used of `inspector<Eigen::Matrix<...>>::data`.");
         }
 
-        if (val.empty()){
+        if(val.empty()){
             return nullptr;
         }
 
@@ -107,11 +107,11 @@ struct inspector<cv::Mat_<T>> {
     static const hdf5_type* data(const type& val){
         assert_row_major(val);
 
-        if (!is_trivially_copyable){
+        if(!is_trivially_copyable){
             throw DataSetException("Invalid used of `inspector<Eigen::Matrix<...>>::data`.");
         }
 
-        if (val.empty()){
+        if(val.empty()){
             return nullptr;
         }
 
@@ -119,7 +119,7 @@ struct inspector<cv::Mat_<T>> {
     }
 
     static void serialize(const type& val, const std::vector<size_t>& dims, hdf5_type* m){
-        if (val.empty()){
+        if(val.empty()){
             return;
         }
 

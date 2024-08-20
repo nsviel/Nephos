@@ -30,7 +30,7 @@ namespace details {
 inline bool checkDimensions(const std::vector<size_t>& dims,
                             size_t min_dim_requested,
                             size_t max_dim_requested){
-    if (min_dim_requested <= dims.size() && dims.size() <= max_dim_requested){
+    if(min_dim_requested <= dims.size() && dims.size() <= max_dim_requested){
         return true;
     }
 
@@ -231,7 +231,7 @@ struct inspector<std::vector<T>> {
     static constexpr bool is_trivially_nestable = false;
 
     static size_t getRank(const type& val){
-        if (!val.empty()){
+        if(!val.empty()){
             return ndim + inspector<value_type>::getRank(val[0]);
         } else {
             return min_ndim;
@@ -242,7 +242,7 @@ struct inspector<std::vector<T>> {
         auto rank = getRank(val);
         std::vector<size_t> sizes(rank, 1ul);
         sizes[0] = val.size();
-        if (!val.empty()){
+        if(!val.empty()){
             auto s = inspector<value_type>::getDimensions(val[0]);
             for(size_t i = 0; i < s.size(); ++i){
                 sizes[i + ndim] = s[i];
@@ -269,7 +269,7 @@ struct inspector<std::vector<T>> {
 
     template <class It>
     static void serialize(const type& val, const std::vector<size_t>& dims, It m){
-        if (!val.empty()){
+        if(!val.empty()){
             auto subdims = std::vector<size_t>(dims.begin() + 1, dims.end());
             size_t subsize = compute_total_size(subdims);
             for(auto&& e: val){
@@ -313,7 +313,7 @@ struct inspector<std::vector<bool>> {
     }
 
     static void prepare(type& val, const std::vector<size_t>& dims){
-        if (dims.size() > 1){
+        if(dims.size() > 1){
             throw DataSpaceException("std::vector<bool> is only 1 dimension.");
         }
         val.resize(dims[0]);
@@ -370,7 +370,7 @@ struct inspector<std::array<T, N>> {
     }
 
     static void prepare(type& val, const std::vector<size_t>& dims){
-        if (dims[0] > N){
+        if(dims[0] > N){
             std::ostringstream os;
             os << "Size of std::array (" << N << ") is too small for dims (" << dims[0] << ").";
             throw DataSpaceException(os.str());
@@ -402,7 +402,7 @@ struct inspector<std::array<T, N>> {
 
     template <class It>
     static void unserialize(const It& vec_align, const std::vector<size_t>& dims, type& val){
-        if (dims[0] != N){
+        if(dims[0] != N){
             std::ostringstream os;
             os << "Impossible to pair DataSet with " << dims[0] << " elements into an array with "
                << N << " elements.";
@@ -434,7 +434,7 @@ struct inspector<T*> {
     static constexpr bool is_trivially_nestable = false;
 
     static size_t getRank(const type& val){
-        if (val != nullptr){
+        if(val != nullptr){
             return ndim + inspector<value_type>::getRank(val[0]);
         } else {
             return min_ndim;
@@ -475,11 +475,11 @@ struct inspector<T[N]> {
     static constexpr bool is_trivially_nestable = is_trivially_copyable;
 
     static void prepare(type& val, const std::vector<size_t>& dims){
-        if (dims.size() < 1){
+        if(dims.size() < 1){
             throw DataSpaceException("Invalid 'dims', must be at least 1 dimensional.");
         }
 
-        if (dims[0] != N){
+        if(dims[0] != N){
             throw DataSpaceException("Dimensions mismatch.");
         }
 

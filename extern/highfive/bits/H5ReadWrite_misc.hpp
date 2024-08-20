@@ -85,8 +85,8 @@ inline void enforce_ascii_hack(const DataType& dst, const DataType& src){
     bool is_dst_string = detail::h5t_get_class(dst.getId()) == H5T_STRING;
     bool is_src_string = detail::h5t_get_class(src.getId()) == H5T_STRING;
 
-    if (is_dst_string && is_src_string){
-        if (detail::h5t_get_cset(src.getId()) == H5T_CSET_ASCII){
+    if(is_dst_string && is_src_string){
+        if(detail::h5t_get_cset(src.getId()) == H5T_CSET_ASCII){
             detail::h5t_set_cset(dst.getId(), H5T_CSET_ASCII);
         }
     }
@@ -95,7 +95,7 @@ inline void enforce_ascii_hack(const DataType& dst, const DataType& src){
 template <>
 struct string_type_checker<void> {
     inline static DataType getDataType(const DataType& element_type, const DataType& dtype){
-        if (detail::h5t_get_class(element_type.getId()) == H5T_STRING){
+        if(detail::h5t_get_class(element_type.getId()) == H5T_STRING){
             enforce_ascii_hack(element_type, dtype);
         }
         return element_type;
@@ -125,7 +125,7 @@ struct string_type_checker<char[FixedLen]> {
 template <>
 struct string_type_checker<char*> {
     inline static DataType getDataType(const DataType&, const DataType& dtype){
-        if (dtype.isFixedLenStr()){
+        if(dtype.isFixedLenStr()){
             throw DataSetException("Can't output variable-length to fixed-length strings");
         }
         DataType return_type = AtomicType<std::string>();
@@ -144,10 +144,10 @@ BufferInfo<T>::BufferInfo(const DataType& file_data_type, F getName, Operation _
                                                                file_data_type))
     , rank_correction((is_fixed_len_string && is_char_array) ? 1 : 0){
     // We warn. In case they are really not convertible an exception will rise on read/write
-    if (file_data_type.getClass() != data_type.getClass()){
+    if(file_data_type.getClass() != data_type.getClass()){
         HIGHFIVE_LOG_WARN(getName() + "\": data and hdf5 dataset have different types: " +
                           data_type.string() + " -> " + file_data_type.string());
-    } else if ((file_data_type.getClass() & data_type.getClass()) == DataTypeClass::Float){
+    } else if((file_data_type.getClass() & data_type.getClass()) == DataTypeClass::Float){
         HIGHFIVE_LOG_WARN_IF(
             (op == Operation::read) && (file_data_type.getSize() > data_type.getSize()),
             getName() + "\": hdf5 dataset has higher floating point precision than data on read: " +

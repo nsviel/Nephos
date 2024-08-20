@@ -72,7 +72,7 @@ void Routine::run_task(){
     cv.notify_all();
 
     // Thread is already running, do nothing
-    if (thread.joinable()) return;
+    if(thread.joinable()) return;
     this->thread = std::thread(&Routine::loop_task, this);
   }
 

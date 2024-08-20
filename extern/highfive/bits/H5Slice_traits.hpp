@@ -164,7 +164,7 @@ class HyperSlab {
     DataSpace apply(const DataSpace& space_) const {
         auto space = space_.clone();
         for(const auto& sel: selects){
-            if (sel.op == Op::None){
+            if(sel.op == Op::None){
                 detail::h5s_select_none(space.getId());
             } else {
                 detail::h5s_select_hyperslab(space.getId(),

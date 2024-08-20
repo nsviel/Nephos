@@ -51,7 +51,7 @@ inline DataSpace DataSpace::Null(){
 }
 
 inline DataSpace::DataSpace(const std::vector<size_t>& dims, const std::vector<size_t>& maxdims){
-    if (dims.size() != maxdims.size()){
+    if(dims.size() != maxdims.size()){
         throw DataSpaceException("dims and maxdims must be the same length.");
     }
 
@@ -97,7 +97,7 @@ inline size_t DataSpace::getNumberDimensions() const {
 
 inline std::vector<size_t> DataSpace::getDimensions() const {
     std::vector<hsize_t> dims(getNumberDimensions());
-    if (!dims.empty()){
+    if(!dims.empty()){
         detail::h5s_get_simple_extent_dims(_hid, dims.data(), nullptr);
     }
     return details::to_vector_size_t(std::move(dims));

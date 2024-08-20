@@ -233,7 +233,7 @@ class CompoundType: public DataType {
     /// \param type
     inline CompoundType(DataType&& type)
         : DataType(type){
-        if (getClass() != DataTypeClass::Compound){
+        if(getClass() != DataTypeClass::Compound){
             std::ostringstream ss;
             ss << "hid " << _hid << " does not refer to a compound data type";
             throw DataTypeException(ss.str());
@@ -310,7 +310,7 @@ class EnumType: public DataType {
     EnumType(const std::vector<member_def>& t_members)
         : members(t_members){
         static_assert(std::is_enum<T>::value, "EnumType<T>::create takes only enum");
-        if (members.empty()){
+        if(members.empty()){
             HDF5ErrMapper::ToException<DataTypeException>(
                 "Could not create an enum without members");
         }

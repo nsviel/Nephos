@@ -34,7 +34,7 @@ struct inspector<std::span<T, Extent>> {
 
 
     static size_t getRank(const type& val){
-        if (!val.empty()){
+        if(!val.empty()){
             return ndim + inspector<value_type>::getRank(val[0]);
         } else {
             return min_ndim;
@@ -45,7 +45,7 @@ struct inspector<std::span<T, Extent>> {
         auto rank = getRank(val);
         std::vector<size_t> sizes(rank, 1ul);
         sizes[0] = val.size();
-        if (!val.empty()){
+        if(!val.empty()){
             auto s = inspector<value_type>::getDimensions(val[0]);
             assert(s.size() + ndim == sizes.size());
             for(size_t i = 0; i < s.size(); ++i){
@@ -57,12 +57,12 @@ struct inspector<std::span<T, Extent>> {
 
     static void prepare(type& val, const std::vector<size_t>& expected_dims){
         auto actual_dims = getDimensions(val);
-        if (actual_dims.size() != expected_dims.size()){
+        if(actual_dims.size() != expected_dims.size()){
             throw DataSpaceException("Mismatching rank.");
         }
 
         for(size_t i = 0; i < actual_dims.size(); ++i){
-            if (actual_dims[i] != expected_dims[i]){
+            if(actual_dims[i] != expected_dims[i]){
                 throw DataSpaceException("Mismatching dimensions.");
             }
         }
@@ -78,7 +78,7 @@ struct inspector<std::span<T, Extent>> {
 
     template <class It>
     static void serialize(const type& val, const std::vector<size_t>& dims, It m){
-        if (!val.empty()){
+        if(!val.empty()){
             auto subdims = std::vector<size_t>(dims.begin() + ndim, dims.end());
             size_t subsize = compute_total_size(subdims);
             for(const auto& e: val){

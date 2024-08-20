@@ -62,11 +62,11 @@ inline bool DataType::isReference() const {
 }
 
 inline StringType DataType::asStringType() const {
-    if (getClass() != DataTypeClass::String){
+    if(getClass() != DataTypeClass::String){
         throw DataTypeException("Invalid conversion to StringType.");
     }
 
-    if (isValid()){
+    if(isValid()){
         detail::h5i_inc_ref(_hid);
     }
 
@@ -88,7 +88,7 @@ inline CharacterSet StringType::getCharacterSet() const {
 inline FixedLengthStringType::FixedLengthStringType(size_t size,
                                                     StringPadding padding,
                                                     CharacterSet character_set){
-    if (size == 0 && padding == StringPadding::NullTerminated){
+    if(size == 0 && padding == StringPadding::NullTerminated){
         throw DataTypeException(
             "Fixed-length, null-terminated need at least one byte to store the null-character.");
     }
@@ -241,13 +241,13 @@ inline AtomicType<Reference>::AtomicType(){
 
 inline size_t find_first_atomic_member_size(hid_t hid){
     // Recursive exit condition
-    if (detail::h5t_get_class(hid) == H5T_COMPOUND){
+    if(detail::h5t_get_class(hid) == H5T_COMPOUND){
         auto number_of_members = detail::h5t_get_nmembers(hid);
-        if (number_of_members == -1){
+        if(number_of_members == -1){
             throw DataTypeException("Cannot get members of CompoundType with hid: " +
                                     std::to_string(hid));
         }
-        if (number_of_members == 0){
+        if(number_of_members == 0){
             throw DataTypeException("No members defined for CompoundType with hid: " +
                                     std::to_string(hid));
         }
@@ -256,7 +256,7 @@ inline size_t find_first_atomic_member_size(hid_t hid){
         auto size = find_first_atomic_member_size(member_type);
         detail::h5t_close(member_type);
         return size;
-    } else if (detail::h5t_get_class(hid) == H5T_STRING){
+    } else if(detail::h5t_get_class(hid) == H5T_STRING){
         return 1;
     }
     return detail::h5t_get_size(hid);
@@ -285,14 +285,14 @@ inline size_t find_first_atomic_member_size(hid_t hid){
             (member_size)))
 
 inline void CompoundType::create(size_t size){
-    if (size == 0){
+    if(size == 0){
         size_t current_size = 0, max_atomic_size = 0;
 
         // Do a first pass to find the total size of the compound datatype
         for(auto& member: members){
             size_t member_size = detail::h5t_get_size(member.base_type.getId());
 
-            if (member_size == 0){
+            if(member_size == 0){
                 throw DataTypeException("Cannot get size of DataType with hid: " +
                                         std::to_string(member.base_type.getId()));
             }
@@ -433,21 +433,21 @@ inline DataType create_datatype(){
 template <typename T>
 inline DataType create_and_check_datatype(){
     DataType t = create_datatype<T>();
-    if (t.empty()){
+    if(t.empty()){
         throw DataTypeException("Type given to create_and_check_datatype is not valid");
     }
 
     // Skip check if the base type is a variable length string
-    if (t.isVariableStr()){
+    if(t.isVariableStr()){
         return t;
     }
 
     // Check that the size of the template type matches the size that HDF5 is
     // expecting.
-    if (t.isReference() || t.isFixedLenStr()){
+    if(t.isReference() || t.isFixedLenStr()){
         return t;
     }
-    if (sizeof(T) != t.getSize()){
+    if(sizeof(T) != t.getSize()){
         std::ostringstream ss;
         ss << "Size of array type " << sizeof(T) << " != that of memory datatype " << t.getSize()
            << std::endl;

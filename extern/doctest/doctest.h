@@ -1807,7 +1807,7 @@ DOCTEST_CLANG_SUPPRESS_WARNING_POP
 
         bool translate(String& res) const override {
 #ifndef DOCTEST_CONFIG_NO_EXCEPTIONS
-            try {
+            try{
                 throw; // lgtm [cpp/rethrow-no-exception]
                 // cppcheck-suppress catchExceptionByValue
             } catch(const T& ex){
@@ -2142,7 +2142,7 @@ int registerReporter(const char* name, int priority, bool isReporter){
 #define DOCTEST_WRAP_IN_TRY(x) x;
 #else // DOCTEST_CONFIG_NO_TRY_CATCH_IN_ASSERTS
 #define DOCTEST_WRAP_IN_TRY(x)                                                                     \
-    try {                                                                                          \
+    try{                                                                                          \
         x;                                                                                         \
     } catch(...){ DOCTEST_RB.translateException(); }
 #endif // DOCTEST_CONFIG_NO_TRY_CATCH_IN_ASSERTS
@@ -2485,7 +2485,7 @@ int registerReporter(const char* name, int priority, bool isReporter){
         if(!doctest::getContextOptions()->no_throw){                                              \
             doctest::detail::ResultBuilder DOCTEST_RB(doctest::assertType::assert_type, __FILE__,  \
                                                        __LINE__, #expr, #__VA_ARGS__, message);    \
-            try {                                                                                  \
+            try{                                                                                  \
                 DOCTEST_CAST_TO_VOID(expr)                                                         \
             } catch(const typename doctest::detail::types::remove_const<                           \
                     typename doctest::detail::types::remove_reference<__VA_ARGS__>::type>::type&){\
@@ -2503,7 +2503,7 @@ int registerReporter(const char* name, int priority, bool isReporter){
         if(!doctest::getContextOptions()->no_throw){                                              \
             doctest::detail::ResultBuilder DOCTEST_RB(doctest::assertType::assert_type, __FILE__,  \
                                                        __LINE__, expr_str, "", __VA_ARGS__);       \
-            try {                                                                                  \
+            try{                                                                                  \
                 DOCTEST_CAST_TO_VOID(expr)                                                         \
             } catch(...){ DOCTEST_RB.translateException(); }                                      \
             DOCTEST_ASSERT_LOG_REACT_RETURN(DOCTEST_RB);                                           \
@@ -2516,7 +2516,7 @@ int registerReporter(const char* name, int priority, bool isReporter){
     DOCTEST_FUNC_SCOPE_BEGIN {                                                                     \
         doctest::detail::ResultBuilder DOCTEST_RB(doctest::assertType::assert_type, __FILE__,      \
                                                    __LINE__, #__VA_ARGS__);                        \
-        try {                                                                                      \
+        try{                                                                                      \
             DOCTEST_CAST_TO_VOID(__VA_ARGS__)                                                      \
         } catch(...){ DOCTEST_RB.translateException(); }                                          \
         DOCTEST_ASSERT_LOG_REACT_RETURN(DOCTEST_RB);                                               \
@@ -2711,25 +2711,25 @@ namespace detail {
 #define DOCTEST_CHECK_THROWS_WITH_AS_MESSAGE(expr, with, ex, ...) DOCTEST_WARN_THROWS_WITH(,,)
 #define DOCTEST_REQUIRE_THROWS_WITH_AS_MESSAGE(expr, with, ex, ...) DOCTEST_WARN_THROWS_WITH(,,)
 
-#define DOCTEST_WARN_THROWS(...) [&] { try { __VA_ARGS__; return false; } catch (...){ return true; } }()
-#define DOCTEST_CHECK_THROWS(...) [&] { try { __VA_ARGS__; return false; } catch (...){ return true; } }()
-#define DOCTEST_REQUIRE_THROWS(...) [&] { try { __VA_ARGS__; return false; } catch (...){ return true; } }()
-#define DOCTEST_WARN_THROWS_AS(expr, ...) [&] { try { expr; } catch (__VA_ARGS__){ return true; } catch (...){ } return false; }()
-#define DOCTEST_CHECK_THROWS_AS(expr, ...) [&] { try { expr; } catch (__VA_ARGS__){ return true; } catch (...){ } return false; }()
-#define DOCTEST_REQUIRE_THROWS_AS(expr, ...) [&] { try { expr; } catch (__VA_ARGS__){ return true; } catch (...){ } return false; }()
-#define DOCTEST_WARN_NOTHROW(...) [&] { try { __VA_ARGS__; return true; } catch (...){ return false; } }()
-#define DOCTEST_CHECK_NOTHROW(...) [&] { try { __VA_ARGS__; return true; } catch (...){ return false; } }()
-#define DOCTEST_REQUIRE_NOTHROW(...) [&] { try { __VA_ARGS__; return true; } catch (...){ return false; } }()
+#define DOCTEST_WARN_THROWS(...) [&] { try{ __VA_ARGS__; return false; } catch(...){ return true; } }()
+#define DOCTEST_CHECK_THROWS(...) [&] { try{ __VA_ARGS__; return false; } catch(...){ return true; } }()
+#define DOCTEST_REQUIRE_THROWS(...) [&] { try{ __VA_ARGS__; return false; } catch(...){ return true; } }()
+#define DOCTEST_WARN_THROWS_AS(expr, ...) [&] { try{ expr; } catch(__VA_ARGS__){ return true; } catch(...){ } return false; }()
+#define DOCTEST_CHECK_THROWS_AS(expr, ...) [&] { try{ expr; } catch(__VA_ARGS__){ return true; } catch(...){ } return false; }()
+#define DOCTEST_REQUIRE_THROWS_AS(expr, ...) [&] { try{ expr; } catch(__VA_ARGS__){ return true; } catch(...){ } return false; }()
+#define DOCTEST_WARN_NOTHROW(...) [&] { try{ __VA_ARGS__; return true; } catch(...){ return false; } }()
+#define DOCTEST_CHECK_NOTHROW(...) [&] { try{ __VA_ARGS__; return true; } catch(...){ return false; } }()
+#define DOCTEST_REQUIRE_NOTHROW(...) [&] { try{ __VA_ARGS__; return true; } catch(...){ return false; } }()
 
-#define DOCTEST_WARN_THROWS_MESSAGE(expr, ...) [&] { try { __VA_ARGS__; return false; } catch (...){ return true; } }()
-#define DOCTEST_CHECK_THROWS_MESSAGE(expr, ...) [&] { try { __VA_ARGS__; return false; } catch (...){ return true; } }()
-#define DOCTEST_REQUIRE_THROWS_MESSAGE(expr, ...) [&] { try { __VA_ARGS__; return false; } catch (...){ return true; } }()
-#define DOCTEST_WARN_THROWS_AS_MESSAGE(expr, ex, ...) [&] { try { expr; } catch (__VA_ARGS__){ return true; } catch (...){ } return false; }()
-#define DOCTEST_CHECK_THROWS_AS_MESSAGE(expr, ex, ...) [&] { try { expr; } catch (__VA_ARGS__){ return true; } catch (...){ } return false; }()
-#define DOCTEST_REQUIRE_THROWS_AS_MESSAGE(expr, ex, ...) [&] { try { expr; } catch (__VA_ARGS__){ return true; } catch (...){ } return false; }()
-#define DOCTEST_WARN_NOTHROW_MESSAGE(expr, ...) [&] { try { __VA_ARGS__; return true; } catch (...){ return false; } }()
-#define DOCTEST_CHECK_NOTHROW_MESSAGE(expr, ...) [&] { try { __VA_ARGS__; return true; } catch (...){ return false; } }()
-#define DOCTEST_REQUIRE_NOTHROW_MESSAGE(expr, ...) [&] { try { __VA_ARGS__; return true; } catch (...){ return false; } }()
+#define DOCTEST_WARN_THROWS_MESSAGE(expr, ...) [&] { try{ __VA_ARGS__; return false; } catch(...){ return true; } }()
+#define DOCTEST_CHECK_THROWS_MESSAGE(expr, ...) [&] { try{ __VA_ARGS__; return false; } catch(...){ return true; } }()
+#define DOCTEST_REQUIRE_THROWS_MESSAGE(expr, ...) [&] { try{ __VA_ARGS__; return false; } catch(...){ return true; } }()
+#define DOCTEST_WARN_THROWS_AS_MESSAGE(expr, ex, ...) [&] { try{ expr; } catch(__VA_ARGS__){ return true; } catch(...){ } return false; }()
+#define DOCTEST_CHECK_THROWS_AS_MESSAGE(expr, ex, ...) [&] { try{ expr; } catch(__VA_ARGS__){ return true; } catch(...){ } return false; }()
+#define DOCTEST_REQUIRE_THROWS_AS_MESSAGE(expr, ex, ...) [&] { try{ expr; } catch(__VA_ARGS__){ return true; } catch(...){ } return false; }()
+#define DOCTEST_WARN_NOTHROW_MESSAGE(expr, ...) [&] { try{ __VA_ARGS__; return true; } catch(...){ return false; } }()
+#define DOCTEST_CHECK_NOTHROW_MESSAGE(expr, ...) [&] { try{ __VA_ARGS__; return true; } catch(...){ return false; } }()
+#define DOCTEST_REQUIRE_NOTHROW_MESSAGE(expr, ...) [&] { try{ __VA_ARGS__; return true; } catch(...){ return false; } }()
 
 #endif // DOCTEST_CONFIG_NO_EXCEPTIONS
 
@@ -4479,7 +4479,7 @@ namespace {
                 return res;
         // clang-format off
         DOCTEST_GCC_SUPPRESS_WARNING_WITH_PUSH("-Wcatch-value")
-        try {
+        try{
             throw;
         } catch(std::exception& ex){
             return ex.what();
@@ -6998,7 +6998,7 @@ int Context::run(){
                 p->stringifiedContexts.clear();
 
 #ifndef DOCTEST_CONFIG_NO_EXCEPTIONS
-                try {
+                try{
 #endif // DOCTEST_CONFIG_NO_EXCEPTIONS
 // MSVC 2015 diagnoses fatalConditionHandler as unused (because reset() is a static method)
 DOCTEST_MSVC_SUPPRESS_WARNING_WITH_PUSH(4101) // unreferenced local variable

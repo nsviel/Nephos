@@ -30,7 +30,7 @@ struct default_io_impl {
         using value_type = typename inspector<T>::base_type;
         DataSet dataset = initDataset<value_type>(file, path, shape(data), options);
         dataset.write(data);
-        if (options.flush()){
+        if(options.flush()){
             file.flush();
         }
         return dataset;
@@ -48,7 +48,7 @@ struct default_io_impl {
         using value_type = typename inspector<T>::base_type;
         Attribute attribute = initAttribute<value_type>(file, path, key, shape(data), options);
         attribute.write(data);
-        if (options.flush()){
+        if(options.flush()){
             file.flush();
         }
         return attribute;

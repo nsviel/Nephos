@@ -21,7 +21,7 @@ inline PathTraits<Derivate>::PathTraits(){
                       std::is_same<Derivate, Attribute>::value,
                   "PathTraits can only be applied to Group, DataSet and Attribute");
     const auto& obj = static_cast<const Derivate&>(*this);
-    if (obj.isValid()){
+    if(obj.isValid()){
         const hid_t file_id = detail::h5i_get_file_id<PropertyException>(obj.getId());
         _file_obj.reset(new File(file_id));
     }
@@ -37,7 +37,7 @@ inline std::string PathTraits<Derivate>::getPath() const {
 template <typename Derivate>
 inline File& PathTraits<Derivate>::getFile() const {
     const auto& obj = static_cast<const Derivate&>(*this);
-    if (!obj.isValid()){
+    if(!obj.isValid()){
         throw ObjectException("Invalid call to `PathTraits::getFile` for invalid object");
     }
     return *_file_obj;

@@ -22,7 +22,7 @@
 namespace HighFive {
 
 inline uint64_t DataSet::getStorageSize() const {
-    if (!this->isValid()){
+    if(!this->isValid()){
         throw DataSetException("Invalid call to `DataSet::getStorageSize` for invalid object");
     }
 
@@ -49,7 +49,7 @@ inline uint64_t DataSet::getOffset() const {
 
 inline void DataSet::resize(const std::vector<size_t>& dims){
     const size_t numDimensions = getSpace().getDimensions().size();
-    if (dims.size() != numDimensions){
+    if(dims.size() != numDimensions){
         HDF5ErrMapper::ToException<DataSetException>("Invalid dataspace dimensions, got " +
                                                      std::to_string(dims.size()) + " expected " +
                                                      std::to_string(numDimensions));

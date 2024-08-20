@@ -49,11 +49,11 @@ inline std::string get_name(T fct){
     const size_t maxLength = 255;
     char buffer[maxLength + 1];
     ssize_t retcode = fct(buffer, static_cast<hsize_t>(maxLength) + 1);
-    if (retcode < 0){
+    if(retcode < 0){
         HDF5ErrMapper::ToException<GroupException>("Error accessing object name");
     }
     const size_t length = static_cast<std::size_t>(retcode);
-    if (length <= maxLength){
+    if(length <= maxLength){
         return std::string(buffer, length);
     }
     std::vector<char> bigBuffer(length + 1, 0);

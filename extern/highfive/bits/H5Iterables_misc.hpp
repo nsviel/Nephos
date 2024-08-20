@@ -29,7 +29,7 @@ struct HighFiveIterateData {
     std::exception* err;
 
     inline void throwIfError(){
-        if (err){
+        if(err){
             throw *err;
         }
     }
@@ -41,10 +41,10 @@ inline herr_t internal_high_five_iterate(hid_t /*id*/,
                                          const InfoType* /*info*/,
                                          void* op_data){
     auto* data = static_cast<HighFiveIterateData*>(op_data);
-    try {
+    try{
         data->names.emplace_back(name);
         return 0;
-    } catch (...){
+    } catch(...){
         data->err = new ObjectException("Exception during H5Iterate, abort listing");
     }
     return -1;

@@ -105,7 +105,7 @@ enum class BufferMode { Read, Write };
 ///
 inline size_t char_buffer_size(char const* const str, size_t max_string_length){
     for(size_t i = 0; i <= max_string_length; ++i){
-        if (str[i] == '\0'){
+        if(str[i] == '\0'){
             return i;
         }
     }
@@ -180,17 +180,17 @@ struct StringBuffer {
         ///
         /// The `length` is the length of the string in bytes.
         void assign(char const* data, size_t length, StringPadding pad){
-            if (buffer.isVariableLengthString()){
-                if (pad == StringPadding::NullTerminated){
+            if(buffer.isVariableLengthString()){
+                if(pad == StringPadding::NullTerminated){
                     buffer.variable_length_pointers[i] = data;
                 } else {
                     buffer.variable_length_buffer[i] = std::string(data, length);
                     buffer.variable_length_pointers[i] = buffer.variable_length_buffer[i].data();
                 }
-            } else if (buffer.isFixedLengthString()){
+            } else if(buffer.isFixedLengthString()){
                 // If the buffer is fixed-length and null-terminated, then
                 // `buffer.string_length` doesn't include the null-character.
-                if (length > buffer.string_length){
+                if(length > buffer.string_length){
                     throw std::invalid_argument("String length too big.");
                 }
 
@@ -214,7 +214,7 @@ struct StringBuffer {
         ///
         /// The valid indices for this pointer are: 0, ..., length() - 1.
         char const* data() const {
-            if (buffer.isVariableLengthString()){
+            if(buffer.isVariableLengthString()){
                 return buffer.variable_length_pointers[i];
             } else {
                 return &buffer.fixed_length_buffer[i * buffer.string_size];
@@ -228,7 +228,7 @@ struct StringBuffer {
         /// null-terminated string, the destination buffer needs to be at least
         /// `length() + 1` bytes long.
         size_t length() const {
-            if (buffer.isNullTerminated()){
+            if(buffer.isNullTerminated()){
                 return char_buffer_size(data(), buffer.string_length);
             } else {
                 return buffer.string_length;
@@ -274,14 +274,14 @@ struct StringBuffer {
         , string_size(file_datatype.isVariableStr() ? size_t(-1) : file_datatype.getSize())
         , string_length(string_size - size_t(isNullTerminated()))
         , dims(_dims){
-        if (string_size == 0 && isNullTerminated()){
+        if(string_size == 0 && isNullTerminated()){
             throw DataTypeException(
                 "Fixed-length, null-terminated need at least one byte to store the "
                 "null-character.");
         }
 
         auto n_strings = compute_total_size(dims);
-        if (isVariableLengthString()){
+        if(isVariableLengthString()){
             variable_length_buffer.resize(n_strings);
             variable_length_pointers.resize(n_strings);
         } else {
@@ -304,7 +304,7 @@ struct StringBuffer {
 
 
     void* getPointer(){
-        if (file_datatype.isVariableStr()){
+        if(file_datatype.isVariableStr()){
             return variable_length_pointers.data();
         } else {
             return fixed_length_buffer.data();
