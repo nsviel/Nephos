@@ -4,8 +4,8 @@
 
 namespace dat::gph{class Selection;}
 namespace rad{class Node;}
-namespace rad::gui::correction{class Tab;}
-namespace rad::gui::calibration{class Tab;}
+namespace rad::cor::gui{class Tab;}
+namespace rad::cal::gui{class Tab;}
 namespace dyn::prc::base{class Sensor;}
 
 
@@ -29,8 +29,8 @@ public:
 
 private:
   dat::gph::Selection* dat_selection;
-  rad::gui::correction::Tab* gui_correction;
-  rad::gui::calibration::Tab* gui_calibration;
+  rad::cor::gui::Tab* gui_correction;
+  rad::cal::gui::Tab* gui_calibration;
 
   std::string name;
   bool* show_window;

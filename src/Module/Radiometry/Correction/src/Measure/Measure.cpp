@@ -5,10 +5,10 @@
 #include <Processing/Namespace.h>
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 //Constructor / Destructor
-Measure::Measure(rad::correction::Node* node_correction){
+Measure::Measure(rad::cor::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();
@@ -20,7 +20,7 @@ Measure::~Measure(){}
 
 //Main function
 void Measure::init(){
-  rad::correction::structure::Measure* sphere = &rad_struct->measure;
+  rad::cor::structure::Measure* sphere = &rad_struct->measure;
   //---------------------------
 
   rad_struct->measure.path.insert("../media/calibration/kinect_NFOV.data");
@@ -51,7 +51,7 @@ void Measure::process_measure(dyn::prc::base::Sensor* sensor){
 
   std::vector<glm::vec3>& search_xyz = rad_struct->ransac.search_xyz;
   std::vector<float>& search_Is = rad_struct->ransac.search_Is;
-  rad_struct->state.data = rad::correction::HAS_DATA;
+  rad_struct->state.data = rad::cor::HAS_DATA;
 
   this->data_measure(sensor, search_xyz, search_Is);
   this->data_IfR(sensor, search_xyz, search_Is);
@@ -60,9 +60,9 @@ void Measure::process_measure(dyn::prc::base::Sensor* sensor){
   //---------------------------
 }
 void Measure::data_measure(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
-  rad::correction::structure::Model* model = &rad_struct->model;
-  rad::correction::structure::Measure* sphere = &rad_struct->measure;
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Model* model = &rad_struct->model;
+  rad::cor::structure::Measure* sphere = &rad_struct->measure;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   //Init parameter
@@ -100,9 +100,9 @@ void Measure::data_measure(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3
   //---------------------------
 }
 void Measure::data_IfR(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
-  rad::correction::structure::Model* model = &rad_struct->model;
-  rad::correction::structure::Measure* sphere = &rad_struct->measure;
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Model* model = &rad_struct->model;
+  rad::cor::structure::Measure* sphere = &rad_struct->measure;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   //Search for closest point
@@ -122,8 +122,8 @@ void Measure::data_IfR(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& s
   //---------------------------
 }
 void Measure::data_IfIt(std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
-  rad::correction::structure::Measure* sphere = &rad_struct->measure;
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Measure* sphere = &rad_struct->measure;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   //Init parameter

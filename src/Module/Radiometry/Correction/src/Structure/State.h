@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace rad::correction::detection{
+namespace rad::cor::detection{
 
 enum Step{
   WAIT_VALIDATION = 1,
@@ -10,7 +10,7 @@ enum Step{
 
 }
 
-namespace rad::correction::measure{
+namespace rad::cor::measure{
 
 enum Step{
   WAIT_VALIDATION = 1,
@@ -19,7 +19,7 @@ enum Step{
 
 }
 
-namespace rad::correction{
+namespace rad::cor{
 
 enum State{
   NO_DATA = 0,
@@ -28,14 +28,14 @@ enum State{
 
 }
 
-namespace rad::correction::structure{
+namespace rad::cor::structure{
 
 struct State{
   //---------------------------
 
-  int detection = rad::correction::detection::WAIT_VALIDATION;
-  int measure = rad::correction::measure::WAIT_VALIDATION;
-  int data = rad::correction::NO_DATA;
+  int detection = rad::cor::detection::WAIT_VALIDATION;
+  int measure = rad::cor::measure::WAIT_VALIDATION;
+  int data = rad::cor::NO_DATA;
 
   //---------------------------
 };

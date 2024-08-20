@@ -7,7 +7,7 @@ namespace cam{class Control;}
 //namespace io::imp{class Importer;}
 
 
-namespace rad::correction::glyph{
+namespace rad::cor::glyph{
 
 class Sphere : public dat::base::Glyph
 {

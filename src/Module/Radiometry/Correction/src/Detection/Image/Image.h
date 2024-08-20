@@ -2,19 +2,19 @@
 
 #include <opencv2/opencv.hpp>
 
-namespace rad::correction{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction::structure{class Circle;}
+namespace rad::cor{class Node;}
+namespace rad::cor{class Structure;}
+namespace rad::cor::structure{class Circle;}
 namespace dyn::prc::base{class Sensor;}
 namespace utl::media{class Image;}
 
 
-namespace rad::correction::image{
+namespace rad::cor::image{
 
 class Image
 {
 public:
-  Image(rad::correction::Node* node_correction);
+  Image(rad::cor::Node* node_correction);
   ~Image();
 
 public:
@@ -28,11 +28,11 @@ public:
   void convert_into_utl_image(cv::Mat& input, utl::media::Image* output);
 
   //Shape function
-  void draw_circle(cv::Mat& image, std::vector<rad::correction::structure::Circle>& vec_circle);
+  void draw_circle(cv::Mat& image, std::vector<rad::cor::structure::Circle>& vec_circle);
   void draw_bounding_box(cv::Mat& image);
 
 private:
-  rad::correction::Structure* rad_struct;
+  rad::cor::Structure* rad_struct;
 };
 
 }

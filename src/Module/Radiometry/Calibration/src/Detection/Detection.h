@@ -1,22 +1,22 @@
 #pragma once
 
-namespace rad::calibration{class Node;}
-namespace rad::calibration{class Structure;}
-namespace rad::calibration{class Image;}
-namespace rad::calibration{class Rectangle;}
+namespace rad::cal{class Node;}
+namespace rad::cal{class Structure;}
+namespace rad::cal{class Image;}
+namespace rad::cal{class Rectangle;}
 namespace dyn::prc::base{class Sensor;}
 namespace sys::thread::task{class Pool;}
 namespace utl::media{class Image;}
 namespace dat::elm{class Image;}
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 class Detection
 {
 public:
   //Constructor / Destructor
-  Detection(rad::calibration::Node* node_detection);
+  Detection(rad::cal::Node* node_detection);
   ~Detection();
 
 public:
@@ -30,9 +30,9 @@ public:
 
 private:
   sys::thread::task::Pool* thread_pool;
-  rad::calibration::Structure* rad_struct;
-  rad::calibration::Image* rad_image;
-  rad::calibration::Rectangle* rad_rectangle;
+  rad::cal::Structure* rad_struct;
+  rad::cal::Image* rad_image;
+  rad::cal::Rectangle* rad_rectangle;
   dat::elm::Image* dat_image;
 
   bool thread_idle = true;

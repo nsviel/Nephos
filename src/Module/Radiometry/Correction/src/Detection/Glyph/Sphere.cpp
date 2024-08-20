@@ -6,7 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 
-namespace rad::correction::glyph{
+namespace rad::cor::glyph{
 
 //Constructor / destructor
 Sphere::Sphere(core::Node* node_core){

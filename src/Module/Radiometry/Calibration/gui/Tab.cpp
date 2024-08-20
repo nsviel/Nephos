@@ -5,13 +5,13 @@
 #include <Processing/Namespace.h>
 
 
-namespace rad::gui::calibration{
+namespace rad::cal::gui{
 
 //Constructor / Destructor
 Tab::Tab(rad::Node* node_radio){
   //---------------------------
 
-  this->gui_detection = new rad::gui::calibration::Detection(node_radio);
+  this->gui_detection = new rad::cal::gui::Detection(node_radio);
 
   //---------------------------
 }

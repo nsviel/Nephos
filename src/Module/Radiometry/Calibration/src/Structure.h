@@ -9,20 +9,20 @@
 #include <Radiometry/src/Calibration/Structure/Hough.h>
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 struct Structure{
   //---------------------------
 
   int nb_detection = 0;
 
-  rad::calibration::structure::State state;
+  rad::cal::structure::State state;
 
-  rad::calibration::structure::Canny canny;
-  rad::calibration::structure::Hough hough;
-  rad::calibration::structure::Chart chart;
-  rad::calibration::structure::Optimization optim;
-  rad::calibration::structure::Plot plot;
+  rad::cal::structure::Canny canny;
+  rad::cal::structure::Hough hough;
+  rad::cal::structure::Chart chart;
+  rad::cal::structure::Optimization optim;
+  rad::cal::structure::Plot plot;
 
   //---------------------------
 };

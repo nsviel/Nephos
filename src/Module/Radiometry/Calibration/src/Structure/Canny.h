@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace rad::calibration::structure{
+namespace rad::cal::structure{
 
 struct Canny{
   //---------------------------

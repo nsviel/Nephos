@@ -6,10 +6,10 @@
 #include <Data/Namespace.h>
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 //Constructor / Destructor
-Process::Process(rad::correction::Node* node_correction){
+Process::Process(rad::cor::Node* node_correction){
   //---------------------------
 
   rad::Node* node_radio = node_correction->get_node_radio();
@@ -18,9 +18,9 @@ Process::Process(rad::correction::Node* node_correction){
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->rad_struct = node_correction->get_rad_struct();
-  this->rad_glyph = new rad::correction::Glyph(node_correction);
-  this->rad_image_detection = new rad::correction::image::Detection(node_correction);
-  this->rad_cloud_detection = new rad::correction::cloud::Detection(node_correction);
+  this->rad_glyph = new rad::cor::Glyph(node_correction);
+  this->rad_image_detection = new rad::cor::image::Detection(node_correction);
+  this->rad_cloud_detection = new rad::cor::cloud::Detection(node_correction);
   this->dat_selection = node_graph->get_dat_selection();
   this->dat_image = node_element->get_dat_image();
 
@@ -65,13 +65,13 @@ void Process::step_detection(){
 
   //Detection step logic
   switch(rad_struct->state.detection){
-    case rad::correction::detection::WAIT_VALIDATION:{
-      rad_struct->state.detection = rad::correction::detection::PROCESSING;
+    case rad::cor::detection::WAIT_VALIDATION:{
+      rad_struct->state.detection = rad::cor::detection::PROCESSING;
       break;
     }
-    case rad::correction::detection::PROCESSING:{
-      rad_struct->state.detection = rad::correction::detection::WAIT_VALIDATION;
-      rad_struct->state.measure = rad::correction::measure::WAIT_VALIDATION;
+    case rad::cor::detection::PROCESSING:{
+      rad_struct->state.detection = rad::cor::detection::WAIT_VALIDATION;
+      rad_struct->state.measure = rad::cor::measure::WAIT_VALIDATION;
       break;
     }
   }
@@ -88,15 +88,15 @@ void Process::step_measure(){
 
   //Measurement step logic
   switch(rad_struct->state.measure){
-    case rad::correction::measure::WAIT_VALIDATION:{
-      if(rad_struct->state.detection == rad::correction::detection::PROCESSING){
+    case rad::cor::measure::WAIT_VALIDATION:{
+      if(rad_struct->state.detection == rad::cor::detection::PROCESSING){
         rad_cloud_detection->validate_bbox(sensor);
-        rad_struct->state.measure = rad::correction::measure::PROCESSING;
+        rad_struct->state.measure = rad::cor::measure::PROCESSING;
       }
       break;
     }
-    case rad::correction::measure::PROCESSING:{
-      rad_struct->state.measure = rad::correction::measure::WAIT_VALIDATION;
+    case rad::cor::measure::PROCESSING:{
+      rad_struct->state.measure = rad::cor::measure::WAIT_VALIDATION;
       break;
     }
   }

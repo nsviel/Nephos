@@ -6,10 +6,10 @@
 #include <Data/Namespace.h>
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 //Constructor / Destructor
-Process::Process(rad::calibration::Node* node_detection){
+Process::Process(rad::cal::Node* node_detection){
   //---------------------------
 
   rad::Node* node_radio = node_detection->get_node_radio();
@@ -18,7 +18,7 @@ Process::Process(rad::calibration::Node* node_detection){
 
   this->rad_struct = node_detection->get_rad_struct();
   this->dat_selection = node_graph->get_dat_selection();
-  this->rad_detection = new rad::calibration::Detection(node_detection);
+  this->rad_detection = new rad::cal::Detection(node_detection);
 
   //---------------------------
 }
@@ -55,12 +55,12 @@ void Process::step_detection(){
   //Measurement step logic
   int& step = rad_struct->state.detection;
   switch(step){
-    case rad::calibration::detection::WAIT_VALIDATION:{
+    case rad::cal::detection::WAIT_VALIDATION:{
 
       break;
     }
-    case rad::calibration::detection::PROCESSING:{
-      step = rad::calibration::detection::WAIT_VALIDATION;
+    case rad::cal::detection::PROCESSING:{
+      step = rad::cal::detection::WAIT_VALIDATION;
       break;
     }
   }
@@ -77,15 +77,15 @@ void Process::step_measure(){
 
   //Measurement step logic
   switch(rad_struct->state.measure){
-    case rad::calibration::measure::WAIT_VALIDATION:{
-      if(rad_struct->state.detection == rad::calibration::detection::PROCESSING){
+    case rad::cal::measure::WAIT_VALIDATION:{
+      if(rad_struct->state.detection == rad::cal::detection::PROCESSING){
         //rad_cloud_detection->validate_bbox(sensor);
-        rad_struct->state.measure = rad::calibration::measure::PROCESSING;
+        rad_struct->state.measure = rad::cal::measure::PROCESSING;
       }
       break;
     }
-    case rad::calibration::measure::PROCESSING:{
-      rad_struct->state.measure = rad::calibration::measure::WAIT_VALIDATION;
+    case rad::cal::measure::PROCESSING:{
+      rad_struct->state.measure = rad::cal::measure::WAIT_VALIDATION;
       break;
     }
   }

@@ -7,10 +7,10 @@
 #include <Core/Namespace.h>
 
 
-namespace rad::correction::image{
+namespace rad::cor::image{
 
 //Constructor / Destructor
-Detection::Detection(rad::correction::Node* node_correction){
+Detection::Detection(rad::cor::Node* node_correction){
   //---------------------------
 
   rad::Node* node_radio = node_correction->get_node_radio();
@@ -19,9 +19,9 @@ Detection::Detection(rad::correction::Node* node_correction){
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->rad_struct = node_correction->get_rad_struct();
-  this->rad_image = new rad::correction::image::Image(node_correction);
-  this->rad_glyph = new rad::correction::Glyph(node_correction);
-  this->rad_hough = new rad::correction::image::Hough(node_correction);
+  this->rad_image = new rad::cor::image::Image(node_correction);
+  this->rad_glyph = new rad::cor::Glyph(node_correction);
+  this->rad_hough = new rad::cor::image::Hough(node_correction);
   this->thread_pool = node_core->get_thread_pool();
   this->dat_image = node_element->get_dat_image();
 
@@ -43,7 +43,7 @@ void Detection::start_thread(dyn::prc::base::Sensor* sensor){
 void Detection::run_thread(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
-  if(sensor != nullptr && rad_struct->state.detection == rad::correction::detection::PROCESSING){
+  if(sensor != nullptr && rad_struct->state.detection == rad::cor::detection::PROCESSING){
     utl::media::Image* image = dat_image->get_image(sensor, "Intensity");
     utl::media::Image* output = dat_image->get_or_create_image(sensor, "Detection");
     if(image == nullptr || output == nullptr) return;

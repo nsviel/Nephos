@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace rad::calibration::detection{
+namespace rad::cal::detection{
 
 enum Step{
   WAIT_VALIDATION = 1,
@@ -10,7 +10,7 @@ enum Step{
 
 }
 
-namespace rad::calibration::measure{
+namespace rad::cal::measure{
 
 enum Step{
   WAIT_VALIDATION = 1,
@@ -19,7 +19,7 @@ enum Step{
 
 }
 
-namespace rad::calibration{
+namespace rad::cal{
 
 enum State{
   NO_DATA = 0,
@@ -28,14 +28,14 @@ enum State{
 
 }
 
-namespace rad::calibration::structure{
+namespace rad::cal::structure{
 
 struct State{
   //---------------------------
 
-  int detection = rad::calibration::detection::WAIT_VALIDATION;
-  int measure = rad::calibration::measure::WAIT_VALIDATION;
-  int data = rad::calibration::NO_DATA;
+  int detection = rad::cal::detection::WAIT_VALIDATION;
+  int measure = rad::cal::measure::WAIT_VALIDATION;
+  int data = rad::cal::NO_DATA;
 
   //---------------------------
 };

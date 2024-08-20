@@ -3,7 +3,7 @@
 #include <Radiometry/src/Correction/Detection/Glyph/Sphere.h>
 
 
-namespace rad::correction::structure{
+namespace rad::cor::structure{
 
 struct Ransac{
   //---------------------------
@@ -16,7 +16,7 @@ struct Ransac{
   float search_radius = 0.15;
   float sphere_diameter = 0.139;
   glm::vec3 current_pose = glm::vec3(0, 0, 0);
-  rad::correction::glyph::Sphere* glyph;
+  rad::cor::glyph::Sphere* glyph;
 
   std::vector<glm::vec3> search_xyz;
   std::vector<glm::vec3> search_Nxyz;

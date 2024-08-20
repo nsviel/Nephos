@@ -8,8 +8,8 @@ namespace core{class Node;}
 namespace dat{class Node;}
 namespace vk{class Node;}
 
-namespace rad::correction{class Node;}
-namespace rad::calibration{class Node;}
+namespace rad::cor{class Node;}
+namespace rad::cal{class Node;}
 namespace rad::gui{class Panel;}
 
 
@@ -35,8 +35,8 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
-  inline rad::correction::Node* get_node_correction(){return node_correction;}
-  inline rad::calibration::Node* get_node_calibration(){return node_calibration;}
+  inline rad::cor::Node* get_node_correction(){return node_correction;}
+  inline rad::cal::Node* get_node_calibration(){return node_calibration;}
 
 private:
   //Dependancy
@@ -46,8 +46,8 @@ private:
   prf::Node* node_profiler;
 
   //Child
-  rad::correction::Node* node_correction;
-  rad::calibration::Node* node_calibration;
+  rad::cor::Node* node_correction;
+  rad::cal::Node* node_calibration;
   rad::gui::Panel* gui_panel;
 };
 

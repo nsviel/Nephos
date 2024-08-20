@@ -1,19 +1,19 @@
 #pragma once
 #include <opencv2/opencv.hpp>
 
-namespace rad::correction{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction::structure{class Circle;}
-namespace rad::correction::image{class Image;}
+namespace rad::cor{class Node;}
+namespace rad::cor{class Structure;}
+namespace rad::cor::structure{class Circle;}
+namespace rad::cor::image{class Image;}
 namespace utl::media{class Image;}
 
 
-namespace rad::correction::image{
+namespace rad::cor::image{
 
 class Hough
 {
 public:
-  Hough(rad::correction::Node* node_correction);
+  Hough(rad::cor::Node* node_correction);
   ~Hough();
 
 public:
@@ -30,8 +30,8 @@ public:
   void draw_best_circle(cv::Mat& image, utl::media::Image* output);
 
 private:
-  rad::correction::Structure* rad_struct;
-  rad::correction::image::Image* rad_image;
+  rad::cor::Structure* rad_struct;
+  rad::cor::image::Image* rad_image;
 };
 
 }

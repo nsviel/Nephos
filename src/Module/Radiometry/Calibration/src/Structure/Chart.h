@@ -5,7 +5,7 @@
 #include <vector>
 
 
-namespace rad::calibration::structure{
+namespace rad::cal::structure{
 
 struct Chart{
   //---------------------------

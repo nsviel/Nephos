@@ -5,10 +5,10 @@
 #include <python/matplotlibcpp.h>
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 //Constructor / Destructor
-Measure::Measure(rad::calibration::Node* node_calibration){
+Measure::Measure(rad::cal::Node* node_calibration){
   //---------------------------
 
   this->rad_struct = node_calibration->get_rad_struct();

@@ -5,10 +5,10 @@
 #include <Data/Namespace.h>
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 //Constructor / Destructor
-Correction::Correction(rad::correction::Node* node_correction){
+Correction::Correction(rad::cor::Node* node_correction){
   //---------------------------
 
   rad::Node* node_radio = node_correction->get_node_radio();

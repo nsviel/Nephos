@@ -5,7 +5,7 @@
 namespace dyn::prc{class Node;}
 namespace dyn::prc{class Structure;}
 namespace dyn::prc::base{class Sensor;}
-namespace rad::correction{class Correction;}
+namespace rad::cor{class Correction;}
 namespace dat::elm{class Image;}
 
 
@@ -29,7 +29,7 @@ public:
 
 private:
   dyn::prc::Structure* dyn_struct;
-  rad::correction::Correction* rad_correction;
+  rad::cor::Correction* rad_correction;
   dat::elm::Image* dat_image;
 
   std::thread thread;

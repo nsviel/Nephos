@@ -6,10 +6,10 @@
 #include <Processing/Namespace.h>
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 //Constructor / Destructor
-Model::Model(rad::correction::Node* node_correction){
+Model::Model(rad::cor::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();

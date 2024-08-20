@@ -3,10 +3,10 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 //Constructor / Destructor
-Image::Image(rad::calibration::Node* node_correction){
+Image::Image(rad::cal::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();

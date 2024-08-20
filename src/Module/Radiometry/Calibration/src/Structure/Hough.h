@@ -6,7 +6,7 @@
 #include <string>
 
 
-namespace rad::calibration::hough{
+namespace rad::cal::hough{
 
 enum Mode{
   GRADIENT = 0,
@@ -20,14 +20,14 @@ enum Drawing{
 
 }
 
-namespace rad::calibration::structure{
+namespace rad::cal::structure{
 
 struct Hough{
   //---------------------------
 
   //Mode
-  int draw = rad::calibration::hough::ALL;
-  int mode = rad::calibration::hough::GRADIENT_ALT;
+  int draw = rad::cal::hough::ALL;
+  int mode = rad::cal::hough::GRADIENT_ALT;
   int cv_mode = cv::HOUGH_GRADIENT;
 
   //Parameter
@@ -41,8 +41,8 @@ struct Hough{
 
   //Result
   int nb_detection = 0;
-  std::vector<rad::correction::structure::Circle> vec_circle;
-  std::vector<rad::correction::glyph::Sphere*> vec_glyph;
+  std::vector<rad::cor::structure::Circle> vec_circle;
+  std::vector<rad::cor::glyph::Sphere*> vec_glyph;
 
   //---------------------------
 };

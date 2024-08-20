@@ -2,19 +2,19 @@
 
 #include <opencv2/opencv.hpp>
 
-namespace rad::calibration{class Node;}
-namespace rad::calibration{class Structure;}
-namespace rad::calibration::structure{class Circle;}
+namespace rad::cal{class Node;}
+namespace rad::cal{class Structure;}
+namespace rad::cal::structure{class Circle;}
 namespace dyn::prc::base{class Sensor;}
 namespace utl::media{class Image;}
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 class Image
 {
 public:
-  Image(rad::calibration::Node* node_correction);
+  Image(rad::cal::Node* node_correction);
   ~Image();
 
 public:
@@ -28,7 +28,7 @@ public:
   void convert_into_utl_image(cv::Mat& input, utl::media::Image* output);
 
 private:
-  rad::calibration::Structure* rad_struct;
+  rad::cal::Structure* rad_struct;
 };
 
 }

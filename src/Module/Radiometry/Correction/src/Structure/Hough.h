@@ -20,7 +20,7 @@ enum Drawing{
 
 }
 
-namespace rad::correction::structure{
+namespace rad::cor::structure{
 
 struct Hough{
   //---------------------------
@@ -41,8 +41,8 @@ struct Hough{
 
   //Result
   int nb_detection = 0;
-  std::vector<rad::correction::structure::Circle> vec_circle;
-  std::vector<rad::correction::glyph::Sphere*> vec_glyph;
+  std::vector<rad::cor::structure::Circle> vec_circle;
+  std::vector<rad::cor::glyph::Sphere*> vec_glyph;
 
   //---------------------------
 };

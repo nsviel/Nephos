@@ -11,25 +11,25 @@
 #include <Radiometry/src/Correction/Structure/State.h>
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 struct Structure{
   //---------------------------
 
   //General
   utl::media::Image image;
-  rad::correction::structure::State state;
+  rad::cor::structure::State state;
 
   //Detection stuff
-  rad::correction::structure::Hough hough;
-  rad::correction::structure::Canny canny;
-  rad::correction::structure::Bbox bbox;
-  rad::correction::structure::Ransac ransac;
+  rad::cor::structure::Hough hough;
+  rad::cor::structure::Canny canny;
+  rad::cor::structure::Bbox bbox;
+  rad::cor::structure::Ransac ransac;
 
   //Model stuff
-  rad::correction::structure::Measure measure;
-  rad::correction::structure::Plot plot;
-  rad::correction::structure::Model model;
+  rad::cor::structure::Measure measure;
+  rad::cor::structure::Plot plot;
+  rad::cor::structure::Model model;
 
   //---------------------------
 };

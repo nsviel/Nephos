@@ -5,13 +5,13 @@
 #include <Processing/Namespace.h>
 
 
-namespace rad::gui::correction{
+namespace rad::cor::gui{
 
 //Constructor / Destructor
 Model::Model(rad::Node* node_radio){
   //---------------------------
 
-  rad::correction::Node* node_correction = node_radio->get_node_correction();
+  rad::cor::Node* node_correction = node_radio->get_node_correction();
 
   this->rad_model = node_correction->get_rad_model();
   this->rad_struct = node_correction->get_rad_struct();
@@ -47,7 +47,7 @@ void Model::draw_tab(dyn::prc::base::Sensor* sensor){
 
 //Subfunction
 void Model::parameter_measure(dyn::prc::base::Sensor* sensor){
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -112,7 +112,7 @@ void Model::parameter_measure(dyn::prc::base::Sensor* sensor){
 }
 void Model::parameter_model(dyn::prc::base::Sensor* sensor){
   dyn::prc::base::Model* model = rad_model->get_model(sensor, "NFOV");
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -195,7 +195,7 @@ void Model::parameter_model(dyn::prc::base::Sensor* sensor){
 
 //Sphere plot function
 void Model::plot_measure_IfR(float height){
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfR.title == "") return;
@@ -205,7 +205,7 @@ void Model::plot_measure_IfR(float height){
   //---------------------------
 }
 void Model::plot_measure_IfIt(float height){
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfIt.title == "") return;
@@ -216,7 +216,7 @@ void Model::plot_measure_IfIt(float height){
 }
 void Model::plot_model_heatmap(dyn::prc::base::Sensor* sensor, float height){
   dyn::prc::base::Model* model = rad_model->get_model(sensor, "NFOV");
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   if(plot->IfRIt.title == "") return;

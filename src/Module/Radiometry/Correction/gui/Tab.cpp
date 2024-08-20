@@ -5,15 +5,15 @@
 #include <Processing/Namespace.h>
 
 
-namespace rad::gui::correction{
+namespace rad::cor::gui{
 
 //Constructor / Destructor
 Tab::Tab(rad::Node* node_radio){
   //---------------------------
 
-  this->gui_detection = new rad::gui::correction::Detection(node_radio);
-  this->gui_model = new rad::gui::correction::Model(node_radio);
-  this->gui_correction = new rad::gui::correction::Correction(node_radio);
+  this->gui_detection = new rad::cor::gui::Detection(node_radio);
+  this->gui_model = new rad::cor::gui::Model(node_radio);
+  this->gui_correction = new rad::cor::gui::Correction(node_radio);
 
   //---------------------------
 }

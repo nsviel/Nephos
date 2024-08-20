@@ -3,22 +3,22 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-namespace rad::correction{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction{class Measure;}
-namespace rad::correction{class Glyph;}
+namespace rad::cor{class Node;}
+namespace rad::cor{class Structure;}
+namespace rad::cor{class Measure;}
+namespace rad::cor{class Glyph;}
 namespace dyn::prc::base{class Sensor;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 
 
-namespace rad::correction::cloud{
+namespace rad::cor::cloud{
 
 class Ransac
 {
 public:
   //Constructor / Destructor
-  Ransac(rad::correction::Node* node_correction);
+  Ransac(rad::cor::Node* node_correction);
   ~Ransac();
 
 public:
@@ -36,9 +36,9 @@ public:
   int find_nearest_point(const std::vector<glm::vec3>& search_xyz, const glm::vec3& center_direction);
 
 private:
-  rad::correction::Measure* rad_measure;
-  rad::correction::Structure* rad_struct;
-  rad::correction::Glyph* rad_glyph;
+  rad::cor::Measure* rad_measure;
+  rad::cor::Structure* rad_struct;
+  rad::cor::Glyph* rad_glyph;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
 };

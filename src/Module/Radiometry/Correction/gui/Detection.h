@@ -4,14 +4,14 @@
 
 namespace dyn::prc::base{class Sensor;}
 namespace rad{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction{class Process;}
-namespace rad::correction::image{class Hough;}
+namespace rad::cor{class Structure;}
+namespace rad::cor{class Process;}
+namespace rad::cor::image{class Hough;}
 namespace rnd::gui{class Stream;}
 namespace dat::elm{class Image;}
 
 
-namespace rad::gui::correction{
+namespace rad::cor::gui{
 
 class Detection
 {
@@ -36,9 +36,9 @@ public:
   void parameter_ransac();
 
 private:
-  rad::correction::Structure* rad_struct;
-  rad::correction::Process* rad_process;
-  rad::correction::image::Hough* rad_hough;
+  rad::cor::Structure* rad_struct;
+  rad::cor::Process* rad_process;
+  rad::cor::image::Hough* rad_hough;
   rnd::gui::Stream* stream;
   dat::elm::Image* dat_image;
 };

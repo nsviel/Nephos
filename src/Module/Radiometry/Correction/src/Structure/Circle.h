@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace rad::correction::structure{
+namespace rad::cor::structure{
 
 struct Circle{
   //---------------------------

@@ -1,17 +1,17 @@
 #pragma once
 
-namespace rad::calibration{class Node;}
-namespace rad::calibration{class Structure;}
-namespace rad::calibration{class Plot;}
+namespace rad::cal{class Node;}
+namespace rad::cal{class Structure;}
+namespace rad::cal{class Plot;}
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 class Measure
 {
 public:
   //Constructor / Destructor
-  Measure(rad::calibration::Node* node_calibration);
+  Measure(rad::cal::Node* node_calibration);
   ~Measure();
 
 public:
@@ -24,8 +24,8 @@ public:
   void init();
 
 private:
-  rad::calibration::Structure* rad_struct;
-  rad::calibration::Plot* rad_plot;
+  rad::cal::Structure* rad_struct;
+  rad::cal::Plot* rad_plot;
 };
 
 }

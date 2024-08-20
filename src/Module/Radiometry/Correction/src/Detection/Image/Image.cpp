@@ -3,10 +3,10 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::correction::image{
+namespace rad::cor::image{
 
 //Constructor / Destructor
-Image::Image(rad::correction::Node* node_correction){
+Image::Image(rad::cor::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();
@@ -81,12 +81,12 @@ void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
 }
 
 //Shape function
-void Image::draw_circle(cv::Mat& image, std::vector<rad::correction::structure::Circle>& vec_circle){
+void Image::draw_circle(cv::Mat& image, std::vector<rad::cor::structure::Circle>& vec_circle){
   if(vec_circle.size() == 0) return;
   //------------------------
 
   for(size_t i=0; i<vec_circle.size(); i++){
-    rad::correction::structure::Circle& circle = vec_circle[i];
+    rad::cor::structure::Circle& circle = vec_circle[i];
     cv::Point center(cvRound(circle.center.x), cvRound(circle.center.y));
     int radius = cvRound(circle.radius);
 
@@ -102,10 +102,10 @@ void Image::draw_circle(cv::Mat& image, std::vector<rad::correction::structure::
 void Image::draw_bounding_box(cv::Mat& image){
   //------------------------
 
-  std::vector<rad::correction::structure::Circle>& vec_circle = rad_struct->hough.vec_circle;
+  std::vector<rad::cor::structure::Circle>& vec_circle = rad_struct->hough.vec_circle;
   if(vec_circle.size() == 0) return;
 
-  rad::correction::structure::Circle& circle = vec_circle[0];
+  rad::cor::structure::Circle& circle = vec_circle[0];
   cv::Point center = cv::Point(cvRound(circle.center.x), cvRound(circle.center.y));
   float radius = cvRound(circle.radius) * rad_struct->bbox.scale;
 

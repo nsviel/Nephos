@@ -24,8 +24,8 @@ Node::Node(mod::Node* node_module){
   this->node_profiler = node_core->get_node_profiler();
 
   //Child
-  this->node_correction = new rad::correction::Node(this);
-  this->node_calibration = new rad::calibration::Node(this);
+  this->node_correction = new rad::cor::Node(this);
+  this->node_calibration = new rad::cal::Node(this);
   this->gui_panel = new rad::gui::Panel(this, &rad_panel->is_open);
 
   //---------------------------

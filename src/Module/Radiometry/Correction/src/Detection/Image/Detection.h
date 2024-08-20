@@ -2,24 +2,24 @@
 
 #include <thread>
 
-namespace rad::correction{class Node;}
-namespace rad::correction{class Structure;}
+namespace rad::cor{class Node;}
+namespace rad::cor{class Structure;}
 namespace dyn::prc::base{class Sensor;}
 namespace sys::thread::task{class Pool;}
 namespace utl::media{class Image;}
-namespace rad::correction{class Glyph;}
-namespace rad::correction::image{class Hough;}
-namespace rad::correction::image{class Image;}
+namespace rad::cor{class Glyph;}
+namespace rad::cor::image{class Hough;}
+namespace rad::cor::image{class Image;}
 namespace dat::elm{class Image;}
 
 
-namespace rad::correction::image{
+namespace rad::cor::image{
 
 class Detection
 {
 public:
   //Constructor / Destructor
-  Detection(rad::correction::Node* node_correction);
+  Detection(rad::cor::Node* node_correction);
   ~Detection();
 
 public:
@@ -33,10 +33,10 @@ public:
 
 private:
   sys::thread::task::Pool* thread_pool;
-  rad::correction::Structure* rad_struct;
-  rad::correction::Glyph* rad_glyph;
-  rad::correction::image::Hough* rad_hough;
-  rad::correction::image::Image* rad_image;
+  rad::cor::Structure* rad_struct;
+  rad::cor::Glyph* rad_glyph;
+  rad::cor::image::Hough* rad_hough;
+  rad::cor::image::Image* rad_image;
   dat::elm::Image* dat_image;
 
   std::thread thread;

@@ -1,18 +1,18 @@
 #pragma once
 
-namespace rad::correction{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction{class Model;}
+namespace rad::cor{class Node;}
+namespace rad::cor{class Structure;}
+namespace rad::cor{class Model;}
 namespace dyn::prc::base{class Sensor;}
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 class Plot
 {
 public:
   //Constructor / Destructor
-  Plot(rad::correction::Node* node_correction);
+  Plot(rad::cor::Node* node_correction);
   ~Plot();
 
 public:
@@ -25,8 +25,8 @@ public:
   void reset_plot_data();
 
 private:
-  rad::correction::Structure* rad_struct;
-  rad::correction::Model* rad_model;
+  rad::cor::Structure* rad_struct;
+  rad::cor::Model* rad_model;
 };
 
 }

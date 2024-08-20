@@ -2,21 +2,21 @@
 
 #include <string>
 
-namespace rad::correction{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction{class Measure;}
-namespace rad::correction{class Model;}
-namespace rad::correction::io{class Measure;}
+namespace rad::cor{class Node;}
+namespace rad::cor{class Structure;}
+namespace rad::cor{class Measure;}
+namespace rad::cor{class Model;}
+namespace rad::cor::io{class Measure;}
 namespace dyn::prc::base{class Sensor;}
 
 
-namespace rad::correction::io{
+namespace rad::cor::io{
 
 class Model
 {
 public:
   //Constructor / Destructor
-  Model(rad::correction::Node* node_correction);
+  Model(rad::cor::Node* node_correction);
   ~Model();
 
 public:
@@ -31,10 +31,10 @@ public:
   void read_depth_mode_model(dyn::prc::base::Sensor* sensor, std::string& path);
 
 private:
-  rad::correction::Structure* rad_struct;
-  rad::correction::Measure* rad_measure;
-  rad::correction::Model* rad_model;
-  rad::correction::io::Measure* rad_io_measure;
+  rad::cor::Structure* rad_struct;
+  rad::cor::Measure* rad_measure;
+  rad::cor::Model* rad_model;
+  rad::cor::io::Measure* rad_io_measure;
 };
 
 }

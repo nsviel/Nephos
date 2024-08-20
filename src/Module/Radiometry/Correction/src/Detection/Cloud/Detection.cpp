@@ -6,10 +6,10 @@
 #include <Core/Namespace.h>
 
 
-namespace rad::correction::cloud{
+namespace rad::cor::cloud{
 
 //Constructor / Destructor
-Detection::Detection(rad::correction::Node* node_correction){
+Detection::Detection(rad::cor::Node* node_correction){
   //---------------------------
 
   rad::Node* node_radio = node_correction->get_node_radio();
@@ -17,8 +17,8 @@ Detection::Detection(rad::correction::Node* node_correction){
 
   this->thread_pool = node_core->get_thread_pool();
   this->rad_struct = node_correction->get_rad_struct();
-  this->rad_glyph = new rad::correction::Glyph(node_correction);
-  this->rad_ransac = new rad::correction::cloud::Ransac(node_correction);
+  this->rad_glyph = new rad::cor::Glyph(node_correction);
+  this->rad_ransac = new rad::cor::cloud::Ransac(node_correction);
 
   this->ope_fitting = new ope::fitting::Sphere();
   this->ope_ransac = new ope::fitting::Ransac();
@@ -41,7 +41,7 @@ void Detection::start_thread(dyn::prc::base::Sensor* sensor){
 void Detection::run_thread(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
-  if(sensor != nullptr && rad_struct->state.measure == rad::correction::measure::PROCESSING){
+  if(sensor != nullptr && rad_struct->state.measure == rad::cor::measure::PROCESSING){
     rad_ransac->ransac_sphere(sensor);
     rad_glyph->reset_detection_sphere();
   }else{

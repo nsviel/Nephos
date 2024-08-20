@@ -1,22 +1,22 @@
 #pragma once
 
-namespace rad::correction{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction::image{class Detection;}
-namespace rad::correction::cloud{class Detection;}
-namespace rad::correction{class Glyph;}
+namespace rad::cor{class Node;}
+namespace rad::cor{class Structure;}
+namespace rad::cor::image{class Detection;}
+namespace rad::cor::cloud{class Detection;}
+namespace rad::cor{class Glyph;}
 namespace dat::gph{class Selection;}
 namespace dat::elm{class Image;}
 namespace dyn::prc::base{class Sensor;}
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 class Process
 {
 public:
   //Constructor / Destructor
-  Process(rad::correction::Node* node_correction);
+  Process(rad::cor::Node* node_correction);
   ~Process();
 
 public:
@@ -29,10 +29,10 @@ public:
   void step_measure();
 
 private:
-  rad::correction::Structure* rad_struct;
-  rad::correction::image::Detection* rad_image_detection;
-  rad::correction::cloud::Detection* rad_cloud_detection;
-  rad::correction::Glyph* rad_glyph;
+  rad::cor::Structure* rad_struct;
+  rad::cor::image::Detection* rad_image_detection;
+  rad::cor::cloud::Detection* rad_cloud_detection;
+  rad::cor::Glyph* rad_glyph;
   dat::gph::Selection* dat_selection;
   dat::elm::Image* dat_image;
 };

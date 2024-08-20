@@ -3,14 +3,14 @@
 #include <Radiometry/Namespace.h>
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 //Constructor / Destructor
-Rectangle::Rectangle(rad::calibration::Node* node_detection){
+Rectangle::Rectangle(rad::cal::Node* node_detection){
   //---------------------------
 
   this->rad_struct = node_detection->get_rad_struct();
-  this->rad_image = new rad::calibration::Image(node_detection);
+  this->rad_image = new rad::cal::Image(node_detection);
 
   rad_struct->hough.param_1 = 300;
   rad_struct->hough.param_2 = 0.9;

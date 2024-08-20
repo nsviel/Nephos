@@ -7,10 +7,10 @@
 #include <Core/Namespace.h>
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 //Constructor / Destructor
-Detection::Detection(rad::calibration::Node* node_detection){
+Detection::Detection(rad::cal::Node* node_detection){
   //---------------------------
 
   rad::Node* node_radio = node_detection->get_node_radio();
@@ -19,8 +19,8 @@ Detection::Detection(rad::calibration::Node* node_detection){
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->rad_struct = node_detection->get_rad_struct();
-  this->rad_image = new rad::calibration::Image(node_detection);
-  this->rad_rectangle = new rad::calibration::Rectangle(node_detection);
+  this->rad_image = new rad::cal::Image(node_detection);
+  this->rad_rectangle = new rad::cal::Rectangle(node_detection);
   this->thread_pool = node_core->get_thread_pool();
   this->dat_image = node_element->get_dat_image();
 
@@ -43,7 +43,7 @@ void Detection::start_thread(dyn::prc::base::Sensor* sensor){
 void Detection::run_thread(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
-  if(sensor != nullptr){// && rad_struct->state.detection == rad::calibration::detection::PROCESSING){
+  if(sensor != nullptr){// && rad_struct->state.detection == rad::cal::detection::PROCESSING){
     utl::media::Image* image = dat_image->get_image(sensor, "Intensity");
     utl::media::Image* output = dat_image->get_or_create_image(sensor, "Detection");
     if(image == nullptr || output == nullptr) return;

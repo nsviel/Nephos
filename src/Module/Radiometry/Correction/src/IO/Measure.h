@@ -1,20 +1,20 @@
 #pragma once
 
-namespace rad::correction{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction{class Plot;}
-namespace rad::correction{class Measure;}
-namespace rad::correction{class Model;}
+namespace rad::cor{class Node;}
+namespace rad::cor{class Structure;}
+namespace rad::cor{class Plot;}
+namespace rad::cor{class Measure;}
+namespace rad::cor{class Model;}
 namespace dyn::prc::base{class Sensor;}
 
 
-namespace rad::correction::io{
+namespace rad::cor::io{
 
 class Measure
 {
 public:
   //Constructor / Destructor
-  Measure(rad::correction::Node* node_correction);
+  Measure(rad::cor::Node* node_correction);
   ~Measure();
 
 public:
@@ -24,10 +24,10 @@ public:
   void clear_measure(dyn::prc::base::Sensor* sensor);
 
 private:
-  rad::correction::Structure* rad_struct;
-  rad::correction::Plot* rad_plot;
-  rad::correction::Measure* rad_measure;
-  rad::correction::Model* rad_model;
+  rad::cor::Structure* rad_struct;
+  rad::cor::Plot* rad_plot;
+  rad::cor::Measure* rad_measure;
+  rad::cor::Model* rad_model;
 };
 
 }

@@ -5,7 +5,7 @@
 #include <vector>
 
 
-namespace rad::correction::structure{
+namespace rad::cor::structure{
 
 struct Model{
   //---------------------------

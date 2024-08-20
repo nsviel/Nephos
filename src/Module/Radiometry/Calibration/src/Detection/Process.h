@@ -1,18 +1,18 @@
 #pragma once
 
-namespace rad::calibration{class Node;}
-namespace rad::calibration{class Structure;}
-namespace rad::calibration{class Detection;}
+namespace rad::cal{class Node;}
+namespace rad::cal{class Structure;}
+namespace rad::cal{class Detection;}
 namespace dat::gph{class Selection;}
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 class Process
 {
 public:
   //Constructor / Destructor
-  Process(rad::calibration::Node* node_detection);
+  Process(rad::cal::Node* node_detection);
   ~Process();
 
 public:
@@ -25,8 +25,8 @@ public:
   void step_measure();
 
 private:
-  rad::calibration::Structure* rad_struct;
-  rad::calibration::Detection* rad_detection;
+  rad::cal::Structure* rad_struct;
+  rad::cal::Detection* rad_detection;
   dat::gph::Selection* dat_selection;
 };
 

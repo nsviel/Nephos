@@ -2,18 +2,18 @@
 
 #include <opencv2/opencv.hpp>
 
-namespace rad::calibration{class Node;}
-namespace rad::calibration{class Structure;}
-namespace rad::calibration{class Image;}
+namespace rad::cal{class Node;}
+namespace rad::cal{class Structure;}
+namespace rad::cal{class Image;}
 namespace utl::media{class Image;}
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 class Rectangle
 {
 public:
-  Rectangle(rad::calibration::Node* node_detection);
+  Rectangle(rad::cal::Node* node_detection);
   ~Rectangle();
 
 public:
@@ -26,8 +26,8 @@ public:
   bool is_rectangle(const std::vector<cv::Point>& contour);
 
 private:
-  rad::calibration::Structure* rad_struct;
-  rad::calibration::Image* rad_image;
+  rad::cal::Structure* rad_struct;
+  rad::cal::Image* rad_image;
 };
 
 }

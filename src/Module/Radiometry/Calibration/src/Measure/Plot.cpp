@@ -5,10 +5,10 @@
 #include <python/matplotlibcpp.h>
 
 
-namespace rad::calibration{
+namespace rad::cal{
 
 //Constructor / Destructor
-Plot::Plot(rad::calibration::Node* node_calibration){
+Plot::Plot(rad::cal::Node* node_calibration){
   //---------------------------
 
 

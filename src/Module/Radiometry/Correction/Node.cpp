@@ -1,24 +1,24 @@
 #include "Node.h"
 
+#include <Radiometry/Correction/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Radiometry/Namespace.h>
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 //Constructor / Destructor
 Node::Node(rad::Node* node_radio){
   //---------------------------
 
   this->node_radio = node_radio;
-  this->rad_struct = new rad::correction::Structure();
-  this->rad_process = new rad::correction::Process(this);
-  this->rad_model = new rad::correction::Model(this);
-  this->rad_plot = new rad::correction::Plot(this);
-  this->rad_measure = new rad::correction::Measure(this);
-  this->rad_io_measure = new rad::correction::io::Measure(this);
-  this->rad_io_model = new rad::correction::io::Model(this);
-  this->rad_correction = new rad::correction::Correction(this);
+  this->rad_struct = new rad::cor::Structure();
+  this->rad_process = new rad::cor::Process(this);
+  this->rad_model = new rad::cor::Model(this);
+  this->rad_plot = new rad::cor::Plot(this);
+  this->rad_measure = new rad::cor::Measure(this);
+  this->rad_io_measure = new rad::cor::io::Measure(this);
+  this->rad_io_model = new rad::cor::io::Model(this);
+  this->rad_correction = new rad::cor::Correction(this);
 
   //---------------------------
 }

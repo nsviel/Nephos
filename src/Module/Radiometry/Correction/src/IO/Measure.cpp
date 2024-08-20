@@ -5,14 +5,14 @@
 #include <python/matplotlibcpp.h>
 
 
-namespace rad::correction::io{
+namespace rad::cor::io{
 
 //Constructor / Destructor
-Measure::Measure(rad::correction::Node* node_correction){
+Measure::Measure(rad::cor::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();
-  this->rad_plot = new rad::correction::Plot(node_correction);
+  this->rad_plot = new rad::cor::Plot(node_correction);
   this->rad_measure = node_correction->get_rad_measure();
   this->rad_model = node_correction->get_rad_model();
 

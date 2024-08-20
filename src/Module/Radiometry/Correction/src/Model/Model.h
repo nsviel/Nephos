@@ -2,21 +2,21 @@
 
 #include <string>
 
-namespace rad::correction{class Node;}
-namespace rad::correction{class Structure;}
+namespace rad::cor{class Node;}
+namespace rad::cor{class Structure;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
 namespace dyn::prc::base{class Model;}
 namespace dyn::prc::base{class Sensor;}
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 class Model
 {
 public:
   //Constructor / Destructor
-  Model(rad::correction::Node* node_correction);
+  Model(rad::cor::Node* node_correction);
   ~Model();
 
 public:
@@ -37,7 +37,7 @@ public:
   bool is_model_loaded(dyn::prc::base::Sensor* sensor);
 
 private:
-  rad::correction::Structure* rad_struct;
+  rad::cor::Structure* rad_struct;
   ope::fitting::Polyfit* ope_polyfit;
   ope::fitting::Surface* ope_surface;
 };

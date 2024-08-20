@@ -7,7 +7,7 @@
 #include <Data/Namespace.h>
 
 
-namespace rad::gui::calibration{
+namespace rad::cal::gui{
 
 //Constructor / Destructor
 Detection::Detection(rad::Node* node_radio){
@@ -16,7 +16,7 @@ Detection::Detection(rad::Node* node_radio){
   dat::Node* node_data = node_radio->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
   vk::Node* node_vulkan = node_radio->get_node_vulkan();
-  rad::calibration::Node* node_calibration = node_radio->get_node_calibration();
+  rad::cal::Node* node_calibration = node_radio->get_node_calibration();
 
   this->rad_struct = node_calibration->get_rad_struct();
   this->rad_process = node_calibration->get_rad_process();
@@ -51,18 +51,18 @@ void Detection::detection_step(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Detection");
   ImGui::TableNextColumn();
-  if(rad_struct->state.detection == rad::calibration::detection::PROCESSING){
+  if(rad_struct->state.detection == rad::cal::detection::PROCESSING){
     ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
   }
   ImGui::TableNextColumn();
-  if(rad_struct->state.detection == rad::calibration::detection::WAIT_VALIDATION){
+  if(rad_struct->state.detection == rad::cal::detection::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##sphere_detection", ImVec2(120, 0))){
       rad_process->step_detection();
     }
     ImGui::PopStyleColor(2);
-  }else if(rad_struct->state.detection == rad::calibration::detection::PROCESSING){
+  }else if(rad_struct->state.detection == rad::cal::detection::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_detection", ImVec2(120, 0))){
@@ -75,29 +75,29 @@ void Detection::detection_step(){
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Measure");
   ImGui::TableNextColumn();
-  if(rad_struct->state.measure == rad::calibration::measure::PROCESSING){
+  if(rad_struct->state.measure == rad::cal::measure::PROCESSING){
     ImGui::Spinner_cicle(ImVec4(1, 1, 1, 1));
   }else{
     switch(rad_struct->state.data){
-      case rad::calibration::NO_DATA:{
+      case rad::cal::NO_DATA:{
         ImGui::Cross(ImVec4(1, 0.4, 0.4, 1));
         break;
       }
-      case rad::calibration::HAS_DATA:{
+      case rad::cal::HAS_DATA:{
         ImGui::Check_on();
         break;
       }
     }
   }
   ImGui::TableNextColumn();
-  if(rad_struct->state.measure == rad::calibration::measure::WAIT_VALIDATION){
+  if(rad_struct->state.measure == rad::cal::measure::WAIT_VALIDATION){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Validate##sphere_measure", ImVec2(120, 0))){
       rad_process->step_measure();
     }
     ImGui::PopStyleColor(2);
-  }else if(rad_struct->state.measure == rad::calibration::measure::PROCESSING){
+  }else if(rad_struct->state.measure == rad::cal::measure::PROCESSING){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
     if(ImGui::Button("Stop##sphere_measure", ImVec2(120, 0))){

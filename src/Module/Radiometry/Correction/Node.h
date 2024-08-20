@@ -1,19 +1,21 @@
 #pragma once
 
+#include <Utility/Base/Class/Node.h>
+
 namespace rad{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction{class Process;}
-namespace rad::correction{class Measure;}
-namespace rad::correction{class Model;}
-namespace rad::correction{class Plot;}
-namespace rad::correction{class Correction;}
-namespace rad::correction::io{class Model;}
-namespace rad::correction::io{class Measure;}
+namespace rad::cor{class Structure;}
+namespace rad::cor{class Process;}
+namespace rad::cor{class Measure;}
+namespace rad::cor{class Model;}
+namespace rad::cor{class Plot;}
+namespace rad::cor{class Correction;}
+namespace rad::cor::io{class Model;}
+namespace rad::cor::io{class Measure;}
 
 
-namespace rad::correction{
+namespace rad::cor{
 
-class Node
+class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
@@ -26,25 +28,25 @@ public:
   void loop();
 
   inline rad::Node* get_node_radio(){return node_radio;}
-  inline rad::correction::Structure* get_rad_struct(){return rad_struct;}
-  inline rad::correction::Process* get_rad_process(){return rad_process;}
-  inline rad::correction::Model* get_rad_model(){return rad_model;}
-  inline rad::correction::Measure* get_rad_measure(){return rad_measure;}
-  inline rad::correction::Plot* get_rad_plot(){return rad_plot;}
-  inline rad::correction::Correction* get_rad_correction(){return rad_correction;}
-  inline rad::correction::io::Model* get_rad_io_model(){return rad_io_model;}
-  inline rad::correction::io::Measure* get_rad_io_measure(){return rad_io_measure;}
+  inline rad::cor::Structure* get_rad_struct(){return rad_struct;}
+  inline rad::cor::Process* get_rad_process(){return rad_process;}
+  inline rad::cor::Model* get_rad_model(){return rad_model;}
+  inline rad::cor::Measure* get_rad_measure(){return rad_measure;}
+  inline rad::cor::Plot* get_rad_plot(){return rad_plot;}
+  inline rad::cor::Correction* get_rad_correction(){return rad_correction;}
+  inline rad::cor::io::Model* get_rad_io_model(){return rad_io_model;}
+  inline rad::cor::io::Measure* get_rad_io_measure(){return rad_io_measure;}
 
 private:
   rad::Node* node_radio;
-  rad::correction::Structure* rad_struct;
-  rad::correction::Process* rad_process;
-  rad::correction::Measure* rad_measure;
-  rad::correction::Model* rad_model;
-  rad::correction::Plot* rad_plot;
-  rad::correction::Correction* rad_correction;
-  rad::correction::io::Model* rad_io_model;
-  rad::correction::io::Measure* rad_io_measure;
+  rad::cor::Structure* rad_struct;
+  rad::cor::Process* rad_process;
+  rad::cor::Measure* rad_measure;
+  rad::cor::Model* rad_model;
+  rad::cor::Plot* rad_plot;
+  rad::cor::Correction* rad_correction;
+  rad::cor::io::Model* rad_io_model;
+  rad::cor::io::Measure* rad_io_measure;
 };
 
 }

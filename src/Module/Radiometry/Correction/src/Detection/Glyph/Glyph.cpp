@@ -5,10 +5,10 @@
 #include <Data/Namespace.h>
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 //Constructor / Destructor
-Glyph::Glyph(rad::correction::Node* node_correction){
+Glyph::Glyph(rad::cor::Node* node_correction){
   //---------------------------
 
   rad::Node* node_radio = node_correction->get_node_radio();
@@ -30,7 +30,7 @@ void Glyph::create_sphere_glyph(){
 
   //Detection spheres
   for(int i=0; i<20; i++){
-    rad::correction::glyph::Sphere* sphere = new rad::correction::glyph::Sphere(node_core);
+    rad::cor::glyph::Sphere* sphere = new rad::cor::glyph::Sphere(node_core);
     glm::vec4 color = math::random(i);
     sphere->set_color(color);
     dat_glyph->create_glyph(sphere);
@@ -39,7 +39,7 @@ void Glyph::create_sphere_glyph(){
   }
 
   //Calibration sphere
-  rad::correction::glyph::Sphere* sphere = new rad::correction::glyph::Sphere(node_core);
+  rad::cor::glyph::Sphere* sphere = new rad::cor::glyph::Sphere(node_core);
   rad_struct->ransac.glyph = sphere;
   sphere->set_color(glm::vec4(0, 1, 0, 1));
   dat_glyph->create_glyph(sphere);
@@ -50,14 +50,14 @@ void Glyph::update_sphere_glyph(){
   //---------------------------
 
   //Detection spheres
-  std::vector<rad::correction::glyph::Sphere*>& vec_glyph = rad_struct->hough.vec_glyph;
+  std::vector<rad::cor::glyph::Sphere*>& vec_glyph = rad_struct->hough.vec_glyph;
   for(int i=0; i<vec_glyph.size(); i++){
-    rad::correction::glyph::Sphere* sphere = vec_glyph[i];
+    rad::cor::glyph::Sphere* sphere = vec_glyph[i];
     //dat_entity->update_pose(sphere);
   }
 
   //Calibration sphere
-  rad::correction::glyph::Sphere* sphere = rad_struct->ransac.glyph;
+  rad::cor::glyph::Sphere* sphere = rad_struct->ransac.glyph;
   //dat_entity->update_pose(sphere);
 
   //---------------------------
@@ -65,7 +65,7 @@ void Glyph::update_sphere_glyph(){
 
 //Subfunction
 void Glyph::draw_calibration_sphere(dyn::prc::base::Sensor* sensor){
-  rad::correction::glyph::Sphere* sphere = rad_struct->ransac.glyph;
+  rad::cor::glyph::Sphere* sphere = rad_struct->ransac.glyph;
   //---------------------------
 
   //Reset and move sphere
@@ -76,7 +76,7 @@ void Glyph::draw_calibration_sphere(dyn::prc::base::Sensor* sensor){
   //---------------------------
 }
 void Glyph::draw_detection_sphere(dyn::prc::base::Sensor* sensor){
-  std::vector<rad::correction::structure::Circle>& vec_circle = rad_struct->hough.vec_circle;
+  std::vector<rad::cor::structure::Circle>& vec_circle = rad_struct->hough.vec_circle;
   //---------------------------
 
   //Reset
@@ -89,7 +89,7 @@ void Glyph::draw_detection_sphere(dyn::prc::base::Sensor* sensor){
       break;
     }
     case rad::hough::BEST:{
-      std::vector<rad::correction::structure::Circle> best_circle;
+      std::vector<rad::cor::structure::Circle> best_circle;
       if(vec_circle.size() > 0) best_circle.push_back(vec_circle[0]);
       this->draw_sphere_glyph(sensor, best_circle);
       break;
@@ -98,15 +98,15 @@ void Glyph::draw_detection_sphere(dyn::prc::base::Sensor* sensor){
 
   //---------------------------
 }
-void Glyph::draw_sphere_glyph(dyn::prc::base::Sensor* sensor, std::vector<rad::correction::structure::Circle>& vec_circle){
-  std::vector<rad::correction::glyph::Sphere*>& vec_sphere = rad_struct->hough.vec_glyph;
+void Glyph::draw_sphere_glyph(dyn::prc::base::Sensor* sensor, std::vector<rad::cor::structure::Circle>& vec_circle){
+  std::vector<rad::cor::glyph::Sphere*>& vec_sphere = rad_struct->hough.vec_glyph;
   //---------------------------
 
   int size = std::min(vec_sphere.size(), vec_circle.size());
 
   for(int i=0; i<size; i++){
-    rad::correction::structure::Circle& circle = vec_circle[i];
-    rad::correction::glyph::Sphere* sphere = vec_sphere[i];
+    rad::cor::structure::Circle& circle = vec_circle[i];
+    rad::cor::glyph::Sphere* sphere = vec_sphere[i];
 
     //Add sphere radius to the detected circle center
     glm::vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);
@@ -125,17 +125,17 @@ void Glyph::draw_sphere_glyph(dyn::prc::base::Sensor* sensor, std::vector<rad::c
 void Glyph::reset_calibration_sphere(){
   //---------------------------
 
-  rad::correction::glyph::Sphere* sphere = rad_struct->ransac.glyph;
+  rad::cor::glyph::Sphere* sphere = rad_struct->ransac.glyph;
   sphere->reset_glyph();
 
   //---------------------------
 }
 void Glyph::reset_detection_sphere(){
-  std::vector<rad::correction::glyph::Sphere*>& vec_sphere = rad_struct->hough.vec_glyph;
+  std::vector<rad::cor::glyph::Sphere*>& vec_sphere = rad_struct->hough.vec_glyph;
   //---------------------------
 
   for(int i=0; i<vec_sphere.size(); i++){
-    rad::correction::glyph::Sphere* sphere = vec_sphere[i];
+    rad::cor::glyph::Sphere* sphere = vec_sphere[i];
     sphere->reset_glyph();
   }
 

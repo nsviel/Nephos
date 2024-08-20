@@ -6,10 +6,10 @@
 #include <python/matplotlibcpp.h>
 
 
-namespace rad::correction{
+namespace rad::cor{
 
 //Constructor / Destructor
-Plot::Plot(rad::correction::Node* node_correction){
+Plot::Plot(rad::cor::Node* node_correction){
   //---------------------------
 
   this->rad_struct = node_correction->get_rad_struct();
@@ -21,8 +21,8 @@ Plot::~Plot(){}
 
 //Main function
 void Plot::init(){
-  rad::correction::structure::Measure* sphere = &rad_struct->measure;
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Measure* sphere = &rad_struct->measure;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   //I(R)
@@ -83,7 +83,7 @@ void Plot::plot_measure(){
 }
 void Plot::update_plot_data(dyn::prc::base::Sensor* sensor){
   dyn::prc::base::Model* model = rad_model->get_model(sensor, "NFOV");
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   plot->IfR.axis_x.data.clear();
@@ -139,8 +139,8 @@ void Plot::update_plot_data(dyn::prc::base::Sensor* sensor){
   //---------------------------
 }
 void Plot::reset_plot_data(){
-  rad::correction::structure::Measure* sphere = &rad_struct->measure;
-  rad::correction::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Measure* sphere = &rad_struct->measure;
+  rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
   //I(R)
@@ -172,7 +172,7 @@ void Plot::reset_plot_data(){
 
 
 /*void Plot::update_plot_data(){
-  rad::correction::structure::Measure* sphere = &rad_struct->measure;
+  rad::cor::structure::Measure* sphere = &rad_struct->measure;
   //---------------------------
 
   utl::base::Plot* plot = &plot->IfR;

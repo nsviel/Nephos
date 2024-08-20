@@ -7,7 +7,7 @@
 #include <Processing/Namespace.h>
 
 
-namespace rad::gui::correction{
+namespace rad::cor::gui{
 
 //Constructor / Destructor
 Correction::Correction(rad::Node* node_radio){
@@ -16,7 +16,7 @@ Correction::Correction(rad::Node* node_radio){
   dat::Node* node_data = node_radio->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
   vk::Node* node_vulkan = node_radio->get_node_vulkan();
-  rad::correction::Node* node_correction = node_radio->get_node_correction();
+  rad::cor::Node* node_correction = node_radio->get_node_correction();
 
   this->dat_image = node_element->get_dat_image();
   this->rad_struct = node_correction->get_rad_struct();

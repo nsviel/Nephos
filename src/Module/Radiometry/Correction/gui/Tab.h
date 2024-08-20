@@ -1,13 +1,13 @@
 #pragma once
 
 namespace rad{class Node;}
-namespace rad::gui::correction{class Detection;}
-namespace rad::gui::correction{class Model;}
-namespace rad::gui::correction{class Correction;}
+namespace rad::cor::gui{class Detection;}
+namespace rad::cor::gui{class Model;}
+namespace rad::cor::gui{class Correction;}
 namespace dyn::prc::base{class Sensor;}
 
 
-namespace rad::gui::correction{
+namespace rad::cor::gui{
 
 class Tab
 {
@@ -26,9 +26,9 @@ public:
   void tab_calibration(dyn::prc::base::Sensor* sensor);
 
 private:
-  rad::gui::correction::Detection* gui_detection;
-  rad::gui::correction::Model* gui_model;
-  rad::gui::correction::Correction* gui_correction;
+  rad::cor::gui::Detection* gui_detection;
+  rad::cor::gui::Model* gui_model;
+  rad::cor::gui::Correction* gui_correction;
 };
 
 }

@@ -1,18 +1,18 @@
 #pragma once
 
 namespace rad{class Node;}
-namespace rad::correction{class Structure;}
-namespace rad::correction{class Node;}
-namespace rad::correction{class Measure;}
-namespace rad::correction{class Model;}
-namespace rad::correction{class Plot;}
-namespace rad::correction::io{class Measure;}
-namespace rad::correction::io{class Model;}
+namespace rad::cor{class Structure;}
+namespace rad::cor{class Node;}
+namespace rad::cor{class Measure;}
+namespace rad::cor{class Model;}
+namespace rad::cor{class Plot;}
+namespace rad::cor::io{class Measure;}
+namespace rad::cor::io{class Model;}
 namespace utl::implot{class Plot;}
 namespace dyn::prc::base{class Sensor;}
 
 
-namespace rad::gui::correction{
+namespace rad::cor::gui{
 
 class Model
 {
@@ -35,13 +35,13 @@ public:
   void plot_model_heatmap(dyn::prc::base::Sensor* sensor, float height);
 
 private:
-  rad::correction::Node* node_correction;
-  rad::correction::Measure* rad_measure;
-  rad::correction::Model* rad_model;
-  rad::correction::Plot* rad_plot;
-  rad::correction::Structure* rad_struct;
-  rad::correction::io::Measure* rad_io_measure;
-  rad::correction::io::Model* rad_io_model;
+  rad::cor::Node* node_correction;
+  rad::cor::Measure* rad_measure;
+  rad::cor::Model* rad_model;
+  rad::cor::Plot* rad_plot;
+  rad::cor::Structure* rad_struct;
+  rad::cor::io::Measure* rad_io_measure;
+  rad::cor::io::Model* rad_io_model;
   utl::implot::Plot* utl_plot;
 };
 
