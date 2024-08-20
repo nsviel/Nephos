@@ -1,7 +1,7 @@
 #include "Radiometry.h"
 
-#include <Radiometry/Namespace.h>
 #include <Processing/Namespace.h>
+#include <Radiometry/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
 
@@ -13,9 +13,9 @@ Radiometry::Radiometry(dyn::prc::Node* node_processing){
   //---------------------------
 
   dat::Node* node_data = node_processing->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
   rad::Node* node_radio = node_processing->get_node_radio();
   rad::cor::Node* node_correction = node_radio->get_node_correction();
-  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->dat_image = node_element->get_dat_image();
   this->rad_correction = node_correction->get_rad_correction();

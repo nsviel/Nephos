@@ -1,12 +1,9 @@
 #include "Node.h"
 
-#include <Dynamic/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Core/Namespace.h>
 #include <Module/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Processing/Namespace.h>
-#include <Radiometry/Namespace.h>
-#include <Engine/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 

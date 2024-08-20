@@ -1,22 +1,24 @@
 #include "Node.h"
 
 #include <Dynamic/Namespace.h>
-#include <Application/Node.h>
 #include <Core/Namespace.h>
+
 //#include <Kinect/Namespace.h>
 #include <RealSense/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 
-namespace sen{
+namespace dyn::sen{
 
 //Constructor / Destructor
 Node::Node(dyn::Node* node_dynamic){
   //---------------------------
 
   this->node_core = node_dynamic->get_node_core();
-  //this->node_kinect = new k4n::Node(node_core);
-  this->node_realsense = new rlx::Node(node_core);
+
+  //this->node_kinect = new k4n::Node(this);
+  this->node_realsense = new rlx::Node(this);
+  this->node_velodyne = new vld::Node(this);
 
   //---------------------------
 }

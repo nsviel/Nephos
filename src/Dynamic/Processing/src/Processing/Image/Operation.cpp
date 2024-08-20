@@ -1,9 +1,8 @@
 #include "Operation.h"
 
-#include <Utility/Namespace.h>
 #include <Processing/Namespace.h>
 #include <Core/Namespace.h>
-#include <Radiometry/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace dyn::prc::image{

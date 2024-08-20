@@ -2,6 +2,7 @@
 
 #include <Utility/Base/Class/Node.h>
 
+namespace dyn::sen{class Node;}
 namespace io{class Node;}
 namespace dat{class Node;}
 namespace core{class Node;}
@@ -17,7 +18,7 @@ class Node : public utl::base::Node
 {
 public:
   //Constructor / Destructor
-  Node(core::Node* node_core);
+  Node(dyn::sen::Node* node_sensor);
   ~Node();
 
 public:

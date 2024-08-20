@@ -1,11 +1,10 @@
 #include "Normal.h"
 
 #include <Processing/Namespace.h>
-#include <Operation/Namespace.h>
-#include <Utility/Namespace.h>
-#include <Data/Namespace.h>
 #include <Core/Namespace.h>
+#include <Data/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Utility/Namespace.h>
 #include <cstdlib>
 #include <chrono>
 
@@ -19,13 +18,13 @@ Normal::Normal(dyn::prc::Node* node_processing){
   core::Node* node_core = node_processing->get_node_core();
   dat::Node* node_data = node_processing->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
-  
+
   this->thread_pool = node_core->get_thread_pool();
   this->dyn_struct = node_processing->get_dyn_struct();
   this->dat_image = node_element->get_dat_image();
   this->dat_glyph = node_element->get_dat_glyph();
-  this->ope_converter = new dat::img::Converter();
-  this->ope_normal = new dat::atr::normal::Structured();
+  this->img_converter = new dat::img::Converter();
+  this->atr_normal = new dat::atr::normal::Structured();
   this->atr_location = new dat::atr::Location();
 
   //---------------------------
@@ -80,9 +79,9 @@ void Normal::wait_thread(){
 void Normal::compute_normal(dyn::prc::base::Sensor* sensor){
   //---------------------------
 
-  ope_normal->set_knn(dyn_struct->operation.normal.knn);
-  ope_normal->compute_normal(&sensor->data);
-  dyn_struct->operation.normal.time = ope_normal->get_time();
+  atr_normal->set_knn(dyn_struct->operation.normal.knn);
+  atr_normal->compute_normal(&sensor->data);
+  dyn_struct->operation.normal.time = atr_normal->get_time();
   atr_location->compute_incidence_angle(sensor);
 
   //---------------------------
@@ -92,7 +91,7 @@ void Normal::compute_image(dyn::prc::base::Sensor* sensor){
 
   utl::media::Image* image = dat_image->get_or_create_image(sensor, "Normal");
   image->timestamp = sensor->timestamp.current;
-  ope_converter->convert_normal_to_image(&sensor->data, image);
+  img_converter->convert_normal_to_image(&sensor->data, image);
 
   //dat_glyph->update_glyph(sensor, dat::base::object::NORMAL);
 

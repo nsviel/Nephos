@@ -10,11 +10,11 @@
 namespace vld{
 
 //Constructor / Destructor
-Node::Node(core::Node* node_core){
+Node::Node(dyn::sen::Node* node_sensor){
   utl::gui::Panel* panel = add_panel("Velodyne", ICON_FA_PLAY, true);
   //---------------------------
 
-  this->node_core = node_core;
+  this->node_core = node_sensor->get_node_core();
   this->node_io = node_core->get_node_io();
   this->node_data = node_core->get_node_data();
 

@@ -39,8 +39,8 @@ private:
   dyn::prc::Structure* dyn_struct;
   dat::elm::Image* dat_image;
   dat::elm::Glyph* dat_glyph;
-  dat::atr::normal::Structured* ope_normal;
-  dat::img::Converter* ope_converter;
+  dat::atr::normal::Structured* atr_normal;
+  dat::img::Converter* img_converter;
   dat::atr::Location* atr_location;
   sys::thread::task::Pool* thread_pool;
 

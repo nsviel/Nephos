@@ -1,8 +1,8 @@
 #include "Operation.h"
 
-#include <Utility/Namespace.h>
 #include <Processing/Namespace.h>
 #include <Data/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace dyn::prc::cloud{

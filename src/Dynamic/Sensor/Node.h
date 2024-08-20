@@ -3,13 +3,14 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace dyn{class Node;}
-namespace app{class Node;}
 namespace core{class Node;}
+
 //namespace k4n{class Node;}
 namespace rlx{class Node;}
+namespace vld{class Node;}
 
 
-namespace sen{
+namespace dyn::sen{
 
 class Node : public utl::base::Node
 {
@@ -28,8 +29,10 @@ public:
 
 private:
   core::Node* node_core;
+
   //k4n::Node* node_kinect;
   rlx::Node* node_realsense;
+  vld::Node* node_velodyne;
 };
 
 }
