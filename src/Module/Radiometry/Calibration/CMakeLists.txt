@@ -1,14 +1,10 @@
-set(LIBRARY_NAME MODULE_RADIOMETRY)
+set(LIBRARY_NAME RADIOMETRY_CALIBRATION)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Calibration)
-add_subdirectory(Correction)
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
-  gui/*.cpp
+  *.cpp
 )
 
 #-----------------

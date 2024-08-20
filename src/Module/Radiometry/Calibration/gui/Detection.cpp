@@ -1,9 +1,8 @@
 #include "Detection.h"
 
 #include <Radiometry/Namespace.h>
-#include <Utility/Namespace.h>
 #include <Core/Namespace.h>
-#include <Processing/Namespace.h>
+#include <Utility/Namespace.h>
 
 #include <Data/Namespace.h>
 
