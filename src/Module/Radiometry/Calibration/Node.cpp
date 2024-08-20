@@ -1,6 +1,7 @@
 #include "Node.h"
 
-#include <Radiometry/Calibration/Namespace.h>
+#include <Radiometry/Namespace.h>
+#include <Core/Namespace.h>
 
 
 namespace rad::cal{
@@ -9,8 +10,8 @@ namespace rad::cal{
 Node::Node(rad::Node* node_radio){
   //---------------------------
 
-  this->node_vulkan = node_module->get_node_vulkan();
-  this->node_core = node_module->get_node_core();
+  this->node_vulkan = node_radio->get_node_vulkan();
+  this->node_core = node_radio->get_node_core();
   this->node_data = node_core->get_node_data();
   this->node_profiler = node_core->get_node_profiler();
 

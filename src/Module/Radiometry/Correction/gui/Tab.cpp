@@ -1,6 +1,6 @@
 #include "Tab.h"
 
-#include <Radiometry/Correction/Namespace.h>
+#include <Radiometry/Namespace.h>
 #include <Utility/Namespace.h>
 
 
