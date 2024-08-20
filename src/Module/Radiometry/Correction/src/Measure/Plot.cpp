@@ -1,6 +1,6 @@
 #include "Plot.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Correction/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Processing/Namespace.h>
 #include <python/matplotlibcpp.h>

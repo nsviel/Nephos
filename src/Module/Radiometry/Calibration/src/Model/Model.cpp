@@ -1,6 +1,6 @@
 #include "Model.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Calibration/Namespace.h>
 
 
 namespace rad::cal{

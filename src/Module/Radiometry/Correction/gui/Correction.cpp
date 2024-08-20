@@ -1,6 +1,6 @@
 #include "Correction.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Correction/Namespace.h>
 #include <Data/Namespace.h>
 #include <Core/Namespace.h>
 #include <Utility/Namespace.h>

@@ -1,6 +1,6 @@
 #include "Process.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Calibration/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -11,8 +11,7 @@ namespace rad::cal{
 Process::Process(rad::cal::Node* node_detection){
   //---------------------------
 
-  rad::Node* node_radio = node_detection->get_node_radio();
-  dat::Node* node_data = node_radio->get_node_data();
+  dat::Node* node_data = node_detection->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->rad_struct = node_detection->get_rad_struct();

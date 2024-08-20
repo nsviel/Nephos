@@ -1,6 +1,6 @@
 #include "Glyph.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Correction/Namespace.h>
 #include <Data/Namespace.h>
 
 
@@ -10,13 +10,12 @@ namespace rad::cor{
 Glyph::Glyph(rad::cor::Node* node_correction){
   //---------------------------
 
-  rad::Node* node_radio = node_correction->get_node_radio();
-  dat::Node* node_data = node_radio->get_node_data();
+  dat::Node* node_data = node_correction->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->dat_glyph = node_element->get_dat_glyph();
   this->dat_entity = node_element->get_dat_entity();
-  this->node_core = node_radio->get_node_core();
+  this->node_core = node_correction->get_node_core();
   this->rad_struct = node_correction->get_rad_struct();
 
   //---------------------------

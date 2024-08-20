@@ -1,6 +1,6 @@
 #include "Image.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Correction/Namespace.h>
 
 
 namespace rad::cor::image{

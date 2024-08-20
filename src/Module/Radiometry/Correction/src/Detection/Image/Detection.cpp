@@ -1,6 +1,6 @@
 #include "Detection.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Correction/Namespace.h>
 #include <Data/Namespace.h>
 #include <Core/Namespace.h>
 #include <Utility/Namespace.h>
@@ -12,9 +12,8 @@ namespace rad::cor::image{
 Detection::Detection(rad::cor::Node* node_correction){
   //---------------------------
 
-  rad::Node* node_radio = node_correction->get_node_radio();
-  core::Node* node_core = node_radio->get_node_core();
-  dat::Node* node_data = node_radio->get_node_data();
+  core::Node* node_core = node_correction->get_node_core();
+  dat::Node* node_data = node_correction->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->rad_struct = node_correction->get_rad_struct();

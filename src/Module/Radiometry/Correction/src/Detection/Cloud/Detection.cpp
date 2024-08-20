@@ -1,6 +1,6 @@
 #include "Detection.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Correction/Namespace.h>
 #include <Core/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Data/Namespace.h>
@@ -13,8 +13,7 @@ namespace rad::cor::cloud{
 Detection::Detection(rad::cor::Node* node_correction){
   //---------------------------
 
-  rad::Node* node_radio = node_correction->get_node_radio();
-  core::Node* node_core = node_radio->get_node_core();
+  core::Node* node_core = node_correction->get_node_core();
 
   this->thread_pool = node_core->get_thread_pool();
   this->rad_struct = node_correction->get_rad_struct();

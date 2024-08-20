@@ -10,8 +10,11 @@ namespace rad::cor{
 Node::Node(rad::Node* node_radio){
   //---------------------------
 
-  this->node_radio = node_radio;
-  
+  this->node_vulkan = node_module->get_node_vulkan();
+  this->node_core = node_module->get_node_core();
+  this->node_data = node_core->get_node_data();
+  this->node_profiler = node_core->get_node_profiler();
+
   this->rad_struct = new rad::cor::Structure();
   this->rad_process = new rad::cor::Process(this);
   this->rad_model = new rad::cor::Model(this);

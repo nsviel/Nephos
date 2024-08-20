@@ -1,6 +1,6 @@
 #include "Process.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Correction/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -11,8 +11,7 @@ namespace rad::cor{
 Process::Process(rad::cor::Node* node_correction){
   //---------------------------
 
-  rad::Node* node_radio = node_correction->get_node_radio();
-  dat::Node* node_data = node_radio->get_node_data();
+  dat::Node* node_data = node_correction->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 

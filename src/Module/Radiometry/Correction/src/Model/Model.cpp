@@ -1,6 +1,6 @@
 #include "Model.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Correction/Namespace.h>
 #include <Operation/Namespace.h>
 #include <Processing/Namespace.h>
 #include <python/matplotlibcpp.h>

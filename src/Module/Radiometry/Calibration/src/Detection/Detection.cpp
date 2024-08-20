@@ -1,6 +1,6 @@
 #include "Detection.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Calibration/Namespace.h>
 #include <Data/Namespace.h>
 #include <Core/Namespace.h>
 #include <Utility/Namespace.h>
@@ -12,9 +12,8 @@ namespace rad::cal{
 Detection::Detection(rad::cal::Node* node_detection){
   //---------------------------
 
-  rad::Node* node_radio = node_detection->get_node_radio();
-  core::Node* node_core = node_radio->get_node_core();
-  dat::Node* node_data = node_radio->get_node_data();
+  core::Node* node_core = node_detection->get_node_core();
+  dat::Node* node_data = node_detection->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->rad_struct = node_detection->get_rad_struct();

@@ -1,6 +1,6 @@
 #include "Measure.h"
 
-#include <Radiometry/Namespace.h>
+#include <Radiometry/Calibration/Namespace.h>
 #include <Utility/Namespace.h>
 #include <python/matplotlibcpp.h>
 
