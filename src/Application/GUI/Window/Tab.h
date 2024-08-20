@@ -25,7 +25,7 @@ public:
   void loop();
 
   //Tab function
-  void draw_tab_menu();
+  void draw_menu();
   void draw_tab();
 
 private:

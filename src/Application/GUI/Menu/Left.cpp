@@ -20,13 +20,14 @@ Left::Left(gui::Node* node_gui){
 Left::~Left(){}
 
 //Menu function
-void Left::menu(){
+void Left::draw(){
   //---------------------------
 
   //this->menu_font();
   this->menu_imgui();
 
   //---------------------------
+  ImGui::Separator();
 }
 
 //Subfunction

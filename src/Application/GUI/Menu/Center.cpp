@@ -26,7 +26,12 @@ Center::~Center(){}
 void Center::draw(){
   //---------------------------
 
-  ImGui::BeginMainMenuBar();
+  //Empty space
+  float offset_x = ImGui::GetContentRegionAvail().x * 0.2f;
+  if(offset_x > 0.0f) ImGui::Dummy(ImVec2(offset_x, 0.0f));
+
+  //Menu
+  ImGui::Separator();
   if(ImGui::BeginMenu("Panel##111")){
     this->menu_panel();
     ImGui::EndMenu();
@@ -40,7 +45,7 @@ void Center::draw(){
   if(ImGui::MenuItem(ICON_FA_CAMERA)){
     this->menu_screenshot();
   }
-  ImGui::EndMainMenuBar();
+  ImGui::Separator();
 
   //---------------------------
 }

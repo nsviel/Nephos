@@ -17,7 +17,7 @@ public:
 
 public:
   //Menu function
-  void menu();
+  void draw();
 
   //Subfunction
   void menu_font();
