@@ -1,6 +1,8 @@
 #include "Model.h"
 
 #include <Radiometry/Namespace.h>
+#include <Data/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Utility/Namespace.h>
 
 

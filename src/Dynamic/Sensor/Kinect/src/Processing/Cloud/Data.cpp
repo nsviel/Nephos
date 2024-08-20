@@ -1,10 +1,10 @@
 #include "Data.h"
 
 #include <Kinect/Namespace.h>
-#include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
 #include <Attribut/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace k4n::processing::cloud{
@@ -15,7 +15,7 @@ Data::Data(k4n::Node* node_k4n){
 
   this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_xytable = new k4n::processing::cloud::XY_table(node_k4n);
-  this->utl_attribut = new utl::base::Attribut();
+  this->atr_field = new dat::atr::Field();
   this->atr_location = new dat::atr::Location();
 
   //---------------------------
@@ -105,8 +105,8 @@ void Data::extraction_transfer(k4n::base::Sensor* sensor){
   utl::base::Data* data = &sensor->data;
   //---------------------------
 
-  std::vector<float>& vec_R = utl_attribut->get_field_data(data, "R");
-  std::vector<float>& vec_I = utl_attribut->get_field_data(data, "I");
+  std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
 
   //Data
   data->xyz = buffer.xyz;

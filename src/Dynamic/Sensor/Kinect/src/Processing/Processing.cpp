@@ -13,13 +13,13 @@ Processing::Processing(k4n::Node* node_k4n){
   //---------------------------
 
   core::Node* node_core = node_k4n->get_node_core();
-  dyn::prc::Node* node_dynamic = node_core->get_node_dynamic();
+  dyn::prc::Node* node_processing = node_k4n->get_node_processing();
 
   this->thread_pool = node_core->get_thread_pool();
   this->k4n_image = new k4n::processing::image::Data(node_k4n);
   this->k4n_cloud = new k4n::processing::cloud::Data(node_k4n);
-  this->dyn_ope_image = node_dynamic->get_ope_image();
-  this->dyn_ope_cloud = node_dynamic->get_ope_cloud();
+  this->dyn_ope_image = node_processing->get_ope_image();
+  this->dyn_ope_cloud = node_processing->get_ope_cloud();
 
   //---------------------------
 }

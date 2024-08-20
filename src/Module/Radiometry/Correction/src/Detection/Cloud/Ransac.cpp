@@ -1,6 +1,8 @@
 #include "Ransac.h"
 
 #include <Radiometry/Namespace.h>
+#include <Operation/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
 

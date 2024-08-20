@@ -20,7 +20,6 @@ find_package(Python REQUIRED COMPONENTS Interpreter Development)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
   MAIN_CORE
-  CORE_IO
 
   ${Python_LIBRARIES}
   Python::Python

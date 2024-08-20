@@ -4,6 +4,7 @@
 #include <Kinect/src/Structure/Color.h>
 #include <Kinect/src/Structure/Depth.h>
 #include <Kinect/src/Structure/Infrared.h>
+#include <Kinect/src/Structure/Synchro.h>
 #include <k4a/k4a.hpp>
 #include <string>
 
