@@ -2,7 +2,6 @@
 
 #include <IO/Exporter/Namespace.h>
 #include <IO/Format/Namespace.h>
-#include <Dynamic/Namespace.h>
 
 
 namespace io::exp{

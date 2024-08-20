@@ -1,7 +1,6 @@
 #include "Recorder.h"
 
 #include <IO/Exporter/Namespace.h>
-#include <Dynamic/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
