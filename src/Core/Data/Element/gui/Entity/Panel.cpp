@@ -7,18 +7,18 @@
 #include <imgui/core/imgui.h>
 
 
-namespace dat::gui::entity{
+namespace dat::entity::gui{
 
 //Constructor / Destructor
-Panel::Panel(dat::elm::Node* node_element, bool* panel_show){
+Panel::Panel(dat::elm::Node* node_element){
   //---------------------------
 
   this->dat_set = node_element->get_dat_set();
-  this->gui_topology = new dat::gui::entity::Topology();
-  this->gui_data = new dat::gui::entity::Data(node_element);
+  this->gui_topology = new dat::entity::gui::Topology();
+  this->gui_data = new dat::entity::gui::Data(node_element);
   this->trf_operation = new eng::trf::Operation();
 
-  this->panel_show = panel_show;
+  this->panel_show = false;
   this->panel_name = "Entity";
   this->item_width = 100;
 
@@ -30,12 +30,12 @@ Panel::~Panel(){}
 void Panel::run_panel(){
   //---------------------------
 
-  if(*panel_show){
+  if(panel_show){
     ImGuiWindowFlags flag;
     flag |= ImGuiWindowFlags_NoCollapse;
     flag |= ImGuiWindowFlags_AlwaysAutoResize;
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.15, 0.15, 0.15, 1));
-    if(ImGui::Begin(panel_name.c_str(), panel_show, flag) == 1){
+    if(ImGui::Begin(panel_name.c_str(), &panel_show, flag) == 1){
 
       this->design_panel();
 
@@ -60,7 +60,7 @@ void Panel::close_panel(){
   //---------------------------
 
   this->entity = nullptr;
-  *panel_show = false;
+  this->panel_show = false;
 
   //---------------------------
 }

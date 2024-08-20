@@ -4,7 +4,7 @@ namespace dat::base{class Entity;}
 namespace utl::base{class Data;}
 
 
-namespace dat::gui::entity{
+namespace dat::entity::gui{
 
 class Topology
 {

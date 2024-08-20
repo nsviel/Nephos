@@ -5,12 +5,12 @@
 namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
-namespace dat::gui::entity{class Panel;}
-namespace dat::gui::set{class Panel;}
 namespace dat::gph{class Node;}
 namespace dat::gph{class Selection;}
 namespace dat::gph{class Graph;}
 namespace dat::gph::gui{class Button;}
+namespace dat::entity::gui{class Panel;}
+namespace dat::set::gui{class Panel;}
 
 
 namespace dat::gph::gui{
@@ -41,9 +41,9 @@ private:
   dat::gph::Graph* dat_graph;
   dat::gph::Selection* dat_selection;
   dat::elm::Set* dat_set;
-  dat::gui::entity::Panel* gui_entity;
-  dat::gui::set::Panel* gui_set;
   dat::gph::gui::Button* gui_button;
+  dat::set::gui::Panel* gui_set;
+  dat::entity::gui::Panel* gui_entity;
 
   std::string name;
   bool* show_window;

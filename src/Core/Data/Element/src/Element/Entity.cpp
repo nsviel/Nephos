@@ -25,15 +25,9 @@ Entity::~Entity(){}
 void Entity::init_entity(dat::base::Entity* entity){
   //---------------------------
 
-  //Init entity
   entity->UID = dat_uid->generate_UID();
   entity->data.UID = dat_uid->generate_UID();
   entity->data.is_updated = true;
-
-  //Init sensor
-  //if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
-  //  dyn_sensor->init_sensor(sensor);
-  //}
 
   //---------------------------
 }

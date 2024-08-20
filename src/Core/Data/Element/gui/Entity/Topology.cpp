@@ -5,7 +5,7 @@
 #include <imgui/core/imgui.h>
 
 
-namespace dat::gui::entity{
+namespace dat::entity::gui{
 
 //Constructor / Destructor
 Topology::Topology(){

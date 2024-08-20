@@ -5,19 +5,19 @@
 namespace dat::elm{class Node;}
 namespace dat::elm{class Set;}
 namespace dat::base{class Entity;}
-namespace dat::gui::entity{class Topology;}
-namespace dat::gui::entity{class Data;}
+namespace dat::entity::gui{class Topology;}
+namespace dat::entity::gui{class Data;}
 namespace eng::trf{class Operation;}
 namespace utl::base{class Data;}
 
 
-namespace dat::gui::entity{
+namespace dat::entity::gui{
 
 class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(dat::elm::Node* node_element, bool* show_window);
+  Panel(dat::elm::Node* node_element);
   ~Panel();
 
   //Main function
@@ -35,12 +35,12 @@ public:
 private:
   eng::trf::Operation* trf_operation;
   dat::elm::Set* dat_set;
-  dat::gui::entity::Topology* gui_topology;
-  dat::gui::entity::Data* gui_data;
+  dat::entity::gui::Topology* gui_topology;
+  dat::entity::gui::Data* gui_data;
 
   dat::base::Entity* entity;
   std::string panel_name;
-  bool* panel_show;;
+  bool panel_show;;
   int item_width;
 };
 

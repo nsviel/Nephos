@@ -20,6 +20,8 @@ Node::Node(dat::Node* node_data){
   this->dat_entity = new dat::elm::Entity(this);
   this->dat_glyph = new dat::elm::Glyph(this);
   this->dat_image = new dat::elm::Image(this);
+  this->gui_set = new dat::set::gui::Panel(this);
+  this->gui_entity = new dat::entity::gui::Panel(this);
 
   //---------------------------
 }
@@ -47,7 +49,8 @@ void Node::clean(){
 void Node::gui(){
   //---------------------------
 
-
+  gui_entity->run_panel();
+  gui_set->run_panel();
 
   //---------------------------
 }

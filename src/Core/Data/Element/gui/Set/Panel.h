@@ -7,13 +7,13 @@ namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
 
 
-namespace dat::gui::set{
+namespace dat::set::gui{
 
 class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(dat::elm::Node* node_element, bool* show_window);
+  Panel(dat::elm::Node* node_element);
   ~Panel();
 
   //Main function
@@ -31,7 +31,7 @@ private:
 
   dat::base::Set* set_selected;
   std::string panel_name;
-  bool* panel_show;;
+  bool panel_show;;
   int item_width;
 };
 

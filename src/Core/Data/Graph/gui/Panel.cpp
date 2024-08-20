@@ -20,9 +20,9 @@ Panel::Panel(dat::gph::Node* node_graph, bool* show_window){
   this->dat_graph = node_graph->get_dat_graph();
   this->dat_selection = node_graph->get_dat_selection();
   this->dat_set = node_element->get_dat_set();
-  this->gui_set = new dat::gui::set::Panel(node_element, &show_panel_set);
-  this->gui_entity = new dat::gui::entity::Panel(node_element, &show_panel_entity);
   this->gui_button = new dat::gph::gui::Button(node_graph);
+  this->gui_set = node_element->get_gui_set();
+  this->gui_entity = node_element->get_gui_entity();
 
   this->name = "Graph";
   this->show_window = show_window;
@@ -34,9 +34,6 @@ Panel::~Panel(){}
 //Main function
 void Panel::run_panel(){
   //---------------------------
-
-  gui_entity->run_panel();
-  gui_set->run_panel();
 
   if(*show_window){
     ImGuiWindowFlags flag;

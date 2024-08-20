@@ -8,7 +8,7 @@ namespace dat::base{class Entity;}
 namespace eng::trf{class Operation;}
 
 
-namespace dat::gui::entity{
+namespace dat::entity::gui{
 
 class Data
 {
