@@ -19,7 +19,7 @@ Node::Node(app::Node* node_app){
 
   this->gui_demo = new gui::menu::Demo(this);
   this->gui_state = new gui::state::Manager(this);
-  this->gui_tab = new gui::Tab(this);
+  this->gui_layout = new gui::Layout(this);
   this->gui_style = new gui::style::Style(this);
   this->gui_font = new gui::style::Font(this);
   this->gui_theme = new gui::style::Theme(this);
@@ -30,7 +30,7 @@ Node::Node(app::Node* node_app){
 Node::~Node(){
   //---------------------------
 
-  delete gui_tab;
+  delete gui_layout;
 
   //---------------------------
 }
@@ -51,7 +51,7 @@ void Node::loop(){
 
   tasker->task_begin("gui::loop");
 
-  gui_tab->loop();
+  gui_layout->loop();
 
   tasker->task_end("gui::loop");
 

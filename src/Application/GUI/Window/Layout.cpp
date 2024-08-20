@@ -1,4 +1,4 @@
-#include "Tab.h"
+#include "Layout.h"
 
 #include <GUI/Namespace.h>
 #include <Core/Namespace.h>
@@ -8,7 +8,7 @@
 namespace gui{
 
 //Constructor / Destructor
-Tab::Tab(gui::Node* node_gui){
+Layout::Layout(gui::Node* node_gui){
   //---------------------------
 
   this->node_core = node_gui->get_node_core();
@@ -21,21 +21,21 @@ Tab::Tab(gui::Node* node_gui){
 
   //---------------------------
 }
-Tab::~Tab(){}
+Layout::~Layout(){}
 
 //Main function
-void Tab::loop(){
+void Layout::loop(){
   //---------------------------
 
   this->draw_frame();
   this->draw_menu();
-  this->draw_tab();
+  this->draw_panel();
 
   //---------------------------
 }
 
-//Tab function
-void Tab::draw_frame(){
+//Subfunction
+void Layout::draw_frame(){
   //---------------------------
 
   gui_state->loop();
@@ -45,7 +45,7 @@ void Tab::draw_frame(){
 
   //---------------------------
 }
-void Tab::draw_menu(){
+void Layout::draw_menu(){
   //---------------------------
 
   ImGui::BeginMainMenuBar();
@@ -60,7 +60,7 @@ void Tab::draw_menu(){
 
   //---------------------------
 }
-void Tab::draw_tab(){
+void Layout::draw_panel(){
   //---------------------------
 
   node_core->gui();

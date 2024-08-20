@@ -15,21 +15,21 @@ namespace gui::menu{class Demo;}
 
 namespace gui{
 
-class Tab
+class Layout
 {
 public:
   //Constructor / Destructor
-  Tab(gui::Node* node_gui);
-  ~Tab();
+  Layout(gui::Node* node_gui);
+  ~Layout();
 
 public:
   //Main function
   void loop();
 
-  //Tab function
+  //Subfunction
   void draw_frame();
   void draw_menu();
-  void draw_tab();
+  void draw_panel();
 
 private:
   core::Node* node_core;
