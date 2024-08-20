@@ -1,9 +1,10 @@
 #include "Node.h"
 
+#include <Sensor/Namespace.h>
 #include <Core/Namespace.h>
 #include <Data/Namespace.h>
-#include <Velodyne/Namespace.h>
 #include <IO/Namespace.h>
+#include <Velodyne/Namespace.h>
 #include <Importer/Namespace.h>
 
 

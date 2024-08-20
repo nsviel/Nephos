@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Processing/Namespace.h>
+#include <Dynamic/Namespace.h>
 #include <Core/Namespace.h>
 #include <Module/Namespace.h>
 #include <Utility/Namespace.h>

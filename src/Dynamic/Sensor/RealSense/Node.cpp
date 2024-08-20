@@ -1,5 +1,6 @@
 #include "Node.h"
 
+#include <Sensor/Namespace.h>
 #include <Core/Namespace.h>
 #include <RealSense/Namespace.h>
 #include <IO/Namespace.h>
@@ -20,7 +21,7 @@ Node::Node(dyn::sen::Node* node_sensor){
   this->node_io = node_core->get_node_io();
   this->node_profiler = node_core->get_node_profiler();
   this->node_data = node_core->get_node_data();
-  
+
   //this->rlx_class = new rlx::Class();
 
   //---------------------------
