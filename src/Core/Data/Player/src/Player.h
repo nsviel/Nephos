@@ -1,11 +1,12 @@
 #pragma once
 
-#include <Processing/src/Base/State.h>
-#include <Processing/src/Base/Timestamp.h>
+#include <Data/Base/Sensor/State.h>
+#include <Data/Base/Sensor/Timestamp.h>
 
 namespace dat::ply{class Node;}
 namespace dat::gph{class Selection;}
 namespace dat::elm{class Set;}
+namespace dat::base{class Set;}
 
 
 namespace dat::ply{

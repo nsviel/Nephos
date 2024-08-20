@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Processing/src/Base/Recorder.h>
+#include <Data/Base/Sensor/Recorder.h>
 #include <thread>
 
 namespace dyn::prc{class Node;}
