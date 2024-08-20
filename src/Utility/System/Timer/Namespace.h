@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Chronometer/Namespace.h"
-#include "FPS/Namespace.h"
+#include <Utility/System/Timer/Chronometer/Namespace.h>
+#include <Utility/System/Timer/FPS/Namespace.h>

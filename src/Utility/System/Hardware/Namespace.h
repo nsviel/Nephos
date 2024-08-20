@@ -1,4 +1,4 @@
 #pragma once
 
-#include "CPU.h"
-#include "Nvidia.h"
+#include <Utility/System/Hardware/CPU.h>
+#include <Utility/System/Hardware/Nvidia.h>

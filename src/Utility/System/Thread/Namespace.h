@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Routine/Namespace.h"
-#include "Task/Namespace.h"
-#include "Worker/Namespace.h"
+#include <Utility/System/Thread/Routine/Namespace.h>
+#include <Utility/System/Thread/Task/Namespace.h>
+#include <Utility/System/Thread/Worker/Namespace.h>
