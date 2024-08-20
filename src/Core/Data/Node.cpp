@@ -54,6 +54,7 @@ void Node::gui(){
   //---------------------------
 
   node_graph->gui();
+  node_element->gui();
   node_player->gui();
 
   //---------------------------
