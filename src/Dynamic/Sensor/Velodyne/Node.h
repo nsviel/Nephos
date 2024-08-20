@@ -9,7 +9,7 @@ namespace core{class Node;}
 namespace vld::main{class Capture;}
 namespace vld::main{class Playback;}
 namespace vld::structure{class Main;}
-namespace vld::gui{class Velodyne;}
+namespace vld::gui{class Panel;}
 
 
 namespace vld{
@@ -39,7 +39,7 @@ private:
 
   vld::main::Capture* vld_capture;
   vld::main::Playback* vld_playback;
-  vld::gui::Velodyne* gui_velodyne;
+  vld::gui::Panel* gui_velodyne;
   vld::structure::Main* vld_struct;
 };
 

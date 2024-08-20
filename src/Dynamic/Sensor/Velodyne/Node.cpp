@@ -22,7 +22,7 @@ Node::Node(dyn::sen::Node* node_sensor){
   this->vld_struct = new vld::structure::Main();
   this->vld_capture = new vld::main::Capture(this);
   this->vld_playback = new vld::main::Playback(vld_struct);
-  this->gui_velodyne = new vld::gui::Velodyne(vld_struct, &panel->is_open);
+  this->gui_velodyne = new vld::gui::Panel(vld_struct, &panel->is_open);
 
   //---------------------------
 }

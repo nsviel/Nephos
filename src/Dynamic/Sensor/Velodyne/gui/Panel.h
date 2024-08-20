@@ -12,12 +12,12 @@ namespace vld::gui{class Server;}
 
 namespace vld::gui{
 
-class Velodyne
+class Panel
 {
 public:
   //Constructor / Destructor
-  Velodyne(vld::structure::Main* vld_struct, bool* show_window);
-  ~Velodyne();
+  Panel(vld::structure::Main* vld_struct, bool* show_window);
+  ~Panel();
 
 public:
   //Main function

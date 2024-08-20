@@ -22,6 +22,7 @@ public:
 public:
   void init();
   void loop();
+  void gui();
   void clean();
 
   inline core::Node* get_node_core(){return node_core;}

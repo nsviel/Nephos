@@ -1,4 +1,4 @@
-#include "Velodyne.h"
+#include "Panel.h"
 
 #include <Velodyne/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace vld::gui{
 
 //Constructor / Destructor
-Velodyne::Velodyne(vld::structure::Main* vld_struct, bool* show_window){
+Panel::Panel(vld::structure::Main* vld_struct, bool* show_window){
   //---------------------------
 
   this->vld_struct = vld_struct;
@@ -19,16 +19,16 @@ Velodyne::Velodyne(vld::structure::Main* vld_struct, bool* show_window){
 
   //---------------------------
 }
-Velodyne::~Velodyne(){}
+Panel::~Panel(){}
 
 //Main function
-void Velodyne::run_panel(){
+void Panel::run_panel(){
   //---------------------------
 
   if(*show_window){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
-
+sayHello();
       this->design_panel();
 
       ImGui::End();
@@ -38,7 +38,7 @@ void Velodyne::run_panel(){
 
   //---------------------------
 }
-void Velodyne::design_panel(){
+void Panel::design_panel(){
   //---------------------------
 
   gui_player->design_player();
