@@ -16,7 +16,6 @@ Tab::Tab(gui::Node* node_gui){
   this->node_core = node_gui->get_node_core();
 
   this->gui_menu = new gui::interface::Menu(node_gui);
-  this->dev_menu = new gui::tab::dev::Menu();
   this->eng_menu = new gui::tab::eng::Menu(node_gui);
 
   this->active_tab = "Engine";
@@ -71,15 +70,9 @@ void Tab::draw_tab_menu(){
 void Tab::draw_tab(){
   //---------------------------
 
-  //Draw selected tab panels
-  if(active_tab == "Engine"){
-    node_scene->gui();
-    node_core->gui();
-    eng_menu->draw();
-  }
-  else if(active_tab == "Dev"){
-    dev_menu->draw();
-  }
+  node_scene->gui();
+  node_core->gui();
+  eng_menu->draw();
 
   //---------------------------
 }

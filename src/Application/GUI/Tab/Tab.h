@@ -8,7 +8,6 @@ namespace core{class Node;}
 namespace sce{class Node;}
 
 namespace gui::interface{class Menu;}
-namespace gui::tab::dev{class Menu;}
 namespace gui::tab::eng{class Menu;}
 
 
@@ -35,7 +34,6 @@ private:
   sce::Node* node_scene;
 
   gui::interface::Menu* gui_menu;
-  gui::tab::dev::Menu* dev_menu;
   gui::tab::eng::Menu* eng_menu;
 
   std::vector<std::string> vec_tab;
