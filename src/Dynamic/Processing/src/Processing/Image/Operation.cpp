@@ -21,7 +21,7 @@ Operation::Operation(dyn::prc::Node* node_processing){
 Operation::~Operation(){}
 
 //Main function
-void Operation::start_thread(dyn::prc::base::Sensor* sensor){
+void Operation::start_thread(dat::base::Sensor* sensor){
   //---------------------------
 
   this->wait_thread();
@@ -33,7 +33,7 @@ void Operation::start_thread(dyn::prc::base::Sensor* sensor){
 
   //---------------------------
 }
-void Operation::run_thread(dyn::prc::base::Sensor* sensor){
+void Operation::run_thread(dat::base::Sensor* sensor){
   //---------------------------
 
 
@@ -52,7 +52,7 @@ void Operation::wait_thread(){
 }
 
 //Subfunction
-void Operation::make_normal_from_depth_image(dyn::prc::base::Sensor* sensor){
+void Operation::make_normal_from_depth_image(dat::base::Sensor* sensor){
   /*uint8_t* depth = sensor->depth.data.buffer;
   //---------------------------
 
@@ -90,7 +90,7 @@ void Operation::make_normal_from_depth_image(dyn::prc::base::Sensor* sensor){
 
   //---------------------------
 }
-void Operation::convert_normal_into_color(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz){
+void Operation::convert_normal_into_color(dat::base::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 /*
   std::vector<uint8_t> output = std::vector<uint8_t>(vec_Nxyz.size() * 4, 0);

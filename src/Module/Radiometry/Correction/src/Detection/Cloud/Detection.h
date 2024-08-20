@@ -2,7 +2,7 @@
 
 #include <thread>
 
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace rad::cor{class Glyph;}
@@ -23,12 +23,12 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::prc::base::Sensor* sensor);
-  void run_thread(dyn::prc::base::Sensor* sensor);
+  void start_thread(dat::base::Sensor* sensor);
+  void run_thread(dat::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void validate_bbox(dyn::prc::base::Sensor* sensor);
+  void validate_bbox(dat::base::Sensor* sensor);
 
 private:
   sys::thread::task::Pool* thread_pool;

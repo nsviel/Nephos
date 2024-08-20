@@ -8,7 +8,7 @@ namespace rad::cor{class Structure;}
 namespace rad::cor{class Node;}
 namespace rad::cor{class Model;}
 namespace rad::cor::io{class Model;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace dat::elm{class Image;}
 namespace dat::gph{class Selection;}
 namespace utl::media{class Image;}
@@ -26,11 +26,11 @@ public:
 
 public:
   //Main function
-  void make_image_correction(dyn::prc::base::Sensor* sensor, utl::media::Image* ir);
+  void make_image_correction(dat::base::Sensor* sensor, utl::media::Image* ir);
 
   //Subfunction
-  void make_correction(dyn::prc::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data);
-  void update_correction_image(dyn::prc::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data);
+  void make_correction(dat::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data);
+  void update_correction_image(dat::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data);
   float apply_correction(float I_raw, float R, float It);
 
 private:

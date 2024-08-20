@@ -28,7 +28,7 @@ Detection::Detection(rad::cor::Node* node_correction){
 Detection::~Detection(){}
 
 //Main function
-void Detection::start_thread(dyn::prc::base::Sensor* sensor){
+void Detection::start_thread(dat::base::Sensor* sensor){
   //---------------------------
 
   if(thread.joinable()){
@@ -38,7 +38,7 @@ void Detection::start_thread(dyn::prc::base::Sensor* sensor){
 
   //---------------------------
 }
-void Detection::run_thread(dyn::prc::base::Sensor* sensor){
+void Detection::run_thread(dat::base::Sensor* sensor){
   //---------------------------
 
   if(sensor != nullptr && rad_struct->state.measure == rad::cor::measure::PROCESSING){
@@ -63,7 +63,7 @@ void Detection::wait_thread(){
 }
 
 //Subfunction
-void Detection::validate_bbox(dyn::prc::base::Sensor* sensor){
+void Detection::validate_bbox(dat::base::Sensor* sensor){
   utl::base::Pose* pose = &sensor->pose;
   //---------------------------
 

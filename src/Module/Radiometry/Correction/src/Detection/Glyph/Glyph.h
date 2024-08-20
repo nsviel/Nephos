@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace rad::cor::structure{class Circle;}
@@ -26,9 +26,9 @@ public:
   void update_sphere_glyph();
 
   //Subfunction
-  void draw_calibration_sphere(dyn::prc::base::Sensor* sensor);
-  void draw_detection_sphere(dyn::prc::base::Sensor* sensor);
-  void draw_sphere_glyph(dyn::prc::base::Sensor* sensor, std::vector<rad::cor::structure::Circle>& vec_circle);
+  void draw_calibration_sphere(dat::base::Sensor* sensor);
+  void draw_detection_sphere(dat::base::Sensor* sensor);
+  void draw_sphere_glyph(dat::base::Sensor* sensor, std::vector<rad::cor::structure::Circle>& vec_circle);
 
   //Reset function
   void reset_calibration_sphere();

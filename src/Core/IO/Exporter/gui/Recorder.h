@@ -9,7 +9,7 @@ namespace io::exp{class Node;}
 namespace io::exp{class Structure;}
 namespace utl::gui::navigator{class Item;}
 namespace utl::base{class Element;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace dat::ply{class Player;}
 namespace dat::gph{class Selection;}
 namespace dat::base{class Entity;}
@@ -29,13 +29,13 @@ public:
   void draw_header(utl::base::Element* element);
 
   //Header function
-  void display_action(dyn::prc::base::Sensor* sensor);
+  void display_action(dat::base::Sensor* sensor);
   void display_path();
   void display_format();
 
   //Subfunction
   void item_filtering(std::vector<std::string>& vec_path);
-  void item_update(dyn::prc::base::Sensor* sensor);
+  void item_update(dat::base::Sensor* sensor);
   void item_operation(dat::base::Entity* entity);
 
 private:

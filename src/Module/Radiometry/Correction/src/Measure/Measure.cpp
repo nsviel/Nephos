@@ -45,7 +45,7 @@ void Measure::init(){
 }
 
 //Subfunction
-void Measure::process_measure(dyn::prc::base::Sensor* sensor){
+void Measure::process_measure(dat::base::Sensor* sensor){
   //---------------------------
 
   std::vector<glm::vec3>& search_xyz = rad_struct->ransac.search_xyz;
@@ -58,7 +58,7 @@ void Measure::process_measure(dyn::prc::base::Sensor* sensor){
 
   //---------------------------
 }
-void Measure::data_measure(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
+void Measure::data_measure(dat::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
   rad::cor::structure::Model* model = &rad_struct->model;
   rad::cor::structure::Measure* sphere = &rad_struct->measure;
   rad::cor::structure::Plot* plot = &rad_struct->plot;
@@ -98,7 +98,7 @@ void Measure::data_measure(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3
 
   //---------------------------
 }
-void Measure::data_IfR(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
+void Measure::data_IfR(dat::base::Sensor* sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
   rad::cor::structure::Model* model = &rad_struct->model;
   rad::cor::structure::Measure* sphere = &rad_struct->measure;
   rad::cor::structure::Plot* plot = &rad_struct->plot;

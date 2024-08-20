@@ -4,7 +4,7 @@
 
 namespace dyn::prc{class Node;}
 namespace dyn::prc{class Structure;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace rad::cor{class Correction;}
 namespace dat::elm{class Image;}
 
@@ -20,12 +20,12 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::prc::base::Sensor* sensor);
-  void run_thread(dyn::prc::base::Sensor* sensor);
+  void start_thread(dat::base::Sensor* sensor);
+  void run_thread(dat::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void compute_correction(dyn::prc::base::Sensor* sensor);
+  void compute_correction(dat::base::Sensor* sensor);
 
 private:
   dyn::prc::Structure* dyn_struct;

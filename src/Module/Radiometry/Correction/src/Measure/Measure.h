@@ -6,7 +6,7 @@
 namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace rad::cor{class Plot;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace rad::cor{
@@ -21,11 +21,11 @@ public:
 public:
   //Main function
   void init();
-  void process_measure(dyn::prc::base::Sensor* sensor);
+  void process_measure(dat::base::Sensor* sensor);
 
   //Subfunction
-  void data_measure(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
-  void data_IfR(dyn::prc::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
+  void data_measure(dat::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
+  void data_IfR(dat::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
   void data_IfIt(std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
 
 private:

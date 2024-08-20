@@ -4,7 +4,7 @@
 
 namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace sys::thread::task{class Pool;}
 namespace utl::media{class Image;}
 namespace rad::cor{class Glyph;}
@@ -24,12 +24,12 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::prc::base::Sensor* sensor);
-  void run_thread(dyn::prc::base::Sensor* sensor);
+  void start_thread(dat::base::Sensor* sensor);
+  void run_thread(dat::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void make_shape_detection(dyn::prc::base::Sensor* sensor, utl::media::Image* image, utl::media::Image* output);
+  void make_shape_detection(dat::base::Sensor* sensor, utl::media::Image* image, utl::media::Image* output);
 
 private:
   sys::thread::task::Pool* thread_pool;

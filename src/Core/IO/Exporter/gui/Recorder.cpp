@@ -26,7 +26,7 @@ Recorder::~Recorder(){}
 
 //Main function
 void Recorder::draw_header(utl::base::Element* element){
-  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(element);
+  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(element);
   //---------------------------
 
   this->item_update(sensor);
@@ -40,7 +40,7 @@ void Recorder::draw_header(utl::base::Element* element){
 }
 
 //Header function
-void Recorder::display_action(dyn::prc::base::Sensor* sensor){
+void Recorder::display_action(dat::base::Sensor* sensor){
   //---------------------------
 
   if(!sensor->state.record){
@@ -153,7 +153,7 @@ void Recorder::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
   vec_path = vec_path_ok;
 }
-void Recorder::item_update(dyn::prc::base::Sensor* sensor){
+void Recorder::item_update(dat::base::Sensor* sensor){
   //---------------------------
 
   //Actualize current name

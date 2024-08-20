@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace dyn::prc::base{
+namespace dat::base{
 
 struct Timestamp{
   //---------------------------

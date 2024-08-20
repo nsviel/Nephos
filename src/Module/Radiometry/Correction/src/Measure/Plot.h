@@ -3,7 +3,7 @@
 namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace rad::cor{class Model;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace rad::cor{
@@ -21,7 +21,7 @@ public:
 
   //Subfunction
   void plot_measure();
-  void update_plot_data(dyn::prc::base::Sensor* sensor);
+  void update_plot_data(dat::base::Sensor* sensor);
   void reset_plot_data();
 
 private:

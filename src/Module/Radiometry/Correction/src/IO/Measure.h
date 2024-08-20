@@ -5,7 +5,7 @@ namespace rad::cor{class Structure;}
 namespace rad::cor{class Plot;}
 namespace rad::cor{class Measure;}
 namespace rad::cor{class Model;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace rad::cor::io{
@@ -19,9 +19,9 @@ public:
 
 public:
   //Main function
-  void import_measure(dyn::prc::base::Sensor* sensor);
-  void export_measure(dyn::prc::base::Sensor* sensor);
-  void clear_measure(dyn::prc::base::Sensor* sensor);
+  void import_measure(dat::base::Sensor* sensor);
+  void export_measure(dat::base::Sensor* sensor);
+  void clear_measure(dat::base::Sensor* sensor);
 
 private:
   rad::cor::Structure* rad_struct;

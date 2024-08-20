@@ -7,7 +7,7 @@ namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace rad::cor{class Measure;}
 namespace rad::cor{class Glyph;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
 
@@ -23,11 +23,11 @@ public:
 
 public:
   //Main function
-  void ransac_sphere(dyn::prc::base::Sensor* sensor);
+  void ransac_sphere(dat::base::Sensor* sensor);
 
   //Algo function
   void reset_search_space();
-  void reduce_search_space(dyn::prc::base::Sensor* sensor);
+  void reduce_search_space(dat::base::Sensor* sensor);
   void apply_ransac();
   void apply_refinement();
 

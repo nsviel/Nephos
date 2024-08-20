@@ -6,7 +6,7 @@ namespace dyn::prc::cloud{class Recorder;}
 namespace dyn::prc::cloud{class Normal;}
 namespace dyn::prc::cloud{class Radiometry;}
 namespace dat::atr{class Color;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace dat::elm{class Entity;}
 
 
@@ -21,7 +21,7 @@ public:
 
 public:
   //Main function
-  void run_operation(dyn::prc::base::Sensor* sensor);
+  void run_operation(dat::base::Sensor* sensor);
   void wait_operation();
 
 private:

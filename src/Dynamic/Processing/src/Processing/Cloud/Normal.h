@@ -9,7 +9,7 @@ namespace dyn::prc{class Structure;}
 namespace dat::elm{class Image;}
 namespace dat::elm{class Glyph;}
 namespace utl::base{class Data;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace dat::img{class Converter;}
 namespace dat::atr::normal{class Structured;}
 namespace dat::atr{class Location;}
@@ -27,13 +27,13 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::prc::base::Sensor* sensor);
-  void run_thread(dyn::prc::base::Sensor* sensor);
+  void start_thread(dat::base::Sensor* sensor);
+  void run_thread(dat::base::Sensor* sensor);
   void wait_thread();
 
   //Subfunction
-  void compute_normal(dyn::prc::base::Sensor* sensor);
-  void compute_image(dyn::prc::base::Sensor* sensor);
+  void compute_normal(dat::base::Sensor* sensor);
+  void compute_image(dat::base::Sensor* sensor);
 
 private:
   dyn::prc::Structure* dyn_struct;

@@ -2,7 +2,7 @@
 
 #include <Utility/Namespace.h>
 
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace dyn::prc::thread{
@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  void start_thread(dyn::prc::base::Sensor* sensor){
+  void start_thread(dat::base::Sensor* sensor){
     //---------------------------
 
     this->sensor = sensor;
@@ -25,7 +25,7 @@ public:
   }
 
 protected:
-  dyn::prc::base::Sensor* sensor = nullptr;
+  dat::base::Sensor* sensor = nullptr;
 };
 
 }

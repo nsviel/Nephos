@@ -1,7 +1,7 @@
 #pragma once
 
 namespace utl::base{class Element;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace dat::ply::gui{
@@ -17,7 +17,7 @@ public:
   void design_configuration(utl::base::Element* element);
 
   //Subfunction
-  void sensor_config(dyn::prc::base::Sensor* sensor);
+  void sensor_config(dat::base::Sensor* sensor);
 
 private:
 

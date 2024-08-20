@@ -4,15 +4,15 @@
 #include <Utility/Base/Data/Data.h>
 #include <string>
 
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
-namespace dyn::prc::base{
+namespace dat::base{
 
 struct Recorder{
   //---------------------------
 
-  virtual bool record_sensor(dyn::prc::base::Sensor* sensor, std::string path){return false;}
+  virtual bool record_sensor(dat::base::Sensor* sensor, std::string path){return false;}
 
   std::string format = "";
   float size = 0;

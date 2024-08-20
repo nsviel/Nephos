@@ -5,7 +5,7 @@
 namespace rad::cal{class Node;}
 namespace rad::cal{class Structure;}
 namespace rad::cal::structure{class Circle;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace utl::media{class Image;}
 
 

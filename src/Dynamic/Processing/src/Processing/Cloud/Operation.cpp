@@ -27,7 +27,7 @@ Operation::Operation(dyn::prc::Node* node_processing){
 Operation::~Operation(){}
 
 //Main function
-void Operation::run_operation(dyn::prc::base::Sensor* sensor){
+void Operation::run_operation(dat::base::Sensor* sensor){
   //---------------------------
 
   dyn_recorder->start_thread(sensor);

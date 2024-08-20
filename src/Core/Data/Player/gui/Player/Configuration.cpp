@@ -17,7 +17,7 @@ Configuration::~Configuration(){}
 
 //Main function
 void Configuration::design_configuration(utl::base::Element* element){
-  /*dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(element);
+  /*dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(element);
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -30,7 +30,7 @@ void Configuration::design_configuration(utl::base::Element* element){
 }
 
 //Subfunction
-void Configuration::sensor_config(dyn::prc::base::Sensor* sensor){
+void Configuration::sensor_config(dat::base::Sensor* sensor){
 
   //---------------------------
 

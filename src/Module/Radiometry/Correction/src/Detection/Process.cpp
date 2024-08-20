@@ -39,7 +39,7 @@ void Process::loop(){
 
   //Verify that we have a sensor type
   dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity);
+  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 
   //Update glyph pose
@@ -58,7 +58,7 @@ void Process::step_detection(){
 
   //Verify that we have a sensor type
   dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity);
+  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 
   //Detection step logic
@@ -81,7 +81,7 @@ void Process::step_measure(){
 
   //Verify that we have a sensor type
   dat::base::Entity* entity = dat_selection->get_selected_entity();
-  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity);
+  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 
   //Measurement step logic

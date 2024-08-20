@@ -4,7 +4,7 @@ namespace rad{class Node;}
 namespace rad::cor::gui{class Detection;}
 namespace rad::cor::gui{class Model;}
 namespace rad::cor::gui{class Correction;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace rad::cor::gui{
@@ -18,12 +18,12 @@ public:
 
 public:
   //Main function
-  void design_tab(dyn::prc::base::Sensor* sensor);
+  void design_tab(dat::base::Sensor* sensor);
 
   //Subfunction
-  void tab_detection(dyn::prc::base::Sensor* sensor);
-  void tab_modeld(dyn::prc::base::Sensor* sensor);
-  void tab_calibration(dyn::prc::base::Sensor* sensor);
+  void tab_detection(dat::base::Sensor* sensor);
+  void tab_modeld(dat::base::Sensor* sensor);
+  void tab_calibration(dat::base::Sensor* sensor);
 
 private:
   rad::cor::gui::Detection* gui_detection;

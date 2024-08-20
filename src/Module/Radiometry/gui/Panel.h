@@ -6,7 +6,7 @@ namespace dat::gph{class Selection;}
 namespace rad{class Node;}
 namespace rad::cor::gui{class Tab;}
 namespace rad::cal::gui{class Tab;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace rad::gui{
@@ -21,11 +21,11 @@ public:
 public:
   //Main function
   void run_panel();
-  void design_panel(dyn::prc::base::Sensor* sensor);
+  void design_panel(dat::base::Sensor* sensor);
 
   //Subfunction
-  void tab_correction(dyn::prc::base::Sensor* sensor);
-  void tab_calibration(dyn::prc::base::Sensor* sensor);
+  void tab_correction(dat::base::Sensor* sensor);
+  void tab_calibration(dat::base::Sensor* sensor);
 
 private:
   dat::gph::Selection* dat_selection;

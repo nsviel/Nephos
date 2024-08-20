@@ -31,7 +31,7 @@ void Entity::init_entity(dat::base::Entity* entity){
   entity->data.is_updated = true;
 
   //Init sensor
-  //if(dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(entity)){
+  //if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
   //  dyn_sensor->init_sensor(sensor);
   //}
 

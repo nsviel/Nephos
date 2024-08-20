@@ -7,7 +7,7 @@ namespace rad::cor::cloud{class Detection;}
 namespace rad::cor{class Glyph;}
 namespace dat::gph{class Selection;}
 namespace dat::elm{class Image;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace rad::cor{

@@ -41,7 +41,7 @@ void Player::design_player(utl::base::Element* element){
 
 //Player function
 void Player::player_slider(){
-  dyn::prc::base::Timestamp* timestamp = dyn_player->get_timestamp();
+  dat::base::Timestamp* timestamp = dyn_player->get_timestamp();
   //---------------------------
 
   float width = ImGui::GetContentRegionAvail().x;
@@ -54,7 +54,7 @@ void Player::player_slider(){
   //---------------------------
 }
 void Player::player_play(){
-  dyn::prc::base::State* state = dyn_player->get_state();
+  dat::base::State* state = dyn_player->get_state();
   //---------------------------
 
   //Play button -> if paused or not playing
@@ -79,7 +79,7 @@ void Player::player_play(){
   //---------------------------
 }
 void Player::player_stop(){
-  dyn::prc::base::State* state = dyn_player->get_state();
+  dat::base::State* state = dyn_player->get_state();
   //---------------------------
 
   if(!state->pause){
@@ -101,7 +101,7 @@ void Player::player_stop(){
   //---------------------------
 }
 void Player::player_repeat(){
-  dyn::prc::base::State* state = dyn_player->get_state();
+  dat::base::State* state = dyn_player->get_state();
   //---------------------------
 
   if(state->replay){
@@ -122,7 +122,7 @@ void Player::player_repeat(){
   //---------------------------
 }
 void Player::player_record(){
-  dyn::prc::base::State* state = dyn_player->get_state();
+  dat::base::State* state = dyn_player->get_state();
   //---------------------------
 
   if(state->record){
@@ -154,7 +154,7 @@ void Player::player_close(){
   //---------------------------
 }
 void Player::player_lock(){
-  dyn::prc::base::State* state = dyn_player->get_state();
+  dat::base::State* state = dyn_player->get_state();
   //---------------------------
 
   if(state->locked){

@@ -2,7 +2,7 @@
 
 namespace dyn::prc{class Node;}
 namespace dyn::prc{class Structure;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace prf::dynamic{class Manager;}
 namespace utl::base{class Element;}
 
@@ -18,8 +18,8 @@ public:
 
 public:
   //Main function
-  void init_sensor(dyn::prc::base::Sensor* sensor);
-  void remove_sensor(dyn::prc::base::Sensor* sensor);
+  void init_sensor(dat::base::Sensor* sensor);
+  void remove_sensor(dat::base::Sensor* sensor);
   bool is_dynamic(utl::base::Element* element);
 
 private:

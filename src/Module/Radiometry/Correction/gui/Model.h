@@ -9,7 +9,7 @@ namespace rad::cor{class Plot;}
 namespace rad::cor::io{class Measure;}
 namespace rad::cor::io{class Model;}
 namespace utl::implot{class Plot;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace rad::cor::gui{
@@ -23,16 +23,16 @@ public:
 
 public:
   //Main function
-  void draw_tab(dyn::prc::base::Sensor* sensor);
+  void draw_tab(dat::base::Sensor* sensor);
 
   //Subfunction
-  void parameter_measure(dyn::prc::base::Sensor* sensor);
-  void parameter_model(dyn::prc::base::Sensor* sensor);
+  void parameter_measure(dat::base::Sensor* sensor);
+  void parameter_model(dat::base::Sensor* sensor);
 
   //Sphere plot function
   void plot_measure_IfR(float height);
   void plot_measure_IfIt(float height);
-  void plot_model_heatmap(dyn::prc::base::Sensor* sensor, float height);
+  void plot_model_heatmap(dat::base::Sensor* sensor, float height);
 
 private:
   rad::cor::Node* node_correction;

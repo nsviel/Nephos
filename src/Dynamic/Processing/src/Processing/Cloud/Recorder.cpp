@@ -23,7 +23,7 @@ Recorder::Recorder(dyn::prc::Node* node_processing){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::start_thread(dyn::prc::base::Sensor* sensor){
+void Recorder::start_thread(dat::base::Sensor* sensor){
   //---------------------------
 
   this->wait_thread();
@@ -35,7 +35,7 @@ void Recorder::start_thread(dyn::prc::base::Sensor* sensor){
 
   //---------------------------
 }
-void Recorder::run_thread(dyn::prc::base::Sensor* sensor){
+void Recorder::run_thread(dat::base::Sensor* sensor){
   prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::recording");
   //---------------------------
 
@@ -61,7 +61,7 @@ void Recorder::wait_thread(){
 }
 
 //Subfunction
-void Recorder::compute_recording(dyn::prc::base::Sensor* sensor){
+void Recorder::compute_recording(dat::base::Sensor* sensor){
   std::string path = sensor->data.path.build();
   //---------------------------
 
@@ -69,7 +69,7 @@ void Recorder::compute_recording(dyn::prc::base::Sensor* sensor){
     sensor->vec_recorder[0]->record_sensor(sensor, path);
   }else{
     for(int i=0; i<sensor->vec_recorder.size(); i++){
-      dyn::prc::base::Recorder* recorder = sensor->vec_recorder[i];
+      dat::base::Recorder* recorder = sensor->vec_recorder[i];
 
       if(recorder->format == sensor->data.path.format){
         recorder->record_sensor(sensor, path);

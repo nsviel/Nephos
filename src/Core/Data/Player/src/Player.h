@@ -40,15 +40,15 @@ public:
   void manage_reset(dat::base::Set* set);
   void manage_query(dat::base::Set* set, float value);
 
-  inline dyn::prc::base::State* get_state(){return &state;}
-  inline dyn::prc::base::Timestamp* get_timestamp(){return &timestamp;}
+  inline dat::base::State* get_state(){return &state;}
+  inline dat::base::Timestamp* get_timestamp(){return &timestamp;}
 
 public:
   dat::gph::Selection* dat_selection;
   dat::elm::Set* dat_set;
 
-  dyn::prc::base::Timestamp timestamp;
-  dyn::prc::base::State state;
+  dat::base::Timestamp timestamp;
+  dat::base::State state;
 };
 
 }

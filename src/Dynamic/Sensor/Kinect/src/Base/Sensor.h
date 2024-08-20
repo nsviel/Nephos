@@ -17,7 +17,7 @@ namespace k4n::imu{class Structure;}
 
 namespace k4n::base{
 
-struct Sensor : public dyn::prc::base::Sensor{
+struct Sensor : public dat::base::Sensor{
   //---------------------------
 
   Sensor();

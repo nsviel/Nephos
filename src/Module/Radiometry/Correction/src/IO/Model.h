@@ -7,7 +7,7 @@ namespace rad::cor{class Structure;}
 namespace rad::cor{class Measure;}
 namespace rad::cor{class Model;}
 namespace rad::cor::io{class Measure;}
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace rad::cor::io{
@@ -21,14 +21,14 @@ public:
 
 public:
   //Main function
-  void import_model(dyn::prc::base::Sensor* sensor);
-  void export_model(dyn::prc::base::Sensor* sensor);
+  void import_model(dat::base::Sensor* sensor);
+  void export_model(dat::base::Sensor* sensor);
 
   //Subfunction
-  void write_device_info(dyn::prc::base::Sensor* sensor, std::string& path);
-  void write_depth_mode_model(dyn::prc::base::Sensor* sensor, std::string& path);
-  void read_device_info(dyn::prc::base::Sensor* sensor, std::string& path);
-  void read_depth_mode_model(dyn::prc::base::Sensor* sensor, std::string& path);
+  void write_device_info(dat::base::Sensor* sensor, std::string& path);
+  void write_depth_mode_model(dat::base::Sensor* sensor, std::string& path);
+  void read_device_info(dat::base::Sensor* sensor, std::string& path);
+  void read_depth_mode_model(dat::base::Sensor* sensor, std::string& path);
 
 private:
   rad::cor::Structure* rad_struct;

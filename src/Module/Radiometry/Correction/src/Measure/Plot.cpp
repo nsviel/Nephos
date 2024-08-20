@@ -81,8 +81,8 @@ void Plot::plot_measure(){
 
   //---------------------------
 }
-void Plot::update_plot_data(dyn::prc::base::Sensor* sensor){
-  dyn::prc::base::Model* model = rad_model->get_model(sensor, "NFOV");
+void Plot::update_plot_data(dat::base::Sensor* sensor){
+  dat::base::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 

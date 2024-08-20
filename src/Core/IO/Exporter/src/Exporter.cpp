@@ -113,7 +113,7 @@ bool Exporter::is_current_config(dat::base::Entity* entity){
 bool Exporter::is_recording(utl::base::Element* element){
   //---------------------------
 
-  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(element);
+  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(element);
   if(sensor && sensor->vec_recorder.size() != 0){
     return true;
   }

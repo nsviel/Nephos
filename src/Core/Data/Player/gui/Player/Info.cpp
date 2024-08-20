@@ -66,7 +66,7 @@ void Info::path_info(utl::base::Element* element){
   ImGui::Separator();
 }
 void Info::sensor_info(utl::base::Element* element){
-/*  dyn::prc::base::Sensor* sensor = dynamic_cast<dyn::prc::base::Sensor*>(element);
+/*  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(element);
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -120,7 +120,7 @@ void Info::playback_info(utl::base::Element* element){
 
   /*
   dat::base::Set* set = dynamic_cast<dat::base::Set*>(element);
-  dyn::prc::base::Player* player = &set->player;
+  dat::base::Player* player = &set->player;
   if(player == nullptr) return;
 
   if(ImGui::CollapsingHeader("Info##dynamic")){

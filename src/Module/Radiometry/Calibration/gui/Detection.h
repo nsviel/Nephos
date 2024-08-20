@@ -2,7 +2,7 @@
 
 #include <Renderer/gui/Stream.h>
 
-namespace dyn::prc::base{class Sensor;}
+namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad::cal{class Structure;}
 namespace rad::cal{class Process;}
@@ -21,12 +21,12 @@ public:
 
 public:
   //Main function
-  void draw_tab(dyn::prc::base::Sensor* sensor);
+  void draw_tab(dat::base::Sensor* sensor);
 
   //Subfunction
   void detection_step();
   void detection_parameter();
-  void detection_image(dyn::prc::base::Sensor* sensor);
+  void detection_image(dat::base::Sensor* sensor);
   void parameter_canny();
   void parameter_hough();
 
