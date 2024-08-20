@@ -8,7 +8,7 @@ namespace gui{class Node;}
 namespace utl::base{class Path;}
 
 
-namespace gui::interface{
+namespace gui::menu{
 
 class Demo
 {

@@ -6,14 +6,14 @@ namespace gui{class Node;}
 namespace cam{class Manager;}
 
 
-namespace gui::tab::eng{
+namespace gui::menu{
 
-class Menu
+class Center
 {
 public:
   //Constructor / Destructor
-  Menu(gui::Node* node_gui);
-  ~Menu();
+  Center(gui::Node* node_gui);
+  ~Center();
 
 public:
   //Main function

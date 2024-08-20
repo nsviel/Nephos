@@ -1,4 +1,4 @@
-#include "Menu.h"
+#include "Left.h"
 
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,7 +8,7 @@
 namespace gui::interface{
 
 //Constructor / Destructor
-Menu::Menu(gui::Node* node_gui){
+Left::Left(gui::Node* node_gui){
   //---------------------------
 
   this->gui_demo = node_gui->get_gui_demo();
@@ -17,10 +17,10 @@ Menu::Menu(gui::Node* node_gui){
 
   //---------------------------
 }
-Menu::~Menu(){}
+Left::~Left(){}
 
 //Menu function
-void Menu::menu(){
+void Left::menu(){
   //---------------------------
 
   //this->menu_font();
@@ -30,7 +30,7 @@ void Menu::menu(){
 }
 
 //Subfunction
-void Menu::menu_font(){
+void Left::menu_font(){
   ImGuiIO& io = ImGui::GetIO();
   //---------------------------
 
@@ -42,7 +42,7 @@ void Menu::menu_font(){
 
   //---------------------------
 }
-void Menu::menu_imgui(){
+void Left::menu_imgui(){
   //---------------------------
 
   if(ImGui::BeginMenu(ICON_FA_BOOK, "menu_imgui")){

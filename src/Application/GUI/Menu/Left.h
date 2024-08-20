@@ -8,12 +8,12 @@ namespace gui::interface{class Demo;}
 
 namespace gui::interface{
 
-class Menu
+class Left
 {
 public:
   //Constructor / Destructor
-  Menu(gui::Node* node_gui);
-  ~Menu();
+  Left(gui::Node* node_gui);
+  ~Left();
 
 public:
   //Menu function

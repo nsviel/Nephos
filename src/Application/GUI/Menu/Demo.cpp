@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-namespace gui::interface{
+namespace gui::menu{
 
 //Constructor / Destructor
 Demo::Demo(gui::Node* node_gui){

@@ -1,14 +1,14 @@
-#include "Menu.h"
+#include "Center.h"
 
 #include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace gui::tab::eng{
+namespace gui::menu{
 
 //Constructor / Destructor
-Menu::Menu(gui::Node* node_gui){
+Center::Center(gui::Node* node_gui){
   //---------------------------
 
   core::Node* node_core = node_gui->get_node_core();
@@ -20,10 +20,10 @@ Menu::Menu(gui::Node* node_gui){
 
   //---------------------------
 }
-Menu::~Menu(){}
+Center::~Center(){}
 
 //Main function
-void Menu::draw(){
+void Center::draw(){
   //---------------------------
 
   ImGui::BeginMainMenuBar();
@@ -46,7 +46,7 @@ void Menu::draw(){
 }
 
 //Subfunction
-void Menu::menu_panel(){
+void Center::menu_panel(){
   std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel();
   //---------------------------
 
@@ -59,7 +59,7 @@ void Menu::menu_panel(){
 
   //---------------------------
 }
-void Menu::menu_shortcut(std::string name){
+void Center::menu_shortcut(std::string name){
   std::vector<utl::gui::Panel*> vec_panel = node_gui->get_vec_panel();
   //---------------------------
 
@@ -71,7 +71,7 @@ void Menu::menu_shortcut(std::string name){
 
   //---------------------------
 }
-void Menu::menu_screenshot(){
+void Center::menu_screenshot(){
   //---------------------------
 
   //cam_manager->make_screenshot();
