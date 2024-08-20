@@ -1,12 +1,13 @@
 #pragma once
 
-#include <Utility/Namespace.h>
-#include <Base/Entity/Object.h>
+#include <Data/Base/Entity/Object.h>
+#include <Data/Base/Sensor/Timestamp.h>
+#include <Data/Base/Sensor/Calibration.h>
+#include <Data/Base/Sensor/State.h>
+#include <Data/Base/Sensor/Recorder.h>
 #include <Profiler/src/Dynamic/Profiler.h>
-#include <Processing/src/Base/Timestamp.h>
-#include <Processing/src/Base/Calibration.h>
-#include <Processing/src/Base/State.h>
-#include <Processing/src/Base/Recorder.h>
+#include <Utility/Namespace.h>
+
 
 namespace dyn::prc::base{class Recorder;}
 

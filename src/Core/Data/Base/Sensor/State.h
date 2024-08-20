@@ -1,8 +1,5 @@
 #pragma once
 
-#include <Base/Entity/Object.h>
-#include <Profiler/src/Dynamic/Profiler.h>
-
 
 namespace dyn::prc::base{
 

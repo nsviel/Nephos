@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Processing/src/Base/Sensor.h>
+#include <Data/Base/Sensor/Sensor.h>
 #include <Utility/Base/Data/Data.h>
 #include <string>
 

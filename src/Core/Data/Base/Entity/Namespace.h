@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Base/Entity/Object.h>
-#include <Base/Entity/Glyph.h>
+#include <Data/Base/Entity/Object.h>
+#include <Data/Base/Entity/Glyph.h>

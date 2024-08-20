@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Base/Entity/Glyph.h>
+#include <Data/Base/Entity/Glyph.h>
 
 
 namespace dat::glyph::world{
