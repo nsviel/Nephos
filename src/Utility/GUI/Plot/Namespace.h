@@ -1,4 +1,4 @@
 #pragma once
 
-#include "ImPlot/Namespace.h"
-#include "ImProfil/Namespace.h"
+#include <Utility/GUI/Plot/ImPlot/Namespace.h>
+#include <Utility/GUI/Plot/ImProfil/Namespace.h>

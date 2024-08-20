@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Operation.h"
-#include "Distance.h"
-#include "Angle.h"
-#include "Statistic.h"
+#include <Utility/Function/Math/Operation.h>
+#include <Utility/Function/Math/Distance.h>
+#include <Utility/Function/Math/Angle.h>
+#include <Utility/Function/Math/Statistic.h>

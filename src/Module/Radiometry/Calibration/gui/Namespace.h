@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Radiometry/gui/Calibration/Tab.h>
-#include <Radiometry/gui/Calibration/Detection.h>
+#include <Radiometry/Calibration/gui/Tab.h>
+#include <Radiometry/Calibration/gui/Detection.h>

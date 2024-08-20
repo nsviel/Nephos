@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Radiometry/src/Calibration/Detection/Process.h>
-#include <Radiometry/src/Calibration/Detection/Detection.h>
-#include <Radiometry/src/Calibration/Detection/Process.h>
-#include <Radiometry/src/Calibration/Detection/Rectangle.h>
-#include <Radiometry/src/Calibration/Detection/Image.h>
+#include <Radiometry/Calibration/src/Detection/Process.h>
+#include <Radiometry/Calibration/src/Detection/Detection.h>
+#include <Radiometry/Calibration/src/Detection/Process.h>
+#include <Radiometry/Calibration/src/Detection/Rectangle.h>
+#include <Radiometry/Calibration/src/Detection/Image.h>

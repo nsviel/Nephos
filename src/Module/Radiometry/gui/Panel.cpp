@@ -1,9 +1,8 @@
 #include "Panel.h"
 
-#include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <Processing/Namespace.h>
 #include <Data/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace rad::gui{

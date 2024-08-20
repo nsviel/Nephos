@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Chrono.h"
-#include "Error.h"
-#include "Terminal.h"
-#include "Thread.h"
+#include <Utility/Function/Debug/Chrono.h>
+#include <Utility/Function/Debug/Error.h>
+#include <Utility/Function/Debug/Terminal.h>
+#include <Utility/Function/Debug/Thread.h>

@@ -1,9 +1,8 @@
 #pragma once
 
-#include <Radiometry/src/Correction/Node.h>
-#include <Radiometry/src/Correction/Structure.h>
-#include <Radiometry/src/Correction/Detection/Namespace.h>
-#include <Radiometry/src/Correction/Measure/Namespace.h>
-#include <Radiometry/src/Correction/Model/Namespace.h>
-#include <Radiometry/src/Correction/Structure/Namespace.h>
-#include <Radiometry/src/Correction/IO/Namespace.h>
+#include <Radiometry/Correction/src/Structure.h>
+#include <Radiometry/Correction/src/Detection/Namespace.h>
+#include <Radiometry/Correction/src/Measure/Namespace.h>
+#include <Radiometry/Correction/src/Model/Namespace.h>
+#include <Radiometry/Correction/src/Structure/Namespace.h>
+#include <Radiometry/Correction/src/IO/Namespace.h>

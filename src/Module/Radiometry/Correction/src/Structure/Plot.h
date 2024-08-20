@@ -1,7 +1,6 @@
 #pragma once
 
-#include <string>
-#include <vector>
+#include <Utility/Base/Plot/Plot.h>
 
 
 namespace rad::cor::structure{

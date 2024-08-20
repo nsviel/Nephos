@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Structure/Namespace.h"
-#include "Plot.h"
-#include "Renderer.h"
+#include <Utility/GUI/Plot/ImProfil/Structure/Namespace.h>
+#include <Utility/GUI/Plot/ImProfil/Plot.h>
+#include <Utility/GUI/Plot/ImProfil/Renderer.h>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Radiometry/gui/Correction/Detection.h>
-#include <Radiometry/gui/Correction/Correction.h>
-#include <Radiometry/gui/Correction/Model.h>
-#include <Radiometry/gui/Correction/Tab.h>
+#include <Radiometry/Correction/gui/Detection.h>
+#include <Radiometry/Correction/gui/Correction.h>
+#include <Radiometry/Correction/gui/Model.h>
+#include <Radiometry/Correction/gui/Tab.h>

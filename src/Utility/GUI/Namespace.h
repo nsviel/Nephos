@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Editor/Namespace.h"
-#include "Widget/Namespace.h"
-#include "Plot/Namespace.h"
-#include "Tree/Namespace.h"
-#include "Navigator/Namespace.h"
+#include <Utility/GUI/Editor/Namespace.h>
+#include <Utility/GUI/Widget/Namespace.h>
+#include <Utility/GUI/Plot/Namespace.h>
+#include <Utility/GUI/Tree/Namespace.h>
+#include <Utility/GUI/Navigator/Namespace.h>

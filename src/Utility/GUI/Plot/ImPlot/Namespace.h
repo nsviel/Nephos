@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Style.h"
-#include "Plot.h"
+#include <Utility/GUI/Plot/ImPlot/Style.h>
+#include <Utility/GUI/Plot/ImPlot/Plot.h>

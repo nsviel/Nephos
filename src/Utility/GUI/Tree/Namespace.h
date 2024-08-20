@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Node.h"
-#include "Filler.h"
-#include "Tree.h"
+#include <Utility/GUI/Tree/Node.h>
+#include <Utility/GUI/Tree/Filler.h>
+#include <Utility/GUI/Tree/Tree.h>

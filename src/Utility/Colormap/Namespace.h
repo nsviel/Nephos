@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Generic.h"
-#include "Magma.h"
-#include "Nord.h"
-#include "Viridis.h"
+#include <Utility/Colormap/Generic.h>
+#include <Utility/Colormap/Magma.h>
+#include <Utility/Colormap/Nord.h>
+#include <Utility/Colormap/Viridis.h>

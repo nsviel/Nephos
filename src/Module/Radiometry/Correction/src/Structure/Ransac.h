@@ -1,6 +1,8 @@
 #pragma once
 
-#include <Radiometry/src/Correction/Detection/Glyph/Sphere.h>
+#include <Radiometry/Correction/src/Detection/Glyph/Sphere.h>
+#include <glm/glm.hpp>
+#include <vector>
 
 
 namespace rad::cor::structure{

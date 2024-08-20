@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Casting.h"
-#include "Conversion.h"
+#include <Utility/Function/Typage/Casting.h>
+#include <Utility/Function/Typage/Conversion.h>

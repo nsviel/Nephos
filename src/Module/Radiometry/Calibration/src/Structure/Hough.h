@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Radiometry/src/Correction/Structure/Circle.h>
-#include <Radiometry/src/Correction/Detection/Glyph/Sphere.h>
+#include <Radiometry/Correction/src/Structure/Circle.h>
+#include <Radiometry/Correction/src/Detection/Glyph/Sphere.h>
 #include <opencv2/opencv.hpp>
 #include <string>
 

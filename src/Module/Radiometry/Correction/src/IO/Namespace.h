@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Radiometry/src/Correction/IO/Measure.h>
-#include <Radiometry/src/Correction/IO/Model.h>
+#include <Radiometry/Correction/src/IO/Measure.h>
+#include <Radiometry/Correction/src/IO/Model.h>

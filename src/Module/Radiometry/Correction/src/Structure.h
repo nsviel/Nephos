@@ -1,14 +1,14 @@
 #pragma once
 
-#include <Radiometry/src/Correction/Detection/Process.h>
-#include <Radiometry/src/Correction/Structure/Circle.h>
-#include <Radiometry/src/Correction/Structure/Hough.h>
-#include <Radiometry/src/Correction/Structure/Canny.h>
-#include <Radiometry/src/Correction/Structure/Ransac.h>
-#include <Radiometry/src/Correction/Structure/Measure.h>
-#include <Radiometry/src/Correction/Structure/Model.h>
-#include <Radiometry/src/Correction/Structure/Plot.h>
-#include <Radiometry/src/Correction/Structure/State.h>
+#include <Radiometry/Correction/src/Detection/Process.h>
+#include <Radiometry/Correction/src/Structure/Circle.h>
+#include <Radiometry/Correction/src/Structure/Hough.h>
+#include <Radiometry/Correction/src/Structure/Canny.h>
+#include <Radiometry/Correction/src/Structure/Ransac.h>
+#include <Radiometry/Correction/src/Structure/Measure.h>
+#include <Radiometry/Correction/src/Structure/Model.h>
+#include <Radiometry/Correction/src/Structure/Plot.h>
+#include <Radiometry/Correction/src/Structure/State.h>
 
 
 namespace rad::cor{

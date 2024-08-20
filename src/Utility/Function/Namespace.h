@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Debug/Namespace.h"
-#include "File/Namespace.h"
-#include "Math/Namespace.h"
-#include "Typage/Namespace.h"
+#include <Utility/Function/Debug/Namespace.h>
+#include <Utility/Function/File/Namespace.h>
+#include <Utility/Function/Math/Namespace.h>
+#include <Utility/Function/Typage/Namespace.h>

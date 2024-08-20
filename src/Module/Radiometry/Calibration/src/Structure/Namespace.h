@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Radiometry/src/Calibration/Structure/Chart.h>
-#include <Radiometry/src/Calibration/Structure/Optimization.h>
-#include <Radiometry/src/Calibration/Structure/Plot.h>
-#include <Radiometry/src/Calibration/Structure/State.h>
-#include <Radiometry/src/Calibration/Structure/Canny.h>
-#include <Radiometry/src/Calibration/Structure/Hough.h>
+#include <Radiometry/Calibration/src/Structure/Chart.h>
+#include <Radiometry/Calibration/src/Structure/Optimization.h>
+#include <Radiometry/Calibration/src/Structure/Plot.h>
+#include <Radiometry/Calibration/src/Structure/State.h>
+#include <Radiometry/Calibration/src/Structure/Canny.h>
+#include <Radiometry/Calibration/src/Structure/Hough.h>

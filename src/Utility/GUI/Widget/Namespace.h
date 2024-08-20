@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Console.h"
-#include "Spinner.h"
-#include "Misc.h"
+#include <Utility/GUI/Widget/Console.h>
+#include <Utility/GUI/Widget/Spinner.h>
+#include <Utility/GUI/Widget/Misc.h>

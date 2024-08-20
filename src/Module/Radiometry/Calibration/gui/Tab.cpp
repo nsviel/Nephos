@@ -2,7 +2,6 @@
 
 #include <Utility/Namespace.h>
 #include <Radiometry/Namespace.h>
-#include <Processing/Namespace.h>
 
 
 namespace rad::cal::gui{
