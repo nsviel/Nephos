@@ -1,5 +1,6 @@
 #include "Style.h"
 
+#include <GUI/Namespace.h>
 #include <Utility/Namespace.h>
 
 

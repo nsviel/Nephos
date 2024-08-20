@@ -1,8 +1,6 @@
 #include "Menu.h"
 
 #include <GUI/Namespace.h>
-#include <Core/Namespace.h>
-#include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 

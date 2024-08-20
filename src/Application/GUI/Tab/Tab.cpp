@@ -1,10 +1,8 @@
 #include "Tab.h"
 
-#include <Core/Namespace.h>
-#include <Vulkan/Namespace.h>
 #include <GUI/Namespace.h>
+#include <Core/Namespace.h>
 #include <Scene/Namespace.h>
-#include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 
 
