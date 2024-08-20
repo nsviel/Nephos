@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Panel.h"
-#include "Exporter.h"
-#include "Recorder.h"
+#include <Exporter/gui/Panel.h>
+#include <Exporter/gui/Exporter.h>
+#include <Exporter/gui/Recorder.h>

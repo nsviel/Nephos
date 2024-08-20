@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Task.h"
-#include "Structure.h"
+#include <Profiler/src/Dynamic/Structure/Task.h>
+#include <Profiler/src/Dynamic/Structure/Structure.h>

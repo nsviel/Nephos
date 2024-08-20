@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Bookmark/Namespace.h"
-#include "Importer/Namespace.h"
-#include "Structure/Namespace.h"
+#include <Importer/src/Bookmark/Namespace.h>
+#include <Importer/src/Importer/Namespace.h>
+#include <Importer/src/Structure/Namespace.h>

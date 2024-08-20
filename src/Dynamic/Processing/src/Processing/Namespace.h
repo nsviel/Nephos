@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Cloud/Namespace.h"
-#include "Image/Namespace.h"
+#include <Processing/src/Processing/Cloud/Namespace.h>
+#include <Processing/src/Processing/Image/Namespace.h>

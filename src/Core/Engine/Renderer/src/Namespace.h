@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Mode.h"
-#include "Shader.h"
+#include <Renderer/src/Mode.h>
+#include <Renderer/src/Shader.h>

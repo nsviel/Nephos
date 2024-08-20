@@ -1,3 +1,3 @@
 #pragma once
 
-#include "Sensor.h"
+#include <Processing/src/Element/Sensor.h>

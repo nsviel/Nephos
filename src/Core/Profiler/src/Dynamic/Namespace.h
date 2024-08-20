@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Structure/Namespace.h"
-#include "Tasker.h"
-#include "Profiler.h"
-#include "Manager.h"
+#include <Profiler/src/Dynamic/Structure/Namespace.h>
+#include <Profiler/src/Dynamic/Tasker.h>
+#include <Profiler/src/Dynamic/Profiler.h>
+#include <Profiler/src/Dynamic/Manager.h>

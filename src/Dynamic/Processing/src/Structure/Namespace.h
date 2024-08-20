@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Operation.h"
-#include "Recorder.h"
-#include "Colorization.h"
-#include "Structure.h"
+#include <Processing/src/Structure/Operation.h>
+#include <Processing/src/Structure/Recorder.h>
+#include <Processing/src/Structure/Colorization.h>
+#include <Processing/src/Structure/Structure.h>

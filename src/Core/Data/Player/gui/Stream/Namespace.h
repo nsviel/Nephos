@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Panel.h"
-#include "Overlay.h"
+#include <Player/gui/Stream/Panel.h>
+#include <Player/gui/Stream/Overlay.h>

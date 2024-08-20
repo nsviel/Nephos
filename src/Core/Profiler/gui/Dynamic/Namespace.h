@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Graph.h"
-#include "Tab.h"
+#include <Profiler/gui/Dynamic/Graph.h>
+#include <Profiler/gui/Dynamic/Tab.h>

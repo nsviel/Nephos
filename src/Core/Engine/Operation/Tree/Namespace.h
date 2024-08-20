@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Tree.h"
-#include "Octree.h"
+#include <Operation/Tree/Tree.h>
+#include <Operation/Tree/Octree.h>

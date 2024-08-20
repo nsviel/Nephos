@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Processing//Namespace.h"
-#include "Structure/Namespace.h"
-#include "Element/Namespace.h"
-#include "Thread/Namespace.h"
+#include <Processing/src/Processing/Namespace.h>
+#include <Processing/src/Structure/Namespace.h>
+#include <Processing/src/Element/Namespace.h>
+#include <Processing/src/Thread/Namespace.h>

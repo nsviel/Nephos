@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Button.h"
-#include "Panel.h"
+#include <Graph/gui/Button.h>
+#include <Graph/gui/Panel.h>

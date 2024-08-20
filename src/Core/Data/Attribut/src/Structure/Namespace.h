@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Enum.h"
-#include "Color.h"
-#include "Intensity.h"
-#include "Normal.h"
+#include <Attribut/src/Structure/Enum.h>
+#include <Attribut/src/Structure/Color.h>
+#include <Attribut/src/Structure/Intensity.h>
+#include <Attribut/src/Structure/Normal.h>

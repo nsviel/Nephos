@@ -1,4 +1,4 @@
 #pragma once
 
-#include "KNN.h"
-#include "Structured.h"
+#include <Attribut/src/Normal/KNN.h>
+#include <Attribut/src/Normal/Structured.h>

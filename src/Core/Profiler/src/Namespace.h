@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Structure.h"
-#include "Dynamic/Namespace.h"
-#include "Hardware/Namespace.h"
+#include <Profiler/src/Structure.h>
+#include <Profiler/src/Dynamic/Namespace.h>
+#include <Profiler/src/Hardware/Namespace.h>

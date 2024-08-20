@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Player.h"
-#include "Synchro.h"
+#include <Player/src/Player.h>
+#include <Player/src/Synchro.h>

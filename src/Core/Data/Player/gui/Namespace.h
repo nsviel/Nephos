@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Player/Namespace.h"
-#include "Stream/Namespace.h"
+#include <Player/gui/Player/Namespace.h>
+#include <Player/gui/Stream/Namespace.h>

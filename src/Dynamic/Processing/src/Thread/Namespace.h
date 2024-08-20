@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Routine.h"
-#include "Task.h"
-#include "Job.h"
+#include <Processing/src/Thread/Routine.h>
+#include <Processing/src/Thread/Task.h>
+#include <Processing/src/Thread/Job.h>

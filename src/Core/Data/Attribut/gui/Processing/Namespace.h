@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Info.h"
-#include "Operation.h"
+#include <Attribut/gui/Processing/Info.h>
+#include <Attribut/gui/Processing/Operation.h>
