@@ -1,7 +1,9 @@
 #include "Node.h"
 
 #include <Application/Namespace.h>
-#include <Dynamic/Namespace.h>
+
+#include <Dynamic/Processing/Namespace.h>
+#include <Dynamic/Sensor/Namespace.h>
 
 
 namespace dyn{

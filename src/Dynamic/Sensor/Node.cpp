@@ -4,7 +4,8 @@
 #include <Core/Namespace.h>
 
 //#include <Kinect/Namespace.h>
-
+#include <RealSense/Namespace.h>
+#include <Velodyne/Namespace.h>
 
 
 namespace dyn::sen{
