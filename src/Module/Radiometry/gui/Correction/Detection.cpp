@@ -14,14 +14,14 @@ Detection::Detection(rad::Node* node_radio){
   //---------------------------
 
   dat::Node* node_data = node_radio->get_node_data();
-  core::Node* node_core = node_radio->get_node_core();
-  rad::correction::Node* node_correction = node_radio->get_node_correction();
   dat::elm::Node* node_element = node_data->get_node_element();
+  vk::Node* node_vulkan = node_radio->get_node_vulkan();
+  rad::correction::Node* node_correction = node_radio->get_node_correction();
 
   this->rad_struct = node_correction->get_rad_struct();
   this->rad_process = node_correction->get_rad_process();
   this->rad_hough = new rad::correction::image::Hough(node_correction);
-  this->stream = new rnd::gui::Stream(node_core->get_node_vulkan());
+  this->stream = new rnd::gui::Stream(node_vulkan);
   this->dat_image = node_element->get_dat_image();
 
   //---------------------------
