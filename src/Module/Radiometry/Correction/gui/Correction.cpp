@@ -4,7 +4,6 @@
 #include <Radiometry/Namespace.h>
 #include <Data/Namespace.h>
 #include <Core/Namespace.h>
-#include <Processing/Namespace.h>
 
 
 namespace rad::cor::gui{

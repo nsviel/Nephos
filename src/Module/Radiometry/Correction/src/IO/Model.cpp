@@ -1,8 +1,7 @@
 #include "Model.h"
 
-#include <Utility/Function/File/Json.cpp>
 #include <Radiometry/Namespace.h>
-#include <Processing/Namespace.h>
+#include <Utility/Namespace.cpp>
 
 
 namespace rad::cor::io{

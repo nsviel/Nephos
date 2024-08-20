@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_KINECT)
+set(LIBRARY_NAME SENSOR_KINECT)
 
 #-----------------
 # Source files

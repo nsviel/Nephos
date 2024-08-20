@@ -1,9 +1,8 @@
 #include "Model.h"
 
-#include <python/matplotlibcpp.h>
 #include <Radiometry/Namespace.h>
 #include <Operation/Namespace.h>
-#include <Processing/Namespace.h>
+#include <python/matplotlibcpp.h>
 
 
 namespace rad::cor{

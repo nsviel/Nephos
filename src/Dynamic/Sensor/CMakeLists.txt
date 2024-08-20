@@ -3,7 +3,7 @@ set(LIBRARY_NAME DYNAMIC_SENSOR)
 #-----------------
 # Source files
 #-----------------
-#add_subdirectory(Kinect)
+add_subdirectory(Kinect)
 add_subdirectory(RealSense)
 add_subdirectory(Velodyne)
 
@@ -22,8 +22,9 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
 
-  LIBRARY_REALSENSE
-  LIBRARY_VELODYNE
+  SENSOR_KINECT
+  SENSOR_REALSENSE
+  SENSOR_VELODYNE
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

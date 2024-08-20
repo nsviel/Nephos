@@ -1,6 +1,6 @@
 #include "Sensor.h"
 
-#include <Processing/Namespace.h>
+#include <Dynamic/Processing/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>

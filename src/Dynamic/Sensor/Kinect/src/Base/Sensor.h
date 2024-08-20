@@ -3,7 +3,7 @@
 #include <Kinect/src/Structure/Firmware.h>
 #include <Kinect/src/Structure/Namespace.h>
 #include <Kinect/src/Structure/Cloud.h>
-#include <Processing/src/Base/Sensor.h>
+#include <Data/Namespace.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/record.hpp>
 #include <glm/glm.hpp>

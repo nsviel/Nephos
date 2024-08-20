@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_REALSENSE)
+set(LIBRARY_NAME SENSOR_REALSENSE)
 
 #-----------------
 # Source files

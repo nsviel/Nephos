@@ -1,4 +1,4 @@
-set(LIBRARY_NAME LIBRARY_VELODYNE)
+set(LIBRARY_NAME SENSOR_VELODYNE)
 
 #-----------------
 # Source files
