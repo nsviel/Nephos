@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-namespace gui::interface{
+namespace gui{
 
 //Constructor / Destructor
 Docking::Docking(){

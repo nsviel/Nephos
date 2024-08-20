@@ -23,7 +23,6 @@ Node::Node(app::Node* node_app){
   this->gui_style = new gui::style::Style(this);
   this->gui_font = new gui::style::Font(this);
   this->gui_theme = new gui::style::Theme(this);
-  this->gui_docking = new gui::interface::Docking();
   this->tasker = node_core->get_tasker_cpu();
 
   //---------------------------
@@ -54,9 +53,7 @@ void Node::loop(){
 
   gui_state->loop();
   ImGui::NewFrame();
-  gui_docking->loop();
   gui_tab->loop();
-  gui_demo->loop();
 
   tasker->task_end("gui::loop");
 

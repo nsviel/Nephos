@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gui::interface{
+namespace gui{
 
 class Docking
 {

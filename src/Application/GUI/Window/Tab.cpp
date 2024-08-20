@@ -2,7 +2,6 @@
 
 #include <GUI/Namespace.h>
 #include <Core/Namespace.h>
-#include <Scene/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -12,9 +11,10 @@ namespace gui{
 Tab::Tab(gui::Node* node_gui){
   //---------------------------
 
-  this->node_scene = node_gui->get_node_scene();
   this->node_core = node_gui->get_node_core();
 
+  this->gui_demo = node_gui->get_gui_demo();
+  this->gui_docking = new gui::Docking();
   this->menu_left = new gui::menu::Left(node_gui);
   this->menu_center = new gui::menu::Center(node_gui);
 
@@ -26,6 +26,9 @@ Tab::~Tab(){}
 void Tab::loop(){
   //---------------------------
 
+  gui_docking->loop();
+  gui_demo->loop();
+  
   this->draw_menu();
   this->draw_tab();
 
@@ -51,7 +54,6 @@ void Tab::draw_menu(){
 void Tab::draw_tab(){
   //---------------------------
 
-  node_scene->gui();
   node_core->gui();
 
 

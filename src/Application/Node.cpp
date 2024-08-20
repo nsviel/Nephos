@@ -69,6 +69,7 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
+  node_core->gui();
   node_module->gui();
   node_dynamic->gui();
 

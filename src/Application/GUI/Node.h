@@ -7,7 +7,6 @@ namespace core{class Node;}
 namespace sce{class Node;}
 
 namespace gui{class Tab;}
-namespace gui::interface{class Docking;}
 namespace gui::state{class Manager;}
 namespace gui::style{class Style;}
 namespace gui::style{class Font;}
@@ -45,7 +44,6 @@ private:
   //Child
   gui::Tab* gui_tab;
   gui::menu::Demo* gui_demo;
-  gui::interface::Docking* gui_docking;
   gui::state::Manager* gui_state;
   gui::style::Style* gui_style;
   gui::style::Font* gui_font;
