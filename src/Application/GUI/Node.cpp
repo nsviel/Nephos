@@ -51,8 +51,6 @@ void Node::loop(){
 
   tasker->task_begin("gui::loop");
 
-  gui_state->loop();
-  ImGui::NewFrame();
   gui_tab->loop();
 
   tasker->task_end("gui::loop");
