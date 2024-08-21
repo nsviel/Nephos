@@ -15,7 +15,6 @@ Player::Player(dat::ply::Node* node_player){
   this->ply_struct = node_player->get_ply_struct();
   this->ply_state = node_player->get_ply_state();
   this->ply_button = node_player->get_ply_button();
-  //this->dyn_sensor = node_player->get_dyn_sensor();
 
   //---------------------------
 }
@@ -23,7 +22,8 @@ Player::~Player(){}
 
 //Main function
 void Player::design_player(utl::base::Element* element){
-  //if(dyn_sensor->is_dynamic(element) == false) return;
+  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(element);
+  if(sensor == nullptr) return;
   //---------------------------
 
   this->player_slider();

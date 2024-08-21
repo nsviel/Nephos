@@ -66,11 +66,17 @@ void Button::button_stop(){
   if(set == nullptr) return;
   //---------------------------
 
+  //Set timestamp et begining
+  ply_state->manage_query(set, ply_struct->timestamp.begin);
+  std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
+  //Pause player
   ply_struct->state.play = false;
   ply_struct->state.pause = true;
   timestamp.current = timestamp.begin;
-
   ply_state->manage_state(set);
+
+  //Proper restart operation
   ply_state->manage_restart(set);
 
   //---------------------------

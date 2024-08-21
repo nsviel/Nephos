@@ -107,14 +107,15 @@ void State::manage_restart(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
 
-  if(!ply_struct->state.replay){
+  //If restart not activated
+  if(ply_struct->state.replay == false){
     ply_struct->state.play = false;
     ply_struct->state.pause = true;
     ply_struct->timestamp.current = ply_struct->timestamp.begin;
     this->manage_state(set);
   }
 
-  //Entity
+  //Query start entity
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
@@ -123,7 +124,7 @@ void State::manage_restart(dat::base::Set* set){
     }
   }
 
-  //Subset
+  //Query start subset
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_restart(subset);
