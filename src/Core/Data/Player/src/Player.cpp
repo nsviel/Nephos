@@ -13,10 +13,9 @@ Player::Player(dat::ply::Node* node_player){
   //---------------------------
 
   dat::gph::Node* node_graph = node_player->get_node_graph();
-  dat::elm::Node* node_element = node_player->get_node_element();
 
   this->gph_selection = node_graph->get_gph_selection();
-  this->dat_set = node_element->get_dat_set();
+  this->gph_element = node_graph->get_gph_element();
 
   //---------------------------
 }
@@ -133,7 +132,7 @@ void Player::button_close(){
   if(set == nullptr) return;
   //---------------------------
 
-  dat_set->remove_active_entity(set);
+  gph_element->remove_active_entity(set);
 
   //---------------------------
 }

@@ -1,6 +1,7 @@
 #include "Set.h"
 
 #include <Data/Element/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace dat::elm{
@@ -159,14 +160,18 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
 
   // Check if the current set has the query entity
   for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* set_entity = *next(set->list_entity.begin(), i);
+    dat::base::Entity* entity_set = *next(set->list_entity.begin(), i);
 
-    if(set_entity->UID == entity->UID){
+    if(entity_set->UID == entity->UID){
+      //Check if active entity
+      if(set->active_entity == entity) this->active_next_entity(set);
+
+      //Remove from set list
       set->list_entity.remove(entity);
       set->nb_entity--;
 
-      //Selection & active entity
-      this->active_next_entity(set);
+      //Check if active entity agin
+      if(set->active_entity == entity) set->active_entity = nullptr;
 
       //Effective remove
       dat_entity->remove_entity(entity);
@@ -247,21 +252,24 @@ void Set::active_next_entity(dat::base::Set* set){
   //----------------------------
 }
 void Set::active_entity(dat::base::Set* set, dat::base::Entity* entity){
+  if(entity == nullptr) return;
   //---------------------------
 
   set->active_entity = entity;
 
-  // Propagate the selection to the parent sets
-  dat::base::Set* current_parent = set->set_parent;
-  while(current_parent != nullptr){
-    current_parent->active_entity = entity;
-    current_parent = current_parent->set_parent; // Move to the next parent set
-  }
-
   //---------------------------
 }
 bool Set::is_entity_active(dat::base::Set* set, dat::base::Entity* entity){
-  return entity->UID == set->active_entity->UID;
+  //---------------------------
+
+  if(entity == nullptr) return false;
+  if(set == nullptr) return false;
+  if(set->active_entity == nullptr) return false;
+
+  bool is_active = entity->UID == set->active_entity->UID;
+
+  //---------------------------
+  return is_active;
 }
 
 //Subfunction

@@ -24,13 +24,25 @@ Element::~Element(){}
 void Element::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
-sayHello();
+
   if(gph_struct->selection == entity){
     gph_selection->select_next_element();
   }
-sayHello();
+
   dat_set->remove_entity(set, entity);
-sayHello();
+
+  //---------------------------
+}
+void Element::remove_active_entity(dat::base::Set* set){
+  if(set == nullptr) return;
+  //---------------------------
+
+  if(gph_struct->selection == set->active_entity){
+    gph_selection->select_next_element();
+  }
+
+  dat_set->remove_active_entity(set);
+
   //---------------------------
 }
 

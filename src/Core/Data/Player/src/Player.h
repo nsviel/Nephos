@@ -5,7 +5,7 @@
 
 namespace dat::ply{class Node;}
 namespace dat::gph{class Selection;}
-namespace dat::elm{class Set;}
+namespace dat::gph{class Element;}
 namespace dat::base{class Set;}
 
 
@@ -45,7 +45,7 @@ public:
 
 public:
   dat::gph::Selection* gph_selection;
-  dat::elm::Set* dat_set;
+  dat::gph::Element* gph_element;
 
   dat::base::Timestamp timestamp;
   dat::base::State state;

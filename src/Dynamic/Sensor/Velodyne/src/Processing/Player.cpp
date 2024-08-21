@@ -100,7 +100,7 @@ void Player::forward_index(int index){
     vld_struct->player.idx_cur = index;
   }
 
-  set->active_entity = *next(set->list_entity.begin(), index);
+  //set->active_entity = *next(set->list_entity.begin(), index);
 
   this->compute_visibility();
 
