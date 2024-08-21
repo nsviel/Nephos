@@ -1,12 +1,10 @@
 #pragma once
 
-#include <Renderer/gui/Stream.h>
-
 namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad::cal{class Structure;}
 namespace rad::cal{class Process;}
-namespace rnd::gui{class Stream;}
+namespace dat::img::gui{class Stream;}
 namespace dat::elm{class Image;}
 
 
@@ -33,7 +31,7 @@ public:
 private:
   rad::cal::Structure* rad_struct;
   rad::cal::Process* rad_process;
-  rnd::gui::Stream* stream;
+  dat::img::gui::Stream* stream;
   dat::elm::Image* dat_image;
 };
 

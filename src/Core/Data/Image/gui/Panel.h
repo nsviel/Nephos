@@ -10,7 +10,7 @@ namespace dat::gph{class Selection;}
 namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
-namespace rnd::gui{class Stream;}
+namespace dat::img::gui{class Stream;}
 namespace utl::base{class Element;}
 namespace utl::media{class Image;}
 
@@ -35,9 +35,9 @@ public:
 private:
   dat::gph::Selection* gph_selection;
   dat::elm::Set* dat_set;
-  dat::stream::gui::Overlay* gui_overlay;
+  dat::img::gui::Overlay* gui_overlay;
 
-  std::vector<rnd::gui::Stream*> vec_stream;
+  std::vector<dat::img::gui::Stream*> vec_stream;
   std::string open_tab = "";
   std::string name;
   bool* show_window;

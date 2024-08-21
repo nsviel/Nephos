@@ -1,11 +1,12 @@
 #include "Panel.h"
 
-#include <Data/Player/Namespace.h>
+#include <Data/Image/Namespace.h>
 #include <Data/Graph/Namespace.h>
 #include <Data/Element/Namespace.h>
+#include <Engine/Renderer/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Engine/Renderer/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace dat::img::gui{
@@ -20,10 +21,10 @@ Panel::Panel(dat::img::Node* node_image, bool* show_window){
 
   this->gph_selection = node_graph->get_gph_selection();
   this->dat_set = node_element->get_dat_set();
-  this->gui_overlay = new dat::stream::gui::Overlay();
+  this->gui_overlay = new dat::img::gui::Overlay();
 
   for(int i=0; i<20; i++){
-    rnd::gui::Stream* stream = new rnd::gui::Stream(node_vulkan);
+    dat::img::gui::Stream* stream = new dat::img::gui::Stream(node_vulkan);
     this->vec_stream.push_back(stream);
   }
 

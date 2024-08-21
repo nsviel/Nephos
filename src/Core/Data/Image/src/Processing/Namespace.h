@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Image/Processing/Converter.h>
-#include <Image/Processing/Normal.h>
+#include <Image/src/Processing/Converter.h>
+#include <Image/src/Processing/Normal.h>

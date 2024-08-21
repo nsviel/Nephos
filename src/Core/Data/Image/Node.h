@@ -32,7 +32,7 @@ private:
   dat::gph::Node* node_graph;
   dat::elm::Node* node_element;
 
-  dat::stream::gui::Panel* gui_stream;
+  dat::img::gui::Panel* gui_stream;
 };
 
 }

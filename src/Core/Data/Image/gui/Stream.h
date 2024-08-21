@@ -9,7 +9,7 @@ namespace vk::structure{class Texture;}
 namespace utl::media{class Image;}
 
 
-namespace rnd::gui{
+namespace dat::img::gui{
 
 class Stream
 {

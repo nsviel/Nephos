@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace rnd::gui{
+namespace dat::img::gui{
 
 //Constructor / Destructor
 Stream::Stream(vk::Node* node_vulkan){

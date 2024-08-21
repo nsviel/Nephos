@@ -19,8 +19,8 @@ Correction::Correction(rad::Node* node_radio){
 
   this->dat_image = node_element->get_dat_image();
   this->rad_struct = node_correction->get_rad_struct();
-  this->stream_1 = new rnd::gui::Stream(node_vulkan);
-  this->stream_2 = new rnd::gui::Stream(node_vulkan);
+  this->stream_1 = new dat::img::gui::Stream(node_vulkan);
+  this->stream_2 = new dat::img::gui::Stream(node_vulkan);
 
   //---------------------------
 }
