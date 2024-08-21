@@ -1,8 +1,5 @@
 #pragma once
 
-#include <Profiler/Hardware/src/Structure/Queue.h>
-#include <Profiler/Hardware/src/Structure/Structure.h>
-
 namespace prf::hardware{class Node;}
 namespace prf::hardware{class Structure;}
 namespace prf::hardware{class CPU;}

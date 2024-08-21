@@ -1,6 +1,6 @@
 #pragma once
 
-namespace prf{class Node;}
+namespace prf::hardware{class Node;}
 namespace prf::gui::hardware{class Device;}
 namespace prf::gui::hardware{class GPU;}
 namespace prf::gui::hardware{class CPU;}
@@ -12,7 +12,7 @@ class Tab
 {
 public:
   //Constructor / Destructor
-  Tab(prf::Node* node_profiler);
+  Tab(prf::hardware::Node* node_hardware);
   ~Tab();
 
 public:

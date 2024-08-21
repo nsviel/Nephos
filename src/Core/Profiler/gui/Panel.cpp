@@ -9,8 +9,11 @@ namespace prf::gui{
 Panel::Panel(prf::Node* node_profiler, bool* show_window){
   //---------------------------
 
-  this->tab_dynamic = new prf::gui::dynamic::Tab(node_profiler);
-  this->tab_hardware = new prf::gui::hardware::Tab(node_profiler);
+  prf::monitor::Node* node_monitor = node_profiler->get_node_monitor();
+  prf::hardware::Node* node_hardware = node_profiler->get_node_hardware();
+
+  this->tab_monitor = new prf::gui::dynamic::Tab(node_monitor);
+  this->tab_hardware = new prf::gui::hardware::Tab(node_hardware);
 
   this->show_window = show_window;
   this->name = "Profiler";
@@ -43,7 +46,7 @@ void Panel::design_panel(){
   //---------------------------
 
   if(ImGui::BeginTabBar("profiler_panel##graph")){
-    tab_dynamic->draw_tab(width);
+    tab_monitor->draw_tab(width);
     tab_hardware->draw_tab(width);
 
     ImGui::EndTabBar();

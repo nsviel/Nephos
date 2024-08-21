@@ -24,7 +24,7 @@ public:
   //Subfunction
 
 private:
-  prf::gui::dynamic::Tab* tab_dynamic;
+  prf::gui::dynamic::Tab* tab_monitor;
   prf::gui::hardware::Tab* tab_hardware;
 
   std::string gpu = "";

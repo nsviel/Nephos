@@ -1,15 +1,8 @@
 #pragma once
 
-#include <imgui/core/imgui.h>
-
-namespace prf{class Node;}
-namespace prf{class Structure;}
-namespace prf::monitor{class Profiler;}
-namespace prf::hardware{class Manager;}
-namespace prf::hardware{class Device;}
+namespace prf::hardware{class Node;}
 namespace prf::hardware{class Structure;}
 namespace prf::hardware{class Manager;}
-namespace prf::gui{class Profiler;}
 
 
 namespace prf::gui::hardware{
@@ -18,7 +11,7 @@ class GPU
 {
 public:
   //Constructor / Destructor
-  GPU(prf::Node* node_profiler);
+  GPU(prf::hardware::Node* node_hardware);
   ~GPU();
 
 public:
@@ -30,8 +23,8 @@ public:
   void draw_gpu_queue();
 
 private:
-  prf::Structure* prf_struct;
-  prf::hardware::Manager* prf_hardware;
+  prf::hardware::Structure* prf_struct;
+  prf::hardware::Manager* prf_manager;
 };
 
 }

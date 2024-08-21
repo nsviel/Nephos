@@ -1,15 +1,8 @@
 #pragma once
 
-#include <imgui/core/imgui.h>
-
-namespace prf{class Node;}
-namespace prf{class Structure;}
-namespace prf::monitor{class Profiler;}
-namespace prf::hardware{class Manager;}
-namespace prf::hardware{class Device;}
+namespace prf::hardware{class Node;}
 namespace prf::hardware{class Structure;}
 namespace prf::hardware{class Manager;}
-namespace prf::gui{class Profiler;}
 
 
 namespace prf::gui::hardware{
@@ -18,7 +11,7 @@ class CPU
 {
 public:
   //Constructor / Destructor
-  CPU(prf::Node* node_profiler);
+  CPU(prf::hardware::Node* node_hardware);
   ~CPU();
 
 public:
@@ -29,8 +22,8 @@ public:
   void draw_cpu_info();
 
 private:
-  prf::Structure* prf_struct;
-  prf::hardware::Manager* prf_hardware;
+  prf::hardware::Structure* prf_struct;
+  prf::hardware::Manager* prf_manager;
 };
 
 }

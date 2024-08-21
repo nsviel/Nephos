@@ -20,8 +20,11 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  MAIN_VULKAN
+  MAIN_CORE
   MAIN_UTILITY
+
+  PROFILER_MONITOR
+  PROFILER_HARDWARE
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

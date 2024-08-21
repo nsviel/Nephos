@@ -9,10 +9,10 @@
 namespace prf::gui::dynamic{
 
 //Constructor / Destructor
-Graph::Graph(prf::Node* node_profiler){
+Graph::Graph(prf::monitor::Node* node_monitor){
   //---------------------------
 
-  this->prf_struct = node_profiler->get_prf_struct();
+  this->prf_struct = node_monitor->get_prf_struct();
 
   //---------------------------
 }

@@ -1,7 +1,7 @@
 #pragma once
 
-namespace prf{class Node;}
-namespace prf{class Structure;}
+namespace prf::monitor{class Node;}
+namespace prf::monitor{class Structure;}
 namespace prf::gui::dynamic{class Graph;}
 
 
@@ -11,7 +11,7 @@ class Tab
 {
 public:
   //Constructor / Destructor
-  Tab(prf::Node* node_profiler);
+  Tab(prf::monitor::Node* node_monitor);
   ~Tab();
 
 public:
@@ -22,7 +22,7 @@ public:
   void draw_dynamic_tabbar();
 
 private:
-  prf::Structure* prf_struct;
+  prf::monitor::Structure* prf_struct;
   prf::gui::dynamic::Graph* gui_graph;
 };
 

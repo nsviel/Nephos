@@ -1,10 +1,8 @@
 #include "Detection.h"
 
 #include <Radiometry/Namespace.h>
-#include <Core/Namespace.h>
-#include <Utility/Namespace.h>
-
 #include <Data/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace rad::cal::gui{

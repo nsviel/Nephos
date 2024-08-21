@@ -1,9 +1,7 @@
 #pragma once
 
-#include <imgui/core/imgui.h>
-
-namespace prf{class Node;}
-namespace prf{class Structure;}
+namespace prf::monitor{class Node;}
+namespace prf::monitor{class Structure;}
 namespace prf::monitor{class Profiler;}
 namespace prf::monitor{class Tasker;}
 
@@ -14,7 +12,7 @@ class Graph
 {
 public:
   //Constructor / Destructor
-  Graph(prf::Node* node_profiler);
+  Graph(prf::monitor::Node* node_monitor);
   ~Graph();
 
 public:
@@ -31,7 +29,7 @@ public:
   void draw_graph_command(ImVec2 dimension, ImVec2 pose);
 
 private:
-  prf::Structure* prf_struct;
+  prf::monitor::Structure* prf_struct;
   prf::monitor::Tasker* current_tasker = nullptr;
 };
 

@@ -1,17 +1,18 @@
 #include "Tab.h"
 
 #include <Profiler/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace prf::gui::hardware{
 
 //Constructor / Destructor
-Tab::Tab(prf::Node* node_profiler){
+Tab::Tab(prf::hardware::Node* node_hardware){
   //---------------------------
 
-  this->gui_gpu = new prf::gui::hardware::GPU(node_profiler);
-  this->gui_cpu = new prf::gui::hardware::CPU(node_profiler);
-  this->gui_device = new prf::gui::hardware::Device(node_profiler);
+  this->gui_gpu = new prf::gui::hardware::GPU(node_hardware);
+  this->gui_cpu = new prf::gui::hardware::CPU(node_hardware);
+  this->gui_device = new prf::gui::hardware::Device(node_hardware);
 
   //---------------------------
 }

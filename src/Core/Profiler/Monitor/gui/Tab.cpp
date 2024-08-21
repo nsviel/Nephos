@@ -2,12 +2,13 @@
 
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace prf::gui::dynamic{
 
 //Constructor / Destructor
-Tab::Tab(prf::Node* node_profiler){
+Tab::Tab(prf::monitor::Node* node_monitor){
   //---------------------------
 
   this->prf_struct = node_profiler->get_prf_struct();

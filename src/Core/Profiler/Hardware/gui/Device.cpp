@@ -2,15 +2,16 @@
 
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace prf::gui::hardware{
 
 //Constructor / Destructor
-Device::Device(prf::Node* node_profiler){
+Device::Device(prf::hardware::Node* node_hardware){
   //---------------------------
 
-  this->prf_struct = node_profiler->get_prf_struct();
+  this->prf_struct = node_hardware->get_prf_struct();
 
   //---------------------------
 }

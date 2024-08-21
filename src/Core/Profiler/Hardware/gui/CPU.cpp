@@ -2,16 +2,17 @@
 
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace prf::gui::hardware{
 
 //Constructor / Destructor
-CPU::CPU(prf::Node* node_profiler){
+CPU::CPU(prf::hardware::Node* node_hardware){
   //---------------------------
 
-  this->prf_struct = node_profiler->get_prf_struct();
-  this->prf_hardware = node_profiler->get_prf_hardware();
+  this->prf_struct = node_hardware->get_prf_struct();
+  this->prf_manager = node_hardware->get_prf_manager();
 
   //---------------------------
 }
@@ -21,7 +22,7 @@ CPU::~CPU(){}
 void CPU::draw_tab(){
   //---------------------------
 
-  prf_hardware->loop();
+  prf_manager->loop();
 
   this->draw_cpu_info();
 
