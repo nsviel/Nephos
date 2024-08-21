@@ -11,12 +11,12 @@ namespace prf::hardware{class GPU;}
 
 namespace prf::hardware{
 
-class Profiler
+class Manager
 {
 public:
   //Constructor / Destructor
-  Profiler(prf::Node* node_profiler);
-  ~Profiler();
+  Manager(prf::Node* node_profiler);
+  ~Manager();
 
 public:
   //Main function

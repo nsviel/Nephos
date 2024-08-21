@@ -5,10 +5,10 @@
 namespace prf{class Node;}
 namespace prf{class Structure;}
 namespace prf::monitor{class Profiler;}
-namespace prf::hardware{class Profiler;}
+namespace prf::hardware{class Manager;}
 namespace prf::hardware{class Device;}
 namespace prf::hardware{class Structure;}
-namespace prf::hardware{class Profiler;}
+namespace prf::hardware{class Manager;}
 namespace prf::gui{class Profiler;}
 
 
@@ -31,7 +31,7 @@ public:
 
 private:
   prf::Structure* prf_struct;
-  prf::hardware::Profiler* prf_hardware;
+  prf::hardware::Manager* prf_hardware;
 };
 
 }

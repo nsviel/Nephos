@@ -1,4 +1,4 @@
-#include "Profiler.h"
+#include "Manager.h"
 
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,7 +7,7 @@
 namespace prf::hardware{
 
 //Constructor / Destructor
-Profiler::Profiler(prf::Node* node_profiler){
+Manager::Manager(prf::Node* node_profiler){
   //---------------------------
 
   this->prf_struct = node_profiler->get_prf_struct();
@@ -16,10 +16,10 @@ Profiler::Profiler(prf::Node* node_profiler){
 
   //---------------------------
 }
-Profiler::~Profiler(){}
+Manager::~Manager(){}
 
 //Main function
-void Profiler::init(){
+void Manager::init(){
   //---------------------------
 
   cpu_device->collect_cpu_info();
@@ -28,7 +28,7 @@ void Profiler::init(){
 
   //---------------------------
 }
-void Profiler::loop(){
+void Manager::loop(){
   //---------------------------
 
   cpu_device->collect_cpu_variable();
