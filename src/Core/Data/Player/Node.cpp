@@ -14,8 +14,6 @@ Node::Node(dat::Node* node_data){
 
   this->node_attribut = node_data->get_node_attribut();
   this->node_graph = node_data->get_node_graph();
-  this->node_element = node_data->get_node_element();
-  this->node_vulkan = node_data->get_node_vulkan();
 
   this->dyn_player = new dat::ply::Player(this);
   this->gui_player = new dat::ply::gui::Panel(this, &panel_player->is_open);

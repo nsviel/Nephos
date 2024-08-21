@@ -22,6 +22,7 @@ Node::Node(core::Node* node_core){
   this->node_attribut = new dat::atr::Node(this);
   this->node_graph = new dat::gph::Node(this);
   this->node_player = new dat::ply::Node(this);
+  this->node_image = new dat::img::Node(this);
 
   //---------------------------
 }
@@ -56,6 +57,7 @@ void Node::gui(){
   node_graph->gui();
   node_element->gui();
   node_player->gui();
+  node_image->gui();
 
   //---------------------------
 }

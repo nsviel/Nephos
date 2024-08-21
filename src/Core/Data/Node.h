@@ -9,6 +9,7 @@ namespace dat::atr{class Node;}
 namespace dat::elm{class Node;}
 namespace dat::gph{class Node;}
 namespace dat::ply{class Node;}
+namespace dat::img{class Node;}
 
 
 namespace dat{
@@ -33,6 +34,7 @@ public:
   inline dat::elm::Node* get_node_element(){return node_element;}
   inline dat::gph::Node* get_node_graph(){return node_graph;}
   inline dat::ply::Node* get_node_player(){return node_player;}
+  inline dat::img::Node* get_node_image(){return node_image;}
 
 private:
   //Dependancy
@@ -43,6 +45,7 @@ private:
   dat::elm::Node* node_element;
   dat::gph::Node* node_graph;
   dat::ply::Node* node_player;
+  dat::img::Node* node_image;
 };
 
 }

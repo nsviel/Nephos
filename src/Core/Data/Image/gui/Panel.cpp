@@ -11,12 +11,12 @@
 namespace dat::img::gui{
 
 //Constructor / Destructor
-Panel::Panel(dat::ply::Node* node_player, bool* show_window){
+Panel::Panel(dat::img::Node* node_image, bool* show_window){
   //---------------------------
 
-  dat::gph::Node* node_graph = node_player->get_node_graph();
-  dat::elm::Node* node_element = node_player->get_node_element();
-  vk::Node* node_vulkan = node_player->get_node_vulkan();
+  dat::gph::Node* node_graph = node_image->get_node_graph();
+  dat::elm::Node* node_element = node_image->get_node_element();
+  vk::Node* node_vulkan = node_image->get_node_vulkan();
 
   this->gph_selection = node_graph->get_gph_selection();
   this->dat_set = node_element->get_dat_set();

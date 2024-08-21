@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace dat::ply{class Node;}
+namespace dat::img{class Node;}
 namespace dat::img::gui{class Overlay;}
 namespace dat::gph{class Selection;}
 namespace dat::elm{class Set;}
@@ -21,7 +21,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(dat::ply::Node* node_player, bool* show_window);
+  Panel(dat::img::Node* node_image, bool* show_window);
   ~Panel();
 
   //Main function
