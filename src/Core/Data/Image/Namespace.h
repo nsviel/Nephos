@@ -1,4 +1,5 @@
 #pragma once
 
-#include <Image/Manager/Namespace.h>
-#include <Image/Processing/Namespace.h>
+#include <Image/gui/Namespace.h>
+#include <Image/src/Namespace.h>
+#include <Image/Node.h>

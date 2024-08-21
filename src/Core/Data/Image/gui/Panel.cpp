@@ -8,7 +8,7 @@
 #include <Engine/Renderer/Namespace.h>
 
 
-namespace dat::stream::gui{
+namespace dat::img::gui{
 
 //Constructor / Destructor
 Panel::Panel(dat::ply::Node* node_player, bool* show_window){

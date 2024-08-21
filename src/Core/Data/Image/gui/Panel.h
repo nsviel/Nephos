@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace dat::ply{class Node;}
-namespace dat::stream::gui{class Overlay;}
+namespace dat::img::gui{class Overlay;}
 namespace dat::gph{class Selection;}
 namespace dat::elm{class Set;}
 namespace dat::base{class Set;}
@@ -15,7 +15,7 @@ namespace utl::base{class Element;}
 namespace utl::media{class Image;}
 
 
-namespace dat::stream::gui{
+namespace dat::img::gui{
 
 class Panel
 {

@@ -3,7 +3,7 @@
 #include <Data/Player/Namespace.h>
 
 
-namespace dat::stream::gui{
+namespace dat::img::gui{
 
 //Constructor / Destructor
 Overlay::Overlay(){

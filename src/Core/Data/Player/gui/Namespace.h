@@ -1,4 +1,6 @@
 #pragma once
 
-#include <Player/gui/Player/Namespace.h>
-#include <Player/gui/Stream/Namespace.h>
+#include <Player/gui/Configuration.h>
+#include <Player/gui/Info.h>
+#include <Player/gui/Panel.h>
+#include <Player/gui/Player.h>

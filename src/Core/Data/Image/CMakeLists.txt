@@ -4,7 +4,6 @@ set(LIBRARY_NAME DATA_IMAGE)
 # Source files
 #-----------------
 file(GLOB_RECURSE ALL_SOURCES
-  Namespace.h
   *.cpp
 )
 
