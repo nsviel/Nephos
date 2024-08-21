@@ -14,6 +14,7 @@ Button::Button(dat::ply::Node* node_player){
 
   dat::gph::Node* node_graph = node_player->get_node_graph();
 
+  this->ply_struct = node_player->get_ply_struct();
   this->ply_state = node_player->get_ply_state();
   this->gph_selection = node_graph->get_gph_selection();
   this->gph_element = node_graph->get_gph_element();
@@ -29,7 +30,7 @@ void Button::button_query(float value){
   //---------------------------
 
   ply_state->manage_query(set, value);
-  state.query = true;
+  ply_struct->state.query = true;
 
   //---------------------------
 }
@@ -38,11 +39,11 @@ void Button::button_play(){
   if(set == nullptr) return;
   //---------------------------
 
-  if(!state.play){
-    state.play = true;
-    state.pause = false;
+  if(!ply_struct->state.play){
+    ply_struct->state.play = true;
+    ply_struct->state.pause = false;
   }else{
-    state.pause = false;
+    ply_struct->state.pause = false;
   }
 
   ply_state->manage_state(set);
@@ -54,7 +55,7 @@ void Button::button_pause(){
   if(set == nullptr) return;
   //---------------------------
 
-  state.pause = !state.pause;
+  ply_struct->state.pause = !ply_struct->state.pause;
 
   ply_state->manage_state(set);
 
@@ -65,8 +66,8 @@ void Button::button_stop(){
   if(set == nullptr) return;
   //---------------------------
 
-  state.play = false;
-  state.pause = true;
+  ply_struct->state.play = false;
+  ply_struct->state.pause = true;
   timestamp.current = timestamp.begin;
 
   ply_state->manage_state(set);
@@ -77,7 +78,7 @@ void Button::button_stop(){
 void Button::button_replay(){
   //---------------------------
 
-  state.replay = !state.replay;
+  ply_struct->state.replay = !ply_struct->state.replay;
 
   //---------------------------
 }
@@ -86,7 +87,7 @@ void Button::button_record(){
   if(set == nullptr) return;
   //---------------------------
 
-  state.record = !state.record;
+  ply_struct->state.record = !ply_struct->state.record;
 
   ply_state->manage_state(set);
 

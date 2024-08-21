@@ -14,6 +14,7 @@ State::State(dat::ply::Node* node_player){
 
   dat::gph::Node* node_graph = node_player->get_node_graph();
 
+  this->ply_struct = node_player->get_ply_struct();
   this->gph_selection = node_graph->get_gph_selection();
 
   //---------------------------
@@ -27,14 +28,14 @@ void State::loop(){
   //---------------------------
 
   //Update
-  state.locked = set->is_locked;
+  ply_struct->state.locked = set->is_locked;
   this->manage_update(set);
 
   //Check for loop end
-  if(!state.query && timestamp.current >= timestamp.end){
+  if(!ply_struct->state.query && ply_struct->timestamp.current >= ply_struct->timestamp.end){
     this->manage_restart(set);
   }
-  state.query = false;
+  ply_struct->state.query = false;
 
   //---------------------------
 }
@@ -49,7 +50,7 @@ void State::reset(){
 
 //State function
 void State::manage_state(dat::base::Set* set){
-/*  if(set == nullptr) return;
+  if(set == nullptr) return;
   //---------------------------
 
   //Entity
@@ -57,8 +58,8 @@ void State::manage_state(dat::base::Set* set){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
-      sensor->state = state;
-      sensor->set_pause(state.pause);
+      sensor->state = ply_struct->state;
+      sensor->set_pause(ply_struct->state.pause);
     }
   }
 
@@ -67,14 +68,14 @@ void State::manage_state(dat::base::Set* set){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_state(subset);
   }
-*/
+
   //---------------------------
 }
 void State::manage_update(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
-/*
-  timestamp = {};
+
+  ply_struct->timestamp = {};
 
   //Entity
   for(int i=0; i<set->list_entity.size(); i++){
@@ -82,34 +83,34 @@ void State::manage_update(dat::base::Set* set){
 
     if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
       if(sensor->timestamp.begin != -1 && sensor->timestamp.end != -1){
-        timestamp.begin = (timestamp.begin != -1) ? std::max(timestamp.begin, sensor->timestamp.begin) : sensor->timestamp.begin;
-        timestamp.end = (timestamp.end != -1) ? std::min(timestamp.end, sensor->timestamp.end) : sensor->timestamp.end;
-        timestamp.current = std::max(timestamp.current, sensor->timestamp.current);
-        timestamp.duration = timestamp.end - timestamp.begin;
+        ply_struct->timestamp.begin = (ply_struct->timestamp.begin != -1) ? std::max(ply_struct->timestamp.begin, sensor->timestamp.begin) : sensor->timestamp.begin;
+        ply_struct->timestamp.end = (ply_struct->timestamp.end != -1) ? std::min(ply_struct->timestamp.end, sensor->timestamp.end) : sensor->timestamp.end;
+        ply_struct->timestamp.current = std::max(ply_struct->timestamp.current, sensor->timestamp.current);
+        ply_struct->timestamp.duration = ply_struct->timestamp.end - ply_struct->timestamp.begin;
       }
     }
   }
 
   //Truncate values for avoid overvalues
-  timestamp.begin = math::ceil(timestamp.begin, 2);
-  timestamp.end = math::truncate(timestamp.end, 2);
+  ply_struct->timestamp.begin = math::ceil(ply_struct->timestamp.begin, 2);
+  ply_struct->timestamp.end = math::truncate(ply_struct->timestamp.end, 2);
 
   //Subset
   for(int i=0; i<set->list_subset.size(); i++){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_update(subset);
   }
-*/
+
   //---------------------------
 }
 void State::manage_restart(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
-/*
-  if(!state.replay){
-    state.play = false;
-    state.pause = true;
-    timestamp.current = timestamp.begin;
+
+  if(!ply_struct->state.replay){
+    ply_struct->state.play = false;
+    ply_struct->state.pause = true;
+    ply_struct->timestamp.current = ply_struct->timestamp.begin;
     this->manage_state(set);
   }
 
@@ -118,7 +119,7 @@ void State::manage_restart(dat::base::Set* set){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
-      sensor->manage_query(timestamp.begin);
+      sensor->manage_query(ply_struct->timestamp.begin);
     }
   }
 
@@ -127,18 +128,18 @@ void State::manage_restart(dat::base::Set* set){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_restart(subset);
   }
-*/
+
   //---------------------------
 }
 void State::manage_reset(dat::base::Set* set){
   //---------------------------
-/*
+
   //Entity
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
 
     if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
-      sensor->manage_query(timestamp.begin);
+      sensor->manage_query(ply_struct->timestamp.begin);
     }
   }
 
@@ -147,12 +148,12 @@ void State::manage_reset(dat::base::Set* set){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_reset(subset);
   }
-*/
+
   //---------------------------
 }
 void State::manage_query(dat::base::Set* set, float value){
   //---------------------------
-/*
+
   //Entity
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
@@ -167,7 +168,7 @@ void State::manage_query(dat::base::Set* set, float value){
     dat::base::Set* subset = *next(set->list_subset.begin(), i);
     this->manage_query(subset, value);
   }
-*/
+
   //---------------------------
 }
 

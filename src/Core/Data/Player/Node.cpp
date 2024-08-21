@@ -15,6 +15,7 @@ Node::Node(dat::Node* node_data){
   this->node_attribut = node_data->get_node_attribut();
   this->node_graph = node_data->get_node_graph();
 
+  this->ply_struct = new dat::ply::Structure();
   this->ply_state = new dat::ply::State(this);
   this->ply_button = new dat::ply::Button(this);
   this->gui_player = new dat::ply::gui::Panel(this, &panel_player->is_open);

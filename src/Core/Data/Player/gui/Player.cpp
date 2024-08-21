@@ -1,6 +1,7 @@
 #include "Player.h"
 
 #include <Data/Player/Namespace.h>
+#include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 #include <imgui/core/imgui.h>
 
@@ -11,6 +12,7 @@ namespace dat::ply::gui{
 Player::Player(dat::ply::Node* node_player){
   //---------------------------
 
+  this->ply_struct = node_player->get_ply_struct();
   this->ply_state = node_player->get_ply_state();
   this->ply_button = node_player->get_ply_button();
   //this->dyn_sensor = node_player->get_dyn_sensor();
@@ -43,24 +45,22 @@ void Player::design_player(utl::base::Element* element){
 
 //Player function
 void Player::player_slider(){
-  dat::base::Timestamp* timestamp = ply_state->get_timestamp();
   //---------------------------
 
   float width = ImGui::GetContentRegionAvail().x;
   ImGui::SetNextItemWidth(width);
-  float current = timestamp->current;
-  if(ImGui::SliderFloat("##player_slider", &current, timestamp->begin, timestamp->end, "%.2f s", ImGuiSliderFlags_NoInput)){
+  float current = ply_struct->timestamp.current;
+  if(ImGui::SliderFloat("##player_slider", &current, ply_struct->timestamp.begin, ply_struct->timestamp.end, "%.2f s", ImGuiSliderFlags_NoInput)){
     ply_button->button_query(current);
   }
 
   //---------------------------
 }
 void Player::player_play(){
-  dat::base::State* state = ply_state->get_state();
   //---------------------------
 
   //Play button -> if paused or not playing
-  if(state->pause){
+  if(ply_struct->state.pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(46, 100, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##player_play")){
@@ -81,10 +81,9 @@ void Player::player_play(){
   //---------------------------
 }
 void Player::player_stop(){
-  dat::base::State* state = ply_state->get_state();
   //---------------------------
 
-  if(!state->pause){
+  if(!ply_struct->state.pause){
     //Player is running
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 45, 45, 255));
@@ -103,10 +102,9 @@ void Player::player_stop(){
   //---------------------------
 }
 void Player::player_repeat(){
-  dat::base::State* state = ply_state->get_state();
   //---------------------------
 
-  if(state->replay){
+  if(ply_struct->state.replay){
     //Repeat activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(0, 133, 133, 255));
     if(ImGui::Button(ICON_FA_ARROW_ROTATE_RIGHT "##37")){
@@ -124,10 +122,9 @@ void Player::player_repeat(){
   //---------------------------
 }
 void Player::player_record(){
-  dat::base::State* state = ply_state->get_state();
   //---------------------------
 
-  if(state->record){
+  if(ply_struct->state.record){
     //Record activated
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 45, 45, 255));
     if(ImGui::Button(ICON_FA_CIRCLE "##37")){
@@ -156,10 +153,9 @@ void Player::player_close(){
   //---------------------------
 }
 void Player::player_lock(){
-  dat::base::State* state = ply_state->get_state();
   //---------------------------
 
-  if(state->locked){
+  if(ply_struct->state.locked){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 133, 40, 255));
     if(ImGui::Button(ICON_FA_LOCK "##399")){
       ply_button->button_lock(false);

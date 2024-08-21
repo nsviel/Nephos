@@ -4,6 +4,7 @@
 #include <Data/Base/Sensor/Timestamp.h>
 
 namespace dat::ply{class Node;}
+namespace dat::ply{class Structure;}
 namespace dat::gph{class Selection;}
 namespace dat::base{class Set;}
 
@@ -29,14 +30,9 @@ public:
   void manage_reset(dat::base::Set* set);
   void manage_query(dat::base::Set* set, float value);
 
-  inline dat::base::State* get_state(){return &state;}
-  inline dat::base::Timestamp* get_timestamp(){return &timestamp;}
-
 public:
+  dat::ply::Structure* ply_struct;
   dat::gph::Selection* gph_selection;
-
-  dat::base::Timestamp timestamp;
-  dat::base::State state;
 };
 
 }
