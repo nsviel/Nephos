@@ -22,7 +22,7 @@ Data::Data(vld::Node* node_vld){
 
   this->node_core = node_vld->get_node_core();
   this->vld_struct = node_vld->get_vld_struct();
-  this->dat_graph = node_graph->get_dat_graph();
+  this->dat_graph = node_graph->get_gph_graph();
   this->io_loader = node_importer->get_io_importer();
   this->dat_set = node_element->get_dat_set();
   this->dat_entity = node_element->get_dat_entity();

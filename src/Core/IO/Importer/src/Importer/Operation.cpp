@@ -19,10 +19,10 @@ Operation::Operation(io::imp::Node* node_importer){
   this->io_struct = node_importer->get_io_struct();
   //this->io_transformation = node_importer->get_io_transformation();
   this->dat_entity = node_element->get_dat_entity();
-  this->dat_graph = node_graph->get_dat_graph();
+  this->dat_graph = node_graph->get_gph_graph();
   this->dat_set = node_element->get_dat_set();
   this->dat_glyph = node_element->get_dat_glyph();
-  this->dat_selection = node_graph->get_dat_selection();
+  this->dat_selection = node_graph->get_gph_selection();
   this->trf_transform = new eng::trf::Transformation();
   this->trf_operation = new eng::trf::Operation();
   this->atr_field = new dat::atr::Field();

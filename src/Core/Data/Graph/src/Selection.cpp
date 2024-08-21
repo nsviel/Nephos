@@ -12,8 +12,8 @@ Selection::Selection(dat::gph::Node* node_graph){
 
   dat::elm::Node* node_element = node_graph->get_node_element();
 
-  this->dat_graph = node_graph->get_dat_graph();
-  this->dat_struct = node_graph->get_dat_struct();
+  this->dat_graph = node_graph->get_gph_graph();
+  this->gph_struct = node_graph->get_gph_struct();
   this->dat_set = node_element->get_dat_set();
 
   //---------------------------
@@ -25,7 +25,7 @@ void Selection::select_element(utl::base::Element* element){
   if(element->is_selectable == false) return;
   //----------------------------
 
-  dat_struct->selection = element;
+  gph_struct->selection = element;
 
   //If an entity, make it active
   if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
@@ -35,7 +35,7 @@ void Selection::select_element(utl::base::Element* element){
   //----------------------------
 }
 void Selection::select_next_element(){
-  utl::base::Element* element = dat_struct->selection;
+  utl::base::Element* element = gph_struct->selection;
   dat::base::Set* set_graph = dat_graph->get_set_graph();
   //----------------------------
 
@@ -43,10 +43,10 @@ void Selection::select_next_element(){
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
     // Handling selection within a set
     if(!set->list_entity.empty()){
-      dat_struct->selection = *set->list_entity.begin(); // Select first entity in the set
+      gph_struct->selection = *set->list_entity.begin(); // Select first entity in the set
       return;
     }else if(!set->list_subset.empty()){
-      dat_struct->selection = *set->list_subset.begin(); // Select first subset in the set
+      gph_struct->selection = *set->list_subset.begin(); // Select first subset in the set
       return;
     }else{
       // If no entities or subsets in the current set, move up the hierarchy
@@ -54,10 +54,10 @@ void Selection::select_next_element(){
       auto it = std::find(set_parent->list_subset.begin(), set_parent->list_subset.end(), set);
       if(it != set_parent->list_subset.end() && ++it != set_parent->list_subset.end()){
         // Select the next subset in the parent set
-        dat_struct->selection = *it;
+        gph_struct->selection = *it;
         return;
       }else{
-        dat_struct->selection = set_graph; // Loop back to the root if no next element is found
+        gph_struct->selection = set_graph; // Loop back to the root if no next element is found
         return;
       }
     }
@@ -69,21 +69,21 @@ void Selection::select_next_element(){
     auto it = std::find(set_parent->list_entity.begin(), set_parent->list_entity.end(), entity);
     if(it != set_parent->list_entity.end() && ++it != set_parent->list_entity.end()){
       // Select the next entity in the parent set
-      dat_struct->selection = *it;
+      gph_struct->selection = *it;
       return;
     }else{
       // If no next entity in the parent set, move up the hierarchy
       if(set_parent->list_subset.size() > 0){
-      dat_struct->selection = *set_parent->list_subset.begin();
+      gph_struct->selection = *set_parent->list_subset.begin();
       return;
       }
 
-      dat_struct->selection = set_graph; // Loop back to the root if no next element is found
+      gph_struct->selection = set_graph; // Loop back to the root if no next element is found
       return;
     }
   }
   else if(element == nullptr){
-    dat_struct->selection = set_graph; // Start from the root if no current selection
+    gph_struct->selection = set_graph; // Start from the root if no current selection
     return;
   }
 
@@ -92,7 +92,7 @@ void Selection::select_next_element(){
 
 //Accesseur
 utl::base::Element* Selection::get_selected_element(){
-  utl::base::Element* element = dat_struct->selection;
+  utl::base::Element* element = gph_struct->selection;
   //---------------------------
 
   if(element == nullptr){
@@ -104,7 +104,7 @@ utl::base::Element* Selection::get_selected_element(){
   return element;
 }
 dat::base::Entity* Selection::get_selected_entity(){
-  utl::base::Element* element = dat_struct->selection;
+  utl::base::Element* element = gph_struct->selection;
   //---------------------------
 
   if(element == nullptr){
@@ -123,7 +123,7 @@ dat::base::Entity* Selection::get_selected_entity(){
   return entity;
 }
 dat::base::Set* Selection::get_selected_set(){
-  utl::base::Element* element = dat_struct->selection;
+  utl::base::Element* element = gph_struct->selection;
   //---------------------------
 
   if(element == nullptr){

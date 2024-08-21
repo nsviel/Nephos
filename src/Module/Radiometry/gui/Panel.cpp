@@ -14,7 +14,7 @@ Panel::Panel(rad::Node* node_radio, bool* show_window){
   dat::Node* node_data = node_radio->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
-  this->dat_selection = node_graph->get_dat_selection();
+  this->dat_selection = node_graph->get_gph_selection();
   this->gui_correction = new rad::cor::gui::Tab(node_radio);
   this->gui_calibration = new rad::cal::gui::Tab(node_radio);
 

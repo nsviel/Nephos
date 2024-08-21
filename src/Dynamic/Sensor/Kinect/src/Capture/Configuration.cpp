@@ -15,7 +15,7 @@ Configuration::Configuration(k4n::Node* node_k4n){
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->k4n_struct = node_k4n->get_k4n_structure();
-  this->dat_graph = node_graph->get_dat_graph();
+  this->dat_graph = node_graph->get_gph_graph();
   this->dat_set = node_element->get_dat_set();
 
   //---------------------------

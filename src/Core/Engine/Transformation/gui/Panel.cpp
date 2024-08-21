@@ -15,7 +15,7 @@ Panel::Panel(eng::trf::Node* node_transfo, bool* show_window){
   dat::gph::Node* node_graph = node_data->get_node_graph();
 
   this->trf_io = node_transfo->get_trf_io();
-  this->dat_selection = node_graph->get_dat_selection();
+  this->dat_selection = node_graph->get_gph_selection();
   this->gui_navigator = new utl::gui::Navigator();
 
   this->name = "Transformation##555";

@@ -21,7 +21,7 @@ Server::Server(vld::Node* node_vld){
   io::imp::Node* node_importer = node_io->get_node_importer();
   dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->dat_graph = node_graph->get_dat_graph();
+  this->dat_graph = node_graph->get_gph_graph();
   this->io_loader = node_importer->get_io_importer();
   this->dat_set = node_element->get_dat_set();
 

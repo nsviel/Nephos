@@ -16,7 +16,7 @@ Edition::Edition(ctr::Node* node_control){
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->ctr_struct = node_control->get_ctr_struct();
-  this->dat_selection = node_graph->get_dat_selection();
+  this->dat_selection = node_graph->get_gph_selection();
   this->dat_set = node_element->get_dat_set();
   this->trf_operation = new eng::trf::Operation();
 

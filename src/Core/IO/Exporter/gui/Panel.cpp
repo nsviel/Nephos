@@ -17,7 +17,7 @@ Panel::Panel(io::exp::Node* node_exporter, bool* show_window){
 
   this->io_struct = node_exporter->get_io_struct();
   this->io_exporter = node_exporter->get_io_exporter();
-  this->dat_selection = node_graph->get_dat_selection();
+  this->dat_selection = node_graph->get_gph_selection();
   this->gui_navigator = new utl::gui::Navigator();
   this->gui_exporter = new io::exp::gui::Exporter(node_exporter);
   this->gui_recorder = new io::exp::gui::Recorder(node_exporter);

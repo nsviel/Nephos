@@ -34,7 +34,7 @@ public:
 private:
   dat::gph::Graph* dat_graph;
   dat::elm::Set* dat_set;
-  dat::gph::Structure* dat_struct;
+  dat::gph::Structure* gph_struct;
 };
 
 }

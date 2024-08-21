@@ -3,7 +3,6 @@
 #include <string>
 
 namespace dat::elm{class Node;}
-namespace dat::elm{class Structure;}
 namespace dat::elm{class Entity;}
 namespace dat::elm{class UID;}
 namespace dat::base{class Set;}
@@ -47,7 +46,6 @@ public:
   bool is_set_empty(dat::base::Set* set);
 
 private:
-  dat::elm::Structure* dat_struct;
   dat::elm::Entity* dat_entity;
   dat::elm::UID* dat_uid;
 };

@@ -19,7 +19,7 @@ Process::Process(rad::cor::Node* node_correction){
   this->rad_glyph = new rad::cor::Glyph(node_correction);
   this->rad_image_detection = new rad::cor::image::Detection(node_correction);
   this->rad_cloud_detection = new rad::cor::cloud::Detection(node_correction);
-  this->dat_selection = node_graph->get_dat_selection();
+  this->dat_selection = node_graph->get_gph_selection();
   this->dat_image = node_element->get_dat_image();
 
   //---------------------------

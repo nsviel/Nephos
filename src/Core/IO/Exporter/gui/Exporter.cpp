@@ -17,7 +17,7 @@ Exporter::Exporter(io::exp::Node* node_exporter){
 
   this->io_struct = node_exporter->get_io_struct();
   this->io_exporter = node_exporter->get_io_exporter();
-  this->dat_selection = node_graph->get_dat_selection();
+  this->dat_selection = node_graph->get_gph_selection();
 
   //---------------------------
 }

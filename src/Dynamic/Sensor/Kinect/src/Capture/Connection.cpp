@@ -23,7 +23,7 @@ Connection::Connection(k4n::Node* node_k4n){
   this->node_k4n = node_k4n;
   this->io_operation = node_importer->get_io_operation();
   this->dat_set = node_element->get_dat_set();
-  this->dat_graph = node_graph->get_dat_graph();
+  this->dat_graph = node_graph->get_gph_graph();
 
   this->current_nb_dev = 0;
 

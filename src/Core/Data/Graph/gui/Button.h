@@ -3,6 +3,7 @@
 #include <string>
 
 namespace dat::gph{class Node;}
+namespace dat::gph{class Element;}
 namespace dat::elm{class Set;}
 namespace dat::elm{class Entity;}
 namespace dat::base{class Set;}
@@ -29,6 +30,7 @@ public:
 private:
   dat::elm::Set* dat_set;
   dat::elm::Entity* dat_entity;
+  dat::gph::Element* gph_element;
 };
 
 }

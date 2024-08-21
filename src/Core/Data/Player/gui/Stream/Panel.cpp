@@ -18,7 +18,7 @@ Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   dat::elm::Node* node_element = node_player->get_node_element();
   vk::Node* node_vulkan = node_player->get_node_vulkan();
 
-  this->dat_selection = node_graph->get_dat_selection();
+  this->dat_selection = node_graph->get_gph_selection();
   this->dat_set = node_element->get_dat_set();
   this->gui_overlay = new dat::stream::gui::Overlay();
 

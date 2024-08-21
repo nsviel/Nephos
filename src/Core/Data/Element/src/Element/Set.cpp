@@ -9,7 +9,6 @@ namespace dat::elm{
 Set::Set(dat::elm::Node* node_element){
   //---------------------------
 
-  this->dat_struct = node_element->get_dat_struct();
   this->dat_entity = new dat::elm::Entity(node_element);
   this->dat_uid = node_element->get_dat_uid();
 

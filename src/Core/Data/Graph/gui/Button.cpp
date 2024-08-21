@@ -16,6 +16,7 @@ Button::Button(dat::gph::Node* node_graph){
 
   this->dat_set = node_element->get_dat_set();
   this->dat_entity = node_element->get_dat_entity();
+  this->gph_element = node_graph->get_gph_element();
 
   //---------------------------
 }
@@ -106,7 +107,7 @@ void Button::button_remove(dat::base::Set* set, dat::base::Entity* entity){
 
   std::string tag = std::string(ICON_FA_XMARK) + "##" + std::to_string(entity->UID);
   if(entity->is_suppressible && ImGui::SmallButton(tag.c_str())){
-    dat_set->remove_entity(set, entity);
+    gph_element->remove_entity(set, entity);
   }
 
   ImGui::PopStyleColor(3);

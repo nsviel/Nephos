@@ -19,7 +19,7 @@ Importer::Importer(k4n::Node* node_k4n){
 
   this->node_k4n = node_k4n;
   this->node_core = node_k4n->get_node_core();
-  this->dat_graph = node_graph->get_dat_graph();
+  this->dat_graph = node_graph->get_gph_graph();
   this->dat_entity = node_element->get_dat_entity();
   this->dat_set = node_element->get_dat_set();
   this->dat_glyph = node_element->get_dat_glyph();
