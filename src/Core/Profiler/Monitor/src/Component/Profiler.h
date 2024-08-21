@@ -23,7 +23,8 @@ public:
 
   //Subfunction
   prf::monitor::Tasker* fetch_tasker(std::string name);
-  std::list<prf::monitor::Tasker*> get_list_tasker();
+
+  inline std::list<prf::monitor::Tasker*> get_list_tasker(){return list_tasker;}
 
 public:
   std::string name = "";

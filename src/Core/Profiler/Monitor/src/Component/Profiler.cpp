@@ -55,19 +55,5 @@ prf::monitor::Tasker* Profiler::fetch_tasker(std::string name){
   //---------------------------
   return tasker;
 }
-std::list<prf::monitor::Tasker*> Profiler::get_list_tasker(){
-  std::list<prf::monitor::Tasker*> list_non_empty;
-  //---------------------------
-
-  for(int i=0; i<list_tasker.size(); i++){
-    prf::monitor::Tasker* tasker = *next(list_tasker.begin(), i);
-    if(!tasker->is_idle()){
-      list_non_empty.push_back(tasker);
-    }
-  }
-
-  //---------------------------
-  return list_non_empty;
-}
 
 }

@@ -23,7 +23,7 @@ void Graph::draw_profiler(prf::monitor::Profiler* profiler){
 
   this->draw_info();
 
-  if(ImGui::BeginTabBar("profiler_tasker_tab")){
+  if(ImGui::BeginTabBar("monitor_graph_tab")){
 
     this->draw_tasker_all(profiler);
     this->draw_tasker_separated(profiler);
