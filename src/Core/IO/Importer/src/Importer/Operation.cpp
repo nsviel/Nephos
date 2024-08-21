@@ -22,6 +22,7 @@ Operation::Operation(io::imp::Node* node_importer){
   this->dat_graph = node_graph->get_gph_graph();
   this->dat_set = node_element->get_dat_set();
   this->dat_glyph = node_element->get_dat_glyph();
+  this->gph_element = node_graph->get_gph_element();
   this->gph_selection = node_graph->get_gph_selection();
   this->trf_transform = new eng::trf::Transformation();
   this->trf_operation = new eng::trf::Operation();
@@ -62,7 +63,7 @@ void Operation::ope_clean(){
   //Remove old one
   if(io_struct->with_clearing){
     dat::base::Set* set_graph = dat_graph->get_set_graph();
-    dat_set->remove_all_entity(set_graph);
+    gph_element->remove_set(set_graph);
   }
 
   //---------------------------

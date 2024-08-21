@@ -158,7 +158,7 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  // Check if the current set has the query entity
+  // Check if the set has the query entity
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity_set = *next(set->list_entity.begin(), i);
 

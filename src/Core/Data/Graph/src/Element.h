@@ -22,7 +22,8 @@ public:
   //Main function
   void remove_entity(dat::base::Set* set, dat::base::Entity* entity);
   void remove_active_entity(dat::base::Set* set);
-  
+  void remove_set(dat::base::Set* set);
+
 private:
   dat::elm::Set* dat_set;
   dat::gph::Structure* gph_struct;

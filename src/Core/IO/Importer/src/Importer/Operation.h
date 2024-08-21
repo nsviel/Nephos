@@ -10,6 +10,7 @@ namespace dat::gph{class Graph;}
 namespace dat::elm{class Set;}
 namespace dat::elm{class Glyph;}
 namespace dat::gph{class Selection;}
+namespace dat::gph{class Element;}
 namespace dat::base{class Object;}
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
@@ -45,6 +46,7 @@ private:
   dat::gph::Graph* dat_graph;
   dat::elm::Set* dat_set;
   dat::elm::Glyph* dat_glyph;
+  dat::gph::Element* gph_element;
   dat::gph::Selection* gph_selection;
   eng::trf::Transformation* trf_transform;
   eng::trf::Operation* trf_operation;

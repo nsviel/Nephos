@@ -45,5 +45,23 @@ void Element::remove_active_entity(dat::base::Set* set){
 
   //---------------------------
 }
+void Element::remove_set(dat::base::Set* set){
+  if(set == nullptr) return;
+  //---------------------------
+
+  // Check if the current set has the query entity
+  auto it = set->list_entity.begin();
+  while(it != set->list_entity.end()){
+    dat::base::Entity* entity = *it;
+    this->remove_entity(set, entity);
+  }
+
+  // Recursively call remove_entity_recursive for each nested set
+  for(dat::base::Set* subset : set->list_subset){
+    this->remove_set(subset);
+  }
+
+  //---------------------------
+}
 
 }

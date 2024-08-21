@@ -124,7 +124,7 @@ void Button::button_remove(dat::base::Set* set){
 
   std::string tag = std::string(ICON_FA_XMARK) + "##" + std::to_string(set->UID);
   if(ImGui::SmallButton(tag.c_str())){
-    dat_set->remove_all_entity(set);
+    gph_element->remove_set(set);
   }
 
   ImGui::PopStyleColor(3);

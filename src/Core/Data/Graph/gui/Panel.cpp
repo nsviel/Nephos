@@ -87,11 +87,9 @@ void Panel::draw_file_tree(){
   for(int row_i=0; row_i<set_main->list_subset.size(); row_i++){
     dat::base::Set* set = *next(set_main->list_subset.begin(), row_i);
 
-    if(set->nb_entity != 0 || set->nb_subset != 0){
-      ImGui::PushID(set->name.c_str());
-      nb_row += tree_set(set) + 1;
-      ImGui::PopID();
-    }
+    ImGui::PushID(set->name.c_str());
+    nb_row += tree_set(set) + 1;
+    ImGui::PopID();
   }
 
   this->draw_window_background(nb_row);
@@ -102,12 +100,8 @@ void Panel::draw_file_tree(){
   //---------------------------
 }
 int Panel::tree_set(dat::base::Set* set){
-  int nb_row = 0;
-  //---------------------------
-
-  bool is_empty = dat_set->is_set_empty(set);
-  if(set->is_suppressible && is_empty) return 0;
   utl::base::Element* element = gph_selection->get_selected_element();
+  //---------------------------
 
   //Set node elements
   ImGuiTreeNodeFlags flag;
@@ -142,6 +136,7 @@ int Panel::tree_set(dat::base::Set* set){
   gui_button->button_remove(set);
 
   //If set open, display elements
+  int nb_row = 0;
   if(is_node_open){
     this->tree_set_open(set, nb_row);
     ImGui::TreePop();
