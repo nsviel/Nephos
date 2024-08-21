@@ -7,17 +7,16 @@ namespace dat::ply{class Node;}
 namespace dat::ply{class State;}
 namespace dat::gph{class Selection;}
 namespace dat::gph{class Element;}
-namespace dat::base{class Set;}
 
 
 namespace dat::ply{
 
-class Player
+class Button
 {
 public:
   //Constructor / Destructor
-  Player(dat::ply::Node* node_player);
-  ~Player();
+  Button(dat::ply::Node* node_player);
+  ~Button();
 
 public:
   //Main function

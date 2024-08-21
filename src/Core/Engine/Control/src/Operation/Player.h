@@ -2,7 +2,7 @@
 
 namespace ctr{class Node;}
 namespace dat::gph{class Selection;}
-namespace dat::ply{class Player;}
+namespace dat::ply{class Button;}
 
 
 namespace ctr{
@@ -22,7 +22,7 @@ public:
 
 private:
   dat::gph::Selection* gph_selection;
-  dat::ply::State* ply_state;
+  dat::ply::Button* ply_button;
 };
 
 }

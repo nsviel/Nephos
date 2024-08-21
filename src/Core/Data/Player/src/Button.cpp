@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "Button.h"
 
 #include <Data/Player/Namespace.h>
 #include <Data/Graph/Namespace.h>
@@ -9,7 +9,7 @@
 namespace dat::ply{
 
 //Constructor / Destructor
-Player::Player(dat::ply::Node* node_player){
+Button::Button(dat::ply::Node* node_player){
   //---------------------------
 
   dat::gph::Node* node_graph = node_player->get_node_graph();
@@ -20,10 +20,10 @@ Player::Player(dat::ply::Node* node_player){
 
   //---------------------------
 }
-Player::~Player(){}
+Button::~Button(){}
 
 //Main function
-void Player::button_query(float value){
+void Button::button_query(float value){
   dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
@@ -33,7 +33,7 @@ void Player::button_query(float value){
 
   //---------------------------
 }
-void Player::button_play(){
+void Button::button_play(){
   dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
@@ -49,7 +49,7 @@ void Player::button_play(){
 
   //---------------------------
 }
-void Player::button_pause(){
+void Button::button_pause(){
   dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
@@ -60,7 +60,7 @@ void Player::button_pause(){
 
   //---------------------------
 }
-void Player::button_stop(){
+void Button::button_stop(){
   dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
@@ -74,14 +74,14 @@ void Player::button_stop(){
 
   //---------------------------
 }
-void Player::button_replay(){
+void Button::button_replay(){
   //---------------------------
 
   state.replay = !state.replay;
 
   //---------------------------
 }
-void Player::button_record(){
+void Button::button_record(){
   dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
@@ -92,7 +92,7 @@ void Player::button_record(){
 
   //---------------------------
 }
-void Player::button_lock(bool value){
+void Button::button_lock(bool value){
   dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
@@ -101,7 +101,7 @@ void Player::button_lock(bool value){
 
   //---------------------------
 }
-void Player::button_close(){
+void Button::button_close(){
   dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
@@ -110,7 +110,7 @@ void Player::button_close(){
 
   //---------------------------
 }
-void Player::button_forward(float value){
+void Button::button_forward(float value){
   dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------

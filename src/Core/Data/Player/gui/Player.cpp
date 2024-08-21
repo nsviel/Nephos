@@ -103,7 +103,7 @@ void Player::player_stop(){
   //---------------------------
 }
 void Player::player_repeat(){
-  dat::base::State* state = ply_button->get_state();
+  dat::base::State* state = ply_state->get_state();
   //---------------------------
 
   if(state->replay){

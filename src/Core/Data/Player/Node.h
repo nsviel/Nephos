@@ -7,6 +7,7 @@ namespace dat::atr{class Node;}
 namespace dat::gph{class Node;}
 
 namespace dat::ply{class State;}
+namespace dat::ply{class Button;}
 namespace dat::ply::gui{class Panel;}
 
 
