@@ -13,6 +13,7 @@ Node::Node(io::Node* node_io){
 
   //Dependancy
   this->node_data = node_io->get_node_data();
+  this->node_engine = node_io->get_node_engine();
 
   //Child
   this->io_struct = new io::imp::Structure();

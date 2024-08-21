@@ -39,8 +39,8 @@ private:
 
   vld::main::Capture* vld_capture;
   vld::main::Playback* vld_playback;
-  vld::gui::Panel* gui_velodyne;
   vld::structure::Main* vld_struct;
+  vld::gui::Panel* gui_velodyne;
 };
 
 }

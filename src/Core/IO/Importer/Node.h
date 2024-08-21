@@ -4,6 +4,8 @@
 
 namespace dat{class Node;}
 namespace io{class Node;}
+namespace eng{class Node;}
+
 namespace io::imp{class Structure;}
 namespace io::imp{class Importer;}
 namespace io::imp{class Operation;}
@@ -26,7 +28,8 @@ public:
   void gui();
 
   inline dat::Node* get_node_data(){return node_data;}
-
+  inline eng::Node* get_node_engine(){return node_engine;}
+  
   inline io::imp::Structure* get_io_struct(){return io_struct;}
   inline io::imp::Importer* get_io_importer(){return io_importer;}
   inline io::imp::Operation* get_io_operation(){return io_operation;}
@@ -35,6 +38,7 @@ public:
 private:
   //Dependancy
   dat::Node* node_data;
+  eng::Node* node_engine;
 
   //Child
   io::imp::Structure* io_struct;

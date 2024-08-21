@@ -5,7 +5,6 @@
 
 namespace io::imp{class Node;}
 namespace io::imp{class Structure;}
-namespace io{class Transformation;}
 namespace dat::elm{class Entity;}
 namespace dat::gph{class Graph;}
 namespace dat::elm{class Set;}
@@ -16,6 +15,7 @@ namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
 namespace eng::trf{class Transformation;}
 namespace eng::trf{class Operation;}
+namespace eng::trf{class IO;}
 namespace dat::atr{class Field;}
 
 
@@ -41,7 +41,6 @@ public:
 
 private:
   io::imp::Structure* io_struct;
-  io::Transformation* io_transformation;
   dat::elm::Entity* dat_entity;
   dat::gph::Graph* dat_graph;
   dat::elm::Set* dat_set;
@@ -49,6 +48,7 @@ private:
   dat::gph::Selection* gph_selection;
   eng::trf::Transformation* trf_transform;
   eng::trf::Operation* trf_operation;
+  eng::trf::IO* trf_io;
   dat::atr::Field* atr_field;
 };
 

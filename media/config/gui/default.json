@@ -12,6 +12,6 @@
         "Shader": false,
         "Stream": false,
         "Transformation": false,
-        "Velodyne": true
+        "Velodyne": false
     }
 }

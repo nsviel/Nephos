@@ -12,6 +12,7 @@ Node::Node(core::Node* node_core){
 
   //Dependancy
   this->node_data = node_core->get_node_data();
+  this->node_engine = node_core->get_node_engine();
 
   //Child
   this->node_importer = new io::imp::Node(this);
