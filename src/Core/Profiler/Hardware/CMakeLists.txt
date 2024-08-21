@@ -1,4 +1,4 @@
-set(LIBRARY_NAME SYSTEM_PROFILER)
+set(LIBRARY_NAME PROFILER_HARDWARE)
 
 #-----------------
 # Source files

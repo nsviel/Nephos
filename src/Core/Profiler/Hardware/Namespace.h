@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Profiler/src/Structure.h>
-#include <Profiler/src/Monitor/Namespace.h>
-#include <Profiler/src/Hardware/Namespace.h>
+#include <Hardware/gui/Namespace.h>
+#include <Hardware/src/Namespace.h>
+#include <Hardware/Node.h>
