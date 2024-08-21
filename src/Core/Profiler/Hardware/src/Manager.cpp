@@ -1,6 +1,6 @@
 #include "Manager.h"
 
-#include <Profiler/Hardware/Namespace.h>
+#include <Hardware/Namespace.h>
 #include <Utility/Namespace.h>
 
 

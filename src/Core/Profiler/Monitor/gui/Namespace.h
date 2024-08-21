@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Profiler/gui/Monitor/Graph.h>
-#include <Profiler/gui/Monitor/Tab.h>
+#include <Monitor/gui/Monitor/Graph.h>
+#include <Monitor/gui/Monitor/Tab.h>

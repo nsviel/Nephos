@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Profiler/Monitor/src/Structure/Task.h>
-#include <Profiler/Monitor/src/Structure/Structure.h>
+#include <Monitor/src/Structure/Task.h>
+#include <Monitor/src/Structure/Structure.h>
