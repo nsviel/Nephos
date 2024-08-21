@@ -5,35 +5,24 @@
 
 namespace dat::ply{class Node;}
 namespace dat::gph{class Selection;}
-namespace dat::gph{class Element;}
 namespace dat::base{class Set;}
 
 
 namespace dat::ply{
 
-class Player
+class State
 {
 public:
   //Constructor / Destructor
-  Player(dat::ply::Node* node_player);
-  ~Player();
+  State(dat::ply::Node* node_player);
+  ~State();
 
+public:
   //Main function
   void loop();
   void reset();
 
-  //Player function
-  void button_query(float value);
-  void button_play();
-  void button_pause();
-  void button_stop();
-  void button_replay();
-  void button_record();
-  void button_lock(bool value);
-  void button_close();
-  void button_forward(float value);
-
-  //Subfunction
+  //State function
   void manage_state(dat::base::Set* set);
   void manage_update(dat::base::Set* set);
   void manage_restart(dat::base::Set* set);
@@ -45,7 +34,6 @@ public:
 
 public:
   dat::gph::Selection* gph_selection;
-  dat::gph::Element* gph_element;
 
   dat::base::Timestamp timestamp;
   dat::base::State state;

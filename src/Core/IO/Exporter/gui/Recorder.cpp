@@ -16,7 +16,7 @@ Recorder::Recorder(io::exp::Node* node_exporter){
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::ply::Node* node_player = node_data->get_node_player();
 
-  this->dyn_player = node_player->get_dyn_player();
+  this->ply_state = node_player->get_ply_state();
   this->io_struct = node_exporter->get_io_struct();
   this->gph_selection = node_graph->get_gph_selection();
 
@@ -47,7 +47,7 @@ void Recorder::display_action(dat::base::Sensor* sensor){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
     if(ImGui::Button("Record##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
-      dyn_player->button_record();
+      ply_state->button_record();
       this->item_operation(sensor);
     }
     ImGui::PopStyleColor(2);
@@ -55,7 +55,7 @@ void Recorder::display_action(dat::base::Sensor* sensor){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(120, 30, 30, 255));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(150, 50, 50, 255));
     if(ImGui::Button("Stop##444", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
-      dyn_player->button_record();
+      ply_state->button_record();
       this->item_operation(sensor);
     }
     ImGui::PopStyleColor(2);

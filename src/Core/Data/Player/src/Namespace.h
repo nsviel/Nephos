@@ -1,4 +1,5 @@
 #pragma once
 
-#include <Player/src/Player.h>
+#include <Player/src/Button.h>
+#include <Player/src/State.h>
 #include <Player/src/Synchro.h>

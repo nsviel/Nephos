@@ -15,7 +15,7 @@ Player::Player(ctr::Node* node_control){
   dat::ply::Node* node_player = node_data->get_node_player();
 
   this->gph_selection = node_graph->get_gph_selection();
-  this->dyn_player = node_player->get_dyn_player();
+  this->ply_state = node_player->get_ply_state();
 
   //---------------------------
 }
@@ -25,7 +25,7 @@ Player::~Player(){}
 void Player::make_pause(){
   //---------------------------
 
-  dyn_player->button_pause();
+  ply_state->button_pause();
 
   //---------------------------
 }

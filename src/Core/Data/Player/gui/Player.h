@@ -1,7 +1,8 @@
 #pragma once
 
 namespace dat::ply{class Node;}
-namespace dat::ply{class Player;}
+namespace dat::ply{class Button;}
+namespace dat::ply{class State;}
 namespace dyn::prc::element{class Sensor;}
 namespace utl::base{class Element;}
 
@@ -28,7 +29,8 @@ public:
   void player_lock();
 
 private:
-  dat::ply::Player* dyn_player;
+  dat::ply::Button* ply_button;
+  dat::ply::State* ply_state;
   dyn::prc::element::Sensor* dyn_sensor;
 };
 

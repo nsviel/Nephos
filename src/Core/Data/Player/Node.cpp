@@ -15,7 +15,8 @@ Node::Node(dat::Node* node_data){
   this->node_attribut = node_data->get_node_attribut();
   this->node_graph = node_data->get_node_graph();
 
-  this->dyn_player = new dat::ply::Player(this);
+  this->ply_state = new dat::ply::State(this);
+  this->ply_button = new dat::ply::Button(this);
   this->gui_player = new dat::ply::gui::Panel(this, &panel_player->is_open);
 
   //---------------------------
@@ -26,7 +27,7 @@ Node::~Node(){}
 void Node::loop(){
   //---------------------------
 
-  dyn_player->loop();
+  ply_state->loop();
 
   //---------------------------
 }
@@ -40,7 +41,7 @@ void Node::gui(){
 void Node::reset(){
   //---------------------------
 
-  dyn_player->reset();
+  ply_state->reset();
 
   //---------------------------
 }

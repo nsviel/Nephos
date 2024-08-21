@@ -10,7 +10,7 @@ namespace io::exp{class Structure;}
 namespace utl::gui::navigator{class Item;}
 namespace utl::base{class Element;}
 namespace dat::base{class Sensor;}
-namespace dat::ply{class Player;}
+namespace dat::ply{class State;}
 namespace dat::gph{class Selection;}
 namespace dat::base{class Entity;}
 
@@ -39,7 +39,7 @@ public:
   void item_operation(dat::base::Entity* entity);
 
 private:
-  dat::ply::Player* dyn_player;
+  dat::ply::State* ply_state;
   io::exp::Structure* io_struct;
   dat::gph::Selection* gph_selection;
 

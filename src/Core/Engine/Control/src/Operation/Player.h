@@ -1,7 +1,7 @@
 #pragma once
 
-namespace dat::gph{class Selection;}
 namespace ctr{class Node;}
+namespace dat::gph{class Selection;}
 namespace dat::ply{class Player;}
 
 
@@ -22,7 +22,7 @@ public:
 
 private:
   dat::gph::Selection* gph_selection;
-  dat::ply::Player* dyn_player;
+  dat::ply::State* ply_state;
 };
 
 }

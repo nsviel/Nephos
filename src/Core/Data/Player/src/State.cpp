@@ -1,4 +1,4 @@
-#include "Player.h"
+#include "State.h"
 
 #include <Data/Player/Namespace.h>
 #include <Data/Graph/Namespace.h>
@@ -9,20 +9,19 @@
 namespace dat::ply{
 
 //Constructor / Destructor
-Player::Player(dat::ply::Node* node_player){
+State::State(dat::ply::Node* node_player){
   //---------------------------
 
   dat::gph::Node* node_graph = node_player->get_node_graph();
 
   this->gph_selection = node_graph->get_gph_selection();
-  this->gph_element = node_graph->get_gph_element();
 
   //---------------------------
 }
-Player::~Player(){}
+State::~State(){}
 
 //Main function
-void Player::loop(){
+void State::loop(){
   dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
@@ -39,7 +38,7 @@ void Player::loop(){
 
   //---------------------------
 }
-void Player::reset(){
+void State::reset(){
   dat::base::Set* set = gph_selection->get_selected_set();
   //---------------------------
 
@@ -48,110 +47,8 @@ void Player::reset(){
   //---------------------------
 }
 
-//Player function
-void Player::button_query(float value){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
-  //---------------------------
-
-  this->manage_query(set, value);
-  state.query = true;
-
-  //---------------------------
-}
-void Player::button_play(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
-  //---------------------------
-
-  if(!state.play){
-    state.play = true;
-    state.pause = false;
-  }else{
-    state.pause = false;
-  }
-
-  this->manage_state(set);
-
-  //---------------------------
-}
-void Player::button_pause(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
-  //---------------------------
-
-  state.pause = !state.pause;
-
-  this->manage_state(set);
-
-  //---------------------------
-}
-void Player::button_stop(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
-  //---------------------------
-
-  state.play = false;
-  state.pause = true;
-  timestamp.current = timestamp.begin;
-
-  this->manage_state(set);
-  this->manage_restart(set);
-
-  //---------------------------
-}
-void Player::button_replay(){
-  //---------------------------
-
-  state.replay = !state.replay;
-
-  //---------------------------
-}
-void Player::button_record(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
-  //---------------------------
-
-  state.record = !state.record;
-
-  this->manage_state(set);
-
-  //---------------------------
-}
-void Player::button_lock(bool value){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
-  //---------------------------
-
-  set->is_locked = value;
-
-  //---------------------------
-}
-void Player::button_close(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
-  //---------------------------
-
-  gph_element->remove_active_entity(set);
-
-  //---------------------------
-}
-void Player::button_forward(float value){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
-  //---------------------------
-
-  float ts_forward = timestamp.current + 5 * value;
-  if(ts_forward > timestamp.end) ts_forward = timestamp.end;
-  if(ts_forward < timestamp.begin) ts_forward = timestamp.begin;
-
-  this->manage_query(set, ts_forward);
-
-  //---------------------------
-}
-
-//Subfunction
-void Player::manage_state(dat::base::Set* set){
+//State function
+void State::manage_state(dat::base::Set* set){
 /*  if(set == nullptr) return;
   //---------------------------
 
@@ -173,7 +70,7 @@ void Player::manage_state(dat::base::Set* set){
 */
   //---------------------------
 }
-void Player::manage_update(dat::base::Set* set){
+void State::manage_update(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
 /*
@@ -205,7 +102,7 @@ void Player::manage_update(dat::base::Set* set){
 */
   //---------------------------
 }
-void Player::manage_restart(dat::base::Set* set){
+void State::manage_restart(dat::base::Set* set){
   if(set == nullptr) return;
   //---------------------------
 /*
@@ -233,7 +130,7 @@ void Player::manage_restart(dat::base::Set* set){
 */
   //---------------------------
 }
-void Player::manage_reset(dat::base::Set* set){
+void State::manage_reset(dat::base::Set* set){
   //---------------------------
 /*
   //Entity
@@ -253,7 +150,7 @@ void Player::manage_reset(dat::base::Set* set){
 */
   //---------------------------
 }
-void Player::manage_query(dat::base::Set* set, float value){
+void State::manage_query(dat::base::Set* set, float value){
   //---------------------------
 /*
   //Entity
