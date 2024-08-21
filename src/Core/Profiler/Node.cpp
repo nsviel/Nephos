@@ -13,9 +13,8 @@ Node::Node(core::Node* node_core){
 
   this->node_vulkan = node_core->get_node_vulkan();
 
-  this->prf_struct = new prf::Structure();
-  this->prf_monitor = new prf::monitor::Manager(this);
-  this->prf_hardware = new prf::hardware::Manager(this);
+  this->node_monitor = new prf::monitor::Node(this);
+  this->node_hardware = new prf::hardware::Node(this);
   this->gui_panel = new prf::gui::Panel(this, &prf_panel->is_open);
 
   //---------------------------

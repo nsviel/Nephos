@@ -1,10 +1,10 @@
 #pragma once
 
-#include <Profiler/src/Hardware/Structure/Queue.h>
-#include <Profiler/src/Hardware/Structure/Structure.h>
+#include <Profiler/Hardware/src/Structure/Queue.h>
+#include <Profiler/Hardware/src/Structure/Structure.h>
 
-namespace prf{class Node;}
-namespace prf{class Structure;}
+namespace prf::hardware{class Node;}
+namespace prf::hardware{class Structure;}
 namespace prf::hardware{class CPU;}
 namespace prf::hardware{class GPU;}
 
@@ -15,7 +15,7 @@ class Manager
 {
 public:
   //Constructor / Destructor
-  Manager(prf::Node* node_profiler);
+  Manager(prf::hardware::Node* node_hardware);
   ~Manager();
 
 public:
@@ -24,7 +24,7 @@ public:
   void loop();
 
 private:
-  prf::Structure* prf_struct;
+  prf::hardware::Structure* prf_struct;
   prf::hardware::CPU* cpu_device;
   prf::hardware::GPU* gpu_device;
 };

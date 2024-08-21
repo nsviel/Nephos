@@ -2,8 +2,8 @@
 
 #include <vector>
 
-namespace prf{class Node;}
-namespace prf{class Structure;}
+namespace prf::hardware{class Node;}
+namespace prf::hardware{class Structure;}
 namespace prf::hardware{class Device;}
 namespace sys::hardware{class Nvidia;}
 namespace vk{class Structure;}
@@ -16,7 +16,7 @@ class GPU
 {
 public:
   //Constructor / Destructor
-  GPU(prf::Node* node_profiler);
+  GPU(prf::hardware::Node* node_hardware);
   ~GPU();
 
 public:
@@ -31,7 +31,7 @@ public:
   void add_queue(vk::queue::structure::Queue& queue, int type);
 
 private:
-  prf::Structure* prf_struct;
+  prf::hardware::Structure* prf_struct;
   vk::Structure* vk_struct;
   sys::hardware::Nvidia* utl_nvidia;
 };

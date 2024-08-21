@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Profiler/src/Hardware/Structure/Device.h>
-#include <Profiler/src/Hardware/Structure/CPU.h>
-#include <Profiler/src/Hardware/Structure/GPU.h>
+#include <Profiler/Hardware/src/Structure/Device.h>
+#include <Profiler/Hardware/src/Structure/CPU.h>
+#include <Profiler/Hardware/src/Structure/GPU.h>
 #include <vector>
 
 

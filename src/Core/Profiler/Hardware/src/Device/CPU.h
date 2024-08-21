@@ -2,8 +2,8 @@
 
 #include <vector>
 
-namespace prf{class Node;}
-namespace prf{class Structure;}
+namespace prf::hardware{class Node;}
+namespace prf::hardware{class Structure;}
 namespace sys::hardware{class CPU;}
 
 
@@ -13,7 +13,7 @@ class CPU
 {
 public:
   //Constructor / Destructor
-  CPU(prf::Node* node_profiler);
+  CPU(prf::hardware::Node* node_hardware);
   ~CPU();
 
 public:
@@ -22,7 +22,7 @@ public:
   void collect_cpu_variable();
 
 private:
-  prf::Structure* prf_struct;
+  prf::hardware::Structure* prf_struct;
   sys::hardware::CPU* utl_cpu;
 };
 

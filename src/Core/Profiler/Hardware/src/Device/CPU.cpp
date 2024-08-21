@@ -7,7 +7,7 @@
 namespace prf::hardware{
 
 //Constructor / Destructor
-CPU::CPU(prf::Node* node_profiler){
+CPU::CPU(prf::hardware::Node* node_hardware){
   //---------------------------
 
   this->prf_struct = node_profiler->get_prf_struct();

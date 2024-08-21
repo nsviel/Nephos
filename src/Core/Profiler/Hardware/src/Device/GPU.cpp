@@ -8,7 +8,7 @@
 namespace prf::hardware{
 
 //Constructor / Destructor
-GPU::GPU(prf::Node* node_profiler){
+GPU::GPU(prf::hardware::Node* node_hardware){
   //---------------------------
 
   vk::Node* node_vulkan = node_profiler->get_node_vulkan();

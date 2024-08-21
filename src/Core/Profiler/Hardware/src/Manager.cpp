@@ -1,13 +1,13 @@
 #include "Manager.h"
 
-#include <Profiler/Namespace.h>
+#include <Profiler/Hardware/Namespace.h>
 #include <Utility/Namespace.h>
 
 
 namespace prf::hardware{
 
 //Constructor / Destructor
-Manager::Manager(prf::Node* node_profiler){
+Manager::Manager(prf::hardware::Node* node_hardware){
   //---------------------------
 
   this->prf_struct = node_profiler->get_prf_struct();

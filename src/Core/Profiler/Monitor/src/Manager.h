@@ -4,8 +4,8 @@
 #include <string>
 #include <list>
 
-namespace prf{class Node;}
-namespace prf{class Structure;}
+namespace prf::monitor{class Node;}
+namespace prf::monitor{class Structure;}
 namespace prf::monitor{class Profiler;}
 namespace prf::monitor{class Tasker;}
 namespace prf::graph{class Profiler;}
@@ -18,7 +18,7 @@ class Manager
 {
 public:
   //Constructor / Destructor
-  Manager(prf::Node* node_profiler);
+  Manager(prf::monitor::Node* node_monitor);
   ~Manager();
 
 public:
@@ -33,7 +33,7 @@ public:
   prf::monitor::Tasker* get_tasker_cpu();
 
 private:
-  prf::Structure* prf_struct;
+  prf::monitor::Structure* prf_struct;
   vk::Structure* vk_struct;
 };
 

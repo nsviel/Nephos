@@ -1,4 +1,4 @@
 #pragma once
 
-#include <Profiler/src/Hardware/Device/CPU.h>
-#include <Profiler/src/Hardware/Device/GPU.h>
+#include <Profiler/Hardware/src/Device/CPU.h>
+#include <Profiler/Hardware/src/Device/GPU.h>

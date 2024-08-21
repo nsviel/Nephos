@@ -1,6 +1,6 @@
 #include "Manager.h"
 
-#include <Profiler/Namespace.h>
+#include <Profiler/Monitor/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -8,7 +8,7 @@
 namespace prf::monitor{
 
 //Constructor / Destructor
-Manager::Manager(prf::Node* node_profiler){
+Manager::Manager(prf::monitor::Node* node_monitor){
   //---------------------------
 
   vk::Node* node_vulkan = node_profiler->get_node_vulkan();
