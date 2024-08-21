@@ -29,6 +29,7 @@ void Panel::run_panel(){
     ImGuiWindowFlags flag;
     flag |= ImGuiWindowFlags_NoCollapse;
     flag |= ImGuiWindowFlags_AlwaysAutoResize;
+
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.2, 0.2, 0.2, 1));
     if(ImGui::Begin(panel_name.c_str(), &panel_show, flag) == 1){
 
