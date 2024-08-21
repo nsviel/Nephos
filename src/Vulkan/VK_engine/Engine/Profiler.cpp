@@ -16,7 +16,7 @@ Profiler::Profiler(vk::Structure* vk_struct){
 Profiler::~Profiler(){}
 
 //Main function
-void Profiler::reset(){
+void Profiler::clear(){
   //---------------------------
 
   vk_struct->profiler.vec_command_buffer.clear();

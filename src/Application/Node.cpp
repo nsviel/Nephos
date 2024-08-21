@@ -60,6 +60,7 @@ void Node::loop(){
     node_scene->loop();
     node_gui->loop();
     node_core->loop();
+    node_vulkan->loop();
     node_dynamic->loop();
     node_module->loop();
   }
@@ -87,6 +88,7 @@ void Node::end(){
 
   node_scene->clean();
   node_core->clean();
+  node_vulkan->clean();
 
   //---------------------------
 }

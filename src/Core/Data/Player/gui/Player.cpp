@@ -51,7 +51,7 @@ void Player::player_slider(){
   ImGui::SetNextItemWidth(width);
   float current = ply_struct->timestamp.current;
   if(ImGui::SliderFloat("##player_slider", &current, ply_struct->timestamp.begin, ply_struct->timestamp.end, "%.2f s", ImGuiSliderFlags_NoInput)){
-    ply_button->button_query(current);
+    ply_button->slider_query(current);
   }
 
   //---------------------------

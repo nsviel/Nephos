@@ -50,7 +50,7 @@ void Node::loop(){
   tasker->task_end("eng::loop");
 
   tasker->task_begin("eng::vulkan");
-  node_vulkan->loop();
+  //node_vulkan->loop();
   tasker->task_end("eng::vulkan");
 
   node_profiler->loop();
@@ -61,13 +61,11 @@ void Node::gui(){
   //---------------------------
 
   tasker->task_begin("eng::gui");
-
   node_data->gui();
   node_io->gui();
   node_engine->gui();
-
-
   tasker->task_end("eng::gui");
+
   node_profiler->gui();
 
   //---------------------------
@@ -77,7 +75,6 @@ void Node::clean(){
 
   node_data->clean();
   node_io->clean();
-  node_vulkan->clean();
 
   //---------------------------
 }

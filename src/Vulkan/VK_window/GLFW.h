@@ -22,7 +22,6 @@ public:
 
   //Window function
   void create_window();
-  void window_closing();
   void destroy_window();
   void create_surface();
 
@@ -34,6 +33,7 @@ public:
 
   //Input function
   void wait_event();
+  void window_close_event();
   void window_poll_event();
   void set_mouse_pose(glm::vec2 pos);
   glm::vec2 get_mouse_pose();

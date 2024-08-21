@@ -24,7 +24,7 @@ Button::Button(dat::ply::Node* node_player){
 Button::~Button(){}
 
 //Main function
-void Button::button_query(float value){
+void Button::slider_query(float value){
   dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------

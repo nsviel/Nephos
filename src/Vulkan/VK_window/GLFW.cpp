@@ -27,7 +27,7 @@ void GLFW::loop(){
   //---------------------------
 
   this->window_poll_event();
-  this->window_closing();
+  this->window_close_event();
 
   //---------------------------
 }
@@ -59,22 +59,6 @@ void GLFW::create_window(){
   }
 
   this->set_window_constraint_min(vk_struct->window.constraint_min);
-
-  //---------------------------
-}
-void GLFW::window_closing(){
-  if(vk_struct->window.handle == nullptr) return;
-  //---------------------------
-
-  bool& app_running = *vk_struct->window.running;
-  bool window_closing = glfwWindowShouldClose(vk_struct->window.handle);
-
-  if(app_running == false){
-    glfwSetWindowShouldClose(vk_struct->window.handle, true);
-  }else if(window_closing){
-    app_running = false;
-    glfwSetWindowShouldClose(vk_struct->window.handle, true);
-  }
 
   //---------------------------
 }
@@ -149,6 +133,15 @@ void GLFW::wait_event(){
   //---------------------------
 
   glfwWaitEvents();
+
+  //---------------------------
+}
+void GLFW::window_close_event(){
+  if(vk_struct->window.handle == nullptr) return;
+  //---------------------------
+
+  bool window_closing = glfwWindowShouldClose(vk_struct->window.handle);
+  if(window_closing) *vk_struct->window.running = false;
 
   //---------------------------
 }

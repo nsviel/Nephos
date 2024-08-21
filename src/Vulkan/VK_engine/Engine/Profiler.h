@@ -14,7 +14,7 @@ public:
 
 public:
   //Main function
-  void reset();
+  void clear();
 
 private:
   vk::Structure* vk_struct;

@@ -15,7 +15,7 @@ Option::Option(rnd::Node* node_renderer, bool* show_window){
 
   //this->ctr_struct = node_renderer->get_ctr_struct();
   //this->ctr_wheel = node_renderer->get_ctr_wheel();
-  this->vk_interface = node_vulkan->get_vk_interface();
+  this->vk_struct = node_vulkan->get_vk_struct();
 
   this->width = 150;
   this->name = "Option";
@@ -57,9 +57,7 @@ void Option::option_color(){
   //---------------------------
 
   //Background color
-  glm::vec4* screen_color = vk_interface->get_color_background();
-  ImGui::SetNextItemWidth(width);
-  ImGui::ColorEdit4("Background", (float*)screen_color);
+  ImGui::ColorEdit4("Background", (float*)&vk_struct->param.background_color);
 
   //---------------------------
   ImGui::Separator();

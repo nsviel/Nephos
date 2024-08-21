@@ -6,7 +6,7 @@ namespace rnd{class Node;}
 namespace core{class Node;}
 namespace ctr{class Structure;}
 namespace ctr{class Wheel;}
-namespace vk::main{class Interface;}
+namespace vk{class Structure;}
 
 
 namespace rnd::gui{
@@ -31,7 +31,7 @@ public:
 private:
   ctr::Structure* ctr_struct;
   ctr::Wheel* ctr_wheel;
-  vk::main::Interface* vk_interface;
+  vk::Structure* vk_struct;
 
   std::string name;
   int width;
