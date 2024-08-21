@@ -36,7 +36,7 @@ public:
 
 private:
   dat::gph::Graph* dat_graph;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   dat::elm::Set* dat_set;
   dat::gph::gui::Button* gui_button;
   dat::set::gui::Panel* gui_set;

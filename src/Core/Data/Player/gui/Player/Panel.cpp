@@ -15,7 +15,7 @@ Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   dat::atr::Node* node_attribut = node_player->get_node_attribut();
   dat::gph::Node* node_graph = node_player->get_node_graph();
 
-  this->dat_selection = node_graph->get_gph_selection();
+  this->gph_selection = node_graph->get_gph_selection();
   this->gui_configuration = new dat::ply::gui::Configuration();
   this->gui_player = new dat::ply::gui::Player(node_player);
   this->atr_panel = node_attribut->get_gui_panel();
@@ -49,7 +49,7 @@ void Panel::run_panel(){
   //---------------------------
 }
 void Panel::design_panel(){
-  utl::base::Element* element = dat_selection->get_selected_element();
+  utl::base::Element* element = gph_selection->get_selected_element();
   if(element == nullptr) return;
   //---------------------------
 

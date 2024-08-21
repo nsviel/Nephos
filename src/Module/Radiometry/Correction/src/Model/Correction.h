@@ -35,7 +35,7 @@ public:
 
 private:
   dat::elm::Image* dat_image;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   rad::cor::Structure* rad_struct;
   rad::cor::Model* rad_model;
   rad::cor::io::Model* rad_io_model;

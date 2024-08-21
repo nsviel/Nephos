@@ -25,7 +25,7 @@ public:
 private:
   dat::ply::gui::Player* gui_player;
   dat::ply::gui::Configuration* gui_configuration;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   dat::atr::gui::Panel* atr_panel;
 
   std::string name;

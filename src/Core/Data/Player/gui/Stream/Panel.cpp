@@ -18,7 +18,7 @@ Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   dat::elm::Node* node_element = node_player->get_node_element();
   vk::Node* node_vulkan = node_player->get_node_vulkan();
 
-  this->dat_selection = node_graph->get_gph_selection();
+  this->gph_selection = node_graph->get_gph_selection();
   this->dat_set = node_element->get_dat_set();
   this->gui_overlay = new dat::stream::gui::Overlay();
 
@@ -36,7 +36,7 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  dat::base::Entity* entity = gph_selection->get_selected_entity();
   if(entity == nullptr) return;
   //---------------------------
 

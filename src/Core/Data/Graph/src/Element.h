@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 namespace dat::gph{class Node;}
 namespace dat::gph{class Structure;}
 namespace dat::gph{class Selection;}
@@ -22,12 +20,12 @@ public:
 
 public:
   //Main function
-
+  void remove_entity(dat::base::Set* set, dat::base::Entity* entity);
 
 private:
   dat::elm::Set* dat_set;
   dat::gph::Structure* gph_struct;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
 };
 
 }

@@ -17,7 +17,7 @@ Exporter::Exporter(io::exp::Node* node_exporter){
 
   this->io_struct = node_exporter->get_io_struct();
   this->io_exporter = node_exporter->get_io_exporter();
-  this->dat_selection = node_graph->get_gph_selection();
+  this->gph_selection = node_graph->get_gph_selection();
 
   //---------------------------
 }
@@ -41,7 +41,7 @@ void Exporter::draw_header(utl::base::Element* element){
 
 //Header function
 void Exporter::display_action(){
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  dat::base::Entity* entity = gph_selection->get_selected_entity();
   if(entity == nullptr) return;
   //---------------------------
 

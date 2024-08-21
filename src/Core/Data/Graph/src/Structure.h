@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Data/Base/Element/Set.h>
-#include <vector>
+#include <Utility/Namespace.h>
 
 namespace dat::base{class Set;}
 namespace utl::base{class Element;}

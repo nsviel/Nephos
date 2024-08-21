@@ -18,7 +18,7 @@ Recorder::Recorder(io::exp::Node* node_exporter){
 
   this->dyn_player = node_player->get_dyn_player();
   this->io_struct = node_exporter->get_io_struct();
-  this->dat_selection = node_graph->get_gph_selection();
+  this->gph_selection = node_graph->get_gph_selection();
 
   //---------------------------
 }

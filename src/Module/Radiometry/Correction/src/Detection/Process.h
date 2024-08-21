@@ -33,7 +33,7 @@ private:
   rad::cor::image::Detection* rad_image_detection;
   rad::cor::cloud::Detection* rad_cloud_detection;
   rad::cor::Glyph* rad_glyph;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   dat::elm::Image* dat_image;
 };
 

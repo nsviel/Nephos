@@ -21,7 +21,7 @@ public:
   void make_backward();
 
 private:
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   dat::ply::Player* dyn_player;
 };
 

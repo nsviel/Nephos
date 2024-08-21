@@ -18,7 +18,7 @@ Node::Node(dat::Node* node_data){
   //Child
   this->dat_struct = new dat::gph::Structure();
   this->dat_graph = new dat::gph::Graph(this);
-  this->dat_selection = new dat::gph::Selection(this);
+  this->gph_selection = new dat::gph::Selection(this);
   this->dat_element = new dat::gph::Element(this);
   this->gui_graph = new dat::gph::gui::Panel(this, &dat_panel->is_open);
 

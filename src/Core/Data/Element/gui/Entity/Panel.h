@@ -3,7 +3,6 @@
 #include <string>
 
 namespace dat::elm{class Node;}
-namespace dat::elm{class Set;}
 namespace dat::base{class Entity;}
 namespace dat::entity::gui{class Topology;}
 namespace dat::entity::gui{class Data;}
@@ -35,7 +34,6 @@ public:
 
 private:
   eng::trf::Operation* trf_operation;
-  dat::elm::Set* dat_set;
   dat::entity::gui::Topology* gui_topology;
   dat::entity::gui::Data* gui_data;
 

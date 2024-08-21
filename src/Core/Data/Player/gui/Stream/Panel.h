@@ -33,7 +33,7 @@ public:
   void draw_stream_image(utl::media::Image* image, ImVec2 image_size, int idx);
 
 private:
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   dat::elm::Set* dat_set;
   dat::stream::gui::Overlay* gui_overlay;
 

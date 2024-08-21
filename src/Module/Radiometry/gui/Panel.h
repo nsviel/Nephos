@@ -28,7 +28,7 @@ public:
   void tab_calibration(dat::base::Sensor* sensor);
 
 private:
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   rad::cor::gui::Tab* gui_correction;
   rad::cal::gui::Tab* gui_calibration;
 

@@ -42,7 +42,7 @@ public:
 private:
   io::exp::Structure* io_struct;
   io::exp::Exporter* io_exporter;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
 };
 
 }

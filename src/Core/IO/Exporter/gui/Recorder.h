@@ -41,7 +41,7 @@ public:
 private:
   dat::ply::Player* dyn_player;
   io::exp::Structure* io_struct;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
 
   std::vector<std::string> vec_format;
 };

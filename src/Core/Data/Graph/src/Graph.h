@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 namespace cam{class Entity;}
 namespace dat{class Node;}
 namespace dat::gph{class Node;}

@@ -14,7 +14,7 @@ Player::Player(ctr::Node* node_control){
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::ply::Node* node_player = node_data->get_node_player();
 
-  this->dat_selection = node_graph->get_gph_selection();
+  this->gph_selection = node_graph->get_gph_selection();
   this->dyn_player = node_player->get_dyn_player();
 
   //---------------------------

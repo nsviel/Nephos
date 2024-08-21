@@ -18,7 +18,7 @@ Panel::Panel(dat::gph::Node* node_graph, bool* show_window){
   dat::elm::Node* node_element = node_graph->get_node_element();
 
   this->dat_graph = node_graph->get_gph_graph();
-  this->dat_selection = node_graph->get_gph_selection();
+  this->gph_selection = node_graph->get_gph_selection();
   this->dat_set = node_element->get_dat_set();
   this->gui_button = new dat::gph::gui::Button(node_graph);
   this->gui_set = node_element->get_gui_set();
@@ -107,7 +107,7 @@ int Panel::tree_set(dat::base::Set* set){
 
   bool is_empty = dat_set->is_set_empty(set);
   if(set->is_suppressible && is_empty) return 0;
-  utl::base::Element* element = dat_selection->get_selected_element();
+  utl::base::Element* element = gph_selection->get_selected_element();
 
   //Set node elements
   ImGuiTreeNodeFlags flag;
@@ -130,7 +130,7 @@ int Panel::tree_set(dat::base::Set* set){
 
   //Set selection
   if(ImGui::IsItemClicked()){
-    dat_selection->select_element(set);
+    gph_selection->select_element(set);
   }
 
   //Visibility button
@@ -167,7 +167,7 @@ void Panel::tree_set_open(dat::base::Set* set, int& nb_row){
   //---------------------------
 }
 void Panel::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row){
-  bool entity_selected = (entity == dat_selection->get_selected_element());
+  bool entity_selected = (entity == gph_selection->get_selected_element());
   bool entity_active = (entity == entity->set_parent->active_entity);
   //---------------------------
 
@@ -201,7 +201,7 @@ void Panel::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_
 
   // If entity clicked
   if(ImGui::IsItemClicked()){
-    dat_selection->select_element(entity);
+    gph_selection->select_element(entity);
   }
 
   // If entity double-clicked

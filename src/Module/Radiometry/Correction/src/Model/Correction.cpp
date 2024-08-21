@@ -18,7 +18,7 @@ Correction::Correction(rad::cor::Node* node_correction){
   this->rad_model = node_correction->get_rad_model();
   this->rad_io_model = node_correction->get_rad_io_model();
   this->dat_image = node_element->get_dat_image();
-  this->dat_selection = node_graph->get_gph_selection();
+  this->gph_selection = node_graph->get_gph_selection();
   this->atr_field = new dat::atr::Field();
 
   //---------------------------

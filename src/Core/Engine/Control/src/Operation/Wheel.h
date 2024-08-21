@@ -30,7 +30,7 @@ public:
 
 private:
   ctr::Structure* ctr_struct;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   cam::Control* cam_control;
   eng::trf::Operation* trf_operation;
   dat::atr::Location* atr_location;

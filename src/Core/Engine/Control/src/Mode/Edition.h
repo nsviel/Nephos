@@ -6,7 +6,7 @@
 namespace ctr{class Node;}
 namespace ctr{class Structure;}
 namespace dat::gph{class Selection;}
-namespace dat::elm{class Set;}
+namespace dat::gph{class Element;}
 namespace eng::trf{class Operation;}
 
 
@@ -35,8 +35,8 @@ public:
 
 private:
   ctr::Structure* ctr_struct;
-  dat::gph::Selection* dat_selection;
-  dat::elm::Set* dat_set;
+  dat::gph::Selection* gph_selection;
+  dat::gph::Element* gph_element;
   eng::trf::Operation* trf_operation;
 };
 

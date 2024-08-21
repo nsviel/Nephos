@@ -46,7 +46,7 @@ private:
   dat::gph::Graph* dat_graph;
   dat::elm::Set* dat_set;
   dat::elm::Glyph* dat_glyph;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   eng::trf::Transformation* trf_transform;
   eng::trf::Operation* trf_operation;
   dat::atr::Field* atr_field;

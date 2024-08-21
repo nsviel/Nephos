@@ -22,7 +22,7 @@ Operation::Operation(io::imp::Node* node_importer){
   this->dat_graph = node_graph->get_gph_graph();
   this->dat_set = node_element->get_dat_set();
   this->dat_glyph = node_element->get_dat_glyph();
-  this->dat_selection = node_graph->get_gph_selection();
+  this->gph_selection = node_graph->get_gph_selection();
   this->trf_transform = new eng::trf::Transformation();
   this->trf_operation = new eng::trf::Operation();
   this->atr_field = new dat::atr::Field();
@@ -128,7 +128,7 @@ void Operation::ope_insertion(dat::base::Entity* entity){
   dat_set->insert_entity(entity->set_parent, entity);
   dat_entity->init_entity(entity);
   dat_glyph->insert_glyph(entity);
-  dat_selection->select_element(entity);
+  gph_selection->select_element(entity);
 
   //---------------------------
 }

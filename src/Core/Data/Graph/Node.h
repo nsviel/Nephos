@@ -32,7 +32,7 @@ public:
   inline dat::elm::Node* get_node_element(){return node_element;}
 
   inline dat::gph::Graph* get_gph_graph(){return dat_graph;}
-  inline dat::gph::Selection* get_gph_selection(){return dat_selection;}
+  inline dat::gph::Selection* get_gph_selection(){return gph_selection;}
   inline dat::gph::Structure* get_gph_struct(){return dat_struct;}
   inline dat::gph::Element* get_gph_element(){return dat_element;}
 
@@ -44,7 +44,7 @@ private:
   //Child
   dat::gph::Structure* dat_struct;
   dat::gph::Graph* dat_graph;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   dat::gph::Element* dat_element;
   dat::gph::gui::Panel* gui_graph;
 };

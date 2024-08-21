@@ -36,7 +36,7 @@ public:
 private:
   eng::trf::IO* trf_io;
   utl::gui::Navigator* gui_navigator;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
 
   std::string name;
   bool* show_window;

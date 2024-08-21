@@ -27,7 +27,7 @@ public:
 private:
   rad::cal::Structure* rad_struct;
   rad::cal::Detection* rad_detection;
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
 };
 
 }

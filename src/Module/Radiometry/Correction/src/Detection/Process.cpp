@@ -19,7 +19,7 @@ Process::Process(rad::cor::Node* node_correction){
   this->rad_glyph = new rad::cor::Glyph(node_correction);
   this->rad_image_detection = new rad::cor::image::Detection(node_correction);
   this->rad_cloud_detection = new rad::cor::cloud::Detection(node_correction);
-  this->dat_selection = node_graph->get_gph_selection();
+  this->gph_selection = node_graph->get_gph_selection();
   this->dat_image = node_element->get_dat_image();
 
   //---------------------------
@@ -38,7 +38,7 @@ void Process::loop(){
   //---------------------------
 
   //Verify that we have a sensor type
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  dat::base::Entity* entity = gph_selection->get_selected_entity();
   dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 
@@ -57,7 +57,7 @@ void Process::step_detection(){
   //---------------------------
 
   //Verify that we have a sensor type
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  dat::base::Entity* entity = gph_selection->get_selected_entity();
   dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 
@@ -80,7 +80,7 @@ void Process::step_measure(){
   //---------------------------
 
   //Verify that we have a sensor type
-  dat::base::Entity* entity = dat_selection->get_selected_entity();
+  dat::base::Entity* entity = gph_selection->get_selected_entity();
   dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
   if(sensor == nullptr) return;
 

@@ -13,7 +13,6 @@ namespace dat::entity::gui{
 Panel::Panel(dat::elm::Node* node_element){
   //---------------------------
 
-  this->dat_set = node_element->get_dat_set();
   this->gui_topology = new dat::entity::gui::Topology();
   this->gui_data = new dat::entity::gui::Data(node_element);
   this->trf_operation = new eng::trf::Operation();
@@ -79,16 +78,7 @@ void Panel::entity_button(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  //Suppression
-  if(entity->is_suppressible && ImGui::Button(ICON_FA_TRASH "##4567")){
-    dat::base::Set* set = entity->set_parent;
-    dat_set->remove_entity(set, entity);
-    this->close_panel();
-    return;
-  }
-
   //Centered
-  ImGui::SameLine();
   if(entity->pose.is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
     utl::base::Pose* pose = &entity->pose;;
     trf_operation->center_object(entity, pose->min);

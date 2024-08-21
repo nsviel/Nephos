@@ -15,7 +15,7 @@ Player::Player(dat::ply::Node* node_player){
   dat::gph::Node* node_graph = node_player->get_node_graph();
   dat::elm::Node* node_element = node_player->get_node_element();
 
-  this->dat_selection = node_graph->get_gph_selection();
+  this->gph_selection = node_graph->get_gph_selection();
   this->dat_set = node_element->get_dat_set();
 
   //---------------------------
@@ -24,7 +24,7 @@ Player::~Player(){}
 
 //Main function
 void Player::loop(){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
 
@@ -41,7 +41,7 @@ void Player::loop(){
   //---------------------------
 }
 void Player::reset(){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = gph_selection->get_selected_set();
   //---------------------------
 
   this->manage_reset(set);
@@ -51,7 +51,7 @@ void Player::reset(){
 
 //Player function
 void Player::button_query(float value){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
 
@@ -61,7 +61,7 @@ void Player::button_query(float value){
   //---------------------------
 }
 void Player::button_play(){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
 
@@ -77,7 +77,7 @@ void Player::button_play(){
   //---------------------------
 }
 void Player::button_pause(){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
 
@@ -88,7 +88,7 @@ void Player::button_pause(){
   //---------------------------
 }
 void Player::button_stop(){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
 
@@ -109,7 +109,7 @@ void Player::button_replay(){
   //---------------------------
 }
 void Player::button_record(){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
 
@@ -120,7 +120,7 @@ void Player::button_record(){
   //---------------------------
 }
 void Player::button_lock(bool value){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
 
@@ -129,7 +129,7 @@ void Player::button_lock(bool value){
   //---------------------------
 }
 void Player::button_close(){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
 
@@ -138,7 +138,7 @@ void Player::button_close(){
   //---------------------------
 }
 void Player::button_forward(float value){
-  dat::base::Set* set = dat_selection->get_selected_set();
+  dat::base::Set* set = gph_selection->get_selected_set();
   if(set == nullptr) return;
   //---------------------------
 

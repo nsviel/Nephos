@@ -44,7 +44,7 @@ public:
   inline dat::base::Timestamp* get_timestamp(){return &timestamp;}
 
 public:
-  dat::gph::Selection* dat_selection;
+  dat::gph::Selection* gph_selection;
   dat::elm::Set* dat_set;
 
   dat::base::Timestamp timestamp;
