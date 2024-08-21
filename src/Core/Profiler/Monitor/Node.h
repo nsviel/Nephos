@@ -4,6 +4,7 @@
 
 namespace core{class Node;}
 namespace vk{class Node;}
+namespace prf{class Node;}
 
 namespace prf::monitor{class Structure;}
 namespace prf::monitor{class Manager;}
