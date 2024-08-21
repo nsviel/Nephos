@@ -27,7 +27,7 @@ void Data::extract_data(k4n::base::Sensor* sensor){
   if(check_condition(sensor) == false) return;
   //---------------------------
 
-  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::cloud");
+  prf::monitor::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::cloud");
 
   tasker->loop();
 

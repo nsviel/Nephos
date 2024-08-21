@@ -57,7 +57,7 @@ void Sensor::thread_init(){
   //---------------------------
 }
 void Sensor::thread_loop(){
-  prf::dynamic::Tasker* tasker = profiler.fetch_tasker("kinect::loop");
+  prf::monitor::Tasker* tasker = profiler.fetch_tasker("kinect::loop");
   //---------------------------
 
   tasker->loop(30);

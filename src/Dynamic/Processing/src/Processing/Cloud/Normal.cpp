@@ -46,7 +46,7 @@ void Normal::start_thread(dat::base::Sensor* sensor){
   //---------------------------
 }
 void Normal::run_thread(dat::base::Sensor* sensor){
-  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("dat::atr::normal");
+  prf::monitor::Tasker* tasker = sensor->profiler.fetch_tasker("dat::atr::normal");
   //---------------------------
 
   tasker->loop();

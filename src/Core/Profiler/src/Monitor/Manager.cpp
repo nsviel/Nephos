@@ -5,7 +5,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace prf::dynamic{
+namespace prf::monitor{
 
 //Constructor / Destructor
 Manager::Manager(prf::Node* node_profiler){
@@ -32,11 +32,11 @@ void Manager::loop(int max_fps){
   //---------------------------
 
   //CPU tasker
-  prf::dynamic::Tasker* tasker_cpu = prf_struct->dynamic.profiler_main.fetch_tasker("cpu");
+  prf::monitor::Tasker* tasker_cpu = prf_struct->dynamic.profiler_main.fetch_tasker("cpu");
   tasker_cpu->loop(max_fps);
 
   //GPU tasker
-  prf::dynamic::Tasker* tasker_gpu = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
+  prf::monitor::Tasker* tasker_gpu = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
   tasker_gpu->loop();
   this->collect_gpu_task();
 
@@ -44,7 +44,7 @@ void Manager::loop(int max_fps){
 }
 
 //Subfunction
-void Manager::add_profiler(prf::dynamic::Profiler* profiler, std::string name){
+void Manager::add_profiler(prf::monitor::Profiler* profiler, std::string name){
   //---------------------------
 
   profiler->name = name;
@@ -52,7 +52,7 @@ void Manager::add_profiler(prf::dynamic::Profiler* profiler, std::string name){
 
   //---------------------------
 }
-void Manager::remove_profiler(prf::dynamic::Profiler* profiler){
+void Manager::remove_profiler(prf::monitor::Profiler* profiler){
   //---------------------------
 
   profiler->clean();
@@ -62,7 +62,7 @@ void Manager::remove_profiler(prf::dynamic::Profiler* profiler){
   //---------------------------
 }
 void Manager::collect_gpu_task(){
-  prf::dynamic::Tasker* tasker = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
+  prf::monitor::Tasker* tasker = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
   //---------------------------
 
   float ts_current = 0;
@@ -76,7 +76,7 @@ void Manager::collect_gpu_task(){
 
   //---------------------------
 }
-prf::dynamic::Tasker* Manager::get_tasker_cpu(){
+prf::monitor::Tasker* Manager::get_tasker_cpu(){
   //---------------------------
 
   return prf_struct->dynamic.profiler_main.fetch_tasker("cpu");

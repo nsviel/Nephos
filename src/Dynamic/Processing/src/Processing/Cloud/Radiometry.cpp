@@ -37,7 +37,7 @@ void Radiometry::start_thread(dat::base::Sensor* sensor){
   //---------------------------
 }
 void Radiometry::run_thread(dat::base::Sensor* sensor){
-  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::correction");
+  prf::monitor::Tasker* tasker = sensor->profiler.fetch_tasker("ope::correction");
   //---------------------------
 
   tasker->loop();

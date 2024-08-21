@@ -4,7 +4,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace prf::dynamic{
+namespace prf::monitor{
 
 //Constructor / Destructor
 Tasker::Tasker(std::string name){
@@ -70,7 +70,7 @@ void Tasker::update(){
 
   //Assign tasks
   for(int i=0; i<vec_task.size(); i++){
-    prf::dynamic::Task& task = vec_task[i];
+    prf::monitor::Task& task = vec_task[i];
     this->plot.add_task(task.ts_begin, task.ts_end, task.name, task.color);
   }
 
@@ -84,7 +84,7 @@ void Tasker::task_begin(std::string name, float time){
   //---------------------------
 
   //Check if task already exists
-  prf::dynamic::Task* exist = find_task(name);
+  prf::monitor::Task* exist = find_task(name);
   if(exist != nullptr){
     std::cout << "[error] task already started [" << name << "]" << std::endl;
     return;
@@ -97,7 +97,7 @@ void Tasker::task_begin(std::string name, float time){
   }
 
   //Insert task in vector
-  prf::dynamic::Task task;
+  prf::monitor::Task task;
   task.ts_begin = ts;
   task.ts_end = 0;
   task.name = name;
@@ -109,7 +109,7 @@ void Tasker::task_end(const std::string& name, float time, glm::vec4 color){
   //---------------------------
 
   //Search for corresponding task
-  prf::dynamic::Task* task = find_task(name);
+  prf::monitor::Task* task = find_task(name);
   if(task == nullptr){
     std::cout << "[error] task not started" << std::endl;
     return;
@@ -139,7 +139,7 @@ void Tasker::add_task(const std::string& name, float ts_begin, float ts_end, glm
   //---------------------------
 
   //Insert task in vector
-  prf::dynamic::Task task;
+  prf::monitor::Task task;
   task.ts_begin = ts_begin;
   task.ts_end = ts_end;
   task.name = name;
@@ -152,7 +152,7 @@ void Tasker::remove_task(const std::string& name){
   //---------------------------
 
   // Use std::remove_if to move matching tasks to the end of the vector
-  auto it = std::remove_if(vec_task_buffer.begin(), vec_task_buffer.end(), [&name](const prf::dynamic::Task& task){return task.name == name;});
+  auto it = std::remove_if(vec_task_buffer.begin(), vec_task_buffer.end(), [&name](const prf::monitor::Task& task){return task.name == name;});
 
   // Erase the matching tasks from the vector
   vec_task_buffer.erase(it, vec_task_buffer.end());
@@ -161,12 +161,12 @@ void Tasker::remove_task(const std::string& name){
 }
 
 //Subfunction
-prf::dynamic::Task* Tasker::find_task(const std::string& name){
+prf::monitor::Task* Tasker::find_task(const std::string& name){
   //---------------------------
 
   //Search for corresponding task
   for(int i=0; i<vec_task_buffer.size(); i++){
-    prf::dynamic::Task* task = &vec_task_buffer[i];
+    prf::monitor::Task* task = &vec_task_buffer[i];
 
     if(task->name == name){
       return task;

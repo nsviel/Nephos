@@ -9,10 +9,10 @@
 namespace sys::timer{class Chronos;}
 namespace sys::fps{class Counter;}
 namespace sys::fps{class Control;}
-namespace prf::dynamic{class Task;}
+namespace prf::monitor{class Task;}
 
 
-namespace prf::dynamic{
+namespace prf::monitor{
 
 class Tasker
 {
@@ -34,7 +34,7 @@ public:
   void remove_task(const std::string& name);
 
   //Subfunction
-  prf::dynamic::Task* find_task(const std::string& name);
+  prf::monitor::Task* find_task(const std::string& name);
 
   inline bool is_idle(){return vec_task.size() == 0;}
 
@@ -50,8 +50,8 @@ private:
   sys::fps::Control* fps_control;
 
   sys::timer::Timepoint reference;
-  std::vector<prf::dynamic::Task> vec_task_buffer;
-  std::vector<prf::dynamic::Task> vec_task;
+  std::vector<prf::monitor::Task> vec_task_buffer;
+  std::vector<prf::monitor::Task> vec_task;
   bool is_fps_control = false;
 };
 

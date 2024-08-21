@@ -5,7 +5,7 @@
 #include <Data/Base/Sensor/Calibration.h>
 #include <Data/Base/Sensor/State.h>
 #include <Data/Base/Sensor/Recorder.h>
-#include <Profiler/src/Dynamic/Profiler.h>
+#include <Profiler/src/Monitor/Profiler.h>
 #include <Utility/Namespace.h>
 
 
@@ -34,7 +34,7 @@ struct Sensor : public dat::base::Object, public sys::thread::Worker{
   dat::base::Timestamp timestamp;
   dat::base::State state;
   dat::base::Calibration calibration;
-  prf::dynamic::Profiler profiler;
+  prf::monitor::Profiler profiler;
 
   std::string device_name = "";
   std::string serial_number = "";

@@ -8,7 +8,7 @@ namespace io{class Node;}
 namespace vk{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
-namespace prf::dynamic{class Tasker;}
+namespace prf::monitor{class Tasker;}
 namespace sys::thread::task{class Pool;}
 
 
@@ -36,7 +36,7 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline sys::thread::task::Pool* get_thread_pool(){return thread_pool;}
-  inline prf::dynamic::Tasker* get_tasker_cpu(){return tasker;}
+  inline prf::monitor::Tasker* get_tasker_cpu(){return tasker;}
 
 private:
   vk::Node* node_vulkan;
@@ -44,7 +44,7 @@ private:
   dat::Node* node_data;
   eng::Node* node_engine;
   prf::Node* node_profiler;
-  prf::dynamic::Tasker* tasker;
+  prf::monitor::Tasker* tasker;
   sys::thread::task::Pool* thread_pool;
 };
 

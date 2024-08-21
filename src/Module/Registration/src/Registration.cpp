@@ -31,7 +31,7 @@ void Registration::start_thread(k4n::base::Sensor* sensor){
   //---------------------------
 }
 void Registration::run_thread(k4n::base::Sensor* sensor){
-  //prf::dynamic::Tasker* tasker = sensor->profiler->fetch_tasker("registration");
+  //prf::monitor::Tasker* tasker = sensor->profiler->fetch_tasker("registration");
   //---------------------------
 
   //tasker->loop_begin();

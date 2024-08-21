@@ -33,13 +33,13 @@ void Tab::draw_tab(int width){
 
 //Subfunction
 void Tab::draw_dynamic_tabbar(){
-  std::list<prf::dynamic::Profiler*>& list_profiler = prf_struct->dynamic.list_profiler;
+  std::list<prf::monitor::Profiler*>& list_profiler = prf_struct->dynamic.list_profiler;
   int width = ImGui::GetContentRegionAvail().x / list_profiler.size();
   //---------------------------
 
   if(ImGui::BeginTabBar("profiler_panel##graph")){
     for(int i=0; i<list_profiler.size(); i++){
-      prf::dynamic::Profiler* profiler = *next(list_profiler.begin(), i);
+      prf::monitor::Profiler* profiler = *next(list_profiler.begin(), i);
 
       ImGui::SetNextItemWidth(width);
       if(ImGui::BeginTabItem(profiler->name.c_str())){

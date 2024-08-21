@@ -36,7 +36,7 @@ void Recorder::start_thread(dat::base::Sensor* sensor){
   //---------------------------
 }
 void Recorder::run_thread(dat::base::Sensor* sensor){
-  prf::dynamic::Tasker* tasker = sensor->profiler.fetch_tasker("ope::recording");
+  prf::monitor::Tasker* tasker = sensor->profiler.fetch_tasker("ope::recording");
   //---------------------------
 
   tasker->loop();

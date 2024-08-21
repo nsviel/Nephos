@@ -4,8 +4,8 @@
 
 namespace prf{class Node;}
 namespace prf{class Structure;}
-namespace prf::dynamic{class Profiler;}
-namespace prf::dynamic{class Tasker;}
+namespace prf::monitor{class Profiler;}
+namespace prf::monitor{class Tasker;}
 
 
 namespace prf::gui::dynamic{
@@ -19,20 +19,20 @@ public:
 
 public:
   //Main function
-  void draw_profiler(prf::dynamic::Profiler* profiler);
+  void draw_profiler(prf::monitor::Profiler* profiler);
 
   //Graph function
   void draw_info();
-  void draw_tasker_all(prf::dynamic::Profiler* profiler);
-  void draw_tasker_separated(prf::dynamic::Profiler* profiler);
+  void draw_tasker_all(prf::monitor::Profiler* profiler);
+  void draw_tasker_separated(prf::monitor::Profiler* profiler);
 
   //Subfunction
-  void draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension, bool pause);
+  void draw_tasker_graph(prf::monitor::Tasker* tasker, ImVec2 dimension, bool pause);
   void draw_graph_command(ImVec2 dimension, ImVec2 pose);
 
 private:
   prf::Structure* prf_struct;
-  prf::dynamic::Tasker* current_tasker = nullptr;
+  prf::monitor::Tasker* current_tasker = nullptr;
 };
 
 }

@@ -19,7 +19,7 @@ Graph::Graph(prf::Node* node_profiler){
 Graph::~Graph(){}
 
 //Main function
-void Graph::draw_profiler(prf::dynamic::Profiler* profiler){
+void Graph::draw_profiler(prf::monitor::Profiler* profiler){
   //---------------------------
 
   this->draw_info();
@@ -64,8 +64,8 @@ void Graph::draw_info(){
 
   //---------------------------
 }
-void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
-  std::list<prf::dynamic::Tasker*> list_tasker = profiler->get_list_tasker();
+void Graph::draw_tasker_all(prf::monitor::Profiler* profiler){
+  std::list<prf::monitor::Tasker*> list_tasker = profiler->get_list_tasker();
   if(list_tasker.size() < 2) return;
   //---------------------------
 
@@ -95,7 +95,7 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
     dim = ImGui::GetContentRegionAvail();
     ImVec2 dimension = ImVec2(dim.x, dim.y / list_tasker.size());
     for(int i=0; i<list_tasker.size(); i++){
-      prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
+      prf::monitor::Tasker* tasker = *next(list_tasker.begin(), i);
       this->draw_tasker_graph(tasker, dimension, profiler->pause);
     }
 
@@ -110,12 +110,12 @@ void Graph::draw_tasker_all(prf::dynamic::Profiler* profiler){
 
   //---------------------------
 }
-void Graph::draw_tasker_separated(prf::dynamic::Profiler* profiler){
+void Graph::draw_tasker_separated(prf::monitor::Profiler* profiler){
   //---------------------------
 
-  std::list<prf::dynamic::Tasker*> list_tasker = profiler->get_list_tasker();
+  std::list<prf::monitor::Tasker*> list_tasker = profiler->get_list_tasker();
   for(int i=0; i<list_tasker.size(); i++){
-    prf::dynamic::Tasker* tasker = *next(list_tasker.begin(), i);
+    prf::monitor::Tasker* tasker = *next(list_tasker.begin(), i);
 
     //Tasker tab
     std::string title = tasker->name + "##tasker_unique_plot";
@@ -144,7 +144,7 @@ void Graph::draw_tasker_separated(prf::dynamic::Profiler* profiler){
 }
 
 //Subfunction
-void Graph::draw_tasker_graph(prf::dynamic::Tasker* tasker, ImVec2 dimension, bool pause){
+void Graph::draw_tasker_graph(prf::monitor::Tasker* tasker, ImVec2 dimension, bool pause){
   if(tasker->is_idle()) return;
   //---------------------------
 

@@ -11,7 +11,7 @@ namespace gui::state{class Manager;}
 namespace gui::style{class Style;}
 namespace gui::style{class Font;}
 namespace gui::style{class Theme;}
-namespace prf::dynamic{class Tasker;}
+namespace prf::monitor{class Tasker;}
 namespace gui::menu{class Demo;}
 
 
@@ -48,7 +48,7 @@ private:
   gui::style::Style* gui_style;
   gui::style::Font* gui_font;
   gui::style::Theme* gui_theme;
-  prf::dynamic::Tasker* tasker;
+  prf::monitor::Tasker* tasker;
 };
 
 }

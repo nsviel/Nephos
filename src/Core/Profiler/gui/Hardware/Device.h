@@ -4,7 +4,7 @@
 
 namespace prf{class Node;}
 namespace prf{class Structure;}
-namespace prf::dynamic{class Profiler;}
+namespace prf::monitor{class Profiler;}
 namespace prf::hardware{class Profiler;}
 namespace prf::hardware{class Structure;}
 namespace prf::hardware::structure{class Device;}

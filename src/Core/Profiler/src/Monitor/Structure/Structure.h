@@ -1,16 +1,16 @@
 #pragma once
 
-#include <Profiler/src/Dynamic/Profiler.h>
+#include <Profiler/src/Monitor/Profiler.h>
 #include <list>
 
 
-namespace prf::dynamic{
+namespace prf::monitor{
 
 struct Structure{
   //---------------------------
 
-  std::list<prf::dynamic::Profiler*> list_profiler;
-  prf::dynamic::Profiler profiler_main;
+  std::list<prf::monitor::Profiler*> list_profiler;
+  prf::monitor::Profiler profiler_main;
   bool pause = false;
   int max_time = 50;
 
