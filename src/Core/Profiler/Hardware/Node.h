@@ -11,7 +11,7 @@ namespace prf::monitor{class Manager;}
 namespace prf::gui{class Panel;}
 
 
-namespace prf{
+namespace prf::hardware{
 
 class Node : public utl::base::Node
 {

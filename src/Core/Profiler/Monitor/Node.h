@@ -9,7 +9,7 @@ namespace prf::monitor{class Structure;}
 namespace prf::monitor{class Manager;}
 
 
-namespace prf{
+namespace prf::monitor{
 
 class Node : public utl::base::Node
 {

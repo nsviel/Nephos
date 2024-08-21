@@ -4,7 +4,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace prf{
+namespace prf::hardware{
 
 Node::Node(prf::Node* node_profiler){
   utl::gui::Panel* prf_panel = add_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);

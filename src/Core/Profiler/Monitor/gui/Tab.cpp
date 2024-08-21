@@ -1,6 +1,6 @@
 #include "Tab.h"
 
-#include <Profiler/Namespace.h>
+#include <Monitor/Namespace.h>
 #include <Utility/Namespace.h>
 #include <imgui/core/imgui.h>
 
@@ -11,8 +11,8 @@ namespace prf::gui::dynamic{
 Tab::Tab(prf::monitor::Node* node_monitor){
   //---------------------------
 
-  this->prf_struct = node_profiler->get_prf_struct();
-  this->gui_graph = new prf::gui::dynamic::Graph(node_profiler);
+  this->prf_struct = node_monitor->get_prf_struct();
+  this->gui_graph = new prf::gui::dynamic::Graph(node_monitor);
 
   //---------------------------
 }
@@ -34,7 +34,7 @@ void Tab::draw_tab(int width){
 
 //Subfunction
 void Tab::draw_dynamic_tabbar(){
-  std::list<prf::monitor::Profiler*>& list_profiler = prf_struct->dynamic.list_profiler;
+  std::list<prf::monitor::Profiler*>& list_profiler = prf_struct->list_profiler;
   int width = ImGui::GetContentRegionAvail().x / list_profiler.size();
   //---------------------------
 

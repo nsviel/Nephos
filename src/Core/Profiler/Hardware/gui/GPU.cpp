@@ -1,6 +1,6 @@
 #include "GPU.h"
 
-#include <Profiler/Namespace.h>
+#include <Hardware/Namespace.h>
 #include <Utility/Namespace.h>
 #include <imgui/core/imgui.h>
 
@@ -41,29 +41,29 @@ void GPU::draw_gpu_info(){
   //Device
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Device"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", prf_struct->hardware.gpu.name.c_str());
+  ImGui::TextColored(color, "%s", prf_struct->gpu.name.c_str());
 
   //Temperature
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Temperature"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d°", prf_struct->hardware.gpu.temperature);
+  ImGui::TextColored(color, "%d°", prf_struct->gpu.temperature);
   ImGui::SameLine();
-  ImGui::Text("[%d°]", prf_struct->hardware.gpu.temperature_max);
+  ImGui::Text("[%d°]", prf_struct->gpu.temperature_max);
 
   //Consumption
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Total consumption"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%.2f kJ", prf_struct->hardware.gpu.total_consumption);
+  ImGui::TextColored(color, "%.2f kJ", prf_struct->gpu.total_consumption);
 
   //Power
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Power usage"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%.2f W", prf_struct->hardware.gpu.power_usage);
+  ImGui::TextColored(color, "%.2f W", prf_struct->gpu.power_usage);
 
   //Fan speed
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Fan speed"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d rpm", prf_struct->hardware.gpu.fan_speed);
+  ImGui::TextColored(color, "%d rpm", prf_struct->gpu.fan_speed);
 
   ImGui::EndTable();
 
@@ -91,8 +91,8 @@ void GPU::draw_gpu_queue(){
   ImGui::TableSetupColumn("Thread");
   ImGui::TableHeadersRow();
 
-  for(int i=0; i<prf_struct->hardware.gpu.vec_queue.size(); i++){
-    prf::hardware::structure::Queue& queue = prf_struct->hardware.gpu.vec_queue[i];
+  for(int i=0; i<prf_struct->gpu.vec_queue.size(); i++){
+    prf::hardware::structure::Queue& queue = prf_struct->gpu.vec_queue[i];
 
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     switch(queue.type){

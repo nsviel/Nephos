@@ -1,6 +1,6 @@
 #include "Tab.h"
 
-#include <Profiler/Namespace.h>
+#include <Hardware/Namespace.h>
 #include <imgui/core/imgui.h>
 
 

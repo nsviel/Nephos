@@ -1,9 +1,8 @@
 #include "Graph.h"
 
-#include <Profiler/Namespace.h>
+#include <Monitor/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
-#include <imgui/core/imgui.h>
 
 
 namespace prf::gui::dynamic{
@@ -154,12 +153,12 @@ void Graph::draw_tasker_graph(prf::monitor::Tasker* tasker, ImVec2 dimension, bo
   this->current_tasker = tasker;
 
   //Update plot
-  if(!prf_struct->dynamic.pause && !pause){
+  if(!prf_struct->pause && !pause){
     tasker->update();
   }
 
   //Render plot
-  tasker->plot.set_time_max(prf_struct->dynamic.max_time);
+  tasker->plot.set_time_max(prf_struct->max_time);
   tasker->plot.render(tasker->name, dimension);
 
   ImGui::EndChild();
@@ -182,17 +181,17 @@ void Graph::draw_graph_command(ImVec2 dimension, ImVec2 pose){
   ImGui::Begin("kzehfdize#hell", nullptr, flags);
 
   //Play / pause button
-  if(prf_struct->dynamic.pause){
+  if(prf_struct->pause){
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(46, 133, 45, 255));
     if(ImGui::Button(ICON_FA_PLAY "##profiler_play")){
-      prf_struct->dynamic.pause = false;
+      prf_struct->pause = false;
     }
     ImGui::PopStyleColor();
   }
   else{
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(45, 133, 133, 255));
     if(ImGui::Button(ICON_FA_PAUSE "##profiler_pause")){
-      prf_struct->dynamic.pause = true;
+      prf_struct->pause = true;
     }
     ImGui::PopStyleColor();
   }
@@ -203,7 +202,7 @@ void Graph::draw_graph_command(ImVec2 dimension, ImVec2 pose){
   ImGui::PushStyleColor(ImGuiCol_FrameBgActive, ImVec4(0.0f, 0.0f, 0.0f, 0.2f));
   ImGui::PushStyleColor(ImGuiCol_SliderGrab, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
   ImGui::PushStyleColor(ImGuiCol_SliderGrabActive, ImVec4(0.6f, 0.6f, 0.6f, 1.0f));
-  ImGui::VSliderInt("##Y_axis", ImVec2(24, dimension.y), &prf_struct->dynamic.max_time, 100, 10, "%d");
+  ImGui::VSliderInt("##Y_axis", ImVec2(24, dimension.y), &prf_struct->max_time, 100, 10, "%d");
   ImGui::PopStyleColor(6);
 
   ImGui::End();

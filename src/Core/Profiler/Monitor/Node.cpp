@@ -4,7 +4,7 @@
 #include <fontawesome/IconsFontAwesome6.h>
 
 
-namespace prf{
+namespace prf::monitor{
 
 Node::Node(prf::Node* node_profiler){
   //---------------------------

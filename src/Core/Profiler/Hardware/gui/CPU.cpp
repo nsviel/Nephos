@@ -1,6 +1,6 @@
 #include "CPU.h"
 
-#include <Profiler/Namespace.h>
+#include <Hardware/Namespace.h>
 #include <Utility/Namespace.h>
 #include <imgui/core/imgui.h>
 
@@ -40,14 +40,14 @@ void CPU::draw_cpu_info(){
   //Device
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Device"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", prf_struct->hardware.cpu.name.c_str());
+  ImGui::TextColored(color, "%s", prf_struct->cpu.name.c_str());
 
   //Temperature
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Temperature"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%.2f°", prf_struct->hardware.cpu.temperature);
+  ImGui::TextColored(color, "%.2f°", prf_struct->cpu.temperature);
   ImGui::SameLine();
-  ImGui::Text("[%d°]", prf_struct->hardware.cpu.temperature_max);
+  ImGui::Text("[%d°]", prf_struct->cpu.temperature_max);
 
   ImGui::EndTable();
 

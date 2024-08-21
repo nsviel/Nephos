@@ -1,6 +1,5 @@
 #include "Node.h"
 
-#include <Profiler/Namespace.h>
 #include <Core/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
@@ -11,8 +10,10 @@ Node::Node(core::Node* node_core){
   utl::gui::Panel* prf_panel = add_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
+  //Dependancy
   this->node_vulkan = node_core->get_node_vulkan();
 
+  //Child
   this->node_monitor = new prf::monitor::Node(this);
   this->node_hardware = new prf::hardware::Node(this);
   this->gui_panel = new prf::gui::Panel(this, &prf_panel->is_open);

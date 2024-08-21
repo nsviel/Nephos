@@ -1,8 +1,8 @@
 #include "GPU.h"
 
+#include <Hardware/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Profiler/Namespace.h>
 
 
 namespace prf::hardware{
@@ -11,10 +11,10 @@ namespace prf::hardware{
 GPU::GPU(prf::hardware::Node* node_hardware){
   //---------------------------
 
-  vk::Node* node_vulkan = node_profiler->get_node_vulkan();
+  vk::Node* node_vulkan = node_hardware->get_node_vulkan();
 
   this->vk_struct = node_vulkan->get_vk_struct();
-  this->prf_struct = node_profiler->get_prf_struct();
+  this->prf_struct = node_hardware->get_prf_struct();
   this->utl_nvidia = new sys::hardware::Nvidia();
 
   //---------------------------
@@ -26,17 +26,17 @@ GPU::~GPU(){}
 void GPU::collect_gpu_info(){
   //---------------------------
 
-  prf_struct->hardware.gpu.temperature_max = utl_nvidia->get_temperature_max_shutdown();
+  prf_struct->gpu.temperature_max = utl_nvidia->get_temperature_max_shutdown();
 
   //---------------------------
 }
 void GPU::collect_gpu_variable(){
   //---------------------------
 
-  prf_struct->hardware.gpu.temperature = utl_nvidia->get_temperature();
-  prf_struct->hardware.gpu.total_consumption = utl_nvidia->get_total_consumption();
-  prf_struct->hardware.gpu.fan_speed = utl_nvidia->get_fan_speed();
-  prf_struct->hardware.gpu.power_usage = utl_nvidia->get_power_usage();
+  prf_struct->gpu.temperature = utl_nvidia->get_temperature();
+  prf_struct->gpu.total_consumption = utl_nvidia->get_total_consumption();
+  prf_struct->gpu.fan_speed = utl_nvidia->get_fan_speed();
+  prf_struct->gpu.power_usage = utl_nvidia->get_power_usage();
 
   //---------------------------
 }
@@ -79,10 +79,10 @@ void GPU::collect_vulkan_device(){
 
     //Check if it is the selected one
     if(physical_device.name == vk_struct->device.physical_device.name){
-      prf_struct->hardware.gpu.name = physical_device.name;
+      prf_struct->gpu.name = physical_device.name;
     }
 
-    prf_struct->hardware.vec_device.push_back(device_info);
+    prf_struct->vec_device.push_back(device_info);
   }
 
   //---------------------------
@@ -105,7 +105,7 @@ void GPU::add_queue(vk::queue::structure::Queue& queue, int type){
   prf_queue.family_ID = queue.family_ID;
   prf_queue.family_idx = queue.family_index;
   prf_queue.thread_ID = queue.thread_ID;
-  prf_struct->hardware.gpu.vec_queue.push_back(prf_queue);
+  prf_struct->gpu.vec_queue.push_back(prf_queue);
 
   //---------------------------
 }

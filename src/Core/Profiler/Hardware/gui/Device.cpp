@@ -1,6 +1,6 @@
 #include "Device.h"
 
-#include <Profiler/Namespace.h>
+#include <Hardware/Namespace.h>
 #include <Utility/Namespace.h>
 #include <imgui/core/imgui.h>
 
@@ -22,8 +22,8 @@ void Device::draw_tab(){
   //---------------------------
 
   if(ImGui::BeginTabBar("vulkan_device##tab_bar")){
-    for(int i=0; i<prf_struct->hardware.vec_device.size(); i++){
-      prf::hardware::structure::Device& device = prf_struct->hardware.vec_device[i];
+    for(int i=0; i<prf_struct->vec_device.size(); i++){
+      prf::hardware::structure::Device& device = prf_struct->vec_device[i];
 
       if(ImGui::BeginTabItem(device.name.c_str(), NULL)){
         this->draw_device_info(device);

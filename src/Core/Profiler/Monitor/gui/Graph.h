@@ -1,5 +1,7 @@
 #pragma once
 
+#include <imgui/core/imgui.h>
+
 namespace prf::monitor{class Node;}
 namespace prf::monitor{class Structure;}
 namespace prf::monitor{class Profiler;}

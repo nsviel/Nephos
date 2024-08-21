@@ -1,6 +1,6 @@
 #include "Profiler.h"
 
-#include <Profiler/Namespace.h>
+#include <Monitor/Namespace.h>
 
 
 namespace prf::monitor{

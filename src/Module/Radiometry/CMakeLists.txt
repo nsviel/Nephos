@@ -19,19 +19,12 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
-find_package(Python REQUIRED COMPONENTS Interpreter Development)
-
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
   MAIN_CORE
 
   RADIOMETRY_CALIBRATION
   RADIOMETRY_CORRECTION
-
-  ${Python_LIBRARIES}
-  Python::Python
-  python3.10
-  -lpython3.10
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

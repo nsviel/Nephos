@@ -10,9 +10,9 @@ namespace prf::hardware{
 Manager::Manager(prf::hardware::Node* node_hardware){
   //---------------------------
 
-  this->prf_struct = node_profiler->get_prf_struct();
-  this->cpu_device = new prf::hardware::CPU(node_profiler);
-  this->gpu_device = new prf::hardware::GPU(node_profiler);
+  this->prf_struct = node_hardware->get_prf_struct();
+  this->cpu_device = new prf::hardware::CPU(node_hardware);
+  this->gpu_device = new prf::hardware::GPU(node_hardware);
 
   //---------------------------
 }

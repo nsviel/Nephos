@@ -1,6 +1,6 @@
 #include "Manager.h"
 
-#include <Profiler/Monitor/Namespace.h>
+#include <Monitor/Namespace.h>
 #include <Vulkan/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -11,9 +11,9 @@ namespace prf::monitor{
 Manager::Manager(prf::monitor::Node* node_monitor){
   //---------------------------
 
-  vk::Node* node_vulkan = node_profiler->get_node_vulkan();
+  vk::Node* node_vulkan = node_monitor->get_node_vulkan();
 
-  this->prf_struct = node_profiler->get_prf_struct();
+  this->prf_struct = node_monitor->get_prf_struct();
   this->vk_struct = node_vulkan->get_vk_struct();
 
   //---------------------------
@@ -24,12 +24,12 @@ Manager::~Manager(){}
 void Manager::init(){
   //---------------------------
 
-  this->add_profiler(&prf_struct->dynamic.profiler_main, "Main");
+  this->add_profiler(&prf_struct->profiler_main, "Main");
 
   //---------------------------
 }
 void Manager::loop(int max_fps){
-  prf::monitor::Profiler* profiler = &prf_struct->dynamic.profiler_main;
+  prf::monitor::Profiler* profiler = &prf_struct->profiler_main;
   //---------------------------
 
   //CPU tasker
@@ -53,7 +53,7 @@ void Manager::add_profiler(prf::monitor::Profiler* profiler, std::string name){
   //---------------------------
 
   profiler->name = name;
-  prf_struct->dynamic.list_profiler.push_back(profiler);
+  prf_struct->list_profiler.push_back(profiler);
 
   //---------------------------
 }
@@ -61,13 +61,13 @@ void Manager::remove_profiler(prf::monitor::Profiler* profiler){
   //---------------------------
 
   profiler->clean();
-  prf_struct->dynamic.list_profiler.remove(profiler);
+  prf_struct->list_profiler.remove(profiler);
   //delete profiler;
 
   //---------------------------
 }
 void Manager::collect_gpu_task(){
-  prf::monitor::Tasker* tasker = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
+  prf::monitor::Tasker* tasker = prf_struct->profiler_main.fetch_tasker("gpu");
   //---------------------------
 
   std::vector<vk::profiler::Command_buffer>& vec_command = vk_struct->profiler.vec_command_buffer;
@@ -81,7 +81,7 @@ void Manager::collect_gpu_task(){
   //---------------------------
 }
 prf::monitor::Tasker* Manager::get_tasker_cpu(){
-  prf::monitor::Profiler* profiler = &prf_struct->dynamic.profiler_main;
+  prf::monitor::Profiler* profiler = &prf_struct->profiler_main;
   //---------------------------
 
   prf::monitor::Tasker* tasker_cpu = profiler->fetch_tasker("cpu");

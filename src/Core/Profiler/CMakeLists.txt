@@ -7,8 +7,8 @@ add_subdirectory(Hardware)
 add_subdirectory(Monitor)
 
 file(GLOB_RECURSE ALL_SOURCES
-  gui/*.cpp
   Node.cpp
+  gui/*.cpp
 )
 
 #-----------------
