@@ -1,5 +1,6 @@
 #pragma once
 
-#include <Profiler/Node.h>
-#include <Profiler/src/Namespace.h>
 #include <Profiler/gui/Namespace.h>
+#include <Profiler/Hardware/Namespace.h>
+#include <Profiler/Monitor/Namespace.h>
+#include <Profiler/Node.h>

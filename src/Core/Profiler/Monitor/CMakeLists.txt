@@ -3,12 +3,8 @@ set(LIBRARY_NAME SYSTEM_PROFILER)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Hardware)
-add_subdirectory(Monitor)
-
 file(GLOB_RECURSE ALL_SOURCES
-  gui/*.cpp
-  Node.cpp
+  *.cpp
 )
 
 #-----------------
