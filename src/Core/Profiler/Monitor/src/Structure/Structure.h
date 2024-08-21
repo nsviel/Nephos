@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Profiler/src/Monitor/Profiler.h>
+#include <Profiler/src/Monitor/Component/Profiler.h>
 #include <list>
 
 

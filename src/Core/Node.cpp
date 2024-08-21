@@ -24,8 +24,8 @@ Node::Node(app::Node* node_app){
   this->node_io = new io::Node(this);
 
   //Tasker CPU
-  prf::monitor::Manager* prf_dynamic = node_profiler->get_prf_dynamic();
-  this->tasker = prf_dynamic->get_tasker_cpu();
+  prf::monitor::Manager* prf_monitor = node_profiler->get_prf_monitor();
+  this->tasker = prf_monitor->get_tasker_cpu();
 
   //---------------------------
 }

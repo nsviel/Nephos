@@ -24,7 +24,7 @@ public:
 
 private:
   dyn::prc::Structure* dyn_struct;
-  prf::monitor::Manager* prf_dynamic;
+  prf::monitor::Manager* prf_monitor;
 };
 
 }

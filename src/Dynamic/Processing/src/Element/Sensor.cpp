@@ -15,7 +15,7 @@ Sensor::Sensor(dyn::prc::Node* node_processing){
   prf::Node* node_profiler = node_processing->get_node_profiler();
 
   this->dyn_struct = node_processing->get_dyn_struct();
-  this->prf_dynamic = node_profiler->get_prf_dynamic();
+  this->prf_monitor = node_profiler->get_prf_monitor();
 
   //---------------------------
 }
@@ -25,14 +25,14 @@ Sensor::~Sensor(){}
 void Sensor::init_sensor(dat::base::Sensor* sensor){
   //---------------------------
 
-  prf_dynamic->add_profiler(&sensor->profiler, sensor->name);
+  prf_monitor->add_profiler(&sensor->profiler, sensor->name);
 
   //---------------------------
 }
 void Sensor::remove_sensor(dat::base::Sensor* sensor){
   //---------------------------
 
-  prf_dynamic->remove_profiler(&sensor->profiler);
+  prf_monitor->remove_profiler(&sensor->profiler);
 
   //---------------------------
 }

@@ -128,11 +128,6 @@ void Tasker::task_end(const std::string& name, float time, glm::vec4 color){
     task->color = color;
   }
 
-  //Prevent from very low time tasks (< 0.01ms)
-  if(task->ts_end - task->ts_begin < 0.00001){
-    this->remove_task(name);
-  }
-
   //---------------------------
 }
 void Tasker::add_task(const std::string& name, float ts_begin, float ts_end, glm::vec4 color){

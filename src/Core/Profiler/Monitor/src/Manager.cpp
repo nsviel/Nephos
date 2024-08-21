@@ -29,16 +29,21 @@ void Manager::init(){
   //---------------------------
 }
 void Manager::loop(int max_fps){
+  prf::monitor::Profiler* profiler = &prf_struct->dynamic.profiler_main;
   //---------------------------
 
   //CPU tasker
-  prf::monitor::Tasker* tasker_cpu = prf_struct->dynamic.profiler_main.fetch_tasker("cpu");
+  prf::monitor::Tasker* tasker_cpu = profiler->fetch_tasker("cpu");
   tasker_cpu->loop(max_fps);
 
   //GPU tasker
-  prf::monitor::Tasker* tasker_gpu = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
+  prf::monitor::Tasker* tasker_gpu = profiler->fetch_tasker("gpu");
   tasker_gpu->loop();
   this->collect_gpu_task();
+
+
+  std::list<prf::monitor::Tasker*> list_tasker = profiler->get_list_tasker();
+  //say(list_tasker.size());
 
   //---------------------------
 }
@@ -65,23 +70,24 @@ void Manager::collect_gpu_task(){
   prf::monitor::Tasker* tasker = prf_struct->dynamic.profiler_main.fetch_tasker("gpu");
   //---------------------------
 
-  float ts_current = 0;
-  for(int i=0; i<vk_struct->profiler.vec_command_buffer.size(); i++){
-    std::string& name = vk_struct->profiler.vec_command_buffer[i].name;
-    float& duration = vk_struct->profiler.vec_command_buffer[i].duration;
+  std::vector<vk::profiler::Command_buffer>& vec_command = vk_struct->profiler.vec_command_buffer;
 
-    tasker->add_task(name, ts_current, ts_current + duration);
-    ts_current += duration;
+  float ts_current = 0;
+  for(int i=0; i<vec_command.size(); i++){
+    tasker->add_task(vec_command[i].name, ts_current, ts_current + vec_command[i].duration);
+    ts_current += vec_command[i].duration;
   }
 
   //---------------------------
 }
 prf::monitor::Tasker* Manager::get_tasker_cpu(){
+  prf::monitor::Profiler* profiler = &prf_struct->dynamic.profiler_main;
   //---------------------------
 
-  return prf_struct->dynamic.profiler_main.fetch_tasker("cpu");
+  prf::monitor::Tasker* tasker_cpu = profiler->fetch_tasker("cpu");
 
   //---------------------------
+  return tasker_cpu;
 }
 
 }

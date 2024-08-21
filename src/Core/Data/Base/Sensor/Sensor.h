@@ -5,7 +5,7 @@
 #include <Data/Base/Sensor/Calibration.h>
 #include <Data/Base/Sensor/State.h>
 #include <Data/Base/Sensor/Recorder.h>
-#include <Profiler/src/Monitor/Profiler.h>
+#include <Profiler/src/Monitor/Component/Profiler.h>
 #include <Utility/Namespace.h>
 
 
