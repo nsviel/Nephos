@@ -26,13 +26,13 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
   inline prf::monitor::Structure* get_prf_struct(){return prf_struct;}
-  inline prf::monitor::Manager* get_prf_monitor(){return prf_monitor;}
+  inline prf::monitor::Manager* get_prf_manager(){return prf_manager;}
 
 private:
   vk::Node* node_vulkan;
 
   prf::monitor::Structure* prf_struct;
-  prf::monitor::Manager* prf_monitor;
+  prf::monitor::Manager* prf_manager;
 };
 
 }

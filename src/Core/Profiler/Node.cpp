@@ -1,6 +1,7 @@
 #include "Node.h"
 
 #include <Core/Namespace.h>
+#include <Profiler/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -26,8 +27,8 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  prf_hardware->init();
-  prf_monitor->init();
+  node_hardware->init();
+  node_monitor->init();
 
   //---------------------------
 }
@@ -41,7 +42,7 @@ void Node::gui(){
 void Node::loop(){
   //---------------------------
 
-  prf_monitor->loop(120);
+  node_monitor->loop();
 
   //---------------------------
 }

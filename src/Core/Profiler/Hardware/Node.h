@@ -25,13 +25,13 @@ public:
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
   inline prf::hardware::Structure* get_prf_struct(){return prf_struct;}
-  inline prf::hardware::Manager* get_prf_hardware(){return prf_hardware;}
+  inline prf::hardware::Manager* get_prf_manager(){return prf_manager;}
 
 private:
   vk::Node* node_vulkan;
 
   prf::hardware::Structure* prf_struct;
-  prf::hardware::Manager* prf_hardware;
+  prf::hardware::Manager* prf_manager;
 };
 
 }

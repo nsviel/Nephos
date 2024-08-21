@@ -16,7 +16,7 @@ Sensor::Sensor(dyn::prc::Node* node_processing){
   prf::monitor::Node* node_monitor = node_profiler->get_node_monitor();
 
   this->dyn_struct = node_processing->get_dyn_struct();
-  this->prf_monitor = node_monitor->get_prf_monitor();
+  this->prf_monitor = node_monitor->get_prf_manager();
 
   //---------------------------
 }

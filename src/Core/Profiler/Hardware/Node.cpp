@@ -23,7 +23,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  prf_hardware->init();
+  prf_manager->init();
 
   //---------------------------
 }

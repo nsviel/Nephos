@@ -12,7 +12,7 @@ Node::Node(prf::Node* node_profiler){
   this->node_vulkan = node_profiler->get_node_vulkan();
 
   this->prf_struct = new prf::monitor::Structure();
-  this->prf_monitor = new prf::monitor::Manager(this);
+  this->prf_manager = new prf::monitor::Manager(this);
 
   //---------------------------
 }
@@ -22,14 +22,14 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  prf_monitor->init();
+  prf_manager->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  prf_monitor->loop(120);
+  prf_manager->loop(120);
 
   //---------------------------
 }
