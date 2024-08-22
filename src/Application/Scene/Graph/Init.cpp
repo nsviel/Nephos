@@ -65,6 +65,7 @@ void Init::load_entity(){
   //io_importer->load_object(sphere);
   //io_importer->load_set(pcap);
   //io_importer->load_object(dragon);
+  //io_importer->load_object(dragon);
   //io_importer->load_object(mire);
   //io_importer->load_object(cath);
 

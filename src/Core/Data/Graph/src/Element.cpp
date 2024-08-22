@@ -55,6 +55,7 @@ void Element::remove_set(dat::base::Set* set){
   while(set->list_entity.size() != 0){
     dat::base::Entity* entity = *set->list_entity.begin();
     this->remove_entity(set, entity);
+    if(set == nullptr) say("coucou");
   }
 
   // Recursively call remove_entity_recursive for each nested set

@@ -100,6 +100,9 @@ void Set::remove_subset(dat::base::Set* subset){
   dat::base::Set* set = subset->set_parent;
   set->list_subset.remove(subset);
 
+  delete subset;
+  subset = nullptr;
+
   //---------------------------
 }
 dat::base::Set* Set::create_subset(dat::base::Set* set, std::string name){

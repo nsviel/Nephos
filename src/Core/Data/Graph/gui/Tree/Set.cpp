@@ -99,7 +99,6 @@ void Set::draw_open(dat::base::Set* set, bool& node_open, int& nb_row){
     }
 
     //Recursive call for nested sets
-    if(set == nullptr) return;
     for(dat::base::Set* subset : set->list_subset){
       nb_row += tree_set(subset);
     }
