@@ -24,6 +24,21 @@ Set::~Set(){}
 
 //Main function
 int Set::tree_set(dat::base::Set* set){
+  bool node_open;
+  int nb_row = 0;
+  //---------------------------
+
+  this->draw_node(set, node_open);
+  this->draw_click(set);
+  this->draw_button(set);
+  this->draw_open(set, node_open, nb_row);
+
+  //---------------------------
+  return nb_row;
+}
+
+//Subfunction
+void Set::draw_node(dat::base::Set* set, bool& node_open){
   utl::base::Element* element = gph_selection->get_selected_element();
   //---------------------------
 
@@ -38,7 +53,12 @@ int Set::tree_set(dat::base::Set* set){
   //Set row
   ImGui::TableNextRow();
   ImGui::TableNextColumn();
-  bool is_node_open = ImGui::TreeNodeEx(name.c_str(), flag);
+  node_open = ImGui::TreeNodeEx(name.c_str(), flag);
+
+  //---------------------------
+}
+void Set::draw_click(dat::base::Set* set){
+  //---------------------------
 
   //If set is double-clicked, open set panel
   if(ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0)){
@@ -51,6 +71,11 @@ int Set::tree_set(dat::base::Set* set){
     gph_selection->select_element(set);
   }
 
+  //---------------------------
+}
+void Set::draw_button(dat::base::Set* set){
+  //---------------------------
+
   //Visibility button
   ImGui::TableNextColumn();
   gui_button->button_visibility(set);
@@ -59,29 +84,26 @@ int Set::tree_set(dat::base::Set* set){
   ImGui::TableNextColumn();
   gui_button->button_remove(set);
 
-  //If set open, display elements
-  int nb_row = 0;
-  if(is_node_open){
-    this->tree_set_open(set, nb_row);
-    ImGui::TreePop();
-  }
-
   //---------------------------
-  return nb_row;
 }
-void Set::tree_set_open(dat::base::Set* set, int& nb_row){
+void Set::draw_open(dat::base::Set* set, bool& node_open, int& nb_row){
   //---------------------------
-//say("----");sayHello();
-  //List all direct entities
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-    this->tree_entity(set, entity, nb_row);
-  }
 
-  //Recursive call for nested sets
-  if(set == nullptr) return;
-  for(dat::base::Set* subset : set->list_subset){
-    nb_row += tree_set(subset);
+  //If set open, display elements
+  if(node_open){
+    //List all direct entities
+    for(int i=0; i<set->list_entity.size(); i++){
+      dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+      //this->tree_entity(set, entity, nb_row);
+    }
+
+    //Recursive call for nested sets
+    if(set == nullptr) return;
+    for(dat::base::Set* subset : set->list_subset){
+      nb_row += tree_set(subset);
+    }
+
+    ImGui::TreePop();
   }
 
   //---------------------------

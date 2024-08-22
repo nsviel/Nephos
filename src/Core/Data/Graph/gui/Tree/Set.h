@@ -21,7 +21,12 @@ public:
 public:
   //Main function
   int tree_set(dat::base::Set* set);
-  void tree_set_open(dat::base::Set* set, int& nb_row);
+
+  //Subfunction
+  void draw_node(dat::base::Set* set, bool& node_open);
+  void draw_click(dat::base::Set* set);
+  void draw_button(dat::base::Set* set);
+  void draw_open(dat::base::Set* set, bool& node_open, int& nb_row);
 
 private:
   dat::gph::Selection* gph_selection;
