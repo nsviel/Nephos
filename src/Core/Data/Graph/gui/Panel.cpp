@@ -147,7 +147,7 @@ int Panel::tree_set(dat::base::Set* set){
 }
 void Panel::tree_set_open(dat::base::Set* set, int& nb_row){
   //---------------------------
-
+//say("----");sayHello();
   //List all direct entities
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
@@ -155,6 +155,7 @@ void Panel::tree_set_open(dat::base::Set* set, int& nb_row){
   }
 
   //Recursive call for nested sets
+  if(set == nullptr) return;
   for(dat::base::Set* subset : set->list_subset){
     nb_row += tree_set(subset);
   }

@@ -93,6 +93,15 @@ void Set::add_subset(dat::base::Set* set, dat::base::Set* subset){
 
   //---------------------------
 }
+void Set::remove_subset(dat::base::Set* subset){
+  if(subset == nullptr) return;
+  //---------------------------
+
+  dat::base::Set* set = subset->set_parent;
+  set->list_subset.remove(subset);
+
+  //---------------------------
+}
 dat::base::Set* Set::create_subset(dat::base::Set* set, std::string name){
   //---------------------------
 
@@ -175,14 +184,17 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
 
       //Effective remove
       dat_entity->remove_entity(entity);
-
-      return;
     }
   }
 
   // Recursively call remove for each nested set
   for(dat::base::Set* subset : set->list_subset){
     this->remove_entity(subset, entity);
+  }
+
+  //Remove if empty
+  if(set->is_suppressible && set->list_subset.size() == 0 && set->list_entity.size() == 0){
+    this->remove_subset(set);
   }
 
   //---------------------------

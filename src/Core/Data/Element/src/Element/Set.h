@@ -27,6 +27,7 @@ public:
 
   //Subset function
   void add_subset(dat::base::Set* set, dat::base::Set* subset);
+  void remove_subset(dat::base::Set* subset);
   dat::base::Set* create_subset(dat::base::Set* set, std::string name);
   dat::base::Set* get_subset(dat::base::Set* set, std::string name);
   dat::base::Set* get_or_create_subset(dat::base::Set* set, std::string name);
