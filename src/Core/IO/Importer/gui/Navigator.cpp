@@ -15,6 +15,8 @@ Navigator::Navigator(io::imp::gui::Panel* gui_panel){
   this->io_struct = node_importer->get_io_struct();
   this->utl_navigator = new utl::gui::Navigator();
 
+  this->open_tab = true;
+
   //---------------------------
 }
 Navigator::~Navigator(){}

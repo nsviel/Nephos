@@ -45,13 +45,13 @@ void Organisation::recolt_items(std::string& directory){
   //Insert items
   int ID = 0;
   for(int i=0; i<vec_path.size(); i++){
-    std::string current_path = vec_path[i];
-    if(is_hidden_file(current_path)) continue;
+    std::string& path = vec_path[i];
+    if(is_hidden_file(path)) continue;
 
-    if(utl::directory::is_directory(current_path)){
-      this->insert_folder(vec_folder, current_path, ID);
+    if(utl::directory::is_directory(path)){
+      this->insert_folder(vec_folder, path, ID);
     }else{
-      this->insert_file(vec_file, current_path, ID);
+      this->insert_file(vec_file, path, ID);
     }
   }
 

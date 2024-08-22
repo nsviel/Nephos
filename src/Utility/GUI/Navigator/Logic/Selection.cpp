@@ -123,9 +123,12 @@ void Selection::update_selected_path(){
   //---------------------------
 
   nav_struct->vec_selected_path.clear();
-  for(int index : nav_struct->vec_selected_idx){
-    utl::gui::navigator::Item& item = nav_struct->vec_item[index];
-    nav_struct->vec_selected_path.push_back(item.path);
+  for(int i=0; i<nav_struct->vec_item.size(); i++){
+    utl::gui::navigator::Item& item = nav_struct->vec_item[i];
+
+    if(nav_struct->vec_selected_idx.contains(item.ID)){
+      nav_struct->vec_selected_path.push_back(item.path);
+    }
   }
 
   //---------------------------

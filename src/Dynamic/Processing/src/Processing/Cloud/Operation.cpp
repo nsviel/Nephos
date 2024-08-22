@@ -31,7 +31,7 @@ void Operation::run_operation(dat::base::Sensor* sensor){
   //---------------------------
 
   dyn_recorder->start_thread(sensor);
-  //dyn_normal->start_thread(sensor);
+  dyn_normal->start_thread(sensor);
   //dyn_radio->start_thread(sensor);
 
   //The troutine pose probleme, is faut qu'il soit dédié à un sensor
@@ -47,7 +47,7 @@ void Operation::wait_operation(){
   //---------------------------
 
   dyn_recorder->wait_thread();
-  //dyn_normal->wait_thread();
+  dyn_normal->wait_thread();
   //dyn_radio->wait_thread();
 
 

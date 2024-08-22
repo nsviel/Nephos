@@ -25,10 +25,12 @@ void Element::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
+  //Selection
   if(gph_struct->selection == entity){
     gph_selection->select_next_element();
   }
 
+  //Remove
   dat_set->remove_entity(set, entity);
 
   //---------------------------
@@ -50,9 +52,8 @@ void Element::remove_set(dat::base::Set* set){
   //---------------------------
 
   // Check if the current set has the query entity
-  auto it = set->list_entity.begin();
-  while(it != set->list_entity.end()){
-    dat::base::Entity* entity = *it;
+  while(set->list_entity.size() != 0){
+    dat::base::Entity* entity = *set->list_entity.begin();
     this->remove_entity(set, entity);
   }
 
