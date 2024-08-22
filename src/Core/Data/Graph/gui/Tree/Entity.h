@@ -16,7 +16,7 @@ class Entity
 {
 public:
   //Constructor / Destructor
-  Entity(dat::gph::Node* node_graph, bool* show_window);
+  Entity(dat::gph::Node* node_graph);
   ~Entity();
 
 public:

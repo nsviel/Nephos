@@ -9,7 +9,7 @@
 namespace dat::gph::gui{
 
 //Constructor / Destructor
-Entity::Entity(dat::gph::Node* node_graph, bool* show_window){
+Entity::Entity(dat::gph::Node* node_graph){
   //---------------------------
 
   dat::elm::Node* node_element = node_graph->get_node_element();

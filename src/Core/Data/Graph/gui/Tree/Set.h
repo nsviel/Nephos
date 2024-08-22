@@ -5,6 +5,7 @@
 namespace dat::gph{class Node;}
 namespace dat::gph{class Selection;}
 namespace dat::gph::gui{class Button;}
+namespace dat::gph::gui{class Entity;}
 namespace dat::set::gui{class Panel;}
 namespace dat::base{class Set;}
 
@@ -15,7 +16,7 @@ class Set
 {
 public:
   //Constructor / Destructor
-  Set(dat::gph::Node* node_graph, bool* show_window);
+  Set(dat::gph::Node* node_graph);
   ~Set();
 
 public:
@@ -32,6 +33,7 @@ private:
   dat::gph::Selection* gph_selection;
   dat::gph::gui::Button* gui_button;
   dat::set::gui::Panel* gui_set;
+  dat::gph::gui::Entity* gui_entity;
 };
 
 }

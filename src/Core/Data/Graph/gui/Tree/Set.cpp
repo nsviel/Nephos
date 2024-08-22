@@ -9,14 +9,15 @@
 namespace dat::gph::gui{
 
 //Constructor / Destructor
-Set::Set(dat::gph::Node* node_graph, bool* show_window){
+Set::Set(dat::gph::Node* node_graph){
   //---------------------------
 
   dat::elm::Node* node_element = node_graph->get_node_element();
 
   this->gph_selection = node_graph->get_gph_selection();
-  this->gui_button = new dat::gph::gui::Button(node_graph);
   this->gui_set = node_element->get_gui_set();
+  this->gui_button = new dat::gph::gui::Button(node_graph);
+  this->gui_entity = new dat::gph::gui::Entity(node_graph);
 
   //---------------------------
 }
@@ -94,7 +95,7 @@ void Set::draw_open(dat::base::Set* set, bool& node_open, int& nb_row){
     //List all direct entities
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-      //this->tree_entity(set, entity, nb_row);
+      gui_entity->tree_entity(set, entity, nb_row);
     }
 
     //Recursive call for nested sets
