@@ -2,9 +2,6 @@
 
 #include <Data/Graph/Namespace.h>
 #include <Data/Element/Namespace.h>
-#include <Core/Namespace.h>
-#include <Engine/Namespace.h>
-#include <Engine/Operation/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 #include <imgui/core/imgui.h>
 
@@ -17,15 +14,9 @@ Set::Set(dat::gph::Node* node_graph, bool* show_window){
 
   dat::elm::Node* node_element = node_graph->get_node_element();
 
-  this->dat_graph = node_graph->get_gph_graph();
   this->gph_selection = node_graph->get_gph_selection();
-  this->dat_set = node_element->get_dat_set();
   this->gui_button = new dat::gph::gui::Button(node_graph);
   this->gui_set = node_element->get_gui_set();
-  this->gui_entity = node_element->get_gui_entity();
-
-  this->name = "Graph";
-  this->show_window = show_window;
 
   //---------------------------
 }
