@@ -63,7 +63,7 @@ bool count_packets(const Tins::PDU &){
 }
 
 //Main function
-utl::base::Element* Importer::import(utl::base::Path path){
+std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   /*file_packets.clear();
   //---------------------------
 
@@ -80,7 +80,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
   return dataset;*/
   return nullptr;
 }
-/*void Importer::insert(dat::base::Set* set){
+/*void Importer::insert(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   vld_struct->data.vec_set.push_back(set);

@@ -20,7 +20,7 @@ Orthographic::Orthographic(cam::Node* node_camera){
 Orthographic::~Orthographic(){}
 
 //Main function
-glm::mat4 Orthographic::compute_proj_ortho(cam::Entity* camera){
+glm::mat4 Orthographic::compute_proj_ortho(std::shared_ptr<cam::Entity> camera){
   glm::mat4 cam_proj = glm::mat4(1.0f);
   if(camera == nullptr) return cam_proj;
   //---------------------------
@@ -40,7 +40,7 @@ glm::mat4 Orthographic::compute_proj_ortho(cam::Entity* camera){
 }
 
 //Subfunction
-void Orthographic::ortho_zoom(cam::Entity* camera, float value){
+void Orthographic::ortho_zoom(std::shared_ptr<cam::Entity> camera, float value){
   //---------------------------
 
   camera->zoom -= value / 100;

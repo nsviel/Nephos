@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Exporter/src/Structure/Base.h>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -22,16 +23,16 @@ public:
 
 public:
   //Main function
-  void export_entity(dat::base::Entity* entity, std::string path);
+  void export_entity(std::shared_ptr<dat::base::Entity> entity, std::string path);
 
   //Subfunction
   void init_path();
-  void export_with_config(io::exp::Base* exporter, dat::base::Entity* entity, std::string path);
+  void export_with_config(io::exp::Base* exporter, std::shared_ptr<dat::base::Entity> entity, std::string path);
   void insert_exporter(io::exp::Base* exporter);
-  void update_current_path(utl::base::Element* element);
+  void update_current_path(std::shared_ptr<utl::base::Element> element);
   bool is_format_supported(std::string format);
-  bool is_current_config(dat::base::Entity* entity);
-  bool is_recording(utl::base::Element* element);
+  bool is_current_config(std::shared_ptr<dat::base::Entity> entity);
+  bool is_recording(std::shared_ptr<utl::base::Element> element);
   std::vector<std::string> get_supported_format();
   std::vector<io::exp::Encoding> get_supported_encoding(std::string format);
 

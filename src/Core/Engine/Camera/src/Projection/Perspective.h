@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <memory>
 
 namespace vk::window{class GLFW;}
 namespace cam{class Node;}
@@ -17,7 +18,7 @@ public:
 
 public:
   //Main function
-  glm::mat4 compute_proj_perspective(cam::Entity* camera);
+  glm::mat4 compute_proj_perspective(std::shared_ptr<cam::Entity> camera);
 
 private:
   vk::window::GLFW* vk_window;

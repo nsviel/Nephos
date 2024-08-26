@@ -31,7 +31,7 @@ public:
 
 public:
   //Main function
-  utl::base::Element* import(utl::base::Path path);
+  std::shared_ptr<utl::base::Element> import(utl::base::Path path);
 
 private:
   //Subfunction

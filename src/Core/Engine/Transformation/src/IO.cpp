@@ -18,8 +18,8 @@ IO::IO(){
 IO::~IO(){}
 
 //Main function
-void IO::load_transformation(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void IO::load_transformation(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   std::string path = entity->pose.path.build();
@@ -27,7 +27,7 @@ void IO::load_transformation(dat::base::Entity* entity){
 
   //---------------------------
 }
-void IO::load_transformation(utl::base::Element* element, std::string path){
+void IO::load_transformation(std::shared_ptr<utl::base::Element> element, std::string path){
   //---------------------------
 
   //Transformation
@@ -40,7 +40,7 @@ void IO::load_transformation(utl::base::Element* element, std::string path){
 
   //---------------------------
 }
-void IO::save_transformation(utl::base::Element* element, std::string path){
+void IO::save_transformation(std::shared_ptr<utl::base::Element> element, std::string path){
   //---------------------------
 
   glm::mat4& mat = element->pose.model;
@@ -58,11 +58,11 @@ void IO::init_path(){
 
   //---------------------------
 }
-void IO::update_path(utl::base::Element* element){
-  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
-  if(entity == nullptr) return;
+void IO::update_path(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Entity> entity = std::dynamic_pointer_cast<dat::base::Entity>(element);
+  if(!entity) return;
   //---------------------------
-
+/*
   static dat::base::Entity* old_entity = nullptr;
   if(old_entity != nullptr && entity->UID == old_entity->UID) return;
 
@@ -73,7 +73,7 @@ void IO::update_path(utl::base::Element* element){
     this->path.format = utl::path::get_format_from_path(path);
     old_entity = entity;
   }
-
+*/
   //---------------------------
 }
 std::vector<std::string> IO::get_supported_format(){

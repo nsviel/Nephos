@@ -32,9 +32,9 @@ void Process::init(){
 void Process::loop(){
   //---------------------------
 
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
-  if(sensor == nullptr) return;
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
+  auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
+  if(!sensor) return;
 
   rad_detection->start_thread(sensor);
 
@@ -43,12 +43,12 @@ void Process::loop(){
 
 //Subfunction
 void Process::step_detection(){
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
   //---------------------------
 
   //Verify that we have a sensor type
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
-  if(sensor == nullptr) return;
+  auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
+  if(!sensor) return;
 
   //Measurement step logic
   int& step = rad_struct->state.detection;
@@ -69,9 +69,9 @@ void Process::step_measure(){
   //---------------------------
 
   //Verify that we have a sensor type
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
-  if(sensor == nullptr) return;
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
+  auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
+  if(!sensor) return;
 
   //Measurement step logic
   switch(rad_struct->state.measure){

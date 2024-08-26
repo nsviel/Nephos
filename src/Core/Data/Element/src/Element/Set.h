@@ -21,30 +21,30 @@ public:
 
 public:
   //Set function
-  void update_data(dat::base::Set* set);
-  void reset_set(dat::base::Set* set);
-  void visibility_set(dat::base::Set* set, bool value);
+  void update_data(std::shared_ptr<dat::base::Set> set);
+  void reset_set(std::shared_ptr<dat::base::Set> set);
+  void visibility_set(std::shared_ptr<dat::base::Set> set, bool value);
 
   //Subset function
-  void add_subset(dat::base::Set* set, dat::base::Set* subset);
-  void remove_subset(dat::base::Set* subset);
-  dat::base::Set* create_subset(dat::base::Set* set, std::string name);
-  dat::base::Set* get_subset(dat::base::Set* set, std::string name);
-  dat::base::Set* get_or_create_subset(dat::base::Set* set, std::string name);
+  void add_subset(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Set>& subset);
+  void remove_subset(std::shared_ptr<dat::base::Set>& subset);
+  std::shared_ptr<dat::base::Set>& create_subset(std::shared_ptr<dat::base::Set> set, std::string name);
+  std::shared_ptr<dat::base::Set>& get_subset(std::shared_ptr<dat::base::Set> set, std::string name);
+  std::shared_ptr<dat::base::Set>& get_or_create_subset(std::shared_ptr<dat::base::Set> set, std::string name);
 
   //Entity function
-  void insert_entity(dat::base::Set* set, dat::base::Entity* entity);
-  void remove_entity(dat::base::Set* set, dat::base::Entity* entity);
-  void remove_active_entity(dat::base::Set* set);
-  void remove_all_entity(dat::base::Set* set);
-  void active_next_entity(dat::base::Set* set);
-  void active_entity(dat::base::Set* set, dat::base::Entity* entity);
-  bool is_entity_active(dat::base::Set* set, dat::base::Entity* entity);
+  void insert_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity);
+  void remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity);
+  void remove_active_entity(std::shared_ptr<dat::base::Set> set);
+  void remove_all_entity(std::shared_ptr<dat::base::Set> set);
+  void active_next_entity(std::shared_ptr<dat::base::Set> set);
+  void active_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity);
+  bool is_entity_active(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity);
 
   //Subfunction
-  int compute_number_entity(dat::base::Set* set);
-  int compute_number_point(dat::base::Set* set);
-  bool is_set_empty(dat::base::Set* set);
+  int compute_number_entity(std::shared_ptr<dat::base::Set> set);
+  int compute_number_point(std::shared_ptr<dat::base::Set> set);
+  bool is_set_empty(std::shared_ptr<dat::base::Set> set);
 
 private:
   dat::elm::Entity* dat_entity;

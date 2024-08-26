@@ -18,24 +18,22 @@ Set::Set(dat::elm::Node* node_element){
 Set::~Set(){}
 
 //Set function
-void Set::update_data(dat::base::Set* set){
+void Set::update_data(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   // Process entities within the current set
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+  for(auto& entity : set->list_entity){
     dat_entity->update_data(entity);
   }
 
   // Recursively process nested sets
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+  for(auto& subset : set->list_subset){
     this->update_data(subset);
   }
 
   //---------------------------
 }
-void Set::reset_set(dat::base::Set* set){
+void Set::reset_set(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   //Reset own stuff
@@ -43,31 +41,29 @@ void Set::reset_set(dat::base::Set* set){
   set->reset();
 
   //Reset all associated entities
-  for(int j=0; j<set->list_entity.size(); j++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), j);
+  for(auto& entity : set->list_entity){
     dat_entity->reset_pose(entity);
   }
 
   //Reset all associated subsets
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+  for(auto& subset : set->list_subset){
     this->reset_set(subset);
   }
 
   //---------------------------
 }
-void Set::visibility_set(dat::base::Set* set, bool value){
+void Set::visibility_set(std::shared_ptr<dat::base::Set> set, bool value){
   if(!set) return;
   //---------------------------
 
   set->is_visible = value;
 
-  for(dat::base::Entity* entity : set->list_entity){
+  for(std::shared_ptr<dat::base::Entity> entity : set->list_entity){
     dat_entity->visibility_entity(entity, value);
   }
 
   // Recursively call remove for each nested set
-  for(dat::base::Set* subset : set->list_subset){
+  for(auto& subset : set->list_subset){
     this->visibility_set(subset, value);
   }
 
@@ -80,7 +76,7 @@ void Set::visibility_set(dat::base::Set* set, bool value){
 }
 
 //Subset function
-void Set::add_subset(dat::base::Set* set, dat::base::Set* subset){
+void Set::add_subset(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Set>& subset){
   //---------------------------
 
   subset->set_parent = set;
@@ -93,11 +89,11 @@ void Set::add_subset(dat::base::Set* set, dat::base::Set* subset){
 
   //---------------------------
 }
-void Set::remove_subset(dat::base::Set* subset){
-  if(subset == nullptr) return;
+void Set::remove_subset(std::shared_ptr<dat::base::Set>& subset){
+  if(!subset) return;
   //---------------------------
 
-  dat::base::Set* set = subset->set_parent;
+  std::shared_ptr<dat::base::Set> set = subset->set_parent;
   set->list_subset.remove(subset);
 
   delete subset;
@@ -105,10 +101,10 @@ void Set::remove_subset(dat::base::Set* subset){
 
   //---------------------------
 }
-dat::base::Set* Set::create_subset(dat::base::Set* set, std::string name){
+std::shared_ptr<dat::base::Set>& Set::create_subset(std::shared_ptr<dat::base::Set> set, std::string name){
   //---------------------------
 
-  dat::base::Set* subset = new dat::base::Set();
+  std::shared_ptr<dat::base::Set>& subset = new dat::base::Set();
   subset->UID = dat_uid->generate_UID();
   subset->name = name;
   subset->set_parent = set;
@@ -121,15 +117,14 @@ dat::base::Set* Set::create_subset(dat::base::Set* set, std::string name){
   //---------------------------
   return subset;
 }
-dat::base::Set* Set::get_subset(dat::base::Set* set, std::string name){
+std::shared_ptr<dat::base::Set>& Set::get_subset(std::shared_ptr<dat::base::Set> set, std::string name){
   //---------------------------
 
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(),i);
+  for(auto& subset : set->list_subset){
     if(subset->name == name){
       return subset;
     }
-    dat::base::Set* subsubset = get_subset(subset, name);
+    std::shared_ptr<dat::base::Set>& subsubset = get_subset(subset, name);
     if(subsubset){
       return subsubset;
     }
@@ -138,25 +133,24 @@ dat::base::Set* Set::get_subset(dat::base::Set* set, std::string name){
   //---------------------------
   return nullptr;
 }
-dat::base::Set* Set::get_or_create_subset(dat::base::Set* set, std::string name){
+std::shared_ptr<dat::base::Set>& Set::get_or_create_subset(std::shared_ptr<dat::base::Set> set, std::string name){
   //---------------------------
 
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset_in_list = *next(set->list_subset.begin(),i);
+  for(auto& subset_in_list : set->list_subset){
     if(subset_in_list->name == name){
       return subset_in_list;
     }
   }
 
-  dat::base::Set* subset = create_subset(set, name);
+  std::shared_ptr<dat::base::Set>& subset = create_subset(set, name);
 
   //---------------------------
   return subset;
 }
 
 //Entity function
-void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
-  if(set == nullptr || entity == nullptr) return;
+void Set::insert_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
+  if(!set || entity == nullptr) return;
   //---------------------------
 
   entity->set_parent = set;
@@ -166,13 +160,12 @@ void Set::insert_entity(dat::base::Set* set, dat::base::Entity* entity){
 
   //---------------------------
 }
-void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Set::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   // Check if the set has the query entity
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity_set = *next(set->list_entity.begin(), i);
+  for(auto& entity : set->list_entity){
 
     if(entity_set->UID == entity->UID){
       //Check if active entity
@@ -191,7 +184,7 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
   }
 
   // Recursively call remove for each nested set
-  for(dat::base::Set* subset : set->list_subset){
+  for(auto& subset : set->list_subset){
     this->remove_entity(subset, entity);
   }
 
@@ -202,21 +195,22 @@ void Set::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
 
   //---------------------------
 }
-void Set::remove_active_entity(dat::base::Set* set){
-  if(set == nullptr) return;
+void Set::remove_active_entity(std::shared_ptr<dat::base::Set> set){
+  if(!set) return;
   //---------------------------
 
-  this->remove_entity(set, set->active_entity);
+  std::shared_ptr<dat::base::Entity> entity = set->active_entity.lock();
+  this->remove_entity(set, entity);
 
   //---------------------------
 }
-void Set::remove_all_entity(dat::base::Set* set){
+void Set::remove_all_entity(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   // Check if the current set has the query entity
   auto it = set->list_entity.begin();
   while(it != set->list_entity.end()){
-    dat::base::Entity* entity = *it;
+    std::shared_ptr<dat::base::Entity> entity = *it;
 
     //Effective remove
     it = set->list_entity.erase(it);
@@ -225,13 +219,13 @@ void Set::remove_all_entity(dat::base::Set* set){
   }
 
   // Recursively call remove_entity_recursive for each nested set
-  for(dat::base::Set* subset : set->list_subset){
+  for(auto& subset : set->list_subset){
     this->remove_all_entity(subset);
   }
 
   //---------------------------
 }
-void Set::active_next_entity(dat::base::Set* set){
+void Set::active_next_entity(std::shared_ptr<dat::base::Set> set){
   //----------------------------
 
   //If no entities
@@ -247,7 +241,7 @@ void Set::active_next_entity(dat::base::Set* set){
   //Else select next entity
   else{
     for(auto it = set->list_entity.begin(); it != set->list_entity.end(); ++it){
-      dat::base::Entity* entity = *it;
+      std::shared_ptr<dat::base::Entity> entity = *it;
 
       if(set->active_entity->UID == entity->UID){
         auto next_it = std::next(it);
@@ -266,15 +260,15 @@ void Set::active_next_entity(dat::base::Set* set){
 
   //----------------------------
 }
-void Set::active_entity(dat::base::Set* set, dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Set::active_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   set->active_entity = entity;
 
   //---------------------------
 }
-bool Set::is_entity_active(dat::base::Set* set, dat::base::Entity* entity){
+bool Set::is_entity_active(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   if(entity == nullptr) return false;
@@ -288,49 +282,45 @@ bool Set::is_entity_active(dat::base::Set* set, dat::base::Entity* entity){
 }
 
 //Subfunction
-int Set::compute_number_entity(dat::base::Set* set){
+int Set::compute_number_entity(std::shared_ptr<dat::base::Set> set){
   int nb_entity = 0;
   //---------------------------
 
   nb_entity += set->list_entity.size();
 
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+  for(auto& subset : set->list_subset){
     nb_entity += compute_number_entity(subset);
   }
 
   //---------------------------
   return nb_entity;
 }
-int Set::compute_number_point(dat::base::Set* set){
+int Set::compute_number_point(std::shared_ptr<dat::base::Set> set){
   int nb_point = 0;
   //---------------------------
 
   // Add the points in the current set
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+  for(auto& entity : set->list_entity){
     utl::base::Data& data = entity->data;
     nb_point += data.size;
   }
 
   // Recursively add points from nested subsets
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+  for(auto& subset : set->list_subset){
     nb_point += compute_number_point(subset);
   }
 
   //---------------------------
   return nb_point;
 }
-bool Set::is_set_empty(dat::base::Set* set){
+bool Set::is_set_empty(std::shared_ptr<dat::base::Set> set){
   int nb_entity = 0;
   //---------------------------
 
   nb_entity += set->list_entity.size();
   if(nb_entity > 0) return false;
 
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+  for(auto& subset : set->list_subset){
     nb_entity += compute_number_entity(subset);
   }
   if(nb_entity > 0) return false;

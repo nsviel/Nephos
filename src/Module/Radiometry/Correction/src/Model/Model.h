@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 
 namespace rad::cor{class Node;}
@@ -21,20 +22,20 @@ public:
 
 public:
   //Main function
-  void compute_model(dat::base::Sensor* sensor);
+  void compute_model(std::shared_ptr<dat::base::Sensor> sensor);
   void clear_model();
 
   //Subfunction
-  void build_model(dat::base::Sensor* sensor);
-  void update_model(dat::base::Sensor* sensor);
-  void find_model_bound(dat::base::Sensor* sensor);
-  float rmse_model(dat::base::Sensor* sensor);
+  void build_model(std::shared_ptr<dat::base::Sensor> sensor);
+  void update_model(std::shared_ptr<dat::base::Sensor> sensor);
+  void find_model_bound(std::shared_ptr<dat::base::Sensor> sensor);
+  float rmse_model(std::shared_ptr<dat::base::Sensor> sensor);
   float apply_model(float x, float y);
 
   //Checker function
-  dat::base::Model* get_model(dat::base::Sensor* sensor, std::string depth_mode);
-  bool is_model_build(dat::base::Sensor* sensor);
-  bool is_model_loaded(dat::base::Sensor* sensor);
+  dat::base::Model* get_model(std::shared_ptr<dat::base::Sensor> sensor, std::string depth_mode);
+  bool is_model_build(std::shared_ptr<dat::base::Sensor> sensor);
+  bool is_model_loaded(std::shared_ptr<dat::base::Sensor> sensor);
 
 private:
   rad::cor::Structure* rad_struct;

@@ -14,10 +14,10 @@ public:
   ~Configuration();
 
   //Main function
-  void design_configuration(utl::base::Element* element);
+  void design_configuration(std::shared_ptr<utl::base::Element> element);
 
   //Subfunction
-  void sensor_config(dat::base::Sensor* sensor);
+  void sensor_config(std::shared_ptr<dat::base::Sensor> sensor);
 
 private:
 

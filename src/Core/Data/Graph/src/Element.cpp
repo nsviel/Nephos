@@ -21,8 +21,8 @@ Element::Element(dat::gph::Node* node_graph){
 Element::~Element(){}
 
 //Main function
-void Element::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Element::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   //Selection
@@ -35,8 +35,8 @@ void Element::remove_entity(dat::base::Set* set, dat::base::Entity* entity){
 
   //---------------------------
 }
-void Element::remove_active_entity(dat::base::Set* set){
-  if(set == nullptr) return;
+void Element::remove_active_entity(std::shared_ptr<dat::base::Set> set){
+  if(!set) return;
   //---------------------------
 
   if(gph_struct->selection == set->active_entity){
@@ -47,19 +47,19 @@ void Element::remove_active_entity(dat::base::Set* set){
 
   //---------------------------
 }
-void Element::remove_set(dat::base::Set* set){
-  if(set == nullptr) return;
+void Element::remove_set(std::shared_ptr<dat::base::Set> set){
+  if(!set) return;
   //---------------------------
 
   // Check if the current set has the query entity
   while(set->list_entity.size() != 0){
-    dat::base::Entity* entity = *set->list_entity.begin();
+    std::shared_ptr<dat::base::Entity> entity = *set->list_entity.begin();
     this->remove_entity(set, entity);
     if(set == nullptr) say("coucou");
   }
 
   // Recursively call remove_entity_recursive for each nested set
-  for(dat::base::Set* subset : set->list_subset){
+  for(auto& subset : set->list_subset){
     this->remove_set(subset);
   }
 

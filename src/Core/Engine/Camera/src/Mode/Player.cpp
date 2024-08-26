@@ -22,49 +22,49 @@ Player::Player(cam::Node* node_camera){
 Player::~Player(){}
 
 //Camera movement
-void Player::camera_forward(cam::Entity* camera, float speed){
+void Player::camera_forward(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
   camera->cam_P += camera->cam_F * speed;
 
   //---------------------------
 }
-void Player::camera_backward(cam::Entity* camera, float speed){
+void Player::camera_backward(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
   camera->cam_P -= camera->cam_F * speed;
 
   //---------------------------
 }
-void Player::camera_right(cam::Entity* camera, float speed){
+void Player::camera_right(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
   camera->cam_P += camera->cam_R * speed;
 
   //---------------------------
 }
-void Player::camera_left(cam::Entity* camera, float speed){
+void Player::camera_left(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
   camera->cam_P -= camera->cam_R * speed;
 
   //---------------------------
 }
-void Player::camera_up(cam::Entity* camera, float speed){
+void Player::camera_up(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
   camera->cam_P += camera->cam_U * speed;
 
   //---------------------------
 }
-void Player::camera_down(cam::Entity* camera, float speed){
+void Player::camera_down(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
   camera->cam_P -= camera->cam_U * speed;
 
   //---------------------------
 }
-void Player::camera_mouse(cam::Entity* camera){
+void Player::camera_mouse(std::shared_ptr<cam::Entity> camera){
   //---------------------------
 
   float& azimuth = camera->angle_azimuth;
@@ -93,7 +93,7 @@ void Player::camera_mouse(cam::Entity* camera){
 
   //---------------------------
 }
-void Player::camera_zoom(cam::Entity* camera, float speed){
+void Player::camera_zoom(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
   //Perspective zoom
@@ -101,7 +101,7 @@ void Player::camera_zoom(cam::Entity* camera, float speed){
 
   //---------------------------
 }
-void Player::camera_wheel(cam::Entity* camera, float speed){
+void Player::camera_wheel(std::shared_ptr<cam::Entity> camera, float speed){
   //---------------------------
 
   this->camera_zoom(camera, speed);
@@ -110,7 +110,7 @@ void Player::camera_wheel(cam::Entity* camera, float speed){
 }
 
 //Camera matrix
-glm::mat4 Player::compute_camera_view(cam::Entity* camera){
+glm::mat4 Player::compute_camera_view(std::shared_ptr<cam::Entity> camera){
   glm::mat4 cam_view = glm::mat4(1.0f);
   if(camera == nullptr) return cam_view;
   //---------------------------

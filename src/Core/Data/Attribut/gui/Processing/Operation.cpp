@@ -25,7 +25,7 @@ Operation::Operation(dat::atr::Node* node_attribut){
 Operation::~Operation(){}
 
 //Main function
-void Operation::design_operation(utl::base::Element* element){
+void Operation::design_operation(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
@@ -38,11 +38,11 @@ void Operation::design_operation(utl::base::Element* element){
 }
 
 //Subfunction
-void Operation::draw_img_image(utl::base::Element* element){
+void Operation::draw_img_image(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   if(ImGui::Button("intensity to image")){
-    dat::base::Entity* entity = dat_element->get_active_entity(element);
+    std::shared_ptr<dat::base::Entity> entity = dat_element->get_active_entity(element);
     utl::media::Image* image = dat_image->get_or_create_image(entity, "Intensity");
     img_image->convert_spherical_pc_to_image(entity->data, image);
   }

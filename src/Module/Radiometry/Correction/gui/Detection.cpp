@@ -27,7 +27,7 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::draw_tab(dat::base::Sensor* sensor){
+void Detection::draw_tab(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   this->detection_step();
@@ -154,7 +154,7 @@ void Detection::detection_stats(){
 
   //---------------------------
 }
-void Detection::detection_image(dat::base::Sensor* sensor){
+void Detection::detection_image(std::shared_ptr<dat::base::Sensor> sensor){
   ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 

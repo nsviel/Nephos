@@ -23,7 +23,7 @@ Recorder::Recorder(dyn::prc::Node* node_processing){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::start_thread(dat::base::Sensor* sensor){
+void Recorder::start_thread(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   this->wait_thread();
@@ -35,7 +35,7 @@ void Recorder::start_thread(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Recorder::run_thread(dat::base::Sensor* sensor){
+void Recorder::run_thread(std::shared_ptr<dat::base::Sensor> sensor){
   prf::monitor::Tasker* tasker = sensor->profiler.fetch_tasker("ope::recording");
   //---------------------------
 
@@ -61,7 +61,7 @@ void Recorder::wait_thread(){
 }
 
 //Subfunction
-void Recorder::compute_recording(dat::base::Sensor* sensor){
+void Recorder::compute_recording(std::shared_ptr<dat::base::Sensor> sensor){
   std::string path = sensor->data.path.build();
   //---------------------------
 

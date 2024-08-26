@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <thread>
 
 namespace rad::cor{class Node;}
@@ -24,12 +25,12 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Sensor* sensor);
-  void run_thread(dat::base::Sensor* sensor);
+  void start_thread(std::shared_ptr<dat::base::Sensor> sensor);
+  void run_thread(std::shared_ptr<dat::base::Sensor> sensor);
   void wait_thread();
 
   //Subfunction
-  void make_shape_detection(dat::base::Sensor* sensor, utl::media::Image* image, utl::media::Image* output);
+  void make_shape_detection(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* image, utl::media::Image* output);
 
 private:
   sys::thread::task::Pool* thread_pool;

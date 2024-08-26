@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Data/Base/Entity/Glyph.h>
+#include <memory>
 
 namespace core{class Node;}
 namespace cam{class Control;}
@@ -19,7 +20,7 @@ public:
 public:
   //Main function
   void create();
-  void update_pose(dat::base::Entity* entity);
+  void update_pose(const std::shared_ptr<dat::base::Entity> entity);
   void reset_glyph();
 
   //Subfunction

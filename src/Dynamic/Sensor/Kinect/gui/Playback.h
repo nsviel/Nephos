@@ -20,7 +20,7 @@ public:
   void show_parameter(k4n::base::Sensor* sensor);
 
   //Subfunction
-  void show_transformation_mode(dat::base::Set* set);
+  void show_transformation_mode(std::shared_ptr<dat::base::Set> set);
   void show_firmware_info(k4n::base::Sensor* sensor);
   void show_info_device(k4n::playback::Sensor* sensor);
   void show_info_color(k4n::playback::Sensor* sensor);

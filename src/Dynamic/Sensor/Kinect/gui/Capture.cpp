@@ -24,8 +24,8 @@ Capture::Capture(k4n::Node* node_k4n){
 Capture::~Capture(){}
 
 //Main function
-void Capture::show_parameter(dat::base::Set* set){
-  if(set == nullptr) return;
+void Capture::show_parameter(std::shared_ptr<dat::base::Set> set){
+  if(!set) return;
   //---------------------------
 
 //  this->show_list_device(set);
@@ -41,7 +41,7 @@ void Capture::show_parameter(dat::base::Set* set){
 }
 
 //Subfunction
-void Capture::show_list_device(dat::base::Set* set){
+void Capture::show_list_device(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   ImGuiTableFlags flags;
@@ -61,9 +61,7 @@ void Capture::show_list_device(dat::base::Set* set){
     ImGui::TableSetupColumn("Serial number", ImGuiTableColumnFlags_WidthStretch);
     ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
     ImGui::TableHeadersRow();
-    for(int i=0; i<set->list_entity.size(); i++){
-      dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-
+    for(auto& entity : set->list_entity){
       if(k4n::base::Sensor* sensor = dynamic_cast<k4n::base::Sensor*>(entity)){
         ImGui::PushID(sensor->serial_number.c_str());
 
@@ -106,7 +104,7 @@ void Capture::show_list_device(dat::base::Set* set){
 
   //---------------------------
 }
-void Capture::show_transformation_mode(dat::base::Set* set){
+void Capture::show_transformation_mode(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
@@ -152,7 +150,7 @@ void Capture::show_firmware_info(k4n::base::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Capture::configuration_depth(dat::base::Set* set){
+void Capture::configuration_depth(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   if(ImGui::TreeNode("Depth configuration")){
@@ -190,7 +188,7 @@ void Capture::configuration_depth(dat::base::Set* set){
 
   //---------------------------
 }
-void Capture::configuration_color(dat::base::Set* set){
+void Capture::configuration_color(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   if(ImGui::TreeNode("Color configuration")){
@@ -269,7 +267,7 @@ void Capture::configuration_color(dat::base::Set* set){
 
   //---------------------------
 }
-void Capture::configuration_color_control(dat::base::Set* set){
+void Capture::configuration_color_control(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   if(ImGui::TreeNode("Color control")){
@@ -377,7 +375,7 @@ void Capture::configuration_color_control(dat::base::Set* set){
 
   //---------------------------
 }
-void Capture::configuration_fps(dat::base::Set* set){
+void Capture::configuration_fps(std::shared_ptr<dat::base::Set> set){
   int framerate = k4n_struct->fps.mode;
   //---------------------------
 
@@ -400,7 +398,7 @@ void Capture::configuration_fps(dat::base::Set* set){
 
   //---------------------------
 }
-void Capture::configuration_synchro(dat::base::Set* set){
+void Capture::configuration_synchro(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   //Internal sync
@@ -420,7 +418,7 @@ void Capture::configuration_synchro(dat::base::Set* set){
 
   //---------------------------
 }
-void Capture::configuration_button(dat::base::Set* set){
+void Capture::configuration_button(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   //Refresh / reset buttons

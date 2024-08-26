@@ -23,7 +23,7 @@ Button::Button(dat::gph::Node* node_graph){
 Button::~Button(){}
 
 //Main function
-void Button::button_locked(dat::base::Set* set){
+void Button::button_locked(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   if(set->is_suppressible){
@@ -45,7 +45,7 @@ void Button::button_locked(dat::base::Set* set){
 
   //---------------------------
 }
-void Button::button_visibility(dat::base::Set* set){
+void Button::button_visibility(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
@@ -71,7 +71,7 @@ void Button::button_visibility(dat::base::Set* set){
 
   //---------------------------
 }
-void Button::button_visibility(dat::base::Entity* entity){
+void Button::button_visibility(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
@@ -97,7 +97,7 @@ void Button::button_visibility(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Button::button_remove(dat::base::Set* set, dat::base::Entity* entity){
+void Button::button_remove(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
   if(set->is_locked) return;
   //---------------------------
 
@@ -114,7 +114,7 @@ void Button::button_remove(dat::base::Set* set, dat::base::Entity* entity){
 
   //---------------------------
 }
-void Button::button_remove(dat::base::Set* set){
+void Button::button_remove(std::shared_ptr<dat::base::Set> set){
   if(set->is_locked) return;
   //---------------------------
 

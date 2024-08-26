@@ -29,10 +29,10 @@ Manager::~Manager(){}
 
 //Main function
 void Manager::create_camera(){
-  dat::base::Set* set_scene = dat_graph->get_set_scene();
+  std::shared_ptr<dat::base::Set> set_scene = dat_graph->get_set_scene();
   //---------------------------
 
-  cam::Entity* camera = new cam::Entity();
+  std::shared_ptr<cam::Entity> camera = std::make_shared<cam::Entity>();
   camera->ID = cam_struct->ID++;
   camera->name = "camera_" + std::to_string(camera->ID);
   camera->is_suppressible = false;
@@ -52,7 +52,7 @@ void Manager::reset_camera(){
   //---------------------------
 
   for(int i=0; i<cam_struct->vec_camera.size(); i++){
-    cam::Entity* camera = cam_struct->vec_camera[i];
+    std::shared_ptr<cam::Entity> camera = cam_struct->vec_camera[i];
     camera->reset();
   }
 

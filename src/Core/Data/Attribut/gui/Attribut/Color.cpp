@@ -21,8 +21,8 @@ Color::Color(dat::atr::Node* node_attribut){
 Color::~Color(){}
 
 //Main function
-void Color::design_colorization(utl::base::Element* element){
-  if(element == nullptr) return;
+void Color::design_colorization(std::shared_ptr<utl::base::Element> element){
+  if(!element) return;
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
@@ -35,7 +35,7 @@ void Color::design_colorization(utl::base::Element* element){
 }
 
 //Subfunction
-void Color::color_mode(utl::base::Element* element){
+void Color::color_mode(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   ImGui::BeginTable("colorization##mode", 2);
@@ -63,8 +63,8 @@ void Color::color_mode(utl::base::Element* element){
   //---------------------------
   ImGui::Separator();
 }
-void Color::color_mode_rgb(utl::base::Element* element){
-  dat::base::Entity* entity = dat_element->get_active_entity(element);
+void Color::color_mode_rgb(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Entity> entity = dat_element->get_active_entity(element);
   if(!entity) return;
   //---------------------------
 
@@ -79,7 +79,7 @@ void Color::color_mode_rgb(utl::base::Element* element){
 
   //---------------------------
 }
-void Color::color_mode_unicolor(utl::base::Element* element){
+void Color::color_mode_unicolor(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   if(ImGui::RadioButton("##unicolor", &atr_struct->color.mode, dat::atr::color::UNICOLOR)){
@@ -94,8 +94,8 @@ void Color::color_mode_unicolor(utl::base::Element* element){
 
   //---------------------------
 }
-void Color::color_mode_normal(utl::base::Element* element){
-  dat::base::Entity* entity = dat_element->get_active_entity(element);
+void Color::color_mode_normal(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Entity> entity = dat_element->get_active_entity(element);
   if(!entity) return;
   //---------------------------
 
@@ -110,8 +110,8 @@ void Color::color_mode_normal(utl::base::Element* element){
 
   //---------------------------
 }
-void Color::color_mode_field(utl::base::Element* element){
-  dat::base::Entity* entity = dat_element->get_active_entity(element);
+void Color::color_mode_field(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Entity> entity = dat_element->get_active_entity(element);
   if(!entity) return;
   //---------------------------
 
@@ -126,8 +126,8 @@ void Color::color_mode_field(utl::base::Element* element){
 
   //---------------------------
 }
-void Color::color_mode_heatmap(utl::base::Element* element){
-  dat::base::Entity* entity = dat_element->get_active_entity(element);
+void Color::color_mode_heatmap(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Entity> entity = dat_element->get_active_entity(element);
   if(!entity) return;
   //---------------------------
 
@@ -142,8 +142,8 @@ void Color::color_mode_heatmap(utl::base::Element* element){
 
   //---------------------------
 }
-void Color::color_mode_structure(utl::base::Element* element){
-  dat::base::Entity* entity = dat_element->get_active_entity(element);
+void Color::color_mode_structure(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Entity> entity = dat_element->get_active_entity(element);
   if(!entity) return;
   //---------------------------
 
@@ -158,11 +158,11 @@ void Color::color_mode_structure(utl::base::Element* element){
 
   //---------------------------
 }
-void Color::color_option(utl::base::Element* element){
+void Color::color_option(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   if(atr_struct->color.mode == dat::atr::color::FIELD || atr_struct->color.mode == dat::atr::color::HEATMAP){
-    dat::base::Entity* entity = dat_element->get_active_entity(element);
+    std::shared_ptr<dat::base::Entity> entity = dat_element->get_active_entity(element);
     if(!entity) return;
 
     //Get vector of field names

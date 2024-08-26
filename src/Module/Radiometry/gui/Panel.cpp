@@ -27,9 +27,9 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
-  if(sensor == nullptr) return;
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
+  auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
+  if(!sensor) return;
   //---------------------------
 
   if(*show_window){
@@ -48,7 +48,7 @@ void Panel::run_panel(){
 
   //---------------------------
 }
-void Panel::design_panel(dat::base::Sensor* sensor){
+void Panel::design_panel(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 39, 39, 255));
@@ -66,7 +66,7 @@ void Panel::design_panel(dat::base::Sensor* sensor){
 }
 
 //Subfunction
-void Panel::tab_correction(dat::base::Sensor* sensor){
+void Panel::tab_correction(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
@@ -78,7 +78,7 @@ void Panel::tab_correction(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Panel::tab_calibration(dat::base::Sensor* sensor){
+void Panel::tab_calibration(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);

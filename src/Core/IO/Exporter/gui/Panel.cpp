@@ -31,8 +31,8 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  utl::base::Element* element = gph_selection->get_selected_element();
-  if(element == nullptr) return;
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
+  if(!element) return;
   //---------------------------
 
   if(*show_window){
@@ -52,7 +52,7 @@ void Panel::run_panel(){
 
   //---------------------------
 }
-void Panel::design_panel(utl::base::Element* element){
+void Panel::design_panel(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   //Recorder
@@ -74,12 +74,12 @@ void Panel::design_panel(utl::base::Element* element){
 
 //Navigator function
 void Panel::item_filtering(std::vector<std::string>& vec_path){
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
-  if(entity == nullptr) return;
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
+  if(!entity) return;
   //---------------------------
 
   //If dynamic object
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
+  auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
   if(sensor && sensor->vec_recorder.size() != 0){
     gui_recorder->item_filtering(vec_path);
   }
@@ -91,12 +91,13 @@ void Panel::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
 }
 void Panel::item_operation(){
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
-  if(entity == nullptr) return;
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
+  if(!entity) return;
   //---------------------------
 
   //If dynamic object
-  if(dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity)){
+  auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
+  if(sensor){
     gui_recorder->item_operation(entity);
   }
   //Else, it's static object

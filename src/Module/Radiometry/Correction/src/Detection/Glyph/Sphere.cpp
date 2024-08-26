@@ -44,7 +44,7 @@ void Sphere::create(){
 */
   //---------------------------
 }
-void Sphere::update_pose(dat::base::Entity* entity){
+void Sphere::update_pose(const std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   if(mat_model != glm::mat4(1.0f)){

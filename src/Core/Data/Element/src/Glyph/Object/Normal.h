@@ -15,11 +15,11 @@ public:
 public:
   //Main function
   void create();
-  void update_pose(dat::base::Entity* entity);
-  void update_glyph(dat::base::Entity* entity);
+  void update_pose(std::shared_ptr<dat::base::Entity> entity);
+  void update_glyph(std::shared_ptr<dat::base::Entity> entity);
 
   //Construct
-  void construct(dat::base::Entity* entity);
+  void construct(std::shared_ptr<dat::base::Entity> entity);
   glm::vec4 generate_random();
 
   inline int* get_size(){return &size;}

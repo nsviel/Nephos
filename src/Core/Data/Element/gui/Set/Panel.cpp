@@ -52,14 +52,14 @@ void Panel::design_panel(){
 }
 
 //Subfunction
-void Panel::set_info(dat::base::Set* set){
+void Panel::set_info(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   this->panel_name = "[Set]  " + set->name;
 
   //---------------------------
 }
-void Panel::set_parameter(dat::base::Set* set){
+void Panel::set_parameter(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   ImGui::BeginTable("object##table", 2, ImGuiTableFlags_BordersInnerV);

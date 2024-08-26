@@ -16,11 +16,11 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::base::Element* Importer::import(utl::base::Path path){
+std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   //---------------------------
 
   //Init
-  dat::base::Object* object = new dat::base::Object();
+  std::shared_ptr<dat::base::Object> object = std::make_shared<dat::base::Object>();
   object->name = utl::path::get_name_from_path(path.build());
   object->data.name = utl::path::get_name_from_path(path.build());
   object->data.path = path;

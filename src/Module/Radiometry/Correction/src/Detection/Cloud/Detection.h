@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <thread>
 
 namespace dat::base{class Sensor;}
@@ -23,12 +24,12 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Sensor* sensor);
-  void run_thread(dat::base::Sensor* sensor);
+  void start_thread(std::shared_ptr<dat::base::Sensor> sensor);
+  void run_thread(std::shared_ptr<dat::base::Sensor> sensor);
   void wait_thread();
 
   //Subfunction
-  void validate_bbox(dat::base::Sensor* sensor);
+  void validate_bbox(std::shared_ptr<dat::base::Sensor> sensor);
 
 private:
   sys::thread::task::Pool* thread_pool;

@@ -13,7 +13,7 @@ public:
   ~Importer();
 
 public:
-  utl::base::Element* import(std::string pathFile);
+  std::shared_ptr<utl::base::Element> import(std::string pathFile);
 
 private:
 };

@@ -12,7 +12,7 @@ namespace dat::base{
 struct Recorder{
   //---------------------------
 
-  virtual bool record_sensor(dat::base::Sensor* sensor, std::string path){return false;}
+  virtual bool record_sensor(std::shared_ptr<dat::base::Sensor> sensor, std::string path){return false;}
 
   std::string format = "";
   float size = 0;

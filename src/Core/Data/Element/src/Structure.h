@@ -13,7 +13,7 @@ struct Structure{
   //---------------------------
 
   dat::base::Set set_main;
-  utl::base::Element* selection = nullptr;
+  std::shared_ptr<utl::base::Element> selection = nullptr;
 
   //---------------------------
 };

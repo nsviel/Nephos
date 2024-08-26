@@ -27,7 +27,7 @@ Model::Model(rad::Node* node_radio){
 Model::~Model(){}
 
 //Main function
-void Model::draw_tab(dat::base::Sensor* sensor){
+void Model::draw_tab(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   //Parameter
@@ -47,7 +47,7 @@ void Model::draw_tab(dat::base::Sensor* sensor){
 }
 
 //Subfunction
-void Model::parameter_measure(dat::base::Sensor* sensor){
+void Model::parameter_measure(std::shared_ptr<dat::base::Sensor> sensor){
   rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 
@@ -111,7 +111,7 @@ void Model::parameter_measure(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Model::parameter_model(dat::base::Sensor* sensor){
+void Model::parameter_model(std::shared_ptr<dat::base::Sensor> sensor){
   dat::base::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
@@ -215,7 +215,7 @@ void Model::plot_measure_IfIt(float height){
 
   //---------------------------
 }
-void Model::plot_model_heatmap(dat::base::Sensor* sensor, float height){
+void Model::plot_model_heatmap(std::shared_ptr<dat::base::Sensor> sensor, float height){
   dat::base::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------

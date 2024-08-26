@@ -24,7 +24,7 @@ Set::Set(dat::gph::Node* node_graph){
 Set::~Set(){}
 
 //Main function
-int Set::tree_set(dat::base::Set* set){
+int Set::tree_set(std::shared_ptr<dat::base::Set> set){
   bool node_open;
   int nb_row = 0;
   //---------------------------
@@ -39,8 +39,8 @@ int Set::tree_set(dat::base::Set* set){
 }
 
 //Subfunction
-void Set::draw_node(dat::base::Set* set, bool& node_open){
-  utl::base::Element* element = gph_selection->get_selected_element();
+void Set::draw_node(std::shared_ptr<dat::base::Set> set, bool& node_open){
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
   //---------------------------
 
   //Set node elements
@@ -58,7 +58,7 @@ void Set::draw_node(dat::base::Set* set, bool& node_open){
 
   //---------------------------
 }
-void Set::draw_click(dat::base::Set* set){
+void Set::draw_click(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   //If set is double-clicked, open set panel
@@ -74,7 +74,7 @@ void Set::draw_click(dat::base::Set* set){
 
   //---------------------------
 }
-void Set::draw_button(dat::base::Set* set){
+void Set::draw_button(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   //Visibility button
@@ -87,19 +87,18 @@ void Set::draw_button(dat::base::Set* set){
 
   //---------------------------
 }
-void Set::draw_open(dat::base::Set* set, bool& node_open, int& nb_row){
+void Set::draw_open(std::shared_ptr<dat::base::Set> set, bool& node_open, int& nb_row){
   //---------------------------
 
   //If set open, display elements
   if(node_open){
     //List all direct entities
-    for(int i=0; i<set->list_entity.size(); i++){
-      dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+    for(auto& entity : set->list_entity){
       gui_entity->tree_entity(set, entity, nb_row);
     }
 
     //Recursive call for nested sets
-    for(dat::base::Set* subset : set->list_subset){
+    for(auto& subset : set->list_subset){
       nb_row += tree_set(subset);
     }
 

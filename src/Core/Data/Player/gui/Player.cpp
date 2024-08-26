@@ -21,8 +21,8 @@ Player::Player(dat::ply::Node* node_player){
 Player::~Player(){}
 
 //Main function
-void Player::design_player(utl::base::Element* element){
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(element);
+void Player::design_player(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
   if(sensor == nullptr) return;
   //---------------------------
 

@@ -27,7 +27,7 @@ Correction::Correction(rad::Node* node_radio){
 Correction::~Correction(){}
 
 //Main function
-void Correction::draw_tab(dat::base::Sensor* sensor){
+void Correction::draw_tab(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   this->display_image(sensor);
@@ -36,7 +36,7 @@ void Correction::draw_tab(dat::base::Sensor* sensor){
 }
 
 //Subfunction
-void Correction::display_image(dat::base::Sensor* sensor){
+void Correction::display_image(std::shared_ptr<dat::base::Sensor> sensor){
   ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 

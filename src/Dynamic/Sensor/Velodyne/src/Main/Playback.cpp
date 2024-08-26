@@ -19,7 +19,7 @@ Playback::~Playback(){}
 //Main function
 void Playback::start_playback(){
   if(vld_struct->data.current_set == nullptr) return;
-  dat::base::Set* set = vld_struct->data.current_set;
+  std::shared_ptr<dat::base::Set> set = vld_struct->data.current_set;
   //---------------------------
 
   thread_playback->start_thread();

@@ -37,8 +37,8 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
-  if(entity == nullptr) return;
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
+  if(!entity) return;
   //---------------------------
 
   if(*show_window && entity->list_image.size() != 0){
@@ -60,7 +60,7 @@ void Panel::run_panel(){
 
   //---------------------------
 }
-void Panel::design_panel(dat::base::Entity* entity){
+void Panel::design_panel(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   this->draw_stream_tabbar(entity);
@@ -69,7 +69,7 @@ void Panel::design_panel(dat::base::Entity* entity){
 }
 
 //All devices
-void Panel::draw_stream_tabbar(dat::base::Entity* entity){
+void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
   std::list<utl::media::Image*> list_image = entity->list_image;
   //---------------------------
 

@@ -21,7 +21,7 @@ public:
 
 public:
   //Main function
-  utl::base::Element* import(utl::base::Path path);
+  std::shared_ptr<utl::base::Element> import(utl::base::Path path);
 
   //Subfunction
   void load_file(std::string path);

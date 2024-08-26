@@ -52,7 +52,7 @@ void Panel::design_panel(){
 
 //Subfunction
 void Panel::cam_info(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
@@ -100,7 +100,7 @@ void Panel::cam_info(){
   ImGui::Separator();
 }
 void Panel::cam_parameter(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   //Camera parameters
@@ -163,7 +163,7 @@ void Panel::cam_pather(){
   ImGui::Separator();
 }
 void Panel::cam_mode(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   if(ImGui::Button(ICON_FA_CAMERA "##camera123")){

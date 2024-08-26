@@ -2,6 +2,7 @@
 
 #include <Camera/src/Structure/Path.h>
 #include <Camera/src/Object/Entity.h>
+#include <memory>
 #include <vector>
 
 
@@ -11,8 +12,8 @@ struct Structure{
   //---------------------------
 
   int ID = 0;
-  std::vector<cam::Entity*> vec_camera;
-  cam::Entity* cam_current = nullptr;
+  std::vector< std::shared_ptr<cam::Entity> > vec_camera;
+  std::shared_ptr<cam::Entity> cam_current;
   cam::structure::Path path;
 
   //---------------------------

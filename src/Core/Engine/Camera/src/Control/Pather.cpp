@@ -23,7 +23,7 @@ Pather::~Pather(){}
 
 //Main function
 void Pather::init(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
 
@@ -41,7 +41,7 @@ void Pather::loop(){
 
 //Subfunction
 void Pather::make_sin_wheel(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   float amplitude = cam_struct->path.amplitude;

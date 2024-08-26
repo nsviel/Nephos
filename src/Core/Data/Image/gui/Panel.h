@@ -26,10 +26,10 @@ public:
 
   //Main function
   void run_panel();
-  void design_panel(dat::base::Entity* entity);
+  void design_panel(std::shared_ptr<dat::base::Entity> entity);
 
   //All devices
-  void draw_stream_tabbar(dat::base::Entity* entity);
+  void draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity);
   void draw_stream_image(utl::media::Image* image, ImVec2 image_size, int idx);
 
 private:

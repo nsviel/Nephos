@@ -20,11 +20,11 @@ public:
 
 public:
   //Main function
-  void init_entity(dat::base::Entity* entity);
-  void remove_entity(dat::base::Entity* entity);
-  void reset_pose(dat::base::Entity* entity);
-  void visibility_entity(dat::base::Entity* entity, bool value);
-  void update_data(dat::base::Entity* entity);
+  void init_entity(std::shared_ptr<dat::base::Entity> entity);
+  void remove_entity(std::shared_ptr<dat::base::Entity> entity);
+  void reset_pose(std::shared_ptr<dat::base::Entity> entity);
+  void visibility_entity(std::shared_ptr<dat::base::Entity> entity, bool value);
+  void update_data(std::shared_ptr<dat::base::Entity> entity);
 
 private:
   vk::data::Data* vk_data;

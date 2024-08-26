@@ -19,7 +19,7 @@ public:
 
 public:
   //Main function
-  dat::base::Entity* get_active_entity(utl::base::Element* element);
+  dat::base::Entity* get_active_entity(std::shared_ptr<utl::base::Element> element);
 
 private:
 };

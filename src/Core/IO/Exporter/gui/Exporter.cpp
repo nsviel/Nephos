@@ -24,7 +24,7 @@ Exporter::Exporter(io::exp::Node* node_exporter){
 Exporter::~Exporter(){}
 
 //Main function
-void Exporter::draw_header(utl::base::Element* element){
+void Exporter::draw_header(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   this->item_update(element);
@@ -41,8 +41,8 @@ void Exporter::draw_header(utl::base::Element* element){
 
 //Header function
 void Exporter::display_action(){
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
-  if(entity == nullptr) return;
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
+  if(!entity) return;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
@@ -62,7 +62,7 @@ void Exporter::display_action(){
 
   //---------------------------
 }
-void Exporter::display_path(utl::base::Element* element){
+void Exporter::display_path(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   ImGui::BeginTable("header##exporter", 3);
@@ -86,7 +86,7 @@ void Exporter::display_path(utl::base::Element* element){
   }
 
   //Filename
-  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+  if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Name"); ImGui::TableNextColumn();
     strncpy(str_n, io_struct->path.name.c_str(), sizeof(str_n) - 1);
@@ -200,8 +200,8 @@ void Exporter::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
   vec_path = vec_path_ok;
 }
-void Exporter::item_update(utl::base::Element* element){
-  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
+void Exporter::item_update(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Entity> entity = std::dynamic_pointer_cast<dat::base::Entity>(element);
   //---------------------------
 
   //Actualize current name
@@ -216,8 +216,8 @@ void Exporter::item_update(utl::base::Element* element){
 
   //---------------------------
 }
-void Exporter::item_operation(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Exporter::item_operation(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   std::string format = (io_struct->path.format != "-") ? io_struct->path.format : "";

@@ -23,7 +23,7 @@ Entity::Entity(dat::gph::Node* node_graph){
 Entity::~Entity(){}
 
 //Main function
-void Entity::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row){
+void Entity::tree_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity, int& nb_row){
   //---------------------------
 
   this->draw_leaf(set, entity);
@@ -35,7 +35,7 @@ void Entity::tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb
 }
 
 //Subfunction
-void Entity::draw_leaf(dat::base::Set* set, dat::base::Entity* entity){
+void Entity::draw_leaf(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   bool entity_selected = (entity == gph_selection->get_selected_element());
@@ -69,7 +69,7 @@ void Entity::draw_leaf(dat::base::Set* set, dat::base::Entity* entity){
 
   //---------------------------
 }
-void Entity::draw_click(dat::base::Entity* entity){
+void Entity::draw_click(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   // If entity clicked
@@ -85,7 +85,7 @@ void Entity::draw_click(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Entity::draw_button(dat::base::Set* set, dat::base::Entity* entity){
+void Entity::draw_button(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   //Visibility button

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -31,14 +32,14 @@ public:
 
 public:
   //Main function
-  void insert_object(dat::base::Object* object);
-  void insert_set(dat::base::Set* set);
+  void insert_object(std::shared_ptr<dat::base::Object> object);
+  void insert_set(std::shared_ptr<dat::base::Set> set);
 
   //Subfunction
   void ope_clean();
-  void ope_color(dat::base::Entity* entity);
-  void ope_transformation(dat::base::Entity* entity);
-  void ope_insertion(dat::base::Entity* entity);
+  void ope_color(std::shared_ptr<dat::base::Entity> entity);
+  void ope_transformation(std::shared_ptr<dat::base::Entity> entity);
+  void ope_insertion(std::shared_ptr<dat::base::Entity> entity);
 
 private:
   io::imp::Structure* io_struct;

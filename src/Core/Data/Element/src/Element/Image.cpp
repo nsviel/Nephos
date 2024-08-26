@@ -17,7 +17,7 @@ Image::Image(dat::elm::Node* node_element){
 Image::~Image(){}
 
 //Main function
-void Image::add_image(dat::base::Entity* entity, utl::media::Image* image){
+void Image::add_image(std::shared_ptr<dat::base::Entity> entity, utl::media::Image* image){
   //----------------------------
 
   this->manage_UID(image);
@@ -38,7 +38,7 @@ void Image::manage_UID(utl::media::Image* image){
 }
 
 //Subfunction
-bool Image::has_image_UID(dat::base::Entity* entity, int UID){
+bool Image::has_image_UID(std::shared_ptr<dat::base::Entity> entity, int UID){
   //----------------------------
 
   //Search for already existing image with same type
@@ -50,7 +50,7 @@ bool Image::has_image_UID(dat::base::Entity* entity, int UID){
   //----------------------------
   return false;
 }
-utl::media::Image* Image::get_image(dat::base::Entity* entity, std::string name){
+utl::media::Image* Image::get_image(const std::shared_ptr<dat::base::Entity> entity, std::string name){
   if(name == "") return nullptr;
   //----------------------------
 
@@ -63,7 +63,7 @@ utl::media::Image* Image::get_image(dat::base::Entity* entity, std::string name)
   //----------------------------
   return nullptr;
 }
-utl::media::Image* Image::get_or_create_image(dat::base::Entity* entity, std::string name){
+utl::media::Image* Image::get_or_create_image(const std::shared_ptr<dat::base::Entity> entity, std::string name){
   if(name == "") return nullptr;
   //----------------------------
 

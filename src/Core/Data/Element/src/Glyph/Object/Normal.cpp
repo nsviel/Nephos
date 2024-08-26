@@ -34,7 +34,7 @@ void Normal::create(){
 
   //---------------------------
 }
-void Normal::update_pose(dat::base::Entity* entity){
+void Normal::update_pose(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   utl::base::Pose& entity_pose = entity->pose;
@@ -42,7 +42,7 @@ void Normal::update_pose(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Normal::update_glyph(dat::base::Entity* entity){
+void Normal::update_glyph(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   this->construct(entity);
@@ -51,7 +51,7 @@ void Normal::update_glyph(dat::base::Entity* entity){
 }
 
 //Subfunction
-void Normal::construct(dat::base::Entity* entity){
+void Normal::construct(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   //Data glyph

@@ -27,7 +27,7 @@ public:
 
 public:
   //Main function
-  void parse_binary(io::imp::Configuration* config, dat::base::Object* object);
+  void parse_binary(io::imp::Configuration* config, std::shared_ptr<dat::base::Object> object);
 
   //Subfunction
   void pass_header(std::ifstream& file);

@@ -17,7 +17,7 @@ Location::Location(){
 Location::~Location(){}
 
 //Main function
-void Location::compute_centroid(dat::base::Entity* entity){
+void Location::compute_centroid(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   //---------------------------
 
@@ -38,27 +38,28 @@ void Location::compute_centroid(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Location::compute_COM(utl::base::Element* element){
-  if(element == nullptr) return;
+void Location::compute_COM(std::shared_ptr<utl::base::Element> element){
+  if(!element) return;
   //---------------------------
 
-  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
+  // Attempt to cast to dat::base::Set
+  if (auto set = std::dynamic_pointer_cast<dat::base::Set>(element)) {
     this->compute_COM(set);
   }
-  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    this->compute_COM(entity);
+  // Attempt to cast to dat::base::Entity
+  else if (auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)) {
+   this->compute_COM(entity);
   }
 
   //---------------------------
 }
-void Location::compute_COM(dat::base::Set* set){
-  if(set == nullptr) return;
+void Location::compute_COM(std::shared_ptr<dat::base::Set> set){
+  if(!set) return;
   //---------------------------
 
   glm::vec3 COM = glm::vec3(0, 0, 0);
 
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+  for(auto& entity : set->list_entity){
     this->compute_COM(entity);
     COM += entity->pose.COM;
   }
@@ -68,8 +69,8 @@ void Location::compute_COM(dat::base::Set* set){
   //---------------------------
   set->pose.COM = COM;
 }
-void Location::compute_COM(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Location::compute_COM(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   utl::base::Data& data = entity->data;
@@ -83,15 +84,14 @@ void Location::compute_COM(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Location::compute_MinMax(dat::base::Set* set){
+void Location::compute_MinMax(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   glm::vec3 centroid = glm::vec3(0, 0, 0);
   glm::vec3 min = glm::vec3(1000000, 1000000, 1000000);
   glm::vec3 max = glm::vec3(-1000000, -1000000, -1000000);
 
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+  for(auto& entity : set->list_entity){
     utl::base::Pose& pose = entity->pose;
     this->compute_MinMax(entity);
 
@@ -112,7 +112,7 @@ void Location::compute_MinMax(dat::base::Set* set){
   set->pose.max = max;
   set->pose.COM = centroid;
 }
-void Location::compute_MinMax(dat::base::Entity* entity){
+void Location::compute_MinMax(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   utl::base::Pose& pose = entity->pose;
   //---------------------------
@@ -144,7 +144,7 @@ void Location::compute_MinMax(dat::base::Entity* entity){
   pose.max = max;
   pose.COM = centroid;
 }
-void Location::compute_height(dat::base::Entity* entity){
+void Location::compute_height(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   utl::base::Pose& pose = entity->pose;
   //---------------------------
@@ -163,7 +163,7 @@ void Location::compute_height(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Location::compute_range(dat::base::Entity* entity){
+void Location::compute_range(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   //---------------------------
 
@@ -180,7 +180,7 @@ void Location::compute_range(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Location::compute_incidence_angle(dat::base::Entity* entity){
+void Location::compute_incidence_angle(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   //---------------------------
 

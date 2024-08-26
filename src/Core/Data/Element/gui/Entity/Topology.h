@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  void entity_typology(dat::base::Entity* entity);
+  void entity_typology(std::shared_ptr<dat::base::Entity> entity);
 
   //Subfunction
   void topology_line(utl::base::Data& data);

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace rad::cor{class Model;}
@@ -21,7 +23,7 @@ public:
 
   //Subfunction
   void plot_measure();
-  void update_plot_data(dat::base::Sensor* sensor);
+  void update_plot_data(std::shared_ptr<dat::base::Sensor> sensor);
   void reset_plot_data();
 
 private:

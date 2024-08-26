@@ -127,8 +127,8 @@ void Player::player_close(){
   //---------------------------
 }
 void Player::player_lock(){
-  dat::base::Set* set = vld_struct->data.current_set;
-  if(set == nullptr) return;
+  std::shared_ptr<dat::base::Set> set = vld_struct->data.current_set;
+  if(!set) return;
   //---------------------------
 
   if(set->is_locked){

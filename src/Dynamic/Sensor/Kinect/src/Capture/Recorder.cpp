@@ -18,7 +18,7 @@ Recorder::Recorder(){
 Recorder::~Recorder(){}
 
 //Main function
-bool Recorder::record_sensor(dat::base::Sensor* sensor, std::string path){
+bool Recorder::record_sensor(std::shared_ptr<dat::base::Sensor> sensor, std::string path){
   //---------------------------
 
   if(k4n::base::Sensor* k4n_sensor = dynamic_cast<k4n::base::Sensor*>(sensor)){

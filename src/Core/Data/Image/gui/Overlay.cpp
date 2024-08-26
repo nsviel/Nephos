@@ -15,7 +15,7 @@ Overlay::Overlay(){
 Overlay::~Overlay(){}
 
 //Main function
-void Overlay::overlay_capture(dat::base::Entity* entity, utl::media::Image* image, ImVec2 size, ImVec2 image_pose){
+void Overlay::overlay_capture(std::shared_ptr<dat::base::Entity> entity, utl::media::Image* image, ImVec2 size, ImVec2 image_pose){
   //---------------------------
 /*
   //Hovered pixel
@@ -45,7 +45,7 @@ void Overlay::overlay_capture(dat::base::Entity* entity, utl::media::Image* imag
 */
   //---------------------------
 }
-void Overlay::overlay_information(dat::base::Entity* entity, utl::media::Image* image){
+void Overlay::overlay_information(std::shared_ptr<dat::base::Entity> entity, utl::media::Image* image){
   //---------------------------
 /*
   ImGui::Text("Frame rate: %.0f fps", image->fps);

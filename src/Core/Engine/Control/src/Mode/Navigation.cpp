@@ -77,7 +77,7 @@ void Navigation::cam_zoom(float value){
 
 //Subfunction
 void Navigation::enable_camera_view(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //----------------------------
 
   //Get center of the current panel
@@ -97,7 +97,7 @@ void Navigation::enable_camera_view(){
   //----------------------------
 }
 void Navigation::disable_camera_view(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //----------------------------
 
   if(camera->cam_move){

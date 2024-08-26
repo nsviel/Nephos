@@ -35,7 +35,7 @@ void Playback::show_parameter(k4n::base::Sensor* sensor){
 }
 
 //Design function
-void Playback::show_transformation_mode(dat::base::Set* set){
+void Playback::show_transformation_mode(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");

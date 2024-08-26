@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <memory>
 #include <vector>
 
 namespace rad{class Node;}
@@ -25,13 +26,13 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Sensor* sensor);
-  void run_thread(dat::base::Sensor* sensor);
+  void start_thread(std::shared_ptr<dat::base::Sensor> sensor);
+  void run_thread(std::shared_ptr<dat::base::Sensor> sensor);
   void wait_thread();
 
   //Subfunction
-  void make_normal_from_depth_image(dat::base::Sensor* sensor);
-  void convert_normal_into_color(dat::base::Sensor* sensor, std::vector<glm::vec3>& vec_Nxyz);
+  void make_normal_from_depth_image(std::shared_ptr<dat::base::Sensor> sensor);
+  void convert_normal_into_color(std::shared_ptr<dat::base::Sensor> sensor, std::vector<glm::vec3>& vec_Nxyz);
 
 private:
   dyn::prc::Structure* dyn_struct;

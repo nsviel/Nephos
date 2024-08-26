@@ -18,7 +18,7 @@ Glyph::Glyph(dat::elm::Node* node_element){
 Glyph::~Glyph(){}
 
 //Main function
-void Glyph::insert_glyph(dat::base::Set* set, dat::base::Glyph* glyph){
+void Glyph::insert_glyph(std::shared_ptr<dat::base::Set> set, dat::base::Glyph* glyph){
   //---------------------------
 
   this->create_glyph(glyph);
@@ -26,7 +26,7 @@ void Glyph::insert_glyph(dat::base::Set* set, dat::base::Glyph* glyph){
 
   //---------------------------
 }
-void Glyph::insert_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph){
+void Glyph::insert_glyph(std::shared_ptr<dat::base::Entity> entity, dat::base::Glyph* glyph){
   //---------------------------
 
   this->create_glyph(glyph);
@@ -34,7 +34,7 @@ void Glyph::insert_glyph(dat::base::Entity* entity, dat::base::Glyph* glyph){
 
   //---------------------------
 }
-void Glyph::insert_glyph(dat::base::Entity* entity){
+void Glyph::insert_glyph(std::shared_ptr<dat::base::Entity> entity){
   //----------------------------
 
   //Update own glyph data
@@ -47,7 +47,7 @@ void Glyph::insert_glyph(dat::base::Entity* entity){
 }
 
 //Update function
-void Glyph::update_glyph(dat::base::Entity* entity){
+void Glyph::update_glyph(std::shared_ptr<dat::base::Entity> entity){
   //----------------------------
 
   //Update own glyph data
@@ -62,7 +62,7 @@ void Glyph::update_glyph(dat::base::Entity* entity){
 
   //----------------------------
 }
-void Glyph::update_glyph(dat::base::Object* object, int type){
+void Glyph::update_glyph(std::shared_ptr<dat::base::Object> object, int type){
   //----------------------------
 
   //Update own glyph data

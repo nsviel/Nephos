@@ -35,12 +35,12 @@ utl::base::Data* Importer::load_data(std::string path){
   utl::base::Path utl_path(path);
 
   //Load data from path
-  utl::base::Element* element = this->import_from_path(utl_path);
-  if(element == nullptr) return nullptr;
+  std::shared_ptr<utl::base::Element> element = this->import_from_path(utl_path);
+  if(!element) return nullptr;
 
   //Convert into data
   utl::base::Data* data = nullptr;
-  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+  if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
     data = &entity->data;
   }
 
@@ -50,20 +50,20 @@ utl::base::Data* Importer::load_data(std::string path){
 void Importer::load_set(utl::base::Path path){
   if(!check_path(path.build())) return;
   //---------------------------
-
+/*
   //Load
-  utl::base::Element* element = this->import_from_path(path);
-  if(element == nullptr) return;
+  std::shared_ptr<utl::base::Element> element = this->import_from_path(path);
+  if(!element) return;
 
   //Convert
-  dat::base::Set* set = nullptr;
+  std::shared_ptr<dat::base::Set> set = nullptr;
   if(element->type == utl::element::SET){
     set = dynamic_cast<dat::base::Set*>(element);
   }
 
   //Insert
   io_operation->insert_set(set);
-
+*/
   //---------------------------
 }
 void Importer::load_directory(utl::base::Path path){
@@ -86,13 +86,13 @@ void Importer::load_object(utl::base::Path path){
   //---------------------------
 
   //Load
-  utl::base::Element* element = this->import_from_path(path);
-  if(element == nullptr) return;
+  std::shared_ptr<utl::base::Element> element = this->import_from_path(path);
+  if(!element) return;
 
   //Convert
-  dat::base::Object* object = nullptr;
+  std::shared_ptr<dat::base::Object> object = nullptr;
   if(element->type == utl::element::ENTITY){
-    object = dynamic_cast<dat::base::Object*>(element);
+    object = std::dynamic_pointer_cast<dat::base::Object>(element);
   }
 
   //Insert
@@ -105,13 +105,13 @@ void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
   //---------------------------
 
   //Load
-  utl::base::Element* element = this->import_from_path(path);
-  if(element == nullptr) return;
+  std::shared_ptr<utl::base::Element> element = this->import_from_path(path);
+  if(!element) return;
 
   //Convert
-  dat::base::Object* object = nullptr;
+  std::shared_ptr<dat::base::Object> object = nullptr;
   if(element->type == utl::element::ENTITY){
-    object = dynamic_cast<dat::base::Object*>(element);
+    object = std::dynamic_pointer_cast<dat::base::Object>(element);
     object->pose.path = path_transfo;
   }
 
@@ -188,8 +188,8 @@ std::vector<std::string> Importer::get_supported_format(){
   //---------------------------
   return vec_format;
 }
-utl::base::Element* Importer::import_from_path(utl::base::Path path){
-  utl::base::Element* element = nullptr;
+std::shared_ptr<utl::base::Element> Importer::import_from_path(utl::base::Path path){
+  std::shared_ptr<utl::base::Element> element = nullptr;
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){

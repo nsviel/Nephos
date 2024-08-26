@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 
 namespace dat::atr{class Node;}
@@ -20,7 +21,7 @@ public:
   ~Panel();
 
   //Main function
-  void design_panel(utl::base::Element* element);
+  void design_panel(std::shared_ptr<utl::base::Element> element);
 
 private:
   dat::atr::gui::Color* gui_color;

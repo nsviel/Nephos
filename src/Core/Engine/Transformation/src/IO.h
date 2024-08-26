@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Data/Path.h>
+#include <memory>
 #include <vector>
 #include <string>
 
@@ -21,13 +22,13 @@ public:
 
 public:
   //Main function
-  void load_transformation(dat::base::Entity* entity);
-  void load_transformation(utl::base::Element* element, std::string path);
-  void save_transformation(utl::base::Element* element, std::string path);
+  void load_transformation(std::shared_ptr<dat::base::Entity> entity);
+  void load_transformation(std::shared_ptr<utl::base::Element> element, std::string path);
+  void save_transformation(std::shared_ptr<utl::base::Element> element, std::string path);
 
   //Subfunction
   void init_path();
-  void update_path(utl::base::Element* element);
+  void update_path(std::shared_ptr<utl::base::Element> element);
   std::vector<std::string> get_supported_format();
 
   inline utl::base::Path* get_path(){return &path;}

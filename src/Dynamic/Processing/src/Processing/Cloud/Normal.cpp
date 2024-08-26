@@ -32,7 +32,7 @@ Normal::Normal(dyn::prc::Node* node_processing){
 Normal::~Normal(){}
 
 //Main function
-void Normal::start_thread(dat::base::Sensor* sensor){
+void Normal::start_thread(std::shared_ptr<dat::base::Sensor> sensor){
   if(!dyn_struct->operation.normal.enable) return;
   //---------------------------
 
@@ -45,7 +45,7 @@ void Normal::start_thread(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Normal::run_thread(dat::base::Sensor* sensor){
+void Normal::run_thread(std::shared_ptr<dat::base::Sensor> sensor){
   prf::monitor::Tasker* tasker = sensor->profiler.fetch_tasker("dat::atr::normal");
   //---------------------------
 
@@ -76,7 +76,7 @@ void Normal::wait_thread(){
 }
 
 //Subfunction
-void Normal::compute_normal(dat::base::Sensor* sensor){
+void Normal::compute_normal(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   atr_normal->set_knn(dyn_struct->operation.normal.knn);
@@ -86,7 +86,7 @@ void Normal::compute_normal(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Normal::compute_image(dat::base::Sensor* sensor){
+void Normal::compute_image(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   utl::media::Image* image = dat_image->get_or_create_image(sensor, "Normal");

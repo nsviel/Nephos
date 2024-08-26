@@ -25,8 +25,8 @@ Button::~Button(){}
 
 //Main function
 void Button::slider_query(float value){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
+  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+  if(!set) return;
   //---------------------------
 
   ply_state->manage_query(set, value);
@@ -35,8 +35,8 @@ void Button::slider_query(float value){
   //---------------------------
 }
 void Button::button_play(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
+  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+  if(!set) return;
   //---------------------------
 
   if(!ply_struct->state.play){
@@ -51,8 +51,8 @@ void Button::button_play(){
   //---------------------------
 }
 void Button::button_pause(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
+  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+  if(!set) return;
   //---------------------------
 
   ply_struct->state.pause = !ply_struct->state.pause;
@@ -62,8 +62,8 @@ void Button::button_pause(){
   //---------------------------
 }
 void Button::button_stop(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
+  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+  if(!set) return;
   //---------------------------
 
   //Set timestamp et begining
@@ -89,8 +89,8 @@ void Button::button_replay(){
   //---------------------------
 }
 void Button::button_record(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
+  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+  if(!set) return;
   //---------------------------
 
   ply_struct->state.record = !ply_struct->state.record;
@@ -100,8 +100,8 @@ void Button::button_record(){
   //---------------------------
 }
 void Button::button_lock(bool value){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
+  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+  if(!set) return;
   //---------------------------
 
   set->is_locked = value;
@@ -109,8 +109,8 @@ void Button::button_lock(bool value){
   //---------------------------
 }
 void Button::button_close(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
+  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+  if(!set) return;
   //---------------------------
 
   gph_element->remove_active_entity(set);
@@ -118,8 +118,8 @@ void Button::button_close(){
   //---------------------------
 }
 void Button::button_forward(float value){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
+  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+  if(!set) return;
   //---------------------------
 
   float ts_forward = timestamp.current + 5 * value;

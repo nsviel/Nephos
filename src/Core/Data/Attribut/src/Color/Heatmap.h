@@ -22,7 +22,7 @@ public:
 
 public:
   //Main function
-  void colorization_heatmap(dat::base::Entity* entity);
+  void colorization_heatmap(std::shared_ptr<dat::base::Entity> entity);
 
   //Subfunction
   void compute_heatmap(std::vector<float>& v_in, std::vector<glm::vec4>& rgba);

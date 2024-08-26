@@ -21,13 +21,13 @@ public:
 
 public:
   //Main function
-  int tree_set(dat::base::Set* set);
+  int tree_set(std::shared_ptr<dat::base::Set> set);
 
   //Subfunction
-  void draw_node(dat::base::Set* set, bool& node_open);
-  void draw_click(dat::base::Set* set);
-  void draw_button(dat::base::Set* set);
-  void draw_open(dat::base::Set* set, bool& node_open, int& nb_row);
+  void draw_node(std::shared_ptr<dat::base::Set> set, bool& node_open);
+  void draw_click(std::shared_ptr<dat::base::Set> set);
+  void draw_button(std::shared_ptr<dat::base::Set> set);
+  void draw_open(std::shared_ptr<dat::base::Set> set, bool& node_open, int& nb_row);
 
 private:
   dat::gph::Selection* gph_selection;

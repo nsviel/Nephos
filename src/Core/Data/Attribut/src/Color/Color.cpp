@@ -19,28 +19,30 @@ Color::Color(dat::atr::Node* node_attribut){
 Color::~Color(){}
 
 //Main function
-void Color::make_colorization(utl::base::Element* element){
+void Color::make_colorization(const std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
-  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
+  // Attempt to cast to dat::base::Set
+  if (auto set = std::dynamic_pointer_cast<dat::base::Set>(element)) {
     this->make_colorization(set);
-  }else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+  }
+  // Attempt to cast to dat::base::Entity
+  else if (auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)) {
+   this->make_colorization(entity);
+  }
+
+  //---------------------------
+}
+void Color::make_colorization(const std::shared_ptr<dat::base::Set> set){
+  //---------------------------
+
+  for(auto& entity : set->list_entity){
     this->make_colorization(entity);
   }
 
   //---------------------------
 }
-void Color::make_colorization(dat::base::Set* set){
-  //---------------------------
-
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-    this->make_colorization(entity);
-  }
-
-  //---------------------------
-}
-void Color::make_colorization(dat::base::Entity* entity){
+void Color::make_colorization(const std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   //Check color vector
@@ -83,7 +85,7 @@ void Color::make_colorization(dat::base::Entity* entity){
 }
 
 //Subfunction
-void Color::colorization_rgb(dat::base::Entity* entity){
+void Color::colorization_rgb(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   //---------------------------
 
@@ -94,7 +96,7 @@ void Color::colorization_rgb(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Color::colorization_unicolor(dat::base::Entity* entity){
+void Color::colorization_unicolor(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   //---------------------------
 
@@ -102,7 +104,7 @@ void Color::colorization_unicolor(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Color::colorization_normal(dat::base::Entity* entity){
+void Color::colorization_normal(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   utl::base::Pose& pose = entity->pose;
   //---------------------------
@@ -123,7 +125,7 @@ void Color::colorization_normal(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Color::colorization_field(dat::base::Entity* entity){
+void Color::colorization_field(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   //---------------------------
 
@@ -140,7 +142,7 @@ void Color::colorization_field(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Color::colorization_structure(dat::base::Entity* entity){
+void Color::colorization_structure(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   //---------------------------
 

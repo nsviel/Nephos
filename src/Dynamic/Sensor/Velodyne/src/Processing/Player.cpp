@@ -61,7 +61,7 @@ void Player::player_close(){
 //Subfunction
 void Player::determine_range(){
   if(vld_struct->data.current_set == nullptr) return;
-  dat::base::Set* set = vld_struct->data.current_set;
+  std::shared_ptr<dat::base::Set> set = vld_struct->data.current_set;
   //---------------------------
 
   vld_struct->player.idx_beg = 0;
@@ -72,12 +72,11 @@ void Player::determine_range(){
 }
 void Player::compute_visibility(){
   if(vld_struct->data.current_set == nullptr) return;
-  dat::base::Set* set = vld_struct->data.current_set;
+  std::shared_ptr<dat::base::Set> set = vld_struct->data.current_set;
   //---------------------------
 
   //Set visibility just for wanted subsets
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+  for(auto& entity : set->list_entity){
 
     if(i >= vld_struct->player.idx_cur - vld_struct->player.idx_rng + 1 && i <= vld_struct->player.idx_cur){
       //entity->visibility(true);
@@ -89,7 +88,7 @@ void Player::compute_visibility(){
   //---------------------------
 }
 void Player::forward_index(int index){
-  dat::base::Set* set = vld_struct->data.current_set;
+  std::shared_ptr<dat::base::Set> set = vld_struct->data.current_set;
   //---------------------------
 
   if(index >= vld_struct->player.idx_end && vld_struct->player.restart){

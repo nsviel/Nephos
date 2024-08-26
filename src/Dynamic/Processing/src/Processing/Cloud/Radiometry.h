@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <thread>
 
 namespace dyn::prc{class Node;}
@@ -20,12 +21,12 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Sensor* sensor);
-  void run_thread(dat::base::Sensor* sensor);
+  void start_thread(std::shared_ptr<dat::base::Sensor> sensor);
+  void run_thread(std::shared_ptr<dat::base::Sensor> sensor);
   void wait_thread();
 
   //Subfunction
-  void compute_correction(dat::base::Sensor* sensor);
+  void compute_correction(std::shared_ptr<dat::base::Sensor> sensor);
 
 private:
   dyn::prc::Structure* dyn_struct;

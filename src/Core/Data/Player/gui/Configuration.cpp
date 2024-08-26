@@ -16,8 +16,8 @@ Configuration::Configuration(){
 Configuration::~Configuration(){}
 
 //Main function
-void Configuration::design_configuration(utl::base::Element* element){
-  /*dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(element);
+void Configuration::design_configuration(std::shared_ptr<utl::base::Element> element){
+  /*std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -30,7 +30,7 @@ void Configuration::design_configuration(utl::base::Element* element){
 }
 
 //Subfunction
-void Configuration::sensor_config(dat::base::Sensor* sensor){
+void Configuration::sensor_config(std::shared_ptr<dat::base::Sensor> sensor){
 
   //---------------------------
 

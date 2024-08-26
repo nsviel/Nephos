@@ -21,7 +21,7 @@ Panel::Panel(dat::atr::Node* node_attribut){
 Panel::~Panel(){}
 
 //Main function
-void Panel::design_panel(utl::base::Element* element){
+void Panel::design_panel(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   gui_info->design_info(element);

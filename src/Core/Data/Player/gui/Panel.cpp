@@ -50,8 +50,8 @@ void Panel::run_panel(){
   //---------------------------
 }
 void Panel::design_panel(){
-  utl::base::Element* element = gph_selection->get_selected_element();
-  if(element == nullptr) return;
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
+  if(!element) return;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));

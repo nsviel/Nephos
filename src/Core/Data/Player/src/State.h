@@ -24,11 +24,11 @@ public:
   void reset();
 
   //State function
-  void manage_state(dat::base::Set* set);
-  void manage_update(dat::base::Set* set);
-  void manage_restart(dat::base::Set* set);
-  void manage_reset(dat::base::Set* set);
-  void manage_query(dat::base::Set* set, float value);
+  void manage_state(std::shared_ptr<dat::base::Set> set);
+  void manage_update(std::shared_ptr<dat::base::Set> set);
+  void manage_restart(std::shared_ptr<dat::base::Set> set);
+  void manage_reset(std::shared_ptr<dat::base::Set> set);
+  void manage_query(std::shared_ptr<dat::base::Set> set, float value);
 
 public:
   dat::ply::Structure* ply_struct;

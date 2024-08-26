@@ -30,11 +30,11 @@ struct Set : public utl::base::Element{
   int nb_subset = 0;
 
   //Data
-  dat::base::Entity* active_entity = nullptr;
-  dat::base::Set* active_subset = nullptr;
-  dat::base::Set* set_parent = nullptr;
-  std::list<dat::base::Entity*> list_entity;
-  std::list<dat::base::Set*> list_subset;
+  std::weak_ptr<dat::base::Entity> active_entity;
+  std::weak_ptr<dat::base::Set> active_subset;
+  std::weak_ptr<dat::base::Set> set_parent;
+  std::list< std::shared_ptr<dat::base::Entity> > list_entity;
+  std::list< std::shared_ptr<dat::base::Set> > list_subset;
 
   //---------------------------
 };

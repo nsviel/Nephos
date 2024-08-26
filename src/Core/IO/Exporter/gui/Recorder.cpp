@@ -26,8 +26,8 @@ Recorder::Recorder(io::exp::Node* node_exporter){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::draw_header(utl::base::Element* element){
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(element);
+void Recorder::draw_header(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
   //---------------------------
 
   this->item_update(sensor);
@@ -41,7 +41,7 @@ void Recorder::draw_header(utl::base::Element* element){
 }
 
 //Header function
-void Recorder::display_action(dat::base::Sensor* sensor){
+void Recorder::display_action(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   if(!sensor->state.record){
@@ -154,7 +154,7 @@ void Recorder::item_filtering(std::vector<std::string>& vec_path){
   //---------------------------
   vec_path = vec_path_ok;
 }
-void Recorder::item_update(dat::base::Sensor* sensor){
+void Recorder::item_update(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   //Actualize current name
@@ -170,8 +170,8 @@ void Recorder::item_update(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Recorder::item_operation(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Recorder::item_operation(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   std::string format = (io_struct->path.format != "-") ? io_struct->path.format : "";

@@ -111,7 +111,7 @@ void Connection::create_sensor(int index){
   sensor->pose.model[2][3] = 1;
 
   //Sensor initialization
-  dat::base::Set* set = manage_set_parent();
+  std::shared_ptr<dat::base::Set> set = manage_set_parent();
   sensor->set_parent = set;
   io_operation->ope_insertion(sensor);
   sensor->start_thread();
@@ -119,11 +119,11 @@ void Connection::create_sensor(int index){
   //---------------------------
 }
 dat::base::Set* Connection::manage_set_parent(){
-  dat::base::Set* set_graph = dat_graph->get_set_graph();
+  std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
   //---------------------------
 
   //Check if already existing
-  dat::base::Set* set = dat_set->get_subset(set_graph, "kinect");
+  std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
   if(set != nullptr) return set;
 
   //Create the set

@@ -20,12 +20,13 @@ Entity::~Entity(){}
 //Main function
 void Entity::update_pose(){
   //----------------------------
-
+/*
   for(int i=0; i<list_glyph.size(); i++){
     dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
-    glyph->update_pose(this);
+    std::shared_ptr<dat::base::Entity> entity = std::static_pointer_cast<dat::base::Entity>(this);
+    glyph->update_pose(entity);
   }
-
+*/
   //----------------------------
 }
 void Entity::reset(){

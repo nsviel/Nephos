@@ -16,7 +16,7 @@ Ascii::Ascii(){
 Ascii::~Ascii(){}
 
 //Main function
-void Ascii::parse_ascii(io::imp::Configuration* config, dat::base::Object* object){
+void Ascii::parse_ascii(io::imp::Configuration* config, std::shared_ptr<dat::base::Object> object){
   //---------------------------
 
   //Open file

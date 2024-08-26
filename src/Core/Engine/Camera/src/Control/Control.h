@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <memory>
 #include <vector>
 #include <string>
 
@@ -30,8 +31,8 @@ public:
   void control_zoom(float value);
 
   //Camera matrix
-  void update_pose(dat::base::Set* set);
-  void update_pose(dat::base::Entity* entity);
+  void update_pose(std::shared_ptr<dat::base::Set> set);
+  void update_pose(std::shared_ptr<dat::base::Entity> entity);
 
   glm::mat4 compute_camera_view();
   glm::mat4 compute_camera_proj();
@@ -41,8 +42,8 @@ public:
 
   //Camera parameter
   void set_camera_COM(glm::vec3 value);
-  void set_camera_mode(cam::Entity* camera);
-  void set_camera_proj(cam::Entity* camera, int projection);
+  void set_camera_mode(std::shared_ptr<cam::Entity> camera);
+  void set_camera_proj(std::shared_ptr<cam::Entity> camera, int projection);
   void set_next_camera_mode();
 
 private:

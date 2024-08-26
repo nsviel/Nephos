@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace rad{class Node;}
 namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
@@ -19,10 +21,10 @@ public:
 
 public:
   //Main function
-  void draw_tab(dat::base::Sensor* sensor);
+  void draw_tab(std::shared_ptr<dat::base::Sensor> sensor);
 
   //Subfunction
-  void display_image(dat::base::Sensor* sensor);
+  void display_image(std::shared_ptr<dat::base::Sensor> sensor);
 
 private:
   rad::cor::Structure* rad_struct;

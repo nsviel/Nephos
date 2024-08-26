@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <memory>
 
 namespace eng::trf{class Transformation;}
 namespace dat::atr{class Location;}
@@ -20,17 +21,17 @@ public:
 
 public:
   //Operation on set
-  void center_object(utl::base::Element* element);
-  void elevate_object(utl::base::Element* element);
-  void make_rotation_X_90d(utl::base::Element* element, int value);
-  void make_translation(utl::base::Element* element, glm::vec3 value);
-  void make_rotation(utl::base::Element* element, glm::vec3 COM, glm::vec3 value);
+  void center_object(std::shared_ptr<utl::base::Element> element);
+  void elevate_object(std::shared_ptr<utl::base::Element> element);
+  void make_rotation_X_90d(std::shared_ptr<utl::base::Element> element, int value);
+  void make_translation(std::shared_ptr<utl::base::Element> element, glm::vec3 value);
+  void make_rotation(std::shared_ptr<utl::base::Element> element, glm::vec3 COM, glm::vec3 value);
 
   //Operation on entity
-  void center_object(dat::base::Entity* entity, glm::vec3 COM);
-  void elevate_object(dat::base::Entity* entity, glm::vec3 min);
-  void make_rotation_X_90d(dat::base::Entity* entity, int value);
-  void make_translation_from_root(dat::base::Entity* entity, glm::vec3 new_root);
+  void center_object(std::shared_ptr<dat::base::Entity> entity, glm::vec3 COM);
+  void elevate_object(std::shared_ptr<dat::base::Entity> entity, glm::vec3 min);
+  void make_rotation_X_90d(std::shared_ptr<dat::base::Entity> entity, int value);
+  void make_translation_from_root(std::shared_ptr<dat::base::Entity> entity, glm::vec3 new_root);
 
 private:
   eng::trf::Transformation* trf_transform;

@@ -33,7 +33,7 @@ Importer::Importer(k4n::Node* node_k4n){
 Importer::~Importer(){}
 
 //Main function
-utl::base::Element* Importer::import(utl::base::Path path){
+std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   if(!utl::file::is_exist(path.build())) return nullptr;
   //---------------------------
 
@@ -93,11 +93,11 @@ float Importer::find_mkv_ts_end(std::string path){
   return ts_end;
 }
 dat::base::Set* Importer::manage_set_parent(){
-  dat::base::Set* set_graph = dat_graph->get_set_graph();
+  std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
   //---------------------------
 
   //Check if already existing
-  dat::base::Set* set = dat_set->get_subset(set_graph, "kinect");
+  std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
   if(set != nullptr) return set;
 
   //Create the set

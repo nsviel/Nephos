@@ -34,7 +34,7 @@ Operation::Operation(io::imp::Node* node_importer){
 Operation::~Operation(){}
 
 //Main function
-void Operation::insert_object(dat::base::Object* object){
+void Operation::insert_object(std::shared_ptr<dat::base::Object> object){
   if(object == nullptr) return;
   //---------------------------
 
@@ -45,11 +45,10 @@ void Operation::insert_object(dat::base::Object* object){
 
   //---------------------------
 }
-void Operation::insert_set(dat::base::Set* set){
-  if(set == nullptr) return;
+void Operation::insert_set(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
-  dat::base::Set* set_graph = dat_graph->get_set_graph();
+  std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
   dat_set->add_subset(set_graph, set);
   set->is_locked = true;
 
@@ -62,14 +61,14 @@ void Operation::ope_clean(){
 
   //Remove old one
   if(io_struct->with_clearing){
-    dat::base::Set* set_graph = dat_graph->get_set_graph();
+    std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
     gph_element->remove_set(set_graph);
   }
 
   //---------------------------
 }
-void Operation::ope_color(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Operation::ope_color(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   std::vector<float>& vec_I = atr_field->get_field_data(entity->data, "I");
@@ -104,8 +103,8 @@ void Operation::ope_color(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Operation::ope_transformation(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Operation::ope_transformation(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   //Transformation
@@ -121,13 +120,15 @@ void Operation::ope_transformation(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Operation::ope_insertion(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Operation::ope_insertion(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   //Init object into engine
-  if(entity->set_parent == nullptr) entity->set_parent = dat_graph->get_set_graph();
-  dat_set->insert_entity(entity->set_parent, entity);
+  if(entity->set_parent.expired()) entity->set_parent = dat_graph->get_set_graph();
+
+  auto parent_set = entity->set_parent.lock();
+  dat_set->insert_entity(parent_set, entity);
   dat_entity->init_entity(entity);
   dat_glyph->insert_glyph(entity);
   gph_selection->select_element(entity);

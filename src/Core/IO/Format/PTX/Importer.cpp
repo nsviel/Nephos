@@ -21,7 +21,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::base::Element* Importer::import(utl::base::Path path){
+std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
 /*  std::list_ptxCloud = new std::list<PTXCloud*>;
   PTXCloud* cloud = new PTXCloud;
   //---------------------------

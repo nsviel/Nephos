@@ -22,7 +22,7 @@ Entity::Entity(dat::elm::Node* node_element){
 Entity::~Entity(){}
 
 //Main function
-void Entity::init_entity(dat::base::Entity* entity){
+void Entity::init_entity(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   entity->UID = dat_uid->generate_UID();
@@ -31,7 +31,7 @@ void Entity::init_entity(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Entity::remove_entity(dat::base::Entity* entity){
+void Entity::remove_entity(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   //----------------------------
 
@@ -49,7 +49,7 @@ void Entity::remove_entity(dat::base::Entity* entity){
 
   //----------------------------
 }
-void Entity::reset_pose(dat::base::Entity* entity){
+void Entity::reset_pose(std::shared_ptr<dat::base::Entity> entity){
   //----------------------------
 
   glm::mat4 init = entity->pose.model_init;
@@ -59,7 +59,7 @@ void Entity::reset_pose(dat::base::Entity* entity){
 
   //----------------------------
 }
-void Entity::visibility_entity(dat::base::Entity* entity, bool value){
+void Entity::visibility_entity(std::shared_ptr<dat::base::Entity> entity, bool value){
   if(!entity) return;
   //---------------------------
 
@@ -71,14 +71,14 @@ void Entity::visibility_entity(dat::base::Entity* entity, bool value){
   }
 
   //If visible so parent set is too
-  dat::base::Set* set = entity->set_parent;
+  std::shared_ptr<dat::base::Set> set = entity->set_parent.lock();
   if(value && set && !set->is_visible){
     set->is_visible  = true;
   }
 
   //---------------------------
 }
-void Entity::update_data(dat::base::Entity* entity){
+void Entity::update_data(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   utl::base::Pose& pose = entity->pose;
   //----------------------------

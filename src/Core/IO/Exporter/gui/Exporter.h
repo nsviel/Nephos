@@ -2,6 +2,7 @@
 
 #include <Utility/GUI/Navigator/Navigator.h>
 #include <imgui/core/imgui.h>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -25,19 +26,19 @@ public:
 
 public:
   //Main function
-  void draw_header(utl::base::Element* element);
+  void draw_header(std::shared_ptr<utl::base::Element> element);
 
   //Header function
   void display_action();
-  void display_path(utl::base::Element* element);
+  void display_path(std::shared_ptr<utl::base::Element> element);
   void display_format();
   void display_encording();
   void display_option();
 
   //Subfunction
   void item_filtering(std::vector<std::string>& vec_path);
-  void item_update(utl::base::Element* element);
-  void item_operation(dat::base::Entity* entity);
+  void item_update(std::shared_ptr<utl::base::Element> element);
+  void item_operation(std::shared_ptr<dat::base::Entity> entity);
 
 private:
   io::exp::Structure* io_struct;

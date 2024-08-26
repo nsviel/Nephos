@@ -17,7 +17,7 @@ Importer::Importer(){
 Importer::~Importer(){}
 
 //Main function
-utl::base::Element* Importer::import(std::string pathFile){
+std::shared_ptr<utl::base::Element> Importer::import(std::string pathFile){
   //---------------------------
 /*
   std::ifstream file(pathFile);

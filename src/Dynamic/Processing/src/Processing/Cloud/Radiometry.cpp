@@ -26,7 +26,7 @@ Radiometry::Radiometry(dyn::prc::Node* node_processing){
 Radiometry::~Radiometry(){}
 
 //Main function
-void Radiometry::start_thread(dat::base::Sensor* sensor){
+void Radiometry::start_thread(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   if(thread.joinable()){
@@ -36,7 +36,7 @@ void Radiometry::start_thread(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Radiometry::run_thread(dat::base::Sensor* sensor){
+void Radiometry::run_thread(std::shared_ptr<dat::base::Sensor> sensor){
   prf::monitor::Tasker* tasker = sensor->profiler.fetch_tasker("ope::correction");
   //---------------------------
 
@@ -62,7 +62,7 @@ void Radiometry::wait_thread(){
 }
 
 //Subfunction
-void Radiometry::compute_correction(dat::base::Sensor* sensor){
+void Radiometry::compute_correction(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   utl::media::Image* image = dat_image->get_image(sensor, "Intensity");

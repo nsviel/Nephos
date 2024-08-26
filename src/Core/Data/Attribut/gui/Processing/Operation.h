@@ -20,10 +20,10 @@ public:
 
 public:
   //Main function
-  void design_operation(utl::base::Element* element);
+  void design_operation(std::shared_ptr<utl::base::Element> element);
 
   //Subfunction
-  void draw_img_image(utl::base::Element* element);
+  void draw_img_image(std::shared_ptr<utl::base::Element> element);
 
 private:
   dat::img::Converter* img_image;

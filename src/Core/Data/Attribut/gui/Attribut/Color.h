@@ -20,17 +20,17 @@ public:
 
 public:
   //Main function
-  void design_colorization(utl::base::Element* element);
+  void design_colorization(std::shared_ptr<utl::base::Element> element);
 
   //Subfunction
-  void color_mode(utl::base::Element* element);
-  void color_mode_rgb(utl::base::Element* element);
-  void color_mode_unicolor(utl::base::Element* element);
-  void color_mode_normal(utl::base::Element* element);
-  void color_mode_field(utl::base::Element* element);
-  void color_mode_heatmap(utl::base::Element* element);
-  void color_mode_structure(utl::base::Element* element);
-  void color_option(utl::base::Element* element);
+  void color_mode(std::shared_ptr<utl::base::Element> element);
+  void color_mode_rgb(std::shared_ptr<utl::base::Element> element);
+  void color_mode_unicolor(std::shared_ptr<utl::base::Element> element);
+  void color_mode_normal(std::shared_ptr<utl::base::Element> element);
+  void color_mode_field(std::shared_ptr<utl::base::Element> element);
+  void color_mode_heatmap(std::shared_ptr<utl::base::Element> element);
+  void color_mode_structure(std::shared_ptr<utl::base::Element> element);
+  void color_option(std::shared_ptr<utl::base::Element> element);
 
 private:
   dat::atr::Structure* atr_struct;

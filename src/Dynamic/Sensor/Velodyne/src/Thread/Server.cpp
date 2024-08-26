@@ -109,7 +109,7 @@ void Server::update_object(utl::base::Data& data){
   //---------------------------
 
   std::string name = "capture_" + std::to_string(vld_struct->data.current_frame_ID++);
-  dat::base::Object* object = vld_struct->data.object;
+  std::shared_ptr<dat::base::Object> object = vld_struct->data.object;
   object->name = name;
   object->data.name = name + "::data";
   object->data.size = data.xyz.size();

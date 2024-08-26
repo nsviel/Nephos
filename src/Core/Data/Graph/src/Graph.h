@@ -27,9 +27,9 @@ public:
   void clean();
 
   //Accesseur
-  dat::base::Set* get_set_main();
-  dat::base::Set* get_set_graph();
-  dat::base::Set* get_set_scene();
+  std::shared_ptr<dat::base::Set>& get_set_main();
+  std::shared_ptr<dat::base::Set>& get_set_graph();
+  std::shared_ptr<dat::base::Set>& get_set_scene();
 
 private:
   dat::elm::Glyph* dat_glyph;

@@ -23,7 +23,7 @@ Ransac::Ransac(rad::cor::Node* node_correction){
 Ransac::~Ransac(){}
 
 //Main function
-void Ransac::ransac_sphere(dat::base::Sensor* sensor){
+void Ransac::ransac_sphere(std::shared_ptr<dat::base::Sensor> sensor){
   static float current_timestamp = 0;
   //---------------------------
 
@@ -59,7 +59,7 @@ void Ransac::reset_search_space(){
 
   //---------------------------
 }
-void Ransac::reduce_search_space(dat::base::Sensor* sensor){
+void Ransac::reduce_search_space(std::shared_ptr<dat::base::Sensor> sensor){
   std::vector<glm::vec3>& vec_xyz = sensor->data.xyz;
   std::vector<glm::vec3>& vec_Nxyz = sensor->data.Nxyz;
   //---------------------------

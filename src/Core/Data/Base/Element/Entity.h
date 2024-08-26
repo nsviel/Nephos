@@ -4,6 +4,7 @@
 #include <Utility/Base/Data/Element.h>
 #include <Utility/Base/Media/Image.h>
 #include <fontawesome/IconsFontAwesome6.h>
+#include <memory>
 #include <string>
 #include <list>
 
@@ -31,7 +32,7 @@ struct Entity : public utl::base::Element{
 
   //Data
   utl::base::Data data;
-  dat::base::Set* set_parent = nullptr;
+  std::weak_ptr<dat::base::Set>  set_parent;
   std::list<dat::base::Glyph*> list_glyph;
   std::list<utl::media::Image*> list_image;
 

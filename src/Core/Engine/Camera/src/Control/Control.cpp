@@ -24,7 +24,7 @@ Control::~Control(){}
 
 //Camera movement
 void Control::control_keyboard(int direction, bool fast){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   //Compute camera movment speed value
@@ -63,7 +63,7 @@ void Control::control_keyboard(int direction, bool fast){
   //---------------------------
 }
 void Control::control_mouse(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   if(camera->cam_move){
@@ -74,7 +74,7 @@ void Control::control_mouse(){
   //---------------------------
 }
 void Control::control_zoom(float value){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   switch(camera->projection){
@@ -91,7 +91,7 @@ void Control::control_zoom(float value){
   //---------------------------
 }
 void Control::control_wheel(float value){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   active_mode->camera_wheel(camera, value);
@@ -100,24 +100,22 @@ void Control::control_wheel(float value){
 }
 
 //Camera matrix
-void Control::update_pose(dat::base::Set* set){
+void Control::update_pose(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   // Process entities within the current set
-  for(int i=0; i<set->list_entity.size(); i++){
-    dat::base::Entity* entity = *next(set->list_entity.begin(), i);
+  for(auto& entity : set->list_entity){
     this->update_pose(entity);
   }
 
   // Recursively process nested sets
-  for(int i=0; i<set->list_subset.size(); i++){
-    dat::base::Set* subset = *next(set->list_subset.begin(), i);
+  for(auto& subset : set->list_subset){
     this->update_pose(subset);
   }
 
   //---------------------------
 }
-void Control::update_pose(dat::base::Entity* entity){
+void Control::update_pose(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Pose& pose = entity->pose;
   //----------------------------
 
@@ -135,7 +133,7 @@ void Control::update_pose(dat::base::Entity* entity){
 }
 
 glm::mat4 Control::compute_camera_view(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   glm::mat4 cam_view = active_mode->compute_camera_view(camera);
@@ -144,7 +142,7 @@ glm::mat4 Control::compute_camera_view(){
   return cam_view;
 }
 glm::mat4 Control::compute_camera_proj(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   glm::mat4 projection = glm::mat4(1.0f);
@@ -188,7 +186,7 @@ void Control::compute_camera_mvp(utl::base::Pose& pose){
   //---------------------------
 }
 glm::mat4 Control::compute_camera_pose(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   glm::vec3 zaxis = normalize(camera->cam_F);
@@ -207,7 +205,7 @@ glm::mat4 Control::compute_camera_pose(){
 
 //Camera parameter
 void Control::set_camera_COM(glm::vec3 value){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   // Calculate the displacement vector
@@ -221,7 +219,7 @@ void Control::set_camera_COM(glm::vec3 value){
 
   //---------------------------
 }
-void Control::set_camera_mode(cam::Entity* camera){
+void Control::set_camera_mode(std::shared_ptr<cam::Entity> camera){
   //---------------------------
 
   switch(camera->mode){
@@ -237,7 +235,7 @@ void Control::set_camera_mode(cam::Entity* camera){
 
   //---------------------------
 }
-void Control::set_camera_proj(cam::Entity* camera, int projection){
+void Control::set_camera_proj(std::shared_ptr<cam::Entity> camera, int projection){
   //---------------------------
 
   switch(projection){
@@ -258,7 +256,7 @@ void Control::set_camera_proj(cam::Entity* camera, int projection){
   //---------------------------
 }
 void Control::set_next_camera_mode(){
-  cam::Entity* camera = cam_struct->cam_current;
+  std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
 
   switch(camera->mode){

@@ -27,8 +27,8 @@ Panel::~Panel(){}
 
 //Main function
 void Panel::run_panel(){
-  utl::base::Element* element = gph_selection->get_selected_element();
-  if(element == nullptr) return;
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
+  if(!element) return;
   //---------------------------
 
   if(*show_window){
@@ -45,7 +45,7 @@ void Panel::run_panel(){
 
   //---------------------------
 }
-void Panel::design_panel(utl::base::Element* element){
+void Panel::design_panel(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   trf_io->update_path(element);
@@ -60,7 +60,7 @@ void Panel::design_panel(utl::base::Element* element){
 }
 
 //Subfunction
-void Panel::display_loader(utl::base::Element* element){
+void Panel::display_loader(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   float width = ImGui::GetContentRegionAvail().x;
@@ -81,7 +81,7 @@ void Panel::display_loader(utl::base::Element* element){
 
   //---------------------------
 }
-void Panel::display_path(utl::base::Element* element){
+void Panel::display_path(std::shared_ptr<utl::base::Element> element){
   utl::base::Path* path = trf_io->get_path();
   //---------------------------
 
@@ -106,7 +106,7 @@ void Panel::display_path(utl::base::Element* element){
   }
 
   //Filename
-  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
+  if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::Text("Name"); ImGui::TableNextColumn();
     strncpy(str_n, path->name.c_str(), sizeof(str_n) - 1);
@@ -123,7 +123,7 @@ void Panel::display_path(utl::base::Element* element){
 
   //---------------------------
 }
-void Panel::display_format(utl::base::Element* element){
+void Panel::display_format(std::shared_ptr<utl::base::Element> element){
   utl::base::Path* path = trf_io->get_path();
   //---------------------------
 
@@ -146,7 +146,7 @@ void Panel::display_format(utl::base::Element* element){
   //---------------------------
   ImGui::Separator();
 }
-void Panel::display_matrix(utl::base::Element* element){
+void Panel::display_matrix(std::shared_ptr<utl::base::Element> element){
   utl::base::Pose& pose = element->pose;
   //---------------------------
 
@@ -191,8 +191,8 @@ void Panel::item_filtering(std::vector<std::string>& vec_path){
   vec_path = vec_path_ok;
 }
 void Panel::item_operation(){
-  utl::base::Element* element = gph_selection->get_selected_element();
-  if(element == nullptr) return;
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
+  if(!element) return;
   //---------------------------
 
   utl::base::Path* path = trf_io->get_path();

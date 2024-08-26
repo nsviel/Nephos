@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -38,7 +39,7 @@ public:
   bool check_path(std::string path);
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
-  utl::base::Element* import_from_path(utl::base::Path path);
+  std::shared_ptr<utl::base::Element> import_from_path(utl::base::Path path);
 
 private:
   io::imp::Structure* io_struct;

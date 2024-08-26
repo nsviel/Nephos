@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace dat::base{class Sensor;}
 namespace rad{class Node;}
 namespace rad::cal{class Structure;}
@@ -19,12 +21,12 @@ public:
 
 public:
   //Main function
-  void draw_tab(dat::base::Sensor* sensor);
+  void draw_tab(std::shared_ptr<dat::base::Sensor> sensor);
 
   //Subfunction
   void detection_step();
   void detection_parameter();
-  void detection_image(dat::base::Sensor* sensor);
+  void detection_image(std::shared_ptr<dat::base::Sensor> sensor);
   void parameter_canny();
   void parameter_hough();
 

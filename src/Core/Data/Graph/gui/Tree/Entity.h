@@ -21,12 +21,12 @@ public:
 
 public:
   //Main function
-  void tree_entity(dat::base::Set* set, dat::base::Entity* entity, int& nb_row);
+  void tree_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity, int& nb_row);
 
   //Subfunction
-  void draw_leaf(dat::base::Set* set, dat::base::Entity* entity);
-  void draw_click(dat::base::Entity* entity);
-  void draw_button(dat::base::Set* set, dat::base::Entity* entity);
+  void draw_leaf(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity);
+  void draw_click(std::shared_ptr<dat::base::Entity> entity);
+  void draw_button(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity);
 
 private:
   dat::gph::Selection* gph_selection;

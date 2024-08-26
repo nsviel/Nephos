@@ -27,7 +27,7 @@ Operation::Operation(dyn::prc::Node* node_processing){
 Operation::~Operation(){}
 
 //Main function
-void Operation::run_operation(dat::base::Sensor* sensor){
+void Operation::run_operation(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   dyn_recorder->start_thread(sensor);
@@ -38,7 +38,9 @@ void Operation::run_operation(dat::base::Sensor* sensor){
   //pour l'instant c'est la meme qqsoit le sensor
   //Du coup 2 playback = laggs
   //atr_color->start_task(sensor);
-  atr_color->make_colorization(sensor);
+
+  std::shared_ptr<dat::base::Entity> entity = std::dynamic_pointer_cast<dat::base::Entity>(sensor);
+  atr_color->make_colorization(entity);
 
 
   //---------------------------

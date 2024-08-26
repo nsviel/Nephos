@@ -18,12 +18,12 @@ public:
   ~Data();
 
   //Main function
-  void draw_entity_data(dat::base::Entity* entity);
+  void draw_entity_data(std::shared_ptr<dat::base::Entity> entity);
 
   //Parameter
-  void entity_info(dat::base::Entity* entity);
-  void entity_data(dat::base::Entity* entity);
-  void entity_pose(dat::base::Entity* entity);
+  void entity_info(std::shared_ptr<dat::base::Entity> entity);
+  void entity_data(std::shared_ptr<dat::base::Entity> entity);
+  void entity_pose(std::shared_ptr<dat::base::Entity> entity);
 
 private:
   dat::elm::Entity* dat_entity;

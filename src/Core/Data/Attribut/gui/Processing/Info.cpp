@@ -19,7 +19,7 @@ Info::Info(){
 Info::~Info(){}
 
 //Main function
-void Info::design_info(utl::base::Element* element){
+void Info::design_info(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
@@ -31,9 +31,9 @@ void Info::design_info(utl::base::Element* element){
 }
 
 //Subfunction
-void Info::path_info(utl::base::Element* element){
-  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
-  if(entity == nullptr) return;
+void Info::path_info(std::shared_ptr<utl::base::Element> element){
+  auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element);
+  if(!entity) return;
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);

@@ -25,7 +25,7 @@ Edition::~Edition(){}
 
 //Main function
 void Edition::element_forward(){
-  utl::base::Element* element = gph_selection->get_selected_element();
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
   //---------------------------
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
@@ -35,7 +35,7 @@ void Edition::element_forward(){
   //---------------------------
 }
 void Edition::element_backward(){
-  utl::base::Element* element = gph_selection->get_selected_element();
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
   //---------------------------
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
@@ -45,7 +45,7 @@ void Edition::element_backward(){
   //---------------------------
 }
 void Edition::element_left(){
-  utl::base::Element* element = gph_selection->get_selected_element();
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
   //---------------------------
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
@@ -55,7 +55,7 @@ void Edition::element_left(){
   //---------------------------
 }
 void Edition::element_right(){
-  utl::base::Element* element = gph_selection->get_selected_element();
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
   //---------------------------
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
@@ -65,7 +65,7 @@ void Edition::element_right(){
   //---------------------------
 }
 void Edition::element_down(){
-  utl::base::Element* element = gph_selection->get_selected_element();
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
   //---------------------------
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
@@ -75,7 +75,7 @@ void Edition::element_down(){
   //---------------------------
 }
 void Edition::element_up(){
-  utl::base::Element* element = gph_selection->get_selected_element();
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
   //---------------------------
 
   float speed = ctr_struct->key_fast ? ctr_struct->speed_fast : ctr_struct->speed_translation;
@@ -101,11 +101,12 @@ void Edition::select_next(){
   //---------------------------
 }
 void Edition::remove_current(){
-  dat::base::Set* set = gph_selection->get_selected_set();
-  if(set == nullptr) return;
+  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+  if(!set) return;
   //---------------------------
 
-  gph_element->remove_entity(set, set->active_entity);
+  std::shared_ptr<dat::base::Entity> entity = set->active_entity.lock();
+  gph_element->remove_entity(set, entity);
 
   //---------------------------
 }

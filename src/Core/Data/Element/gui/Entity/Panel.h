@@ -25,11 +25,11 @@ public:
   void close_panel();
 
   //Subfunction
-  void entity_title(dat::base::Entity* entity);
-  void entity_button(dat::base::Entity* entity);
-  void entity_parameter(dat::base::Entity* entity);
+  void entity_title(std::shared_ptr<dat::base::Entity> entity);
+  void entity_button(std::shared_ptr<dat::base::Entity> entity);
+  void entity_parameter(std::shared_ptr<dat::base::Entity> entity);
 
-  inline void set_entity(dat::base::Entity* entity){this->entity = entity;}
+  inline void set_entity(std::shared_ptr<dat::base::Entity> entity){this->entity = entity;}
   inline void show_panel(bool value){this->panel_show = value;}
 
 private:
@@ -37,7 +37,7 @@ private:
   dat::entity::gui::Topology* gui_topology;
   dat::entity::gui::Data* gui_data;
 
-  dat::base::Entity* entity;
+  std::shared_ptr<dat::base::Entity> entity;
   std::string panel_name;
   bool panel_show;;
   int item_width;

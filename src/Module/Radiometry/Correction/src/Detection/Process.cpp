@@ -38,9 +38,9 @@ void Process::loop(){
   //---------------------------
 
   //Verify that we have a sensor type
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
-  if(sensor == nullptr) return;
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
+  auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
+  if(sensor) return;
 
   //Update glyph pose
   rad_glyph->update_sphere_glyph();
@@ -57,9 +57,9 @@ void Process::step_detection(){
   //---------------------------
 
   //Verify that we have a sensor type
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
-  if(sensor == nullptr) return;
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
+  auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
+  if(sensor) return;
 
   //Detection step logic
   switch(rad_struct->state.detection){
@@ -80,9 +80,9 @@ void Process::step_measure(){
   //---------------------------
 
   //Verify that we have a sensor type
-  dat::base::Entity* entity = gph_selection->get_selected_entity();
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(entity);
-  if(sensor == nullptr) return;
+  std::shared_ptr<dat::base::Entity> entity = gph_selection->get_selected_entity();
+  auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
+  if(!sensor) return;
 
   //Measurement step logic
   switch(rad_struct->state.measure){

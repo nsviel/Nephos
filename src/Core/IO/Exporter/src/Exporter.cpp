@@ -21,7 +21,7 @@ Exporter::Exporter(io::exp::Node* node_exporter){
 Exporter::~Exporter(){}
 
 //Main function
-void Exporter::export_entity(dat::base::Entity* entity, std::string path){
+void Exporter::export_entity(std::shared_ptr<dat::base::Entity> entity, std::string path){
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
@@ -44,7 +44,7 @@ void Exporter::init_path(){
 
   //---------------------------
 }
-void Exporter::export_with_config(io::exp::Base* exporter, dat::base::Entity* entity, std::string path){
+void Exporter::export_with_config(io::exp::Base* exporter, std::shared_ptr<dat::base::Entity> entity, std::string path){
   utl::base::Data& data = entity->data;
   utl::base::Pose& pose = entity->pose;
   //---------------------------
@@ -69,10 +69,10 @@ void Exporter::insert_exporter(io::exp::Base* exporter){
 
   //---------------------------
 }
-void Exporter::update_current_path(utl::base::Element* element){
+void Exporter::update_current_path(std::shared_ptr<utl::base::Element> element){
   //---------------------------
-
-  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
+/*
+  std::shared_ptr<dat::base::Entity> entity = std::dynamic_pointer_cast<dat::base::Entity>(element);
   if(!entity) return;
 
   static dat::base::Entity* old_entity = nullptr;
@@ -83,7 +83,7 @@ void Exporter::update_current_path(utl::base::Element* element){
     if(!is_format_supported(entity->data.path.format)) io_struct->path.format = "ply";
     old_entity = entity;
   }
-
+*/
   //---------------------------
 }
 bool Exporter::is_format_supported(std::string format){
@@ -100,7 +100,7 @@ bool Exporter::is_format_supported(std::string format){
   //---------------------------
   return false;
 }
-bool Exporter::is_current_config(dat::base::Entity* entity){
+bool Exporter::is_current_config(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   if(entity->data.path.build() == io_struct->path.build()){
@@ -110,10 +110,10 @@ bool Exporter::is_current_config(dat::base::Entity* entity){
   //---------------------------
   return false;
 }
-bool Exporter::is_recording(utl::base::Element* element){
+bool Exporter::is_recording(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
-  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(element);
+  std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
   if(sensor && sensor->vec_recorder.size() != 0){
     return true;
   }

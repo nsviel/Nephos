@@ -29,8 +29,8 @@ Wheel::~Wheel(){}
 
 //Main function
 void Wheel::make_action(float value){
-  utl::base::Element* element = gph_selection->get_selected_element();
-  if(element == nullptr) return;
+  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
+  if(!element) return;
   //---------------------------
 
   //Rotation quantity

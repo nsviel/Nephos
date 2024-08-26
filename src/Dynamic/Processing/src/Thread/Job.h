@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  void start_thread(dat::base::Sensor* sensor){
+  void start_thread(std::shared_ptr<dat::base::Sensor> sensor){
     //---------------------------
 
     this->sensor = sensor;
@@ -25,7 +25,7 @@ public:
   }
 
 protected:
-  dat::base::Sensor* sensor = nullptr;
+  std::shared_ptr<dat::base::Sensor> sensor;
 };
 
 }

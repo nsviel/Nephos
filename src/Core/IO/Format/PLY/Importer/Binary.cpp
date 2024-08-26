@@ -16,7 +16,7 @@ Binary::Binary(){
 Binary::~Binary(){}
 
 //Main function
-void Binary::parse_binary(io::imp::Configuration* config, dat::base::Object* object){
+void Binary::parse_binary(io::imp::Configuration* config, std::shared_ptr<dat::base::Object> object){
   //---------------------------
 
   //Open file

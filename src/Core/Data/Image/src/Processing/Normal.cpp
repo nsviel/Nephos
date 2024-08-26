@@ -17,7 +17,7 @@ Normal::Normal(){
 Normal::~Normal(){}
 /*
 //Main function
-void Normal::compute_normal(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Normal::compute_normal(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   //this->compute_normal_with_gradient(sensor, width, height, vec_Nxyz);
@@ -27,7 +27,7 @@ void Normal::compute_normal(dat::base::Sensor* sensor, utl::media::Image* depth,
 }
 
 //Method function
-void Normal::compute_normal_with_gradient(dat::base::Sensor* sensor, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Normal::compute_normal_with_gradient(std::shared_ptr<dat::base::Sensor> sensor, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   vec_Nxyz.clear();
@@ -78,7 +78,7 @@ void Normal::compute_normal_with_gradient(dat::base::Sensor* sensor, int width, 
 
   //---------------------------
 }
-void Normal::compute_normal_with_cov(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Normal::compute_normal_with_cov(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   vec_Nxyz.clear();
@@ -110,7 +110,7 @@ tic();
 toc_ms("hoy");
   //---------------------------
 }
-void Normal::compute_normal_with_cov_img(dat::base::Sensor* sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Normal::compute_normal_with_cov_img(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   vec_Nxyz.clear();
@@ -150,7 +150,7 @@ void Normal::compute_normal_with_cov_img(dat::base::Sensor* sensor, utl::media::
 }
 
 //Subfunction
-void Normal::compute_neigbor(dat::base::Sensor* sensor, std::vector<glm::vec3>& vec_nn, int x, int y, int width, int height){
+void Normal::compute_neigbor(std::shared_ptr<dat::base::Sensor> sensor, std::vector<glm::vec3>& vec_nn, int x, int y, int width, int height){
   //---------------------------
 
   int half_window = k / 2;

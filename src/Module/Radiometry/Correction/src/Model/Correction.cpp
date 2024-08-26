@@ -26,7 +26,7 @@ Correction::Correction(rad::cor::Node* node_correction){
 Correction::~Correction(){}
 
 //Main function
-void Correction::make_image_correction(dat::base::Sensor* sensor, utl::media::Image* ir){
+void Correction::make_image_correction(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* ir){
   if(sensor == nullptr || ir == nullptr) return;
   //---------------------------
 
@@ -43,7 +43,7 @@ void Correction::make_image_correction(dat::base::Sensor* sensor, utl::media::Im
 }
 
 //Subfunction
-void Correction::make_correction(dat::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
+void Correction::make_correction(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
   utl::base::Data& data = sensor->data;
@@ -84,7 +84,7 @@ void Correction::make_correction(dat::base::Sensor* sensor, utl::media::Image* i
 
   //---------------------------
 }
-void Correction::update_correction_image(dat::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
+void Correction::update_correction_image(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
   utl::media::Image* image = dat_image->get_or_create_image(sensor, "Correction");

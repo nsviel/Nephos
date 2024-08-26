@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace dyn::prc{class Node;}
 namespace dyn::prc{class Structure;}
 namespace dyn::prc::cloud{class Recorder;}
@@ -21,7 +23,7 @@ public:
 
 public:
   //Main function
-  void run_operation(dat::base::Sensor* sensor);
+  void run_operation(std::shared_ptr<dat::base::Sensor> sensor);
   void wait_operation();
 
 private:

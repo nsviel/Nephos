@@ -19,7 +19,7 @@ Matrix::Matrix(){
 Matrix::~Matrix(){}
 
 //Main function
-void Matrix::design_matrix(utl::base::Element* element){
+void Matrix::design_matrix(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
@@ -32,7 +32,7 @@ void Matrix::design_matrix(utl::base::Element* element){
 }
 
 //Subfunction
-void Matrix::draw_operation(utl::base::Element* element){
+void Matrix::draw_operation(std::shared_ptr<utl::base::Element> element){
   utl::base::Pose& pose = element->pose;
   //---------------------------
 
@@ -50,7 +50,7 @@ void Matrix::draw_operation(utl::base::Element* element){
 
   //---------------------------
 }
-void Matrix::draw_matrix(utl::base::Element* element){
+void Matrix::draw_matrix(std::shared_ptr<utl::base::Element> element){
   utl::base::Pose& pose = element->pose;
   //---------------------------
 

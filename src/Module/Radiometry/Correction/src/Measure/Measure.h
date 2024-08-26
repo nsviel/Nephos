@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <memory>
 #include <vector>
 
 namespace rad::cor{class Node;}
@@ -21,11 +22,11 @@ public:
 public:
   //Main function
   void init();
-  void process_measure(dat::base::Sensor* sensor);
+  void process_measure(std::shared_ptr<dat::base::Sensor> sensor);
 
   //Subfunction
-  void data_measure(dat::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
-  void data_IfR(dat::base::Sensor* sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
+  void data_measure(std::shared_ptr<dat::base::Sensor> sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
+  void data_IfR(std::shared_ptr<dat::base::Sensor> sensor, std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
   void data_IfIt(std::vector<glm::vec3>& sphere_xyz, std::vector<float>& sphere_i);
 
 private:

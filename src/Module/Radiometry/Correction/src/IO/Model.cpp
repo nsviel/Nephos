@@ -21,7 +21,7 @@ Model::Model(rad::cor::Node* node_correction){
 Model::~Model(){}
 
 //Main function
-void Model::import_model(dat::base::Sensor* sensor){
+void Model::import_model(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   std::string path = sensor->calibration.path.build();
@@ -32,7 +32,7 @@ void Model::import_model(dat::base::Sensor* sensor){
 
   //---------------------------
 }
-void Model::export_model(dat::base::Sensor* sensor){
+void Model::export_model(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
   std::string path = sensor->calibration.path.build();
@@ -43,7 +43,7 @@ void Model::export_model(dat::base::Sensor* sensor){
 }
 
 //Subfunction
-void Model::write_device_info(dat::base::Sensor* sensor, std::string& path){
+void Model::write_device_info(std::shared_ptr<dat::base::Sensor> sensor, std::string& path){
   //---------------------------
 
   //Info
@@ -58,7 +58,7 @@ void Model::write_device_info(dat::base::Sensor* sensor, std::string& path){
 
   //---------------------------
 }
-void Model::write_depth_mode_model(dat::base::Sensor* sensor, std::string& path){
+void Model::write_depth_mode_model(std::shared_ptr<dat::base::Sensor> sensor, std::string& path){
   dat::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 
@@ -88,7 +88,7 @@ void Model::write_depth_mode_model(dat::base::Sensor* sensor, std::string& path)
 
   //---------------------------
 }
-void Model::read_device_info(dat::base::Sensor* sensor, std::string& path){
+void Model::read_device_info(std::shared_ptr<dat::base::Sensor> sensor, std::string& path){
   //---------------------------
 
   //Info
@@ -102,7 +102,7 @@ void Model::read_device_info(dat::base::Sensor* sensor, std::string& path){
 
   //---------------------------
 }
-void Model::read_depth_mode_model(dat::base::Sensor* sensor, std::string& path){
+void Model::read_depth_mode_model(std::shared_ptr<dat::base::Sensor> sensor, std::string& path){
   dat::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 

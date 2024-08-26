@@ -19,7 +19,7 @@ Octree::Octree(){
 Octree::~Octree(){}
 /*
 //Main function
-void Octree::create_octree(dat::base::Object* object){
+void Octree::create_octree(std::shared_ptr<dat::base::Object> object){
   this->nb_level = 6;
   //---------------------------
 
@@ -35,7 +35,7 @@ toc_ms("octree");
   //---------------------------
   this->remove_octree(root);
 }
-void Octree::create_octree(dat::base::Object* object, int level){
+void Octree::create_octree(std::shared_ptr<dat::base::Object> object, int level){
   this->nb_level = level;
   //---------------------------
 
@@ -74,7 +74,7 @@ void Octree::remove_cube(Cube* cube){
 
   //---------------------------
 }
-void Octree::build_root(dat::base::Object* object){
+void Octree::build_root(std::shared_ptr<dat::base::Object> object){
   //---------------------------
 
   // Create a vector of indexes

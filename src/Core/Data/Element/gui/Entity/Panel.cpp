@@ -66,16 +66,16 @@ void Panel::close_panel(){
 }
 
 //Subfunction
-void Panel::entity_title(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Panel::entity_title(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   this->panel_name = "[Entity]  " + entity->name;
 
   //---------------------------
 }
-void Panel::entity_button(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Panel::entity_button(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   //Centered
@@ -86,8 +86,8 @@ void Panel::entity_button(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Panel::entity_parameter(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Panel::entity_parameter(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   ImGui::BeginTable("entity##table", 2, ImGuiTableFlags_BordersInnerV);

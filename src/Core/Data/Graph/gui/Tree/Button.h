@@ -21,11 +21,11 @@ public:
 
 public:
   //Main function
-  void button_locked(dat::base::Set* set);
-  void button_visibility(dat::base::Set* set);
-  void button_visibility(dat::base::Entity* entity);
-  void button_remove(dat::base::Set* set, dat::base::Entity* entity);
-  void button_remove(dat::base::Set* set);
+  void button_locked(std::shared_ptr<dat::base::Set> set);
+  void button_visibility(std::shared_ptr<dat::base::Set> set);
+  void button_visibility(std::shared_ptr<dat::base::Entity> entity);
+  void button_remove(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity);
+  void button_remove(std::shared_ptr<dat::base::Set> set);
 
 private:
   dat::elm::Set* dat_set;

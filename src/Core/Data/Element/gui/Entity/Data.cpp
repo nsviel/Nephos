@@ -21,8 +21,8 @@ Data::Data(dat::elm::Node* node_element){
 Data::~Data(){}
 
 //Main function
-void Data::draw_entity_data(dat::base::Entity* entity){
-  if(entity == nullptr) return;
+void Data::draw_entity_data(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
   //---------------------------
 
   this->entity_info(entity);
@@ -34,7 +34,7 @@ void Data::draw_entity_data(dat::base::Entity* entity){
 }
 
 //Subfunction
-void Data::entity_info(dat::base::Entity* entity){
+void Data::entity_info(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   //Visibility
@@ -57,7 +57,7 @@ void Data::entity_info(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Data::entity_data(dat::base::Entity* entity){
+void Data::entity_data(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
   //---------------------------
 
@@ -72,7 +72,7 @@ void Data::entity_data(dat::base::Entity* entity){
 
   //---------------------------
 }
-void Data::entity_pose(dat::base::Entity* entity){
+void Data::entity_pose(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Pose& pose = entity->pose;
   //---------------------------
 

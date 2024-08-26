@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <vector>
 
 namespace dat::base{class Sensor;}
@@ -26,9 +27,9 @@ public:
   void update_sphere_glyph();
 
   //Subfunction
-  void draw_calibration_sphere(dat::base::Sensor* sensor);
-  void draw_detection_sphere(dat::base::Sensor* sensor);
-  void draw_sphere_glyph(dat::base::Sensor* sensor, std::vector<rad::cor::structure::Circle>& vec_circle);
+  void draw_calibration_sphere(const std::shared_ptr<dat::base::Sensor> sensor);
+  void draw_detection_sphere(std::shared_ptr<dat::base::Sensor> sensor);
+  void draw_sphere_glyph(std::shared_ptr<dat::base::Sensor> sensor, std::vector<rad::cor::structure::Circle>& vec_circle);
 
   //Reset function
   void reset_calibration_sphere();

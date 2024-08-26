@@ -2,6 +2,7 @@
 
 #include <Utility/GUI/Navigator/Navigator.h>
 #include <imgui/core/imgui.h>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -23,13 +24,13 @@ public:
 public:
   //Main function
   void run_panel();
-  void design_panel(utl::base::Element* element );
+  void design_panel(std::shared_ptr<utl::base::Element> element);
 
   //Subfunction
-  void display_loader(utl::base::Element* element);
-  void display_path(utl::base::Element* element);
-  void display_format(utl::base::Element* element);
-  void display_matrix(utl::base::Element* element);
+  void display_loader(std::shared_ptr<utl::base::Element> element);
+  void display_path(std::shared_ptr<utl::base::Element> element);
+  void display_format(std::shared_ptr<utl::base::Element> element);
+  void display_matrix(std::shared_ptr<utl::base::Element> element);
   void item_filtering(std::vector<std::string>& vec_path);
   void item_operation();
 

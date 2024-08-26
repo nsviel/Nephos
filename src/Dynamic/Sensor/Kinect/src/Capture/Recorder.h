@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  bool record_sensor(dat::base::Sensor* sensor, std::string path);
+  bool record_sensor(std::shared_ptr<dat::base::Sensor> sensor, std::string path);
 
   //Subfunction
   void export_start(k4n::base::Sensor* sensor, std::string path);

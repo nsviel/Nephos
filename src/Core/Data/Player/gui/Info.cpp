@@ -18,7 +18,7 @@ Info::Info(){
 Info::~Info(){}
 
 //Main function
-void Info::design_info(utl::base::Element* element){
+void Info::design_info(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
@@ -32,9 +32,9 @@ void Info::design_info(utl::base::Element* element){
 }
 
 //Subfunction
-void Info::path_info(utl::base::Element* element){
-  dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element);
-  if(entity == nullptr) return;
+void Info::path_info(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Entity> entity = std::dynamic_pointer_cast<dat::base::Entity>(element);
+  if(!entity) return;
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
@@ -65,8 +65,8 @@ void Info::path_info(utl::base::Element* element){
   //---------------------------
   ImGui::Separator();
 }
-void Info::sensor_info(utl::base::Element* element){
-/*  dat::base::Sensor* sensor = dynamic_cast<dat::base::Sensor*>(element);
+void Info::sensor_info(std::shared_ptr<utl::base::Element> element){
+/*  std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
   if(sensor == nullptr) return;
   //---------------------------
 
@@ -114,12 +114,12 @@ void Info::sensor_info(utl::base::Element* element){
   //---------------------------
   ImGui::Separator();
 }
-void Info::playback_info(utl::base::Element* element){
-  if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)) return;
+void Info::playback_info(std::shared_ptr<utl::base::Element> element){
+  //if(std::shared_ptr<dat::base::Entity> entity = dynamic_cast<dat::base::Entity*>(element)) return;
   //---------------------------
 
   /*
-  dat::base::Set* set = dynamic_cast<dat::base::Set*>(element);
+  std::shared_ptr<dat::base::Set> set = dynamic_cast<dat::base::Set*>(element);
   dat::base::Player* player = &set->player;
   if(player == nullptr) return;
 

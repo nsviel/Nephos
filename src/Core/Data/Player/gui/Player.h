@@ -17,7 +17,7 @@ public:
   ~Player();
 
   //Main function
-  void design_player(utl::base::Element* element);
+  void design_player(std::shared_ptr<utl::base::Element> element);
 
   //Player function
   void player_slider();
