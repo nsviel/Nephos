@@ -30,7 +30,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void make_shape_detection(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* image, utl::media::Image* output);
+  void make_shape_detection(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> image, std::shared_ptr<utl::media::Image> output);
 
 private:
   sys::thread::task::Pool* thread_pool;

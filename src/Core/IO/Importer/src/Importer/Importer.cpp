@@ -58,7 +58,7 @@ void Importer::load_set(utl::base::Path path){
   //Convert
   std::shared_ptr<dat::base::Set> set = nullptr;
   if(element->type == utl::element::SET){
-    set = dynamic_cast<dat::base::Set*>(element);
+    set = dynamic_cast<std::shared_ptr<dat::base::Set>>(element);
   }
 
   //Insert

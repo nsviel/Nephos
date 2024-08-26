@@ -129,7 +129,7 @@ void Imgui::glfw_new_frame(){
 }
 
 //Texture
-void Imgui::load_texture(utl::media::Image* utl_image){
+void Imgui::load_texture(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 
   utl_image->gui_texture_ID = create_imgui_texture(utl_image->texture_ID);

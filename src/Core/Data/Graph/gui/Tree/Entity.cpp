@@ -39,7 +39,7 @@ void Entity::draw_leaf(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat:
   //---------------------------
 
   bool entity_selected = (entity == gph_selection->get_selected_element());
-  bool entity_active = (entity == set->active_entity);
+  bool entity_active = (entity == set->active_entity.lock());
 
   //Entity row element
   ImGuiTreeNodeFlags flag;

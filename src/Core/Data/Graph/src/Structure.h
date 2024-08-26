@@ -13,7 +13,7 @@ struct Structure{
   //---------------------------
 
   std::shared_ptr<dat::base::Set> set_main;
-  std::shared_ptr<utl::base::Element> selection = nullptr;
+  std::weak_ptr<utl::base::Element> selection;
 
   //---------------------------
 };

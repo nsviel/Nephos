@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <memory>
 #include <vector>
 
 namespace dat::base{class Set;}
@@ -29,7 +30,7 @@ public:
   void compute_height(std::shared_ptr<dat::base::Entity> entity);
   void compute_range(std::shared_ptr<dat::base::Entity> entity);
   void compute_incidence_angle(std::shared_ptr<dat::base::Entity> entity);
-  
+
 private:
   dat::atr::Field* atr_field;
 };

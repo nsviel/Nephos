@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 
 namespace dat::elm{class Node;}
@@ -22,8 +23,8 @@ public:
 
 public:
   //Main function
-  void insert_glyph(std::shared_ptr<dat::base::Set> set, dat::base::Glyph* glyph);
-  void insert_glyph(std::shared_ptr<dat::base::Entity> entity, dat::base::Glyph* glyph);
+  void insert_glyph(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Glyph> glyph);
+  void insert_glyph(std::shared_ptr<dat::base::Entity> entity, std::shared_ptr<dat::base::Glyph> glyph);
   void insert_glyph(std::shared_ptr<dat::base::Entity> entity);
 
   //Update function
@@ -31,7 +32,7 @@ public:
   void update_glyph(std::shared_ptr<dat::base::Object> object, int type);
 
   //Subfunction
-  void create_glyph(dat::base::Glyph* glyph);
+  void create_glyph(std::shared_ptr<dat::base::Glyph> glyph);
 
 private:
   dat::elm::Entity* dat_entity;

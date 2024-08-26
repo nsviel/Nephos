@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace dat::ply{class Node;}
 namespace dat::ply{class Button;}
 namespace dat::ply{class State;}

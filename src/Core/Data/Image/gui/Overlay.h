@@ -1,6 +1,7 @@
 #pragma once
 
 #include <imgui/core/imgui.h>
+#include <memory>
 
 namespace dat::base{class Set;}
 namespace dat::base{class Entity;}
@@ -17,10 +18,10 @@ public:
   ~Overlay();
 
   //Main function
-  void compute_hovered_pixel(utl::media::Image* image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
-  void overlay_capture(std::shared_ptr<dat::base::Entity> entity, utl::media::Image* image, ImVec2 image_size, ImVec2 image_pose);
-  void overlay_information(std::shared_ptr<dat::base::Entity> entity, utl::media::Image* image);
-  void overlay_pixel(utl::media::Image* image, ImVec2 image_size);
+  void compute_hovered_pixel(std::shared_ptr<utl::media::Image> image, ImVec2 image_size, ImVec2 image_pose, bool image_hovered);
+  void overlay_capture(std::shared_ptr<dat::base::Entity> entity, std::shared_ptr<utl::media::Image> image, ImVec2 image_size, ImVec2 image_pose);
+  void overlay_information(std::shared_ptr<dat::base::Entity> entity, std::shared_ptr<utl::media::Image> image);
+  void overlay_pixel(std::shared_ptr<utl::media::Image> image, ImVec2 image_size);
 
 private:
   ImVec2 hovered_pixel;

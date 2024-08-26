@@ -27,7 +27,7 @@ public:
   //Subfunction
   void manage_connected_device();
   void create_sensor(int index);
-  dat::base::Set* manage_set_parent();
+  std::shared_ptr<dat::base::Set> manage_set_parent();
 
 private:
   k4n::Node* node_k4n;

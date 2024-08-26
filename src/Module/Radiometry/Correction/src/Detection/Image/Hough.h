@@ -18,16 +18,16 @@ public:
 
 public:
   //Main function
-  void detect_circle(cv::Mat& image, utl::media::Image* output);
+  void detect_circle(cv::Mat& image, std::shared_ptr<utl::media::Image> output);
 
   //Hough function
   void compute_hough_circle(cv::Mat& image);
   void set_hough_mode(int mode);
 
   //Draw function
-  void draw_detected_circle(cv::Mat& image, utl::media::Image* output);
-  void draw_all_circle(cv::Mat& image, utl::media::Image* output);
-  void draw_best_circle(cv::Mat& image, utl::media::Image* output);
+  void draw_detected_circle(cv::Mat& image, std::shared_ptr<utl::media::Image> output);
+  void draw_all_circle(cv::Mat& image, std::shared_ptr<utl::media::Image> output);
+  void draw_best_circle(cv::Mat& image, std::shared_ptr<utl::media::Image> output);
 
 private:
   rad::cor::Structure* rad_struct;

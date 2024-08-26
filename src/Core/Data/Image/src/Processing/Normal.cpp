@@ -17,7 +17,7 @@ Normal::Normal(){
 Normal::~Normal(){}
 /*
 //Main function
-void Normal::compute_normal(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Normal::compute_normal(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   //this->compute_normal_with_gradient(sensor, width, height, vec_Nxyz);
@@ -78,7 +78,7 @@ void Normal::compute_normal_with_gradient(std::shared_ptr<dat::base::Sensor> sen
 
   //---------------------------
 }
-void Normal::compute_normal_with_cov(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Normal::compute_normal_with_cov(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   vec_Nxyz.clear();
@@ -110,7 +110,7 @@ tic();
 toc_ms("hoy");
   //---------------------------
 }
-void Normal::compute_normal_with_cov_img(std::shared_ptr<dat::base::Sensor> sensor, utl::media::Image* depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
+void Normal::compute_normal_with_cov_img(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> depth, int width, int height, std::vector<glm::vec3>& vec_Nxyz){
   //---------------------------
 
   vec_Nxyz.clear();

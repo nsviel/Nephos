@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace dat::atr{class Node;}
 namespace dat::atr{class Structure;}
 namespace dat::atr{class Color;}

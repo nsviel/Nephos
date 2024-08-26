@@ -26,9 +26,9 @@ void Element::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr
   //---------------------------
 
   //Selection
-  if(gph_struct->selection == entity){
+  /*if(gph_struct->selection.lock() == entity){
     gph_selection->select_next_element();
-  }
+  }*/
 
   //Remove
   dat_set->remove_entity(set, entity);
@@ -39,9 +39,9 @@ void Element::remove_active_entity(std::shared_ptr<dat::base::Set> set){
   if(!set) return;
   //---------------------------
 
-  if(gph_struct->selection == set->active_entity){
+  /*if(gph_struct->selection == set->active_entity){
     gph_selection->select_next_element();
-  }
+  }*/
 
   dat_set->remove_active_entity(set);
 

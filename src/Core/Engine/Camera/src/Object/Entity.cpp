@@ -11,7 +11,7 @@ Entity::Entity(){
   //---------------------------
 
   this->reset();
-  this->list_glyph.push_back(new cam::glyph::Target());
+  this->list_glyph.push_back(std::make_shared<cam::glyph::Target>());
 
   //---------------------------
 }
@@ -21,8 +21,7 @@ Entity::~Entity(){}
 void Entity::update_pose(){
   //----------------------------
 /*
-  for(int i=0; i<list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
+  for(auto& glyph : list_glyph){
     std::shared_ptr<dat::base::Entity> entity = std::static_pointer_cast<dat::base::Entity>(this);
     glyph->update_pose(entity);
   }

@@ -2,6 +2,7 @@
 
 #include <Engine/Operation/Namespace.h>
 #include <Data/Base/Entity/Glyph.h>
+#include <memory>
 
 
 namespace dat::glyph::object{

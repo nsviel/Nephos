@@ -38,7 +38,7 @@ void Texture::clean(){
 }
 
 //Texture function
-void Texture::import_texture(utl::media::Image* utl_image){
+void Texture::import_texture(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 
   //Input image checks
@@ -60,7 +60,7 @@ void Texture::import_texture(utl::media::Image* utl_image){
 
   //---------------------------
 }
-void Texture::export_texture(utl::media::Image* utl_image){
+void Texture::export_texture(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 
   vk::structure::Texture* texture = query_texture(utl_image->texture_ID);
@@ -131,7 +131,7 @@ void Texture::clean_texture(vk::structure::Object* vk_object){
 
   //---------------------------
 }
-VkFormat Texture::find_texture_format(utl::media::Image* image){
+VkFormat Texture::find_texture_format(std::shared_ptr<utl::media::Image> image){
   VkFormat format;
   //---------------------------
 

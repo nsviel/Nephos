@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 
 namespace dat::elm{class Node;}
@@ -26,11 +27,11 @@ public:
   void visibility_set(std::shared_ptr<dat::base::Set> set, bool value);
 
   //Subset function
-  void add_subset(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Set>& subset);
-  void remove_subset(std::shared_ptr<dat::base::Set>& subset);
-  std::shared_ptr<dat::base::Set>& create_subset(std::shared_ptr<dat::base::Set> set, std::string name);
-  std::shared_ptr<dat::base::Set>& get_subset(std::shared_ptr<dat::base::Set> set, std::string name);
-  std::shared_ptr<dat::base::Set>& get_or_create_subset(std::shared_ptr<dat::base::Set> set, std::string name);
+  void add_subset(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Set> subset);
+  void remove_subset(std::shared_ptr<dat::base::Set> subset);
+  std::shared_ptr<dat::base::Set> create_subset(std::shared_ptr<dat::base::Set> set, std::string name);
+  std::shared_ptr<dat::base::Set> get_subset(std::shared_ptr<dat::base::Set> set, std::string name);
+  std::shared_ptr<dat::base::Set> get_or_create_subset(std::shared_ptr<dat::base::Set> set, std::string name);
 
   //Entity function
   void insert_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity);

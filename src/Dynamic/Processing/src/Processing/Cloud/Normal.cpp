@@ -89,7 +89,7 @@ void Normal::compute_normal(std::shared_ptr<dat::base::Sensor> sensor){
 void Normal::compute_image(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
-  utl::media::Image* image = dat_image->get_or_create_image(sensor, "Normal");
+  std::shared_ptr<utl::media::Image> image = dat_image->get_or_create_image(sensor, "Normal");
   image->timestamp = sensor->timestamp.current;
   img_converter->convert_normal_to_image(sensor->data, image);
 

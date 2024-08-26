@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace dat::atr{class Node;}
 namespace dat::img{class Converter;}
 namespace dat::elm{class Element;}

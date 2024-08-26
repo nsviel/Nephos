@@ -23,9 +23,9 @@ public:
 
   //Subfunction
   void convert_into_gray(cv::Mat& input, cv::Mat& output);
-  void convert_into_cv_image(utl::media::Image* input, cv::Mat& output);
+  void convert_into_cv_image(std::shared_ptr<utl::media::Image> input, cv::Mat& output);
   void convert_into_rgba(cv::Mat& input, cv::Mat& output);
-  void convert_into_utl_image(cv::Mat& input, utl::media::Image* output);
+  void convert_into_utl_image(cv::Mat& input, std::shared_ptr<utl::media::Image> output);
 
 private:
   rad::cal::Structure* rad_struct;

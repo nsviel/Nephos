@@ -41,7 +41,7 @@ void Image::convert_into_gray(cv::Mat& input, cv::Mat& output){
 
   //---------------------------
 }
-void Image::convert_into_cv_image(utl::media::Image* input, cv::Mat& output){
+void Image::convert_into_cv_image(std::shared_ptr<utl::media::Image> input, cv::Mat& output){
   //------------------------
 
   output.release();
@@ -60,7 +60,7 @@ void Image::convert_into_rgba(cv::Mat& input, cv::Mat& output){
 
   //------------------------
 }
-void Image::convert_into_utl_image(cv::Mat& input, utl::media::Image* output){
+void Image::convert_into_utl_image(cv::Mat& input, std::shared_ptr<utl::media::Image> output){
   //------------------------
 
   // Set the dimensions of the utl::media::Image

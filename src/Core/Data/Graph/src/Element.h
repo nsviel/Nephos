@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace dat::gph{class Node;}
 namespace dat::gph{class Structure;}
 namespace dat::gph{class Selection;}

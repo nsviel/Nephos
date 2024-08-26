@@ -76,7 +76,7 @@ void Set::visibility_set(std::shared_ptr<dat::base::Set> set, bool value){
 }
 
 //Subset function
-void Set::add_subset(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Set>& subset){
+void Set::add_subset(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Set> subset){
   //---------------------------
 
   subset->set_parent = set;
@@ -89,7 +89,7 @@ void Set::add_subset(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::b
 
   //---------------------------
 }
-void Set::remove_subset(std::shared_ptr<dat::base::Set>& subset){
+void Set::remove_subset(std::shared_ptr<dat::base::Set> subset){
   if(!subset) return;
   //---------------------------
 
@@ -101,10 +101,10 @@ void Set::remove_subset(std::shared_ptr<dat::base::Set>& subset){
 
   //---------------------------
 }
-std::shared_ptr<dat::base::Set>& Set::create_subset(std::shared_ptr<dat::base::Set> set, std::string name){
+std::shared_ptr<dat::base::Set> Set::create_subset(std::shared_ptr<dat::base::Set> set, std::string name){
   //---------------------------
 
-  std::shared_ptr<dat::base::Set>& subset = new dat::base::Set();
+  std::shared_ptr<dat::base::Set> subset = new dat::base::Set();
   subset->UID = dat_uid->generate_UID();
   subset->name = name;
   subset->set_parent = set;
@@ -117,14 +117,14 @@ std::shared_ptr<dat::base::Set>& Set::create_subset(std::shared_ptr<dat::base::S
   //---------------------------
   return subset;
 }
-std::shared_ptr<dat::base::Set>& Set::get_subset(std::shared_ptr<dat::base::Set> set, std::string name){
+std::shared_ptr<dat::base::Set> Set::get_subset(std::shared_ptr<dat::base::Set> set, std::string name){
   //---------------------------
 
   for(auto& subset : set->list_subset){
     if(subset->name == name){
       return subset;
     }
-    std::shared_ptr<dat::base::Set>& subsubset = get_subset(subset, name);
+    std::shared_ptr<dat::base::Set> subsubset = get_subset(subset, name);
     if(subsubset){
       return subsubset;
     }
@@ -133,7 +133,7 @@ std::shared_ptr<dat::base::Set>& Set::get_subset(std::shared_ptr<dat::base::Set>
   //---------------------------
   return nullptr;
 }
-std::shared_ptr<dat::base::Set>& Set::get_or_create_subset(std::shared_ptr<dat::base::Set> set, std::string name){
+std::shared_ptr<dat::base::Set> Set::get_or_create_subset(std::shared_ptr<dat::base::Set> set, std::string name){
   //---------------------------
 
   for(auto& subset_in_list : set->list_subset){
@@ -142,7 +142,7 @@ std::shared_ptr<dat::base::Set>& Set::get_or_create_subset(std::shared_ptr<dat::
     }
   }
 
-  std::shared_ptr<dat::base::Set>& subset = create_subset(set, name);
+  std::shared_ptr<dat::base::Set> subset = create_subset(set, name);
 
   //---------------------------
   return subset;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace cam{class Entity;}
 namespace dat{class Node;}
 namespace dat::gph{class Node;}
@@ -27,9 +29,9 @@ public:
   void clean();
 
   //Accesseur
-  std::shared_ptr<dat::base::Set>& get_set_main();
-  std::shared_ptr<dat::base::Set>& get_set_graph();
-  std::shared_ptr<dat::base::Set>& get_set_scene();
+  std::shared_ptr<dat::base::Set> get_set_main();
+  std::shared_ptr<dat::base::Set> get_set_graph();
+  std::shared_ptr<dat::base::Set> get_set_scene();
 
 private:
   dat::elm::Glyph* dat_glyph;

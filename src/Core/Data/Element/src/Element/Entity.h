@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 namespace dat::elm{class Node;}
 namespace dat::elm{class UID;}

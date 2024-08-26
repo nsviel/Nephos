@@ -25,16 +25,16 @@ void Graph::init(){
   //---------------------------
 
   //Background permanent elements
-  std::shared_ptr<dat::base::Set> set_scene = dat_set->create_subset(&gph_struct->set_main, "Scene");
+  std::shared_ptr<dat::base::Set> set_scene = dat_set->create_subset(gph_struct->set_main, "Scene");
   set_scene->is_suppressible = false;
   set_scene->is_open = false;
   set_scene->is_locked = true;
 
-  dat_glyph->insert_glyph(set_scene, new dat::glyph::grid::Grid());
-  dat_glyph->insert_glyph(set_scene, new dat::glyph::world::Axis());
+  dat_glyph->insert_glyph(set_scene, std::make_shared<dat::glyph::grid::Grid>());
+  dat_glyph->insert_glyph(set_scene, std::make_shared<dat::glyph::world::Axis>());
 
   //Engine active elements
-  std::shared_ptr<dat::base::Set> set_graph = dat_set->create_subset(&gph_struct->set_main, "Graph");
+  std::shared_ptr<dat::base::Set> set_graph = dat_set->create_subset(gph_struct->set_main, "Graph");
   set_graph->is_suppressible = false;
   gph_struct->selection = set_graph;
 
@@ -43,41 +43,41 @@ void Graph::init(){
 void Graph::loop(){
   //----------------------------
 
-  dat_set->update_data(&gph_struct->set_main);
+  dat_set->update_data(gph_struct->set_main);
 
   //----------------------------
 }
 void Graph::reset(){
   //---------------------------
 
-  dat_set->reset_set(&gph_struct->set_main);
+  dat_set->reset_set(gph_struct->set_main);
 
   //---------------------------
 }
 void Graph::clean(){
   //---------------------------
 
-  dat_set->remove_all_entity(&gph_struct->set_main);
+  dat_set->remove_all_entity(gph_struct->set_main);
 
   //---------------------------
 }
 
 //Accesseur
-std::shared_ptr<dat::base::Set>& Graph::get_set_main(){
-  return &gph_struct->set_main;
+std::shared_ptr<dat::base::Set> Graph::get_set_main(){
+  return gph_struct->set_main;
 }
-std::shared_ptr<dat::base::Set>& Graph::get_set_graph(){
+std::shared_ptr<dat::base::Set> Graph::get_set_graph(){
   //----------------------------
 
-  std::shared_ptr<dat::base::Set> set = dat_set->get_subset(&gph_struct->set_main, "Graph");
+  std::shared_ptr<dat::base::Set> set = dat_set->get_subset(gph_struct->set_main, "Graph");
 
   //----------------------------
   return set;
 }
-std::shared_ptr<dat::base::Set>& Graph::get_set_scene(){
+std::shared_ptr<dat::base::Set> Graph::get_set_scene(){
   //----------------------------
 
-  std::shared_ptr<dat::base::Set> set = dat_set->get_subset(&gph_struct->set_main, "Scene");
+  std::shared_ptr<dat::base::Set> set = dat_set->get_subset(gph_struct->set_main, "Scene");
 
   //----------------------------
   return set;

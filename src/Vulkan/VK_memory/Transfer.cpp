@@ -25,7 +25,7 @@ void Transfer::copy_texture_to_gpu(vk::structure::Texture* texture){
 
   //Get texture structures
   vk::structure::Image* image = &texture->vk_image;
-  utl::media::Image* utl_image = texture->utl_image;
+  std::shared_ptr<utl::media::Image> utl_image = texture->utl_image;
   vk::data::structure::Buffer* buffer = &texture->stagger;
 
   //Copy data to stagging buffer

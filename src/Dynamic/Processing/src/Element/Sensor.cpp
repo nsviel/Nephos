@@ -43,7 +43,7 @@ bool Sensor::is_dynamic(std::shared_ptr<utl::base::Element> element){
   if(std::shared_ptr<dat::base::Sensor> sensor = dynamic_cast<std::shared_ptr<dat::base::Sensor>&>(element)){
     return true;
   }
-  else if(std::shared_ptr<dat::base::Set> set = dynamic_cast<dat::base::Set*>(element)){
+  else if(std::shared_ptr<dat::base::Set> set = dynamic_cast<std::shared_ptr<dat::base::Set>>(element)){
     // Process entities within the current set
     for(auto& entity : set->list_entity){
       auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);

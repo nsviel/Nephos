@@ -92,7 +92,7 @@ float Importer::find_mkv_ts_end(std::string path){
   //---------------------------
   return ts_end;
 }
-dat::base::Set* Importer::manage_set_parent(){
+std::shared_ptr<dat::base::Set> Importer::manage_set_parent(){
   std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
   //---------------------------
 

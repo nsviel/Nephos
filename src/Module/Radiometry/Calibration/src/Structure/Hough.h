@@ -42,7 +42,7 @@ struct Hough{
   //Result
   int nb_detection = 0;
   std::vector<rad::cor::structure::Circle> vec_circle;
-  std::vector<rad::cor::glyph::Sphere*> vec_glyph;
+  std::vector< std::shared_ptr<rad::cor::glyph::Sphere> > vec_glyph;
 
   //---------------------------
 };

@@ -22,7 +22,7 @@ Rectangle::Rectangle(rad::cal::Node* node_detection){
 Rectangle::~Rectangle(){}
 
 //Main function
-void Rectangle::detect_rectangle(cv::Mat& image, utl::media::Image* output){
+void Rectangle::detect_rectangle(cv::Mat& image, std::shared_ptr<utl::media::Image> output){
   if(image.empty()) return;
   //------------------------
 
@@ -47,7 +47,7 @@ bool lines_intersect(cv::Vec2f line1, cv::Vec2f line2, cv::Point2f& intersection
 }
 
 //Subfunction
-void Rectangle::compute_rectangle_detection(cv::Mat& image, utl::media::Image* output){
+void Rectangle::compute_rectangle_detection(cv::Mat& image, std::shared_ptr<utl::media::Image> output){
   //---------------------------
 
   cv::Mat result;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <imgui/implot/implot.h>
+#include <memory>
 
 namespace vk::instance{class Pool;}
 namespace vk::presentation{class Surface;}
@@ -36,7 +37,7 @@ public:
   void glfw_new_frame();
 
   //Texture
-  void load_texture(utl::media::Image* utl_image);
+  void load_texture(std::shared_ptr<utl::media::Image> utl_image);
   void update_render_descriptor();
   ImTextureID create_imgui_texture(int UID);
   ImTextureID query_engine_texture();

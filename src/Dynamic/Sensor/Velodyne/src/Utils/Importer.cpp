@@ -67,7 +67,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   /*file_packets.clear();
   //---------------------------
 
-  dat::base::Set* dataset = new dat::base::Set();
+  std::shared_ptr<dat::base::Set> dataset = new dat::base::Set();
   dataset->name = utl::path::get_name_from_path(path.data);
   dataset->path.data = path.data;
   dataset->type = utl::file::DATASET;
@@ -116,7 +116,7 @@ void Importer::importer_sniffing(std::string path){
 
   //---------------------------
 }
-void Importer::importer_parsing(dat::base::Set* dataset, std::string path){
+void Importer::importer_parsing(std::shared_ptr<dat::base::Set> dataset, std::string path){
   //---------------------------
 
   //Parse data
@@ -135,7 +135,7 @@ void Importer::importer_parsing(dat::base::Set* dataset, std::string path){
 }
 
 //Subfunction
-void Importer::parser_vlp16(dat::base::Set* dataset, std::string path){
+void Importer::parser_vlp16(std::shared_ptr<dat::base::Set> dataset, std::string path){
   vld::processing::Frame vld_frame;
   vld::parser::VLP16 parser;
   //---------------------------
@@ -167,7 +167,7 @@ void Importer::parser_vlp16(dat::base::Set* dataset, std::string path){
 */
   //---------------------------
 }
-void Importer::parser_hdl32(dat::base::Set* dataset, std::string path){
+void Importer::parser_hdl32(std::shared_ptr<dat::base::Set> dataset, std::string path){
   vld::processing::Frame vld_frame;
   vld::parser::HDL32 parser;
   //---------------------------

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <memory>
 #include <vector>
 #include <string>
 
@@ -19,7 +20,7 @@ public:
 
 public:
   //Main function
-  dat::base::Entity* get_active_entity(std::shared_ptr<utl::base::Element> element);
+  std::shared_ptr<dat::base::Entity> get_active_entity(std::shared_ptr<utl::base::Element> element);
 
 private:
 };

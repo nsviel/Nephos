@@ -18,7 +18,7 @@ Converter::Converter(){
 Converter::~Converter(){}
 
 //Main function
-void Converter::convert_normal_to_image(utl::base::Data& data, utl::media::Image* image){
+void Converter::convert_normal_to_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   //---------------------------
 
   std::vector<glm::vec3>& Nxyz = data.Nxyz;
@@ -53,7 +53,7 @@ void Converter::convert_normal_to_image(utl::base::Data& data, utl::media::Image
 
   //---------------------------
 }
-void Converter::convert_intensity_to_image(utl::base::Data& data, utl::media::Image* image){
+void Converter::convert_intensity_to_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   //---------------------------
 
   std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
@@ -78,7 +78,7 @@ void Converter::convert_intensity_to_image(utl::base::Data& data, utl::media::Im
 
   //---------------------------
 }
-void Converter::convert_spherical_pc_to_image(utl::base::Data& data, utl::media::Image* image){
+void Converter::convert_spherical_pc_to_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   //---------------------------
 
   std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
@@ -128,7 +128,7 @@ void Converter::convert_spherical_pc_to_image(utl::base::Data& data, utl::media:
 
   //---------------------------
 }
-void Converter::convert_whole_spherical_pc_to_image(utl::base::Data& data, utl::media::Image* image){
+void Converter::convert_whole_spherical_pc_to_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   //---------------------------
 
   std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
@@ -183,7 +183,7 @@ void Converter::convert_whole_spherical_pc_to_image(utl::base::Data& data, utl::
 
   //---------------------------
 }
-void Converter::convert_color_to_image(utl::base::Data& data, utl::media::Image* image){
+void Converter::convert_color_to_image(utl::base::Data& data, std::shared_ptr<utl::media::Image> image){
   //---------------------------
 
   std::vector<uint8_t> output = std::vector<uint8_t>(data.rgb.size() * 4, 0);

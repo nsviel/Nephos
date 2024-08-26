@@ -2,6 +2,7 @@
 
 #include <Data/Base/Sensor/State.h>
 #include <Data/Base/Sensor/Timestamp.h>
+#include <memory>
 
 namespace dat::ply{class Node;}
 namespace dat::ply{class Structure;}

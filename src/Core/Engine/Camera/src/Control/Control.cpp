@@ -123,8 +123,7 @@ void Control::update_pose(std::shared_ptr<dat::base::Entity> entity){
   this->compute_camera_mvp(pose);
 
   //Update own glyph pose
-  for(int i=0; i<entity->list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+  for(auto& glyph : entity->list_glyph){
     glyph->update_pose(entity);
     this->update_pose(glyph);
   }

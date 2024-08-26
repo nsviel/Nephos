@@ -18,10 +18,10 @@ public:
 
 public:
   //Main function
-  void detect_rectangle(cv::Mat& image, utl::media::Image* output);
+  void detect_rectangle(cv::Mat& image, std::shared_ptr<utl::media::Image> output);
 
   //Subfunction
-  void compute_rectangle_detection(cv::Mat& image, utl::media::Image* output);
+  void compute_rectangle_detection(cv::Mat& image, std::shared_ptr<utl::media::Image> output);
   void draw_detected_rectangle(cv::Mat& image);
   bool is_rectangle(const std::vector<cv::Point>& contour);
 

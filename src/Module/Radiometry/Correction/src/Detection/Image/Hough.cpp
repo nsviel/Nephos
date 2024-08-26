@@ -19,7 +19,7 @@ Hough::Hough(rad::cor::Node* node_correction){
 Hough::~Hough(){}
 
 //Main function
-void Hough::detect_circle(cv::Mat& image, utl::media::Image* output){
+void Hough::detect_circle(cv::Mat& image, std::shared_ptr<utl::media::Image> output){
   if(image.empty()) return;
   //------------------------
 
@@ -79,7 +79,7 @@ void Hough::set_hough_mode(int mode){
 }
 
 //Draw function
-void Hough::draw_detected_circle(cv::Mat& image, utl::media::Image* output){
+void Hough::draw_detected_circle(cv::Mat& image, std::shared_ptr<utl::media::Image> output){
   //---------------------------
 
   switch(rad_struct->hough.draw){
@@ -95,7 +95,7 @@ void Hough::draw_detected_circle(cv::Mat& image, utl::media::Image* output){
 
   //---------------------------
 }
-void Hough::draw_all_circle(cv::Mat& image, utl::media::Image* output){
+void Hough::draw_all_circle(cv::Mat& image, std::shared_ptr<utl::media::Image> output){
   if(image.empty()) return;
   //------------------------
 
@@ -107,7 +107,7 @@ void Hough::draw_all_circle(cv::Mat& image, utl::media::Image* output){
 
   //------------------------
 }
-void Hough::draw_best_circle(cv::Mat& image, utl::media::Image* output){
+void Hough::draw_best_circle(cv::Mat& image, std::shared_ptr<utl::media::Image> output){
   if(image.empty()) return;
   //------------------------
 

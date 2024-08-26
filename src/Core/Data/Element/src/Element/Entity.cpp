@@ -39,8 +39,7 @@ void Entity::remove_entity(std::shared_ptr<dat::base::Entity> entity){
   vk_data->remove(data);
 
   //Remove glyph data
-  for(int i=0; i<entity->list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+  for(auto& glyph : entity->list_glyph){
     this->remove_entity(glyph);
   }
 
@@ -66,7 +65,7 @@ void Entity::visibility_entity(std::shared_ptr<dat::base::Entity> entity, bool v
   entity->data.is_visible = value;
 
   //Glyph visibility
-  for(dat::base::Glyph* glyph : entity->list_glyph){
+  for(std::shared_ptr<dat::base::Glyph> glyph : entity->list_glyph){
     this->visibility_entity(glyph, value);
   }
 
@@ -90,8 +89,7 @@ void Entity::update_data(std::shared_ptr<dat::base::Entity> entity){
     atr_location->compute_centroid(entity);
 
     //Update own glyph pose
-    for(int i=0; i<entity->list_glyph.size(); i++){
-      dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+    for(auto& glyph : entity->list_glyph){
       this->update_data(glyph);
     }
 

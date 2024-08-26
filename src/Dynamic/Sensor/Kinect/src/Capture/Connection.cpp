@@ -118,7 +118,7 @@ void Connection::create_sensor(int index){
 
   //---------------------------
 }
-dat::base::Set* Connection::manage_set_parent(){
+std::shared_ptr<dat::base::Set> Connection::manage_set_parent(){
   std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
   //---------------------------
 

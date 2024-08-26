@@ -18,7 +18,7 @@ Glyph::Glyph(dat::elm::Node* node_element){
 Glyph::~Glyph(){}
 
 //Main function
-void Glyph::insert_glyph(std::shared_ptr<dat::base::Set> set, dat::base::Glyph* glyph){
+void Glyph::insert_glyph(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Glyph> glyph){
   //---------------------------
 
   this->create_glyph(glyph);
@@ -26,7 +26,7 @@ void Glyph::insert_glyph(std::shared_ptr<dat::base::Set> set, dat::base::Glyph* 
 
   //---------------------------
 }
-void Glyph::insert_glyph(std::shared_ptr<dat::base::Entity> entity, dat::base::Glyph* glyph){
+void Glyph::insert_glyph(std::shared_ptr<dat::base::Entity> entity, std::shared_ptr<dat::base::Glyph> glyph){
   //---------------------------
 
   this->create_glyph(glyph);
@@ -38,8 +38,7 @@ void Glyph::insert_glyph(std::shared_ptr<dat::base::Entity> entity){
   //----------------------------
 
   //Update own glyph data
-  for(int i=0; i<entity->list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+  for(auto& glyph : entity->list_glyph){
     this->create_glyph(glyph);
   }
 
@@ -51,8 +50,7 @@ void Glyph::update_glyph(std::shared_ptr<dat::base::Entity> entity){
   //----------------------------
 
   //Update own glyph data
-  for(int i=0; i<entity->list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(entity->list_glyph.begin(), i);
+  for(auto& glyph : entity->list_glyph){
     glyph->update_glyph(entity);
     dat_entity->update_data(glyph);
 
@@ -67,7 +65,7 @@ void Glyph::update_glyph(std::shared_ptr<dat::base::Object> object, int type){
 
   //Update own glyph data
   for(int i=0; i<object->list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(object->list_glyph.begin(), i);
+    std::shared_ptr<dat::base::Glyph> glyph = *next(object->list_glyph.begin(), i);
     if(glyph->type == type){
       glyph->update_glyph(object);
       dat_entity->update_data(glyph);
@@ -81,7 +79,7 @@ void Glyph::update_glyph(std::shared_ptr<dat::base::Object> object, int type){
 }
 
 //Subfunction
-void Glyph::create_glyph(dat::base::Glyph* glyph){
+void Glyph::create_glyph(std::shared_ptr<dat::base::Glyph> glyph){
   //----------------------------
 
   glyph->create();

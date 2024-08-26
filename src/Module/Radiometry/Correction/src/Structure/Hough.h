@@ -3,6 +3,7 @@
 #include <Radiometry/Correction/src/Structure/Circle.h>
 #include <Radiometry/Correction/src/Detection/Glyph/Sphere.h>
 #include <opencv2/opencv.hpp>
+#include <memory>
 #include <vector>
 
 
@@ -42,7 +43,7 @@ struct Hough{
   //Result
   int nb_detection = 0;
   std::vector<rad::cor::structure::Circle> vec_circle;
-  std::vector<rad::cor::glyph::Sphere*> vec_glyph;
+  std::vector< std::shared_ptr<rad::cor::glyph::Sphere> > vec_glyph;
 
   //---------------------------
 };

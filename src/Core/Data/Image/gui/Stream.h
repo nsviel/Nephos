@@ -1,6 +1,7 @@
 #pragma once
 
 #include <imgui/core/imgui.h>
+#include <memory>
 
 namespace vk{class Node;}
 namespace vk::image{class Texture;}
@@ -20,12 +21,12 @@ public:
 
 public:
   //Main function
-  void draw_stream(utl::media::Image* utl_image, ImVec2 dimension);
+  void draw_stream(std::shared_ptr<utl::media::Image> utl_image, ImVec2 dimension);
 
   //Subfunction
-  bool check_image(utl::media::Image* utl_image);
-  void convert_data_into_texture(utl::media::Image* utl_image);
-  void render_image(utl::media::Image* utl_image, ImVec2& dimension);
+  bool check_image(std::shared_ptr<utl::media::Image> utl_image);
+  void convert_data_into_texture(std::shared_ptr<utl::media::Image> utl_image);
+  void render_image(std::shared_ptr<utl::media::Image> utl_image, ImVec2& dimension);
 
 private:
   vk::image::Texture* vk_texture;

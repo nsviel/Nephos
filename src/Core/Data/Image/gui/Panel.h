@@ -2,6 +2,7 @@
 
 #include <imgui/core/imgui.h>
 #include <string>
+#include <memory>
 #include <vector>
 
 namespace dat::img{class Node;}
@@ -30,7 +31,7 @@ public:
 
   //All devices
   void draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity);
-  void draw_stream_image(utl::media::Image* image, ImVec2 image_size, int idx);
+  void draw_stream_image(std::shared_ptr<utl::media::Image> image, ImVec2 image_size, int idx);
 
 private:
   dat::gph::Selection* gph_selection;

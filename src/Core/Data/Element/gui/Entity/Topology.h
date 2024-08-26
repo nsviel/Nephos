@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace dat::base{class Entity;}
 namespace utl::base{class Data;}
 

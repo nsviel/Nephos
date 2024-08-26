@@ -70,7 +70,6 @@ void Panel::design_panel(std::shared_ptr<dat::base::Entity> entity){
 
 //All devices
 void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
-  std::list<utl::media::Image*> list_image = entity->list_image;
   //---------------------------
 
   //Display capture images
@@ -80,24 +79,23 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
     //All in one
     ImGui::SetNextItemWidth(100);
     if(ImGui::BeginTabItem("All##4567", NULL)){
-      size = ImVec2(size.x, size.y / list_image.size() - 3.33);
+      size = ImVec2(size.x, size.y / entity->list_image.size() - 3.33);
 
-      for(int i=0; i<list_image.size(); i++){
-        utl::media::Image* image = *next(list_image.begin(), i);
-        this->draw_stream_image(image, size, i);
+      int index = 0;
+      for(auto& image : entity->list_image){
+        this->draw_stream_image(image, size, index++);
       }
 
       ImGui::EndTabItem();
     }
 
     //All image in separate tab
-    for(int i=0; i<list_image.size(); i++){
-      utl::media::Image* image = *next(list_image.begin(), i);
-
+    int index = 0;
+    for(auto& image : entity->list_image){
       ImGui::SetNextItemWidth(100);
       std::string title = image->name + "##4567";
       if(ImGui::BeginTabItem(title.c_str(), NULL)){
-        this->draw_stream_image(image, size, i);
+        this->draw_stream_image(image, size, index++);
         ImGui::EndTabItem();
       }
     }
@@ -107,7 +105,7 @@ void Panel::draw_stream_tabbar(std::shared_ptr<dat::base::Entity> entity){
 
   //---------------------------
 }
-void Panel::draw_stream_image(utl::media::Image* image, ImVec2 size, int idx){
+void Panel::draw_stream_image(std::shared_ptr<utl::media::Image> image, ImVec2 size, int idx){
   if(idx >= vec_stream.size()) return;
   //---------------------------
 

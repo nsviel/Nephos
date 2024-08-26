@@ -15,7 +15,7 @@ Overlay::Overlay(){
 Overlay::~Overlay(){}
 
 //Main function
-void Overlay::overlay_capture(std::shared_ptr<dat::base::Entity> entity, utl::media::Image* image, ImVec2 size, ImVec2 image_pose){
+void Overlay::overlay_capture(std::shared_ptr<dat::base::Entity> entity, std::shared_ptr<utl::media::Image> image, ImVec2 size, ImVec2 image_pose){
   //---------------------------
 /*
   //Hovered pixel
@@ -45,7 +45,7 @@ void Overlay::overlay_capture(std::shared_ptr<dat::base::Entity> entity, utl::me
 */
   //---------------------------
 }
-void Overlay::overlay_information(std::shared_ptr<dat::base::Entity> entity, utl::media::Image* image){
+void Overlay::overlay_information(std::shared_ptr<dat::base::Entity> entity, std::shared_ptr<utl::media::Image> image){
   //---------------------------
 /*
   ImGui::Text("Frame rate: %.0f fps", image->fps);
@@ -56,7 +56,7 @@ void Overlay::overlay_information(std::shared_ptr<dat::base::Entity> entity, utl
 */
   //---------------------------
 }
-void Overlay::overlay_pixel(utl::media::Image* image, ImVec2 size){
+void Overlay::overlay_pixel(std::shared_ptr<utl::media::Image> image, ImVec2 size){
   //---------------------------
 /*
   if(image->hovered_pixel_x != -1 && image->hovered_pixel_y != -1){
@@ -66,7 +66,7 @@ void Overlay::overlay_pixel(utl::media::Image* image, ImVec2 size){
 */
   //---------------------------
 }
-void Overlay::compute_hovered_pixel(utl::media::Image* image, ImVec2 size, ImVec2 image_pose, bool image_hovered){
+void Overlay::compute_hovered_pixel(std::shared_ptr<utl::media::Image> image, ImVec2 size, ImVec2 image_pose, bool image_hovered){
   //---------------------------
 /*
   //Reinitialize coord values

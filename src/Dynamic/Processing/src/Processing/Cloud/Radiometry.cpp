@@ -65,7 +65,7 @@ void Radiometry::wait_thread(){
 void Radiometry::compute_correction(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
-  utl::media::Image* image = dat_image->get_image(sensor, "Intensity");
+  std::shared_ptr<utl::media::Image> image = dat_image->get_image(sensor, "Intensity");
   rad_correction->make_image_correction(sensor, image);
 
   //---------------------------

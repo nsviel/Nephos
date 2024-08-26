@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace cam{class Entity;}
 namespace dat::elm{class Set;}
 namespace dat::gph{class Node;}
@@ -26,8 +28,8 @@ public:
 
   //Accesseur
   std::shared_ptr<utl::base::Element>get_selected_element();
-  std::shared_ptr<dat::base::Entity>& get_selected_entity();
-  std::shared_ptr<dat::base::Set>& get_selected_set();
+  std::shared_ptr<dat::base::Entity> get_selected_entity();
+  std::shared_ptr<dat::base::Set> get_selected_set();
 
 private:
   dat::gph::Graph* dat_graph;

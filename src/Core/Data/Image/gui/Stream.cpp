@@ -17,7 +17,7 @@ Stream::Stream(vk::Node* node_vulkan){
 Stream::~Stream(){}
 
 //Main function
-void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 dimension){
+void Stream::draw_stream(std::shared_ptr<utl::media::Image> utl_image, ImVec2 dimension){
   if(!check_image(utl_image)) return;
   //---------------------------
 
@@ -28,7 +28,7 @@ void Stream::draw_stream(utl::media::Image* utl_image, ImVec2 dimension){
 }
 
 //Subfunction
-bool Stream::check_image(utl::media::Image* utl_image){
+bool Stream::check_image(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 
   if(utl_image == nullptr){
@@ -45,7 +45,7 @@ bool Stream::check_image(utl::media::Image* utl_image){
   //---------------------------
   return true;
 }
-void Stream::convert_data_into_texture(utl::media::Image* utl_image){
+void Stream::convert_data_into_texture(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 
   bool load = (utl_image->texture_ID == -1 || current_UID != utl_image->UID);
@@ -64,7 +64,7 @@ void Stream::convert_data_into_texture(utl::media::Image* utl_image){
 
   //---------------------------
 }
-void Stream::render_image(utl::media::Image* utl_image, ImVec2& dimension){
+void Stream::render_image(std::shared_ptr<utl::media::Image> utl_image, ImVec2& dimension){
   if(utl_image->texture_ID == -1) return;
   //---------------------------
 

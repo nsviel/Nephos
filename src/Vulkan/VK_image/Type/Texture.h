@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vulkan/vulkan.h>
+#include <memory>
 
 namespace vk::image{class Image;}
 namespace vk::memory{class Allocator;}
@@ -28,8 +29,8 @@ public:
   void clean();
 
   //Texture function
-  void import_texture(utl::media::Image* utl_image);
-  void export_texture(utl::media::Image* utl_image);
+  void import_texture(std::shared_ptr<utl::media::Image> utl_image);
+  void export_texture(std::shared_ptr<utl::media::Image> utl_image);
   void clean_texture(vk::structure::Texture* texture);
 
   //Texture subfunction
@@ -38,7 +39,7 @@ public:
   void create_texture(vk::structure::Texture* texture);
 
   //Subfunction
-  VkFormat find_texture_format(utl::media::Image* image);
+  VkFormat find_texture_format(std::shared_ptr<utl::media::Image> image);
   vk::structure::Texture* query_texture(int UID);
 
 private:

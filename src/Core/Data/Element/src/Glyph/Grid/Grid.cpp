@@ -14,9 +14,9 @@ Grid::Grid(){
   this->is_suppressible = false;
   this->pose.is_movable = false;
 
-  this->list_glyph.push_back(new dat::glyph::grid::Mesh());
-  this->list_glyph.push_back(new dat::glyph::grid::Axis());
-  this->list_glyph.push_back(new dat::glyph::grid::Plane());
+  this->list_glyph.push_back(std::make_shared<dat::glyph::grid::Mesh>());
+  this->list_glyph.push_back(std::make_shared<dat::glyph::grid::Axis>());
+  this->list_glyph.push_back(std::make_shared<dat::glyph::grid::Plane>());
 
   //---------------------------
 }
@@ -27,8 +27,7 @@ void Grid::create(){
   //---------------------------
 
   //Create
-  for(int i=0; i<list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
+  for(auto& glyph : list_glyph){
     glyph->create();
   }
 
@@ -40,9 +39,8 @@ void Grid::create(){
 void Grid::construct(int nb_cell){
   //---------------------------
 
-  for(int i=0; i<list_glyph.size(); i++){
-    dat::base::Glyph* glyph = *next(list_glyph.begin(), i);
-    dat::glyph::grid::Structure* grid = dynamic_cast<dat::glyph::grid::Structure*>(glyph);
+  for(auto& glyph : list_glyph){
+    auto grid = dynamic_cast<dat::glyph::grid::Structure*>(glyph.get());
     grid->construct(nb_cell);
   }
 

@@ -134,7 +134,7 @@ void Sphere::find_sphere_in_cloud_with_known_radius(std::vector<glm::vec3>& xyz,
     center = {0, 0, 0};
 }
 
-void Sphere::find_circle_in_image(utl::media::Image* image){
+void Sphere::find_circle_in_image(std::shared_ptr<utl::media::Image> image){
   //------------------------
 
   // Create an OpenCV Mat object from the image data
@@ -201,7 +201,7 @@ void Sphere::find_circle_in_image(utl::media::Image* image){
 
   //------------------------
 }
-void Sphere::find_circle_in_image_with_canny(utl::media::Image* image){
+void Sphere::find_circle_in_image_with_canny(std::shared_ptr<utl::media::Image> image){
   //------------------------
 
   // Create an OpenCV Mat object from the image data

@@ -45,8 +45,8 @@ void Panel::run_panel(){
 void Panel::design_panel(){
   //---------------------------
 
-  this->set_info(set_selected);
-  this->set_parameter(set_selected);
+  this->set_info(set_selected.lock());
+  this->set_parameter(set_selected.lock());
 
   //---------------------------
 }

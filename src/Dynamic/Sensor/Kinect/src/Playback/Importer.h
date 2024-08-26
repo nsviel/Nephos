@@ -28,7 +28,7 @@ public:
   //Subfunction
   float find_mkv_ts_beg(std::string path);
   float find_mkv_ts_end(std::string path);
-  dat::base::Set* manage_set_parent();
+  std::shared_ptr<dat::base::Set> manage_set_parent();
 
 private:
   k4n::Node* node_k4n;

@@ -119,7 +119,7 @@ void Info::playback_info(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   /*
-  std::shared_ptr<dat::base::Set> set = dynamic_cast<dat::base::Set*>(element);
+  std::shared_ptr<dat::base::Set> set = dynamic_cast<std::shared_ptr<dat::base::Set>>(element);
   dat::base::Player* player = &set->player;
   if(player == nullptr) return;
 
