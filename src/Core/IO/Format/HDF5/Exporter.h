@@ -21,7 +21,7 @@ public:
 
 public:
   //Main funct
-  void export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path);
+  void export_ascii(utl::base::Data& data, glm::mat4 mat, std::string path);
 
 private:
 };

@@ -17,7 +17,7 @@ public:
 
 public:
   //Main function
-  void make_triangulation(utl::base::Data* data);
+  void make_triangulation(utl::base::Data& data);
 
 private:
 

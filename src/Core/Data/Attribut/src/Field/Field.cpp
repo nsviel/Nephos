@@ -15,13 +15,13 @@ Field::Field(){
 Field::~Field(){}
 
 //Subfunction
-std::vector<std::string> Field::get_field_names(utl::base::Data* data){
+std::vector<std::string> Field::get_field_names(utl::base::Data& data){
   std::vector<std::string> vec_name;
   //---------------------------
 
   std::vector<std::string> vec_field;
-  for(int i=0; i<data->vec_field.size(); i++){
-    utl::base::Field& field = data->vec_field[i];
+  for(int i=0; i<data.vec_field.size(); i++){
+    utl::base::Field& field = data.vec_field[i];
     vec_name.push_back(field.name);
   }
 
@@ -29,7 +29,7 @@ std::vector<std::string> Field::get_field_names(utl::base::Data* data){
   return vec_name;
 
 }
-std::vector<float>& Field::get_field_data(utl::base::Data* data, std::string name){
+std::vector<float>& Field::get_field_data(utl::base::Data& data, std::string name){
   //---------------------------
 
   utl::base::Field* field = get_field(data, name);
@@ -43,20 +43,20 @@ std::vector<float>& Field::get_field_data(utl::base::Data* data, std::string nam
   //---------------------------
   return field->data;
 }
-utl::base::Field* Field::get_field(utl::base::Data* data, std::string name){
+utl::base::Field* Field::get_field(utl::base::Data& data, std::string name){
   if(name == "") return nullptr;
   //---------------------------
 
   //Check if field is already present
-  for(int i=0; i<data->vec_field.size(); i++){
-    utl::base::Field& field = data->vec_field[i];
+  for(int i=0; i<data.vec_field.size(); i++){
+    utl::base::Field& field = data.vec_field[i];
     if(field.name == name) return &field;
   }
 
   //---------------------------
   return nullptr;
 }
-glm::vec2 Field::get_field_range(utl::base::Data* data, std::string name){
+glm::vec2 Field::get_field_range(utl::base::Data& data, std::string name){
   //---------------------------
 
   //Get data
@@ -73,7 +73,7 @@ glm::vec2 Field::get_field_range(utl::base::Data* data, std::string name){
   //---------------------------
   return range;
 }
-void Field::set_field_data(utl::base::Data* data, std::string name, std::vector<float>& vec){
+void Field::set_field_data(utl::base::Data& data, std::string name, std::vector<float>& vec){
   if(vec.size() == 0) return;
   //---------------------------
 
@@ -85,19 +85,19 @@ void Field::set_field_data(utl::base::Data* data, std::string name, std::vector<
 
   //---------------------------
 }
-void Field::create_field(utl::base::Data* data, std::string name){
+void Field::create_field(utl::base::Data& data, std::string name){
   //---------------------------
 
   //Check if field is already present
-  for(int i=0; i<data->vec_field.size(); i++){
-    utl::base::Field& field = data->vec_field[i];
+  for(int i=0; i<data.vec_field.size(); i++){
+    utl::base::Field& field = data.vec_field[i];
     if(field.name == name) return;
   }
 
   //Create it
   utl::base::Field field;
   field.name = name;
-  data->vec_field.push_back(field);
+  data.vec_field.push_back(field);
 
   //---------------------------
 }

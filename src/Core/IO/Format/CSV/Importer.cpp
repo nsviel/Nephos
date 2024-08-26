@@ -71,7 +71,7 @@ utl::base::Element* Importer::import(std::string pathFile){
     }
 
     //End of row line
-    data->vec_data.push_back(data_sub);
+    data.vec_data.push_back(data_sub);
   }
 */
   //---------------------------

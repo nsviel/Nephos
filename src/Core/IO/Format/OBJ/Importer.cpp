@@ -40,7 +40,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
   this->parse_mtl(path.build());
 
   // Fill output format with file data
-  this->fill_data_file(&object->data, vertex_vec);
+  this->fill_data_file(object->data, vertex_vec);
 
   //---------------------------
   return object;
@@ -177,21 +177,21 @@ void Importer::parse_mtl(std::string path_obj){
 
   //---------------------------
 }
-void Importer::fill_data_file(utl::base::Data* data, std::vector<Vertex>& vertex_vec){
+void Importer::fill_data_file(utl::base::Data& data, std::vector<Vertex>& vertex_vec){
   //---------------------------
 
   if(is_face){
     for(int i=0; i<vertex_vec.size(); i++){
-      data->xyz.push_back(vertex_vec[i].location);
-      data->Nxyz.push_back(vertex_vec[i].normal);
-      data->uv.push_back(vertex_vec[i].texcoord);
+      data.xyz.push_back(vertex_vec[i].location);
+      data.Nxyz.push_back(vertex_vec[i].normal);
+      data.uv.push_back(vertex_vec[i].texcoord);
     }
-    data->topology.type = utl::topology::TRIANGLE;
+    data.topology.type = utl::topology::TRIANGLE;
   }else{
     for(int i=0; i<vertex_vec.size(); i++){
-      data->xyz.push_back(vertex_vec[i].location);
+      data.xyz.push_back(vertex_vec[i].location);
     }
-    data->topology.type = utl::topology::POINT;
+    data.topology.type = utl::topology::POINT;
   }
 
   //---------------------------

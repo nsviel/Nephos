@@ -43,7 +43,7 @@ void Binary::parse_binary(io::imp::Configuration* config, dat::base::Object* obj
   object->data.rgb = buffer.rgb;
   object->data.rgba = buffer.rgba;
   object->data.size = buffer.xyz.size();
-  atr_field->set_field_data(&object->data, "I", buffer.Is);
+  atr_field->set_field_data(object->data, "I", buffer.Is);
 
   //Close file
   file.close();
@@ -325,7 +325,7 @@ void Binary::parse_face_big_endian(io::imp::Configuration* config, std::ifstream
 
   //---------------------------
 }
-void Binary::reorder_by_timestamp(utl::base::Data* data){/*
+void Binary::reorder_by_timestamp(utl::base::Data& data){/*
   std::vector<glm::vec3> pos;
   std::vector<float> ts;
   std::vector<float> Is;

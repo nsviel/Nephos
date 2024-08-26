@@ -33,7 +33,7 @@ public:
 
   //Subfunction
   void capture_data();
-  void update_object(utl::base::Data* data);
+  void update_object(utl::base::Data& data);
 
 private:
   dat::gph::Graph* dat_graph;

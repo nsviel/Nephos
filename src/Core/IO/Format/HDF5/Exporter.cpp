@@ -18,7 +18,7 @@ Exporter::Exporter(){
 Exporter::~Exporter(){}
 
 //Main function
-void Exporter::export_ascii(utl::base::Data* data, glm::mat4 mat, std::string path){
+void Exporter::export_ascii(utl::base::Data& data, glm::mat4 mat, std::string path){
   //---------------------------
 
   //---------------------------

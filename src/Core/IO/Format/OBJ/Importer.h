@@ -43,7 +43,7 @@ public:
   void init_params();
   std::vector<Vertex> get_data_from_file(std::istream& in);
   void parse_mtl(std::string path_obj);
-  void fill_data_file(utl::base::Data* data, std::vector<Vertex>& vertex_vec);
+  void fill_data_file(utl::base::Data& data, std::vector<Vertex>& vertex_vec);
 
 private:
   std::string file_mtl;

@@ -17,12 +17,11 @@ Topology::~Topology(){}
 
 //Main function
 void Topology::entity_typology(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
-  if(data == nullptr) return;
+  utl::base::Data& data = entity->data;
   //---------------------------
 
   //Primitive size
-  switch(data->topology.type){
+  switch(data.topology.type){
     case utl::topology::POINT:{
       this->topology_point(data);
       break;
@@ -41,7 +40,7 @@ void Topology::entity_typology(dat::base::Entity* entity){
 }
 
 //Subfunction
-void Topology::topology_line(utl::base::Data* data){
+void Topology::topology_line(utl::base::Data& data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -55,7 +54,7 @@ void Topology::topology_line(utl::base::Data* data){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
-  std::string nb_point = math::thousand_separator(data->size / 2);
+  std::string nb_point = math::thousand_separator(data.size / 2);
   ImGui::TextColored(color, "%s", nb_point.c_str());
 
   //Line width
@@ -63,23 +62,23 @@ void Topology::topology_line(utl::base::Data* data){
   ImGui::Text("Line width"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    data->topology.width--;
+    data.topology.width--;
 
-    if(data->topology.width <= 1){
-      data->topology.width = 1;
+    if(data.topology.width <= 1){
+      data.topology.width = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    data->topology.width++;
+    data.topology.width++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::TextColored(color, "%d", data->topology.width);
+  ImGui::TextColored(color, "%d", data.topology.width);
 
   //---------------------------
 }
-void Topology::topology_point(utl::base::Data* data){
+void Topology::topology_point(utl::base::Data& data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -93,7 +92,7 @@ void Topology::topology_point(utl::base::Data* data){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
-  std::string nb_point = math::thousand_separator(data->size);
+  std::string nb_point = math::thousand_separator(data.size);
   ImGui::TextColored(color, "%s", nb_point.c_str());
 
   //Point size
@@ -101,23 +100,23 @@ void Topology::topology_point(utl::base::Data* data){
   ImGui::Text("Size"); ImGui::TableNextColumn();
   ImGui::PushButtonRepeat(true);
   if(ImGui::ArrowButton("##left", ImGuiDir_Left)){
-    data->topology.width--;
+    data.topology.width--;
 
-    if(data->topology.width <= 1){
-      data->topology.width = 1;
+    if(data.topology.width <= 1){
+      data.topology.width = 1;
     }
   }
   ImGui::SameLine(0.0f, style.ItemInnerSpacing.x);
   if(ImGui::ArrowButton("##right", ImGuiDir_Right)){
-    data->topology.width++;
+    data.topology.width++;
   }
   ImGui::PopButtonRepeat();
   ImGui::SameLine();
-  ImGui::TextColored(color, "%d", data->topology.width);
+  ImGui::TextColored(color, "%d", data.topology.width);
 
   //---------------------------
 }
-void Topology::topology_triangle(utl::base::Data* data){
+void Topology::topology_triangle(utl::base::Data& data){
   ImGuiStyle& style = ImGui::GetStyle();
   //---------------------------
 
@@ -131,7 +130,7 @@ void Topology::topology_triangle(utl::base::Data* data){
   //Number of points
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Count"); ImGui::TableNextColumn();
-  std::string nb_point = math::thousand_separator(data->size / 3);
+  std::string nb_point = math::thousand_separator(data.size / 3);
   ImGui::TextColored(color, "%s", nb_point.c_str());
 
   //---------------------------

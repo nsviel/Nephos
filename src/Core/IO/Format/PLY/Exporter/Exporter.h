@@ -23,12 +23,12 @@ public:
 
 public:
   //Main function
-  void export_data(io::exp::Configuration& config, utl::base::Data* data);
+  void export_data(io::exp::Configuration& config, utl::base::Data& data);
 
   //Subfunction
-  void build_structure(io::exp::Configuration& config, utl::base::Data* data);
-  void write_data_ascii(io::exp::Configuration& config, std::ofstream& file, utl::base::Data* data);
-  void write_data_binary(io::exp::Configuration& config, std::ofstream& file, utl::base::Data* data);
+  void build_structure(io::exp::Configuration& config, utl::base::Data& data);
+  void write_data_ascii(io::exp::Configuration& config, std::ofstream& file, utl::base::Data& data);
+  void write_data_binary(io::exp::Configuration& config, std::ofstream& file, utl::base::Data& data);
 
 private:
   fmt::ply::exporter::Header* io_header;

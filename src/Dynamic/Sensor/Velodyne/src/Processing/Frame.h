@@ -15,12 +15,12 @@ public:
 
 public:
   //Main function
-  bool build_frame(utl::base::Data* data);
+  bool build_frame(utl::base::Data& data);
   void reset_frame();
 
   //Subfunctions
-  void add_data_to_frame(utl::base::Data* data);
-  void end_data_to_frame(utl::base::Data* data, int index);
+  void add_data_to_frame(utl::base::Data& data);
+  void end_data_to_frame(utl::base::Data& data, int index);
 
   inline utl::base::Data* get_endedFrame(){return frame_ended;}
 

@@ -18,7 +18,7 @@ Recorder::Recorder(){
 Recorder::~Recorder(){}
 
 //Main function
-void Recorder::record_binary(utl::base::Data* data, glm::mat4 mat, std::string path){
+void Recorder::record_binary(utl::base::Data& data, glm::mat4 mat, std::string path){
   //---------------------------
 /*
   std::ofstream file(path, std::ios::binary | std::ios::app);

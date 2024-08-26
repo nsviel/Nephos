@@ -18,11 +18,10 @@ Converter::Converter(){
 Converter::~Converter(){}
 
 //Main function
-void Converter::convert_normal_to_image(utl::base::Data* data, utl::media::Image* image){
-  if(data == nullptr) return;
+void Converter::convert_normal_to_image(utl::base::Data& data, utl::media::Image* image){
   //---------------------------
 
-  std::vector<glm::vec3>& Nxyz = data->Nxyz;
+  std::vector<glm::vec3>& Nxyz = data.Nxyz;
   if(Nxyz.size() == 0) return;
 
   std::vector<uint8_t> output = std::vector<uint8_t>(Nxyz.size() * 4, 0);
@@ -47,15 +46,14 @@ void Converter::convert_normal_to_image(utl::base::Data* data, utl::media::Image
 
   //Update image
   image->size = output.size();
-  image->width = data->width;
-  image->height = data->height;
+  image->width = data.width;
+  image->height = data.height;
   image->data = output;
   image->name = "Normal";
 
   //---------------------------
 }
-void Converter::convert_intensity_to_image(utl::base::Data* data, utl::media::Image* image){
-  if(data == nullptr) return;
+void Converter::convert_intensity_to_image(utl::base::Data& data, utl::media::Image* image){
   //---------------------------
 
   std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
@@ -74,18 +72,17 @@ void Converter::convert_intensity_to_image(utl::base::Data* data, utl::media::Im
 
   //Update image
   image->size = output.size();
-  image->width = data->width == -1 ? 200 : data->width;
-  image->height = data->height == -1 ? 100 : data->height;
+  image->width = data.width == -1 ? 200 : data.width;
+  image->height = data.height == -1 ? 100 : data.height;
   image->data = output;
 
   //---------------------------
 }
-void Converter::convert_spherical_pc_to_image(utl::base::Data* data, utl::media::Image* image){
-  if(data == nullptr) return;
+void Converter::convert_spherical_pc_to_image(utl::base::Data& data, utl::media::Image* image){
   //---------------------------
 
   std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
-  std::vector<glm::vec3>& vec_xyz = data->xyz;
+  std::vector<glm::vec3>& vec_xyz = data.xyz;
   int width = 10000;
   int height = 5000;
   int num_images = 4;
@@ -131,12 +128,11 @@ void Converter::convert_spherical_pc_to_image(utl::base::Data* data, utl::media:
 
   //---------------------------
 }
-void Converter::convert_whole_spherical_pc_to_image(utl::base::Data* data, utl::media::Image* image){
-  if(data == nullptr) return;
+void Converter::convert_whole_spherical_pc_to_image(utl::base::Data& data, utl::media::Image* image){
   //---------------------------
 
   std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
-  std::vector<glm::vec3>& vec_xyz = data->xyz;
+  std::vector<glm::vec3>& vec_xyz = data.xyz;
   int width = 20000;
   int height = 10000;
 
@@ -187,15 +183,14 @@ void Converter::convert_whole_spherical_pc_to_image(utl::base::Data* data, utl::
 
   //---------------------------
 }
-void Converter::convert_color_to_image(utl::base::Data* data, utl::media::Image* image){
-  if(data == nullptr) return;
+void Converter::convert_color_to_image(utl::base::Data& data, utl::media::Image* image){
   //---------------------------
 
-  std::vector<uint8_t> output = std::vector<uint8_t>(data->rgb.size() * 4, 0);
+  std::vector<uint8_t> output = std::vector<uint8_t>(data.rgb.size() * 4, 0);
 
   // Convert the float value to uint8_t
-  for(int i=0; i<data->rgb.size(); i++){
-    glm::vec3& rgb = data->rgb[i];
+  for(int i=0; i<data.rgb.size(); i++){
+    glm::vec3& rgb = data.rgb[i];
 
     size_t j = i * 4;
     output[j]     = rgb.x * 255.0f;
@@ -206,8 +201,8 @@ void Converter::convert_color_to_image(utl::base::Data* data, utl::media::Image*
 
   //Update image
   image->size = output.size();
-  image->width = data->width;
-  image->height = data->height;
+  image->width = data.width;
+  image->height = data.height;
   image->data = output;
 
   //---------------------------

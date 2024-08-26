@@ -23,10 +23,10 @@ public:
 
 public:
   //Main function
-  void export_data(io::exp::Configuration& config, utl::base::Data* data);
+  void export_data(io::exp::Configuration& config, utl::base::Data& data);
 
   //Subfunction
-  void write_data_ascii(io::exp::Configuration& config, utl::base::Data* data);
+  void write_data_ascii(io::exp::Configuration& config, utl::base::Data& data);
 
 private:
   dat::atr::Field* atr_field;

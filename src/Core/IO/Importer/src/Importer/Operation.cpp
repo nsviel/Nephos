@@ -72,7 +72,7 @@ void Operation::ope_color(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  std::vector<float>& vec_I = atr_field->get_field_data(&entity->data, "I");
+  std::vector<float>& vec_I = atr_field->get_field_data(entity->data, "I");
 
   //If color
   if(entity->data.rgba.size() != 0) return;

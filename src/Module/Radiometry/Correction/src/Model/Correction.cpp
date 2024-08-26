@@ -46,11 +46,11 @@ void Correction::make_image_correction(dat::base::Sensor* sensor, utl::media::Im
 void Correction::make_correction(dat::base::Sensor* sensor, utl::media::Image* ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
-  utl::base::Data* data = &sensor->data;
+  utl::base::Data& data = sensor->data;
   std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
   std::vector<float>& vec_It = atr_field->get_field_data(data, "It");
   std::vector<float>& vec_Icor = atr_field->get_field_data(data, "I_cor");
-  std::vector<float> Is_cor = std::vector<float>(data->xyz.size(), 0.0f);
+  std::vector<float> Is_cor = std::vector<float>(data.xyz.size(), 0.0f);
 
   #pragma omp parallel for
   for(int y=0; y<ir->height; y++){

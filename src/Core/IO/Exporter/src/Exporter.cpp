@@ -45,7 +45,7 @@ void Exporter::init_path(){
   //---------------------------
 }
 void Exporter::export_with_config(io::exp::Base* exporter, dat::base::Entity* entity, std::string path){
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
 

@@ -23,7 +23,7 @@ Exporter::Exporter(){
 Exporter::~Exporter(){}
 
 //Main exporter functions
-void Exporter::export_data(io::exp::Configuration& config, utl::base::Data* data){
+void Exporter::export_data(io::exp::Configuration& config, utl::base::Data& data){
   //---------------------------
 
   //Make exporter structure
@@ -53,29 +53,29 @@ void Exporter::export_data(io::exp::Configuration& config, utl::base::Data* data
 }
 
 //Subfunction
-void Exporter::build_structure(io::exp::Configuration& config, utl::base::Data* data){
+void Exporter::build_structure(io::exp::Configuration& config, utl::base::Data& data){
   //---------------------------
 
-  config.nb_vertex = (data->size > 0) ? data->size : data->xyz.size();
+  config.nb_vertex = (data.size > 0) ? data.size : data.xyz.size();
 
   //Location
-  if(data->xyz.size() != 0){
+  if(data.xyz.size() != 0){
     config.vec_property.push_back(io::exp::XYZ);
     config.nb_property += 3;
   }
 
   //Color
-  if(config.with_colorization && data->rgba.size() != 0){
+  if(config.with_colorization && data.rgba.size() != 0){
     config.vec_property.push_back(io::exp::RGB);
     config.nb_property += 3;
   }
-  else if(!config.with_colorization && data->rgb.size() != 0){
+  else if(!config.with_colorization && data.rgb.size() != 0){
     config.vec_property.push_back(io::exp::RGB);
     config.nb_property += 3;
   }
 
   //Normal
-  if(data->Nxyz.size() != 0){
+  if(data.Nxyz.size() != 0){
     config.vec_property.push_back(io::exp::NXYZ);
     config.nb_property += 3;
   }
@@ -96,13 +96,13 @@ void Exporter::build_structure(io::exp::Configuration& config, utl::base::Data* 
 
   //---------------------------
 }
-void Exporter::write_data_ascii(io::exp::Configuration& config, std::ofstream& file, utl::base::Data* data){
+void Exporter::write_data_ascii(io::exp::Configuration& config, std::ofstream& file, utl::base::Data& data){
   //---------------------------
 
-  std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<glm::vec3>& rgb = data->rgb;
-  std::vector<glm::vec4>& rgba = data->rgba;
-  std::vector<glm::vec3>& Nxyz = data->Nxyz;
+  std::vector<glm::vec3>& xyz = data.xyz;
+  std::vector<glm::vec3>& rgb = data.rgb;
+  std::vector<glm::vec4>& rgba = data.rgba;
+  std::vector<glm::vec3>& Nxyz = data.Nxyz;
   std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   int precision = 6;
 
@@ -139,13 +139,13 @@ void Exporter::write_data_ascii(io::exp::Configuration& config, std::ofstream& f
 
   //---------------------------
 }
-void Exporter::write_data_binary(io::exp::Configuration& config, std::ofstream& file, utl::base::Data* data){
+void Exporter::write_data_binary(io::exp::Configuration& config, std::ofstream& file, utl::base::Data& data){
   //---------------------------
 
-  std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<glm::vec3>& rgb = data->rgb;
-  std::vector<glm::vec4>& rgba = data->rgba;
-  std::vector<glm::vec3>& Nxyz = data->Nxyz;
+  std::vector<glm::vec3>& xyz = data.xyz;
+  std::vector<glm::vec3>& rgb = data.rgb;
+  std::vector<glm::vec4>& rgba = data.rgba;
+  std::vector<glm::vec3>& Nxyz = data.Nxyz;
   std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
   std::vector<float>& vec_ts = atr_field->get_field_data(data, "ts");
   int precision = 6;

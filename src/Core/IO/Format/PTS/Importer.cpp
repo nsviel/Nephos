@@ -41,7 +41,7 @@ utl::base::Element* Importer::import(utl::base::Path path){
   this->retrieve_size(config);
   this->retrieve_configuration(config);
   this->retrieve_data(config);
-  this->transfer_data(config, &object->data);
+  this->transfer_data(config, object->data);
 
   //---------------------------
   return object;
@@ -274,13 +274,13 @@ void Importer::retrieve_data(io::imp::Configuration& config){
 
   //---------------------------
 }
-void Importer::transfer_data(io::imp::Configuration& config, utl::base::Data* data){
+void Importer::transfer_data(io::imp::Configuration& config, utl::base::Data& data){
   //---------------------------
 
-  data->xyz = buffer.xyz;
-  data->Nxyz = buffer.Nxyz;
-  data->rgb = buffer.rgb;
-  data->size = buffer.xyz.size();
+  data.xyz = buffer.xyz;
+  data.Nxyz = buffer.Nxyz;
+  data.rgb = buffer.rgb;
+  data.size = buffer.xyz.size();
   atr_field->set_field_data(data, "I", buffer.Is);
 
   //---------------------------

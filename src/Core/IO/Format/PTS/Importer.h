@@ -39,7 +39,7 @@ private:
   void retrieve_size(io::imp::Configuration& config);
   void retrieve_configuration(io::imp::Configuration& confi);
   void retrieve_data(io::imp::Configuration& config);
-  void transfer_data(io::imp::Configuration& config, utl::base::Data* data);
+  void transfer_data(io::imp::Configuration& config, utl::base::Data& data);
   std::vector<float> retrieve_column(io::imp::Configuration& config, int idx);
 
 private:

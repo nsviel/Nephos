@@ -30,7 +30,7 @@ public:
   //Subfunction
   void cmd_bind_descriptor(VkCommandBuffer& command_buffer, vk::structure::Pipeline* pipeline, VkDescriptorSet set);
   void allocate_descriptor_set(vk::binding::structure::Binding* binding);
-  void make_required_descriptor(utl::base::Data* data, vk::binding::structure::Binding* binding);
+  void make_required_descriptor(utl::base::Data& data, vk::binding::structure::Binding* binding);
 
 private:
   vk::Structure* vk_struct;

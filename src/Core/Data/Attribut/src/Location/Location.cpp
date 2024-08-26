@@ -18,11 +18,11 @@ Location::~Location(){}
 
 //Main function
 void Location::compute_centroid(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   //---------------------------
 
-  std::vector<glm::vec3>& xyz = data->xyz;
-  glm::vec3& centroid = data->centroid;
+  std::vector<glm::vec3>& xyz = data.xyz;
+  glm::vec3& centroid = data.centroid;
 
   //Compute raw centroid
   glm::vec3 temp_centroid(0.0f, 0.0f, 0.0f);
@@ -72,13 +72,13 @@ void Location::compute_COM(dat::base::Entity* entity){
   if(entity == nullptr) return;
   //---------------------------
 
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   utl::base::Pose* pose = &entity->pose;
 
   this->compute_centroid(entity);
 
   //Transform the centroid by the model matrix
-  glm::vec4 centroid = glm::vec4(data->centroid, 1.0f);
+  glm::vec4 centroid = glm::vec4(data.centroid, 1.0f);
   pose->COM = centroid * pose->model;
 
   //---------------------------
@@ -113,11 +113,11 @@ void Location::compute_MinMax(dat::base::Set* set){
   set->pose.COM = centroid;
 }
 void Location::compute_MinMax(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
-  std::vector<glm::vec3>& XYZ = data->xyz;
+  std::vector<glm::vec3>& XYZ = data.xyz;
   if(XYZ.size() == 0) return;
 
   glm::vec3 centroid = glm::vec3(0, 0, 0);
@@ -145,11 +145,11 @@ void Location::compute_MinMax(dat::base::Entity* entity){
   pose->COM = centroid;
 }
 void Location::compute_height(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   utl::base::Pose* pose = &entity->pose;
   //---------------------------
 
-  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec3>& xyz = data.xyz;
   std::vector<float>& vec_h = atr_field->get_field_data(data, "H");
   if(vec_h.size() != 0) return;
   vec_h = std::vector<float>(xyz.size());
@@ -164,10 +164,10 @@ void Location::compute_height(dat::base::Entity* entity){
   //---------------------------
 }
 void Location::compute_range(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   //---------------------------
 
-  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec3>& xyz = data.xyz;
   std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
   if(vec_R.size() != 0) return;
   vec_R.resize(xyz.size(), 0.0f);
@@ -181,13 +181,13 @@ void Location::compute_range(dat::base::Entity* entity){
   //---------------------------
 }
 void Location::compute_incidence_angle(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   //---------------------------
 
   std::vector<float>& It = atr_field->get_field_data(data, "It");
   std::vector<float>& R = atr_field->get_field_data(data, "R");
-  std::vector<glm::vec3>& xyz = data->xyz;
-  std::vector<glm::vec3>& Nxyz = data->Nxyz;
+  std::vector<glm::vec3>& xyz = data.xyz;
+  std::vector<glm::vec3>& Nxyz = data.Nxyz;
 
   It = std::vector<float>(xyz.size(), 0.0f);
   for(int i=0; i<xyz.size(); i++){

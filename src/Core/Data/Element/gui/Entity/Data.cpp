@@ -40,9 +40,9 @@ void Data::entity_info(dat::base::Entity* entity){
   //Visibility
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Visibility"); ImGui::TableNextColumn();
-  utl::base::Data* data = &entity->data;
-  if(ImGui::Checkbox("##4555", &data->is_visible)){
-    dat_entity->visibility_entity(entity, data->is_visible);
+  utl::base::Data& data = entity->data;
+  if(ImGui::Checkbox("##4555", &data.is_visible)){
+    dat_entity->visibility_entity(entity, data.is_visible);
   }
 
   //Name
@@ -58,17 +58,16 @@ void Data::entity_info(dat::base::Entity* entity){
   //---------------------------
 }
 void Data::entity_data(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
-  if(data == nullptr) return;
+  utl::base::Data& data = entity->data;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Format"); ImGui::TableNextColumn();
   static char str_f[256];
-  strcpy(str_f, data->path.format.c_str());
+  strcpy(str_f, data.path.format.c_str());
   ImGui::SetNextItemWidth(item_width);
   if(ImGui::InputText("##format", str_f, IM_ARRAYSIZE(str_f), ImGuiInputTextFlags_EnterReturnsTrue)){
-    data->path.format = str_f;
+    data.path.format = str_f;
   }
 
   //---------------------------

@@ -32,7 +32,7 @@ void Entity::init_entity(dat::base::Entity* entity){
   //---------------------------
 }
 void Entity::remove_entity(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   //----------------------------
 
   entity->clean();
@@ -79,11 +79,11 @@ void Entity::visibility_entity(dat::base::Entity* entity, bool value){
   //---------------------------
 }
 void Entity::update_data(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   utl::base::Pose* pose = &entity->pose;;
   //----------------------------
 
-  if(data->is_updated){
+  if(data.is_updated){
     vk_data->insert(data, pose);
 
     //Update attribut
@@ -95,7 +95,7 @@ void Entity::update_data(dat::base::Entity* entity){
       this->update_data(glyph);
     }
 
-    data->is_updated = false;
+    data.is_updated = false;
   }
 
   //----------------------------

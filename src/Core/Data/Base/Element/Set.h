@@ -2,6 +2,7 @@
 
 #include <Utility/Base/Data/Element.h>
 #include <fontawesome/IconsFontAwesome6.h>
+#include <memory>
 #include <string>
 #include <list>
 

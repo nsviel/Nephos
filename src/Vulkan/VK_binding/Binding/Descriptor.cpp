@@ -63,13 +63,13 @@ void Descriptor::allocate_descriptor_set(vk::binding::structure::Binding* bindin
 
   //---------------------------
 }
-void Descriptor::make_required_descriptor(utl::base::Data* data, vk::binding::structure::Binding* binding){
+void Descriptor::make_required_descriptor(utl::base::Data& data, vk::binding::structure::Binding* binding){
   //---------------------------
 
   vk::binding::structure::Required descriptor = vk_uniform->uniform_mvp();
   binding->vec_required_binding.push_back(vk_uniform->uniform_mvp());
 
-  if(data->topology.type == utl::topology::POINT){
+  if(data.topology.type == utl::topology::POINT){
     vk::binding::structure::Required descriptor = vk_uniform->uniform_point_size();
     binding->vec_required_binding.push_back(vk_uniform->uniform_point_size());
   }

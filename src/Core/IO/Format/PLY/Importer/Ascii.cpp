@@ -32,7 +32,7 @@ void Ascii::parse_ascii(io::imp::Configuration* config, dat::base::Object* objec
   object->data.Nxyz = buffer.Nxyz;
   object->data.rgb = buffer.rgb;
   object->data.size = buffer.xyz.size();
-  atr_field->set_field_data(&object->data, "I", buffer.Is);
+  atr_field->set_field_data(object->data, "I", buffer.Is);
 
   //Close file
   file.close();

@@ -142,7 +142,7 @@ void Importer::parser_vlp16(dat::base::Set* dataset, std::string path){
 /*
   int cpt = 0;
   for(int i=0; i<file_packets.size(); i++){
-    utl::base::Data* data = parser.parse_packet(file_packets[i]);
+    utl::base::Data& data = parser.parse_packet(file_packets[i]);
     bool frame_rev = vld_frame.build_frame(data);
 
     if(frame_rev){
@@ -173,7 +173,7 @@ void Importer::parser_hdl32(dat::base::Set* dataset, std::string path){
   //---------------------------
 /*
   for(int i=0; i<file_packets.size(); i++){
-    utl::base::Data* data = parser.parse_packet(file_packets[i]);
+    utl::base::Data& data = parser.parse_packet(file_packets[i]);
     bool frame_rev = vld_frame.build_frame(data);
 
     if(frame_rev){

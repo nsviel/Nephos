@@ -18,9 +18,9 @@ public:
   void entity_typology(dat::base::Entity* entity);
 
   //Subfunction
-  void topology_line(utl::base::Data* data);
-  void topology_point(utl::base::Data* data);
-  void topology_triangle(utl::base::Data* data);
+  void topology_line(utl::base::Data& data);
+  void topology_point(utl::base::Data& data);
+  void topology_triangle(utl::base::Data& data);
 
 private:
 

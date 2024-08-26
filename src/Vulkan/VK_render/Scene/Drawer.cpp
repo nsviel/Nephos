@@ -33,14 +33,14 @@ void Drawer::draw_scene(vk::structure::Subpass* subpass){
 }
 
 //Subfunction
-bool Drawer::check_data(utl::base::Data* data, int typology){
+bool Drawer::check_data(utl::base::Data& data, int typology){
   //---------------------------
 
-  if(data->topology.type != typology) return false;
-  if(data->is_visible == false) return false;
-  if(data->xyz.size() == 0) return false;
-  if(data->rgba.size() == 0) return false;
-  if(data->rgba.size() != data->xyz.size()) return false;
+  if(data.topology.type != typology) return false;
+  if(data.is_visible == false) return false;
+  if(data.xyz.size() == 0) return false;
+  if(data.rgba.size() == 0) return false;
+  if(data.rgba.size() != data.xyz.size()) return false;
 
   //---------------------------
   return true;
@@ -55,12 +55,12 @@ void Drawer::cmd_draw_point(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
-    utl::base::Data* data = vk_object->data;
+    utl::base::Data& data = *vk_object->data;
     utl::base::Pose* pose = vk_object->pose;
 
     if(check_data(data, utl::topology::POINT)){
       vk_uniform->update_uniform("mvp", &vk_object->binding, pose->mvp);
-      vk_uniform->update_uniform("point_size", &vk_object->binding, data->topology.width);
+      vk_uniform->update_uniform("point_size", &vk_object->binding, data.topology.width);
       vk_descriptor->cmd_bind_descriptor(subpass->command_buffer->handle, pipeline, vk_object->binding.descriptor.set);
       vk_drawer->cmd_draw_data(subpass->command_buffer->handle, vk_object);
     }
@@ -78,7 +78,7 @@ void Drawer::cmd_draw_line(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object = *next(list_data.begin(), i);
-    utl::base::Data* data = vk_object->data;
+    utl::base::Data& data = *vk_object->data;
     utl::base::Pose* pose = vk_object->pose;
 
     if(check_data(data, utl::topology::LINE)){
@@ -101,7 +101,7 @@ void Drawer::cmd_draw_triangle(vk::structure::Subpass* subpass){
   //Bind and draw vertex buffers
   for(int i=0; i<list_data.size(); i++){
     vk::structure::Object* vk_object =  *next(list_data.begin(), i);
-    utl::base::Data* data = vk_object->data;
+    utl::base::Data& data = *vk_object->data;
     utl::base::Pose* pose = vk_object->pose;
 
     if(check_data(data, utl::topology::TRIANGLE)){

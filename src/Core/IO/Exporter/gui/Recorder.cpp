@@ -159,7 +159,7 @@ void Recorder::item_update(dat::base::Sensor* sensor){
 
   //Actualize current name
   if(sensor != nullptr && io_struct->path.name != sensor->name){
-    utl::base::Data* data = &sensor->data;
+    utl::base::Data& data = sensor->data;
     io_struct->path.name = sensor->name;
 
     this->vec_format.clear();
@@ -176,11 +176,11 @@ void Recorder::item_operation(dat::base::Entity* entity){
 
   std::string format = (io_struct->path.format != "-") ? io_struct->path.format : "";
 
-  utl::base::Data* data = &entity->data;
-  data->name = io_struct->path.name;
-  data->path.directory = io_struct->path.directory;
-  data->path.name = data->name;
-  data->path.format = format;
+  utl::base::Data& data = entity->data;
+  data.name = io_struct->path.name;
+  data.path.directory = io_struct->path.directory;
+  data.path.name = data.name;
+  data.path.format = format;
 
   //---------------------------
 }

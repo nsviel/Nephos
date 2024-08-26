@@ -34,7 +34,7 @@ void Tree::create(){
 
   //---------------------------
 }
-void Tree::update_glyph(utl::base::Data* data){
+void Tree::update_glyph(utl::base::Data& data){
   //---------------------------
 
 

@@ -102,23 +102,23 @@ void Data::extraction_data(k4n::base::Sensor* sensor){
   //---------------------------
 }
 void Data::extraction_transfer(k4n::base::Sensor* sensor){
-  utl::base::Data* data = &sensor->data;
+  utl::base::Data& data = sensor->data;
   //---------------------------
 
   std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
   std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
 
   //Data
-  data->xyz = buffer.xyz;
-  data->rgb = buffer.rgb;
-  data->rgba = buffer.rgba;
+  data.xyz = buffer.xyz;
+  data.rgb = buffer.rgb;
+  data.rgba = buffer.rgba;
   vec_I = buffer.Is;
   vec_R = buffer.R;
 
   //Info
-  data->size = sensor->cloud.size;
-  data->width = sensor->cloud.width;
-  data->height = sensor->cloud.height;
+  data.size = sensor->cloud.size;
+  data.width = sensor->cloud.width;
+  data.height = sensor->cloud.height;
 
   //---------------------------
 }

@@ -20,23 +20,23 @@ KNN::KNN(){
 KNN::~KNN(){}
 
 //Main function
-void KNN::compute_normal(utl::base::Data* data, int k){
-  if(data->xyz.size() == 0) return;
+void KNN::compute_normal(utl::base::Data& data, int k){
+  if(data.xyz.size() == 0) return;
   //---------------------------
 
    auto start = std::chrono::high_resolution_clock::now();
 
   //Prepare data
   this->k = k;
-  data->Nxyz = std::vector<glm::vec3>(data->xyz.size(), glm::vec3(0.0f));
-  glm::vec3 centroid = math::centroid(data->xyz);
+  data.Nxyz = std::vector<glm::vec3>(data.xyz.size(), glm::vec3(0.0f));
+  glm::vec3 centroid = math::centroid(data.xyz);
 
   // Convert point cloud to FLANN matrix
-  flann::Matrix<float> dataset(new float[data->xyz.size() * 3], data->xyz.size(), 3);
-  for(size_t i = 0; i < data->xyz.size(); ++i){
-      dataset[i][0] = data->xyz[i].x;
-      dataset[i][1] = data->xyz[i].y;
-      dataset[i][2] = data->xyz[i].z;
+  flann::Matrix<float> dataset(new float[data.xyz.size() * 3], data.xyz.size(), 3);
+  for(size_t i = 0; i < data.xyz.size(); ++i){
+      dataset[i][0] = data.xyz[i].x;
+      dataset[i][1] = data.xyz[i].y;
+      dataset[i][2] = data.xyz[i].z;
   }
 
   // Build the FLANN index
@@ -45,9 +45,9 @@ void KNN::compute_normal(utl::base::Data* data, int k){
 
   // Loop
   #pragma omp parallel for
-  for(size_t i = 0; i < data->xyz.size(); ++i){
-    glm::vec3& point = data->xyz[i];
-    if(point == glm::vec3(0, 0, 0) || data->Nxyz[i] != glm::vec3(0, 0, 0)) continue;
+  for(size_t i = 0; i < data.xyz.size(); ++i){
+    glm::vec3& point = data.xyz[i];
+    if(point == glm::vec3(0, 0, 0) || data.Nxyz[i] != glm::vec3(0, 0, 0)) continue;
 
     // Find k nearest neighbors
     std::vector<std::vector<size_t>> indices(1);
@@ -61,7 +61,7 @@ void KNN::compute_normal(utl::base::Data* data, int k){
 
     std::vector<glm::vec3> vec_nn;
     for(size_t j = 0; j < indices[0].size(); ++j){
-      vec_nn.push_back(data->xyz[indices[0][j]]);
+      vec_nn.push_back(data.xyz[indices[0][j]]);
     }
 
     delete[] query.ptr();
@@ -78,7 +78,7 @@ void KNN::compute_normal(utl::base::Data* data, int k){
 
     // Store same result for each nn
     for(size_t j = 0; j < indices[0].size(); ++j){
-      data->Nxyz[indices[0][j]] = normal;
+      data.Nxyz[indices[0][j]] = normal;
     }
   }
 
@@ -92,11 +92,11 @@ void KNN::compute_normal(utl::base::Data* data, int k){
 }
 
 //Subfunction
-void KNN::compute_knn(std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, glm::vec3& point, utl::base::Data* data, int i, int j){
+void KNN::compute_knn(std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx, glm::vec3& point, utl::base::Data& data, int i, int j){
   //---------------------------
 
   for(int v=-k; v<=k; v++){
-    int i_nn = (i + v) * data->width;
+    int i_nn = (i + v) * data.width;
     if(i_nn < 0) continue;
 
     for(int h=-k; h<=k; h++){
@@ -105,7 +105,7 @@ void KNN::compute_knn(std::vector<glm::vec3>& vec_nn, std::vector<int>& vec_idx,
 
       //Get neighbor
       int idx = i_nn + j_nn;
-      glm::vec3& nn = data->xyz[idx];
+      glm::vec3& nn = data.xyz[idx];
       if(nn == glm::vec3(0, 0, 0)) continue;
 
       //Check distance with interest point

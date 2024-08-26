@@ -166,12 +166,12 @@ void Color::color_option(utl::base::Element* element){
     if(!entity) return;
 
     //Get vector of field names
-    std::vector<std::string> vec_name = atr_field->get_field_names(&entity->data);
+    std::vector<std::string> vec_name = atr_field->get_field_names(entity->data);
 
     //Init
     if(entity->data.vec_field.size() != 0 && atr_struct->color.field == ""){
       atr_struct->color.field = vec_name[0];
-      atr_struct->color.range = atr_field->get_field_range(&entity->data, vec_name[0]);
+      atr_struct->color.range = atr_field->get_field_range(entity->data, vec_name[0]);
     }
 
     //Combo field name
@@ -184,7 +184,7 @@ void Color::color_option(utl::base::Element* element){
 
         if(ImGui::Selectable(name.c_str(), is_selected)){
           atr_struct->color.field = name;
-          atr_struct->color.range = atr_field->get_field_range(&entity->data, name);
+          atr_struct->color.range = atr_field->get_field_range(entity->data, name);
           selection = i;
         }
 
@@ -198,7 +198,7 @@ void Color::color_option(utl::base::Element* element){
 
     //Range
     ImGui::SetNextItemWidth(150);
-    glm::vec2 range = atr_field->get_field_range(&entity->data, atr_struct->color.field);
+    glm::vec2 range = atr_field->get_field_range(entity->data, atr_struct->color.field);
     float sensitivity = (range.y - range.x) / 100.0f;
     ImGui::DragFloatRange2("Range##321", &atr_struct->color.range.x, &atr_struct->color.range.y, sensitivity, range.x, range.y, "%.2f", "%.2f");
   }

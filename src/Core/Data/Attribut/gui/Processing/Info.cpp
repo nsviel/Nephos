@@ -37,7 +37,7 @@ void Info::path_info(utl::base::Element* element){
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   utl::base::Pose* pose = &entity->pose;
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Path");
@@ -48,7 +48,7 @@ void Info::path_info(utl::base::Element* element){
   //Data
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Data"); ImGui::TableNextColumn();
-  std::string path_data = data->path.directory + data->path.name + data->path.format;
+  std::string path_data = data.path.directory + data.path.name + data.path.format;
   if(path_data == "") path_data = "(not defined)";
   ImGui::TextColored(color, "%s", path_data.c_str());
 

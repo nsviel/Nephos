@@ -35,7 +35,7 @@ public:
   void parse_face_little_endian(io::imp::Configuration* config, std::ifstream& file);
   void parse_vertex_big_endian(io::imp::Configuration* config, std::ifstream& file);
   void parse_face_big_endian(io::imp::Configuration* config, std::ifstream& file);
-  void reorder_by_timestamp(utl::base::Data* data);
+  void reorder_by_timestamp(utl::base::Data& data);
   int get_property_id(io::imp::Configuration* config, io::imp::Field field);
 
   //Binary type

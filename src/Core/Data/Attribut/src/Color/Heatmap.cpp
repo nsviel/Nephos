@@ -19,7 +19,7 @@ Heatmap::~Heatmap(){}
 
 //Main function
 void Heatmap::colorization_heatmap(dat::base::Entity* entity){
-  utl::base::Data* data = &entity->data;
+  utl::base::Data& data = entity->data;
   //---------------------------
 
   //Normalization
@@ -28,7 +28,7 @@ void Heatmap::colorization_heatmap(dat::base::Entity* entity){
   math::normalize(field, atr_struct->color.range, glm::vec2(0, 1));
 
   //Set to color
-  this->compute_heatmap(field, data->rgba);
+  this->compute_heatmap(field, data.rgba);
 
   //---------------------------
 }

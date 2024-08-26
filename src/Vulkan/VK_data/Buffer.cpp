@@ -47,22 +47,22 @@ void Buffer::create_buffer(vk::structure::Object* vk_object){
   //---------------------------
 }
 void Buffer::update_buffer(vk::structure::Object* vk_object){
-  utl::base::Data* data = vk_object->data;
+  utl::base::Data& data = *vk_object->data;
   //---------------------------
 
-  if(data->xyz.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec3) * data->xyz.size();
-    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, data->xyz.data(), data_size);
+  if(data.xyz.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec3) * data.xyz.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.xyz, &vk_object->buffer.xyz_stagger, data.xyz.data(), data_size);
   }
 
-  if(data->rgba.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec4) * data->rgba.size();
-    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgba, &vk_object->buffer.rgba_stagger, data->rgba.data(), data_size);
+  if(data.rgba.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec4) * data.rgba.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.rgba, &vk_object->buffer.rgba_stagger, data.rgba.data(), data_size);
   }
 
-  if(data->uv.size() != 0){
-    VkDeviceSize data_size = sizeof(glm::vec2) * data->uv.size();
-    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, data->uv.data(), data_size);
+  if(data.uv.size() != 0){
+    VkDeviceSize data_size = sizeof(glm::vec2) * data.uv.size();
+    vk_mem_transfer->copy_data_to_gpu(&vk_object->buffer.uv, &vk_object->buffer.uv_stagger, data.uv.data(), data_size);
   }
 
   //---------------------------
@@ -96,10 +96,10 @@ void Buffer::clean_buffer(vk::data::structure::Buffer* buffer){
 
 //Subfunction
 int Buffer::get_size_buffer(vk::structure::Object* vk_object){
-  utl::base::Data* data = vk_object->data;
+  utl::base::Data& data = *vk_object->data;
   //---------------------------
 
-  int max_data = (data->nb_data_max != -1) ? data->nb_data_max : data->xyz.size();
+  int max_data = (data.nb_data_max != -1) ? data.nb_data_max : data.xyz.size();
 
   //---------------------------
   return max_data;
