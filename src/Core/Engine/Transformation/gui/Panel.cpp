@@ -147,12 +147,12 @@ void Panel::display_format(utl::base::Element* element){
   ImGui::Separator();
 }
 void Panel::display_matrix(utl::base::Element* element){
-  utl::base::Pose* pose = &element->pose;
+  utl::base::Pose& pose = element->pose;
   //---------------------------
 
   //Model matrix
   ImVec2 width = ImGui::GetContentRegionAvail();
-  glm::mat4& model = pose->model;
+  glm::mat4& model = pose.model;
   ImGui::Columns(4, "ModelMat");
   for(int i=0; i<4; i++){
     ImGui::Separator();

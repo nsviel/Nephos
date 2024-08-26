@@ -37,8 +37,8 @@ void Normal::create(){
 void Normal::update_pose(dat::base::Entity* entity){
   //---------------------------
 
-  utl::base::Pose* entity_pose = &entity->pose;;
-  pose.model = entity_pose->model;
+  utl::base::Pose& entity_pose = entity->pose;
+  pose.model = entity_pose.model;
 
   //---------------------------
 }

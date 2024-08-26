@@ -46,12 +46,12 @@ void Exporter::init_path(){
 }
 void Exporter::export_with_config(io::exp::Base* exporter, dat::base::Entity* entity, std::string path){
   utl::base::Data& data = entity->data;
-  utl::base::Pose* pose = &entity->pose;
+  utl::base::Pose& pose = entity->pose;
   //---------------------------
 
   //Make export configuration
   io::exp::Configuration config;
-  config.mat_model = (io_struct->with_transformation) ? pose->model : glm::mat4(1);
+  config.mat_model = (io_struct->with_transformation) ? pose.model : glm::mat4(1);
   config.mat_rotation = glm::mat3(config.mat_model);
   config.with_colorization = io_struct->with_colorization;
   config.encoding = io_struct->encoding;

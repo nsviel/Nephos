@@ -33,11 +33,11 @@ void AABB::create(){
 
   //---------------------------
 }
-void AABB::update_glyph(utl::base::Pose* pose){
+void AABB::update_glyph(utl::base::Pose& pose){
   //---------------------------
 
-  glm::vec3 min = pose->min;
-  glm::vec3 max = pose->max;
+  glm::vec3 min = pose.min;
+  glm::vec3 max = pose.max;
   data.xyz = build_box(min, max);
 
   //---------------------------

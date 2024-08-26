@@ -64,7 +64,7 @@ void Detection::wait_thread(){
 
 //Subfunction
 void Detection::validate_bbox(dat::base::Sensor* sensor){
-  utl::base::Pose* pose = &sensor->pose;
+  utl::base::Pose& pose = sensor->pose;
   //---------------------------
 
   //Stop if no detection
@@ -77,7 +77,7 @@ void Detection::validate_bbox(dat::base::Sensor* sensor){
   glm::ivec2 point_2d = rad_struct->hough.vec_circle[0].center;
   glm::vec3 pose_xyz = sensor->convert_depth_2d_to_3d(point_2d);
   glm::vec4 pose_xyzw = glm::vec4(pose_xyz.x, pose_xyz.y, pose_xyz.z, 1);
-  rad_struct->ransac.current_pose = pose->model * pose_xyzw;
+  rad_struct->ransac.current_pose = pose.model * pose_xyzw;
   rad_ransac->ransac_sphere(sensor);
 
   //---------------------------

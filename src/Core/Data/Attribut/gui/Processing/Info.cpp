@@ -38,7 +38,7 @@ void Info::path_info(utl::base::Element* element){
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
   utl::base::Data& data = entity->data;
-  utl::base::Pose* pose = &entity->pose;
+  utl::base::Pose& pose = entity->pose;
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Path");
   ImGui::BeginTable("sensor##info", 2);
@@ -55,7 +55,7 @@ void Info::path_info(utl::base::Element* element){
   //Transformation
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Transform"); ImGui::TableNextColumn();
-  std::string path_transfo = pose->path.directory + pose->path.name + pose->path.format;
+  std::string path_transfo = pose.path.directory + pose.path.name + pose.path.format;
   if(path_transfo == "") path_transfo = "(not defined)";
   ImGui::TextColored(color, "%s", path_transfo.c_str());
 

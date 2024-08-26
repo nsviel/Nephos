@@ -32,9 +32,9 @@ void Operation::center_object(utl::base::Element* element){
     }
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    utl::base::Pose* pose = &entity->pose;
-    this->center_object(entity, pose->COM);
-    this->elevate_object(entity, pose->min);
+    utl::base::Pose& pose = entity->pose;
+    this->center_object(entity, pose.COM);
+    this->elevate_object(entity, pose.min);
   }
 
   //---------------------------
@@ -51,8 +51,8 @@ void Operation::elevate_object(utl::base::Element* element){
     }
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    utl::base::Pose* pose = &entity->pose;
-    this->elevate_object(entity, pose->min);
+    utl::base::Pose& pose = entity->pose;
+    this->elevate_object(entity, pose.min);
   }
 
   //---------------------------
@@ -78,10 +78,10 @@ void Operation::make_translation(utl::base::Element* element, glm::vec3 value){
   //---------------------------
 
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
-    trf_transform->make_translation(&set->pose, value);
+    trf_transform->make_translation(set->pose, value);
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-      trf_transform->make_translation(&entity->pose, value);
+      trf_transform->make_translation(entity->pose, value);
     }
     for(int i=0; i<set->list_subset.size(); i++){
       dat::base::Set* subset = *next(set->list_subset.begin(), i);
@@ -89,7 +89,7 @@ void Operation::make_translation(utl::base::Element* element, glm::vec3 value){
     }
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    trf_transform->make_translation(&entity->pose, value);
+    trf_transform->make_translation(entity->pose, value);
   }
 
   //---------------------------
@@ -99,7 +99,7 @@ void Operation::make_rotation(utl::base::Element* element, glm::vec3 COM, glm::v
   //---------------------------
 
   if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(element)){
-    trf_transform->make_rotation(&set->pose, COM, value);
+    trf_transform->make_rotation(set->pose, COM, value);
     for(int i=0; i<set->list_entity.size(); i++){
       dat::base::Entity* entity = *next(set->list_entity.begin(), i);
       this->make_rotation(entity, COM, value);
@@ -110,7 +110,7 @@ void Operation::make_rotation(utl::base::Element* element, glm::vec3 COM, glm::v
     }
   }
   else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(element)){
-    trf_transform->make_rotation(&entity->pose, COM, value);
+    trf_transform->make_rotation(entity->pose, COM, value);
   }
 
   //---------------------------
@@ -121,9 +121,9 @@ void Operation::center_object(dat::base::Entity* entity, glm::vec3 COM){
   if(entity == nullptr) return;
   //---------------------------
 
-  utl::base::Pose* pose = &entity->pose;
+  utl::base::Pose& pose = entity->pose;
   atr_location->compute_MinMax(entity);
-  trf_transform->make_translation(pose, glm::vec3(-pose->COM.x, -pose->COM.y, 0));
+  trf_transform->make_translation(pose, glm::vec3(-pose.COM.x, -pose.COM.y, 0));
 
   //---------------------------
 }
@@ -131,7 +131,7 @@ void Operation::elevate_object(dat::base::Entity* entity, glm::vec3 min){
   if(entity == nullptr) return;
   //---------------------------
 
-  utl::base::Pose* pose = &entity->pose;
+  utl::base::Pose& pose = entity->pose;
   atr_location->compute_MinMax(entity);
   trf_transform->make_translation(pose, glm::vec3(0, 0, -min.z));
 
@@ -141,10 +141,10 @@ void Operation::make_rotation_X_90d(dat::base::Entity* entity, int value){
   if(entity == nullptr) return;
   //---------------------------
 
-  utl::base::Pose* pose = &entity->pose;
+  utl::base::Pose& pose = entity->pose;
   atr_location->compute_MinMax(entity);
   trf_transform->make_rotation_axe_X(pose, value * 90);
-  this->elevate_object(entity, pose->min);
+  this->elevate_object(entity, pose.min);
 
   //---------------------------
 }
@@ -152,8 +152,8 @@ void Operation::make_translation_from_root(dat::base::Entity* entity, glm::vec3 
   if(entity == nullptr) return;
   //---------------------------
 
-  utl::base::Pose* pose = &entity->pose;
-  glm::vec3 translation = new_root - pose->root;
+  utl::base::Pose& pose = entity->pose;
+  glm::vec3 translation = new_root - pose.root;
   trf_transform->make_translation(pose, translation);
 
   //---------------------------

@@ -73,8 +73,7 @@ void Data::entity_data(dat::base::Entity* entity){
   //---------------------------
 }
 void Data::entity_pose(dat::base::Entity* entity){
-  utl::base::Pose* pose = &entity->pose;;
-  if(pose == nullptr) return;
+  utl::base::Pose& pose = entity->pose;
   //---------------------------
 
   //Root pos
@@ -82,7 +81,7 @@ void Data::entity_pose(dat::base::Entity* entity){
   ImGui::Text("Root"); ImGui::TableNextColumn();
   ImGui::NextColumn();
   float floatArray[3];
-  std::memcpy(floatArray, &pose->root, sizeof(float) * 3);
+  std::memcpy(floatArray, &pose.root, sizeof(float) * 3);
   if(ImGui::DragFloat3("##434", floatArray, 0.01f, -100.0f, 100.0f, "%.2f")){
     glm::vec3 new_root(floatArray[0], floatArray[1], floatArray[2]);
     trf_operation->make_translation_from_root(entity, new_root);

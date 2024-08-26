@@ -73,13 +73,13 @@ void Location::compute_COM(dat::base::Entity* entity){
   //---------------------------
 
   utl::base::Data& data = entity->data;
-  utl::base::Pose* pose = &entity->pose;
+  utl::base::Pose& pose = entity->pose;
 
   this->compute_centroid(entity);
 
   //Transform the centroid by the model matrix
   glm::vec4 centroid = glm::vec4(data.centroid, 1.0f);
-  pose->COM = centroid * pose->model;
+  pose.COM = centroid * pose.model;
 
   //---------------------------
 }
@@ -92,13 +92,13 @@ void Location::compute_MinMax(dat::base::Set* set){
 
   for(int i=0; i<set->list_entity.size(); i++){
     dat::base::Entity* entity = *next(set->list_entity.begin(), i);
-    utl::base::Pose* pose = &entity->pose;
+    utl::base::Pose& pose = entity->pose;
     this->compute_MinMax(entity);
 
     for(int j=0; j<3; j++){
-      if(pose->min[j] <= min[j]) min[j] = pose->min[j];
-      if(pose->max[j] >= max[j]) max[j] = pose->max[j];
-      centroid[j] += pose->COM[j];
+      if(pose.min[j] <= min[j]) min[j] = pose.min[j];
+      if(pose.max[j] >= max[j]) max[j] = pose.max[j];
+      centroid[j] += pose.COM[j];
     }
 
   }
@@ -114,7 +114,7 @@ void Location::compute_MinMax(dat::base::Set* set){
 }
 void Location::compute_MinMax(dat::base::Entity* entity){
   utl::base::Data& data = entity->data;
-  utl::base::Pose* pose = &entity->pose;
+  utl::base::Pose& pose = entity->pose;
   //---------------------------
 
   std::vector<glm::vec3>& XYZ = data.xyz;
@@ -126,7 +126,7 @@ void Location::compute_MinMax(dat::base::Entity* entity){
 
   for(int i=0; i<XYZ.size(); i++){
     glm::vec4 xys_h = glm::vec4(XYZ[i].x, XYZ[i].y, XYZ[i].z, 1);
-    xys_h = xys_h * pose->model;
+    xys_h = xys_h * pose.model;
 
     for(int j=0; j<3; j++){
       if(xys_h[j] <= min[j]) min[j] = xys_h[j];
@@ -140,13 +140,13 @@ void Location::compute_MinMax(dat::base::Entity* entity){
   }
 
   //---------------------------
-  pose->min = min;
-  pose->max = max;
-  pose->COM = centroid;
+  pose.min = min;
+  pose.max = max;
+  pose.COM = centroid;
 }
 void Location::compute_height(dat::base::Entity* entity){
   utl::base::Data& data = entity->data;
-  utl::base::Pose* pose = &entity->pose;
+  utl::base::Pose& pose = entity->pose;
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data.xyz;
@@ -157,7 +157,7 @@ void Location::compute_height(dat::base::Entity* entity){
   #pragma omp parallel for
   for(int i=0; i<xyz.size(); i++){
     glm::vec4 xyz_h = glm::vec4(xyz[i].x, xyz[i].y, xyz[i].z, 1);
-    xyz_h = xyz_h * pose->model;
+    xyz_h = xyz_h * pose.model;
     vec_h[i] = xyz_h.z;
   }
 

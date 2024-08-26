@@ -118,7 +118,7 @@ void Control::update_pose(dat::base::Set* set){
   //---------------------------
 }
 void Control::update_pose(dat::base::Entity* entity){
-  utl::base::Pose* pose = &entity->pose;
+  utl::base::Pose& pose = entity->pose;
   //----------------------------
 
   //Update own pose
@@ -176,15 +176,14 @@ glm::mat4 Control::compute_camera_mvp(){
   //---------------------------
   return mvpMatrix;
 }
-void Control::compute_camera_mvp(utl::base::Pose* pose){
-  if(pose == nullptr) return;
+void Control::compute_camera_mvp(utl::base::Pose& pose){
   //---------------------------
 
-  glm::mat4 cam_modl = glm::transpose(pose->model);
+  glm::mat4 cam_modl = glm::transpose(pose.model);
   glm::mat4 cam_view = compute_camera_view();
   glm::mat4 cam_proj = compute_camera_proj();
 
-  pose->mvp = cam_proj * cam_view * cam_modl;
+  pose.mvp = cam_proj * cam_view * cam_modl;
 
   //---------------------------
 }

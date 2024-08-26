@@ -33,11 +33,11 @@ void Matrix::design_matrix(utl::base::Element* element){
 
 //Subfunction
 void Matrix::draw_operation(utl::base::Element* element){
-  utl::base::Pose* pose = &element->pose;
+  utl::base::Pose& pose = element->pose;
   //---------------------------
 
   if(ImGui::Button("R##transfomatrix", ImVec2(20, 0))){
-    trf_utils->make_transformation_identity(pose->model);
+    trf_utils->make_transformation_identity(pose.model);
   }
   ImGui::SameLine();
   if(ImGui::Button("C##centerentity", ImVec2(20, 0))){
@@ -51,12 +51,12 @@ void Matrix::draw_operation(utl::base::Element* element){
   //---------------------------
 }
 void Matrix::draw_matrix(utl::base::Element* element){
-  utl::base::Pose* pose = &element->pose;
+  utl::base::Pose& pose = element->pose;
   //---------------------------
 
   //Model matrix
   ImVec2 width = ImGui::GetContentRegionAvail();
-  glm::mat4& model = pose->model;
+  glm::mat4& model = pose.model;
   ImGui::Columns(4, "ModelMat");
   for(int i=0; i<4; i++){
     ImGui::Separator();

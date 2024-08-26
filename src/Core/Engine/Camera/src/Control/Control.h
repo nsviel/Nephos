@@ -36,7 +36,7 @@ public:
   glm::mat4 compute_camera_view();
   glm::mat4 compute_camera_proj();
   glm::mat4 compute_camera_mvp();
-  void compute_camera_mvp(utl::base::Pose* pose);
+  void compute_camera_mvp(utl::base::Pose& pose);
   glm::mat4 compute_camera_pose();
 
   //Camera parameter

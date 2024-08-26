@@ -112,7 +112,7 @@ void Operation::ope_transformation(dat::base::Entity* entity){
   trf_io->load_transformation(entity);
 
   //Scaling
-  trf_transform->make_scaling(&entity->pose, io_struct->scaling);
+  trf_transform->make_scaling(entity->pose, io_struct->scaling);
 
   //Centering
   if(io_struct->with_centering){

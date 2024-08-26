@@ -104,7 +104,7 @@ void Color::colorization_unicolor(dat::base::Entity* entity){
 }
 void Color::colorization_normal(dat::base::Entity* entity){
   utl::base::Data& data = entity->data;
-  utl::base::Pose* pose = &entity->pose;
+  utl::base::Pose& pose = entity->pose;
   //---------------------------
 
   std::vector<glm::vec3>& Nxyz = data.Nxyz;
@@ -112,7 +112,7 @@ void Color::colorization_normal(dat::base::Entity* entity){
   //Compute heatmap
   #pragma omp parallel for
   for(int i=0; i<Nxyz.size(); i++){
-    glm::vec4 normal = glm::vec4(Nxyz[i], 1.0) * pose->rotat;
+    glm::vec4 normal = glm::vec4(Nxyz[i], 1.0) * pose.rotat;
 
     float R = (1 + normal.x) / 2;
     float G = (1 + normal.y) / 2;

@@ -80,8 +80,8 @@ void Panel::entity_button(dat::base::Entity* entity){
 
   //Centered
   if(entity->pose.is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
-    utl::base::Pose* pose = &entity->pose;;
-    trf_operation->center_object(entity, pose->min);
+    utl::base::Pose& pose = entity->pose;
+    trf_operation->center_object(entity, pose.min);
   }
 
   //---------------------------
