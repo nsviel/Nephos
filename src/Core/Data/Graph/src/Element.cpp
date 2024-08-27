@@ -22,7 +22,7 @@ Element::~Element(){}
 
 //Main function
 void Element::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
-  if(!entity) return;
+  if(!set || !entity) return;
   //---------------------------
 
   //Selection

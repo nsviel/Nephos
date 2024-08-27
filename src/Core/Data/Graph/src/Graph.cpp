@@ -24,6 +24,8 @@ Graph::~Graph(){}
 void Graph::init(){
   //---------------------------
 
+  gph_struct->set_main = std::make_shared<dat::base::Set>();
+
   //Background permanent elements
   std::shared_ptr<dat::base::Set> set_scene = dat_set->create_subset(gph_struct->set_main, "Scene");
   set_scene->is_suppressible = false;

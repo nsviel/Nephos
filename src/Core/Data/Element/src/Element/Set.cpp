@@ -103,6 +103,7 @@ void Set::remove_subset(std::shared_ptr<dat::base::Set> subset){
   //---------------------------
 }
 std::shared_ptr<dat::base::Set> Set::create_subset(std::shared_ptr<dat::base::Set> set, std::string name){
+  if(!set) return nullptr;
   //---------------------------
 
   std::shared_ptr<dat::base::Set> subset = std::make_shared<dat::base::Set>();
@@ -113,7 +114,7 @@ std::shared_ptr<dat::base::Set> Set::create_subset(std::shared_ptr<dat::base::Se
 
   set->nb_subset++;
   set->active_subset = subset;
-  set->list_subset.push_back(std::move(subset));
+  set->list_subset.push_back(subset);
 
   //---------------------------
   return subset;
@@ -165,23 +166,33 @@ void Set::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat
   if(!entity) return;
   //---------------------------
 
-  // Check if the set has the query entity
-  for(auto& entity_set : set->list_entity){
-    if(entity_set->UID == entity->UID){
-      //Check if active entity
-      auto active_entity = set->active_entity.lock();
-      if(active_entity && active_entity == entity) this->active_next_entity(set);
+  // Check if the set has the entity to be removed
+  auto it = std::find_if(set->list_entity.begin(), set->list_entity.end(),
+    [&entity](const std::shared_ptr<dat::base::Entity>& e) {
+      return e->UID == entity->UID;
+    });
 
-      //Remove from set list
-      set->list_entity.remove(entity);
-      set->nb_entity--;
+  if (it != set->list_entity.end()) {
+    // If entity is found in the set
+    std::shared_ptr<dat::base::Entity> found_entity = *it;
 
-      //Check if active entity agin
-      if(active_entity == entity) set->active_entity.reset();
-
-      //Effective remove
-      dat_entity->remove_entity(entity);
+    // Check if the found entity is the active entity
+    auto active_entity = set->active_entity.lock();
+    if (active_entity && active_entity == found_entity) {
+      this->active_next_entity(set);
     }
+
+    // Remove from set list
+    set->list_entity.erase(it);
+    set->nb_entity--;
+
+    // Check if the removed entity was the active one
+    if (active_entity == found_entity) {
+      set->active_entity.reset();
+    }
+
+    // Effectively remove the entity
+    dat_entity->remove_entity(found_entity);
   }
 
   // Recursively call remove for each nested set
@@ -190,7 +201,7 @@ void Set::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat
   }
 
   //Remove if empty
-  if(set->is_suppressible && set->list_subset.size() == 0 && set->list_entity.size() == 0){
+  if(set->is_suppressible && set->list_subset.empty() && set->list_entity.empty()){
     this->remove_subset(set);
   }
 

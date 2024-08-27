@@ -50,20 +50,17 @@ utl::base::Data* Importer::load_data(std::string path){
 void Importer::load_set(utl::base::Path path){
   if(!check_path(path.build())) return;
   //---------------------------
-/*
+
   //Load
   std::shared_ptr<utl::base::Element> element = this->import_from_path(path);
   if(!element) return;
 
-  //Convert
-  std::shared_ptr<dat::base::Set> set = nullptr;
+  //Insert
   if(element->type == utl::element::SET){
-    set = dynamic_cast<std::shared_ptr<dat::base::Set>>(element);
+    auto set = std::dynamic_pointer_cast<dat::base::Set>(element);
+    io_operation->insert_set(set);
   }
 
-  //Insert
-  io_operation->insert_set(set);
-*/
   //---------------------------
 }
 void Importer::load_directory(utl::base::Path path){
@@ -89,14 +86,11 @@ void Importer::load_object(utl::base::Path path){
   std::shared_ptr<utl::base::Element> element = this->import_from_path(path);
   if(!element) return;
 
-  //Convert
-  std::shared_ptr<dat::base::Object> object = nullptr;
-  if(element->type == utl::element::ENTITY){
-    object = std::dynamic_pointer_cast<dat::base::Object>(element);
-  }
-
   //Insert
-  io_operation->insert_object(object);
+  if(element->type == utl::element::ENTITY){
+    auto object = std::dynamic_pointer_cast<dat::base::Object>(element);
+    io_operation->insert_object(object);
+  }
 
   //---------------------------
 }

@@ -40,14 +40,14 @@ int Set::tree_set(std::shared_ptr<dat::base::Set> set){
 
 //Subfunction
 void Set::draw_node(std::shared_ptr<dat::base::Set> set, bool& node_open){
-  std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
+  std::shared_ptr<utl::base::Element> selection = gph_selection->get_selected_element();
   //---------------------------
 
   //Set node elements
   ImGuiTreeNodeFlags flag;
   flag |= ImGuiTreeNodeFlags_OpenOnArrow;
   flag |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
-  flag |= (set == element) ? ImGuiTreeNodeFlags_Selected : 0;
+  flag |= (selection && set->UID == selection->UID) ? ImGuiTreeNodeFlags_Selected : 0;
   flag |= ImGuiTreeNodeFlags_SpanFullWidth;
   std::string name = set->icon + "   " + set->name;
 
@@ -92,8 +92,11 @@ void Set::draw_open(std::shared_ptr<dat::base::Set> set, bool& node_open, int& n
 
   //If set open, display elements
   if(node_open){
+    // Create a temporary copy of the list of entities
+    std::vector<std::shared_ptr<dat::base::Entity>> list_entity(set->list_entity.begin(), set->list_entity.end());
+
     //List all direct entities
-    for(auto& entity : set->list_entity){
+    for(auto entity : list_entity){
       gui_entity->tree_entity(set, entity, nb_row);
     }
 

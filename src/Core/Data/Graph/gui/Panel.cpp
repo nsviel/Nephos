@@ -53,7 +53,6 @@ void Panel::run_panel(){
 void Panel::design_panel(){
   //---------------------------
 
-  //this->draw_window_background();
   this->draw_file_tree();
 
   //---------------------------
@@ -76,11 +75,12 @@ void Panel::draw_file_tree(){
   ImGui::TableSetupColumn("Visibility##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 25);
   ImGui::TableSetupColumn("Bin##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 25);
 
+  // Create a temporary copy of the list
+  std::vector<std::shared_ptr<dat::base::Set>> list_set(set_main->list_subset.begin(), set_main->list_subset.end());
+
   //Database
   int nb_row = 0;
-  for(int row_i=0; row_i<set_main->list_subset.size(); row_i++){
-    std::shared_ptr<dat::base::Set> set = *next(set_main->list_subset.begin(), row_i);
-
+  for(auto& set : list_set){
     ImGui::PushID(set->name.c_str());
     nb_row += gui_set->tree_set(set) + 1;
     ImGui::PopID();
