@@ -25,6 +25,9 @@ public:
   void draw_header();
 
   //Subfunction
+  void draw_loader();
+  void draw_path();
+  void draw_operation();
 
 private:
   io::imp::Structure* io_struct;

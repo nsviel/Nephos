@@ -1,4 +1,4 @@
-v#include "Header.h"
+#include "Header.h"
 
 #include <IO/Importer/Namespace.h>
 #include <Utility/Namespace.h>
@@ -21,6 +21,17 @@ Header::~Header(){}
 
 //Main function
 void Header::draw_header(){
+  //---------------------------
+
+  this->draw_loader();
+  this->draw_path();
+  this->draw_operation();
+
+  //---------------------------
+}
+
+//Subfunction
+void Header::draw_loader(){
   utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
   utl::gui::navigator::Structure* nav_struct = utl_navigator->get_nav_struct();
   //---------------------------
@@ -37,6 +48,13 @@ void Header::draw_header(){
   ImGui::PopStyleColor(2);
   if(condition) ImGui::EndDisabled();
 
+  //---------------------------
+}
+void Header::draw_path(){
+  utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
+  utl::gui::navigator::Structure* nav_struct = utl_navigator->get_nav_struct();
+  //---------------------------
+
   //Selected file paths
   if(nav_struct->vec_selected_path.size() != 0){
     ImGui::BeginTable("header##exporter", 2);
@@ -52,6 +70,11 @@ void Header::draw_header(){
     ImGui::EndTable();
   }
 
+  //---------------------------
+}
+void Header::draw_operation(){
+  //---------------------------
+
   // Scale new
   ImGui::SetNextItemWidth(75);
   ImGui::DragFloat("Scale##4567", &io_struct->scaling, 0.1, 0.1, 100, "%.2f x");
@@ -66,8 +89,5 @@ void Header::draw_header(){
 
   //---------------------------
 }
-
-//Subfunction
-
 
 }
