@@ -23,7 +23,7 @@ Color::Color(k4n::Node* node_k4n){
 Color::~Color(){}
 
 //Main function
-void Color::extract_data(k4n::base::Sensor* sensor){
+void Color::extract_data(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   this->retrieve_data(sensor);
@@ -36,7 +36,7 @@ void Color::extract_data(k4n::base::Sensor* sensor){
 }
 
 //Data function
-void Color::retrieve_data(k4n::base::Sensor* sensor){
+void Color::retrieve_data(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   //Get k4a image
@@ -55,7 +55,7 @@ void Color::retrieve_data(k4n::base::Sensor* sensor){
 
   //---------------------------
 }
-void Color::retrieve_image(k4n::base::Sensor* sensor){
+void Color::retrieve_image(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   //Image
@@ -66,7 +66,7 @@ void Color::retrieve_image(k4n::base::Sensor* sensor){
   sensor->color.image.height = sensor->color.data.height;
   sensor->color.image.format = sensor->color.data.format;
   sensor->color.image.timestamp = sensor->color.data.timestamp;
-  dat_image->add_image(sensor, &sensor->color.image);
+  dat_image->add_image(sensor, std::make_shared<utl::media::Image>(sensor->color.image));
 
   //---------------------------
 }

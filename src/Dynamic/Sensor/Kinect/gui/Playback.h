@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::base{class Sensor;}
@@ -17,15 +19,15 @@ public:
   ~Playback();
 
   //Main function
-  void show_parameter(k4n::base::Sensor* sensor);
+  void show_parameter(std::shared_ptr<k4n::base::Sensor> sensor);
 
   //Subfunction
   void show_transformation_mode(std::shared_ptr<dat::base::Set> set);
-  void show_firmware_info(k4n::base::Sensor* sensor);
-  void show_info_device(k4n::playback::Sensor* sensor);
-  void show_info_color(k4n::playback::Sensor* sensor);
-  void show_info_depth(k4n::playback::Sensor* sensor);
-  void show_info_synch(k4n::playback::Sensor* sensor);
+  void show_firmware_info(std::shared_ptr<k4n::base::Sensor> sensor);
+  void show_info_device(std::shared_ptr<k4n::playback::Sensor> sensor);
+  void show_info_color(std::shared_ptr<k4n::playback::Sensor> sensor);
+  void show_info_depth(std::shared_ptr<k4n::playback::Sensor> sensor);
+  void show_info_synch(std::shared_ptr<k4n::playback::Sensor> sensor);
 
 private:
   k4n::Structure* k4n_struct;

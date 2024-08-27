@@ -16,7 +16,7 @@ XY_table::XY_table(k4n::Node* node_k4n){
 XY_table::~XY_table(){}
 
 //Main function
-void XY_table::find_table_xy(k4n::base::Sensor* sensor){
+void XY_table::find_table_xy(std::shared_ptr<k4n::base::Sensor> sensor){
   if(sensor->cloud.table_xy.size() != 0) return;
   //---------------------------
 
@@ -36,7 +36,7 @@ void XY_table::find_table_xy(k4n::base::Sensor* sensor){
 
   //---------------------------
 }
-void XY_table::find_value(k4n::base::Sensor* sensor, int i){
+void XY_table::find_value(std::shared_ptr<k4n::base::Sensor> sensor, int i){
   //---------------------------
 
   std::vector<glm::vec2>& table_xy = sensor->cloud.table_xy;

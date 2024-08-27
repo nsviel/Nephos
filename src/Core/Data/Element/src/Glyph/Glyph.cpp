@@ -86,8 +86,7 @@ void Glyph::create_glyph(std::shared_ptr<dat::base::Glyph> glyph){
   dat_entity->init_entity(glyph);
 
   //Update own glyph data
-  for(int i=0; i<glyph->list_glyph.size(); i++){
-    dat::base::Glyph* subglyph = *next(glyph->list_glyph.begin(), i);
+  for(auto& subglyph : glyph->list_glyph){
     this->create_glyph(subglyph);
   }
 

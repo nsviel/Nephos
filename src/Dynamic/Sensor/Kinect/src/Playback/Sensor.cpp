@@ -26,13 +26,15 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->depth_mode = "NFOV";
 
   //---------------------------
-  dyn_sensor->init_sensor(this);
+  std::shared_ptr<k4n::playback::Sensor> sensor(this);
+  dyn_sensor->init_sensor(sensor);
 }
 Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
-  dyn_sensor->remove_sensor(this);
+  std::shared_ptr<k4n::playback::Sensor> sensor(this);
+  dyn_sensor->remove_sensor(sensor);
 
   //---------------------------
 }
@@ -51,8 +53,9 @@ void Sensor::thread_init(){
   }
 
   //Init configuration
-  k4n_config->find_configuration(this);
-  k4n_config->find_calibration(this);
+  std::shared_ptr<k4n::playback::Sensor> sensor(this);
+  k4n_config->find_configuration(sensor);
+  k4n_config->find_calibration(sensor);
 
   //---------------------------
 }
@@ -74,7 +77,8 @@ void Sensor::thread_loop(){
   tasker->task_end("wait");
 
   //Run processing
-  k4n_processing->start_thread(this);
+  std::shared_ptr<k4n::playback::Sensor> sensor(this);
+  k4n_processing->start_thread(sensor);
 
   //Loop sleeping
   this->manage_pause();
@@ -162,7 +166,8 @@ void Sensor::manage_query(float value){
 void Sensor::gui_config(){
   //---------------------------
 
-  gui_playback->show_parameter(this);
+  std::shared_ptr<k4n::playback::Sensor> sensor(this);
+  gui_playback->show_parameter(sensor);
 
   //---------------------------
 }

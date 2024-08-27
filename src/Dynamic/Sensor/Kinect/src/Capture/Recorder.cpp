@@ -21,7 +21,7 @@ Recorder::~Recorder(){}
 bool Recorder::record_sensor(std::shared_ptr<dat::base::Sensor> sensor, std::string path){
   //---------------------------
 
-  if(k4n::base::Sensor* k4n_sensor = dynamic_cast<k4n::base::Sensor*>(sensor)){
+  if (auto k4n_sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(sensor)) {
     if(!k4n_sensor->device.handle.is_valid() || path == "") return false;
 
     k4a::record& recorder = k4n_sensor->device.recorder;
@@ -44,7 +44,7 @@ bool Recorder::record_sensor(std::shared_ptr<dat::base::Sensor> sensor, std::str
 }
 
 //Subfunction
-void Recorder::export_start(k4n::base::Sensor* sensor, std::string path){
+void Recorder::export_start(std::shared_ptr<k4n::base::Sensor> sensor, std::string path){
   //---------------------------
 
   //Check if directory exists, if not create it
@@ -64,7 +64,7 @@ void Recorder::export_start(k4n::base::Sensor* sensor, std::string path){
 
   //---------------------------
 }
-void Recorder::export_record(k4n::base::Sensor* sensor, std::string path){
+void Recorder::export_record(std::shared_ptr<k4n::base::Sensor> sensor, std::string path){
   //---------------------------
 
   //Record capture
@@ -78,7 +78,7 @@ void Recorder::export_record(k4n::base::Sensor* sensor, std::string path){
 
   //---------------------------
 }
-void Recorder::export_stop(k4n::base::Sensor* sensor){
+void Recorder::export_stop(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   //Flush to file

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::base{class Sensor;}
@@ -21,11 +23,11 @@ public:
 
 public:
   //Main function
-  void extract_data(k4n::base::Sensor* device);
+  void extract_data(std::shared_ptr<k4n::base::Sensor> sensor);
 
   //Subfunction
-  void extract_image_data(k4n::base::Sensor* sensor);
-  void make_transformation(k4n::base::Sensor* sensor);
+  void extract_image_data(std::shared_ptr<k4n::base::Sensor> sensor);
+  void make_transformation(std::shared_ptr<k4n::base::Sensor> sensor);
 
 private:
   k4n::Structure* k4n_struct;

@@ -23,7 +23,7 @@ Depth::Depth(k4n::Node* node_k4n){
 Depth::~Depth(){}
 
 //Main function
-void Depth::extract_data(k4n::base::Sensor* sensor){
+void Depth::extract_data(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   this->retrieve_data(sensor);
@@ -33,7 +33,7 @@ void Depth::extract_data(k4n::base::Sensor* sensor){
 }
 
 //Data function
-void Depth::retrieve_data(k4n::base::Sensor* sensor){
+void Depth::retrieve_data(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   //Get k4a image
@@ -54,7 +54,7 @@ void Depth::retrieve_data(k4n::base::Sensor* sensor){
 
   //---------------------------
 }
-void Depth::retrieve_image(k4n::base::Sensor* sensor){
+void Depth::retrieve_image(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   //Colorization
@@ -69,7 +69,7 @@ void Depth::retrieve_image(k4n::base::Sensor* sensor){
   sensor->depth.image.height = sensor->depth.data.height;
   sensor->depth.image.format = "R8G8B8A8_SRGB";
   sensor->depth.image.timestamp = sensor->depth.data.timestamp;
-  dat_image->add_image(sensor, &sensor->depth.image);
+  dat_image->add_image(sensor, std::make_shared<utl::media::Image>(sensor->depth.image));
 
   //---------------------------
 }
@@ -101,7 +101,7 @@ std::string Depth::retrieve_format(k4a_image_format_t color_format){
   //---------------------------
   return format;
 }
-void Depth::convert_image_into_color(k4n::base::Sensor* sensor, std::vector<uint8_t>& buffer){
+void Depth::convert_image_into_color(std::shared_ptr<k4n::base::Sensor> sensor, std::vector<uint8_t>& buffer){
   uint8_t* inputBuffer = sensor->depth.data.buffer;
   uint16_t range_min = sensor->depth.config.range_min;
   uint16_t range_max = sensor->depth.config.range_max;
@@ -136,7 +136,7 @@ void Depth::convert_image_into_color(k4n::base::Sensor* sensor, std::vector<uint
 
   //---------------------------
 }
-void Depth::find_depth_mode_range(k4n::base::Sensor* sensor){
+void Depth::find_depth_mode_range(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   switch(sensor->depth.config.mode){

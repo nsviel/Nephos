@@ -16,7 +16,7 @@ Configuration::Configuration(k4n::Node* node_k4n){
 Configuration::~Configuration(){}
 
 //Main function
-void Configuration::find_configuration(k4n::playback::Sensor* sensor){
+void Configuration::find_configuration(std::shared_ptr<k4n::playback::Sensor> sensor){
   k4a_record_configuration_t configuration = sensor->playback.get_record_configuration();
   //---------------------------
 
@@ -56,7 +56,7 @@ void Configuration::find_configuration(k4n::playback::Sensor* sensor){
 
   //---------------------------
 }
-void Configuration::find_calibration(k4n::playback::Sensor* sensor){
+void Configuration::find_calibration(std::shared_ptr<k4n::playback::Sensor> sensor){
   //---------------------------
 
   sensor->device.calibration = sensor->playback.get_calibration();

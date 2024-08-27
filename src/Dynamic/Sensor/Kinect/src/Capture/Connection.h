@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <thread>
 
 namespace k4n{class Node;}

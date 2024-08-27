@@ -4,6 +4,7 @@
 #include <Processing/src/Thread/Job.h>
 #include <glm/glm.hpp>
 #include <unordered_map>
+#include <memory>
 
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
@@ -24,8 +25,8 @@ public:
   void thread_function();
 
   //Subfunction
-  void table_color_to_depth(k4n::base::Sensor* sensor);
-  void apply_map(k4n::base::Sensor* sensor, int i);
+  void table_color_to_depth(std::shared_ptr<k4n::base::Sensor> sensor);
+  void apply_map(std::shared_ptr<k4n::base::Sensor> sensor, int i);
 
   using dyn::prc::thread::Job::start_thread;
 

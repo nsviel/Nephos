@@ -24,13 +24,15 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
   this->data.name = name;
 
   //---------------------------
-  dyn_sensor->init_sensor(this);
+  std::shared_ptr<k4n::capture::Sensor> sensor(this);
+  dyn_sensor->init_sensor(sensor);
 }
 Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
-  dyn_sensor->remove_sensor(this);
+  std::shared_ptr<k4n::capture::Sensor> sensor(this);
+  dyn_sensor->remove_sensor(sensor);
 
   //---------------------------
 }
@@ -47,9 +49,10 @@ void Sensor::thread_init(){
   this->device.version = device.handle.get_version();
 
   //Configuration
-  k4n_config->make_sensor_configuration(this);
-  k4n_config->make_sensor_color_configuration(this);
-  k4n_config->find_calibration(this);
+  std::shared_ptr<k4n::capture::Sensor> sensor(this);
+  k4n_config->make_sensor_configuration(sensor);
+  k4n_config->make_sensor_color_configuration(sensor);
+  k4n_config->find_calibration(sensor);
   this->device.handle.start_cameras(&device.configuration);
 
   //---------------------------
@@ -72,7 +75,8 @@ void Sensor::thread_loop(){
   tasker->task_end("wait");
 
   //Run processing
-  k4n_processing->start_thread(this);
+  std::shared_ptr<k4n::capture::Sensor> sensor(this);
+  k4n_processing->start_thread(sensor);
 
   //Loop sleeping
   this->manage_pause();
@@ -136,7 +140,7 @@ void Sensor::manage_pause(){
 void Sensor::gui_config(){
   //---------------------------
 
-  gui_capture->show_parameter(set_parent);
+  gui_capture->show_parameter(set_parent.lock());
 
   //---------------------------
 }

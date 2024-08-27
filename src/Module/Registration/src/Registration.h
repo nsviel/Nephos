@@ -16,8 +16,8 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::base::Sensor* sensor);
-  void run_thread(k4n::base::Sensor* sensor);
+  void start_thread(std::shared_ptr<k4n::base::Sensor> sensor);
+  void run_thread(std::shared_ptr<k4n::base::Sensor> sensor);
   void wait_thread();
 
   //Subfunction

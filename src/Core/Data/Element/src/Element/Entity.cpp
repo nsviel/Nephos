@@ -43,9 +43,6 @@ void Entity::remove_entity(std::shared_ptr<dat::base::Entity> entity){
     this->remove_entity(glyph);
   }
 
-  delete entity;
-  entity = nullptr;
-
   //----------------------------
 }
 void Entity::reset_pose(std::shared_ptr<dat::base::Entity> entity){

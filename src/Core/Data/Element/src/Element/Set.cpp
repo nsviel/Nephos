@@ -68,8 +68,9 @@ void Set::visibility_set(std::shared_ptr<dat::base::Set> set, bool value){
   }
 
   //If visible so parent set is too
-  if(value && set->set_parent && !set->set_parent->is_visible){
-    this->visibility_set(set->set_parent, value);
+  auto set_parent = set->set_parent.lock();
+  if(value && set_parent && !set_parent->is_visible){
+    this->visibility_set(set_parent, value);
   }
 
   //---------------------------
@@ -93,18 +94,18 @@ void Set::remove_subset(std::shared_ptr<dat::base::Set> subset){
   if(!subset) return;
   //---------------------------
 
-  std::shared_ptr<dat::base::Set> set = subset->set_parent;
+  std::shared_ptr<dat::base::Set> set = subset->set_parent.lock();
   set->list_subset.remove(subset);
 
-  delete subset;
-  subset = nullptr;
+  //delete subset;
+  //subset = nullptr;
 
   //---------------------------
 }
 std::shared_ptr<dat::base::Set> Set::create_subset(std::shared_ptr<dat::base::Set> set, std::string name){
   //---------------------------
 
-  std::shared_ptr<dat::base::Set> subset = new dat::base::Set();
+  std::shared_ptr<dat::base::Set> subset = std::make_shared<dat::base::Set>();
   subset->UID = dat_uid->generate_UID();
   subset->name = name;
   subset->set_parent = set;
@@ -112,7 +113,7 @@ std::shared_ptr<dat::base::Set> Set::create_subset(std::shared_ptr<dat::base::Se
 
   set->nb_subset++;
   set->active_subset = subset;
-  set->list_subset.push_back(subset);
+  set->list_subset.push_back(std::move(subset));
 
   //---------------------------
   return subset;
@@ -165,18 +166,18 @@ void Set::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat
   //---------------------------
 
   // Check if the set has the query entity
-  for(auto& entity : set->list_entity){
-
+  for(auto& entity_set : set->list_entity){
     if(entity_set->UID == entity->UID){
       //Check if active entity
-      if(set->active_entity == entity) this->active_next_entity(set);
+      auto active_entity = set->active_entity.lock();
+      if(active_entity && active_entity == entity) this->active_next_entity(set);
 
       //Remove from set list
       set->list_entity.remove(entity);
       set->nb_entity--;
 
       //Check if active entity agin
-      if(set->active_entity == entity) set->active_entity = nullptr;
+      if(active_entity == entity) set->active_entity.reset();
 
       //Effective remove
       dat_entity->remove_entity(entity);
@@ -226,30 +227,29 @@ void Set::remove_all_entity(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 }
 void Set::active_next_entity(std::shared_ptr<dat::base::Set> set){
+  auto set_active = set->active_entity.lock();
   //----------------------------
 
   //If no entities
-  if(set->list_entity.size() == 0){
-    set->active_entity = nullptr;
+  if(set->list_entity.empty()){
+    set->active_entity.reset();
     return;
   }
   //If entity but previsouly selection not set
-  else if(set->active_entity == nullptr){
+  else if(!set_active){
     set->active_entity = *set->list_entity.begin();
     return;
   }
   //Else select next entity
   else{
-    for(auto it = set->list_entity.begin(); it != set->list_entity.end(); ++it){
-      std::shared_ptr<dat::base::Entity> entity = *it;
-
-      if(set->active_entity->UID == entity->UID){
+    for (auto it = set->list_entity.begin(); it != set->list_entity.end(); ++it) {
+      if (set_active->UID == (*it)->UID) {
         auto next_it = std::next(it);
 
         // If at the end of the list, cycle back to the beginning
-        if(next_it == set->list_entity.end()){
+        if (next_it == set->list_entity.end()) {
           set->active_entity = *set->list_entity.begin();
-        }else{
+        } else {
           set->active_entity = *next_it;
         }
 
@@ -269,13 +269,14 @@ void Set::active_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat
   //---------------------------
 }
 bool Set::is_entity_active(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
+  auto active_entity = set->active_entity.lock();
   //---------------------------
 
   if(entity == nullptr) return false;
   if(set == nullptr) return false;
-  if(set->active_entity == nullptr) return false;
+  if(!active_entity) return false;
 
-  bool is_active = entity->UID == set->active_entity->UID;
+  bool is_active = entity->UID == active_entity->UID;
 
   //---------------------------
   return is_active;

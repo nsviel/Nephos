@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace gui{class Node;}
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
@@ -24,7 +26,7 @@ public:
   //Subfunction
   void show_list_device(std::shared_ptr<dat::base::Set> set);
   void show_transformation_mode(std::shared_ptr<dat::base::Set> set);
-  void show_firmware_info(k4n::base::Sensor* sensor);
+  void show_firmware_info(std::shared_ptr<k4n::base::Sensor> sensor);
   void configuration_depth(std::shared_ptr<dat::base::Set> set);
   void configuration_color(std::shared_ptr<dat::base::Set> set);
   void configuration_color_control(std::shared_ptr<dat::base::Set> set);

@@ -60,7 +60,7 @@ void Configuration::make_default_configuration(){
 
   //---------------------------
 }
-void Configuration::find_calibration(k4n::base::Sensor* sensor){
+void Configuration::find_calibration(std::shared_ptr<k4n::base::Sensor> sensor){
   k4a::device& device = sensor->device.handle;
   //---------------------------
 
@@ -69,7 +69,7 @@ void Configuration::find_calibration(k4n::base::Sensor* sensor){
 
   //---------------------------
 }
-void Configuration::find_versioning(k4n::base::Sensor* sensor){
+void Configuration::find_versioning(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   k4a_hardware_version_t version = sensor->device.version;
@@ -81,7 +81,7 @@ void Configuration::find_versioning(k4n::base::Sensor* sensor){
 
   //---------------------------
 }
-void Configuration::make_sensor_configuration(k4n::base::Sensor* sensor){
+void Configuration::make_sensor_configuration(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
@@ -102,7 +102,7 @@ void Configuration::make_sensor_configuration(k4n::base::Sensor* sensor){
   //---------------------------
   sensor->device.configuration = configuration;
 }
-void Configuration::make_sensor_color_configuration(k4n::base::Sensor* sensor){
+void Configuration::make_sensor_color_configuration(std::shared_ptr<k4n::base::Sensor> sensor){
   k4a::device& device = sensor->device.handle;
   //---------------------------
 

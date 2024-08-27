@@ -35,7 +35,7 @@ Data::~Data(){}
 void Data::create_object(){
   if(vld_struct->data.object != nullptr) return;
   //---------------------------
-
+/*
   vld_struct->data.object = new dat::base::Object();
   vld_struct->data.object->name = "capture_1";
   vld_struct->data.object->data.name = "velodyne::capture::data";
@@ -47,7 +47,7 @@ void Data::create_object(){
   std::shared_ptr<dat::base::Set> set_scene = dat_graph->get_set_graph();
   std::shared_ptr<dat::base::Set> set_capture = dat_set->get_or_create_subset(set_scene, "Data");
   dat_set->insert_entity(set_capture, vld_struct->data.object);
-
+*/
   //---------------------------
 }
 

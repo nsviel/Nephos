@@ -19,7 +19,7 @@ Depth_to_color::Depth_to_color(k4n::Node* node_k4n){
 Depth_to_color::~Depth_to_color(){}
 
 //Main function
-void Depth_to_color::make_transformation(k4n::base::Sensor* sensor){
+void Depth_to_color::make_transformation(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   this->find_depth_to_color(sensor);
@@ -29,7 +29,7 @@ void Depth_to_color::make_transformation(k4n::base::Sensor* sensor){
 }
 
 //Subfunction
-void Depth_to_color::find_depth_to_color(k4n::base::Sensor* sensor){
+void Depth_to_color::find_depth_to_color(std::shared_ptr<k4n::base::Sensor> sensor){
   if(!sensor->color.data.k4a_image || !sensor->depth.data.k4a_image) return;
   //---------------------------
 

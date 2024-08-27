@@ -15,7 +15,7 @@ public:
 
 public:
   //Main function
-  void draw_registration(k4n::base::Sensor* sensor);
+  void draw_registration(std::shared_ptr<k4n::base::Sensor> sensor);
 
   //Subfunction
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <memory>
 #include <vector>
 
 namespace k4n{class Node;}
@@ -18,8 +19,8 @@ public:
 
 public:
   //Main function
-  void find_table_xy(k4n::base::Sensor* sensor);
-  void find_value(k4n::base::Sensor* sensor, int i);
+  void find_table_xy(std::shared_ptr<k4n::base::Sensor> sensor);
+  void find_value(std::shared_ptr<k4n::base::Sensor> sensor, int i);
 
 private:
 };

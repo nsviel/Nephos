@@ -38,7 +38,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   //---------------------------
 
   //Create sensor
-  k4n::playback::Sensor* sensor = new k4n::playback::Sensor(node_k4n, path);
+  std::shared_ptr<k4n::playback::Sensor> sensor = std::make_shared<k4n::playback::Sensor>(node_k4n, path);
   sensor->name = utl::path::get_name_from_path(path.build());
   sensor->data.name = utl::path::get_name_from_path(path.build());
   sensor->data.path = path;
@@ -98,10 +98,10 @@ std::shared_ptr<dat::base::Set> Importer::manage_set_parent(){
 
   //Check if already existing
   std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
-  if(set != nullptr) return set;
+  if(set) return set;
 
   //Create the set
-  set = new dat::base::Set();
+  set = std::make_shared<dat::base::Set>();
   set->name = "kinect";
   set->icon = ICON_FA_USER;
   set->is_locked = false;

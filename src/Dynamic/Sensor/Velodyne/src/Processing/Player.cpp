@@ -74,7 +74,7 @@ void Player::compute_visibility(){
   if(vld_struct->data.current_set == nullptr) return;
   std::shared_ptr<dat::base::Set> set = vld_struct->data.current_set;
   //---------------------------
-
+/*
   //Set visibility just for wanted subsets
   for(auto& entity : set->list_entity){
 
@@ -84,7 +84,7 @@ void Player::compute_visibility(){
       //entity->visibility(false);
     }
   }
-
+*/
   //---------------------------
 }
 void Player::forward_index(int index){

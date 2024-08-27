@@ -22,13 +22,13 @@ public:
 
 public:
   //Main function
-  void start_thread(k4n::base::Sensor* sensor);
-  void run_thread(k4n::base::Sensor* sensor);
+  void start_thread(std::shared_ptr<k4n::base::Sensor> sensor);
+  void run_thread(std::shared_ptr<k4n::base::Sensor> sensor);
   void wait_thread();
 
   //Subfunction
-  void image_processing(k4n::base::Sensor* sensor);
-  void cloud_processing(k4n::base::Sensor* sensor);
+  void image_processing(std::shared_ptr<k4n::base::Sensor> sensor);
+  void cloud_processing(std::shared_ptr<k4n::base::Sensor> sensor);
 
 private:
   k4n::processing::image::Data* k4n_image;

@@ -2,6 +2,7 @@
 
 #include <Importer/src/Structure/Base.h>
 #include <string>
+#include <memory>
 
 namespace k4n{class Node;}
 namespace core{class Node;}

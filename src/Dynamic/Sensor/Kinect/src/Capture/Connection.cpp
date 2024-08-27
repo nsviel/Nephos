@@ -103,7 +103,7 @@ void Connection::create_sensor(int index){
   //---------------------------
 
   //Sensor creation
-  k4n::capture::Sensor* sensor = new k4n::capture::Sensor(node_k4n, index);
+  auto sensor = std::make_shared<k4n::capture::Sensor>(node_k4n, index);
   sensor->name = "capture_" + std::to_string(index);
   sensor->data.name = sensor->name;
   sensor->data.path.format = ".mkv";
@@ -124,10 +124,10 @@ std::shared_ptr<dat::base::Set> Connection::manage_set_parent(){
 
   //Check if already existing
   std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
-  if(set != nullptr) return set;
+  if(set) return set;
 
   //Create the set
-  set = new dat::base::Set();
+  set = std::make_shared<dat::base::Set>();
   set->name = "kinect";
   set->icon = ICON_FA_USER;
   set->is_locked = false;

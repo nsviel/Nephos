@@ -17,13 +17,14 @@ Playback::Playback(k4n::Node* node_k4n){
 Playback::~Playback(){}
 
 //Main function
-void Playback::show_parameter(k4n::base::Sensor* sensor){
+void Playback::show_parameter(std::shared_ptr<k4n::base::Sensor> sensor){
   if(sensor == nullptr) return;
   //---------------------------
 
-  this->show_transformation_mode(sensor->set_parent);
+  auto set_parent = sensor->set_parent.lock();
+  this->show_transformation_mode(set_parent);
 
-  if(k4n::playback::Sensor* playback = dynamic_cast<k4n::playback::Sensor*>(sensor)){
+  if (auto playback = std::dynamic_pointer_cast<k4n::playback::Sensor>(sensor)) {
     this->show_info_device(playback);
     this->show_info_color(playback);
     this->show_info_depth(playback);
@@ -47,7 +48,7 @@ void Playback::show_transformation_mode(std::shared_ptr<dat::base::Set> set){
   //---------------------------
   ImGui::Separator();
 }
-void Playback::show_firmware_info(k4n::base::Sensor* sensor){
+void Playback::show_firmware_info(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Device Firmware Version Info");
@@ -82,7 +83,7 @@ void Playback::show_firmware_info(k4n::base::Sensor* sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Playback::show_info_device(k4n::playback::Sensor* sensor){
+void Playback::show_info_device(std::shared_ptr<k4n::playback::Sensor> sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Device");
@@ -107,7 +108,7 @@ void Playback::show_info_device(k4n::playback::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::show_info_color(k4n::playback::Sensor* sensor){
+void Playback::show_info_color(std::shared_ptr<k4n::playback::Sensor> sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
@@ -135,7 +136,7 @@ void Playback::show_info_color(k4n::playback::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::show_info_depth(k4n::playback::Sensor* sensor){
+void Playback::show_info_depth(std::shared_ptr<k4n::playback::Sensor> sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
@@ -167,7 +168,7 @@ void Playback::show_info_depth(k4n::playback::Sensor* sensor){
 
   //---------------------------
 }
-void Playback::show_info_synch(k4n::playback::Sensor* sensor){
+void Playback::show_info_synch(std::shared_ptr<k4n::playback::Sensor> sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);

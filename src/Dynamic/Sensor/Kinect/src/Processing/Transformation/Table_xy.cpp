@@ -27,7 +27,7 @@ void Table_xy::thread_function(){
   //if(k4n_struct->transformation.mapping.size() != 0) return;
   //---------------------------
 
-  if(k4n::base::Sensor* k4n_sensor = dynamic_cast<k4n::base::Sensor*>(sensor)){
+  if (auto k4n_sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(sensor)) {
     this->table_color_to_depth(k4n_sensor);
     //this->convert_table_to_glm(k4n_sensor);
   }
@@ -36,7 +36,7 @@ void Table_xy::thread_function(){
 }
 
 //Subfunction
-void Table_xy::table_color_to_depth(k4n::base::Sensor* sensor){
+void Table_xy::table_color_to_depth(std::shared_ptr<k4n::base::Sensor> sensor){
   if(!sensor->depth.data.k4a_image) return;
   //---------------------------
 say("table xy start");
@@ -63,7 +63,7 @@ say("table xy ok");
 say(map_xy.size());
   //---------------------------
 }
-void Table_xy::apply_map(k4n::base::Sensor* sensor, int i){
+void Table_xy::apply_map(std::shared_ptr<k4n::base::Sensor> sensor, int i){
   //---------------------------
 
   k4n::transformation::cmap& map_xy = k4n_struct->transformation.mapping;

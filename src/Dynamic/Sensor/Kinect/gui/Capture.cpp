@@ -62,7 +62,7 @@ void Capture::show_list_device(std::shared_ptr<dat::base::Set> set){
     ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
     ImGui::TableHeadersRow();
     for(auto& entity : set->list_entity){
-      if(k4n::base::Sensor* sensor = dynamic_cast<k4n::base::Sensor*>(entity)){
+      if (auto sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(entity)) {
         ImGui::PushID(sensor->serial_number.c_str());
 
         //Sensor type
@@ -116,7 +116,7 @@ void Capture::show_transformation_mode(std::shared_ptr<dat::base::Set> set){
   //---------------------------
   ImGui::Separator();
 }
-void Capture::show_firmware_info(k4n::base::Sensor* sensor){
+void Capture::show_firmware_info(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Device Firmware Version Info");

@@ -16,7 +16,7 @@ Registration::Registration(k4n::Node* node_k4n){
 Registration::~Registration(){}
 
 //Main function
-void Registration::draw_registration(k4n::base::Sensor* sensor){
+void Registration::draw_registration(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
 
 
