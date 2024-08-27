@@ -152,7 +152,7 @@ std::shared_ptr<dat::base::Set> Set::get_or_create_subset(std::shared_ptr<dat::b
 
 //Entity function
 void Set::insert_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
-  if(!set || entity == nullptr) return;
+  if(!set || !entity) return;
   //---------------------------
 
   entity->set_parent = set;
@@ -283,8 +283,8 @@ bool Set::is_entity_active(std::shared_ptr<dat::base::Set> set, std::shared_ptr<
   auto active_entity = set->active_entity.lock();
   //---------------------------
 
-  if(entity == nullptr) return false;
-  if(set == nullptr) return false;
+  if(!entity) return false;
+  if(!set) return false;
   if(!active_entity) return false;
 
   bool is_active = entity->UID == active_entity->UID;

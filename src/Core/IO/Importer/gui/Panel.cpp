@@ -28,11 +28,19 @@ void Panel::run_panel(){
   //---------------------------
 
   if(*show_window){
+    //Intial panel size
+    static bool first_time = true;
+    if (first_time) {
+      ImGui::SetNextWindowSize(ImVec2(400, 500));
+      first_time = false;
+    }
+
+    //Panel
     ImGuiWindowFlags flag;
     flag |= ImGuiWindowFlags_NoCollapse;
     flag |= ImGuiWindowFlags_AlwaysAutoResize;
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
-    ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(400, FLT_MAX));
+    ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(400, 500));
     if(ImGui::Begin(name.c_str(), show_window, flag) == 1){
 
       this->design_panel();
