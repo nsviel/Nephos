@@ -6,7 +6,7 @@ namespace io::imp{class Structure;}
 namespace io::imp{class Importer;}
 namespace io::imp{class Bookmark;}
 namespace io::imp::gui{class Panel;}
-namespace io::imp::gui{class Navigator;}
+namespace utl::gui{class Navigator;}
 
 
 namespace io::imp::gui{
@@ -32,7 +32,7 @@ private:
   io::imp::Structure* io_struct;
   io::imp::Importer* io_importer;
   io::imp::Bookmark* io_bookmark;
-  io::imp::gui::Navigator* gui_navigator;
+  utl::gui::Navigator* utl_navigator;
 };
 
 }

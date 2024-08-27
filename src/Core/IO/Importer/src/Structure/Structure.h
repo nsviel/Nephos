@@ -13,6 +13,7 @@ struct Structure{
   float scaling = 1;
   bool with_centering = false;
   bool with_clearing = true;
+  bool open_navigation = true;;
 
   //---------------------------
 };

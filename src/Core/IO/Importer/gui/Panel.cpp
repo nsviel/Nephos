@@ -11,6 +11,7 @@ Panel::Panel(io::imp::Node* node_importer, bool* show_window){
   //---------------------------
 
   this->node_importer = node_importer;
+  this->utl_navigator = new utl::gui::Navigator();
   this->gui_navigator = new io::imp::gui::Navigator(this);
   this->gui_bookmark = new io::imp::gui::Bookmark(this);
   this->gui_header = new io::imp::gui::Header(this);

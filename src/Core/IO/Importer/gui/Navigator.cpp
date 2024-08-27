@@ -14,9 +14,7 @@ Navigator::Navigator(io::imp::gui::Panel* gui_panel){
 
   this->io_struct = node_importer->get_io_struct();
   this->io_importer = node_importer->get_io_importer();
-  this->utl_navigator = new utl::gui::Navigator();
-
-  this->open_tab = true;
+  this->utl_navigator = gui_panel->get_utl_navigator();
 
   //---------------------------
   this->init_navigator();
@@ -36,9 +34,9 @@ void Navigator::draw_tab(int width){
 
   //Flag to force navigator tab in case of bookmark folder
   ImGuiTabItemFlags flag = 0;
-  if(open_tab){
+  if(io_struct->open_navigation){
     flag = ImGuiTabItemFlags_SetSelected;
-    this->open_tab = false;
+    io_struct->open_navigation = false;
   }
 
   ImGui::SetNextItemWidth(width);

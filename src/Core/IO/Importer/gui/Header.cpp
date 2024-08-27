@@ -13,7 +13,7 @@ Header::Header(io::imp::gui::Panel* gui_panel){
   io::imp::Node* node_importer = gui_panel->get_node_importer();
 
   this->io_struct = node_importer->get_io_struct();
-  this->gui_navigator = gui_panel->get_gui_navigator();
+  this->utl_navigator = gui_panel->get_utl_navigator();
 
   //---------------------------
 }
@@ -24,7 +24,7 @@ void Header::draw_header(){
   //---------------------------
 
   this->draw_loader();
-  this->draw_path();
+  //this->draw_path();
   this->draw_operation();
 
   //---------------------------
@@ -32,7 +32,6 @@ void Header::draw_header(){
 
 //Subfunction
 void Header::draw_loader(){
-  utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
   utl::gui::navigator::Structure* nav_struct = utl_navigator->get_nav_struct();
   //---------------------------
 
@@ -42,7 +41,6 @@ void Header::draw_loader(){
   ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
   ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
   if(ImGui::Button("Load##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
-    utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
     utl_navigator->make_selection_operation();
   }
   ImGui::PopStyleColor(2);
@@ -51,7 +49,6 @@ void Header::draw_loader(){
   //---------------------------
 }
 void Header::draw_path(){
-  utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
   utl::gui::navigator::Structure* nav_struct = utl_navigator->get_nav_struct();
   //---------------------------
 

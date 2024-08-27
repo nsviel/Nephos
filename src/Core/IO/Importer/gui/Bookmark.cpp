@@ -16,7 +16,7 @@ Bookmark::Bookmark(io::imp::gui::Panel* gui_panel){
   this->io_struct = node_importer->get_io_struct();
   this->io_importer = node_importer->get_io_importer();
   this->io_bookmark = node_importer->get_io_bookmark();
-  this->gui_navigator = gui_panel->get_gui_navigator();
+  this->utl_navigator = gui_panel->get_utl_navigator();
 
   //---------------------------
   this->init_navigator();
@@ -25,7 +25,6 @@ Bookmark::~Bookmark(){}
 
 //Main function
 void Bookmark::init_navigator(){
-  utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
   //---------------------------
 
   utl_navigator->add_fct_item_icon([this](std::string path){this->bookmark_icon(path);});
@@ -91,8 +90,7 @@ void Bookmark::bookmark_button(std::string file_path){
   //If selection is a directory go display his content
   if(utl::directory::is_directory(file_path)){
     io_struct->path.directory = file_path;
-    bool& open_tab = gui_navigator->get_open_tab();
-    open_tab = true;
+    io_struct->open_navigation = true;
   }
   //If selection is a file go load it
   else{
