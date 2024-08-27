@@ -8,6 +8,7 @@
 namespace io::imp{class Structure;}
 namespace io::imp::gui{class Panel;}
 namespace utl::gui{class Navigator;}
+namespace utl::gui::navigator{class Structure;}
 namespace utl::base{class Path;}
 
 
@@ -32,6 +33,7 @@ public:
 private:
   io::imp::Structure* io_struct;
   utl::gui::Navigator* utl_navigator;
+  utl::gui::navigator::Structure* nav_struct;
 };
 
 }

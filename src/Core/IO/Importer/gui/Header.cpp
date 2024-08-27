@@ -14,6 +14,7 @@ Header::Header(io::imp::gui::Panel* gui_panel){
 
   this->io_struct = node_importer->get_io_struct();
   this->utl_navigator = gui_panel->get_utl_navigator();
+  this->nav_struct = utl_navigator->get_nav_struct();
 
   //---------------------------
 }
@@ -32,7 +33,6 @@ void Header::draw_header(){
 
 //Subfunction
 void Header::draw_loader(){
-  utl::gui::navigator::Structure* nav_struct = utl_navigator->get_nav_struct();
   //---------------------------
 
   //Load button
@@ -49,7 +49,6 @@ void Header::draw_loader(){
   //---------------------------
 }
 void Header::draw_path(){
-  utl::gui::navigator::Structure* nav_struct = utl_navigator->get_nav_struct();
   //---------------------------
 
   //Selected file paths
