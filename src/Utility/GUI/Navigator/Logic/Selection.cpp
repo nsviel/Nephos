@@ -50,11 +50,11 @@ void Selection::control_selection(utl::base::Path& path, utl::gui::navigator::It
       nav_struct->vec_selected_idx.find_erase_unsorted(item.ID);
       this->update_selected_path();
     }
-    else{
+    else if(item.name != ".."){
       nav_struct->vec_selected_idx.push_back(item.ID);
       this->update_selected_path();
     }
-  }else{
+  }else if(item.name != ".."){
     this->clear_selection();
     nav_struct->vec_selected_idx.push_back(item.ID);
     this->update_selected_path();

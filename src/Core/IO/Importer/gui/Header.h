@@ -6,7 +6,6 @@
 #include <vector>
 
 namespace io::imp{class Structure;}
-namespace io::imp{class Importer;}
 namespace io::imp::gui{class Panel;}
 namespace io::imp::gui{class Navigator;}
 namespace utl::base{class Path;}
@@ -14,24 +13,21 @@ namespace utl::base{class Path;}
 
 namespace io::imp::gui{
 
-class Operation
+class Header
 {
 public:
   //Constructor / Destructor
-  Operation(io::imp::gui::Panel* gui_panel);
-  ~Operation();
+  Header(io::imp::gui::Panel* gui_panel);
+  ~Header();
 
 public:
   //Main function
-  void init_navigator();
   void draw_header();
 
   //Subfunction
-  void item_operation(utl::base::Path path);
 
 private:
   io::imp::Structure* io_struct;
-  io::imp::Importer* io_importer;
   io::imp::gui::Navigator* gui_navigator;
 };
 

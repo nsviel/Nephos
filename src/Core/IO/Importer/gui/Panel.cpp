@@ -13,7 +13,7 @@ Panel::Panel(io::imp::Node* node_importer, bool* show_window){
   this->node_importer = node_importer;
   this->gui_navigator = new io::imp::gui::Navigator(this);
   this->gui_bookmark = new io::imp::gui::Bookmark(this);
-  this->gui_operation = new io::imp::gui::Operation(this);
+  this->gui_header = new io::imp::gui::Header(this);
 
   this->name = "Import##555";
   this->show_window = show_window;
@@ -46,8 +46,11 @@ void Panel::run_panel(){
 void Panel::design_panel(){
   //---------------------------
 
-  gui_operation->draw_header();
+  //Header
+  gui_header->draw_header();
   ImGui::Separator();
+
+  //Tabs
   int width = ImGui::GetContentRegionAvail().x / 2;
   if(ImGui::BeginTabBar("Panel_tab##4567")){
     gui_navigator->draw_tab(width);

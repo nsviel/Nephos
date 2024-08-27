@@ -1,4 +1,4 @@
-#include "Operation.h"
+v#include "Header.h"
 
 #include <IO/Importer/Namespace.h>
 #include <Utility/Namespace.h>
@@ -7,30 +7,20 @@
 namespace io::imp::gui{
 
 //Constructor / Destructor
-Operation::Operation(io::imp::gui::Panel* gui_panel){
+Header::Header(io::imp::gui::Panel* gui_panel){
   //---------------------------
 
   io::imp::Node* node_importer = gui_panel->get_node_importer();
 
   this->io_struct = node_importer->get_io_struct();
-  this->io_importer = node_importer->get_io_importer();
   this->gui_navigator = gui_panel->get_gui_navigator();
 
   //---------------------------
-  this->init_navigator();
 }
-Operation::~Operation(){}
+Header::~Header(){}
 
 //Main function
-void Operation::init_navigator(){
-  utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
-  //---------------------------
-
-  utl_navigator->add_fct_item_operation([this](utl::base::Path path){this->item_operation(path);});
-
-  //---------------------------
-}
-void Operation::draw_header(){
+void Header::draw_header(){
   utl::gui::Navigator* utl_navigator = gui_navigator->get_utl_navigator();
   utl::gui::navigator::Structure* nav_struct = utl_navigator->get_nav_struct();
   //---------------------------
@@ -78,17 +68,6 @@ void Operation::draw_header(){
 }
 
 //Subfunction
-void Operation::item_operation(utl::base::Path utl_path){
-  //---------------------------
 
-  std::string path = utl_path.build();
-  if(utl::path::is_dir_or_file(path) == "file"){
-    io_importer->load_object(utl_path);
-  }else{
-    io_importer->load_directory(utl_path);
-  }
-
-  //---------------------------
-}
 
 }
