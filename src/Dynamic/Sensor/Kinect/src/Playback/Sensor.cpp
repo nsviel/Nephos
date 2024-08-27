@@ -16,7 +16,7 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
 
   this->k4n_processing = new k4n::Processing(node_k4n);
   this->k4n_config = new k4n::playback::Configuration(node_k4n);
-  this->dyn_sensor = node_processing->get_dyn_sensor();
+  //this->dat_sensor = node_processing->get_dat_sensor();
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 
   this->name = utl::path::get_name_from_path(path.build());
@@ -27,14 +27,14 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
 
   //---------------------------
   std::shared_ptr<k4n::playback::Sensor> sensor(this);
-  dyn_sensor->init_sensor(sensor);
+  //dat_sensor->init_sensor(sensor);
 }
 Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
   std::shared_ptr<k4n::playback::Sensor> sensor(this);
-  dyn_sensor->remove_sensor(sensor);
+  //dat_sensor->remove_sensor(sensor);
 
   //---------------------------
 }

@@ -10,7 +10,6 @@ namespace rad{class Node;}
 namespace prf{class Node;}
 
 namespace dyn::prc{class Structure;}
-namespace dyn::prc::element{class Sensor;}
 namespace dyn::prc::cloud{class Operation;}
 namespace dyn::prc::image{class Operation;}
 
@@ -35,7 +34,6 @@ public:
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline dyn::prc::Structure* get_dyn_struct(){return dyn_struct;}
-  inline dyn::prc::element::Sensor* get_dyn_sensor(){return dyn_sensor;}
   inline dyn::prc::cloud::Operation* get_ope_cloud(){return dyn_ope_cloud;}
   inline dyn::prc::image::Operation* get_ope_image(){return dyn_ope_image;}
 
@@ -46,7 +44,6 @@ private:
   prf::Node* node_profiler;
 
   dyn::prc::Structure* dyn_struct;
-  dyn::prc::element::Sensor* dyn_sensor;
   dyn::prc::cloud::Operation* dyn_ope_cloud;
   dyn::prc::image::Operation* dyn_ope_image;
 };

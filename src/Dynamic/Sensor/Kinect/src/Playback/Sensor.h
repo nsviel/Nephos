@@ -7,7 +7,7 @@ namespace k4n{class Processing;}
 namespace k4n::playback{class Configuration;}
 namespace k4n::gui{class Playback;}
 namespace utl::base{class Path;}
-namespace dyn::prc::element{class Sensor;}
+namespace dat::elm{class Sensor;}
 
 
 namespace k4n::playback{
@@ -36,7 +36,7 @@ public:
   k4n::Processing* k4n_processing;
   k4n::playback::Configuration* k4n_config;
   k4n::gui::Playback* gui_playback;
-  dyn::prc::element::Sensor* dyn_sensor;
+  dat::elm::Sensor* dat_sensor;
 
   std::queue<k4a::capture*> queue;
   k4a::playback playback;

@@ -16,7 +16,7 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
   this->k4n_processing = new k4n::Processing(node_k4n);
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->gui_capture = new k4n::gui::Capture(node_k4n);
-  this->dyn_sensor = node_processing->get_dyn_sensor();
+  //this->dat_sensor = node_processing->get_dat_sensor();
 
   this->vec_recorder.push_back(new k4n::capture::Recorder());
   this->device.index = index;
@@ -25,14 +25,14 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
 
   //---------------------------
   std::shared_ptr<k4n::capture::Sensor> sensor(this);
-  dyn_sensor->init_sensor(sensor);
+  //dat_sensor->init_sensor(sensor);
 }
 Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
   std::shared_ptr<k4n::capture::Sensor> sensor(this);
-  dyn_sensor->remove_sensor(sensor);
+  //dat_sensor->remove_sensor(sensor);
 
   //---------------------------
 }

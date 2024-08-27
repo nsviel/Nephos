@@ -18,8 +18,8 @@ Node::Node(app::Node* node_app){
   this->thread_pool = new sys::thread::task::Pool(50);
 
   this->node_vulkan = node_app->get_node_vulkan();
-  this->node_data = new dat::Node(this);
   this->node_profiler = new prf::Node(this);
+  this->node_data = new dat::Node(this);
   this->node_engine = new eng::Node(this);
   this->node_io = new io::Node(this);
 

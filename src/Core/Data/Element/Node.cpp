@@ -12,6 +12,7 @@ Node::Node(dat::Node* node_data){
 
   //Dependancy
   this->node_vulkan = node_data->get_node_vulkan();
+  this->node_profiler = node_data->get_node_profiler();
 
   //Child
   this->dat_struct = new dat::elm::Structure();
@@ -20,6 +21,7 @@ Node::Node(dat::Node* node_data){
   this->dat_entity = new dat::elm::Entity(this);
   this->dat_glyph = new dat::elm::Glyph(this);
   this->dat_image = new dat::elm::Image(this);
+  this->dat_sensor = new dat::elm::Sensor(this);
   this->gui_set = new dat::set::gui::Panel(this);
   this->gui_entity = new dat::entity::gui::Panel(this);
 

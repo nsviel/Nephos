@@ -10,7 +10,7 @@ namespace dat::gph{class Graph;}
 namespace dat::elm{class Entity;}
 namespace dat::elm{class Set;}
 namespace dat::elm{class Glyph;}
-namespace dyn::prc::element{class Sensor;}
+namespace dat::elm{class Sensor;}
 
 
 namespace k4n::playback{
@@ -38,7 +38,7 @@ private:
   dat::elm::Entity* dat_entity;
   dat::elm::Set* dat_set;
   dat::elm::Glyph* dat_glyph;
-  dyn::prc::element::Sensor* dyn_sensor;
+  dat::elm::Sensor* dat_sensor;
 };
 
 }

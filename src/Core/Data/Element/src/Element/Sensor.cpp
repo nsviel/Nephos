@@ -1,21 +1,20 @@
 #include "Sensor.h"
 
-#include <Dynamic/Processing/Namespace.h>
+#include <Data/Element/Namespace.h>
+#include <Data/Base/Namespace.h>
 #include <Profiler/Namespace.h>
-#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
 
-namespace dyn::prc::element{
+namespace dat::elm{
 
 //Constructor / Destructor
-Sensor::Sensor(dyn::prc::Node* node_processing){
+Sensor::Sensor(dat::elm::Node* node_element){
   //---------------------------
 
-  prf::Node* node_profiler = node_processing->get_node_profiler();
+  prf::Node* node_profiler = node_element->get_node_profiler();
   prf::monitor::Node* node_monitor = node_profiler->get_node_monitor();
 
-  this->dyn_struct = node_processing->get_dyn_struct();
   this->prf_monitor = node_monitor->get_prf_manager();
 
   //---------------------------

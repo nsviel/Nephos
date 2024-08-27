@@ -6,7 +6,7 @@ namespace k4n{class Node;}
 namespace k4n{class Processing;}
 namespace k4n::capture{class Configuration;}
 namespace k4n::gui{class Capture;}
-namespace dyn::prc::element{class Sensor;}
+namespace dat::elm{class Sensor;}
 
 
 namespace k4n::capture{
@@ -34,7 +34,7 @@ private:
   k4n::Processing* k4n_processing;
   k4n::capture::Configuration* k4n_config;
   k4n::gui::Capture* gui_capture;
-  dyn::prc::element::Sensor* dyn_sensor;
+  dat::elm::Sensor* dat_sensor;
 
   std::queue<k4a::capture*> queue;
 };

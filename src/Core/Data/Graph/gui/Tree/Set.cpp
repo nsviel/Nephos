@@ -45,7 +45,7 @@ void Set::draw_node(std::shared_ptr<dat::base::Set> set, bool& node_open){
 
   //Set node elements
   ImGuiTreeNodeFlags flag;
-  flag |= ImGuiTreeNodeFlags_OpenOnArrow;
+  flag |= set->list_entity.empty() ? ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen : ImGuiTreeNodeFlags_OpenOnArrow;
   flag |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
   flag |= (selection && set->UID == selection->UID) ? ImGuiTreeNodeFlags_Selected : 0;
   flag |= ImGuiTreeNodeFlags_SpanFullWidth;

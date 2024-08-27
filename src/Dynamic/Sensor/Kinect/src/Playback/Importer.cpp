@@ -23,7 +23,7 @@ Importer::Importer(k4n::Node* node_k4n){
   this->dat_entity = node_element->get_dat_entity();
   this->dat_set = node_element->get_dat_set();
   this->dat_glyph = node_element->get_dat_glyph();
-  this->dyn_sensor = node_processing->get_dyn_sensor();
+  this->dat_sensor = node_element->get_dat_sensor();
 
   this->format = ".mkv";
   this->require_discrete_gpu = true;

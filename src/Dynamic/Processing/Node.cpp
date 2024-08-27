@@ -22,7 +22,6 @@ Node::Node(dyn::Node* node_dynamic){
   this->node_profiler = node_core->get_node_profiler();
 
   this->dyn_struct = new dyn::prc::Structure();
-  this->dyn_sensor = new dyn::prc::element::Sensor(this);
   this->dyn_ope_cloud = new dyn::prc::cloud::Operation(this);
   this->dyn_ope_image = new dyn::prc::image::Operation(this);
 
