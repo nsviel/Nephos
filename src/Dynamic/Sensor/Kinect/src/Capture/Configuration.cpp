@@ -60,28 +60,28 @@ void Configuration::make_default_configuration(){
 
   //---------------------------
 }
-void Configuration::find_calibration(std::shared_ptr<k4n::base::Sensor> sensor){
-  k4a::device& device = sensor->device.handle;
+void Configuration::find_calibration(k4n::capture::Sensor& sensor){
+  k4a::device& device = sensor.device.handle;
   //---------------------------
 
-  sensor->device.calibration = device.get_calibration(k4n_struct->config.depth.mode, k4n_struct->config.color.resolution);
-  sensor->device.transformation = k4a::transformation(sensor->device.calibration);
-
-  //---------------------------
-}
-void Configuration::find_versioning(std::shared_ptr<k4n::base::Sensor> sensor){
-  //---------------------------
-
-  k4a_hardware_version_t version = sensor->device.version;
-  sensor->firmware.color = std::to_string(version.rgb.major) + "." + std::to_string(version.rgb.minor) + "." + std::to_string(version.rgb.iteration);
-  sensor->firmware.depth = std::to_string(version.depth.major) + "." + std::to_string(version.depth.minor) + "." + std::to_string(version.depth.iteration);
-  sensor->firmware.audio = std::to_string(version.audio.major) + "." + std::to_string(version.audio.minor) + "." + std::to_string(version.audio.iteration);
-  sensor->firmware.build = version.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug";
-  sensor->firmware.constructor = version.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : version.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned";
+  sensor.device.calibration = device.get_calibration(k4n_struct->config.depth.mode, k4n_struct->config.color.resolution);
+  sensor.device.transformation = k4a::transformation(sensor.device.calibration);
 
   //---------------------------
 }
-void Configuration::make_sensor_configuration(std::shared_ptr<k4n::base::Sensor> sensor){
+void Configuration::find_versioning(k4n::capture::Sensor& sensor){
+  //---------------------------
+
+  k4a_hardware_version_t version = sensor.device.version;
+  sensor.firmware.color = std::to_string(version.rgb.major) + "." + std::to_string(version.rgb.minor) + "." + std::to_string(version.rgb.iteration);
+  sensor.firmware.depth = std::to_string(version.depth.major) + "." + std::to_string(version.depth.minor) + "." + std::to_string(version.depth.iteration);
+  sensor.firmware.audio = std::to_string(version.audio.major) + "." + std::to_string(version.audio.minor) + "." + std::to_string(version.audio.iteration);
+  sensor.firmware.build = version.firmware_build == K4A_FIRMWARE_BUILD_RELEASE ? "Release" : "Debug";
+  sensor.firmware.constructor = version.firmware_signature == K4A_FIRMWARE_SIGNATURE_MSFT ? "Microsoft" : version.firmware_signature == K4A_FIRMWARE_SIGNATURE_TEST ? "Test" : "Unsigned";
+
+  //---------------------------
+}
+void Configuration::make_sensor_configuration(k4n::capture::Sensor& sensor){
   //---------------------------
 
   k4a_device_configuration_t configuration = K4A_DEVICE_CONFIG_INIT_DISABLE_ALL;
@@ -100,10 +100,10 @@ void Configuration::make_sensor_configuration(std::shared_ptr<k4n::base::Sensor>
   configuration.synchronized_images_only = k4n_struct->config.synchro.synchronized_images_only;
 
   //---------------------------
-  sensor->device.configuration = configuration;
+  sensor.device.configuration = configuration;
 }
-void Configuration::make_sensor_color_configuration(std::shared_ptr<k4n::base::Sensor> sensor){
-  k4a::device& device = sensor->device.handle;
+void Configuration::make_sensor_color_configuration(k4n::capture::Sensor& sensor){
+  k4a::device& device = sensor.device.handle;
   //---------------------------
 
   device.set_color_control(k4n_struct->config.color.exposure.command, k4n_struct->config.color.exposure.mode, k4n_struct->config.color.exposure.value);
@@ -116,9 +116,9 @@ void Configuration::make_sensor_color_configuration(std::shared_ptr<k4n::base::S
   device.set_color_control(k4n_struct->config.color.backlight_compensation.command, k4n_struct->config.color.backlight_compensation.mode, k4n_struct->config.color.backlight_compensation.value);
   device.set_color_control(k4n_struct->config.color.power_frequency.command, k4n_struct->config.color.power_frequency.mode, k4n_struct->config.color.power_frequency.value);
 
-  sensor->color.config = k4n_struct->config.color;
-  sensor->depth.config = k4n_struct->config.depth;
-  sensor->ir.config = k4n_struct->config.ir;
+  sensor.color.config = k4n_struct->config.color;
+  sensor.depth.config = k4n_struct->config.depth;
+  sensor.ir.config = k4n_struct->config.ir;
 
   //---------------------------
 }

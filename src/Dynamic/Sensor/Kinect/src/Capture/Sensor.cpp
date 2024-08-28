@@ -2,7 +2,9 @@
 
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Data/Namespace.h>
 #include <Processing/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace k4n::capture{
@@ -12,11 +14,13 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
   //---------------------------
 
   dyn::prc::Node* node_processing = node_k4n->get_node_processing();
+  dat::Node* node_data = node_k4n->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->k4n_processing = new k4n::Processing(node_k4n);
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->gui_capture = new k4n::gui::Capture(node_k4n);
-  //this->dat_sensor = node_processing->get_dat_sensor();
+  this->dat_sensor = node_element->get_dat_sensor();
 
   this->info.vec_recorder.push_back(new k4n::capture::Recorder());
   this->device.index = index;
@@ -24,15 +28,12 @@ Sensor::Sensor(k4n::Node* node_k4n, int index){
   this->data.name = name;
 
   //---------------------------
-  std::shared_ptr<k4n::capture::Sensor> sensor(this);
-  //dat_sensor->init_sensor(sensor);
 }
 Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
-  std::shared_ptr<k4n::capture::Sensor> sensor(this);
-  //dat_sensor->remove_sensor(sensor);
+  dat_sensor->remove_sensor(*this);
 
   //---------------------------
 }
@@ -40,6 +41,8 @@ Sensor::~Sensor(){
 //Main function
 void Sensor::thread_init(){
   //---------------------------
+
+  dat_sensor->init_sensor(*this);
 
   //Init
   this->device.index = 0;
@@ -49,10 +52,9 @@ void Sensor::thread_init(){
   this->device.version = device.handle.get_version();
 
   //Configuration
-  std::shared_ptr<k4n::capture::Sensor> sensor(this);
-  k4n_config->make_sensor_configuration(sensor);
-  k4n_config->make_sensor_color_configuration(sensor);
-  k4n_config->find_calibration(sensor);
+  k4n_config->make_sensor_configuration(*this);
+  k4n_config->make_sensor_color_configuration(*this);
+  k4n_config->find_calibration(*this);
   this->device.handle.start_cameras(&device.configuration);
 
   //---------------------------

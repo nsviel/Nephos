@@ -1,10 +1,10 @@
 #include "Sensor.h"
 
 #include <Kinect/Namespace.h>
-#include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
 #include <Processing/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace k4n::playback{
@@ -31,8 +31,7 @@ Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
-  //std::shared_ptr<k4n::playback::Sensor> sensor(this);
-  //dat_sensor->remove_sensor(sensor);
+  dat_sensor->remove_sensor(*this);
 
   //---------------------------
 }
@@ -91,16 +90,6 @@ void Sensor::manage_capture(){
 
   //---------------------------
 }
-void Sensor::gui_config(){
-  //---------------------------
-
-  std::shared_ptr<k4n::playback::Sensor> sensor(this);
-  gui_playback->show_parameter(sensor);
-
-  //---------------------------
-}
-
-
 void Sensor::manage_pause(){
   //---------------------------
 
@@ -135,6 +124,14 @@ void Sensor::manage_query(float value){
     auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
     playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
   }
+
+  //---------------------------
+}
+void Sensor::manage_gui(){
+  //---------------------------
+
+  std::shared_ptr<k4n::playback::Sensor> sensor(this);
+  gui_playback->show_parameter(sensor);
 
   //---------------------------
 }

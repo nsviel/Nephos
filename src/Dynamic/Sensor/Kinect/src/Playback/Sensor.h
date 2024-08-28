@@ -31,7 +31,7 @@ public:
   void manage_capture();
   void manage_pause();
   void manage_query(float ts_querry);
-  void gui_config();
+  void manage_gui();
 
 public:
   k4n::Processing* k4n_processing;
