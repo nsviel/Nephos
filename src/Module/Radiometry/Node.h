@@ -6,7 +6,6 @@ namespace mod{class Node;}
 namespace prf{class Node;}
 namespace core{class Node;}
 namespace dat{class Node;}
-namespace vk{class Node;}
 
 namespace rad::cor{class Node;}
 namespace rad::cal{class Node;}
@@ -30,7 +29,6 @@ public:
 
   inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline rad::cor::Node* get_node_correction(){return node_correction;}
@@ -40,7 +38,6 @@ private:
   //Dependancy
   core::Node* node_core;
   dat::Node* node_data;
-  vk::Node* node_vulkan;
   prf::Node* node_profiler;
 
   //Child

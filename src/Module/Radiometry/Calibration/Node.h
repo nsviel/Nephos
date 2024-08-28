@@ -27,7 +27,6 @@ public:
 
   inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline vk::Node* get_node_vulkan(){return node_vulkan;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline rad::cal::Structure* get_rad_struct(){return rad_struct;}
@@ -37,7 +36,6 @@ private:
   //Dependancy
   core::Node* node_core;
   dat::Node* node_data;
-  vk::Node* node_vulkan;
   prf::Node* node_profiler;
 
   //Child

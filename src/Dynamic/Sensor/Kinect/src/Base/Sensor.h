@@ -23,7 +23,6 @@ struct Sensor : public dat::base::Sensor{
   Sensor();
   ~Sensor();
   void clean();
-  glm::vec3 convert_depth_2d_to_3d(glm::ivec2 point_2d);
 
   k4n::structure::Cloud cloud;
   k4n::device::Structure device;

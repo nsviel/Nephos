@@ -47,19 +47,20 @@ void Panel::run_panel(){
   //---------------------------
 }
 void Panel::design_panel(){
-  if(!entity) close_panel();
+  if(entity.expired()) close_panel();
   //---------------------------
 
-  this->entity_title(entity);
-  this->entity_button(entity);
-  this->entity_parameter(entity);
+  auto entity_ptr = entity.lock();
+  this->entity_title(entity_ptr);
+  this->entity_button(entity_ptr);
+  this->entity_parameter(entity_ptr);
 
   //---------------------------
 }
 void Panel::close_panel(){
   //---------------------------
 
-  this->entity = nullptr;
+  this->entity.reset();
   this->panel_show = false;
 
   //---------------------------

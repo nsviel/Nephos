@@ -12,7 +12,6 @@ namespace rad::cor{
 Node::Node(rad::Node* node_radio){
   //---------------------------
 
-  this->node_vulkan = node_radio->get_node_vulkan();
   this->node_core = node_radio->get_node_core();
   this->node_data = node_core->get_node_data();
   this->node_profiler = node_core->get_node_profiler();

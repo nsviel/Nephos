@@ -26,14 +26,14 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->depth_mode = "NFOV";
 
   //---------------------------
-  std::shared_ptr<k4n::playback::Sensor> sensor(this);
+  //std::shared_ptr<k4n::playback::Sensor> sensor(this);
   //dat_sensor->init_sensor(sensor);
 }
 Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
-  std::shared_ptr<k4n::playback::Sensor> sensor(this);
+  //std::shared_ptr<k4n::playback::Sensor> sensor(this);
   //dat_sensor->remove_sensor(sensor);
 
   //---------------------------
@@ -42,7 +42,7 @@ Sensor::~Sensor(){
 //Main function
 void Sensor::thread_init(){
   //---------------------------
-
+/*
   //Init playback
   std::string path = data.path.build();
   if(path == "") return;
@@ -53,31 +53,31 @@ void Sensor::thread_init(){
   }
 
   //Init configuration
-  std::shared_ptr<k4n::playback::Sensor> sensor(this);
+  //std::shared_ptr<k4n::playback::Sensor> sensor(this);
   k4n_config->find_configuration(sensor);
   k4n_config->find_calibration(sensor);
-
+*/
   //---------------------------
 }
 void Sensor::thread_loop(){
-  prf::monitor::Tasker* tasker = profiler.fetch_tasker("kinect::loop");
+  //prf::monitor::Tasker* tasker = profiler.fetch_tasker("kinect::loop");
   //---------------------------
 
-  tasker->loop(30);
+  //tasker->loop(30);
 
   //Next capture
-  tasker->task_begin("capture");
+  //tasker->task_begin("capture");
   k4a::capture* capture = manage_new_capture();
   if(capture == nullptr) return;
-  tasker->task_end("capture");
+  //tasker->task_end("capture");
 
   //Wait previous threads to finish
-  tasker->task_begin("wait");
+  //tasker->task_begin("wait");
   this->manage_old_capture(capture);
-  tasker->task_end("wait");
+  //tasker->task_end("wait");
 
   //Run processing
-  std::shared_ptr<k4n::playback::Sensor> sensor(this);
+  std::shared_ptr<k4n::playback::Sensor> sensor = std::static_pointer_cast<k4n::playback::Sensor>(dat::base::Sensor::shared_from_this());
   k4n_processing->start_thread(sensor);
 
   //Loop sleeping

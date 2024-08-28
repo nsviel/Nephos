@@ -38,7 +38,7 @@ private:
   dat::entity::gui::Topology* gui_topology;
   dat::entity::gui::Data* gui_data;
 
-  std::shared_ptr<dat::base::Entity> entity;
+  std::weak_ptr<dat::base::Entity> entity;
   std::string panel_name;
   bool panel_show;;
   int item_width;

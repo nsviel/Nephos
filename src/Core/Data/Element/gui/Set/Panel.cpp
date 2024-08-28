@@ -43,10 +43,20 @@ void Panel::run_panel(){
   //---------------------------
 }
 void Panel::design_panel(){
+  if(set.expired()) close_panel();
   //---------------------------
 
-  this->set_info(set_selected.lock());
-  this->set_parameter(set_selected.lock());
+  auto set_ptr = set.lock();
+  this->set_info(set_ptr);
+  this->set_parameter(set_ptr);
+
+  //---------------------------
+}
+void Panel::close_panel(){
+  //---------------------------
+
+  this->set.reset();
+  this->panel_show = false;
 
   //---------------------------
 }

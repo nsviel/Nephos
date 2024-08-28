@@ -18,12 +18,10 @@ Importer::Importer(k4n::Node* node_k4n){
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->node_k4n = node_k4n;
-  this->node_core = node_k4n->get_node_core();
   this->dat_graph = node_graph->get_gph_graph();
-  this->dat_entity = node_element->get_dat_entity();
   this->dat_set = node_element->get_dat_set();
-  this->dat_glyph = node_element->get_dat_glyph();
   this->dat_sensor = node_element->get_dat_sensor();
+  this->k4n_config = new k4n::playback::Configuration(node_k4n);
 
   this->format = ".mkv";
   this->require_discrete_gpu = true;
@@ -49,6 +47,22 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
 
   //Associated set
   sensor->set_parent = manage_set_parent();
+
+
+  //Init playback
+  std::string path_ = sensor->data.path.build();
+  //if(path_ == "") return;
+  sensor->playback = k4a::playback::open(path_.c_str());
+  if(!sensor->playback){
+    std::cout<<"[error] Sensor opening problem"<<std::endl;
+    //return;
+  }
+
+  //Init configuration
+  k4n_config->find_configuration(sensor);
+  k4n_config->find_calibration(sensor);
+
+
   sensor->start_thread();
 
   //---------------------------

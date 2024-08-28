@@ -8,7 +8,8 @@ namespace dat{class Node;}
 namespace core{class Node;}
 namespace io{class Node;}
 
-namespace rlx{class Class;}
+namespace rlx{class Capture;}
+namespace rlx{class Structure;}
 
 
 namespace rlx{
@@ -22,19 +23,23 @@ public:
 
 public:
   //Main function
-  void config();
   void init();
+  void loop();
 
   inline core::Node* get_node_core(){return node_core;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
   inline dat::Node* get_node_data(){return node_data;}
+
+  inline rlx::Structure* get_rlx_struct(){return rlx_struct;}
 
 private:
   io::Node* node_io;
   core::Node* node_core;
   prf::Node* node_profiler;
   dat::Node* node_data;
-  rlx::Class* rlx_class;
+
+  rlx::Structure* rlx_struct;
+  rlx::Capture* rlx_capture;
 };
 
 }

@@ -3,7 +3,7 @@
 #include <imgui/core/imgui.h>
 #include <memory>
 
-namespace vk{class Node;}
+namespace dat::img{class Node;}
 namespace vk::image{class Texture;}
 namespace vk::gui{class Imgui;}
 namespace vk::structure{class Texture;}
@@ -16,7 +16,7 @@ class Stream
 {
 public:
   //Constructor / Destructor
-  Stream(vk::Node* node_vulkan);
+  Stream(dat::img::Node* node_image);
   ~Stream();
 
 public:

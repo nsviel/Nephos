@@ -101,7 +101,7 @@ void Glyph::draw_sphere_glyph(std::shared_ptr<dat::base::Sensor> sensor, std::ve
   //---------------------------
 
   int size = std::min(vec_sphere.size(), vec_circle.size());
-
+/*
   for(int i=0; i<size; i++){
     rad::cor::structure::Circle& circle = vec_circle[i];
     std::shared_ptr<rad::cor::glyph::Sphere> sphere = vec_sphere[i];
@@ -115,7 +115,7 @@ void Glyph::draw_sphere_glyph(std::shared_ptr<dat::base::Sensor> sensor, std::ve
     sphere->move_sphere(pose, rad_struct->ransac.sphere_diameter);
     sphere->update_pose(sensor);
   }
-
+*/
   //---------------------------
 }
 

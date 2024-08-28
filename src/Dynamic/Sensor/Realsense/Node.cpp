@@ -2,7 +2,7 @@
 
 #include <Sensor/Namespace.h>
 #include <Core/Namespace.h>
-#include <RealSense/Namespace.h>
+#include <Realsense/Namespace.h>
 #include <IO/Namespace.h>
 #include <Data/Namespace.h>
 #include <Utility/Namespace.h>
@@ -22,28 +22,25 @@ Node::Node(dyn::sen::Node* node_sensor){
   this->node_profiler = node_core->get_node_profiler();
   this->node_data = node_core->get_node_data();
 
-  //this->rlx_class = new rlx::Class();
+  this->rlx_struct = new rlx::Structure();
+  this->rlx_capture = new rlx::Capture(this);
 
   //---------------------------
 }
 Node::~Node(){}
 
 //Main function
-void Node::config(){
-  io::imp::Node* node_importer = node_io->get_node_importer();
-  io::imp::Importer* io_importer = node_importer->get_io_importer();
-  //---------------------------
-
-  //io_importer->insert_importer(new k4n::playback::Importer(this));
-
-
-
-  //---------------------------
-}
 void Node::init(){
   //---------------------------
 
-  //rlx_class->capture();
+  rlx_capture->capture();
+
+  //---------------------------
+}
+void Node::loop(){
+  //---------------------------
+
+
 
   //---------------------------
 }

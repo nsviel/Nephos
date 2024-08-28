@@ -64,7 +64,6 @@ void Layout::draw_panel(){
 
   node_gui->gui();
 
-
   //---------------------------
 }
 

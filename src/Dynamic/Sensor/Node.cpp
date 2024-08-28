@@ -4,7 +4,7 @@
 #include <Core/Namespace.h>
 
 #include <Kinect/Namespace.h>
-#include <RealSense/Namespace.h>
+#include <Realsense/Namespace.h>
 #include <Velodyne/Namespace.h>
 
 
@@ -31,6 +31,7 @@ void Node::init(){
 
   node_kinect->init();
   node_velodyne->init();
+  node_realsense->init();
 
   //---------------------------
 }
@@ -38,6 +39,7 @@ void Node::loop(){
   //---------------------------
 
   node_kinect->loop();
+  node_realsense->loop();
 
   //---------------------------
 }

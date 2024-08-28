@@ -1,13 +1,16 @@
 #include "Stream.h"
 
+#include <Data/Image/Namespace.h>
 #include <Vulkan/Namespace.h>
 
 
 namespace dat::img::gui{
 
 //Constructor / Destructor
-Stream::Stream(vk::Node* node_vulkan){
+Stream::Stream(dat::img::Node* node_image){
   //---------------------------
+
+  vk::Node* node_vulkan = node_image->get_node_vulkan();
 
   this->vk_texture = node_vulkan->get_vk_texture();
   this->vk_imgui = node_vulkan->get_vk_imgui();

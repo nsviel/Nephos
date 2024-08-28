@@ -14,7 +14,7 @@ namespace dat::base{class Recorder;}
 
 namespace dat::base{
 
-struct Sensor : public dat::base::Object, public sys::thread::Worker{
+struct Sensor : public dat::base::Object, public sys::thread::Worker, public std::enable_shared_from_this<Sensor>{
   //---------------------------
 
   void clean(){
@@ -25,7 +25,6 @@ struct Sensor : public dat::base::Object, public sys::thread::Worker{
     //---------------------------
   }
 
-  virtual glm::vec3 convert_depth_2d_to_3d(glm::ivec2 point){return glm::vec3(0);}
   virtual void manage_query(float ts_querry){}
   virtual void manage_configuration(){}
   virtual void manage_reset(){}

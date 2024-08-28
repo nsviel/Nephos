@@ -24,7 +24,7 @@ Panel::Panel(dat::img::Node* node_image, bool* show_window){
   this->gui_overlay = new dat::img::gui::Overlay();
 
   for(int i=0; i<20; i++){
-    dat::img::gui::Stream* stream = new dat::img::gui::Stream(node_vulkan);
+    dat::img::gui::Stream* stream = new dat::img::gui::Stream(node_image);
     this->vec_stream.push_back(stream);
   }
 

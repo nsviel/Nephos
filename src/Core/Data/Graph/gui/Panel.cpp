@@ -36,6 +36,7 @@ void Panel::run_panel(){
 
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(0.0f, 2.0f));
+    ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, 10);
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(600, 600));
     if(ImGui::Begin(name.c_str(), show_window, flag) == 1){
@@ -44,8 +45,8 @@ void Panel::run_panel(){
 
       ImGui::End();
     }
-    ImGui::PopStyleVar(2);
     ImGui::PopStyleColor();
+    ImGui::PopStyleVar(3);
   }
 
   //---------------------------
@@ -68,8 +69,6 @@ void Panel::draw_file_tree(){
   flag |= ImGuiTableFlags_SizingFixedSame;
   flag |= ImGuiTableFlags_RowBg;
 
-  ImGui::PushStyleVar(ImGuiStyleVar_IndentSpacing, 10);
-  ImGui::SetNextWindowSize(ImVec2(400, 400));
   ImGui::BeginTable("data_view", 3, flag);
   ImGui::TableSetupColumn("Name##scene_tree", ImGuiTableColumnFlags_WidthStretch);
   ImGui::TableSetupColumn("Visibility##scene_tree", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 25);
@@ -89,7 +88,6 @@ void Panel::draw_file_tree(){
   this->draw_window_background(nb_row);
 
   ImGui::EndTable();
-  ImGui::PopStyleVar();
 
   //---------------------------
 }

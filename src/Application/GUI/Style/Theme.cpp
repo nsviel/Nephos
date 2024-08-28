@@ -41,7 +41,7 @@ void Theme::theme_window(){
   style.Colors[ImGuiCol_Tab] = ImVec4(0.17, 0.28, 0.39, 0.86);
   style.Colors[ImGuiCol_Border] = ImVec4(0, 0, 0, 1.0f);
 
-  style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0, 0, 0, 1.0f);
+  style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.1, 0.1, 0.1, 1.0f);
   style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.06, 0.06, 0.06, 1.0f);
   style.Colors[ImGuiCol_WindowBg] = ImVec4(0.2, 0.2, 0.2, 1.0f);
 

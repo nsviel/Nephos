@@ -5,12 +5,10 @@
 #include <memory>
 
 namespace k4n{class Node;}
-namespace core{class Node;}
 namespace dat::gph{class Graph;}
-namespace dat::elm{class Entity;}
 namespace dat::elm{class Set;}
-namespace dat::elm{class Glyph;}
 namespace dat::elm{class Sensor;}
+namespace k4n::playback{class Configuration;}
 
 
 namespace k4n::playback{
@@ -33,12 +31,10 @@ public:
 
 private:
   k4n::Node* node_k4n;
-  core::Node* node_core;
   dat::gph::Graph* dat_graph;
-  dat::elm::Entity* dat_entity;
   dat::elm::Set* dat_set;
-  dat::elm::Glyph* dat_glyph;
   dat::elm::Sensor* dat_sensor;
+  k4n::playback::Configuration* k4n_config;
 };
 
 }

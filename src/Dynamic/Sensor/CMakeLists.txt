@@ -4,7 +4,7 @@ set(LIBRARY_NAME DYNAMIC_SENSOR)
 # Source files
 #-----------------
 add_subdirectory(Kinect)
-add_subdirectory(RealSense)
+add_subdirectory(Realsense)
 add_subdirectory(Velodyne)
 
 file(GLOB_RECURSE ALL_SOURCES

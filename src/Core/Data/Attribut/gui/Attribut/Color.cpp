@@ -174,26 +174,34 @@ void Color::color_option(std::shared_ptr<utl::base::Element> element){
       atr_struct->color.range = atr_field->get_field_range(entity->data, vec_name[0]);
     }
 
-    //Combo field name
+    //Field selection table
     static int selection = 0;
+    static ImGuiTableFlags flags;
+    flags |= ImGuiTableFlags_RowBg;
+    flags |= ImGuiTableFlags_Borders;
     ImGui::SetNextItemWidth(150);
-    if(ImGui::BeginCombo("##shader_combo_class", vec_name[selection].c_str())){
-      for(int i=0; i<vec_name.size(); ++i){
+    if (ImGui::BeginTable("##field_table", 1, flags)) {
+      // Iterate over the vector of names to populate the table
+      for (int i = 0; i < vec_name.size(); ++i) {
         std::string& name = vec_name[i];
-        const bool is_selected = (selection == i);
 
-        if(ImGui::Selectable(name.c_str(), is_selected)){
+        // Start a new row
+        ImGui::TableNextRow(); ImGui::TableNextColumn();
+
+        // Second column: display the name with selectable functionality
+        const bool is_selected = (selection == i);
+        if (ImGui::Selectable(name.c_str(), is_selected, ImGuiSelectableFlags_SpanAllColumns)) {
           atr_struct->color.field = name;
           atr_struct->color.range = atr_field->get_field_range(entity->data, name);
           selection = i;
         }
 
-        if(is_selected){
-          ImGui::SetItemDefaultFocus();
+        if (is_selected) {
+          ImGui::SetItemDefaultFocus(); // Ensure the selected item is focused
         }
       }
 
-      ImGui::EndCombo();
+      ImGui::EndTable();
     }
 
     //Range
