@@ -19,8 +19,8 @@ public:
 
 public:
   //Main function
-  void find_configuration(std::shared_ptr<k4n::playback::Sensor> sensor);
-  void find_calibration(std::shared_ptr<k4n::playback::Sensor> sensor);
+  void find_configuration(k4n::playback::Sensor& sensor);
+  void find_calibration(k4n::playback::Sensor& sensor);
 
   //Subfunction
   std::string find_mode_fps(int mode);

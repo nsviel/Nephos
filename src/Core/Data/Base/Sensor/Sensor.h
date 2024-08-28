@@ -20,7 +20,7 @@ struct Sensor : public dat::base::Object{
 
   virtual void start(){}
   virtual void stop(){}
-  virtual void pause(bool value){}
+  virtual void pause(bool value){this->state.pause = value;}
   virtual void query(float value){}
 
   dat::base::sensor::Info info;

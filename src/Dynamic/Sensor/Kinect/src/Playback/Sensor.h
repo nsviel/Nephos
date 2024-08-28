@@ -5,6 +5,7 @@
 namespace k4n{class Node;}
 namespace k4n{class Processing;}
 namespace k4n::playback{class Configuration;}
+namespace k4n::playback{class Playback;}
 namespace k4n::gui{class Playback;}
 namespace utl::base{class Path;}
 namespace dat::elm{class Sensor;}
@@ -35,6 +36,7 @@ public:
 public:
   k4n::Processing* k4n_processing;
   k4n::playback::Configuration* k4n_config;
+  k4n::playback::Playback* k4n_playback;
   k4n::gui::Playback* gui_playback;
   dat::elm::Sensor* dat_sensor;
 

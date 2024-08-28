@@ -23,9 +23,16 @@ struct Sensor : public dat::base::Sensor, public sys::thread::Worker, public std
     this->info.depth_mode = "NFOV";
     this->info.vec_depth_mode.push_back("NFOV");
     this->info.vec_depth_mode.push_back("WFOV");
+
     this->data.topology.type = utl::topology::POINT;
     this->data.nb_data_max = 10000000;
     this->calibration.path.insert("../media/calibration/kinect.json");
+  }
+  void start(){
+    this->start_thread();
+  }
+  void stop(){
+    this->stop_thread();
   }
 
   k4n::structure::Cloud cloud;

@@ -83,14 +83,14 @@ void Capture::show_list_device(std::shared_ptr<dat::base::Set> set){
           ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
           ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(180, 100, 100, 255));
           if(ImGui::SmallButton("X##399")){
-            sensor->stop_thread();
+            sensor->stop();
           }
           ImGui::PopStyleColor(2);
         }else{
           ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 133, 100, 255));
           ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 180, 100, 255));
           if(ImGui::SmallButton(ICON_FA_PLAY "##399")){
-            sensor->start_thread();
+            sensor->start();
           }
           ImGui::PopStyleColor(2);
         }

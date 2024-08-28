@@ -16,14 +16,11 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
 
   this->k4n_processing = new k4n::Processing(node_k4n);
   this->k4n_config = new k4n::playback::Configuration(node_k4n);
+  this->k4n_playback = new k4n::playback::Playback(node_k4n);
   //this->dat_sensor = node_processing->get_dat_sensor();
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 
-  this->name = utl::path::get_name_from_path(path.build());
   this->data.path = path;
-  this->data.name = utl::path::get_name_from_path(path.build());
-  this->data.path.format = utl::path::get_format_from_path(path.build());
-  this->info.depth_mode = "NFOV";
 
   //---------------------------
   //std::shared_ptr<k4n::playback::Sensor> sensor(this);
@@ -42,21 +39,11 @@ Sensor::~Sensor(){
 //Main function
 void Sensor::thread_init(){
   //---------------------------
-/*
-  //Init playback
-  std::string path = data.path.build();
-  if(path == "") return;
-  this->playback = k4a::playback::open(path.c_str());
-  if(!playback){
-    std::cout<<"[error] Sensor opening problem"<<std::endl;
-    return;
-  }
 
-  //Init configuration
-  //std::shared_ptr<k4n::playback::Sensor> sensor(this);
-  k4n_config->find_configuration(sensor);
-  k4n_config->find_calibration(sensor);
-*/
+  k4n_playback->init_playback(*this);
+  k4n_config->find_configuration(*this);
+  k4n_config->find_calibration(*this);
+
   //---------------------------
 }
 void Sensor::thread_loop(){
@@ -89,7 +76,7 @@ void Sensor::thread_end(){
   //---------------------------
 
   k4n_processing->wait_thread();
-  this->playback.close();
+  k4n_playback->close_playback(*this);
 
   //---------------------------
 }

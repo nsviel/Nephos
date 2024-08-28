@@ -16,12 +16,12 @@ Configuration::Configuration(k4n::Node* node_k4n){
 Configuration::~Configuration(){}
 
 //Main function
-void Configuration::find_configuration(std::shared_ptr<k4n::playback::Sensor> sensor){
-  k4a_record_configuration_t configuration = sensor->playback.get_record_configuration();
+void Configuration::find_configuration(k4n::playback::Sensor& sensor){
+  k4a_record_configuration_t configuration = sensor.playback.get_record_configuration();
   //---------------------------
 
   //FPS
-  sensor->fps.mode_str = find_mode_fps(configuration.camera_fps);
+  sensor.fps.mode_str = find_mode_fps(configuration.camera_fps);
 
   //Synchro
   k4n_struct->config.synchro.wired_mode_str = find_mode_synchro(configuration.wired_sync_mode);
@@ -31,36 +31,36 @@ void Configuration::find_configuration(std::shared_ptr<k4n::playback::Sensor> se
   k4n_struct->config.synchro.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
 
   //Depth
-  sensor->depth.config.mode_str = find_mode_depth(configuration.depth_mode);
-  sensor->depth.config.resolution = find_resolution_depth(configuration.depth_mode);
-  sensor->depth.config.enabled = configuration.depth_track_enabled;
-  sensor->depth.config.mode = configuration.depth_mode;
-  sensor->playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor->depth.config.firmware_version);
+  sensor.depth.config.mode_str = find_mode_depth(configuration.depth_mode);
+  sensor.depth.config.resolution = find_resolution_depth(configuration.depth_mode);
+  sensor.depth.config.enabled = configuration.depth_track_enabled;
+  sensor.depth.config.mode = configuration.depth_mode;
+  sensor.playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor.depth.config.firmware_version);
 
   //Color
   k4a_image_format_t required_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-  sensor->playback.set_color_conversion(required_format);
+  sensor.playback.set_color_conversion(required_format);
   configuration.color_format = required_format;
 
-  sensor->color.config.resolution_str = find_mode_color_resolution(configuration.color_resolution);
-  sensor->color.config.format_str = find_mode_color_format(configuration.color_format);
-  sensor->color.config.enabled = configuration.color_track_enabled;
-  sensor->color.config.resolution = configuration.color_resolution;
-  sensor->color.config.format = configuration.color_format;
-  sensor->playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor->color.config.firmware_version);
+  sensor.color.config.resolution_str = find_mode_color_resolution(configuration.color_resolution);
+  sensor.color.config.format_str = find_mode_color_format(configuration.color_format);
+  sensor.color.config.enabled = configuration.color_track_enabled;
+  sensor.color.config.resolution = configuration.color_resolution;
+  sensor.color.config.format = configuration.color_format;
+  sensor.playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor.color.config.firmware_version);
 
   //Device
-  sensor->ir.config.enabled = configuration.ir_track_enabled;
-  sensor->imu.config.enabled = configuration.imu_track_enabled;
-  sensor->playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->info.serial_number);
+  sensor.ir.config.enabled = configuration.ir_track_enabled;
+  sensor.imu.config.enabled = configuration.imu_track_enabled;
+  sensor.playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor.info.serial_number);
 
   //---------------------------
 }
-void Configuration::find_calibration(std::shared_ptr<k4n::playback::Sensor> sensor){
+void Configuration::find_calibration(k4n::playback::Sensor& sensor){
   //---------------------------
 
-  sensor->device.calibration = sensor->playback.get_calibration();
-  sensor->device.transformation = k4a::transformation(sensor->device.calibration);
+  sensor.device.calibration = sensor.playback.get_calibration();
+  sensor.device.transformation = k4a::transformation(sensor.device.calibration);
 
   //---------------------------
 }

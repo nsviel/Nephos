@@ -114,7 +114,7 @@ void Connection::create_sensor(int index){
   std::shared_ptr<dat::base::Set> set = manage_set_parent();
   sensor->set_parent = set;
   io_operation->ope_insertion(sensor);
-  sensor->start_thread();
+  sensor->start();
 
   //---------------------------
 }

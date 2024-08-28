@@ -39,31 +39,13 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   std::shared_ptr<k4n::playback::Sensor> sensor = std::make_shared<k4n::playback::Sensor>(node_k4n, path);
   sensor->name = utl::path::get_name_from_path(path.build());
   sensor->data.name = utl::path::get_name_from_path(path.build());
-  sensor->data.path = path;
-  sensor->data.path.format = format;
+  sensor->data.path.insert(path);
   sensor->timestamp.begin = find_mkv_ts_beg(path.build());
   sensor->timestamp.end = find_mkv_ts_end(path.build());
   sensor->timestamp.duration = sensor->timestamp.end - sensor->timestamp.begin;
-
-  //Associated set
   sensor->set_parent = manage_set_parent();
 
-
-  //Init playback
-  std::string path_ = sensor->data.path.build();
-  //if(path_ == "") return;
-  sensor->playback = k4a::playback::open(path_.c_str());
-  if(!sensor->playback){
-    std::cout<<"[error] Sensor opening problem"<<std::endl;
-    //return;
-  }
-
-  //Init configuration
-  k4n_config->find_configuration(sensor);
-  k4n_config->find_calibration(sensor);
-
-
-  sensor->start_thread();
+  sensor->start();
 
   //---------------------------
   return sensor;
