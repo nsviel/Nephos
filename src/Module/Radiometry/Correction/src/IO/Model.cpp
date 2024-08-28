@@ -47,12 +47,12 @@ void Model::write_device_info(std::shared_ptr<dat::base::Sensor> sensor, std::st
   //---------------------------
 
   //Info
-  utl::json::write_value(path, "info.device", sensor->device_name);
-  utl::json::write_value(path, "info.serial_number", sensor->serial_number);
+  utl::json::write_value(path, "info.device", sensor->info.model);
+  utl::json::write_value(path, "info.serial_number", sensor->info.serial_number);
 
   //Depth modes
-  for(int i=0; i<sensor->vec_depth_mode.size(); i++){
-    std::string& depth_mode = sensor->vec_depth_mode[i];
+  for(int i=0; i<sensor->info.vec_depth_mode.size(); i++){
+    std::string& depth_mode = sensor->info.vec_depth_mode[i];
     utl::json::write_value(path, "depth_mode" + std::to_string(i), depth_mode);
   }
 
@@ -62,7 +62,7 @@ void Model::write_depth_mode_model(std::shared_ptr<dat::base::Sensor> sensor, st
   dat::base::Model* model = rad_model->get_model(sensor, "NFOV");
   //---------------------------
 
-  std::string depth_mode = sensor->depth_mode;
+  std::string depth_mode = sensor->info.depth_mode;
 
   utl::json::write_value(path, depth_mode + ".model_rmse", model->rmse);
   utl::json::write_value(path, depth_mode + ".name_measure", rad_struct->measure.path.build());
@@ -92,11 +92,11 @@ void Model::read_device_info(std::shared_ptr<dat::base::Sensor> sensor, std::str
   //---------------------------
 
   //Info
-  //sensor->serial_number = utl::json::read_value<std::string>(path, "info.serial_number");
+  //sensor->info.serial_number = utl::json::read_value<std::string>(path, "info.serial_number");
 
   //Depth modes
-  for(int i=0; i<sensor->vec_depth_mode.size(); i++){
-    std::string& depth_mode = sensor->vec_depth_mode[i];
+  for(int i=0; i<sensor->info.vec_depth_mode.size(); i++){
+    std::string& depth_mode = sensor->info.vec_depth_mode[i];
     utl::json::write_value(path, "depth_mode" + std::to_string(i), depth_mode);
   }
 

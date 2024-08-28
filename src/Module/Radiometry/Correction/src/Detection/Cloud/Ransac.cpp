@@ -71,7 +71,7 @@ void Ransac::reduce_search_space(std::shared_ptr<dat::base::Sensor> sensor){
   for(int i=0; i<vec_xyz.size(); i++){
     glm::vec3& xyz = vec_xyz[i];
     glm::vec3& Nxyz = vec_Nxyz[i];
-    float Is = sensor->buffer_ir[i];
+    float Is = sensor->info.buffer_ir[i];
 
     float distance = math::distance(xyz, pose);
 

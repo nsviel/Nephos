@@ -30,7 +30,7 @@ void Node::init(){
   //---------------------------
 
   node_kinect->init();
-  node_velodyne->init();
+  //node_velodyne->init();
   node_realsense->init();
 
   //---------------------------

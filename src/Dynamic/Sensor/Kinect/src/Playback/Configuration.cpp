@@ -52,7 +52,7 @@ void Configuration::find_configuration(std::shared_ptr<k4n::playback::Sensor> se
   //Device
   sensor->ir.config.enabled = configuration.ir_track_enabled;
   sensor->imu.config.enabled = configuration.imu_track_enabled;
-  sensor->playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->serial_number);
+  sensor->playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor->info.serial_number);
 
   //---------------------------
 }

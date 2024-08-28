@@ -20,6 +20,7 @@ public:
   void init();
   void capture();
   void display(rs2::frameset frames);
+  int get_nb_device();
 
 private:
   rlx::Structure* rlx_struct;

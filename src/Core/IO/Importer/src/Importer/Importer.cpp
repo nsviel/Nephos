@@ -2,6 +2,7 @@
 
 #include <IO/Importer/Namespace.h>
 #include <IO/Format/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
 

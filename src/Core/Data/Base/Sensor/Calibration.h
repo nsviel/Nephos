@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Data/Path.h>
+#include <Utility/Base/Plot/Axis.h>
 #include <string>
 #include <vector>
 

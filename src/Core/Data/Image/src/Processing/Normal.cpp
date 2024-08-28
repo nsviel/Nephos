@@ -120,21 +120,21 @@ void Normal::compute_normal_with_cov_img(std::shared_ptr<dat::base::Sensor> sens
     for(int x = 1; x < width - 1; ++x){
       // Check
       int idx = y * width + x;
-      uint16_t& depth_value = sensor->buffer_depth[idx];
+      uint16_t& depth_value = sensor->info.buffer_depth[idx];
       if(depth_value == 0) continue;
 
       // Compute dzdx using both +1 and +2 pixels
-      uint16_t& depth_1 = sensor->buffer_depth[idx + 1];
-      uint16_t& depth_2 = sensor->buffer_depth[idx - 1];
-      uint16_t& depth_3 = sensor->buffer_depth[idx + 2];
-      uint16_t& depth_4 = sensor->buffer_depth[idx - 2];
+      uint16_t& depth_1 = sensor->info.buffer_depth[idx + 1];
+      uint16_t& depth_2 = sensor->info.buffer_depth[idx - 1];
+      uint16_t& depth_3 = sensor->info.buffer_depth[idx + 2];
+      uint16_t& depth_4 = sensor->info.buffer_depth[idx - 2];
       float dzdx = (depth_1 - depth_2) / 2.0f + (depth_3 - depth_4) / 4.0f;
 
       // Compute dzdy using both +1 and +2 pixels
-      uint16_t& depth_5 = sensor->buffer_depth[(y + 1) * width + x];
-      uint16_t& depth_6 = sensor->buffer_depth[(y - 1) * width + x];
-      uint16_t& depth_7 = sensor->buffer_depth[(y + 2) * width + x];
-      uint16_t& depth_8 = sensor->buffer_depth[(y - 2) * width + x];
+      uint16_t& depth_5 = sensor->info.buffer_depth[(y + 1) * width + x];
+      uint16_t& depth_6 = sensor->info.buffer_depth[(y - 1) * width + x];
+      uint16_t& depth_7 = sensor->info.buffer_depth[(y + 2) * width + x];
+      uint16_t& depth_8 = sensor->info.buffer_depth[(y - 2) * width + x];
       float dzdy = (depth_5 - depth_6) / 2.0f + (depth_7 - depth_8) / 4.0f;
 
       // Create the gradient vector and normalize it to get the normal

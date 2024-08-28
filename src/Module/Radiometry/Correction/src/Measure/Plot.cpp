@@ -3,6 +3,7 @@
 #include <Radiometry/Correction/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Processing/Namespace.h>
+#include <Data/Namespace.h>
 #include <python/matplotlibcpp.h>
 
 

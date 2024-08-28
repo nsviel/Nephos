@@ -2,6 +2,7 @@
 
 #include <Processing/Namespace.h>
 #include <Core/Namespace.h>
+#include <Data/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -64,19 +65,19 @@ void Recorder::wait_thread(){
 void Recorder::compute_recording(std::shared_ptr<dat::base::Sensor> sensor){
   std::string path = sensor->data.path.build();
   //---------------------------
-
-  if(sensor->vec_recorder.size() == 1){
-    sensor->vec_recorder[0]->record_sensor(sensor, path);
+/*
+  if(sensor->info.vec_recorder.size() == 1){
+    sensor->info.vec_recorder[0]->record_sensor(sensor, path);
   }else{
-    for(int i=0; i<sensor->vec_recorder.size(); i++){
-      dat::base::Recorder* recorder = sensor->vec_recorder[i];
+    for(int i=0; i<sensor->info.vec_recorder.size(); i++){
+      dat::base::Recorder* recorder = sensor->info.vec_recorder[i];
 
       if(recorder->format == sensor->data.path.format){
         recorder->record_sensor(sensor, path);
       }
     }
   }
-
+*/
   //---------------------------
 }
 

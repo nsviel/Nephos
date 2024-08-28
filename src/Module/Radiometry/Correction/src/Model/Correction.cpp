@@ -59,7 +59,7 @@ void Correction::make_correction(std::shared_ptr<dat::base::Sensor> sensor, std:
 
       //Get parameters
       float I_cor = 0;
-      float I_raw = sensor->buffer_ir[idx];
+      float I_raw = sensor->info.buffer_ir[idx];
 
       //If to prevent correction of image borders
       if(I_raw != 0){

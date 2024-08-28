@@ -2,6 +2,7 @@
 
 #include <IO/Exporter/Namespace.h>
 #include <IO/Format/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace io::exp{
@@ -114,7 +115,7 @@ bool Exporter::is_recording(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
-  if(sensor && sensor->vec_recorder.size() != 0){
+  if(sensor && sensor->info.vec_recorder.size() != 0){
     return true;
   }
 

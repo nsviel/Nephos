@@ -9,12 +9,12 @@ namespace k4n::base{
 Sensor::Sensor(){
   //---------------------------
 
-  this->device_name = "kinect";
+  this->info.model = "kinect";
   this->data.topology.type = utl::topology::POINT;
   this->data.nb_data_max = 10000000;
-  this->depth_mode = "NFOV";
-  this->vec_depth_mode.push_back("NFOV");
-  this->vec_depth_mode.push_back("WFOV");
+  this->info.depth_mode = "NFOV";
+  this->info.vec_depth_mode.push_back("NFOV");
+  this->info.vec_depth_mode.push_back("WFOV");
   this->calibration.path.insert("../media/calibration/kinect.json");
 
   //---------------------------

@@ -6,6 +6,7 @@
 #include <string>
 
 namespace k4n::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace k4n::capture{

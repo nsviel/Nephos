@@ -22,8 +22,10 @@ Capture::~Capture(){}
 void Capture::init(){
   //---------------------------
 
-  // Start streaming with default settings
-  //rlx_struct->pipe.start();
+  int nb_device = get_nb_device();
+  if(nb_device != 0){
+    rlx_struct->pipe.start();
+  }
 
   //---------------------------
 }
@@ -31,11 +33,20 @@ void Capture::capture(){
   //---------------------------
 
   // Wait for the next set of frames from the camera
-  //rs2::frameset frames = rlx_struct->pipe.wait_for_frames();
+  rs2::frameset frames = rlx_struct->pipe.wait_for_frames();
 
-  //this->display();
+  // If successful, process and display the frames
+  this->display(frames);
 
   //---------------------------
+}
+int Capture::get_nb_device(){
+  //---------------------------
+
+  rs2::device_list devices = rlx_struct->context.query_devices(); // Get number of connected devices
+
+  //---------------------------
+  return devices.size();
 }
 void Capture::display(rs2::frameset frames){
   //---------------------------

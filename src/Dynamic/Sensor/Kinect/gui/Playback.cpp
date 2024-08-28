@@ -93,7 +93,7 @@ void Playback::show_info_device(std::shared_ptr<k4n::playback::Sensor> sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Device S/N"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->serial_number.c_str());
+  ImGui::TextColored(color, "%s", sensor->info.serial_number.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("IMU enabled"); ImGui::TableNextColumn();

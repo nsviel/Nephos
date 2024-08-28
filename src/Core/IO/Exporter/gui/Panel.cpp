@@ -80,7 +80,7 @@ void Panel::item_filtering(std::vector<std::string>& vec_path){
 
   //If dynamic object
   auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
-  if(sensor && sensor->vec_recorder.size() != 0){
+  if(sensor && sensor->info.vec_recorder.size() != 0){
     gui_recorder->item_filtering(vec_path);
   }
   //Else, it's static object

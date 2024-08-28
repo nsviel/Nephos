@@ -63,7 +63,7 @@ void Capture::show_list_device(std::shared_ptr<dat::base::Set> set){
     ImGui::TableHeadersRow();
     for(auto& entity : set->list_entity){
       if (auto sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(entity)) {
-        ImGui::PushID(sensor->serial_number.c_str());
+        ImGui::PushID(sensor->info.serial_number.c_str());
 
         //Sensor type
         ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -75,7 +75,7 @@ void Capture::show_list_device(std::shared_ptr<dat::base::Set> set){
 
         //Sensor serial number
         ImGui::TableNextColumn();
-        ImGui::Text("%s", sensor->serial_number.c_str());
+        ImGui::Text("%s", sensor->info.serial_number.c_str());
 
         //Sensor capture or not
         ImGui::TableNextColumn();

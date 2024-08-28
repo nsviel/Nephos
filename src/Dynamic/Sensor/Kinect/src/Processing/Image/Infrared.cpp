@@ -51,7 +51,7 @@ void Infrared::retrieve_data(std::shared_ptr<k4n::base::Sensor> sensor){
   sensor->ir.data.size = ir.get_size();
   sensor->ir.data.format = retrieve_format(ir.get_format());
   sensor->ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
-  type::uint8_to_vec_uint16(sensor->ir.data.buffer, sensor->ir.data.size, sensor->buffer_ir);
+  type::uint8_to_vec_uint16(sensor->ir.data.buffer, sensor->ir.data.size, sensor->info.buffer_ir);
 
   //---------------------------
 }

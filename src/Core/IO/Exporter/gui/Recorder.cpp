@@ -163,8 +163,8 @@ void Recorder::item_update(std::shared_ptr<dat::base::Sensor> sensor){
     io_struct->path.name = sensor->name;
 
     this->vec_format.clear();
-    for(int i=0; i<sensor->vec_recorder.size(); i++){
-      this->vec_format.push_back(sensor->vec_recorder[i]->format);
+    for(int i=0; i<sensor->info.vec_recorder.size(); i++){
+      this->vec_format.push_back(sensor->info.vec_recorder[i]->format);
     }
   }
 
