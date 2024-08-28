@@ -27,11 +27,11 @@ Operation::Operation(dyn::prc::Node* node_processing){
 Operation::~Operation(){}
 
 //Main function
-void Operation::run_operation(std::shared_ptr<dat::base::Sensor> sensor){
+void Operation::run_operation(dat::base::Sensor& sensor){
   //---------------------------
 
-  dyn_recorder->start_thread(sensor);
-  dyn_normal->start_thread(sensor);
+  //dyn_recorder->start_thread(sensor);
+  //dyn_normal->start_thread(sensor);
   //dyn_radio->start_thread(sensor);
 
   //The troutine pose probleme, is faut qu'il soit dédié à un sensor
@@ -39,9 +39,7 @@ void Operation::run_operation(std::shared_ptr<dat::base::Sensor> sensor){
   //Du coup 2 playback = laggs
   //atr_color->start_task(sensor);
 
-  std::shared_ptr<dat::base::Entity> entity = std::dynamic_pointer_cast<dat::base::Entity>(sensor);
-  atr_color->make_colorization(entity);
-
+  atr_color->make_colorization(sensor);
 
   //---------------------------
 }

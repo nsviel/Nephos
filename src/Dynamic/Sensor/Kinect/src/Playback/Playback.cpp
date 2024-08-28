@@ -23,6 +23,7 @@ void Playback::init_playback(k4n::playback::Sensor& sensor){
   sensor.name = sensor.data.path.name;
   sensor.data.name = sensor.data.path.name;
   sensor.data.path.format = sensor.data.path.format;
+  sensor.device.capture = std::make_shared<k4a::capture>();
 
   //Init playback object
   std::string path = sensor.data.path.build();

@@ -23,50 +23,50 @@ Color::Color(k4n::Node* node_k4n){
 Color::~Color(){}
 
 //Main function
-void Color::extract_data(std::shared_ptr<k4n::base::Sensor> sensor){
+void Color::extract_data(k4n::base::Sensor& sensor){
   //---------------------------
 
   this->retrieve_data(sensor);
   this->retrieve_image(sensor);
 
   //Current timestamp
-  sensor->timestamp.current = sensor->color.data.timestamp;
+  sensor.timestamp.current = sensor.color.data.timestamp;
 
   //---------------------------
 }
 
 //Data function
-void Color::retrieve_data(std::shared_ptr<k4n::base::Sensor> sensor){
+void Color::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 
   //Get k4a image
-  k4a::image color = sensor->device.capture->get_color_image();
+  k4a::image color = sensor.device.capture->get_color_image();
   if(!color.is_valid()) return;
 
   //Data
-  sensor->color.data.name = "color";
-  sensor->color.data.k4a_image = color;
-  sensor->color.data.size = color.get_size();
-  sensor->color.data.width = color.get_width_pixels();
-  sensor->color.data.height = color.get_height_pixels();
-  sensor->color.data.buffer = color.get_buffer();
-  sensor->color.data.format = retrieve_format(color.get_format());
-  sensor->color.data.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
+  sensor.color.data.name = "color";
+  sensor.color.data.k4a_image = color;
+  sensor.color.data.size = color.get_size();
+  sensor.color.data.width = color.get_width_pixels();
+  sensor.color.data.height = color.get_height_pixels();
+  sensor.color.data.buffer = color.get_buffer();
+  sensor.color.data.format = retrieve_format(color.get_format());
+  sensor.color.data.timestamp = static_cast<float>(color.get_device_timestamp().count() / 1000000.0f);
 
   //---------------------------
 }
-void Color::retrieve_image(std::shared_ptr<k4n::base::Sensor> sensor){
+void Color::retrieve_image(k4n::base::Sensor& sensor){
   //---------------------------
 
   //Image
-  sensor->color.image.name = "Color";
-  sensor->color.image.data = std::vector<uint8_t>(sensor->color.data.buffer, sensor->color.data.buffer + sensor->color.data.size);
-  sensor->color.image.size = sensor->color.image.data.size();
-  sensor->color.image.width = sensor->color.data.width;
-  sensor->color.image.height = sensor->color.data.height;
-  sensor->color.image.format = sensor->color.data.format;
-  sensor->color.image.timestamp = sensor->color.data.timestamp;
-  dat_image->add_image(sensor, std::make_shared<utl::media::Image>(sensor->color.image));
+  sensor.color.image.name = "Color";
+  sensor.color.image.data = std::vector<uint8_t>(sensor.color.data.buffer, sensor.color.data.buffer + sensor.color.data.size);
+  sensor.color.image.size = sensor.color.image.data.size();
+  sensor.color.image.width = sensor.color.data.width;
+  sensor.color.image.height = sensor.color.data.height;
+  sensor.color.image.format = sensor.color.data.format;
+  sensor.color.image.timestamp = sensor.color.data.timestamp;
+  dat_image->add_image(sensor, std::make_shared<utl::media::Image>(sensor.color.image));
 
   //---------------------------
 }
@@ -106,17 +106,17 @@ uint8_t* Color::retrieve_bgra_from_yuy2(const uint8_t* yuy2Image, int width, int
   uint8_t* bgrImage = new uint8_t[width * height * 3];
   //---------------------------
 
-  /*if(sensor->color.data.format == "YUY2"){
-    sensor->color.data.k4a_image = k4a::image::create_from_buffer(
+  /*if(sensor.color.data.format == "YUY2"){
+    sensor.color.data.k4a_image = k4a::image::create_from_buffer(
       K4A_IMAGE_FORMAT_COLOR_BGRA32,
-      sensor->ir.data.width,
-      sensor->ir.data.height,
-      sensor->ir.data.width * static_cast<int>(sizeof(uint32_t)),
-      retrieve_bgra_from_yuy2(sensor->color.data.buffer, sensor->ir.data.width, sensor->ir.data.height),
-      sensor->ir.data.width * sensor->ir.data.height * 3,
+      sensor.ir.data.width,
+      sensor.ir.data.height,
+      sensor.ir.data.width * static_cast<int>(sizeof(uint32_t)),
+      retrieve_bgra_from_yuy2(sensor.color.data.buffer, sensor.ir.data.width, sensor.ir.data.height),
+      sensor.ir.data.width * sensor.ir.data.height * 3,
       nullptr,
       nullptr);
-    sensor->color.data.format = "B8G8R8A8_SRGB";
+    sensor.color.data.format = "B8G8R8A8_SRGB";
   }*/
 
   for(int i = 0; i < width * height; i += 2){

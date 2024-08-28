@@ -22,10 +22,10 @@ public:
 
 public:
   //Main function
-  void make_transformation(std::shared_ptr<k4n::base::Sensor> sensor);
+  void make_transformation(k4n::base::Sensor& sensor);
 
   //Subfunction
-  void find_depth_to_color(std::shared_ptr<k4n::base::Sensor> sensor);
+  void find_depth_to_color(k4n::base::Sensor& sensor);
 
 private:
 

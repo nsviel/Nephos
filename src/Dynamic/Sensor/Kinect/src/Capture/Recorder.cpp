@@ -67,7 +67,7 @@ void Recorder::export_start(std::shared_ptr<k4n::base::Sensor> sensor, std::stri
 }
 void Recorder::export_record(std::shared_ptr<k4n::base::Sensor> sensor, std::string path){
   //---------------------------
-
+/*
   //Record capture
   k4a::capture* capture = sensor->device.capture;
   k4a::record& recorder = sensor->device.recorder;
@@ -76,7 +76,7 @@ void Recorder::export_record(std::shared_ptr<k4n::base::Sensor> sensor, std::str
   //Set info
   this->size = utl::file::size(path);
   sensor->timestamp.record = sensor->timestamp.current - ts_beg;
-
+*/
   //---------------------------
 }
 void Recorder::export_stop(std::shared_ptr<k4n::base::Sensor> sensor){

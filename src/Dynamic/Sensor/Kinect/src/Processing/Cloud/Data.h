@@ -26,18 +26,18 @@ public:
 
 public:
   //Main function
-  void extract_data(std::shared_ptr<k4n::base::Sensor> sensor);
+  void extract_data(k4n::base::Sensor& sensor);
 
   //Subfunction
-  bool check_condition(std::shared_ptr<k4n::base::Sensor> sensor);
-  void extraction_init(std::shared_ptr<k4n::base::Sensor> sensor);
-  void extraction_data(std::shared_ptr<k4n::base::Sensor> sensor);
-  void extraction_transfer(std::shared_ptr<k4n::base::Sensor> sensor);
+  bool check_condition(k4n::base::Sensor& sensor);
+  void extraction_init(k4n::base::Sensor& sensor);
+  void extraction_data(k4n::base::Sensor& sensor);
+  void extraction_transfer(k4n::base::Sensor& sensor);
 
   //Data function
-  void retrieve_location(std::shared_ptr<k4n::base::Sensor> sensor, int i);
-  void retrieve_color(std::shared_ptr<k4n::base::Sensor> sensor, int i);
-  void retrieve_ir(std::shared_ptr<k4n::base::Sensor> sensor, int i);
+  void retrieve_location(k4n::base::Sensor& sensor, int i);
+  void retrieve_color(k4n::base::Sensor& sensor, int i);
+  void retrieve_ir(k4n::base::Sensor& sensor, int i);
 
 private:
   k4n::Structure* k4n_struct;

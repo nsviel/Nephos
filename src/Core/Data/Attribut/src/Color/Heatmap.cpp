@@ -18,8 +18,8 @@ Heatmap::Heatmap(dat::atr::Node* node_attribut){
 Heatmap::~Heatmap(){}
 
 //Main function
-void Heatmap::colorization_heatmap(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+void Heatmap::colorization_heatmap(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
   //---------------------------
 
   //Normalization

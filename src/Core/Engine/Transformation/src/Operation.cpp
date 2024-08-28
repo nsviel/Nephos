@@ -125,7 +125,7 @@ void Operation::center_object(std::shared_ptr<dat::base::Entity> entity, glm::ve
   //---------------------------
 
   utl::base::Pose& pose = entity->pose;
-  atr_location->compute_MinMax(entity);
+  atr_location->compute_MinMax(*entity);
   trf_transform->make_translation(pose, glm::vec3(-pose.COM.x, -pose.COM.y, 0));
 
   //---------------------------
@@ -135,7 +135,7 @@ void Operation::elevate_object(std::shared_ptr<dat::base::Entity> entity, glm::v
   //---------------------------
 
   utl::base::Pose& pose = entity->pose;
-  atr_location->compute_MinMax(entity);
+  atr_location->compute_MinMax(*entity);
   trf_transform->make_translation(pose, glm::vec3(0, 0, -min.z));
 
   //---------------------------
@@ -145,7 +145,7 @@ void Operation::make_rotation_X_90d(std::shared_ptr<dat::base::Entity> entity, i
   //---------------------------
 
   utl::base::Pose& pose = entity->pose;
-  atr_location->compute_MinMax(entity);
+  atr_location->compute_MinMax(*entity);
   trf_transform->make_rotation_axe_X(pose, value * 90);
   this->elevate_object(entity, pose.min);
 

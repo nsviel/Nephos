@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Kinect/src/Utils/Sensor.h>
+#include <memory>
 
 namespace k4n{class Node;}
 namespace k4n{class Processing;}
@@ -27,8 +28,7 @@ public:
   void thread_end();
 
   //Subfunction
-  k4a::capture* manage_new_capture();
-  void manage_old_capture(k4a::capture* capture);
+  void manage_capture();
   void manage_pause();
   void manage_query(float ts_querry);
   void gui_config();

@@ -24,7 +24,7 @@ Data::Data(k4n::Node* node_k4n){
 Data::~Data(){}
 
 //Main function
-void Data::extract_data(std::shared_ptr<k4n::base::Sensor> sensor){
+void Data::extract_data(k4n::base::Sensor& sensor){
   //---------------------------
 
   this->extract_image_data(sensor);
@@ -34,8 +34,8 @@ void Data::extract_data(std::shared_ptr<k4n::base::Sensor> sensor){
 }
 
 //Subfunction
-void Data::extract_image_data(std::shared_ptr<k4n::base::Sensor> sensor){
-  prf::monitor::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::image");
+void Data::extract_image_data(k4n::base::Sensor& sensor){
+  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("kinect::image");
   //---------------------------
 
   tasker->loop();
@@ -57,8 +57,8 @@ void Data::extract_image_data(std::shared_ptr<k4n::base::Sensor> sensor){
 
   //---------------------------
 }
-void Data::make_transformation(std::shared_ptr<k4n::base::Sensor> sensor){
-  prf::monitor::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::image");
+void Data::make_transformation(k4n::base::Sensor& sensor){
+  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("kinect::image");
   //---------------------------
 
   tasker->task_begin("transformation");

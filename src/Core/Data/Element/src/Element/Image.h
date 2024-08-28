@@ -21,13 +21,13 @@ public:
 
 public:
   //Main function
-  void add_image(std::shared_ptr<dat::base::Entity> entity, std::shared_ptr<utl::media::Image> image);
+  void add_image(dat::base::Entity& entityy, std::shared_ptr<utl::media::Image> image);
   void manage_UID(std::shared_ptr<utl::media::Image> image);
 
   //Subfunction
-  bool has_image_UID(std::shared_ptr<dat::base::Entity> entity, int UID);
-  std::shared_ptr<utl::media::Image> get_image(const std::shared_ptr<dat::base::Entity> entity, std::string name);
-  std::shared_ptr<utl::media::Image> get_or_create_image(const std::shared_ptr<dat::base::Entity> entity, std::string name);
+  bool has_image_UID(dat::base::Entity& entity, int UID);
+  std::shared_ptr<utl::media::Image> get_image(dat::base::Entity& entity, std::string name);
+  std::shared_ptr<utl::media::Image> get_or_create_image(dat::base::Entity& entity, std::string name);
 
 private:
   dat::elm::UID* dat_uid;

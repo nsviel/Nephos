@@ -42,12 +42,12 @@ void Color::make_colorization(const std::shared_ptr<dat::base::Set> set){
 
   //---------------------------
 }
-void Color::make_colorization(const std::shared_ptr<dat::base::Entity> entity){
+void Color::make_colorization(dat::base::Entity& entity){
   //---------------------------
 
   //Check color vector
-  if(entity->data.rgba.size() != entity->data.xyz.size()){
-    entity->data.rgba = std::vector<glm::vec4>(entity->data.xyz.size(), glm::vec4(0.0f));
+  if(entity.data.rgba.size() != entity.data.xyz.size()){
+    entity.data.rgba = std::vector<glm::vec4>(entity.data.xyz.size(), glm::vec4(0.0f));
   }
 
   //Apply colorization
@@ -79,14 +79,14 @@ void Color::make_colorization(const std::shared_ptr<dat::base::Entity> entity){
   }
 
   //Mark entity as need update
-  entity->data.is_updated = true;
+  entity.data.is_updated = true;
 
   //---------------------------
 }
 
 //Subfunction
-void Color::colorization_rgb(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+void Color::colorization_rgb(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
   //---------------------------
 
   for(int i=0; i<data.rgb.size(); i++){
@@ -96,17 +96,17 @@ void Color::colorization_rgb(std::shared_ptr<dat::base::Entity> entity){
 
   //---------------------------
 }
-void Color::colorization_unicolor(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+void Color::colorization_unicolor(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
   //---------------------------
 
   data.rgba = std::vector<glm::vec4>(data.rgba.size(), atr_struct->color.unicolor);
 
   //---------------------------
 }
-void Color::colorization_normal(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
-  utl::base::Pose& pose = entity->pose;
+void Color::colorization_normal(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
+  utl::base::Pose& pose = entity.pose;
   //---------------------------
 
   std::vector<glm::vec3>& Nxyz = data.Nxyz;
@@ -125,8 +125,8 @@ void Color::colorization_normal(std::shared_ptr<dat::base::Entity> entity){
 
   //---------------------------
 }
-void Color::colorization_field(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+void Color::colorization_field(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
   //---------------------------
 
   //Normalization
@@ -142,8 +142,8 @@ void Color::colorization_field(std::shared_ptr<dat::base::Entity> entity){
 
   //---------------------------
 }
-void Color::colorization_structure(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+void Color::colorization_structure(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
   //---------------------------
 
   // Define a color gradient from red to blue

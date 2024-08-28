@@ -23,11 +23,11 @@ Data::Data(k4n::Node* node_k4n){
 Data::~Data(){}
 
 //Main function
-void Data::extract_data(std::shared_ptr<k4n::base::Sensor> sensor){
+void Data::extract_data(k4n::base::Sensor& sensor){
   if(check_condition(sensor) == false) return;
   //---------------------------
 
-  prf::monitor::Tasker* tasker = sensor->profiler.fetch_tasker("kinect::cloud");
+  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("kinect::cloud");
 
   tasker->loop();
 
@@ -52,48 +52,48 @@ void Data::extract_data(std::shared_ptr<k4n::base::Sensor> sensor){
 }
 
 //Subfunction
-bool Data::check_condition(std::shared_ptr<k4n::base::Sensor> sensor){
+bool Data::check_condition(k4n::base::Sensor& sensor){
   //---------------------------
 
-  if(!sensor->depth.data.k4a_image.is_valid()) return false;
-  if(!sensor->ir.data.k4a_image.is_valid()) return false;
-  if(sensor->color.data.buffer == nullptr) return false;
-  if(sensor->color.data.size != sensor->depth.data.size * 2) return false;
+  if(!sensor.depth.data.k4a_image.is_valid()) return false;
+  if(!sensor.ir.data.k4a_image.is_valid()) return false;
+  if(sensor.color.data.buffer == nullptr) return false;
+  if(sensor.color.data.size != sensor.depth.data.size * 2) return false;
 
   //---------------------------
   return true;
 }
-void Data::extraction_init(std::shared_ptr<k4n::base::Sensor> sensor){
+void Data::extraction_init(k4n::base::Sensor& sensor){
   //---------------------------
 
   //Create cloud image
   k4a::image cloud_image = k4a::image::create(
     K4A_IMAGE_FORMAT_CUSTOM,
-    sensor->depth.data.width,
-    sensor->depth.data.height,
-    sensor->depth.data.width * sizeof(int16_t) * 3
+    sensor.depth.data.width,
+    sensor.depth.data.height,
+    sensor.depth.data.width * sizeof(int16_t) * 3
   );
 
   //Transform depth into cloud
-  sensor->device.transformation.depth_image_to_point_cloud(sensor->depth.data.k4a_image, sensor->cloud.calibration_type, &cloud_image);
-  sensor->cloud.buffer = cloud_image.get_buffer();
-  sensor->cloud.size = cloud_image.get_size() / (3 * sizeof(int16_t));
+  sensor.device.transformation.depth_image_to_point_cloud(sensor.depth.data.k4a_image, sensor.cloud.calibration_type, &cloud_image);
+  sensor.cloud.buffer = cloud_image.get_buffer();
+  sensor.cloud.size = cloud_image.get_size() / (3 * sizeof(int16_t));
 
   //Resize vectors
-  buffer.xyz.resize(sensor->cloud.size);
-  buffer.rgb.resize(sensor->cloud.size);
-  buffer.rgba.resize(sensor->cloud.size);
-  buffer.Is.resize(sensor->cloud.size);
-  buffer.R.resize(sensor->cloud.size);
+  buffer.xyz.resize(sensor.cloud.size);
+  buffer.rgb.resize(sensor.cloud.size);
+  buffer.rgba.resize(sensor.cloud.size);
+  buffer.Is.resize(sensor.cloud.size);
+  buffer.R.resize(sensor.cloud.size);
 
   //---------------------------
 }
-void Data::extraction_data(std::shared_ptr<k4n::base::Sensor> sensor){
+void Data::extraction_data(k4n::base::Sensor& sensor){
   //---------------------------
 
   //Fille vector with data
   #pragma omp parallel for
-  for(int i=0; i<sensor->cloud.size; i++){
+  for(int i=0; i<sensor.cloud.size; i++){
     this->retrieve_location(sensor, i);
     this->retrieve_color(sensor, i);
     this->retrieve_ir(sensor, i);
@@ -101,8 +101,8 @@ void Data::extraction_data(std::shared_ptr<k4n::base::Sensor> sensor){
 
   //---------------------------
 }
-void Data::extraction_transfer(std::shared_ptr<k4n::base::Sensor> sensor){
-  utl::base::Data& data = sensor->data;
+void Data::extraction_transfer(k4n::base::Sensor& sensor){
+  utl::base::Data& data = sensor.data;
   //---------------------------
 
   std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
@@ -116,16 +116,16 @@ void Data::extraction_transfer(std::shared_ptr<k4n::base::Sensor> sensor){
   vec_R = buffer.R;
 
   //Info
-  data.size = sensor->cloud.size;
-  data.width = sensor->cloud.width;
-  data.height = sensor->cloud.height;
+  data.size = sensor.cloud.size;
+  data.width = sensor.cloud.width;
+  data.height = sensor.cloud.height;
 
   //---------------------------
 }
 
 //Data function
-void Data::retrieve_location(std::shared_ptr<k4n::base::Sensor> sensor, int i){
-  const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor->cloud.buffer);
+void Data::retrieve_location(k4n::base::Sensor& sensor, int i){
+  const int16_t* buffer_depth = reinterpret_cast<int16_t*>(sensor.cloud.buffer);
   //---------------------------
 
   //Raw values
@@ -149,8 +149,8 @@ void Data::retrieve_location(std::shared_ptr<k4n::base::Sensor> sensor, int i){
 
   //---------------------------
 }
-void Data::retrieve_color(std::shared_ptr<k4n::base::Sensor> sensor, int i){
-  const uint8_t* buffer_color = sensor->color.data.buffer;
+void Data::retrieve_color(k4n::base::Sensor& sensor, int i){
+  const uint8_t* buffer_color = sensor.color.data.buffer;
   //---------------------------
 
   //Raw values
@@ -165,8 +165,8 @@ void Data::retrieve_color(std::shared_ptr<k4n::base::Sensor> sensor, int i){
 
   //---------------------------
 }
-void Data::retrieve_ir(std::shared_ptr<k4n::base::Sensor> sensor, int i){
-  const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor->ir.data.buffer);
+void Data::retrieve_ir(k4n::base::Sensor& sensor, int i){
+  const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor.ir.data.buffer);
   //---------------------------
 
   //Raw values

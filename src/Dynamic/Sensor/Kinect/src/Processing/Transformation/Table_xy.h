@@ -25,8 +25,8 @@ public:
   void thread_function();
 
   //Subfunction
-  void table_color_to_depth(std::shared_ptr<k4n::base::Sensor> sensor);
-  void apply_map(std::shared_ptr<k4n::base::Sensor> sensor, int i);
+  void table_color_to_depth(k4n::base::Sensor& sensor);
+  void apply_map(k4n::base::Sensor& sensor, int i);
 
   using dyn::prc::thread::Job::start_thread;
 

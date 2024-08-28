@@ -17,8 +17,8 @@ Location::Location(){
 Location::~Location(){}
 
 //Main function
-void Location::compute_centroid(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+void Location::compute_centroid(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data.xyz;
@@ -69,12 +69,11 @@ void Location::compute_COM(std::shared_ptr<dat::base::Set> set){
   //---------------------------
   set->pose.COM = COM;
 }
-void Location::compute_COM(std::shared_ptr<dat::base::Entity> entity){
-  if(!entity) return;
+void Location::compute_COM(dat::base::Entity& entity){
   //---------------------------
 
-  utl::base::Data& data = entity->data;
-  utl::base::Pose& pose = entity->pose;
+  utl::base::Data& data = entity.data;
+  utl::base::Pose& pose = entity.pose;
 
   this->compute_centroid(entity);
 
@@ -93,14 +92,13 @@ void Location::compute_MinMax(std::shared_ptr<dat::base::Set> set){
 
   for(auto& entity : set->list_entity){
     utl::base::Pose& pose = entity->pose;
-    this->compute_MinMax(entity);
+    this->compute_MinMax(*entity);
 
     for(int j=0; j<3; j++){
       if(pose.min[j] <= min[j]) min[j] = pose.min[j];
       if(pose.max[j] >= max[j]) max[j] = pose.max[j];
       centroid[j] += pose.COM[j];
     }
-
   }
 
   for(int j=0;j<3;j++){
@@ -112,9 +110,9 @@ void Location::compute_MinMax(std::shared_ptr<dat::base::Set> set){
   set->pose.max = max;
   set->pose.COM = centroid;
 }
-void Location::compute_MinMax(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
-  utl::base::Pose& pose = entity->pose;
+void Location::compute_MinMax(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
+  utl::base::Pose& pose = entity.pose;
   //---------------------------
 
   std::vector<glm::vec3>& XYZ = data.xyz;
@@ -144,9 +142,9 @@ void Location::compute_MinMax(std::shared_ptr<dat::base::Entity> entity){
   pose.max = max;
   pose.COM = centroid;
 }
-void Location::compute_height(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
-  utl::base::Pose& pose = entity->pose;
+void Location::compute_height(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
+  utl::base::Pose& pose = entity.pose;
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data.xyz;
@@ -163,8 +161,8 @@ void Location::compute_height(std::shared_ptr<dat::base::Entity> entity){
 
   //---------------------------
 }
-void Location::compute_range(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+void Location::compute_range(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data.xyz;
@@ -180,8 +178,8 @@ void Location::compute_range(std::shared_ptr<dat::base::Entity> entity){
 
   //---------------------------
 }
-void Location::compute_incidence_angle(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+void Location::compute_incidence_angle(dat::base::Entity& entity){
+  utl::base::Data& data = entity.data;
   //---------------------------
 
   std::vector<float>& It = atr_field->get_field_data(data, "It");

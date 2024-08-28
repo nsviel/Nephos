@@ -82,14 +82,14 @@ void Normal::compute_normal(std::shared_ptr<dat::base::Sensor> sensor){
   atr_normal->set_knn(dyn_struct->operation.normal.knn);
   atr_normal->compute_normal(sensor->data);
   dyn_struct->operation.normal.time = atr_normal->get_time();
-  atr_location->compute_incidence_angle(sensor);
+  atr_location->compute_incidence_angle(*sensor);
 
   //---------------------------
 }
 void Normal::compute_image(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
-  std::shared_ptr<utl::media::Image> image = dat_image->get_or_create_image(sensor, "Normal");
+  std::shared_ptr<utl::media::Image> image = dat_image->get_or_create_image(*sensor, "Normal");
   image->timestamp = sensor->timestamp.current;
   img_converter->convert_normal_to_image(sensor->data, image);
 

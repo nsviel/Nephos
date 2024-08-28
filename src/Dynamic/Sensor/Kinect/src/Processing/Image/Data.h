@@ -23,11 +23,11 @@ public:
 
 public:
   //Main function
-  void extract_data(std::shared_ptr<k4n::base::Sensor> sensor);
+  void extract_data(k4n::base::Sensor& sensor);
 
   //Subfunction
-  void extract_image_data(std::shared_ptr<k4n::base::Sensor> sensor);
-  void make_transformation(std::shared_ptr<k4n::base::Sensor> sensor);
+  void extract_image_data(k4n::base::Sensor& sensor);
+  void make_transformation(k4n::base::Sensor& sensor);
 
 private:
   k4n::Structure* k4n_struct;

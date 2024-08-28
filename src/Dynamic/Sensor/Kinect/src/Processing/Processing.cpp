@@ -26,18 +26,18 @@ Processing::Processing(k4n::Node* node_k4n){
 Processing::~Processing(){}
 
 //Main function
-void Processing::start_thread(std::shared_ptr<k4n::base::Sensor> sensor){
+void Processing::start_thread(k4n::base::Sensor& sensor){
   //---------------------------
 
   this->thread_idle = false;
-  auto task_function = [this, sensor](){
+  auto task_function = [this, &sensor](){
     this->run_thread(sensor);
   };
   thread_pool->add_task(task_function);
 
   //---------------------------
 }
-void Processing::run_thread(std::shared_ptr<k4n::base::Sensor> sensor){
+void Processing::run_thread(k4n::base::Sensor& sensor){
   //---------------------------
 
   this->image_processing(sensor);
@@ -59,15 +59,15 @@ void Processing::wait_thread(){
 }
 
 //Subfunction
-void Processing::image_processing(std::shared_ptr<k4n::base::Sensor> sensor){
+void Processing::image_processing(k4n::base::Sensor& sensor){
   //---------------------------
 
   k4n_image->extract_data(sensor);
-  dyn_ope_image->start_thread(sensor);
+  //dyn_ope_image->start_thread(sensor);
 
   //---------------------------
 }
-void Processing::cloud_processing(std::shared_ptr<k4n::base::Sensor> sensor){
+void Processing::cloud_processing(k4n::base::Sensor& sensor){
   //---------------------------
 
   k4n_cloud->extract_data(sensor);

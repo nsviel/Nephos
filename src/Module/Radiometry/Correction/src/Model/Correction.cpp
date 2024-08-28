@@ -87,7 +87,7 @@ void Correction::make_correction(std::shared_ptr<dat::base::Sensor> sensor, std:
 void Correction::update_correction_image(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
-  std::shared_ptr<utl::media::Image> image = dat_image->get_or_create_image(sensor, "Correction");
+  std::shared_ptr<utl::media::Image> image = dat_image->get_or_create_image(*sensor, "Correction");
   image->name = "Correction";
   image->width = ir->width;
   image->height = ir->height;

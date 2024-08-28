@@ -17,13 +17,13 @@ Image::Image(dat::elm::Node* node_element){
 Image::~Image(){}
 
 //Main function
-void Image::add_image(std::shared_ptr<dat::base::Entity> entity, std::shared_ptr<utl::media::Image> image){
+void Image::add_image(dat::base::Entity& entity, std::shared_ptr<utl::media::Image> image){
   //----------------------------
 
   this->manage_UID(image);
   if(has_image_UID(entity, image->UID)) return;
   if(image->format == "") image->format = "R8G8B8A8_SRGB";
-  entity->list_image.push_back(image);
+  entity.list_image.push_back(image);
 
   //----------------------------
 }
@@ -38,38 +38,35 @@ void Image::manage_UID(std::shared_ptr<utl::media::Image> image){
 }
 
 //Subfunction
-bool Image::has_image_UID(std::shared_ptr<dat::base::Entity> entity, int UID){
+bool Image::has_image_UID(dat::base::Entity& entity, int UID){
   //----------------------------
 
   //Search for already existing image with same type
-  for(int i=0; i<entity->list_image.size(); i++){
-    std::shared_ptr<utl::media::Image> image = *next(entity->list_image.begin(), i);
+  for(auto& image : entity.list_image){
     if(image->UID == UID) return true;
   }
 
   //----------------------------
   return false;
 }
-std::shared_ptr<utl::media::Image> Image::get_image(const std::shared_ptr<dat::base::Entity> entity, std::string name){
+std::shared_ptr<utl::media::Image> Image::get_image(dat::base::Entity& entity, std::string name){
   if(name == "") return nullptr;
   //----------------------------
 
   //Search for already existing image with same type
-  for(int i=0; i<entity->list_image.size(); i++){
-    std::shared_ptr<utl::media::Image> image = *next(entity->list_image.begin(), i);
+  for(auto& image : entity.list_image){
     if(image->name == name) return image;
   }
 
   //----------------------------
   return nullptr;
 }
-std::shared_ptr<utl::media::Image> Image::get_or_create_image(const std::shared_ptr<dat::base::Entity> entity, std::string name){
+std::shared_ptr<utl::media::Image> Image::get_or_create_image(dat::base::Entity& entity, std::string name){
   if(name == "") return nullptr;
   //----------------------------
 
   //Search for already existing image with same type
-  for(int i=0; i<entity->list_image.size(); i++){
-    std::shared_ptr<utl::media::Image> image = *next(entity->list_image.begin(), i);
+  for(auto& image : entity.list_image){
     if(image->name == name) return image;
   }
 

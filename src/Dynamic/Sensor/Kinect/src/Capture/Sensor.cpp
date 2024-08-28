@@ -62,7 +62,7 @@ void Sensor::thread_loop(){
   //---------------------------
 
   tasker->loop();
-
+/*
   //Next capture
   tasker->task_begin("capture");
   k4a::capture* capture = manage_new_capture();
@@ -80,7 +80,7 @@ void Sensor::thread_loop(){
 
   //Loop sleeping
   this->manage_pause();
-
+*/
   //---------------------------
 }
 void Sensor::thread_end(){
@@ -107,7 +107,7 @@ k4a::capture* Sensor::manage_new_capture(){
 }
 void Sensor::manage_old_capture(k4a::capture* capture){
   //---------------------------
-
+/*
   // Add the new capture to the queue
   queue.push(capture);
 
@@ -120,7 +120,7 @@ void Sensor::manage_old_capture(k4a::capture* capture){
   }
 
   // Update the sensor parameter
-  this->device.capture = capture;
+  this->device.capture = capture;*/
 
   //---------------------------
 }

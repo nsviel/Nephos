@@ -23,7 +23,7 @@ public:
 
 public:
   //Main function
-  void run_operation(std::shared_ptr<dat::base::Sensor> sensor);
+  void run_operation(dat::base::Sensor& sensor);
   void wait_operation();
 
 private:

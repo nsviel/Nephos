@@ -54,18 +54,12 @@ void Sensor::thread_loop(){
 
   //Next capture
   //tasker->task_begin("capture");
-  k4a::capture* capture = manage_new_capture();
-  if(capture == nullptr) return;
+  this->manage_capture();
+  if(!device.capture) return;
   //tasker->task_end("capture");
 
-  //Wait previous threads to finish
-  //tasker->task_begin("wait");
-  this->manage_old_capture(capture);
-  //tasker->task_end("wait");
-
   //Run processing
-  std::shared_ptr<k4n::playback::Sensor> sensor = std::static_pointer_cast<k4n::playback::Sensor>(k4n::base::Sensor::shared_from_this());
-  k4n_processing->start_thread(sensor);
+  k4n_processing->start_thread(*this);
 
   //Loop sleeping
   this->manage_pause();
@@ -82,34 +76,16 @@ void Sensor::thread_end(){
 }
 
 //Subfunction
-k4a::capture* Sensor::manage_new_capture(){
+void Sensor::manage_capture(){
   //---------------------------
 
-  k4a::capture* capture = new k4a::capture();
-  bool capture_left = playback.get_next_capture(capture);
-  if(capture_left == false){
-    capture = nullptr;
+  //Capture data
+  bool ok = playback.get_next_capture(device.capture.get());
+
+  //Check capture
+  if(!ok){
+    device.capture.reset();
   }
-
-  //---------------------------
-  return capture;
-}
-void Sensor::manage_old_capture(k4a::capture* capture){
-  //---------------------------
-
-  // Add the new capture to the queue
-  queue.push(capture);
-
-  // Check if the queue size exceeds 5
-  k4n_processing->wait_thread();
-  if(queue.size() > 5){
-    // Delete the oldest capture
-    delete queue.front();
-    queue.pop();
-  }
-
-  // Update the sensor parameter
-  this->device.capture = capture;
 
   //---------------------------
 }

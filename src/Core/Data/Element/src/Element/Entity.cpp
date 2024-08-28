@@ -83,7 +83,7 @@ void Entity::update_data(std::shared_ptr<dat::base::Entity> entity){
     vk_data->insert(data, pose);
 
     //Update attribut
-    atr_location->compute_centroid(entity);
+    atr_location->compute_centroid(*entity);
 
     //Update own glyph pose
     for(auto& glyph : entity->list_glyph){
