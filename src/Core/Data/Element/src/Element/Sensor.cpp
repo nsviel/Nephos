@@ -22,17 +22,17 @@ Sensor::Sensor(dat::elm::Node* node_element){
 Sensor::~Sensor(){}
 
 //Main function
-void Sensor::init_sensor(std::shared_ptr<dat::base::Sensor> sensor){
+void Sensor::init_sensor(dat::base::Sensor& sensor){
   //---------------------------
 
-  prf_monitor->add_profiler(&sensor->profiler, sensor->name);
+  prf_monitor->add_profiler(&sensor.profiler, sensor.name);
 
   //---------------------------
 }
-void Sensor::remove_sensor(std::shared_ptr<dat::base::Sensor> sensor){
+void Sensor::remove_sensor(dat::base::Sensor& sensor){
   //---------------------------
 
-  prf_monitor->remove_profiler(&sensor->profiler);
+  prf_monitor->remove_profiler(&sensor.profiler);
 
   //---------------------------
 }

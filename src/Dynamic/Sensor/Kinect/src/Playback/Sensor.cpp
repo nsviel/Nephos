@@ -3,6 +3,7 @@
 #include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Data/Namespace.h>
 #include <Processing/Namespace.h>
 
 
@@ -13,18 +14,18 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   //---------------------------
 
   dyn::prc::Node* node_processing = node_k4n->get_node_processing();
+  dat::Node* node_data = node_k4n->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->k4n_processing = new k4n::Processing(node_k4n);
   this->k4n_config = new k4n::playback::Configuration(node_k4n);
   this->k4n_playback = new k4n::playback::Playback(node_k4n);
-  //this->dat_sensor = node_processing->get_dat_sensor();
+  this->dat_sensor = node_element->get_dat_sensor();
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 
   this->data.path = path;
 
   //---------------------------
-  //std::shared_ptr<k4n::playback::Sensor> sensor(this);
-  //dat_sensor->init_sensor(sensor);
 }
 Sensor::~Sensor(){
   //---------------------------
@@ -40,6 +41,7 @@ Sensor::~Sensor(){
 void Sensor::thread_init(){
   //---------------------------
 
+  dat_sensor->init_sensor(*this);
   k4n_playback->init_playback(*this);
   k4n_config->find_configuration(*this);
   k4n_config->find_calibration(*this);
@@ -47,16 +49,16 @@ void Sensor::thread_init(){
   //---------------------------
 }
 void Sensor::thread_loop(){
-  //prf::monitor::Tasker* tasker = profiler.fetch_tasker("kinect::loop");
+  prf::monitor::Tasker* tasker = profiler.fetch_tasker("kinect::loop");
   //---------------------------
 
-  //tasker->loop(30);
+  tasker->loop(30);
 
   //Next capture
-  //tasker->task_begin("capture");
+  tasker->task_begin("capture");
   this->manage_capture();
   if(!device.capture) return;
-  //tasker->task_end("capture");
+  tasker->task_end("capture");
 
   //Run processing
   k4n_processing->start_thread(*this);

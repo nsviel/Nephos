@@ -19,8 +19,8 @@ public:
 
 public:
   //Main function
-  void init_sensor(std::shared_ptr<dat::base::Sensor> sensor);
-  void remove_sensor(std::shared_ptr<dat::base::Sensor> sensor);
+  void init_sensor(dat::base::Sensor& sensor);
+  void remove_sensor(dat::base::Sensor& sensor);
   bool is_dynamic(std::shared_ptr<utl::base::Element> element);
 
 private:
