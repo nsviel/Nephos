@@ -37,8 +37,8 @@ public:
 
   dat::ply::Structure* ply_struct;
   dat::ply::State* ply_state;
-  dat::base::Timestamp timestamp;
-  dat::base::State state;
+  dat::base::sensor::Timestamp timestamp;
+  dat::base::sensor::State state;
 };
 
 }

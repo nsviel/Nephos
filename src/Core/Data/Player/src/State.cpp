@@ -58,7 +58,7 @@ void State::manage_state(std::shared_ptr<dat::base::Set> set){
     auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
     if(sensor){
       sensor->state = ply_struct->state;
-      sensor->set_pause(ply_struct->state.pause);
+      sensor->pause(ply_struct->state.pause);
     }
   }
 

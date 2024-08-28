@@ -11,7 +11,7 @@ namespace dat::base{class Sensor;}
 
 namespace k4n::capture{
 
-class Recorder : public dat::base::Recorder
+class Recorder : public dat::base::sensor::Recorder
 {
 public:
   //Constructor / Destructor

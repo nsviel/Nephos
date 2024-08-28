@@ -40,7 +40,7 @@ void Model::clear_model(){
 
 //Subfunction
 void Model::build_model(std::shared_ptr<dat::base::Sensor> sensor){
-  dat::base::Model* model = get_model(sensor, "NFOV");
+  dat::base::sensor::Model* model = get_model(sensor, "NFOV");
   //---------------------------
 
   //Apply logarithmic scale
@@ -58,7 +58,7 @@ void Model::build_model(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 }
 void Model::update_model(std::shared_ptr<dat::base::Sensor> sensor){
-  dat::base::Model* model = get_model(sensor, "NFOV");
+  dat::base::sensor::Model* model = get_model(sensor, "NFOV");
   //---------------------------
 
   ope_surface->set_degree(model->degree_x, model->degree_y);
@@ -94,7 +94,7 @@ void Model::find_model_bound(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 }
 float Model::rmse_model(std::shared_ptr<dat::base::Sensor> sensor){
-  dat::base::Model* model = get_model(sensor, "NFOV");
+  dat::base::sensor::Model* model = get_model(sensor, "NFOV");
   if(!is_model_build(sensor)) return 0;
   //---------------------------
 
@@ -142,19 +142,19 @@ float Model::apply_model(float x, float y){
 }
 
 //Checker function
-dat::base::Model* Model::get_model(std::shared_ptr<dat::base::Sensor> sensor, std::string depth_mode){
+dat::base::sensor::Model* Model::get_model(std::shared_ptr<dat::base::Sensor> sensor, std::string depth_mode){
   //---------------------------
 
   //Search for model
   for(int i=0; i<sensor->calibration.vec_model.size(); i++){
-    dat::base::Model* model = &sensor->calibration.vec_model[i];
+    dat::base::sensor::Model* model = &sensor->calibration.vec_model[i];
     if(model->depth_mode == depth_mode){
       return model;
     }
   }
 
   //Else create it
-  dat::base::Model model;
+  dat::base::sensor::Model model;
   model.depth_mode = depth_mode;
   sensor->calibration.vec_model.push_back(model);
 
@@ -165,7 +165,7 @@ bool Model::is_model_build(std::shared_ptr<dat::base::Sensor> sensor){
   if(is_model_loaded(sensor) == false) return false;
   //---------------------------
 
-  dat::base::Model* model = get_model(sensor, "NFOV");
+  dat::base::sensor::Model* model = get_model(sensor, "NFOV");
   if(model->coefficient.size() == 0){
     return false;
   }else{

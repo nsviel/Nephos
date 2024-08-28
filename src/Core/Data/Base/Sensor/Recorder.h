@@ -4,7 +4,7 @@
 #include <string>
 
 
-namespace dat::base{
+namespace dat::base::sensor{
 
 struct Recorder{
   //---------------------------

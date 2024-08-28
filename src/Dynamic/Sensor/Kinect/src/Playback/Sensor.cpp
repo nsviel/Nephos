@@ -77,7 +77,7 @@ void Sensor::thread_loop(){
   //tasker->task_end("wait");
 
   //Run processing
-  std::shared_ptr<k4n::playback::Sensor> sensor = std::static_pointer_cast<k4n::playback::Sensor>(dat::base::Sensor::shared_from_this());
+  std::shared_ptr<k4n::playback::Sensor> sensor = std::static_pointer_cast<k4n::playback::Sensor>(k4n::base::Sensor::shared_from_this());
   k4n_processing->start_thread(sensor);
 
   //Loop sleeping

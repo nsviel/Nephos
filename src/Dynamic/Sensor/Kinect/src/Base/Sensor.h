@@ -4,9 +4,7 @@
 #include <Kinect/src/Structure/Namespace.h>
 #include <Kinect/src/Structure/Cloud.h>
 #include <Data/Namespace.h>
-#include <k4a/k4a.hpp>
-#include <k4arecord/record.hpp>
-#include <glm/glm.hpp>
+#include <Utility/Namespace.h>
 
 namespace k4n::device{class Structure;}
 namespace k4n::color{class Structure;}
@@ -17,7 +15,7 @@ namespace k4n::imu{class Structure;}
 
 namespace k4n::base{
 
-struct Sensor : public dat::base::Sensor{
+struct Sensor : public dat::base::Sensor, public sys::thread::Worker, public std::enable_shared_from_this<Sensor>{
   //---------------------------
 
   Sensor();

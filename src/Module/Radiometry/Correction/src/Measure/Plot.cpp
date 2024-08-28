@@ -83,7 +83,7 @@ void Plot::plot_measure(){
   //---------------------------
 }
 void Plot::update_plot_data(std::shared_ptr<dat::base::Sensor> sensor){
-  dat::base::Model* model = rad_model->get_model(sensor, "NFOV");
+  dat::base::sensor::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::cor::structure::Plot* plot = &rad_struct->plot;
   //---------------------------
 

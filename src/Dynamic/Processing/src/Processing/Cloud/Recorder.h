@@ -12,7 +12,7 @@ namespace sys::thread::task{class Pool;}
 
 namespace dyn::prc::cloud{
 
-class Recorder : public dat::base::Recorder
+class Recorder : public dat::base::sensor::Recorder
 {
 public:
   //Constructor / Destructor

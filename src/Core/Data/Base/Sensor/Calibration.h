@@ -6,7 +6,7 @@
 #include <vector>
 
 
-namespace dat::base{
+namespace dat::base::sensor{
 
 struct Model{
   //---------------------------
@@ -29,7 +29,7 @@ struct Calibration{
   //---------------------------
 
   utl::base::Path path;
-  std::vector<dat::base::Model> vec_model;
+  std::vector<dat::base::sensor::Model> vec_model;
 
   //---------------------------
 };

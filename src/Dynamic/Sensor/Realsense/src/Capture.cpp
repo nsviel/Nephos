@@ -31,13 +31,13 @@ void Capture::init(){
 }
 void Capture::capture(){
   //---------------------------
-
+/*
   // Wait for the next set of frames from the camera
   rs2::frameset frames = rlx_struct->pipe.wait_for_frames();
 
   // If successful, process and display the frames
   this->display(frames);
-
+*/
   //---------------------------
 }
 int Capture::get_nb_device(){

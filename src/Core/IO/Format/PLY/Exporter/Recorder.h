@@ -8,7 +8,7 @@ namespace utl::base{class Pose;}
 
 namespace fmt::ply{
 
-class Recorder : public dat::base::Recorder
+class Recorder : public dat::base::sensor::Recorder
 {
 public:
   //Constructor / Destructor
