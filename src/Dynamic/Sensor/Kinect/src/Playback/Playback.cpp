@@ -39,8 +39,8 @@ void Playback::init_playback(k4n::playback::Sensor& sensor){
 void Playback::find_timestamp(k4n::playback::Sensor& sensor){
   //---------------------------
 
-  sensor.timestamp.begin = find_mkv_ts_beg(path.build());
-  sensor.timestamp.end = find_mkv_ts_end(path.build());
+  sensor.timestamp.begin = find_mkv_ts_beg(sensor.data.path.build());
+  sensor.timestamp.end = find_mkv_ts_end(sensor.data.path.build());
   sensor.timestamp.duration = sensor.timestamp.end - sensor.timestamp.begin;
 
   //---------------------------

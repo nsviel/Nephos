@@ -82,7 +82,7 @@ void Sensor::manage_capture(){
   //---------------------------
 
   //Capture data
-  bool ok = device.playback.get_next_capture(device.data_capture.get());
+  bool ok = device.playback.get_next_capture(device.capture.get());
 
   //Check capture
   if(!ok){

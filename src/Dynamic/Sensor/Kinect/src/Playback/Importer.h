@@ -9,6 +9,7 @@ namespace dat::gph{class Graph;}
 namespace dat::elm{class Set;}
 namespace dat::elm{class Sensor;}
 namespace k4n::playback{class Configuration;}
+namespace k4n::playback{class Sensor;}
 
 
 namespace k4n::playback{

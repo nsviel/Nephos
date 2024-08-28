@@ -46,13 +46,13 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
 
 //Subfunction
 void Importer::manage_set_parent(k4n::playback::Sensor& sensor){
-  std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
   //---------------------------
 
-  //Check if already existing
+  //Get kinect set
+  std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
   std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
 
-  //If not, create it
+  //If it doesn't exists, create it
   if(!set){
     set = std::make_shared<dat::base::Set>();
     set->name = "kinect";
@@ -63,7 +63,7 @@ void Importer::manage_set_parent(k4n::playback::Sensor& sensor){
   }
 
   //Assign to sensor
-  sensor->set_parent = set;
+  sensor.set_parent = set;
 
   //---------------------------
 }
