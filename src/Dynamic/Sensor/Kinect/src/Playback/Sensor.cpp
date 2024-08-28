@@ -42,6 +42,7 @@ void Sensor::thread_init(){
 
   dat_sensor->init_sensor(*this);
   k4n_playback->init_playback(*this);
+  k4n_playback->find_timestamp(*this);
   k4n_config->find_configuration(*this);
   k4n_config->find_calibration(*this);
 
@@ -81,7 +82,7 @@ void Sensor::manage_capture(){
   //---------------------------
 
   //Capture data
-  bool ok = playback.get_next_capture(device.capture.get());
+  bool ok = device.playback.get_next_capture(device.data_capture.get());
 
   //Check capture
   if(!ok){
@@ -117,12 +118,12 @@ void Sensor::manage_query(float value){
   if(state.pause){
     state.pause = false;
     auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
-    playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    device.playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
     state.pause = true;
   }else{
     auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
-    playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    device.playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
   }
 
   //---------------------------

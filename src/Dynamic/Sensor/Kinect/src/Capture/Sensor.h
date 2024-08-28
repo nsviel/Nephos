@@ -36,8 +36,6 @@ private:
   k4n::capture::Capture* k4n_capture;
   k4n::gui::Capture* gui_capture;
   dat::elm::Sensor* dat_sensor;
-
-  std::queue<k4a::capture*> queue;
 };
 
 

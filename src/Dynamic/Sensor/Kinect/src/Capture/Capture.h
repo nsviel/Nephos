@@ -5,10 +5,10 @@
 
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
-namespace k4n::playback{class Sensor;}
+namespace k4n::capture{class Sensor;}
 
 
-namespace k4n::playback{
+namespace k4n::capture{
 
 class Capture
 {

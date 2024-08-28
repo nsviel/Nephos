@@ -25,9 +25,7 @@ public:
   std::shared_ptr<utl::base::Element> import(utl::base::Path path);
 
   //Subfunction
-  float find_mkv_ts_beg(std::string path);
-  float find_mkv_ts_end(std::string path);
-  std::shared_ptr<dat::base::Set> manage_set_parent();
+  void manage_set_parent(k4n::playback::Sensor& sensor);
 
 private:
   k4n::Node* node_k4n;

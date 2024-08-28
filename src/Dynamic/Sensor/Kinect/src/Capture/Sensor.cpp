@@ -83,6 +83,7 @@ void Sensor::manage_capture(){
 
   //Capture data
   bool ok = device.handle.get_capture(device.capture.get(), std::chrono::milliseconds(2000));
+  //va trop vite, il faut faire un system de capture et oublie
 
   //Check capture
   if(!ok){

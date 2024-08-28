@@ -22,27 +22,73 @@ void Playback::init_playback(k4n::playback::Sensor& sensor){
   //Set sensor info
   sensor.name = sensor.data.path.name;
   sensor.data.name = sensor.data.path.name;
-  sensor.data.path.format = sensor.data.path.format;
   sensor.device.capture = std::make_shared<k4a::capture>();
 
   //Init playback object
   std::string path = sensor.data.path.build();
   if(path == "") return;
-  sensor.playback = k4a::playback::open(path.c_str());
+  sensor.device.playback = k4a::playback::open(path.c_str());
 
   //Check validity
-  if(!sensor.playback){
+  if(!sensor.device.playback){
     std::cout<<"[error] Kinect sensor playback init"<<std::endl;
   }
+
+  //---------------------------
+}
+void Playback::find_timestamp(k4n::playback::Sensor& sensor){
+  //---------------------------
+
+  sensor.timestamp.begin = find_mkv_ts_beg(path.build());
+  sensor.timestamp.end = find_mkv_ts_end(path.build());
+  sensor.timestamp.duration = sensor.timestamp.end - sensor.timestamp.begin;
 
   //---------------------------
 }
 void Playback::close_playback(k4n::playback::Sensor& sensor){
   //---------------------------
 
-  sensor.playback.close();
+  sensor.device.playback.close();
 
   //---------------------------
+}
+
+//Subfunction
+float Playback::find_mkv_ts_beg(std::string path){
+  //---------------------------
+
+  k4a::playback playback = k4a::playback::open(path.c_str());;
+  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
+
+  k4a::capture capture;
+  k4a::image color = nullptr;
+  while(color == nullptr){
+    playback.get_next_capture(&capture);
+    color = capture.get_color_image();
+  }
+
+  float ts_beg = color.get_device_timestamp().count() / 1000000.0f;
+
+  //---------------------------
+  return ts_beg;
+}
+float Playback::find_mkv_ts_end(std::string path){
+  //---------------------------
+
+  k4a::playback playback = k4a::playback::open(path.c_str());;
+  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_END);
+
+  k4a::capture capture;
+  k4a::image color = nullptr;
+  while(color == nullptr){
+    playback.get_previous_capture(&capture);
+    color = capture.get_color_image();
+  }
+
+  float ts_end = color.get_device_timestamp().count() / 1000000.0f;
+
+  //---------------------------
+  return ts_end;
 }
 
 }

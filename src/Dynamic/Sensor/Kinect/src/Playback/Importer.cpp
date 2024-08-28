@@ -37,14 +37,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
 
   //Create sensor
   std::shared_ptr<k4n::playback::Sensor> sensor = std::make_shared<k4n::playback::Sensor>(node_k4n, path);
-  sensor->name = utl::path::get_name_from_path(path.build());
-  sensor->data.name = utl::path::get_name_from_path(path.build());
-  sensor->data.path.insert(path);
-  sensor->timestamp.begin = find_mkv_ts_beg(path.build());
-  sensor->timestamp.end = find_mkv_ts_end(path.build());
-  sensor->timestamp.duration = sensor->timestamp.end - sensor->timestamp.begin;
-  sensor->set_parent = manage_set_parent();
-
+  this->manage_set_parent(*sensor);
   sensor->start();
 
   //---------------------------
@@ -52,60 +45,27 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
 }
 
 //Subfunction
-float Importer::find_mkv_ts_beg(std::string path){
-  //---------------------------
-
-  k4a::playback playback = k4a::playback::open(path.c_str());;
-  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
-
-  k4a::capture capture;
-  k4a::image color = nullptr;
-  while(color == nullptr){
-    playback.get_next_capture(&capture);
-    color = capture.get_color_image();
-  }
-
-  float ts_beg = color.get_device_timestamp().count() / 1000000.0f;
-
-  //---------------------------
-  return ts_beg;
-}
-float Importer::find_mkv_ts_end(std::string path){
-  //---------------------------
-
-  k4a::playback playback = k4a::playback::open(path.c_str());;
-  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_END);
-
-  k4a::capture capture;
-  k4a::image color = nullptr;
-  while(color == nullptr){
-    playback.get_previous_capture(&capture);
-    color = capture.get_color_image();
-  }
-
-  float ts_end = color.get_device_timestamp().count() / 1000000.0f;
-
-  //---------------------------
-  return ts_end;
-}
-std::shared_ptr<dat::base::Set> Importer::manage_set_parent(){
+void Importer::manage_set_parent(k4n::playback::Sensor& sensor){
   std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
   //---------------------------
 
   //Check if already existing
   std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
-  if(set) return set;
 
-  //Create the set
-  set = std::make_shared<dat::base::Set>();
-  set->name = "kinect";
-  set->icon = ICON_FA_USER;
-  set->is_locked = false;
-  set->is_suppressible = true;
-  dat_set->add_subset(set_graph, set);
+  //If not, create it
+  if(!set){
+    set = std::make_shared<dat::base::Set>();
+    set->name = "kinect";
+    set->icon = ICON_FA_USER;
+    set->is_locked = false;
+    set->is_suppressible = true;
+    dat_set->add_subset(set_graph, set);
+  }
+
+  //Assign to sensor
+  sensor->set_parent = set;
 
   //---------------------------
-  return set;
 }
 
 }

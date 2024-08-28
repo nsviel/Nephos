@@ -20,7 +20,12 @@ public:
 public:
   //Main function
   void init_playback(k4n::playback::Sensor& sensor);
+  void find_timestamp(k4n::playback::Sensor& sensor);
   void close_playback(k4n::playback::Sensor& sensor);
+
+  //Subfunction
+  float find_mkv_ts_beg(std::string path);
+  float find_mkv_ts_end(std::string path);
 
 private:
   k4n::Structure* k4n_struct;

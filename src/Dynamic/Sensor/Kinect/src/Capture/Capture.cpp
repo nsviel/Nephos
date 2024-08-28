@@ -3,7 +3,7 @@
 #include <Kinect/Namespace.h>
 
 
-namespace k4n::playback{
+namespace k4n::capture{
 
 //Constructor / Destructor
 Capture::Capture(k4n::Node* node_k4n){
@@ -25,11 +25,12 @@ void Capture::init_device(k4n::capture::Sensor& sensor){
 
   //Get device info
   sensor.name = "capture_" + std::to_string(sensor.device.index);
-  sensor.data.name = name;
-  sensor.info.serial_number = device.handle.get_serialnum();
-  sensro.info.vec_recorder.push_back(new k4n::capture::Recorder());
-  sensor.device.version = device.handle.get_version();
-
+  sensor.data.name = sensor.name;
+  sensor.info.serial_number = sensor.device.handle.get_serialnum();
+  sensor.info.vec_recorder.push_back(new k4n::capture::Recorder());
+  sensor.device.version = sensor.device.handle.get_version();
+  sensor.device.capture = std::make_shared<k4a::capture>();
+  
   //---------------------------
 }
 void Capture::init_capture(k4n::capture::Sensor& sensor){

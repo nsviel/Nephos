@@ -58,7 +58,7 @@ void Init::load_entity(){
 
   //Create playback list
   io_struct->with_clearing = false;
-  io_importer->load_object(versaille_0, versaille_0_t);
+  //io_importer->load_object(versaille_0, versaille_0_t);
   //io_importer->load_object(versaille_2, versaille_2_t);
   //io_importer->load_object(cerfav);
   //io_importer->load_object(pts);
@@ -66,7 +66,7 @@ void Init::load_entity(){
   //io_importer->load_set(pcap);
   //io_importer->load_object(mire);
   //io_importer->load_object(cath);
-  //io_importer->load_object(dragon);
+  io_importer->load_object(dragon);
 
   /*
   io_importer->load_object(dragon);

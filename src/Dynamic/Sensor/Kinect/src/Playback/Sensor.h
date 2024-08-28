@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Kinect/src/Utils/Sensor.h>
-#include <memory>
 
 namespace k4n{class Node;}
 namespace k4n{class Processing;}
@@ -39,9 +38,6 @@ public:
   k4n::playback::Playback* k4n_playback;
   k4n::gui::Playback* gui_playback;
   dat::elm::Sensor* dat_sensor;
-
-  std::queue<k4a::capture*> queue;
-  k4a::playback playback;
 };
 
 
