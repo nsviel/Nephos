@@ -19,7 +19,8 @@ public:
 
 public:
   //Main function
-
+  void init_device(k4n::capture::Sensor& sensor);
+  void init_capture(k4n::capture::Sensor& sensor);
 
 private:
   k4n::Structure* k4n_struct;

@@ -5,6 +5,7 @@
 namespace k4n{class Node;}
 namespace k4n{class Processing;}
 namespace k4n::capture{class Configuration;}
+namespace k4n::capture{class Capture;}
 namespace k4n::gui{class Capture;}
 namespace dat::elm{class Sensor;}
 
@@ -25,14 +26,14 @@ public:
   void thread_end();
 
   //Subfunction
-  k4a::capture* manage_new_capture();
-  void manage_old_capture(k4a::capture* capture);
+  void manage_capture();
   void manage_pause();
-  void gui_config();
+  void manage_gui();
 
 private:
   k4n::Processing* k4n_processing;
   k4n::capture::Configuration* k4n_config;
+  k4n::capture::Capture* k4n_capture;
   k4n::gui::Capture* gui_capture;
   dat::elm::Sensor* dat_sensor;
 
