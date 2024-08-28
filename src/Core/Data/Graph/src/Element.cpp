@@ -25,12 +25,12 @@ void Element::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr
   if(!set || !entity) return;
   //---------------------------
 
-  //Selection
-  /*if(gph_struct->selection.lock() == entity){
+  //Check for selection
+  if(gph_struct->selection.lock() == entity){
     gph_selection->select_next_element();
-  }*/
+  }
 
-  //Remove
+  //Remove entity
   dat_set->remove_entity(set, entity);
 
   //---------------------------
@@ -39,10 +39,12 @@ void Element::remove_active_entity(std::shared_ptr<dat::base::Set> set){
   if(!set) return;
   //---------------------------
 
-  /*if(gph_struct->selection == set->active_entity){
+  //Check for selection
+  if(gph_struct->selection.lock() == set->active_entity.lock()){
     gph_selection->select_next_element();
-  }*/
+  }
 
+  //Remove set active entity
   dat_set->remove_active_entity(set);
 
   //---------------------------

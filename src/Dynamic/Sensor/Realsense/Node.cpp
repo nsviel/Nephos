@@ -33,14 +33,14 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  rlx_capture->capture();
+  rlx_capture->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-
+  rlx_capture->capture();
 
   //---------------------------
 }

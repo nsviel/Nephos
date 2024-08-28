@@ -35,9 +35,14 @@ void Selection::select_element(std::shared_ptr<utl::base::Element> element){
   //----------------------------
 }
 void Selection::select_next_element(){
-  std::shared_ptr<utl::base::Element> element = gph_struct->selection.lock();
   std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
+  std::shared_ptr<utl::base::Element> element = gph_struct->selection.lock();
   //----------------------------
+
+  if (!element) {
+    gph_struct->selection = set_graph;
+    return;
+  }
 
   // Attempt to cast to dat::base::Set
   if (auto set = std::dynamic_pointer_cast<dat::base::Set>(element)) {
@@ -98,7 +103,11 @@ std::shared_ptr<utl::base::Element>Selection::get_selected_element(){
 
   if(!element){
     this->select_next_element();
-    return nullptr;
+
+    element = gph_struct->selection.lock();
+    if (!element) {
+      return nullptr;
+    }
   }
 
  //---------------------------

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <librealsense2/rs.hpp>
+
 namespace rlx{class Node;}
 namespace rlx{class Structure;}
 
@@ -15,7 +17,9 @@ public:
 
 public:
   //Main function
+  void init();
   void capture();
+  void display(rs2::frameset frames);
 
 private:
   rlx::Structure* rlx_struct;
