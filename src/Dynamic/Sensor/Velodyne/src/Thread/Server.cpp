@@ -1,6 +1,7 @@
 #include "Server.h"
 
 #include <Velodyne/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 
 

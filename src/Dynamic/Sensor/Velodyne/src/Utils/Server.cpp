@@ -2,7 +2,6 @@
 
 #include <Velodyne/Namespace.h>
 #include <Utility/Namespace.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

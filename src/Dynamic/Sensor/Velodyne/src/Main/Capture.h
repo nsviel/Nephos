@@ -3,7 +3,6 @@
 namespace vld{class Node;}
 namespace vld{class Structure;}
 namespace vld::thread{class Server;}
-namespace vld::thread{class Screenshot;}
 
 
 namespace vld::main{
@@ -23,7 +22,6 @@ public:
 private:
   vld::Structure* vld_struct;
   vld::thread::Server* thread_server;
-  vld::thread::Screenshot* thread_screenshot;
 };
 
 }

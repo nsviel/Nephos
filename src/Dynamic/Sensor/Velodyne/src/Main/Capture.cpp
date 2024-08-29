@@ -11,7 +11,6 @@ Capture::Capture(vld::Node* node_velodyne){
 
   this->vld_struct = node_velodyne->get_vld_struct();
   this->thread_server = new vld::thread::Server(node_velodyne);
-  this->thread_screenshot = new vld::thread::Screenshot(node_velodyne);
 
   //---------------------------
 }

@@ -1,11 +1,9 @@
 #include "Node.h"
 
 #include <Sensor/Namespace.h>
-#include <Core/Namespace.h>
-#include <Data/Namespace.h>
-#include <IO/Namespace.h>
 #include <Velodyne/Namespace.h>
-#include <Importer/Namespace.h>
+#include <Core/Namespace.h>
+#include <IO/Namespace.h>
 
 
 namespace vld{
@@ -15,13 +13,13 @@ Node::Node(dyn::sen::Node* node_sensor){
   utl::gui::Panel* panel = add_panel("Velodyne", ICON_FA_PLAY, false);
   //---------------------------
 
-  this->node_core = node_sensor->get_node_core();
-  this->node_io = node_core->get_node_io();
+  core::Node* node_core = node_sensor->get_node_core();
   this->node_data = node_core->get_node_data();
+  this->node_io = node_core->get_node_io();
 
   this->vld_struct = new vld::Structure();
   this->vld_capture = new vld::main::Capture(this);
-  this->vld_playback = new vld::main::Playback(node_velodyne);
+  this->vld_playback = new vld::main::Playback(this);
   this->gui_panel = new vld::gui::Panel(this, &panel->is_open);
 
   //---------------------------
@@ -34,7 +32,7 @@ void Node::config(){
   io::imp::Importer* io_importer = node_importer->get_io_importer();
   //---------------------------
 
-  io_importer->insert_importer(new vld::utils::Importer(node_velodyne));
+  io_importer->insert_importer(new vld::utils::Importer(this));
 
   //---------------------------
 }

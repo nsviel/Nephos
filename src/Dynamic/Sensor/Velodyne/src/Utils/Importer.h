@@ -11,8 +11,9 @@
 #include <stddef.h>
 #include <bitset>
 
-namespace vld::processing{class Player;}
+namespace vld{class Node;}
 namespace vld{class Structure;}
+namespace vld::processing{class Player;}
 namespace vld::main{class Playback;}
 
 
