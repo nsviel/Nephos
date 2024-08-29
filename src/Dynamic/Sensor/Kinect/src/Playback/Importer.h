@@ -5,9 +5,7 @@
 #include <memory>
 
 namespace k4n{class Node;}
-namespace dat::gph{class Graph;}
-namespace dat::elm{class Set;}
-namespace dat::elm{class Sensor;}
+namespace k4n{class Utils;}
 namespace k4n::playback{class Configuration;}
 namespace k4n::playback{class Sensor;}
 
@@ -26,13 +24,10 @@ public:
   std::shared_ptr<utl::base::Element> import(utl::base::Path path);
 
   //Subfunction
-  void manage_set_parent(k4n::playback::Sensor& sensor);
 
 private:
   k4n::Node* node_k4n;
-  dat::gph::Graph* dat_graph;
-  dat::elm::Set* dat_set;
-  dat::elm::Sensor* dat_sensor;
+  k4n::Utils* k4n_utils;
   k4n::playback::Configuration* k4n_config;
 };
 
