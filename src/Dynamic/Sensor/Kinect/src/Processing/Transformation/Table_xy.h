@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Structure/Transformation.h>
+#include <Kinect/src/Structure/Configuration/Transformation.h>
 #include <Processing/src/Thread/Job.h>
 #include <glm/glm.hpp>
 #include <unordered_map>

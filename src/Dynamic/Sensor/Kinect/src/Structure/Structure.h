@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Kinect/src/Structure/Transformation.h>
-#include <Kinect/src/Structure/Configuration.h>
-#include <Kinect/src/Structure/FPS.h>
+#include <Kinect/src/Structure/Configuration/Transformation.h>
+#include <Kinect/src/Structure/Configuration/Configuration.h>
+#include <Kinect/src/Structure/Configuration/FPS.h>
 
 
 namespace k4n{

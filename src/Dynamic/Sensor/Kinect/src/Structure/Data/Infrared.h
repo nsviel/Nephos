@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Structure/Data.h>
+#include <Kinect/src/Structure/Data/Data.h>
 
 namespace utl::media{struct Image;}
 

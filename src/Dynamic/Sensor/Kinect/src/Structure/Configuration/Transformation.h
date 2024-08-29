@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Structure/Data.h>
+#include <Kinect/src/Structure/Data/Data.h>
 #include <k4a/k4a.hpp>
 #include <glm/glm.hpp>
 #include <unordered_map>

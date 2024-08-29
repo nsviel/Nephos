@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Structure/Buffer.h>
+#include <Kinect/src/Structure/Data/Buffer.h>
 #include <glm/glm.hpp>
 #include <memory>
 #include <vector>

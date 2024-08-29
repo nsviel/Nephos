@@ -1,16 +1,7 @@
 #pragma once
 
-#include <Kinect/src/Structure/Firmware.h>
 #include <Kinect/src/Structure/Namespace.h>
-#include <Kinect/src/Structure/Cloud.h>
 #include <Data/Namespace.h>
-#include <Utility/Namespace.h>
-
-namespace k4n::device{class Structure;}
-namespace k4n::color{class Structure;}
-namespace k4n::depth{class Structure;}
-namespace k4n::infrared{class Structure;}
-namespace k4n::imu{class Structure;}
 
 
 namespace k4n::base{

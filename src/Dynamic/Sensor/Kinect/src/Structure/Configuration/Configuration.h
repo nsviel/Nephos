@@ -1,12 +1,10 @@
 #pragma once
 
-#include <Kinect/src/Structure/FPS.h>
-#include <Kinect/src/Structure/Color.h>
-#include <Kinect/src/Structure/Depth.h>
-#include <Kinect/src/Structure/Infrared.h>
-#include <Kinect/src/Structure/Synchro.h>
-#include <k4a/k4a.hpp>
-#include <string>
+#include <Kinect/src/Structure/Configuration/FPS.h>
+#include <Kinect/src/Structure/Configuration/Synchro.h>
+#include <Kinect/src/Structure/Data/Color.h>
+#include <Kinect/src/Structure/Data/Depth.h>
+#include <Kinect/src/Structure/Data/Infrared.h>
 
 
 namespace k4n::structure{
