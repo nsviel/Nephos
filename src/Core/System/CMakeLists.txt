@@ -1,12 +1,10 @@
-set(LIBRARY_NAME MAIN_CORE)
+set(LIBRARY_NAME CORE_SYSTEM)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Data)
-add_subdirectory(Engine)
-add_subdirectory(IO)
-add_subdirectory(System)
+add_subdirectory(Profiler)
+add_subdirectory(Thread)
 
 file(GLOB_RECURSE ALL_SOURCES
   Node.cpp
@@ -20,13 +18,13 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
+find_package(HDF5 REQUIRED)
+
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
-  MAIN_VULKAN
 
-  CORE_DATA
-  CORE_IO
-  CORE_ENGINE
+  SYSTEM_PROFILER
+  SYSTEM_THREAD
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

@@ -1,15 +1,10 @@
-set(LIBRARY_NAME MAIN_CORE)
+set(LIBRARY_NAME SYSTEM_THREAD)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Data)
-add_subdirectory(Engine)
-add_subdirectory(IO)
-add_subdirectory(System)
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
+  *.cpp
 )
 
 #-----------------
@@ -20,13 +15,14 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
   MAIN_VULKAN
-
-  CORE_DATA
-  CORE_IO
   CORE_ENGINE
+
+  Eigen3::Eigen # Eigen
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

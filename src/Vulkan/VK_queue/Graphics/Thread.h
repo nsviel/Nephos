@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utility/Namespace.h>
+#include <Vulkan/VK_queue/Structure/Thread.h>
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <queue>
@@ -15,7 +15,7 @@ namespace vk::synchro::structure{class Fence;}
 
 namespace vk::queue::graphics{
 
-class Thread : public sys::thread::Worker
+class Thread : public vk::queue::Thread
 {
 public:
   //Constructor / Destructor
