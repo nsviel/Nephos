@@ -3,8 +3,6 @@
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
-#include <Attribut/Namespace.h>
-#include <Utility/Namespace.h>
 
 
 namespace k4n::processing::cloud{

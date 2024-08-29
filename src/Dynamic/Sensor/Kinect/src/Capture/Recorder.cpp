@@ -1,9 +1,6 @@
 #include "Recorder.h"
 
 #include <Kinect/Namespace.h>
-#include <Data/Namespace.h>
-#include <Profiler/Namespace.h>
-#include <Utility/Namespace.h>
 
 
 namespace k4n::capture{

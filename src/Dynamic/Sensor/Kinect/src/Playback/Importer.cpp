@@ -1,9 +1,6 @@
 #include "Importer.h"
 
-#include <Core/Namespace.h>
 #include <Kinect/Namespace.h>
-#include <Processing/Namespace.h>
-#include <Data/Namespace.h>
 
 
 namespace k4n::playback{
@@ -24,6 +21,14 @@ Importer::Importer(k4n::Node* node_k4n){
 Importer::~Importer(){}
 
 //Main function
+void Importer::insert_importer(){
+  //---------------------------
+
+
+  //---------------------------
+}
+
+//Subfunction
 std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   if(!utl::file::is_exist(path.build())) return nullptr;
   //---------------------------
@@ -40,7 +45,5 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   //---------------------------
   return sensor;
 }
-
-//Subfunction
 
 }

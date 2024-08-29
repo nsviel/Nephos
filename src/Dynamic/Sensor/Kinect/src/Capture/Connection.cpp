@@ -1,11 +1,8 @@
 #include "Connection.h"
 
-#include <Utility/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <IO/Namespace.h>
 #include <Importer/Namespace.h>
-#include <Data/Namespace.h>
-#include <chrono>
 
 
 namespace k4n::capture{
@@ -104,7 +101,7 @@ void Connection::create_sensor(int index){
   //Insert sensor into data tree
   k4n_utils->insert_in_kinect_set(*sensor);
 
-  //Apply imported stuff 
+  //Apply imported stuff
   io_operation->ope_insertion(sensor);
 
   //Start sensor

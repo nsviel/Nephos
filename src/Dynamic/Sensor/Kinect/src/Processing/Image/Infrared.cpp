@@ -1,10 +1,8 @@
 #include "Infrared.h"
 
 #include <Kinect/Namespace.h>
-#include <Profiler/Namespace.h>
-#include <Core/Namespace.h>
-#include <Processing/Namespace.h>
 #include <Data/Namespace.h>
+#include <Processing/Namespace.h>
 
 
 namespace k4n::processing::image{

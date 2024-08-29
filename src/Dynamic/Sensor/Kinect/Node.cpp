@@ -1,12 +1,8 @@
 #include "Node.h"
 
 #include <Sensor/Namespace.h>
-#include <Core/Namespace.h>
 #include <Kinect/Namespace.h>
 #include <IO/Namespace.h>
-#include <Processing/Namespace.h>
-#include <Data/Namespace.h>
-#include <Importer/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
@@ -21,13 +17,13 @@ Node::Node(dyn::sen::Node* node_sensor){
   this->node_io = node_core->get_node_io();
   this->node_data = node_core->get_node_data();
   this->node_processing = node_sensor->get_node_processing();
-  io::imp::Node* node_importer = node_io->get_node_importer();
 
   //Child
   this->k4n_structure = new k4n::Structure();
   this->k4n_connection = new k4n::capture::Connection(this);
 
   //Importer
+  io::imp::Node* node_importer = node_io->get_node_importer();
   io::imp::Importer* io_importer = node_importer->get_io_importer();
   io_importer->insert_importer(new k4n::playback::Importer(this));
 

@@ -21,9 +21,10 @@ public:
 
 public:
   //Main function
-  std::shared_ptr<utl::base::Element> import(utl::base::Path path);
+  void insert_importer();
 
   //Subfunction
+  std::shared_ptr<utl::base::Element> import(utl::base::Path path);
 
 private:
   k4n::Node* node_k4n;

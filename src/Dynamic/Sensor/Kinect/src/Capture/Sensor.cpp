@@ -1,9 +1,9 @@
 #include "Sensor.h"
 
 #include <Kinect/Namespace.h>
+#include <Processing/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Data/Namespace.h>
-#include <Processing/Namespace.h>
 #include <Utility/Namespace.h>
 
 

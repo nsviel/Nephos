@@ -1,8 +1,6 @@
 #include "XY_table.h"
 
 #include <Kinect/Namespace.h>
-#include <Utility/Namespace.h>
-#include <Profiler/Namespace.h>
 
 
 namespace k4n::processing::cloud{

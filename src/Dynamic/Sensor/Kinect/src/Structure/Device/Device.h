@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Utility/Namespace.h>
 #include <k4a/k4a.hpp>
 #include <k4arecord/playback.hpp>
 #include <k4arecord/record.hpp>
