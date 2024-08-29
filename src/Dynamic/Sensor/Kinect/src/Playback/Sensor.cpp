@@ -91,14 +91,16 @@ void Sensor::manage_capture(){
 void Sensor::manage_query(float value){
   //---------------------------
 
+  //Check value validity
   if(value > timestamp.end){
     std::cout<<"[error] timestamp superior file end"<<std::endl;
-    exit(0);
+    return;
   }else if(value < timestamp.begin){
     std::cout<<"[error] timestamp inferior file begin"<<std::endl;
-    exit(0);
+    return;
   }
 
+  //Apply query
   if(state.pause){
     state.pause = false;
     auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));

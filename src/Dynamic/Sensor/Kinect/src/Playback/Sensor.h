@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Kinect/src/Utils/Sensor.h>
+#include <Kinect/src/Structure/Sensor.h>
 
 namespace k4n{class Node;}
 namespace k4n{class Processing;}
