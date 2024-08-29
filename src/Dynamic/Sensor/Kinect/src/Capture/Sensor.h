@@ -27,7 +27,6 @@ public:
 
   //Subfunction
   void manage_capture();
-  void manage_pause();
   void manage_gui();
 
 private:

@@ -27,8 +27,7 @@ public:
   void wait_thread();
 
   //Subfunction
-  void image_processing(k4n::base::Sensor& sensor);
-  void cloud_processing(k4n::base::Sensor& sensor);
+  void make_processing(k4n::base::Sensor& sensor);
 
 private:
   k4n::processing::image::Data* k4n_image;

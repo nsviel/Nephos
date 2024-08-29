@@ -22,7 +22,7 @@ Sensor::Sensor(dat::elm::Node* node_element){
 Sensor::~Sensor(){}
 
 //Main function
-void Sensor::init_sensor(dat::base::Sensor& sensor){
+void Sensor::init_profiler(dat::base::Sensor& sensor){
   //---------------------------
 
   prf_monitor->add_profiler(&sensor.profiler, sensor.name);

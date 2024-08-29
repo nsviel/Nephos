@@ -30,7 +30,6 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
 Sensor::~Sensor(){
   //---------------------------
 
-  this->stop_thread();
   dat_sensor->clean_sensor(*this);
 
   //---------------------------
@@ -40,7 +39,7 @@ Sensor::~Sensor(){
 void Sensor::thread_init(){
   //---------------------------
 
-  dat_sensor->init_sensor(*this);
+  dat_sensor->init_profiler(*this);
   k4n_playback->init_playback(*this);
   k4n_playback->find_timestamp(*this);
   k4n_config->find_configuration(*this);
@@ -63,9 +62,6 @@ void Sensor::thread_loop(){
   //Run processing
   k4n_processing->start_thread(*this);
 
-  //Loop sleeping
-  this->manage_pause();
-
   //---------------------------
 }
 void Sensor::thread_end(){
@@ -87,19 +83,6 @@ void Sensor::manage_capture(){
   //Check capture
   if(!ok){
     device.capture.reset();
-  }
-
-  //---------------------------
-}
-void Sensor::manage_pause(){//a virer et a mettre dans une class base supérieur
-  //---------------------------
-
-  //If pause, wait until end pause or end thread
-  if(state.pause || !state.play){
-    profiler.pause = true;
-    std::unique_lock<std::mutex> lock(mutex);
-    cv.wait(lock, [this] { return !state.pause || !thread_running;});
-    profiler.pause = false;
   }
 
   //---------------------------

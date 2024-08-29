@@ -40,8 +40,7 @@ void Processing::start_thread(k4n::base::Sensor& sensor){
 void Processing::run_thread(k4n::base::Sensor& sensor){
   //---------------------------
 
-  this->image_processing(sensor);
-  this->cloud_processing(sensor);
+  this->make_processing(sensor);
 
   //---------------------------
   this->thread_idle = true;
@@ -59,17 +58,10 @@ void Processing::wait_thread(){
 }
 
 //Subfunction
-void Processing::image_processing(k4n::base::Sensor& sensor){
+void Processing::make_processing(k4n::base::Sensor& sensor){
   //---------------------------
 
   k4n_image->extract_data(sensor);
-  //dyn_ope_image->start_thread(sensor);
-
-  //---------------------------
-}
-void Processing::cloud_processing(k4n::base::Sensor& sensor){
-  //---------------------------
-
   k4n_cloud->extract_data(sensor);
   dyn_ope_cloud->run_operation(sensor);
 

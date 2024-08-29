@@ -28,7 +28,6 @@ public:
 
   //Subfunction
   void manage_capture();
-  void manage_pause();
   void manage_query(float ts_querry);
   void manage_gui();
 

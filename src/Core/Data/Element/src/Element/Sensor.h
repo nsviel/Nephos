@@ -19,7 +19,7 @@ public:
 
 public:
   //Main function
-  void init_sensor(dat::base::Sensor& sensor);
+  void init_profiler(dat::base::Sensor& sensor);
   void clean_sensor(dat::base::Sensor& sensor);
   bool is_dynamic(std::shared_ptr<utl::base::Element> element);
 

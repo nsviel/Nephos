@@ -4,8 +4,8 @@
 #include <Data/Base/Sensor/Timestamp.h>
 #include <Data/Base/Sensor/Calibration.h>
 #include <Data/Base/Sensor/Thread.h>
-#include <Data/Base/Sensor/State.h>
 #include <Data/Base/Sensor/Info.h>
+#include <Data/Base/Sensor/State.h>
 #include <Profiler/Monitor/src/Component/Profiler.h>
 
 
@@ -21,13 +21,13 @@ struct Sensor : public dat::base::Object, public dat::base::sensor::Thread{
 
   virtual void start(){}
   virtual void stop(){}
-  virtual void pause(bool value){this->state.pause = value;}
+  virtual void pause(bool value){this->pause_thread(value);}
   virtual void query(float value){}
 
   dat::base::sensor::Info info;
   dat::base::sensor::Timestamp timestamp;
-  dat::base::sensor::State state;
   dat::base::sensor::Calibration calibration;
+  dat::base::sensor::State state;
   prf::monitor::Profiler profiler;
 
   //---------------------------
