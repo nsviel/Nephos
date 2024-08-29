@@ -4,6 +4,7 @@
 #include <thread>
 
 namespace k4n{class Node;}
+namespace k4n::capture{class Sensor;}
 namespace dat::elm{class Set;}
 namespace dat::gph{class Graph;}
 namespace dat::base{class Set;}
@@ -28,7 +29,7 @@ public:
   //Subfunction
   void manage_connected_device();
   void create_sensor(int index);
-  std::shared_ptr<dat::base::Set> manage_set_parent();
+  void manage_set_parent(k4n::capture::Sensor& sensor);
 
 private:
   k4n::Node* node_k4n;

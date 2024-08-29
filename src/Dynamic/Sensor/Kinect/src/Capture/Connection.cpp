@@ -15,9 +15,9 @@ Connection::Connection(k4n::Node* node_k4n){
   //---------------------------
 
   io::Node* node_io = node_k4n->get_node_io();
+  io::imp::Node* node_importer = node_io->get_node_importer();
   dat::Node* node_data = node_k4n->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
-  io::imp::Node* node_importer = node_io->get_node_importer();
   dat::elm::Node* node_element = node_data->get_node_element();
 
   this->node_k4n = node_k4n;
@@ -88,7 +88,7 @@ void Connection::manage_connected_device(){
   if(flag == false) return;
   //---------------------------
 
-  //Suppress all present entities
+  //Suppress all present entities if enable
   io_operation->ope_clean();
 
   //Create required number of new devices
@@ -102,40 +102,34 @@ void Connection::manage_connected_device(){
 void Connection::create_sensor(int index){
   //---------------------------
 
-  //Sensor creation
   auto sensor = std::make_shared<k4n::capture::Sensor>(node_k4n, index);
-  sensor->name = "capture_" + std::to_string(index);
-  sensor->data.name = sensor->name;
-  sensor->data.path.format = ".mkv";
-  sensor->data.path.directory = utl::path::get_current_path_abs();
-  sensor->pose.model[2][3] = 1;
-
-  //Sensor initialization
-  std::shared_ptr<dat::base::Set> set = manage_set_parent();
-  sensor->set_parent = set;
+  this->manage_set_parent(*sensor);
   io_operation->ope_insertion(sensor);
   sensor->start();
 
   //---------------------------
 }
-std::shared_ptr<dat::base::Set> Connection::manage_set_parent(){
+void Connection::manage_set_parent(k4n::capture::Sensor& sensor){
+  //---------------------------
+
+  //Get kinect set
   std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
-  //---------------------------
-
-  //Check if already existing
   std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
-  if(set) return set;
 
-  //Create the set
-  set = std::make_shared<dat::base::Set>();
-  set->name = "kinect";
-  set->icon = ICON_FA_USER;
-  set->is_locked = false;
-  set->is_suppressible = true;
-  dat_set->add_subset(set_graph, set);
+  //If it doesn't exists, create it
+  if(!set){
+    set = std::make_shared<dat::base::Set>();
+    set->name = "kinect";
+    set->icon = ICON_FA_USER;
+    set->is_locked = false;
+    set->is_suppressible = true;
+    dat_set->add_subset(set_graph, set);
+  }
+
+  //Assign to sensor
+  sensor.set_parent = set;
 
   //---------------------------
-  return set;
 }
 
 }

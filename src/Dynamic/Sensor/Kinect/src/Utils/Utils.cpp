@@ -1,6 +1,7 @@
 #include "Utils.h"
 
 #include <Kinect/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace k4n{
@@ -9,16 +10,45 @@ namespace k4n{
 Utils::Utils(k4n::Node* node_k4n){
   //---------------------------
 
+  dat::Node* node_data = node_k4n->get_node_data();
+  dat::gph::Node* node_graph = node_data->get_node_graph();
+  dat::elm::Node* node_element = node_data->get_node_element();
+
+  this->dat_set = node_element->get_dat_set();
+  this->dat_graph = node_graph->get_gph_graph();
+
   //---------------------------
 }
 Utils::~Utils(){}
 
 //Main function
-glm::vec3 Utils::convert_depth_2d_to_3d(std::shared_ptr<k4n::base::Sensor> sensor, glm::ivec2 point_2d){
+void Utils::insert_in_kinect_set(k4n::base::Sensor& sensor){
   //---------------------------
 
-  uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor->depth.data.buffer);
-  int width = sensor->depth.data.width;
+  //Get kinect set
+  std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
+  std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
+
+  //If it doesn't exists, create it
+  if(!set){
+    set = std::make_shared<dat::base::Set>();
+    set->name = "kinect";
+    set->icon = ICON_FA_USER;
+    set->is_locked = false;
+    set->is_suppressible = true;
+    dat_set->add_subset(set_graph, set);
+  }
+
+  //Assign to sensor
+  sensor.set_parent = set;
+
+  //---------------------------
+}
+glm::vec3 Utils::convert_depth_2d_to_3d(k4n::base::Sensor& sensor, glm::ivec2 point_2d){
+  //---------------------------
+
+  uint16_t* buffer = reinterpret_cast<uint16_t*>(sensor.depth.data.buffer);
+  int width = sensor.depth.data.width;
 
   //Retrieve image coordinates
   int x = point_2d[0];
@@ -28,7 +58,7 @@ glm::vec3 Utils::convert_depth_2d_to_3d(std::shared_ptr<k4n::base::Sensor> senso
 
   //Convert it into 3D coordinate
   k4a_float3_t target_xyz;
-  bool success = sensor->device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
+  bool success = sensor.device.calibration.convert_2d_to_3d(source_xy, source_z, K4A_CALIBRATION_TYPE_DEPTH, K4A_CALIBRATION_TYPE_DEPTH, &target_xyz);
   glm::vec4 xyzw = glm::vec4(target_xyz.xyz.x, target_xyz.xyz.y, target_xyz.xyz.z, 1);
 
   //Apply transformation
