@@ -4,6 +4,7 @@
 #include <Core/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <Processing/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace k4n{

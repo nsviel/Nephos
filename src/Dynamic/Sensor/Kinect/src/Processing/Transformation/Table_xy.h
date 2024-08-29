@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Kinect/src/Structure/Configuration/Transformation.h>
-#include <Processing/src/Thread/Job.h>
+#include <Utility/System/Thread/Task/Job.h>
 #include <glm/glm.hpp>
 #include <unordered_map>
 #include <memory>
@@ -13,7 +13,7 @@ namespace k4n::base{class Sensor;}
 
 namespace k4n::processing::image{
 
-class Table_xy : public dyn::prc::thread::Job
+class Table_xy : public sys::thread::Job
 {
 public:
   //Constructor / Destructor
@@ -27,8 +27,6 @@ public:
   //Subfunction
   void table_color_to_depth(k4n::base::Sensor& sensor);
   void apply_map(k4n::base::Sensor& sensor, int i);
-
-  using dyn::prc::thread::Job::start_thread;
 
 private:
   k4n::Structure* k4n_struct;

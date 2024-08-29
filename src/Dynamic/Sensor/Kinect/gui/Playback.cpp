@@ -18,7 +18,7 @@ Playback::~Playback(){}
 
 //Main function
 void Playback::show_parameter(std::shared_ptr<k4n::base::Sensor> sensor){
-  if(sensor == nullptr) return;
+  if(!sensor) return;
   //---------------------------
 
   auto set_parent = sensor->set_parent.lock();

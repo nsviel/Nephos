@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Processing/src/Thread/Routine.h>
+#include <Utility/System/Thread/Routine/Routine.h>
 
 namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
@@ -13,7 +13,7 @@ namespace sys::thread::task{class Pool;}
 
 namespace k4n{
 
-class Processing : public dyn::prc::thread::Routine
+class Processing : public sys::thread::Routine
 {
 public:
   //Constructor / Destructor
