@@ -18,6 +18,7 @@ struct Sensor : public dat::base::Object, public dat::base::sensor::Thread{
   void stop(){this->stop_thread();}
   void pause(bool value){this->pause_thread(value);}
   void restart(){this->stop(); this->start();}
+  void clean(){this->stop_thread();}
 
   virtual void query(float value){}
 

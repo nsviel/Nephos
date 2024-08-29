@@ -115,7 +115,7 @@ void Button::button_remove(std::shared_ptr<dat::base::Set> set, std::shared_ptr<
   //---------------------------
 }
 void Button::button_remove(std::shared_ptr<dat::base::Set> set){
-  if(set->is_locked || set->list_entity.empty()) return;
+  if(set->is_locked || set->list_entity.empty() && set->list_subset.empty()) return;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));

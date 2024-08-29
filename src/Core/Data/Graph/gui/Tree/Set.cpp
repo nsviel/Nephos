@@ -45,7 +45,7 @@ void Set::draw_node(std::shared_ptr<dat::base::Set> set, bool& node_open){
 
   //Set node elements
   ImGuiTreeNodeFlags flag;
-  flag |= set->list_entity.empty() ? ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen : ImGuiTreeNodeFlags_OpenOnArrow;
+  flag |= set->list_entity.empty() && set->list_subset.empty() ? ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen : ImGuiTreeNodeFlags_OpenOnArrow;
   flag |= set->is_open ? ImGuiTreeNodeFlags_DefaultOpen : 0;
   flag |= (selection && set->UID == selection->UID) ? ImGuiTreeNodeFlags_Selected : 0;
   flag |= ImGuiTreeNodeFlags_SpanFullWidth;
@@ -92,8 +92,9 @@ void Set::draw_open(std::shared_ptr<dat::base::Set> set, bool& node_open, int& n
 
   //If set open, display elements
   if(node_open){
-    // Create a temporary copy of the list of entities
+    // Create temporary copies
     std::vector<std::shared_ptr<dat::base::Entity>> list_entity(set->list_entity.begin(), set->list_entity.end());
+    std::vector<std::shared_ptr<dat::base::Set>> list_subset(set->list_subset.begin(), set->list_subset.end());
 
     //List all direct entities
     for(auto entity : list_entity){
@@ -101,7 +102,7 @@ void Set::draw_open(std::shared_ptr<dat::base::Set> set, bool& node_open, int& n
     }
 
     //Recursive call for nested sets
-    for(auto& subset : set->list_subset){
+    for(auto subset : list_subset){
       nb_row += tree_set(subset);
     }
 

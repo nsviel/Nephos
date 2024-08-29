@@ -60,7 +60,8 @@ void Element::remove_set(std::shared_ptr<dat::base::Set> set){
   }
 
   // Recursively call remove_entity_recursive for each nested set
-  for(auto& subset : set->list_subset){
+  std::vector<std::shared_ptr<dat::base::Set>> list_subset(set->list_subset.begin(), set->list_subset.end());
+  for(auto& subset : list_subset){
     this->remove_set(subset);
   }
 
