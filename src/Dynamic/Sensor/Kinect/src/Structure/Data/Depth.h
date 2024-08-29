@@ -13,7 +13,6 @@ struct Configuration{
 
   k4a_depth_mode_t mode = K4A_DEPTH_MODE_WFOV_2X2BINNED;
   std::string mode_str = "";
-  std::string firmware_version = "";
   std::string resolution = "";
   uint16_t range_min = 500;
   uint16_t range_max = 4000;

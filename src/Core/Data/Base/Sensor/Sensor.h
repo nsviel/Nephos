@@ -14,14 +14,11 @@ namespace dat::base{
 struct Sensor : public dat::base::Object, public dat::base::sensor::Thread{
   //---------------------------
 
-  void restart(){
-    this->stop();
-    this->start();
-  }
+  void start(){this->start_thread();}
+  void stop(){this->stop_thread();}
+  void pause(bool value){this->pause_thread(value);}
+  void restart(){this->stop(); this->start();}
 
-  virtual void start(){}
-  virtual void stop(){}
-  virtual void pause(bool value){this->pause_thread(value);}
   virtual void query(float value){}
 
   dat::base::sensor::Info info;

@@ -19,6 +19,7 @@ public:
 
 public:
   //Main function
+  void init_info(k4n::playback::Sensor& sensor);
   void init_playback(k4n::playback::Sensor& sensor);
   void find_timestamp(k4n::playback::Sensor& sensor);
   void close_playback(k4n::playback::Sensor& sensor);

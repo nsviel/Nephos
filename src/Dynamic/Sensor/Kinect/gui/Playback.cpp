@@ -130,7 +130,7 @@ void Playback::show_info_color(std::shared_ptr<k4n::playback::Sensor> sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Color firmware"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->color.config.firmware_version.c_str());
+  ImGui::TextColored(color, "%s", sensor->firmware.color.c_str());
 
   ImGui::EndTable();
 
@@ -158,7 +158,7 @@ void Playback::show_info_depth(std::shared_ptr<k4n::playback::Sensor> sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->depth.config.firmware_version.c_str());
+  ImGui::TextColored(color, "%s", sensor->firmware.depth.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("IR enabled"); ImGui::TableNextColumn();

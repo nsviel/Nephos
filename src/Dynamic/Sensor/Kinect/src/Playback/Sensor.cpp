@@ -40,6 +40,7 @@ void Sensor::thread_init(){
   //---------------------------
 
   dat_sensor->init_profiler(*this);
+  k4n_playback->init_info(*this);
   k4n_playback->init_playback(*this);
   k4n_playback->find_timestamp(*this);
   k4n_config->find_configuration(*this);

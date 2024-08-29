@@ -16,13 +16,26 @@ Playback::Playback(k4n::Node* node_k4n){
 Playback::~Playback(){}
 
 //Main function
-void Playback::init_playback(k4n::playback::Sensor& sensor){
+void Playback::init_info(k4n::playback::Sensor& sensor){
   //---------------------------
 
-  //Set sensor info
   sensor.name = sensor.data.path.name;
-  sensor.data.name = sensor.data.path.name;
   sensor.device.capture = std::make_shared<k4a::capture>();
+  sensor.calibration.path.insert("../media/calibration/kinect.json");
+
+  sensor.data.name = sensor.data.path.name;
+  sensor.data.topology.type = utl::topology::POINT;
+  sensor.data.nb_data_max = 10000000;
+
+  sensor.info.model = "kinect";
+  sensor.info.depth_mode = "NFOV";
+  sensor.info.vec_depth_mode.push_back("NFOV");
+  sensor.info.vec_depth_mode.push_back("WFOV");
+
+  //---------------------------
+}
+void Playback::init_playback(k4n::playback::Sensor& sensor){
+  //---------------------------
 
   //Init playback object
   std::string path = sensor.data.path.build();
