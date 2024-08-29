@@ -1,7 +1,7 @@
 #include "Pool.h"
 
 
-namespace sys::thread::task{
+namespace thr::task{
 
 //Constructor / Destructor
 Pool::Pool(int nb_thread){

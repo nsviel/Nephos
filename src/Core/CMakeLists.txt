@@ -25,8 +25,9 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_VULKAN
 
   CORE_DATA
-  CORE_IO
   CORE_ENGINE
+  CORE_IO
+  CORE_SYSTEM
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC

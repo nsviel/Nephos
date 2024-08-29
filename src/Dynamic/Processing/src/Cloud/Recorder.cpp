@@ -4,6 +4,7 @@
 #include <Core/Namespace.h>
 #include <Data/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Thread/Namespace.h>
 #include <Utility/Namespace.h>
 
 

@@ -1,5 +1,5 @@
 #pragma once
 
-#include <Engine/Thread/Routine/Namespace.h>
-#include <Engine/Thread/Task/Namespace.h>
-#include <Engine/Thread/Worker/Namespace.h>
+#include <Thread/Routine/Namespace.h>
+#include <Thread/Task/Namespace.h>
+#include <Thread/Worker/Namespace.h>

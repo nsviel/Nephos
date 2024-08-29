@@ -47,7 +47,7 @@ void Tasker::loop(int fps){
 
   //Init loop task
   this->reference = timer->get_time();
-  this->thread_ID = sys::thread::get_ID_str();
+  this->thread_ID = thr::get_ID_str();
 
   //FPS
   this->fps = fps_counter->update();

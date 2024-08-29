@@ -1,6 +1,6 @@
 #include "Routine.h"
 
-#include <Utility/Namespace.h>
+#include <Thread/Namespace.h>
 
 /*
 Processing thread which is call regularly at each frame
@@ -8,7 +8,7 @@ continuously waiting for a new start_task()
 */
 
 
-namespace sys::thread {
+namespace thr {
 
 //Constructor / Destructor
 Routine::Routine(){

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/Thread/Routine/Routine.h>
+#include <Thread/Routine/Routine.h>
 
 namespace k4n{class Node;}
 namespace k4n::base{class Sensor;}
@@ -8,12 +8,12 @@ namespace k4n::processing::cloud{class Data;}
 namespace k4n::processing::image{class Data;}
 namespace dyn::prc::image{class Operation;}
 namespace dyn::prc::cloud{class Operation;}
-namespace sys::thread::task{class Pool;}
+namespace thr::task{class Pool;}
 
 
 namespace k4n{
 
-class Processing : public sys::thread::Routine
+class Processing : public thr::Routine
 {
 public:
   //Constructor / Destructor
@@ -32,7 +32,7 @@ public:
 private:
   k4n::processing::image::Data* k4n_image;
   k4n::processing::cloud::Data* k4n_cloud;
-  sys::thread::task::Pool* thread_pool;
+  thr::task::Pool* thread_pool;
   dyn::prc::image::Operation* dyn_ope_image;
   dyn::prc::cloud::Operation* dyn_ope_cloud;
 

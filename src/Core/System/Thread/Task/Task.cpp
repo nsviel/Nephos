@@ -6,7 +6,7 @@ waiting previous completion before rerunning
 */
 
 
-namespace sys::thread{
+namespace thr{
 
 //Constructor / Destructor
 Task::Task(){

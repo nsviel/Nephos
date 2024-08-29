@@ -6,7 +6,7 @@
 #include <atomic>
 
 
-namespace sys::thread{
+namespace thr{
 
 class Job {
 public:

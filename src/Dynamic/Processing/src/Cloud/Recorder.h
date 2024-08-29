@@ -7,7 +7,7 @@
 namespace dyn::prc{class Node;}
 namespace dyn::prc{class Structure;}
 namespace dat::base{class Sensor;}
-namespace sys::thread::task{class Pool;}
+namespace thr::task{class Pool;}
 
 
 namespace dyn::prc::cloud{
@@ -31,7 +31,7 @@ public:
 private:
   dyn::prc::Structure* dyn_struct;
 
-  sys::thread::task::Pool* thread_pool;
+  thr::task::Pool* thread_pool;
   bool thread_idle = true;
 };
 

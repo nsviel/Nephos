@@ -1,6 +1,6 @@
 #include "Worker.h"
 
-#include <Utility/Namespace.h>
+#include <Thread/Namespace.h>
 
 /*
 Continuous big thread
@@ -8,7 +8,7 @@ with init, end and inside while loop
 */
 
 
-namespace sys::thread{
+namespace thr{
 
 //Main function
 void Worker::start_thread(){

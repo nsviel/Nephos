@@ -6,7 +6,7 @@ once done it does not rerun
 */
 
 
-namespace sys::thread{
+namespace thr{
 
 //Constructor / Destructor
 Job::Job(){

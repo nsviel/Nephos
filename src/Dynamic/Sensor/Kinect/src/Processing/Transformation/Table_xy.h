@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Kinect/src/Structure/Configuration/Transformation.h>
-#include <Engine/Thread/Task/Job.h>
+#include <Thread/Task/Job.h>
 #include <glm/glm.hpp>
 #include <unordered_map>
 #include <memory>
@@ -13,7 +13,7 @@ namespace k4n::base{class Sensor;}
 
 namespace k4n::processing::image{
 
-class Table_xy : public sys::thread::Job
+class Table_xy : public thr::Job
 {
 public:
   //Constructor / Destructor

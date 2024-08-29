@@ -1,9 +1,9 @@
 #include "Pool.h"
 
-#include <Utility/Namespace.h>
+#include <Thread/Namespace.h>
 
 
-namespace sys::thread::routine{
+namespace thr::routine{
 
 //Constructor / Destructor
 Pool::Pool(){
@@ -42,7 +42,7 @@ void Pool::wait(){
 }
 
 //Subfunction
-void Pool::add_task(std::unique_ptr<sys::thread::Routine> task){
+void Pool::add_task(std::unique_ptr<thr::Routine> task){
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mutex);
@@ -50,11 +50,11 @@ void Pool::add_task(std::unique_ptr<sys::thread::Routine> task){
 
   //---------------------------
 }
-bool Pool::remove_task(sys::thread::Routine* task){
+bool Pool::remove_task(thr::Routine* task){
   //---------------------------
 
   std::lock_guard<std::mutex> lock(mutex);
-  auto it = std::remove_if(tasks.begin(), tasks.end(), [task](const std::unique_ptr<sys::thread::Routine>& t){ return t.get() == task; });
+  auto it = std::remove_if(tasks.begin(), tasks.end(), [task](const std::unique_ptr<thr::Routine>& t){ return t.get() == task; });
   if(it != tasks.end()){
     (*it)->stop_task();
     tasks.erase(it, tasks.end());

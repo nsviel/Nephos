@@ -3,6 +3,7 @@
 #include <Radiometry/Calibration/Namespace.h>
 #include <Data/Namespace.h>
 #include <Core/Namespace.h>
+#include <Thread/Namespace.h>
 #include <Engine/Namespace.h>
 #include <Utility/Namespace.h>
 

@@ -7,7 +7,7 @@
 #include <functional>
 
 
-namespace sys::thread::task{
+namespace thr::task{
 
 class Pool
 {

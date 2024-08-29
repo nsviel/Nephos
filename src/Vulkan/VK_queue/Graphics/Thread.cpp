@@ -25,7 +25,7 @@ void Thread::thread_init(){
   //---------------------------
 
   vk_struct->device.queue.graphics.type = vk::queue::GRAPHICS;
-  vk_struct->device.queue.graphics.thread_ID = sys::thread::get_ID_str();
+  vk_struct->device.queue.graphics.thread_ID = thr::get_ID_str();
 
   //---------------------------
 }

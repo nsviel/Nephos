@@ -2,6 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Utility/Namespace.h>
+#include <Thread/Namespace.h>
 #include <Radiometry/Namespace.h>
 
 namespace rad::processing{

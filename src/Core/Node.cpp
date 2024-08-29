@@ -15,7 +15,7 @@ namespace core{
 Node::Node(app::Node* node_app){
   //---------------------------
 
-  this->thread_pool = new sys::thread::task::Pool(50);
+  this->thread_pool = new thr::task::Pool(50);
 
   this->node_vulkan = node_app->get_node_vulkan();
   this->node_profiler = new prf::Node(this);

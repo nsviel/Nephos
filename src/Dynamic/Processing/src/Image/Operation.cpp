@@ -2,6 +2,7 @@
 
 #include <Processing/Namespace.h>
 #include <Core/Namespace.h>
+#include <Thread/Namespace.h>
 #include <Utility/Namespace.h>
 
 

@@ -10,7 +10,7 @@ namespace rad::cor{class Glyph;}
 namespace rad::cor::cloud{class Ransac;}
 namespace ope::fitting{class Sphere;}
 namespace ope::fitting{class Ransac;}
-namespace sys::thread::task{class Pool;}
+namespace thr::task{class Pool;}
 
 
 namespace rad::cor::cloud{
@@ -32,7 +32,7 @@ public:
   void validate_bbox(std::shared_ptr<dat::base::Sensor> sensor);
 
 private:
-  sys::thread::task::Pool* thread_pool;
+  thr::task::Pool* thread_pool;
   ope::fitting::Sphere* ope_fitting;
   ope::fitting::Ransac* ope_ransac;
   rad::cor::Glyph* rad_glyph;

@@ -8,7 +8,7 @@
 #include <future>
 
 
-namespace sys::thread {
+namespace thr {
 
 class Routine {
 public:

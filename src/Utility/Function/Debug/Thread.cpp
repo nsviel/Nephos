@@ -4,7 +4,7 @@
 #include <sstream>
 
 
-namespace sys::thread{
+namespace thr{
 
 std::thread::id get_ID(){
   //---------------------------

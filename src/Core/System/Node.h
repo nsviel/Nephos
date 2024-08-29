@@ -9,7 +9,7 @@ namespace vk{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace prf::monitor{class Tasker;}
-namespace sys::thread::task{class Pool;}
+namespace thr::task{class Pool;}
 
 
 namespace sys{

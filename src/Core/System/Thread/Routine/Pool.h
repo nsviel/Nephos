@@ -6,10 +6,10 @@
 #include <queue>
 #include <mutex>
 
-namespace sys::thread{class Routine;}
+namespace thr{class Routine;}
 
 
-namespace sys::thread::routine{
+namespace thr::routine{
 
 class Pool {
 public:
@@ -21,11 +21,11 @@ public:
   void wait();
 
   //Subfunction
-  void add_task(std::unique_ptr<sys::thread::Routine> task);
-  bool remove_task(sys::thread::Routine* task);
+  void add_task(std::unique_ptr<thr::Routine> task);
+  bool remove_task(thr::Routine* task);
 
 private:
-  std::vector<std::unique_ptr<sys::thread::Routine>> tasks;
+  std::vector<std::unique_ptr<thr::Routine>> tasks;
   std::mutex mutex;
 };
 

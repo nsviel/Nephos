@@ -9,7 +9,7 @@ namespace vk{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 namespace prf::monitor{class Tasker;}
-namespace sys::thread::task{class Pool;}
+namespace thr::task{class Pool;}
 
 
 namespace core{
@@ -35,7 +35,7 @@ public:
   inline eng::Node* get_node_engine(){return node_engine;}
   inline prf::Node* get_node_profiler(){return node_profiler;}
 
-  inline sys::thread::task::Pool* get_thread_pool(){return thread_pool;}
+  inline thr::task::Pool* get_thread_pool(){return thread_pool;}
   inline prf::monitor::Tasker* get_tasker_cpu(){return tasker;}
 
 private:
@@ -45,7 +45,7 @@ private:
   eng::Node* node_engine;
   prf::Node* node_profiler;
   prf::monitor::Tasker* tasker;
-  sys::thread::task::Pool* thread_pool;
+  thr::task::Pool* thread_pool;
 };
 
 }
