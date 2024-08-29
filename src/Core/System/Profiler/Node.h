@@ -2,7 +2,7 @@
 
 #include <Utility/Base/Class/Node.h>
 
-namespace core{class Node;}
+namespace sys{class Node;}
 namespace vk{class Node;}
 
 namespace prf::hardware{class Node;}
@@ -15,7 +15,7 @@ namespace prf{
 class Node : public utl::base::Node
 {
 public:
-  Node(core::Node* node_core);
+  Node(sys::Node* node_system);
   ~Node();
 
 public:

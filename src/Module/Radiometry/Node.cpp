@@ -19,7 +19,6 @@ Node::Node(mod::Node* node_module){
   //Dependancy
   this->node_core = node_module->get_node_core();
   this->node_data = node_core->get_node_data();
-  this->node_profiler = node_core->get_node_profiler();
 
   //Child
   this->node_correction = new rad::cor::Node(this);

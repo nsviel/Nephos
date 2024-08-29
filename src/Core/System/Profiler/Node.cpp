@@ -1,18 +1,18 @@
 #include "Node.h"
 
-#include <Core/Namespace.h>
+#include <System/Namespace.h>
 #include <Profiler/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace prf{
 
-Node::Node(core::Node* node_core){
+Node::Node(sys::Node* node_system){
   utl::gui::Panel* prf_panel = add_panel("Profiler", ICON_FA_ARROW_ROTATE_RIGHT, true);
   //---------------------------
 
   //Dependancy
-  this->node_vulkan = node_core->get_node_vulkan();
+  this->node_vulkan = node_system->get_node_vulkan();
 
   //Child
   this->node_monitor = new prf::monitor::Node(this);

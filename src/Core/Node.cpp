@@ -18,12 +18,13 @@ Node::Node(app::Node* node_app){
   this->thread_pool = new thr::task::Pool(50);
 
   this->node_vulkan = node_app->get_node_vulkan();
-  this->node_profiler = new prf::Node(this);
+  this->node_system = new sys::Node(this);
   this->node_data = new dat::Node(this);
   this->node_engine = new eng::Node(this);
   this->node_io = new io::Node(this);
 
   //Tasker CPU
+  prf::Node* node_profiler = node_system->get_node_profiler();
   prf::monitor::Node* node_monitor = node_profiler->get_node_monitor();
   prf::monitor::Manager* prf_monitor = node_monitor->get_prf_manager();
   this->tasker = prf_monitor->get_tasker_cpu();
@@ -38,7 +39,7 @@ void Node::init(){
   node_data->init();
   node_io->init();
   node_engine->init();
-  node_profiler->init();
+  node_system->init();
 
   //---------------------------
 }
@@ -54,7 +55,7 @@ void Node::loop(){
   //node_vulkan->loop();
   tasker->task_end("eng::vulkan");
 
-  node_profiler->loop();
+  node_system->loop();
 
   //---------------------------
 }
@@ -67,7 +68,7 @@ void Node::gui(){
   node_engine->gui();
   tasker->task_end("eng::gui");
 
-  node_profiler->gui();
+  node_system->gui();
 
   //---------------------------
 }

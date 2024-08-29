@@ -3,6 +3,7 @@
 #include <Dynamic/Namespace.h>
 #include <Processing/Namespace.h>
 #include <Core/Namespace.h>
+#include <System/Namespace.h>
 #include <Module/Namespace.h>
 #include <Utility/Namespace.h>
 #include <fontawesome/IconsFontAwesome6.h>
@@ -14,12 +15,14 @@ namespace dyn::prc{
 Node::Node(dyn::Node* node_dynamic){
   //---------------------------
 
+  core::Node* node_core = node_dynamic->get_node_core();
+  sys::Node* node_system = node_core->get_node_system();
   mod::Node* node_module = node_dynamic->get_node_module();
 
-  this->node_core = node_dynamic->get_node_core();
+  this->node_core = node_core;
   this->node_data = node_core->get_node_data();
   this->node_radio = node_module->get_node_radio();
-  this->node_profiler = node_core->get_node_profiler();
+  this->node_profiler = node_system->get_node_profiler();
 
   this->dyn_struct = new dyn::prc::Structure();
   this->dyn_ope_cloud = new dyn::prc::cloud::Operation(this);

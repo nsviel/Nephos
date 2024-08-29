@@ -3,7 +3,7 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace core{class Node;}
-namespace prf{class Node;}
+namespace sys{class Node;}
 namespace vk{class Node;}
 
 namespace dat::atr{class Node;}
@@ -30,8 +30,8 @@ public:
   void reset();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
-  inline prf::Node* get_node_profiler(){return node_profiler;}
-  
+  inline sys::Node* get_node_system(){return node_system;}
+
   inline dat::atr::Node* get_node_attribut(){return node_attribut;}
   inline dat::elm::Node* get_node_element(){return node_element;}
   inline dat::gph::Node* get_node_graph(){return node_graph;}
@@ -41,7 +41,7 @@ public:
 private:
   //Dependancy
   vk::Node* node_vulkan;
-  prf::Node* node_profiler;
+  sys::Node* node_system;
 
   //Child
   dat::atr::Node* node_attribut;

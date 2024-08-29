@@ -3,7 +3,6 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace mod{class Node;}
-namespace prf{class Node;}
 namespace core{class Node;}
 namespace dat{class Node;}
 
@@ -29,7 +28,6 @@ public:
 
   inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
-  inline prf::Node* get_node_profiler(){return node_profiler;}
 
   inline rad::cor::Node* get_node_correction(){return node_correction;}
   inline rad::cal::Node* get_node_calibration(){return node_calibration;}
@@ -38,7 +36,6 @@ private:
   //Dependancy
   core::Node* node_core;
   dat::Node* node_data;
-  prf::Node* node_profiler;
 
   //Child
   rad::cor::Node* node_correction;
