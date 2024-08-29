@@ -1,37 +1,21 @@
 #include "Server.h"
 
 #include <Velodyne/Namespace.h>
-#include <Core/Namespace.h>
-#include <IO/Namespace.h>
 #include <Utility/Namespace.h>
-#include <Importer/Namespace.h>
-#include <Data/Namespace.h>
 
 
 namespace vld::thread{
 
 //Constructor / Destructor
-Server::Server(vld::Node* node_vld){
+Server::Server(vld::Node* node_velodyne){
   //---------------------------
 
-  core::Node* node_core = node_vld->get_node_core();
-  dat::Node* node_data = node_core->get_node_data();
-  io::Node* node_io = node_core->get_node_io();
-  dat::gph::Node* node_graph = node_data->get_node_graph();
-  io::imp::Node* node_importer = node_io->get_node_importer();
-  dat::elm::Node* node_element = node_data->get_node_element();
-
-  this->dat_graph = node_graph->get_gph_graph();
-  this->io_loader = node_importer->get_io_importer();
-  this->dat_set = node_element->get_dat_set();
-
-  this->vld_struct = node_vld->get_vld_struct();
+  this->vld_struct = node_velodyne->get_vld_struct();
   this->vld_server = new vld::utils::Server();
-  this->vld_player = new vld::processing::Player(vld_struct);
+  this->vld_player = new vld::processing::Player(node_velodyne);
   this->vld_frame = new vld::processing::Frame();
   this->vld_vlp16 = new vld::parser::VLP16();
-  this->vld_data = new vld::main::Data(node_vld);
-  this->thread_screenshot = new vld::thread::Screenshot(node_vld);
+  this->vld_data = new vld::main::Data(node_velodyne);
 
   //---------------------------
 }
@@ -72,7 +56,6 @@ void Server::run_thread(){
 void Server::stop_thread(){
   //---------------------------
 
-  thread_screenshot->stop_thread();
   this->thread_running = false;
   if(thread.joinable()){
     thread.join();
@@ -89,7 +72,6 @@ void Server::capture_data(){
   std::vector<int> packet_dec = vld_server->capture();
   if(packet_dec.size() == 0) return;
   vld_data->create_object();
-  thread_screenshot->start_thread();
 
   //Parse decimal packet into point cloud
   utl::base::Data& data = vld_vlp16->parse_packet(packet_dec);

@@ -6,12 +6,12 @@
 namespace vld::main{
 
 //Constructor / Destructor
-Capture::Capture(vld::Node* node_vld){
+Capture::Capture(vld::Node* node_velodyne){
   //---------------------------
 
-  this->vld_struct = node_vld->get_vld_struct();
-  this->thread_server = new vld::thread::Server(node_vld);
-  this->thread_screenshot = new vld::thread::Screenshot(node_vld);
+  this->vld_struct = node_velodyne->get_vld_struct();
+  this->thread_server = new vld::thread::Server(node_velodyne);
+  this->thread_screenshot = new vld::thread::Screenshot(node_velodyne);
 
   //---------------------------
 }

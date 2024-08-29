@@ -6,11 +6,11 @@
 namespace vld::main{
 
 //Constructor / Destructor
-Playback::Playback(vld::Structure* vld_struct){
+Playback::Playback(vld::Node* node_velodyne){
   //---------------------------
 
-  this->vld_struct = vld_struct;
-  this->thread_playback = new vld::thread::Playback(vld_struct);
+  this->vld_struct = node_velodyne->get_vld_struct();
+  this->thread_playback = new vld::thread::Playback(node_velodyne);
 
   //---------------------------
 }

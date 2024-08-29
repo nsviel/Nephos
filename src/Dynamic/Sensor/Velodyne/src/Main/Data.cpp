@@ -1,29 +1,21 @@
 #include "Data.h"
 
 #include <Velodyne/Namespace.h>
-#include <Core/Namespace.h>
-#include <IO/Namespace.h>
 #include <Data/Namespace.h>
-#include <Importer/Namespace.h>
 
 
 namespace vld::main{
 
 //Constructor / Destructor
-Data::Data(vld::Node* node_vld){
+Data::Data(vld::Node* node_velodyne){
   //---------------------------
 
-  core::Node* node_core = node_vld->get_node_core();
-  dat::Node* node_data = node_core->get_node_data();
-  io::Node* node_io = node_core->get_node_io();
+  dat::Node* node_data = node_velodyne->get_node_data();
   dat::gph::Node* node_graph = node_data->get_node_graph();
-  io::imp::Node* node_importer = node_io->get_node_importer();
   dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->node_core = node_vld->get_node_core();
-  this->vld_struct = node_vld->get_vld_struct();
+  this->vld_struct = node_velodyne->get_vld_struct();
   this->dat_graph = node_graph->get_gph_graph();
-  this->io_loader = node_importer->get_io_importer();
   this->dat_set = node_element->get_dat_set();
   this->dat_entity = node_element->get_dat_entity();
 

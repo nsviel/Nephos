@@ -12,7 +12,7 @@ class Capture
 {
 public:
   //Constructor / Destructor
-  Capture(vld::Node* node_vld);
+  Capture(vld::Node* node_velodyne);
   ~Capture();
 
 public:

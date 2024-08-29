@@ -6,10 +6,10 @@
 namespace vld::processing{
 
 //Constructor / Destructor
-Player::Player(vld::Structure* vld_struct){
+Player::Player(vld::Node* node_velodyne){
   //---------------------------
 
-  this->vld_struct = vld_struct;
+  this->vld_struct = node_velodyne->get_vld_struct();
 
   //---------------------------
 }

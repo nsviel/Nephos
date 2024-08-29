@@ -1,6 +1,7 @@
 #include "Panel.h"
 
 #include <Velodyne/Namespace.h>
+#include <imgui/core/imgui.h>
 
 
 namespace vld::gui{

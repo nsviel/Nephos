@@ -13,12 +13,12 @@ int loop_cpt(0);
 
 
 //Constructor / Destructor
-Importer::Importer(vld::Structure* vld_struct){
+Importer::Importer(vld::Node* node_velodyne){
   //---------------------------
 
-  this->vld_struct = vld_struct;
-  this->vld_player = new vld::processing::Player(vld_struct);
-  this->vld_playback = new vld::main::Playback(vld_struct);
+  this->vld_struct = node_velodyne->get_vld_struct();
+  this->vld_player = new vld::processing::Player(node_velodyne);
+  this->vld_playback = new vld::main::Playback(node_velodyne);
 
   this->lidar_model = VLP_16;
   this->packet_range_on = false;

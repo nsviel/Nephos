@@ -1,5 +1,6 @@
 #pragma once
 
+namespace vld{class Node;}
 namespace vld{class Structure;}
 
 
@@ -9,7 +10,7 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(vld::Structure* vld_struct);
+  Player(vld::Node* node_velodyne);
   ~Player();
 
 public:

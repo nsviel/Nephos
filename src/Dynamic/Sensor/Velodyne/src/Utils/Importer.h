@@ -27,7 +27,7 @@ class Importer : public io::imp::Base
 {
 public:
   //Constructor / Destructor
-  Importer(vld::Structure* vld_struct);
+  Importer(vld::Node* node_velodyne);
   ~Importer();
 
 public:

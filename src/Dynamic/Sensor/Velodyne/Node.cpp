@@ -21,7 +21,7 @@ Node::Node(dyn::sen::Node* node_sensor){
 
   this->vld_struct = new vld::Structure();
   this->vld_capture = new vld::main::Capture(this);
-  this->vld_playback = new vld::main::Playback(vld_struct);
+  this->vld_playback = new vld::main::Playback(node_velodyne);
   this->gui_panel = new vld::gui::Panel(this, &panel->is_open);
 
   //---------------------------
@@ -34,7 +34,7 @@ void Node::config(){
   io::imp::Importer* io_importer = node_importer->get_io_importer();
   //---------------------------
 
-  io_importer->insert_importer(new vld::utils::Importer(vld_struct));
+  io_importer->insert_importer(new vld::utils::Importer(node_velodyne));
 
   //---------------------------
 }

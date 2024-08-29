@@ -2,6 +2,7 @@
 
 #include <thread>
 
+namespace vld{class Node;}
 namespace vld{class Structure;}
 namespace vld::processing{class Player;}
 
@@ -12,7 +13,7 @@ class Playback
 {
 public:
   //Constructor / Destructor
-  Playback(vld::Structure* vld_struct);
+  Playback(vld::Node* node_velodyne);
   ~Playback();
 
 public:
