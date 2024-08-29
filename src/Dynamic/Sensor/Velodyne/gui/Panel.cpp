@@ -1,18 +1,17 @@
 #include "Panel.h"
 
 #include <Velodyne/Namespace.h>
-#include <Utility/Namespace.h>
 
 
 namespace vld::gui{
 
 //Constructor / Destructor
-Panel::Panel(vld::structure::Main* vld_struct, bool* show_window){
+Panel::Panel(vld::Node* node_velodyne, bool* show_window){
   //---------------------------
 
-  this->vld_struct = vld_struct;
-  this->gui_player = new vld::gui::Player(vld_struct);
-  this->gui_server = new vld::gui::Server(vld_struct);
+  this->vld_struct = node_velodyne->get_vld_struct();
+  this->gui_player = new vld::gui::Player(node_velodyne);
+  this->gui_server = new vld::gui::Server(node_velodyne);
 
   this->show_window = show_window;
   this->name = "Velodyne";

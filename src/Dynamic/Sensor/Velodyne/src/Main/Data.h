@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vld{class Node;}
-namespace vld::structure{class Main;}
+namespace vld{class Structure;}
 namespace core{class Node;}
 namespace io::imp{class Importer;}
 namespace dat::gph{class Graph;}
@@ -24,7 +24,7 @@ public:
 
 private:
   core::Node* node_core;
-  vld::structure::Main* vld_struct;
+  vld::Structure* vld_struct;
   dat::gph::Graph* dat_graph;
   io::imp::Importer* io_loader;
   dat::elm::Set* dat_set;

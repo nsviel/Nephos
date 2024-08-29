@@ -2,10 +2,9 @@
 
 #include <string>
 
-namespace core{class Node;}
 namespace vld{class Node;}
+namespace vld{class Structure;}
 namespace vld::processing{class Velodyne;}
-namespace vld::structure{class Main;}
 namespace vld::gui{class Player;}
 namespace vld::gui{class Server;}
 
@@ -16,7 +15,7 @@ class Panel
 {
 public:
   //Constructor / Destructor
-  Panel(vld::structure::Main* vld_struct, bool* show_window);
+  Panel(vld::Node* node_velodyne, bool* show_window);
   ~Panel();
 
 public:
@@ -25,7 +24,7 @@ public:
   void design_panel();
 
 private:
-  vld::structure::Main* vld_struct;
+  vld::Structure* vld_struct;
   vld::gui::Player* gui_player;
   vld::gui::Server* gui_server;
 

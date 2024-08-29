@@ -13,7 +13,7 @@ int loop_cpt(0);
 
 
 //Constructor / Destructor
-Importer::Importer(vld::structure::Main* vld_struct){
+Importer::Importer(vld::Structure* vld_struct){
   //---------------------------
 
   this->vld_struct = vld_struct;

@@ -8,10 +8,10 @@
 namespace vld::gui{
 
 //Constructor / Destructor
-Player::Player(vld::structure::Main* vld_struct){
+Player::Player(vld::Node* node_velodyne){
   //---------------------------
 
-  this->vld_struct = vld_struct;
+  this->vld_struct = node_velodyne->get_vld_struct();
   this->vld_player = new vld::processing::Player(vld_struct);
 
   //---------------------------

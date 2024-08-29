@@ -7,10 +7,10 @@
 namespace vld::gui{
 
 //Constructor / Destructor
-Server::Server(vld::structure::Main* vld_struct){
+Server::Server(vld::Node* node_velodyne){
   //---------------------------
 
-  this->vld_struct = vld_struct;
+  this->vld_struct = node_velodyne->get_vld_struct();
 
   //---------------------------
 }

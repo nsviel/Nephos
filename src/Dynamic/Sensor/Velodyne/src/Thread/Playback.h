@@ -2,7 +2,7 @@
 
 #include <thread>
 
-namespace vld::structure{class Main;}
+namespace vld{class Structure;}
 namespace vld::processing{class Player;}
 
 
@@ -12,7 +12,7 @@ class Playback
 {
 public:
   //Constructor / Destructor
-  Playback(vld::structure::Main* vld_struct);
+  Playback(vld::Structure* vld_struct);
   ~Playback();
 
 public:
@@ -25,7 +25,7 @@ public:
   void manage_pause();
 
 private:
-  vld::structure::Main* vld_struct;
+  vld::Structure* vld_struct;
   vld::processing::Player* vld_player;
 
   std::thread thread;

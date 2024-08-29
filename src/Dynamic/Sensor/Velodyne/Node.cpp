@@ -19,10 +19,10 @@ Node::Node(dyn::sen::Node* node_sensor){
   this->node_io = node_core->get_node_io();
   this->node_data = node_core->get_node_data();
 
-  this->vld_struct = new vld::structure::Main();
+  this->vld_struct = new vld::Structure();
   this->vld_capture = new vld::main::Capture(this);
   this->vld_playback = new vld::main::Playback(vld_struct);
-  this->gui_velodyne = new vld::gui::Panel(vld_struct, &panel->is_open);
+  this->gui_panel = new vld::gui::Panel(this, &panel->is_open);
 
   //---------------------------
 }
@@ -48,7 +48,7 @@ void Node::init(){
 void Node::gui(){
   //---------------------------
 
-  gui_velodyne->run_panel();
+  gui_panel->run_panel();
 
   //---------------------------
 }

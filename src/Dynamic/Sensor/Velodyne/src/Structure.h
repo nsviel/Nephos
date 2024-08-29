@@ -5,9 +5,9 @@
 #include <Velodyne/src/Structure/Server.h>
 
 
-namespace vld::structure{
+namespace vld{
 
-struct Main{
+struct Structure{
   //---------------------------
 
   vld::structure::Data data;

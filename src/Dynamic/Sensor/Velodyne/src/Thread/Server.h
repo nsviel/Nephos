@@ -4,7 +4,7 @@
 #include <thread>
 
 namespace vld{class Node;}
-namespace vld::structure{class Main;}
+namespace vld{class Structure;}
 namespace vld::processing{class Player;}
 namespace vld::processing{class Frame;}
 namespace vld::utils{class Server;}
@@ -40,7 +40,7 @@ private:
   io::imp::Importer* io_loader;
   dat::elm::Set* dat_set;
 
-  vld::structure::Main* vld_struct;
+  vld::Structure* vld_struct;
   vld::processing::Player* vld_player;
   vld::processing::Frame* vld_frame;
   vld::utils::Server* vld_server;

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vld::structure{class Main;}
+namespace vld{class Structure;}
 namespace vld::thread{class Playback;}
 
 
@@ -10,7 +10,7 @@ class Playback
 {
 public:
   //Constructor / Destructor
-  Playback(vld::structure::Main* vld_struct);
+  Playback(vld::Structure* vld_struct);
   ~Playback();
 
 public:
@@ -19,7 +19,7 @@ public:
   void stop_playback();
 
 private:
-  vld::structure::Main* vld_struct;
+  vld::Structure* vld_struct;
   vld::thread::Playback* thread_playback = nullptr;
 };
 

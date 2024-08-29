@@ -8,7 +8,7 @@ namespace dat{class Node;}
 namespace core{class Node;}
 namespace vld::main{class Capture;}
 namespace vld::main{class Playback;}
-namespace vld::structure{class Main;}
+namespace vld{class Structure;}
 namespace vld::gui{class Panel;}
 
 
@@ -30,7 +30,7 @@ public:
 
   inline dat::Node* get_node_data(){return node_data;}
   inline core::Node* get_node_core(){return node_core;}
-  inline vld::structure::Main* get_vld_struct(){return vld_struct;}
+  inline vld::Structure* get_vld_struct(){return vld_struct;}
 
 private:
   core::Node* node_core;
@@ -39,8 +39,8 @@ private:
 
   vld::main::Capture* vld_capture;
   vld::main::Playback* vld_playback;
-  vld::structure::Main* vld_struct;
-  vld::gui::Panel* gui_velodyne;
+  vld::Structure* vld_struct;
+  vld::gui::Panel* gui_panel;
 };
 
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace vld::structure{class Main;}
+namespace vld{class Structure;}
 
 
 namespace vld::processing{
@@ -9,7 +9,7 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(vld::structure::Main* vld_struct);
+  Player(vld::Structure* vld_struct);
   ~Player();
 
 public:
@@ -26,7 +26,7 @@ public:
   void forward_index(int index);
 
 private:
-  vld::structure::Main* vld_struct;
+  vld::Structure* vld_struct;
 };
 
 }

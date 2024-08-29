@@ -6,7 +6,7 @@
 namespace vld::processing{
 
 //Constructor / Destructor
-Player::Player(vld::structure::Main* vld_struct){
+Player::Player(vld::Structure* vld_struct){
   //---------------------------
 
   this->vld_struct = vld_struct;

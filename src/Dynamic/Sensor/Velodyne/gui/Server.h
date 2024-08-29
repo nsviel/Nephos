@@ -1,6 +1,7 @@
 #pragma once
 
-namespace vld::structure{class Main;}
+namespace vld{class Node;}
+namespace vld{class Structure;}
 
 
 namespace vld::gui{
@@ -9,7 +10,7 @@ class Server
 {
 public:
   //Constructor / Destructor
-  Server(vld::structure::Main* vld_struct);
+  Server(vld::Node* node_velodyne);
   ~Server();
 
 public:
@@ -17,7 +18,7 @@ public:
   void design_server();
 
 private:
-  vld::structure::Main* vld_struct;
+  vld::Structure* vld_struct;
 };
 
 }

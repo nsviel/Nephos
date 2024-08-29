@@ -12,7 +12,7 @@
 #include <bitset>
 
 namespace vld::processing{class Player;}
-namespace vld::structure{class Main;}
+namespace vld{class Structure;}
 namespace vld::main{class Playback;}
 
 
@@ -27,7 +27,7 @@ class Importer : public io::imp::Base
 {
 public:
   //Constructor / Destructor
-  Importer(vld::structure::Main* vld_struct);
+  Importer(vld::Structure* vld_struct);
   ~Importer();
 
 public:
@@ -49,7 +49,7 @@ public:
   inline int* get_packet_end(){return &packet_end;}
 
 private:
-  vld::structure::Main* vld_struct;
+  vld::Structure* vld_struct;
   vld::processing::Player* vld_player;
   vld::main::Playback* vld_playback;
 

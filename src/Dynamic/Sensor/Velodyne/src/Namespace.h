@@ -6,3 +6,4 @@
 #include <Velodyne/src/Structure/Namespace.h>
 #include <Velodyne/src/Thread/Namespace.h>
 #include <Velodyne/src/Main/Namespace.h>
+#include <Velodyne/src/Structure.h>

@@ -6,7 +6,7 @@
 namespace vld::thread{
 
 //Constructor / Destructor
-Playback::Playback(vld::structure::Main* vld_struct){
+Playback::Playback(vld::Structure* vld_struct){
   //---------------------------
 
   this->vld_struct = vld_struct;

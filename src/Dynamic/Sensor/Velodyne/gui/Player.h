@@ -1,7 +1,8 @@
 #pragma once
 
+namespace vld{class Node;}
+namespace vld{class Structure;}
 namespace vld::processing{class Player;}
-namespace vld::structure{class Main;}
 
 
 namespace vld::gui{
@@ -10,7 +11,7 @@ class Player
 {
 public:
   //Constructor / Destructor
-  Player(vld::structure::Main* vld_struct);
+  Player(vld::Node* node_velodyne);
   ~Player();
 
 public:
@@ -26,7 +27,7 @@ public:
   void player_lock();
 
 private:
-  vld::structure::Main* vld_struct;
+  vld::Structure* vld_struct;
   vld::processing::Player* vld_player;
 };
 

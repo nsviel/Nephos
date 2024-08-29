@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vld{class Node;}
-namespace vld::structure{class Main;}
+namespace vld{class Structure;}
 namespace vld::thread{class Server;}
 namespace vld::thread{class Screenshot;}
 
@@ -21,7 +21,7 @@ public:
   void clean();
 
 private:
-  vld::structure::Main* vld_struct;
+  vld::Structure* vld_struct;
   vld::thread::Server* thread_server;
   vld::thread::Screenshot* thread_screenshot;
 };
