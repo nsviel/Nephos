@@ -15,7 +15,7 @@ namespace k4n::imu{class Structure;}
 
 namespace k4n::base{
 
-struct Sensor : public dat::base::Sensor, public sys::thread::Worker, public std::enable_shared_from_this<Sensor>{
+struct Sensor : public dat::base::Sensor{
   //---------------------------
 
   Sensor(){

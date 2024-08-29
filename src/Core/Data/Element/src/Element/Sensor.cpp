@@ -29,7 +29,7 @@ void Sensor::init_sensor(dat::base::Sensor& sensor){
 
   //---------------------------
 }
-void Sensor::remove_sensor(dat::base::Sensor& sensor){
+void Sensor::clean_sensor(dat::base::Sensor& sensor){
   //---------------------------
 
   prf_monitor->remove_profiler(&sensor.profiler);

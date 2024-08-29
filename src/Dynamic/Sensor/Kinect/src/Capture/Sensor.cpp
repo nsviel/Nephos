@@ -31,7 +31,7 @@ Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
-  dat_sensor->remove_sensor(*this);
+  dat_sensor->clean_sensor(*this);
 
   //---------------------------
 }

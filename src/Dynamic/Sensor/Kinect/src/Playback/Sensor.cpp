@@ -31,7 +31,7 @@ Sensor::~Sensor(){
   //---------------------------
 
   this->stop_thread();
-  dat_sensor->remove_sensor(*this);
+  dat_sensor->clean_sensor(*this);
 
   //---------------------------
 }
@@ -91,7 +91,7 @@ void Sensor::manage_capture(){
 
   //---------------------------
 }
-void Sensor::manage_pause(){
+void Sensor::manage_pause(){//a virer et a mettre dans une class base supérieur
   //---------------------------
 
   //If pause, wait until end pause or end thread

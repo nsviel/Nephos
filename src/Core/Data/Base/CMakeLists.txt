@@ -1,17 +1,10 @@
-set(LIBRARY_NAME CORE_DATA)
+set(LIBRARY_NAME DATA_BASE)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Element)
-add_subdirectory(Graph)
-add_subdirectory(Player)
-add_subdirectory(Attribut)
-add_subdirectory(Image)
-add_subdirectory(Base)
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
+  *.cpp
 )
 
 #-----------------
@@ -23,14 +16,7 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 # Dependencies
 #-----------------
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-  MAIN_CORE
-
   DATA_ATTRIBUT
-  DATA_ELEMENT
-  DATA_GRAPH
-  DATA_PLAYER
-  DATA_BASE
-  DATA_IMAGE
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
