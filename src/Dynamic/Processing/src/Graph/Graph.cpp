@@ -8,7 +8,7 @@
 namespace dyn::prc{
 
 // Constructor / Destructor
-Graph::Graph(dyn::prc::Node* node_processing){
+Graph::Graph(){
   //---------------------------
 
 
@@ -18,6 +18,15 @@ Graph::Graph(dyn::prc::Node* node_processing){
 Graph::~Graph(){}
 
 //Main function
+template<typename Func, typename... Args>
+void Graph::add_task(int task_id, Func&& func, Args&&... args) {
+  //---------------------------
+
+  std::unique_lock<std::mutex> lock(mutex);
+  map_task[task_id] = std::bind(std::forward<Func>(func), std::forward<Args>(args)...);
+
+  //---------------------------
+}
 void Graph::add_dependency(int task_id, int dependent_task_id){
   //---------------------------
 
@@ -28,7 +37,7 @@ void Graph::add_dependency(int task_id, int dependent_task_id){
 
   //---------------------------
 }
-void Graph::execute_tasks(){
+void Graph::execute_tasks(dyn::prc::Pool& thread_pool){
   //---------------------------
 
   std::queue<int> zero_in_degree;
@@ -48,14 +57,17 @@ void Graph::execute_tasks(){
     int task_id = zero_in_degree.front();
     zero_in_degree.pop();
 
-    map_task[task_id]();  // Execute the task
+    // Submit the task to the thread pool
+    thread_pool.submit([this, task_id](){
+      map_task[task_id]();  // Execute the task
 
-    std::unique_lock<std::mutex> lock(mutex);
-    for(int dependent_task : map_adj[task_id]){
-      if(--map_in_degree[dependent_task] == 0){
-        zero_in_degree.push(dependent_task);
+      std::unique_lock<std::mutex> lock(mutex);
+      for (int dependent_task : map_adj[task_id]) {
+        if (--map_in_degree[dependent_task] == 0) {
+          zero_in_degree.push(dependent_task);
+        }
       }
-    }
+    });
   }
 
   //---------------------------
