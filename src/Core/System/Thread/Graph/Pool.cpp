@@ -41,7 +41,7 @@ void Pool::worker_thread(){
   //---------------------------
 
   while (true) {
-    std::pair<std::function<void()>, std::shared_ptr<std::promise<void>>> task;
+    std::function<void()> task;
     {
       std::unique_lock<std::mutex> lock(mutex);
       cv.wait(lock, [this] { return stop || !queue_task.empty(); });
@@ -50,16 +50,7 @@ void Pool::worker_thread(){
       task = std::move(queue_task.front());
       queue_task.pop();
     }
-    try {
-      task.first(); // Execute the task
-      if (task.second) {
-        task.second->set_value(); // Notify that the task is complete
-      }
-    } catch (...) {
-      if (task.second) {
-        task.second->set_exception(std::current_exception()); // Notify of an exception
-      }
-    }
+    task(); // Execute the task
   }
 
   //---------------------------

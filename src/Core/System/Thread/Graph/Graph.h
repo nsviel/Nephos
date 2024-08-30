@@ -27,10 +27,15 @@ public:
     std::unique_lock<std::mutex> lock(mutex);
     map_task[task_name] = std::bind(std::forward<Func>(func), std::forward<Args>(args)...);
 
+    // Initialize in-degree to 0 if this is a new task with no dependencies
+    if (map_in_degree.find(task_name) == map_in_degree.end()) {
+      map_in_degree[task_name] = 0;
+    }
+
     //---------------------------
   }
   void add_dependency(const std::string& task_name, const std::string& dependent_task_name);
-  void execute_tasks(thr::Pool& thread_pool);
+  void execute(thr::Pool& thread_pool);
 
 private:
   std::unordered_map<std::string, std::function<void()>> map_task;

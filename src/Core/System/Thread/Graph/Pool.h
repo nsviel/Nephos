@@ -22,29 +22,20 @@ public:
 public:
   // Submit a function for execution
   template<class F>
-  std::future<void> submit(F&& f) {
-    auto promise = std::make_shared<std::promise<void>>();
-    auto future = promise->get_future();
-
+  void submit(F&& f) {
     {
       std::unique_lock<std::mutex> lock(mutex);
       if (stop)
         throw std::runtime_error("submit on stopped ThreadPool");
 
-      auto task = [f = std::forward<F>(f), promise]() mutable {
-        try {
-          f(); // Execute the task
-          promise->set_value(); // Notify that the task is complete
-        } catch (...) {
-          promise->set_exception(std::current_exception()); // Notify of an exception
-        }
+      // Define the task without a promise or exception handling
+      auto task = [f = std::forward<F>(f)]() {
+        f(); // Execute the task
       };
 
-      queue_task.emplace(std::move(task), promise);
+      queue_task.push(std::move(task));
     }
-
     cv.notify_one();
-    return future;
   }
 
 private:
@@ -54,7 +45,7 @@ private:
 
 private:
   std::vector<std::thread> vec_worker;
-  std::queue<std::pair<std::function<void()>, std::shared_ptr<std::promise<void>>>> queue_task;
+  std::queue<std::function<void()>> queue_task;
   std::condition_variable cv;
   std::mutex mutex;
   std::atomic<bool> stop;

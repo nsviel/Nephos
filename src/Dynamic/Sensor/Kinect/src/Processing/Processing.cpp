@@ -39,11 +39,16 @@ void Processing::start_thread(k4n::base::Sensor& sensor){
   };
   thread_pool->add_task(task_function);*/
 
+static bool a = false;
+if(!a){
+  sensor.graph.add_task("hello", []() {std::cout<<"hello"<<std::endl;} );
+  sensor.graph.add_task("word", []() {std::cout<<"word"<<std::endl;} );
+  sensor.graph.add_dependency("hello", "word");
 
-  sensor.graph.add_task("hello", std::cout<<"hello"<<std::endl;);
-  sensor.graph.add_task("word", std::cout<<"word"<<std::endl;);
-  sensor.graph.add_dependency("word", "hello");
+  a= true;
+}
 
+  sensor.graph.execute(*thr_pool);
 
   //---------------------------
 }
