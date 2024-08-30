@@ -23,6 +23,8 @@ Processing::Processing(k4n::Node* node_k4n){
   this->dyn_ope_image = node_processing->get_ope_image();
   this->dyn_ope_cloud = node_processing->get_ope_cloud();
 
+  this->thr_pool = new thr::Pool(100);
+
   //---------------------------
 }
 Processing::~Processing(){}
@@ -30,12 +32,18 @@ Processing::~Processing(){}
 //Main function
 void Processing::start_thread(k4n::base::Sensor& sensor){
   //---------------------------
-
+/*
   this->thread_idle = false;
   auto task_function = [this, &sensor](){
     this->run_thread(sensor);
   };
-  thread_pool->add_task(task_function);
+  thread_pool->add_task(task_function);*/
+
+
+  sensor.graph.add_task("hello", std::cout<<"hello"<<std::endl;);
+  sensor.graph.add_task("word", std::cout<<"word"<<std::endl;);
+  sensor.graph.add_dependency("word", "hello");
+
 
   //---------------------------
 }

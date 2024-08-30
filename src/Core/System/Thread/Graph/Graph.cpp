@@ -30,7 +30,7 @@ void Graph::add_dependency(const std::string& task_name, const std::string& depe
 }
 void Graph::execute_tasks(thr::Pool& thread_pool){
   //---------------------------
-/*
+
   std::queue<std::string> zero_in_degree;
 
   // Initialize the queue with tasks having zero in-degree
@@ -60,7 +60,7 @@ void Graph::execute_tasks(thr::Pool& thread_pool){
       }
     });
   }
-*/
+
   //---------------------------
 }
 

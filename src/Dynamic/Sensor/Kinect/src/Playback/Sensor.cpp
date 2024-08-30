@@ -61,7 +61,7 @@ void Sensor::thread_loop(){
   tasker->task_end("capture");
 
   //Run processing
-  //k4n_processing->start_thread(*this);
+  k4n_processing->start_thread(*this);
 
   //---------------------------
 }

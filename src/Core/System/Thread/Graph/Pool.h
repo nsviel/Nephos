@@ -22,7 +22,7 @@ public:
 public:
   // Submit a function for execution
   template<class F>
-  std::future<void> Pool::submit(F&& f) {
+  std::future<void> submit(F&& f) {
     auto promise = std::make_shared<std::promise<void>>();
     auto future = promise->get_future();
 
