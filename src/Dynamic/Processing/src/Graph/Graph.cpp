@@ -58,7 +58,7 @@ void Graph::execute_tasks(dyn::prc::Pool& thread_pool){
     zero_in_degree.pop();
 
     // Submit the task to the thread pool
-    thread_pool.submit([this, task_id](){
+    thread_pool.submit([this, task_id, &zero_in_degree](){
       map_task[task_id]();  // Execute the task
 
       std::unique_lock<std::mutex> lock(mutex);

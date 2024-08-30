@@ -6,6 +6,7 @@
 #include <list>
 
 namespace dyn::prc{class Node;}
+namespace dyn::prc{class Pool;}
 
 
 namespace dyn::prc{
