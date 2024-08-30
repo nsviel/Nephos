@@ -28,7 +28,7 @@ void Table_xy::thread_function(){
   //---------------------------
 
   auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
-  if (auto k4n_sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(sensor)) {
+  if(auto k4n_sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(sensor)){
     this->table_color_to_depth(*k4n_sensor);
     //this->convert_table_to_glm(k4n_sensor);
   }

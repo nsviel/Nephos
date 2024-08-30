@@ -19,7 +19,7 @@ Recorder::~Recorder(){}
 bool Recorder::record_sensor(std::shared_ptr<dat::base::Sensor> sensor, std::string path){
   //---------------------------
 
-  if (auto k4n_sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(sensor)) {
+  if(auto k4n_sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(sensor)){
     if(!k4n_sensor->device.handle.is_valid() || path == "") return false;
 
     k4a::record& recorder = k4n_sensor->device.recorder;

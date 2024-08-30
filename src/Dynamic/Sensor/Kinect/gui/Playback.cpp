@@ -24,7 +24,7 @@ void Playback::show_parameter(std::shared_ptr<k4n::base::Sensor> sensor){
   auto set_parent = sensor->set_parent.lock();
   this->show_transformation_mode(set_parent);
 
-  if (auto playback = std::dynamic_pointer_cast<k4n::playback::Sensor>(sensor)) {
+  if(auto playback = std::dynamic_pointer_cast<k4n::playback::Sensor>(sensor)){
     this->show_info_device(playback);
     this->show_info_color(playback);
     this->show_info_depth(playback);

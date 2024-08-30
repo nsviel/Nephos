@@ -30,7 +30,7 @@ void Panel::run_panel(){
   if(*show_window){
     //Intial panel size
     static bool first_time = true;
-    if (first_time) {
+    if(first_time){
       ImGui::SetNextWindowSize(ImVec2(400, 500));
       first_time = false;
     }

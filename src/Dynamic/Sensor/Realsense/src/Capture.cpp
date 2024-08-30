@@ -55,7 +55,7 @@ void Capture::display(rs2::frameset frames){
   rs2::frame color_frame = frames.get_color_frame();
   rs2::depth_frame depth_frame = frames.get_depth_frame();
 
-  if (!depth_frame) {
+  if(!depth_frame){
     std::cerr << "Depth frame is empty!" << std::endl;
     return;
   }
@@ -68,7 +68,7 @@ void Capture::display(rs2::frameset frames){
   cv::Mat color(cv::Size(w, h), CV_8UC3, (void*)color_frame.get_data(), cv::Mat::AUTO_STEP);
   cv::Mat depth(cv::Size(w, h), CV_16UC1, (void*)depth_frame.get_data(), cv::Mat::AUTO_STEP);
 
-  if (depth.empty()) {
+  if(depth.empty()){
     std::cerr << "Depth matrix is empty!" << std::endl;
     return;
   }

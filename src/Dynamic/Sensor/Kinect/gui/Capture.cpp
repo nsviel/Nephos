@@ -62,7 +62,7 @@ void Capture::show_list_device(std::shared_ptr<dat::base::Set> set){
     ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
     ImGui::TableHeadersRow();
     for(auto& entity : set->list_entity){
-      if (auto sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(entity)) {
+      if(auto sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(entity)){
         ImGui::PushID(sensor->info.serial_number.c_str());
 
         //Sensor type

@@ -24,7 +24,7 @@ void Operation::center_object(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   // Attempt to cast to dat::base::Set
-  if (auto set = std::dynamic_pointer_cast<dat::base::Set>(element)) {
+  if(auto set = std::dynamic_pointer_cast<dat::base::Set>(element)){
     atr_location->compute_MinMax(set);
     for(auto& entity : set->list_entity){
       this->center_object(entity, set->pose.COM);
@@ -32,7 +32,7 @@ void Operation::center_object(std::shared_ptr<utl::base::Element> element){
     }
   }
   // Attempt to cast to dat::base::Entity
-  else if (auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)) {
+  else if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
     utl::base::Pose& pose = entity->pose;
     this->center_object(entity, pose.COM);
     this->elevate_object(entity, pose.min);
@@ -45,14 +45,14 @@ void Operation::elevate_object(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   // Attempt to cast to dat::base::Set
-  if (auto set = std::dynamic_pointer_cast<dat::base::Set>(element)) {
+  if(auto set = std::dynamic_pointer_cast<dat::base::Set>(element)){
     atr_location->compute_MinMax(set);
     for(auto& entity : set->list_entity){
       this->elevate_object(entity, set->pose.min);
     }
   }
   // Attempt to cast to dat::base::Entity
-  else if (auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)) {
+  else if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
     utl::base::Pose& pose = entity->pose;
     this->elevate_object(entity, pose.min);
   }
@@ -64,13 +64,13 @@ void Operation::make_rotation_X_90d(std::shared_ptr<utl::base::Element> element,
   //---------------------------
 
   // Attempt to cast to dat::base::Set
-  if (auto set = std::dynamic_pointer_cast<dat::base::Set>(element)) {
+  if(auto set = std::dynamic_pointer_cast<dat::base::Set>(element)){
     for(auto& entity : set->list_entity){
       this->make_rotation_X_90d(entity, value);
     }
   }
   // Attempt to cast to dat::base::Entity
-  else if (auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)) {
+  else if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
     this->make_rotation_X_90d(entity, value);
   }
 
@@ -81,7 +81,7 @@ void Operation::make_translation(std::shared_ptr<utl::base::Element> element, gl
   //---------------------------
 
   // Attempt to cast to dat::base::Set
-  if (auto set = std::dynamic_pointer_cast<dat::base::Set>(element)) {
+  if(auto set = std::dynamic_pointer_cast<dat::base::Set>(element)){
     trf_transform->make_translation(set->pose, value);
     for(auto& entity : set->list_entity){
       trf_transform->make_translation(entity->pose, value);
@@ -91,7 +91,7 @@ void Operation::make_translation(std::shared_ptr<utl::base::Element> element, gl
     }
   }
   // Attempt to cast to dat::base::Entity
-  else if (auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)) {
+  else if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
     trf_transform->make_translation(entity->pose, value);
   }
 
@@ -102,7 +102,7 @@ void Operation::make_rotation(std::shared_ptr<utl::base::Element> element, glm::
   //---------------------------
 
   // Attempt to cast to dat::base::Set
-  if (auto set = std::dynamic_pointer_cast<dat::base::Set>(element)) {
+  if(auto set = std::dynamic_pointer_cast<dat::base::Set>(element)){
     trf_transform->make_rotation(set->pose, COM, value);
     for(auto& entity : set->list_entity){
       this->make_rotation(entity, COM, value);
@@ -112,7 +112,7 @@ void Operation::make_rotation(std::shared_ptr<utl::base::Element> element, glm::
     }
   }
   // Attempt to cast to dat::base::Entity
-  else if (auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)) {
+  else if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
     trf_transform->make_rotation(entity->pose, COM, value);
   }
 

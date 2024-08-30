@@ -118,7 +118,7 @@ void Converter::convert_spherical_pc_to_image(utl::base::Data& data, std::shared
   }
 
   // Normalize and save each image
-  for (int i = 0; i < num_images; i++){
+  for(int i = 0; i < num_images; i++){
      cv::normalize(vec_images[i], vec_images[i], 0, 1, cv::NORM_MINMAX);
      cv::Mat cv_image_8u;
      vec_images[i].convertTo(cv_image_8u, CV_8UC1, 255.0);

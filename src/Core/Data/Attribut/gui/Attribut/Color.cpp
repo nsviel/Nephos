@@ -180,9 +180,9 @@ void Color::color_option(std::shared_ptr<utl::base::Element> element){
     flags |= ImGuiTableFlags_RowBg;
     flags |= ImGuiTableFlags_Borders;
     ImGui::SetNextItemWidth(150);
-    if (ImGui::BeginTable("##field_table", 1, flags)) {
+    if(ImGui::BeginTable("##field_table", 1, flags)){
       // Iterate over the vector of names to populate the table
-      for (int i = 0; i < vec_name.size(); ++i) {
+      for(int i = 0; i < vec_name.size(); ++i){
         std::string& name = vec_name[i];
 
         // Start a new row
@@ -190,13 +190,13 @@ void Color::color_option(std::shared_ptr<utl::base::Element> element){
 
         // Second column: display the name with selectable functionality
         const bool is_selected = (selection == i);
-        if (ImGui::Selectable(name.c_str(), is_selected, ImGuiSelectableFlags_SpanAllColumns)) {
+        if(ImGui::Selectable(name.c_str(), is_selected, ImGuiSelectableFlags_SpanAllColumns)){
           atr_struct->color.field = name;
           atr_struct->color.range = atr_field->get_field_range(entity->data, name);
           selection = i;
         }
 
-        if (is_selected) {
+        if(is_selected){
           ImGui::SetItemDefaultFocus(); // Ensure the selected item is focused
         }
       }

@@ -20,11 +20,11 @@ std::shared_ptr<dat::base::Entity> Element::get_active_entity(std::shared_ptr<ut
   //---------------------------
 
   // Attempt to cast to dat::base::Set
-  if (auto set = std::dynamic_pointer_cast<dat::base::Set>(element)) {
+  if(auto set = std::dynamic_pointer_cast<dat::base::Set>(element)){
     return set->active_entity.lock();
   }
   // Attempt to cast to dat::base::Entity
-  else if (auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)) {
+  else if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
     return entity;
   }
 

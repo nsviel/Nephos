@@ -168,17 +168,17 @@ void Set::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat
 
   // Check if the set has the entity to be removed
   auto it = std::find_if(set->list_entity.begin(), set->list_entity.end(),
-    [&entity](const std::shared_ptr<dat::base::Entity>& e) {
+    [&entity](const std::shared_ptr<dat::base::Entity>& e){
       return e->UID == entity->UID;
     });
 
-  if (it != set->list_entity.end()) {
+  if(it != set->list_entity.end()){
     // If entity is found in the set
     std::shared_ptr<dat::base::Entity> found_entity = *it;
 
     // Check if the found entity is the active entity
     auto active_entity = set->active_entity.lock();
-    if (active_entity && active_entity == found_entity) {
+    if(active_entity && active_entity == found_entity){
       this->active_next_entity(set);
     }
 
@@ -187,7 +187,7 @@ void Set::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat
     set->nb_entity--;
 
     // Check if the removed entity was the active one
-    if (active_entity == found_entity) {
+    if(active_entity == found_entity){
       set->active_entity.reset();
     }
 
@@ -253,12 +253,12 @@ void Set::active_next_entity(std::shared_ptr<dat::base::Set> set){
   }
   //Else select next entity
   else{
-    for (auto it = set->list_entity.begin(); it != set->list_entity.end(); ++it) {
-      if (set_active->UID == (*it)->UID) {
+    for(auto it = set->list_entity.begin(); it != set->list_entity.end(); ++it){
+      if(set_active->UID == (*it)->UID){
         auto next_it = std::next(it);
 
         // If at the end of the list, cycle back to the beginning
-        if (next_it == set->list_entity.end()) {
+        if(next_it == set->list_entity.end()){
           set->active_entity = *set->list_entity.begin();
         } else {
           set->active_entity = *next_it;
