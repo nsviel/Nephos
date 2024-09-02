@@ -43,7 +43,9 @@ static bool a = false;
 if(!a){
   sensor.graph.add_task("hello", [](dat::base::Entity& entity) {std::cout<<"jean "<<std::endl;} );
   sensor.graph.add_task("word", [](dat::base::Entity& entity) {std::cout<<" bombeur"<<std::endl;} );
+  sensor.graph.add_task("truc", [](dat::base::Entity& entity) {std::cout<<" aime les sandwich"<<std::endl;} );
   sensor.graph.add_dependency("hello", "word");
+  sensor.graph.add_dependency("word", "truc");
 
   a= true;
 }

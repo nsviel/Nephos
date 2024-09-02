@@ -36,44 +36,52 @@ void Graph::add_dependency(const std::string& A, const std::string& B){
   //---------------------------
 }
 void Graph::execute(thr::gph::Pool& thread_pool, dat::base::Entity& entity){
+  std::queue<std::string> tasks_to_process;
   //---------------------------
-say("----");
+
   // Start processing tasks with zero in-degree
-  for (auto& [task_name, node] : map_node) {
-    if (node.in_degree == 0) {
-      process_task(task_name, thread_pool, entity);
+  {
+    std::unique_lock<std::mutex> lock(mutex);
+    for (auto& [task_name, node] : map_node) {
+      if (node.in_degree == 0) {
+        tasks_to_process.push(task_name);
+      }
     }
   }
-sayHello();
+
+  // Process tasks
+  while (!tasks_to_process.empty()) {
+    std::string task_name = tasks_to_process.front();
+    tasks_to_process.pop();
+
+    this->process_task(task_name, thread_pool, entity, tasks_to_process);
+  }
+
   //---------------------------
 }
 
 //Subfunction
-void Graph::process_task(const std::string& task_name, thr::gph::Pool& thread_pool, dat::base::Entity& entity) {
+void Graph::process_task(const std::string& task_name, thr::gph::Pool& thread_pool, dat::base::Entity& entity, std::queue<std::string>& tasks_to_process) {
   //---------------------------
 
-  // Submit the current task to the thread pool and get a future
+  // Submit the current task to the thread pool
   auto task_future = thread_pool.submit([this, task_name, &entity]() {
-    map_node[task_name].task(entity);  // Execute the task
+    try {
+      map_node[task_name].task(entity);  // Execute the task
+    } catch (...) {
+      // Handle exceptions if necessary
+    }
   });
 
-  // Wait for the task to complete
-  task_future.wait();
+  // Handle task completion and dependencies
+  task_future.wait(); // Wait for the task to complete
 
-  // Process all dependencies after the current task is complete
+  // Process dependencies
   {
     std::unique_lock<std::mutex> lock(mutex);
 
     for (const std::string& dependent_task : map_node[task_name].adjacent) {
-      if (map_node[dependent_task].in_degree > 0) {
-        // Decrease in-degree and process if it becomes zero
-        if (--map_node[dependent_task].in_degree == 0) {
-          // Submit dependent task to the thread pool
-          thread_pool.submit([this, dependent_task, &entity, &thread_pool]() {
-            this->process_task(dependent_task, thread_pool, entity);
-          });
-        }
-      }
+      tasks_to_process.push(dependent_task);
     }
   }
 

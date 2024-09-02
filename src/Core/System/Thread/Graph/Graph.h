@@ -30,7 +30,7 @@ public:
 
 private:
   //Subfunction
-  void process_task(const std::string& task_name, thr::gph::Pool& thread_pool, dat::base::Entity& entity) ;
+  void process_task(const std::string& task_name, thr::gph::Pool& thread_pool, dat::base::Entity& entity, std::queue<std::string>& tasks_to_process) ;
 
 private:
   std::unordered_map<std::string, thr::gph::Node> map_node;
