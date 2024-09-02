@@ -67,71 +67,77 @@ void Operation::ope_clean(){
 
   //---------------------------
 }
-void Operation::ope_color(std::shared_ptr<dat::base::Entity> entity){
-  if(!entity) return;
+void Operation::ope_color(std::shared_ptr<dat::base::Object> object){
+  if(!object) return;
   //---------------------------
 
-  std::vector<float>& vec_I = atr_field->get_field_data(entity->data, "I");
+  utl::base::Data& data = object->data;
+  std::unique_lock<std::mutex> lock(data.mutex);
+
+
+  //Bouger oute cette merde dans colorization dat attribut
+  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
 
   //If color
-  if(entity->data.rgba.size() != 0) return;
-  else if(entity->data.rgb.size() != 0){
-    entity->data.rgba.resize(entity->data.xyz.size(), glm::vec4(0, 0, 0, 0));
+  if(data.xyz.size() == 0) return;
+  if(data.rgba.size() != 0) return;
+  else if(data.rgb.size() != 0){
+    data.rgba.resize(data.xyz.size(), glm::vec4(0, 0, 0, 0));
 
-    for(int i=0; i<entity->data.rgb.size(); i++){
-      glm::vec3& rgb = entity->data.rgb[i];
-      entity->data.rgba[i] = glm::vec4(rgb.x, rgb.y, rgb.z, 1);
+    for(int i=0; i<data.rgb.size(); i++){
+      glm::vec3& rgb = data.rgb[i];
+      data.rgba[i] = glm::vec4(rgb.x, rgb.y, rgb.z, 1);
     }
   }
   //Else if intensity
   else if(vec_I.size() != 0){
-    entity->data.rgba.resize(entity->data.xyz.size(), glm::vec4(0, 0, 0, 0));
+    data.rgba.resize(data.xyz.size(), glm::vec4(0, 0, 0, 0));
 
     for(int i=0; i<vec_I.size(); i++){
       float& Is = vec_I[i];
-      entity->data.rgba[i] = glm::vec4(Is, Is, Is, 1);
+      data.rgba[i] = glm::vec4(Is, Is, Is, 1);
     }
   }
   //Else fill with white
   else{
-    entity->data.rgba.resize(entity->data.xyz.size(), glm::vec4(0, 0, 0, 0));
+    data.rgba.resize(data.xyz.size(), glm::vec4(0, 0, 0, 0));
 
-    for(int i=0; i<entity->data.xyz.size(); i++){
-      entity->data.rgba[i] = glm::vec4(1, 1, 1, 1);
+    for(int i=0; i<data.xyz.size(); i++){
+      data.rgba[i] = glm::vec4(1, 1, 1, 1);
     }
   }
 
   //---------------------------
 }
-void Operation::ope_transformation(std::shared_ptr<dat::base::Entity> entity){
-  if(!entity) return;
+void Operation::ope_transformation(std::shared_ptr<dat::base::Object> object){
+  if(!object) return;
   //---------------------------
 
   //Transformation
-  trf_io->load_transformation(entity);
+  trf_io->load_transformation(object);
 
   //Scaling
-  trf_transform->make_scaling(entity->pose, io_struct->scaling);
+  trf_transform->make_scaling(object->pose, io_struct->scaling);
 
   //Centering
   if(io_struct->with_centering){
-    trf_operation->center_object(entity);
+    trf_operation->center_object(object);
   }
 
   //---------------------------
 }
-void Operation::ope_insertion(std::shared_ptr<dat::base::Entity> entity){
-  if(!entity) return;
+void Operation::ope_insertion(std::shared_ptr<dat::base::Object> object){
+  if(!object) return;
   //---------------------------
 
   //Init object into engine
-  if(entity->set_parent.expired()) entity->set_parent = dat_graph->get_set_graph();
+  if(object->set_parent.expired()) object->set_parent = dat_graph->get_set_graph();
 
-  auto parent_set = entity->set_parent.lock();
-  dat_set->insert_entity(parent_set, entity);
-  dat_entity->init_entity(entity);
-  dat_glyph->insert_glyph(entity);
-  gph_selection->select_element(entity);
+  auto parent_set = object->set_parent.lock();
+  dat_set->insert_entity(parent_set, object);
+  dat_entity->init_entity(object);
+  dat_glyph->insert_glyph(object);
+  gph_selection->select_element(object);
 
   //---------------------------
 }
