@@ -4,6 +4,8 @@
 #include <string>
 #include <memory>
 
+namespace io{class Node;}
+
 namespace k4n{class Node;}
 namespace k4n{class Utils;}
 namespace k4n::playback{class Configuration;}
@@ -27,6 +29,8 @@ public:
   std::shared_ptr<utl::base::Element> import(utl::base::Path path);
 
 private:
+  io::Node* node_io;
+
   k4n::Node* node_k4n;
   k4n::Utils* k4n_utils;
   k4n::playback::Configuration* k4n_config;
