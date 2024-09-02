@@ -28,6 +28,11 @@ public:
   void execute(thr::gph::Pool& thread_pool, dat::base::Entity& entity);
 
 private:
+  //Subfunction
+  void retrieve_all_0_in_degree(std::queue<std::string>& in_degree_0);
+  void process_task(const std::string& task_name, dat::base::Entity& entity, std::queue<std::string>& in_degree_0);
+
+private:
   std::unordered_map<std::string, thr::gph::Node> map_node;
   std::mutex mutex;
 };
