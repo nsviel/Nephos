@@ -3,6 +3,7 @@
 #include <Thread/Graph/Node.h>
 #include <functional>
 #include <unordered_map>
+#include <queue>
 #include <mutex>
 #include <string>
 #include <list>
@@ -29,8 +30,7 @@ public:
 
 private:
   //Subfunction
-  void retrieve_all_0_in_degree(std::queue<std::string>& in_degree_0);
-  void process_task(const std::string& task_name, dat::base::Entity& entity, std::queue<std::string>& in_degree_0);
+  void process_task(const std::string& task_name, thr::gph::Pool& thread_pool, dat::base::Entity& entity) ;
 
 private:
   std::unordered_map<std::string, thr::gph::Node> map_node;

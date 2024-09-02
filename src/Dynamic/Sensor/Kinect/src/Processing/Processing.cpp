@@ -23,7 +23,7 @@ Processing::Processing(k4n::Node* node_k4n){
   this->dyn_ope_image = node_processing->get_ope_image();
   this->dyn_ope_cloud = node_processing->get_ope_cloud();
 
-  //this->thr_pool = new thr::gph::Pool(100);
+  this->thr_pool = new thr::gph::Pool(100);
 
   //---------------------------
 }
@@ -38,18 +38,18 @@ void Processing::start_thread(k4n::base::Sensor& sensor){
     this->run_thread(sensor);
   };
   thread_pool->add_task(task_function);*/
-/*
+
 static bool a = false;
 if(!a){
-  sensor.graph.add_task("hello", []() {std::cout<<"hello"<<std::endl;} );
-  sensor.graph.add_task("word", []() {std::cout<<"word"<<std::endl;} );
+  sensor.graph.add_task("hello", [](dat::base::Entity& entity) {std::cout<<"jean "<<std::endl;} );
+  sensor.graph.add_task("word", [](dat::base::Entity& entity) {std::cout<<" bombeur"<<std::endl;} );
   sensor.graph.add_dependency("hello", "word");
 
   a= true;
 }
 
-  sensor.graph.execute(*thr_pool);
-*/
+  sensor.graph.execute(*thr_pool, sensor);
+
   //---------------------------
 }
 void Processing::run_thread(k4n::base::Sensor& sensor){
