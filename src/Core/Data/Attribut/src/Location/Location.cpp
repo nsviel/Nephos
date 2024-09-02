@@ -34,6 +34,7 @@ void Location::compute_centroid(dat::base::Entity& entity){
   }
 
   // Compute average
+  std::unique_lock<std::mutex> lock(data.mutex);
   centroid = temp_centroid / static_cast<float>(xyz.size());
 
   //---------------------------

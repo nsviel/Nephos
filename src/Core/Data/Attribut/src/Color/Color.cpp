@@ -89,6 +89,7 @@ void Color::colorization_rgb(dat::base::Entity& entity){
   utl::base::Data& data = entity.data;
   //---------------------------
 
+  std::unique_lock<std::mutex> lock(data.mutex);
   for(int i=0; i<data.rgb.size(); i++){
     glm::vec3& rgb = data.rgb[i];
     data.rgba[i] = glm::vec4(rgb.x, rgb.y, rgb.z, 1);
@@ -100,6 +101,7 @@ void Color::colorization_unicolor(dat::base::Entity& entity){
   utl::base::Data& data = entity.data;
   //---------------------------
 
+  std::unique_lock<std::mutex> lock(data.mutex);
   data.rgba = std::vector<glm::vec4>(data.rgba.size(), atr_struct->color.unicolor);
 
   //---------------------------
@@ -109,6 +111,7 @@ void Color::colorization_normal(dat::base::Entity& entity){
   utl::base::Pose& pose = entity.pose;
   //---------------------------
 
+  std::unique_lock<std::mutex> lock(data.mutex);
   std::vector<glm::vec3>& Nxyz = data.Nxyz;
 
   //Compute heatmap
@@ -130,6 +133,7 @@ void Color::colorization_field(dat::base::Entity& entity){
   //---------------------------
 
   //Normalization
+  std::unique_lock<std::mutex> lock(data.mutex);
   std::vector<float>& vec_field = atr_field->get_field_data(data, atr_struct->color.field);
   std::vector<float> field = vec_field;
   math::normalize(field, atr_struct->color.range, glm::vec2(0, 1));
@@ -147,6 +151,7 @@ void Color::colorization_structure(dat::base::Entity& entity){
   //---------------------------
 
   // Define a color gradient from red to blue
+  std::unique_lock<std::mutex> lock(data.mutex);
   std::vector<glm::vec3>& colormap = utl::colormap::viridis_long;
 
   // Calculate the step size for color interpolation along rows and columns

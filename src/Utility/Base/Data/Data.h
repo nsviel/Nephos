@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
+#include <mutex>
 #include <iostream>
 
 
@@ -26,6 +27,7 @@ struct Data : public utl::base::Element{
   int width = -1;
   int height = -1;
   int size = -1;
+  std::mutex mutex;
 
   //Infos
   utl::base::Topology topology;

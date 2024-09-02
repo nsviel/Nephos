@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <queue>
 #include <mutex>
+#include <future>
 #include <string>
 #include <list>
 
@@ -32,7 +33,7 @@ public:
 
 private:
   //Subfunction
-  void process_task(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& entity, std::queue<std::string>& tasks_to_process) ;
+  std::future<void> process_task(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& entity, std::queue<std::string>& tasks_to_process) ;
 
 private:
   std::unordered_map<std::string, dat::sensor::Node> map_node;

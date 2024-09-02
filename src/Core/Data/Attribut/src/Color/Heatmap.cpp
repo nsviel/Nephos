@@ -28,6 +28,7 @@ void Heatmap::colorization_heatmap(dat::base::Entity& entity){
   math::normalize(field, atr_struct->color.range, glm::vec2(0, 1));
 
   //Set to color
+  std::unique_lock<std::mutex> lock(data.mutex);
   this->compute_heatmap(field, data.rgba);
 
   //---------------------------

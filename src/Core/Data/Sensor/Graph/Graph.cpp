@@ -53,6 +53,7 @@ void Graph::add_dependency(const std::string& A, const std::string& B){
 }
 void Graph::execute(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor){
   std::queue<std::string> tasks_to_process;
+  std::vector<std::future<void>> vec_future;
   //---------------------------
 
   // Start processing tasks with zero in-degree
@@ -70,23 +71,24 @@ void Graph::execute(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor){
     std::string task_name = tasks_to_process.front();
     tasks_to_process.pop();
 
-    this->process_task(task_name, thread_pool, sensor, tasks_to_process);
+    vec_future.push_back(process_task(task_name, thread_pool, sensor, tasks_to_process));
+  }
+
+  // Wait for all tasks to complete
+  for (auto& future : vec_future) {
+    future.wait();
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Graph::process_task(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor, std::queue<std::string>& tasks_to_process) {
+std::future<void> Graph::process_task(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor, std::queue<std::string>& tasks_to_process) {
   //---------------------------
 
   // Submit the current task to the thread pool
   auto task_future = thread_pool.submit([this, task_name, &sensor]() {
-    try {
-      map_node[task_name].task(sensor);  // Execute the task
-    } catch (...) {
-      // Handle exceptions if necessary
-    }
+    map_node[task_name].task(sensor);  // Execute the task
   });
 
   // Handle task completion and dependencies
@@ -102,6 +104,7 @@ void Graph::process_task(const std::string& task_name, dat::sensor::Pool& thread
   }
 
   //---------------------------
+  return task_future;
 }
 
 }
