@@ -25,7 +25,6 @@ public:
 public:
   //Main function
   void extract_data(dat::base::Sensor& sensor);
-  void extract_data(k4n::base::Sensor& sensor);
 
   //Subfunction
   void extract_image_data(k4n::base::Sensor& sensor);

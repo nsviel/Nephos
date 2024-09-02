@@ -21,30 +21,31 @@ Data::Data(k4n::Node* node_k4n){
 Data::~Data(){}
 
 //Main function
-void Data::extract_data(k4n::base::Sensor& sensor){
-  if(check_condition(sensor) == false) return;
+void Data::extract_data(dat::base::Sensor& sensor){
+  k4n::base::Sensor* k4n_sensor = dynamic_cast<k4n::base::Sensor*>(&sensor);
+  if(check_condition(*k4n_sensor) == false) return;
   //---------------------------
 
-  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("kinect::cloud");
+  prf::monitor::Tasker* tasker = k4n_sensor->profiler.fetch_tasker("kinect::cloud");
 
   tasker->loop();
 
   //init
   tasker->task_begin("init");
-  this->extraction_init(sensor);
+  this->extraction_init(*k4n_sensor);
   tasker->task_end("init");
 
   //Extraction
   tasker->task_begin("extraction");
-  this->extraction_data(sensor);
+  this->extraction_data(*k4n_sensor);
   tasker->task_end("extraction");
 
   //Transfer
   tasker->task_begin("transfer");
-  this->extraction_transfer(sensor);
+  this->extraction_transfer(*k4n_sensor);
   tasker->task_end("transfer");
 
-  atr_location->compute_height(sensor);
+  atr_location->compute_height(*k4n_sensor);
 
   //---------------------------
 }

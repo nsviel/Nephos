@@ -29,15 +29,7 @@ void Data::extract_data(dat::base::Sensor& sensor){
 
   this->extract_image_data(*k4n_sensor);
   this->make_transformation(*k4n_sensor);
-sayHello();
-  //---------------------------
-}
-void Data::extract_data(k4n::base::Sensor& sensor){
-  //---------------------------
 
-  this->extract_image_data(sensor);
-  this->make_transformation(sensor);
-sayHello();
   //---------------------------
 }
 

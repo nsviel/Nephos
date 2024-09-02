@@ -12,6 +12,7 @@ namespace k4n::structure{class Buffer;}
 namespace k4n::processing::cloud{class XY_table;}
 namespace utl::base{class Data;}
 namespace dat::atr{class Field;}
+namespace dat::base{class Sensor;}
 namespace dat::atr{class Location;}
 
 
@@ -26,7 +27,7 @@ public:
 
 public:
   //Main function
-  void extract_data(k4n::base::Sensor& sensor);
+  void extract_data(dat::base::Sensor& sensor);
 
   //Subfunction
   bool check_condition(k4n::base::Sensor& sensor);

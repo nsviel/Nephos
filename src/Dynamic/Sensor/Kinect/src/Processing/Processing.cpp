@@ -45,8 +45,11 @@ static thr::gph::Graph graph;
 static bool a = false;
 if(!a){
 
-  graph.add_task("hello", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
-
+  graph.add_task("data", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
+  graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
+  graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_ope_cloud->run_operation(sensor); });
+  graph.add_dependency("cloud", "data");
+  graph.add_dependency("cloud", "operation");
 
   a= true;
 }
