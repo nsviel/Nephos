@@ -31,6 +31,7 @@ public:
   void make_processing(k4n::base::Sensor& sensor);
 
 private:
+  k4n::Node* node_k4n;
   k4n::processing::image::Data* k4n_image;
   k4n::processing::cloud::Data* k4n_cloud;
   thr::task::Pool* thread_pool;

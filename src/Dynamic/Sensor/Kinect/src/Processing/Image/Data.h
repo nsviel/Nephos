@@ -10,6 +10,7 @@ namespace k4n::processing::image{class Depth;}
 namespace k4n::processing::image{class Infrared;}
 namespace k4n::processing::image{class Depth_to_color;}
 namespace k4n::processing::image{class Color_to_depth;}
+namespace dat::base{class Sensor;}
 
 
 namespace k4n::processing::image{
@@ -23,6 +24,7 @@ public:
 
 public:
   //Main function
+  void extract_data(dat::base::Sensor& sensor);
   void extract_data(k4n::base::Sensor& sensor);
 
   //Subfunction

@@ -23,6 +23,15 @@ Data::Data(k4n::Node* node_k4n){
 Data::~Data(){}
 
 //Main function
+void Data::extract_data(dat::base::Sensor& sensor){
+  k4n::base::Sensor* k4n_sensor = dynamic_cast<k4n::base::Sensor*>(&sensor);
+  //---------------------------
+
+  this->extract_image_data(*k4n_sensor);
+  this->make_transformation(*k4n_sensor);
+sayHello();
+  //---------------------------
+}
 void Data::extract_data(k4n::base::Sensor& sensor){
   //---------------------------
 

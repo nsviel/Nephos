@@ -17,6 +17,8 @@ Processing::Processing(k4n::Node* node_k4n){
   core::Node* node_core = node_k4n->get_node_core();
   dyn::prc::Node* node_processing = node_k4n->get_node_processing();
 
+
+  this->node_k4n = node_k4n;
   this->thread_pool = node_core->get_thread_pool();
   this->k4n_image = new k4n::processing::image::Data(node_k4n);
   this->k4n_cloud = new k4n::processing::cloud::Data(node_k4n);
@@ -42,7 +44,8 @@ void Processing::start_thread(k4n::base::Sensor& sensor){
 static thr::gph::Graph graph;
 static bool a = false;
 if(!a){
-  //graph.add_task("hello", [](dat::base::Sensor& sensor) {k4n_image->extract_data(sensor)} );
+
+  graph.add_task("hello", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
 
 
   a= true;
