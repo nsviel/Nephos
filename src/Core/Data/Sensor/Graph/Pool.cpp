@@ -50,7 +50,9 @@ void Pool::worker_thread(){
       task = std::move(queue_task.front());
       queue_task.pop();
     }
+    ++active_thread_count;
     task(); // Execute the task
+    --active_thread_count;
   }
 
   //---------------------------

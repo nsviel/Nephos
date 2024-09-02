@@ -19,6 +19,14 @@ Graph::Graph(){
 Graph::~Graph(){}
 
 //Main function
+void Graph::clear(){
+  //---------------------------
+
+  std::unique_lock<std::mutex> lock(mutex);
+  map_node.clear();
+
+  //---------------------------
+}
 void Graph::add_task(const std::string& task_name, std::function<void(dat::base::Sensor&)> func) {
   //---------------------------
 

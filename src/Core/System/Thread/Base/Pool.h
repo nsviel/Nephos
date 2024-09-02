@@ -6,7 +6,7 @@
 
 namespace thr{
 
-struct Thread{
+struct Pool{
   //---------------------------
 
   std::mutex active_thread_mutex;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Thread/Base/Pool.h>
 #include <condition_variable>
 #include <functional>
 #include <queue>
@@ -12,7 +13,7 @@
 
 namespace dat::sensor{
 
-class Pool
+class Pool : public thr::Pool
 {
 public:
   // Constructor / Destructor
