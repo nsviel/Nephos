@@ -43,9 +43,10 @@ public:
 private:
   k4n::Structure* k4n_struct;
   k4n::processing::cloud::XY_table* k4n_xytable;
-  k4n::structure::Buffer buffer;
   dat::atr::Field* atr_field;
   dat::atr::Location* atr_location;
+
+  k4n::structure::Buffer buffer;
 };
 
 }

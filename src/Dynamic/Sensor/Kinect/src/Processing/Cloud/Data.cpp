@@ -66,7 +66,7 @@ void Data::extraction_init(k4n::base::Sensor& sensor){
   //---------------------------
 
   //Create cloud image
-  k4a::image cloud_image = k4a::image::create(
+  sensor.cloud.k4a_image = k4a::image::create(
     K4A_IMAGE_FORMAT_CUSTOM,
     sensor.depth.data.width,
     sensor.depth.data.height,
@@ -74,9 +74,9 @@ void Data::extraction_init(k4n::base::Sensor& sensor){
   );
 
   //Transform depth into cloud
-  sensor.device.transformation.depth_image_to_point_cloud(sensor.depth.data.k4a_image, sensor.cloud.calibration_type, &cloud_image);
-  sensor.cloud.buffer = cloud_image.get_buffer();
-  sensor.cloud.size = cloud_image.get_size() / (3 * sizeof(int16_t));
+  sensor.device.transformation.depth_image_to_point_cloud(sensor.depth.data.k4a_image, sensor.cloud.calibration_type, &sensor.cloud.k4a_image);
+  sensor.cloud.buffer = sensor.cloud.k4a_image.get_buffer();
+  sensor.cloud.size = sensor.cloud.k4a_image.get_size() / (3 * sizeof(int16_t));
 
   //Resize vectors
   buffer.xyz.resize(sensor.cloud.size);

@@ -39,8 +39,9 @@ Sensor::~Sensor(){
 void Sensor::thread_init(){
   //---------------------------
 
-  dat_sensor->init_profiler(*this);
+  k4n_capture->init_info(*this);
   k4n_capture->init_device(*this);
+  dat_sensor->init_sensor(*this);
   k4n_config->make_sensor_configuration(*this);
   k4n_config->make_sensor_color_configuration(*this);
   k4n_config->find_calibration(*this);

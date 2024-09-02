@@ -33,9 +33,11 @@ public:
 
 private:
   //Subfunction
-  std::future<void> process_task(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& entity, std::queue<std::string>& tasks_to_process) ;
+  void process_graph(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor);
+  std::future<void> process_node(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& entity, std::queue<std::string>& tasks_to_process) ;
 
 private:
+  std::vector<std::future<void>> vec_future;
   std::unordered_map<std::string, dat::sensor::Node> map_node;
   std::mutex mutex;
 };

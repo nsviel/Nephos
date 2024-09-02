@@ -4,6 +4,7 @@
 #include <Data/Sensor/Namespace.h>
 #include <Utility/Namespace.h>
 #include <vector>
+#include <future>
 
 
 namespace dat::sensor{
@@ -52,9 +53,25 @@ void Graph::add_dependency(const std::string& A, const std::string& B){
   //---------------------------
 }
 void Graph::execute(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor){
-  std::queue<std::string> tasks_to_process;
-  std::vector<std::future<void>> vec_future;
   //---------------------------
+
+  std::future<void> future = std::async(std::launch::async, [this, &thread_pool, &sensor]() {
+    this->process_graph(thread_pool, sensor);
+  });
+
+  //---------------------------
+}
+
+//Subfunction
+void Graph::process_graph(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor) {
+  std::queue<std::string> tasks_to_process;
+  //---------------------------
+
+  // Wait for all previous tasks to complete
+  for (auto& future : vec_future) {
+    future.wait();
+  }
+  vec_future.clear();
 
   // Start processing tasks with zero in-degree
   {
@@ -71,19 +88,12 @@ void Graph::execute(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor){
     std::string task_name = tasks_to_process.front();
     tasks_to_process.pop();
 
-    vec_future.push_back(process_task(task_name, thread_pool, sensor, tasks_to_process));
-  }
-
-  // Wait for all tasks to complete
-  for (auto& future : vec_future) {
-    future.wait();
+    vec_future.push_back(process_node(task_name, thread_pool, sensor, tasks_to_process));
   }
 
   //---------------------------
 }
-
-//Subfunction
-std::future<void> Graph::process_task(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor, std::queue<std::string>& tasks_to_process) {
+std::future<void> Graph::process_node(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor, std::queue<std::string>& tasks_to_process) {
   //---------------------------
 
   // Submit the current task to the thread pool
