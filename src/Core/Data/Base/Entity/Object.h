@@ -31,6 +31,7 @@ struct Object : public dat::base::Entity{
     this->list_glyph.push_back(std::make_shared<dat::glyph::object::Axis>());
     this->list_glyph.push_back(std::make_shared<dat::glyph::object::AABB>());
     this->list_glyph.push_back(std::make_shared<dat::glyph::object::Normal>());
+    this->type_entity = "object";
 
     //---------------------------
   }

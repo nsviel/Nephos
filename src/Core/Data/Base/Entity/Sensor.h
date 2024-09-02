@@ -1,19 +1,22 @@
 #pragma once
 
 #include <Data/Base/Entity/Object.h>
-#include <Data/Base/Sensor/Timestamp.h>
-#include <Data/Base/Sensor/Calibration.h>
-#include <Data/Base/Sensor/Thread.h>
-#include <Data/Base/Sensor/Info.h>
-#include <Data/Base/Sensor/State.h>
+#include <Data/Sensor/Structure/Timestamp.h>
+#include <Data/Sensor/Structure/Calibration.h>
+#include <Data/Sensor/Structure/Thread.h>
+#include <Data/Sensor/Structure/Info.h>
+#include <Data/Sensor/Structure/State.h>
 #include <Profiler/Monitor/src/Component/Profiler.h>
-#include <Thread/Graph/Graph.h>
 
 
 namespace dat::base{
 
 struct Sensor : public dat::base::Object, public dat::base::sensor::Thread{
   //---------------------------
+
+  Sensor(){
+    this->type_entity = "sensor";
+  }
 
   void start(){this->start_thread();}
   void stop(){this->stop_thread();}
@@ -28,7 +31,6 @@ struct Sensor : public dat::base::Object, public dat::base::sensor::Thread{
   dat::base::sensor::Calibration calibration;
   dat::base::sensor::State state;
   prf::monitor::Profiler profiler;
-  thr::gph::Graph graph;
 
   //---------------------------
 };

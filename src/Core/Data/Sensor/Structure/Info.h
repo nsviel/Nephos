@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Data/Base/Sensor/Recorder.h>
+#include <Data/Sensor/Structure/Recorder.h>
 #include <vector>
 #include <string>
 

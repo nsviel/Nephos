@@ -1,6 +1,7 @@
 #include "Graph.h"
 
-#include <Thread/Namespace.h>
+#include <Data/Base/Namespace.h>
+#include <Data/Sensor/Namespace.h>
 #include <Utility/Namespace.h>
 #include <vector>
 
@@ -18,7 +19,7 @@ Graph::Graph(){
 Graph::~Graph(){}
 
 //Main function
-void Graph::add_task(const std::string& task_name, std::function<void(dat::base::Entity&)> func) {
+void Graph::add_task(const std::string& task_name, std::function<void(dat::base::Sensor&)> func) {
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mutex);
@@ -35,7 +36,7 @@ void Graph::add_dependency(const std::string& A, const std::string& B){
 
   //---------------------------
 }
-void Graph::execute(thr::gph::Pool& thread_pool, dat::base::Entity& entity){
+void Graph::execute(thr::gph::Pool& thread_pool, dat::base::Sensor& sensor){
   std::queue<std::string> tasks_to_process;
   //---------------------------
 
@@ -54,20 +55,20 @@ void Graph::execute(thr::gph::Pool& thread_pool, dat::base::Entity& entity){
     std::string task_name = tasks_to_process.front();
     tasks_to_process.pop();
 
-    this->process_task(task_name, thread_pool, entity, tasks_to_process);
+    this->process_task(task_name, thread_pool, sensor, tasks_to_process);
   }
 
   //---------------------------
 }
 
 //Subfunction
-void Graph::process_task(const std::string& task_name, thr::gph::Pool& thread_pool, dat::base::Entity& entity, std::queue<std::string>& tasks_to_process) {
+void Graph::process_task(const std::string& task_name, thr::gph::Pool& thread_pool, dat::base::Sensor& sensor, std::queue<std::string>& tasks_to_process) {
   //---------------------------
 
   // Submit the current task to the thread pool
-  auto task_future = thread_pool.submit([this, task_name, &entity]() {
+  auto task_future = thread_pool.submit([this, task_name, &sensor]() {
     try {
-      map_node[task_name].task(entity);  // Execute the task
+      map_node[task_name].task(sensor);  // Execute the task
     } catch (...) {
       // Handle exceptions if necessary
     }

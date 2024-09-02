@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Data/Base/Sensor/State.h>
-#include <Data/Base/Sensor/Timestamp.h>
+#include <Data/Sensor/Structure/State.h>
+#include <Data/Sensor/Structure/Timestamp.h>
 
 namespace dat::ply{class Node;}
 namespace dat::ply{class State;}

@@ -1,24 +1,19 @@
 set(LIBRARY_NAME DATA_BASE)
 
 #-----------------
-# Source files
+# Create INTERFACE library
 #-----------------
-file(GLOB_RECURSE ALL_SOURCES
-  *.cpp
-)
-
-#-----------------
-# Compilation
-#-----------------
-add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
+add_library(${LIBRARY_NAME} INTERFACE)
 
 #-----------------
 # Dependencies
 #-----------------
-target_link_libraries(${LIBRARY_NAME} PUBLIC
-  DATA_ATTRIBUT
+target_link_libraries(${LIBRARY_NAME} INTERFACE
 )
 
-target_include_directories(${LIBRARY_NAME} PUBLIC
+#-----------------
+# Include directories
+#-----------------
+target_include_directories(${LIBRARY_NAME} INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>   # include module directory
 )

@@ -2,6 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Profiler/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace k4n::processing::image{
@@ -27,7 +28,7 @@ void Data::extract_data(k4n::base::Sensor& sensor){
 
   this->extract_image_data(sensor);
   this->make_transformation(sensor);
-
+sayHello();
   //---------------------------
 }
 

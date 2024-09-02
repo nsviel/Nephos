@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Data/Base/Sensor/Recorder.h>
+#include <Data/Sensor/Structure/Recorder.h>
 
 namespace fmt::ply{class Exporter;}
 namespace utl::base{class Pose;}

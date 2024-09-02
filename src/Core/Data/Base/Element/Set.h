@@ -15,7 +15,7 @@ struct Set : public utl::base::Element{
   //---------------------------
 
   Set(){
-    this->type = utl::element::SET;
+    this->type = "set";
   }
   ~Set(){}
   virtual void reset(){}

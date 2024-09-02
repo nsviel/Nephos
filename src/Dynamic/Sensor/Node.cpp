@@ -1,7 +1,6 @@
 #include "Node.h"
 
 #include <Dynamic/Namespace.h>
-#include <Core/Namespace.h>
 
 #include <Kinect/Namespace.h>
 #include <Realsense/Namespace.h>

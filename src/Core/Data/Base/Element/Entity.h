@@ -19,7 +19,7 @@ struct Entity : public utl::base::Element{
 
   //Function
   Entity(){
-    this->type = utl::element::ENTITY;
+    this->type = "entity";
   }
   virtual ~Entity(){}
   virtual void clean(){}
@@ -29,6 +29,7 @@ struct Entity : public utl::base::Element{
   bool is_permanent = false;
   bool is_selectable = true;
   std::string icon = ICON_FA_FILE;
+  std::string type_entity = "";
 
   //Data
   utl::base::Data data;

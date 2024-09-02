@@ -15,10 +15,13 @@ namespace utl::base{
 struct Data : public utl::base::Element{
   //---------------------------
 
+  Data(){
+    this->type = "data";
+  }
+
   //State
   bool is_visible = true;
   bool is_updated = false;
-  int type = utl::element::DATA;
   int nb_data_max = -1;
   int width = -1;
   int height = -1;

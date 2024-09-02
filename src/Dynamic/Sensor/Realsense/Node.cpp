@@ -1,6 +1,6 @@
 #include "Node.h"
 
-#include <Sensor/Namespace.h>
+#include <Dynamic/Sensor/Namespace.h>
 #include <Core/Namespace.h>
 #include <Realsense/Namespace.h>
 #include <IO/Namespace.h>

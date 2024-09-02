@@ -22,8 +22,7 @@ Player::~Player(){}
 
 //Main function
 void Player::design_player(std::shared_ptr<utl::base::Element> element){
-  std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
-  if(!sensor) return;
+  if(element->type != "sensor") return;
   //---------------------------
 
   this->player_slider();

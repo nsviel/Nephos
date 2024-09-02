@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Data/Base/Sensor/Namespace.h>
+#include <Data/Sensor/Structure/Namespace.h>
 
 
 namespace dat::ply{

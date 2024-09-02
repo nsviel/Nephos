@@ -62,7 +62,7 @@ void Glyph::update_glyph(std::shared_ptr<dat::base::Entity> entity){
 }
 void Glyph::update_glyph(std::shared_ptr<dat::base::Object> object, int type){
   //----------------------------
-
+/*
   //Update own glyph data
   for(int i=0; i<object->list_glyph.size(); i++){
     std::shared_ptr<dat::base::Glyph> glyph = *next(object->list_glyph.begin(), i);
@@ -74,7 +74,7 @@ void Glyph::update_glyph(std::shared_ptr<dat::base::Object> object, int type){
     //Reccursivity
     this->update_glyph(glyph);
   }
-
+*/
   //----------------------------
 }
 

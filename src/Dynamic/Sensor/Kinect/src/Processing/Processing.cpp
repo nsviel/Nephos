@@ -39,18 +39,16 @@ void Processing::start_thread(k4n::base::Sensor& sensor){
   };
   thread_pool->add_task(task_function);*/
 
+static thr::gph::Graph graph;
 static bool a = false;
 if(!a){
-  sensor.graph.add_task("hello", [](dat::base::Entity& entity) {std::cout<<"jean "<<std::endl;} );
-  sensor.graph.add_task("word", [](dat::base::Entity& entity) {std::cout<<" bombeur"<<std::endl;} );
-  sensor.graph.add_task("truc", [](dat::base::Entity& entity) {std::cout<<" aime les sandwich"<<std::endl;} );
-  sensor.graph.add_dependency("hello", "word");
-  sensor.graph.add_dependency("word", "truc");
+  //graph.add_task("hello", [](dat::base::Sensor& sensor) {k4n_image->extract_data(sensor)} );
+
 
   a= true;
 }
 
-  sensor.graph.execute(*thr_pool, sensor);
+  graph.execute(*thr_pool, sensor);
 
   //---------------------------
 }

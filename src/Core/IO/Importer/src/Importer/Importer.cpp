@@ -57,7 +57,7 @@ void Importer::load_set(utl::base::Path path){
   if(!element) return;
 
   //Insert
-  if(element->type == utl::element::SET){
+  if(element->type == "set"){
     auto set = std::dynamic_pointer_cast<dat::base::Set>(element);
     io_operation->insert_set(set);
   }
@@ -88,7 +88,7 @@ void Importer::load_object(utl::base::Path path){
   if(!element) return;
 
   //Insert
-  if(element->type == utl::element::ENTITY){
+  if(element->type == "entity"){
     auto object = std::dynamic_pointer_cast<dat::base::Object>(element);
     io_operation->insert_object(object);
   }
@@ -105,7 +105,7 @@ void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
 
   //Convert
   std::shared_ptr<dat::base::Object> object = nullptr;
-  if(element->type == utl::element::ENTITY){
+  if(element->type == "entity"){
     object = std::dynamic_pointer_cast<dat::base::Object>(element);
     object->pose.path = path_transfo;
   }
