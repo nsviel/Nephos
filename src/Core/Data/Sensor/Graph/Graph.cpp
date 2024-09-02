@@ -6,7 +6,7 @@
 #include <vector>
 
 
-namespace thr::gph{
+namespace dat::sensor{
 
 // Constructor / Destructor
 Graph::Graph(){
@@ -28,15 +28,22 @@ void Graph::add_task(const std::string& task_name, std::function<void(dat::base:
   //---------------------------
 }
 void Graph::add_dependency(const std::string& A, const std::string& B){
+  if(A == B) return;
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mutex);
-  map_node[A].adjacent.push_back(B);
+
+  // Check if the dependency B already exists in the adjacent list of A
+  auto& adjacent_nodes = map_node[A].adjacent;
+  if(std::find(adjacent_nodes.begin(), adjacent_nodes.end(), B) != adjacent_nodes.end()) return;
+
+  // Add the new dependency
+  adjacent_nodes.push_back(B);
   map_node[B].in_degree++;
 
   //---------------------------
 }
-void Graph::execute(thr::gph::Pool& thread_pool, dat::base::Sensor& sensor){
+void Graph::execute(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor){
   std::queue<std::string> tasks_to_process;
   //---------------------------
 
@@ -62,7 +69,7 @@ void Graph::execute(thr::gph::Pool& thread_pool, dat::base::Sensor& sensor){
 }
 
 //Subfunction
-void Graph::process_task(const std::string& task_name, thr::gph::Pool& thread_pool, dat::base::Sensor& sensor, std::queue<std::string>& tasks_to_process) {
+void Graph::process_task(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor, std::queue<std::string>& tasks_to_process) {
   //---------------------------
 
   // Submit the current task to the thread pool

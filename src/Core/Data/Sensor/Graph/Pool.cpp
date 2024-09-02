@@ -5,7 +5,7 @@
 #include <queue>
 
 
-namespace thr::gph{
+namespace dat::sensor{
 
 // Constructor / Destructor
 Pool::Pool(int size){

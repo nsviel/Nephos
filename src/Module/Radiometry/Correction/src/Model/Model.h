@@ -7,7 +7,7 @@ namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace ope::fitting{class Polyfit;}
 namespace ope::fitting{class Surface;}
-namespace dat::base::sensor{class Model;}
+namespace dat::sensor{class Model;}
 namespace dat::base{class Sensor;}
 
 
@@ -33,7 +33,7 @@ public:
   float apply_model(float x, float y);
 
   //Checker function
-  dat::base::sensor::Model* get_model(std::shared_ptr<dat::base::Sensor> sensor, std::string depth_mode);
+  dat::sensor::Model* get_model(std::shared_ptr<dat::base::Sensor> sensor, std::string depth_mode);
   bool is_model_build(std::shared_ptr<dat::base::Sensor> sensor);
   bool is_model_loaded(std::shared_ptr<dat::base::Sensor> sensor);
 

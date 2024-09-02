@@ -10,7 +10,7 @@
 #include <mutex>
 
 
-namespace thr::gph{
+namespace dat::sensor{
 
 class Pool
 {

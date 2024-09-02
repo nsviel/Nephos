@@ -3,7 +3,7 @@
 #include <Utility/Namespace.h>
 
 
-namespace dat::base::sensor{
+namespace dat::sensor{
 
 //Destructor
 Thread::~Thread(){

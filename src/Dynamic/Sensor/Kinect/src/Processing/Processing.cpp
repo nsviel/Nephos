@@ -25,7 +25,7 @@ Processing::Processing(k4n::Node* node_k4n){
   this->dyn_ope_image = node_processing->get_ope_image();
   this->dyn_ope_cloud = node_processing->get_ope_cloud();
 
-  this->thr_pool = new thr::gph::Pool(100);
+  this->thr_pool = new dat::sensor::Pool(100);
 
   //---------------------------
 }
@@ -34,21 +34,15 @@ Processing::~Processing(){}
 //Main function
 void Processing::start_thread(k4n::base::Sensor& sensor){
   //---------------------------
-/*
-  this->thread_idle = false;
-  auto task_function = [this, &sensor](){
-    this->run_thread(sensor);
-  };
-  thread_pool->add_task(task_function);*/
 
-static thr::gph::Graph graph;
+static dat::sensor::Graph graph;
 static bool a = false;
 if(!a){
 
   graph.add_task("data", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
   graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
   graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_ope_cloud->run_operation(sensor); });
-  graph.add_dependency("cloud", "data");
+  graph.add_dependency("data", "cloud");
   graph.add_dependency("cloud", "operation");
 
   a= true;
@@ -58,35 +52,6 @@ if(!a){
 
   //---------------------------
 }
-void Processing::run_thread(k4n::base::Sensor& sensor){
-  //---------------------------
 
-  this->make_processing(sensor);
-
-  //---------------------------
-  this->thread_idle = true;
-}
-void Processing::wait_thread(){
-  //For external thread to wait this queue thread idle
-  //---------------------------
-
-  while(thread_idle == false){
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-  }
-  dyn_ope_cloud->wait_operation();
-
-  //---------------------------
-}
-
-//Subfunction
-void Processing::make_processing(k4n::base::Sensor& sensor){
-  //---------------------------
-
-  k4n_image->extract_data(sensor);
-  k4n_cloud->extract_data(sensor);
-  dyn_ope_cloud->run_operation(sensor);
-
-  //---------------------------
-}
 
 }

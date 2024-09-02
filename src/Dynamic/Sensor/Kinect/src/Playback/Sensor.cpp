@@ -68,7 +68,6 @@ void Sensor::thread_loop(){
 void Sensor::thread_end(){
   //---------------------------
 
-  k4n_processing->wait_thread();
   k4n_playback->close_playback(*this);
 
   //---------------------------

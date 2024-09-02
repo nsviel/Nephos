@@ -8,8 +8,8 @@ namespace dat::ply{
 struct Structure{
   //---------------------------
 
-  dat::base::sensor::Timestamp timestamp;
-  dat::base::sensor::State state;
+  dat::sensor::Timestamp timestamp;
+  dat::sensor::State state;
 
   //---------------------------
 };

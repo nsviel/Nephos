@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace dat::base::sensor{
+namespace dat::sensor{
 
 struct State{
   //---------------------------

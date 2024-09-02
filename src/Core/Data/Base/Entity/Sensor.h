@@ -2,16 +2,17 @@
 
 #include <Data/Base/Entity/Object.h>
 #include <Data/Sensor/Structure/Timestamp.h>
-#include <Data/Sensor/Structure/Calibration.h>
 #include <Data/Sensor/Structure/Thread.h>
 #include <Data/Sensor/Structure/Info.h>
 #include <Data/Sensor/Structure/State.h>
+#include <Data/Sensor/Graph/Graph.h>
+#include <Data/Sensor/Structure/Calibration.h>
 #include <Profiler/Monitor/src/Component/Profiler.h>
 
 
 namespace dat::base{
 
-struct Sensor : public dat::base::Object, public dat::base::sensor::Thread{
+struct Sensor : public dat::base::Object, public dat::sensor::Thread{
   //---------------------------
 
   Sensor(){
@@ -26,10 +27,11 @@ struct Sensor : public dat::base::Object, public dat::base::sensor::Thread{
 
   virtual void query(float value){}
 
-  dat::base::sensor::Info info;
-  dat::base::sensor::Timestamp timestamp;
-  dat::base::sensor::Calibration calibration;
-  dat::base::sensor::State state;
+  dat::sensor::Info info;
+  dat::sensor::Timestamp timestamp;
+  dat::sensor::State state;
+  dat::sensor::Graph graph;
+  dat::sensor::Calibration calibration;
   prf::monitor::Profiler profiler;
 
   //---------------------------

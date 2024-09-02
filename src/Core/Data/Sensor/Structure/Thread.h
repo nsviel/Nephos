@@ -6,7 +6,7 @@
 #include <atomic>
 
 
-namespace dat::base::sensor{
+namespace dat::sensor{
 
 class Thread{
 public:

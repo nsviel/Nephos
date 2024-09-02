@@ -9,7 +9,7 @@ namespace k4n::processing::image{class Data;}
 namespace dyn::prc::image{class Operation;}
 namespace dyn::prc::cloud{class Operation;}
 namespace thr::task{class Pool;}
-namespace thr::gph{class Pool;}
+namespace dat::sensor{class Pool;}
 
 
 namespace k4n{
@@ -24,11 +24,6 @@ public:
 public:
   //Main function
   void start_thread(k4n::base::Sensor& sensor);
-  void run_thread(k4n::base::Sensor& sensor);
-  void wait_thread();
-
-  //Subfunction
-  void make_processing(k4n::base::Sensor& sensor);
 
 private:
   k4n::Node* node_k4n;
@@ -38,7 +33,7 @@ private:
   dyn::prc::image::Operation* dyn_ope_image;
   dyn::prc::cloud::Operation* dyn_ope_cloud;
 
-  thr::gph::Pool* thr_pool;
+  dat::sensor::Pool* thr_pool;
 
   bool thread_idle = true;
 };

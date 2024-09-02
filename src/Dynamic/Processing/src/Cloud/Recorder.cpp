@@ -71,7 +71,7 @@ void Recorder::compute_recording(std::shared_ptr<dat::base::Sensor> sensor){
     sensor->info.vec_recorder[0]->record_sensor(sensor, path);
   }else{
     for(int i=0; i<sensor->info.vec_recorder.size(); i++){
-      dat::base::sensor::Recorder* recorder = sensor->info.vec_recorder[i];
+      dat::sensor::Recorder* recorder = sensor->info.vec_recorder[i];
 
       if(recorder->format == sensor->data.path.format){
         recorder->record_sensor(sensor, path);

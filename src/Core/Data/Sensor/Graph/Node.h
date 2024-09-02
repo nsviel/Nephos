@@ -1,12 +1,13 @@
 #pragma once
 
-#include <Data/Base/Entity/Sensor.h>
 #include <functional>
 #include <string>
 #include <list>
 
+namespace dat::base{class Sensor;}
 
-namespace thr::gph{
+
+namespace dat::sensor{
 
 struct Node{
   //---------------------------
