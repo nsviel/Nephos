@@ -5,7 +5,7 @@
 #include <queue>
 
 
-namespace thr{
+namespace thr::gph{
 
 // Constructor / Destructor
 Pool::Pool(int size){

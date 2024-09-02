@@ -9,7 +9,7 @@ namespace k4n::processing::image{class Data;}
 namespace dyn::prc::image{class Operation;}
 namespace dyn::prc::cloud{class Operation;}
 namespace thr::task{class Pool;}
-namespace thr{class Pool;}
+namespace thr::gph{class Pool;}
 
 
 namespace k4n{
@@ -37,7 +37,7 @@ private:
   dyn::prc::image::Operation* dyn_ope_image;
   dyn::prc::cloud::Operation* dyn_ope_cloud;
 
-  thr::Pool* thr_pool;
+  thr::gph::Pool* thr_pool;
 
   bool thread_idle = true;
 };

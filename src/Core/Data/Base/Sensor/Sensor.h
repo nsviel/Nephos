@@ -28,7 +28,7 @@ struct Sensor : public dat::base::Object, public dat::base::sensor::Thread{
   dat::base::sensor::Calibration calibration;
   dat::base::sensor::State state;
   prf::monitor::Profiler profiler;
-  thr::Graph graph;
+  thr::gph::Graph graph;
 
   //---------------------------
 };

@@ -10,7 +10,7 @@
 #include <mutex>
 
 
-namespace thr{
+namespace thr::gph{
 
 class Pool
 {

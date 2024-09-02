@@ -1,4 +1,4 @@
-set(LIBRARY_NAME DATA_GRAPH)
+set(LIBRARY_NAME DATA_SCENE)
 
 #-----------------
 # Source files

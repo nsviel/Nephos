@@ -6,7 +6,7 @@
 #include <queue>
 
 
-namespace thr{
+namespace thr::gph{
 
 // Constructor / Destructor
 Graph::Graph(){
@@ -19,26 +19,33 @@ Graph::Graph(){
 Graph::~Graph(){}
 
 //Main function
-void Graph::add_dependency(const std::string& task_name, const std::string& dependent_task_name){
+void Graph::add_task(const std::string& task_name, std::function<void(dat::base::Entity&)> func) {
   //---------------------------
-
-  // Add a dependency between tasks
+/*
   std::unique_lock<std::mutex> lock(mutex);
-  map_adj[task_name].push_back(dependent_task_name);
-  map_in_degree[dependent_task_name]++;
-
+  map_node[task_name].task = std::move(func);
+*/
   //---------------------------
 }
-void Graph::execute(thr::Pool& thread_pool){
+void Graph::add_dependency(const std::string& A, const std::string& B){
   //---------------------------
-
+/*
+  std::unique_lock<std::mutex> lock(mutex);
+  map_node[A].adjacent.push_back(B);
+  map_node[B].in_degree++;
+*/
+  //---------------------------
+}
+void Graph::execute(thr::gph::Pool& thread_pool, dat::base::Entity& entity){
+  //---------------------------
+/*
   std::queue<std::string> in_degree_0;
 
   // Initialize the queue with tasks having zero in-degree
   {
     std::unique_lock<std::mutex> lock(mutex);
-    for(auto& [task_name, degree] : map_in_degree){
-      if(degree == 0){
+    for(auto& [task_name, node] : map_node){
+      if(node.in_degree == 0){
         in_degree_0.push(task_name);
       }
     }
@@ -51,17 +58,17 @@ void Graph::execute(thr::Pool& thread_pool){
 
     // Submit the task to the thread pool
     thread_pool.submit([this, task_name, &in_degree_0](){
-      map_task[task_name]();  // Execute the task
+      map_node[task_name].task(entity);  // Execute the task
 
       std::unique_lock<std::mutex> lock(mutex);
-      for (const std::string& dependent_task : map_adj[task_name]) {
-        if (--map_in_degree[dependent_task] == 0) {
+      for (const std::string& dependent_task : map_node[task_name].adjacent) {
+        if (--map_node[dependent_task].in_degree == 0) {
           in_degree_0.push(dependent_task);
         }
       }
     });
   }
-
+*/
   //---------------------------
 }
 

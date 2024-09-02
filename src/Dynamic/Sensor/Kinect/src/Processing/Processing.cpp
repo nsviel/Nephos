@@ -23,7 +23,7 @@ Processing::Processing(k4n::Node* node_k4n){
   this->dyn_ope_image = node_processing->get_ope_image();
   this->dyn_ope_cloud = node_processing->get_ope_cloud();
 
-  this->thr_pool = new thr::Pool(100);
+  //this->thr_pool = new thr::gph::Pool(100);
 
   //---------------------------
 }
@@ -38,7 +38,7 @@ void Processing::start_thread(k4n::base::Sensor& sensor){
     this->run_thread(sensor);
   };
   thread_pool->add_task(task_function);*/
-
+/*
 static bool a = false;
 if(!a){
   sensor.graph.add_task("hello", []() {std::cout<<"hello"<<std::endl;} );
@@ -49,7 +49,7 @@ if(!a){
 }
 
   sensor.graph.execute(*thr_pool);
-
+*/
   //---------------------------
 }
 void Processing::run_thread(k4n::base::Sensor& sensor){
