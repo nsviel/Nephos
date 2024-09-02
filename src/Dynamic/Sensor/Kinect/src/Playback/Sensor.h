@@ -3,7 +3,7 @@
 #include <Kinect/src/Structure/Sensor.h>
 
 namespace k4n{class Node;}
-namespace k4n{class Processing;}
+namespace k4n{class Graph;}
 namespace k4n::playback{class Configuration;}
 namespace k4n::playback{class Playback;}
 namespace k4n::gui{class Playback;}
@@ -32,7 +32,7 @@ public:
   void manage_gui();
 
 public:
-  k4n::Processing* k4n_processing;
+  k4n::Graph* k4n_graph;
   k4n::playback::Configuration* k4n_config;
   k4n::playback::Playback* k4n_playback;
   k4n::gui::Playback* gui_playback;

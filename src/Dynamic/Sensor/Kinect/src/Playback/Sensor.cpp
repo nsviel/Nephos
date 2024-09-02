@@ -17,7 +17,7 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   dat::Node* node_data = node_k4n->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->k4n_processing = new k4n::Processing(node_k4n);
+  this->k4n_graph = new k4n::Graph(node_k4n);
   this->k4n_config = new k4n::playback::Configuration(node_k4n);
   this->k4n_playback = new k4n::playback::Playback(node_k4n);
   this->dat_sensor = node_element->get_dat_sensor();
@@ -45,6 +45,7 @@ void Sensor::thread_init(){
   k4n_playback->find_timestamp(*this);
   k4n_config->find_configuration(*this);
   k4n_config->find_calibration(*this);
+  k4n_graph->init(*this);
 
   //---------------------------
 }
@@ -61,7 +62,7 @@ void Sensor::thread_loop(){
   tasker->task_end("capture");
 
   //Run processing
-  k4n_processing->start_thread(*this);
+  k4n_graph->run(*this);
 
   //---------------------------
 }

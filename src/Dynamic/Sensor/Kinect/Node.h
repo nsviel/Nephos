@@ -4,7 +4,6 @@
 
 namespace dyn::sen{class Node;}
 namespace dat{class Node;}
-namespace core{class Node;}
 namespace io{class Node;}
 namespace dyn::prc{class Node;}
 namespace dat::gph{class Graph;}
@@ -29,7 +28,6 @@ public:
   void clean();
   void loop();
 
-  inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
   inline dyn::prc::Node* get_node_processing(){return node_processing;}
@@ -40,7 +38,6 @@ private:
   //Dependancy
   io::Node* node_io;
   dyn::prc::Node* node_processing;
-  core::Node* node_core;
   dat::Node* node_data;
   thr::task::Pool* thread_pool;
 

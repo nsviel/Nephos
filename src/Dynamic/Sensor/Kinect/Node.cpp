@@ -13,8 +13,9 @@ namespace k4n{
 Node::Node(dyn::sen::Node* node_sensor){
   //---------------------------
 
+  core::Node* node_core = node_sensor->get_node_core();
+
   //Dependancy
-  this->node_core = node_sensor->get_node_core();
   this->node_io = node_core->get_node_io();
   this->node_data = node_core->get_node_data();
   this->node_processing = node_sensor->get_node_processing();
