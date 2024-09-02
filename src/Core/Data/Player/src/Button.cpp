@@ -29,7 +29,7 @@ void Button::slider_query(float value){
   if(!set) return;
   //---------------------------
 
-  ply_state->manage_query(set, value);
+  ply_state->manage_query(*set, value);
   ply_struct->state.query = true;
 
   //---------------------------
@@ -46,7 +46,7 @@ void Button::button_play(){
     ply_struct->state.pause = false;
   }
 
-  ply_state->manage_state(set);
+  ply_state->manage_state(*set);
 
   //---------------------------
 }
@@ -57,7 +57,7 @@ void Button::button_pause(){
 
   ply_struct->state.pause = !ply_struct->state.pause;
 
-  ply_state->manage_state(set);
+  ply_state->manage_state(*set);
 
   //---------------------------
 }
@@ -67,17 +67,17 @@ void Button::button_stop(){
   //---------------------------
 
   //Set timestamp et begining
-  ply_state->manage_query(set, ply_struct->timestamp.begin);
+  ply_state->manage_query(*set, ply_struct->timestamp.begin);
   std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
   //Pause player
   ply_struct->state.play = false;
   ply_struct->state.pause = true;
   timestamp.current = timestamp.begin;
-  ply_state->manage_state(set);
+  ply_state->manage_state(*set);
 
   //Proper restart operation
-  ply_state->manage_restart(set);
+  ply_state->manage_restart(*set);
 
   //---------------------------
 }
@@ -95,7 +95,7 @@ void Button::button_record(){
 
   ply_struct->state.record = !ply_struct->state.record;
 
-  ply_state->manage_state(set);
+  ply_state->manage_state(*set);
 
   //---------------------------
 }
@@ -126,7 +126,7 @@ void Button::button_forward(float value){
   if(ts_forward > timestamp.end) ts_forward = timestamp.end;
   if(ts_forward < timestamp.begin) ts_forward = timestamp.begin;
 
-  ply_state->manage_query(set, ts_forward);
+  ply_state->manage_query(*set, ts_forward);
 
   //---------------------------
 }

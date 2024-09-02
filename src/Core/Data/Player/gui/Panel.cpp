@@ -51,12 +51,13 @@ void Panel::run_panel(){
 }
 void Panel::design_panel(){
   std::shared_ptr<utl::base::Element> element = gph_selection->get_selected_element();
-  if(!element) return;
+  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+  if(!element || !set) return;
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
 
-  gui_player->design_player(element);
+  gui_player->design_player(*set);
   gui_configuration->design_configuration(element);
   atr_panel->design_panel(element);
 

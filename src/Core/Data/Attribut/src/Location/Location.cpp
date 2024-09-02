@@ -38,36 +38,34 @@ void Location::compute_centroid(dat::base::Entity& entity){
 
   //---------------------------
 }
-void Location::compute_COM(std::shared_ptr<utl::base::Element> element){
-  if(!element) return;
+void Location::compute_COM(utl::base::Element& element){
   //---------------------------
 
   // Attempt to cast to dat::base::Set
-  if(auto set = std::dynamic_pointer_cast<dat::base::Set>(element)){
-    this->compute_COM(set);
+  if(dat::base::Set* set = dynamic_cast<dat::base::Set*>(&element)){
+    this->compute_COM(*set);
   }
   // Attempt to cast to dat::base::Entity
-  else if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
-   this->compute_COM(entity);
+  else if(dat::base::Entity* entity = dynamic_cast<dat::base::Entity*>(&element)){
+   this->compute_COM(*entity);
   }
 
   //---------------------------
 }
-void Location::compute_COM(std::shared_ptr<dat::base::Set> set){
-  if(!set) return;
+void Location::compute_COM(dat::base::Set& set){
   //---------------------------
 
   glm::vec3 COM = glm::vec3(0, 0, 0);
 
-  for(auto& entity : set->list_entity){
-    this->compute_COM(entity);
+  for(auto& entity : set.list_entity){
+    this->compute_COM(*entity);
     COM += entity->pose.COM;
   }
 
-  COM /= set->list_entity.size();
+  COM /= set.list_entity.size();
 
   //---------------------------
-  set->pose.COM = COM;
+  set.pose.COM = COM;
 }
 void Location::compute_COM(dat::base::Entity& entity){
   //---------------------------
@@ -83,14 +81,14 @@ void Location::compute_COM(dat::base::Entity& entity){
 
   //---------------------------
 }
-void Location::compute_MinMax(std::shared_ptr<dat::base::Set> set){
+void Location::compute_MinMax(dat::base::Set& set){
   //---------------------------
 
   glm::vec3 centroid = glm::vec3(0, 0, 0);
   glm::vec3 min = glm::vec3(1000000, 1000000, 1000000);
   glm::vec3 max = glm::vec3(-1000000, -1000000, -1000000);
 
-  for(auto& entity : set->list_entity){
+  for(auto& entity : set.list_entity){
     utl::base::Pose& pose = entity->pose;
     this->compute_MinMax(*entity);
 
@@ -102,13 +100,13 @@ void Location::compute_MinMax(std::shared_ptr<dat::base::Set> set){
   }
 
   for(int j=0;j<3;j++){
-    centroid[j] /= set->list_entity.size();
+    centroid[j] /= set.list_entity.size();
   }
 
   //---------------------------
-  set->pose.min = min;
-  set->pose.max = max;
-  set->pose.COM = centroid;
+  set.pose.min = min;
+  set.pose.max = max;
+  set.pose.COM = centroid;
 }
 void Location::compute_MinMax(dat::base::Entity& entity){
   utl::base::Data& data = entity.data;

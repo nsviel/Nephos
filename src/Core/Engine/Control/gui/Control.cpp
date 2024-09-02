@@ -1,6 +1,7 @@
 #include "Control.h"
 
 #include <Engine/Control/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace ctr::gui{

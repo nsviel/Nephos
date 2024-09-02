@@ -41,19 +41,19 @@ void Wheel::make_action(float value){
   switch(ctr_struct->wheel_mode){
     case ctr::wheel::R_Z:{
       R = glm::vec3(0, 0, direction * radian);
-      atr_location->compute_COM(element);
+      atr_location->compute_COM(*element);
       trf_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
     case ctr::wheel::R_Y:{
       R = glm::vec3(0, direction * radian, 0);
-      atr_location->compute_COM(element);
+      atr_location->compute_COM(*element);
       trf_operation->make_rotation(element, element->pose.COM, R);
       break;
     }
     case ctr::wheel::R_X:{
       R = glm::vec3(direction * radian, 0, 0);
-      atr_location->compute_COM(element);
+      atr_location->compute_COM(*element);
       trf_operation->make_rotation(element, element->pose.COM, R);
       break;
     }

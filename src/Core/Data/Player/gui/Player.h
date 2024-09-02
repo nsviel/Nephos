@@ -6,7 +6,7 @@ namespace dat::ply{class Node;}
 namespace dat::ply{class Button;}
 namespace dat::ply{class State;}
 namespace dat::ply{class Structure;}
-namespace utl::base{class Element;}
+namespace dat::base{class Set;}
 
 
 namespace dat::ply::gui{
@@ -19,7 +19,7 @@ public:
   ~Player();
 
   //Main function
-  void design_player(std::shared_ptr<utl::base::Element> element);
+  void design_player(dat::base::Set& set);
 
   //Player function
   void player_slider();

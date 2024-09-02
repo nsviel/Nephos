@@ -21,8 +21,8 @@ Player::Player(dat::ply::Node* node_player){
 Player::~Player(){}
 
 //Main function
-void Player::design_player(std::shared_ptr<utl::base::Element> element){
-  if(element->type != "sensor") return;
+void Player::design_player(dat::base::Set& set){
+  if(!ply_state->has_state(set)) return;
   //---------------------------
 
   this->player_slider();

@@ -25,7 +25,7 @@ void Operation::center_object(std::shared_ptr<utl::base::Element> element){
 
   // Attempt to cast to dat::base::Set
   if(auto set = std::dynamic_pointer_cast<dat::base::Set>(element)){
-    atr_location->compute_MinMax(set);
+    atr_location->compute_MinMax(*set);
     for(auto& entity : set->list_entity){
       this->center_object(entity, set->pose.COM);
       this->elevate_object(entity, set->pose.min);
@@ -46,7 +46,7 @@ void Operation::elevate_object(std::shared_ptr<utl::base::Element> element){
 
   // Attempt to cast to dat::base::Set
   if(auto set = std::dynamic_pointer_cast<dat::base::Set>(element)){
-    atr_location->compute_MinMax(set);
+    atr_location->compute_MinMax(*set);
     for(auto& entity : set->list_entity){
       this->elevate_object(entity, set->pose.min);
     }
