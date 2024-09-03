@@ -18,9 +18,6 @@ public:
 
 public:
   void init();
-  void loop();
-  void clean();
-  void reset();
 
   inline core::Node* get_node_core(){return node_core;}
 

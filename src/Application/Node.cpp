@@ -5,7 +5,7 @@
 #include <Dynamic/Namespace.h>
 #include <Module/Namespace.h>
 #include <Utility/Namespace.h>
-
+#include <Profiler/Namespace.h>
 #include <GUI/Namespace.h>
 #include <Scene/Namespace.h>
 
@@ -24,6 +24,7 @@ Node::Node(){
 
   this->node_scene = new sce::Node(this);
   this->node_gui = new gui::Node(this);
+  this->tasker = node_core->get_tasker_cpu();
 
   //---------------------------
 }
@@ -57,10 +58,18 @@ void Node::loop(){
   //---------------------------
 
   while(running){
-    node_scene->loop();
+    tasker->task_begin("gui");
     node_gui->loop();
+    tasker->task_end("gui");
+
+    tasker->task_begin("core");
     node_core->loop();
+    tasker->task_end("core");
+
+    tasker->task_begin("vulkan");
     node_vulkan->loop();
+    tasker->task_end("vulkan");
+
     node_dynamic->loop();
     node_module->loop();
   }
@@ -86,7 +95,6 @@ void Node::reset(){
 void Node::end(){
   //---------------------------
 
-  node_scene->clean();
   node_core->clean();
   node_vulkan->clean();
 

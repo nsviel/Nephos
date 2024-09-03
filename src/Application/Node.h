@@ -4,10 +4,12 @@
 
 namespace vk{class Node;}
 namespace core{class Node;}
-namespace gui{class Node;}
-namespace sce{class Node;}
 namespace dyn{class Node;}
 namespace mod{class Node;}
+
+namespace gui{class Node;}
+namespace sce{class Node;}
+namespace prf::monitor{class Tasker;}
 
 
 namespace app{
@@ -42,6 +44,7 @@ private:
   core::Node* node_core;
   dyn::Node* node_dynamic;
   mod::Node* node_module;
+  prf::monitor::Tasker* tasker;
 
   gui::Node* node_gui;
   sce::Node* node_scene;

@@ -2,10 +2,11 @@
 
 #include <Utility/Base/Class/Node.h>
 
+namespace vk{class Node;}
+
 namespace sys{class Node;}
 namespace app{class Node;}
 namespace io{class Node;}
-namespace vk{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 
@@ -31,6 +32,7 @@ public:
   void reset();
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
+
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
   inline eng::Node* get_node_engine(){return node_engine;}
@@ -41,10 +43,12 @@ public:
 
 private:
   vk::Node* node_vulkan;
+
   io::Node* node_io;
   dat::Node* node_data;
   eng::Node* node_engine;
   sys::Node* node_system;
+
   prf::monitor::Tasker* tasker;
   thr::task::Pool* thread_pool;
 };

@@ -25,9 +25,7 @@ Node::Node(app::Node* node_app){
 
   //Tasker CPU
   prf::Node* node_profiler = node_system->get_node_profiler();
-  prf::monitor::Node* node_monitor = node_profiler->get_node_monitor();
-  prf::monitor::Manager* prf_monitor = node_monitor->get_prf_manager();
-  this->tasker = prf_monitor->get_tasker_cpu();
+  this->tasker = node_profiler->get_tasker_cpu();
 
   //---------------------------
 }
@@ -46,15 +44,8 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  tasker->task_begin("eng::loop");
   node_data->loop();
   node_engine->loop();
-  tasker->task_end("eng::loop");
-
-  tasker->task_begin("eng::vulkan");
-  //node_vulkan->loop();
-  tasker->task_end("eng::vulkan");
-
   node_system->loop();
 
   //---------------------------
@@ -62,12 +53,11 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-  tasker->task_begin("eng::gui");
   node_data->gui();
   node_io->gui();
   node_engine->gui();
-  tasker->task_end("eng::gui");
 
+  //Problem here
   node_system->gui();
 
   //---------------------------

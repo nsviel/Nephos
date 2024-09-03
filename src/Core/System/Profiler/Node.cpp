@@ -19,6 +19,10 @@ Node::Node(sys::Node* node_system){
   this->node_hardware = new prf::hardware::Node(this);
   this->gui_panel = new prf::gui::Panel(this, &prf_panel->is_open);
 
+  //Main cpu tasker
+  prf::monitor::Manager* prf_monitor = node_monitor->get_prf_manager();
+  this->tasker_cpu = prf_monitor->get_tasker_cpu();
+
   //---------------------------
 }
 Node::~Node(){}
