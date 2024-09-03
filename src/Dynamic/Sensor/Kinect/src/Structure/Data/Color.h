@@ -3,6 +3,7 @@
 #include <Kinect/src/Structure/Data/Data.h>
 #include <Utility/Namespace.h>
 #include <k4a/k4a.hpp>
+#include <memory>
 #include <string>
 
 namespace k4n::structure{struct Data;}
@@ -145,7 +146,7 @@ struct Structure{
 
   k4n::color::Configuration config;
   k4n::structure::Data data;
-  utl::media::Image image;
+  std::shared_ptr<utl::media::Image> image;
 
   //---------------------------
 };

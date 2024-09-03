@@ -2,6 +2,7 @@
 
 #include <Kinect/src/Structure/Data/Data.h>
 #include <k4a/k4a.hpp>
+#include <memory>
 
 namespace utl::media{struct Image;}
 
@@ -27,7 +28,7 @@ struct Structure{
 
   k4n::depth::Configuration config;
   k4n::structure::Data data;
-  utl::media::Image image;
+  std::shared_ptr<utl::media::Image> image;
 
   //---------------------------
 };

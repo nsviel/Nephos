@@ -54,17 +54,18 @@ void Infrared::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Infrared::retrieve_image(k4n::base::Sensor& sensor){
+  std::shared_ptr<utl::media::Image> image = sensor.ir.image;
   //---------------------------
 
   //Image
   this->convert_image_into_color(sensor);
-  sensor.ir.image.name = "Intensity";
-  sensor.ir.image.size = sensor.ir.image.data.size();
-  sensor.ir.image.width = sensor.ir.data.width;
-  sensor.ir.image.height = sensor.ir.data.height;
-  sensor.ir.image.format = "R8G8B8A8_SRGB";
-  sensor.ir.image.timestamp = sensor.ir.data.timestamp;
-  dat_image->add_image(sensor, std::make_shared<utl::media::Image>(sensor.ir.image));
+  image->name = "Intensity";
+  image->size = image->data.size();
+  image->width = sensor.ir.data.width;
+  image->height = sensor.ir.data.height;
+  image->format = "R8G8B8A8_SRGB";
+  image->timestamp = sensor.ir.data.timestamp;
+  dat_image->add_image(sensor, image);
 
   //---------------------------
 }
@@ -123,7 +124,7 @@ void Infrared::convert_image_into_color(k4n::base::Sensor& sensor){
     output[j + 3] = 255;
   }
 
-  sensor.ir.image.data = output;
+  sensor.ir.image->data = output;
 
   //---------------------------
 }

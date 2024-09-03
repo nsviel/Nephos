@@ -31,11 +31,11 @@ void Graph::init(k4n::base::Sensor& sensor){
 
   sensor.graph.clear();
   sensor.graph.add_task("data", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
-  sensor.graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
+/*  sensor.graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
   sensor.graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_ope_cloud->run_operation(sensor); });
   sensor.graph.add_dependency("data", "cloud");
   sensor.graph.add_dependency("cloud", "operation");
-
+*/
   //---------------------------
 }
 void Graph::run(k4n::base::Sensor& sensor){

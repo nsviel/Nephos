@@ -25,9 +25,7 @@ void Color::extract_data(k4n::base::Sensor& sensor){
 
   this->retrieve_data(sensor);
   this->retrieve_image(sensor);
-
-  //Current timestamp
-  sensor.timestamp.current = sensor.color.data.timestamp;
+  this->retrieve_timestamp(sensor);
 
   //---------------------------
 }
@@ -53,17 +51,27 @@ void Color::retrieve_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Color::retrieve_image(k4n::base::Sensor& sensor){
+  std::shared_ptr<utl::media::Image> image = sensor.color.image;
   //---------------------------
 
   //Image
-  sensor.color.image.name = "Color";
-  sensor.color.image.data = std::vector<uint8_t>(sensor.color.data.buffer, sensor.color.data.buffer + sensor.color.data.size);
-  sensor.color.image.size = sensor.color.image.data.size();
-  sensor.color.image.width = sensor.color.data.width;
-  sensor.color.image.height = sensor.color.data.height;
-  sensor.color.image.format = sensor.color.data.format;
-  sensor.color.image.timestamp = sensor.color.data.timestamp;
-  dat_image->add_image(sensor, std::make_shared<utl::media::Image>(sensor.color.image));
+  image->name = "Color";
+  image->data = std::vector<uint8_t>(sensor.color.data.buffer, sensor.color.data.buffer + sensor.color.data.size);
+  image->size = image->data.size();
+  image->width = sensor.color.data.width;
+  image->height = sensor.color.data.height;
+  image->format = sensor.color.data.format;
+  image->timestamp = sensor.color.data.timestamp;
+  dat_image->add_image(sensor, image);
+
+  say(sensor.list_image.size());
+
+  //---------------------------
+}
+void Color::retrieve_timestamp(k4n::base::Sensor& sensor){
+  //---------------------------
+
+  sensor.timestamp.current = sensor.color.data.timestamp;
 
   //---------------------------
 }

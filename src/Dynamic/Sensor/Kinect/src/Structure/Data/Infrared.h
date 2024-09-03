@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Kinect/src/Structure/Data/Data.h>
+#include <memory>
 
 namespace utl::media{struct Image;}
 
@@ -25,7 +26,7 @@ struct Structure{
 
   k4n::infrared::Configuration config;
   k4n::structure::Data data;
-  utl::media::Image image;
+  std::shared_ptr<utl::media::Image> image;
 
   //---------------------------
 };

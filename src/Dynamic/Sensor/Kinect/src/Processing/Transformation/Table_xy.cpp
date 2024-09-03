@@ -44,8 +44,8 @@ say("table xy start");
   map_xy.clear();
 
   // Iterate through each pixel coordinate in the color image
-  for(int y=0; y<sensor.color.image.height; y++){
-    for(int x=0; x<sensor.color.image.width; x++){
+  for(int y=0; y<sensor.color.image->height; y++){
+    for(int x=0; x<sensor.color.image->width; x++){
       // Convert color coordinate to depth coordinate
       k4a_float2_t source_point2d = { static_cast<float>(x), static_cast<float>(y) };
       k4a_float2_t target_point2d;
@@ -77,12 +77,12 @@ void Table_xy::apply_map(k4n::base::Sensor& sensor, int i){
     if(it != map_xy.end()){
       glm::ivec2 coord_color = it->second;
 
-      int idx = coord_color.y * sensor.color.image.width + coord_color.x;
+      int idx = coord_color.y * sensor.color.image->width + coord_color.x;
       idx = idx * 4;
 
-      r = static_cast<float>(sensor.color.image.data[idx + 2]) / 255.0f;
-      g = static_cast<float>(sensor.color.image.data[idx + 1]) / 255.0f;
-      b = static_cast<float>(sensor.color.image.data[idx + 0]) / 255.0f;
+      r = static_cast<float>(sensor.color.image->data[idx + 2]) / 255.0f;
+      g = static_cast<float>(sensor.color.image->data[idx + 1]) / 255.0f;
+      b = static_cast<float>(sensor.color.image->data[idx + 0]) / 255.0f;
     }else{
       r = 0;
       g = 0;

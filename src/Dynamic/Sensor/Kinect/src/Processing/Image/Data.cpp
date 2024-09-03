@@ -39,22 +39,22 @@ void Data::extract_image_data(k4n::base::Sensor& sensor){
   //---------------------------
 
   tasker->loop();
-
+/*
   //Depth data
   tasker->task_begin("depth");
   k4n_depth->extract_data(sensor);
   tasker->task_end("depth");
-
+*/
   //Color data
   tasker->task_begin("color");
   k4n_color->extract_data(sensor);
   tasker->task_end("color");
-
+/*
   //Infrared data
   tasker->task_begin("infrared");
   k4n_ir->extract_data(sensor);
   tasker->task_end("infrared");
-
+*/
   //---------------------------
 }
 void Data::make_transformation(k4n::base::Sensor& sensor){
