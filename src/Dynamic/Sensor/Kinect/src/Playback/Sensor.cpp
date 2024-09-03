@@ -62,7 +62,7 @@ void Sensor::thread_loop(){
   tasker->task_end("capture");
 
   //Run processing
-  k4n_graph->run(*this);
+  //k4n_graph->run(*this);
 
   //---------------------------
 }
@@ -117,8 +117,7 @@ void Sensor::manage_query(float value){
 void Sensor::manage_gui(){
   //---------------------------
 
-  std::shared_ptr<k4n::playback::Sensor> sensor(this);
-  gui_playback->show_parameter(sensor);
+  gui_playback->show_parameter(*this);
 
   //---------------------------
 }

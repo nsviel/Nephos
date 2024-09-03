@@ -17,26 +17,21 @@ Playback::Playback(k4n::Node* node_k4n){
 Playback::~Playback(){}
 
 //Main function
-void Playback::show_parameter(std::shared_ptr<k4n::base::Sensor> sensor){
-  if(!sensor) return;
+void Playback::show_parameter(k4n::playback::Sensor& sensor){
   //---------------------------
 
-  auto set_parent = sensor->set_parent.lock();
-  this->show_transformation_mode(set_parent);
-
-  if(auto playback = std::dynamic_pointer_cast<k4n::playback::Sensor>(sensor)){
-    this->show_info_device(playback);
-    this->show_info_color(playback);
-    this->show_info_depth(playback);
-    this->show_info_synch(playback);
-  }
+  this->show_transformation_mode();
+  this->show_info_device(sensor);
+  this->show_info_color(sensor);
+  this->show_info_depth(sensor);
+  this->show_info_synch(sensor);
 
   //---------------------------
   ImGui::Separator();
 }
 
 //Design function
-void Playback::show_transformation_mode(std::shared_ptr<dat::base::Set> set){
+void Playback::show_transformation_mode(){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
@@ -48,12 +43,12 @@ void Playback::show_transformation_mode(std::shared_ptr<dat::base::Set> set){
   //---------------------------
   ImGui::Separator();
 }
-void Playback::show_firmware_info(std::shared_ptr<k4n::base::Sensor> sensor){
+void Playback::show_firmware_info(k4n::playback::Sensor& sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Device Firmware Version Info");
 
-  k4a_hardware_version_t versionInfo = sensor->device.version;
+  k4a_hardware_version_t versionInfo = sensor.device.version;
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
   ImGui::BeginTable("device##firmware", 2);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
@@ -83,7 +78,7 @@ void Playback::show_firmware_info(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Playback::show_info_device(std::shared_ptr<k4n::playback::Sensor> sensor){
+void Playback::show_info_device(k4n::playback::Sensor& sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Device");
@@ -93,22 +88,22 @@ void Playback::show_info_device(std::shared_ptr<k4n::playback::Sensor> sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Device S/N"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->info.serial_number.c_str());
+  ImGui::TextColored(color, "%s", sensor.info.serial_number.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("IMU enabled"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->imu.config.enabled ? "Yes" : "No");
+  ImGui::TextColored(color, "%s", sensor.imu.config.enabled ? "Yes" : "No");
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Frame rate"); ImGui::TableNextColumn();
-  //string fps_str = sensor->set_parent->fps.mode_str + " fps";
+  //string fps_str = sensor.set_parent->fps.mode_str + " fps";
   //ImGui::TextColored(color, "%s", fps_str.c_str());
 
   ImGui::EndTable();
 
   //---------------------------
 }
-void Playback::show_info_color(std::shared_ptr<k4n::playback::Sensor> sensor){
+void Playback::show_info_color(k4n::playback::Sensor& sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
@@ -118,25 +113,25 @@ void Playback::show_info_color(std::shared_ptr<k4n::playback::Sensor> sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Color enabled"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->color.config.enabled ? "Yes" : "No");
+  ImGui::TextColored(color, "%s", sensor.color.config.enabled ? "Yes" : "No");
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Color format"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->color.config.format_str.c_str());
+  ImGui::TextColored(color, "%s", sensor.color.config.format_str.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Color resolution"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->color.config.resolution_str.c_str());
+  ImGui::TextColored(color, "%s", sensor.color.config.resolution_str.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Color firmware"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->firmware.color.c_str());
+  ImGui::TextColored(color, "%s", sensor.firmware.color.c_str());
 
   ImGui::EndTable();
 
   //---------------------------
 }
-void Playback::show_info_depth(std::shared_ptr<k4n::playback::Sensor> sensor){
+void Playback::show_info_depth(k4n::playback::Sensor& sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
@@ -146,29 +141,29 @@ void Playback::show_info_depth(std::shared_ptr<k4n::playback::Sensor> sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth enabled"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->depth.config.enabled ? "Yes" : "No");
+  ImGui::TextColored(color, "%s", sensor.depth.config.enabled ? "Yes" : "No");
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth resolution"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->depth.config.resolution.c_str());
+  ImGui::TextColored(color, "%s", sensor.depth.config.resolution.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth mode"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->depth.config.mode_str.c_str());
+  ImGui::TextColored(color, "%s", sensor.depth.config.mode_str.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth camera FW"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->firmware.depth.c_str());
+  ImGui::TextColored(color, "%s", sensor.firmware.depth.c_str());
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("IR enabled"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor->ir.config.enabled ? "Yes" : "No");
+  ImGui::TextColored(color, "%s", sensor.ir.config.enabled ? "Yes" : "No");
 
   ImGui::EndTable();
 
   //---------------------------
 }
-void Playback::show_info_synch(std::shared_ptr<k4n::playback::Sensor> sensor){
+void Playback::show_info_synch(k4n::playback::Sensor& sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);

@@ -2,6 +2,7 @@
 
 #include <Kinect/src/Structure/Namespace.h>
 #include <Data/Namespace.h>
+#include <string>
 
 
 namespace k4n::base{
@@ -20,6 +21,8 @@ struct Sensor : public dat::base::Sensor{
   k4n::device::Structure device;
   k4n::firmware::Structure firmware;
   k4n::structure::FPS fps;
+
+  std::string type_sensor = "";
 
   //---------------------------
 };
