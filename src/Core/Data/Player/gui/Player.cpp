@@ -15,6 +15,7 @@ Player::Player(dat::ply::Node* node_player){
   this->ply_struct = node_player->get_ply_struct();
   this->ply_state = node_player->get_ply_state();
   this->ply_button = node_player->get_ply_button();
+  this->ply_slider = new dat::ply::Slider(node_player);
 
   //---------------------------
 }
@@ -51,11 +52,11 @@ void Player::player_slider(){
   ImGui::SetNextItemWidth(width);
   float current = ply_struct->timestamp.current;
   if(ImGui::SliderFloat("##player_slider", &current, ply_struct->timestamp.begin, ply_struct->timestamp.end, "%.2f s", ImGuiSliderFlags_NoInput)){
-    ply_button->slider_query(current);
+    ply_slider->slider_query(current);
   }
 
   //Check if held
-  ply_button->slider_hold(ImGui::IsItemActive());
+  ply_slider->slider_hold(ImGui::IsItemActive());
 
   //---------------------------
 }

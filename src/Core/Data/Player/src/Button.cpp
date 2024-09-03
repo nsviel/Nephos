@@ -24,27 +24,6 @@ Button::Button(dat::ply::Node* node_player){
 Button::~Button(){}
 
 //Main function
-void Button::slider_query(float value){
-  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
-  if(!set) return;
-  //---------------------------
-
-  ply_state->manage_query(*set, value);
-
-  //---------------------------
-}
-void Button::slider_hold(float value){
-  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
-  if(!set) return;
-  //---------------------------
-
-  if(ply_struct->state.query != value){
-    ply_struct->state.query = value;
-    ply_state->manage_state(*set);
-  }
-
-  //---------------------------
-}
 void Button::button_play(){
   std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
   if(!set) return;

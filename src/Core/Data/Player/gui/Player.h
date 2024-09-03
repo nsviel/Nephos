@@ -5,6 +5,7 @@
 namespace dat::ply{class Node;}
 namespace dat::ply{class Button;}
 namespace dat::ply{class State;}
+namespace dat::ply{class Slider;}
 namespace dat::ply{class Structure;}
 namespace dat::base{class Set;}
 
@@ -34,6 +35,7 @@ private:
   dat::ply::Structure* ply_struct;
   dat::ply::Button* ply_button;
   dat::ply::State* ply_state;
+  dat::ply::Slider* ply_slider;
 };
 
 }
