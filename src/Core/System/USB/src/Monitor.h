@@ -2,22 +2,25 @@
 
 #include <libudev.h>
 
+namespace usb{class Node;}
 
-namespace sys{
+
+namespace usb{
 
 class Monitor
 {
 public:
   //Constructor / Destructor
-  Monitor();
+  Monitor(usb::Node* node_usb);
   ~Monitor();
 
 public:
   //Main function
+  void init();
   void usb_monitor();
 
 private:
-
+  usb::Structure* usb_struct;
 };
 
 }

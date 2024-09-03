@@ -3,17 +3,36 @@
 #include <Utility/Namespace.h>
 
 
-namespace sys{
+namespace usb{
 
 //Constructor / Destructor
-Monitor::Monitor(){
+Monitor::Monitor(usb::Node* node_usb){
   //---------------------------
 
+  this->usb_struct = node_usb->get_usb_struct();
+  
   //---------------------------
 }
 Monitor::~Monitor(){}
 
 //Main function
+void Monitor::init() {
+  //---------------------------
+
+  struct udev* udev = udev_new();
+  if (!udev) {
+    std::cerr << "Can't create udev\n";
+    return;
+  }
+
+  struct udev_monitor* mon = udev_monitor_new_from_netlink(udev, "udev");
+  udev_monitor_filter_add_match_subsystem_devtype(mon, "usb", "usb_device");
+  udev_monitor_enable_receiving(mon);
+
+  int fd = udev_monitor_get_fd(mon);
+
+  //---------------------------
+}
 void Monitor::usb_monitor() {
   //---------------------------
 

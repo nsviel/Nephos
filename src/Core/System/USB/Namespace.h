@@ -1,3 +1,4 @@
 #pragma once
 
-#include <USB/Monitor.h>
+#include <USB/src/Namespace.h>
+#include <USB/Node.h>
