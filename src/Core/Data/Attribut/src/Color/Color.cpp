@@ -28,7 +28,7 @@ void Color::make_colorization(const std::shared_ptr<utl::base::Element> element)
   }
   // Attempt to cast to dat::base::Entity
   else if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
-   this->make_colorization(entity);
+   this->make_colorization(*entity);
   }
 
   //---------------------------
@@ -37,7 +37,7 @@ void Color::make_colorization(const std::shared_ptr<dat::base::Set> set){
   //---------------------------
 
   for(auto& entity : set->list_entity){
-    this->make_colorization(entity);
+    this->make_colorization(*entity);
   }
 
   //---------------------------

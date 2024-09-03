@@ -1,5 +1,6 @@
 #include "Monitor.h"
 
+#include <USB/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -10,7 +11,7 @@ Monitor::Monitor(usb::Node* node_usb){
   //---------------------------
 
   this->usb_struct = node_usb->get_usb_struct();
-  
+
   //---------------------------
 }
 Monitor::~Monitor(){}
@@ -19,43 +20,38 @@ Monitor::~Monitor(){}
 void Monitor::init() {
   //---------------------------
 
-  struct udev* udev = udev_new();
-  if (!udev) {
+  //Contexte
+  usb_struct->udev = udev_new();
+  if (!usb_struct->udev) {
     std::cerr << "Can't create udev\n";
     return;
   }
 
-  struct udev_monitor* mon = udev_monitor_new_from_netlink(udev, "udev");
-  udev_monitor_filter_add_match_subsystem_devtype(mon, "usb", "usb_device");
-  udev_monitor_enable_receiving(mon);
+  //USB listener
+  usb_struct->monitor = udev_monitor_new_from_netlink(usb_struct->udev, "udev");
 
-  int fd = udev_monitor_get_fd(mon);
+  //Add filter
+  udev_monitor_filter_add_match_subsystem_devtype(usb_struct->monitor, "usb", "usb_device");
+
+  //Enable monitor to receive events
+  udev_monitor_enable_receiving(usb_struct->monitor);
+
+  //Get file descriptor
+  usb_struct->fd = udev_monitor_get_fd(usb_struct->monitor);
 
   //---------------------------
 }
 void Monitor::usb_monitor() {
   //---------------------------
 
-  struct udev* udev = udev_new();
-  if (!udev) {
-    std::cerr << "Can't create udev\n";
-    return;
-  }
-
-  struct udev_monitor* mon = udev_monitor_new_from_netlink(udev, "udev");
-  udev_monitor_filter_add_match_subsystem_devtype(mon, "usb", "usb_device");
-  udev_monitor_enable_receiving(mon);
-
-  int fd = udev_monitor_get_fd(mon);
-
   while (true) {
     fd_set fds;
     FD_ZERO(&fds);
-    FD_SET(fd, &fds);
+    FD_SET(usb_struct->fd, &fds);
 
-    int ret = select(fd + 1, &fds, NULL, NULL, NULL);
-    if (ret > 0 && FD_ISSET(fd, &fds)) {
-      struct udev_device* dev = udev_monitor_receive_device(mon);
+    int ret = select(usb_struct->fd + 1, &fds, NULL, NULL, NULL);
+    if (ret > 0 && FD_ISSET(usb_struct->fd, &fds)) {
+      struct udev_device* dev = udev_monitor_receive_device(usb_struct->monitor);
       if (dev) {
         const char* action = udev_device_get_action(dev);
         const char* vendor = udev_device_get_sysattr_value(dev, "idVendor");
@@ -78,8 +74,13 @@ void Monitor::usb_monitor() {
     }
   }
 
-  udev_monitor_unref(mon);
-  udev_unref(udev);
+  //---------------------------
+}
+void Monitor::close() {
+  //---------------------------
+
+  udev_monitor_unref(usb_struct->monitor);
+  udev_unref(usb_struct->udev);
 
   //---------------------------
 }
