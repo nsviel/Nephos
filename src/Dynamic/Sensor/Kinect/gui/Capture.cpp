@@ -1,7 +1,7 @@
 #include "Capture.h"
 
 #include <Kinect/Namespace.h>
-#include <Data/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace k4n::gui{
@@ -10,12 +10,8 @@ namespace k4n::gui{
 Capture::Capture(k4n::Node* node_k4n){
   //---------------------------
 
-  dat::Node* node_data = node_k4n->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
-
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_structure();
-  this->dat_set = node_element->get_dat_set();
 
   this->item_width = 100;
 
@@ -24,87 +20,23 @@ Capture::Capture(k4n::Node* node_k4n){
 Capture::~Capture(){}
 
 //Main function
-void Capture::show_parameter(std::shared_ptr<dat::base::Set> set){
-  if(!set) return;
+void Capture::show_parameter(k4n::capture::Sensor& sensor){
   //---------------------------
 
-//  this->show_list_device(set);
-  this->show_transformation_mode(set);
-  this->configuration_depth(set);
-  this->configuration_color(set);
-  this->configuration_color_control(set);
-  this->configuration_synchro(set);
-  this->configuration_button(set);
+  this->show_transformation_mode();
+  this->configuration_depth();
+  this->configuration_color();
+  this->configuration_color_control();
+  this->configuration_fps();
+  this->configuration_synchro();
+  this->configuration_button();
 
   //---------------------------
   ImGui::Separator();
 }
 
 //Subfunction
-void Capture::show_list_device(std::shared_ptr<dat::base::Set> set){
-  //---------------------------
-
-  ImGuiTableFlags flags;
-  flags |= ImGuiTableFlags_Borders;
-  flags |= ImGuiTableFlags_RowBg;
-  ImGui::BeginTable("database_view", 4, flags);
-
-  if(set->list_entity.size() == 0){
-    ImGui::TableNextRow();
-    ImGui::TableNextColumn();
-    ImGui::TableNextColumn();
-    ImGui::Text("(No devices)");
-  }
-  else{
-    ImGui::TableSetupColumn("");
-    ImGui::TableSetupColumn("ID");
-    ImGui::TableSetupColumn("Serial number", ImGuiTableColumnFlags_WidthStretch);
-    ImGui::TableSetupColumn("", ImGuiTableColumnFlags_WidthFixed | ImGuiTableColumnFlags_NoResize, 20);
-    ImGui::TableHeadersRow();
-    for(auto& entity : set->list_entity){
-      if(auto sensor = std::dynamic_pointer_cast<k4n::base::Sensor>(entity)){
-        ImGui::PushID(sensor->info.serial_number.c_str());
-
-        //Sensor type
-        ImGui::TableNextRow(); ImGui::TableNextColumn();
-        ImGui::Text("Azur Kinect");
-
-        //Sensor ID
-        ImGui::TableNextColumn();
-        ImGui::Text("%d", sensor->device.index);
-
-        //Sensor serial number
-        ImGui::TableNextColumn();
-        ImGui::Text("%s", sensor->info.serial_number.c_str());
-
-        //Sensor capture or not
-        ImGui::TableNextColumn();
-        if(sensor->is_thread_running()){
-          ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(133, 100, 100, 255));
-          ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(180, 100, 100, 255));
-          if(ImGui::SmallButton("X##399")){
-            sensor->stop();
-          }
-          ImGui::PopStyleColor(2);
-        }else{
-          ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(100, 133, 100, 255));
-          ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(100, 180, 100, 255));
-          if(ImGui::SmallButton(ICON_FA_PLAY "##399")){
-            sensor->start();
-          }
-          ImGui::PopStyleColor(2);
-        }
-
-        ImGui::PopID();
-      }
-    }
-  }
-
-  ImGui::EndTable();
-
-  //---------------------------
-}
-void Capture::show_transformation_mode(std::shared_ptr<dat::base::Set> set){
+void Capture::show_transformation_mode(){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
@@ -116,7 +48,7 @@ void Capture::show_transformation_mode(std::shared_ptr<dat::base::Set> set){
   //---------------------------
   ImGui::Separator();
 }
-void Capture::show_firmware_info(std::shared_ptr<k4n::base::Sensor> sensor){
+void Capture::show_firmware_info(k4n::capture::Sensor& sensor){
   //---------------------------
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Device Firmware Version Info");
@@ -150,7 +82,7 @@ void Capture::show_firmware_info(std::shared_ptr<k4n::base::Sensor> sensor){
   //---------------------------
   ImGui::Separator();
 }
-void Capture::configuration_depth(std::shared_ptr<dat::base::Set> set){
+void Capture::configuration_depth(){
   //---------------------------
 
   if(ImGui::TreeNode("Depth configuration")){
@@ -181,14 +113,12 @@ void Capture::configuration_depth(std::shared_ptr<dat::base::Set> set){
     }
     ImGui::SetItemTooltip("[1024 x 1024] resolution");
 
-    this->configuration_fps(set);
-
     ImGui::TreePop();
   }
 
   //---------------------------
 }
-void Capture::configuration_color(std::shared_ptr<dat::base::Set> set){
+void Capture::configuration_color(){
   //---------------------------
 
   if(ImGui::TreeNode("Color configuration")){
@@ -267,7 +197,7 @@ void Capture::configuration_color(std::shared_ptr<dat::base::Set> set){
 
   //---------------------------
 }
-void Capture::configuration_color_control(std::shared_ptr<dat::base::Set> set){
+void Capture::configuration_color_control(){
   //---------------------------
 
   if(ImGui::TreeNode("Color control")){
@@ -375,7 +305,7 @@ void Capture::configuration_color_control(std::shared_ptr<dat::base::Set> set){
 
   //---------------------------
 }
-void Capture::configuration_fps(std::shared_ptr<dat::base::Set> set){
+void Capture::configuration_fps(){
   int framerate = k4n_struct->fps.mode;
   //---------------------------
 
@@ -398,7 +328,7 @@ void Capture::configuration_fps(std::shared_ptr<dat::base::Set> set){
 
   //---------------------------
 }
-void Capture::configuration_synchro(std::shared_ptr<dat::base::Set> set){
+void Capture::configuration_synchro(){
   //---------------------------
 
   //Internal sync
@@ -418,13 +348,13 @@ void Capture::configuration_synchro(std::shared_ptr<dat::base::Set> set){
 
   //---------------------------
 }
-void Capture::configuration_button(std::shared_ptr<dat::base::Set> set){
+void Capture::configuration_button(){
   //---------------------------
 
   //Refresh / reset buttons
   if(ImGui::Button("Restart")){
     k4n_config->manage_configuration();
-    set->reset();
+    //set->reset();
   }
   ImGui::SameLine();
   if(ImGui::Button("Reset to default##RGB")){

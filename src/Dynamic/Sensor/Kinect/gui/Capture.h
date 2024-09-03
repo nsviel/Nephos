@@ -2,13 +2,10 @@
 
 #include <memory>
 
-namespace gui{class Node;}
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
-namespace k4n::base{class Sensor;}
+namespace k4n::capture{class Sensor;}
 namespace k4n::capture{class Configuration;}
-namespace dat::elm{class Set;}
-namespace dat::base{class Set;}
 
 
 namespace k4n::gui{
@@ -21,23 +18,21 @@ public:
   ~Capture();
 
   //Main function
-  void show_parameter(std::shared_ptr<dat::base::Set> set);
+  void show_parameter(k4n::capture::Sensor& sensor);
 
   //Subfunction
-  void show_list_device(std::shared_ptr<dat::base::Set> set);
-  void show_transformation_mode(std::shared_ptr<dat::base::Set> set);
-  void show_firmware_info(std::shared_ptr<k4n::base::Sensor> sensor);
-  void configuration_depth(std::shared_ptr<dat::base::Set> set);
-  void configuration_color(std::shared_ptr<dat::base::Set> set);
-  void configuration_color_control(std::shared_ptr<dat::base::Set> set);
-  void configuration_fps(std::shared_ptr<dat::base::Set> set);
-  void configuration_synchro(std::shared_ptr<dat::base::Set> set);
-  void configuration_button(std::shared_ptr<dat::base::Set> set);
+  void show_transformation_mode();
+  void show_firmware_info(k4n::capture::Sensor& sensor);
+  void configuration_depth();
+  void configuration_color();
+  void configuration_color_control();
+  void configuration_fps();
+  void configuration_synchro();
+  void configuration_button();
 
 private:
   k4n::Structure* k4n_struct;
   k4n::capture::Configuration* k4n_config;
-  dat::elm::Set* dat_set;
 
   int item_width;
 };

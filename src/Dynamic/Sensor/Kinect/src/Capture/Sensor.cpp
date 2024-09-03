@@ -93,7 +93,7 @@ void Sensor::manage_capture(){
 void Sensor::manage_gui(){
   //---------------------------
 
-  gui_capture->show_parameter(set_parent.lock());
+  gui_capture->show_parameter(*this);
 
   //---------------------------
 }
