@@ -1,13 +1,10 @@
-set(LIBRARY_NAME CORE_SYSTEM)
+set(LIBRARY_NAME SYSTEM_USB)
 
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Thread)
-add_subdirectory(USB)
-
 file(GLOB_RECURSE ALL_SOURCES
-  Node.cpp
+  *.cpp
 )
 
 #-----------------
@@ -18,13 +15,8 @@ add_library(${LIBRARY_NAME} STATIC ${ALL_SOURCES})
 #-----------------
 # Dependencies
 #-----------------
-find_package(HDF5 REQUIRED)
-
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
-
-  SYSTEM_THREAD
-  SYSTEM_USB
 )
 
 target_include_directories(${LIBRARY_NAME} PUBLIC
