@@ -19,9 +19,7 @@ std::vector<std::string> Field::get_field_names(utl::base::Data& data){
   std::vector<std::string> vec_name;
   //---------------------------
 
-  std::vector<std::string> vec_field;
-  for(int i=0; i<data.vec_field.size(); i++){
-    utl::base::Field& field = data.vec_field[i];
+  for(const auto& field : data.vec_field){
     vec_name.push_back(field.name);
   }
 
@@ -29,69 +27,49 @@ std::vector<std::string> Field::get_field_names(utl::base::Data& data){
   return vec_name;
 
 }
-std::vector<float>& Field::get_field_data(utl::base::Data& data, std::string name){
+std::unique_ptr<std::vector<float>> Field::get_field_data(utl::base::Data& data, const std::string& name){
   //---------------------------
 
-  utl::base::Field* field = get_field(data, name);
+  auto field = get_field(data, name);
 
   // Check if field is nullptr
-  if(!field){
-    static std::vector<float> empty_vector;
-    return empty_vector;
-  }
+  if(!field) return std::make_unique<std::vector<float>>();
 
   //---------------------------
-  return field->data;
+  return std::make_unique<std::vector<float>>(field->data);
 }
-utl::base::Field* Field::get_field(utl::base::Data& data, std::string name){
-  if(name == "") return nullptr;
-  //---------------------------
-
-  //Check if field is already present
-  for(int i=0; i<data.vec_field.size(); i++){
-    utl::base::Field& field = data.vec_field[i];
-    if(field.name == name) return &field;
-  }
-
-  //---------------------------
-  return nullptr;
-}
-glm::vec2 Field::get_field_range(utl::base::Data& data, std::string name){
+glm::vec2 Field::get_field_range(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   //Get data
-  utl::base::Field* field = get_field(data, name);
-  if(!field) return glm::vec2(0, 0);
-  std::vector<float>& vec_data = field->data;
-  if(vec_data.size() == 0) return glm::vec2(0, 0);
+  auto field = get_field(data, name);
+  if (!field || field->data.empty()) {
+    return glm::vec2(0, 0);
+  }
 
   //Get range
   float min = *std::min_element(vec_data.begin(), vec_data.end());
   float max = *std::max_element(vec_data.begin(), vec_data.end());
-  glm::vec2 range = glm::vec2(min, max);
 
   //---------------------------
-  return range;
+  return glm::vec2(min, max);
 }
-void Field::set_field_data(utl::base::Data& data, std::string name, std::vector<float>& vec){
+void Field::set_field_data(utl::base::Data& data, const std::string& name, std::vector<float>& vec){
   if(vec.size() == 0) return;
   //---------------------------
 
   this->create_field(data, name);
-  utl::base::Field* field = get_field(data, name);
-  if(!field) return;
-
-  field->data = vec;
+  auto field = get_field(data, name);
+  if(field) field->data = vec;
 
   //---------------------------
 }
-void Field::create_field(utl::base::Data& data, std::string name){
+void Field::create_field(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   //Check if field is already present
-  for(int i=0; i<data.vec_field.size(); i++){
-    utl::base::Field& field = data.vec_field[i];
-    if(field.name == name) return;
+  if (std::any_of(data.vec_field.begin(), data.vec_field.end(), [&](const auto& field) { return field.name == name; })) {
+    return;
   }
 
   //Create it
@@ -100,6 +78,19 @@ void Field::create_field(utl::base::Data& data, std::string name){
   data.vec_field.push_back(field);
 
   //---------------------------
+}
+
+//Subfunction
+std::shared_ptr<utl::base::Field> Field::get_field(utl::base::Data& data, const std::string& name){say(name);
+  //---------------------------
+
+  auto it = std::find_if(data.vec_field.begin(), data.vec_field.end(), [&](const auto& field) { return field.name == name; });
+  if (it != data.vec_field.end()) {
+    return std::make_shared<utl::base::Field>(*it);
+  }
+
+  //---------------------------
+  return nullptr;
 }
 
 }

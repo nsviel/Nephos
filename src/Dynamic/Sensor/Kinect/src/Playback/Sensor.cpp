@@ -101,12 +101,12 @@ void Sensor::manage_query(float value){
   }
 
   //Apply query
-  if(state.pause){
-    state.pause = false;
+  if(state.pause || state.query){
+    this->pause(false);
     auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
     device.playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    std::this_thread::sleep_for(std::chrono::milliseconds(10));
-    state.pause = true;
+    std::this_thread::sleep_for(std::chrono::milliseconds(30));
+    this->pause(true);
   }else{
     auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
     device.playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);

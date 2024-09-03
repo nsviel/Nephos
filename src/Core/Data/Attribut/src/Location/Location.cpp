@@ -146,10 +146,14 @@ void Location::compute_height(dat::base::Entity& entity){
   utl::base::Pose& pose = entity.pose;
   //---------------------------
 
+  //Retrieve field
+  std::unique_ptr<std::vector<float>> vec_h_ptr = atr_field->get_field_data(data, "H");
+  if (!vec_h_ptr || !vec_h_ptr->empty()) return;
+  std::vector<float>& vec_h = *vec_h_ptr;
+
+  //Set length
   std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<float>& vec_h = atr_field->get_field_data(data, "H");
-  if(vec_h.size() != 0) return;
-  vec_h = std::vector<float>(xyz.size());
+  vec_h = std::make_unique<std::vector<float>>(data.xyz.size());
 
   #pragma omp parallel for
   for(int i=0; i<xyz.size(); i++){
@@ -164,9 +168,13 @@ void Location::compute_range(dat::base::Entity& entity){
   utl::base::Data& data = entity.data;
   //---------------------------
 
+  //Retrieve field
+  std::unique_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
+  if (!vec_R_ptr || !vec_R_ptr->empty()) return;
+  std::vector<float>& vec_R = *vec_R_ptr;
+
+  //Set length
   std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
-  if(vec_R.size() != 0) return;
   vec_R.resize(xyz.size(), 0.0f);
 
   #pragma omp parallel for
@@ -181,8 +189,12 @@ void Location::compute_incidence_angle(dat::base::Entity& entity){
   utl::base::Data& data = entity.data;
   //---------------------------
 
-  std::vector<float>& It = atr_field->get_field_data(data, "It");
-  std::vector<float>& R = atr_field->get_field_data(data, "R");
+  std::unique_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
+  std::unique_ptr<std::vector<float>> vec_It_ptr = atr_field->get_field_data(data, "It");
+  if (!vec_R_ptr || !vec_It_ptr) return;
+
+  std::vector<float>& It = *vec_It_ptr;
+  std::vector<float>& R = *vec_R_ptr;
   std::vector<glm::vec3>& xyz = data.xyz;
   std::vector<glm::vec3>& Nxyz = data.Nxyz;
 

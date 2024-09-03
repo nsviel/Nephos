@@ -106,8 +106,11 @@ void Data::extraction_transfer(k4n::base::Sensor& sensor){
 
   std::unique_lock<std::mutex> lock(data.mutex);
 
+  std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
+  if (!vec_I_ptr) return;
+
+  std::vector<float>& vec_I = *vec_I_ptr;
   std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
-  std::vector<float>& vec_I = atr_field->get_field_data(data, "I");
 
   //Data
   data.xyz = buffer.xyz;

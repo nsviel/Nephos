@@ -25,7 +25,8 @@ struct Sensor : public dat::base::Object, public dat::sensor::Thread{
   void restart(){this->stop(); this->start();}
   void clean(){this->stop_thread();}
 
-  virtual void query(float value){}
+  virtual void manage_query(float value){}
+  virtual void manage_gui(){}
 
   dat::sensor::Info info;
   dat::sensor::Timestamp timestamp;

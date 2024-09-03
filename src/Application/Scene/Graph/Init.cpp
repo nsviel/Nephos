@@ -52,12 +52,12 @@ void Init::load_entity(){
 
   utl::base::Path mire("/home/aether/Desktop/Mire.mkv");
 
-  utl::base::Path ply("/home/aether/Desktop/Point_cloud/ply/half_sphere.ply");
+  utl::base::Path ply("/home/aether/Desktop/Point_cloud/ply/hippo2.ply");
   utl::base::Path cath("/home/aether/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply");
   utl::base::Path pts("/home/aether/Desktop/Point_cloud/pts/cloud.pts");
 
   //Create playback list
-  io_struct->with_clearing = false;
+  //io_struct->with_clearing = false;
   io_importer->load_object(versaille_0, versaille_0_t);
   //io_importer->load_object(versaille_2, versaille_2_t);
   //io_importer->load_object(cerfav);
@@ -67,6 +67,8 @@ void Init::load_entity(){
   //io_importer->load_object(mire);
   //io_importer->load_object(cath);
   //io_importer->load_object(dragon);
+
+  //io_importer->load_object(ply);
 
   /*
   io_importer->load_object(dragon);

@@ -22,6 +22,7 @@ public:
 public:
   //Main function
   void slider_query(float value);
+  void slider_hold(float value);
   void button_play();
   void button_pause();
   void button_stop();

@@ -47,9 +47,13 @@ void Correction::make_correction(std::shared_ptr<dat::base::Sensor> sensor, std:
   //---------------------------
 
   utl::base::Data& data = sensor->data;
+
+  std::unique_ptr<std::vector<float>> vec_I_cor_ptr = atr_field->get_field_data(data, "I_cor");
+  if (!vec_I_cor_ptr) return;
+
+  std::vector<float>& vec_Icor = *vec_I_cor_ptr;
   std::vector<float>& vec_R = atr_field->get_field_data(data, "R");
   std::vector<float>& vec_It = atr_field->get_field_data(data, "It");
-  std::vector<float>& vec_Icor = atr_field->get_field_data(data, "I_cor");
   std::vector<float> Is_cor = std::vector<float>(data.xyz.size(), 0.0f);
 
   #pragma omp parallel for

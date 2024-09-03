@@ -32,10 +32,9 @@ void State::loop(){
   this->manage_update(*set);
 
   //Check for loop end
-  if(!ply_struct->state.query && ply_struct->timestamp.current >= ply_struct->timestamp.end){
+  if(ply_struct->timestamp.current >= ply_struct->timestamp.end){
     this->manage_restart(*set);
   }
-  ply_struct->state.query = false;
 
   //---------------------------
 }
@@ -76,9 +75,10 @@ void State::manage_state(dat::base::Set& set){
   for(auto& entity : set.list_entity){
     auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
     if(sensor){
-      sensor->profiler.pause = ply_struct->state.pause;
-      sensor->state.pause = ply_struct->state.pause;
-      sensor->pause(ply_struct->state.pause);
+      bool pause = ply_struct->state.pause || ply_struct->state.query;
+      sensor->profiler.pause = pause;
+      sensor->state.pause = pause;
+      sensor->pause(pause);
     }
   }
 
@@ -133,7 +133,7 @@ void State::manage_restart(dat::base::Set& set){
   for(auto& entity : set.list_entity){
     auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
     if(sensor){
-      sensor->query(ply_struct->timestamp.begin);
+      sensor->manage_query(ply_struct->timestamp.begin);
     }
   }
 
@@ -151,7 +151,7 @@ void State::manage_reset(dat::base::Set& set){
   for(auto& entity : set.list_entity){
     auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
     if(sensor){
-      sensor->query(ply_struct->timestamp.begin);
+      sensor->manage_query(ply_struct->timestamp.begin);
     }
   }
 
@@ -165,11 +165,18 @@ void State::manage_reset(dat::base::Set& set){
 void State::manage_query(dat::base::Set& set, float value){
   //---------------------------
 
+  //Check value validity
+  if(value >= ply_struct->timestamp.end){
+    return;
+  }else if(value < ply_struct->timestamp.begin){
+    return;
+  }
+
   //Entity
   for(auto& entity : set.list_entity){
     auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
     if(sensor){
-      sensor->query(value);
+      sensor->manage_query(value);
     }
   }
 

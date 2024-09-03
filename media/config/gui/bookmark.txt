@@ -6,5 +6,6 @@
 /home/aether/Desktop/Point_cloud/obj/backpack.obj
 /home/aether/Desktop/Nephos/media/point_cloud/bunny.ply
 /home/aether/Desktop/cerfav_8.mkv
+/home/aether/Desktop/Point_cloud/ply/hippo2.ply
 /home/aether/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply
 /home/aether/Desktop/versaille_0.mkv

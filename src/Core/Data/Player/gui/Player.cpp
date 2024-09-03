@@ -46,12 +46,16 @@ void Player::design_player(dat::base::Set& set){
 void Player::player_slider(){
   //---------------------------
 
+  //Timestamp slider
   float width = ImGui::GetContentRegionAvail().x;
   ImGui::SetNextItemWidth(width);
   float current = ply_struct->timestamp.current;
   if(ImGui::SliderFloat("##player_slider", &current, ply_struct->timestamp.begin, ply_struct->timestamp.end, "%.2f s", ImGuiSliderFlags_NoInput)){
     ply_button->slider_query(current);
   }
+
+  //Check if held
+  ply_button->slider_hold(ImGui::IsItemActive());
 
   //---------------------------
 }
