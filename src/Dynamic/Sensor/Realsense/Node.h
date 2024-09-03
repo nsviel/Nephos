@@ -3,7 +3,6 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace dyn::sen{class Node;}
-namespace prf{class Node;}
 namespace dat{class Node;}
 namespace core{class Node;}
 namespace io{class Node;}
@@ -27,7 +26,6 @@ public:
   void loop();
 
   inline core::Node* get_node_core(){return node_core;}
-  inline prf::Node* get_node_profiler(){return node_profiler;}
   inline dat::Node* get_node_data(){return node_data;}
 
   inline rlx::Structure* get_rlx_struct(){return rlx_struct;}
@@ -35,7 +33,6 @@ public:
 private:
   io::Node* node_io;
   core::Node* node_core;
-  prf::Node* node_profiler;
   dat::Node* node_data;
 
   rlx::Structure* rlx_struct;

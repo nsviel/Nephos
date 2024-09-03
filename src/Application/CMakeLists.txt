@@ -4,6 +4,7 @@ set(LIBRARY_NAME MAIN_APPLICATION)
 # Source files
 #-----------------
 add_subdirectory(GUI)
+add_subdirectory(Profiler)
 add_subdirectory(Scene)
 
 file(GLOB_RECURSE ALL_SOURCES
@@ -24,6 +25,7 @@ target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_DYNAMIC
 
   APPLICATION_GUI
+  APPLICATION_PROFILER
   APPLICATION_SCENE
 )
 

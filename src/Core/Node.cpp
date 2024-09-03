@@ -18,14 +18,11 @@ Node::Node(app::Node* node_app){
   this->thread_pool = new thr::task::Pool(50);
 
   this->node_vulkan = node_app->get_node_vulkan();
+  this->node_profiler = node_app->get_node_profiler();
   this->node_system = new sys::Node(this);
   this->node_data = new dat::Node(this);
   this->node_engine = new eng::Node(this);
   this->node_io = new io::Node(this);
-
-  //Tasker CPU
-  prf::Node* node_profiler = node_system->get_node_profiler();
-  this->tasker = node_profiler->get_tasker_cpu();
 
   //---------------------------
 }
@@ -56,8 +53,6 @@ void Node::gui(){
   node_data->gui();
   node_io->gui();
   node_engine->gui();
-
-  //Problem here
   node_system->gui();
 
   //---------------------------

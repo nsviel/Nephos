@@ -3,7 +3,6 @@
 #include <Radiometry/Namespace.h>
 #include <Radiometry/Correction/Namespace.h>
 #include <Core/Namespace.h>
-#include <System/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -14,11 +13,10 @@ Node::Node(rad::Node* node_radio){
   //---------------------------
 
   core::Node* node_core = node_radio->get_node_core();
-  sys::Node* node_system = node_core->get_node_system();
 
   this->node_core = node_core;
   this->node_data = node_core->get_node_data();
-  this->node_profiler = node_system->get_node_profiler();
+  this->node_profiler = node_core->get_node_profiler();
 
   this->rad_struct = new rad::cor::Structure();
   this->rad_process = new rad::cor::Process(this);

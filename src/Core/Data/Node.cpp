@@ -16,7 +16,7 @@ Node::Node(core::Node* node_core){
 
   //Dependancy
   this->node_vulkan = node_core->get_node_vulkan();
-  this->node_system = node_core->get_node_system();
+  this->node_profiler = node_core->get_node_profiler();
 
   //Child
   this->node_element = new dat::elm::Node(this);

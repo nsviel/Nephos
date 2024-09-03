@@ -5,7 +5,6 @@
 namespace core{class Node;}
 namespace vk{class Node;}
 
-namespace prf{class Node;}
 
 
 namespace sys{
@@ -25,12 +24,12 @@ public:
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
-  inline prf::Node* get_node_profiler(){return node_profiler;}
+
 
 private:
   vk::Node* node_vulkan;
-  
-  prf::Node* node_profiler;
+
+
 };
 
 }

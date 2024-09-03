@@ -3,7 +3,6 @@ set(LIBRARY_NAME CORE_SYSTEM)
 #-----------------
 # Source files
 #-----------------
-add_subdirectory(Profiler)
 add_subdirectory(Thread)
 
 file(GLOB_RECURSE ALL_SOURCES
@@ -23,7 +22,6 @@ find_package(HDF5 REQUIRED)
 target_link_libraries(${LIBRARY_NAME} PUBLIC
   MAIN_UTILITY
 
-  SYSTEM_PROFILER
   SYSTEM_THREAD
 )
 

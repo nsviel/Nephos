@@ -18,13 +18,14 @@ Node::Node(){
 
   this->root = this;
   this->node_vulkan = new vk::Node(&running);
+  this->node_profiler = new prf::Node(this);
   this->node_core = new core::Node(this);
   this->node_module = new mod::Node(this);
   this->node_dynamic = new dyn::Node(this);
 
   this->node_scene = new sce::Node(this);
   this->node_gui = new gui::Node(this);
-  this->tasker = node_core->get_tasker_cpu();
+  this->tasker = node_profiler->get_tasker_cpu();
 
   //---------------------------
 }
@@ -46,6 +47,7 @@ void Node::init(){
   //---------------------------
 
   node_vulkan->init();
+  node_profiler->init();
   node_core->init();
   node_dynamic->init();
   node_module->init();
@@ -58,9 +60,8 @@ void Node::loop(){
   //---------------------------
 
   while(running){
-    tasker->task_begin("gui");
     node_gui->loop();
-    tasker->task_end("gui");
+    node_profiler->loop();
 
     tasker->task_begin("core");
     node_core->loop();
@@ -70,8 +71,13 @@ void Node::loop(){
     node_vulkan->loop();
     tasker->task_end("vulkan");
 
+    tasker->task_begin("dynamic");
     node_dynamic->loop();
+    tasker->task_end("dynamic");
+
+    tasker->task_begin("module");
     node_module->loop();
+    tasker->task_end("module");
   }
 
   //---------------------------
@@ -79,9 +85,13 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
+  tasker->task_begin("gui");
   node_core->gui();
   node_module->gui();
   node_dynamic->gui();
+  tasker->task_end("gui");
+
+  node_profiler->gui();
 
   //---------------------------
 }

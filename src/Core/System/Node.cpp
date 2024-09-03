@@ -2,6 +2,7 @@
 
 #include <Core/Namespace.h>
 #include <System/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace sys{
@@ -14,7 +15,7 @@ Node::Node(core::Node* node_core){
   this->node_vulkan = node_core->get_node_vulkan();
 
   //Child
-  this->node_profiler = new prf::Node(this);
+
 
   //---------------------------
 }
@@ -24,21 +25,17 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_profiler->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
 
-  node_profiler->loop();
 
   //---------------------------
 }
 void Node::gui(){
   //---------------------------
-
-  node_profiler->gui();
 
   //---------------------------
 }

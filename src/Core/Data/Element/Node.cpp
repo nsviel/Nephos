@@ -11,11 +11,9 @@ namespace dat::elm{
 Node::Node(dat::Node* node_data){
   //---------------------------
 
-  sys::Node* node_system = node_data->get_node_system();
-
   //Dependancy
   this->node_vulkan = node_data->get_node_vulkan();
-  this->node_profiler = node_system->get_node_profiler();
+  this->node_profiler = node_data->get_node_profiler();
 
   //Child
   this->dat_struct = new dat::elm::Structure();
