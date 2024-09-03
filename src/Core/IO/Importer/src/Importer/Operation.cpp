@@ -67,23 +67,16 @@ void Operation::ope_clean(){
 
   //---------------------------
 }
-void Operation::ope_color(std::shared_ptr<dat::base::Object> object){say("----");
+void Operation::ope_color(std::shared_ptr<dat::base::Object> object){
   if(!object) return;
   //---------------------------
-sayHello();
+
   utl::base::Data& data = object->data;
   std::unique_lock<std::mutex> lock(data.mutex);
-sayHello();
+
   //Bouger oute cette merde dans colorization dat attribut
   std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if (!vec_I_ptr) return;
 
-  std::vector<float>& vec_I = *vec_I_ptr;
-  say(data.rgba.size());
-  say(data.xyz.size());
-  say(data.rgb.size());
-  say(vec_I.size());
-sayHello();
   //If color
   if(data.xyz.size() == 0) return;
   if(data.rgba.size() != 0) return;
@@ -96,11 +89,11 @@ sayHello();
     }
   }
   //Else if intensity
-  else if(vec_I.size() != 0){
+  else if(!vec_I_ptr && !vec_I_ptr->empty()){
     data.rgba.resize(data.xyz.size(), glm::vec4(0, 0, 0, 0));
 
-    for(int i=0; i<vec_I.size(); i++){
-      float& Is = vec_I[i];
+    for(int i=0; i<vec_I_ptr->size(); i++){
+      float& Is = (*vec_I_ptr)[i];
       data.rgba[i] = glm::vec4(Is, Is, Is, 1);
     }
   }

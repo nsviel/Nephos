@@ -81,7 +81,7 @@ void Field::create_field(utl::base::Data& data, const std::string& name){
 }
 
 //Subfunction
-std::shared_ptr<utl::base::Field> Field::get_field(utl::base::Data& data, const std::string& name){say(name);
+std::shared_ptr<utl::base::Field> Field::get_field(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   auto it = std::find_if(data.vec_field.begin(), data.vec_field.end(), [&](const auto& field) { return field.name == name; });

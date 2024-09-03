@@ -68,7 +68,7 @@ void Submission::make_submission(std::vector<VkSubmitInfo>& vec_info){
 }
 void Submission::post_submission(std::vector<vk::structure::Command_buffer*> vec_command){
   //---------------------------
-  //say("-----");
+
   //Reset command buffer
   for(int i=0; i<vec_command.size(); i++){
     vk::structure::Command_buffer* command_buffer = vec_command[i];

@@ -111,7 +111,7 @@ void Selection::item_operation(){
 
   //Run all file loading
   for(int i=0; i<vec_path.size(); i++){
-    std::string& path_str = vec_path[i];say(path_str);
+    std::string& path_str = vec_path[i];
     utl::base::Path path(path_str);
     nav_struct->fct_item_operation(path);
   }

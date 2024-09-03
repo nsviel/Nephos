@@ -82,17 +82,14 @@ void Exporter::build_structure(io::exp::Configuration& config, utl::base::Data& 
 
   //Intensity
   std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if (!vec_I_ptr) return;
-
-  std::vector<float>& vec_I = *vec_I_ptr;
-  if(vec_I.size() != 0){
+  if (vec_I_ptr && !vec_I_ptr->empty()){
     config.vec_property.push_back(io::exp::I);
     config.nb_property++;
   }
 
   //Timestamp
-  std::vector<float>& vec_ts = atr_field->get_field_data(data, "ts");
-  if(vec_ts.size() != 0){
+  std::unique_ptr<std::vector<float>> vec_ts_ptr = atr_field->get_field_data(data, "ts");
+  if (vec_ts_ptr && !vec_ts_ptr->empty()){
     config.vec_property.push_back(io::exp::TS);
     config.nb_property++;
   }
@@ -149,14 +146,15 @@ void Exporter::write_data_binary(io::exp::Configuration& config, std::ofstream& 
   //---------------------------
 
   std::unique_ptr<std::vector<float>> vec_I_ptr = atr_field->get_field_data(data, "I");
-  if (!vec_I_ptr) return;
+  std::unique_ptr<std::vector<float>> vec_ts_ptr = atr_field->get_field_data(data, "ts");
+  if (!vec_I_ptr || !vec_ts_ptr) return;
 
   std::vector<float>& vec_I = *vec_I_ptr;
+  std::vector<float>& vec_ts = *vec_ts_ptr;
   std::vector<glm::vec3>& xyz = data.xyz;
   std::vector<glm::vec3>& rgb = data.rgb;
   std::vector<glm::vec4>& rgba = data.rgba;
   std::vector<glm::vec3>& Nxyz = data.Nxyz;
-  std::vector<float>& vec_ts = atr_field->get_field_data(data, "ts");
   int precision = 6;
 
   //Prepare data writing by blocks

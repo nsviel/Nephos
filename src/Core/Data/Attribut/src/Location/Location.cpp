@@ -153,7 +153,7 @@ void Location::compute_height(dat::base::Entity& entity){
 
   //Set length
   std::vector<glm::vec3>& xyz = data.xyz;
-  vec_h = std::make_unique<std::vector<float>>(data.xyz.size());
+  vec_h = std::vector<float>(data.xyz.size());
 
   #pragma omp parallel for
   for(int i=0; i<xyz.size(); i++){
