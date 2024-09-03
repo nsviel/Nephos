@@ -118,7 +118,7 @@ void Configuration::make_sensor_color_configuration(k4n::capture::Sensor& sensor
 
   sensor.color.config = k4n_struct->config.color;
   sensor.depth.config = k4n_struct->config.depth;
-  sensor.ir.config = k4n_struct->config.ir;
+  sensor.infra.config = k4n_struct->config.ir;
 
   //---------------------------
 }

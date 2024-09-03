@@ -41,30 +41,30 @@ void Infrared::retrieve_data(k4n::base::Sensor& sensor){
   if(!ir.is_valid()) return;
 
   //Data
-  sensor.ir.data.name = "ir";
-  sensor.ir.data.k4a_image = ir;
-  sensor.ir.data.width = ir.get_width_pixels();
-  sensor.ir.data.height = ir.get_height_pixels();
-  sensor.ir.data.buffer = ir.get_buffer();
-  sensor.ir.data.size = ir.get_size();
-  sensor.ir.data.format = retrieve_format(ir.get_format());
-  sensor.ir.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
-  type::uint8_to_vec_uint16(sensor.ir.data.buffer, sensor.ir.data.size, sensor.info.buffer_ir);
+  sensor.infra.data.name = "ir";
+  sensor.infra.data.k4a_image = ir;
+  sensor.infra.data.width = ir.get_width_pixels();
+  sensor.infra.data.height = ir.get_height_pixels();
+  sensor.infra.data.buffer = ir.get_buffer();
+  sensor.infra.data.size = ir.get_size();
+  sensor.infra.data.format = retrieve_format(ir.get_format());
+  sensor.infra.data.timestamp = static_cast<float>(ir.get_device_timestamp().count() / 1000000.0f);
+  type::uint8_to_vec_uint16(sensor.infra.data.buffer, sensor.infra.data.size, sensor.info.buffer_ir);
 
   //---------------------------
 }
 void Infrared::retrieve_image(k4n::base::Sensor& sensor){
-  std::shared_ptr<utl::media::Image> image = sensor.ir.image;
+  std::shared_ptr<utl::media::Image> image = sensor.infra.image;
   //---------------------------
 
   //Image
   this->convert_image_into_color(sensor);
   image->name = "Intensity";
   image->size = image->data.size();
-  image->width = sensor.ir.data.width;
-  image->height = sensor.ir.data.height;
+  image->width = sensor.infra.data.width;
+  image->height = sensor.infra.data.height;
   image->format = "R8G8B8A8_SRGB";
-  image->timestamp = sensor.ir.data.timestamp;
+  image->timestamp = sensor.infra.data.timestamp;
   dat_image->add_image(sensor, image);
 
   //---------------------------
@@ -98,14 +98,14 @@ std::string Infrared::retrieve_format(k4a_image_format_t color_format){
   return format;
 }
 void Infrared::convert_image_into_color(k4n::base::Sensor& sensor){
-  uint8_t* buffer = sensor.ir.data.buffer;
-  uint16_t level_min = sensor.ir.config.level_min;
-  uint16_t level_max = sensor.ir.config.level_max;
+  uint8_t* buffer = sensor.infra.data.buffer;
+  uint16_t level_min = sensor.infra.config.level_min;
+  uint16_t level_max = sensor.infra.config.level_max;
   //---------------------------
 
-  std::vector<uint8_t> output = std::vector<uint8_t>(sensor.ir.data.size * 4, 0);
+  std::vector<uint8_t> output = std::vector<uint8_t>(sensor.infra.data.size * 4, 0);
 
-  for(int i=0, j=0; i<sensor.ir.data.size; i+=2, j+=4){
+  for(int i=0, j=0; i<sensor.infra.data.size; i+=2, j+=4){
     // Extract the 16-bit infrared value
     float ir = static_cast<uint16_t>(buffer[i]) | (static_cast<uint16_t>(buffer[i + 1]) << 8);
 
@@ -124,7 +124,7 @@ void Infrared::convert_image_into_color(k4n::base::Sensor& sensor){
     output[j + 3] = 255;
   }
 
-  sensor.ir.image->data = output;
+  sensor.infra.image->data = output;
 
   //---------------------------
 }
@@ -132,8 +132,8 @@ void Infrared::find_ir_level(k4n::base::Sensor& sensor){
   //---------------------------
 
   if(sensor.depth.config.mode == K4A_DEPTH_MODE_PASSIVE_IR){
-    sensor.ir.config.level_min = 0;
-    sensor.ir.config.level_max = 100;
+    sensor.infra.config.level_min = 0;
+    sensor.infra.config.level_max = 100;
   }
   else{
     sensor.depth.config.range_min = 0;

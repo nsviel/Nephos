@@ -55,7 +55,7 @@ bool Data::check_condition(k4n::base::Sensor& sensor){
   //---------------------------
 
   if(!sensor.depth.data.k4a_image.is_valid()) return false;
-  if(!sensor.ir.data.k4a_image.is_valid()) return false;
+  if(!sensor.infra.data.k4a_image.is_valid()) return false;
   if(sensor.color.data.buffer == nullptr) return false;
   if(sensor.color.data.size != sensor.depth.data.size * 2) return false;
 
@@ -171,7 +171,7 @@ void Data::retrieve_color(k4n::base::Sensor& sensor, int i){
   //---------------------------
 }
 void Data::retrieve_ir(k4n::base::Sensor& sensor, int i){
-  const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor.ir.data.buffer);
+  const int16_t* buffer_ir = reinterpret_cast<int16_t*>(sensor.infra.data.buffer);
   //---------------------------
 
   //Raw values

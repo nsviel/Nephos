@@ -40,11 +40,11 @@ void Depth_to_color::find_depth_to_color(k4n::base::Sensor& sensor){
   //IR images
   k4a::image ir = k4a::image::create_from_buffer(
     K4A_IMAGE_FORMAT_CUSTOM16,
-    sensor.ir.data.width,
-    sensor.ir.data.height,
-    sensor.ir.data.width * static_cast<int>(sizeof(uint16_t)),
-    sensor.ir.data.buffer,
-    sensor.ir.data.size,
+    sensor.infra.data.width,
+    sensor.infra.data.height,
+    sensor.infra.data.width * static_cast<int>(sizeof(uint16_t)),
+    sensor.infra.data.buffer,
+    sensor.infra.data.size,
     nullptr,
     nullptr
   );
@@ -68,11 +68,11 @@ void Depth_to_color::find_depth_to_color(k4n::base::Sensor& sensor){
   sensor.depth.data.buffer = depth_transformed.get_buffer();
 
   //IR transformed
-  sensor.ir.data.k4a_image = ir_transformed;
-  sensor.ir.data.size = ir_transformed.get_size();
-  sensor.ir.data.width = ir_transformed.get_width_pixels();
-  sensor.ir.data.height = ir_transformed.get_height_pixels();
-  sensor.ir.data.buffer = ir_transformed.get_buffer();
+  sensor.infra.data.k4a_image = ir_transformed;
+  sensor.infra.data.size = ir_transformed.get_size();
+  sensor.infra.data.width = ir_transformed.get_width_pixels();
+  sensor.infra.data.height = ir_transformed.get_height_pixels();
+  sensor.infra.data.buffer = ir_transformed.get_buffer();
 
   //---------------------------
 }

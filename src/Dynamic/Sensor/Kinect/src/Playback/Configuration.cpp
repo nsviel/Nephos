@@ -50,7 +50,7 @@ void Configuration::find_configuration(k4n::playback::Sensor& sensor){
   sensor.device.playback.get_tag("K4A_COLOR_FIRMWARE_VERSION", &sensor.firmware.color);
 
   //Device
-  sensor.ir.config.enabled = configuration.ir_track_enabled;
+  sensor.infra.config.enabled = configuration.ir_track_enabled;
   sensor.imu.config.enabled = configuration.imu_track_enabled;
   sensor.device.playback.get_tag("K4A_DEVICE_SERIAL_NUMBER", &sensor.info.serial_number);
 

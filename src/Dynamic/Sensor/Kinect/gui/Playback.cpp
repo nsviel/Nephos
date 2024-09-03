@@ -157,7 +157,7 @@ void Playback::show_info_depth(k4n::playback::Sensor& sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("IR enabled"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%s", sensor.ir.config.enabled ? "Yes" : "No");
+  ImGui::TextColored(color, "%s", sensor.infra.config.enabled ? "Yes" : "No");
 
   ImGui::EndTable();
 

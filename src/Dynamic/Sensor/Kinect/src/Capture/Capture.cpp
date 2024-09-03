@@ -22,6 +22,9 @@ void Capture::init_info(k4n::capture::Sensor& sensor){
   sensor.name = "capture_" + std::to_string(sensor.device.index);
   sensor.calibration.path.insert("../media/calibration/kinect.json");
   sensor.device.capture = std::make_shared<k4a::capture>();
+  sensor.color.image = std::make_shared<utl::media::Image>();
+  sensor.depth.image = std::make_shared<utl::media::Image>();
+  sensor.infra.image = std::make_shared<utl::media::Image>();
 
   sensor.info.vec_recorder.push_back(new k4n::capture::Recorder());
   sensor.info.model = "kinect";
