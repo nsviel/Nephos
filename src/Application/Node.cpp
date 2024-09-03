@@ -60,7 +60,9 @@ void Node::loop(){
   //---------------------------
 
   while(running){
+      tasker->task_begin("gui");
     node_gui->loop();
+      tasker->task_end("gui");
     node_profiler->loop();
 
     tasker->task_begin("core");
@@ -85,11 +87,11 @@ void Node::loop(){
 void Node::gui(){
   //---------------------------
 
-  tasker->task_begin("gui");
+
   node_core->gui();
   node_module->gui();
   node_dynamic->gui();
-  tasker->task_end("gui");
+
 
   node_profiler->gui();
 
