@@ -48,8 +48,8 @@ glm::vec2 Field::get_field_range(utl::base::Data& data, const std::string& name)
   }
 
   //Get range
-  float min = *std::min_element(vec_data.begin(), vec_data.end());
-  float max = *std::max_element(vec_data.begin(), vec_data.end());
+  float min = *std::min_element(field->data.begin(), field->data.end());
+  float max = *std::max_element(field->data.begin(), field->data.end());
 
   //---------------------------
   return glm::vec2(min, max);
