@@ -33,12 +33,13 @@ void Slider::slider_query(float value){
   //---------------------------
 }
 void Slider::slider_hold(float value){
-  std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
-  if(!set) return;
   //---------------------------
 
   if(ply_struct->state.query != value){
     ply_struct->state.query = value;
+
+    std::shared_ptr<dat::base::Set> set = gph_selection->get_selected_set();
+    if(!set) return;
     ply_state->manage_state(*set);
   }
 

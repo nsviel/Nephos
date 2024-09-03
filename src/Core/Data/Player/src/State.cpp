@@ -75,7 +75,7 @@ void State::manage_state(dat::base::Set& set){
   for(auto& entity : set.list_entity){
     auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
     if(sensor){
-      bool pause = ply_struct->state.pause || ply_struct->state.query;
+      bool pause = ply_struct->state.pause;// || ply_struct->state.query;
       sensor->profiler.pause = pause;
       sensor->state.pause = pause;
       sensor->pause(pause);
