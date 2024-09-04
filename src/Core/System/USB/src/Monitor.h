@@ -1,6 +1,7 @@
 #pragma once
 
 #include <libudev.h>
+#include <string>
 
 namespace usb{class Node;}
 namespace usb{class Structure;}

@@ -22,23 +22,23 @@ void Monitor::init() {
   //---------------------------
 
   //Contexte
-  usb_struct->udev = udev_new();
-  if (!usb_struct->udev) {
+  usb_struct->udev.contexte = udev_new();
+  if (!usb_struct->udev.contexte) {
     std::cerr << "Can't create udev\n";
     return;
   }
 
   //USB listener
-  usb_struct->monitor = udev_monitor_new_from_netlink(usb_struct->udev, "udev");
+  usb_struct->udev.monitor = udev_monitor_new_from_netlink(usb_struct->udev.contexte, "udev");
 
   //Add filter
-  udev_monitor_filter_add_match_subsystem_devtype(usb_struct->monitor, "usb", "usb_device");
+  udev_monitor_filter_add_match_subsystem_devtype(usb_struct->udev.monitor, "usb", "usb_device");
 
   //Enable monitor to receive events
-  udev_monitor_enable_receiving(usb_struct->monitor);
+  udev_monitor_enable_receiving(usb_struct->udev.monitor);
 
   //Get file descriptor
-  usb_struct->fd = udev_monitor_get_fd(usb_struct->monitor);
+  usb_struct->udev.fd = udev_monitor_get_fd(usb_struct->udev.monitor);
 
 
   // Create and run the thread
@@ -54,11 +54,11 @@ void Monitor::loop() {
     //Prepare file descriptor
     fd_set fds;
     FD_ZERO(&fds);
-    FD_SET(usb_struct->fd, &fds);
+    FD_SET(usb_struct->udev.fd, &fds);
 
     // Wait for an event on the file descriptor
-    int ret = select(usb_struct->fd + 1, &fds, NULL, NULL, NULL);
-    int event = FD_ISSET(usb_struct->fd, &fds);
+    int ret = select(usb_struct->udev.fd + 1, &fds, NULL, NULL, NULL);
+    int event = FD_ISSET(usb_struct->udev.fd, &fds);
 
     //Even occur
     if (ret > 0 && event) {
@@ -71,8 +71,8 @@ void Monitor::loop() {
 void Monitor::close() {
   //---------------------------
 
-  udev_monitor_unref(usb_struct->monitor);
-  udev_unref(usb_struct->udev);
+  udev_monitor_unref(usb_struct->udev.monitor);
+  udev_unref(usb_struct->udev.contexte);
 
   //---------------------------
 }
@@ -82,13 +82,13 @@ void Monitor::manage_event() {
   //---------------------------
 
   //Event associated device
-  usb_struct->device = udev_monitor_receive_device(usb_struct->monitor);
-  if (!usb_struct->device) return;
+  usb_struct->udev.device = udev_monitor_receive_device(usb_struct->udev.monitor);
+  if (!usb_struct->udev.device) return;
 
-  std::string action = std::string(udev_device_get_action(usb_struct->device));
-  std::string serial = std::string(udev_device_get_sysattr_value(usb_struct->device, "serial"));
-  std::string vendor = std::string(udev_device_get_sysattr_value(usb_struct->device, "idVendor"));
-  std::string product = std::string(udev_device_get_sysattr_value(usb_struct->device, "idProduct"));
+  std::string action = std::string(udev_device_get_action(usb_struct->udev.device));
+  std::string serial = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "serial"));
+  std::string vendor = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idVendor"));
+  std::string product = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idProduct"));
 
   for(int i=0; i<usb_struct->vec_device.size(); i++){
     usb::structure::Device& device = usb_struct->vec_device[i];
@@ -99,7 +99,7 @@ void Monitor::manage_event() {
   }
 
   //Release device
-  udev_device_unref(usb_struct->device);
+  udev_device_unref(usb_struct->udev.device);
 
   //---------------------------
 }
