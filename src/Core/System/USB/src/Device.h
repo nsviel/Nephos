@@ -8,21 +8,16 @@ namespace usb{class Structure;}
 
 namespace usb{
 
-class Monitor
+class Device
 {
 public:
   //Constructor / Destructor
-  Monitor(usb::Node* node_usb);
-  ~Monitor();
+  Device(usb::Node* node_usb);
+  ~Device();
 
 public:
   //Main function
   void init();
-  void usb_monitor();
-  void close();
-
-  //Subfunction
-  void manage_event();
 
 private:
   usb::Structure* usb_struct;

@@ -2,6 +2,7 @@
 
 #include <USB/Namespace.h>
 #include <Utility/Namespace.h>
+#include <thread>
 
 
 namespace usb{
@@ -39,38 +40,29 @@ void Monitor::init() {
   //Get file descriptor
   usb_struct->fd = udev_monitor_get_fd(usb_struct->monitor);
 
+
+  // Create and run the thread
+  std::thread monitor_thread(&Monitor::usb_monitor, this);
+  monitor_thread.detach();
+
   //---------------------------
 }
 void Monitor::usb_monitor() {
   //---------------------------
 
   while (true) {
+    //Prepare file descriptor
     fd_set fds;
     FD_ZERO(&fds);
     FD_SET(usb_struct->fd, &fds);
 
+    // Wait for an event on the file descriptor
     int ret = select(usb_struct->fd + 1, &fds, NULL, NULL, NULL);
-    if (ret > 0 && FD_ISSET(usb_struct->fd, &fds)) {
-      struct udev_device* dev = udev_monitor_receive_device(usb_struct->monitor);
-      if (dev) {
-        const char* action = udev_device_get_action(dev);
-        const char* vendor = udev_device_get_sysattr_value(dev, "idVendor");
-        const char* product = udev_device_get_sysattr_value(dev, "idProduct");
+    int event = FD_ISSET(usb_struct->fd, &fds);
 
-        if (vendor && product) {
-          std::string vendor_id = vendor;
-          std::string product_id = product;
-
-          // Replace with your Kinect's vendor ID and product ID
-          if (vendor_id == "045E" && product_id == "02AE") {
-            if (std::string(action) == "remove") {
-              std::cout << "Kinect device unplugged.\n";
-              // Reset Kinect logic here
-            }
-          }
-        }
-        udev_device_unref(dev);
-      }
+    //Even occur
+    if (ret > 0 && event) {
+      this->manage_event();
     }
   }
 
@@ -81,6 +73,69 @@ void Monitor::close() {
 
   udev_monitor_unref(usb_struct->monitor);
   udev_unref(usb_struct->udev);
+
+  //---------------------------
+}
+
+//Subfunction
+void Monitor::manage_event() {
+  //---------------------------
+
+  //Event associated device
+  usb_struct->device = udev_monitor_receive_device(usb_struct->monitor);
+  if (!usb_struct->device) return;
+
+  std::string action = std::string(udev_device_get_action(usb_struct->device));
+  std::string type = std::string(udev_device_get_devtype(usb_struct->device));
+  std::string serial = std::string(udev_device_get_sysattr_value(usb_struct->device, "serial"));
+  std::string vendor = std::string(udev_device_get_sysattr_value(usb_struct->device, "idVendor"));
+  std::string product = std::string(udev_device_get_sysattr_value(usb_struct->device, "idProduct"));
+
+
+  say("-----");
+  say(action);
+  say(type);
+  say(serial);
+  say(vendor);
+  say(product);
+
+
+  -> add / bind
+
+  //realsense
+-> usb_device
+-> 103223061341
+-> 8086
+-> 0b5c
+-> Intel(R) RealSense(TM) Depth Camera 455
+-> Intel(R) RealSense(TM) Depth Camera 455
+
+//kinect
+-> usb_device
+-> 000123924512
+-> 045e
+-> 097b
+-> Generic
+-> 4-Port USB 2.0 Hub
+
+
+
+/*
+  if (vendor && product) {
+    std::string vendor_id = vendor;
+    std::string product_id = product;
+
+    // Replace with your Kinect's vendor ID and product ID
+    if (vendor_id == "045E" && product_id == "02AE") {
+      if (action == "remove") {
+        std::cout << "Kinect device unplugged.\n";
+        // Reset Kinect logic here
+      }
+    }
+  }*/
+
+  //Release device
+  udev_device_unref(usb_struct->device);
 
   //---------------------------
 }

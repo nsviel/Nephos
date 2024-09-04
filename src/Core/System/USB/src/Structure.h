@@ -10,6 +10,7 @@ struct Structure{
 
   struct udev* udev = nullptr;
   struct udev_monitor* monitor = nullptr;
+  struct udev_device* device = nullptr;
   int fd;
 
   //---------------------------
