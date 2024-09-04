@@ -31,7 +31,7 @@ private:
   vk::Structure* vk_struct;
   vk::queue::transfer::Submission* vk_submission;
 
-  std::queue<std::vector<vk::structure::Command_buffer*>> queue;
+  std::queue<vk::structure::Command_buffer*> queue;
 };
 
 }

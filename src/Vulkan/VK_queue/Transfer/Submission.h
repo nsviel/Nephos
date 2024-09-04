@@ -23,12 +23,12 @@ public:
 
 public:
   //Main function
-  void process_command(std::vector<vk::structure::Command_buffer*> vec_command);
+  void process_command(vk::structure::Command_buffer* vec_command);
 
   //Submission
-  void build_submission(std::vector<vk::structure::Command_buffer*> vec_command, std::vector<VkSubmitInfo>& vec_info);
+  void build_submission(vk::structure::Command_buffer* vec_command, std::vector<VkSubmitInfo>& vec_info);
   void make_submission(std::vector<VkSubmitInfo>& vec_info);
-  void post_submission(std::vector<vk::structure::Command_buffer*> vec_command);
+  void post_submission(vk::structure::Command_buffer* vec_command);
 
 private:
   vk::Structure* vk_struct;

@@ -49,9 +49,7 @@ void Thread::add_command(vk::structure::Command_buffer* command){
   //---------------------------
 
   if(command->is_recorded){
-    std::vector<vk::structure::Command_buffer*> vec_command;
-    vec_command.push_back(command);
-    queue.push(vec_command);
+    queue.push(command);
     cv.notify_one();
   }
 
