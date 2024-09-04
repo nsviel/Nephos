@@ -26,9 +26,17 @@ Texture::~Texture(){}
 void Texture::clean(){
   //---------------------------
 
-  for(auto& texture : vk_struct->data.list_vk_texture){
+  auto it =  vk_struct->data.list_vk_texture.begin();
+  while(it !=  vk_struct->data.list_vk_texture.end()){
+    std::shared_ptr<vk::structure::Texture> texture = *it;
+
+    //Remove texture elements
     vk_image->clean_image(&texture->vk_image);
     vk_buffer->clean_buffer(&texture->stagger);
+
+    //Remove texture from list
+    vk_struct->data.list_vk_texture.remove(texture);
+    it = vk_struct->data.list_vk_texture.begin();
   }
 
   //---------------------------

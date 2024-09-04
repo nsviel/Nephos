@@ -56,12 +56,16 @@ void Data::insert(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::ba
 void Data::remove(utl::base::Data& data){
   //---------------------------
 
-  bool is_in_list = false;
-  for(auto& vk_object : vk_struct->data.list_vk_object){
-    if(data.UID == vk_object->data->UID){
-      this->clean_vk_object(vk_object);
+  //Search for vk object to remove
+  std::shared_ptr<vk::structure::Object> vk_object;
+  for(auto& object : vk_struct->data.list_vk_object){
+    if(data.UID == object->data->UID){
+      vk_object = object;
     }
   }
+
+  //Remove it
+  this->clean_vk_object(vk_object);
 
   //---------------------------
 }
@@ -109,7 +113,7 @@ void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
 
   vk_buffer->clean_buffers(*vk_object);
   vk_texture->clean_texture(*vk_object);
-  vk_descriptor->clean_binding(&vk_object->binding);
+  vk_descriptor->clean_binding(&vk_object->binding);sayHello();
   vk_struct->data.list_vk_object.remove(vk_object);
 
   //---------------------------
