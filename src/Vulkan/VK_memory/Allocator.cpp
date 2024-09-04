@@ -37,25 +37,25 @@ void Allocator::allocate_image_memory(vk::structure::Image* image){
 }
 
 //Buffer GPU function
-void Allocator::allocate_empty_stagger_buffer(vk::data::structure::Buffer* buffer, VkDeviceSize size){
+void Allocator::allocate_empty_stagger_buffer(vk::data::structure::Buffer& buffer, VkDeviceSize size){
   if(size == 0) return;
   //---------------------------
 
   // Create an empty buffer with the specified size
-  buffer->size = size;
-  this->create_gpu_buffer(buffer->size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, buffer->vbo);
-  this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, buffer->vbo, buffer->mem);
+  buffer.size = size;
+  this->create_gpu_buffer(buffer.size, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, buffer.vbo);
+  this->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, buffer.vbo, buffer.mem);
 
   //---------------------------
 }
-void Allocator::allocate_empty_vertex_buffer(vk::data::structure::Buffer* buffer, VkDeviceSize size){
+void Allocator::allocate_empty_vertex_buffer(vk::data::structure::Buffer& buffer, VkDeviceSize size){
   if(size == 0) return;
   //---------------------------
 
   // Create an empty buffer with the specified size
-  buffer->size = size;
-  this->create_gpu_buffer(buffer->size, TYP_BUFFER_USAGE_DST_VERTEX, buffer->vbo);
-  this->bind_buffer_memory(TYP_MEMORY_GPU, buffer->vbo, buffer->mem);
+  buffer.size = size;
+  this->create_gpu_buffer(buffer.size, TYP_BUFFER_USAGE_DST_VERTEX, buffer.vbo);
+  this->bind_buffer_memory(TYP_MEMORY_GPU, buffer.vbo, buffer.mem);
 
   //---------------------------
 }

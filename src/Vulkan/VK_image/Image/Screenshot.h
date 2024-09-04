@@ -30,9 +30,9 @@ public:
 public:
   //Main function
   void make_screenshot();
-  void export_image_to_jpeg(vk::structure::Image* image);
-  void export_image_to_bmp(vk::structure::Image* image);
-  void export_image_to_binary(vk::structure::Image* image);
+  void export_image_to_jpeg(vk::structure::Image& image);
+  void export_image_to_bmp(vk::structure::Image& image);
+  void export_image_to_binary(vk::structure::Image& image);
 
   //Subfunction
   VkDeviceSize calculate_image_size(VkFormat format, VkExtent3D extent);

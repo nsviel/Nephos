@@ -113,7 +113,7 @@ void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
 
   vk_buffer->clean_buffers(*vk_object);
   vk_texture->clean_texture(*vk_object);
-  vk_descriptor->clean_binding(&vk_object->binding);sayHello();
+  vk_descriptor->clean_binding(&vk_object->binding);
   vk_struct->data.list_vk_object.remove(vk_object);
 
   //---------------------------

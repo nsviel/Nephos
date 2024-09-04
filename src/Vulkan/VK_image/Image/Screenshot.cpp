@@ -30,25 +30,24 @@ void Screenshot::make_screenshot(){
   //---------------------------
 
   vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");
-  vk::structure::Image* image = &renderpass->framebuffer->color;
-  this->export_image_to_bmp(image);
+  this->export_image_to_bmp(renderpass->framebuffer->color);
 
   //---------------------------
 }
-void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
+void Screenshot::export_image_to_jpeg(vk::structure::Image& image){
   //---------------------------
 
   //Create and fill stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
-  VkDeviceSize tex_size = image->width * image->height * 4;
+  VkDeviceSize tex_size = image.width * image.height * 4;
   vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
   vk_mem_transfer->copy_image_to_buffer(image, staging_buffer);
 
   //Find image info
-  VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
-  VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
+  VkExtent3D imageExtent = {image.width, image.height, 1};  // Replace with your image dimensions
+  VkDeviceSize bufferSize = calculate_image_size(image.format, imageExtent);
   if(bufferSize == 0) return;
 
   //Save staging buffer data to file
@@ -56,7 +55,7 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
   vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   int channels = 4;  // Assuming RGBA data
   std::string filename = "temp.jpg";
-  if(stbi_write_jpg(filename.c_str(), image->width, image->height, channels, mappedData, image->width * channels) == 0){
+  if(stbi_write_jpg(filename.c_str(), image.width, image.height, channels, mappedData, image.width * channels) == 0){
     throw std::runtime_error("Failed to write PNG file!");
   }
   vkUnmapMemory(vk_struct->device.handle, staging_mem);
@@ -70,20 +69,20 @@ void Screenshot::export_image_to_jpeg(vk::structure::Image* image){
 
   //---------------------------
 }
-void Screenshot::export_image_to_bmp(vk::structure::Image* image){
+void Screenshot::export_image_to_bmp(vk::structure::Image& image){
   //---------------------------
 
   //Create and fill stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
-  VkDeviceSize tex_size = image->width * image->height * 4;
+  VkDeviceSize tex_size = image.width * image.height * 4;
   vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
   vk_mem_transfer->copy_image_to_buffer(image, staging_buffer);
 
   //Find image info
-  VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
-  VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
+  VkExtent3D imageExtent = {image.width, image.height, 1};  // Replace with your image dimensions
+  VkDeviceSize bufferSize = calculate_image_size(image.format, imageExtent);
   if(bufferSize == 0) return;
 
   //Save staging buffer data to file
@@ -91,7 +90,7 @@ void Screenshot::export_image_to_bmp(vk::structure::Image* image){
   vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
   int channels = 4;  // Assuming RGBA data
   std::string filename = "temp.bmp";
-  if(stbi_write_bmp(filename.c_str(), image->width, image->height, channels, mappedData) == 0){
+  if(stbi_write_bmp(filename.c_str(), image.width, image.height, channels, mappedData) == 0){
     std::cout<<"[error] Failed to write BMP file"<<std::endl;
     return;
   }
@@ -107,20 +106,20 @@ void Screenshot::export_image_to_bmp(vk::structure::Image* image){
 
   //---------------------------
 }
-void Screenshot::export_image_to_binary(vk::structure::Image* image){
+void Screenshot::export_image_to_binary(vk::structure::Image& image){
   //---------------------------
 
   //Create and fill stagging buffer
   VkBuffer staging_buffer;
   VkDeviceMemory staging_mem;
-  VkDeviceSize tex_size = image->width * image->height * 4;
+  VkDeviceSize tex_size = image.width * image.height * 4;
   vk_mem_allocator->create_gpu_buffer(tex_size, VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_TRANSFER_SRC_BIT, staging_buffer);
   vk_mem_allocator->bind_buffer_memory(TYP_MEMORY_SHARED_CPU_GPU, staging_buffer, staging_mem);
   vk_mem_transfer->copy_image_to_buffer(image, staging_buffer);
 
   //Find image info
-  VkExtent3D imageExtent = {image->width, image->height, 1};  // Replace with your image dimensions
-  VkDeviceSize bufferSize = calculate_image_size(image->format, imageExtent);
+  VkExtent3D imageExtent = {image.width, image.height, 1};  // Replace with your image dimensions
+  VkDeviceSize bufferSize = calculate_image_size(image.format, imageExtent);
 
   //Save staging buffer data to file
   void* mappedData;

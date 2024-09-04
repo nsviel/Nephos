@@ -71,7 +71,7 @@ void Texture::export_texture(std::shared_ptr<utl::media::Image> utl_image){
   std::shared_ptr<vk::structure::Texture> texture = query_texture(utl_image->texture_ID);
   if(!texture) return;
 
-  vk_screenshot->export_image_to_jpeg(&texture->vk_image);
+  vk_screenshot->export_image_to_jpeg(texture->vk_image);
 
   //---------------------------
 }
@@ -116,7 +116,7 @@ void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   vk_image->create_image(image);
 
   //Make associated operation
-  vk_mem_allocator->allocate_empty_stagger_buffer(&texture->stagger, texture->utl_image->size);
+  vk_mem_allocator->allocate_empty_stagger_buffer(texture->stagger, texture->utl_image->size);
   vk_mem_transfer->copy_texture_to_gpu(*texture);
   vk_struct->data.list_vk_texture.push_back(texture);
 

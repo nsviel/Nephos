@@ -17,7 +17,7 @@ Transition::Transition(vk::Structure* vk_struct){
 Transition::~Transition(){}
 
 //Main function
-void Transition::image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image* image, VkImageLayout old_layout, VkImageLayout new_layout){
+void Transition::image_layout_transition(VkCommandBuffer command_buffer, vk::structure::Image& image, VkImageLayout old_layout, VkImageLayout new_layout){
   //---------------------------
 
   VkImageMemoryBarrier barrier{};
@@ -26,12 +26,12 @@ void Transition::image_layout_transition(VkCommandBuffer command_buffer, vk::str
   barrier.newLayout = new_layout;
   barrier.srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
   barrier.dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED;
-  barrier.image = image->handle;
+  barrier.image = image.handle;
   barrier.srcAccessMask = find_access_flag(old_layout);
   barrier.dstAccessMask = find_access_flag(new_layout);
   barrier.subresourceRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
   barrier.subresourceRange.baseMipLevel = 0;
-  barrier.subresourceRange.levelCount = image->mip_level;
+  barrier.subresourceRange.levelCount = image.mip_level;
   barrier.subresourceRange.baseArrayLayer = 0;
   barrier.subresourceRange.layerCount = 1;
 
