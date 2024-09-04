@@ -23,7 +23,7 @@ void Headless::draw_frame(){
   vk::synchro::structure::Semaphore* semaphore = nullptr;
 
   //Renderpass
-  std::vector<vk::structure::Command*> vec_command;
+  std::vector< std::unique_ptr<vk::structure::Command> > vec_command;
   for(int i=0; i<vk_struct->render.vec_renderpass.size(); i++){
     vk::structure::Renderpass* renderpass = vk_struct->render.vec_renderpass[i];
 
@@ -31,17 +31,17 @@ void Headless::draw_frame(){
     vk_render->run_renderpass(renderpass);
 
     //Create command
-    vk::structure::Command* command = new vk::structure::Command();
+    std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
     if(semaphore != nullptr) command->semaphore_wait = semaphore->handle;
     command->wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
     command->command_buffer = renderpass->command_buffer;
     semaphore = vk_semaphore->query_free_semaphore();
     if(i < vk_struct->render.vec_renderpass.size() - 1) command->semaphore_done = semaphore->handle;
-    vec_command.push_back(command);
+    vec_command.push_back(std::move(command));
   }
 
   //Submission
-  vk_struct->queue.graphics->add_command(vec_command);
+  vk_struct->queue.graphics->add_command(std::move(vec_command));
 
   //---------------------------
 }

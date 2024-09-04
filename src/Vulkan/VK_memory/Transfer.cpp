@@ -59,9 +59,9 @@ void Transfer::copy_buffer_to_image(vk::structure::Image& image, VkBuffer buffer
 
   //End and submit command
   vk_command_buffer->end_command_buffer(command_buffer);
-  vk::structure::Command* command = new vk::structure::Command();
+  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->command_buffer = command_buffer;
-  vk_struct->queue.graphics->add_command(command);
+  vk_struct->queue.graphics->add_command(std::move(command));
 
   //---------------------------
 }
@@ -87,9 +87,9 @@ void Transfer::copy_image_to_buffer(vk::structure::Image& image, VkBuffer buffer
 
   //End and submit command buffer
   vk_command_buffer->end_command_buffer(command_buffer);
-  vk::structure::Command* command = new vk::structure::Command();
+  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->command_buffer = command_buffer;
-  vk_struct->queue.graphics->add_command(command);
+  vk_struct->queue.graphics->add_command(std::move(command));
 
   //---------------------------
 }
@@ -121,9 +121,9 @@ void Transfer::copy_image_to_image_standalone(vk::structure::Image& image_src, v
 
   //End and submit command buffer
   vk_command_buffer->end_command_buffer(command_buffer);
-  vk::structure::Command* command = new vk::structure::Command();
+  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->command_buffer = command_buffer;
-  vk_struct->queue.graphics->add_command(command);
+  vk_struct->queue.graphics->add_command(std::move(command));
 
   //---------------------------
 }
@@ -158,9 +158,9 @@ void Transfer::blit_image_to_image(vk::structure::Image& image_src, vk::structur
 
   //End and submit command buffer
   vk_command_buffer->end_command_buffer(command_buffer);
-  vk::structure::Command* command = new vk::structure::Command();
+  std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->command_buffer = command_buffer;
-  vk_struct->queue.graphics->add_command(command);
+  vk_struct->queue.graphics->add_command(std::move(command));
 
   //---------------------------
 }

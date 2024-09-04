@@ -37,9 +37,7 @@ void Submission::process_command(vk::command::structure::Set* set){
 void Submission::build_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
   //---------------------------
 
-  for(int i=0; i<set->vec_command.size(); i++){
-    vk::structure::Command* command = set->vec_command[i];
-
+  for(auto& command: set->vec_command){
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
 
@@ -96,19 +94,17 @@ void Submission::post_submission(vk::command::structure::Set* set){
 
   //Reset all command
   for(auto& command : set->vec_command){
-      // Command buffer timestamp
-      vk_query->find_query_timestamp(command->command_buffer);
+    // Command buffer timestamp
+    vk_query->find_query_timestamp(command->command_buffer);
 
-      // Command buffer reset
-      if(command->command_buffer->is_resetable){
-          command->command_buffer->is_recorded = false;
-          command->command_buffer->query.is_available = true;
-          command->command_buffer->is_available = true;
-      }
-
-      // Clean up the command object
-      delete command;
+    // Command buffer reset
+    if(command->command_buffer->is_resetable){
+      command->command_buffer->is_recorded = false;
+      command->command_buffer->query.is_available = true;
+      command->command_buffer->is_available = true;
+    }
   }
+  set->vec_command.clear();
 
   if(set->supress){
     delete set;

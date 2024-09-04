@@ -45,14 +45,14 @@ void Thread::thread_loop(){
 }
 
 //Subfunction
-void Thread::add_command(vk::structure::Command* command){
+void Thread::add_command(std::unique_ptr<vk::structure::Command> command){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
   mutex.lock();
 
   vk::command::structure::Set* set = new vk::command::structure::Set();
-  set->vec_command.push_back(command);
+  set->vec_command.push_back(std::move(command));
   queue.push(set);
 
   mutex.unlock();
@@ -60,21 +60,20 @@ void Thread::add_command(vk::structure::Command* command){
 
   //---------------------------
 }
-void Thread::add_command(std::vector<vk::structure::Command*> vec_command){
+void Thread::add_command(std::vector<std::unique_ptr<vk::structure::Command>> vec_command){
   if(vk_struct->queue.standby) return;
   //---------------------------
 
   mutex.lock();
 
   vk::command::structure::Set* set = new vk::command::structure::Set();
-  set->vec_command = vec_command;
+  set->vec_command = std::move(vec_command);;
   queue.push(set);
 
   mutex.unlock();
   cv.notify_one();
 
   //---------------------------
-
 }
 void Thread::add_command(vk::command::structure::Set* set){
   if(vk_struct->queue.standby) return;

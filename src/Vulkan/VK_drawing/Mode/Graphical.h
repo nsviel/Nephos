@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Vulkan/VK_drawing/Drawing/Drawer.h>
+#include <memory>
 #include <vector>
 
 namespace vk{class Structure;}
@@ -26,8 +27,8 @@ public:
   void draw_frame();
 
   //Subfunction
-  void record_renderpass(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore& semaphore);
-  void copy_to_swapchain(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore& semaphore);
+  void record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore& semaphore);
+  void copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore& semaphore);
 
 private:
   vk::memory::Transfer* vk_transfer;

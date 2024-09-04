@@ -27,7 +27,7 @@ void Submission::make_rendering(){
   //---------------------------
 
   //Init
-  std::vector<vk::structure::Command*> vec_command;
+  std::vector<std::unique_ptr<vk::structure::Command>> vec_command;
   vk::synchro::structure::Semaphore semaphore = *vk_semaphore->query_free_semaphore();
 
   //Acquiere image
@@ -49,11 +49,11 @@ void Submission::make_rendering(){
 }
 
 //Subfunction
-void Submission::submit_rendering(std::vector<vk::structure::Command*>& vec_command, vk::synchro::structure::Semaphore* semaphore){
+void Submission::submit_rendering(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore* semaphore){
   //---------------------------
 
   vk::command::structure::Set* set = new vk::command::structure::Set();
-  set->vec_command = vec_command;
+  set->vec_command = std::move(vec_command);;
   set->semaphore = semaphore->handle;
   set->supress = false;
   vk_struct->queue.graphics->add_command(set);
