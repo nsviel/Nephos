@@ -64,7 +64,7 @@ void Detection::wait_thread(){
 
 //Subfunction
 void Detection::validate_bbox(std::shared_ptr<dat::base::Sensor> sensor){
-  utl::base::Pose& pose = sensor->pose;
+  utl::base::Pose& pose = *sensor->pose;
   //---------------------------
 
   //Stop if no detection

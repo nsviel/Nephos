@@ -60,19 +60,19 @@ void Location::compute_COM(dat::base::Set& set){
 
   for(auto& entity : set.list_entity){
     this->compute_COM(*entity);
-    COM += entity->pose.COM;
+    COM += entity->pose->COM;
   }
 
   COM /= set.list_entity.size();
 
   //---------------------------
-  set.pose.COM = COM;
+  set.pose->COM = COM;
 }
 void Location::compute_COM(dat::base::Entity& entity){
   //---------------------------
 
   utl::base::Data& data = entity.data;
-  utl::base::Pose& pose = entity.pose;
+  utl::base::Pose& pose = *entity.pose;
 
   this->compute_centroid(entity);
 
@@ -83,6 +83,7 @@ void Location::compute_COM(dat::base::Entity& entity){
   //---------------------------
 }
 void Location::compute_MinMax(dat::base::Set& set){
+  utl::base::Pose& pose = *set.pose;
   //---------------------------
 
   glm::vec3 centroid = glm::vec3(0, 0, 0);
@@ -90,7 +91,7 @@ void Location::compute_MinMax(dat::base::Set& set){
   glm::vec3 max = glm::vec3(-1000000, -1000000, -1000000);
 
   for(auto& entity : set.list_entity){
-    utl::base::Pose& pose = entity->pose;
+    utl::base::Pose& pose = *entity->pose;
     this->compute_MinMax(*entity);
 
     for(int j=0; j<3; j++){
@@ -105,13 +106,13 @@ void Location::compute_MinMax(dat::base::Set& set){
   }
 
   //---------------------------
-  set.pose.min = min;
-  set.pose.max = max;
-  set.pose.COM = centroid;
+  pose.min = min;
+  pose.max = max;
+  pose.COM = centroid;
 }
 void Location::compute_MinMax(dat::base::Entity& entity){
   utl::base::Data& data = entity.data;
-  utl::base::Pose& pose = entity.pose;
+  utl::base::Pose& pose = *entity.pose;
   //---------------------------
 
   std::vector<glm::vec3>& XYZ = data.xyz;
@@ -143,7 +144,7 @@ void Location::compute_MinMax(dat::base::Entity& entity){
 }
 void Location::compute_height(dat::base::Entity& entity){
   utl::base::Data& data = entity.data;
-  utl::base::Pose& pose = entity.pose;
+  utl::base::Pose& pose = *entity.pose;
   //---------------------------
 
   //Retrieve field

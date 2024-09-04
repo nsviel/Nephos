@@ -21,7 +21,7 @@ Sphere::Sphere(core::Node* node_core){
 
   this->name = "object::sphere";
   this->is_suppressible = false;
-  this->pose.is_movable = false;
+  this->pose->is_movable = false;
   this->is_permanent = true;
   this->color = glm::vec4(1, 0, 0, 0.5);
   this->path = "../media/glyph/sphere.obj";
@@ -48,10 +48,10 @@ void Sphere::update_pose(const std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   if(mat_model != glm::mat4(1.0f)){
-    utl::base::Pose& entity_pose = entity->pose;
-    pose.model = mat_model * entity_pose.model;
+    utl::base::Pose& entity_pose = *entity->pose;
+    pose->model = mat_model * entity_pose.model;
 
-    cam_control->compute_camera_mvp(pose);
+    cam_control->compute_camera_mvp(*pose);
   }
 
   //---------------------------

@@ -42,7 +42,7 @@ void Target::update_pose(std::shared_ptr<dat::base::Entity> entity){
     translation[0][3] = camera->cam_COM.x;
     translation[1][3] = camera->cam_COM.y;
     translation[2][3] = camera->cam_COM.z;
-    pose.model = translation;
+    pose->model = translation;
   }
 
   //---------------------------

@@ -109,7 +109,7 @@ void Color::colorization_unicolor(dat::base::Entity& entity){
 }
 void Color::colorization_normal(dat::base::Entity& entity){
   utl::base::Data& data = entity.data;
-  utl::base::Pose& pose = entity.pose;
+  utl::base::Pose& pose = *entity.pose;
   //---------------------------
 
   std::vector<glm::vec3>& Nxyz = data.Nxyz;

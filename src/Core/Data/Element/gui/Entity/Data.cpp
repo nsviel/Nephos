@@ -73,7 +73,7 @@ void Data::entity_data(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 }
 void Data::entity_pose(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Pose& pose = entity->pose;
+  utl::base::Pose& pose = *entity->pose;
   //---------------------------
 
   //Root pos

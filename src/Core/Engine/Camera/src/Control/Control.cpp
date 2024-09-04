@@ -116,7 +116,7 @@ void Control::update_pose(std::shared_ptr<dat::base::Set> set){
   //---------------------------
 }
 void Control::update_pose(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Pose& pose = entity->pose;
+  utl::base::Pose& pose = *entity->pose;
   //----------------------------
 
   //Update own pose

@@ -147,7 +147,7 @@ void Panel::display_format(std::shared_ptr<utl::base::Element> element){
   ImGui::Separator();
 }
 void Panel::display_matrix(std::shared_ptr<utl::base::Element> element){
-  utl::base::Pose& pose = element->pose;
+  utl::base::Pose& pose = *element->pose;
   //---------------------------
 
   //Model matrix

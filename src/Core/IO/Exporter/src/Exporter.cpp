@@ -47,7 +47,7 @@ void Exporter::init_path(){
 }
 void Exporter::export_with_config(io::exp::Base* exporter, std::shared_ptr<dat::base::Entity> entity, std::string path){
   utl::base::Data& data = entity->data;
-  utl::base::Pose& pose = entity->pose;
+  utl::base::Pose& pose = *entity->pose;
   //---------------------------
 
   //Make export configuration

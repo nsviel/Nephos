@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utility/Base/Data/Pose.h>
+#include <memory>
 #include <string>
 
 
@@ -13,8 +14,7 @@ struct Element{
   bool is_selectable = true;
   std::string name = "";
   std::string type = "";
-  //std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
-  utl::base::Pose pose;
+  std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
 
   virtual void info(){}
 

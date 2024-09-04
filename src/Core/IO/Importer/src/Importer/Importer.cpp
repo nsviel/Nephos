@@ -107,7 +107,7 @@ void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
   std::shared_ptr<dat::base::Object> object = nullptr;
   if(element->type == "entity"){
     object = std::dynamic_pointer_cast<dat::base::Object>(element);
-    object->pose.path = path_transfo;
+    object->pose->path = path_transfo;
   }
 
   //Insert

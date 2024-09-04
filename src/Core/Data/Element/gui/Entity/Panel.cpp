@@ -79,9 +79,10 @@ void Panel::entity_button(std::shared_ptr<dat::base::Entity> entity){
   if(!entity) return;
   //---------------------------
 
+  utl::base::Pose& pose = *entity->pose;
+
   //Centered
-  if(entity->pose.is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
-    utl::base::Pose& pose = entity->pose;
+  if(pose.is_movable && ImGui::Button("C##399", ImVec2(20, 0))){
     trf_operation->center_object(entity, pose.min);
   }
 

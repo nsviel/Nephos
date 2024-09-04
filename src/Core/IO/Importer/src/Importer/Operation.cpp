@@ -116,7 +116,7 @@ void Operation::ope_transformation(std::shared_ptr<dat::base::Object> object){
   trf_io->load_transformation(object);
 
   //Scaling
-  trf_transform->make_scaling(object->pose, io_struct->scaling);
+  trf_transform->make_scaling(*object->pose, io_struct->scaling);
 
   //Centering
   if(io_struct->with_centering){

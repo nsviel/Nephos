@@ -33,7 +33,7 @@ void Matrix::design_matrix(std::shared_ptr<utl::base::Element> element){
 
 //Subfunction
 void Matrix::draw_operation(std::shared_ptr<utl::base::Element> element){
-  utl::base::Pose& pose = element->pose;
+  utl::base::Pose& pose = *element->pose;
   //---------------------------
 
   if(ImGui::Button("R##transfomatrix", ImVec2(20, 0))){
@@ -51,7 +51,7 @@ void Matrix::draw_operation(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 }
 void Matrix::draw_matrix(std::shared_ptr<utl::base::Element> element){
-  utl::base::Pose& pose = element->pose;
+  utl::base::Pose& pose = *element->pose;
   //---------------------------
 
   //Model matrix

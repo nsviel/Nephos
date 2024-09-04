@@ -46,12 +46,13 @@ void Entity::remove_entity(std::shared_ptr<dat::base::Entity> entity){
   //----------------------------
 }
 void Entity::reset_pose(std::shared_ptr<dat::base::Entity> entity){
+  utl::base::Pose& pose = *entity->pose;
   //----------------------------
 
-  glm::mat4 init = entity->pose.model_init;
-  entity->pose = {};
-  entity->pose.model = init;
-  entity->pose.model_init = init;
+  glm::mat4 init = pose.model_init;
+  pose = {};
+  pose.model = init;
+  pose.model_init = init;
 
   //----------------------------
 }
@@ -76,11 +77,10 @@ void Entity::visibility_entity(std::shared_ptr<dat::base::Entity> entity, bool v
 }
 void Entity::update_data(std::shared_ptr<dat::base::Entity> entity){
   utl::base::Data& data = entity->data;
-  utl::base::Pose& pose = entity->pose;
   //----------------------------
 
   if(data.is_updated){
-    vk_data->insert(data, pose);
+    vk_data->insert(data, entity->pose);
 
     //Update attribut
     atr_location->compute_centroid(*entity);

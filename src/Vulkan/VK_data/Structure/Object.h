@@ -5,6 +5,7 @@
 #include <Vulkan/VK_binding/Structure/Binding.h>
 #include <Utility/Base/Data/Data.h>
 #include <Utility/Base/Data/Pose.h>
+#include <memory>
 #include <list>
 
 
@@ -26,15 +27,13 @@ struct Buffers{
 struct Object{
   //---------------------------
 
-  int UID = 0;
-
-  utl::base::Data* data = nullptr;
-  utl::base::Pose* pose = nullptr;
-
   //Data
+  int UID = 0;
   bool has_xyz = false;
   bool has_rgba = false;
   bool has_uv = false;
+  utl::base::Data* data = nullptr;
+  std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
 
   //Buffer
   vk::structure::Buffers buffer;

@@ -36,7 +36,7 @@ void Data::clean(){
 
   //---------------------------
 }
-void Data::insert(utl::base::Data& data, utl::base::Pose& pose){
+void Data::insert(utl::base::Data& data, std::shared_ptr<utl::base::Pose> pose){
   //---------------------------
 
   //Check if data already in engine
@@ -88,13 +88,13 @@ void Data::update_vk_object(utl::base::Data& data, vk::structure::Object* vk_obj
 
   //---------------------------
 }
-void Data::create_vk_object(utl::base::Data& data, utl::base::Pose& pose){
+void Data::create_vk_object(utl::base::Data& data, std::shared_ptr<utl::base::Pose> pose){
   //---------------------------
 
   //Creat new data struct
   vk::structure::Object* vk_object = new vk::structure::Object();
   vk_object->data = &data;
-  vk_object->pose = &pose;
+  vk_object->pose = pose;
   vk_object->UID = vk_uid->query_free_UID();
 
   //Data

@@ -22,20 +22,21 @@ void IO::load_transformation(std::shared_ptr<dat::base::Entity> entity){
   if(!entity) return;
   //---------------------------
 
-  std::string path = entity->pose.path.build();
+  std::string path = entity->pose->path.build();
   this->load_transformation(entity, path);
 
   //---------------------------
 }
 void IO::load_transformation(std::shared_ptr<utl::base::Element> element, std::string path){
+  utl::base::Pose& pose = *element->pose;
   //---------------------------
 
   //Transformation
   glm::mat4 mat = trf_utils->find_transformation_from_file(path);
 
   if(mat != glm::mat4(1)){
-    element->pose.model = mat;
-    element->pose.model_init = mat;
+    pose.model = mat;
+    pose.model_init = mat;
   }
 
   //---------------------------
@@ -43,7 +44,7 @@ void IO::load_transformation(std::shared_ptr<utl::base::Element> element, std::s
 void IO::save_transformation(std::shared_ptr<utl::base::Element> element, std::string path){
   //---------------------------
 
-  glm::mat4& mat = element->pose.model;
+  glm::mat4& mat = element->pose->model;
   trf_utils->save_transformation_to_file(mat, path);
 
   //---------------------------
@@ -66,7 +67,7 @@ void IO::update_path(std::shared_ptr<utl::base::Element> element){
   static dat::base::Entity* old_entity = nullptr;
   if(old_entity != nullptr && entity->UID == old_entity->UID) return;
 
-  std::string path = entity->pose.path.build();
+  std::string path = entity->pose->path.build();
   if(path != ""){
     this->path.directory = utl::path::get_dir_from_path(path);
     this->path.name = utl::path::get_name_from_path(path);

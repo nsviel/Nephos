@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 namespace vk::data{class Buffer;}
 namespace vk::image{class Texture;}
 namespace vk::command{class Command_buffer;}
@@ -26,12 +28,12 @@ public:
 public:
   //Main function
   void clean();
-  void insert(utl::base::Data& data, utl::base::Pose& pose);
+  void insert(utl::base::Data& data, std::shared_ptr<utl::base::Pose> pose);
   void remove(utl::base::Data& data);
 
   //Subfunction
   void update_vk_object(utl::base::Data& data, vk::structure::Object* vk_object);
-  void create_vk_object(utl::base::Data& data, utl::base::Pose& pose);
+  void create_vk_object(utl::base::Data& data, std::shared_ptr<utl::base::Pose> pose);
   void clean_vk_object(vk::structure::Object* vk_object);
   void check_data(vk::structure::Object* vk_object);
 

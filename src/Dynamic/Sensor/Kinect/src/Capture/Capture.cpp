@@ -33,7 +33,7 @@ void Capture::init_info(k4n::capture::Sensor& sensor){
   sensor.data.nb_data_max = 10000000;
   sensor.data.path.format = ".mkv";
   sensor.data.path.directory = utl::path::get_current_path_abs();
-  sensor.pose.model[2][3] = 1;
+  sensor.pose->model[2][3] = 1;
 
   //---------------------------
 }
