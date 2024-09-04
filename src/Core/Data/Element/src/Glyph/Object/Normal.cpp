@@ -25,12 +25,12 @@ void Normal::create(){
   //---------------------------
 
   //Create glyph
-  data.name = "object::normal::data";
-  data.width = width;
-  data.is_visible = false;
-  data.nb_data_max = 1000000;
-  data.topology.type = utl::topology::LINE;
-  data.unicolor = glm::vec4(0, 0.7, 0.7, 1);
+  data->name = "object::normal::data";
+  data->width = width;
+  data->is_visible = false;
+  data->nb_data_max = 1000000;
+  data->topology.type = utl::topology::LINE;
+  data->unicolor = glm::vec4(0, 0.7, 0.7, 1);
 
   //---------------------------
 }
@@ -58,12 +58,12 @@ void Normal::construct(std::shared_ptr<dat::base::Entity> entity){
   std::vector<glm::vec3> xyz_g;
   std::vector<glm::vec4> rgb_g;
 
-  xyz_g.reserve(data.xyz.size());
-  rgb_g.reserve(data.rgba.size());
+  xyz_g.reserve(data->xyz.size());
+  rgb_g.reserve(data->rgba.size());
 
   //Data entity
-  std::vector<glm::vec3>& xyz_e = entity->data.xyz;
-  std::vector<glm::vec3>& Nxyz_e = entity->data.Nxyz;
+  std::vector<glm::vec3>& xyz_e = entity->data->xyz;
+  std::vector<glm::vec3>& Nxyz_e = entity->data->Nxyz;
 
   //Check vector length
   if(xyz_e.size() == 0 || Nxyz_e.size() == 0 || Nxyz_e.size() != xyz_e.size()) return;
@@ -87,8 +87,8 @@ void Normal::construct(std::shared_ptr<dat::base::Entity> entity){
     rgb_g.push_back(rgb_n);
   }
 
-  data.xyz = xyz_g;
-  data.rgba = rgb_g;
+  data->xyz = xyz_g;
+  data->rgba = rgb_g;
 
   //---------------------------
 }

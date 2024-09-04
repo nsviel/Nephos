@@ -36,9 +36,9 @@ void Sphere::create(){
 /*
   //Retrieve data from file
   data = *io_importer->load_data(path);
-  data.name = "object::sphere::data";
-  data.is_visible = false;
-  data.topology.type = utl::topology::TRIANGLE;
+  data->name = "object::sphere::data";
+  data->is_visible = false;
+  data->topology.type = utl::topology::TRIANGLE;
 
   this->construct(color);
 */
@@ -59,7 +59,7 @@ void Sphere::update_pose(const std::shared_ptr<dat::base::Entity> entity){
 void Sphere::reset_glyph(){
   //---------------------------
 
-  data.is_visible = false;
+  data->is_visible = false;
 
   //---------------------------
 }
@@ -68,9 +68,9 @@ void Sphere::reset_glyph(){
 void Sphere::construct(glm::vec4 color){
   //---------------------------
 
-  data.rgba = std::vector<glm::vec4>(data.xyz.size(), glm::vec4(0, 0, 0, 0));
-  for(int j=0; j<data.xyz.size(); j++){
-    data.rgba[j] = color;
+  data->rgba = std::vector<glm::vec4>(data->xyz.size(), glm::vec4(0, 0, 0, 0));
+  for(int j=0; j<data->xyz.size(); j++){
+    data->rgba[j] = color;
   }
 
   //---------------------------
@@ -79,7 +79,7 @@ void Sphere::move_sphere(glm::vec3 coordinate, float diameter){
   //---------------------------
 
   //Set visibility
-  data.is_visible = true;
+  data->is_visible = true;
 
   //Set scale (raw sphere is 2m diameter)
   static float diameter_old = 0;

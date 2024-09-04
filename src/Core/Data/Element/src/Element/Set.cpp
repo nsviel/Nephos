@@ -313,7 +313,7 @@ int Set::compute_number_point(std::shared_ptr<dat::base::Set> set){
 
   // Add the points in the current set
   for(auto& entity : set->list_entity){
-    utl::base::Data& data = entity->data;
+    utl::base::Data& data = *entity->data;
     nb_point += data.size;
   }
 

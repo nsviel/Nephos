@@ -26,11 +26,11 @@ void Tree::create(){
   //---------------------------
 
   //Create glyph
-  data.name = "tree::data";
-  data.width = 2;
-  data.is_visible = false;
-  data.topology.type = utl::topology::LINE;
-  data.unicolor = color;
+  data->name = "tree::data";
+  data->width = 2;
+  data->is_visible = false;
+  data->topology.type = utl::topology::LINE;
+  data->unicolor = color;
 
   //---------------------------
 }

@@ -79,7 +79,7 @@ void Button::button_visibility(std::shared_ptr<dat::base::Entity> entity){
   ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.8f, 0.8f, 0.8f, 1.0f));
 
   //Is is visible
-  if(entity->data.is_visible){
+  if(entity->data->is_visible){
     std::string label = std::string(ICON_FA_EYE) + "##" + std::to_string(entity->UID);
     if(ImGui::SmallButton(label.c_str())){
       dat_entity->visibility_entity(entity, false);

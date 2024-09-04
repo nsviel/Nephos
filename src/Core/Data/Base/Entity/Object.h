@@ -27,7 +27,7 @@ struct Object : public dat::base::Entity{
   Object(){
     //---------------------------
 
-    this->data.unicolor = math::random();
+    this->data->unicolor = math::random();
     this->list_glyph.push_back(std::make_shared<dat::glyph::object::Axis>());
     this->list_glyph.push_back(std::make_shared<dat::glyph::object::AABB>());
     this->list_glyph.push_back(std::make_shared<dat::glyph::object::Normal>());

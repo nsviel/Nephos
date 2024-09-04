@@ -38,12 +38,12 @@ void Binary::parse_binary(io::imp::Configuration* config, std::shared_ptr<dat::b
   }
 
   //Store result
-  object->data.xyz = buffer.xyz;
-  object->data.Nxyz = buffer.Nxyz;
-  object->data.rgb = buffer.rgb;
-  object->data.rgba = buffer.rgba;
-  object->data.size = buffer.xyz.size();
-  atr_field->set_field_data(object->data, "I", buffer.Is);
+  object->data->xyz = buffer.xyz;
+  object->data->Nxyz = buffer.Nxyz;
+  object->data->rgb = buffer.rgb;
+  object->data->rgba = buffer.rgba;
+  object->data->size = buffer.xyz.size();
+  atr_field->set_field_data(*object->data, "I", buffer.Is);
 
   //Close file
   file.close();

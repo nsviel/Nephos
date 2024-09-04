@@ -41,7 +41,7 @@ void Canvas::init(){
   uv.push_back(glm::vec2(0.0f,  1.0f));
 
   //Canvas data
-  utl::base::Data* data = new utl::base::Data();
+  std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
   data->name = "vk::canvas";
   data->xyz = xyz;
   data->uv = uv;

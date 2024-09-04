@@ -19,12 +19,12 @@ Playback::~Playback(){}
 void Playback::init_info(k4n::playback::Sensor& sensor){
   //---------------------------
 
-  sensor.name = sensor.data.path.name;
+  sensor.name = sensor.data->path.name;
   sensor.calibration.path.insert("../media/calibration/kinect.json");
 
-  sensor.data.name = sensor.data.path.name;
-  sensor.data.topology.type = utl::topology::POINT;
-  sensor.data.nb_data_max = 10000000;
+  sensor.data->name = sensor.data->path.name;
+  sensor.data->topology.type = utl::topology::POINT;
+  sensor.data->nb_data_max = 10000000;
 
   sensor.info.model = "kinect";
   sensor.info.depth_mode = "NFOV";
@@ -37,7 +37,7 @@ void Playback::init_playback(k4n::playback::Sensor& sensor){
   //---------------------------
 
   //Init playback object
-  std::string path = sensor.data.path.build();
+  std::string path = sensor.data->path.build();
   if(path == "") return;
   sensor.device.playback = k4a::playback::open(path.c_str());
 
@@ -51,8 +51,8 @@ void Playback::init_playback(k4n::playback::Sensor& sensor){
 void Playback::find_timestamp(k4n::playback::Sensor& sensor){
   //---------------------------
 
-  sensor.timestamp.begin = find_mkv_ts_beg(sensor.data.path.build());
-  sensor.timestamp.end = find_mkv_ts_end(sensor.data.path.build());
+  sensor.timestamp.begin = find_mkv_ts_beg(sensor.data->path.build());
+  sensor.timestamp.end = find_mkv_ts_end(sensor.data->path.build());
   sensor.timestamp.duration = sensor.timestamp.end - sensor.timestamp.begin;
 
   //---------------------------

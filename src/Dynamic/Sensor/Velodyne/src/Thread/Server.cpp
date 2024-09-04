@@ -94,18 +94,18 @@ void Server::update_object(utl::base::Data& data){
   std::string name = "capture_" + std::to_string(vld_struct->data.current_frame_ID++);
   std::shared_ptr<dat::base::Object> object = vld_struct->data.object;
   object->name = name;
-  object->data.name = name + "::data";
-  object->data.size = data.xyz.size();
-  //object->data.topology.type = data.topology;
+  object->data->name = name + "::data";
+  object->data->size = data.xyz.size();
+  //object->data->topology.type = data.topology;
 
-  object->data.xyz = data.xyz;
-  object->data.rgb = data.rgb;
-  object->data.uv = data.uv;
+  object->data->xyz = data.xyz;
+  object->data->rgb = data.rgb;
+  object->data->uv = data.uv;
 
   //If no color, fill it with white
-  if(object->data.rgb.size() == 0){
+  if(object->data->rgb.size() == 0){
     for(int i=0; i<data.xyz.size(); i++){
-      object->data.rgb.push_back(glm::vec4(1,1,1,1));
+      object->data->rgb.push_back(glm::vec4(1,1,1,1));
     }
   }
 

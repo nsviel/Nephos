@@ -68,7 +68,7 @@ void Color::color_mode_rgb(std::shared_ptr<utl::base::Element> element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data.rgb.size() == 0);
+  bool condition = (entity->data->rgb.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("RGB##colorization", &atr_struct->color.mode, dat::atr::color::RGB)){
@@ -99,7 +99,7 @@ void Color::color_mode_normal(std::shared_ptr<utl::base::Element> element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data.Nxyz.size() == 0);
+  bool condition = (entity->data->Nxyz.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Nxyz##colorization", &atr_struct->color.mode, dat::atr::color::NORMAL)){
@@ -115,7 +115,7 @@ void Color::color_mode_field(std::shared_ptr<utl::base::Element> element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data.vec_field.size() == 0);
+  bool condition = (entity->data->vec_field.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Field##colorization", &atr_struct->color.mode, dat::atr::color::FIELD)){
@@ -131,7 +131,7 @@ void Color::color_mode_heatmap(std::shared_ptr<utl::base::Element> element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data.vec_field.size() == 0);
+  bool condition = (entity->data->vec_field.size() == 0);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Heatmap##colorization", &atr_struct->color.mode, dat::atr::color::HEATMAP)){
@@ -147,7 +147,7 @@ void Color::color_mode_structure(std::shared_ptr<utl::base::Element> element){
   if(!entity) return;
   //---------------------------
 
-  bool condition = (entity->data.width == -1);
+  bool condition = (entity->data->width == -1);
   if(condition) ImGui::BeginDisabled();
 
   if(ImGui::RadioButton("Structure##colorization", &atr_struct->color.mode, dat::atr::color::STRUCTURE)){
@@ -166,12 +166,12 @@ void Color::color_option(std::shared_ptr<utl::base::Element> element){
     if(!entity) return;
 
     //Get vector of field names
-    std::vector<std::string> vec_name = atr_field->get_field_names(entity->data);
+    std::vector<std::string> vec_name = atr_field->get_field_names(*entity->data);
 
     //Init
-    if(entity->data.vec_field.size() != 0 && atr_struct->color.field == ""){
+    if(entity->data->vec_field.size() != 0 && atr_struct->color.field == ""){
       atr_struct->color.field = vec_name[0];
-      atr_struct->color.range = atr_field->get_field_range(entity->data, vec_name[0]);
+      atr_struct->color.range = atr_field->get_field_range(*entity->data, vec_name[0]);
     }
 
     //Field selection table
@@ -192,7 +192,7 @@ void Color::color_option(std::shared_ptr<utl::base::Element> element){
         const bool is_selected = (selection == i);
         if(ImGui::Selectable(name.c_str(), is_selected, ImGuiSelectableFlags_SpanAllColumns)){
           atr_struct->color.field = name;
-          atr_struct->color.range = atr_field->get_field_range(entity->data, name);
+          atr_struct->color.range = atr_field->get_field_range(*entity->data, name);
           selection = i;
         }
 
@@ -206,7 +206,7 @@ void Color::color_option(std::shared_ptr<utl::base::Element> element){
 
     //Range
     ImGui::SetNextItemWidth(150);
-    glm::vec2 range = atr_field->get_field_range(entity->data, atr_struct->color.field);
+    glm::vec2 range = atr_field->get_field_range(*entity->data, atr_struct->color.field);
     float sensitivity = (range.y - range.x) / 100.0f;
     ImGui::DragFloatRange2("Range##321", &atr_struct->color.range.x, &atr_struct->color.range.y, sensitivity, range.x, range.y, "%.2f", "%.2f");
   }

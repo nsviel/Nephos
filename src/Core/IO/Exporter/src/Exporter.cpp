@@ -28,7 +28,7 @@ void Exporter::export_entity(std::shared_ptr<dat::base::Entity> entity, std::str
   for(int i=0; i<vec_exporter.size(); i++){
     io::exp::Base* exporter = vec_exporter[i];
 
-    if(entity->data.path.format == exporter->format){
+    if(entity->data->path.format == exporter->format){
       this->export_with_config(exporter, entity, path);
     }
   }
@@ -46,7 +46,7 @@ void Exporter::init_path(){
   //---------------------------
 }
 void Exporter::export_with_config(io::exp::Base* exporter, std::shared_ptr<dat::base::Entity> entity, std::string path){
-  utl::base::Data& data = entity->data;
+  utl::base::Data& data = *entity->data;
   utl::base::Pose& pose = *entity->pose;
   //---------------------------
 
@@ -80,8 +80,8 @@ void Exporter::update_current_path(std::shared_ptr<utl::base::Element> element){
 
   //If entity different from previous one, change curent path
   if(!old_entity || entity->UID != old_entity->UID){
-    io_struct->path.insert(entity->data.path);
-    if(!is_format_supported(entity->data.path.format)) io_struct->path.format = "ply";
+    io_struct->path.insert(*entity->data->path);
+    if(!is_format_supported(*entity->data->path.format)) io_struct->path.format = "ply";
     old_entity = entity;
   }
 */
@@ -104,7 +104,7 @@ bool Exporter::is_format_supported(std::string format){
 bool Exporter::is_current_config(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
-  if(entity->data.path.build() == io_struct->path.build()){
+  if(entity->data->path.build() == io_struct->path.build()){
     return true;
   }
 

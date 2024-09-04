@@ -23,19 +23,19 @@ Mesh::~Mesh(){}
 void Mesh::create(){
   //---------------------------
 
-  data.name = "grid::mesh::data";
-  data.width = 1;
-  data.is_visible = true;
-  data.topology.type = utl::topology::LINE;
-  data.unicolor = color_mesh;
+  data->name = "grid::mesh::data";
+  data->width = 1;
+  data->is_visible = true;
+  data->topology.type = utl::topology::LINE;
+  data->unicolor = color_mesh;
 
   //---------------------------
 }
 
 //Subfunction
 void Mesh::construct(int nb_cell){
-  data.xyz.clear();
-  data.rgb.clear();
+  data->xyz.clear();
+  data->rgb.clear();
   //---------------------------
 
   this->construct_mesh(nb_cell);
@@ -44,8 +44,8 @@ void Mesh::construct(int nb_cell){
   //---------------------------
 }
 void Mesh::construct_mesh(int nb_cell){
-  std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<glm::vec4>& rgba = data.rgba;
+  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec4>& rgba = data->rgba;
   float z = -0.002;
   //---------------------------
 
@@ -67,8 +67,8 @@ void Mesh::construct_mesh(int nb_cell){
   //---------------------------
 }
 void Mesh::construct_submesh(int nb_cell){
-  std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<glm::vec4>& rgba = data.rgba;
+  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec4>& rgba = data->rgba;
   float z = -0.003;
   //---------------------------
 

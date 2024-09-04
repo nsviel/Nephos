@@ -23,7 +23,7 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->dat_sensor = node_element->get_dat_sensor();
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 
-  this->data.path = path;
+  this->data->path = path;
 
   //---------------------------
 }

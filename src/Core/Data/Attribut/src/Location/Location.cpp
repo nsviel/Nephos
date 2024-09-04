@@ -18,7 +18,7 @@ Location::~Location(){}
 
 //Main function
 void Location::compute_centroid(dat::base::Entity& entity){
-  utl::base::Data& data = entity.data;
+  utl::base::Data& data = *entity.data;
   //---------------------------
 
   std::vector<glm::vec3>& xyz = data.xyz;
@@ -71,7 +71,7 @@ void Location::compute_COM(dat::base::Set& set){
 void Location::compute_COM(dat::base::Entity& entity){
   //---------------------------
 
-  utl::base::Data& data = entity.data;
+  utl::base::Data& data = *entity.data;
   utl::base::Pose& pose = *entity.pose;
 
   this->compute_centroid(entity);
@@ -111,7 +111,7 @@ void Location::compute_MinMax(dat::base::Set& set){
   pose.COM = centroid;
 }
 void Location::compute_MinMax(dat::base::Entity& entity){
-  utl::base::Data& data = entity.data;
+  utl::base::Data& data = *entity.data;
   utl::base::Pose& pose = *entity.pose;
   //---------------------------
 
@@ -143,7 +143,7 @@ void Location::compute_MinMax(dat::base::Entity& entity){
   pose.COM = centroid;
 }
 void Location::compute_height(dat::base::Entity& entity){
-  utl::base::Data& data = entity.data;
+  utl::base::Data& data = *entity.data;
   utl::base::Pose& pose = *entity.pose;
   //---------------------------
 
@@ -166,7 +166,7 @@ void Location::compute_height(dat::base::Entity& entity){
   //---------------------------
 }
 void Location::compute_range(dat::base::Entity& entity){
-  utl::base::Data& data = entity.data;
+  utl::base::Data& data = *entity.data;
   //---------------------------
 
   //Retrieve field
@@ -187,7 +187,7 @@ void Location::compute_range(dat::base::Entity& entity){
   //---------------------------
 }
 void Location::compute_incidence_angle(dat::base::Entity& entity){
-  utl::base::Data& data = entity.data;
+  utl::base::Data& data = *entity.data;
   //---------------------------
 
   std::unique_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");

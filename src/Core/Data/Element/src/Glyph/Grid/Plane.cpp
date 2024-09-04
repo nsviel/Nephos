@@ -21,18 +21,18 @@ Plane::~Plane(){}
 void Plane::create(){
   //---------------------------
 
-  data.name = "grid::plane::data";
-  data.is_visible = true;
-  data.topology.type = utl::topology::TRIANGLE;
-  data.unicolor = color;
+  data->name = "grid::plane::data";
+  data->is_visible = true;
+  data->topology.type = utl::topology::TRIANGLE;
+  data->unicolor = color;
 
   //---------------------------
 }
 
 //Subfunction
 void Plane::construct(int nb_cell){
-  std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<glm::vec4>& rgba = data.rgba;
+  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec4>& rgba = data->rgba;
   float z = -0.004;
   //---------------------------
 

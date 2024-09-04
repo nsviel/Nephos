@@ -60,8 +60,8 @@ void Ransac::reset_search_space(){
   //---------------------------
 }
 void Ransac::reduce_search_space(std::shared_ptr<dat::base::Sensor> sensor){
-  std::vector<glm::vec3>& vec_xyz = sensor->data.xyz;
-  std::vector<glm::vec3>& vec_Nxyz = sensor->data.Nxyz;
+  std::vector<glm::vec3>& vec_xyz = sensor->data->xyz;
+  std::vector<glm::vec3>& vec_Nxyz = sensor->data->Nxyz;
   //---------------------------
 
   glm::vec3 pose = rad_struct->ransac.current_pose;

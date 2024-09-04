@@ -26,13 +26,13 @@ void Entity::init_entity(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   entity->UID = dat_uid->generate_UID();
-  entity->data.UID = dat_uid->generate_UID();
-  entity->data.is_updated = true;
+  entity->data->UID = dat_uid->generate_UID();
+  entity->data->is_updated = true;
 
   //---------------------------
 }
 void Entity::remove_entity(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+  utl::base::Data& data = *entity->data;
   //----------------------------
 
   entity->clean();
@@ -60,7 +60,7 @@ void Entity::visibility_entity(std::shared_ptr<dat::base::Entity> entity, bool v
   if(!entity) return;
   //---------------------------
 
-  entity->data.is_visible = value;
+  entity->data->is_visible = value;
 
   //Glyph visibility
   for(std::shared_ptr<dat::base::Glyph> glyph : entity->list_glyph){
@@ -76,11 +76,10 @@ void Entity::visibility_entity(std::shared_ptr<dat::base::Entity> entity, bool v
   //---------------------------
 }
 void Entity::update_data(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
   //----------------------------
 
-  if(data.is_updated){
-    vk_data->insert(data, entity->pose);
+  if(entity->data->is_updated){
+    vk_data->insert(entity->data, entity->pose);
 
     //Update attribut
     atr_location->compute_centroid(*entity);
@@ -90,7 +89,7 @@ void Entity::update_data(std::shared_ptr<dat::base::Entity> entity){
       this->update_data(glyph);
     }
 
-    data.is_updated = false;
+    entity->data->is_updated = false;
   }
 
   //----------------------------

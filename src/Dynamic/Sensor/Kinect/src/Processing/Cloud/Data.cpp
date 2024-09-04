@@ -101,7 +101,7 @@ void Data::extraction_data(k4n::base::Sensor& sensor){
   //---------------------------
 }
 void Data::extraction_transfer(k4n::base::Sensor& sensor){
-  utl::base::Data& data = sensor.data;
+  utl::base::Data& data = *sensor.data;
   //---------------------------
 
   std::unique_lock<std::mutex> lock(data.mutex);

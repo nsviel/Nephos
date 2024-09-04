@@ -17,7 +17,7 @@ Topology::~Topology(){}
 
 //Main function
 void Topology::entity_typology(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+  utl::base::Data& data = *entity->data;
   //---------------------------
 
   //Primitive size

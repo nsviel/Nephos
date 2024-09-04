@@ -64,7 +64,7 @@ void Recorder::wait_thread(){
 
 //Subfunction
 void Recorder::compute_recording(std::shared_ptr<dat::base::Sensor> sensor){
-  std::string path = sensor->data.path.build();
+  std::string path = sensor->data->path.build();
   //---------------------------
 /*
   if(sensor->info.vec_recorder.size() == 1){
@@ -73,7 +73,7 @@ void Recorder::compute_recording(std::shared_ptr<dat::base::Sensor> sensor){
     for(int i=0; i<sensor->info.vec_recorder.size(); i++){
       dat::sensor::Recorder* recorder = sensor->info.vec_recorder[i];
 
-      if(recorder->format == sensor->data.path.format){
+      if(recorder->format == sensor->data->path.format){
         recorder->record_sensor(sensor, path);
       }
     }

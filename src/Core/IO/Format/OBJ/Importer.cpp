@@ -22,10 +22,10 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   //Init
   std::shared_ptr<dat::base::Object> object = std::make_shared<dat::base::Object>();
   object->name = utl::path::get_name_from_path(path.build());
-  object->data.name = utl::path::get_name_from_path(path.build());
-  object->data.path = path;
-  object->data.path.format = format;
-  object->data.topology.type = utl::topology::POINT;
+  object->data->name = utl::path::get_name_from_path(path.build());
+  object->data->path = path;
+  object->data->path.format = format;
+  object->data->topology.type = utl::topology::POINT;
 
   //Init
   this->init_params();
@@ -40,7 +40,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   this->parse_mtl(path.build());
 
   // Fill output format with file data
-  this->fill_data_file(object->data, vertex_vec);
+  this->fill_data_file(*object->data, vertex_vec);
 
   //---------------------------
   return object;

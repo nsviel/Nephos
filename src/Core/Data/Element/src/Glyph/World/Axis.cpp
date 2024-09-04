@@ -22,10 +22,10 @@ Axis::~Axis(){}
 void Axis::create(){
   //---------------------------
 
-  data.name = "world::axis::data";
-  data.width = 4;
-  data.is_visible = true;
-  data.topology.type = utl::topology::LINE;
+  data->name = "world::axis::data";
+  data->width = 4;
+  data->is_visible = true;
+  data->topology.type = utl::topology::LINE;
 
   this->construct();
 
@@ -34,8 +34,8 @@ void Axis::create(){
 
 //Subfunction
 void Axis::construct(){
-  std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<glm::vec4>& rgba = data.rgba;
+  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec4>& rgba = data->rgba;
   float z = 0;
   //---------------------------
 

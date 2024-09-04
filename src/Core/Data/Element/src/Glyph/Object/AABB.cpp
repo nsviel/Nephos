@@ -21,14 +21,14 @@ AABB::~AABB(){}
 void AABB::create(){
   //---------------------------
 
-  data.name = "object::AABB::data";
-  data.width = 1;
-  data.is_visible = false;
-  data.topology.type = utl::topology::LINE;
-  data.unicolor = color;
+  data->name = "object::AABB::data";
+  data->width = 1;
+  data->is_visible = false;
+  data->topology.type = utl::topology::LINE;
+  data->unicolor = color;
 
   for(int i=0; i<24; i++){
-    data.rgba.push_back(color);
+    data->rgba.push_back(color);
   }
 
   //---------------------------
@@ -38,7 +38,7 @@ void AABB::update_glyph(utl::base::Pose& pose){
 
   glm::vec3 min = pose.min;
   glm::vec3 max = pose.max;
-  data.xyz = build_box(min, max);
+  data->xyz = build_box(min, max);
 
   //---------------------------
 }

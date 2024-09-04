@@ -22,11 +22,11 @@ Target::~Target(){}
 void Target::create(){
   //---------------------------
 
-  data.name = "cam::target::data";
-  data.width = 2;
-  data.is_visible = true;
-  data.topology.type = utl::topology::LINE;
-  data.unicolor = glm::vec4(1, 1, 1, 0.2f);
+  data->name = "cam::target::data";
+  data->width = 2;
+  data->is_visible = true;
+  data->topology.type = utl::topology::LINE;
+  data->unicolor = glm::vec4(1, 1, 1, 0.2f);
 
   this->construct();
 
@@ -36,7 +36,7 @@ void Target::update_pose(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 
   if(std::shared_ptr<cam::Entity> camera = std::dynamic_pointer_cast<cam::Entity>(entity)){
-    if(camera->mode != CAMERA_MODE_ARCBALL && data.is_visible) data.is_visible = false;
+    if(camera->mode != CAMERA_MODE_ARCBALL && data->is_visible) data->is_visible = false;
 
     glm::mat4 translation(1.0);
     translation[0][3] = camera->cam_COM.x;
@@ -50,8 +50,8 @@ void Target::update_pose(std::shared_ptr<dat::base::Entity> entity){
 
 //Subfunction
 void Target::construct(){
-  std::vector<glm::vec3>& xyz = data.xyz;
-  std::vector<glm::vec4>& rgba = data.rgba;
+  std::vector<glm::vec3>& xyz = data->xyz;
+  std::vector<glm::vec4>& rgba = data->rgba;
   //---------------------------
 
   xyz.clear();

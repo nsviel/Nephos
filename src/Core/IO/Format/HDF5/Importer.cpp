@@ -23,10 +23,10 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   //Init
   std::shared_ptr<dat::base::Object> object = std::make_shared<dat::base::Object>();
   object->name = path.name;
-  object->data.name = path.name;
-  object->data.path = path;
-  object->data.path.format = format;
-  object->data.topology.type = utl::topology::POINT;
+  object->data->name = path.name;
+  object->data->path = path;
+  object->data->path.format = format;
+  object->data->topology.type = utl::topology::POINT;
 
   //---------------------------
   return object;

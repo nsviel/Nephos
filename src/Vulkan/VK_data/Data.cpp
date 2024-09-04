@@ -36,7 +36,7 @@ void Data::clean(){
 
   //---------------------------
 }
-void Data::insert(utl::base::Data& data, std::shared_ptr<utl::base::Pose> pose){
+void Data::insert(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose){
   //---------------------------
 
   //Check if data already in engine
@@ -45,7 +45,7 @@ void Data::insert(utl::base::Data& data, std::shared_ptr<utl::base::Pose> pose){
   for(int i=0; i<vk_struct->data.list_vk_object.size(); i++){
     vk_object = *next(vk_struct->data.list_vk_object.begin(), i);
 
-    if(data.UID == vk_object->data->UID){
+    if(data->UID == vk_object->data->UID){
       this->update_vk_object(data, vk_object);
       return;
     }
@@ -73,10 +73,10 @@ void Data::remove(utl::base::Data& data){
 }
 
 //Subfunction
-void Data::update_vk_object(utl::base::Data& data, vk::structure::Object* vk_object){
+void Data::update_vk_object(std::shared_ptr<utl::base::Data> data, vk::structure::Object* vk_object){
   //---------------------------
 
-  vk_object->data = &data;
+  vk_object->data = data;
   this->check_data(vk_object);
 
   //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
@@ -88,12 +88,12 @@ void Data::update_vk_object(utl::base::Data& data, vk::structure::Object* vk_obj
 
   //---------------------------
 }
-void Data::create_vk_object(utl::base::Data& data, std::shared_ptr<utl::base::Pose> pose){
+void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::base::Pose> pose){
   //---------------------------
 
   //Creat new data struct
   vk::structure::Object* vk_object = new vk::structure::Object();
-  vk_object->data = &data;
+  vk_object->data = data;
   vk_object->pose = pose;
   vk_object->UID = vk_uid->query_free_UID();
 
@@ -102,7 +102,7 @@ void Data::create_vk_object(utl::base::Data& data, std::shared_ptr<utl::base::Po
   vk_buffer->create_buffer(vk_object);
 
   //Descriptor
-  vk_descriptor->make_required_descriptor(data, &vk_object->binding);
+  vk_descriptor->make_required_descriptor(*data, &vk_object->binding);
   vk_descriptor->create_binding(&vk_object->binding);
 
   //Insert data struct into set

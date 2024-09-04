@@ -40,7 +40,7 @@ void Manager::create_camera(){
 
   dat_glyph->insert_glyph(camera);
   dat_set->insert_entity(set_scene, camera);
-  camera->data.is_updated = true;
+  camera->data->is_updated = true;
 
   cam_struct->vec_camera.push_back(camera);
   cam_struct->cam_current = camera;

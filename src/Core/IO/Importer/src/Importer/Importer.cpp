@@ -28,7 +28,7 @@ Importer::Importer(io::imp::Node* node_importer){
 Importer::~Importer(){}
 
 //Main function
-utl::base::Data* Importer::load_data(std::string path){
+std::shared_ptr<utl::base::Data> Importer::load_data(std::string path){
   if(!check_path(path)) return nullptr;
   //---------------------------
 
@@ -40,9 +40,9 @@ utl::base::Data* Importer::load_data(std::string path){
   if(!element) return nullptr;
 
   //Convert into data
-  utl::base::Data* data = nullptr;
+  std::shared_ptr<utl::base::Data> data;
   if(auto entity = std::dynamic_pointer_cast<dat::base::Entity>(element)){
-    data = &entity->data;
+    data = entity->data;
   }
 
   //---------------------------

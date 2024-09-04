@@ -37,7 +37,7 @@ void Info::path_info(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
   ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-  utl::base::Data& data = entity->data;
+  utl::base::Data& data = *entity->data;
   utl::base::Pose& pose = *entity->pose;
 
   ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Path");

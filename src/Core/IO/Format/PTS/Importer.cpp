@@ -27,10 +27,10 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   //Init
   std::shared_ptr<dat::base::Object> object = std::make_shared<dat::base::Object>();
   object->name = path.name;
-  object->data.name = path.name;
-  object->data.path = path;
-  object->data.path.format = format;
-  object->data.topology.type = utl::topology::POINT;
+  object->data->name = path.name;
+  object->data->path = path;
+  object->data->path.format = format;
+  object->data->topology.type = utl::topology::POINT;
 
   //Initialization
   io::imp::Configuration config;
@@ -41,7 +41,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   this->retrieve_size(config);
   this->retrieve_configuration(config);
   this->retrieve_data(config);
-  this->transfer_data(config, object->data);
+  this->transfer_data(config, *object->data);
 
   //---------------------------
   return object;

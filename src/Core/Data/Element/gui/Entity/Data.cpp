@@ -40,7 +40,7 @@ void Data::entity_info(std::shared_ptr<dat::base::Entity> entity){
   //Visibility
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Visibility"); ImGui::TableNextColumn();
-  utl::base::Data& data = entity->data;
+  utl::base::Data& data = *entity->data;
   if(ImGui::Checkbox("##4555", &data.is_visible)){
     dat_entity->visibility_entity(entity, data.is_visible);
   }
@@ -58,7 +58,7 @@ void Data::entity_info(std::shared_ptr<dat::base::Entity> entity){
   //---------------------------
 }
 void Data::entity_data(std::shared_ptr<dat::base::Entity> entity){
-  utl::base::Data& data = entity->data;
+  utl::base::Data& data = *entity->data;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();

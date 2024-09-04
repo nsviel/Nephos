@@ -57,7 +57,7 @@ void Operation::make_normal_from_depth_image(std::shared_ptr<dat::base::Sensor> 
   /*uint8_t* depth = sensor->depth.data.buffer;
   //---------------------------
 
-  utl::base::Data& data = sensor->data;
+  utl::base::Data& data = *sensor->data;
 
   int width = sensor->depth.data.width;
   int height = sensor->depth.data.height;

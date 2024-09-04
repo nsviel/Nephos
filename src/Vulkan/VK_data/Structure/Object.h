@@ -32,7 +32,7 @@ struct Object{
   bool has_xyz = false;
   bool has_rgba = false;
   bool has_uv = false;
-  utl::base::Data* data = nullptr;
+  std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
   std::shared_ptr<utl::base::Pose> pose = std::make_shared<utl::base::Pose>();
 
   //Buffer

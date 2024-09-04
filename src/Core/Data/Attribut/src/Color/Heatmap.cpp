@@ -19,7 +19,7 @@ Heatmap::~Heatmap(){}
 
 //Main function
 void Heatmap::colorization_heatmap(dat::base::Entity& entity){
-  utl::base::Data& data = entity.data;
+  utl::base::Data& data = *entity.data;
   //---------------------------
 
   //Retrieve field

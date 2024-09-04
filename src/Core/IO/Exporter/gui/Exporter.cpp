@@ -206,7 +206,7 @@ void Exporter::item_update(std::shared_ptr<utl::base::Element> element){
 
   //Actualize current name
   if(entity != nullptr && io_struct->path.name != entity->name){
-    utl::base::Data& data = entity->data;
+    utl::base::Data& data = *entity->data;
     io_struct->path.name = entity->name;
 
     if(io_exporter->is_format_supported(data.path.format)){
@@ -222,7 +222,7 @@ void Exporter::item_operation(std::shared_ptr<dat::base::Entity> entity){
 
   std::string format = (io_struct->path.format != "-") ? io_struct->path.format : "";
 
-  utl::base::Data& data = entity->data;
+  utl::base::Data& data = *entity->data;
   data.name = io_struct->path.name;
   data.path.directory = io_struct->path.directory;
   data.path.name = data.name;

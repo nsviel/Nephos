@@ -22,10 +22,10 @@ void Axis::create(){
   //---------------------------
 
   //Create glyph
-  data.name = "object::axis::data";
-  data.width = 3;
-  data.is_visible = true;
-  data.topology.type = utl::topology::LINE;
+  data->name = "object::axis::data";
+  data->width = 3;
+  data->is_visible = true;
+  data->topology.type = utl::topology::LINE;
 
   this->construct();
 
@@ -42,8 +42,8 @@ void Axis::update_pose(std::shared_ptr<dat::base::Entity> entity){
 
 //Subfunction
 void Axis::construct(){
-  std::vector<glm::vec4>& rgba = data.rgba;
-  std::vector<glm::vec3>& xyz = data.xyz;
+  std::vector<glm::vec4>& rgba = data->rgba;
+  std::vector<glm::vec3>& xyz = data->xyz;
   //---------------------------
 
   //Location

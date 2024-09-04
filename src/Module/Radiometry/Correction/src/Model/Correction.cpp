@@ -46,7 +46,7 @@ void Correction::make_image_correction(std::shared_ptr<dat::base::Sensor> sensor
 void Correction::make_correction(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
-  utl::base::Data& data = sensor->data;
+  utl::base::Data& data = *sensor->data;
 
   std::unique_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
   std::unique_ptr<std::vector<float>> vec_It_ptr = atr_field->get_field_data(data, "It");

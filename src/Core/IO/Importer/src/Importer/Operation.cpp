@@ -71,7 +71,7 @@ void Operation::ope_color(std::shared_ptr<dat::base::Object> object){
   if(!object) return;
   //---------------------------
 
-  utl::base::Data& data = object->data;
+  utl::base::Data& data = *object->data;
   std::unique_lock<std::mutex> lock(data.mutex);
 
   //Bouger oute cette merde dans colorization dat attribut
