@@ -120,7 +120,7 @@ void Texture::clean_texture(vk::structure::Object& vk_object){
   //---------------------------
 
   for(auto it = vk_object.list_vk_texture.begin(); it != vk_object.list_vk_texture.end();){
-    this->clean_texture(*it);
+    this->clean_texture(it);
   }
 
   //---------------------------
