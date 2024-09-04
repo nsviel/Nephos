@@ -42,12 +42,12 @@ void Monitor::init() {
 
 
   // Create and run the thread
-  std::thread monitor_thread(&Monitor::usb_monitor, this);
+  std::thread monitor_thread(&Monitor::loop, this);
   monitor_thread.detach();
 
   //---------------------------
 }
-void Monitor::usb_monitor() {
+void Monitor::loop() {
   //---------------------------
 
   while (true) {
@@ -86,56 +86,34 @@ void Monitor::manage_event() {
   if (!usb_struct->device) return;
 
   std::string action = std::string(udev_device_get_action(usb_struct->device));
-  std::string type = std::string(udev_device_get_devtype(usb_struct->device));
   std::string serial = std::string(udev_device_get_sysattr_value(usb_struct->device, "serial"));
   std::string vendor = std::string(udev_device_get_sysattr_value(usb_struct->device, "idVendor"));
   std::string product = std::string(udev_device_get_sysattr_value(usb_struct->device, "idProduct"));
 
+  for(int i=0; i<usb_struct->vec_device.size(); i++){
+    usb::structure::Device& device = usb_struct->vec_device[i];
 
-  say("-----");
-  say(action);
-  say(type);
-  say(serial);
-  say(vendor);
-  say(product);
-
-
-  -> add / bind
-
-  //realsense
--> usb_device
--> 103223061341
--> 8086
--> 0b5c
--> Intel(R) RealSense(TM) Depth Camera 455
--> Intel(R) RealSense(TM) Depth Camera 455
-
-//kinect
--> usb_device
--> 000123924512
--> 045e
--> 097b
--> Generic
--> 4-Port USB 2.0 Hub
-
-
-
-/*
-  if (vendor && product) {
-    std::string vendor_id = vendor;
-    std::string product_id = product;
-
-    // Replace with your Kinect's vendor ID and product ID
-    if (vendor_id == "045E" && product_id == "02AE") {
-      if (action == "remove") {
-        std::cout << "Kinect device unplugged.\n";
-        // Reset Kinect logic here
-      }
+    if (vendor == device.vendor && product == device.product) {
+      this->manage_action(action, product);
     }
-  }*/
+  }
 
   //Release device
   udev_device_unref(usb_struct->device);
+
+  //---------------------------
+}
+void Monitor::manage_action(const std::string& action, const std::string& product) {
+  //---------------------------
+
+  //Plugging
+  if(action == "add"){
+    say("is plugging");
+  }
+  //Unplugging
+  else if(action == "add"){
+    say("is unplugging");
+  }
 
   //---------------------------
 }

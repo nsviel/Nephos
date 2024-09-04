@@ -18,11 +18,12 @@ public:
 public:
   //Main function
   void init();
-  void usb_monitor();
+  void loop();
   void close();
 
   //Subfunction
   void manage_event();
+  void manage_action(const std::string& action, const std::string& product);
 
 private:
   usb::Structure* usb_struct;
