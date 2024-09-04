@@ -23,20 +23,18 @@ Submission::~Submission(){}
 void Submission::process_command(vk::command::structure::Set* set){
   //---------------------------
 
-  //Submission stuff
-  VkSemaphore semaphore;
-  std::vector<VkSubmitInfo> vec_info;
-  this->build_submission(set, vec_info, semaphore);
-  this->make_submission(set, vec_info);
+  this->build_submission(set);
+  this->make_submission(set);
   this->post_submission(set);
 
   //---------------------------
 }
 
 //Subfunction
-void Submission::build_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& semaphore){
+void Submission::build_submission(vk::command::structure::Set* set){
   //---------------------------
 
+  set->vec_info.clear();
   for(auto& command: set->vec_command){
     VkSubmitInfo submit_info{};
     submit_info.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -51,8 +49,6 @@ void Submission::build_submission(vk::command::structure::Set* set, std::vector<
     if(command->semaphore_done != VK_NULL_HANDLE){
       submit_info.pSignalSemaphores = &command->semaphore_done;
       submit_info.signalSemaphoreCount = 1;
-
-      semaphore = command->semaphore_done;
     }
 
     //Pipeline wait stage
@@ -68,18 +64,18 @@ void Submission::build_submission(vk::command::structure::Set* set, std::vector<
       std::cout<<"[error] command buffer is VK_NULL"<<std::endl;
     }
 
-    vec_info.push_back(submit_info);
+    set->vec_info.push_back(submit_info);
   }
 
   //---------------------------
 }
-void Submission::make_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info){
+void Submission::make_submission(vk::command::structure::Set* set){
   //---------------------------
 
   vk::synchro::structure::Fence* fence = vk_fence->query_free_fence();
 
   VkQueue queue = vk_struct->device.queue.graphics.handle;
-  VkResult result = vkQueueSubmit(queue, vec_info.size(), vec_info.data(), fence->handle);
+  VkResult result = vkQueueSubmit(queue, set->vec_info.size(), set->vec_info.data(), fence->handle);
   if(result != VK_SUCCESS){
     throw std::runtime_error("[error] command buffer queue submission");
   }

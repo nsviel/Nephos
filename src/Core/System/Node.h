@@ -5,6 +5,7 @@
 namespace core{class Node;}
 namespace vk{class Node;}
 
+namespace usb{class Node;}
 
 
 namespace sys{
@@ -24,12 +25,10 @@ public:
 
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
 
-
-
 private:
   vk::Node* node_vulkan;
 
-
+  usb::Node* node_usb;
 };
 
 }

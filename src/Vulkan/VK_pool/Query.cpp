@@ -1,6 +1,7 @@
 #include "Query.h"
 
 #include <Vulkan/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace vk::instance{

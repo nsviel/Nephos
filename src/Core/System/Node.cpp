@@ -15,7 +15,7 @@ Node::Node(core::Node* node_core){
   this->node_vulkan = node_core->get_node_vulkan();
 
   //Child
-
+  this->node_usb = new usb::Node(this);
 
   //---------------------------
 }
@@ -25,6 +25,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
+  node_usb->init();
 
   //---------------------------
 }

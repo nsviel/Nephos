@@ -3,7 +3,9 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace sys{class Node;}
+
 namespace usb{class Structure;}
+namespace usb{class Monitor;}
 
 
 namespace usb{
@@ -23,6 +25,7 @@ public:
 
 private:
   usb::Structure* usb_struct;
+  usb::Monitor* usb_monitor;
 };
 
 }

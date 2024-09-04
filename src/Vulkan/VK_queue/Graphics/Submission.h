@@ -28,8 +28,8 @@ public:
   void process_command(vk::command::structure::Set* set);
 
   //Subfunction
-  void build_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info, VkSemaphore& done);
-  void make_submission(vk::command::structure::Set* set, std::vector<VkSubmitInfo>& vec_info);
+  void build_submission(vk::command::structure::Set* set);
+  void make_submission(vk::command::structure::Set* set);
   void post_submission(vk::command::structure::Set* set);
 
 private:

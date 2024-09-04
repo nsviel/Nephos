@@ -44,6 +44,7 @@ void Texture::clean(){
 
 //Texture function
 void Texture::import_texture(std::shared_ptr<utl::media::Image> utl_image){
+  if(!utl_image) return;
   //---------------------------
 
   //Input image checks
@@ -52,8 +53,7 @@ void Texture::import_texture(std::shared_ptr<utl::media::Image> utl_image){
 
   //If the texture exists, update it
   auto texture = query_texture(utl_image->texture_ID);
-  if(!texture){
-    texture->utl_image = utl_image;
+  if(texture){
     this->update_texture(texture);
   }
   //Else create it
