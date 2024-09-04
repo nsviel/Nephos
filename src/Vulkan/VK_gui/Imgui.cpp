@@ -150,8 +150,8 @@ void Imgui::update_render_descriptor(){
 ImTextureID Imgui::create_imgui_texture(int UID){
   //---------------------------
 
-  vk::structure::Texture* texture = vk_texture->query_texture(UID);
-  if(texture == nullptr) return 0;
+  std::shared_ptr<vk::structure::Texture> texture = vk_texture->query_texture(UID);
+  if(!texture) return 0;
 
   //Retrieve descriptor from vulkan texture
   VkDescriptorSet descriptor  = ImGui_ImplVulkan_AddTexture(texture->vk_image.sampler, texture->vk_image.view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);

@@ -23,8 +23,8 @@ public:
   virtual void draw_frame(){}
 
   //Draw command
-  void cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object* data);
-  void cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* data);
+  void cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object);
+  void cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object);
 
 protected:
   vk::Structure* vk_struct;

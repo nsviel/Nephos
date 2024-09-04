@@ -19,27 +19,27 @@ Drawer::Drawer(vk::Structure* vk_struct){
 Drawer::~Drawer(){}
 
 //Draw command
-void Drawer::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object* vk_object){
+void Drawer::cmd_draw_data(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object){
   //---------------------------
 
   VkDeviceSize offsets[] = {0};
-  if(vk_object->buffer.rgba.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(command_buffer, 1, 1, &vk_object->buffer.rgba.vbo, offsets);
+  if(vk_object.buffer.rgba.vbo != VK_NULL_HANDLE){
+    vkCmdBindVertexBuffers(command_buffer, 1, 1, &vk_object.buffer.rgba.vbo, offsets);
   }
-  if(vk_object->buffer.uv.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(command_buffer, 2, 1, &vk_object->buffer.uv.vbo, offsets);
+  if(vk_object.buffer.uv.vbo != VK_NULL_HANDLE){
+    vkCmdBindVertexBuffers(command_buffer, 2, 1, &vk_object.buffer.uv.vbo, offsets);
   }
-  if(vk_object->buffer.xyz.vbo != VK_NULL_HANDLE){
-    vkCmdBindVertexBuffers(command_buffer, 0, 1, &vk_object->buffer.xyz.vbo, offsets);
-    vkCmdDraw(command_buffer, vk_object->data->xyz.size(), 1, 0, 0);
+  if(vk_object.buffer.xyz.vbo != VK_NULL_HANDLE){
+    vkCmdBindVertexBuffers(command_buffer, 0, 1, &vk_object.buffer.xyz.vbo, offsets);
+    vkCmdDraw(command_buffer, vk_object.data->xyz.size(), 1, 0, 0);
   }
 
   //---------------------------
 }
-void Drawer::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object* vk_object){
+void Drawer::cmd_line_with(VkCommandBuffer& command_buffer, vk::structure::Object& vk_object){
   //---------------------------
 
-  vkCmdSetLineWidth(command_buffer, vk_object->data->width);
+  vkCmdSetLineWidth(command_buffer, vk_object.data->width);
 
   //---------------------------
 }

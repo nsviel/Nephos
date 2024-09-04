@@ -25,7 +25,7 @@ Data::~Data(){}
 
 //Main function
 void Data::clean(){
-  std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
+  std::list<std::shared_ptr<vk::structure::Object>>& list_vk_object = vk_struct->data.list_vk_object;
   //---------------------------
 
   auto it = list_vk_object.begin();
@@ -41,12 +41,9 @@ void Data::insert(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::ba
 
   //Check if data already in engine
   bool is_in_list = false;
-  vk::structure::Object* vk_object;
-  for(int i=0; i<vk_struct->data.list_vk_object.size(); i++){
-    vk_object = *next(vk_struct->data.list_vk_object.begin(), i);
-
+  for(auto& vk_object : vk_struct->data.list_vk_object){
     if(data->UID == vk_object->data->UID){
-      this->update_vk_object(data, vk_object);
+      this->update_vk_object(data, *vk_object);
       return;
     }
   }
@@ -57,13 +54,10 @@ void Data::insert(std::shared_ptr<utl::base::Data> data, std::shared_ptr<utl::ba
   //---------------------------
 }
 void Data::remove(utl::base::Data& data){
-  std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
   //---------------------------
 
   bool is_in_list = false;
-  for(int i=0; i<list_vk_object.size(); i++){
-    vk::structure::Object* vk_object = *next(list_vk_object.begin(),i);
-
+  for(auto& vk_object : vk_struct->data.list_vk_object){
     if(data.UID == vk_object->data->UID){
       this->clean_vk_object(vk_object);
     }
@@ -73,14 +67,14 @@ void Data::remove(utl::base::Data& data){
 }
 
 //Subfunction
-void Data::update_vk_object(std::shared_ptr<utl::base::Data> data, vk::structure::Object* vk_object){
+void Data::update_vk_object(std::shared_ptr<utl::base::Data> data, vk::structure::Object& vk_object){
   //---------------------------
 
-  vk_object->data = data;
+  vk_object.data = data;
   this->check_data(vk_object);
 
   //sometimes at data init the data size is 0, the nbuffers are not created so we need to create them now
-  if(vk_object->buffer.xyz.mem == 0){
+  if(vk_object.buffer.xyz.mem == 0){
     vk_buffer->create_buffer(vk_object);
   }else{
     vk_buffer->update_buffer(vk_object);
@@ -92,14 +86,14 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
   //---------------------------
 
   //Creat new data struct
-  vk::structure::Object* vk_object = new vk::structure::Object();
+  std::shared_ptr<vk::structure::Object> vk_object = std::make_shared<vk::structure::Object>();
   vk_object->data = data;
   vk_object->pose = pose;
   vk_object->UID = vk_uid->query_free_UID();
 
   //Data
-  this->check_data(vk_object);
-  vk_buffer->create_buffer(vk_object);
+  this->check_data(*vk_object);
+  vk_buffer->create_buffer(*vk_object);
 
   //Descriptor
   vk_descriptor->make_required_descriptor(*data, &vk_object->binding);
@@ -110,24 +104,23 @@ void Data::create_vk_object(std::shared_ptr<utl::base::Data> data, std::shared_p
 
   //---------------------------
 }
-void Data::clean_vk_object(vk::structure::Object* vk_object){
-  std::list<vk::structure::Object*>& list_vk_object = vk_struct->data.list_vk_object;
+void Data::clean_vk_object(std::shared_ptr<vk::structure::Object> vk_object){
   //---------------------------
 
-  vk_buffer->clean_buffers(vk_object);
-  vk_texture->clean_texture(vk_object);
+  vk_buffer->clean_buffers(*vk_object);
+  vk_texture->clean_texture(*vk_object);
   vk_descriptor->clean_binding(&vk_object->binding);
-  list_vk_object.remove(vk_object);
+  vk_struct->data.list_vk_object.remove(vk_object);
 
   //---------------------------
 }
-void Data::check_data(vk::structure::Object* vk_object){
-  utl::base::Data& data = *vk_object->data;
+void Data::check_data(vk::structure::Object& vk_object){
+  utl::base::Data& data = *vk_object.data;
   //---------------------------
 
-  vk_object->has_xyz = (data.xyz.size() == 0) ? false : true;
-  vk_object->has_rgba = (data.rgba.size() == 0) ? false : true;
-  vk_object->has_uv =  (data.uv.size()  == 0) ? false : true;
+  vk_object.has_xyz = (data.xyz.size() == 0) ? false : true;
+  vk_object.has_rgba = (data.rgba.size() == 0) ? false : true;
+  vk_object.has_uv =  (data.uv.size()  == 0) ? false : true;
 
   //---------------------------
 }

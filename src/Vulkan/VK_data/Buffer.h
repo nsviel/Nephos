@@ -18,13 +18,13 @@ public:
 
 public:
   //Main function
-  void create_buffer(vk::structure::Object* vk_object);
-  void update_buffer(vk::structure::Object* vk_object);
-  void clean_buffers(vk::structure::Object* vk_object);
+  void create_buffer(vk::structure::Object& vk_object);
+  void update_buffer(vk::structure::Object& vk_object);
+  void clean_buffers(vk::structure::Object& vk_object);
   void clean_buffer(vk::data::structure::Buffer* buffer);
 
   //Subfunction
-  int get_size_buffer(vk::structure::Object* vk_object);
+  int get_size_buffer(vk::structure::Object& vk_object);
 
 private:
   vk::Structure* vk_struct;

@@ -2,6 +2,7 @@
 
 #include <Vulkan/VK_image/Structure/Texture.h>
 #include <Vulkan/VK_data/Structure/Object.h>
+#include <memory>
 #include <list>
 
 
@@ -11,9 +12,9 @@ struct Data{
   //One structure containing all engined inserted data (vk::object)
   //---------------------------
 
-  vk::structure::Object canvas;
-  std::list<vk::structure::Texture*> list_vk_texture;
-  std::list<vk::structure::Object*> list_vk_object;
+  std::shared_ptr<vk::structure::Object> canvas = std::make_shared<vk::structure::Object>();
+  std::list< std::shared_ptr<vk::structure::Texture> > list_vk_texture;
+  std::list< std::shared_ptr<vk::structure::Object> > list_vk_object;
 
   //---------------------------
 };

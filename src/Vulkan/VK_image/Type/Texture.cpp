@@ -24,12 +24,9 @@ Texture::~Texture(){}
 
 //Main function
 void Texture::clean(){
-  std::list<vk::structure::Texture*>& list_vk_texture = vk_struct->data.list_vk_texture;
   //---------------------------
 
-  for(int i=0; i<list_vk_texture.size(); i++){
-    vk::structure::Texture* texture = *next(list_vk_texture.begin(),i);
-
+  for(auto& texture : vk_struct->data.list_vk_texture){
     vk_image->clean_image(&texture->vk_image);
     vk_buffer->clean_buffer(&texture->stagger);
   }
@@ -46,14 +43,14 @@ void Texture::import_texture(std::shared_ptr<utl::media::Image> utl_image){
   if(utl_image->width == 0 || utl_image->height == 0) return;
 
   //If the texture exists, update it
-  vk::structure::Texture* texture = query_texture(utl_image->texture_ID);
-  if(texture != nullptr){
+  auto texture = query_texture(utl_image->texture_ID);
+  if(!texture){
     texture->utl_image = utl_image;
     this->update_texture(texture);
   }
   //Else create it
   else{
-    texture = new vk::structure::Texture();
+    texture = std::make_shared<vk::structure::Texture>();
     texture->utl_image = utl_image;
     this->create_texture(texture);
   }
@@ -63,27 +60,25 @@ void Texture::import_texture(std::shared_ptr<utl::media::Image> utl_image){
 void Texture::export_texture(std::shared_ptr<utl::media::Image> utl_image){
   //---------------------------
 
-  vk::structure::Texture* texture = query_texture(utl_image->texture_ID);
-  if(texture == nullptr) return;
+  std::shared_ptr<vk::structure::Texture> texture = query_texture(utl_image->texture_ID);
+  if(!texture) return;
 
   vk_screenshot->export_image_to_jpeg(&texture->vk_image);
 
   //---------------------------
 }
-void Texture::clean_texture(vk::structure::Texture* texture){
+void Texture::clean_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
 
   vk_image->clean_image(&texture->vk_image);
   vk_buffer->clean_buffer(&texture->stagger);
   texture->utl_image->texture_ID = -1;
-  texture = {};
-  delete texture;
 
   //---------------------------
 }
 
 //Texture subfunction
-void Texture::update_texture(vk::structure::Texture* texture){
+void Texture::update_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
 
   //Check if size hasn't changed
@@ -92,11 +87,11 @@ void Texture::update_texture(vk::structure::Texture* texture){
     return;
   }
 
-  vk_mem_transfer->copy_texture_to_gpu(texture);
+  vk_mem_transfer->copy_texture_to_gpu(*texture);
 
   //---------------------------
 }
-void Texture::create_texture(vk::structure::Texture* texture){
+void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   //---------------------------
 
   //Create texture container
@@ -114,19 +109,18 @@ void Texture::create_texture(vk::structure::Texture* texture){
 
   //Make associated operation
   vk_mem_allocator->allocate_empty_stagger_buffer(&texture->stagger, texture->utl_image->size);
-  vk_mem_transfer->copy_texture_to_gpu(texture);
+  vk_mem_transfer->copy_texture_to_gpu(*texture);
   vk_struct->data.list_vk_texture.push_back(texture);
 
   //---------------------------
 }
 
 //Subfunction
-void Texture::clean_texture(vk::structure::Object* vk_object){
+void Texture::clean_texture(vk::structure::Object& vk_object){
   //---------------------------
 
-  for(auto it = vk_object->list_vk_texture.begin(); it != vk_object->list_vk_texture.end();){
-    vk::structure::Texture* texture = *it;
-    this->clean_texture(texture);
+  for(auto it = vk_object.list_vk_texture.begin(); it != vk_object.list_vk_texture.end();){
+    this->clean_texture(*it);
   }
 
   //---------------------------
@@ -160,13 +154,10 @@ VkFormat Texture::find_texture_format(std::shared_ptr<utl::media::Image> image){
   //---------------------------
   return format;
 }
-vk::structure::Texture* Texture::query_texture(int UID){
-  std::list<vk::structure::Texture*>& list_vk_texture = vk_struct->data.list_vk_texture;
+std::shared_ptr<vk::structure::Texture> Texture::query_texture(int UID){
   //---------------------------
 
-  for(int i=0; i<list_vk_texture.size(); i++){
-    vk::structure::Texture* texture = *next(list_vk_texture.begin(),i);
-
+  for(auto& texture : vk_struct->data.list_vk_texture){
     if(texture->UID == UID){
       return texture;
     }

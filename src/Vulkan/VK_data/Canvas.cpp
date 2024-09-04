@@ -41,23 +41,22 @@ void Canvas::init(){
   uv.push_back(glm::vec2(0.0f,  1.0f));
 
   //Canvas data
-  std::shared_ptr<utl::base::Data> data = std::make_shared<utl::base::Data>();
-  data->name = "vk::canvas";
-  data->xyz = xyz;
-  data->uv = uv;
-  data->size = xyz.size();
-  data->topology.type = utl::topology::TRIANGLE;
+  vk::structure::Object& vk_object = *vk_struct->data.canvas;
+  vk_object.data->name = "vk::canvas";
+  vk_object.data->xyz = xyz;
+  vk_object.data->uv = uv;
+  vk_object.data->size = xyz.size();
+  vk_object.data->topology.type = utl::topology::TRIANGLE;
 
-  //Create vk object
-  vk_struct->data.canvas.data = data;
-  vk_buffer->create_buffer(&vk_struct->data.canvas);
+  //Create buffer
+  vk_buffer->create_buffer(vk_object);
 
   //---------------------------
 }
 void Canvas::clean(){
   //---------------------------
 
-  vk_buffer->clean_buffers(&vk_struct->data.canvas);
+  vk_buffer->clean_buffers(*vk_struct->data.canvas);
 
   //---------------------------
 }

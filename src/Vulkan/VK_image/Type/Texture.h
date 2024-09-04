@@ -31,16 +31,16 @@ public:
   //Texture function
   void import_texture(std::shared_ptr<utl::media::Image> utl_image);
   void export_texture(std::shared_ptr<utl::media::Image> utl_image);
-  void clean_texture(vk::structure::Texture* texture);
+  void clean_texture(std::shared_ptr<vk::structure::Texture> texture);
 
   //Texture subfunction
-  void clean_texture(vk::structure::Object* vk_object);
-  void update_texture(vk::structure::Texture* texture);
-  void create_texture(vk::structure::Texture* texture);
+  void clean_texture(vk::structure::Object& vk_object);
+  void update_texture(std::shared_ptr<vk::structure::Texture> texture);
+  void create_texture(std::shared_ptr<vk::structure::Texture> texture);
 
   //Subfunction
   VkFormat find_texture_format(std::shared_ptr<utl::media::Image> image);
-  vk::structure::Texture* query_texture(int UID);
+  std::shared_ptr<vk::structure::Texture> query_texture(int UID);
 
 private:
   vk::Structure* vk_struct;
