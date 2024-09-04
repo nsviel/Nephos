@@ -85,17 +85,13 @@ void Monitor::manage_event() {
   usb_struct->udev.device = udev_monitor_receive_device(usb_struct->udev.monitor);
   if (!usb_struct->udev.device) return;
 
+  //Event action
   std::string action = std::string(udev_device_get_action(usb_struct->udev.device));
-  std::string serial = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "serial"));
-  std::string vendor = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idVendor"));
-  std::string product = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idProduct"));
-
-  for(int i=0; i<usb_struct->vec_device.size(); i++){
-    usb::structure::Device& device = usb_struct->vec_device[i];
-
-    if (vendor == device.vendor && product == device.product) {
-      this->manage_action(action, product);
-    }
+  if(action == "add"){
+    this->manage_plug();
+  }
+  else if(action == "remove"){
+    this->manage_unplug();
   }
 
   //Release device
@@ -103,17 +99,34 @@ void Monitor::manage_event() {
 
   //---------------------------
 }
-void Monitor::manage_action(const std::string& action, const std::string& product) {
+void Monitor::manage_plug() {
   //---------------------------
 
-  //Plugging
-  if(action == "add"){
-    say("is plugging");
+  std::string serial = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "serial"));
+  std::string vendor = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idVendor"));
+  std::string product = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idProduct"));
+  std::string node = std::string(udev_device_get_devnode(usb_struct->udev.device));
+
+  for(int i=0; i<usb_struct->vec_reference.size(); i++){
+    usb::structure::Reference& ref = usb_struct->vec_reference[i];
+
+    if (vendor == ref.vendor && product == ref.product) {
+      say(serial);
+      say("plug");
+
+      usb_struct->map_device[node] = serial;
+    }
   }
-  //Unplugging
-  else if(action == "add"){
-    say("is unplugging");
-  }
+
+  //---------------------------
+}
+void Monitor::manage_unplug() {
+  //---------------------------
+
+  std::string node = std::string(udev_device_get_devnode(usb_struct->udev.device));
+
+  say(usb_struct->map_device[node]);
+  say("unplug");
 
   //---------------------------
 }

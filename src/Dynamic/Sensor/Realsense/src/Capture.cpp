@@ -21,12 +21,12 @@ Capture::~Capture(){}
 //Main function
 void Capture::init(){
   //---------------------------
-
+/*
   int nb_device = get_nb_device();
   if(nb_device != 0){
     rlx_struct->pipe.start();
   }
-
+*/
   //---------------------------
 }
 void Capture::capture(){

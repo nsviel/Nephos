@@ -5,11 +5,12 @@
 
 namespace usb::structure{
 
-struct Device{
+struct Reference{
   //---------------------------
 
-  std::string serial = "";
-  std::string node = "";
+  std::string name = "";
+  std::string vendor = "";
+  std::string product = "";
 
   //---------------------------
 };

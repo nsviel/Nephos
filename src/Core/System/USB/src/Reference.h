@@ -8,12 +8,12 @@ namespace usb{class Structure;}
 
 namespace usb{
 
-class Device
+class Reference
 {
 public:
   //Constructor / Destructor
-  Device(usb::Node* node_usb);
-  ~Device();
+  Reference(usb::Node* node_usb);
+  ~Reference();
 
 public:
   //Main function

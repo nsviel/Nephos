@@ -5,6 +5,7 @@
 
 namespace usb{class Node;}
 namespace usb{class Structure;}
+namespace usb::structure{class Device;}
 
 
 namespace usb{
@@ -24,7 +25,8 @@ public:
 
   //Subfunction
   void manage_event();
-  void manage_action(const std::string& action, const std::string& product);
+  void manage_plug();
+  void manage_unplug();
 
 private:
   usb::Structure* usb_struct;

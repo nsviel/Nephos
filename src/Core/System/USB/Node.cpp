@@ -11,7 +11,7 @@ Node::Node(sys::Node* node_system){
 
   this->usb_struct = new usb::Structure();
   this->usb_monitor = new usb::Monitor(this);
-  this->usb_device = new usb::Device(this);
+  this->usb_reference = new usb::Reference(this);
 
   //---------------------------
 }
@@ -21,7 +21,7 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  usb_device->init();
+  usb_reference->init();
   usb_monitor->init();
 
   //---------------------------
