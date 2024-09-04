@@ -20,10 +20,6 @@ void Playback::init_info(k4n::playback::Sensor& sensor){
   //---------------------------
 
   sensor.name = sensor.data.path.name;
-  sensor.device.capture = std::make_shared<k4a::capture>();
-  sensor.color.image = std::make_shared<utl::media::Image>();
-  sensor.depth.image = std::make_shared<utl::media::Image>();
-  sensor.infra.image = std::make_shared<utl::media::Image>();
   sensor.calibration.path.insert("../media/calibration/kinect.json");
 
   sensor.data.name = sensor.data.path.name;
