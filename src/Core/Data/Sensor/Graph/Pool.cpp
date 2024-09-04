@@ -28,7 +28,7 @@ Pool::~Pool(){
 void Pool::worker_init(int size){
   //---------------------------
 
-  for (size_t i = 0; i < size; ++i) {
+  for(size_t i = 0; i < size; ++i) {
     //Create and start worker
     vec_worker.emplace_back([this] {
       this->worker_thread();
@@ -65,7 +65,7 @@ void Pool::worker_stop(){
     stop = true;
   }
   cv.notify_all();
-  for (std::thread &worker : vec_worker){
+  for(std::thread &worker : vec_worker){
     worker.join();
   }
 
