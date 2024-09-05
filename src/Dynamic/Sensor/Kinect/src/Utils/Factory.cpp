@@ -14,19 +14,13 @@ Factory::Factory(k4n::Node* node_k4n){
   dat::gph::Node* node_graph = node_data->get_node_graph();
   dat::elm::Node* node_element = node_data->get_node_element();
 
+  this->node_k4n = node_k4n;
   this->dat_set = node_element->get_dat_set();
   this->dat_graph = node_graph->get_gph_graph();
 
   //---------------------------
 }
-Factory::~Factory(){
-  //---------------------------
-
-  this->stop_thread();
-  this->thread.join();
-
-  //---------------------------
-}
+Factory::~Factory(){}
 
 //Main function
 std::shared_ptr<k4n::capture::Sensor> Factory::create_capture_sensor(int index){
@@ -45,7 +39,7 @@ std::shared_ptr<k4n::playback::Sensor> Factory::create_playback_sensor(utl::base
   //---------------------------
 
   //Create sensor
-  std::shared_ptr<k4n::playback::Sensor> sensor = std::make_shared<k4n::playback::Sensor>(node_k4n, index);
+  std::shared_ptr<k4n::playback::Sensor> sensor = std::make_shared<k4n::playback::Sensor>(node_k4n, path);
 
   //Insert sensor into data tree
   this->insert_in_kinect_set(*sensor);

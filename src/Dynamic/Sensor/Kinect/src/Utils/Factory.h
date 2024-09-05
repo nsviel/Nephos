@@ -4,9 +4,12 @@
 #include <thread>
 
 namespace k4n{class Node;}
+namespace k4n::base{class Sensor;}
 namespace k4n::capture{class Sensor;}
+namespace k4n::playback{class Sensor;}
 namespace dat::gph{class Graph;}
 namespace dat::elm{class Set;}
+namespace utl::base{class Path;}
 
 
 namespace k4n{
@@ -27,6 +30,7 @@ public:
   void insert_in_kinect_set(k4n::base::Sensor& sensor);
 
 private:
+  k4n::Node* node_k4n;
   dat::elm::Set* dat_set;
   dat::gph::Graph* dat_graph;
 };
