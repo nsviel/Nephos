@@ -86,7 +86,7 @@ void Connection::manage_connected_device(){
 
   //Create required number of new devices
   for(int i=0; i<current_nb_dev; i++){
-    this->create_sensor(i);
+    //this->create_sensor(i);
   }
 
   //---------------------------

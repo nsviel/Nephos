@@ -124,9 +124,11 @@ void Monitor::manage_unplug() {
   //---------------------------
 
   std::string node = std::string(udev_device_get_devnode(usb_struct->udev.device));
-
-  say(usb_struct->map_device[node]);
-  say("unplug");
+  auto it = usb_struct->map_device.find(node);
+  if (it != usb_struct->map_device.end()) {
+    say(usb_struct->map_device[node]);
+    say("unplug");
+  }
 
   //---------------------------
 }
