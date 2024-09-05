@@ -10,6 +10,7 @@ namespace k4n::gui{
 Capture::Capture(k4n::Node* node_k4n){
   //---------------------------
 
+  this->k4n_capture = new k4n::capture::Capture(node_k4n);
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
   this->k4n_struct = node_k4n->get_k4n_structure();
 
@@ -209,21 +210,21 @@ void Capture::configuration_color_control(){
     float exposure_value = (float)k4n_struct->config.color.exposure.value;
     if(ImGui::SliderFloat("Exposure Time", &exposure_value, 488.0f, 1000000.0f, "%.0f us", ImGuiSliderFlags_Logarithmic)){
       k4n_struct->config.color.exposure.value = exposure_value;
-      k4n_config->manage_configuration();
+      k4n_capture->manage_configuration();
     }
     ImGui::TableNextColumn();
     switch(k4n_struct->config.color.exposure.mode){
       case K4A_COLOR_CONTROL_MODE_MANUAL:{
         if(ImGui::Button("M##Exposure")){
           k4n_struct->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_AUTO;
-          k4n_config->manage_configuration();
+          k4n_capture->manage_configuration();
         }
         break;
       }
       case K4A_COLOR_CONTROL_MODE_AUTO:{
         if(ImGui::Button("A##Exposure")){
           k4n_struct->config.color.exposure.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
-          k4n_config->manage_configuration();
+          k4n_capture->manage_configuration();
         }
         break;
       }
@@ -233,21 +234,21 @@ void Capture::configuration_color_control(){
     ImGui::TableNextRow(); ImGui::TableNextColumn();
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("White Balance", &k4n_struct->config.color.white_balance.value, 2500, 12500, "%d K")){
-      k4n_config->manage_configuration();
+      k4n_capture->manage_configuration();
     }
     ImGui::TableNextColumn();
     switch(k4n_struct->config.color.white_balance.mode){
       case K4A_COLOR_CONTROL_MODE_MANUAL:{
         if(ImGui::Button("M##Balance")){
           k4n_struct->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_AUTO;
-          k4n_config->manage_configuration();
+          k4n_capture->manage_configuration();
         }
         break;
       }
       case K4A_COLOR_CONTROL_MODE_AUTO:{
         if(ImGui::Button("A##Balance")){
           k4n_struct->config.color.white_balance.mode = K4A_COLOR_CONTROL_MODE_MANUAL;
-          k4n_config->manage_configuration();
+          k4n_capture->manage_configuration();
         }
         break;
       }
@@ -258,46 +259,46 @@ void Capture::configuration_color_control(){
     //Brightness
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Brightness", &k4n_struct->config.color.brightness.value, 0, 255, "%d")){
-      k4n_config->manage_configuration();
+      k4n_capture->manage_configuration();
     }
 
     //Contrast
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Contrast", &k4n_struct->config.color.contrast.value, 0, 10, "%d")){
-      k4n_config->manage_configuration();
+      k4n_capture->manage_configuration();
     }
 
     //Saturation
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Saturation", &k4n_struct->config.color.saturation.value, 0, 63, "%d")){
-      k4n_config->manage_configuration();
+      k4n_capture->manage_configuration();
     }
 
     //Sharpness
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Sharpness", &k4n_struct->config.color.sharpness.value, 0, 4, "%d")){
-      k4n_config->manage_configuration();
+      k4n_capture->manage_configuration();
     }
 
     //Gain
     ImGui::SetNextItemWidth(100);
     if(ImGui::SliderInt("Gain", &k4n_struct->config.color.gain.value, 0, 255, "%d")){
-      k4n_config->manage_configuration();
+      k4n_capture->manage_configuration();
     }
 
     //Backlight Compensation
     if(ImGui::Checkbox("Backlight Compensation", &k4n_struct->config.color.backlight_compensation.value)){
-      k4n_config->manage_configuration();
+      k4n_capture->manage_configuration();
     }
 
     //Power frequency
     ImGui::Text("Power Frequency");
     if(ImGui::RadioButton("50Hz", &k4n_struct->config.color.power_frequency.value, 1)){
-      k4n_config->manage_configuration();
+      k4n_capture->manage_configuration();
     }
     ImGui::SameLine();
     if(ImGui::RadioButton("60Hz", &k4n_struct->config.color.power_frequency.value, 2)){
-      k4n_config->manage_configuration();
+      k4n_capture->manage_configuration();
     }
 
     ImGui::TreePop();
@@ -353,7 +354,7 @@ void Capture::configuration_button(){
 
   //Refresh / reset buttons
   if(ImGui::Button("Restart")){
-    k4n_config->manage_configuration();
+    k4n_capture->manage_configuration();
     //set->reset();
   }
   ImGui::SameLine();

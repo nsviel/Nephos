@@ -28,7 +28,7 @@ void Capture::run_capture(std::string& vendor, std::string& product){
   if(importer == nullptr) return;
 
   say(importer->reference.name);
-/*
+
   //Get element
   std::shared_ptr<utl::base::Element> element = importer->capture();
   if(!element || element->type != "entity") return;
@@ -39,7 +39,7 @@ void Capture::run_capture(std::string& vendor, std::string& product){
 
   //Insert it
   io_operation->insert_object(object);
-*/
+
   //---------------------------
 }
 

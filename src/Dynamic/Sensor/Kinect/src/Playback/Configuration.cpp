@@ -21,18 +21,18 @@ void Configuration::find_configuration(k4n::playback::Sensor& sensor){
   //---------------------------
 
   //FPS
-  sensor.fps.mode_str = find_mode_fps(configuration.camera_fps);
+  sensor.setting.fps_mode = find_mode_fps(configuration.camera_fps);
 
   //Synchro
-  k4n_struct->config.synchro.wired_mode_str = find_mode_synchro(configuration.wired_sync_mode);
+  sensor.setting.wired_mode = find_mode_synchro(configuration.wired_sync_mode);
   k4n_struct->config.synchro.wired_mode = configuration.wired_sync_mode;
   k4n_struct->config.synchro.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
   k4n_struct->config.synchro.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
   k4n_struct->config.synchro.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
 
   //Depth
-  sensor.depth.config.mode_str = find_mode_depth(configuration.depth_mode);
-  sensor.depth.config.resolution = find_resolution_depth(configuration.depth_mode);
+  sensor.info.depth_mode = find_mode_depth(configuration.depth_mode);
+  sensor.setting.depth_resolution = find_resolution_depth(configuration.depth_mode);
   sensor.depth.config.enabled = configuration.depth_track_enabled;
   sensor.depth.config.mode = configuration.depth_mode;
   sensor.device.playback.get_tag("K4A_DEPTH_FIRMWARE_VERSION", &sensor.firmware.depth);
@@ -42,8 +42,8 @@ void Configuration::find_configuration(k4n::playback::Sensor& sensor){
   sensor.device.playback.set_color_conversion(required_format);
   configuration.color_format = required_format;
 
-  sensor.color.config.resolution_str = find_mode_color_resolution(configuration.color_resolution);
-  sensor.color.config.format_str = find_mode_color_format(configuration.color_format);
+  sensor.setting.color_resolution = find_mode_color_resolution(configuration.color_resolution);
+  sensor.setting.color_format = find_mode_color_format(configuration.color_format);
   sensor.color.config.enabled = configuration.color_track_enabled;
   sensor.color.config.resolution = configuration.color_resolution;
   sensor.color.config.format = configuration.color_format;

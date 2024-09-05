@@ -20,7 +20,6 @@ public:
 
 public:
   //Main function
-  void manage_configuration();
   void make_default_configuration();
   void find_calibration(k4n::capture::Sensor& sensor);
   void find_versioning(k4n::capture::Sensor& sensor);

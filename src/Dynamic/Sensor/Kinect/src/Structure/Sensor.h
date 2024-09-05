@@ -11,6 +11,7 @@ struct Sensor : public dat::base::Sensor{
   //---------------------------
 
   //Data
+  k4n::structure::Setting setting;
   k4n::color::Structure color;
   k4n::depth::Structure depth;
   k4n::infrared::Structure infra;

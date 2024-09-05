@@ -57,5 +57,15 @@ void Capture::init_capture(k4n::capture::Sensor& sensor){
 
   //---------------------------
 }
+void Capture::manage_configuration(){
+  /*std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
+  std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
+  if(set != nullptr) return;*/
+  //---------------------------
+
+
+
+  //---------------------------
+}
 
 }

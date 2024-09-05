@@ -5,6 +5,7 @@
 namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::capture{class Sensor;}
+namespace k4n::capture{class Capture;}
 namespace k4n::capture{class Configuration;}
 
 
@@ -32,6 +33,7 @@ public:
 
 private:
   k4n::Structure* k4n_struct;
+  k4n::capture::Capture* k4n_capture;
   k4n::capture::Configuration* k4n_config;
 
   int item_width;

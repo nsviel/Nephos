@@ -4,6 +4,7 @@
 #include <Kinect/src/Structure/Configuration/Configuration.h>
 #include <Kinect/src/Structure/Configuration/FPS.h>
 #include <Kinect/src/Structure/Device/Connection.h>
+#include <Utility/Namespace.h>
 
 
 namespace k4n{

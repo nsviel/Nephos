@@ -4,7 +4,6 @@
 #include <Utility/Namespace.h>
 #include <k4a/k4a.hpp>
 #include <memory>
-#include <string>
 
 namespace k4n::structure{struct Data;}
 namespace utl::media{struct Image;}
@@ -119,9 +118,6 @@ struct Configuration{
 
   //General
   bool enabled = true;
-
-  std::string format_str = "";
-  std::string resolution_str = "";
 
   k4a_image_format_t format = K4A_IMAGE_FORMAT_COLOR_YUY2;
   k4a_color_resolution_t resolution = K4A_COLOR_RESOLUTION_720P;

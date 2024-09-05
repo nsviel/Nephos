@@ -24,16 +24,6 @@ Configuration::Configuration(k4n::Node* node_k4n){
 Configuration::~Configuration(){}
 
 //Main function
-void Configuration::manage_configuration(){
-  std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
-  std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
-  if(set != nullptr) return;
-  //---------------------------
-
-
-
-  //---------------------------
-}
 void Configuration::make_default_configuration(){
   //---------------------------
 

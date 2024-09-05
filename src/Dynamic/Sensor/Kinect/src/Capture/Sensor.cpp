@@ -26,6 +26,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
 
   this->device.index = k4n_struct->connection.current_ID++;
 
+
   //---------------------------
 }
 Sensor::~Sensor(){

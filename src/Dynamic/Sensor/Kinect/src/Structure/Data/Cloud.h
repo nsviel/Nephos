@@ -1,7 +1,6 @@
 #pragma once
 
 #include <k4a/k4a.hpp>
-#include <string>
 
 
 namespace k4n::structure{
