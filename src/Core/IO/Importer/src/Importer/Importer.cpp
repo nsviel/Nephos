@@ -47,6 +47,18 @@ io::base::Importer* Importer::obtain_importer(std::string format){
   //---------------------------
   return nullptr;
 }
+io::base::Importer* Importer::obtain_importer(std::string& vendor, std::string& product){
+  //---------------------------
+
+  for(io::base::Importer* importer : io_struct->vec_importer){
+    if(importer->reference.vendor == vendor && importer->reference.product == product){
+      return importer;
+    }
+  }
+
+  //---------------------------
+  return nullptr;
+}
 
 //Subfunction
 bool Importer::is_format_supported(std::string format){
@@ -65,7 +77,7 @@ bool Importer::is_format_supported(std::string format){
 std::vector<std::string> Importer::get_supported_format(){
   std::vector<std::string> vec_format;
   //---------------------------
-  
+
   for(io::base::Importer* importer : io_struct->vec_importer){
     vec_format.push_back(importer->reference.format);
   }

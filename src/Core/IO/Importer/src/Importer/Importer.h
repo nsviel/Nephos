@@ -29,6 +29,7 @@ public:
   //Main function
   void insert_importer(io::base::Importer* importer);
   io::base::Importer* obtain_importer(std::string format);
+  io::base::Importer* obtain_importer(std::string& vendor, std::string& product);
 
   //Subfunction
   bool is_format_supported(std::string format);

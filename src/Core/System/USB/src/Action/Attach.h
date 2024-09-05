@@ -22,6 +22,10 @@ public:
   //Main function
   void manage_action();
 
+  //Subfunction
+  void update_device_map();
+  void run_capture();
+  
 private:
   usb::Structure* usb_struct;
   io::imp::Importer* io_importer;
