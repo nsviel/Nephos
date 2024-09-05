@@ -1,4 +1,4 @@
-#include "Monitor.h"
+#include "Attach.h"
 
 #include <USB/Namespace.h>
 #include <Utility/Namespace.h>
@@ -8,17 +8,17 @@
 namespace usb{
 
 //Constructor / Destructor
-Monitor::Monitor(usb::Node* node_usb){
+Attach::Attach(usb::Node* node_usb){
   //---------------------------
 
   this->usb_struct = node_usb->get_usb_struct();
 
   //---------------------------
 }
-Monitor::~Monitor(){}
+Attach::~Attach(){}
 
 //Main function
-void Monitor::manage_action() {
+void Attach::manage_action() {
   //---------------------------
 
   std::string serial = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "serial"));
