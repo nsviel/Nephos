@@ -24,28 +24,12 @@ Node::Node(dyn::sen::Node* node_sensor){
   this->node_data = node_core->get_node_data();
 
   this->rlx_struct = new rlx::Structure();
-  this->rlx_capture = new rlx::Capture(this);
+  this->rlx_importer = new rlx::Importer(this);
 
   //---------------------------
 }
 Node::~Node(){}
 
 //Main function
-void Node::init(){
-  //---------------------------
-
-  rlx_capture->init();
-
-  //---------------------------
-}
-void Node::loop(){
-  //---------------------------
-
-  rlx_capture->capture();
-
-  //---------------------------
-}
-
-
 
 }

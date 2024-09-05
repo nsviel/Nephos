@@ -29,14 +29,11 @@ void Node::init(){
   //---------------------------
 
   //node_velodyne->init();
-  node_realsense->init();
 
   //---------------------------
 }
 void Node::loop(){
   //---------------------------
-
-  node_realsense->loop();
 
   //---------------------------
 }

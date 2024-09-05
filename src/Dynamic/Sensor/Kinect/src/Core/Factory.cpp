@@ -30,7 +30,7 @@ std::shared_ptr<k4n::capture::Sensor> Factory::create_capture_sensor(utl::base::
   std::shared_ptr<k4n::capture::Sensor> sensor = std::make_shared<k4n::capture::Sensor>(node_k4n, path);
 
   //Insert sensor into data tree
-  this->insert_in_kinect_set(*sensor);
+  this->insert_in_set(*sensor);
 
   //---------------------------
   return sensor;
@@ -42,14 +42,14 @@ std::shared_ptr<k4n::playback::Sensor> Factory::create_playback_sensor(utl::base
   std::shared_ptr<k4n::playback::Sensor> sensor = std::make_shared<k4n::playback::Sensor>(node_k4n, path);
 
   //Insert sensor into data tree
-  this->insert_in_kinect_set(*sensor);
+  this->insert_in_set(*sensor);
 
   //---------------------------
   return sensor;
 }
 
 //Subfunction
-void Factory::insert_in_kinect_set(k4n::base::Sensor& sensor){
+void Factory::insert_in_set(k4n::base::Sensor& sensor){
   //---------------------------
 
   //Get kinect set

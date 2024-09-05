@@ -27,7 +27,7 @@ public:
   std::shared_ptr<k4n::playback::Sensor> create_playback_sensor(utl::base::Path path);
 
   //Subfunction
-  void insert_in_kinect_set(k4n::base::Sensor& sensor);
+  void insert_in_set(k4n::base::Sensor& sensor);
 
 private:
   k4n::Node* node_k4n;

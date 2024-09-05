@@ -7,8 +7,8 @@ namespace dat{class Node;}
 namespace core{class Node;}
 namespace io{class Node;}
 
-namespace rlx{class Capture;}
 namespace rlx{class Structure;}
+namespace rlx{class Importer;}
 
 
 namespace rlx{
@@ -22,9 +22,7 @@ public:
 
 public:
   //Main function
-  void init();
-  void loop();
-
+  
   inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
 
@@ -36,7 +34,7 @@ private:
   dat::Node* node_data;
 
   rlx::Structure* rlx_struct;
-  rlx::Capture* rlx_capture;
+  rlx::Importer* rlx_importer;
 };
 
 }
