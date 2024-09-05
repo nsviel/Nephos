@@ -40,9 +40,9 @@ void Exporter::export_with_config(io::base::Exporter* exporter, std::shared_ptr<
 
   //Make export configuration
   io::exp::Configuration config;
-  config.mat_model = (io_struct->with_transformation) ? pose.model : glm::mat4(1);
+  config.mat_model = (io_struct->operation.with_transformation) ? pose.model : glm::mat4(1);
   config.mat_rotation = glm::mat3(config.mat_model);
-  config.with_colorization = io_struct->with_colorization;
+  config.with_colorization = io_struct->operation.with_colorization;
   config.encoding = io_struct->encoding;
   config.path = path;
 

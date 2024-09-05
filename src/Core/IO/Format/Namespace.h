@@ -7,3 +7,4 @@
 #include <Format/PLY/Namespace.h>
 #include <Format/PTS/Namespace.h>
 #include <Format/HDF5/Namespace.h>
+#include <Format/Node.h>

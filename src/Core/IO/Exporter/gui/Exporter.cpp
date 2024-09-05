@@ -163,9 +163,9 @@ void Exporter::display_encording(){
 void Exporter::display_option(){
   //---------------------------
 
-  ImGui::Checkbox("Apply transformation##3", &io_struct->with_transformation);
+  ImGui::Checkbox("Apply transformation##3", &io_struct->operation.with_transformation);
   ImGui::SameLine();
-  ImGui::Checkbox("Current colorization##3", &io_struct->with_colorization);
+  ImGui::Checkbox("Current colorization##3", &io_struct->operation.with_colorization);
 
   //---------------------------
 }
