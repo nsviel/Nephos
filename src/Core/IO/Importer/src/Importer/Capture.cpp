@@ -20,27 +20,26 @@ Capture::Capture(io::imp::Node* node_importer){
 Capture::~Capture(){}
 
 //Main function
-void Capture::run_capture(std::string& vendor, std::string& product){
+std::shared_ptr<dat::base::Sensor> Capture::run_capture(std::string& vendor, std::string& product){
   //---------------------------
 
   //Get importer
   io::base::Importer* importer = io_importer->obtain_importer(vendor, product);
-  if(importer == nullptr) return;
-
-  say(importer->reference.name);
+  if(importer == nullptr) return nullptr;
 
   //Get element
   std::shared_ptr<utl::base::Element> element = importer->capture();
-  if(!element || element->type != "entity") return;
+  if(!element || element->type != "entity") return nullptr;
 
   //Convert into object
-  auto object = std::dynamic_pointer_cast<dat::base::Object>(element);
-  if(!object) return;
+  auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
+  if(!sensor) return nullptr;
 
   //Insert it
-  io_operation->insert_object(object);
+  io_operation->insert_object(sensor);
 
   //---------------------------
+  return sensor;
 }
 
 }

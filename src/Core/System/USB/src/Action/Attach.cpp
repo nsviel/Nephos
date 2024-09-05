@@ -43,7 +43,7 @@ void Attach::update_device_map(){
     std::string serial = std::string(serial_ptr);
     std::string node = std::string(node_ptr);
 
-    usb_struct->map_device[node] = serial;
+    //usb_struct->map_device[node] = serial;
   }
 
   //---------------------------
@@ -53,12 +53,20 @@ void Attach::run_capture(){
 
   const char* vendor_ptr = udev_device_get_sysattr_value(usb_struct->udev.device, "idVendor");
   const char* product_ptr = udev_device_get_sysattr_value(usb_struct->udev.device, "idProduct");
+  const char* serial_ptr = udev_device_get_sysattr_value(usb_struct->udev.device, "serial");
+  const char* node_ptr = udev_device_get_devnode(usb_struct->udev.device);
 
-  if (vendor_ptr && product_ptr){
+  if (vendor_ptr && product_ptr && serial_ptr && node_ptr){
     std::string vendor = std::string(vendor_ptr);
     std::string product = std::string(product_ptr);
+    std::string serial = std::string(serial_ptr);
+    std::string node = std::string(node_ptr);
 
-    io_capture->run_capture(vendor, product);
+    std::shared_ptr<dat::base::Sensor> sensor = io_capture->run_capture(vendor, product);
+
+    if(sensor){
+      usb_struct->map_device[node] = sensor;
+    }
   }
 
   //---------------------------

@@ -121,6 +121,8 @@ void Monitor::manage_event(){
   }
   else if(action == "remove"){
     usb_detach->manage_action();
+  }else{
+
   }
 
   //Release device

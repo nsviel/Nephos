@@ -22,6 +22,7 @@ public:
 
 public:
   //Main function
+  void remove_entity(std::shared_ptr<dat::base::Entity> entity);
   void remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity);
   void remove_active_entity(std::shared_ptr<dat::base::Set> set);
   void remove_set(std::shared_ptr<dat::base::Set> set);

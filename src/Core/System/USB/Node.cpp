@@ -10,6 +10,7 @@ Node::Node(sys::Node* node_system){
   //---------------------------
 
   this->node_io = node_system->get_node_io();
+  this->node_data = node_system->get_node_data();
 
   this->usb_struct = new usb::Structure();
   this->usb_monitor = new usb::Monitor(this);

@@ -21,6 +21,15 @@ Element::Element(dat::gph::Node* node_graph){
 Element::~Element(){}
 
 //Main function
+void Element::remove_entity(std::shared_ptr<dat::base::Entity> entity){
+  if(!entity) return;
+  //---------------------------
+
+  //Remove entity
+  dat_set->remove_entity(entity->set_parent.lock(), entity);
+
+  //---------------------------
+}
 void Element::remove_entity(std::shared_ptr<dat::base::Set> set, std::shared_ptr<dat::base::Entity> entity){
   if(!set || !entity) return;
   //---------------------------

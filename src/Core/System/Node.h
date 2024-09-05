@@ -5,6 +5,7 @@
 namespace core{class Node;}
 namespace vk{class Node;}
 namespace io{class Node;}
+namespace dat{class Node;}
 
 namespace usb{class Node;}
 
@@ -26,10 +27,12 @@ public:
 
   inline io::Node* get_node_io(){return node_io;}
   inline vk::Node* get_node_vulkan(){return node_vulkan;}
+  inline dat::Node* get_node_data(){return node_data;}
 
 private:
   vk::Node* node_vulkan;
   io::Node* node_io;
+  dat::Node* node_data;
 
   usb::Node* node_usb;
 };

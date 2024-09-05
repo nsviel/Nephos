@@ -40,6 +40,13 @@ void Capture::init_info(k4n::capture::Sensor& sensor){
 void Capture::init_device(k4n::capture::Sensor& sensor){
   //---------------------------
 
+  //Wait until driver ready
+  int nb_device =0;
+  while(nb_device ==0){
+    nb_device = k4a_device_get_installed_count();
+  }
+  std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
   //Open device
   sensor.device.handle = k4a::device::open(sensor.device.index);
   if(!sensor.device.handle.is_valid()) return;

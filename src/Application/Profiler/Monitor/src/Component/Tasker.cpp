@@ -111,7 +111,7 @@ void Tasker::task_end(const std::string& name, float time, glm::vec4 color){
   //Search for corresponding task
   prf::monitor::Task* task = find_task(name);
   if(task == nullptr){
-    std::cout << "[error] task not started" << std::endl;
+    std::cout << "[error] task "<<name<<" not started" << std::endl;
     return;
   }
 

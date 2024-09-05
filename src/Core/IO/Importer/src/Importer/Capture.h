@@ -7,6 +7,7 @@
 namespace io::imp{class Node;}
 namespace io::imp{class Importer;}
 namespace io::imp{class Operation;}
+namespace dat::base{class Sensor;}
 
 
 namespace io::imp{
@@ -20,7 +21,7 @@ public:
 
 public:
   //Main function
-  void run_capture(std::string& vendor, std::string& product);
+  std::shared_ptr<dat::base::Sensor> run_capture(std::string& vendor, std::string& product);
 
 private:
   io::imp::Importer* io_importer;

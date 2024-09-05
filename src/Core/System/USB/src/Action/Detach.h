@@ -6,6 +6,7 @@
 namespace usb{class Node;}
 namespace usb{class Structure;}
 namespace usb::structure{class Device;}
+namespace dat::gph{class Element;}
 
 
 namespace usb{
@@ -23,6 +24,7 @@ public:
 
 private:
   usb::Structure* usb_struct;
+  dat::gph::Element* dat_element;
 };
 
 }

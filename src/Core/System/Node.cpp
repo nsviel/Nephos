@@ -14,6 +14,7 @@ Node::Node(core::Node* node_core){
   //Dependancy
   this->node_io = node_core->get_node_io();
   this->node_vulkan = node_core->get_node_vulkan();
+  this->node_data = node_core->get_node_data();
 
   //Child
   this->node_usb = new usb::Node(this);
