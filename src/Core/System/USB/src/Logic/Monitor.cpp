@@ -42,7 +42,6 @@ void Monitor::init() {
   //Get file descriptor
   usb_struct->udev.fd = udev_monitor_get_fd(usb_struct->udev.monitor);
 
-
   // Create and run the thread
   std::thread monitor_thread(&Monitor::loop, this);
   monitor_thread.detach();

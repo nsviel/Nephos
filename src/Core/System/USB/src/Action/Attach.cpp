@@ -52,7 +52,7 @@ void Attach::run_capture(){
   io::base::Importer* importer = io_importer->obtain_importer(vendor, product);
   if(importer == nullptr) return;
 
-  say(importer.reference.name);
+  say(importer->reference.name);
   say("plug");
 
 

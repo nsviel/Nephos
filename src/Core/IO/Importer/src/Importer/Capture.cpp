@@ -12,7 +12,7 @@ namespace io::imp{
 Capture::Capture(io::imp::Node* node_importer){
   //---------------------------
 
-  this->io_struct = node_importer->get_io_struct();
+  this->io_importer = node_importer->get_io_importer();
   this->io_operation = node_importer->get_io_operation();
 
   //---------------------------
@@ -20,5 +20,26 @@ Capture::Capture(io::imp::Node* node_importer){
 Capture::~Capture(){}
 
 //Main function
+void Capture::run_capture(std::string& vendor, std::string& product){
+  if(!check_path(path)) return;
+  //---------------------------
+
+  //Get importer
+  io::base::Importer* importer = io_importer->obtain_importer(vendor, product);
+  if(importer == nullptr) return;
+
+  //Get element
+  std::shared_ptr<utl::base::Element> element = importer->import(path);
+  if(!element || element->type != "entity") return;
+
+  //Convert into object
+  auto object = std::dynamic_pointer_cast<dat::base::Object>(element);
+  if(!object) return;
+
+  //Insert it
+  io_operation->insert_object(object);
+
+  //---------------------------
+}
 
 }

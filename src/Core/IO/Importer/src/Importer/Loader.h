@@ -4,16 +4,12 @@
 #include <string>
 #include <vector>
 
-namespace dat::base{class Set;}
-namespace dat::base{class Object;}
-namespace utl::base{class Data;}
-namespace utl::base{class Element;}
-namespace utl::base{class Path;}
-namespace utl::base{class Thread;}
 namespace io::imp{class Node;}
 namespace io::imp{class Importer;}
 namespace io::imp{class Operation;}
-namespace io::base{class Importer;}
+namespace utl::base{class Path;}
+namespace utl::base{class Data;}
+namespace utl::base{class Element;}
 
 
 namespace io::imp{
