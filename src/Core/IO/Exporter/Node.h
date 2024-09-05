@@ -20,7 +20,6 @@ public:
 
 public:
   //Main function
-  void init();
   void gui();
 
   inline dat::Node* get_node_data(){return node_data;}

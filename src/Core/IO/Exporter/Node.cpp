@@ -28,13 +28,6 @@ Node::Node(io::Node* node_io){
 Node::~Node(){}
 
 //Main function
-void Node::init(){
-  //---------------------------
-
-  io_exporter->init_path();
-
-  //---------------------------
-}
 void Node::gui(){
   //---------------------------
 

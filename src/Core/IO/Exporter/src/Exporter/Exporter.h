@@ -26,7 +26,6 @@ public:
   void export_entity(std::shared_ptr<dat::base::Entity> entity, std::string path);
 
   //Subfunction
-  void init_path();
   void export_with_config(io::base::Exporter* exporter, std::shared_ptr<dat::base::Entity> entity, std::string path);
   void insert_exporter(io::base::Exporter* exporter);
   void update_current_path(std::shared_ptr<utl::base::Element> element);

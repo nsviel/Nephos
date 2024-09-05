@@ -17,6 +17,7 @@ Node::Node(core::Node* node_core){
   //Child
   this->node_importer = new io::imp::Node(this);
   this->node_exporter = new io::exp::Node(this);
+  this->node_format = new fmt::Node(this);
 
   //---------------------------
 }
@@ -27,7 +28,7 @@ void Node::init(){
   //---------------------------
 
   node_importer->init();
-  node_exporter->init();
+  node_format->init();
 
   //---------------------------
 }

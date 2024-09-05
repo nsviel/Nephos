@@ -13,10 +13,6 @@ Exporter::Exporter(io::exp::Node* node_exporter){
 
   this->io_struct = node_exporter->get_io_struct();
 
-  this->insert_exporter(new fmt::ply::Exporter());
-  this->insert_exporter(new fmt::pts::Exporter());
-  this->insert_exporter(new fmt::hdf5::Exporter());
-
   //---------------------------
 }
 Exporter::~Exporter(){}
@@ -37,14 +33,6 @@ void Exporter::export_entity(std::shared_ptr<dat::base::Entity> entity, std::str
 }
 
 //Subfunction
-void Exporter::init_path(){
-  //---------------------------
-
-  io_struct->path.directory = utl::path::get_current_directory_path();
-  io_struct->path.format = "ply";
-
-  //---------------------------
-}
 void Exporter::export_with_config(io::base::Exporter* exporter, std::shared_ptr<dat::base::Entity> entity, std::string path){
   utl::base::Data& data = *entity->data;
   utl::base::Pose& pose = *entity->pose;

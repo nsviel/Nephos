@@ -6,6 +6,7 @@ namespace core{class Node;}
 namespace dat{class Node;}
 namespace eng{class Node;}
 
+namespace fmt{class Node;}
 namespace io::imp{class Node;}
 namespace io::exp{class Node;}
 
@@ -36,6 +37,7 @@ private:
   eng::Node* node_engine;
 
   //Child
+  fmt::Node* node_format;
   io::imp::Node* node_importer;
   io::exp::Node* node_exporter;
 };
