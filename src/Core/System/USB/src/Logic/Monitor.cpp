@@ -106,7 +106,7 @@ void Monitor::manage_plug() {
   std::string vendor = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idVendor"));
   std::string product = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idProduct"));
   std::string node = std::string(udev_device_get_devnode(usb_struct->udev.device));
-
+/*
   for(int i=0; i<usb_struct->vec_reference.size(); i++){
     usb::structure::Reference& ref = usb_struct->vec_reference[i];
 
@@ -117,7 +117,7 @@ void Monitor::manage_plug() {
       usb_struct->map_device[node] = serial;
     }
   }
-
+*/
   //---------------------------
 }
 void Monitor::manage_unplug() {

@@ -29,7 +29,7 @@ private:
   io::imp::Node* node_importer;
 
   rlx::Node* node_realsense;
-  rlx::Factory* k4n_factory;
+  rlx::Factory* rlx_factory;
 };
 
 }

@@ -1,6 +1,6 @@
 #include "Importer.h"
 
-#include <Kinect/Namespace.h>
+#include <Realsense/Namespace.h>
 #include <IO/Namespace.h>
 
 
@@ -10,11 +10,11 @@ namespace rlx{
 Importer::Importer(rlx::Node* node_realsense){
   //---------------------------
 
-  io::Node* node_io = node_rlx->get_node_io();
+  io::Node* node_io = node_realsense->get_node_io();
 
   this->node_realsense = node_realsense;
   this->node_importer = node_io->get_node_importer();
-  this->rlx_factory = new rlx::Factory(node_rlx);
+  this->rlx_factory = new rlx::Factory(node_realsense);
 
   //---------------------------
   this->insert_importer();

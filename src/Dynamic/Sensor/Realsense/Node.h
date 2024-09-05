@@ -22,10 +22,11 @@ public:
 
 public:
   //Main function
-  
+
   inline core::Node* get_node_core(){return node_core;}
   inline dat::Node* get_node_data(){return node_data;}
-
+  inline io::Node* get_node_io(){return node_io;}
+  
   inline rlx::Structure* get_rlx_struct(){return rlx_struct;}
 
 private:

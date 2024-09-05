@@ -6,7 +6,6 @@ namespace sys{class Node;}
 
 namespace usb{class Structure;}
 namespace usb{class Monitor;}
-namespace usb{class Reference;}
 
 
 namespace usb{
@@ -27,7 +26,6 @@ public:
 private:
   usb::Structure* usb_struct;
   usb::Monitor* usb_monitor;
-  usb::Reference* usb_reference;
 };
 
 }
