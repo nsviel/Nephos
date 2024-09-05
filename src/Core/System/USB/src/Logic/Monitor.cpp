@@ -12,6 +12,8 @@ Monitor::Monitor(usb::Node* node_usb){
   //---------------------------
 
   this->usb_struct = node_usb->get_usb_struct();
+  this->usb_attach = new usb::Attach(node_usb);
+  this->usb_detach = new usb::Detach(node_usb);
 
   //---------------------------
 }
@@ -88,47 +90,14 @@ void Monitor::manage_event() {
   //Event action
   std::string action = std::string(udev_device_get_action(usb_struct->udev.device));
   if(action == "add"){
-    this->manage_plug();
+    usb_attach->manage_action();
   }
   else if(action == "remove"){
-    this->manage_unplug();
+    usb_detach->manage_action();
   }
 
   //Release device
   udev_device_unref(usb_struct->udev.device);
-
-  //---------------------------
-}
-void Monitor::manage_plug() {
-  //---------------------------
-
-  std::string serial = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "serial"));
-  std::string vendor = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idVendor"));
-  std::string product = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idProduct"));
-  std::string node = std::string(udev_device_get_devnode(usb_struct->udev.device));
-/*
-  for(int i=0; i<usb_struct->vec_reference.size(); i++){
-    usb::structure::Reference& ref = usb_struct->vec_reference[i];
-
-    if (vendor == ref.vendor && product == ref.product) {
-      say(serial);
-      say("plug");
-
-      usb_struct->map_device[node] = serial;
-    }
-  }
-*/
-  //---------------------------
-}
-void Monitor::manage_unplug() {
-  //---------------------------
-
-  std::string node = std::string(udev_device_get_devnode(usb_struct->udev.device));
-  auto it = usb_struct->map_device.find(node);
-  if (it != usb_struct->map_device.end()) {
-    say(usb_struct->map_device[node]);
-    say("unplug");
-  }
 
   //---------------------------
 }

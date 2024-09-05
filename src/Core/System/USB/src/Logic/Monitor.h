@@ -5,7 +5,8 @@
 
 namespace usb{class Node;}
 namespace usb{class Structure;}
-namespace usb::structure{class Device;}
+namespace usb{class Attach;}
+namespace usb{class Detach;}
 
 
 namespace usb{
@@ -25,11 +26,11 @@ public:
 
   //Subfunction
   void manage_event();
-  void manage_plug();
-  void manage_unplug();
 
 private:
   usb::Structure* usb_struct;
+  usb::Attach* usb_attach;
+  usb::Detach* usb_detach;
 };
 
 }

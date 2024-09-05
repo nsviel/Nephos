@@ -36,7 +36,6 @@ void Importer::insert_importer(io::base::Importer* importer){
   //---------------------------
 }
 io::base::Importer* Importer::obtain_importer(std::string format){
-  io::base::Importer* importer = nullptr;
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){
