@@ -31,16 +31,14 @@ Importer::~Importer(){}
 void Importer::insert_importer(io::base::Importer* importer){
   //---------------------------
 
-  this->vec_importer.push_back(importer);
+  io_struct->vec_importer.push_back(importer);
 
   //---------------------------
 }
 io::base::Importer* Importer::obtain_importer(std::string format){
   //---------------------------
 
-  for(int i=0; i<vec_importer.size(); i++){
-    io::base::Importer* importer = vec_importer[i];
-
+  for(io::base::Importer* importer : io_struct->vec_importer){
     if(importer->reference.format == format){
       return importer;
     }
@@ -55,9 +53,7 @@ bool Importer::is_format_supported(std::string format){
   if(format == "-") return false;
   //---------------------------
 
-  for(int i=0; i<vec_importer.size(); i++){
-    io::base::Importer* importer = vec_importer[i];
-
+  for(io::base::Importer* importer : io_struct->vec_importer){
     if(format == importer->reference.format){
       return true;
     }
@@ -69,9 +65,8 @@ bool Importer::is_format_supported(std::string format){
 std::vector<std::string> Importer::get_supported_format(){
   std::vector<std::string> vec_format;
   //---------------------------
-
-  for(int i=0; i<vec_importer.size(); i++){
-    io::base::Importer* importer = vec_importer[i];
+  
+  for(io::base::Importer* importer : io_struct->vec_importer){
     vec_format.push_back(importer->reference.format);
   }
 

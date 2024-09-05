@@ -37,8 +37,6 @@ public:
 private:
   io::imp::Structure* io_struct;
   io::imp::Operation* io_operation;
-
-  std::vector<io::base::Importer*> vec_importer;
 };
 
 }
