@@ -73,15 +73,15 @@ void Header::draw_operation(){
 
   // Scale new
   ImGui::SetNextItemWidth(75);
-  ImGui::DragFloat("Scale##4567", &io_struct->scaling, 0.1, 0.1, 100, "%.2f x");
+  ImGui::DragFloat("Scale##4567", &io_struct->operation.scaling, 0.1, 0.1, 100, "%.2f x");
 
   // Remove old
   ImGui::SameLine();
-  ImGui::Checkbox("Remove##222", &io_struct->with_clearing);
+  ImGui::Checkbox("Remove##222", &io_struct->operation.with_clearing);
 
   // Center new
   ImGui::SameLine();
-  ImGui::Checkbox("Centered##222", &io_struct->with_centering);
+  ImGui::Checkbox("Centered##222", &io_struct->operation.with_centering);
 
   //---------------------------
 }

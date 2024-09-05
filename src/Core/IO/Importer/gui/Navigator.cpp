@@ -34,9 +34,9 @@ void Navigator::draw_tab(int width){
 
   //Flag to force navigator tab in case of bookmark folder
   ImGuiTabItemFlags flag = 0;
-  if(io_struct->open_navigation){
+  if(io_struct->operation.open_navigation){
     flag = ImGuiTabItemFlags_SetSelected;
-    io_struct->open_navigation = false;
+    io_struct->operation.open_navigation = false;
   }
 
   ImGui::SetNextItemWidth(width);

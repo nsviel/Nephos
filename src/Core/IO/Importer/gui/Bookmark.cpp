@@ -90,7 +90,7 @@ void Bookmark::bookmark_button(std::string path){
   //If selection is a directory go display his content
   if(utl::directory::is_directory(path)){
     io_struct->path.directory = path;
-    io_struct->open_navigation = true;
+    io_struct->operation.open_navigation = true;
   }
   //If selection is a file go load it
   else{

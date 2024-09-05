@@ -14,11 +14,9 @@ struct Structure{
     path.format = ".ply";
   }
 
+  io::imp::structure::Operation operation;
+  std::vector<io::base::Importer*> vec_importer;
   utl::base::Path path;
-  float scaling = 1;
-  bool with_centering = false;
-  bool with_clearing = true;
-  bool open_navigation = true;;
 
   //---------------------------
 };

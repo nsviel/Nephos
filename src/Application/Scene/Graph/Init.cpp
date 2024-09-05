@@ -57,7 +57,7 @@ void Init::load_entity(){
   utl::base::Path pts("/home/aether/Desktop/Point_cloud/pts/cloud.pts");
 
   //Create playback list
-  io_struct->with_clearing = false;
+  io_struct->operation.with_clearing = false;
   io_loader->load_object(versaille_0, versaille_0_t);
   //io_loader->load_object(versaille_2, versaille_2_t);
   //io_loader->load_object(cerfav);

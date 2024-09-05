@@ -1,6 +1,7 @@
 #include "Attach.h"
 
 #include <USB/Namespace.h>
+#include <IO/Namespace.h>
 #include <Utility/Namespace.h>
 #include <thread>
 
@@ -11,6 +12,10 @@ namespace usb{
 Attach::Attach(usb::Node* node_usb){
   //---------------------------
 
+  io::Node* node_io = node_usb->get_node_io();
+  io::imp::Node* node_importer = node_io->get_node_importer();
+
+  this->io_importer = node_importer->get_io_importer();
   this->usb_struct = node_usb->get_usb_struct();
 
   //---------------------------
@@ -18,7 +23,7 @@ Attach::Attach(usb::Node* node_usb){
 Attach::~Attach(){}
 
 //Main function
-void Attach::manage_action() {
+void Attach::manage_action(){
   //---------------------------
 
   std::string serial = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "serial"));
