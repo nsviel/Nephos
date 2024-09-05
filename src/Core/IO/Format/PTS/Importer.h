@@ -2,7 +2,7 @@
 
 #include <Importer/src/Structure/Configuration.h>
 #include <Importer/src/Structure/Buffer.h>
-#include <Importer/src/Structure/Base.h>
+#include <Importer/src/Base/Importer.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -22,7 +22,7 @@ enum Format{
   F2048_2048 = 2,
 };
 
-class Importer : public io::imp::Base
+class Importer : public io::base::Importer
 {
 public:
   //Constructor / Destructor

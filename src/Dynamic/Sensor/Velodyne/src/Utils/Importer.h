@@ -1,6 +1,6 @@
 #pragma once
 
-#include <IO/Importer/src/Structure/Base.h>
+#include <IO/Importer/src/Base/Importer.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -24,7 +24,7 @@ enum Lidar{
   HDL_32 = 1,
 };
 
-class Importer : public io::imp::Base
+class Importer : public io::base::Importer
 {
 public:
   //Constructor / Destructor

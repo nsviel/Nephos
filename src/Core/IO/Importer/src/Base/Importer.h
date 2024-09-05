@@ -7,9 +7,9 @@
 namespace dat::base{class Object;}
 
 
-namespace io::imp{
+namespace io::base{
 
-struct Base{
+struct Importer{
   //---------------------------
 
   virtual std::shared_ptr<utl::base::Element> import(utl::base::Path path){return nullptr;}

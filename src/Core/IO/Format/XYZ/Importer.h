@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Importer/src/Structure/Base.h>
+#include <Importer/src/Base/Importer.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -10,7 +10,7 @@
 
 namespace fmt::xyz{
 
-class Importer : public io::imp::Base
+class Importer : public io::base::Importer
 {
 public:
   //Constructor / Destructor

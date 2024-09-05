@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Importer/src/Structure/Configuration.h>
-#include <Importer/src/Structure/Base.h>
+#include <Importer/src/Base/Importer.h>
 #include <Utility/Function/File/Path.h>
 #include <Utility/Function/Math/Operation.h>
 #include <glm/glm.hpp>
@@ -18,7 +18,7 @@ namespace fmt::ply::importer{class Binary;}
 
 namespace fmt::ply{
 
-class Importer : public io::imp::Base
+class Importer : public io::base::Importer
 {
 public:
   //Constructor / Destructor

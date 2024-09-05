@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Importer/src/Structure/Base.h>
+#include <Importer/src/Base/Importer.h>
 #include <string>
 #include <memory>
 
@@ -14,7 +14,7 @@ namespace k4n::playback{class Sensor;}
 
 namespace k4n::playback{
 
-class Importer : public io::imp::Base
+class Importer : public io::base::Importer
 {
 public:
   //Constructor / Destructor

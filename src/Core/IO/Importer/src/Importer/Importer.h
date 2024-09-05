@@ -13,7 +13,7 @@ namespace utl::base{class Thread;}
 namespace io::imp{class Node;}
 namespace io::imp{class Structure;}
 namespace io::imp{class Operation;}
-namespace io::imp{class Base;}
+namespace io::base{class Importer;}
 
 
 namespace io::imp{
@@ -35,7 +35,7 @@ public:
 
   //Subfunction
   void init_path();
-  void insert_importer(io::imp::Base* importer);
+  void insert_importer(io::base::Importer* importer);
   bool check_path(std::string path);
   bool is_format_supported(std::string format);
   std::vector<std::string> get_supported_format();
@@ -45,7 +45,7 @@ private:
   io::imp::Structure* io_struct;
   io::imp::Operation* io_operation;
 
-  std::vector<io::imp::Base*> vec_importer;
+  std::vector<io::base::Importer*> vec_importer;
 };
 
 }

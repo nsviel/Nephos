@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Importer/src/Structure/Base.h>
 #include <Importer/src/Structure/Structure.h>
 #include <Importer/src/Structure/Buffer.h>
 #include <Importer/src/Structure/Configuration.h>
