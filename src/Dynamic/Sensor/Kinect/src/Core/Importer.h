@@ -4,15 +4,13 @@
 #include <string>
 #include <memory>
 
-namespace io::imp{class Node;}
-
 namespace k4n{class Node;}
 namespace k4n{class Factory;}
-namespace k4n::playback{class Configuration;}
-namespace k4n::playback{class Sensor;}
+namespace io::imp{class Node;}
+namespace utl::base{class Element;}
 
 
-namespace k4n::playback{
+namespace k4n{
 
 class Importer : public io::base::Importer
 {
@@ -34,7 +32,6 @@ private:
 
   k4n::Node* node_k4n;
   k4n::Factory* k4n_factory;
-  k4n::playback::Configuration* k4n_config;
 };
 
 }

@@ -8,8 +8,7 @@ namespace dat{class Node;}
 namespace io{class Node;}
 
 namespace k4n{class Structure;}
-namespace k4n::capture{class Connection;}
-namespace k4n::playback{class Importer;}
+namespace k4n{class Importer;}
 
 
 namespace k4n{
@@ -23,9 +22,6 @@ public:
 
 public:
   //Main function
-  void init();
-  void clean();
-  void loop();
 
   inline dyn::prc::Node* get_node_processing(){return node_processing;}
   inline dat::Node* get_node_data(){return node_data;}
@@ -41,8 +37,7 @@ private:
 
   //Child
   k4n::Structure* k4n_structure;
-  k4n::capture::Connection* k4n_connection;
-  k4n::playback::Importer* k4n_importer;
+  k4n::Importer* k4n_importer;
 };
 
 }

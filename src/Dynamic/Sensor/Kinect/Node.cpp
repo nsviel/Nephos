@@ -21,34 +21,12 @@ Node::Node(dyn::sen::Node* node_sensor){
 
   //Child
   this->k4n_structure = new k4n::Structure();
-  this->k4n_connection = new k4n::capture::Connection(this);
-  this->k4n_importer = new k4n::playback::Importer(this);
+  this->k4n_importer = new k4n::Importer(this);
 
   //---------------------------
 }
 Node::~Node(){}
 
 //Main function
-void Node::init(){
-  //---------------------------
-
-  k4n_connection->start_thread();
-
-  //---------------------------
-}
-void Node::clean(){
-  //---------------------------
-
-  k4n_connection->stop_thread();
-
-  //---------------------------
-}
-void Node::loop(){
-  //---------------------------
-
-  k4n_connection->manage_connected_device();
-
-  //---------------------------
-}
 
 }

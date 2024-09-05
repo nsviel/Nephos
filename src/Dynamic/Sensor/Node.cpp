@@ -28,7 +28,6 @@ Node::~Node(){}
 void Node::init(){
   //---------------------------
 
-  node_kinect->init();
   //node_velodyne->init();
   node_realsense->init();
 
@@ -37,7 +36,6 @@ void Node::init(){
 void Node::loop(){
   //---------------------------
 
-  node_kinect->loop();
   node_realsense->loop();
 
   //---------------------------
@@ -52,7 +50,6 @@ void Node::gui(){
 void Node::clean(){
   //---------------------------
 
-  node_kinect->clean();
   node_velodyne->clean();
 
   //---------------------------
