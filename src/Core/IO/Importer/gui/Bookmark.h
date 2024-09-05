@@ -3,7 +3,7 @@
 #include <string>
 
 namespace io::imp{class Structure;}
-namespace io::imp{class Importer;}
+namespace io::imp{class Loader;}
 namespace io::imp{class Bookmark;}
 namespace io::imp::gui{class Panel;}
 namespace utl::gui{class Navigator;}
@@ -30,7 +30,7 @@ public:
 
 private:
   io::imp::Structure* io_struct;
-  io::imp::Importer* io_importer;
+  io::imp::Loader* io_loader;
   io::imp::Bookmark* io_bookmark;
   utl::gui::Navigator* utl_navigator;
 };

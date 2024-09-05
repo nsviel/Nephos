@@ -3,7 +3,7 @@
 #include <Utility/GUI/Navigator/Navigator.h>
 
 namespace io::imp{class Structure;}
-namespace io::imp{class Importer;}
+namespace io::imp{class Loader;}
 namespace io::imp::gui{class Panel;}
 namespace utl::gui{class Navigator;}
 
@@ -22,10 +22,10 @@ public:
   void init_navigator();
   void draw_tab(int width);
   void item_operation(utl::base::Path path);
-  
+
 private:
   io::imp::Structure* io_struct;
-  io::imp::Importer* io_importer;
+  io::imp::Loader* io_loader;
   utl::gui::Navigator* utl_navigator;
 };
 

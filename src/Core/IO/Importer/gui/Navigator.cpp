@@ -13,7 +13,7 @@ Navigator::Navigator(io::imp::gui::Panel* gui_panel){
   io::imp::Node* node_importer = gui_panel->get_node_importer();
 
   this->io_struct = node_importer->get_io_struct();
-  this->io_importer = node_importer->get_io_importer();
+  this->io_loader = node_importer->get_io_loader();
   this->utl_navigator = gui_panel->get_utl_navigator();
 
   //---------------------------
@@ -52,9 +52,9 @@ void Navigator::item_operation(utl::base::Path utl_path){
 
   std::string path = utl_path.build();
   if(utl::path::is_dir_or_file(path) == "file"){
-    io_importer->load_object(utl_path);
+    io_loader->load_object(utl_path);
   }else{
-    io_importer->load_directory(utl_path);
+    io_loader->load_directory(utl_path);
   }
 
   //---------------------------

@@ -14,7 +14,7 @@ Bookmark::Bookmark(io::imp::gui::Panel* gui_panel){
   io::imp::Node* node_importer = gui_panel->get_node_importer();
 
   this->io_struct = node_importer->get_io_struct();
-  this->io_importer = node_importer->get_io_importer();
+  this->io_loader = node_importer->get_io_loader();
   this->io_bookmark = node_importer->get_io_bookmark();
   this->utl_navigator = gui_panel->get_utl_navigator();
 
@@ -84,25 +84,18 @@ void Bookmark::draw_content(){
 
   //---------------------------
 }
-void Bookmark::bookmark_button(std::string file_path){
+void Bookmark::bookmark_button(std::string path){
   //---------------------------
 
   //If selection is a directory go display his content
-  if(utl::directory::is_directory(file_path)){
-    io_struct->path.directory = file_path;
+  if(utl::directory::is_directory(path)){
+    io_struct->path.directory = path;
     io_struct->open_navigation = true;
   }
   //If selection is a file go load it
   else{
-    //File check
-    std::string format = utl::path::get_format_from_path(file_path);
-    if(!utl::file::is_exist(file_path)) return;
-    if(!io_importer->is_format_supported(format)) return;
-
-    //File load
-    utl::base::Path path;
-    path.insert(file_path);
-    io_importer->load_object(path);
+    utl::base::Path utl_path(path);
+    io_loader->load_object(utl_path);
   }
 
   //---------------------------

@@ -21,11 +21,11 @@ Loader::~Loader(){}
 
 //Main function
 std::shared_ptr<utl::base::Data> Loader::load_data(std::string path){
+  utl::base::Path utl_path(path);
   if(!check_path(path)) return nullptr;
   //---------------------------
 
   //Get element
-  utl::base::Path utl_path(path);
   auto element = io_importer->import_from_path(utl_path);
   if(!element || element->type != "entity") return nullptr;
 
@@ -37,7 +37,7 @@ std::shared_ptr<utl::base::Data> Loader::load_data(std::string path){
   return entity->data;
 }
 void Loader::load_set(utl::base::Path path){
-  if(!check_path(path.build())) return;
+  if(!check_path(path)) return;
   //---------------------------
 
   //Get element
@@ -70,7 +70,7 @@ void Loader::load_directory(utl::base::Path path){
   //---------------------------
 }
 void Loader::load_object(utl::base::Path path){
-  if(!check_path(path.build())) return;
+  if(!check_path(path)) return;
   //---------------------------
 
   //Get element
@@ -87,7 +87,7 @@ void Loader::load_object(utl::base::Path path){
   //---------------------------
 }
 void Loader::load_object(utl::base::Path path, utl::base::Path path_transfo){
-  if(!check_path(path.build())) return;
+  if(!check_path(path)) return;
   //---------------------------
 
   //Get element
@@ -106,27 +106,22 @@ void Loader::load_object(utl::base::Path path, utl::base::Path path_transfo){
 }
 
 //Subfunction
-bool Loader::check_path(std::string path){
+bool Loader::check_path(utl::base::Path utl_path){
   //---------------------------
-/*
+
   //Check file existence
+  std::string path = utl_path.build();
   if(utl::file::is_exist(path) == false){
     std::cout<<"[error] File doesn't exists at "<<path<<std::endl;
     return false;
   }
 
   //Check file format
-  std::string format = utl::path::get_format_from_path(path);
-  if(!this->is_format_supported(format)){
-    std::cout<<"[error] '"<<format<<"' file format not supported"<<std::endl;
-    std::cout<<"Supported file formats:"<<std::endl;
-    for(int i=0; i<vec_importer.size(); i++){
-      io::base::Importer* importer = vec_importer[i];
-      std::cout<<"o "<<importer->reference.format<<std::endl;
-    }
+  if(!io_importer->is_format_supported(utl_path.format)){
+    std::cout<<"[error] '"<<utl_path.format<<" format not supported"<<std::endl;
     return false;
   }
-*/
+
   //---------------------------
   return true;
 }
