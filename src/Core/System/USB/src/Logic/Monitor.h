@@ -25,6 +25,7 @@ public:
   void close();
 
   //Subfunction
+  void manage_init_state();
   void manage_event();
 
 private:

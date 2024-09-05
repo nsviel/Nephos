@@ -28,7 +28,7 @@ Pool::~Pool(){
 void Pool::worker_init(int size){
   //---------------------------
 
-  for(size_t i = 0; i < size; ++i) {
+  for(size_t i = 0; i < size; ++i){
     //Create and start worker
     vec_worker.emplace_back([this] {
       this->worker_thread();
@@ -40,7 +40,7 @@ void Pool::worker_init(int size){
 void Pool::worker_thread(){
   //---------------------------
 
-  while (true) {
+  while (true){
     std::function<void()> task;
     {
       std::unique_lock<std::mutex> lock(mutex);

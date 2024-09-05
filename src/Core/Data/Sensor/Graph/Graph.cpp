@@ -28,7 +28,7 @@ void Graph::clear(){
 
   //---------------------------
 }
-void Graph::add_task(const std::string& task_name, std::function<void(dat::base::Sensor&)> func) {
+void Graph::add_task(const std::string& task_name, std::function<void(dat::base::Sensor&)> func){
   //---------------------------
 
   std::unique_lock<std::mutex> lock(mutex);
@@ -55,7 +55,7 @@ void Graph::add_dependency(const std::string& A, const std::string& B){
 void Graph::execute(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor){
   //---------------------------
 
-  std::thread thread([this, &thread_pool, &sensor]() {
+  std::thread thread([this, &thread_pool, &sensor](){
     this->process_graph(thread_pool, sensor);
   });
   thread.detach();
@@ -64,27 +64,27 @@ void Graph::execute(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor){
 }
 
 //Subfunction
-void Graph::process_graph(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor) {
+void Graph::process_graph(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor){
   std::queue<std::string> tasks_to_process;
   //---------------------------
 
   // Start processing tasks with zero in-degree
   {
     std::unique_lock<std::mutex> lock(mutex);
-    for(auto& [task_name, node] : map_node) {
-      if (node.in_degree == 0) {
+    for(auto& [task_name, node] : map_node){
+      if (node.in_degree == 0){
         tasks_to_process.push(task_name);
       }
     }
   }
 
   // Process tasks
-  while (!tasks_to_process.empty()) {
+  while (!tasks_to_process.empty()){
     std::string task_name = tasks_to_process.front();
     tasks_to_process.pop();
 
     // Wait for the current node's future to complete
-    if (map_node[task_name].future.valid()) {
+    if (map_node[task_name].future.valid()){
       map_node[task_name].future.wait();
     }
 
@@ -93,11 +93,11 @@ void Graph::process_graph(dat::sensor::Pool& thread_pool, dat::base::Sensor& sen
 
   //---------------------------
 }
-std::future<void> Graph::process_node(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor, std::queue<std::string>& tasks_to_process) {
+std::future<void> Graph::process_node(const std::string& task_name, dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor, std::queue<std::string>& tasks_to_process){
   //---------------------------
 
   // Submit task
-  auto task_future = thread_pool.submit([this, task_name, &sensor]() {
+  auto task_future = thread_pool.submit([this, task_name, &sensor](){
     map_node[task_name].task(sensor);  // Execute the task
   });
 
@@ -108,7 +108,7 @@ std::future<void> Graph::process_node(const std::string& task_name, dat::sensor:
   {
     std::unique_lock<std::mutex> lock(mutex);
 
-    for(const std::string& dependent_task : map_node[task_name].adjacent) {
+    for(const std::string& dependent_task : map_node[task_name].adjacent){
       tasks_to_process.push(dependent_task);
     }
   }

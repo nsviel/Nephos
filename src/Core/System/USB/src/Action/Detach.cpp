@@ -18,12 +18,12 @@ Detach::Detach(usb::Node* node_usb){
 Detach::~Detach(){}
 
 //Main function
-void Detach::manage_action() {
+void Detach::manage_action(){
   //---------------------------
 
   std::string node = std::string(udev_device_get_devnode(usb_struct->udev.device));
   auto it = usb_struct->map_device.find(node);
-  if (it != usb_struct->map_device.end()) {
+  if (it != usb_struct->map_device.end()){
     say(usb_struct->map_device[node]);
     say("unplug");
   }

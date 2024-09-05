@@ -21,6 +21,7 @@ Node::Node(io::Node* node_io){
   this->io_importer = new io::imp::Importer(this);
   this->io_loader = new io::imp::Loader(this);
   this->io_bookmark = new io::imp::Bookmark(this);
+  this->io_capture = new io::imp::Capture(this);
   this->gui_import = new io::imp::gui::Panel(this, &panel_loader->is_open);
 
   //---------------------------

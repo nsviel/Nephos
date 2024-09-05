@@ -11,6 +11,7 @@ namespace io::imp{class Importer;}
 namespace io::imp{class Operation;}
 namespace io::imp{class Bookmark;}
 namespace io::imp{class Loader;}
+namespace io::imp{class Capture;}
 namespace io::imp::gui{class Panel;}
 
 
@@ -36,6 +37,7 @@ public:
   inline io::imp::Operation* get_io_operation(){return io_operation;}
   inline io::imp::Bookmark* get_io_bookmark(){return io_bookmark;}
   inline io::imp::Loader* get_io_loader(){return io_loader;}
+  inline io::imp::Capture* get_io_capture(){return io_capture;}
 
 private:
   //Dependancy
@@ -48,6 +50,7 @@ private:
   io::imp::Operation* io_operation;
   io::imp::Bookmark* io_bookmark;
   io::imp::Loader* io_loader;
+  io::imp::Capture* io_capture;
   io::imp::gui::Panel* gui_import;
 };
 

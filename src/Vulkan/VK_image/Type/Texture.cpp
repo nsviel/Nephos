@@ -127,7 +127,7 @@ void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
 void Texture::clean_texture(vk::structure::Object& vk_object){
   //---------------------------
 
-  for (auto it = vk_object.list_vk_texture.begin(); it != vk_object.list_vk_texture.end(); ++it) {
+  for (auto it = vk_object.list_vk_texture.begin(); it != vk_object.list_vk_texture.end(); ++it){
     this->clean_texture(*it);
   }
 

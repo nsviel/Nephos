@@ -43,7 +43,7 @@ glm::vec2 Field::get_field_range(utl::base::Data& data, const std::string& name)
 
   //Get data
   auto field = get_field(data, name);
-  if (!field || field->data.empty()) {
+  if (!field || field->data.empty()){
     return glm::vec2(0, 0);
   }
 
@@ -68,7 +68,7 @@ void Field::create_field(utl::base::Data& data, const std::string& name){
   //---------------------------
 
   //Check if field is already present
-  if (std::any_of(data.vec_field.begin(), data.vec_field.end(), [&](const auto& field) { return field.name == name; })) {
+  if (std::any_of(data.vec_field.begin(), data.vec_field.end(), [&](const auto& field){ return field.name == name; })){
     return;
   }
 
@@ -84,8 +84,8 @@ void Field::create_field(utl::base::Data& data, const std::string& name){
 std::shared_ptr<utl::base::Field> Field::get_field(utl::base::Data& data, const std::string& name){
   //---------------------------
 
-  auto it = std::find_if(data.vec_field.begin(), data.vec_field.end(), [&](const auto& field) { return field.name == name; });
-  if (it != data.vec_field.end()) {
+  auto it = std::find_if(data.vec_field.begin(), data.vec_field.end(), [&](const auto& field){ return field.name == name; });
+  if (it != data.vec_field.end()){
     return std::make_shared<utl::base::Field>(*it);
   }
 

@@ -20,12 +20,12 @@ Monitor::Monitor(usb::Node* node_usb){
 Monitor::~Monitor(){}
 
 //Main function
-void Monitor::init() {
+void Monitor::init(){
   //---------------------------
 
   //Contexte
   usb_struct->udev.contexte = udev_new();
-  if (!usb_struct->udev.contexte) {
+  if (!usb_struct->udev.contexte){
     std::cerr << "Can't create udev\n";
     return;
   }
@@ -42,16 +42,18 @@ void Monitor::init() {
   //Get file descriptor
   usb_struct->udev.fd = udev_monitor_get_fd(usb_struct->udev.monitor);
 
+  this->manage_init_state();
+
   // Create and run the thread
   std::thread monitor_thread(&Monitor::loop, this);
   monitor_thread.detach();
 
   //---------------------------
 }
-void Monitor::loop() {
+void Monitor::loop(){
   //---------------------------
 
-  while (true) {
+  while (true){
     //Prepare file descriptor
     fd_set fds;
     FD_ZERO(&fds);
@@ -62,14 +64,14 @@ void Monitor::loop() {
     int event = FD_ISSET(usb_struct->udev.fd, &fds);
 
     //Even occur
-    if (ret > 0 && event) {
+    if (ret > 0 && event){
       this->manage_event();
     }
   }
 
   //---------------------------
 }
-void Monitor::close() {
+void Monitor::close(){
   //---------------------------
 
   udev_monitor_unref(usb_struct->udev.monitor);
@@ -79,7 +81,33 @@ void Monitor::close() {
 }
 
 //Subfunction
-void Monitor::manage_event() {
+void Monitor::manage_init_state(){
+  //---------------------------
+
+  struct udev_enumerate* enumerate = udev_enumerate_new(usb_struct->udev.contexte);
+  udev_enumerate_add_match_subsystem(enumerate, "usb");
+  udev_enumerate_scan_devices(enumerate);
+
+  struct udev_list_entry* devices = udev_enumerate_get_list_entry(enumerate);
+  struct udev_list_entry* entry;
+
+  udev_list_entry_foreach(entry, devices){
+    const char* path = udev_list_entry_get_name(entry);
+    struct udev_device* dev = udev_device_new_from_syspath(usb_struct->udev.contexte, path);
+
+    // Handle device as if it was "added" just now
+    usb_struct->udev.device = dev;
+    usb_attach->manage_action();  // You may need to customize this to suit your needs
+
+    // Release the device reference
+    udev_device_unref(dev);
+  }
+
+  udev_enumerate_unref(enumerate);
+
+  //---------------------------
+}
+void Monitor::manage_event(){
   //---------------------------
 
   //Event associated device

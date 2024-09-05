@@ -15,7 +15,7 @@ Attach::Attach(usb::Node* node_usb){
   io::Node* node_io = node_usb->get_node_io();
   io::imp::Node* node_importer = node_io->get_node_importer();
 
-  this->io_importer = node_importer->get_io_importer();
+  this->io_capture = node_importer->get_io_capture();
   this->usb_struct = node_usb->get_usb_struct();
 
   //---------------------------
@@ -36,25 +36,30 @@ void Attach::manage_action(){
 void Attach::update_device_map(){
   //---------------------------
 
-  std::string serial = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "serial"));
-  std::string node = std::string(udev_device_get_devnode(usb_struct->udev.device));
+  const char* serial_ptr = udev_device_get_sysattr_value(usb_struct->udev.device, "serial");
+  const char* node_ptr = udev_device_get_devnode(usb_struct->udev.device);
 
-  usb_struct->map_device[node] = serial;
+  if (serial_ptr && node_ptr){
+    std::string serial = std::string(serial_ptr);
+    std::string node = std::string(node_ptr);
+
+    usb_struct->map_device[node] = serial;
+  }
 
   //---------------------------
 }
 void Attach::run_capture(){
   //---------------------------
 
-  std::string vendor = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idVendor"));
-  std::string product = std::string(udev_device_get_sysattr_value(usb_struct->udev.device, "idProduct"));
+  const char* vendor_ptr = udev_device_get_sysattr_value(usb_struct->udev.device, "idVendor");
+  const char* product_ptr = udev_device_get_sysattr_value(usb_struct->udev.device, "idProduct");
 
-  io::base::Importer* importer = io_importer->obtain_importer(vendor, product);
-  if(importer == nullptr) return;
+  if (vendor_ptr && product_ptr){
+    std::string vendor = std::string(vendor_ptr);
+    std::string product = std::string(product_ptr);
 
-  say(importer->reference.name);
-  say("plug");
-
+    io_capture->run_capture(vendor, product);
+  }
 
   //---------------------------
 }

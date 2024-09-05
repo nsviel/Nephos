@@ -6,7 +6,7 @@
 namespace usb{class Node;}
 namespace usb{class Structure;}
 namespace usb::structure{class Device;}
-namespace io::imp{class Importer;}
+namespace io::imp{class Capture;}
 
 
 namespace usb{
@@ -25,10 +25,10 @@ public:
   //Subfunction
   void update_device_map();
   void run_capture();
-  
+
 private:
   usb::Structure* usb_struct;
-  io::imp::Importer* io_importer;
+  io::imp::Capture* io_capture;
 };
 
 }

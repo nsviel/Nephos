@@ -23,7 +23,7 @@ public:
 public:
   // Submit a function for execution
   template<class F>
-  std::future<void> submit(F&& f) {
+  std::future<void> submit(F&& f){
     // Create a promise and future for this task
     auto promise = std::make_shared<std::promise<void>>();
     std::future<void> future = promise->get_future();
@@ -38,7 +38,7 @@ public:
         try {
           f(); // Execute the task
           promise->set_value(); // Notify that the task is complete
-        } catch (...) {
+        } catch (...){
           promise->set_exception(std::current_exception()); // Notify of any exceptions
         }
       };
