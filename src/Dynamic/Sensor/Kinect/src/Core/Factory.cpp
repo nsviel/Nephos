@@ -23,11 +23,11 @@ Factory::Factory(k4n::Node* node_k4n){
 Factory::~Factory(){}
 
 //Main function
-std::shared_ptr<k4n::capture::Sensor> Factory::create_capture_sensor(utl::base::Path path){
+std::shared_ptr<k4n::capture::Sensor> Factory::create_capture_sensor(){
   //---------------------------
 
   //Create sensor
-  std::shared_ptr<k4n::capture::Sensor> sensor = std::make_shared<k4n::capture::Sensor>(node_k4n, path);
+  std::shared_ptr<k4n::capture::Sensor> sensor = std::make_shared<k4n::capture::Sensor>(node_k4n);
 
   //Insert sensor into data tree
   this->insert_in_set(*sensor);

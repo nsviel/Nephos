@@ -18,7 +18,7 @@ class Sensor : public k4n::base::Sensor
 {
 public:
   //Constructor / Destructor
-  Sensor(k4n::Node* node_k4n, utl::base::Path path);
+  Sensor(k4n::Node* node_k4n);
   ~Sensor();
 
 public:

@@ -10,7 +10,7 @@
 namespace k4n::capture{
 
 //Constructor / Destructor
-Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
+Sensor::Sensor(k4n::Node* node_k4n){
   //---------------------------
 
   dyn::prc::Node* node_processing = node_k4n->get_node_processing();
@@ -24,7 +24,6 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->gui_capture = new k4n::gui::Capture(node_k4n);
   this->dat_sensor = node_element->get_dat_sensor();
 
-  this->data->path = path;
   this->device.index = k4n_struct->connection.current_ID++;
 
   //---------------------------

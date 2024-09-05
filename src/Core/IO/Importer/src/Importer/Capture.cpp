@@ -21,7 +21,6 @@ Capture::~Capture(){}
 
 //Main function
 void Capture::run_capture(std::string& vendor, std::string& product){
-  if(!check_path(path)) return;
   //---------------------------
 
   //Get importer
@@ -29,7 +28,7 @@ void Capture::run_capture(std::string& vendor, std::string& product){
   if(importer == nullptr) return;
 
   //Get element
-  std::shared_ptr<utl::base::Element> element = importer->import(path);
+  std::shared_ptr<utl::base::Element> element = importer->capture();
   if(!element || element->type != "entity") return;
 
   //Convert into object
