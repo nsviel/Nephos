@@ -27,6 +27,7 @@ public:
 
   //Subfunction
   std::shared_ptr<utl::base::Element> import(utl::base::Path path);
+  std::shared_ptr<utl::base::Element> capture(utl::base::Path path);
 
 private:
   io::Node* node_io;

@@ -48,5 +48,18 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   //---------------------------
   return sensor;
 }
+std::shared_ptr<utl::base::Element> Importer::capture(utl::base::Path path){
+  if(!utl::file::is_exist(path.build())) return nullptr;
+  //---------------------------
+
+  //Create sensor
+  std::shared_ptr<k4n::capture::Sensor> sensor = k4n_factory->create_capture_sensor(path);
+
+  //Start sensor
+  sensor->start();
+
+  //---------------------------
+  return sensor;
+}
 
 }
