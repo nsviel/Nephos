@@ -10,7 +10,7 @@ namespace fmt::hdf5{
 Importer::Importer(){
   //---------------------------
 
-  this->format = ".h5";
+  this->reference.format = ".h5";
 
   //---------------------------
 }
@@ -25,7 +25,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   object->name = path.name;
   object->data->name = path.name;
   object->data->path = path;
-  object->data->path.format = format;
+  object->data->path.format = reference.format;
   object->data->topology.type = utl::topology::POINT;
 
   //---------------------------

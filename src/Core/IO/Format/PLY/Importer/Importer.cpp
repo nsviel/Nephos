@@ -14,7 +14,7 @@ Importer::Importer(){
   this->ply_ascii = new fmt::ply::importer::Ascii();
   this->ply_binary = new fmt::ply::importer::Binary();
 
-  this->format = ".ply";
+  this->reference.format = ".ply";
 
   //---------------------------
 }
@@ -29,7 +29,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   object->name = path.name;
   object->data->name = path.name;
   object->data->path = path;
-  object->data->path.format = format;
+  object->data->path.format = reference.format;
 
   //Header
   io::imp::Configuration config;

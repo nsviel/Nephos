@@ -148,7 +148,7 @@ bool Importer::check_path(std::string path){
     std::cout<<"Supported file formats:"<<std::endl;
     for(int i=0; i<vec_importer.size(); i++){
       io::base::Importer* importer = vec_importer[i];
-      std::cout<<"o "<<importer->format<<std::endl;
+      std::cout<<"o "<<importer->reference.format<<std::endl;
     }
     return false;
   }
@@ -163,7 +163,7 @@ bool Importer::is_format_supported(std::string format){
   for(int i=0; i<vec_importer.size(); i++){
     io::base::Importer* importer = vec_importer[i];
 
-    if(format == importer->format){
+    if(format == importer->reference.format){
       return true;
     }
   }
@@ -177,7 +177,7 @@ std::vector<std::string> Importer::get_supported_format(){
 
   for(int i=0; i<vec_importer.size(); i++){
     io::base::Importer* importer = vec_importer[i];
-    vec_format.push_back(importer->format);
+    vec_format.push_back(importer->reference.format);
   }
 
   //---------------------------
@@ -190,7 +190,7 @@ std::shared_ptr<utl::base::Element> Importer::import_from_path(utl::base::Path p
   for(int i=0; i<vec_importer.size(); i++){
     io::base::Importer* importer = vec_importer[i];
 
-    if(importer->format == path.format){
+    if(importer->reference.format == path.format){
       element = importer->import(path);
     }
   }

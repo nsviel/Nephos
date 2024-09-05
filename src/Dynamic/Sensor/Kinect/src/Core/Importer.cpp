@@ -10,13 +10,14 @@ namespace k4n::playback{
 Importer::Importer(k4n::Node* node_k4n){
   //---------------------------
 
-  this->node_io = node_k4n->get_node_io();
+  io::Node* node_io = node_k4n->get_node_io();
+
+  this->node_importer = node_io->get_node_importer();
   this->node_k4n = node_k4n;
   this->k4n_factory = new k4n::Factory(node_k4n);
   this->k4n_config = new k4n::playback::Configuration(node_k4n);
 
-  this->format = ".mkv";
-  this->require_discrete_gpu = true;
+  this->reference.format = ".mkv";
 
   //---------------------------
   this->insert_importer();
@@ -27,7 +28,6 @@ Importer::~Importer(){}
 void Importer::insert_importer(){
   //---------------------------
 
-  io::imp::Node* node_importer = node_io->get_node_importer();
   io::imp::Importer* io_importer = node_importer->get_io_importer();
   io_importer->insert_importer(this);
 

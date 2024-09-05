@@ -4,6 +4,7 @@
 #include <Velodyne/Namespace.h>
 #include <Core/Namespace.h>
 #include <IO/Namespace.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace vld{

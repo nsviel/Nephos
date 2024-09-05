@@ -1,8 +1,7 @@
 #pragma once
 
-#include <Data/Base/Element/Entity.h>
-#include <Data/Base/Element/Set.h>
-#include <string>
+#include <IO/Base/Reference.h>
+#include <Utility/Namespace.h>
 
 namespace dat::base{class Object;}
 
@@ -15,8 +14,7 @@ struct Importer{
   virtual std::shared_ptr<utl::base::Element> import(utl::base::Path path){return nullptr;}
   virtual std::shared_ptr<utl::base::Element> capture(utl::base::Path path){return nullptr;}
 
-  std::string format = "";
-  bool require_discrete_gpu = false;
+  io::base::Reference reference;
 
   //---------------------------
 };

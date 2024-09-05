@@ -9,7 +9,7 @@ namespace fmt::obj{
 Importer::Importer(){
   //---------------------------
 
-  this->format = ".obj";
+  this->reference.format = ".obj";
 
   //---------------------------
 }
@@ -24,7 +24,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   object->name = utl::path::get_name_from_path(path.build());
   object->data->name = utl::path::get_name_from_path(path.build());
   object->data->path = path;
-  object->data->path.format = format;
+  object->data->path.format = reference.format;
   object->data->topology.type = utl::topology::POINT;
 
   //Init

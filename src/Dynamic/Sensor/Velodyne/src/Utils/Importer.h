@@ -15,6 +15,7 @@ namespace vld{class Node;}
 namespace vld{class Structure;}
 namespace vld::processing{class Player;}
 namespace vld::main{class Playback;}
+namespace dat::base{class Set;}
 
 
 namespace vld::utils{

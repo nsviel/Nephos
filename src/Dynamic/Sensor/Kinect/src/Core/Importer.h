@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 
-namespace io{class Node;}
+namespace io::imp{class Node;}
 
 namespace k4n{class Node;}
 namespace k4n{class Factory;}
@@ -30,7 +30,7 @@ public:
   std::shared_ptr<utl::base::Element> capture(utl::base::Path path);
 
 private:
-  io::Node* node_io;
+  io::imp::Node* node_importer;
 
   k4n::Node* node_k4n;
   k4n::Factory* k4n_factory;

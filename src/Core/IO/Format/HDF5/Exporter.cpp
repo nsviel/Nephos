@@ -10,7 +10,7 @@ namespace fmt::hdf5{
 Exporter::Exporter(){
   //---------------------------
 
-  this->format = ".h5";
+  this->reference.format = ".h5";
   this->vec_encoding.push_back(io::exp::ASCII);
 
   //---------------------------

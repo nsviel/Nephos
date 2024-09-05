@@ -1,6 +1,7 @@
 #include "Player.h"
 
 #include <Velodyne/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace vld::processing{

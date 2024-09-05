@@ -11,7 +11,7 @@ Recorder::Recorder(){
   //---------------------------
 
   this->ply_exporter = new fmt::ply::Exporter();
-  this->format = ".ply";
+  //this->reference.format = ".ply";
 
   //---------------------------
 }

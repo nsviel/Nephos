@@ -1,8 +1,10 @@
 #include "Player.h"
 
 #include <Velodyne/Namespace.h>
+#include <Data/Namespace.h>
 #include <Utility/Namespace.h>
 #include <imgui/core/imgui.h>
+#include <fontawesome/IconsFontAwesome6.h>
 
 
 namespace vld::gui{
