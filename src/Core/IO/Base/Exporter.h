@@ -1,16 +1,15 @@
 #pragma once
 
+#include <Exporter/src/Structure/Configuration.h>
+#include <Exporter/src/Structure/Enum.h>
 #include <Utility/Base/Data/Data.h>
 #include <vector>
 #include <string>
 
-#include "Enum.h"
-#include "Configuration.h"
 
+namespace io::base{
 
-namespace io::exp{
-
-struct Base{
+struct Exporter{
   //---------------------------
 
   virtual void export_data(io::exp::Configuration& config, utl::base::Data& data){}

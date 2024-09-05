@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Exporter/src/Structure/Base.h>
+#include <IO/Base/Exporter.h>
 #include <glm/glm.hpp>
 #include <fstream>
 #include <string>
@@ -14,7 +14,7 @@ namespace fmt::ply::exporter{class Header;}
 
 namespace fmt::ply{
 
-class Exporter : public io::exp::Base
+class Exporter : public io::base::Exporter
 {
 public:
   //Constructor / Destructor

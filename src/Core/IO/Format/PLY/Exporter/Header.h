@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Exporter/src/Structure/Base.h>
+#include <IO/Base/Exporter.h>
 #include <glm/glm.hpp>
 #include <fstream>
 #include <string>

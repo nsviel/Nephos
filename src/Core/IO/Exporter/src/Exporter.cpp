@@ -26,7 +26,7 @@ void Exporter::export_entity(std::shared_ptr<dat::base::Entity> entity, std::str
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
-    io::exp::Base* exporter = vec_exporter[i];
+    io::base::Exporter* exporter = vec_exporter[i];
 
     if(entity->data->path.format == exporter->format){
       this->export_with_config(exporter, entity, path);
@@ -45,7 +45,7 @@ void Exporter::init_path(){
 
   //---------------------------
 }
-void Exporter::export_with_config(io::exp::Base* exporter, std::shared_ptr<dat::base::Entity> entity, std::string path){
+void Exporter::export_with_config(io::base::Exporter* exporter, std::shared_ptr<dat::base::Entity> entity, std::string path){
   utl::base::Data& data = *entity->data;
   utl::base::Pose& pose = *entity->pose;
   //---------------------------
@@ -63,7 +63,7 @@ void Exporter::export_with_config(io::exp::Base* exporter, std::shared_ptr<dat::
 
   //---------------------------
 }
-void Exporter::insert_exporter(io::exp::Base* exporter){
+void Exporter::insert_exporter(io::base::Exporter* exporter){
   //---------------------------
 
   this->vec_exporter.push_back(exporter);
@@ -91,7 +91,7 @@ bool Exporter::is_format_supported(std::string format){
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
-    io::exp::Base* exporter = vec_exporter[i];
+    io::base::Exporter* exporter = vec_exporter[i];
 
     if(format == exporter->format){
       return true;
@@ -127,7 +127,7 @@ std::vector<std::string> Exporter::get_supported_format(){
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
-    io::exp::Base* exporter = vec_exporter[i];
+    io::base::Exporter* exporter = vec_exporter[i];
     vec_format.push_back(exporter->format);
   }
 
@@ -139,7 +139,7 @@ std::vector<io::exp::Encoding> Exporter::get_supported_encoding(std::string form
   //---------------------------
 
   for(int i=0; i<vec_exporter.size(); i++){
-    io::exp::Base* exporter = vec_exporter[i];
+    io::base::Exporter* exporter = vec_exporter[i];
 
     if(format == exporter->format){
       vec_encoding = exporter->vec_encoding;

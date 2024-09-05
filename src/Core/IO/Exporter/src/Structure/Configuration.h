@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Exporter/src/Structure/Enum.h>
 #include <Utility/Base/Data/Data.h>
 #include <Utility/Base/Data/Pose.h>
 #include <vector>

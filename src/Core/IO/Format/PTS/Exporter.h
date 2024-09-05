@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Exporter/src/Structure/Base.h>
+#include <IO/Base/Exporter.h>
 #include <Utility/Function/File/Path.h>
 #include <glm/glm.hpp>
 #include <string>
@@ -14,7 +14,7 @@ namespace dat::atr{class Field;}
 
 namespace fmt::pts{
 
-class Exporter : public io::exp::Base
+class Exporter : public io::base::Exporter
 {
 public:
   //Constructor / Destructor
