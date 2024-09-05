@@ -26,7 +26,7 @@ std::shared_ptr<utl::base::Data> Loader::load_data(std::string path){
   //---------------------------
 
   //Get element
-  auto element = io_importer->import_from_path(utl_path);
+  auto element = import_from_path(utl_path);
   if(!element || element->type != "entity") return nullptr;
 
   //Convert into entity
@@ -41,7 +41,7 @@ void Loader::load_set(utl::base::Path path){
   //---------------------------
 
   //Get element
-  auto element = io_importer->import_from_path(path);
+  auto element = import_from_path(path);
   if(!element || element->type != "set") return;
 
   //Convert into set
@@ -74,7 +74,7 @@ void Loader::load_object(utl::base::Path path){
   //---------------------------
 
   //Get element
-  auto element = io_importer->import_from_path(path);
+  auto element = import_from_path(path);
   if(!element || element->type != "entity") return;
 
   //Convert into object
@@ -91,7 +91,7 @@ void Loader::load_object(utl::base::Path path, utl::base::Path path_transfo){
   //---------------------------
 
   //Get element
-  auto element = io_importer->import_from_path(path);
+  auto element = import_from_path(path);
   if(!element || element->type != "entity") return;
 
   //Convert into object
@@ -124,6 +124,19 @@ bool Loader::check_path(utl::base::Path utl_path){
 
   //---------------------------
   return true;
+}
+std::shared_ptr<utl::base::Element> Loader::import_from_path(utl::base::Path path){
+  //---------------------------
+
+  //Obtain corresponding importer
+  io::base::Importer* importer = io_importer->obtain_importer(path.format);
+  if(importer == nullptr) return nullptr;
+
+  //Import element from it
+  std::shared_ptr<utl::base::Element> element = importer->import(path);
+
+  //---------------------------
+  return element;
 }
 
 }

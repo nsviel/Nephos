@@ -35,20 +35,20 @@ void Importer::insert_importer(io::base::Importer* importer){
 
   //---------------------------
 }
-std::shared_ptr<utl::base::Element> Importer::import_from_path(utl::base::Path path){
-  std::shared_ptr<utl::base::Element> element = nullptr;
+io::base::Importer* Importer::obtain_importer(std::string format){
+  io::base::Importer* importer = nullptr;
   //---------------------------
 
   for(int i=0; i<vec_importer.size(); i++){
     io::base::Importer* importer = vec_importer[i];
 
-    if(importer->reference.format == path.format){
-      element = importer->import(path);
+    if(importer->reference.format == format){
+      return importer;
     }
   }
 
   //---------------------------
-  return element;
+  return nullptr;
 }
 
 //Subfunction

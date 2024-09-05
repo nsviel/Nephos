@@ -28,7 +28,7 @@ public:
 public:
   //Main function
   void insert_importer(io::base::Importer* importer);
-  std::shared_ptr<utl::base::Element> import_from_path(utl::base::Path path);
+  io::base::Importer* obtain_importer(std::string format);
 
   //Subfunction
   bool is_format_supported(std::string format);

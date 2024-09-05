@@ -35,6 +35,7 @@ public:
 
   //Subfunction
   bool check_path(utl::base::Path path);
+  std::shared_ptr<utl::base::Element> import_from_path(utl::base::Path path);
 
 private:
   io::imp::Importer* io_importer;
