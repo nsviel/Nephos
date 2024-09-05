@@ -9,6 +9,11 @@ namespace io::imp{
 struct Structure{
   //---------------------------
 
+  Structure(){
+    path.directory = utl::path::get_current_directory_path();
+    path.format = ".ply";
+  }
+
   utl::base::Path path;
   float scaling = 1;
   bool with_centering = false;

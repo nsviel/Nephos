@@ -34,7 +34,6 @@ public:
   void load_object(utl::base::Path file_path, utl::base::Path path_transfo);
 
   //Subfunction
-  void init_path();
   void insert_importer(io::base::Importer* importer);
   bool check_path(std::string path);
   bool is_format_supported(std::string format);

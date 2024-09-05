@@ -31,7 +31,6 @@ void Node::init(){
   //---------------------------
 
   io_bookmark->init();
-  io_importer->init_path();
 
   //---------------------------
 }

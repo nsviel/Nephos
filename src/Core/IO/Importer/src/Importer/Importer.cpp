@@ -117,14 +117,6 @@ void Importer::load_object(utl::base::Path path, utl::base::Path path_transfo){
 }
 
 //Subfunction
-void Importer::init_path(){
-  //---------------------------
-
-  io_struct->path.directory = utl::path::get_current_directory_path();
-  io_struct->path.format = ".ply";
-
-  //---------------------------
-}
 void Importer::insert_importer(io::base::Importer* importer){
   //---------------------------
 

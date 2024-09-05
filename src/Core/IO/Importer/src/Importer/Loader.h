@@ -11,7 +11,7 @@ namespace utl::base{class Element;}
 namespace utl::base{class Path;}
 namespace utl::base{class Thread;}
 namespace io::imp{class Node;}
-namespace io::imp{class Structure;}
+namespace io::imp{class Importer;}
 namespace io::imp{class Operation;}
 namespace io::base{class Importer;}
 
@@ -34,11 +34,10 @@ public:
   void load_object(utl::base::Path file_path, utl::base::Path path_transfo);
 
   //Subfunction
-  void init_path();
   bool check_path(std::string path);
 
 private:
-  io::imp::Structure* io_struct;
+  io::imp::Importer* io_importer;
   io::imp::Operation* io_operation;
 };
 
