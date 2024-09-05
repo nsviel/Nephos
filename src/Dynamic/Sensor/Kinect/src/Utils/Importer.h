@@ -7,7 +7,7 @@
 namespace io{class Node;}
 
 namespace k4n{class Node;}
-namespace k4n{class Utils;}
+namespace k4n{class Factory;}
 namespace k4n::playback{class Configuration;}
 namespace k4n::playback{class Sensor;}
 
@@ -32,7 +32,7 @@ private:
   io::Node* node_io;
 
   k4n::Node* node_k4n;
-  k4n::Utils* k4n_utils;
+  k4n::Factory* k4n_factory;
   k4n::playback::Configuration* k4n_config;
 };
 

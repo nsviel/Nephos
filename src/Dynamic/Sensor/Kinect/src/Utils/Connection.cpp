@@ -15,7 +15,7 @@ Connection::Connection(k4n::Node* node_k4n){
   io::imp::Node* node_importer = node_io->get_node_importer();
 
   this->node_k4n = node_k4n;
-  this->k4n_utils = new k4n::Utils(node_k4n);
+  this->k4n_factory = new k4n::Factory(node_k4n);
   this->io_operation = node_importer->get_io_operation();
 
   this->current_nb_dev = 0;
@@ -96,10 +96,7 @@ void Connection::create_sensor(int index){
   //---------------------------
 
   //Create sensor
-  std::shared_ptr<k4n::capture::Sensor> sensor = std::make_shared<k4n::capture::Sensor>(node_k4n, index);
-
-  //Insert sensor into data tree
-  k4n_utils->insert_in_kinect_set(*sensor);
+  std::shared_ptr<k4n::capture::Sensor> sensor = k4n_factory->create_capture_sensor(index);
 
   //Apply imported stuff
   io_operation->ope_insertion(sensor);

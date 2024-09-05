@@ -12,7 +12,7 @@ Importer::Importer(k4n::Node* node_k4n){
 
   this->node_io = node_k4n->get_node_io();
   this->node_k4n = node_k4n;
-  this->k4n_utils = new k4n::Utils(node_k4n);
+  this->k4n_factory = new k4n::Factory(node_k4n);
   this->k4n_config = new k4n::playback::Configuration(node_k4n);
 
   this->format = ".mkv";
@@ -40,10 +40,7 @@ std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
   //---------------------------
 
   //Create sensor
-  std::shared_ptr<k4n::playback::Sensor> sensor = std::make_shared<k4n::playback::Sensor>(node_k4n, path);
-
-  //Insert sensor into data tree
-  k4n_utils->insert_in_kinect_set(*sensor);
+  std::shared_ptr<k4n::playback::Sensor> sensor = k4n_factory->create_playback_sensor(path);
 
   //Start sensor
   sensor->start();

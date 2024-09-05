@@ -4,7 +4,7 @@
 #include <thread>
 
 namespace k4n{class Node;}
-namespace k4n{class Utils;}
+namespace k4n{class Factory;}
 namespace k4n::capture{class Sensor;}
 namespace dat::elm{class Set;}
 namespace dat::gph{class Graph;}
@@ -33,7 +33,7 @@ public:
 
 private:
   k4n::Node* node_k4n;
-  k4n::Utils* k4n_utils;
+  k4n::Factory* k4n_factory;
   io::imp::Operation* io_operation;
 
   std::thread thread;
