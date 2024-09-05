@@ -96,13 +96,13 @@ void Connection::create_sensor(int index){
   //---------------------------
 
   //Create sensor
-  std::shared_ptr<k4n::capture::Sensor> sensor = k4n_factory->create_capture_sensor(index);
+  /*std::shared_ptr<k4n::capture::Sensor> sensor = k4n_factory->create_capture_sensor(index);
 
   //Apply imported stuff
   io_operation->ope_insertion(sensor);
 
   //Start sensor
-  sensor->start();
+  sensor->start();*/
 
   //---------------------------
 }

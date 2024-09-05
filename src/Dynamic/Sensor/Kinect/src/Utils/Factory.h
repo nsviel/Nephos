@@ -23,7 +23,7 @@ public:
 
 public:
   //Main function
-  std::shared_ptr<k4n::capture::Sensor> create_capture_sensor(int index);
+  std::shared_ptr<k4n::capture::Sensor> create_capture_sensor(utl::base::Path path);
   std::shared_ptr<k4n::playback::Sensor> create_playback_sensor(utl::base::Path path);
 
   //Subfunction
