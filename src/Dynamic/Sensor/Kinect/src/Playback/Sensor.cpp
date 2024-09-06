@@ -23,6 +23,10 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->k4n_playback = new k4n::playback::Playback(node_k4n);
   this->dat_sensor = node_element->get_dat_sensor();
   this->gui_playback = new k4n::gui::Playback(node_k4n);
+  this->k4n_image = new k4n::processing::image::Data(node_k4n);
+  this->k4n_cloud = new k4n::processing::cloud::Data(node_k4n);
+  this->dyn_ope_cloud = node_processing->get_ope_cloud();
+  this->thr_pool = new dat::sensor::Pool(100);
 
   this->data->path = path;
   this->type_sensor = "playback";
@@ -41,18 +45,20 @@ Sensor::~Sensor(){
 void Sensor::thread_init(){
   //---------------------------
 
-  k4n::processing::image::Data k4n_image(node_k4n);
 
 
-  graph.clear();
-  graph.add_task("data", [&k4n_image](dat::base::Sensor& sensor){ k4n_image.extract_data(sensor); });
+
 
 
   k4n_playback->init(*this);
-  k4n_graph->init(*this);
 
-
-
+  graph.clear();
+  //graph.add_task("capture", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
+  graph.add_task("data", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
+  graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
+  graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_ope_cloud->run_operation(sensor); });
+  graph.add_dependency("data", "cloud");
+  graph.add_dependency("cloud", "operation");
 
 
   //---------------------------
@@ -65,13 +71,13 @@ void Sensor::thread_loop(){
 
   //Next capture
   tasker->task_begin("capture");
-  this->manage_capture();
+  this->manage_capture(*this);
   if(!device.capture) return;
   tasker->task_end("capture");
 
   //Run processing
   tasker->task_begin("graph");
-  k4n_graph->run(*this);
+  graph.execute(*thr_pool, *this);
   tasker->task_end("graph");
 
   //---------------------------
@@ -85,15 +91,15 @@ void Sensor::thread_end(){
 }
 
 //Subfunction
-void Sensor::manage_capture(){
+void Sensor::manage_capture(k4n::playback::Sensor& sensor){
   //---------------------------
 
   //Capture data
-  bool ok = device.playback.get_next_capture(device.capture.get());
+  bool ok = sensor.device.playback.get_next_capture(sensor.device.capture.get());
 
   //Check capture
   if(!ok){
-    device.capture.reset();
+    sensor.device.capture.reset();
   }
 
   //---------------------------

@@ -6,9 +6,14 @@ namespace k4n{class Node;}
 namespace k4n{class Graph;}
 namespace k4n::playback{class Configuration;}
 namespace k4n::playback{class Playback;}
+namespace k4n::playback{class Sensor;}
 namespace k4n::gui{class Playback;}
 namespace utl::base{class Path;}
 namespace dat::elm{class Sensor;}
+namespace k4n::processing::cloud{class Data;}
+namespace k4n::processing::image{class Data;}
+namespace dyn::prc::cloud{class Operation;}
+namespace dat::sensor{class Pool;}
 
 
 namespace k4n::playback{
@@ -27,7 +32,7 @@ public:
   void thread_end();
 
   //Subfunction
-  void manage_capture();
+  void manage_capture(k4n::playback::Sensor& sensor);
   void manage_query(float ts_querry);
   void manage_gui();
 
@@ -38,6 +43,10 @@ public:
   k4n::playback::Playback* k4n_playback;
   k4n::gui::Playback* gui_playback;
   dat::elm::Sensor* dat_sensor;
+  k4n::processing::image::Data* k4n_image;
+  k4n::processing::cloud::Data* k4n_cloud;
+  dyn::prc::cloud::Operation* dyn_ope_cloud;
+    dat::sensor::Pool* thr_pool;
 };
 
 
