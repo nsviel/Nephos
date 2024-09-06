@@ -112,5 +112,32 @@ void Playback::manage_capture(dat::base::Sensor& sensor){
 
   //---------------------------
 }
+void Playback::manage_query(dat::base::Sensor& sensor, float value){
+  k4n::playback::Sensor* k4n_sensor = dynamic_cast<k4n::playback::Sensor*>(&sensor);
+  //---------------------------
+
+  //Check value validity
+  if(value > k4n_sensor->timestamp.end){
+    std::cout<<"[error] timestamp superior file end"<<std::endl;
+    return;
+  }else if(value < k4n_sensor->timestamp.begin){
+    std::cout<<"[error] timestamp inferior file begin"<<std::endl;
+    return;
+  }
+
+  //Apply query
+  if(k4n_sensor->state.pause || k4n_sensor->state.query){
+    k4n_sensor->pause(false);
+    auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
+    k4n_sensor->device.playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+    std::this_thread::sleep_for(std::chrono::milliseconds(30));
+    k4n_sensor->pause(true);
+  }else{
+    auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
+    k4n_sensor->device.playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
+  }
+
+  //---------------------------
+}
 
 }

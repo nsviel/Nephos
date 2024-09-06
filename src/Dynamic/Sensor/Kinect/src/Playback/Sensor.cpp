@@ -10,7 +10,7 @@ namespace k4n::playback{
 //Constructor / Destructor
 Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   //---------------------------
-  
+
   dyn::prc::Node* node_processing = node_k4n->get_node_processing();
 
   this->k4n_playback = new k4n::playback::Playback(node_k4n);
@@ -70,26 +70,7 @@ void Sensor::thread_end(){
 void Sensor::manage_query(float value){
   //---------------------------
 
-  //Check value validity
-  if(value > timestamp.end){
-    std::cout<<"[error] timestamp superior file end"<<std::endl;
-    return;
-  }else if(value < timestamp.begin){
-    std::cout<<"[error] timestamp inferior file begin"<<std::endl;
-    return;
-  }
-
-  //Apply query
-  if(state.pause || state.query){
-    this->pause(false);
-    auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
-    device.playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-    std::this_thread::sleep_for(std::chrono::milliseconds(30));
-    this->pause(true);
-  }else{
-    auto ts = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::duration<float>(value));
-    device.playback.seek_timestamp(ts, K4A_PLAYBACK_SEEK_DEVICE_TIME);
-  }
+  k4n_playback->manage_query(*this, value);
 
   //---------------------------
 }

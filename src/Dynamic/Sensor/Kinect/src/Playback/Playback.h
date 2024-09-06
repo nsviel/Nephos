@@ -30,8 +30,8 @@ public:
   void init_playback(k4n::playback::Sensor& sensor);
   void init_timestamp(k4n::playback::Sensor& sensor);
   void close_playback(k4n::playback::Sensor& sensor);
-
   void manage_capture(dat::base::Sensor& sensor);
+  void manage_query(dat::base::Sensor& sensor, float value);
 
 private:
   k4n::Structure* k4n_struct;
