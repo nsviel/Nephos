@@ -1,6 +1,7 @@
 #include "Playback.h"
 
 #include <Kinect/Namespace.h>
+#include <Data/Namespace.h>
 
 
 namespace k4n::playback{
@@ -9,13 +10,39 @@ namespace k4n::playback{
 Playback::Playback(k4n::Node* node_k4n){
   //---------------------------
 
+  dat::Node* node_data = node_k4n->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
+
   this->k4n_struct = node_k4n->get_k4n_structure();
+  this->k4n_config = new k4n::playback::Configuration(node_k4n);
+  this->dat_sensor = node_element->get_dat_sensor();
 
   //---------------------------
 }
 Playback::~Playback(){}
 
 //Main function
+void Playback::init(k4n::playback::Sensor& sensor){
+  //---------------------------
+
+  this->init_info(sensor);
+  this->init_playback(sensor);
+  this->find_timestamp(sensor);
+  dat_sensor->init_sensor(sensor);
+  k4n_config->find_configuration(sensor);
+  k4n_config->find_calibration(sensor);
+
+  //---------------------------
+}
+void Playback::clean(k4n::playback::Sensor& sensor){
+  //---------------------------
+
+  dat_sensor->clean_sensor(sensor);
+
+  //---------------------------
+}
+
+//Subfunction
 void Playback::init_info(k4n::playback::Sensor& sensor){
   //---------------------------
 
@@ -64,8 +91,6 @@ void Playback::close_playback(k4n::playback::Sensor& sensor){
 
   //---------------------------
 }
-
-//Subfunction
 float Playback::find_mkv_ts_beg(std::string path){
   //---------------------------
 

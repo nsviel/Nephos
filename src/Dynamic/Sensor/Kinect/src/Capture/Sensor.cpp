@@ -25,7 +25,7 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->dat_sensor = node_element->get_dat_sensor();
 
   this->device.index = k4n_struct->connection.current_ID++;
-
+  this->type_sensor = "capture";
 
   //---------------------------
 }

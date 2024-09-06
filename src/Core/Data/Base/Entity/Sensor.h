@@ -8,6 +8,7 @@
 #include <Data/Sensor/Graph/Graph.h>
 #include <Data/Sensor/Structure/Calibration.h>
 #include <Profiler/Monitor/src/Component/Profiler.h>
+#include <string>
 
 
 namespace dat::base{
@@ -34,6 +35,7 @@ struct Sensor : public dat::base::Object, public dat::sensor::Thread{
   dat::sensor::Graph graph;
   dat::sensor::Calibration calibration;
   prf::monitor::Profiler profiler;
+  std::string type_sensor = "";
 
   //---------------------------
 };

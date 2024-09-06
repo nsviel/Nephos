@@ -32,6 +32,7 @@ public:
   void manage_gui();
 
 public:
+  k4n::Node* node_k4n;
   k4n::Graph* k4n_graph;
   k4n::playback::Configuration* k4n_config;
   k4n::playback::Playback* k4n_playback;

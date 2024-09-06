@@ -17,6 +17,7 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   dat::Node* node_data = node_k4n->get_node_data();
   dat::elm::Node* node_element = node_data->get_node_element();
 
+  this->node_k4n = node_k4n;
   this->k4n_graph = new k4n::Graph(node_k4n);
   this->k4n_config = new k4n::playback::Configuration(node_k4n);
   this->k4n_playback = new k4n::playback::Playback(node_k4n);
@@ -24,13 +25,14 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->gui_playback = new k4n::gui::Playback(node_k4n);
 
   this->data->path = path;
+  this->type_sensor = "playback";
 
   //---------------------------
 }
 Sensor::~Sensor(){
   //---------------------------
 
-  dat_sensor->clean_sensor(*this);
+  k4n_playback->clean(*this);
 
   //---------------------------
 }
@@ -39,13 +41,19 @@ Sensor::~Sensor(){
 void Sensor::thread_init(){
   //---------------------------
 
-  k4n_playback->init_info(*this);
-  k4n_playback->init_playback(*this);
-  k4n_playback->find_timestamp(*this);
-  dat_sensor->init_sensor(*this);
-  k4n_config->find_configuration(*this);
-  k4n_config->find_calibration(*this);
+  k4n::processing::image::Data k4n_image(node_k4n);
+
+
+  graph.clear();
+  graph.add_task("data", [&k4n_image](dat::base::Sensor& sensor){ k4n_image.extract_data(sensor); });
+
+
+  k4n_playback->init(*this);
   k4n_graph->init(*this);
+
+
+
+
 
   //---------------------------
 }
