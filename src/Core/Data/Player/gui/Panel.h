@@ -4,7 +4,7 @@
 
 namespace dat::ply{class Node;}
 namespace dat::ply::gui{class Player;}
-namespace dat::ply::gui{class Configuration;}
+namespace dat::ply::gui{class Info;}
 namespace dat::gph{class Selection;}
 namespace dat::atr::gui{class Panel;}
 
@@ -18,13 +18,14 @@ public:
   Panel(dat::ply::Node* node_player, bool* show_window);
   ~Panel();
 
+public:
   //Main function
   void run_panel();
   void design_panel();
 
 private:
   dat::ply::gui::Player* gui_player;
-  dat::ply::gui::Configuration* gui_configuration;
+  dat::ply::gui::Info* gui_info;
   dat::gph::Selection* gph_selection;
   dat::atr::gui::Panel* atr_panel;
 

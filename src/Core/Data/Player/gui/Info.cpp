@@ -30,6 +30,19 @@ void Info::design_info(std::shared_ptr<utl::base::Element> element){
 
   //---------------------------
 }
+void Info::design_sensor(std::shared_ptr<utl::base::Element> element){
+  std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
+  if(!sensor) return;
+  //---------------------------
+
+  ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
+  if(ImGui::CollapsingHeader("Configuration##dynamic")){
+    sensor->manage_gui(sensor);
+  }
+
+  //---------------------------
+  ImGui::Separator();
+}
 
 //Subfunction
 void Info::path_info(std::shared_ptr<utl::base::Element> element){

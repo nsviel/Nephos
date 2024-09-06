@@ -17,7 +17,7 @@ Panel::Panel(dat::ply::Node* node_player, bool* show_window){
   dat::gph::Node* node_graph = node_player->get_node_graph();
 
   this->gph_selection = node_graph->get_gph_selection();
-  this->gui_configuration = new dat::ply::gui::Configuration();
+  this->gui_info = new dat::ply::gui::Info();
   this->gui_player = new dat::ply::gui::Player(node_player);
   this->atr_panel = node_attribut->get_gui_panel();
 
@@ -58,7 +58,8 @@ void Panel::design_panel(){
   ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(0.2f, 0.2f, 0.2f, 1.0f));
 
   gui_player->design_player(*set);
-  gui_configuration->design_configuration(element);
+  gui_info->design_info(element);
+  gui_info->design_sensor(element);
   atr_panel->design_panel(element);
 
   ImGui::PopStyleColor();
