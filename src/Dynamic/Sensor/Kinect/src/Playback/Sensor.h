@@ -32,7 +32,6 @@ public:
   void thread_end();
 
   //Subfunction
-  void manage_capture(k4n::playback::Sensor& sensor);
   void manage_query(float ts_querry);
   void manage_gui();
 

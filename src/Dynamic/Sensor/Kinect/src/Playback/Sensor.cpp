@@ -37,6 +37,7 @@ Sensor::~Sensor(){
   //---------------------------
 
   k4n_playback->clean(*this);
+  k4n_playback->close_playback(*this);
 
   //---------------------------
 }
@@ -45,21 +46,16 @@ Sensor::~Sensor(){
 void Sensor::thread_init(){
   //---------------------------
 
-
-
-
-
-
   k4n_playback->init(*this);
 
   graph.clear();
-  //graph.add_task("capture", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
+  graph.add_task("capture", [this](dat::base::Sensor& sensor){ k4n_playback->manage_capture(sensor); });
   graph.add_task("data", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
   graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
   graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_ope_cloud->run_operation(sensor); });
+  graph.add_dependency("capture", "data");
   graph.add_dependency("data", "cloud");
   graph.add_dependency("cloud", "operation");
-
 
   //---------------------------
 }
@@ -68,12 +64,6 @@ void Sensor::thread_loop(){
   //---------------------------
 
   tasker->loop(30);
-
-  //Next capture
-  tasker->task_begin("capture");
-  this->manage_capture(*this);
-  if(!device.capture) return;
-  tasker->task_end("capture");
 
   //Run processing
   tasker->task_begin("graph");
@@ -85,25 +75,12 @@ void Sensor::thread_loop(){
 void Sensor::thread_end(){
   //---------------------------
 
-  k4n_playback->close_playback(*this);
+  k4n_playback->clean(*this);
 
   //---------------------------
 }
 
 //Subfunction
-void Sensor::manage_capture(k4n::playback::Sensor& sensor){
-  //---------------------------
-
-  //Capture data
-  bool ok = sensor.device.playback.get_next_capture(sensor.device.capture.get());
-
-  //Check capture
-  if(!ok){
-    sensor.device.capture.reset();
-  }
-
-  //---------------------------
-}
 void Sensor::manage_query(float value){
   //---------------------------
 

@@ -116,5 +116,19 @@ std::future<void> Graph::process_node(const std::string& task_name, dat::sensor:
   //---------------------------
   return task_future;
 }
+void Graph::wait_completion() {
+  //---------------------------
+
+  std::unique_lock<std::mutex> lock(mutex);
+
+  // Iterate over all tasks in the map and wait for their futures to complete
+  for (auto& [task_name, node] : map_node) {
+    if (node.future.valid()) {
+      node.future.wait();  // Wait for the task to complete
+    }
+  }
+
+  //---------------------------
+}
 
 }

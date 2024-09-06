@@ -8,6 +8,7 @@ namespace k4n{class Structure;}
 namespace k4n::playback{class Sensor;}
 namespace k4n::playback{class Configuration;}
 namespace dat::elm{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace k4n::playback{
@@ -31,6 +32,7 @@ public:
   void close_playback(k4n::playback::Sensor& sensor);
   float find_mkv_ts_beg(std::string path);
   float find_mkv_ts_end(std::string path);
+  void manage_capture(dat::base::Sensor& sensor);
 
 private:
   k4n::Structure* k4n_struct;

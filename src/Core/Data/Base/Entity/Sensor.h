@@ -24,7 +24,7 @@ struct Sensor : public dat::base::Object, public dat::sensor::Thread{
   void stop(){this->stop_thread();}
   void pause(bool value){this->pause_thread(value);}
   void restart(){this->stop(); this->start();}
-  void clean(){this->stop_thread();}
+  void clean(){this->stop_thread(); graph.wait_completion();}
 
   virtual void manage_query(float value){}
   virtual void manage_gui(){}

@@ -39,6 +39,7 @@ void Playback::clean(k4n::playback::Sensor& sensor){
 
   dat_sensor->clean_sensor(sensor);
 
+
   //---------------------------
 }
 
@@ -126,6 +127,20 @@ float Playback::find_mkv_ts_end(std::string path){
 
   //---------------------------
   return ts_end;
+}
+void Playback::manage_capture(dat::base::Sensor& sensor){
+  k4n::playback::Sensor* k4n_sensor = dynamic_cast<k4n::playback::Sensor*>(&sensor);
+  //---------------------------
+
+  //Capture data
+  bool ok = k4n_sensor->device.playback.get_next_capture(k4n_sensor->device.capture.get());
+
+  //Check capture
+  if(!ok){
+    k4n_sensor->device.capture.reset();
+  }
+
+  //---------------------------
 }
 
 }

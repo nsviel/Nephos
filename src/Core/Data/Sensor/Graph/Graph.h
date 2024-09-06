@@ -30,6 +30,7 @@ public:
   void add_task(const std::string& task_name, std::function<void(dat::base::Sensor&)> func);
   void add_dependency(const std::string& A, const std::string& B);
   void execute(dat::sensor::Pool& thread_pool, dat::base::Sensor& entity);
+  void wait_completion();
 
 private:
   //Subfunction
