@@ -1,8 +1,6 @@
 #include "Sensor.h"
 
 #include <Kinect/Namespace.h>
-#include <Profiler/Namespace.h>
-#include <Data/Namespace.h>
 #include <Processing/Namespace.h>
 #include <Utility/Namespace.h>
 
@@ -12,20 +10,14 @@ namespace k4n::playback{
 //Constructor / Destructor
 Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   //---------------------------
-
+  
   dyn::prc::Node* node_processing = node_k4n->get_node_processing();
-  dat::Node* node_data = node_k4n->get_node_data();
-  dat::elm::Node* node_element = node_data->get_node_element();
 
-  this->node_k4n = node_k4n;
-  this->k4n_graph = new k4n::Graph(node_k4n);
-  this->k4n_config = new k4n::playback::Configuration(node_k4n);
   this->k4n_playback = new k4n::playback::Playback(node_k4n);
-  this->dat_sensor = node_element->get_dat_sensor();
-  this->gui_playback = new k4n::gui::Playback(node_k4n);
   this->k4n_image = new k4n::processing::image::Data(node_k4n);
   this->k4n_cloud = new k4n::processing::cloud::Data(node_k4n);
   this->dyn_ope_cloud = node_processing->get_ope_cloud();
+  this->gui_playback = new k4n::gui::Playback(node_k4n);
   this->thr_pool = new dat::sensor::Pool(100);
 
   this->data->path = path;
