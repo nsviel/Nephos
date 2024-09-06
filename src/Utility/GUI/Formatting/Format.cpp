@@ -1,6 +1,7 @@
 #include "Format.h"
 
-#include <imgui.h>
+#include <Utility/Namespace.h>
+#include <imgui/core/imgui.h>
 #include <sstream>
 
 
@@ -9,27 +10,32 @@ namespace utl::gui{
 std::string format_title(const std::string& name, int totalWidth) {
   //---------------------------
 
-  // Calculate the width of the name using ImGui
-  ImGuiIO& io = ImGui::GetIO();
-  float nameWidth = ImGui::CalcTextSize(name.c_str()).x;
+  // Get the length of the name
+   int nameLength = static_cast<int>(name.length());
 
-  // Determine the number of dashes needed to fit the total width
-  float availableWidth = totalWidth - nameWidth;
-  if (availableWidth < 0) {
-      // If totalWidth is smaller than the name width, return the name itself
-      return name;
-  }
+   // Calculate available width for dashes
+   int availableWidth = totalWidth - nameLength - 2; // Subtract spaces around the name
 
-  int dashLength = static_cast<int>(availableWidth / 2);
+   // Ensure the available width is non-negative
+   if (availableWidth < 0) {
+       return name;  // If not enough width, return the name itself
+   }
 
-  std::ostringstream ss;
-  ss << std::string(dashLength, '-') << " " << name << " " << std::string(dashLength, '-');
+   // Calculate the number of dashes on each side
+   int dashLength = availableWidth / 2;
 
-  // Adjust length to ensure it fits the totalWidth, accounting for spaces and dashes
-  float currentLength = ImGui::CalcTextSize(ss.str().c_str()).x;
-  if (currentLength < totalWidth) {
-      ss << std::string(static_cast<int>(totalWidth - currentLength), '-');
-  }
+   // Construct the title string
+   std::ostringstream ss;
+   ss << std::string(dashLength, '-') << " " << name << " " << std::string(dashLength, '-');
+
+   // Ensure the final length matches the totalWidth
+   std::string result = ss.str();
+   int resultLength = static_cast<int>(result.length());
+
+   if (resultLength < totalWidth) {
+       result += std::string(totalWidth - resultLength, '-');
+   }
+
 
   //---------------------------
   return ss.str();

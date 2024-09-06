@@ -88,6 +88,14 @@ void Screenshot::export_image_to_bmp(vk::structure::Image& image){
   //Save staging buffer data to file
   void* mappedData;
   vkMapMemory(vk_struct->device.handle, staging_mem, 0, bufferSize, 0, &mappedData);
+
+  // Invert red and green channels
+  unsigned char* pixelData = static_cast<unsigned char*>(mappedData);
+  for (int i = 0; i < image.width * image.height; i++) {
+    // RGBA format: pixelData[4 * i] = R, pixelData[4 * i + 1] = G, pixelData[4 * i + 2] = B, pixelData[4 * i + 3] = A
+    std::swap(pixelData[4 * i], pixelData[4 * i + 2]);  // Swap R (index 0) and G (index 1)
+  }
+
   int channels = 4;  // Assuming RGBA data
   std::string filename = "temp.bmp";
   if(stbi_write_bmp(filename.c_str(), image.width, image.height, channels, mappedData) == 0){

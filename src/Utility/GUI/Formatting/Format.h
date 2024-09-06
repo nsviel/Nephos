@@ -5,6 +5,6 @@
 
 namespace utl::gui{
 
-std::string format_title(const std::string& name, int totalWidth)
+std::string format_title(const std::string& name, int totalWidth = 20);
 
 }

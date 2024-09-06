@@ -46,7 +46,10 @@ void Playback::show_info(k4n::playback::Sensor& sensor){
 void Playback::show_parameter(k4n::playback::Sensor& sensor){
   //---------------------------
 
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
   this->show_transformation_mode();
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Parametre");
   this->show_info_device(sensor);
   this->show_info_color(sensor);
   this->show_info_depth(sensor);
@@ -59,8 +62,6 @@ void Playback::show_parameter(k4n::playback::Sensor& sensor){
 //Design function
 void Playback::show_transformation_mode(){
   //---------------------------
-
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
 
   ImGui::RadioButton("Depth to color", &k4n_struct->transformation.mode, k4n::transformation::DEPTH_TO_COLOR);
   ImGui::SameLine();
@@ -107,7 +108,7 @@ void Playback::show_firmware_info(k4n::playback::Sensor& sensor){
 void Playback::show_info_device(k4n::playback::Sensor& sensor){
   //---------------------------
 
-  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Device");
+  ImGui::SeparatorText("Device");
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
   ImGui::BeginTable("playback_table##sensor", 2);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
@@ -133,7 +134,7 @@ void Playback::show_info_color(k4n::playback::Sensor& sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
-  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Color");
+  ImGui::SeparatorText("Color");
   ImGui::BeginTable("playback_table##data", 2);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
 
@@ -161,7 +162,7 @@ void Playback::show_info_depth(k4n::playback::Sensor& sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
-  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Depth");
+  ImGui::SeparatorText("Depth");
   ImGui::BeginTable("playback_table##stream", 2);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
 
@@ -193,7 +194,7 @@ void Playback::show_info_synch(k4n::playback::Sensor& sensor){
   //---------------------------
 
   ImVec4 color = ImVec4(54/255.0f, 125/255.0f, 155/255.0f, 1.0f);
-  ImGui::TextColored(ImVec4(0.4f,0.4f,0.4f,1.0f), "Synchronization");
+  ImGui::SeparatorText("Synchronization");
   ImGui::BeginTable("playback_table##synchro", 2);
   ImGui::TableSetupColumn("one", ImGuiTableColumnFlags_WidthFixed, 150.0f);
 

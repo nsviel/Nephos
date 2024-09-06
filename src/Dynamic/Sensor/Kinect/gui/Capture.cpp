@@ -58,7 +58,10 @@ void Capture::show_info(k4n::capture::Sensor& sensor){
 void Capture::show_parameter(k4n::capture::Sensor& sensor){
   //---------------------------
 
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
   this->show_transformation_mode();
+
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Configuration");
   this->configuration_depth();
   this->configuration_color();
   this->configuration_camera();
@@ -73,8 +76,6 @@ void Capture::show_parameter(k4n::capture::Sensor& sensor){
 //Subfunction
 void Capture::show_transformation_mode(){
   //---------------------------
-
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Transformation");
 
   ImGui::RadioButton("Depth to color", &k4n_struct->transformation.mode, k4n::transformation::DEPTH_TO_COLOR);
   ImGui::SameLine();
@@ -120,7 +121,9 @@ void Capture::show_firmware_info(k4n::capture::Sensor& sensor){
 void Capture::configuration_depth(){
   //---------------------------
 
-  if(ImGui::TreeNode("------- Depth   -------")){
+  if(ImGui::TreeNode("Depth")){
+    ImGui::SeparatorText("Depth");
+
     int depth_mode = k4n_struct->config.depth.mode;
     if(ImGui::RadioButton("NFOV Binned 2x2", &depth_mode, K4A_DEPTH_MODE_NFOV_2X2BINNED)){
       k4n_struct->config.depth.mode = K4A_DEPTH_MODE_NFOV_2X2BINNED;
@@ -156,7 +159,8 @@ void Capture::configuration_depth(){
 void Capture::configuration_color(){
   //---------------------------
 
-  if(ImGui::TreeNode("------- Color   -------")){
+  if(ImGui::TreeNode("Color")){
+    ImGui::SeparatorText("Color");
 
     //Format
     ImGui::Text("Format");
@@ -235,7 +239,8 @@ void Capture::configuration_color(){
 void Capture::configuration_camera(){
   //---------------------------
 
-  if(ImGui::TreeNode("------- Camera  -------")){
+  if(ImGui::TreeNode("Camera")){
+    ImGui::SeparatorText("Camera");
 
     ImGui::BeginTable("truc##color_control", 2);
     //Exposure time
@@ -344,8 +349,8 @@ void Capture::configuration_fps(){
   int framerate = k4n_struct->fps.mode;
   //---------------------------
 
-std::string title = type::format_title("FPS");
-  if(ImGui::TreeNode(title.c_str())){
+  if(ImGui::TreeNode("FPS")){
+    ImGui::SeparatorText("FPS");
 
     bool condition = (k4n_struct->config.depth.mode == K4A_DEPTH_MODE_WFOV_UNBINNED || k4n_struct->config.color.resolution == K4A_COLOR_RESOLUTION_3072P);
     if(condition) ImGui::BeginDisabled();
@@ -372,9 +377,9 @@ std::string title = type::format_title("FPS");
 void Capture::configuration_synchro(){
   //---------------------------
 
-  //Internal sync
-  std::string title = type::format_title("Synchro");
-  if(ImGui::TreeNode(title.c_str())){
+  if(ImGui::TreeNode("Synchro")){
+    ImGui::SeparatorText("Synchro");
+
     //Streaming front LED
     ImGui::Checkbox("Disable streaming LED", &k4n_struct->config.synchro.disable_streaming_indicator);
 

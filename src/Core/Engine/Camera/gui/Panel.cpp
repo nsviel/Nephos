@@ -43,6 +43,7 @@ void Panel::run_panel(){
 void Panel::design_panel(){
   //---------------------------
 
+  this->cam_screenshot();
   this->cam_info();
   this->cam_parameter();
   this->cam_pather();
@@ -51,6 +52,18 @@ void Panel::design_panel(){
 }
 
 //Subfunction
+void Panel::cam_screenshot(){
+  //---------------------------
+
+  ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 80, 255));
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 60, 255));
+  if(ImGui::Button("Screenshot##222", ImVec2(ImGui::GetContentRegionAvail().x, 0))){
+    cam_manager->make_screenshot();
+  }
+  ImGui::PopStyleColor(2);
+
+  //---------------------------
+}
 void Panel::cam_info(){
   std::shared_ptr<cam::Entity> camera = cam_struct->cam_current;
   //---------------------------
