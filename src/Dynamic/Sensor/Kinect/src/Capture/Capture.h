@@ -7,6 +7,7 @@ namespace k4n{class Node;}
 namespace k4n{class Structure;}
 namespace k4n::capture{class Sensor;}
 namespace k4n::capture{class Configuration;}
+namespace dat::base{class Sensor;}
 namespace dat::elm{class Sensor;}
 
 

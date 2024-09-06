@@ -36,7 +36,7 @@ public:
   k4n::processing::image::Data* k4n_image;
   k4n::processing::cloud::Data* k4n_cloud;
   k4n::gui::Playback* gui_playback;
-  dyn::prc::cloud::Operation* dyn_ope_cloud;
+  dyn::prc::cloud::Operation* dyn_operation;
   dat::sensor::Pool* thr_pool;
 };
 

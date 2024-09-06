@@ -16,9 +16,9 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->k4n_playback = new k4n::playback::Playback(node_k4n);
   this->k4n_image = new k4n::processing::image::Data(node_k4n);
   this->k4n_cloud = new k4n::processing::cloud::Data(node_k4n);
-  this->dyn_ope_cloud = node_processing->get_ope_cloud();
   this->gui_playback = new k4n::gui::Playback(node_k4n);
-  this->thr_pool = new dat::sensor::Pool(100);
+  this->dyn_operation = node_processing->get_ope_cloud();
+  this->thr_pool = new dat::sensor::Pool(20);
 
   this->data->path = path;
 
@@ -44,7 +44,7 @@ void Sensor::thread_init(){
   graph.add_task("capture", [this](dat::base::Sensor& sensor){ k4n_playback->manage_capture(sensor); });
   graph.add_task("data", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
   graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
-  graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_ope_cloud->run_operation(sensor); });
+  graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_operation->run_operation(sensor); });
   graph.add_dependency("capture", "data");
   graph.add_dependency("data", "cloud");
   graph.add_dependency("cloud", "operation");

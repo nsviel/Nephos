@@ -1,6 +1,8 @@
 #include "Capture.h"
 
 #include <Kinect/Namespace.h>
+#include <Data/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace k4n::capture{
@@ -8,6 +10,9 @@ namespace k4n::capture{
 //Constructor / Destructor
 Capture::Capture(k4n::Node* node_k4n){
   //---------------------------
+
+  dat::Node* node_data = node_k4n->get_node_data();
+  dat::elm::Node* node_element = node_data->get_node_element();
 
   this->k4n_struct = node_k4n->get_k4n_structure();
   this->k4n_config = new k4n::capture::Configuration(node_k4n);
