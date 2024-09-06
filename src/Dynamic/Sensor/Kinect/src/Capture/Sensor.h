@@ -28,7 +28,6 @@ public:
   void thread_end();
 
   //Subfunction
-  void manage_capture();
   void manage_gui();
 
 private:

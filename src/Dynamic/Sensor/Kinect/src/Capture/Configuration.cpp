@@ -24,6 +24,17 @@ Configuration::Configuration(k4n::Node* node_k4n){
 Configuration::~Configuration(){}
 
 //Main function
+void Configuration::init_configuration(k4n::capture::Sensor& sensor){
+  //---------------------------
+
+  this->make_sensor_configuration(sensor);
+  this->make_sensor_color_configuration(sensor);
+  this->find_calibration(sensor);
+
+  //---------------------------
+}
+
+//Subfunction
 void Configuration::make_default_configuration(){
   //---------------------------
 

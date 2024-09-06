@@ -24,16 +24,12 @@ Sensor::Sensor(k4n::Node* node_k4n){
   this->gui_capture = new k4n::gui::Capture(node_k4n);
   this->dat_sensor = node_element->get_dat_sensor();
 
-  this->device.index = k4n_struct->connection.current_ID++;
-  this->type_sensor = "capture";
-
   //---------------------------
 }
 Sensor::~Sensor(){
   //---------------------------
 
-  dat_sensor->clean_sensor(*this);
-  k4n_struct->connection.current_ID--;
+  k4n_capture->clean(*this);
 
   //---------------------------
 }
@@ -42,58 +38,37 @@ Sensor::~Sensor(){
 void Sensor::thread_init(){
   //---------------------------
 
-  k4n_capture->init_info(*this);
-  k4n_capture->init_device(*this);
-  dat_sensor->init_sensor(*this);
-  k4n_config->make_sensor_configuration(*this);
-  k4n_config->make_sensor_color_configuration(*this);
-  k4n_config->find_calibration(*this);
-  k4n_capture->init_capture(*this);
-  k4n_graph->init(*this);
+  //Configuration
+  k4n_capture->init(*this);
+
+  //Graph
+  graph.clear();
+  graph.add_task("capture", [this](dat::base::Sensor& sensor){ k4n_capture->manage_capture(sensor); });
+  graph.add_task("data", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
+  graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
+  graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_ope_cloud->run_operation(sensor); });
+  graph.add_dependency("capture", "data");
+  graph.add_dependency("data", "cloud");
+  graph.add_dependency("cloud", "operation");
 
   //---------------------------
 }
 void Sensor::thread_loop(){
-  prf::monitor::Tasker* tasker = profiler.fetch_tasker("kinect::loop");
   //---------------------------
 
-  tasker->loop();
-
-  //Next capture
-  tasker->task_begin("capture");
-  this->manage_capture();
-  if(!device.capture) return;
-  tasker->task_end("capture");
-
-  //Run processing
-  tasker->task_begin("graph");
-  k4n_graph->run(*this);
-  tasker->task_end("graph");
+  graph.execute(*thr_pool, *this);
 
   //---------------------------
 }
 void Sensor::thread_end(){
   //---------------------------
 
-  this->device.handle.close();
+  k4n_capture->clean(*this);
 
   //---------------------------
 }
 
 //Subfunction
-void Sensor::manage_capture(){
-  //---------------------------
-
-  //Capture data
-  bool ok = device.handle.get_capture(device.capture.get(), std::chrono::milliseconds(2000));
-
-  //Check capture
-  if(!ok){
-    device.capture.reset();
-  }
-
-  //---------------------------
-}
 void Sensor::manage_gui(){
   //---------------------------
 

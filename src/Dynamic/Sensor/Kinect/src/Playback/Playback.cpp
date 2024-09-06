@@ -47,6 +47,7 @@ void Playback::clean(k4n::playback::Sensor& sensor){
 void Playback::init_info(k4n::playback::Sensor& sensor){
   //---------------------------
 
+  sensor.type_sensor = "playback";
   sensor.name = sensor.data->path.name;
   sensor.calibration.path.insert("../media/calibration/kinect.json");
 

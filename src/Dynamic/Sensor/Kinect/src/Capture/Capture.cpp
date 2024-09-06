@@ -10,15 +10,41 @@ Capture::Capture(k4n::Node* node_k4n){
   //---------------------------
 
   this->k4n_struct = node_k4n->get_k4n_structure();
+  this->k4n_config = new k4n::capture::Configuration(node_k4n);
+  this->dat_sensor = node_element->get_dat_sensor();
 
   //---------------------------
 }
 Capture::~Capture(){}
 
 //Main function
+void Capture::init(k4n::capture::Sensor& sensor){
+  //---------------------------
+
+  this->init_info(sensor);
+  this->init_device(sensor);
+  dat_sensor->init_sensor(sensor);
+  k4n_config->init_configuration(sensor);
+  this->init_capture(sensor);
+
+  //---------------------------
+}
+void Capture::clean(k4n::capture::Sensor& sensor){
+  //---------------------------
+
+  dat_sensor->clean_sensor(sensor);
+  this->close_capture(sensor);
+  k4n_struct->connection.current_ID--;
+
+  //---------------------------
+}
+
+//Subfunction
 void Capture::init_info(k4n::capture::Sensor& sensor){
   //---------------------------
 
+  sensor.type_sensor = "capture";
+  sensor.device.index = k4n_struct->connection.current_ID++;
   sensor.name = "capture_" + std::to_string(sensor.device.index);
   sensor.calibration.path.insert("../media/calibration/kinect.json");
 
@@ -64,6 +90,14 @@ void Capture::init_capture(k4n::capture::Sensor& sensor){
 
   //---------------------------
 }
+void Capture::close_capture(k4n::capture::Sensor& sensor){
+  //---------------------------
+
+  sensor.device.handle.stop_cameras();
+  sensor.device.handle.close();
+
+  //---------------------------
+}
 void Capture::manage_configuration(){
   /*std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
   std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
@@ -71,6 +105,26 @@ void Capture::manage_configuration(){
   //---------------------------
 
 
+
+  //---------------------------
+}
+void Capture::manage_capture(dat::base::Sensor& sensor){
+  k4n::capture::Sensor* k4n_sensor = dynamic_cast<k4n::capture::Sensor*>(&sensor);
+  //---------------------------
+
+  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("capture");
+  tasker->loop();
+  tasker->task_begin("data");
+
+  //Capture data
+  bool ok = k4n_sensor->device.handle.get_capture(k4n_sensor->device.capture.get(), std::chrono::milliseconds(2000));
+
+  //Check capture
+  if(!ok){
+    k4n_sensor->device.capture.reset();
+  }
+
+  tasker->task_end("data");
 
   //---------------------------
 }

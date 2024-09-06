@@ -24,7 +24,6 @@ void Configuration::init_configuration(k4n::playback::Sensor& sensor){
 
   //---------------------------
 }
-
 void Configuration::find_configuration(k4n::playback::Sensor& sensor){
   k4a_record_configuration_t configuration = sensor.device.playback.get_record_configuration();
   //---------------------------

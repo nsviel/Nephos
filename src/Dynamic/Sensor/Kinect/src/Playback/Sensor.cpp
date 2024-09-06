@@ -21,7 +21,6 @@ Sensor::Sensor(k4n::Node* node_k4n, utl::base::Path path){
   this->thr_pool = new dat::sensor::Pool(100);
 
   this->data->path = path;
-  this->type_sensor = "playback";
 
   //---------------------------
 }
@@ -37,8 +36,10 @@ Sensor::~Sensor(){
 void Sensor::thread_init(){
   //---------------------------
 
+  //Configuration
   k4n_playback->init(*this);
 
+  //Graph
   graph.clear();
   graph.add_task("capture", [this](dat::base::Sensor& sensor){ k4n_playback->manage_capture(sensor); });
   graph.add_task("data", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
