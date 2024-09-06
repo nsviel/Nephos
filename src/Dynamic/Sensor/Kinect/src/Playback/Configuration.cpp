@@ -9,8 +9,6 @@ namespace k4n::playback{
 Configuration::Configuration(k4n::Node* node_k4n){
   //---------------------------
 
-  this->k4n_struct = node_k4n->get_k4n_structure();
-
   //---------------------------
 }
 Configuration::~Configuration(){}
@@ -33,10 +31,10 @@ void Configuration::find_configuration(k4n::playback::Sensor& sensor){
 
   //Synchro
   sensor.setting.wired_mode = find_mode_synchro(configuration.wired_sync_mode);
-  k4n_struct->config.synchro.wired_mode = configuration.wired_sync_mode;
-  k4n_struct->config.synchro.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
-  k4n_struct->config.synchro.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
-  k4n_struct->config.synchro.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
+  sensor.config.synchro.wired_mode = configuration.wired_sync_mode;
+  sensor.config.synchro.depth_delay_off_color_us = configuration.depth_delay_off_color_usec;
+  sensor.config.synchro.subordinate_delay_off_master_us = configuration.subordinate_delay_off_master_usec;
+  sensor.config.synchro.start_timestamp_offset_us = configuration.start_timestamp_offset_usec;
 
   //Depth
   sensor.info.depth_mode = find_mode_depth(configuration.depth_mode);

@@ -17,7 +17,8 @@ struct Sensor : public dat::base::Sensor{
   k4n::infrared::Structure infra;
   k4n::imu::Structure imu;
   k4n::structure::Cloud cloud;
-
+  k4n::structure::Configuration config;
+  
   //Device
   k4n::device::Structure device;
   k4n::firmware::Structure firmware;

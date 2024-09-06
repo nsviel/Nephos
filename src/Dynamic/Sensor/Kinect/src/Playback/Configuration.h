@@ -4,7 +4,6 @@
 #include <string>
 
 namespace k4n{class Node;}
-namespace k4n{class Structure;}
 namespace k4n::playback{class Sensor;}
 
 
@@ -32,9 +31,8 @@ public:
   std::string find_mode_color_format(int mode);
   float find_mkv_ts_beg(std::string path);
   float find_mkv_ts_end(std::string path);
-  
+
 private:
-  k4n::Structure* k4n_struct;
 };
 
 }

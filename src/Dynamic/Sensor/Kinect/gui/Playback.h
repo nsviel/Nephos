@@ -29,7 +29,6 @@ public:
 
 private:
   k4n::Structure* k4n_struct;
-  k4n::Node* node_k4n;
 };
 
 }

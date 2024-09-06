@@ -9,7 +9,6 @@ namespace k4n::gui{
 Playback::Playback(k4n::Node* node_k4n){
   //---------------------------
 
-  this->node_k4n = node_k4n;
   this->k4n_struct = node_k4n->get_k4n_structure();
 
   //---------------------------
@@ -173,7 +172,7 @@ void Playback::show_info_synch(k4n::playback::Sensor& sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Depth/color delay (us)"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", k4n_struct->config.synchro.depth_delay_off_color_us);
+  ImGui::TextColored(color, "%d", sensor.config.synchro.depth_delay_off_color_us);
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Sync mode"); ImGui::TableNextColumn();
@@ -181,7 +180,7 @@ void Playback::show_info_synch(k4n::playback::Sensor& sensor){
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
   ImGui::Text("Start timestamp offset"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d", k4n_struct->config.synchro.start_timestamp_offset_us);
+  ImGui::TextColored(color, "%d", sensor.config.synchro.start_timestamp_offset_us);
 
   ImGui::EndTable();
 

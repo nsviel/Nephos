@@ -27,41 +27,35 @@ void Data::extract_data(dat::base::Sensor& sensor){
   k4n::base::Sensor* k4n_sensor = dynamic_cast<k4n::base::Sensor*>(&sensor);
   //---------------------------
 
-  this->extract_image_data(*k4n_sensor);
+  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("image");
+  tasker->loop();
+
+  //Depth data
+  tasker->task_begin("depth");
+  k4n_depth->extract_data(*k4n_sensor);
+  tasker->task_end("depth");
+
+  //Color data
+  tasker->task_begin("color");
+  k4n_color->extract_data(*k4n_sensor);
+  tasker->task_end("color");
+
+  //Infrared data
+  tasker->task_begin("infrared");
+  k4n_ir->extract_data(*k4n_sensor);
+  tasker->task_end("infrared");
+
+  tasker->task_begin("transformation");
   this->make_transformation(*k4n_sensor);
+  tasker->task_end("transformation");
 
   //---------------------------
 }
 
 //Subfunction
-void Data::extract_image_data(k4n::base::Sensor& sensor){
-  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("kinect::image");
-  //---------------------------
-
-  tasker->loop();
-
-  //Depth data
-  tasker->task_begin("depth");
-  k4n_depth->extract_data(sensor);
-  tasker->task_end("depth");
-
-  //Color data
-  tasker->task_begin("color");
-  k4n_color->extract_data(sensor);
-  tasker->task_end("color");
-
-  //Infrared data
-  tasker->task_begin("infrared");
-  k4n_ir->extract_data(sensor);
-  tasker->task_end("infrared");
-
-  //---------------------------
-}
 void Data::make_transformation(k4n::base::Sensor& sensor){
-  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("kinect::image");
   //---------------------------
 
-  tasker->task_begin("transformation");
   switch(k4n_struct->transformation.mode){
     case k4n::transformation::DEPTH_TO_COLOR:{
       k4n_depth_to_color->make_transformation(sensor);
@@ -72,7 +66,6 @@ void Data::make_transformation(k4n::base::Sensor& sensor){
       break;
     }
   }
-  tasker->task_end("transformation");
 
   //---------------------------
 }

@@ -2,6 +2,7 @@
 
 #include <Processing/Namespace.h>
 #include <Data/Namespace.h>
+#include <Profiler/Namespace.h>
 #include <Utility/Namespace.h>
 
 
@@ -30,6 +31,10 @@ Operation::~Operation(){}
 void Operation::run_operation(dat::base::Sensor& sensor){
   //---------------------------
 
+  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("operation");
+  tasker->loop();
+
+
   //dyn_recorder->start_thread(sensor);
   //dyn_normal->start_thread(sensor);
   //dyn_radio->start_thread(sensor);
@@ -39,7 +44,9 @@ void Operation::run_operation(dat::base::Sensor& sensor){
   //Du coup 2 playback = laggs
   //atr_color->start_task(sensor);
 
+  tasker->task_begin("colorization");
   atr_color->make_colorization(sensor);
+  tasker->task_end("colorization");
 
   //---------------------------
 }
