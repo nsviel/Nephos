@@ -15,5 +15,6 @@ float degree_to_radian(float degree);
 float radian_to_degree(float radian);
 glm::vec3 degree_to_radian(glm::vec3 degree);
 glm::vec3 radian_to_degree_vec3(glm::vec3 radian);
+std::string format_title(const std::string& name, int totalWidth = 20);
 
 }

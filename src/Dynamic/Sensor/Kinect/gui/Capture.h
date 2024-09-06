@@ -19,15 +19,15 @@ public:
   ~Capture();
 
   //Main function
-  void show_parameter(k4n::capture::Sensor& sensor);
   void show_info(k4n::capture::Sensor& sensor);
+  void show_parameter(k4n::capture::Sensor& sensor);
 
   //Subfunction
   void show_transformation_mode();
   void show_firmware_info(k4n::capture::Sensor& sensor);
   void configuration_depth();
   void configuration_color();
-  void configuration_color_control();
+  void configuration_camera();
   void configuration_fps();
   void configuration_synchro();
   void configuration_button();

@@ -17,8 +17,8 @@ public:
   ~Playback();
 
   //Main function
-  void show_parameter(k4n::playback::Sensor& sensor);
   void show_info(k4n::playback::Sensor& sensor);
+  void show_parameter(k4n::playback::Sensor& sensor);
 
   //Subfunction
   void show_transformation_mode();

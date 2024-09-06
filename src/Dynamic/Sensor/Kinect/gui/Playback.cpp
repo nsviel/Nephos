@@ -16,18 +16,6 @@ Playback::Playback(k4n::Node* node_k4n){
 Playback::~Playback(){}
 
 //Main function
-void Playback::show_parameter(k4n::playback::Sensor& sensor){
-  //---------------------------
-
-  this->show_transformation_mode();
-  this->show_info_device(sensor);
-  this->show_info_color(sensor);
-  this->show_info_depth(sensor);
-  this->show_info_synch(sensor);
-
-  //---------------------------
-  ImGui::Separator();
-}
 void Playback::show_info(k4n::playback::Sensor& sensor){
   //---------------------------
 
@@ -51,6 +39,18 @@ void Playback::show_info(k4n::playback::Sensor& sensor){
   ImGui::SliderInt("##56765", fps, 1, 120);
 
   ImGui::EndTable();
+
+  //---------------------------
+  ImGui::Separator();
+}
+void Playback::show_parameter(k4n::playback::Sensor& sensor){
+  //---------------------------
+
+  this->show_transformation_mode();
+  this->show_info_device(sensor);
+  this->show_info_color(sensor);
+  this->show_info_depth(sensor);
+  this->show_info_synch(sensor);
 
   //---------------------------
   ImGui::Separator();

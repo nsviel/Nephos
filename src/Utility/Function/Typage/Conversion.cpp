@@ -71,5 +71,24 @@ glm::vec3 radian_to_degree_vec3(glm::vec3 radian){
   //---------------------------
   return degree;
 }
+std::string format_title(const std::string& name, int totalWidth){
+  //---------------------------
+
+  int nameLength = name.length();
+  int dashLength = (totalWidth - nameLength - 2) / 2;
+  if (totalWidth <= nameLength) return name;
+
+  std::ostringstream ss;
+  ss << std::string(dashLength, '-') << " " << name << " " << std::string(dashLength, '-');
+
+  // Add any remaining dashes to ensure it reaches the total width
+  int currentLength = ss.str().length();
+  if (currentLength < totalWidth) {
+    ss << std::string(totalWidth - currentLength, '-');
+  }
+
+  //---------------------------
+  return ss.str();
+}
 
 }
