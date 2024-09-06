@@ -24,8 +24,8 @@ Panel::~Panel(){}
 void Panel::design_panel(std::shared_ptr<utl::base::Element> element){
   //---------------------------
 
-  gui_info->design_info(element);
-  gui_transformation->design_matrix(element);
+  //gui_info->design_info(element);
+  //gui_transformation->design_matrix(element);
   gui_color->design_colorization(element);
   gui_operation->design_operation(element);
 

@@ -5,8 +5,8 @@
 namespace dat::ply{class Node;}
 namespace dat::ply::gui{class Player;}
 namespace dat::ply::gui{class Info;}
-namespace dat::gph{class Selection;}
 namespace dat::atr::gui{class Panel;}
+namespace dat::gph{class Selection;}
 
 
 namespace dat::ply::gui{
@@ -26,8 +26,8 @@ public:
 private:
   dat::ply::gui::Player* gui_player;
   dat::ply::gui::Info* gui_info;
-  dat::gph::Selection* gph_selection;
   dat::atr::gui::Panel* atr_panel;
+  dat::gph::Selection* gph_selection;
 
   std::string name;
   std::string open_tab = "";

@@ -67,10 +67,17 @@ void Sensor::thread_end(){
 }
 
 //Subfunction
-void Sensor::manage_gui(){
+void Sensor::gui_config(){
   //---------------------------
 
   gui_capture->show_parameter(*this);
+
+  //---------------------------
+}
+void Sensor::gui_info(){
+  //---------------------------
+
+  gui_capture->show_info(*this);
 
   //---------------------------
 }

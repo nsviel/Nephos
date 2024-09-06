@@ -23,6 +23,7 @@ public:
   void pause_thread(bool value);
 
   inline bool is_thread_running(){return run.load();}
+  inline int* get_fps(){return &fps;}
 
 private:
   //Subfunction
@@ -40,6 +41,7 @@ protected:
   std::condition_variable cv;
   std::thread thread;
   std::mutex mutex;
+  int fps = 30;
 };
 
 }

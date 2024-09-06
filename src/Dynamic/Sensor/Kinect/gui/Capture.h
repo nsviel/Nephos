@@ -20,6 +20,7 @@ public:
 
   //Main function
   void show_parameter(k4n::capture::Sensor& sensor);
+  void show_info(k4n::capture::Sensor& sensor);
 
   //Subfunction
   void show_transformation_mode();

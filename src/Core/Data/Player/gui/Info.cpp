@@ -25,23 +25,21 @@ void Info::design_info(std::shared_ptr<utl::base::Element> element){
   if(ImGui::CollapsingHeader("Info##dynamic")){
     this->path_info(element);
     this->sensor_info(element);
-    //this->playback_info(element);
   }
 
   //---------------------------
 }
-void Info::design_sensor(std::shared_ptr<utl::base::Element> element){
+void Info::design_configuration(std::shared_ptr<utl::base::Element> element){
   std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
   if(!sensor) return;
   //---------------------------
 
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Configuration##dynamic")){
-    sensor->manage_gui(sensor);
+    sensor->gui_config();
   }
 
   //---------------------------
-  ImGui::Separator();
 }
 
 //Subfunction
@@ -79,111 +77,14 @@ void Info::path_info(std::shared_ptr<utl::base::Element> element){
   ImGui::Separator();
 }
 void Info::sensor_info(std::shared_ptr<utl::base::Element> element){
-/*  std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
-  if(sensor == nullptr) return;
+  std::shared_ptr<dat::base::Sensor> sensor = std::dynamic_pointer_cast<dat::base::Sensor>(element);
+  if(!sensor) return;
   //---------------------------
 
-  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-
-  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Sensor");
-  ImGui::BeginTable("sensor##info", 2);
-  ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 75.0f);
-  ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
-
-  //Timestamp
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Timestamp"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%.2fs - %.2fs [%.2fs]", sensor->timestamp.begin, sensor->timestamp.end, sensor->timestamp.duration);
-
-  //Recording time
-  if(sensor->state.record){
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Record"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", sensor->timestamp.record);
-  }
-
-  /*
-  //Recording file size
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("Size"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%.2f Mo", master->recorder.file_size);
-
-  //FPS
-  ImGui::TableNextRow(); ImGui::TableNextColumn();
-  ImGui::Text("FPS"); ImGui::TableNextColumn();
-  ImGui::TextColored(color, "%d fps", player->fps_cur);
-  ImGui::SetNextItemWidth(50); ImGui::TableNextColumn();
-  ImGui::SliderInt("##56765", &player->fps_qry, 1, 120);
-
-  //Size
-  if(player->size != 0){
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Size"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f Mo", player->size);
-  }
-*/
-  ImGui::EndTable();
+  sensor->gui_info();
 
   //---------------------------
   ImGui::Separator();
-}
-void Info::playback_info(std::shared_ptr<utl::base::Element> element){
-  //if(std::shared_ptr<dat::base::Entity> entity = dynamic_cast<dat::base::Entity*>(element)) return;
-  //---------------------------
-
-  /*
-  std::shared_ptr<dat::base::Set> set = dynamic_cast<std::shared_ptr<dat::base::Set>>(element);
-  dat::base::Player* player = &set->player;
-  if(player == nullptr) return;
-
-  if(ImGui::CollapsingHeader("Info##dynamic")){
-
-    ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
-    ImGui::BeginTable("master##playback_info", 3);
-    //Duration
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Duration"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", player->ts_duration);
-
-    //FPS
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("FPS"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%d fps", player->fps_cur);
-    ImGui::SetNextItemWidth(50); ImGui::TableNextColumn();
-    ImGui::SliderInt("##56765", &player->fps_qry, 1, 120);
-
-    //Path data
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Path"); ImGui::TableNextColumn();
-    std::string path = (player->path.build() != "") ? player->path.build() : "(not defined)";
-    ImGui::TextColored(color, "%s", path.c_str());
-
-    //Size
-    if(player->size != 0){
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Size"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f Mo", player->size);
-    }
-
-    ImGui::EndTable();
-
-    //Recording time
-    ImGui::TableNextRow(); ImGui::TableNextColumn();
-    ImGui::Text("Record"); ImGui::TableNextColumn();
-    ImGui::TextColored(color, "%.2f s", master->recorder.ts_rec);
-
-    //Recording file size
-    if(master->recorder.mode == dyn::prc::recorder::MKV){
-      ImGui::TableNextRow(); ImGui::TableNextColumn();
-      ImGui::Text("Size"); ImGui::TableNextColumn();
-      ImGui::TextColored(color, "%.2f Mo", master->recorder.file_size);
-    }
-  }
-
-  }
-*/
-
-  //---------------------------
 }
 
 }

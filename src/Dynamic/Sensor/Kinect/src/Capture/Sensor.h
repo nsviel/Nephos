@@ -27,8 +27,9 @@ public:
   void thread_end();
 
   //Subfunction
-  void manage_gui();
-
+  void gui_config();
+  void gui_info();
+  
 private:
   k4n::capture::Capture* k4n_capture;
   k4n::processing::image::Data* k4n_image;

@@ -9,7 +9,7 @@ namespace dat::sensor{
 Thread::Thread(){
   //---------------------------
 
-  this->fps_control = new sys::fps::Control(120);
+  this->fps_control = new sys::fps::Control(fps);
 
   //---------------------------
 }
@@ -62,7 +62,7 @@ void Thread::run_thread(){
   this->thread_init();
 
   while(run.load()){
-    fps_control->set_fps_max(30);
+    fps_control->set_fps_max(fps);
     fps_control->start_loop();
 
     this->thread_loop();

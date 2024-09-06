@@ -21,12 +21,12 @@ Info::~Info(){}
 //Main function
 void Info::design_info(std::shared_ptr<utl::base::Element> element){
   //---------------------------
-
+/*
   ImGui::SetCursorPosY(ImGui::GetCursorPosY() - ImGui::GetStyle().ItemSpacing.y);
   if(ImGui::CollapsingHeader("Info##dynamic")){
     this->path_info(element);
   }
-
+*/
   //---------------------------
 }
 

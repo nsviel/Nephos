@@ -133,7 +133,7 @@ void State::manage_restart(dat::base::Set& set){
   for(auto& entity : set.list_entity){
     auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
     if(sensor){
-      sensor->manage_query(ply_struct->timestamp.begin);
+      sensor->query(ply_struct->timestamp.begin);
     }
   }
 
@@ -151,7 +151,7 @@ void State::manage_reset(dat::base::Set& set){
   for(auto& entity : set.list_entity){
     auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
     if(sensor){
-      sensor->manage_query(ply_struct->timestamp.begin);
+      sensor->query(ply_struct->timestamp.begin);
     }
   }
 
@@ -176,7 +176,7 @@ void State::manage_query(dat::base::Set& set, float value){
   for(auto& entity : set.list_entity){
     auto sensor = std::dynamic_pointer_cast<dat::base::Sensor>(entity);
     if(sensor){
-      sensor->manage_query(value);
+      sensor->query(value);
     }
   }
 

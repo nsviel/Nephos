@@ -67,17 +67,24 @@ void Sensor::thread_end(){
 }
 
 //Subfunction
-void Sensor::manage_query(float value){
+void Sensor::query(float value){
   //---------------------------
 
   k4n_playback->manage_query(*this, value);
 
   //---------------------------
 }
-void Sensor::manage_gui(){
+void Sensor::gui_config(){
   //---------------------------
 
   gui_playback->show_parameter(*this);
+
+  //---------------------------
+}
+void Sensor::gui_info(){
+  //---------------------------
+
+  gui_playback->show_info(*this);
 
   //---------------------------
 }

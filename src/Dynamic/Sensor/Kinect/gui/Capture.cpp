@@ -35,6 +35,40 @@ void Capture::show_parameter(k4n::capture::Sensor& sensor){
   //---------------------------
   ImGui::Separator();
 }
+void Capture::show_info(k4n::capture::Sensor& sensor){
+  //---------------------------
+
+  //Table
+  ImVec4 color = ImVec4(0.4f, 1.0f, 0.4f, 1.0f);
+  ImGui::TextColored(ImVec4(0.4f, 0.4f, 0.4f, 1.0f), "Sensor");
+  ImGui::BeginTable("sensor##info", 2);
+  ImGui::TableSetupColumn("1", ImGuiTableColumnFlags_WidthFixed, 75.0f);
+  ImGui::TableSetupColumn("2", ImGuiTableColumnFlags_WidthStretch);
+
+  //Recording time
+  if(sensor.state.record){
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Record"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.2f s", sensor.timestamp.record);
+  }
+/*
+  //Recording file size
+  ImGui::TableNextRow(); ImGui::TableNextColumn();
+  ImGui::Text("Size"); ImGui::TableNextColumn();
+  ImGui::TextColored(color, "%.2f Mo", master->recorder.file_size);
+
+  //Size
+  if(player->size != 0){
+    ImGui::TableNextRow(); ImGui::TableNextColumn();
+    ImGui::Text("Size"); ImGui::TableNextColumn();
+    ImGui::TextColored(color, "%.2f Mo", player->size);
+  }
+*/
+  ImGui::EndTable();
+
+  //---------------------------
+  ImGui::Separator();
+}
 
 //Subfunction
 void Capture::show_transformation_mode(){

@@ -28,8 +28,9 @@ public:
   void thread_end();
 
   //Subfunction
-  void manage_query(float ts_querry);
-  void manage_gui();
+  void query(float ts_querry);
+  void gui_config();
+  void gui_info();
 
 public:
   k4n::playback::Playback* k4n_playback;
