@@ -73,7 +73,6 @@ void Graph::process_graph(dat::sensor::Pool& thread_pool, dat::base::Sensor& sen
 
   //Retrieve zero in-degree nodes
   {
-    std::unique_lock<std::mutex> lock(mutex);
     for(auto& [task_name, node] : map_node){
       if (node.in_degree == 0){
         queue_running.push(task_name);
@@ -114,7 +113,6 @@ void Graph::process_node(const std::string& task_name, dat::sensor::Pool& thread
 
   // Process dependencies
   {
-    std::unique_lock<std::mutex> lock(mutex);
     for(const std::string& dependent_task : map_node[task_name].adjacent){
       queue_running.push(dependent_task);
     }

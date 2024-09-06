@@ -39,6 +39,15 @@ namespace{
     float duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
     std::cout<<what<<" time: "<<duration<<"ms"<<std::endl;
   }
+  void toc_thread(std::string what){
+    std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+    float duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
+
+    std::ostringstream ss;
+    ss << std::this_thread::get_id();
+
+    std::cout<<what<<" "<< ss.str()<<" time: "<<duration<<"ms"<<std::endl;
+  }
   void toc_us(std::string what){
     std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
     float duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
