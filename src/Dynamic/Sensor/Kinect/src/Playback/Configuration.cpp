@@ -16,6 +16,15 @@ Configuration::Configuration(k4n::Node* node_k4n){
 Configuration::~Configuration(){}
 
 //Main function
+void Configuration::init_configuration(k4n::playback::Sensor& sensor){
+  //---------------------------
+
+  this->find_configuration(sensor);
+  this->find_calibration(sensor);
+
+  //---------------------------
+}
+
 void Configuration::find_configuration(k4n::playback::Sensor& sensor){
   k4a_record_configuration_t configuration = sensor.device.playback.get_record_configuration();
   //---------------------------
@@ -253,6 +262,42 @@ std::string Configuration::find_mode_color_format(int mode){
 
   //---------------------------
   return mode_str;
+}
+float Configuration::find_mkv_ts_beg(std::string path){
+  //---------------------------
+
+  k4a::playback playback = k4a::playback::open(path.c_str());;
+  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
+
+  k4a::capture capture;
+  k4a::image color = nullptr;
+  while(color == nullptr){
+    playback.get_next_capture(&capture);
+    color = capture.get_color_image();
+  }
+
+  float ts_beg = color.get_device_timestamp().count() / 1000000.0f;
+
+  //---------------------------
+  return ts_beg;
+}
+float Configuration::find_mkv_ts_end(std::string path){
+  //---------------------------
+
+  k4a::playback playback = k4a::playback::open(path.c_str());;
+  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_END);
+
+  k4a::capture capture;
+  k4a::image color = nullptr;
+  while(color == nullptr){
+    playback.get_previous_capture(&capture);
+    color = capture.get_color_image();
+  }
+
+  float ts_end = color.get_device_timestamp().count() / 1000000.0f;
+
+  //---------------------------
+  return ts_end;
 }
 
 }

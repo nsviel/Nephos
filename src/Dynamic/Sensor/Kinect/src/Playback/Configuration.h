@@ -19,6 +19,7 @@ public:
 
 public:
   //Main function
+  void init_configuration(k4n::playback::Sensor& sensor);
   void find_configuration(k4n::playback::Sensor& sensor);
   void find_calibration(k4n::playback::Sensor& sensor);
 
@@ -29,7 +30,9 @@ public:
   std::string find_resolution_depth(int mode);
   std::string find_mode_color_resolution(int mode);
   std::string find_mode_color_format(int mode);
-
+  float find_mkv_ts_beg(std::string path);
+  float find_mkv_ts_end(std::string path);
+  
 private:
   k4n::Structure* k4n_struct;
 };

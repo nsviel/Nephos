@@ -5,12 +5,15 @@
 #include <mutex>
 #include <atomic>
 
+namespace sys::fps{class Control;}
+
 
 namespace dat::sensor{
 
 class Thread{
 public:
-  //Destructor
+  //Constructor / Destructor
+  Thread();
   ~Thread();
 
 public:
@@ -31,6 +34,7 @@ protected:
   virtual void thread_loop(){}
   virtual void thread_end(){}
 
+  sys::fps::Control* fps_control;
   std::atomic<bool> run{false};
   std::atomic<bool> pause{false};
   std::condition_variable cv;

@@ -6,6 +6,13 @@
 namespace dat::sensor{
 
 //Destructor
+Thread::Thread(){
+  //---------------------------
+
+  this->fps_control = new sys::fps::Control(120);
+
+  //---------------------------
+}
 Thread::~Thread(){
   //---------------------------
 
@@ -55,8 +62,13 @@ void Thread::run_thread(){
   this->thread_init();
 
   while(run.load()){
+    fps_control->set_fps_max(30);
+    fps_control->start_loop();
+
     this->thread_loop();
     this->thread_pause();
+
+    fps_control->stop_loop();
   }
 
   this->thread_end();

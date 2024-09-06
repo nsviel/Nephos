@@ -37,7 +37,6 @@ Sensor::~Sensor(){
   //---------------------------
 
   k4n_playback->clean(*this);
-  k4n_playback->close_playback(*this);
 
   //---------------------------
 }
@@ -60,21 +59,16 @@ void Sensor::thread_init(){
   //---------------------------
 }
 void Sensor::thread_loop(){
-  prf::monitor::Tasker* tasker = profiler.fetch_tasker("kinect::loop");
   //---------------------------
 
-  tasker->loop(30);
-
-  //Run processing
-  tasker->task_begin("graph");
   graph.execute(*thr_pool, *this);
-  tasker->task_end("graph");
 
   //---------------------------
 }
 void Sensor::thread_end(){
   //---------------------------
 
+  graph.wait_completion();
   k4n_playback->clean(*this);
 
   //---------------------------

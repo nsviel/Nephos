@@ -28,10 +28,9 @@ public:
   //Subfunction
   void init_info(k4n::playback::Sensor& sensor);
   void init_playback(k4n::playback::Sensor& sensor);
-  void find_timestamp(k4n::playback::Sensor& sensor);
+  void init_timestamp(k4n::playback::Sensor& sensor);
   void close_playback(k4n::playback::Sensor& sensor);
-  float find_mkv_ts_beg(std::string path);
-  float find_mkv_ts_end(std::string path);
+
   void manage_capture(dat::base::Sensor& sensor);
 
 private:

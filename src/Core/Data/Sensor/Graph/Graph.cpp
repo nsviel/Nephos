@@ -54,11 +54,13 @@ void Graph::add_dependency(const std::string& A, const std::string& B){
 }
 void Graph::execute(dat::sensor::Pool& thread_pool, dat::base::Sensor& sensor){
   //---------------------------
-
+/*
   std::thread thread([this, &thread_pool, &sensor](){
     this->process_graph(thread_pool, sensor);
   });
   thread.detach();
+*/
+  this->process_graph(thread_pool, sensor);
 
   //---------------------------
 }

@@ -2,6 +2,7 @@
 
 #include <Kinect/Namespace.h>
 #include <Data/Namespace.h>
+#include <Profiler/Namespace.h>
 
 
 namespace k4n::playback{
@@ -27,10 +28,9 @@ void Playback::init(k4n::playback::Sensor& sensor){
 
   this->init_info(sensor);
   this->init_playback(sensor);
-  this->find_timestamp(sensor);
+  this->init_timestamp(sensor);
   dat_sensor->init_sensor(sensor);
-  k4n_config->find_configuration(sensor);
-  k4n_config->find_calibration(sensor);
+  k4n_config->init_configuration(sensor);
 
   //---------------------------
 }
@@ -38,7 +38,7 @@ void Playback::clean(k4n::playback::Sensor& sensor){
   //---------------------------
 
   dat_sensor->clean_sensor(sensor);
-
+  this->close_playback(sensor);
 
   //---------------------------
 }
@@ -76,11 +76,11 @@ void Playback::init_playback(k4n::playback::Sensor& sensor){
 
   //---------------------------
 }
-void Playback::find_timestamp(k4n::playback::Sensor& sensor){
+void Playback::init_timestamp(k4n::playback::Sensor& sensor){
   //---------------------------
 
-  sensor.timestamp.begin = find_mkv_ts_beg(sensor.data->path.build());
-  sensor.timestamp.end = find_mkv_ts_end(sensor.data->path.build());
+  sensor.timestamp.begin = k4n_config->find_mkv_ts_beg(sensor.data->path.build());
+  sensor.timestamp.end = k4n_config->find_mkv_ts_end(sensor.data->path.build());
   sensor.timestamp.duration = sensor.timestamp.end - sensor.timestamp.begin;
 
   //---------------------------
@@ -92,45 +92,13 @@ void Playback::close_playback(k4n::playback::Sensor& sensor){
 
   //---------------------------
 }
-float Playback::find_mkv_ts_beg(std::string path){
-  //---------------------------
-
-  k4a::playback playback = k4a::playback::open(path.c_str());;
-  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_BEGIN);
-
-  k4a::capture capture;
-  k4a::image color = nullptr;
-  while(color == nullptr){
-    playback.get_next_capture(&capture);
-    color = capture.get_color_image();
-  }
-
-  float ts_beg = color.get_device_timestamp().count() / 1000000.0f;
-
-  //---------------------------
-  return ts_beg;
-}
-float Playback::find_mkv_ts_end(std::string path){
-  //---------------------------
-
-  k4a::playback playback = k4a::playback::open(path.c_str());;
-  playback.seek_timestamp(std::chrono::microseconds(0), K4A_PLAYBACK_SEEK_END);
-
-  k4a::capture capture;
-  k4a::image color = nullptr;
-  while(color == nullptr){
-    playback.get_previous_capture(&capture);
-    color = capture.get_color_image();
-  }
-
-  float ts_end = color.get_device_timestamp().count() / 1000000.0f;
-
-  //---------------------------
-  return ts_end;
-}
 void Playback::manage_capture(dat::base::Sensor& sensor){
   k4n::playback::Sensor* k4n_sensor = dynamic_cast<k4n::playback::Sensor*>(&sensor);
   //---------------------------
+
+  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("capture");
+  tasker->loop();
+  tasker->task_begin("data");
 
   //Capture data
   bool ok = k4n_sensor->device.playback.get_next_capture(k4n_sensor->device.capture.get());
@@ -139,6 +107,8 @@ void Playback::manage_capture(dat::base::Sensor& sensor){
   if(!ok){
     k4n_sensor->device.capture.reset();
   }
+
+  tasker->task_end("data");
 
   //---------------------------
 }
