@@ -103,16 +103,6 @@ void Capture::close_capture(k4n::capture::Sensor& sensor){
 
   //---------------------------
 }
-void Capture::manage_configuration(){
-  /*std::shared_ptr<dat::base::Set> set_graph = dat_graph->get_set_graph();
-  std::shared_ptr<dat::base::Set> set = dat_set->get_subset(set_graph, "kinect");
-  if(set != nullptr) return;*/
-  //---------------------------
-
-
-
-  //---------------------------
-}
 void Capture::manage_capture(dat::base::Sensor& sensor){
   k4n::capture::Sensor* k4n_sensor = dynamic_cast<k4n::capture::Sensor*>(&sensor);
   //---------------------------

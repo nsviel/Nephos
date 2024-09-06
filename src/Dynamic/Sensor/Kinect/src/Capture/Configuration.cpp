@@ -28,7 +28,7 @@ void Configuration::init_configuration(k4n::capture::Sensor& sensor){
   //---------------------------
 
   this->make_sensor_configuration(sensor);
-  this->make_sensor_color_configuration(sensor);
+  this->make_camera_configuration(sensor);
   this->find_calibration(sensor);
 
   //---------------------------
@@ -103,7 +103,7 @@ void Configuration::make_sensor_configuration(k4n::capture::Sensor& sensor){
   //---------------------------
   sensor.device.configuration = configuration;
 }
-void Configuration::make_sensor_color_configuration(k4n::capture::Sensor& sensor){
+void Configuration::make_camera_configuration(k4n::capture::Sensor& sensor){
   k4a::device& device = sensor.device.handle;
   //---------------------------
 

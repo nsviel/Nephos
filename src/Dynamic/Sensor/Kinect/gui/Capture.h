@@ -27,10 +27,10 @@ public:
   void show_firmware_info(k4n::capture::Sensor& sensor);
   void configuration_depth();
   void configuration_color();
-  void configuration_camera();
+  void configuration_camera(k4n::capture::Sensor& sensor);
   void configuration_fps();
   void configuration_synchro();
-  void configuration_button();
+  void configuration_button(k4n::capture::Sensor& sensor);
 
 private:
   k4n::Structure* k4n_struct;

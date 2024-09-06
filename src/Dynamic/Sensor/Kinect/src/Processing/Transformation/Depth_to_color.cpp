@@ -16,6 +16,7 @@ Depth_to_color::~Depth_to_color(){}
 
 //Main function
 void Depth_to_color::make_transformation(k4n::base::Sensor& sensor){
+  if(!check_data(sensor)) return;
   //---------------------------
 
   this->find_depth_to_color(sensor);
@@ -26,7 +27,6 @@ void Depth_to_color::make_transformation(k4n::base::Sensor& sensor){
 
 //Subfunction
 void Depth_to_color::find_depth_to_color(k4n::base::Sensor& sensor){
-  if(!sensor.color.data.k4a_image || !sensor.depth.data.k4a_image) return;
   //---------------------------
 
   //Depth images
@@ -75,6 +75,17 @@ void Depth_to_color::find_depth_to_color(k4n::base::Sensor& sensor){
   sensor.infra.data.buffer = ir_transformed.get_buffer();
 
   //---------------------------
+}
+bool Depth_to_color::check_data(k4n::base::Sensor& sensor){
+  //---------------------------
+
+  if(!sensor.color.data.k4a_image || !sensor.depth.data.k4a_image) return false;
+  if(sensor.depth.data.k4a_image.get_format() != K4A_IMAGE_FORMAT_DEPTH16) return false;
+  if(sensor.color.data.k4a_image.get_format() != K4A_IMAGE_FORMAT_COLOR_BGRA32) return false;
+  if(sensor.depth.data.width == sensor.color.data.width) return false;
+
+  //---------------------------
+  return true;
 }
 
 }

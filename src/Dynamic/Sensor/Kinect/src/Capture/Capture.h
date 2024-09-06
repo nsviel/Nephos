@@ -30,7 +30,6 @@ public:
   void init_device(k4n::capture::Sensor& sensor);
   void init_capture(k4n::capture::Sensor& sensor);
   void close_capture(k4n::capture::Sensor& sensor);
-  void manage_configuration();
   void manage_capture(dat::base::Sensor& sensor);
 
 private:

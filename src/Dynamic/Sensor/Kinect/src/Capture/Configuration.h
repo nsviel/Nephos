@@ -27,7 +27,7 @@ public:
   void find_calibration(k4n::capture::Sensor& sensor);
   void find_versioning(k4n::capture::Sensor& sensor);
   void make_sensor_configuration(k4n::capture::Sensor& sensor);
-  void make_sensor_color_configuration(k4n::capture::Sensor& sensor);
+  void make_camera_configuration(k4n::capture::Sensor& sensor);
 
 private:
   k4n::Structure* k4n_struct;
