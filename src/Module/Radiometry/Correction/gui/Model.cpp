@@ -129,7 +129,7 @@ void Model::parameter_model(dat::base::Sensor& sensor){
   ImGui::TableNextColumn();
   if(ImGui::TreeNode("Parameter##Model")){
     //Path
-    std::string path = sensor->calibration.path.build();
+    std::string path = sensor.calibration.path.build();
     if(ImGui::Button("...##path_model")){
       zenity::selection_file(path);
     }
@@ -150,11 +150,11 @@ void Model::parameter_model(dat::base::Sensor& sensor){
     ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "RMSE: %.4f", model->rmse);
     ImGui::SetNextItemWidth(247.5);
     if(ImGui::DragFloatRange2("Range x",&model->axis_x.bound[0], &model->axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
-      rad_plot->update(*sensor);
+      rad_plot->update(sensor);
     }
     ImGui::SetNextItemWidth(247.5);
     if(ImGui::DragFloatRange2("Range y",&model->axis_y.bound[0], &model->axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
-      rad_plot->update(*sensor);
+      rad_plot->update(sensor);
     }
 
     //Model function
@@ -162,7 +162,7 @@ void Model::parameter_model(dat::base::Sensor& sensor){
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Compute##model", ImVec2(120, 0))){
       rad_model->compute_model(sensor);
-      rad_plot->update(*sensor);
+      rad_plot->update(sensor);
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
@@ -224,7 +224,7 @@ void Model::plot_model_heatmap(dat::base::Sensor& sensor, float height){
   plot.IfRIt.dimension = glm::ivec2(-1, height);
   bool need_update = utl_plot->plot_heatmap(&plot.IfRIt, &model->axis_x, &model->axis_y);
   if(need_update){
-    rad_plot->update(*sensor);
+    rad_plot->update(sensor);
   }
 
   //---------------------------

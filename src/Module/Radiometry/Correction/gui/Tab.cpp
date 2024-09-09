@@ -22,9 +22,9 @@ Tab::~Tab(){}
 void Tab::design_tab(dat::base::Sensor& sensor){
   //---------------------------
 
-  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
-  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(54, 112, 131, 255));
-  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
+  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 39, 39, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(130, 130, 130, 255));
+  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(101, 101, 101, 255));
   ImGui::BeginTabBar("devices_tab##4567");
 
   this->tab_detection(sensor);
