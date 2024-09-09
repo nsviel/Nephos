@@ -17,12 +17,14 @@ namespace rlx{
 Node::Node(dyn::sen::Node* node_sensor){
   //---------------------------
 
-  core::Node* node_core = node_sensor->get_node_core();;
+  core::Node* node_core = node_sensor->get_node_core();
 
-  this->node_core = node_core;
-  this->node_io = node_core->get_node_io();
+  //Dependancy
+  this->node_processing = node_sensor->get_node_processing();
   this->node_data = node_core->get_node_data();
+  this->node_io = node_core->get_node_io();
 
+  //Child
   this->rlx_struct = new rlx::Structure();
   this->rlx_importer = new rlx::Importer(this);
 

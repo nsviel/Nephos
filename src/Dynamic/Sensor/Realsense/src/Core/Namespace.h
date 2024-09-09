@@ -1,3 +1,4 @@
 #pragma once
 
-#include <Realsense/src/Structure/Sensor.h>
+#include <Realsense/src/Core/Factory.h>
+#include <Realsense/src/Core/Importer.h>

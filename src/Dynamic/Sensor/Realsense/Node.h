@@ -3,8 +3,8 @@
 #include <Utility/Base/Class/Node.h>
 
 namespace dyn::sen{class Node;}
+namespace dyn::prc{class Node;}
 namespace dat{class Node;}
-namespace core{class Node;}
 namespace io{class Node;}
 
 namespace rlx{class Structure;}
@@ -23,15 +23,15 @@ public:
 public:
   //Main function
 
-  inline core::Node* get_node_core(){return node_core;}
+  inline dyn::prc::Node* get_node_processing(){return node_processing;}
   inline dat::Node* get_node_data(){return node_data;}
   inline io::Node* get_node_io(){return node_io;}
-  
+
   inline rlx::Structure* get_rlx_struct(){return rlx_struct;}
 
 private:
+  dyn::prc::Node* node_processing;
   io::Node* node_io;
-  core::Node* node_core;
   dat::Node* node_data;
 
   rlx::Structure* rlx_struct;

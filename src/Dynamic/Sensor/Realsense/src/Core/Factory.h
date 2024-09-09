@@ -4,6 +4,10 @@
 #include <thread>
 
 namespace rlx{class Node;}
+namespace rlx::capture{class Sensor;}
+namespace rlx::base{class Sensor;}
+namespace dat::gph{class Graph;}
+namespace dat::elm{class Set;}
 
 
 namespace rlx{
@@ -21,8 +25,11 @@ public:
 
   //Subfunction
   void insert_in_set(rlx::base::Sensor& sensor);
-  
+
 private:
+  rlx::Node* node_realsense;
+  dat::elm::Set* dat_set;
+  dat::gph::Graph* dat_graph;
 };
 
 }
