@@ -1,6 +1,7 @@
 #include "Tab.h"
 
 #include <Hardware/Namespace.h>
+#include <Utility/Namespace.h>
 #include <imgui/core/imgui.h>
 
 
@@ -37,6 +38,9 @@ void Tab::draw_hardware_tabbar(){
   //---------------------------
 
   //Draw specific info
+  ImGui::PushStyleColor(ImGuiCol_Tab, utl::colormap::H3_TAB);
+  ImGui::PushStyleColor(ImGuiCol_TabHovered, utl::colormap::H3_TAB_HOVERED);
+  ImGui::PushStyleColor(ImGuiCol_TabActive, utl::colormap::H3_TAB_ACTIVE);
   if(ImGui::BeginTabBar("Hardware##tabbar")){
     int width = ImGui::GetContentRegionAvail().x;
 
@@ -63,7 +67,8 @@ void Tab::draw_hardware_tabbar(){
 
     ImGui::EndTabBar();
   }
-
+  ImGui::PopStyleColor(3);
+  
   //---------------------------
 }
 

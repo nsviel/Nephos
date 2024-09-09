@@ -51,9 +51,9 @@ void Panel::run_panel(){
 void Panel::design_panel(dat::base::Sensor& sensor){
   //---------------------------
 
-  ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 74, 90, 255));
-  ImGui::PushStyleColor(ImGuiCol_TabHovered, IM_COL32(54, 112, 131, 255));
-  ImGui::PushStyleColor(ImGuiCol_TabActive, IM_COL32(44, 101, 131, 255));
+  ImGui::PushStyleColor(ImGuiCol_Tab, utl::colormap::H2_TAB);
+  ImGui::PushStyleColor(ImGuiCol_TabHovered, utl::colormap::H2_TAB_HOVERED);
+  ImGui::PushStyleColor(ImGuiCol_TabActive, utl::colormap::H2_TAB_ACTIVE);
   ImGui::BeginTabBar("devices_tab##4567");
 
   this->tab_correction(sensor);

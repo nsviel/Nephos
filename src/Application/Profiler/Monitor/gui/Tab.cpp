@@ -38,6 +38,9 @@ void Tab::draw_dynamic_tabbar(){
   int width = ImGui::GetContentRegionAvail().x / list_profiler.size();
   //---------------------------
 
+  ImGui::PushStyleColor(ImGuiCol_Tab, utl::colormap::H3_TAB);
+  ImGui::PushStyleColor(ImGuiCol_TabHovered, utl::colormap::H3_TAB_HOVERED);
+  ImGui::PushStyleColor(ImGuiCol_TabActive, utl::colormap::H3_TAB_ACTIVE);
   if(ImGui::BeginTabBar("profiler_panel##graph")){
     for(int i=0; i<list_profiler.size(); i++){
       prf::monitor::Profiler* profiler = *next(list_profiler.begin(), i);
@@ -51,7 +54,8 @@ void Tab::draw_dynamic_tabbar(){
 
     ImGui::EndTabBar();
   }
-
+  ImGui::PopStyleColor(3);
+  
   //---------------------------
 }
 

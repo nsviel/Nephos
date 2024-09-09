@@ -1,6 +1,7 @@
 #include "Panel.h"
 
 #include <Profiler/Namespace.h>
+#include <Utility/Namespace.h>
 
 
 namespace prf::gui{
@@ -45,12 +46,17 @@ void Panel::design_panel(){
   int width = ImGui::GetContentRegionAvail().x / 2;
   //---------------------------
 
+  ImGui::PushStyleColor(ImGuiCol_Tab, utl::colormap::H2_TAB);
+  ImGui::PushStyleColor(ImGuiCol_TabHovered, utl::colormap::H2_TAB_HOVERED);
+  ImGui::PushStyleColor(ImGuiCol_TabActive, utl::colormap::H2_TAB_ACTIVE);
   if(ImGui::BeginTabBar("profiler_panel##graph")){
     tab_monitor->draw_tab(width);
     tab_hardware->draw_tab(width);
 
     ImGui::EndTabBar();
   }
+  ImGui::PopStyleColor(3);
+
   //---------------------------
 }
 
