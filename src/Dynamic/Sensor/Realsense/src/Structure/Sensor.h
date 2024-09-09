@@ -4,9 +4,9 @@
 #include <string>
 
 
-namespace rlx::capture{
+namespace rlx::base{
 
-struct Sensor : public rlx::base::Sensor{
+struct Sensor : public dat::base::Sensor{
   //---------------------------
 
 

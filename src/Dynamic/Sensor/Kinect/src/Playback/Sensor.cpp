@@ -40,14 +40,14 @@ void Sensor::thread_init(){
   k4n_playback->init(*this);
 
   //Graph
-  graph.add_task("capture", [this](dat::base::Sensor& sensor){ tic();k4n_playback->manage_capture(sensor); toc_thread("1");});
-  graph.add_task("data", [this](dat::base::Sensor& sensor){ tic();k4n_image->extract_data(sensor);toc_thread("2"); });
-  graph.add_task("cloud", [this](dat::base::Sensor& sensor){ tic();k4n_cloud->extract_data(sensor); toc_thread("3");});
-  graph.add_task("operation", [this](dat::base::Sensor& sensor){ tic();dyn_operation->run_operation(sensor);toc_thread("4"); });
+  graph.add_task("capture", [this](dat::base::Sensor& sensor){ k4n_playback->manage_capture(sensor); });
+  graph.add_task("data", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
+  graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
+  graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_operation->run_operation(sensor); });
   graph.add_dependency("capture", "data");
   graph.add_dependency("data", "cloud");
   graph.add_dependency("cloud", "operation");
-
+//tic();toc_thread("4");
   //---------------------------
 }
 void Sensor::thread_loop(){

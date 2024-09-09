@@ -17,8 +17,11 @@ public:
 
 public:
   //Main function
+  std::shared_ptr<rlx::capture::Sensor> create_capture_sensor();
 
-
+  //Subfunction
+  void insert_in_set(rlx::base::Sensor& sensor);
+  
 private:
 };
 
