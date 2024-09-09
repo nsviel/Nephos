@@ -41,7 +41,7 @@ void Detection::start_thread(std::shared_ptr<dat::base::Sensor> sensor){
 void Detection::run_thread(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
-  if(sensor != nullptr && rad_struct->state.detection == rad::cor::detection::PROCESSING){
+  if(rad_struct->state.detection == rad::cor::detection::PROCESSING){
     std::shared_ptr<utl::media::Image> image = dat_image->get_image(*sensor, "Intensity");
     std::shared_ptr<utl::media::Image> output = dat_image->get_or_create_image(*sensor, "Detection");
     if(image == nullptr || output == nullptr) return;
@@ -80,7 +80,7 @@ void Detection::make_shape_detection(std::shared_ptr<dat::base::Sensor> sensor, 
   rad_image->apply_canny(gray, canny);
 
   rad_hough->detect_circle(canny, output);
-  rad_glyph->draw_detection_sphere(sensor);
+  rad_glyph->draw_detection_sphere(*sensor);
 
   //---------------------------
 }

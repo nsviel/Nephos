@@ -21,9 +21,9 @@ public:
 
 public:
   //Main function
-  void import_measure(std::shared_ptr<dat::base::Sensor> sensor);
-  void export_measure(std::shared_ptr<dat::base::Sensor> sensor);
-  void clear_measure(std::shared_ptr<dat::base::Sensor> sensor);
+  void import_measure(dat::base::Sensor& sensor);
+  void export_measure(dat::base::Sensor& sensor);
+  void clear_measure(dat::base::Sensor& sensor);
 
 private:
   rad::cor::Structure* rad_struct;

@@ -27,7 +27,7 @@ Detection::Detection(rad::Node* node_radio){
 Detection::~Detection(){}
 
 //Main function
-void Detection::draw_tab(std::shared_ptr<dat::base::Sensor> sensor){
+void Detection::draw_tab(dat::base::Sensor& sensor){
   //---------------------------
 
   this->detection_step();
@@ -154,12 +154,12 @@ void Detection::detection_stats(){
 
   //---------------------------
 }
-void Detection::detection_image(std::shared_ptr<dat::base::Sensor> sensor){
+void Detection::detection_image(dat::base::Sensor& sensor){
   ImVec2 available_space = ImGui::GetContentRegionAvail();
   //---------------------------
 
   //Display image with detected spheres
-  std::shared_ptr<utl::media::Image> image = dat_image->get_image(*sensor, "Detection");
+  std::shared_ptr<utl::media::Image> image = dat_image->get_image(sensor, "Detection");
   if(image == nullptr) return;
   stream->draw_stream(image, ImVec2(available_space.x, available_space.y - 5));
 

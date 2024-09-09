@@ -22,7 +22,7 @@ Model::Model(rad::cor::Node* node_correction){
 Model::~Model(){}
 
 //Main function
-void Model::compute_model(std::shared_ptr<dat::base::Sensor> sensor){
+void Model::compute_model(dat::base::Sensor& sensor){
   //---------------------------
 
   this->build_model(sensor);
@@ -39,7 +39,7 @@ void Model::clear_model(){
 }
 
 //Subfunction
-void Model::build_model(std::shared_ptr<dat::base::Sensor> sensor){
+void Model::build_model(dat::base::Sensor& sensor){
   dat::sensor::Model* model = get_model(sensor, "NFOV");
   //---------------------------
 
@@ -57,7 +57,7 @@ void Model::build_model(std::shared_ptr<dat::base::Sensor> sensor){
 
   //---------------------------
 }
-void Model::update_model(std::shared_ptr<dat::base::Sensor> sensor){
+void Model::update_model(dat::base::Sensor& sensor){
   dat::sensor::Model* model = get_model(sensor, "NFOV");
   //---------------------------
 
@@ -66,7 +66,7 @@ void Model::update_model(std::shared_ptr<dat::base::Sensor> sensor){
 
   //---------------------------
 }
-void Model::find_model_bound(std::shared_ptr<dat::base::Sensor> sensor){
+void Model::find_model_bound(dat::base::Sensor& sensor){
   //---------------------------
 
   glm::vec2 R_bound = glm::vec2(1000, 0);
@@ -93,7 +93,7 @@ void Model::find_model_bound(std::shared_ptr<dat::base::Sensor> sensor){
 
   //---------------------------
 }
-float Model::rmse_model(std::shared_ptr<dat::base::Sensor> sensor){
+float Model::rmse_model(dat::base::Sensor& sensor){
   dat::sensor::Model* model = get_model(sensor, "NFOV");
   if(!is_model_build(sensor)) return 0;
   //---------------------------
@@ -146,8 +146,8 @@ dat::sensor::Model* Model::get_model(dat::base::Sensor& sensor, std::string dept
   //---------------------------
 
   //Search for model
-  for(int i=0; i<sensor->calibration.vec_model.size(); i++){
-    dat::sensor::Model* model = &sensor->calibration.vec_model[i];
+  for(int i=0; i<sensor.calibration.vec_model.size(); i++){
+    dat::sensor::Model* model = &sensor.calibration.vec_model[i];
     if(model->depth_mode == depth_mode){
       return model;
     }
@@ -156,12 +156,12 @@ dat::sensor::Model* Model::get_model(dat::base::Sensor& sensor, std::string dept
   //Else create it
   dat::sensor::Model model;
   model.depth_mode = depth_mode;
-  sensor->calibration.vec_model.push_back(model);
+  sensor.calibration.vec_model.push_back(model);
 
   //---------------------------
   return get_model(sensor, depth_mode);
 }
-bool Model::is_model_build(std::shared_ptr<dat::base::Sensor> sensor){
+bool Model::is_model_build(dat::base::Sensor& sensor){
   if(is_model_loaded(sensor) == false) return false;
   //---------------------------
 
@@ -174,10 +174,10 @@ bool Model::is_model_build(std::shared_ptr<dat::base::Sensor> sensor){
 
   //---------------------------
 }
-bool Model::is_model_loaded(std::shared_ptr<dat::base::Sensor> sensor){
+bool Model::is_model_loaded(dat::base::Sensor& sensor){
   //---------------------------
 
-  if(sensor->calibration.vec_model.size() != 0){
+  if(sensor.calibration.vec_model.size() != 0){
     return true;
   }else{
     return false;

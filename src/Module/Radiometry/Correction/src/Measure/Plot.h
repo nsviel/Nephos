@@ -5,6 +5,9 @@
 namespace rad::cor{class Node;}
 namespace rad::cor{class Structure;}
 namespace rad::cor{class Model;}
+namespace rad::cor{class IfR;}
+namespace rad::cor{class IfIt;}
+namespace rad::cor{class IfRIt;}
 namespace dat::base{class Sensor;}
 
 

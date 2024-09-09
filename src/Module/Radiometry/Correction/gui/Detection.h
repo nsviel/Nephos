@@ -22,13 +22,13 @@ public:
 
 public:
   //Main function
-  void draw_tab(std::shared_ptr<dat::base::Sensor> sensor);
+  void draw_tab(dat::base::Sensor& sensor);
 
   //Subfunction
   void detection_step();
   void detection_parameter();
   void detection_stats();
-  void detection_image(std::shared_ptr<dat::base::Sensor> sensor);
+  void detection_image(dat::base::Sensor& sensor);
 
   //Parameter function
   void parameter_canny();

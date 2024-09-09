@@ -41,8 +41,8 @@ void Detection::start_thread(std::shared_ptr<dat::base::Sensor> sensor){
 void Detection::run_thread(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 
-  if(sensor != nullptr && rad_struct->state.measure == rad::cor::measure::PROCESSING){
-    rad_ransac->ransac_sphere(sensor);
+  if(sensor && rad_struct->state.measure == rad::cor::measure::PROCESSING){
+    rad_ransac->ransac_sphere(*sensor);
     rad_glyph->reset_detection_sphere();
   }else{
     rad_glyph->reset_calibration_sphere();

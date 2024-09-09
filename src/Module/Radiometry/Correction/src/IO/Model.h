@@ -22,14 +22,14 @@ public:
 
 public:
   //Main function
-  void import_model(std::shared_ptr<dat::base::Sensor> sensor);
-  void export_model(std::shared_ptr<dat::base::Sensor> sensor);
+  void import_model(dat::base::Sensor& sensor);
+  void export_model(dat::base::Sensor& sensor);
 
   //Subfunction
-  void write_device_info(std::shared_ptr<dat::base::Sensor> sensor, std::string& path);
-  void write_depth_mode_model(std::shared_ptr<dat::base::Sensor> sensor, std::string& path);
-  void read_device_info(std::shared_ptr<dat::base::Sensor> sensor, std::string& path);
-  void read_depth_mode_model(std::shared_ptr<dat::base::Sensor> sensor, std::string& path);
+  void write_device_info(dat::base::Sensor& sensor, std::string& path);
+  void write_depth_mode_model(dat::base::Sensor& sensor, std::string& path);
+  void read_device_info(dat::base::Sensor& sensor, std::string& path);
+  void read_depth_mode_model(dat::base::Sensor& sensor, std::string& path);
 
 private:
   rad::cor::Structure* rad_struct;

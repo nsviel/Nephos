@@ -22,7 +22,7 @@ Measure::Measure(rad::cor::Node* node_correction){
 Measure::~Measure(){}
 
 //Main function
-void Measure::import_measure(std::shared_ptr<dat::base::Sensor> sensor){
+void Measure::import_measure(dat::base::Sensor& sensor){
   //---------------------------
 
   std::string path = rad_struct->measure.path.build();
@@ -34,12 +34,12 @@ void Measure::import_measure(std::shared_ptr<dat::base::Sensor> sensor){
 
   if(rad_struct->measure.data.size() != 0){
     rad_model->find_model_bound(sensor);
-    rad_plot->update_plot_data(sensor);
+    rad_plot->update(sensor);
   }
 
   //---------------------------
 }
-void Measure::export_measure(std::shared_ptr<dat::base::Sensor> sensor){
+void Measure::export_measure(dat::base::Sensor& sensor){
   //---------------------------
 
   std::string path = rad_struct->measure.path.build();
@@ -47,12 +47,12 @@ void Measure::export_measure(std::shared_ptr<dat::base::Sensor> sensor){
 
   //---------------------------
 }
-void Measure::clear_measure(std::shared_ptr<dat::base::Sensor> sensor){
+void Measure::clear_measure(dat::base::Sensor& sensor){
   //---------------------------
 
   //Import file model data
   rad_struct->measure.data.clear();
-  rad_plot->reset_plot_data();
+  rad_plot->reset();
 
   //---------------------------
 }

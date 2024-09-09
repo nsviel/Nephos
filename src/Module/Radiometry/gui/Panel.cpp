@@ -38,7 +38,7 @@ void Panel::run_panel(){
     ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(600, 600));
     if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
 
-      this->design_panel(sensor);
+      this->design_panel(*sensor);
 
       ImGui::End();
     }
@@ -48,7 +48,7 @@ void Panel::run_panel(){
 
   //---------------------------
 }
-void Panel::design_panel(std::shared_ptr<dat::base::Sensor> sensor){
+void Panel::design_panel(dat::base::Sensor& sensor){
   //---------------------------
 
   ImGui::PushStyleColor(ImGuiCol_Tab, IM_COL32(39, 39, 39, 255));
@@ -66,7 +66,7 @@ void Panel::design_panel(std::shared_ptr<dat::base::Sensor> sensor){
 }
 
 //Subfunction
-void Panel::tab_correction(std::shared_ptr<dat::base::Sensor> sensor){
+void Panel::tab_correction(dat::base::Sensor& sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);
@@ -78,7 +78,7 @@ void Panel::tab_correction(std::shared_ptr<dat::base::Sensor> sensor){
 
   //---------------------------
 }
-void Panel::tab_calibration(std::shared_ptr<dat::base::Sensor> sensor){
+void Panel::tab_calibration(dat::base::Sensor& sensor){
   //---------------------------
 
   ImGui::SetNextItemWidth(ImGui::GetContentRegionAvail().x / 2);

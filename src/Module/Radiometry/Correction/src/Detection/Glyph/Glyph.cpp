@@ -62,7 +62,7 @@ void Glyph::update_sphere_glyph(){
 }
 
 //Subfunction
-void Glyph::draw_calibration_sphere(const std::shared_ptr<dat::base::Sensor> sensor){
+void Glyph::draw_calibration_sphere(dat::base::Sensor& sensor){
   std::shared_ptr<rad::cor::glyph::Sphere> sphere = rad_struct->ransac.glyph;
   //---------------------------
 
@@ -73,7 +73,7 @@ void Glyph::draw_calibration_sphere(const std::shared_ptr<dat::base::Sensor> sen
 
   //---------------------------
 }
-void Glyph::draw_detection_sphere(std::shared_ptr<dat::base::Sensor> sensor){
+void Glyph::draw_detection_sphere(dat::base::Sensor& sensor){
   std::vector<rad::cor::structure::Circle>& vec_circle = rad_struct->hough.vec_circle;
   //---------------------------
 
@@ -96,7 +96,7 @@ void Glyph::draw_detection_sphere(std::shared_ptr<dat::base::Sensor> sensor){
 
   //---------------------------
 }
-void Glyph::draw_sphere_glyph(std::shared_ptr<dat::base::Sensor> sensor, std::vector<rad::cor::structure::Circle>& vec_circle){
+void Glyph::draw_sphere_glyph(dat::base::Sensor& sensor, std::vector<rad::cor::structure::Circle>& vec_circle){
   std::vector< std::shared_ptr<rad::cor::glyph::Sphere> >& vec_sphere = rad_struct->hough.vec_glyph;
   //---------------------------
 
@@ -107,7 +107,7 @@ void Glyph::draw_sphere_glyph(std::shared_ptr<dat::base::Sensor> sensor, std::ve
     std::shared_ptr<rad::cor::glyph::Sphere> sphere = vec_sphere[i];
 
     //Add sphere radius to the detected circle center
-    glm::vec3 pose = sensor->convert_depth_2d_to_3d(circle.center);
+    glm::vec3 pose = sensor.convert_depth_2d_to_3d(circle.center);
     glm::vec3 dir = glm::normalize(pose);
     pose = pose + dir * (rad_struct->ransac.sphere_diameter / 2);
 

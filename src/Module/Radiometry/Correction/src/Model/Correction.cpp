@@ -26,8 +26,8 @@ Correction::Correction(rad::cor::Node* node_correction){
 Correction::~Correction(){}
 
 //Main function
-void Correction::make_image_correction(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> ir){
-  if(sensor == nullptr || ir == nullptr) return;
+void Correction::make_image_correction(dat::base::Sensor& sensor, std::shared_ptr<utl::media::Image> ir){
+  if(!ir) return;
   //---------------------------
 
   if(!rad_model->is_model_loaded(sensor)){
@@ -43,10 +43,10 @@ void Correction::make_image_correction(std::shared_ptr<dat::base::Sensor> sensor
 }
 
 //Subfunction
-void Correction::make_correction(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data){
+void Correction::make_correction(dat::base::Sensor& sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
-  utl::base::Data& data = *sensor->data;
+  utl::base::Data& data = *sensor.data;
 
   std::unique_ptr<std::vector<float>> vec_R_ptr = atr_field->get_field_data(data, "R");
   std::unique_ptr<std::vector<float>> vec_It_ptr = atr_field->get_field_data(data, "It");
@@ -65,7 +65,7 @@ void Correction::make_correction(std::shared_ptr<dat::base::Sensor> sensor, std:
 
       //Get parameters
       float I_cor = 0;
-      float I_raw = sensor->info.buffer_ir[idx];
+      float I_raw = sensor.info.buffer_ir[idx];
 
       //If to prevent correction of image borders
       if(I_raw != 0){
@@ -90,7 +90,7 @@ void Correction::make_correction(std::shared_ptr<dat::base::Sensor> sensor, std:
 
   //---------------------------
 }
-void Correction::update_correction_image(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data){
+void Correction::update_correction_image(dat::base::Sensor& sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data){
   //---------------------------
 
   std::shared_ptr<utl::media::Image> image = dat_image->get_or_create_image(*sensor, "Correction");

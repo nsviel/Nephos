@@ -23,14 +23,14 @@ Ransac::Ransac(rad::cor::Node* node_correction){
 Ransac::~Ransac(){}
 
 //Main function
-void Ransac::ransac_sphere(std::shared_ptr<dat::base::Sensor> sensor){
+void Ransac::ransac_sphere(dat::base::Sensor& sensor){
   static float current_timestamp = 0;
   //---------------------------
 
   //If no initial detection, return
-  if(sensor->timestamp.current == current_timestamp) return;
+  if(sensor.timestamp.current == current_timestamp) return;
   if(rad_struct->ransac.current_pose == glm::vec3(0, 0, 0)) return;
-  current_timestamp = sensor->timestamp.current;
+  current_timestamp = sensor.timestamp.current;
 
   //Search for point inside a global sphere around current center point
   this->reset_search_space();
@@ -59,9 +59,9 @@ void Ransac::reset_search_space(){
 
   //---------------------------
 }
-void Ransac::reduce_search_space(std::shared_ptr<dat::base::Sensor> sensor){
-  std::vector<glm::vec3>& vec_xyz = sensor->data->xyz;
-  std::vector<glm::vec3>& vec_Nxyz = sensor->data->Nxyz;
+void Ransac::reduce_search_space(dat::base::Sensor& sensor){
+  std::vector<glm::vec3>& vec_xyz = sensor.data->xyz;
+  std::vector<glm::vec3>& vec_Nxyz = sensor.data->Nxyz;
   //---------------------------
 
   glm::vec3 pose = rad_struct->ransac.current_pose;
@@ -71,7 +71,7 @@ void Ransac::reduce_search_space(std::shared_ptr<dat::base::Sensor> sensor){
   for(int i=0; i<vec_xyz.size(); i++){
     glm::vec3& xyz = vec_xyz[i];
     glm::vec3& Nxyz = vec_Nxyz[i];
-    float Is = sensor->info.buffer_ir[i];
+    float Is = sensor.info.buffer_ir[i];
 
     float distance = math::distance(xyz, pose);
 

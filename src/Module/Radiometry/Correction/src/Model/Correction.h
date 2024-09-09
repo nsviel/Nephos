@@ -27,11 +27,11 @@ public:
 
 public:
   //Main function
-  void make_image_correction(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> ir);
+  void make_image_correction(dat::base::Sensor& sensor, std::shared_ptr<utl::media::Image> ir);
 
   //Subfunction
-  void make_correction(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data);
-  void update_correction_image(std::shared_ptr<dat::base::Sensor> sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data);
+  void make_correction(dat::base::Sensor& sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data);
+  void update_correction_image(dat::base::Sensor& sensor, std::shared_ptr<utl::media::Image> ir, std::vector<uint8_t>& vec_data);
   float apply_correction(float I_raw, float R, float It);
 
 private:

@@ -21,10 +21,10 @@ Model::Model(rad::cor::Node* node_correction){
 Model::~Model(){}
 
 //Main function
-void Model::import_model(std::shared_ptr<dat::base::Sensor> sensor){
+void Model::import_model(dat::base::Sensor& sensor){
   //---------------------------
 
-  std::string path = sensor->calibration.path.build();
+  std::string path = sensor.calibration.path.build();
   this->read_device_info(sensor, path);
   this->read_depth_mode_model(sensor, path);
   rad_model->update_model(sensor);
@@ -32,10 +32,10 @@ void Model::import_model(std::shared_ptr<dat::base::Sensor> sensor){
 
   //---------------------------
 }
-void Model::export_model(std::shared_ptr<dat::base::Sensor> sensor){
+void Model::export_model(dat::base::Sensor& sensor){
   //---------------------------
 
-  std::string path = sensor->calibration.path.build();
+  std::string path = sensor.calibration.path.build();
   this->write_device_info(sensor, path);
   this->write_depth_mode_model(sensor, path);
 
@@ -43,26 +43,26 @@ void Model::export_model(std::shared_ptr<dat::base::Sensor> sensor){
 }
 
 //Subfunction
-void Model::write_device_info(std::shared_ptr<dat::base::Sensor> sensor, std::string& path){
+void Model::write_device_info(dat::base::Sensor& sensor, std::string& path){
   //---------------------------
 
   //Info
-  utl::json::write_value(path, "info.device", sensor->info.model);
-  utl::json::write_value(path, "info.serial_number", sensor->info.serial_number);
+  utl::json::write_value(path, "info.device", sensor.info.model);
+  utl::json::write_value(path, "info.serial_number", sensor.info.serial_number);
 
   //Depth modes
-  for(int i=0; i<sensor->info.vec_depth_mode.size(); i++){
-    std::string& depth_mode = sensor->info.vec_depth_mode[i];
+  for(int i=0; i<sensor.info.vec_depth_mode.size(); i++){
+    std::string& depth_mode = sensor.info.vec_depth_mode[i];
     utl::json::write_value(path, "depth_mode" + std::to_string(i), depth_mode);
   }
 
   //---------------------------
 }
-void Model::write_depth_mode_model(std::shared_ptr<dat::base::Sensor> sensor, std::string& path){
+void Model::write_depth_mode_model(dat::base::Sensor& sensor, std::string& path){
   dat::sensor::Model* model = rad_model->get_model(*sensor, "NFOV");
   //---------------------------
 
-  std::string depth_mode = sensor->info.depth_mode;
+  std::string depth_mode = sensor.info.depth_mode;
 
   utl::json::write_value(path, depth_mode + ".model_rmse", model->rmse);
   utl::json::write_value(path, depth_mode + ".name_measure", rad_struct->measure.path.build());
@@ -88,21 +88,21 @@ void Model::write_depth_mode_model(std::shared_ptr<dat::base::Sensor> sensor, st
 
   //---------------------------
 }
-void Model::read_device_info(std::shared_ptr<dat::base::Sensor> sensor, std::string& path){
+void Model::read_device_info(dat::base::Sensor& sensor, std::string& path){
   //---------------------------
 
   //Info
-  //sensor->info.serial_number = utl::json::read_value<std::string>(path, "info.serial_number");
+  //sensor.info.serial_number = utl::json::read_value<std::string>(path, "info.serial_number");
 
   //Depth modes
-  for(int i=0; i<sensor->info.vec_depth_mode.size(); i++){
-    std::string& depth_mode = sensor->info.vec_depth_mode[i];
+  for(int i=0; i<sensor.info.vec_depth_mode.size(); i++){
+    std::string& depth_mode = sensor.info.vec_depth_mode[i];
     utl::json::write_value(path, "depth_mode" + std::to_string(i), depth_mode);
   }
 
   //---------------------------
 }
-void Model::read_depth_mode_model(std::shared_ptr<dat::base::Sensor> sensor, std::string& path){
+void Model::read_depth_mode_model(dat::base::Sensor& sensor, std::string& path){
   dat::sensor::Model* model = rad_model->get_model(*sensor, "NFOV");
   //---------------------------
 

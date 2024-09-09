@@ -27,7 +27,7 @@ Model::Model(rad::Node* node_radio){
 Model::~Model(){}
 
 //Main function
-void Model::draw_tab(std::shared_ptr<dat::base::Sensor> sensor){
+void Model::draw_tab(dat::base::Sensor& sensor){
   //---------------------------
 
   //Parameter
@@ -47,7 +47,7 @@ void Model::draw_tab(std::shared_ptr<dat::base::Sensor> sensor){
 }
 
 //Subfunction
-void Model::parameter_measure(std::shared_ptr<dat::base::Sensor> sensor){
+void Model::parameter_measure(dat::base::Sensor& sensor){
   rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
@@ -111,8 +111,8 @@ void Model::parameter_measure(std::shared_ptr<dat::base::Sensor> sensor){
 
   //---------------------------
 }
-void Model::parameter_model(std::shared_ptr<dat::base::Sensor> sensor){
-  dat::sensor::Model* model = rad_model->get_model(*sensor, "NFOV");
+void Model::parameter_model(dat::base::Sensor& sensor){
+  dat::sensor::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
@@ -150,11 +150,11 @@ void Model::parameter_model(std::shared_ptr<dat::base::Sensor> sensor){
     ImGui::TextColored(ImVec4(0.4f, 1.0f, 0.4f, 1.0f), "RMSE: %.4f", model->rmse);
     ImGui::SetNextItemWidth(247.5);
     if(ImGui::DragFloatRange2("Range x",&model->axis_x.bound[0], &model->axis_x.bound[1], 0.1, 0, 10, "%.2fm", "%.2fm")){
-      rad_plot->update_plot_data(sensor);
+      rad_plot->update(*sensor);
     }
     ImGui::SetNextItemWidth(247.5);
     if(ImGui::DragFloatRange2("Range y",&model->axis_y.bound[0], &model->axis_y.bound[1], 1, 0, 90, "%.0f°", "%.0f°")){
-      rad_plot->update_plot_data(sensor);
+      rad_plot->update(*sensor);
     }
 
     //Model function
@@ -162,7 +162,7 @@ void Model::parameter_model(std::shared_ptr<dat::base::Sensor> sensor){
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, IM_COL32(60, 80, 80, 255));
     if(ImGui::Button("Compute##model", ImVec2(120, 0))){
       rad_model->compute_model(sensor);
-      rad_plot->update_plot_data(sensor);
+      rad_plot->update(*sensor);
     }
     ImGui::PopStyleColor(2);
     ImGui::SameLine();
@@ -215,8 +215,8 @@ void Model::plot_measure_IfIt(float height){
 
   //---------------------------
 }
-void Model::plot_model_heatmap(std::shared_ptr<dat::base::Sensor> sensor, float height){
-  dat::sensor::Model* model = rad_model->get_model(*sensor, "NFOV");
+void Model::plot_model_heatmap(dat::base::Sensor& sensor, float height){
+  dat::sensor::Model* model = rad_model->get_model(sensor, "NFOV");
   rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
@@ -224,7 +224,7 @@ void Model::plot_model_heatmap(std::shared_ptr<dat::base::Sensor> sensor, float 
   plot.IfRIt.dimension = glm::ivec2(-1, height);
   bool need_update = utl_plot->plot_heatmap(&plot.IfRIt, &model->axis_x, &model->axis_y);
   if(need_update){
-    rad_plot->update_plot_data(sensor);
+    rad_plot->update(*sensor);
   }
 
   //---------------------------

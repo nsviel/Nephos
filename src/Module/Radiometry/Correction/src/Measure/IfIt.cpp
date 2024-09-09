@@ -53,7 +53,7 @@ void IfIt::update(dat::base::Sensor& sensor){
     float& I = measure.data[i].z;
 
     if(R == -1) continue;
-    if(It < model->axis_y.bound[0 || It > model->axis_y.bound[1]) return; // It inside user defined bounds
+    if(It < model->axis_y.bound[0] || It > model->axis_y.bound[1]) return; // It inside user defined bounds
     if(R < model->axis_x.current && R > model->axis_x.current + 0.05) return; //R inside R current + 0.05m
 
     //Raw data

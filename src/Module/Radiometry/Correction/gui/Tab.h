@@ -20,12 +20,12 @@ public:
 
 public:
   //Main function
-  void design_tab(std::shared_ptr<dat::base::Sensor> sensor);
+  void design_tab(dat::base::Sensor& sensor);
 
   //Subfunction
-  void tab_detection(std::shared_ptr<dat::base::Sensor> sensor);
-  void tab_modeld(std::shared_ptr<dat::base::Sensor> sensor);
-  void tab_calibration(std::shared_ptr<dat::base::Sensor> sensor);
+  void tab_detection(dat::base::Sensor& sensor);
+  void tab_modeld(dat::base::Sensor& sensor);
+  void tab_calibration(dat::base::Sensor& sensor);
 
 private:
   rad::cor::gui::Detection* gui_detection;
