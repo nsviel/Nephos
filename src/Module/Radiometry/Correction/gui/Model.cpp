@@ -48,7 +48,7 @@ void Model::draw_tab(std::shared_ptr<dat::base::Sensor> sensor){
 
 //Subfunction
 void Model::parameter_measure(std::shared_ptr<dat::base::Sensor> sensor){
-  rad::cor::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -77,7 +77,7 @@ void Model::parameter_measure(std::shared_ptr<dat::base::Sensor> sensor){
 
     //Heatmap scale
     ImGui::SetNextItemWidth(247.5);
-    ImGui::DragFloatRange2("Heatmap scale",&plot->IfRIt.axis_z.min, &plot->IfRIt.axis_z.max, 100, 0, 60000, "%.0f");
+    ImGui::DragFloatRange2("Heatmap scale",&plot.IfRIt.axis_z.min, &plot.IfRIt.axis_z.max, 100, 0, 60000, "%.0f");
 
     //Import / export / clear
     ImGui::PushStyleColor(ImGuiCol_Button, IM_COL32(80, 100, 100, 255));
@@ -112,8 +112,8 @@ void Model::parameter_measure(std::shared_ptr<dat::base::Sensor> sensor){
   //---------------------------
 }
 void Model::parameter_model(std::shared_ptr<dat::base::Sensor> sensor){
-  dat::sensor::Model* model = rad_model->get_model(sensor, "NFOV");
-  rad::cor::structure::Plot* plot = &rad_struct->plot;
+  dat::sensor::Model* model = rad_model->get_model(*sensor, "NFOV");
+  rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
   ImGui::TableNextRow(); ImGui::TableNextColumn();
@@ -196,33 +196,33 @@ void Model::parameter_model(std::shared_ptr<dat::base::Sensor> sensor){
 
 //Sphere plot function
 void Model::plot_measure_IfR(float height){
-  rad::cor::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
-  if(plot->IfR.title == "") return;
-  plot->IfR.dimension = glm::ivec2(-1, height);
-  utl_plot->plot_regression(&plot->IfR);
+  if(plot.IfR.title == "") return;
+  plot.IfR.dimension = glm::ivec2(-1, height);
+  utl_plot->plot_regression(&plot.IfR);
 
   //---------------------------
 }
 void Model::plot_measure_IfIt(float height){
-  rad::cor::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
-  if(plot->IfIt.title == "") return;
-  plot->IfIt.dimension = glm::ivec2(-1, height);
-  utl_plot->plot_regression(&plot->IfIt);
+  if(plot.IfIt.title == "") return;
+  plot.IfIt.dimension = glm::ivec2(-1, height);
+  utl_plot->plot_regression(&plot.IfIt);
 
   //---------------------------
 }
 void Model::plot_model_heatmap(std::shared_ptr<dat::base::Sensor> sensor, float height){
-  dat::sensor::Model* model = rad_model->get_model(sensor, "NFOV");
-  rad::cor::structure::Plot* plot = &rad_struct->plot;
+  dat::sensor::Model* model = rad_model->get_model(*sensor, "NFOV");
+  rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
-  if(plot->IfRIt.title == "") return;
-  plot->IfRIt.dimension = glm::ivec2(-1, height);
-  bool need_update = utl_plot->plot_heatmap(&plot->IfRIt, &model->axis_x, &model->axis_y);
+  if(plot.IfRIt.title == "") return;
+  plot.IfRIt.dimension = glm::ivec2(-1, height);
+  bool need_update = utl_plot->plot_heatmap(&plot.IfRIt, &model->axis_x, &model->axis_y);
   if(need_update){
     rad_plot->update_plot_data(sensor);
   }

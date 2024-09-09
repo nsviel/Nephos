@@ -28,7 +28,7 @@ Node::~Node(){}
 void Node::loop(){
   //---------------------------
 
-  rad_process->loop();
+  //rad_process->loop();
 
   //---------------------------
 }

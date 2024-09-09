@@ -59,7 +59,7 @@ void Model::write_device_info(std::shared_ptr<dat::base::Sensor> sensor, std::st
   //---------------------------
 }
 void Model::write_depth_mode_model(std::shared_ptr<dat::base::Sensor> sensor, std::string& path){
-  dat::sensor::Model* model = rad_model->get_model(sensor, "NFOV");
+  dat::sensor::Model* model = rad_model->get_model(*sensor, "NFOV");
   //---------------------------
 
   std::string depth_mode = sensor->info.depth_mode;
@@ -103,7 +103,7 @@ void Model::read_device_info(std::shared_ptr<dat::base::Sensor> sensor, std::str
   //---------------------------
 }
 void Model::read_depth_mode_model(std::shared_ptr<dat::base::Sensor> sensor, std::string& path){
-  dat::sensor::Model* model = rad_model->get_model(sensor, "NFOV");
+  dat::sensor::Model* model = rad_model->get_model(*sensor, "NFOV");
   //---------------------------
 
   std::string depth_mode = "NFOV";

@@ -19,27 +19,27 @@ Measure::~Measure(){}
 
 //Main function
 void Measure::init(){
-  rad::cor::structure::Measure* sphere = &rad_struct->measure;
+  rad::cor::structure::Measure& measure = rad_struct->measure;
   //---------------------------
 
-  rad_struct->measure.path.insert("../media/calibration/kinect_NFOV.data");
+  measure.path.insert("../media/calibration/kinect_NFOV.data");
 
   //R
-  sphere->R_resolution = 0.01f;
-  sphere->R_range = glm::vec2(0.0f, 5.0f);
-  sphere->R_size = (sphere->R_range.y - sphere->R_range.x) / sphere->R_resolution + 1;
+  measure.R_resolution = 0.01f;
+  measure.R_range = glm::vec2(0.0f, 5.0f);
+  measure.R_size = (measure.R_range.y - measure.R_range.x) / measure.R_resolution + 1;
 
   //It
-  sphere->It_resolution = 1.0f;
-  sphere->It_range = glm::vec2(0.0f, 90.0f);
-  sphere->It_size = (sphere->It_range.y - sphere->It_range.x) / sphere->It_resolution + 1;
+  measure.It_resolution = 1.0f;
+  measure.It_range = glm::vec2(0.0f, 90.0f);
+  measure.It_size = (measure.It_range.y - measure.It_range.x) / measure.It_resolution + 1;
 
   //I
-  sphere->I_range = glm::vec2(0.0f, 1500.0f);
+  measure.I_range = glm::vec2(0.0f, 1500.0f);
 
   //Measure
-  sphere->size = sphere->R_size * sphere->It_size;
-  sphere->data = std::vector<glm::vec3>(sphere->size, glm::vec3(-1, -1, -1));
+  measure.size = measure.R_size * measure.It_size;
+  measure.data = std::vector<glm::vec3>(measure.size, glm::vec3(-1, -1, -1));
 
   //---------------------------
 }
@@ -60,8 +60,8 @@ void Measure::process_measure(std::shared_ptr<dat::base::Sensor> sensor){
 }
 void Measure::data_measure(std::shared_ptr<dat::base::Sensor> sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
   rad::cor::structure::Model* model = &rad_struct->model;
-  rad::cor::structure::Measure* sphere = &rad_struct->measure;
-  rad::cor::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Measure& measure = rad_struct->measure;
+  rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
   //Init parameter
@@ -86,12 +86,12 @@ void Measure::data_measure(std::shared_ptr<dat::base::Sensor> sensor, std::vecto
       if(R > model->axis_x.bound[1]) model->axis_x.bound[1] = R;
 
       // Calculate the index of the cell in the heatmap grid
-      int i = static_cast<int>((R - plot->IfRIt.axis_x.min) / (plot->IfRIt.axis_x.max - plot->IfRIt.axis_x.min) * plot->IfRIt.axis_x.size);
-      int j = static_cast<int>((It - plot->IfRIt.axis_y.max) / (plot->IfRIt.axis_y.min - plot->IfRIt.axis_y.max) * plot->IfRIt.axis_y.size);
-      int index = j * plot->IfRIt.axis_x.size + i;
-      if(index >= 0 && index < plot->IfRIt.axis_z.size){
-        plot->IfRIt.axis_z.data[index] = Is;
-        sphere->data[index] = glm::vec3(R, It, Is);
+      int i = static_cast<int>((R - plot.IfRIt.axis_x.min) / (plot.IfRIt.axis_x.max - plot.IfRIt.axis_x.min) * plot.IfRIt.axis_x.size);
+      int j = static_cast<int>((It - plot.IfRIt.axis_y.max) / (plot.IfRIt.axis_y.min - plot.IfRIt.axis_y.max) * plot.IfRIt.axis_y.size);
+      int index = j * plot.IfRIt.axis_x.size + i;
+      if(index >= 0 && index < plot.IfRIt.axis_z.size){
+        plot.IfRIt.axis_z.data[index] = Is;
+        measure.data[index] = glm::vec3(R, It, Is);
       }
     }
   }
@@ -100,8 +100,8 @@ void Measure::data_measure(std::shared_ptr<dat::base::Sensor> sensor, std::vecto
 }
 void Measure::data_IfR(std::shared_ptr<dat::base::Sensor> sensor, std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
   rad::cor::structure::Model* model = &rad_struct->model;
-  rad::cor::structure::Measure* sphere = &rad_struct->measure;
-  rad::cor::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Measure& measure = rad_struct->measure;
+  rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
   //Search for closest point
@@ -110,19 +110,19 @@ void Measure::data_IfR(std::shared_ptr<dat::base::Sensor> sensor, std::vector<gl
   float Is = search_Is[idx];
 
   //Insert measure
-  int index = static_cast<int>(std::round(R / plot->IfR.axis_x.resolution));
-  if(index >= 0 && index < plot->IfR.axis_x.data.size()){
-    plot->IfR.axis_x.data[index] = R;
-    plot->IfR.axis_y.data[index] = Is;
-    plot->IfR.highlight = glm::vec2(R, Is);
+  int index = static_cast<int>(std::round(R / plot.IfR.axis_x.resolution));
+  if(index >= 0 && index < plot.IfR.axis_x.data.size()){
+    plot.IfR.axis_x.data[index] = R;
+    plot.IfR.axis_y.data[index] = Is;
+    plot.IfR.highlight = glm::vec2(R, Is);
     model->axis_x.current = R;
   }
 
   //---------------------------
 }
 void Measure::data_IfIt(std::vector<glm::vec3>& search_xyz, std::vector<float>& search_Is){
-  rad::cor::structure::Measure* sphere = &rad_struct->measure;
-  rad::cor::structure::Plot* plot = &rad_struct->plot;
+  rad::cor::structure::Measure& measure = rad_struct->measure;
+  rad::cor::structure::Plot& plot = rad_struct->plot;
   //---------------------------
 
   //Init parameter
@@ -131,8 +131,8 @@ void Measure::data_IfIt(std::vector<glm::vec3>& search_xyz, std::vector<float>& 
   float radius = rad_struct->ransac.sphere_diameter / 2;
   float thres_sphere = rad_struct->ransac.thres_sphere;
 
-  plot->IfIt.axis_x.data = std::vector<float>(plot->IfIt.axis_x.data.size(), 0.0f);
-  plot->IfIt.axis_y.data = std::vector<float>(plot->IfIt.axis_y.data.size(), 0.0f);
+  plot.IfIt.axis_x.data = std::vector<float>(plot.IfIt.axis_x.data.size(), 0.0f);
+  plot.IfIt.axis_y.data = std::vector<float>(plot.IfIt.axis_y.data.size(), 0.0f);
 
   //Insert measure
   for(int i=0; i<search_xyz.size(); i++){
@@ -146,9 +146,9 @@ void Measure::data_IfIt(std::vector<glm::vec3>& search_xyz, std::vector<float>& 
       float It = math::compute_It(xyz, Nxyz, R);
 
       //Add into model data vector
-      int index = static_cast<int>(std::round(It / plot->IfIt.axis_x.resolution));
-      plot->IfIt.axis_x.data[index] = It;
-      plot->IfIt.axis_y.data[index] = Is;
+      int index = static_cast<int>(std::round(It / plot.IfIt.axis_x.resolution));
+      plot.IfIt.axis_x.data[index] = It;
+      plot.IfIt.axis_y.data[index] = Is;
     }
   }
 

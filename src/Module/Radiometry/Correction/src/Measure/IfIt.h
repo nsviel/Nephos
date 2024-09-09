@@ -10,12 +10,12 @@ namespace dat::base{class Sensor;}
 
 namespace rad::cor{
 
-class Plot
+class IfIt
 {
 public:
   //Constructor / Destructor
-  Plot(rad::cor::Node* node_correction);
-  ~Plot();
+  IfIt(rad::cor::Node* node_correction);
+  ~IfIt();
 
 public:
   //Main function
@@ -23,15 +23,9 @@ public:
   void update(dat::base::Sensor& sensor);
   void reset();
 
-  //Subfunction
-  void plot_measure();
-
 private:
   rad::cor::Structure* rad_struct;
   rad::cor::Model* rad_model;
-  rad::cor::IfR* plot_IfR;
-  rad::cor::IfIt* plot_IfIt;
-  rad::cor::IfRIt* plot_IfRIt;
 };
 
 }

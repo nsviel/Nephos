@@ -142,7 +142,7 @@ float Model::apply_model(float x, float y){
 }
 
 //Checker function
-dat::sensor::Model* Model::get_model(std::shared_ptr<dat::base::Sensor> sensor, std::string depth_mode){
+dat::sensor::Model* Model::get_model(dat::base::Sensor& sensor, std::string depth_mode){
   //---------------------------
 
   //Search for model

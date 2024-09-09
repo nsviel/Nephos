@@ -24,6 +24,7 @@ public:
   void insert_importer();
 
   //Subfunction
+  std::shared_ptr<utl::base::Element> capture();
 
 private:
   io::imp::Node* node_importer;
