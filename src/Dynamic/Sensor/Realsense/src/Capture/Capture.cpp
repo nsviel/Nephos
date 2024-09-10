@@ -27,14 +27,16 @@ void Capture::init(rlx::capture::Sensor& sensor){
 
   //---------------------------
 }
-void Capture::capture(){
+void Capture::capture(dat::base::Sensor& sensor){
+  rlx::capture::Sensor* rlx_sensor = dynamic_cast<rlx::capture::Sensor*>(&sensor);
   //---------------------------
 
   // Wait for the next set of frames from the camera
-  rs2::frameset frames = rlx_struct->pipe.wait_for_frames();
+  rlx_sensor->frameset = rlx_struct->pipe.wait_for_frames();
 
   // If successful, process and display the frames
-  this->display(frames);
+  this->manage_color(*rlx_sensor);
+  this->manage_depth(*rlx_sensor);
 
   //---------------------------
 }
@@ -68,44 +70,64 @@ void Capture::init_capture(rlx::capture::Sensor& sensor){
 
   //---------------------------
 }
-void Capture::display(rs2::frameset frames){
+void Capture::manage_color(rlx::capture::Sensor& sensor){
   //---------------------------
 
   // Get color and depth frames
-  rs2::frame color_frame = frames.get_color_frame();
-  rs2::depth_frame depth_frame = frames.get_depth_frame();
+  rs2::frame frame_color = sensor.frameset.get_color_frame();
 
-  if(!depth_frame){
+  // Convert Realsense frames to OpenCV matrices
+  const int w = frame_color.as<rs2::video_frame>().get_width();
+  const int h = frame_color.as<rs2::video_frame>().get_height();
+
+  // Create OpenCV matrices for color and depth images
+  cv::Mat color(cv::Size(w, h), CV_8UC3, (void*)frame_color.get_data(), cv::Mat::AUTO_STEP);
+
+  // Convert color from RGB to BGR for OpenCV display
+  cv::cvtColor(color, color, cv::COLOR_RGB2BGR);
+  cv::imshow("Color Image", color);
+
+//cv::waitKey(0);
+
+  //---------------------------
+}
+void Capture::manage_depth(rlx::capture::Sensor& sensor){
+  //---------------------------
+
+  // Get color and depth frames
+  rs2::depth_frame frame_depth = sensor.frameset.get_depth_frame();
+  if(!frame_depth){
     std::cerr << "Depth frame is empty!" << std::endl;
     return;
   }
 
   // Convert Realsense frames to OpenCV matrices
-  const int w = color_frame.as<rs2::video_frame>().get_width();
-  const int h = color_frame.as<rs2::video_frame>().get_height();
+  const int w = frame_depth.as<rs2::video_frame>().get_width();
+  const int h = frame_depth.as<rs2::video_frame>().get_height();
 
   // Create OpenCV matrices for color and depth images
-  cv::Mat color(cv::Size(w, h), CV_8UC3, (void*)color_frame.get_data(), cv::Mat::AUTO_STEP);
-  cv::Mat depth(cv::Size(w, h), CV_16UC1, (void*)depth_frame.get_data(), cv::Mat::AUTO_STEP);
-
+  cv::Mat depth(cv::Size(w, h), CV_16UC1, (void*)frame_depth.get_data(), cv::Mat::AUTO_STEP);
   if(depth.empty()){
     std::cerr << "Depth matrix is empty!" << std::endl;
     return;
   }
 
-  // Convert color from RGB to BGR for OpenCV display
-  cv::cvtColor(color, color, cv::COLOR_RGB2BGR);
-  cv::imshow("Color Image", color);
-/*
   // Normalize depth image for display
-  cv::Mat depth_display;
-  depth.convertTo(depth_display, CV_8UC1, 0.03);
-  cv::imshow("Depth Image", depth_display);
-*/
+  cv::Mat depth_normalized;
+  depth.convertTo(depth_normalized, CV_8UC1, 255.0 / 10000.0);  // Adjust scaling based on depth range
+
+  // Apply false color (colormap) to the normalized depth image
+  cv::Mat depth_colormap;
+  cv::applyColorMap(depth_normalized, depth_colormap, cv::COLORMAP_JET);  // Use COLORMAP_JET or another colormap
+
+  // Display depth image with false colors
+  cv::imshow("Depth Image (False Color)", depth_colormap);
+
+  // Wait for user input to close the window
+  cv::waitKey(0);
 
   //---------------------------
 }
-
 
 
 }

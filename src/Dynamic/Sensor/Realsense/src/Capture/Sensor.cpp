@@ -32,7 +32,18 @@ Sensor::~Sensor(){
 void Sensor::thread_init(){
   //---------------------------
 
+  //Configuration
   rlx_capture->init(*this);
+
+  //Graph
+  graph.add_task("capture", [this](dat::base::Sensor& sensor){ rlx_capture->capture(sensor); });
+/*  graph.add_task("image", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
+  graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
+  graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_operation->run_operation(sensor); });
+  graph.add_dependency("capture", "image");
+  graph.add_dependency("image", "cloud");
+  graph.add_dependency("cloud", "operation");*/
+
 
   //---------------------------
 }

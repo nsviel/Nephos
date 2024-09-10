@@ -2,6 +2,7 @@
 
 #include <Realsense/src/Structure/Device.h>
 #include <Data/Namespace.h>
+#include <librealsense2/rs.hpp>
 #include <string>
 
 
@@ -11,6 +12,7 @@ struct Sensor : public dat::base::Sensor{
   //---------------------------
 
   rlx::base::Device device;
+  rs2::frameset frameset;
 
   //---------------------------
 };
