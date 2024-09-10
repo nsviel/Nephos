@@ -76,6 +76,20 @@ void Capture::manage_color(rlx::capture::Sensor& sensor){
   // Get color and depth frames
   rs2::frame frame_color = sensor.frameset.get_color_frame();
 
+
+  std::shared_ptr<utl::media::Image> image = sensor.color.image;
+  //---------------------------
+
+  //Image
+  image->name = "Color";
+  image->data = std::vector<uint8_t>(sensor.color.data.buffer, sensor.color.data.buffer + sensor.color.data.size);
+  image->size = image->data.size();
+  image->width = sensor.color.data.width;
+  image->height = sensor.color.data.height;
+  image->format = sensor.color.data.format;
+  image->timestamp = sensor.color.data.timestamp;
+  dat_image->add_image(sensor, image);
+
   // Convert Realsense frames to OpenCV matrices
   const int w = frame_color.as<rs2::video_frame>().get_width();
   const int h = frame_color.as<rs2::video_frame>().get_height();
