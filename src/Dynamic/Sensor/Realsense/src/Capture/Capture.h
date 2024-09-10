@@ -25,8 +25,6 @@ public:
   //Subfunction
   void init_info(rlx::capture::Sensor& sensor);
   void init_capture(rlx::capture::Sensor& sensor);
-  void manage_color(rlx::capture::Sensor& sensor);
-  void manage_depth(rlx::capture::Sensor& sensor);
 
 private:
   rlx::Structure* rlx_struct;

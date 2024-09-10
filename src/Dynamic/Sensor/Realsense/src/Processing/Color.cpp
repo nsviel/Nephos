@@ -19,11 +19,27 @@ Color::Color(rlx::Node* node_realsense){
 Color::~Color(){}
 
 //Main function
-void Color::manage_color(rlx::base::Sensor& sensor){
+void Color::extract_data(dat::base::Sensor& sensor){
+  rlx::base::Sensor* rlx_sensor = dynamic_cast<rlx::base::Sensor*>(&sensor);
   //---------------------------
 
+  /*
+  std::shared_ptr<utl::media::Image> image = sensor.color.image;
+  //---------------------------
+
+  //Image
+  image->name = "Color";
+  image->data = std::vector<uint8_t>(sensor.color.data.buffer, sensor.color.data.buffer + sensor.color.data.size);
+  image->size = image->data.size();
+  image->width = sensor.color.data.width;
+  image->height = sensor.color.data.height;
+  image->format = sensor.color.data.format;
+  image->timestamp = sensor.color.data.timestamp;
+  dat_image->add_image(sensor, image);
+  */
+
   // Get color and depth frames
-  rs2::frame frame_color = sensor.frameset.get_color_frame();
+  rs2::frame frame_color = rlx_sensor->frameset.get_color_frame();
 
   // Convert Realsense frames to OpenCV matrices
   const int w = frame_color.as<rs2::video_frame>().get_width();

@@ -4,7 +4,7 @@
 
 namespace rlx{class Node;}
 namespace rlx{class Structure;}
-namespace rlx::base{class Sensor;}
+namespace dat::base{class Sensor;}
 
 
 namespace rlx::processing{
@@ -18,7 +18,7 @@ public:
 
 public:
   //Main function
-  void manage_color(rlx::base::Sensor& sensor);
+  void extract_data(dat::base::Sensor& sensor);
 
 private:
   rlx::Structure* rlx_struct;

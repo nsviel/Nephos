@@ -19,11 +19,12 @@ Depth::Depth(rlx::Node* node_realsense){
 Depth::~Depth(){}
 
 //Main function
-void Depth::manage_depth(rlx::base::Sensor& sensor){
+void Depth::extract_data(dat::base::Sensor& sensor){
+  rlx::base::Sensor* rlx_sensor = dynamic_cast<rlx::base::Sensor*>(&sensor);
   //---------------------------
 
   // Get color and depth frames
-  rs2::depth_frame frame_depth = sensor.frameset.get_depth_frame();
+  rs2::depth_frame frame_depth = rlx_sensor->frameset.get_depth_frame();
   if(!frame_depth){
     std::cerr << "Depth frame is empty!" << std::endl;
     return;
