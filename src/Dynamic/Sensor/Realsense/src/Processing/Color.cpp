@@ -21,6 +21,7 @@ Color::~Color(){}
 //Main function
 void Color::extract_data(dat::base::Sensor& sensor){
   rlx::base::Sensor* rlx_sensor = dynamic_cast<rlx::base::Sensor*>(&sensor);
+  std::shared_ptr<utl::media::Image> image = rlx_sensor->image.color;
   //---------------------------
 
   /*
@@ -39,7 +40,7 @@ void Color::extract_data(dat::base::Sensor& sensor){
   */
 
   // Get color and depth frames
-  rs2::frame frame_color = rlx_sensor->frameset.get_color_frame();
+  rs2::frame frame_color = rlx_sensor->device.frameset.get_color_frame();
 
   // Convert Realsense frames to OpenCV matrices
   const int w = frame_color.as<rs2::video_frame>().get_width();

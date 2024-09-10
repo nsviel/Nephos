@@ -24,7 +24,7 @@ void Depth::extract_data(dat::base::Sensor& sensor){
   //---------------------------
 
   // Get color and depth frames
-  rs2::depth_frame frame_depth = rlx_sensor->frameset.get_depth_frame();
+  rs2::depth_frame frame_depth = rlx_sensor->device.frameset.get_depth_frame();
   if(!frame_depth){
     std::cerr << "Depth frame is empty!" << std::endl;
     return;
@@ -44,7 +44,7 @@ void Depth::extract_data(dat::base::Sensor& sensor){
   // Normalize depth image for display
   cv::Mat depth_normalized;
   depth.convertTo(depth_normalized, CV_8UC1, 255.0 / 10000.0);  // Adjust scaling based on depth range
-
+/*
   // Apply false color (colormap) to the normalized depth image
   cv::Mat depth_colormap;
   cv::applyColorMap(depth_normalized, depth_colormap, cv::COLORMAP_JET);  // Use COLORMAP_JET or another colormap
@@ -53,7 +53,7 @@ void Depth::extract_data(dat::base::Sensor& sensor){
   cv::imshow("Depth Image (False Color)", depth_colormap);
 
   // Wait for user input to close the window
-  cv::waitKey(0);
+  cv::waitKey(0);*/
 
   //---------------------------
 }
