@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-namespace rlx{
+namespace rlx::capture{
 
 //Constructor / Destructor
 Capture::Capture(rlx::Node* node_realsense){
@@ -19,34 +19,54 @@ Capture::Capture(rlx::Node* node_realsense){
 Capture::~Capture(){}
 
 //Main function
-void Capture::init(){
+void Capture::init(rlx::capture::Sensor& sensor){
   //---------------------------
-/*
-  int nb_device = get_nb_device();
-  if(nb_device != 0){
-    rlx_struct->pipe.start();
-  }
-*/
+
+  this->init_info(sensor);
+  this->init_capture(sensor);
+
   //---------------------------
 }
 void Capture::capture(){
   //---------------------------
-/*
+
   // Wait for the next set of frames from the camera
   rs2::frameset frames = rlx_struct->pipe.wait_for_frames();
 
   // If successful, process and display the frames
   this->display(frames);
-*/
+
   //---------------------------
 }
-int Capture::get_nb_device(){
+
+//Subfunction
+void Capture::init_info(rlx::capture::Sensor& sensor){
+  //---------------------------
+
+  sensor.type_sensor = "capture";
+  sensor.device.index = rlx_struct->current_ID++;
+  sensor.name = "capture_" + std::to_string(sensor.device.index);
+  sensor.calibration.path.insert("../media/calibration/kinect.json");
+
+  sensor.info.model = "realsense";
+  sensor.data->name = sensor.name;
+  sensor.data->topology.type = utl::topology::POINT;
+  sensor.data->nb_data_max = 10000000;
+  sensor.data->path.directory = utl::path::get_current_path_abs();
+  sensor.pose->model[2][3] = 1;
+
+  //---------------------------
+}
+void Capture::init_capture(rlx::capture::Sensor& sensor){
   //---------------------------
 
   rs2::device_list devices = rlx_struct->context.query_devices(); // Get number of connected devices
+  int nb_device = devices.size();
+  if(nb_device != 0){
+    rlx_struct->pipe.start();
+  }
 
   //---------------------------
-  return devices.size();
 }
 void Capture::display(rs2::frameset frames){
   //---------------------------

@@ -39,7 +39,7 @@ void Sensor::thread_init(){
   k4n_capture->init(*this);
 
   //Graph
-  graph.add_task("capture", [this](dat::base::Sensor& sensor){ k4n_capture->manage_capture(sensor); });
+  graph.add_task("capture", [this](dat::base::Sensor& sensor){ k4n_capture->capture(sensor); });
   graph.add_task("image", [this](dat::base::Sensor& sensor){ k4n_image->extract_data(sensor); });
   graph.add_task("cloud", [this](dat::base::Sensor& sensor){ k4n_cloud->extract_data(sensor); });
   graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_operation->run_operation(sensor); });

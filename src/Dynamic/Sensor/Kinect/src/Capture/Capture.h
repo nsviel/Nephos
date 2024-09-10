@@ -23,6 +23,7 @@ public:
 public:
   //Main function
   void init(k4n::capture::Sensor& sensor);
+  void capture(dat::base::Sensor& sensor);
   void clean(k4n::capture::Sensor& sensor);
 
   //Subfunction
@@ -30,7 +31,6 @@ public:
   void init_device(k4n::capture::Sensor& sensor);
   void init_capture(k4n::capture::Sensor& sensor);
   void close_capture(k4n::capture::Sensor& sensor);
-  void manage_capture(dat::base::Sensor& sensor);
 
 private:
   k4n::Structure* k4n_struct;

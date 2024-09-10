@@ -34,6 +34,26 @@ void Capture::init(k4n::capture::Sensor& sensor){
 
   //---------------------------
 }
+void Capture::capture(dat::base::Sensor& sensor){
+  k4n::capture::Sensor* k4n_sensor = dynamic_cast<k4n::capture::Sensor*>(&sensor);
+  //---------------------------
+
+  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("capture");
+  tasker->loop();
+  tasker->task_begin("data");
+
+  //Capture data
+  bool ok = k4n_sensor->device.handle.get_capture(k4n_sensor->device.capture.get(), std::chrono::milliseconds(2000));
+
+  //Check capture
+  if(!ok){
+    k4n_sensor->device.capture.reset();
+  }
+
+  tasker->task_end("data");
+
+  //---------------------------
+}
 void Capture::clean(k4n::capture::Sensor& sensor){
   //---------------------------
 
@@ -100,26 +120,6 @@ void Capture::close_capture(k4n::capture::Sensor& sensor){
 
   sensor.device.handle.stop_cameras();
   sensor.device.handle.close();
-
-  //---------------------------
-}
-void Capture::manage_capture(dat::base::Sensor& sensor){
-  k4n::capture::Sensor* k4n_sensor = dynamic_cast<k4n::capture::Sensor*>(&sensor);
-  //---------------------------
-
-  prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("capture");
-  tasker->loop();
-  tasker->task_begin("data");
-
-  //Capture data
-  bool ok = k4n_sensor->device.handle.get_capture(k4n_sensor->device.capture.get(), std::chrono::milliseconds(2000));
-
-  //Check capture
-  if(!ok){
-    k4n_sensor->device.capture.reset();
-  }
-
-  tasker->task_end("data");
 
   //---------------------------
 }

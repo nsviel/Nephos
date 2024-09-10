@@ -3,6 +3,7 @@
 #include <Realsense/src/Structure/Sensor.h>
 
 namespace rlx{class Node;}
+namespace rlx::capture{class Capture;}
 namespace dyn::prc::cloud{class Operation;}
 namespace dat::sensor{class Pool;}
 
@@ -27,6 +28,7 @@ public:
   void gui_info();
 
 private:
+  rlx::capture::Capture* rlx_capture;
   dyn::prc::cloud::Operation* dyn_operation;
   dat::sensor::Pool* thr_pool;
 };

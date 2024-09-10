@@ -14,6 +14,7 @@ Sensor::Sensor(rlx::Node* node_realsense){
 
   dyn::prc::Node* node_processing = node_realsense->get_node_processing();
 
+  this->rlx_capture = new rlx::capture::Capture(node_realsense);
   this->dyn_operation = node_processing->get_ope_cloud();
   this->thr_pool = new dat::sensor::Pool(20);
 
@@ -31,6 +32,7 @@ Sensor::~Sensor(){
 void Sensor::thread_init(){
   //---------------------------
 
+  rlx_capture->init(*this);
 
   //---------------------------
 }
