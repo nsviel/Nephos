@@ -5,6 +5,7 @@
 
 namespace rlx{class Node;}
 namespace rlx{class Structure;}
+namespace rlx::base{class Sensor;}
 namespace dat::base{class Sensor;}
 
 
@@ -22,8 +23,9 @@ public:
   void extract_data(dat::base::Sensor& sensor);
 
   //Subfunction
-  void extraction_init(dat::base::Sensor& sensor);
-  void extraction_transfer(dat::base::Sensor& sensor);
+  void extraction_init(rlx::base::Sensor& sensor);
+  void extraction_xyz(rlx::base::Sensor& sensor, int& i);
+  void extraction_transfer(rlx::base::Sensor& sensor);
 
 private:
   rlx::Structure* rlx_struct;
