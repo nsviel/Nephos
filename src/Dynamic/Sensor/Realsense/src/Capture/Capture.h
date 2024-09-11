@@ -7,6 +7,7 @@ namespace rlx{class Structure;}
 namespace rlx::capture{class Configuration;}
 namespace rlx::capture{class Sensor;}
 namespace dat::base{class Sensor;}
+namespace dat::elm{class Sensor;}  
 
 
 namespace rlx::capture{
@@ -30,7 +31,8 @@ public:
 
 private:
   rlx::Structure* rlx_struct;
-rlx::capture::Configuration* rlx_configuration;
+  rlx::capture::Configuration* rlx_configuration;
+  dat::elm::Sensor* dat_sensor;
 };
 
 }

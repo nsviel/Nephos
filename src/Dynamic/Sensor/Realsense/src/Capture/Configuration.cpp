@@ -24,6 +24,7 @@ void Configuration::init(rlx::capture::Sensor& sensor){
 
   sensor.device.configuration.enable_stream(RS2_STREAM_COLOR, RS2_FORMAT_BGR8); // Color stream
   sensor.device.configuration.enable_stream(RS2_STREAM_DEPTH, RS2_FORMAT_Z16);  // Depth stream
+  sensor.device.configuration.enable_stream(RS2_STREAM_INFRARED);  // Infrared stream
 
   //---------------------------
 }
