@@ -28,6 +28,8 @@ void Cloud::extract_data(dat::base::Sensor& sensor){
 
   // Tell pointcloud object to map to this color frame
   rs2::video_frame color = rlx_sensor->device.frame_set.get_color_frame();
+  buffer.width = color.as<rs2::video_frame>().get_width();
+  buffer.height = color.as<rs2::video_frame>().get_height();
   cloud.map_to(color);
 
   // Get the point cloud data
@@ -35,19 +37,37 @@ void Cloud::extract_data(dat::base::Sensor& sensor){
 
   std::vector<glm::vec3> vec_xyz;
   for(int i=0; i<points.size(); i++){
-    vec_xyz.push_back(glm::vec3(vertices[i].x, vertices[i].y, vertices[i].z));
+    buffer.xyz.push_back(glm::vec3(vertices[i].x, vertices[i].y, vertices[i].z));
   }
 
 
+
+  //---------------------------
+}
+
+//Subfunction
+void Cloud::extraction_init(dat::base::Sensor& sensor){
+  //---------------------------
+/*
+  buffer.xyz.resize(sensor.cloud.size);
+  buffer.rgb.resize(sensor.cloud.size);
+  buffer.rgba.resize(sensor.cloud.size);
+  buffer.Is.resize(sensor.cloud.size);
+  buffer.R.resize(sensor.cloud.size);
+*/
+  //---------------------------
+}
+void Cloud::extraction_transfer(dat::base::Sensor& sensor){
   utl::base::Data& data = *sensor.data;
-say(vec_xyz.size());
+  //---------------------------
+
   //Data
-  data.xyz = vec_xyz;
+  data.xyz = buffer.xyz;
 
   //Info
-  data.size = vec_xyz.size();
-  data.width = color.as<rs2::video_frame>().get_width();
-  data.height = color.as<rs2::video_frame>().get_height();
+  data.size = buffer.xyz.size();
+  data.width = buffer.width;
+  data.height = buffer.height;
 
   //---------------------------
 }
