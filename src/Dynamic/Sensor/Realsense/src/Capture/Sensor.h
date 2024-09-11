@@ -7,6 +7,7 @@ namespace rlx{class Structure;}
 namespace rlx::capture{class Capture;}
 namespace rlx::processing{class Color;}
 namespace rlx::processing{class Depth;}
+namespace rlx::processing{class Cloud;}
 namespace dyn::prc::cloud{class Operation;}
 namespace dat::sensor{class Pool;}
 
@@ -35,6 +36,7 @@ private:
   rlx::capture::Capture* rlx_capture;
   rlx::processing::Color* rlx_color;
   rlx::processing::Depth* rlx_depth;
+  rlx::processing::Cloud* rlx_cloud;
   dyn::prc::cloud::Operation* dyn_operation;
   dat::sensor::Pool* thr_pool;
 };

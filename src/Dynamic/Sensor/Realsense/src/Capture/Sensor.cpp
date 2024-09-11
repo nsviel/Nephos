@@ -18,6 +18,7 @@ Sensor::Sensor(rlx::Node* node_realsense){
   this->rlx_capture = new rlx::capture::Capture(node_realsense);
   this->rlx_color = new rlx::processing::Color(node_realsense);
   this->rlx_depth = new rlx::processing::Depth(node_realsense);
+  this->rlx_cloud = new rlx::processing::Cloud(node_realsense);
   this->dyn_operation = node_processing->get_ope_cloud();
   this->thr_pool = new dat::sensor::Pool(20);
 
@@ -42,9 +43,11 @@ void Sensor::thread_init(){
   graph.add_task("capture", [this](dat::base::Sensor& sensor){ rlx_capture->capture(sensor); });
   graph.add_task("color", [this](dat::base::Sensor& sensor){ rlx_color->extract_data(sensor); });
   graph.add_task("depth", [this](dat::base::Sensor& sensor){ rlx_depth->extract_data(sensor); });
+  graph.add_task("cloud", [this](dat::base::Sensor& sensor){ rlx_cloud->extract_data(sensor); });
   //graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_operation->run_operation(sensor); });
   graph.add_dependency("capture", "color");
   graph.add_dependency("capture", "depth");
+  graph.add_dependency("depth", "cloud");
   //graph.add_dependency("cloud", "operation");*/
 
   //---------------------------
