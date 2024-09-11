@@ -40,13 +40,11 @@ void Playback::capture(dat::base::Sensor& sensor){
 
   prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("capture");
   tasker->loop();
-say("---");
+
   // Wait for the next set of frames from the camera
   tasker->task_begin("data");
   rlx_sensor->device.frame_set = rlx_sensor->device.pipe.wait_for_frames();
   tasker->task_end("data");
-say("-hum--");
-  say(rlx_sensor->device.frame_set.size());
 
   //Make alignment
   tasker->task_begin("alignment");
