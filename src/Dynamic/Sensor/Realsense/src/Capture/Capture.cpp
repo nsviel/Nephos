@@ -13,6 +13,7 @@ Capture::Capture(rlx::Node* node_realsense){
   //---------------------------
 
   this->rlx_struct = node_realsense->get_rlx_struct();
+  this->rlx_configuration = new rlx::capture::Configuration(node_realsense);
 
   //---------------------------
 }
@@ -22,6 +23,7 @@ Capture::~Capture(){}
 void Capture::init(rlx::capture::Sensor& sensor){
   //---------------------------
 
+  rlx_configuration->init(sensor);
   this->init_info(sensor);
   this->init_capture(sensor);
 
@@ -68,7 +70,7 @@ void Capture::init_capture(rlx::capture::Sensor& sensor){
   rs2::device_list devices = rlx_struct->context.query_devices(); // Get number of connected devices
   int nb_device = devices.size();
   if(nb_device != 0){
-    rlx_struct->pipe.start();
+    rlx_struct->pipe.start(sensor.device.configuration);
   }
 
   //---------------------------

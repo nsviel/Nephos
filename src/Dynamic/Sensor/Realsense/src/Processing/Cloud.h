@@ -25,6 +25,7 @@ public:
   //Subfunction
   void extraction_init(rlx::base::Sensor& sensor);
   void extraction_xyz(rlx::base::Sensor& sensor, int& i);
+  void extraction_rgb(rlx::base::Sensor& sensor, int& i);
   void extraction_transfer(rlx::base::Sensor& sensor);
 
 private:
