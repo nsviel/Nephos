@@ -25,10 +25,7 @@ void Depth::extract_data(dat::base::Sensor& sensor){
 
   // Get color and depth frames
   rs2::depth_frame frame_depth = rlx_sensor->device.frameset.get_depth_frame();
-  if(!frame_depth){
-    std::cerr << "Depth frame is empty!" << std::endl;
-    return;
-  }
+  if(!frame_depth) return;
 
   // Convert Realsense frames to OpenCV matrices
   const int w = frame_depth.as<rs2::video_frame>().get_width();

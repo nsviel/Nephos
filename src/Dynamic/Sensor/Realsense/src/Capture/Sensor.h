@@ -3,6 +3,7 @@
 #include <Realsense/src/Structure/Sensor.h>
 
 namespace rlx{class Node;}
+namespace rlx{class Structure;}
 namespace rlx::capture{class Capture;}
 namespace rlx::processing{class Color;}
 namespace rlx::processing{class Depth;}
@@ -30,6 +31,7 @@ public:
   void gui_info();
 
 private:
+  rlx::Structure* rlx_struct;
   rlx::capture::Capture* rlx_capture;
   rlx::processing::Color* rlx_color;
   rlx::processing::Depth* rlx_depth;

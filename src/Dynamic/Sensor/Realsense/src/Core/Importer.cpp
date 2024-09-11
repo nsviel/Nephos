@@ -40,7 +40,7 @@ void Importer::insert_importer(){
 //Subfunction
 std::shared_ptr<utl::base::Element> Importer::capture(){
   //---------------------------
-sayHello();
+
   //Create sensor
   std::shared_ptr<rlx::capture::Sensor> sensor = rlx_factory->create_capture_sensor();
 

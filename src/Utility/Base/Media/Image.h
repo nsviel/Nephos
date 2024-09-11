@@ -16,7 +16,7 @@ struct Image : public utl::base::Element{
   int width = -1;
   int height = -1;
   int size = 0;
-  float timestamp = -1;
+  double timestamp = -1;
 
   //Texture
   int texture_ID = -1;

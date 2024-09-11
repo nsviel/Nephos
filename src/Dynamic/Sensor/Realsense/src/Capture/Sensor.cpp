@@ -14,6 +14,7 @@ Sensor::Sensor(rlx::Node* node_realsense){
 
   dyn::prc::Node* node_processing = node_realsense->get_node_processing();
 
+  this->rlx_struct = node_realsense->get_rlx_struct();
   this->rlx_capture = new rlx::capture::Capture(node_realsense);
   this->rlx_color = new rlx::processing::Color(node_realsense);
   this->rlx_depth = new rlx::processing::Depth(node_realsense);
@@ -46,7 +47,6 @@ void Sensor::thread_init(){
   graph.add_dependency("capture", "depth");
   //graph.add_dependency("cloud", "operation");*/
 
-
   //---------------------------
 }
 void Sensor::thread_loop(){
@@ -60,6 +60,7 @@ void Sensor::thread_end(){
   //---------------------------
 
   graph.wait_completion();
+  rlx_capture->clean(*this);
 
   //---------------------------
 }

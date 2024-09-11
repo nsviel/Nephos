@@ -36,6 +36,13 @@ void Capture::capture(dat::base::Sensor& sensor){
 
   //---------------------------
 }
+void Capture::clean(rlx::capture::Sensor& sensor){
+  //---------------------------
+
+  rlx_struct->pipe.stop();
+
+  //---------------------------
+}
 
 //Subfunction
 void Capture::init_info(rlx::capture::Sensor& sensor){

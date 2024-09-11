@@ -105,12 +105,14 @@ void Texture::create_texture(std::shared_ptr<vk::structure::Texture> texture){
   //Create texture container
   texture->UID = vk_uid->query_free_UID();
   texture->utl_image->texture_ID = texture->UID;
+  VkFormat format = find_texture_format(texture->utl_image);
+  if(format == VK_FORMAT_UNDEFINED) return;
 
   //Create associated vk_image
   vk::structure::Image* image = &texture->vk_image;
   image->width = texture->utl_image->width;
   image->height = texture->utl_image->height;
-  image->format = find_texture_format(texture->utl_image);
+  image->format = format;
   image->aspect = VK_IMAGE_ASPECT_COLOR_BIT;
   image->usage = TYP_IMAGE_USAGE_TRANSFERT | TYP_IMAGE_USAGE_SAMPLER;
   vk_image->create_image(image);
@@ -134,7 +136,7 @@ void Texture::clean_texture(vk::structure::Object& vk_object){
   //---------------------------
 }
 VkFormat Texture::find_texture_format(std::shared_ptr<utl::media::Image> image){
-  VkFormat format;
+  VkFormat format = VK_FORMAT_UNDEFINED;
   //---------------------------
 
   if(image->format == "R8G8B8A8_SRGB" || image->format == "MJPEG"){

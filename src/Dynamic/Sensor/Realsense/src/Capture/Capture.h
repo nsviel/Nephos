@@ -21,6 +21,7 @@ public:
   //Main function
   void init(rlx::capture::Sensor& sensor);
   void capture(dat::base::Sensor& sensor);
+  void clean(rlx::capture::Sensor& sensor);
 
   //Subfunction
   void init_info(rlx::capture::Sensor& sensor);
