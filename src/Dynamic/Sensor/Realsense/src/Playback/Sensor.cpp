@@ -9,7 +9,7 @@
 namespace rlx::playback{
 
 //Constructor / Destructor
-Sensor::Sensor(rlx::Node* node_realsense){
+Sensor::Sensor(rlx::Node* node_realsense, utl::base::Path path){
   //---------------------------
 
   dyn::prc::Node* node_processing = node_realsense->get_node_processing();
@@ -23,6 +23,8 @@ Sensor::Sensor(rlx::Node* node_realsense){
   this->dyn_operation = node_processing->get_ope_cloud();
   this->thr_pool = new dat::sensor::Pool(20);
 
+  this->data->path = path;
+  
   //---------------------------
 }
 Sensor::~Sensor(){

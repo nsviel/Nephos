@@ -22,6 +22,7 @@ public:
 public:
   //Main function
   std::shared_ptr<rlx::capture::Sensor> create_capture_sensor();
+  std::shared_ptr<rlx::playback::Sensor> create_playback_sensor(utl::base::Path path);
 
   //Subfunction
   void insert_in_set(rlx::base::Sensor& sensor);

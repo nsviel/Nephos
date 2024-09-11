@@ -19,7 +19,7 @@ class Sensor : public rlx::base::Sensor
 {
 public:
   //Constructor / Destructor
-  Sensor(rlx::Node* node_realsense);
+  Sensor(rlx::Node* node_realsense, utl::base::Path path);
   ~Sensor();
 
 public:

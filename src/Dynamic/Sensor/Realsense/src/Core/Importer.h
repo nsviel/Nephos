@@ -24,6 +24,7 @@ public:
   void insert_importer();
 
   //Subfunction
+  std::shared_ptr<utl::base::Element> import(utl::base::Path path);
   std::shared_ptr<utl::base::Element> capture();
 
 private:

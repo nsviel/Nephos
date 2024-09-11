@@ -38,6 +38,19 @@ void Importer::insert_importer(){
 }
 
 //Subfunction
+std::shared_ptr<utl::base::Element> Importer::import(utl::base::Path path){
+  if(!utl::file::is_exist(path.build())) return nullptr;
+  //---------------------------
+
+  //Create sensor
+  std::shared_ptr<rlx::playback::Sensor> sensor = rlx_factory->create_playback_sensor(path);
+
+  //Start sensor
+  sensor->start();
+
+  //---------------------------
+  return sensor;
+}
 std::shared_ptr<utl::base::Element> Importer::capture(){
   //---------------------------
 
