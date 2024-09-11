@@ -30,7 +30,7 @@ void Color::extract_data(dat::base::Sensor& sensor){
   //---------------------------
 
   // Get color frame
-  rs2::video_frame frame = rlx_sensor->device.frameset.get_color_frame();
+  rs2::video_frame frame = rlx_sensor->device.frame_set.get_color_frame();
   if(!frame) return;
   std::string format = retrieve_format(frame.get_profile().format());
 

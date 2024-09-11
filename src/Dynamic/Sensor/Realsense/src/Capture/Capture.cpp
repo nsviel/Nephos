@@ -32,7 +32,7 @@ void Capture::capture(dat::base::Sensor& sensor){
   //---------------------------
 
   // Wait for the next set of frames from the camera
-  rlx_sensor->device.frameset = rlx_struct->pipe.wait_for_frames();
+  rlx_sensor->device.frame_set = rlx_struct->pipe.wait_for_frames();
 
   //---------------------------
 }

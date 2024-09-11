@@ -30,7 +30,7 @@ void Depth::extract_data(dat::base::Sensor& sensor){
   //---------------------------
 
   // Get color and depth frames
-  rs2::depth_frame frame = rlx_sensor->device.frameset.get_depth_frame();
+  rs2::depth_frame frame = rlx_sensor->device.frame_set.get_depth_frame();
   if(!frame) return;
   std::string format = retrieve_format(frame.get_profile().format());
 

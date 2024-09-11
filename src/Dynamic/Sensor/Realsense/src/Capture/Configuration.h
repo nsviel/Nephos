@@ -4,21 +4,22 @@
 
 namespace rlx{class Node;}
 namespace rlx{class Structure;}
+namespace rlx::capture{class Sensor;}
 namespace dat::base{class Sensor;}
 
 
-namespace rlx::processing{
+namespace rlx::capture{
 
-class Cloud
+class Configuration
 {
 public:
   //Constructor / Destructor
-  Cloud(rlx::Node* node_realsense);
-  ~Cloud();
+  Configuration(rlx::Node* node_realsense);
+  ~Configuration();
 
 public:
   //Main function
-  void extract_data(dat::base::Sensor& sensor);
+  void init(rlx::capture::Sensor& sensor);
 
 private:
   rlx::Structure* rlx_struct;

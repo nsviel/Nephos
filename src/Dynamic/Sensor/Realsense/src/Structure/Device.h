@@ -8,7 +8,8 @@ namespace rlx::base{
 struct Device{
   //---------------------------
 
-  rs2::frameset frameset;
+  rs2::frameset frame_set;
+  rs2::config configuration;
   int index = -1;
 
   //---------------------------

@@ -44,11 +44,11 @@ void Sensor::thread_init(){
   graph.add_task("color", [this](dat::base::Sensor& sensor){ rlx_color->extract_data(sensor); });
   graph.add_task("depth", [this](dat::base::Sensor& sensor){ rlx_depth->extract_data(sensor); });
   graph.add_task("cloud", [this](dat::base::Sensor& sensor){ rlx_cloud->extract_data(sensor); });
-  //graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_operation->run_operation(sensor); });
+  graph.add_task("operation", [this](dat::base::Sensor& sensor){ dyn_operation->run_operation(sensor); });
   graph.add_dependency("capture", "color");
   graph.add_dependency("capture", "depth");
   graph.add_dependency("depth", "cloud");
-  //graph.add_dependency("cloud", "operation");*/
+  graph.add_dependency("cloud", "operation");
 
   //---------------------------
 }
