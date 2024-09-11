@@ -40,11 +40,13 @@ void Playback::capture(dat::base::Sensor& sensor){
 
   prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("capture");
   tasker->loop();
-
+say("---");
   // Wait for the next set of frames from the camera
   tasker->task_begin("data");
-  rlx_sensor->device.frame_set = rlx_struct->pipe.wait_for_frames();
+  rlx_sensor->device.frame_set = rlx_sensor->device.pipe.wait_for_frames();
   tasker->task_end("data");
+say("-hum--");
+  say(rlx_sensor->device.frame_set.size());
 
   //Make alignment
   tasker->task_begin("alignment");
@@ -57,7 +59,7 @@ void Playback::clean(rlx::playback::Sensor& sensor){
   //---------------------------
 
   dat_sensor->clean_sensor(sensor);
-  rlx_struct->pipe.stop();
+  sensor.device.pipe.stop();
 
   //---------------------------
 }
@@ -83,11 +85,7 @@ void Playback::init_info(rlx::playback::Sensor& sensor){
 void Playback::init_capture(rlx::playback::Sensor& sensor){
   //---------------------------
 
-  rs2::device_list devices = rlx_struct->context.query_devices(); // Get number of connected devices
-  int nb_device = devices.size();
-  if(nb_device != 0){
-    rlx_struct->pipe.start(sensor.device.configuration);
-  }
+  sensor.device.pipe.start(sensor.device.configuration);
 
   //---------------------------
 }

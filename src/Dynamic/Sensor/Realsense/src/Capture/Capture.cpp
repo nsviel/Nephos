@@ -43,7 +43,7 @@ void Capture::capture(dat::base::Sensor& sensor){
 
   // Wait for the next set of frames from the camera
   tasker->task_begin("data");
-  rlx_sensor->device.frame_set = rlx_struct->pipe.wait_for_frames();
+  rlx_sensor->device.frame_set = rlx_sensor->device.pipe.wait_for_frames();
   tasker->task_end("data");
 
   //Make alignment
@@ -57,7 +57,7 @@ void Capture::clean(rlx::capture::Sensor& sensor){
   //---------------------------
 
   dat_sensor->clean_sensor(sensor);
-  rlx_struct->pipe.stop();
+  sensor.device.pipe.stop();
 
   //---------------------------
 }
@@ -86,7 +86,7 @@ void Capture::init_capture(rlx::capture::Sensor& sensor){
   rs2::device_list devices = rlx_struct->context.query_devices(); // Get number of connected devices
   int nb_device = devices.size();
   if(nb_device != 0){
-    rlx_struct->pipe.start(sensor.device.configuration);
+    sensor.device.pipe.start(sensor.device.configuration);
   }
 
   //---------------------------

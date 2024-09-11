@@ -55,6 +55,9 @@ void Init::load_entity(){
   utl::base::Path ply("/home/aether/Desktop/Point_cloud/ply/hippo2.ply");
   utl::base::Path cath("/home/aether/Desktop/Point_cloud/ply/Cathedral/pts_regis_01.ply");
   utl::base::Path pts("/home/aether/Desktop/Point_cloud/pts/cloud.pts");
+  utl::base::Path bag("/home/aether/Desktop/intel.bag");
+
+
 
   //Create playback list
   io_struct->operation.with_clearing = false;
@@ -68,7 +71,7 @@ void Init::load_entity(){
   //io_loader->load_object(cath);
   //io_loader->load_object(dragon);
 
-  //io_loader->load_object(ply);
+  io_loader->load_object(bag);
 
   /*
   io_loader->load_object(dragon);

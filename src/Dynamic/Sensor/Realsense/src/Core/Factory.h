@@ -5,9 +5,11 @@
 
 namespace rlx{class Node;}
 namespace rlx::capture{class Sensor;}
+namespace rlx::playback{class Sensor;}
 namespace rlx::base{class Sensor;}
 namespace dat::gph{class Graph;}
 namespace dat::elm{class Set;}
+namespace utl::base{class Path;}
 
 
 namespace rlx{

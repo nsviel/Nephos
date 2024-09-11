@@ -29,6 +29,7 @@ void Importer::insert_importer(){
   this->reference.name = "Intel RealSense Depth Camera 455";
   this->reference.vendor = "8086";
   this->reference.product = "0b5c";
+  this->reference.format = ".bag";
 
   //Insert importer in engine
   io::imp::Importer* io_importer = node_importer->get_io_importer();

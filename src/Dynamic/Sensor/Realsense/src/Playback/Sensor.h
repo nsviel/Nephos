@@ -11,6 +11,7 @@ namespace rlx::processing{class Cloud;}
 namespace rlx::processing{class Infrared;}
 namespace dyn::prc::cloud{class Operation;}
 namespace dat::sensor{class Pool;}
+namespace utl::base{class Path;}
 
 
 namespace rlx::playback{

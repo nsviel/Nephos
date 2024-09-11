@@ -39,7 +39,7 @@ std::shared_ptr<rlx::playback::Sensor> Factory::create_playback_sensor(utl::base
   //---------------------------
 
   //Create sensor
-  std::shared_ptr<rlx::playback::Sensor> sensor = std::make_shared<rlx::playback::Sensor>(node_realsense);
+  std::shared_ptr<rlx::playback::Sensor> sensor = std::make_shared<rlx::playback::Sensor>(node_realsense, path);
 
   //Insert sensor into data tree
   this->insert_in_set(*sensor);

@@ -44,7 +44,7 @@ void Sensor::thread_init(){
 
   //Graph
   graph.add_task("capture", [this](dat::base::Sensor& sensor){ rlx_playback->capture(sensor); });
-  //graph.add_task("color", [this](dat::base::Sensor& sensor){ rlx_color->extract_data(sensor); });
+  graph.add_task("color", [this](dat::base::Sensor& sensor){ rlx_color->extract_data(sensor); });
   //graph.add_task("depth", [this](dat::base::Sensor& sensor){ rlx_depth->extract_data(sensor); });
   graph.add_task("ir", [this](dat::base::Sensor& sensor){ rlx_ir->extract_data(sensor); });
   graph.add_task("cloud", [this](dat::base::Sensor& sensor){ rlx_cloud->extract_data(sensor); });
