@@ -17,14 +17,14 @@ Playback::Playback(rlx::Node* node_realsense){
 
   this->dat_sensor = node_element->get_dat_sensor();
   this->rlx_struct = node_realsense->get_rlx_struct();
-  this->rlx_configuration = new rlx::capture::Configuration(node_realsense);
+  this->rlx_configuration = new rlx::playback::Configuration(node_realsense);
 
   //---------------------------
 }
 Playback::~Playback(){}
 
 //Main function
-void Playback::init(rlx::capture::Sensor& sensor){
+void Playback::init(rlx::playback::Sensor& sensor){
   //---------------------------
 
   rlx_configuration->init(sensor);
@@ -35,7 +35,7 @@ void Playback::init(rlx::capture::Sensor& sensor){
   //---------------------------
 }
 void Playback::capture(dat::base::Sensor& sensor){
-  rlx::capture::Sensor* rlx_sensor = dynamic_cast<rlx::capture::Sensor*>(&sensor);
+  rlx::playback::Sensor* rlx_sensor = dynamic_cast<rlx::playback::Sensor*>(&sensor);
   //---------------------------
 
   prf::monitor::Tasker* tasker = sensor.profiler.fetch_tasker("capture");
@@ -53,7 +53,7 @@ void Playback::capture(dat::base::Sensor& sensor){
 
   //---------------------------
 }
-void Playback::clean(rlx::capture::Sensor& sensor){
+void Playback::clean(rlx::playback::Sensor& sensor){
   //---------------------------
 
   dat_sensor->clean_sensor(sensor);
@@ -63,7 +63,7 @@ void Playback::clean(rlx::capture::Sensor& sensor){
 }
 
 //Subfunction
-void Playback::init_info(rlx::capture::Sensor& sensor){
+void Playback::init_info(rlx::playback::Sensor& sensor){
   //---------------------------
 
   sensor.type_sensor = "capture";
@@ -80,7 +80,7 @@ void Playback::init_info(rlx::capture::Sensor& sensor){
 
   //---------------------------
 }
-void Playback::init_capture(rlx::capture::Sensor& sensor){
+void Playback::init_capture(rlx::playback::Sensor& sensor){
   //---------------------------
 
   rs2::device_list devices = rlx_struct->context.query_devices(); // Get number of connected devices

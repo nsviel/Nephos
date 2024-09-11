@@ -4,7 +4,7 @@
 
 namespace rlx{class Node;}
 namespace rlx{class Structure;}
-namespace rlx::capture{class Capture;}
+namespace rlx::playback{class Playback;}
 namespace rlx::processing{class Color;}
 namespace rlx::processing{class Depth;}
 namespace rlx::processing{class Cloud;}
@@ -34,7 +34,7 @@ public:
 
 private:
   rlx::Structure* rlx_struct;
-  rlx::capture::Capture* rlx_capture;
+  rlx::playback::Playback* rlx_playback;
   rlx::processing::Color* rlx_color;
   rlx::processing::Depth* rlx_depth;
   rlx::processing::Cloud* rlx_cloud;

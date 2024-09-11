@@ -15,7 +15,7 @@ Sensor::Sensor(rlx::Node* node_realsense, utl::base::Path path){
   dyn::prc::Node* node_processing = node_realsense->get_node_processing();
 
   this->rlx_struct = node_realsense->get_rlx_struct();
-  this->rlx_capture = new rlx::capture::Capture(node_realsense);
+  this->rlx_playback = new rlx::playback::Playback(node_realsense);
   this->rlx_color = new rlx::processing::Color(node_realsense);
   this->rlx_depth = new rlx::processing::Depth(node_realsense);
   this->rlx_ir = new rlx::processing::Infrared(node_realsense);
@@ -24,7 +24,7 @@ Sensor::Sensor(rlx::Node* node_realsense, utl::base::Path path){
   this->thr_pool = new dat::sensor::Pool(20);
 
   this->data->path = path;
-  
+
   //---------------------------
 }
 Sensor::~Sensor(){
@@ -40,10 +40,10 @@ void Sensor::thread_init(){
   //---------------------------
 
   //Configuration
-  rlx_capture->init(*this);
+  rlx_playback->init(*this);
 
   //Graph
-  graph.add_task("capture", [this](dat::base::Sensor& sensor){ rlx_capture->capture(sensor); });
+  graph.add_task("capture", [this](dat::base::Sensor& sensor){ rlx_playback->capture(sensor); });
   //graph.add_task("color", [this](dat::base::Sensor& sensor){ rlx_color->extract_data(sensor); });
   //graph.add_task("depth", [this](dat::base::Sensor& sensor){ rlx_depth->extract_data(sensor); });
   graph.add_task("ir", [this](dat::base::Sensor& sensor){ rlx_ir->extract_data(sensor); });
@@ -68,7 +68,7 @@ void Sensor::thread_end(){
   //---------------------------
 
   graph.wait_completion();
-  rlx_capture->clean(*this);
+  rlx_playback->clean(*this);
 
   //---------------------------
 }

@@ -4,7 +4,7 @@
 
 namespace rlx{class Node;}
 namespace rlx{class Structure;}
-namespace rlx::capture{class Sensor;}
+namespace rlx::playback{class Sensor;}
 namespace dat::base{class Sensor;}
 
 
@@ -19,7 +19,7 @@ public:
 
 public:
   //Main function
-  void init(rlx::capture::Sensor& sensor);
+  void init(rlx::playback::Sensor& sensor);
 
 private:
   rlx::Structure* rlx_struct;

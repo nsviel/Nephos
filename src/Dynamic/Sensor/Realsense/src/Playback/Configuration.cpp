@@ -19,7 +19,7 @@ Configuration::Configuration(rlx::Node* node_realsense){
 Configuration::~Configuration(){}
 
 //Main function
-void Configuration::init(rlx::capture::Sensor& sensor){
+void Configuration::init(rlx::playback::Sensor& sensor){
   //---------------------------
 
   sensor.device.configuration.enable_stream(RS2_STREAM_COLOR, RS2_FORMAT_BGR8); // Color stream
