@@ -21,6 +21,7 @@ Renderpass::~Renderpass(){}
 void Renderpass::init(){
   //---------------------------
 
+//  vk::structure::Renderpass& renderpass = vk_struct->render.rp.edl;
   vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
   this->create_renderpass(renderpass);
   vk_edl->create_subpass(renderpass);

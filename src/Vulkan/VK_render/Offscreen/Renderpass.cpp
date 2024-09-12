@@ -11,6 +11,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
 
   this->vk_struct = vk_struct;
   this->vk_scene = new vk::render::offscreen::Scene(vk_struct);
+  this->vk_edl = new vk::render::offscreen::EDL(vk_struct);
 
   //---------------------------
 }
@@ -23,6 +24,7 @@ void Renderpass::init(){
   vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
   this->create_renderpass(renderpass);
   vk_scene->create_subpass(renderpass);
+  //vk_edl->create_subpass(renderpass);
 
   //---------------------------
 }

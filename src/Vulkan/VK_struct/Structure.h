@@ -3,6 +3,7 @@
 #include <Vulkan/VK_engine/Structure/Profiler.h>
 #include <Vulkan/VK_command/Structure/Command.h>
 #include <Vulkan/VK_render/Structure/Render.h>
+#include <Vulkan/VK_render/Structure/Renderpass.h>
 #include <Vulkan/VK_window/Structure/Window.h>
 #include <Vulkan/VK_data/Structure/Data.h>
 #include <Vulkan/VK_queue/Structure/Class.h>
@@ -25,7 +26,6 @@ struct Structure{
   }
 
   //Structure
-  vk::structure::Render render;
   vk::structure::Window window;
   vk::structure::Panel panel;
   vk::structure::Instance instance;
@@ -37,6 +37,8 @@ struct Structure{
   vk::structure::Command command;
   vk::profiler::Structure profiler;
   vk::queue::structure::Class queue;
+  vk::render::structure::Render render;
+  vk::render::structure::Renderpass renderpass;
 
   //---------------------------
 };

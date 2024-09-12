@@ -3,6 +3,7 @@
 namespace vk{class Structure;}
 namespace vk::structure{class Renderpass;}
 namespace vk::render::offscreen{class Scene;}
+namespace vk::render::offscreen{class EDL;}
 
 
 namespace vk::render::offscreen{
@@ -24,6 +25,7 @@ public:
 private:
   vk::Structure* vk_struct;
   vk::render::offscreen::Scene* vk_scene;
+  vk::render::offscreen::EDL* vk_edl;
 };
 
 }
