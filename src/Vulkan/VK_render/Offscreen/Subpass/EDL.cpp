@@ -50,7 +50,7 @@ void EDL::update_binding(vk::structure::Subpass& subpass){
   //---------------------------
 
   vk::render::structure::EDL& edl_struct = vk_struct->render.edl;
-  vk::structure::Renderpass* renderpass_scene = vk_struct->render.vec_renderpass[0];
+  vk::structure::Renderpass* renderpass_scene = vk_struct->renderpass.vector[0];
   vk::structure::Framebuffer* frame_scene = renderpass_scene->framebuffer;
   vk::structure::Pipeline* pipeline = subpass.get_pipeline();
 

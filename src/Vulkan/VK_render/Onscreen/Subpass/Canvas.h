@@ -19,10 +19,10 @@ public:
 
 public:
   //Main function
-  void create_subpass(vk::structure::Renderpass* renderpass);
+  void create_subpass(vk::structure::Renderpass& renderpass);
 
   //Subfunction
-  void draw(vk::structure::Subpass* subpass);
+  void draw(vk::structure::Subpass& subpass);
 
 private:
   vk::Structure* vk_struct;

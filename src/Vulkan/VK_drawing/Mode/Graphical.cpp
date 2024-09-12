@@ -31,7 +31,7 @@ void Graphical::draw_frame(){
 void Graphical::record_renderpass(std::vector<std::unique_ptr<vk::structure::Command>>& vec_command, vk::synchro::structure::Semaphore& semaphore){
   //---------------------------
 
-  for(auto& renderpass : vk_struct->render.vec_renderpass){
+  for(auto& renderpass : vk_struct->renderpass.vector){
     sys::timer::Timepoint ts = utl_chrono->start_t();
 
     //Run renderpass
@@ -55,8 +55,8 @@ void Graphical::copy_to_swapchain(std::vector<std::unique_ptr<vk::structure::Com
   //---------------------------
 
   //Copy renderpass to swapchain image
-  vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
-  vk::structure::Command_buffer* command_buffer = vk_transfer->copy_image_to_image(renderpass->framebuffer->color, vk_struct->swapchain.vec_frame[vk_struct->swapchain.current_ID]->color);
+  vk::structure::Renderpass& renderpass = vk_struct->renderpass.onscreen;
+  vk::structure::Command_buffer* command_buffer = vk_transfer->copy_image_to_image(renderpass.framebuffer->color, vk_struct->swapchain.vec_frame[vk_struct->swapchain.current_ID]->color);
 
   std::unique_ptr<vk::structure::Command> command = std::make_unique<vk::structure::Command>();
   command->semaphore_wait = semaphore.handle;

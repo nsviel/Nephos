@@ -21,20 +21,20 @@ Renderpass::~Renderpass(){}
 void Renderpass::init(){
   //---------------------------
 
-  //vk::structure::Renderpass& renderpass = vk_struct->renderpass.edl;
-  vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
+  vk::structure::Renderpass& renderpass = vk_struct->renderpass.edl;
+  //vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
   this->create_renderpass(renderpass);
-  vk_edl->create_subpass(*renderpass);
+  vk_edl->create_subpass(renderpass);
 
   //---------------------------
 }
 
 //Init function
-void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
+void Renderpass::create_renderpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
-  renderpass->name = "edl";
-  vk_struct->render.vec_renderpass.push_back(renderpass);
+  renderpass.name = "edl";
+  vk_struct->renderpass.vector.push_back(&renderpass);
 
   //---------------------------
 

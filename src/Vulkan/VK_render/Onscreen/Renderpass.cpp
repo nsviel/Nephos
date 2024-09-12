@@ -21,7 +21,7 @@ void Renderpass::init(){
   if(vk_struct->param.headless) return;
   //---------------------------
 
-  vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
+  vk::structure::Renderpass& renderpass = vk_struct->renderpass.onscreen;
   this->create_renderpass(renderpass);
   vk_subpass->create_subpass(renderpass);
 
@@ -29,11 +29,11 @@ void Renderpass::init(){
 }
 
 //Init function
-void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
+void Renderpass::create_renderpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
-  renderpass->name = "gui";
-  vk_struct->render.vec_renderpass.push_back(renderpass);
+  renderpass.name = "gui";
+  vk_struct->renderpass.vector.push_back(&renderpass);
 
   //---------------------------
 }

@@ -65,7 +65,7 @@ void Imgui::create_context(){
 
   // Setup Platform/Renderer bindings
   if(!vk_struct->param.headless){
-    vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("gui");
+    vk::structure::Renderpass& renderpass = vk_struct->renderpass.onscreen;
     ImGui_ImplGlfw_InitForVulkan(vk_struct->window.handle, true);
     ImGui_ImplVulkan_InitInfo init_info = {};
     init_info.Instance = vk_struct->instance.handle;
@@ -79,7 +79,7 @@ void Imgui::create_context(){
     init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
     init_info.Subpass = 0;
     init_info.QueueFamily = vk_struct->device.queue.graphics.family_ID;
-    ImGui_ImplVulkan_Init(&init_info, renderpass->handle);
+    ImGui_ImplVulkan_Init(&init_info, renderpass.handle);
   }
 
   //---------------------------
@@ -150,8 +150,8 @@ void Imgui::update_render_descriptor(){
   if(vk_struct->param.headless) return;
   //---------------------------
 
-  vk::structure::Renderpass* renderpass = vk_struct->render.get_renderpass_byName("edl");
-  vk::structure::Image* image = &renderpass->framebuffer->color;
+  vk::structure::Renderpass& renderpass = vk_struct->renderpass.edl;
+  vk::structure::Image* image = &renderpass.framebuffer->color;
 
   vk_struct->render.descriptor = ImGui_ImplVulkan_AddTexture(image->sampler, image->view, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 

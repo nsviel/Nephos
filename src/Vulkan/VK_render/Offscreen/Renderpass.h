@@ -20,7 +20,7 @@ public:
   void init();
 
   //Subfunction
-  void create_renderpass(vk::structure::Renderpass* renderpass);
+  void create_renderpass(vk::structure::Renderpass& renderpass);
 
 private:
   vk::Structure* vk_struct;

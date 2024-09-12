@@ -22,7 +22,7 @@ Framebuffer::~Framebuffer(){}
 void Framebuffer::create_framebuffers(){
   //---------------------------
 
-  for(auto& renderpass : vk_struct->render.vec_renderpass){
+  for(auto& renderpass : vk_struct->renderpass.vector){
     this->create_framebuffer(renderpass);
   }
 
@@ -49,7 +49,7 @@ void Framebuffer::create_framebuffer(vk::structure::Renderpass* renderpass){
 void Framebuffer::clean_framebuffers(){
   //---------------------------
 
-  for(auto& renderpass : vk_struct->render.vec_renderpass){
+  for(auto& renderpass : vk_struct->renderpass.vector){
     this->clean_framebuffer(renderpass);
   }
 

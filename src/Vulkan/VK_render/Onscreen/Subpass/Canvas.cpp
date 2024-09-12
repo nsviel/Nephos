@@ -19,24 +19,24 @@ Canvas::Canvas(vk::Structure* vk_struct){
 Canvas::~Canvas(){}
 
 //Main function
-void Canvas::create_subpass(vk::structure::Renderpass* renderpass){
+void Canvas::create_subpass(vk::structure::Renderpass& renderpass){
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = vk::renderpass::PRESENTATION;
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){Canvas::draw(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){Canvas::draw(*subpass);};
 
   vk_factory->add_pipeline_triangle(*subpass);
 
   //---------------------------
-  renderpass->vec_subpass.push_back(subpass);
+  renderpass.vec_subpass.push_back(subpass);
 }
 
 //Subfunction
-void Canvas::draw(vk::structure::Subpass* subpass){
+void Canvas::draw(vk::structure::Subpass& subpass){
   //---------------------------
 
-  vk_imgui->draw_frame(subpass->command_buffer);
+  vk_imgui->draw_frame(subpass.command_buffer);
 
   //---------------------------
 }
