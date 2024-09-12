@@ -24,6 +24,7 @@ public:
   void add_pipeline_line(vk::structure::Subpass& subpass);
   void add_pipeline_point(vk::structure::Subpass& subpass);
   void add_pipeline_triangle(vk::structure::Subpass& subpass);
+  void add_pipeline_edl(vk::structure::Subpass& subpass);
 
 private:
   vk::Structure* vk_struct;

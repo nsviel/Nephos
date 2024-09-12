@@ -3,7 +3,7 @@
 #include <Utility/Base/Shader/Base.h>
 
 namespace vk{class Structure;}
-namespace vk::render::edl{class Structure;}
+namespace vk::render::structure{class EDL;}
 
 
 namespace vk::render::edl{
@@ -17,14 +17,13 @@ public:
 
 public:
   //Main function
-  void build_shader_info();
   void update_shader();
 
-  inline vk::render::edl::Structure* get_edl_struct(){return edl_struct;}
+  inline vk::render::structure::EDL* get_edl_struct(){return edl_struct;}
 
 private:
   vk::Structure* vk_struct;
-  vk::render::edl::Structure* edl_struct;
+  vk::render::structure::EDL* edl_struct;
 };
 
 }

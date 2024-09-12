@@ -125,7 +125,7 @@ template <typename T> void Uniform::update_uniform(std::string uniform_name, vk:
 }
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding* binding, glm::mat4 value);
 template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding* binding, int value);
-template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding* binding, vk::render::edl::Structure value);
+template void Uniform::update_uniform(std::string uniform_name, vk::binding::structure::Binding* binding, vk::render::structure::EDL value);
 
 //Subfunction
 vk::binding::structure::Required Uniform::uniform_point_size(){
@@ -159,7 +159,7 @@ vk::binding::structure::Required Uniform::uniform_edl(){
 
   vk::binding::structure::Required descriptor;
   descriptor.name = "EDL_param";
-  descriptor.size = sizeof(vk::render::edl::Structure);
+  descriptor.size = sizeof(vk::render::structure::EDL);
   descriptor.binding = 5;
   descriptor.type = TYP_UNIFORM;
   descriptor.stage = TYP_SHADER_FS;

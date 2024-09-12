@@ -229,7 +229,7 @@ void Shader::show_parameter(){
 }
 void Shader::parameter_EDL(){/*
   vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
-  vk::render::edl::Structure* edl_param = shader_edl->get_edl_struct();
+  vk::render::structure::EDL* edl_param = shader_edl->get_edl_struct();
   //---------------------------
 
   ImGui::SetNextItemWidth(item_width);
