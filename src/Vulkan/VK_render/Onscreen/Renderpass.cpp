@@ -10,7 +10,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_subpass = new vk::render::onscreen::Subpass(vk_struct);
+  this->vk_subpass = new vk::render::onscreen::Canvas(vk_struct);
 
   //---------------------------
 }

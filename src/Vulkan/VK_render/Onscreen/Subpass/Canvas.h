@@ -10,12 +10,12 @@ namespace vk::gui{class Imgui;}
 
 namespace vk::render::onscreen{
 
-class Subpass
+class Canvas
 {
 public:
   //Constructor / Destructor
-  Subpass(vk::Structure* vk_struct);
-  ~Subpass();
+  Canvas(vk::Structure* vk_struct);
+  ~Canvas();
 
 public:
   //Main function

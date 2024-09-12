@@ -1,7 +1,7 @@
 #pragma once
 
 namespace vk{class Structure;}
-namespace vk::render::onscreen{class Subpass;}
+namespace vk::render::onscreen{class Canvas;}
 namespace vk::structure{class Renderpass;}
 
 
@@ -23,7 +23,7 @@ public:
 
 private:
   vk::Structure* vk_struct;
-  vk::render::onscreen::Subpass* vk_subpass;
+  vk::render::onscreen::Canvas* vk_subpass;
 };
 
 }

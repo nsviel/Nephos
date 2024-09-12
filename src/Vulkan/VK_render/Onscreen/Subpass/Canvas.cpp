@@ -6,7 +6,7 @@
 namespace vk::render::onscreen{
 
 //Constructor / Destructor
-Subpass::Subpass(vk::Structure* vk_struct){
+Canvas::Canvas(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
@@ -16,15 +16,15 @@ Subpass::Subpass(vk::Structure* vk_struct){
 
   //---------------------------
 }
-Subpass::~Subpass(){}
+Canvas::~Canvas(){}
 
 //Main function
-void Subpass::create_subpass(vk::structure::Renderpass* renderpass){
+void Canvas::create_subpass(vk::structure::Renderpass* renderpass){
   //---------------------------
 
   vk::structure::Subpass* subpass = new vk::structure::Subpass();
   subpass->target = vk::renderpass::PRESENTATION;
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){Subpass::draw(subpass);};
+  subpass->draw_task = [this](vk::structure::Subpass* subpass){Canvas::draw(subpass);};
 
   vk_pipeline->add_pipeline_triangle(subpass);
 
@@ -33,7 +33,7 @@ void Subpass::create_subpass(vk::structure::Renderpass* renderpass){
 }
 
 //Subfunction
-void Subpass::draw(vk::structure::Subpass* subpass){
+void Canvas::draw(vk::structure::Subpass* subpass){
   //---------------------------
 
   vk_imgui->draw_frame(subpass->command_buffer);
