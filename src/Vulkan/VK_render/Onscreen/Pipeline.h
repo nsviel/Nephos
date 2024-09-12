@@ -6,12 +6,12 @@ namespace vk::structure{class Subpass;}
 
 namespace vk::render::onscreen{
 
-class Renderpass
+class Pipeline
 {
 public:
   //Constructor / Destructor
-  Renderpass(vk::Structure* vk_struct);
-  ~Renderpass();
+  Pipeline(vk::Structure* vk_struct);
+  ~Pipeline();
 
 public:
   //Main function
