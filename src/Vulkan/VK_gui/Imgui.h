@@ -33,6 +33,7 @@ public:
   void create_context();
   void new_frame();
   void draw_frame(vk::structure::Command_buffer* command_buffer);
+  void resize_event();
   void glfw_clean();
   void glfw_new_frame();
 

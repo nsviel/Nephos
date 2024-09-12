@@ -36,19 +36,19 @@ void Imgui::init(){
 
   //---------------------------
 }
+void Imgui::loop(){
+  //---------------------------
+
+  this->glfw_new_frame();
+
+  //---------------------------
+}
 void Imgui::clean(){
   //---------------------------
 
   this->glfw_clean();
   ImPlot::DestroyContext();
   ImGui::DestroyContext();
-
-  //---------------------------
-}
-void Imgui::loop(){
-  //---------------------------
-
-  this->glfw_new_frame();
 
   //---------------------------
 }
@@ -102,6 +102,16 @@ void Imgui::draw_frame(vk::structure::Command_buffer* command_buffer){
 }
 void Imgui::new_frame(){
   //---------------------------
+
+  ImGui::NewFrame();
+  vk_docking->loop();
+
+  //---------------------------
+}
+void Imgui::resize_event(){
+  //---------------------------
+
+  this->update_render_descriptor();
 
   ImGui::NewFrame();
   vk_docking->loop();

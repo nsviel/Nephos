@@ -32,7 +32,7 @@ void Panel::run_panel(){
     ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1, 0.1, 0.1, 1));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ImGui::SetNextWindowSizeConstraints(ImVec2(300, 300), ImVec2(600, 600));
-    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_AlwaysAutoResize) == 1){
+    if(ImGui::Begin(name.c_str(), show_window, ImGuiWindowFlags_NoResize) == 1){
       this->design_panel();
       ImGui::End();
     }

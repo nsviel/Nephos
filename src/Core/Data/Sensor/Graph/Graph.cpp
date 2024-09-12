@@ -86,10 +86,10 @@ void Graph::process_graph(dat::sensor::Pool& thread_pool, dat::base::Sensor& sen
     queue_running.pop();
 
     // Wait for the current node's future to complete
-    /*dat::sensor::Node& node = map_node[task_name];
+    dat::sensor::Node& node = map_node[task_name];
     if (node.future.valid()){
       node.future.wait();
-    }*/
+    }
 
     //Start following nodes
     this->process_node(task_name, thread_pool, sensor, queue_running);
