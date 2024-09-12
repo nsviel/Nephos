@@ -10,8 +10,6 @@ Render::Render(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->shader_edl = new vk::render::edl::Shader(vk_struct);
-
   this->rp_scene = new vk::render::offscreen::Renderpass(vk_struct);
   this->rp_edl = new vk::render::edl::Renderpass(vk_struct);
   this->rp_gui = new vk::render::onscreen::Renderpass(vk_struct);

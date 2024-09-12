@@ -72,8 +72,8 @@ void Shader::retrieve_shader_subclasses(){
 
   std::vector<utl::shader::Info*> vec_shader_info;
   if(selection == "EDL"){
-    vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
-    vec_shader_info = shader_edl->get_vec_shader_info();
+    //vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
+    //vec_shader_info = shader_edl->get_vec_shader_info();
   }
   else if(selection == "Scene"){
     //vk::render::offscreen::Shader* shader_scene = vk_render->get_shader_scene();
@@ -95,8 +95,8 @@ std::string Shader::get_path_vs_from_selection(){
   std::string path_vs = "";
 
   if(selection == "EDL"){
-    vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
-    path_vs = shader_edl->get_glsl_path_vs(ID_subclass);
+    //vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
+    //path_vs = shader_edl->get_glsl_path_vs(ID_subclass);
   }
   else if(selection == "Scene"){
     //vk::render::offscreen::Shader* shader_scene = vk_render->get_shader_scene();
@@ -113,8 +113,8 @@ std::string Shader::get_path_fs_from_selection(){
   std::string path_fs = "";
 
   if(selection == "EDL"){
-    vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
-    path_fs = shader_edl->get_glsl_path_fs(ID_subclass);
+    //vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
+    //path_fs = shader_edl->get_glsl_path_fs(ID_subclass);
   }
   else if(selection == "Scene"){
     //vk::render::offscreen::Shader* shader_scene = vk_render->get_shader_scene();
@@ -136,7 +136,7 @@ void Shader::show_parameter(){
   //---------------------------
 }
 void Shader::parameter_EDL(){
-  vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
+  /*vk::render::edl::Shader* shader_edl = vk_render->get_shader_edl();
   vk::render::structure::EDL* edl_param = shader_edl->get_edl_struct();
   //---------------------------
 
@@ -153,7 +153,7 @@ void Shader::parameter_EDL(){
   ImGui::SetNextItemWidth(item_width);
   if(ImGui::SliderFloat("Strength", &edl_param->strength, 1.0f, 100.0f)){
     shader_edl->update_shader();
-  }
+  }*/
 
   //---------------------------
 }
