@@ -10,9 +10,7 @@ Renderpass::Renderpass(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
-  this->vk_renderpass = new vk::renderpass::Renderpass(vk_struct);
-  this->vk_pipeline = new vk::render::onscreen::Pipeline(vk_struct);
-  this->vk_imgui = new vk::gui::Imgui(vk_struct);
+  this->vk_subpass = new vk::render::onscreen::Subpass(vk_struct);
 
   //---------------------------
 }
@@ -25,7 +23,7 @@ void Renderpass::init(){
 
   vk::structure::Renderpass* renderpass = new vk::structure::Renderpass();
   this->create_renderpass(renderpass);
-  this->create_subpass(renderpass);
+  vk_subpass->create_subpass(renderpass);
 
   //---------------------------
 }
@@ -36,27 +34,6 @@ void Renderpass::create_renderpass(vk::structure::Renderpass* renderpass){
 
   renderpass->name = "gui";
   vk_struct->render.vec_renderpass.push_back(renderpass);
-
-  //---------------------------
-}
-void Renderpass::create_subpass(vk::structure::Renderpass* renderpass){
-  //---------------------------
-
-  vk::structure::Subpass* subpass = new vk::structure::Subpass();
-  subpass->target = vk::renderpass::PRESENTATION;
-  subpass->draw_task = [this](vk::structure::Subpass* subpass){Renderpass::draw(subpass);};
-
-  vk_pipeline->add_pipeline_triangle(subpass);
-
-  //---------------------------
-  renderpass->vec_subpass.push_back(subpass);
-}
-
-//Draw function
-void Renderpass::draw(vk::structure::Subpass* subpass){
-  //---------------------------
-
-  vk_imgui->draw_frame(subpass->command_buffer);
 
   //---------------------------
 }

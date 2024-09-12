@@ -4,14 +4,14 @@ namespace vk{class Structure;}
 namespace vk::structure{class Subpass;}
 
 
-namespace vk::render::onscreen{
+namespace vk::render::pipeline{
 
-class Pipeline
+class Canvas
 {
 public:
   //Constructor / Destructor
-  Pipeline(vk::Structure* vk_struct);
-  ~Pipeline();
+  Canvas(vk::Structure* vk_struct);
+  ~Canvas();
 
 public:
   //Main function

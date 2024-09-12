@@ -1,22 +1,22 @@
-#include "Pipeline.h"
+#include "Canvas.h"
 
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::render::onscreen{
+namespace vk::render::pipeline{
 
 //Constructor / Destructor
-Pipeline::Pipeline(vk::Structure* vk_struct){
+Canvas::Canvas(vk::Structure* vk_struct){
   //---------------------------
 
   this->vk_struct = vk_struct;
 
   //---------------------------
 }
-Pipeline::~Pipeline(){}
+Canvas::~Canvas(){}
 
 //Main function
-void Pipeline::add_pipeline_triangle(vk::structure::Subpass* subpass){
+void Canvas::add_pipeline_triangle(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
