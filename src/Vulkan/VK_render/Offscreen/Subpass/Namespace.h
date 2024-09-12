@@ -1,5 +1,3 @@
 #pragma once
 
-#include <Vulkan/VK_render/Offscreen/Shader.h>
-#include <Vulkan/VK_render/Offscreen/Renderpass.h>
-#include <Vulkan/VK_render/Offscreen/Drawer.h>
+#include <Vulkan/VK_render/Offscreen/Subpass/Scene.h>

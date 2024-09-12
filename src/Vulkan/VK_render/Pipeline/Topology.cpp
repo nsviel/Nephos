@@ -18,7 +18,7 @@ Topology::Topology(vk::Structure* vk_struct, vk::render::offscreen::Shader* vk_s
 Topology::~Topology(){}
 
 //Main function
-void Topology::create_pipeline_line(vk::structure::Subpass* subpass){
+void Topology::add_pipeline_line(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
@@ -40,7 +40,7 @@ void Topology::create_pipeline_line(vk::structure::Subpass* subpass){
   //---------------------------
   subpass->vec_pipeline.push_back(pipeline);
 }
-void Topology::create_pipeline_point(vk::structure::Subpass* subpass){
+void Topology::add_pipeline_point(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader
@@ -64,7 +64,7 @@ void Topology::create_pipeline_point(vk::structure::Subpass* subpass){
   //---------------------------
   subpass->vec_pipeline.push_back(pipeline);
 }
-void Topology::create_pipeline_triangle(vk::structure::Subpass* subpass){
+void Topology::add_pipeline_triangle(vk::structure::Subpass* subpass){
   //---------------------------
 
   //Shader

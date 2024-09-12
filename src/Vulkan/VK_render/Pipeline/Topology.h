@@ -7,7 +7,7 @@ namespace vk::structure{class Renderpass;}
 namespace vk::render::offscreen{class Shader;}
 
 
-namespace vk::render::offscreen{
+namespace vk::render::pipeline{
 
 class Topology
 {
@@ -18,9 +18,9 @@ public:
 
 public:
   //Main function
-  void create_pipeline_line(vk::structure::Subpass* subpass);
-  void create_pipeline_point(vk::structure::Subpass* subpass);
-  void create_pipeline_triangle(vk::structure::Subpass* subpass);
+  void add_pipeline_line(vk::structure::Subpass* subpass);
+  void add_pipeline_point(vk::structure::Subpass* subpass);
+  void add_pipeline_triangle(vk::structure::Subpass* subpass);
 
 private:
   vk::Structure* vk_struct;
