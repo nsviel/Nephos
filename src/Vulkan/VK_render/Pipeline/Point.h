@@ -8,18 +8,21 @@ namespace vk::structure{class Renderpass;}
 
 namespace vk::render::pipeline{
 
-class Topology
+class Point
 {
 public:
   //Constructor / Destructor
-  Topology(vk::Structure* vk_struct);
-  ~Topology();
+  Point(vk::Structure* vk_struct);
+  ~Point();
 
 public:
   //Main function
-  void add_pipeline_line(vk::structure::Subpass& subpass);
   void add_pipeline_point(vk::structure::Subpass& subpass);
-  void add_pipeline_triangle(vk::structure::Subpass& subpass);
+
+  //Subfunction
+  void set_pipeline(vk::structure::Pipeline& pipeline);
+  void set_shader(vk::structure::Pipeline& pipeline);
+  void set_binding(vk::structure::Pipeline& pipeline);
 
 private:
   vk::Structure* vk_struct;
