@@ -7,7 +7,7 @@ namespace vk::structure{class Renderpass;}
 namespace vk::gui{class Imgui;}
 
 
-namespace vk::render::gui{
+namespace vk::render::onscreen{
 
 class Renderpass
 {

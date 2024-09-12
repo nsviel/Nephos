@@ -3,7 +3,7 @@
 #include <Vulkan/Namespace.h>
 
 
-namespace vk::render::gui{
+namespace vk::render::onscreen{
 
 //Constructor / Destructor
 Renderpass::Renderpass(vk::Structure* vk_struct){

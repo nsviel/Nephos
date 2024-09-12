@@ -5,7 +5,7 @@ namespace vk::render::edl{class Shader;}
 namespace vk::render::scene{class Shader;}
 namespace vk::render::edl{class Renderpass;}
 namespace vk::render::scene{class Renderpass;}
-namespace vk::render::gui{class Renderpass;}
+namespace vk::render::onscreen{class Renderpass;}
 
 
 namespace vk::render{
@@ -31,7 +31,7 @@ private:
 
   vk::render::scene::Renderpass* rp_scene;
   vk::render::edl::Renderpass* rp_edl;
-  vk::render::gui::Renderpass* rp_gui;
+  vk::render::onscreen::Renderpass* rp_gui;
 };
 
 }
